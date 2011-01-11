@@ -451,6 +451,7 @@ Please proceed to the next page.",
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
+	'config-pg-plpgsql'               => 'Checking for language PL/pgSQL',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
 	'config-install-pg-ts2'           => 'Checking for tsearch2',
 	'config-install-pg-ts2-failed'    => "'''FAILED''' tsearch2 must be installed in the database $1.

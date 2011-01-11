@@ -345,42 +345,34 @@ abstract class CoreInstaller extends Installer {
 			array( 'name' => 'sysop',      'callback' => array( $this, 'createSysop' ) ),
 			array( 'name' => 'mainpage',   'callback' => array( $this, 'createMainpage' ) ),
 		);
-		if( count( $this->getVar( '_Extensions' ) ) ) {
-			array_unshift( $coreInstallSteps,
-				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
-			);
-		}
-		$this->installSteps = $coreInstallSteps;
-		foreach( $this->extraInstallSteps as $step ) {
-			// Put the step at the beginning
-			if( !strval( $step['position' ] ) ) {
-				array_unshift( $this->installSteps, $step['callback'] );
-				continue;
-			} else {
-				// Walk the $coreInstallSteps array to see if we can modify
-				// $this->installSteps with a callback that wants to attach after
-				// a given step
-				array_walk( 
-					$coreInstallSteps,
-					array( $this, 'installStepCallback' ),
-					$step
+
+		// Build the array of install steps starting from the core install list,
+		// then adding any callbacks that wanted to attach after a given step
+		foreach( $coreInstallSteps as $step ) {
+			$this->installSteps[] = $step;
+			if( isset( $this->extraInstallSteps[ $step['name'] ] ) ) {
+				$this->installSteps = array_merge(
+					$this->installSteps,
+					$this->extraInstallSteps[ $step['name'] ]
 				);
 			}
 		}
-		return $this->installSteps;
-	}
 
-	/**
-	 * Callback for getInstallSteps() - used for finding if a given $insertableStep
-	 * should be inserted after the current $coreStep in question
-	 */
-	private function installStepCallback( $coreStep, $key, $insertableStep ) {
-		if( $coreStep['name'] == $insertableStep['position'] ) {
-			$front = array_slice( $this->installSteps, 0, $key + 1 );
-			$front[] = $insertableStep['callback'];
-			$back = array_slice( $this->installSteps, $key + 1 );
-			$this->installSteps = array_merge( $front, $back );
+		// Prepend any steps that want to be at the beginning
+		if( isset( $this->extraInstallSteps['BEGINNING'] ) ) {
+			$this->installSteps = array_merge(
+				$this->extraInstallSteps['BEGINNING'],
+				$this->installSteps
+			);
 		}
+
+		// Extensions should always go first, chance to tie into hooks and such
+		if( count( $this->getVar( '_Extensions' ) ) ) {
+			array_unshift( $this->installSteps,
+				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
+			);
+		}
+		return $this->installSteps;
 	}
 
 	/**
@@ -593,9 +585,7 @@ abstract class CoreInstaller extends Installer {
 	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
 	 * @param $findStep String the step to find. Omit to put the step at the beginning
 	 */
-	public function addInstallStep( $callback, $findStep = '' ) {
-		$this->extraInstallSteps[] = array(
-			'position' => $findStep, 'callback' => $callback
-		);
+	public function addInstallStep( $callback, $findStep = 'BEGINNING' ) {
+		$this->extraInstallSteps[$findStep][] = $callback;
 	}
 }
