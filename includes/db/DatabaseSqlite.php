@@ -415,7 +415,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
 	 */
 	function textFieldSize( $table, $field ) {
-		return - 1;
+		return -1;
 	}
 
 	function unionSupportsOrderAndLimit() {
