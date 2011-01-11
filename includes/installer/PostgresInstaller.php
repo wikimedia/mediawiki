@@ -193,25 +193,20 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
 		);
-/*		$userCB = array(
+		$userCB = array(
 			'name' => 'user',
 			'callback' => array( $this, 'setupUser' ),
-		); */
+		);
 		$ts2CB = array(
 			'name' => 'pg-ts2',
 			'callback' => array( $this, 'setupTs2' ),
 		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
-//		$this->parent->addInstallStep( $userCB );
+		$this->parent->addInstallStep( $userCB );
 		$this->parent->addInstallStep( $ts2CB, 'setupDatabase' );
 	}
 
 	function setupDatabase() {
-		$status = $this->setupUser();
-		if (!$status->isOK() ) {
-			return $status;
-		}
-
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;

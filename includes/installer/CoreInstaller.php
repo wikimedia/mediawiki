@@ -354,7 +354,7 @@ abstract class CoreInstaller extends Installer {
 		foreach( $this->extraInstallSteps as $step ) {
 			// Put the step at the beginning
 			if( !strval( $step['position' ] ) ) {
-				array_unshift( $installSteps, $step['callback'] );
+				array_unshift( $this->installSteps, $step['callback'] );
 				continue;
 			} else {
 				// Walk the $coreInstallSteps array to see if we can modify
