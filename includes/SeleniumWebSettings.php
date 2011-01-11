@@ -43,17 +43,18 @@ if ( isset( $_GET['setupTestSuite'] ) ) {
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$setupTestSuiteName];
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));
-	
-	if ( isset( $testResourceFiles['db'] ) ) {
-		$testSqlFile = $testResourceFiles['db'];
-	}
+
 	if ( isset($testResourceFiles['images']) ) {
 		$testImageZip = $testResourceFiles['images'];
 	}
-
-	$testResourceName = getTestResourceNameFromTestSuiteName( $setupTestSuiteName );
-	switchToTestResources( $testResourceName, false ); // false means do not switch database yet
-	setupTestResources( $testResourceName, $testSqlFile, $testImageZip );
+	
+	if ( isset( $testResourceFiles['db'] ) ) {
+		$testSqlFile = $testResourceFiles['db'];
+		$testResourceName = getTestResourceNameFromTestSuiteName( $setupTestSuiteName );
+	
+		switchToTestResources( $testResourceName, false ); // false means do not switch database yet
+		setupTestResources( $testResourceName, $testSqlFile, $testImageZip );
+	}
 }
 
 //clear the cookie based on a request param
@@ -80,15 +81,16 @@ if ( isset( $_COOKIE[$cookieName] ) ) {
 		return;
 	}
 	
-	$testResourceName = getTestResourceNameFromTestSuiteName( $testSuiteName );
-	switchToTestResources( $testResourceName );
-	
 	$testIncludes = array(); //array containing all the includes needed for this test
 	$testGlobalConfigs = array(); //an array containg all the global configs needed for this test
 	$testResourceFiles = array(); // an array containing all the resource files needed for this test
 	$callback = $wgSeleniumTestConfigs[$testSuiteName]; 
 	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs, &$testResourceFiles));
-      
+
+	if ( isset( $testResourceFiles['db'] ) ) {
+		$testResourceName = getTestResourceNameFromTestSuiteName( $testSuiteName );
+		switchToTestResources( $testResourceName );
+	}
 	foreach ( $testIncludes as $includeFile ) {
 		$file = $IP . '/' . $includeFile;
 		require_once( $file );
@@ -128,13 +130,10 @@ function getTestUploadPathFromResourceName( $testResourceName ) {
 }
 
 function setupTestResources( $testResourceName, $testSqlFile, $testImageZip ) {
-	global $wgDBname, $wgSeleniumUseTestResources;
-	
-	if ( !$wgSeleniumUseTestResources ) {
-		return false;
-	}
+	global $wgDBname;
+
 	// Basic security. Do not allow to drop productive database.
-	if ( $testResouceName == $wgDBname ) {
+	if ( $testResourceName == $wgDBname ) {
 		die( "Cannot override productive database." );
 	}
 	if ( $testResourceName == '' ) {
@@ -169,11 +168,6 @@ function setupTestResources( $testResourceName, $testSqlFile, $testImageZip ) {
 }
 
 function teardownTestResources( $testResourceName ) {
-	global $wgSeleniumUseTestResources;
-	
-	if ( !$wgSeleniumUseTestResources ) {
-		return false;
-	}
 	// remove test database
 	$dbw =& wfGetDB( DB_MASTER );
 	$dbw->query( "DROP DATABASE IF EXISTS ".$testResourceName );
@@ -186,21 +180,15 @@ function teardownTestResources( $testResourceName ) {
 }
 
 function switchToTestResources( $testResourceName, $switchDB = true ) {
-	global $wgDBuser, $wgDBpassword, $wgDBname, $wgDBprefix;
-	global $wgDBtestuser, $wgDBtestpassword, $wgDBtestprefix;
+	global $wgDBuser, $wgDBpassword, $wgDBname;
+	global $wgDBtestuser, $wgDBtestpassword;
 	global $wgUploadPath;
-	global $wgSeleniumUseTestResources;
-	
-	if ( !$wgSeleniumUseTestResources ) {
-		return false;
-	}
 
 	if ( $switchDB ) {
 		$wgDBname = $testResourceName;
 	}
 	$wgDBuser = $wgDBtestuser;
 	$wgDBpassword = $wgDBtestpassword;
-	//$wgDBprefix = $wgDBtestprefix;	
 
 	$testUploadPath =  getTestUploadPathFromResourceName( $testResourceName );
 	$wgUploadPath = $testUploadPath;
