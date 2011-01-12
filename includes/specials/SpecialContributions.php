@@ -29,6 +29,8 @@
 
 class SpecialContributions extends SpecialPage {
 
+	private $opts;
+
 	public function __construct() {
 		parent::__construct( 'Contributions' );
 	}
