@@ -1089,7 +1089,7 @@ Please try again.',
 Please try again.',
 'passwordtooshort'           => 'Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.',
 'password-name-match'        => 'Your password must be different from your username.',
-'password-login-forbidden'   => 'The use of these username and password has been forbidden.',
+'password-login-forbidden'   => 'The use of this username and password has been forbidden.',
 'mailmypassword'             => 'E-mail new password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1) requested a new
@@ -1589,7 +1589,7 @@ Go back to the previous page and try again.',
 'revmove-norevisions'          => 'You have not specified one or more target revisions to perform this function or the specified revision does not exist.',
 'revmove-nullmove-title'       => 'Bad title',
 'revmove-nullmove'             => 'The target page cannot be the same as the source page.
-Go back to the previous page and choose a different name from "[[$1]]".',
+Go back to the previous page and choose a different name from "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the existing page [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the newly created page [[$3]].',
 
@@ -3455,7 +3455,7 @@ You can view its source',
 'nostalgia.css'   => '/* CSS placed here will affect users of the Nostalgia skin */', # only translate this message to other languages if you have to change it
 'cologneblue.css' => '/* CSS placed here will affect users of the Cologne Blue skin */', # only translate this message to other languages if you have to change it
 'monobook.css'    => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
-'myskin.css'      => '/* CSS placed here will affect users of the Myskin skin */', # only translate this message to other languages if you have to change it
+'myskin.css'      => '/* CSS placed here will affect users of the MySkin skin */', # only translate this message to other languages if you have to change it
 'chick.css'       => '/* CSS placed here will affect users of the Chick skin */', # only translate this message to other languages if you have to change it
 'simple.css'      => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
 'modern.css'      => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
@@ -3469,7 +3469,7 @@ You can view its source',
 'nostalgia.js'   => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */', # only translate this message to other languages if you have to change it
 'cologneblue.js' => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */', # only translate this message to other languages if you have to change it
 'monobook.js'    => '/* Any JavaScript here will be loaded for users using the MonoBook skin */', # only translate this message to other languages if you have to change it
-'myskin.js'      => '/* Any JavaScript here will be loaded for users using the Myskin skin */', # only translate this message to other languages if you have to change it
+'myskin.js'      => '/* Any JavaScript here will be loaded for users using the MySkin skin */', # only translate this message to other languages if you have to change it
 'chick.js'       => '/* Any JavaScript here will be loaded for users using the Chick skin */', # only translate this message to other languages if you have to change it
 'simple.js'      => '/* Any JavaScript here will be loaded for users using the Simple skin */', # only translate this message to other languages if you have to change it
 'modern.js'      => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
@@ -3534,8 +3534,7 @@ This is probably caused by a link to a blacklisted external site.',
 'math_unknown_function' => 'unknown function',
 'math_lexing_error'     => 'lexing error',
 'math_syntax_error'     => 'syntax error',
-'math_image_error'      => 'PNG conversion failed;
-check for correct installation of latex, dvips, gs, and convert',
+'math_image_error'      => 'PNG conversion failed; check for correct installation of latex and dvipng (or dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Cannot write to or create math temp directory',
 'math_bad_output'       => 'Cannot write to or create math output directory',
 'math_notexvc'          => 'Missing texvc executable; please see math/README to configure.',
