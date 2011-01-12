@@ -351,7 +351,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->profileIn();
-		$this->initFromQueryResult( $db, $queryResult );
+		$this->initFromQueryResult( $queryResult );
 		$this->profileOut();
 	}
 
@@ -430,7 +430,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->profileDBOut();
 
 		// Hack: get the ns:titles stored in array(ns => array(titles)) format
-		$this->initFromQueryResult( $db, $res, $linkBatch->data, true ); // process Titles
+		$this->initFromQueryResult( $res, $linkBatch->data, true ); // process Titles
 
 		// Resolve any found redirects
 		$this->resolvePendingRedirects();
@@ -458,7 +458,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->profileDBOut();
 
 		$remaining = array_flip( $pageids );
-		$this->initFromQueryResult( $db, $res, $remaining, false );	// process PageIDs
+		$this->initFromQueryResult( $res, $remaining, false );	// process PageIDs
 
 		// Resolve any found redirects
 		$this->resolvePendingRedirects();
@@ -467,7 +467,6 @@ class ApiPageSet extends ApiQueryBase {
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
-	 * @param $db Database
 	 * @param $res ResultWrapper DB Query result
 	 * @param $remaining array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
@@ -475,7 +474,7 @@ class ApiPageSet extends ApiQueryBase {
 	 *        If true, treat $remaining as an array of [ns][title]
 	 *        If false, treat it as an array of [pageIDs]
 	 */
-	private function initFromQueryResult( $db, $res, &$remaining = null, $processTitles = null ) {
+	private function initFromQueryResult( $res, &$remaining = null, $processTitles = null ) {
 		if ( !is_null( $remaining ) && is_null( $processTitles ) ) {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
@@ -589,7 +588,7 @@ class ApiPageSet extends ApiQueryBase {
 				$this->profileDBOut();
 
 				// Hack: get the ns:titles stored in array(ns => array(titles)) format
-				$this->initFromQueryResult( $db, $res, $linkBatch->data, true );
+				$this->initFromQueryResult( $res, $linkBatch->data, true );
 			}
 		}
 	}
