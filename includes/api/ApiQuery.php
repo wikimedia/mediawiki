@@ -190,15 +190,15 @@ class ApiQuery extends ApiBase {
 	 * @return mixed string or null
 	 */
 	function getModuleType( $moduleName ) {
-		if ( array_key_exists ( $moduleName, $this->mQueryPropModules ) ) {
+		if ( isset( $this->mQueryPropModules[$moduleName] ) ) {
 			return 'prop';
 		}
 
-		if ( array_key_exists ( $moduleName, $this->mQueryListModules ) ) {
+		if ( isset( $this->mQueryListModules[$moduleName] ) ) {
 			return 'list';
 		}
 
-		if ( array_key_exists ( $moduleName, $this->mQueryMetaModules ) ) {
+		if ( isset( $this->mQueryMetaModules[$moduleName] ) ) {
 			return 'meta';
 		}
 
