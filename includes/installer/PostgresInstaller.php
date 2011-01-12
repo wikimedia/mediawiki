@@ -219,8 +219,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
-        $SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
-        $rows = $conn->numRows( $conn->query( $SQL ) );
+		$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
+		$rows = $conn->numRows( $conn->query( $SQL ) );
 		if( !$rows ) {
 			$schema = $this->getVar( 'wgDBmwschema' );
 			$user = $this->getVar( 'wgDBuser' );
@@ -233,14 +233,14 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
 
 			$conn = new DatabasePostgres(
-                    $this->getVar( 'wgDBserver' ),
-                    $this->getVar( 'wgDBuser' ),
-                    $this->getVar( 'wgDBpassword' ),
-                    $dbName,
-                    false,
-                    0,
-                    $this->getVar( 'wgDBprefix' )
-                );
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( 'wgDBuser' ),
+				$this->getVar( 'wgDBpassword' ),
+				$dbName,
+				false,
+				0,
+				$this->getVar( 'wgDBprefix' )
+			);
 
 			$result = $conn->schemaExists( $schema );
 			if( !$result ) {
@@ -250,16 +250,16 @@ class PostgresInstaller extends DatabaseInstaller {
 				}
 			} else {
 				$safeschema2 = $conn->addQuotes( $schema );
-				 $SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
-                    "FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n".
-                    "WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n".
-                    "AND p.relkind IN ('r','S','v')\n";
-                $SQL .= "UNION\n";
-                $SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
-                    "pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n".
-                    "FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n".
-                    "WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
-                $res = $conn->query( $SQL );
+				$SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
+					"FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n" .
+					"WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n" .
+					"AND p.relkind IN ('r','S','v')\n";
+				$SQL .= "UNION\n";
+				$SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
+					"pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n" .
+					"FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n" .
+					"WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
+				$res = $conn->query( $SQL );
 				$conn->query( "SET search_path = $safeschema" );
 			}
 		}
