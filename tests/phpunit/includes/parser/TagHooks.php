@@ -6,11 +6,11 @@
 class TagHookTest extends MediaWikiTestCase {
 	
 	public static function provideValidNames() {
-		return array( array( 'foo' ), array( 'foo-bar' ), array( 'foo_bar' ), array( 'FOO-BAR' ) );
+		return array( array( 'foo' ), array( 'foo-bar' ), array( 'foo_bar' ), array( 'FOO-BAR' ), array( 'foo bar' ) );
 	}
 
 	public static function provideBadNames() {
-		return array( array( "foo<bar" ), array( "foo>bar" ), array( "foo bar" ), array( "foo\nbar" ),  array( "foo\rbar" ) );
+		return array( array( "foo<bar" ), array( "foo>bar" ), array( "foo\nbar" ),  array( "foo\rbar" ) );
 	}
 		
 	/**
