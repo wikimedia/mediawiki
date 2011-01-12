@@ -59,7 +59,7 @@ class CleanupRemovedModules extends Maintenance {
 		$this->output( "Cleaning up msg_resource table...\n" );
 		$i = 1;
 
-		$mrRes = $dbw->tableName( 'mr_resource' );
+		$mrRes = $dbw->tableName( 'msg_resource' );
 		do {
 			$where = $moduleList ? "mr_resource NOT IN ($moduleList)" : '1=1';
 			$dbw->query( "DELETE FROM $mrRes WHERE $where LIMIT $limit", __METHOD__ );
@@ -72,10 +72,10 @@ class CleanupRemovedModules extends Maintenance {
 
 		$this->output( "Cleaning up msg_resource_links table...\n" );
 		$i = 1;
-		$msgRes = $dbw->tableName( 'mr_resource_links' );
+		$msgResLinks = $dbw->tableName( 'mr_resource_links' );
 		do {
 			$where = $moduleList ? "mrl_resource NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM $msgRes WHERE $where LIMIT $limit", __METHOD__ );
+			$dbw->query( "DELETE FROM $msgResLinks WHERE $where LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
