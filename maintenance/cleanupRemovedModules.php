@@ -44,10 +44,11 @@ class CleanupRemovedModules extends Maintenance {
 
 		$this->output( "Cleaning up module_deps table...\n" );
 		$i = 1;
+		$modDeps = $dbw->tableName( 'module_deps' );
 		do {
 			// $dbw->delete() doesn't support LIMIT :(
 			$where = $moduleList ? "md_module NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM module_deps WHERE $where LIMIT $limit", __METHOD__ );
+			$dbw->query( "DELETE FROM $modDeps WHERE $where LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
@@ -57,9 +58,11 @@ class CleanupRemovedModules extends Maintenance {
 
 		$this->output( "Cleaning up msg_resource table...\n" );
 		$i = 1;
+
+		$mrRes = $dbw->tableName( 'mr_resource' );
 		do {
 			$where = $moduleList ? "mr_resource NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM msg_resource WHERE $where LIMIT $limit", __METHOD__ );
+			$dbw->query( "DELETE FROM $mrRes WHERE $where LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
@@ -69,9 +72,10 @@ class CleanupRemovedModules extends Maintenance {
 
 		$this->output( "Cleaning up msg_resource_links table...\n" );
 		$i = 1;
+		$msgRes = $dbw->tableName( 'mr_resource_links' );
 		do {
 			$where = $moduleList ? "mrl_resource NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM msg_resource_links WHERE $where LIMIT $limit", __METHOD__ );
+			$dbw->query( "DELETE FROM $msgRes WHERE $where LIMIT $limit", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
