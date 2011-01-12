@@ -263,7 +263,7 @@ abstract class CoreInstaller extends Installer {
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );
-		$this->parserOptions->setUserLang( $lang );
+		$this->parserOptions->setUserLang( $lang->getCode() );
 	}
 
 	/**
