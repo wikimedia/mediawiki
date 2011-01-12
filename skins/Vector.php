@@ -27,17 +27,18 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgLocalStylePath;
+		global $wgLocalStylePath, $wgRequest;
 
 		parent::initPage( $out );
-
+		
 		// Append CSS which includes IE only behavior fixes for hover support -
 		// this is better than including this in a CSS fille since it doesn't
 		// wait for the CSS file to load before fetching the HTC file.
-		$out->addScript(
+		$min = $wgRequest->getFuzzyBool( 'debug' ) ? '' : '.min';
+		$out->addHeadItem( 'csshover',
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
 				htmlspecialchars( $wgLocalStylePath ) .
-				"/{$this->stylename}/csshover.htc\")}</style><![endif]-->"
+				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
 	}
 
