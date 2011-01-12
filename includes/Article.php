@@ -33,7 +33,7 @@ class Article {
 	var $mRedirectTarget = null;      // !< Title object if set
 	var $mRedirectUrl = false;        // !<
 	var $mRevIdFetched = 0;           // !<
-	var $mRevision;                   // !< Revision object if set
+	var $mRevision = null;            // !< Revision object if set
 	var $mTimestamp = '';             // !<
 	var $mTitle;                      // !< Title object
 	var $mTotalAdjustment = 0;        // !<
@@ -685,7 +685,7 @@ class Article {
 			return true;
 		}
 
-		return $this->exists() && isset( $this->mRevision ) && $this->mRevision->isCurrent();
+		return $this->exists() && $this->mRevision && $this->mRevision->isCurrent();
 	}
 
 	/**
