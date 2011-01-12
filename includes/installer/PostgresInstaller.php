@@ -280,7 +280,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		if( version_compare( $this->db->getServerVersion(), $this->ts2MaxVersion, '<' ) ) {
-			if ( !$this->db->tableExists( 'pg_ts_cfg', $wgDBts2schema ) ) {
+			if ( !$this->db->tableExists( 'pg_ts_cfg', $this->getVar( 'wgDBts2schema' ) ) ) {
 				return Status::newFatal( 
 					'config-install-pg-ts2-failed',
 					$this->getVar( 'wgDBname' ),
