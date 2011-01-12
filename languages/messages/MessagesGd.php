@@ -993,9 +993,9 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'nextdiff'     => 'Deasachadh nas ùire →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixel, meud an fhaidhle: $3, seòrsa MIME: $4)',
+'file-info-size'       => '$1 × $2 pixel, meud an fhaidhle: $3, seòrsa MIME: $4',
 'file-nohires'         => '<small>Chan eil dùmhlachd-bhreacaidh nas fhearr ri fhaighinn.</small>',
-'svg-long-desc'        => '(Faidhle SVG, a-rèir ainm $1 × $2 pixel, meud faidhle: $3)',
+'svg-long-desc'        => 'Faidhle SVG, a-rèir ainm $1 × $2 pixel, meud faidhle: $3',
 'show-big-image'       => 'Dùmhlachd-bhreacaidh shlàn',
 'show-big-image-thumb' => '<small>Meud an ro-sheallaidh seo: $1 × $2 pixel</small>',
 

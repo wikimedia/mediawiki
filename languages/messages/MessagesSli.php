@@ -1964,10 +1964,10 @@ Durch doas Herunderloada und Effna dar Datei koan dei Computer beschädigt waan.
 'imagemaxsize'         => "Maximale Bildgrieße:<br />''(fier Dateibeschreibungsseyta)''",
 'thumbsize'            => 'Standardgriße dar Vurschaubilder (Thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seyte|$3 Seyta}}',
-'file-info'            => '(Dateigreeße: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 Pixel, Dateigreeße: $3, MIME-Typ: $4)',
+'file-info'            => 'Dateigreeße: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 Pixel, Dateigreeße: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Kenne hiehere Uffleesung vurhanda.</small>',
-'svg-long-desc'        => '(SVG-Datei, Basisgreeße: $1 × $2 Pixel, Dateigreeße: $3)',
+'svg-long-desc'        => 'SVG-Datei, Basisgreeße: $1 × $2 Pixel, Dateigreeße: $3',
 'show-big-image'       => 'Version ei hieherer Uffleesung',
 'show-big-image-thumb' => 'small>Greeße dar Vuroasicht: $1 × $2 Pixel</small>',
 

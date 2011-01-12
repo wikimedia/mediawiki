@@ -1286,9 +1286,9 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'nextdiff'     => 'Tu di näist färsjoons-unerschiis →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixele, dååtäigrutelse: $3, MIME-typ: $4)',
+'file-info-size'       => '$1 × $2 pixele, dååtäigrutelse: $3, MIME-typ: $4',
 'file-nohires'         => '<small>Niinj huuger apliising as deer.</small>',
-'svg-long-desc'        => '(SVG-dåtäi, basisgrutelse: $1 × $2 pixel, dåtäigrutelse: $3)',
+'svg-long-desc'        => 'SVG-dåtäi, basisgrutelse: $1 × $2 pixel, dåtäigrutelse: $3',
 'show-big-image'       => 'Färsjon önj huuger apliising',
 'show-big-image-thumb' => '<small>Grutelse foon jü forlök: $1 × $2 pixele</small>',
 

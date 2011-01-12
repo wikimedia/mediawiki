@@ -1227,9 +1227,9 @@ Puyde dugangan og rason sa mubong sugid.',
 'nextdiff'     => 'Mas bag-ong pag-usab →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixels, size sa payl: $3, MIME type: $4)',
+'file-info-size'       => '$1 × $2 pixels, size sa payl: $3, MIME type: $4',
 'file-nohires'         => '<small>Walay mas taas nga resolusyon.</small>',
-'svg-long-desc'        => '(SVG nga payl, nominally $1 × $2 pixels, size sa payl: $3)',
+'svg-long-desc'        => 'SVG nga payl, nominally $1 × $2 pixels, size sa payl: $3',
 'show-big-image'       => 'Tibuok resolusyon',
 'show-big-image-thumb' => '<small>Size niining preview: $1 × $2 pixels</small>',
 

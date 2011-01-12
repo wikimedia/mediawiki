@@ -841,7 +841,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'tooltip-save'                   => 'Ig-seyb an imo mga pagbabag-o',
 
 # Media information
-'file-info-size' => '($1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4)',
+'file-info-size' => '$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4',
 'show-big-image' => 'Bug-os nga resolusyon',
 
 # Special:NewFiles

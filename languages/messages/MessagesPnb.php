@@ -1186,9 +1186,9 @@ $messages = array(
 'nextdiff'     => 'نویں لکھائی →',
 
 # Media information
-'file-info-size'       => '(پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4)',
+'file-info-size'       => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
 'file-nohires'         => '<small>اس توں وڈی فوٹو موجود نہیں۔</small>',
-'svg-long-desc'        => '(ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3)',
+'svg-long-desc'        => 'ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3',
 'show-big-image'       => 'وڈی مورت',
 'show-big-image-thumb' => '<small>کچے کم دے پکسل:$1 × $2</small>',
 

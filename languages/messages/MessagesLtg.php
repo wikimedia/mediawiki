@@ -764,9 +764,9 @@ Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 'nextdiff'     => 'Jaunuokuo verseja →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pikseli, faila izmārs: $3, MIME tips: $4)',
+'file-info-size'       => '$1 × $2 pikseli, faila izmārs: $3, MIME tips: $4',
 'file-nohires'         => '<small>Augstuoka izškirtspieja nav pīejama.</small>',
-'svg-long-desc'        => '(SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3)',
+'svg-long-desc'        => 'SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3',
 'show-big-image'       => 'Pylnā lelumā',
 'show-big-image-thumb' => '<small>Ituo pyrmsskota lelums: $1 × $2 pikseli</small>',
 

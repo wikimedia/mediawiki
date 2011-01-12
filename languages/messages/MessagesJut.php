@@ -817,9 +817,9 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'nextdiff'     => 'Gå til næste førskel →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixel, gøretstørrelse: $3, MIME-senenge: $4)',
+'file-info-size'       => '$1 × $2 pixel, gøretstørrelse: $3, MIME-senenge: $4',
 'file-nohires'         => '<small>Engen højere åpløsnenge fundet.</small>',
-'svg-long-desc'        => '(SVG gøret, wønetstørrelse $1 × $2 pixel, gøretstørrelse: $3)',
+'svg-long-desc'        => 'SVG gøret, wønetstørrelse $1 × $2 pixel, gøretstørrelse: $3',
 'show-big-image'       => 'Hersenenge i større åpløsnenge',
 'show-big-image-thumb' => '<small>Størrelse åf førhåndsvesnenge: $1 × $2 pixel</small>',
 

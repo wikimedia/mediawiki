@@ -728,9 +728,9 @@ Tana ba da damar bayyana dalilin soke gyaran.',
 'nextdiff'     => 'Gyaran gaba →',
 
 # Media information
-'file-info-size'       => '(pikisal $1 × $2, girman fayil: $3, irin MIME: $4)',
+'file-info-size'       => 'pikisal $1 × $2, girman fayil: $3, irin MIME: $4',
 'file-nohires'         => '<small>Babu wata babbar saƙa.</small>',
-'svg-long-desc'        => '(Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3)',
+'svg-long-desc'        => 'Fayil kin SVG, saƙar fikisal $1 x $2, girman fayil: $3',
 'show-big-image'       => 'Cikakkar saƙa',
 'show-big-image-thumb' => '<small>Girman wanna rigya-gani: pikisal $1 × $2</small>',
 

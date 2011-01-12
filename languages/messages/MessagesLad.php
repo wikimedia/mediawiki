@@ -173,15 +173,15 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Suliña los linkes:',
-'tog-highlightbroken'         => '<a href="" class="new">Este modo</a> amostrar los linkes de los artícůlos vazíos, (si no se ven: ansina<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Arrimar los paraggrafos de dos vandas',
-'tog-hideminor'               => 'Esconder ēddisyones chiquiticas en la hoja de los trocamientos freskos',
-'tog-hidepatrolled'           => 'Esconder ēddisyones patrulladas en la hoja de los trocamientos freskos',
-'tog-newpageshidepatrolled'   => 'Esconder las hojas patrulladas de la lista de hojas nuevas',
-'tog-extendwatchlist'         => 'Anchear la lista de escogidas afin de amostrar todos los trocamientos, no sólo los nuevos',
-'tog-usenewrc'                => 'Usar los trocamientos freskos adelantados (JavaScript es menesteroso)',
-'tog-numberheadings'          => 'Otomatika mente numerotar los títůlos',
+'tog-underline'               => 'Suliña los atamientos:',
+'tog-highlightbroken'         => 'Amostra los artícůlos vazíos <a href="" class="new">en colorado</a> , (si no: este modo<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Arrima los paraggrafos de dos vandas',
+'tog-hideminor'               => 'Esconde los trocamientos chiquiticos',
+'tog-hidepatrolled'           => 'Esconde los trocamientos surveyados',
+'tog-newpageshidepatrolled'   => 'Esconde las hojas surveyadas en la lista de las hojas nuevas',
+'tog-extendwatchlist'         => 'Anchea mi lista de escogidas afín de amostrar todos los trocamientos, no sólo los nuevos',
+'tog-usenewrc'                => 'Usa el modo adelantado (JavaScript es menester)',
+'tog-numberheadings'          => 'Numerota los títůlos de una manera otomatika',
 'tog-showtoolbar'             => 'Amostrar el chibbuk de aparatos (JavaScript es menesteroso)',
 'tog-editondblclick'          => 'En dos klikes, trocar los hojas. (JavaScript es menesteroso)',
 'tog-editsection'             => 'Ofrir la possibbilidad de trocar los capítůlos usando el link [troca]',
@@ -991,9 +991,9 @@ Permite ajustar una razón al resumen de edición.',
 'nextdiff'     => 'Edición más nueva →',
 
 # Media information
-'file-info-size'       => '($1 × $2 píkseles; boy del arxivo: $3; tipo MIME: $4)',
+'file-info-size'       => '$1 × $2 píkseles; boy del arxivo: $3; tipo MIME: $4',
 'file-nohires'         => '<small>No disponible a mayor resolución.</small>',
-'svg-long-desc'        => '(arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3)',
+'svg-long-desc'        => 'arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3',
 'show-big-image'       => 'Resolución original',
 'show-big-image-thumb' => '<small>Boy de esta vista previa: $1 × $2 píkseles</small>',
 

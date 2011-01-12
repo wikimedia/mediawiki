@@ -1,5 +1,5 @@
 <?php
-/** Pfälzisch (Pfälzisch)
+/** Pälzisch (Pälzisch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -693,9 +693,9 @@ Du kannscht e Grund in dr Zammfassung aagewwe',
 'nextdiff'     => 'Naiere Bearwaidung →',
 
 # Media information
-'file-info-size'       => '($1 × $2 Pixels, Dateigreß: $3, MIME-Type: $4)',
+'file-info-size'       => '$1 × $2 Pixels, Dateigreß: $3, MIME-Type: $4',
 'file-nohires'         => '<small>Ke hechere Ufflesung verfiechbar.</small>',
-'svg-long-desc'        => '(SVG-Datei, Basisgreß $1 × $2 Pixels, Dateigreß: $3)',
+'svg-long-desc'        => 'SVG-Datei, Basisgreß $1 × $2 Pixels, Dateigreß: $3',
 'show-big-image'       => 'Gsamte Ergebnis',
 'show-big-image-thumb' => '<small>Greß vun derre Vorschau: $1 × $2 Pixels</small>',
 

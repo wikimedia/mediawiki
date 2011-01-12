@@ -1115,9 +1115,9 @@ Ayek fan otru nå'an-ña.",
 'nextdiff'     => "Mamaila' na dif →",
 
 # Media information
-'file-info-size'       => '($1 × $2 na pixel, mineddong atkibu: $3, MIME klåsi: $4)',
+'file-info-size'       => '$1 × $2 na pixel, mineddong atkibu: $3, MIME klåsi: $4',
 'file-nohires'         => "<small>Tåya' mas takhilo' na risolusion.</small>",
-'svg-long-desc'        => '(Atkibu SVG, $1 × $2 na pixels, mineddong atkibu: $3)',
+'svg-long-desc'        => 'Atkibu SVG, $1 × $2 na pixels, mineddong atkibu: $3',
 'show-big-image'       => 'Magåhet mineddong-ña',
 'show-big-image-thumb' => '<small>Mineddong i ripasu: $1 × $2 pixels</small>',
 

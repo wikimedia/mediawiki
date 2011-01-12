@@ -825,7 +825,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Media information
 'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
-'file-info-size'  => '($1 × $2 Pixel, Daadegrees: $3, MIME-Typ: $4)',
+'file-info-size'  => '$1 × $2 Pixel, Daadegrees: $3, MIME-Typ: $4',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',

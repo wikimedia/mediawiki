@@ -1074,8 +1074,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Media information
 'imagemaxsize'   => 'Avmarka myndir á myndalýsingarsíðum til:',
 'thumbsize'      => 'Smámyndastødd:',
-'file-info-size' => '($1 × $2 pixel, stødd fílu: $3, MIME-slag: $4)',
-'svg-long-desc'  => '(SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3)',
+'file-info-size' => '$1 × $2 pixel, stødd fílu: $3, MIME-slag: $4',
+'svg-long-desc'  => 'SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3',
 
 # Special:NewFiles
 'newimages' => 'Nýggjar myndir',

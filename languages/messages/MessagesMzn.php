@@ -772,7 +772,7 @@ $2، $1',
 
 # Media information
 'thumbsize'            => 'أنـگـوسـی گأتی:',
-'file-info-size'       => '($1 × $2 پـیـکـسه‌ل, فـایـل گـأتـی: $3, MIME مـونـد: $4)',
+'file-info-size'       => '$1 × $2 پـیـکـسه‌ل, فـایـل گـأتـی: $3, MIME مـونـد: $4',
 'file-info-png-frames' => '$1 {{PLURAL:$1|قاب|قاب}}',
 
 # Special:NewFiles

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2829,10 +2829,10 @@ $1',
 'imagemaxsize'         => "图像大小限制：<br />''（用于文件描述页面）''",
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',
-'file-info'            => '（文件大小：$1，MIME类型：$2）',
-'file-info-size'       => '（$1×$2像素，文件大小：$3，MIME类型：$4）',
+'file-info'            => '文件大小：$1，MIME类型：$2',
+'file-info-size'       => '$1×$2像素，文件大小：$3，MIME类型：$4',
 'file-nohires'         => '<small>无更高分辨率可提供。</small>',
-'svg-long-desc'        => '（SVG文件，名义大小：$1×$2像素，文件大小：$3）',
+'svg-long-desc'        => 'SVG文件，名义大小：$1×$2像素，文件大小：$3',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>这幅缩略图的分辨率：$1×$2像素</small>',
 'file-info-gif-looped' => '循环',

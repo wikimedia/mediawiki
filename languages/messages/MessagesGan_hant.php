@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (贛語(繁體))
+/** Traditional Gan script (‪贛語(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1865,10 +1865,10 @@ $1',
 'imagemaxsize'         => '檔案解釋頁嗰圖像大細限制到:',
 'thumbsize'            => '縮略圖大細:',
 'widthheightpage'      => '$1×$2,$3頁',
-'file-info'            => '（檔案大細: $1, MIME 類型: $2）',
-'file-info-size'       => '（$1 × $2 像素，檔案大細：$3 ，MIME類型：$4）',
+'file-info'            => '檔案大細: $1, MIME 類型: $2',
+'file-info-size'       => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
 'file-nohires'         => '<small>冇更高解像度嗰圖像。</small>',
-'svg-long-desc'        => '（SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3）',
+'svg-long-desc'        => 'SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3',
 'show-big-image'       => '完整解析度',
 'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
 

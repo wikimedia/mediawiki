@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1253,6 +1253,10 @@ $1",
 'prefs-displaysearchoptions'    => '顯示選項',
 'prefs-displaywatchlist'        => '顯示選項',
 'prefs-diffs'                   => '差異',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '電郵地址格式錯咗',
+'email-address-validity-invalid' => '請打一個正確嘅電郵',
 
 # User rights
 'userrights'                   => '用戶權限管理',
@@ -2720,7 +2724,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'math_unknown_function' => '唔知乜函數',
 'math_lexing_error'     => 'lexing錯誤',
 'math_syntax_error'     => '語法錯誤',
-'math_image_error'      => 'PNG 轉換失敗；檢查latex、dvips、gs同埋convert係唔係已經正確咁樣安裝',
+'math_image_error'      => 'PNG 轉換失敗；檢查latex、dvipng（或者dvips+gs+convert）係唔係已經正確咁樣安裝',
 'math_bad_tmpdir'       => '唔能夠寫入或建立臨時數目錄',
 'math_bad_output'       => '唔能夠寫入或建立輸出數目錄',
 'math_notexvc'          => 'texvc 執行檔已經遺失；請睇睇 math/README 去較吓。',
@@ -2765,10 +2769,10 @@ $1',
 'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
 'thumbsize'            => '縮圖大細：',
 'widthheightpage'      => '$1×$2, $3版',
-'file-info'            => '(檔案大細：$1 ，MIME類型：$2)',
-'file-info-size'       => '($1 × $2 像素，檔案大細：$3 ，MIME類型：$4)',
+'file-info'            => '檔案大細：$1 ，MIME類型：$2',
+'file-info-size'       => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
 'file-nohires'         => '<small>冇更高解像度嘅圖像。</small>',
-'svg-long-desc'        => '(SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3)',
+'svg-long-desc'        => 'SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 'file-info-gif-looped' => '循環',

@@ -1489,10 +1489,10 @@ itsek ti husto a panangikapet iti latex, dvips, gs, samo i-convert',
 # Media information
 'thumbsize'            => 'Kakasla kuko a rukod:',
 'widthheightpage'      => '$1×$2, $3 a {{PLURAL:$3|panid|pampanid}}',
-'file-info'            => '(kadakkel ti file: $1, MIME type: $2)',
-'file-info-size'       => '($1 × $2 a pixel, kadakkel ti file: $3, MIME type: $4)',
+'file-info'            => 'kadakkel ti file: $1, MIME type: $2',
+'file-info-size'       => '$1 × $2 a pixel, kadakkel ti file: $3, MIME type: $4',
 'file-nohires'         => '<small>Awan mabalin a nangatngato a resolusion.</small>',
-'svg-long-desc'        => '(SVG a file, babassit ngem $1 × $2 pixels, kadakkel ti file: $3)',
+'svg-long-desc'        => 'SVG a file, babassit ngem $1 × $2 pixels, kadakkel ti file: $3',
 'show-big-image'       => 'Sibubukel a resolusion',
 'show-big-image-thumb' => '<small>Rukod daytoy a preview: $1 × $2 a pixels</small>',
 

@@ -2328,10 +2328,10 @@ $1',
 # Media information
 'imagemaxsize'         => 'Watesan gambar na kaca dadaran gambar nepi ka:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
-'file-info'            => '(ukuran koropak: $1, tipeu MIME: $2)',
-'file-info-size'       => '($1 × $2 piksel, ukuran koropak: $3, tipeu MIME: $4)',
+'file-info'            => 'ukuran koropak: $1, tipeu MIME: $2',
+'file-info-size'       => '$1 × $2 piksel, ukuran koropak: $3, tipeu MIME: $4',
 'file-nohires'         => '<small>Euweuh résolusi nu leuwih luhur.</small>',
-'svg-long-desc'        => '(Koropak SVG, nominalna $1 × $2 piksel, ukuranana $3)',
+'svg-long-desc'        => 'Koropak SVG, nominalna $1 × $2 piksel, ukuranana $3',
 'show-big-image'       => 'Résolusi pinuh',
 'show-big-image-thumb' => '<small>Ukuran ieu pidangan: $1 × $2 piksel</small>',
 

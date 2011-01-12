@@ -2058,10 +2058,10 @@ $1',
 # Media information
 'thumbsize'            => 'Grandol el cuairu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
-'file-info'            => '(grandol el archivu: $1, MIME type: $2)',
-'file-info-size'       => '($1 × $2 pixel, grandol el archivu: $3, MIME type: $4)',
+'file-info'            => 'grandol el archivu: $1, MIME type: $2',
+'file-info-size'       => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
 'file-nohires'         => '<small>Nu disponibri a mayol resolución.</small>',
-'svg-long-desc'        => '(archivu SVG, $1 × $2 pixelis, grandol: $3)',
+'svg-long-desc'        => 'archivu SVG, $1 × $2 pixelis, grandol: $3',
 'show-big-image'       => 'Resolución máisima',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
 
