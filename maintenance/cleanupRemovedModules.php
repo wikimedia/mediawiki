@@ -37,7 +37,7 @@ class CleanupRemovedModules extends Maintenance {
 	public function execute() {
 		$dbw = wfGetDB( DB_MASTER );
 		$rl = new ResourceLoader();
-		$moduleNames = array_keys( $rl->getModules() );
+		$moduleNames = array_keys( $rl->getModuleNames() );
 		$moduleList = implode( ', ', array_map( array( $dbw, 'addQuotes' ), $moduleNames ) );
 		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
 		$maxlag = intval( $this->getOption( 'max-slave-lag', 5 ) );
