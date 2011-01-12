@@ -72,7 +72,7 @@ class CleanupRemovedModules extends Maintenance {
 
 		$this->output( "Cleaning up msg_resource_links table...\n" );
 		$i = 1;
-		$msgResLinks = $dbw->tableName( 'mr_resource_links' );
+		$msgResLinks = $dbw->tableName( 'msg_resource_links' );
 		do {
 			$where = $moduleList ? "mrl_resource NOT IN ($moduleList)" : '1=1';
 			$dbw->query( "DELETE FROM $msgResLinks WHERE $where LIMIT $limit", __METHOD__ );
