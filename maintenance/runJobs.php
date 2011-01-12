@@ -49,7 +49,7 @@ class RunJobs extends Maintenance {
 				$this->error( "Invalid argument to --procs", true );
 			}
 			$fc = new ForkController( $procs );
-			if ( $fc->start( $procs ) != 'child' ) {
+			if ( $fc->start() != 'child' ) {
 				$this->unlock();
 				exit( 0 );
 			}
