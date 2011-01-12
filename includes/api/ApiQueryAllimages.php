@@ -38,6 +38,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
+	private $mRepo;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
 		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
