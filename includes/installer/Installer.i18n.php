@@ -161,7 +161,7 @@ If you are installing on a Windows server and using MySQL, using "localhost" may
 	'config-db-wiki-settings'         => 'Identify this wiki',
 	'config-db-name'                  => 'Database name:',
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
-It should not contain spaces or hyphens.
+It should not contain spaces.
 
 If you are using shared web hosting, your hosting provider will either give you a specific database name to use or let you create databases via a control panel.',
 	'config-db-name-oracle'           => 'Database schema:',
