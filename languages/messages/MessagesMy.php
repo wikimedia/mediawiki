@@ -1625,9 +1625,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'nextdiff'     => 'ပိုသစ်သော တည်းဖြတ်မှု',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4)',
+'file-info-size'       => '$1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4',
 'file-nohires'         => '<small>သည်ထက်ကြီးသော resolution မရှိပါ.</small>',
-'svg-long-desc'        => '(SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3)',
+'svg-long-desc'        => 'SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3',
 'show-big-image'       => 'resolution အပြည့်',
 'show-big-image-thumb' => '<small>နမူနာကြည့်ရန် အရွယ်အစား - $1 × $2 pixels</small>',
 

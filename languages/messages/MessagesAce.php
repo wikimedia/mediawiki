@@ -995,9 +995,9 @@ Hubông teutap keu revisi ôn nyoë',
 'nextdiff'     => 'Geunantoë lheuëh nyan →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksel, rayek beureukah: $3, MIME jeunèh: $4)',
+'file-info-size'       => '$1 × $2 piksel, rayek beureukah: $3, MIME jeunèh: $4',
 'file-nohires'         => '<small>Hana resolusi nyang leubèh manyang.</small>',
-'svg-long-desc'        => '(Beureukah SVG, nominal $1 x $2 piksel, rayek beureukah: $3)',
+'svg-long-desc'        => 'Beureukah SVG, nominal $1 x $2 piksel, rayek beureukah: $3',
 'show-big-image'       => 'Resolusi peunoh',
 'show-big-image-thumb' => '<small>Rayek atra nyoë: $1 x $2 piksel</small>',
 

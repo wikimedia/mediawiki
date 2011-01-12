@@ -1335,7 +1335,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
-'file-info-size'  => '($1 × $2 pixel; zāzanilli octacayōtl: $3; machiyōtl MIME: $4)',
+'file-info-size'  => '$1 × $2 pixel; zāzanilli octacayōtl: $3; machiyōtl MIME: $4',
 'file-nohires'    => '<small>Ahmo ia achi cualli ahmo occē īxiptli.</small>',
 'show-big-image'  => 'Mochi cuallōtl',
 

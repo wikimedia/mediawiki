@@ -1455,6 +1455,10 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'prefs-displaywatchlist'        => 'Možnosti zobrazení',
 'prefs-diffs'                   => 'Porovnání verzí',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mailová adresa vypadá platně',
+'email-address-validity-invalid' => 'Zadejte platnou e-mailovou adresu',
+
 # User rights
 'userrights'                   => 'Správa uživatelských skupin',
 'userrights-lookup-user'       => 'Spravovat uživatelské skupiny',
@@ -2966,10 +2970,10 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
-'file-info'            => '(velikost souboru: $1, MIME typ: $2)',
-'file-info-size'       => '($1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
+'file-info'            => 'velikost souboru: $1, MIME typ: $2',
+'file-info-size'       => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
 'file-nohires'         => '<small>Větší rozlišení není k dispozici.</small>',
-'svg-long-desc'        => '(soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3)',
+'svg-long-desc'        => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
 'show-big-image'       => 'Obrázek ve vyšším rozlišení',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 'file-info-gif-looped' => 've smyčce',

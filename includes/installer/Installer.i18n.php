@@ -625,7 +625,7 @@ chmod a+w $3</pre>',
 Adjon meg egy másik felhasználónevet.',
 	'config-admin-password-blank' => 'Adja meg az adminisztrátori fiók jelszavát!',
 	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
-A használatához a MediaWikinek internethozzáférésre van szüksége.
+A használatához a MediaWikinek internethozzáférésre van szüksége. 
 
 A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhat további információkat.',
 	'config-install-done' => "'''Gratulálunk!'''
@@ -1275,6 +1275,7 @@ chmod a+w $3</pre>',
 	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
 	'config-install-pg-commit' => 'Захаваньне зьменаў',
+	'config-install-pg-plpgsql' => 'Праверка падтрымкі мовы PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
 	'config-install-pg-ts2' => 'Праверка tsearch2',
 	'config-install-pg-ts2-failed' => "'''ПАМЫЛКА''' tsearch2 павінен быць усталяваны ў базе зьвестак $1.
@@ -1294,6 +1295,7 @@ chmod a+w $3</pre>',
 Верагодна трэба зьмяніць яго ўручную.",
 	'config-install-upgradekey' => 'Стварэньне ключа абнаўленьня па змоўчваньні',
 	'config-install-sysop' => 'Стварэньне рахунку адміністратара',
+	'config-install-subscribe-fail' => 'Немагчыма падпісацца на «mediawiki-announce»',
 	'config-install-mainpage' => 'Стварэньне галоўнай старонкі са зьместам па змоўчваньні',
 	'config-install-mainpage-failed' => 'Немагчыма ўставіць галоўную старонку.',
 	'config-install-done' => "'''Віншуем!'''
@@ -1496,6 +1498,8 @@ $1
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
 	'config-invalid-db-name' => 'Невалидно име на базата от данни "$1".
 Използват се само ASCII букви (a-z, A-Z), цифри (0-9), долни черти (_) и тирета (-).',
+	'config-invalid-db-prefix' => 'Невалидна представка за базата от данни "$1".
+Позволени са само ASCII букви (a-z, A-Z), цифри (0-9), долни черти (_) и тирета (-).',
 	'config-connection-error' => '$1.
 
 Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
@@ -1509,6 +1513,7 @@ $1
 Това име ще се използва за име на файла за данни на SQLite.',
 	'config-sqlite-readonly' => 'Файлът <code>$1</code> няма права за писане.',
 	'config-sqlite-cant-create-db' => 'Файлът за базата от данни <code>$1</code> не може да бъде създаден.',
+	'config-sqlite-fts3-downgrade' => 'Липсва поддръжката на FTS3 за PHP, извършен беше downgradе на таблиците',
 	'config-can-upgrade' => "В базата от данни има таблици за МедияУики.
 За надграждането им за MediaWiki $1, натиска се '''Продължаване'''.",
 	'config-regenerate' => 'Създаване на LocalSettings.php →',
@@ -1656,11 +1661,15 @@ $1
 	'config-install-step-failed' => 'неуспешно',
 	'config-install-extensions' => 'Добавяне на разширенията',
 	'config-install-database' => 'Създаване на базата от данни',
+	'config-install-pg-schema-failed' => 'Създаването на таблиците пропадна.
+Необходимо е потребител "$1" да има права за писане в схемата "$2".',
 	'config-pg-no-plpgsql' => 'Необходимо е да се инсталира езикът PL/pgSQL в базата от данни $1',
 	'config-install-user' => 'Създаване на потребител за базата от данни',
+	'config-install-user-failed' => 'Предоставянето на права на потребител "$1" беше неуспешно: $2',
 	'config-install-tables' => 'Създаване на таблиците',
 	'config-install-tables-exist' => "'''Предупреждение''': Таблиците за МедияУики изглежда вече съществуват.
 Пропускане на създаването им.",
+	'config-install-tables-failed' => "'''Грешка''': Създаването на таблиците пропадна и върна следната грешка: $1",
 	'config-install-interwiki' => 'Попълване на таблицата с междууикитата по подразбиране',
 	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
 	'config-install-interwiki-exists' => "'''Предупреждение''': Таблицата с междууикита изглежда вече съдържа данни.
@@ -1895,6 +1904,13 @@ Ako želite regenerisati vašu datoteku <code>LocalSettings.php</code>, kliknite
 Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
 );
 
+/** Chechen (Нохчийн)
+ * @author Sasan700
+ */
+$messages['ce'] = array(
+	'config-no-fts3' => "'''Тергам бе''': SQLite гулйина хуттург йоцуш [http://sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",
+);
+
 /** Czech (Česky) */
 $messages['cs'] = array(
 	'config-information' => 'Informace',
@@ -1967,7 +1983,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
 	'config-page-existingwiki' => 'Vorhandenes Wiki',
-	'config-help-restart' => 'Sollen alle angegebenen Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
+	'config-help-restart' => 'Sollen alle bereits eingegebene Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
 Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
@@ -2064,8 +2080,8 @@ Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert
 	'config-db-host-oracle-help' => 'Einen gültigen [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm „Local Connect“-Namen] angeben. Die „tnsnames.ora“-Datei muss von dieser Installation erkannt werden können.<br />Sofern die Client-Bibliotheken für Version 10g oder neuer verwendet werden, kann auch [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm „Easy Connect“] zur Namensgebung genutzt werden.',
 	'config-db-wiki-settings' => 'Bitte identifiziere dieses Wiki',
 	'config-db-name' => 'Datenbankname:',
-	'config-db-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
-Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
+	'config-db-name-help' => 'Bitte einen Namen angeben, mit dem das Wiki identifiziert werden kann.
+Dabei sollten keine Leerzeichen verwendet werden.
  
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den Datenbanknamen angegeben oder aber die Erstellung einer Datenbank über ein entsprechendes Interface gestattet haben.',
 	'config-db-name-oracle' => 'Datenbankschema:',
@@ -2132,6 +2148,7 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-header-oracle' => 'Oracle-Einstellungen',
 	'config-invalid-db-type' => 'Unzulässiges Datenbanksystem',
 	'config-missing-db-name' => 'Bei „Datenbankname“ muss ein Wert angegeben werden.',
+	'config-missing-db-host' => 'Bei „Datenbankhost“ muss ein Wert angegeben werden.',
 	'config-missing-db-server-oracle' => 'Für das „Datenbank-TNS“ muss ein Wert eingegeben werden',
 	'config-invalid-db-server-oracle' => 'Ungültiges Datenbank-TNS „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) und Punkte (.) verwendet werden.',
@@ -2351,6 +2368,7 @@ Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-pg-schema-failed' => 'Das Erstellen der Datentabellen ist gescheitert.
 Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
 	'config-install-pg-commit' => 'Änderungen anwenden',
+	'config-install-pg-plpgsql' => 'Suche nach der Datenbanksprache PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
 	'config-install-pg-ts2' => 'Suche nach tsearch2',
 	'config-install-pg-ts2-failed' => "'''Fehler:''' tsearch2 muss in der Datenbank $1 installiert sein.
@@ -3170,9 +3188,9 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-invalid-db-server-oracle' => 'Le nom TNS de la base de données (« $1 ») est invalide.
 Il ne peut contenir que des lettres latines de base (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des points (.).',
 	'config-invalid-db-name' => 'Nom de la base de données invalide (« $1 »).
-Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
+Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des tirets (-).',
 	'config-invalid-db-prefix' => 'Préfixe de la base de données non valide « $1 ». 
-Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
+Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des tirets (-).',
 	'config-connection-error' => '$1.
 
 Vérifier le nom d’hôte, le nom d’utilisateur et le mot de passe ci-dessous puis réessayer.',
@@ -3279,6 +3297,7 @@ Indiquez un nom d'utilisateur différent.",
 	'config-admin-email-help' => "Entrez une adresse de courriel ici pour vous permettre de recevoir des courriels d'autres utilisateurs du wiki, réinitialiser votre mot de passe, et être informé des modifications apportées aux pages de votre liste de suivi.",
 	'config-admin-error-user' => "Erreur interne lors de la création d'un administrateur avec le nom « <nowiki>$1</nowiki> ».",
 	'config-admin-error-password' => "Erreur interne lors de l'inscription d'un mot de passe pour l'administrateur « <nowiki>$1</nowiki> » : <pre>$2</pre>",
+	'config-admin-error-bademail' => 'Vous avez entré une adresse de courriel invalide',
 	'config-subscribe' => "Abonnez-vous à la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce liste d'annonce des nouvelles versions] (la page peut afficher le texte en français).",
 	'config-subscribe-help' => "Il s'agit d'une liste de diffusion à faible volume utilisée servant à annoncer les nouvelles versions, y compris les versions améliorant la sécurité du logiciel. 
 Vous devriez y souscrire et mettre à jour votre version de MediaWiki lorsque de nouvelles versions sont publiées.",
@@ -3386,6 +3405,9 @@ S'il vous plaît, allez à la page suivante.",
 Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 ».",
 	'config-install-pg-commit' => 'Validation des modifications',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
+	'config-install-pg-ts2' => 'Vérification de tsearch2',
+	'config-install-pg-ts2-failed' => "'''ÉCHEC''' tsearch2 doit être installé dans la base de données $1.
+Veuillez lire [$2 ces instructions] ou demander sur #postgresql sur irc.freenode.net",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
 	'config-install-user-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-tables' => 'Création des tables',
@@ -3401,6 +3423,7 @@ La liste par défaut ne sera pas inscrite.",
 Envisagez de le changer manuellement.",
 	'config-install-upgradekey' => 'Génération de la clé de mise à jour par défaut',
 	'config-install-sysop' => 'Création du compte administrateur',
+	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
 	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale.',
 	'config-install-done' => "'''Félicitations!''' 
@@ -4777,9 +4800,9 @@ Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localh
 	'config-db-wiki-settings' => 'Identificar iste wiki',
 	'config-db-name' => 'Nomine del base de datos:',
 	'config-db-name-help' => 'Selige un nomine que identifica tu wiki.
-Illo non debe continer spatios o tractos de union.
+Illo non pote continer spatios.
 
-Si tu usa un servitor web partite, tu providitor te fornira le nomine specific de un base de datos a usar, o te permitte crear un base de datos via un pannello de controlo.',
+Si tu usa un servitor web usate in commun, tu providitor te fornira le nomine specific de un base de datos a usar, o te permitte crear un base de datos via un pannello de controlo.',
 	'config-db-name-oracle' => 'Schema del base de datos:',
 	'config-db-install-account' => 'Conto de usator pro installation',
 	'config-db-username' => 'Nomine de usator del base de datos:',
@@ -4844,6 +4867,7 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-header-oracle' => 'Configuration de Oracle',
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
+	'config-missing-db-host' => 'Tu debe entrar un valor pro "Hospite del base de datos"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "TNS del base de datos"',
 	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e punctos (.).',
@@ -5065,6 +5089,7 @@ Per favor continua al proxime pagina.",
 	'config-install-pg-schema-failed' => 'Le creation del tabellas falleva.
 Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-install-pg-commit' => 'Committer cambiamentos',
+	'config-install-pg-plpgsql' => 'Verifica le presentia del linguage PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Es necessari installar le linguage PL/pgSQL in le base de datos $1',
 	'config-install-pg-ts2' => 'Verifica le presentia de tsearch2',
 	'config-install-pg-ts2-failed' => "'''FALTA:''' tsearch2 debe esser installate in le base de datos $1.
@@ -6568,9 +6593,9 @@ $1
 	'config-db-wiki-settings' => 'Идентификувај го викиво',
 	'config-db-name' => 'Име на базата:',
 	'config-db-name-help' => 'Одберете име што ќе го претставува вашето вики.
-Името не смее да содржи празни простори или цртички.
+Името не смее да содржи празни места.
 
-Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител ќе ви даде конкретно име на база за користење, или пак ви дава да создавате бази преку контролната табла.',
+Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител ќе ви даде конкретно име на база за користење, или пак ќе ви даде да создавате бази преку контролната табла.',
 	'config-db-name-oracle' => 'Шема на базата:',
 	'config-db-install-account' => 'Корисничка смета за инсталација',
 	'config-db-username' => 'Корисничко име за базата:',
@@ -6856,6 +6881,7 @@ chmod a+w $3</pre>',
 	'config-install-pg-schema-failed' => 'Создавањето натабелите не успеа.
 Проверете дали корисникот „$1“ може да запишува во шемата „$2“.',
 	'config-install-pg-commit' => 'Спроведување на промени',
+	'config-install-pg-plpgsql' => 'Проверувам јазик PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
 	'config-install-pg-ts2' => 'Го барам tsearch2',
 	'config-install-pg-ts2-failed' => "'''НЕУСПЕШНО''' - tsearch2 мора да биде инсталиран во базата $1.
@@ -7288,9 +7314,9 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-invalid-db-server-oracle' => 'Ongeldige database-TMS "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-invalid-db-name' => 'Ongeldige databasenaam "$1".
-Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en streepjes (-).',
 	'config-invalid-db-prefix' => 'Ongeldig databasevoorvoegsel "$1".
-Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en streepjes (-).',
 	'config-connection-error' => '$1.
 
 Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
@@ -7509,7 +7535,11 @@ Ga alstublieft door naar de volgende pagina.",
 	'config-install-pg-schema-failed' => 'Het aanmaken van de tabellen is mislukt.
 Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-install-pg-commit' => 'Wijzigingen worden doorgevoerd',
+	'config-install-pg-plpgsql' => 'Controle op de taal PL/pgSQL',
 	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
+	'config-install-pg-ts2' => 'Zoeken naar tsearch2',
+	'config-install-pg-ts2-failed' => "'''MISLUKT''' tsearch2 moet geinstalleerd zijn in de database $1.
+Lees [$2 deze instructies] of stel uw vraag in #postgresql op irc.freenode.net.",
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
 	'config-install-tables' => 'Tabellen aanmaken',
@@ -9221,6 +9251,7 @@ Passe para a próxima página, por favor.",
 	'config-install-pg-schema-failed' => 'A criação das tabelas falhou.
 Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\' "$2".',
 	'config-install-pg-commit' => 'A gravar as alterações',
+	'config-install-pg-plpgsql' => 'A verificar a presença da linguagem PL/pgSQL',
 	'config-pg-no-plpgsql' => 'É preciso instalar a linguagem PL/pgSQL na base de dados $1',
 	'config-install-pg-ts2' => 'A verificar a presença de tsearch2',
 	'config-install-pg-ts2-failed' => "'''INSUCESSO''' tsearch2 tem de ser instalado na base de dados $1.
@@ -9832,6 +9863,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-pg-schema-failed' => 'Не удалось создать таблицы.
 Убедитесь в том, что пользователь «$1» может писать в схему «$2».',
 	'config-install-pg-commit' => 'Внесение изменений',
+	'config-install-pg-plpgsql' => 'Проверка языка PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1',
 	'config-install-pg-ts2' => 'Проверка tsearch2',
 	'config-install-pg-ts2-failed' => "'''СБОЙ'''. В базе данных $1 должен быть установлен tsearch2.

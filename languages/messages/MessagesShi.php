@@ -1164,9 +1164,9 @@ Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fl
 'nextdiff'     => '↓ Ambdl d ittfrn  →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'file-info-size'       => '$1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4',
 'file-nohires'         => '↓<small>Ur tlli tabudut tamqrant.</small>',
-'svg-long-desc'        => '↓ (Asdaw SVG, Tabadut n $1 × $2 ifrdan, Tiddi : $3)',
+'svg-long-desc'        => '↓ Asdaw SVG, Tabadut n $1 × $2 ifrdan, Tiddi : $3',
 'show-big-image'       => 'balak',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 

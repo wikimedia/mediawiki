@@ -547,8 +547,8 @@ $1',
 'mainpage'             => 'Ana sayfa',
 'mainpage-description' => 'Ana sayfa',
 'policy-url'           => 'Project:Politika',
-'portal'               => 'Topluluk portalı',
-'portal-url'           => 'Project:Topluluk portalı',
+'portal'               => 'Topluluk portali',
+'portal-url'           => 'Project:Topluluk portali',
 'privacy'              => 'Gizlilik ilkesi',
 'privacypage'          => 'Project:Gizlilik ilkesi',
 
@@ -735,6 +735,7 @@ Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]
 'wrongpasswordempty'         => 'Boş parola girdiniz. Lütfen tekrar deneyiniz.',
 'passwordtooshort'           => 'Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.',
 'password-name-match'        => 'Şifreniz kullanıcı adınızdan farklı olmalıdır.',
+'password-login-forbidden'   => 'Bu kullanıcı adı ve şifre kullanımı yasaklanmıştır',
 'mailmypassword'             => 'Bana e-posta ile yeni parola gönder',
 'passwordremindertitle'      => '{{SITENAME}} için yeni geçici şifre',
 'passwordremindertext'       => 'Birisi (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için yeni bir parola gönderilmesi istedi. "$2" kullanıcısına geçici olarak "$3" parolası oluşturuldu. Eğer bu sizin isteğiniz ise, oturum açıp yeni bir parola oluşturmanız gerekmektedir. Geçici parolanızın süresi {{PLURAL:$5|1 gün|$5 gün}} içinde dolacaktır.
@@ -906,6 +907,10 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
 'userjspreview'                    => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı JavaScript'i henüz kaydolmadı.'''",
+'sitecsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsunuz.''' 
+'''Henüz kaydedilmedi!'''",
+'sitejspreview'                    => "'''Sadece kullanıcı JavaScript kod dosyanızın önizlemesini görüyorsunuz.''' 
+'''Henüz kaydedilmedi!'''",
 'userinvalidcssjstitle'            => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''V'''ector.css değil, {{ns:user}}:Temel/'''v'''ector.css.",
 'updated'                          => '(Güncellendi)',
 'note'                             => "'''Not: '''",
@@ -1400,6 +1405,10 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'prefs-displaywatchlist'        => 'Görüntüleme seçenekleri',
 'prefs-diffs'                   => 'Farklar',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-posta adresi geçerli görünüyor',
+'email-address-validity-invalid' => 'Geçerli bir e-posta adresi girin',
+
 # User rights
 'userrights'                   => 'Kullanıcı hakları yönetimi',
 'userrights-lookup-user'       => 'Kullanıcı gruplarını düzenle',
@@ -1742,6 +1751,9 @@ Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temas
 'upload-too-many-redirects' => 'URL çok fazla yönlendirme içeriyor',
 'upload-unknown-size'       => 'Bilinmeyen boyut',
 'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'Dosya listelerini yenile',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Erişim engellendi',
@@ -2927,10 +2939,10 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
-'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
-'file-info-size'       => '($1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4)',
+'file-info'            => 'dosya boyutu: $1, MIME tipi: $2',
+'file-info-size'       => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4',
 'file-nohires'         => '<small>Daha yüksek çözünürlüğe sahip sürüm bulunmamaktadır.</small>',
-'svg-long-desc'        => '(SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3)',
+'svg-long-desc'        => 'SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
 'show-big-image'       => 'Tam çözünürlük',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 'file-info-gif-looped' => 'döngüye girdi',

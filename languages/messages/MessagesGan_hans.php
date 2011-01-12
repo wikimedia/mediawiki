@@ -1,5 +1,5 @@
 <?php
-/** Simplified Gan script (赣语(简体))
+/** Simplified Gan script (‪赣语(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1838,10 +1838,10 @@ $1',
 'imagemaxsize'         => '档案解释页𠮶图像大细限制到:',
 'thumbsize'            => '缩略图大细:',
 'widthheightpage'      => '$1×$2,$3页',
-'file-info'            => '（档案大细: $1, MIME 类型: $2）',
-'file-info-size'       => '（$1 × $2 像素，档案大细：$3 ，MIME类型：$4）',
+'file-info'            => '档案大细: $1, MIME 类型: $2',
+'file-info-size'       => '$1 × $2 像素，档案大细：$3 ，MIME类型：$4',
 'file-nohires'         => '<small>冇更高分辨率𠮶图像。</small>',
-'svg-long-desc'        => '（SVG档案，表面大细： $1 × $2 像素，档案大细：$3）',
+'svg-long-desc'        => 'SVG档案，表面大细： $1 × $2 像素，档案大细：$3',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>个幅缩略图𠮶分辨率: $1 × $2 像素</small>',
 

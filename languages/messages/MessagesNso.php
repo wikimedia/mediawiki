@@ -1120,9 +1120,9 @@ $1',
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|letlakala|matlakala}}',
-'file-info-size'       => '($1 × $2 pixel, bogolo ba faele: $3, Mohuta wa MIME: $4)',
+'file-info-size'       => '$1 × $2 pixel, bogolo ba faele: $3, Mohuta wa MIME: $4',
 'file-nohires'         => "<small>Gago ''resolution'' ya go feta mo.</small>",
-'svg-long-desc'        => '(SVG faele, nominally $1 × $2 pixels, bogolo ba faele: $3)',
+'svg-long-desc'        => 'SVG faele, nominally $1 × $2 pixels, bogolo ba faele: $3',
 'show-big-image'       => "''resolution'' ya gofella",
 'show-big-image-thumb' => '<small>Bogolo ba pono: $1 × $2 pixels</small>',
 

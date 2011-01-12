@@ -10,6 +10,7 @@
  * @author Alsandro
  * @author Andrijko Z.
  * @author Dato deutschland
+ * @author Dawid Deutschland
  * @author Lika2672
  * @author Malafaya
  * @author Reedy
@@ -685,9 +686,9 @@ $messages = array(
 'nextdiff'     => 'უკულენი გოთირუა →',
 
 # Media information
-'file-info-size'       => '($1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4)',
+'file-info-size'       => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
 'file-nohires'         => '<small> უმოს მაღალ გიშაგორადალა ვა რე შელებუან.</small>',
-'svg-long-desc'        => '(ფაილ SVG, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3)',
+'svg-long-desc'        => 'ფაილ SVG, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
 'show-big-image'       => 'რსული გარჩევადობა',
 'show-big-image-thumb' => '<small>ზომა ოწმახ ძირაშ დროს: $1 × $2 პიქსელ</small>',
 

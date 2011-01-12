@@ -1739,9 +1739,9 @@ Ini kawa maakibatakan parubahan kada taduga wan drastis gasan sabuah tungkaran r
 'nextdiff'     => 'Ralatan tahanyar →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4)',
+'file-info-size'       => '$1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4',
 'file-nohires'         => '<small> kadada tasadia resolusi tapancau.</small>',
-'svg-long-desc'        => '(Barakas SVG, nominal $1 × $2 piksel, basar barakas: $3)',
+'svg-long-desc'        => 'Barakas SVG, nominal $1 × $2 piksel, basar barakas: $3',
 'show-big-image'       => 'Ukuran hibak',
 'show-big-image-thumb' => '<small>Ukurannya tilikan ini: $1 × $2 piksel</small>',
 

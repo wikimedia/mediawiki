@@ -1448,9 +1448,9 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 'nextdiff'     => 'Acontzu in fatu →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4)',
+'file-info-size'       => '$1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4',
 'file-nohires'         => '<small>Non si tenent risolutziones prus artas.</small>',
-'svg-long-desc'        => '(file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3)',
+'svg-long-desc'        => 'file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3',
 'show-big-image'       => 'Versione a risolutzione arta',
 'show-big-image-thumb' => '<small>Mannesa de custa antiprima: $1 × $2 pixels</small>',
 

@@ -1232,6 +1232,10 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-displaywatchlist'        => 'Dewisiadau arddangos',
 'prefs-diffs'                   => "Cymharu golygiadau ('gwahan')",
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Y cyfeiriad e-bost yn ymddangos yn un dilys',
+'email-address-validity-invalid' => 'Rhowch gyfeiriad e-bost dilys',
+
 # User rights
 'userrights'                   => 'Rheoli galluoedd defnyddwyr',
 'userrights-lookup-user'       => 'Rheoli grwpiau defnyddiwr',
@@ -2749,10 +2753,10 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
-'file-info'            => '(maint y ffeil: $1, ffurf MIME: $2)',
-'file-info-size'       => '($1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4)',
+'file-info'            => 'maint y ffeil: $1, ffurf MIME: $2',
+'file-info-size'       => '$1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4',
 'file-nohires'         => '<small>Wedi ei chwyddo hyd yr eithaf.</small>',
-'svg-long-desc'        => '(Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3)',
+'svg-long-desc'        => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'show-big-image'       => 'Maint llawn',
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 'file-info-gif-looped' => 'dolennog',

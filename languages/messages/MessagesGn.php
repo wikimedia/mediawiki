@@ -516,7 +516,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'spam_blanking'       => 'Todas las revisiones contienen enlaces a $1, blanqueando',
 
 # Media information
-'file-info' => "(tamaño de jehai'aty: $1; tipo MIME: $2)",
+'file-info' => "tamaño de jehai'aty: $1; tipo MIME: $2",
 
 # Special:NewFiles
 'newimages' => "Ta'ãnga pyahu renda",

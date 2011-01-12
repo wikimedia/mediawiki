@@ -2187,9 +2187,9 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 
 # Media information
 'file-info'            => 'Réyaayu file bi : $1, type MIME : $2',
-'file-info-size'       => '($1 × $2 pixels, réyaayu file bi : $3, type MIME : $4)',
+'file-info-size'       => '$1 × $2 pixels, réyaayu file bi : $3, type MIME : $4',
 'file-nohires'         => '<small>Amul kem bu ëpp bii bu jàppandi.</small>',
-'svg-long-desc'        => '(Dencukaay SVG, kem bu jaadu  $1 × $2 pixel, dayoo dencukaay bi: $3)',
+'svg-long-desc'        => 'Dencukaay SVG, kem bu jaadu  $1 × $2 pixel, dayoo dencukaay bi: $3',
 'show-big-image'       => 'Ngandalal nataal gii',
 'show-big-image-thumb' => '<small>Dayoob wonendi gi : $1 × $2 pixel</small>',
 

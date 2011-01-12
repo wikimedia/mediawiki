@@ -1854,10 +1854,10 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'thumbsize'            => "Miniatyuranın' ha'jmi:",
 'widthheight'          => '$1 × $2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bet|bet}}',
-'file-info'            => "(fayldın' ha'jmi: $1, MIME tu'ri: $2)",
-'file-info-size'       => "($1 × $2 piksel, fayldın' ha'jmi: $3, MIME tu'ri: $4)",
+'file-info'            => "fayldın' ha'jmi: $1, MIME tu'ri: $2",
+'file-info-size'       => "$1 × $2 piksel, fayldın' ha'jmi: $3, MIME tu'ri: $4",
 'file-nohires'         => '<small>Bunnan joqarı imkaniyatlı tabılmadı.</small>',
-'svg-long-desc'        => "(SVG fayl, $1 × $2 piksel belgilengen, fayldın' ha'jmi: $3)",
+'svg-long-desc'        => "SVG fayl, $1 × $2 piksel belgilengen, fayldın' ha'jmi: $3",
 'show-big-image'       => 'Joqarı imkaniyatlı',
 'show-big-image-thumb' => "<small>Bul aldinnan ko'riwdin' ha'jmi: $1 × $2 piksel</small>",
 

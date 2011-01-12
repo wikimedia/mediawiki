@@ -917,9 +917,9 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paje|pajes}}',
-'file-info-size'       => '($1 × $2 pixel, grandia de fix: $3, MIME tipo: $4)',
+'file-info-size'       => '$1 × $2 pixel, grandia de fix: $3, MIME tipo: $4',
 'file-nohires'         => '<small>No plu densia posable.</small>',
-'svg-long-desc'        => '(SVG fix, per nom $1 × $2 pixeles, grandia de fix: $3)',
+'svg-long-desc'        => 'SVG fix, per nom $1 × $2 pixeles, grandia de fix: $3',
 'show-big-image'       => 'Densia masima',
 'show-big-image-thumb' => '<small>Grandia de eesta previde: $1 × $2 pixeles</small>',
 

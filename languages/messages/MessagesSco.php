@@ -1332,7 +1332,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 # Media information
 'mediawarning'   => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.",
 'imagemaxsize'   => 'Limit eimages on eimage description pages tae:',
-'file-info-size' => '($1 × $2 pixels, file size: $3, MIME type: $4)',
+'file-info-size' => '$1 × $2 pixels, file size: $3, MIME type: $4',
 
 # Special:NewFiles
 'newimages'     => 'Gallery o new files',

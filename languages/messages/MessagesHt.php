@@ -800,10 +800,29 @@ Mande ou byen si ou ap byen fè kreye li ankò.  Gade jounal paj sa a pou konnen
 'moveddeleted-notice'              => 'Paj sa efase.
 Jounal pou efasman oubyen deplasman pou paj sa parèt anba pou sèvi referans.',
 'log-fulllog'                      => 'Gade tout jounal la',
+'edit-hook-aborted'                => 'Modifikasyon pa ekstansyon pa t reyisi.
+Li pa bay rezon pou sa.',
+'edit-gone-missing'                => 'Pa kapab mete paj la a jou.
+Sanble li te efase.',
+'edit-conflict'                    => 'Konfli nan modifikasyon.',
 'edit-no-change'                   => 'Modifikasyon ou pa t fèt paske ou pa t fè okenn chanjman nan tèks la.',
+'edit-already-exists'              => 'Pa kapab kreye nouvo paj la.
+Li ekziste deja.',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "'''Atansyon:''' paj sa a gen ladan l twòp apèl ki chè pou fonksyon analizè. 
+
+Li ta dwe gen mwens pase $2 {{PLURAL:$2|apèl|apèl yo}}, aloske kounye a li gen $1.",
+'expensive-parserfunction-category'       => 'Paj yo ki gen twòp apèl pou fonksyon analizè ki chè',
+'post-expand-template-inclusion-warning'  => "'''Atansyon:''' Genyen twòp modèl ki antre nan paj sa.
+Kèk modèl yo pap enkli.",
 'post-expand-template-inclusion-category' => 'Paj yo ki genyen twop modèl anndan yo',
+'post-expand-template-argument-warning'   => "'''Atansyon:''' Paj sa a gen ladan l omwens youn nan agiman modèl la ki gen yon gwosè ekspansyon ki twòp. 
+ Agiman sa yo pa t enkli.",
+'post-expand-template-argument-category'  => 'Paj ki genyen agiman pou modèl ki manke',
+'parser-template-loop-warning'            => 'Tounen an won te detekte nan modèl la: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)',
+'language-converter-depth-warning'        => 'Limit sou pwofondè konvètisè lang yo depase ($1)',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ou pa kapab kreye yon kont.',
@@ -1338,9 +1357,9 @@ Li pèmèt retabli vèsyon ki te anvan li epi ajoute yon rezon ki esplike poukis
 'nextdiff'     => 'Modifikasyon swivan →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksèl, gwosè fichye a : $3, tip MIME li ye : $4)',
+'file-info-size'       => '$1 × $2 piksèl, gwosè fichye a : $3, tip MIME li ye : $4',
 'file-nohires'         => '<small>Pa genyen rezolisyon ki pi wo ki disponib.</small>',
-'svg-long-desc'        => '(Fichye SVG, rezolisyon de $1 × $2 piksèl, gwosè fichye : $3)',
+'svg-long-desc'        => 'Fichye SVG, rezolisyon de $1 × $2 piksèl, gwosè fichye : $3',
 'show-big-image'       => 'Pi bon rezolisyon',
 'show-big-image-thumb' => '<small>Lajè apèsi sa a : $1 × $2 piksèl</small>',
 

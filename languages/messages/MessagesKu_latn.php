@@ -1669,10 +1669,10 @@ if (wgUserLanguage == "ku-arab")
 'thumbsize'            => "Mezinbûna thunbnail'ê:",
 'widthheight'          => '$1 x $2',
 'widthheightpage'      => '$1×$2, $3 rûpel',
-'file-info'            => '(mezinbûnê data: $1, MIME-typ: $2)',
-'file-info-size'       => '($1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4)',
+'file-info'            => 'mezinbûnê data: $1, MIME-typ: $2',
+'file-info-size'       => '$1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4',
 'file-nohires'         => '<small>Versyonekî jê mezintir tune.</small>',
-'svg-long-desc'        => "(Data'ya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna data'yê: $3)",
+'svg-long-desc'        => "Data'ya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna data'yê: $3",
 'show-big-image'       => 'Mezînbûn',
 'show-big-image-thumb' => '<small>Mezinbûna vê pêşnîşandanê: $1 × $2 pixel</small>',
 

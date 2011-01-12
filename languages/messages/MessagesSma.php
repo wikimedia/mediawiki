@@ -781,10 +781,10 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'nextdiff'     => 'Minngebe joekehts →',
 
 # Media information
-'file-info'            => '(baalka stoerre: $1, MIME-vuekie: $2)',
-'file-info-size'       => '($1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4)',
+'file-info'            => 'baalka stoerre: $1, MIME-vuekie: $2',
+'file-info-size'       => '$1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4',
 'file-nohires'         => '<small>Ijje jïlle bäjjeselöösninge jaksoes.</small>',
-'svg-long-desc'        => '(SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3)',
+'svg-long-desc'        => 'SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3',
 'show-big-image'       => 'Dïeves stoerre',
 'show-big-image-thumb' => '<small>Stoerre ihke dïhte vuesiehtidh: $1 × $2 pixel</small>',
 

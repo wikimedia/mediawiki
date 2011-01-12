@@ -1041,9 +1041,9 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 
 # Media information
 'thumbsize'            => 'Dimescion da a imàginetta:',
-'file-info-size'       => '($1 × $2 pixel, dimenscioîn: $3, tippo MIME: $4)',
+'file-info-size'       => '$1 × $2 pixel, dimenscioîn: $3, tippo MIME: $4',
 'file-nohires'         => '<small>No ghe son verscioîn a resolûxon ciû ærta.</small>',
-'svg-long-desc'        => "(archivvio in formato SVG, dimensioîn nominâli $1 × $2 pixel, dimension de l'archivvio: $3)",
+'svg-long-desc'        => "archivvio in formato SVG, dimensioîn nominâli $1 × $2 pixel, dimension de l'archivvio: $3",
 'show-big-image'       => "Verscion d'ærta resolûxon",
 'show-big-image-thumb' => "<small>Dimensioîn de 'st'anteprimma: $1 × $2 pixel</small>",
 

@@ -217,7 +217,7 @@ $messages = array(
 'tog-editsection'             => 'Гайта хьажориг «нисйе» аьлла хlора агlона',
 'tog-editsectiononrightclick' => 'Нисде дакъа шозза бакъехьар дахка тlетаlийча оцу кортан (JavaScript)',
 'tog-showtoc'                 => 'Гойти коьртнаш (оцу агlонашна лаххара 3 коьртнашца)',
-'tog-rememberpassword'        => 'Даглаца сан дlавазвалар хlокху гlулкхдечу гlирса тlяхь (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Даглаца сан дlавазвалар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|де|ден|динахь}})',
 'tog-watchcreations'          => 'Тlетоха ас кхоллина агlонаш тергаме могlам чу',
 'tog-watchdefault'            => 'Тlетоха ас нисйина агlонаш тергаме могlам чу',
 'tog-watchmoves'              => 'Тlетоха ас цlераш хийцина агlонаш тергаме могlам чу',
@@ -225,7 +225,7 @@ $messages = array(
 'tog-minordefault'            => 'Къастам бе нисйиначарн хlумцадеш кегийра долушсанна',
 'tog-previewontop'            => 'Чуяккха хьалххьажар рéдоккхучу кора хьалха',
 'tog-previewonfirst'          => 'Гайта хьалххьажар рéдоккхуче дехьа волуш',
-'tog-nocache'                 => 'Агlонашна къайлахалатта цамагадо',
+'tog-nocache'                 => 'Ма латае гойтучун къайлаха латториг',
 'tog-enotifwatchlistpages'    => 'Хаам бо зlе чухул, тергаме могlаман хийцамах лаьцна',
 'tog-enotifusertalkpages'     => 'Хаам бо зlе чухул, долахь йолу дийцаре агlон хийцамах лаьцна',
 'tog-enotifminoredits'        => 'Хаам бо зlе чухул, цхьа жимма а хийцамаш биняхь',
@@ -244,9 +244,11 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Къайладаха вовзийтина болу декъашхойн нисдарш оцу тергаме могlам чура',
 'tog-watchlisthideanons'      => 'Къайладаха къайлаха болу декъашхойн нисдарш оцу тергаме могlам чура',
 'tog-watchlisthidepatrolled'  => 'Къайладаха хьаьжина волу нисдарш оцу тергаме могlам чура',
+'tog-nolangconversion'        => 'Хаамаш кхуллу гlирс дlабайа',
 'tog-ccmeonemails'            => 'Дlадахьийта суна исанна кехат, аса дохьуьйтуш долу кхечу декъашхошна.',
 'tog-diffonly'                => 'Ма гайта агlон чулацам шина башхонца цхьатерра йолуш',
 'tog-showhiddencats'          => 'Гайта къайлаха йолу кадегарш',
+'tog-noconvertlink'           => 'Хааман хьажориг кхуллу гlирс дlабайа',
 'tog-norollbackdiff'          => 'Йух яккхиначул тlаьхьа ма гайта къастаман башхо',
 
 'underline-always'  => 'Даимна',
@@ -261,14 +263,14 @@ $messages = array(
 'editfont-serif'     => 'Аьтта долу йоза',
 
 # Dates
-'sunday'        => 'кlиранан де',
+'sunday'        => 'кlиран де',
 'monday'        => 'Оршот',
 'tuesday'       => 'Шинара',
 'wednesday'     => 'Кхаара',
 'thursday'      => 'Еара',
 'friday'        => 'Пlераска',
 'saturday'      => 'Шот',
-'sun'           => 'Кlиранан де',
+'sun'           => 'Кlиран де',
 'mon'           => 'Ор',
 'tue'           => 'Ши',
 'wed'           => 'Кх',
@@ -330,6 +332,7 @@ $messages = array(
 'index-category'                 => 'Меттигтерахьйо агlонаш',
 'noindex-category'               => 'Дlахьушйоцу агlонаш',
 
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
 'mainpagedocfooter' => 'Викийца болх бан хаамаш карор бу хlокху чохь [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 куьйгаллица собаркхе].
 
@@ -373,7 +376,7 @@ $messages = array(
 'vector-view-view'         => 'Éшар',
 'vector-view-viewsource'   => 'Билглонашка хьажа',
 'actions'                  => 'Дийраш',
-'namespaces'               => 'Ана цlераш',
+'namespaces'               => 'Цlерийн ана',
 'variants'                 => 'Кепараш',
 
 'errorpagetitle'    => 'Гlалат',
@@ -381,7 +384,7 @@ $messages = array(
 'tagline'           => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
 'help'              => 'Гlo',
 'search'            => 'Лахар',
-'searchbutton'      => 'Каро',
+'searchbutton'      => 'Лаха',
 'go'                => 'Дехьа вала',
 'searcharticle'     => 'Дехьа вала',
 'history'           => 'исцlарера',
@@ -391,6 +394,7 @@ $messages = array(
 'printableversion'  => 'Зорба туху башхо',
 'permalink'         => 'Даиман йолу хьажориг',
 'print'             => 'Зорба тоха',
+'view'              => 'Хьажа',
 'edit'              => 'Нисйé',
 'create'            => 'Кхолла',
 'editthispage'      => 'Нисйé хlара агlо',
@@ -398,6 +402,7 @@ $messages = array(
 'delete'            => 'Дlадайá',
 'deletethispage'    => 'Дlайайá хlара агlо',
 'undelete_short'    => 'Меттахlоттайé $1 {{PLURAL:$1|нисйинарг|нисйинарш|нисйинарш}}',
+'viewdeleted_short' => 'Хьажар {{PLURAL:$1|$1 дlадаьккхина нийсдар|$1 дlадаьхна нийсдарш|$1 дlадаьхна нийсдарш}}',
 'protect'           => 'Гlаролла дé',
 'protect_change'    => 'хийца',
 'protectthispage'   => 'Гlаролла дé хlокху агlон',
@@ -441,8 +446,8 @@ $1',
 'aboutpage'            => 'Project:Цунах лаьцна',
 'copyright'            => 'Чулацам лело мега догlуш хиларца оцу $1.',
 'copyrightpage'        => '{{ns:project}}:Куьг де бакъо',
-'currentevents'        => 'Оьхаш дол хилларш',
-'currentevents-url'    => 'Project:Оьхаш дол хилларш',
+'currentevents'        => 'Хlинцлера хилларш',
+'currentevents-url'    => 'Project:Хlинцлера хилларш',
 'disclaimers'          => 'Бехк тlе ца эцар',
 'disclaimerpage'       => 'Project:Бяхк тlецалацар',
 'edithelp'             => 'Собаркхе оцу редаккхарна',
@@ -464,17 +469,20 @@ $1',
 'versionrequiredtext' => 'Болх бан хlоку агlонца оьшу MediaWiki тайпан $1. Хьажа. [[Special:Version|лелочу тайпанара башхонах лаьцна хаам]].',
 
 'ok'                      => 'Хlаъ',
+'pagetitle'               => '$1 — {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Хьост — «$1»',
 'youhavenewmessages'      => 'Хьуна кхечи $1 ($2).',
-'newmessageslink'         => 'керла кехаташ',
-'newmessagesdifflink'     => 'тlаьххьара хийцам',
+'newmessageslink'         => 'керла хаамаш',
+'newmessagesdifflink'     => 'тlаьххьаралера хийцам',
 'youhavenewmessagesmulti' => 'Хьуна кхаьчна керла хаам оцу $1',
 'editsection'             => 'нисйé',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'нисйé',
 'viewsourceold'           => 'хьажа йолш йолучу ишаре',
 'editlink'                => 'нисйé',
 'viewsourcelink'          => 'хьажа йолш йолучу ишаре',
-'editsectionhint'         => 'Нисде дакъа: $1',
+'editsectionhint'         => 'Нисде даакъа: $1',
 'toc'                     => 'Чулацам',
 'showtoc'                 => 'гайта',
 'hidetoc'                 => 'дlайаккха',
@@ -488,6 +496,8 @@ $1',
 'site-atom-feed'          => '$1 — Atom-аса',
 'page-rss-feed'           => '«$1» — RSS-аса',
 'page-atom-feed'          => '«$1» — Atom-аса',
+'feed-atom'               => 'Атом',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (ишта агlо йоцуш йу)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -520,21 +530,24 @@ $1',
 # Login and logout pages
 'yourname'                => 'Декъашхон цlе:',
 'yourpassword'            => 'Ишар:',
-'yourpasswordagain'       => 'Юха язйе ишар:',
+'yourpasswordagain'       => 'Юха язъйе ишар:',
 'remembermypassword'      => 'Даглаца сан дlавазвалар хlокху гlулкхдечу гlирса тlяхь (цхьан $1 {{PLURAL:$1|ден|динахь|динахь}})',
 'yourdomainname'          => 'Хьан машан меттиг:',
 'login'                   => 'Вовзийта хьой гlирсан',
 'nav-login-createaccount' => 'Вовзийта хьой / дlавазло',
 'loginprompt'             => 'Ахьа бакъо йала йеза оцу «cookies» хьайна вовзийта лаахь гlирсан.',
-'userlogin'               => 'Чу вала йа дlавазло кхучу',
+'userlogin'               => 'Чу вала йа дlавазло',
+'userloginnocreate'       => 'Вовзийта хьой',
 'logout'                  => 'Ара валар',
 'userlogout'              => 'Ара валар',
+'notloggedin'             => 'Хьо вовзита веза гlирсан',
 'nologin'                 => "Хlинца дlа вазвин вац? '''$1'''.",
 'nologinlink'             => 'Кхолла керла дlавазвалар',
 'createaccount'           => 'Дlавазве керла декъашхо',
-'gotaccount'              => "Хьо дlавазвина вуй? '''$1'''.",
+'gotaccount'              => "Дlавазвелла вуй хьо? '''$1'''.",
 'gotaccountlink'          => 'Вовзийта хьой',
 'loginerror'              => 'Гlалат ду декъашхо вовзарехь',
+'nocookiesforlogin'       => '{{int:nocookieslogin}}',
 'loginsuccesstitle'       => 'Хьо вовзар хаз чакхдели',
 'loginsuccess'            => 'Хlинца ахьа болх бó оцу цlарца $1.',
 'nosuchuser'              => 'Декъашхо цlарца $1 воцаш ву.
@@ -552,7 +565,7 @@ $1',
 'resetpass_header'          => 'Жамlаш дlаязвеллачуьна ишар хийцар',
 'oldpassword'               => 'Шираелла ишар:',
 'newpassword'               => 'Керла ишар:',
-'retypenew'                 => 'Юха язйе керла ишар:',
+'retypenew'                 => 'Юха язъйе керла ишар:',
 'resetpass-submit-loggedin' => 'Хийца ишар',
 'resetpass-submit-cancel'   => 'Цаоьшу',
 
@@ -571,7 +584,9 @@ $1',
 'math_tip'        => 'Матlематlекхиа каьчйар (барам LaTeX)',
 'nowiki_sample'   => 'Чудиллийша кхузе барамхlоттонза йоза.',
 'nowiki_tip'      => 'Тергалцабар вики-барам',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Чохь йолу хlум',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Хьажориг оцу медиа-хlуман',
 'sig_tip'         => 'Хьан куьгтаlор а хlоттийна хан',
 'hr_tip'          => 'Ана сиз (сих сиха ма леладайша)',
@@ -581,7 +596,7 @@ $1',
 'subject'                          => 'Дlахьедар/коьрта могlа:',
 'minoredit'                        => 'Жим хийцам',
 'watchthis'                        => 'Латайе хlара агlо тергаме могlам юкъа',
-'savearticle'                      => 'Дlаязйе агlо',
+'savearticle'                      => 'Дlайазъé агlо',
 'preview'                          => 'Хьалха муха ю хьажа',
 'showpreview'                      => 'Хьалха муха ю хьажар',
 'showdiff'                         => 'Хlоттина болу хийцам',
@@ -608,8 +623,8 @@ $1',
 йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха кхечу тептаршкахь].</span>',
 'previewnote'                      => "'''Хlара хьалх хьажар ду, йоза хlинца язданза ду!'''",
 'editing'                          => 'Редаккхар: $1',
-'editingsection'                   => 'Редаккхар $1 (дакъа)',
-'editingcomment'                   => 'Редаккхар $1 (керла дакъа)',
+'editingsection'                   => 'Редаккхар $1 (даакъа)',
+'editingcomment'                   => 'Редаккхар $1 (керла даакъа)',
 'editconflict'                     => 'Редаккхарна дойнаш: $1',
 'yourtext'                         => 'Хьан йоза',
 'copyrightwarning'                 => "Тергаме хьажа, массо яззаман чутухуш долу йозан хийцам хьажарехь бу, арахоьцушсанна оцу бакъойалар хьоляхь $2 (хьаж. $1).
@@ -625,13 +640,19 @@ $1',
 'template-protected'               => '(гlароллийца)',
 'template-semiprotected'           => '(дуьззина доцуш гlаролла)',
 'hiddencategories'                 => 'Хlара агlо чуйогlуш ю оцу $1 {{PLURAL:$1|къайлаха кадегарчу|къайлаха кадегаршчу|къайлаха кадегаршчу}}:',
+'edittools'                        => '<!-- Кхузе буха диллина йоза гуш хир ду редоккхуче бухахь а хlума чуйоккхуче бухахь. -->',
 'permissionserrorstext'            => 'Хьан бакъо яц кхочуш хилийта хийцам оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:',
 'permissionserrorstext-withaction' => "Хьан бакъо яц хlумда «'''$2'''» оцу {{PLURAL:$1|шолгlа бахьанца|шолгlа бахьанашца}}:",
+'recreate-moveddeleted-warn'       => "'''Тидам бе. Хьо ву (ле йу) йуха кхолла гlерташ яззам, хьалхо дlадайина долу.'''
+
+Хьажа, билгалла оьши хьуна хlара яззам йуха кхолла.
+Лахахь далина ду дlадайарш тlяхь долу тептарш а хlокх яззам цlера бина хийцамаш.",
 'moveddeleted-notice'              => 'Иза агlо дlайайина йара.
 Оцу собаркхен лахахьа гойтуш ю цуьнца долу дlаяздарш кху дlадайина тептар чура а цlе хийцарш а.',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Карийна куцкепаш юкъахь хилла шад: [[$1]]',
+'parser-template-loop-warning'            => 'Карийна куцкепаш юкъахь хилла шад: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Дозанал хьалаваьлла кlоргенца йух йуха дина куцкеп ($1)',
 
 # "Undo" feature
 'undo-success' => 'Нисйинарг а тlе цалаца мега. Дехар до, хьажа цхьатерра йуй башхо, тешна хила, баккъалла иза хийцам буйте хьуна безарг, тlакха тlе таlайе «дlайазйе агlо», хийцам хlотта ба.',
@@ -644,17 +665,20 @@ $1',
 'nextrevision'           => 'Тlаьхьайогlург →',
 'currentrevisionlink'    => 'Хlинцлера башхо',
 'cur'                    => 'карара.',
+'next'                   => 'кхин',
 'last'                   => 'хьалх.',
+'page_first'             => 'хьалхара',
 'histlegend'             => "Кхетор: (хlинцлера.) — йолучу башхон къастам; (хьалх.) — хьалхлерачу башхон къастам; '''ж''' — жимо бозалца болу хийцам.",
 'history-fieldset-title' => 'Хьажа исцlарерачу',
 'histfirst'              => 'къена',
 'histlast'               => 'хьалхо',
 
 # Revision deletion
-'rev-delundel'      => 'гайта/къайладаккха',
-'rev-showdeleted'   => 'гайта',
-'revdel-restore'    => 'Хийцам бе схьагарехь',
-'revdelete-content' => 'чуьраниг',
+'rev-delundel'              => 'гайта/къайлайаккха',
+'rev-showdeleted'           => 'гайта',
+'revdel-restore'            => 'Хийцам бе схьагарехь',
+'revdelete-content'         => 'чуьраниг',
+'revdelete-reasonotherlist' => 'Кхин бахьан',
 
 # Revision move
 'revmove-reasonfield' => 'Бахьан:',
@@ -671,7 +695,7 @@ $1',
 'lineno'                   => 'Могlа $1:',
 'compareselectedversions'  => 'Хаьржиначуьна башхо муха ю хьажа',
 'showhideselectedversions' => 'Гайта/къайлайаха хаьржина башхонаш',
-'editundo'                 => 'дlадаккха',
+'editundo'                 => 'цаоьшу',
 
 # Search results
 'searchresults'                    => 'Лахарна хилам',
@@ -708,13 +732,13 @@ $1',
 'search-interwiki-more'            => '(кхин)',
 'search-mwsuggest-enabled'         => 'хьехаршца',
 'search-mwsuggest-disabled'        => 'хьехар доцуш',
-'searcheverything-enable'          => 'Лаха массо ана цlерашкахь',
+'searcheverything-enable'          => 'Массо цIера анахь лахар',
 'searchrelated'                    => 'хlоттаделларг',
 'showingresults'                   => 'Лахахьа {{PLURAL:$1|гойта|гойту|гойту}} <strong>$1</strong> {{PLURAL:$1|хилам|хиламаш|хиламаш}}, дlаболало кху № <strong>$2</strong>.',
 'showingresultsheader'             => "{{PLURAL:$5|Хилам '''$1''' кху '''$3'''|Хиламаш '''$1 — $2''' кху '''$3'''}} оцун '''$4'''",
 'nonefound'                        => "'''Билгалдаккхар.''' Хlумма цадеш lад йитича массо цlеран энахь цалоху. Лела йе тlехуттург ''all:'', лахийта массо цlеран энахь (юкъадалош декъашхойн дийцарш а куцкепаш а кхин дерг.), йа хlотта йе оьшуш йолу цlеран эна.",
 'search-nonefound'                 => 'Дехарар терра цхьа хlума цакарийна.',
-'powersearch'                      => 'Шуьро лахар',
+'powersearch'                      => 'Шуьйра лахар',
 'powersearch-legend'               => 'Шуьро лахар',
 'powersearch-ns'                   => 'Цlераши анахь лахар:',
 'powersearch-redir'                => 'Схьагайта дlасахьажийнарш',
@@ -742,7 +766,7 @@ $1',
 'youremail'           => 'Кехат яздо зlе цlе:',
 'username'            => 'Дlаязвиначуьна цlе:',
 'yourrealname'        => 'Хьан бакъ цlе:',
-'yourlanguage'        => 'Мотт юкъардекъа:',
+'yourlanguage'        => 'Юкъардекъа мотт:',
 'yourvariant'         => 'Метта башхо',
 'gender-unknown'      => 'хlоттийна яц',
 'gender-male'         => 'борша',
@@ -761,7 +785,8 @@ $1',
 'group-sysop' => 'Адаманкуьйгалхой',
 'group-all'   => '(массо)',
 
-'group-user-member' => 'декъашхо',
+'group-user-member'  => 'декъашхо',
+'group-sysop-member' => 'адаманкуьйгалхо',
 
 'grouppage-user'  => '{{ns:project}}:Декъашхой',
 'grouppage-sysop' => '{{ns:project}}:Адаманкуьйгалхой',
@@ -778,6 +803,7 @@ $1',
 'recentchanges-legend'           => 'Гlирс нисбарна керла нисдарш',
 'recentchanges-feed-description' => 'Тергам бе тlаьхьара вики хийцаман хlокху ларца.',
 'recentchanges-label-newpage'    => 'Оцу нисдарца кхоллина керла агlо.',
+'recentchanges-label-minor'      => 'Хlара нисдинарг къастийна жимо долушсан',
 'rcnote'                         => "{{PLURAL:$1|Тlаьххьара '''$1''' хийцам|Тlаьххьара '''$1''' хийцамаш|Тlаьххьара '''$1''' хийцамаш}} за '''$2''' {{PLURAL:$2|де|дийнахь|дийнахь}}, оцу хан чохь $5 $4.",
 'rclistfrom'                     => 'Гайта хийцам оцу $1.',
 'rcshowhideminor'                => '$1 кегийра нисдарш',
@@ -786,7 +812,7 @@ $1',
 'rcshowhideanons'                => '$1 хьулбелларш',
 'rcshowhidemine'                 => '$1 айхьа нисдинарш',
 'rclinks'                        => 'Гайта тlаьхьара $1 хийцамаш оцу $2 ден<br />$3',
-'diff'                           => 'башхонаш.',
+'diff'                           => 'тейп тайпнара',
 'hist'                           => 'исцlарера',
 'hide'                           => 'Къайлаяккха',
 'show'                           => 'Гайта',
@@ -809,17 +835,35 @@ $1',
 'recentchangeslinked-to'      => 'Кхечу агlор, гайта хийцамаш агlонашца, хlоттийначу агlонтlе хьажориг йолуш',
 
 # Upload
-'upload'            => 'Чуйаккха хlум',
-'uploadlogpage'     => 'Чуйахаран тéптар',
-'uploadlogpagetext' => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна хlумнаши. Ишта хьажа. [[Special:ImageList|хlумнаши могlам]] йа [[Special:NewImages|галеларе хlумнаши]].',
-'filename'          => 'Хlуман цlе',
-'uploadwarning'     => 'Дlахьедар',
-'uploadedimage'     => 'чуяккхина «[[$1]]»',
-'upload-wasdeleted' => "'''Тергам бе: ахьа чуйаккха хьийзошйолу хlума, хьалхо дlайайана хlума ю.'''
+'upload'                    => 'Чуйаккха хlум',
+'uploadbtn'                 => 'Чуйаккха хlум',
+'uploadlogpage'             => 'Чуйахаран тéптар',
+'uploadlogpagetext'         => 'Лахахьа гойтуш бу могlам тlаьххьара чуяхна хlумнаши. Ишта хьажа. [[Special:ImageList|хlумнаши могlам]] йа [[Special:NewImages|галеларе хlумнаши]].',
+'filename'                  => 'Хlуман цlе',
+'uploadwarning'             => 'Дlахьедар',
+'uploadedimage'             => 'чуяккхина «[[$1]]»',
+'upload-wasdeleted'         => "'''Тергам бе: ахьа чуйаккха хьийзошйолу хlума, хьалхо дlайайана хlума ю.'''
 
 Юха а хьажа, баккъалла хьуна оьшуш йуй и хlумма. Лахахь далийна дlадайарна тéптар.",
+'filename-prefix-blacklist' => '#<!-- битийша хlара могlа ша мабарра --> <pre>
+# Бухасиз шолгlа:
+#  * Массо, саболчунтlийра йуьлалуш ерш «#» хуьлу хетаме дерг (могlа чекх балац)
+#  * Хlора баьсса боцу могlа — хlман цlе лораш йу, терахьца сурт доккхучо луш ма хиллар
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # ишта цхьаболу лера гlирс а
+IMG # еригге
+JD # Jenoptik
+MGP # Pentax
+PICT # тайп тайпан
+ #</pre> <!-- битийша хlара могlа ша мабарра -->',
+
+'license' => 'Бакъойалар:',
 
 # Special:ListFiles
+'listfiles_search_for'  => 'Лаха хIуман цIарца:',
 'imgfile'               => 'хlум',
 'listfiles'             => 'Хlумнаши могlам',
 'listfiles_name'        => 'Хlуман цlе',
@@ -828,61 +872,105 @@ $1',
 'listfiles_description' => 'Цунах лаьцна',
 
 # File description page
-'file-anchor-link'          => ' Хlум',
-'filehist'                  => 'Хlуман исцlарера',
-'filehist-help'             => 'Тlетаlаде терахь/хан, муха хилла хьажарна и хlум.',
-'filehist-deleteall'        => 'дlадайá массо',
-'filehist-deleteone'        => 'дlадайá',
-'filehist-current'          => 'карара',
-'filehist-datetime'         => 'Терахь/Хан',
-'filehist-thumb'            => 'Жима',
-'filehist-thumbtext'        => 'Жимо башхо оцу $1',
-'filehist-user'             => 'Декъашхо',
-'filehist-dimensions'       => 'Хlуман барам',
-'filehist-comment'          => 'Билгалдаккхар',
-'imagelinks'                => 'Хьажоригаш оцу хlуман',
-'linkstoimage'              => '{{PLURAL:$1|Тlаьхьайогlу $1 агlо тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина}} хlокху хlуман:',
-'sharedupload'              => 'Хlара хlума оцун $1 чура ю иза хила мега лелош кхечу кхолламашкахь.',
-'uploadnewversion-linktext' => 'Чуяккха керла башхо хlокху хlуман',
+'file-anchor-link'                  => ' Хlум',
+'filehist'                          => 'Хlуман исцlарера',
+'filehist-help'                     => 'Тlетаlаде терахь/хан, муха хилла хьажарна и хlум.',
+'filehist-deleteall'                => 'дlадайá массо',
+'filehist-deleteone'                => 'дlадайá',
+'filehist-current'                  => 'карара',
+'filehist-datetime'                 => 'Терахь/Хан',
+'filehist-thumb'                    => 'Жима',
+'filehist-thumbtext'                => 'Жимо башхо оцу $1',
+'filehist-user'                     => 'Декъашхо',
+'filehist-dimensions'               => 'Хlуман барам',
+'filehist-comment'                  => 'Билгалдаккхар',
+'imagelinks'                        => 'Хьажоригаш оцу хlуман',
+'linkstoimage'                      => '{{PLURAL:$1|Тlаьхьайогlу $1 агlо тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина|Тlаьхьайогlу $1 агlонаш тlетойжина}} хlокху хlуман:',
+'sharedupload'                      => 'Хlара хlума оцун $1 чура ю иза хила мега лелош кхечу кхолламашкахь.',
+'uploadnewversion-linktext'         => 'Чуяккха керла башхо хlокху хlуман',
+'shared-repo-name-wikimediacommons' => 'Викидlайуллуче',
 
 # File reversion
 'filerevert-submit' => 'Юхаяккха',
 
 # File deletion
-'filedelete-legend' => 'Дlайайá и хlум',
-'filedelete-submit' => 'Дlадайá',
+'filedelete-legend'           => 'Дlайайá и хlум',
+'filedelete-submit'           => 'Дlадайá',
+'filedelete-otherreason'      => 'Кхин бахьан:',
+'filedelete-reason-otherlist' => 'Кхин бахьан',
+
+# MIME search
+'mimesearch' => 'MIME хула лаха',
+
+# Unwatched pages
+'unwatchedpages' => 'Цхьамо тергам ца беш йолу агIонаш',
+
+# List redirects
+'listredirects' => 'ДIасахьажоран могIам',
+
+# Unused templates
+'unusedtemplates' => 'Лелош доцу куцкепаш',
 
 # Random page
-'randompage' => 'Ца хууш нисйелла агlо',
+'randompage' => 'Цахуаш нисйелла агlо',
+
+# Random redirect
+'randomredirect' => 'Ца хууш нисделла дIасахьажор',
 
 # Statistics
 'statistics'       => 'Бухехьдерг',
 'statistics-pages' => 'Агlонаш',
 
+'disambiguations' => 'Дуккха маьIнаш долу хьажорца йолу агIонаш',
+
+'doubleredirects'            => 'ШалгIа дIасахьажийнарш',
 'double-redirect-fixed-move' => 'Агlон [[$1]] цlе хийцна, хlинца иза дlахьажийна оцу [[$2]]',
 
+'brokenredirects'        => 'ДIахаьдна долу дIасахьажораш',
 'brokenredirects-edit'   => 'нисйé',
 'brokenredirects-delete' => 'дlадайá',
 
+'withoutinterwiki'        => 'Кхечу меттанашан хьажориг йоцу агIонаш',
 'withoutinterwiki-submit' => 'Гайта',
 
+'fewestrevisions' => 'ЧIогIа кIезиг башхонаш йолу агIонаш',
+
 # Miscellaneous special pages
-'nbytes'              => '$1 {{PLURAL:$1|цlинцl|цlинцlа|цlинацl}}',
-'ncategories'         => '$1 {{PLURAL:$1|кадегар|кадегарш|кадегарш}}',
-'nmembers'            => '$1 {{PLURAL:$1|хlум|хlума|хlумнаш}}',
-'unusedcategories'    => 'Йаьсса кадегарш',
-'wantedtemplates'     => 'Оьшуш долу куцкепаш',
-'mostlinkedtemplates' => 'Массарел дуккха а леладо куцкепаш',
-'prefixindex'         => 'Хьалха агlонашан цlераш хlотто йеза',
-'listusers'           => 'Декъашхой могlам',
-'newpages'            => 'Керла агlонаш',
-'newpages-username'   => 'Декъашхо:',
-'ancientpages'        => 'Яззамаш оцу терахьца тяххьара редаккхар дина долу',
-'move'                => 'Цlе хийца',
-'movethispage'        => 'Хlокху агlон цlе хийца',
-'unusedimagestext'    => 'Дехар до, тидаме эца, кхин йолу дуьнана машан-меттигаш а лелош хила мега нисса йогlу хьажориг (URL) хlокху хlуман, хlокху могlаме йогlуш ялахь яцахь а иза хила мега жигара лелош.',
-'pager-newer-n'       => '{{PLURAL:$1|алсамо керла|алсамо керланаш|алсамо керлачарех}} $1',
-'pager-older-n'       => '{{PLURAL:$1|алсамо къена|алсамо къенанаш|алсамо къеначарех}} $1',
+'nbytes'                  => '$1 {{PLURAL:$1|цlинцl|цlинцlа|цlинацl}}',
+'ncategories'             => '$1 {{PLURAL:$1|кадегар|кадегарш|кадегарш}}',
+'nmembers'                => '$1 {{PLURAL:$1|хlум|хlума|хlумнаш}}',
+'specialpage-empty'       => 'Дехаро хlумма ца елла.',
+'lonelypages'             => 'Байлахь йисина агIонаш',
+'uncategorizedpages'      => 'Кадегар йоцу агIонаш',
+'uncategorizedcategories' => 'Кадегар йоцу кадегарш',
+'uncategorizedimages'     => 'Кадегар йоцу хIумнаш',
+'uncategorizedtemplates'  => 'Кадегар йоцу куцкепаш',
+'unusedcategories'        => 'Йаьсса кадегарш',
+'wantedcategories'        => 'Оьшуш йолу кадегарш',
+'wantedpages'             => 'Оьшуш йолу агIонаш',
+'wantedfiles'             => 'Оьшуш йолу хIумнаш',
+'wantedtemplates'         => 'Оьшуш долу куцкепаш',
+'mostlinked'              => 'Дуккха хьажоригаш тIе тоьхна йолу агIонаш',
+'mostlinkedcategories'    => 'Дуккха тIе хьажораш йолу кадегарш',
+'mostlinkedtemplates'     => 'Массарел дуккха а леладо куцкепаш',
+'mostcategories'          => 'Дуккха кадегарш тIе тоьхна йолу агIонаш',
+'mostimages'              => 'Массарел дуккха лелайо хlумнаш',
+'mostrevisions'           => 'Сих сиха нисйина йолу агIонаш',
+'prefixindex'             => 'Хьалха агlонашан цlераш хlотто йеза',
+'shortpages'              => 'Боцоа яззамаш',
+'longpages'               => 'Беха яззамаш',
+'deadendpages'            => 'Дика йоцу агIонаш',
+'protectedpages'          => 'ГIаролла дина агIонаш',
+'protectedtitles'         => 'Ца магийна йолу цIераш',
+'listusers'               => 'Декъашхой могlам',
+'newpages'                => 'Керла агlонаш',
+'newpages-username'       => 'Декъашхо:',
+'ancientpages'            => 'Яззамаш оцу терахьца тяххьара редаккхар дина долу',
+'move'                    => 'Цlе хийца',
+'movethispage'            => 'Хlокху агlон цlе хийца',
+'unusedimagestext'        => 'Дехар до, тидаме эца, кхин йолу дуьнана машан-меттигаш а лелош хила мега нисса йогlу хьажориг (URL) хlокху хlуман, хlокху могlаме йогlуш ялахь яцахь а иза хила мега жигара лелош.',
+'pager-newer-n'           => '{{PLURAL:$1|алсамо керла|алсамо керланаш|алсамо керлачарех}} $1',
+'pager-older-n'           => '{{PLURAL:$1|алсамо къена|алсамо къенанаш|алсамо къеначарех}} $1',
 
 # Book sources
 'booksources'               => 'Жайнан хьосташ',
@@ -919,8 +1007,9 @@ $1',
 'sp-deletedcontributions-contribs' => 'къинхьегам',
 
 # Special:LinkSearch
-'linksearch'    => 'Арахьара хьажоригаш',
-'linksearch-ok' => 'Лаха',
+'linksearch'      => 'Арахьара хьажоригаш',
+'linksearch-ok'   => 'Лаха',
+'linksearch-line' => '$2 — хьажориг кху $1',
 
 # Special:ListUsers
 'listusers-submit' => 'Гайта',
@@ -941,7 +1030,7 @@ $1',
 
 # E-mail user
 'emailuser'       => 'Декъашхочун хааман кехат',
-'defemailsubject' => 'Хаам кхузар {{grammar:genitive|{{SITENAME}}}}',
+'defemailsubject' => 'Хаам {{grammar:genitive|{{SITENAME}}}} чура бу',
 'emailmessage'    => 'Хаам:',
 
 # Watchlist
@@ -956,7 +1045,7 @@ $1',
 'watch'             => 'Тидам бе',
 'watchthispage'     => 'Тергам бé хlокху агlон',
 'unwatch'           => 'Тергамах къаста',
-'notanarticle'      => 'Дац яззам',
+'notanarticle'      => 'Бац яззам',
 'watchlist-details' => 'Хьан тергаме могlамца $1 {{PLURAL:$1|агlо|агlонаш|агlонаш}} ю, дийцаре агlонаша йоцуш.',
 'wlnote'            => 'Лахахьа {{PLURAL:$1|тlаьхьа богlу $1 хийцам|тlаьхьа богlу $1 хийцамаш|тlаьхьа богlу $1 хийцамаш}} хlокху {{PLURAL:$2|тlаьхьар|тlаьхьара|тlаьхьара}} <strong>$2</strong> {{plural:$2|сохьт|сохьатехь|сохьташкахь}}.',
 'wlshowlast'        => 'Гайта тlаьххьара $1 сахьташ $2 денош $3',
@@ -989,6 +1078,7 @@ $1',
 
 # Rollback
 'rollbacklink' => 'йухаяккха',
+'revertpage'   => 'Нисдарш [[Special:Contributions/$2|$2]] ([[User talk:$2|дийцаре]]) йуха йаьхна башхаллийн [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Гlаролли тептар',
@@ -1011,6 +1101,7 @@ $1',
 'protect-expiry-indefinite'   => 'хан чаккхе йоцуш',
 'protect-cascade'             => 'Гlаролла йé агlонаш, хlокху агlонца хlоттайелларш (чахчарé гlаролла)',
 'protect-cantedit'            => 'Хьéга хийцам цабало хlокху агlон гlаролли локхалан, хlуд аьлча хьан бакъо яц оцун рéдаккха.',
+'protect-otherreason-op'      => 'Кхин бахьан',
 'restriction-type'            => 'Бакъо:',
 'restriction-level'           => 'Тlевитарна локхалла:',
 
@@ -1021,6 +1112,8 @@ $1',
 'restriction-level-all' => 'массо барам',
 
 # Undelete
+'undelete'               => 'ДIайайина йолу агIонашка хьажар',
+'viewdeletedpage'        => 'ДIайайина йолу агIонашка хьажар',
 'undeleterevdel'         => 'Метта хlоттор хира дац, нагахь иза дакъошкахь дlадайина далахь а тlаьххьара кисак башхо йа хlума.
 Иштнарг хилча ахьа дlабаккха беза хlоттийна болу къастам йа хьагайта тlаьххьара дlайайина башхо.',
 'undeletelink'           => 'хьажа/метта хlоттаде',
@@ -1028,7 +1121,7 @@ $1',
 'undelete-search-submit' => 'Лаха',
 
 # Namespace form on various pages
-'namespace'      => 'Ана цlераш:',
+'namespace'      => 'Цlерийн ана:',
 'invert'         => 'Хаьржинарг хилийта',
 'blanknamespace' => '(Коьрта)',
 
@@ -1069,6 +1162,7 @@ $1',
 # Block/unblock
 'blockip'                  => 'Сацаве',
 'ipadressorusername'       => 'IP-долу меттиг йа декъашхон цlе:',
+'ipbreasonotherlist'       => 'Кхин бахьан',
 'ipboptions'               => '2 сахьат:2 hours,1 де:1 day,3 де:3 days,1 кlиран:1 week,2 кlиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
 'blockipsuccesssub'        => 'Сацавар чакхдели',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|«$1»]] сацийна ву.<br />
@@ -1087,8 +1181,8 @@ $1',
 'block-log-flags-nocreate' => 'цамагдо дlаязвалар дlаязбаларшца',
 
 # Move page
-'move-page'               => '$1 — цlе хийцар',
-'movepagetext'            => "Леладан лахар хатlаьхь, хьо агlон цlе хуьйцуш ву, цхьатерра дехьа а докхуш цуьнан хийцаман тептар.
+'move-page'                    => '$1 — цlе хийцар',
+'movepagetext'                 => "Леладан лахар хатlаьхь, хьо агlон цlе хуьйцуш ву, цхьатерра дехьа а докхуш цуьнан хийцаман тептар.
 Тиша цlе хира ю дlасахьажйарехь керлачун тlе хьажийна.
 Хьега далур ду ша шех дlасахьажор керла яккхар, хьалхалерачуьна метта йиллина йолу.
 Нагахь ахьа иза цадинехь, дехар до, хьажа йуйла [[Special:DoubleRedirects|шалгlа]] а [[Special:BrokenRedirects|хадийначу дlасахьажориш]].
@@ -1100,30 +1194,34 @@ $1',
 '''ДlАХЬЕДАР!'''
 Цlе хийцарца хила тарло барамашкахь а цамётту хийцам ''гlар йойлачу'' агlонашна.
 Дехар до, кхин дlа хьо вахале, дика ойла йе, хьо кхеташ хиларехь тlаьхьа хиндолучунах.",
-'movepagetalktext'        => "Тlе хlоьттина йолу дийцаре агlо ишта цlе хийцина хира ю, '''цхьа йолу ханчохь, маца:'''
+'movepagetalktext'             => "Тlе хlоьттина йолу дийцаре агlо ишта цlе хийцина хира ю, '''цхьа йолу ханчохь, маца:'''
 
 *Йаьсса йоцу дийцаре агlо йолуш ю оцу цlарца йа
 *Ахьа къастаман харжам цабиняхь а къастам хlотточехь.
 
 Ишта чу ханчохь, ахьа дехьа яккха йезар ю йа куьйга хlоттайар, нагахь иза хьашт йалахь.",
-'movearticle'             => 'Цle хийца хlокху агlон',
-'newtitle'                => 'Керла цlе',
-'move-watch'              => 'Латайé хlара агlо тергаме могlам юкъа',
-'movepagebtn'             => 'Агlон цlе хийца',
-'pagemovedsub'            => 'Агlон цlе хийцина',
-'movepage-moved'          => "'''Агlон цlе «$1» хийцина хlокху «$2»'''",
-'articleexists'           => 'Хlарасанна цlе йолу агlо йолуш ю йа ахьа гойтуш йолу цlе магош яц.
+'movearticle'                  => 'Цle хийца хlокху агlон',
+'newtitle'                     => 'Керла цlе',
+'move-watch'                   => 'Латайé хlара агlо тергаме могlам юкъа',
+'movepagebtn'                  => 'Агlон цlе хийца',
+'pagemovedsub'                 => 'Агlон цlе хийцина',
+'movepage-moved'               => "'''Агlон цlе «$1» хийцина хlокху «$2»'''",
+'articleexists'                => 'Хlарасанна цlе йолу агlо йолуш ю йа ахьа гойтуш йолу цlе магош яц.
 Дехар до, харжа кхин цlе.',
-'talkexists'              => "'''Агlон цlе хийцина йара, амма дийцаре агlон цlе хийца цало, хlунда аьльча иза санна цlе йолу агlо йолуш ю. Дехар до, куьйга хlотта уьш.'''",
-'movedto'                 => 'цlе хийцина оцу',
-'movetalk'                => 'Цуьнца йогlуш йолу дийцаре агlон цlе хийцар',
-'1movedto2'               => 'цlе хийцина «[[$1]]» оцу «[[$2]]»',
-'1movedto2_redir'         => '«[[$1]]» цlе хийцина оцу «[[$2]]» дlасахьажоран тlохул',
-'movelogpage'             => 'Цlераш хийцаран тептар',
-'movereason'              => 'Бахьан:',
-'revertmove'              => 'йухаяккха',
-'delete_and_move'         => 'Цle а хуьйцуш дlадайá',
-'delete_and_move_confirm' => 'Хlаъ, дlайайъа хlара агlо',
+'talkexists'                   => "'''Агlон цlе хийцина йара, амма дийцаре агlон цlе хийца цало, хlунда аьльча иза санна цlе йолу агlо йолуш ю. Дехар до, куьйга хlотта уьш.'''",
+'movedto'                      => 'цlе хийцина оцу',
+'movetalk'                     => 'Цуьнца йогlуш йолу дийцаре агlон цlе хийцар',
+'1movedto2'                    => 'цlе хийцина «[[$1]]» оцу «[[$2]]»',
+'1movedto2_redir'              => '«[[$1]]» цlе хийцина оцу «[[$2]]» дlасахьажоран тlохул',
+'movelogpage'                  => 'Цlераш хийцаран тептар',
+'movereason'                   => 'Бахьан:',
+'revertmove'                   => 'йухаяккха',
+'delete_and_move'              => 'Цle а хуьйцуш дlадайá',
+'delete_and_move_confirm'      => 'Хlаъ, дlайайъа хlара агlо',
+'protectedpagemovewarning'     => "'''Дlахьедар.''' Хlара агlо гlаролла йина йу; цlе хийца йа нисйа а бакъо йолуш адаманкуьйгалхой бе бац.
+Лахахьа тептаро балийна тlаьхьаралера дlаязбина хаам:",
+'semiprotectedpagemovewarning' => "'''Дlахьедо.''' Хlара агlо гlаролла йина йу; дlабазбиначу декъашхошка бе цlе хийцалуш яц.
+Лахахьа тептаро балийна тlаьхьаралера дlаязбина хаам:",
 
 # Export
 'export'           => 'Яззамаш кхечу меттиган арадахар',
@@ -1215,9 +1313,20 @@ $1',
 'tooltip-rollback'                => 'Цхьоз тlетаlийча дlабаккха кхечо бина болу тlаьххьара хийцам',
 'tooltip-undo'                    => 'Дlабаккха бина болу хийцам а хьалхьажар гойтуш, дlайаккхарна бахьан гайта аьтту беш',
 
+# Stylesheets
+'common.css'   => '/** Чуйиллина йолу кхузе CSS хир йу лелош масхьа кечйечу чохь */',
+'monobook.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа Monobook чохь */',
+'print.css'    => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа зорба тухучуче чохь */',
+'handheld.css' => '/* Чуйиллина йолу кхузе CSS хир йу лелош масхьа койнаш чохь, дукхах ерг хатl нисдеш оцу $wgHandheldStyle */',
+
+# Scripts
+'common.js'   => '/* Чуйиллина йолу кхузе JavaScript ишар гучу ерайу массо декъашхошна оцара схьаелларца хlора агlо */',
+'monobook.js' => '/* Кхузе чу яззийна йолу JavaScript ишар, чу йера йу, массо MonoBook хатl лелош болу декъашхошна */',
+
 # Attribution
 'siteuser'  => 'декъашхо {{grammar:genitive|{{SITENAME}}}} $1',
 'others'    => 'кхин',
+'siteusers' => '{{PLURAL:$2|декъашхо|декъашхой}} {{grammar:genitive|{{SITENAME}}}} $1',
 'nocredits' => 'Бац декъашхойн могlам хlокху яззамца',
 
 # Spam protection
@@ -1225,7 +1334,10 @@ $1',
 
 # Info page
 'numedits'   => 'Нисдарна терахь (яззам): $1',
-'numauthors' => 'Тейп тайпан куьйга дай (яззам): $1',
+'numauthors' => 'Тейп тайпан куьгдай (яззам): $1',
+
+# Skin names
+'skinname-standard' => 'Лела ма ярра',
 
 # Browsing diffs
 'previousdiff' => '← Хьалхдоьда нисдинарг',
@@ -1233,14 +1345,14 @@ $1',
 
 # Media information
 'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|агlо|агlонаш|агlонаш}}',
-'file-info-size'       => '($1 × $2 сиртакх, хlуман барам: $3, MIME-тайп: $4)',
+'file-info-size'       => '$1 × $2 сиртакх, хlуман барам: $3, MIME-тайп: $4',
 'file-nohires'         => '<small>Яц тайпанара оцу йоккхачу бакъонца.</small>',
-'svg-long-desc'        => '(SVG-хlума, хlоттамца $1 × $2 цинташ, хlуман барам: $3)',
+'svg-long-desc'        => 'SVG-хlума, хlоттамца $1 × $2 цинташ, хlуман барам: $3',
 'show-big-image'       => 'Сурт цlанал лакхаро бакъонца',
 'show-big-image-thumb' => '<small>Хьажарна барам: $1 × $2 цинташ</small>',
 
 # Special:NewFiles
-'newimages'        => 'Галеларе керлачу хlумни',
+'newimages'        => 'Керлачу хlумни галеларе',
 'newimages-legend' => 'Литтар',
 'ilsubmit'         => 'Лаха',
 
@@ -1273,7 +1385,7 @@ $1',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
 'exif-cfapattern'       => 'Бос литтар тайт',
 
-'exif-scenetype-1' => 'Суд ша даьккхина нис дуьххьал',
+'exif-scenetype-1' => 'Сурт даьккхина нис дуьххьал',
 
 # External editor support
 'edit-externally'      => 'Рéдаккха хlокху хlуман, арахьара диллагlарам лелош',
@@ -1289,6 +1401,11 @@ $1',
 
 # Trackbacks
 'trackbackremove' => '([$1 дlадайá])',
+
+# Delete conflict
+'confirmrecreate' => "Декъашхо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хlара агlо дlадайина, хьо иза нисда вола велча, дlадайарна бахьан:
+: ''$2''
+Дехар до, тешал де, хьо иза агlо метта хlотто лууш ву але.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← хьалхара агlо',
@@ -1325,10 +1442,12 @@ $1',
 'version' => 'Башхо MediaWiki',
 
 # Special:FilePath
+'filepath'        => 'ХIуман тIе болу некъ',
 'filepath-page'   => 'Хlум:',
 'filepath-submit' => 'Дехьавала',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'        => 'Лаха цхьатера йолу хIумнаш',
 'fileduplicatesearch-submit' => 'Лаха',
 
 # Special:SpecialPages

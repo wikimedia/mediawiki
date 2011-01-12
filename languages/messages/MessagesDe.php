@@ -966,7 +966,7 @@ Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|such
 Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
-'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiert nicht.',
+'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ existiert nicht.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' auf dem Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
@@ -3027,10 +3027,10 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'imagemaxsize'         => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
 'thumbsize'            => 'Standardgröße der Vorschaubilder (Thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
-'file-info'            => '(Dateigröße: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4)',
+'file-info'            => 'Dateigröße: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Keine höhere Auflösung vorhanden.</small>',
-'svg-long-desc'        => '(SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3)',
+'svg-long-desc'        => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
 'show-big-image'       => 'Version in höherer Auflösung',
 'show-big-image-thumb' => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 'file-info-gif-looped' => 'Endlosschleife',

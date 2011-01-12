@@ -1,5 +1,5 @@
 <?php
-/** Bashkir (Башҡорт)
+/** Bashkir (Башҡортса)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2698,10 +2698,10 @@ $1',
 'imagemaxsize'         => "Рәсем дәүмәле өсөн сик: <br />''(файл тасуирламаһы биттәре өсөн)''",
 'thumbsize'            => 'Шартлы рәсем дәүмәле:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|бит}}',
-'file-info'            => '(файлдың дәүмәле: $1, MIME төрө: $2)',
-'file-info-size'       => '($1 × $2 нөктә, файлдың дәүмәле: $3, MIME төрө: $4)',
+'file-info'            => 'файлдың дәүмәле: $1, MIME төрө: $2',
+'file-info-size'       => '$1 × $2 нөктә, файлдың дәүмәле: $3, MIME төрө: $4',
 'file-nohires'         => '<small>Юғары асыҡлыҡтағы өлгө юҡ.</small>',
-'svg-long-desc'        => '(SVG файлы, номиналь $1 × $2 нөктә, файлдың дәүмәле: $3)',
+'svg-long-desc'        => 'SVG файлы, номиналь $1 × $2 нөктә, файлдың дәүмәле: $3',
 'show-big-image'       => 'Тулы асыҡлыҡ',
 'show-big-image-thumb' => '<small>Алдан байҡау дәүмәле: $1 × $2 нөктә</small>',
 'file-info-gif-looped' => 'әйләнешле',

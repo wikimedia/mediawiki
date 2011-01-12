@@ -1421,7 +1421,7 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'mediawarning'         => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.",
 'imagemaxsize'         => "Limite pol håynaedje ezès pådjes d' imådje:",
 'thumbsize'            => 'Grandeu po les imådjetes (thumb):',
-'file-info-size'       => '($1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4)',
+'file-info-size'       => '$1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4',
 'show-big-image'       => 'Pus grande imådje',
 'show-big-image-thumb' => '<small>Grandeur di ci prevoeyaedje ci : $1 × $2 picsels</small>',
 

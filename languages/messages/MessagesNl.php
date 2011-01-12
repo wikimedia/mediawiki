@@ -1505,8 +1505,8 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'prefs-diffs'                   => 'Verschillen',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'Ziet er geldig uit',
-'email-address-validity-invalid' => 'Geldig adres verplicht!',
+'email-address-validity-valid'   => 'Het e-mailadres lijkt geldig',
+'email-address-validity-invalid' => 'Geef een geldig e-mailadres op',
 
 # User rights
 'userrights'                   => 'Gebruikersrechtenbeheer',
@@ -3109,10 +3109,10 @@ $1',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
-'file-info'            => '(bestandsgrootte: $1, MIME-type: $2)',
-'file-info-size'       => '($1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4)',
+'file-info'            => 'bestandsgrootte: $1, MIME-type: $2',
+'file-info-size'       => '$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4',
 'file-nohires'         => '<small>Geen hogere resolutie beschikbaar.</small>',
-'svg-long-desc'        => '(SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3)',
+'svg-long-desc'        => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'show-big-image'       => 'Volledige resolutie',
 'show-big-image-thumb' => '<small>Afmetingen van deze weergave: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'herhalend',

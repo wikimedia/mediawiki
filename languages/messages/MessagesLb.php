@@ -1283,6 +1283,10 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'prefs-displaywatchlist'        => 'Optioune vun deem wat gewise gëtt',
 'prefs-diffs'                   => 'Ënnerscheeder',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "D'E-Mailadress schéngt valabel ze sinn",
+'email-address-validity-invalid' => 'Gitt eng valabel e-Mailadress an',
+
 # User rights
 'userrights'                   => 'Benotzerrechterverwaltung',
 'userrights-lookup-user'       => 'Benotzergrupp verwalten',
@@ -2808,10 +2812,10 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
-'file-info'            => '(Dateigréisst: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4)',
+'file-info'            => 'Dateigréisst: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Et gëtt keng méi héich Opléisung.</small>',
-'svg-long-desc'        => '(SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3)',
+'svg-long-desc'        => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
 'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
 'show-big-image-thumb' => '<small>Gréisst vun der Miniatur: $1 × $2 Pixel</small>',
 'file-info-gif-looped' => 'Endloosschleef',

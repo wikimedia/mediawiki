@@ -1063,9 +1063,9 @@ to upload files.',
 # Media information
 'thumbsize'            => 'ਥੰਮਨੇਲ ਆਕਾਰ:',
 'widthheightpage'      => '$1×$2, $3 ਪੇਜ਼',
-'file-info'            => '(ਫਾਇਲ ਆਕਾਰ: $1, MIME ਕਿਸਮ: $2)',
-'file-info-size'       => '($1 × $2 ਪਿਕਸਲ, ਫਾਇਲ ਆਕਾਰ: $3, MIME ਕਿਸਮ: $4)',
-'svg-long-desc'        => '(SVG ਫਾਇਲ, nominally $1 × $2 pixels, file size: $3)',
+'file-info'            => 'ਫਾਇਲ ਆਕਾਰ: $1, MIME ਕਿਸਮ: $2',
+'file-info-size'       => '$1 × $2 ਪਿਕਸਲ, ਫਾਇਲ ਆਕਾਰ: $3, MIME ਕਿਸਮ: $4',
+'svg-long-desc'        => 'SVG ਫਾਇਲ, nominally $1 × $2 pixels, file size: $3',
 'show-big-image'       => 'ਪੂਰਾ ਰੈਜ਼ੋਲੇਸ਼ਨ',
 'show-big-image-thumb' => '<small>ਇਹ ਝਲਕ ਦਾ ਆਕਾਰ: $1 × $2 ਪਿਕਸਲ</small>',
 

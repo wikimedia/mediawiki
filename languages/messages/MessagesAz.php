@@ -1610,9 +1610,9 @@ $1',
 # Media information
 'imagemaxsize'         => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
 'thumbsize'            => 'Kiçik ölçü:',
-'file-info-size'       => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
+'file-info-size'       => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
 'file-nohires'         => '<small>Daha dəqiq versiyası yoxdur.</small>',
-'svg-long-desc'        => '(SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3)',
+'svg-long-desc'        => 'SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3',
 'show-big-image'       => 'Daha yüksək keyfiyyətli şəkil',
 'show-big-image-thumb' => '<small>Sınaq göstərişi ölçüsü: $1 × $2 piksel</small>',
 

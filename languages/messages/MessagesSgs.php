@@ -1721,10 +1721,10 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'imagemaxsize'         => 'Rėbuotė abruozdieliu dėdoma anū aprašīma poslapī lėgė:',
 'thumbsize'            => 'Somažėntu pavēkslieliu didums:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|poslapis|poslapē|poslapiu}}',
-'file-info'            => '(faila dėdoms: $1, MIME tips: $2)',
-'file-info-size'       => '($1 × $2 taškū, faila dėdoms: $3, MIME tips: $4)',
+'file-info'            => 'faila dėdoms: $1, MIME tips: $2',
+'file-info-size'       => '$1 × $2 taškū, faila dėdoms: $3, MIME tips: $4',
 'file-nohires'         => '<small>Geresnis ėšraiškėms negalėms.</small>',
-'svg-long-desc'        => '(SVG fails, fuormalē $1 × $2 puškiu, faila dėdoms: $3)',
+'svg-long-desc'        => 'SVG fails, fuormalē $1 × $2 puškiu, faila dėdoms: $3',
 'show-big-image'       => 'Pėlns ėšraiškėms',
 'show-big-image-thumb' => '<small>Šėtuos parvaizos dėdums: $1 × $2 puškiu</small>',
 

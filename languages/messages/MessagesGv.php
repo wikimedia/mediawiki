@@ -1226,9 +1226,9 @@ T'eh lhiggey da oyr y chur 'sy ghiare-choontey.",
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|duillag|duillagyn}}',
-'file-info-size'       => '($1 × {{PLURAL:$2|$2 pixel|$2 phixel|$2 phixel|$2 pixelyn}}, mooadys y choadan: $3, sorçh MIME: $4)',
+'file-info-size'       => '$1 × {{PLURAL:$2|$2 pixel|$2 phixel|$2 phixel|$2 pixelyn}}, mooadys y choadan: $3, sorçh MIME: $4',
 'file-nohires'         => '<small>Cha nel jeeskeaylley ny smoo ry-gheddyn.</small>',
-'svg-long-desc'        => '(coadan SVG, $1 × {{PLURAL:$2|$2 pixel|$2 phixel|$2 phixel|$2 pixelyn}} dy ennymagh, mooadys y choadan: $3)',
+'svg-long-desc'        => 'coadan SVG, $1 × {{PLURAL:$2|$2 pixel|$2 phixel|$2 phixel|$2 pixelyn}} dy ennymagh, mooadys y choadan: $3',
 'show-big-image'       => 'Jeeskeaylley ymlane',
 'show-big-image-thumb' => '<small>Mooadys y roie-haishbynys shoh: $1 × {{PLURAL:$2|$2 pixel|$2 phixel|$2 phixel|$2 pixelyn}}</small>',
 

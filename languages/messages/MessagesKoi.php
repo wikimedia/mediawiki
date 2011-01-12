@@ -730,9 +730,9 @@ $messages = array(
 'nextdiff'     => 'Сыбöрся вильмöтöтöм →',
 
 # Media information
-'file-info-size'       => '($1 × $2 пиксел, файллöн ыжда: $3, MIME-тип: $4)',
+'file-info-size'       => '$1 × $2 пиксел, файллöн ыжда: $3, MIME-тип: $4',
 'file-nohires'         => '<small>Буржыка тыдалан версия абу.</small>',
-'svg-long-desc'        => '(SVG-файл, гижöм сьöртi $1 × $2 пиксел,  файллöн ыжда: $3)',
+'svg-long-desc'        => 'SVG-файл, гижöм сьöртi $1 × $2 пиксел,  файллöн ыжда: $3',
 'show-big-image'       => 'Буржыка тыдалан серпас',
 'show-big-image-thumb' => '<small>Одзвыв нёджжалан ыжда: $1 × $2 пиксел</small>',
 

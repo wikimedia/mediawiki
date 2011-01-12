@@ -1946,9 +1946,9 @@ $1',
 # Media information
 'thumbsize'            => 'د بټنوک کچه:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
-'file-info-size'       => '($1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4)',
+'file-info-size'       => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
 'file-nohires'         => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
-'svg-long-desc'        => '(SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3)',
+'svg-long-desc'        => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
 'show-big-image'       => 'بشپړ بېلن نښې',
 'show-big-image-thumb' => '<small>د دې مخليدنې کچه: $1 × $2 pixels</small>',
 

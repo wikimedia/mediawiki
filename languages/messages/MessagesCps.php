@@ -885,9 +885,9 @@ Ginapasugtan sa pagdugang sang rason sa kabilugan.',
 'nextdiff'     => 'Mas bag-o nga gin-islan →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksel, kadakuon sang file: $3, klase sang MIME: $4)',
+'file-info-size'       => '$1 × $2 piksel, kadakuon sang file: $3, klase sang MIME: $4',
 'file-nohires'         => '<small>Wala na sang mas mataas pa nga resolusyon (katin-aw).</small>',
-'svg-long-desc'        => '(SVG file, nga ara sa $1 × $2 ka piksels, kadakuon sang file: $3)',
+'svg-long-desc'        => 'SVG file, nga ara sa $1 × $2 ka piksels, kadakuon sang file: $3',
 'show-big-image'       => 'Bilog nga resolusyon (katin-aw)',
 'show-big-image-thumb' => '<small>Kadakuon sang mini nga prebyu: $1 × $2 piksels</small>',
 

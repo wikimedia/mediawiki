@@ -612,7 +612,15 @@ Gw'ogenda okwogera naye ku natti mutegeeze ensonga zonna ezinnyonyodwa wano.",
 'blockedoriginalsource'            => "Ensibuko ya '''$1''' eragidwa wano awaddako:",
 'blockededitsource'                => "Ebigambo ebya '''by'okyusizza''' ku '''$1''' biragidwa wano awaddako:",
 'whitelistedittitle'               => 'Okukyusa ku bino, wetaaga okuba nga oyingidde',
+'whitelistedittext'                => '$1 olyoke osobole okukyusa ku mpapula.',
+'confirmedittext'                  => "Kyetaagisa osooke okutukakasiza E-mail yo olyoke okkirizibwe okukyusa mu mpapula.<br />
+Endagiriro yo eya E-mail osobola okugitutegeeza n'okugitukakasiza ku lupapula lwo olwa '[[Special:Preferences|Enteekateeka yange]]'.",
+'nosuchsectiontitle'               => 'Omuko gumbuze',
+'nosuchsectiontext'                => "Ogezeza okukyusa omuko ogutaliwo.<br />
+Guyinz'okuba nga guggidwawo oba gujjuludwa ng'okyagukolako.",
+'loginreqtitle'                    => 'Sooka oyingire',
 'loginreqlink'                     => 'Yingira',
+'loginreqpagetext'                 => '$1 olyoke osobole okulaba empapula ndala.',
 'accmailtitle'                     => 'Ekigambo ekikuumi kisindikiddwa',
 'accmailtext'                      => "Ekigambo ekikuumi ekya akawunti empya [[User talk:$1|$1]] kisindikiddwa ku $2.
 
@@ -623,8 +631,19 @@ Oba gwe oyagala okulukolawo, wandika mu kabokisi akaddako wano.
 (okuyiga ebisingawo, genda ku [[{{MediaWiki:Helppage}}|lupapula olw'obuyambi]]).<br />
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
+'anontalkpagetext'                 => "----''Olupapula olw'emboozi luno lukoledwawo at'eyanjula atakolera mu akawunti ya ku wiki eno.<br />
+Kino kitwetaagisizza okumwawulira ku ndagiriro ya IP kwe yayimidde.<br />
+Abantu bangi basobola okukozesa endagiriro eya IP y'emu.<br />
+Bw'obanga naawe okola ng'at'eyanjudde nga owulira nti ebimu ku birowozo ebikwolekezedwa wano<br />
+tebiggirawo oba tebikwatagana naawe, [[Special:UserLogin/signup|funa akawunti]] oba [[Special:UserLogin|yingira]] baleme okukutabula n'abalala abakola ng'abat'eyanjudde.",
 'noarticletext'                    => "Wano tewali kyawandikidwawo.<br />
 Ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula ndala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandikako] wano.",
+'noarticletext-nopermission'       => 'Wano tewali kyawandikidwawo.<br />
+Ky\'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula ndala oba
+oyinza <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} okukinoonyeza mu nkalala z\'ebifuddeyo ebyekuusana nakyo]</span>.',
+'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "$1" teri mu nkalala za wiki eno.<br />
+Sooka okakase oba ddala oyagala okukolawo olupapula olupya luno.',
+'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "$1".',
 'previewnote'                      => "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',
@@ -1129,9 +1148,9 @@ Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www
 'nextdiff'     => 'Enkyukakyuka ezaddako okukolebwa→',
 
 # Media information
-'file-info-size'       => '(pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4)',
+'file-info-size'       => 'pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4',
 'file-nohires'         => '<small>Tewali kisingako wano.</small>',
-'svg-long-desc'        => '(Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3)',
+'svg-long-desc'        => 'Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3',
 'show-big-image'       => 'Laga ekifaananyi ekijjuvu',
 'show-big-image-thumb' => '<small>Okulagako kuno kwa pikiseli: $1 ku $2</small>',
 

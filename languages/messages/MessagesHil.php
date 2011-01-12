@@ -701,9 +701,9 @@ Gapasugot sa pagdugang sang rason sa kabilugan.',
 'nextdiff'     => 'Mas bag-o nga gin-islan →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksel, kadakuon sang file: $3, MIME type: $4)',
+'file-info-size'       => '$1 × $2 piksel, kadakuon sang file: $3, MIME type: $4',
 'file-nohires'         => '<small>Wala sang yara na taas nga resolusyon.</small>',
-'svg-long-desc'        => '(SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3)',
+'svg-long-desc'        => 'SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3',
 'show-big-image'       => 'Kabilogan nga resolusyon',
 'show-big-image-thumb' => '<small>Kadakuon sa sini nga prebyu: $1 × $2 piksels</small>',
 
