@@ -230,6 +230,7 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-header-oracle'            => 'Oracle settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
+	'config-missing-db-host'          => 'You must enter a value for "Database host"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "Database TNS"',
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
