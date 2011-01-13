@@ -48,8 +48,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'redirect',          'patch-redirect.sql' ),
 			array( 'addTable', 'updatelog',         'patch-updatelog.sql' ),
 			array( 'addTable', 'change_tag',        'patch-change_tag.sql' ),
-			array( 'addTable', 'tag_summary',       'patch-change_tag.sql' ),
-			array( 'addTable', 'valid_tag',         'patch-change_tag.sql' ),
+			array( 'addTable', 'tag_summary',       'patch-tag_summary.sql' ),
+			array( 'addTable', 'valid_tag',         'patch-valid_tag.sql' ),
 			array( 'addTable', 'user_properties',   'patch-user_properties.sql' ),
 			array( 'addTable', 'log_search',        'patch-log_search.sql' ),
 			array( 'addTable', 'l10n_cache',        'patch-l10n_cache.sql' ),
@@ -516,14 +516,10 @@ END;
 	protected function checkPgUser() {
 		global $wgDBmwschema, $wgDBts2schema, $wgDBuser;
 
-		# Just in case their LocalSettings.php does not have this:
-		if ( !isset( $wgDBmwschema ) ) {
-			$wgDBmwschema = 'mediawiki';
-		}
+		$config = $this->db->selectField( 
+			'pg_catalog.pg_user', "array_to_string(useconfig,'*')",
+			array( 'usename' => $wgDBuser ), __METHOD__ );
 
-		$safeuser = $this->db->addQuotes( $wgDBuser );
-		$SQL = "SELECT array_to_string(useconfig,'*') FROM pg_catalog.pg_user WHERE usename = $safeuser";
-		$config = pg_fetch_result( $this->db->doQuery( $SQL ), 0, 0 );
 		$conf = array();
 		foreach ( explode( '*', $config ) as $c ) {
 			list( $x, $y ) = explode( '=', $c );
@@ -546,8 +542,8 @@ END;
 		}
 		$search_path = str_replace( ', ,', ',', $search_path );
 		if ( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
-			$this->db->doQuery( "ALTER USER $wgDBuser SET search_path = $search_path" );
-			$this->db->doQuery( "SET search_path = $search_path" );
+			$this->db->query( "ALTER USER $wgDBuser SET search_path = $search_path" );
+			$this->db->query( "SET search_path = $search_path" );
 		} else {
 			$path = $conf['search_path'];
 			$this->output( "... search_path for user \"$wgDBuser\" looks correct ($path)\n" );
@@ -562,8 +558,8 @@ END;
 		foreach ( $goodconf as $key => $value ) {
 			if ( !array_key_exists( $key, $conf ) or $conf[$key] !== $value ) {
 				$this->output( "Setting $key to '$value' for user \"$wgDBuser\"\n" );
-				$this->db->doQuery( "ALTER USER $wgDBuser SET $key = '$value'" );
-				$this->db->doQuery( "SET $key = '$value'" );
+				$this->db->query( "ALTER USER $wgDBuser SET $key = '$value'" );
+				$this->db->query( "SET $key = '$value'" );
 			} else {
 				$this->output( "... default value of \"$key\" is correctly set to \"$value\" for user \"$wgDBuser\"\n" );
 			}

@@ -31,9 +31,19 @@ class UserDupes {
 	var $reassigned;
 	var $trimmed;
 	var $failed;
+	private $outputCallback;
 
-	function UserDupes( &$database ) {
-		$this->db =& $database;
+	function __construct( &$database, $outputCallback ) {
+		$this->db = $database;
+		$this->outputCallback = $outputCallback;
+	}
+
+	/**
+	 * Output some text via the output callback provided
+	 * @param $str String Text to print
+	 */
+	private function out( $str ) {
+		call_user_func( $this->outputCallback, $str );
 	}
 
 	/**
@@ -42,10 +52,9 @@ class UserDupes {
 	 * @return bool
 	 */
 	function hasUniqueIndex() {
-		$fname = 'UserDupes::hasUniqueIndex';
-		$info = $this->db->indexInfo( 'user', 'user_name', $fname );
+		$info = $this->db->indexInfo( 'user', 'user_name', __METHOD__ );
 		if ( !$info ) {
-			wfOut( "WARNING: doesn't seem to have user_name index at all!\n" );
+			$this->out( "WARNING: doesn't seem to have user_name index at all!\n" );
 			return false;
 		}
 
@@ -92,11 +101,11 @@ class UserDupes {
 
 		$this->lock();
 
-		wfOut( "Checking for duplicate accounts...\n" );
+		$this->out( "Checking for duplicate accounts...\n" );
 		$dupes = $this->getDupes();
 		$count = count( $dupes );
 
-		wfOut( "Found $count accounts with duplicate records on " . wfWikiID() . ".\n" );
+		$this->out( "Found $count accounts with duplicate records on " . wfWikiID() . ".\n" );
 		$this->trimmed    = 0;
 		$this->reassigned = 0;
 		$this->failed     = 0;
@@ -106,34 +115,34 @@ class UserDupes {
 
 		$this->unlock();
 
-		wfOut( "\n" );
+		$this->out( "\n" );
 
 		if ( $this->reassigned > 0 ) {
 			if ( $doDelete ) {
-				wfOut( "$this->reassigned duplicate accounts had edits reassigned to a canonical record id.\n" );
+				$this->out( "$this->reassigned duplicate accounts had edits reassigned to a canonical record id.\n" );
 			} else {
-				wfOut( "$this->reassigned duplicate accounts need to have edits reassigned.\n" );
+				$this->out( "$this->reassigned duplicate accounts need to have edits reassigned.\n" );
 			}
 		}
 
 		if ( $this->trimmed > 0 ) {
 			if ( $doDelete ) {
-				wfOut( "$this->trimmed duplicate user records were deleted from " . wfWikiID() . ".\n" );
+				$this->out( "$this->trimmed duplicate user records were deleted from " . wfWikiID() . ".\n" );
 			} else {
-				wfOut( "$this->trimmed duplicate user accounts were found on " . wfWikiID() . " which can be removed safely.\n" );
+				$this->out( "$this->trimmed duplicate user accounts were found on " . wfWikiID() . " which can be removed safely.\n" );
 			}
 		}
 
 		if ( $this->failed > 0 ) {
-			wfOut( "Something terribly awry; $this->failed duplicate accounts were not removed.\n" );
+			$this->out( "Something terribly awry; $this->failed duplicate accounts were not removed.\n" );
 			return false;
 		}
 
 		if ( $this->trimmed == 0 || $doDelete ) {
-			wfOut( "It is now safe to apply the unique index on user_name.\n" );
+			$this->out( "It is now safe to apply the unique index on user_name.\n" );
 			return true;
 		} else {
-			wfOut( "Run this script again with the --fix option to automatically delete them.\n" );
+			$this->out( "Run this script again with the --fix option to automatically delete them.\n" );
 			return false;
 		}
 	}
@@ -143,7 +152,6 @@ class UserDupes {
 	 * @access private
 	 */
 	function lock() {
-		$fname = 'UserDupes::lock';
 		if ( $this->newSchema() ) {
 			$set = array( 'user', 'revision' );
 		} else {
@@ -152,7 +160,7 @@ class UserDupes {
 		$names = array_map( array( $this, 'lockTable' ), $set );
 		$tables = implode( ',', $names );
 
-		$this->db->query( "LOCK TABLES $tables", $fname );
+		$this->db->query( "LOCK TABLES $tables", __METHOD__ );
 	}
 
 	function lockTable( $table ) {
@@ -171,8 +179,7 @@ class UserDupes {
 	 * @access private
 	 */
 	function unlock() {
-		$fname = 'UserDupes::unlock';
-		$this->db->query( "UNLOCK TABLES", $fname );
+		$this->db->query( "UNLOCK TABLES", __METHOD__ );
 	}
 
 	/**
@@ -181,13 +188,12 @@ class UserDupes {
 	 * @access private
 	 */
 	function getDupes() {
-		$fname = 'UserDupes::listDupes';
 		$user = $this->db->tableName( 'user' );
 		$result = $this->db->query(
 			 "SELECT user_name,COUNT(*) AS n
 				FROM $user
 			GROUP BY user_name
-			  HAVING n > 1", $fname );
+			  HAVING n > 1", __METHOD__ );
 
 		$list = array();
 		foreach ( $result as $row ) {
@@ -205,44 +211,43 @@ class UserDupes {
 	 * @access private
 	 */
 	function examine( $name, $doDelete ) {
-		$fname = 'UserDupes::listDupes';
 		$result = $this->db->select( 'user',
 			array( 'user_id' ),
 			array( 'user_name' => $name ),
-			$fname );
+			__METHOD__ );
 
 		$firstRow = $this->db->fetchObject( $result );
 		$firstId  = $firstRow->user_id;
-		wfOut( "Record that will be used for '$name' is user_id=$firstId\n" );
+		$this->out( "Record that will be used for '$name' is user_id=$firstId\n" );
 
 		foreach ( $result as $row ) {
 			$dupeId = $row->user_id;
-			wfOut( "... dupe id $dupeId: " );
+			$this->out( "... dupe id $dupeId: " );
 			$edits = $this->editCount( $dupeId );
 			if ( $edits > 0 ) {
 				$this->reassigned++;
-				wfOut( "has $edits edits! " );
+				$this->out( "has $edits edits! " );
 				if ( $doDelete ) {
 					$this->reassignEdits( $dupeId, $firstId );
 					$newEdits = $this->editCount( $dupeId );
 					if ( $newEdits == 0 ) {
-						wfOut( "confirmed cleaned. " );
+						$this->out( "confirmed cleaned. " );
 					} else {
 						$this->failed++;
-						wfOut( "WARNING! $newEdits remaining edits for $dupeId; NOT deleting user.\n" );
+						$this->out( "WARNING! $newEdits remaining edits for $dupeId; NOT deleting user.\n" );
 						continue;
 					}
 				} else {
-					wfOut( "(will need to reassign edits on fix)" );
+					$this->out( "(will need to reassign edits on fix)" );
 				}
 			} else {
-				wfOut( "ok, no edits. " );
+				$this->out( "ok, no edits. " );
 			}
 			$this->trimmed++;
 			if ( $doDelete ) {
 				$this->trimAccount( $dupeId );
 			}
-			wfOut( "\n" );
+			$this->out( "\n" );
 		}
 	}
 
@@ -272,12 +277,11 @@ class UserDupes {
 	 * @access private
 	 */
 	function editCountOn( $table, $field, $userid ) {
-		$fname = 'UserDupes::editCountOn';
 		return intval( $this->db->selectField(
 			$table,
 			'COUNT(*)',
 			array( $field => $userid ),
-			$fname ) );
+			__METHOD__ ) );
 	}
 
 	/**
@@ -302,13 +306,12 @@ class UserDupes {
 	 * @access private
 	 */
 	function reassignEditsOn( $table, $field, $from, $to ) {
-		$fname = 'UserDupes::reassignEditsOn';
-		wfOut( "reassigning on $table... " );
+		$this->out( "reassigning on $table... " );
 		$this->db->update( $table,
 			array( $field => $to ),
 			array( $field => $from ),
-			$fname );
-		wfOut( "ok. " );
+			__METHOD__ );
+		$this->out( "ok. " );
 	}
 
 	/**
@@ -317,10 +320,9 @@ class UserDupes {
 	 * @access private
 	 */
 	function trimAccount( $userid ) {
-		$fname = 'UserDupes::trimAccount';
-		wfOut( "deleting..." );
-		$this->db->delete( 'user', array( 'user_id' => $userid ), $fname );
-		wfOut( " ok" );
+		$this->out( "deleting..." );
+		$this->db->delete( 'user', array( 'user_id' => $userid ), __METHOD__ );
+		$this->out( " ok" );
 	}
 
 }

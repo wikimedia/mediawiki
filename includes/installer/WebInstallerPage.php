@@ -218,7 +218,6 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 				$this->endForm( 'continue' );
 				return 'output';
 			}
-			return $this->handleExistingUpgrade( $vars );
 		}
 
 		// If there is no $wgUpgradeKey, tell the user to add one to LocalSettings.php
@@ -345,11 +344,15 @@ class WebInstaller_Welcome extends WebInstallerPage {
 		}
 		$this->parent->output->addWikiText( wfMsgNoTrans( 'config-welcome' ) );
 		$status = $this->parent->doEnvironmentChecks();
-		if ( $status ) {
+		if ( $status->isGood() ) {
+			$this->parent->output->addHTML( '<span class="success-message">' .
+				wfMsgHtml( 'config-env-good' ) . '</span>' );
 			$this->parent->output->addWikiText( wfMsgNoTrans( 'config-copyright',
 				SpecialVersion::getCopyrightAndAuthorList() ) );
 			$this->startForm();
 			$this->endForm();
+		} else {
+			$this->parent->showStatusMessage( $status );
 		}
 	}
 	
@@ -597,16 +600,11 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-admin-email',
 			    'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			) ) .
-			/**
-			 * Uncomment this feature once we've got some sort of API to mailman
-			 * to handle these subscriptions. Some dummy wrapper script on the
-			 * mailman box that shell's out to mailman/bin/add_members would do
-				$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( array(
 				'var' => '_Subscribe',
 				'label' => 'config-subscribe',
 			    'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			) ) .
-			 */
 			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMsg( 'config-almost-done' ) ) .
 			$this->parent->getRadioSet( array(
@@ -709,6 +707,14 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->setVar( '_AdminPassword2', '' );
 			$retVal = false;
 		}
+
+		// Validate e-mail if provided
+		$email = $this->getVar( '_AdminEmail' );
+		if( $email && !User::isValidEmailAddr( $email ) ) {
+			$this->parent->showError( 'config-admin-error-bademail' );
+			$retVal = false;
+		}
+
 		return $retVal;
 	}
 	

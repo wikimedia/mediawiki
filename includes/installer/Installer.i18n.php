@@ -38,7 +38,6 @@ You can increase this by setting <code>session.gc_maxlifetime</code> in php.ini.
 Restart the installation process.',
 	'config-no-session'               => 'Your session data was lost!
 Check your php.ini and make sure <code>session.save_path</code> is set to an appropriate directory.',
-	'config-session-path-bad'         => 'Your <code>session.save_path</code> (<code>$1</code>) seems to be invalid or unwritable.',
 	'config-your-language'            => 'Your language:',
 	'config-your-language-help'       => 'Select a language to use during the installation process.',
 	'config-wiki-language'            => 'Wiki language:',
@@ -79,8 +78,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 * [http://www.mediawiki.org/wiki/Help:Contents User's Guide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]",
-	'config-env-good'                 => '<span class="success-message">The environment has been checked.
-You can install MediaWiki.</span>', // FIXME: take span out of message.
+	'config-env-good'                 => 'The environment has been checked.
+You can install MediaWiki.',
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 is installed.',
@@ -234,9 +233,9 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
 	'config-invalid-db-name'          => 'Invalid database name "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
 	'config-invalid-db-prefix'        => 'Invalid database prefix "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-).',
 	'config-connection-error'         => '$1.
 
 Check the host, username and password below and try again.',
@@ -344,6 +343,7 @@ Specify a different username.',
 	'config-admin-email-help'         => 'Enter an e-mail address here to allow you to receive e-mail from other users on the wiki, reset your password, and be notified of changes to pages on your watchlist.',
 	'config-admin-error-user'         => 'Internal error when creating an admin with the name "<nowiki>$1</nowiki>".',
 	'config-admin-error-password'     => 'Internal error when setting a password for the admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail'     => 'You have entered an invalid e-mail address',
 	'config-subscribe'                => 'Subscribe to the [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list].',
 	'config-subscribe-help'           => 'This is a low-volume mailing list used for release announcements, including important security announcements.
 You should subscribe to it and update your MediaWiki installation when new versions come out.',
@@ -450,6 +450,7 @@ Please proceed to the next page.",
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
+	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
@@ -465,6 +466,7 @@ Skipping default list.",
 Consider changing it manually.",
 	'config-install-upgradekey'        => 'Generating default upgrade key',
 	'config-install-sysop'            => 'Creating administrator user account',
+	'config-install-subscribe-fail'   => 'Unable to subscribe to mediawiki-announce',
 	'config-install-mainpage'         => 'Creating main page with default content',
 	'config-install-mainpage-failed'  => 'Could not insert main page.',
 	'config-install-done'             => "'''Congratulations!'''
@@ -689,10 +691,10 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrateurshandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:FAQ Algemene vrae] (Engelstalig)',
-	'config-env-good' => '<span class="success-message">Die omgewing is gekontroleer.
-U kan MediaWiki installeer.</span>',
+	'config-env-good' => 'Die omgewing is gekontroleer.
+U kan MediaWiki installeer.',
 	'config-env-bad' => 'Die omgewing is gekontroleer.
-U kan nie MediaWiki installeer nie.</span>',
+U kan nie MediaWiki installeer nie.',
 	'config-env-php' => 'PHP $1 is tans geïnstalleer.',
 	'config-env-latest-ok' => 'U is besig om die nuutste weergawe van MediaWiki te installeer.',
 	'config-env-latest-new' => "'''Let op:''' U is besig om 'n ontwikkelingsweergawe van MediaWiki te installeer.",
@@ -906,8 +908,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 * [http://www.mediawiki.org/wiki/Help:Contents Дапамога карыстальнікам]
 * [http://www.mediawiki.org/wiki/Manual:Contents Дапамога адміністратарам]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Асяродзьдзе было праверанае.
-Вы можаце ўсталёўваць MediaWiki.</span>',
+	'config-env-good' => 'Асяродзьдзе было праверанае.
+Вы можаце ўсталёўваць MediaWiki.',
 	'config-env-bad' => 'Асяродзьдзе было праверанае.
 Усталяваньне MediaWiki немагчымае.',
 	'config-env-php' => 'Усталяваны PHP $1.',
@@ -1323,6 +1325,288 @@ chmod a+w $3</pre>',
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
 );
 
+/** Bulgarian (Български)
+ * @author DCLXVI
+ */
+$messages['bg'] = array(
+	'config-desc' => 'Инсталатор на MediaWiki',
+	'config-title' => 'Инсталиране на MediaWiki $1',
+	'config-information' => 'Информация',
+	'config-localsettings-upgrade' => 'Беше открит файл <code>LocalSettings.php</code>.
+За надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.
+Тази информация е налична в LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Беше открит файл LocalSettings.php.
+За надграждане на наличната инсталация, необходимо е да се въведе ключ --upgrade=yes.',
+	'config-localsettings-key' => 'Ключ за надграждане:',
+	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
+	'config-upgrade-key-missing' => 'Беше открита съществуваща инсталация на МедияУики.
+За надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Съществуващият файл LocalSettings.php изглежда непълен.
+Променливата $1 не е зададена.
+Необходимо е да се редактира файлът LocalSettings.php и да се зададе променливата, след което да се натисне "Продължаване".',
+	'config-localsettings-connection-error' => 'Възникна грешка при свързване с базата от данни чрез данните, посочени в LocalSettings.php или AdminSettings.php. Необходимо е да се коригират тези настройки преди повторен опит за свързване.
+
+$1',
+	'config-session-error' => 'Грешка при създаване на сесия: $1',
+	'config-your-language' => 'Вашият език:',
+	'config-your-language-help' => 'Избиране на език за използване по време на инсталацията.',
+	'config-wiki-language' => 'Език на уикито:',
+	'config-wiki-language-help' => 'Избиране на език, на който ще е основното съдържание на уикито.',
+	'config-back' => '← Връщане',
+	'config-continue' => 'Продължаване →',
+	'config-page-language' => 'Език',
+	'config-page-welcome' => 'Добре дошли в МедияУики!',
+	'config-page-dbconnect' => 'Свързване с базата от данни',
+	'config-page-upgrade' => 'Надграждане на съществуваща инсталация',
+	'config-page-dbsettings' => 'Настройки на базата от данни',
+	'config-page-name' => 'Име',
+	'config-page-options' => 'Настройки',
+	'config-page-install' => 'Инсталиране',
+	'config-page-complete' => 'Готово!',
+	'config-page-restart' => 'Рестартиране на инсталацията',
+	'config-page-copying' => 'Лицензно споразумение',
+	'config-page-upgradedoc' => 'Надграждане',
+	'config-page-existingwiki' => 'Съществуващо уики',
+	'config-help-restart' => 'Необходимо е потвърждение за изтриване на всички въведени и съхранени данни и започване отначало на процеса по инсталация.',
+	'config-restart' => 'Да, започване отначало',
+	'config-welcome' => '=== Проверка на средата ===
+Извършени бяха основни проверки, за да се провери дали средата е подходяща за инсталиране на МедияУики.
+Ако е необходима помощ по време на инсталацията, резултатите от направените проверки трябва също да бъдат предоставени.',
+	'config-copyright' => "=== Авторски права и Условия ===
+
+$1
+
+Тази програма е свободен софтуер, който може да се променя и/или разпространява според Общия публичен лиценз на GNU, както е публикуван от Free Software Foundation във версия на Лиценза 2 или по-късна версия.
+
+Тази програма се разпространява с надеждата, че ще е полезна, но '''без каквито и да е гаранции'''; без дори косвена гаранция за '''продаваемост''' или '''прогодност за конкретна употреба'''.
+За повече подробности се препоръчва преглеждането на Общия публичен лиценз на GNU.
+
+Към програмата трябва да е приложено <doclink href=Copying>копие на Общия публичен лиценз на GNU</doclink>; ако не, можете да пишете на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. или да [http://www.gnu.org/copyleft/gpl.html го прочетете онлайн].",
+	'config-sidebar' => '* [http://www.mediawiki.org Сайт на MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Наръчник на потребителя]
+* [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
+	'config-env-good' => 'Средата беше проверена.
+Инсталирането на МедияУики е възможно.',
+	'config-env-bad' => 'Средата беше проверена.
+Не е възможна инсталация на МедияУики.',
+	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
+	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за Unicode-нормализация.',
+	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Unicode, превключване към по-бавното изпълнение на чист PHP.
+Ако сайтът е с голям трафик, препоръчително е запознаването с [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализацията на Unicode].",
+	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
+	'config-no-fts3' => "'''Предупреждение''': SQLite е компилирана без [http://sqlite.org/fts3.html модула FTS3], затова възможностите за търсене няма да са достъпни.",
+	'config-register-globals' => "'''Предупреждение: Настройката на PHP <code>[http://php.net/register_globals register_globals]</code> е включена.'''
+'''При възможност е препоръчително тя да бъде изключена.'''
+МедияУики ще работи, но сървърът е изложен на евентуални пропуски в сигурността.",
+	'config-magic-quotes-runtime' => "'''Фатално: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-magic-quotes-sybase' => "'''Фатално: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-mbstring' => "'''Фатално: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-ze1' => "'''Фатално: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] е активирана!'''
+Тази настройка причинява ужасни грешки в МедияУики.
+Невъзможно е инсталирането и използването на МедияУики докато тази настройка не бъде изключена.",
+	'config-safe-mode' => "'''Предупреждение:''' PHP работи в [http://www.php.net/features.safe-mode безопасен режим].
+Това може да създаде проблеми, особено ако качването на файлове е разрешено, както и при поддръжката на <code>math</code>.",
+	'config-pcre-no-utf8' => "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.
+За да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
+	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
+Стойността вероятно е твърде ниска.
+Възможно е инсталацията да се провали!",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] е инсталиран',
+	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] е инсталиран',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
+	'config-no-cache' => "'''Предупреждение:''' Не бяха открити [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
+Обектното кеширане не е включено.",
+	'config-diff3-bad' => 'GNU diff3 не е намерен.',
+	'config-imagemagick' => 'Открит е ImageMagick: <code>$1</code>.
+Преоразмеряването на картинки ще бъде включено ако качването на файлове бъде разрешено.',
+	'config-gd' => 'Открита е вградена графичната библиотека GD.
+Ако качването на файлове бъде включено, ще бъде включена възможността за преоразмеряване на картинки.',
+	'config-no-scaling' => 'Не са открити библиотеките GD или ImageMagick.
+Преоразмеряването на картинки ще бъде изключено.',
+	'config-no-uri' => "'''Грешка:''' Не може да се определи текущия адрес. 
+Инсталация беше прекратена.",
+	'config-uploads-not-safe' => "'''Предупреждение:''' Папката по подразбиране за качване <code>$1</code> е уязвима от изпълнение на зловредни скриптове.
+Въпреки че МедияУики извършва проверка за заплахи в сигурността на всички качени файлове, силно препоръчително е да се [http://www.mediawiki.org/wiki/Manual:Security#Upload_security затвори тази уязвимост в сигурността] преди разрешаване за качване на файлове.",
+	'config-db-type' => 'Тип на базата от данни:',
+	'config-db-host' => 'Хост на базата от данни:',
+	'config-db-host-help' => 'Ако базата от данни е на друг сървър, в кутията се въвежда името на хоста или IP адреса.
+
+Ако се използва споделен уеб хостинг, доставчикът на услугата би трябвало да е предоставил в документацията си коректния хост.
+
+Ако инсталацията протича на Windows-сървър и се използва MySQL, използването на "localhost" може да е неприемливо. В такива случаи се използва "127.0.0.1" за локален IP адрес.',
+	'config-db-wiki-settings' => 'Идентифициране на това уики',
+	'config-db-name' => 'Име на базата от данни:',
+	'config-db-name-help' => 'Избира се име, което да идентифицира уикито.
+То не трябва да съдържа интервали или тирета.
+
+Ако се използва споделен хостинг, доставчикът на услугата би трябвало да е предоставил или име на базата от данни, която да бъде използвана, или да позволява създаването на бази от данни чрез контролния панел.',
+	'config-db-install-account' => 'Потребителска сметка за инсталацията',
+	'config-db-username' => 'Потребителско име за базата от данни:',
+	'config-db-password' => 'Парола за базата от данни:',
+	'config-db-install-username' => 'Въвежда се потребителско име, което ще се използва за свързване с базата от данни по време на процеса по инсталация.
+Това не е потребителско име за сметка в МедияУики; това е потребителско име за базата от данни.',
+	'config-db-install-password' => 'Въвежда се парола, която ще бъде използвана за свързване с базата от данни по време на инсталационния процес.
+Това не е парола за сметка в МедияУики; това е парола за базата от данни.',
+	'config-db-install-help' => 'Въвеждат се потребителско име и парола, които ще бъдат използвани за свързване с базата от данни по време на инсталационния процес.',
+	'config-db-account-lock' => 'Използване на същото потребителско име и парола по време на нормална работа',
+	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
+Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
+	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
+	'config-db-prefix-help' => 'Ако е необходимо да се сподели базата от данни между няколко уикита или между МедияУики и друго уеб приложение, може да се добави представка пред имената на таблиците, за да се избегнат конфликти.
+Не се използват интервали и тирета.
+
+Това поле обикновено се оставя празно.',
+	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
+	'config-db-schema' => 'Схема за МедияУики',
+	'config-db-ts2-schema' => 'Схема за tsearch2',
+	'config-db-schema-help' => 'Схемите по-горе обикновено са правилни.
+Промени се извършват ако наистина е необходимо.',
+	'config-sqlite-dir' => 'Директория за данни на SQLite:',
+	'config-sqlite-dir-help' => "SQLite съхранява всички данни в един файл.
+
+По време на инсталацията уеб сървърът трябва да има права за писане в посочената директория.
+
+Тя '''не трябва''' да е достъпна през уеб, затова не е там, където са PHP файловете.
+
+Инсталаторът ще съхрани заедно с нея файл <code>.htaccess</code>, но ако този метод пропадне, някой може да придобие даостъп до суровите данни от базата от данни.
+Това включва сурови данни за потребителите (адреси за е-поща, хеширани пароли), както и изтрити версии на страници и друга чувствителна и с ограничен достъп информация от и за уикито.
+
+Базата от данни е препоръчително да се разположи на друго място, например в <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
+
+$1
+
+Ако не виждате желаната за използване система в списъка по-долу, следвайте инструкциите за активиране на поддръжка по-горе.',
+	'config-support-mysql' => '* $1 е най-фобре поддържата система за база от данни, най-добре поддържана от МедияУики ([http://www.php.net/manual/en/mysql.installation.php Как се компилира PHP с поддръжка на MySQL])',
+	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL])',
+	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
+	'config-support-oracle' => '* $1 ш комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
+	'config-header-mysql' => 'Настройки за MySQL',
+	'config-header-postgres' => 'Настройки за PostgreSQL',
+	'config-header-sqlite' => 'Настройки за SQLite',
+	'config-header-oracle' => 'Настройки за Oracle',
+	'config-invalid-db-type' => 'Невалиден тип база от данни',
+	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
+	'config-connection-error' => '$1.
+
+Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
+	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
+	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
+Не се използват интервали или тирета.
+Това име ще се използва за име на файла за данни на SQLite.',
+	'config-sqlite-readonly' => 'Файлът <code>$1</code> няма права за писане.',
+	'config-sqlite-cant-create-db' => 'Файлът за базата от данни <code>$1</code> не може да бъде създаден.',
+	'config-regenerate' => 'Създаване на LocalSettings.php →',
+	'config-show-table-status' => 'Заявката SHOW TABLE STATUS не сполучи!',
+	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
+	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
+	'config-db-web-help' => 'Избиране на потребителско име и парола, които уеб сървърът ще използва да се свързва с базата от данни при обичайната работа на уикито.',
+	'config-db-web-account-same' => 'Използване на същата сметка като при инсталацията.',
+	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
+	'config-db-web-no-create-privs' => 'Посочената сметка за инсталацията не разполага с достатъчно права за създаване на нова сметка.
+Необходимо е посочената сметка вече да съществува.',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' почти винаги е най-добрата възможност заради навременната си поддръжка.
+
+'''MyISAM''' може да е по-бърза при инсталации с един потребител или само за четене.
+Базите от данни MyISAM се повреждат по-често от InnoDB.",
+	'config-mysql-charset' => 'Набор от символи в базата от данни:',
+	'config-mysql-binary' => 'Бинарен',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "В '''бинарен режим''' МедияУики съхранява текстовете в UTF-8 в бинарни полета в базата от данни.
+Това е по-ефективно от UTF-8 режима на MySQL и позволява използването на пълния набор от символи в Уникод.
+
+В '''UTF-8 режим''' MySQL ще знае в кой набор от символи са данните от уикито и ще може да ги показва и променя по подходящ начин, но няма да позволява складиране на символи извън [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основния многоезичен набор].",
+	'config-site-name' => 'Име на уикито:',
+	'config-site-name-help' => 'Това име ще се показва в заглавната лента на браузъра и на различни други места.',
+	'config-site-name-blank' => 'Необходимо е да се въведе име на уикито.',
+	'config-project-namespace' => 'Именно пространство на проекта:',
+	'config-ns-generic' => 'Проект',
+	'config-ns-site-name' => 'Същото като името на уикито: $1',
+	'config-ns-other' => 'Друго (уточняване)',
+	'config-ns-other-default' => 'МоетоУики',
+	'config-project-namespace-help' => 'Следвайки примера на Уикипедия, много уикита съхраняват страниците си с правила в "\'\'\'именно пространство на проекта\'\'\'", отделно от основното съдържание.
+Всички заглавия на страниците в това именно пространство започват с определена представка, която може да бъде зададена тук.
+Обикновено представката произлиза от името на уикито, но не може да съдържа символи като "#" или ":".',
+	'config-ns-invalid' => 'Посоченото именно пространство "<nowiki>$1</nowiki>" е невалидно.
+Необходимо е да бъде посочено друго.',
+	'config-admin-box' => 'Администраторска сметка',
+	'config-admin-name' => 'Потребителско име:',
+	'config-admin-password' => 'Парола:',
+	'config-admin-password-confirm' => 'Парола (повторно):',
+	'config-admin-help' => 'Въвежда се предпочитаното потребителско име, например "Иванчо Иванчев".
+Това ще е потребителското име, което администраторът ще използва за влизане в уикито.',
+	'config-admin-name-blank' => 'Необходимо е да бъде въведено потребителско име на администратора.',
+	'config-admin-name-invalid' => 'Посоченото потребителско име "<nowiki>$1</nowiki>" е невалидно.
+Необходимо е да се посочи друго.',
+	'config-admin-password-blank' => 'Неовходимо е да се въведе парола за администраторската сметка.',
+	'config-admin-password-same' => 'Паролата не трябва да е същата като потребителското име.',
+	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
+	'config-admin-email' => 'Адрес за електронна поща:',
+	'config-admin-error-user' => 'Възникна вътрешна грешка при създаване на администратор с името "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Възникна вътрешна грешка при задаване на парола за администратора "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
+	'config-almost-done' => 'Инсталацията е почти готова!
+Възможно е пропускане на оставащата конфигурация и моментално инсталиране на уикито.',
+	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
+	'config-optional-skip' => 'Достатъчно, инсталиране на уикито.',
+	'config-profile' => 'Профил на потребителските права:',
+	'config-profile-wiki' => 'Традиционно уики',
+	'config-profile-no-anon' => 'Необходимо е създаване на сметка',
+	'config-profile-fishbowl' => 'Само одобрени редактори',
+	'config-profile-private' => 'Затворено уики',
+	'config-profile-help' => "Уикитата функционират най-добре, когато позволяват на възможно най-много хора да ги редактират.
+В МедияУики лесно се преглеждат последните промени и се възстановяват пораженип от недобронамерени потребители.
+
+Въпреки това мнозина смятат МедияУики за полезен софтуер по различни начини и често е трудно да се убедят всички от предимствата на уики модела.
+Затова се предоставя възможност за избор.
+
+'''{{int:config-profile-wiki}}''' позволява на всички потребители да редактират, дори и без регистрация.
+Уикитата от типа '''{{int:config-profile-no-anon}}''' позволяват достъп до страниците и редактирането им само след създаване на потребителска сметка.
+
+Уики, което е '''{{int:config-profile-fishbowl}}''' позволява на всички да преглеждат страниците, но само предварително одобрени редактори могат да редактират съдържанието.
+В '''{{int:config-profile-private}}''' само предварително одобрени потребители могат да четат и редактират съдържанието.
+
+Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [http://www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].",
+	'config-license' => 'Авторски права и лиценз:',
+	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното (съвместим с Уикипедия)',
+	'config-license-cc-by-nc-sa' => 'Криейтив Комънс Признание-Некомерсиално-Споделяне на споделеното',
+	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
+	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
+	'config-license-pd' => 'Обществено достояние',
+	'config-license-cc-choose' => 'Избиране на друг лиценз от Криейтив Комънс',
+	'config-email-settings' => 'Настройки за е-поща',
+	'config-upload-settings' => 'Картинки и качване на файлове',
+	'config-upload-enable' => 'Позволяне качването на файлове',
+	'config-upload-deleted' => 'Директория за изтритите файлове:',
+	'config-upload-deleted-help' => 'Избиране на директория, в която ще се складират изтритите файлове.
+В най-добрия случай тя не трябва да е достъпна през уеб.',
+	'config-logo' => 'Адрес на логото:',
+	'config-advanced-settings' => 'Разширена конфигурация',
+	'config-cache-options' => 'Настройки за обектното кеширане:',
+	'config-cache-none' => 'Без кеширане (не се премахва от функционалността, но това влияе на скоростта на по-големи уикита)',
+	'config-cache-accel' => 'PHP обектно кеширане (APC, eAccelerator, XCache или WinCache)',
+	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
+	'config-memcached-servers' => 'Memcached сървъри:',
+	'config-extensions' => 'Разширения',
+	'config-install-tables' => 'Създаване на таблиците',
+	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
+	'config-install-secretkey' => 'Генериране на таен ключ',
+	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
+	'config-help' => 'помощ',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  * @author Gwendal
@@ -1514,8 +1798,8 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 * [http://www.mediawiki.org/wiki/Help:Contents Vodič za korisnike]
 * [http://www.mediawiki.org/wiki/Manual:Contents Vodič za administratore]
 * [http://www.mediawiki.org/wiki/Manual:FAQ NPP]',
-	'config-env-good' => '<span class="success-message">Okruženje je provjereno.
-Možete instalirati MediaWiki.</span>',
+	'config-env-good' => 'Okruženje je provjereno.
+Možete instalirati MediaWiki.',
 	'config-env-php' => 'PHP $1 je instaliran.',
 	'config-env-latest-ok' => 'Instalirate posljednju verziju MediaWiki.',
 	'config-env-latest-new' => "'''Napomena:''' Instalirate razvojnu veziju MediaWiki.",
@@ -1625,8 +1909,8 @@ Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]',
-	'config-env-good' => '<span class="success-message">Die Installationsumgebung wurde geprüft.
-MediaWiki kann installiert werden.</span>',
+	'config-env-good' => 'Die Installationsumgebung wurde geprüft.
+MediaWiki kann installiert werden.',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann nicht installiert werden.',
 	'config-env-php' => 'PHP $1 ist installiert.',
@@ -2119,8 +2403,8 @@ En conjunto con este programa debe haber recibido <doclink href=Copying>una copi
 * [http://www.mediawiki.org/wiki/Help:Contents Guía del usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía del administrador]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes]',
-	'config-env-good' => '<span class="success-message">El entorno ha sido comprobado.
-Puedes instalar MediaWiki.</span>',
+	'config-env-good' => 'El entorno ha sido comprobado.
+Puedes instalar MediaWiki.',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
 	'config-env-php' => 'PHP $1 está instalado.',
@@ -2538,8 +2822,8 @@ Sinun pitäisi antaa näiden tarkistusten tulokset, jos tarvitset apua asennukse
 * [http://www.mediawiki.org/wiki/Help:Contents Käyttöopas]
 * [http://www.mediawiki.org/wiki/Manual:Contents Hallintaopas]
 * [http://www.mediawiki.org/wiki/Manual:FAQ UKK]',
-	'config-env-good' => '<span class="success-message">Asennusympäristö on tarkastettu.
-Voit asentaa MediaWikin.</span>',
+	'config-env-good' => 'Asennusympäristö on tarkastettu.
+Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
 	'config-env-php' => 'PHP $1 on asennettu.',
@@ -2695,8 +2979,8 @@ Vous devriez avoir reçu <doclink href=Copying>une copie de la Licence Publique 
 * [http://www.mediawiki.org/wiki/Help:Contents Guide de l’utilisateur]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide de l’administrateur]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">L’environnement a été vérifié.
-Vous pouvez installer MediaWiki.</span>',
+	'config-env-good' => 'L’environnement a été vérifié.
+Vous pouvez installer MediaWiki.',
 	'config-env-bad' => 'L’environnement a été vérifié.
 vous ne pouvez pas installer MediaWiki.',
 	'config-env-php' => 'PHP $1 est installé.',
@@ -3175,8 +3459,8 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 * [http://www.mediawiki.org/wiki/Help:Contents Guía de usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía de administrador]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes]',
-	'config-env-good' => '<span class="success-message">Rematou a comprobación do entorno.
-Pode instalar MediaWiki.</span>',
+	'config-env-good' => 'Rematou a comprobación do entorno.
+Pode instalar MediaWiki.',
 	'config-env-bad' => 'Rematou a comprobación do entorno.
 Non pode instalar MediaWiki.',
 	'config-env-php' => 'PHP $1 está instalado.',
@@ -3657,8 +3941,8 @@ E <doclink href=Copying>Kopi vu dr GNU General Public-Lizänz</doclink> sott zä
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeraaleitig zue MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:Contents Adminischtratoreaaleitig zue MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Vilmol gstellti Froge zue MediaWiki]',
-	'config-env-good' => '<span class="success-message">D Inschtallationsumgäbig isch prieft wore.
-Du chasch MediaWiki inschtalliere.</span>',
+	'config-env-good' => 'D Inschtallationsumgäbig isch prieft wore.
+Du chasch MediaWiki inschtalliere.',
 	'config-env-bad' => 'D Inschtallationsumgäbigisch prieft wore.
 Du chasch MediaWiki nit inschtalliere.',
 	'config-env-php' => 'PHP $1 isch inschtalliert.',
@@ -3875,8 +4159,8 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 * [http://www.mediawiki.org/wiki/Help:Contents Nawod za wužiwarjow]
 * [http://www.mediawiki.org/wiki/Manual:Contents Nawod za administratorow]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Huste prašenja]',
-	'config-env-good' => '<span class="success-message">Wokolina je so skontrolowała.
-Móžeš MediaWiki instalować.</span>',
+	'config-env-good' => 'Wokolina je so skontrolowała.
+Móžeš MediaWiki instalować.',
 	'config-env-bad' => 'Wokolina je so skontrolowała.
 Njemóžeš MediaWiki instalować.',
 	'config-env-php' => 'PHP $1 je instalowany.',
@@ -4150,8 +4434,8 @@ Ha probléma merülne fel a telepítés során, meg kell adnod mások számára 
 * [http://www.mediawiki.org/wiki/Help:Contents Felhasználói kézikönyv]
 * [http://www.mediawiki.org/wiki/Manual:Contents Útmutató adminisztrátoroknak]
 * [http://www.mediawiki.org/wiki/Manual:FAQ GyIK]',
-	'config-env-good' => '<span class="success-message">A környezet ellenőrzése befejeződött.
-A MediaWiki telepíthető.</span>',
+	'config-env-good' => 'A környezet ellenőrzése befejeződött.
+A MediaWiki telepíthető.',
 	'config-env-bad' => 'A környezet ellenőrzése befejeződött.
 A MediaWiki nem telepíthető.',
 	'config-env-php' => 'A PHP verziója: $1',
@@ -4450,8 +4734,8 @@ Vos deberea haber recipite <doclink href=Copying>un exemplar del Licentia Public
 * [http://www.mediawiki.org/wiki/Help:Contents Guida pro usatores]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida pro administratores]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Le ambiente ha essite verificate.
-Tu pote installar MediaWiki.</span>',
+	'config-env-good' => 'Le ambiente ha essite verificate.
+Tu pote installar MediaWiki.',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
 Tu non pote installar MediaWiki.',
 	'config-env-php' => 'PHP $1 es installate.',
@@ -4934,8 +5218,8 @@ Anda seharusnya telah menerima <doclink href=\"Copying\">salinan dari GNU Genera
 * [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
 * [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Pertanyaan yang Sering Diajukan]',
-	'config-env-good' => '<span class="success-message">Kondisi telah diperiksa.
-Anda dapat menginstal MediaWiki.</span>',
+	'config-env-good' => 'Kondisi telah diperiksa.
+Anda dapat menginstal MediaWiki.',
 	'config-env-bad' => 'Kondisi telah diperiksa.
 Anda tidak dapat menginstal MediaWiki.',
 	'config-env-php' => 'PHP $1 diinstal.',
@@ -5445,8 +5729,8 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents 利用者向け案内]
 * [http://www.mediawiki.org/wiki/Manual:Contents 管理人向け案内]
 * [http://www.mediawiki.org/wiki/Manual:FAQ よくある質問と回答]',
-	'config-env-good' => '<span class="success-message">環境は確認されました。
-MediaWikiをインストール出来ます。</span>',
+	'config-env-good' => '環境は確認されました。
+MediaWikiをインストール出来ます。',
 	'config-env-bad' => '環境が確認されました。
 MediaWikiをインストール出来ません。',
 	'config-env-php' => 'PHP $1がインストールされています。',
@@ -5934,8 +6218,8 @@ Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
 * [http://www.mediawiki.org/wiki/Help:Contents Handbooch för Aanwender]
 * [http://www.mediawiki.org/wiki/Manual:Contents Handbooch för Administratore un Köbesse]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Wat öff jefrooch weed, un de Antwoote]',
-	'config-env-good' => '<span class="success-message">De Ömjävung es jeprööf.
-Do kanns MediaWiki opsäze.</span>',
+	'config-env-good' => 'De Ömjävung es jeprööf.
+Do kanns MediaWiki opsäze.',
 	'config-env-bad' => 'De Ömjävung es jeprööf.
 Do kanns MediaWiki nit opsäze.',
 	'config-env-php' => 'PHP $1 es doh.',
@@ -6103,8 +6387,8 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 * [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Den Environement gouf nogekuckt.
-Dir kënnt MediaWiki installéieren.</span>',
+	'config-env-good' => 'Den Environement gouf nogekuckt.
+Dir kënnt MediaWiki installéieren.',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
 	'config-env-php' => 'PHP $1 ass installéiert.',
@@ -6296,8 +6580,8 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents Водич закорисници]
 * [http://www.mediawiki.org/wiki/Manual:Contents Водич за администратори]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧПП]',
-	'config-env-good' => '<span class="success-message">Околината е проверена.
-Можете да го инсталирате МедијаВики.</span>',
+	'config-env-good' => 'Околината е проверена.
+Можете да го инсталирате МедијаВики.',
 	'config-env-bad' => 'Околината е проверена.
 Не можете да го инсталирате МедијаВики.',
 	'config-env-php' => 'PHP $1 е инсталиран.',
@@ -6967,8 +7251,8 @@ Samen met dit programma hoort u een <doclink href=Copying>exemplaar van de GNU G
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Beheerdershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:FAQ Veel gestelde vragen] (Engelstalig)',
-	'config-env-good' => '<span class="success-message">De omgeving is gecontroleerd.
-U kunt MediaWiki installeren.</span>',
+	'config-env-good' => 'De omgeving is gecontroleerd.
+U kunt MediaWiki installeren.',
 	'config-env-bad' => 'De omgeving is gecontroleerd.
 U kunt MediaWiki niet installeren.',
 	'config-env-php' => 'PHP $1 is op dit moment geïnstalleerd.',
@@ -7500,8 +7784,8 @@ Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</
 * [http://www.mediawiki.org/wiki/Help:Contents Brukerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorguide]
 * [http://www.mediawiki.org/wiki/Manual:FAQ OSS]',
-	'config-env-good' => '<span class="success-message">Miljøet har blitt sjekket.
-Du kan installere MediaWiki.</span>',
+	'config-env-good' => 'Miljøet har blitt sjekket.
+Du kan installere MediaWiki.',
 	'config-env-bad' => 'Miljøet har blitt sjekket.
 Du kan installere MediaWiki.',
 	'config-env-php' => 'PHP $1 er innstallert.',
@@ -7920,8 +8204,8 @@ Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licen
 * [http://www.mediawiki.org/wiki/Help:Contents Podręcznik użytkownika]
 * [http://www.mediawiki.org/wiki/Manual:Contents Podręcznik administratora]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Odpowiedzi na często zadawane pytania]',
-	'config-env-good' => '<span class="success-message">Środowisko oprogramowania zostało sprawdzone.
-Możesz teraz zainstalować MediaWiki.</span>',
+	'config-env-good' => 'Środowisko oprogramowania zostało sprawdzone.
+Możesz teraz zainstalować MediaWiki.',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
 Nie możesz zainstalować MediaWiki.',
 	'config-env-php' => 'Zainstalowane jest PHP w wersji $1.',
@@ -8251,8 +8535,8 @@ A dovrìa avèj arseivù <doclink href=Copying>na còpia ëd la licensa pùblica
 * [http://www.mediawiki.org/wiki/Help:Contents Guida dl'Utent]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida dl'Aministrator]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]",
-	'config-env-good' => '<span class="success-message">L\'ambient a l\'é stàit controlà.
-It peule instalé MediaWiki.</span>',
+	'config-env-good' => 'L\'ambient a l\'é stàit controlà.
+It peule instalé MediaWiki.',
 	'config-env-bad' => "L'ambient a l'é stàit controlà.
 It peule pa instalé MediaWiki.",
 	'config-env-php' => "PHP $1 a l'é instalà.",
@@ -8727,8 +9011,8 @@ Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">O ambiente foi verificado.
-Pode instalar o MediaWiki.</span>',
+	'config-env-good' => 'O ambiente foi verificado.
+Pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
@@ -9206,8 +9490,8 @@ Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma 
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">O ambiente foi verificado.
-Você pode instalar o MediaWiki.</span>',
+	'config-env-good' => 'O ambiente foi verificado.
+Você pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Você não pode instalar o MediaWiki.',
 	'config-env-php' => 'O PHP $1 está instalado.',
@@ -9330,8 +9614,8 @@ MediaWiki распространяется в надежде, что она бу
 * [http://www.mediawiki.org/wiki/Help:Contents/ru Справка для пользователей]
 * [http://www.mediawiki.org/wiki/Manual:Contents/ru Справка для администраторов]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/ru FAQ]',
-	'config-env-good' => '<span class="success-message">Проверка внешней среды была успешно проведена.
-Вы можете установить MediaWiki.</span>',
+	'config-env-good' => 'Проверка внешней среды была успешно проведена.
+Вы можете установить MediaWiki.',
 	'config-env-bad' => 'Была проведена проверка внешней среды.
 Вы не можете установить MediaWiki.',
 	'config-env-php' => 'Установленная версия PHP: $1.',
@@ -9901,8 +10185,8 @@ Dapat nakatanggap ka ng <doclink href=Copying>isang sipi ng Pangkalahatang Pampu
 * [http://www.mediawiki.org/wiki/Help:Contents Gabay ng Tagagamit]
 * [http://www.mediawiki.org/wiki/Manual:Contents Gabay ng Tagapangasiwa]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Mga Malimit Itanong]',
-	'config-env-good' => '<span class="success-message">Nasuri na ang kapaligiran.
-Mailuluklok mo ang MediaWiki.</span>',
+	'config-env-good' => 'Nasuri na ang kapaligiran.
+Mailuluklok mo ang MediaWiki.',
 	'config-env-bad' => 'Nasuri na ang kapaligiran.
 Hindi mo mailuklok ang MediaWiki.',
 	'config-env-php' => 'Naitalaga ang PHP na $1.',
@@ -10126,8 +10410,8 @@ $messages['uk'] = array(
 * [http://www.mediawiki.org/wiki/Help:Contents/uk Керівництво користувача]
 * [http://www.mediawiki.org/wiki/Manual:Contents/uk Керівництво адміністратора]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/uk FAQ]',
-	'config-env-good' => '<span class="success-message">Перевірку середовища успішно завершено.
-Ви можете встановити MediaWiki.</span>',
+	'config-env-good' => 'Перевірку середовища успішно завершено.
+Ви можете встановити MediaWiki.',
 	'config-env-bad' => 'Було проведено перевірку середовища. Ви не можете встановити MediaWiki.',
 	'config-env-php' => 'Встановлено версію PHP: $1.',
 	'config-env-latest-ok' => 'Ви встановлюєте останню версію MediaWiki.',

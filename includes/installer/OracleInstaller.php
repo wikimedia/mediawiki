@@ -195,7 +195,7 @@ class OracleInstaller extends DatabaseInstaller {
 	public function createTables() {
 		$status = parent::createTables();
 
-		$this->db->doQuery( 'BEGIN fill_wiki_info; END;' );
+		$this->db->query( 'BEGIN fill_wiki_info; END;' );
 
 		return $status;
 	}

@@ -139,7 +139,7 @@ abstract class Installer {
 	 * Under the web subclass, it can already be assumed that PHP 5+ is in use
 	 * and that sessions are working.
 	 *
-	 * @return boolean
+	 * @return Status
 	 */
 	public function doEnvironmentChecks() {
 		$this->showMessage( 'config-env-php', phpversion() );
@@ -155,13 +155,7 @@ abstract class Installer {
 
 		$this->setVar( '_Environment', $good );
 
-		if ( $good ) {
-			$this->showMessage( 'config-env-good' );
-		} else {
-			$this->showMessage( 'config-env-bad' );
-		}
-
-		return $good;
+		return $good ? Status::newGood() : Status::newFatal( 'config-env-bad' );
 	}
 
 	/**
@@ -227,18 +221,17 @@ abstract class Installer {
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
 
-		if( $_lsExists ) {
-			require( "$IP/includes/DefaultSettings.php" );
-			require( "$IP/LocalSettings.php" );
-			if ( file_exists( "$IP/AdminSettings.php" ) ) {
-				require( "$IP/AdminSettings.php" );
-			}
-			$vars = get_defined_vars();
-			unset( $vars['_lsExists'] );
-			return $vars;
-		} else {
+		if( !$_lsExists ) {
 			return false;
 		}
+		unset($_lsExists);
+
+		require( "$IP/includes/DefaultSettings.php" );
+		require( "$IP/LocalSettings.php" );
+		if ( file_exists( "$IP/AdminSettings.php" ) ) {
+			require( "$IP/AdminSettings.php" );
+		}
+		return get_defined_vars();
 	}
 
 	/**
@@ -573,7 +566,7 @@ abstract class Installer {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
 		$versionInfo = array( '$1 --version 2>&1', 'GNU diffutils' );
 
-		$diff3 = $this->locateExecutableInDefaultPaths( $names, $versionInfo );
+		$diff3 = self::locateExecutableInDefaultPaths( $names, $versionInfo );
 
 		if ( $diff3 ) {
 			$this->setVar( 'wgDiff3', $diff3 );
@@ -588,7 +581,7 @@ abstract class Installer {
 	 */
 	protected function envCheckGraphics() {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
-		$convert = $this->locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
+		$convert = self::locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
 
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );

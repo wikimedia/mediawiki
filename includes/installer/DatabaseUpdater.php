@@ -26,6 +26,11 @@ abstract class DatabaseUpdater {
 
 	protected $extensionUpdates = array();
 
+	/**
+	 * Handle to the database subclass
+	 *
+	 * @var DatabaseBase
+	 */
 	protected $db;
 
 	protected $shared = false;
@@ -47,6 +52,7 @@ abstract class DatabaseUpdater {
 		global $wgDatabase;
 		$wgDatabase = $db;
 		$this->db = $db;
+		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->shared = $shared;
 		if ( $maintenance ) {
 			$this->maintenance = $maintenance;
@@ -95,16 +101,20 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Output some text. Right now this is a wrapper for wfOut, but hopefully
-	 * that function can go away some day :)
+	 * Output some text. If we're running from web, escape the text first.
 	 *
 	 * @param $str String: Text to output
 	 */
-	protected function output( $str ) {
+	public function output( $str ) {
 		if ( $this->maintenance->isQuiet() ) {
 			return;
 		}
-		wfOut( $str );
+		global $wgCommandLineMode;
+		if( !$wgCommandLineMode ) {
+			$str = htmlspecialchars( $str );
+		}
+		echo $str;
+		flush();
 	}
 
 	/**
@@ -115,11 +125,21 @@ abstract class DatabaseUpdater {
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
 	 *                following elements are parameters to the function.
-	 *                Note that callback functions will recieve this object as
+	 *                Note that callback functions will receive this object as
 	 *                first parameter.
 	 */
-	public function addExtensionUpdate( $update ) {
+	public function addExtensionUpdate( Array $update ) {
 		$this->extensionUpdates[] = $update;
+	}
+
+	/**
+	 * Convenience wrapper for addExtensionUpdate() when adding a new table (which
+	 * is the most common usage of updaters in an extension)
+	 * @param $tableName String Name of table to create
+	 * @param $sqlPath String Full path to the schema file
+	 */
+	public function addExtensionTable( $tableName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'addTable', $tableName, $sqlPath, true );
 	}
 
 	/**
@@ -331,7 +351,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
-	function addIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...$index key already set on $table table.\n" );
 		} else {
@@ -349,7 +369,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
-	function dropField( $table, $field, $patch, $fullpath = false ) {
+	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( $this->db->fieldExists( $table, $field ) ) {
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
@@ -367,7 +387,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String: Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 */
-	function dropIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping $index from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
@@ -457,7 +477,7 @@ abstract class DatabaseUpdater {
 		$this->output( "Done populating log_search table.\n" );
 	}
 
-	function doUpdateTranscacheField() {
+	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
 			return;
