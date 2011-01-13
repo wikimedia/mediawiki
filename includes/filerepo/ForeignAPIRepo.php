@@ -127,6 +127,7 @@ class ForeignAPIRepo extends FileRepo {
 				$i++;
 			}
 		}
+		return $results;
 	}
 	function getFileProps( $virtualUrl ) {
 		return false;
