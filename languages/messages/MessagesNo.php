@@ -1342,6 +1342,10 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-displaywatchlist'        => 'Visningsalternativer',
 'prefs-diffs'                   => 'Forskjeller',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-postadressen ser gyldig ut',
+'email-address-validity-invalid' => 'Skriv inn en gyldig e-postadresse',
+
 # User rights
 'userrights'                     => 'Brukerrettighetskontroll',
 'userrights-lookup-user'         => 'Ordne brukergrupper',
