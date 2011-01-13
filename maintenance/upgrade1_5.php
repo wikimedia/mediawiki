@@ -1325,4 +1325,4 @@ END
 }
 
 $maintClass = 'FiveUpgrade';
-require( DO_MAINTENANCE );
+require( RUN_MAINTENANCE_IF_MAIN );

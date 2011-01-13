@@ -21,7 +21,9 @@
  */
 
 // Define this so scripts can easily find doMaintenance.php
-define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
+define( 'RUN_MAINTENANCE_IF_MAIN', dirname( __FILE__ ) . '/doMaintenance.php' );
+define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
+
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
@@ -114,6 +116,23 @@ abstract class Maintenance {
 
 		$this->addDefaultParams();
 		register_shutdown_function( array( $this, 'outputChanneled' ), false );
+	}
+
+	/**
+	 * Should we execute the maintenance script, or just allow it to be included
+	 * as a standalone class? It checks that the call stack only includes this
+	 * function and a require (meaning was called from the file scope)
+	 *
+	 * @return Boolean
+	 */
+	public static function shouldExecute() {
+		$bt = debug_backtrace();
+		if( count( $bt ) !== 2 ) {
+			return false;
+		}
+		return $bt[1]['function'] == 'require_once' &&
+			$bt[0]['class'] == 'Maintenance' &&
+			$bt[0]['function'] == 'shouldExecute';
 	}
 
 	/**
@@ -389,10 +408,6 @@ abstract class Maintenance {
 	 * @return Maintenance child
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
-		// If we haven't already specified, kill setup procedures
-		// for child scripts, we've already got a sane environment
-		self::disableSetup();
-
 		// Make sure the class is loaded first
 		if ( !class_exists( $maintClass ) ) {
 			if ( $classFile ) {
@@ -406,15 +421,6 @@ abstract class Maintenance {
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
 		return $child;
-	}
-
-	/**
-	 * Disable Setup.php mostly
-	 */
-	protected static function disableSetup() {
-		if ( !defined( 'MW_NO_SETUP' ) ) {
-			define( 'MW_NO_SETUP', true );
-		}
 	}
 
 	/**
@@ -943,7 +949,6 @@ abstract class Maintenance {
 	 */
 	protected static function getCoreScripts() {
 		if ( !self::$mCoreScripts ) {
-			self::disableSetup();
 			$paths = array(
 				dirname( __FILE__ ),
 				dirname( __FILE__ ) . '/gearman',

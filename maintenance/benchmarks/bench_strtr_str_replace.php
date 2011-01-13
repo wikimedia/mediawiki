@@ -47,4 +47,4 @@ class bench_strtr_str_replace extends Benchmarker {
 }
 
 $maintClass = 'bench_strtr_str_replace';
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

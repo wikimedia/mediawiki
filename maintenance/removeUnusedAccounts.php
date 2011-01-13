@@ -107,4 +107,4 @@ class RemoveUnusedAccounts extends Maintenance {
 }
 
 $maintClass = "RemoveUnusedAccounts";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

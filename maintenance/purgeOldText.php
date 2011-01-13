@@ -36,4 +36,4 @@ class PurgeOldText extends Maintenance {
 }
 
 $maintClass = "PurgeOldText";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

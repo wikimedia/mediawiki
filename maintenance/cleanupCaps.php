@@ -95,4 +95,4 @@ class CapsCleanup extends TableCleanup {
 }
 
 $maintClass = "CapsCleanup";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

@@ -80,4 +80,4 @@ class CheckImages extends Maintenance {
 }
 
 $maintClass = "CheckImages";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );
