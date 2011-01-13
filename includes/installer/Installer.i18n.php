@@ -179,7 +179,7 @@ This is not the password for the MediaWiki account; this is the password for you
 If the account does not exist, and the installation account has sufficient privileges, this user account will be created with the minimum privileges required to operate the wiki.',
 	'config-db-prefix'                => 'Database table prefix:',
 	'config-db-prefix-help'           => 'If you need to share one database between multiple wikis, or between MediaWiki and another web application, you may choose to add a prefix to all the table names to avoid conflicts.
-Do not use spaces or hyphens.
+Do not use spaces.
 
 This field is usually left empty.',
 	'config-db-charset'               => 'Database character set',
