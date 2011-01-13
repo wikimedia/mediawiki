@@ -75,11 +75,13 @@ html .thumbcaption {
 div.magnify {
 	display: none;
 }
+/* @noflip */
 div.tright {
 	float: right;
 	clear: right;
 	margin: 0.5em 0 0.8em 1.4em;
 }
+/* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
@@ -136,11 +138,13 @@ ul {
 	border: none ! important;
 	padding: 0 ! important;
 	margin: 0 ! important;
+	direction: ltr;
 }
 #footer {
 	background : white;
 	color : black;
 	border-top: 1px solid black;
+	direction: ltr;
 }
 
 h1, h2, h3, h4, h5, h6 {
