@@ -4,6 +4,7 @@ require_once dirname( __FILE__ ) . '/ApiFormatTestBase.php';
 
 /**
  * @group API
+ * @group Database
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
 
