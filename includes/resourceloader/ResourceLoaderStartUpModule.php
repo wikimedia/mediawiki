@@ -75,7 +75,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
 			'wgSiteName' => $wgSitename,
-			'wgFileExtensions' => $wgFileExtensions,
+			'wgFileExtensions' => array_values( $wgFileExtensions ),
 			'wgDBname' => $wgDBname,
 		);
 		if ( $wgContLang->hasVariants() ) {
