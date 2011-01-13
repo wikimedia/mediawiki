@@ -73,6 +73,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25506) Exception is thrown if OutputPage::parse is called inside a tag hook,
   which would reset parser state
 * (bug 26208) Mark directionality of some interlanguage links
+* (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
+  selected when the action is "purge".
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

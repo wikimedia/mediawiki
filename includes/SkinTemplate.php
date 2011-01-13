@@ -842,7 +842,7 @@ class SkinTemplate extends Skin {
 				$content_navigation['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
 					!wfEmptyMsg( "$skname-view-view" ) ? "$skname-view-view" : 'view',
-					( $onPage && $action == 'view' ), '', true
+					( $onPage && ($action == 'view' || $action == 'purge' ) ), '', true
 				);
 				$content_navigation['views']['view']['redundant'] = true; // signal to hide this from simple content_actions
 			}
