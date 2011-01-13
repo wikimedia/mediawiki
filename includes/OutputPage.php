@@ -25,11 +25,11 @@ class OutputPage {
 	// <meta keyworkds="stuff"> most of the time the first 10 links to an article
 	var $mKeywords = array();
 
-    var	$mLinktags = array();
+	var $mLinktags = array();
 
 	// additional stylesheets. Looks like this is for extensions. Might be replaced by ressource loader.
 	var $mExtStyles = array();
-	
+
 	// should be private. We got set/get accessors. Set the HTML title
 	var $mPagetitle = '';
 
@@ -69,7 +69,7 @@ class OutputPage {
 	// mLastModified and mEtag are used for sending cache control.
 	// The whole caching system should probably be moved in its own class.
 	var $mLastModified = '';
-	
+
 	/*
 	 * Should be private. No getter but used in sendCacheControl();
 	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
@@ -112,7 +112,7 @@ class OutputPage {
 	// Next variables probably comes from the ressource loader @todo FIXME
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
-	
+
 	/** @fixme is this still used ?*/
 	var $mInlineMsg = array();
 
@@ -1524,7 +1524,7 @@ class OutputPage {
 					continue;
 				} else {
 					$aloption[] = 'string-contains=' . $variant;
-					
+
 					// IE and some other browsers use another form of language code
 					// in their Accept-Language header, like "zh-CN" or "zh-TW".
 					// We should handle these too.
@@ -2385,17 +2385,17 @@ class OutputPage {
 		if ( $wgRequest->getBool( 'handheld' ) ) {
 			$query['handheld'] = 1;
 		}
-		
+
 		if ( !count( $modules ) ) {
 			return '';
 		}
-		
+
 		if ( count( $modules ) > 1 ) {
 			// Remove duplicate module requests
 			$modules = array_unique( (array) $modules );
 			// Sort module names so requests are more uniform
 			sort( $modules );
-		
+
 			if ( ResourceLoader::inDebugMode() ) {
 				// Recursively call us for every item
 				$links = '';
@@ -2405,7 +2405,7 @@ class OutputPage {
 				return $links;
 			}
 		}
-		
+
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
 		$resourceLoader = $this->getResourceLoader();
@@ -2535,7 +2535,7 @@ class OutputPage {
 		if ( !$userOptionsAdded ) {
 			$scripts .= $this->makeResourceLoaderLink( $sk, 'user.options', 'scripts' );
 		}
-		
+
 		return $scripts;
 	}
 
