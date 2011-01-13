@@ -486,6 +486,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
 * (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
+* (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
+  selected when the action is "purge".
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST

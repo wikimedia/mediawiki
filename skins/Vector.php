@@ -108,7 +108,7 @@ class SkinVector extends SkinTemplate {
 			if ( $this->mTitle->exists() && $userCanRead ) {
 				$links['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
-						'vector-view-view', ( $action == 'view' ), '', true
+						'vector-view-view', ( $action == 'view' || $action == 'purge' ), '', true
 				);
 			}
 
