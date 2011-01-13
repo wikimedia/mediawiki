@@ -4,58 +4,198 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
+ * This class should be covered by a general architecture document which does
+ * not exist as of january 2011.  This is one of the Core class and should
+ * be read at least once by any new developers.
+ *
+ * This class is used to prepare the final rendering. A skin is then
+ * applied to the output parameters (links, javascript, html, categories ...).
+ * 
+ * Another class (fixme) handle sending the whole page to the client.
+ * 
+ * Some comments comes from a pairing session between Zak Greant and Ashar Voultoiz
+ * in november 2010.
+ *
  * @todo document
  */
 class OutputPage {
-	var $mMetatags = array(), $mKeywords = array(), $mLinktags = array();
+	// should be private. Used with addMeta() which add <meta>
+	var $mMetatags = array();
+
+	// <meta keyworkds="stuff"> most of the time the first 10 links to an article
+	var $mKeywords = array();
+
+    var	$mLinktags = array();
+
+	// additional stylesheets. Looks like this is for extensions. Might be replaced by ressource loader.
 	var $mExtStyles = array();
-	var $mPagetitle = '', $mBodytext = '';
+	
+	// should be private. We got set/get accessors. Set the HTML title
+	var $mPagetitle = '';
+
+	// Contains all of the <BODY> content. Should be private we got set/get accessors and the append() method.
+	var $mBodytext = '';
 
 	/**
 	 * Holds the debug lines that will be outputted as comments in page source if
 	 * $wgDebugComments is enabled. See also $wgShowDebug.
 	 * TODO: make a getter method for this
 	 */
-	public $mDebugtext = '';
+	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
-	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
-	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
-	var $mLastModified = '', $mETag = false;
-	var $mCategoryLinks = array(), $mCategories = array(), $mLanguageLinks = array();
+	// should be private. Stores contents of <title> tg
+	var $mHTMLtitle = '';
 
-	var $mScripts = '', $mInlineStyles = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
+	// should be private. Is the displayed content related to the source of the corresponding wiki article.
+	var $mIsarticle = true;
+
+	/*
+	 * should be private. We have to set isPrintable(). Some pages should
+	 * never be printed (ex: redirections.
+	 */
+	var $mPrintable = false;
+
+	/*
+	 * Should be private. We have set/get/append methods.
+	 *
+	 * Contains the article subtitle.
+	 *
+	 * Example: 'From Wikipedia, the free encyclopedia'
+	var $mSubtitle = '';
+
+	var $mRedirect = '';
+	var $mStatusCode;
+
+	// mLastModified and mEtag are used for sending cache control.
+	// The whole caching system should probably be moved in its own class.
+	var $mLastModified = '';
+	
+	/*
+	 * Should be private. No getter but used in sendCacheControl();
+	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
+	 * as a unique identifier for the content. It is later used by the client
+	 * to compare its cache version with the server version. Client sends
+	 * headers If-Match and If-None-Match containing its local cache ETAG value.
+	 *
+	 * To get more information, you will have to look at HTTP1/1 protocols which
+	 * is properly described in RFC 2616 : http://tools.ietf.org/html/rfc2616
+	 */
+	var $mETag = false;
+
+	var $mCategoryLinks = array();
+	var $mCategories = array();
+
+	// Should be private. Associative array mapping language code to the page name
+	var $mLanguageLinks = array();
+
+	/* 
+	 * Should be private. Used for javascript (or VB?)
+	 * We should split js / css.
+	 * mScripts content is inserted as is in <head> by Skin. This might contains
+	 * either a link to a stylesheet or inline css.
+	 */
+	var $mScripts = '';
+	var $mInlineStyles = ''; // ???
+
+	//
+	var $mLinkColours;
+
+	/**
+	 * Used by skin template.
+	 * Example: $tpl->set( 'displaytitle', $out->mPageLinkTitle );
+	 */
+	var $mPageLinkTitle = '';
+
+	// Array of <head> elements. Parser might add its own headers!
+	var $mHeadItems = array();
+
+	// Next variables probably comes from the ressource loader @todo FIXME
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
+	
+	/** @fixme is this still used ?*/
 	var $mInlineMsg = array();
 
 	var $mTemplateIds = array();
 
+	// Initialized with a global value. Let us override it.
+	// Should probably get deleted / rewritten ...
 	var $mAllowUserJs;
-	var $mSuppressQuickbar = false;
-	var $mDoNothing = false;
-	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
-	var $mIsArticleRelated = true;
-	protected $mParserOptions = null; // lazy initialised, use parserOptions()
 
+	/*
+	 * This was for the old skins and for users with 640x480 screen.
+	 * Please note old sckins are still used and might prove useful for
+	 * users having old computers or visually impaired.
+	 */
+	var $mSuppressQuickbar = false;
+
+	/**
+	 * @EasterEgg I just love the name for this self documenting variable.
+	 * @todo document
+	 */
+	var $mDoNothing = false;
+
+	// Parser related.
+	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
+
+	/*
+	 * should be private. Has get/set methods properly documented.
+	 * Stores "article flag" toggle.
+	 */
+	var $mIsArticleRelated = true;
+
+	// lazy initialised, use parserOptions()
+	protected $mParserOptions = null;
+
+	/*
+	 * Handles the atom / rss links.
+	 * We probably only support atom in 2011.
+	 * Looks like a private variable.
+	 */
 	var $mFeedLinks = array();
 
+	// Gwicke work on squid caching? Roughly from 2003.
 	var $mEnableClientCache = true;
+
+	/*
+	 * Flag if output should only contain the body of the article.
+	 * Should be private.
+	 */
 	var $mArticleBodyOnly = false;
 
 	var $mNewSectionLink = false;
 	var $mHideNewSectionLink = false;
+
+	/*
+	 * Comes from the parser. This was probably made to laod CSS/JS only
+	 * if we had <gallery>. Used directly in CategoryPage.php
+	 * Looks like resource loader can replace this.
+	 */
 	var $mNoGallery = false;
+
+	// should be private.
 	var $mPageTitleActionText = '';
 	var $mParseWarnings = array();
+
+	// Cache stuff. Looks like mEnableClientCache
 	var $mSquidMaxage = 0;
+
+	// @todo document
 	var $mPreventClickjacking = true;
+
+	// should be private. To include the variable {{REVISIONID}}
 	var $mRevisionId = null;
+
+	// Stores a Title object.
 	protected $mTitle = null;
 
 	/**
 	 * An array of stylesheet filenames (relative from skins path), with options
 	 * for CSS media, IE conditions, and RTL/LTR direction.
 	 * For internal use; add settings in the skin via $this->addStyle()
+	 *
+	 * Style again! This seems like a code duplication since we already have
+	 * mStyles. This is what makes OpenSource amazing.
 	 */
 	var $styles = array();
 
