@@ -29,7 +29,7 @@
 
 class SpecialContributions extends SpecialPage {
 
-	private $opts;
+	protected $opts;
 
 	public function __construct() {
 		parent::__construct( 'Contributions' );

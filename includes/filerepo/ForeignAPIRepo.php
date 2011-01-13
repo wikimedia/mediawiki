@@ -102,7 +102,6 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 
-
 	function fileExistsBatch( $files, $flags = 0 ) {
 		$results = array();
 		foreach ( $files as $k => $f ) {
@@ -129,6 +128,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		return $results;
 	}
+
 	function getFileProps( $virtualUrl ) {
 		return false;
 	}
