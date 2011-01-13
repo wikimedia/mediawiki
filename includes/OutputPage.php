@@ -61,6 +61,7 @@ class OutputPage {
 	 * Contains the article subtitle.
 	 *
 	 * Example: 'From Wikipedia, the free encyclopedia'
+	 */
 	var $mSubtitle = '';
 
 	var $mRedirect = '';
