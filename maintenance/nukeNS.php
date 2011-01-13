@@ -111,4 +111,4 @@ class NukeNS extends Maintenance {
 }
 
 $maintClass = "NukeNS";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

@@ -251,4 +251,4 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 }
 
 $maintClass = "ConvertLinks";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

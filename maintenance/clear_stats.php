@@ -51,4 +51,4 @@ class clear_stats extends Maintenance {
 }
 
 $maintClass = "clear_stats";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

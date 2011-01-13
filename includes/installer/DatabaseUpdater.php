@@ -167,10 +167,6 @@ abstract class DatabaseUpdater {
 	public function doUpdates( $purge = true ) {
 		global $wgVersion;
 
-		if ( !defined( 'MW_NO_SETUP' ) ) {
-			define( 'MW_NO_SETUP', true );
-		}
-
 		$this->runUpdates( $this->getCoreUpdateList(), false );
 		$this->runUpdates( $this->getOldGlobalUpdates(), false );
 		$this->runUpdates( $this->getExtensionUpdates(), true );

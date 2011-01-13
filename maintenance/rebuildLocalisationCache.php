@@ -130,4 +130,4 @@ class RebuildLocalisationCache extends Maintenance {
 }
 
 $maintClass = "RebuildLocalisationCache";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );
