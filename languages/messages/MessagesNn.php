@@ -290,7 +290,7 @@ $messages = array(
 'tog-minordefault'            => 'Merk endringar som «småplukk» som standard',
 'tog-previewontop'            => 'Vis førehandsvisinga før endringsboksen',
 'tog-previewonfirst'          => 'Førehandsvis første endring',
-'tog-nocache'                 => "Ikkje bruk nettlesaren sitt mellomlager (''cache'')",
+'tog-nocache'                 => 'Deaktiver nettlesaren sitt mellomlager («cache»)',
 'tog-enotifwatchlistpages'    => 'Send e-post når dei overvaka sidene mine vert endra',
 'tog-enotifusertalkpages'     => 'Send e-post når brukarsida mi vert endra',
 'tog-enotifminoredits'        => 'Send e-post også for småplukk',
@@ -553,7 +553,7 @@ Dette kan òg skuldast ein feil i programvara som er nytta av {{SITENAME}}.',
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
 'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
-'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. 
+'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden.
 Den sist prøvde førespurnaden var: «$1» frå funksjonen «$2».
 Databasen returnerte feilen «$3: $4».',
 'noconnect'            => 'Beklagar! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
@@ -568,9 +568,9 @@ $1',
 $1',
 'missing-article'      => 'Databasen burde ha funne sida «$1» $2, men det gjorde han ikkje.
 
-Dei vanlegaste årsakene til denne feilen er ei lenkje til ein skilnad mellom forskjellige versjonar eller lenkjer til ein gammal versjon av ei side som har vorte sletta. 
+Dei vanlegaste årsakene til denne feilen er ei lenkje til ein skilnad mellom forskjellige versjonar eller lenkjer til ein gammal versjon av ei side som har vorte sletta.
 
-Om det ikkje er tilfellet kan du ha funne ein feil i programvara. 
+Om det ikkje er tilfellet kan du ha funne ein feil i programvara.
 Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgje då adressa til sida.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(jamføring av versjon $1 og $2)',
@@ -619,7 +619,7 @@ Grunnen som er gjeven er: ''$2''.",
 'logouttitle'                => 'Logg ut',
 'logouttext'                 => "'''Du er no utlogga.'''
 
-Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn. 
+Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn.
 Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
 Brukarkontoen din er vorten oppretta.
@@ -664,7 +664,7 @@ Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'loginerror'                 => 'Innloggingsfeil',
-'prefs-help-email'           => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle. 
+'prefs-help-email'           => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle.
 Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di utan å røpe identiteten din.',
 'prefs-help-email-required'  => 'E-postadresse må oppgjevast.',
 'nocookiesnew'               => 'Brukarkontoen vart oppretta, men du er ikkje innlogga. {{SITENAME}} bruker informasjonskapslar for å logge inn brukarar,
@@ -686,7 +686,7 @@ Det må vera minst {{PLURAL:$1|eitt teikn|$1 teikn}} langt og noko anna enn bruk
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
 'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Eit mellombels passord for «$2» er oppretta, og er sett til «$3». Om det var det du ville, må du logge inn
 og velje eit nytt passord no.
-Mellombelspassordet ditt vil slutte å fungere om {{PLURAL:$5|éin dag|$5 dagar}}. 
+Mellombelspassordet ditt vil slutte å fungere om {{PLURAL:$5|éin dag|$5 dagar}}.
 
 Dersom denne førespurnaden blei utført av nokon andre, eller om du kom på passordet og ikkje lenger ønsker å endre det, kan du ignorere denne meldinga og halde fram med å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
@@ -696,7 +696,7 @@ Dersom denne førespurnaden blei utført av nokon andre, eller om du kom på pas
 'throttled-mailpassword'     => 'Ei passordpåminning er allereie sendt {{PLURAL:$1|den siste timen|dei siste $1 timane}}. For å hindre misbruk vert det berre sendt ut nytt passord ein gong kvar {{PLURAL:$1|time|$1. time}}.',
 'mailerror'                  => 'Ein feil oppstod ved sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Vitjande på denne wikien som nytta IP-adressa di har alt oppretta {{PLURAL:$1|éin konto|$1 kontoar}} den siste dagen, noko som er det høgaste tillate talet i denne tidsperioden.
-Grunna dette vil ikkje vitjande som nyttar denne IP-adressa kunna oppretta nye kontoar på noverande tidspunkt.',
+Grunna dette vil ikkje vitjande som nyttar denne IP-adressa kunna oppretta nye kontoar nett no.',
 'emailauthenticated'         => 'E-postadressa di vart stadfesta $2 $3.',
 'emailnotauthenticated'      => 'E-postadressa di er enno ikkje stadfest. Dei følgjande funksjonane kan ikkje bruke ho.',
 'noemailprefs'               => 'Oppgje ei e-postadresse i innstillingane dine for at desse funksjonane skal verke.',
@@ -774,16 +774,16 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'blockedtitle'                     => 'Brukaren er blokkert',
 'blockedtext'                      => "'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''
 
-Blokkeringa vart gjort av $1. 
+Blokkeringa vart gjort av $1.
 Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
 * Blokkeringa endar: $6
 * Blokkeringa var meint for: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. 
-Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. 
-IP-adressa di er $3, og blokkeringsnummeret er $5. 
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa.
+Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post.
+IP-adressa di er $3, og blokkeringsnummeret er $5.
 Ver venleg og opplys om dette ved eventuelle førespurnader.",
 'autoblockedtext'                  => "IP-adressa di er automatisk blokkert fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Grunne til dette vart gjeve som: ''$2''.
 
@@ -791,7 +791,7 @@ Ver venleg og opplys om dette ved eventuelle førespurnader.",
 * Blokkeringa går ut: $6
 * Blokkeringa er meint for: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. 
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]].
 
 IP-adressa di er $3, og blokkeringnummeret ditt er #$5.
 Ver venleg og opplyse dette ved eventuelle førespurnader.",
@@ -803,10 +803,10 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'confirmedittitle'                 => 'Du må stadfeste e-postadressa di før du kan endre noko',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Kan ikkje finna bolk',
-'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst. 
+'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst.
 Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
-'loginreqlink'                     => 'logga inn',
+'loginreqlink'                     => 'logge inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',
 'accmailtitle'                     => 'Passord er sendt.',
 'accmailtext'                      => "Eit tilfeldig laga passord for [[User talk:$1|$1]] er sendt til $2.
@@ -820,7 +820,7 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext'                 => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
-'noarticletext'                    => 'Det finst på noverande tidspunkt ikkje noko tekst på denne sida.
+'noarticletext'                    => 'Det er nett no ikkje noko tekst på denne sida.
 Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
@@ -844,7 +844,12 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'editingsection'                   => 'Endrar $1 (bolk)',
 'editingcomment'                   => 'Endrar $1 (ny bolk)',
 'editconflict'                     => 'Endringskonflikt: $1',
-'explainconflict'                  => 'Nokon annan har endra teksten sidan du byrja å skrive. Den øvste boksen inneheld den noverande teksten. Skilnaden mellom den lagra versjonen og din endra versjon er viste under. Versjonen som du har endra er i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du klikkar på «Lagre».<br />',
+'explainconflict'                  => "Nokon annan har endra teksten sidan du byrja å skrive.
+Den øvste boksen inneheld den noverande teksten.
+Skilnaden mellom den lagra versjonen og din endra versjon er viste under.
+Versjonen som du har endra er i den nedste boksen.
+Du lyt flette endringane dine saman med den noverande teksten.
+'''Berre''' teksten i den øvste tekstboksen vil bli lagra når du klikkar på «{{int:savearticle}}».",
 'yourtext'                         => 'Teksten din',
 'storedversion'                    => 'Den lagra versjonen',
 'nonunicodebrowser'                => "'''ÅTVARING: Nettlesaren din støttar ikkje «Unicode».
@@ -890,7 +895,7 @@ Sletteloggen for sida finn du her:",
 'deleted-notice'                   => 'Denne sida har blitt sletta. Sletteloggen er vist nedanfor.',
 'deletelog-fulllog'                => 'Vis full logg',
 'edit-hook-aborted'                => 'Endring avbroten av ein funksjon, utan forklaring.',
-'edit-gone-missing'                => 'Kunne ikkje oppdatere sida. 
+'edit-gone-missing'                => 'Kunne ikkje oppdatere sida.
 Det ser ut til at ho er sletta.',
 'edit-conflict'                    => 'Endringskonflikt.',
 'edit-no-change'                   => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
@@ -904,7 +909,7 @@ Det burde vere færre enn {{PLURAL:$2|$2|$2}}, men er no {{PLURAL:$1|$1|$1}}.',
 'post-expand-template-inclusion-warning'  => 'Åtvaring: Storleiken på malar som er inkluderte er for stor.
 Nokre malar vert ikkje inkluderte.',
 'post-expand-template-inclusion-category' => 'Sider som inneheld for store malar',
-'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast. 
+'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast.
 Desse parameterane har vorte utelatne.',
 'post-expand-template-argument-category'  => 'Sider med utelatne malparameterar',
 'parser-template-loop-warning'            => 'Malløkka oppdaga: [[$1]]',
@@ -925,13 +930,13 @@ Grunnen som vart gjeven av $3 er ''$2''",
 # History pages
 'viewpagelogs'           => 'Vis loggane for denne sida',
 'nohistory'              => 'Det finst ikkje nokon historikk for denne sida.',
-'currentrev'             => 'Noverande versjon',
+'currentrev'             => 'Versjonen no',
 'currentrev-asof'        => 'Noverande versjon frå $1',
 'revisionasof'           => 'Versjonen frå $1',
 'revision-info'          => 'Versjonen frå $1 av $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Eldre versjon',
 'nextrevision'           => 'Nyare versjon→',
-'currentrevisionlink'    => 'Noverande versjon',
+'currentrevisionlink'    => 'Versjonen no',
 'cur'                    => 'no',
 'next'                   => 'neste',
 'last'                   => 'førre',
@@ -1148,7 +1153,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-result-size'               => '$1 ({{PLURAL:$2|eitt|$2}} ord)',
 'search-result-score'              => 'Relevans: $1&nbsp;%',
 'search-redirect'                  => '(omdirigering $1)',
-'search-section'                   => '(bolk $1)',
+'search-section'                   => '(bolken $1)',
 'search-suggest'                   => 'Meinte du: «$1»',
 'search-interwiki-caption'         => 'Systerprosjekt',
 'search-interwiki-default'         => '$1-resultat:',
@@ -1162,7 +1167,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'showingresults'                   => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
 'showingresultsnum'                => "Nedanfor er {{PLURAL:$3|'''eitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultstotal'              => "Syner resultat {{PLURAL:$4|'''$1''' av '''$3'''|'''$1&ndash;$2''' av '''$3'''}} nedanfor",
-'nonefound'                        => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom. 
+'nonefound'                        => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom.
 For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, malar etc.), eller bruk det ønskte namnerommet som prefiks.",
 'search-nonefound'                 => 'Ingen resultat svarte til førespurnaden.',
 'powersearch'                      => 'Søk',
@@ -1200,7 +1205,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'math_unknown_function'     => 'ukjend funksjon',
 'math_lexing_error'         => 'lexerfeil',
 'math_syntax_error'         => 'syntaksfeil',
-'math_image_error'          => 'PNG-konverteringa var mislukka; sjekk at latex, dvips, gs, og convert er rett installerte',
+'math_image_error'          => 'PNG-konverteringa var mislukka; sjekk at latex og dvipng (eller dvips + gs + convert) er rett installerte',
 'math_bad_tmpdir'           => 'Kan ikkje skrive til eller laga mellombels mattemappe',
 'math_bad_output'           => 'Kan ikkje skrive til eller laga mattemappe',
 'math_notexvc'              => 'Manglar texvc-program; sjå math/README for konfigurasjon.',
@@ -1348,7 +1353,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'right-import'                => 'Importere sider frå andre wikiar',
 'right-importupload'          => 'Importere sider via opplasting',
 'right-patrol'                => 'Markere endringar som godkjende',
-'right-autopatrol'            => 'Får sine eigne endringar merka som godkjende',
+'right-autopatrol'            => 'Få sine eigne endringar automatisk merkte som godkjende',
 'right-patrolmarks'           => 'Vis godkjende endringar i siste endringar',
 'right-unwatchedpages'        => 'Sjå lista over sider som ikkje er overvaka',
 'right-trackback'             => 'Gje tilbakemelding',
@@ -1451,12 +1456,12 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er skriveverna.',
 'uploaderror'                 => 'Feil under opplasting av fil',
 'uploadtext'                  => "Bruk skjemaet under for å laste opp filer.
-For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
+For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]], og slettingar i [[Special:Log/delete|sletteloggen]].
 
-For å bruke ei fil på ei side, bruk ei slik lenkje:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bilete med ei breidde på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
+For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
 'upload-permitted'            => 'Godtekne filtypar: $1.',
 'upload-preferred'            => 'Føretrekte filtypar: $1.',
 'upload-prohibited'           => 'Ikkje godtekne filtypar: $1.',
@@ -1487,7 +1492,7 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'fileexists'                  => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
 [[$1|thumb]]",
-'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila. 
+'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
 [[$1|thumb]]",
 'fileexists-extension'        => "Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
 * Namnet på fila du lastar opp: '''<tt>[[:$1]]</tt>'''
@@ -1873,7 +1878,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'mywatchlist'          => 'Overvakingslista mi',
 'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
-'watchlistanontext'    => 'Ver venleg og $1 for å vise eller endre sider på overvakingslista di.',
+'watchlistanontext'    => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',
@@ -1941,7 +1946,7 @@ For hjelp og meir informasjon:
 'deletepage'             => 'Slett sida',
 'confirm'                => 'Stadfest',
 'excontent'              => 'innhaldet var: «$1»',
-'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',
+'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[Special:Contributions/$2|$2]]»)',
 'exbeforeblank'          => 'innhaldet før sida vart tømd var: «$1»',
 'exblank'                => 'sida var tom',
 'delete-confirm'         => 'Slett «$1»',
@@ -1977,7 +1982,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Samandraget for endringa var: «''$1''».", # only shown if there is an edit comment
-'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|ordskifte]]) til tidlegare versjon endra av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'   => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 
@@ -2085,7 +2090,7 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-error-long'          => 'Feil ved attoppretting av fila:
 
 $1',
-'undelete-show-file-confirm'   => 'Er du sikker på at du vil visa ein sletta versjon av fila "<nowiki>$1</nowiki>" frå den $2 klokka $3?',
+'undelete-show-file-confirm'   => 'Er du sikker på at du vil visa ein sletta versjon av fila «<nowiki>$1</nowiki>» frå den $2 klokka $3?',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
@@ -2106,7 +2111,7 @@ $1',
 'sp-contributions-newbies'       => 'Vis berre bidrag frå nye brukarar',
 'sp-contributions-newbies-sub'   => 'Frå nye brukarkontoar',
 'sp-contributions-newbies-title' => 'Brukarbidrag av nye brukarar',
-'sp-contributions-blocklog'      => 'Blokkeringslogg',
+'sp-contributions-blocklog'      => 'blokkeringslogg',
 'sp-contributions-logs'          => 'loggar',
 'sp-contributions-search'        => 'Søk etter bidrag',
 'sp-contributions-username'      => 'IP-adresse eller brukarnamn:',
@@ -2117,7 +2122,7 @@ $1',
 'whatlinkshere-title'      => 'Sider som har lenkje til «$1»',
 'whatlinkshere-page'       => 'Side:',
 'linkshere'                => "Desse sidene har lenkjer til '''[[:$1]]''':",
-'nolinkshere'              => "Inga side har lenkje '''[[:$1]]'''.",
+'nolinkshere'              => "Ingen sider har lenkjer til '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Ingen sider har lenkje til '''[[:$1]]''' i det valde namnerommet.",
 'isredirect'               => 'omdirigeringsside',
 'istemplate'               => 'inkludert som mal',
@@ -2272,7 +2277,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
 'movepage-moved'               => "'''«$1» er flytt til «$2»'''", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'      => 'Ei omdirigering er vorten oppretta.',
+'movepage-moved-redirect'      => 'Det er oppretta ei omdirigering.',
 'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
 'articleexists'                => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
 'cantmove-titleprotected'      => 'Du kan ikkje flytte sida hit, fordi det nye sidenamnet er verna mot oppretting.',
@@ -2340,7 +2345,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagescurrent'        => 'Noverande tekst',
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
-'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
+'allmessagesnotsupportedDB' => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
 'allmessagesfilter'         => 'Meldingsfilter:',
 'allmessagesmodified'       => 'Vis berre endra',
 
@@ -2465,7 +2470,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'nostalgia.css'   => '/* CSS i denne fila vil gjelde alle som nyttar drakta Nostalgia */',
 'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Kølnerblå */',
 'monobook.css'    => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
-'myskin.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Myskin */',
+'myskin.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta MySkin */',
 'chick.css'       => '/* CSS i denne fila vil gjelde alle som nyttar drakta Chick */',
 'simple.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Simple */',
 'modern.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Modern */',
@@ -2478,7 +2483,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'nostalgia.js'   => '/* Javascript i denne fila vil gjelde for brukarar av drakta Nostalgia */',
 'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Kølnerblå */',
 'monobook.js'    => '/* Javascript i denne fila vil gjelde for brukarar av drakta Monobook */',
-'myskin.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Myskin */',
+'myskin.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta MySkin */',
 'chick.js'       => '* Javascript i denne fila vil gjelde for brukarar av drakta Chick */',
 'simple.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Simple */',
 'modern.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Modern */',
@@ -2546,7 +2551,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Patrol log
 'patrol-log-page'      => 'Patruljeringslogg',
 'patrol-log-header'    => 'Dette er ein logg over patruljerte sideversjonar.',
-'patrol-log-line'      => 'merka $1 av $2 godkjend $3',
+'patrol-log-line'      => 'merkte $1 av $2 godkjend $3',
 'patrol-log-auto'      => '(automatisk)',
 'patrol-log-diff'      => 'versjon $1',
 'log-show-hide-patrol' => '$1 patruljeringslogg',
@@ -2560,7 +2565,7 @@ $1',
 'filedelete-missing'              => 'Det finst ikkje noko fil som heiter «$1», og difor går det heller ikkje å slette noko slik fil.',
 'filedelete-old-unregistered'     => 'Filversjonen «$1» finst ikkje i databasen.',
 'filedelete-current-unregistered' => 'Fila «$1» finst ikkje i databasen.',
-'filedelete-archive-read-only'    => 'Webserveraren har ikkje skrivetilgang til arkivkatalogen "$1".',
+'filedelete-archive-read-only'    => 'Tenaren har ikkje skrivetilgang til arkivkatalogen «$1».',
 
 # Browsing diffs
 'previousdiff' => '← Eldre endring',
@@ -2903,7 +2908,7 @@ gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta ko
 'confirmemail_sent'        => 'Stadfestingsmelding er sendt.',
 'confirmemail_oncreate'    => 'Ein stadfestingskode er no send til e-postadressa di.
 Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktivere e-postbaserte tenester på denne wikien.',
-'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding. 
+'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding.
 Sjekk e-postadressa for ugyldige teikn.
 
 E-postsendaren gav denne meldinga: $1',
@@ -3026,7 +3031,7 @@ Du kan òg [[Special:Watchlist/edit|nytte standardverktøyet]].',
 'version-mediahandlers'            => 'Mediahandsamarar',
 'version-hooks'                    => 'Tilleggsuttrykk',
 'version-extension-functions'      => 'Utvidingsfunksjonar',
-'version-parser-extensiontags'     => 'Parserutvidingstaggar',
+'version-parser-extensiontags'     => 'Parserutvidingsmerke',
 'version-parser-function-hooks'    => 'Parserfunksjonstillegg',
 'version-skin-extension-functions' => 'Draktutvidingsfunksjonar',
 'version-hook-name'                => 'Namn på tillegg',

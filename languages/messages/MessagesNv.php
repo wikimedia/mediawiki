@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Reedy
  * @author Seb az86556
  * @author לערי ריינהארט
  */
@@ -293,7 +294,7 @@ $3',
 'watchthispage'     => 'díí naaltsoos bikʼi déshʼį́į́ʼ nisin',
 'unwatch'           => 'doo bikʼi déshʼį́įʼ nisin da',
 'watchlist-details' => '{{PLURAL:$1|$1 naaltsoos|$1 naaltsoos}} bikʼi díníʼį́į́ʼ',
-'wlshowlast'        => '<div style="text-size:14px; padding:10px; background:#bbeeff;"><small>
+'wlshowlast'        => '<small>
 * ( $1 ) ahééʼílkidę́ędą́ą́ʼ kojįʼ
 * ( $2 ) yiskánídą́ą́ʼ kojįʼ
 * ( $3 )</small>',

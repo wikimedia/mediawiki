@@ -8,6 +8,7 @@
  * @file
  *
  * @author Better
+ * @author The Evil IP address
  * @author Urhixidur
  */
 
@@ -519,7 +520,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'showlivepreview'                  => '"Live Preview"',
 'showdiff'                         => 'Muestral chambus',
 'anoneditwarning'                  => "'''Avisu:''' Nu t'alcuentras rustriu, razón pola que s'emburacará la tu IP nel estorial d'esta páhina.",
-'missingsummary'                   => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{MediaWiki:Savearticle}}» la tu eición s´emburacará sin él.",
+'missingsummary'                   => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{int:savearticle}}» la tu eición s´emburacará sin él.",
 'missingcommenttext'               => 'Pol favol, escrebi un testu embahu.',
 'missingcommentheader'             => "'''Atención:''' Nu as escrebiu un entítulu pal tu comentáriu. Si güervis a pursal sobri \"Emburacal\", s'emburacará sin él.",
 'summary-preview'                  => 'Previsoreal síntesis:',
@@ -605,7 +606,7 @@ Esti pobrema se dá angunas vezis si estás gastandu un proxy anónimu basau en 
 El cuairu e testu superiol endica el testu que desisti atualmenti ena páhina.
 Los tus chambus se muestran nel cuairu e testu inferiol.
 Pa emburacal los tus chambus, ebis tresladalus al cuairu superiol.
-'''Solu''' s'emburacará el testu el cuairu superiol cuandu pursis \"Emburacal páhina\".",
+'''Solu''' s'emburacará el testu el cuairu superiol cuandu pursis \"{{int:savearticle}}\".",
 'yourtext'                         => 'El tu testu',
 'storedversion'                    => 'Velsión emburacá',
 'nonunicodebrowser'                => "'''Atención: El tu escrucaol nu cumpri la norma Unicode. S'á ativau un sistema d'eición alternativu que te premitirá eital artículus con seguráncia, inque los carateris que nu seyan ASCII apaicirán nel cuairu d'eición cumu cóigus esadecimalis.'''",

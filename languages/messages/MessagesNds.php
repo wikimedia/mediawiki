@@ -236,7 +236,7 @@ $messages = array(
 'tog-minordefault'            => 'Alle Ännern as lütt markeern',
 'tog-previewontop'            => 'Vörschau vör dat Editeerfinster wiesen',
 'tog-previewonfirst'          => "Vörschau bi'n eersten Ännern wiesen",
-'tog-nocache'                 => 'Sietencache deaktiveern',
+'tog-nocache'                 => 'Twischenspieker vun’n Webkieker utstellen',
 'tog-enotifwatchlistpages'    => 'Schriev mi en Nettbreef, wenn ene Siet, op de ik oppass, ännert warrt',
 'tog-enotifusertalkpages'     => 'Schriev mi en Nettbreef, wenn ik ne’e Narichten heff',
 'tog-enotifminoredits'        => 'Schriev mi en Nettbreef, ok wenn dat blots en lütte Ännern weer',
@@ -487,7 +487,9 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 Villicht hest du in de URL en Tippfehler oder büst en verkehrten Lenk nagahn.
 Dat kann aver ok op en Bug in de Software henwiesen, de op {{SITENAME}} bruukt warrt.',
 'nosuchspecialpage' => 'Disse Spezialsiet gifft dat nich',
-'nospecialpagetext' => 'Disse Spezialsiet warrt vun de MediaWiki-Software nich ünnerstütt',
+'nospecialpagetext' => '<strong>Disse Spezialsied gifft dat nich.</strong>
+
+En List vun de Spezialsieden gifft dat ünner [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Fehler',
@@ -654,7 +656,8 @@ In de E-Mail steiht, wat du doon musst.',
 'createaccount-text'         => 'Een hett för di op {{SITENAME}} ($4) en Brukerkonto "$2" nee opstellt. Dat automaatsch instellte Passwoort för "$2" is "$3". Du schullst di nu man anmellen un dat Passwoort ännern.
 
 Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för di. Kannst ehr eenfach ignoreren.',
-'login-throttled'            => 'Du hest to faken versöcht, di ünner dissen Brukernaam antomellen. Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
+'login-throttled'            => 'Du hest to faken versöcht, di ünner dissen Brukernaam antomellen.
+Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 'loginlanguagelabel'         => 'Spraak: $1',
 
 # Password reset dialog
@@ -752,7 +755,8 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'confirmedittitle'                 => 'E-Mail-Adress mutt bestätigt wesen, dat du wat ännern kannst',
 'confirmedittext'                  => 'Du musst dien E-Mail-Adress bestätigen, dat du wat ännern kannst. Stell dien E-Mail-Adress in de [[Special:Preferences|{{int:preferences}}]] in un bestätig ehr.',
 'nosuchsectiontitle'               => 'Dissen Afsnitt gifft dat nich',
-'nosuchsectiontext'                => 'Du hest versöcht den Afsnitt „$1“ to ännern, den dat nich gifft. Du kannst blot Afsneed ännern, de al dor sünd.',
+'nosuchsectiontext'                => 'Du hest versöcht en Afsnitt to ännern, den dat nich gifft.
+Villicht is he verschaven oder rutnahmen worrn, wieldes du de Sied ankeken hest.',
 'loginreqtitle'                    => 'Anmellen nödig',
 'loginreqlink'                     => 'anmellen',
 'loginreqpagetext'                 => 'Du musst di $1, dat du annere Sieden ankieken kannst.',
@@ -761,7 +765,9 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 
 Dat Passwoord för dit Brukerkonto kann na dat Anmellen ünner ''[[Special:ChangePassword|Passwoord ännern]]'' ännert warrn.",
 'newarticle'                       => '(Nee)',
-'newarticletext'                   => 'Hier den Text vun de ne’e Siet indregen. Jümmer in ganze Sätz schrieven un kene Texten vun Annern, de en Oorheverrecht ünnerliggt, hierher kopeern.',
+'newarticletext'                   => "Du büst op en Sied kamen, de dat noch nich gifft.
+Wenn du disse Sied opstellen wullt, schriev dien Text in dat Finster ünnen  (kiek op de [[{{MediaWiki:Helppage}}|Hülpsied]] för mehr Infos).
+Wenn du de Sied gornich ännern wullst, denn klick op den '''Trügg'''-Knoop in dien Webkieker.",
 'anontalkpagetext'                 => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker, de noch keen Brukerkonto anleggt hett oder dat jüst nich bruukt.
 Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.
 So en Adress kann vun verscheden Brukern bruukt warrn.
@@ -792,12 +798,11 @@ Dat kann to’n Bispeel dor vun kamen, dat du en anonymen Proxy-Deenst bruukst, 
 'editingsection'                   => 'Ännern vun $1 (Afsatz)',
 'editingcomment'                   => 'Ännern vun $1 (nee Afsnidd)',
 'editconflict'                     => 'Konflikt bi’t Sied ännern: $1',
-'explainconflict'                  => 'En annern Bruker hett disse Sied ännert, na de Tied dat du anfungen hest, de Sied to ännern.
+'explainconflict'                  => "En annern Bruker hett disse Sied ännert, na de Tied dat du anfungen hest, de Sied to ännern.
 Dat Textfeld baven wiest de aktuelle Sied.
 Dat Textfeld ünnen wiest dien Ännern.
 Föög dien Ännern in dat Textfeld baven in.
-
-<b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />',
+'''Blots''' de Text in dat Textfeld baven warrt spiekert, wenn du op \"{{int:savearticle}}\" klickst!",
 'yourtext'                         => 'Dien Text',
 'storedversion'                    => 'Spiekerte Version',
 'nonunicodebrowser'                => "'''Wohrschau: Dien Browser kann keen Unicode, bruuk en annern Browser, wenn du en Siet ännern wist.'''",
@@ -1827,7 +1832,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'addedwatchtext'       => 'De Siet „<nowiki>$1</nowiki>“ is to diene [[Special:Watchlist|Oppasslist]] toföögt worrn.
 Ännern, de in Tokumst an disse Siet un an de tohörige Diskuschoonssiet maakt warrt, sünd dor op oplist un de Siet is op de [[Special:RecentChanges|List vun de letzten Ännern]] fett markt. Wenn du de Siet nich mehr op diene Oppasslist hebben willst, klick op „Nich mehr oppassen“.',
 'removedwatch'         => 'De Siet is nich mehr op de Oppasslist',
-'removedwatchtext'     => 'De Siet „[[:$1]]“ is nich mehr op de Oppasslist.',
+'removedwatchtext'     => 'De Sied „[[:$1]]“ is nich mehr op [[Special:Watchlist|dien Oppasslist]].',
 'watch'                => 'Oppassen',
 'watchthispage'        => 'Op disse Siet oppassen',
 'unwatch'              => 'nich mehr oppassen',
@@ -1895,7 +1900,7 @@ De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchl
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
 'actioncomplete'         => 'Akschoon trech',
 'deletedtext'            => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
-'deletedarticle'         => '„$1“ wegsmeten',
+'deletedarticle'         => '„[[$1]]“ wegsmeten',
 'suppressedarticle'      => 'hett „[[$1]]“ versteken',
 'dellogpage'             => 'Lösch-Logbook',
 'dellogpagetext'         => 'Hier is en List vun de letzten Löschen.',
@@ -1961,7 +1966,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protect-othertime-op'        => 'annere Tied',
 'protect-existing-expiry'     => 'Aktuell Enn för de Sperr: $2, $3',
 'protect-otherreason'         => 'Annern Grund:',
-'protect-otherreason-op'      => 'annern Grund',
+'protect-otherreason-op'      => 'Annern Grund',
 'protect-dropdown'            => '*Faken bruukt Schuulgrünn
 ** toveel Vandalismus
 ** toveel Spam
@@ -2014,7 +2019,7 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeletereset'                => 'Afbreken',
 'undeleteinvert'               => 'Utwahl ümkehrn',
 'undeletecomment'              => 'Grund:',
-'undeletedarticle'             => '„$1“ wedderhaalt',
+'undeletedarticle'             => '„[[$1]]“ wedderhaalt',
 'undeletedrevisions'           => '{{PLURAL:$1|ene Version|$1 Versionen}} wedderhaalt',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Ene Version|$1 Versionen}} un {{PLURAL:$2|ene Datei|$2 Datein}} wedderhaalt',
 'undeletedfiles'               => '{{PLURAL:$1|ene Datei|$1 Datein}} wedderhaalt',
@@ -2972,7 +2977,7 @@ Du kannst ok de [[Special:Watchlist/edit|normale Sied to’n Ännern]] bruken.',
 # Special:FilePath
 'filepath'         => 'Dateipadd',
 'filepath-page'    => 'Datei:',
-'filepath-submit'  => 'Padd',
+'filepath-submit'  => 'Los',
 'filepath-summary' => 'Disse Spezialsiet gifft den kumpletten Padd för ene Datei trüch. Biller warrt in vull Oplösen wiest, annere Datein warrt glieks mit dat Programm opropen, dat för de Soort Datein instellt is.
 
 Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
@@ -3028,7 +3033,7 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tags',
 'tags-intro'              => 'Disse Sied wiest all Etiketten, de för Ännern bruukt warrt, un wat se bedüüdt.',
-'tags-tag'                => 'Intern Tagnaam',
+'tags-tag'                => 'Tagnaam',
 'tags-display-header'     => 'Weddergaav op de Ännernlisten',
 'tags-description-header' => 'Beschrievung, wat dat bedüüdt',
 'tags-hitcount-header'    => 'Markeert Ännern',

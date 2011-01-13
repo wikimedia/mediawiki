@@ -13,6 +13,7 @@
  * @author Jaakonam
  * @author Jack Phoenix
  * @author Mobe
+ * @author Nedergard
  * @author Nike
  * @author Silvonen
  * @author Str4nd
@@ -299,7 +300,7 @@ $messages = array(
 'tog-minordefault'            => 'Muutokset ovat oletuksena pieniä',
 'tog-previewontop'            => 'Näytä esikatselu muokkauskentän yläpuolella',
 'tog-previewonfirst'          => 'Näytä esikatselu heti, kun muokkaus aloitetaan',
-'tog-nocache'                 => 'Älä tallenna sivuja välimuistiin',
+'tog-nocache'                 => 'Älä tallenna sivuja selaimen välimuistiin',
 'tog-enotifwatchlistpages'    => 'Lähetä sähköpostiviesti tarkkailtujen sivujen muutoksista',
 'tog-enotifusertalkpages'     => 'Lähetä sähköpostiviesti, kun käyttäjäsivun keskustelusivu muuttuu',
 'tog-enotifminoredits'        => 'Lähetä sähköpostiviesti myös pienistä muokkauksista',
@@ -573,7 +574,12 @@ Luettelo toimintosivuista löytyy sivulta [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Virhe',
 'databaseerror'        => 'Tietokantavirhe',
-'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. Tietokanta palautti virheen ”<tt>$3: $4</tt>”.',
+'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe.
+Se saattaa johtua ohjelmointivirheestä.
+Viimeinen tietokantakysely, jota yritettiin, oli:
+<blockquote><tt>$1</tt></blockquote>.
+Se tehtiin funktiosta ”<tt>$2</tt>”.
+Tietokanta palautti virheen ”<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. Tietokanta palautti virheen ”$3: $4”.',
 'noconnect'            => 'Sivustolla on teknisiä ongelmia. Tietokantaan ei saada yhteyttä.<br />
 $1',
@@ -867,7 +873,11 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'editingsection'                   => 'Muokataan osiota sivusta $1',
 'editingcomment'                   => 'Muokataan uutta osiota sivulla $1',
 'editconflict'                     => 'Päällekkäinen muokkaus: $1',
-'explainconflict'                  => "Joku muu on muuttanut tätä sivua sen jälkeen, kun aloit muokata sitä. Ylempi tekstialue sisältää tämänhetkisen tekstin. Tekemäsi muutokset näkyvät alemmassa ikkunassa. Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin. '''Vain''' ylemmässä alueessa oleva teksti tallentuu, kun tallennat sivun.",
+'explainconflict'                  => "Joku muu on muuttanut tätä sivua sen jälkeen, kun aloit muokata sitä.
+Ylempi tekstialue sisältää tämänhetkisen tekstin.
+Tekemäsi muutokset näkyvät alemmassa ikkunassa.
+Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin.
+'''Vain''' ylemmässä alueessa oleva teksti tallentuu, kun tallennat sivun.",
 'yourtext'                         => 'Oma tekstisi',
 'storedversion'                    => 'Tallennettu versio',
 'nonunicodebrowser'                => "'''Selaimesi ei ole Unicode-yhteensopiva. Ole hyvä ja vaihda selainta, ennen kuin muokkaat sivua.'''",
@@ -1378,7 +1388,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
 'rightslogtext'  => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
-'rightslogentry' => 'Käyttäjän $1 oikeudet muutettiin ryhmistä $2 ryhmiin $3',
+'rightslogentry' => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
 'rightsnone'     => '(ei oikeuksia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1480,7 +1490,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'filename'                    => 'Tiedoston nimi:',
 'filedesc'                    => 'Yhteenveto',
 'fileuploadsummary'           => 'Yhteenveto',
-'filereuploadsummary'         => 'Tiedostomuutokset:',
+'filereuploadsummary'         => 'Muutokset',
 'filestatus'                  => 'Tiedoston tekijänoikeudet',
 'filesource'                  => 'Lähde',
 'uploadedfiles'               => 'Lisätyt tiedostot',
@@ -1952,7 +1962,7 @@ Palaute ja lisäapu osoitteessa:
 'actioncomplete'         => 'Toiminto suoritettu',
 'deletedtext'            => '”<nowiki>$1</nowiki>” on poistettu.
 Sivulla $2 on lista viimeaikaisista poistoista.',
-'deletedarticle'         => 'poisti sivun $1',
+'deletedarticle'         => 'poisti sivun [[$1]]',
 'suppressedarticle'      => 'häivytti sivun [[$1]]',
 'dellogpage'             => 'Poistoloki',
 'dellogpagetext'         => 'Alla on loki viimeisimmistä poistoista.',
@@ -2245,7 +2255,7 @@ $1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'databasenotlocked'   => 'Tietokanta ei ole lukittu.',
 
 # Move page
-'move-page'                    => 'Siirrä $1',
+'move-page'                    => 'Sivun $1 siirto',
 'move-page-legend'             => 'Siirrä sivu',
 'movepagetext'                 => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
 Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.
@@ -2263,7 +2273,7 @@ Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, et
 *Kumoat alla olevan ruudun asetuksen.
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
-'movearticle'                  => 'Siirrä sivu',
+'movearticle'                  => 'Siirrettävä sivu',
 'movenologin'                  => 'Et ole kirjautunut sisään',
 'movenologintext'              => 'Sinun pitää olla rekisteröitynyt käyttäjä ja [[Special:UserLogin|kirjautua sisään]], jotta voisit siirtää sivun.',
 'movenotallowed'               => 'Sinulla ei ole oikeuksia siirtää sivuja.',
@@ -2281,7 +2291,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'cantmove-titleprotected'      => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
 'talkexists'                   => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
 'movedto'                      => 'Siirretty uudelle otsikolle',
-'movetalk'                     => 'Siirrä myös keskustelusivu.',
+'movetalk'                     => 'Siirrä myös keskustelusivu',
 'move-subpages'                => 'Siirrä kaikki alasivut (enintään $1)',
 'move-talk-subpages'           => 'Siirrä kaikki keskustelusivun alasivut (enintään $1)',
 'movepage-page-exists'         => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
@@ -2588,7 +2598,9 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
 
-Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan tiedostoon. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
+Vain *-merkillä alkavat rivit otetaan huomioon.
+Rivin ensimmäisen linkin on osoitettava tiedostoon.
+Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
 
 # Metadata
 'metadata'          => 'Sisältökuvaukset',

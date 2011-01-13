@@ -587,6 +587,9 @@ Hiki iā ‘oe ke [[:\$1|hoʻokumu i kēia ‘ao‘ao]].",
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Mea hoʻohana hou',
 
+# Special:ListGroupRights
+'listgrouprights-members' => '(papa o nā lālā)',
+
 # E-mail user
 'emailuser'    => 'E leka uila i kēia mea ho‘ohana',
 'emailmessage' => 'Memo:',

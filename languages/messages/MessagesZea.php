@@ -9,6 +9,7 @@
  *
  * @author Adnergje
  * @author NJ
+ * @author Ooswesthoesbes
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart
@@ -209,7 +210,7 @@ $messages = array(
 'deletethispage'    => 'Wis deêze bladzie',
 'undelete_short'    => '$1 {{PLURAL:$1|bewerkieng|bewerkiengen}} terugzetten',
 'protect'           => 'Bescherm',
-'protect_change'    => 'beveiligiengsstaotus wiezigen',
+'protect_change'    => 'wiezigen',
 'protectthispage'   => 'Bescherm deêze bladzie',
 'unprotect'         => 'Beveiligieng opheffen',
 'unprotectthispage' => 'Beveiligieng van deêze pagina opheffen',
@@ -294,13 +295,13 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
-'red-link-title'          => '$1 (besti nog nie)',
+'red-link-title'          => '$1 (de bladzie besti nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bladzie',
 'nstab-user'      => 'Gebruker',
 'nstab-media'     => 'Mediapagina',
-'nstab-special'   => 'Speciaol',
+'nstab-special'   => 'Speciaole bladzie',
 'nstab-project'   => 'Projectbladzie',
 'nstab-image'     => 'Bestand',
 'nstab-mediawiki' => 'Systeemtekst',
@@ -607,7 +608,7 @@ Dit gebeur soms a der een webhebaseerde proxydienst wor gebruukt die a fout'n be
 In 't bovenste deêl van 't venster sti de tekst van de udihe pagina.
 Je bewerkieng sti in 't onderste hedeêlte.
 Je dien je bewerkiengen in te voehen in de bestaende tekst.
-<b>Alleên</b> de tekst in 't bovenste hedeêlte wor opeslogen a je op \"Pagina opslaen\" klik.<br />",
+'''Alleên''' de tekst in 't bovenste hedeêlte wor opeslogen a je op \"{{int:savearticle}}\" klik.",
 'yourtext'                  => 'Joe tekst',
 'storedversion'             => 'Opeslogen versie',
 'nonunicodebrowser'         => "'''WAERSCHUWIENG: Je browser kan nie hoed overwig mie unicode.
@@ -991,6 +992,9 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'minlength1'                 => "Bestandsnaem'n mott'n minstes eên letter bevatt'n.",
 'badfilename'                => 'Bestandsnaem is veranderd nae "$1".',
 'watchthisupload'            => 'Volg deêze bladzie',
+
+# File description page
+'filehist-user' => 'Gebruker',
 
 # Random page
 'randompage' => 'Bladzie op goed geluk',

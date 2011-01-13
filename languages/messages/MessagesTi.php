@@ -90,7 +90,7 @@ $messages = array(
 
 # History pages
 'next'        => 'ዝቕጽል',
-'historysize' => '($1 ባይታት)',
+'historysize' => '($1 {{PLURAL:$1|ባይታት|ባይታት}})',
 
 # Search results
 'prevn'       => 'ናይ ቀደም $1',

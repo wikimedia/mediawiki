@@ -444,7 +444,7 @@ $1',
 nei alle gedachten is it foar ûnderhâld, en kinne jo der letter gewoan wer brûk fan meitsje.
 De behearder hat dizze útlis jûn:
 <p>$1</p>',
-'missing-article'      => 'Yn de database is gjin ynhâld oantroffen foar de side "$1" dy\'t der wol wêze moatte soe ($2). 
+'missing-article'      => 'Yn de database is gjin ynhâld oantroffen foar de side "$1" dy\'t der wol wêze moatte soe ($2).
 
 Dat kin foarkomme as Jo in ferâldere ferwizing nei it ferskil tusken twa ferzjes fan in side folgje of in ferzje opfreegje dy\'t wiske is.
 
@@ -720,7 +720,11 @@ Dat bart soms as der in webbasearre proxytsjinst brûkt wurdt dy't flaters befet
 'editingsection'                   => 'Bewurkje $1 (seksje)',
 'editingcomment'                   => 'Dwaande mei bewurkjen fan $1 (opmerking)',
 'editconflict'                     => 'Tagelyk bewurke: "$1"',
-'explainconflict'                  => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen. It earste bewurkingsfjild is hoe't de tekst wilens wurden is. Jo feroarings stean yn it twadde fjild. Dy wurde allinnich tapast safier as jo se yn it earste fjild ynpasse. <b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde. <p>",
+'explainconflict'                  => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
+It earste bewurkingsfjild is hoe't de tekst wilens wurden is.
+Jo feroarings stean yn it twadde fjild.
+Dy wurde allinnich tapast safier as jo se yn it earste fjild ynpasse.
+'''Allinnich''' de tekst út it earste fjild kin fêstlein wurde.",
 'yourtext'                         => 'Jo tekst',
 'storedversion'                    => 'Fêstleine ferzje',
 'nonunicodebrowser'                => "'''WARSKOGING: Jo browser kin net goed oer de wei mei unicode.
@@ -1076,7 +1080,7 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'math_unknown_function'     => 'Unbekinde funksje',
 'math_lexing_error'         => 'Unbekind wurd',
 'math_syntax_error'         => 'Sinboufout',
-'math_image_error'          => 'PNG-omsetting is mislearre. 
+'math_image_error'          => 'PNG-omsetting is mislearre.
 Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'math_bad_tmpdir'           => 'De tydlike formulepad kin net skreaun of makke wêze.',
 'math_bad_output'           => 'De formulepad kin net skreaun of makke wêze.',
@@ -1142,7 +1146,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'userrights-editusergroup'    => 'Wizigje meidoggerrjochten',
 'saveusergroups'              => 'Meidoggerrjochten fêstlizze',
 'userrights-groupsmember'     => 'Sit yn group:',
-'userrights-groups-help'      => "Jo kinne de groepen feroarje dêr't dizze brûker lid fan is. 
+'userrights-groups-help'      => "Jo kinne de groepen feroarje dêr't dizze brûker lid fan is.
 * In oankrúst fekje betsjut dat de brûker lid is fan 'e groep.
 * In net oankrúst fekje betsjut dat de brûker gjin lid is fan 'e groep.
 * In \"*\" betsjut dat jo in brûker net út in groep weihelje kinne nei't jo dy tafoege hawwe, of oarsom.",
@@ -1874,7 +1878,7 @@ De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
 
 # Protect
 'protectlogpage'              => 'Skoattelloch',
-'protectlogtext'              => 'Hjirûnder wurdt it skoateljen en frijjaan fan siden oanjûn. 
+'protectlogtext'              => 'Hjirûnder wurdt it skoateljen en frijjaan fan siden oanjûn.
 Sjoch [[Special:ProtectedPages|Skoattele side]] foar mear ynformaasje.',
 'protectedarticle'            => '"[[$1]]" skoattele',
 'unprotectedarticle'          => 'joech "[[$1]]" frij',
@@ -2045,7 +2049,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 # Developer tools
 'lockdb'              => "Meitsje de database 'Net-skriuwe'",
 'unlockdb'            => 'Meitsje de databank skriuwber',
-'lockdbtext'          => "Wylst de databank skoattele is, is foar meidoggers it feroarjen fan siden, ynstellings, folchlisten, ensfh. net mooglik. 
+'lockdbtext'          => "Wylst de databank skoattele is, is foar meidoggers it feroarjen fan siden, ynstellings, folchlisten, ensfh. net mooglik.
 
 Befêstigje dat dit is sa't jo it hawwe wolle, en dat jo de databank wer frijjouwe as jo ûnderhâld ree is.",
 'unlockdbtext'        => 'As de databank frijjûn wurdt, is foar meidoggers it feroarjen fan siden, ynstellings, folchlisten ensfh. wer mooglik. Befêstigje dat dit is wat jo wolle.',
@@ -2353,7 +2357,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'confirmemail_sendfailed' => 'De befêstigingskoade koe net stjoerd wurde. Faaks stean der ferkearde tekens yn it e-postadres.
 
 Berjocht: $1',
-'confirmemail_invalid'    => 'Dizze befêstiginskoade jildt net (mear). 
+'confirmemail_invalid'    => 'Dizze befêstiginskoade jildt net (mear).
 Faaks is de koade ferrûn.',
 'confirmemail_success'    => 'Jo netpostadres is befêstige. Jo kinne jo no oanmelde en de wiki brûke.',
 'confirmemail_loggedin'   => 'Jo netpostadres is no befêstige.',

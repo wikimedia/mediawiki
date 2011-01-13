@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (贛語(繁體))
+/** Traditional Gan script (‪贛語(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Reedy
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
@@ -422,7 +423,7 @@ $2',
 'nocookiesnew'               => '帳戶扤正嘞！測到倷關吥嘞Cookies，麻煩倷開到佢登入過。',
 'nocookieslogin'             => '箇首要用 Cookies 登入，測到倷關吥嘞Cookies，麻煩倷開到佢登入過。',
 'noname'                     => '倷冇輸正有效嗰用戶名。',
-'loginsuccesstitle'          => '登入正嘞',
+'loginsuccesstitle'          => '登入正哩',
 'loginsuccess'               => '倷搦到"$1"嗰身份登到{{SITENAME}}。',
 'nosuchuser'                 => '箇首冇叫"$1"嗰用戶。望吖倷嗰拼寫，要伓建過隻新帳戶。',
 'nosuchusershort'            => '箇首冇叫"<nowiki>$1</nowiki>"嗰用戶。請望吖倷嗰拼寫。',
@@ -454,16 +455,17 @@ $2',
 'loginlanguagelabel'         => '語言: $1',
 
 # Password reset dialog
-'resetpass'               => '設過帳戶密碼',
-'resetpass_announce'      => '倷係用到臨時email嗰代碼登入嗰。要登正入，倷要到箇首設定隻新密碼:',
-'resetpass_header'        => '設過密碼',
-'oldpassword'             => '老密碼：',
-'newpassword'             => '新密碼：',
-'retypenew'               => '確認密碼:',
-'resetpass_submit'        => '設定密碼同到登入',
-'resetpass_success'       => '倷嗰密碼改正嘍！正幫倷登入...',
-'resetpass_bad_temporary' => '冇用嗰臨時密碼。可能倷改正嘞倷嗰密碼，或者重新要過隻新嗰臨時密碼。',
-'resetpass_forbidden'     => '到{{SITENAME}}上改伓正密碼',
+'resetpass'                 => '設過帳戶密碼',
+'resetpass_announce'        => '倷係用到臨時email嗰代碼登入嗰。要登正入，倷要到箇首設定隻新密碼:',
+'resetpass_header'          => '設過密碼',
+'oldpassword'               => '老密碼：',
+'newpassword'               => '新密碼：',
+'retypenew'                 => '確認密碼:',
+'resetpass_submit'          => '設定密碼同到登入',
+'resetpass_success'         => '倷嗰密碼改正嘍！正幫倷登入...',
+'resetpass_bad_temporary'   => '冇用嗰臨時密碼。可能倷改正嘞倷嗰密碼，或者重新要過隻新嗰臨時密碼。',
+'resetpass_forbidden'       => '到{{SITENAME}}上改伓正密碼',
+'resetpass-submit-loggedin' => '設過帳戶密碼',
 
 # Edit page toolbar
 'bold_sample'     => '粗體字',
@@ -544,7 +546,7 @@ $2',
 要係倷伓係特試來到箇首，捺吖瀏覽器嗰「返回」鍵即可去還。',
 'anontalkpagetext'                 => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext'                    => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]。',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]</span>。',
 'clearyourcache'                   => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''（或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R''）；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
 'usercssjsyoucanpreview'           => "'''提示:''' 存到前請用'望吖起'來測吖倷嗰新CSS/JS 。",
 'usercsspreview'                   => "'''注意倷單係到預覽倷個人嗰 CSS，內容哈冇保存！'''",
@@ -555,9 +557,9 @@ $2',
 'previewnote'                      => "'''請記到箇光係預覽，內容哈冇保存！'''",
 'previewconflict'                  => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
 'session_fail_preview'             => "'''對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
-'session_fail_preview_html'        => "'''對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。''' 
+'session_fail_preview_html'        => "'''對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。'''
 
-''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
+''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。''
 
 '''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
 'token_suffix_mismatch'            => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
@@ -608,6 +610,7 @@ $2',
 
 倷應該要考慮吖繼續編輯箇頁面係否有必要。
 為到方便，箇頁嗰刪除記錄已經到下底提供:",
+'edit-conflict'                    => '編輯仗。',
 
 # "Undo" feature
 'undo-success' => '箇隻編輯可以拕取銷。請檢查吖以確定箇係倷想扤嗰，接到保存修改去完成撤銷編輯。',
@@ -679,7 +682,9 @@ $2',
 'revdelete-success'           => "'''修訂嗰可見性設置正嘍。'''",
 'logdelete-success'           => "'''事件嗰可見性設置正嘍。'''",
 'revdel-restore'              => '改動可見性',
+'pagehist'                    => '文章歷史',
 'deletedhist'                 => '刪吥嗰歷史',
+'revdelete-uname'             => '用戶名',
 'revdelete-hid'               => '弆到 $1',
 
 # History merging
@@ -1184,7 +1189,8 @@ $2',
 'categoriespagetext' => '下底嗰分類包到頁面或係媒體文件。',
 
 # Special:LinkSearch
-'linksearch' => '外部連結',
+'linksearch'    => '外部連結',
+'linksearch-ok' => '尋吖',
 
 # Special:ListUsers
 'listusersfrom'      => '顯示噉樣用戶條件:',

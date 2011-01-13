@@ -8,6 +8,7 @@
  * @file
  *
  * @author MF-Warburg
+ * @author Reedy
  */
 
 $namespaceNames = array(
@@ -339,7 +340,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'whitelistedittext'      => 'Ó tenke $1 ba edita pájina sira.',
 'loginreqpagetext'       => 'Ó tenke $1 ba haree pájina seluk.',
 'newarticle'             => '(Foun)',
-'noarticletext'          => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e].",
+'noarticletext'          => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e]</span>.",
 'editing'                => 'Edita $1',
 'editingsection'         => 'Edita $1 (seksaun)',
 'editingcomment'         => 'Edita $1 (seksaun foun)',
@@ -589,8 +590,9 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'newuserlog-create2-entry' => 'registrar tiha konta foun $1',
 
 # Special:ListGroupRights
-'listgrouprights-group'  => 'Grupu',
-'listgrouprights-rights' => 'Priviléjiu',
+'listgrouprights-group'   => 'Grupu',
+'listgrouprights-rights'  => 'Priviléjiu',
+'listgrouprights-members' => '(lista membru nian)',
 
 # E-mail user
 'emailuser'       => "Haruka korreiu eletróniku ba uza-na'in ne'e",
@@ -747,6 +749,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'tooltip-pt-mytalk'         => 'Ó-nia pájina diskusaun',
 'tooltip-pt-preferences'    => "Ha'u-nia preferénsia",
 'tooltip-pt-mycontris'      => 'Ó-nia kontribuisaun (lista)',
+'tooltip-pt-login'          => 'Ami rekomenda identifikasaun ("log in"), maibé Ita-Boot la presiza halo ne\'e',
 'tooltip-pt-logout'         => 'Husik',
 'tooltip-ca-talk'           => 'Diskusaun kona-ba konteúdu pájina nian',
 'tooltip-ca-edit'           => "Ó bele filak pájina ne'e. Please use the preview button before saving.",
@@ -769,7 +772,9 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'tooltip-t-emailuser'       => 'Haruka korreiu eletróniku',
 'tooltip-t-upload'          => 'Tau iha arkivu laran',
 'tooltip-t-specialpages'    => 'Lista pájina espesiál hotu nian',
+'tooltip-t-print'           => "Versaun pájina ne'e nian ba imprime/prin",
 'tooltip-ca-nstab-user'     => "Haree pájina uza-na'in",
+'tooltip-ca-nstab-special'  => "Ne'e pájina espesiál – Ita la bele edita",
 'tooltip-ca-nstab-project'  => 'Haree pájina projetu nian',
 'tooltip-ca-nstab-category' => 'Lee pájina kategoria',
 'tooltip-minoredit'         => "Marka ne'e hanesan muda ki'ik",

@@ -193,7 +193,7 @@ $messages = array(
 'tog-minordefault'            => 'Markér som standard alle redigering som mindre',
 'tog-previewontop'            => 'Vis forhåndsvisning over redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning når du starter med at redigere',
-'tog-nocache'                 => 'Slå caching af sider fra',
+'tog-nocache'                 => 'Slå browsercaching af sider fra',
 'tog-enotifwatchlistpages'    => 'Send mig en e-mail ved sideændringer',
 'tog-enotifusertalkpages'     => 'Send mig en e-mail når min brugerdiskussionsside ændres',
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
@@ -450,15 +450,15 @@ En liste over gyldige specialsider findes på [[Special:SpecialPages|{{int:speci
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
 'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
-Det kan tyde på en fejl i softwaren. 
+Det kan tyde på en fejl i softwaren.
 Den sidst forsøgte databaseforespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
-fra funktionen "<tt>$2</tt>". 
+fra funktionen "<tt>$2</tt>".
 Databasen returnerede fejlen "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
+'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
 Den seneste forsøgte databaseforespørgsel var:
 "$1"
-fra funktionen "$2". 
+fra funktionen "$2".
 Databasen returnerede fejlen "$3: $4"',
 'noconnect'            => 'Beklager! Wikien har tekniske problemer og kan ikke få kontakt til databaseserveren.<br />$1',
 'nodb'                 => 'Kunne ikke vælge databasen $1',
@@ -579,7 +579,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'loginsuccesstitle'          => 'Du er nu logget på',
 'loginsuccess'               => 'Du er nu logget på {{SITENAME}} som "$1".',
 'nosuchuser'                 => 'Der er ingen bruger med navnet "$1".
-Der skelnes mellem store og bogstaver i brugernavne. 
+Der skelnes mellem store og bogstaver i brugernavne.
 Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'nosuchusershort'            => 'Der er ingen bruger ved navn "$1". Tjek din stavning.',
 'nouserspecified'            => 'Angiv venligst et brugernavn.',
@@ -590,11 +590,11 @@ Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
 har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}} ($4).
-En midlertidig adgangskode for bruger "$2" er blevet lavet, den er "$3". 
+En midlertidig adgangskode for bruger "$2" er blevet lavet, den er "$3".
 Hvis dette var din mening, skal du logge ind og vælge en ny adgangskode nu.
 Din midlertidige adgangskode vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 
-Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke om din gamle adgangskode og ikke længere vil ændre den, 
+Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke om din gamle adgangskode og ikke længere vil ændre den,
 kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangskode.',
 'noemail'                    => 'Der er ikke oplyst en e-mail-adresse for bruger "$1".',
 'passwordsent'               => 'En ny adgangskode er sendt til e-mail-adressen,
@@ -638,7 +638,7 @@ Vent venligst før du prøver igen.',
 'resetpass_forbidden'       => 'Adgangskoder kan ikke ændres',
 'resetpass-no-info'         => 'Du skal være logget på for at komme direkte til denne side.',
 'resetpass-submit-loggedin' => 'Skift adgangskode',
-'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode. 
+'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode.
 Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
 'resetpass-temp-password'   => 'Midlertidig adgangskode',
 'resetpass-log'             => 'Adgangskodeændringslog',
@@ -736,9 +736,9 @@ Adgangskoden for denne ny brugerkonto kan ændres på ''[[Special:ChangePassword
 For at oprette siden skal du begynde at skrive i boksen nedenfor
 (se [[{{MediaWiki:Helppage}}|hjælpesiden]] for yderligere information).
 Hvis du er her ved en fejl, så tryk på din browsers '''tilbage'''-knap.",
-'anontalkpagetext'                 => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. 
-Vi er derfor nødt til at bruge den numeriske IP-adresse til at identificere ham eller hende. 
-En IP-adresse kan være delt mellem flere brugere. 
+'anontalkpagetext'                 => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den.
+Vi er derfor nødt til at bruge den numeriske IP-adresse til at identificere ham eller hende.
+En IP-adresse kan være delt mellem flere brugere.
 Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at [[Special:UserLogin/signup|oprette en brugerkonto]] og [[Special:UserLogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
 'noarticletext'                    => 'Der er i øjeblikket ikke nogen tekst på denne side.
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
@@ -771,11 +771,11 @@ Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
 'editingsection'                   => 'Redigerer $1 (afsnit)',
 'editingcomment'                   => 'Redigerer $1 (nyt afsnit)',
 'editconflict'                     => 'Redigeringskonflikt: $1',
-'explainconflict'                  => 'Nogen har ændret denne side, efter du startede på at redigere den.
+'explainconflict'                  => "Nogen har ændret denne side, efter du startede på at redigere den.
 Den øverste tekstboks indeholder den nuværende tekst.
 Dine ændringer er vist i den nederste tekstboks.
 Du er nødt til at sammenflette dine ændringer med den eksisterende tekst.
-<b>Kun</b> teksten i den øverste tekstboks vil blive gemt når du trykker "Gem side".<br />',
+'''Kun''' teksten i den øverste tekstboks vil blive gemt når du trykker \"{{int:savearticle}}\".",
 'yourtext'                         => 'Din tekst',
 'storedversion'                    => 'Den gemte version',
 'nonunicodebrowser'                => "'''Advarsel: Din browser er ikke unicode-kompatibel, skift eller opdater din browser før du redigerer en artikel.'''",
@@ -784,14 +784,14 @@ Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive ove
 'yourdiff'                         => 'Forskelle',
 'copyrightwarning'                 => "Bemærk venligst at alle bidrag til {{SITENAME}} er at betragte som udgivne under $2 (se $1 for detaljer).
 Hvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her.<br />
-Du lover os også, at du selv har forfattet teksten eller har kopieret den fra en public domain-kilde eller en tilsvarende fri kilde. 
+Du lover os også, at du selv har forfattet teksten eller har kopieret den fra en public domain-kilde eller en tilsvarende fri kilde.
 '''Læg aldrig materiale her som er beskyttet af andres ophavsret uden deres tilladelse!'''",
 'copyrightwarning2'                => "Bemærk venligst at alle bidrag til {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
 Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en fri kilde (se $1 for detaljer).
 '''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD UDEN TILLADELSE!'''",
-'longpagewarning'                  => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 kb. 
+'longpagewarning'                  => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 kb.
 Overvej om siden kan opdeles i mindre dele.'''",
 'longpageerror'                    => "'''FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.'''",
 'readonlywarning'                  => "'''ADVARSEL: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.'''
@@ -822,7 +822,7 @@ denne side er vist nedenfor:",
 Sletningsloggen for siden er vist nedenfor.',
 'deletelog-fulllog'                => 'Se hele loggen',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
-'edit-gone-missing'                => 'Kunne ikke opdatere siden. 
+'edit-gone-missing'                => 'Kunne ikke opdatere siden.
 Den ser du til at være slettet.',
 'edit-conflict'                    => 'Redigeringskonflikt.',
 'edit-no-change'                   => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
@@ -949,7 +949,7 @@ Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
-'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side. 
+'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side.
 Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 '''Bevar som minimum den nuværende udgave af kildesiden.'''",
@@ -1131,7 +1131,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'math_unknown_function'     => 'ukendt funktion',
 'math_lexing_error'         => 'lexerfejl',
 'math_syntax_error'         => 'syntaksfejl',
-'math_image_error'          => 'PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
+'math_image_error'          => 'PNG-konvertering mislykkedes; undersøg om latex og dvipng (eller dvips + gs + convert) er installeret korrekt',
 'math_bad_tmpdir'           => 'Kan ikke skrive til eller oprette temp-mappe til math',
 'math_bad_output'           => 'Kan ikke skrive til eller oprette uddata-mappe til math',
 'math_notexvc'              => 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
@@ -1416,8 +1416,8 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
 'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
 [[$1|thumb]]',
-'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn. 
-Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt. 
+'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn.
+Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt.
 For at få din beskrivelse vist, skal du selv redigere beskrivelsessiden.
 [[$1|thumb]]",
 'fileexists-extension'        => "En fil med lignende navn findes allerede: [[$2|thumb]]
@@ -1464,7 +1464,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-proto-error'      => 'Forkert protokol',
 'upload-proto-error-text' => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error'       => 'Intern fejl',
-'upload-file-error-text'  => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl. 
+'upload-file-error-text'  => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl.
 Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-misc-error'       => 'Ukendt fejl ved upload',
 'upload-misc-error-text'  => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en system-administrator.',
@@ -2035,7 +2035,7 @@ $1',
 
 'sp-contributions-newbies'       => 'Vis kun bidrag fra nye brugere',
 'sp-contributions-newbies-sub'   => 'Fra nye kontoer',
-'sp-contributions-newbies-title' => 'Brugerbidrag fra nye kontoer',
+'sp-contributions-newbies-title' => 'Brugerbidrag fra nye konti',
 'sp-contributions-blocklog'      => 'blokeringslog',
 'sp-contributions-logs'          => 'loglister',
 'sp-contributions-search'        => 'Søg efter bidrag',
@@ -2129,7 +2129,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'unblocklink'                     => 'ophæv blokering',
 'change-blocklink'                => 'ændr blokering',
 'contribslink'                    => 'bidrag',
-'autoblocker'                     => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]". 
+'autoblocker'                     => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
 Begrundelse: "$2".',
 'blocklogpage'                    => 'Blokeringslog',
 'blocklog-fulllog'                => 'Komplet blokeringslog',
@@ -2853,8 +2853,8 @@ $1',
 'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict
-'deletedwhileediting' => 'Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den! 
-Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen], 
+'deletedwhileediting' => 'Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den!
+Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen],
 hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.',
 'confirmrecreate'     => "Bruger [[User:$1|$1]] ([[User talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
 : ''$2''
@@ -3021,7 +3021,7 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',
 'dberr-problems'    => 'Undskyld! Siden har tekniske problemer.',
-'dberr-again'       => 'Prøv at vente et par minutter og opdater Nyså siden igen.',
+'dberr-again'       => 'Prøv at vente et par minutter og opdater så siden igen.',
 'dberr-info'        => '(Kan ikke komme i kontakt med databaseserveren: $1)',
 'dberr-usegoogle'   => 'Du kan prøve at søge med Google imens.',
 'dberr-outofdate'   => 'Bemærk at deres indeks over vores sider kan være forældet.',

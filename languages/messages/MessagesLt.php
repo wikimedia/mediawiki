@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dark Eagle
  * @author Garas
  * @author Homo
  * @author Hugo.arg
@@ -191,7 +192,7 @@ $messages = array(
 'tog-minordefault'            => 'Pagal nutylėjimą pažymėti redagavimus kaip smulkius',
 'tog-previewontop'            => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst'          => 'Rodyti peržiūrą pirmą kartą pakeitus',
-'tog-nocache'                 => 'Nenaudoti puslapių kaupimo',
+'tog-nocache'                 => 'Išjungti interneto naršyklės puslapių podėlį',
 'tog-enotifwatchlistpages'    => 'Siųsti man laišką, kai pakeičiamas puslapis, kurį stebiu',
 'tog-enotifusertalkpages'     => 'Siųsti man laišką, kai pakeičiamas mano naudotojo aptarimo puslapis',
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
@@ -589,7 +590,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
-'nosuchuser'                 => 'Nėra jokio naudotojo, turinčio vardą „$1“. 
+'nosuchuser'                 => 'Nėra jokio naudotojo, turinčio vardą „$1“.
 Naudotojų varduose skiriamos didžiosios ir mažosios raidės.
 Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą]].',
 'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
@@ -783,7 +784,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 Viršutiniame tekstiniame lauke pateikta šiuo metu esanti puslapio versija.
 Jūsų keitimai pateikti žemiau esančiame lauke.
 Jums reikia sujungti jūsų pakeitimus su esančia versija.
-Kai paspausite „Įrašyti“, bus įrašytas '''tik''' tekstas viršutiniame tekstiniame lauke.",
+Kai paspausite „{{int:savearticle}}“, bus įrašytas '''tik''' tekstas viršutiniame tekstiniame lauke.",
 'yourtext'                         => 'Jūsų tekstas',
 'storedversion'                    => 'Išsaugota versija',
 'nonunicodebrowser'                => "'''ĮSPĖJIMAS: Jūsų naršyklė nepalaiko unikodo. Kad būtų saugu redaguoti puslapį, ne ASCII simboliai redagavimo lauke bus rodomi kaip šešioliktainiai kodai.'''",
@@ -1448,7 +1449,7 @@ Prašome pasirinkti kitą vardą.",
 'fileexists-thumbnail-yes'    => "Failas turbūt yra sumažinto dydžio failas ''(miniatiūra)''. [[$1|thumb]]
 Prašome peržiūrėti failą '''<tt>[[:$1]]</tt>'''.
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.",
-'file-thumbnail-no'           => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''. 
+'file-thumbnail-no'           => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''.
 Atrodo, kad yra sumažinto dydžio paveikslėlis ''(miniatiūra)''.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.",
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja ir negali būti perrašytas;
@@ -2496,6 +2497,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'skinname-myskin'      => 'Mano išvaizda',
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Paprasta',
+'skinname-modern'      => 'Moderni',
 
 # Math options
 'mw_math_png'    => 'Visada formuoti PNG',
@@ -2969,8 +2971,8 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
 'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
-'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. 
-Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“. 
+'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše.
+Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“.
 Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
 'watchlistedit-normal-submit'  => 'Šalinti puslapius',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',

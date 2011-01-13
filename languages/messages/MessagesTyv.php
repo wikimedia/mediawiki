@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author friends at tyvawiki.org
@@ -186,7 +187,7 @@ $messages = array(
 'disclaimers'          => 'Ажыглаарынка чомпээрежил',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
-'helppage'             => 'Help:Допчузу',
+'helppage'             => 'Help:Уткалар',
 'mainpage'             => 'Кол Арын',
 'mainpage-description' => 'Кол Арын',
 'policy-url'           => 'Project:Политика',
@@ -313,7 +314,9 @@ $1',
 'nosuchsectiontitle' => 'Бо салбыр чок',
 'loginreqlink'       => 'кирер',
 'accmailtitle'       => 'Чажыт сөс чоргустунган.',
-'accmailtext'        => '',
+'accmailtext'        => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2.
+
+The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
 'editingsection'     => '$1 деп арынның салбырын өскертип турар',
@@ -346,7 +349,7 @@ $1',
 # Revision deletion
 'rev-deleted-comment'    => '(комментарийни ап каан)',
 'rev-deleted-user'       => '(ажыглакчының адын ап каан)',
-'rev-deleted-event'      => '',
+'rev-deleted-event'      => '(log action removed)',
 'rev-delundel'           => 'көргүзери/чажырары',
 'revisiondelete'         => 'Үндүрерилерни ап каар/диргисир',
 'revdelete-hide-comment' => 'Өскерлиишкинниң комментарийн чажырар',
@@ -374,7 +377,7 @@ $1',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сөс}})',
 'search-section'           => '("$1" деп салбыр)',
 'searchall'                => 'шупту',
-'powersearch'              => '',
+'powersearch'              => 'Advanced search',
 
 # Preferences page
 'preferences'               => 'Шилиирилер',
@@ -403,7 +406,7 @@ $1',
 'files'                     => 'файлдар',
 
 # User rights
-'editinguser'       => '',
+'editinguser'       => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-reason' => 'Чылдагаан:',
 
 # Groups
@@ -489,7 +492,7 @@ $1',
 'filehist-thumb'     => 'Бичии чурук',
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
-'filehist-comment'   => 'Комментарий',
+'filehist-comment'   => 'Тайылбыр',
 'imagelinks'         => 'Файлдың xолбаалары',
 'noimage-linktext'   => 'Ону киирер',
 
@@ -622,7 +625,7 @@ $1',
 # Protect
 'protectlogpage'         => 'Камгалал кырында журнал',
 'protectcomment'         => 'Чылдагаан:',
-'protect-default'        => '',
+'protect-default'        => 'Allow all users',
 'protect-level-sysop'    => 'Чүгле эргелекчылар',
 'protect-otherreason'    => 'Өске/немелде чылдагаан:',
 'protect-otherreason-op' => 'Өске чылдагаан',
@@ -706,7 +709,7 @@ $1',
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
 'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзызы',
 'tooltip-pt-logout'         => 'Үнери',
-'tooltip-ca-talk'           => 'Бо арынның допчузузу дугайында чыгаалажыры',
+'tooltip-ca-talk'           => 'Бо арын дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаары',
 'tooltip-ca-delete'         => 'Бо арынны ап каары',
 'tooltip-ca-move'           => 'Бо арынны шимчээри',
@@ -753,7 +756,7 @@ $1',
 
 # Special:NewFiles
 'showhidebots' => '(боцду $1)',
-'noimages'     => '',
+'noimages'     => 'Nothing to see.',
 'ilsubmit'     => 'Дилээр',
 
 # EXIF tags
@@ -774,9 +777,9 @@ $1',
 'monthsall'        => 'шупту',
 
 # Multipage image navigation
-'imgmultipageprev' => '← бүрүнгү арын',
+'imgmultipageprev' => '← мурнунда арын',
 'imgmultipagenext' => 'соонда арын →',
-'imgmultigo'       => '',
+'imgmultigo'       => 'Go!',
 
 # Table pager
 'table_pager_next'         => 'Соонда арын',
@@ -787,7 +790,7 @@ $1',
 'table_pager_empty'        => 'Түңнеллер чок',
 
 # Auto-summaries
-'autosumm-new' => '',
+'autosumm-new' => 'Created page with "$1"',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Хайгаарылга даңзызын өскертири',

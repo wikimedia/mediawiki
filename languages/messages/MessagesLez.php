@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amikeco
+ * @author Andrijko Z.
  */
 
 $messages = array(
@@ -102,7 +103,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Хъувун',
-'nstab-special'   => 'КьетIен',
+'nstab-special'   => 'КьетIен хъувун',
 'nstab-image'     => 'Шикил',
 'nstab-mediawiki' => 'Меслят',
 

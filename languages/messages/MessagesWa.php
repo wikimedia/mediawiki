@@ -111,6 +111,7 @@ $messages = array(
 'tog-watchlisthideminor'      => "Catchî les candjmints mineurs dins l' djivêye des shuvous",
 'tog-ccmeonemails'            => "m' evoyî ene copeye des emiles ki dj' evoye ås ôtes",
 'tog-diffonly'                => "Èn nén håyner l' contnou del pådje pa dzo l' pådje des diferinces",
+'tog-showhiddencats'          => 'Mostrer les categoreyes mucheyes',
 
 'underline-always'  => 'Tofer',
 'underline-never'   => 'Måy',
@@ -282,6 +283,8 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vos avoz des noveas messaedjes so $1',
 'editsection'             => 'candjî',
 'editold'                 => 'candjî',
+'editlink'                => 'candjî',
+'viewsourcelink'          => 'Vey côde sourdant',
 'editsectionhint'         => "Candjî l' seccion: $1",
 'toc'                     => 'Ådvins',
 'showtoc'                 => 'mostrer',
@@ -521,8 +524,7 @@ Li boesse di tecse do dzeur mostere li tecse del pådje come il est
 pol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.
 Les diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins
 l' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.
-<b>Seulmint</b> li tecse do dzeur serè candjî cwand vos clitchroz sol
-boton «Schaper l' pådje».<br />",
+'''Seulmint''' li tecse do dzeur serè candjî cwand vos clitchroz sol boton «{{int:savearticle}}».",
 'yourtext'                  => 'Li tecse da vosse',
 'storedversion'             => 'Modêye sol sierveu',
 'nonunicodebrowser'         => "'''ASTEME: li betchteu waibe da vosse ni sopoite nén l' ecôdaedje unicôde, cåze di çoula les caracteres nén-ASCII vont aparexhe dins l' boesse di tecse come des côdes hecsadecimås, insi vos pôroz tot l' minme candjî l' pådje.'''",
@@ -556,6 +558,11 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'recreate-deleted-warn'     => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
 
 Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del pådje :",
+'edit-gone-missing'         => "Li pàdje n' a sepou esse rapontieye.
+Motoit k' elle a stî tapêye evoye.",
+'edit-conflict'             => 'Ecramiaedje di candjmints.',
+'edit-no-change'            => "Vosse sicrijhaedje n' a nén passé, paski rén n' a stî candjî al modêye di dvant.",
+'edit-already-exists'       => "Li novele pâdje n' a savou esse ahivêye, ca cisse pâdje la egzistêye dedja.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Vos n' ploz nén ahiver-st on conte.",
@@ -577,7 +584,7 @@ Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del påd
 ki vos vloz comparer et s' tchôkîz sol tape «enter» ou clitchîz sol
 boton do dzo.<br />
 Ledjinde: (ast.) = diferince avou l' modêye d' asteure,
-(dif.) = diferince avou l' modêye di dvant, M = candjmint mineur.",
+(dif.) = diferince avou l' modêye di dvant, M = pitit candjmint d' rén do tot.",
 'deletedrev'          => '[disfacé]',
 'histfirst'           => 'li pus vî',
 'histlast'            => 'li dierin',
@@ -631,6 +638,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'prevn'                    => '$1 di dvant',
 'nextn'                    => '$1 shuvants',
 'viewprevnext'             => 'Vey ($1) ($2) ($3).',
+'searchmenu-exists'        => "'''Gn a ddja ene pådje lomêye « [[:$1]] » so ç' wiki ci'''",
 'searchhelp-url'           => 'Help:Aidance',
 'search-redirect'          => '(ridjiblé di $1)',
 'search-interwiki-caption' => 'So les ôtes pordjets Wiki',
@@ -727,6 +735,9 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'grouppage-sysop'      => '{{ns:project}}:Manaedjeus',
 'grouppage-bureaucrat' => '{{ns:project}}:Mwaisse-manaedjeus',
 
+# Rights
+'right-read' => 'Lére les pådjes',
+
 # User rights log
 'rightslog'      => 'Djournå des droets des uzeus',
 'rightslogtext'  => "Çouchal, c' est on djournå des candjmints des droets des uzeus.",
@@ -758,7 +769,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'diff'                              => 'dif.',
 'hist'                              => 'ist.',
 'hide'                              => 'Muchyî',
-'show'                              => 'håy.',
+'show'                              => 'håyner',
 'number_of_watching_users_pageview' => '[shuvou pa $1 {{PLURAL:$1|uzeu|uzeus}}]',
 'rc_categories'                     => 'Limiter åzès categoreyes (separer avou des «|»)',
 'rc_categories_any'                 => 'Totes',
@@ -837,11 +848,13 @@ ou co po les sons
 'filehist-help'             => "Clitchîz so ene date ey ene eure po vey kimint ki l' fitchî esteut adon.",
 'filehist-deleteall'        => 'disfacer ttafwait',
 'filehist-deleteone'        => 'disfacer çouci',
+'filehist-current'          => 'asteure',
 'filehist-datetime'         => 'Date/Eure',
 'filehist-user'             => 'Uzeu',
+'filehist-dimensions'       => 'Grandeur',
 'filehist-filesize'         => 'Grandeur do fitchî',
 'filehist-comment'          => 'Comintaire',
-'imagelinks'                => 'Loyéns viè ciste imådje chal',
+'imagelinks'                => 'Loyéns viè ciste imådje cial',
 'linkstoimage'              => '{{PLURAL:$1|Li pådje shuvante|Les pådjes shuvantes}} eployèt ciste imådje chal:',
 'nolinkstoimage'            => "I n' a nole pådje k' eploye ciste imådje chal.",
 'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
@@ -935,6 +948,8 @@ ou co po les sons
 'movethispage'            => 'Displaecî cisse pådje',
 'unusedimagestext'        => "Notez tot l' minme ki d' ôtès waibes polèt aveur des loyéns viè ces imådjes la gråcès a ene direke hårdêye. Do côp, ces imådjes aparexhèt chal, mågré k' ele soeyexhe eployeyes.",
 'unusedcategoriestext'    => "Les pådjes di categoreye shuvantes egzistént, mins i n' a nol årtike ni categoreye å dvins.",
+'pager-newer-n'           => '{{PLURAL:$1|pus novea 1|pus noveas $1}}',
+'pager-older-n'           => '{{PLURAL:$1|pus vî 1|pus vîs $1}}',
 
 # Book sources
 'booksources' => 'Sourdants po les lives',
@@ -1075,7 +1090,7 @@ tot [[{{MediaWiki:Policy-url}}|shuvant les rîles]].",
 'actioncomplete'    => 'Fwait',
 'deletedtext'       => 'Li pådje «<nowiki>$1</nowiki>» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.',
-'deletedarticle'    => 'pådje «$1» disfacêye',
+'deletedarticle'    => 'pådje «[[$1]]» disfacêye',
 'dellogpage'        => 'Djournå des disfaçaedjes',
 'dellogpagetext'    => "Chal pa dzo c' est l' djivêye des dierins disfaçaedjes.",
 'deletionlog'       => 'djournå des disfaçaedjes',
@@ -1084,7 +1099,7 @@ djivêye des dierins disfaçaedjes.',
 
 # Rollback
 'cantrollback'  => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
-'alreadyrolled' => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
+'alreadyrolled' => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]);
 ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
@@ -1155,6 +1170,7 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'mycontris'     => 'Mi ovraedje',
 'contribsub2'   => "Po l' uzeu $1 ($2)",
 'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.", # Optional parameter: $1 is the user name
+'month'         => "dispu l' moes (et pus timpe)",
 
 'sp-contributions-submit' => 'Cweri',
 
@@ -1363,7 +1379,7 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'tooltip-ca-nstab-template'       => 'Vey li modele',
 'tooltip-ca-nstab-help'           => "Vey li pådje d' aidance",
 'tooltip-ca-nstab-category'       => 'Vey li pådje di categoreye',
-'tooltip-minoredit'               => 'Mete çouci come on candjmint mineur [alt-i]',
+'tooltip-minoredit'               => "Mete çouci come on ptit candjmint d' rén do tot [alt-i]",
 'tooltip-save'                    => 'Schaper vos candjmints [alt-s]',
 'tooltip-preview'                 => "Prévey vos candjmints, fijhoz l' divant d' schaper s' i vs plait! [alt-p]",
 'tooltip-diff'                    => 'Mostrer les candjmints ki vos avoz fwait e tecse. [alt-v]',
@@ -1412,11 +1428,12 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'nextdiff'     => 'Diferinces des candjmints shuvants →',
 
 # Media information
-'mediawarning'   => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.",
-'imagemaxsize'   => "Limite pol håynaedje ezès pådjes d' imådje:",
-'thumbsize'      => 'Grandeu po les imådjetes (thumb):',
-'file-info-size' => '($1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4)',
-'show-big-image' => 'Pus grande imådje',
+'mediawarning'         => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.",
+'imagemaxsize'         => "Limite pol håynaedje ezès pådjes d' imådje:",
+'thumbsize'            => 'Grandeu po les imådjetes (thumb):',
+'file-info-size'       => '($1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4)',
+'show-big-image'       => 'Pus grande imådje',
+'show-big-image-thumb' => '<small>Grandeur di ci prevoeyaedje ci : $1 × $2 picsels</small>',
 
 # Special:NewFiles
 'newimages'             => 'Galreye des nouvès imådjes',

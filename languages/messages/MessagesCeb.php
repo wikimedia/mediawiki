@@ -10,6 +10,7 @@
  * @author Abastillas
  * @author Jordz
  * @author Palang hernan
+ * @author Reedy
  * @author לערי ריינהארט
  */
 
@@ -478,7 +479,7 @@ Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
 Naka-disable ang imong mga koki.
 Palihog i-enable kini, unya pag-log-in gamit ang imong bag-ong username ug pasword.',
 'nocookieslogin'            => "Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
-Naka-disable ang imong mga koki. 
+Naka-disable ang imong mga koki.
 Palihog i-enable kini, ug sulayi'g balik.",
 'noname'                    => 'Wala ikaw mag-specify og valid nga user name.',
 'loginsuccesstitle'         => 'Malamposon ang pagpaila',
@@ -486,7 +487,7 @@ Palihog i-enable kini, ug sulayi'g balik.",
 'nosuchuser'                => 'Walay gumagamit nga may pangalang "$1".
 Case sensitive ang mga user name.
 I-tsek ang imong espeling, o [[Special:UserLogin/signup|paghimo og bag-ong akawnt]].',
-'nosuchusershort'           => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>". 
+'nosuchusershort'           => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>".
 I-tsek ang imong espeling.',
 'nouserspecified'           => 'Kinahanglan mag-specify ka og username.',
 'wrongpassword'             => "Sayop nga pasword ang naentra.
@@ -532,7 +533,7 @@ Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [[{{MediaWiki
 Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplokanan sa imong brawser.',
 'noarticletext'                    => 'Sa kasamtangan walay sulod nga teksto ang kining panid.
 Puyde nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pangitaa ang related nga mga log],
-o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid].',
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid]</span>.',
 'userpage-userdoesnotexist'        => 'Ang akawnt sa tiggamit nga "$1" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
 'previewnote'                      => "'''Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!'''",
 'editing'                          => 'Nagausab sa $1',

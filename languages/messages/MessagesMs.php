@@ -9,6 +9,7 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author CoolCityCat
  * @author Diagramma Della Verita
  * @author Izzudin
  * @author Kurniasan
@@ -202,7 +203,7 @@ $messages = array(
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
-'underline-default' => 'Ikut tetapan pelayar',
+'underline-default' => 'Pelayar asal',
 
 # Dates
 'sunday'        => 'Ahad',
@@ -445,7 +446,7 @@ daripada fungsi "<tt>$2</tt>".
 Pangkalan data memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Terdapat ralat sintaks pertanyaan pangkalan data.
 Pertanyaan terakhir ialah:
-"$1" 
+"$1"
 daripada fungsi "$2".
 Pangkalan data memulangkan ralat "$3: $4".',
 'noconnect'            => 'Maaf! Wiki ini sedang menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data.<br />$1',
@@ -641,7 +642,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tajuk peringkat 2',
 'math_sample'     => 'Masukkan rumus di sini',
-'math_tip'        => 'Formula matematik (LaTeX)',
+'math_tip'        => 'Rumus matematik (LaTeX)',
 'nowiki_sample'   => 'Masukkan teks tak berformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_sample'    => 'Contoh.jpg',
@@ -749,12 +750,11 @@ Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama be
 'editingsection'                   => 'Menyunting $1 (bahagian)',
 'editingcomment'                   => 'Menyunting $1 (bahagian baru)',
 'editconflict'                     => 'Percanggahan penyuntingan: $1',
-'explainconflict'                  => 'Pengguna lain telah menyunting laman ini ketika anda sedang menyuntingnya.
+'explainconflict'                  => "Pengguna lain telah menyunting laman ini ketika anda sedang menyuntingnya.
 Kawasan teks di atas mengandungi teks semasa.
 Perubahan anda dipaparkan dalam kawasan teks di bawah.
 Anda perlu menggabungkan perubahan anda dengan teks semasa.
-<b>Hanya</b> teks dalam kawasan teks di atas akan disimpan jika anda menekan
-"Simpan laman".<br />',
+'''Hanya''' teks dalam kawasan teks di atas akan disimpan jika anda menekan \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teks anda',
 'storedversion'                    => 'Versi yang disimpan',
 'nonunicodebrowser'                => "'''AMARAN: Pelayar anda tidak mematuhi Unicode. Aksara-aksara bukan ASCII akan dipaparkan dalam kotak sunting sebagai kod perenambelasan.'''",
@@ -1368,12 +1368,13 @@ terlebih dahulu untuk memuat naik fail.',
 'upload_directory_missing'    => 'Direktori muat naik ($1) hilang dan tidak dapat dicipta oleh pelayan web.',
 'upload_directory_read_only'  => 'Direktori muat naik ($1) tidak boleh ditulis oleh pelayan web.',
 'uploaderror'                 => 'Ralat muat naik',
-'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
+'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail.
+Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Tindakan muat naik akan direkodkan dalam [[Special:Log/upload|log muat naik]], manakala penghapusan dalam [[Special:Log/delete|log penghapusan]].
 
-Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki>''' atau
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|teks alternatif]]</nowiki>'''. Anda juga boleh menggunakan
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki>''' untuk memaut secara terus.",
+Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan satu daripada bentuk-bentuk berikut:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></tt>''' untuk menggunakan versi penuh bagi fail itu
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menggunakan lakaran 200 piksel lebar di dalam sebuah kotak yang diletakkan di jidar kiri dengan keterangan 'teks alternatif'
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></tt>''' untuk memaut secara terus tanpa memaparkan fail itu",
 'upload-permitted'            => 'Jenis fail yang dibenarkan: $1.',
 'upload-preferred'            => 'Jenis fail yang diutamakan: $1.',
 'upload-prohibited'           => 'Jenis fail yang dilarang: $1.',
@@ -1513,7 +1514,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'filerevert'                => 'Balikkan $1',
 'filerevert-legend'         => 'Balikkan fail',
 'filerevert-intro'          => '<span class="plainlinks">Anda sedang menmbalikkan \'\'\'[[Media:$1|$1]]\'\'\' kepada [$4 versi pada $3, $2].</span>',
-'filerevert-comment'        => 'Komen:',
+'filerevert-comment'        => 'Sebab:',
 'filerevert-defaultcomment' => 'Dibalikkan kepada versi pada $2, $1',
 'filerevert-submit'         => 'Balikkan',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' telah dibalikkan kepada [$4 versi pada $3, $2].</span>',
@@ -1656,7 +1657,7 @@ Masukan yang <s>dipotong</s> telah diselesaikan.',
 'ancientpages'            => 'Laman lapuk',
 'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan laman ini',
-'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman. 
+'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman.
 Sila ambil perhatian bahawa mungkin terdapat tapak web lain yang memaut ke fail ini menggunakan URL langsung, dan masih disenaraikan di sini walapun berada dalam kegunaan aktif.',
 'unusedcategoriestext'    => 'Laman-laman kategori berikut wujud walaupun tiada laman atau kategori lain menggunakannya.',
 'notargettitle'           => 'Tiada sasaran',
@@ -1985,7 +1986,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletelink'                 => 'lihat/pulih',
 'undeletereset'                => 'set semula',
 'undeleteinvert'               => 'Kecualikan pilihan',
-'undeletecomment'              => 'Komen:',
+'undeletecomment'              => 'Sebab:',
 'undeletedarticle'             => '"[[$1]]" telah dipulihkan',
 'undeletedrevisions'           => '$1 semakan dipulihkan',
 'undeletedrevisions-files'     => '$1 semakan dan $2 fail dipulihkan',

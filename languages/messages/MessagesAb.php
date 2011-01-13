@@ -110,7 +110,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
-'nstab-user'     => 'Иалахә',
+'nstab-user'     => 'Алахәыла',
 'nstab-special'  => 'Цастәи адаҟьа',
 'nstab-image'    => 'Афаил',
 'nstab-template' => 'Ашаблон',
@@ -126,7 +126,7 @@ $messages = array(
 'userlogin'               => 'Урдырра/Арегистрациара',
 'logout'                  => 'Асеанс дәылҵра',
 'userlogout'              => 'Асеанс дәылҵра',
-'uid'                     => 'Иалоу ID:',
+'uid'                     => 'Алахәыла ID:',
 'yourlanguage'            => 'Абызшәа:',
 'loginlanguagelabel'      => 'Абызшәа: $1',
 
@@ -144,9 +144,9 @@ $messages = array(
 'searchresultshead' => 'Аҧшаара',
 
 # Groups
-'group-user' => 'Иалоуқәа',
+'group-user' => 'Алахәылацәа',
 
-'group-user-member' => 'Иалахә',
+'group-user-member' => 'алахәыла',
 
 'grouppage-sysop' => '{{ns:project}}:Администраторцәа',
 
@@ -161,16 +161,18 @@ $messages = array(
 'upload' => 'Афаил аҭагалара',
 
 # File description page
-'filehist-user' => 'Иалоу',
+'filehist-user' => 'Алахәыла',
 
 # Random page
 'randompage' => 'Машәырлатәи аҩымҭа',
 
 # Miscellaneous special pages
-'newpages-username' => 'Иалахә:',
+'newpages-username' => 'Алахәыла:',
+'move'              => 'Ахьӡ аҧсахра',
+'movethispage'      => 'Ахьӡ аҧсахра ари адаҟьа',
 
 # Special:Log
-'specialloguserlabel' => 'Иалахә:',
+'specialloguserlabel' => 'Алахәыла:',
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',
@@ -197,6 +199,9 @@ $messages = array(
 
 # Block/unblock
 'contribslink' => 'алагала',
+
+# Move page
+'movearticle' => 'Ахьӡ аҧсахра:',
 
 # Special:NewFiles
 'ilsubmit' => 'Аҧшаара',

@@ -315,7 +315,7 @@ $1',
 'nodb'                => 'Onu ne povas selektar datumaro $1',
 'cachederror'         => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
 'readonly'            => 'Datumaro esas blokusita',
-'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante 
+'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante
 evaluo pri kande eventos la desblokuso',
 'missingarticle-rev'  => '(versiono#: $1)',
 'missingarticle-diff' => '(Difero: $1, $2)',
@@ -503,7 +503,11 @@ Se ol ankore nefuncionas, probez [[Special:UserLogout|ekirar]] e pose enirar.",
 'editingsection'                   => 'Vu redaktas $1 (seciono)',
 'editingcomment'                   => 'Vu redaktas $1 (nova seciono)',
 'editconflict'                     => 'Redakto-konflikto: $1',
-'explainconflict'                  => 'Ulu chanjis ica pagino depos vu editeskis ol. La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale. Vua chanji montresas en la infra texto-areo. Vu devas atachar vua chanji en la existanta texto. <b>Nur</b> la texto en la supra texto-areo registragesos kande vu presez sur "Registragar".',
+'explainconflict'                  => "Ulu chanjis ica pagino depos vu editeskis ol.
+La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale.
+Vua chanji montresas en la infra texto-areo.
+Vu devas atachar vua chanji en la existanta texto.
+'''Nur''' la texto en la supra texto-areo registragesos kande vu presez sur \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vua texto',
 'storedversion'                    => 'Gardita versiono',
 'nonunicodebrowser'                => "'''EGARDEZ: Vua navigilo esas ne obediema ad ''unicode''.'''
@@ -544,9 +548,9 @@ Voluntez konsideras separar la pagino aden plu mikra secioni.",
 'last'                => 'lasta',
 'page_first'          => 'unesma',
 'page_last'           => 'finala',
-'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br /> 
-Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono, 
-'''({{int:last}})''' = diferi kun l'antea versiono, 
+'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br />
+Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
+'''({{int:last}})''' = diferi kun l'antea versiono,
 '''{{int:minoreditletter}}''' = mikra redakto.",
 'deletedrev'          => '[efacita]',
 'histfirst'           => 'Maxim anciena',

@@ -10,6 +10,7 @@
  * @author Cedric31
  * @author ChrisPtDe
  * @author Fryed-peach
+ * @author Jfblanc
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -439,7 +440,7 @@ $messages = array(
 'talkpage'          => 'Pagina de discussion',
 'talkpagelinktext'  => 'Discussion',
 'specialpage'       => 'Pagina especiala',
-'personaltools'     => 'Espleches personals',
+'personaltools'     => 'Aisinas personalas',
 'postcomment'       => 'Seccion novèla',
 'articlepage'       => "Vejatz l'article",
 'talk'              => 'Discussion',
@@ -559,11 +560,11 @@ La banca de donadas a renviat l’error « $3 : $4 ».',
 'noconnect'            => 'Lo wiki rencontra actualament qualques dificultats tecnicas, e se pòt pas connectar al servidor de la banca de donadas. <br />
 $1',
 'nodb'                 => 'Impossible de seleccionar la banca de donadas $1',
-'cachederror'          => 'Aquò es una còpia de la pagina demandada (version en amagatal) e poiriá èsser pas mesa a jorn.',
+'cachederror'          => "Aquò es una còpia de la pagina demandada (version en escondedor) qu'es pas forçadament a jorn.",
 'laggedslavemode'      => 'Atencion : Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.',
 'readonly'             => 'Mesas a jorn blocadas sus la banca de donadas',
 'enterlockreason'      => 'Indicatz la rason del blocatge, e mai una estimacion de sa durada',
-'readonlytext'         => "Los ajustons e mesas a jorn de la banca de donadas son actualament blocats, probablament per permetre la mantenença de la banca, aprèp aquò, tot dintrarà dins l'òrdre. 
+'readonlytext'         => "Los ajustons e mesas a jorn de la banca de donadas son actualament blocats, probablament per permetre la mantenença de la banca, aprèp aquò, tot dintrarà dins l'òrdre.
 
 L’administrator qu'a varrolhat la banca de donadas a balhat l’explicacion seguenta : $1",
 'missing-article'      => "La banca de donada a pas trobat lo tèxte d’una pagina qu’auriá degut trobar, intitolada « $1 » $2.
@@ -589,8 +590,8 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'cannotdelete'         => 'Impossible de suprimir la pagina o lo fichièr indicat. (Benlèu la supression ja es estada efectuada per qualqu’un d’autre.)',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
-'perfcached'           => 'Aquò es una version en amagatal e benlèu es pas a jorn.',
-'perfcachedts'         => 'Las donadas seguentas son en amagatal, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
+'perfcached'           => 'Aquò es una version en escondedor e benlèu es pas a jorn.',
+'perfcachedts'         => 'Las donadas seguentas son en escondedor, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />
@@ -687,14 +688,14 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
-'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl 
+'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl
 per {{SITENAME}} ($4). Un senhal temporari es estat creat per
 l’utilizaire « $2 » e es « $3 ». S'aquò èra vòstra intencion, vos caldrà
 vos connectar e causir un senhal novèl.
 Vòstre senhal temporari expirarà dins $5 {{PLURAL:$5|jorn|jorns}}.
 
 Se sètz pas l’autor d'aquesta demanda, o se vos remembratz ara
-de vòstre senhal ancian e que desiratz pas mai ne cambiar, 
+de vòstre senhal ancian e que desiratz pas mai ne cambiar,
 podètz ignorar aqueste messatge e contunhar d'utilizar vòstre senhal ancian.",
 'noemail'                    => "Cap d'adreça electronica es pas estada enregistrada per l'utilizaire « $1 ».",
 'passwordsent'               => "Un senhal novèl es estat mandat a l'adreça electronica de l'utilizaire « $1 ».
@@ -849,7 +850,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear aquesta pagina]</span>.',
 'note'                             => "'''Nòta :'''",
 'previewnote'                      => "'''Atencion, aqueste tèxte es sonque una previsualizacion e es pas encara estat salvat !'''",
 'previewconflict'                  => 'Aquesta previsualizacion fa veire lo tèxte de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
-'session_fail_preview'             => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
+'session_fail_preview'             => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha.
 Ensajatz tornarmai.
 S'aquò fracassa encara, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.'''",
 'session_fail_preview_html'        => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.'''
@@ -1641,7 +1642,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'filerevert'                => 'Revocar $1',
 'filerevert-legend'         => 'Revocar lo fichièr',
 'filerevert-intro'          => "Anatz revocar '''[[Media:$1|$1]]''' fins a [$4 la version del $2 a $3].",
-'filerevert-comment'        => 'Comentari :',
+'filerevert-comment'        => 'Motiu :',
 'filerevert-defaultcomment' => 'Revocat fins a la version del $1 a $2',
 'filerevert-submit'         => 'Revocar',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' es estat revocat fins a [$4 la version del $2 a $3].",
@@ -2111,7 +2112,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeletelink'                 => 'veire/restablir',
 'undeletereset'                => 'Reïnicializar',
 'undeleteinvert'               => 'Inversar la seleccion',
-'undeletecomment'              => 'Comentari :',
+'undeletecomment'              => 'Motiu :',
 'undeletedarticle'             => 'a restablit « [[$1]] »',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision restablida|$1 revisions restablidas}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} e {{PLURAL:$2|1 fichièr restablit|$2 fichièrs restablits}}',
@@ -2529,7 +2530,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'nostalgia.css'   => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Nostalgia. */',
 'cologneblue.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Cologne Blue */',
 'monobook.css'    => '/* Lo CSS plaçat aicí afectarà los utilizaires del skin Monobook */',
-'myskin.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Myskin */',
+'myskin.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge MySkin */',
 'chick.css'       => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Chick */',
 'simple.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Simple */',
 'modern.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
@@ -2542,7 +2543,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'nostalgia.js'   => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Nostalgia unicament. */',
 'cologneblue.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Cologne Blue unicament. */',
 'monobook.js'    => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
-'myskin.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Myskin unicament. */',
+'myskin.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MySkin unicament. */',
 'chick.js'       => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Chick unicament. */',
 'simple.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Simple unicament. */',
 'modern.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Modern unicament. */',
@@ -3073,12 +3074,12 @@ Ensajatz la previsualizacion normala.',
 'watchlistedit-noitems'        => 'Vòstra lista de seguiment conten pas cap de pagina.',
 'watchlistedit-normal-title'   => 'Modificacion de la lista de seguiment',
 'watchlistedit-normal-legend'  => 'Levar de paginas de la lista de seguiment',
-'watchlistedit-normal-explain' => 'Las paginas de vòstra lista de seguiment son visiblas çaijós, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben, la podètz [[Special:Watchlist/raw|modificar en mòde brut]].',
+'watchlistedit-normal-explain' => 'Las paginas que seguissètz son visiblas çaijós, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben la podètz [[Special:Watchlist/raw|modificar en mòde brut]].',
 'watchlistedit-normal-submit'  => 'Levar las paginas seleccionadas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguiment :',
 'watchlistedit-raw-title'      => 'Modificacion de la lista de seguiment (mòde brut)',
 'watchlistedit-raw-legend'     => 'Modificacion de la lista de seguiment en mòde brut',
-'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguiment es afichada çaijós, sens las paginas de discussion (enclusas automaticament) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editador normal]].',
+'watchlistedit-raw-explain'    => '!!FLa lista de las paginas que seguissètz es afichada çaijós, sens las paginas de discussion (enclusas automaticament) e triadas per espaci de noms. Podètz modificar la lista, apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Tanlèu acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editor normal]].',
 'watchlistedit-raw-titles'     => 'Títols :',
 'watchlistedit-raw-submit'     => 'Metre la lista a jorn',
 'watchlistedit-raw-done'       => 'Vòstra lista de seguiment es estada mesa a jorn.',
@@ -3138,7 +3139,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 # Special:SpecialPages
 'specialpages'                   => 'Paginas especialas',
 'specialpages-note'              => '----
-* Las paginas especialas 
+* Las paginas especialas
 * <strong class="mw-specialpagerestricted">en gras</strong> son restrenhudas.',
 'specialpages-group-maintenance' => 'Rapòrts de mantenença',
 'specialpages-group-other'       => 'Autras paginas especialas',
@@ -3148,10 +3149,10 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'specialpages-group-users'       => 'Utilizaires e dreches estacats',
 'specialpages-group-highuse'     => 'Utilizacion intensa de las paginas',
 'specialpages-group-pages'       => 'Listas de paginas',
-'specialpages-group-pagetools'   => 'Espleches per las paginas',
-'specialpages-group-wiki'        => 'Donadas del wiki e espleches',
+'specialpages-group-pagetools'   => 'Aisinas per las paginas',
+'specialpages-group-wiki'        => 'Donadas del wiki e aisinas',
 'specialpages-group-redirects'   => 'Redireccions',
-'specialpages-group-spam'        => 'Espleches pel spam',
+'specialpages-group-spam'        => 'Aisinas antispam',
 
 # Special:BlankPage
 'blankpage'              => 'Pagina voida',
@@ -3160,7 +3161,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 # External image whitelist
 'external_image_whitelist' => " #Daissatz aquesta linha exactament coma es<pre>
 #Indicatz los fragments d’expression regularas (sonque la partida indicada entre los //) çaijós
-#Correspondràn amb las URLs dels imatges (fòrt ligadas) extèrnes 
+#Correspondràn amb las URLs dels imatges (fòrt ligadas) extèrnes
 #Las que correspondon s'aficharàn coma d'imatges, siquenon solament un ligam cap a l'imatge serà afichat
 #Las linhas que començan amb # seràn consideradas coma de comentaris
 #Aquesta linha es pas sensibla a la cassa

@@ -8,6 +8,7 @@
  * @file
  *
  * @author .anaconda
+ * @author Airon90
  * @author Andria
  * @author Beta16
  * @author Broc
@@ -199,7 +200,7 @@ $messages = array(
 'tog-minordefault'            => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop'            => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst'          => "Mostra l'anteprima per la prima modifica",
-'tog-nocache'                 => "Disattiva la ''cache'' per le pagine",
+'tog-nocache'                 => 'Disabilitare la cache delle pagine del browser',
 'tog-enotifwatchlistpages'    => 'Segnalami via e-mail le modifiche alle pagine osservate',
 'tog-enotifusertalkpages'     => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
 'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
@@ -444,7 +445,7 @@ I seguenti collegamenti sono in lingua inglese:
 'nstab-user'      => 'Utente',
 'nstab-media'     => 'File multimediale',
 'nstab-special'   => 'Pagina speciale',
-'nstab-project'   => 'pagina di servizio',
+'nstab-project'   => 'Pagina di servizio',
 'nstab-image'     => 'File',
 'nstab-mediawiki' => 'Messaggio',
 'nstab-template'  => 'Template',
@@ -453,8 +454,8 @@ I seguenti collegamenti sono in lingua inglese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazione non riconosciuta',
-'nosuchactiontext'  => "L'azione specificata nella URL non è valida. 
-È possibile che la URL sia stata digitata in modo errato o che sia stato seguito un collegamento non valido. 
+'nosuchactiontext'  => "L'azione specificata nella URL non è valida.
+È possibile che la URL sia stata digitata in modo errato o che sia stato seguito un collegamento non valido.
 Ciò potrebbe anche indicare un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina speciale non disponibile',
 'nospecialpagetext' => "<strong>La pagina speciale richiesta non è stata riconosciuta.</strong>
@@ -566,7 +567,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'via e-mail',
 'badretype'                  => 'Le password inserite non coincidono tra loro.',
-'userexists'                 => 'Il nome utente inserito è già utilizzato. 
+'userexists'                 => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
 'youremail'                  => 'Indirizzo e-mail:',
 'username'                   => 'Nome utente:',
@@ -616,7 +617,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'throttled-mailpassword'     => 'Una nuova password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror'                  => "Errore nell'invio del messaggio: $1",
-'acct_creation_throttle_hit' => "I visitatori del sito che usano il tuo indirizzo IP hanno creato {{PLURAL:$1|1 account|$1 account}} nell'ultimo giorno, che è il massimo consentito in questo periodo di tempo. 
+'acct_creation_throttle_hit' => "I visitatori del sito che usano il tuo indirizzo IP hanno creato {{PLURAL:$1|1 account|$1 account}} nell'ultimo giorno, che è il massimo consentito in questo periodo di tempo.
 Perciò, gli utenti che usano questo indirizzo IP non possono creare altri account per il momento.",
 'emailauthenticated'         => "L'indirizzo e-mail è stato confermato il $2 alle $3.",
 'emailnotauthenticated'      => "L'indirizzo e-mail non è stato ancora confermato. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
@@ -630,7 +631,7 @@ Perciò, gli utenti che usano questo indirizzo IP non possono creare altri accou
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
-'login-throttled'            => 'Sono stati effettuati troppi tentativi di accesso in breve tempo. 
+'login-throttled'            => 'Sono stati effettuati troppi tentativi di accesso in breve tempo.
 Riprovare più tardi.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
@@ -758,8 +759,8 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'note'                             => "'''NOTA:'''",
 'previewnote'                      => "'''Questa è solo un'anteprima; le modifiche alla pagina NON sono ancora state salvate!'''",
 'previewconflict'                  => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
-'session_fail_preview'             => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. 
-Riprovare. 
+'session_fail_preview'             => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
+Riprovare.
 Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
 'session_fail_preview_html'        => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.'''
 
@@ -771,9 +772,11 @@ Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed
 'editingsection'                   => 'Modifica di $1 (sezione)',
 'editingcomment'                   => 'Modifica di $1 (nuova sezione)',
 'editconflict'                     => 'Conflitto di edizione su $1',
-'explainconflict'                  => "Un altro utente ha salvato una nuova versione della pagina mentre stavi effettuando le modifiche.<br />
-La casella di modifica superiore contiene il testo della pagina attualmente online, così come è stato aggiornato dall'altro utente. La versione con le tue modifiche è invece riportata nella casella di modifica inferiore. Se desideri confermarle, devi riportare le tue modifiche nel testo esistente (casella superiore).
-Premendo il pulsante 'Salva la pagina', verrà salvato <b>solo</b> il testo contenuto nella casella di modifica superiore.<br />",
+'explainconflict'                  => "Un altro utente ha salvato una nuova versione della pagina mentre stavi effettuando le modifiche.
+La casella di modifica superiore contiene il testo della pagina attualmente online, così come è stato aggiornato dall'altro utente.
+La versione con le tue modifiche è invece riportata nella casella di modifica inferiore.
+Se desideri confermarle, devi riportare le tue modifiche nel testo esistente (casella superiore).
+Premendo il pulsante '{{int:savearticle}}', verrà salvato '''solo''' il testo contenuto nella casella di modifica superiore.",
 'yourtext'                         => 'Il tuo testo',
 'storedversion'                    => 'La versione memorizzata',
 'nonunicodebrowser'                => "'''Attenzione: si sta utilizzando un browser non compatibile con i caratteri Unicode. Per consentire la modifica delle pagine senza creare inconvenienti, i caratteri non ASCII vengono visualizzati nella casella di modifica sotto forma di codici esadecimali.'''",
@@ -1359,7 +1362,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'recentchangeslinked'          => 'Modifiche correlate',
 'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
-'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate da quella specificata (o contenute nella categoria specificata). 
+'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate da quella specificata (o contenute nella categoria specificata).
 Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati speciali]] sono evidenziate in '''grassetto'''.",
 'recentchangeslinked-page'     => 'Nome della pagina:',
 'recentchangeslinked-to'       => 'Mostra solo le modifiche alle pagine collegate a quella specificata',
@@ -1394,7 +1397,7 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'filestatus'                  => 'Informazioni sul copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Elenco dei file caricati',
-'ignorewarning'               => "Ignora l'avviso e salva comunque il file. La versione esistente verrà sovrascritta.",
+'ignorewarning'               => "Ignora l'avviso e salva comunque il file",
 'ignorewarnings'              => 'Ignora i messaggi di avvertimento del sistema',
 'minlength1'                  => "Il nome del file dev'essere composto da almeno un carattere.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
@@ -1466,7 +1469,7 @@ PICT # misc.
 'upload-proto-error-text' => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
 'upload-file-error'       => 'Errore interno',
 'upload-file-error-text'  => 'Si è verificato un errore interno durante la creazione di un file temporaneo sul server. Contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
-'upload-misc-error'       => "Errore non identificato per l'upload",
+'upload-misc-error'       => 'Errore di caricamento sconosciuto',
 'upload-misc-error-text'  => 'Si è verificato un errore non identificato durante il caricamento del file. Verificare che la URL sia corretta e accessibile e provare di nuovo. Se il problema persiste, contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1676,7 +1679,7 @@ I redirect <s>cancellati</s> sono stati corretti.',
 'ancientpages'            => 'Pagine meno recenti',
 'move'                    => 'Sposta',
 'movethispage'            => 'Sposta questa pagina',
-'unusedimagestext'        => 'In questo elenco sono presenti i file caricati e non usati nel sito. 
+'unusedimagestext'        => 'In questo elenco sono presenti i file caricati e non usati nel sito.
 Potrebbero essere presenti immagini che sono usate da altri siti con un collegamento diretto.',
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
@@ -1700,7 +1703,7 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tutti i registri pubblici',
-'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}. 
+'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}.
 È possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 'logempty'             => 'Il registro non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
@@ -1804,7 +1807,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
-'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
+'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
 il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
@@ -1876,7 +1879,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'historywarning'         => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'      => 'Stai per cancellare una pagina con tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Azione completata',
-'deletedtext'            => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata. 
+'deletedtext'            => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata.
 Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'         => 'ha cancellato "[[$1]]"',
 'suppressedarticle'      => 'ha soppresso "[[$1]]"',
@@ -1981,8 +1984,8 @@ Le impostazioni correnti per la pagina sono '''$1''':",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno ripristinate nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia precedente.',
 'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione attuale della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
-'undeletehistorynoadmin'       => "Questa pagina è stata cancellata. 
-Il motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione. 
+'undeletehistorynoadmin'       => "Questa pagina è stata cancellata.
+Il motivo della cancellazione è mostrato qui sotto, assieme ai dettagli dell'utente che ha modificato questa pagina prima della cancellazione.
 Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.",
 'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $4 alle $5 da $3:',
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
@@ -2062,7 +2065,7 @@ $1',
 # Block/unblock
 'blockip'                         => 'Blocco utente',
 'blockip-legend'                  => "Blocca l'utente",
-'blockiptext'                     => "Usare il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o un utente registrato. 
+'blockiptext'                     => "Usare il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o un utente registrato.
 Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].
 Indicare il motivo specifico per il quale si procede al blocco (per esempio, citando i titoli di eventuali pagine oggetto di vandalismo).",
 'ipaddress'                       => 'Indirizzo IP:',
@@ -2401,7 +2404,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'nostalgia.css'   => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Nostalgia */',
 'cologneblue.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Cologne Blue */',
 'monobook.css'    => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */',
-'myskin.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Myskin */',
+'myskin.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin MySkin */',
 'chick.css'       => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Chick */',
 'simple.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Simple */',
 'modern.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
@@ -2414,7 +2417,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'nostalgia.js'   => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Nostalgia */',
 'cologneblue.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Cologne Blue */',
 'monobook.js'    => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MonoBook */',
-'myskin.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Myskin */',
+'myskin.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MySkin */',
 'chick.js'       => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Chick */',
 'simple.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Simple */',
 'modern.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Modern */',
@@ -2497,7 +2500,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.",
-'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
+'imagemaxsize'         => 'Dimensione massima delle immagini nelle relative pagine di descrizione:',
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => '(dimensione del file: $1, tipo MIME: $2)',

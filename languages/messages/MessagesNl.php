@@ -320,7 +320,7 @@ $messages = array(
 'tog-minordefault'            => 'Mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop'            => 'Voorvertoning boven bewerkingsveld weergeven',
 'tog-previewonfirst'          => 'Voorvertoning bij eerste bewerking weergeven',
-'tog-nocache'                 => 'Geen caching gebruiken',
+'tog-nocache'                 => "Cachen van pagina's door de browser uitschakelen",
 'tog-enotifwatchlistpages'    => 'Mij e-mailen bij bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifusertalkpages'     => 'Mij e-mailen als iemand mijn overlegpagina wijzigt',
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
@@ -793,7 +793,7 @@ Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_text'            => '<!-- Voeg hier tekst toe -->',
 'resetpass_header'          => 'Wachtwoord wijzigen',
 'oldpassword'               => 'Huidige wachtwoord:',
-'newpassword'               => 'Nieuwe wachtwoord:',
+'newpassword'               => 'Nieuw wachtwoord:',
 'retypenew'                 => 'Herhaling nieuwe wachtwoord:',
 'resetpass_submit'          => 'Wachtwoord instellen en aanmelden',
 'resetpass_success'         => 'Uw wachtwoord is gewijzigd.
@@ -916,8 +916,8 @@ Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 
 '''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Tip:''' Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
-'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.
-Deze is nog niet opgeslagen!'''",
+'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.'''
+'''Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
@@ -946,7 +946,7 @@ Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten 
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
 Uw bewerking staat in het onderste gedeelte.
 U dient uw bewerkingen in te voegen in de bestaande tekst.
-'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"Pagina opslaan\" klikt.",
+'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"{{int:savearticle}}\" klikt.",
 'yourtext'                         => 'Uw tekst',
 'storedversion'                    => 'Opgeslagen versie',
 'nonunicodebrowser'                => "'''WAARSCHUWING: Uw browser kan niet goed overweg met unicode.
@@ -1020,7 +1020,8 @@ Deze parameters zijn weggelaten.',
 'parser-template-recursion-depth-warning' => 'De recursiediepte voor sjablonen is overschreden ($1)',
 
 # "Undo" feature
-'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt.
+'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.
+Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt.
 Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
 'undo-norev'   => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
@@ -1229,7 +1230,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'searchresults-title'              => 'Zoekresultaten voor "$1"',
 'searchresulttext'                 => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'U zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|pagina\'s die verwijzen naar "$1"]])',
-'searchsubtitleinvalid'            => 'Voor zoekopdracht "$1"',
+'searchsubtitleinvalid'            => "U hebt gezocht naar '''$1'''",
 'noexactmatch'                     => "'''Er bestaat geen pagina met de naam \"\$1\".''' U kunt deze [[:\$1|aanmaken]].",
 'noexactmatch-nocreate'            => "'''De pagina \"\$1\" bestaat niet.'''",
 'toomanymatches'                   => 'Er waren te veel resultaten.
@@ -1318,8 +1319,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'math_unknown_function'     => 'onbekende functie',
 'math_lexing_error'         => 'lexicografische fout',
 'math_syntax_error'         => 'syntactische fout',
-'math_image_error'          => 'PNG-omzetting is mislukt.
-Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
+'math_image_error'          => 'De PNG-omzetting is mislukt. Controleer of LaTeX en dvipng (of dvips + gs + convert) correct zijn geïnstalleerd.',
 'math_bad_tmpdir'           => 'De map voor tijdelijke bestanden voor wiskundige formules bestaat niet of kan niet gemaakt worden',
 'math_bad_output'           => 'De map voor bestanden met wiskundige formules bestaat niet of kan niet gemaakt worden.',
 'math_notexvc'              => 'Kan het programma texvc niet vinden; stel alles in volgens de beschrijving in math/README.',
@@ -1726,7 +1726,7 @@ Klikken op een kolomkop verandert de sortering.',
 'filehist-revert'           => 'terugdraaien',
 'filehist-current'          => 'huidige versie',
 'filehist-datetime'         => 'Datum/tijd',
-'filehist-thumb'            => 'Miniatuurafbeelding',
+'filehist-thumb'            => 'Miniatuur',
 'filehist-thumbtext'        => 'Miniatuurafbeelding voor versie per $1',
 'filehist-nothumb'          => 'Geen miniatuurafbeelding',
 'filehist-user'             => 'Gebruiker',
@@ -2170,7 +2170,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-locked-dblock'       => "Het beveiligingsniveau kan niet worden gewijzigd, omdat de database gesloten is.
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
-'protect-locked-access'       => "'''U hebt geen rechten om het beveiligingsniveau te wijzigen.'''
+'protect-locked-access'       => "U hebt geen rechten om het beveiligingsniveau te wijzigen.
 Dit zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-cascadeon'           => "Deze pagina is beveiligd, omdat die in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie.
 Het beveiligingsniveau wijzigen heeft geen enkel effect.",
@@ -2607,7 +2607,7 @@ De tijdelijke map is niet aanwezig.',
 'tooltip-pt-mytalk'               => 'Uw overlegpagina',
 'tooltip-pt-anontalk'             => 'Overlegpagina van de anonieme gebruiker van dit IP-adres',
 'tooltip-pt-preferences'          => 'Mijn voorkeuren',
-'tooltip-pt-watchlist'            => 'Pagina',
+'tooltip-pt-watchlist'            => "Overzicht van pagina's die u volgt",
 'tooltip-pt-mycontris'            => 'Overzicht van uw bijdragen',
 'tooltip-pt-login'                => 'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht',
 'tooltip-pt-anonlogin'            => 'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht',
