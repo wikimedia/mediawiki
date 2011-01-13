@@ -166,7 +166,7 @@ class CompareParsers extends Maintenance {
 			$this->failed++;
 			$this->error( "Parsing for {$title->getPrefixedText()} differs\n" );
 			
-			if ($this->saveFailed) {
+			if ( $this->saveFailed ) {
 				file_put_contents( $this->saveFailed . '/' . rawurlencode( $title->getPrefixedText() ) . ".txt", $rev->getText());
 			}
 			if ( $this->showDiff ) {
