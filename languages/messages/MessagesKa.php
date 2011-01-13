@@ -1006,7 +1006,9 @@ $1",
 'revmove-reasonfield'          => 'მიზეზი:',
 'revmove-titlefield'           => 'მიზნობრივი გვერდი:',
 'revmove-badparam-title'       => 'ცუდი პარამეტრები',
+'revmove-norevisions-title'    => 'დაუშვებელი სამიზნო ვერსია',
 'revmove-nullmove-title'       => 'ცუდი სათაური',
+'revmove-success-existing'     => '{{PLURAL:$1|ვერსია [[$2]]-დან გადატანილია|$1 ვერსიები [[$2]] გადატანილია}} არსებულ გვერდზე [[$3]].',
 
 # History merging
 'mergehistory'                     => 'გვერდების ისტორიის შერწყმა',
@@ -1039,6 +1041,7 @@ $1",
 # Diffs
 'history-title'            => '"$1" ცვლილებათა ისტორია',
 'difference'               => '(სხვაობა ვერსიებს შორის)',
+'difference-multipage'     => '(განსხვავება გვერდებს შორის)',
 'lineno'                   => 'ხაზი $1:',
 'compareselectedversions'  => 'არჩეული ვერსიების შედარება',
 'showhideselectedversions' => 'ჩვენება/დამალვა არჩეული ვერსიებისა',
@@ -1231,6 +1234,10 @@ $1",
 'prefs-displaywatchlist'        => 'გამოსახვის კონფიგურაციები',
 'prefs-diffs'                   => 'სხვაობა ვერსიებს შორის',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'ელ-ფოსტის მისამართი სწორად გამოიყურება',
+'email-address-validity-invalid' => 'მიუთითეთ სწორი ელ-ფოსტის მისამართი',
+
 # User rights
 'userrights'                   => 'მომხმარებელთა უფლებების მართვა',
 'userrights-lookup-user'       => 'მომხმარებელთა ჯგუფების მართვა',
@@ -1339,6 +1346,7 @@ $1",
 'right-override-export-depth' => 'გვერდების ექსპორტირება, დაკავშირებული გვერდების ჩათვლით 5-მდე სიიღრმით',
 'right-sendemail'             => 'გაგუგზავნე ელექტრონული ფოსტა სხვა მომხმარებლებს',
 'right-revisionmove'          => 'გვერდის ვერსიების გადატანა',
+'right-disableaccount'        => 'ანგარიშის გამორთვა',
 
 # User rights log
 'rightslog'      => 'მომხმარებლის უფლებების ჟურნალი',
@@ -1561,6 +1569,7 @@ $1',
 'uploadstash'          => 'ფარული ატვირთვა',
 'uploadstash-clear'    => 'დაფარული ფაილების გასუფთავება',
 'uploadstash-nofiles'  => 'თქვენ არ გაქვთ დაფარული ფაილები.',
+'uploadstash-badtoken' => 'მითითებული მოქმედება ვერ შესრულდა. შესაძლოა, თქვენი უსაფრთხოების მანდატის მოქმედების ვადა ამოიწურა. კიდევ სცადეთ.',
 'uploadstash-errclear' => 'ფაილების გასუფთავება ვერ მოხერხდა.',
 'uploadstash-refresh'  => 'ფაილების სიის განახლება',
 
@@ -1729,6 +1738,7 @@ $1',
 'statistics-edits'             => 'გვერდის შესწორებები {{SITENAME}}-ის შექმნიდან',
 'statistics-edits-average'     => 'რედაქტირების საერთო რაოდენობა გვერდზე',
 'statistics-views-total'       => 'სულ ხილვა',
+'statistics-views-total-desc'  => 'სათვალავში არ მიიღება არარსებული და სამუშაო გვერდების გადახედვა',
 'statistics-views-peredit'     => 'შესწორებათა ხილვა',
 'statistics-users'             => 'დარეგისტრირებული [[Special:ListUsers|მომხმარებლები]]',
 'statistics-users-active'      => 'აქტიური მომხმარებლები',
@@ -2731,6 +2741,7 @@ $1',
 'show-big-image-thumb' => '<small>ზომა წინასწარი გადახედვისას: $1 × $2 პიქსელი</small>',
 'file-info-gif-looped' => 'დარგოლილი',
 'file-info-gif-frames' => '$1 კადრი',
+'file-info-png-looped' => 'დარგოლილი',
 'file-info-png-frames' => '$1 კადრი',
 
 # Special:NewFiles

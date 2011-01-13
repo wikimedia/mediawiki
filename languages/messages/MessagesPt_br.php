@@ -1424,7 +1424,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-diffs'                   => 'Diferenças',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid' => 'Parece válido',
+'email-address-validity-valid'   => 'Parece válido',
+'email-address-validity-invalid' => 'Forneça um endereço de e-mail válido',
 
 # User rights
 'userrights'                   => 'Gestão de privilégios de usuários',

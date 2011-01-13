@@ -987,8 +987,8 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-db-host-oracle-help' => 'Увядзіце слушнае [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm лякальнае імя злучэньня]; файл tnsnames.ora павінен быць бачным для гэтага ўсталяваньня.<br />Калі Вы выкарыстоўваеце кліенцкія бібліятэкі 10g ці больш новыя, Вы можаце таксама выкарыстоўваць мэтад наданьня назваў [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm лёгкае злучэньне].',
 	'config-db-wiki-settings' => 'Ідэнтыфікацыя гэтай вікі',
 	'config-db-name' => 'Назва базы зьвестак:',
-	'config-db-name-help' => 'Выберыце імя, якое вызначыць Вашую вікі.
-Яно ня мусіць зьмяшчаць прагалаў ці злучкоў.
+	'config-db-name-help' => 'Выберыце імя для вызначэньня Вашай вікі.
+Яно ня мусіць зьмяшчаць прагалаў.
 
 Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць надаць Вам ці пэўнае імя базы зьвестак для выкарыстаньня, ці магчымасьць ствараць базы зьвестак праз кантрольную панэль.',
 	'config-db-name-oracle' => 'Схема базы зьвестак:',
@@ -1055,6 +1055,7 @@ $1
 	'config-header-oracle' => 'Устаноўкі Oracle',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
+	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
 	'config-missing-db-server-oracle' => 'Вы павінны ўвесьці значэньне парамэтру «TNS базы зьвестак»',
 	'config-invalid-db-server-oracle' => 'Няслушнае TNS базы зьвестак «$1».
 Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).',
@@ -6660,6 +6661,7 @@ $1
 	'config-header-oracle' => 'Нагодувања на Oracle',
 	'config-invalid-db-type' => 'Неважечки тип на база',
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
+	'config-missing-db-host' => 'Мора да внесете вредност за „Домаќин на базата на податоци“',
 	'config-missing-db-server-oracle' => 'Мора да внесете вредност за „TNS на базата“',
 	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“ за базата.
 Користете само знаци по ASCII - букви (a-z, A-Z), бројки (0-9), долни црти (_) и точки (.).',
@@ -7243,7 +7245,7 @@ Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP
 	'config-db-wiki-settings' => 'Identificeer deze wiki',
 	'config-db-name' => 'Databasenaam:',
 	'config-db-name-help' => 'Kies een naam die uw wiki identificeert.
-Er mogen geen spaties of koppeltekens gebruikt worden.
+Er mogen geen spaties gebruikt worden.
 Als u gebruik maakt van gedeelde webhosting, dan hoort uw provider ofwel u een te gebruiken databasenaam gegeven te hebben, of u aangegeven te hebben hoe u databases kunt aanmaken.',
 	'config-db-name-oracle' => 'Databaseschema:',
 	'config-db-install-account' => 'Gebruiker voor installatie',
@@ -7310,6 +7312,7 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-header-oracle' => 'Oracle-instellingen',
 	'config-invalid-db-type' => 'Ongeldig databasetype',
 	'config-missing-db-name' => 'U moet een waarde ingeven voor "Databasenaam"',
+	'config-missing-db-host' => 'U moet een waarde invoeren voor "Databaseserver"',
 	'config-missing-db-server-oracle' => 'U moet een waarde voor "Database-TNS" ingeven',
 	'config-invalid-db-server-oracle' => 'Ongeldige database-TMS "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
@@ -8964,7 +8967,7 @@ Se está a fazer a instalação num servidor Windows com MySQL, usar como nome d
 	'config-db-wiki-settings' => 'Identifique esta wiki',
 	'config-db-name' => 'Nome da base de dados:',
 	'config-db-name-help' => 'Escolha um nome para identificar a sua wiki.
-O nome não deve conter espaços nem hífens.
+O nome não deve conter espaços.
 
 Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder fornecer-lhe o nome de uma base de dados que possa usar, ou permite-lhe criar bases de dados através de um painel de controle.',
 	'config-db-name-oracle' => "Esquema ''(schema)'' da base de dados:",
@@ -9031,6 +9034,7 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-header-oracle' => 'Definições Oracle',
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
+	'config-missing-db-host' => 'Tem de introduzir um valor para "Servidor da base de dados"',
 	'config-missing-db-server-oracle' => 'Tem de introduzir um valor para "TNS da base de dados"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de dados, "$1", é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.',
@@ -9576,7 +9580,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-db-wiki-settings' => 'Идентификация этой вики',
 	'config-db-name' => 'Имя базы данных:',
 	'config-db-name-help' => 'Выберите название-идентификатор для вашей вики. 
-Оно не должно содержать пробелов и дефисов. 
+Оно не должно содержать пробелов. 
 
 Если вы используете виртуальный хостинг, провайдер или выдаст вам конкретное имя базы данных, или позволит создавать базы данных с помощью панели управления.',
 	'config-db-name-oracle' => 'Схема базы данных:',
@@ -9645,6 +9649,7 @@ $1
 	'config-header-oracle' => 'Настройки Oracle',
 	'config-invalid-db-type' => 'Неверный тип базы данных',
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
+	'config-missing-db-host' => 'Необходимо ввести значение параметра «Сервер базы данных»',
 	'config-missing-db-server-oracle' => 'Вы должны заполнить поле «TNS базы данных»',
 	'config-invalid-db-server-oracle' => 'Неверное имя TNS базы данных «$1».
 Используйте только символы ASCII (a-z, A-Z), цифры (0-9), знаки подчёркивания (_) и точки (.).',

@@ -584,7 +584,7 @@ Pretraga: $2',
 'actionthrottled'      => 'Akcija se izvodi ograničenom brzinom',
 'actionthrottledtext'  => 'U cilju borbe protiv spama, niste u mogućnosti da učinite to više puta u kratkom vremenu, a upravo ste prešli to ograničenje. Pokušajte ponovo za par minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana kako se ne bi vršile izmene na njoj.',
-'viewsourcetext'       => 'Možete da pregledate i kopirate sadržaj ove strane:',
+'viewsourcetext'       => 'Možete da pregledate i kopirate sadržaj ove stranice:',
 'protectedinterface'   => 'Ova stranica pruža tekst interfejsa za softver i zaključana je kako bi se sprečila zloupotreba.',
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera.
 Izmene na ovoj strani će uticati na prikaz izgleda korisničkog interfejsa za sve korisnike.
@@ -619,9 +619,9 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'yourdomainname'             => 'Domen:',
 'externaldberror'            => 'Došlo je ili do greške pri spoljašnjoj autentifikaciji baze podataka ili vam nije dozvoljeno da ažurirate svoj spoljašnji nalog.',
 'login'                      => 'Prijavi me',
-'nav-login-createaccount'    => 'Registracija/Prijavljivanje',
+'nav-login-createaccount'    => 'Prijavi se/Registruj se',
 'loginprompt'                => "Morate da imate omogućene kolačiće (''cookies'') da biste se prijavili na {{SITENAME}}.",
-'userlogin'                  => 'Registracija/Prijavljivanje',
+'userlogin'                  => 'Prijavi se/Registruj se',
 'userloginnocreate'          => 'Prijavljivanje',
 'logout'                     => 'Odjavljivanje',
 'userlogout'                 => 'Odjavi me',
@@ -874,7 +874,7 @@ Istorija najskorijih izmena je prikazana ispod:",
 'nocreatetitle'                    => 'Pravljenje stranice ograničeno',
 'nocreatetext'                     => 'Na ovom sajtu je ograničeno pravljenje novih stranica.
 Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se prijaviti ili napraviti nalog]].',
-'nocreate-loggedin'                => 'Nemate ovlašćenja da pravite nove strane.',
+'nocreate-loggedin'                => 'Nemate ovlašćenje da pravite nove stranice.',
 'sectioneditnotsupported-title'    => 'Menjanje delova stranice nije podržano.',
 'sectioneditnotsupported-text'     => 'Menjanje delova stranice nije podržano na ovoj stranici.',
 'permissionserrors'                => 'Greške u ovlašćenjima',
@@ -883,7 +883,7 @@ Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se p
 'recreate-moveddeleted-warn'       => "'''Upozorenje: Ponovo pravite stranicu koja je prethodno obrisana.'''
 
 Trebalo bi da razmotrite da li je prikladno da nastavite sa uređivanjem ove stranice.
-Istorije brisanja i premeštanja ove strane su priloženi ispod:",
+Istorije brisanja i premeštanja ove stranice su priloženi ispod:",
 'moveddeleted-notice'              => 'Ova strana je obrisana.
 Istorije njenog brisanja i premeštanja se nalaze ispod, kao informacija.',
 'log-fulllog'                      => 'Vidi celu istoriju',
@@ -921,7 +921,7 @@ Trebalo bi da ima manje od $2 {{PLURAL:$2|poziv|poziva}}, a sada {{PLURAL:$1|pos
 Razlog koji je dao $3 je ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Pogledaj protokole za ovu stranu',
+'viewpagelogs'           => 'Istorijat ove stranice',
 'nohistory'              => 'Ne postoji istorijat izmena za ovu stranicu.',
 'currentrev'             => 'Trenutna revizija',
 'currentrev-asof'        => 'Trenutna revizija od $1',
@@ -1005,7 +1005,7 @@ Drugi administratori na {{SITENAME}} će još uvek imati pristup ovom skrivenom 
 'revdelete-unsuppress'        => 'Ukloni zabrane nad oporavljenim verzijama.',
 'revdelete-log'               => 'Razlog:',
 'revdelete-submit'            => 'Primeni na {{PLURAL:$1|izabranu reviziju|izabrane revizije}}',
-'revdelete-logentry'          => 'promenjen prikaz revizije za [[$1]]',
+'revdelete-logentry'          => 'je promenio prikaz izmena za „[[$1]]”',
 'logdelete-logentry'          => 'promenjena vidnost događaja za stranu [[$1]]',
 'revdelete-success'           => "'''Vidljivost izmene je uspešno podešena.'''",
 'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti ažurirana:'''
@@ -1014,7 +1014,7 @@ $1",
 'revdel-restore'              => 'Promena vidnosti',
 'revdel-restore-deleted'      => 'izbrisane revizije',
 'revdel-restore-visible'      => 'vidljive revizije',
-'pagehist'                    => 'Istorija strane',
+'pagehist'                    => 'Istorijat stranice',
 'deletedhist'                 => 'Obrisana istorija',
 'revdelete-content'           => 'sadržaj',
 'revdelete-summary'           => 'opis izmene',
@@ -1097,7 +1097,7 @@ $1",
 'searchmenu-exists'                => "'''Već postoji članak pod imenom \"[[:\$1]]\" na ovom Vikiju'''",
 'searchmenu-new'                   => "'''Napravi članak \"[[:\$1]]\" na ovom Vikiju!'''",
 'searchhelp-url'                   => 'Help:Sadržaj',
-'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pretraži strane sa ovim prefiksom]]',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Potraži stranice sa ovim prefiksom]]',
 'searchprofile-articles'           => 'Stranice sa sadržajem',
 'searchprofile-project'            => 'Strane pomoći i projekta',
 'searchprofile-images'             => 'Multimedija',
@@ -1106,7 +1106,7 @@ $1",
 'searchprofile-articles-tooltip'   => 'Traži u $1',
 'searchprofile-project-tooltip'    => 'Traži u $1',
 'searchprofile-images-tooltip'     => 'Pretražuj fajlove',
-'searchprofile-everything-tooltip' => 'Pretraži sav sadržaj (uključujući strane za razgovor)',
+'searchprofile-everything-tooltip' => 'Pretraži sav sadržaj (uključujući stranice za razgovor)',
 'searchprofile-advanced-tooltip'   => 'Pretraži u sopstvenim imenskim prostorima',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 reč|$2 reči}})',
 'search-result-score'              => 'Relevantnost: $1%',
@@ -1393,7 +1393,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'action-autopatrol'           => 'automatsko patroliranje sopstvenih izmena',
 'action-unwatchedpages'       => 'pregled spiska nenadgledanih stranica',
 'action-trackback'            => 'pošalji izveštaj',
-'action-mergehistory'         => 'pripoji istoriju ove strane',
+'action-mergehistory'         => 'spoji istorijat ove stranice',
 'action-userrights'           => 'izmeni sva korisnička prava',
 'action-userrights-interwiki' => 'izmeni prava korisnika sa drugih Vikija',
 'action-siteadmin'            => 'zaključavanje ili otključavanje baze podataka',
@@ -1678,7 +1678,7 @@ Ne zaboravite da proverite ostale poveznice ka šablonima pre nego što ih obri�
 
 # Statistics
 'statistics'                   => 'Statistike',
-'statistics-header-pages'      => 'Statistike strane',
+'statistics-header-pages'      => 'Statistike stranice',
 'statistics-header-edits'      => 'Statistike izmena',
 'statistics-header-views'      => 'Vidi statistike',
 'statistics-header-users'      => 'Statistike korisnika',
@@ -1946,7 +1946,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'unwatching' => 'Uklanjanje nadgledanja...',
 
 'enotif_mailer'                => '{{SITENAME}} pošta obaveštenja',
-'enotif_reset'                 => 'Označi sve strane kao posećene',
+'enotif_reset'                 => 'Označi sve stranice kao posećene',
 'enotif_newpagetext'           => 'Ovo je novi članak.',
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
 'changed'                      => 'promenjena',
@@ -2005,9 +2005,9 @@ posledice, i da ovo radite u skladu sa
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'         => 'je obrisao „[[$1]]“',
 'suppressedarticle'      => 'saktiveno: "[[$1]]"',
-'dellogpage'             => 'istorija brisanja',
+'dellogpage'             => 'istorijat brisanja',
 'dellogpagetext'         => 'Ispod je spisak najskorijih brisanja.',
-'deletionlog'            => 'istorija brisanja',
+'deletionlog'            => 'istorijat brisanja',
 'reverted'               => 'Vraćeno na raniju reviziju',
 'deletecomment'          => 'Razlog:',
 'deleteotherreason'      => 'Drugi/dodatni razlog:',
@@ -2135,9 +2135,9 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 'undeletedpage'                => "'''Strana $1 je vraćena'''
 
 Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih brisanja i vraćanja.",
-'undelete-header'              => 'Vidi [[Special:Log/delete|log brisanja]] za skoro obrisane strane.',
+'undelete-header'              => 'Vidi [[Special:Log/delete|istorijat brisanja]] za nedavno obrisane stranice.',
 'undelete-search-box'          => 'Pretraži obrisane stranice',
-'undelete-search-prefix'       => 'Prikaži strane koje počinju sa:',
+'undelete-search-prefix'       => 'Prikaži stranice koje počinju sa:',
 'undelete-search-submit'       => 'Pretraga',
 'undelete-no-results'          => 'Nema takvih strana u skladištu obrisanih.',
 'undelete-filename-mismatch'   => 'Nije moguće obrisati verziju fajla od vremena $1: ime fajla se ne poklapa.',
@@ -2387,7 +2387,7 @@ stranica za razgovor nije mogla biti premeštena jer takva već postoji na novom
 'movedto'                      => 'premeštena na',
 'movetalk'                     => 'Premesti "stranicu za razgovor" takođe, ako je moguće.',
 'move-subpages'                => 'Premesti podstrane (do $1)',
-'move-talk-subpages'           => 'Premesti podstrane strane za razgovor (do $1)',
+'move-talk-subpages'           => 'Premesti podstranice stranice za razgovor (do $1)',
 'movepage-page-exists'         => 'Stranica $1 već postoji ne može se automatski prepisati.',
 'movepage-page-moved'          => 'Stranica $1 je preimenovana u $2.',
 'movepage-page-unmoved'        => 'Stranica $1 ne može biti preimenovana u $2.',
@@ -2478,8 +2478,8 @@ Posetite [http://translatewiki.net translatewiki.net] ukoliko želite da pomogne
 # Special:Import
 'import'                     => 'Uvoz stranica',
 'importinterwiki'            => 'Transviki uvoženje',
-'import-interwiki-text'      => 'Odaberite viki i naziv strane za uvoz.
-Datumi revizije i imena urednika će biti sačuvani.
+'import-interwiki-text'      => 'Odaberite viki i naziv stranice za uvoz.
+Datumi izmene i imena urednika će biti sačuvani.
 Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'import-interwiki-source'    => 'Izvorni viki/strana:',
 'import-interwiki-history'   => 'Kopiraj sve revizije ove strane',
@@ -2546,7 +2546,7 @@ Molimo Vas da opet pokušate.',
 'tooltip-ca-unwatch'              => 'Uklonite ovu stranicu sa Vašeg spiska nadgledanja',
 'tooltip-search'                  => 'Pretražite ovaj viki',
 'tooltip-search-go'               => 'Idi na stranu s tačnim imenom ako postoji.',
-'tooltip-search-fulltext'         => 'Pretražite strane sa ovim tekstom',
+'tooltip-search-fulltext'         => 'Pretražite stranice sa ovim tekstom',
 'tooltip-p-logo'                  => 'Glavna strana',
 'tooltip-n-mainpage'              => 'Posetite glavnu stranu',
 'tooltip-n-mainpage-description'  => 'Posetite glavnu stranu',
@@ -3085,10 +3085,10 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'table_pager_empty'        => 'Bez rezultata',
 
 # Auto-summaries
-'autosumm-blank'   => 'Obrisao sadržaj strane',
+'autosumm-blank'   => 'Obrisan je sadržaj stranice',
 'autosumm-replace' => "Zamena stranice sa '$1'",
 'autoredircomment' => 'Preusmerenje na [[$1]]',
-'autosumm-new'     => "Napravio stranu sa '$1'",
+'autosumm-new'     => 'Napravljena je stranica sa „$1”',
 
 # Live preview
 'livepreview-loading' => 'Učitavanje…',
@@ -3101,7 +3101,7 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'lag-warn-high'   => 'Zbog velikog laga baze podataka, izmene novije od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} se neće prikazati na spisku.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Vaš spisak nadgledanja sadrži {{PLURAL:$1|1 naslov|$1 naslova}}, ne računajući stranice za razgovor.',
+'watchlistedit-numitems'       => 'Vaš spisak nadgledanja sadrži {{PLURAL:$1|jednu stranicu|$1 stranice|$1 stranica}}, ne računajući stranice za razgovor.',
 'watchlistedit-noitems'        => 'Nema naslova u vašem spisku nadgledanja.',
 'watchlistedit-normal-title'   => 'Uredi spisak nadgledanja',
 'watchlistedit-normal-legend'  => 'Ukloni naslove sa spiska nadgledanja',

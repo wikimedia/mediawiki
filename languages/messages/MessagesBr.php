@@ -1286,6 +1286,10 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'prefs-displaywatchlist'        => 'Dibarzhioù diskwel',
 'prefs-diffs'                   => "Diforc'hioù",
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "Reizh eo ar chomlec'h postel war a seblant",
+'email-address-validity-invalid' => "Ebarzhit ur chomlec'h postel reizh",
+
 # User rights
 'userrights'                   => 'Merañ statud an implijerien',
 'userrights-lookup-user'       => 'Merañ strolladoù an implijer',

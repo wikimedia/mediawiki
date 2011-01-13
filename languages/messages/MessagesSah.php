@@ -229,6 +229,7 @@ $messages = array(
 'printableversion'  => 'Бэчээттииргэ анаан көрүү',
 'permalink'         => 'Куруук баар ыйынньык',
 'print'             => 'Бэчээттээ',
+'view'              => 'Көрүү',
 'edit'              => 'Уларыт',
 'create'            => 'Саҥаны айыы',
 'editthispage'      => 'Бу сирэйи уларыт',
@@ -236,6 +237,7 @@ $messages = array(
 'delete'            => 'Соттор',
 'deletethispage'    => 'Бу сирэйи соттор',
 'undelete_short'    => 'Төттөрү аҕал {{PLURAL:$1|биир уларытыыны|$1 уларытыылары}}',
+'viewdeleted_short' => '{{PLURAL:$1|Соҕотох сотторуллубут көннөрүүнү|$1 сотторуллубут көннөрүүнү}} көрүү',
 'protect'           => 'Уларыппат гын',
 'protect_change'    => 'уларытыы',
 'protectthispage'   => 'Бу сирэйи уларыппат гын',
@@ -1166,6 +1168,10 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'prefs-displaysearchoptions'    => 'Көстүүтүн туруоруулара',
 'prefs-displaywatchlist'        => 'Көстүүтүн туруоруулара',
 'prefs-diffs'                   => 'Уратылара',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Сөп курдук көстөр',
+'email-address-validity-invalid' => 'Алҕаһа суох аадырыс ирдэнэр',
 
 # User rights
 'userrights'                   => 'Кыттааччылар бырааптарын салайыы',

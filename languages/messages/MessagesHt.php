@@ -265,7 +265,7 @@ $messages = array(
 'about'         => 'Apwopo',
 'article'       => 'Atik',
 'newwindow'     => '(Ouvè nan yon lòt fenèt)',
-'cancel'        => 'Anile',
+'cancel'        => 'Ànile',
 'moredotdotdot' => 'Pi plis …',
 'mypage'        => 'Paj mwen',
 'mytalk'        => 'Paj diskisyon mwen an',
@@ -625,7 +625,7 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 'resetpass_forbidden'       => 'Nou pa kapab chanje mopas yo nan sistèm sa',
 'resetpass-no-info'         => 'Ou dwe konekte ou pou ou kapab jwenn paj sa.',
 'resetpass-submit-loggedin' => 'Modifye mopas sa',
-'resetpass-submit-cancel'   => 'Anile',
+'resetpass-submit-cancel'   => 'Ànile',
 'resetpass-wrong-oldpass'   => 'Mopas sa pa bon ditou; li te mèt mopas ou an kounye a oubyen yon mopas tanporè.
 Gendwa ou te deja modifye li oubyen ou te mande yon nouvo mopas tanporè.',
 'resetpass-temp-password'   => 'Mopas tanporè yo ba ou an:',
@@ -824,6 +824,9 @@ Kèk modèl yo pap enkli.",
 'parser-template-recursion-depth-warning' => 'Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)',
 'language-converter-depth-warning'        => 'Limit sou pwofondè konvètisè lang yo depase ($1)',
 
+# "Undo" feature
+'undo-summary' => 'Revoke revizyon $1 ki te fèt pa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskite]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Ou pa kapab kreye yon kont.',
 
@@ -897,7 +900,7 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'difference'              => '(Diferans ant vèsyon yo)',
 'lineno'                  => 'Liy $1 :',
 'compareselectedversions' => 'Konpare vèsyon ki seleksyone yo',
-'editundo'                => 'Defè, anile',
+'editundo'                => 'Revoke',
 'diff-multi'              => '(Genyen {{PLURAL:$1|yon revizyon|$1 revizyon yo}} ki te fèt pa {{PLURAL:$2|yon itilizatè|$2 itilizatè yo}} nan mitan evolisyon ki kache)',
 
 # Search results
@@ -1348,8 +1351,8 @@ Nan ka sa yo, ou dwe renonmen oubyen fizyone paj la ou menm si ou vle.',
 'tooltip-diff'                    => 'Montre ki chanjman ou fè nan tèks an.',
 'tooltip-compareselectedversions' => 'Afiche diferans ant de vèsyon paj sa a ou seleksyone.',
 'tooltip-watch'                   => 'Ajoute paj sa a nan lis swivi ou an',
-'tooltip-rollback'                => '« Revoke » ap anile modifikasyon dènyè kontribitè te fè sou paj sa',
-'tooltip-undo'                    => '« Anile » ap efase modifikasyon sa epi li ap ouvri fenèt modifikasyon an nan mòd kote ou kapab wè sa sa ou fè a ap bay.
+'tooltip-rollback'                => '« Revoke » ap ànile modifikasyon dènye kontribitè te fè sou paj sa',
+'tooltip-undo'                    => '« Revoke » ap efase modifikasyon sa epi li ap ouvri fenèt modifikasyon an nan mòd kote ou kapab wè sa sa ou fè a ap bay.
 Li pèmèt retabli vèsyon ki te anvan li epi ajoute yon rezon ki esplike poukisa ou revoke modifikasyon sa nan bwat rezime a.',
 
 # Browsing diffs
@@ -1406,5 +1409,8 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 
 # Special:SpecialPages
 'specialpages' => 'Paj espesyal yo',
+
+# HTML forms
+'htmlform-reset' => 'Revoke chanjman yo',
 
 );
