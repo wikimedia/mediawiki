@@ -85,7 +85,7 @@ class Preprocessor_Hash implements Preprocessor {
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
-		$cacheable = strlen( $text ) > $wgPreprocessorCacheThreshold;
+		$cacheable = $wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold;
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__.'-cacheable' );
 
