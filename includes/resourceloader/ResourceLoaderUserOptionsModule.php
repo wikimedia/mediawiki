@@ -40,7 +40,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		global $wgUser;
 
 		if ( $context->getUser() === $wgUser->getName() ) {
-			return $this->modifiedTime[$hash] = $wgUser->getTouched();
+			return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
 		} else {
 			return 1;
 		}
