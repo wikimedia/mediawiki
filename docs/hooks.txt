@@ -1536,7 +1536,7 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more)
-$tools: array of tools
+$sk: The QuickTemplate based skin template running the hook.
 
 'SoftwareInfo': Called by Special:Version for returning information about
 the software
