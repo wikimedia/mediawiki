@@ -506,6 +506,9 @@ before the user is redirected back to the page
 &$sectionanchor: The section anchor link (e.g. "#overview" )
 &$extraq: Extra query parameters which can be added via hooked functions
 
+'ArticleViewFooter': After showing the footer section of an ordinary page view
+$article: Article object
+
 'ArticleViewHeader': Before the parser cache is about to be tried for article
 viewing.
 &$article: the article

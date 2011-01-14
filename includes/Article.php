@@ -1295,6 +1295,9 @@ class Article {
 		if ( $wgUseTrackbacks ) {
 			$this->addTrackbacks();
 		}
+
+		wfRunHooks( 'ArticleViewFooter', array( $this ) );
+
 	}
 
 	/**
