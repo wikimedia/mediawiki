@@ -514,13 +514,11 @@ class LogPage {
 	public static function formatBlockFlag( $flag, $forContent = false ) {
 		static $messages = array();
 		if( !isset( $messages[$flag] ) ) {
-			$k = 'block-log-flags-' . $flag;
-			if( $forContent ) {
-				$msg = wfMsgForContent( $k );
-			} else {
-				$msg = wfMsg( $k );
+			$msg = wfMessage( 'block-log-flags-' . $flag );
+			if ( $forContent ) {
+				$msg = $msg->inContentLanguage();
 			}
-			$messages[$flag] = htmlspecialchars( wfEmptyMsg( $k, $msg ) ? $flag : $msg );
+			$messages[$flag] = htmlspecialchars( !$msg->exists() ? $flag : $msg );
 		}
 		return $messages[$flag];
 	}

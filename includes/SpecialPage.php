@@ -341,9 +341,10 @@ class SpecialPage {
 		if( isset($specialPageGroupsCache[$page->mName]) ) {
 			return $specialPageGroupsCache[$page->mName];
 		}
-		$group = wfMsg('specialpages-specialpagegroup-'.strtolower($page->mName));
-		if( $group == ''
-		 || wfEmptyMsg('specialpages-specialpagegroup-'.strtolower($page->mName), $group ) ) {
+		$msg = wfMessage('specialpages-specialpagegroup-'.strtolower($page->mName));
+		if ( !$msg->isBlank() ) {
+			$group = $msg->text();
+		} else {
 			$group = isset($wgSpecialPageGroups[$page->mName])
 				? $wgSpecialPageGroups[$page->mName]
 				: '-';
@@ -882,8 +883,7 @@ class SpecialPage {
 		} else {
 			$msg = $summaryMessageKey;
 		}
-		$out = wfMsgNoTrans( $msg );
-		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() ) {
+		if ( !wfMessage( $msg )->isBlank() and ! $this->including() ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
 

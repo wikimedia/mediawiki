@@ -78,19 +78,13 @@ class SpecialListGroupRights extends SpecialPage {
 				? 'all' 
 				: $group; 
 
-			$msg = wfMsg( 'group-' . $groupname );
-			if ( wfEmptyMsg( 'group-' . $groupname, $msg ) || $msg == '' ) {
-				$groupnameLocalized = $groupname;
-			} else {
-				$groupnameLocalized = $msg;
-			}
+			$msg = wfMessage( 'group-' . $groupname );
+			$groupnameLocalized = !$msg->isBlank() ? $msg->text() : $groupname;
 
-			$msg = wfMsgForContent( 'grouppage-' . $groupname );
-			if ( wfEmptyMsg( 'grouppage-' . $groupname, $msg ) || $msg == '' ) {
-				$grouppageLocalized = MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
-			} else {
-				$grouppageLocalized = $msg;
-			}
+			$msg = wfMessage( 'grouppage-' . $groupname )->inContentLanguage();
+			$grouppageLocalized = !$msg->isBlank() ?
+				$msg->text() :
+				MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
 
 			if( $group == '*' ) {
 				// Do not make a link for the generic * group

@@ -28,11 +28,8 @@ class ChangeTags {
 	}
 
 	static function tagDescription( $tag ) {
-		$msg = wfMsgExt( "tag-$tag", 'parseinline' );
-		if ( wfEmptyMsg( "tag-$tag", $msg ) ) {
-			return htmlspecialchars( $tag );
-		}
-		return $msg;
+		$msg = wfMessage( "tag-$tag" );
+		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag ); 
 	}
 
 	## Basic utility method to add tags to a particular change, given its rc_id, rev_id and/or log_id.

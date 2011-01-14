@@ -82,8 +82,8 @@ class SpecialTags extends SpecialPage {
 		$disp .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsgHtml( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $disp );
 
-		$desc = wfMsgExt( "tag-$tag-description", 'parseinline' );
-		$desc = wfEmptyMsg( "tag-$tag-description", $desc ) ? '' : $desc;
+		$msg = wfMessage( "tag-$tag-description" );
+		$desc = !$msg->exists() ? '' : $msg->parse();
 		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsgHtml( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $desc );
 

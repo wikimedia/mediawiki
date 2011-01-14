@@ -285,10 +285,10 @@ class SpecialUpload extends SpecialPage {
 		$form->addPreText( $message );
 
 		# Add footer to form
-		$uploadFooter = wfMsgNoTrans( 'uploadfooter' );
-		if ( $uploadFooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadFooter ) ) {
+		$uploadFooter = wfMessage( 'uploadfooter' );
+		if ( !$uploadFooter->isDisabled() ) {
 			$form->addPostText( '<div id="mw-upload-footer-message">'
-				. $wgOut->parse( $uploadFooter ) . "</div>\n" );
+				. $wgOut->parse( $uploadFooter->plain() ) . "</div>\n" );
 		}
 
 		return $form;

@@ -1179,9 +1179,9 @@ abstract class UploadBase {
 	 */
 	public static function getFilenamePrefixBlacklist() {
 		$blacklist = array();
-		$message = wfMsgForContent( 'filename-prefix-blacklist' );
-		if( $message && !( wfEmptyMsg( 'filename-prefix-blacklist', $message ) || $message == '-' ) ) {
-			$lines = explode( "\n", $message );
+		$message = wfMessage( 'filename-prefix-blacklist' )->inContentLanguage();
+		if( !$message->isDisabled() ) {
+			$lines = explode( "\n", $message->plain() );
 			foreach( $lines as $line ) {
 				// Remove comment lines
 				$comment = substr( trim( $line ), 0, 1 );

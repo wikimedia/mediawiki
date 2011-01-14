@@ -161,8 +161,7 @@ class SpecialContributions extends SpecialPage {
 					}
 				}
 
-				$text = wfMsgNoTrans( $message, $target );
-				if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
+				if( !wfMessage( $message, $target )->isDisabled() ) {
 					$wgOut->wrapWikiMsg(
 						"<div class='mw-contributions-footer'>\n$1\n</div>",
 						array( $message, $target ) );

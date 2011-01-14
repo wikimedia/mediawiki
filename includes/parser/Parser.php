@@ -3355,12 +3355,12 @@ class Parser {
 				$text = $rev->getText();
 			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
 				global $wgContLang;
-				$message = $wgContLang->lcfirst( $title->getText() );
-				$text = wfMsgForContentNoTrans( $message );
-				if ( wfEmptyMsg( $message, $text ) ) {
+				$message = wfMessage( $wgContLang->lcfirst( $title->getText() ) )->inContentLanguage();
+				if ( !$message->exists() ) {
 					$text = false;
 					break;
 				}
+				$text = $message->plain();
 			} else {
 				break;
 			}
