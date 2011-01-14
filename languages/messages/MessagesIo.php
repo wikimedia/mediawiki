@@ -11,6 +11,7 @@
  * @author Artomo
  * @author Lakaoso
  * @author Malafaya
+ * @author Reedy
  * @author Remember the dot
  * @author Wyvernoid
  * @author לערי ריינהארט
@@ -397,7 +398,7 @@ On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:s
 'error'               => 'Eroro',
 'databaseerror'       => 'Datumarala eroro',
 'readonly'            => 'Datumaro esas blokusita',
-'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante 
+'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante
 evaluo pri kande eventos la desblokuso',
 'missingarticle-rev'  => '(versiono#: $1)',
 'missingarticle-diff' => '(Difero: $1, $2)',
@@ -567,7 +568,11 @@ Se ol ankore nefuncionas, probez [[Special:UserLogout|ekirar]] e pose enirar.",
 'editingsection'                   => 'Vu redaktas $1 (seciono)',
 'editingcomment'                   => 'Vu redaktas $1 (nova seciono)',
 'editconflict'                     => 'Redakto-konflikto: $1',
-'explainconflict'                  => 'Ulu chanjis ica pagino depos vu editeskis ol. La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale. Vua chanji montresas en la infra texto-areo. Vu devas atachar vua chanji en la existanta texto. <b>Nur</b> la texto en la supra texto-areo registragesos kande vu presez sur "Registragar".',
+'explainconflict'                  => "Ulu chanjis ica pagino depos vu editeskis ol.
+La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale.
+Vua chanji montresas en la infra texto-areo.
+Vu devas atachar vua chanji en la existanta texto.
+'''Nur''' la texto en la supra texto-areo registragesos kande vu presez sur \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vua texto',
 'storedversion'                    => 'Gardita versiono',
 'nonunicodebrowser'                => "'''EGARDEZ: Vua navigilo esas ne obediema ad ''unicode''.'''
@@ -610,9 +615,9 @@ La efaco-registraro e movo-registraro dil pagino provizesar sequante por refero.
 'last'                => 'lasta',
 'page_first'          => 'unesma',
 'page_last'           => 'finala',
-'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br /> 
-Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono, 
-'''({{int:last}})''' = diferi kun l'antea versiono, 
+'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br />
+Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
+'''({{int:last}})''' = diferi kun l'antea versiono,
 '''{{int:minoreditletter}}''' = mikra redakto.",
 'histfirst'           => 'Maxim anciena',
 'histlast'            => 'Maxim nova',
@@ -711,7 +716,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'mypreferences'                 => 'Mea preferaji',
 'prefs-edits'                   => 'Nombro di redaktaji:',
 'prefsnologin'                  => 'Vu ne eniris',
-'prefsnologintext'              => 'Vu mustas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enirir] por establisar la preferaji.',
+'prefsnologintext'              => 'Vu mustas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enirir]</span> por establisar la preferaji.',
 'changepassword'                => 'Chanjar pasovorto',
 'prefs-skin'                    => 'Pelo',
 'skin-preview'                  => 'Pre-videz',

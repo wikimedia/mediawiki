@@ -10,6 +10,7 @@
  * @author Abastillas
  * @author Jordz
  * @author Palang hernan
+ * @author Reedy
  * @author לערי ריינהארט
  */
 
@@ -494,7 +495,7 @@ Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
 Naka-disable ang imong mga koki.
 Palihog i-enable kini, unya pag-log-in gamit ang imong bag-ong username ug pasword.',
 'nocookieslogin'          => "Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
-Naka-disable ang imong mga koki. 
+Naka-disable ang imong mga koki.
 Palihog i-enable kini, ug sulayi'g balik.",
 'noname'                  => 'Wala ikaw mag-specify og valid nga user name.',
 'loginsuccesstitle'       => 'Malamposon ang pagpaila',
@@ -502,7 +503,7 @@ Palihog i-enable kini, ug sulayi'g balik.",
 'nosuchuser'              => 'Walay gumagamit nga may pangalang "$1".
 Case sensitive ang mga user name.
 I-tsek ang imong espeling, o [[Special:UserLogin/signup|paghimo og bag-ong akawnt]].',
-'nosuchusershort'         => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>". 
+'nosuchusershort'         => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>".
 I-tsek ang imong espeling.',
 'nouserspecified'         => 'Kinahanglan mag-specify ka og username.',
 'wrongpassword'           => "Sayop nga pasword ang naentra.
@@ -548,7 +549,7 @@ Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [[{{MediaWiki
 Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplokanan sa imong brawser.',
 'noarticletext'                    => 'Sa kasamtangan walay sulod nga teksto ang kining panid.
 Puyde nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pangitaa ang related nga mga log],
-o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid].',
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid]</span>.',
 'userpage-userdoesnotexist'        => 'Ang akawnt sa tiggamit nga "$1" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
 'previewnote'                      => "'''Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!'''",
 'editing'                          => 'Nagausab sa $1',
@@ -558,8 +559,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid].',
 'copyrightwarning'                 => "Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang detalye). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
 Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan sa usa ka publikong rekursos o susamang libreng rekursos.
 '''AYAW PAGBUTANG DINHI OG MGA BINUHAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK NGA WA KAY PERMISO!'''",
-'templatesused'                    => 'Ang mga plantilyang gigamit niini nga panid:',
-'templatesusedpreview'             => 'Mga plantilyang gigamit niining paunang tan-aw:',
+'templatesused'                    => '{{PLURAL:$1|Ang plantilya|Ang mga plantilya}} nga gigagamit niining panid:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantilya|Mga plantilya}} nga gigamit niining paunang tan-aw:',
 'template-protected'               => '(giprotektahan)',
 'template-semiprotected'           => '(medyo giprotektahan)',
 'hiddencategories'                 => 'Ang kining panid nahiapil sa {{PLURAL:$1|1 ka kategoriya nga nakatago|$1 ka mga kategoriya nga nakatago}}:',
@@ -646,7 +647,7 @@ Isip tagdumala, puyde nimo kini tan-awon; puyde nga may mga detalye sa [{{fullur
 Isip tagdumala, puyde nimo kini tan-awon; puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log sa supresyon].",
 'rev-deleted-no-diff'         => "Dili ka puyde motan-aw niining diff tungod kay usa sa mga rebisyon '''napapas'''.
 Puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sa pagpapas].",
-'rev-deleted-unhide-diff'     => "Usa sa mga rebisyon niining diff '''napapas'''. 
+'rev-deleted-unhide-diff'     => "Usa sa mga rebisyon niining diff '''napapas'''.
 Puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sa pagpapas].
 Isip tagdumala, puyde nimo [$1 tan-awon ang diff] kon gusto ka magpadayon.",
 'rev-delundel'                => 'ipakita/tagoa',
@@ -700,7 +701,7 @@ $1",
 Dili puyde kini tagoon.',
 'revdelete-show-no-access'    => 'Sayop sa pagtago sa item sa petsa sa $2, $1: namarkahan kini isip "restricted".
 Wala kay akses niini.',
-'revdelete-modify-no-access'  => 'Sayop sa pagmodipikar sa item sa petsa sa $2, $1: namarkahan kini isip "restricted". 
+'revdelete-modify-no-access'  => 'Sayop sa pagmodipikar sa item sa petsa sa $2, $1: namarkahan kini isip "restricted".
 Wala kay akses niini.',
 'revdelete-modify-missing'    => 'Sayop sa pagmodipikar sa item ID $1: nawala kini sa database!',
 'revdelete-no-change'         => "'''Pahibalo:''' ang item sa petsa sa $2, $1 anaa nay mga setting sa bisibilidad nga gihangyo.",
@@ -1001,7 +1002,9 @@ Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 
 # Special:Categories
 'categories'                  => 'Mga kategoriya',
-'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.',
+'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-abc' => 'han-aya nga paalpabetikal',
 
 # Special:LinkSearch
@@ -1199,6 +1202,7 @@ Pwede nimong tan-awon ang ginikanan.',
 'tooltip-search-go'               => 'Moadto sa panid nga may saktong ngalan kon anaa kini',
 'tooltip-search-fulltext'         => 'Mangita sa mga panid kabahin niining teksto',
 'tooltip-n-mainpage'              => 'Bisitaha ang Unang Panid',
+'tooltip-n-mainpage-description'  => 'Bisitaha ang Unang Panid',
 'tooltip-n-portal'                => 'Kabahin sa proyekto, unsay imong mahimo, asa mangita sa mga impormasyon',
 'tooltip-n-currentevents'         => 'Pangita og nahaunang impormasyon sa mga bag-ong panghitabo',
 'tooltip-n-recentchanges'         => 'Ang talaan sa mga bag-ong giusab sa wiki.',

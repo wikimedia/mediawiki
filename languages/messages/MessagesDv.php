@@ -364,7 +364,9 @@ $messages = array(
 
 # Special:Categories
 'categories'         => 'ގިސްމުތައް',
-'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.',
+'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # E-mail user
 'emailuser' => 'މި މެންބަރަށް އީމޭލު ފޮނުއްވާ',

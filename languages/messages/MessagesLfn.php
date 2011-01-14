@@ -9,6 +9,7 @@
  *
  * @author Cgboeree
  * @author Malafaya
+ * @author Reedy
  * @author Urhixidur
  */
 
@@ -378,7 +379,7 @@ La razon donada es ''$2''.
 * Ci algun intende impedi: $7
 
 Tu pote contata $1 o un otra [[{{MediaWiki:Grouppage-sysop}}|dirijor]] per discute esta impedi.
-Tu no pote usa la 'envia un eposta a esta usor' sin un adirije de eposta legal es indicada en tu 
+Tu no pote usa la 'envia un eposta a esta usor' sin un adirije de eposta legal es indicada en tu
 [[Special:Preferences|preferis de conta]] e tu no es impedida de usa el.
 Tu adirije de IP es aora $3, e la identia de la impedi es #$5.
 Per favore inclui tota esta detales en tu demandas.",
@@ -390,7 +391,7 @@ Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
 'noarticletext'              => 'Es aora no testo a esta paje.
 Tu pote [[Special:Search/{{PAGENAME}}|xerca per la titulo de esta paje]] en otra pajes,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} xerca la arcivos relatada],
-o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje]</span>.',
 'previewnote'                => "'''Esta sola un previde; cambias no es fisada ja'''",
 'editing'                    => 'En la prosede de edita $1',
 'editingsection'             => 'Edita $1 (sesion)',
@@ -671,7 +672,9 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 # Special:Categories
 'categories'         => 'Categorias',
-'categoriespagetext' => 'Es la categorias seguente en la vici.',
+'categoriespagetext' => 'Es la categorias seguente en la vici.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Xerca',

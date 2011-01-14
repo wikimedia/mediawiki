@@ -495,7 +495,7 @@ G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.
 Aḍris deg usawen yesɛa asebter am yella tura.
 Ibeddlen inek ahaten deg ukessar.
 Yesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.
-'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"Smekti asebter\".",
+'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"{{int:savearticle}}\".",
 'yourtext'                  => 'Aḍris inek',
 'storedversion'             => 'Tasiwelt yettusmketen',
 'nonunicodebrowser'         => "'''AƔTAL: Browser/Explorateur inek ur yebil ara unicode. Nexdem akken ad tzemreḍ ad tbeddleḍ mebla amihi: isekkilin i mačči ASCII ttbanen deg tankult ubeddel s ungilen hexadecimal.'''",
@@ -958,7 +958,9 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 
 # Special:Categories
 'categories'         => 'Taggayin',
-'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.',
+'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'Ssken imseqdacen seg:',
@@ -1184,7 +1186,7 @@ iwakken ad tesmimḍeḍ asebter.',
 'move-watch'              => 'Ɛass asebter-agi',
 'movepagebtn'             => 'Smimeḍ asebter',
 'pagemovedsub'            => 'Asemmimeḍ yekfa',
-'articleexists'           => 'Yella yagi yisem am wagi, neɣ 
+'articleexists'           => 'Yella yagi yisem am wagi, neɣ
 isem ayen textareḍ mačči d ṣaḥiḥ.
 Xtar yiwen nniḍen.',
 'talkexists'              => "'''Asemmimeḍ n usebter yekfa, meɛna asebter n umyannan ines ur yettusemmimeḍ ara axaṭer yella yagi yiwen s yisem kif-kif. G leɛnayek, xdem-it weḥd-ek.'''",

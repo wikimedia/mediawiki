@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Reedy
  * @author Sentruper
  */
 
@@ -36,7 +37,7 @@ $messages = array(
 'tog-minordefault'            => 'Ségna tot al mudèfic coma "zníni" s\'l\'utent làsa la casèla vuta',
 'tog-previewontop'            => "Fam avdé l'anteprèma sora casèla d'mudèfica invezi che dciotta",
 'tog-previewonfirst'          => "Fa' avdé l'anteprèma dop c'u's fa la prèma mudèfica",
-'tog-nocache'                 => "T'an stêga a tní in memoria al pàgin",
+'tog-nocache'                 => "↓ T'an stêga a tní in tla memoria al pàgin",
 'tog-enotifwatchlistpages'    => "Fam' save' par e-mail quènd una pàgina dal mij l'è steda modifichèda",
 'tog-enotifusertalkpages'     => "Fam' save' par e-mail quènd la mi pàgina dal discusiòn l'è steda modifichèda",
 'tog-enotifminoredits'        => "Fam' save' par e-mail tòt al mudefchi, neca al znini",
@@ -50,8 +51,42 @@ $messages = array(
 'tog-uselivepreview'          => 'Drova la funziòn "Anteprèma dal viv" (u j vo Javascript; sperimentêl)',
 'tog-forceeditsummary'        => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
 'tog-watchlisthideown'        => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
+'tog-watchlisthidebots'       => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
+'tog-watchlisthideminor'      => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
+'tog-watchlisthideliu'        => "↓ In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent registrè",
+'tog-watchlisthideanons'      => " ↓ In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent senza nom",
+'tog-watchlisthidepatrolled'  => "↓ Nascond tòt al mudèfic za cuntrulèdi in tla lèsta dal pàgin da tnì d'occ",
+'tog-ccmeonemails'            => "↓ Mènd'm una còpia d'j mesèg ch'a spedèss a j étar druvador",
+'tog-diffonly'                => "↓ T'an fëga avdé e' contnù dla pàgina dop e' cunfront tra l'versiòn",
+'tog-showhiddencats'          => "↓ Fa'm avdé al categurèj nascosti",
+'tog-norollbackdiff'          => "↓ T'an fèga avdé al diferenzi dop d'avé recuperè l'ultma versiòn",
+
+'underline-always'  => '↓ Sempar',
+'underline-never'   => '↓ Mai',
+'underline-default' => "↓ Drova agl'impustaziòn d'e' browser",
+
+# Font style option in Special:Preferences
+'editfont-style'     => "↓ Stil d'e' font dl'àrea d'mudèfica",
+'editfont-default'   => "↓ Predefinì d'e' navigador",
+'editfont-monospace' => '↓ Font monospazi',
+'editfont-sansserif' => '↓ Font sans-serif',
+'editfont-serif'     => '↓ Font serif',
 
 # Dates
+'sunday'        => '↓  Dmènga',
+'monday'        => '↓ Lùn',
+'tuesday'       => '↓ Mért',
+'wednesday'     => '↓ Mircual',
+'thursday'      => '↓  Zuba',
+'friday'        => '↓ Vënar',
+'saturday'      => '↓ Sábat',
+'sun'           => '↓ Dmè',
+'mon'           => '↓ Lun',
+'tue'           => '↓ Mrt',
+'wed'           => '↓ Mir',
+'thu'           => '↓ Zob',
+'fri'           => '↓ Ven',
+'sat'           => '↓ Sàb',
 'january'       => 'Znèr',
 'february'      => 'Febrér',
 'march'         => 'Mêrz',
@@ -90,21 +125,54 @@ $messages = array(
 'dec'           => 'diz',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Categurèja|Categurei}}',
-'category_header'        => 'Articul int la categurèja "$1"',
-'subcategories'          => 'Sòtacategurèja',
-'hidden-categories'      => '{{PLURAL:$1|Categurèja ardupèda|Categurèi ardupèdi}}',
-'category-subcat-count'  => "{{PLURAL:$2|Sta categurèja l'à sol òna sota-categurèja|Sta categurèja l'à  {{PLURAL:$1|sota-categurèja|$1 sot-categuréj}}, sora $2 ch'l'è é tutel.}}",
-'category-article-count' => "{{PLURAL:$2|Sta categuréja l'à sol sta pàgina què|In sta categuréja u j sta {{PLURAL:$1|sta pàgina|$1 pàgin}} sora $2, ch'l'è e' tutel.}}",
-'listingcontinuesabbrev' => 'inênz',
+'pagecategories'                 => '{{PLURAL:$1|Categurèja|Categurei}}',
+'category_header'                => 'Articul int la categurèja "$1"',
+'subcategories'                  => 'Sòtacategurèja',
+'category-media-header'          => '↓ File int la categurèja "$1"',
+'category-empty'                 => "↓ Al dè d'incù 'sta categurèja què l'à na d'pàgin né d'archîvi multimediêl",
+'hidden-categories'              => '{{PLURAL:$1|Categurèja ardupèda|Categurèi ardupèdi}}',
+'hidden-category-category'       => '↓ Categurèj nascosti',
+'category-subcat-count'          => "{{PLURAL:$2|Sta categurèja l'à sol òna sota-categurèja|Sta categurèja l'à  {{PLURAL:$1|sota-categurèja|$1 sot-categuréj}}, sora $2 ch'l'è é tutel.}}",
+'category-subcat-count-limited'  => "↓ Sta categurèja-què l'à dentar {{PLURAL:$1|la sòt-categurèja| i $1 sòt-categurèj}} ch'j vèn dop.",
+'category-article-count'         => "{{PLURAL:$2|Sta categuréja l'à sol sta pàgina què|In sta categuréja u j sta {{PLURAL:$1|sta pàgina|$1 pàgin}} sora $2, ch'l'è e' tutel.}}",
+'category-article-count-limited' => "↓ Sta categurèja-què l'à dentar {{PLURAL:$1| 'sta pàgina|'sti pàgin}} a què sòta.",
+'category-file-count'            => "↓ {{PLURAL:$2|Sta categuréja l'à sol sta pàgina què|In sta categuréja u j sta {{PLURAL:$1|sta pàgina|$1 pàgin}} sora $2, ch'l'è e' tutel.}}",
+'category-file-count-limited'    => "↓ In sta categurèja-què {{PLURAL:$1|u j è la pàgina|agl'j è al pàgin}} a què sòta.",
+'listingcontinuesabbrev'         => 'inênz',
+'index-category'                 => '↓ Pàgina indicizëda',
+'noindex-category'               => '↓  Pàgina non indicizëda',
 
-'newwindow'  => "(la s'avèra int'una fnèstra nova)",
-'cancel'     => 'Làsa perdar',
-'mytalk'     => 'Al mi cunversaziòn',
-'navigation' => 'Navgaziòn',
+'mainpagetext' => "↓ '''L'instalaziòn d'MediaWiki l'è andêda ben'''",
+
+'about'         => "↓ A prupòsit d'",
+'article'       => '↓ Artècual',
+'newwindow'     => "(la s'avèra int'una fnèstra nova)",
+'cancel'        => 'Làsa perdar',
+'moredotdotdot' => '↓  Ad piò…',
+'mypage'        => '↓ La mi pàgina',
+'mytalk'        => 'Al mi cunversaziòn',
+'anontalk'      => "↓ Ciacarédi par 'st'indirèzz IP",
+'navigation'    => 'Navgaziòn',
+'and'           => '↓ &#32;e',
 
 # Cologne Blue skin
-'qbfind' => 'Tróva',
+'qbfind'         => 'Tróva',
+'qbbrowse'       => '↓ Sföja',
+'qbedit'         => '↓ Mudèfica',
+'qbpageoptions'  => '↓ Upziòn dla pàgina',
+'qbpageinfo'     => '↓ Infurmaziòn sora la pàgina',
+'qbmyoptions'    => '↓ Al mi pàgin',
+'qbspecialpages' => '↓ Pàgin particulèri',
+'faq'            => '↓ Question frequenti',
+'faqpage'        => '↓ Prugèt:Question frequenti',
+
+# Vector skin
+'vector-action-addsection' => '↓ Zonta una cjacarèda',
+'vector-action-delete'     => '↓ Scanzèla',
+'vector-action-move'       => '↓ Chèmbia nòm',
+'vector-action-protect'    => '↓ Metti-j una pruteziò',
+'vector-action-undelete'   => '↓ Armett a post',
+'vector-action-unprotect'  => '↓ Sbloca',
 
 'errorpagetitle'   => "Oci! T'ê fat una capèla",
 'returnto'         => 'Torna indrì a $1.',
@@ -211,7 +279,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'italic_tip'      => 'Pàroli in cursìv',
 'link_sample'     => "Nòm d'e' culegamént",
 'link_tip'        => 'Culegamént intéran',
-'extlink_sample'  => "http://www.esempi.com Nòm d'e' culegamént",
+'extlink_sample'  => "http://www.example.com Nòm d'e' culegamént",
 'extlink_tip'     => 'Culegamént esteran (arcordat d\'scrivar dadnénz "http://")',
 'headline_sample' => 'Intestaziòn',
 'headline_tip'    => "Intestaziòn d'e' sgond livèl",
@@ -240,7 +308,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 S't'vu fèla te, tàca scrivar int'e' spazi a què sotta (guèrda la [[{{MediaWiki:Helppage}}|pàgina d'servezi]] s't'vu saven piò).
 S'cì arìv a que par sbaj, sciàza e butòn \"Indrì\" e t'ci a post.",
 'noarticletext'                    => "In 'ste mumént un gn'è gnito in sta pàgina: l'è vuta.
-Magari t'pù provè a [[Special:Search/{{PAGENAME}}|zirchè ste nòm]] in t'j ètar pàgin, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zirchè i regèstr relativ], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} scrivj indentar adès].",
+Magari t'pù provè a [[Special:Search/{{PAGENAME}}|zirchè ste nòm]] in t'j ètar pàgin, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zirchè i regèstr relativ], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} scrivj indentar adès]</span>.",
 'previewnote'                      => "'''Òci! Lezz prèma cus t'e' fat; e' tu scrètt U N' è stè ancora registrè!'''",
 'editing'                          => 'Cambiamént de $1',
 'editingsection'                   => 'Mudèfiga $1 (seziòn)',
@@ -468,7 +536,7 @@ Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
 'protect-text'                => "Cun ste mudèl u s'pò guardè e u s'pò cambié ê livèl d'pruteziòn dla pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Oci! Ta n'ê miga i parmess par cambié i livel d'pruteziòn dla pàgina.
 S't'vù vdë in dô ch'j è i parmess, guèrda '''$1''':",
-'protect-cascadeon'           => "Sta pàgina pr'adès l'è bluchëda parchè l'è stra l'{{PLURAL:$1|la pàgina aquè sota, ch'l'à|al pàgin aquè sota, ch'j'à}} la pruteziòn ricursiva. 
+'protect-cascadeon'           => "Sta pàgina pr'adès l'è bluchëda parchè l'è stra l'{{PLURAL:$1|la pàgina aquè sota, ch'l'à|al pàgin aquè sota, ch'j'à}} la pruteziòn ricursiva.
 T'pù cambié ê livel d'pruteziòn d'sta pàgina, mo la pruteziòn ricursiva la resta a lè.",
 'protect-default'             => 'Dà ê parmess a tòt j navigadur',
 'protect-fallback'            => 'A què u j vô ê parmess "$1"',
@@ -650,7 +718,7 @@ Tot i culegamént ch'j ven dop, sora la stèsa riga, j conta cumpagna d'j ecezi�
 
 # Metadata
 'metadata'          => 'Dèd sora i dèd',
-'metadata-help'     => "Ste file l'à d'l'infurmaziòn in piò. Forsi parchè al figur j è stedi cjapèdi con la machina digitèla o cun e' scàner. 
+'metadata-help'     => "Ste file l'à d'l'infurmaziòn in piò. Forsi parchè al figur j è stedi cjapèdi con la machina digitèla o cun e' scàner.
 Se parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curespòn piò cun l'uriginel.",
 'metadata-expand'   => 'Fam avdé i particulèr',
 'metadata-collapse' => 'Nascond i particulèr',

@@ -70,7 +70,7 @@ $messages = array(
 'tog-minordefault'            => 'অকরাতই হাব্বি পতা ফাঙনেই বুলিয়া দেহাদে',
 'tog-previewontop'            => 'পতা উপুগর গজে লেহার মিল্লেখ দেহাদে',
 'tog-previewonfirst'          => 'পয়লা পতানিহাত মিল্লেখ দেহাদে',
-'tog-nocache'                 => 'পাতা য়মকরানি থা নাদি',
+'tog-nocache'                 => 'পাতা য়মকরানিহান থা নাদি',
 'tog-enotifwatchlistpages'    => 'মরে ইমেইল কর যদি মর মিল্লেঙে থসু অতা পতিলে',
 'tog-enotifusertalkpages'     => 'মরে ইমেইল কর যদি মর য়্যারির পাতা পতিলে',
 'tog-enotifminoredits'        => 'মরে ইমেইল কর পাতা আহানর পতানিহান হুরু ইলেউ',
@@ -446,7 +446,7 @@ $2',
 # Login and logout pages
 'logouttext'                 => "'''তি খানি আগে তর একাউন্টহাত্ত নিকুরিসত।'''
 
-এ পরিস্থিতিত তি বেনাঙল {{SITENAME}} ব্যবহার করানি পারর, নাইলে আরাক নাঙল [[Special:UserLogin|বারো হমানি]] পারর।  
+এ পরিস্থিতিত তি বেনাঙল {{SITENAME}} ব্যবহার করানি পারর, নাইলে আরাক নাঙল [[Special:UserLogin|বারো হমানি]] পারর।
 খিয়াল থ, কোন কোন পাতা তি আগর অংতাত আসত বুলিয়া দেখা দিতে পারে। অসারে ইলে তি ব্রাওজারর ক্যাশ সেঙকরে বেলা (clear browser cache)।",
 'welcomecreation'            => '==সম্ভাষা, $1! ==
 তর একাউন্টহান হঙিল। তর [[Special:Preferences|{{SITENAME}} পছনহান]] সিলানি না পাহুরিস।',
@@ -460,6 +460,7 @@ $2',
 'nav-login-createaccount'    => 'লগইন / একাউন্ট খুল',
 'loginprompt'                => 'তি যেসাদেউ হমাসি {{SITENAME}} পাতা এহানর কুকিসর য়্যাথাঙ দে।',
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
+'userloginnocreate'          => 'লগইন',
 'logout'                     => 'নিকুলানি',
 'userlogout'                 => 'নিকুলানি',
 'notloggedin'                => 'তি লগ-ইন নাকরিসত',
@@ -497,7 +498,7 @@ $2',
 'passwordremindertitle'      => 'নুয়া খন্তাচাবি {{SITENAME}}র কাজে',
 'passwordremindertext'       => 'কুঙগ আগই (মনে অর তি, $1 আইপি ঠিকানা এহাত্ত) হেইচা করিসত যে আমি তরে {{SITENAME}}-র কা আরাক নুৱা খন্তাচাবি দিয়া পেঠাদেনার কা ($4)।
 অস্হায়ী খন্তাচাবি আগ "$2" আতাকুরার কাজে হঙকরিয়া "$3" ঠিকানাত ইমেইল করানি অইল।
-এহান তর হেইচাহান ইয়া থাইলে, নুৱা খন্তাচাবিলো লগইন কর। 
+এহান তর হেইচাহান ইয়া থাইলে, নুৱা খন্তাচাবিলো লগইন কর।
 তি একাউন্টহান হমিয়াই খন্তাচাবি বদালানি থকিতই {{PLURAL:$5|আকদিন|$5 দিনর}} ভিতরে।
 
 তি নায়া আরাক আগই হেইচা করিয়া থাইতারা, নাইলে তরতা পুরানা খন্তাচাবিগ নিঙশিঙ ইয়া থার অতাইলে বারো অগ সিলকরানির খৌরাঙ না থার অতা ইলে এরে পৌ এহান বেলিয়া পুরানা খন্তাচাবিগই আতা পারতেই।
@@ -543,6 +544,7 @@ $2',
 'resetpass_forbidden'       => 'খন্তাচাবিগ সিলকরানি নুৱারলাঙ',
 'resetpass-no-info'         => 'পাতা এহানাত হমিতে গেলেগা তি যেসারেউ লগইন করানি লাগতই।',
 'resetpass-submit-loggedin' => 'খন্তাচাবি সিলকর',
+'resetpass-submit-cancel'   => 'বাতিল করেদে',
 'resetpass-wrong-oldpass'   => 'লেপনেই বা এপাগার খন্তাচাবিগ চুম নাইসে।
 নিঙকরুরিতা তি হাদিএহান তর খন্তাচাবিগ সিলকরিসত নাইলে আরাক লেপনেই খন্তাচাবি আগর হেইচা করিসত।',
 'resetpass-temp-password'   => 'লেপনাইসে খন্তাচাবি:',
@@ -593,7 +595,7 @@ $2',
 * থেপকরানিহান লমিতইতা: $6
 * থেপকরানি মনাসিলাতা: $7
 
-তি $1 নাইলেউ [[{{MediaWiki:Grouppage-sysop}}|প্রশাসকর]] মা যে কোন আগর লগে বিষয় এহান্ন য়্যারি পরি দে পারর। বিশেষ মাতিলতাঃ তর ই-মেইল ঠিকানাহান যদি [[Special:Preferences|তর পছন তালিকাত]] বরিয়া নাথার, অতা ইলে তি উইকিপিডিয়াত হের আতাকুরারে ই-মেইল করানি নুৱারবে। তর আইপি ঠিকানাহান ইলতাই $3 বারো থেপকরিসি আইপিগ ইলতাই #$5। 
+তি $1 নাইলেউ [[{{MediaWiki:Grouppage-sysop}}|প্রশাসকর]] মা যে কোন আগর লগে বিষয় এহান্ন য়্যারি পরি দে পারর। বিশেষ মাতিলতাঃ তর ই-মেইল ঠিকানাহান যদি [[Special:Preferences|তর পছন তালিকাত]] বরিয়া নাথার, অতা ইলে তি উইকিপিডিয়াত হের আতাকুরারে ই-মেইল করানি নুৱারবে। তর আইপি ঠিকানাহান ইলতাই $3 বারো থেপকরিসি আইপিগ ইলতাই #$5।
 কৃপা করিয়া যে কোন যোগাযোগর সময়ত এরে আইপি ঠিকানাহানি যেসাদেউ বরিস।",
 'autoblockedtext'                  => 'তর আইপি ঠিকানাহরে তারেত্ত তাই থেপকরিসে কারণহান ইলতাই মান্না আইপি ঠিকানার আরাক আতাকুরা আগই ব্যবহার করিসে যারে  $1 হান্ন থেপ করানি অসে।
 যে যে কারণে থেপ করানি অসে:
@@ -616,7 +618,7 @@ $2',
 'whitelistedittitle'               => 'পতানির কা লগইন করানি লাগতই',
 'whitelistedittext'                => 'পাতাহান পতানিরকা $1 করানি লাগতই।',
 'confirmedittext'                  => 'যেহানউ সম্পাদনা করানির আগে তর ই-মেইল ঠিকানাহন যেসাদেউ লেপকরানি লাগতই। কৃপাকরিয়া তর ই-মেইল ঠিকানাহান [[Special:Preferences|আতাকুরার পছনতালিকা]]ত চুমকরে বরা।',
-'nosuchsectiontitle'               => 'এসাদে কোন অনুচ্ছেদ নেই',
+'nosuchsectiontitle'               => 'অনুচ্ছেদহান বিসারিয়া নাপেইলাঙ',
 'nosuchsectiontext'                => 'তি এসাদে পরিচ্ছেদ আহান পতানির হৎনা করর যেহানর কোন অস্তিত্ব নেই। $1 নাঙর কোন পরিচ্ছেদ নেই অহানে ইতু করানিরউ কোন জাগা নেই।',
 'loginreqtitle'                    => 'লগইন দরকার ইসে',
 'loginreqlink'                     => 'লগ-ইন',
@@ -626,15 +628,15 @@ $2',
 লগ-ইন করানির পিসে তর নুৱা অ্যাকাউন্টর কা ''[[Special:ChangePassword|খন্তাচাবি সিলকরানি]]''র পাতাত্ব সালকরানি একরতই।",
 'newarticle'                       => '(নুৱা)',
 'newarticletext'                   => 'তি বিসারার মিলাপ অহান নেয়সে।
-তি চেইলে তলর বক্সগত বিষয়হানর বারে খানি ইকরিয়া ইতুকরে পারর বারো নিবন্ধহান অকরে পারর (আরাকউ হারপানিরকা [[{{MediaWiki:Helppage}}|পাঙলাক পাতা]] চা) পারর। 
+তি চেইলে তলর বক্সগত বিষয়হানর বারে খানি ইকরিয়া ইতুকরে পারর বারো নিবন্ধহান অকরে পারর (আরাকউ হারপানিরকা [[{{MediaWiki:Helppage}}|পাঙলাক পাতা]] চা) পারর।
 যদি হারনাপেয়া এহাত আহিয়া থার অতা ইলে ব্রাউজারর ব্যাক গুতমগত ক্লিক করিয়া আগর পাতাত আল পারর।',
-'anontalkpagetext'                 => "----''এহান অচিনা অতার য়্যারির পাতাহান, যেগই কোন অ্যাকাউন্ট না খুলিসে, নাইলে ব্যবহার নাকরের। 
-অহানে আমি আইপি ঠিকানা (IP Address)ল অগরে দেখাদেরাঙতা। 
-আক্কুসে এসাদে আকহান আইপি ব্যবহার করতে পারে। 
+'anontalkpagetext'                 => "----''এহান অচিনা অতার য়্যারির পাতাহান, যেগই কোন অ্যাকাউন্ট না খুলিসে, নাইলে ব্যবহার নাকরের।
+অহানে আমি আইপি ঠিকানা (IP Address)ল অগরে দেখাদেরাঙতা।
+আক্কুসে এসাদে আকহান আইপি ব্যবহার করতে পারে।
 অহানে তি নিশ্চকে এরে আইপি এহাত্ত উইকিপিডিয়াত হমিয়া কোন হবানেই য়্যারী দেখর, অহান তরে নিঙকরিয়া নাউ ইতে পারে। অহানে হাবিত্ত হবা অর, তি যদি [[Special:UserLogin|লগ-ইন]] করর, নাইলে [[Special:UserLogin/signup|নুৱা একাউন্ট খুলর]] অতা ইলে এসাদে ভুল বুঝাবুঝি নাইব।''",
 'noarticletext'                    => 'এপাগা এরে পাতাত কোন লেখা নেই। তি মনেইলে হের পাতাহান [[Special:Search/{{PAGENAME}}|এরে চিঙনাঙল বিসারা পারর]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} এহানর বারে লগ বিসারা পারর], নাইলে [{{fullurl:{{FULLPAGENAME}}|action=edit}} এরে পাতা এহান পতা পারর।]',
 'noarticletext-nopermission'       => 'এপাগাউ কোন মেয়েক নেই পাতা এহাত।
-তি [[Special:Search/{{PAGENAME}}|এরে পাতার চিঙনাঙ এহানল বিসারা]] হের পাতা অতাত, 
+তি [[Special:Search/{{PAGENAME}}|এরে পাতার চিঙনাঙ এহানল বিসারা]] হের পাতা অতাত,
 নাইলে <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} মিল আসে লগ অতাত বিসারা]</span>।',
 'userpage-userdoesnotexist'        => 'আতাকুরা "$1"র অ্যাকাউন্টহান না হঙিসে।
 তি পাতা এহান হঙকরানি/পতানি চারাতানা কিতা খালকরিয়া চা।',
@@ -885,45 +887,73 @@ $2',
 'qbsettings-floatingright' => 'বাহের বাত',
 
 # Preferences page
-'preferences'              => 'পছনহানি',
-'mypreferences'            => 'মর পছন',
-'prefs-edits'              => 'পতাসি অতার সংখ্যাহান',
-'changepassword'           => 'খন্তাচাবি(password) পতা',
-'prefs-skin'               => 'সরহান',
-'skin-preview'             => 'আগচা',
-'prefs-math'               => 'গণিত',
-'datedefault'              => 'পছন করাতা নেই',
-'prefs-datetime'           => 'তারিখ বারো সময়',
-'prefs-rc'                 => 'হাদি এহানর পতানি',
-'prefs-watchlist-days-max' => 'বপিলে ৭ দিন পেয়া',
-'prefs-misc'               => 'নানন',
-'prefs-resetpass'          => 'খন্তাচাবি সিলকর',
-'prefs-email'              => 'ই-মেইল অপশনহানি',
-'saveprefs'                => 'ইতু',
-'columns'                  => 'দুরগিঃ',
-'timezoneregion-america'   => 'আমেরিকা',
-'timezoneregion-asia'      => 'এশিয়া',
-'timezoneregion-atlantic'  => 'আটলান্টিক মহাসাগর',
-'allowemail'               => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
-'prefs-files'              => 'ফাইল',
-'youremail'                => 'ই-মেইল *:',
-'yourrealname'             => 'আৱৈপা নাংহান *:',
-'yourlanguage'             => 'ঠারহান:',
-'yournick'                 => 'দাহানির নাংহান:',
-'gender-male'              => 'মুনি',
-'gender-female'            => 'জেলা',
-'email'                    => 'ইমেইল',
-'prefs-help-realname'      => 'আয়ৌপা নাংহান নাদলেউ চলের।
+'preferences'               => 'পছনহানি',
+'mypreferences'             => 'মর পছন',
+'prefs-edits'               => 'পতাসি অতার সংখ্যাহান',
+'changepassword'            => 'খন্তাচাবি(password) পতা',
+'prefs-skin'                => 'সরহান',
+'skin-preview'              => 'আগচা',
+'prefs-math'                => 'গণিত',
+'datedefault'               => 'পছন করাতা নেই',
+'prefs-datetime'            => 'তারিখ বারো সময়',
+'prefs-rc'                  => 'হাদি এহানর পতানি',
+'prefs-watchlist-days-max'  => 'বপিলে ৭ দিন পেয়া',
+'prefs-misc'                => 'নানন',
+'prefs-resetpass'           => 'খন্তাচাবি সিলকর',
+'prefs-email'               => 'ই-মেইল অপশনহানি',
+'saveprefs'                 => 'ইতু',
+'columns'                   => 'দুরগিঃ',
+'timezoneregion-africa'     => 'আফ্রিকা',
+'timezoneregion-america'    => 'আমেরিকা',
+'timezoneregion-antarctica' => 'এন্টার্টিকা',
+'timezoneregion-arctic'     => 'আর্কটিক',
+'timezoneregion-asia'       => 'এশিয়া',
+'timezoneregion-atlantic'   => 'আটলান্টিক মহাসাগর',
+'timezoneregion-australia'  => 'অস্ট্রেলিয়া',
+'timezoneregion-europe'     => 'ইউরোপ',
+'timezoneregion-indian'     => 'ভারত মহাসাগর',
+'timezoneregion-pacific'    => 'প্রশান্ত মহাসাগর',
+'allowemail'                => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
+'prefs-searchoptions'       => 'বিসারানির অপশনহানি',
+'prefs-namespaces'          => 'নাঙরলাম',
+'defaultns'                 => 'নাইলে এরে নাঙর লামে বিসারা:',
+'default'                   => 'আদি অঙতা',
+'prefs-files'               => 'ফাইল',
+'prefs-custom-css'          => 'স্বনির্ধারিত CSS',
+'prefs-custom-js'           => 'স্বনির্ধারিত JS',
+'youremail'                 => 'ই-মেইল *:',
+'yourrealname'              => 'আৱৈপা নাংহান *:',
+'yourlanguage'              => 'ঠারহান:',
+'yournick'                  => 'দাহানির নাংহান:',
+'gender-male'               => 'মুনি',
+'gender-female'             => 'জেলা',
+'email'                     => 'ইমেইল',
+'prefs-help-realname'       => 'আয়ৌপা নাংহান নাদলেউ চলের।
 যদি তি দের অতাইলে তর কামর থাকাত দেনাত সুবিধা অইতই।',
-'prefs-advancedediting'    => 'উচ্চতর অপশন',
-'prefs-advancedrc'         => 'উচ্চতর অপশন',
-'prefs-advancedrendering'  => 'উচ্চতর অপশন',
-'prefs-advancedwatchlist'  => 'উচ্চতর অপশন',
-'prefs-display'            => 'দেহাদেনার অপশন',
-'prefs-diffs'              => 'ফারাক',
+'prefs-advancedediting'     => 'উচ্চতর অপশন',
+'prefs-advancedrc'          => 'উচ্চতর অপশন',
+'prefs-advancedrendering'   => 'উচ্চতর অপশন',
+'prefs-advancedwatchlist'   => 'উচ্চতর অপশন',
+'prefs-display'             => 'দেহাদেনার অপশন',
+'prefs-diffs'               => 'ফারাক',
+
+# User rights
+'userrights-changeable-col'   => 'দলহান যেহান তি সিলকরানি পারতেই',
+'userrights-unchangeable-col' => 'দলহান যেহান তি সিলকরানি নুৱারতেই',
 
 # Groups
-'group-sysop' => 'ডান্ডিকরেকুরাগি',
+'group'               => 'দল:',
+'group-user'          => 'আতাকুরাগি',
+'group-autoconfirmed' => 'তানুরতাই তানু লেপকরিসি আতাকুরাগি',
+'group-bot'           => 'বটগি',
+'group-sysop'         => 'ডান্ডিকরেকুরাগি',
+'group-bureaucrat'    => 'ব্যুরোক্রেটগি',
+'group-suppress'      => 'গোপন পর্যবেক্ষকগি',
+'group-all'           => '(হাব্বি)',
+
+'group-user-member'          => 'আতাকুরা',
+'group-autoconfirmed-member' => 'তারতাই তা লেপকরিসে আতাকুরা',
+'group-bot-member'           => 'বট',
 
 'grouppage-sysop' => '{{ns:project}}:প্রশাসকগি',
 
@@ -1062,7 +1092,8 @@ $2',
 'shared-repo-from'          => '$1 রাঙতো',
 
 # File reversion
-'filerevert-comment' => 'মতামত:',
+'filerevert-comment'        => 'কারণ:',
+'filerevert-defaultcomment' => '$2, $1 সংস্করণহাত আলুইল',
 
 # File deletion
 'filedelete-submit'           => 'পুস',
@@ -1169,7 +1200,9 @@ $2',
 
 # Special:Categories
 'categories'         => 'বিষয়রথাকহানি',
-'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
+'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'sp-deletedcontributions-contribs' => 'অবদানহানি',
@@ -1583,7 +1616,7 @@ $2',
 'confirmemail_send'        => 'লেপকরেকুরা কোডগ দিয়াপেঠাদে',
 'confirmemail_sent'        => 'লেপকরেকুরা ই-মেইলহান দিয়াপেঠা দিলাং।',
 'confirmemail_sendfailed'  => '{{SITENAME}} এহানে তর ই-মেইলহান দিয়াপেঠাদে নুৱারল।
-ইমেইল ঠিকানাহান চুমকরে ইকরিসত্তানা কিতা নাইলে কোন নাকরের মেয়েক থাথাইব আরাক আকমু খিয়াল করিয়া চা। 
+ইমেইল ঠিকানাহান চুমকরে ইকরিসত্তানা কিতা নাইলে কোন নাকরের মেয়েক থাথাইব আরাক আকমু খিয়াল করিয়া চা।
 
 আলথকে আহিলঃ $1',
 'confirmemail_invalid'     => 'লেপকরেকুরা কোডগ চুম নাইসে। সম্ভবতঃ এগ পুরানা ইয়া পরসেগা।',

@@ -447,7 +447,7 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'gotaccountlink'             => 'Dogluyara',
 'createaccountmail'          => 'kan e-mail',
 'badretype'                  => 'Toloy suteyen remravlem tid menuxaf.',
-'userexists'                 => 'Favesikyolt rinon suteyen ixam zo faver. 
+'userexists'                 => 'Favesikyolt rinon suteyen ixam zo faver.
 Va amidaf yolt gokiblal.',
 'loginerror'                 => 'Pilkomodajara',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
@@ -542,7 +542,7 @@ Ta da wan zo pilkomodal, va warzaf remravlem batlize gobazel :",
 'blockedtitle'                     => 'Elekan favesik',
 'blockedtext'                      => '\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'
 
-Elekara skuyuna gan $1. 
+Elekara skuyuna gan $1.
 Lazava tir \'\'$2\'\'.
 
 * Elekaratoza : $8
@@ -586,8 +586,11 @@ oke [{{fullurl:{{FULLPAGENAME}}|action=edit}} va batu bu robetal]</span>.',
 'editingsection'                   => 'betara va $1 (gabot)',
 'editingcomment'                   => 'Betara va $1 (warzaf gabot)',
 'editconflict'                     => 'Betarakoboda : $1',
-'explainconflict'                  => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
+'explainconflict'                  => "Cette page a été sauvegardée après que vous avez commencé à la modifier.
+La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données.
+Vos modifications apparaissent dans la zone d'édition inférieure.
+Vous allez devoir apporter vos modifications au texte existant.
+Seul le texte de la zone supérieure sera sauvegardé.",
 'yourtext'                         => 'Rinaf krent',
 'storedversion'                    => 'Koverteyen siatos',
 'editingold'                       => "'''Obral : rin va savsaf siatos ke batu bu betal. Ede giwal, kot betaks skuyun mali bat siatos di zo deokar.'''",
@@ -1050,7 +1053,7 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'illegalfilename'             => '« $1 » iyeltakyolt va biuna staa koe buvergumvelt ruldar. Vay, vaon tolyoltal aze tolksudal.',
 'badfilename'                 => 'Tolyoltayana ewava « $1 ».',
 'filetype-badmime'            => 'Iyeltak ton "$1" MIME ord tir merokalvajan.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' tir iyeltakordaj. 
+'filetype-unwanted-type'      => "'''\".\$1\"''' tir iyeltakordaj.
 {{PLURAL:\$3|iyeltakord tir|iyeltakord tid}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' tir merictan iyeltakord. Rictan iyeltakord {{PLURAL:\$3|tir|tid}} \$2.",
 'filetype-missing'            => 'Iyeltak tir oxiaciskaf (tulon ".jpg").',
@@ -1311,7 +1314,9 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 
 # Special:Categories
 'categories'                    => 'Bulomeem',
-'categoriespagetext'            => 'Radimiasa loma se moe wiki krulded :',
+'categoriespagetext'            => 'Radimiasa loma se moe wiki krulded.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Nedira va loma tozakirafa gu :',
 'special-categories-sort-count' => 'Otafa mubera',
 'special-categories-sort-abc'   => 'Abavafa mubera',
@@ -1458,7 +1463,7 @@ Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:
 'actioncomplete'         => 'Skuyuna sulara',
 'deletedtext'            => '« <nowiki>$1</nowiki> » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
-'deletedarticle'         => 'al sular va « $1 »',
+'deletedarticle'         => 'al sular va « [[$1]] »',
 'suppressedarticle'      => '"[[$1]]" sulayan',
 'dellogpage'             => 'Izvot va sulareem',
 'dellogpagetext'         => 'Tir tela vexala dem noeltaf sulareem.

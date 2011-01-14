@@ -9,6 +9,7 @@
  *
  * @author Hercule
  * @author O
+ * @author Reedy
  * @author Wu-chinese.com
  */
 
@@ -572,7 +573,7 @@ $2',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '侬必须$1再好查看其它页面。',
 'accmailtitle'                     => '密码已发送哉。',
-'accmailtext'                      => " 已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
+'accmailtext'                      => "已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
 
 登录之后，侬可以垃拉 ''[[Special:ChangePassword|箇只页面]]''更改密码。",
 'newarticle'                       => '（新）',
@@ -619,7 +620,7 @@ $2',
 上头个文字框内显示个是箇歇本页个内容。
 侬个修改显示垃拉下底只文字框里向。
 侬应当拿侬个修改加入到现有个内容里向。
-<b>只有</b>上头文字框里向个内容会得垃侬点击"保存页面"之后畀保存。<br />',
+<b>只有</b>上头文字框里向个内容会得垃侬点击"保存页面"之后畀保存。',
 'yourtext'                         => '侬个文字',
 'storedversion'                    => '已保存修订版本',
 'nonunicodebrowser'                => "'''警告：侬个浏览器弗兼容Unicode编码。'''箇搭有一只工作区将使侬可以安全编辑页面：非ASCII字符将以十六进制编码方式出现垃拉编辑框里向。",
@@ -1006,6 +1007,8 @@ $1",
 'timezoneregion-atlantic'       => '大西洋',
 'timezoneregion-australia'      => '澳洲',
 'allowemail'                    => '接受别个用户个电子邮件',
+'prefs-searchoptions'           => '搜索选项',
+'prefs-namespaces'              => '名字空间',
 'default'                       => '默认',
 'prefs-files'                   => '文件',
 'youremail'                     => '电子邮件:',
@@ -1305,7 +1308,7 @@ $1",
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '到期辰光无效。',
 'protect_expiry_old'          => '到期辰光已经过去哉。',
-'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki>< /strong>个保护级别。',
+'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki></strong>个保护级别。',
 'protect-locked-access'       => '侬个账户权限弗好修改保护级别。
 下底是<strong>$1</strong>箇歇个保护级别：',
 'protect-cascadeon'           => '下底个{{PLURAL:$1|一只|多只}}页面包含 本页面个同时，启动了连锁保护，因此本页面目前也拨保护拉许，弗好编辑。侬可以设置本页面个保护级别，但箇个并弗会对连锁保护有所影响。',

@@ -276,7 +276,9 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 
 # Special:Categories
 'categories'         => 'Kategorianan',
-'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
+'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # E-mail user
 'emailuser'       => 'Manda e-mail pa e uzadó aki',

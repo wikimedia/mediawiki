@@ -426,7 +426,7 @@ Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
 'blockedtitle'                     => "Machoma' i muna'sesetbi",
 'blockedtext'                      => "'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''
 
-Manchomma' as $1. 
+Manchomma' as $1.
 Pot i rason: ''$2''.
 
 * Matutuhon manchomma' gi: $8
@@ -435,7 +435,7 @@ Pot i rason: ''$2''.
 
 Siña un kuentusi si $1 pat otru na [[{{MediaWiki:Grouppage-sysop}}|administradot]] para un diskuti i chinemma'.
 Ti siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address minaolek gi i [[Special:Preferences|priferensia i kuenta-mu]] ya ti machomma' hao manu'usa ha'.
-På'go, $3 iyo-mu IP, ya machomma' i ID #$5. 
+På'go, $3 iyo-mu IP, ya machomma' i ID #$5.
 Pot fabot, na'hålom i infotmasion gi sanhilo' gi i finaisen-mu siha.",
 'autoblockedtext'                  => "Machomma' på'go iyo-mu IP sa' guåha otru na muna'sestbi ni ha u'usa ha', ya machomma' gue' as $1.
 Ha na'i i rason:
@@ -491,7 +491,7 @@ Pot fabot chagi ta'lo. Yanggen ti siña u såtba ta'lo, chagi muna'logout yan na
 Ma'annok i tinige' gi hilo' komu på'go.
 Ma'annok i tinilaika-mu gi papa'.
 Para un nesita muna'daña i tinilaika-mu yan i guinaha.
-'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"Såtba i påhina\".",
+'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"{{int:savearticle}}\".",
 'yourtext'                         => "Tinige'-mu",
 'storedversion'                    => 'Tinilaika masåtba',
 'editingold'                       => "'''ADAHI: Un tulalaika un ribision påhina gus bihu.
@@ -896,7 +896,9 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 
 # Special:Categories
 'categories'                    => 'Katigoria',
-'categoriespagetext'            => 'Guåha påhina pat media gi halom i sigiente katigoria.',
+'categoriespagetext'            => 'Guåha påhina pat media gi halom i sigiente katigoria.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'såttea pot tinefong',
 'special-categories-sort-abc'   => 'såttea pot i atfabetu',
 
@@ -1014,7 +1016,7 @@ Siña ha' un tulaika i påhina siha ni manmadirihi guatu i titulon orihinåt.
 Yanggen munga hao, na'seguro na un chek i pahinan madirihi [[Special:DoubleRedirects|doble]] pat [[Special:BrokenRedirects|manmayamak]] siha.
 Hågu ha' responsible muna'seguro na manmakontinua para i destinasion-ñiha i inachetton siha.
 
-Fanapunta fan na anggen guåha esta otru påhina mafa'na'an i titulo nuebu, '''ti''' para makånya i påhina, solu tåya' ha' gi sanhalom destinasion pat tåya' historia-ña tinilika eyu ni mana'dirihi. 
+Fanapunta fan na anggen guåha esta otru påhina mafa'na'an i titulo nuebu, '''ti''' para makånya i påhina, solu tåya' ha' gi sanhalom destinasion pat tåya' historia-ña tinilika eyu ni mana'dirihi.
 Kumeke'ilek-ña este na siña un tulaika tatte i na'an i påhina an guåha linachi-mu, ya ti siña un na'overwrite i påhina siha ni manggaige esta.
 
 '''Adahi!'''

@@ -653,7 +653,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 La casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti.
 La versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu.
 Si vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori).
-'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"Sàivva la pàgina\".",
+'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"{{int:savearticle}}\".",
 'yourtext'                         => 'Lu testhu tóiu',
 'storedversion'                    => 'La versioni mimurizadda',
 'nonunicodebrowser'                => "'''ATTINZIONI: Lu nabiggadori tóiu nò è cumpatìbiri cu' li caràtteri Unicode. Pa cunsintì la mudìfigga di li pàgini chena crià incunvinienti, i caràtteri nò ASCII so visuarizzaddi i' la casella di mudìfigga cumenti còdizi esadezimari.'''",
@@ -1274,7 +1274,9 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 
 # Special:Categories
 'categories'         => 'Categuri',
-'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.",
+'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].",
 
 # Special:LinkSearch
 'linksearch'    => 'Cullegamenti estherni',
@@ -1634,7 +1636,7 @@ Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nob
 In casu d'errori i' l'ippusthamentu pói turrà immediatamenti a lu tìturu vécciu, e nò pussìbiri sobbraischribì pa errori una pàgina già esisthenti.
 
 '''ATTINZIONI!'''
-Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti; 
+Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti;
 azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
 'movepagetalktext'        => "La reratiba pàgina di dischussioni sarà ippusthadda automatiggamenti umpari a la pàgina prinzipari, '''fora chi i' li casi sighenti:'''
 * l'ippusthamentu di la pàgina è intra tipi di pàgina dibessi

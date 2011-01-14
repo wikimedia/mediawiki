@@ -176,7 +176,7 @@ $messages = array(
 'vector-namespace-template' => 'Шаблон',
 'vector-namespace-user'     => 'Архайæджы фарс',
 'vector-view-create'        => 'Скæн æй',
-'vector-view-edit'          => 'Фен æй',
+'vector-view-edit'          => 'Баив æй',
 'vector-view-history'       => 'Истори',
 'vector-view-view'          => 'Кæс',
 'vector-view-viewsource'    => 'Йæ код фен',
@@ -269,8 +269,8 @@ $messages = array(
 'viewdeleted'         => '$1 фенын дæ фæнды?',
 'site-rss-feed'       => '$1 — RSS-уадздзаг',
 'site-atom-feed'      => '$1 — Atom-уадздзаг',
-'page-rss-feed'       => '«$1» — RSS-уадздзаг',
-'page-atom-feed'      => '«$1» — Atom-уадздзаг',
+'page-rss-feed'       => '$1 — RSS-лæсæн',
+'page-atom-feed'      => '$1 — Atom-лæсæн',
 'red-link-title'      => '$1 (фыст нæма у)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -668,7 +668,9 @@ $3',
 
 # Special:Categories
 'categories'                    => 'Категоритæ',
-'categoriespagetext'            => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
+'categoriespagetext'            => 'Мæнæ ахæм категоритæ ирон Википедийы ис.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
@@ -729,7 +731,7 @@ $3',
 'protect-othertime'      => 'Æндæр рæстæг:',
 'protect-othertime-op'   => 'æндæр рæстæг',
 'protect-otherreason'    => 'Æндæр аххос/уæлæмхасæн:',
-'protect-otherreason-op' => 'æндæр кæнæ уæлæмхасæн аххос',
+'protect-otherreason-op' => 'Æндæр аххос',
 'restriction-type'       => 'Бартæ:',
 
 # Restrictions (nouns)
@@ -746,7 +748,7 @@ $3',
 'uctop'               => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
-'sp-contributions-talk'     => 'Ныхас',
+'sp-contributions-talk'     => 'Дискусси',
 
 # What links here
 'whatlinkshere'            => 'Цавæр æрвитæнтæ цæуынц ардæм',

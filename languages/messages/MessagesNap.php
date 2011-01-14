@@ -353,7 +353,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Special:Categories
 'categories'         => 'Categurìe',
-'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
+'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].",
 
 # Special:LinkSearch
 'linksearch-ok' => 'Truova',

@@ -283,7 +283,7 @@ $messages = array(
 'tog-minordefault'            => 'Mặc định đánh dấu tất cả sửa đổi của tôi là sửa đổi nhỏ',
 'tog-previewontop'            => 'Hiển thị phần xem thử nằm trên hộp sửa đổi',
 'tog-previewonfirst'          => 'Hiện xem thử tại lần sửa đầu tiên',
-'tog-nocache'                 => 'Không lưu trang trong bộ nhớ đệm',
+'tog-nocache'                 => 'Không lưu trang trong bộ nhớ đệm trình duyệt',
 'tog-enotifwatchlistpages'    => 'Gửi thư cho tôi khi có thay đổi tại trang tôi theo dõi',
 'tog-enotifusertalkpages'     => 'Gửi thư cho tôi khi có thay đổi tại trang thảo luận của tôi',
 'tog-enotifminoredits'        => 'Gửi thư cho tôi cả những thay đổi nhỏ trong trang',
@@ -484,7 +484,7 @@ $messages = array(
 'articlepage'       => 'Xem trang nội dung',
 'talk'              => 'Thảo luận',
 'views'             => 'Xem',
-'toolbox'           => 'Thanh công cụ',
+'toolbox'           => 'Công cụ',
 'userpage'          => 'Xem trang thành viên',
 'projectpage'       => 'Xem trang dự án',
 'imagepage'         => 'Xem trang tập tin',
@@ -680,7 +680,7 @@ Tài khoản của bạn đã mở.
 'userlogout'                 => 'Đăng xuất',
 'notloggedin'                => 'Chưa đăng nhập',
 'nologin'                    => "Bạn chưa có tài khoản ở đây? '''$1'''.",
-'nologinlink'                => 'Mở một tài khoản',
+'nologinlink'                => 'Mở tài khoản mới',
 'createaccount'              => 'Mở tài khoản',
 'gotaccount'                 => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink'             => 'Đăng nhập',
@@ -717,8 +717,7 @@ Nếu bạn không phải là người yêu cầu gửi mật khẩu, hoặc n�
 'eauthentsent'               => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
 'throttled-mailpassword'     => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror'                  => 'Lỗi gửi thư : $1',
-'acct_creation_throttle_hit' => 'Những người sử dụng địa chỉ IP này đã mở {{PLURAL:$1|1 tài khoản|$1 tài khoản}} trong vòng một ngày, và đó là số lượng tài khoản tối đa có thể mở trong ngày.
-Vì vậy, người khác sử dụng địa chỉ IP này hiện không thể mở thêm tài khoản được nữa.',
+'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở {{PLURAL:$1|một tài khoản|$1 tài khoản}} ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.',
 'emailauthenticated'         => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
 'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
 'noemailprefs'               => 'Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.',
@@ -872,7 +871,7 @@ Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]]
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
 
-'''Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. 
+'''Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa.
 Nếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.'''",
 'token_suffix_mismatch'            => "'''Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
@@ -885,7 +884,7 @@ sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Phía trên là bản hiện tại.
 Phía dưới là sửa đổi của bạn.
 Bạn sẽ phải trộn thay đổi của bạn với bản hiện tại.
-'''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “Lưu trang”.",
+'''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “{{int:savearticle}}”.",
 'yourtext'                         => 'Nội dung bạn nhập',
 'storedversion'                    => 'Phiên bản lưu',
 'nonunicodebrowser'                => "'''CHU' Y': Tri`nh duye^.t cu?a ba.n kho^ng ho^~ tro+. unicode. Mo^.t ca'ch dde^? ba.n co' the^? su+?a ddo^?i an toa`n trang na`y: ca'c ky' tu+. kho^ng pha?i ASCII se~ xua^'t hie^.n trong ho^.p soa.n tha?o du+o+'i da.ng ma~ tha^.p lu.c pha^n.'''",
@@ -1106,7 +1105,7 @@ Xin hãy kiểm tra nhật trình.',
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',
-'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. 
+'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy.
 Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
@@ -1303,7 +1302,7 @@ Không có thể lùi lại tác động này.',
 'prefs-help-signature'          => 'Các ý kiến tại trang thảo luận nên được ký tên bằng cách gõ "<nowiki>~~~~</nowiki>", nó sẽ được đổi thành chữ ký của bạn cùng với thời điểm thảo luận.',
 'badsig'                        => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
 'badsiglength'                  => 'Chữ ký của bạn quá dài.
-Nó không được dài quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
+Nó không được dài quá $1 ký tự.',
 'yourgender'                    => 'Giới tính:',
 'gender-unknown'                => 'Không chỉ rõ',
 'gender-male'                   => 'Nam',
@@ -1527,11 +1526,11 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'recentchangeslinked-summary'  => "Đây là danh sách các thay đổi được thực hiện gần đây tại những trang được liên kết đến từ một trang nào đó (hoặc tại các trang thuộc một thể loại nào đó).
 Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''tô đậm'''.",
 'recentchangeslinked-page'     => 'Tên trang:',
-'recentchangeslinked-to'       => 'Hiển thị những thay đổi tại những trang trang được liên kết đến từ trang cho trước thay cho trang này',
+'recentchangeslinked-to'       => 'Hiện thay đổi tại những trang có liên kết đến trang này thay thế',
 
 # Upload
 'upload'                      => 'Tải tập tin lên',
-'uploadbtn'                   => 'Tải lên',
+'uploadbtn'                   => 'Tải tập tin lên',
 'reuploaddesc'                => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'upload-tryagain'             => 'Lưu miêu tả tập tin được sửa đổi',
 'uploadnologin'               => 'Chưa đăng nhập',
@@ -1540,7 +1539,7 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
-Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]]. 
+Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]].
 việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
@@ -1558,7 +1557,7 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'filedesc'                    => 'Miêu tả',
 'fileuploadsummary'           => 'Tóm lược:',
 'filereuploadsummary'         => 'Các thay đổi của tập tin:',
-'filestatus'                  => 'Bản quyền:',
+'filestatus'                  => 'Tình trạng bản quyền:',
 'filesource'                  => 'Nguồn:',
 'uploadedfiles'               => 'Tập tin đã tải',
 'ignorewarning'               => 'Bỏ qua cảnh báo và lưu tập tin',
@@ -1579,8 +1578,8 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
 [[$1|thumb]]",
-'filepageexists'              => "Trang miêu tả tập tin này đã tồn tại ở '''<tt>[[:\$1]]</tt>''', nhưng chưa có tập tin với tên này. 
-Những gì bạn ghi trong ô \"Tóm tắt tập tin\" sẽ không hiện ra ở trang miêu tả. 
+'filepageexists'              => "Trang miêu tả tập tin này đã tồn tại ở '''<tt>[[:\$1]]</tt>''', nhưng chưa có tập tin với tên này.
+Những gì bạn ghi trong ô \"Tóm tắt tập tin\" sẽ không hiện ra ở trang miêu tả.
 Để làm nó hiển thị, bạn sẽ cần phải sửa đổi trang đó bằng tay.
 [[\$1|thumb]]",
 'fileexists-extension'        => "Hiện có một tập tin trùng tên: [[$2|thumb]]
@@ -1715,7 +1714,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filehist-revert'           => 'lùi lại',
 'filehist-current'          => 'hiện',
 'filehist-datetime'         => 'Ngày/Giờ',
-'filehist-thumb'            => 'Thu nhỏ',
+'filehist-thumb'            => 'Hình nhỏ',
 'filehist-thumbtext'        => 'Hình thu nhỏ của phiên bản vào lúc $1',
 'filehist-nothumb'          => 'Không có hình thu nhỏ',
 'filehist-user'             => 'Thành viên',
@@ -1776,7 +1775,7 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'mimesearch'         => 'Tìm kiếm theo định dạng',
 'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo định dạng MIME. Đầu vào: contenttype/subtype, v.d. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Định dạng MIME:',
-'download'           => 'tải xuống',
+'download'           => 'tải về',
 
 # Unwatched pages
 'unwatchedpages' => 'Trang chưa được theo dõi',
@@ -2088,7 +2087,7 @@ Liên lạc với người viết trang qua:
 thư: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. 
+Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó.
 Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
 
               Hệ thống báo tin {{SITENAME}} thân thiện của bạn
@@ -2118,7 +2117,7 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 'actioncomplete'         => 'Đã thực hiện xong',
 'actionfailed'           => 'Tác động bị thất bại',
 'deletedtext'            => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
-'deletedarticle'         => 'đã xóa “$1”',
+'deletedarticle'         => 'đã xóa “[[$1]]”',
 'suppressedarticle'      => 'đã giấu "[[$1]]"',
 'dellogpage'             => 'Nhật trình xóa',
 'dellogpagetext'         => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
@@ -2432,7 +2431,7 @@ $1 đã bị cấm. Bạn có muốn thay đổi các thiết lập?',
 'unlockdb'            => 'Mở khóa cơ sở dữ liệu',
 'lockdbtext'          => 'Khóa cơ sở dữ liệu sẽ ngưng tất cả khả năngsửa đổi các trang, thay đổi tùy chọn cá nhân, sửa danh sách theo dõi, và những thao tác khác của thành viên đòi hỏi phải thay đổi trong cơ sở dữ liệu.
 Xin hãy xác nhận những việc bạn định làm, và rằng bạn sẽ mở khóa cơ sở dữ liệu khi xong công việc bảo trì của bạn.',
-'unlockdbtext'        => 'Mở khóa cơ sở dữ liệu sẽ khôi phục lại tất cả khả năng sửa đổi trang, thay đổi tùy chọn cá nhân, sửa đổi danh sách theo dõi, 
+'unlockdbtext'        => 'Mở khóa cơ sở dữ liệu sẽ khôi phục lại tất cả khả năng sửa đổi trang, thay đổi tùy chọn cá nhân, sửa đổi danh sách theo dõi,
 và nhiều thao tác khác của thành viên đòi hỏi phải có thay đổi trong cơ sở dữ liệu.
 Xin hãy xác nhận đây là điều bạn định làm.',
 'lockconfirm'         => 'Vâng, tôi thực sự muốn khóa cơ sở dữ liệu.',
@@ -2710,12 +2709,12 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'standard.js'    => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Cổ điển */',
 'nostalgia.js'   => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Vọng cổ */',
 'cologneblue.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Xanh Cologne */',
-'monobook.js'    => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng MonoBook */',
-'myskin.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Cá nhân */',
-'chick.js'       => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Chick */',
-'simple.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Đơn giản */',
-'modern.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Hiện đại */',
-'vector.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Vector */',
+'monobook.js'    => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài MonoBook */',
+'myskin.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Cá nhân */',
+'chick.js'       => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Chick */',
+'simple.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Đơn giản */',
+'modern.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Hiện đại */',
+'vector.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Vectơ */',
 
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
@@ -2774,7 +2773,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'math_unknown_function' => 'hàm lạ',
 'math_lexing_error'     => 'lỗi chính tả',
 'math_syntax_error'     => 'lỗi cú pháp',
-'math_image_error'      => 'Không chuyển sang định dạng PNG được; xin kiểm tra lại cài đặt latex, dvips, gs và convert',
+'math_image_error'      => 'Không chuyển sang định dạng PNG được; xin kiểm tra lại cài đặt latex, dvips, gs, và convert (hoặc dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Không tạo mới hay viết vào thư mục toán tạm thời được',
 'math_bad_output'       => 'Không tạo mới hay viết vào thư mục kết quả được',
 'math_notexvc'          => 'Không thấy hàm thực thi texvc; xin xem math/README để biết cách cấu hình.',
@@ -2851,6 +2850,40 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 Chỉ có những mục được liệt kê (những dòng bắt đầu bằng *) mới được tính tới. Liên kết đầu tiên tại một dòng phải là liên kết đến tập tin phản cảm.
 Các liên kết sau đó trên cùng một dòng được xem là các ngoại lệ, có nghĩa là các trang mà tại đó có thể dùng được tập tin.',
 
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'Giản thể',
+'variantname-zh-hant' => 'Phồn thể',
+'variantname-zh-cn'   => 'Giản thể Hoa Lục',
+'variantname-zh-tw'   => 'Phồn thể Đài Loan',
+'variantname-zh-hk'   => 'Phồn thể Hồng Kông',
+'variantname-zh-mo'   => 'Phồn thể Ma Cao',
+'variantname-zh-sg'   => 'Giản thể Singapore',
+'variantname-zh-my'   => 'Giản thể Mã Lai',
+'variantname-zh'      => 'Không chuyển tự',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'Giản thể',
+'variantname-gan-hant' => 'Phồn thể',
+'variantname-gan'      => 'Cám nguyên văn',
+
+# Variants for Kazakh language
+'variantname-kk-cyrl' => 'Kirin',
+'variantname-kk-latn' => 'Latinh',
+'variantname-kk-arab' => 'Ả Rập',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'Ả Rập',
+'variantname-ku-latn' => 'Latinh',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'Kirin',
+'variantname-tg-latn' => 'Latinh',
+
 # Metadata
 'metadata'          => 'Đặc tính hình',
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
@@ -2867,7 +2900,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'                  => 'Bề ngang',
+'exif-imagewidth'                  => 'Chiều ngang',
 'exif-imagelength'                 => 'Chiều cao',
 'exif-bitspersample'               => 'Bit trên mẫu',
 'exif-compression'                 => 'Kiểu nén',
@@ -2877,7 +2910,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-planarconfiguration'         => 'Cách xếp dữ liệu',
 'exif-ycbcrsubsampling'            => 'Tỉ lệ lấy mẫu con của Y so với C',
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
-'exif-xresolution'                 => 'Phân giải theo bề ngang',
+'exif-xresolution'                 => 'Phân giải theo chiều ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
 'exif-resolutionunit'              => 'Đơn vị phân giải X và Y',
 'exif-stripoffsets'                => 'Vị trí dữ liệu hình',
@@ -2902,7 +2935,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-colorspace'                  => 'Không gian màu',
 'exif-componentsconfiguration'     => 'Ý nghĩa thành phần',
 'exif-compressedbitsperpixel'      => 'Độ nén (bit/điểm)',
-'exif-pixelydimension'             => 'Bề ngang hợp lệ',
+'exif-pixelydimension'             => 'Chiều ngang hợp lệ',
 'exif-pixelxdimension'             => 'Chiều cao hợp lệ',
 'exif-makernote'                   => 'Ghi chú của nhà sản xuất',
 'exif-usercomment'                 => 'Lời bình của tác giả',

@@ -9,6 +9,7 @@
  *
  * @author Albamhandae
  * @author Ficell
+ * @author Gapo
  * @author IRTC1015
  * @author ITurtle
  * @author Klutzy
@@ -274,12 +275,12 @@ $messages = array(
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
 'tog-hidepatrolled'           => '최근 바뀜에서 검토된 편집을 숨기기',
 'tog-newpageshidepatrolled'   => '새 문서 목록에서 검토된 문서를 숨기기',
-'tog-extendwatchlist'         => '주시문서 목록에서 최근 바뀜 대신 모든 편집 보기',
+'tog-extendwatchlist'         => '주시문서 목록에서 가장 최근의 편집만이 아닌 모든 편집을 보기',
 'tog-usenewrc'                => '향상된 최근 바뀜 (자바스크립트)',
 'tog-numberheadings'          => '머릿글 번호 매기기',
 'tog-showtoolbar'             => '편집창에 툴바 보이기 (자바스크립트)',
 'tog-editondblclick'          => '더블클릭으로 문서 편집하기 (자바스크립트)',
-'tog-editsection'             => '‘편집’ 링크로 부분을 편집하는 기능 켜기',
+'tog-editsection'             => '[편집] 링크로 부분 편집하기',
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 부분 편집하기 (자바스크립트)',
 'tog-showtoc'                 => '문서의 차례 보여주기 (머릿글이 4개 이상인 경우)',
 'tog-rememberpassword'        => '이 컴퓨터에서 자동으로 로그인',
@@ -288,10 +289,10 @@ $messages = array(
 'tog-watchdefault'            => '내가 편집하는 문서를 주시문서 목록에 추가',
 'tog-watchmoves'              => '내가 이동하는 문서를 주시문서 목록에 추가',
 'tog-watchdeletion'           => '내가 삭제하는 문서를 주시문서 목록에 추가',
-'tog-minordefault'            => '‘사소한 편집’을 항상 선택',
+'tog-minordefault'            => '‘사소한 편집’을 기본적으로 선택하기',
 'tog-previewontop'            => '편집상자 앞에 미리보기 보이기',
 'tog-previewonfirst'          => '처음 편집할 때 미리보기 보기',
-'tog-nocache'                 => '문서 캐시 끄기',
+'tog-nocache'                 => '브라우저의 문서 캐시 끄기',
 'tog-enotifwatchlistpages'    => '주시문서가 바뀌면 이메일로 알림',
 'tog-enotifusertalkpages'     => '내 토론 문서가 바뀌면 이메일로 알림',
 'tog-enotifminoredits'        => '사소한 편집도 이메일로 알림',
@@ -302,7 +303,7 @@ $messages = array(
 'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
 'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
-'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트, 실험적 기능)',
+'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트 사용, 시험 중)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
 'tog-watchlisthideown'        => '주시문서 목록에서 내 편집을 숨기기',
 'tog-watchlisthidebots'       => '주시문서 목록에서 봇 편집을 숨기기',
@@ -602,7 +603,7 @@ $1',
 'dberrortextcl'        => '데이터베이스 쿼리 구문 오류가 발생했습니다.
 마지막으로 요청한 데이터베이스 쿼리는 "$2" 함수에서 쓰인
 "$1"
-입니다. 
+입니다.
 데이터베이스는 "$3: $4" 오류를 일으켰습니다.',
 'laggedslavemode'      => "'''주의:''' 문서가 최근에 바뀐 내용이 아닐 수도 있습니다.",
 'readonly'             => '데이터베이스 잠김',
@@ -769,7 +770,7 @@ $2',
 'link_sample'     => '링크 제목',
 'link_tip'        => '내부 링크',
 'extlink_sample'  => 'http://www.example.com 사이트 이름',
-'extlink_tip'     => '외부 사이트 링크 (앞에 http://를 붙여야 합니다.)',
+'extlink_tip'     => '외부 사이트 링크 (주소 앞에 http://가 있어야 합니다.)',
 'headline_sample' => '제목',
 'headline_tip'    => '2단계 문단 제목',
 'math_sample'     => '여기에 수식을 쓰세요',
@@ -881,7 +882,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'explainconflict'                  => "문서를 편집하는 도중에 누군가 이 문서를 고쳤습니다.
 위쪽의 문서가 지금 바뀐 문서이고, 아래쪽의 문서가 당신이 편집한 문서입니다.
 아래쪽의 내용을 위쪽에 적절히 합쳐 주시기 바랍니다.
-\"저장\"을 누르면 '''위쪽의 편집 내역만''' 저장됩니다.",
+\"{{int:savearticle}}\"을 누르면 '''위쪽의 편집 내역만''' 저장됩니다.",
 'yourtext'                         => '당신의 편집',
 'storedversion'                    => '현재 문서',
 'nonunicodebrowser'                => "'''주의: 당신의 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다. 몇몇 문자가 16진수 코드로 나타날 수 있습니다.'''",
@@ -890,10 +891,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이것을 저장하면 최근에 편집된 부분이 사라질 수 있습니다.'''",
 'yourdiff'                         => '차이',
 'copyrightwarning'                 => "{{SITENAME}}에서의 모든 기여는 $2 라이선스로 배포된다는 점을 유의해 주세요 (자세한 내용에 대해서는 $1 문서를 읽어주세요). 만약 여기에 동의하지 않는다면 문서를 저장하지 말아 주세요.<br />
-또 당신이 쓴 글은 직접 작성했거나 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다.
+또한, 직접 작성했거나 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다.
 '''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
 'copyrightwarning2'                => "{{SITENAME}}에서의 모든 기여는 다른 사용자가 편집, 수정, 삭제할 수 있다는 점을 유의해 주세요. 만약 여기에 동의하지 않는다면, 문서를 저장하지 말아 주세요.<br />
-또 당신이 쓴 글은 직접 작성했거나, 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다 (자세한 내용에 대해서는 $1 문서를 읽어 주세요).
+또한, 직접 작성했거나 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다 (자세한 내용에 대해서는 $1 문서를 읽어 주세요).
 '''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
 'longpagewarning'                  => "'''주의: 이 문서의 용량이 $1킬로바이트입니다. 몇몇 웹 브라우저에서는 32킬로바이트 이상의 문서를 편집할 때 문제가 발생할 수 있습니다. 만약의 경우를 대비하여, 문서를 여러 문단으로 나누어서 편집할 수 있습니다.'''",
 'longpageerror'                    => "'''오류: 문서의 크기가 $1킬로바이트로서 가능한 최대 크기인 $2킬로바이트보다 큽니다. 저장할 수 없습니다.'''",
@@ -1191,7 +1192,7 @@ $1",
 'search-mwsuggest-enabled'         => '검색어 제안 있음',
 'search-mwsuggest-disabled'        => '검색어 제안 없음',
 'search-relatedarticle'            => '관련',
-'mwsuggest-disable'                => 'AJAX 추천 기능 끄기',
+'mwsuggest-disable'                => 'AJAX 검색어 제안 끄기',
 'searcheverything-enable'          => '모든 이름공간에서 찾기',
 'searchrelated'                    => '관련',
 'searchall'                        => '모두',
@@ -1408,7 +1409,7 @@ $1",
 'right-blockemail'            => '다른 사용자가 이메일을 보내지 못하도록 차단',
 'right-hideuser'              => '사용자 이름을 차단하고 숨김',
 'right-ipblock-exempt'        => 'IP 차단, 자동 차단, 광역 차단을 무시',
-'right-proxyunbannable'       => '프록시 자동 차단을 우회',
+'right-proxyunbannable'       => '프록시 자동 차단을 적용하지 않음',
 'right-protect'               => '보호 수준 변경 및 보호된 문서 편집',
 'right-editprotected'         => '보호된 문서 편집 (연쇄적 보호 제외)',
 'right-editinterface'         => '사용자 인터페이스를 편집',
@@ -1722,15 +1723,16 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'imagelinks'                        => '파일 링크',
 'linkstoimage'                      => '다음 $1개의 문서가 이 파일을 사용하고 있습니다:',
 'linkstoimage-more'                 => '$1개 이상의 문서가 이 파일을 가리키고 있습니다.
-다음 목록은 이 파일을 가리키는 처음 $1개 문서만 보여주고 있습니다. 
+다음 목록은 이 파일을 가리키는 처음 $1개 문서만 보여주고 있습니다.
 이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
 'nolinkstoimage'                    => '이 파일을 사용하는 문서가 없습니다.',
 'morelinkstoimage'                  => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'redirectstofile'                   => '다음 파일 $1개가 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'                  => '다음 파일 $1개가 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
 'sharedupload'                      => '이 파일은 $1으로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
-'sharedupload-desc-there'           => '이 파일은 $1(으)로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다. [$2 해당 파일 문서]에서 자세한 정보를 확인해주세요.',
-'sharedupload-desc-here'            => '이 파일은 $1(으)로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
+'sharedupload-desc-there'           => '이 파일은 $1에 있으며, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
+[$2 해당 파일]에 대한 자세한 정보를 확인해주세요.',
+'sharedupload-desc-here'            => '이 파일은 $1에 있으며, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
 [$2 해당 파일]에 대한 설명이 아래에 나와 있습니다.',
 'filepage-nofile'                   => '해당 이름으로 된 파일이 없습니다.',
 'filepage-nofile-link'              => '해당 이름으로 된 파일이 없습니다. [$1 파일을 올릴 수] 있습니다.',
@@ -1812,7 +1814,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-views-peredit'     => '편집당 방문 횟수',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]의 길이',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
-'statistics-users-active'      => '활동 중인 사용자',
+'statistics-users-active'      => '활동적인 사용자',
 'statistics-users-active-desc' => '최근 $1일 동안 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
@@ -1913,7 +1915,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Special:Log
 'specialloguserlabel'  => '이름:',
 'speciallogtitlelabel' => '제목:',
-'log'                  => '로그 목록',
+'log'                  => '기록 목록',
 'all-logs-page'        => '모든 공개 기록',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다. 검색시에는 대소문자를 구별합니다.',
@@ -1968,7 +1970,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-blocked'  => '(차단됨)',
 
 # Special:ActiveUsers
-'activeusers'            => '활동 중인 사용자 목록',
+'activeusers'            => '활동적인 사용자 목록',
 'activeusers-intro'      => '다음은 최근 $1일 동안 활동한 사용자의 목록입니다.',
 'activeusers-count'      => '최근 $3일 사이의 편집 $1개',
 'activeusers-from'       => '다음으로 시작하는 사용자를 보기:',
@@ -2150,7 +2152,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',
-'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.',
+'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.
+현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하십시오.',
 'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
 'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
@@ -2199,7 +2202,7 @@ $UNWATCHURL
 # Restrictions (nouns)
 'restriction-edit'   => '편집',
 'restriction-move'   => '이동',
-'restriction-create' => '만들기',
+'restriction-create' => '생성',
 'restriction-upload' => '올리기',
 
 # Restriction levels
@@ -2680,7 +2683,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'tooltip-recreate'                => '문서를 편집하는 중 삭제되어도 새로 만들기',
 'tooltip-upload'                  => '파일 올리기 시작',
 'tooltip-rollback'                => '"되돌리기" 기능을 사용하면 이 문서에 대한 마지막 기여자의 편집을 모두 되돌릴 수 있습니다.',
-'tooltip-undo'                    => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고, 차이보기 기능이 미리보기 형식으로 나타납니다. 
+'tooltip-undo'                    => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고, 차이보기 기능이 미리보기 형식으로 나타납니다.
 편집 요약에 이 편집을 왜 되돌리는지에 대한 이유를 쓸 수 있습니다.',
 
 # Stylesheets
@@ -2744,7 +2747,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'mw_math_html'   => '가능한 한 HTML로, 나머지는 PNG로',
 'mw_math_source' => 'TeX로 남겨둠 (텍스트 브라우저용)',
 'mw_math_modern' => '최신 브라우저 사용자에게 권장',
-'mw_math_mathml' => '가능하면 MathML로 (실험적인 기능)',
+'mw_math_mathml' => '가능하면 MathML로 (시험 중)',
 
 # Math errors
 'math_failure'          => '해석 실패',
@@ -2773,7 +2776,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
 'patrol-log-line'      => '$2 문서의 $1을 검토함 $3',
 'patrol-log-auto'      => '(자동)',
-'patrol-log-diff'      => '$1판',
+'patrol-log-diff'      => '제$1번 판',
 'log-show-hide-patrol' => '검토 기록을 $1',
 
 # Image deletion
@@ -2917,7 +2920,7 @@ Variants for Chinese language
 'exif-focalplaneyresolution'       => '초점면 Y방향 해상도',
 'exif-focalplaneresolutionunit'    => '초점면 해상도 단위',
 'exif-subjectlocation'             => '대상 위치',
-'exif-exposureindex'               => '노출 지수',
+'exif-exposureindex'               => '노출 값',
 'exif-sensingmethod'               => '감지 방식',
 'exif-filesource'                  => '파일 출처',
 'exif-scenetype'                   => '촬영 모드',
@@ -2991,7 +2994,7 @@ Variants for Chinese language
 'exif-exposureprogram-2' => '일반 프로그램',
 'exif-exposureprogram-3' => '조리개 우선',
 'exif-exposureprogram-4' => '셔터 우선',
-'exif-exposureprogram-5' => '크리에이티브 프로그램 (깊이 부분 우선)',
+'exif-exposureprogram-5' => '크리에이티브 프로그램 (피사계 심도 우선)',
 'exif-exposureprogram-6' => '액션 프로그램 (빠른 셔터 속도에 치중)',
 'exif-exposureprogram-7' => '인물 사진 모드 (배경을 초점 밖으로 하여 대상을 강조)',
 'exif-exposureprogram-8' => '풍경 모드 (초점이 배경인 풍경 사진용)',

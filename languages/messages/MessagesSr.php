@@ -9,12 +9,17 @@
  *
  * @author Misos
  * @author Terik
+ * @author Жељко Тодоровић
+ * @author Михајло Анђелковић
  */
 
 $fallback = 'sr-ec';
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';
 
 $messages = array(
+# Vector skin
+'vector-view-viewsource' => 'Погледај код',
+
 # Special:LinkSearch
 'linksearch'       => 'Претрага интернет веза',
 'linksearch-text'  => 'Џокери као што су "*.wikipedia.org" могу да се користе.
@@ -24,7 +29,7 @@ $messages = array(
 
 # Special:Log/newusers
 'newuserlogpage'           => 'историја креирања корисника',
-'newuserlogpagetext'       => 'Ово је историја скорашњих креација корисника.',
+'newuserlogpagetext'       => 'Ово је историја скорашњих креирања корисника.',
 'newuserlog-create2-entry' => 'направио налог за $1',
 
 );

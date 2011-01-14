@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author friends at tyvawiki.org
@@ -199,7 +200,7 @@ $messages = array(
 'disclaimers'          => 'Ажыглаарынка чомпээрежил',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
-'helppage'             => 'Help:Допчузу',
+'helppage'             => 'Help:Уткалар',
 'mainpage'             => 'Кол Арын',
 'mainpage-description' => 'Кол Арын',
 'policy-url'           => 'Project:Политика',
@@ -316,7 +317,9 @@ $messages = array(
 'nosuchsectiontitle' => 'Бо салбыр чок',
 'loginreqlink'       => 'кирер',
 'accmailtitle'       => 'Чажыт сөс чоргустунган.',
-'accmailtext'        => '',
+'accmailtext'        => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2.
+
+The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
 'editingsection'     => '$1 деп арынның салбырын өскертип турар',
@@ -348,7 +351,7 @@ $messages = array(
 # Revision deletion
 'rev-deleted-comment'        => '(комментарийни ап каан)',
 'rev-deleted-user'           => '(ажыглакчының адын ап каан)',
-'rev-deleted-event'          => '',
+'rev-deleted-event'          => '(log action removed)',
 'rev-delundel'               => 'көргүзери/чажырары',
 'rev-showdeleted'            => 'көргүзери',
 'revisiondelete'             => 'Үндүрерилерни ап каар/диргисир',
@@ -381,7 +384,7 @@ $messages = array(
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сөс}})',
 'search-section'           => '("$1" деп салбыр)',
 'searchall'                => 'шупту',
-'powersearch'              => '',
+'powersearch'              => 'Advanced search',
 'powersearch-toggleall'    => 'Шупту',
 
 # Preferences page
@@ -418,7 +421,7 @@ $messages = array(
 'email'                     => 'Э-чагаа',
 
 # User rights
-'editinguser'       => '',
+'editinguser'       => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-reason' => 'Чылдагаан:',
 
 # Groups
@@ -507,7 +510,7 @@ $messages = array(
 'filehist-thumb'     => 'Бичии чурук',
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
-'filehist-comment'   => 'Комментарий',
+'filehist-comment'   => 'Тайылбыр',
 'imagelinks'         => 'Файлдың xолбаалары',
 
 # File reversion
@@ -643,7 +646,7 @@ $messages = array(
 # Protect
 'protectlogpage'         => 'Камгалал кырында журнал',
 'protectcomment'         => 'Чылдагаан:',
-'protect-default'        => '',
+'protect-default'        => 'Allow all users',
 'protect-level-sysop'    => 'Чүгле эргелекчылар',
 'protect-otherreason'    => 'Өске/немелде чылдагаан:',
 'protect-otherreason-op' => 'Өске чылдагаан',
@@ -730,7 +733,7 @@ $messages = array(
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
 'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзызы',
 'tooltip-pt-logout'         => 'Үнери',
-'tooltip-ca-talk'           => 'Бо арынның допчузузу дугайында чыгаалажыры',
+'tooltip-ca-talk'           => 'Бо арын дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаары',
 'tooltip-ca-delete'         => 'Бо арынны ап каары',
 'tooltip-ca-move'           => 'Бо арынны шимчээри',
@@ -780,7 +783,7 @@ $messages = array(
 
 # Special:NewFiles
 'showhidebots' => '(боцду $1)',
-'noimages'     => '',
+'noimages'     => 'Nothing to see.',
 'ilsubmit'     => 'Дилээр',
 
 # EXIF tags
@@ -802,9 +805,9 @@ $messages = array(
 'limitall'         => 'шупту',
 
 # Multipage image navigation
-'imgmultipageprev' => '← бүрүнгү арын',
+'imgmultipageprev' => '← мурнунда арын',
 'imgmultipagenext' => 'соонда арын →',
-'imgmultigo'       => '',
+'imgmultigo'       => 'Go!',
 
 # Table pager
 'table_pager_next'         => 'Соонда арын',
@@ -815,7 +818,7 @@ $messages = array(
 'table_pager_empty'        => 'Түңнеллер чок',
 
 # Auto-summaries
-'autosumm-new' => '',
+'autosumm-new' => 'Created page with "$1"',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Хайгаарылга даңзызын өскертири',

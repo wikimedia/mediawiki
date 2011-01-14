@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Comp1089
  * @author Yufereff
  * @author ОйЛ
  */
@@ -47,12 +48,21 @@ $messages = array(
 'november-gen'  => 'вӧльгым',
 'december-gen'  => 'ӧшым',
 
-'cancel' => 'Дугӧдны',
-'mytalk' => 'Сёрнитӧм лист бокӧй',
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Категория|Категория}}',
+
+'article' => 'Гижӧд',
+'cancel'  => 'Дугӧдны',
+'mytalk'  => 'Сёрнитӧм лист бокӧй',
 
 # Cologne Blue skin
 'qbfind' => 'Корсьысьӧм',
 'qbedit' => 'Веськӧдны',
+
+# Vector skin
+'vector-action-move' => 'Ним вежны',
+'vector-view-view'   => 'Лыддьыны',
+'namespaces'         => 'Ним пространствояс',
 
 'search'           => 'Корсьысьӧм',
 'searchbutton'     => 'Аддзыны',
@@ -64,11 +74,14 @@ $messages = array(
 'delete'           => 'Бырӧдны',
 'protect'          => 'Дорйыны',
 'newpage'          => 'Выль лист бок',
+'talkpagelinktext' => 'сёрнитанін',
 'talk'             => 'Сёрнитӧм',
 'toolbox'          => 'Инструментъяс',
+'otherlanguages'   => 'Мӧд кывъясӧн',
 'jumptosearch'     => 'корсьысьӧм',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => '{{SITENAME}} йылысь',
 'currentevents'        => 'Быд лунся лоӧмтор',
 'mainpage'             => 'Медшӧр лист бок',
 'mainpage-description' => 'Медшӧр лист бок',
@@ -78,6 +91,7 @@ $messages = array(
 'newmessageslink' => 'выль юӧртӧмъяс',
 'editsection'     => 'веськӧдны',
 'editold'         => 'веськӧдны',
+'red-link-title'  => '$1 (гижӧд абу)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'    => 'Гижӧд',
@@ -101,11 +115,15 @@ $messages = array(
 # History pages
 'currentrev' => 'Быд лунся версия',
 
+# Search results
+'search-result-size' => '$1 ({{PLURAL:$2|$2 кыв}})',
+
 # Preferences page
 'timezonelegend' => 'Час кытш',
 
 # Recent changes
-'hide' => 'Дзебны',
+'recentchanges' => 'Выль веськӧдӧмъяс',
+'hide'          => 'Дзебны',
 
 # Upload
 'upload'    => 'Файл сӧвтны',
@@ -151,6 +169,8 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Вӧлысьлӧн лист бокӧй',
+'tooltip-ca-talk'     => 'Гижӧдлӧн сёрнитӧм лист бокӧй али Википедиялӧн дӧнъялӧм лист бокӧй',
+'tooltip-ca-move'     => 'Лист боклӧн ним вежны',
 
 # Special:SpecialPages
 'specialpages' => 'Торъя лист бокъяс',

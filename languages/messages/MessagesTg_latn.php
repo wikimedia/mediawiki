@@ -392,11 +392,11 @@ Daleli zikrşuda az in qaror ast ''$2''.",
 # Login and logout pages
 'logouttext'              => "'''Aknun az sistem xoriç şudaed.'''
 
-Şumo metavoned gumnom az {{SITENAME}} istifodabariro idoma dihed, jo metavoned bo hamin nomi korbariaton va jo nomi korbariji digare [[Special:UserLogin|boz vurud kuned]]. 
+Şumo metavoned gumnom az {{SITENAME}} istifodabariro idoma dihed, jo metavoned bo hamin nomi korbariaton va jo nomi korbariji digare [[Special:UserLogin|boz vurud kuned]].
 Tavvaçūh kuned, ki ba'ze az sahifaho qablan ci tavre namoiş şuda budan hamin tavr namoiş doda meşavand, to dame ki şumo hofizai mururgaratonro pok kuned.",
 'welcomecreation'         => '== Xuş omaded, $1! ==
 
-Hisobi şumo eçod şud. 
+Hisobi şumo eçod şud.
 Tanzim kardani [[Special:Preferences|tarçihoti {{SITENAME}}]] xudro faromūş nakuned.',
 'yourname'                => 'Nomi korbar',
 'yourpassword'            => 'Kalimai ubur\\parolь',
@@ -418,7 +418,7 @@ Tanzim kardani [[Special:Preferences|tarçihoti {{SITENAME}}]] xudro faromūş n
 'gotaccountlink'          => 'Vurud şaved',
 'createaccountmail'       => 'bo poctai elektronī',
 'badretype'               => 'Kalimahoi ubure, ki vorid kardaed bo hamdigar muvofiqat namekunand.',
-'userexists'              => 'Nomi korbariji doxil kardaşuda mavridi istifoda ast. 
+'userexists'              => 'Nomi korbariji doxil kardaşuda mavridi istifoda ast.
 Nomi digareroro intixob kuned.',
 'loginerror'              => 'Iştiboh dar vurud',
 'createaccounterror'      => 'Imkoni soxtani in hisob vuçud nadorad: $1',
@@ -427,6 +427,8 @@ Nomi digareroro intixob kuned.',
 'noname'                  => 'Nomi korbari durustero şumo peşnihod nakarded.',
 'loginsuccesstitle'       => 'Vurud bo muvaffaqijat',
 'loginsuccess'            => "'''Şumo aknun ba Vikipedia hamcun \"\$1\". vurud karded'''",
+'nosuchuser'              => 'Korbare bo nomi "$1" vuçud nadorad.
+Amali nomro barrasi kuned, jo [[Special:UserLogin/signup|hisobi çadidero eçod kuned]].',
 'nosuchusershort'         => 'Jagon korbare bo nomi "<nowiki>$1</nowiki>" vuçud nadorad. Tarzi navişti nomro sançed.',
 'nouserspecified'         => 'Şumo bojad jak nomi korbarī muşaxxas kuned.',
 'wrongpassword'           => 'Kalimai uburi nodurust doxil karda şud. Bori digar sançed.',
@@ -511,7 +513,7 @@ Agar dubora tugmai \"Zaxira\"-ro paxş kuned, viroişaton biduni on zaxira xohad
 'blockedtitle'                     => 'Korbar basta şudaast',
 'blockedtext'                      => "'''Nomi korbariji Şumo jo nişonai IP basta şudaast.'''
 
-Bastan az tarafi $1 içro şud. 
+Bastan az tarafi $1 içro şud.
 Sababi on ''$2'' ast.
 
 * Zamoni qat' kardan: $8
@@ -520,7 +522,7 @@ Sababi on ''$2'' ast.
 
 Şumo metavoned bo $1 jo jake digare az [[{{MediaWiki:Grouppage-sysop}}|mudiron]] baroi guftugū roçe' ba qat'i dastrasī tamos gired.
 Tavaççūh kuned, ki az qobilijati 'firistodai poctai elektronī ba in korbar' nametavone istifoda kard, magar in ki jak nişoni mū'tabari poctai elektronī dar [[Special:Preferences|tarçihoti korbarii]] xud sabt karda boşed va az korburdi on man' naşuda boşed.
-Nişonai kununiji IP Şumo $3 ast, va şinosai qat'i dastrasiji Şumo #$5 ast. 
+Nişonai kununiji IP Şumo $3 ast, va şinosai qat'i dastrasiji Şumo #$5 ast.
 Lutfan in jo onro va jo hardui onro dar darxosthoi xud zikr kuned.",
 'blockednoreason'                  => 'dalele muşaxxas naşudaast',
 'blockedoriginalsource'            => "Matni manbai '''$1''' dar zer namoiş doda şudaast:",
@@ -567,7 +569,7 @@ Ba'zan in xato vaqte pajdo meşavad, ki şumo az xizmati (web-based proxy) istif
 Nohijai matni boloi şomili matni sahifa ba şakli fe'liji on ast.
 Taƣjiroti şumo dar nohijai matni pojoni nişon doda şudaast.
 Şumo bojad taƣjirotatonro bo matni fe'lī tarkib kuned.
-'''Faqat''', vaqte, ki tugmai \"Sahifa zaxira şavad\"-ro fişor dihed matni nohijai matni boloi zaxira xohad şud.",
+'''Faqat''', vaqte, ki tugmai \"{{int:savearticle}}\"-ro fişor dihed matni nohijai matni boloi zaxira xohad şud.",
 'yourtext'                         => 'Matni Şumo',
 'storedversion'                    => 'Nusxai sabtşuda',
 'nonunicodebrowser'                => "'''Huşdor: Murugari şumo bo standarti Junikod çavobgū nest. Alomathoi ƣajr az ASC11 ba surati adad ba kodi şonzdah ba şumo nişon doda meşavand.'''",
@@ -597,6 +599,10 @@ Lutfan dar baroi ba qismathoi xurd çudo kardani in sahifa fikr kuned.'''",
 'permissionserrors'                => 'Xatohoi sathi dastrasī',
 'permissionserrorstext'            => 'Şumo ruxsati ançomi in korro ba {{PLURAL:$1|sababi|sababhoi}} zerin nadored:',
 'permissionserrorstext-withaction' => 'Şumo ba $2 az {{PLURAL:$1|sababi|sababhoi}} zerin içozate nadored:',
+'recreate-moveddeleted-warn'       => "'''Diqqat: Şumo sahifaero barqaror karda istodaed, ki peştar hazf şudaast.'''
+
+Şumo zarurijati viroişi in sahifaro dida baromadanaton lozim.
+Sabti hazfşaviji in sahifa baroi faroham ovardani imkonijathoi qulaj ovarda şudaast:",
 
 # "Undo" feature
 'undo-success' => "In viroiş metavonad botil şavad. Lutfan muqoisai zerinro baroi ta'jid kardani amalī xud, barrasī kuned, va ba'dan baroi ançom dodani botilkuniji viroiş taƣjiroti zerinro zaxira kuned.",
@@ -753,7 +759,7 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'searchall'                        => 'hama',
 'showingresults'                   => "Namoişi {{PLURAL:$1|'''1''' natiça|'''$1''' natoiç}} dar zer oƣoz az #'''$2'''.",
 'showingresultsnum'                => "Namoişi {{PLURAL:$3|'''1''' natiça|'''$3''' natoiç}} oƣoz az #'''$2'''.",
-'nonefound'                        => "'''Ezoh''': Tanho cand fazoinomho az rūi peşfarş çustuçū meşavand.  
+'nonefound'                        => "'''Ezoh''': Tanho cand fazoinomho az rūi peşfarş çustuçū meşavand.
 Çustuçūi xudro bo peşvandi ''hama:'' baroi çustuçūi mūhtavoi purra (sahifahoi bahs, şablonho va ƣajraho) takror kuned, jo fazoi nomi dilxohro cun peşvand istifoda bared.",
 'powersearch'                      => 'Çustuçū',
 'powersearch-legend'               => 'Çustuçūi peşrafta',
@@ -824,6 +830,8 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'yourlanguage'              => 'Zabon:',
 'yournick'                  => 'Niki şumo:',
 'badsig'                    => 'Imzoi xom nodurust ast; barçasbhoi HTML-ro barrasī kuned.',
+'badsiglength'              => 'Taxallus xele daroz ast.
+On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'yourgender'                => 'Çins:',
 'gender-unknown'            => 'Muşaxxasnaşuda',
 'gender-male'               => 'Mard',
@@ -964,7 +972,7 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'recentchangeslinked-toolbox'  => "Ta'ƣiroti monandī",
 'recentchangeslinked-title'    => 'Taƣjirhoi aloqamand ba "$1"',
 'recentchangeslinked-noresult' => 'Dar davomi zamoni dodaşuda taƣjire dar sahifahoi pajvasta rux nadodaast.',
-'recentchangeslinked-summary'  => "In fehristi taƣjiroti oxir baroi sahifahoi pajvasta az sahifai muşaxxasşuda meboşad (jo ba a'zojoni gurūhi muşaxxasşuda). 
+'recentchangeslinked-summary'  => "In fehristi taƣjiroti oxir baroi sahifahoi pajvasta az sahifai muşaxxasşuda meboşad (jo ba a'zojoni gurūhi muşaxxasşuda).
 Sahifahoi dar [[Special:Watchlist|fehristi nazaroti şumo]] buda  '''purrang''' hastand.",
 'recentchangeslinked-page'     => 'Nomi sahifa:',
 'recentchangeslinked-to'       => 'Taƣjiroti sahifahoe, ki ba sahifai mavridi nazar pajvanddoştaro namoiş dihed',
@@ -1728,7 +1736,7 @@ Ittilooti marbut ba vorid kardani sahifaho dar [[Special:Log/import|guzorişhoi 
 'import-interwiki-namespace' => 'Fazoi nomi maqsad:',
 'import-upload-filename'     => 'Nomi parvanda:',
 'import-comment'             => 'Tavzeh:',
-'importtext'                 => "Lutfan parvandaro az viki manba' sodir kuned, az tariqi sahifa [[Special:Export|abzori sodirot]]. 
+'importtext'                 => "Lutfan parvandaro az viki manba' sodir kuned, az tariqi sahifa [[Special:Export|abzori sodirot]].
 Pas onro ba kompjuteraton zaxira karda inço borguzorī kuned.",
 'importstart'                => 'Dar holi vorid kardani sahifaho...',
 'import-revision-count'      => '$1 {{PLURAL:$1|viroiş|viroiş}}',
@@ -1842,7 +1850,7 @@ In imkoni ilova kardani jak sababero dar xulosa medihad.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtri muhofizat az spam',
-'spamprotectiontext'  => 'Sahifae ki şumo mexohed zaxira kuned az tarafi filtiri spam basta şud. 
+'spamprotectiontext'  => 'Sahifae ki şumo mexohed zaxira kuned az tarafi filtiri spam basta şud.
 Ehtimolan in az sababi dar bar giriftani pajvandi beruna ba somonai xoriçiji ba fehristi sijoh ilovaşuda boşad.',
 'spamprotectionmatch' => 'Matni zer cize ast, ki filtri (spam) harzanigoriji moro ba kor andoxt: $1',
 'spambot_username'    => 'Spamtozakuni MediaViki',

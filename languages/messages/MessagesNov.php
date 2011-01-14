@@ -331,7 +331,9 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Special:Categories
 'categories'         => 'Kategories',
-'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
+'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Sercha',

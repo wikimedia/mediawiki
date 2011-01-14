@@ -46,7 +46,7 @@ $messages = array(
 'tog-minordefault'            => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
 'tog-previewontop'            => "Fa vedè l'andeprime apprime de 'a scatole de le cangiaminde",
 'tog-previewonfirst'          => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
-'tog-nocache'                 => "Disabilite 'u caching d'a pàgene",
+'tog-nocache'                 => "Disabbilete 'u caching d'a pàgene sfogliate",
 'tog-enotifwatchlistpages'    => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
 'tog-enotifusertalkpages'     => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
@@ -487,7 +487,7 @@ Mitta n'otra vota.",
 'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
-'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4). 
+'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4).
 'Na password temboranea pe l'utende \"\$2\" ha state ccrejete e ha state 'mbostete a \"\$3\".
 Ce quiste ere quidde ca vulive, mo vide ce te colleghe e te scacchie 'na password nova.
 'A password temboranea adda murè 'mbrà {{PLURAL:\$5|'nu giurne|\$5 giurne}}.
@@ -596,7 +596,7 @@ Ce tu cazze Reggistre 'n'otra vote, 'u cangiamende tue avène memorizzete senze 
 * Tipe de blocche: $7
 
 Tu puè condatta $1 o n'otre [[{{MediaWiki:Grouppage-sysop}}|amministratore]] pe 'ngazzarte sus a 'u blocche.
-Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n'indirizze e-mail valide jndr'à le 
+Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n'indirizze e-mail valide jndr'à le
 [[Special:Preferences|preferenze tue]] e ce è state blocchete sus 'a l'use sue.
 L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
@@ -688,7 +688,7 @@ Certe vote, stu fatte succede quanne tu ste ause 'nu servizie proxy cu le bocher
 'U teste ca iacchie sus condene 'u teste d'a pàgene accume se iacchije jndr'à stu mumende.
 Le cangiaminde sonde fatte vedè jndr'à vanne de sotte.
 Tu puè scuagghià le cangiaminde jndr'à 'u teste de mò.
-'''Sulamende''' 'u teste ca stè sus avène reggistrate cazzanne 'u buttone \"Reggistre 'a vosce\".",
+'''Sulamende''' 'u teste ca stè sus avène reggistrate cazzanne 'u buttone \"{{int:savearticle}}\".",
 'yourtext'                         => "'U teste tue",
 'storedversion'                    => 'Versione archivijete',
 'nonunicodebrowser'                => "'''FA ATTENZIO': 'U browser tue non ge capisce l'unicode.'''

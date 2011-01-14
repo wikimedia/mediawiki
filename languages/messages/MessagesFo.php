@@ -767,7 +767,9 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 
 # Special:Categories
 'categories'         => 'Bólkar',
-'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
+'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Navnarúm:',

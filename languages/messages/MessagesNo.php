@@ -251,7 +251,7 @@ $messages = array(
 'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
-'tog-nocache'                 => 'Skru av mellomlagring av sider («caching»)',
+'tog-nocache'                 => 'Deaktiver nettlesermellomlagring av sider («caching»)',
 'tog-enotifwatchlistpages'    => 'Send meg en e-post når sider på overvåkningslisten blir endret',
 'tog-enotifusertalkpages'     => 'Send meg en e-post ved endringer av brukerdiskusjonssiden min',
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
@@ -646,7 +646,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'notloggedin'                => 'Ikke logget inn',
 'nologin'                    => "Er du ikke registrert? '''$1'''.",
 'nologinlink'                => 'Opprett en konto',
-'createaccount'              => 'Opprett ny konto',
+'createaccount'              => 'Opprett konto',
 'gotaccount'                 => "Har du allerede et brukernavn? '''$1'''.",
 'gotaccountlink'             => 'Logg inn',
 'createaccountmail'          => 'per e-post',
@@ -853,7 +853,7 @@ Endringene dine har ikke blitt lagret ennå!",
 Den øverste boksen inneholder den nåværende tekst.
 Dine endringer vises i den nederste boksen.
 Du er nødt til å flette dine endringer sammen med den nåværende teksten.
-'''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «Lagre siden».",
+'''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «{{int:savearticle}}».",
 'yourtext'                         => 'Din tekst',
 'storedversion'                    => 'Den lagrede versjonen',
 'nonunicodebrowser'                => "'''ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.'''",
@@ -898,9 +898,9 @@ Det siste loggelementet er oppgitt under som referanse:",
 'permissionserrorstext-withaction' => 'Du har ikke tillatelse til å $2 {{PLURAL:$1|på grunn av|av følgende grunner}}:',
 'recreate-moveddeleted-warn'       => "Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
 
-Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
+Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
-'moveddeleted-notice'              => 'Denne siden har blitt slettet. 
+'moveddeleted-notice'              => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
 'log-fulllog'                      => 'Vis fullstendig logg',
 'edit-hook-aborted'                => 'Redigering avbrutt av en funksjon, uten forklaring.',
@@ -971,7 +971,7 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-user-contribs'   => '[brukernavn eller IP-adresse fjernet – redigeringen vises ikke blant bidragene]',
-'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
+'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
@@ -1796,7 +1796,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'brokenredirects-edit'   => 'rediger',
 'brokenredirects-delete' => 'slett',
 
-'withoutinterwiki'         => 'Sider uten lenker til andre språk',
+'withoutinterwiki'         => 'Sider uten språklenker',
 'withoutinterwiki-summary' => 'Følgende sider lenker ikke til andre språkversjoner:',
 'withoutinterwiki-legend'  => 'Prefiks',
 'withoutinterwiki-submit'  => 'Vis',
@@ -2645,7 +2645,7 @@ Du kan se på kildeteksten',
 'nostalgia.css'   => '/* CSS i denne fila vil gjelde alle som bruker drakta Nostalgia */',
 'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Kølnerblå */',
 'monobook.css'    => '/* CSS i denne fila vil gjelde alle som bruker drakta Monobook */',
-'myskin.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Myskin */',
+'myskin.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta MySkin */',
 'chick.css'       => '/* CSS i denne fila vil gjelde alle som bruker drakta Chick */',
 'simple.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Simple */',
 'modern.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
@@ -2656,7 +2656,7 @@ Du kan se på kildeteksten',
 'nostalgia.js'   => '/* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
 'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
 'monobook.js'    => '/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
-'myskin.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
+'myskin.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta MySkin */',
 'chick.js'       => '/* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
 'simple.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
 'modern.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
@@ -2718,7 +2718,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'math_unknown_function' => 'ukjent funksjon',
 'math_lexing_error'     => 'lexerfeil',
 'math_syntax_error'     => 'syntaksfeil',
-'math_image_error'      => 'PNG-konversjon mislyktes',
+'math_image_error'      => 'PNG-konversjon mislyktes; sjekk at latex og dvipng (eller dvips + gs + convert) er korrekt installert',
 'math_bad_tmpdir'       => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'       => 'Kan ikke skrive til eller opprette resultatmappe',
 'math_notexvc'          => 'Mangler kjørbar texvc;

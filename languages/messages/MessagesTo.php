@@ -378,7 +378,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 Ko e konga ʻi olunga, ko e kupu ia he onopooni.
 Ko e konga ʻi lalo, ko hoʻo ngaahi liliu ia.
 ʻE pau te ke fakataha hoʻo liliu ʻi loto ʻo e kupu ʻoku tuʻu.
-Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"haofaki e pēsí\".",
+Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"{{int:savearticle}}\".",
 'yourtext'                => 'tohi ʻaʻau',
 'storedversion'           => 'Ko e paaki kuo tuku',
 'editingold'              => "'''FAKATOKANGA: ʻOku ke fatu ʻi he paaki fakaonoʻaho ʻo e pēsi. Kapau te ke haofaki ia, ʻe mole ʻa e ngaahi liliu kotoa talu mei ai.'''",
@@ -723,7 +723,9 @@ Ko e ʻuhinga loka ko e $1 ia.",
 
 # Special:Categories
 'categories'         => 'Faʻahinga',
-'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
+'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',

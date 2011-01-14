@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Кумулај Маркус
  * @author Макѕе
  * @author Приетен тев
@@ -201,7 +202,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'шумбајрае рецентае',
-'rcnote'          => "Маи хос се флај {{PLURAL:$|ултима модификаре|ултимеле '''$1''' модификајри}} дин {{PLURAL:$2|ултима зи|ултимеле '''$2''' зиле}}, енцепонд цу $3.",
+'rcnote'          => "Маи хос се флај {{PLURAL:$|ултима модификаре|ултимеле '''$1''' модификајри}} дин {{PLURAL:$2|ултима зи|ултимеле '''$2''' зиле}}, енцепонд цу $5, $4.",
 'rcshowhideminor' => '$1 модификајриле миноре',
 'rcshowhidebots'  => '$1 роботи',
 'rcshowhideliu'   => '$1 утилизатори приласнаери',
@@ -233,8 +234,8 @@ $3',
 'filehist-user'       => 'Утилизатору',
 'filehist-dimensions' => 'Дименционс',
 'filehist-comment'    => 'коментарул',
-'imagelinks'          => 'легајтул',
-'linkstoimage'        => 'Цес пажи легајтент а це фиширул:',
+'imagelinks'          => 'Легајтул фиширул де медиа',
+'linkstoimage'        => 'Цес {{PLURAL:$1|page links||пажи легајтент}} а це фиширул:',
 
 # Random page
 'randompage' => 'алаећу',

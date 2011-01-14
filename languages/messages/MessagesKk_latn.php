@@ -865,7 +865,7 @@ Keltirilgen sebebi:
 
 Osı buğattawdı talqılaw üşin $1 degenmen, ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğa boladı.
 
-Añğartpa: [[{{#special:Preferences}}|Paýdalanwşılıq baptalımdarıñızdı]] qoldanıp jaramdı e-poşta mekenjaýın engizgenşe deýin jäne bunı paýdalanwı buğattalmağanşa deýin «Qatıswşığa xat jazw» mümkindigin qoldana almaýsız. 
+Añğartpa: [[{{#special:Preferences}}|Paýdalanwşılıq baptalımdarıñızdı]] qoldanıp jaramdı e-poşta mekenjaýın engizgenşe deýin jäne bunı paýdalanwı buğattalmağanşa deýin «Qatıswşığa xat jazw» mümkindigin qoldana almaýsız.
 
 Buğataw nömiriñiz: $5.
 Bul nömirdi ärbir suranımıñızdarğa kiristiriñiz.",
@@ -1372,7 +1372,7 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 'upload_directory_missing'    => 'Qotarıp bermek qaltası ($1) jetispeýdi jäne veb-server jarata almaýdı.',
 'upload_directory_read_only'  => 'Qotarıp bermek qaltasına ($1) veb-server jaza almaýdı.',
 'uploaderror'                 => 'Qotarıp berw qatesi',
-'uploadtext'                  => "Tömendegi pişindi faýldardı qotarıp berw üşin qoldanıñız. 
+'uploadtext'                  => "Tömendegi pişindi faýldardı qotarıp berw üşin qoldanıñız.
 Aldında qotarılıp berilgen faýldardı qaraw ne izdew üşin [[{{#special:FileList}}|qotarıp berilgen faýldar tizimine]] barıñız, tağı da qotarıp berwi men joywı  [[{{#special:Log}}/upload|qotarıp berw jwrnalına]] jazılıp alınadı.
 
 Swretti betke kiristirwge, faýlğa twra siltew üşin mına pişindegi siltemeni qoldanıñız:
@@ -1678,7 +1678,9 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 
 # Special:Categories
 'categories'                    => 'Sanattar',
-'categoriespagetext'            => 'Kelesi sanattar işinde better ne taspalar bar.',
+'categoriespagetext'            => 'Kelesi sanattar işinde better ne taspalar bar.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Sanattardı mınadan bastap körsetw:',
 'special-categories-sort-count' => 'sanımen surıptaw',
 'special-categories-sort-abc'   => 'älipbïmen surıptaw',
@@ -2013,13 +2015,13 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbexpiry'                   => 'Merzimi bitpek:',
 'ipbreason'                   => 'Sebebi:',
 'ipbreasonotherlist'          => 'Basqa sebep',
-'ipbreason-dropdown'          => '* Buğattawdıñ jalpı sebebteri 
-** Jalğan mälimet engizw 
-** Betterdegi mağlumattı alastaw 
-** Şettik toraptar siltemelerin jawdırw 
-** Betterge mağınasızdıq/baldırlaw kiristirw 
-** Qoqandaw/qwğındaw minezqulıq 
-** Birneşe ret tirkelip qïyanattaw 
+'ipbreason-dropdown'          => '* Buğattawdıñ jalpı sebebteri
+** Jalğan mälimet engizw
+** Betterdegi mağlumattı alastaw
+** Şettik toraptar siltemelerin jawdırw
+** Betterge mağınasızdıq/baldırlaw kiristirw
+** Qoqandaw/qwğındaw minezqulıq
+** Birneşe ret tirkelip qïyanattaw
 ** Öreskel qatıswşı atı',
 'ipbanononly'                 => 'Tek tirkelgisiz qatıswşılardı buğattaw',
 'ipbcreateaccount'            => 'Tirkelwdi qaqpaýlaw',
@@ -2173,7 +2175,7 @@ bet öziniñ üstine jıljıtılmaýdı.',
 
 # Export
 'export'            => 'Betterdi sırtqa berw',
-'exporttext'        => 'XML pişimine qaptalğan bölek bet ne better bwması mätiniñ jäne öñdew tarïxın sırtqa bere alasız. 
+'exporttext'        => 'XML pişimine qaptalğan bölek bet ne better bwması mätiniñ jäne öñdew tarïxın sırtqa bere alasız.
 MediaWiki jüýesiniñ [[{{#special:Import}}|sırttan alw betin]] paýdalanıp, bunı özge wïkïge alwğa boladı.
 
 Betterdi sırtqa berw üşin, taqırıp attarın tömendegi mätin jolağına engiziñiz (jol saýın bir taqırıp atı), jäne de bölekteñiz: ne ağımdıq nusqasın, barlıq eski nusqaları men jäne tarïxı joldarı men birge, nemese däl ağımdıq nusqasın, soñğı öñdemew twralı aqparatı men birge.
@@ -2742,7 +2744,7 @@ Basqaları ädepkiden jasırıladı.
 'confirmemail_noemail'     => '[[{{#special:Preferences}}|Paýdalanwşılıq baptalımdarıñızda]] jaramdı e-poşta mekenjaýın qoýmapsız.',
 'confirmemail_text'        => '{{SITENAME}} e-poşta mümkindikterin paýdalanw üşin aldınan e-poşta mekenjaýıñızdıñ jaramdılığın tekserip şığwıñız kerek.
 Öziñizdiñ mekenjaýıñızğa quptaw xatın jöneltw üşin tömendegi batırmanı nuqıñız.
-Xattıñ işinde kodı bar silteme kiristirmek; 
+Xattıñ işinde kodı bar silteme kiristirmek;
 e-poşta jaýıñızdıñ jaramdılığın quptaw üşin siltemeni şolğıştıñ mekenjaý jolağına engizip aşıñız.',
 'confirmemail_pending'     => 'Quptaw kodı aldaqaşan xatpen jiberiligen;
 eger jwıqta tirkelseñiz, jaña kodın suratw aldınan xat kelwin birşama mïnöt küte turıñız.',

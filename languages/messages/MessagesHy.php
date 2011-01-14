@@ -9,6 +9,7 @@
  *
  * @author Chaojoker
  * @author Pandukht
+ * @author Reedy
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
@@ -854,7 +855,7 @@ $2',
 Նման IP-հասցեից կարող են օգտվել մի քանի մասնակիցներ։
 Եթե դուք անանուն մասնակից եք, բայց կարծում եք, որ ուրիշներին վերաբերող դիտողությունները արվում են ձեր հասցեով, ապա խնդրում ենք պարզապես [[Special:UserLogin/signup|գրանցվել]] կամ [[Special:UserLogin|մտնել համակարգ]], որպեսզի հետագայում ձեզ չշփոթեն այլ անանուն մասնակիցների հետ։''",
 'noarticletext'                    => 'Ներկայումս այս էջում որևէ տեքստ չկա։
-Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]։',
+Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission'       => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանունը]] այլ էջերում կամ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել այն տեղեկամատյաններում]</span>.',
 'userpage-userdoesnotexist'        => '«$1» անվանմամբ մասնակից գոյություն չունի։
@@ -890,7 +891,7 @@ $2',
 Վերին խմբագրման դաշտում ընդգրկված է ընթացիկ տեքստը, որն ենթակա է հիշման։
 Ձեր խմբագրումներով տեքստը գտնվում է ստորին դաշտում։
 Որպեսզի ձեր փոփոխությունները հիշվեն, միաձուլեք դրանք վերին տեքստի մեջ։
-«Հիշել էջը» կոճակին սեղմելով կհիշվի '''միայն''' վերևվի դաշտի տեքստը:",
+«{{int:savearticle}}» կոճակին սեղմելով կհիշվի '''միայն''' վերևվի դաշտի տեքստը:",
 'yourtext'                         => 'Ձեր տեքստը',
 'storedversion'                    => 'Պահված տարբերակ',
 'nonunicodebrowser'                => "'''ԶԳՈՒՇԱՑՈՒՄ. Ջեր բրաուզերը չունի Յունիկոդ ապահովում։ Հոդվածներ խմբագրելիս բոլոր ոչ-ASCII սիմվլոները փոխարինվելու են իրենց տասնվեցական կոդերով։'''",
@@ -1422,6 +1423,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'linkstoimage'              => 'Հետևյալ  {{PLURAL:$1|էջը հղվում է|$1 էջերը հղվում են}} այս ֆայլին՝',
 'nolinkstoimage'            => 'Այս ֆայլին հղվող էջեր չկան։',
 'sharedupload'              => 'Այս ֆայլը $1 զետեղարանից է և կարող է օգտագործվել այլ նախագծերում։',
+'sharedupload-desc-here'    => 'Այս ֆայլը $1-ից է և թուլատրելի է այլ նախագծերի կողմից օգտագործվել։ [$2 Ֆայլի նկարագրման էջի] նկարագրությունը ներկայացված է ներքո։',
 'uploadnewversion-linktext' => 'Բեռնել այս ֆայլի նոր տարբերակ',
 
 # File reversion
@@ -1537,8 +1539,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'popularpages'            => 'Հաճախ այցելվող էջեր',
 'wantedcategories'        => 'Անհրաժեշտ կատեգորիաներ',
 'wantedpages'             => 'Անհրաժեշտ էջեր',
-'wantedfiles'             => 'Ահրաժեշտ ֆայլեր',
-'wantedtemplates'         => 'Ահրաժեշտ կաղապարներ',
+'wantedfiles'             => 'Անհրաժեշտ ֆայլեր',
+'wantedtemplates'         => 'Անհրաժեշտ կաղապարներ',
 'mostlinked'              => 'Էջեր, որոնց շատ են հղվում',
 'mostlinkedcategories'    => 'Կատեգորիաներ, որոնց շատ են հղվում',
 'mostlinkedtemplates'     => 'Կաղապարներ, որոնց շատ են հղվում',
@@ -1603,7 +1605,9 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Special:Categories
 'categories'         => 'Կատեգորիաներ',
-'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա։',
+'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Մասնակցի ջնջված ներդրում',

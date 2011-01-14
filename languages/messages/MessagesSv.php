@@ -324,7 +324,7 @@ $messages = array(
 'tog-minordefault'            => 'Markera automatiskt ändringar som mindre',
 'tog-previewontop'            => 'Visa förhandsgranskningen ovanför redigeringsrutan',
 'tog-previewonfirst'          => 'Visa förhandsgranskning när redigering påbörjas',
-'tog-nocache'                 => 'Stäng av cachning av sidor',
+'tog-nocache'                 => 'Stäng av cachelagring för sidor',
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för mindre ändringar',
@@ -755,7 +755,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|en dag|$5 dagar}}.
 
 Om denna begäran gjordes av någon annan, eller om du har kommit på ditt lösenord,
-och inte längre önskar ändra det, så kan du ignorera detta meddelande och 
+och inte längre önskar ändra det, så kan du ignorera detta meddelande och
 fortsätta använda ditt gamla lösenord.',
 'noemail'                    => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'noemailcreate'              => 'Du måste ange en giltig e-postadress',
@@ -838,7 +838,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'showdiff'                         => 'Visa ändringar',
 'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
 Din IP-adress kommer att sparas i historiken för den här sidan.",
-'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar. 
+'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar.
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
 'missingcommentheader'             => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
@@ -938,7 +938,7 @@ Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.
 Den översta textrutan innehåller den nuvarande sparade versionen av texten.
 Din ändrade version visas i den nedre rutan.
 Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
-'''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"Spara\".",
+'''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"{{int:savearticle}}\".",
 'yourtext'                         => 'Din text',
 'storedversion'                    => 'Den sparade versionen',
 'nonunicodebrowser'                => "'''VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.'''",
@@ -953,7 +953,7 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
 Överväg att bryta upp sidan i mindre delar.'''",
 'longpageerror'                    => "'''FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.'''",
-'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu. 
+'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu.
 Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
 
 Administratören som låste databasen gav följande förklaring: $1",
@@ -1154,7 +1154,7 @@ Du har inte behörighet till det.',
 Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
 'revdelete-reason-dropdown'   => '*Vanliga orsaker till radering
-** Brott mot copyright 
+** Brott mot copyright
 ** Opassande personupplysningar
 ** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason'       => 'Annan/ytterligare anledning:',
@@ -2255,7 +2255,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 ** Redigeringskrig
 ** Sida med många besökare',
 'protect-edit-reasonlist'     => 'Redigera skyddsanledningar',
-'protect-expiry-options'      => '1 timme:1 hour,1 dag:1 day,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
+'protect-expiry-options'      => '1 timme:1 hour,1 dygn:1 day,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
 'restriction-type'            => 'Typ av skydd:',
 'restriction-level'           => 'Skyddsnivå:',
 'minimum-size'                => 'Minsta storlek',
@@ -2431,7 +2431,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'blocklistline'                   => '$1, $2 blockerade $3 ($4)',
 'infiniteblock'                   => 'för evigt',
 'expiringblock'                   => 'utgår den $1 kl $2',
-'anononlyblock'                   => 'endast för oinloggade',
+'anononlyblock'                   => 'endast oinloggade',
 'noautoblockblock'                => 'utan automatisk blockering',
 'createaccountblock'              => 'kontoregistrering blockerad',
 'emailblock'                      => 'e-post blockerad',
@@ -2833,7 +2833,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'math_unknown_function' => 'okänd funktion',
 'math_lexing_error'     => 'regelfel',
 'math_syntax_error'     => 'syntaxfel',
-'math_image_error'      => 'Konvertering till PNG-format misslyckades; kontrollera om latex, dvips, gs och convert är korrekt installerade',
+'math_image_error'      => 'Konvertering till PNG-format misslyckades; kontrollera om latex och dvipng (eller dvips + gs + convert) är korrekt installerade',
 'math_bad_tmpdir'       => 'Kan inte skriva till eller skapa temporär mapp för matematikresultat',
 'math_bad_output'       => 'Kan inte skriva till eller skapa mapp för matematikresultat',
 'math_notexvc'          => 'Applicationen texvc saknas; läs math/README för konfigureringsanvisningar.',
@@ -2905,7 +2905,7 @@ Om du kör den kan din dator skadas.",
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
 
-Listan tar enbart hänsyn till rader som börjar med asterisk (*). 
+Listan tar enbart hänsyn till rader som börjar med asterisk (*).
 Den första länken på en rad måste vara en länk till en otillåten fil.
 Övriga länkar på samma rad kommer att hanteras som undantag, det vill säga sidor där filen tillåts användas.',
 
@@ -3213,7 +3213,7 @@ Kontrollera om e-postadressen innehåller ogiltiga tecken.
 Mailservern svarade: $1',
 'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
-'confirmemail_success'     => 'Din e-postadress har bekräftats. 
+'confirmemail_success'     => 'Din e-postadress har bekräftats.
 Du kan nu [[Special:UserLogin|logga in]] och använda wikin.',
 'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
 'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',

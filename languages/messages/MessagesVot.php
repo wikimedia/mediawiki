@@ -8,6 +8,7 @@
  * @file
  *
  * @author 2Q
+ * @author Andrijko Z.
  * @author Trần Nguyễn Minh Huy
  */
 
@@ -203,7 +204,7 @@ Kui tšüsümüssessä ebõõ rootšittu tšültši, võib õlla õlõttõ löü
 'summary-preview'                  => 'Turvotuhsõ prestavleńńa',
 'newarticle'                       => '(Uusi)',
 'newarticletext'                   => 'Sitä tšültšiä veel ebõõ.
-Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että taho loovva tšültšiä, menka takaz Web-brauzeraa "back"-napuukaa.',
+Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että taho loovva [[{{MediaWiki:Helppage}}|tšültšiä]], menka takaz Web-brauzeraa "back"-napuukaa.',
 'noarticletext'                    => '{{GRAMMAR:inessive|{{SITENAME}}}} ebõõ sene nimissä tšültšiä.
 * Võid [[Special:Search/{{PAGENAME}}|ettsiä tšüľľee nimellä]] muilta tšüľľeltä.
 * Võid tširjuttõma uuvvõõ tšüľľee <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',
@@ -211,8 +212,8 @@ Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että tah
 'editing'                          => 'Muutun $1',
 'editingsection'                   => 'Muuttõmizõll on õsa tšüľľess $1',
 'copyrightwarning'                 => "Kõik {{SITENAME}}'lle formittu saatšid katsotaa julkaistussi $2 -litsentsi mukka ($1). Kui että taho, jot Teďďee tširjutussa muutõtaa armõttomassi ja svobodno tšävvää uuvvõllõõ, elä tširjuttõga.<br />Toož, Te luppattõ, jot tširjutittä Teďďee teksti ize, vai kopiiroizitta slobodnoissa tšüľľessä.<br />'''ELÄ TŠÄÜTTEGA TETŠEJÄÕIKUSÕKAA OĎĎÕLTUIT MAŤERIIT ILMA LUPPA!'''",
-'templatesused'                    => 'Sell tšüľľell tšäütetüd šabloonid:',
-'templatesusedpreview'             => 'Šabloonid sellä prestavleńńalla:',
+'templatesused'                    => 'Sell tšüľľell {{PLURAL:$1|tšäütetüd šabloonid}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Šabloonid}} sellä prestavleńńalla:',
 'template-protected'               => '(oďďõttu)',
 'template-semiprotected'           => '(varjõttu anonüümeilt ja uusilt tšäüttijilt)',
 'hiddencategories'                 => 'Kase tšültši kuulub {{PLURAL:$1|vahtiaavaa salautõttuu gruppaa|vahtiaavii salautõttuisõõ gruppoisõõ}}:',
@@ -255,7 +256,7 @@ Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että tah
 'searchsubtitleinvalid'     => "Ettsizittä: '''$1'''",
 'notitlematches'            => 'Eb löütännü miltäiss tšültšiä sene ettsüsõnaaka',
 'notextmatches'             => 'Ettsisõnaa eb löütünnü tšüľľee tekstiissä',
-'prevn'                     => 'entiiss $1',
+'prevn'                     => '{{PLURAL:$1|edellinen|$1 entiiss}}',
 'nextn'                     => '{{PLURAL:$1|$1}} vahtiaava →',
 'viewprevnext'              => 'Näüt ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
@@ -390,7 +391,7 @@ Tšüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on
 'watchlistfor'      => '$1',
 'addedwatch'        => 'Lisättü kattsospiizgallõ',
 'addedwatchtext'    => "Tšültši \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
-Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll. 
+Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.
 Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",
 'removedwatch'      => 'Pantu kattsõspiizgalt poiz',
 'removedwatchtext'  => 'Tšültši "[[:$1]]" on pantu [[Special:Watchlist|teďďee kattsõspiizgalt]] poiz.',
@@ -411,7 +412,7 @@ Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall
 'actioncomplete'        => 'Töö tehtü lõppuu',
 'deletedtext'           => '"<nowiki>$1</nowiki>" on pühittü.
 Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
-'deletedarticle'        => 'roottšiz tšüľľee $1',
+'deletedarticle'        => 'roottšiz tšüľľee [[$1]]',
 'dellogpage'            => 'Pühitüd tšüľľed',
 'deletecomment'         => 'Süü',
 'deleteotherreason'     => 'Muu vai lisä süü',
@@ -557,6 +558,7 @@ Että või muuttaa tšültšia, mutta võittõ kattsoa sene lähtekoodi.',
 'tooltip-search-go'               => 'Mee tšüľľelee, kummall on vakurat sesama nimi (kui eloz on)',
 'tooltip-search-fulltext'         => 'Etsi tšültšiltä sitä tekstiä',
 'tooltip-n-mainpage'              => 'Mee esitšüľľelee',
+'tooltip-n-mainpage-description'  => 'Mee esitšüľľelee',
 'tooltip-n-portal'                => 'Juttua projektissa: Mitä tüü võittõ tehä, kuza levvette mitä',
 'tooltip-n-currentevents'         => 'Lugõ soobšeńńad nütšüizess kõhtoiss',
 'tooltip-n-recentchanges'         => 'Spiiska uusissa muutussissa',
@@ -586,7 +588,7 @@ Että või muuttaa tšültšia, mutta võittõ kattsoa sene lähtekoodi.',
 'tooltip-compareselectedversions' => 'Näütää vahõd 2 valitsõttuďďõ verzijoďďõ väliz',
 'tooltip-watch'                   => 'Lissä kase tšültši kattsõspiizgallõ',
 'tooltip-rollback'                => 'Vääntega tšüľľee teksti vanõmpi verzijalõõ',
-'tooltip-undo'                    => '"Kummut" väänteeb kasene muutusõõ ja avab artikkelii prestavleńńaa. 
+'tooltip-undo'                    => '"Kummut" väänteeb kasene muutusõõ ja avab artikkelii prestavleńńaa.
 Toož, võittõ tširjutta väänteüssee süü.',
 
 # Browsing diffs

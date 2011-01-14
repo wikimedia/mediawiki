@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Dark Eagle
  * @author Garas
  * @author Homo
  * @author Hugo.arg
@@ -193,7 +194,7 @@ $messages = array(
 'tog-minordefault'            => 'Pagal nutylėjimą pažymėti redagavimus kaip smulkius',
 'tog-previewontop'            => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst'          => 'Rodyti peržiūrą pirmą kartą pakeitus',
-'tog-nocache'                 => 'Nenaudoti puslapių kaupimo',
+'tog-nocache'                 => 'Išjungti interneto naršyklės puslapių podėlį',
 'tog-enotifwatchlistpages'    => 'Siųsti man laišką, kai pakeičiamas puslapis, kurį stebiu',
 'tog-enotifusertalkpages'     => 'Siųsti man laišką, kai pakeičiamas mano naudotojo aptarimo puslapis',
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
@@ -607,7 +608,7 @@ Prašome pasirinkti kitą vardą.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
-'nosuchuser'                 => 'Nėra jokio naudotojo, turinčio vardą „$1“. 
+'nosuchuser'                 => 'Nėra jokio naudotojo, turinčio vardą „$1“.
 Naudotojų varduose skiriamos didžiosios ir mažosios raidės.
 Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą]].',
 'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
@@ -783,8 +784,8 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'blocked-notice-logextract'        => 'Šis naudotojas šiuo metu yra užblokuotas.
 Žemiau pateikiamas paskutinis blokavimo istorijos įrašas:',
 'clearyourcache'                   => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
-'usercssyoucanpreview'             => "'''Patarimas:''' Naudokite „Rodyti peržiūrą“ mygtuką, kad išmėgintumėte savo naująjį CSS prieš išsaugant.",
-'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „Rodyti peržiūrą“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
+'usercssyoucanpreview'             => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį CSS prieš išsaugant.",
+'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
 'userjspreview'                    => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
 'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
@@ -808,7 +809,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 Viršutiniame tekstiniame lauke pateikta šiuo metu esanti puslapio versija.
 Jūsų keitimai pateikti žemiau esančiame lauke.
 Jums reikia sujungti jūsų pakeitimus su esančia versija.
-Kai paspausite „Įrašyti“, bus įrašytas '''tik''' tekstas viršutiniame tekstiniame lauke.",
+Kai paspausite „{{int:savearticle}}“, bus įrašytas '''tik''' tekstas viršutiniame tekstiniame lauke.",
 'yourtext'                         => 'Jūsų tekstas',
 'storedversion'                    => 'Išsaugota versija',
 'nonunicodebrowser'                => "'''ĮSPĖJIMAS: Jūsų naršyklė nepalaiko unikodo. Kad būtų saugu redaguoti puslapį, ne ASCII simboliai redagavimo lauke bus rodomi kaip šešioliktainiai kodai.'''",
@@ -1517,7 +1518,7 @@ Prašome pasirinkti kitą vardą.",
 'fileexists-thumbnail-yes'    => "Failas turbūt yra sumažinto dydžio failas ''(miniatiūra)''. [[$1|thumb]]
 Prašome peržiūrėti failą '''<tt>[[:$1]]</tt>'''.
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.",
-'file-thumbnail-no'           => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''. 
+'file-thumbnail-no'           => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''.
 Atrodo, kad yra sumažinto dydžio paveikslėlis ''(miniatiūra)''.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.",
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja ir negali būti perrašytas;
@@ -1620,41 +1621,42 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'listfiles_count'       => 'Versijos',
 
 # File description page
-'file-anchor-link'          => 'Failas',
-'filehist'                  => 'Paveikslėlio istorija',
-'filehist-help'             => 'Paspauskite ant datos/laiko, kad pamatytumėte failą tokį, koks jis buvo tuo metu.',
-'filehist-deleteall'        => 'trinti visus',
-'filehist-deleteone'        => 'trinti',
-'filehist-revert'           => 'grąžinti',
-'filehist-current'          => 'dabartinis',
-'filehist-datetime'         => 'Data/Laikas',
-'filehist-thumb'            => 'Miniatiūra',
-'filehist-thumbtext'        => 'Versijos $1 miniatiūra',
-'filehist-nothumb'          => 'Nėra miniatiūros',
-'filehist-user'             => 'Naudotojas',
-'filehist-dimensions'       => 'Matmenys',
-'filehist-filesize'         => 'Failo dydis',
-'filehist-comment'          => 'Komentaras',
-'filehist-missing'          => 'Failo nėra',
-'imagelinks'                => 'Failų nuorodos',
-'linkstoimage'              => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
-'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
+'file-anchor-link'                  => 'Failas',
+'filehist'                          => 'Paveikslėlio istorija',
+'filehist-help'                     => 'Paspauskite ant datos/laiko, kad pamatytumėte failą tokį, koks jis buvo tuo metu.',
+'filehist-deleteall'                => 'trinti visus',
+'filehist-deleteone'                => 'trinti',
+'filehist-revert'                   => 'grąžinti',
+'filehist-current'                  => 'dabartinis',
+'filehist-datetime'                 => 'Data/Laikas',
+'filehist-thumb'                    => 'Miniatiūra',
+'filehist-thumbtext'                => 'Versijos $1 miniatiūra',
+'filehist-nothumb'                  => 'Nėra miniatiūros',
+'filehist-user'                     => 'Naudotojas',
+'filehist-dimensions'               => 'Matmenys',
+'filehist-filesize'                 => 'Failo dydis',
+'filehist-comment'                  => 'Komentaras',
+'filehist-missing'                  => 'Failo nėra',
+'imagelinks'                        => 'Failų nuorodos',
+'linkstoimage'                      => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
+'linkstoimage-more'                 => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
 Šis sąrašas rodo tik {{PLURAL:$1|puslapio|pirmų $1 puslapių}} nuorodas į šį failą.
 Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
-'nolinkstoimage'            => 'Į failą nenurodo joks puslapis.',
-'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
-'redirectstofile'           => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
-'duplicatesoffile'          => 'Šis failas turi {{PLURAL:$1|$1 dublikatą|$1 dublikatus|$1 dublikatų}} ([[Special:FileDuplicateSearch/$2|daugiau informacijos]]):',
-'sharedupload'              => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.',
-'sharedupload-desc-there'   => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.
+'nolinkstoimage'                    => 'Į failą nenurodo joks puslapis.',
+'morelinkstoimage'                  => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
+'redirectstofile'                   => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
+'duplicatesoffile'                  => 'Šis failas turi {{PLURAL:$1|$1 dublikatą|$1 dublikatus|$1 dublikatų}} ([[Special:FileDuplicateSearch/$2|daugiau informacijos]]):',
+'sharedupload'                      => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.',
+'sharedupload-desc-there'           => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.
 Norėdami sužinoti daugiau, žiūrėkite [$2 failo aprašymą].',
-'sharedupload-desc-here'    => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.
+'sharedupload-desc-here'            => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.
 Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
-'filepage-nofile'           => 'Joks failas su duotu pavadinimu neegzistuoja.',
-'filepage-nofile-link'      => 'Joks failas su duotu pavadinimu neegzistuoja, bet vis dar galite [$1 jį įkelti].',
-'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
-'shared-repo-from'          => 'iš $1',
-'shared-repo'               => 'bendrosios failų saugyklos',
+'filepage-nofile'                   => 'Joks failas su duotu pavadinimu neegzistuoja.',
+'filepage-nofile-link'              => 'Joks failas su duotu pavadinimu neegzistuoja, bet vis dar galite [$1 jį įkelti].',
+'uploadnewversion-linktext'         => 'Įkelti naują failo versiją',
+'shared-repo-from'                  => 'iš $1',
+'shared-repo'                       => 'bendrosios failų saugyklos',
+'shared-repo-name-wikimediacommons' => 'Vikiteka',
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',
@@ -2667,6 +2669,8 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'skinname-myskin'      => 'Mano išvaizda',
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Paprasta',
+'skinname-modern'      => 'Moderni',
+'skinname-vector'      => 'Vektorinė',
 
 # Math options
 'mw_math_png'    => 'Visada formuoti PNG',
@@ -3151,8 +3155,8 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
 'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
-'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. 
-Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“. 
+'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše.
+Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“.
 Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
 'watchlistedit-normal-submit'  => 'Šalinti puslapius',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',

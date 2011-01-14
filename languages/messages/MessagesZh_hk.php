@@ -7,7 +7,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Horacewai2
  * @author Kayau
+ * @author Mark85296341
  * @author PhiLiP
  * @author Wong128hk
  * @author Yukiseaside
@@ -36,6 +38,7 @@ $messages = array(
 'november'  => '十一月',
 'december'  => '十二月',
 
+'mytalk'     => '我的討論頁',
 'navigation' => '導航',
 
 'tagline'          => '從 {{SITENAME}}',
@@ -47,10 +50,12 @@ $messages = array(
 'print'            => '打印',
 'edit'             => '編輯',
 'talkpagelinktext' => '對話',
+'specialpage'      => '特殊頁面',
 'personaltools'    => '個人工具',
 'toolbox'          => '工具箱',
 'jumpto'           => '跳到：',
 'jumptonavigation' => '導航',
+'jumptosearch'     => '搜尋',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'   => '關於 {{SITENAME}}',
@@ -63,8 +68,12 @@ $messages = array(
 'editsectionhint' => '編輯段落: $1',
 'red-link-title'  => '$1 (頁面不存在)',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-special' => '特殊頁面',
+
 # Login and logout pages
-'nav-login-createaccount' => '登入/創造帳戶',
+'nav-login-createaccount' => '登入／創造帳戶',
+'userlogin'               => '登入／創造帳戶',
 
 # Revision deletion
 'revdelete-suppress-text' => "壓制'''只'''應用於以下的情況:
@@ -72,7 +81,7 @@ $messages = array(
 *: ''地址、電話號碼、身份證號碼等。''",
 
 # Diffs
-'editundo' => '回退',
+'editundo' => '撤銷',
 
 # Search results
 'search-mwsuggest-disabled' => '沒有意見',

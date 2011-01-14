@@ -515,7 +515,7 @@ $1 na oras.',
 'resetpass_success'         => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
 'resetpass_forbidden'       => 'Dai pwedeng ribayan an mga sekretong panlaog sa ining wiki',
 'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
-'resetpass-wrong-oldpass'   => 'Saláng temporaryo o presenteng sekretong panlaog. 
+'resetpass-wrong-oldpass'   => 'Saláng temporaryo o presenteng sekretong panlaog.
 Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong sekretong panlaog.',
 'resetpass-temp-password'   => 'Temporaryong sekretong panlaog:',
 
@@ -631,7 +631,7 @@ Nanyayari nanggad ini kun naggagamit ka nin bakong maraháy asin dai bistong web
 Nahihilíng ang pahina kan teksto sa parteng itaas kan teksto.
 An mga pagbabàgo mo nahihilíng sa parteng ibabâ kan teksto.
 Kaipuhan mong isalak an mga pagbabàgo mo sa presenteng teksto.
-An teksto na nasa parteng itaas '''sana''' an maitatagama sa pagpindot mo kan \"Itagama an pahina\".",
+An teksto na nasa parteng itaas '''sana''' an maitatagama sa pagpindot mo kan \"{{int:savearticle}}\".",
 'yourtext'                   => 'Saimong teksto',
 'storedversion'              => 'Itinagamang bersyon',
 'nonunicodebrowser'          => "'''PATANID: An browser mo bakong unicode complaint. Igwang temporariong sistema na nakaandar para makahirá ka kan mga pahina: mahihiling an mga karakter na non-ASCII sa kahon nin paghirá bilang mga kodang hexadecimal.'''",
@@ -1186,7 +1186,9 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 
 # Special:Categories
 'categories'         => 'Mga Kategorya',
-'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.',
+'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'Parâon an mga kontribusyon kan parágamit',
@@ -2012,7 +2014,7 @@ Tangarig maghalì nin titulo, markahan an kahon sa gilid kaini, dangan pindotón
 'watchlistedit-normal-done'    => 'Pigtangkas an {{PLURAL:$1|1 an titulo|$1 mga titulo}} sa saimong pigbabantayan:',
 'watchlistedit-raw-title'      => 'Hirahón an bàgong pigbabantayan',
 'watchlistedit-raw-legend'     => 'Hirahón an bàgong pigbabantayan',
-'watchlistedit-raw-explain'    => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo, asin pwede ining hirahón sa paagi nin pagdugang sagkod paghalì sa lista; 
+'watchlistedit-raw-explain'    => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo, asin pwede ining hirahón sa paagi nin pagdugang sagkod paghalì sa lista;
 sarong titulo kada linya.
 Pag tapos na, lagatikón an Bàgohón an Pigbabantayan.
 Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',

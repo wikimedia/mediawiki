@@ -224,7 +224,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar por omisión todas as edicións como pequenas',
 'tog-previewontop'            => 'Mostrar o botón de vista previa antes da caixa de edición e non despois dela',
 'tog-previewonfirst'          => 'Mostrar a vista previa na primeira edición',
-'tog-nocache'                 => 'Deshabilitar a memoria caché das páxinas',
+'tog-nocache'                 => 'Desactivar a memoria caché do navegador',
 'tog-enotifwatchlistpages'    => 'Enviádeme unha mensaxe de correo electrónico cando unha páxina da miña lista de vixilancia cambie',
 'tog-enotifusertalkpages'     => 'Enviádeme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
 'tog-enotifminoredits'        => 'Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas',
@@ -493,7 +493,7 @@ $1',
 'thisisdeleted'           => 'Quere ver ou restaurar $1?',
 'viewdeleted'             => 'Quere ver $1?',
 'restorelink'             => '{{PLURAL:$1|unha edición borrada|$1 edicións borradas}}',
-'feedlinks'               => 'Sindicalización:',
+'feedlinks'               => 'Fonte de novas:',
 'feed-invalid'            => 'Tipo de fonte de novas inválido.',
 'feed-unavailable'        => 'As fontes de noticias non están dispoñibles',
 'site-rss-feed'           => 'Fonte de novas RSS de $1',
@@ -567,7 +567,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'formerror'            => 'Erro: non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
 'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
-Se cadra, xa foi borrada por alguén.',
+Se cadra, xa a borrou alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
 Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
@@ -714,7 +714,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
 'resetpass-submit-cancel'   => 'Cancelar',
-'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
+'resetpass-wrong-oldpass'   => 'O contrasinal temporal ou actual é incorrecto.
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 
@@ -780,7 +780,7 @@ A razón que deu foi a seguinte:
 
 * Inicio do bloqueo: $8
 * Caducidade do bloqueo: $6
-* Pretendeuse bloquear: $7 
+* Pretendeuse bloquear: $7
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
@@ -835,7 +835,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/monobook.css no canto de {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Lembre que esta é só unha vista previa e que os seus cambios aínda non foron gardados!'''",
+'previewnote'                      => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
 'previewconflict'                  => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview'             => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.
@@ -857,7 +857,7 @@ Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo def
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
 Os seus cambios móstranse na área inferior.
 Pode mesturar os seus cambios co texto existente.
-'''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
+'''Só''' se gardará o texto na área superior cando prema \"{{int:savearticle}}\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
 'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
@@ -910,8 +910,8 @@ Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por 
 'moveddeleted-notice'              => 'Esta páxina foi borrada.
 A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se quere consultalos.',
 'log-fulllog'                      => 'Ver o rexistro completo',
-'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
-Este non deu ningunha explicación.",
+'edit-hook-aborted'                => 'A edición foi abortada polo asociador.
+Este non deu ningunha explicación.',
 'edit-gone-missing'                => 'Non se pode actualizar a páxina.
 Semella que foi borrada.',
 'edit-conflict'                    => 'Conflito de edición.',
@@ -1275,7 +1275,7 @@ Este cambio non se poderá desfacer.',
 'prefs-textboxsize'             => 'Tamaño da caixa de edición',
 'youremail'                     => 'Correo electrónico:',
 'username'                      => 'Nome de usuario:',
-'uid'                           => 'ID do usuario:',
+'uid'                           => 'ID de usuario:',
 'prefs-memberingroups'          => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration'            => 'Data e hora de rexistro:',
 'yourrealname'                  => 'Nome real:',
@@ -1792,7 +1792,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics'                   => 'Estatísticas',
 'statistics-header-pages'      => 'Estatísticas das páxinas',
 'statistics-header-edits'      => 'Estatísticas das edicións',
-'statistics-header-views'      => 'Estatísticas das vistas',
+'statistics-header-views'      => 'Estatísticas das visitas',
 'statistics-header-users'      => 'Estatísticas dos usuarios',
 'statistics-header-hooks'      => 'Outras estatísticas',
 'statistics-articles'          => 'Páxinas de contido',
@@ -1801,8 +1801,8 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-files'             => 'Ficheiros cargados',
 'statistics-edits'             => 'Edicións nas páxinas des que se creou {{SITENAME}}',
 'statistics-edits-average'     => 'Media de edicións por páxina',
-'statistics-views-total'       => 'Vistas totais',
-'statistics-views-peredit'     => 'Vistas por edición',
+'statistics-views-total'       => 'Visitas totais',
+'statistics-views-peredit'     => 'Visitas por edición',
 'statistics-jobqueue'          => 'Lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos]',
 'statistics-users'             => '[[Special:ListUsers|Usuarios]] rexistrados',
 'statistics-users-active'      => 'Usuarios activos',
@@ -2686,12 +2686,30 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 
 # Stylesheets
-'common.css'   => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',
-'monobook.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Monobook */',
+'common.css'      => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',
+'standard.css'    => '/* O CSS que se coloque aquí afectará a quen use a aparencia Clásica */',
+'nostalgia.css'   => '/* O CSS que se coloque aquí afectará a quen use a aparencia Morriña */',
+'cologneblue.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Azul colonial */',
+'monobook.css'    => '/* O CSS que se coloque aquí afectará a quen use a aparencia Monobook */',
+'myskin.css'      => '/* O CSS que se coloque aquí afectará a quen use a aparencia A miña aparencia */',
+'chick.css'       => '/* O CSS que se coloque aquí afectará a quen use a aparencia Parrulo */',
+'simple.css'      => '/* O CSS que se coloque aquí afectará a quen use a aparencia Sinxela */',
+'modern.css'      => '/* O CSS que se coloque aquí afectará a quen use a aparencia Moderna */',
+'vector.css'      => '/* O CSS que se coloque aquí afectará a quen use a aparencia Vector */',
+'print.css'       => '/* O CSS que se coloque aquí afectará ás impresións */',
+'handheld.css'    => '/* O CSS que se coloque aquí afectará aos dispositivos móbiles baseados na aparencia configurada en $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Calquera JavaScript será cargado para todos os usuarios en cada páxina cargada. */',
-'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a aparencia MonoBook. */',
+'common.js'      => '/* Calquera JavaScript que haxa aquí será cargado para todos os usuarios en cada páxina que vexan. */',
+'standard.js'    => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Clásica */',
+'nostalgia.js'   => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Morriña */',
+'cologneblue.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Azul colonial */',
+'monobook.js'    => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia MonoBook */',
+'myskin.js'      => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia A miña aparencia */',
+'chick.js'       => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Parrulo */',
+'simple.js'      => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Sinxela */',
+'modern.js'      => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Moderna */',
+'vector.js'      => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Vector */',
 
 # Metadata
 'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',
@@ -2751,7 +2769,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'math_unknown_function' => 'función descoñecida',
 'math_lexing_error'     => 'erro de léxico',
 'math_syntax_error'     => 'erro de sintaxe',
-'math_image_error'      => 'Fallou a conversión a PNG; comprobe que latex, dvips, gs e convert están ben instalados',
+'math_image_error'      => 'Fallou a conversión a PNG; comprobe que latex, dvips, gs e convert están ben instalados (ou dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Non se puido crear ou escribir no directorio temporal de fórmulas',
 'math_bad_output'       => 'Non se puido crear ou escribir no directorio de saída de fórmulas',
 'math_notexvc'          => 'Falta o executable texvc. Por favor consulte math/README para configurar.',
@@ -3172,7 +3190,7 @@ $1',
 # Delete conflict
 'deletedwhileediting' => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
-: ''$2'' 
+: ''$2''
 Por favor, confirme que realmente quere recrear esta páxina.",
 'recreate'            => 'Recrear',
 
@@ -3255,10 +3273,10 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-mediahandlers'            => 'Executadores de multimedia',
 'version-hooks'                    => 'Asociadores',
 'version-extension-functions'      => 'Funcións das extensións',
-'version-parser-extensiontags'     => 'Etiquetas das extensións do analizador (parser)',
+'version-parser-extensiontags'     => 'Etiquetas das extensións do analizador',
 'version-parser-function-hooks'    => 'Asociadores da función do analizador',
 'version-skin-extension-functions' => 'Funcións da extensión da aparencia',
-'version-hook-name'                => 'Nome do hook',
+'version-hook-name'                => 'Nome do asociador',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licenza',

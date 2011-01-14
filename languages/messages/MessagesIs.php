@@ -9,6 +9,7 @@
  *
  * @author Cessator
  * @author Friðrik Bragi Dýrfjörð
+ * @author Gott wisst
  * @author Jóna Þórunn
  * @author Krun
  * @author Maxí
@@ -377,6 +378,7 @@ $messages = array(
 'vector-namespace-help'      => 'Hjálparsíða',
 'vector-namespace-image'     => 'Skrá',
 'vector-namespace-main'      => 'Síða',
+'vector-namespace-media'     => 'Margmiðlunarsíða',
 'vector-namespace-mediawiki' => 'Melding',
 'vector-namespace-project'   => 'Verkefnissíða',
 'vector-namespace-special'   => 'Kerfissíða',
@@ -810,7 +812,8 @@ Vinsamlegast reyndu aftur síðar. Ef það virkar ekki heldur skaltu reyna að 
 'editingsection'                   => 'Breyti $1 (hluta)',
 'editingcomment'                   => 'Breyti $1 (nýr hluti)',
 'editconflict'                     => 'Breytingaárekstur: $1',
-'explainconflict'                  => 'Síðunni hefur verið breytt síðan þú byrjaðir að gera breytingar á henni, textinn í efri reitnum inniheldur núverandi útgáfu úr gagnagrunni og sá neðri inniheldur þína útgáfu, þú þarft hér að færa breytingar sem þú vilt halda úr neðri reitnum í þann efri og vista síðuna. <strong>Aðeins</strong> texti úr efri reitnum mun vera vistaður þegar þú vistar.',
+'explainconflict'                  => "Síðunni hefur verið breytt síðan þú byrjaðir að gera breytingar á henni, textinn í efri reitnum inniheldur núverandi útgáfu úr gagnagrunni og sá neðri inniheldur þína útgáfu, þú þarft hér að færa breytingar sem þú vilt halda úr neðri reitnum í þann efri og vista síðuna. 
+'''Aðeins''' texti úr efri reitnum mun vera vistaður þegar þú vistar.",
 'yourtext'                         => 'Þinn texti',
 'storedversion'                    => 'Geymd útgáfa',
 'editingold'                       => "'''ATH: Þú ert að breyta gamalli útgáfu þessarar síðu og munu allar breytingar sem gerðar hafa verið á henni frá þeirri útgáfu vera fjarlægðar ef þú vistar.'''",

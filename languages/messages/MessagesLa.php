@@ -18,6 +18,7 @@
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author UV
+ * @author Žekřil71pl
  * @author לערי ריינהארט
  */
 
@@ -154,18 +155,20 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Nexus linea subscribere:',
+'tog-underline'               => 'Versores linea denotandi:',
 'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
-'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur, non solum emendationes recentissimae',
-'tog-usenewrc'                => 'Indice nuper mutatorum amplificato uti (JavaScript necesse est)',
-'tog-numberheadings'          => 'Numerare semper indices',
-'tog-showtoolbar'             => 'Monstrare instrumenta ad paginas recensendas (JavaScript)',
-'tog-editondblclick'          => 'Premere bis ad paginam recensendam (JavaScript)',
-'tog-editsection'             => 'Sinere paginarum partes recensere per nexus [recensere]',
-'tog-editsectiononrightclick' => 'Sinere paginarum partes recenseri cum dexter muris buto premitur in titulis partum (JavaScript)',
-'tog-showtoc'                 => 'Indicem contenta monstrare (paginis in quibus sunt plus quam 3 partes)',
+'tog-hidepatrolled'           => 'Redactiones censae inter nuper mutatas celandae',
+'tog-newpageshidepatrolled'   => 'Paginae censae inter nouissime creatas celandae',
+'tog-extendwatchlist'         => 'Indicem paginarum obseruandarum cunctas mutatas praeter nouissimas includere decet',
+'tog-usenewrc'                => 'Indice nuper mutatarum excelsa uti (JavaScript necesse est)',
+'tog-numberheadings'          => 'Subtituli numeris adornandi',
+'tog-showtoolbar'             => 'Affigere trabem redigentem (JavaScript poscitur)',
+'tog-editondblclick'          => 'Percussus duplex redactionem hortetur (JavaScript poscitur)',
+'tog-editsection'             => 'Paginarum segmenta [redigere] hortari',
+'tog-editsectiononrightclick' => 'Paginarum segmenta dextero percussu in titulis redigenda (JavaScript poscitur)',
+'tog-showtoc'                 => 'Indicem plurium quam III segmentorum paginis praebere',
 'tog-rememberpassword'        => 'Memorare tesserae meae inter conventa (utere cookies)',
 'tog-editwidth'               => 'Capsam recensionis amplificare ut totam latitudinem habet',
 'tog-watchcreations'          => 'Paginas quas creo in paginarum custoditarum indicem addere',
@@ -670,7 +673,7 @@ aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 Capsa superior paginae verba recentissima continet.
 Mutationes tuae in capsa inferiore monstrantur.
 Mutationes tuae in verba superiora adiungare debes.
-'''Solum''' verba capsae superioris servabuntur quando \"Servare hanc rem\" premes.",
+'''Solum''' verba capsae superioris servabuntur quando \"{{int:savearticle}}\" premes.",
 'yourtext'                         => 'Sententia tua',
 'storedversion'                    => 'Emendatio recentissima',
 'nonunicodebrowser'                => "'''CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.'''",
@@ -1724,7 +1727,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 ** Ob textum remotum
 ** Ob nexus externos multiplicatos
 ** Ob scripta sensu sive et Latinitate carentia
-** Ob scripta inurbana 
+** Ob scripta inurbana
 ** Ob rationes perniciose multiplicatas
 ** Ob nomen inurbanum sive inconveniens',
 'ipbanononly'                  => 'Solum usores anonymi obstruere',

@@ -1022,7 +1022,9 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 
 # Special:Categories
 'categories'                    => 'Dagiti Categoria',
-'categoriespagetext'            => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.',
+'categoriespagetext'            => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'urnosen babaen ti bilang',
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 

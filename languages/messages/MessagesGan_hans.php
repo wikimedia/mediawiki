@@ -1,5 +1,5 @@
 <?php
-/** Simplified Gan script (赣语(简体))
+/** Simplified Gan script (‪赣语(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -8,7 +8,10 @@
  * @file
  *
  * @author Liangent
+ * @author Lokal Profil
+ * @author PhiLiP
  * @author Philip <philip.npc@gmail.com>
+ * @author Reedy
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
@@ -430,6 +433,7 @@ $2',
 'nav-login-createaccount'    => '登入/新开只帐户',
 'loginprompt'                => '要开到cookies才登入得正{{SITENAME}}。',
 'userlogin'                  => '登入/新开只帐户',
+'userloginnocreate'          => '登入',
 'logout'                     => '退出',
 'userlogout'                 => '退出',
 'notloggedin'                => '冇登入',
@@ -477,15 +481,17 @@ $2',
 'loginlanguagelabel'         => '语言: $1',
 
 # Password reset dialog
-'resetpass'           => '设过帐户密码',
-'resetpass_announce'  => '倷系用到临时email𠮶代码登入𠮶。要登正入，倷要到个首设定只新密码:',
-'resetpass_header'    => '设过密码',
-'oldpassword'         => '老密码：',
-'newpassword'         => '新密码：',
-'retypenew'           => '确认密码:',
-'resetpass_submit'    => '设定密码同到登入',
-'resetpass_success'   => '倷𠮶密码改正喽！正帮倷登入...',
-'resetpass_forbidden' => '到{{SITENAME}}上改伓正密码',
+'resetpass'                 => '设过帐户密码',
+'resetpass_announce'        => '倷系用到临时email𠮶代码登入𠮶。要登正入，倷要到个首设定只新密码:',
+'resetpass_header'          => '设过密码',
+'oldpassword'               => '老密码：',
+'newpassword'               => '新密码：',
+'retypenew'                 => '确认密码:',
+'resetpass_submit'          => '设定密码同到登入',
+'resetpass_success'         => '倷𠮶密码改正喽！正帮倷登入...',
+'resetpass_forbidden'       => '到{{SITENAME}}上改伓正密码',
+'resetpass-submit-loggedin' => '设过帐户密码',
+'resetpass-submit-cancel'   => '取消',
 
 # Edit page toolbar
 'bold_sample'     => '粗体字',
@@ -563,7 +569,7 @@ $2',
 'newarticletext'                   => '倷连到𠮶页面伓存在。要新开个只页面，倷能到下底𠮶方框编写内容（细节请望[[Help:说明|说明]]）。要系倷伓系特试来到个首，按吖浏览器𠮶“返回”即可。',
 'anontalkpagetext'                 => "---- ''个系匿名用户𠮶讨论页，话伓定佢哈冇开只帐户。别人单用得正IP地址同佢联系。个只IP地址可能有好几只用户共用。如果倷系匿名用户，觉得个页𠮶内容同倷冇关，欢迎去[[Special:UserLogin|开只新帐户或登入]]，省得同别𠮶匿名用户扤混来。''",
 'noarticletext'                    => '眼下个页哈冇内容，倷可以到别𠮶页面[[Special:Search/{{PAGENAME}}|寻吖个页𠮶标题]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 寻吖有关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编写个页]。',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 寻吖有关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编写个页]</span>。',
 'clearyourcache'                   => "'''注意:''' 保存之后, 倷要清吥浏览器𠮶缓存才眵得正改𠮶内容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''（或按吖''Ctrl-Shift-R''，到苹果Mac上按''Cmd-Shift-R''）；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 单只要按 ''刷新''；'''Opera:''' 用户要到 ''工具-设置'' 完全𠮶清除缓存。",
 'usercssyoucanpreview'             => "'''提示:''' 存到前请用'望吖起'来测吖倷𠮶新CSS 。",
 'userjsyoucanpreview'              => "'''提示:''' 存到前请用'望吖起'来测吖倷𠮶新JS 。",
@@ -575,9 +581,9 @@ $2',
 'previewnote'                      => "'''请记到个光系预览，内容哈冇保存！'''",
 'previewconflict'                  => '个只预览系上首文字编辑区𠮶内容。倷选择保存𠮶话佢才会保存到。',
 'session_fail_preview'             => "'''对伓住！个只段落𠮶资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。请试过吖。哈系扤伓正𠮶话，试吖退出后登入过。'''",
-'session_fail_preview_html'        => "'''对伓住！相关𠮶程式资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。''' 
+'session_fail_preview_html'        => "'''对伓住！相关𠮶程式资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。'''
 
-''个只wiki开放正嘞原HTML码，预览弆到嘞以防止JavaScript𠮶攻击。'' 
+''个只wiki开放正嘞原HTML码，预览弆到嘞以防止JavaScript𠮶攻击。''
 
 '''要系佢系合法编辑𠮶，请试过吖。哈系扤伓正𠮶话，试吖退出后登入过。'''",
 'token_suffix_mismatch'            => "'''倷𠮶用户端𠮶编辑信毁吥嘞嚸标点符号字符，啖𠮶话倷𠮶编辑就拖拒绝嘞。
@@ -630,6 +636,7 @@ $2',
 为到方便，个页𠮶删除记录已经到下底提供:",
 'moveddeleted-notice'              => '个只版面已经拕删吥喽。
 下头提供个只版面𠮶删除日志，以供参考。',
+'edit-conflict'                    => '编辑仗。',
 
 # "Undo" feature
 'undo-success' => '个只编辑可以拖取销。请检查吖以确定个系倷想扤𠮶，接到保存修改去完成撤销编辑。',
@@ -676,6 +683,7 @@ $2',
 'rev-deleted-text-permission' => '个页𠮶改动从共用文档挪吥嘞。到[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 删除日志] 里度倷话伓定有详细𠮶资料。',
 'rev-deleted-text-view'       => '个页𠮶改动从共用文档挪吥嘞。作为本站𠮶管理员，倷查看得正；到[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 删除日志] 里度有详细𠮶资料。',
 'rev-delundel'                => '显示/弆到',
+'rev-showdeleted'             => '敨开',
 'revisiondelete'              => '删除/反删除修改',
 'revdelete-nooldid-title'     => '冇目标修订',
 'revdelete-nooldid-text'      => '倷冇话个只操作𠮶目标修改。',
@@ -919,9 +927,9 @@ $2',
 要眵或要寻先前上传𠮶图像请去[[Special:FileList|图像列表]]，上传同删除会记到[[Special:Log/upload|上传日志]]里度。
 
 要系想扻文件到页面，用得正下底𠮶方式链接:
-'''[[{{ns:file}}:File.jpg]]''',
-'''[[{{ns:file}}:File.png|alt text]]''' 或
-'''[[{{ns:media}}:File.ogg]]''' 直接连接到个只文件。",
+'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''',
+'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki></tt>''' 或
+'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' 直接连接到个只文件。",
 'upload-permitted'            => '容许𠮶文件类型：$1。',
 'upload-preferred'            => '优先𠮶文件类型：$1。',
 'upload-prohibited'           => '禁止𠮶文件类型：$1。',
@@ -1203,7 +1211,9 @@ $2',
 
 # Special:Categories
 'categories'         => '页面分类',
-'categoriespagetext' => '下底𠮶分类包到页面或系媒体文件。',
+'categoriespagetext' => '下底𠮶分类包到页面或系媒体文件。
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch' => '外部连结',
@@ -2155,11 +2165,11 @@ $1',
 'confirmemail_loggedin'   => '倷𠮶email地址已得到确认。',
 'confirmemail_error'      => '确认过程出错。',
 'confirmemail_subject'    => '{{SITENAME}}电子邮件地址确认',
-'confirmemail_body'       => 'IP地址$1𠮶用户（可能系倷）到{{SITENAME}}注册嘞帐户"$2"，并一同用嘞倷𠮶email地址。 
+'confirmemail_body'       => 'IP地址$1𠮶用户（可能系倷）到{{SITENAME}}注册嘞帐户"$2"，并一同用嘞倷𠮶email地址。
 
-请确认个只帐户系归倷𠮶，接到启动{{SITENAME}}里头𠮶email功能。请到浏览器开到下底𠮶链接: 
+请确认个只帐户系归倷𠮶，接到启动{{SITENAME}}里头𠮶email功能。请到浏览器开到下底𠮶链接:
 
-$3 
+$3
 
 如果个*伓系*倷，就冇必要打开个只链接。确认码会到$4时间过期。',
 
