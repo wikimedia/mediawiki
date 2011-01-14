@@ -325,19 +325,25 @@ class Preferences {
 		global $wgEnableEmail;
 		if ( $wgEnableEmail ) {
 			global $wgEmailConfirmToEdit;
+			global $wgEnableUserEmail;
+
+			$helpMessages[] = $wgEmailConfirmToEdit
+					? 'prefs-help-email-required'
+					: 'prefs-help-email' ;
+			$helpMessages[] = $wgEnableUserEmail
+					? 'prefs-help-email-others'
+					: 'tototo' ;
 
 			$defaultPreferences['emailaddress'] = array(
 				'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'email' : 'info',
 				'default' => $user->getEmail(),
 				'section' => 'personal/email',
 				'label-message' => 'youremail',
-				'help-message' => $wgEmailConfirmToEdit
-					? 'prefs-help-email-required'
-					: 'prefs-help-email',
+				'help-messages' => $helpMessages,
 				'validation-callback' => array( 'Preferences', 'validateEmail' ),
 			);
 
-			global $wgEnableUserEmail, $wgEmailAuthentication;
+			global $wgEmailAuthentication;
 
 			$disableEmailPrefs = false;
 
