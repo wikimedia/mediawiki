@@ -776,7 +776,7 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa iny
 'userjspreview'                    => "'''Tandaang pagsubok/paunang tingin mo pa lang ito ng iyong JavaScript.'''
 '''Hindi pa ito nasasagip!'''",
 'userinvalidcssjstitle'            => "'''Babala:''' Walang pabalat na \"\$1\".
-Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na may maliliit na mga titik, halimbawa na ang {{ns:user}}:Foo/monobook.css na taliwas sa {{ns:user}}:Foo/Monobook.css.",
+Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na may maliliit na mga titik, halimbawa na ang {{ns:user}}:Foo/vector.css na taliwas sa {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Naisapanahon na)',
 'note'                             => "'''Paunawa:'''",
 'previewnote'                      => "'''Isang lamang itong paunang tingin;
@@ -1046,7 +1046,7 @@ Tingnan ang [[Special:IPBlockList|talaan ng hinarang na/hinadlangang IP]] para s
 'revmove-norevisions-title'    => 'Hindi tanggap na puntiryang pagbabago',
 'revmove-norevisions'          => 'Hindi ka tumukoy ng isa o higit pang puntiryang mga pagbabago upang magampanan ang tungkuling ito o hindi umiiral ang tinukoy na pagbabago.',
 'revmove-nullmove-title'       => 'Masamang pamagat',
-'revmove-nullmove'             => 'Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "[[$1]]".',
+'revmove-nullmove'             => 'Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} inilipat papunta sa umiiral na pahinang [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} nailipat papunta sa bagong-likhang pahinang [[$3]].',
 
@@ -2672,7 +2672,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'nostalgia.css'   => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Nostalgia */',
 'cologneblue.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Bugkaw na Kolon (''Cologne Blue'') */",
 'monobook.css'    => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Monobook */',
-'myskin.css'      => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''Myskin'') */",
+'myskin.css'      => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''MySkin'') */",
 'chick.css'       => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na ''Chick'' */",
 'simple.css'      => "/* Ang CSS na iniligay dito ay makakaapekto sa mga tagagamit ng Payak (''Simple'') na pabalat */",
 'modern.css'      => "/* Ang CSS na iniligay dito ay makakaapekto sa tagagamit ng Makabagong (''Modern'') pabalat */",

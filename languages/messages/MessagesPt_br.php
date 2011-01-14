@@ -708,7 +708,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'notloggedin'                => 'Não autenticado',
 'nologin'                    => 'Não possui uma conta? $1.',
 'nologinlink'                => 'Criar uma conta',
-'createaccount'              => 'Criar nova conta',
+'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autenticar-se',
 'createaccountmail'          => 'por e-mail',
@@ -736,7 +736,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
 'password-name-match'        => 'A sua senha deve ser diferente do seu nome de usuário.',
-'password-too-weak'          => 'A senha informada é muito fraca e não pode ser usada.',
+'password-login-forbidden'   => 'Foi proibido o uso deste nome de utilizador e palavra-chave.',
 'mailmypassword'             => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
@@ -771,6 +771,9 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Nível de segurança da senha: $1',
@@ -910,10 +913,14 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
-'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
+'usercsspreview'                   => "'''Lembre-se de que você está apenas previsualizando o seu CSS particular.'''
 '''Ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
+'sitecsspreview'                   => "'''Lembre-se de que você está apenas previsualizando este CSS.'''
+'''Ele ainda não foi salvo!'''",
+'sitejspreview'                    => "''Lembre-se de que você está apenas previsualizando este código JavaScript.'''
+'''Ele ainda não foi salvo!'''",
+'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css aposto a {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Atualizado)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Isto é apenas uma previsão.
@@ -1180,7 +1187,7 @@ Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e
 'revmove-norevisions-title'    => 'A revisão especificada é inválida',
 'revmove-norevisions'          => 'Você não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.',
 'revmove-nullmove-title'       => 'Título incorreto',
-'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "[[$1]]".',
+'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
 
@@ -1519,6 +1526,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 'right-revisionmove'          => 'Mover revisões',
+'right-disableaccount'        => 'Desativar contas',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -2399,6 +2407,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribuições de contas novas',
 'sp-contributions-blocklog'            => 'Registro de bloqueios',
 'sp-contributions-deleted'             => 'contribuições eliminadas',
+'sp-contributions-uploads'             => 'carregamentos',
 'sp-contributions-logs'                => 'registros',
 'sp-contributions-talk'                => 'disc',
 'sp-contributions-userrights'          => 'gerenciamento de privilégios de usuários',
@@ -2886,7 +2895,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'math_unknown_function' => 'Função desconhecida',
 'math_lexing_error'     => 'Erro léxico',
 'math_syntax_error'     => 'Erro de sintaxe',
-'math_image_error'      => 'Falha na conversão para PNG. Verifique a instalação do latex, dvips, gs e convert',
+'math_image_error'      => 'Falha na conversão para PNG;
+verifique se o latex, dvips, gs e convert estão corretamente instalados',
 'math_bad_tmpdir'       => 'Ocorreram problemas na criação ou escrita no diretório temporário math',
 'math_bad_output'       => 'Ocorreram problemas na criação ou escrita no diretório de resultados math',
 'math_notexvc'          => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
@@ -3400,6 +3410,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencion
 'version-specialpages'             => 'Páginas especiais',
 'version-parserhooks'              => 'Hooks do analisador (parser)',
 'version-variables'                => 'Variáveis',
+'version-skins'                    => 'Temas',
 'version-other'                    => 'Diversos',
 'version-mediahandlers'            => 'Executores de média',
 'version-hooks'                    => 'Hooks',
@@ -3521,5 +3532,18 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Desativar uma conta',
+'disableaccount-user'        => 'Nome de usuário:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Desativar esta conta.
+O usuário ficará impossibilitado de se autenticar, de reiniciar a palavra-chave e de receber notificações por e-mail.
+Se neste momento o usuário estiver autenticado em algum lugar, ele sairá de imediato.
+''Note que a desativação de uma conta não pode ser revertida sem intervenção de um administrador.''",
+'disableaccount-mustconfirm' => 'Você deve confirmar que pretende desativar esta conta.',
+'disableaccount-nosuchuser'  => 'A conta de usuário "$1" não existe.',
+'disableaccount-success'     => 'A conta de usuário "$1" foi desativada permanentemente.',
+'disableaccount-logentry'    => 'desativou permanentemente a conta [[$1]]',
 
 );

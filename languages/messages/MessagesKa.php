@@ -8,10 +8,13 @@
  * @file
  *
  * @author Alsandro
+ * @author Andrijko Z.
  * @author BRUTE
  * @author Dato deutschland
  * @author David1010
+ * @author Dawid Deutschland
  * @author Malafaya
+ * @author Reedy
  * @author Sopho
  * @author Temuri rajavi
  * @author ka.wikipedia.org sysops
@@ -129,7 +132,7 @@ $messages = array(
 'tog-editsection'             => 'სექციის რედაქტირების ნებართვა [რედაქტირებული] ბმულების გავლით',
 'tog-editsectiononrightclick' => 'სექციის რედაქტირების ნებართვა მარჯვენა ღილაკზე დაჭერით<br />სექციის სათაურებზე (ჯავასკრიპტი)',
 'tog-showtoc'                 => 'აჩვენე სარჩევი (სამ ქვესათაურზე მეტის მქონე გვერდებისთვის)',
-'tog-rememberpassword'        => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})',
+'tog-rememberpassword'        => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე|დღე}})',
 'tog-watchcreations'          => 'დაამატე ჩემი კონტროლის სიას ჩემს მიერ შექმნილი გვერდები',
 'tog-watchdefault'            => 'დაამატე ჩემი კონტროლის სიას ჩემს მიერ რედაქტირებული გვერდები',
 'tog-watchmoves'              => 'ჩასვი გვერდები, რომლებიც მე გადამაქვს, ჩემს კონტროლის სიაში',
@@ -275,20 +278,21 @@ $messages = array(
 'faqpage'        => 'Project:ხშირი შეკითხვები',
 
 # Vector skin
-'vector-action-addsection' => 'თემის ჩამატება',
-'vector-action-delete'     => 'წაშლა',
-'vector-action-move'       => 'გადატანა',
-'vector-action-protect'    => 'დაცვა',
-'vector-action-undelete'   => 'აღდგენა',
-'vector-action-unprotect'  => 'დაცვის მოხსნა',
-'vector-view-create'       => 'შექმნა',
-'vector-view-edit'         => 'რედაქტირება',
-'vector-view-history'      => 'ისტორია',
-'vector-view-view'         => 'შემოწმებული სტატია',
-'vector-view-viewsource'   => 'წყაროს ხილვა',
-'actions'                  => 'მოქმედებები',
-'namespaces'               => 'სახელთა სივრცე',
-'variants'                 => 'ვარიანტები',
+'vector-action-addsection'       => 'თემის ჩამატება',
+'vector-action-delete'           => 'წაშლა',
+'vector-action-move'             => 'გადატანა',
+'vector-action-protect'          => 'დაცვა',
+'vector-action-undelete'         => 'აღდგენა',
+'vector-action-unprotect'        => 'დაცვის მოხსნა',
+'vector-simplesearch-preference' => 'ძებნის გაფართოებული მინიშნებების ჩართვა (მხოლოდ ვექტორული იერსახისთვის)',
+'vector-view-create'             => 'შექმნა',
+'vector-view-edit'               => 'რედაქტირება',
+'vector-view-history'            => 'ისტორია',
+'vector-view-view'               => 'შემოწმებული სტატია',
+'vector-view-viewsource'         => 'წყაროს ხილვა',
+'actions'                        => 'მოქმედებები',
+'namespaces'                     => 'სახელთა სივრცე',
+'variants'                       => 'ვარიანტები',
 
 'errorpagetitle'    => 'შეცდომა',
 'returnto'          => 'დაბრუნდი $1-ზე.',
@@ -346,9 +350,10 @@ $messages = array(
 'jumptosearch'      => 'ძიება',
 'view-pool-error'   => 'უკაცრავად, მაგრამ სერვერები გადატვირთულია.
 შემოსულია ამ გვერდის სანახავად ძალიან ბევრი მოთხოვნა.
-გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით გაიმეორეთ.
+გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით.
 
 $1',
+'pool-timeout'      => 'ბლოკირების ლოდინის დრო ამოიწურა',
 'pool-errorunknown' => 'უცნობი შეცდომა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -515,6 +520,7 @@ $2',
 'yourpassword'               => 'პაროლი:',
 'yourpasswordagain'          => 'ხელმეორედ შეიყვანეთ პაროლი',
 'remembermypassword'         => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})',
+'securelogin-stick-https'    => 'გააგრძელეთ კავშირი HTTPS-თან შესვლის შემდეგ',
 'yourdomainname'             => 'თქვენი დომენი',
 'externaldberror'            => 'საგარეო მონაცემთა ბაზაში აუტენტიფიკაციის შეცდომაა, ან თქვენ არ გაქვთ საკმარისი უფლებები საგარეო ანგარიშში ცვლილებების შესატანად.',
 'login'                      => 'შესვლა',
@@ -552,6 +558,7 @@ $2',
 'passwordtooshort'           => 'შეტანილი პაროლი ძალიან მოკლეა.
 იგი უნდა შეიცავდეს მინიმუმ $1 სიმბოლოს.',
 'password-name-match'        => 'შეტანილი პაროლი უნდა განსხვავდებოდეს მომხმარებლის სახელისგან.',
+'password-login-forbidden'   => 'ამ მომხმარებლის სახელისა და პაროლის გამოყენება აკრძალულია.',
 'mailmypassword'             => 'ახალი პაროლის გამოგზავნა',
 'passwordremindertitle'      => 'ახალი დროებითი პაროლი {{SITENAME}}-თვის',
 'passwordremindertext'       => "ვიღაცამ (შესაძლოა თქვენ, IP მისამართით $1) მოითხოვა
@@ -596,10 +603,12 @@ $1 საათში.',
 'suspicious-userlogout'      => 'თქვენი მოთხოვნა გასვლის შესახებ გაუქმებულია, რადგანაც იგი გავს ქეშირებადი პროქსის ან არაკორექტული ბრაუზერის მოთხოვნას.',
 
 # JavaScript password checks
-'password-strength-bad'    => 'ცუდი',
-'password-strength-good'   => 'კარგი',
-'password-retype'          => 'ხელმეორედ შეიყვანეთ პაროლი',
-'password-retype-mismatch' => 'პაროლები არ ემთხვევა',
+'password-strength'            => 'პაროლის საიმედოობის შეფასება: $1',
+'password-strength-bad'        => 'ცუდი',
+'password-strength-acceptable' => 'მისაღები',
+'password-strength-good'       => 'კარგი',
+'password-retype'              => 'ხელმეორედ შეიყვანეთ პაროლი',
+'password-retype-mismatch'     => 'პაროლები არ ემთხვევა',
 
 # Password reset dialog
 'resetpass'                 => 'შეცვალეთ პაროლი',
@@ -636,6 +645,7 @@ $1 საათში.',
 'nowiki_tip'      => 'ვიკის ფორმატირების იგნორირება',
 'image_sample'    => 'მაგალითი.jpg',
 'image_tip'       => 'ჩასმული სურათი',
+'media_sample'    => 'მაგალითი.ogg',
 'media_tip'       => 'ბმული ფაილზე',
 'sig_tip'         => 'თქვენი ხელმოწერა და დრო',
 'hr_tip'          => 'ჰორიზონტალური ხაზი (ნუ გამოიყენებთ ხშირად)',
@@ -655,7 +665,7 @@ $1 საათში.',
 'missingsummary'                   => "'''შეხსენება:''' თქვენ არ მიგითითებიათ რედაქტირების რეზიუმე.
 თუ ისევ დააწკაპუნებთ შენახვაზე, თქვენი რედაქტირება რეზიუმეს გარეშე დამახსოვრდება.",
 'missingcommenttext'               => 'გთხოვთ კომენტარი შეიყვანოთ ქვემოთ.',
-'missingcommentheader'             => "'''შეხსენება:''' თქვენ ამ კომენტარისთვის სათაური/თემა არ მიგითითებიათ. თუ შენახვაზე დააწკაპუნებთ, თქვენი ცვლილება მის გარეშე იქნება შენახული.",
+'missingcommentheader'             => "'''შეხსენება:''' თქვენ ამ კომენტარისთვის სათაური/თემა არ მიგითითებიათ. თუ შენახვაზე \"{{int:savearticle}}\" დააწკაპუნებთ, თქვენი ცვლილება მის გარეშე იქნება შენახული.",
 'summary-preview'                  => 'რეზიუმეს წინასწარი გადახედვა:',
 'subject-preview'                  => 'თემის/სათაურის წინასწარი გადახედვა:',
 'blockedtitle'                     => 'მომხმარებელი ბლოკირებულია',
@@ -731,7 +741,11 @@ $1 საათში.',
 'userjsyoucanpreview'              => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი JS ტესტირებისთვის.",
 'usercsspreview'                   => "'''გახსოვდეთ, რომ თქვენ მხოლოდ წინასწარ გადახედვას უყურებთ თქვენს მომხმარებლის CSS-ს, ის ჯერ შენახული არ არის!'''",
 'userjspreview'                    => "'''გახსოვდეთ, რომ თქვენ მხოლოდ ტესტირებას უკეთებთ ან აკვირდებით წინასწარ ხედს თქვენი მომხმარებლის ჯავასკრიპტს - ის ჯერ არ არის დამახსოვრებული!'''",
-'userinvalidcssjstitle'            => "'''ყურადღება:''' გაფორმების თემა «$1» არ არის ნაპოვნი. გახსოვდეთ, რომ .css და .js გვერდებს უნდა ჰქონდეს მხოლოდ ზეხაზური სათაური, მაგ. «{{ns:user}}:ვიღაცა/monobook.css», და არა «{{ns:user}}:ვიღაცა/Monobook.css».",
+'sitecsspreview'                   => "'''გახსოვდეთ, რომ თქვენ ამ CSS-ის მხოლოდ წინასწარ გადახედვას უყურებთ.'''
+'''ის ჯერ არ არის დამახსოვრებული!'''",
+'sitejspreview'                    => "'''გახსოვდეთ, რომ თქვენ ამ JavaScript კოდის მხოლოდ წინასწარ გადახედვას უყურებთ.'''
+'''ის ჯერ არ არის დამახსოვრებული!'''",
+'userinvalidcssjstitle'            => "'''ყურადღება:''' გაფორმების თემა «$1» არ არის ნაპოვნი. გახსოვდეთ, რომ .css და .js გვერდებს უნდა ჰქონდეს მხოლოდ ზეხაზური სათაური, მაგ. «{{ns:user}}:ვიღაცა/vector.css», და არა «{{ns:user}}:ვიღაცა/Vector.css».",
 'updated'                          => '(განახლდა)',
 'note'                             => "'''შენიშვნა:'''",
 'previewnote'                      => "'''ეს მხოლოდ ნიმუშია; ცვლილებები ჯერ არ შენახულა!'''",
@@ -980,8 +994,10 @@ $1",
 'suppressionlogtext' => 'ეს არის მომხმარებლების დაბლოკვის და განბლოკვის ჟურნალი. ავტომატურად დაბლოკილი IP მისამართები არაა ჩამოთვლილი. იხილეთ [[Special:IPBlockList|IP ბლოკირების სია]] მიმდინარე დაბლოკვებისთვის.',
 
 # Revision move
+'moverevlogentry'              => 'გადატანილია {{PLURAL:$3|ვერსია}} $1-დან $2-ში',
 'revisionmove'                 => 'ვერსიის გადატანა "$1"დან',
 'revmove-legend'               => 'მიზნობრივი გვერდის დაყენება და აღწერა',
+'revmove-submit'               => 'ვერსიების გადატანა არჩეულ გვერდზე',
 'revisionmoveselectedversions' => 'არჩეული ვერსიების გადატანა',
 'revmove-reasonfield'          => 'მიზეზი:',
 'revmove-titlefield'           => 'მიზნობრივი გვერდი:',
@@ -1518,9 +1534,9 @@ $1",
 ინფორმაციისთვის ქვემოთ ამ ფაილის წაშლის ისტორია:",
 'filename-bad-prefix'         => "ასატვირთვი ფაილი იწყება '''«$1»''', რაც არის ფოტოკამერის მიერ სურათებისთვის მიცემული სტანდარტული სახელი. გთხოვთ აირჩიოთ ფაილის აღმწერი უკეთესი სახელი.",
 'upload-success-subj'         => 'წარმატებული გადატვირთვა',
-'upload-success-msg'          => 'თქვენი ატვირთვა შეგიძლიათ იხილოთ აქ: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'თქვენი ატვირთვა [$2] შეგიძლიათ იხილოთ აქ: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'ატვირთვის პრობლემა',
-'upload-failure-msg'          => 'ატვირთვისას პრობლემა შეიქმნა:
+'upload-failure-msg'          => 'ატვირთვისას პრობლემა შეიქმნა [$2]:
 
 $1',
 'upload-warning-subj'         => 'ატვირთვისთვის გაფრთხილება',
@@ -1741,6 +1757,8 @@ $1',
 'nmembers'                => '$1 წევრი',
 'nrevisions'              => '$1 რედაქტირება',
 'nviews'                  => '$1 ჩვენება',
+'nimagelinks'             => 'გამოიყენება $1 {{PLURAL:$1|გვერდზე}}',
+'ntransclusions'          => 'გამოიყენება $1 {{PLURAL:$1|გვერდზე}}',
 'specialpage-empty'       => 'ეს გვერდი ცარიელია.',
 'lonelypages'             => 'ობოლი გვერდები',
 'lonelypagestext'         => 'შემდეგი გვერდები არ არის დაკავშირებული ან ბმული სხვა გვერდებიდან {{SITENAME}}-ში არ მისამართდება.',
@@ -2186,6 +2204,7 @@ $1',
 'sp-contributions-newbies-title'       => 'ბოლოს დარეგისტრირებულ მომხმარებელთა წვლილი',
 'sp-contributions-blocklog'            => 'ბლოკირების ისტორია',
 'sp-contributions-deleted'             => 'მომხმარებლის წაშლილი შესწოებები',
+'sp-contributions-uploads'             => 'ატვირთვები',
 'sp-contributions-logs'                => 'ჟურნალები',
 'sp-contributions-talk'                => 'განხილვა',
 'sp-contributions-userrights'          => 'ომხმარებელთა უფლებების მართვა',
@@ -2194,6 +2213,7 @@ $1',
 ქვემოთ მოყვანილია ამონაწერი წაშლათა ჟურნალიდან:',
 'sp-contributions-search'              => 'წვლილის ძიება',
 'sp-contributions-username'            => 'IP მისამართი ან მომხმარებლის სახელი:',
+'sp-contributions-toponly'             => 'აჩვენე მხოლოდ ბოლო ვერსიები',
 'sp-contributions-submit'              => 'ძიება',
 
 # What links here
@@ -2410,6 +2430,7 @@ $1',
 'immobile-source-page'         => 'ამ გვეერდის გადატანა შეუძლებელია.',
 'immobile-target-page'         => 'შეუძლებელია მოცემულ სახელზე გადატანა.',
 'imagenocrossnamespace'        => 'შეუძლებელია ფაილს მიეცეს სახელი სახელთა სხვა სივრციდან',
+'nonfile-cannot-move-to-file'  => 'შეუძლებელია არაფაილების გადატანა ფაილის სახელთა სივრცეში',
 'imagetypemismatch'            => 'ფაილს ახალი გაფართოება არ შეესაბამება მის ტიპს',
 'imageinvalidfilename'         => 'ფაილის საბოლოო სახელი შეცდომას შეიცავს',
 'fix-double-redirects'         => 'ძველ სათაურზე მიმთითებელი გადამისამართების ავტომატურად გასწორება',
@@ -2626,6 +2647,12 @@ $1',
 'numauthors'     => 'განსხვავებულ ავტორთა რაოდენობა (სტატია): $1',
 'numtalkauthors' => 'სხვადასხვა ავტორთა რაოდენობა (განხილვის გვერდი): $1',
 
+# Skin names
+'skinname-standard'  => 'კლასიკური',
+'skinname-nostalgia' => 'ნოსტალგია',
+'skinname-modern'    => 'თანამედროვე',
+'skinname-vector'    => 'ვექტორული',
+
 # Math options
 'mw_math_png'    => 'მუდამ გამოიყენე PNG',
 'mw_math_simple' => 'HTML თუ მარტივია, სხვაგვარად PNG',
@@ -2640,7 +2667,7 @@ $1',
 'math_unknown_function' => 'უცნობი ფუნქცია',
 'math_lexing_error'     => 'ლექსიკური შეცდომა',
 'math_syntax_error'     => 'სინტაქსი არასწორია',
-'math_image_error'      => 'გარდაქმნისას PNG-ში წარმოიშვა შეცდომა; შეამოწმეთ latex, dvips, gs და convert-ის სისწორე',
+'math_image_error'      => 'PNG-ში გარდაქმნისას წარმოიშვა შეცდომა; შეამოწმეთ latex, dvips, gs და convert-ის დაყენების სისწორე',
 'math_bad_tmpdir'       => 'შეუძლებელია ჩანაწერის შექმნა მათემატიკურ დროებით კატალოგში',
 'math_bad_output'       => 'შეუძლებელია შექმნა ან ჩაწერა მათემატიკურ გამსვლელ კატალოგში',
 'math_notexvc'          => 'შემსრულებელი ფაილი texvc არ არის ნაპოვნი; იხ.math/README ინფორმაციისთვის.',
@@ -3162,6 +3189,7 @@ $1',
 'version-specialpages'             => 'სპეციალური გვერდები',
 'version-parserhooks'              => 'სინტაქსური ანალიზატორის ჰუკები',
 'version-variables'                => 'смфдуифвуиш',
+'version-skins'                    => 'იერსახე',
 'version-other'                    => 'სხვა',
 'version-mediahandlers'            => 'მედია დამუშავება',
 'version-hooks'                    => 'ჰუკებш',
@@ -3173,6 +3201,7 @@ $1',
 'version-hook-subscribedby'        => 'ჩაწერილია',
 'version-version'                  => '(ვერსია $1)',
 'version-license'                  => 'ლიცენზია',
+'version-poweredby-credits'        => "ეს ვიკი მუშაობს '''[http://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'სხვები',
 'version-software'                 => 'დაინსტალირებული პროგრამული უზრუნველყოფა',
 'version-software-product'         => 'პროდუქტი',
@@ -3226,7 +3255,7 @@ $1',
 #ისინი იქნებიან შეფარდებულები გარე გამოსახულებათა URL-თან.
 #მოგერგებული იქნება ნაჩვენები გამოსახულებათა სახით, ხოლო სხვები ბმულების სახით.
 #ხაზები, რომლებიც იწყება #, ითვლება კომენტარად.
-#ხაზები გრძნობადები არიან რეგისტრისადმი.',
+#ხაზები გრძნობადები არიან რეგისტრისადმი.</pre>',
 
 # Special:Tags
 'tags'                    => 'ცვლილებათა მოქმედი აღნიშვნები',
@@ -3270,5 +3299,18 @@ $1',
 'htmlform-submit'              => 'შენახვა',
 'htmlform-reset'               => 'ცვლილებების გაუქმება',
 'htmlform-selectorother-other' => 'სხვა',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 სრული ტექსტის ძიების მხარდაჭერით',
+'sqlite-no-fts'  => '$1 სრული ტექსტის ძიების მხარდაჭერის გარეშე',
+
+# Special:DisableAccount
+'disableaccount'             => 'მომხმარებლის ანგარიშის გამორთვა',
+'disableaccount-user'        => 'მომხმარებლის სახელი:',
+'disableaccount-reason'      => 'მიზეზი:',
+'disableaccount-mustconfirm' => 'თქვენ უნდა დაადასტუროთ, რომ გსურთ ამ ანგარიშის გამორთვა.',
+'disableaccount-nosuchuser'  => 'მომხმარებელ "$1" ანგარიში არ არსებობს.',
+'disableaccount-success'     => 'მომხმარებელ "$1" ანგარიში სამუდამოდ გამოირთო.',
+'disableaccount-logentry'    => 'სამუდამოდ გამორთო ანგარიში [[$1]]',
 
 );

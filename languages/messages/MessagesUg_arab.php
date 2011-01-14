@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alfredie
+ * @author Reedy
  * @author Sahran
  */
 
@@ -669,7 +670,7 @@ $2',
 ئەگەر سىز ئاتسىز ئىشلەتكۈچى بولسىڭىز ھەمدە بۇ بەتتىكى مۇنازىرە سىز بىلەن مۇناسىۋەتلىك بولسا،  [[Special:UserLogin/signup|ھېسابات قۇر]] ياكى [[Special:UserLogin|تىزىمغا كىر]]  ئارقىلىق كەلگۈسىدىكى باشقا ئاتسىز ئىشلەتكۈچى بىلەن ئارىلىشىپ كېتىشنىڭ ئالدىنى ئېلىڭ.''",
 'noarticletext'                    => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى
-<span class=\\"plainlinks\\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} بۇ بەتنى تەھرىرلىيەلەيسىز]</span>',
 'noarticletext-nopermission'       => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،</span>',
@@ -690,7 +691,7 @@ $2',
 'userjspreview'                    => "'''دىققەت سىز پەقەت ئۆزىڭىزنىڭ شەخسىي JavaScript نى ئالدىن كۆزىتىۋاتىسىز/سىناۋاتىسىز.'''
 '''ئۇ تېخى ساقلانمىدى!'''",
 'userinvalidcssjstitle'            => "'''ئاگاھلاندۇرۇش:''' تېرە\\\"\$1\" مەۋجۇد ئەمەس.
-ئادەتلەنگەن .css ۋە .js تور بەت ماۋزۇسىغا كىچىك يېزىلىشتىكى ھەرپ ئىشلىتىلىدۇ، مەسىلەن، {{ns:user}}:Foo/monobook.css بىلەن {{ns:user}}:Foo/Monobook.css ئوخشاش ئەمەس.",
+ئادەتلەنگەن .css ۋە .js تور بەت ماۋزۇسىغا كىچىك يېزىلىشتىكى ھەرپ ئىشلىتىلىدۇ، مەسىلەن، {{ns:user}}:Foo/vector.css بىلەن {{ns:user}}:Foo/Vector.css ئوخشاش ئەمەس.",
 'updated'                          => '(يېڭىلاندى)',
 'note'                             => "'''ئىزاھات:'''",
 'previewnote'                      => "'''ئېسىڭىزدە بولسۇنكى بۇ پەقەتلا ئالدىن كۆزىتىش.'''
@@ -958,7 +959,7 @@ $1",
 'revmove-norevisions-title'    => 'ئىناۋەتسىز نىشان تۈزىتىش نەشرى',
 'revmove-norevisions'          => 'سىز بىر ياكى بىر قانچە نىشان تۈزىتىلگەن نەشرىنىڭ بۇ ئىقتىدارنى بىجىرىشىنى بەلگىلىمىدىڭىز ياكى بەلگىلەنگەن تۈزىتىلگەن نەشرى مەۋجۇد ئەمەس',
 'revmove-nullmove-title'       => 'خاتا ماۋزۇ',
-'revmove-nullmove'             => 'مەنبە بەت بىلەن نىشان بەت ئوخشاش.  "كەينى" نى چېكىپ ئاندىن "[[$1]]" بىلەن ئوخشىمايدىغان ئاتنى كىرگۈزۈڭ.',
+'revmove-nullmove'             => 'مەنبە بەت بىلەن نىشان بەت ئوخشاش.  "كەينى" نى چېكىپ ئاندىن "$1" بىلەن ئوخشىمايدىغان ئاتنى كىرگۈزۈڭ.',
 'revmove-success-existing'     => '[[$2]] دىكى {{PLURAL:$1|بىر قېتىملىق|$1 قېتىملىق}} تۈزىتىلگەن نەشرى نۆۋەتتە مەۋجۇد بولغان [[$3]] بەتكە يۆتكەلدى.',
 'revmove-success-created'      => '[[$2]] دىكى {{PLURAL:$1|بىر قېتىملىق|$1 قېتىملىق}} تۈزىتىلگەن نەشرى يېڭىدىن قۇرغان [[$3]] بەتكە يۆتكەلدى.',
 
@@ -1113,7 +1114,7 @@ $1",
 'resultsperpage'                => 'ھەر بەتتىكى ئۇلانما سانى:',
 'contextlines'                  => 'ھەر ئۇلانمىدىكى قۇر سانى:',
 'contextchars'                  => 'ھەر قۇردىكى ھەرپ سانى:',
-'stub-threshold'                => '<a href=\\"#\\" class=\\"stub\\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
+'stub-threshold'                => '<a href="#" class="stub">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
 'stub-threshold-disabled'       => 'چەكلەنگەن',
 'recentchangesdays'             => 'يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:',
 'recentchangesdays-max'         => 'ئەڭ چوڭ $1 {{PLURAL:$1|كۈن|كۈن}}',
@@ -3227,7 +3228,7 @@ $1',
 'specialpages'                   => 'ئالاھىدە بەتلەر',
 'specialpages-note'              => '----
 * نورمال ئالاھىدە بەت.
-* <strong class=\\"mw-specialpagerestricted\\">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>',
+* <strong class="mw-specialpagerestricted">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>',
 'specialpages-group-maintenance' => 'ئاسراش دوكلاتى',
 'specialpages-group-other'       => 'باشقا ئالاھىدە بەتلەر',
 'specialpages-group-login'       => 'تىزىمغا كىر / قۇر',

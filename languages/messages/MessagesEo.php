@@ -18,6 +18,7 @@
  * @author Malafaya
  * @author Melancholie
  * @author Michawiki
+ * @author Mihxil
  * @author MinuteElectron
  * @author Omnipaedista
  * @author Petrus Adamus
@@ -371,16 +372,16 @@ $messages = array(
 'october'       => 'Oktobro',
 'november'      => 'Novembro',
 'december'      => 'Decembro',
-'january-gen'   => 'Januaro',
-'february-gen'  => 'Februaro',
-'march-gen'     => 'Marto',
+'january-gen'   => 'januaro',
+'february-gen'  => 'februaro',
+'march-gen'     => 'marto',
 'april-gen'     => 'Aprilo',
 'may-gen'       => 'Majo',
 'june-gen'      => 'Junio',
 'july-gen'      => 'Julio',
 'august-gen'    => 'Aŭgusto',
 'september-gen' => 'Septembro',
-'october-gen'   => 'Oktobro',
+'october-gen'   => 'oktobro',
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Decembro',
 'jan'           => 'Jan',
@@ -529,7 +530,7 @@ $1',
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Enkonduko',
 'copyright'            => 'La enhavo estas disponebla laŭ $1.',
-'copyrightpage'        => '{{ns:project}}:Kopirajto',
+'copyrightpage'        => '{{ns:project}}:Aŭtorrajto',
 'currentevents'        => 'Aktualaĵoj',
 'currentevents-url'    => 'Project:Aktualaĵoj',
 'disclaimers'          => 'Malgarantio',
@@ -731,7 +732,7 @@ Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
 'passwordtooshort'           => 'Pasvortoj devas esti almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.',
 'password-name-match'        => 'Via pasvorto devas nepre malsami vian salutnomon.',
-'password-too-weak'          => 'La donita pasvorto estas tro malforta kaj ne povas esti uzita.',
+'password-login-forbidden'   => 'Estas malpermesite uzi tiun ĉi uzulnomon kaj pasvorton.',
 'mailmypassword'             => 'Retpoŝti novan pasvorton',
 'passwordremindertitle'      => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
 'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1) petis novan
@@ -772,6 +773,9 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Taksita pasvorta forteco: $1',
@@ -908,7 +912,10 @@ La lasta protokolero estas jene montrata por via referenco:',
 'usercsspreview'                   => "'''Notu ke vi nur antaŭvidas vian uzanto-CSS.
 Ĝi ne jam estis konservita!'''",
 'userjspreview'                    => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
-'userinvalidcssjstitle'            => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
+'sitecsspreview'                   => "'''Konsciu ke vi nur antaŭrigardas tiun ĉi CSS.'''
+'''Ĝi ne jam estis savita!''",
+'sitejspreview'                    => "'''Konsciu ke vi nur antaŭrigardas tiun ĉi Ĝavaskripta kodon''. ''Ĝi ne jam estis konservita''.",
+'userinvalidcssjstitle'            => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/vector.css kontraŭe  al {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Ŝanĝo registrita)',
 'note'                             => "'''Noto:'''",
 'previewnote'                      => "'''Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!'''",
@@ -943,7 +950,7 @@ Se vi konservos vian redakton, ĉiuj ŝanĝoj faritaj post tiu versio perdiĝos.
 'yourdiff'                         => 'Malsamoj',
 'copyrightwarning'                 => "Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}} estu rigardata kiel eldonita laŭ \$2 (vidu je \$1). Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota laŭvole, ne alklaku \"Konservi\".<br />
 Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto senkopirajta.
-'''NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!'''",
+'''NE UZU AŬTORRAJTE PROTEKTATAJN VERKOJN SENPERMESE!'''",
 'copyrightwarning2'                => "Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.<br />
 Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj).
 '''NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO!'''",
@@ -954,7 +961,7 @@ Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin po
 La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
 'protectedpagewarning'             => "'''Averto: Ĉi tiu paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj.'''
 Jen la lasta protokolero provizita por via referenco:",
-'semiprotectedpagewarning'         => "'''Notu:''' Ĉi tiu paĝo estas ŝlosita tial ke nur ensalutintaj uzantoj povas redakti ĝin.
+'semiprotectedpagewarning'         => "'''Notu:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur ensalutintaj uzantoj povas redakti ĝin.
 Jen la lasta protokolero por via referenco:",
 'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
 'titleprotectedwarning'            => "'''Averto: Ĉi tiu paĝo estis ŝlosita tial nur [[Special:ListGroupRights|specifaj rajtoj]] estas bezonaj por krei ĝin.'''
@@ -1148,8 +1155,9 @@ Vi ne rajtas atingi ĝin.',
 Bonvolu kontroli la protokolojn.',
 'revdelete-only-restricted'   => 'Eraro kaŝante la aĵon de $2, $1: Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaŭ selektante unu el la aliaj subpremo-opcioj.',
 'revdelete-reason-dropdown'   => '*Oftaj kialoj por forigado
-** Kopirajta malobservo
-** Netaŭga persona informo',
+** Aŭtorrajta neglekto
+** Maltaŭga persona informo
+** Eventualaj malhonorigaj informoj',
 'revdelete-otherreason'       => 'Alia/aldona kialo:',
 'revdelete-reasonotherlist'   => 'Alia kialo',
 'revdelete-edit-reasonlist'   => 'Redakti kialojn por forigo',
@@ -1174,7 +1182,7 @@ Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operacia
 'revmove-norevisions-title'    => 'Nevalida cela revizio',
 'revmove-norevisions'          => 'Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.',
 'revmove-nullmove-title'       => 'Fuŝa titolo',
-'revmove-nullmove'             => 'Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "[[$1]]".',
+'revmove-nullmove'             => 'Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Unu revizio de [[$2]]  estis movita|$1 revizioj de [[$2]] estis movitaj}} al la ekzistanta paĝo [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Unu revizio de [[$2]]  estis movita|$1 revizioj de [[$2]] estis movitaj}} al la novkreita paĝo [[$3]].',
 
@@ -1513,6 +1521,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 'right-revisionmove'          => 'Movi reviziojn',
+'right-disableaccount'        => 'Malŝalti kontojn',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -1634,7 +1643,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Resumo:',
 'filereuploadsummary'         => 'Dosieraj ŝanĝoj:',
-'filestatus'                  => 'Kopirajta statuso:',
+'filestatus'                  => 'Aŭtorrajta statuso:',
 'filesource'                  => 'Fonto:',
 'uploadedfiles'               => 'Alŝutitaj dosieroj',
 'ignorewarning'               => 'Ignori averton kaj konservi dosieron ĉiukaze',
@@ -1851,7 +1860,7 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
-** Malobservo de kopirajto
+** Neglekto de aŭtorrajto
 ** Duplikata dosiero',
 'filedelete-edit-reasonlist'  => 'Redakti kialojn por forigo',
 'filedelete-maintenance'      => 'Forigado kaj restarigado de dosieroj provizore malŝaltis dum funkciteno.',
@@ -2222,7 +2231,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletereasonotherlist'  => 'Alia kialo',
 'deletereason-dropdown'  => '*Oftaj kialoj por forigo
 ** Peto de aŭtoro
-** Malobservo de kopirajto
+** Neglekto de aŭtorrajto
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Redakti kialojn de forigo',
 'delete-toobig'          => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|version|versiojn}}. Forigo de ĉi tiaj paĝoj estis limigitaj por preventi akcidentan disrompigon de {{SITENAME}}.',
@@ -2381,6 +2390,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Uzulaj kontribuoj de novaj kontoj',
 'sp-contributions-blocklog'            => 'Protokolo de forbaroj',
 'sp-contributions-deleted'             => 'forigitaj kontribuoj de uzantoj',
+'sp-contributions-uploads'             => 'alŝutoj',
 'sp-contributions-logs'                => 'protokoloj',
 'sp-contributions-talk'                => 'diskuto',
 'sp-contributions-userrights'          => 'administri rajtojn de uzantoj',
@@ -2470,7 +2480,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'infiniteblock'                   => 'senfina',
 'expiringblock'                   => 'senvalidiĝas je $1 $2',
 'anononlyblock'                   => 'nur anonimuloj',
-'noautoblockblock'                => 'aŭtomata blokado estas malebligita',
+'noautoblockblock'                => 'aŭtomata forbaro malŝaltiĝis',
 'createaccountblock'              => 'Kreado de kontoj forbarita',
 'emailblock'                      => 'retpoŝto forbarita',
 'blocklist-nousertalk'            => 'ne povas redakti sian propran diskuto-paĝon',
@@ -2560,6 +2570,17 @@ Pro tio, vi ja povos removi la paĝon je la antaŭa titolo se vi mistajpus, kaj 
 '''AVERTO!'''
 Tio povas esti drasta kaj neatendita ŝanĝo por populara paĝo;
 bonvolu certigi vin, ke vi komprenas ties konsekvencojn antaŭ ol vi antaŭeniru.",
+'movepagetext-noredirectfixer' => "Per jena formularo vi povas alinomigi paĝon, kaj movi tutan ĝian redaktohistorion al la nova nomo. 
+La antaŭa titolo alidirektigos onin al la nova titolo.
+Kontrolu pri [[Special:DoubleRedirects|duoblajn]] aŭ [[Special:BrokenRedirects|nefunkciantajn alidirektilojn]].
+Vi respondecas pri tio ke ligoj restas montrantaj ĝustadirekten.
+
+Konsciu ke la paĝo '''ne'' estas movota se jam ekzistas paĝo havanta la novan titolon, krom se ĝi maplenas aŭ estas alidirektilo sen antaŭa redaktohistorio.
+Tio ĉi signifas ke vi povas alinomigi paĝon reen al antaŭa nomo se vi eraras, kaj vi ke vi ne povas anstataŭigi ekzistantan paĝon.
+
+'''Averto!''
+Eblas ke tio ĉi estas drasta kaj neatendita ŝanĝo de populara paĝo;
+Antaŭ daŭrigi, bonvolu certiĝi, ke vi komprenas la konsekvencojn de tiuj ĉi ŝanĝo.",
 'movepagetalktext'             => "La movo aŭtomate kunportos la diskuto-paĝon, se tia ekzistas, '''krom se:'''
 *Vi movas la paĝon tra nomspacoj (ekz de ''Nomo'' je ''User:Nomo''),
 *Ne malplena diskuto-paĝo jam ekzistas je la nova nomo, aŭ
@@ -2850,7 +2871,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'math_unknown_function' => 'nekonata funkcio',
 'math_lexing_error'     => 'leksika analizo malsukcesis',
 'math_syntax_error'     => 'sintakseraro',
-'math_image_error'      => 'konverto al PNG malsukcesis',
+'math_image_error'      => 'Konverto al PNG malsukcesis; kontrolu ĉu estas ĝuste instalitaj latex kaj dvipng (aŭ dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Ne povas skribi al aŭ krei matematikian labor-dosierujon.',
 'math_bad_output'       => 'Ne povas enskribi aŭ krei matematikan eligan dosierujon',
 'math_notexvc'          => 'Programo texvc ne ekzistas; bonvolu vidi math/README por konfiguri.',
@@ -2908,7 +2929,7 @@ By executing it, your system may be compromised.",
 'file-info-png-frames' => '$1 kadro{{PLURAL:$1||j}}',
 
 # Special:NewFiles
-'newimages'             => 'Aro da novaj bildoj',
+'newimages'             => 'Galerio de novaj dosieroj',
 'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
 'newimages-summary'     => 'Ĉi tiu speciala paĝo montras la lastajn alŝutitajn dosierojn.',
 'newimages-legend'      => 'Dosiernomo',
@@ -2944,7 +2965,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 # EXIF tags
 'exif-imagewidth'                  => 'Larĝeco',
 'exif-imagelength'                 => 'Alteco',
-'exif-bitspersample'               => 'Bitokoj po komponanto',
+'exif-bitspersample'               => 'Bitokoj en komponanto',
 'exif-compression'                 => 'Densiga procedo',
 'exif-photometricinterpretation'   => 'Komponaĵo de rastrumeroj',
 'exif-orientation'                 => 'Orientiĝo',
@@ -2971,7 +2992,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-model'                       => 'Speco de fotilo',
 'exif-software'                    => 'Programaro uzata',
 'exif-artist'                      => 'Kreinto',
-'exif-copyright'                   => 'Posedanto de kopirajto',
+'exif-copyright'                   => 'Posedanto de la aŭtorrajto',
 'exif-exifversion'                 => 'Exif-versio',
 'exif-flashpixversion'             => 'Subtena Flashpix-versio',
 'exif-colorspace'                  => 'Kolor-spaco',
@@ -3312,7 +3333,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 # Auto-summaries
 'autosumm-blank'   => 'Forviŝis la paĝon',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
-'autoredircomment' => 'Redirektante al [[$1]]',
+'autoredircomment' => 'Alidirektigis al [[$1]]',
 'autosumm-new'     => "Nova paĝo kun '$1'",
 
 # Live preview
@@ -3360,6 +3381,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'version-specialpages'             => 'Specialaj paĝoj',
 'version-parserhooks'              => 'Sintaksaj hokoj',
 'version-variables'                => 'Variabloj',
+'version-skins'                    => 'Etosoj',
 'version-other'                    => 'Alia',
 'version-mediahandlers'            => 'Mediaj traktiloj',
 'version-hooks'                    => 'Hokoj',
@@ -3371,7 +3393,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'version-hook-subscribedby'        => 'Abonita de',
 'version-version'                  => '(Versio $1)',
 'version-license'                  => 'Permesilo',
-'version-poweredby-credits'        => "Ĉi tiu vikio funkcias per '''[http://www.mediawiki.org/ MediaWiki]''', kopirajto © 2001-$1 $2.",
+'version-poweredby-credits'        => "Ĉi tiu vikio funkcias per '''[http://www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others'         => 'aliaj',
 'version-license-info'             => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.
 
@@ -3481,5 +3503,17 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
+
+# Special:DisableAccount
+'disableaccount'             => 'Malŝalti konton de uzanto',
+'disableaccount-user'        => 'Salutnomo:',
+'disableaccount-reason'      => 'Kialo:',
+'disableaccount-confirm'     => "La uzulo ne povos saluti, reagordi sian pasvorton aŭ ricevi perretpoŝtajn sciigojn.
+Se la uzulo nun estas salutinta ie ajn, li estas tuj malsalutigitota.
+''Konsciu ke malvalidigo de uzulkonto ne estas malfarebla sen helpo de sistemestro.'''",
+'disableaccount-mustconfirm' => 'Vi devas konfirmi ke vi volas malŝalti ĉi tiun konton.',
+'disableaccount-nosuchuser'  => 'La salutnomo "$1" ne ekzistas.',
+'disableaccount-success'     => 'La konto de uzanto "$1" estis ĉiame malŝaltis.',
+'disableaccount-logentry'    => 'ĉiame malŝaltis paĝon de uzanto [[$1]]',
 
 );

@@ -479,7 +479,6 @@ Prueve n'otra vote.",
 Mitta n'otra vota.",
 'passwordtooshort'           => 'Le password onne a essere almene {{PLURAL:$1|1 carattere|$1 carattere}}.',
 'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
-'password-too-weak'          => "'A passuord mise jè troppe scarse e non ge pò essere ausate.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
 'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4).
@@ -519,6 +518,9 @@ Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
+
+# E-mail sending
+'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 
 # JavaScript password checks
 'password-strength'            => "Lunghezze d'a passuord stimate: $1",
@@ -667,7 +669,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'userinvalidcssjstitle'            => "'''Attenziò:''' Non ge stè 'nu skin \"\$1\".
-Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/monobook.css è diverse da {{ns:user}}:Foo/Monobook.css.",
+Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/vector.css è diverse da {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Cangiete)',
 'note'                             => "'''Vide Bbuene:'''",
 'previewnote'                      => "'''Queste è sole 'n'andeprime;
@@ -940,7 +942,7 @@ Tuèrne rrete a 'a pàgene precedende e pruève arrete.",
 'revmove-norevisions'          => "Tu non g'è specificate une o cchiù revisiune de destinazione pe fà sta funzione o 'a revisione specificate non g'esiste.",
 'revmove-nullmove-title'       => 'Titele sbagliate',
 'revmove-nullmove'             => "'A pàgene de destinazione non ge pò essere 'a stesse d'à pàgene de origgene.
-Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"[[\$1]]\".",
+Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"\$1\".",
 'revmove-success-existing'     => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene esistende [[$3]].",
 'revmove-success-created'      => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene appene ccrejate [[$3]].",
 
@@ -1284,6 +1286,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
 'right-revisionmove'          => 'Spuèste le revisiune',
+'right-disableaccount'        => 'Disabbilete le cunde utinde',
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -2185,6 +2188,7 @@ $1",
 'sp-contributions-newbies-title'       => "Condrebbute de l'utinde pe le cunde utinde nuéve",
 'sp-contributions-blocklog'            => 'Archivije de le Bloccaminde',
 'sp-contributions-deleted'             => "condrebbute de l'utende scangellate",
+'sp-contributions-uploads'             => 'carecaminde',
 'sp-contributions-logs'                => 'archivije',
 'sp-contributions-talk'                => 'parle',
 'sp-contributions-userrights'          => 'Gestione de le deritte utende',
@@ -3189,6 +3193,7 @@ Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'version-specialpages'             => 'Pàggene speciele',
 'version-parserhooks'              => 'Hook analizzature',
 'version-variables'                => 'Variabbele',
+'version-skins'                    => 'Skin',
 'version-other'                    => 'Otre',
 'version-mediahandlers'            => 'Gestore de le Media',
 'version-hooks'                    => 'Hook',
@@ -3310,5 +3315,14 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
+
+# Special:DisableAccount
+'disableaccount'             => "Disabbilete 'nu cunde utende",
+'disableaccount-user'        => "Nome de l'utende:",
+'disableaccount-reason'      => 'Mutive:',
+'disableaccount-mustconfirm' => 'Tu a confermà ce vuè ccu disabbilete stu cunde utende.',
+'disableaccount-nosuchuser'  => '\'U cunde utende "$1" non g\'esiste.',
+'disableaccount-success'     => '\'U cunde utende "$1" ha state disabbilitate pe sembre.',
+'disableaccount-logentry'    => "disabbilete pe sembre 'u cunde utende [[$1]]",
 
 );

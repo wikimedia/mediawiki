@@ -396,7 +396,7 @@ Di maximal Wartezyt fir e Lock isch umme',
 'hidetoc'                 => 'zueklappe',
 'thisisdeleted'           => 'Aaluege oder widerherstelle vu $1?',
 'viewdeleted'             => '$1 aaluege?',
-'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
+'restorelink'             => '{{PLURAL:$1|gleschti Änderig|$1 gleschti Ändrige}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Nit giltige Abonnement-Typ.',
 'feed-unavailable'        => 'S stehn keini Feeds z Verfiegig.',
@@ -552,7 +552,7 @@ Iberprief d Schrybwys, oder mäld Di as [[Special:UserLogin/signup|neje Benutzer
 'wrongpasswordempty'         => 'Du hesch vergässe dyy Passwort yyzgee. Bitte versuech s nomol.',
 'passwordtooshort'           => 'Passwerter mien zmindescht {{PLURAL:$1|1 Zeiche|$1 Zeiche}} haa.',
 'password-name-match'        => 'Dyy Passwort muess sich vu Dyynem Benutzername unterscheide.',
-'password-too-weak'          => 'D Passwort isch z schwach un cha nit brucht wäre.',
+'password-login-forbidden'   => 'D Verwändig vu däm Benutzernamen un Passwort isch verbotte.',
 'mailmypassword'             => 'Es nöis Passwort schicke',
 'passwordremindertitle'      => 'Nei Passwort fir {{SITENAME}}',
 'passwordremindertext'       => 'Ebber mit dr IP-Adress $1 het e nej Passwort fir d Aamäldig bi {{SITENAME}} ($4) aagfordert, wahrschyyns Du sälber.
@@ -595,6 +595,9 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Gschätzti Passwortsterki: $1',
@@ -736,7 +739,11 @@ As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview'                    => "== Vorschau vu Dyynem Benutzer-Javascript. ==
 '''Gib acht:''' Noch em Spychere muesch Dyy Browser aawyse di nej Version z lade: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'            => "'''Achtig:''' D Skin „$1“ git s nid. Dänk dra, ass benutzerspezifischi .css- und .js-Syte mit eme Chleibuechstabe mien aafange, also z B. ''{{ns:user}}:Mustermann/monobook.css'' statt ''{{ns:user}}:Mustermann/Monobook.css''.",
+'sitecsspreview'                   => "'''Obacht: Du luegsch nume ne Vorschau vu däm CSS aa.'''
+'''S isch nonig gspycheret wore!'''",
+'sitejspreview'                    => "'''Obacht: Du luegsch nume ne Vorschau vu däm JavaScript aa.'''
+'''S isch nonig gspycheret wore!'''",
+'userinvalidcssjstitle'            => "'''Achtig:''' D Skin „$1“ git s nid. Dänk dra, ass benutzerspezifischi .css- und .js-Syte mit eme Chleibuechstabe mien aafange, also z B. ''{{ns:user}}:Mustermann/vector.css'' statt ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Gänderet)',
 'note'                             => "'''Obacht: '''",
 'previewnote'                      => "'''Das isch numen e Vorschau und nonig gspycheret!'''",
@@ -995,7 +1002,7 @@ Bitte prief d Logbiecher.',
 'revmove-norevisions-title'    => 'Nit giltigi Ziilversion',
 'revmove-norevisions'          => 'Du hesch kei Ziilversion aagee, zum die Aktion durzfiere oder d Version, wu Du aagee hesch, git s nit.',
 'revmove-nullmove-title'       => 'Nit giltige Titel',
-'revmove-nullmove'             => 'Quäll- un Ziilsyte sin idäntisch. Bitte druck uf „zruck“ un gib e andere Sytenname wie „[[$1]]“ yy.',
+'revmove-nullmove'             => 'Quäll- un Ziilsyte sin idäntisch. Bitte druck uf „zruck“ un gib e andere Sytenname wie „$1“ yy.',
 'revmove-success-existing'     => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zu dr exischtänte Syte [[$3]] verschobe wore.',
 'revmove-success-created'      => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zue dr nej aagleite Syte [[$3]] verschobe wore.',
 
@@ -1118,7 +1125,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'prefsnologin'                  => 'Nid aagmäldet',
 'prefsnologintext'              => 'Du muesch <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
 'changepassword'                => 'Passwort ändere',
-'prefs-skin'                    => 'Skin',
+'prefs-skin'                    => 'Benutzeroberflechi',
 'skin-preview'                  => 'Vorschou',
 'prefs-math'                    => 'TeX',
 'datedefault'                   => 'kei Aagab',
@@ -1330,6 +1337,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 'right-revisionmove'          => 'Versione verschiebe',
+'right-disableaccount'        => 'Benutzerkonto deaktiviere',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -2188,6 +2196,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Benutzerbyytreg vu neije Benutzer',
 'sp-contributions-blocklog'            => 'Sperrlogbuech',
 'sp-contributions-deleted'             => 'gleschti Bytreg',
+'sp-contributions-uploads'             => 'Uffegladeni Dateie',
 'sp-contributions-logs'                => 'Logbiecher',
 'sp-contributions-talk'                => 'Diskussion',
 'sp-contributions-userrights'          => 'Benutzerrächtsverwaltig',
@@ -2442,7 +2451,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'export-addnstext'  => 'Syte us em Namensruum zuefiege:',
 'export-addns'      => 'Zuefiege',
 'export-download'   => 'Als XML-Datei spychere',
-'export-templates'  => 'Vorlage mit ybinde',
+'export-templates'  => 'Vorlage mit yybinde',
 'export-pagelinks'  => 'Vergleichti Syten automatisch mit exportiere bis zuen ere Rekursionstiefi vu:',
 
 # Namespace 8 related
@@ -2634,8 +2643,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'math_unknown_function' => 'Nit bekannti Funktion',
 'math_lexing_error'     => "'Lexing'-Fähler",
 'math_syntax_error'     => 'Syntaxfähler',
-'math_image_error'      => 'd PNG-Konvertierig het nit funktioniert;
-prief di korrekt Installation vu latex, dvips, gs un convert',
+'math_image_error'      => 'D PNG-Konvertierig het nit funktioniert; prief di korrekt Installation vu LaTeX un dvipng (oder dvips + gs + convert)',
 'math_bad_tmpdir'       => 'S temporär Verzeichnis fir mathematischi Formle cha nit aagleit oder bschribe wäre.',
 'math_bad_output'       => 'S Ziilverzeichnis fir mathematischi Formle cha nit aagleit oder bschribe wäre.',
 'math_notexvc'          => 'S texvc-Programm isch nit gfunde wore. Bitte acht gee uf math/README.',
@@ -3144,6 +3152,7 @@ Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 'version-specialpages'             => 'Spezialsyte',
 'version-parserhooks'              => 'Parser-Schnittstelle',
 'version-variables'                => 'Variable',
+'version-skins'                    => 'Benutzeroberflechine',
 'version-other'                    => 'Anders',
 'version-mediahandlers'            => 'Medie-Handler',
 'version-hooks'                    => "Schnittstelle ''(Hook)''",
@@ -3264,5 +3273,18 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 # SQLite database support
 'sqlite-has-fts' => '$1 mit Unterstitzig vu dr Volltextsuechi',
 'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
+
+# Special:DisableAccount
+'disableaccount'             => 'E Benutzerkonto deaktiviere',
+'disableaccount-user'        => 'Benutzername:',
+'disableaccount-reason'      => 'Grund:',
+'disableaccount-confirm'     => "Des Benutzerkonto deaktiviere.
+Dr Benutzer cha sich derno nimi aamälde, cha s Passwort nimi zrucksetze oder un keini E-Mail-Benochrichtigunge me iberchuu.
+Wänn dr Benutzer grad aagmäldet isch, wird er sofort abgmäldet.
+''Obacht: D Deaktivierig vun eme Benutzerkonto cha nume vun eme Syschtemadministrator ruckgängig gmacht wäre.''",
+'disableaccount-mustconfirm' => 'Du muesch d Deaktivierig vu däm Benutzerkonto no bstetige.',
+'disableaccount-nosuchuser'  => 'Dr Benutzer „$1“ git s nit.',
+'disableaccount-success'     => 'S Benutzerkonto „$1“ isch fir immer deaktiviert wore.',
+'disableaccount-logentry'    => 'het s Benutzerkonto [[$1]] fir immer deaktiviert',
 
 );

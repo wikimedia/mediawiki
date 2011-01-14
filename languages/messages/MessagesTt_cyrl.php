@@ -12,6 +12,7 @@
  * @author Himiq Dzyu
  * @author KhayR
  * @author Marat Vildanov
+ * @author Reedy
  * @author Rinatus
  * @author Timming
  * @author Yildiz
@@ -644,7 +645,7 @@ $2',
 'wrongpasswordempty'         => 'Серсүз юлы буш булырга тиеш түгел.',
 'passwordtooshort'           => 'Сезсүз $1 {{PLURAL:$1|символдан}} торырга тиеш.',
 'password-name-match'        => 'Кертелгән серсүз кулланучы исеменнән аерылырга тиеш.',
-'password-too-weak'          => 'Күрсәтелгән серсүз бик җиңел һәм куллануга ярамый.',
+'password-login-forbidden'   => 'Бу кулланучы исемен һәм серсүзне куллану тыелган',
 'mailmypassword'             => 'Электрон почтага яңа серсүз җибәрү',
 'passwordremindertitle'      => '{{SITENAME}} кулланучысына вакытлы серсүз тапшыру',
 'passwordremindertext'       => 'Кемдер (бәлки, сездер, IP адресы: $1) {{SITENAME}} ($4) өчен яңа серсүз соратты. $2 өчен яңа серсүз: $3. Әгәр бу сез булсагыз, системага керегез һәм серсүзне алмаштырыгыз. Яңа серсүз $5 {{PLURAL:$5|көн}} гамәлдә булачак.
@@ -676,6 +677,9 @@ $2',
 Яңадан кабатлаганчы бераз көтүегез сорала.',
 'loginlanguagelabel'         => 'Тел: $1',
 'suspicious-userlogout'      => 'Сезнең эшчәнлекне бетерү соравыгыз кире кагылды, чөнки ул ялгыш браузер яисә кэшлаучы прокси аша җибәрелергэ мөмкин.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
 
 # JavaScript password checks
 'password-strength'            => 'Серсүзнең сыйфатын тикшерү: $1',
@@ -797,7 +801,7 @@ $2',
 'noarticletext'                    => "Хәзерге вакытта бу биттә текст юк.
 Сез [[Special:Search/{{PAGENAME}}|бу исем кергән башка мәкаләләрне]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} көндәлекләрдәге язмаларны] таба
-яки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} шушындый исемле яңа бит төзи]''' аласыз.",
+яки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} шушындый исемле яңа бит төзи]'''</span> аласыз.",
 'noarticletext-nopermission'       => 'Хәзерге вакытта бу биттә текст юк.
 Сез [[Special:Search/{{PAGENAME}}|бу исем кергән башка мәкаләләрне]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} көндәлекләрдәге язмаларны] таба аласыз.</span>',
@@ -811,7 +815,7 @@ $2',
 'userjsyoucanpreview'              => "'''Ярдәм:''' \"{{int:showpreview}}\" төймәсенә басып, яңа JS-файлны тикшереп була.",
 'usercsspreview'                   => "'''Бу бары тик CSS-файлны алдан карау гына, ул әле сакланмаган!'''",
 'userjspreview'                    => "'''Бу бары тик JavaScript файлын алдан карау гына, ул әле сакланмаган!'''",
-'userinvalidcssjstitle'            => "'''Игътибар:''' \"\$1\" бизәү темасы табылмады. Кулланучының .css һәм .js битләре исемнәре бары тик кечкенә (юл) хәрефләрдән генә торырга тиеш икәнен онытмагыз. Мисалга: {{ns:user}}:Foo/monobook.css, ә {{ns:user}}:Foo/Monobook.css түгел!",
+'userinvalidcssjstitle'            => "'''Игътибар:''' \"\$1\" бизәү темасы табылмады. Кулланучының .css һәм .js битләре исемнәре бары тик кечкенә (юл) хәрефләрдән генә торырга тиеш икәнен онытмагыз. Мисалга: {{ns:user}}:Foo/vector.css, ә {{ns:user}}:Foo/Vector.css түгел!",
 'updated'                          => '(Яңартылды)',
 'note'                             => "'''Искәрмә:'''",
 'previewnote'                      => "'''Бу фәкать алдан карау гына, үзгәртүләрегез әле сакланмаган!'''",
@@ -987,6 +991,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-nologtype-title'   => 'Көндәлек тибы билгеләнмәгән',
 'revdelete-nologtype-text'    => 'Гамәл башкарылырга тиешле көндәлек төрен билгеләргә оныттыгыз.',
 'revdelete-nologid-title'     => 'Көндәлектәге язма хаталы',
+'revdelete-no-file'           => 'Бу файл бар түгел',
 'revdelete-show-file-submit'  => 'Әйе',
 'revdelete-legend'            => 'Чикләүләр урнаштыр:',
 'revdelete-hide-text'         => 'Битнең бу юрамасы текстын яшер',
@@ -1374,6 +1379,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'filename-tooshort'          => 'Файлның исеме артык кыска.',
 'filetype-banned'            => 'Бу файл төре тыелган.',
 'verification-error'         => 'Бу файл әлегә тикшерү узмаган.',
+'illegal-filename'           => 'Мондый файл исеменә рөхсәт юк',
 'savefile'                   => 'Файлны саклау',
 'uploadedimage'              => '«[[$1]]» йөкләнгән',
 'overwroteimage'             => '«[[$1]]» файлының яңа юрамасы йөкләнелде',
@@ -1662,6 +1668,7 @@ PICT # төрле
 'watch'             => 'Күзәтү',
 'watchthispage'     => 'Бу битне күзәтү',
 'unwatch'           => 'Күзәтмәү',
+'unwatchthispage'   => 'Күзәтүне туктат',
 'notanarticle'      => 'Мәкалә түгел',
 'watchlist-details' => 'Күзәтү исемлегегездә, бәхәс битләрен санамыйча, {{PLURAL:$1|$1 бит|$1 бит}} бар.',
 'wlshowlast'        => 'Баягы $1 сәгать $2 көн эчендә яки $3ны күрсәт',

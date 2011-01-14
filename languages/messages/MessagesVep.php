@@ -101,7 +101,7 @@ $messages = array(
 'tog-editsection'             => 'Ozutada "Redaktiruida"-kosketuz kaikuččen sekcijan täht',
 'tog-editsectiononrightclick' => 'Redaktiruida sekcijad hiren oiktal plokul pälkirjutesele (JavaScript)',
 'tog-showtoc'                 => 'Ozutada südäimišt (lehtpoled, kudambil om enamba, mi 3 pälkirjutest)',
-'tog-rememberpassword'        => 'Muštta minun kävutajan nimi neciš kompjuteras (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Muštta minun kävutajan nimi neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations'          => 'Ližata kaik minai sätud lehtpoled minun kaclendkirjuteshe',
 'tog-watchdefault'            => 'Ližata kaik minai toižetadud lehtpoled minun kaclendkirjuteshe',
 'tog-watchmoves'              => 'Ližata kaik minai udesnimitadud lehtpoled minun kaclendkirjuteshe',
@@ -596,7 +596,7 @@ Teiden IP-adres om kirjutadud necen lehtpolen redaktiruindan istorijaha.",
 Ku tö valičet völ kerdan \"Kirjutada lehtpol'\", ka teiden toižetused kirjutase ningoižeta ümbrikacundata.",
 'missingcommenttext'               => 'Olgat hüväd, pangat teiden tedotuz alahaks.',
 'missingcommentheader'             => "'''Muštatez:''' Tö et olgoi andnuded toižetusiden ümbrikacundoiden pälkirjutest.
-Ku tö valičet völ kerdan \"Kirjutada lehtpol'\", ka teiden toižetusiden ümbrikacund kirjutase ningoižeta pälkirjuteseta.",
+Ku tö valičet völ kerdan ”{{int:savearticle}}” \"Kirjutada lehtpol'\", ka teiden toižetusiden ümbrikacund kirjutase ningoižeta pälkirjuteseta.",
 'summary-preview'                  => 'Ümbrikacund linneb mugoi:',
 'subject-preview'                  => 'Ümbrikacundan pälkirjutez linneb mugoi:',
 'blockedtitle'                     => 'Kävutai om blokiruidud',
@@ -609,7 +609,7 @@ Sü: ''$2''.
 * Blokiruindan lopaig: $6
 * Blokiruidud kävutai: $7
 
-Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
+Otkat sil'mnägubale, miše teile ei sa oigeta kirješt [[{{MediaWiki:Grouppage-sysop}}|administratorale]], ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
 [[Special:Preferences|teiden järgendusiden lehtpolel]], vai teile oma kel'tnuded kirjeižid oigendamha blokiruindan aigan.
 Teiden IP-adres om $3, teiden blokiruindan ID om #$5.
 Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
@@ -621,7 +621,7 @@ Sü: ''$2''.
 * Blokiruindan lopaig: $6
 * Blokiruidud kävutai: $7
 
-Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
+Otkat sil'mnägubale, miše teile ei sa oigeta kirješt [[{{MediaWiki:Grouppage-sysop}}|administratorale]], ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
 [[Special:Preferences|teiden järgendusiden lehtpolel]], vai teile oma kel'tnuded kirjeižid oigendamha blokiruindan aigan.
 Teiden IP-adres om $3, teiden blokiruindan ID om #$5.
 Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
@@ -649,8 +649,8 @@ Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil,
 vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
 'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',
-'usercssyoucanpreview'             => "'''Nevond:''' Kävutagat 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' CSS edel mušthopanendad.",
-'userjsyoucanpreview'              => "'''Nevond:''' Kävutagat 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' JS edel mušthopanendad.",
+'usercssyoucanpreview'             => "'''Nevond:''' Kävutagat «{{int:showpreview}}» 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' CSS edel mušthopanendad.",
+'userjsyoucanpreview'              => "'''Nevond:''' Kävutagat \"{{int:showpreview}}\" 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' JS edel mušthopanendad.",
 'usercsspreview'                   => "'''Muštkat, miše nece om vaiše teiden CSS-failan ezikacund, se ei ole völ kirjutadud muštho!'''",
 'userjspreview'                    => "'''Muštkat, miše nece om vaiše teiden JavaScript-failan ezikacund, se ei ole völ kirjutadud muštho!'''",
 'updated'                          => '(Udištadud)',
@@ -873,7 +873,7 @@ Tö ei voigoi kävutada sidä.',
 'compareselectedversions'  => 'Rindatada valitud versijad',
 'showhideselectedversions' => 'Ozutada/peitta valitud versijad',
 'editundo'                 => 'heitta pätand',
-'diff-multi'               => "({{PLURAL:$1|üks' keskmäine versii ei ole|$1 keskmäšt versijad ei olgoi}} ozutadud)",
+'diff-multi'               => "({{PLURAL:$1|üks' keskmäine versii ei ole|$1 keskmäšt versijad ei olgoi}} {{PLURAL:$2|one user|$2 users}} ozutadud)",
 
 # Search results
 'searchresults'                    => "Ectä rezul'tatad",
@@ -1791,7 +1791,7 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'protect-othertime-op'        => 'toine aig',
 'protect-existing-expiry'     => 'Nügüdläine lopstrokun aig: $3, $2',
 'protect-otherreason'         => 'Toine sü/ližasü:',
-'protect-otherreason-op'      => 'toine sü/ližasü',
+'protect-otherreason-op'      => 'Toine sü',
 'protect-dropdown'            => '*Kaičendan tipižed süd
 ** Jatkui vandalizm
 ** Jatkui spamoind

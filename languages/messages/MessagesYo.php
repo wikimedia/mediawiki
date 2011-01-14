@@ -205,7 +205,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Àfikún orí-ọ̀rọ̀',
 'vector-action-delete'     => 'Ìparẹ́',
-'vector-action-move'       => 'Yípò',
+'vector-action-move'       => 'Ìyípòdà',
 'vector-action-protect'    => 'Àbò',
 'vector-action-undelete'   => 'Ìmúkúrò ìparẹ́',
 'vector-action-unprotect'  => 'Ìjáwọ́ àbò',
@@ -656,7 +656,7 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 'userjspreview'                    => "''''Ẹ mọ́ gbàgbé pé àdánwò/àkọ́yẹ̀wò JavaScript oníṣe yín nìyí.'''
 '''Kò tíì jẹ́ mímúpamọ́!'''",
 'userinvalidcssjstitle'            => "'''Ìkìlọ̀:''' Kò sí awọ-ìbojú \"\$1\".
-Ẹ rántí pé àwọn ojúewé àkànṣe .css àti .js únlo àkọlé onílẹ́tà kékeré, f.a. {{ns:user}}:Foo/monobook.css yàtò sí {{ns:user}}:Foo/Monobook.css.",
+Ẹ rántí pé àwọn ojúewé àkànṣe .css àti .js únlo àkọlé onílẹ́tà kékeré, f.a. {{ns:user}}:Foo/vector.css yàtò sí {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Sísọdọ̀tun)',
 'note'                             => "'''Àkíyèsí:'''",
 'previewnote'                      => "'''Ẹ rántí pé àyẹ̀wò lásán nì yí.'''
@@ -1442,7 +1442,7 @@ $1',
 'newpages'                => 'Àwọn ojúewé tuntun',
 'newpages-username'       => 'Orúkọ oníṣe:',
 'ancientpages'            => 'Àwọn ojúewé tópẹ́jùlọ',
-'move'                    => 'Ìyípò',
+'move'                    => 'Ìyípòdà',
 'movethispage'            => 'Yípò ojúewé yìí',
 'pager-newer-n'           => '{{PLURAL:$1|tuntunjùlọ 1|tuntunjùlọ $1}}',
 'pager-older-n'           => '{{PLURAL:$1|pípẹ́jùlọ 1|pípẹ́jùlọ $1}}',
@@ -1949,7 +1949,7 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'tooltip-ca-history'              => 'Àwọn àtúnṣe tókọjá sí ojúewé yìí',
 'tooltip-ca-protect'              => 'Dábòbò ojúewé yìí',
 'tooltip-ca-delete'               => 'Ẹ pa ojúewé yìí rẹ́',
-'tooltip-ca-move'                 => 'Yípò ojúewé yìí padà',
+'tooltip-ca-move'                 => 'Ìyípòdà ojúewé yìí',
 'tooltip-ca-watch'                => 'Ṣe ìfikún ojúewé yìí mọ́ ìmójútó yín',
 'tooltip-ca-unwatch'              => 'Ẹ yọ ojúewé yìí kúrò nínú ìmójútó yín',
 'tooltip-search'                  => "Ṣ'àwáàrí nínú {{SITENAME}}",

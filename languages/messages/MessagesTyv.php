@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author friends at tyvawiki.org
@@ -196,7 +197,7 @@ $messages = array(
 'disclaimers'          => 'Ажыглаарынка чомпээрежил',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
-'helppage'             => 'Help:Допчузу',
+'helppage'             => 'Help:Уткалар',
 'mainpage'             => 'Кол Арын',
 'mainpage-description' => 'Кол Арын',
 'policy-url'           => 'Project:Политика',
@@ -507,7 +508,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'filehist-thumb'     => 'Бичии чурук',
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
-'filehist-comment'   => 'Комментарий',
+'filehist-comment'   => 'Тайылбыр',
 'imagelinks'         => 'Файлдың xолбаалары',
 
 # File reversion
@@ -730,7 +731,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арныңар',
 'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзызы',
 'tooltip-pt-logout'         => 'Үнери',
-'tooltip-ca-talk'           => 'Бо арынның допчузузу дугайында чыгаалажыры',
+'tooltip-ca-talk'           => 'Бо арын дугайында чыгаалажыры',
 'tooltip-ca-protect'        => 'Бо арынны камгалаары',
 'tooltip-ca-delete'         => 'Бо арынны ап каары',
 'tooltip-ca-move'           => 'Бо арынны шимчээри',
@@ -802,7 +803,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'limitall'         => 'шупту',
 
 # Multipage image navigation
-'imgmultipageprev' => '← бүрүнгү арын',
+'imgmultipageprev' => '← мурнунда арын',
 'imgmultipagenext' => 'соонда арын →',
 'imgmultigo'       => 'Go!',
 

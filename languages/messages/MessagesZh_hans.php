@@ -15,6 +15,7 @@
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Hercule
  * @author Horacewai2
  * @author Hydra
  * @author Jding2010
@@ -449,7 +450,7 @@ $messages = array(
 请在再次尝试访问本页面之前稍等片刻。
 
 $1',
-'pool-timeout'      => '等待锁死时超时',
+'pool-timeout'      => '等待锁超时',
 'pool-queuefull'    => '请求池已满',
 'pool-errorunknown' => '未知错误',
 
@@ -642,7 +643,7 @@ $2',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
-'password-too-weak'          => '提供的密码强度不足，不能使用。',
+'password-login-forbidden'   => '这些用户名称及密码的使用是被禁止的。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
 'passwordremindertext'       => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
@@ -677,6 +678,9 @@ $2',
 请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
+
+# E-mail sending
+'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',
 
 # JavaScript password checks
 'password-strength'            => '预估密码强度： $1',
@@ -804,11 +808,15 @@ $2',
 '''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
 'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
-'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
+'usercsspreview'                   => "'''记住您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",
-'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
+'userjspreview'                    => "'''记住您只是在测试／预览您的个人 JavaScript。'''
 '''还没有保存！'''",
-'userinvalidcssjstitle'            => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
+'sitecsspreview'                   => "'''记住你现在只是预览此 CSS。'''
+'''还没有保存！'''",
+'sitejspreview'                    => "'''记住你现在只是预览此 JavaScript 代码。'''
+'''还没有保存！'''",
+'userinvalidcssjstitle'            => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",
@@ -825,11 +833,11 @@ $2',
 'editingsection'                   => '正在编辑$1（段落）',
 'editingcomment'                   => '正在编辑$1（新段落）',
 'editconflict'                     => '编辑冲突：$1',
-'explainconflict'                  => '有人在你开始编辑后更改了页面。
+'explainconflict'                  => "有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
-<b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。',
+'''只有'''在上面文字框中的内容会在你点击“{{int:savearticle}}”后被保存。",
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存修订版本',
 'nonunicodebrowser'                => "'''警告：您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面：非ASCII字符将以十六进制编码方式出现在编辑框中。",
@@ -1068,7 +1076,7 @@ $1",
 'revmove-norevisions'          => '您尚未指定一个或者多个目标修订版本去做这项功能或者所指定的修订版本不存在。',
 'revmove-nullmove-title'       => '坏的标题',
 'revmove-nullmove'             => '目标页面不可以跟来源页面相同。
-请返回先前的页面再输入跟 "[[$1]]" 不相同的名字。',
+请返回先前的页面再输入跟 "$1" 不相同的名字。',
 'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现有的页面[[$3]]。',
 'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建的页面[[$3]]。',
 
@@ -1402,7 +1410,7 @@ $1",
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
 'right-revisionmove'          => '移动修订版本',
-'right-disableaccount'        => '禁用帐户',
+'right-disableaccount'        => '禁用账户',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -1775,7 +1783,7 @@ $1',
 'statistics-edits'             => '自从{{SITENAME}}设置的页面编辑数',
 'statistics-edits-average'     => '每一页面的平均编辑数',
 'statistics-views-total'       => '查看总数',
-'statistics-views-total-desc'  => '不存在页面和特殊页面的访问量未计入',
+'statistics-views-total-desc'  => '不存在页面和特殊页面的查看数未计入',
 'statistics-views-peredit'     => '每次编辑查看数',
 'statistics-users'             => '已注册[[Special:ListUsers|用户]]',
 'statistics-users-active'      => '活跃用户',
@@ -1817,7 +1825,7 @@ Template:消除歧義',
 'nrevisions'              => '$1个修订',
 'nviews'                  => '$1次浏览',
 'nimagelinks'             => '用于$1个页面中',
-'ntransclusions'          => '用于$1个{{PLURAL:$1|页面|页面}}中',
+'ntransclusions'          => '用于$1个页面中',
 'specialpage-empty'       => '这个报告的结果为空。',
 'lonelypages'             => '孤立页面',
 'lonelypagestext'         => '以下页面尚未被{{SITENAME}}中的其它页面链接或被之包含。',
@@ -2259,6 +2267,7 @@ $1',
 'sp-contributions-newbies-title'       => '新手的用户贡献',
 'sp-contributions-blocklog'            => '封禁日志',
 'sp-contributions-deleted'             => '已删除的用户贡献',
+'sp-contributions-uploads'             => '上载',
 'sp-contributions-logs'                => '日志',
 'sp-contributions-talk'                => '讨论',
 'sp-contributions-userrights'          => '用户权限管理',
@@ -2432,20 +2441,22 @@ $1已被封禁。您是否想更改封禁设置？',
 这意味着您再必要时可以在移动到新页面后再移回老的页面，
 同时您也无法覆盖现有页面。
 
-<b>警告！</b>
+'''警告！'''
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
-请在行动前先了结其所可能带来的后果。",
-'movepagetext-noredirectfixer' => '使用下面的表格将会重新命名一个页面，并将其所有修订历史同时移动到新页面。
+请在行动前先了解其所可能带来的后果。",
+'movepagetext-noredirectfixer' => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
 请检查[[Special:DoubleRedirects|双重重定向]]或[[Special:BrokenRedirects|损坏重定向]]链接。
 您应当负责确定所有链接依然会链到指定的页面。
 
-注意如果新页面的名字已经被使用的话，页面将<b>不会</b>被移动，除非使用该名字的页面无内容或是重定向页，而且没有修订历史。
-这意味着您在必要时可以将该页面重新命名为之前的名字，但是您不能够覆盖一个已经存在的页面。
+注意如果新页面已经有内容的话，页面将'''不会'''被移动，
+除非新页面无内容或是重定向页，而且没有修订历史。
+这意味着您再必要时可以在移动到新页面后再移回老的页面，
+同时您也无法覆盖现有页面。
 
-<b>警告！</b>
+'''警告！'''
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
-请在行动前先确定您了解其所可能带来的后果。',
+请在行动前先确定您了解其所可能带来的后果。",
 'movepagetalktext'             => "有关的讨论页将被自动与该页面一起移动，'''除非''':
 *新页面已经有一个包含内容的讨论页，或者
 *您不勾选下面的复选框。
@@ -2683,7 +2694,7 @@ $1已被封禁。您是否想更改封禁设置？',
 'nostalgia.css'   => '/* 此处的 CSS 将影响使用怀旧皮肤的用户 */',
 'cologneblue.css' => '/* 此处的 CSS 将影响使用科隆香水蓝皮肤的用户 */',
 'monobook.css'    => '/* 此处的 CSS 将影响使用 Monobook 皮肤的用户 */',
-'myskin.css'      => '/* 此处的 CSS 将影响使用 Myskin 皮肤的用户 */',
+'myskin.css'      => '/* 此处的 CSS 将影响使用 MySkin 皮肤的用户 */',
 'chick.css'       => '/* 此处的 CSS 将影响使用 Chick 皮肤的用户 */',
 'simple.css'      => '/* 此处的 CSS 将影响使用 Simple 皮肤的用户 */',
 'modern.css'      => '/* 此处的 CSS 将影响使用 Modern 皮肤的用户 */',
@@ -2697,7 +2708,7 @@ $1已被封禁。您是否想更改封禁设置？',
 'nostalgia.js'   => '/* 此处的JavaScript将加载于使用怀旧皮肤的用户 */',
 'cologneblue.js' => '/* 此处的JavaScript将加载于使用科隆香水蓝皮肤的用户 */',
 'monobook.js'    => '/* 此处的JavaScript将加载于使用Monobook皮肤的用户 */',
-'myskin.js'      => '/* 此处的JavaScript将加载于使用Myskin皮肤的用户 */',
+'myskin.js'      => '/* 此处的JavaScript将加载于使用MySkin皮肤的用户 */',
 'chick.js'       => '/* 此处的JavaScript将加载于使用Chick皮肤的用户 */',
 'simple.js'      => '/* 此处的JavaScript将加载于使用Simple皮肤的用户 */',
 'modern.js'      => '/* 此处的JavaScript将加载于使用Modern皮肤的用户 */',
@@ -3289,6 +3300,7 @@ $1',
 'version-specialpages'             => '特殊页面',
 'version-parserhooks'              => '解析器钩',
 'version-variables'                => '变量',
+'version-skins'                    => '皮肤',
 'version-other'                    => '其他',
 'version-mediahandlers'            => '媒体处理器',
 'version-hooks'                    => '钩',
@@ -3332,7 +3344,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'fileduplicatesearch-result-n' => '文件“$1”有$2项完全相同的重复副本。',
 
 # Special:SpecialPages
-'specialpages'                   => '所有特殊页面',
+'specialpages'                   => '特殊页面',
 'specialpages-note'              => '----
 * 标准特殊页面。
 * <strong class="mw-specialpagerestricted">有限制的特殊页面。</strong>',
@@ -3412,14 +3424,15 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
 
 # Special:DisableAccount
-'disableaccount'             => '禁用用户帐户',
+'disableaccount'             => '禁用用户账户',
 'disableaccount-user'        => '用户名：',
 'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "禁用此用户帐户。该用户将无法登录、重置其密码或收到电子邮件通知。如果用户当前仍保持登录，其帐户将被强制退出。
-''注意：若无系统管理员的干预，被禁用的帐户不可重新启用。''",
-'disableaccount-mustconfirm' => '请确认您的确要禁用此帐户。',
-'disableaccount-nosuchuser'  => '用户帐户“$1”不存在。',
-'disableaccount-success'     => '用户帐户“$1”已被永久禁用。',
-'disableaccount-logentry'    => '永久禁用用户帐户[[$1]]',
+'disableaccount-confirm'     => "禁用此用户账户。
+该用户将无法登录、重置其密码或收到电子邮件通知。如果用户当前仍保持登录，其账户将被强制退出。
+''留意若无系统管理员的干预，被禁用的账户不可重新启用。''",
+'disableaccount-mustconfirm' => '请确认您的确要禁用此账户。',
+'disableaccount-nosuchuser'  => '用户账户“$1”不存在。',
+'disableaccount-success'     => '用户账户“$1”已被永久禁用。',
+'disableaccount-logentry'    => '永久禁用用户账户[[$1]]',
 
 );

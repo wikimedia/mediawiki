@@ -685,7 +685,7 @@ Sinu konto on loodud.
 'userloginnocreate'          => 'Sisselogimine',
 'logout'                     => 'Logi välja',
 'userlogout'                 => 'Logi välja',
-'notloggedin'                => 'Te pole sisse loginud',
+'notloggedin'                => 'Sisse logimata',
 'nologin'                    => "Sul pole kontot? '''$1'''.",
 'nologinlink'                => 'Registreeru siin',
 'createaccount'              => 'Loo uus konto',
@@ -714,7 +714,7 @@ Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]]
 'passwordtooshort'           => 'Parool on liiga lühike.
 See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'password-name-match'        => 'Parool peab kasutajanimest erinema.',
-'password-too-weak'          => 'See parool on liiga nõrk ja seda ei saa kasutada.',
+'password-login-forbidden'   => 'Selle kasutajanime ja parooli kasutamine on keelatud.',
 'mailmypassword'             => 'Saada e-posti teel uus parool',
 'passwordremindertitle'      => '{{SITENAME}} – ajutine parool',
 'passwordremindertext'       => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.
@@ -888,7 +888,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
 'userjspreview'                    => "'''Ära unusta, et see versioon sinu isiklikust JavaScriptist on alles salvestamata!'''",
 'userinvalidcssjstitle'            => "'''Hoiatus:''' Kujundust nimega \"\$1\" ei ole.
-Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/monobook.css ja mitte {{ns:user}}:Juhan Julm/Monobook.css.",
+Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/vector.css ja mitte {{ns:user}}:Juhan Julm/Vector.css.",
 'updated'                          => '(Värskendatud)',
 'note'                             => "'''Meeldetuletus:'''",
 'previewnote'                      => "'''Ära unusta, et see on kõigest eelvaade!'''
@@ -1153,7 +1153,7 @@ Mine eelmisele leheküljele tagasi ja proovi uuesti.',
 'revmove-norevisions'          => 'Selle toimingu sooritamiseks pole ühtegi sihtredaktsiooni määratud või määratud redaktsiooni pole olemas.',
 'revmove-nullmove-title'       => 'Halb pealkiri',
 'revmove-nullmove'             => 'Lähte- ja sihtlehekülg ei saa olla samad.
-Mine eelmisele leheküljele tagasi ja vali pealkirjast "[[$1]]" erinev pealkiri.',
+Mine eelmisele leheküljele tagasi ja vali pealkirjast "$1" erinev pealkiri.',
 'revmove-success-existing'     => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud olemasolevale leheküljele [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud vastloodud leheküljele [[$3]].',
 
@@ -1279,7 +1279,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'preferences'                   => 'Eelistused',
 'mypreferences'                 => 'Eelistused',
 'prefs-edits'                   => 'Redigeerimiste arv:',
-'prefsnologin'                  => 'Te ei ole sisse loginud',
+'prefsnologin'                  => 'Sisse logimata',
 'prefsnologintext'              => 'Oma eelistuste määramiseks pead olema <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sisse logitud]</span>.',
 'changepassword'                => 'Muuda parool',
 'prefs-skin'                    => 'Kujundus',
@@ -1581,8 +1581,8 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'recentchangeslinked-title'    => 'Leheküljega "$1" seotud muudatused',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Antud ajavahemiku jooksul ei ole lingitud lehekülgedel muudatusi tehtud.',
-'recentchangeslinked-summary'  => "See on viimaste muudatuste nimekiri lehekülgedel, kuhu lähevad lingid antud leheküljelt (või antud kategooria liikmetele).
-Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on esiletoodud '''rasvasena'''.",
+'recentchangeslinked-summary'  => "Siin on loetletud määratud leheküljelt viidatud (või määratud kategooria) lehekülgedel tehtud viimased muudatused.
+Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile toodud.",
 'recentchangeslinked-page'     => 'Lehekülje nimi:',
 'recentchangeslinked-to'       => 'Näita hoopis muudatusi lehekülgedel, mis sellele lehele lingivad',
 
@@ -1649,8 +1649,7 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'emptyfile'                   => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
-'fileexists'                  => "Sellise nimega fail on juba olemas.
-Palun kontrollige '''<tt>[[:$1]]</tt>''', kui te ei ole kindel, kas tahate seda muuta.
+'fileexists'                  => "Sellise nimega fail on juba olemas. Palun vaata lehekülge '''<tt>[[:$1]]</tt>''', kui sa pole kindel, kas soovid seda muuta.
 [[$1|thumb]]",
 'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>[[:$1]]</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
 Sinu sisestatud kokkuvõtet ei kuvata kirjeldusleheküljel.
@@ -2276,7 +2275,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'protect-expiring'            => 'aegub $1 (UTC)',
 'protect-expiry-indefinite'   => 'määramatu',
 'protect-cascade'             => 'Kaitse lehekülgi, mis on lülitatud käesoleva lehekülje koosseisu (kaskaadkaitse)',
-'protect-cantedit'            => 'Te ei saa muuta selle lehekülje kaitstuse taset, sest Teile pole selleks luba antud.',
+'protect-cantedit'            => 'Sa ei saa lehekülje kaitsetaset muuta, sest sul puudub lehekülje redigeerimise õigus.',
 'protect-othertime'           => 'Muu aeg:',
 'protect-othertime-op'        => 'muu aeg',
 'protect-existing-expiry'     => 'Kehtiv aegumisaeg: $2 kell $3',
@@ -2570,14 +2569,13 @@ See tähendab, et kogemata ei saa üle kirjutada juba olemasolevat lehekülge, k
 Tegu võib olla väga loetava lehekülje jaoks tõsise ja ootamatu muudatusega;
 enne jätkamist teadvusta palun tagajärgi.",
 'movepagetalktext'             => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
-*liigutate lehekülge ühest nimeruumist teise,
-*uue nime all on juba olemas mittetühi arutelulehekülg või
-*jätate alumise kastikese märgistamata.
+*uue pealkirja all on juba arutelulehekülg, mis pole tühi;
+*jätad alloleva märkeruudu valimata.
 
-Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
+Neil juhtudel saad lehekülje soovi korral käsitsi teisaldada või liita.",
 'movearticle'                  => 'Teisalda lehekülg',
 'moveuserpage-warning'         => "'''Hoiatus:''' Oled teisaldamas kasutajalehekülge. Pane tähele, et teisaldatakse ainult lehekülg ja kasutajat '''ei''' nimetata ümber.",
-'movenologin'                  => 'Te ei ole sisse loginud',
+'movenologin'                  => 'Sisse logimata',
 'movenologintext'              => 'Lehekülje teisaldamiseks pead registreeruma ja [[Special:UserLogin|sisse logima]].',
 'movenotallowed'               => 'Sul ei ole lehekülgede teisaldamise õigust.',
 'movenotallowedfile'           => 'Sul ei ole failide teisaldamise õigust.',

@@ -15,6 +15,7 @@
  * @author Mormegil
  * @author Palica
  * @author Ragimiri
+ * @author Reedy
  * @author Rudko
  * @author Sp5uhe
  * @author Tchoř
@@ -716,7 +717,7 @@ Skontrolujte preklepy alebo sa [[Special:UserLogin/signup|zaregistrujte ako nov�
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
 'passwordtooshort'           => 'Heslo musí mať dĺžku aspoň $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'password-name-match'        => 'Vaše heslo musí byť iné ako vaše používateľské meno.',
-'password-too-weak'          => 'Zadané heslo je príliš slabé a nemožno ho použiť.',
+'password-login-forbidden'   => 'Použitie tohto používateľského mena a hesla bolo zakázané.',
 'mailmypassword'             => 'Pošlite mi e-mailom dočasné heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo pre {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'passwordremindertext'       => 'Niekto (pravdepodobne vy, z IP adresy $1)
@@ -757,6 +758,9 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 
 # JavaScript password checks
 'password-strength'            => 'Odhadovaná sila hesla: $1',
@@ -883,7 +887,7 @@ Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevan
 'noarticletext'                    => 'Na tejto stránke sa momentálne nenachádza žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} vyhľadávať v súvisiacich záznamoch],
-alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
+alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span>.',
 'noarticletext-nopermission'       => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
@@ -897,7 +901,11 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'                    => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
-'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
+'sitecsspreview'                   => "'''Nezabudnite, že toto je iba náhľad tohto CSS.'''
+'''Zatiaľ nebolo uložené!'''",
+'sitejspreview'                    => "'''Nezabudnite, že toto je iba náhľad tohto JavaScriptu.'''
+'''Zatiaľ nebol uložený!'''",
+'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/vector.css a nie {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Aktualizovaný)',
 'note'                             => "'''Poznámka: '''",
 'previewnote'                      => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
@@ -1165,7 +1173,7 @@ Pozrite sa prosím do záznamov.',
 'revmove-norevisions-title'    => 'Neplatná cieľová revízia',
 'revmove-norevisions'          => 'Buď ste neuviedli jednu alebo viac cieľových revízií alebo uvedená revízia neexistuje.',
 'revmove-nullmove-title'       => 'Chybný názov',
-'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „[[$1]]“.',
+'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do existujúcej stránky [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do novo vytvorenej stránky [[$3]].',
 
@@ -1286,7 +1294,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mypreferences'                 => 'nastavenia',
 'prefs-edits'                   => 'Počet úprav:',
 'prefsnologin'                  => 'Nie ste prihlásený/á',
-'prefsnologintext'              => 'Aby ste mohli zmeniť svoje nastavenia, musíte byť <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prihlásený].',
+'prefsnologintext'              => 'Aby ste mohli zmeniť svoje nastavenia, musíte byť <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prihlásený]</span>.',
 'changepassword'                => 'Zmeniť heslo',
 'prefs-skin'                    => 'Vzhľad',
 'skin-preview'                  => 'Náhľad',
@@ -2379,6 +2387,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Príspevky nových používateľov',
 'sp-contributions-blocklog'            => 'záznam blokovaní',
 'sp-contributions-deleted'             => 'zmazané príspevky používateľa',
+'sp-contributions-uploads'             => 'nahrané súbory',
 'sp-contributions-logs'                => 'záznamy',
 'sp-contributions-talk'                => 'diskusia',
 'sp-contributions-userrights'          => 'spravovanie používateľských práv',
@@ -2897,7 +2906,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'math_unknown_function' => 'neznáma funkcia',
 'math_lexing_error'     => 'lexikálna chyba',
 'math_syntax_error'     => 'syntaktická chyba',
-'math_image_error'      => 'PNG konverzia neúspešná; skontrolujte správnosť inštalácie programov: latex, dvips, gs a convert',
+'math_image_error'      => 'PNG konverzia neúspešná; skontrolujte správnosť inštalácie programov: latex a dvipng (alebo dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Nemožno zapisovať alebo vytvoriť dočasný matematický adresár',
 'math_bad_output'       => 'Nemožno zapisovať alebo vytvoriť výstupný matematický adresár',
 'math_notexvc'          => 'Chýbajúci program texvc; konfigurácia je popísaná v math/README.',
@@ -3417,6 +3426,7 @@ Tiež môžete [[Special:Watchlist/edit|použiť štandardný editor]].',
 'version-specialpages'             => 'Špeciálne stránky',
 'version-parserhooks'              => 'Prípojné body syntaktického analyzátora',
 'version-variables'                => 'Premenné',
+'version-skins'                    => 'Témy vzhľadu',
 'version-other'                    => 'Iné',
 'version-mediahandlers'            => 'Obsluha multimédií',
 'version-hooks'                    => 'Prípojné body',

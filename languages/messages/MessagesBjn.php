@@ -463,7 +463,6 @@ Muhun cubai pulang.',
 Muhun cubai pulang.',
 'passwordtooshort'           => 'Kata sunduk musti paling sadikit {{PLURAL:$1|1 karaktir|$1 karaktir}}.',
 'password-name-match'        => 'Kata sunduk Pian musri aabida lawan ngaran pamuruk Pian.',
-'password-too-weak'          => 'Katasunduk nang disadiakan talalu lamah wan kada kawa dipuruk',
 'mailmypassword'             => 'Kirimi kata sunduk hanyar',
 'passwordremindertitle'      => 'Kata sunduk samantara gasan {{SITENAME}}',
 'passwordremindertext'       => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah katasunduk hanyar gasan {{SITENAME}} ($4). sabuah katasunduk samantara gasan pamuruk "$2" sudah diulah wan disetel ka "$3". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Katasunduk samantara Pian akan kadaluarsa dalam {{PLURAL:$5|satu hari|$5 hahari}}.
@@ -498,6 +497,9 @@ Pian kawa kada mahual pasan ini, amun paulahan akun ini adalah kasalahan.',
 Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Manangguhi kakuatan katasunduk: $1',
@@ -637,8 +639,12 @@ Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 '''Nangini baluman tasimpan pulang!'''",
 'userjspreview'                    => "'''Ingatakan bahwasa Pian tis/manilik pamuruk JavaScript Pian.'''
 '''Nangini baluman tasimpan pulang!'''",
+'sitecsspreview'                   => "'''Ingatakan bahwasa Pian manilik CSS ini haja.'''
+'''Nangini lagi baluman tasimpan!'''",
+'sitejspreview'                    => "'''Ingatakan bahwasa Pian manilik JavaScript code ini haja.'''
+'''Nangini lagi baluman tasimpan!'''",
 'userinvalidcssjstitle'            => "'''Paringatan:''' Kadada kulit \"\$1\".
-Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus, cuntuh {{ns:user}}:Foo/monobook.css sawagai tandingan {{ns:user}}:Foo/Monobook.css.",
+Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus, cuntuh {{ns:user}}:Foo/vector.css sawagai tandingan {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Dihanyarakan)',
 'note'                             => "'''Catatan:'''",
 'previewnote'                      => "'''Ingatakanlah bahwasa ini titilikan haja nang balum disimpan!'''",
@@ -907,7 +913,7 @@ Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'revmove-norevisions'          => 'Pian balum manatapakan asa atawa labih ralatan tujuan gasan manjalanakan kagunaan atawa ralatan nang dibariakan kadada.',
 'revmove-nullmove-title'       => 'Judul buruk',
 'revmove-nullmove'             => 'Tungkaran dituju kada kawa sama lawan tungkangkaran asal mula.
-Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "[[$1]]".',
+Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang ada [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang hanyar diulah [[$3]].',
 
@@ -1173,6 +1179,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-reupload-own'         => 'Manulistindih barakas nang ada unggahan ulih urang nang sama',
 'right-upload_by_url'        => 'Hunggahakan babarakas matan sabuah URL',
 'right-autoconfirmed'        => 'Mambabak tutungkaran sami-dilindungi',
+'right-writeapi'             => 'Puruk panulisan API',
 'right-delete'               => 'Mahapus tungkaran',
 'right-bigdelete'            => 'Hapus tutungkaran awan hahalam ganal',
 'right-deletedhistory'       => 'Tiringi mamasukan halam tahapus, kada banaskah tarait',
@@ -1276,6 +1283,7 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'upload'              => 'Hunggahakan barakas',
 'uploadbtn'           => 'Hunggahakan barakas',
 'uploadnologin'       => 'Baluman babuat log',
+'uploadnologintext'   => 'Pian musti [[Special:UserLogin|babuat log]] amun handak mahunggah babarakas.',
 'uploaderror'         => 'Hunggah tasalah',
 'uploadlog'           => 'log hunggah',
 'uploadlogpage'       => 'Log mambuati',
@@ -1313,6 +1321,9 @@ Ririncian: $1',
 'destfilename'        => 'Ngaranbarakas tujuan:',
 'watchthisupload'     => 'Itihi barakas ini',
 'upload-success-subj' => 'Kulihan mahunggah',
+'upload-failure-subj' => 'Hunggah bamasalah',
+'upload-failure-msg'  => 'Ada sabauah masalah tadi tu pas Pian hunggah matan [$2]:
+$1',
 'upload-warning-subj' => 'Paringatan mahunggah',
 
 'upload-misc-error'   => 'Tasalah buat nang kada dipinandui',

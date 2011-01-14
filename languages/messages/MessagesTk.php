@@ -659,7 +659,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 'userjspreview'                    => "'''Bu ulanyjy JavaScriptiňiziň ýöne bir barlagy/deslapky syny.'''
 '''Ol heniz ýazdyrylan däldir!'''",
 'userinvalidcssjstitle'            => "''Duýduryş:''' \"\$1\" atly bezeg ýok.
-Hususy .css we .js sahypalarynyň setir harp bilen ýazylýandygyny ýatda saklaň, ýagny {{ns:user}}:Ulanyjy/Monobook.css däl-de, eýsem {{ns:user}}:Ulanyjy/monobook.css.",
+Hususy .css we .js sahypalarynyň setir harp bilen ýazylýandygyny ýatda saklaň, ýagny {{ns:user}}:Ulanyjy/Vector.css däl-de, eýsem {{ns:user}}:Ulanyjy/vector.css.",
 'updated'                          => '(Täzelenen)',
 'note'                             => "'''Bellik:'''",
 'previewnote'                      => "'''Bu bir ýöne deslapky syn. Üýtgeşmeleriňiz heniz ýazdyrylan däldir!'''",
@@ -931,7 +931,7 @@ Häzirki wagtda bar bolan blokirlemelriň sanawy üçin [[Special:IPBlockList|IP
 'revmove-norevisions-title'    => 'Nädogry niýetlenilýän wersiýa',
 'revmove-norevisions'          => 'Bu funksiýany ýerine ýetirmek üçin bir ýa-da birnäçe niýetlenilýän wersiýa görkezmediňiz ýa-da görkezilen wersiýa ýok.',
 'revmove-nullmove-title'       => 'Gelşiksiz at',
-'revmove-nullmove'             => 'Niýetlenilýän sahypa bilen çeşme sahypa birmeňzeş bolup bilmeýär. Yza dolanyp, "[[$1]]" arkaly başga bir sahypa adyny saýlaň.',
+'revmove-nullmove'             => 'Niýetlenilýän sahypa bilen çeşme sahypa birmeňzeş bolup bilmeýär. Yza dolanyp, "$1" arkaly başga bir sahypa adyny saýlaň.',
 'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} bar bolan [[$3]] sahypasyna geçirildi.',
 'revmove-success-created'      => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} täze döredilen [[$3]] sahypasyna geçirildi.',
 

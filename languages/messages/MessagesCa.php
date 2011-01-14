@@ -10,6 +10,7 @@
  * @author Aleator
  * @author Cedric31
  * @author Davidpar
+ * @author El libre
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -620,7 +621,7 @@ Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscu
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït estava en blanc. Torneu-ho a provar.",
 'passwordtooshort'           => "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
 'password-name-match'        => "La contrasenya ha de ser diferent al vostre nom d'usuari.",
-'password-too-weak'          => "La clau d'accés que heu proporcionat no és gaire segura i no es pot fer servir-la.",
+'password-login-forbidden'   => "No és permès d'utilitzar aquest nom d'usuari i contrasenya.",
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
 'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
@@ -657,6 +658,9 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
 'suspicious-userlogout'      => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
+
+# E-mail sending
+'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Força estimada de la contrasenya: $1',
@@ -786,12 +790,16 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
-'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per probar el vostre nou CSS abans de desar-lo.",
-'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per probar el vostre nou JavaScript abans de desar-lo.",
+'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
+'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
 '''Encara no s'ha desat!'''",
 'userjspreview'                    => "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",
-'userinvalidcssjstitle'            => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/monobook.css no és el mateix que {{ns:user}}:NOM/Monobook.css.",
+'sitecsspreview'                   => "'''Adoneu-vos que esteu veient una vista prèvia d'aquest full d'estil CSS.'''
+'''No n'hi ha estat encara gravada!'''",
+'sitejspreview'                    => "'''Adoneu-vos que esteu veient una vista prèvia d'aquest codi Javascript.'''
+'''No n'hi ha estat encara gravat!'''",
+'userinvalidcssjstitle'            => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/vector.css no és el mateix que {{ns:user}}:NOM/Vector.css.",
 'updated'                          => '(Actualitzat)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Açò només és una previsualització, els canvis de la qual encara no s'han desat!'''",
@@ -1056,7 +1064,7 @@ Si us plau, verifica els registres.",
 'revmove-norevisions-title'    => 'Revisió especificada no vàlida',
 'revmove-norevisions'          => 'No heu especificat una o més revisions on aplicar aquesta funció o bé les revisions especificades no existeixen.',
 'revmove-nullmove-title'       => 'Títol inadequat',
-'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «[[$1]]».",
+'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «$1».",
 'revmove-success-existing'     => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la pàgina existent [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la nova pàgina [[$3]].',
 
@@ -1095,7 +1103,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'difference-multipage'     => '(Diferència entre pàgines)',
 'lineno'                   => 'Línia $1:',
 'compareselectedversions'  => 'Compara les versions seleccionades',
-'showhideselectedversions' => 'Mostrar/ocultar les versions seleccionades',
+'showhideselectedversions' => 'Mostra/oculta les versions seleccionades',
 'editundo'                 => 'desfés',
 'diff-multi'               => '({{PLURAL:$1|Hi ha una revisió intermèdia |Hi ha $1 revisions intermèdies}} sense mostrar fetes per {{PLURAL:$2|un usuari|$2 usuaris}})',
 'diff-multi-manyusers'     => "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",
@@ -1152,7 +1160,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'showingresultsnum'                => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' de '''$3'''|Resultats '''$1 - $2''' de '''$3'''}} per '''$4'''",
 'nonefound'                        => "'''Nota''': Només se cerca en alguns espais de noms per defecte. Proveu d'afegir el prefix ''all:'' a la vostra consulta per a cercar a tot el contingut (incloent-hi les pàgines de discussió, les plantilles, etc.), o feu servir l'espai de noms on vulgueu cercar com a prefix.",
-'search-nonefound'                 => 'La búsqueda no ha produit cap resultat.',
+'search-nonefound'                 => 'La cerca no ha donat cap resultat.',
 'powersearch'                      => 'Cerca avançada',
 'powersearch-legend'               => 'Cerca avançada',
 'powersearch-ns'                   => 'Cerca als espais de noms:',
@@ -1253,7 +1261,7 @@ No es podrà desfer el canvi.',
 'prefs-memberingroups'          => 'Membre dels {{PLURAL:$1|grup|grups}}:',
 'prefs-registration'            => 'Hora de registre:',
 'yourrealname'                  => 'Nom real *',
-'yourlanguage'                  => 'Llengua:',
+'yourlanguage'                  => 'Idioma:',
 'yourvariant'                   => 'Variant lingüística:',
 'yournick'                      => 'Signatura:',
 'prefs-help-signature'          => "Els comentaris a les pàgines d'usuari s'han de signar amb \"<nowiki>~~~~</nowiki>\", que serà convertit en la vostra signatura i la data i l'hora.",
@@ -1393,6 +1401,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Envia un correu electrònic a altres usuaris.',
 'right-revisionmove'          => 'Moure revisions',
+'right-disableaccount'        => 'Deshabilita comptes',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -2259,6 +2268,7 @@ $1",
 'sp-contributions-newbies-title'       => "Contribucions dels comptes d'usuari més nous",
 'sp-contributions-blocklog'            => 'Registre de bloquejos',
 'sp-contributions-deleted'             => "contribucions d'usuari esborrades",
+'sp-contributions-uploads'             => 'pujades',
 'sp-contributions-logs'                => 'registres',
 'sp-contributions-talk'                => 'discussió',
 'sp-contributions-userrights'          => "gestió de drets d'usuari",
@@ -2556,7 +2566,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'allmessages-filter-all'        => 'Tots',
 'allmessages-filter-modified'   => 'Modificat',
 'allmessages-prefix'            => 'Filtra per prefix:',
-'allmessages-language'          => 'Llengua:',
+'allmessages-language'          => 'Idioma:',
 'allmessages-filter-submit'     => 'Vés-hi',
 
 # Thumbnails
@@ -3268,6 +3278,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'version-specialpages'             => 'Pàgines especials',
 'version-parserhooks'              => "Extensions de l'analitzador",
 'version-variables'                => 'Variables',
+'version-skins'                    => 'Aparences',
 'version-other'                    => 'Altres',
 'version-mediahandlers'            => 'Connectors multimèdia',
 'version-hooks'                    => 'Lligams',
@@ -3389,5 +3400,14 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
+
+# Special:DisableAccount
+'disableaccount'             => "Deshabilita un compte d'usuari/a",
+'disableaccount-user'        => "Nom d'usuari/a :",
+'disableaccount-reason'      => 'Raó:',
+'disableaccount-mustconfirm' => 'Has de confirmar que vols desactivar aquest compte.',
+'disableaccount-nosuchuser'  => 'El compte d\'usuari/a "$1" no existeix.',
+'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',
+'disableaccount-logentry'    => "permanentment deshabilitat el compte d'usuari/a  [[$1]]",
 
 );

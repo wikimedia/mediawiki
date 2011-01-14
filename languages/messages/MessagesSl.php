@@ -353,7 +353,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'variants'                       => 'Različice',
 
 'errorpagetitle'    => 'Napaka',
-'returnto'          => 'Vrnitev na $1.',
+'returnto'          => 'Vrnite se na $1.',
 'tagline'           => 'Iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'help'              => 'Pomoč',
 'search'            => 'Iskanje',
@@ -624,7 +624,7 @@ Preverite črkovanje.',
 'wrongpasswordempty'         => 'Vpisali ste prazno geslo. Prosimo, poskusite znova.',
 'passwordtooshort'           => 'Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.',
 'password-name-match'        => 'Vaše geslo se mora razlikovati od vašega uporabniškega imena.',
-'password-too-weak'          => 'Navedeno geslo je prešibko in ga ni mogoče uporabiti.',
+'password-login-forbidden'   => 'Uporaba tega uporabniškega imena in gesla je prepovedana.',
 'mailmypassword'             => 'Pošlji mi novo geslo',
 'passwordremindertitle'      => 'Novo začasno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
 'passwordremindertext'       => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval novo
@@ -734,7 +734,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'showlivepreview'                  => 'Predogled v živo',
 'showdiff'                         => 'Prikaži spremembe',
 'anoneditwarning'                  => "'''Opozorilo''': niste prijavljeni. V zgodovino strani se bo zapisal vaš IP-naslov.",
-'anonpreviewwarning'               => 'Niste prijavljeni. Ob spremembi strani se bo vaš IP naslov zapisal v zgodovini urejanja te strani.',
+'anonpreviewwarning'               => 'Niste prijavljeni. Ob spremembi strani se bo vaš IP-naslov zapisal v zgodovini urejanja te strani.',
 'missingsummary'                   => "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 'missingcommenttext'               => 'Prosimo, vpišite v spodnje polje komentar.',
 'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.
@@ -807,8 +807,12 @@ Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 '''Ni še bil shranjen!'''",
 'userjspreview'                    => "'''Ne pozabite, da svoj uporabniški JavaScript le preizkušate/predogledujete.'''
 '''Ni še bil shranjen!'''",
+'sitecsspreview'                   => "'''Ne pozabite, da ta CSS samo preizkušate.'''
+'''Ni še bil shranjen!'''",
+'sitejspreview'                    => "'''Ne pozabite, da kodo tega JavaScripta samo preizkušate.'''
+'''Ni še bila shranjena!'''",
 'userinvalidcssjstitle'            => "'''Opozorilo:''' Koža »$1« ne obstaja.
-Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/monobook.css namesto {{ns:user}}:Blabla/Monobook.css.",
+Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/vector.css namesto {{ns:user}}:Blabla/Vector.css.",
 'updated'                          => '(Posodobljeno)',
 'note'                             => "'''Opomba:'''",
 'previewnote'                      => "'''Stran le predogledujete in še ni shranjena!'''",
@@ -1073,7 +1077,7 @@ Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno a
 'revmove-norevisions-title'    => 'Neveljavna ciljna redakcija',
 'revmove-norevisions'          => 'Niste določili ene ali več ciljnih redakcij za izvedbo te funkcije ali pa izbrana redakcija ne obstaja.',
 'revmove-nullmove-title'       => 'Nepravilen naslov',
-'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »[[$1]]«.',
+'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »$1«.',
 'revmove-success-existing'     => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na obstoječo stran [[$3]].',
 'revmove-success-created'      => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na novo ustvarjeno stran [[$3]].',
 
@@ -1559,7 +1563,7 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'filename-tooshort'           => 'Ime datoteke je prekratko',
 'filetype-banned'             => 'Ta vrsta datoteke je prepovedana',
 'verification-error'          => 'Ta datoteka ni opravila preverjanja datoteke',
-'hookaborted'                 => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev',
+'hookaborted'                 => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev.',
 'illegal-filename'            => 'Ime datoteke ni dovoljeno',
 'overwrite'                   => 'Prepisovanje obstoječe datoteke ni dovoljeno',
 'unknown-error'               => 'Prišlo je do neznane napake',
@@ -2804,8 +2808,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'math_unknown_function' => 'neznana funkcija',
 'math_lexing_error'     => 'slovarska napaka',
 'math_syntax_error'     => 'skladenjska napaka',
-'math_image_error'      => 'Pretvarjanje v PNG ni uspelo;
-preverite, ali so latex, dvips, gs, in convert pravilno nameščeni.',
+'math_image_error'      => 'Pretvarjanje v PNG ni uspelo; preverite, ali sta latex in dvips (ali dvips + gs + convert) pravilno nameščena.',
 'math_bad_tmpdir'       => 'Začasne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_bad_output'       => 'Izhodne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_notexvc'          => 'Manjka izvedbena datoteka texvc;

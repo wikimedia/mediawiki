@@ -13,6 +13,7 @@
  * @author Kaustubh
  * @author Kobazulo
  * @author Malafaya
+ * @author Reedy
  * @author Theklan
  * @author Unai Fdz. de Betoño
  * @author Urhixidur
@@ -263,7 +264,7 @@ $messages = array(
 'about'         => 'Honi Buruz',
 'article'       => 'Artikulua',
 'newwindow'     => '(leiho berrian irekitzen da)',
-'cancel'        => 'Bertan behera utzi',
+'cancel'        => 'Utzi',
 'moredotdotdot' => 'Gehiago...',
 'mypage'        => 'Nire orrialdea',
 'mytalk'        => 'Nire eztabaida',
@@ -623,7 +624,7 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'resetpass_forbidden'       => 'Ezin dira pasahitzak aldatu',
 'resetpass-no-info'         => 'Orrialde honetara zuzenean sartzeko izena eman behar duzu.',
 'resetpass-submit-loggedin' => 'Pasahitza aldatu',
-'resetpass-submit-cancel'   => 'Bertan behera utzi',
+'resetpass-submit-cancel'   => 'Utzi',
 'resetpass-wrong-oldpass'   => 'Behin-behineko edo oraintxuko pasahitza ez da baliagarria.
 Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat eskatu duzu.',
 'resetpass-temp-password'   => 'Behin-behineko pasahitza:',
@@ -734,7 +735,7 @@ Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
 '''Oraindik gorde gabe dago!'''",
 'userjspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
-'userinvalidcssjstitle'            => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/monobook.css, eta ez {{ns:user}}:Adibide/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/vector.css, eta ez {{ns:user}}:Adibide/Vector.css.",
 'updated'                          => '(Eguneratua)',
 'note'                             => "'''Oharra:'''",
 'previewnote'                      => "'''Gogoratu hau aurreikusketa bat dela, beraz gorde egin beharko duzu!'''",
@@ -1104,7 +1105,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'mypreferences'                 => 'Nire hobespenak',
 'prefs-edits'                   => 'Aldaketa kopurua:',
 'prefsnologin'                  => 'Saioa hasi gabe',
-'prefsnologintext'              => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman] behar duzu zure hobespenak ezartzeko.',
+'prefsnologintext'              => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman]</span> behar duzu zure hobespenak ezartzeko.',
 'changepassword'                => 'Pasahitza aldatu',
 'prefs-skin'                    => 'Itxura',
 'skin-preview'                  => 'Aurrebista',
@@ -2151,6 +2152,7 @@ $1',
 'sp-contributions-newbies-title'  => 'Lankideen ekarpenak lankide berrietn',
 'sp-contributions-blocklog'       => 'Blokeaketa erregistroa',
 'sp-contributions-deleted'        => 'lankide-ekarpen ezabatuak',
+'sp-contributions-uploads'        => 'igoerak',
 'sp-contributions-logs'           => 'erregistroak',
 'sp-contributions-talk'           => 'eztabaida',
 'sp-contributions-userrights'     => 'erabiltzaile-baimenen kudeaketa',

@@ -9,6 +9,7 @@
  *
  * @author Chaojoker
  * @author Pandukht
+ * @author Reedy
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
@@ -842,7 +843,7 @@ $2',
 Նման IP-հասցեից կարող են օգտվել մի քանի մասնակիցներ։
 Եթե դուք անանուն մասնակից եք, բայց կարծում եք, որ ուրիշներին վերաբերող դիտողությունները արվում են ձեր հասցեով, ապա խնդրում ենք պարզապես [[Special:UserLogin/signup|գրանցվել]] կամ [[Special:UserLogin|մտնել համակարգ]], որպեսզի հետագայում ձեզ չշփոթեն այլ անանուն մասնակիցների հետ։''",
 'noarticletext'                    => 'Ներկայումս այս էջում որևէ տեքստ չկա։
-Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]։',
+Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission'       => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանունը]] այլ էջերում կամ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել այն տեղեկամատյաններում]</span>.',
 'userpage-userdoesnotexist'        => '«$1» անվանմամբ մասնակից գոյություն չունի։
@@ -857,7 +858,7 @@ $2',
 'userjsyoucanpreview'              => "'''Հուշում.''' Էջը հիշելուց առաջ օգտվեք նախադիտման կոճակից՝ ձեր նոր JS-ֆայլը ստուգելու համար։",
 'usercsspreview'                   => "'''Նկատի ունեցեք, որ դուք միայն նախադիտում եք ձեր մասնակցի CSS-ֆայլը. այն դեռ հիշված չէ՛։'''",
 'userjspreview'                    => "'''Նկատի ունեցեք, որ դուք միայն նախադիտում եք ձեր մասնակցի JavaScript-ֆայլը. այն դեռ հիշված չէ՛։'''",
-'userinvalidcssjstitle'            => "'''Զգուշացում.''' «$1» տեսք չի գտնվել։ Ի նկատի ունեցեք, որ մասնակցային .css և .js էջերը ունեն փոքրատառ անվանումներ, օր.՝ «{{ns:user}}:Ոմն/monobook.css», և ոչ թե «{{ns:user}}:Ոմն/Monobook.css»։",
+'userinvalidcssjstitle'            => "'''Զգուշացում.''' «$1» տեսք չի գտնվել։ Ի նկատի ունեցեք, որ մասնակցային .css և .js էջերը ունեն փոքրատառ անվանումներ, օր.՝ «{{ns:user}}:Ոմն/vector.css», և ոչ թե «{{ns:user}}:Ոմն/Vector.css»։",
 'updated'                          => '(Թարմացված)',
 'note'                             => "'''Ծանուցում.'''",
 'previewnote'                      => "'''Սա միայն նախադիտումն է. ձեր կատարած փոփոխությունները դեռ չե՛ն հիշվել։'''",

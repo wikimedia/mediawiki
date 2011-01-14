@@ -461,7 +461,6 @@ Aapan spelling check karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
 'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
 'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
-'password-too-weak'          => 'Dewa gais password bahut kamjor hae aur kaam me lawa nai jaae sake hae.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi (hoe sake hai aap, IP address $1 se)
@@ -499,6 +498,9 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 
 # JavaScript password checks
 'password-strength'            => 'Password ke lambai pe anumaan: $1',
@@ -641,8 +643,12 @@ Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:'
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai.
 Iske abhi save nai karaa gais hai!'''",
 'userjspreview'                    => "'''Yaad rakhna ki aap khali aapan JavaScript ke testing/previewing  karta hai, iske abhi save nai karaa gais hai!'''",
+'sitecsspreview'                   => " '''Yaad rakhna ki aap ii CSS ke khaali preview kartaa hae.'''
+'''Iske abhi talak bachawa nai gais hae!'''",
+'sitejspreview'                    => " '''Yaad rakhna ki aap ii JavaScript code ke khaali preview kartaa hae.'''
+'''Iske abhi talak bachawa nai gais hae!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' Koi skin \"\$1\" nai hai.
-Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/monobook.css aur{{ns:user}}:Foo/Monobook.css nai.",
+Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
 'note'                             => "'''Dhyan rakkho:'''",
 'previewnote'                      => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",
@@ -912,7 +918,7 @@ Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] k
 'revmove-norevisions'          => 'Ii chij kare ke khatir aap ek nai to jaada balao ke manzil ke naam nai dia hae, nai to dewa gais naam waala badlao nai hae.',
 'revmove-nullmove-title'       => 'Kharaab naam',
 'revmove-nullmove'             => 'Manzil waala panna, pahile waala panna ke rakam nai hoe ke chaahi.
-Pahile waala panna pe jaae ke "[[$1]]" me se duusra naam ke chuno.',
+Pahile waala panna pe jaae ke "$1" me se duusra naam ke chuno.',
 'revmove-success-existing'     => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} abhi ke panna,  [[$3]], me kar dewa gais hae.',
 'revmove-success-created'      => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} nawaa panna,  [[$3]], me kar dewa gais hae.',
 
@@ -1254,6 +1260,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 'right-revisionmove'          => 'Badlao ke naam badlo',
+'right-disableaccount'        => 'Sab account ke band karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1644,6 +1651,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-edits'             => '{{SITENAME}} ke suruu hoe se panna ke badlao',
 'statistics-edits-average'     => 'Average badlao per panna',
 'statistics-views-total'       => 'Views kul jorr',
+'statistics-views-total-desc'  => 'Jon pana abhi banawa nai gais hae aur khaas panna ke include nai karaa gais hae',
 'statistics-views-peredit'     => 'Views per badlao',
 'statistics-users'             => 'Registered [[Special:ListUsers|sadasya]]',
 'statistics-users-active'      => 'Active sadasya',
@@ -2143,6 +2151,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Nawaa account ke sadasya ke yogdaan',
 'sp-contributions-blocklog'            => 'Suchi roko',
 'sp-contributions-deleted'             => 'Mitawa gais adasya ke yogdaan',
+'sp-contributions-uploads'             => 'upload karaa gais file',
 'sp-contributions-logs'                => 'logs',
 'sp-contributions-talk'                => 'baat',
 'sp-contributions-userrights'          => 'sadasya ke adhikaar ke manage karo',
@@ -2769,6 +2778,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-lightsource'                 => 'Ujala ke soti',
 'exif-flash'                       => 'Chamak',
 'exif-focallength'                 => 'Lens ke focal length',
+'exif-subjectarea'                 => 'Vishay ke jagha',
 'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
 'exif-gpsaltitude'                 => 'Uunchai',
@@ -2906,5 +2916,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'Sadasya ke naam:',
+'disableaccount-reason'     => 'Kaaran',
+'disableaccount-nosuchuser' => 'Sadasya account "$1" nai hae.',
 
 );

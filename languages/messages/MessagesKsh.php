@@ -9,6 +9,7 @@
  *
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
+ * @author Reedy
  */
 
 /**
@@ -919,7 +920,7 @@ un em '''Konqueror''': ''F5'' —
 et ess en bunte Welt!",
 'userinvalidcssjstitle'            => '<strong>Opjepass:</strong> Et jitt kein Ussinn met däm Name: „<strong>$1</strong>“ -
 denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die met kleine Buchstave
-aanfange dun, alsu etwa: {{ns:user}}:Name/monobook.css, un {{ns:user}}:Name/monobook.js heiße.',
+aanfange dun, alsu etwa: {{ns:user}}:Name/vector.css, un {{ns:user}}:Name/vector.js heiße.',
 'updated'                          => '(Aanjepack)',
 'note'                             => "'''Opjepass:'''",
 'previewnote'                      => "'''Heh kütt nor de Vör-Aansich - Ding Änderunge sin noch nit jesechert!'''",
@@ -1195,7 +1196,7 @@ Jang retuur, un donn_et norr_ens probeere.',
 'revmove-norevisions-title'    => 'Enem Ziel sing Version es nit jöltesch',
 'revmove-norevisions'          => 'Do häs kein Version udder Versione ußjesoht, udder di aanjejovve Version udder Versione jidd_et nit.',
 'revmove-nullmove-title'       => 'Dä Tittel es onjöltesch',
-'revmove-nullmove'             => 'Mer kann kein Version vun ein Sigg op desellve Sigg ömträcke. Jangk retuur un söhk en annder Sigg uß, wi „[[$1]]“.',
+'revmove-nullmove'             => 'Mer kann kein Version vun ein Sigg op desellve Sigg ömträcke. Jangk retuur un söhk en annder Sigg uß, wi „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Ein Version|$1 Versione|Kei Version}} vun dä Sigg „[[$2]]“ {{PLURAL:$1|es|sin|wood}} noh dä Sigg „[[$3]]“ ömjetrocke{{PLURAL:$1|&#32;woode|&#32;woode|}}, di et allerdengs alld joof.',
 'revmove-success-created'      => '{{PLURAL:$1|Ein Version|$1 Versione|Kei Version}} vun dä Sigg „[[$2]]“ {{PLURAL:$1|es|sin|wood}} noh dä neu aanjelaate Sigg „[[$3]]“ ömjetrocke{{PLURAL:$1|&#32;woode.|&#32;woode.|.}}',
 
@@ -1849,7 +1850,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'listfiles_search_for'  => 'Sök noh däm Name vun dä Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateie opleste',
-'listfiles_date'        => 'Datum',
+'listfiles_date'        => 'Dattum',
 'listfiles_name'        => 'Name',
 'listfiles_user'        => 'Metmaacher',
 'listfiles_size'        => 'Byte',
@@ -3520,7 +3521,7 @@ De kanns Ding Oppassliss och [[Special:Watchlist/raw|en rüh beärbeide]].',
 Öm einzel Titelle loss ze wääde, kanns de de Reije met inne eruß schmieße, ov leddich maache.
 Öm neu Titelle  dobei ze don, schriev neu Reije dobei. Jede Titel moß en en Reih för sijj_allein shtonn.
 Wanns De fädig bes, dann deuß De dä Knopp „{{int:Watchlistedit-raw-submit}}“.
-Natörlech kanns De di Liss och — met Dingem Brauser singe ''<span lang=\"\"en\">Copy&amp;Paste</span>''-Funkßjohn — komplett kopeere odder ußtuusche.
+Natörlech kanns De di Liss och — met Dingem Brauser singe ''<span lang=\"en\">Copy&amp;Paste</span>''-Funkßjohn — komplett kopeere odder ußtuusche.
 De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa met Kässjer un Hökscher beärbeide]].",
 'watchlistedit-raw-titles'     => 'Endräch:',
 'watchlistedit-raw-submit'     => 'Oppassliss neu fasshallde',
@@ -3608,7 +3609,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 # Special:SpecialPages
 'specialpages'                   => '{{int:nstab-special}}e',
 'specialpages-note'              => "<h4 class='mw-specialpagesgroup'>Lejänd (Äklierong):</h4><table style='width:100%;' class='mw-specialpages-table'><tr><td valign='top'><ul><li> {{int:nstab-special}}e för jede Metmaacher
-</li><li class='mw-specialpages-page mw-specialpagerestricted'>{{int:nstab-special}}e för Metmaacher met besönder Räächte
+</li><li class='mw-specialpagerestricted'>{{int:nstab-special}}e för Metmaacher met besönder Räächte
 </li></ul></td></tr></table>",
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',

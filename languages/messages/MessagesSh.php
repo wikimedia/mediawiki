@@ -477,7 +477,6 @@ Molimo Vas da pokušate ponovno.',
 Molimo Vas da pokušate ponovno.',
 'passwordtooshort'           => 'Lozinka mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
 'password-name-match'        => 'Vaša lozinka mora biti različita od Vašeg korisničkog imena.',
-'password-too-weak'          => 'Dana lozinka je previše slaba i ne može se koristiti.',
 'mailmypassword'             => 'Pošalji mi novu lozinku putem E-maila',
 'passwordremindertitle'      => 'Nova privremena lozinka za {{SITENAME}}',
 'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite šifru.
@@ -661,7 +660,7 @@ Posljednje stavke evidencije blokiranja možete pogledati ispod:',
 'userjspreview'                    => "'''Zapamite da je ovo samo test/pretpregled Vaše JavaScript-e.'''
 '''Još uvijek nije snimljena!'''",
 'userinvalidcssjstitle'            => "'''Upozorenje:''' Ne postoji interfejs (skin) pod imenom \"\$1\".
-Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/monobook.css, a ne {{ns:user}}:Foo/Monobook.css.",
+Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Osvježeno)',
 'note'                             => "'''Napomena:'''",
 'previewnote'                      => "'''Upamtite da je ovo samo pretpregled.'''
@@ -930,7 +929,7 @@ Molimo provjerite zapise.',
 'revmove-norevisions-title'    => 'Nevaljana ciljna revizija',
 'revmove-norevisions'          => 'Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.',
 'revmove-nullmove-title'       => 'Loš naslov',
-'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "[[$1]]".',
+'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} postojeće stranice [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} na novonapravljenu stranicu [[$3]].',
 

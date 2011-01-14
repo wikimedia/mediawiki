@@ -9,6 +9,7 @@
  *
  * @author Hercule
  * @author O
+ * @author Reedy
  * @author Wu-chinese.com
  */
 
@@ -568,7 +569,7 @@ $2',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '侬必须$1再好查看其它页面。',
 'accmailtitle'                     => '密码已发送哉。',
-'accmailtext'                      => " 已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
+'accmailtext'                      => "已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
 
 登录之后，侬可以垃拉 ''[[Special:ChangePassword|箇只页面]]''更改密码。",
 'newarticle'                       => '（新）',
@@ -594,7 +595,7 @@ $2',
 '''还弗曾保存！'''",
 'userjspreview'                    => "'''注意侬只是垃许测试／预览侬个 JavaScript。'''
 '''还弗曾保存！'''",
-'userinvalidcssjstitle'            => "'''警告：''' 弗存在皮肤\"\$1\"。注意自定义个 .css 搭 .js 页要使用小写标题，譬如，{{ns:user}}:Foo/monobook.css 弗同于 {{ns:user}}:Foo/Monobook.css。",
+'userinvalidcssjstitle'            => "'''警告：''' 弗存在皮肤\"\$1\"。注意自定义个 .css 搭 .js 页要使用小写标题，譬如，{{ns:user}}:Foo/vector.css 弗同于 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''该个还只是预览；改动还朆保存！'''",
@@ -852,7 +853,7 @@ $1",
 'revmove-norevisions'          => '侬还弗曾指定一只或者多只目标修订版本去完成箇只功能或者指定修订版本弗存在。',
 'revmove-nullmove-title'       => '箇只标题弗来三',
 'revmove-nullmove'             => '目标页面弗可以搭来源页面相同。
-请回转先前个页面再输入搭 "[[$1]]" 两样个名字。',
+请回转先前个页面再输入搭 "$1" 两样个名字。',
 'revmove-success-existing'     => '[[$2]]里向个{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现在只页面[[$3]]。',
 'revmove-success-created'      => '[[$2]]里向个{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建页面[[$3]]。',
 
@@ -1323,7 +1324,7 @@ $1",
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '到期辰光无效。',
 'protect_expiry_old'          => '到期辰光已经过去哉。',
-'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki>< /strong>个保护级别。',
+'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki></strong>个保护级别。',
 'protect-locked-access'       => '侬个账户权限弗好修改保护级别。
 下底是<strong>$1</strong>箇歇个保护级别：',
 'protect-cascadeon'           => '下底个{{PLURAL:$1|一只|多只}}页面包含 本页面个同时，启动了连锁保护，因此本页面目前也拨保护拉许，弗好编辑。侬可以设置本页面个保护级别，但箇个并弗会对连锁保护有所影响。',

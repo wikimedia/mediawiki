@@ -9,6 +9,7 @@
  *
  * @author Ahloubadar
  * @author Ibou
+ * @author Reedy
  * @author SF-Language
  * @author Urhixidur
  */
@@ -639,7 +640,7 @@ Baatujàllub bii jëfandikukat bu bees man nga ko soppi ci ''[[Special:ChangePas
 Kon ngir xàmmee ko fàw nga jëfandikoo màkkaanub IP wam. Te màkkaanub IP jëfandikukat yu bari man nañ koo bokk.
 Su fekkee jëfandikukatu alaxam nga, te nga gis ne dees laa féetale ay kàddu yoo moomul, ngalla [[Special:UserLogin|bindu]] walla [[Special:UserLogin|dugg]] ngir benn jaxase bañatee am ëllëg .''",
 'noarticletext'                    => 'Fi mu ne ni amul menn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|seet koju xët wi]] ci yeneen xët, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} seet ci xëtu jagleel wi ],
-walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
+walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii]</span>.',
 'noarticletext-nopermission'       => 'Nii-nii amul menn mbind ci wii xët.
 Man nga [[Special:Search/{{PAGENAME}}|seet bii koj]] ci yeneen xët,
 walla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nga seet ci yéenekaay yees ko féetaleel]</span>.',
@@ -649,7 +650,7 @@ walla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userjsyoucanpreview'              => "'''Xelal :''' di la digël nga cuq ci «Wonendi» ngir gis say xobi CSS walla JavaScript yu bees laata nga leen di denc.",
 'usercsspreview'                   => "Bul fatte ne lii wonendib sa CSS rekk la; dencagoo say coppite!'''",
 'userjspreview'                    => "'''Bul fatte ne lii ab wonendib sa yoonu javaScript rekk la; dencagoo say coppite!'''",
-'userinvalidcssjstitle'            => "'''Moytul :''' amul genn col gu tudd « $1 ». Bul fatte ne xët yiy jeexee .css ak .js seeni koj ay araf yu tuut ñoo ciy tegu/.<br />ci misaal, {{ns:user}}:Foo/'''m'''onobook.css moo baax, waaye bii du baax {{ns:user}}:Foo/'''M'''onobook.css .",
+'userinvalidcssjstitle'            => "'''Moytul :''' amul genn col gu tudd « $1 ». Bul fatte ne xët yiy jeexee .css ak .js seeni koj ay araf yu tuut ñoo ciy tegu/.<br />ci misaal, {{ns:user}}:Foo/'''v'''ector.css moo baax, waaye bii du baax {{ns:user}}:Foo/'''V'''ector.css .",
 'updated'                          => '(bees na)',
 'note'                             => "'''Karmat :'''",
 'previewnote'                      => "'''Lii ab wonendi rekk la; coppite yi ci xët wi dencagoo leen!'''",
@@ -2135,7 +2136,7 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 'nostalgia.css'   => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Nostalgia  */',
 'cologneblue.css' => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Cologne Blue */',
 'monobook.css'    => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Monobook. */',
-'myskin.css'      => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Myskin */',
+'myskin.css'      => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu MySkin */',
 'chick.css'       => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Chick */',
 'simple.css'      => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Simple */',
 'modern.css'      => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Modern */',
@@ -2146,7 +2147,7 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 'nostalgia.js'   => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Nostalgia keppa koy yeb */',
 'cologneblue.js' => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Cologne Blue keppa koy yeb */',
 'monobook.js'    => '/*Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Monobook keppa koy yeb. */',
-'myskin.js'      => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Myskin keppa koy yeb */',
+'myskin.js'      => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu MySkin keppa koy yeb */',
 'chick.js'       => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Chick keppa koy yeb */',
 'simple.js'      => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Simple keppa koy yeb*/',
 'modern.js'      => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Modern keppa koy yeb */',

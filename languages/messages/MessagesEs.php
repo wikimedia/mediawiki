@@ -758,7 +758,6 @@ Revisa la ortografía, o [[Special:UserLogin/signup|crea una nueva cuenta]].',
 Por favor, inténtalo de nuevo.',
 'passwordtooshort'           => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
-'password-too-weak'          => 'La contraseña proporcionada es demasiado débil y no puede ser usada.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
@@ -796,6 +795,9 @@ Puedes ignorar este mensaje si esta cuenta fue creada erróneamente.',
 'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Su solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido envidada desde un navegador defectuoso o un proxy caché.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Dificultad estimada de la contraseña: $1',
@@ -938,7 +940,11 @@ La última entrada del registro de bloqueos es provista debajo para mayor refere
 'usercsspreview'                   => "'''Recuerda que sólo está previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo estás previsualizando tu javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/monobook.css en vez de {{ns:user}}:Ejemplo/Monobook.css.",
+'sitecsspreview'                   => "'''Recuerda que sólo estás previsualizando este CSS'''
+'''¡Aún no se ha grabado!'''",
+'sitejspreview'                    => "''' Recordar que sólo estás previsualizando este código JavaScript.'' '
+'' ¡Aún no se ha guardado!'' '",
+'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''¡Recuerda que esto es sólo una previsualización y aún no se ha grabado!'''",
@@ -1201,7 +1207,7 @@ Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de 
 'revmove-norevisions-title'    => 'Revisión especificada inválida',
 'revmove-norevisions'          => 'No has especificado una o más revisiones para realizar esta función o la revisión especificada no existe.',
 'revmove-nullmove-title'       => 'Título incorrecto',
-'revmove-nullmove'             => 'Las páginas fuente y destino son idénticas. Por favor presione "atrás" e ingrese un nombre de página diferente a "[[$1]]".',
+'revmove-nullmove'             => 'Las páginas fuente y destino son idénticas. Por favor presione "atrás" e ingrese un nombre de página diferente a "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Una revisión de [[$2]] ha|$1 revisiones de [[$2]] han}} sido movida{{PLURAL:$1||s}} a la página existente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revisión de [[$2]] ha|$1 revisiones de [[$2]] han}} sido movida{{PLURAL:$1||s}} a la página recién creada [[$3]].',
 
@@ -1407,7 +1413,7 @@ Esto no puede ser deshecho.',
 'yournick'                      => 'Nueva firma:',
 'prefs-help-signature'          => 'Los comentarios en páginas de discusión deberían estar firmados con "<nowiki>~~~~</nowiki>", que se convertirá en tu firma y fecha.',
 'badsig'                        => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
-'badsiglength'                  => 'La firma es muy larga. Debe contener un máximo de {{PLURAL:$1|un caracter|$1 caracteres}}.',
+'badsiglength'                  => 'La firma es muy larga. Debe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.',
 'yourgender'                    => 'Género:',
 'gender-unknown'                => 'Sin especificar',
 'gender-male'                   => 'Masculino',
@@ -1541,6 +1547,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 'right-revisionmove'          => 'Mover revisiones',
+'right-disableaccount'        => 'Deshabilitar cuentas',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -1560,8 +1567,8 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'action-move-rootuserpages'   => 'mover páginas del usuario raíz',
 'action-movefile'             => 'mover este archivo',
 'action-upload'               => 'subir este archivo',
-'action-reupload'             => 'remplazar este archivo existente',
-'action-reupload-shared'      => 'remplazar este archivo existente en un depósito compartido',
+'action-reupload'             => 'reemplazar este archivo existente',
+'action-reupload-shared'      => 'reemplazar este archivo existente en un depósito compartido',
 'action-upload_by_url'        => 'subir este archivo desde una dirección URL',
 'action-writeapi'             => 'utilizar el API de escritura',
 'action-delete'               => 'borrar esta página',
@@ -2412,6 +2419,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribuciones de usuarios nuevos',
 'sp-contributions-blocklog'            => 'registro de bloqueos',
 'sp-contributions-deleted'             => 'contribuciones de usuario borradas',
+'sp-contributions-uploads'             => 'subidas',
 'sp-contributions-logs'                => 'registros',
 'sp-contributions-talk'                => 'discusión',
 'sp-contributions-userrights'          => 'administración de derechos de usuarios',
@@ -2628,7 +2636,7 @@ Por favor, elige otro nombre.',
 'move-subpages'                => 'Intentar trasladar las subpáginas (hasta $1)',
 'move-talk-subpages'           => 'Intentar trasladar las subpáginas de discusión (hasta $1)',
 'movepage-page-exists'         => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
-'movepage-page-moved'          => 'La página $1 ha sido trasladado a $2.',
+'movepage-page-moved'          => 'La página $1 ha sido trasladada a $2.',
 'movepage-page-unmoved'        => 'La página $1 no se ha podido trasladar a $2.',
 'movepage-max-pages'           => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
 '1movedto2'                    => '[[$1]] trasladada a [[$2]]',
@@ -3419,6 +3427,7 @@ También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'version-specialpages'             => 'Páginas especiales',
 'version-parserhooks'              => 'Extensiones del analizador sintáctico',
 'version-variables'                => 'Variables',
+'version-skins'                    => 'Pieles',
 'version-other'                    => 'Otro',
 'version-mediahandlers'            => 'Manejadores multimedia',
 'version-hooks'                    => 'Extensiones',
@@ -3540,5 +3549,18 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para búsqueda de texto completo',
 'sqlite-no-fts'  => '$1 sin soporte para búsqueda de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deshabilitar una cuenta de usuario',
+'disableaccount-user'        => 'Nombre de usuario:',
+'disableaccount-reason'      => 'Razón:',
+'disableaccount-confirm'     => "Deshabilitar esta cuenta de usuario.
+El usuario no podrá iniciar sesión, restablecer su contraseña o recibir notificaciones por correo electrónico.
+Si el usuario está conectado, será desconectado de inmediato.
+'' Tenga en cuenta que la desactivación de una cuenta no es reversible sin intervención del administrador de sistema ''.",
+'disableaccount-mustconfirm' => 'Tienes que confirmar que quieres desactivar esta cuenta.',
+'disableaccount-nosuchuser'  => 'La cuenta de usuario «$1» no existe.',
+'disableaccount-success'     => 'La cuenta de usuario «$1» ha sido deshabilitada definitivamente.',
+'disableaccount-logentry'    => 'desactivada permanentemente la cuenta «[[$1]]»',
 
 );

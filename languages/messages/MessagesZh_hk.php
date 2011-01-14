@@ -9,6 +9,7 @@
  *
  * @author Horacewai2
  * @author Kayau
+ * @author Mark85296341
  * @author PhiLiP
  * @author Wong128hk
  * @author Yukiseaside
@@ -50,6 +51,7 @@ $messages = array(
 'printableversion' => '可打印版',
 'permalink'        => '永久連接',
 'print'            => '打印',
+'specialpage'      => '特殊頁面',
 'jumpto'           => '跳到：',
 'jumptosearch'     => '搜尋',
 
@@ -60,8 +62,12 @@ $messages = array(
 
 'red-link-title' => '$1 (頁面不存在)',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-special' => '特殊頁面',
+
 # Login and logout pages
-'nav-login-createaccount' => '登入/創造帳戶',
+'nav-login-createaccount' => '登入／創造帳戶',
+'userlogin'               => '登入／創造帳戶',
 
 # Revision deletion
 'revdelete-suppress-text' => "壓制'''只'''應用於以下的情況:

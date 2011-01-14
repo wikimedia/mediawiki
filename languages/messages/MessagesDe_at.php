@@ -8,16 +8,20 @@
  * @file
  *
  * @author Laximilian scoken
+ * @author Mucalexx
  * @author Revolus
+ * @author ✓
  */
 
 $fallback = 'de';
 
 $messages = array(
 # Dates
-'january'  => 'Jänner',
-'february' => 'Feber',
-'december' => 'Christmonat',
-'jan'      => 'Jän',
+'january'      => 'Jänner',
+'february'     => 'Feber',
+'december'     => 'Dezember',
+'january-gen'  => 'Jänners',
+'february-gen' => 'Febers',
+'jan'          => 'Jän',
 
 );

@@ -34,6 +34,7 @@ $messages = array(
 'tog-watchdefault'            => 'zid sfahi li adltha f qaaimat lmoraqaba',
 'tog-watchmoves'              => 'zid sfahi li bdlt blasstha f qaaimat lmoraqaba',
 'tog-watchdeletion'           => 'zid sfahi li mshtha f qaaimat lmoraqaba',
+'tog-minordefault'            => 'alm jmia tadilat tafifa iftiradiyan',
 'tog-previewontop'            => 'biyn laard lmosbaq qbl sndoq thrir',
 'tog-previewonfirst'          => 'Ůbiyn moaayana maa awal tadil',
 'tog-nocache'                 => 'attl takhzin lmotassafih lsfha',

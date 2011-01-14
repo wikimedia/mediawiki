@@ -1,5 +1,5 @@
 <?php
-/** Bashkir (Башҡорт)
+/** Bashkir (Башҡортса)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,6 +10,7 @@
  * @author Assele
  * @author Comp1089
  * @author Haqmar
+ * @author Reedy
  * @author Timming
  * @author Рустам Нурыев
  */
@@ -480,7 +481,6 @@ $2',
 'wrongpasswordempty'         => 'Зинһар, буш булмаған пароль керетегеҙ.',
 'passwordtooshort'           => 'Пароль кәмендә $1 {{PLURAL:$1|символдан}} торорға тейеш.',
 'password-name-match'        => 'Керетелгән пароль ҡулланыусы исеменән айырылырға тейеш.',
-'password-too-weak'          => 'Керетелгән пароль бигерәк көсһөҙ һәм ҡулланыла алмай.',
 'mailmypassword'             => 'Яңы пароль ебәрергә',
 'passwordremindertitle'      => '{{SITENAME}} өсөн яңы ваҡытлыса пароль',
 'passwordremindertext'       => 'Кемдер (бәлки, һеҙ, IP-адресы: $1) {{SITENAME}} ($4) өсөн яңы пароль һоратты. $2 ҡатнашыусыһы өсөн ваҡытлыса яңы пароль яһалды: $3. Әгәр был һеҙ булһағыҙ, системага керегеҙ һәм паролде алмаштырығыҙ. Яңы пароль $5 {{PLURAL:$5|көн}} ғәмәлдә буласаҡ.
@@ -514,6 +514,9 @@ $2',
 Зинһар, ҡабатламаҫтан алда бераҙ көтөгөҙ.',
 'loginlanguagelabel'         => 'Тел: $1',
 'suspicious-userlogout'      => 'Һеҙҙең сеансты тамамлау тураһында һорауығыҙ кире ҡағылды, сөнки ул төҙөк булмаған браузер йәки кэшлаусы прокси тарафынан ебәрелгән һорауға оҡшаған.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHP-ның mail() функцияһында билдәһеҙ хата',
 
 # JavaScript password checks
 'password-strength'            => 'Паролдең ныҡлығы дәрәжәһе: $1',
@@ -635,7 +638,7 @@ $2',
 'noarticletext'                    => "Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ [[Special:Search/{{PAGENAME}}|был исемде башҡа биттәрҙә эҙләй]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тап килгән журнал яҙмаларын таба]
-йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]''' алаһығыҙ.",
+йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]'''</span> алаһығыҙ.",
 'noarticletext-nopermission'       => 'Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ башҡа мәҡәләләрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',
@@ -648,7 +651,11 @@ $2',
 'userjsyoucanpreview'              => "'''Кәңәш:''' Яңы JS-файлды һаҡларҙан алда тикшерер өсөн \"{{int:showpreview}}\" төймәһенә баҫығыҙ.",
 'usercsspreview'                   => "'''Был бары тик CSS файлды алдан ҡарау ғына, ул әле һаҡланмаған!'''",
 'userjspreview'                    => "'''Был бары тик JavaScript файлын алдан ҡарау ғына, ул әле һаҡланмаған!'''",
-'userinvalidcssjstitle'            => "'''Иғтибар:''' \"\$1\" биҙәү темаһы табылманы. Иҫтә тотоғоҙ, .css һәм .js ҡулланыусы биттәренең исемдәре тик бәләкәй хәрефтәрҙән генә торорға тейеш. Мәҫәлән: {{ns:user}}:Foo/monobook.css, ә {{ns:user}}:Foo/Monobook.css түгел!",
+'sitecsspreview'                   => "'''Һеҙ CSS файлын алдан ҡарайһығыҙ ғына икәнен иҫегеҙҙә тотоғоҙ.'''
+'''Ул әле һаҡланмаған!'''",
+'sitejspreview'                    => "'''Һеҙ JavaScript кодын алдан ҡарайһығыҙ ғына икәнен иҫегеҙҙә тотоғоҙ.'''
+'''Ул әле һаҡланмаған!'''",
+'userinvalidcssjstitle'            => "'''Иғтибар:''' \"\$1\" биҙәү темаһы табылманы. Иҫтә тотоғоҙ, .css һәм .js ҡулланыусы биттәренең исемдәре тик бәләкәй хәрефтәрҙән генә торорға тейеш. Мәҫәлән: {{ns:user}}:Foo/vector.css, ә {{ns:user}}:Foo/Vector.css түгел!",
 'updated'                          => '(Яңыртылды)',
 'note'                             => "'''Иҫкәрмә:'''",
 'previewnote'                      => "'''Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!'''",
@@ -917,7 +924,7 @@ $1",
 'revmove-norevisions'          => 'Был эште башҡарыр өсөн һеҙ бер йә бер нисә кәрәкле версияны күрһәтмәгәнһегеҙ, йәки күрһәтелгән версиялар юҡ.',
 'revmove-nullmove-title'       => 'Ярамаған исем',
 'revmove-nullmove'             => 'Кәрәкле бит һәм сығанаҡ бит тап килә.
-Алдағы биткә кире ҡайтығыҙ һәм «[[$1]]» бите булмаған башҡа битте һайлағыҙ.',
+Алдағы биткә кире ҡайтығыҙ һәм «$1» бите булмаған башҡа битте һайлағыҙ.',
 'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] битенең $1 версияһы}} [[$3]] битенә күсерелде.',
 'revmove-success-created'      => '{{PLURAL:$1| [[$2]] битенең $1 версияһы}} яңы булдырылған [[$3]] битенә күсерелде.',
 
@@ -2143,6 +2150,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Яңы иҫәп яҙмалары өсөн ҡатнашыусы өлөшө',
 'sp-contributions-blocklog'            => 'блоклау яҙмалары',
 'sp-contributions-deleted'             => 'ҡулланыусының юйылған өлөшө',
+'sp-contributions-uploads'             => 'тейәүҙәр',
 'sp-contributions-logs'                => 'журналдар',
 'sp-contributions-talk'                => 'фекер алышыу',
 'sp-contributions-userrights'          => 'ҡатнашыусы хоҡуҡтарын идаралау',
@@ -3148,6 +3156,7 @@ $1',
 'version-specialpages'             => 'Махсус биттәр',
 'version-parserhooks'              => 'Уҡыу ҡоралдары',
 'version-variables'                => 'Үҙгәреүсән дәүмәлдәр',
+'version-skins'                    => 'Күренештәр',
 'version-other'                    => 'Башҡалар',
 'version-mediahandlers'            => 'Медиа эшкәртеүсе ҡоралдар',
 'version-hooks'                    => 'Эләктереп алыусылар',
@@ -3272,8 +3281,16 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
 
 # Special:DisableAccount
-'disableaccount'        => 'Ҡатнашыусының күрһәтелмәгән иҫәп яҙыуҙары',
-'disableaccount-user'   => 'Ҡатнашыусы исеме',
-'disableaccount-reason' => 'Сәбәп:',
+'disableaccount'             => 'Ҡатнашыусының күрһәтелмәгән иҫәп яҙыуҙары',
+'disableaccount-user'        => 'Ҡатнашыусы исеме',
+'disableaccount-reason'      => 'Сәбәп:',
+'disableaccount-confirm'     => "Был ҡатнашыусының иҫәп яҙмаһын һүндереү.
+Ҡатнашыусы танылыу үтә, паролен үҙгәртә һәм электрон почта аша белгертеүҙәр ала алмаясаҡ.
+Әгәр ҡатнашыусы әлеге ваҡытта танылыу үткән булһа, уның сеансы шунда уҡ өҙөләсәк.
+''Иҫәп яҙмаһын һүндереүҙе система хәкимдәре ярҙамы менән генә кире алып була икәнен иҫәпкә алығыҙ.''",
+'disableaccount-mustconfirm' => 'Һеҙ был иҫәп яҙмаһын һүндерергә теләүегеҙҙе раҫларға тейешһегеҙ.',
+'disableaccount-nosuchuser'  => '"$1" иҫәп яҙмаһы юҡ.',
+'disableaccount-success'     => '"$1" иҫәп яҙмаһы һүндерелгән.',
+'disableaccount-logentry'    => '[[$1]] иҫәп яҙмаһын һүндергән',
 
 );

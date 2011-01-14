@@ -8,6 +8,7 @@
  * @file
  *
  * @author ChrisPtDe
+ * @author Reedy
  * @author לערי ריינהארט
  */
 
@@ -752,7 +753,7 @@ Volyéd tornar èprovar.',
 Volyéd tornar èprovar.',
 'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
-'password-too-weak'          => 'Lo mot de pâssa balyê est trop fêblo et pués pôt pas étre utilisâ.',
+'password-login-forbidden'   => 'L’usâjo de cél nom d’utilisator et de cél mot de pâssa at étâ dèfendu.',
 'mailmypassword'             => 'Recêvre un mot de pâssa novél per mèssageria èlèctronica',
 'passwordremindertitle'      => 'Mot de pâssa temporèro novél por {{SITENAME}}',
 'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un mot de pâssa
@@ -795,6 +796,9 @@ Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
 'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
+
+# E-mail sending
+'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
 
 # JavaScript password checks
 'password-strength'            => 'Nivél de sècuritât du mot de pâssa : $1',
@@ -937,12 +941,16 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 '''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
-'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS.'''
+'usercsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar voutra prôpra fôlye CSS.'''
 '''El at p’oncor étâ sôvâ !'''",
-'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
+'userjspreview'                    => "'''Rapelâd-vos que vos éte solament aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
+'''Il at p’oncor étâ sôvâ !'''",
+'sitecsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar cela fôlye CSS.'''
+'''El at p’oncor étâ sôvâ !'''",
+'sitejspreview'                    => "'''Rapelâd-vos que vos éte solament aprés èprovar ou ben prèvisualisar cél code JavaScript.'''
 '''Il at p’oncor étâ sôvâ !'''",
 'userinvalidcssjstitle'            => "'''Atencion :''' ègziste gins d’habelyâjo « $1 ».
-Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/monobook.css et pas {{ns:user}}:Foo/Monobook.css.",
+Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/vector.css et pas {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Betâ a jorn)',
 'note'                             => "'''Nota :'''",
 'previewnote'                      => "'''Rapelâd-vos que ceti tèxto est ren qu’una prèvisualisacion.'''
@@ -1218,7 +1226,7 @@ Volyéd clicar dessus « Devant » et pués tornâd èprovar.',
 'revmove-norevisions'          => 'Vos éd pas spècefiâ yona ou ben un mouél de vèrsions cibes por fâre cela fonccionalitât ou ben la vèrsion spècefiâ ègziste pas.',
 'revmove-nullmove-title'       => 'Crouyo titro',
 'revmove-nullmove'             => 'Les pâges sôrsa et ciba sont pariéres.
-Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « [[$1]] ».',
+Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « $1 ».',
 'revmove-success-existing'     => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge ègzistenta [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge [[$3]] novèlament fêta.',
 
@@ -1626,7 +1634,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'rcshowhideanons'                   => '$1 los utilisators pas encartâs',
 'rcshowhidepatr'                    => '$1 los changements survelyês',
 'rcshowhidemine'                    => '$1 mos changements',
-'rclinks'                           => 'Fâre vêre los $1 dèrriérs changements fêts pendent los $2 jorns passâs ;<br/ >$3.',
+'rclinks'                           => 'Fâre vêre los $1 dèrriérs changements fêts pendent los $2 jorns passâs ;<br />$3.',
 'diff'                              => 'dif',
 'hist'                              => 'hist',
 'hide'                              => 'cachiér',
@@ -3001,8 +3009,7 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'math_unknown_function' => 'fonccion encognua',
 'math_lexing_error'     => 'èrror lèxicâla',
 'math_syntax_error'     => 'èrror de sintaxa',
-'math_image_error'      => 'La convèrsion en PNG at pas reussia ;
-controlâd l’enstalacion de LaTeX, dvips, gs et convert',
+'math_image_error'      => 'La convèrsion en PNG at pas reussia ; controlâd l’enstalacion de LaTeX et dvipng (ou ben dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Empossiblo d’ècrire dens ou ben de fâre lo rèpèrtouèro math temporèro',
 'math_bad_output'       => 'Empossiblo d’ècrire dens ou ben de fâre lo rèpèrtouèro math de sortia',
 'math_notexvc'          => 'L’ègzécutâblo « texvc » est entrovâblo.
@@ -3604,6 +3611,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-specialpages'             => 'Pâges spèciâles',
 'version-parserhooks'              => 'Grèfons du parsor',
 'version-variables'                => 'Variâbles',
+'version-skins'                    => 'Habelyâjos',
 'version-other'                    => 'De totes sôrtes',
 'version-mediahandlers'            => 'Maneyors de fichiérs multimèdia',
 'version-hooks'                    => 'Grèfons',

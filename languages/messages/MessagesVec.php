@@ -12,6 +12,7 @@
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
+ * @author Reedy
  * @author Urhixidur
  * @author Vajotwo
  * @author לערי ריינהארט
@@ -583,7 +584,6 @@ Tòtene uno difarente.',
 'wrongpasswordempty'         => 'No xè sta inseria alcuna password. Riprovare.',
 'passwordtooshort'           => 'Łe password e ga da contegnere almanco {{PLURAL:$1|1 caratere|$1 carateri}}.',
 'password-name-match'        => 'Ła password a ga da esare difarente dal nome utente.',
-'password-too-weak'          => "Sta password l'e masa falba e te la pol usar,",
 'mailmypassword'             => 'Màndeme na password nova al me indirisso e-mail',
 'passwordremindertitle'      => 'Servisio Password Reminder de {{SITENAME}}',
 'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
@@ -757,7 +757,7 @@ L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informas
 'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
 Le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'                    => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
-'userinvalidcssjstitle'            => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/vector.css e no {{ns:user}}:Esenpio/Vector.css.",
 'updated'                          => '(Agiornà)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Sta qua la xe solo n'anteprima; i canbiamenti a la pagina NO i xe gnancora stà salvà!'''",
@@ -1016,7 +1016,7 @@ No ti gà acesso su de ela.',
 'revmove-norevisions'          => 'No te ghè indicà nissuna revision su cui eseguir sta funsion o la revision indicà no la esiste.',
 'revmove-nullmove-title'       => 'Titolo mia valido',
 'revmove-nullmove'             => 'La pagine de partensa e quela de arivo le xe la stessa.
-Torna indrio e metighe un nome pagina difarente da "[[$1]]".',
+Torna indrio e metighe un nome pagina difarente da "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revision de [[$2]] le xe stà spostà}} ne la pagina esistente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revisioni de [[$2]] le xe stà spostà}} ne la nova pagina creà [[$3]].',
 
@@ -1138,7 +1138,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'mypreferences'                 => 'prefarense',
 'prefs-edits'                   => 'Nùmaro de modifiche:',
 'prefsnologin'                  => 'No te ghè eseguìo el login',
-'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login] par poder personalixare le to preferense.',
+'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login]</span> par poder personalixare le to preferense.',
 'changepassword'                => 'Cànbia ła password',
 'prefs-skin'                    => 'Aspeto grafico',
 'skin-preview'                  => 'Anteprima',

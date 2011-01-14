@@ -10,6 +10,7 @@
  * @author Julian Mendez
  * @author Malafaya
  * @author McDutchie
+ * @author Reedy
  * @author לערי ריינהארט
  */
 
@@ -584,7 +585,7 @@ Verifica le orthographia.',
 'wrongpasswordempty'         => 'Tu non entrava un contrasigno. Per favor reprova.',
 'passwordtooshort'           => 'Le contrasignos debe continer al minus {{PLURAL:$1|1 character|$1 characteres}}.',
 'password-name-match'        => 'Tu contrasigno debe esser differente de tu nomine de usator.',
-'password-too-weak'          => 'Le contrasigno fornite es troppo debile e non pote esser usate.',
+'password-login-forbidden'   => 'Le uso de iste nomine de usator e contrasigno ha essite prohibite.',
 'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove
@@ -759,7 +760,7 @@ Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite 
 'noarticletext'                    => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente],
-o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 'noarticletext-nopermission'       => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
@@ -774,8 +775,12 @@ Le ultime entrata del registro de blocadas es reproducite ci infra pro informati
 '''Le modificationes non ha ancora essite salveguardate!'''",
 'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
 '''Illo non ha ancora essite salveguardate!'''",
-'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
-Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
+'sitecsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de iste CSS.'''
+'''Le modificationes non ha ancora essite salveguardate!'''",
+'sitejspreview'                    => "'''Non oblida que isto es solmente un previsualisation de iste codice JavaScript.'''
+'''Le modificationes non ha ancora essite salveguardate!'''",
+'userinvalidcssjstitle'            => "'''Attention:''' Le apparentia \"\$1\" non existe.
+Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/vector.css e non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualisate)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Isto es solmente un previsualisation.'''
@@ -1049,7 +1054,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'revmove-norevisions-title'    => 'Le version de destination es invalide',
 'revmove-norevisions'          => 'Tu non ha specificate un o plus versiones de destination pro executar iste function o le version specificate non existe.',
 'revmove-nullmove-title'       => 'Titulo invalide',
-'revmove-nullmove'             => 'Le paginas de origine e de destination es identic. Per favor preme "retro" e entra un nomine de pagina differente de "[[$1]]".',
+'revmove-nullmove'             => 'Le paginas de origine e de destination es identic. Per favor preme "retro" e entra un nomine de pagina differente de "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al pagina existente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al nove pagina [[$3]].',
 
@@ -1175,9 +1180,9 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences'                 => 'Mi preferentias',
 'prefs-edits'                   => 'Numero de modificationes:',
 'prefsnologin'                  => 'Tu non ha aperite un session',
-'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
+'prefsnologintext'              => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir un session]</span> pro poter configurar tu preferentias.',
 'changepassword'                => 'Cambiar contrasigno',
-'prefs-skin'                    => 'Stilo',
+'prefs-skin'                    => 'Apparentia',
 'skin-preview'                  => 'Previsualisation',
 'prefs-math'                    => 'Mathematica',
 'datedefault'                   => 'Nulle preferentia',
@@ -2825,8 +2830,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'math_unknown_function' => 'function incognite',
 'math_lexing_error'     => 'error lexic',
 'math_syntax_error'     => 'error de syntaxe',
-'math_image_error'      => "Le conversion in PNG ha fallite;
-verifica que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
+'math_image_error'      => 'Le conversion in PNG ha fallite;
+verifica le installation del programmas \'\'latex" e "dvipng" (o "dvips" + "gs" + \'\'convert\'\').',
 'math_bad_tmpdir'       => 'Non pote scriber in o crear le directorio temporari "math".',
 'math_bad_output'       => 'Non pote scriber in o crear le directorio de output "math".',
 'math_notexvc'          => "Le executabile ''texvc'' manca;
@@ -3345,6 +3350,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-specialpages'             => 'Paginas special',
 'version-parserhooks'              => 'Uncinos del analysator syntactic',
 'version-variables'                => 'Variabiles',
+'version-skins'                    => 'Apparentias',
 'version-other'                    => 'Altere',
 'version-mediahandlers'            => 'Executores de media',
 'version-hooks'                    => 'Uncinos',

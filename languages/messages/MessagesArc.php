@@ -881,7 +881,7 @@ $1',
 'unusedtemplateswlh' => 'ܐܣܘܪ̈ܐ ܐܚܪ̈ܢܐ',
 
 # Random page
-'randompage'         => 'ܡܓܠ̈ܐ ܚܘܝܚ̈ܐ',
+'randompage'         => 'ܡܓܠܬܐ ܚܘܝܚܬܐ',
 'randompage-nopages' => 'ܠܝܬ ܦܐܬܬ̈ܐ ܒ{{PLURAL:$2|ܚܩܠܐ ܕ|ܚܩܠܬ̈ܐ ܕ}}: $1.',
 
 # Random redirect

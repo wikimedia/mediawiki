@@ -780,7 +780,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'wrongpasswordempty'         => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
 'passwordtooshort'           => 'Heslo musí být dlouhé nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.',
 'password-name-match'        => 'Vaše heslo nesmí být stejné jako uživatelské jméno.',
-'password-too-weak'          => 'Zadané heslo je příliš slabé a nelze ho použít.',
+'password-login-forbidden'   => 'Použití tohoto uživatelského jména a hesla byla zakázáno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
 'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) požádal, abychom Vám poslali nové heslo
@@ -821,6 +821,9 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 
 # JavaScript password checks
 'password-strength'            => 'Odhad síly hesla: $1',
@@ -952,7 +955,11 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
 '''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",
-'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/monobook.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Monobook.css.",
+'sitecsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled tohoto CSS.'''
+'''Zatím nebylo uloženo!'''",
+'sitejspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled tohoto JavaScriptu.'''
+'''Dosud nebyl uložen!'''",
+'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Změna uložena)',
 'note'                             => "'''Poznámka:'''&nbsp;",
 'previewnote'                      => "'''Pamatujte, že toto je pouze náhled, změny zatím nebyly uloženy!'''",
@@ -1213,7 +1220,7 @@ Prohlédněte si protokolovací záznamy.',
 'revmove-norevisions-title'    => 'Neplatná cílová revize',
 'revmove-norevisions'          => 'Neuvedli jste jednu nebo více cílových revizí nebo uvedená revize neexistuje.',
 'revmove-nullmove-title'       => 'Chybný název',
-'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „[[$1]]“.',
+'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do existující stránky [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do nově vytvořené stránky [[$3]].',
 
@@ -1550,6 +1557,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 'right-revisionmove'          => 'Přesouvání verzí',
+'right-disableaccount'        => 'Deaktivování účtů',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -2412,6 +2420,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Příspěvky nových uživatelů',
 'sp-contributions-blocklog'            => 'kniha zablokování',
 'sp-contributions-deleted'             => 'smazané editace uživatele',
+'sp-contributions-uploads'             => 'načtené soubory',
 'sp-contributions-logs'                => 'protokolovací záznamy',
 'sp-contributions-talk'                => 'diskuse',
 'sp-contributions-userrights'          => 'správa uživatelských práv',
@@ -2904,7 +2913,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'math_unknown_function' => 'neznámá funkce',
 'math_lexing_error'     => 'chyba při lexingu',
 'math_syntax_error'     => 'syntaktická chyba',
-'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu, dvips, gs a convertu',
+'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu a dvipng (nebo dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Nelze zapsat nebo vytvořit dočasný adresář pro matematiku',
 'math_bad_output'       => 'Nelze zapsat nebo vytvořit adresář pro výstup matematiky',
 'math_notexvc'          => 'Chybí spustitelný texvc; podívejte se prosím do math/README na konfiguraci.',
@@ -3473,6 +3482,7 @@ Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve
 'version-specialpages'             => 'Speciální stránky',
 'version-parserhooks'              => 'Přípojné body parseru',
 'version-variables'                => 'Proměnné',
+'version-skins'                    => 'Vzhledy',
 'version-other'                    => 'Jiné',
 'version-mediahandlers'            => 'Obsluha médií',
 'version-hooks'                    => 'Přípojné body',
@@ -3593,5 +3603,18 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deaktivace uživatelského účtu',
+'disableaccount-user'        => 'Uživatelské jméno:',
+'disableaccount-reason'      => 'Důvod:',
+'disableaccount-confirm'     => "Deaktivovat tento uživatelský účet.
+Uživatel se nebude moci přihlásit, požádat o nové heslo, ani dostávat e-mailové notifikace.
+Pokud je uživatel kdekoli přihlášen, bude okamžitě odhlášen.
+''Uvědomte si, že deaktivaci účtu nelze vrátit zpět bez pomoci systémového administrátora.''",
+'disableaccount-mustconfirm' => 'Musíte potvrdit, že si přejete deaktivovat tento účet.',
+'disableaccount-nosuchuser'  => 'Uživatelský účet „$1“ neexistuje.',
+'disableaccount-success'     => 'Uživatelský účet „$1“ byl natrvalo deaktivován.',
+'disableaccount-logentry'    => 'natrvalo deaktivoval uživatelský účet [[$1]]',
 
 );

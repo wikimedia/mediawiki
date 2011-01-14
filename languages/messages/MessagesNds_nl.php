@@ -908,7 +908,7 @@ De leste regel uut 't blokkeerlogboek steet hieronder as rifferentie:",
 'usercsspreview'                   => "'''Dit is allinnig een controle van joew persoonlijke CSS.'''
 ''''t Is nog neet op-esleugen!'''",
 'userjspreview'                    => "'''Denk deran da-j joew persoonlijke JavaScript allinnig nog mar an 't bekieken bin, 't is nog neet op-esleugen!'''",
-'userinvalidcssjstitle'            => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''m'''onobook.css\" in plaose van \"{{ns:user}}:Naam/'''M'''onobook.css\".",
+'userinvalidcssjstitle'            => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''v'''ector\" in plaose van \"{{ns:user}}:Naam/'''V'''ector.css\".",
 'updated'                          => '(Bewark)',
 'note'                             => "'''Opmarking:'''",
 'previewnote'                      => "'''NB: je bin de pagina allinnig nog mar an 't naokieken; de tekse is nog neet op-esleugen!'''",
@@ -1171,7 +1171,7 @@ Klik op "Weerumme" en prebeer \'t opniej.',
 'revmove-norevisions'          => 'Je hemmen gien versies an-egeven um disse haandeling op uut te voeren of de an-egeven versie besteet neet.',
 'revmove-nullmove-title'       => 'Ongeldige paginanaam',
 'revmove-nullmove'             => 'De bronpagina en doelpagina bin \'tzelfde.
-Klik op "Weerumme" en geef een aandere pagina dan "[[$1]]" op.',
+Klik op "Weerumme" en geef een aandere pagina dan "$1" op.',
 'revmove-success-existing'     => '{{PLURAL:$1|Ene versie van [[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de bestaonde pagina [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Ene versie van[[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de nieje pagina [[$3]].',
 

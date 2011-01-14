@@ -11,6 +11,7 @@
  * @author Artomo
  * @author Lakaoso
  * @author Malafaya
+ * @author Reedy
  * @author Remember the dot
  * @author Wyvernoid
  * @author לערי ריינהארט
@@ -706,7 +707,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'mypreferences'                 => 'Mea preferaji',
 'prefs-edits'                   => 'Nombro di redaktaji:',
 'prefsnologin'                  => 'Vu ne eniris',
-'prefsnologintext'              => 'Vu mustas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enirir] por establisar la preferaji.',
+'prefsnologintext'              => 'Vu mustas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enirir]</span> por establisar la preferaji.',
 'changepassword'                => 'Chanjar pasovorto',
 'prefs-skin'                    => 'Pelo',
 'skin-preview'                  => 'Pre-videz',

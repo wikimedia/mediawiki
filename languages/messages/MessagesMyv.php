@@ -186,6 +186,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Петемс синдтрень сюлмавома петнень <a href="" class="new">вана  истя</a>(лиякс вана истя<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Вейкетстявтомс сёрмадовкс ушодоманть лопанть кувалмга',
 'tog-hideminor'               => 'Од полавтоматнесэ кекшемс вишинькине витевкстнэнь',
+'tog-hidepatrolled'           => 'Кекшемс лувонь кирдиень витнеметнень-петнематнень чыяконь полавтнематнестэ',
+'tog-newpageshidepatrolled'   => 'Кекшемс лувонь кирдиень ванстома лопатнень од лопань керьксэнть эйстэ',
 'tog-extendwatchlist'         => 'Келейгавтомс сёрмадовксонь мельга ваномань сёрмалевксэнть невтевест весе полавтнематне, аволь ансяк чыеньсетне.',
 'tog-usenewrc'                => 'Нолдак тевс вадрялгавтозь од лиякстомат  (веши JavaScript)',
 'tog-numberheadings'          => 'Сёрмадовкс коняксос кадык сынсь ловома валтнэ путовить',
@@ -219,6 +221,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Кекшить апокшкыне витневкстнэнь ванома лемрисьменть эйстэ',
 'tog-watchlisthideliu'        => 'Кекшемс совазь теицянь витнематнень-петнематнень, иляст неяво ванома лемрисьмесэ',
 'tog-watchlisthideanons'      => 'Кекшемс апак сова теицянь витнематнень-петнематнень, иляст неяво ванома лемрисьмесэ',
+'tog-watchlisthidepatrolled'  => 'Кекшемс лувонь кирдиень витнематнень-петнематнень ванома лемрисьменть эйстэ',
 'tog-nolangconversion'        => 'А меремс вариантонь полавтома лия лангс',
 'tog-ccmeonemails'            => 'Кучт монень копия е-сёрматнеде, конатнень кучан лия теицянень',
 'tog-diffonly'                => 'Иляк невтне лопапотмоксонть diffs ало',
@@ -399,6 +402,7 @@ $messages = array(
 'jumpto'            => 'Тёкадемс тей:',
 'jumptonavigation'  => 'Новигациясь-лездамось',
 'jumptosearch'      => 'вешнэме',
+'pool-errorunknown' => 'Апак содань ильведькс',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ланга',
@@ -485,6 +489,8 @@ $messages = array(
 'missingarticle-diff'  => '(Мейсэ явовить: $1, $2)',
 'internalerror'        => 'Потмонь ильведькс',
 'internalerror_info'   => 'Потмонь ильведькс: $1',
+'fileappenderrorread'  => '"$1" файлась эзь ловново поладомо шкастонзо.',
+'fileappenderror'      => '"$1" файлась эзь поладово "$2" файлантень.',
 'filecopyerror'        => '"$1" файлась эзь ванстово од "$2" файлакс.',
 'filerenameerror'      => 'Файлантень а маштови "$1" максомс од лем "$2".',
 'filedeleteerror'      => '"$1" файлась шукшпряв эзь ливтеве.',
@@ -515,9 +521,9 @@ $messages = array(
 Совамотаркат теезь.
 Иля стувто полавтнемс эсеть [[Special:Preferences|{{SITENAME}} ладсематнень]].',
 'yourname'                   => 'Теицянь лем:',
-'yourpassword'               => 'Совамо валот:',
+'yourpassword'               => 'Салава валот:',
 'yourpasswordagain'          => 'Омбоцеде сёрмадык кирдицянь леметь:',
-'remembermypassword'         => 'Ледстемс монь совамо валонть те арсемашинасонть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
+'remembermypassword'         => 'Ледстемс совамом те бравзерсэнть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
 'yourdomainname'             => 'Эсеть доменэть:',
 'login'                      => 'Совамо',
 'nav-login-createaccount'    => 'Совамо / тейть совамотарка',
@@ -534,14 +540,14 @@ $messages = array(
 'gotaccountlink'             => 'Совамс',
 'createaccountmail'          => 'е-сёрмасо',
 'createaccountreason'        => 'Тувталось:',
-'badretype'                  => 'Сёрмадыть совамо валот кавксть, сынь аволь вейкеть.',
+'badretype'                  => 'Сёрмадыть салава валот кавксть: сынь аволь вейкеть.',
 'userexists'                 => 'Те лемесь уш саезь. Арсека эсеть лия, инеськеть.',
 'loginerror'                 => 'Совамсто ильведькс',
 'createaccounterror'         => 'Совамо тарка эзь теевть: $1',
 'nocookiesnew'               => 'Совамо таркась шкавсь, ансяк зярс эзить сова.
  {{SITENAME}} сайтэв совават cookies функция вельде.
-Содымашинасот cookies функциятне тевс апак нолда.
-Васня нолдытя функциятнень тевс, мейле совак: сёрмадыть од теицянь леметь ды совамо валот.',
+Арсемашинасот cookies функциятне тевс апак нолда.
+Васня нолдытя функциятнень тевс, мейле совак: сёрмадыть од совамо леметь ды салава валот.',
 'noname'                     => 'Зярс эзить максо кемекстазь теицянь лем.',
 'loginsuccesstitle'          => 'Совавить',
 'loginsuccess'               => "'''Тон совить {{SITENAME}}-с кода \"\$1\".'''",
@@ -552,7 +558,8 @@ $messages = array(
 'wrongpassword'              => 'Аволь истя сёрмадык совамо валот. Варчыка одов.',
 'wrongpasswordempty'         => 'Салавань валот кадовсь апак сёрмадо. Сёрмадыка одов.',
 'passwordtooshort'           => 'Совамо валонть кувалмозо  {{PLURAL:$1|улезэ 1 тешкс| улезт $1 тешкст}}, аволь седе аламо.',
-'mailmypassword'             => 'Кучт е-сёрмасо од совамо вал',
+'password-name-match'        => 'Салава валонтень эряви явовомс теицянь леметь эйстэ.',
+'mailmypassword'             => 'Кучт е-сёрмасо од салававал',
 'passwordremindertitle'      => '{{SITENAME}} туртов акуватень од совамо вал',
 'passwordremindertext'       => 'Кие-бути (кода неяви тон IP-тешксстэнть $1) вешсь,<br />
 кедьстэнек кучомс теицянь од совамо вал {{SITENAME}} ($4) сайтс совамга.<br />
@@ -579,6 +586,8 @@ $messages = array(
 'password-strength-mediocre'   => 'берякшке',
 'password-strength-acceptable' => 'маштови',
 'password-strength-good'       => 'вадря',
+'password-retype'              => 'Тезэнь сёрмадык одов салава валонть',
+'password-retype-mismatch'     => 'Салава валтнэ а вейкеть',
 
 # Password reset dialog
 'resetpass'                 => 'Полавтомс совамо валот',
@@ -646,6 +655,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'whitelistedittitle'               => 'Витнемань-петнемань теемга эряви совамо лем',
 'whitelistedittext'                => 'Лопанть витнемс - петнемс эряви $1.',
 'nosuchsectiontitle'               => 'Явксось а муеви',
+'nosuchsectiontext'                => 'Варчить витнемс-петнемс явкс, кона арась.
+Явксось паряк печтевтевсь эли нардавсь лопань ванномстот.',
 'loginreqtitle'                    => 'Совамс эряви',
 'loginreqlink'                     => 'совамс',
 'loginreqpagetext'                 => 'Лия лопань ванномга, эряви $1.',
@@ -869,7 +880,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prefs-watchlist-days-max'  => '(сех ламо 7 чить)',
 'prefs-watchlist-edits-max' => 'Весемеде покш цётось: 1000',
 'prefs-misc'                => 'Минеть-сюнот',
-'prefs-resetpass'           => 'Совамо валонь полавтомо',
+'prefs-resetpass'           => 'Салава валонь полавтома',
 'saveprefs'                 => 'Ванстомс',
 'resetprefs'                => 'Нардамс апак вансто полавтнемат',
 'prefs-editing'             => 'Витнема-петнема',
@@ -970,6 +981,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'right-editusercss'   => 'Витнемс-петнемс лия теицятнень CSS файласт',
 'right-edituserjs'    => 'Витнемс-петнемс лия теицятнень JS файласт',
 'right-import'        => 'Ёвкстамс лия Викистэ лопат',
+'right-patrol'        => 'Тешкстамс лиянь витнематнень-петнематнень лувонь кирдиеньсекс',
 'right-mergehistory'  => 'Вейтьсэндямс лопатнень юрост-путовксост',
 'right-userrights'    => 'Витнемс-петнемс совицянь весе видечитнень',
 'right-siteadmin'     => 'Датабазань сёлгомо ды панжомо',
@@ -1319,9 +1331,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # Special:Log/newusers
 'newuserlogpage'           => 'Теицянь шкамодо-теемадо конёв',
 'newuserlogpagetext'       => 'Те теицянь шкавксто журнал',
-'newuserlog-byemail'       => 'совамо вал кучозь е-сёрмасо',
+'newuserlog-byemail'       => 'салава валот кучозь е-сёрмасо',
 'newuserlog-create-entry'  => 'Од совиця',
-'newuserlog-create2-entry' => 'шкизе од совамо тарканть $1',
+'newuserlog-create2-entry' => 'шкить од совамо тарка $1',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Теиця куронть видечинзэ',
@@ -1392,7 +1404,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'deletedtext'            => '"<nowiki>$1</nowiki>"-сь ульнесь нардазь.
 Вант $2 тосо веси уаль умоконь нардавксне.',
 'deletedarticle'         => 'нардазь "[[$1]]"',
-'dellogpage'             => 'Нардомань совама-кемекстома',
+'dellogpage'             => 'Нардазде мезе йовтамс',
 'deletionlog'            => 'нардамонь сёрмалема',
 'reverted'               => 'Вельмевтезь лопань седе икелень лиякстомтома',
 'deletecomment'          => 'Тувталось:',
@@ -1911,6 +1923,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-customrendered-1' => 'Башка ёнкс марто процесс',
 
 'exif-exposuremode-0' => 'Сонсь тееви экспозициясь',
+'exif-exposuremode-2' => 'Сынсь путовить брэкеттнэ',
 
 'exif-scenecapturetype-0' => 'Стандарт',
 'exif-scenecapturetype-1' => 'Ландшафт',
@@ -2048,7 +2061,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Special:FilePath
 'filepath'        => 'Файлас яннэ',
-'filepath-page'   => 'Файл:',
+'filepath-page'   => 'Файлась:',
 'filepath-submit' => 'Ютак',
 
 # Special:FileDuplicateSearch

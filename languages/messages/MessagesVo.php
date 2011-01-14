@@ -8,6 +8,7 @@
  * @file
  *
  * @author Malafaya
+ * @author Reedy
  * @author Smeira
  * @author לערי ריינהארט
  */
@@ -124,7 +125,7 @@ $messages = array(
 'tog-editsection'             => 'Dälön redakami dilädas me yüms: [redakön]',
 'tog-editsectiononrightclick' => 'Dälön redakami diläda me klik mugaknopa detik su dilädatiäds (JavaScript)',
 'tog-showtoc'                 => 'Jonön ninädalisedi (su pads labü diläds plu 3)',
-'tog-rememberpassword'        => 'Dakipolös nunädamanünis obik in nünöm at (muiko {{PLURAL:$1|del|dels}} $1)',
+'tog-rememberpassword'        => 'Dakipolös nunädamanünis obik in bevüresodatävöm at (muiko {{PLURAL:$1|del|dels}} $1)',
 'tog-watchcreations'          => 'Läükön padis fa ob pejafölis lä galädalised obik',
 'tog-watchdefault'            => 'Läükön padis fa ob peredakölis la galädalised obik',
 'tog-watchmoves'              => 'Läükön padis fa ob petopätükölis lä galädalised obik',
@@ -666,7 +667,7 @@ Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd 
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'                 => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:UserLogin|jafolös, begö! kali]], u [[Special:UserLogin|nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext'                    => 'Atimo no dabinon vödem su pad at.
-Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sukön in jenotaliseds tefik] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
+Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sukön in jenotaliseds tefik] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at]</span>.',
 'userpage-userdoesnotexist'        => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
 'userpage-userdoesnotexist-view'   => 'Gebenakal: "$1" no peregistaron.',
 'clearyourcache'                   => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis.
@@ -680,7 +681,7 @@ Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span 
 '''No nog pedakipon!'''",
 'userjspreview'                    => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
 'userinvalidcssjstitle'            => "'''Nuned:''' No dabinon fomät: \"\$1\".
-Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/monobook.css, no {{ns:user}}:Foo/Monobook.css.",
+Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vector.css, no {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(peatimükon)',
 'note'                             => "'''Penet:'''",
 'previewnote'                      => "'''Is pajonon te büologed; votükams no nog pedakipons!'''",
@@ -2804,6 +2805,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'version'                   => 'Fomam',
 'version-extensions'        => 'Veitükumams pestitöl',
 'version-specialpages'      => 'Pads patik',
+'version-skins'             => 'Fomäts',
 'version-other'             => 'Votik',
 'version-hooks'             => 'Huköms',
 'version-hook-name'         => 'Hukömanem',
@@ -2866,6 +2868,8 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'comparepages'   => 'Leigodön padis',
 'compare-page1'  => 'Pad 1',
 'compare-page2'  => 'Pad 2',
+'compare-rev1'   => 'Revid 1',
+'compare-rev2'   => 'Revid 2',
 'compare-submit' => 'Leigodolöd',
 
 # Database error messages
@@ -2879,5 +2883,10 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'htmlform-submit'              => 'Sedön',
 'htmlform-reset'               => 'Sädunön votükamis',
 'htmlform-selectorother-other' => 'Votik',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'Gebananem:',
+'disableaccount-reason'     => 'Kod:',
+'disableaccount-nosuchuser' => 'Gebanakal: "$1" no dabinon.',
 
 );

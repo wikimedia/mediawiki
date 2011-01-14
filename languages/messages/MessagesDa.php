@@ -611,7 +611,6 @@ Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'wrongpasswordempty'         => 'Du glemte at indtaste password. Prøv igen.',
 'passwordtooshort'           => 'Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.',
 'password-name-match'        => 'Kodeordet må ikke være det samme som brugernavnet.',
-'password-too-weak'          => 'Det angivne password er for svagt og kan ikke bruges.',
 'mailmypassword'             => 'Send nyt password',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
@@ -652,6 +651,9 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 
 # JavaScript password checks
 'password-strength'            => 'Anslået passwordstyrke: $1',
@@ -795,7 +797,11 @@ Loggen over den seneste blokering ses nedenfor:',
 'usercsspreview'                   => "'''Husk at dette kun er en forhåndsvisning af dit eget css.
 '''Det er ikke gemt endnu!'''",
 'userjspreview'                    => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
-'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
+'sitecsspreview'                   => "'''Husk, at dette kun er en forhåndsvisning af denne CSS.'''
+'''Det er endnu ikke gemt!'''",
+'sitejspreview'                    => "'''Husk, at du kun ser en forhåndsvisning af denne JavaScriptkode.'''
+'''Det er endnu ikke gemt!'''",
+'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/vector.css'' og ikke ''{{ns:user}}:Hansen/Vector.css''.",
 'updated'                          => '(Opdateret)',
 'note'                             => "'''Bemærk:'''",
 'previewnote'                      => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
@@ -1053,7 +1059,7 @@ Vend tilbage til forrige side og prøv igen.',
 'revmove-norevisions'          => 'Du har ikke angivet en eller flere målversioner for at udføre denne funktion eller den angivne version eksisterer ikke.',
 'revmove-nullmove-title'       => 'Forkert titel',
 'revmove-nullmove'             => 'Slutsiden kan ikke være identisk med startsiden.
-Vend tilbage til forrige side og vælg et andet navn fra "[[$1]]".',
+Vend tilbage til forrige side og vælg et andet navn fra "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den eksisterende side [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den nyligt oprettede side [[$3]].',
 
@@ -1393,6 +1399,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 'right-revisionmove'          => 'Flyt revisioner',
+'right-disableaccount'        => 'Deaktivere konti',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -2251,6 +2258,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Brugerbidrag fra nye konti',
 'sp-contributions-blocklog'            => 'blokeringslog',
 'sp-contributions-deleted'             => 'slettede brugerbidrag',
+'sp-contributions-uploads'             => 'uploads',
 'sp-contributions-logs'                => 'loglister',
 'sp-contributions-talk'                => 'diskussion',
 'sp-contributions-userrights'          => 'håndtering af brugerrettigheder',
@@ -2723,7 +2731,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'math_unknown_function' => 'ukendt funktion',
 'math_lexing_error'     => 'lexerfejl',
 'math_syntax_error'     => 'syntaksfejl',
-'math_image_error'      => 'PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
+'math_image_error'      => 'PNG-konvertering mislykkedes; undersøg om latex og dvipng (eller dvips + gs + convert) er installeret korrekt',
 'math_bad_tmpdir'       => 'Kan ikke skrive til eller oprette temp-mappe til math',
 'math_bad_output'       => 'Kan ikke skrive til eller oprette uddata-mappe til math',
 'math_notexvc'          => 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
@@ -3229,6 +3237,7 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'version-specialpages'             => 'Specialsider',
 'version-parserhooks'              => 'Oversætter-funktioner',
 'version-variables'                => 'Variabler',
+'version-skins'                    => 'Udseender',
 'version-other'                    => 'Andet',
 'version-mediahandlers'            => 'Specialhåndtering af mediefiler',
 'version-hooks'                    => 'Funktionstilføjelser',
@@ -3351,5 +3360,18 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deaktivere en brugerkonto',
+'disableaccount-user'        => 'Brugernavn:',
+'disableaccount-reason'      => 'Begrundelse:',
+'disableaccount-confirm'     => "Deaktiver denne brugerkonto.
+Denne bruger vil ikke være i stand til at logge ind, nulstille sit password eller modtage emailnotifikationer.
+Hvis brugeren er logget ind et sted, vil vedkommende blive logget ud øjeblikkeligt.
+''Bemærk at deaktivering af en konto ikke kan fortrydes uden systemadministrators indgriben.''",
+'disableaccount-mustconfirm' => 'Du skal bekræfte, at du ønsker at deaktivere denne konto.',
+'disableaccount-nosuchuser'  => 'Brugerkontoen "$1" findes ikke.',
+'disableaccount-success'     => 'Brugerkontoen "$1" er blevet permanent deaktiveret.',
+'disableaccount-logentry'    => 'deaktiverede brugerkontoen [[$1]] permanent',
 
 );
