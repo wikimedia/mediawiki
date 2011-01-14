@@ -330,9 +330,11 @@ class Preferences {
 			$helpMessages[] = $wgEmailConfirmToEdit
 					? 'prefs-help-email-required'
 					: 'prefs-help-email' ;
-			$helpMessages[] = $wgEnableUserEmail
-					? 'prefs-help-email-others'
-					: 'tototo' ;
+
+			if( $wgEnableUserEmail ) {
+				// additional messages when users can send email to each other
+				$helpMessages[] = 'prefs-help-email-others';
+			}
 
 			$defaultPreferences['emailaddress'] = array(
 				'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'email' : 'info',
