@@ -33,6 +33,10 @@
  *	'help-message'        -- message key for a message to use as a help text.
  *	                         can be an array of msg key and then parameters to
  *	                         the message.
+ *                           Overwrites 'help-messages'.
+ *  'help-messages'       -- array of message key. As above, each item can
+ *                           be an array of msg key and then parameters.
+ *                           Overwrites 'help-message'.
  *	'required'            -- passed through to the object, indicating that it
  *	                         is a required field.
  *	'size'                -- the length of text fields
@@ -898,6 +902,17 @@ abstract class HTMLFormField {
 				# Never mind
 				$helptext = null;
 			}
+		} elseif ( isset( $this->mParams['help-messages'] ) ) {
+			# help-message can be passed a message key (string) or an array containing
+			# a message key and additional parameters. This makes it impossible to pass
+			# an array of message key
+			foreach( $this->mParams['help-messages'] as $msg ) {
+				$candidate = wfMsgExt( $msg, 'parseinline' );
+				if( wfEmptyMsg( $msg ) ) {
+					$candidate = null;
+				}
+				$helptext .= $candidate; // append message
+			}	
 		} elseif ( isset( $this->mParams['help'] ) ) {
 			$helptext = $this->mParams['help'];
 		}

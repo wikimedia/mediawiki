@@ -77,6 +77,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   selected when the action is "purge".
 * (bug 14267) Support a MediaWiki:Mainpage-nstab override for the subject namespace
   tab on the mainpage of a wiki.
+* (bug 10158) Do not mention allowing others to contact you when the feature
+  is disabled ($wgEnableUserEmail=false)
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

@@ -255,11 +255,15 @@ class UsercreateTemplate extends QuickTemplate {
 			'size' => '20'
 		) ); ?>
 					<div class="prefsectiontip">
-						<?php if( $this->data['emailrequired'] ) {
-									$this->msgWiki('prefs-help-email-required');
-						      } else {
-									$this->msgWiki('prefs-help-email');
-						      } ?>
+						<?php  // duplicated in Preferences.php profilePreferences()
+							if( $this->data['emailrequired'] ) {
+								$this->msgWiki('prefs-help-email-required');
+							} else {
+								$this->msgWiki('prefs-help-email');
+							}
+							if( $this->data['emailothers'] ) {
+								$this->msgWiki('prefs-help-email-others');
+							} ?>
 					</div>
 				</td>
 				<td></td>

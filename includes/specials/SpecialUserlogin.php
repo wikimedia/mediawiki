@@ -925,7 +925,8 @@ class LoginForm extends SpecialPage {
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
-		global $wgUser, $wgOut, $wgHiddenPrefs, $wgEnableEmail;
+		global $wgUser, $wgOut, $wgHiddenPrefs;
+		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgRequest, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		global $wgSecureLogin;
@@ -1014,6 +1015,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'userealname', !in_array( 'realname', $wgHiddenPrefs ) );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
+		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
 		$template->set( 'usereason', $wgUser->isLoggedIn() );
