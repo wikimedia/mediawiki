@@ -19,21 +19,21 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @todo document
  */
 class OutputPage {
-	// should be private. Used with addMeta() which add <meta>
+	/// Should be private. Used with addMeta() which adds <meta>
 	var $mMetatags = array();
 
-	// <meta keyworkds="stuff"> most of the time the first 10 links to an article
+	/// <meta keyworkds="stuff"> most of the time the first 10 links to an article
 	var $mKeywords = array();
 
 	var $mLinktags = array();
 
-	// additional stylesheets. Looks like this is for extensions. Might be replaced by ressource loader.
+	/// Additional stylesheets. Looks like this is for extensions. Might be replaced by resource loader.
 	var $mExtStyles = array();
 
-	// should be private. We got set/get accessors. Set the HTML title
+	/// Should be private - has getter and setter. Contains the HTML title
 	var $mPagetitle = '';
 
-	// Contains all of the <BODY> content. Should be private we got set/get accessors and the append() method.
+	/// Contains all of the <body> content. Should be private we got set/get accessors and the append() method.
 	var $mBodytext = '';
 
 	/**
@@ -43,35 +43,36 @@ class OutputPage {
 	 */
 	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
-	// should be private. Stores contents of <title> tg
+	/// Should be private. Stores contents of <title> tag
 	var $mHTMLtitle = '';
 
-	// should be private. Is the displayed content related to the source of the corresponding wiki article.
+	/// Should be private. Is the displayed content related to the source of the corresponding wiki article.
 	var $mIsarticle = true;
 
-	/*
-	 * should be private. We have to set isPrintable(). Some pages should
-	 * never be printed (ex: redirections.
+	/**
+	 * Should be private. We have to set isPrintable(). Some pages should
+	 * never be printed (ex: redirections).
 	 */
 	var $mPrintable = false;
 
-	/*
+	/**
 	 * Should be private. We have set/get/append methods.
 	 *
-	 * Contains the article subtitle.
-	 *
-	 * Example: 'From Wikipedia, the free encyclopedia'
+	 * Contains the page subtitle. Special pages usually have some links here.
+	 * Don't confuse with site subtitle added by skins.
 	 */
 	var $mSubtitle = '';
 
 	var $mRedirect = '';
 	var $mStatusCode;
 
-	// mLastModified and mEtag are used for sending cache control.
-	// The whole caching system should probably be moved in its own class.
+	/**
+	 * mLastModified and mEtag are used for sending cache control.
+	 * The whole caching system should probably be moved in its own class.
+	 */
 	var $mLastModified = '';
 
-	/*
+	/**
 	 * Should be private. No getter but used in sendCacheControl();
 	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
 	 * as a unique identifier for the content. It is later used by the client
@@ -86,17 +87,21 @@ class OutputPage {
 	var $mCategoryLinks = array();
 	var $mCategories = array();
 
-	// Should be private. Associative array mapping language code to the page name
+	/// Should be private. Associative array mapping language code to the page name
 	var $mLanguageLinks = array();
 
-	/* 
-	 * Should be private. Used for javascript (or VB?)
+	/**
+	 * Should be private. Used for JavaScript (pre resource loader)
 	 * We should split js / css.
 	 * mScripts content is inserted as is in <head> by Skin. This might contains
 	 * either a link to a stylesheet or inline css.
 	 */
 	var $mScripts = '';
-	var $mInlineStyles = ''; // ???
+
+	/**
+	 * Inline CSS styles. Use addInlineStyle() sparsingly
+	 */
+	var $mInlineStyles = '';
 
 	//
 	var $mLinkColours;
@@ -107,10 +112,10 @@ class OutputPage {
 	 */
 	var $mPageLinkTitle = '';
 
-	// Array of <head> elements. Parser might add its own headers!
+	/// Array of elements in <head>. Parser might add its own headers!
 	var $mHeadItems = array();
 
-	// Next variables probably comes from the ressource loader @todo FIXME
+	// Next variables probably comes from the resource loader @todo FIXME
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
 
@@ -119,13 +124,13 @@ class OutputPage {
 
 	var $mTemplateIds = array();
 
-	// Initialized with a global value. Let us override it.
-	// Should probably get deleted / rewritten ...
+	/** Initialized with a global value. Let us override it.
+	 *  Should probably get deleted / rewritten ... */
 	var $mAllowUserJs;
 
-	/*
+	/**
 	 * This was for the old skins and for users with 640x480 screen.
-	 * Please note old sckins are still used and might prove useful for
+	 * Please note old skins are still used and might prove useful for
 	 * users having old computers or visually impaired.
 	 */
 	var $mSuppressQuickbar = false;
@@ -139,26 +144,27 @@ class OutputPage {
 	// Parser related.
 	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
 
-	/*
-	 * should be private. Has get/set methods properly documented.
+	/**
+	 * Should be private. Has get/set methods properly documented.
 	 * Stores "article flag" toggle.
 	 */
 	var $mIsArticleRelated = true;
 
-	// lazy initialised, use parserOptions()
+	/// lazy initialised, use parserOptions()
 	protected $mParserOptions = null;
 
-	/*
+	/**
 	 * Handles the atom / rss links.
 	 * We probably only support atom in 2011.
 	 * Looks like a private variable.
+	 * @see $wgAdvertisedFeedTypes
 	 */
 	var $mFeedLinks = array();
 
 	// Gwicke work on squid caching? Roughly from 2003.
 	var $mEnableClientCache = true;
 
-	/*
+	/**
 	 * Flag if output should only contain the body of the article.
 	 * Should be private.
 	 */
@@ -167,8 +173,8 @@ class OutputPage {
 	var $mNewSectionLink = false;
 	var $mHideNewSectionLink = false;
 
-	/*
-	 * Comes from the parser. This was probably made to laod CSS/JS only
+	/**
+	 * Comes from the parser. This was probably made to load CSS/JS only
 	 * if we had <gallery>. Used directly in CategoryPage.php
 	 * Looks like resource loader can replace this.
 	 */
@@ -184,10 +190,10 @@ class OutputPage {
 	// @todo document
 	var $mPreventClickjacking = true;
 
-	// should be private. To include the variable {{REVISIONID}}
+	/// should be private. To include the variable {{REVISIONID}}
 	var $mRevisionId = null;
 
-	// Stores a Title object.
+	/// Stores a Title object (of the current page).
 	protected $mTitle = null;
 
 	/**
@@ -201,7 +207,7 @@ class OutputPage {
 	var $styles = array();
 
 	/**
-	 * Whether to load jQuery core.
+	 * Whether jQuery is already handled.
 	 */
 	protected $mJQueryDone = false;
 
@@ -246,7 +252,6 @@ class OutputPage {
 	 * Set the HTTP status code to send with the output.
 	 *
 	 * @param $statusCode Integer
-	 * @return nothing
 	 */
 	public function setStatusCode( $statusCode ) {
 		$this->mStatusCode = $statusCode;
@@ -256,8 +261,8 @@ class OutputPage {
 	 * Add a new <meta> tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
-	 * @param $name tag name
-	 * @param $val tag value
+	 * @param $name String tag name
+	 * @param $val String tag value
 	 */
 	function addMeta( $name, $val ) {
 		array_push( $this->mMetatags, array( $name, $val ) );
@@ -322,7 +327,7 @@ class OutputPage {
 	}
 
 	/**
-	 * Get all links added by extensions
+	 * Get all styles added by extensions
 	 *
 	 * @return Array
 	 */
