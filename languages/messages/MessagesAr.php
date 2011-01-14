@@ -619,6 +619,7 @@ $messages = array(
 'printableversion'  => 'نسخة للطباعة',
 'permalink'         => 'وصلة دائمة',
 'print'             => 'اطبع',
+'view'              => 'عرض',
 'edit'              => 'عدل',
 'create'            => 'أنشئ',
 'editthispage'      => 'عدل هذه الصفحة',
@@ -626,6 +627,7 @@ $messages = array(
 'delete'            => 'احذف',
 'deletethispage'    => 'احذف هذه الصفحة',
 'undelete_short'    => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
+'viewdeleted_short' => 'عرض {{PLURAL:$1|تعديل محذوف|$1 تعديلات محذوفة}}',
 'protect'           => 'احم',
 'protect_change'    => 'غير',
 'protectthispage'   => 'احم هذه الصفحة',
@@ -709,6 +711,8 @@ $1',
 'toc'                     => 'محتويات',
 'showtoc'                 => 'اعرض',
 'hidetoc'                 => 'أخف',
+'collapsible-collapse'    => 'تقليص',
+'collapsible-expand'      => 'توسيع',
 'thisisdeleted'           => 'أأعرض أو أسترجع $1؟',
 'viewdeleted'             => 'أأعرض $1؟',
 'restorelink'             => '{{PLURAL:$1|$1 تعديل محذوف|تعديلا واحدا محذوفا|تعديلين محذوفين|$1 تعديلات محذوفة|$1 تعديلا محذوفا|$1 تعديلا محذوفا}}',
@@ -866,6 +870,8 @@ $2',
 'nocookieslogin'             => 'يستخدم {{SITENAME}} الكوكيز لتسجيل الدخول.
 الكوكيز معطلة لديك.
 من فضلك فعلها ثم حاول مرة أخرى.',
+'nocookiesfornew'            => 'لم يتم إنشاء حساب المستخدم ، ونحن لا يستطيع تأكيد مصدره. 
+تأكد من أن ملفات تعريف الارتباط (كوكيز) مفعلة، ثم أعد تحديث الصفحة وحاول مرة أخرى.',
 'noname'                     => 'لم تحدد اسم مستخدم صحيح.',
 'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
 'loginsuccess'               => "'''لقد قمت بتسجيل الدخول ل{{SITENAME}} باسم \"\$1\".'''",
@@ -882,6 +888,7 @@ $2',
 من فضلك حاول مرة أخرى.',
 'passwordtooshort'           => 'يجب أن تتكون كلمة السر على الأقل من {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفا|$1 حرف}}.',
 'password-name-match'        => 'يجب أن تكون كلمة المرور مختلفة عن اسم المستخدم.',
+'password-login-forbidden'   => 'تم منع استخدام اسم المستخدم هذا وكلمة السر.',
 'mailmypassword'             => 'أرسل لي كلمة سر جديدة',
 'passwordremindertitle'      => 'كلمة سر مؤقتة جديدة ل{{SITENAME}}',
 'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الآيبي $1) كلمة سر جديدة ل{{SITENAME}} ($4).
@@ -921,6 +928,9 @@ $2',
 من فضلك انتظر قبل المحاولة مرة أخرى.',
 'loginlanguagelabel'         => 'اللغة: $1',
 'suspicious-userlogout'      => 'رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.',
+
+# E-mail sending
+'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 
 # JavaScript password checks
 'password-strength'            => 'قوة كلمة المرور المقدرة: $1',
@@ -1062,6 +1072,10 @@ $2',
 لم يتم حفظها بعد!'''",
 'userjspreview'                    => "'''تذكر أنك فقط تجرب/تعاين جافاسكربت.'''
 '''لم يتم الحفظ بعد!'''",
+'sitecsspreview'                   => "''' تذكر أنك فقط في وضع المعاينة لهذا CSS ''' 
+''' ولم يتم حفظ الصفحة بعد! '''",
+'sitejspreview'                    => "''' تذكر أنك فقط في وضع المعاينة لكود JavaScript هذا''' 
+''' ولم يتم حفظه بعد! '''",
 'userinvalidcssjstitle'            => "'''تحذير:''' لا توجد واجهة  \"\$1\".
 تذكر أن ملفات ال.css و ال.js تستخدم حروف صغيرة في العنوان ، كمثال {{ns:user}}:Foo/vector.css و ليس {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(محدثة)',
@@ -1571,6 +1585,10 @@ $1",
 'prefs-displaysearchoptions'    => 'خصائص العرض',
 'prefs-displaywatchlist'        => 'خصائص العرض',
 'prefs-diffs'                   => 'فروقات',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'يبدو أن عنوان البريد الإلكتروني صالح',
+'email-address-validity-invalid' => 'أدخل عنوان بريد إلكتروني صالح',
 
 # User rights
 'userrights'                   => 'إدارة صلاحيات المستخدم',
@@ -3853,5 +3871,10 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
+
+# Special:DisableAccount
+'disableaccount'        => 'تعطيل حساب مستخدم',
+'disableaccount-user'   => 'اسم المستخدم :',
+'disableaccount-reason' => 'السبب :',
 
 );

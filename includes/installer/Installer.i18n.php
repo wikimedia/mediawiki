@@ -2098,7 +2098,7 @@ Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster d
 Sofern ein entsprechendes Benutzerkonto nicht vorhanden ist und das Benutzerkonto für den Installationsvorgang über ausreichende Berechtigungen verfügt, wird dieses Benutzerkonto automatisch mit den Mindestberechtigungen zum Normalbetrieb des Wikis angelegt.',
 	'config-db-prefix' => 'Datenbanktabellenpräfix:',
 	'config-db-prefix-help' => 'Sofern eine Datenbank für mehrere Wikiinstallationen oder eine Wikiinstallation und eine andere Programminstallation genutzt werden soll, muss ein weiterer Datenbanktabellenpräfix angegeben werden, um Datenbankprobleme zu vermeiden.
-Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
+Es können keine Leerzeichen verwendet werden.
 
 Gewöhnlich bleibt dieses Datenfeld leer.',
 	'config-db-charset' => 'Datenbankzeichensatz',
@@ -5280,7 +5280,7 @@ Jika Anda menginstal pada server Windows dan menggunakan MySQL, "localhost" mung
 	'config-db-wiki-settings' => 'Identifikasi wiki ini',
 	'config-db-name' => 'Nama basis data:',
 	'config-db-name-help' => 'Pilih nama yang mengidentifikasikan wiki Anda. 
-Nama tersebut tidak boleh mengandung spasi atau tanda hubung. 
+Nama tersebut tidak boleh mengandung spasi. 
 
 Jika Anda menggunakan inang web bersama, penyedia inang Anda dapat memberikan Anda nama basis data khusus untuk digunakan atau mengizinkan Anda membuat basis data melalui panel kontrol.',
 	'config-db-name-oracle' => 'Skema basis data:',
@@ -5348,6 +5348,7 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-header-oracle' => 'Pengaturan Oracle',
 	'config-invalid-db-type' => 'Jenis basis data tidak sah',
 	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
+	'config-missing-db-host' => 'Anda harus memasukkan nilai untuk "Inang basis data"',
 	'config-missing-db-server-oracle' => 'Anda harus memasukkan nilai untuk "TNS basis data"',
 	'config-invalid-db-server-oracle' => 'TNS basis data "$1" tidak sah.
 Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan titik (.).',
@@ -5569,6 +5570,7 @@ Lanjutkan ke halaman berikutnya.",
 	'config-install-pg-schema-failed' => 'Pembuatan tabel gagal. 
 Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-commit' => 'Melakukan perubahan',
+	'config-install-pg-plpgsql' => 'Memeriksa bahasa PL / pgSQL',
 	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
 	'config-install-pg-ts2' => 'Memeriksa tsearch2',
 	'config-install-pg-ts2-failed' => "'''GAGAL''' tsearch2 harus terinstal dalam database $1.
@@ -6610,7 +6612,7 @@ $1
 Ако сметката не постои, а инсталационата сметка има доволно привилегии, тогаш оваа корисничка сметка ќе биде создадена со минималните привилегии потребни за работа со викито.',
 	'config-db-prefix' => 'Префикс на табелата на базата:',
 	'config-db-prefix-help' => 'Ако треба да делите една база на податоци со повеќе викија, или со МедијаВики и друг мрежен програм, тогаш можете да додадете префикс на сите називи на табелите за да спречите проблематични ситуации.
-Не користете празни простори и цртички.
+Не користете празни простори.
 
 Ова поле обично се остава празно.',
 	'config-db-charset' => 'Збир знаци за базата',
@@ -7260,7 +7262,7 @@ Als u gebruik maakt van gedeelde webhosting, dan hoort uw provider ofwel u een t
 Als de gebruiker niet bestaat en de gebruiker die tijdens de installatie gebruikt wordt voldoende rechten heeft, wordt deze gebruiker aangemaakt met de minimaal benodigde rechten voor het laten werken van de wiki.',
 	'config-db-prefix' => 'Databasetabelvoorvoegsel:',
 	'config-db-prefix-help' => "Als u een database moet gebruiken voor meerdere wiki's, of voor MediaWiki en een andere applicatie, dan kunt u ervoor kiezen om een voorvoegsel toe te voegen aan de tabelnamen om conflicten te voorkomen.
-Gebruik geen spaties of koppeltekens.
+Gebruik geen spaties.
 
 Dit veld wordt meestal leeg gelaten.",
 	'config-db-charset' => 'Tekenset voor de database',
@@ -9598,9 +9600,9 @@ MediaWiki требует поддержки UTF-8 для корректной р
 Если такой учётной записи не существует, а установочная учётная запись имеет достаточно привилегий, то обычная учётная запись будет создана с минимально необходимыми для работы вики привилегиями.',
 	'config-db-prefix' => 'Префикс таблиц базы данных:',
 	'config-db-prefix-help' => 'Если вам нужно делить одну базу данных между несколькими вики, или между MediaWiki и другими веб-приложениями, вы можете добавить префикс для всех имён таблиц. 
-Не используйте пробелы и дефисы. 
+Не используйте пробелы. 
 
-Это поле, как правило, остаётся пустым.',
+Это поле обычно остаётся пустым.',
 	'config-db-charset' => 'Набор символов базы данных',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 бинарная',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',

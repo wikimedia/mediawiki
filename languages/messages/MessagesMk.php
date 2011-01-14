@@ -3048,9 +3048,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'с',
-'minutes-abbrev' => 'м',
-'hours-abbrev'   => 'ч',
+'seconds-abbrev' => 'сек.',
+'minutes-abbrev' => 'мин.',
+'hours-abbrev'   => 'ч.',
 
 # Bad image list
 'bad_image_list' => 'Форматот е следниот:

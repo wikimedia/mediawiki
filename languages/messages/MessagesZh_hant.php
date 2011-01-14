@@ -1303,6 +1303,10 @@ $1",
 'prefs-displaywatchlist'        => '顯示選項',
 'prefs-diffs'                   => '差異',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '您的電子郵件地址顯示正確。',
+'email-address-validity-invalid' => '請提供一個正確電子郵件地址',
+
 # User rights
 'userrights'                   => '用戶權限管理',
 'userrights-lookup-user'       => '管理用戶群組',

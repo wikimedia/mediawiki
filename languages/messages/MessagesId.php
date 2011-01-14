@@ -1414,6 +1414,10 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'prefs-displaywatchlist'        => 'Pilihan tampilan',
 'prefs-diffs'                   => 'Beda',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Alamat surel tampaknya sah',
+'email-address-validity-invalid' => 'Masukkan alamat surel yang sah',
+
 # User rights
 'userrights'                   => 'Manajemen hak pengguna',
 'userrights-lookup-user'       => 'Mengatur kelompok pengguna',
@@ -1996,7 +2000,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
 'unusedimagestext'        => 'Berkas berikut ada tapi tidak disertakan di halaman manapun.
-Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskiput sudah tidak digunakan aktif.',
+Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskipun sudah tidak digunakan aktif.',
 'unusedcategoriestext'    => 'Kategori berikut ada, walaupun tidak ada halaman atau kategori lain yang menggunakannya.',
 'notargettitle'           => 'Tidak ada sasaran',
 'notargettext'            => 'Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.',

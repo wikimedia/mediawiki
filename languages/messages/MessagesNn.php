@@ -2304,6 +2304,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Brukarbidrag av nye brukarar',
 'sp-contributions-blocklog'            => 'blokkeringslogg',
 'sp-contributions-deleted'             => 'sletta brukarbidrag',
+'sp-contributions-uploads'             => '↓opplastingar',
 'sp-contributions-logs'                => 'loggar',
 'sp-contributions-talk'                => 'diskusjon',
 'sp-contributions-userrights'          => 'administrering av brukartilgang',
@@ -2828,6 +2829,7 @@ $1',
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
 'file-info-gif-looped' => 'gjentatt',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
+'file-info-png-looped' => '↓oppatteke',
 'file-info-png-repeat' => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
 
 # Special:NewFiles
@@ -3388,5 +3390,8 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 # SQLite database support
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
+
+# Special:DisableAccount
+'disableaccount-reason' => '↓Grunngjeving:',
 
 );
