@@ -15,7 +15,7 @@
 class OracleInstaller extends DatabaseInstaller {
 
 	protected $globalNames = array(
-		'wgDBport',
+		'wgDBserver',
 		'wgDBname',
 		'wgDBuser',
 		'wgDBpassword',
