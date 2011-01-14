@@ -125,9 +125,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addOption( 'USE INDEX', 'cl_sortkey' );
 		}
 
-		$this->addWhere( 'cl_from=page_id' );
-
 		$this->setContinuation( $params['continue'], $params['dir'] );
+
+		$this->addWhere( 'cl_from=page_id' );
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
