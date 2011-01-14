@@ -392,7 +392,7 @@ class EditPage {
 		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
 		if ( !$editnotice_ns_message->empty() ) {
-			$wgOut->addWikiText( $editnotice_ns_msg->plain() )  );
+			$wgOut->addWikiText( $editnotice_ns_msg->plain() );
 		}
 		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
 			$parts = explode( '/', $this->mTitle->getDBkey() );
