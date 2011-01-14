@@ -78,6 +78,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_title = isset( $prop['title'] );
 		$fld_sortkey = isset( $prop['sortkey'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
+		$fld_type = isset( $prop['type'] );
 
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array( 'cl_from', 'cl_sortkey', 'page_namespace', 'page_title' ) );
@@ -88,8 +89,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 
 		$this->addFieldsIf( 'cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp' );
+		$this->addFieldsIf( 'cl_type', $fld_type );
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
-									// Not needed after bug 10280 is applied to servers
+
+		// Not needed after bug 10280 is applied to servers
 		if ( $params['sort'] == 'timestamp' ) {
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
@@ -99,6 +102,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addWhere( 'cl_from=page_id' );
 		$this->setContinuation( $params['continue'], $params['dir'] );
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
+
+		$this->addWhereFld( 'cl_type', $params['type'] );
+
 		// Scanning large datasets for rare categories sucks, and I already told
 		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		global $wgMiserMode;
@@ -108,11 +114,21 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}
+
+		$dir = $params['dir'] == 'asc' ? 'newer' : 'older';
+
 		if ( $params['sort'] == 'timestamp' ) {
-			$this->addWhereRange( 'cl_timestamp', ( $params['dir'] == 'asc' ? 'newer' : 'older' ), $params['start'], $params['end'] );
+			$this->addWhereRange( 'cl_timestamp',
+									$dir,
+									$params['start'],
+									$params['end'] );
 		} else {
-			$this->addWhereRange( 'cl_sortkey', ( $params['dir'] == 'asc' ? 'newer' : 'older' ), $params['startsortkey'], $params['endsortkey'] );
-			$this->addWhereRange( 'cl_from', ( $params['dir'] == 'asc' ? 'newer' : 'older' ), null, null );
+			$this->addWhereRange( 'cl_sortkey',
+									$dir,
+									$params['startsortkey'],
+									$params['endsortkey'] );
+
+			$this->addWhereRange( 'cl_from', $dir, null, null );
 		}
 
 		$limit = $params['limit'];
@@ -152,6 +168,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				}
 				if ( $fld_sortkey ) {
 					$vals['sortkey'] = $row->cl_sortkey;
+				}
+				if ( $fld_type  ) {
+					$vals['type'] = $row->cl_type;
 				}
 				if ( $fld_timestamp ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
@@ -231,12 +250,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'ids',
 					'title',
 					'sortkey',
+					'type',
 					'timestamp',
 				)
 			),
 			'namespace' => array (
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
+			),
+			'type' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => 'page|subcat|file',
+				ApiBase::PARAM_TYPE => array(
+					'page',
+					'subcat',
+					'file'
+				)
 			),
 			'continue' => null,
 			'limit' => array(
@@ -285,6 +314,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				' timestamp  - Adds the timestamp of when the page was included',
 			),
 			'namespace' => 'Only include pages in these namespaces',
+			'type' => 'What type of category members to include',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
 			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
