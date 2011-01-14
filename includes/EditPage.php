@@ -400,7 +400,7 @@ class EditPage {
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-'.array_shift( $parts );
 				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
-				if ( !$editnotice_base_msg->exists() ) {
+				if ( $editnotice_base_msg->exists() ) {
 					$wgOut->addWikiText( $editnotice_base_msg->plain()  );
 				}
 			}

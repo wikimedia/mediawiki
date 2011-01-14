@@ -314,7 +314,7 @@ class Message {
 	 */
 	public function isBlank() {
 		$message = $this->fetchMessage();
-		return $message === false || $message == '';
+		return $message === false || $message === '';
 	}
 
 	/**
@@ -323,7 +323,7 @@ class Message {
 	 */
 	public function isDisabled() {
 		$message = $this->fetchMessage();
-		return $message === false || $message == '' || $message == '-';
+		return $message === false || $message === '' || $message === '-';
 	}
 
 	public static function rawParam( $value ) {
