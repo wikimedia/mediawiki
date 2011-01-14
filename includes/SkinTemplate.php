@@ -714,7 +714,7 @@ class SkinTemplate extends Skin {
 			$message = end($message);
 		}
 		if ( $msg->exists() ) {
-			$text = $msg->plain();
+			$text = $msg->text();
 		} else {
 			global $wgContLang;
 			$text = $wgContLang->getFormattedNsText( MWNamespace::getSubject( $title->getNamespace() ) );
@@ -885,7 +885,7 @@ class SkinTemplate extends Skin {
 					"edit" : "create";
 				$content_navigation['views']['edit'] = array(
 					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
-					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->plain(),
+					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->text(),
 					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
@@ -898,7 +898,7 @@ class SkinTemplate extends Skin {
 						//$content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->plain(),
+							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->text(),
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						);
 					}
@@ -908,7 +908,7 @@ class SkinTemplate extends Skin {
 				// Adds view source view link
 				$content_navigation['views']['viewsource'] = array(
 					'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->plain(),
+					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->text(),
 					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
@@ -922,7 +922,7 @@ class SkinTemplate extends Skin {
 				// Adds history view link
 				$content_navigation['views']['history'] = array(
 					'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->plain(),
+					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->text(),
 					'href' => $title->getLocalURL( 'action=history' ),
 					'rel' => 'archives',
 				);
@@ -930,7 +930,7 @@ class SkinTemplate extends Skin {
 				if( $wgUser->isAllowed( 'delete' ) ) {
 					$content_navigation['actions']['delete'] = array(
 						'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->plain(),
+						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->text(),
 						'href' => $title->getLocalURL( 'action=delete' )
 					);
 				}
@@ -938,7 +938,7 @@ class SkinTemplate extends Skin {
 					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 					$content_navigation['actions']['move'] = array(
 						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-move", 'move' )->plain(),
+						'text' => wfMessageFallback( "$skname-action-move", 'move' )->text(),
 						'href' => $moveTitle->getLocalURL()
 					);
 				}
@@ -947,7 +947,7 @@ class SkinTemplate extends Skin {
 					$mode = !$title->isProtected() ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->plain(),
+						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
@@ -972,7 +972,7 @@ class SkinTemplate extends Skin {
 					$mode = !$title->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->plain(),
+						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
