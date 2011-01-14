@@ -479,15 +479,8 @@ function wfMessage( $key /*...*/) {
  * @since 1.18
  */
 function wfMessageFallback( /*...*/ ) {
-	$keys = func_get_args();
-	$first = $keys[0];
-	foreach ( $keys as $key ) {
-		if ( wfEmptyMsg( $key ) ) {
-			continue;
-		}
-		return wfMessage( $key );
-	}
-	return wfMessage( $first );
+	$args = func_get_args();
+	return call_user_func_array( array( 'Message', 'newFallbackSequence' ), $args );
 }
 
 /**
