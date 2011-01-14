@@ -311,6 +311,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				' ids        - Adds the page ID',
 				' title      - Adds the title and namespace ID of the page',
 				' sortkey    - Adds the sortkey used for the category',
+				' type       - Adds the type that the page has been categorised as',
 				' timestamp  - Adds the timestamp of when the page was included',
 			),
 			'namespace' => 'Only include pages in these namespaces',
