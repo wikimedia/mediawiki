@@ -706,8 +706,16 @@ class SkinTemplate extends Skin {
 			$query = 'action=edit&redlink=1';
 		}
 
-		$text = wfMsg( $message );
-		if ( wfEmptyMsg( $message, $text ) ) {
+		// wfMessageFallback will nicely accept $message as an array of fallbacks
+		// or just a single key
+		$msg = wfMessageFallback( $message );
+		if ( is_array($message) ) {
+			// for hook compatibility just keep the last message name
+			$message = end($message);
+		}
+		if ( $msg->exists() ) {
+			$text = $msg->plain();
+		} else {
 			global $wgContLang;
 			$text = $wgContLang->getFormattedNsText( MWNamespace::getSubject( $title->getNamespace() ) );
 		}
@@ -828,12 +836,16 @@ class SkinTemplate extends Skin {
 			}
 
 			// Adds namespace links
+			$subjectMsg = array( "nstab-$subjectId" );
+			if ( $subjectPage->isMainPage() ) {
+				array_unshift($subjectMsg, 'mainpage-nstab');
+			}
 			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, 'nstab-' . $subjectId, !$isTalk && !$preventActiveTabs, '', $userCanRead
+				$subjectPage, $subjectMsg, !$isTalk && !$preventActiveTabs, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, !wfEmptyMsg("nstab-$talkId") ? "nstab-$talkId" : 'talk', $isTalk && !$preventActiveTabs, '', $userCanRead
+				$talkPage, array( "nstab-$talkId", 'talk' ), $isTalk && !$preventActiveTabs, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
@@ -841,7 +853,7 @@ class SkinTemplate extends Skin {
 			if ( $title->exists() && $userCanRead ) {
 				$content_navigation['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
-					!wfEmptyMsg( "$skname-view-view" ) ? "$skname-view-view" : 'view',
+					array( "$skname-view-view", 'view' ),
 					( $onPage && ($action == 'view' || $action == 'purge' ) ), '', true
 				);
 				$content_navigation['views']['view']['redundant'] = true; // signal to hide this from simple content_actions
