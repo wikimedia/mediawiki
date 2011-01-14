@@ -1,8 +1,16 @@
 /*
- * Any rules which should not be flipped automatically in right-to-left situations should be prepended with @noflip in
- * a comment block. Images that should be embedded as base64 data-URLs should be prepended with @embed in a comment
- * block.
+ * Any rules which should not be flipped automatically in right-to-left situations should be
+ * prepended with @noflip in a comment block. Images that should be embedded as base64 data-URLs
+ * should be prepended with @embed in a comment block.
+ * 
+ * This style-sheet employs a few CSS trick to accomplish compatibility with a wide range of web
+ * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
+ * a rule that makes things work in IE6, and then following it with a rule that begins with
+ * "html > body" or use a child selector ">", which is ignored by IE6 because it does not support
+ * the child selector. You can spot this by looking for the "OVERRIDDEN BY COMPLIANT BROWSERS" and
+ * "IGNORED BY IE6" comments.
  */
+
 /* Framework */
 html,
 body {
@@ -162,12 +170,8 @@ div#mw-head h5 {
 		background-image: url(images/tab-break.png);
 		background-position: bottom right;
 		background-repeat: no-repeat;
-	}
-	div.vectorTabs li a{
 		color: #0645ad;
 		cursor: pointer;
-	}
-	div.vectorTabs li a  {
 		font-size: 0.8em;
 	}
 	/* IGNORED BY IE6 */
@@ -217,13 +221,14 @@ div#mw-head h5 {
 		background-image: url(images/tab-break.png);
 		background-repeat: no-repeat;
 	}
-	/* IGNORED BY IE6 */
-	div#mw-head div.vectorMenu > h5 {
-		background-image: none;
-	}
+	/* This will be flipped - unlike the one above it */
 	div#mw-head div.vectorMenu h5 {
 		background-position: bottom left;
 		margin-left: -1px;
+	}
+	/* IGNORED BY IE6 */
+	div#mw-head div.vectorMenu > h5 {
+		background-image: none;
 	}
 	div#mw-head div.vectorMenu h4 {
 		display: inline-block;
@@ -245,7 +250,8 @@ div#mw-head h5 {
 		background-image: url(images/tab-break.png);
 		background-repeat: no-repeat;
 	}
-	div.vectorMenu h5 a{
+	/* This will be flipped - unlike the one above it */
+	div.vectorMenu h5 a {
 		background-position: bottom right;
 	}
 	/* IGNORED BY IE6 */
@@ -268,7 +274,8 @@ div#mw-head h5 {
 	body.rtl div.vectorMenu > div.menu {
 		margin-left: auto;
 	}
-	/* Fixes old versions of FireFox */
+	/* IGNORED BY IE6 */
+	/* Also fixes old versions of FireFox */
 	/* @noflip */
 	body.rtl div.vectorMenu > div.menu,
 	x:-moz-any-link {
@@ -312,15 +319,13 @@ div#mw-head h5 {
 		display: inline-block;
 		padding: 0.5em;
 		white-space: nowrap;
+		color: #0645ad;
+		cursor: pointer;
+		font-size: 0.8em;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorMenu li > a {
 		display: block;
-	}
-	div.vectorMenu li a {
-		color: #0645ad;
-		cursor: pointer;
-		font-size: 0.8em;
 	}
 	div.vectorMenu li.selected a,
 	div.vectorMenu li.selected a:visited {
@@ -390,7 +395,6 @@ div#mw-head h5 {
 		background-color: transparent;
 		direction: ltr;
 	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton {
 		padding: 0;
 		margin: 0 5px;
@@ -399,6 +403,7 @@ div#mw-head h5 {
 		background-color: transparent;
 		font-size: x-small;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton img {
 		border: none;
 		margin: 0;
@@ -561,7 +566,7 @@ div#footer #footer-places li {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
-	/* IGNORED BY IE6 */
+	/* Sadly, IE6 won't understand this */
 	#preftoc li:first-child {
 		margin-left: 1px;
 	}
@@ -1140,6 +1145,7 @@ div#bodyContent {
 #ca-watch.icon {
 	margin-right:1px;
 }
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
 #ca-unwatch.icon a,
 #ca-watch.icon a {
 	margin: 0;
