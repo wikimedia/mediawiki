@@ -2755,7 +2755,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'pagemovedsub'                 => '移動に成功しました',
 'movepage-moved'               => "'''「$1」は「$2」へ移動されました'''",
 'movepage-moved-redirect'      => '転送が作成されました。',
-'movepage-moved-noredirect'    => '転送の作成は抑制されました。',
+'movepage-moved-noredirect'    => 'リダイレクトは作成されませんでした。',
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。
 別の名前を選択してください。',
 'cantmove-titleprotected'      => '新しいページ名が作成保護されているため、この場所にページを移動できません。',

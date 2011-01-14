@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alebcay
  * @author Bencmq
  * @author Biŋhai
  * @author Chenxiaoqino
@@ -1308,6 +1309,10 @@ $1",
 'prefs-displaywatchlist'        => '显示选项',
 'prefs-diffs'                   => '差异',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '您的电子邮件地址显示正确.',
+'email-address-validity-invalid' => '请提供一个正确电子邮件地址.',
+
 # User rights
 'userrights'                   => '用户权限管理',
 'userrights-lookup-user'       => '管理用户群组',
@@ -1900,6 +1905,7 @@ Template:消除歧義',
 # Book sources
 'booksources'               => '网络书源',
 'booksources-search-legend' => '搜索网络书源',
+'booksources-isbn'          => '国际书号:',
 'booksources-go'            => '转到',
 'booksources-text'          => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息：',
 'booksources-invalid-isbn'  => '提供的ISBN号码并不正确，请检查原始复制来源号码是否有误。',
@@ -2768,6 +2774,7 @@ $1已被封禁。您是否想更改封禁设置？',
 'skinname-standard'    => '标准',
 'skinname-nostalgia'   => '怀旧',
 'skinname-cologneblue' => '科隆香水蓝',
+'skinname-simple'      => '简单',
 'skinname-modern'      => '现代',
 
 # Math options
@@ -2872,6 +2879,12 @@ Variants for Chinese language
 'variantname-zh-hk'   => '香港繁体',
 'variantname-zh-sg'   => '新加坡简体',
 'variantname-zh'      => '不转换',
+
+# Variants for Gan language
+'variantname-gan-hans' => '简体中文',
+
+# Variants for Kazakh language
+'variantname-kk-cyrl' => '西里尔',
 
 # Metadata
 'metadata'          => '元数据',
@@ -3012,6 +3025,7 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
+'exif-compression-6' => '联合图像专家组格',
 
 'exif-unknowndate' => '未知的日期',
 
