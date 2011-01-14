@@ -833,7 +833,7 @@ class SkinTemplate extends Skin {
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'talk', $isTalk && !$preventActiveTabs, '', $userCanRead
+				$talkPage, !wfEmptyMsg("nstab-$talkId") ? "nstab-$talkId" : 'talk', $isTalk && !$preventActiveTabs, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
