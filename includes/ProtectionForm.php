@@ -351,13 +351,10 @@ class ProtectionForm {
 
 		foreach( $this->mRestrictions as $action => $selected ) {
 			/* Not all languages have V_x <-> N_x relation */
-			$msg = wfMsg( 'restriction-' . $action );
-			if( wfEmptyMsg( 'restriction-' . $action, $msg ) ) {
-				$msg = $action;
-			}
+			$msg = wfMessage( 'restriction-' . $action );
 			$out .= "<tr><td>".
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $msg ) .
+			Xml::element( 'legend', null, $msg->exists() ? $action : $msg->text() ) .
 			Xml::openElement( 'table', array( 'id' => "mw-protect-table-$action" ) ) .
 				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td></tr><tr><td>";
 
@@ -565,11 +562,11 @@ class ProtectionForm {
 		if( $permission == '' ) {
 			return wfMsg( 'protect-default' );
 		} else {
-			$key = "protect-level-{$permission}";
-			$msg = wfMsg( $key );
-			if( wfEmptyMsg( $key, $msg ) )
-				$msg = wfMsg( 'protect-fallback', $permission );
-			return $msg;
+			$msg = wfMessage( "protect-level-{$permission}" );
+			if( !$msg->exists() ) {
+				return $msg->text();
+			}
+			return wfMsg( 'protect-fallback', $permission );
 		}
 	}
 	

@@ -1013,10 +1013,9 @@ class Preferences {
 		# Sort by UI skin name. First though need to update validSkinNames as sometimes
 		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
 		foreach ( $validSkinNames as $skinkey => &$skinname ) {
-			$msgName = "skinname-{$skinkey}";
-			$localisedSkinName = wfMsg( $msgName );
-			if ( !wfEmptyMsg( $msgName, $localisedSkinName ) ) {
-				$skinname = htmlspecialchars( $localisedSkinName );
+			$msg = wfMessage( "skinname-{$skinkey}" );
+			if ( $msg->exists() ) {
+				$skinname = htmlspecialchars( $msg->text() );
 			}
 		}
 		asort( $validSkinNames );

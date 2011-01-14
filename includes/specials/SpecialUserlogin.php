@@ -1186,9 +1186,9 @@ class LoginForm extends SpecialPage {
 	function makeLanguageSelector() {
 		global $wgLang;
 
-		$msg = wfMsgForContent( 'loginlanguagelinks' );
-		if( $msg != '' && !wfEmptyMsg( 'loginlanguagelinks', $msg ) ) {
-			$langs = explode( "\n", $msg );
+		$msg = wfMessage( 'loginlanguagelinks' )->inContentLanguage();
+		if( !$msg->isBlank() ) {
+			$langs = explode( "\n", $msg->text() );
 			$links = array();
 			foreach( $langs as $lang ) {
 				$lang = trim( $lang, '* ' );

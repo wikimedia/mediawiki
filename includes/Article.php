@@ -1270,8 +1270,7 @@ class Article {
 		global $wgOut;
 
 		if ( $this->mTitle->isTalkPage() ) {
-			$msg = wfMsgNoTrans( 'talkpageheader' );
-			if ( $msg !== '-' && !wfEmptyMsg( 'talkpageheader', $msg ) ) {
+			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
 				$wgOut->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1\n</div>", array( 'talkpageheader' ) );
 			}
 		}
@@ -3843,8 +3842,7 @@ class Article {
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
 		$userlinks = $sk->revUserTools( $revision, !$unhide );
 
-		$m = wfMsg( 'revision-info-current' );
-		$infomsg = $current && !wfEmptyMsg( 'revision-info-current', $m ) && $m != '-'
+		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
 			: 'revision-info';
 

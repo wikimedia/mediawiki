@@ -308,6 +308,24 @@ class Message {
 		return $this->fetchMessage() !== false;
 	}
 
+	/**
+	 * Check whether a message does not exist, or is an empty string
+	 * @return Bool: true if is is and false if not
+	 */
+	public function isBlank() {
+		$message = $this->fetchMessage();
+		return $message === false || $message == '';
+	}
+
+	/**
+	 * Check whether a message does not exist, is an empty string, or is "-"
+	 * @return Bool: true if is is and false if not
+	 */
+	public function isDisabled() {
+		$message = $this->fetchMessage();
+		return $message === false || $message == '' || $message == '-';
+	}
+
 	public static function rawParam( $value ) {
 		return array( 'raw' => $value );
 	}

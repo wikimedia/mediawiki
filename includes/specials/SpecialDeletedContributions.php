@@ -340,9 +340,7 @@ class DeletedContributionsPage extends SpecialPage {
 				? 'sp-contributions-footer-anon'
 				: 'sp-contributions-footer';
 
-
-			$text = wfMsgNoTrans( $message, $target );
-			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
+			if( !wfMessage( $message )->isDisabled() ) {
 				$wgOut->wrapWikiMsg( "<div class='mw-contributions-footer'>\n$1\n</div>", array( $message, $target ) );
 			}
 		}

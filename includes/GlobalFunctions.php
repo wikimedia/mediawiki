@@ -2004,11 +2004,12 @@ function wfGetCachedNotice( $name ) {
 			return false;
 		}
 	} else {
-		$notice = wfMsgForContentNoTrans( $name );
-		if( wfEmptyMsg( $name, $notice ) || $notice == '-' ) {
+		$msg = wfMessage( $name )->inContentLanguage();
+		if( $msg->isDisabled() ) {
 			wfProfileOut( $fname );
 			return( false );
 		}
+		$notice = $msg->plain();
 	}
 
 	// Use the extra hash appender to let eg SSL variants separately cache.

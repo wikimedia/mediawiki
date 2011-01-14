@@ -98,9 +98,9 @@ class SpecialStatistics extends SpecialPage {
 		$text .= Xml::closeElement( 'table' );
 
 		# Customizable footer
-		$footer = wfMsgExt( 'statistics-footer', array('parseinline') );
-		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' ) {
-			$text .= "\n" . $footer;
+		$footer = wfMessage( 'statistics-footer' );
+		if ( !$footer->isBlank() ) {
+			$text .= "\n" . $footer->parse();
 		}
 
 		$wgOut->addHTML( $text );
@@ -117,11 +117,11 @@ class SpecialStatistics extends SpecialPage {
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
 		if( $descMsg ) {
-			$descriptionText = wfMsgExt( $descMsg, array( 'parseinline' ), $descMsgParam );
-			if ( !wfEmptyMsg( $descMsg, $descriptionText ) ) {
-				$descriptionText = " ($descriptionText)";
+			$msg = wfMessage( $descMsg, $descMsgParam );
+			if ( $msg->exists() ) {
+				$descriptionText = $msg->parse();
 				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), 
-					$descriptionText );
+					" ($descriptionText)" );
 			}
 		}
 		return

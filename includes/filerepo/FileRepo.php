@@ -657,11 +657,7 @@ abstract class FileRepo {
 			return null;
 		}
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
-		$repoName = wfMsg( 'shared-repo-name-' . $this->name );
-		if ( !wfEmptyMsg( 'shared-repo-name-' . $this->name, $repoName ) ) {
-			return $repoName;
-		}
-		return wfMsg( 'shared-repo' );
+		return wfMessageFallback( 'shared-repo-name-' . $this->name, 'shared-repo' )->text();
 	}
 
 	/**

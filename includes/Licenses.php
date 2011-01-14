@@ -111,8 +111,8 @@ class Licenses extends HTMLFormField {
 	}
 
 	protected function msg( $str ) {
-		$out = wfMsg( $str );
-		return wfEmptyMsg( $str, $out ) ? $str : $out;
+		$msg = wfMessage( $str );
+		return $msg->exists() ? $msg->text() : $str;
 	}
 
 	/**#@-*/

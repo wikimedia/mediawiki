@@ -390,16 +390,18 @@ class EditPage {
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
-		if ( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
-			$wgOut->addWikiText( wfMsgForContent( $editnotice_ns )  );
+		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
+		if ( !$editnotice_ns_message->empty() ) {
+			$wgOut->addWikiText( $editnotice_ns_msg->plain() )  );
 		}
 		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
 			$parts = explode( '/', $this->mTitle->getDBkey() );
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-'.array_shift( $parts );
-				if ( !wfEmptyMsg( $editnotice_base, wfMsgForContent( $editnotice_base ) ) ) {
-					$wgOut->addWikiText( wfMsgForContent( $editnotice_base )  );
+				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
+				if ( !$editnotice_base_msg->exists() ) {
+					$wgOut->addWikiText( $editnotice_base_msg->plain()  );
 				}
 			}
 		}
@@ -1483,9 +1485,7 @@ HTML
 			$wgOut->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				array( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) ) );
 		} else {
-			$msg = 'longpage-hint';
-			$text = wfMsg( $msg );
-			if( !wfEmptyMsg( $msg, $text ) && $text !== '-' ) {
+			if( !wfMessage('longpage-hint')->isDisabled() ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
 					array( 'longpage-hint', $wgLang->formatSize( strlen( $this->textbox1 ) ), strlen( $this->textbox1 ) )
 				);
@@ -1741,8 +1741,7 @@ HTML
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
 		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
-		$text = wfMsg( $msg );
-		if( !wfEmptyMsg( $msg, $text ) && $text !== '-' ) {
+		if( !wfMessage( $msg )->isDisabled() ) {
 			global $wgOut;
 			$wgOut->addHTML( '<div class="mw-tos-summary">' );
 			$wgOut->addWikiMsgArray( $msg, array() );

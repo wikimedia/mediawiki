@@ -3181,11 +3181,8 @@ class User {
 	 * @return String Localized descriptive group name
 	 */
 	static function getGroupName( $group ) {
-		$key = "group-$group";
-		$name = wfMsg( $key );
-		return $name == '' || wfEmptyMsg( $key, $name )
-			? $group
-			: $name;
+		$msg = wfMessage( "group-$group" );
+		return $msg->isBlank() ? $group : $msg->text();
 	}
 
 	/**
@@ -3195,11 +3192,8 @@ class User {
 	 * @return String Localized name for group member
 	 */
 	static function getGroupMember( $group ) {
-		$key = "group-$group-member";
-		$name = wfMsg( $key );
-		return $name == '' || wfEmptyMsg( $key, $name )
-			? $group
-			: $name;
+		$msg = wfMessage( "group-$group-member" );
+		return $msg->isBlank() ? $group : $msg->text();
 	}
 
 	/**
@@ -3251,9 +3245,9 @@ class User {
 	 * @return Title|Bool Title of the page if it exists, false otherwise
 	 */
 	static function getGroupPage( $group ) {
-		$page = wfMsgForContent( 'grouppage-' . $group );
-		if( !wfEmptyMsg( 'grouppage-' . $group, $page ) ) {
-			$title = Title::newFromText( $page );
+		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
+		if( !$msg->exists() ) {
+			$title = Title::newFromText( $msg->text() );
 			if( is_object( $title ) )
 				return $title;
 		}
