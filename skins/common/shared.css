@@ -796,11 +796,10 @@ li.gallerybox {
 	vertical-align: top;
 	background-color: #f9f9f9;
 	border: solid 2px white;
-	display: -moz-inline-box;
+	display: inline-block;
 }
 
 ul.gallery, li.gallerybox {
-	display: inline-block;
 	zoom: 1;
 	*display: inline;
 }
