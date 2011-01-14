@@ -93,9 +93,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
-		$this->setContinuation( $params['continue'], $params['dir'] );
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
-
 		$this->addWhereFld( 'cl_type', $params['type'] );
 
 		// Scanning large datasets for rare categories sucks, and I already told
@@ -128,6 +126,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 
 		$this->addWhere( 'cl_from=page_id' );
+
+		$this->setContinuation( $params['continue'], $params['dir'] );
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
