@@ -92,13 +92,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'cl_type', $fld_type );
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
-		// Not needed after bug 10280 is applied to servers
-		if ( $params['sort'] == 'timestamp' ) {
-			$this->addOption( 'USE INDEX', 'cl_timestamp' );
-		} else {
-			$this->addOption( 'USE INDEX', 'cl_sortkey' );
-		}
-
 		$this->addWhere( 'cl_from=page_id' );
 		$this->setContinuation( $params['continue'], $params['dir'] );
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
@@ -122,6 +115,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 									$dir,
 									$params['start'],
 									$params['end'] );
+
+			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
 			$this->addWhereRange( 'cl_sortkey',
 									$dir,
@@ -129,6 +124,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 									$params['endsortkey'] );
 
 			$this->addWhereRange( 'cl_from', $dir, null, null );
+			$this->addOption( 'USE INDEX', 'cl_sortkey' );
 		}
 
 		$limit = $params['limit'];
