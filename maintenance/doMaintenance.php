@@ -32,7 +32,9 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 }
 
 // Wasn't included from the file scope, halt execution (probably wanted the class)
-if( !Maintenance::shouldExecute() ) {
+// If a class is using commandLine.inc (old school maintenance), they definitely
+// cannot be included and will proceed with execution
+if( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
 	return;
 }
 
