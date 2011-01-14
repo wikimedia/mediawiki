@@ -715,7 +715,7 @@ table.collapsed tr.collapsable {
 	background-color: #ccccff;
 }
 
- /* Allmessages table */
+/* Allmessages table */
 #mw-allmessagestable .allmessages-customised td.am_default {
 	background-color: #fcffc4;
 }
@@ -930,7 +930,30 @@ ol:lang(bn) li {
 	border: 1px solid #5dc9f4;
 	margin-left: 20px;
 }
-.tipsy { padding: 5px 5px 10px; font-size: 12px; position: absolute; z-index: 100000; overflow: visible; }
-.tipsy-inner { padding: 5px 8px 4px 8px; background-color: #d6f3ff; color: black; border: 1px solid #5dc9f4; max-width: 300px; text-align: left; }
-.tipsy-arrow { position: absolute; /* @embed */ background: url( 'images/tipsy-arrow.gif' ) no-repeat top left; width: 13px; height: 13px; }
-.tipsy-se .tipsy-arrow { bottom: -2px; right: 10px; background-position: 0% 100%; }
+.tipsy {
+	padding: 5px 5px 10px;
+	font-size: 12px;
+	position: absolute;
+	z-index: 100000;
+	overflow: visible;
+}
+.tipsy-inner {
+	padding: 5px 8px 4px 8px;
+	background-color: #d6f3ff;
+	color: black;
+	border: 1px solid #5dc9f4;
+	max-width: 300px;
+	text-align: left;
+}
+.tipsy-arrow {
+	position: absolute;
+	/* @embed */
+	background: url( 'images/tipsy-arrow.gif' ) no-repeat top left;
+	width: 13px;
+	height: 13px;
+}
+.tipsy-se .tipsy-arrow {
+	bottom: -2px;
+	right: 10px;
+	background-position: 0% 100%;
+}
