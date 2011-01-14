@@ -116,6 +116,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
+			$this->addOption( 'ORDER BY', 'cl_type' );
+
 			$this->addWhereRange( 'cl_sortkey',
 				$dir,
 				$params['startsortkey'],
