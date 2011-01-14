@@ -391,7 +391,7 @@ class EditPage {
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
-		if ( !$editnotice_ns_message->empty() ) {
+		if ( $editnotice_ns_message->exists() ) {
 			$wgOut->addWikiText( $editnotice_ns_msg->plain() );
 		}
 		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
