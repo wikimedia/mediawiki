@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10158) Do not mention allowing others to contact you when the feature
   is disabled ($wgEnableUserEmail=false)
 * (bug 26733) Wrap initial table creation in transaction
+* (bug 26729) Category pages should return 404 if they do not exist and have no
+  members.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

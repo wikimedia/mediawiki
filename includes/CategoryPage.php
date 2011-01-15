@@ -44,14 +44,23 @@ class CategoryPage extends Article {
 
 	/**
 	 * Don't return a 404 for categories in use.
+	 * In use defined as: either the actual page exists
+	 * or the category currently has members.
 	 */
 	function hasViewableContent() {
 		if ( parent::hasViewableContent() ) {
 			return true;
 		} else {
 			$cat = Category::newFromTitle( $this->mTitle );
-			return $cat->getId() != 0;
+			// If any of these are not 0, then has members
+			if ( $cat->getPageCount()
+				|| $cat->getSubcatCount()
+				|| $cat->getFileCount()
+			) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	function openShowCategory() {
