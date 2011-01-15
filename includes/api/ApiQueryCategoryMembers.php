@@ -77,12 +77,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
 		$fld_sortkey = isset( $prop['sortkey'] );
+		$fld_sortkeyprefix = isset( $prop['sortkeyprefix'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_type = isset( $prop['type'] );
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->addFields( array( 'cl_from', 'cl_sortkey', 'page_namespace', 'page_title' ) );
+			$this->addFields( array( 'cl_from', 'page_namespace', 'page_title' ) );
 			$this->addFieldsIf( 'page_id', $fld_ids );
+		    $this->addFieldsIf( 'cl_sortkey_prefix', $fld_sortkeyprefix );
+		    $this->addFieldsIf( 'cl_sortkey', $fld_sortkey );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() ); // will include page_ id, ns, title
 			$this->addFields( array( 'cl_from', 'cl_sortkey' ) );
@@ -169,6 +172,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $fld_sortkey ) {
 					$vals['sortkey'] = $row->cl_sortkey;
 				}
+				if ( $fld_sortkeyprefix ) {
+					$vals['sortkeyprefix'] = $row->cl_sortkey_prefix;
+				}
 				if ( $fld_type  ) {
 					$vals['type'] = $row->cl_type;
 				}
@@ -227,6 +233,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'ids',
 					'title',
 					'sortkey',
+					'sortkeyprefix',
 					'type',
 					'timestamp',
 				)
@@ -285,11 +292,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'pageid' => 'Page ID of the category to enumerate. Cannot be used together with cmtitle',
 			'prop' => array(
 				'What pieces of information to include',
-				' ids        - Adds the page ID',
-				' title      - Adds the title and namespace ID of the page',
-				' sortkey    - Adds the sortkey used for the category',
-				' type       - Adds the type that the page has been categorised as',
-				' timestamp  - Adds the timestamp of when the page was included',
+				' ids           - Adds the page ID',
+				' title         - Adds the title and namespace ID of the page',
+				' sortkey       - Adds the sortkey used for the category (note, may be non human readable)',
+				' sortkeyprefix - Adds the sortkey prefix used for the category',
+				' type          - Adds the type that the page has been categorised as',
+				' timestamp     - Adds the timestamp of when the page was included',
 			),
 			'namespace' => 'Only include pages in these namespaces',
 			'type' => 'What type of category members to include',
