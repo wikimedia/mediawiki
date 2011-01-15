@@ -84,8 +84,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array( 'cl_from', 'page_namespace', 'page_title' ) );
 			$this->addFieldsIf( 'page_id', $fld_ids );
-		    $this->addFieldsIf( 'cl_sortkey_prefix', $fld_sortkeyprefix );
-		    $this->addFieldsIf( 'cl_sortkey', $fld_sortkey );
+			$this->addFieldsIf( 'cl_sortkey_prefix', $fld_sortkeyprefix );
+			$this->addFieldsIf( 'cl_sortkey', $fld_sortkey );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() ); // will include page_ id, ns, title
 			$this->addFields( array( 'cl_from', 'cl_sortkey' ) );
