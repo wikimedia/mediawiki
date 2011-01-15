@@ -320,7 +320,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			}
 
 			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_is_redirect' ),
+				array( 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ),
 				$conds,
 				__METHOD__,
 				array(
@@ -333,10 +333,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 			if( $res->numRows() > 0 ) {
 				$out = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-chunk' ) );
 				while( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
-					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
+					$t = Title::newFromRow( $s );
 					if( $t ) {
 						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-							$sk->linkKnown( $t, htmlspecialchars( $t->getText() ) ) .
+							$sk->link( $t ) .
 							($s->page_is_redirect ? '</div>' : '' );
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
