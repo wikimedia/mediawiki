@@ -946,8 +946,8 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'email'                     => 'Litterae electronicae',
 'prefs-help-realname'       => 'Nomen verum non necesse est.
 Si vis id dare, opera tua tibi ascribentur.',
-'prefs-help-email'          => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.
-Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
+'prefs-help-email'          => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.',
+'prefs-help-email-others'   => 'Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
 'prefs-help-email-required' => 'Inscriptio electronica necesse est.',
 'prefs-info'                => 'Informatio basica',
 'prefs-i18n'                => 'Internationalizatio',

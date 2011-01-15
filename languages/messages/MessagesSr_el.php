@@ -620,7 +620,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'externaldberror'            => 'Došlo je ili do greške pri spoljašnjoj autentifikaciji baze podataka ili vam nije dozvoljeno da ažurirate svoj spoljašnji nalog.',
 'login'                      => 'Prijavi me',
 'nav-login-createaccount'    => 'Prijavi se/Registruj se',
-'loginprompt'                => "Morate da imate omogućene kolačiće (''cookies'') da biste se prijavili na {{SITENAME}}.",
+'loginprompt'                => 'Morate imati omogućene kolačiće da biste se prijavili na ovaj viki.',
 'userlogin'                  => 'Prijavi se/Registruj se',
 'userloginnocreate'          => 'Prijavljivanje',
 'logout'                     => 'Odjavljivanje',
