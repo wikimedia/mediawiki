@@ -436,14 +436,17 @@ $messages = array(
 'jumpto'            => 'Дехьавала оцу:',
 'jumptonavigation'  => 'шавигар',
 'jumptosearch'      => 'лахар',
-'view-pool-error'   => 'Бéхк цабиллар дōха, хlинц гlулкхдириг йōттина ю.
+'view-pool-error'   => 'Бехк цабиллар доьха, хlинц гlулкхдириг йоьттина йу.
 Каьчна дуккха дехарш хlокху агlонтlе хьажарца.
 Дехар до, собардеш а йуха хьажа хlокху агlонтlе жим тlаьхьо.
 
 $1',
+'pool-timeout'      => 'Сацо веза хан тlех йаьлла',
+'pool-queuefull'    => 'Дехаршан чоь йуззина йу',
+'pool-errorunknown' => 'Дойзаш доцу гlалат',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}}х лаьцна',
+'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} лаьцна',
 'aboutpage'            => 'Project:Цунах лаьцна',
 'copyright'            => 'Чулацам лело мега догlуш хиларца оцу $1.',
 'copyrightpage'        => '{{ns:project}}:Куьг де бакъо',
@@ -475,7 +478,7 @@ $1',
 'retrievedfrom'           => 'Хьост — «$1»',
 'youhavenewmessages'      => 'Хьуна кхечи $1 ($2).',
 'newmessageslink'         => 'керла хаамаш',
-'newmessagesdifflink'     => 'тlаьххьаралера хийцам',
+'newmessagesdifflink'     => 'тlаьххьара хийцамаш',
 'youhavenewmessagesmulti' => 'Хьуна кхаьчна керла хаам оцу $1',
 'editsection'             => 'нисйé',
 'editsection-brackets'    => '[$1]',
@@ -514,8 +517,14 @@ $1',
 'nstab-help'      => 'Собаркхе',
 'nstab-category'  => 'Кадегар',
 
+# Main script and global functions
+'nosuchaction'      => 'Ишта дийриг дац',
+'nosuchspecialpage' => 'Ишта белха агlо йац',
+
 # General errors
 'error'               => 'Гlалат',
+'databaseerror'       => 'Гlалат хаамийн бухера',
+'readonly'            => 'Сацийна дlайаздар хаамийн бухе',
 'missing-article'     => 'Хlокху чохь кароезаш йолу хьан дехарца йозан агlонаш цакарийна «$1» $2.
 
 Иштнарг наггахь хуьлу хьажориг дlайаьккхина йалхь йа хийцам бина тиша хьажоригца дехьа вала гlоьртича.
@@ -524,6 +533,8 @@ $1',
 Дехар до, хаам бе оцуьнах [[Special:ListUsers/sysop|адаманкуьйгалхога]], гойтуш URL.',
 'missingarticle-rev'  => '(башхо № $1)',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
+'internalerror'       => 'Чоьхьара гlалат',
+'internalerror_info'  => 'Чоьхьара гlалат: $1',
 'badtitle'            => 'Цамегаш йолу цlе',
 'badtitletext'        => 'Дехарца йолу агlонан цlе нийса яц, йаьсса ю, хила мега нийса ца хlоттийна меттаюкъар йа юкъарвики цlе. Хила мега, цlарца цамагош йолу саберг.',
 'viewsource'          => 'Хьажар',
@@ -625,12 +636,15 @@ $1',
 'noarticletext-nopermission'       => 'Хlокх хан чохь кху яззамехь йоза дац.
 Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта агlо]] кхечу яззамехь,
 йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха кхечу тептаршкахь].</span>',
+'updated'                          => '(Карла йаькхина)',
+'note'                             => "'''Билгалдаккхар:'''",
 'previewnote'                      => "'''Хlара хьалх хьажар ду, йоза хlинца язданза ду!'''",
 'editing'                          => 'Редаккхар: $1',
 'editingsection'                   => 'Редаккхар $1 (даакъа)',
 'editingcomment'                   => 'Редаккхар $1 (керла даакъа)',
 'editconflict'                     => 'Редаккхарна дойнаш: $1',
 'yourtext'                         => 'Хьан йоза',
+'yourdiff'                         => 'Башхаллаш',
 'copyrightwarning'                 => "Тергаме хьажа, массо яззаман чутухуш долу йозан хийцам хьажарехь бу, арахоьцушсанна оцу бакъойалар хьоляхь $2 (хьаж. $1).
 Нагахь хьо лууш вацахь хьай йозанаш маьрша даржа а кхечаьрга хийцам байта, мадаха уьш кху чу.<br />
 Ишта чlагlо йой ахьа, айхьа далош долучуьн хьо куьг да ву аьлла, йа хьаэцна цхьан
@@ -657,6 +671,7 @@ $1',
 Лахахь далина ду дlадайарш тlяхь долу тептарш а хlокх яззам цlера бина хийцамаш.",
 'moveddeleted-notice'              => 'Иза агlо дlайайина йара.
 Оцу собаркхен лахахьа гойтуш ю цуьнца долу дlаяздарш кху дlадайина тептар чура а цlе хийцарш а.',
+'log-fulllog'                      => 'Хьажа деригге тептаре',
 
 # Parser/template warnings
 'parser-template-loop-warning'            => 'Карийна куцкепаш юкъахь хилла шад: [[$1]]',
@@ -676,17 +691,28 @@ $1',
 'next'                   => 'кхин',
 'last'                   => 'хьалх.',
 'page_first'             => 'хьалхара',
+'page_last'              => 'тlаьххьара',
 'histlegend'             => "Кхетор: (хlинцлера.) — йолучу башхон къастам; (хьалх.) — хьалхлерачу башхон къастам; '''ж''' — жимо бозалца болу хийцам.",
 'history-fieldset-title' => 'Хьажа исцlарерачу',
 'histfirst'              => 'къена',
 'histlast'               => 'хьалхо',
+'historyempty'           => '(йаьсса)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 оцу $2',
 
 # Revision deletion
-'rev-delundel'              => 'гайта/къайлайаккха',
-'rev-showdeleted'           => 'гайта',
-'revdel-restore'            => 'Хийцам бе схьагарехь',
-'revdelete-content'         => 'чуьраниг',
-'revdelete-reasonotherlist' => 'Кхин бахьан',
+'rev-delundel'               => 'гайта/къайлайаккха',
+'rev-showdeleted'            => 'гайта',
+'revdelete-show-file-submit' => 'Хlаъ',
+'revdelete-radio-same'       => '(ма хийца)',
+'revdelete-radio-set'        => 'Хlаъ',
+'revdelete-radio-unset'      => 'Хlахlа',
+'revdelete-log'              => 'Бахьан:',
+'revdel-restore'             => 'Хийцам бе схьагарехь',
+'revdelete-content'          => 'чуьраниг',
+'revdelete-uname'            => 'декъашхон цlе',
+'revdelete-reasonotherlist'  => 'Кхин бахьан',
 
 # Revision move
 'revmove-reasonfield' => 'Бахьан:',
@@ -742,6 +768,7 @@ $1',
 'search-mwsuggest-disabled'        => 'хьехар доцуш',
 'searcheverything-enable'          => 'Массо цIера анахь лахар',
 'searchrelated'                    => 'хlоттаделларг',
+'searchall'                        => 'массо',
 'showingresults'                   => 'Лахахьа {{PLURAL:$1|гойта|гойту|гойту}} <strong>$1</strong> {{PLURAL:$1|хилам|хиламаш|хиламаш}}, дlаболало кху № <strong>$2</strong>.',
 'showingresultsheader'             => "{{PLURAL:$5|Хилам '''$1''' кху '''$3'''|Хиламаш '''$1 — $2''' кху '''$3'''}} оцун '''$4'''",
 'nonefound'                        => "'''Билгалдаккхар.''' Хlумма цадеш lад йитича массо цlеран энахь цалоху. Лела йе тlехуттург ''all:'', лахийта массо цlеран энахь (юкъадалош декъашхойн дийцарш а куцкепаш а кхин дерг.), йа хlотта йе оьшуш йолу цlеран эна.",

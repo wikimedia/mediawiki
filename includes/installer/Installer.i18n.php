@@ -4817,7 +4817,7 @@ Si tu usa un servitor web usate in commun, tu providitor te fornira le nomine sp
 Si le conto non existe, e si le conto de installation possede sufficiente privilegios, iste conto de usator essera create con le minime privilegios necessari pro operar le wiki.',
 	'config-db-prefix' => 'Prefixo de tabella del base de datos:',
 	'config-db-prefix-help' => 'Si il es necessari usar un base de datos in commun inter multiple wikis, o inter MediaWiki e un altere application web, tu pote optar pro adder un prefixo a tote le nomines de tabella pro evitar conflictos.
-Non usar spatios o tractos de union.
+Non usa spatios.
 
 Iste campo usualmente resta vacue.',
 	'config-db-charset' => 'Codification de characteres in le base de datos',
@@ -5130,6 +5130,7 @@ Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
  * @author IvanLanin
+ * @author Reedy
  */
 $messages['id'] = array(
 	'config-desc' => 'Penginstal untuk MediaWiki',
@@ -5242,7 +5243,7 @@ Jika Anda menggunakan Mandrake, instal paket php-xml.',
 MediaWiki memerlukan fungsi persamaan reguler kompatibel Perl untuk bekerja.',
 	'config-pcre-no-utf8' => "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.
 MediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
-	'config-memory-raised' => '<code>memory_limit</codde> PHP adalah $1, dinaikkan ke $2.',
+	'config-memory-raised' => '<code>memory_limit</code> PHP adalah $1, dinaikkan ke $2.',
 	'config-memory-bad' => "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.
 Ini terlalu rendah.
 Instalasi terancam gagal!",
@@ -5796,7 +5797,7 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 アカウントがないが、インストールのアカウントに十分な権限があれば、このユーザーアカウントは、ウィキを操作するうえで最小限の権限を持った状態で作成されます。',
 	'config-db-prefix' => 'データベーステーブルの接頭辞：',
 	'config-db-prefix-help' => 'データベースを複数のウィキ間、もしくはMediaWikiと他のウェブアプリケーションで共有する必要がある場合、衝突を避けるために、すべてのテーブル名に接頭辞をつける必要があります。
-スペースやハイフンは使用しないでください。
+スペースは使用できません。
 
 このフィールドは、通常は空のままです。',
 	'config-db-charset' => 'データベースの文字セット',
