@@ -1941,11 +1941,11 @@ class Article {
 	}
 
 	/**
-	 * This function is not deprecated until somebody fixes the core not to use
-	 * it. Nevertheless, use Article::doEdit() instead.
-	 * @deprecated @since 1.7
+	 * @deprecated @since 1.7 use Article::doEdit()
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC = false, $comment = false, $bot = false ) {
+		wfDeprecated( __METHOD__ );
+
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $isminor ? EDIT_MINOR : 0 ) |
 			( $suppressRC ? EDIT_SUPPRESS_RC : 0 ) |
@@ -1978,6 +1978,8 @@ class Article {
 	 * @deprecated @since 1.7 use Article::doEdit()
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
+		wfDeprecated( __METHOD__ );
+
 		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $forceBot ? EDIT_FORCE_BOT : 0 );
