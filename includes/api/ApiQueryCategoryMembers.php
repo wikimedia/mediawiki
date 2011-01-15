@@ -135,7 +135,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$count = 0;
-		$lastSortKey = null;
+		$lastFrom = null;
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
@@ -144,7 +144,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'timestamp' ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $this->getContinueStr( $row, $lastSortKey ) );
+					$this->setContinueEnumParameter( 'continue', $lastFrom );
 				}
 				break;
 			}
@@ -181,28 +181,20 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'timestamp' ) {
 						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $this->getContinueStr( $row, $lastSortKey ) );
+						$this->setContinueEnumParameter( 'continue', $lastFrom );
 					}
 					break;
 				}
 			} else {
 				$resultPageSet->processDbRow( $row );
 			}
-			$lastSortKey = $row->cl_sortkey; // detect duplicate sortkeys
+			$lastFrom = $row->cl_from; // detect duplicate sortkeys
 		}
 
 		if ( is_null( $resultPageSet ) ) {
 			$this->getResult()->setIndexedTagName_internal(
 					 array( 'query', $this->getModuleName() ), 'cm' );
 		}
-	}
-
-	private function getContinueStr( $row, $lastSortKey ) {
-		$ret = $row->cl_sortkey . '|';
-		if ( $row->cl_sortkey == $lastSortKey )	{ // duplicate sort key, add cl_from
-			$ret .= $row->cl_from;
-		}
-		return $ret;
 	}
 
 	/**
@@ -213,26 +205,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			return;	// This is not a continuation request
 		}
 
-		$pos = strrpos( $continue, '|' );
-		$sortkey = substr( $continue, 0, $pos );
-		$fromstr = substr( $continue, $pos + 1 );
-		$from = intval( $fromstr );
-
-		if ( $from == 0 && strlen( $fromstr ) > 0 ) {
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
-		}
-
-		$encSortKey = $this->getDB()->addQuotes( $sortkey );
-		$encFrom = $this->getDB()->addQuotes( $from );
+		$encFrom = $this->getDB()->addQuotes( intval( $continue ) );
 
 		$op = ( $dir == 'desc' ? '<' : '>' );
 
-		if ( $from != 0 ) {
-			// Duplicate sort key continue
-			$this->addWhere( "cl_sortkey$op$encSortKey OR (cl_sortkey=$encSortKey AND cl_from$op=$encFrom)" );
-		} else {
-			$this->addWhere( "cl_sortkey$op=$encSortKey" );
-		}
+		$this->addWhere( "cl_from $op $encFrom" );
 	}
 
 	public function getAllowedParams() {
