@@ -409,7 +409,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								$nsForm .
 							'</td>
 							<td class="mw-allpages-nav">' .
-								$sk->link( $self, wfMsgHtml ( 'allpages' ), array(), array(), 'known' );
+								$sk->link( $self, wfMsgHtml ( 'allpages' ) );
 
 			# Do we put a previous link ?
 			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
@@ -420,7 +420,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 				$prevLink = $sk->linkKnown(
 					$self,
-					htmlspecialchars( wfMsg( 'prevpage', $pt ) ),
+					wfMessage( 'prevpage', $pt )->escaped(),
 					array(),
 					$query
 				);
@@ -437,7 +437,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 				$nextLink = $sk->linkKnown(
 					$self,
-					htmlspecialchars( wfMsg( 'nextpage', $t->getText() ) ),
+					wfMessage( 'nextpage', $t->getText() )->escaped(),
 					array(),
 					$query
 				);
@@ -447,19 +447,17 @@ class SpecialAllpages extends IncludableSpecialPage {
 		}
 
 		$wgOut->addHTML( $out2 . $out );
-		if( isset($prevLink) or isset($nextLink) ) {
-			$wgOut->addHTML( '<hr /><p class="mw-allpages-nav">' );
-			if( isset( $prevLink ) ) {
-				$wgOut->addHTML( $prevLink );
-			}
-			if( isset( $prevLink ) && isset( $nextLink ) ) {
-				$wgOut->addHTML( wfMsgExt( 'pipe-separator' , 'escapenoentities' ) );
-			}
-			if( isset( $nextLink ) ) {
-				$wgOut->addHTML( $nextLink );
-			}
-			$wgOut->addHTML( '</p>' );
 
+		$links = array();
+		if ( isset( $prevLink ) ) $links[] = $prevLink;
+		if ( isset( $nextLink ) ) $links[] = $nextLink;
+
+		if ( count( $links ) ) {
+			$wgOut->addHTML(
+				Html::element( 'hr' ) .
+				Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
+					$wgLang->pipeList( $links )
+				) );
 		}
 
 	}
