@@ -3596,10 +3596,17 @@ class Article {
 
 		global $wgParser;
 
+		if( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$popts = ParserOptions::newFromUser( $user );
+		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
+
 		$edit = (object)array();
 		$edit->revid = $revid;
 		$edit->newText = $text;
-		$edit->pst = $this->preSaveTransform( $text, $user );
+		$edit->pst = $this->preSaveTransform( $text, $user, $popts );
 		$edit->popts = $this->getParserOptions( true );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
@@ -3876,10 +3883,12 @@ class Article {
 	 * @param $text String article contents
 	 * @param $user User object: user doing the edit, $wgUser will be used if
 	 *              null is given
+	 * @param $popts ParserOptions object: parser options, default options for
+	 *               the user loaded if null given
 	 * @return string article contents with altered wikitext markup (signatures
 	 * 	converted, {{subst:}}, templates, etc.)
 	 */
-	public function preSaveTransform( $text, User $user = null ) {
+	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
 		global $wgParser;
 
 		if ( $user === null ) {
@@ -3887,7 +3896,11 @@ class Article {
 			$user = $wgUser;
 		}
 
-		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, ParserOptions::newFromUser( $user ) );
+		if ( $popts === null ) {
+			$popts = ParserOptions::newFromUser( $user );
+		}
+
+		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
 	}
 
 	/* Caching functions */

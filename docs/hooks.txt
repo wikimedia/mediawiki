@@ -441,6 +441,10 @@ $row: row (object) returned from the database server
 $article: article (object) that data will be loaded
 $fields: fileds (array) to load from the database
 
+'ArticlePrepareTextForEdit': called when preparing text to be saved
+$article: the article being saved
+$popts: parser options to be used for pre-save transformation
+
 'ArticleProtect': before an article is protected
 $article: the article being protected
 $user: the user doing the protection

@@ -4053,7 +4053,9 @@ class Parser {
 			"\r\n" => "\n",
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
-		$text = $this->pstPass2( $text, $user );
+		if( $options->getPreSaveTransform() ) {
+			$text = $this->pstPass2( $text, $user );
+		}
 		$text = $this->mStripState->unstripBoth( $text );
 
 		$this->setUser( null ); #Reset
