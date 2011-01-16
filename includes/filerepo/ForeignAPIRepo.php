@@ -29,9 +29,9 @@ class ForeignAPIRepo extends FileRepo {
 
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	/* Check back with Commons after a day */
-	var $apiThumbCacheExpiry = 86400;
+	var $apiThumbCacheExpiry = 86400; /* 24*60*60 */
 	/* Redownload thumbnail files after a month */
-	var $fileCacheExpiry = 2629743;
+	var $fileCacheExpiry = 2592000; /* 86400*30 */
 	/* Local image directory */
 	var $directory;
 	var $thumbDir;
