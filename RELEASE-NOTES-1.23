@@ -55,6 +55,12 @@ production.
 * (bug 57098) SpecialPasswordReset now obeys returnto parameter
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
+* BREAKING CHANGE: (bug 12974) The behaviour of table and template parsing was
+  altered. Previously, all templates were treated as being at the start of a
+  block context for the purposes of evaluating wikitext elements like #, :, *,
+  and tables (bug 529). This behaviour is now only applied to table start {| and
+  instead all wikitext inside of table cells behaves as if it was at the
+  beginning of a line.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing

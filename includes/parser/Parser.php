@@ -995,7 +995,22 @@ class Parser {
 		$has_opened_tr = array(); # Did this table open a <tr> element?
 		$indent_level = 0; # indent level of the table
 
-		foreach ( $lines as $outLine ) {
+		# Keep pulling lines off the front of the array until they're all gone.
+		# we want to be able to push lines back on to the front of the stream,
+		# but StringUtils::explode() returns funky optimised Iterators which don't
+		# support insertion.  So maintain a separate buffer and draw on that first if
+		# there's anything in it
+		$extraLines = array();
+		$lines->rewind();
+		do {
+			if( $extraLines ){
+				$outLine = array_shift( $extraLines );
+			} elseif( $lines->valid() ) {
+				$outLine = $lines->current();
+				$lines->next();
+			} else {
+				break;
+			}
 			$line = trim( $outLine );
 
 			if ( $line === '' ) { # empty line, go to next line
@@ -1086,6 +1101,16 @@ class Parser {
 				# by earlier parser steps, but should avoid splitting up eg
 				# attribute values containing literal "||".
 				$cells = StringUtils::explodeMarkup( '||', $line );
+				$cell = array_shift( $cells );
+
+				# Inject cells back into the stream to be dealt with later
+				# TODO: really we should do the whole thing as a stream...
+				# but that would be too much like a sensible implementation :P
+				if( count( $cells ) ){
+					foreach( array_reverse( $cells ) as $extraCell ){
+						array_unshift( $extraLines, $first_character . $extraCell );
+					}
+				}
 
 				$outLine = '';
 
@@ -1103,45 +1128,58 @@ class Parser {
 						array_push( $has_opened_tr, true );
 					}
 
-					$last_tag = array_pop( $last_tag_history );
+				$last_tag = array_pop( $last_tag_history );
 
-					if ( array_pop( $td_history ) ) {
-						$previous = "</{$last_tag}>\n{$previous}";
-					}
+				if ( array_pop( $td_history ) ) {
+					$previous = "</{$last_tag}>\n{$previous}";
+				}
 
-					if ( $first_character === '|' ) {
-						$last_tag = 'td';
-					} elseif ( $first_character === '!' ) {
-						$last_tag = 'th';
-					} elseif ( $first_character === '+' ) {
-						$last_tag = 'caption';
-					} else {
-						$last_tag = '';
-					}
+				if ( $first_character === '|' ) {
+					$last_tag = 'td';
+				} elseif ( $first_character === '!' ) {
+					$last_tag = 'th';
+				} elseif ( $first_character === '|+' ) {
+					$last_tag = 'caption';
+				} else {
+					$last_tag = '';
+				}
 
 					array_push( $last_tag_history, $last_tag );
 
 					# A cell could contain both parameters and data
 					$cell_data = explode( '|', $cell, 2 );
 
-					# Bug 553: Note that a '|' inside an invalid link should not
+					# Bug 553: a '|' inside an invalid link should not
 					# be mistaken as delimiting cell parameters
 					if ( strpos( $cell_data[0], '[[' ) !== false ) {
-						$cell = "{$previous}<{$last_tag}>{$cell}";
+						$data = $cell;
+						$cell = "{$previous}<{$last_tag}>";
 					} elseif ( count( $cell_data ) == 1 ) {
-						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
+						$cell = "{$previous}<{$last_tag}>";
+						$data = $cell_data[0];
 					} else {
 						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
-						$attributes = Sanitizer::fixTagAttributes( $attributes, $last_tag );
-						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
+						$attributes = Sanitizer::fixTagAttributes( $attributes , $last_tag );
+						$cell = "{$previous}<{$last_tag}{$attributes}>";
+						$data = $cell_data[1];
+					}
+
+					# Bug 529: the start of a table cell should be a linestart context for
+					# processing other block markup, including nested tables.  The original
+					# implementation of this was to add a newline before every brace construct,
+					# which broke all manner of other things.  Instead, push the contents
+					# of the cell back into the stream and come back to it later.  But don't
+					# do that if the first line is empty, or you may get extra whitespace
+					if ( $data ){
+						array_unshift( $extraLines, trim( $data ) );
 					}
 
 					$outLine .= $cell;
-					array_push( $td_history, true );
+					array_push( $td_history , true );
 				}
 			}
 			$out .= $outLine . "\n";
-		}
+		} while( $lines->valid() || count( $extraLines ) );
 
 		# Closing open td, tr && table
 		while ( count( $td_history ) > 0 ) {
@@ -2469,6 +2507,7 @@ class Parser {
 					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|' .
 					'<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|' . $this->mUniqPrefix . '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
+
 					$paragraphStack = false;
 					# TODO bug 5718: paragraph closed
 					$output .= $this->closeParagraph();
@@ -3505,11 +3544,11 @@ class Parser {
 			$text = wfEscapeWikiText( $text );
 		} elseif ( is_string( $text )
 			&& !$piece['lineStart']
-			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text )
-		) {
-			# Bug 529: if the template begins with a table or block-level
-			# element, it should be treated as beginning a new line.
-			# This behavior is somewhat controversial.
+			&& preg_match( '/^{\\|/', $text ) )
+		{
+			# Bug 529: if the template begins with a table, it should be treated as
+			# beginning a new line.  This previously handled other block-level elements
+			# such as #, :, etc, but these have many false-positives (bug 12974).
 			$text = "\n" . $text;
 		}
 
@@ -3686,7 +3725,7 @@ class Parser {
 
 		if ( !$title->equals( $cacheTitle ) ) {
 			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
-				array( $title->getNamespace(), $cdb = $title->getDBkey() );
+				array( $title->getNamespace(), $title->getDBkey() );
 		}
 
 		return array( $dom, $title );
