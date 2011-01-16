@@ -36,6 +36,7 @@ class ParserOptions {
 	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
 	var $mExternalLinkTarget;        # Target attribute for external links
 	var $mCleanSignatures;           #
+	var $mPreSaveTransform = true;   # Transform wiki markup when saving the page.
 
 	var $mNumberHeadings;            # Automatically number headings
 	var $mMath;                      # User math preference (as integer)
@@ -82,6 +83,7 @@ class ParserOptions {
 	function getIsPrintable()                   { $this->optionUsed('printable');
 												  return $this->mIsPrintable; }
 	function getUser()                          { return $this->mUser; }
+	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
 
 	function getSkin( $title = null ) {
 		if ( !isset( $this->mSkin ) ) {
@@ -140,6 +142,7 @@ class ParserOptions {
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  { return wfSetVar( $this->mUserLang, $x ); }
 	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
+	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
 
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
