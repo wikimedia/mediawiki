@@ -498,8 +498,16 @@ EOT
 			{
 				$nofile = 'filepage-nofile';
 			}
+			// Note, if there is an image description page, but
+			// no image, then this setRobotPolicy is overriden
+			// by Article::View().
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
+			if ( !$this->getID() ) {
+				// If there is no image, no shared image, and no description page,
+				// output a 404, to be consistent with articles.
+				$wgRequest->response()->header( "HTTP/1.x 404 Not Found" );
+			}
 		}
 	}
 
