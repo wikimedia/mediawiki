@@ -3246,7 +3246,7 @@ class User {
 	 */
 	static function getGroupPage( $group ) {
 		$msg = wfMessage( 'grouppage-' . $group )->inContentLanguage();
-		if( !$msg->exists() ) {
+		if( $msg->exists() ) {
 			$title = Title::newFromText( $msg->text() );
 			if( is_object( $title ) )
 				return $title;
