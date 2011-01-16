@@ -129,7 +129,6 @@ class Message {
 	 * @return Message: $this
 	 */
 	public static function newFallbackSequence( /*...*/ ) {
-		global $wgMessageCache;
 		$keys = func_get_args();
 		if ( func_num_args() == 1 ) {
 			if ( is_array($keys[0]) ) {
