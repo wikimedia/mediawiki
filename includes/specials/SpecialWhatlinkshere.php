@@ -76,6 +76,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 			return;
 		}
 
+		$this->skin->setRelevantTitle( $this->target );
+
+
 		$this->selfTitle = $this->getTitle( $this->target->getPrefixedDBkey() );
 
 		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
