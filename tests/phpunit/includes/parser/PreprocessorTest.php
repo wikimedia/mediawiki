@@ -35,6 +35,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "<foo> <gallery></gallery>", "<root>&lt;foo&gt; <ext><name>gallery</name><attr></attr><inner></inner><close>&lt;/gallery&gt;</close></ext></root>" ),
 			array( "<foo> <gallery><gallery></gallery>", "<root>&lt;foo&gt; <ext><name>gallery</name><attr></attr><inner>&lt;gallery&gt;</inner><close>&lt;/gallery&gt;</close></ext></root>" ),
 			array( "<noinclude> Foo bar </noinclude>", "<root><ignore>&lt;noinclude&gt;</ignore> Foo bar <ignore>&lt;/noinclude&gt;</ignore></root>" ),
+			array( "<noinclude>\n{{Foo}}\n</noinclude>", "<root><ignore>&lt;noinclude&gt;</ignore>\n<template lineStart=\"1\"><title>Foo</title></template>\n<ignore>&lt;/noinclude&gt;</ignore></root>" ),
+			array( "<noinclude>\n{{Foo}}\n</noinclude>\n", "<root><ignore>&lt;noinclude&gt;</ignore>\n<template lineStart=\"1\"><title>Foo</title></template>\n<ignore>&lt;/noinclude&gt;</ignore>\n</root>" ),
 			array( "<gallery>foo bar", "<root><ext><name>gallery</name><attr></attr><inner>foo bar</inner></ext></root>" ),
 			array( "<gallery></gallery</gallery>", "<root><ext><name>gallery</name><attr></attr><inner>&lt;/gallery</inner><close>&lt;/gallery&gt;</close></ext></root>" ),
 			array( "=== Foo === ", "<root><h level=\"3\" i=\"1\">=== Foo === </h></root>" ),
