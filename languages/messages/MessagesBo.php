@@ -470,18 +470,38 @@ $messages = array(
 'uploadedimage'     => '"[[$1]]"ཡར་འཇུག་བྱས་ཟིན།',
 'watchthisupload'   => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 
+# Special:ListFiles
+'imgfile'               => 'བརྙན་རིས།',
+'listfiles'             => 'ཡིག་ཆའི་ཐོ་གཞུང་།',
+'listfiles_date'        => 'ཟླ་ཚེས།',
+'listfiles_name'        => 'མིང་།',
+'listfiles_user'        => 'སྤྱོད་མི།',
+'listfiles_size'        => 'ཆེ་ཆུང་།',
+'listfiles_description' => 'འགྲེལ་བཤད།',
+
 # File description page
+'file-anchor-link'    => 'ཡིག་ཆ།',
 'filehist'            => 'ཡིག་ཆའི་ལོ་རྒྱུས།',
 'filehist-help'       => 'ཟླ་ཚེས་/དུས་ཚོད་གནུན་ཏེ་རྩོམ་ཡིག་ལ་ལྟ་བ།',
+'filehist-deleteall'  => 'ཚང་མ་སུབས།',
+'filehist-deleteone'  => 'གསུབས།',
 'filehist-current'    => 'ད་ལྟ།',
 'filehist-datetime'   => 'ཚེས་གྲངས། / དུས་ཚོད།',
 'filehist-thumb'      => 'བསྡུས་དོན།',
 'filehist-thumbtext'  => '$1 བཟོ་བཅོས་བསྡུས་དོན།',
 'filehist-user'       => 'བེད་སྤྱོད་བྱེད་མི།',
 'filehist-dimensions' => 'ཚད།',
+'filehist-filesize'   => 'ཡིག་ཆའི་ཆེ་ཆུང་།',
 'filehist-comment'    => 'བསམ་ཚུལ།',
+'filehist-missing'    => 'ཡིག་ཆ་ཆད་པ།',
 'imagelinks'          => 'གང་ལ་སྦྲེལ་བ།',
 'linkstoimage'        => '{{PLURAL:$1|pagelinks|$1pagelink}} འདི་ལ་སྦྲེལ་ཡོད།',
+'shared-repo-from'    => '$1 ནས།',
+
+# File deletion
+'filedelete'         => '$1 སུབས་ཤིག',
+'filedelete-legend'  => 'ཡིག་ཆ་སུབས་ཤིག',
+'filedelete-success' => "'''$1''' བསུབས་ཟིན།",
 
 # Random page
 'randompage' => 'རང་མོས་ཤོག་ངོས།',
@@ -494,6 +514,7 @@ $messages = array(
 'newpages'          => 'ཤོག་ངོས་གསར་བ།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move'              => 'སྤོར་བ།',
+'movethispage'      => 'ཤོག་ངོས་འདི་སྤོར།',
 'pager-newer-n'     => '{{PLURAL：$1|གསར་བ་1|གསར་བ་$1}}',
 'pager-older-n'     => '{{PLURAL：$1|རྙིང་པ་1|རྙིང་པ་$1}}',
 
@@ -553,9 +574,11 @@ $messages = array(
 # Protect
 'protectedarticle'            => 'སྲུང་སྐྱོབ་བྱས་ཟིན།"[[$1]]"',
 'modifiedarticleprotection'   => '"[[$1]]" ལ་སྲུང་སྐྱོབ་རིམ་པ་བཟོ་བཅོས་བྱས་བ།',
+'protectcomment'              => 'རྒྱུ་མཚན།',
 'protectexpiry'               => 'དུས་ཡུན་རྫོགས་ཚད།',
 'protect_expiry_invalid'      => 'དུས་ཡུན་རྫོགས་ཚད་ནོར་བ།',
 'protect-default'             => 'སྤྱོད་མི་ཡོངས་ལ་ཕྱེ་བ།',
+'protect-fallback'            => '"$1" ཆོག་མཆན་དགོས།',
 'protect-level-autoconfirmed' => 'སྤྱོད་མི་གསར་བ་དང་ཐོ་མེད་རྣམས་བཀག་འགོག',
 'protect-level-sysop'         => 'དོ་དམ་པ་ཁོ་ནར།',
 'protect-cantedit'            => 'ཁྱོད་ལ་ཤོག་ངོས་འདི་རྩོམ་སྒྲིག་གི་ཆོག་མཆན་མེད་པས་ངོས་འདི་ཡི་སྲུང་སྐྱོབ་རིམ་པ་ལ་བཟོ་བཅོས་བྱེད་མི་ཆོག',
@@ -610,6 +633,7 @@ $messages = array(
 'move-watch'   => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 'movepagebtn'  => 'ཤོག་ངོས་སྤོ་བ།',
 'pagemovedsub' => 'སྤོར་བ་ལེགས་གྲུབ།',
+'movedto'      => 'སྤོར་ཟིན་ཡུལ།',
 '1movedto2'    => '[[$1]][[$2]]ལ་སྤོར་ཟིན།',
 'movelogpage'  => 'རྩོམ་ཡིག་སྤོ་བ།',
 'movereason'   => 'རྒྱུ་མཚན།',

@@ -945,7 +945,7 @@ Eseye mete prefiks ''all:'' devan tèm rechèche ou an pou chache nan tout kontn
 'yourlanguage'              => 'Lang:',
 'yournick'                  => 'Siyati pou espas diskisyon :',
 'badsig'                    => 'Siyati ou an pa bon; tcheke baliz HTML ou yo.',
-'badsiglength'              => 'Siyati ou an two long: li pa kapab pi long pase $1 karaktè.',
+'badsiglength'              => 'Siyati ou an twò long: li pa dwe pi long pase $1 {{PLURAL:$1|karaktè|karaktè}}.',
 'gender-male'               => 'Maskilen',
 'email'                     => 'Imèl',
 'prefs-help-realname'       => 'Vrè non an opsyonèl.

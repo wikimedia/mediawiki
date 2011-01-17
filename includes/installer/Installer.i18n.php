@@ -1003,10 +1003,10 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-db-wiki-help' => 'Увядзіце імя карыстальніка і пароль, якія будуць выкарыстаныя для далучэньня да базы зьвестак падчас працы (пасьля ўсталяваньня).
 Калі рахунак ня створаны, а рахунак для ўсталяваньня мае значныя правы, гэты рахунак будзе створаны зь мінімальна патрэбнымі для працы вікі правамі.',
 	'config-db-prefix' => 'Прэфікс табліцаў базы зьвестак:',
-	'config-db-prefix-help' => 'Калі Вы падзяляеце адну базу зьвестак паміж некалькімі вікі, ці паміж MediaWiki і іншым вэб-дастасаваньнем, можаце вызначыць прэфікс, які будзе выкарыстоўвацца ва ўсіх назваў табліцаў для пазьбяганьня канфліктаў.
-Пазьбягайце прагалаў ці злучкоў.
+	'config-db-prefix-help' => 'Калі Вы разьдзяляеце адну базу зьвестак паміж некалькімі вікі, ці паміж MediaWiki і іншым вэб-дастасаваньнем, можаце вызначыць прэфікс назваў табліцаў для пазьбяганьня канфліктаў.
+Пазьбягайце прагалаў.
 
-Калі прэфікс не патрэбны, пакіньце поле пустым.',
+Гэтае поле звычайна пакідаецца пустым.',
 	'config-db-charset' => 'Кадаваньне базы зьвестак',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
@@ -1411,6 +1411,7 @@ $1
 При Mandrake, необходимо е да се инсталира пакетът php-xml.',
 	'config-pcre-no-utf8' => "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.
 За да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
+	'config-memory-raised' => '<code>memory_limit</code> на PHP е $1, увеличаване до $2.',
 	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
 Стойността вероятно е твърде ниска.
 Възможно е инсталацията да се провали!",
@@ -1441,7 +1442,7 @@ $1
 	'config-db-wiki-settings' => 'Идентифициране на това уики',
 	'config-db-name' => 'Име на базата от данни:',
 	'config-db-name-help' => 'Избира се име, което да идентифицира уикито.
-То не трябва да съдържа интервали или тирета.
+То не трябва да съдържа интервали.
 
 Ако се използва споделен хостинг, доставчикът на услугата би трябвало да е предоставил или име на базата от данни, която да бъде използвана, или да позволява създаването на бази от данни чрез контролния панел.',
 	'config-db-name-oracle' => 'Схема на базата от данни:',
@@ -1459,7 +1460,7 @@ $1
 Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
 	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
 	'config-db-prefix-help' => 'Ако е необходимо да се сподели базата от данни между няколко уикита или между МедияУики и друго уеб приложение, може да се добави представка пред имената на таблиците, за да се избегнат конфликти.
-Не се използват интервали и тирета.
+Не се използват интервали.
 
 Това поле обикновено се оставя празно.',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 бинарно',
@@ -1497,6 +1498,7 @@ $1
 	'config-header-oracle' => 'Настройки за Oracle',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
+	'config-missing-db-host' => 'Необходимо е да се въведе стойност за "Хост на базата от данни"',
 	'config-invalid-db-name' => 'Невалидно име на базата от данни "$1".
 Използват се само ASCII букви (a-z, A-Z), цифри (0-9), долни черти (_) и тирета (-).',
 	'config-invalid-db-prefix' => 'Невалидна представка за базата от данни "$1".
@@ -1540,6 +1542,8 @@ $1
 Това е по-ефективно от UTF-8 режима на MySQL и позволява използването на пълния набор от символи в Уникод.
 
 В '''UTF-8 режим''' MySQL ще знае в кой набор от символи са данните от уикито и ще може да ги показва и променя по подходящ начин, но няма да позволява складиране на символи извън [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основния многоезичен набор].",
+	'config-mysql-charset-mismatch' => "'''Предупреждение:''' заявена е $1 схема, но съществуващата база от данни е с $2 схема.
+	Скриптът за надграждане не може да я преобразува, затова тя ще остане $2.",
 	'config-site-name' => 'Име на уикито:',
 	'config-site-name-help' => 'Това име ще се показва в заглавната лента на браузъра и на различни други места.',
 	'config-site-name-blank' => 'Необходимо е да се въведе име на уикито.',
@@ -1588,7 +1592,7 @@ $1
 Въпреки това мнозина смятат МедияУики за полезен софтуер по различни начини и често е трудно да се убедят всички от предимствата на уики модела.
 Затова се предоставя възможност за избор.
 
-'''{{int:config-profile-wiki}}''' позволява на всички потребители да редактират, дори и без регистрация.
+Уикитата от типа '''{{int:config-profile-wiki}}''' позволяват на всички потребители да редактират, дори и без регистрация.
 Уикитата от типа '''{{int:config-profile-no-anon}}''' позволяват достъп до страниците и редактирането им само след създаване на потребителска сметка.
 
 Уики, което е '''{{int:config-profile-fishbowl}}''' позволява на всички да преглеждат страниците, но само предварително одобрени редактори могат да редактират съдържанието.
@@ -5299,7 +5303,7 @@ Ini bukan sandi untuk akun MediaWiki, melainkan sandi untuk basis data Anda.',
 Jika akun tidak ada, akun instalasi memiliki hak yang memadai, akun pengguna ini akan dibuat dengan hak akses minimum yang diperlukan untuk mengoperasikan wiki.',
 	'config-db-prefix' => 'Prefiks tabel basis data:',
 	'config-db-prefix-help' => 'Jika Anda perlu berbagi satu basis data di antara beberapa wiki, atau antara MediaWiki dan aplikasi web lain, Anda dapat memilih untuk menambahkan prefiks terhadap semua nama tabel demi menghindari konflik.
-Jangan gunakan spasi atau tanda hubung.
+Jangan gunakan spasi.
 
 Prefiks ini biasanya dibiarkan kosong.',
 	'config-db-charset' => 'Set karakter basis data',
@@ -8169,7 +8173,7 @@ Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, 
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',
 	'config-db-name' => 'Nazwa bazy danych',
 	'config-db-name-help' => 'Wybierz nazwę, która zidentyfikuje Twoją wiki. 
-Nie może ona zawierać spacji ani myślników. 
+Nie może ona zawierać spacji.
 
 Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej może wymagać użycia konkretnej nazwy bazy danych lub pozwalać na tworzenie baz danych za pośrednictwem panelu użytkownika.',
 	'config-db-name-oracle' => 'Schemat bazy danych',
@@ -8212,6 +8216,7 @@ Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, pos
 	'config-header-oracle' => 'Ustawienia Oracle',
 	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
 	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
+	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
 	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Baza danych TNS”',
 	'config-invalid-db-server-oracle' => 'Nieprawidłowa baza danych TNS „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
@@ -8986,7 +8991,7 @@ Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder 
 Se o utilizador não existir na base de dados, mas a conta de instalação tiver privilégios suficientes, o utilizador que introduzir será criado na base de dados com os privilégios mínimos necessários para a operação normal da wiki.',
 	'config-db-prefix' => 'Prefixo para as tabelas da base de dados:',
 	'config-db-prefix-help' => 'Se necessitar de partilhar uma só base de dados entre várias wikis, ou entre o MediaWiki e outra aplicação, pode escolher adicionar um prefixo ao nome de todas as tabelas desta instalação, para evitar conflitos.
-O prefixo não pode conter espaços ou hífens.
+Não use espaços.
 
 Normalmente, este campo deve ficar vazio.',
 	'config-db-charset' => 'Conjunto de caracteres da base de dados',
@@ -10343,5 +10348,70 @@ $messages['zh-hans'] = array(
 	'config-page-install' => '安装',
 	'config-admin-email' => '电邮地址：',
 	'config-email-settings' => 'Email 设置',
+);
+
+/** Traditional Chinese (‪中文(繁體)‬)
+ * @author Mark85296341
+ */
+$messages['zh-hant'] = array(
+	'config-information' => '資訊',
+	'config-your-language' => '您的語言：',
+	'config-your-language-help' => '選擇一個要使用的語言在安裝過程中。',
+	'config-wiki-language' => 'Wiki 語言：',
+	'config-back' => '←返回',
+	'config-continue' => '繼續→',
+	'config-page-language' => '語言',
+	'config-page-welcome' => '歡迎您來到 MediaWiki！',
+	'config-page-dbconnect' => '連接到資料庫',
+	'config-page-upgrade' => '升級現有的安裝',
+	'config-page-dbsettings' => '資料庫設定',
+	'config-page-name' => '名稱',
+	'config-page-options' => '選項',
+	'config-page-install' => '安裝',
+	'config-page-complete' => '完成！',
+	'config-page-restart' => '重新安裝',
+	'config-page-readme' => '讀我',
+	'config-page-copying' => '複製',
+	'config-page-upgradedoc' => '升級',
+	'config-restart' => '是的，重新啟動',
+	'config-db-type' => '資料庫類型：',
+	'config-db-host' => '資料庫主機：',
+	'config-db-host-oracle' => '資料庫的 TNS：',
+	'config-db-wiki-settings' => '識別這個 Wiki',
+	'config-db-name' => '資料庫名稱：',
+	'config-db-name-oracle' => '資料庫架構：',
+	'config-db-username' => '資料庫使用者名稱：',
+	'config-db-password' => '資料庫密碼：',
+	'config-sqlite-dir' => 'SQLite 的資料目錄：',
+	'config-header-mysql' => 'MySQL 的設定',
+	'config-header-sqlite' => 'SQLite 的設定',
+	'config-header-oracle' => '甲骨文設定',
+	'config-invalid-db-type' => '無效的資料庫類型',
+	'config-db-web-create' => '建立帳號，如果它不存在',
+	'config-mysql-charset' => '資料庫字符集：',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name-blank' => '輸入站點名稱。',
+	'config-ns-other' => '其他（請註明）',
+	'config-admin-password' => '密碼：',
+	'config-admin-password-confirm' => '再次輸入密碼：',
+	'config-admin-name-blank' => '輸入管理員的使用者名稱。',
+	'config-admin-password-blank' => '輸入管理員帳號密碼。',
+	'config-admin-password-same' => '密碼不能與使用者名稱相同。',
+	'config-admin-email' => 'E-mail 地址：',
+	'config-admin-error-bademail' => '你輸入了一個無效的電子郵件地址。',
+	'config-license' => '版權和許可證：',
+	'config-license-pd' => '公共領域',
+	'config-email-settings' => 'E-mail 設定',
+	'config-email-auth' => '啟用電子郵件認證',
+	'config-email-sender' => '返回電子郵件地址：',
+	'config-upload-settings' => '圖片和檔案上傳',
+	'config-upload-enable' => '啟用檔案上傳',
+	'config-cc-again' => '重新選取......',
+	'config-advanced-settings' => '進階配置',
+	'config-extensions' => '擴充套件',
+	'config-install-step-done' => '完成',
+	'config-install-step-failed' => '失敗',
+	'config-install-pg-commit' => '提交更改',
+	'config-help' => '說明',
 );
 

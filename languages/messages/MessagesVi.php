@@ -1377,8 +1377,8 @@ Thông tin này là công khai.',
 'email'                         => 'Thư điện tử',
 'prefs-help-realname'           => 'Tên thật là không bắt buộc.
 Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
-'prefs-help-email'              => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.
-Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
+'prefs-help-email'              => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.',
+'prefs-help-email-others'       => 'Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang cá nhân hoặc trang thảo luận cá nhân mà không cần để lộ danh tính.',
 'prefs-help-email-required'     => 'Bắt buộc phải có địa chỉ e-mail.',
 'prefs-info'                    => 'Thông tin cơ bản',
 'prefs-i18n'                    => 'Quốc tế hóa',
