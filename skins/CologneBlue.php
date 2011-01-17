@@ -109,6 +109,7 @@ class SkinCologneBlue extends Skin {
 	function setupSkinUserCss( OutputPage $out ){
 		global $wgContLang;
 		$qb = $this->qbSetting();
+		$rules = array();
 
 		if ( 2 == $qb ) { # Right
 			$rules[] = "#quickbar { position: absolute; right: 4px; }";
