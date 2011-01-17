@@ -766,8 +766,8 @@ class EditPage {
 			$title = Title::newFromText( $this->editintro );
 			if ( $title instanceof Title && $title->exists() && $title->userCanRead() ) {
 				global $wgOut;
-				$revision = Revision::newFromTitle( $title );
-				$wgOut->addWikiTextTitleTidy( $revision->getText(), $this->mTitle );
+				// Added using template syntax, to take <noinclude>'s into account.
+				$wgOut->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->mTitle );
 				return true;
 			} else {
 				return false;

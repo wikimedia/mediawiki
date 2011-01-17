@@ -92,6 +92,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of evaluating wikitext elements like #, :, *, and tables (bug 529).  Now this 
   behaviour is only applied to wikitable-start {|, but the first line of a wikitable
   cell is now treated as a linestart.
+* Custom editintro's using the editintro url parameter will no longer show <noinclude>
+  sections on pages they are included on.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
