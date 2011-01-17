@@ -89,6 +89,7 @@ class CategoryViewer {
 		$articles, $articles_start_char,
 		$children, $children_start_char,
 		$showGallery, $gallery,
+		$imgsNoGalley, $imgsNoGallery_start_char,
 		$skin;
 	# Category object for this page
 	private $cat;
@@ -155,6 +156,9 @@ class CategoryViewer {
 		if ( $this->showGallery ) {
 			$this->gallery = new ImageGallery();
 			$this->gallery->setHideBadImages();
+		} else {
+			$this->imgsNoGallery = array();
+			$this->imgsNoGallery_start_char = array();
 		}
 	}
 
@@ -217,6 +221,7 @@ class CategoryViewer {
 	 * Add a page in the image namespace
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
+		global $wgContLang;
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
@@ -225,7 +230,18 @@ class CategoryViewer {
 				$this->gallery->add( $title );
 			}
 		} else {
-			$this->addPage( $title, $sortkey, $pageLength, $isRedirect );
+			$this->imgsNoGallery[] = $isRedirect
+			? '<span class="redirect-in-category">' .
+				$this->getSkin()->link(
+					$title,
+					null,
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				) . '</span>'
+			: $this->getSkin()->link( $title );
+
+			$this->imgsNoGallery_start_char[] = $wgContLang->convert( $wgContLang->firstLetterForLists( $sortkey ) );
 		}
 	}
 
@@ -256,6 +272,10 @@ class CategoryViewer {
 		if ( $this->flip['page'] ) {
 			$this->articles            = array_reverse( $this->articles );
 			$this->articles_start_char = array_reverse( $this->articles_start_char );
+		}
+		if ( !$this->showGallery && $this->flip['file'] ) {
+			$this->imgsNoGallery            = array_reverse( $this->imgsNoGallery );
+			$this->imgsNoGallery_start_char = array_reverse( $this->imgsNoGallery_start_char );
 		}
 	}
 
@@ -318,7 +338,7 @@ class CategoryViewer {
 				if ( $title->getNamespace() == NS_CATEGORY ) {
 					$cat = Category::newFromRow( $row, $title );
 					$this->addSubcategoryObject( $cat, $rawSortkey, $row->page_len );
-				} elseif ( $this->showGallery && $title->getNamespace() == NS_FILE ) {
+				} elseif ( $title->getNamespace() == NS_FILE ) {
 					$this->addImage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
 					$this->addPage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
@@ -382,16 +402,20 @@ class CategoryViewer {
 
 	function getImageSection() {
 		$r = '';
-		if ( $this->showGallery && ! $this->gallery->isEmpty() ) {
+		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
+		if ( $rescnt > 0 ) {
 			$dbcnt = $this->cat->getFileCount();
-			$rescnt = $this->gallery->count();
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
 			$r .= "<div id=\"mw-category-media\">\n";
 			$r .= '<h2>' . wfMsg( 'category-media-header', htmlspecialchars( $this->title->getText() ) ) . "</h2>\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'file' );
-			$r .= $this->gallery->toHTML();
+			if ( $this->showGallery ) {
+				$r .= $this->gallery->toHTML();
+			} else {
+				$r .= $this->formatList( $this->imgsNoGallery, $this->imgsNoGallery_start_char );
+			}
 			$r .= $this->getSectionPagingLinks( 'file' );
 			$r .= "\n</div>";
 		}
@@ -594,7 +618,7 @@ class CategoryViewer {
 		#      know the right figure.
 		#   3) We have no idea.
 		$totalrescnt = count( $this->articles ) + count( $this->children ) +
-			( $this->showGallery ? $this->gallery->count() : 0 );
+			( $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery ) );
 
 		# Check if there's a "from" or "until" for anything
 		$fromOrUntil = false;
