@@ -593,8 +593,8 @@ class CategoryViewer {
 
 	/**
 	 * What to do if the category table conflicts with the number of results
-	 * returned?  This function says what.  It works the same whether the
-	 * things being counted are articles, subcategories, or files.
+	 * returned?  This function says what. Each type is considered independantly
+	 * of the other types.
 	 *
 	 * Note for grepping: uses the messages category-article-count,
 	 * category-article-count-limited, category-subcat-count,
@@ -617,24 +617,28 @@ class CategoryViewer {
 		#      than $this->limit and there's no offset.  In this case we still
 		#      know the right figure.
 		#   3) We have no idea.
-		$totalrescnt = count( $this->articles ) + count( $this->children ) +
-			( $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery ) );
 
 		# Check if there's a "from" or "until" for anything
-		$fromOrUntil = false;
-		foreach ( array( 'page', 'subcat', 'file' ) as $t ) {
-			if ( $this->from[$t] !== null || $this->until[$t] !== null ) {
-				$fromOrUntil = true;
-				break;
-			}
+
+		// This is a little ugly, but we seem to use different names
+		// for the paging types then for the messages.
+		if ( $type === 'article' ) {
+			$pagingType = 'page';
+		} else {
+			$pagingType = $type;
 		}
 
-		if ( $dbcnt == $rescnt || ( ( $totalrescnt == $this->limit || $fromOrUntil )
+		$fromOrUntil = false;
+		if ( $this->from[$pagingType] !== null || $this->until[$pagingType] !== null ) {
+			$fromOrUntil = true;
+		}
+
+		if ( $dbcnt == $rescnt || ( ( $rescnt == $this->limit || $fromOrUntil )
 			&& $dbcnt > $rescnt ) )
 		{
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
-		} elseif ( $totalrescnt < $this->limit && !$fromOrUntil ) {
+		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
 			# Case 2: not sane, but salvageable.  Use the number of results.
 			# Since there are fewer than 200, we can also take this opportunity
 			# to refresh the incorrect category table entry -- which should be
