@@ -14,7 +14,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	}
 
 	function getStripList() {
-		return array( 'gallery' );
+		return array( 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' );
 	}
 
 	function provideCases() {
@@ -66,8 +66,13 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{{{{{Foo}}}}}}", "<root><tplarg><title><tplarg><title>Foo</title></tplarg></title></tplarg></root>" ),
 			array( "{{{{{{Foo}}}}}", "<root>{<template><title><tplarg><title>Foo</title></tplarg></title></template></root>" ),
 			array( "[[[Foo]]", "<root>[[[Foo]]</root>" ),
-			array( "{{Foo|[[[[bar]]|baz]]}}", "<root><template><title>Foo</title><part><name index=\"1\" /><value>[[[[bar]]|baz]]</value></part></template></root>" ), /* This test is important, since it means the difference between having the [[ rule stacked or not */
+			array( "{{Foo|[[[[bar]]|baz]]}}", "<root><template><title>Foo</title><part><name index=\"1\" /><value>[[[[bar]]|baz]]</value></part></template></root>" ), // This test is important, since it means the difference between having the [[ rule stacked or not
 			array( "{{Foo|[[[[bar]|baz]]}}", "<root>{{Foo|[[[[bar]|baz]]}}</root>" ),
+			array( "{{Foo|Foo [[[[bar]|baz]]}}", "<root>{{Foo|Foo [[[[bar]|baz]]}}</root>" ),
+			array( "Foo <display map>Bar</display map             >Baz", "<root>Foo <ext><name>display map</name><attr></attr><inner>Bar</inner><close>&lt;/display map             &gt;</close></ext>Baz</root>" ),
+			array( "Foo <display map foo>Bar</display map             >Baz", "<root>Foo <ext><name>display map</name><attr> foo</attr><inner>Bar</inner><close>&lt;/display map             &gt;</close></ext>Baz</root>" ),
+			array( "Foo <gallery bar=\"baz\" />", "<root>Foo <ext><name>gallery</name><attr> bar=&quot;baz&quot; </attr></ext></root>" ),
+			array( "</foo>Foo<//foo>", "<root><ext><name>/foo</name><attr></attr><inner>Foo</inner><close>&lt;//foo&gt;</close></ext></root>" ), # Worth blacklisting IMHO
 			/* array( file_get_contents( dirname( __FILE__ ) . '/QuoteQuran.txt' ), file_get_contents( dirname( __FILE__ ) . '/QuoteQuranExpanded.txt' ) ), */
 		);
 	}
