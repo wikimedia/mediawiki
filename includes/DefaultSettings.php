@@ -4616,10 +4616,10 @@ $wgCategoryPagingLimit = 200;
  * for all rows where cl_collation != $wgCategoryCollation and regenerates
  * cl_sortkey based on the page name and cl_sortkey_prefix.
  *
- * Currently only supports 'uppercase', which just uppercases the string.  This
+ * Currently only supports 'uppercase2', which just uppercases the string.  This
  * is a dummy collation, to be replaced later by real ones.
  */
-$wgCategoryCollation = 'uppercase';
+$wgCategoryCollation = 'uppercase2';
 
 /** @} */ # End categories }
 
