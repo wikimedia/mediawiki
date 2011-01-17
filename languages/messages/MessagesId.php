@@ -1396,8 +1396,8 @@ Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 'email'                         => 'Surel',
 'prefs-help-realname'           => 'Nama asli bersifat opsional.
 Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
-'prefs-help-email'              => 'Alamat surel bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surel tersebut.
-Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
+'prefs-help-email'              => 'Alamat surel bersifat opsional, namun diperlukan untuk menyetel ulang sandi jika Anda lupa.',
+'prefs-help-email-others'       => 'Anda juga dapat memilih untuk mengizinkan orang lain menghubungi Anda melalui halaman pengguna atau pembicaraan tanpa perlu membongkar identitas Anda.',
 'prefs-help-email-required'     => 'Alamat surel dibutuhkan.',
 'prefs-info'                    => 'Informasi dasar',
 'prefs-i18n'                    => 'Internasionalisasi',

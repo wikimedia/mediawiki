@@ -392,7 +392,7 @@ $messages = array(
 'history_short'     => 'Исторе',
 'updatedmarker'     => 'Керла яккхина со чуваьллачултlаьхьа',
 'info_short'        => 'Хаам',
-'printableversion'  => 'Зорба туху башхо',
+'printableversion'  => 'Зорба туху варси',
 'permalink'         => 'Даиман йолу хьажориг',
 'print'             => 'Зорба тоха',
 'view'              => 'Хьажа',
@@ -531,7 +531,7 @@ $1',
 
 Нагахьсан гlулкх цуьнах доьзна дацахь, хьуна карийна гlирс латточехь гlалат.
 Дехар до, хаам бе оцуьнах [[Special:ListUsers/sysop|адаманкуьйгалхога]], гойтуш URL.',
-'missingarticle-rev'  => '(башхо № $1)',
+'missingarticle-rev'  => '(варси № $1)',
 'missingarticle-diff' => '(тейп тайпнара: $1, $2)',
 'internalerror'       => 'Чоьхьара гlалат',
 'internalerror_info'  => 'Чоьхьара гlалат: $1',
@@ -573,6 +573,9 @@ $1',
 'accountcreated'          => 'Дlавазвар кхоллина дели',
 'accountcreatedtext'      => 'Кхоллина декъашхо дlавазвар $1.',
 'loginlanguagelabel'      => 'Мотт: $1',
+
+# JavaScript password checks
+'password-strength-good' => 'дика',
 
 # Password reset dialog
 'resetpass'                 => 'Ишар хийца',
@@ -682,11 +685,11 @@ $1',
 
 # History pages
 'viewpagelogs'           => 'Гайта хlокху агlонан тептар',
-'currentrev-asof'        => 'Хlинцлера башхо оцу $1',
-'revisionasof'           => 'Башхо $1',
+'currentrev-asof'        => 'Хlинцлера варси оцу $1',
+'revisionasof'           => 'Варси $1',
 'previousrevision'       => '← Хьалха йоьдург',
 'nextrevision'           => 'Тlаьхьайогlург →',
-'currentrevisionlink'    => 'Хlинцлера башхо',
+'currentrevisionlink'    => 'Хlинцлера варси',
 'cur'                    => 'карара.',
 'next'                   => 'кхин',
 'last'                   => 'хьалх.',
@@ -808,23 +811,32 @@ $1',
 'gender-female'       => 'сте',
 'prefs-help-email'    => 'Кехат яздо зlе цlе цахlоттийча а хlум дац, иза оьшар ю, нагахь хьуна хьай ишар йицлахь.
 Цо атто бийра бу кхечу декъашхошна a хьан кху чура декъа агlонца хьега хаам бахьийта.',
-'prefs-diffs'         => 'Тейп тайпнара башхо',
+'prefs-diffs'         => 'Башхон варси',
 
 # User rights
 'userrights'  => 'Декъашхочуьн бакъона урхалладар',
 'editinguser' => "Хийца декъашхочуьна бакъо '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Groups
-'group'       => 'Тоба:',
-'group-user'  => 'Декъашхой',
-'group-sysop' => 'Адаманкуьйгалхой',
-'group-all'   => '(массо)',
+'group'            => 'Тоба:',
+'group-user'       => 'Декъашхой',
+'group-bot'        => 'Шаболххой',
+'group-sysop'      => 'Адаманкуьйгалхой',
+'group-bureaucrat' => 'Даржахой',
+'group-suppress'   => 'Левисорхой',
+'group-all'        => '(массо)',
 
-'group-user-member'  => 'декъашхо',
-'group-sysop-member' => 'адаманкуьйгалхо',
+'group-user-member'       => 'декъашхо',
+'group-bot-member'        => 'шаболххо',
+'group-sysop-member'      => 'адаманкуьйгалхо',
+'group-bureaucrat-member' => 'даржахо',
+'group-suppress-member'   => 'левисорхо',
 
-'grouppage-user'  => '{{ns:project}}:Декъашхой',
-'grouppage-sysop' => '{{ns:project}}:Адаманкуьйгалхой',
+'grouppage-user'       => '{{ns:project}}:Декъашхой',
+'grouppage-bot'        => '{{ns:project}}:Шаболххой',
+'grouppage-sysop'      => '{{ns:project}}:Адаманкуьйгалхой',
+'grouppage-bureaucrat' => '{{ns:project}}:Даржахой',
+'grouppage-suppress'   => '{{ns:project}}:Левисорхой',
 
 # User rights log
 'rightslog' => 'Декъашхон бакъона тéптар',
@@ -953,8 +965,18 @@ PICT # тайп тайпан
 'randomredirect' => 'Ца хууш нисделла дIасахьажор',
 
 # Statistics
-'statistics'       => 'Бухехьдерг',
-'statistics-pages' => 'Агlонаш',
+'statistics'                   => 'Бухехьдерг',
+'statistics-header-pages'      => 'Агlонашан жамlа',
+'statistics-header-edits'      => 'Нисдаран жамlа',
+'statistics-header-users'      => 'Декъашхойн жамlа',
+'statistics-articles'          => 'Яззамаш',
+'statistics-pages'             => 'Агlонаш',
+'statistics-pages-desc'        => 'Массо вики агlонаш, дийцаре агlонашцани, дlасахьаждарш а кхин дерш.',
+'statistics-files'             => 'Чуйаьхна хlумнаш',
+'statistics-edits'             => 'Нисдаран дукхалла {{grammar:genitive|{{SITENAME}}}} дlа йолайаларца',
+'statistics-edits-average'     => 'Йукъера агlонан нисдаран терхь',
+'statistics-users-active'      => 'Жигар декъашхой',
+'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хlум дина болу, кху {{PLURAL:$1|тlаьххьара $1 динахь|тlаьххьара $1 дийнахь}}',
 
 'disambiguations' => 'Дуккха маьIнаш долу хьажорца йолу агIонаш',
 
@@ -1474,7 +1496,7 @@ PICT # тайп тайпан
 'watchlisttools-raw'  => 'Йоза санна нисдé',
 
 # Special:Version
-'version' => 'Башхо MediaWiki',
+'version' => 'Варси MediaWiki',
 
 # Special:FilePath
 'filepath'        => 'ХIуман тIе болу некъ',
