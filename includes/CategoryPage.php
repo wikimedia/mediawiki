@@ -90,7 +90,7 @@ class CategoryViewer {
 		$children, $children_start_char,
 		$showGallery, $gallery,
 		$imgsNoGalley, $imgsNoGallery_start_char,
-		$skin;
+		$skin, $collation;
 	# Category object for this page
 	private $cat;
 	# The original query array, to be used in generating paging links.
@@ -104,6 +104,7 @@ class CategoryViewer {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
+		$this->collation = Collation::singleton();
 		unset( $this->query['title'] );
 	}
 
@@ -212,7 +213,7 @@ class CategoryViewer {
 			$word = $sortkey;
 		}
 
-		$firstChar = $wgContLang->firstLetterForLists( $word );
+		$firstChar = $this->collation->getFirstLetter( $word );
 
 		return $wgContLang->convert( $firstChar );
 	}
@@ -241,7 +242,8 @@ class CategoryViewer {
 				) . '</span>'
 			: $this->getSkin()->link( $title );
 
-			$this->imgsNoGallery_start_char[] = $wgContLang->convert( $wgContLang->firstLetterForLists( $sortkey ) );
+			$this->imgsNoGallery_start_char[] = $wgContLang->convert( 
+				$this->collation->getFirstLetter( $sortkey ) );
 		}
 	}
 
@@ -261,7 +263,8 @@ class CategoryViewer {
 				) . '</span>'
 			: $this->getSkin()->link( $title );
 
-		$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstLetterForLists( $sortkey ) );
+		$this->articles_start_char[] = $wgContLang->convert( 
+			$this->collation->getFirstLetter( $sortkey ) );
 	}
 
 	function finaliseCategoryState() {
@@ -280,8 +283,6 @@ class CategoryViewer {
 	}
 
 	function doCategoryQuery() {
-		global $wgContLang;
-
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
 
 		$this->nextPage = array(
@@ -294,14 +295,14 @@ class CategoryViewer {
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 			# Get the sortkeys for start/end, if applicable.  Note that if
 			# the collation in the database differs from the one
-			# $wgContLang is using, pagination might go totally haywire.
+			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = array( 'cl_type' => $type );
 			if ( $this->from[$type] !== null ) {
 				$extraConds[] = 'cl_sortkey >= '
-					. $dbr->addQuotes( $wgContLang->convertToSortkey( $this->from[$type] ) );
+					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
 			} elseif ( $this->until[$type] !== null ) {
 				$extraConds[] = 'cl_sortkey < '
-					. $dbr->addQuotes( $wgContLang->convertToSortkey( $this->until[$type] ) );
+					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
 			}
 
