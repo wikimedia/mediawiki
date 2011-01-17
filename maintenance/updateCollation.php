@@ -46,7 +46,7 @@ TEXT;
 	}
 
 	public function execute() {
-		global $wgCategoryCollation, $wgContLang;
+		global $wgCategoryCollation;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$count = $dbw->selectField(
@@ -105,7 +105,7 @@ TEXT;
 				$dbw->update(
 					'categorylinks',
 					array(
-						'cl_sortkey' => $wgContLang->convertToSortkey(
+						'cl_sortkey' => Collation::singleton()->getSortKey(
 							$title->getCategorySortkey( $prefix ) ),
 						'cl_sortkey_prefix' => $prefix,
 						'cl_collation' => $wgCategoryCollation,

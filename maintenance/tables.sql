@@ -493,13 +493,13 @@ CREATE TABLE /*_*/categorylinks (
   cl_to varchar(255) binary NOT NULL default '',
 
   -- A binary string obtained by applying a sortkey generation algorithm
-  -- (Language::convertToSortkey()) to page_title, or cl_sortkey_prefix . "\0"
+  -- (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . "\n"
   -- . page_title if cl_sortkey_prefix is nonempty.
   cl_sortkey varbinary(230) NOT NULL default '',
 
   -- A prefix for the raw sortkey manually specified by the user, either via
   -- [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's
-  -- concatenated with a null followed by the page title before the sortkey
+  -- concatenated with a line break followed by the page title before the sortkey
   -- conversion algorithm is run.  We store this so that we can update
   -- collations without reparsing all pages.
   -- Note: If you change the length of this field, you also need to change
