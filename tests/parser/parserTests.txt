@@ -2227,6 +2227,28 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
+Magic Word: {{PAGENAME}} with metacharacters
+!! options
+title=[['foo & bar = baz']]
+!! input
+''{{PAGENAME}}''
+!! result
+<p><i>&#39;foo &#38; bar &#61; baz&#39;</i>
+</p>
+!! end
+
+!! test
+Magic Word: {{PAGENAME}} with metacharacters (bug 26781)
+!! options
+title=[[*RFC 1234 http://example.com/]]
+!! input
+{{PAGENAME}}
+!! result
+<p>&#42;RFC&#32;1234 http&#58;//example.com/
+</p>
+!! end
+
+!! test
 Magic Word: {{PAGENAMEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]

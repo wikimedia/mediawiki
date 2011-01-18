@@ -98,6 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26449) Keep underlines from headings outside of tables and thumbs by
   adding overflow:hidden to h1,h2,h3,h4,h5,h6 (also fixes editsection bunching).
 * (bug 26708) Remove background-color:white from tables in Monobook and Vector.
+* (bug 26781) {{PAGENAME}} and related parser functions escape their output better
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
