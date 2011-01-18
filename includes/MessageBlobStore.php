@@ -210,7 +210,7 @@ class MessageBlobStore {
 		do {
 			$updates = self::getUpdatesForMessage( $key, $updates );
 
-			foreach ( $updates as $key => $update ) {
+			foreach ( $updates as $k => $update ) {
 				// Update the row on the condition that it
 				// didn't change since we fetched it by putting
 				// the timestamp in the WHERE clause.
@@ -230,7 +230,7 @@ class MessageBlobStore {
 				// fear of getting into an infinite loop
 				if ( !( $success && $dbw->affectedRows() == 0 ) ) {
 					// Not conflicted
-					unset( $updates[$key] );
+					unset( $updates[$k] );
 				}
 			}
 		} while ( count( $updates ) );

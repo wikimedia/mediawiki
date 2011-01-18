@@ -43,11 +43,12 @@ if( !isset( $_SERVER['PATH_INFO'] ) ) {
 	if( !$path ) {
         wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
 	}
+	$path = "/$path";
 } else {
 	$path = $_SERVER['PATH_INFO'];
 }
 
-$filename = realpath( $wgUploadDirectory . '/' . $path );
+$filename = realpath( $wgUploadDirectory . $path );
 $realUpload = realpath( $wgUploadDirectory );
 
 // Basic directory traversal check
