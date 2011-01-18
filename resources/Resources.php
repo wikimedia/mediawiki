@@ -63,6 +63,9 @@ return array(
 	'jquery.expandableField' => array(
 		'scripts' => 'resources/jquery/jquery.expandableField.js',
 	),
+	'jquery.form' => array(
+		'scripts' => 'resources/jquery/jquery.form.js',
+	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
 	),
