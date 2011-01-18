@@ -1568,11 +1568,21 @@ class Language {
 	}
 
 	function getMessage( $key ) {
-		return self::$dataCache->getSubitem( $this->getCodeForMessage(), 'messages', $key );
+		// Don't change getPreferredVariant() to getCode() / mCode, because:
+
+		// 1. Some language like Chinese has multiple variant languages. Only
+		//    getPreferredVariant() (in LanguageConverter) could return a
+		//    sub-language which would be more suitable for the user.
+		// 2. To languages without multiple variants, getPreferredVariant()
+		//    (in FakeConverter) functions exactly same as getCode() / mCode,
+		//    it won't break anything.
+
+		// The same below.
+		return self::$dataCache->getSubitem( $this->getPreferredVariant(), 'messages', $key );
 	}
 
 	function getAllMessages() {
-		return self::$dataCache->getItem( $this->getCodeForMessage(), 'messages' );
+		return self::$dataCache->getItem( $this->getPreferredVariant(), 'messages' );
 	}
 
 	function iconv( $in, $out, $string ) {
@@ -2788,18 +2798,6 @@ class Language {
 	 */
 	function getCode() {
 		return $this->mCode;
-	}
-	
-	/**
-	 * Get langcode for message
-	 * Some language, like Chinese (zh, without any suffix), has multiple
-	 * interface languages, we could choose a better one for user.
-	 * Inherit class can override this function if necessary.
-	 *
-	 * @return string
-	 */
-	function getCodeForMessage() {
-		return $this->getPreferredVariant();
 	}
 
 	function setCode( $code ) {
