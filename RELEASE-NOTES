@@ -488,6 +488,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
 * (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
   selected when the action is "purge".
+* (bug 26733) Wrap initial table creation in transaction
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST

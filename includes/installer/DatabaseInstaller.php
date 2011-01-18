@@ -129,10 +129,15 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 
+		$this->db->begin( __METHOD__ );
+
 		$error = $this->db->sourceFile( $this->db->getSchema() );
 		if( $error !== true ) {
 			$this->db->reportQueryError( $error, 0, '', __METHOD__ );
+			$this->db->rollback( __METHOD__ );
 			$status->fatal( 'config-install-tables-failed', $error );
+		} else {
+			$this->db->commit( __METHOD__ );
 		}
 		return $status;
 	}

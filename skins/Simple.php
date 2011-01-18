@@ -25,16 +25,11 @@ class SkinSimple extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 
 		$out->addStyle( 'simple/main.css', 'screen' );
-		$out->addStyle( 'simple/rtl.css', '', '', 'rtl' );
 	}
 
 	function reallyGenerateUserStylesheet() {
 		global $wgUser;
 		$s = '';
-		if( ( $undopt = $wgUser->getOption( 'underline' ) ) != 2 ) {
-			$underline = $undopt ? 'underline' : 'none';
-			$s .= "a { text-decoration: $underline; }\n";
-		}
 		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { text-decoration: line-through; }\n";
 		} else {
@@ -55,15 +50,6 @@ a.stub:after, #quickbar a.stub:after {
 	text-decoration: $underline;
 }
 CSS;
-		}
-		if( $wgUser->getOption( 'justify' ) ) {
-			$s .= "#article, #bodyContent { text-align: justify; }\n";
-		}
-		if( !$wgUser->getOption( 'showtoc' ) ) {
-			$s .= "#toc { display: none; }\n";
-		}
-		if( !$wgUser->getOption( 'editsection' ) ) {
-			$s .= ".editsection { display: none; }\n";
 		}
 		return $s;
 	}

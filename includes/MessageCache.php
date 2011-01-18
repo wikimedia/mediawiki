@@ -550,7 +550,9 @@ class MessageCache {
 			throw new MWException( "Bad lang code $langcode given" );
 		}
 
-		$langcode = $lang->getCodeForMessage();
+		// Don't change getPreferredVariant() to getCode() / mCode, for
+		// more details, see the comment in Language::getMessage().
+		$langcode = $lang->getPreferredVariant();
 
 		$message = false;
 

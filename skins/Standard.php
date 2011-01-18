@@ -22,6 +22,8 @@ class SkinStandard extends Skin {
 	function setupSkinUserCss( OutputPage $out ){
 		global $wgContLang;
 		$qb = $this->qbSetting();
+		$rules = array();
+
 		if ( 2 == $qb ) { # Right
 			$rules[] = "#quickbar { position: absolute; top: 4px; right: 4px; border-left: 2px solid #000000; }";
 			$rules[] = "#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }";
