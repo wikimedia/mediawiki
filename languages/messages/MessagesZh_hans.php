@@ -33,6 +33,7 @@
  * @author Shinjiman
  * @author Shizhao
  * @author Tommyang
+ * @author Waihorace
  * @author Wilsonmess
  * @author Wmr89502270
  * @author Wong128hk
@@ -1293,6 +1294,7 @@ $1",
 'prefs-help-realname'           => '真实姓名为选填项。
 如果提供，可用于贡献署名。',
 'prefs-help-email'              => '电子邮件地址是可选的但是需要密码重置为别忘了您的密码。',
+'prefs-help-email-others'       => '您亦可以在您没有公开自己的用户身分时透过您的用户页或用户讨论页与您联系。',
 'prefs-help-email-required'     => '需要电子邮件地址。',
 'prefs-info'                    => '基本资料',
 'prefs-i18n'                    => '国际化',

@@ -24,6 +24,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Waihorace
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
@@ -337,7 +338,7 @@ $messages = array(
 'mypage'        => '我的頁面',
 'mytalk'        => '我的對話頁',
 'anontalk'      => '該IP的對話頁',
-'navigation'    => '導航',
+'navigation'    => '導覽',
 'and'           => '和',
 
 # Cologne Blue skin
@@ -422,7 +423,7 @@ $messages = array(
 'viewcount'         => '本頁面已經被瀏覽$1次。',
 'protectedpage'     => '被保護頁',
 'jumpto'            => '跳轉到:',
-'jumptonavigation'  => '導航',
+'jumptonavigation'  => '導覽',
 'jumptosearch'      => '搜尋',
 'view-pool-error'   => '抱歉，伺服器在這段時間中已經超出負荷。
 太多用戶嘗試檢視這個頁面。
@@ -1231,9 +1232,9 @@ $1",
 'recentchangesdays-max'         => '最多 $1 {{PLURAL:$1|天|天}}',
 'recentchangescount'            => '預設顯示的編輯數：',
 'prefs-help-recentchangescount' => '這個包括最近更改、頁面歷史以及日誌。',
-'prefs-help-watchlist-token'    => '在這欄加入一個秘密鑰會生成一個對您監視列表中的RSS源。
+'prefs-help-watchlist-token'    => '在這欄加入一個秘密鑰會生成一個對您監視列表中的 RSS 源。
 任何一位知道在這個欄位上的匙可以閱讀到您的監視列表，請選擇一個安全的值。
-這裏有一個任意生成的值，供您選擇：$1',
+這裡有一個任意生成的值，供您選擇：$1',
 'savedprefs'                    => '您的個人偏好設定已經儲存。',
 'timezonelegend'                => '時區：',
 'localtime'                     => '當地時間:',
@@ -1260,7 +1261,7 @@ $1",
 'prefs-files'                   => '檔案',
 'prefs-custom-css'              => '自定CSS',
 'prefs-custom-js'               => '自定JavaScript',
-'prefs-common-css-js'           => '共用CSS/JavaScript於所有的面板中：',
+'prefs-common-css-js'           => '共用 CSS/JavaScript 於所有的外觀中：',
 'prefs-reset-intro'             => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
 'prefs-emailconfirm-label'      => '電子郵件確認：',
 'prefs-textboxsize'             => '編輯框大小',
@@ -2554,13 +2555,13 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Export
 'export'            => '匯出頁面',
-'exporttext'        => '您可以將特定頁面或一組頁面的文本以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過"[[Special:Import|匯入頁面]]"頁面匯入到另一個運行 MediaWiki 的網站。
+'exporttext'        => '您可以將特定頁面或一組頁面的文字以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過「[[Special:Import|匯入頁面]]」頁面匯入到另一個執行 MediaWiki 的網站。
 
 要匯出頁面，請在下面的文字框中輸入頁面標題，每行一個標題，
 並選擇{{GENDER:|你|妳|你}}是否需要匯出帶有頁面歷史的以前的修訂版本，
 或是只選擇匯出帶有最後一次編輯訊息的目前修訂版本。
 
-此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
+此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 匯出「[[{{MediaWiki:Mainpage}}]]」頁面。',
 'exportcuronly'     => '僅包含目前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",

@@ -1332,7 +1332,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'saveprefs'                     => 'Konservi preferojn',
 'resetprefs'                    => 'Forviŝi nekonservitajn ŝanĝojn',
 'restoreprefs'                  => 'Restarigi ĉiujn defaŭltajn preferojn',
-'prefs-editing'                 => 'Grandeco de redakta tekstujo',
+'prefs-editing'                 => 'Redaktado',
 'prefs-edit-boxsize'            => 'Grandeco de la redakto-kesko.',
 'rows'                          => 'Linioj:',
 'columns'                       => 'Kolumnoj:',

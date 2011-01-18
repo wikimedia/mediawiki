@@ -10,6 +10,7 @@
  * @author Horacewai2
  * @author KaiesTse
  * @author Mark85296341
+ * @author Waihorace
  * @author William915
  * @author Wong128hk
  */
@@ -289,7 +290,7 @@ $messages = array(
 'mypage'        => '我嘅頁',
 'mytalk'        => '傾偈',
 'anontalk'      => '同呢個 IP 傾偈',
-'navigation'    => '導航',
+'navigation'    => '導覽',
 'and'           => '同埋',
 
 # Cologne Blue skin

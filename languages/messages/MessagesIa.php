@@ -1459,7 +1459,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchangestext'                 => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'recentchanges-feed-description'    => 'Seque le modificationes le plus recente al wiki in iste syndication.',
 'recentchanges-label-newpage'       => 'Iste modification creava un nove pagina',
-'recentchanges-label-minor'         => 'Iste es un modification minor',
+'recentchanges-label-minor'         => 'Isto es un modification minor',
 'recentchanges-label-bot'           => 'Iste modification ha essite effectuate per un robot',
 'recentchanges-label-unpatrolled'   => 'Iste modification non ha ancora essite patruliate',
 'rcnote'                            => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",

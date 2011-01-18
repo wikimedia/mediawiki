@@ -496,6 +496,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'printableversion'  => 'Tulostettava versio',
 'permalink'         => 'Ikilinkki',
 'print'             => 'Tulosta',
+'view'              => 'Näytä',
 'edit'              => 'Muokkaa',
 'create'            => 'Luo sivu',
 'editthispage'      => 'Muokkaa tätä sivua',
