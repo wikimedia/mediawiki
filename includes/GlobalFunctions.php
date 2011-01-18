@@ -1149,21 +1149,20 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
- * As required by the callers, <nowiki> is not used. It currently does
- * not filter out characters which have special meaning only at the
- * start of a line, such as "*".
+ * As required by the callers, <nowiki> is not used.
  *
  * @param $text String: text to be escaped
  */
 function wfEscapeWikiText( $text ) {
-	$text = str_replace(
-		array( '[',     '|',      ']',     '\'',    'ISBN ',
-			'RFC ',     '://',     "\n=",     '{{',           '}}' ),
-		array( '&#91;', '&#124;', '&#93;', '&#39;', 'ISBN&#32;',
-			'RFC&#32;', '&#58;//', "\n&#61;", '&#123;&#123;', '&#125;&#125;' ),
-		htmlspecialchars( $text )
-	);
-	return $text;
+	$text = strtr( "\n$text", array(
+		'"' => '&#34;', '&' => '&#38;', "'" => '&#39;', '<' => '&#60;',
+		'=' => '&#61;', '>' => '&#62;', '[' => '&#91;', ']' => '&#93;',
+		'{' => '&#123;', '|' => '&#124;', '}' => '&#125;',
+		"\n#" => "\n&#35;", "\n*" => "\n&#42;",
+		"\n:" => "\n&#58;", "\n;" => "\n&#59;",
+		'://' => '&#58;//', 'ISBN ' => 'ISBN&#32;', 'RFC ' => 'RFC&#32;',
+	) );
+	return substr( $text, 1 );
 }
 
 /**
