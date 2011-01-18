@@ -1708,7 +1708,7 @@ $1",
 # Special:ActiveUsers
 'activeusers'            => 'Актыўныя ўдзельнікі',
 'activeusers-intro'      => 'Гэта пералік удзельнікаў, якія нешта рабілі за апошнія $1 {{PLURAL:$1|дзень|дзён}}.',
-'activeusers-count'      => '$1 {{PLURAL:$1|праўка|правак}} за апошні{{PLURAL:$3| дзень|я $3 дзён}}',
+'activeusers-count'      => '$1 {{PLURAL:$1|праўка|праўкі|правак}} за апошні{{PLURAL:$3| дзень|я $3 дзён}}',
 'activeusers-from'       => 'Паказ, пачынаючы з:',
 'activeusers-hidebots'   => 'Без робатаў',
 'activeusers-hidesysops' => 'Без адміністратараў',

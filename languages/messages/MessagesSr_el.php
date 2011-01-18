@@ -622,7 +622,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'nav-login-createaccount'    => 'Prijavi se/Registruj se',
 'loginprompt'                => 'Morate imati omogućene kolačiće da biste se prijavili na ovaj viki.',
 'userlogin'                  => 'Prijavi se/Registruj se',
-'userloginnocreate'          => 'Prijavljivanje',
+'userloginnocreate'          => 'Prijava',
 'logout'                     => 'Odjavljivanje',
 'userlogout'                 => 'Odjavi me',
 'notloggedin'                => 'Niste prijavljeni',
