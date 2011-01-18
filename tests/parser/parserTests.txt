@@ -2260,6 +2260,17 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
+Magic Word: {{PAGENAMEE}} with metacharacters (bug 26781)
+!! options
+title=[[*RFC 1234 http://example.com/]]
+!! input
+{{PAGENAMEE}}
+!! result
+<p>&#42;RFC_1234_http&#58;//example.com/
+</p>
+!! end
+
+!! test
 Magic Word: {{REVISIONID}}
 !! input
 {{REVISIONID}}
