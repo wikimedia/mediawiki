@@ -594,7 +594,7 @@ class CategoryViewer {
 
 	/**
 	 * What to do if the category table conflicts with the number of results
-	 * returned?  This function says what. Each type is considered independantly
+	 * returned?  This function says what. Each type is considered independently
 	 * of the other types.
 	 *
 	 * Note for grepping: uses the messages category-article-count,
