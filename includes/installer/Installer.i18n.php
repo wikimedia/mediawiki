@@ -10336,17 +10336,272 @@ $messages['yi'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hydra
+ * @author PhiLiP
  */
 $messages['zh-hans'] = array(
-	'config-desc' => '定制安装程序',
-	'config-title' => '定制 $1 安装',
+	'config-desc' => 'MediaWiki安装程序',
+	'config-title' => 'MediaWiki $1配置',
 	'config-information' => '信息',
+	'config-localsettings-upgrade' => '已检测到<code>LocalSettings.php</code>文件。要升级该配置，请在下面的框中输入<code>$wgUpgradeKey</code>的值。您可以在LocalSettings.php中找到它。',
+	'config-localsettings-cli-upgrade' => '已检测到LocalSettings.php文件。要升级该配置，请使用--upgrade=yes选项。',
+	'config-localsettings-key' => '升级密钥：',
+	'config-localsettings-badkey' => '您提供的密钥不正确。',
+	'config-upgrade-key-missing' => '检测到MediaWiki的配置已经存在。若要升级该配置，请将下面一行文本添加到LocalSettings.php的底部：
+
+$1',
+	'config-localsettings-incomplete' => '当前的LocalSettings.php可能并不完整，因为变量$1没有设置。请在LocalSettings.php设置该变量，并单击“继续”。',
+	'config-localsettings-connection-error' => '在使用LocalSettings.php或AdminSettings.php中指定的设置连接数据库时发生错误。请修复相应设置并重试。
+
+$1',
+	'config-session-error' => '启动会话出错：$1',
+	'config-session-expired' => '您的会话数据可能已经过期，当前会话的使用期限被设定为$1。您可以在php.ini中设置<code>session.gc_maxlifetime</code>来延长此期限，并重新启动本配置程序。',
+	'config-no-session' => '您的会话数据丢失了！请检查php.ini并确保<code>session.save_path</code>被设置为适当的目录。',
+	'config-your-language' => '您使用的语言：',
+	'config-your-language-help' => '选择在安装过程中使用的语言。',
+	'config-wiki-language' => 'Wiki使用的语言：',
+	'config-wiki-language-help' => '选择将要安装的wiki在多数情况下使用的语言。',
+	'config-back' => '← 后退',
 	'config-continue' => '继续 →',
 	'config-page-language' => '语言',
+	'config-page-welcome' => '欢迎使用MediaWiki！',
+	'config-page-dbconnect' => '连接到数据库',
+	'config-page-upgrade' => '升级当前配置',
+	'config-page-dbsettings' => '数据库设置',
 	'config-page-name' => '名称',
 	'config-page-options' => '选项',
 	'config-page-install' => '安装',
-	'config-admin-email' => '电邮地址：',
+	'config-page-complete' => '完成！',
+	'config-page-restart' => '重新开始安装',
+	'config-page-readme' => '自述',
+	'config-page-releasenotes' => '发布说明',
+	'config-page-copying' => '复制',
+	'config-page-upgradedoc' => '更新',
+	'config-page-existingwiki' => '已有wiki',
+	'config-help-restart' => '是否要清除所有已输入且保存的数据，并重新启动安装过程吗？',
+	'config-restart' => '是的，重启吧',
+	'config-welcome' => '=== 环境检查 ===
+对当前环境是否适合安装MediaWiki作基本的检查。如果您在安装过程中需要帮助，请提供这些检查的结果。',
+	'config-copyright' => "=== 版权和条款 ===
+
+\$1
+
+本程序为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款规定，就本程序再为发布与／或修改；无论您依据的是本授权的第二版或（您自行选择的）任一日后发行的版本。
+
+本程序是基于使用目的而加以发布，然而'''不负任何担保责任'''；亦无对'''适售性'''或'''特定目的适用性'''所为的默示性担保。详情请参照GNU通用公共授权。
+
+您应已收到附随于本程序的<doclink href=\"Copying\">GNU通用公共授权的副本</doclink>；如果没有，请写信至自由软件基金会：59 Temple Place - Suite 330, Boston, Ma 02111-1307, USA，或[http://www.gnu.org/copyleft/gpl.html 在线阅读]。",
+	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/zh-hans MediaWiki首页]
+* [http://www.mediawiki.org/wiki/Help:Contents/zh-hans 用户帮助]
+* [http://www.mediawiki.org/wiki/Manual:Contents 管理员帮助]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans 常见问题解答]',
+	'config-env-good' => '环境检查已经完成。您可以安装MediaWiki。',
+	'config-env-bad' => '环境检查已经完成。您不能安装MediaWiki。',
+	'config-env-php' => 'PHP $1已安装。',
+	'config-unicode-using-utf8' => '使用Brion Vibber的utf8_normalize.so实现Unicode正常化。',
+	'config-unicode-using-intl' => '使用[http://pecl.php.net/intl intl PECL扩展]实现Unicode正常化。',
+	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL扩展]无法处理Unicode正常化，故只能退而采用运行较慢的纯PHP实现的方法。如果您运行着一个高流量的站点，请参阅[http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode正常化]一文。",
+	'config-unicode-update-warning' => "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[http://www.mediawiki.org/wiki/Unicode_normalization_considerations 升级]。",
+	'config-no-db' => '找不到合适的数据库驱动！',
+	'config-no-db-help' => '您需要为PHP安装数据库驱动。MediaWiki支持下列数据库类型：$1
+
+如果您正在使用共享主机，请让您的主机提供商为您安装适当的数据库驱动。
+如果PHP由您自行编译，请将其重新配置以启用数据库客户端，例如使用<code>./configure --with-mysql</code>。
+如果PHP是您通过Debian或Ubuntu包安装的，那么您还需要安装php5-mysql模块。',
+	'config-no-fts3' => "'''警告'''：已编译的SQLite不包含[http://sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
+	'config-register-globals' => "'''警告：PHP的<code>[http://php.net/register_globals register_globals]</code>选项被启用。请尽量禁用该功能，'''虽然不会影响MediaWiki的运行，但您的服务器会被暴露给潜在的安全漏洞。",
+	'config-magic-quotes-runtime' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]被启用！'''
+此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
+	'config-magic-quotes-sybase' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase]被启用！'''
+此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
+	'config-mbstring' => "'''致命错误：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]被启用！'''
+此选项会导致错误并不可预测地破坏数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
+	'config-ze1' => "'''致命错误：[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]被启用！'''
+此选项将导致MediaWiki出现极其严重的故障，请将其禁用，否则您将不能安装或使用MediaWiki。",
+	'config-safe-mode' => "'''警告：'''PHP的[http://www.php.net/features.safe-mode 安全模式]已启用。它可能会导致一些问题，尤其在对文件上传和数学公式<code>math</code>的支持方面。",
+	'config-xml-bad' => '缺少PHP的XML模块。MediaWiki需要使用该模块提供的函数，在当前配置下将无法工作。如果您正在使用Mandrake Linux，请安装php-xml包。',
+	'config-pcre' => '可能缺少PCRE的支持模块。MediaWiki的运行需要兼容于Perl的正则表达式函数。',
+	'config-pcre-no-utf8' => "'''致命错误'''：PHP的PCRE模块在编译时可能没有包含PCRE_UTF8支持。MediaWiki需要UTF-8支持才能正常工作。",
+	'config-memory-raised' => 'PHP的内存使用上限<code>memory_limit</code>为$1，自动提升到$2。',
+	'config-memory-bad' => "'''警告：'''PHP的内存使用上限<code>memory_limit</code>为$1。该设定可能过低，并导致安装失败！",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache]已安装',
+	'config-apc' => '[http://www.php.net/apc APC]已安装',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator]已安装',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache]已安装',
+	'config-no-cache' => "'''警告：'''找不到[http://eaccelerator.sourceforge.net eAccelerator]、[http://www.php.net/apc APC]、[http://trac.lighttpd.net/xcache/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]，无法启用对象缓存。
+Object caching is not enabled.",
+	'config-diff3-bad' => '找不到GNU diff3。',
+	'config-imagemagick' => '已找到ImageMagick：<code>$1</code>。如果你启用了上传功能，缩略图功能也将被启用。',
+	'config-gd' => '已找到内建的GD图形库。如果你启用了上传功能，缩略图功能也将被启用。',
+	'config-no-scaling' => '找不到GD库或ImageMagick。缩略图功能将不可用。',
+	'config-no-uri' => "'''错误：'''无法确定当前的URI。安装已中断。",
+	'config-uploads-not-safe' => "'''警告：'''您的默认上传目录<code>$1</code>存在允许执行任意脚本的漏洞。尽管MediaWiki会对所有已上传的文件进行安全检查，但我们仍然强烈建议您在启用上传功能前[http://www.mediawiki.org/wiki/Manual:Security#Upload_security 关闭该安全漏洞]。",
+	'config-brokenlibxml' => '您的系统安装的PHP和libxml2版本组合存在故障，并可能在MediaWiki和其他web应用程序中造成隐藏的数据损坏。请将PHP升级到5.2.9或以上，libxml2升级到2.7.3或以上（[http://bugs.php.net/bug.php?id=45996 PHP的故障报告]）。安装已中断。',
+	'config-using531' => '由于函数<code>__call()</code>的引用参数存在故障，PHP $1和MediaWiki无法兼容。请升级到PHP 5.3.2或以上版本，或降级到PHP 5.3.0以修复该问题（[http://bugs.php.net/bug.php?id=50394 PHP的故障报告]）。安装已中断。',
+	'config-db-type' => '数据库类型：',
+	'config-db-host' => '数据库主机：',
+	'config-db-host-help' => '如果您的数据库位于另一台服务器上，在此输入主机名或IP地址。
+
+如果您使用的是共享web主机，您的主机提供商应会在他们的文档中给出正确的主机名称。
+
+如果您使用了Windows服务器和MySQL数据库，使用“localhost”可能无法识别到本地服务器。如果是这样的话，请尝试指定本地服务器的IP地址为“127.0.0.1”。',
+	'config-db-host-oracle' => '数据库透明网络底层（TNS）：',
+	'config-db-host-oracle-help' => '请输入合法的[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm 本地连接名]，并确保tnsnames.ora文件对本安装程序可见。<br />如果您使用的客户端库为10g或更新的版本，您还可以使用[http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm 简单连接名方法]（easy connect naming method）。',
+	'config-db-wiki-settings' => '标识本wiki',
+	'config-db-name' => '数据库名称：',
+	'config-db-name-help' => '请输入一个可以标识您的wiki的名称。请勿使用空格。
+
+如果您正在使用共享web主机，您的主机提供商或会给您指定一个数据库名称，或会让您通过控制面板创建数据库。',
+	'config-db-name-oracle' => '数据库模式：',
+	'config-db-install-account' => '用于安装的用户帐号',
+	'config-db-username' => '数据库用户名：',
+	'config-db-password' => '数据库密码：',
+	'config-db-install-username' => '请输入在安装过程中用于连接数据库的用户名。请勿输入MediaWiki帐号的用户名，请输入您数据库的用户名。',
+	'config-db-install-password' => '请输入在安装过程中用于连接数据库的密码。请勿输入MediaWiki帐号的密码，请输入您数据库的密码。',
+	'config-db-install-help' => '请输入在安装过程中用于连接数据库的用户名和密码。',
+	'config-db-account-lock' => '在普通操作中使用相同的用户名和密码',
+	'config-db-wiki-account' => '用于普通操作的用户帐号',
+	'config-db-wiki-help' => '输入在普通的wiki操作中（安装完成后）将用于连接数据库的用户名和密码。如果该帐号并不存在，而安装帐号具有足够的权限，该用户帐号会被自动创建，并被赋予足以运行此wiki的最低权限。',
+	'config-db-prefix' => '数据库表前缀：',
+	'config-db-prefix-help' => '如果您需要在多个wiki之间（或在MediaWiki与其他web应用程序之间）共享一个数据库，您可以通过添加前缀的方式来避免出现表名称的冲突。请勿使用空格。
+
+此字段通常可留空。',
+	'config-db-charset' => '数据库字符集',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 二进制',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 UTF-8（向后兼容）',
+	'config-charset-help' => "'''警告：'''如果您在MySQL 4.1+中使用'''向后兼容的UTF-8'''字符集，并在之后使用<code>mysqldump</code>备份了数据库，则可能损坏所有的非ASCII字符，从而不可逆地破坏您的备份！
+
+在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。
+
+在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[http://zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
+	'config-mysql-old' => '需要MySQL $1或更新的版本，您的版本为$2。',
+	'config-db-port' => '数据库端口：',
+	'config-db-schema' => 'MediaWiki的数据库模式',
+	'config-db-ts2-schema' => 'Tsearch2的数据库模式',
+	'config-db-schema-help' => '上述数据库模式的设置通常是正确的。请在有此需求时才更改它们。',
+	'config-sqlite-dir' => 'SQLite数据目录：',
+	'config-sqlite-dir-help' => "SQLite会将所有的数据存储于单一文件中。
+
+您所提供的目录必须在安装过程中对网页服务器可写。
+
+该目录'''不应'''允许通过web访问，因此我们不会将数据文件和PHP文件放在一起。
+
+安装程序在创建数据文件时，亦会在相同目录下创建<code>.htaccess</code>以控制权限。假若此等控制失效，则可能会将您的数据文件暴露于公共空间，让他人可以获取用户数据（电子邮件地址、杂凑后的密码）、被删除的版本以及其他在wiki上被限制访问的数据。
+
+请考虑将数据库统一放置在某处，如<code>/var/lib/mediawiki/yourwiki</code>下。",
+	'config-oracle-def-ts' => '默认表空间：',
+	'config-oracle-temp-ts' => '临时表空间：',
+	'config-support-info' => 'MediaWiki支持以下数据库系统：
+
+$1
+
+如果您在下面列出的数据库系统中没有找到您希望使用的系统，请根据上方链向的指引启用支持。',
+	'config-support-mysql' => '* $1是MediaWiki的首选数据库，对它的支持最为完备（[http://www.php.net/manual/en/mysql.installation.php 如何将对MySQL的支持编译进PHP中]）',
+	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中）',
+	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
+	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
+	'config-header-mysql' => 'MySQL设置',
+	'config-header-postgres' => 'PostgreSQL设置',
+	'config-header-sqlite' => 'SQLite设置',
+	'config-header-oracle' => 'Oracle设置',
+	'config-invalid-db-type' => '无效的数据库类型',
+	'config-missing-db-name' => '您必须为“数据库名称”输入内容',
+	'config-missing-db-host' => '您必须为“数据库主机”输入内容',
+	'config-missing-db-server-oracle' => '您必须为“数据库透明网络底层（TNS）”输入内容',
+	'config-invalid-db-server-oracle' => '无效的数据库TNS“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和点号（.）。',
+	'config-invalid-db-name' => '无效的数据库名称“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和连字号（-）。',
+	'config-invalid-db-prefix' => '无效的数据库前缀“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和连字号（-）。',
+	'config-connection-error' => '$1。
+
+请检查下列的主机、用户名和密码设置后重试。',
+	'config-invalid-schema' => '无效的MediaWiki数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。',
+	'config-invalid-ts2schema' => '无效的TSearch2数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。',
+	'config-postgres-old' => '需要PostgreSQL $1或更新的版本，您的版本为$2。',
+	'config-sqlite-name-help' => '请为您的wiki指定一个用于标识的名称。请勿使用空格或连字号，该名称将被用作SQLite的数据文件名。',
+	'config-sqlite-parent-unwritable-group' => '由于父目录<code><nowiki>$2</nowiki></code>对网页服务器不可写，无法创建数据目录<code><nowiki>$1</nowiki></code>。
+
+安装程序已确定您网页服务器所使用的用户。请将<code><nowiki>$3</nowiki></code>目录设为对该用户可写以继续安装过程。在Unix/Linux系统中，您可以逐行输入下列命令：
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => '由于父目录<code><nowiki>$2</nowiki></code>对网页服务器不可写，无法创建数据目录<code><nowiki>$1</nowiki></code>。
+
+安装程序无法确定您网页服务器所使用的用户。请将<code><nowiki>$3</nowiki></code>目录设为全局可写（对所有用户）以继续安装过程。在Unix/Linux系统中，您可以逐行输入下列命令：
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
+	'config-sqlite-mkdir-error' => '创建数据目录“$1”时发生错误。请检查路径后重试。',
+	'config-sqlite-dir-unwritable' => '无法写入目录“$1”。请修改该目录的权限，使其对网页服务器可写后重试。',
+	'config-sqlite-connection-error' => '$1。
+
+请检查下列的数据目录和数据库名称后重试。',
+	'config-sqlite-readonly' => '文件<code>$1</code>不可写。',
+	'config-sqlite-cant-create-db' => '无法创建数据文件<code>$1</code>。',
+	'config-sqlite-fts3-downgrade' => 'PHP缺少FTS3支持，正在降级数据表',
+	'config-can-upgrade' => "在数据库中发现了MediaWiki的数据表。要将它们升级至MediaWiki $1，请点击'''继续'''。",
+	'config-upgrade-done' => "升级完成。
+
+现在您可以[$1 开始使用您的wiki]了。
+
+如果您需要重新生成<code>LocalSettings.php</code>文件，请点击下面的按钮。除非您的wiki出现了问题，我们'''不推荐'''您执行此操作。",
+	'config-upgrade-done-no-regenerate' => '升级完成。
+
+现在您可以[$1 开始使用您的wiki]了。',
+	'config-regenerate' => '重新生成LocalSettings.php →',
+	'config-show-table-status' => '查询SHOW TABLE STATUS失败！',
+	'config-unknown-collation' => "'''警告：'''数据库使用了无法识别的整理。",
+	'config-db-web-account' => '供网页访问使用的数据库帐号',
+	'config-db-web-help' => '请指定在wiki执行普通操作时，网页服务器用于连接数据库服务器的用户名和密码。',
+	'config-db-web-account-same' => '使用和安装程序相同的帐号',
+	'config-db-web-create' => '如果帐号不存在，则自动创建',
+	'config-db-web-no-create-privs' => '您指定给安装程序的帐号缺少创建帐号的权限，因此您指定的帐号必须已经存在。',
+	'config-mysql-engine' => '存储引擎：',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB'''通常是最佳选项，因为它对并发操作有着良好的支持。
+
+'''MyISAM'''在单用户或只读环境下可能会有更快的性能表现。但MyISAM数据库出错的概率一般要大于InnoDB数据库。",
+	'config-mysql-egine-mismatch' => "'''警告：'''您选择了使用$1存储引擎，但现有的数据库使用了$2引擎。升级脚本无法转换它，故将保持$2。",
+	'config-mysql-charset' => '数据库字符集：',
+	'config-mysql-binary' => '二进制',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。
+
+在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[http://zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
+	'config-mysql-charset-mismatch' => "'''警告：'''您选择了使用$1模式，但现有的数据库使用了$2模式。升级脚本无法转换它，故将保持$2。",
+	'config-site-name' => 'Wiki的名称：',
+	'config-site-name-help' => '填入的内容会出现在浏览器的标题栏以及其他多处位置中。',
+	'config-site-name-blank' => '输入网站的名称。',
+	'config-project-namespace' => '项目名字空间：',
+	'config-ns-generic' => '项目',
+	'config-ns-site-name' => '与wiki名称相同：$1',
+	'config-ns-other' => '其他（自定义）',
+	'config-ns-other-default' => '我的Wiki',
+	'config-project-namespace-help' => "依循维基百科形成的惯例，许多wiki将他们的方针页面存放在与内容页面不同的“'''项目名字空间'''”中。所有位于该名字空间下的页面标题都会被冠以固定的前缀，您可以在此处指定这一前缀。传统上，这一前缀应与wiki的命名保持一致，但请勿在其中使用标点符号，如“#”或“:”。",
+	'config-ns-invalid' => '指定的名字空间“<nowiki>$1</nowiki>”无效，请为项目名字空间指定其他名称。',
+	'config-admin-box' => '管理员帐号',
+	'config-admin-name' => '您的名字：',
+	'config-admin-password' => '密码：',
+	'config-admin-password-confirm' => '确认密码：',
+	'config-admin-help' => '在此输入您想使用的用户名，例如“乔帮主”。您将使用该名称登录本wiki。',
+	'config-admin-name-blank' => '输入管理员的用户名。',
+	'config-admin-name-invalid' => '指定的用户名“<nowiki>$1</nowiki>”无效，请指定其他用户名。',
+	'config-admin-password-blank' => '输入管理员帐号的密码。',
+	'config-admin-password-same' => '密码不能和用户名相同。',
+	'config-admin-password-mismatch' => '两次输入的密码并不相同。',
+	'config-admin-email' => '电子邮件地址：',
+	'config-admin-email-help' => '在此输入电子邮件地址，这样您将可以收到本wiki上的其他用户发来的电子邮件，可以重置您的密码，并能在监视列表中的页面被更改时收到邮件通知。',
+	'config-admin-error-user' => '在创建用户名为“<nowiki>$1</nowiki>”的管理员帐号时发生内部错误。',
+	'config-admin-error-password' => '在为管理员“<nowiki>$1</nowiki>”设置密码时发生内部错误：<pre>$2</pre>',
+	'config-admin-error-bademail' => '您输入了无效的电子邮件地址。',
+	'config-subscribe' => '订阅[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 发行公告邮件列表]。',
+	'config-subscribe-help' => '此低流量的邮件列表仅用于发行公告，其中包括重要安全公告。请订阅该列表以便在新的版本推出时升级您的MediaWiki。',
+	'config-almost-done' => '您几乎已经完成了！现在您可以跳过剩下的配置流程并立即安装wiki。',
+	'config-optional-continue' => '多问我一些问题吧。',
+	'config-optional-skip' => '我已经不耐烦了，赶紧安装我的wiki。',
 	'config-email-settings' => 'Email 设置',
 );
 

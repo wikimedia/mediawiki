@@ -658,6 +658,18 @@ aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl
 <br />
 '''Ate mu Internet Explorer:''' Nyewza erya ''Ctrl'' nga bw'onyiga akabonero aka ''Refresh'', oba nyigira okumu aga ''Ctrl'' ne ''F5''.",
 'usercssyoucanpreview'             => "'''Amagezi:''' Bw'onyiga akabonero aka \"{{int:showpreview}}\" osobola okulozako enfaanana ya CSS gw'otegese nga tosoose okugikaza.",
+'userjsyoucanpreview'              => "'''Amagezi:''' Nyiga ku kabonero aka \"{{int:showpreview}}\" osobole okulozako enkola ya JavaScript gw'otegese nga tosoose okumukaza.",
+'usercsspreview'                   => "'''Jukira nti CSS gw'otegese omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
+'userjspreview'                    => "'''Jukira nti JavaScript gw'otegese omugezesamubugezesa oba omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
+'sitecsspreview'                   => "'''Jukira nti CSS ono omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
+'sitejspreview'                    => "'''Jukira nti JavaScript ono omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
+'userinvalidcssjstitle'            => "'''Kulabula:''' Tewali endabika eyitibwa \"\$1\".<br />
+Empapula eza .css ne .js bamemba ze b'ekoledde, amannya ga zo ennukuta za mu<br />
+zonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns:user}}:Foo/Vector.css''.",
 'previewnote'                      => "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',

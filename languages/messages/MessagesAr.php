@@ -2615,6 +2615,7 @@ $1',
 'sp-contributions-newbies-title'       => 'مساهمات المستخدم للحسابات الجديدة',
 'sp-contributions-blocklog'            => 'سجل المنع',
 'sp-contributions-deleted'             => 'مساهمات المستخدم المحذوفة',
+'sp-contributions-uploads'             => 'تحميل',
 'sp-contributions-logs'                => 'سجلات',
 'sp-contributions-talk'                => 'نقاش',
 'sp-contributions-userrights'          => 'إدارة صلاحيات المستخدم',
@@ -3759,6 +3760,8 @@ $1',
 'version-specialpages'             => 'صفحات خاصة',
 'version-parserhooks'              => 'خطاطيف المحلل',
 'version-variables'                => 'المتغيرات',
+'version-antispam'                 => 'منع البريد المزعج',
+'version-skins'                    => 'واجهات',
 'version-other'                    => 'أخرى',
 'version-mediahandlers'            => 'متحكمات الميديا',
 'version-hooks'                    => 'الخطاطيف',
@@ -3883,8 +3886,16 @@ $1',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
 
 # Special:DisableAccount
-'disableaccount'        => 'تعطيل حساب مستخدم',
-'disableaccount-user'   => 'اسم المستخدم :',
-'disableaccount-reason' => 'السبب :',
+'disableaccount'             => 'تعطيل حساب مستخدم',
+'disableaccount-user'        => 'اسم المستخدم :',
+'disableaccount-reason'      => 'السبب :',
+'disableaccount-confirm'     => 'تعطيل حساب المستخدم هذا. 
+المستخدم لن يكون قادرا على تسجيل الدخول، إعادة تعيين كلمة المرور الخاصة به، أو تلقي إعلامات البريد الإلكتروني. 
+إذا تم تسجيل المستخدم حاليا في أي مكان، سيتم تسجيله على الفور. 
+«لاحظ أن تعطيل الحساب لا يمكن عكسه دون تدخل المسؤول عن النظام».',
+'disableaccount-mustconfirm' => 'يجب التأكد من أنك ترغب في تعطيل هذا الحساب.',
+'disableaccount-nosuchuser'  => 'حساب المستخدم "$1" غير موجود.',
+'disableaccount-success'     => 'تم تعطيل حساب المستخدم "$1" بشكل دائم.',
+'disableaccount-logentry'    => 'تعطيل حساب المستخدم [[$1]] بشكل دائم',
 
 );

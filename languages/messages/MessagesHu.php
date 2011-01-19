@@ -495,6 +495,7 @@ $messages = array(
 'delete'            => 'Törlés',
 'deletethispage'    => 'Lap törlése',
 'undelete_short'    => '{{PLURAL:$1|Egy|$1}} szerkesztés helyreállítása',
+'viewdeleted_short' => '{{PLURAL:$1|Egy|$1}} törölt szerkesztés megtekintése',
 'protect'           => 'Lapvédelem',
 'protect_change'    => 'módosítás',
 'protectthispage'   => 'Lapvédelem',

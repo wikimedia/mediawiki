@@ -557,7 +557,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 
 'brokenredirects'        => 'Kaputte Weiderleidinge',
 'brokenredirects-edit'   => 'ennere',
-'brokenredirects-delete' => 'lösche',
+'brokenredirects-delete' => 'lesche',
 
 'withoutinterwiki-submit' => 'Zeig',
 
