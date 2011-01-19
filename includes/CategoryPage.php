@@ -177,13 +177,15 @@ class CategoryViewer {
 	function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$title = $cat->getTitle();
-		$this->children[] = $this->getSkin()->link(
-			$title,
-			$title->getText(),
-			array(),
-			array(),
-			array( 'known', 'noclasses' )
-		);
+
+		$link = $this->getSkin()->link( $title, $title->getText() );
+		if ( $title->isRedirect() ) {
+			// This didn't used to add redirect-in-category, but might
+			// as well be consistent with the rest of the sections
+			// on a category page.
+			$link = '<span class="redirect-in-category">' . $link . '</span>';
+		}
+		$this->children[] = $link;
 
 		$this->children_start_char[] = 
 			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
@@ -231,16 +233,13 @@ class CategoryViewer {
 				$this->gallery->add( $title );
 			}
 		} else {
-			$this->imgsNoGallery[] = $isRedirect
-			? '<span class="redirect-in-category">' .
-				$this->getSkin()->link(
-					$title,
-					null,
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
-				) . '</span>'
-			: $this->getSkin()->link( $title );
+			$link = $this->getSkin()->link( $title );
+			if ( $isRedirect ) {
+				// This seems kind of pointless given 'mw-redirect' class,
+				// but keeping for back-compatibility with user css.
+				$link = '<span class="redirect-in-category">' . $link . '</span>';
+			}
+			$this->imgsNoGallery[] = $link;
 
 			$this->imgsNoGallery_start_char[] = $wgContLang->convert( 
 				$this->collation->getFirstLetter( $sortkey ) );
@@ -252,16 +251,14 @@ class CategoryViewer {
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
-		$this->articles[] = $isRedirect
-			? '<span class="redirect-in-category">' .
-				$this->getSkin()->link(
-					$title,
-					null,
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
-				) . '</span>'
-			: $this->getSkin()->link( $title );
+
+		$link = $this->getSkin()->link( $title );
+		if ( $isRedirect ) {
+			// This seems kind of pointless given 'mw-redirect' class,
+			// but keeping for back-compatiability with user css.
+			$link = '<span class="redirect-in-category">' . $link . '</span>';
+		}
+		$this->articles[] = $link;
 
 		$this->articles_start_char[] = $wgContLang->convert( 
 			$this->collation->getFirstLetter( $sortkey ) );
