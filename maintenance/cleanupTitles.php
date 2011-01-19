@@ -152,4 +152,4 @@ class TitleCleanup extends TableCleanup {
 }
 
 $maintClass = "TitleCleanup";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

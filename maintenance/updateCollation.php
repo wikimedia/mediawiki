@@ -61,7 +61,7 @@ TEXT;
 			$dbw->begin();
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				if ( $row->cl_collation == 0 ) {
+				if ( !$row->cl_collation ) {
 					# This is an old-style row, so the sortkey needs to be
 					# converted.
 					if ( $row->cl_sortkey == $title->getText()
@@ -106,4 +106,4 @@ TEXT;
 }
 
 $maintClass = "UpdateCollation";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

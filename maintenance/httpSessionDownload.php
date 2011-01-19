@@ -54,4 +54,4 @@ class HttpSessionDownload extends Maintenance {
 }
 
 $maintClass = "HttpSessionDownload";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

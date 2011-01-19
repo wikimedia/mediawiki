@@ -107,4 +107,4 @@ in the load balancer, usually indicating a replication environment.' );
 }
 
 $maintClass = "InitEditCount";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

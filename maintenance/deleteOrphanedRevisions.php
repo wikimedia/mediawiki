@@ -85,5 +85,5 @@ class DeleteOrphanedRevisions extends Maintenance {
 }
 
 $maintClass = "DeleteOrphanedRevisions";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );
 

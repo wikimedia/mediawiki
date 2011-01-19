@@ -55,4 +55,4 @@ class CheckAutoLoader extends Maintenance {
 }
 
 $maintClass = "CheckAutoLoader";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

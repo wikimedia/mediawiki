@@ -80,4 +80,4 @@ class InitStats extends Maintenance {
 }
 
 $maintClass = "InitStats";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

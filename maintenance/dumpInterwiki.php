@@ -235,5 +235,5 @@ class DumpInterwiki extends Maintenance {
 }
 
 $maintClass = "DumpInterwiki";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );
 

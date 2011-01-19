@@ -56,4 +56,4 @@ class PatchSql extends Maintenance {
 }
 
 $maintClass = "PatchSql";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

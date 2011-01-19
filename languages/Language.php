@@ -2984,7 +2984,7 @@ class Language {
 	 */
 	public function convertToSortkey( $string ) {
 		# Fake function for now
-		return strtoupper( $string );
+		return $this->uc( $string );
 	}
 
 	/**
@@ -3014,6 +3014,6 @@ class Language {
 		if ( $string[0] == "\0" ) {
 			$string = substr( $string, 1 );
 		}
-		return strtoupper( $this->firstChar( $string ) );
+		return $this->uc( $this->firstChar( $string ) );
 	}
 }

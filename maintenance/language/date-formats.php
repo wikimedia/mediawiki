@@ -73,4 +73,4 @@ class DateFormats extends Maintenance {
 }
 
 $maintClass = "DateFormats";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

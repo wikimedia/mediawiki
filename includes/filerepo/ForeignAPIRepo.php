@@ -118,7 +118,7 @@ class ForeignAPIRepo extends FileRepo {
 			}
 		}
 
-		$results = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
+		$data = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
 											'prop' => 'imageinfo' ) );
 		if( isset( $data['query']['pages'] ) ) {
 			$i = 0;
@@ -127,6 +127,7 @@ class ForeignAPIRepo extends FileRepo {
 				$i++;
 			}
 		}
+		return $results;
 	}
 	function getFileProps( $virtualUrl ) {
 		return false;

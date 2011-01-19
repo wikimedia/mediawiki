@@ -37,4 +37,4 @@ class AllTrans extends Maintenance {
 }
 
 $maintClass = "AllTrans";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

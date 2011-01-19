@@ -115,4 +115,4 @@ class DumpRenderer extends Maintenance {
 }
 
 $maintClass = "DumpRenderer";
-require_once( DO_MAINTENANCE );
+require_once( RUN_MAINTENANCE_IF_MAIN );

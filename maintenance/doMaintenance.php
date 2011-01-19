@@ -26,18 +26,21 @@
  * @ingroup Maintenance
  */
 
-if ( !defined( 'DO_MAINTENANCE' ) ) {
+if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
 	exit( 1 );
+}
+
+// Wasn't included from the file scope, halt execution (probably wanted the class)
+// If a class is using commandLine.inc (old school maintenance), they definitely
+// cannot be included and will proceed with execution
+if( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
+	return;
 }
 
 if ( !$maintClass || !class_exists( $maintClass ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.\n";
 	exit( 1 );
-}
-
-if ( defined( 'MW_NO_SETUP' ) ) {
-	return;
 }
 
 // Get an object to start us off
