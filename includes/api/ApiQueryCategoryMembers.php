@@ -119,13 +119,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
-			$this->addOption( 'ORDER BY', 'cl_type' );
-
+			// The below produces ORDER BY cl_type, cl_sortkey, cl_from, possibly with DESC added to each of them
+			$this->addWhereRange( 'cl_type', $dir, null, null );
 			$this->addWhereRange( 'cl_sortkey',
 				$dir,
 				$params['startsortkey'],
 				$params['endsortkey'] );
-
 			$this->addWhereRange( 'cl_from', $dir, null, null );
 			$this->addOption( 'USE INDEX', 'cl_sortkey' );
 		}
@@ -138,7 +137,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$count = 0;
-		$lastFrom = null;
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
@@ -147,7 +145,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'timestamp' ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $lastFrom );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from );
 				}
 				break;
 			}
@@ -187,14 +185,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'timestamp' ) {
 						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $lastFrom );
+						$this->setContinueEnumParameter( 'continue', $row->cl_from );
 					}
 					break;
 				}
 			} else {
 				$resultPageSet->processDbRow( $row );
 			}
-			$lastFrom = $row->cl_from; // detect duplicate sortkeys
 		}
 
 		if ( is_null( $resultPageSet ) ) {
@@ -213,7 +210,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$encFrom = $this->getDB()->addQuotes( intval( $continue ) );
 
-		$op = ( $dir == 'desc' ? '<' : '>' );
+		$op = ( $dir == 'desc' ? '<=' : '>=' );
 
 		$this->addWhere( "cl_from $op $encFrom" );
 	}
@@ -294,9 +291,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				'What pieces of information to include',
 				' ids           - Adds the page ID',
 				' title         - Adds the title and namespace ID of the page',
-				' sortkey       - Adds the sortkey used for the category (note, may be non human readable)',
-				' sortkeyprefix - Adds the sortkey prefix used for the category',
-				' type          - Adds the type that the page has been categorised as',
+				' sortkey       - Adds the sortkey used for sorting in the category (may not be human-readble)',
+				' sortkeyprefix - Adds the sortkey prefix used for sorting in the category (human-readable part of the sortkey)',
+				' type          - Adds the type that the page has been categorised as (page, subcat or file)',
 				' timestamp     - Adds the timestamp of when the page was included',
 			),
 			'namespace' => 'Only include pages in these namespaces',
