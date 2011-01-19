@@ -7,7 +7,7 @@ CREATE TABLE /*$wgDBprefix*/validate (
   `val_revision` int(11) unsigned NOT NULL default '0',
   `val_type` int(11) unsigned NOT NULL default '0',
   `val_value` int(11) default '0',
-  `val_comment` varchar(255) NOT NULL default '',
-  `val_ip` varchar(20) NOT NULL default '',
+  `val_comment` varbinary(255) NOT NULL default '',
+  `val_ip` varbinary(20) NOT NULL default '',
   KEY `val_user` (`val_user`,`val_revision`)
 ) /*$wgDBTableOptions*/;

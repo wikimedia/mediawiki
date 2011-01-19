@@ -10,7 +10,7 @@
 -- sure to also change the check in LinksUpdate.php.
 ALTER TABLE /*$wgDBprefix*/categorylinks
 	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(230) NOT NULL default '',
-	ADD COLUMN cl_sortkey_prefix varchar(255) binary NOT NULL default '',
+	ADD COLUMN cl_sortkey_prefix varbinary(255) NOT NULL default '',
 	ADD COLUMN cl_collation varbinary(32) NOT NULL default '',
 	ADD COLUMN cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page',
 	ADD INDEX (cl_collation),

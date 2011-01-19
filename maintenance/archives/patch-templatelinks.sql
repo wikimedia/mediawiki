@@ -10,7 +10,7 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
   -- and deletions may refer to different page records as time
   -- goes by.
   tl_namespace int NOT NULL default '0',
-  tl_title varchar(255) binary NOT NULL default '',
+  tl_title varbinary(255) NOT NULL default '',
   
   UNIQUE KEY tl_from(tl_from,tl_namespace,tl_title),
   KEY (tl_namespace,tl_title)

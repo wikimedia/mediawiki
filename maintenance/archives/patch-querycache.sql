@@ -9,7 +9,7 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   
   -- Target namespace+title
   qc_namespace int NOT NULL default '0',
-  qc_title varchar(255) binary NOT NULL default '',
+  qc_title varbinary(255) NOT NULL default '',
   
   KEY (qc_type,qc_value)
 

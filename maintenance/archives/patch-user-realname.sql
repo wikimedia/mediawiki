@@ -2,4 +2,4 @@
 -- used for author attribution or other places that real names matter.
 
 ALTER TABLE user 
-        ADD (user_real_name varchar(255) binary NOT NULL default '');
+        ADD (user_real_name varbinary(255) NOT NULL default '');
