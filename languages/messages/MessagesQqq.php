@@ -3882,6 +3882,7 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
 # Special:DisableAccount
+'disableaccount'          => 'Name of the special page',
 'disableaccount-user'     => '{{Identical|Username}}',
 'disableaccount-reason'   => '{{Identical|Reason}}',
 'disableaccount-logentry' => 'This message is used as a [[Special:Log|log entry]], appearing after the username of the person who did the action. Parameters:

@@ -782,6 +782,7 @@ $1',
 'powersearch-redir'                => 'Схьагайта дlасахьажийнарш',
 'powersearch-field'                => 'Лахар',
 'powersearch-toggleall'            => 'Массо',
+'powersearch-togglenone'           => 'Хlумма цаоьшу',
 
 # Preferences page
 'preferences'         => 'Гlирс нисбан',

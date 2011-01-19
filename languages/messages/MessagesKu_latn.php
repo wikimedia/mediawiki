@@ -11,6 +11,7 @@
  * @author Bangin
  * @author Erdal Ronahi
  * @author Ferhengvan
+ * @author George Animal
  * @author Liangent
  * @author The Evil IP address
  */
@@ -769,6 +770,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'timezoneoffset'            => 'Cudahî¹:',
 'servertime'                => "Dema server'ê:",
 'guesstimezone'             => "Ji browser'î xwe têkê",
+'timezoneregion-africa'     => 'Afrîka',
+'timezoneregion-europe'     => 'Ewropa',
 'allowemail'                => 'Qebûlbike ku bikarhênerên di e-nameyan ji te ra bişînin',
 'prefs-searchoptions'       => 'Tercihên lêgerînê',
 'default'                   => 'asayî',
@@ -1137,11 +1140,16 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'listusers-submit'   => 'Pêşêkê',
 'listusers-noresult' => 'Ne bikarhênerek hate dîtin.',
 
+# Special:ActiveUsers
+'activeusers-hidebots'   => "Bot'an veşêre",
+'activeusers-hidesysops' => 'Koordînatoran veşêre',
+
 # Special:Log/newusers
 'newuserlogpage'          => 'Reşahiya çêkirina hesabên nû',
 'newuserlog-create-entry' => 'Bikarhênerekî nuh',
 
 # Special:ListGroupRights
+'listgrouprights-rights'  => 'Mafan',
 'listgrouprights-members' => '(lîsteya endaman)',
 
 # E-mail user
@@ -1297,30 +1305,31 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'restriction-level-autoconfirmed' => 'nîv-parastî',
 
 # Undelete
-'undelete'                 => 'Li rûpelên jêbirî seke',
-'undeletepage'             => 'Rûpelên jêbirî bibîne û dîsa çêke',
-'viewdeletedpage'          => 'Rûpelên vemirandî seke',
-'undeletepagetext'         => 'Rûpelên jêr hatine jêbirin, lê ew hên di arşîvê da ne û dikarin dîsa werin çêkirin. Ev arşîva piştî demekê tê pakkirin.',
-'undeleteextrahelp'        => "Ji bo dîsaçêkirina vê rûpelê, li checkbox'an nexe û li '''''Dîsa çêke''''' klîk bike. Eger tu naxazî ku hemû verzyon dîsa werin çêkirin, li checkbox'ên wan verzyonan xe, yê tu dixazî dîsa çêkê û paşê li '''''Dîsa çêke'''' klîk bike. Eger tu li '''''Biskine''''' xê, hemû checkbox û cihê sedemê yê werin valakirin.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|rêvîzyonek çû|rêvîzyon çûn}} arşîv',
-'undeletehistory'          => 'Eger tu vê rûpelê dîsa çêkê, hemû rêvîzyon ê dîsa di dîrokê da werin çêkirin. Eger rûpeleka nuh ji dema jêbirinê da hatîye çêkirin, ew rêvîzyon ê werin pêşî diroka nuh.',
-'undelete-revision'        => 'Rêvîzyonên jêbirî yê $1 (di $2) ji $3:',
-'undelete-nodiff'          => 'Rêvîzyonên berê nehatin dîtin.',
-'undeletebtn'              => 'Dîsa çêke!',
-'undeletelink'             => 'dîtin/dîsa çêkirin',
-'undeletereset'            => 'Biskine',
-'undeletecomment'          => 'Sedem:',
-'undeletedarticle'         => '"[[$1]]" dîsa çêkir',
-'undeletedrevisions'       => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
-'undeletedrevisions-files' => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
-'undeletedfiles'           => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
-'undeletedpage'            => "'''$1 dîsa hate çêkirin'''
+'undelete'                  => 'Li rûpelên jêbirî seke',
+'undeletepage'              => 'Rûpelên jêbirî bibîne û dîsa çêke',
+'viewdeletedpage'           => 'Rûpelên vemirandî seke',
+'undeletepagetext'          => 'Rûpelên jêr hatine jêbirin, lê ew hên di arşîvê da ne û dikarin dîsa werin çêkirin. Ev arşîva piştî demekê tê pakkirin.',
+'undeleteextrahelp'         => "Ji bo dîsaçêkirina vê rûpelê, li checkbox'an nexe û li '''''Dîsa çêke''''' klîk bike. Eger tu naxazî ku hemû verzyon dîsa werin çêkirin, li checkbox'ên wan verzyonan xe, yê tu dixazî dîsa çêkê û paşê li '''''Dîsa çêke'''' klîk bike. Eger tu li '''''Biskine''''' xê, hemû checkbox û cihê sedemê yê werin valakirin.",
+'undeleterevisions'         => '$1 {{PLURAL:$1|rêvîzyonek çû|rêvîzyon çûn}} arşîv',
+'undeletehistory'           => 'Eger tu vê rûpelê dîsa çêkê, hemû rêvîzyon ê dîsa di dîrokê da werin çêkirin. Eger rûpeleka nuh ji dema jêbirinê da hatîye çêkirin, ew rêvîzyon ê werin pêşî diroka nuh.',
+'undelete-revision'         => 'Rêvîzyonên jêbirî yê $1 (di $2) ji $3:',
+'undelete-nodiff'           => 'Rêvîzyonên berê nehatin dîtin.',
+'undeletebtn'               => 'Dîsa çêke!',
+'undeletelink'              => 'dîtin/dîsa çêkirin',
+'undeletereset'             => 'Biskine',
+'undeletecomment'           => 'Sedem:',
+'undeletedarticle'          => '"[[$1]]" dîsa çêkir',
+'undeletedrevisions'        => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
+'undeletedrevisions-files'  => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
+'undeletedfiles'            => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
+'undeletedpage'             => "'''$1 dîsa hate çêkirin'''
 
 Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşahîya jêbirinê]] da seke.",
-'undelete-header'          => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
-'undelete-search-box'      => 'Rûpelên jêbirî lêbigere',
-'undelete-search-prefix'   => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
-'undelete-search-submit'   => 'Lêbigere',
+'undelete-header'           => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
+'undelete-search-box'       => 'Rûpelên jêbirî lêbigere',
+'undelete-search-prefix'    => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
+'undelete-search-submit'    => 'Lêbigere',
+'undelete-show-file-submit' => 'Erê',
 
 # Namespace form on various pages
 'namespace'      => 'Boşahîya nav:',
