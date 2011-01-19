@@ -46,19 +46,21 @@ class SpecialFilepath extends SpecialPage {
 			$this->showForm( $title );
 		} else {
 			$file = wfFindFile( $title );
+			
 			if ( $file && $file->exists() ) {
+				// Default behaviour: Use the direct link to the file.
+				$url = $file->getURL();
 				$width = $wgRequest->getInt( 'width', -1 );
 				$height = $wgRequest->getInt( 'height', -1 );
 				
 				if ( $width != -1 ) {
+					// If we can, and it's requested,
+					// change the URL to point to a thumbnail.
 					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
 					if ( $mto && !$mto->isError() ) {
 						$url = $mto->getURL();
 					}
-				} else {
-					$url = $file->getURL();
 				}
-				
 				$wgOut->redirect( $url );
 			} else {
 				$wgOut->setStatusCode( 404 );
