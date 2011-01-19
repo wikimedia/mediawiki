@@ -1,7 +1,7 @@
 CREATE TABLE /*$wgDBprefix*/category (
   cat_id int unsigned NOT NULL auto_increment,
 
-  cat_title varchar(255) binary NOT NULL,
+  cat_title varbinary(255) NOT NULL,
 
   cat_pages int signed NOT NULL default 0,
   cat_subcats int signed NOT NULL default 0,

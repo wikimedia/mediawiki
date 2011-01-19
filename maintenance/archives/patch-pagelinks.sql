@@ -25,7 +25,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   -- and deletions may refer to different page records as time
   -- goes by.
   pl_namespace int NOT NULL default '0',
-  pl_title varchar(255) binary NOT NULL default '',
+  pl_title varbinary(255) NOT NULL default '',
   
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)

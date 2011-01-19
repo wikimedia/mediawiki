@@ -6,10 +6,10 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_id int not null auto_increment,
   
   -- Original base filename; key to image.img_name, page.page_title, etc
-  fa_name varchar(255) binary NOT NULL default '',
+  fa_name varbinary(255) NOT NULL default '',
   
   -- Filename of archived file, if an old revision
-  fa_archive_name varchar(255) binary default '',
+  fa_archive_name varbinary(255) default '',
   
   -- Which storage bin (directory tree or object store) the file data
   -- is stored in. Should be 'deleted' for files that have been deleted;
@@ -39,7 +39,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_minor_mime varbinary(32) default "unknown",
   fa_description tinyblob,
   fa_user int unsigned default '0',
-  fa_user_text varchar(255) binary default '',
+  fa_user_text varbinary(255) default '',
   fa_timestamp binary(14) default '',
   
   PRIMARY KEY (fa_id),

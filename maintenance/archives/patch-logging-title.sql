@@ -3,4 +3,4 @@
 
 ALTER TABLE /*$wgDBprefix*/logging
   CHANGE COLUMN log_title
-    log_title varchar(255) binary NOT NULL default '';
+    log_title varbinary(255) NOT NULL default '';

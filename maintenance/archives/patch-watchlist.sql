@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS watchlist2;
 CREATE TABLE watchlist2 (
   wl_user int unsigned NOT NULL,
   wl_namespace int unsigned NOT NULL default '0',
-  wl_title varchar(255) binary NOT NULL default '',
+  wl_title varbinary(255) NOT NULL default '',
   UNIQUE KEY (wl_user, wl_namespace, wl_title)
 ) /*$wgDBTableOptions*/;
 

@@ -9,7 +9,7 @@ CREATE TABLE /*_*/job (
   -- Namespace and title to act on
   -- Should be 0 and '' if the command does not operate on a title
   job_namespace int NOT NULL,
-  job_title varchar(255) binary NOT NULL,
+  job_title varbinary(255) NOT NULL,
 
   -- Any other parameters to the command
   -- Stored as a PHP serialized array, or an empty string if there are no parameters
