@@ -65,7 +65,7 @@
 					} else {
 						mw.util.$content = $( '#content' );
 					}
-					
+
 					/* Enable makeCollapse */
 					$( '.mw-collapsible' ).makeCollapsible();
 
@@ -81,7 +81,7 @@
 								mw.util.toggleToc( $(this) );
 							} );
 						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
-						
+
 						if ( hideTocCookie == '1' ) {
 							// Cookie says user want toc hidden
 							$tocToggleLink.click();
@@ -147,7 +147,7 @@
 		 */
 		'toggleToc' : function( $toggleLink ) {
 			var $tocList = $( '#toc ul:first' );
-			
+
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
 			if ( $tocList.size() ) {
@@ -177,9 +177,16 @@
 		 * Get the full URL to a page name
 		 *
 		 * @param str Page name to link to
+		 * @return Full URL for page with name of 'str' or false on error
 		 */
 		'wikiGetlink' : function( str ) {
-			return wgServer + wgArticlePath.replace( '$1', this.wikiUrlencode( str ) );
+
+			// Exist check is needed since replace() can only be called on a string
+			if ( mw.config.exists( ['wgServer', 'wgArticlePath'] ) ) {
+				return mw.config.get( 'wgServer' ) + mw.config.get( 'wgArticlePath' ).replace( '$1', this.wikiUrlencode( str ) );
+			} else {
+				return false;
+			}
 		},
 
 		/**
@@ -382,12 +389,12 @@
 		 * @return boolean True on success, false on failure
 		 */
 		'jsMessage' : function( message, className ) {
-		
+
 			if ( !arguments.length || message === '' || message === null ) {
-			
+
 				$( '#mw-js-message' ).empty().hide();
-				return true; // Emptying and hiding message is intended behaviour, return true	
-			
+				return true; // Emptying and hiding message is intended behaviour, return true
+
 			} else {
 				// We special-case skin structures provided by the software. Skins that
 				// choose to abandon or significantly modify our formatting can just define
@@ -401,11 +408,11 @@
 						return false;
 					}
 				}
-				
+
 				if ( className ) {
 					$messageDiv.attr( 'class', 'mw-js-message-' + className );
 				}
-				
+
 				if ( typeof message === 'object' ) {
 					$messageDiv.empty();
 					$messageDiv.append( message ); // Append new content
@@ -417,7 +424,7 @@
 				return true;
 			}
 		},
-	
+
 		/**
 		 * Validate a string as representing a valid e-mail address
 		 * according to HTML5 specification. Please note the specification
@@ -429,7 +436,7 @@
 			if( mailtxt === '' ) {
 				return null;
 			}
-		
+
 			/**
 			 * HTML5 defines a string as valid e-mail address if it matches
 			 * the ABNF:
@@ -440,7 +447,7 @@
 			 *
 			 * (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68):
 			 */
-		
+
 			/**
 			 * First, define the RFC 5322 'atext' which is pretty easy :
 			 * atext = ALPHA / DIGIT / ; Printable US-ASCII
@@ -456,7 +463,7 @@
 						 "~"
 			*/
 			var	rfc5322_atext = "a-z0-9!#$%&'*+-/=?^_`{|}~",
-		
+
 			/**
 			 * Next define the RFC 1034 'ldh-str'
 			 *	<domain> ::= <subdomain> | " "
@@ -467,7 +474,7 @@
 			 *	<let-dig> ::= <letter> | <digit>
 			 */
 				rfc1034_ldh_str = "a-z0-9-",
-	
+
 				HTML5_email_regexp = new RegExp(
 					// start of string
 					'^'

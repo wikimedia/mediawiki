@@ -195,7 +195,7 @@ window.mediaWiki = new ( function( $ ) {
 	 * @return boolean Existence of key(s)
 	 */
 	Map.prototype.exists = function( selection ) {
-		if ( typeof keys === 'object' ) {
+		if ( typeof selection === 'object' ) {
 			for ( var s = 0; s < selection.length; s++ ) {
 				if ( !( selection[s] in this.values ) ) {
 					return false;
