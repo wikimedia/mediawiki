@@ -6,7 +6,7 @@
  * @author Krinkle <krinklemail@gmail.com>
  */
 
-(function ($, mw) {
+( function( $, mw ) {
 
 	mediaWiki.test = {
 
@@ -25,26 +25,27 @@
 		*						if result is different but does contain this it will not return ERROR but PARTIALLY
 		*/
 		'addTest' : function( code, result, contain ) {
-			if (!contain) {
+			if ( !contain ) {
 				contain = result;
 			}
 			this.addedTests.push( [code, result, contain] );
-			this.$table.append( '<tr><td>' + mw.html.escape(code).replace(/  /g, '&nbsp;&nbsp;' )
-				+ '</td><td>' + mw.html.escape(result).replace(/  /g, '&nbsp;&nbsp;' )
+			this.$table.append( '<tr><td>' + mw.html.escape( code ).replace(/  /g, '&nbsp;&nbsp;' )
+				+ '</td><td>' + mw.html.escape( result ).replace(/  /g, '&nbsp;&nbsp;' )
 				+ '</td><td></td><td>?</td></tr>' );
 		},
 
 		/* Initialisation */
 		'initialised' : false,
-		'init' : function () {
+		'init' : function() {
 			if ( this.initialised === false ) {
 				this.initialised = true;
-				$(function () {
-					if ( wgCanonicalSpecialPageName == 'Blankpage'
+				// jQuery document ready
+				$( function() {
+					if ( mw.config.get( 'wgCanonicalSpecialPageName' ) == 'Blankpage'
 						&& mw.util.getParamValue( 'action' ) === 'mwutiltest' ) {
 
 						// Build page
-						document.title = 'mediaWiki.util JavaScript Test - ' + wgSiteName;
+						document.title = 'mediaWiki.util JavaScript Test - ' + mw.config.get( 'wgSiteName' );
 						$( '#firstHeading' ).text( 'mediaWiki.util JavaScript Test' );
 						mw.util.$content.html(
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki.util functions</p>'
@@ -133,8 +134,8 @@
 							numberofpasseds = 0,
 							numberofpartials = 0,
 							numberoferrors = 0,
-							$testrows;
-						$testrows = mw.test.$table.find( 'tr' );
+							$testrows = mw.test.$table.find( 'tr' );
+
 						$.each( mw.test.addedTests, function( i ) {
 							numberoftests++;
 
@@ -146,7 +147,7 @@
 							$thisrow = $testrows.eq( i + 1 );
 							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesreturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
 
-							if (doesreturn.indexOf(shouldcontain) !== -1) {
+							if ( doesreturn.indexOf( shouldcontain ) !== -1 ) {
 								if (doesreturn == shouldreturn){
 									$thisrow.find( '> td' ).eq(3).css( 'background', '#EFE' ).text( 'OK' );
 									numberofpasseds++;
@@ -165,11 +166,11 @@
 							numberofpartials + ' partially passed test(s). </p>' );
 
 					}
-				});
+				} );
 			}
 		}
 	};
 
 	mediaWiki.test.init();
 
-})(jQuery, mediaWiki);
+} )(jQuery, mediaWiki);
