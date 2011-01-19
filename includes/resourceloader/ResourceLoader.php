@@ -329,14 +329,15 @@ class ResourceLoader {
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
+		$private = false;
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
 			try {
-				// Bypass squid cache if the request includes any private modules
+				// Bypass Squid and other shared caches if the request includes any private modules
 				if ( $module->getGroup() === 'private' ) {
-					$smaxage = 0;
+					$private = true;
 				}
 				// Calculate maximum modified time
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
@@ -355,10 +356,18 @@ class ResourceLoader {
 		}
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
 		if ( $context->getDebug() ) {
-			header( 'Cache-Control: must-revalidate' );
+			// Do not cache debug responses
+			header( 'Cache-Control: private, no-cache, must-revalidate' );
+			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-			header( 'Expires: ' . wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() ) );
+			if ( $private ) {
+				header( "Cache-Control: private, max-age=$maxage" );
+				$exp = $maxage;
+			} else {
+				header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+				$exp = min( $maxage, $smaxage );
+			}
+			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
