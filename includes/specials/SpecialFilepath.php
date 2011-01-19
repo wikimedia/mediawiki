@@ -47,15 +47,18 @@ class SpecialFilepath extends SpecialPage {
 		} else {
 			$file = wfFindFile( $title );
 			if ( $file && $file->exists() ) {
-				$url = $file->getURL();
 				$width = $wgRequest->getInt( 'width', -1 );
 				$height = $wgRequest->getInt( 'height', -1 );
+				
 				if ( $width != -1 ) {
 					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
 					if ( $mto && !$mto->isError() ) {
 						$url = $mto->getURL();
 					}
+				} else {
+					$url = $file->getURL();
 				}
+				
 				$wgOut->redirect( $url );
 			} else {
 				$wgOut->setStatusCode( 404 );
