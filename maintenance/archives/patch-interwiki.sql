@@ -4,7 +4,7 @@
 
 CREATE TABLE /*$wgDBprefix*/interwiki (
   -- The interwiki prefix, (e.g. "Meatball", or the language prefix "de")
-  iw_prefix varbinary(32) NOT NULL,
+  iw_prefix varchar(32) NOT NULL,
   
   -- The URL of the wiki, with "$1" as a placeholder for an article name.
   -- Any spaces in the name will be transformed to underscores before

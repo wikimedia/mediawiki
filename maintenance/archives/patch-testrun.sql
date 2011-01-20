@@ -13,7 +13,7 @@ drop table if exists /*$wgDBprefix*/testrun;
 create table /*$wgDBprefix*/testrun (
   tr_id int not null auto_increment,
   
-  tr_date binary(14),
+  tr_date char(14) binary,
   tr_mw_version blob,
   tr_php_version blob,
   tr_db_version blob,
@@ -24,7 +24,7 @@ create table /*$wgDBprefix*/testrun (
 
 create table /*$wgDBprefix*/testitem (
   ti_run int not null,
-  ti_name varbinary(255),
+  ti_name varchar(255),
   ti_success bool,
   
   unique key (ti_run, ti_name),

@@ -11,7 +11,7 @@ CREATE TABLE /*$wgDBprefix*/redirect (
   -- and deletions may refer to different page records as time
   -- goes by.
   rd_namespace int NOT NULL default '0',
-  rd_title varbinary(255) NOT NULL default '',
+  rd_title varchar(255) binary NOT NULL default '',
 
   PRIMARY KEY rd_from (rd_from),
   KEY rd_ns_title (rd_namespace,rd_title,rd_from)

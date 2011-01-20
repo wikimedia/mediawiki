@@ -12,7 +12,7 @@
 CREATE TABLE /*$wgDBprefix*/page (
   page_id int unsigned NOT NULL auto_increment,
   page_namespace tinyint NOT NULL,
-  page_title varbinary(255) NOT NULL,
+  page_title varchar(255) binary NOT NULL,
   page_restrictions tinyblob NOT NULL,
   page_counter bigint unsigned NOT NULL default '0',
   page_is_redirect tinyint unsigned NOT NULL default '0',
@@ -33,7 +33,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_page int unsigned NOT NULL,
   rev_comment tinyblob NOT NULL,
   rev_user int unsigned NOT NULL default '0',
-  rev_user_text varbinary(255) NOT NULL default '',
+  rev_user_text varchar(255) binary NOT NULL default '',
   rev_timestamp binary(14) NOT NULL default '',
   rev_minor_edit tinyint unsigned NOT NULL default '0',
   rev_deleted tinyint unsigned NOT NULL default '0',

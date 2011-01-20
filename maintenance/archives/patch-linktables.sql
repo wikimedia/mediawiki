@@ -31,7 +31,7 @@ CREATE TABLE /*$wgDBprefix*/brokenlinks (
   -- Text of the target page title ("namesapce:title").
   -- Unfortunately this doesn't split the namespace index
   -- key and therefore can't easily be joined to anything.
-  bl_to varbinary(255) NOT NULL default '',
+  bl_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY bl_from(bl_from,bl_to),
   KEY (bl_to)
 
@@ -50,7 +50,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
   -- all such pages are in namespace 6 (NS_FILE).
-  il_to varbinary(255) NOT NULL default '',
+  il_to varchar(255) binary NOT NULL default '',
   
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)

@@ -6,7 +6,7 @@ CREATE TABLE /*$wgDBprefix*/langlinks (
   ll_lang varbinary(20) NOT NULL default '',
 
   -- Title of the target, including namespace
-  ll_title varbinary(255) NOT NULL default '',
+  ll_title varchar(255) binary NOT NULL default '',
 
   UNIQUE KEY (ll_from, ll_lang),
   KEY (ll_lang, ll_title)

@@ -2,7 +2,7 @@
 -- Required for crosswiki blocks.
 
 ALTER TABLE /*$wgDBprefix*/ipblocks
-	ADD ipb_by_text varbinary(255) NOT NULL default '';
+	ADD ipb_by_text varchar(255) binary NOT NULL default '';
 
 UPDATE /*$wgDBprefix*/ipblocks 
 	JOIN /*$wgDBprefix*/user ON ipb_by = user_id
