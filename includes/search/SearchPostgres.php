@@ -148,7 +148,7 @@ class SearchPostgres extends SearchEngine {
 
 		## We need a separate query here so gin does not complain about empty searches
 		$SQL = "SELECT to_tsquery($prefix $searchstring)";
-		$res = $this->db->query($SQL);
+		$res = $this->db->doQuery($SQL);
 		if (!$res) {
 			## TODO: Better output (example to catch: one 'two)
 			die ("Sorry, that was not a valid search string. Please go back and try again");
