@@ -42,39 +42,51 @@ using the page title and cl_sortkey_prefix.  If everything's collation is
 up-to-date, it will do nothing.
 TEXT;
 
-		#$this->addOption( 'force', 'Run on all rows, even if the collation is supposed to be up-to-date.' );
+		$this->addOption( 'force', 'Run on all rows, even if the collation is ' . 
+			'supposed to be up-to-date.' );
 	}
 
 	public function execute() {
 		global $wgCategoryCollation;
 
 		$dbw = wfGetDB( DB_MASTER );
-		$count = $dbw->selectField(
-			'categorylinks',
-			'COUNT(*)',
-			'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ),
-			__METHOD__
-		);
+		$force = $this->getOption( 'force' );
 
-		if ( $count == 0 ) {
-			$this->output( "Collations up-to-date.\n" );
-			return;
+		$options = array( 'LIMIT' => self::BATCH_SIZE );
+
+		if ( $force ) {
+			$collationConds = array();
+			$options['ORDER BY'] = 'cl_from, cl_to';
+		} else {
+			$collationConds = array( 0 => 
+				'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ) );
+
+			$count = $dbw->selectField(
+				'categorylinks',
+				'COUNT(*)',
+				$collationConds,
+				__METHOD__
+			);
+
+			if ( $count == 0 ) {
+				$this->output( "Collations up-to-date.\n" );
+				return;
+			}
+			$this->output( "Fixing collation for $count rows.\n" );
 		}
-		$this->output( "Fixing collation for $count rows.\n" );
 
 		$count = 0;
+		$row = false;
+		$batchConds = array();
 		do {
 			$res = $dbw->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
 					'cl_sortkey', 'page_namespace', 'page_title'
 				),
-				array(
-					'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ),
-					'cl_from = page_id'
-				),
+				array_merge( $collationConds, $batchConds, array( 'cl_from = page_id' ) ),
 				__METHOD__,
-				array( 'LIMIT' => self::BATCH_SIZE )
+				$options
 			);
 
 			$dbw->begin();
@@ -117,6 +129,14 @@ TEXT;
 				);
 			}
 			$dbw->commit();
+
+			if ( $force && $row ) {
+				$encFrom = $dbw->addQuotes( $row->cl_from );
+				$encTo = $dbw->addQuotes( $row->cl_to );
+				$batchConds = array( 
+					"(cl_from = $encFrom AND cl_to > $encTo) " .
+					" OR cl_from > $encFrom" );
+			}
 
 			$count += $res->numRows();
 			$this->output( "$count done.\n" );
