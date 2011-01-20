@@ -114,7 +114,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mPHPError = false;
 
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
-	protected $mOut, $mOpened = false;
+	protected $mOpened = false;
 
 	protected $mTablePrefix;
 	protected $mFlags;
@@ -270,7 +270,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( !isset( $wgOut ) ) {
 			$wgOut = null;
 		}
-		$this->mOut =& $wgOut;
 		$this->mFlags = DBO_TRX | $flags;
 
 		if ( $schema == self::USE_GLOBAL ) {
