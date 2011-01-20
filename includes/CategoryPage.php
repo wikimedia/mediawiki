@@ -68,18 +68,15 @@ class CategoryPage extends Article {
 	}
 
 	function closeShowCategory() {
-		global $wgOut;
+		global $wgOut, $wgRequest;
 
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
-			# Use $_GET instead of $wgRequest, because the latter helpfully
-			# normalizes Unicode, which removes nulls.  TODO: do something
-			# smarter than passing nulls in URLs.  :/
-			$from[$type] = isset( $_GET["{$type}from"] ) ? $_GET["{$type}from"] : null;
-			$until[$type] = isset( $_GET["{$type}until"] ) ? $_GET["{$type}until"] : null;
+			$from[$type] = $wgRequest->getVal( "{$type}from" );
+			$until[$type] = $wgRequest->getVal( "{$type}until" );
 		}
 
-		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $_GET );
+		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $wgRequest->getValues() );
 		$wgOut->addHTML( $viewer->getHTML() );
 	}
 }
