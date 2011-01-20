@@ -316,8 +316,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig'                  => 'Antaŭvido de nuna subskribo:',
 'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
-'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
-'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
+'tog-externaleditor'          => 'Defaŭlte uzi eksteran tekstprilaborilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
+'tog-externaldiff'            => 'Defaŭlte uzi eksteran ŝanĝmontrilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview'          => 'Uzi tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',

@@ -3124,7 +3124,7 @@ Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut
 	'config-db-wiki-settings' => 'Identifier ce wiki',
 	'config-db-name' => 'Nom de la base de données :',
 	'config-db-name-help' => "Choisissez un nom qui identifie votre wiki.
-Il ne doit pas contenir d'espaces ou de traits d'union.
+Il ne doit pas contenir d'espaces.
 
 Si vous utilisez un hébergement web partagé, votre hébergeur vous fournira un nom spécifique de base de données à utiliser, ou bien vous permet de créer des bases de données via un panneau de contrôle.",
 	'config-db-name-oracle' => 'Schéma de base de données :',
@@ -3140,7 +3140,7 @@ Si vous utilisez un hébergement web partagé, votre hébergeur vous fournira un
 Si le compte n'existe pas, et le compte d'installation dispose de privilèges suffisants, ce compte d'utilisateur sera créé avec les privilèges minimum requis pour faire fonctionner le wiki.",
 	'config-db-prefix' => 'Préfixe des tables de la base de données :',
 	'config-db-prefix-help' => "Si vous avez besoin de partager une base de données entre plusieurs wikis, ou entre MediaWiki et une autre application Web, vous pouvez choisir d'ajouter un préfixe à tous les noms de table pour éviter les conflits. 
-Ne pas utiliser des espaces ou des traits d'union. 
+Ne pas utiliser des espaces. 
 
 Ce champ est généralement laissé vide.",
 	'config-db-charset' => 'Jeu de caractères de la base de données',
@@ -3189,6 +3189,7 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-header-oracle' => 'Paramètres d’Oracle',
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
+	'config-missing-db-host' => "Vous devez entrer une valeur pour « l'hôte de la base de données »",
 	'config-missing-db-server-oracle' => 'Vous devez saisir une valeur pour le « Nom TNS de la base de données »',
 	'config-invalid-db-server-oracle' => 'Le nom TNS de la base de données (« $1 ») est invalide.
 Il ne peut contenir que des lettres latines de base (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des points (.).',
@@ -3409,6 +3410,7 @@ S'il vous plaît, allez à la page suivante.",
 	'config-install-pg-schema-failed' => "Échec lors de la création des tables. 
 Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 ».",
 	'config-install-pg-commit' => 'Validation des modifications',
+	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
 	'config-install-pg-ts2' => 'Vérification de tsearch2',
 	'config-install-pg-ts2-failed' => "'''ÉCHEC''' tsearch2 doit être installé dans la base de données $1.

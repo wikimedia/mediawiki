@@ -339,7 +339,7 @@ $messages = array(
 'mytalk'        => '我的對話頁',
 'anontalk'      => '該IP的對話頁',
 'navigation'    => '導覽',
-'and'           => '和',
+'and'           => '和&#32;',
 
 # Cologne Blue skin
 'qbfind'         => '尋找',
@@ -816,7 +816,7 @@ $2',
 'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/vector.css 不同於 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意:'''",
-'previewnote'                      => "'''請記住這只是預覽。'''內容還未保存！",
+'previewnote'                      => "'''請記住這只是預覽，內容尚未儲存！'''",
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview'             => "'''抱歉！由於會話數據丟失，我們不能處理你的編輯。'''
 請重試。
@@ -1521,12 +1521,12 @@ $1",
 
 這個頁面的刪除和移動日誌在這裏提供以便參考：",
 'uploadtext'                  => "使用下面的表單來上傳檔案。
-要檢視或搜索以前上傳的檔案，可以進入[[Special:FileList|檔案上傳清單]]，（重新）上傳也將在[[Special:Log/upload|上傳日誌]]中記錄，而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
+要檢視或搜尋以前上傳的檔案，可以進入[[Special:FileList|檔案上傳清單]]，（重新）上傳也將在[[Special:Log/upload|上傳日誌]]中記錄，而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
-要在頁面中加入檔案，使用以下其中一種形式的連接：
+要在頁面中加入檔案，使用以下其中一種形式的連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''使用放置於左側的一個框內的200像素寬的圖片，同時使用“替換文字”作為描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連接到檔案而不顯示檔案",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''使用放置於左側的一個框內的 200 像素寬的圖片，同時使用「替換文字」作為描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連結到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
 'upload-prohibited'           => '禁止的檔案類型: $1。',
@@ -1979,7 +1979,7 @@ Template:消除歧義',
 'newuserlogpage'              => '新進用戶名冊',
 'newuserlogpagetext'          => '這是一個最近被創建用戶的新日誌',
 'newuserlog-byemail'          => '密碼已由電子郵件寄出',
-'newuserlog-create-entry'     => '新用戶賬戶',
+'newuserlog-create-entry'     => '新的使用者帳號',
 'newuserlog-create2-entry'    => '已創建$1的新賬戶',
 'newuserlog-autocreate-entry' => '已自動建立賬戶',
 
@@ -2411,7 +2411,7 @@ $1被封禁的理由是“$2”',
 'ipb_expiry_invalid'              => '無效的終止時間。',
 'ipb_expiry_temp'                 => '隱藏用戶名封鎖必須是永久性的。',
 'ipb_hide_invalid'                => '不能壓止這個賬戶；它可能有太多編輯。',
-'ipb_already_blocked'             => '已經封鎖"$1"',
+'ipb_already_blocked'             => '已經封鎖「$1」',
 'ipb-needreblock'                 => '== 已經封鎖 ==
 $1已經被封鎖。您是否想更改這個設定？',
 'ipb-otherblocks-header'          => '其他{{PLURAL:$1|封鎖|封鎖}}',

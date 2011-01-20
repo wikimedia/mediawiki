@@ -620,7 +620,7 @@ Please log in again after you receive it.
 'password-strength-acceptable' => 'સ્વીકાર્ય',
 'password-strength-good'       => 'સારી',
 'password-retype'              => 'ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો',
-'password-retype-mismatch'     => 'ગુપ્તસંજ્ઞા મેળ ખાતી નથી',
+'password-retype-mismatch'     => 'ગુપ્તસંજ્ઞાઓ મેળ ખાતી નથી',
 
 # Password reset dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
