@@ -49,7 +49,7 @@ class EditPage {
 	var $isCssJsSubpage = false;
 	var $isCssSubpage = false;
 	var $isJsSubpage = false;
-	var $deletedSinceEdit = false;
+	var $deletedSinceEdit;
 	var $formtype;
 	var $firsttime;
 	var $lastDelete;
@@ -260,8 +260,12 @@ class EditPage {
 	 * deletes.
 	 */
 	protected function wasDeletedSinceLastEdit() {
-		if ( $this->deletedSinceEdit )
-			return true;
+		if ( $this->deletedSinceEdit !== null ) {
+			return $this->deletedSinceEdit;
+		}
+
+		$this->deletedSinceEdit = false;
+
 		if ( $this->mTitle->isDeletedQuick() ) {
 			$this->lastDelete = $this->getLastDelete();
 			if ( $this->lastDelete ) {
@@ -271,6 +275,7 @@ class EditPage {
 				}
 			}
 		}
+
 		return $this->deletedSinceEdit;
 	}
 
