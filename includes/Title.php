@@ -4152,6 +4152,7 @@ class Title {
 			# Separate with a null byte, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix -- null
 			# sorts before everything else (hopefully).
+			$prefix = strtr( $prefix, "\n\t", '  ' );
 			return "$prefix\n$unprefixed";
 		}
 		return $unprefixed;
