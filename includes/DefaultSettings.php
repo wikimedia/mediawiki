@@ -2448,6 +2448,8 @@ $wgResourceLoaderDebug = false;
  */
 $wgResourceLoaderUseESI = false;
 
+$wgResourceLoaderMinifyJSVerticalSpace = false;
+
 /** @} */ # End of resource loader settings }
 
 
