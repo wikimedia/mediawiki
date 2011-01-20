@@ -406,7 +406,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25642) A exception is now thrown instead of a fatal error when using
   $wgSMTP without PEAR mail package
 * (bug 19633) When possible, Upscale small SVGs when creating thumbnails.
-* (bug 25725) Unwanted linebreaks in diffs.
 * (bug 11013) Database driver detection needs rewriting for robustness
 * (bug 13409) Installer prompts could use clarification--now has help boxes
 * (bug 16902) Installer spews warnings when exec() and dl() are not available
