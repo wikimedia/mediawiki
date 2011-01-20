@@ -737,6 +737,9 @@ Waat e Wielsche, ih dat De et widder versöhks.',
 'suspicious-userlogout'      => "Do bes '''nit''' ußjelogg.
 Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööver met Zwescheschpeischer noh däm Ußlogge jefrooch hät.",
 
+# E-mail sending
+'php-mail-error-unknown' => 'Nit bekannte Fähler met dä Funxjohn <code lang="en">mail()</code> vum PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Dat Passwoot $1 (jeschäz)',
 'password-strength-bad'        => 'es <span style="text-transform:uppercase">schlääsch</span>',
@@ -918,6 +921,10 @@ för der '''Opera''': ''F5'' —
 mem '''Safari''': ''Cmd-Shift-R'' —
 un em '''Konqueror''': ''F5'' —
 et ess en bunte Welt!",
+'sitecsspreview'                   => "'''Opjepass:''' Do bes heh nor am Usprobeere, wat Ding CSS mäht,
+et es noch nit jesechert!",
+'sitejspreview'                    => '<strong>Opjepass:</strong> Do bes heh nor am Usprobeere, wat Ding
+Java_Skripp mäht, et es noch nit jesechert!',
 'userinvalidcssjstitle'            => '<strong>Opjepass:</strong> Et jitt kein Ussinn met däm Name: „<strong>$1</strong>“ -
 denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die met kleine Buchstave
 aanfange dun, alsu etwa: {{ns:user}}:Name/vector.css, un {{ns:user}}:Name/vector.js heiße.',
@@ -1184,6 +1191,7 @@ Loor en de [[Special:IPBlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat
 # Revision move
 'moverevlogentry'              => 'hät {{PLURAL:$3|ein Version|$3 Versione|kein Version}} vun „$1“ noh „$2“ ömjenannt.',
 'revisionmove'                 => 'Versione vun „$1“ ömnänne',
+'revisionmove-backlink'        => '←&nbsp;$1',
 'revmove-explain'              => 'Heh di Versione wääde vun „$1“ noh de aanjejovve Sigg ömjetrocke. Wann di Sigg no_nit doh es, weet se aanjelaat. Söns wääde de Versione zwesche die entzotteet, di ald doh sin.',
 'revmove-legend'               => 'Zielsigg un Jrond aanjävve',
 'revmove-submit'               => 'Lohß jonn!',
@@ -1479,7 +1487,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätichte Metmaacher',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Wiki Köbes',
-'grouppage-bureaucrat'    => '{{ns:project}}:Bürrokrade',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürrokrad',
 'grouppage-suppress'      => '{{ns:project}}:Kontrolletti',
 
 # Rights
@@ -1894,6 +1902,7 @@ Dat sellve shteiht hee dronger.',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
 'shared-repo-from'          => 'uß $1',
 'shared-repo'               => 'ene jemeinsame Beshtand',
+'filepage.css'              => '/* Das folgende CSS wird auf Dateibeschreibungsseiten, auch auf fremden Client-Wikis, geladen. */',
 
 # File reversion
 'filerevert'                => '„$1“ zerök holle',
@@ -2310,6 +2319,7 @@ Do kanns hee noh Hölp luure:
 'exbeforeblank'          => 'drop stundt vörher: „$1“',
 'exblank'                => 'drop stundt nix',
 'delete-confirm'         => '„$1“ fottschmieße',
+'delete-backlink'        => '←&nbsp;$1',
 'delete-legend'          => 'Fottschmieße',
 'historywarning'         => '<strong>Opjepass:</strong> Die Sigg, di De fott schmiiße wells, hät {{PLURAL:$1|ein ällder Version|ald Stöcker $1 ällder Versione|jaa kei ällder Versione}}.',
 'confirmdeletetext'      => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss heh jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
@@ -2361,6 +2371,7 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'movedarticleprotection'      => 'hät de Enstellunge för der Sigge-Schotz fun „[[$2]]“ noh „[[$1]]“ övvernomme',
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
 'prot_1movedto2'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
+'protect-backlink'            => '←&nbsp;$1',
 'protect-legend'              => 'Sigg schötze',
 'protectcomment'              => 'Aanlaß odder Jrund:',
 'protectexpiry'               => 'Duur, wi lang:',
@@ -2499,6 +2510,7 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'whatlinkshere'            => 'Wat noh heh link',
 'whatlinkshere-title'      => 'Sigge, woh Links op „$1“ dren sen',
 'whatlinkshere-page'       => 'Sigg:',
+'whatlinkshere-backlink'   => '←&nbsp;$1',
 'linkshere'                => 'Dat sin de Sigge, die op <strong>„[[:$1]]“</strong> linke dun:',
 'nolinkshere'              => 'Kein Sigg link noh <strong>„[[:$1]]“</strong>.',
 'nolinkshere-ns'           => 'Nix link op <strong>„[[:$1]]“</strong> en dämm Appachtemang.',
@@ -2916,6 +2928,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'chick.css'       => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Höhnsche" */',
 'simple.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Eijfach" */',
 'modern.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Modern" */',
+'vector.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Vector" */',
 'print.css'       => '/* CSS hee aan dä Stell wirrek nur op et Sigge Drokke */',
 'handheld.css'    => '/* dat CSS hee wirrek sesch uß op su jeannte Handheld-Apparaate, opjebout op de Ovverflääsch uß $wgHandheldStyle */',
 
@@ -2929,6 +2942,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'chick.js'       => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Höhnsche" jescheck */',
 'simple.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Eijfach" jescheck */',
 'modern.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Modern" jescheck */',
+'vector.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Vector" jescheck */',
 
 # Metadata
 'nodublincore'      => 'De RDF_Meta_Daate vun de „Dublin Core“ Aat sin avjeschalt.',
@@ -3564,6 +3578,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-specialpages'             => '{{int:nstab-special}}e',
 'version-parserhooks'              => 'De Parser-Hooke',
 'version-variables'                => 'Variable',
+'version-skins'                    => 'Ovverflääsche',
 'version-other'                    => 'Söns',
 'version-mediahandlers'            => 'Medije-Handler',
 'version-hooks'                    => 'Schnettstelle oder Hooke',
@@ -3686,5 +3701,8 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 (un kann en janze Täxte söhke)',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
+
+# Special:DisableAccount
+'disableaccount' => 'Enem Metmaacher singe Zohjang stell lääje',
 
 );

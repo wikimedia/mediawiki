@@ -2634,7 +2634,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-pt-anonuserpage'         => 'Brukarsida for ip-adressa du endrar under',
 'tooltip-pt-mytalk'               => 'Diskusjonssida di',
 'tooltip-pt-anontalk'             => 'Diskusjon om endringar gjorde av denne ip-adressa',
-'tooltip-pt-preferences'          => 'Innstillingane mine',
+'tooltip-pt-preferences'          => 'Innstillingane dine',
 'tooltip-pt-watchlist'            => 'Liste over sidene du overvakar.',
 'tooltip-pt-mycontris'            => 'Liste over bidraga dine',
 'tooltip-pt-login'                => 'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.',
