@@ -4,7 +4,7 @@ CREATE TABLE /*_*/change_tag (
 	ct_rc_id int NULL,
 	ct_log_id int NULL,
 	ct_rev_id int NULL,
-	ct_tag varbinary(255) NOT NULL,
+	ct_tag varchar(255) NOT NULL,
 	ct_params BLOB NULL
 ) /*$wgDBTableOptions*/;
 
@@ -28,5 +28,5 @@ CREATE UNIQUE INDEX /*i*/tag_summary_rev_id ON /*_*/tag_summary (ts_rev_id);
 
 
 CREATE TABLE /*_*/valid_tag (
-	vt_tag varbinary(255) NOT NULL PRIMARY KEY
+	vt_tag varchar(255) NOT NULL PRIMARY KEY
 ) /*$wgDBTableOptions*/;

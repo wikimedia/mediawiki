@@ -9,11 +9,11 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
   
   -- Target namespace+title
   qcc_namespace int NOT NULL default '0',
-  qcc_title varbinary(255) NOT NULL default '',
+  qcc_title varchar(255) binary NOT NULL default '',
   
   -- Target namespace+title2
   qcc_namespacetwo int NOT NULL default '0',
-  qcc_titletwo varbinary(255) NOT NULL default '',
+  qcc_titletwo varchar(255) binary NOT NULL default '',
 
   KEY qcc_type (qcc_type,qcc_value),
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),

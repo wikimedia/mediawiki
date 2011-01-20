@@ -12,7 +12,7 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   si_page int unsigned NOT NULL,
   
   -- Munged version of title
-  si_title varbinary(255) NOT NULL default '',
+  si_title varchar(255) NOT NULL default '',
   
   -- Munged version of body text
   si_text mediumtext NOT NULL,
