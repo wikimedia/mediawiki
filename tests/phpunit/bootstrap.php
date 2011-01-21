@@ -28,9 +28,8 @@ dependencies.
 EOF;
 }
 
-global $wgLocalisationCacheConf, $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 global $wgMessageCache, $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgMemc;
-$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
 $wgMainCacheType = CACHE_NONE;
 $wgMessageCacheType = CACHE_NONE;
 $wgParserCacheType = CACHE_NONE;
