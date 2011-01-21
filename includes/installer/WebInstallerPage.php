@@ -809,6 +809,14 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->addHTML( $extHtml );
 		}
 
+		// Having / in paths in Windows looks funny :)
+		$this->setVar( 'wgDeletedDirectory',
+			str_replace(
+				'/', DIRECTORY_SEPARATOR,
+				$this->getVar( 'wgDeletedDirectory' )
+			)
+		);
+
 		$this->addHTML(
 			# Uploading
 			$this->getFieldSetStart( 'config-upload-settings' ) .
