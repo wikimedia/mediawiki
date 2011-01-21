@@ -453,7 +453,6 @@ $wgAutoloadLocalClasses = array(
 	# includes/installer
 	'CliInstaller' => 'includes/installer/CliInstaller.php',
 	'Installer' => 'includes/installer/Installer.php',
-	'CoreInstaller' => 'includes/installer/CoreInstaller.php',
 	'DatabaseInstaller' => 'includes/installer/DatabaseInstaller.php',
 	'DatabaseUpdater' => 'includes/installer/DatabaseUpdater.php',
 	'LBFactory_InstallerFake' => 'includes/installer/Installer.php',

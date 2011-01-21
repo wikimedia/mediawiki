@@ -5,7 +5,7 @@
  * @file
  */
 
-define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
+define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
 chdir( dirname( dirname( __FILE__ ) ) );

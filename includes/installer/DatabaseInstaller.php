@@ -19,7 +19,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * TODO: naming this parent is confusing, 'installer' would be clearer.
 	 *
-	 * @var CoreInstaller
+	 * @var Installer
 	 */
 	public $parent;
 
