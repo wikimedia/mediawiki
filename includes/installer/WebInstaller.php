@@ -12,7 +12,7 @@
  * @ingroup Deployment
  * @since 1.17
  */
-class WebInstaller extends CoreInstaller {
+class WebInstaller extends Installer {
 
 	/**
 	 * @var WebInstallerOutput
