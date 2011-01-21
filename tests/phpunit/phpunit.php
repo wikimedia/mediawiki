@@ -20,6 +20,8 @@ require_once( "$IP/maintenance/commandLine.inc" );
 // Assume UTC for testing purposes
 $wgLocaltimezone = 'UTC';
 
+$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
+
 if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 	//Hack to eliminate the need to use the Makefile (which sucks ATM)
 	$_SERVER['argv'][] = '--configuration';
