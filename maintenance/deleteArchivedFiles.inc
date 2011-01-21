@@ -45,9 +45,12 @@ class DeleteArchivedFilesImplementation {
 				array( 'FOR UPDATE' )
 			);
 			if ( $path && file_exists( $path ) && !$inuse ) {
-				unlink( $path ); // delete
-				$count++;
-				$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
+				if( unlink( $path ) ) { // delete
+					$count++;
+					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
+				} else {
+					$output->handleOutput( "Unable to remove file $path, skipping\n" );
+				}
 			} else {
 				$output->handleOutput( "Notice - file '$key' not found in group '$group'\n" );
 				if ( $force ) {
