@@ -128,12 +128,10 @@ class MWNamespace {
 		static $namespaces = null;
 		if ( $namespaces === null ) {
 			global $wgExtraNamespaces, $wgCanonicalNamespaceNames;
+			$namespaces = array( NS_MAIN => '' ) + $wgCanonicalNamespaceNames;
 			if ( is_array( $wgExtraNamespaces ) ) {
-				$namespaces = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
-			} else {
-				$namespaces = $wgCanonicalNamespaceNames;
+				$namespaces += $wgExtraNamespaces;
 			}
-			$namespaces[NS_MAIN] = '';
 			wfRunHooks( 'CanonicalNamespaces', array( &$namespaces ) );
 		}
 		return $namespaces;
