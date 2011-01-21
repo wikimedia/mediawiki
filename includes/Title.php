@@ -3070,8 +3070,6 @@ class Title {
 	 * @return \type{\mixed} true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgContLang;
-
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
 			return $err;
@@ -3114,7 +3112,8 @@ class Title {
 		);
 		$dbw->update( 'categorylinks',
 			array(
-				'cl_sortkey' => $wgContLang->convertToSortkey( $nt->getCategorySortkey( $prefix ) ),
+				'cl_sortkey' => Collation::singleton()->getSortKey( 
+					$nt->getCategorySortkey( $prefix ) ),
 				'cl_timestamp=cl_timestamp' ),
 			array( 'cl_from' => $pageid ),
 			__METHOD__ );
@@ -4201,7 +4200,7 @@ class Title {
 
 	/**
 	 * Returns the raw sort key to be used for categories, with the specified
-	 * prefix.  This will be fed to Language::convertToSortkey() to get a
+	 * prefix.  This will be fed to Collation::getSortKey() to get a
 	 * binary sortkey that can be used for actual sorting.
 	 *
 	 * @param $prefix string The prefix to be used, specified using
@@ -4215,7 +4214,8 @@ class Title {
 			# Separate with a null byte, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix -- null
 			# sorts before everything else (hopefully).
-			return "$prefix\0$unprefixed";
+			$prefix = strtr( $prefix, "\n\t", '  ' );
+			return "$prefix\n$unprefixed";
 		}
 		return $unprefixed;
 	}
