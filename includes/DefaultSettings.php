@@ -2448,6 +2448,10 @@ $wgResourceLoaderDebug = false;
  */
 $wgResourceLoaderUseESI = false;
 
+/**
+ * Enable removal of some of the vertical whitespace (like \r and \n) from
+ * JavaScript code when minifying.
+ */
 $wgResourceLoaderMinifyJSVerticalSpace = false;
 
 /** @} */ # End of resource loader settings }
