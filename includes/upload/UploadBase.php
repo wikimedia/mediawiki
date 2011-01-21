@@ -305,13 +305,14 @@ abstract class UploadBase {
 		global $wgVerifyMimeType;
 		if ( $wgVerifyMimeType ) {
 			wfDebug ( "\n\nmime: <$mime> extension: <{$this->mFinalExtension}>\n\n");
-			if ( !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
-				return array( 'filetype-mime-mismatch' );
-			}
-
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				return array( 'filetype-badmime', $mime );
+			}
+
+			# XXX: Missing extension will be caught by validateName() via getTitle()
+			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
+				return array( 'filetype-mime-mismatch' );
 			}
 
 			# Check IE type
