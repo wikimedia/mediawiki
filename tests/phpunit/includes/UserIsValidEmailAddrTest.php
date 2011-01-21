@@ -3,6 +3,7 @@
 class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 
 	private function checkEmail( $addr, $expected = true, $msg = '') {
+		if( $msg == '' ) { $msg = "Testing $addr"; }
 		$this->assertEquals(
 			$expected,
 			User::isValidEmailAddr( $addr ),
@@ -30,6 +31,11 @@ class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 		$this->valid( 'user+sub@example.com' );
 		$this->valid( 'user+@example.com' );
 	}
+	function testEmailDoesNotNeedATopLevelDomain() {
+		$this->valid( "user@localhost" );
+		$this->valid( "FooBar@localdomain" );
+		$this->valid( "nobody@mycompany" );
+	}
 	function testEmailWithWhiteSpacesBeforeOrAfterAreInvalids() {
 		$this->invalid( " user@host.com" );
 		$this->invalid( "user@host.com " );
@@ -45,8 +51,8 @@ class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 		$this->invalid( "user@." );
 		$this->invalid( "user@.localdomain" );
 		$this->invalid( "user@localdomain." );
-		$this->invalid( "user.@localdomain" );
-		$this->invalid( ".@localdomain" );
+		$this->valid( "user.@localdomain" );
+		$this->valid( ".@localdomain" );
 		$this->invalid( ".@a............" );
 	}
 	function testEmailWithFunnyCharacters() {
@@ -58,7 +64,7 @@ class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 	function testEmailWithoutAtSignIsInvalid() {
 		$this->invalid( 'useràexample.com' );
 	}
-	function testEmailWithOneCharacterDomainIsInvalid() {
-		$this->invalid( 'user@a' );
+	function testEmailWithOneCharacterDomainIsValid() {
+		$this->valid( 'user@a' );
 	}
 }
