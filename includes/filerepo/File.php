@@ -901,7 +901,7 @@ abstract class File {
 		$encName = $db->addQuotes( $this->getName() );
 		$res = $db->select( array( 'page', 'imagelinks'), 
 							array( 'page_namespace', 'page_title', 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
-							array( 'page_id' => 'il_from', 'il_to' => $encName ),
+							array( 'page_id=il_from', 'il_to' => $encName ),
 							__METHOD__,
 							$options );
 

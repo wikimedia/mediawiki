@@ -492,6 +492,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
 * BREAKING CHANGE: patrol token is no longer the same as edit token
+* (bug 24650) Fix API to work with categorylinks changes
 
 * (bug 22738) Allow filtering by action type on query=logevent.
 * (bug 22764) uselang parameter for action=parse.
