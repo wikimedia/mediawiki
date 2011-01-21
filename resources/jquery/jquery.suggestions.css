@@ -9,6 +9,10 @@
 	border: none;
 	z-index: 99;
 	padding: 0;
+	margin: -1px -1px 0 0;
+}
+/* IGNORED BY IE6 */
+html > body .suggestions {
 	margin: -1px 0 0 0;
 }
 .suggestions-special {

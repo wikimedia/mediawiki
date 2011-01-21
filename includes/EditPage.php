@@ -335,7 +335,7 @@ class EditPage {
 			$this->preview = true;
 		}
 
-		$wgOut->addModules( 'mediawiki.legacy.edit' );
+		$wgOut->addModules( array( 'mediawiki.legacy.edit', 'mediawiki.action.edit' ) );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.legacy.preview' );
