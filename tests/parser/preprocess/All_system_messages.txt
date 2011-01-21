@@ -1,0 +1,5645 @@
+{{int:allmessagestext}}
+
+<table border=1 width=100%><tr><td>
+'''Name'''
+</td><td>
+'''Default text'''
+</td><td>
+'''Current text'''
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:1movedto2&action=edit 1movedto2]<br>
+[[MediaWiki_talk:1movedto2|Talk]]
+</td><td>
+$1 moved to $2
+</td><td>
+{{int:1movedto2}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Monobook.css&action=edit Monobook.css]<br>
+[[MediaWiki_talk:Monobook.css|Talk]]
+</td><td>
+/* edit this file to customize the monobook skin for the entire site */
+</td><td>
+{{int:Monobook.css}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:About&action=edit about]<br>
+[[MediaWiki_talk:About|Talk]]
+</td><td>
+About
+</td><td>
+{{int:About}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Aboutpage&action=edit aboutpage]<br>
+[[MediaWiki_talk:Aboutpage|Talk]]
+</td><td>
+Wiktionary:About
+</td><td>
+{{int:Aboutpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Aboutwikipedia&action=edit aboutwikipedia]<br>
+[[MediaWiki_talk:Aboutwikipedia|Talk]]
+</td><td>
+About Wiktionary
+</td><td>
+{{int:Aboutwikipedia}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-addsection&action=edit accesskey-addsection]<br>
+[[MediaWiki_talk:Accesskey-addsection|Talk]]
+</td><td>
++
+</td><td>
+{{int:Accesskey-addsection}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-anontalk&action=edit accesskey-anontalk]<br>
+[[MediaWiki_talk:Accesskey-anontalk|Talk]]
+</td><td>
+n
+</td><td>
+{{int:Accesskey-anontalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-anonuserpage&action=edit accesskey-anonuserpage]<br>
+[[MediaWiki_talk:Accesskey-anonuserpage|Talk]]
+</td><td>
+.
+</td><td>
+{{int:Accesskey-anonuserpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-article&action=edit accesskey-article]<br>
+[[MediaWiki_talk:Accesskey-article|Talk]]
+</td><td>
+a
+</td><td>
+{{int:Accesskey-article}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-compareselectedversions&action=edit accesskey-compareselectedversions]<br>
+[[MediaWiki_talk:Accesskey-compareselectedversions|Talk]]
+</td><td>
+v
+</td><td>
+{{int:Accesskey-compareselectedversions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-contributions&action=edit accesskey-contributions]<br>
+[[MediaWiki_talk:Accesskey-contributions|Talk]]
+</td><td>
+&amp;lt;accesskey-contributions&amp;gt;
+</td><td>
+{{int:Accesskey-contributions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-currentevents&action=edit accesskey-currentevents]<br>
+[[MediaWiki_talk:Accesskey-currentevents|Talk]]
+</td><td>
+&amp;lt;accesskey-currentevents&amp;gt;
+</td><td>
+{{int:Accesskey-currentevents}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-delete&action=edit accesskey-delete]<br>
+[[MediaWiki_talk:Accesskey-delete|Talk]]
+</td><td>
+d
+</td><td>
+{{int:Accesskey-delete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-edit&action=edit accesskey-edit]<br>
+[[MediaWiki_talk:Accesskey-edit|Talk]]
+</td><td>
+e
+</td><td>
+{{int:Accesskey-edit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-emailuser&action=edit accesskey-emailuser]<br>
+[[MediaWiki_talk:Accesskey-emailuser|Talk]]
+</td><td>
+&amp;lt;accesskey-emailuser&amp;gt;
+</td><td>
+{{int:Accesskey-emailuser}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-help&action=edit accesskey-help]<br>
+[[MediaWiki_talk:Accesskey-help|Talk]]
+</td><td>
+&amp;lt;accesskey-help&amp;gt;
+</td><td>
+{{int:Accesskey-help}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-history&action=edit accesskey-history]<br>
+[[MediaWiki_talk:Accesskey-history|Talk]]
+</td><td>
+h
+</td><td>
+{{int:Accesskey-history}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-login&action=edit accesskey-login]<br>
+[[MediaWiki_talk:Accesskey-login|Talk]]
+</td><td>
+o
+</td><td>
+{{int:Accesskey-login}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-logout&action=edit accesskey-logout]<br>
+[[MediaWiki_talk:Accesskey-logout|Talk]]
+</td><td>
+o
+</td><td>
+{{int:Accesskey-logout}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-mainpage&action=edit accesskey-mainpage]<br>
+[[MediaWiki_talk:Accesskey-mainpage|Talk]]
+</td><td>
+z
+</td><td>
+{{int:Accesskey-mainpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-minoredit&action=edit accesskey-minoredit]<br>
+[[MediaWiki_talk:Accesskey-minoredit|Talk]]
+</td><td>
+i
+</td><td>
+{{int:Accesskey-minoredit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-move&action=edit accesskey-move]<br>
+[[MediaWiki_talk:Accesskey-move|Talk]]
+</td><td>
+m
+</td><td>
+{{int:Accesskey-move}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-mycontris&action=edit accesskey-mycontris]<br>
+[[MediaWiki_talk:Accesskey-mycontris|Talk]]
+</td><td>
+y
+</td><td>
+{{int:Accesskey-mycontris}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-mytalk&action=edit accesskey-mytalk]<br>
+[[MediaWiki_talk:Accesskey-mytalk|Talk]]
+</td><td>
+n
+</td><td>
+{{int:Accesskey-mytalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-portal&action=edit accesskey-portal]<br>
+[[MediaWiki_talk:Accesskey-portal|Talk]]
+</td><td>
+&amp;lt;accesskey-portal&amp;gt;
+</td><td>
+{{int:Accesskey-portal}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-preferences&action=edit accesskey-preferences]<br>
+[[MediaWiki_talk:Accesskey-preferences|Talk]]
+</td><td>
+&amp;lt;accesskey-preferences&amp;gt;
+</td><td>
+{{int:Accesskey-preferences}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-preview&action=edit accesskey-preview]<br>
+[[MediaWiki_talk:Accesskey-preview|Talk]]
+</td><td>
+p
+</td><td>
+{{int:Accesskey-preview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-protect&action=edit accesskey-protect]<br>
+[[MediaWiki_talk:Accesskey-protect|Talk]]
+</td><td>
+=
+</td><td>
+{{int:Accesskey-protect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-randompage&action=edit accesskey-randompage]<br>
+[[MediaWiki_talk:Accesskey-randompage|Talk]]
+</td><td>
+x
+</td><td>
+{{int:Accesskey-randompage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-recentchanges&action=edit accesskey-recentchanges]<br>
+[[MediaWiki_talk:Accesskey-recentchanges|Talk]]
+</td><td>
+r
+</td><td>
+{{int:Accesskey-recentchanges}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-recentchangeslinked&action=edit accesskey-recentchangeslinked]<br>
+[[MediaWiki_talk:Accesskey-recentchangeslinked|Talk]]
+</td><td>
+c
+</td><td>
+{{int:Accesskey-recentchangeslinked}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-save&action=edit accesskey-save]<br>
+[[MediaWiki_talk:Accesskey-save|Talk]]
+</td><td>
+s
+</td><td>
+{{int:Accesskey-save}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-search&action=edit accesskey-search]<br>
+[[MediaWiki_talk:Accesskey-search|Talk]]
+</td><td>
+f
+</td><td>
+{{int:Accesskey-search}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-sitesupport&action=edit accesskey-sitesupport]<br>
+[[MediaWiki_talk:Accesskey-sitesupport|Talk]]
+</td><td>
+&amp;lt;accesskey-sitesupport&amp;gt;
+</td><td>
+{{int:Accesskey-sitesupport}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-specialpage&action=edit accesskey-specialpage]<br>
+[[MediaWiki_talk:Accesskey-specialpage|Talk]]
+</td><td>
+&amp;lt;accesskey-specialpage&amp;gt;
+</td><td>
+{{int:Accesskey-specialpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-specialpages&action=edit accesskey-specialpages]<br>
+[[MediaWiki_talk:Accesskey-specialpages|Talk]]
+</td><td>
+q
+</td><td>
+{{int:Accesskey-specialpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-talk&action=edit accesskey-talk]<br>
+[[MediaWiki_talk:Accesskey-talk|Talk]]
+</td><td>
+t
+</td><td>
+{{int:Accesskey-talk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-undelete&action=edit accesskey-undelete]<br>
+[[MediaWiki_talk:Accesskey-undelete|Talk]]
+</td><td>
+d
+</td><td>
+{{int:Accesskey-undelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-unwatch&action=edit accesskey-unwatch]<br>
+[[MediaWiki_talk:Accesskey-unwatch|Talk]]
+</td><td>
+w
+</td><td>
+{{int:Accesskey-unwatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-upload&action=edit accesskey-upload]<br>
+[[MediaWiki_talk:Accesskey-upload|Talk]]
+</td><td>
+u
+</td><td>
+{{int:Accesskey-upload}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-userpage&action=edit accesskey-userpage]<br>
+[[MediaWiki_talk:Accesskey-userpage|Talk]]
+</td><td>
+.
+</td><td>
+{{int:Accesskey-userpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-viewsource&action=edit accesskey-viewsource]<br>
+[[MediaWiki_talk:Accesskey-viewsource|Talk]]
+</td><td>
+e
+</td><td>
+{{int:Accesskey-viewsource}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-watch&action=edit accesskey-watch]<br>
+[[MediaWiki_talk:Accesskey-watch|Talk]]
+</td><td>
+w
+</td><td>
+{{int:Accesskey-watch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-watchlist&action=edit accesskey-watchlist]<br>
+[[MediaWiki_talk:Accesskey-watchlist|Talk]]
+</td><td>
+l
+</td><td>
+{{int:Accesskey-watchlist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accesskey-whatlinkshere&action=edit accesskey-whatlinkshere]<br>
+[[MediaWiki_talk:Accesskey-whatlinkshere|Talk]]
+</td><td>
+b
+</td><td>
+{{int:Accesskey-whatlinkshere}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accmailtext&action=edit accmailtext]<br>
+[[MediaWiki_talk:Accmailtext|Talk]]
+</td><td>
+The Password for &#39;$1&#39; has been sent to $2.
+</td><td>
+{{int:Accmailtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Accmailtitle&action=edit accmailtitle]<br>
+[[MediaWiki_talk:Accmailtitle|Talk]]
+</td><td>
+Password sent.
+</td><td>
+{{int:Accmailtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Actioncomplete&action=edit actioncomplete]<br>
+[[MediaWiki_talk:Actioncomplete|Talk]]
+</td><td>
+Action complete
+</td><td>
+{{int:Actioncomplete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Addedwatch&action=edit addedwatch]<br>
+[[MediaWiki_talk:Addedwatch|Talk]]
+</td><td>
+Added to watchlist
+</td><td>
+{{int:Addedwatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Addedwatchtext&action=edit addedwatchtext]<br>
+[[MediaWiki_talk:Addedwatchtext|Talk]]
+</td><td>
+The page &quot;$1&quot; has been added to your &#91;&#91;Special:Watchlist&#124;watchlist]].
+Future changes to this page and its associated Talk page will be listed there,
+and the page will appear &#39;&#39;&#39;bolded&#39;&#39;&#39; in the &#91;&#91;Special:Recentchanges&#124;list of recent changes]] to
+make it easier to pick out.
+
+&lt;p&gt;If you want to remove the page from your watchlist later, click &quot;Stop watching&quot; in the sidebar.
+</td><td>
+{{int:Addedwatchtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Addsection&action=edit addsection]<br>
+[[MediaWiki_talk:Addsection|Talk]]
+</td><td>
++
+</td><td>
+{{int:Addsection}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Administrators&action=edit administrators]<br>
+[[MediaWiki_talk:Administrators|Talk]]
+</td><td>
+Wiktionary:Administrators
+</td><td>
+{{int:Administrators}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Affirmation&action=edit affirmation]<br>
+[[MediaWiki_talk:Affirmation|Talk]]
+</td><td>
+I affirm that the copyright holder of this file
+agrees to license it under the terms of the $1.
+</td><td>
+{{int:Affirmation}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:All&action=edit all]<br>
+[[MediaWiki_talk:All|Talk]]
+</td><td>
+all
+</td><td>
+{{int:All}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Allmessages&action=edit allmessages]<br>
+[[MediaWiki_talk:Allmessages|Talk]]
+</td><td>
+All system messages
+</td><td>
+{{int:Allmessages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Allmessagestext&action=edit allmessagestext]<br>
+[[MediaWiki_talk:Allmessagestext|Talk]]
+</td><td>
+This is a list of all system messages available in the MediaWiki: namespace.
+</td><td>
+{{int:Allmessagestext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Allpages&action=edit allpages]<br>
+[[MediaWiki_talk:Allpages|Talk]]
+</td><td>
+All pages
+</td><td>
+{{int:Allpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Alphaindexline&action=edit alphaindexline]<br>
+[[MediaWiki_talk:Alphaindexline|Talk]]
+</td><td>
+$1 to $2
+</td><td>
+{{int:Alphaindexline}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Alreadyloggedin&action=edit alreadyloggedin]<br>
+[[MediaWiki_talk:Alreadyloggedin|Talk]]
+</td><td>
+&lt;font color=red&gt;&lt;b&gt;User $1, you are already logged in!&lt;/b&gt;&lt;/font&gt;&lt;br /&gt;
+
+</td><td>
+{{int:Alreadyloggedin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Alreadyrolled&action=edit alreadyrolled]<br>
+[[MediaWiki_talk:Alreadyrolled|Talk]]
+</td><td>
+Cannot rollback last edit of &#91;&#91;$1]]
+by &#91;&#91;User:$2&#124;$2]] (&#91;&#91;User talk:$2&#124;Talk]]); someone else has edited or rolled back the page already. 
+
+Last edit was by &#91;&#91;User:$3&#124;$3]] (&#91;&#91;User talk:$3&#124;Talk]]). 
+</td><td>
+{{int:Alreadyrolled}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ancientpages&action=edit ancientpages]<br>
+[[MediaWiki_talk:Ancientpages|Talk]]
+</td><td>
+Oldest pages
+</td><td>
+{{int:Ancientpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:And&action=edit and]<br>
+[[MediaWiki_talk:And|Talk]]
+</td><td>
+and
+</td><td>
+{{int:And}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Anontalk&action=edit anontalk]<br>
+[[MediaWiki_talk:Anontalk|Talk]]
+</td><td>
+Talk for this IP
+</td><td>
+{{int:Anontalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Anontalkpagetext&action=edit anontalkpagetext]<br>
+[[MediaWiki_talk:Anontalkpagetext|Talk]]
+</td><td>
+----&#39;&#39;This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical &#91;&#91;IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please &#91;&#91;Special:Userlogin&#124;create an account or log in]] to avoid future confusion with other anonymous users.&#39;&#39; 
+</td><td>
+{{int:Anontalkpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Anonymous&action=edit anonymous]<br>
+[[MediaWiki_talk:Anonymous|Talk]]
+</td><td>
+Anonymous user(s) of Wiktionary
+</td><td>
+{{int:Anonymous}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Article&action=edit article]<br>
+[[MediaWiki_talk:Article|Talk]]
+</td><td>
+Content page
+</td><td>
+{{int:Article}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Articleexists&action=edit articleexists]<br>
+[[MediaWiki_talk:Articleexists|Talk]]
+</td><td>
+A page of that name already exists, or the
+name you have chosen is not valid.
+Please choose another name.
+</td><td>
+{{int:Articleexists}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Articlepage&action=edit articlepage]<br>
+[[MediaWiki_talk:Articlepage|Talk]]
+</td><td>
+View content page
+</td><td>
+{{int:Articlepage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Asksql&action=edit asksql]<br>
+[[MediaWiki_talk:Asksql|Talk]]
+</td><td>
+SQL query
+</td><td>
+{{int:Asksql}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Asksqltext&action=edit asksqltext]<br>
+[[MediaWiki_talk:Asksqltext|Talk]]
+</td><td>
+Use the form below to make a direct query of the
+database.
+Use single quotes (&#39;like this&#39;) to delimit string literals.
+This can often add considerable load to the server, so please use
+this function sparingly.
+</td><td>
+{{int:Asksqltext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Autoblocker&action=edit autoblocker]<br>
+[[MediaWiki_talk:Autoblocker|Talk]]
+</td><td>
+Autoblocked because you share an IP address with &quot;$1&quot;. Reason &quot;$2&quot;.
+</td><td>
+{{int:Autoblocker}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badarticleerror&action=edit badarticleerror]<br>
+[[MediaWiki_talk:Badarticleerror|Talk]]
+</td><td>
+This action cannot be performed on this page.
+</td><td>
+{{int:Badarticleerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badfilename&action=edit badfilename]<br>
+[[MediaWiki_talk:Badfilename|Talk]]
+</td><td>
+Image name has been changed to &quot;$1&quot;.
+</td><td>
+{{int:Badfilename}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badfiletype&action=edit badfiletype]<br>
+[[MediaWiki_talk:Badfiletype|Talk]]
+</td><td>
+&quot;.$1&quot; is not a recommended image file format.
+</td><td>
+{{int:Badfiletype}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badipaddress&action=edit badipaddress]<br>
+[[MediaWiki_talk:Badipaddress|Talk]]
+</td><td>
+Invalid IP address
+</td><td>
+{{int:Badipaddress}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badquery&action=edit badquery]<br>
+[[MediaWiki_talk:Badquery|Talk]]
+</td><td>
+Badly formed search query
+</td><td>
+{{int:Badquery}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badquerytext&action=edit badquerytext]<br>
+[[MediaWiki_talk:Badquerytext|Talk]]
+</td><td>
+We could not process your query.
+This is probably because you have attempted to search for a
+word fewer than three letters long, which is not yet supported.
+It could also be that you have mistyped the expression, for
+example &quot;fish and and scales&quot;.
+Please try another query.
+</td><td>
+{{int:Badquerytext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badretype&action=edit badretype]<br>
+[[MediaWiki_talk:Badretype|Talk]]
+</td><td>
+The passwords you entered do not match.
+</td><td>
+{{int:Badretype}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badtitle&action=edit badtitle]<br>
+[[MediaWiki_talk:Badtitle|Talk]]
+</td><td>
+Bad title
+</td><td>
+{{int:Badtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Badtitletext&action=edit badtitletext]<br>
+[[MediaWiki_talk:Badtitletext|Talk]]
+</td><td>
+The requested page title was invalid, empty, or
+an incorrectly linked inter-language or inter-wiki title.
+</td><td>
+{{int:Badtitletext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blanknamespace&action=edit blanknamespace]<br>
+[[MediaWiki_talk:Blanknamespace|Talk]]
+</td><td>
+(Main)
+</td><td>
+{{int:Blanknamespace}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockedtext&action=edit blockedtext]<br>
+[[MediaWiki_talk:Blockedtext|Talk]]
+</td><td>
+Your user name or IP address has been blocked by $1.
+The reason given is this:&lt;br /&gt;&#39;&#39;$2&#39;&#39;&lt;p&gt;You may contact $1 or one of the other
+&#91;&#91;Wiktionary:Administrators&#124;administrators]] to discuss the block.
+
+Note that you may not use the &quot;email this user&quot; feature unless you have a valid email address registered in your &#91;&#91;Special:Preferences&#124;user preferences]].
+
+Your IP address is $3. Please include this address in any queries you make.
+
+</td><td>
+{{int:Blockedtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockedtitle&action=edit blockedtitle]<br>
+[[MediaWiki_talk:Blockedtitle|Talk]]
+</td><td>
+User is blocked
+</td><td>
+{{int:Blockedtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockip&action=edit blockip]<br>
+[[MediaWiki_talk:Blockip|Talk]]
+</td><td>
+Block user
+</td><td>
+{{int:Blockip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockipsuccesssub&action=edit blockipsuccesssub]<br>
+[[MediaWiki_talk:Blockipsuccesssub|Talk]]
+</td><td>
+Block succeeded
+</td><td>
+{{int:Blockipsuccesssub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockipsuccesstext&action=edit blockipsuccesstext]<br>
+[[MediaWiki_talk:Blockipsuccesstext|Talk]]
+</td><td>
+&quot;$1&quot; has been blocked.
+&lt;br /&gt;See &#91;&#91;Special:Ipblocklist&#124;IP block list]] to review blocks.
+</td><td>
+{{int:Blockipsuccesstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blockiptext&action=edit blockiptext]<br>
+[[MediaWiki_talk:Blockiptext|Talk]]
+</td><td>
+Use the form below to block write access
+from a specific IP address or username.
+This should be done only only to prevent vandalism, and in
+accordance with &#91;&#91;Wiktionary:Policy&#124;policy]].
+Fill in a specific reason below (for example, citing particular
+pages that were vandalized).
+</td><td>
+{{int:Blockiptext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blocklink&action=edit blocklink]<br>
+[[MediaWiki_talk:Blocklink|Talk]]
+</td><td>
+block
+</td><td>
+{{int:Blocklink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blocklistline&action=edit blocklistline]<br>
+[[MediaWiki_talk:Blocklistline|Talk]]
+</td><td>
+$1, $2 blocked $3 (expires $4)
+</td><td>
+{{int:Blocklistline}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blocklogentry&action=edit blocklogentry]<br>
+[[MediaWiki_talk:Blocklogentry|Talk]]
+</td><td>
+blocked &quot;$1&quot; with an expiry time of $2
+</td><td>
+{{int:Blocklogentry}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blocklogpage&action=edit blocklogpage]<br>
+[[MediaWiki_talk:Blocklogpage|Talk]]
+</td><td>
+Block_log
+</td><td>
+{{int:Blocklogpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Blocklogtext&action=edit blocklogtext]<br>
+[[MediaWiki_talk:Blocklogtext|Talk]]
+</td><td>
+This is a log of user blocking and unblocking actions. Automatically 
+blocked IP addresses are not be listed. See the &#91;&#91;Special:Ipblocklist&#124;IP block list]] for
+the list of currently operational bans and blocks.
+</td><td>
+{{int:Blocklogtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bold_sample&action=edit bold_sample]<br>
+[[MediaWiki_talk:Bold_sample|Talk]]
+</td><td>
+Bold text
+</td><td>
+{{int:Bold_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bold_tip&action=edit bold_tip]<br>
+[[MediaWiki_talk:Bold_tip|Talk]]
+</td><td>
+Bold text
+</td><td>
+{{int:Bold_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Booksources&action=edit booksources]<br>
+[[MediaWiki_talk:Booksources|Talk]]
+</td><td>
+Book sources
+</td><td>
+{{int:Booksources}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Booksourcetext&action=edit booksourcetext]<br>
+[[MediaWiki_talk:Booksourcetext|Talk]]
+</td><td>
+Below is a list of links to other sites that
+sell new and used books, and may also have further information
+about books you are looking for.Wiktionary is not affiliated with any of these businesses, and
+this list should not be construed as an endorsement.
+</td><td>
+{{int:Booksourcetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Brokenredirects&action=edit brokenredirects]<br>
+[[MediaWiki_talk:Brokenredirects|Talk]]
+</td><td>
+Broken Redirects
+</td><td>
+{{int:Brokenredirects}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Brokenredirectstext&action=edit brokenredirectstext]<br>
+[[MediaWiki_talk:Brokenredirectstext|Talk]]
+</td><td>
+The following redirects link to a non-existing pages.
+</td><td>
+{{int:Brokenredirectstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bugreports&action=edit bugreports]<br>
+[[MediaWiki_talk:Bugreports|Talk]]
+</td><td>
+Bug reports
+</td><td>
+{{int:Bugreports}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bugreportspage&action=edit bugreportspage]<br>
+[[MediaWiki_talk:Bugreportspage|Talk]]
+</td><td>
+Wiktionary:Bug_reports
+</td><td>
+{{int:Bugreportspage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bureaucratlog&action=edit bureaucratlog]<br>
+[[MediaWiki_talk:Bureaucratlog|Talk]]
+</td><td>
+Bureaucrat_log
+</td><td>
+{{int:Bureaucratlog}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bureaucratlogentry&action=edit bureaucratlogentry]<br>
+[[MediaWiki_talk:Bureaucratlogentry|Talk]]
+</td><td>
+Rights for user &quot;$1&quot; set &quot;$2&quot;
+</td><td>
+{{int:Bureaucratlogentry}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bureaucrattext&action=edit bureaucrattext]<br>
+[[MediaWiki_talk:Bureaucrattext|Talk]]
+</td><td>
+The action you have requested can only be
+performed by sysops with  &quot;bureaucrat&quot; status.
+</td><td>
+{{int:Bureaucrattext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bureaucrattitle&action=edit bureaucrattitle]<br>
+[[MediaWiki_talk:Bureaucrattitle|Talk]]
+</td><td>
+Bureaucrat access required
+</td><td>
+{{int:Bureaucrattitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bydate&action=edit bydate]<br>
+[[MediaWiki_talk:Bydate|Talk]]
+</td><td>
+by date
+</td><td>
+{{int:Bydate}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Byname&action=edit byname]<br>
+[[MediaWiki_talk:Byname|Talk]]
+</td><td>
+by name
+</td><td>
+{{int:Byname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Bysize&action=edit bysize]<br>
+[[MediaWiki_talk:Bysize|Talk]]
+</td><td>
+by size
+</td><td>
+{{int:Bysize}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Cachederror&action=edit cachederror]<br>
+[[MediaWiki_talk:Cachederror|Talk]]
+</td><td>
+The following is a cached copy of the requested page, and may not be up to date.
+</td><td>
+{{int:Cachederror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Cancel&action=edit cancel]<br>
+[[MediaWiki_talk:Cancel|Talk]]
+</td><td>
+Cancel
+</td><td>
+{{int:Cancel}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Cannotdelete&action=edit cannotdelete]<br>
+[[MediaWiki_talk:Cannotdelete|Talk]]
+</td><td>
+Could not delete the page or image specified. (It may have already been deleted by someone else.)
+</td><td>
+{{int:Cannotdelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Cantrollback&action=edit cantrollback]<br>
+[[MediaWiki_talk:Cantrollback|Talk]]
+</td><td>
+Cannot revert edit; last contributor is only author of this page.
+</td><td>
+{{int:Cantrollback}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Categories&action=edit categories]<br>
+[[MediaWiki_talk:Categories|Talk]]
+</td><td>
+Categories
+</td><td>
+{{int:Categories}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Category&action=edit category]<br>
+[[MediaWiki_talk:Category|Talk]]
+</td><td>
+category
+</td><td>
+{{int:Category}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Category_header&action=edit category_header]<br>
+[[MediaWiki_talk:Category_header|Talk]]
+</td><td>
+Articles in category &quot;$1&quot;
+</td><td>
+{{int:Category_header}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Changepassword&action=edit changepassword]<br>
+[[MediaWiki_talk:Changepassword|Talk]]
+</td><td>
+Change password
+</td><td>
+{{int:Changepassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Changes&action=edit changes]<br>
+[[MediaWiki_talk:Changes|Talk]]
+</td><td>
+changes
+</td><td>
+{{int:Changes}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Columns&action=edit columns]<br>
+[[MediaWiki_talk:Columns|Talk]]
+</td><td>
+Columns
+</td><td>
+{{int:Columns}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Commentedit&action=edit commentedit]<br>
+[[MediaWiki_talk:Commentedit|Talk]]
+</td><td>
+ (comment)
+</td><td>
+{{int:Commentedit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Compareselectedversions&action=edit compareselectedversions]<br>
+[[MediaWiki_talk:Compareselectedversions|Talk]]
+</td><td>
+Compare selected versions
+</td><td>
+{{int:Compareselectedversions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirm&action=edit confirm]<br>
+[[MediaWiki_talk:Confirm|Talk]]
+</td><td>
+Confirm
+</td><td>
+{{int:Confirm}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmcheck&action=edit confirmcheck]<br>
+[[MediaWiki_talk:Confirmcheck|Talk]]
+</td><td>
+Yes, I really want to delete this.
+</td><td>
+{{int:Confirmcheck}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmdelete&action=edit confirmdelete]<br>
+[[MediaWiki_talk:Confirmdelete|Talk]]
+</td><td>
+Confirm delete
+</td><td>
+{{int:Confirmdelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmdeletetext&action=edit confirmdeletetext]<br>
+[[MediaWiki_talk:Confirmdeletetext|Talk]]
+</td><td>
+You are about to permanently delete a page
+or image along with all of its history from the database.
+Please confirm that you intend to do this, that you understand the
+consequences, and that you are doing this in accordance with
+&#91;&#91;Wiktionary:Policy]].
+</td><td>
+{{int:Confirmdeletetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmprotect&action=edit confirmprotect]<br>
+[[MediaWiki_talk:Confirmprotect|Talk]]
+</td><td>
+Confirm protection
+</td><td>
+{{int:Confirmprotect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmprotecttext&action=edit confirmprotecttext]<br>
+[[MediaWiki_talk:Confirmprotecttext|Talk]]
+</td><td>
+Do you really want to protect this page?
+</td><td>
+{{int:Confirmprotecttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmunprotect&action=edit confirmunprotect]<br>
+[[MediaWiki_talk:Confirmunprotect|Talk]]
+</td><td>
+Confirm unprotection
+</td><td>
+{{int:Confirmunprotect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Confirmunprotecttext&action=edit confirmunprotecttext]<br>
+[[MediaWiki_talk:Confirmunprotecttext|Talk]]
+</td><td>
+Do you really want to unprotect this page?
+</td><td>
+{{int:Confirmunprotecttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Contextchars&action=edit contextchars]<br>
+[[MediaWiki_talk:Contextchars|Talk]]
+</td><td>
+Characters of context per line
+</td><td>
+{{int:Contextchars}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Contextlines&action=edit contextlines]<br>
+[[MediaWiki_talk:Contextlines|Talk]]
+</td><td>
+Lines to show per hit
+</td><td>
+{{int:Contextlines}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Contribslink&action=edit contribslink]<br>
+[[MediaWiki_talk:Contribslink|Talk]]
+</td><td>
+contribs
+</td><td>
+{{int:Contribslink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Contribsub&action=edit contribsub]<br>
+[[MediaWiki_talk:Contribsub|Talk]]
+</td><td>
+For $1
+</td><td>
+{{int:Contribsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Contributions&action=edit contributions]<br>
+[[MediaWiki_talk:Contributions|Talk]]
+</td><td>
+User contributions
+</td><td>
+{{int:Contributions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Copyright&action=edit copyright]<br>
+[[MediaWiki_talk:Copyright|Talk]]
+</td><td>
+Content is available under $1.
+</td><td>
+{{int:Copyright}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Copyrightpage&action=edit copyrightpage]<br>
+[[MediaWiki_talk:Copyrightpage|Talk]]
+</td><td>
+Wiktionary:Copyrights
+</td><td>
+{{int:Copyrightpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Copyrightpagename&action=edit copyrightpagename]<br>
+[[MediaWiki_talk:Copyrightpagename|Talk]]
+</td><td>
+Wiktionary copyright
+</td><td>
+{{int:Copyrightpagename}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Copyrightwarning&action=edit copyrightwarning]<br>
+[[MediaWiki_talk:Copyrightwarning|Talk]]
+</td><td>
+Please note that all contributions to Wiktionary are
+considered to be released under the GNU Free Documentation License
+(see $1 for details).
+If you don&#39;t want your writing to be edited mercilessly and redistributed
+at will, then don&#39;t submit it here.&lt;br /&gt;
+You are also promising us that you wrote this yourself, or copied it from a
+public domain or similar free resource.
+&lt;strong&gt;DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!&lt;/strong&gt;
+</td><td>
+{{int:Copyrightwarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Couldntremove&action=edit couldntremove]<br>
+[[MediaWiki_talk:Couldntremove|Talk]]
+</td><td>
+Couldn&#39;t remove item &#39;$1&#39;...
+</td><td>
+{{int:Couldntremove}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Createaccount&action=edit createaccount]<br>
+[[MediaWiki_talk:Createaccount|Talk]]
+</td><td>
+Create new account
+</td><td>
+{{int:Createaccount}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Createaccountmail&action=edit createaccountmail]<br>
+[[MediaWiki_talk:Createaccountmail|Talk]]
+</td><td>
+by email
+</td><td>
+{{int:Createaccountmail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Cur&action=edit cur]<br>
+[[MediaWiki_talk:Cur|Talk]]
+</td><td>
+cur
+</td><td>
+{{int:Cur}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Currentevents&action=edit currentevents]<br>
+[[MediaWiki_talk:Currentevents|Talk]]
+</td><td>
+Current events
+</td><td>
+{{int:Currentevents}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Currentrev&action=edit currentrev]<br>
+[[MediaWiki_talk:Currentrev|Talk]]
+</td><td>
+Current revision
+</td><td>
+{{int:Currentrev}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Databaseerror&action=edit databaseerror]<br>
+[[MediaWiki_talk:Databaseerror|Talk]]
+</td><td>
+Database error
+</td><td>
+{{int:Databaseerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Dateformat&action=edit dateformat]<br>
+[[MediaWiki_talk:Dateformat|Talk]]
+</td><td>
+Date format
+</td><td>
+{{int:Dateformat}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Dberrortext&action=edit dberrortext]<br>
+[[MediaWiki_talk:Dberrortext|Talk]]
+</td><td>
+A database query syntax error has occurred.
+This could be because of an illegal search query (see $5),
+or it may indicate a bug in the software.
+The last attempted database query was:
+&lt;blockquote&gt;&lt;tt&gt;$1&lt;/tt&gt;&lt;/blockquote&gt;
+from within function &quot;&lt;tt&gt;$2&lt;/tt&gt;&quot;.
+MySQL returned error &quot;&lt;tt&gt;$3: $4&lt;/tt&gt;&quot;.
+</td><td>
+{{int:Dberrortext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Dberrortextcl&action=edit dberrortextcl]<br>
+[[MediaWiki_talk:Dberrortextcl|Talk]]
+</td><td>
+A database query syntax error has occurred.
+The last attempted database query was:
+&quot;$1&quot;
+from within function &quot;$2&quot;.
+MySQL returned error &quot;$3: $4&quot;.
+
+</td><td>
+{{int:Dberrortextcl}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deadendpages&action=edit deadendpages]<br>
+[[MediaWiki_talk:Deadendpages|Talk]]
+</td><td>
+Dead-end pages
+</td><td>
+{{int:Deadendpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Debug&action=edit debug]<br>
+[[MediaWiki_talk:Debug|Talk]]
+</td><td>
+Debug
+</td><td>
+{{int:Debug}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Defaultns&action=edit defaultns]<br>
+[[MediaWiki_talk:Defaultns|Talk]]
+</td><td>
+Search in these namespaces by default:
+</td><td>
+{{int:Defaultns}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Defemailsubject&action=edit defemailsubject]<br>
+[[MediaWiki_talk:Defemailsubject|Talk]]
+</td><td>
+Wiktionary e-mail
+</td><td>
+{{int:Defemailsubject}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Delete&action=edit delete]<br>
+[[MediaWiki_talk:Delete|Talk]]
+</td><td>
+Delete
+</td><td>
+{{int:Delete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletecomment&action=edit deletecomment]<br>
+[[MediaWiki_talk:Deletecomment|Talk]]
+</td><td>
+Reason for deletion
+</td><td>
+{{int:Deletecomment}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletedarticle&action=edit deletedarticle]<br>
+[[MediaWiki_talk:Deletedarticle|Talk]]
+</td><td>
+deleted &quot;$1&quot;
+</td><td>
+{{int:Deletedarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletedtext&action=edit deletedtext]<br>
+[[MediaWiki_talk:Deletedtext|Talk]]
+</td><td>
+&quot;$1&quot; has been deleted.
+See $2 for a record of recent deletions.
+</td><td>
+{{int:Deletedtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deleteimg&action=edit deleteimg]<br>
+[[MediaWiki_talk:Deleteimg|Talk]]
+</td><td>
+del
+</td><td>
+{{int:Deleteimg}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletepage&action=edit deletepage]<br>
+[[MediaWiki_talk:Deletepage|Talk]]
+</td><td>
+Delete page
+</td><td>
+{{int:Deletepage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletesub&action=edit deletesub]<br>
+[[MediaWiki_talk:Deletesub|Talk]]
+</td><td>
+(Deleting &quot;$1&quot;)
+</td><td>
+{{int:Deletesub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletethispage&action=edit deletethispage]<br>
+[[MediaWiki_talk:Deletethispage|Talk]]
+</td><td>
+Delete this page
+</td><td>
+{{int:Deletethispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Deletionlog&action=edit deletionlog]<br>
+[[MediaWiki_talk:Deletionlog|Talk]]
+</td><td>
+deletion log
+</td><td>
+{{int:Deletionlog}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Dellogpage&action=edit dellogpage]<br>
+[[MediaWiki_talk:Dellogpage|Talk]]
+</td><td>
+Deletion_log
+</td><td>
+{{int:Dellogpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Dellogpagetext&action=edit dellogpagetext]<br>
+[[MediaWiki_talk:Dellogpagetext|Talk]]
+</td><td>
+Below is a list of the most recent deletions.
+All times shown are server time (UTC).
+&lt;ul&gt;
+&lt;/ul&gt;
+
+</td><td>
+{{int:Dellogpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Developerspheading&action=edit developerspheading]<br>
+[[MediaWiki_talk:Developerspheading|Talk]]
+</td><td>
+For developer use only
+</td><td>
+{{int:Developerspheading}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Developertext&action=edit developertext]<br>
+[[MediaWiki_talk:Developertext|Talk]]
+</td><td>
+The action you have requested can only be
+performed by users with &quot;developer&quot; status.
+See $1.
+</td><td>
+{{int:Developertext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Developertitle&action=edit developertitle]<br>
+[[MediaWiki_talk:Developertitle|Talk]]
+</td><td>
+Developer access required
+</td><td>
+{{int:Developertitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Diff&action=edit diff]<br>
+[[MediaWiki_talk:Diff|Talk]]
+</td><td>
+diff
+</td><td>
+{{int:Diff}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Difference&action=edit difference]<br>
+[[MediaWiki_talk:Difference|Talk]]
+</td><td>
+(Difference between revisions)
+</td><td>
+{{int:Difference}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguations&action=edit disambiguations]<br>
+[[MediaWiki_talk:Disambiguations|Talk]]
+</td><td>
+Disambiguation pages
+</td><td>
+{{int:Disambiguations}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationspage&action=edit disambiguationspage]<br>
+[[MediaWiki_talk:Disambiguationspage|Talk]]
+</td><td>
+Wiktionary:Links_to_disambiguating_pages
+</td><td>
+{{int:Disambiguationspage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disambiguationstext&action=edit disambiguationstext]<br>
+[[MediaWiki_talk:Disambiguationstext|Talk]]
+</td><td>
+The following pages link to a &lt;i&gt;disambiguation page&lt;/i&gt;. They should link to the appropriate topic instead.&lt;br /&gt;A page is treated as dismbiguation if it is linked from $1.&lt;br /&gt;Links from other namespaces are &lt;i&gt;not&lt;/i&gt; listed here.
+</td><td>
+{{int:Disambiguationstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disclaimerpage&action=edit disclaimerpage]<br>
+[[MediaWiki_talk:Disclaimerpage|Talk]]
+</td><td>
+Wiktionary:General_disclaimer
+</td><td>
+{{int:Disclaimerpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Disclaimers&action=edit disclaimers]<br>
+[[MediaWiki_talk:Disclaimers|Talk]]
+</td><td>
+Disclaimers
+</td><td>
+{{int:Disclaimers}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Doubleredirects&action=edit doubleredirects]<br>
+[[MediaWiki_talk:Doubleredirects|Talk]]
+</td><td>
+Double Redirects
+</td><td>
+{{int:Doubleredirects}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Doubleredirectstext&action=edit doubleredirectstext]<br>
+[[MediaWiki_talk:Doubleredirectstext|Talk]]
+</td><td>
+&lt;b&gt;Attention:&lt;/b&gt; This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.&lt;br /&gt;
+Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the &quot;real&quot; target page, which the first redirect should point to.
+</td><td>
+{{int:Doubleredirectstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Edit&action=edit edit]<br>
+[[MediaWiki_talk:Edit|Talk]]
+</td><td>
+Edit
+</td><td>
+{{int:Edit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editcomment&action=edit editcomment]<br>
+[[MediaWiki_talk:Editcomment|Talk]]
+</td><td>
+The edit comment was: &quot;&lt;i&gt;$1&lt;/i&gt;&quot;.
+</td><td>
+{{int:Editcomment}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editconflict&action=edit editconflict]<br>
+[[MediaWiki_talk:Editconflict|Talk]]
+</td><td>
+Edit conflict: $1
+</td><td>
+{{int:Editconflict}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editcurrent&action=edit editcurrent]<br>
+[[MediaWiki_talk:Editcurrent|Talk]]
+</td><td>
+Edit the current version of this page
+</td><td>
+{{int:Editcurrent}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Edithelp&action=edit edithelp]<br>
+[[MediaWiki_talk:Edithelp|Talk]]
+</td><td>
+Editing help
+</td><td>
+{{int:Edithelp}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Edithelppage&action=edit edithelppage]<br>
+[[MediaWiki_talk:Edithelppage|Talk]]
+</td><td>
+Help:Editing
+</td><td>
+{{int:Edithelppage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editing&action=edit editing]<br>
+[[MediaWiki_talk:Editing|Talk]]
+</td><td>
+Editing $1
+</td><td>
+{{int:Editing}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editingold&action=edit editingold]<br>
+[[MediaWiki_talk:Editingold|Talk]]
+</td><td>
+&lt;strong&gt;WARNING: You are editing an out-of-date
+revision of this page.
+If you save it, any changes made since this revision will be lost.&lt;/strong&gt;
+
+</td><td>
+{{int:Editingold}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editsection&action=edit editsection]<br>
+[[MediaWiki_talk:Editsection|Talk]]
+</td><td>
+edit
+</td><td>
+{{int:Editsection}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Editthispage&action=edit editthispage]<br>
+[[MediaWiki_talk:Editthispage|Talk]]
+</td><td>
+Edit this page
+</td><td>
+{{int:Editthispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailflag&action=edit emailflag]<br>
+[[MediaWiki_talk:Emailflag|Talk]]
+</td><td>
+Disable e-mail from other users
+</td><td>
+{{int:Emailflag}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailforlost&action=edit emailforlost]<br>
+[[MediaWiki_talk:Emailforlost|Talk]]
+</td><td>
+Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your 
+email address to them, and it can be used to send you a new password if you forget it.&lt;br /&gt;&lt;br /&gt;Your real name, if you choose to provide it, will be used for giving you attribution for your work.
+</td><td>
+{{int:Emailforlost}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailfrom&action=edit emailfrom]<br>
+[[MediaWiki_talk:Emailfrom|Talk]]
+</td><td>
+From
+</td><td>
+{{int:Emailfrom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailmessage&action=edit emailmessage]<br>
+[[MediaWiki_talk:Emailmessage|Talk]]
+</td><td>
+Message
+</td><td>
+{{int:Emailmessage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpage&action=edit emailpage]<br>
+[[MediaWiki_talk:Emailpage|Talk]]
+</td><td>
+E-mail user
+</td><td>
+{{int:Emailpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpagetext&action=edit emailpagetext]<br>
+[[MediaWiki_talk:Emailpagetext|Talk]]
+</td><td>
+If this user has entered a valid e-mail address in
+his or her user preferences, the form below will send a single message.
+The e-mail address you entered in your user preferences will appear
+as the &quot;From&quot; address of the mail, so the recipient will be able
+to reply.
+</td><td>
+{{int:Emailpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailsend&action=edit emailsend]<br>
+[[MediaWiki_talk:Emailsend|Talk]]
+</td><td>
+Send
+</td><td>
+{{int:Emailsend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailsent&action=edit emailsent]<br>
+[[MediaWiki_talk:Emailsent|Talk]]
+</td><td>
+E-mail sent
+</td><td>
+{{int:Emailsent}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailsenttext&action=edit emailsenttext]<br>
+[[MediaWiki_talk:Emailsenttext|Talk]]
+</td><td>
+Your e-mail message has been sent.
+</td><td>
+{{int:Emailsenttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailsubject&action=edit emailsubject]<br>
+[[MediaWiki_talk:Emailsubject|Talk]]
+</td><td>
+Subject
+</td><td>
+{{int:Emailsubject}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailto&action=edit emailto]<br>
+[[MediaWiki_talk:Emailto|Talk]]
+</td><td>
+To
+</td><td>
+{{int:Emailto}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailuser&action=edit emailuser]<br>
+[[MediaWiki_talk:Emailuser|Talk]]
+</td><td>
+E-mail this user
+</td><td>
+{{int:Emailuser}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Enterlockreason&action=edit enterlockreason]<br>
+[[MediaWiki_talk:Enterlockreason|Talk]]
+</td><td>
+Enter a reason for the lock, including an estimate
+of when the lock will be released
+</td><td>
+{{int:Enterlockreason}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Error&action=edit error]<br>
+[[MediaWiki_talk:Error|Talk]]
+</td><td>
+Error
+</td><td>
+{{int:Error}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Errorpagetitle&action=edit errorpagetitle]<br>
+[[MediaWiki_talk:Errorpagetitle|Talk]]
+</td><td>
+Error
+</td><td>
+{{int:Errorpagetitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Exbeforeblank&action=edit exbeforeblank]<br>
+[[MediaWiki_talk:Exbeforeblank|Talk]]
+</td><td>
+content before blanking was:
+</td><td>
+{{int:Exbeforeblank}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Exblank&action=edit exblank]<br>
+[[MediaWiki_talk:Exblank|Talk]]
+</td><td>
+page was empty
+</td><td>
+{{int:Exblank}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Excontent&action=edit excontent]<br>
+[[MediaWiki_talk:Excontent|Talk]]
+</td><td>
+content was:
+</td><td>
+{{int:Excontent}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Explainconflict&action=edit explainconflict]<br>
+[[MediaWiki_talk:Explainconflict|Talk]]
+</td><td>
+Someone else has changed this page since you
+started editing it.
+The upper text area contains the page text as it currently exists.
+Your changes are shown in the lower text area.
+You will have to merge your changes into the existing text.
+&lt;b&gt;Only&lt;/b&gt; the text in the upper text area will be saved when you
+press &quot;Save page&quot;.
+&lt;p&gt;
+</td><td>
+{{int:Explainconflict}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Export&action=edit export]<br>
+[[MediaWiki_talk:Export|Talk]]
+</td><td>
+Export pages
+</td><td>
+{{int:Export}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Exportcuronly&action=edit exportcuronly]<br>
+[[MediaWiki_talk:Exportcuronly|Talk]]
+</td><td>
+Include only the current revision, not the full history
+</td><td>
+{{int:Exportcuronly}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Exporttext&action=edit exporttext]<br>
+[[MediaWiki_talk:Exporttext|Talk]]
+</td><td>
+You can export the text and editing history of a particular
+page or set of pages wrapped in some XML; this can then be imported into another
+wiki running MediaWiki software, transformed, or just kept for your private
+amusement.
+</td><td>
+{{int:Exporttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Extlink_sample&action=edit extlink_sample]<br>
+[[MediaWiki_talk:Extlink_sample|Talk]]
+</td><td>
+http&#58;//www.example.com link title
+</td><td>
+{{int:Extlink_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Extlink_tip&action=edit extlink_tip]<br>
+[[MediaWiki_talk:Extlink_tip|Talk]]
+</td><td>
+External link (remember http&#58;// prefix)
+</td><td>
+{{int:Extlink_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Faq&action=edit faq]<br>
+[[MediaWiki_talk:Faq|Talk]]
+</td><td>
+FAQ
+</td><td>
+{{int:Faq}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Faqpage&action=edit faqpage]<br>
+[[MediaWiki_talk:Faqpage|Talk]]
+</td><td>
+Wiktionary:FAQ
+</td><td>
+{{int:Faqpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Feedlinks&action=edit feedlinks]<br>
+[[MediaWiki_talk:Feedlinks|Talk]]
+</td><td>
+Feed:
+</td><td>
+{{int:Feedlinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filecopyerror&action=edit filecopyerror]<br>
+[[MediaWiki_talk:Filecopyerror|Talk]]
+</td><td>
+Could not copy file &quot;$1&quot; to &quot;$2&quot;.
+</td><td>
+{{int:Filecopyerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filedeleteerror&action=edit filedeleteerror]<br>
+[[MediaWiki_talk:Filedeleteerror|Talk]]
+</td><td>
+Could not delete file &quot;$1&quot;.
+</td><td>
+{{int:Filedeleteerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filedesc&action=edit filedesc]<br>
+[[MediaWiki_talk:Filedesc|Talk]]
+</td><td>
+Summary
+</td><td>
+{{int:Filedesc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filename&action=edit filename]<br>
+[[MediaWiki_talk:Filename|Talk]]
+</td><td>
+Filename
+</td><td>
+{{int:Filename}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filenotfound&action=edit filenotfound]<br>
+[[MediaWiki_talk:Filenotfound|Talk]]
+</td><td>
+Could not find file &quot;$1&quot;.
+</td><td>
+{{int:Filenotfound}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filerenameerror&action=edit filerenameerror]<br>
+[[MediaWiki_talk:Filerenameerror|Talk]]
+</td><td>
+Could not rename file &quot;$1&quot; to &quot;$2&quot;.
+</td><td>
+{{int:Filerenameerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filesource&action=edit filesource]<br>
+[[MediaWiki_talk:Filesource|Talk]]
+</td><td>
+Source
+</td><td>
+{{int:Filesource}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Filestatus&action=edit filestatus]<br>
+[[MediaWiki_talk:Filestatus|Talk]]
+</td><td>
+Copyright status
+</td><td>
+{{int:Filestatus}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Fileuploaded&action=edit fileuploaded]<br>
+[[MediaWiki_talk:Fileuploaded|Talk]]
+</td><td>
+File &quot;$1&quot; uploaded successfully.
+Please follow this link: $2 to the description page and fill
+in information about the file, such as where it came from, when it was
+created and by whom, and anything else you may know about it.
+</td><td>
+{{int:Fileuploaded}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Formerror&action=edit formerror]<br>
+[[MediaWiki_talk:Formerror|Talk]]
+</td><td>
+Error: could not submit form
+</td><td>
+{{int:Formerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Fromwikipedia&action=edit fromwikipedia]<br>
+[[MediaWiki_talk:Fromwikipedia|Talk]]
+</td><td>
+From Wiktionary
+</td><td>
+{{int:Fromwikipedia}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Getimagelist&action=edit getimagelist]<br>
+[[MediaWiki_talk:Getimagelist|Talk]]
+</td><td>
+fetching image list
+</td><td>
+{{int:Getimagelist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Go&action=edit go]<br>
+[[MediaWiki_talk:Go|Talk]]
+</td><td>
+Go
+</td><td>
+{{int:Go}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Googlesearch&action=edit googlesearch]<br>
+[[MediaWiki_talk:Googlesearch|Talk]]
+</td><td>
+
+&lt;!-- SiteSearch Google --&gt;
+&lt;FORM method=GET action=&quot;http&#58;//www.google.com/search&quot;&gt;
+&lt;TABLE bgcolor=&quot;#FFFFFF&quot;&gt;&lt;tr&gt;&lt;td&gt;
+&lt;A HREF=&quot;http&#58;//www.google.com/&quot;&gt;
+&lt;IMG SRC=&quot;http&#58;//www.google.com/logos/Logo_40wht.gif&quot;
+border=&quot;0&quot; ALT=&quot;Google&quot;&gt;&lt;/A&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;INPUT TYPE=text name=q size=31 maxlength=255 value=&quot;$1&quot;&gt;
+&lt;INPUT type=submit name=btnG VALUE=&quot;Google Search&quot;&gt;
+&lt;font size=-1&gt;
+&lt;input type=hidden name=domains value=&quot;http&#58;//tl.wiktionary.org&quot;&gt;&lt;br /&gt;&lt;input type=radio name=sitesearch value=&quot;&quot;&gt; WWW &lt;input type=radio name=sitesearch value=&quot;http&#58;//tl.wiktionary.org&quot; checked&gt; http&#58;//tl.wiktionary.org &lt;br /&gt;
+&lt;input type=&#39;hidden&#39; name=&#39;ie&#39; value=&#39;$2&#39;&gt;
+&lt;input type=&#39;hidden&#39; name=&#39;oe&#39; value=&#39;$2&#39;&gt;
+&lt;/font&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/TABLE&gt;
+&lt;/FORM&gt;
+&lt;!-- SiteSearch Google --&gt;
+</td><td>
+{{int:Googlesearch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Guesstimezone&action=edit guesstimezone]<br>
+[[MediaWiki_talk:Guesstimezone|Talk]]
+</td><td>
+Fill in from browser
+</td><td>
+{{int:Guesstimezone}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Headline_sample&action=edit headline_sample]<br>
+[[MediaWiki_talk:Headline_sample|Talk]]
+</td><td>
+Headline text
+</td><td>
+{{int:Headline_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Headline_tip&action=edit headline_tip]<br>
+[[MediaWiki_talk:Headline_tip|Talk]]
+</td><td>
+Level 2 headline
+</td><td>
+{{int:Headline_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Help&action=edit help]<br>
+[[MediaWiki_talk:Help|Talk]]
+</td><td>
+Help
+</td><td>
+{{int:Help}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Helppage&action=edit helppage]<br>
+[[MediaWiki_talk:Helppage|Talk]]
+</td><td>
+Help:Contents
+</td><td>
+{{int:Helppage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Hide&action=edit hide]<br>
+[[MediaWiki_talk:Hide|Talk]]
+</td><td>
+hide
+</td><td>
+{{int:Hide}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Hidetoc&action=edit hidetoc]<br>
+[[MediaWiki_talk:Hidetoc|Talk]]
+</td><td>
+hide
+</td><td>
+{{int:Hidetoc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Hist&action=edit hist]<br>
+[[MediaWiki_talk:Hist|Talk]]
+</td><td>
+hist
+</td><td>
+{{int:Hist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Histlegend&action=edit histlegend]<br>
+[[MediaWiki_talk:Histlegend|Talk]]
+</td><td>
+Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.&lt;br/&gt;
+Legend: (cur) = difference with current version,
+(last) = difference with preceding version, M = minor edit.
+</td><td>
+{{int:Histlegend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:History&action=edit history]<br>
+[[MediaWiki_talk:History|Talk]]
+</td><td>
+Page history
+</td><td>
+{{int:History}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:History_short&action=edit history_short]<br>
+[[MediaWiki_talk:History_short|Talk]]
+</td><td>
+History
+</td><td>
+{{int:History_short}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Historywarning&action=edit historywarning]<br>
+[[MediaWiki_talk:Historywarning|Talk]]
+</td><td>
+Warning: The page you are about to delete has a history: 
+</td><td>
+{{int:Historywarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Hr_tip&action=edit hr_tip]<br>
+[[MediaWiki_talk:Hr_tip|Talk]]
+</td><td>
+Horizontal line (use sparingly)
+</td><td>
+{{int:Hr_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ignorewarning&action=edit ignorewarning]<br>
+[[MediaWiki_talk:Ignorewarning|Talk]]
+</td><td>
+Ignore warning and save file anyway.
+</td><td>
+{{int:Ignorewarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ilshowmatch&action=edit ilshowmatch]<br>
+[[MediaWiki_talk:Ilshowmatch|Talk]]
+</td><td>
+Show all images with names matching
+</td><td>
+{{int:Ilshowmatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ilsubmit&action=edit ilsubmit]<br>
+[[MediaWiki_talk:Ilsubmit|Talk]]
+</td><td>
+Search
+</td><td>
+{{int:Ilsubmit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Image_sample&action=edit image_sample]<br>
+[[MediaWiki_talk:Image_sample|Talk]]
+</td><td>
+Example.jpg
+</td><td>
+{{int:Image_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Image_tip&action=edit image_tip]<br>
+[[MediaWiki_talk:Image_tip|Talk]]
+</td><td>
+Embedded image
+</td><td>
+{{int:Image_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imagelinks&action=edit imagelinks]<br>
+[[MediaWiki_talk:Imagelinks|Talk]]
+</td><td>
+Image links
+</td><td>
+{{int:Imagelinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imagelist&action=edit imagelist]<br>
+[[MediaWiki_talk:Imagelist|Talk]]
+</td><td>
+Image list
+</td><td>
+{{int:Imagelist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imagelisttext&action=edit imagelisttext]<br>
+[[MediaWiki_talk:Imagelisttext|Talk]]
+</td><td>
+Below is a list of $1 images sorted $2.
+</td><td>
+{{int:Imagelisttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imagepage&action=edit imagepage]<br>
+[[MediaWiki_talk:Imagepage|Talk]]
+</td><td>
+View image page
+</td><td>
+{{int:Imagepage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imagereverted&action=edit imagereverted]<br>
+[[MediaWiki_talk:Imagereverted|Talk]]
+</td><td>
+Revert to earlier version was successful.
+</td><td>
+{{int:Imagereverted}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imgdelete&action=edit imgdelete]<br>
+[[MediaWiki_talk:Imgdelete|Talk]]
+</td><td>
+del
+</td><td>
+{{int:Imgdelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imgdesc&action=edit imgdesc]<br>
+[[MediaWiki_talk:Imgdesc|Talk]]
+</td><td>
+desc
+</td><td>
+{{int:Imgdesc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imghistlegend&action=edit imghistlegend]<br>
+[[MediaWiki_talk:Imghistlegend|Talk]]
+</td><td>
+Legend: (cur) = this is the current image, (del) = delete
+this old version, (rev) = revert to this old version.
+&lt;br /&gt;&lt;i&gt;Click on date to see image uploaded on that date&lt;/i&gt;.
+</td><td>
+{{int:Imghistlegend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imghistory&action=edit imghistory]<br>
+[[MediaWiki_talk:Imghistory|Talk]]
+</td><td>
+Image history
+</td><td>
+{{int:Imghistory}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Imglegend&action=edit imglegend]<br>
+[[MediaWiki_talk:Imglegend|Talk]]
+</td><td>
+Legend: (desc) = show/edit image description.
+</td><td>
+{{int:Imglegend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Import&action=edit import]<br>
+[[MediaWiki_talk:Import|Talk]]
+</td><td>
+Import pages
+</td><td>
+{{int:Import}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Importfailed&action=edit importfailed]<br>
+[[MediaWiki_talk:Importfailed|Talk]]
+</td><td>
+Import failed: $1
+</td><td>
+{{int:Importfailed}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Importhistoryconflict&action=edit importhistoryconflict]<br>
+[[MediaWiki_talk:Importhistoryconflict|Talk]]
+</td><td>
+Conflicting history revision exists (may have imported this page before)
+</td><td>
+{{int:Importhistoryconflict}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Importnotext&action=edit importnotext]<br>
+[[MediaWiki_talk:Importnotext|Talk]]
+</td><td>
+Empty or no text
+</td><td>
+{{int:Importnotext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Importsuccess&action=edit importsuccess]<br>
+[[MediaWiki_talk:Importsuccess|Talk]]
+</td><td>
+Import succeeded!
+</td><td>
+{{int:Importsuccess}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Importtext&action=edit importtext]<br>
+[[MediaWiki_talk:Importtext|Talk]]
+</td><td>
+Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.
+</td><td>
+{{int:Importtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Infobox&action=edit infobox]<br>
+[[MediaWiki_talk:Infobox|Talk]]
+</td><td>
+Click a button to get an example text
+</td><td>
+{{int:Infobox}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Infobox_alert&action=edit infobox_alert]<br>
+[[MediaWiki_talk:Infobox_alert|Talk]]
+</td><td>
+Please enter the text you want to be formatted.\n It will be shown in the infobox for copy and pasting.\nExample:\n$1\nwill become:\n$2
+</td><td>
+{{int:Infobox_alert}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Internalerror&action=edit internalerror]<br>
+[[MediaWiki_talk:Internalerror|Talk]]
+</td><td>
+Internal error
+</td><td>
+{{int:Internalerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Intl&action=edit intl]<br>
+[[MediaWiki_talk:Intl|Talk]]
+</td><td>
+Interlanguage links
+</td><td>
+{{int:Intl}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ip_range_invalid&action=edit ip_range_invalid]<br>
+[[MediaWiki_talk:Ip_range_invalid|Talk]]
+</td><td>
+Invalid IP range.
+
+</td><td>
+{{int:Ip_range_invalid}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipaddress&action=edit ipaddress]<br>
+[[MediaWiki_talk:Ipaddress|Talk]]
+</td><td>
+IP Address/username
+</td><td>
+{{int:Ipaddress}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipb_expiry_invalid&action=edit ipb_expiry_invalid]<br>
+[[MediaWiki_talk:Ipb_expiry_invalid|Talk]]
+</td><td>
+Expiry time invalid.
+</td><td>
+{{int:Ipb_expiry_invalid}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipbexpiry&action=edit ipbexpiry]<br>
+[[MediaWiki_talk:Ipbexpiry|Talk]]
+</td><td>
+Expiry
+</td><td>
+{{int:Ipbexpiry}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipblocklist&action=edit ipblocklist]<br>
+[[MediaWiki_talk:Ipblocklist|Talk]]
+</td><td>
+List of blocked IP addresses and usernames
+</td><td>
+{{int:Ipblocklist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipbreason&action=edit ipbreason]<br>
+[[MediaWiki_talk:Ipbreason|Talk]]
+</td><td>
+Reason
+</td><td>
+{{int:Ipbreason}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipbsubmit&action=edit ipbsubmit]<br>
+[[MediaWiki_talk:Ipbsubmit|Talk]]
+</td><td>
+Block this user
+</td><td>
+{{int:Ipbsubmit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipusubmit&action=edit ipusubmit]<br>
+[[MediaWiki_talk:Ipusubmit|Talk]]
+</td><td>
+Unblock this address
+</td><td>
+{{int:Ipusubmit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ipusuccess&action=edit ipusuccess]<br>
+[[MediaWiki_talk:Ipusuccess|Talk]]
+</td><td>
+&quot;$1&quot; unblocked
+</td><td>
+{{int:Ipusuccess}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Isbn&action=edit isbn]<br>
+[[MediaWiki_talk:Isbn|Talk]]
+</td><td>
+ISBN
+</td><td>
+{{int:Isbn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Isredirect&action=edit isredirect]<br>
+[[MediaWiki_talk:Isredirect|Talk]]
+</td><td>
+redirect page
+</td><td>
+{{int:Isredirect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Italic_sample&action=edit italic_sample]<br>
+[[MediaWiki_talk:Italic_sample|Talk]]
+</td><td>
+Italic text
+</td><td>
+{{int:Italic_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Italic_tip&action=edit italic_tip]<br>
+[[MediaWiki_talk:Italic_tip|Talk]]
+</td><td>
+Italic text
+</td><td>
+{{int:Italic_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Iteminvalidname&action=edit iteminvalidname]<br>
+[[MediaWiki_talk:Iteminvalidname|Talk]]
+</td><td>
+Problem with item &#39;$1&#39;, invalid name...
+</td><td>
+{{int:Iteminvalidname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Largefile&action=edit largefile]<br>
+[[MediaWiki_talk:Largefile|Talk]]
+</td><td>
+It is recommended that images not exceed 100k in size.
+</td><td>
+{{int:Largefile}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Last&action=edit last]<br>
+[[MediaWiki_talk:Last|Talk]]
+</td><td>
+last
+</td><td>
+{{int:Last}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lastmodified&action=edit lastmodified]<br>
+[[MediaWiki_talk:Lastmodified|Talk]]
+</td><td>
+This page was last modified $1.
+</td><td>
+{{int:Lastmodified}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lastmodifiedby&action=edit lastmodifiedby]<br>
+[[MediaWiki_talk:Lastmodifiedby|Talk]]
+</td><td>
+This page was last modified $1 by $2.
+</td><td>
+{{int:Lastmodifiedby}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lineno&action=edit lineno]<br>
+[[MediaWiki_talk:Lineno|Talk]]
+</td><td>
+Line $1:
+</td><td>
+{{int:Lineno}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Link_sample&action=edit link_sample]<br>
+[[MediaWiki_talk:Link_sample|Talk]]
+</td><td>
+Link title
+</td><td>
+{{int:Link_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Link_tip&action=edit link_tip]<br>
+[[MediaWiki_talk:Link_tip|Talk]]
+</td><td>
+Internal link
+</td><td>
+{{int:Link_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Linklistsub&action=edit linklistsub]<br>
+[[MediaWiki_talk:Linklistsub|Talk]]
+</td><td>
+(List of links)
+</td><td>
+{{int:Linklistsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Linkshere&action=edit linkshere]<br>
+[[MediaWiki_talk:Linkshere|Talk]]
+</td><td>
+The following pages link to here:
+</td><td>
+{{int:Linkshere}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Linkstoimage&action=edit linkstoimage]<br>
+[[MediaWiki_talk:Linkstoimage|Talk]]
+</td><td>
+The following pages link to this image:
+</td><td>
+{{int:Linkstoimage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Linktrail&action=edit linktrail]<br>
+[[MediaWiki_talk:Linktrail|Talk]]
+</td><td>
+/^(&#91;a-z]+)(.*)$/sD
+</td><td>
+{{int:Linktrail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Listform&action=edit listform]<br>
+[[MediaWiki_talk:Listform|Talk]]
+</td><td>
+list
+</td><td>
+{{int:Listform}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Listusers&action=edit listusers]<br>
+[[MediaWiki_talk:Listusers|Talk]]
+</td><td>
+User list
+</td><td>
+{{int:Listusers}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loadhist&action=edit loadhist]<br>
+[[MediaWiki_talk:Loadhist|Talk]]
+</td><td>
+Loading page history
+</td><td>
+{{int:Loadhist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loadingrev&action=edit loadingrev]<br>
+[[MediaWiki_talk:Loadingrev|Talk]]
+</td><td>
+loading revision for diff
+</td><td>
+{{int:Loadingrev}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Localtime&action=edit localtime]<br>
+[[MediaWiki_talk:Localtime|Talk]]
+</td><td>
+Local time display
+</td><td>
+{{int:Localtime}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockbtn&action=edit lockbtn]<br>
+[[MediaWiki_talk:Lockbtn|Talk]]
+</td><td>
+Lock database
+</td><td>
+{{int:Lockbtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockconfirm&action=edit lockconfirm]<br>
+[[MediaWiki_talk:Lockconfirm|Talk]]
+</td><td>
+Yes, I really want to lock the database.
+</td><td>
+{{int:Lockconfirm}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockdb&action=edit lockdb]<br>
+[[MediaWiki_talk:Lockdb|Talk]]
+</td><td>
+Lock database
+</td><td>
+{{int:Lockdb}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockdbsuccesssub&action=edit lockdbsuccesssub]<br>
+[[MediaWiki_talk:Lockdbsuccesssub|Talk]]
+</td><td>
+Database lock succeeded
+</td><td>
+{{int:Lockdbsuccesssub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockdbsuccesstext&action=edit lockdbsuccesstext]<br>
+[[MediaWiki_talk:Lockdbsuccesstext|Talk]]
+</td><td>
+The database has been locked.
+&lt;br /&gt;Remember to remove the lock after your maintenance is complete.
+</td><td>
+{{int:Lockdbsuccesstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lockdbtext&action=edit lockdbtext]<br>
+[[MediaWiki_talk:Lockdbtext|Talk]]
+</td><td>
+Locking the database will suspend the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do, and that you will
+unlock the database when your maintenance is done.
+</td><td>
+{{int:Lockdbtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Locknoconfirm&action=edit locknoconfirm]<br>
+[[MediaWiki_talk:Locknoconfirm|Talk]]
+</td><td>
+You did not check the confirmation box.
+</td><td>
+{{int:Locknoconfirm}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Login&action=edit login]<br>
+[[MediaWiki_talk:Login|Talk]]
+</td><td>
+Log in
+</td><td>
+{{int:Login}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginend&action=edit loginend]<br>
+[[MediaWiki_talk:Loginend|Talk]]
+</td><td>
+&amp;nbsp;
+</td><td>
+{{int:Loginend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginerror&action=edit loginerror]<br>
+[[MediaWiki_talk:Loginerror|Talk]]
+</td><td>
+Login error
+</td><td>
+{{int:Loginerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginpagetitle&action=edit loginpagetitle]<br>
+[[MediaWiki_talk:Loginpagetitle|Talk]]
+</td><td>
+User login
+</td><td>
+{{int:Loginpagetitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginproblem&action=edit loginproblem]<br>
+[[MediaWiki_talk:Loginproblem|Talk]]
+</td><td>
+&lt;b&gt;There has been a problem with your login.&lt;/b&gt;&lt;br /&gt;Try again!
+</td><td>
+{{int:Loginproblem}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginprompt&action=edit loginprompt]<br>
+[[MediaWiki_talk:Loginprompt|Talk]]
+</td><td>
+You must have cookies enabled to log in to Wiktionary.
+</td><td>
+{{int:Loginprompt}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginreqtext&action=edit loginreqtext]<br>
+[[MediaWiki_talk:Loginreqtext|Talk]]
+</td><td>
+You must &#91;&#91;special:Userlogin&#124;login]] to view other pages.
+</td><td>
+{{int:Loginreqtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginreqtitle&action=edit loginreqtitle]<br>
+[[MediaWiki_talk:Loginreqtitle|Talk]]
+</td><td>
+Login Required
+</td><td>
+{{int:Loginreqtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginsuccess&action=edit loginsuccess]<br>
+[[MediaWiki_talk:Loginsuccess|Talk]]
+</td><td>
+You are now logged in to Wiktionary as &quot;$1&quot;.
+</td><td>
+{{int:Loginsuccess}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginsuccesstitle&action=edit loginsuccesstitle]<br>
+[[MediaWiki_talk:Loginsuccesstitle|Talk]]
+</td><td>
+Login successful
+</td><td>
+{{int:Loginsuccesstitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Logout&action=edit logout]<br>
+[[MediaWiki_talk:Logout|Talk]]
+</td><td>
+Log out
+</td><td>
+{{int:Logout}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Logouttext&action=edit logouttext]<br>
+[[MediaWiki_talk:Logouttext|Talk]]
+</td><td>
+You are now logged out.
+You can continue to use Wiktionary anonymously, or you can log in
+again as the same or as a different user. Note that some pages may
+continue to be displayed as if you were still logged in, until you clear
+your browser cache
+
+</td><td>
+{{int:Logouttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Logouttitle&action=edit logouttitle]<br>
+[[MediaWiki_talk:Logouttitle|Talk]]
+</td><td>
+User logout
+</td><td>
+{{int:Logouttitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Lonelypages&action=edit lonelypages]<br>
+[[MediaWiki_talk:Lonelypages|Talk]]
+</td><td>
+Orphaned pages
+</td><td>
+{{int:Lonelypages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Longpages&action=edit longpages]<br>
+[[MediaWiki_talk:Longpages|Talk]]
+</td><td>
+Long pages
+</td><td>
+{{int:Longpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Longpagewarning&action=edit longpagewarning]<br>
+[[MediaWiki_talk:Longpagewarning|Talk]]
+</td><td>
+WARNING: This page is $1 kilobytes long; some
+browsers may have problems editing pages approaching or longer than 32kb.
+Please consider breaking the page into smaller sections.
+</td><td>
+{{int:Longpagewarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mailerror&action=edit mailerror]<br>
+[[MediaWiki_talk:Mailerror|Talk]]
+</td><td>
+Error sending mail: $1
+</td><td>
+{{int:Mailerror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mailmypassword&action=edit mailmypassword]<br>
+[[MediaWiki_talk:Mailmypassword|Talk]]
+</td><td>
+Mail me a new password
+</td><td>
+{{int:Mailmypassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mailnologin&action=edit mailnologin]<br>
+[[MediaWiki_talk:Mailnologin|Talk]]
+</td><td>
+No send address
+</td><td>
+{{int:Mailnologin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mailnologintext&action=edit mailnologintext]<br>
+[[MediaWiki_talk:Mailnologintext|Talk]]
+</td><td>
+You must be &lt;a href=&quot;{{localurl:Special:Userlogin&quot;&gt;logged in&lt;/a&gt;
+and have a valid e-mail address in your &lt;a href=&quot;/wiki/Special:Preferences&quot;&gt;preferences&lt;/a&gt;
+to send e-mail to other users.
+</td><td>
+{{int:Mailnologintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mainpage&action=edit mainpage]<br>
+[[MediaWiki_talk:Mainpage|Talk]]
+</td><td>
+Main Page
+</td><td>
+{{int:Mainpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mainpagedocfooter&action=edit mainpagedocfooter]<br>
+[[MediaWiki_talk:Mainpagedocfooter|Talk]]
+</td><td>
+Please see &#91;http&#58;//meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
+and the &#91;http&#58;//meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User&#39;s Guide] for usage and configuration help.
+</td><td>
+{{int:Mainpagedocfooter}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mainpagetext&action=edit mainpagetext]<br>
+[[MediaWiki_talk:Mainpagetext|Talk]]
+</td><td>
+Wiki software successfully installed.
+</td><td>
+{{int:Mainpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Maintenance&action=edit maintenance]<br>
+[[MediaWiki_talk:Maintenance|Talk]]
+</td><td>
+Maintenance page
+</td><td>
+{{int:Maintenance}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Maintenancebacklink&action=edit maintenancebacklink]<br>
+[[MediaWiki_talk:Maintenancebacklink|Talk]]
+</td><td>
+Back to Maintenance Page
+</td><td>
+{{int:Maintenancebacklink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Maintnancepagetext&action=edit maintnancepagetext]<br>
+[[MediaWiki_talk:Maintnancepagetext|Talk]]
+</td><td>
+This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)
+</td><td>
+{{int:Maintnancepagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysop&action=edit makesysop]<br>
+[[MediaWiki_talk:Makesysop|Talk]]
+</td><td>
+Make a user into a sysop
+</td><td>
+{{int:Makesysop}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysopfail&action=edit makesysopfail]<br>
+[[MediaWiki_talk:Makesysopfail|Talk]]
+</td><td>
+&lt;b&gt;User &quot;$1&quot; could not be made into a sysop. (Did you enter the name correctly?)&lt;/b&gt;
+</td><td>
+{{int:Makesysopfail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysopname&action=edit makesysopname]<br>
+[[MediaWiki_talk:Makesysopname|Talk]]
+</td><td>
+Name of the user:
+</td><td>
+{{int:Makesysopname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysopok&action=edit makesysopok]<br>
+[[MediaWiki_talk:Makesysopok|Talk]]
+</td><td>
+&lt;b&gt;User &quot;$1&quot; is now a sysop&lt;/b&gt;
+</td><td>
+{{int:Makesysopok}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysopsubmit&action=edit makesysopsubmit]<br>
+[[MediaWiki_talk:Makesysopsubmit|Talk]]
+</td><td>
+Make this user into a sysop
+</td><td>
+{{int:Makesysopsubmit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysoptext&action=edit makesysoptext]<br>
+[[MediaWiki_talk:Makesysoptext|Talk]]
+</td><td>
+This form is used by bureaucrats to turn ordinary users into administrators. 
+Type the name of the user in the box and press the button to make the user an administrator
+</td><td>
+{{int:Makesysoptext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Makesysoptitle&action=edit makesysoptitle]<br>
+[[MediaWiki_talk:Makesysoptitle|Talk]]
+</td><td>
+Make a user into a sysop
+</td><td>
+{{int:Makesysoptitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Matchtotals&action=edit matchtotals]<br>
+[[MediaWiki_talk:Matchtotals|Talk]]
+</td><td>
+The query &quot;$1&quot; matched $2 page titles
+and the text of $3 pages.
+</td><td>
+{{int:Matchtotals}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math&action=edit math]<br>
+[[MediaWiki_talk:Math|Talk]]
+</td><td>
+Rendering math
+</td><td>
+{{int:Math}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_bad_output&action=edit math_bad_output]<br>
+[[MediaWiki_talk:Math_bad_output|Talk]]
+</td><td>
+Can&#39;t write to or create math output directory
+</td><td>
+{{int:Math_bad_output}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_bad_tmpdir&action=edit math_bad_tmpdir]<br>
+[[MediaWiki_talk:Math_bad_tmpdir|Talk]]
+</td><td>
+Can&#39;t write to or create math temp directory
+</td><td>
+{{int:Math_bad_tmpdir}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_failure&action=edit math_failure]<br>
+[[MediaWiki_talk:Math_failure|Talk]]
+</td><td>
+Failed to parse
+</td><td>
+{{int:Math_failure}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_image_error&action=edit math_image_error]<br>
+[[MediaWiki_talk:Math_image_error|Talk]]
+</td><td>
+PNG conversion failed; check for correct installation of latex, dvips, gs, and convert
+</td><td>
+{{int:Math_image_error}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_lexing_error&action=edit math_lexing_error]<br>
+[[MediaWiki_talk:Math_lexing_error|Talk]]
+</td><td>
+lexing error
+</td><td>
+{{int:Math_lexing_error}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_notexvc&action=edit math_notexvc]<br>
+[[MediaWiki_talk:Math_notexvc|Talk]]
+</td><td>
+Missing texvc executable; please see math/README to configure.
+</td><td>
+{{int:Math_notexvc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_sample&action=edit math_sample]<br>
+[[MediaWiki_talk:Math_sample|Talk]]
+</td><td>
+Insert formula here
+</td><td>
+{{int:Math_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_syntax_error&action=edit math_syntax_error]<br>
+[[MediaWiki_talk:Math_syntax_error|Talk]]
+</td><td>
+syntax error
+</td><td>
+{{int:Math_syntax_error}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_tip&action=edit math_tip]<br>
+[[MediaWiki_talk:Math_tip|Talk]]
+</td><td>
+Mathematical formula (LaTeX)
+</td><td>
+{{int:Math_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_unknown_error&action=edit math_unknown_error]<br>
+[[MediaWiki_talk:Math_unknown_error|Talk]]
+</td><td>
+unknown error
+</td><td>
+{{int:Math_unknown_error}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Math_unknown_function&action=edit math_unknown_function]<br>
+[[MediaWiki_talk:Math_unknown_function|Talk]]
+</td><td>
+unknown function 
+</td><td>
+{{int:Math_unknown_function}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Media_sample&action=edit media_sample]<br>
+[[MediaWiki_talk:Media_sample|Talk]]
+</td><td>
+Example.mp3
+</td><td>
+{{int:Media_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Media_tip&action=edit media_tip]<br>
+[[MediaWiki_talk:Media_tip|Talk]]
+</td><td>
+Media file link
+</td><td>
+{{int:Media_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Minlength&action=edit minlength]<br>
+[[MediaWiki_talk:Minlength|Talk]]
+</td><td>
+Image names must be at least three letters.
+</td><td>
+{{int:Minlength}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Minoredit&action=edit minoredit]<br>
+[[MediaWiki_talk:Minoredit|Talk]]
+</td><td>
+This is a minor edit
+</td><td>
+{{int:Minoredit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Minoreditletter&action=edit minoreditletter]<br>
+[[MediaWiki_talk:Minoreditletter|Talk]]
+</td><td>
+M
+</td><td>
+{{int:Minoreditletter}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mispeelings&action=edit mispeelings]<br>
+[[MediaWiki_talk:Mispeelings|Talk]]
+</td><td>
+Pages with misspellings
+</td><td>
+{{int:Mispeelings}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mispeelingspage&action=edit mispeelingspage]<br>
+[[MediaWiki_talk:Mispeelingspage|Talk]]
+</td><td>
+List of common misspellings
+</td><td>
+{{int:Mispeelingspage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mispeelingstext&action=edit mispeelingstext]<br>
+[[MediaWiki_talk:Mispeelingstext|Talk]]
+</td><td>
+The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).
+</td><td>
+{{int:Mispeelingstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Missingarticle&action=edit missingarticle]<br>
+[[MediaWiki_talk:Missingarticle|Talk]]
+</td><td>
+The database did not find the text of a page
+that it should have found, named &quot;$1&quot;.
+
+&lt;p&gt;This is usually caused by following an outdated diff or history link to a
+page that has been deleted.
+
+&lt;p&gt;If this is not the case, you may have found a bug in the software.
+Please report this to an administrator, making note of the URL.
+</td><td>
+{{int:Missingarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Missingimage&action=edit missingimage]<br>
+[[MediaWiki_talk:Missingimage|Talk]]
+</td><td>
+&lt;b&gt;Missing image&lt;/b&gt;&lt;br /&gt;&lt;i&gt;$1&lt;/i&gt;
+
+</td><td>
+{{int:Missingimage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Missinglanguagelinks&action=edit missinglanguagelinks]<br>
+[[MediaWiki_talk:Missinglanguagelinks|Talk]]
+</td><td>
+Missing Language Links
+</td><td>
+{{int:Missinglanguagelinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Missinglanguagelinksbutton&action=edit missinglanguagelinksbutton]<br>
+[[MediaWiki_talk:Missinglanguagelinksbutton|Talk]]
+</td><td>
+Find missing language links for
+</td><td>
+{{int:Missinglanguagelinksbutton}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Missinglanguagelinkstext&action=edit missinglanguagelinkstext]<br>
+[[MediaWiki_talk:Missinglanguagelinkstext|Talk]]
+</td><td>
+These pages do &lt;i&gt;not&lt;/i&gt; link to their counterpart in $1. Redirects and subpages are &lt;i&gt;not&lt;/i&gt; shown.
+</td><td>
+{{int:Missinglanguagelinkstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Moredotdotdot&action=edit moredotdotdot]<br>
+[[MediaWiki_talk:Moredotdotdot|Talk]]
+</td><td>
+More...
+</td><td>
+{{int:Moredotdotdot}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Move&action=edit move]<br>
+[[MediaWiki_talk:Move|Talk]]
+</td><td>
+Move
+</td><td>
+{{int:Move}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movearticle&action=edit movearticle]<br>
+[[MediaWiki_talk:Movearticle|Talk]]
+</td><td>
+Move page
+</td><td>
+{{int:Movearticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movedto&action=edit movedto]<br>
+[[MediaWiki_talk:Movedto|Talk]]
+</td><td>
+moved to
+</td><td>
+{{int:Movedto}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movenologin&action=edit movenologin]<br>
+[[MediaWiki_talk:Movenologin|Talk]]
+</td><td>
+Not logged in
+</td><td>
+{{int:Movenologin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movenologintext&action=edit movenologintext]<br>
+[[MediaWiki_talk:Movenologintext|Talk]]
+</td><td>
+You must be a registered user and &lt;a href=&quot;/wiki/Special:Userlogin&quot;&gt;logged in&lt;/a&gt;
+to move a page.
+</td><td>
+{{int:Movenologintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movepage&action=edit movepage]<br>
+[[MediaWiki_talk:Movepage|Talk]]
+</td><td>
+Move page
+</td><td>
+{{int:Movepage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movepagebtn&action=edit movepagebtn]<br>
+[[MediaWiki_talk:Movepagebtn|Talk]]
+</td><td>
+Move page
+</td><td>
+{{int:Movepagebtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movepagetalktext&action=edit movepagetalktext]<br>
+[[MediaWiki_talk:Movepagetalktext|Talk]]
+</td><td>
+The associated talk page, if any, will be automatically moved along with it &#39;&#39;&#39;unless:&#39;&#39;&#39;
+*You are moving the page across namespaces,
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired.
+</td><td>
+{{int:Movepagetalktext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movepagetext&action=edit movepagetext]<br>
+[[MediaWiki_talk:Movepagetext|Talk]]
+</td><td>
+Using the form below will rename a page, moving all
+of its history to the new name.
+The old title will become a redirect page to the new title.
+Links to the old page title will not be changed; be sure to
+&#91;&#91;Special:Maintenance&#124;check]] for double or broken redirects.
+You are responsible for making sure that links continue to
+point where they are supposed to go.
+
+Note that the page will &#39;&#39;&#39;not&#39;&#39;&#39; be moved if there is already
+a page at the new title, unless it is empty or a redirect and has no
+past edit history. This means that you can rename a page back to where
+it was just renamed from if you make a mistake, and you cannot overwrite
+an existing page.
+
+&lt;b&gt;WARNING!&lt;/b&gt;
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before
+proceeding.
+</td><td>
+{{int:Movepagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movetalk&action=edit movetalk]<br>
+[[MediaWiki_talk:Movetalk|Talk]]
+</td><td>
+Move &quot;talk&quot; page as well, if applicable.
+</td><td>
+{{int:Movetalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Movethispage&action=edit movethispage]<br>
+[[MediaWiki_talk:Movethispage|Talk]]
+</td><td>
+Move this page
+</td><td>
+{{int:Movethispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mycontris&action=edit mycontris]<br>
+[[MediaWiki_talk:Mycontris|Talk]]
+</td><td>
+My contributions
+</td><td>
+{{int:Mycontris}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mypage&action=edit mypage]<br>
+[[MediaWiki_talk:Mypage|Talk]]
+</td><td>
+My page
+</td><td>
+{{int:Mypage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Mytalk&action=edit mytalk]<br>
+[[MediaWiki_talk:Mytalk|Talk]]
+</td><td>
+My talk
+</td><td>
+{{int:Mytalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Navigation&action=edit navigation]<br>
+[[MediaWiki_talk:Navigation|Talk]]
+</td><td>
+Navigation
+</td><td>
+{{int:Navigation}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nbytes&action=edit nbytes]<br>
+[[MediaWiki_talk:Nbytes|Talk]]
+</td><td>
+$1 bytes
+</td><td>
+{{int:Nbytes}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nchanges&action=edit nchanges]<br>
+[[MediaWiki_talk:Nchanges|Talk]]
+</td><td>
+$1 changes
+</td><td>
+{{int:Nchanges}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newarticle&action=edit newarticle]<br>
+[[MediaWiki_talk:Newarticle|Talk]]
+</td><td>
+(New)
+</td><td>
+{{int:Newarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newarticletext&action=edit newarticletext]<br>
+[[MediaWiki_talk:Newarticletext|Talk]]
+</td><td>
+You&#39;ve followed a link to a page that doesn&#39;t exist yet.
+To create the page, start typing in the box below 
+(see the &#91;&#91;Wiktionary:Help&#124;help page]] for more info).
+If you are here by mistake, just click your browser&#39;s &#39;&#39;&#39;back&#39;&#39;&#39; button.
+</td><td>
+{{int:Newarticletext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newmessages&action=edit newmessages]<br>
+[[MediaWiki_talk:Newmessages|Talk]]
+</td><td>
+You have $1.
+</td><td>
+{{int:Newmessages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newmessageslink&action=edit newmessageslink]<br>
+[[MediaWiki_talk:Newmessageslink|Talk]]
+</td><td>
+new messages
+</td><td>
+{{int:Newmessageslink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newpage&action=edit newpage]<br>
+[[MediaWiki_talk:Newpage|Talk]]
+</td><td>
+New page
+</td><td>
+{{int:Newpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newpageletter&action=edit newpageletter]<br>
+[[MediaWiki_talk:Newpageletter|Talk]]
+</td><td>
+N
+</td><td>
+{{int:Newpageletter}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newpages&action=edit newpages]<br>
+[[MediaWiki_talk:Newpages|Talk]]
+</td><td>
+New pages
+</td><td>
+{{int:Newpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newpassword&action=edit newpassword]<br>
+[[MediaWiki_talk:Newpassword|Talk]]
+</td><td>
+New password
+</td><td>
+{{int:Newpassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newtitle&action=edit newtitle]<br>
+[[MediaWiki_talk:Newtitle|Talk]]
+</td><td>
+To new title
+</td><td>
+{{int:Newtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Newusersonly&action=edit newusersonly]<br>
+[[MediaWiki_talk:Newusersonly|Talk]]
+</td><td>
+ (new users only)
+</td><td>
+{{int:Newusersonly}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Next&action=edit next]<br>
+[[MediaWiki_talk:Next|Talk]]
+</td><td>
+next
+</td><td>
+{{int:Next}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nextn&action=edit nextn]<br>
+[[MediaWiki_talk:Nextn|Talk]]
+</td><td>
+next $1
+</td><td>
+{{int:Nextn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nlinks&action=edit nlinks]<br>
+[[MediaWiki_talk:Nlinks|Talk]]
+</td><td>
+$1 links
+</td><td>
+{{int:Nlinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noaffirmation&action=edit noaffirmation]<br>
+[[MediaWiki_talk:Noaffirmation|Talk]]
+</td><td>
+You must affirm that your upload does not violate
+any copyrights.
+</td><td>
+{{int:Noaffirmation}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noarticletext&action=edit noarticletext]<br>
+[[MediaWiki_talk:Noarticletext|Talk]]
+</td><td>
+(There is currently no text in this page)
+</td><td>
+{{int:Noarticletext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noblockreason&action=edit noblockreason]<br>
+[[MediaWiki_talk:Noblockreason|Talk]]
+</td><td>
+You must supply a reason for the block.
+</td><td>
+{{int:Noblockreason}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noconnect&action=edit noconnect]<br>
+[[MediaWiki_talk:Noconnect|Talk]]
+</td><td>
+Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.
+</td><td>
+{{int:Noconnect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nocontribs&action=edit nocontribs]<br>
+[[MediaWiki_talk:Nocontribs|Talk]]
+</td><td>
+No changes were found matching these criteria.
+</td><td>
+{{int:Nocontribs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nocookieslogin&action=edit nocookieslogin]<br>
+[[MediaWiki_talk:Nocookieslogin|Talk]]
+</td><td>
+Wiktionary uses cookies to log in users. You have cookies disabled. Please enable them and try again.
+</td><td>
+{{int:Nocookieslogin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nocookiesnew&action=edit nocookiesnew]<br>
+[[MediaWiki_talk:Nocookiesnew|Talk]]
+</td><td>
+The user account was created, but you are not logged in. Wiktionary uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.
+</td><td>
+{{int:Nocookiesnew}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nocreativecommons&action=edit nocreativecommons]<br>
+[[MediaWiki_talk:Nocreativecommons|Talk]]
+</td><td>
+Creative Commons RDF metadata disabled for this server.
+</td><td>
+{{int:Nocreativecommons}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nodb&action=edit nodb]<br>
+[[MediaWiki_talk:Nodb|Talk]]
+</td><td>
+Could not select database $1
+</td><td>
+{{int:Nodb}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nodublincore&action=edit nodublincore]<br>
+[[MediaWiki_talk:Nodublincore|Talk]]
+</td><td>
+Dublin Core RDF metadata disabled for this server.
+</td><td>
+{{int:Nodublincore}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noemail&action=edit noemail]<br>
+[[MediaWiki_talk:Noemail|Talk]]
+</td><td>
+There is no e-mail address recorded for user &quot;$1&quot;.
+</td><td>
+{{int:Noemail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noemailtext&action=edit noemailtext]<br>
+[[MediaWiki_talk:Noemailtext|Talk]]
+</td><td>
+This user has not specified a valid e-mail address,
+or has chosen not to receive e-mail from other users.
+</td><td>
+{{int:Noemailtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noemailtitle&action=edit noemailtitle]<br>
+[[MediaWiki_talk:Noemailtitle|Talk]]
+</td><td>
+No e-mail address
+</td><td>
+{{int:Noemailtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nogomatch&action=edit nogomatch]<br>
+[[MediaWiki_talk:Nogomatch|Talk]]
+</td><td>
+No page with this exact title exists, trying full text search.
+</td><td>
+{{int:Nogomatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nohistory&action=edit nohistory]<br>
+[[MediaWiki_talk:Nohistory|Talk]]
+</td><td>
+There is no edit history for this page.
+</td><td>
+{{int:Nohistory}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nolinkshere&action=edit nolinkshere]<br>
+[[MediaWiki_talk:Nolinkshere|Talk]]
+</td><td>
+No pages link to here.
+</td><td>
+{{int:Nolinkshere}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nolinkstoimage&action=edit nolinkstoimage]<br>
+[[MediaWiki_talk:Nolinkstoimage|Talk]]
+</td><td>
+There are no pages that link to this image.
+</td><td>
+{{int:Nolinkstoimage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Noname&action=edit noname]<br>
+[[MediaWiki_talk:Noname|Talk]]
+</td><td>
+You have not specified a valid user name.
+</td><td>
+{{int:Noname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nonefound&action=edit nonefound]<br>
+[[MediaWiki_talk:Nonefound|Talk]]
+</td><td>
+&lt;strong&gt;Note&lt;/strong&gt;: unsuccessful searches are
+often caused by searching for common words like &quot;have&quot; and &quot;from&quot;,
+which are not indexed, or by specifying more than one search term (only pages
+containing all of the search terms will appear in the result).
+</td><td>
+{{int:Nonefound}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nospecialpagetext&action=edit nospecialpagetext]<br>
+[[MediaWiki_talk:Nospecialpagetext|Talk]]
+</td><td>
+You have requested a special page that is not
+recognized by the wiki.
+</td><td>
+{{int:Nospecialpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nosuchaction&action=edit nosuchaction]<br>
+[[MediaWiki_talk:Nosuchaction|Talk]]
+</td><td>
+No such action
+</td><td>
+{{int:Nosuchaction}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nosuchactiontext&action=edit nosuchactiontext]<br>
+[[MediaWiki_talk:Nosuchactiontext|Talk]]
+</td><td>
+The action specified by the URL is not
+recognized by the wiki
+</td><td>
+{{int:Nosuchactiontext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nosuchspecialpage&action=edit nosuchspecialpage]<br>
+[[MediaWiki_talk:Nosuchspecialpage|Talk]]
+</td><td>
+No such special page
+</td><td>
+{{int:Nosuchspecialpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nosuchuser&action=edit nosuchuser]<br>
+[[MediaWiki_talk:Nosuchuser|Talk]]
+</td><td>
+There is no user by the name &quot;$1&quot;.
+Check your spelling, or use the form below to create a new user account.
+</td><td>
+{{int:Nosuchuser}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notacceptable&action=edit notacceptable]<br>
+[[MediaWiki_talk:Notacceptable|Talk]]
+</td><td>
+The wiki server can&#39;t provide data in a format your client can read.
+</td><td>
+{{int:Notacceptable}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notanarticle&action=edit notanarticle]<br>
+[[MediaWiki_talk:Notanarticle|Talk]]
+</td><td>
+Not a content page
+</td><td>
+{{int:Notanarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notargettext&action=edit notargettext]<br>
+[[MediaWiki_talk:Notargettext|Talk]]
+</td><td>
+You have not specified a target page or user
+to perform this function on.
+</td><td>
+{{int:Notargettext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notargettitle&action=edit notargettitle]<br>
+[[MediaWiki_talk:Notargettitle|Talk]]
+</td><td>
+No target
+</td><td>
+{{int:Notargettitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Note&action=edit note]<br>
+[[MediaWiki_talk:Note|Talk]]
+</td><td>
+&lt;strong&gt;Note:&lt;/strong&gt; 
+</td><td>
+{{int:Note}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notextmatches&action=edit notextmatches]<br>
+[[MediaWiki_talk:Notextmatches|Talk]]
+</td><td>
+No page text matches
+</td><td>
+{{int:Notextmatches}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notitlematches&action=edit notitlematches]<br>
+[[MediaWiki_talk:Notitlematches|Talk]]
+</td><td>
+No page title matches
+</td><td>
+{{int:Notitlematches}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Notloggedin&action=edit notloggedin]<br>
+[[MediaWiki_talk:Notloggedin|Talk]]
+</td><td>
+Not logged in
+</td><td>
+{{int:Notloggedin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nowatchlist&action=edit nowatchlist]<br>
+[[MediaWiki_talk:Nowatchlist|Talk]]
+</td><td>
+You have no items on your watchlist.
+</td><td>
+{{int:Nowatchlist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nowiki_sample&action=edit nowiki_sample]<br>
+[[MediaWiki_talk:Nowiki_sample|Talk]]
+</td><td>
+Insert non-formatted text here
+</td><td>
+{{int:Nowiki_sample}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nowiki_tip&action=edit nowiki_tip]<br>
+[[MediaWiki_talk:Nowiki_tip|Talk]]
+</td><td>
+Ignore wiki formatting
+</td><td>
+{{int:Nowiki_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-category&action=edit nstab-category]<br>
+[[MediaWiki_talk:Nstab-category|Talk]]
+</td><td>
+Category
+</td><td>
+{{int:Nstab-category}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-help&action=edit nstab-help]<br>
+[[MediaWiki_talk:Nstab-help|Talk]]
+</td><td>
+Help
+</td><td>
+{{int:Nstab-help}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-image&action=edit nstab-image]<br>
+[[MediaWiki_talk:Nstab-image|Talk]]
+</td><td>
+Image
+</td><td>
+{{int:Nstab-image}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-main&action=edit nstab-main]<br>
+[[MediaWiki_talk:Nstab-main|Talk]]
+</td><td>
+Article
+</td><td>
+{{int:Nstab-main}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-media&action=edit nstab-media]<br>
+[[MediaWiki_talk:Nstab-media|Talk]]
+</td><td>
+Media
+</td><td>
+{{int:Nstab-media}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-mediawiki&action=edit nstab-mediawiki]<br>
+[[MediaWiki_talk:Nstab-mediawiki|Talk]]
+</td><td>
+Message
+</td><td>
+{{int:Nstab-mediawiki}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-special&action=edit nstab-special]<br>
+[[MediaWiki_talk:Nstab-special|Talk]]
+</td><td>
+Special
+</td><td>
+{{int:Nstab-special}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-template&action=edit nstab-template]<br>
+[[MediaWiki_talk:Nstab-template|Talk]]
+</td><td>
+Template
+</td><td>
+{{int:Nstab-template}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-user&action=edit nstab-user]<br>
+[[MediaWiki_talk:Nstab-user|Talk]]
+</td><td>
+User page
+</td><td>
+{{int:Nstab-user}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nstab-wp&action=edit nstab-wp]<br>
+[[MediaWiki_talk:Nstab-wp|Talk]]
+</td><td>
+About
+</td><td>
+{{int:Nstab-wp}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nviews&action=edit nviews]<br>
+[[MediaWiki_talk:Nviews|Talk]]
+</td><td>
+$1 views
+</td><td>
+{{int:Nviews}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ok&action=edit ok]<br>
+[[MediaWiki_talk:Ok|Talk]]
+</td><td>
+OK
+</td><td>
+{{int:Ok}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Oldpassword&action=edit oldpassword]<br>
+[[MediaWiki_talk:Oldpassword|Talk]]
+</td><td>
+Old password
+</td><td>
+{{int:Oldpassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Orig&action=edit orig]<br>
+[[MediaWiki_talk:Orig|Talk]]
+</td><td>
+orig
+</td><td>
+{{int:Orig}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Orphans&action=edit orphans]<br>
+[[MediaWiki_talk:Orphans|Talk]]
+</td><td>
+Orphaned pages
+</td><td>
+{{int:Orphans}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Othercontribs&action=edit othercontribs]<br>
+[[MediaWiki_talk:Othercontribs|Talk]]
+</td><td>
+Based on work by $1.
+</td><td>
+{{int:Othercontribs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Otherlanguages&action=edit otherlanguages]<br>
+[[MediaWiki_talk:Otherlanguages|Talk]]
+</td><td>
+Other languages
+</td><td>
+{{int:Otherlanguages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Pagemovedsub&action=edit pagemovedsub]<br>
+[[MediaWiki_talk:Pagemovedsub|Talk]]
+</td><td>
+Move succeeded
+</td><td>
+{{int:Pagemovedsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Pagemovedtext&action=edit pagemovedtext]<br>
+[[MediaWiki_talk:Pagemovedtext|Talk]]
+</td><td>
+Page &quot;&#91;&#91;$1]]&quot; moved to &quot;&#91;&#91;$2]]&quot;.
+</td><td>
+{{int:Pagemovedtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Pagetitle&action=edit pagetitle]<br>
+[[MediaWiki_talk:Pagetitle|Talk]]
+</td><td>
+$1 - Wiktionary
+</td><td>
+{{int:Pagetitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Passwordremindertext&action=edit passwordremindertext]<br>
+[[MediaWiki_talk:Passwordremindertext|Talk]]
+</td><td>
+Someone (probably you, from IP address $1)
+requested that we send you a new Wiktionary login password.
+The password for user &quot;$2&quot; is now &quot;$3&quot;.
+You should log in and change your password now.
+</td><td>
+{{int:Passwordremindertext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Passwordremindertitle&action=edit passwordremindertitle]<br>
+[[MediaWiki_talk:Passwordremindertitle|Talk]]
+</td><td>
+Password reminder from Wiktionary
+</td><td>
+{{int:Passwordremindertitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Passwordsent&action=edit passwordsent]<br>
+[[MediaWiki_talk:Passwordsent|Talk]]
+</td><td>
+A new password has been sent to the e-mail address
+registered for &quot;$1&quot;.
+Please log in again after you receive it.
+</td><td>
+{{int:Passwordsent}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Perfcached&action=edit perfcached]<br>
+[[MediaWiki_talk:Perfcached|Talk]]
+</td><td>
+The following data is cached and may not be completely up to date:
+</td><td>
+{{int:Perfcached}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Perfdisabled&action=edit perfdisabled]<br>
+[[MediaWiki_talk:Perfdisabled|Talk]]
+</td><td>
+Sorry! This feature has been temporarily disabled
+because it slows the database down to the point that no one can use
+the wiki.
+</td><td>
+{{int:Perfdisabled}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Perfdisabledsub&action=edit perfdisabledsub]<br>
+[[MediaWiki_talk:Perfdisabledsub|Talk]]
+</td><td>
+Here&#39;s a saved copy from $1:
+</td><td>
+{{int:Perfdisabledsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Personaltools&action=edit personaltools]<br>
+[[MediaWiki_talk:Personaltools|Talk]]
+</td><td>
+Personal tools
+</td><td>
+{{int:Personaltools}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Popularpages&action=edit popularpages]<br>
+[[MediaWiki_talk:Popularpages|Talk]]
+</td><td>
+Popular pages
+</td><td>
+{{int:Popularpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Portal&action=edit portal]<br>
+[[MediaWiki_talk:Portal|Talk]]
+</td><td>
+Community portal
+</td><td>
+{{int:Portal}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Portal-url&action=edit portal-url]<br>
+[[MediaWiki_talk:Portal-url|Talk]]
+</td><td>
+Wiktionary:Community Portal
+</td><td>
+{{int:Portal-url}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Postcomment&action=edit postcomment]<br>
+[[MediaWiki_talk:Postcomment|Talk]]
+</td><td>
+Post a comment
+</td><td>
+{{int:Postcomment}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Poweredby&action=edit poweredby]<br>
+[[MediaWiki_talk:Poweredby|Talk]]
+</td><td>
+Wiktionary is powered by &#91;http&#58;//www.mediawiki.org/ MediaWiki], an open source wiki engine.
+</td><td>
+{{int:Poweredby}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Powersearch&action=edit powersearch]<br>
+[[MediaWiki_talk:Powersearch|Talk]]
+</td><td>
+Search
+</td><td>
+{{int:Powersearch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Powersearchtext&action=edit powersearchtext]<br>
+[[MediaWiki_talk:Powersearchtext|Talk]]
+</td><td>
+
+Search in namespaces :&lt;br /&gt;
+$1&lt;br /&gt;
+$2 List redirects &amp;nbsp; Search for $3 $9
+</td><td>
+{{int:Powersearchtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Preferences&action=edit preferences]<br>
+[[MediaWiki_talk:Preferences|Talk]]
+</td><td>
+Preferences
+</td><td>
+{{int:Preferences}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefs-help-userdata&action=edit prefs-help-userdata]<br>
+[[MediaWiki_talk:Prefs-help-userdata|Talk]]
+</td><td>
+* &lt;strong&gt;Real name&lt;/strong&gt; (optional): if you choose to provide it this will be used for giving you attribution for your work.&lt;br/&gt;
+* &lt;strong&gt;Email&lt;/strong&gt; (optional): Enables people to contact you through the website without you having to reveal your 
+email address to them, and it can be used to send you a new password if you forget it.
+</td><td>
+{{int:Prefs-help-userdata}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefs-misc&action=edit prefs-misc]<br>
+[[MediaWiki_talk:Prefs-misc|Talk]]
+</td><td>
+Misc settings
+</td><td>
+{{int:Prefs-misc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefs-personal&action=edit prefs-personal]<br>
+[[MediaWiki_talk:Prefs-personal|Talk]]
+</td><td>
+User data
+</td><td>
+{{int:Prefs-personal}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefs-rc&action=edit prefs-rc]<br>
+[[MediaWiki_talk:Prefs-rc|Talk]]
+</td><td>
+Recent changes and stub display
+</td><td>
+{{int:Prefs-rc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefslogintext&action=edit prefslogintext]<br>
+[[MediaWiki_talk:Prefslogintext|Talk]]
+</td><td>
+You are logged in as &quot;$1&quot;.
+Your internal ID number is $2.
+
+See &#91;&#91;Wiktionary:User preferences help]] for help deciphering the options.
+</td><td>
+{{int:Prefslogintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefsnologin&action=edit prefsnologin]<br>
+[[MediaWiki_talk:Prefsnologin|Talk]]
+</td><td>
+Not logged in
+</td><td>
+{{int:Prefsnologin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefsnologintext&action=edit prefsnologintext]<br>
+[[MediaWiki_talk:Prefsnologintext|Talk]]
+</td><td>
+You must be &lt;a href=&quot;/wiki/Special:Userlogin&quot;&gt;logged in&lt;/a&gt;
+to set user preferences.
+</td><td>
+{{int:Prefsnologintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prefsreset&action=edit prefsreset]<br>
+[[MediaWiki_talk:Prefsreset|Talk]]
+</td><td>
+Preferences have been reset from storage.
+</td><td>
+{{int:Prefsreset}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Preview&action=edit preview]<br>
+[[MediaWiki_talk:Preview|Talk]]
+</td><td>
+Preview
+</td><td>
+{{int:Preview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Previewconflict&action=edit previewconflict]<br>
+[[MediaWiki_talk:Previewconflict|Talk]]
+</td><td>
+This preview reflects the text in the upper
+text editing area as it will appear if you choose to save.
+</td><td>
+{{int:Previewconflict}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Previewnote&action=edit previewnote]<br>
+[[MediaWiki_talk:Previewnote|Talk]]
+</td><td>
+Remember that this is only a preview, and has not yet been saved!
+</td><td>
+{{int:Previewnote}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Prevn&action=edit prevn]<br>
+[[MediaWiki_talk:Prevn|Talk]]
+</td><td>
+previous $1
+</td><td>
+{{int:Prevn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Printableversion&action=edit printableversion]<br>
+[[MediaWiki_talk:Printableversion|Talk]]
+</td><td>
+Printable version
+</td><td>
+{{int:Printableversion}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Printsubtitle&action=edit printsubtitle]<br>
+[[MediaWiki_talk:Printsubtitle|Talk]]
+</td><td>
+(From http&#58;//tl.wiktionary.org)
+</td><td>
+{{int:Printsubtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protect&action=edit protect]<br>
+[[MediaWiki_talk:Protect|Talk]]
+</td><td>
+Protect
+</td><td>
+{{int:Protect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectcomment&action=edit protectcomment]<br>
+[[MediaWiki_talk:Protectcomment|Talk]]
+</td><td>
+Reason for protecting
+</td><td>
+{{int:Protectcomment}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectedarticle&action=edit protectedarticle]<br>
+[[MediaWiki_talk:Protectedarticle|Talk]]
+</td><td>
+protected &#91;&#91;$1]]
+</td><td>
+{{int:Protectedarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectedpage&action=edit protectedpage]<br>
+[[MediaWiki_talk:Protectedpage|Talk]]
+</td><td>
+Protected page
+</td><td>
+{{int:Protectedpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectedpagewarning&action=edit protectedpagewarning]<br>
+[[MediaWiki_talk:Protectedpagewarning|Talk]]
+</td><td>
+WARNING:  This page has been locked so that only
+users with sysop privileges can edit it. Be sure you are following the
+&lt;a href=&#39;/w/wiki.phtml/Wiktionary:Protected_page_guidelines&#39;&gt;protected page
+guidelines&lt;/a&gt;.
+</td><td>
+{{int:Protectedpagewarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectedtext&action=edit protectedtext]<br>
+[[MediaWiki_talk:Protectedtext|Talk]]
+</td><td>
+This page has been locked to prevent editing; there are
+a number of reasons why this may be so, please see
+&#91;&#91;Wiktionary:Protected page]].
+
+You can view and copy the source of this page:
+</td><td>
+{{int:Protectedtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectlogpage&action=edit protectlogpage]<br>
+[[MediaWiki_talk:Protectlogpage|Talk]]
+</td><td>
+Protection_log
+</td><td>
+{{int:Protectlogpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectlogtext&action=edit protectlogtext]<br>
+[[MediaWiki_talk:Protectlogtext|Talk]]
+</td><td>
+Below is a list of page locks/unlocks.
+See &#91;&#91;Wiktionary:Protected page]] for more information.
+</td><td>
+{{int:Protectlogtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectpage&action=edit protectpage]<br>
+[[MediaWiki_talk:Protectpage|Talk]]
+</td><td>
+Protect page
+</td><td>
+{{int:Protectpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectreason&action=edit protectreason]<br>
+[[MediaWiki_talk:Protectreason|Talk]]
+</td><td>
+(give a reason)
+</td><td>
+{{int:Protectreason}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectsub&action=edit protectsub]<br>
+[[MediaWiki_talk:Protectsub|Talk]]
+</td><td>
+(Protecting &quot;$1&quot;)
+</td><td>
+{{int:Protectsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Protectthispage&action=edit protectthispage]<br>
+[[MediaWiki_talk:Protectthispage|Talk]]
+</td><td>
+Protect this page
+</td><td>
+{{int:Protectthispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Proxyblocker&action=edit proxyblocker]<br>
+[[MediaWiki_talk:Proxyblocker|Talk]]
+</td><td>
+Proxy blocker
+</td><td>
+{{int:Proxyblocker}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Proxyblockreason&action=edit proxyblockreason]<br>
+[[MediaWiki_talk:Proxyblockreason|Talk]]
+</td><td>
+Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
+</td><td>
+{{int:Proxyblockreason}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Proxyblocksuccess&action=edit proxyblocksuccess]<br>
+[[MediaWiki_talk:Proxyblocksuccess|Talk]]
+</td><td>
+Done.
+
+</td><td>
+{{int:Proxyblocksuccess}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbbrowse&action=edit qbbrowse]<br>
+[[MediaWiki_talk:Qbbrowse|Talk]]
+</td><td>
+Browse
+</td><td>
+{{int:Qbbrowse}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbedit&action=edit qbedit]<br>
+[[MediaWiki_talk:Qbedit|Talk]]
+</td><td>
+Edit
+</td><td>
+{{int:Qbedit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbfind&action=edit qbfind]<br>
+[[MediaWiki_talk:Qbfind|Talk]]
+</td><td>
+Find
+</td><td>
+{{int:Qbfind}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbmyoptions&action=edit qbmyoptions]<br>
+[[MediaWiki_talk:Qbmyoptions|Talk]]
+</td><td>
+My pages
+</td><td>
+{{int:Qbmyoptions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbpageinfo&action=edit qbpageinfo]<br>
+[[MediaWiki_talk:Qbpageinfo|Talk]]
+</td><td>
+Context
+</td><td>
+{{int:Qbpageinfo}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbpageoptions&action=edit qbpageoptions]<br>
+[[MediaWiki_talk:Qbpageoptions|Talk]]
+</td><td>
+This page
+</td><td>
+{{int:Qbpageoptions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbsettings&action=edit qbsettings]<br>
+[[MediaWiki_talk:Qbsettings|Talk]]
+</td><td>
+Quickbar settings
+</td><td>
+{{int:Qbsettings}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Qbspecialpages&action=edit qbspecialpages]<br>
+[[MediaWiki_talk:Qbspecialpages|Talk]]
+</td><td>
+Special pages
+</td><td>
+{{int:Qbspecialpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Querybtn&action=edit querybtn]<br>
+[[MediaWiki_talk:Querybtn|Talk]]
+</td><td>
+Submit query
+</td><td>
+{{int:Querybtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Querysuccessful&action=edit querysuccessful]<br>
+[[MediaWiki_talk:Querysuccessful|Talk]]
+</td><td>
+Query successful
+</td><td>
+{{int:Querysuccessful}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Randompage&action=edit randompage]<br>
+[[MediaWiki_talk:Randompage|Talk]]
+</td><td>
+Random page
+</td><td>
+{{int:Randompage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Range_block_disabled&action=edit range_block_disabled]<br>
+[[MediaWiki_talk:Range_block_disabled|Talk]]
+</td><td>
+The sysop ability to create range blocks is disabled.
+</td><td>
+{{int:Range_block_disabled}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rchide&action=edit rchide]<br>
+[[MediaWiki_talk:Rchide|Talk]]
+</td><td>
+in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.
+</td><td>
+{{int:Rchide}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rclinks&action=edit rclinks]<br>
+[[MediaWiki_talk:Rclinks|Talk]]
+</td><td>
+Show last $1 changes in last $2 days&lt;br /&gt;$3
+</td><td>
+{{int:Rclinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rclistfrom&action=edit rclistfrom]<br>
+[[MediaWiki_talk:Rclistfrom|Talk]]
+</td><td>
+Show new changes starting from $1
+</td><td>
+{{int:Rclistfrom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rcliu&action=edit rcliu]<br>
+[[MediaWiki_talk:Rcliu|Talk]]
+</td><td>
+; $1 edits from logged in users
+</td><td>
+{{int:Rcliu}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rcloaderr&action=edit rcloaderr]<br>
+[[MediaWiki_talk:Rcloaderr|Talk]]
+</td><td>
+Loading recent changes
+</td><td>
+{{int:Rcloaderr}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rclsub&action=edit rclsub]<br>
+[[MediaWiki_talk:Rclsub|Talk]]
+</td><td>
+(to pages linked from &quot;$1&quot;)
+</td><td>
+{{int:Rclsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rcnote&action=edit rcnote]<br>
+[[MediaWiki_talk:Rcnote|Talk]]
+</td><td>
+Below are the last &lt;strong&gt;$1&lt;/strong&gt; changes in last &lt;strong&gt;$2&lt;/strong&gt; days.
+</td><td>
+{{int:Rcnote}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rcnotefrom&action=edit rcnotefrom]<br>
+[[MediaWiki_talk:Rcnotefrom|Talk]]
+</td><td>
+Below are the changes since &lt;b&gt;$2&lt;/b&gt; (up to &lt;b&gt;$1&lt;/b&gt; shown).
+</td><td>
+{{int:Rcnotefrom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Readonly&action=edit readonly]<br>
+[[MediaWiki_talk:Readonly|Talk]]
+</td><td>
+Database locked
+</td><td>
+{{int:Readonly}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Readonlytext&action=edit readonlytext]<br>
+[[MediaWiki_talk:Readonlytext|Talk]]
+</td><td>
+The database is currently locked to new
+entries and other modifications, probably for routine database maintenance,
+after which it will be back to normal.
+The administrator who locked it offered this explanation:
+&lt;p&gt;$1
+</td><td>
+{{int:Readonlytext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Readonlywarning&action=edit readonlywarning]<br>
+[[MediaWiki_talk:Readonlywarning|Talk]]
+</td><td>
+WARNING: The database has been locked for maintenance,
+so you will not be able to save your edits right now. You may wish to cut-n-paste
+the text into a text file and save it for later.
+</td><td>
+{{int:Readonlywarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Recentchanges&action=edit recentchanges]<br>
+[[MediaWiki_talk:Recentchanges|Talk]]
+</td><td>
+Recent changes
+</td><td>
+{{int:Recentchanges}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Recentchangescount&action=edit recentchangescount]<br>
+[[MediaWiki_talk:Recentchangescount|Talk]]
+</td><td>
+Number of titles in recent changes
+</td><td>
+{{int:Recentchangescount}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Recentchangeslinked&action=edit recentchangeslinked]<br>
+[[MediaWiki_talk:Recentchangeslinked|Talk]]
+</td><td>
+Related changes
+</td><td>
+{{int:Recentchangeslinked}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Recentchangestext&action=edit recentchangestext]<br>
+[[MediaWiki_talk:Recentchangestext|Talk]]
+</td><td>
+Track the most recent changes to the wiki on this page.
+</td><td>
+{{int:Recentchangestext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Redirectedfrom&action=edit redirectedfrom]<br>
+[[MediaWiki_talk:Redirectedfrom|Talk]]
+</td><td>
+(Redirected from $1)
+</td><td>
+{{int:Redirectedfrom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Remembermypassword&action=edit remembermypassword]<br>
+[[MediaWiki_talk:Remembermypassword|Talk]]
+</td><td>
+Remember my password across sessions.
+</td><td>
+{{int:Remembermypassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Removechecked&action=edit removechecked]<br>
+[[MediaWiki_talk:Removechecked|Talk]]
+</td><td>
+Remove checked items from watchlist
+</td><td>
+{{int:Removechecked}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Removedwatch&action=edit removedwatch]<br>
+[[MediaWiki_talk:Removedwatch|Talk]]
+</td><td>
+Removed from watchlist
+</td><td>
+{{int:Removedwatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Removedwatchtext&action=edit removedwatchtext]<br>
+[[MediaWiki_talk:Removedwatchtext|Talk]]
+</td><td>
+The page &quot;$1&quot; has been removed from your watchlist.
+</td><td>
+{{int:Removedwatchtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Removingchecked&action=edit removingchecked]<br>
+[[MediaWiki_talk:Removingchecked|Talk]]
+</td><td>
+Removing requested items from watchlist...
+</td><td>
+{{int:Removingchecked}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Resetprefs&action=edit resetprefs]<br>
+[[MediaWiki_talk:Resetprefs|Talk]]
+</td><td>
+Reset preferences
+</td><td>
+{{int:Resetprefs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Restorelink&action=edit restorelink]<br>
+[[MediaWiki_talk:Restorelink|Talk]]
+</td><td>
+$1 deleted edits
+</td><td>
+{{int:Restorelink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Resultsperpage&action=edit resultsperpage]<br>
+[[MediaWiki_talk:Resultsperpage|Talk]]
+</td><td>
+Hits to show per page
+</td><td>
+{{int:Resultsperpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Retrievedfrom&action=edit retrievedfrom]<br>
+[[MediaWiki_talk:Retrievedfrom|Talk]]
+</td><td>
+Retrieved from &quot;$1&quot;
+</td><td>
+{{int:Retrievedfrom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Returnto&action=edit returnto]<br>
+[[MediaWiki_talk:Returnto|Talk]]
+</td><td>
+Return to $1.
+</td><td>
+{{int:Returnto}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Retypenew&action=edit retypenew]<br>
+[[MediaWiki_talk:Retypenew|Talk]]
+</td><td>
+Retype new password
+</td><td>
+{{int:Retypenew}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Reupload&action=edit reupload]<br>
+[[MediaWiki_talk:Reupload|Talk]]
+</td><td>
+Re-upload
+</td><td>
+{{int:Reupload}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Reuploaddesc&action=edit reuploaddesc]<br>
+[[MediaWiki_talk:Reuploaddesc|Talk]]
+</td><td>
+Return to the upload form.
+</td><td>
+{{int:Reuploaddesc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Reverted&action=edit reverted]<br>
+[[MediaWiki_talk:Reverted|Talk]]
+</td><td>
+Reverted to earlier revision
+</td><td>
+{{int:Reverted}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revertimg&action=edit revertimg]<br>
+[[MediaWiki_talk:Revertimg|Talk]]
+</td><td>
+rev
+</td><td>
+{{int:Revertimg}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revertpage&action=edit revertpage]<br>
+[[MediaWiki_talk:Revertpage|Talk]]
+</td><td>
+Reverted edit of $2, changed back to last version by $1
+</td><td>
+{{int:Revertpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revhistory&action=edit revhistory]<br>
+[[MediaWiki_talk:Revhistory|Talk]]
+</td><td>
+Revision history
+</td><td>
+{{int:Revhistory}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revisionasof&action=edit revisionasof]<br>
+[[MediaWiki_talk:Revisionasof|Talk]]
+</td><td>
+Revision as of $1
+</td><td>
+{{int:Revisionasof}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revnotfound&action=edit revnotfound]<br>
+[[MediaWiki_talk:Revnotfound|Talk]]
+</td><td>
+Revision not found
+</td><td>
+{{int:Revnotfound}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Revnotfoundtext&action=edit revnotfoundtext]<br>
+[[MediaWiki_talk:Revnotfoundtext|Talk]]
+</td><td>
+The old revision of the page you asked for could not be found.
+Please check the URL you used to access this page.
+
+</td><td>
+{{int:Revnotfoundtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rfcurl&action=edit rfcurl]<br>
+[[MediaWiki_talk:Rfcurl|Talk]]
+</td><td>
+http&#58;//www.faqs.org/rfcs/rfc$1.html
+</td><td>
+{{int:Rfcurl}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rights&action=edit rights]<br>
+[[MediaWiki_talk:Rights|Talk]]
+</td><td>
+Rights:
+</td><td>
+{{int:Rights}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rollback&action=edit rollback]<br>
+[[MediaWiki_talk:Rollback|Talk]]
+</td><td>
+Roll back edits
+</td><td>
+{{int:Rollback}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rollback_short&action=edit rollback_short]<br>
+[[MediaWiki_talk:Rollback_short|Talk]]
+</td><td>
+Rollback
+</td><td>
+{{int:Rollback_short}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rollbackfailed&action=edit rollbackfailed]<br>
+[[MediaWiki_talk:Rollbackfailed|Talk]]
+</td><td>
+Rollback failed
+</td><td>
+{{int:Rollbackfailed}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rollbacklink&action=edit rollbacklink]<br>
+[[MediaWiki_talk:Rollbacklink|Talk]]
+</td><td>
+rollback
+</td><td>
+{{int:Rollbacklink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Rows&action=edit rows]<br>
+[[MediaWiki_talk:Rows|Talk]]
+</td><td>
+Rows
+</td><td>
+{{int:Rows}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Savearticle&action=edit savearticle]<br>
+[[MediaWiki_talk:Savearticle|Talk]]
+</td><td>
+Save page
+</td><td>
+{{int:Savearticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Savedprefs&action=edit savedprefs]<br>
+[[MediaWiki_talk:Savedprefs|Talk]]
+</td><td>
+Your preferences have been saved.
+</td><td>
+{{int:Savedprefs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Savefile&action=edit savefile]<br>
+[[MediaWiki_talk:Savefile|Talk]]
+</td><td>
+Save file
+</td><td>
+{{int:Savefile}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Saveprefs&action=edit saveprefs]<br>
+[[MediaWiki_talk:Saveprefs|Talk]]
+</td><td>
+Save preferences
+</td><td>
+{{int:Saveprefs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Search&action=edit search]<br>
+[[MediaWiki_talk:Search|Talk]]
+</td><td>
+Search
+</td><td>
+{{int:Search}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchdisabled&action=edit searchdisabled]<br>
+[[MediaWiki_talk:Searchdisabled|Talk]]
+</td><td>
+&lt;p&gt;Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.&lt;/p&gt;
+</td><td>
+{{int:Searchdisabled}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchhelppage&action=edit searchhelppage]<br>
+[[MediaWiki_talk:Searchhelppage|Talk]]
+</td><td>
+Wiktionary:Searching
+</td><td>
+{{int:Searchhelppage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchingwikipedia&action=edit searchingwikipedia]<br>
+[[MediaWiki_talk:Searchingwikipedia|Talk]]
+</td><td>
+Searching Wiktionary
+</td><td>
+{{int:Searchingwikipedia}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchquery&action=edit searchquery]<br>
+[[MediaWiki_talk:Searchquery|Talk]]
+</td><td>
+For query &quot;$1&quot;
+</td><td>
+{{int:Searchquery}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchresults&action=edit searchresults]<br>
+[[MediaWiki_talk:Searchresults|Talk]]
+</td><td>
+Search results
+</td><td>
+{{int:Searchresults}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchresultshead&action=edit searchresultshead]<br>
+[[MediaWiki_talk:Searchresultshead|Talk]]
+</td><td>
+Search result settings
+</td><td>
+{{int:Searchresultshead}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Searchresulttext&action=edit searchresulttext]<br>
+[[MediaWiki_talk:Searchresulttext|Talk]]
+</td><td>
+For more information about searching Wiktionary, see $1.
+</td><td>
+{{int:Searchresulttext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sectionedit&action=edit sectionedit]<br>
+[[MediaWiki_talk:Sectionedit|Talk]]
+</td><td>
+ (section)
+</td><td>
+{{int:Sectionedit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Selectnewerversionfordiff&action=edit selectnewerversionfordiff]<br>
+[[MediaWiki_talk:Selectnewerversionfordiff|Talk]]
+</td><td>
+Select a newer version for comparison
+</td><td>
+{{int:Selectnewerversionfordiff}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Selectolderversionfordiff&action=edit selectolderversionfordiff]<br>
+[[MediaWiki_talk:Selectolderversionfordiff|Talk]]
+</td><td>
+Select an older version for comparison
+</td><td>
+{{int:Selectolderversionfordiff}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Selectonly&action=edit selectonly]<br>
+[[MediaWiki_talk:Selectonly|Talk]]
+</td><td>
+Only read-only queries are allowed.
+</td><td>
+{{int:Selectonly}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Selflinks&action=edit selflinks]<br>
+[[MediaWiki_talk:Selflinks|Talk]]
+</td><td>
+Pages with Self Links
+</td><td>
+{{int:Selflinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Selflinkstext&action=edit selflinkstext]<br>
+[[MediaWiki_talk:Selflinkstext|Talk]]
+</td><td>
+The following pages contain a link to themselves, which they should not.
+</td><td>
+{{int:Selflinkstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Seriousxhtmlerrors&action=edit seriousxhtmlerrors]<br>
+[[MediaWiki_talk:Seriousxhtmlerrors|Talk]]
+</td><td>
+There were serious xhtml markup errors detected by tidy.
+</td><td>
+{{int:Seriousxhtmlerrors}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Servertime&action=edit servertime]<br>
+[[MediaWiki_talk:Servertime|Talk]]
+</td><td>
+Server time is now
+</td><td>
+{{int:Servertime}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Set_rights_fail&action=edit set_rights_fail]<br>
+[[MediaWiki_talk:Set_rights_fail|Talk]]
+</td><td>
+&lt;b&gt;User rights for &quot;$1&quot; could not be set. (Did you enter the name correctly?)&lt;/b&gt;
+</td><td>
+{{int:Set_rights_fail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Set_user_rights&action=edit set_user_rights]<br>
+[[MediaWiki_talk:Set_user_rights|Talk]]
+</td><td>
+Set user rights
+</td><td>
+{{int:Set_user_rights}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Setbureaucratflag&action=edit setbureaucratflag]<br>
+[[MediaWiki_talk:Setbureaucratflag|Talk]]
+</td><td>
+Set bureaucrat flag
+</td><td>
+{{int:Setbureaucratflag}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Shortpages&action=edit shortpages]<br>
+[[MediaWiki_talk:Shortpages|Talk]]
+</td><td>
+Short pages
+</td><td>
+{{int:Shortpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Show&action=edit show]<br>
+[[MediaWiki_talk:Show|Talk]]
+</td><td>
+show
+</td><td>
+{{int:Show}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showhideminor&action=edit showhideminor]<br>
+[[MediaWiki_talk:Showhideminor|Talk]]
+</td><td>
+$1 minor edits &#124; $2 bots &#124; $3 logged in users 
+</td><td>
+{{int:Showhideminor}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showingresults&action=edit showingresults]<br>
+[[MediaWiki_talk:Showingresults|Talk]]
+</td><td>
+Showing below &lt;b&gt;$1&lt;/b&gt; results starting with #&lt;b&gt;$2&lt;/b&gt;.
+</td><td>
+{{int:Showingresults}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showingresultsnum&action=edit showingresultsnum]<br>
+[[MediaWiki_talk:Showingresultsnum|Talk]]
+</td><td>
+Showing below &lt;b&gt;$3&lt;/b&gt; results starting with #&lt;b&gt;$2&lt;/b&gt;.
+</td><td>
+{{int:Showingresultsnum}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showlast&action=edit showlast]<br>
+[[MediaWiki_talk:Showlast|Talk]]
+</td><td>
+Show last $1 images sorted $2.
+</td><td>
+{{int:Showlast}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showpreview&action=edit showpreview]<br>
+[[MediaWiki_talk:Showpreview|Talk]]
+</td><td>
+Show preview
+</td><td>
+{{int:Showpreview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Showtoc&action=edit showtoc]<br>
+[[MediaWiki_talk:Showtoc|Talk]]
+</td><td>
+show
+</td><td>
+{{int:Showtoc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sig_tip&action=edit sig_tip]<br>
+[[MediaWiki_talk:Sig_tip|Talk]]
+</td><td>
+Your signature with timestamp
+</td><td>
+{{int:Sig_tip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sitestats&action=edit sitestats]<br>
+[[MediaWiki_talk:Sitestats|Talk]]
+</td><td>
+Site statistics
+</td><td>
+{{int:Sitestats}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sitestatstext&action=edit sitestatstext]<br>
+[[MediaWiki_talk:Sitestatstext|Talk]]
+</td><td>
+There are &#39;&#39;&#39;$1&#39;&#39;&#39; total pages in the database.
+This includes &quot;talk&quot; pages, pages about Wiktionary, minimal &quot;stub&quot;
+pages, redirects, and others that probably don&#39;t qualify as content pages.
+Excluding those, there are &#39;&#39;&#39;$2&#39;&#39;&#39; pages that are probably legitimate
+content pages.
+
+There have been a total of &#39;&#39;&#39;$3&#39;&#39;&#39; page views, and &#39;&#39;&#39;$4&#39;&#39;&#39; page edits
+since the wiki was setup.
+That comes to &#39;&#39;&#39;$5&#39;&#39;&#39; average edits per page, and &#39;&#39;&#39;$6&#39;&#39;&#39; views per edit.
+</td><td>
+{{int:Sitestatstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sitesubtitle&action=edit sitesubtitle]<br>
+[[MediaWiki_talk:Sitesubtitle|Talk]]
+</td><td>
+The Free Encyclopedia
+</td><td>
+{{int:Sitesubtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sitesupport&action=edit sitesupport]<br>
+[[MediaWiki_talk:Sitesupport|Talk]]
+</td><td>
+Donations
+</td><td>
+{{int:Sitesupport}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sitetitle&action=edit sitetitle]<br>
+[[MediaWiki_talk:Sitetitle|Talk]]
+</td><td>
+Wiktionary
+</td><td>
+{{int:Sitetitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Siteuser&action=edit siteuser]<br>
+[[MediaWiki_talk:Siteuser|Talk]]
+</td><td>
+Wiktionary user $1
+</td><td>
+{{int:Siteuser}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Siteusers&action=edit siteusers]<br>
+[[MediaWiki_talk:Siteusers|Talk]]
+</td><td>
+Wiktionary user(s) $1
+</td><td>
+{{int:Siteusers}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Skin&action=edit skin]<br>
+[[MediaWiki_talk:Skin|Talk]]
+</td><td>
+Skin
+</td><td>
+{{int:Skin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Spamprotectiontext&action=edit spamprotectiontext]<br>
+[[MediaWiki_talk:Spamprotectiontext|Talk]]
+</td><td>
+The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+
+You might want to check the following regular expression for patterns that are currently blocked:
+</td><td>
+{{int:Spamprotectiontext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Spamprotectiontitle&action=edit spamprotectiontitle]<br>
+[[MediaWiki_talk:Spamprotectiontitle|Talk]]
+</td><td>
+Spam protection filter
+</td><td>
+{{int:Spamprotectiontitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Specialpage&action=edit specialpage]<br>
+[[MediaWiki_talk:Specialpage|Talk]]
+</td><td>
+Special Page
+</td><td>
+{{int:Specialpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Specialpages&action=edit specialpages]<br>
+[[MediaWiki_talk:Specialpages|Talk]]
+</td><td>
+Special pages
+</td><td>
+{{int:Specialpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Spheading&action=edit spheading]<br>
+[[MediaWiki_talk:Spheading|Talk]]
+</td><td>
+Special pages for all users
+</td><td>
+{{int:Spheading}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sqlislogged&action=edit sqlislogged]<br>
+[[MediaWiki_talk:Sqlislogged|Talk]]
+</td><td>
+Please note that all queries are logged.
+</td><td>
+{{int:Sqlislogged}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sqlquery&action=edit sqlquery]<br>
+[[MediaWiki_talk:Sqlquery|Talk]]
+</td><td>
+Enter query
+</td><td>
+{{int:Sqlquery}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Statistics&action=edit statistics]<br>
+[[MediaWiki_talk:Statistics|Talk]]
+</td><td>
+Statistics
+</td><td>
+{{int:Statistics}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Storedversion&action=edit storedversion]<br>
+[[MediaWiki_talk:Storedversion|Talk]]
+</td><td>
+Stored version
+</td><td>
+{{int:Storedversion}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Stubthreshold&action=edit stubthreshold]<br>
+[[MediaWiki_talk:Stubthreshold|Talk]]
+</td><td>
+Threshold for stub display
+</td><td>
+{{int:Stubthreshold}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Subcategories&action=edit subcategories]<br>
+[[MediaWiki_talk:Subcategories|Talk]]
+</td><td>
+Subcategories
+</td><td>
+{{int:Subcategories}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Subject&action=edit subject]<br>
+[[MediaWiki_talk:Subject|Talk]]
+</td><td>
+Subject/headline
+</td><td>
+{{int:Subject}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Subjectpage&action=edit subjectpage]<br>
+[[MediaWiki_talk:Subjectpage|Talk]]
+</td><td>
+View subject
+</td><td>
+{{int:Subjectpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Successfulupload&action=edit successfulupload]<br>
+[[MediaWiki_talk:Successfulupload|Talk]]
+</td><td>
+Successful upload
+</td><td>
+{{int:Successfulupload}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Summary&action=edit summary]<br>
+[[MediaWiki_talk:Summary|Talk]]
+</td><td>
+Summary
+</td><td>
+{{int:Summary}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sysopspheading&action=edit sysopspheading]<br>
+[[MediaWiki_talk:Sysopspheading|Talk]]
+</td><td>
+For sysop use only
+</td><td>
+{{int:Sysopspheading}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sysoptext&action=edit sysoptext]<br>
+[[MediaWiki_talk:Sysoptext|Talk]]
+</td><td>
+The action you have requested can only be
+performed by users with &quot;sysop&quot; status.
+See $1.
+</td><td>
+{{int:Sysoptext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Sysoptitle&action=edit sysoptitle]<br>
+[[MediaWiki_talk:Sysoptitle|Talk]]
+</td><td>
+Sysop access required
+</td><td>
+{{int:Sysoptitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tableform&action=edit tableform]<br>
+[[MediaWiki_talk:Tableform|Talk]]
+</td><td>
+table
+</td><td>
+{{int:Tableform}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talk&action=edit talk]<br>
+[[MediaWiki_talk:Talk|Talk]]
+</td><td>
+Discussion
+</td><td>
+{{int:Talk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talkexists&action=edit talkexists]<br>
+[[MediaWiki_talk:Talkexists|Talk]]
+</td><td>
+The page itself was moved successfully, but the
+talk page could not be moved because one already exists at the new
+title. Please merge them manually.
+</td><td>
+{{int:Talkexists}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talkpage&action=edit talkpage]<br>
+[[MediaWiki_talk:Talkpage|Talk]]
+</td><td>
+Discuss this page
+</td><td>
+{{int:Talkpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talkpagemoved&action=edit talkpagemoved]<br>
+[[MediaWiki_talk:Talkpagemoved|Talk]]
+</td><td>
+The corresponding talk page was also moved.
+</td><td>
+{{int:Talkpagemoved}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talkpagenotmoved&action=edit talkpagenotmoved]<br>
+[[MediaWiki_talk:Talkpagenotmoved|Talk]]
+</td><td>
+The corresponding talk page was &lt;strong&gt;not&lt;/strong&gt; moved.
+</td><td>
+{{int:Talkpagenotmoved}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Talkpagetext&action=edit talkpagetext]<br>
+[[MediaWiki_talk:Talkpagetext|Talk]]
+</td><td>
+&lt;!-- MediaWiki:talkpagetext --&gt;
+</td><td>
+{{int:Talkpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Textboxsize&action=edit textboxsize]<br>
+[[MediaWiki_talk:Textboxsize|Talk]]
+</td><td>
+Textbox dimensions
+</td><td>
+{{int:Textboxsize}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Textmatches&action=edit textmatches]<br>
+[[MediaWiki_talk:Textmatches|Talk]]
+</td><td>
+Page text matches
+</td><td>
+{{int:Textmatches}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Thisisdeleted&action=edit thisisdeleted]<br>
+[[MediaWiki_talk:Thisisdeleted|Talk]]
+</td><td>
+View or restore $1?
+</td><td>
+{{int:Thisisdeleted}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Thumbnail-more&action=edit thumbnail-more]<br>
+[[MediaWiki_talk:Thumbnail-more|Talk]]
+</td><td>
+Enlarge
+</td><td>
+{{int:Thumbnail-more}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Timezonelegend&action=edit timezonelegend]<br>
+[[MediaWiki_talk:Timezonelegend|Talk]]
+</td><td>
+Time zone
+</td><td>
+{{int:Timezonelegend}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Timezoneoffset&action=edit timezoneoffset]<br>
+[[MediaWiki_talk:Timezoneoffset|Talk]]
+</td><td>
+Offset
+</td><td>
+{{int:Timezoneoffset}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Timezonetext&action=edit timezonetext]<br>
+[[MediaWiki_talk:Timezonetext|Talk]]
+</td><td>
+Enter number of hours your local time differs
+from server time (UTC).
+</td><td>
+{{int:Timezonetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Titlematches&action=edit titlematches]<br>
+[[MediaWiki_talk:Titlematches|Talk]]
+</td><td>
+Article title matches
+</td><td>
+{{int:Titlematches}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Toc&action=edit toc]<br>
+[[MediaWiki_talk:Toc|Talk]]
+</td><td>
+Table of contents
+</td><td>
+{{int:Toc}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Toolbox&action=edit toolbox]<br>
+[[MediaWiki_talk:Toolbox|Talk]]
+</td><td>
+Toolbox
+</td><td>
+{{int:Toolbox}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-addsection&action=edit tooltip-addsection]<br>
+[[MediaWiki_talk:Tooltip-addsection|Talk]]
+</td><td>
+Add a comment to this page. &#91;alt-+]
+</td><td>
+{{int:Tooltip-addsection}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-anontalk&action=edit tooltip-anontalk]<br>
+[[MediaWiki_talk:Tooltip-anontalk|Talk]]
+</td><td>
+Discussion about edits from this ip address &#91;alt-n]
+</td><td>
+{{int:Tooltip-anontalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-anonuserpage&action=edit tooltip-anonuserpage]<br>
+[[MediaWiki_talk:Tooltip-anonuserpage|Talk]]
+</td><td>
+The user page for the ip you&#39;re editing as &#91;alt-.]
+</td><td>
+{{int:Tooltip-anonuserpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-article&action=edit tooltip-article]<br>
+[[MediaWiki_talk:Tooltip-article|Talk]]
+</td><td>
+View the content page &#91;alt-a]
+</td><td>
+{{int:Tooltip-article}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-atom&action=edit tooltip-atom]<br>
+[[MediaWiki_talk:Tooltip-atom|Talk]]
+</td><td>
+Atom feed for this page
+</td><td>
+{{int:Tooltip-atom}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-compareselectedversions&action=edit tooltip-compareselectedversions]<br>
+[[MediaWiki_talk:Tooltip-compareselectedversions|Talk]]
+</td><td>
+See the differences between the two selected versions of this page. &#91;alt-v]
+</td><td>
+{{int:Tooltip-compareselectedversions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-contributions&action=edit tooltip-contributions]<br>
+[[MediaWiki_talk:Tooltip-contributions|Talk]]
+</td><td>
+View the list of contributions of this user
+</td><td>
+{{int:Tooltip-contributions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-currentevents&action=edit tooltip-currentevents]<br>
+[[MediaWiki_talk:Tooltip-currentevents|Talk]]
+</td><td>
+Find background information on current events
+</td><td>
+{{int:Tooltip-currentevents}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-delete&action=edit tooltip-delete]<br>
+[[MediaWiki_talk:Tooltip-delete|Talk]]
+</td><td>
+Delete this page &#91;alt-d]
+</td><td>
+{{int:Tooltip-delete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-edit&action=edit tooltip-edit]<br>
+[[MediaWiki_talk:Tooltip-edit|Talk]]
+</td><td>
+You can edit this page. Please use the preview button before saving. &#91;alt-e]
+</td><td>
+{{int:Tooltip-edit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-emailuser&action=edit tooltip-emailuser]<br>
+[[MediaWiki_talk:Tooltip-emailuser|Talk]]
+</td><td>
+Send a mail to this user
+</td><td>
+{{int:Tooltip-emailuser}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-help&action=edit tooltip-help]<br>
+[[MediaWiki_talk:Tooltip-help|Talk]]
+</td><td>
+The place to find out.
+</td><td>
+{{int:Tooltip-help}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-history&action=edit tooltip-history]<br>
+[[MediaWiki_talk:Tooltip-history|Talk]]
+</td><td>
+Past versions of this page, &#91;alt-h]
+</td><td>
+{{int:Tooltip-history}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-login&action=edit tooltip-login]<br>
+[[MediaWiki_talk:Tooltip-login|Talk]]
+</td><td>
+You are encouraged to log in, it is not mandatory however. &#91;alt-o]
+</td><td>
+{{int:Tooltip-login}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-logout&action=edit tooltip-logout]<br>
+[[MediaWiki_talk:Tooltip-logout|Talk]]
+</td><td>
+Log out &#91;alt-o]
+</td><td>
+{{int:Tooltip-logout}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-mainpage&action=edit tooltip-mainpage]<br>
+[[MediaWiki_talk:Tooltip-mainpage|Talk]]
+</td><td>
+Visit the Main Page &#91;alt-z]
+</td><td>
+{{int:Tooltip-mainpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-minoredit&action=edit tooltip-minoredit]<br>
+[[MediaWiki_talk:Tooltip-minoredit|Talk]]
+</td><td>
+Mark this as a minor edit &#91;alt-i]
+</td><td>
+{{int:Tooltip-minoredit}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-move&action=edit tooltip-move]<br>
+[[MediaWiki_talk:Tooltip-move|Talk]]
+</td><td>
+Move this page &#91;alt-m]
+</td><td>
+{{int:Tooltip-move}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-mycontris&action=edit tooltip-mycontris]<br>
+[[MediaWiki_talk:Tooltip-mycontris|Talk]]
+</td><td>
+List of my contributions &#91;alt-y]
+</td><td>
+{{int:Tooltip-mycontris}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-mytalk&action=edit tooltip-mytalk]<br>
+[[MediaWiki_talk:Tooltip-mytalk|Talk]]
+</td><td>
+My talk page &#91;alt-n]
+</td><td>
+{{int:Tooltip-mytalk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-nomove&action=edit tooltip-nomove]<br>
+[[MediaWiki_talk:Tooltip-nomove|Talk]]
+</td><td>
+You don&#39;t have the permissions to move this page
+</td><td>
+{{int:Tooltip-nomove}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-portal&action=edit tooltip-portal]<br>
+[[MediaWiki_talk:Tooltip-portal|Talk]]
+</td><td>
+About the project, what you can do, where to find things
+</td><td>
+{{int:Tooltip-portal}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-preferences&action=edit tooltip-preferences]<br>
+[[MediaWiki_talk:Tooltip-preferences|Talk]]
+</td><td>
+My preferences
+</td><td>
+{{int:Tooltip-preferences}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-preview&action=edit tooltip-preview]<br>
+[[MediaWiki_talk:Tooltip-preview|Talk]]
+</td><td>
+Preview your changes, please use this before saving! &#91;alt-p]
+</td><td>
+{{int:Tooltip-preview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-protect&action=edit tooltip-protect]<br>
+[[MediaWiki_talk:Tooltip-protect|Talk]]
+</td><td>
+Protect this page &#91;alt-=]
+</td><td>
+{{int:Tooltip-protect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-randompage&action=edit tooltip-randompage]<br>
+[[MediaWiki_talk:Tooltip-randompage|Talk]]
+</td><td>
+Load a random page &#91;alt-x]
+</td><td>
+{{int:Tooltip-randompage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-recentchanges&action=edit tooltip-recentchanges]<br>
+[[MediaWiki_talk:Tooltip-recentchanges|Talk]]
+</td><td>
+The list of recent changes in the wiki. &#91;alt-r]
+</td><td>
+{{int:Tooltip-recentchanges}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-recentchangeslinked&action=edit tooltip-recentchangeslinked]<br>
+[[MediaWiki_talk:Tooltip-recentchangeslinked|Talk]]
+</td><td>
+Recent changes in pages linking to this page &#91;alt-c]
+</td><td>
+{{int:Tooltip-recentchangeslinked}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-rss&action=edit tooltip-rss]<br>
+[[MediaWiki_talk:Tooltip-rss|Talk]]
+</td><td>
+RSS feed for this page
+</td><td>
+{{int:Tooltip-rss}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-save&action=edit tooltip-save]<br>
+[[MediaWiki_talk:Tooltip-save|Talk]]
+</td><td>
+Save your changes &#91;alt-s]
+</td><td>
+{{int:Tooltip-save}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-search&action=edit tooltip-search]<br>
+[[MediaWiki_talk:Tooltip-search|Talk]]
+</td><td>
+Search this wiki &#91;alt-f]
+</td><td>
+{{int:Tooltip-search}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-sitesupport&action=edit tooltip-sitesupport]<br>
+[[MediaWiki_talk:Tooltip-sitesupport|Talk]]
+</td><td>
+Support Wiktionary
+</td><td>
+{{int:Tooltip-sitesupport}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-specialpage&action=edit tooltip-specialpage]<br>
+[[MediaWiki_talk:Tooltip-specialpage|Talk]]
+</td><td>
+This is a special page, you can&#39;t edit the page itself.
+</td><td>
+{{int:Tooltip-specialpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-specialpages&action=edit tooltip-specialpages]<br>
+[[MediaWiki_talk:Tooltip-specialpages|Talk]]
+</td><td>
+List of all special pages &#91;alt-q]
+</td><td>
+{{int:Tooltip-specialpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-talk&action=edit tooltip-talk]<br>
+[[MediaWiki_talk:Tooltip-talk|Talk]]
+</td><td>
+Discussion about the content page &#91;alt-t]
+</td><td>
+{{int:Tooltip-talk}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-undelete&action=edit tooltip-undelete]<br>
+[[MediaWiki_talk:Tooltip-undelete|Talk]]
+</td><td>
+Restore the $1 edits done to this page before it was deleted &#91;alt-d]
+</td><td>
+{{int:Tooltip-undelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-unwatch&action=edit tooltip-unwatch]<br>
+[[MediaWiki_talk:Tooltip-unwatch|Talk]]
+</td><td>
+Remove this page from your watchlist &#91;alt-w]
+</td><td>
+{{int:Tooltip-unwatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-upload&action=edit tooltip-upload]<br>
+[[MediaWiki_talk:Tooltip-upload|Talk]]
+</td><td>
+Upload images or media files &#91;alt-u]
+</td><td>
+{{int:Tooltip-upload}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-userpage&action=edit tooltip-userpage]<br>
+[[MediaWiki_talk:Tooltip-userpage|Talk]]
+</td><td>
+My user page &#91;alt-.]
+</td><td>
+{{int:Tooltip-userpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-viewsource&action=edit tooltip-viewsource]<br>
+[[MediaWiki_talk:Tooltip-viewsource|Talk]]
+</td><td>
+This page is protected. You can view its source. &#91;alt-e]
+</td><td>
+{{int:Tooltip-viewsource}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-watch&action=edit tooltip-watch]<br>
+[[MediaWiki_talk:Tooltip-watch|Talk]]
+</td><td>
+Add this page to your watchlist &#91;alt-w]
+</td><td>
+{{int:Tooltip-watch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-watchlist&action=edit tooltip-watchlist]<br>
+[[MediaWiki_talk:Tooltip-watchlist|Talk]]
+</td><td>
+The list of pages you&#39;re monitoring for changes. &#91;alt-l]
+</td><td>
+{{int:Tooltip-watchlist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Tooltip-whatlinkshere&action=edit tooltip-whatlinkshere]<br>
+[[MediaWiki_talk:Tooltip-whatlinkshere|Talk]]
+</td><td>
+List of all wiki pages that link here &#91;alt-b]
+</td><td>
+{{int:Tooltip-whatlinkshere}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uclinks&action=edit uclinks]<br>
+[[MediaWiki_talk:Uclinks|Talk]]
+</td><td>
+View the last $1 changes; view the last $2 days.
+</td><td>
+{{int:Uclinks}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ucnote&action=edit ucnote]<br>
+[[MediaWiki_talk:Ucnote|Talk]]
+</td><td>
+Below are this user&#39;s last &lt;b&gt;$1&lt;/b&gt; changes in the last &lt;b&gt;$2&lt;/b&gt; days.
+</td><td>
+{{int:Ucnote}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uctop&action=edit uctop]<br>
+[[MediaWiki_talk:Uctop|Talk]]
+</td><td>
+ (top)
+</td><td>
+{{int:Uctop}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unblockip&action=edit unblockip]<br>
+[[MediaWiki_talk:Unblockip|Talk]]
+</td><td>
+Unblock user
+</td><td>
+{{int:Unblockip}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unblockiptext&action=edit unblockiptext]<br>
+[[MediaWiki_talk:Unblockiptext|Talk]]
+</td><td>
+Use the form below to restore write access
+to a previously blocked IP address or username.
+</td><td>
+{{int:Unblockiptext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unblocklink&action=edit unblocklink]<br>
+[[MediaWiki_talk:Unblocklink|Talk]]
+</td><td>
+unblock
+</td><td>
+{{int:Unblocklink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unblocklogentry&action=edit unblocklogentry]<br>
+[[MediaWiki_talk:Unblocklogentry|Talk]]
+</td><td>
+unblocked &quot;$1&quot;
+</td><td>
+{{int:Unblocklogentry}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undelete&action=edit undelete]<br>
+[[MediaWiki_talk:Undelete|Talk]]
+</td><td>
+Restore deleted page
+</td><td>
+{{int:Undelete}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undelete_short&action=edit undelete_short]<br>
+[[MediaWiki_talk:Undelete_short|Talk]]
+</td><td>
+Undelete $1 edits
+</td><td>
+{{int:Undelete_short}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletearticle&action=edit undeletearticle]<br>
+[[MediaWiki_talk:Undeletearticle|Talk]]
+</td><td>
+Restore deleted page
+</td><td>
+{{int:Undeletearticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletebtn&action=edit undeletebtn]<br>
+[[MediaWiki_talk:Undeletebtn|Talk]]
+</td><td>
+Restore!
+</td><td>
+{{int:Undeletebtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletedarticle&action=edit undeletedarticle]<br>
+[[MediaWiki_talk:Undeletedarticle|Talk]]
+</td><td>
+restored &quot;$1&quot;
+</td><td>
+{{int:Undeletedarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletedtext&action=edit undeletedtext]<br>
+[[MediaWiki_talk:Undeletedtext|Talk]]
+</td><td>
+&#91;&#91;$1]] has been successfully restored.
+See &#91;&#91;Wiktionary:Deletion_log]] for a record of recent deletions and restorations.
+</td><td>
+{{int:Undeletedtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletehistory&action=edit undeletehistory]<br>
+[[MediaWiki_talk:Undeletehistory|Talk]]
+</td><td>
+If you restore the page, all revisions will be restored to the history.
+If a new page with the same name has been created since the deletion, the restored
+revisions will appear in the prior history, and the current revision of the live page
+will not be automatically replaced.
+</td><td>
+{{int:Undeletehistory}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletepage&action=edit undeletepage]<br>
+[[MediaWiki_talk:Undeletepage|Talk]]
+</td><td>
+View and restore deleted pages
+</td><td>
+{{int:Undeletepage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeletepagetext&action=edit undeletepagetext]<br>
+[[MediaWiki_talk:Undeletepagetext|Talk]]
+</td><td>
+The following pages have been deleted but are still in the archive and
+can be restored. The archive may be periodically cleaned out.
+</td><td>
+{{int:Undeletepagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeleterevision&action=edit undeleterevision]<br>
+[[MediaWiki_talk:Undeleterevision|Talk]]
+</td><td>
+Deleted revision as of $1
+</td><td>
+{{int:Undeleterevision}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Undeleterevisions&action=edit undeleterevisions]<br>
+[[MediaWiki_talk:Undeleterevisions|Talk]]
+</td><td>
+$1 revisions archived
+</td><td>
+{{int:Undeleterevisions}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unexpected&action=edit unexpected]<br>
+[[MediaWiki_talk:Unexpected|Talk]]
+</td><td>
+Unexpected value: &quot;$1&quot;=&quot;$2&quot;.
+</td><td>
+{{int:Unexpected}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockbtn&action=edit unlockbtn]<br>
+[[MediaWiki_talk:Unlockbtn|Talk]]
+</td><td>
+Unlock database
+</td><td>
+{{int:Unlockbtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockconfirm&action=edit unlockconfirm]<br>
+[[MediaWiki_talk:Unlockconfirm|Talk]]
+</td><td>
+Yes, I really want to unlock the database.
+</td><td>
+{{int:Unlockconfirm}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockdb&action=edit unlockdb]<br>
+[[MediaWiki_talk:Unlockdb|Talk]]
+</td><td>
+Unlock database
+</td><td>
+{{int:Unlockdb}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockdbsuccesssub&action=edit unlockdbsuccesssub]<br>
+[[MediaWiki_talk:Unlockdbsuccesssub|Talk]]
+</td><td>
+Database lock removed
+</td><td>
+{{int:Unlockdbsuccesssub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockdbsuccesstext&action=edit unlockdbsuccesstext]<br>
+[[MediaWiki_talk:Unlockdbsuccesstext|Talk]]
+</td><td>
+The database has been unlocked.
+</td><td>
+{{int:Unlockdbsuccesstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unlockdbtext&action=edit unlockdbtext]<br>
+[[MediaWiki_talk:Unlockdbtext|Talk]]
+</td><td>
+Unlocking the database will restore the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do.
+</td><td>
+{{int:Unlockdbtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unprotect&action=edit unprotect]<br>
+[[MediaWiki_talk:Unprotect|Talk]]
+</td><td>
+Unprotect
+</td><td>
+{{int:Unprotect}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unprotectcomment&action=edit unprotectcomment]<br>
+[[MediaWiki_talk:Unprotectcomment|Talk]]
+</td><td>
+Reason for unprotecting
+</td><td>
+{{int:Unprotectcomment}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unprotectedarticle&action=edit unprotectedarticle]<br>
+[[MediaWiki_talk:Unprotectedarticle|Talk]]
+</td><td>
+unprotected &#91;&#91;$1]]
+</td><td>
+{{int:Unprotectedarticle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unprotectsub&action=edit unprotectsub]<br>
+[[MediaWiki_talk:Unprotectsub|Talk]]
+</td><td>
+(Unprotecting &quot;$1&quot;)
+</td><td>
+{{int:Unprotectsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unprotectthispage&action=edit unprotectthispage]<br>
+[[MediaWiki_talk:Unprotectthispage|Talk]]
+</td><td>
+Unprotect this page
+</td><td>
+{{int:Unprotectthispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unusedimages&action=edit unusedimages]<br>
+[[MediaWiki_talk:Unusedimages|Talk]]
+</td><td>
+Unused images
+</td><td>
+{{int:Unusedimages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unusedimagestext&action=edit unusedimagestext]<br>
+[[MediaWiki_talk:Unusedimagestext|Talk]]
+</td><td>
+&lt;p&gt;Please note that other web sites may link to an image with
+a direct URL, and so may still be listed here despite being
+in active use.
+</td><td>
+{{int:Unusedimagestext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unwatch&action=edit unwatch]<br>
+[[MediaWiki_talk:Unwatch|Talk]]
+</td><td>
+Unwatch
+</td><td>
+{{int:Unwatch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Unwatchthispage&action=edit unwatchthispage]<br>
+[[MediaWiki_talk:Unwatchthispage|Talk]]
+</td><td>
+Stop watching
+</td><td>
+{{int:Unwatchthispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Updated&action=edit updated]<br>
+[[MediaWiki_talk:Updated|Talk]]
+</td><td>
+(Updated)
+</td><td>
+{{int:Updated}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Upload&action=edit upload]<br>
+[[MediaWiki_talk:Upload|Talk]]
+</td><td>
+Upload file
+</td><td>
+{{int:Upload}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadbtn&action=edit uploadbtn]<br>
+[[MediaWiki_talk:Uploadbtn|Talk]]
+</td><td>
+Upload file
+</td><td>
+{{int:Uploadbtn}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploaddisabled&action=edit uploaddisabled]<br>
+[[MediaWiki_talk:Uploaddisabled|Talk]]
+</td><td>
+Sorry, uploading is disabled.
+</td><td>
+{{int:Uploaddisabled}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadedfiles&action=edit uploadedfiles]<br>
+[[MediaWiki_talk:Uploadedfiles|Talk]]
+</td><td>
+Uploaded files
+</td><td>
+{{int:Uploadedfiles}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadedimage&action=edit uploadedimage]<br>
+[[MediaWiki_talk:Uploadedimage|Talk]]
+</td><td>
+uploaded &quot;$1&quot;
+</td><td>
+{{int:Uploadedimage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploaderror&action=edit uploaderror]<br>
+[[MediaWiki_talk:Uploaderror|Talk]]
+</td><td>
+Upload error
+</td><td>
+{{int:Uploaderror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadfile&action=edit uploadfile]<br>
+[[MediaWiki_talk:Uploadfile|Talk]]
+</td><td>
+Upload images, sounds, documents etc.
+</td><td>
+{{int:Uploadfile}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadlink&action=edit uploadlink]<br>
+[[MediaWiki_talk:Uploadlink|Talk]]
+</td><td>
+Upload images
+</td><td>
+{{int:Uploadlink}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadlog&action=edit uploadlog]<br>
+[[MediaWiki_talk:Uploadlog|Talk]]
+</td><td>
+upload log
+</td><td>
+{{int:Uploadlog}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadlogpage&action=edit uploadlogpage]<br>
+[[MediaWiki_talk:Uploadlogpage|Talk]]
+</td><td>
+Upload_log
+</td><td>
+{{int:Uploadlogpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadlogpagetext&action=edit uploadlogpagetext]<br>
+[[MediaWiki_talk:Uploadlogpagetext|Talk]]
+</td><td>
+Below is a list of the most recent file uploads.
+All times shown are server time (UTC).
+&lt;ul&gt;
+&lt;/ul&gt;
+
+</td><td>
+{{int:Uploadlogpagetext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadnologin&action=edit uploadnologin]<br>
+[[MediaWiki_talk:Uploadnologin|Talk]]
+</td><td>
+Not logged in
+</td><td>
+{{int:Uploadnologin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadnologintext&action=edit uploadnologintext]<br>
+[[MediaWiki_talk:Uploadnologintext|Talk]]
+</td><td>
+You must be &lt;a href=&quot;/wiki/Special:Userlogin&quot;&gt;logged in&lt;/a&gt;
+to upload files.
+</td><td>
+{{int:Uploadnologintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadtext&action=edit uploadtext]<br>
+[[MediaWiki_talk:Uploadtext|Talk]]
+</td><td>
+&lt;strong&gt;STOP!&lt;/strong&gt; Before you upload here,
+make sure to read and follow the &lt;a href=&quot;/wiki/Special:Image_use_policy&quot;&gt;image use policy&lt;/a&gt;.
+&lt;p&gt;If a file with the name you are specifying already
+exists on the wiki, it&#39;ll be replaced without warning.
+So unless you mean to update a file, it&#39;s a good idea
+to first check if such a file exists.
+&lt;p&gt;To view or search previously uploaded images,
+go to the &lt;a href=&quot;/wiki/Special:Imagelist&quot;&gt;list of uploaded images&lt;/a&gt;.
+Uploads and deletions are logged on the &lt;a href=&quot;/wiki/Wiktionary:Upload_log&quot;&gt;upload log&lt;/a&gt;.
+&lt;/p&gt;&lt;p&gt;Use the form below to upload new image files for use in
+illustrating your pages.
+On most browsers, you will see a &quot;Browse...&quot; button, which will
+bring up your operating system&#39;s standard file open dialog.
+Choosing a file will fill the name of that file into the text
+field next to the button.
+You must also check the box affirming that you are not
+violating any copyrights by uploading the file.
+Press the &quot;Upload&quot; button to finish the upload.
+This may take some time if you have a slow internet connection.
+&lt;p&gt;The preferred formats are JPEG for photographic images, PNG
+for drawings and other iconic images, and OGG for sounds.
+Please name your files descriptively to avoid confusion.
+To include the image in a page, use a link in the form
+&lt;b&gt;&#91;&#91;Image:file.jpg]]&lt;/b&gt; or &lt;b&gt;&#91;&#91;Image:file.png&#124;alt text]]&lt;/b&gt;
+or &lt;b&gt;&#91;&#91;Media:file.ogg]]&lt;/b&gt; for sounds.
+&lt;p&gt;Please note that as with wiki pages, others may edit or
+delete your uploads if they think it serves the project, and
+you may be blocked from uploading if you abuse the system.
+</td><td>
+{{int:Uploadtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Uploadwarning&action=edit uploadwarning]<br>
+[[MediaWiki_talk:Uploadwarning|Talk]]
+</td><td>
+Upload warning
+</td><td>
+{{int:Uploadwarning}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:User_rights_set&action=edit user_rights_set]<br>
+[[MediaWiki_talk:User_rights_set|Talk]]
+</td><td>
+&lt;b&gt;User rights for &quot;$1&quot; updated&lt;/b&gt;
+</td><td>
+{{int:User_rights_set}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Usercssjs&action=edit usercssjs]<br>
+[[MediaWiki_talk:Usercssjs|Talk]]
+</td><td>
+&#39;&#39;&#39;Note:&#39;&#39;&#39; After saving, you have to tell your bowser to get the new version: &#39;&#39;&#39;Mozilla:&#39;&#39;&#39; click &#39;&#39;reload&#39;&#39;(or &#39;&#39;ctrl-r&#39;&#39;), &#39;&#39;&#39;IE / Opera:&#39;&#39;&#39; &#39;&#39;ctrl-f5&#39;&#39;, &#39;&#39;&#39;Safari:&#39;&#39;&#39; &#39;&#39;cmd-r&#39;&#39;, &#39;&#39;&#39;Konqueror&#39;&#39;&#39; &#39;&#39;ctrl-r&#39;&#39;.
+</td><td>
+{{int:Usercssjs}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Usercssjsyoucanpreview&action=edit usercssjsyoucanpreview]<br>
+[[MediaWiki_talk:Usercssjsyoucanpreview|Talk]]
+</td><td>
+&lt;strong&gt;Tip:&lt;/strong&gt; Use the &#39;Show preview&#39; button to test your new css/js before saving.
+</td><td>
+{{int:Usercssjsyoucanpreview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Usercsspreview&action=edit usercsspreview]<br>
+[[MediaWiki_talk:Usercsspreview|Talk]]
+</td><td>
+&#39;&#39;&#39;Remember that you are only previewing your user css, it has not yet been saved!&#39;&#39;&#39;
+</td><td>
+{{int:Usercsspreview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userexists&action=edit userexists]<br>
+[[MediaWiki_talk:Userexists|Talk]]
+</td><td>
+The user name you entered is already in use. Please choose a different name.
+</td><td>
+{{int:Userexists}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userjspreview&action=edit userjspreview]<br>
+[[MediaWiki_talk:Userjspreview|Talk]]
+</td><td>
+&#39;&#39;&#39;Remember that you are only testing/previewing your user javascript, it has not yet been saved!&#39;&#39;&#39;
+</td><td>
+{{int:Userjspreview}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userlogin&action=edit userlogin]<br>
+[[MediaWiki_talk:Userlogin|Talk]]
+</td><td>
+Log in
+</td><td>
+{{int:Userlogin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userlogout&action=edit userlogout]<br>
+[[MediaWiki_talk:Userlogout|Talk]]
+</td><td>
+Log out
+</td><td>
+{{int:Userlogout}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Usermailererror&action=edit usermailererror]<br>
+[[MediaWiki_talk:Usermailererror|Talk]]
+</td><td>
+Mail object returned error: 
+</td><td>
+{{int:Usermailererror}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userpage&action=edit userpage]<br>
+[[MediaWiki_talk:Userpage|Talk]]
+</td><td>
+View user page
+</td><td>
+{{int:Userpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userstats&action=edit userstats]<br>
+[[MediaWiki_talk:Userstats|Talk]]
+</td><td>
+User statistics
+</td><td>
+{{int:Userstats}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Userstatstext&action=edit userstatstext]<br>
+[[MediaWiki_talk:Userstatstext|Talk]]
+</td><td>
+There are &#39;&#39;&#39;$1&#39;&#39;&#39; registered users.
+&#39;&#39;&#39;$2&#39;&#39;&#39; of these are administrators (see $3).
+</td><td>
+{{int:Userstatstext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Version&action=edit version]<br>
+[[MediaWiki_talk:Version|Talk]]
+</td><td>
+Version
+</td><td>
+{{int:Version}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Viewcount&action=edit viewcount]<br>
+[[MediaWiki_talk:Viewcount|Talk]]
+</td><td>
+This page has been accessed $1 times.
+</td><td>
+{{int:Viewcount}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Viewprevnext&action=edit viewprevnext]<br>
+[[MediaWiki_talk:Viewprevnext|Talk]]
+</td><td>
+View ($1) ($2) ($3).
+</td><td>
+{{int:Viewprevnext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Viewsource&action=edit viewsource]<br>
+[[MediaWiki_talk:Viewsource|Talk]]
+</td><td>
+View source
+</td><td>
+{{int:Viewsource}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Viewtalkpage&action=edit viewtalkpage]<br>
+[[MediaWiki_talk:Viewtalkpage|Talk]]
+</td><td>
+View discussion
+</td><td>
+{{int:Viewtalkpage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wantedpages&action=edit wantedpages]<br>
+[[MediaWiki_talk:Wantedpages|Talk]]
+</td><td>
+Wanted pages
+</td><td>
+{{int:Wantedpages}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watch&action=edit watch]<br>
+[[MediaWiki_talk:Watch|Talk]]
+</td><td>
+Watch
+</td><td>
+{{int:Watch}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchdetails&action=edit watchdetails]<br>
+[[MediaWiki_talk:Watchdetails|Talk]]
+</td><td>
+($1 pages watched not counting talk pages;
+$2 total pages edited since cutoff;
+$3...
+&lt;a href=&#39;$4&#39;&gt;show and edit complete list&lt;/a&gt;.)
+</td><td>
+{{int:Watchdetails}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watcheditlist&action=edit watcheditlist]<br>
+[[MediaWiki_talk:Watcheditlist|Talk]]
+</td><td>
+Here&#39;s an alphabetical list of your
+watched pages. Check the boxes of pages you want to remove
+from your watchlist and click the &#39;remove checked&#39; button
+at the bottom of the screen.
+</td><td>
+{{int:Watcheditlist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchlist&action=edit watchlist]<br>
+[[MediaWiki_talk:Watchlist|Talk]]
+</td><td>
+My watchlist
+</td><td>
+{{int:Watchlist}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchlistcontains&action=edit watchlistcontains]<br>
+[[MediaWiki_talk:Watchlistcontains|Talk]]
+</td><td>
+Your watchlist contains $1 pages.
+</td><td>
+{{int:Watchlistcontains}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchlistsub&action=edit watchlistsub]<br>
+[[MediaWiki_talk:Watchlistsub|Talk]]
+</td><td>
+(for user &quot;$1&quot;)
+</td><td>
+{{int:Watchlistsub}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchmethod-list&action=edit watchmethod-list]<br>
+[[MediaWiki_talk:Watchmethod-list|Talk]]
+</td><td>
+checking watched pages for recent edits
+</td><td>
+{{int:Watchmethod-list}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchmethod-recent&action=edit watchmethod-recent]<br>
+[[MediaWiki_talk:Watchmethod-recent|Talk]]
+</td><td>
+checking recent edits for watched pages
+</td><td>
+{{int:Watchmethod-recent}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchnochange&action=edit watchnochange]<br>
+[[MediaWiki_talk:Watchnochange|Talk]]
+</td><td>
+None of your watched items were edited in the time period displayed.
+</td><td>
+{{int:Watchnochange}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchnologin&action=edit watchnologin]<br>
+[[MediaWiki_talk:Watchnologin|Talk]]
+</td><td>
+Not logged in
+</td><td>
+{{int:Watchnologin}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchnologintext&action=edit watchnologintext]<br>
+[[MediaWiki_talk:Watchnologintext|Talk]]
+</td><td>
+You must be &lt;a href=&quot;/wiki/Special:Userlogin&quot;&gt;logged in&lt;/a&gt;
+to modify your watchlist.
+</td><td>
+{{int:Watchnologintext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchthis&action=edit watchthis]<br>
+[[MediaWiki_talk:Watchthis|Talk]]
+</td><td>
+Watch this page
+</td><td>
+{{int:Watchthis}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Watchthispage&action=edit watchthispage]<br>
+[[MediaWiki_talk:Watchthispage|Talk]]
+</td><td>
+Watch this page
+</td><td>
+{{int:Watchthispage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Welcomecreation&action=edit welcomecreation]<br>
+[[MediaWiki_talk:Welcomecreation|Talk]]
+</td><td>
+&lt;h2&gt;Welcome, $1!&lt;/h2&gt;&lt;p&gt;Your account has been created.
+Don&#39;t forget to change your Wiktionary preferences.
+</td><td>
+{{int:Welcomecreation}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whatlinkshere&action=edit whatlinkshere]<br>
+[[MediaWiki_talk:Whatlinkshere|Talk]]
+</td><td>
+What links here
+</td><td>
+{{int:Whatlinkshere}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistacctext&action=edit whitelistacctext]<br>
+[[MediaWiki_talk:Whitelistacctext|Talk]]
+</td><td>
+To be allowed to create accounts in this Wiki you have to &#91;&#91;Special:Userlogin&#124;log]] in and have the appropriate permissions.
+</td><td>
+{{int:Whitelistacctext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistacctitle&action=edit whitelistacctitle]<br>
+[[MediaWiki_talk:Whitelistacctitle|Talk]]
+</td><td>
+You are not allowed to create an account
+</td><td>
+{{int:Whitelistacctitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistedittext&action=edit whitelistedittext]<br>
+[[MediaWiki_talk:Whitelistedittext|Talk]]
+</td><td>
+You have to &#91;&#91;Special:Userlogin&#124;login]] to edit pages.
+</td><td>
+{{int:Whitelistedittext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistedittitle&action=edit whitelistedittitle]<br>
+[[MediaWiki_talk:Whitelistedittitle|Talk]]
+</td><td>
+Login required to edit
+</td><td>
+{{int:Whitelistedittitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistreadtext&action=edit whitelistreadtext]<br>
+[[MediaWiki_talk:Whitelistreadtext|Talk]]
+</td><td>
+You have to &#91;&#91;Special:Userlogin&#124;login]] to read pages.
+</td><td>
+{{int:Whitelistreadtext}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Whitelistreadtitle&action=edit whitelistreadtitle]<br>
+[[MediaWiki_talk:Whitelistreadtitle|Talk]]
+</td><td>
+Login required to read
+</td><td>
+{{int:Whitelistreadtitle}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wikipediapage&action=edit wikipediapage]<br>
+[[MediaWiki_talk:Wikipediapage|Talk]]
+</td><td>
+View project page
+</td><td>
+{{int:Wikipediapage}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wikititlesuffix&action=edit wikititlesuffix]<br>
+[[MediaWiki_talk:Wikititlesuffix|Talk]]
+</td><td>
+Wiktionary
+</td><td>
+{{int:Wikititlesuffix}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wlnote&action=edit wlnote]<br>
+[[MediaWiki_talk:Wlnote|Talk]]
+</td><td>
+Below are the last $1 changes in the last &lt;b&gt;$2&lt;/b&gt; hours.
+</td><td>
+{{int:Wlnote}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wlsaved&action=edit wlsaved]<br>
+[[MediaWiki_talk:Wlsaved|Talk]]
+</td><td>
+This is a saved version of your watchlist.
+</td><td>
+{{int:Wlsaved}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wlshowlast&action=edit wlshowlast]<br>
+[[MediaWiki_talk:Wlshowlast|Talk]]
+</td><td>
+Show last $1 hours $2 days $3
+</td><td>
+{{int:Wlshowlast}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wrong_wfQuery_params&action=edit wrong_wfQuery_params]<br>
+[[MediaWiki_talk:Wrong_wfQuery_params|Talk]]
+</td><td>
+Incorrect parameters to wfQuery()&lt;br /&gt;
+Function: $1&lt;br /&gt;
+Query: $2
+
+</td><td>
+{{int:Wrong_wfQuery_params}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Wrongpassword&action=edit wrongpassword]<br>
+[[MediaWiki_talk:Wrongpassword|Talk]]
+</td><td>
+The password you entered is incorrect. Please try again.
+</td><td>
+{{int:Wrongpassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourdiff&action=edit yourdiff]<br>
+[[MediaWiki_talk:Yourdiff|Talk]]
+</td><td>
+Differences
+</td><td>
+{{int:Yourdiff}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Youremail&action=edit youremail]<br>
+[[MediaWiki_talk:Youremail|Talk]]
+</td><td>
+Your email*
+</td><td>
+{{int:Youremail}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourname&action=edit yourname]<br>
+[[MediaWiki_talk:Yourname|Talk]]
+</td><td>
+Your user name
+</td><td>
+{{int:Yourname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yournick&action=edit yournick]<br>
+[[MediaWiki_talk:Yournick|Talk]]
+</td><td>
+Your nickname (for signatures)
+</td><td>
+{{int:Yournick}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourpassword&action=edit yourpassword]<br>
+[[MediaWiki_talk:Yourpassword|Talk]]
+</td><td>
+Your password
+</td><td>
+{{int:Yourpassword}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourpasswordagain&action=edit yourpasswordagain]<br>
+[[MediaWiki_talk:Yourpasswordagain|Talk]]
+</td><td>
+Retype password
+</td><td>
+{{int:Yourpasswordagain}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourrealname&action=edit yourrealname]<br>
+[[MediaWiki_talk:Yourrealname|Talk]]
+</td><td>
+Your real name*
+</td><td>
+{{int:Yourrealname}}
+</td></tr><tr><td>
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Yourtext&action=edit yourtext]<br>
+[[MediaWiki_talk:Yourtext|Talk]]
+</td><td>
+Your text
+</td><td>
+{{int:Yourtext}}
+</td></tr></table>
+
