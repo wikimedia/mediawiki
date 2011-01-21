@@ -80,6 +80,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{#if: {{{1|}}} | Foo | [[Bar]] }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> [[Bar]] </value></part></template></root>"),
 			array( "{{#if: {{{1|}}} | [[Foo]] | Bar }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> [[Foo]] </value></part><part><name index=\"2\" /><value> Bar </value></part></template></root>"),
 			array( "{{#if: {{{1|}}} | 1 | {{#if: {{{1|}}} | 2 | 3 }} }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> 1 </value></part><part><name index=\"2\" /><value> <template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> 2 </value></part><part><name index=\"2\" /><value> 3 </value></part></template> </value></part></template></root>"),
+			array( "{{ {{Foo}}", "<root>{{ <template><title>Foo</title></template></root>"),
+			array( "{{Foobar {{Foo}} {{Bar}} {{Baz}} ", "<root>{{Foobar <template><title>Foo</title></template> <template><title>Bar</title></template> <template><title>Baz</title></template> </root>"),
 			/* array( file_get_contents( dirname( __FILE__ ) . '/QuoteQuran.txt' ), file_get_contents( dirname( __FILE__ ) . '/QuoteQuranExpanded.txt' ) ), */
 		);
 	}
