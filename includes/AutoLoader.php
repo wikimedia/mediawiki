@@ -180,7 +180,6 @@ $wgAutoloadLocalClasses = array(
 	'PageHistory' => 'includes/HistoryPage.php',
 	'PageHistoryPager' => 'includes/HistoryPage.php',
 	'Pager' => 'includes/Pager.php',
-	'ParseMaster' => 'includes/libs/ParseMaster.php',
 	'PasswordError' => 'includes/User.php',
 	'PatrolLog' => 'includes/PatrolLog.php',
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
