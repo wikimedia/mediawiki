@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -223,8 +223,8 @@ $messages = array(
 'tog-shownumberswatching'     => '顯示監視用戶的數目',
 'tog-oldsig'                  => '原有簽名的預覽：',
 'tog-fancysig'                => '將簽名以維基文字對待 （不產生自動連結）',
-'tog-externaleditor'          => '預設使用外部編輯器 （進階者專用，需要在您的電腦上作出一些特別設定）',
-'tog-externaldiff'            => '預設使用外部差異分析 （進階者專用，需要在您的電腦上作出一些特別設定）',
+'tog-externaleditor'          => '預設使用外部編輯器 （進階者專用，需要在您的電腦上作出一些特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff'            => '預設使用外部差異分析 （進階者專用，需要在您的電腦上作出一些特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks'           => '啟用「跳轉到」訪問連結',
 'tog-uselivepreview'          => '使用實時預覽 （需要JavaScript） （試驗中）',
 'tog-forceeditsummary'        => '當沒有輸入摘要時提醒我',
@@ -323,7 +323,7 @@ $messages = array(
 'noindex-category'               => '未做索引的頁面',
 
 'mainpagetext'      => "'''已成功安裝 MediaWiki。'''",
-'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟體的訊息！
+'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
@@ -339,7 +339,7 @@ $messages = array(
 'mytalk'        => '我的對話頁',
 'anontalk'      => '該IP的對話頁',
 'navigation'    => '導覽',
-'and'           => '和&#32;',
+'and'           => '和',
 
 # Cologne Blue skin
 'qbfind'         => '尋找',
@@ -478,8 +478,8 @@ $1',
 'hidetoc'                 => '隱藏',
 'collapsible-collapse'    => '摺叠',
 'collapsible-expand'      => '展開',
-'thisisdeleted'           => '檢視或恢復$1?',
-'viewdeleted'             => '檢視 $1？',
+'thisisdeleted'           => '檢視或恢復$1？',
+'viewdeleted'             => '檢視$1？',
 'restorelink'             => '$1個被刪除的版本',
 'feedlinks'               => '訂閱:',
 'feed-invalid'            => '無效的訂閱類型。',
@@ -591,7 +591,7 @@ $2',
 您可以以匿名方式繼續使用{{SITENAME}}，或以相同或不同用戶身份[[Special:UserLogin|登入]]。
 請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器緩存。',
 'welcomecreation'            => '== 歡迎，$1！ ==
-您的帳號已經建立。
+您的賬號已經建立。
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
 'yourname'                   => '您的使用者名稱：',
 'yourpassword'               => '您的密碼：',
@@ -599,27 +599,27 @@ $2',
 'remembermypassword'         => '在這個瀏覽器上記住我的登入資訊（可維持 $1 {{PLURAL:$1|天|天}}）',
 'securelogin-stick-https'    => '登入後繼續以HTTPS連接',
 'yourdomainname'             => '您的網域:',
-'externaldberror'            => '這可能是由於驗證資料庫錯誤或您被禁止更新您的外部帳號。',
+'externaldberror'            => '這可能是由於驗證資料庫錯誤或您被禁止更新您的外部賬號。',
 'login'                      => '登入',
-'nav-login-createaccount'    => '登入／建立新帳號',
+'nav-login-createaccount'    => '登入／建立新賬號',
 'loginprompt'                => '您必須允許瀏覽器紀錄 Cookie 才能成功登入 {{SITENAME}}。',
-'userlogin'                  => '登入／建立新帳號',
+'userlogin'                  => '登入／建立新賬號',
 'userloginnocreate'          => '登入',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '未登入',
-'nologin'                    => '您還沒有帳號嗎？$1。',
-'nologinlink'                => '建立新帳號',
-'createaccount'              => '建立新帳號',
-'gotaccount'                 => '已經擁有帳號？$1。',
+'nologin'                    => '您還沒有賬號嗎？$1。',
+'nologinlink'                => '建立新賬號',
+'createaccount'              => '建立新賬號',
+'gotaccount'                 => '已經擁有賬號？$1。',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過電郵',
 'createaccountreason'        => '理由：',
 'badretype'                  => '您所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror'                 => '登入錯誤',
-'createaccounterror'         => '無法建立帳號：$1',
-'nocookiesnew'               => '已成功創建新帳號！偵測到您已關閉 Cookies，請開啟它並登入。',
+'createaccounterror'         => '無法建立賬戶：$1',
+'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'nocookiesfornew'            => '這位用戶的賬戶未建立，我們不能確認它的來源。
 請肯定您已經開啟 cookies，重新載入後再試。',
@@ -636,7 +636,7 @@ $2',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
 'passwordtooshort'           => '您的密碼不能少於$1個字元。',
 'password-name-match'        => '您的密碼必須跟您的用戶名不相同。',
-'password-login-forbidden'   => '這些用戶名稱及密碼的使用是被禁止的。',
+'password-login-forbidden'   => '這個用戶名稱及密碼的使用是被禁止的。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
 'passwordremindertext'       => '有人（可能是您，來自IP位址$1）已請求{{SITENAME}}的新密碼 （$4）。
@@ -651,7 +651,7 @@ $2',
 'passwordsent'               => '用戶"$1"的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword'       => '您的IP地址處於查封狀態而不允許編輯，為了安全起見，密碼恢復功能已被禁用。',
-'eauthentsent'               => '一封確認信已經發送到所示的地址。在發送其它郵件到此帳戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
+'eauthentsent'               => '一封確認信已經發送到所示的地址。在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
 'throttled-mailpassword'     => '密碼提醒已經在前$1小時內發送。為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror'                  => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '在這個wiki上的訪客利用您的IP地址在昨天創建了$1個賬戶，是在這段時間中的上限。
@@ -661,12 +661,12 @@ $2',
 'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的郵箱地址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
-'accountcreated'             => '已建立帳戶',
-'accountcreatedtext'         => '$1的帳戶已經被建立。',
-'createaccount-title'        => '在{{SITENAME}}中建立新帳戶',
-'createaccount-text'         => '有人在{{SITENAME}}中利用您的電郵創建了一個名為 "$2" 的新帳戶（$4），密碼是 "$3" 。您應該立即登入並更改密碼。
+'accountcreated'             => '已建立賬戶',
+'accountcreatedtext'         => '$1的賬戶已經被建立。',
+'createaccount-title'        => '在{{SITENAME}}中建立新賬戶',
+'createaccount-text'         => '有人在{{SITENAME}}中利用您的電郵創建了一個名為 "$2" 的新賬戶（$4），密碼是 "$3" 。您應該立即登入並更改密碼。
 
-如果該帳戶建立錯誤的話，您可以忽略此訊息。',
+如果該賬戶建立錯誤的話，您可以忽略此訊息。',
 'usernamehasherror'          => '用戶名稱不可以包含切細字元',
 'login-throttled'            => '您已經嘗試多次的登入動作。
 請稍等多一會再試。',
@@ -752,7 +752,7 @@ $2',
 * 對於被查封者：$7
 
 {{GENDER:|你|妳|你}}可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
-除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
+除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|賬號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 {{GENDER:|你|妳|你}}目前的IP地址是$3，而該查封ID是 #$5。 請在{{GENDER:|你|妳|你}}的查詢中註明以上所有的資料。",
 'autoblockedtext'                  => "{{GENDER:|你|妳|你}}的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
@@ -765,7 +765,7 @@ $2',
 * 對於被查封者：$7
 
 {{GENDER:|你|妳|你}}可以聯絡$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這次查封。
-除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
+除非{{GENDER:|你|妳|你}}已經在{{GENDER:|你|妳|你}}的[[Special:Preferences|賬號參數設置]]中設定了一個有效的電子郵件地址，否則{{GENDER:|你|妳|你}}是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 您現時正在使用的 IP 地址是 $3，查封ID是 #$5。 請在{{GENDER:|你|妳|你}}的查詢中註明以上所有的資料。",
 'blockednoreason'                  => '無給出原因',
@@ -783,12 +783,12 @@ $2',
 'accmailtitle'                     => '密碼已寄出',
 'accmailtext'                      => "'[[User talk:$1|$1]]'的隨機產生密碼已經寄到$2。
 
-這個新帳號的密碼可以在登入後的''[[Special:ChangePassword|更改密碼]]''頁面中更改。",
+這個新賬號的密碼可以在登入後的''[[Special:ChangePassword|更改密碼]]''頁面中更改。",
 'newarticle'                       => '（新）',
 'newarticletext'                   => '您進入了一個尚未建立的頁面。
 要建立該頁面，請在下面的編輯框中輸入內容（詳情參見[[{{MediaWiki:Helppage}}|幫助]]）。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的“返回”按鈕返回。',
-'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:UserLogin/signup|創建新帳號]]或[[Special:UserLogin|登入]]以避免在未來於其他匿名用戶混淆。''",
+'anontalkpagetext'                 => "---- ''這是一個還未建立賬號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:UserLogin/signup|創建新賬號]]或[[Special:UserLogin|登入]]以避免在未來於其他匿名用戶混淆。''",
 'noarticletext'                    => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
@@ -916,8 +916,8 @@ $2',
 'undo-summary' => '取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所作出的修訂 $1',
 
 # Account creation failure
-'cantcreateaccounttitle' => '無法建立帳號',
-'cantcreateaccount-text' => "從這個IP地址 （<b>$1</b>） 建立帳號已經被[[User:$3|$3]]禁止。
+'cantcreateaccounttitle' => '無法建立賬號',
+'cantcreateaccount-text' => "從這個IP地址 （<b>$1</b>） 建立賬號已經被[[User:$3|$3]]禁止。
 
 當中被$3封禁的原因是''$2''",
 
@@ -1305,8 +1305,8 @@ $1",
 'prefs-diffs'                   => '差異',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => '您的電子郵件地址顯示正確。',
-'email-address-validity-invalid' => '請提供一個正確電子郵件地址',
+'email-address-validity-valid'   => '電子郵件地址有效',
+'email-address-validity-invalid' => '請提供一個有效的電子郵件地址',
 
 # User rights
 'userrights'                   => '用戶權限管理',
@@ -1325,8 +1325,8 @@ $1",
 'userrights-reason'            => '原因：',
 'userrights-no-interwiki'      => '您並沒有權限去編輯在其它wiki上的用戶權限。',
 'userrights-nodatabase'        => '資料庫$1不存在或並非為本地的。',
-'userrights-nologin'           => '您必須要以操作員帳戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
-'userrights-notallowed'        => '您的帳戶無權限去指定用戶權限。',
+'userrights-nologin'           => '您必須要以操作員賬戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
+'userrights-notallowed'        => '您的賬戶無權限去指定用戶權限。',
 'userrights-changeable-col'    => '您可以更改的群組',
 'userrights-unchangeable-col'  => '您不可以更改的群組',
 
@@ -1416,7 +1416,7 @@ $1",
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 'right-revisionmove'          => '移動修訂版本',
-'right-disableaccount'        => '禁用帳號',
+'right-disableaccount'        => '禁用賬號',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1546,7 +1546,7 @@ $1",
 'minlength1'                  => '檔案名字必須至少有一個字母。',
 'illegalfilename'             => '檔案名“$1”包含有頁面標題所禁止的字符。請改名後重新上傳。',
 'badfilename'                 => '檔案名已被改為「$1」。',
-'filetype-mime-mismatch'      => '檔案擴展名不配MIME類型。',
+'filetype-mime-mismatch'      => '檔案擴展名 ".$1" 不配所偵測檔案的MIME類型 ($2)。',
 'filetype-badmime'            => 'MIME類別"$1"不是容許的檔案格式。',
 'filetype-bad-ie-mime'        => '不可以上傳這個檔案，因為 Internet Explorer 會將它偵測為 "$1"，它是一種不容許以及有潛在危險性之檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一種不需要的檔案類型。
@@ -1979,7 +1979,7 @@ Template:消除歧義',
 'newuserlogpage'              => '新進用戶名冊',
 'newuserlogpagetext'          => '這是一個最近被創建用戶的新日誌',
 'newuserlog-byemail'          => '密碼已由電子郵件寄出',
-'newuserlog-create-entry'     => '新的使用者帳號',
+'newuserlog-create-entry'     => '新的使用者賬號',
 'newuserlog-create2-entry'    => '已創建$1的新賬戶',
 'newuserlog-autocreate-entry' => '已自動建立賬戶',
 
@@ -2181,7 +2181,7 @@ $UNWATCHURL
 以下是'''$1'''現時的保護級別:",
 'protect-locked-dblock'       => "在資料庫鎖定時無法更改保護級別。
 以下是'''$1'''現時的保護級別:",
-'protect-locked-access'       => "您的帳戶權限不能修改保護級別。
+'protect-locked-access'       => "您的賬戶權限不能修改保護級別。
 以下是'''$1'''現時的保護級別:",
 'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含着本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
 'protect-default'             => '容許所有用戶',
@@ -2339,10 +2339,10 @@ $1',
 ** 外部連結廣告
 ** 在頁面中增加無意義文字
 ** 無禮的行為、攻擊／騷擾別人
-** 濫用多個帳號
+** 濫用多個賬號
 ** 不能接受的用戶名',
 'ipbanononly'                     => '僅阻止匿名用戶',
-'ipbcreateaccount'                => '阻止創建新帳號',
+'ipbcreateaccount'                => '阻止創建新賬號',
 'ipbemailban'                     => '阻止用戶傳送電郵',
 'ipbenableautoblock'              => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                       => '查封該地址',
@@ -2401,7 +2401,7 @@ $1被封禁的理由是“$2”',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry'                 => '$1已被解封',
 'block-log-flags-anononly'        => '僅限匿名用戶',
-'block-log-flags-nocreate'        => '建立帳號已禁用',
+'block-log-flags-nocreate'        => '建立賬號已禁用',
 'block-log-flags-noautoblock'     => '停用自動封禁',
 'block-log-flags-noemail'         => '禁止電子郵件',
 'block-log-flags-nousertalk'      => '禁止編輯自己的用戶討論頁',
@@ -2425,7 +2425,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'proxyblockreason'                => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
 'proxyblocksuccess'               => '完成。',
 'sorbsreason'                     => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
-'sorbs_create_account_reason'     => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
+'sorbs_create_account_reason'     => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立賬號。',
 'cant-block-while-blocked'        => '當您被封鎖時不可以封鎖其他用戶。',
 'cant-see-hidden-user'            => '您現正嘗試封鎖的用戶已經被封鎖或隱藏。
 您現在沒有隱藏用戶的權限，您不可以檢視或者編輯這位用戶的封鎖。',
@@ -2797,10 +2797,10 @@ $1已經被封鎖。您是否想更改這個設定？',
 'math_unknown_function' => '未知函數',
 'math_lexing_error'     => '句法錯誤',
 'math_syntax_error'     => '語法錯誤',
-'math_image_error'      => 'PNG 轉換失敗；請檢查是否正確安裝了 latex, dvips（或dvips + gs + convert）',
+'math_image_error'      => 'PNG 轉換失敗；請檢查是否正確安裝了 latex, dvipng（或dvips + gs + convert）',
 'math_bad_tmpdir'       => '無法寫入或建立數學公式臨時目錄',
 'math_bad_output'       => '無法寫入或建立數學公式輸出目錄',
-'math_notexvc'          => '無法執行"texvc"；請參照 math/README 進行配置。',
+'math_notexvc'          => '"texvc"執行檔案遺失；請參照 math/README 進行配置。',
 
 # Patrolling
 'markaspatrolleddiff'                 => '標記為已巡查',
