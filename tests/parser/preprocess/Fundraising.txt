@@ -1,0 +1,17 @@
+<div name="fundraising" id="fundraising" class="plainlinks" style="margin-top:5px; text-align: center; background-color: #ffffe0; border: solid 1px #e0e0c0">
+'''Pwede kang [[Wikimedia:give the gift of knowledge|maghandog ng kaalaman]] sa paraan ng [[Wikimedia:Fundraising#Donation_methods|pagbibigay ng donasyon sa Pundasyong Wikimedia!]]'''
+<br />
+<fundraising/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<fundraisinglogo/>
+<br />
+<b>Ngayon, ang iyong [[Wikimedia:Fundraising|kontribusyon]] ay [[Wikimedia:Fundraising FAQ|itatambal]] ng isang anonimong kaibigan.</b>
+<br />
+<small>
+[[Wikimedia:Deductibility of donations|Pagbabawas sa mga buwis ng donasyon]]
+|
+[[Wikimedia:Fundraising FAQ|FAQ]]
+|
+[http://upload.wikimedia.org/wikipedia/foundation/2/28/Wikimedia_2006_fs.pdf Mga pampananalaping pahayag]
+</small>
+</div>
