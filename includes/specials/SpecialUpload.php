@@ -583,18 +583,26 @@ class SpecialUpload extends SpecialPage {
 				$this->showUploadError( wfMsgHtml( 'largefileserver' ) );
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
-				$finalExt = $details['finalExt'];
-				$this->showUploadError(
-					wfMsgExt( 'filetype-banned-type',
-						array( 'parseinline' ),
-						htmlspecialchars( $finalExt ),
-						implode(
-							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
-							$wgFileExtensions
-						),
-						$wgLang->formatNum( count( $wgFileExtensions ) )
-					)
-				);
+				$msg = wfMessage( 'filetype-banned-type' );
+				$sep = wfMsg( 'comma-separator' );
+				if ( isset( $details['blacklistedExt'] ) ) {
+					$msg->params( implode( $sep, $details['blacklistedExt'] ) );
+				} else {
+					$msg->params( $details['finalExt'] );
+				}
+				$msg->params( implode( $sep, $wgFileExtensions ),
+					count( $wgFileExtensions ) );
+				
+				// Add PLURAL support for the first parameter. This results 
+				// in a bit unlogical parameter sequence, but does not break 
+				// old translations 
+				if ( isset( $details['blacklistedExt'] ) ) {
+					$msg->numParams( count( $details['blacklistedExt'] ) );
+				} else {
+					$msg->numParams( 1 );
+				}
+				
+				$this->showUploadError( $msg->parse() );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
 				unset( $details['status'] );
