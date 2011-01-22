@@ -38,7 +38,7 @@ $.fn.placeholder = function() {
 			} )
 
 			// Hide on focus
-			.bind( 'onfocus ondrop ondragdrop', function() {
+			.focus( function() {
 				if ($input.hasClass('placeholder')) {
 					this.value = '';
 					$input.removeClass( 'placeholder' );
