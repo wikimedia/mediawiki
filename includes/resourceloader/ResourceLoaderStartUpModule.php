@@ -77,6 +77,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( $wgFileExtensions ),
 			'wgDBname' => $wgDBname,
+			// This sucks, it is only needed on Special:Upload, but I could 
+			// not find a way to add vars only for a certain module
+			'wgFileCanRotate' => BitmapHandler::canRotate(),
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
