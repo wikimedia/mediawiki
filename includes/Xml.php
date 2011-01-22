@@ -448,7 +448,7 @@ class Xml {
 	 * @param $name Mixed: Name and id for the drop-down
 	 * @param $class Mixed: CSS classes for the drop-down
 	 * @param $other Mixed: Text for the "Other reasons" option
-	 * @param $list Mixed: Correctly formatted text to be used to generate the options
+	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
 	 * @param $selected Mixed: Option which should be pre-selected
 	 * @param $tabindex Mixed: Value of the tabindex attribute
 	 * @return string
