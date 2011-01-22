@@ -103,12 +103,12 @@ class SpecialSearch extends SpecialPage {
 		}
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
-		
+
 		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ) ) ) {
 			# Hook requested termination
 			return;
 		}
-		
+
 		if( !is_null( $t ) ) {
 			$wgOut->redirect( $t->getFullURL() );
 			return;
@@ -243,7 +243,7 @@ class SpecialSearch extends SpecialPage {
 			$wgOut->addHTML( $this->formHeader($term, 0, 0));
 			if( $this->searchAdvanced ) {
 				$wgOut->addHTML( $this->powerSearchBox( $term ) );
-			} 
+			}
 			$wgOut->addHTML( '</form>' );
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
@@ -255,7 +255,7 @@ class SpecialSearch extends SpecialPage {
 		$textMatchesNum = $textMatches ? $textMatches->numRows() : 0;
 		// Total initial query matches (possible false positives)
 		$num = $titleMatchesNum + $textMatchesNum;
-		
+
 		// Get total actual results (after second filtering, if any)
 		$numTitleMatches = $titleMatches && !is_null( $titleMatches->getTotalHits() ) ?
 			$titleMatches->getTotalHits() : $titleMatchesNum;
@@ -268,13 +268,13 @@ class SpecialSearch extends SpecialPage {
 			$totalRes += $titleMatches->getTotalHits();
 		if($textMatches && !is_null( $textMatches->getTotalHits() ))
 			$totalRes += $textMatches->getTotalHits();
-			
+
 		// show number of results and current offset
 		$wgOut->addHTML( $this->formHeader($term, $num, $totalRes));
 		if( $this->searchAdvanced ) {
 			$wgOut->addHTML( $this->powerSearchBox( $term ) );
 		}
-		
+
 		$wgOut->addHtml( Xml::closeElement( 'form' ) );
 		$wgOut->addHtml( "<div class='searchresults'>" );
 
@@ -291,7 +291,7 @@ class SpecialSearch extends SpecialPage {
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
-		} 
+		}
 
 		$wgOut->parserOptions()->setEditSection( false );
 		if( $titleMatches ) {
@@ -332,10 +332,10 @@ class SpecialSearch extends SpecialPage {
 		}
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	protected function showCreateLink( $t ) {
 		global $wgOut;
-		
+
 		// show direct page/create link if applicable
 		$messageName = null;
 		if( !is_null($t) ) {
@@ -346,7 +346,7 @@ class SpecialSearch extends SpecialPage {
 			} else {
 				$messageName = 'searchmenu-new-nocreate';
 			}
-		} 
+		}
 		if( $messageName ) {
 			$wgOut->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) ) );
 		} else {
@@ -365,12 +365,12 @@ class SpecialSearch extends SpecialPage {
 			$this->active = 'advanced';
 		} else {
 			$profiles = $this->getSearchProfiles();
-			
+
 			foreach( $profiles as $key => $data ) {
 				if ( $this->namespaces == $data['namespaces'] && $key != 'advanced')
 					$this->active = $key;
 			}
-			
+
 		}
 		# Should advanced UI be used?
 		$this->searchAdvanced = ($this->active === 'advanced');
@@ -467,9 +467,9 @@ class SpecialSearch extends SpecialPage {
 
 		if( $titleSnippet == '' )
 			$titleSnippet = null;
-		
+
 		$link_t = clone $t;
-		
+
 		wfRunHooks( 'ShowSearchHitTitle',
 					array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
 
@@ -777,7 +777,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$rows = array_values( $rows );
 		$numRows = count( $rows );
-		
+
 		// Lays out namespaces in multiple floating two-column tables so they'll
 		// be arranged nicely while still accommodating different screen widths
 		$namespaceTables = '';
@@ -841,11 +841,11 @@ class SpecialSearch extends SpecialPage {
 			Html::hidden( 'fulltext', 'Advanced search' ) .
 			Xml::closeElement( 'fieldset' );
 	}
-	
+
 	protected function getSearchProfiles() {
 		// Builds list of Search Types (profiles)
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
-		
+
 		$profiles = array(
 			'default' => array(
 				'message' => 'searchprofile-articles',
@@ -880,21 +880,21 @@ class SpecialSearch extends SpecialPage {
 				'parameters' => array( 'advanced' => 1 ),
 			)
 		);
-		
+
 		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
 
 		foreach( $profiles as &$data ) {
 			sort($data['namespaces']);
 		}
-		
+
 		return $profiles;
 	}
 
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
 		global $wgLang;
-		
+
 		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
-		
+
 		$bareterm = $term;
 		if( $this->startsWithImage( $term ) ) {
 			// Deletes prefixes
@@ -902,7 +902,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$profiles = $this->getSearchProfiles();
-		
+
 		// Outputs XML for Search Types
 		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );
 		$out .= Xml::openElement( 'ul' );
@@ -919,7 +919,7 @@ class SpecialSearch extends SpecialPage {
 					$profile['namespaces'],
 					wfMsg( $profile['message'] ),
 					wfMsg( $profile['tooltip'], $tooltipParam ),
-					isset( $profile['parameters'] ) ? $profile['parameters'] : array() 
+					isset( $profile['parameters'] ) ? $profile['parameters'] : array()
 				)
 			);
 		}
@@ -945,17 +945,17 @@ class SpecialSearch extends SpecialPage {
 				Xml::tags( 'ul', null, Xml::tags( 'li', null, $top ) )
 			);
 		}
-		
+
 		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
 		$out .= Xml::closeElement('div');
-		
+
 		// Adds hidden namespace fields
 		if ( !$this->searchAdvanced ) {
 			foreach( $this->namespaces as $ns ) {
 				$out .= Html::hidden( "ns{$ns}", '1' );
 			}
 		}
-		
+
 		return $out;
 	}
 
@@ -972,7 +972,7 @@ class SpecialSearch extends SpecialPage {
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) ) . "\n";
-		return $out . $this->didYouMeanHtml;		
+		return $out . $this->didYouMeanHtml;
 	}
 
 	/**
@@ -1005,7 +1005,7 @@ class SpecialSearch extends SpecialPage {
 			'a',
 			array(
 				'href' => $st->getLocalURL( $stParams ),
-				'title' => $tooltip, 
+				'title' => $tooltip,
 				'onmousedown' => 'mwSearchHeaderClick(this);',
 				'onkeydown' => 'mwSearchHeaderClick(this);'),
 			$label
@@ -1027,7 +1027,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Check if query starts with all: prefix
 	 *
@@ -1037,7 +1037,7 @@ class SpecialSearch extends SpecialPage {
 	protected function startsWithAll( $term ) {
 
 		$allkeyword = wfMsgForContent('searchall');
-		
+
 		$p = explode( ':', $term );
 		if( count( $p ) > 1 ) {
 			return $p[0]  == $allkeyword;
@@ -1045,4 +1045,3 @@ class SpecialSearch extends SpecialPage {
 		return false;
 	}
 }
-

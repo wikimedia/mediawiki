@@ -95,7 +95,6 @@ $wgIgnoredMessages = array(
 	'anonnotice',
 	'autoblock_whitelist',
 	'searchmenu-help',
-	'searchmenu-new-nocreate',
 	'googlesearch',
 	'opensearch-desc',
 	'exif-make-value',
