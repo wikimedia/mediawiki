@@ -1471,10 +1471,12 @@ class OutputPage {
 	 *
 	 * @param $header String: header name
 	 * @param $option either an Array or null
+	 * @fixme Document the $option parameter; it appears to be for
+	 *        X-Vary-Options but what format is acceptable?
 	 */
 	public function addVaryHeader( $header, $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
-			$this->mVaryHeader[$header] = $option;
+			$this->mVaryHeader[$header] = (array)$option;
 		} elseif( is_array( $option ) ) {
 			if( is_array( $this->mVaryHeader[$header] ) ) {
 				$this->mVaryHeader[$header] = array_merge( $this->mVaryHeader[$header], $option );
