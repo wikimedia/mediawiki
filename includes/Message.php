@@ -170,6 +170,20 @@ class Message {
 	}
 	
 	/**
+	 * Add parameters that are numeric and will be passed through
+	 * Language::formatNum before substitution
+	 * @param Varargs: numeric parameters
+	 * @return Message: $this
+	 */
+	public function numParams( /*...*/ ) {
+		$params = func_get_args();
+		foreach( $params as $param ) {
+			$this->parameters[] = self::numParam( $param );
+		}
+		return $this;
+	}
+	
+	/**
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
@@ -328,6 +342,10 @@ class Message {
 	public static function rawParam( $value ) {
 		return array( 'raw' => $value );
 	}
+	
+	public static function numParam( $value ) {
+		return array( 'num' => $value );
+	}
 
 	/**
 	 * Substitutes any paramaters into the message text.
@@ -342,6 +360,9 @@ class Message {
 				$replacementKeys['$' . ($n + 1)] = $param;
 			} elseif ( $type === 'after' && isset( $param['raw'] ) ) {
 				$replacementKeys['$' . ($n + 1)] = $param['raw'];
+			} elseif ( isset( $param['num'] ) ) {
+				$replacementKeys['$' . ($n + 1)] = 
+					$this->language->formatNum( $param['num'] );
 			}
 		}
 		$message = strtr( $message, $replacementKeys );
