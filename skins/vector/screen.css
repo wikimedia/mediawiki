@@ -812,10 +812,6 @@ table {
 	font-size: 100%;
 	color: black;
 }
-fieldset table {
-	/* keep table layouts in forms clean from background colors... */
-	background: none;
-}
 /* Forms */
 fieldset {
 	border: 1px solid #2f6fab;

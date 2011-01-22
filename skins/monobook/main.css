@@ -64,10 +64,6 @@ table {
 	font-size: 100%;
 	color: black;
 }
-fieldset table {
-	/* keep table layouts in forms clean from  background colors... */
-	background: none;
-}
 a {
 	text-decoration: none;
 	color: #002bb8;
