@@ -7,7 +7,7 @@
  * @ingroup Language
  * @file
  *
- * @author Philip
+ * @author PhiLiP
  * @author Wong128hk
  */
 
@@ -185,12 +185,12 @@ Variants for Chinese language
 */
 'variantname-zh-hans' => '简体',
 'variantname-zh-hant' => '繁體',
-'variantname-zh-cn'   => '大陆',
-'variantname-zh-tw'   => '台灣',
-'variantname-zh-hk'   => '香港',
-'variantname-zh-mo'   => '澳門',
-'variantname-zh-sg'   => '新加坡',
-'variantname-zh-my'   => '大马',
-'variantname-zh'      => '中文原文',
+'variantname-zh-cn'   => '大陆简体',
+'variantname-zh-tw'   => '台灣正體',
+'variantname-zh-hk'   => '香港繁體',
+'variantname-zh-mo'   => '澳門繁體',
+'variantname-zh-sg'   => '新加坡简体',
+'variantname-zh-my'   => '大马简体',
+'variantname-zh'      => '不转换',
 
 );

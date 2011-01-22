@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -323,7 +323,7 @@ $messages = array(
 'noindex-category'               => '未做索引的頁面',
 
 'mainpagetext'      => "'''已成功安裝 MediaWiki。'''",
-'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！
+'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟體的訊息！
 
 == 入門 ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
@@ -479,7 +479,7 @@ $1',
 'collapsible-collapse'    => '摺叠',
 'collapsible-expand'      => '展開',
 'thisisdeleted'           => '檢視或恢復$1？',
-'viewdeleted'             => '檢視$1？',
+'viewdeleted'             => '檢視 $1？',
 'restorelink'             => '$1個被刪除的版本',
 'feedlinks'               => '訂閱:',
 'feed-invalid'            => '無效的訂閱類型。',
@@ -601,25 +601,25 @@ $2',
 'yourdomainname'             => '您的網域:',
 'externaldberror'            => '這可能是由於驗證資料庫錯誤或您被禁止更新您的外部賬號。',
 'login'                      => '登入',
-'nav-login-createaccount'    => '登入／建立新賬號',
+'nav-login-createaccount'    => '登入／建立新帳號',
 'loginprompt'                => '您必須允許瀏覽器紀錄 Cookie 才能成功登入 {{SITENAME}}。',
-'userlogin'                  => '登入／建立新賬號',
+'userlogin'                  => '登入／建立新帳號',
 'userloginnocreate'          => '登入',
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '未登入',
-'nologin'                    => '您還沒有賬號嗎？$1。',
-'nologinlink'                => '建立新賬號',
-'createaccount'              => '建立新賬號',
-'gotaccount'                 => '已經擁有賬號？$1。',
+'nologin'                    => '您還沒有帳號嗎？$1。',
+'nologinlink'                => '建立新帳號',
+'createaccount'              => '建立新帳號',
+'gotaccount'                 => '已經擁有帳號？$1。',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過電郵',
 'createaccountreason'        => '理由：',
 'badretype'                  => '您所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror'                 => '登入錯誤',
-'createaccounterror'         => '無法建立賬戶：$1',
-'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
+'createaccounterror'         => '無法建立帳號：$1',
+'nocookiesnew'               => '已成功建立新帳號！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'nocookiesfornew'            => '這位用戶的賬戶未建立，我們不能確認它的來源。
 請肯定您已經開啟 cookies，重新載入後再試。',
@@ -781,9 +781,9 @@ $2',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '您必須$1才能檢視其它頁面。',
 'accmailtitle'                     => '密碼已寄出',
-'accmailtext'                      => "'[[User talk:$1|$1]]'的隨機產生密碼已經寄到$2。
+'accmailtext'                      => "'[[User talk:$1|$1]]'的隨機產生密碼已經寄到 $2。
 
-這個新賬號的密碼可以在登入後的''[[Special:ChangePassword|更改密碼]]''頁面中更改。",
+這個新帳號的密碼可以在登入後的''[[Special:ChangePassword|更改密碼]]''頁面中更改。",
 'newarticle'                       => '（新）',
 'newarticletext'                   => '您進入了一個尚未建立的頁面。
 要建立該頁面，請在下面的編輯框中輸入內容（詳情參見[[{{MediaWiki:Helppage}}|幫助]]）。
@@ -916,10 +916,10 @@ $2',
 'undo-summary' => '取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所作出的修訂 $1',
 
 # Account creation failure
-'cantcreateaccounttitle' => '無法建立賬號',
-'cantcreateaccount-text' => "從這個IP地址 （<b>$1</b>） 建立賬號已經被[[User:$3|$3]]禁止。
+'cantcreateaccounttitle' => '無法建立帳號',
+'cantcreateaccount-text' => "從這個 IP 位址 （<b>$1</b>） 建立帳號已經被 [[User:$3|$3]] 禁止。
 
-當中被$3封禁的原因是''$2''",
+當中被 $3 封禁的原因是 ''$2''",
 
 # History pages
 'viewpagelogs'           => '查詢這個頁面的日誌',
@@ -1176,7 +1176,7 @@ $1",
 'powersearch'                      => '進階搜尋',
 'powersearch-legend'               => '進階搜尋',
 'powersearch-ns'                   => '在以下的名字空間中搜尋：',
-'powersearch-redir'                => '重新定向清單',
+'powersearch-redir'                => '重定向清單',
 'powersearch-field'                => '搜尋',
 'powersearch-togglelabel'          => '核取：',
 'powersearch-toggleall'            => '所有',
@@ -1417,7 +1417,7 @@ $1",
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 'right-revisionmove'          => '移動修訂版本',
-'right-disableaccount'        => '禁用賬號',
+'right-disableaccount'        => '禁用帳號',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1472,7 +1472,7 @@ $1",
 'recentchanges-label-minor'         => '這是一個小編輯',
 'recentchanges-label-bot'           => '這次編輯是由機器人進行',
 'recentchanges-label-unpatrolled'   => '這次編輯尚未巡查過',
-'rcnote'                            => "以下是在$4 $5，最近'''$2'''天內的'''$1'''次最近更改記錄:",
+'rcnote'                            => "以下是在$4 $5，最近 '''$2''' 天內的 '''$1''' 次最近更改記錄。",
 'rcnotefrom'                        => "下面是自'''$2'''（最多顯示'''$1'''）:",
 'rclistfrom'                        => '顯示自$1以來的新更改',
 'rcshowhideminor'                   => '$1小編輯',
@@ -1980,7 +1980,7 @@ Template:消除歧義',
 'newuserlogpage'              => '新進用戶名冊',
 'newuserlogpagetext'          => '這是一個最近被創建用戶的新日誌',
 'newuserlog-byemail'          => '密碼已由電子郵件寄出',
-'newuserlog-create-entry'     => '新的使用者賬號',
+'newuserlog-create-entry'     => '新的使用者帳號',
 'newuserlog-create2-entry'    => '已創建$1的新賬戶',
 'newuserlog-autocreate-entry' => '已自動建立賬戶',
 
@@ -2402,7 +2402,7 @@ $1被封禁的理由是“$2”',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry'                 => '$1已被解封',
 'block-log-flags-anononly'        => '僅限匿名用戶',
-'block-log-flags-nocreate'        => '建立賬號已禁用',
+'block-log-flags-nocreate'        => '建立帳號已禁用',
 'block-log-flags-noautoblock'     => '停用自動封禁',
 'block-log-flags-noemail'         => '禁止電子郵件',
 'block-log-flags-nousertalk'      => '禁止編輯自己的用戶討論頁',
@@ -2615,7 +2615,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'import-interwiki-templates' => '包含所有模板',
 'import-interwiki-submit'    => '匯入',
 'import-interwiki-namespace' => '目的名字空間:',
-'import-upload-filename'     => '檔案名：',
+'import-upload-filename'     => '檔案名稱：',
 'import-comment'             => '註解:',
 'importtext'                 => '請使用[[Special:Export|匯出功能]]從來源 wiki 匯出檔案，
 儲存到您的磁片並上傳到這裡。',
@@ -3366,7 +3366,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 輸入檔名時不需要輸入 "{{ns:file}}:" 開頭。',
 'fileduplicatesearch-legend'   => '找重覆',
-'fileduplicatesearch-filename' => '檔案名稱:',
+'fileduplicatesearch-filename' => '檔案名稱：',
 'fileduplicatesearch-submit'   => '找',
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大小：$3<br />MIME 類型：$4',
 'fileduplicatesearch-result-1' => '檔案 "$1" 無完全相同的重覆。',
