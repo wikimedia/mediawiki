@@ -1752,9 +1752,10 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'filetype-unwanted-type'      => "* $1 is the extension of the file which cannot be uploaded
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
 * $3 is the number of allowed file formats (to be used for the PLURAL function)",
-'filetype-banned-type'        => "* $1 is the extension of the file which cannot be uploaded
+'filetype-banned-type'        => "* $1 is the extension(s) of the file which cannot be uploaded
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
-* $3 is the number of allowed file formats (to be used for the PLURAL function)",
+* $3 is the number of allowed file formats (to be used for the PLURAL function)
+* $4 is the number of extensions that could not be uploaded (to be used for the PLURAL function)",
 'filetype-missing'            => 'Error when uploading a file with no extension',
 'verification-error'          => 'Error message shown when an uploaded file contents does not pass verification, i.e. the file is corrupted, it is not the type it claims to be etc.',
 'large-file'                  => 'Variables $1 and $2 have appropriate unit symbols already. See for example [[Mediawiki:size-kilobytes]].',

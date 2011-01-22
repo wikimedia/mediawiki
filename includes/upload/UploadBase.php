@@ -287,6 +287,9 @@ abstract class UploadBase {
 			}
 			if ( $this->mTitleError == self::FILETYPE_BADTYPE ) {
 				$result['finalExt'] = $this->mFinalExtension;
+				if ( count( $this->mBlackListedExtensions ) ) {
+					$result['blacklistedExt'] = $this->mBlackListedExtensions;
+				}
 			}
 			return $result;
 		}
@@ -566,12 +569,16 @@ abstract class UploadBase {
 		/* Don't allow users to override the blacklist (check file extension) */
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist;
+		
+		$blackListedExtensions = $this->checkFileExtensionList( $ext, $wgFileBlacklist );
+		
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;
 			return $this->mTitle = null;
-		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
+		} elseif ( $blackListedExtensions ||
 				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
 					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
+			$this->mBlackListedExtensions = $blackListedExtensions;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			return $this->mTitle = null;
 		}
@@ -699,19 +706,14 @@ abstract class UploadBase {
 
 	/**
 	 * Perform case-insensitive match against a list of file extensions.
-	 * Returns true if any of the extensions are in the list.
+	 * Returns an array of matching extensions.
 	 *
 	 * @param $ext Array
 	 * @param $list Array
 	 * @return Boolean
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
-		foreach( $ext as $e ) {
-			if( in_array( strtolower( $e ), $list ) ) {
-				return true;
-			}
-		}
-		return false;
+		return array_intersect( array_map( 'strtolower', $ext ), $list );
 	}
 
 	/**
