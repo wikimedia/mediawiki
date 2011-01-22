@@ -27,6 +27,10 @@ return array(
 	'skins.chick' => array(
 		'styles' => array( 'skins/chick/main.css' => array( 'media' => 'screen,handheld' ) ),
 	),
+	'skins.modern' => array(
+		'styles' => array( 'skins/modern/main.css' => array( 'media' => 'screen' ),
+				   'skins/modern/print.css' => array( 'media' => 'print' ) ),
+	),
 
 	/* jQuery */
 
