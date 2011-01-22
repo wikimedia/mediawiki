@@ -9,6 +9,7 @@
  *
  * @author Arastein
  * @author Asoxor
+ * @author George Animal
  * @author Marmzok
  */
 
@@ -30,6 +31,8 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+'underline-never' => 'Qet na',
+
 # Dates
 'january' => 'کانوونی دووەم',
 
