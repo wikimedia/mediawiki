@@ -1,5 +1,5 @@
 /**
- * mediaWiki.util Test Suite
+ * mediaWiki JavaScript library test suite
  *
  * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
  *
@@ -45,10 +45,10 @@
 						&& mw.util.getParamValue( 'action' ) === 'mwutiltest' ) {
 
 						// Build page
-						document.title = 'mediaWiki.util JavaScript Test - ' + mw.config.get( 'wgSiteName' );
-						$( '#firstHeading' ).text( 'mediaWiki.util JavaScript Test' );
+						document.title = 'mediaWiki JavaScript library test suite - ' + mw.config.get( 'wgSiteName' );
+						$( '#firstHeading' ).text( 'mediaWiki JavaScript library test suite' );
 						mw.util.$content.html(
-							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki.util functions</p>'
+							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki JavaScript library</p>'
 							+ '<hr />'
 							+ '<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\'">'
 							+ '<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>'
