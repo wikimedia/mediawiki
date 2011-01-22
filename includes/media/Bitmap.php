@@ -22,10 +22,10 @@ class BitmapHandler extends ImageHandler {
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 		
-		if ( $this->canRotate() ) {
+		if ( self::canRotate() ) {
 			$rotation = $this->getRotation( $image );
 			if ( $rotation == 90 || $rotation == 270 ) {
-				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotation $rotation degrees\n" );
+				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
 				
 				$width = $params['width'];
 				$params['width'] = $params['height'];
@@ -101,7 +101,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Determine scaler type
-		$scaler = $this->getScalerType( $dstPath );
+		$scaler = self::getScalerType( $dstPath );
 		wfDebug( __METHOD__ . ": scaler $scaler\n" );
 
 		if ( $scaler == 'client' ) {
@@ -156,7 +156,7 @@ class BitmapHandler extends ImageHandler {
 	 * 
 	 * @return string client,im,custom,gd
 	 */
-	protected function getScalerType( $dstPath, $checkDstPath = true ) {
+	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
 		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;
 		
 		if ( !$dstPath && $checkDstPath ) {
@@ -678,8 +678,8 @@ class BitmapHandler extends ImageHandler {
 	 * 
 	 * @return bool
 	 */
-	public function canRotate() {
-		$scaler = $this->getScalerType( null, false );
+	public static function canRotate() {
+		$scaler = self::getScalerType( null, false );
 		return $scaler == 'im' || $scaler == 'gd';
 	}
 	
@@ -691,6 +691,6 @@ class BitmapHandler extends ImageHandler {
 	 * @return bool
 	 */
 	public function mustRender( $file ) {
-		return $this->canRotate() && $this->getRotation( $file ) != 0;
+		return self::canRotate() && $this->getRotation( $file ) != 0;
 	}
 }

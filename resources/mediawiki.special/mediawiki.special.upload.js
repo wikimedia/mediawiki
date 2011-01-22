@@ -58,9 +58,27 @@ jQuery( function( $ ) {
 		spinner.src = mw.config.get( 'wgScriptPath' ) + '/skins/common/images/spinner.gif';
 		$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
-		fetchPreview( file, function( dataURL ) {	
+		var meta;
+		fetchPreview( file, function( dataURL ) {
 			var	img = new Image(),
 				rotation = 0;
+			
+			if ( meta && meta.tiff.Orientation ) {
+				rotation = (360 - function () {
+					// See includes/media/Bitmap.php
+					switch ( meta.tiff.Orientation.value ) {
+						case 8:
+							return 90;
+						case 3:
+							return 180;
+						case 6:
+							return 270;
+						default:
+							return 0;
+					}
+				}() ) % 360;
+			}
+			
 			img.onload = function() {
 				// Fit the image within the previewSizexpreviewSize box
 				if ( img.width > img.height ) {
@@ -83,6 +101,7 @@ jQuery( function( $ ) {
 						y = dy;
 						break;
 					case 90:
+						
 						x = dx;
 						y = dy - previewSize;
 						break;
@@ -106,22 +125,44 @@ jQuery( function( $ ) {
 				$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 			};
 			img.src = dataURL;
-		} );
+		}, mediaWiki.config.get( 'wgFileCanRotate' ) ? function ( data ) {
+			try {
+				meta = mediaWiki.util.jpegmeta( data, file.fileName );
+				meta._binary_data = null;
+			} catch ( e ) {
+				meta = null;
+			}
+		} : null );
 	}
 
 	/**
 	 * Start loading a file into memory; when complete, pass it as a
-	 * data URL to the callback function.
+	 * data URL to the callback function. If the callbackBinary is set it will
+	 * first be read as binary and afterwards as data URL. Useful if you want
+	 * to do preprocessing on the binary data first.
 	 *
 	 * @param {File} file
 	 * @param {function} callback
+	 * @param {function} callbackBinary
 	 */
-	function fetchPreview( file, callback ) {
+	function fetchPreview( file, callback, callbackBinary ) {
 		var reader = new FileReader();
 		reader.onload = function() {
-			callback( reader.result );
+			if ( callbackBinary ) {
+				callbackBinary( reader.result );
+				reader.onload = function() {
+					callback( reader.result );
+				}
+				reader.readAsDataURL( file );
+			} else {
+				callback( reader.result );
+			}
 		};
-		reader.readAsDataURL( file );
+		if ( callbackBinary ) {
+			reader.readAsBinaryString( file );
+		} else {
+			reader.readAsDataURL( file );
+		}
 	}
 
 	/**

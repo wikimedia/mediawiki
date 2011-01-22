@@ -355,6 +355,9 @@ return array(
 		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.cookie', 'jquery.placeholder', 'jquery.makeCollapsible' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
+	'mediawiki.util.jpegmeta' => array(
+		'scripts' => 'resources/mediawiki.util/mediawiki.util.jpegmeta.js',
+	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
 		'dependencies' => 'mediawiki.legacy.history',
@@ -385,6 +388,7 @@ return array(
 		// @todo: merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
 		'messages' => array( 'widthheight', 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ),
+		'dependencies' => array( 'mediawiki.util.jpegmeta' ),
 	),
 	'mediawiki.language' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.js',
