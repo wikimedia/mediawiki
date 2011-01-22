@@ -796,20 +796,11 @@ As dit gedoen is, kan u '''[u $2 wiki besoek]'''.",
 	'config-help' => 'hulp',
 );
 
-/** Aragonese (Aragonés)
- * @author Juanpabl
- */
-$messages['an'] = array(
-	'config-show-help' => 'Aduya',
-);
-
 /** Aramaic (ܐܪܡܝܐ)
  * @author Basharh
  */
 $messages['arc'] = array(
 	'config-information' => 'ܝܕ̈ܥܬܐ',
-	'config-show-help' => 'ܥܘܕܪܢܐ',
-	'config-hide-help' => 'ܛܫܝ ܥܘܕܪܢܐ',
 	'config-your-language' => 'ܠܫܢܐ ܕܝܠܟ:',
 	'config-wiki-language' => 'ܠܫܢܐ ܕܘܝܩܝ:',
 	'config-page-language' => 'ܠܫܢܐ',
@@ -824,13 +815,6 @@ $messages['arc'] = array(
 	'config-admin-email' => 'ܦܪܫܓܢܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
 	'config-profile-private' => 'ܘܝܩܝ ܦܪܨܘܦܝܐ',
 	'config-email-settings' => 'ܛܘܝܒ̈ܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
-);
-
-/** Belarusian (Беларуская)
- * @author Тест
- */
-$messages['be'] = array(
-	'config-show-help' => 'Дапамога',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
@@ -1929,7 +1913,6 @@ $messages['ce'] = array(
 /** Czech (Česky) */
 $messages['cs'] = array(
 	'config-information' => 'Informace',
-	'config-show-help' => 'Nápověda',
 	'config-continue' => 'Pokračovat →',
 	'config-page-language' => 'Jazyk',
 	'config-page-name' => 'Název',
@@ -2429,8 +2412,6 @@ Sobald dies alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]''
  * @author Yekrats
  */
 $messages['eo'] = array(
-	'config-show-help' => 'Helpo',
-	'config-hide-help' => 'Kaŝi helpon',
 	'config-your-language' => 'Via lingvo:',
 	'config-your-language-help' => 'Elekti lingvon uzi dum la instalada procezo.',
 	'config-wiki-language' => 'Lingvo de la vikio:',
@@ -2772,8 +2753,6 @@ $messages['eu'] = array(
 	'config-title' => 'MediaWiki $1 instalazioa',
 	'config-information' => 'Informazioa',
 	'config-session-error' => 'Saio hasierako errorea: $1',
-	'config-show-help' => 'Laguntza',
-	'config-hide-help' => 'Laguntza ezkutatu',
 	'config-your-language' => 'Zure hizkuntza:',
 	'config-your-language-help' => 'Aukeratu instalazio prozesuan erabiliko den hizkuntza',
 	'config-wiki-language' => 'Wiki hizkuntza:',
@@ -4073,7 +4052,6 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents המדריך למשתמשים]
 * [http://www.mediawiki.org/wiki/Manual:Contents המדריך למנהלים]
 * [http://www.mediawiki.org/wiki/Manual:FAQ שו״ת]',
-	'config-env-latest-ok' => 'הגרסה העדכנית ביותר של מדיה־ויקי היא המותקנת.',
 	'config-diff3-bad' => 'GNU diff3 לא נמצא.',
 	'config-db-type' => 'סוג מסד הנתונים:',
 	'config-db-host' => 'מארח מסד הנתונים:',
@@ -5639,7 +5617,6 @@ $messages['ig'] = array(
  */
 $messages['it'] = array(
 	'config-information' => 'Informazioni',
-	'config-show-help' => 'Aiuto',
 	'config-back' => '← Indietro',
 	'config-continue' => 'Continua →',
 	'config-page-language' => 'Lingua',
@@ -6125,8 +6102,6 @@ $3
  * @author គីមស៊្រុន
  */
 $messages['km'] = array(
-	'config-show-help' => 'ជំនួយ',
-	'config-hide-help' => 'លាក់ជំនួយ',
 	'config-your-language' => 'ភាសារបស់អ្នក៖',
 	'config-your-language-help' => 'ជ្រើសយកភាសាដើម្បីប្រើក្នុងពេលតំលើង។',
 	'config-wiki-language' => 'ភាសាវិគី៖',
@@ -6980,6 +6955,7 @@ $messages['ml'] = array(
 * [http://www.mediawiki.org/wiki/Help:Contents ഉപയോക്തൃസഹായി]
 * [http://www.mediawiki.org/wiki/Manual:Contents കാര്യനിർവഹണസഹായി]
 * [http://www.mediawiki.org/wiki/Manual:FAQ പതിവുചോദ്യങ്ങൾ]',
+	'config-env-php' => 'പി.എച്ച്.പി. $1 ഇൻസ്റ്റോൾ ചെയ്തിട്ടുണ്ട്.',
 	'config-no-db' => 'അനുയോജ്യമായ ഡേറ്റാബേസ് ഡ്രൈവർ കണ്ടെത്താനായില്ല!',
 	'config-memory-raised' => 'പി.എച്ച്.പി.യുടെ <code>memory_limit</code> $1 ആണ്, $2 ആയി ഉയർത്തിയിരിക്കുന്നു.',
 	'config-memory-bad' => "'''മുന്നറിയിപ്പ്:''' പി.എച്ച്.പി.യുടെ <code>memory_limit</code> $1 ആണ്.
@@ -8822,8 +8798,6 @@ Quand che a l'é stàit fàit, a peul '''[$2 intré an soa wiki]'''.",
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 $messages['ps'] = array(
-	'config-show-help' => 'لارښود',
-	'config-hide-help' => 'لارښود پټول',
 	'config-your-language' => 'ستاسې ژبه:',
 	'config-wiki-language' => 'د ويکي ژبه:',
 	'config-page-language' => 'ژبه',
@@ -9416,9 +9390,6 @@ Se você não pretende usar um logotipo, deixe este campo em branco.',
  */
 $messages['ro'] = array(
 	'config-session-error' => 'Eroare la pornirea sesiunii: $1',
-	'config-session-path-bad' => '<code>session.save_path</code> (<code>$1</code>) pare să fie invalid sau imposibil de scris.',
-	'config-show-help' => 'Ajutor',
-	'config-hide-help' => 'Ascunde ajutorul',
 	'config-your-language' => 'Limba ta:',
 	'config-your-language-help' => 'Alege o limbă pentru a o utiliza în timpul procesului de instalare.',
 	'config-wiki-language' => 'Limbă wiki:',
@@ -9934,8 +9905,6 @@ $messages['sl'] = array(
 	'config-desc' => 'Namestitveni program za MediaWiki',
 	'config-title' => 'Namestitev MediaWiki $1',
 	'config-information' => 'Informacije',
-	'config-show-help' => 'Pomoč',
-	'config-hide-help' => 'Skrij pomoč',
 	'config-your-language' => 'Vaš jezik:',
 	'config-back' => '← Nazaj',
 	'config-continue' => 'Nadaljuj →',
@@ -9954,9 +9923,8 @@ $messages['sl'] = array(
 	'config-admin-password' => 'Geslo:',
 );
 
-/** Serbian Cyrillic ekavian (Српски (ћирилица)) */
+/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬) */
 $messages['sr-ec'] = array(
-	'config-show-help' => 'Помоћ',
 	'config-continue' => 'Настави →',
 	'config-page-language' => 'Језик',
 );
@@ -9966,8 +9934,6 @@ $messages['sr-ec'] = array(
  */
 $messages['ta'] = array(
 	'config-information' => 'தகவல்',
-	'config-show-help' => 'உதவி',
-	'config-hide-help' => 'உதவியை மறை',
 	'config-your-language' => 'தங்களது மொழி:',
 	'config-back' => '← முந்தைய',
 	'config-continue' => 'தொடரவும் →',
@@ -9983,8 +9949,6 @@ $messages['te'] = array(
 	'config-desc' => 'మీడియావికీ కొరకై స్థాపకి',
 	'config-title' => 'మీడియావికీ $1స్థాపన',
 	'config-information' => 'సమాచారం',
-	'config-show-help' => 'సహాయం',
-	'config-hide-help' => 'సహాయాన్ని దాచు',
 	'config-your-language' => 'మీ భాష:',
 	'config-wiki-language' => 'వికీ భాష:',
 	'config-back' => '← వెనక్కి',
@@ -9998,7 +9962,6 @@ $messages['te'] = array(
 	'config-page-complete' => 'పూర్తయ్యింది!',
 	'config-page-readme' => 'నన్ను చదవండి',
 	'config-page-releasenotes' => 'విడుదల విశేషాలు',
-	'config-env-latest-old' => "'''హెచ్చరిక:''' మీరు మీడియావికీ యొక్క పాతబడిన సంచికని స్థాపిస్తున్నారు.",
 	'config-db-type' => 'డాటాబేసు రకం:',
 	'config-db-name' => 'డాటాబేసు పేరు:',
 	'config-db-install-account' => 'స్థాపనకి వాడుకరి ఖాతా',
@@ -10511,7 +10474,7 @@ $1
 
 如果您在下面列出的数据库系统中没有找到您希望使用的系统，请根据上方链向的指引启用支持。',
 	'config-support-mysql' => '* $1是MediaWiki的首选数据库，对它的支持最为完备（[http://www.php.net/manual/en/mysql.installation.php 如何将对MySQL的支持编译进PHP中]）',
-	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中）',
+	'config-support-postgres' => '* $1是一种流行的开源数据库系统，可作为MySQL的替代（[http://www.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）',
 	'config-support-sqlite' => '* $1是一种轻量级的数据库系统，能被良好地支持。（[http://www.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）',
 	'config-support-oracle' => '* $1是一种商用企业级的数据库。（[http://www.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）',
 	'config-header-mysql' => 'MySQL设置',
@@ -10616,7 +10579,48 @@ chmod a+w $3</pre>',
 	'config-almost-done' => '您几乎已经完成了！现在您可以跳过剩下的配置流程并立即安装wiki。',
 	'config-optional-continue' => '多问我一些问题吧。',
 	'config-optional-skip' => '我已经不耐烦了，赶紧安装我的wiki。',
-	'config-email-settings' => 'Email 设置',
+	'config-profile' => '用户权限配置：',
+	'config-profile-wiki' => '传统wiki',
+	'config-profile-no-anon' => '需要注册帐号',
+	'config-profile-fishbowl' => '编辑受限',
+	'config-profile-private' => '非公开wiki',
+	'config-profile-help' => "如果您允许尽量多的人编写wiki，网站上的内容会更加丰富。在MediaWiki中，您可以轻松地审查最近更改，并轻易回退掉新手或破坏者造成的损害。
+
+然而，许多人觉得让MediaWiki存在多种角色将更加好用；同时，要说服所有人都愿以wiki的方式作贡献并非一件易事。因此，您可以有以下选择：
+
+'''{{int:config-profile-wiki}}'''允许包括未登录用户在内的所有人编辑。'''{{int:config-profile-no-anon}}'''的wiki需要额外的注册流程，这有可能会阻碍随意贡献者。
+
+'''{{int:config-profile-fishbowl}}'''模式只允许获批准的用户编辑，但对公众开放页面浏览（包括历史记录）。'''{{int:config-profile-private}}'''则只允许获批准的用户浏览、编辑页面。
+
+安装完成后，您还可以对用户权限进行更多、更复杂的配置，参见[http://www.mediawiki.org/wiki/Manual:User_rights 相关的使用手册]。",
+	'config-license' => '版权和许可证：',
+	'config-license-none' => '页脚无许可证',
+	'config-license-cc-by-sa' => '知识共享署名-相同方式分享（与维基百科兼容）',
+	'config-license-cc-by-nc-sa' => '知识共享署名-非商业性使用-相同方式共享',
+	'config-license-gfdl-old' => 'GNU自由文档许可证 1.2',
+	'config-license-gfdl-current' => 'GNU自由文档许可证 1.3或更高版本',
+	'config-license-pd' => '公有领域',
+	'config-license-cc-choose' => '选择自定义的知识共享许可证',
+	'config-license-help' => "许多公共wiki会以[http://freedomdefined.org/Definition 自由许可证]的方式释放出编者的所有贡献。这有助于构建社区的主人翁意识，并能鼓励长期贡献。对于非公共wiki或公司wiki，这并非必要条件。
+
+如果您希望使用来自维基百科的内容，并希望维基百科能接受复制自您的wiki的内容，请选择'''知识共享署名-相同方式共享'''。
+
+GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今有效。然而，该许可证的一些特性会增加重用或演绎内容的难度。",
+	'config-email-settings' => '电子邮件设置',
+	'config-enable-email' => '启用出站电子邮件',
+	'config-enable-email-help' => '如果您希望使用电子邮件功能，请正确配置[http://www.php.net/manual/en/mail.configuration.php PHP的邮件设定]。如果您不需要任何电子邮件功能，请在此处禁用它。',
+	'config-email-user' => '启用用户到用户的电子邮件',
+	'config-email-user-help' => '允许所有用户互发邮件，假若他们启用了该功能。',
+	'config-email-usertalk' => '启用用户讨论页通知',
+	'config-email-usertalk-help' => '允许用户收到用户讨论页被修改的通知，假若他们启用了该功能。',
+	'config-email-watchlist' => '启用监视列表通知',
+	'config-email-watchlist-help' => '允许用户收到与其监视列表有关的通知，假若他们启用了该功能。',
+	'config-email-auth' => '启用电子邮件身份验证',
+	'config-email-auth-help' => "如果启用此选项，在用户设置或修改电子邮件地址时，就会收到一封邮件，内含确认电子地址的链接。只有经过身份验证的电子邮件地址，才能收到来自其他用户的电子邮件，或任何修改通知的邮件。'''建议'''公开wiki启用本选项，以防对电子邮件功能的滥用。",
+	'config-email-sender' => '回复电子邮件地址：',
+	'config-email-sender-help' => '输入要用来发送出站电子邮件的地址，该地址将会收到被拒收的邮件。许多邮件服务器要求域名部分必须有效。',
+	'config-upload-settings' => '图像和文件上传',
+	'config-upload-enable' => '启用文件上传',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
