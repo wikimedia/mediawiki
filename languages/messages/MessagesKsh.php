@@ -3703,6 +3703,8 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
 
 # Special:DisableAccount
-'disableaccount' => 'Enem Metmaacher singe Zohjang stell lääje',
+'disableaccount'        => 'Enem Metmaacher singe Zohjang stell lääje',
+'disableaccount-user'   => 'Metmaacher Name:',
+'disableaccount-reason' => 'Woröm?',
 
 );

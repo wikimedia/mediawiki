@@ -1242,6 +1242,9 @@ $1",
 'prefs-displaywatchlist'        => 'ప్రదర్శన ఎంపికలు',
 'prefs-diffs'                   => 'తేడాలు',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'దయచేసి సరైన ఈమెయిలు చిరునామాని ఇవ్వండి',
+
 # User rights
 'userrights'                   => 'వాడుకరి హక్కుల నిర్వహణ',
 'userrights-lookup-user'       => 'వాడుకరి సమూహాలను సంభాళించండి',

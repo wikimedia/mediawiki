@@ -871,6 +871,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|guherandinek|guherandin}}',
 'recentchanges'                     => 'Guherandinên dawî',
 'recentchanges-legend'              => 'Vebijarkên guherandinên dawî',
+'recentchanges-label-minor'         => 'Ev guhertineka biçûk e',
 'rcnote'                            => "Jêr {{PLURAL:$1|guherandinek|'''$1''' guherandinên dawî}} di {{PLURAL:$2|rojê|'''$2''' rojên dawî}} de ji $3 şûnde tên nîşan dan.",
 'rclistfrom'                        => 'an jî guherandinên ji $1 şûnda nîşan bide.',
 'rcshowhideminor'                   => 'guherandinên biçûk $1',
@@ -1141,8 +1142,9 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Guherandinên bikarhênerekî yê jêbirî',
-'deletedcontributions-title' => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions'             => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions-title'       => 'Guherandinên bikarhênerekî yê jêbirî',
+'sp-deletedcontributions-contribs' => 'tevkarîyan',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Boşahîya nav:',
@@ -1728,6 +1730,8 @@ if (wgUserLanguage == "ku-arab")
 'exif-artist'                      => 'Nûser',
 'exif-exposuretime-format'         => '$1 sanî ($2)',
 
+'exif-orientation-1' => 'Normal',
+
 'exif-meteringmode-255' => 'Yên din',
 
 'exif-contrast-1' => 'Nerm',
@@ -1743,6 +1747,7 @@ if (wgUserLanguage == "ku-arab")
 'watchlistall2'    => 'hemû',
 'namespacesall'    => 'Hemû',
 'monthsall'        => 'giştik',
+'limitall'         => 'hemû',
 
 # E-mail address confirmation
 'confirmemail'          => 'Adrêsa e-nameyan nasbike',

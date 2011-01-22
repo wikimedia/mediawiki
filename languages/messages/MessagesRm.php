@@ -954,7 +954,7 @@ Fa stim che navigar cun agid da las coalliziuns reinizialisescha tia tscherna.',
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' da '''$3'''|Resultats '''$1-$2''' da '''$3'''}} per '''$4'''",
 'nonefound'                        => "'''Remartga''': Sco standard vegn be tschertga en tscherts tips da pagina.
 Scriva il prefix ''all:'' avant il term che ti vuls tschertgar, per tschertgar en tut las paginas (incl. discussiuns, models etc.) u scriva directamain il prefix dal spazi da num en il qual ti vuls tschertgar.",
-'search-nonefound'                 => 'Per il term tschertga èn nagins resultats vegnids chattads.',
+'search-nonefound'                 => 'Per il term tschertgà èn nagins resultats vegnids chattads.',
 'powersearch'                      => 'retschertgar',
 'powersearch-legend'               => 'Tschertga extendida',
 'powersearch-ns'                   => 'Tschertgar en tips da pagina:',
