@@ -104,12 +104,9 @@ div.patrollink {
 /**
  * Forms
  */
-body.ltr td.mw-label { text-align: right; }
-body.ltr td.mw-input { text-align: left; }
-body.ltr td.mw-submit { text-align: left; }
-body.rtl td.mw-label { text-align: left; }
-body.rtl td.mw-input { text-align: right; }
-body.rtl td.mw-submit { text-align: right; }
+td.mw-label { text-align: right; }
+td.mw-input { text-align: left; }
+td.mw-submit { text-align: left; }
 
 td.mw-label { vertical-align: top; }
 .prefsection td.mw-label { width: 20%; }
@@ -131,11 +128,8 @@ input#wpSummary {
 /**
  * Image captions
  */
-body.rtl .thumbcaption { text-align: right; }
-body.rtl .magnify { float: left; }
-
-body.ltr .thumbcaption { text-align: left; }
-body.ltr .magnify { float: right; }
+.thumbcaption { text-align: right; }
+.magnify { float: left; }
 
 /**
  * Hidden categories
@@ -193,9 +187,6 @@ div.searchresult {
 	float: left;
 	padding-left: 0.25em;
 }
-.rtl .mw-search-formheader div.search-types {
-	float: right;
-}
 .mw-search-formheader div.search-types ul {
 	margin: 0 !important;
 	padding: 0 !important;
@@ -251,14 +242,8 @@ fieldset#mw-searchoptions h4 {
 	margin: 0;
 	float: left;
 }
-.rtl fieldset#mw-searchoptions h4 {
-	float: right;
-}
 fieldset#mw-searchoptions div#mw-search-togglebox {
 	float: right;
-}
-.rtl fieldset#mw-searchoptions div#mw-search-togglebox {
-	float: left;
 }
 
 fieldset#mw-searchoptions div#mw-search-togglebox label {
@@ -273,15 +258,6 @@ fieldset#mw-searchoptions table {
 }
 fieldset#mw-searchoptions table td {
 	padding-right: 1em;
-}
-.rtl fieldset#mw-searchoptions table td {
-	padding-left: 1em;
-	padding-right: 0;
-}
-body.rtl fieldset#mw-searchoptions table {
-	margin-right: 0;
-	margin-left: 3em;
-	float: right;
 }
 fieldset#mw-searchoptions div.divider {
 	clear: both;
@@ -304,10 +280,6 @@ div#mw-search-interwiki {
 	margin-top: 2ex;
 }
 
-.rtl div#mw-search-interwiki {
-	float: left;
-}
-
 div#mw-search-interwiki li {
 	font-size: 95%;
 }
@@ -315,10 +287,6 @@ div#mw-search-interwiki li {
 .mw-search-interwiki-more {
 	float: right;
 	font-size: 90%;
-}
-
-.rtl .mw-search-interwiki-more {
-	float: left;
 }
 
 div#mw-search-interwiki-caption {
@@ -336,10 +304,6 @@ div#mw-search-interwiki-caption {
 	padding-top: 0.15em;
 	background-color: #ececec;
 	border-top: 1px solid #BBBBBB;
-}
-
-.rtl .mw-search-interwiki-project {
-	text-align: right;
 }
 
 span.searchalttitle {
