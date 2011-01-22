@@ -24,6 +24,9 @@ return array(
 	'skins.simple' => array(
 		'styles' => array( 'skins/simple/main.css' => array( 'media' => 'screen' ) ),
 	),
+	'skins.chick' => array(
+		'styles' => array( 'skins/chick/main.css' => array( 'media' => 'screen,handheld' ) ),
+	),
 
 	/* jQuery */
 
