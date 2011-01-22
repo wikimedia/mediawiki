@@ -11,9 +11,6 @@ td.diff-ntitle {
 td.diff-marker {
 	text-align: right;
 }
-.rtl td.diff-marker {
-	text-align: left;
-}
 td.diff-lineno {
 	font-weight: bold;
 }
