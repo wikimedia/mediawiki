@@ -128,8 +128,8 @@ input#wpSummary {
 /**
  * Image captions
  */
-.thumbcaption { text-align: right; }
-.magnify { float: left; }
+.thumbcaption { text-align: left; }
+.magnify { float: right; }
 
 /**
  * Hidden categories
