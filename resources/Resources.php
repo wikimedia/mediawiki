@@ -21,6 +21,9 @@ return array(
 			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' ),
 		),
 	),
+	'skins.simple' => array(
+		'styles' => array( 'skins/simple/main.css' => array( 'media' => 'screen' ) ),
+	),
 
 	/* jQuery */
 
