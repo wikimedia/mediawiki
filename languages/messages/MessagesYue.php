@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -175,8 +175,8 @@ $messages = array(
 'tog-shownumberswatching'     => '顯示有幾多人監視',
 'tog-oldsig'                  => '原有簽名嘅預覽：',
 'tog-fancysig'                => '將簽名以維基字對待（冇自動連結）',
-'tog-externaleditor'          => '預設用外掛編輯器（高階者專用，需要響你部電腦度做一啲特別設定）',
-'tog-externaldiff'            => '預設用外掛比較器（高階者專用，需要響你部電腦度做一啲特別設定）',
+'tog-externaleditor'          => '預設用外掛編輯器（高階者專用，需要響你部電腦度做一啲特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多資訊。]）',
+'tog-externaldiff'            => '預設用外掛比較器（高階者專用，需要響你部電腦度做一啲特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多資訊。]）',
 'tog-showjumplinks'           => '啟用 "跳至" 協助連結',
 'tog-uselivepreview'          => '用即時預覽（需要JavaScript）（實驗緊）',
 'tog-forceeditsummary'        => '我冇入修改註解時通知我',
@@ -430,9 +430,9 @@ $1',
 'hidetoc'                 => '收埋',
 'collapsible-collapse'    => '摺埋',
 'collapsible-expand'      => '展開',
-'thisisdeleted'           => '睇下定係還原 $1 ？',
+'thisisdeleted'           => '睇下定係還原$1？',
 'viewdeleted'             => '去睇$1？',
-'restorelink'             => '$1 次已刪除嘅編輯',
+'restorelink'             => '$1次已刪除嘅編輯',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => '唔啱嘅 feed 類型。',
 'feed-unavailable'        => '聯合 feeds 並無提供',
@@ -587,7 +587,7 @@ $1',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼最少要有$1個半形字元。',
 'password-name-match'        => '你嘅密碼一定要同你嘅用戶名唔一樣。',
-'password-login-forbidden'   => '呢啲用戶名同密碼嘅利用係被禁止嘅。',
+'password-login-forbidden'   => '呢個用戶名同密碼嘅利用係被禁止嘅。',
 'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
@@ -1239,7 +1239,8 @@ $1",
 'email'                         => '電郵',
 'prefs-help-realname'           => '真名可以唔填。
 如果你畀埋佢，有需要嘅時候會用佢來標示你嘅工夫。',
-'prefs-help-email'              => '電郵地址可以唔填，但當你唔記得咗你個密碼嗰陣需要利用電郵地址將新密碼重設寄番畀你。亦可以響人哋唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email'              => '電郵地址可以唔填，但當你唔記得咗你個密碼嗰陣需要利用電郵地址將新密碼重設寄番畀你。',
+'prefs-help-email-others'       => '亦可以響人哋唔知你電郵地址嘅情況之下都可以聯絡你。',
 'prefs-help-email-required'     => '需要電郵地址。',
 'prefs-info'                    => '基本資料',
 'prefs-i18n'                    => '國際化',
@@ -1257,8 +1258,8 @@ $1",
 'prefs-diffs'                   => '差異',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => '電郵地址格式錯咗',
-'email-address-validity-invalid' => '請打一個正確嘅電郵',
+'email-address-validity-valid'   => '電郵地址睇嚟有效',
+'email-address-validity-invalid' => '請打一個有效嘅電郵地址',
 
 # User rights
 'userrights'                   => '用戶權限管理',
@@ -1497,7 +1498,7 @@ $1",
 'minlength1'                  => '檔名必須最少要有一個字。',
 'illegalfilename'             => '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'                 => '檔名已經更改成「$1」。',
-'filetype-mime-mismatch'      => '檔案擴展名唔搭MIME類型。',
+'filetype-mime-mismatch'      => '檔案擴展名 ".$1" 唔搭偵測到檔案嘅MIME類型 ($2)。',
 'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。',
 'filetype-bad-ie-mime'        => '唔可以上載呢個檔案，因為 Internet Explorer 會將佢偵測做 "$1"，佢係一種唔容許同埋有潛在危險性嘅檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''係一種唔需要嘅檔案類型。

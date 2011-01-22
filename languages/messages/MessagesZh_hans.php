@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -247,8 +247,8 @@ $messages = array(
 'tog-shownumberswatching'     => '显示监视此页的用户数',
 'tog-oldsig'                  => '原签名预览：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
-'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置）',
-'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置）',
+'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks'           => '启用“跳转到”访问链接',
 'tog-uselivepreview'          => '使用实时预览（Javascript）（试验中）',
 'tog-forceeditsummary'        => '当没有输入摘要时提醒我',
@@ -651,7 +651,7 @@ $2',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
-'password-login-forbidden'   => '这些用户名称及密码的使用是被禁止的。',
+'password-login-forbidden'   => '这个用户名称及密码的使用是被禁止的。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
 'passwordremindertext'       => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
@@ -1312,8 +1312,8 @@ $1",
 'prefs-diffs'                   => '差异',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => '您的电子邮件地址显示正确.',
-'email-address-validity-invalid' => '请提供一个正确电子邮件地址.',
+'email-address-validity-valid'   => '电子邮件地址有效',
+'email-address-validity-invalid' => '请提供一个有效的电子邮件地址',
 
 # User rights
 'userrights'                   => '用户权限管理',
@@ -1552,7 +1552,7 @@ $1",
 'minlength1'                  => '文件名字必须至少有一个字母。',
 'illegalfilename'             => '文件名「$1」包含有页面标题所禁止的字符。请改名后重新上传。',
 'badfilename'                 => '文件名已被改为“$1”。',
-'filetype-mime-mismatch'      => '文件扩展名不配MIME类型。',
+'filetype-mime-mismatch'      => '文件扩展名 ".$1" 不配所侦测档案的MIME类型 ($2)。',
 'filetype-badmime'            => 'MIME类别"$1"不是容许的文件格式。',
 'filetype-bad-ie-mime'        => '不可以上传这个文件，因为 Internet Explorer 会将它侦测为 "$1"，它是一种不容许以及有潜在危险性之文件类型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一种不需要的文件类型。
@@ -2793,10 +2793,10 @@ $1已被封禁。您是否想更改封禁设置？',
 'math_unknown_function' => '未知函数',
 'math_lexing_error'     => '句法错误',
 'math_syntax_error'     => '语法错误',
-'math_image_error'      => 'PNG 转换失败 ；检查正确安装的 latex 和 dvipng （或 dvips + gs + 转换）',
+'math_image_error'      => 'PNG 转换失败 ；检查正确安装的 latex 和 dvipng （或 dvips + gs + convert）',
 'math_bad_tmpdir'       => '无法写入或建立数学公式临时目录',
 'math_bad_output'       => '无法写入或建立数学公式输出目录',
-'math_notexvc'          => '无法执行texvc；请参照math/README进行配置。',
+'math_notexvc'          => '"texvc"执行文件遗失；请参照math/README进行配置。',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标记为已巡查',
