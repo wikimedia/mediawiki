@@ -17,8 +17,6 @@ return array(
 	'skins.monobook' => array(
 		'styles' => array(
 			'skins/monobook/main.css' => array( 'media' => 'screen' ),
-			// Honor $wgHandheldStyle. This is kind of evil
-			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' ),
 		),
 	),
 	'skins.simple' => array(
@@ -352,11 +350,17 @@ return array(
 	'mediawiki' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
-		'debugRaw' => false
+		'debugRaw' => false,
 	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.cookie', 'jquery.placeholder', 'jquery.makeCollapsible' ),
+		'dependencies' => array(
+			'jquery.checkboxShiftClick',
+			'jquery.client',
+			'jquery.makeCollapsible',
+			'jquery.cookie',
+			'jquery.placeholder',
+		),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
 	'mediawiki.util.jpegmeta' => array(
@@ -389,9 +393,15 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 	),
 	'mediawiki.special.upload' => array(
-		// @todo: merge in remainder of mediawiki.legacy.upload
+		// @TODO: merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
-		'messages' => array( 'widthheight', 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ),
+		'messages' => array(
+			'widthheight',
+			'size-bytes',
+			'size-kilobytes',
+			'size-megabytes',
+			'size-gigabytes',
+		),
 		'dependencies' => array( 'mediawiki.util.jpegmeta' ),
 	),
 	'mediawiki.language' => array(
@@ -450,7 +460,12 @@ return array(
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'skins/common/ajax.js',
 		'messages' => array(
-			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch', 'tooltip-ca-unwatch',
+			'watch',
+			'unwatch',
+			'watching',
+			'unwatching',
+			'tooltip-ca-watch',
+			'tooltip-ca-unwatch',
 		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
