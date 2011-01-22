@@ -8,6 +8,9 @@ body {
 	font-family: sans-serif;
 	color: black;
 	background-color: #f0f0f0;
+
+	direction: ltr;
+	unicode-bidi: embed;
 }
 
 #mw_main,
@@ -182,6 +185,7 @@ textarea {
 }
 
 ul {
+	/* @embed */
 	list-style-image: url(bullet.gif);
 }
 
@@ -245,6 +249,7 @@ ul {
 
 #footer {
 	background-color: #f0f0f0;
+	/* @embed */
 	background: url(footer-grad.png) repeat-x 0 0;
 	padding: 10px 1em 1em 1em;
 	clear:both;
@@ -407,31 +412,37 @@ h1, h2, h3, h4, h5, h6 {
 
 #mw_content a.external,
 #mw_content a[href ^="gopher://"] {
+	/* @embed */
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
 }
 #mw_content a[href ^="https://"],
 .link-https {
+	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
 	padding-right: 16px;
 }
 #mw_content a[href ^="mailto:"],
 .link-mailto {
+	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
 #mw_content a[href ^="news://"] {
+	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
 #mw_content a[href ^="ftp://"],
 .link-ftp {
+	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
 #mw_content a[href ^="irc://"],
 #mw_content a.extiw[href ^="irc://"],
 .link-irc {
+	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
@@ -443,6 +454,7 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".wav"], #mw_content a.external[href $=".WAV"],
 #mw_content a.external[href $=".wma"], #mw_content a.external[href $=".WMA"],
 .link-audio {
+	/* @embed */
 	background: url("audio.png") center right no-repeat;
 	padding-right: 13px;
 }
@@ -451,6 +463,7 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".mpeg"], #mw_content a.external[href $=".MPEG"],
 #mw_content a.external[href $=".mpg"], #mw_content a.external[href $=".MPG"],
 .link-video {
+	/* @embed */
 	background: url("video.png") center right no-repeat;
 	padding-right: 13px;
 }
@@ -458,11 +471,13 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href *=".pdf#"], #mw_content a.external[href *=".PDF#"],
 #mw_content a.external[href *=".pdf?"], #mw_content a.external[href *=".PDF?"],
 .link-document {
+	/* @embed */
 	background: url("document.png") center right no-repeat;
 	padding-right: 12px;
 }
 
 /* images */
+/* @noflip */
 div.floatright, table.floatright {
 	clear: right;
 	float: right;
@@ -475,6 +490,7 @@ div.floatright, table.floatright {
 */
 }
 div.floatright p { font-style: italic; }
+/* @noflip */
 div.floatleft, table.floatleft {
 	float: left;
 	clear: left;
@@ -521,11 +537,13 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
+/* @noflip */
 div.tright {
 	clear: right;
 	float: right;
 	margin: .5em 0 .8em 1.4em;
 }
+/* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
@@ -793,6 +811,7 @@ ul {
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
+	/* @embed */
 	list-style-image: url(bullet.gif);
 }
 ol {
@@ -836,6 +855,7 @@ pre {
 	border-collapse: collapse;
 	margin: 0 -1em 1em -1em;
 	padding: 0 0 8px 0;
+	/* @embed */
 	background: url(footer-grad.png) repeat-x bottom left;
 }
 

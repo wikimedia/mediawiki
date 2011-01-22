@@ -22,11 +22,8 @@ class SkinModern extends SkinTemplate {
 		$template = 'ModernTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ){
-		// Do not call parent::setupSkinUserCss(), we have our own print style
-		$out->addStyle( 'common/shared.css', 'screen' );
-		$out->addStyle( 'modern/main.css', 'screen' );
-		$out->addStyle( 'modern/print.css', 'print' );
-		$out->addStyle( 'modern/rtl.css', 'screen', '', 'rtl' );
+		parent::setupSkinUserCss( $out );
+		$out->addModuleStyles ('skins.modern');
 	}
 }
 
