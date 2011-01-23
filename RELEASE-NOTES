@@ -50,6 +50,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New parser option PreSaveTransform added, allows the pre-save transformation
   to be selectively disabled.
 * Alternative to $wgHooks implemented, using the new Hooks class. 
+* Add width parameter to Special:Filepath to allow getting the file path of a thumbnail.
+* (bug 26870) Add size to {{filepath:}}
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
