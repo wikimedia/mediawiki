@@ -31,12 +31,16 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class AddWiki extends Maintenance {
 	public function __construct() {
+		global $wgNoDBParam;
+
 		parent::__construct();
 		$this->mDescription = "Add a new wiki to the family. Wikimedia specific!";
 		$this->addArg( 'language', 'Language code of new site, e.g. en' );
 		$this->addArg( 'site', 'Type of site, e.g. wikipedia' );
 		$this->addArg( 'dbname', 'Name of database to create, e.g. enwiki' );
 		$this->addArg( 'domain', 'Domain name of the wiki, e.g. en.wikipedia.org' );
+
+		$wgNoDBParam = true;
 	}
 
 	public function getDbType() {
@@ -44,9 +48,8 @@ class AddWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgDefaultExternalStore, $wgNoDBParam;
+		global $IP, $wgDefaultExternalStore;
 
-		$wgNoDBParam = true;
 		$lang = $this->getArg( 0 );
 		$site = $this->getArg( 1 );
 		$dbName = $this->getArg( 2 );
