@@ -4307,7 +4307,6 @@ class Parser {
 	 */
 	public function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
-		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		if ( $clearState ) {
@@ -5210,7 +5209,6 @@ class Parser {
 			$title = Title::newFromText( $title );
 		}
 		$this->mTitle = $title;
-		$options->resetUsage();
 		$this->setOutputType( $outputType );
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
