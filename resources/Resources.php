@@ -29,6 +29,15 @@ return array(
 		'styles' => array( 'skins/modern/main.css' => array( 'media' => 'screen' ),
 				   'skins/modern/print.css' => array( 'media' => 'print' ) ),
 	),
+	'skins.cologneblue' => array(
+		'styles' => array( 'skins/common/cologneblue.css' => array( 'media' => 'screen' ) ),
+	),
+	'skins.nostalgia' => array(
+		'styles' => array( 'skins/common/nostalgia.css' => array( 'media' => 'screen' ) ),
+	),
+	'skins.standard' => array(
+		'styles' => array( 'skins/common/wikistandard.css' => array( 'media' => 'screen' ) ),
+	),
 
 	/* jQuery */
 

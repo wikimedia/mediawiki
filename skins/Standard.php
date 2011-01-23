@@ -20,6 +20,9 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function setupSkinUserCss( OutputPage $out ){
+		parent::setupSkinUserCss( $out );
+		$out->AddModuleStyles( 'skins.standard' );
+
 		global $wgContLang;
 		$qb = $this->qbSetting();
 		$rules = array();
@@ -43,7 +46,6 @@ class SkinStandard extends Skin {
  			$style = CSSJanus::transform( $style, true, false );
 		}
 		$out->addInlineStyle( $style );
-		parent::setupSkinUserCss( $out );
 	}
 
 	function doAfterContent() {
@@ -61,9 +63,6 @@ class SkinStandard extends Skin {
 		$qb = $this->qbSetting();
 		$shove = ( $qb != 0 );
 		$left = ( $qb == 1 || $qb == 3 );
-		if( $wgContLang->isRTL() ) {
-			$left = !$left;
-		}
 
 		if ( $shove && $left ) { # Left
 			$s .= $this->getQuickbarCompensator();

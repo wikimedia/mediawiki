@@ -16,12 +16,13 @@ if( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinNostalgia extends Skin {
 
-	function getStylesheet() {
-		return 'common/nostalgia.css';
-	}
-
 	function getSkinName() {
 		return 'nostalgia';
+	}
+
+	function setupSkinUserCss( OutputPage $out ){
+		parent::setupSkinUserCss( $out );
+		$out->addModuleStyles( 'skins.nostalgia' );
 	}
 
 	function doBeforeContent() {

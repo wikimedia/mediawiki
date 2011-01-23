@@ -96,10 +96,20 @@ td.top a {
 	font-size: 10pt;
 }
 
+td#top-syslinks {
+	text-align: right;
+	vertical-align: bottom;
+}
+td.top-linkcollection {
+	text-align: right;
+}
+
 td.bottom {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 10pt;
 	padding: 0;
+	text-align: center;
+	vertical-align: bottom;
 }
 
 #pagestats {
