@@ -41,11 +41,13 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 	
 	function testPreSaveTransform() {
-		global $wgUser;
+		global $wgUser, $wgTitle;
 		$title = Title::newFromText( __FUNCTION__ );
+		$oldTitle = $wgTitle; $wgTitle = $title; # Used by transformMsg()
 		$outputText = $this->parser->preSaveTransform( "Test\r\n{{subst:Foo}}\n{{Bar}}", $title, $wgUser, $this->options );
-		
+
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
+		$wgTitle = $oldTitle;
 	}
 	
 	function testPreprocess() {
