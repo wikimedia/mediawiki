@@ -271,12 +271,7 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
-		$this->mOptions = $options;
-		if ( $clearState ) {
-			$this->clearState();
-		}
-
-		$this->setTitle( $title ); # Page title has to be set for the pre-processor
+		$this->startExternalParse( $title, $options, self::OT_HTML, $clearState );
 
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionObject = $this->mRevisionObject;
@@ -288,7 +283,7 @@ class Parser {
 			$this->mRevisionTimestamp = null;
 			$this->mRevisionUser = null;
 		}
-		$this->setOutputType( self::OT_HTML );
+
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		# No more strip!
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -460,10 +455,7 @@ class Parser {
 	 */
 	function preprocess( $text, $title, $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
-		$this->mOptions = $options;
-		$this->clearState();
-		$this->setOutputType( self::OT_PREPROCESS );
-		$this->setTitle( $title );
+		$this->startExternalParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
@@ -483,10 +475,7 @@ class Parser {
 	 */
 	public function getPreloadText( $text, $title, $options ) {
 		# Parser (re)initialisation
-		$this->mOptions = $options;
-		$this->clearState();
-		$this->setOutputType( self::OT_PLAIN );
-		$this->setTitle( $title );
+		$this->startExternalParse( $title, $options, self::OT_PLAIN, true );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
@@ -4077,14 +4066,8 @@ class Parser {
 	 * @return String: the altered wiki markup
 	 */
 	public function preSaveTransform( $text, Title $title, User $user, ParserOptions $options, $clearState = true ) {
-		$this->mOptions = $options;
-		$this->setTitle( $title );
+		$this->startExternalParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
-		$this->setOutputType( self::OT_WIKI );
-
-		if ( $clearState ) {
-			$this->clearState();
-		}
 
 		$pairs = array(
 			"\r\n" => "\n",
@@ -4911,11 +4894,8 @@ class Parser {
 	 *                 for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
-		global $wgTitle;
-		$this->mOptions = new ParserOptions;
-		$this->clearState();
-		$this->setTitle( $wgTitle ); # not generally used but removes an ugly failure mode
-		$this->setOutputType( self::OT_PLAIN );
+		global $wgTitle; # not generally used but removes an ugly failure mode
+		$this->startExternalParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
@@ -5203,13 +5183,11 @@ class Parser {
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 */
 	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
-		$this->mOptions = $options;
-		$this->clearState();
 		if ( !$title instanceof Title ) {
 			$title = Title::newFromText( $title );
 		}
-		$this->mTitle = $title;
-		$this->setOutputType( $outputType );
+		$this->startExternalParse( $title, $options, $outputType, true );
+
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
 		$text = Sanitizer::removeHTMLtags( $text );
