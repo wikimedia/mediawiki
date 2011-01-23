@@ -660,9 +660,6 @@ class Skin extends Linker {
 	function setupSkinUserCss( OutputPage $out ) {
 		$out->addModuleStyles( 'mediawiki.legacy.shared' );
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
-		// TODO: When converting old skins to use ResourceLoader (or removing them) the following should be reconsidered
-		$out->addStyle( $this->getStylesheet() );
-		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
 	}
 
 	function getPageClasses( $title ) {
@@ -728,10 +725,6 @@ class Skin extends Linker {
 
 		$shove = ( $qb != 0 );
 		$left = ( $qb == 1 || $qb == 3 );
-
-		if ( $wgContLang->isRTL() ) {
-			$left = !$left;
-		}
 
 		if ( !$shove ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .

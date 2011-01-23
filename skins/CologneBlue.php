@@ -17,10 +17,6 @@ if( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinCologneBlue extends Skin {
 
-	function getStylesheet() {
-		return 'common/cologneblue.css';
-	}
-
 	function getSkinName() {
 		return 'cologneblue';
 	}
@@ -31,17 +27,17 @@ class SkinCologneBlue extends Skin {
 		$s = "\n<div id='content'>\n<div id='topbar'>" .
 		  '<table width="100%" border="0" cellspacing="0" cellpadding="8"><tr>';
 
-		$s .= '<td class="top" align="left" valign="middle" nowrap="nowrap">';
+		$s .= '<td class="top" nowrap="nowrap">';
 		$s .= '<a href="' . $mainPageObj->escapeLocalURL() . '">';
 		$s .= '<span id="sitetitle">' . wfMsg( 'sitetitle' ) . '</span></a>';
 
-		$s .= '</td><td class="top" align="right" valign="bottom" width="100%">';
+		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
 		$s .= $this->sysLinks();
-		$s .= '</td></tr><tr><td valign="top">';
+		$s .= '</td></tr><tr><td class="top-linkcollection">';
 
 		$s .= '<font size="-1"><span id="sitesub">';
 		$s .= htmlspecialchars( wfMsg( 'sitesubtitle' ) ) . '</span></font>';
-		$s .= '</td><td align="right">';
+		$s .= '</td><td class="top-linkcollection">';
 
 		$s .= '<font size="-1"><span id="langlinks">';
 		$s .= str_replace( '<br />', '', $this->otherLanguages() );
@@ -77,7 +73,7 @@ class SkinCologneBlue extends Skin {
 		if ( 1 == $qb || 3 == $qb ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
-		$s .= '<td class="bottom" align="center" valign="top">';
+		$s .= '<td class="bottom">';
 
 		$s .= $this->bottomLinks();
 		$s .= $wgLang->pipeList( array(
@@ -107,6 +103,9 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function setupSkinUserCss( OutputPage $out ){
+		parent::setupSkinUserCss( $out );
+		$out->addModuleStyles( 'skins.cologneblue' );
+
 		global $wgContLang;
 		$qb = $this->qbSetting();
 		$rules = array();
@@ -133,7 +132,6 @@ class SkinCologneBlue extends Skin {
  			$style = CSSJanus::transform( $style, true, false );
 		}
 		$out->addInlineStyle( $style );
-		parent::setupSkinUserCss( $out );
 	}
 
 	function sysLinks() {
