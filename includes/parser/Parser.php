@@ -453,7 +453,7 @@ class Parser {
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
 	 */
-	function preprocess( $text, $title, $options, $revid = null ) {
+	function preprocess( $text, Title $title, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->startExternalParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
@@ -473,7 +473,7 @@ class Parser {
 	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
 	 * comments, templates, arguments, tags hooks and parser functions are untouched.
 	 */
-	public function getPreloadText( $text, $title, $options ) {
+	public function getPreloadText( $text, Title $title, ParserOptions $options ) {
 		# Parser (re)initialisation
 		$this->startExternalParse( $title, $options, self::OT_PLAIN, true );
 
@@ -4288,7 +4288,7 @@ class Parser {
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
 	 */
-	public function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
+	public function startExternalParse( Title $title, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
@@ -5182,7 +5182,7 @@ class Parser {
 	/**
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 */
-	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
+	function testSrvus( $text, $title, ParserOptions $options, $outputType = self::OT_HTML ) {
 		if ( !$title instanceof Title ) {
 			$title = Title::newFromText( $title );
 		}
