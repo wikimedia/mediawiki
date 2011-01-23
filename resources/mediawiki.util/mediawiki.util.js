@@ -59,10 +59,22 @@
 
 					/* Fill $content var */
 					if ( $( '#bodyContent' ).length ) {
+						// Vector, Monobook, Chick etc.
 						mw.util.$content = $( '#bodyContent' );
+
+					} else if ( $( '#mw_contentholder' ).length ) {
+						// Modern
+						mw.util.$content = $( '#mw_contentholder' );
+
 					} else if ( $( '#article' ).length ) {
+						// Standard, CologneBlue
 						mw.util.$content = $( '#article' );
+
 					} else {
+						// #content is present on almost all if not all skins. Most skins (the above cases)
+						// have #content too, but as a outer wrapper instead of the article text container.
+						// The skins that don't have an outer wrapper have #content for everything
+						// so it's a good fallback
 						mw.util.$content = $( '#content' );
 					}
 
@@ -299,6 +311,9 @@
 			}
 			// Setup the anchor tag
 			var $link = $( '<a />' ).attr( 'href', href ).text( text );
+			if ( tooltip ) {
+				$link.attr( 'title', tooltip );
+			}
 
 			// Some skins don't have any portlets
 			// just add it to the bottom of their 'sidebar' element as a fallback
@@ -352,8 +367,6 @@
 				if ( accesskey ) {
 					$link.attr( 'accesskey', accesskey );
 					tooltip += ' [' + accesskey + ']';
-				}
-				if ( tooltip ) {
 					$link.attr( 'title', tooltip );
 				}
 				if ( accesskey && tooltip ) {
