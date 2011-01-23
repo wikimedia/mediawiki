@@ -4125,6 +4125,9 @@ class Parser {
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
 		$text = $this->replaceVariables( $text );
 
+		# This works almost by chance, as the replaceVariables are done before the getUserSig(), 
+		# which may corrupt this parser instance via its wfMsgExt( parsemag ) call-
+
 		# Signatures
 		$sigText = $this->getUserSig( $user );
 		$text = strtr( $text, array(
@@ -4170,6 +4173,8 @@ class Parser {
 	 * validated, ready-to-insert wikitext.
 	 * If you have pre-fetched the nickname or the fancySig option, you can
 	 * specify them here to save a database query.
+	 * Do not reuse this parser instance after calling getUserSig(),
+	 * as it may have changed if it's the $wgParser.
 	 *
 	 * @param $user User
 	 * @param $nickname String: nickname to use or false to use user's default nickname
@@ -4288,7 +4293,7 @@ class Parser {
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
 	 */
-	public function startExternalParse( Title $title, ParserOptions $options, $outputType, $clearState = true ) {
+	public function startExternalParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
