@@ -61,8 +61,18 @@
 						// Build page
 						document.title = 'mediaWiki JavaScript library test suite - ' + mw.config.get( 'wgSiteName' );
 						$( '#firstHeading' ).text( 'mediaWiki JavaScript library test suite' );
+						var	skinLinksText = 'Test in: ';
+							skinLinks = [],
+							availableSkins = mw.config.get( 'wgAvailableSkins' );
+						for ( skin in availableSkins ) {
+							skinLinks.push( mw.html.element( 'a', {
+								'href': mw.util.wikiGetlink( wgPageName ) + '?action=mwutiltest&debug=true&useskin=' + encodeURIComponent( skin )
+								}, availableSkins[skin] ) );
+						}
+						skinLinksText += skinLinks.join( ' | ' ) + '.';
 						mw.util.$content.html(
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki JavaScript library</p>'
+							+ '<p>' + skinLinksText + '</p>'
 							+ '<hr />'
 							+ '<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\'">'
 							+ '<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>'
