@@ -49,6 +49,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			implode( "\t", $digitTransTable ),
 		);
 		$mainPage = Title::newMainPage();
+		// Available skins by code and with display name
+		$availableSkins = array();
+		foreach ( Skin::getSkinNames() as $skinName => $skinDisplayName ) {
+			$availableSkins[$skinName] = $skinDisplayName;
+		}
 		
 		// Build list of variables
 		$vars = array(
@@ -80,6 +85,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// This sucks, it is only needed on Special:Upload, but I could 
 			// not find a way to add vars only for a certain module
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
+			'wgAvailableSkins' => $availableSkins,
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
