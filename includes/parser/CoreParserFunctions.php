@@ -619,15 +619,17 @@ class CoreParserFunctions {
 	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
 		$file = wfFindFile( $name );
 		$size = '';
+		$argA_int = intval( $argA );
+		$argB_int = intval( $argB );
 
-		if ( intval( $argB ) > 0 ) {
+		if ( $argB_int > 0 ) {
 			// {{filepath: | option | size }}
-			$size = intval( $argB );
+			$size = $argB_int;
 			$option = $argA;
 
-		} elseif ( intval( $argA ) > 0 ) {
+		} elseif ( $argA_int > 0 ) {
 			// {{filepath: | size [|option] }}
-			$size = intval( $argA );
+			$size = $argA_int;
 			$option = $argB;
 
 		} else {
