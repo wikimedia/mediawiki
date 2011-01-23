@@ -52,12 +52,13 @@ class SpecialFilepath extends SpecialPage {
 				$url = $file->getURL();
 				$width = $wgRequest->getInt( 'width', -1 );
 				$height = $wgRequest->getInt( 'height', -1 );
-				
+
+				// If a width is requested...			
 				if ( $width != -1 ) {
-					// If we can, and it's requested,
-					// change the URL to point to a thumbnail.
 					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
+					// ... and we can
 					if ( $mto && !$mto->isError() ) {
+						// ... change the URL to point to a thumbnail.
 						$url = $mto->getURL();
 					}
 				}

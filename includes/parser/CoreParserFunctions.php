@@ -615,11 +615,39 @@ class CoreParserFunctions {
 				'</span>' );
 	}
 
-	public static function filepath( $parser, $name='', $option='' ) {
+	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
+	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
 		$file = wfFindFile( $name );
-		if( $file ) {
-			$url = $file->getFullUrl();
-			if( $option == 'nowiki' ) {
+		$size = '';
+
+		if ( intval( $argB ) > 0 ) {
+			// {{filepath: | option | size }}
+			$size = intval( $argB );
+			$option = $argA;
+
+		} elseif ( intval( $argA ) > 0 ) {
+			// {{filepath: | size [|option] }}
+			$size = intval( $argA );
+			$option = $argB;
+
+		} else {
+			// {{filepath: [|option] }}
+			$option = $argA;
+		}
+
+		if ( $file ) {
+			$url = $file->getUrl();
+
+			// If a size is requested...			
+			if ( is_integer( $size ) ) {
+				$mto = $file->transform( array( 'width' => $size ) );
+				// ... and we can
+				if ( $mto && !$mto->isError() ) {
+					// ... change the URL to point to a thumbnail.
+					$url = wfExpandUrl( $mto->getUrl() );
+				}
+			}
+			if ( $option == 'nowiki' ) {
 				return array( $url, 'nowiki' => true );
 			}
 			return $url;
