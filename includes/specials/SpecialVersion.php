@@ -315,7 +315,8 @@ class SpecialVersion extends SpecialPage {
 			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
-		if( count( $fhooks = $wgParser->getFunctionHooks() ) ) {
+		$fhooks = $wgParser->getFunctionHooks();
+		if( count( $fhooks ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ), 'parser-function-hooks' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
