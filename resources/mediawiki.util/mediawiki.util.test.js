@@ -63,11 +63,12 @@
 						$( '#firstHeading' ).text( 'mediaWiki JavaScript library test suite' );
 						var	skinLinksText = 'Test in: ';
 							skinLinks = [],
-							availableSkins = mw.config.get( 'wgAvailableSkins' );
-						for ( skin in availableSkins ) {
+							availableSkins = mw.config.get( 'wgAvailableSkins' ),
+							skincode = '';
+						for ( skincode in availableSkins ) {
 							skinLinks.push( mw.html.element( 'a', {
-								'href': mw.util.wikiGetlink( wgPageName ) + '?action=mwutiltest&debug=true&useskin=' + encodeURIComponent( skin )
-								}, availableSkins[skin] ) );
+								'href': mw.util.wikiGetlink( wgPageName ) + '?action=mwutiltest&debug=true&useskin=' + encodeURIComponent( skincode )
+								}, availableSkins[skincode] ) );
 						}
 						skinLinksText += skinLinks.join( ' | ' ) + '.';
 						mw.util.$content.html(
