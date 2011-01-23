@@ -129,6 +129,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26480) add a pppageprops param to prop=pageprops
 * (bug 26650) Remove $wgAPICacheHelp in favour of $wgAPICacheHelpTimeout
 * (bug 24650) Fix API to work with categorylinks changes
+* Expose list of skins in meta=siteinfo
 
 === Languages updated in 1.18 ===
 

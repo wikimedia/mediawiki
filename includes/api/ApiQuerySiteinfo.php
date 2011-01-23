@@ -85,6 +85,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'languages':
 					$fit = $this->appendLanguages( $p );
 					break;
+				case 'skins':
+					$fit = $this->appendSkins( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -452,6 +455,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	public function appendSkins( $property ) {
+		$data = array();
+		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+			$skin = array( 'code' => $name );
+			ApiResult::setContent( $skin, $displayName );
+			$data[] = $skin;
+		}
+		$this->getResult()->setIndexedTagName( $data, 'skin' );
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
@@ -475,6 +489,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'fileextensions',
 					'rightsinfo',
 					'languages',
+					'skins',
 				)
 			),
 			'filteriw' => array(
@@ -505,6 +520,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
 				' languages             - Returns a list of languages MediaWiki supports',
+				' skins                 - Returns a list of all enabled skins',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
