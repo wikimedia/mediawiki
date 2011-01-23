@@ -41,7 +41,7 @@ class Title {
 	const CACHE_MAX = 1000;
 
 	/**
-	 * Used to be GAID_FOR_UPDATE define. Used with getArticleId() and friends
+	 * Used to be GAID_FOR_UPDATE define. Used with getArticleID() and friends
 	 * to use the master DB
 	 */
 	const GAID_FOR_UPDATE = 1;
