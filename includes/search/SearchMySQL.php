@@ -284,7 +284,9 @@ class SearchMySQL extends SearchEngine {
 				$match,
 				$this->queryRedirect(),
 				$this->queryNamespaces()
-			) );
+			),
+			__METHOD__
+		);
 	}
 
 	/**

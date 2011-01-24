@@ -3519,15 +3519,15 @@ class Title {
 
 		$titlekey = $this->getArticleId();
 		$dbr = wfGetDB( DB_SLAVE );
-		$categorylinks = $dbr->tableName( 'categorylinks' );
 
-		# NEW SQL
-		$sql = "SELECT * FROM $categorylinks"
-		     . " WHERE cl_from='$titlekey'"
-			 . " AND cl_from <> '0'"
-			 . " ORDER BY cl_sortkey";
-
-		$res = $dbr->query( $sql );
+		$res = $dbr->select( 'categorylinks', '*',
+			array(
+				'cl_from' => $titleKey,
+				"cl_from <> '0'",
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'cl_sortkey' )
+		);
 		$data = array();
 
 		if ( $dbr->numRows( $res ) > 0 ) {
