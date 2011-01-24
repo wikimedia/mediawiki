@@ -556,23 +556,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * TODO: document
-	 *
-	 * @param $installer DatabaseInstaller
-	 *
-	 * @return Status
-	 */
-	public function installTables( DatabaseInstaller &$installer ) {
-		$status = $installer->createTables();
-
-		if( $status->isOK() ) {
-			LBFactory::enableBackend();
-		}
-
-		return $status;
-	}
-
-	/**
 	 * Exports all wg* variables stored by the installer into global scope.
 	 */
 	public function exportVars() {
@@ -1222,7 +1205,7 @@ abstract class Installer {
 	protected function getInstallSteps( DatabaseInstaller &$installer ) {
 		$coreInstallSteps = array(
 			array( 'name' => 'database',   'callback' => array( $installer, 'setupDatabase' ) ),
-			array( 'name' => 'tables',     'callback' => array( $this, 'installTables' ) ),
+			array( 'name' => 'tables',     'callback' => array( $installer, 'createTables' ) ),
 			array( 'name' => 'interwiki',  'callback' => array( $installer, 'populateInterwikiTable' ) ),
 			array( 'name' => 'secretkey',  'callback' => array( $this, 'generateSecretKey' ) ),
 			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),

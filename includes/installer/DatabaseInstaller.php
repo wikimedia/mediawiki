@@ -28,7 +28,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * @var DatabaseBase
 	 */
-	public $db;
+	public $db = null;
 
 	/**
 	 * Internal variables for installation.
@@ -139,6 +139,10 @@ abstract class DatabaseInstaller {
 			$status->fatal( 'config-install-tables-failed', $error );
 		} else {
 			$this->db->commit( __METHOD__ );
+		}
+		// Resume normal operations
+		if( $status->isOk() ) {
+			LBFactory::enableBackend();
 		}
 		return $status;
 	}
