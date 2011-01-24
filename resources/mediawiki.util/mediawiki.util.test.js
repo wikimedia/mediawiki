@@ -311,14 +311,14 @@
 
 							if ( doesreturn.indexOf( shouldcontain ) !== -1 ) {
 								if ( doesreturn == shouldreturn ) {
-									$thisrow.find( '> td' ).eq(3).css( 'background', '#EFE' ).text( 'OK' );
+									$thisrow.find( '> td' ).eq(3).css( 'background', '#AFA' ).text( 'OK' );
 									numberofpasseds++;
 								} else {
-									$thisrow.find( '> td' ).eq(3).css( 'background', '#FFE' ).html( '<small>PARTIALLY</small>' );
+									$thisrow.find( '> td' ).eq(3).css( 'background', '#FFA' ).html( '<small>PARTIALLY</small>' );
 									numberofpartials++;
 								}
 							} else {
-								$thisrow.find( '> td' ).eq(3).css( 'background', '#FEE' ).text( 'ERROR' );
+								$thisrow.find( '> td' ).eq(3).css( 'background', '#FAA' ).text( 'ERROR' );
 								numberoferrors++;
 							}
 
