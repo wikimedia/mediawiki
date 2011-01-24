@@ -1126,6 +1126,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'searchmenu-legend'                => 'Optiones de recerca',
 'searchmenu-exists'                => "'''Existe un pagina nominate \"[[\$1]]\" in iste wiki'''",
 'searchmenu-new'                   => "'''Crea le pagina \"[[:\$1]]\" in iste wiki!'''",
+'searchmenu-new-nocreate'          => '"$1" es un nomine de pagina invalide o non pote esser create per te.',
 'searchhelp-url'                   => 'Help:Contento',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navigar per le paginas con iste prefixo]]',
 'searchprofile-articles'           => 'Paginas de contento',
@@ -1542,8 +1543,8 @@ Per favor renomina le file e tenta re-incargar lo.',
 'filetype-bad-ie-mime'        => 'Non pote incargar iste file proque Internet Explorer lo detegerea como "$1", le qual es un typo de file prohibite e potentialmente periculose.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' es un typo de file non desirate.
 Le {{PLURAL:\$3|typo|typos}} de file preferite es \$2.",
-'filetype-banned-type'        => "Le typo de file '''\".\$1\"''' non es permittite.
-Le {{PLURAL:\$3|typo|typos}} de file permittite es \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' non es {{PLURAL:$4|un typo|typos}} de file permittite.
+Le {{PLURAL:$3|typo|typos}} de file permittite es $2.',
 'filetype-missing'            => 'Le nomine del file non ha un extension (como ".jpg").',
 'empty-file'                  => 'Le file submittite es vacue',
 'file-too-large'              => 'Le file submittite es troppo grande',

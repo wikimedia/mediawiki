@@ -1665,8 +1665,8 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'filetype-bad-ie-mime'        => 'Nu puteți încărca acest fișier deoarece Internet Explorer îl va detecta ca și "$1", care este nepermis și poate fi un format periculos.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fișier nedorit.
 {{PLURAL:\$3|Tipul de fișier preferat este|Tipurile de fișiere preferate sunt}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fișier nepermis.
-{{PLURAL:\$3|Tip de fișier permis:|Tipuri de fișiere permise:}} \$2.",
+'filetype-banned-type'        => "'''„.$1”''' {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}.
+{{PLURAL:$3|Tip de fișier permis:|Tipuri de fișier permise:}} $2.",
 'filetype-missing'            => 'Fișierul nu are extensie (precum ".jpg").',
 'empty-file'                  => 'Fișierul pe care l-ați trimis este gol.',
 'file-too-large'              => 'Fișierul pe care l-ați trimis este prea mare.',

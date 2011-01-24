@@ -45,8 +45,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig'                  => 'Abhi ke signature ke preview:',
 'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
-'tog-externaleditor'          => 'Apne se bahaari editor ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
-'tog-externaldiff'            => 'Apne se bahaari diff ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
+'tog-externaleditor'          => 'Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => ' Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => '"jump to" accessibility jorr ke laabu karo',
 'tog-uselivepreview'          => 'Jinda jhalak ke kaam me lao (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Ek khali badlao waala summary ke likhe ke time hamse puchho',
@@ -205,6 +205,7 @@ $messages = array(
 'printableversion'  => 'Chhape ke khaatir',
 'permalink'         => 'Pakka jorr',
 'print'             => 'Print karo',
+'view'              => 'Dekho',
 'edit'              => 'Badlo',
 'create'            => 'Banao',
 'editthispage'      => 'Ii panna ke badlo',
@@ -212,6 +213,7 @@ $messages = array(
 'delete'            => 'Mitao',
 'deletethispage'    => 'Ii panna ke mitao',
 'undelete_short'    => '{{PLURAL:$1|ek badlao|$1 badlao}} ke pahile jaise karo',
+'viewdeleted_short' => 'Dekho {{PLURAL:$1|ek mitawal badlao|$1 mitawal badlao}}',
 'protect'           => 'Bachao',
 'protect_change'    => 'badlo',
 'protectthispage'   => 'Ii panna ke bacaho',
@@ -295,6 +297,8 @@ $1',
 'toc'                     => 'vishay suchi',
 'showtoc'                 => 'dekhao',
 'hidetoc'                 => 'chupao',
+'collapsible-collapse'    => 'Chhota karo',
+'collapsible-expand'      => 'Barraa karo',
 'thisisdeleted'           => 'Dekho ki $1 ke pahile jaise karo?',
 'viewdeleted'             => '$1 ke dekho?',
 'restorelink'             => '{{PLURAL:$1|ek mitawal badlao|$1 mitawal badlao}}',
@@ -447,6 +451,8 @@ Cookies ke enable kar ke, aapan nawaa username aur password se login karo.',
 'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hai.
 Aap cookies ke disabled karaa hai.
 Cookies ke enable kar ke fir se kosis karo.',
+'nocookiesfornew'            => 'Sadasya ke account ke nai banawa gais hae, kaahe ki source ke confirm nai karaa jaae sakis hae.
+Cookies ke enable kar ke, ii panna ke fir se load karo aur fir se kosis karo.',
 'noname'                     => 'Aap achchha user name ke nai specify karaa hai.',
 'loginsuccesstitle'          => 'Login safal bhais',
 'loginsuccess'               => "'''Aap \"\$1\" ke naam pe {{SITENAME}} me logged in hai.'''",
@@ -461,6 +467,7 @@ Aapan spelling check karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
 'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
 'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
+'password-login-forbidden'   => 'Ii sadasya ke naam aur password ke kaam me laae ke ijaajat nai hae.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi (hoe sake hai aap, IP address $1 se)
@@ -984,6 +991,7 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'searchmenu-legend'                => 'Khoje ke option',
 'searchmenu-exists'                => "'''Ii wiki me \"[[\$1]]\" naam ke panna hai'''",
 'searchmenu-new'                   => "'''Ii wiki me \"[[:\$1]]\" panna ke banao!'''",
+'searchmenu-new-nocreate'          => '"$1" ek kharaab panna ke naam hae, nai to iske banawa nai jaae sake hae.',
 'searchhelp-url'                   => 'Help:Madat',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ii prefix ke panna ke browse karo]]',
 'searchprofile-articles'           => 'Content panna',
@@ -1134,8 +1142,8 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'prefs-help-gender'             => 'Optional: used for gender-correct addressing by the software. This information will be public.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Asli naam ke jaruri nai hai lekin agar jo aap aapan naam diya hai to iske aap ke kaam ke pahachane khatir kaam me lawa jai.',
-'prefs-help-email'              => 'E-mail address ke jaruri nai hai, lekin isse nawaa password aap ke lage bheja jaae skae hai agar aap aapan password bhul gaya tab.
-Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta hai agar aap aapan aslii naam nai batae mangtaa hai tab.',
+'prefs-help-email'              => 'E-mail address ke jaruri nai hai, lekin isse nawaa password aap ke lage bheja jaae sake hai agar aap aapan password bhul gaya tab.',
+'prefs-help-email-others'       => 'Aap aapan user, nai to baat waala panna, pe se aur log ke aap se baat kare ke ijaajat de sakta hae, bina aapan identitiy de ke.',
 'prefs-help-email-required'     => 'E-mail address ke jaruri hai.',
 'prefs-info'                    => 'Basic jaankari',
 'prefs-i18n'                    => 'Sab des ke khatir',
@@ -1151,6 +1159,10 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-displaysearchoptions'    => 'Choice dekhao',
 'prefs-displaywatchlist'        => 'Choice dekhao',
 'prefs-diffs'                   => 'Farka',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mail address kanuni hae',
+'email-address-validity-invalid' => 'Ek kanuni e-mail ke likho',
 
 # User rights
 'userrights'                   => 'Sadasya ke adhikaar ke chalao',
@@ -1389,7 +1401,7 @@ Visual overview ke khatir [[Special:NewFiles|nawaa file ke gallery]] ke dekho.',
 'illegalfilename'             => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
 Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
 'badfilename'                 => 'File ke naam badak ke "$1" kar dewa gais hai.',
-'filetype-mime-mismatch'      => 'File ke extension, jon rakam ke MIME hae, se nai mile hae.',
+'filetype-mime-mismatch'      => 'File ke extension ".$1", jon rakam ke MIME hae, se nai mile hae ($2).',
 'filetype-badmime'            => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
 'filetype-bad-ie-mime'        => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
@@ -1484,6 +1496,16 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
 'upload-unknown-size'       => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error'         => 'Ek HTTP galti hoe gais hae: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Gupt file ke upload karo',
+'uploadstash-summary'  => 'Ii panna se uu file pe jaawa jaae sake hae jiske upload karaa gais hae (nai to upload karaa jaawe hae) lekin abhi talak wiki me publish nai karaa gais hae.
+Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
+'uploadstash-clear'    => 'Gupt file ke hatao',
+'uploadstash-nofiles'  => 'Aap ke lage koi gupt file nai hae.',
+'uploadstash-badtoken' => 'Aap uu chij nai kare saktaa hae, saait ii kaaran se ki aap ke ijaajat khalaas hoe gais hae. Fir se kosis karo.',
+'uploadstash-errclear' => 'File ke hatawa nai jaae sakaa hae.',
+'uploadstash-refresh'  => 'File ke suchi ke fir se dekhao',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'ijajat nai hae',
@@ -2624,8 +2646,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'math_unknown_function' => 'nai samajhta ki ii kon chij khatir hai',
 'math_lexing_error'     => 'lexing me galti',
 'math_syntax_error'     => 'syntax me galti',
-'math_image_error'      => 'PNG conversion fail hoe gais;
-latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
+'math_image_error'      => 'PNG conversion fail hoe gais; latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
 'math_bad_tmpdir'       => 'Math temporary directory nai banae sakta hai',
 'math_bad_output'       => 'Math output directory me likhe nai to banae nai sakta hai',
 'math_notexvc'          => 'Texvc executable nai hai;

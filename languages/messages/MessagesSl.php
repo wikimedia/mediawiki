@@ -1149,6 +1149,7 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'searchmenu-legend'                => 'Možnosti za iskanje',
 'searchmenu-exists'                => "'''Na tem wikiju obstaja stran »[[:$1]]«'''",
 'searchmenu-new'                   => "'''Ustvari stran »[[:$1]]« na tem wikiju!'''",
+'searchmenu-new-nocreate'          => '»$1« ni veljavno ime strani ali pa je ne morete ustvariti.',
 'searchhelp-url'                   => 'Help:Vsebina',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Iskanje strani s to predpono]]',
 'searchprofile-articles'           => 'Članki',
@@ -1565,7 +1566,7 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 'filetype-bad-ie-mime'        => 'Ne morem naložiti datoteke, ker bi jo Internet Explorer zaznal kot »$1« in jo zavrnil kot potencialno nevarno vrsto datoteke.',
 'filetype-unwanted-type'      => "'''».$1«''' je nezaželena datotečna vrsta.
 {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljena datotečni vrsti sta|Dovoljene datotečne vrste so|Dovoljene datotečne vrste so}} $2.",
-'filetype-banned-type'        => "'''».$1«''' ni dovoljena datotečna vrsta.
+'filetype-banned-type'        => "'''».$1«''' {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}.
 {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so|Dovoljene datotečne vrste so}} $2.",
 'filetype-missing'            => 'Datoteka nima končnice (kot ».jpg«).',
 'empty-file'                  => 'Datoteka, ki ste jo poslali, je prazna',

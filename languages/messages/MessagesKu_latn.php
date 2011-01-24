@@ -656,9 +656,12 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'rev-deleted-user'            => '(navî bikarhêner hate jêbirin)',
 'rev-deleted-text-permission' => 'Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reşahîya jêbirinê] da hebin.',
 'rev-delundel'                => 'nîşan bide/veşêre',
+'rev-showdeleted'             => 'nîşan bide',
 'revisiondelete'              => 'Rêvîsyona jêbibe/dîsa çêke',
 'revdelete-show-file-submit'  => 'Belê',
 'revdelete-legend'            => 'Guherandina qebûlkirina dîtinê',
+'revdelete-hide-text'         => 'Nivîsa revîzyonê veşêre',
+'revdelete-hide-image'        => 'Naverroka dosyeyê veşêre',
 'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
 'revdelete-hide-restricted'   => 'Ev qebûlkirinan ji koordînatoran ra ye jî û ev rûpela tê girtin',
@@ -793,6 +796,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'yournick'                  => 'Leqeba te (ji bo îmza)',
 'badsig'                    => 'Nivîsandinê îmzê ne baş e; xêra xwe nivîsandina HTML seke, ku şaşbûn hene ya na.',
 'badsiglength'              => 'Navî te zêde dirêj e; ew gireke di bin {{PLURAL:$1|nîşanekê|nîşanan}} da be.',
+'gender-male'               => 'Nêr',
+'gender-female'             => 'Mê',
 'email'                     => 'E-name',
 'prefs-help-realname'       => 'Ne gereke. Tu dikarî navî xwe binivisînê, ew ê bi karkirên te were nivîsandin.',
 'prefs-help-email'          => 'Adrêsa te yê e-nameyan ne gereke were nivîsandin, lê ew qebûldike, ku bikarhênerên din vê naskirinê te kanibin e-nameyan ji te ra bişînin.',
@@ -842,6 +847,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'right-createaccount' => 'Hesaba bikarînerek nû veke',
 'right-move'          => 'Rûpelan bigerîne',
 'right-upload'        => 'Dosyeyan lê bar bike',
+'right-delete'        => 'Rûpelan jê bibe',
 'right-browsearchive' => 'Li rûpelên jêbirî bigerre',
 'right-undelete'      => 'Jêbirinê betal bike',
 
@@ -1533,6 +1539,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 # Special:Import
 'import'                  => 'Rûpelan wîne (import)',
 'import-interwiki-submit' => 'Wîne',
+'import-upload-filename'  => 'Navê dosyeyê:',
 'import-comment'          => 'Nivîs:',
 'importtext'              => 'Please export the file from the source wiki using the {{ns:special}}:Export utility, save it to your disk and upload it here.',
 'importstart'             => 'Rûpel tên împortkirin...',
@@ -1734,6 +1741,10 @@ if (wgUserLanguage == "ku-arab")
 
 'exif-meteringmode-255' => 'Yên din',
 
+'exif-scenecapturetype-1' => 'Bergeh',
+'exif-scenecapturetype-2' => 'Portre',
+
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Nerm',
 
 'exif-saturation-0' => 'Normal',
@@ -1821,8 +1832,11 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 
 # Special:Version
 'version'                  => 'Verzîyon',
+'version-specialpages'     => 'Rûpelên taybet',
 'version-other'            => 'yên din',
+'version-version'          => ' (Verzîyon $1)',
 'version-license'          => 'Destûr',
+'version-software-product' => 'Berhem',
 'version-software-version' => 'Verzîyon',
 
 # Special:FilePath
@@ -1830,7 +1844,8 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'filepath-submit' => 'Gotar',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Lêbigere',
+'fileduplicatesearch-filename' => 'Navê dosyeyê:',
+'fileduplicatesearch-submit'   => 'Lêbigere',
 
 # Special:SpecialPages
 'specialpages'               => 'Rûpelên taybet',
@@ -1849,10 +1864,14 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'tags-edit'         => 'biguherîne',
 
 # Special:ComparePages
-'compare-page1' => 'Rûpel 1',
-'compare-page2' => 'Rûpel 2',
-'compare-rev1'  => 'Revîzyon 1',
-'compare-rev2'  => 'Revîzyon 2',
+'compare-page1'  => 'Rûpel 1',
+'compare-page2'  => 'Rûpel 2',
+'compare-rev1'   => 'Revîzyon 1',
+'compare-rev2'   => 'Revîzyon 2',
+'compare-submit' => 'Bide berhev',
+
+# Database error messages
+'dberr-header' => "Problemeka vê wiki'yê heye.",
 
 # HTML forms
 'htmlform-submit'              => 'Bike',
