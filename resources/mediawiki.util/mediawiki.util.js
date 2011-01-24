@@ -501,8 +501,8 @@
 					// Domain first part
 					'[' + rfc1034_ldh_str + ']+'
 					+
-					// Second part and following are separated by a dot
-					'(?:\\.[' + rfc1034_ldh_str + ']+)+'
+					// Optional second part and following are separated by a dot
+					'(?:\\.[' + rfc1034_ldh_str + ']+)*'
 					+
 					// End of string
 					'$',
