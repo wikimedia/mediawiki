@@ -28,8 +28,10 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->mFlags = $flags;
 		$this->mName = $dbName;
 
-		if ( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
-			$this->attachDatabase( $wgSharedDB );
+		if( $server ) {
+			if ( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
+				$this->attachDatabase( $wgSharedDB );
+			}
 		}
 	}
 
