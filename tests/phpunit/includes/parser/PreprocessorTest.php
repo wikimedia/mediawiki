@@ -83,6 +83,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{ {{Foo}}", "<root>{{ <template><title>Foo</title></template></root>"),
 			array( "{{Foobar {{Foo}} {{Bar}} {{Baz}} ", "<root>{{Foobar <template><title>Foo</title></template> <template><title>Bar</title></template> <template><title>Baz</title></template> </root>"),
 			array( "[[Foo]] |", "<root>[[Foo]] |</root>"),
+			array( "{{Foo|Bar|", "<root>{{Foo|Bar|</root>"),
 			/* array( file_get_contents( dirname( __FILE__ ) . '/QuoteQuran.txt' ), file_get_contents( dirname( __FILE__ ) . '/QuoteQuranExpanded.txt' ) ), */
 		);
 	}
