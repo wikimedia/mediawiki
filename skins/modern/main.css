@@ -901,3 +901,19 @@ pre {
 .tipsy {
 	font-size: 130%;
 }
+
+/**
+ * Lists:
+ * The following lines don't have a visible effect on non-Gecko browsers
+ * They fix a problem ith Gecko browsers rendering lists to the right of
+ * left-floated objects in an RTL layout.
+ */
+/* @noflip */
+html > body.rtl div#mw_contentholder ul {
+	display: table;
+}
+
+/* @noflip */
+html > body.rtl div#mw_contentholder ul#filetoc {
+	display: block;
+}
