@@ -30,22 +30,26 @@ h6 .editsection { font-size: 133%; }
 
 #footer { clear: both }
 /* images */
+/* @noflip */
 div.floatright {
 	float: right;
 	clear: right;
 	margin: 0 0 1em 1em;
 }
 
+/* @noflip */
 div.floatright p {
 	font-style: italic;
 }
 
+/* @noflip */
 div.floatleft {
 	float: left;
 	clear: left;
 	margin: 0.3em 0.5em 0.5em 0;
 }
 
+/* @noflip */
 div.floatleft p {
 	font-style: italic;
 }
@@ -100,11 +104,13 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
+/* @noflip */
 div.tright {
 	clear: right;
 	float: right;
 	border-width: .5em 0 .8em 1.4em;
 }
+/* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
@@ -428,8 +434,29 @@ form#specialpages {
 }
 
 body {
+	direction: ltr;
+	unicode-bidi: embed;
 	background-color: #ffffec;
 }
 body.ns-0 {
 	background-color: white;
 }
+
+/** RTL specific CSS starts here **/
+
+/**
+ * Lists:
+ * The following lines don't have a visible effect on non-Gecko browsers
+ * They fix a problem ith Gecko browsers rendering lists to the right of
+ * left-floated objects in an RTL layout.
+ */
+/* @noflip */
+html > body.rtl div#article ul {
+	display: table;
+}
+/* @noflip */
+html > body.rtl div#bodyContent ul#filetoc {
+	display: block;
+}
+
+/* RTL specific CSS ends here **/
