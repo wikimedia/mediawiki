@@ -384,9 +384,8 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 
 		$dbSupport = '';
 		foreach( $this->parent->getDBTypes() as $type ) {
-			$db = DatabaseBase::classFromType( $type );
-			$dbSupport .= wfMsgNoTrans( "config-support-$type",
-				call_user_func( array( $db, 'getSoftwareLink' ) ) ) . "\n";
+			$link = DatabaseBase::newFromType( $type )->getSoftwareLink();
+			$dbSupport .= wfMsgNoTrans( "config-support-$type", $link ) . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
 			wfMsg( 'config-support-info', $dbSupport ) ) );

@@ -522,11 +522,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
-	 * @param $server String: database server host
-	 * @param $user String: database user name
-	 * @param $password String: database user password
-	 * @param $dbName String: database name
-	 * @param $flags
+	 * @deprecated
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
 		wfDeprecated( __METHOD__ );
@@ -539,16 +535,36 @@ abstract class DatabaseBase implements DatabaseType {
 	 *	$class = 'Database' . ucfirst( strtolower( $type ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
+	 * This factory function is mostly useful for when you need to connect to a
+	 * database other than the MediaWiki default (such as for external auth,
+	 * an extension, et cetera). Do not use this to connect to the MediaWiki
+	 * database. Example uses in core:
+	 * @see LoadBalancer::reallyOpenConnection()
+	 * @see ExternalUser_MediaWiki::initFromCond()
+	 * @see ForeignDBRepo::getMasterDB()
+	 * @see WebInstaller_DBConnect::execute()
+	 *
 	 * @param $dbType String A possible DB type
+	 * @param $p Array An array of options to pass to the constructor.
+	 *    Valid options are: host, user, password, dbname, flags, tableprefix
 	 * @return DatabaseBase subclass or null
 	 */
-	public final static function classFromType( $dbType ) {
+	public final static function newFromType( $dbType, $p = array() ) {
 		$canonicalDBTypes = array(
 			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql', 'ibm_db2'
 		);
 		$dbType = strtolower( $dbType );
+
 		if( in_array( $dbType, $canonicalDBTypes ) ) {
-			return 'Database' . ucfirst( $dbType );
+			$class = 'Database' . ucfirst( $dbType );
+			return new $class(
+				isset( $p['host'] ) ? $p['host'] : false,
+				isset( $p['user'] ) ? $p['user'] : false,
+				isset( $p['password'] ) ? $p['password'] : false,
+				isset( $p['dbname'] ) ? $p['dbname'] : false,
+				isset( $p['flags'] ) ? $p['flags'] : 0,
+				isset( $p['tableprefix'] ) ? $p['tableprefix'] : 'get from global'
+			);
 		} else {
 			return null;
 		}
