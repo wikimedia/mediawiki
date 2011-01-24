@@ -279,6 +279,16 @@
 						mw.test.addTest( 'typeof $.fn.makeCollapsible',
 							'function (string)' );
 
+						// Email validation
+						// TODO: import tests from PHPUnit test suite
+						mw.test.addHead( 'Email validation' );
+
+						mw.test.addTest( 'mw.util.validateEmail( "" )',
+							'null (object)' );
+
+						mw.test.addTest( 'mw.util.validateEmail( "user@localhost" )',
+							'true (boolean)' );
+
 						// Run tests and compare results
 						var	exec,
 							result,
