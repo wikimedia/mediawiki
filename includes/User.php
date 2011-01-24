@@ -638,9 +638,15 @@ class User {
 	/**
 	 * Does a string look like an e-mail address?
 	 *
-	 * There used to be a regular expression here, it got removed because it
-	 * rejected valid addresses. Actually just check if there is '@' somewhere
-	 * in the given address.
+	 * This validate an email address using an HTML5 specification found at:
+	 * http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+	 * Which as of 2011-01-24 says:
+	 *     A valid e-mail address is a string that matches the ABNF production
+	 *   1*( atext / "." ) "@" ldh-str *( "." ldh-str ) where atext is defined
+	 *   in RFC 5322 section 3.2.3, and ldh-str is defined in RFC 1034 section
+	 *   3.5.
+	 * This function is an implementation of the specification as requested in
+	 * bug 22449.
 	 *
 	 * @todo Check for RFC 2822 compilance (bug 959)
 	 *
