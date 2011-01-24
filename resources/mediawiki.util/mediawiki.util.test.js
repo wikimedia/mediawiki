@@ -1,7 +1,7 @@
 /**
  * mediaWiki JavaScript library test suite
  *
- * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
+ * Available on Special:BlankPage?action=mwutiltest&debug=true
  *
  * @author Krinkle <krinklemail@gmail.com>
  */
@@ -82,6 +82,8 @@
 						mw.test.$table = $( 'table#mw-mwutiltest-table' );
 
 						/* Populate tests */
+						// Try to roughly keep the order similar to the order in the files
+						// or alphabetical (depending on the context)
 
 						// Main modules and their aliases
 						mw.test.addHead( 'Main modules and their aliases' );
@@ -264,6 +266,13 @@
 						mw.test.addTest( 'mw.util.jsMessage( mw.config.get( "wgSiteName" ) + " is <b>Awesome</b>." )',
 							'true (boolean)' );
 
+						// TODO: Import tests from PHPUnit test suite for user::isValidEmailAddr
+						mw.test.addTest( 'mw.util.validateEmail( "" )',
+							'null (object)' );
+
+						mw.test.addTest( 'mw.util.validateEmail( "user@localhost" )',
+							'true (boolean)' );
+
 						// jQuery plugins
 						mw.test.addHead( 'jQuery plugins' );
 
@@ -278,16 +287,6 @@
 
 						mw.test.addTest( 'typeof $.fn.makeCollapsible',
 							'function (string)' );
-
-						// Email validation
-						// TODO: import tests from PHPUnit test suite
-						mw.test.addHead( 'Email validation' );
-
-						mw.test.addTest( 'mw.util.validateEmail( "" )',
-							'null (object)' );
-
-						mw.test.addTest( 'mw.util.validateEmail( "user@localhost" )',
-							'true (boolean)' );
 
 						// Run tests and compare results
 						var	exec,
