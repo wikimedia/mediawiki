@@ -196,7 +196,7 @@ class SearchMySQL extends SearchEngine {
 		if( $this->showRedirects ) {
 			return '';
 		} else {
-			return 'AND page_is_redirect=0';
+			return 'page_is_redirect=0';
 		}
 	}
 
@@ -212,7 +212,7 @@ class SearchMySQL extends SearchEngine {
 		} else {
 			$namespaces = $this->db->makeList( $this->namespaces );
 		}
-		return 'AND page_namespace IN (' . $namespaces . ')';
+		return 'page_namespace IN (' . $namespaces . ')';
 	}
 
 	/**
@@ -240,8 +240,8 @@ class SearchMySQL extends SearchEngine {
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
-			$this->queryNamespaces() . ' ' .
+			'AND ' . $this->queryRedirect() . ' ' .
+			'AND ' . $this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryLimit();
 	}
@@ -276,13 +276,15 @@ class SearchMySQL extends SearchEngine {
 
 	function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
-		$searchindex = $this->db->tableName( 'searchindex' );
-		return "SELECT COUNT(*) AS c " .
-			"FROM $page,$searchindex " .
-			'WHERE page_id=si_page AND ' . $match .
-			$this->queryRedirect() . ' ' .
-			$this->queryNamespaces();
+
+		return $this->db->selectSQLText( array( 'page', 'searchindex' ),
+			'COUNT(*) AS c',
+			array(
+				'page_id=si_page',
+				$match,
+				$this->queryRedirect(),
+				$this->queryNamespaces()
+			) );
 	}
 
 	/**
