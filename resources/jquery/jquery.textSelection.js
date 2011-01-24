@@ -91,7 +91,7 @@ encapsulateSelection: function( options ) {
 			// IE
 			$(this).focus();
 			if ( context ) {
-				context.fn.restoreStuffForIE();
+				context.fn.restoreCursorAndScrollTop();
 			}
 			var selText = $(this).textSelection( 'getSelection' );
 			var scrollTop = this.scrollTop;
