@@ -638,17 +638,25 @@ class User {
 	/**
 	 * Does a string look like an e-mail address?
 	 *
-	 * This validate an email address using an HTML5 specification found at:
+	 * This validates an email address using an HTML5 specification found at:
 	 * http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
 	 * Which as of 2011-01-24 says:
+	 *
 	 *     A valid e-mail address is a string that matches the ABNF production
 	 *   1*( atext / "." ) "@" ldh-str *( "." ldh-str ) where atext is defined
 	 *   in RFC 5322 section 3.2.3, and ldh-str is defined in RFC 1034 section
 	 *   3.5.
+	 *
 	 * This function is an implementation of the specification as requested in
 	 * bug 22449.
 	 *
-	 * @todo Check for RFC 2822 compilance (bug 959)
+	 * Client-side forms will use the same standard validation rules via JS or
+	 * HTML 5 validation; additional restrictions can be enforced server-side
+	 * by extensions via the 'isValidEmailAddr' hook.
+	 *
+	 * Note that this validation doesn't 100% match RFC 2822, but is believed
+	 * to be liberal enough for wide use. Some invalid addresses will still
+	 * pass validation here.
 	 *
 	 * @param $addr String E-mail address
 	 * @return Bool
