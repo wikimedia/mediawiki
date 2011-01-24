@@ -624,7 +624,7 @@ class LoadBalancer {
 		$dbname = $server['dbname'];
 
 		if ( $dbNameOverride !== false ) {
-			$dbname = $dbNameOverride;
+			$server['dbname'] = $dbname = $dbNameOverride;
 		}
 
 		# Create object
