@@ -32,8 +32,8 @@ class JavaScriptDistiller {
 	private static function stripComments( $script ) {
 		$parser = self::createParser();
 		// Remove comments
-		$parser->add( '/\\/\\/[^\\r\\n]*[\\r\\n]/' );
-		$parser->add( '/\\/\\*[^*]*\\*+([^\\/][^*]*\\*+)*\\//' );
+		$parser->add( '/\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\'/', '$1' );
+		$parser->add( '/"([^"\\\\]*(\\\\.[^"\\\\]*)*)"/', '$1' );
 		// Execute and return
 		return $parser->exec( $script );
 	}
