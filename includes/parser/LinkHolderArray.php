@@ -371,11 +371,12 @@ class LinkHolderArray {
 		if(!$linkBatch->isEmpty()){
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
-			$page = $dbr->tableName( 'page' );
-			$titleClause = $linkBatch->constructSet('page', $dbr);
-			$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
-			$variantQuery .= " FROM $page WHERE $titleClause";
-			$varRes = $dbr->query( $variantQuery, __METHOD__ );
+			$varRes = $dbr->select( 'page',
+				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len' ),
+				$linkBatch->constructSet( 'page', $dbr ),
+				__METHOD__
+			);
+
 			$linkcolour_ids = array();
 
 			// for each found variants, figure out link holders and replace
@@ -386,14 +387,14 @@ class LinkHolderArray {
 				$vardbk = $variantTitle->getDBkey();
 
 				$holderKeys = array();
-				if(isset($variantMap[$varPdbk])){
+				if( isset( $variantMap[$varPdbk] ) ) {
 					$holderKeys = $variantMap[$varPdbk];
 					$linkCache->addGoodLinkObj( $s->page_id, $variantTitle, $s->page_len, $s->page_is_redirect );
 					$output->addLink( $variantTitle, $s->page_id );
 				}
 
 				// loop over link holders
-				foreach($holderKeys as $key){
+				foreach( $holderKeys as $key ) {
 					list( $ns, $index ) = explode( ':', $key, 2 );
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
