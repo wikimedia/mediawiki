@@ -21,36 +21,31 @@ class SkinSimple extends SkinTemplate {
 	var $skinname = 'simple', $stylename = 'simple',
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
-	function setupSkinUserCss( OutputPage $out ){
+	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$out->addStyle( 'simple/main.css', 'screen' );
-	}
+		$out->addModuleStyles( 'skins.simple' );
 
-	function reallyGenerateUserStylesheet() {
-		global $wgUser;
-		$s = '';
-		if( $wgUser->getOption( 'highlightbroken' ) ) {
-			$s .= "a.new, #quickbar a.new { text-decoration: line-through; }\n";
-		} else {
-			$s .= <<<CSS
-a.new, #quickbar a.new,
-a.stub, #quickbar a.stub {
-	color: inherit;
-	text-decoration: inherit;
-}
-a.new:after, #quickbar a.new:after {
-	content: "?";
-	color: #CC2200;
-	text-decoration: $underline;
-}
-a.stub:after, #quickbar a.stub:after {
-	content: "!";
-	color: #772233;
-	text-decoration: $underline;
-}
-CSS;
+		/* Add some userprefs specific CSS styling */
+		global $wgUser, $wgContLang;
+		$rules = array();
+		$underline = "";
+
+		if ( $wgUser->getOption( 'underline' ) < 2 ) {
+			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline' : 'none' . ";";
 		}
-		return $s;
+
+		/* Also inherits from resourceloader */
+		if( !$wgUser->getOption( 'highlightbroken' ) ) {
+			$rules[] = "a.new, a.stub { color: inherit; text-decoration: inherit;}";
+			$rules[] = "a.new:after { color: #CC2200; $underline;}";
+			$rules[] = "a.stub:after { $underline; }";
+		}
+		$style = implode( "\n", $rules );
+		if ( $wgContLang->getDir() === 'rtl' ) {
+			$style = CSSJanus::transform( $style, true, false );
+		}
+		$out->addInlineStyle( $style );
+
 	}
 }

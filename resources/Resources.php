@@ -14,6 +14,9 @@ return array(
 	'skins.vector' => array(
 		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) )
 	),
+	'skins.simple' => array(
+		'styles' => array( 'skins/simple/main.css' => array( 'media' => 'screen' ) ),
+	),
 
 	/* jQuery */
 
