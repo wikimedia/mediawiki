@@ -1299,6 +1299,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchmenu-legend'                => 'Options de recherche',
 'searchmenu-exists'                => "'''Il existe une page nommée « [[:$1]] » sur ce wiki'''",
 'searchmenu-new'                   => "'''Créer la page « [[:$1|$1]] » sur ce wiki !'''",
+'searchmenu-new-nocreate'          => '« $1 » est un nom de page invalide et ne peut donc pas être créé.',
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce préfixe]]',
 'searchprofile-articles'           => 'Pages de contenu',
@@ -1705,13 +1706,13 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'minlength1'                  => 'Le noms de fichiers doivent comprendre au moins une lettre.',
 'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le téléverser à nouveau.',
 'badfilename'                 => 'Le fichier a été renommé en « $1 ».',
-'filetype-mime-mismatch'      => 'L’extension du fichier ne correspond pas au type MIME.',
+'filetype-mime-mismatch'      => 'L’extension du fichier « .$1 » ne correspond pas au type MIME détecté du fichier ($2).',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être téléversés.',
 'filetype-bad-ie-mime'        => 'Le fichier ne peut pas être téléversé parce qu’il serait détecté comme « $1 » par Internet Explorer, ce qui correspond à un type de fichier interdit car potentiellement dangereux.',
 'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré.
 {{PLURAL:$3|Le type de fichier préconisé est|Les types de fichiers préconisés sont}} $2.",
-'filetype-banned-type'        => "'''« .$1 »''' n’est pas une extension de fichier autorisée.
-{{PLURAL:$3|Le type de fichiers accepté est|Les types de fichiers acceptés sont}} $2.",
+'filetype-banned-type'        => "''' « .$1 » '''{{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. 
+{{PLURAL:$3|le type de fichier autorisé est |les types de fichiers autorisés sont}} $2.",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'empty-file'                  => 'Le fichier que vous avez soumis était vide.',
 'file-too-large'              => 'Le fichier que vous avez soumis était trop grand.',

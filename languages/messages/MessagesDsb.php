@@ -1083,6 +1083,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'searchmenu-legend'                => 'Pytańske opcije',
 'searchmenu-exists'                => "'''Jo bok z mjenim \"[[\$1]]\" na toś tom wikiju'''",
 'searchmenu-new'                   => "'''Napóraj bok \"[[:\$1|\$1]]\" na toś tom wikiju!'''",
+'searchmenu-new-nocreate'          => '"$1" jo njepłaśiwe mě boka abo njedajo se wót tebje napóraś.',
 'searchhelp-url'                   => 'Help:Pomoc',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Boki z toś tym prefiksom pśepytaś]]',
 'searchprofile-articles'           => 'Wopśimjeśowe boki',
@@ -1494,8 +1495,8 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'filetype-bad-ie-mime'        => 'Toś ta dataja njedajo se nagraś, dokulaž Internet Explorer by ju ako "$1" interpretěrował, kótaryž jo njedowólony a potencielnje tšachotny datajowy typ.',
 'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ.
 {{PLURAL:$3|Dowólony datajowy typ jo|Dowólonej datajowej typa stej|Dowólene datajowe typy su}}: $2.",
-'filetype-banned-type'        => "'''„.$1“''' jo njedowólony datajowy typ.
-{{PLURAL:$3|Dowólony datajowy typ jo|Dowólenej datajowej typa stej|Dowólone datajowe typy su}} $2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' {{PLURAL:$4|njejo dowólony datajowy typ|njejstej dowólenej datajowej typa|njejsu dowólone datajowe typy|njejsu dowólone datajowe typy}}.
+{{PLURAL:$3|Dowólony datajowy typ jo|Dowólenej datajowej typa stej|Dowólone datajowe typy su}} $2.',
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
 'empty-file'                  => 'Dataja, kótaruž sy wótpósłał, jo prozna była.',
 'file-too-large'              => 'Dataja, kótaruž sy wótpósłał, jo pśewjelika była.',

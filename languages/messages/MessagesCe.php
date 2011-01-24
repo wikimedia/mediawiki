@@ -1407,7 +1407,7 @@ PICT # тайп тайпан
 'file-info-size'       => '$1 × $2 сиртакх, хlуман барам: $3, MIME-тайп: $4',
 'file-nohires'         => '<small>Яц тайпанара оцу йоккхачу бакъонца.</small>',
 'svg-long-desc'        => 'SVG-хlума, хlоттамца $1 × $2 цинташ, хlуман барам: $3',
-'show-big-image'       => 'Сурт цlанал лакхаро бакъонца',
+'show-big-image'       => 'Сурт цlанал лаккхара бакъонца',
 'show-big-image-thumb' => '<small>Хьажарна барам: $1 × $2 цинташ</small>',
 
 # Special:NewFiles

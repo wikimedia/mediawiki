@@ -796,6 +796,16 @@ As dit gedoen is, kan u '''[u $2 wiki besoek]'''.",
 	'config-help' => 'hulp',
 );
 
+/** Arabic (العربية)
+ * @author Meno25
+ */
+$messages['ar'] = array(
+	'config-type-mysql' => 'ماي إس كيو إل',
+	'config-type-postgres' => 'بوستجر إس كيو إل',
+	'config-type-sqlite' => 'إس كيو لايت',
+	'config-type-oracle' => 'أوراكل',
+);
+
 /** Aramaic (ܐܪܡܝܐ)
  * @author Basharh
  */
@@ -821,6 +831,7 @@ $messages['arc'] = array(
  * @author EugeneZelenko
  * @author Jim-by
  * @author Wizardist
+ * @author Zedlik
  */
 $messages['be-tarask'] = array(
 	'config-desc' => 'Праграма ўсталяваньня MediaWiki',
@@ -840,7 +851,7 @@ $1',
 	'config-localsettings-incomplete' => 'Выглядае, што існуючы LocalSettings.php зьяўляецца няпоўным.
 Не ўстаноўленая пераменная $1.
 Калі ласка, зьмяніце LocalSettings.php так, каб была ўстаноўленая гэтая пераменная, і націсьніце «Працягваць».',
-	'config-localsettings-connection-error' => 'Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем ўстановак пазначаных у LocalSettings.php ці AdminSettings.php. Калі ласка, выпраўце гэтыя ўстаноўкі і паспрабуйце зноў.
+	'config-localsettings-connection-error' => 'Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем наладаў пазначаных у LocalSettings.php ці AdminSettings.php. Калі ласка, выпраўце гэтыя налады і паспрабуйце зноў.
 
 $1',
 	'config-session-error' => 'Памылка стварэньня сэсіі: $1',
@@ -859,7 +870,7 @@ $1',
 	'config-page-language' => 'Мова',
 	'config-page-welcome' => 'Вітаем у MediaWiki!',
 	'config-page-dbconnect' => 'Падключэньне да базы зьвестак',
-	'config-page-upgrade' => 'Абнавіць існуючую ўстаноўку',
+	'config-page-upgrade' => 'Абнавіць існуючую наладу',
 	'config-page-dbsettings' => 'Устаноўкі базы зьвестак',
 	'config-page-name' => 'Назва',
 	'config-page-options' => 'Устаноўкі',
@@ -909,12 +920,12 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 Калі Вы кампілявалі PHP самастойна, пераканфігуруйце і сабярыце яго з уключаным кліентам базаў зьвестак, напрыклад, <code>./configure --with-mysql</code>.
 Калі Вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
 	'config-no-fts3' => "'''Папярэджаньне''': SQLite створаны без модуля [http://sqlite.org/fts3.html FTS3], для гэтага ўнутранага інтэрфэйсу ня будзе даступная магчымасьць пошуку.",
-	'config-register-globals' => "'''Папярэджаньне: устаноўка PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
+	'config-register-globals' => "'''Папярэджаньне: налада PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
 '''Адключыце яе, калі можаце.'''
 MediaWiki будзе працаваць, але сэрвэр будзе ўтрымліваць прабалемы з бясьпекай.",
 	'config-magic-quotes-runtime' => "'''Фатальная памылка: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] уключаны!'''
-Гэтая устаноўка шкодзіць уводны паток зьвестак непрадказальным чынам.
-Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль устаноўка ня будзе выключаная.",
+Гэтая налада шкодзіць уводны паток зьвестак непрадказальным чынам.
+Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль налада ня будзе выключаная.",
 	'config-magic-quotes-sybase' => "'''Фатальная памылка: рэжым [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] уключаны!'''
 Гэты рэжым шкодзіць уваходныя зьвесткі непрадказальным чынам.
 Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль рэжым ня будзе выключаны.",
@@ -934,7 +945,7 @@ MediaWiki для працы патрабуюцца функцыі рэгуляр
 	'config-pcre-no-utf8' => "'''Крытычная памылка''': модуль PCRE для PHP скампіляваны без падтрымкі PCRE_UTF8.
 MediaWiki патрабуе падтрымкі UTF-8 для слушнай працы.",
 	'config-memory-raised' => 'Устаноўка PHP <code>memory_limit</code> роўная $1, падвышаная да $2.',
-	'config-memory-bad' => "'''Папярэджаньне:''' устаноўка PHP <code>memory_limit</code> роўная $1.
+	'config-memory-bad' => "'''Папярэджаньне:''' налада PHP <code>memory_limit</code> роўная $1.
 Верагодна, гэта вельмі замала.
 Усталяваньне можа быць няўдалым!",
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] усталяваны',
@@ -1080,7 +1091,7 @@ chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Памылка падчас стварэньня дырэкторыі «$1».
 Праверце шлях і паспрабуйце зноў.',
 	'config-sqlite-dir-unwritable' => 'Немагчымы запіс у дырэкторыю «$1».
-Зьмяніце ўстаноўкі доступу, каб вэб-сэрвэр мел правы на запіс, і паспрабуйце зноў.',
+Зьмяніце налады доступу, каб вэб-сэрвэр мел правы на запіс, і паспрабуйце зноў.',
 	'config-sqlite-connection-error' => '$1.
 
 Праверце дырэкторыю для зьвестак, назву базы зьвестак і паспрабуйце зноў.',
@@ -1159,7 +1170,7 @@ chmod a+w $3</pre>',
 	'config-subscribe-help' => 'Гэта ня вельмі актыўны сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў, які ўключаючы важныя навіны пра бясьпеку.
 Вам неабходна падпісацца на яго і абнавіць Вашае ўсталяваньне MediaWiki, калі зьявяцца новыя вэрсіі.',
 	'config-almost-done' => 'Вы амаль што скончылі!
-Цяпер Вы можаце прапусьціць астатнія ўстаноўкі і пачаць усталяваньне вікі.',
+Цяпер Вы можаце прапусьціць астатнія налады і пачаць усталяваньне вікі.',
 	'config-optional-continue' => 'Задаць болей пытаньняў.',
 	'config-optional-skip' => 'Хопіць, проста ўсталяваць вікі.',
 	'config-profile' => 'Профіль правоў удзельніка:',
@@ -1197,14 +1208,14 @@ chmod a+w $3</pre>',
 Раней Вікіпэдыя выкарыстоўвала ліцэнзію GNU Free Documentation. Яна ўсё яшчэ дзейнічае, але яна ўтрымлівае некаторыя моманты, якія ўскладняюць паўторнае выкарыстоўваньне і інтэрпрэтацыю матэрыялаў.",
 	'config-email-settings' => 'Устаноўкі электроннай пошты',
 	'config-enable-email' => 'Дазволіць выходзячыя электронныя лісты',
-	'config-enable-email-help' => 'Калі Вы жадаеце каб працавала электронная пошта, неабходна зрабіць [http://www.php.net/manual/en/mail.configuration.php адпаведныя ўстаноўкі PHP].
+	'config-enable-email-help' => 'Калі Вы жадаеце каб працавала электронная пошта, неабходна зрабіць [http://www.php.net/manual/en/mail.configuration.php адпаведныя налады PHP].
 Калі Вы не жадаеце выкарыстоўваць магчымасьці электроннай пошты, тут Вы можаце яе адключыць.',
 	'config-email-user' => 'Дазволіць электронную пошту для сувязі паміж удзельнікамі',
-	'config-email-user-help' => 'Дазволіць усім удзельнікам дасылаць адзін аднаму электронныя лісты, калі ўключаная адпаведная магчымасьць ў іх ўстаноўках.',
+	'config-email-user-help' => 'Дазволіць усім удзельнікам дасылаць адзін аднаму электронныя лісты, калі ўключаная адпаведная магчымасьць ў іх наладах.',
 	'config-email-usertalk' => 'Уключыць абвяшчэньні пра паведамленьні на старонцы абмеркаваньня',
-	'config-email-usertalk-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены на старонцы абмеркаваньня, калі гэтая магчымасьць уключаная ў іх устаноўках.',
+	'config-email-usertalk-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены на старонцы абмеркаваньня, калі гэтая магчымасьць уключаная ў іх наладах.',
 	'config-email-watchlist' => 'Уключыць абвяшчэньні пра зьмены ў сьпісе назіраньня',
-	'config-email-watchlist-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены ў іх сьпісе назіраньня, калі гэтая магчымасьць уключаная ў іх устаноўках.',
+	'config-email-watchlist-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены ў іх сьпісе назіраньня, калі гэтая магчымасьць уключаная ў іх наладах.',
 	'config-email-auth' => 'Уключыць аўтэнтыфікацыю праз электронную пошту',
 	'config-email-auth-help' => "Калі гэтая магчымасьць уключаная, удзельнікі павінны пацьвердзіць іх адрас электроннай пошты праз спасылку, якая дасылаецца ім праз электронную пошту. Яна дасылаецца і падчас зьмены адрасу электроннай пошты.
 Толькі аўтэнтыфікаваныя адрасы электроннай пошты могуць атрымліваць электронныя лісты ад іншых удзельнікаў, ці зьмяняць абвяшчэньні дасылаемыя праз электронную пошту.
@@ -1237,7 +1248,7 @@ chmod a+w $3</pre>',
 Увядзіце назву ліцэнзіі ўручную.',
 	'config-cc-again' => 'Выберыце яшчэ раз…',
 	'config-cc-not-chosen' => 'Выберыце, якую ліцэнзію Creative Commons Вы жадаеце выкарыстоўваць і націсьніце «працягваць».',
-	'config-advanced-settings' => 'Дадатковыя ўстаноўкі',
+	'config-advanced-settings' => 'Дадатковыя налады',
 	'config-cache-options' => 'Устаноўкі кэшаваньня аб’ектаў:',
 	'config-cache-help' => 'Кэшаваньне аб’ектаў павялічвае хуткасьць працы MediaWiki праз кэшаваньне зьвестак, якія часта выкарыстоўваюцца.
 Вельмі рэкамэндуем уключыць гэта для сярэдніх і буйных сайтаў, таксама будзе карысна для дробных сайтаў.',
@@ -1250,7 +1261,7 @@ chmod a+w $3</pre>',
 	'config-extensions' => 'Пашырэньні',
 	'config-extensions-help' => 'Пашырэньні пададзеныя вышэй, былі знойдзеныя ў Вашай дырэкторыі <code>./extensions</code>.
 
-Яны могуць патрабаваць дадатковых установак, але іх можна ўключыць зараз',
+Яны могуць патрабаваць дадатковых наладаў, але іх можна ўключыць зараз',
 	'config-install-alreadydone' => "'''Папярэджаньне:''' здаецца, што Вы ўжо ўсталёўвалі MediaWiki і спрабуеце зрабіць гэтай зноў.
 Калі ласка, перайдзіце на наступную старонку.",
 	'config-install-step-done' => 'зроблена',
@@ -1287,9 +1298,14 @@ chmod a+w $3</pre>',
 Вы пасьпяхова ўсталявалі MediaWiki.
 
 Праграма ўсталяваньня стварыла файл <code>LocalSettings.php</code>.
-Ён утрымлівае ўсе Вашыя ўстаноўкі.
+Ён утрымлівае ўсе Вашыя налады.
 
-Вам неабходна [$1 загрузіць] яго і захаваць у карэнную дырэкторыю Вашай вікі (у тую ж самую дырэкторыю, дзе знаходзіцца index.php).
+Вам неабходна загрузіць яго і захаваць у карэнную дырэкторыю Вашай вікі (у тую ж самую дырэкторыю, дзе знаходзіцца index.php). Загрузка павінна пачацца аўтаматычна.
+
+Калі загрузка не пачалася, ці Вы яе адмянілі, Вы можаце перазапусьціць яе націснуўшы на спасылку ніжэй:
+
+$3
+
 '''Заўвага''': калі Вы гэтага ня зробіце зараз, то створаны файл ня будзе даступны Вам потым, калі Вы выйдзеце з праграмы ўсталяваньня  без яго загрузкі.
 
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
@@ -1703,12 +1719,20 @@ $messages['br'] = array(
 	'config-localsettings-upgrade' => 'Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
 Evit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er voest dindan.
 E gavout a rit e LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Dinoet ez eus bet ur restr LocalSettings.php.
+Evit lakaat ar staliadur-mañ a-live, implijit --upgrade=yes, mar plij.',
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
 	'config-upgrade-key-missing' => 'Kavet ez eus bet ur staliadur kent eus MediaWiki.
 Evit hizivaat ar staliadur-se, ouzhpennit al linenn da-heul e traoñ ho restr LocalSettings.php:
 
 $1',
+	'config-localsettings-incomplete' => "Diglok e seblant bezañ ar restr LocalSettings.php zo anezhi dija.
+An argemmenn $1 n'eo ket termenet.
+Kemmit LocalSettings.php evit ma vo termenet an argemmenn-se, ha klikit war « Kenderc'hel ».",
+	'config-localsettings-connection-error' => "C'hoarvezet ez eus ur fazi en ur gevreañ ouzh an diaz roadennoù oc'h implijout an arventennoù diferet e LocalSettings.php pe AdminSettings.php. Reizhit an arventennoù-se hag esaeit en-dro.
+
+$1",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
 	'config-no-session' => "Kolle teo bet roadennoù ho talc'h !
 Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</code> en ur c'havlec'h a zere.",
@@ -1744,6 +1768,12 @@ Gallout a rit staliañ MediaWiki.',
 	'config-env-bad' => "Gwiriet eo bet an endro.
 Ne c'hallit ket staliañ MediaWiki.",
 	'config-env-php' => 'Staliet eo PHP $1.',
+	'config-unicode-using-utf8' => "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
+	'config-unicode-using-intl' => "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
+	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
+	'config-ze1' => "'''Fazi diremed : [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mod] zo gweredekaet !'''
+An dibarzh-mañ zo kaoz da zrein euzhus gant MediaWiki.
+Ne c'hallit ket staliañ nag implijout MediaWiki keit ha m'eo gweredekaet an dibarzh-mañ.",
 	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
 	'config-xcache' => 'Staliet eo [http://trac.lighttpd.net/xcache/ XCache]',
 	'config-apc' => 'Staliet eo [http://www.php.net/apc APC]',
@@ -1761,10 +1791,15 @@ Staliadur nullet.",
 	'config-db-install-account' => 'Kont implijer evit ar staliadur',
 	'config-db-username' => 'Anv implijer an diaz roadennoù :',
 	'config-db-password' => 'Ger-tremen an diaz roadennoù :',
+	'config-db-install-username' => "Ebarzhit an anv implijer a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.
+N'eo ket anv implijer ar gont MediaWiki, an anv implijer evit ho tiaz roadennoù eo.",
+	'config-db-install-password' => "Ebarzhit ar ger-tremen a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.
+N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roadennoù eo.",
 	'config-db-install-help' => 'Merkañ anv an implijer hag ar ger-tremen a vo implijet evit kevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.',
 	'config-db-account-lock' => 'Implijout ar memes anv implijer ha ger-tremen e-kerzh oberiadurioù boutin',
 	'config-db-wiki-account' => 'Kont implijer evit oberiadurioù boutin',
 	'config-db-prefix' => 'Rakrann taolennoù an diaz roadennoù :',
+	'config-db-charset' => 'Strobad arouezennoù an diaz roadennoù',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarel',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-old' => "Rekis eo MySQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
@@ -1784,6 +1819,9 @@ Staliadur nullet.",
 	'config-missing-db-name' => 'Rediet oc\'h da reiñ un talvoud evit "Anv an diaz roadennoù"',
 	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
 	'config-sqlite-cant-create-db' => "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
+	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
+
+Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-regenerate' => 'Adgenel LocalSettings.php →',
 	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
@@ -1806,12 +1844,17 @@ Staliadur nullet.",
 	'config-admin-password' => 'Ger-tremen :',
 	'config-admin-password-confirm' => 'Adskrivañ ar ger-tremen :',
 	'config-admin-name-blank' => 'Lakait anv ur merour.',
+	'config-admin-name-invalid' => 'Direizh eo an anv implijer diferet « <nowiki>$1</nowiki> ».
+Diferit un anv implijer all.',
 	'config-admin-password-blank' => 'Reiñ ur ger-tremen evit kont ar merour.',
 	'config-admin-password-same' => "Ne c'hall ket ar ger-tremen bezañ heñvel ouzh anv ar gont.",
 	'config-admin-password-mismatch' => "Ne glot ket ar gerioù-tremen hoc'h eus merket an eil gant egile.",
 	'config-admin-email' => "Chomlec'h postel :",
 	'config-admin-email-help' => "Merkit ur chomlec'h postel amañ evit gallout resev posteloù a-berzh implijerien all eus ar wiki, adderaouekaat ho ker-tremen ha bezañ kelaouet eus ar c'hemmoù degaset d'ar pajennoù zo en ho roll evezhiañ.",
 	'config-admin-error-user' => 'Fazi diabarzh en ur grouiñ ur merer gant an anv "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Fazi diabarzh o lakaat ur ger-tremen evit ar merour « <nowiki>$1</nowiki> » : <pre>$2</pre>',
+	'config-admin-error-bademail' => "Ebarzhet hoc'h eus ur chomlec'h postel direizh.",
+	'config-subscribe' => 'Koumanantit da [https://lists.wikimedia.org/mailman/listinfo/mediawiki-listenn kemennadoù evit ar stummoù nevez].',
 	'config-almost-done' => "Kazi echu eo !
 Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-optional-continue' => "Sevel muioc'h a goulennoù ouzhin.",
@@ -1825,18 +1868,49 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-license-pd' => 'Domani foran',
 	'config-license-cc-choose' => 'Dibabit un aotre-implijout Creative Commons personelaet',
 	'config-email-settings' => 'Arventennoù ar postel',
+	'config-enable-email' => 'Gweredekaat ar posteloù a ya kuit',
 	'config-email-user' => 'Gweredekaat ar posteloù a implijer da implijer',
+	'config-email-watchlist' => "Gweredekaat ar c'hemenn listenn evezhiañ",
+	'config-email-auth' => 'Gweredekaat an dilesadur dre bostel',
+	'config-email-sender' => "Chomlec'h postel respont :",
+	'config-upload-settings' => 'Pellgargañ skeudennoù ha restroù',
+	'config-upload-enable' => 'Gweredekaat ar pellgargañ restroù',
 	'config-upload-deleted' => "Kavlec'h evit ar restroù dilamet :",
 	'config-logo' => 'URL al logo :',
+	'config-instantcommons' => "Gweredekaat ''InstantCommons''",
 	'config-cc-again' => 'Dibabit adarre...',
 	'config-advanced-settings' => 'Kefluniadur araokaet',
+	'config-cache-accel' => 'Krubuilhañ traezoù PHP (APC, eAccelerator, XCache pe WinCache)',
+	'config-cache-memcached' => 'Implijout Memcached (en deus ezhomm bezañ staliet ha kefluniet)',
+	'config-memcached-servers' => 'Servijerioù Memcached :',
+	'config-memcached-help' => "Roll ar chomlec'hioù IP da implijout evit Memcached.
+Ret eo dispartiañ anezho gant virgulennoù ha diferañ ar porzh da implijout (da skouer : 127.0.0.1:11211, 192.168.1.25:11211).",
 	'config-extensions' => 'Astennoù',
+	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh. 
+Kit d'ar bajenn war-lerc'h, mar plij.",
 	'config-install-step-done' => 'graet',
 	'config-install-step-failed' => "c'hwitet",
+	'config-install-extensions' => 'En ur gontañ an astennoù',
+	'config-install-database' => 'Krouiñ an diaz roadennoù',
+	'config-install-pg-schema-failed' => "C'hwitet eo krouidigezh an taolennoù.
+Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
+	'config-install-pg-commit' => "O wiriekaat ar c'hemmoù",
+	'config-install-pg-plpgsql' => 'O wiriañ ar yezh PL/pgSQL',
+	'config-pg-no-plpgsql' => "Ret eo deoc'h staliañ ar yezh PL/pgSQL en diaz roadennoù $1",
+	'config-install-pg-ts2' => 'O wiriañ tsearch2',
+	'config-install-pg-ts2-failed' => "'''C'HWITET''' tsearch2 a zle bezañ staliet en diaz roadennoù $1.
+Lennit [$2 ar c'hemennoù-mañ], mar plij, pe goulennit war #postgresql war irc.freenode.net",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-tables' => 'Krouiñ taolennoù',
+	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
+	'config-install-interwiki-sql' => "Ne c'haller ket kavout ar restr <code>interwiki.sql</code>.",
 	'config-install-secretkey' => "Genel an alc'hwez kuzh",
 	'config-install-sysop' => 'Krouidigezh kont ar merour',
+	'config-install-subscribe-fail' => "Ne c'haller ket koumanantiñ da mediawiki-announce",
+	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
+	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ.",
+	'config-download-localsettings' => 'Pellgargañ LocalSettings.php',
+	'config-help' => 'skoazell',
 );
 
 /** Bosnian (Bosanski)
@@ -6271,6 +6345,14 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-ns-generic' => 'Projäk',
 	'config-ns-site-name' => 'Et sällve wi däm Wiki singe Name: $1',
 	'config-ns-other' => 'Andere (jiff aan wälshe)',
+);
+
+/** Kurdish (Latin) (Kurdî (Latin))
+ * @author George Animal
+ */
+$messages['ku-latn'] = array(
+	'config-page-language' => 'Ziman',
+	'config-page-name' => 'Nav',
 );
 
 /** Luxembourgish (Lëtzebuergesch)

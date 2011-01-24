@@ -998,40 +998,60 @@ $1",
 'grouppage-sysop' => '{{ns:project}}:પ્રબંધકો',
 
 # Rights
-'right-read'          => ' પાના વાંચો',
-'right-edit'          => 'પાના બદલો',
-'right-minoredit'     => ' નાનો ફેરફાર તરીકે નોઁધો',
-'right-move'          => 'પાનું ખસેડો',
-'right-movefile'      => 'ફાઈલો હટાવો',
-'right-upload'        => 'ફાઇલ ચડાવો',
-'right-browsearchive' => 'હટાવેલા પાનાની શોધ',
-'right-undelete'      => 'હટાવેલ પાનું પુનર્જીવીત કરો',
-'right-sendemail'     => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
+'right-read'           => ' પાના વાંચો',
+'right-edit'           => 'પાના બદલો',
+'right-minoredit'      => ' નાનો ફેરફાર તરીકે નોઁધો',
+'right-move'           => 'પાનું ખસેડો',
+'right-movefile'       => 'ફાઈલો હટાવો',
+'right-upload'         => 'ફાઇલ ચડાવો',
+'right-delete'         => 'પાનું હટાવો',
+'right-bigdelete'      => 'લાંબા ઇતિહાસ વાળા પાના હટાવો',
+'right-browsearchive'  => 'હટાવેલા પાનાની શોધ',
+'right-undelete'       => 'હટાવેલ પાનું પુનર્જીવીત કરો',
+'right-suppressionlog' => 'નિજી લોગ જુઓ',
+'right-import'         => 'અન્ય વિકિમાંથી પાના આયાત કરો',
+'right-unwatchedpages' => 'ન જોવાતા પાનાની યાદી જુઓ',
+'right-mergehistory'   => 'પાનાનો ઇતિહાસ વિલિન કરો',
+'right-userrights'     => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
+'right-sendemail'      => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
+'right-revisionmove'   => 'પુનરાવર્તનો ખસેડો',
+'right-disableaccount' => 'ખાતું નિષ્ક્રીય બનાવો',
 
 # User rights log
 'rightslog'  => 'સભ્ય હક્ક માહિતિ પત્રક',
 'rightsnone' => '(કોઈ નહિ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'           => 'આ પાનું વાંચો.',
-'action-edit'           => 'આ પાનામાં ફેરફાર કરવાની',
-'action-createpage'     => 'નવો લેખ શરૂ કરો',
-'action-createtalk'     => 'ચર્ચાનું પાનું બનાવો',
-'action-move'           => 'આ પાનું ખસેડો',
-'action-move-subpages'  => 'આ પાનું અને તેના ઉપપાના ખસેડો',
-'action-movefile'       => 'આ ફાઈલા ખસેડો',
-'action-upload'         => 'આ ફાઈલ ચઢવો',
-'action-delete'         => 'આ પાનું હટાવો',
-'action-deleterevision' => 'આ પુનરાવર્તનારદ્દ કરો',
-'action-browsearchive'  => 'હટાવેલા પાનાની શોધ',
-'action-undelete'       => 'આ પાનું ફરી પુનર્જીવીત કરો',
-'action-suppressionlog' => 'આ નિજી લોગ જુઓ',
+'action-read'             => 'આ પાનું વાંચો.',
+'action-edit'             => 'આ પાનામાં ફેરફાર કરવાની',
+'action-createpage'       => 'નવો લેખ શરૂ કરો',
+'action-createtalk'       => 'ચર્ચાનું પાનું બનાવો',
+'action-minoredit'        => ' આ ફેરફારને એક નાના સુધારા તરીકે નોંધો',
+'action-move'             => 'આ પાનું ખસેડો',
+'action-move-subpages'    => 'આ પાનું અને તેના ઉપપાના ખસેડો',
+'action-movefile'         => 'આ ફાઈલા ખસેડો',
+'action-upload'           => 'આ ફાઈલ ચઢવો',
+'action-delete'           => 'આ પાનું હટાવો',
+'action-deleterevision'   => 'આ પુનરાવર્તનારદ્દ કરો',
+'action-deletedhistory'   => 'આ પાનાના રદ્દીકરણનો ઇતિહાસ બતાવો',
+'action-browsearchive'    => 'હટાવેલા પાનાની શોધ',
+'action-undelete'         => 'આ પાનું ફરી પુનર્જીવીત કરો',
+'action-suppressrevision' => 'સમીક્ષા કરી આ ગુપ્ત પુનરાવર્તન પુન-સ્થાપિત કરો',
+'action-suppressionlog'   => 'આ નિજી લોગ જુઓ',
+'action-block'            => 'આ સભ્ય દ્વારા થનાર ફેરફાર પ્રતિબંધીત કરો',
+'action-protect'          => 'આ પાનાંનું પ્રતિબંધ સ્તર બદલો',
+'action-import'           => 'અન્ય વિકિ પરથી આ પાનું આયાત કરો',
+'action-mergehistory'     => 'પાનાનો ઇતિહાસ વિલિન કરો',
+'action-userrights'       => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
+'action-revisionmove'     => 'પુનરાવર્તનો ખસેડો',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'recentchanges'                  => 'તાજા ફેરફારો',
 'recentchanges-legend'           => 'હાલમાં થયેલા ફેરફારોના વિકલ્પ',
 'recentchanges-feed-description' => 'આ ફીડ દ્વારા વિકિમાં થયેલા તાજા ફેરફારો પર ધ્યાન રાખો.',
+'recentchanges-label-minor'      => 'આ એક નાનો સુધારો છે.',
+'recentchanges-label-bot'        => 'આ ફેરફાર બોટ દ્વારા કરાયો છે',
 'rcnote'                         => "નીચે $5, $4 સુધીમાં અને તે પહેલાનાં '''$2''' દિવસમાં {{PLURAL:$1| થયેલો '''1''' માત્ર ફેરફાર|થયેલાં છેલ્લા  '''$1''' ફેરફારો}} દર્શાવ્યાં છે .",
 'rcnotefrom'                     => "નીચે '''$2'''થી થયેલાં '''$1''' ફેરફારો દર્શાવ્યાં છે.",
 'rclistfrom'                     => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
@@ -1064,19 +1084,44 @@ $1",
 'recentchangeslinked-to'       => 'આને બદલે આપેલા પાનાં સાથે જોડાયેલા લેખોમાં થયેલા ફેરફારો શોધો',
 
 # Upload
-'upload'        => 'ફાઇલ ચડાવો',
-'uploadbtn'     => 'ફાઇલ ચડાવો',
-'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
-'filesource'    => 'સ્ત્રોત:',
-'uploadedimage' => '"[[$1]]" ચઢાવ્યું',
+'upload'              => 'ફાઇલ ચડાવો',
+'uploadbtn'           => 'ફાઇલ ચડાવો',
+'upload-tryagain'     => 'સુધારીત ફાઇલ વર્ણન ચડાવો',
+'uploadlogpage'       => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
+'filename'            => 'ફાઇલ નામ',
+'filedesc'            => 'સારાંશ:',
+'fileuploadsummary'   => 'સારાંશ:',
+'filesource'          => 'સ્ત્રોત:',
+'uploadedfiles'       => 'ફાઇલ ચડાવો',
+'ignorewarnings'      => 'કોઇ પણ ચેતવણી અવગણો',
+'filename-tooshort'   => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
+'unknown-error'       => 'અજ્ઞાત ચૂક થઈ',
+'tmp-create-error'    => 'હંગામી ફાઇલ ન બનાવી શકાઇ',
+'uploadwarning'       => 'ફાઇલ ચઢાવ ચેતવણી',
+'uploadedimage'       => '"[[$1]]" ચઢાવ્યું',
+'upload-source'       => 'સ્ત્રોત ફાઇલ',
+'sourceurl'           => 'સ્ત્રોત  URL:',
+'upload-description'  => 'ફાઇલ માહિતી',
+'upload-options'      => 'ચડાવ વિકલ્પ',
+'watchthisupload'     => 'આ પાનાને ધ્યાનમાં રાખો',
+'upload-warning-subj' => 'ફાઇલ ચઢાવ ચેતવણી',
 
 # Special:ListFiles
-'listfiles' => 'ફાઇલોની યાદી',
+'imgfile'               => 'ફાઇલ',
+'listfiles'             => 'ફાઇલોની યાદી',
+'listfiles_thumb'       => 'લઘુચિત્ર',
+'listfiles_date'        => 'તારીખ',
+'listfiles_name'        => 'નામ',
+'listfiles_size'        => 'માપ',
+'listfiles_description' => 'વર્ણન',
 
 # File description page
 'file-anchor-link'          => 'ફાઇલ/દસ્તાવેજ',
 'filehist'                  => 'ફાઇલનો ઇતિહાસ',
 'filehist-help'             => 'તારિખ/સમય ઉપર ક્લિક કરવાથી તે સમયે ફાઇલ કેવી હતી તે જોવા મળશે',
+'filehist-deleteall'        => 'બધા ભૂસો',
+'filehist-deleteone'        => 'હટાવો',
+'filehist-revert'           => 'પૂર્વવત કરો',
 'filehist-current'          => 'વર્તમાન',
 'filehist-datetime'         => 'તારીખ/સમય',
 'filehist-thumb'            => 'લઘુચિત્ર',
@@ -1086,6 +1131,7 @@ $1",
 'filehist-dimensions'       => 'પરિમાણ',
 'filehist-filesize'         => 'ફાઇલનું કદ',
 'filehist-comment'          => 'ટિપ્પણી',
+'filehist-missing'          => 'ફાઇલ ગાયબ',
 'imagelinks'                => 'ફાઇલની કડીઓ',
 'linkstoimage'              => 'આ ફાઇલ સાથે {{PLURAL:$1|નીચેનું પાનું જોડાયેલું|$1 નીચેનાં પાનાઓ જોડાયેલાં}} છે',
 'linkstoimage-more'         => '$1 કરતાં વધુ {{PLURAL:$1|પાનું|પાનાં}} આ ફાઇલ સાથે જોડાય છે.
@@ -1153,12 +1199,19 @@ $1",
 'randompage' => 'કોઈ પણ એક લેખ',
 
 # Statistics
-'statistics' => 'આંકડાકિય માહિતિ',
+'statistics'              => 'આંકડાકિય માહિતિ',
+'statistics-header-edits' => 'આંકડાકીય માહિતી બદલો',
+'statistics-header-hooks' => 'અન્ય આંકડાકીય માહિતી',
+'statistics-pages'        => 'પાનાં',
+'statistics-views-total'  => 'સરવાળો',
+'statistics-users-active' => 'સક્રીય સભ્યો',
+'statistics-mostpopular'  => 'સૌથી વધુ જોવાયેલા પાના',
 
 'brokenredirects-edit'   => 'ફેરફાર કરો',
 'brokenredirects-delete' => 'હટાવો',
 
-'withoutinterwiki' => 'અન્ય ભાષાઓની કડીઓ વગરનાં પાનાં',
+'withoutinterwiki'        => 'અન્ય ભાષાઓની કડીઓ વગરનાં પાનાં',
+'withoutinterwiki-submit' => 'બતાવો',
 
 'fewestrevisions' => 'સૌથી ઓછાં ફેરફાર થયેલા પાનાં',
 
@@ -1233,10 +1286,13 @@ $1",
 'newuserlog-create-entry' => 'નવું ખાતું',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'જૂથ',
 'listgrouprights-members' => '(સભ્યોની યાદી)',
 
 # E-mail user
+'mailnologin'  => 'મેળવનારનું સરનામું નથી',
 'emailuser'    => 'સભ્યને ઇ-મેલ કરો',
+'noemailtitle' => 'ઈ-મેલ એડ્રેસ નથી',
 'emailfrom'    => 'પ્રેષક:',
 'emailto'      => 'પ્રતિ:',
 'emailsubject' => 'વિષય:',
@@ -1269,7 +1325,10 @@ $1",
 # Delete
 'deletepage'            => 'પાનું હટાવો',
 'confirm'               => 'ખાતરી કરો',
+'excontent'             => 'આટલી જ માહિતી હતી: "$1"',
 'exblank'               => 'પાનું ખાલી હતું',
+'delete-confirm'        => '$1ને ભૂસી નાંખો.',
+'delete-legend'         => 'રદ કરો',
 'historywarning'        => "'''ચેતવણી:''' જે પાનું તમે હટાવવા જઇ રહ્યાં છો તેને આશરે $1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}નો ઇતિહાસ છે:",
 'confirmdeletetext'     => 'આપ આ પાનું તેના ઇતિહાસ (બધાજ પૂર્વ  ફેરફારો) સાથે હટાવી રહ્યાં છો.
 કૃપા કરી મંજૂરી આપો કે, આપ આમ કરવા ચાહો છો, આપ આના સરા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કૃત્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
@@ -1313,7 +1372,9 @@ $1",
 'restriction-level'           => 'નિયંત્રણ સ્તર:',
 
 # Restrictions (nouns)
-'restriction-edit' => 'બદલો',
+'restriction-edit'   => 'બદલો',
+'restriction-move'   => 'ખસેડો',
+'restriction-upload' => 'ફાઇલ ચઢાવો',
 
 # Undelete
 'undeletebtn'            => 'પાછું વાળો',
@@ -1361,25 +1422,32 @@ $1",
 'whatlinkshere-filters'    => 'ચાળણી',
 
 # Block/unblock
-'blockip'                  => 'સભ્ય પર પ્રતિબંધ મુકો',
-'ipbreason'                => 'કારણ:',
-'ipbreasonotherlist'       => 'બીજું કારણ',
-'ipbother'                 => 'અન્ય સમય',
-'ipboptions'               => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
-'ipbotheroption'           => 'બીજું',
-'ipblocklist'              => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
-'ipblocklist-submit'       => 'શોધો',
-'anononlyblock'            => 'માત્ર અનામી',
-'blocklink'                => 'પ્રતિબંધ',
-'unblocklink'              => 'પ્રતિબંધ હટાવો',
-'change-blocklink'         => 'પ્રતિબંધમાં ફેરફાર કરો',
-'contribslink'             => 'યોગદાન',
-'blocklogpage'             => 'પ્રતિબંધ સૂચિ',
-'blocklogentry'            => '[[$1]] પર પ્રતિબંધ $2 $3 સુધી મુકવામાં આવ્યો છે.',
-'unblocklogentry'          => '$1 પરનો પ્રતિબંધ ઉઠાવ્યો',
-'block-log-flags-nocreate' => 'ખાતું ખોલવા પર પ્રતિબંધ છે',
+'blockip'                    => 'સભ્ય પર પ્રતિબંધ મુકો',
+'ipbreason'                  => 'કારણ:',
+'ipbreasonotherlist'         => 'બીજું કારણ',
+'ipbanononly'                => 'માત્ર બેનામી સભ્ય્ને છુપાવો',
+'ipbother'                   => 'અન્ય સમય',
+'ipboptions'                 => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
+'ipbotheroption'             => 'બીજું',
+'ipb-unblock-addr'           => '$1 પરનો પ્રતિબંધ ઉઠાવો',
+'unblockip'                  => 'સભ્ય પરનો પ્રતિબંધ હટાવો',
+'ipblocklist'                => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
+'ipblocklist-submit'         => 'શોધો',
+'anononlyblock'              => 'માત્ર અનામી',
+'blocklist-nousertalk'       => 'તમે પોતાનું ચર્ચા પાનામાં ફેરફાર ન કરી શકો.',
+'blocklink'                  => 'પ્રતિબંધ',
+'unblocklink'                => 'પ્રતિબંધ હટાવો',
+'change-blocklink'           => 'પ્રતિબંધમાં ફેરફાર કરો',
+'contribslink'               => 'યોગદાન',
+'blocklogpage'               => 'પ્રતિબંધ સૂચિ',
+'blocklogentry'              => '[[$1]] પર પ્રતિબંધ $2 $3 સુધી મુકવામાં આવ્યો છે.',
+'unblocklogentry'            => '$1 પરનો પ્રતિબંધ ઉઠાવ્યો',
+'block-log-flags-nocreate'   => 'ખાતું ખોલવા પર પ્રતિબંધ છે',
+'block-log-flags-noemail'    => 'ઇ-મેલ પ્ર પ્રતિબંધ મુકાયો',
+'block-log-flags-hiddenname' => 'સભ્યનું નામ છુપાવો',
 
 # Move page
+'move-page'               => '$1 ખસેડો',
 'movepagetext'            => "નીચેનું ફોર્મ વાપરવાથી આ પાનાનું નામ બદલાઇ જશે અને તેમાં રહેલી બધી મહિતિ નવા નામે બનેલાં પાનામાં ખસેડાઇ જશે.
 જુનું પાનું, નવા બનેલા પાના તરફ વાળતું થશે.
 તમે આવા અન્યત્ર વાળેલાં પનાઓને આપોઆપ જ તેના મુળ શીર્ષક સાથે જોડી શકશો.
@@ -1416,23 +1484,46 @@ $1",
 'revertmove'              => 'પૂર્વવત',
 'delete_and_move'         => 'હટાવો અને નામ બદલો',
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',
+'immobile-source-page'    => 'આ પાનું ખસેડી નહીં શકાય',
 
 # Export
 'export'        => 'પાનાઓની નિકાસ કરો/પાના અન્યત્ર મોકલો',
+'export-submit' => 'નિકાસ',
 'export-addcat' => 'ઉમેરો',
+'export-addns'  => 'ઉમેરો',
 
 # Namespace 8 related
-'allmessages'          => 'તંત્ર સંદેશાઓ',
-'allmessagesname'      => 'નામ',
-'allmessagescurrent'   => 'વર્તમાન દસ્તાવેજ',
-'allmessages-language' => 'ભાષા:',
+'allmessages'                 => 'તંત્ર સંદેશાઓ',
+'allmessagesname'             => 'નામ',
+'allmessagescurrent'          => 'વર્તમાન દસ્તાવેજ',
+'allmessages-filter-legend'   => 'ચાળણી',
+'allmessages-filter-all'      => 'બધા',
+'allmessages-filter-modified' => 'સુધારીત',
+'allmessages-prefix'          => 'પૂર્વર્ગ દ્વારા ચાળો',
+'allmessages-language'        => 'ભાષા:',
+'allmessages-filter-submit'   => 'કરો',
 
 # Thumbnails
-'thumbnail-more'  => 'વિસ્તૃત કરો',
-'thumbnail_error' => 'નાની છબી (થંબનેઇલ-thumbnail) બનાવવામાં ત્રુટિ: $1',
+'thumbnail-more'           => 'વિસ્તૃત કરો',
+'filemissing'              => 'ફાઇલ ગાયબ',
+'thumbnail_error'          => 'નાની છબી (થંબનેઇલ-thumbnail) બનાવવામાં ત્રુટિ: $1',
+'djvu_page_error'          => 'DjVu પાનું સીમાની બહાર',
+'djvu_no_xml'              => 'DjVu ફાઇલ માટે XML લાવવા અસમર્થ',
+'thumbnail_invalid_params' => 'અંગુલિ નિર્દેશકના નિર્દેશકો અવૈધ',
 
 # Special:Import
-'import-revision-count' => '$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}',
+'import'                   => 'પાના આયાત કરો',
+'importinterwiki'          => 'ટ્રાંસ વિકિ આયાત',
+'import-interwiki-submit'  => 'આયાત કરો',
+'import-upload-filename'   => 'ફાઇલ નામ',
+'import-comment'           => 'ટિપ્પણી:',
+'importstart'              => 'આયાત કામ જારી છે....',
+'import-revision-count'    => '$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}',
+'importnopages'            => 'આયાત કરવા માટે કોઇ પાનું નથી!',
+'importsuccess'            => 'આયાત સંપૂર્ણ',
+'import-noarticle'         => 'આયાત કરવા માટે કોઇ પાનું નથી!',
+'import-upload'            => 'XML માહિતી ચઢાવો',
+'import-invalid-interwiki' => 'દર્શાવેલ વિકિ પરથી આયાત નહીં કરી શકાય',
 
 # Import log
 'importlogpage' => 'આયાત માહિતિ પત્રક',
@@ -1451,6 +1542,7 @@ $1",
 'tooltip-ca-viewsource'           => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
 'tooltip-ca-history'              => 'આ પાનાનાં અગાઉનાં ફેરફારો',
 'tooltip-ca-protect'              => 'આ પાનું સુરક્ષિત કરો',
+'tooltip-ca-unprotect'            => 'આ પાનાની સુરક્ષા હટાવો.',
 'tooltip-ca-delete'               => 'આ પાનું હટાવો',
 'tooltip-ca-move'                 => 'આ પાનું ખસેડો',
 'tooltip-ca-watch'                => 'આ પાનું તમારી ધ્યાનસૂચીમા ઉમેરો',
@@ -1478,6 +1570,7 @@ $1",
 'tooltip-t-permalink'             => 'પાનાનાં આ પુનરાવર્તનની સ્થાયી કડી',
 'tooltip-ca-nstab-main'           => 'સૂચિ વાળું પાનુ જુઓ',
 'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
+'tooltip-ca-nstab-media'          => 'મિડિયાનું પાનું જુઓ',
 'tooltip-ca-nstab-special'        => 'આ ખાસ પાનું છે, તમે તેમાં ફેરફાર ના કરી શકો',
 'tooltip-ca-nstab-project'        => 'પરિયોજનાનું પાનું',
 'tooltip-ca-nstab-image'          => 'ફાઇલ વિષેનું પાનું જુઓ',
@@ -1490,14 +1583,29 @@ $1",
 'tooltip-diff'                    => 'તમે માહિતિમાં કયા ફેરફારો કર્યા છે તે જોવા મળશે',
 'tooltip-compareselectedversions' => 'અ પાનાનાં પસંદ કરેલા બે વૃત્તાંત વચ્ચેનાં ભેદ જુઓ.',
 'tooltip-watch'                   => 'આ પાનાને તમારી ધ્યાનસૂચિમાં ઉમેરો',
+'tooltip-upload'                  => 'ફાઇલ ચડાવવાનું શરૂ કરો',
 'tooltip-rollback'                => '"પાછું વાળો" એક જ ક્લિકમાં છેલ્લા સભ્યએ આ પાનામાં કરેલા બધા ફેરફારો પાછા વાળશે',
 'tooltip-undo'                    => '"રદ કરો" આ ફેરફારને પાછો વાળશે અને ફેરફાર પછીનું પૂર્વાવલોકન ફોર્મ નવા પાના તરીકે ખુલશે.
 તે તમને \'સારાંશ\'માં કારણ જણાવવા દેશે.',
+
+# Attribution
+'others' => 'અન્યો',
 
 # Info page
 'infosubtitle' => 'પાના વિષે માહિતી',
 'numedits'     => 'ફેરફારોની સંખ્યા (લેખ): $1',
 'numtalkedits' => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
+'numwatchers'  => 'નીરીક્ષકોની સંખ્યા : $1',
+
+# Math errors
+'math_unknown_function' => 'અજ્ઞાત ફંક્શન',
+
+# Patrol log
+'patrol-log-diff' => 'સુધારો: $1',
+
+# Image deletion
+'deletedrevision'      => 'જુના સુધારા ભૂસો $1',
+'filedeleteerror-long' => '$1 આ ફાઈલ ભૂંસતી વખતે ચૂક થઈ',
 
 # Browsing diffs
 'previousdiff' => '← પહેલાનો ફેરફાર',
@@ -1511,10 +1619,11 @@ $1",
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
 # Special:NewFiles
-'newimages' => 'નવી ફાઇલોની ઝાંખી',
-'noimages'  => 'જોવા માટે કશું નથી.',
-'ilsubmit'  => 'શોધો',
-'bydate'    => 'તારીખ પ્રમાણે',
+'newimages'        => 'નવી ફાઇલોની ઝાંખી',
+'newimages-legend' => 'ચાળણી',
+'noimages'         => 'જોવા માટે કશું નથી.',
+'ilsubmit'         => 'શોધો',
+'bydate'           => 'તારીખ પ્રમાણે',
 
 # Bad image list
 'bad_image_list' => 'ફોર્મેટ નીચે મુજબ છે:
@@ -1540,9 +1649,13 @@ $1",
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'  => 'પહોળાઈ',
-'exif-imagelength' => 'ઊંચાઈ',
-'exif-artist'      => 'કલાકાર',
+'exif-imagewidth'       => 'પહોળાઈ',
+'exif-imagelength'      => 'ઊંચાઈ',
+'exif-datetime'         => 'ફાઇલ સુધારાની તારીખ અને સમય',
+'exif-imagedescription' => 'ચિત્ર શીર્ષક',
+'exif-artist'           => 'કલાકાર',
+'exif-colorspace'       => 'રંગ માટે જગ્યા',
+'exif-pixelydimension'  => 'ચિત્ર માટે વૈધ પહોળાઇ',
 
 'exif-unknowndate' => 'અજ્ઞાત તારીખ',
 
@@ -1551,17 +1664,40 @@ $1",
 'exif-componentsconfiguration-0' => 'નથી',
 
 'exif-meteringmode-0'   => 'અજાણ્યો',
+'exif-meteringmode-1'   => 'સરાસરી',
 'exif-meteringmode-255' => 'બીજું કઈ',
 
 'exif-lightsource-0' => 'અજાણ્યો',
+'exif-lightsource-1' => 'દિવસ પ્રકાશ',
 
 'exif-gaincontrol-0' => 'જરાપણ નહી',
+
+'exif-contrast-1' => 'Soft',
+'exif-contrast-2' => 'તીવ્ર',
 
 'exif-saturation-0' => 'સામાન્ય',
 
 'exif-sharpness-0' => 'સામાન્ય',
+'exif-sharpness-1' => 'સૌમ્ય',
+'exif-sharpness-2' => 'તીવ્ર',
 
 'exif-subjectdistancerange-0' => 'અજાણ્યો',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'ઉત્તર અક્ષાંસ',
+'exif-gpslatitude-s' => 'દક્ષિણ અક્ષાંસ',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'પૂર્વ રેખાંશ',
+'exif-gpslongitude-w' => 'પશ્ચિમ રેખાંશ',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'કિમી પ્રતિ કલાક',
+'exif-gpsspeed-m' => 'માઇલ પ્રતિ કલાક',
+'exif-gpsspeed-n' => 'નોટ્સ્',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-m' => 'ચુંબકીય દિશા',
 
 # External editor support
 'edit-externally'      => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
@@ -1573,6 +1709,7 @@ $1",
 'watchlistall2'    => 'બધા',
 'namespacesall'    => 'બધા',
 'monthsall'        => 'બધા',
+'limitall'         => 'બધા',
 
 # action=purge
 'confirm_purge_button' => 'મંજૂર',
@@ -1583,6 +1720,8 @@ $1",
 'imgmultigo'       => 'જાઓ!',
 
 # Table pager
+'ascending_abbrev'         => 'ચડતો ક્ર્મ',
+'descending_abbrev'        => 'ઉતરતો ક્ર્મ',
 'table_pager_next'         => 'આગળનું પાનું',
 'table_pager_prev'         => 'પાછળનું પાનું',
 'table_pager_first'        => 'પહેલું પાનું',
@@ -1592,16 +1731,27 @@ $1",
 # Auto-summaries
 'autosumm-new' => '$1થી શરૂ થતું નવું પાનું બાનવ્યું',
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'શિર્ષક:',
+'watchlistedit-raw-submit' => 'ધ્યાનસૂચિ અધ્યતન બનાવો',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'બંધબેસતાં ફેરફારો નિહાળો',
 'watchlisttools-edit' => 'ધ્યાનસૂચી જુઓ અને બદલો',
 'watchlisttools-raw'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 
 # Special:Version
-'version' => 'આવૃત્તિ',
+'version'       => 'આવૃત્તિ',
+'version-other' => 'અન્ય',
+
+# Special:FilePath
+'filepath-submit' => 'કરો',
 
 # Special:SpecialPages
 'specialpages' => 'ખાસ પાનાં',
+
+# Special:BlankPage
+'blankpage' => 'કોરું પાનું',
 
 # Special:ComparePages
 'comparepages'     => 'પાનાં સરખાવો',
