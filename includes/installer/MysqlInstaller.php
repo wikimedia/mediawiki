@@ -113,19 +113,23 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function getConnection() {
 		$status = Status::newGood();
-		try {
-			$this->db = new DatabaseMysql(
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( '_InstallUser' ),
-				$this->getVar( '_InstallPassword' ),
-				false,
-				false,
-				0,
-				$this->getVar( 'wgDBprefix' )
-			);
+		if( is_null( $this->db ) ) {
+			try {
+				$this->db = new DatabaseMysql(
+					$this->getVar( 'wgDBserver' ),
+					$this->getVar( '_InstallUser' ),
+					$this->getVar( '_InstallPassword' ),
+					false,
+					false,
+					0,
+					$this->getVar( 'wgDBprefix' )
+				);
+				$status->value = $this->db;
+			} catch ( DBConnectionError $e ) {
+				$status->fatal( 'config-connection-error', $e->getMessage() );
+			}
+		} else {
 			$status->value = $this->db;
-		} catch ( DBConnectionError $e ) {
-			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
 		return $status;
 	}

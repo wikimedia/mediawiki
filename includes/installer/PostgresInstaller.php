@@ -100,16 +100,19 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	function getConnection($database = 'template1') {
 		$status = Status::newGood();
-
-		try {
-			$this->db = new DatabasePostgres(
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( '_InstallUser' ),
-				$this->getVar( '_InstallPassword' ),
-				$database );
+		if( is_null( $this->db ) ) {
+			try {
+				$this->db = new DatabasePostgres(
+					$this->getVar( 'wgDBserver' ),
+					$this->getVar( '_InstallUser' ),
+					$this->getVar( '_InstallPassword' ),
+					$database );
+				$status->value = $this->db;
+			} catch ( DBConnectionError $e ) {
+				$status->fatal( 'config-connection-error', $e->getMessage() );
+			}
+		} else {
 			$status->value = $this->db;
-		} catch ( DBConnectionError $e ) {
-			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
 		return $status;
 	}
