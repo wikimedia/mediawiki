@@ -761,11 +761,20 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Deprecated function, typo in function name
+	 */
+	function closeConnecton( $conn ) {
+		$this->closeConnection( $conn );
+	}
+
+	/**
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
+	 * @param  $conn
+	 * @return void
 	 */
-	function closeConnecton( $conn ) {
+	function closeConnection( $conn ) {
 		$done = false;
 		foreach ( $this->mConns as $i1 => $conns2 ) {
 			foreach ( $conns2 as $i2 => $conns3 ) {
