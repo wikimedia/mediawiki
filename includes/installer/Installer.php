@@ -1414,7 +1414,7 @@ abstract class Installer {
 								'',
 								EDIT_NEW,
 								false,
-								User::newFromName( 'MediaWiki Default' ) );
+								User::newFromName( 'MediaWiki default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
