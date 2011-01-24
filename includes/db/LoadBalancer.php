@@ -620,23 +620,16 @@ class LoadBalancer {
 			                       'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
-		$type = $server['type'];
 		$host = $server['host'];
-		$user = $server['user'];
-		$password = $server['password'];
-		$flags = $server['flags'];
 		$dbname = $server['dbname'];
 
 		if ( $dbNameOverride !== false ) {
 			$dbname = $dbNameOverride;
 		}
 
-		# Get class for this database type
-		$class = DatabaseBase::classFromType( $type );
-
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = new $class( $host, $user, $password, $dbname, $flags );
+		$db = DatabaseBase::newFromType( $server['type'], $server );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected to $host $dbname.\n" );
 		} else {
