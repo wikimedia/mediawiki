@@ -33,12 +33,9 @@ class UploadStash {
 	 *
 	 * @param $repo FileRepo: optional -- repo in which to store files. Will choose LocalRepo if not supplied.
 	 */
-	public function __construct( $repo = null ) { 
+	public function __construct( $repo ) { 
 
-		if ( is_null( $repo ) ) {
-			$repo = RepoGroup::singleton()->getLocalRepo();
-		}
-
+		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
 		if ( ! isset( $_SESSION ) ) {

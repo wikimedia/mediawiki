@@ -1,7 +1,7 @@
 /**
  * mediaWiki.util Test Suite
  *
- * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
+ * Available on Special:BlankPage?action=mwutiltest&debug=true
  *
  * @author Krinkle <krinklemail@gmail.com>
  */
@@ -120,6 +120,8 @@
 							'<hr/> (string)');
 						mw.test.addTest('mw.html.element( \'img\', { \'src\': \'http://mw.org/?title=Main page&action=edit\' } )',
 							'<img src="http://mw.org/?title=Main page&amp;action=edit"/> (string)');
+						// Try to roughly keep the order similar to the order in the files
+						// or alphabetical (depending on the context)
 
 						// Run tests and compare results
 						var	exec,
@@ -167,4 +169,4 @@
 
 	mediaWiki.test.init();
 
-})(jQuery, mediaWiki);
+} )(jQuery, mediaWiki);
