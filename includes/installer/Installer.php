@@ -1352,6 +1352,7 @@ abstract class Installer {
 		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
 			return $this->generateSecret( 'wgUpgradeKey', 16 );
 		}
+		return Status::newGood();
 	}
 
 	/**
