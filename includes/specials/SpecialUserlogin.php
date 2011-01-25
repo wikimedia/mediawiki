@@ -327,7 +327,14 @@ class LoginForm extends SpecialPage {
 		$valid = $u->getPasswordValidity( $this->mPassword );
 		if ( $valid !== true ) {
 			if ( !$this->mCreateaccountMail ) {
-				$this->mainLoginForm( wfMsgExt( $valid, array( 'parsemag' ), $wgMinimalPasswordLength ) );
+				if ( is_array( $valid ) ) {
+					$message = array_shift( $valid );
+					$params = $valid;
+				} else {
+					$message = $valid;
+					$params = array( $wgMinimalPasswordLength );
+				}
+				$this->mainLoginForm( wfMsgExt( $message, array( 'parsemag' ), $params ) );
 				return false;
 			} else {
 				# do not force a password for account creation by email

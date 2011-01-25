@@ -599,7 +599,7 @@ class User {
 	 * Given unvalidated password input, return error message on failure.
 	 *
 	 * @param $password String Desired password
-	 * @return mixed: true on success, string of error message on failure
+	 * @return mixed: true on success, string or array of error message on failure
 	 */
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
@@ -1771,8 +1771,14 @@ class User {
 			if( !$this->isValidPassword( $str ) ) {
 				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
-				throw new PasswordError( wfMsgExt( $valid, array( 'parsemag' ),
-					$wgMinimalPasswordLength ) );
+				if ( is_array( $valid ) ) {
+					$message = array_shift( $valid );
+					$params = $valid;
+				} else {
+					$message = $valid;
+					$params = array( $wgMinimalPasswordLength );
+				}
+				throw new PasswordError( wfMsgExt( $message, array( 'parsemag' ), $params ) );
 			}
 		}
 
