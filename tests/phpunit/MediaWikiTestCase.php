@@ -81,7 +81,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	function addDBData() {}
 	
 	private function addCoreDBData() {
-		
+
+		User::resetIdByNameCache();
+
 		//Make sysop user
 		$user = User::newFromName( 'UTSysop' );
 		

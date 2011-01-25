@@ -442,6 +442,13 @@ class User {
 	}
 
 	/**
+	 * Reset the cache used in idFromName(). For use in tests.
+	 */
+	public static function resetIdByNameCache() {
+		self::$idCacheByName = array();
+	}
+
+	/**
 	 * Does the string match an anonymous IPv4 address?
 	 *
 	 * This function exists for username validation, in order to reject
