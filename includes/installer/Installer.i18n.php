@@ -305,8 +305,6 @@ The account you specify here must already exist.',
 
 '''MyISAM''' may be faster in single-user or read-only installations.
 MyISAM databases tend to get corrupted more often than InnoDB databases.",
-	'config-mysql-egine-mismatch'     => "'''Warning:''' you requested the $1 storage engine, but the existing database uses the $2 engine.
-This upgrade script can't convert it, so it will remain $2.",
 	'config-mysql-charset'            => 'Database character set:',
 	'config-mysql-binary'             => 'Binary',
 	'config-mysql-utf8'               => 'UTF-8',
@@ -314,8 +312,6 @@ This upgrade script can't convert it, so it will remain $2.",
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-mysql-charset-mismatch'   => "'''Warning:''' you requested the $1 schema, but the existing database has the $2 schema.
-	This upgrade script can't convert it, so it will remain $2.",
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
@@ -467,6 +463,7 @@ Skipping creation.",
 	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
 Skipping default list.",
+	'config-install-stats'            => 'Initializing statistics',
 	'config-install-secretkey'        => 'Generating secret key',
 	'config-insecure-secret'          => "'''Warning:''' Unable to create a secure <code>$1</code>.
 Consider changing it manually.",
@@ -1125,8 +1122,6 @@ chmod a+w $3</pre>',
 
 '''MyISAM''' можа быць хутчэйшай у вікі з адным удзельнікам, ці толькі для чытаньня.
 Базы зьвестак на MyISAM вядомыя тым, што ў іх зьвесткі шкодзяцца нашмат часьцей за InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Папярэджаньне:''' Вы зрабілі запыт на рухавік сховішча $1, але існуючая база зьвестак выкарыстоўвае рухавік $2.
-Гэтае абнаўленьне ня можа вырашыць гэтую праблему, рухавік сховішча застанецца $2.",
 	'config-mysql-charset' => 'Кадаваньне базы зьвестак:',
 	'config-mysql-binary' => 'Двайковае',
 	'config-mysql-utf8' => 'UTF-8',
@@ -1134,8 +1129,6 @@ chmod a+w $3</pre>',
 Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
 
 У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
-	'config-mysql-charset-mismatch' => "'''Папярэджаньне:''' Вы зрабілі запыт на схему $1, але існуючая база зьвестак выкарыстоўвае схему $2.
-Гэтае абнаўленьне ня можа вырашыць гэтую праблему, таму будзе пакінутая $2.",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -1542,8 +1535,6 @@ $1
 Това е по-ефективно от UTF-8 режима на MySQL и позволява използването на пълния набор от символи в Уникод.
 
 В '''UTF-8 режим''' MySQL ще знае в кой набор от символи са данните от уикито и ще може да ги показва и променя по подходящ начин, но няма да позволява складиране на символи извън [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основния многоезичен набор].",
-	'config-mysql-charset-mismatch' => "'''Предупреждение:''' заявена е $1 схема, но съществуващата база от данни е с $2 схема.
-	Скриптът за надграждане не може да я преобразува, затова тя ще остане $2.",
 	'config-site-name' => 'Име на уикито:',
 	'config-site-name-help' => 'Това име ще се показва в заглавната лента на браузъра и на различни други места.',
 	'config-site-name-blank' => 'Необходимо е да се въведе име на уикито.',
@@ -2296,8 +2287,6 @@ Das hier angegebene Konto muss bereits vorhanden sein.',
 
 '''MyISAM''' ist in Einzelnutzerumgebungen sowie bei schreibgeschützten Wikis schneller.
 Bei MyISAM-Datenbanken treten tendenziell häufiger Fehler auf als bei InnoDB-Datenbanken.",
-	'config-mysql-egine-mismatch' => "'''Warnung:''' Als Speicher-Engine wurde $1 ausgewählt, während die Datenbank $2 verwendet.
-Das Aktualisierungsskript kann die Speicher-Engine nicht konvertieren, so dass weiterhin $2 verwendet wird.",
 	'config-mysql-charset' => 'Datenbankzeichensatz:',
 	'config-mysql-binary' => 'binär',
 	'config-mysql-utf8' => 'UTF-8',
@@ -2306,8 +2295,6 @@ Dies ist effizienter als der UTF-8-Modus von MySQL und ermöglicht so die Verwen
 
 Im '''UTF-8-Modus''' wird MySQL den Zeichensatz der Daten erkennen und sie richtig anzeigen und konvertieren,
 allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke ''Basic Multilingual Plane'' (BMP)] gespeichert werden.",
-	'config-mysql-charset-mismatch' => "'''Warnung:''' Als Datenbankzeichensatz wurde $1 ausgewählt, während die Datenbank $2 verwendet.
-Das Aktualisierungsskript kann den Datenbankzeichensatz nicht konvertieren, so dass weiterhin $2 verwendet wird.",
 	'config-site-name' => 'Name des Wikis:',
 	'config-site-name-help' => 'Er wird in der Titelleiste des Browsers, wie auch verschiedenen anderen Stellen, genutzt.',
 	'config-site-name-blank' => 'Sitenamen angeben.',
@@ -2702,13 +2689,9 @@ La cuenta que especifiques aquí debe existir.',
 
 '''MyISAM''' es más rápido en instalaciones de usuario único o de sólo lectura.
 Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de datos InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Atención:''' Solicitó el motor de almacenamento $1, pero el existente en la base de datos es el motor $2.
-Este código de actualización no lo puede convertir, de modo que permanecerá como $2.",
 	'config-mysql-charset' => 'Conjunto de caracteres de la base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
-	'config-mysql-charset-mismatch' => "'''Advertencia:''' Has solicitado el esquema $1, pero la base de datos existente tiene el esquema $2.
-Este script de actualización no puede convertirlo, de modo que permanecerá como $2.",
 	'config-site-name' => 'Nombre del wiki:',
 	'config-site-name-help' => 'Esto aparecerá en la barra de título del navegador y en varios otros lugares.',
 	'config-site-name-blank' => 'Ingresar un nombre de sitio.',
@@ -3326,8 +3309,6 @@ Le compte que vous spécifiez ici doit déjà exister.",
 	'config-mysql-engine-help' => "'''InnoDB''' est presque toujours la meilleure option, car il supporte bien l'[http://fr.wikipedia.org/wiki/Ordonnancement_dans_les_syst%C3%A8mes_d%27exploitation ordonnancement]. 
 
 '''MyISAM''' peut être plus rapide dans les installations monoposte ou en lecture seule. Les bases de données MyISAM ont tendance à se corrompre plus souvent que celles d'InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Attention:''' Vous avez demandé le moteur de stockage $1, mais la base de données existante utilise le moteur $2. 
-Ce script de mise à niveau ne peut pas le convertir, il restera $2.",
 	'config-mysql-charset' => 'Jeu de caractères de la base de données :',
 	'config-mysql-binary' => 'Binaire',
 	'config-mysql-utf8' => 'UTF-8',
@@ -3335,8 +3316,6 @@ Ce script de mise à niveau ne peut pas le convertir, il restera $2.",
 
 En ''mode binaire'', MediaWiki stocke le texte UTF-8 dans des champs binaires de la base de données. C'est plus efficace que le ''mode UTF-8'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode. 
 En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pourra présenter et convertir les données de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
-	'config-mysql-charset-mismatch' => "'''Attention:''' Vous avez demandé le schéma $1, mais la base de données existante a le schéma $2. 
-Ce script de mise à niveau ne peut pas le convertir, il restera $2.",
 	'config-site-name' => 'Nom du wiki :',
 	'config-site-name-help' => 'Il apparaîtra dans la barre de titre du navigateur et en divers autres endroits.',
 	'config-site-name-blank' => 'Entrez un nom de site.',
@@ -3789,8 +3768,6 @@ A conta que se especifique aquí xa debe existir.',
 
 '''MyISAM''' é máis rápido en instalacións de usuario único e de só lectura.
 As bases de datos MyISAM tenden a se corromper máis a miúdo ca as bases de datos InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Atención:''' Solicitou o motor de almacenamento $1, mais o existente na base de datos é o motor $2.
-Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-mysql-charset' => 'Conxunto de caracteres da base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
@@ -3799,8 +3776,6 @@ Isto é máis eficaz ca o modo UTF-8 de MySQL e permítelle usar o rango complet
 
 No '''modo UTF-8''', MySQL saberá o xogo de caracteres dos seus datos e pode presentar e converter os datos de maneira axeitada,
 pero non lle deixará gardar caracteres por riba do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingüe básico].",
-	'config-mysql-charset-mismatch' => "'''Atención:''' Solicitou o esquema $1, mais o existente na base de datos é o esquema $2.
-Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-site-name' => 'Nome do wiki:',
 	'config-site-name-help' => 'Isto aparecerá na barra de títulos do navegador e noutros lugares.',
 	'config-site-name-blank' => 'Escriba o nome do sitio.',
@@ -5013,8 +4988,6 @@ Le conto que tu specifica hic debe jam exister.',
 
 '''MyISAM''' pote esser plus rapide in installationes a usator singule o a lectura solmente.
 Le bases de datos MyISAM tende a esser corrumpite plus frequentemente que le base de datos InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Aviso:''' tu requestava le motor de immagazinage $1, ma le base de datos existente usa le motor $2.
-Iste script de actualisation non pote converter lo, dunque illo remanera $2.",
 	'config-mysql-charset' => 'Codification de characteres in le base de datos:',
 	'config-mysql-binary' => 'Binari',
 	'config-mysql-utf8' => 'UTF-8',
@@ -5022,8 +4995,6 @@ Iste script de actualisation non pote converter lo, dunque illo remanera $2.",
 Isto es plus efficiente que le modo UTF-8 de MySQL, e permitte usar le rango complete de characteres Unicode.
 
 In '''modo UTF-8''', MySQL cognoscera le codification de characteres usate pro tu dats, e pote presentar e converter lo appropriatemente, ma illo non permittera immagazinar characteres supra le [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Basic].",
-	'config-mysql-charset-mismatch' => "'''Aviso:''' tu requestava le schema $1, ma le base de datos existente ha le schema $2.
-Iste script de actualisation non pote converter lo, dunque illo remanera $2.",
 	'config-site-name' => 'Nomine del wiki:',
 	'config-site-name-help' => 'Isto apparera in le barra de titulo del navigator e in varie altere locos.',
 	'config-site-name-blank' => 'Entra un nomine de sito.',
@@ -5494,8 +5465,6 @@ Akun yang Anda berikan harus sudah ada.',
 
 '''MyISAM''' mungkin lebih cepat dalam instalasi pengguna-tunggal atau hanya-baca.
 Basis data MyISAM cenderung lebih sering rusak daripada basis data InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Peringatan:''' Anda meminta mesin penyimpanan $1, tapi basis data yang ada menggunakan mesin $2. 
-Skrip pemutakhiran ini tidak dapat mengubahnya, sehingga akan tetap $2.",
 	'config-mysql-charset' => 'Set karakter basis data:',
 	'config-mysql-binary' => 'Biner',
 	'config-mysql-utf8' => 'UTF-8',
@@ -5503,8 +5472,6 @@ Skrip pemutakhiran ini tidak dapat mengubahnya, sehingga akan tetap $2.",
 Ini lebih efisien daripada modus UTF-8 MySQL dan memungkinkan Anda untuk menggunakan ragam penuh karakter Unicode.
 
 Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data dan dapat menampilkan dan mengubahnya sesuai keperluan, tetapi tidak akan mengizinkan Anda menyimpan karakter di atas [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-mysql-charset-mismatch' => "'''Peringatan:''' Anda meminta skema $1, tapi basis data yang ada menggunakan skema $2. 
-Skrip pemutakhiran ini tidak dapat mengubahnya, sehingga akan tetap $2.",
 	'config-site-name' => 'Nama wiki:',
 	'config-site-name-help' => 'Ini akan muncul di bilah judul peramban dan di berbagai tempat lainnya.',
 	'config-site-name-blank' => 'Masukkan nama situs.',
@@ -5990,8 +5957,6 @@ chmod a+w $3</pre>',
 
 '''MyISAM'''は、利用者が1人の場合、あるいは読み込み専用でインストールする場合に、より処理が早くなるでしょう。
 ただし、MyISAMのデータベースは、InnoDBより高頻度で破損する傾向があります。",
-	'config-mysql-egine-mismatch' => "'''警告：'''$1ストレージエンジンが要求されましたが、既存のデータベースは$2エンジンを使用します。
-この更新スクリプトは、これに対応していません、$2のままになります。",
 	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
@@ -6000,8 +5965,6 @@ chmod a+w $3</pre>',
 
 '''UTF-8形式'''では、MySQLは、なんの文字集合がデータのなかに含まれているかを知り、それに対して適切な提示と変換をするでしょうが、
 [http://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2 基本多言語面]の外にある文字を格納できるようにはなりません。",
-	'config-mysql-charset-mismatch' => "'''警告：'''$1スキーマが要求されましたが、既存のデータベースは$2スキーマです。
-この更新スクリプトは、これに対応していませんので、$2のままになります。",
 	'config-site-name' => 'ウィキの名前：',
 	'config-site-name-help' => 'この事象はブラウザのタイトルバーと他の様々な場所において出現する。',
 	'config-site-name-blank' => 'サイト名を入力してください。',
@@ -6814,8 +6777,6 @@ chmod a+w $3</pre>',
 
 '''MyISAM''' може да е побрз кај инсталациите наменети за само еден корисник или незаписни инсталации (само читање).
 Базите на податоци од MyISAM почесто се расипуваат од базите на InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Предупредување:''' го побаравте складишниот погон $1, но постоечката база на податоци го користи погонот $2.
-Оваа надградбена скрипта не може да го претвори, и затоа ќе остане на $2.",
 	'config-mysql-charset' => 'Збир знаци за базата:',
 	'config-mysql-binary' => 'Бинарен',
 	'config-mysql-utf8' => 'UTF-8',
@@ -6823,8 +6784,6 @@ chmod a+w $3</pre>',
 Ова е поефикасно отколку  TF-8 режимот на MySQL, и ви овозможува да ја користите целата палета на уникодни знаци.
 
 Во '''UTF-8 режим''', MySQL ќе знае на кој збир знаци припаѓаат вашите податоци, и може соодветно да ги претстави и претвори, но нема да ви дозволи да складиратезнаци над [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основната повеќејазична рамнина].",
-	'config-mysql-charset-mismatch' => "'''Предупредување:''' ја побаравте шемата $1, но постоечката база на податоци ја има шемата $2.
-Оваа надградбена скрипта не може да ја претвори, па затоа ќе остане на $2.",
 	'config-site-name' => 'Име на викито:',
 	'config-site-name-help' => 'Ова ќе се појавува во заглавната лента на прелистувачот и на разни други места.',
 	'config-site-name-blank' => 'Внесете име на мрежното место.',
@@ -7468,8 +7427,6 @@ De gebruiker die u hier opgeeft moet al bestaan.',
 
 '''MyISAM''' is bij een zeer beperkt aantal gebruikers mogelijk sneller, of als de wiki alleen-lezen is.
 MyISAM-databases raken vaker corrupt dan InnoDB-databases.",
-	'config-mysql-egine-mismatch' => "'''Waarschuwing:''' u wilt de opslagwijze $1 gebruiken, maar de bestaande database gebruikt de opslagwijze $2.
-Dit upgradescript kan de opslagwijze niet converteren, dus het blijft $2.",
 	'config-mysql-charset' => 'Tekenset voor de database:',
 	'config-mysql-binary' => 'Binair',
 	'config-mysql-utf8' => 'UTF-8',
@@ -7478,8 +7435,6 @@ Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledig
 
 In '''UTF-8-modus''' kent MySQL de tekenset van uw gegevens en kan de databaseserver ze juist weergeven en converteren.
 Het is dat niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
-	'config-mysql-charset-mismatch' => "'''Waarschuwing:''' u wilt het schema $1 gebruiken, maar de bestaande database gebruikt het schema $2.
-Dit upgradescript kan het schema niet converteren, dus het blijft $2.",
 	'config-site-name' => 'Naam van de wiki:',
 	'config-site-name-help' => 'Deze naam verschijnt in de titelbalk van browsers en op andere plaatsen.',
 	'config-site-name-blank' => 'Geef een naam op voor de site.',
@@ -7966,8 +7921,6 @@ Kontoen du oppgir her må finnes allerede.',
 
 '''MyISAM''' kan være raskere i enbruker- eller les-bare-installasjoner.
 MyISAM-databaser har en tendens til å bli ødelagt oftere enn InnoDB-databaser.",
-	'config-mysql-egine-mismatch' => "'''Advarsel:''' du ba om lagringsmotoren $1, men den eksisterende databasen bruker motoren $2.
-Dette oppgraderingsskriptet kan ikke konvertere den, så den vil forbli $2.",
 	'config-mysql-charset' => 'Databasetegnsett:',
 	'config-mysql-binary' => 'Binær',
 	'config-mysql-utf8' => 'UTF-8',
@@ -7976,8 +7929,6 @@ Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spek
 
 I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
 men det vil ikke la deg lagre tegn over «[http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
-	'config-mysql-charset-mismatch' => "'''Advarsel:''' du ba om skjemaet $1, men den eksisterende databasen bruker skjemaet $2.
-Dette oppgraderingsskriptet kan ikke konvertere det, så det vil forbli $2.",
 	'config-site-name' => 'Navn på wiki:',
 	'config-site-name-help' => 'Dette vil vises i tittellinjen i nettleseren og diverse andre steder.',
 	'config-site-name-blank' => 'Skriv inn et nettstedsnavn.',
@@ -8706,8 +8657,6 @@ Sòn a l'è '''pa arcomandà''' gavà ch'a rancontra dij problema con soa wiki."
 
 '''MyISAM''' a peul esse pi lest an instalassion për n'utent sol o mach an letura.
 La base ëd dàit MyISAM a tira a corompse pi 'd soens che la base ëd dàit InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Avis:''' it l'has ciamà ël motor ëd memorisassion $1, ma la base ëd dàit esistenta a deuvra ël motor $2.
-Cost senari d'agiornament a peul pa convertilo, parèj a restrà $2.",
 	'config-mysql-charset' => 'Ansem ëd caràter dla base ëd dàit:',
 	'config-mysql-binary' => 'Binari',
 	'config-mysql-utf8' => 'UTF-8',
@@ -8715,8 +8664,6 @@ Cost senari d'agiornament a peul pa convertilo, parèj a restrà $2.",
 Sòn a l'é pi eficient che la manera UTF-8 ëd MySQL, e a-j përmët ëd dovré l'ansema antregh ëd caràter Unicode.
 
 An '''manera UTF-8''', MySQL a conossrà an che ansem ëd caràter a son ij sò dat, e a peul presenteje e convertije apropriatament, ma a-j lassa pa memorisé ij caràter ëdzora al [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes pian multilenghìstich ëd base].",
-	'config-mysql-charset-mismatch' => "'''Avis:''' a l'ha ciamà lë schema $1, ma la base ëd dàit esistenta a l'ha lë schema $2.
-Cost senari d'agiornament a peul pa convertilo, parèj a restrà $2.",
 	'config-site-name' => 'Nòm ëd la wiki:',
 	'config-site-name-help' => "Sòn a comparirà ant la bara dël tìtol dël navigador e an vàire d'àutri pòst.",
 	'config-site-name-blank' => "Ch'a buta un nòm ëd sit.",
@@ -9187,7 +9134,6 @@ A conta que especificar aqui já tem de existir.',
 
 '''MyISAM''' pode ser mais rápido no modo de utilizador único ou em instalações somente para leitura.
 As bases de dados MyISAM tendem a ficar corrompidas com maior frequência do que as bases de dados InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Aviso:''' pediu a plataforma de armazenamento $1, mas a base de dados existente usa a plataforma $2. Este código de actualização não pode fazer a conversão, por isso permanecerá como $2.",
 	'config-mysql-charset' => 'Conjunto de caracteres da base de dados:',
 	'config-mysql-binary' => 'Binary',
 	'config-mysql-utf8' => 'UTF-8',
@@ -9196,7 +9142,6 @@ Isto é mais eficiente do que o modo UTF-8 do MySQL e permite que sejam usados t
 
 No modo '''UTF-8''', o MySQL saberá em que conjunto de caracteres os seus dados estão e pode apresentá-los e convertê-los da forma mais adequada,
 mas não lhe permitirá armazenar caracteres acima do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Básico].",
-	'config-mysql-charset-mismatch' => "'''Aviso:''' pediu o esquema ''(schema)'' $1, mas a base de dados existente usa o esquema $2. Este código de actualização não pode fazer a conversão, por isso permanecerá como $2.",
 	'config-site-name' => 'Nome da wiki:',
 	'config-site-name-help' => 'Este nome aparecerá no título da janela do seu browser e em vários outros sítios.',
 	'config-site-name-blank' => 'Introduza o nome do site.',
@@ -9798,8 +9743,6 @@ chmod a+w $3</pre>',
 	'config-mysql-engine-help' => "'''InnoDB''' почти всегда предпочтительнее, так как он лучше справляется с параллельным доступом.
 
 '''MyISAM''' может оказаться быстрее для вики с одним пользователем или с минимальным количеством поступающих правок, однако базы данных на нём портятся чаще, чем на InnoDB.",
-	'config-mysql-egine-mismatch' => "'''Внимание:''' Вы запросили метод хранения $1, однако существующая база данных использует $2. 
-Этот сценарий обновления не может изменить преобразовать его и поэтому метод хранения останется $2.",
 	'config-mysql-charset' => 'Набор символов (кодовая таблица) базы данных:',
 	'config-mysql-binary' => 'Двоичный',
 	'config-mysql-utf8' => 'UTF-8',
@@ -9807,8 +9750,6 @@ chmod a+w $3</pre>',
 Это более эффективно, чем ''UTF-8 режим'' MySQL, и позволяет использовать полный набор символов Unicode. 
 
 В '''режиме UTF-8''' MySQL будет знать в какой кодировке находятся Ваши данные и может отображать и преобразовывать их соответствующим образом, но это не позволит вам хранить символы выше [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базовой Многоязыковой Плоскости].",
-	'config-mysql-charset-mismatch' => "'''Внимание.''' Вы запросили схему $1, но существующая база данных имеет схему $2. 
-Этот сценарий обновления не сможет преобразовать схему, она останется типа $2.",
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
@@ -10623,14 +10564,12 @@ chmod a+w $3</pre>',
 	'config-mysql-engine-help' => "'''InnoDB'''通常是最佳选项，因为它对并发操作有着良好的支持。
 
 '''MyISAM'''在单用户或只读环境下可能会有更快的性能表现。但MyISAM数据库出错的概率一般要大于InnoDB数据库。",
-	'config-mysql-egine-mismatch' => "'''警告：'''您选择了使用$1存储引擎，但现有的数据库使用了$2引擎。升级脚本无法转换它，故将保持$2。",
 	'config-mysql-charset' => '数据库字符集：',
 	'config-mysql-binary' => '二进制',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-mysql-charset-help' => "在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。
 
 在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[http://zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
-	'config-mysql-charset-mismatch' => "'''警告：'''您选择了使用$1模式，但现有的数据库使用了$2模式。升级脚本无法转换它，故将保持$2。",
 	'config-site-name' => 'Wiki的名称：',
 	'config-site-name-help' => '填入的内容会出现在浏览器的标题栏以及其他多处位置中。',
 	'config-site-name-blank' => '输入网站的名称。',

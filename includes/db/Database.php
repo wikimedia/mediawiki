@@ -225,6 +225,7 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mLBInfo = array();
 	protected $mFakeSlaveLag = null, $mFakeMaster = false;
 	protected $mDefaultBigSelects = null;
+	protected $mSchemaVars = false;
 
 # ------------------------------------------------------------------------------
 # Accessors
@@ -2473,6 +2474,17 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Set variables to be used in sourceFile/sourceStream, in preference to the
+	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at 
+	 * all. If it's set to false, $GLOBALS will be used.
+	 *
+	 * @param $vars False, or array mapping variable name to value.
+	 */
+	function setSchemaVars( $vars ) {
+		$this->mSchemaVars = $vars;
+	}
+
+	/**
 	 * Read and execute commands from an open file handle
 	 * Returns true on success, error string or exception on failure (depending on object's error ignore settings)
 	 * @param $fp String: File handle
@@ -2547,8 +2559,8 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Database independent variable replacement, replaces a set of named variables
-	 * in a sql statement with the contents of their global variables.
+	 * Database independent variable replacement, replaces a set of variables
+	 * in a sql statement with their contents as given by $this->getSchemaVars().
 	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables
 	 * 
 	 * '{$var}' should be used for text and is passed through the database's addQuotes method
@@ -2558,16 +2570,17 @@ abstract class DatabaseBase implements DatabaseType {
 	 * / *$var* / is just encoded, besides traditional dbprefix and tableoptions it's use should be avoided
 	 * 
 	 * @param $ins String: SQL statement to replace variables in
-	 * @param $varnames Array: Array of global variable names to replace
 	 * @return String The new SQL statement with variables replaced
 	 */
-	protected function replaceGlobalVars( $ins, $varnames ) {
-		foreach ( $varnames as $var ) {
-			if ( isset( $GLOBALS[$var] ) ) {
-				$ins = str_replace( '\'{$' . $var . '}\'', $this->addQuotes( $GLOBALS[$var] ), $ins ); // replace '{$var}'
-				$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $GLOBALS[$var] ), $ins ); // replace `{$var}`
-				$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $GLOBALS[$var] ) , $ins ); // replace /*$var*/
-			}
+	protected function replaceSchemaVars( $ins ) {
+		$vars = $this->getSchemaVars();
+		foreach ( $vars as $var => $value ) {
+			// replace '{$var}'
+			$ins = str_replace( '\'{$' . $var . '}\'', $this->addQuotes( $value ), $ins );
+			// replace `{$var}`
+			$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $value ), $ins );
+			// replace /*$var*/
+			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ) , $ins );
 		}
 		return $ins;
 	}
@@ -2576,13 +2589,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Replace variables in sourced SQL
 	 */
 	protected function replaceVars( $ins ) {
-		$varnames = array(
-			'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
-			'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
-			'wgDBadminuser', 'wgDBadminpassword', 'wgDBTableOptions',
-		);
-
-		$ins = $this->replaceGlobalVars( $ins, $varnames );
+		$ins = $this->replaceSchemaVars( $ins );
 
 		// Table prefixes
 		$ins = preg_replace_callback( '!/\*(?:\$wgDBprefix|_)\*/([a-zA-Z_0-9]*)!',
@@ -2593,6 +2600,27 @@ abstract class DatabaseBase implements DatabaseType {
 			array( $this, 'indexNameCallback' ), $ins );
 
 		return $ins;
+	}
+
+	/**
+	 * Get schema variables. If none have been set via setSchemaVars(), then
+	 * use some defaults from the current object.
+	 */
+	protected function getSchemaVars() {
+		if ( $this->mSchemaVars ) {
+			return $this->mSchemaVars;
+		} else {
+			return $this->getDefaultSchemaVars();
+		}
+	}
+
+	/**
+	 * Get schema variables to use if none have been set via setSchemaVars().
+	 * Override this in derived classes to provide variables for tables.sql 
+	 * and SQL patch files. 
+	 */
+	protected function getDefaultSchemaVars() {
+		return array();
 	}
 
 	/**

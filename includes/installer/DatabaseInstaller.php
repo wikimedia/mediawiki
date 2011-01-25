@@ -95,14 +95,14 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Connect to the database using the administrative user/password currently
-	 * defined in the session. On success, return the connection, on failure,
-	 *
-	 * This may be called multiple times, so the result should be cached.
+	 * Open a connection to the database using the administrative user/password
+	 * currently defined in the session, without any caching. Returns a status 
+	 * object. On success, the status object will contain a Database object in
+	 * its value member.
 	 *
 	 * @return Status
 	 */
-	public abstract function getConnection();
+	public abstract function openConnection();
 
 	/**
 	 * Create the database and return a Status object indicating success or
@@ -111,6 +111,29 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public abstract function setupDatabase();
+
+	/**
+	 * Connect to the database using the administrative user/password currently
+	 * defined in the session. Returns a status object. On success, the status 
+	 * object will contain a Database object in its value member.
+	 * 
+	 * This will return a cached connection if one is available.
+	 *
+	 * @return DatabaseBase
+	 */
+	public function getConnection() {
+		if ( $this->db ) {
+			return Status::newGood( $this->db );
+		}
+		$status = $this->openConnection();
+		if ( $status->isOK() ) {
+			$this->db = $status->value;
+			// Enable autocommit
+			$this->db->clearFlag( DBO_TRX );
+			$this->db->commit();
+		}
+		return $status;
+	}
 
 	/**
 	 * Create database tables from scratch.
@@ -142,7 +165,7 @@ abstract class DatabaseInstaller {
 		}
 		// Resume normal operations
 		if( $status->isOk() ) {
-			LBFactory::enableBackend();
+			$this->enableLB();
 		}
 		return $status;
 	}
@@ -155,13 +178,56 @@ abstract class DatabaseInstaller {
 	public abstract function getLocalSettings();
 
 	/**
+	 * Override this to provide DBMS-specific schema variables, to be 
+	 * substituted into tables.sql and other schema files.
+	 */
+	public function getSchemaVars() {
+		return array();
+	}
+
+	/**
+	 * Set appropriate schema variables in the current database connection.
+	 *
+	 * This should be called after any request data has been imported, but before
+	 * any write operations to the database.
+	 */
+	public function setupSchemaVars() {
+		$status = $this->getConnection();
+		if ( $status->isOK() ) {
+			$status->value->setSchemaVars( $this->getSchemaVars() );
+		}
+	}
+
+	/**
+	 * Set up LBFactory so that wfGetDB() etc. works.
+	 * We set up a special LBFactory instance which returns the current 
+	 * installer connection.
+	 */
+	public function enableLB() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			throw new MWException( __METHOD__.': unexpected DB connection error' );
+		}
+		LBFactory::setInstance( new LBFactory_Single( array(
+			'connection' => $status->value ) ) );
+	}
+
+	/**
+	 * Get a Database connection object. Throw an exception if we can't get one.
+	 *
+	 * @return DatabaseBase
+	 */
+	public function getConnectionOrDie() {
+	}
+
+	/**
 	 * Perform database upgrades
 	 *
 	 * @return Boolean
 	 */
 	public function doUpgrade() {
-		# Maintenance scripts like wfGetDB()
-		LBFactory::enableBackend();
+		$this->setupSchemaVars();
+		$this->enableLB();
 
 		$ret = true;
 		ob_start( array( $this, 'outputHandler' ) );
@@ -198,16 +264,6 @@ abstract class DatabaseInstaller {
 	 */
 	public function getGlobalNames() {
 		return $this->globalNames;
-	}
-
-	/**
-	 * Return any table options to be applied to all tables that don't
-	 * override them.
-	 *
-	 * @return Array
-	 */
-	public function getTableOptions() {
-		return array();
 	}
 
 	/**
