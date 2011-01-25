@@ -556,6 +556,27 @@ abstract class Installer {
 	}
 
 	/**
+	 * Install step which adds a row to the site_stats table with appropriate 
+	 * initial values.
+	 */
+	public function populateSiteStats( DatabaseInstaller $installer ) {
+		$status = $installer->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$status->value->insert( 'site_stats', array( 
+			'ss_row_id' => 1,
+			'ss_total_views' => 0,
+			'ss_total_edits' => 0,
+			'ss_good_articles' => 0,
+			'ss_total_pages' => 0,
+			'ss_users' => 0,
+			'ss_admins' => 0,
+			'ss_images' => 0 ) );
+		return Status::newGood();
+	}
+
+	/**
 	 * Exports all wg* variables stored by the installer into global scope.
 	 */
 	public function exportVars() {
@@ -1098,7 +1119,7 @@ abstract class Installer {
 					break;
 				}
 
-				$text = Http::get( $url . $file );
+				$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
@@ -1202,11 +1223,12 @@ abstract class Installer {
 	 * @param $installer DatabaseInstaller so we can make callbacks
 	 * @return array
 	 */
-	protected function getInstallSteps( DatabaseInstaller &$installer ) {
+	protected function getInstallSteps( DatabaseInstaller $installer ) {
 		$coreInstallSteps = array(
 			array( 'name' => 'database',   'callback' => array( $installer, 'setupDatabase' ) ),
 			array( 'name' => 'tables',     'callback' => array( $installer, 'createTables' ) ),
 			array( 'name' => 'interwiki',  'callback' => array( $installer, 'populateInterwikiTable' ) ),
+			array( 'name' => 'stats',      'callback' => array( $this, 'populateSiteStats' ) ),
 			array( 'name' => 'secretkey',  'callback' => array( $this, 'generateSecretKey' ) ),
 			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),
 			array( 'name' => 'sysop',      'callback' => array( $this, 'createSysop' ) ),
@@ -1254,16 +1276,17 @@ abstract class Installer {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
 		$installer->preInstall();
+		$installer->setupSchemaVars();
 		$steps = $this->getInstallSteps( $installer );
 		foreach( $steps as $stepObj ) {
 			$name = $stepObj['name'];
 			call_user_func_array( $startCB, array( $name ) );
 
 			// Perform the callback step
-			$status = call_user_func_array( $stepObj['callback'], array( &$installer ) );
+			$status = call_user_func( $stepObj['callback'], $installer );
 
 			// Output and save the results
-			call_user_func_array( $endCB, array( $name, $status ) );
+			call_user_func( $endCB, $name, $status );
 			$installResults[$name] = $status;
 
 			// If we've hit some sort of fatal, we need to bail.
@@ -1364,6 +1387,10 @@ abstract class Installer {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
 			$user->saveSettings();
+
+			// Update user count
+			$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssUpdate->doUpdate();
 		}
 		$status = Status::newGood();
 
@@ -1400,7 +1427,7 @@ abstract class Installer {
 	 *
 	 * @return Status
 	 */
-	protected function createMainpage( DatabaseInstaller &$installer ) {
+	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
 		try {
 			// STUPID STUPID $wgTitle. PST calls getUserSig(), which joyfully

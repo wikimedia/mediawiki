@@ -111,25 +111,21 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function getConnection() {
+	public function openConnection() {
 		$status = Status::newGood();
-		if( is_null( $this->db ) ) {
-			try {
-				$this->db = new DatabaseMysql(
-					$this->getVar( 'wgDBserver' ),
-					$this->getVar( '_InstallUser' ),
-					$this->getVar( '_InstallPassword' ),
-					false,
-					false,
-					0,
-					$this->getVar( 'wgDBprefix' )
-				);
-				$status->value = $this->db;
-			} catch ( DBConnectionError $e ) {
-				$status->fatal( 'config-connection-error', $e->getMessage() );
-			}
-		} else {
-			$status->value = $this->db;
+		try {
+			$db = new DatabaseMysql(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				false,
+				false,
+				0,
+				$this->getVar( 'wgDBprefix' )
+			);
+			$status->value = $db;
+		} catch ( DBConnectionError $e ) {
+			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
 		return $status;
 	}
@@ -158,9 +154,9 @@ class MysqlInstaller extends DatabaseInstaller {
 				if ( preg_match( '/^latin1/', $row->Collation ) ) {
 					$existingSchema = 'mysql4';
 				} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
-					$existingSchema = 'mysql5';
+					$existingSchema = 'utf8';
 				} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
-					$existingSchema = 'mysql5-binary';
+					$existingSchema = 'binary';
 				} else {
 					$existingSchema = false;
 					$this->parent->showMessage( 'config-unknown-collation' );
@@ -177,11 +173,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		if ( $existingSchema && $existingSchema != $this->getVar( '_MysqlCharset' ) ) {
-			$this->parent->showMessage( 'config-mysql-charset-mismatch', $this->getVar( '_MysqlCharset' ), $existingSchema );
 			$this->setVar( '_MysqlCharset', $existingSchema );
 		}
 		if ( $existingEngine && $existingEngine != $this->getVar( '_MysqlEngine' ) ) {
-			$this->parent->showMessage( 'config-mysql-egine-mismatch', $this->getVar( '_MysqlEngine' ), $existingEngine );
 			$this->setVar( '_MysqlEngine', $existingEngine );
 		}
 
@@ -445,16 +439,36 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function getTableOptions() {
-		return array( 'engine' => $this->getVar( '_MysqlEngine' ),
-			'default charset' => $this->getVar( '_MysqlCharset' ) );
+	/**
+	 * Return any table options to be applied to all tables that don't
+	 * override them.
+	 *
+	 * @return String
+	 */
+	protected function getTableOptions() {
+		$options = array();
+		if ( $this->getVar( '_MysqlEngine' ) !== null ) {
+			$options[] = "ENGINE=" . $this->getVar( '_MysqlEngine' );
+		}
+		if ( $this->getVar( '_MysqlCharset' ) !== null ) {
+			$options[] = 'DEFAULT CHARSET=' . $this->getVar( '_MysqlCharset' );
+		}
+		return implode( ', ', $options );
+	}
+
+	/**
+	 * Get variables to substitute into tables.sql and the SQL patch files.
+	 */
+	public function getSchemaVars() {
+		return array(
+			'wgDBTableOptions' => $this->getTableOptions(),
+		);
 	}
 
 	public function getLocalSettings() {
 		$dbmysql5 = wfBoolToStr( $this->getVar( 'wgDBmysql5', true ) );
-		$prefix = $this->getVar( 'wgDBprefix' );
-		$opts = $this->getTableOptions();
-		$tblOpts = "ENGINE=" . $opts['engine'] . ', DEFAULT CHARSET=' . $opts['default charset'];
+		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
+		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
 		return
 "# MySQL specific settings
 \$wgDBprefix         = \"{$prefix}\";

@@ -89,25 +89,20 @@ class SqliteInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	public function getConnection() {
+	public function openConnection() {
 		global $wgSQLiteDataDir;
 
 		$status = Status::newGood();
-		if( is_null( $this->db ) ) {
-			$dir = $this->getVar( 'wgSQLiteDataDir' );
-			$dbName = $this->getVar( 'wgDBname' );
-
-			try {
-				# FIXME: need more sensible constructor parameters, e.g. single associative array
-				# Setting globals kind of sucks
-				$wgSQLiteDataDir = $dir;
-				$this->db = new DatabaseSqlite( false, false, false, $dbName );
-				$status->value = $this->db;
-			} catch ( DBConnectionError $e ) {
-				$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
-			}
-		} else {
-			$status->value = $this->db;
+		$dir = $this->getVar( 'wgSQLiteDataDir' );
+		$dbName = $this->getVar( 'wgDBname' );
+		try {
+			# FIXME: need more sensible constructor parameters, e.g. single associative array
+			# Setting globals kind of sucks
+			$wgSQLiteDataDir = $dir;
+			$db = new DatabaseSqlite( false, false, false, $dbName );
+			$status->value = $db;
+		} catch ( DBConnectionError $e ) {
+			$status->fatal( 'config-sqlite-connection-error', $e->getMessage() );
 		}
 		return $status;
 	}

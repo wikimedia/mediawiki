@@ -109,11 +109,11 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function getConnection() {
+	public function openConnection() {
 		$status = Status::newGood();
 		try {
 			if ( $this->useSysDBA ) {
-				$this->db = new DatabaseOracle(
+				$db = new DatabaseOracle(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
@@ -122,7 +122,7 @@ class OracleInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBprefix' )
 				);
 			} else {
-				$this->db = new DatabaseOracle(
+				$db = new DatabaseOracle(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
@@ -131,7 +131,7 @@ class OracleInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBprefix' )
 				);
 			}
-			$status->value = $this->db;
+			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
@@ -176,12 +176,6 @@ class OracleInstaller extends DatabaseInstaller {
 		}
 
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
-			/**
-			 * The variables $_OracleDefTS, $_OracleTempTS are used by maintenance/oracle/user.sql
-			 * Set here for fetching in DatabaseOracle::replaceVars()
-			 */
-			$GLOBALS['_OracleDefTS'] = $this->getVar( '_OracleDefTS' );
-			$GLOBALS['_OracleTempTS'] = $this->getVar( '_OracleTempTS' );
 			$this->db->setFlag( DBO_DDLMODE );
 			$error = $this->db->sourceFile( "$IP/maintenance/oracle/user.sql" );
 			if ( $error !== true || !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
@@ -203,6 +197,15 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	public function getSchemaVars() {
+		/**
+		 * The variables $_OracleDefTS, $_OracleTempTS are used by maintenance/oracle/user.sql
+		 */
+		return array(
+			'_OracleDefTS' => $this->getVar( '_OracleDefTS' ),
+			'_OracleTempTS' => $this->getVar( '_OracleTempTS' ),
+		);
+	}
 
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );

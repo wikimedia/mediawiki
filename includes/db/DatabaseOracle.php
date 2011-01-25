@@ -1331,18 +1331,6 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mServer;
 	}
 
-	public function replaceVars( $ins ) {
-		$varnames = array( 'wgDBprefix' );
-		if ( $this->mFlags & DBO_SYSDBA ) {
-			$varnames[] = '_OracleDefTS';
-			$varnames[] = '_OracleTempTS';
-		}
-
-		$ins = $this->replaceGlobalVars( $ins, $varnames );
-
-		return parent::replaceVars( $ins );
-	}
-
 	public function getSearchEngine() {
 		return 'SearchOracle';
 	}

@@ -558,6 +558,11 @@ class DatabaseMysql extends DatabaseBase {
 		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );
 	}
 
+	protected function getDefaultSchemaVars() {
+		$vars = parent::getDefaultSchemaVars();
+		$vars['wgDBTableOptions'] = $GLOBALS['wgDBTableOptions'];
+		return $vars;
+	}
 }
 
 /**
