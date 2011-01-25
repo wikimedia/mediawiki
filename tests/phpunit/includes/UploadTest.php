@@ -75,6 +75,42 @@ class UploadTest extends MediaWikiTestCase {
 			'upload empty file' );
 	}
 
+	// Helper used to create an empty file of size $size.
+	private function createFileOfSize( $size ) {
+		$filename = '/tmp/mwuploadtest-' . posix_getpid() . '.txt' ;
+
+		$fh = fopen( $filename, 'w' );
+		fseek( $fh, $size-1, SEEK_SET);
+		fwrite( $fh, 0x00 );
+		fclose( $fh );
+
+		return $filename;
+	}
+
+	/**
+	 * test uploading a 100 bytes file with wgMaxUploadSize = 100
+	 *
+	 * This method should be abstracted so we can test different settings.
+	 */
+
+	public function testMaxUploadSize() {
+		global $wgMaxUploadSize;
+		$savedGlobal = $wgMaxUploadSize; // save global
+		global $wgFileExtensions;
+		$wgFileExtensions[] = 'txt';
+
+		$wgMaxUploadSize = 100;
+
+		$filename = $this->createFileOfSize( $wgMaxUploadSize );
+		$this->upload->initializePathInfo( basename($filename), $filename, 100 );
+		$result = $this->upload->verifyUpload();
+		unlink( $filename );
+
+		$this->assertEquals(
+			array( 'status' => UploadTestHandler::OK ), $result );
+
+		$wgMaxUploadSize = $savedGlobal;  // restore global
+	}
 }
 
 class UploadTestHandler extends UploadBase {
