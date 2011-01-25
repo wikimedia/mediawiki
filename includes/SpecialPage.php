@@ -633,7 +633,7 @@ class SpecialPage {
 			$found = false;
 			foreach ( $aliases as $n => $values ) {
 				if ( strcasecmp( $name, $n ) === 0 ) {
-					wfWarn( "Found alias defined for $n when searching for" .
+					wfWarn( "Found alias defined for $n when searching for " .
 						"special page aliases for $name. Case mismatch?" );
 					$name = $values[0];
 					$found = true;
