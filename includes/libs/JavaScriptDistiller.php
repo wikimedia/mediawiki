@@ -19,7 +19,6 @@ class JavaScriptDistiller {
 	 * @param $stripVerticalSpace Boolean: Try to remove as much vertical whitespace as possible
 	 */
 	public static function stripWhiteSpace( $script, $stripVerticalSpace = false ) {
-		$script = self::stripComments( $script );
 		$script = self::stripHorizontalSpace( $script );
 		// If requested, make some vertical whitespace collapsing as well
 		if ( $stripVerticalSpace ) {
@@ -27,15 +26,6 @@ class JavaScriptDistiller {
 		}
 		// Done
 		return $script;
-	}
-
-	private static function stripComments( $script ) {
-		$parser = self::createParser();
-		// Remove comments
-		$parser->add( '/\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\'/', '$1' );
-		$parser->add( '/"([^"\\\\]*(\\\\.[^"\\\\]*)*)"/', '$1' );
-		// Execute and return
-		return $parser->exec( $script );
 	}
 
 	private static function stripHorizontalSpace( $script ) {
@@ -92,6 +82,9 @@ class JavaScriptDistiller {
 		// Protect regular expressions
 		$parser->add( '/[ \\t]+(\\/[^\\/\\r\\n\\*][^\\/\\r\\n]*\\/g?i?)/', '$2' );
 		$parser->add( '/[^\\w\\$\\/\'"*)\\?:]\\/[^\\/\\r\\n\\*][^\\/\\r\\n]*\\/g?i?/', '$1' );
+		// Remove comments
+		$parser->add( '/\\/\\*(.|[\\r\\n])*?\\*\\//' );
+		$parser->add( '/\\/\\/[^\\r\\n]*[\\r\\n]/' );
 		return $parser;
 	}
 }
