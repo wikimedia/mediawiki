@@ -104,7 +104,7 @@ abstract class Installer {
 		'envCheckLibicu'
 	);
 
-		/**
+	/**
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
@@ -556,7 +556,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Install step which adds a row to the site_stats table with appropriate 
+	 * Install step which adds a row to the site_stats table with appropriate
 	 * initial values.
 	 */
 	public function populateSiteStats( DatabaseInstaller $installer ) {
@@ -564,7 +564,7 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$status->value->insert( 'site_stats', array( 
+		$status->value->insert( 'site_stats', array(
 			'ss_row_id' => 1,
 			'ss_total_views' => 0,
 			'ss_total_edits' => 0,
