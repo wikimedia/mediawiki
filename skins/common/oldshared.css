@@ -447,7 +447,7 @@ body.ns-0 {
 /**
  * Lists:
  * The following lines don't have a visible effect on non-Gecko browsers
- * They fix a problem ith Gecko browsers rendering lists to the right of
+ * They fix a problem with Gecko browsers rendering lists to the right of
  * left-floated objects in an RTL layout.
  */
 /* @noflip */
