@@ -284,7 +284,7 @@ class SearchMySQL extends SearchEngine {
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return 'SELECT page_id, page_namespace, page_title ' .
 			"FROM $page,$searchindex " .
-			'WHERE page_id=si_page ' . $match;
+			'WHERE page_id=si_page AND ' . $match;
 	}
 
 	function getCountQuery( $filteredTerm, $fulltext ) {
