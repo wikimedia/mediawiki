@@ -308,14 +308,23 @@ class LanguageConverter {
 	 * @return String like ' alt="yyyy"' or ' title="yyyy"'
 	 */
 	protected function captionConvert( $matches ) {
+	  // TODO: cache the preferred variant in every autoConvert() process,
+	  // this helps improve performance in a way.
 		$toVariant = $this->getPreferredVariant();
 		$title = $matches[1];
-		$text  = $matches[2];
+		$text = $matches[2];
+		
 		// we convert captions except URL
 		if ( !strpos( $text, '://' ) ) {
 			$text = $this->translate( $text, $toVariant );
 		}
-		return " $title=\"$text\"";
+		
+		// remove HTML tags to prevent disrupting the layout
+		$text = preg_replace( '/<[^>]+>/', '', $text );
+		// escape HTML special chars to prevent disrupting the layout
+		$text = htmlspecialchars( $text );
+		
+		return " {$title}=\"{$text}\"";
 	}
 
 	/**
