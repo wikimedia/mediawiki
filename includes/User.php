@@ -652,7 +652,7 @@ class User {
 		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
 			return $result;
 		}
-		$rfc5322_atext   = "a-z0-9!#$%&'*+-\/=?^_`{|}—~" ;
+		$rfc5322_atext   = "a-z0-9!#$%&'*+-\/=?^_`{|}~" ;
 		$rfc1034_ldh_str = "a-z0-9-" ;
 
 		$HTML5_email_regexp = "/

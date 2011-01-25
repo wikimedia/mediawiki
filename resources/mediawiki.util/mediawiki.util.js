@@ -41,8 +41,8 @@
 					// (but not Safari on Windows)
 					} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
 									&& ( profile.name == 'safari'
-									  || profile.platform == 'mac'
-									  || profile.name == 'konqueror' ) ) {
+									|| profile.platform == 'mac'
+									|| profile.name == 'konqueror' ) ) {
 						mw.util.tooltipAccessKeyPrefix = 'ctrl-';
 
 					// Firefox 2.x
@@ -208,26 +208,26 @@
 		 * ('#foobar') of that item.
 		 *
 		 * @example mw.util.addPortletLink(
-		 *     'p-tb', 'http://mediawiki.org/',
-		 *     'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
-		 *   )
+		 *	 'p-tb', 'http://mediawiki.org/',
+		 *	 'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
+		 * )
 		 *
 		 * @param portlet ID of the target portlet ('p-cactions' or 'p-personal' etc.)
 		 * @param href Link URL
 		 * @param text Link text (will be automatically converted to lower
-		 *     case by CSS for p-cactions in Monobook)
+		 *	 case by CSS for p-cactions in Monobook)
 		 * @param id ID of the new item, should be unique and preferably have
-		 *     the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
+		 *	 the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
 		 * @param tooltip Text to show when hovering over the link, without accesskey suffix
 		 * @param accesskey Access key to activate this link (one character, try
-		 *     to avoid conflicts. Use $('[accesskey=x').get() in the console to
-		 *     see if 'x' is already used.
+		 *	 to avoid conflicts. Use $( '[accesskey=x' ).get() in the console to
+		 *	 see if 'x' is already used.
 		 * @param nextnode DOM node or jQuery-selector of the item that the new
-		 *     item should be added before, should be another item in the same
-		 *     list will be ignored if not the so
+		 *	 item should be added before, should be another item in the same
+		 *	 list will be ignored if not the so
 		 *
 		 * @return The DOM node of the new item (a LI element, or A element for
-		 *     older skins) or null.
+		 *	 older skins) or null.
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 
@@ -314,6 +314,80 @@
 
 				return $item.get( 0 );
 			}
+		},
+	
+		/**
+		 * Validate a string as representing a valid e-mail address
+		 * according to HTML5 specification. Please note the specification
+		 * does not validate a domain with one character.
+		 *
+		 * FIXME: should be moved to a JavaScript validation module.
+		 */
+		'validateEmail' : function( mailtxt ) {
+			if( mailtxt === '' ) {
+				return null;
+			}
+		
+			/**
+			 * HTML5 defines a string as valid e-mail address if it matches
+			 * the ABNF:
+			 *	1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
+			 * With:
+			 * - atext	: defined in RFC 5322 section 3.2.3
+			 * - ldh-str : defined in RFC 1034 section 3.5
+			 *
+			 * (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68):
+			 */
+		
+			/**
+			 * First, define the RFC 5322 'atext' which is pretty easy :
+			 * atext = ALPHA / DIGIT / ; Printable US-ASCII
+						 "!" / "#" /	 ; characters not including
+						 "$" / "%" /	 ; specials. Used for atoms.
+						 "&" / "'" /
+						 "*" / "+" /
+						 "-" / "/" /
+						 "=" / "?" /
+						 "^" / "_" /
+						 "`" / "{" /
+						 "|" / "}" /
+						 "~"
+			*/
+			var	rfc5322_atext = "a-z0-9!#$%&'*+-/=?^_`{|}~",
+		
+			/**
+			 * Next define the RFC 1034 'ldh-str'
+			 *	<domain> ::= <subdomain> | " "
+			 *	<subdomain> ::= <label> | <subdomain> "." <label>
+			 *	<label> ::= <letter> [ [ <ldh-str> ] <let-dig> ]
+			 *	<ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
+			 *	<let-dig-hyp> ::= <let-dig> | "-"
+			 *	<let-dig> ::= <letter> | <digit>
+			 */
+				rfc1034_ldh_str = "a-z0-9-",
+	
+				HTML5_email_regexp = new RegExp(
+					// start of string
+					'^'
+					+
+					// User part which is liberal :p
+					'[' + rfc5322_atext + '\\.' + ']' + '+'
+					+
+					// "at"
+					'@'
+					+
+					// Domain first part
+					'[' + rfc1034_ldh_str + ']+'
+					+
+					// Second part and following are separated by a dot
+					'(?:\\.[' + rfc1034_ldh_str + ']+)+'
+					+
+					// End of string
+					'$',
+					// RegExp is case insensitive
+					'i'
+				);
+			return (null !== mailtxt.match( HTML5_email_regexp ) );
 		}
 
 	};

@@ -339,6 +339,7 @@ return array(
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
 	),
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
