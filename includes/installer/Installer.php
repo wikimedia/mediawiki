@@ -748,11 +748,7 @@ abstract class Installer {
 			return true;
 		}
 
-		$n = intval( $limit );
-
-		if( preg_match( '/^([0-9]+)[Mm]$/', trim( $limit ), $m ) ) {
-			$n = intval( $m[1] * ( 1024 * 1024 ) );
-		}
+		$n = wfShorthandToInteger( $limit );
 
 		if( $n < $this->minMemorySize * 1024 * 1024 ) {
 			$newLimit = "{$this->minMemorySize}M";
