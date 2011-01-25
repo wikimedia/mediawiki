@@ -938,6 +938,26 @@ class UploadForm extends HTMLForm {
 	protected function getDescriptionSection() {
 		global $wgUser;
 
+		if ( $this->mSessionKey ) {
+			$stash = new UploadStash;
+			try {
+				$file = $stash->getFile( $this->mSessionKey );
+			} catch ( MWException $e ) {
+				$file = null;	
+			}
+			if ( $file ) {
+				global $wgContLang;
+				
+				$mto = $file->transform( array( 'width' => 120 ) );
+				$this->addHeaderText( 
+					'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
+					Html::element( 'img', array( 
+						'src' => $mto->getUrl(),
+						'class' => 'thumbimage',
+					) ) . '</div>', 'description' );
+			}
+		}
+		
 		$descriptor = array(
 			'DestFile' => array(
 				'type' => 'text',
