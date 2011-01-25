@@ -1558,8 +1558,8 @@ $1",
 'filetype-bad-ie-mime'        => '不可以上传这个文件，因为 Internet Explorer 会将它侦测为 "$1"，它是一种不容许以及有潜在危险性之文件类型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一种不需要的文件类型。
 建议的{{PLURAL:\$3|一种|多种}}文件类型有\$2。",
-'filetype-banned-type'        => "'''\".\$1\"'''是一种不准许的文件类型。
-容许的{{PLURAL:\$3|一种|多种}}文件类型有\$2。",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\'{{PLURAL:$4|不是一个允许的文件类型|不是一个允许的文件类型}}。
+允许 {{PLURAL:$3|文件类型是|文件类型是}} $2。',
 'filetype-missing'            => '该文件名称并没有扩展名（例如“.jpg”）。',
 'empty-file'                  => '您所提交的文件为空文件。',
 'file-too-large'              => '您所提交的文件过大。',

@@ -2442,6 +2442,7 @@ Die Erstellung wurde übersprungen.",
 	'config-install-interwiki-sql' => 'Die Datei <code>interwiki.sql</code> konnte nicht gefunden werden.',
 	'config-install-interwiki-exists' => "'''Warnung:'''  Es wurden Interwikitabellen mit Daten gefunden.
 Die Standardliste wird übersprungen.",
+	'config-install-stats' => 'Initialisierung der Statistiken',
 	'config-install-secretkey' => 'Erstellung des Geheimschlüssels',
 	'config-insecure-secret' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>$1</code> ist gescheitert.
 Dies muss manuell nachgeholt werden.",
@@ -3467,6 +3468,7 @@ Création omise.",
 	'config-install-interwiki-sql' => 'Impossible de trouver le fichier <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Attention:''' La table des interwikis semble déjà contenir des entrées. 
 La liste par défaut ne sera pas inscrite.",
+	'config-install-stats' => 'Initialisation des statistiques',
 	'config-install-secretkey' => 'Génération de la clé secrète',
 	'config-insecure-secret' => "'''Attention:''' Impossible de créer un <code>$1</code> sécurisé. 
 Envisagez de le changer manuellement.",
@@ -5146,6 +5148,7 @@ Le creation es saltate.",
 	'config-install-interwiki-sql' => 'Non poteva trovar le file <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Aviso''': Le tabella interwiki pare jam haber entratas.
 Le lista predefinite es saltate.",
+	'config-install-stats' => 'Initialisation del statisticas',
 	'config-install-secretkey' => 'Genera clave secrete',
 	'config-insecure-secret' => "'''Aviso:''' Impossibile crear le clave secrete <code>$1</code>.
 Considera cambiar lo manualmente.",
@@ -6935,6 +6938,7 @@ chmod a+w $3</pre>',
 	'config-install-interwiki-sql' => 'Не можев да ја пронајдам податотеката <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Предупредување''': Табелата со интервикија веќе содржи ставки.
 Го прескокнувам основно-зададениот список.",
+	'config-install-stats' => 'Ги подготвувам статистиките',
 	'config-install-secretkey' => 'Создавам таен клуч',
 	'config-insecure-secret' => "'''Предупредување:''' Не можам да создадам безбеден <code>$1</code>.
 Ви препорачуваме да го смените рачно.",
@@ -7587,6 +7591,7 @@ Het aanmaken wordt overgeslagen.",
 	'config-install-interwiki-sql' => 'Het bestand <code>interwiki.sql</code> is niet aangetroffen',
 	'config-install-interwiki-exists' => "'''Waarschuwing''': de interwikitabel heeft al inhoud. 
 De standaardlijst wordt overgeslagen.",
+	'config-install-stats' => 'Statistieken initialiseren',
 	'config-install-secretkey' => 'Geheime sleutel aanmaken',
 	'config-insecure-secret' => 'Waarschuwing: het was niet mogelijk een veilige <code>$1</code> aan te maken.
 Overweeg deze handmatig te wijzigen.',
@@ -9293,6 +9298,7 @@ A criação das tabelas será saltada.",
 	'config-install-interwiki-sql' => 'Não foi possível encontrar o ficheiro <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Aviso''': A tabela de interwikis parece já conter entradas.
 O preenchimento padrão desta tabela será saltado.",
+	'config-install-stats' => 'A inicializar as estatísticas',
 	'config-install-secretkey' => 'A gerar a chave secreta',
 	'config-insecure-secret' => "'''Aviso:''' Não foi possível criar a chave secreta <code>$1</code>.
 Considere alterá-la manualmente.",
@@ -9899,6 +9905,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-interwiki-sql' => 'Не удалось найти файл <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Предупреждение''': в интервики-таблице, кажется, уже есть записи.
 Создание стандартного списка, пропущено.",
+	'config-install-stats' => 'Статистика инициализации',
 	'config-install-secretkey' => 'Создание секретного ключа',
 	'config-insecure-secret' => "'''Внимание:''' Не получилось создать безопасный секретный ключ (<code>$1</code>).
 По возможности, смените его вручную.",
