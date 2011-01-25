@@ -720,6 +720,7 @@ Please log in again after you receive it.
 'noarticletext'                    => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી.
 તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો],
 અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરી શકો છો</span>.',
+'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતાની નોંધણી નથી થઈ',
 'note'                             => "'''નોંધ:'''",
 'previewnote'                      => "'''આ ફક્ત પૂર્વાવલોકન છે;'''
 ફેરફારો હજુ સાચવવામાં નથી આવ્યા!",
@@ -743,6 +744,7 @@ Please log in again after you receive it.
 'nocreatetext'                     => '{{SITENAME}}માં નવું પાનુ બનાવવા ઉપર નિયંત્રણ આવી ગયું છે.
 <br />આપ પાછા જઇને હયાત પાનામાં ફેરફાર કરી શકો છો, નહિતર [[Special:UserLogin|પ્રવેશ કરો કે નવું ખાતું ખોલો]].',
 'nocreate-loggedin'                => 'તમને નવા પાના રચવાની પરવાનગી નથી.',
+'permissionserrors'                => 'પરવાનગીની ખામી',
 'permissionserrorstext-withaction' => '$2 પરવાનગી તમને નીચેનાં {{PLURAL:$1|કારણ|કારણો}} સર નથી:',
 'recreate-moveddeleted-warn'       => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
@@ -750,6 +752,15 @@ Please log in again after you receive it.
 પાનું હટાવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી અનુકૂળતા માટે અહીં આપી છે:",
 'log-fulllog'                      => 'પૂર્ણ લોગ જુઓ',
 'edit-conflict'                    => 'સંપાદન સંઘર્ષ.',
+'edit-no-change'                   => 'તમારા ફેરફારો અવગણાયા, કેમકે અક્ષરકાયામાં કોઈ ફેરફારાના હતો',
+'edit-already-exists'              => 'નવું પાનું બનાવી ન શકાયું
+તે પહેલેથી હાજર છે.',
+
+# Parser/template warnings
+'language-converter-depth-warning' => 'ભાષા રૂપાંતરણ ઊંડાઈ સીમા વટાવાઈ ($1)',
+
+# "Undo" feature
+'undo-failure' => 'વચ્ચે થયેલા અન્ય ફેરફાર થવાને કારણે આ ફેરફારો ઉલટાવી ન શકાયા',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ખાતું ખોલી શકાય તેમ નથી',
@@ -787,9 +798,13 @@ Please log in again after you receive it.
 સંલગ્ન નવા પાનાઓ માટે [[Special:Search|વિકિમાં શોધી જુઓ]].',
 
 # Revision deletion
+'rev-deleted-comment'        => '(ટિપ્પણી હટવાઈ)',
+'rev-deleted-user'           => '(સભ્યનામ હટાવાયું)',
+'rev-deleted-event'          => '(લોગ ક્રિયા હટાવાઈ)',
 'rev-delundel'               => 'બતાવો/છુપાવો',
 'rev-showdeleted'            => 'બતાવો',
 'revisiondelete'             => 'પુનરાવર્તન રદ્દ કરો/પુનર્જીવીત કરો',
+'revdelete-nooldid-title'    => 'અવૈધ લક્ષ્ય ફેરફાર',
 'revdelete-nologtype-title'  => 'આવો કોઈ લોગા નથી ફરી પ્રયત્ન કરો',
 'revdelete-nologid-title'    => 'લોગ પ્રવેશ અવૈદ્ય',
 'revdelete-no-file'          => 'વર્ણવેલી ફાઈલ અસ્તિત્વમાં નથી',
@@ -836,20 +851,31 @@ $1",
 'suppressionlog' => 'દાબ નોંધ',
 
 # Revision move
-'revmove-reasonfield'    => 'કારણ:',
-'revmove-titlefield'     => 'લક્ષ્ય પાનું',
-'revmove-badparam-title' => 'ખરાબ વિકલ્પો',
-'revmove-nullmove-title' => 'ખરાબ નામ',
+'revisionmove'                 => '"$1" થી ફેરફાર હટાવો',
+'revmove-legend'               => 'લક્ષ્ય પાનું અને સરાંશ પુન;સંયોજીત કરો.',
+'revmove-submit'               => 'પુનરાવર્તનો પસંદ કરેલા પાના પર હટાવો',
+'revisionmoveselectedversions' => 'પસંદ કરેલા ફેરફારો ખસેડો',
+'revmove-reasonfield'          => 'કારણ:',
+'revmove-titlefield'           => 'લક્ષ્ય પાનું',
+'revmove-badparam-title'       => 'ખરાબ વિકલ્પો',
+'revmove-norevisions-title'    => 'અવૈધ લક્ષ્ય ફેરફાર',
+'revmove-nullmove-title'       => 'ખરાબ નામ',
 
 # History merging
 'mergehistory'                  => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
+'mergehistory-box'              => 'બે પાનાના ફેરફાર વિલિન કરો',
 'mergehistory-from'             => 'સ્ત્રોત પાનું',
 'mergehistory-into'             => 'લક્ષ્ય પાનું',
+'mergehistory-list'             => 'વિલિનીકરણશીલ ફેરફારનો ઈતિહાસ',
 'mergehistory-go'               => 'વિલિનીકરણશીલ ફેરફારો બતવો',
+'mergehistory-submit'           => 'ફેરફારો વિલિન કરો',
 'mergehistory-no-source'        => 'સ્ત્રોત પાનું $1 ઉપલબ્ધ નથી.',
+'mergehistory-invalid-source'   => 'સ્ત્રોત પાનું વૈધ શીર્ષક હોવું જ જોઈએ',
 'mergehistory-same-destination' => 'સ્ત્રોત અને લક્ષ્ય પાના એકાસમાન ના હોઈ શકે',
+'mergehistory-reason'           => 'કારણ:',
 
 # Merge log
+'mergelog'    => 'લોગ વિલિન કરો',
 'revertmerge' => 'છુટુ પાડો',
 
 # Diffs
@@ -912,8 +938,10 @@ $1",
 # Preferences page
 'preferences'                 => 'પસંદ',
 'mypreferences'               => 'મારી પસંદ',
+'prefs-skin'                  => 'ફલક',
 'skin-preview'                => 'ફેરફાર બતાવો',
 'prefs-datetime'              => 'તારીખ અને સમય',
+'prefs-personal'              => 'સભ્ય ઓળખ',
 'prefs-watchlist'             => 'ધ્યાનસૂચિ',
 'prefs-watchlist-days-max'    => 'મહત્તમ ૭ દિવસો',
 'prefs-misc'                  => 'પરચૂરણ',
@@ -986,6 +1014,7 @@ $1",
 
 # Groups
 'group'       => 'સમુહ',
+'group-user'  => 'સભ્ય',
 'group-bot'   => 'બૉટો',
 'group-sysop' => 'સાઇસૉપ/પ્રબંધકો',
 'group-all'   => '(બધા)',
@@ -1000,6 +1029,7 @@ $1",
 # Rights
 'right-read'           => ' પાના વાંચો',
 'right-edit'           => 'પાના બદલો',
+'right-createtalk'     => 'ચર્ચાનું પાનું બનાવો',
 'right-minoredit'      => ' નાનો ફેરફાર તરીકે નોઁધો',
 'right-move'           => 'પાનું ખસેડો',
 'right-movefile'       => 'ફાઈલો હટાવો',
@@ -1087,14 +1117,20 @@ $1",
 'upload'              => 'ફાઇલ ચડાવો',
 'uploadbtn'           => 'ફાઇલ ચડાવો',
 'upload-tryagain'     => 'સુધારીત ફાઇલ વર્ણન ચડાવો',
+'upload-permitted'    => 'રજામંદ ફાઈલ પ્રકારો: $1.',
+'upload-preferred'    => 'ઈચ્છીત ફાઈલ પ્રકારો: $1.',
 'uploadlogpage'       => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filename'            => 'ફાઇલ નામ',
 'filedesc'            => 'સારાંશ:',
 'fileuploadsummary'   => 'સારાંશ:',
+'filereuploadsummary' => 'ફાઈલ ફેરફારો',
 'filesource'          => 'સ્ત્રોત:',
 'uploadedfiles'       => 'ફાઇલ ચડાવો',
 'ignorewarnings'      => 'કોઇ પણ ચેતવણી અવગણો',
+'file-too-large'      => 'તમે ચડાવેલી ફાઈલ ખૂબ મોટી છે',
 'filename-tooshort'   => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
+'filetype-banned'     => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
+'illegal-filename'    => 'ફાઈલા નામને પરવાનગી નથી',
 'unknown-error'       => 'અજ્ઞાત ચૂક થઈ',
 'tmp-create-error'    => 'હંગામી ફાઇલ ન બનાવી શકાઇ',
 'uploadwarning'       => 'ફાઇલ ચઢાવ ચેતવણી',
@@ -1105,6 +1141,9 @@ $1",
 'upload-options'      => 'ચડાવ વિકલ્પ',
 'watchthisupload'     => 'આ પાનાને ધ્યાનમાં રાખો',
 'upload-warning-subj' => 'ફાઇલ ચઢાવ ચેતવણી',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'પ્રવેશ વર્જીત',
 
 # Special:ListFiles
 'imgfile'               => 'ફાઇલ',
@@ -1621,6 +1660,7 @@ $1",
 # Special:NewFiles
 'newimages'        => 'નવી ફાઇલોની ઝાંખી',
 'newimages-legend' => 'ચાળણી',
+'newimages-label'  => 'ફાઈલનામ (કે તેનો ભાગ)',
 'noimages'         => 'જોવા માટે કશું નથી.',
 'ilsubmit'         => 'શોધો',
 'bydate'           => 'તારીખ પ્રમાણે',
@@ -1651,17 +1691,35 @@ $1",
 # EXIF tags
 'exif-imagewidth'       => 'પહોળાઈ',
 'exif-imagelength'      => 'ઊંચાઈ',
+'exif-transferfunction' => 'સ્થળાંતર કાર્ય',
 'exif-datetime'         => 'ફાઇલ સુધારાની તારીખ અને સમય',
 'exif-imagedescription' => 'ચિત્ર શીર્ષક',
+'exif-model'            => 'કેમેરાનું મોડેલ',
 'exif-artist'           => 'કલાકાર',
 'exif-colorspace'       => 'રંગ માટે જગ્યા',
 'exif-pixelydimension'  => 'ચિત્ર માટે વૈધ પહોળાઇ',
+'exif-usercomment'      => 'સભ્યની ટિપ્પણી',
+'exif-relatedsoundfile' => 'સંબંધિત શ્રાવ્ય ફાઈલો',
+'exif-datetimeoriginal' => 'નિર્મિતીનો સમય અને તારીખ',
+'exif-subjectdistance'  => 'વસ્તુનું અંતર',
+'exif-lightsource'      => 'પ્રકાશા સ્ત્રોત',
+'exif-flash'            => 'જબકારો (ફ્લેશ)',
+'exif-subjectlocation'  => 'વસ્તુનું સ્થાન',
+'exif-gpslatitude'      => 'અક્ષાંસ',
+'exif-gpslongitude'     => 'રેખાંશ',
+'exif-gpssatellites'    => 'માપન માટે વપરાયેલ ઉપગ્રહ',
+'exif-gpsstatus'        => 'ગ્રાહકની સ્થિતિ',
+'exif-gpsspeedref'      => 'ઝડપનું એકમ',
+'exif-gpsdestlatitude'  => 'અક્ષાંસ સ્થળ',
+'exif-gpsdestlongitude' => 'રેખાંશ સ્થળ',
 
 'exif-unknowndate' => 'અજ્ઞાત તારીખ',
 
 'exif-orientation-1' => 'સામાન્ય',
 
 'exif-componentsconfiguration-0' => 'નથી',
+
+'exif-exposureprogram-1' => 'માનવ ચાલિત',
 
 'exif-meteringmode-0'   => 'અજાણ્યો',
 'exif-meteringmode-1'   => 'સરાસરી',
@@ -1732,6 +1790,7 @@ $1",
 'autosumm-new' => '$1થી શરૂ થતું નવું પાનું બાનવ્યું',
 
 # Watchlist editor
+'watchlistedit-raw-title'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 'watchlistedit-raw-titles' => 'શિર્ષક:',
 'watchlistedit-raw-submit' => 'ધ્યાનસૂચિ અધ્યતન બનાવો',
 
@@ -1753,6 +1812,11 @@ $1",
 # Special:BlankPage
 'blankpage' => 'કોરું પાનું',
 
+# Special:Tags
+'tag-filter-submit'    => 'ચાળણી',
+'tags-hitcount-header' => 'અંકિત ફેરફાર',
+'tags-edit'            => 'ફેરફાર કરો',
+
 # Special:ComparePages
 'comparepages'     => 'પાનાં સરખાવો',
 'compare-selector' => 'પાનાનાં પુનરાવર્તન સરખાવો',
@@ -1767,5 +1831,16 @@ $1",
 'dberr-problems' => 'દિલગીરી!
 આ સાઇટ તકનિકી અડચણ અનુભવી રહી છે.',
 'dberr-again'    => 'થોડી વાર રાહ જોઈને ફરી પેજ લોડ કરવાનો પ્રયત્ન કરો.',
+
+# HTML forms
+'htmlform-float-invalid'       => 'તમે લખેલ વિકલ્પ અંક નથી',
+'htmlform-submit'              => 'જમા કરો',
+'htmlform-reset'               => 'ફેરફાર ઉલટાવો',
+'htmlform-selectorother-other' => 'અન્ય',
+
+# Special:DisableAccount
+'disableaccount'        => 'સભ્યના ખાતા પરપ્રતિબંધ મૂકો',
+'disableaccount-user'   => 'સભ્ય નામ:',
+'disableaccount-reason' => 'કારણ:',
 
 );

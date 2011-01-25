@@ -1432,12 +1432,12 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
 
-'group-user-member'          => 'Thành viên',
-'group-autoconfirmed-member' => 'Thành viên tự động xác nhận',
-'group-bot-member'           => 'Robot',
+'group-user-member'          => 'thành viên',
+'group-autoconfirmed-member' => 'thành viên tự động xác nhận',
+'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'bảo quản viên',
 'group-bureaucrat-member'    => 'Hành chính viên',
-'group-suppress-member'      => 'Giám sát viên',
+'group-suppress-member'      => 'giám sát viên',
 
 'grouppage-user'          => '{{ns:project}}:Thành viên',
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',

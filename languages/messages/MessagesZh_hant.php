@@ -818,9 +818,9 @@ $2',
 'note'                             => "'''注意:'''",
 'previewnote'                      => "'''請記住這只是預覽，內容尚未儲存！'''",
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
-'session_fail_preview'             => "'''抱歉！由於會話數據丟失，我們不能處理你的編輯。'''
-請重試。
-如果再次失敗，請嘗試[[Special:UserLogout|登出]]後重新登入。",
+'session_fail_preview'             => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
+請再試一次。
+如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html'        => "'''抱歉！部份資料已遺失，我們無法處理您的編輯。'''
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
