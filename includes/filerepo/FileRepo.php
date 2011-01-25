@@ -691,4 +691,11 @@ abstract class FileRepo {
 		array_unshift( $args, 'filerepo', $this->getName() );
 		return call_user_func_array( 'wfMemcKey', $args );
 	}
+	
+	/**
+	 * Get an UploadStash associated with this repo.
+	 */
+	function getUploadStash() {
+		return new UploadStash( $this );
+	}
 }

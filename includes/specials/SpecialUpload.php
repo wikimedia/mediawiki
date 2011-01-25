@@ -939,7 +939,7 @@ class UploadForm extends HTMLForm {
 		global $wgUser;
 
 		if ( $this->mSessionKey ) {
-			$stash = new UploadStash;
+			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( MWException $e ) {

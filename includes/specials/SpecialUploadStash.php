@@ -41,7 +41,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		parent::__construct( 'UploadStash', 'upload' );
 		try {
-			$this->stash = new UploadStash( );
+			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 		} catch ( UploadStashNotAvailableException $e ) {
 			return null;
 		}

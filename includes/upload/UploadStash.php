@@ -31,10 +31,10 @@ class UploadStash {
 	 * Represents the session which contains temporarily stored files.
 	 * Designed to be compatible with the session stashing code in UploadBase (should replace it eventually)
 	 */
-	public function __construct() { 
+	public function __construct( $repo ) { 
 
 		// this might change based on wiki's configuration.
-		$this->repo = RepoGroup::singleton()->getLocalRepo();
+		$this->repo = $repo;
 
 		if ( ! isset( $_SESSION ) ) {
 			throw new UploadStashNotAvailableException( 'no session variable' );
