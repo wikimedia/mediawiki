@@ -1483,10 +1483,12 @@ class Skin extends Linker {
 			return '';
 		}
 
+		$article = new Article( $this->mTitle, 0 );
+
 		$s = '';
 
 		if ( !$wgDisableCounters ) {
-			$count = $wgLang->formatNum( $wgArticle->getCount() );
+			$count = $wgLang->formatNum( $article->getCount() );
 
 			if ( $count ) {
 				$s = wfMsgExt( 'viewcount', array( 'parseinline' ), $count );
@@ -1494,7 +1496,7 @@ class Skin extends Linker {
 		}
 
 		if ( $wgMaxCredits != 0 ) {
-			$s .= ' ' . Credits::getCredits( $wgArticle, $wgMaxCredits, $wgShowCreditsIfMax );
+			$s .= ' ' . Credits::getCredits( $article, $wgMaxCredits, $wgShowCreditsIfMax );
 		} else {
 			$s .= $this->lastModified();
 		}
