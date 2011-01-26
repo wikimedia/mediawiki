@@ -1498,7 +1498,7 @@ class Skin extends Linker {
 		if ( $wgMaxCredits != 0 ) {
 			$s .= ' ' . Credits::getCredits( $article, $wgMaxCredits, $wgShowCreditsIfMax );
 		} else {
-			$s .= $this->lastModified();
+			$s .= $this->lastModified( $article );
 		}
 
 		if ( $wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' ) ) {
@@ -1608,13 +1608,19 @@ class Skin extends Linker {
 		return $text;
 	}
 
-	function lastModified() {
-		global $wgLang, $wgArticle;
+	/**
+	 * Get the timestamp of the latest revision, formatted in user language
+	 *
+	 * @param $article Article object. Used if we're working with the current revision
+	 * @return String
+	 */
+	protected function lastModified( $article ) {
+		global $wgLang;
 
 		if ( !$this->isRevisionCurrent() ) {
 			$timestamp = Revision::getTimestampFromId( $this->mTitle, $this->mRevisionId );
 		} else {
-			$timestamp = $wgArticle->getTimestamp();
+			$timestamp = $article->getTimestamp();
 		}
 
 		if ( $timestamp ) {
