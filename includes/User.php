@@ -168,7 +168,7 @@ class User {
 	var $mFrom;
 
 	/**
-	 * Lazy-initialized variables, invalidated with clearInstanceCache 
+	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mSkin, $mRights,
 		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally,
@@ -610,7 +610,7 @@ class User {
 	 */
 	function getPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
-		
+
 		static $blockedLogins = array(
 			'Useruser' => 'Passpass', 'Useruser1' => 'Passpass1', # r75589
 			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
@@ -3830,7 +3830,7 @@ class User {
 			// Set newtalk with the right user ID
 			$this->setNewtalk( true );
 			wfRunHooks( 'AfterUserMessage',
-				array( $this, $article, $summary, $text, $signature, $summary, $editor ) );
+				array( $this, $article, $subject, $text, $signature, $summary, $editor ) );
 			$dbw->commit();
 		} else {
 			// The article was concurrently created
