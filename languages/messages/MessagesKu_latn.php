@@ -929,6 +929,7 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 'filename'                => 'Navê dosyayê',
 'filedesc'                => 'Kurte',
 'fileuploadsummary'       => 'Kurte:',
+'filestatus'              => 'Rewşa telîfê:',
 'filesource'              => 'Çavkanî:',
 'uploadedfiles'           => 'Dosyayên bar kirî',
 'ignorewarning'           => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
@@ -1157,6 +1158,7 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'sp-deletedcontributions-contribs' => 'tevkarîyan',
 
 # Special:LinkSearch
+'linksearch'    => 'Lînkên derve',
 'linksearch-ns' => 'Boşahîya nav:',
 'linksearch-ok' => 'Lêbigere',
 
@@ -1525,6 +1527,9 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'delete_and_move_confirm'   => 'Erê, wê rûpelê jêbibe',
 'delete_and_move_reason'    => 'Jêbir ji bo navguherandinê',
 'immobile-source-page'      => 'Nava vê rûpelê nikare were guherandin.',
+
+# Export
+'export' => 'Rûpelên hinarde (export)',
 
 # Namespace 8 related
 'allmessages'               => 'Hemû mesajên sîstemê',

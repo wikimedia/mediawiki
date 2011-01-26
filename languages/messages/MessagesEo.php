@@ -2680,7 +2680,7 @@ Bonvolu elekti alian nomon.',
 
 Eksporti paĝojn, enigu la titolojn en la jena tekst-skatolo, po unu por linio, kaj elektu ĉu vi volas kaj la nunan version kaj ĉiujn antaŭajn versiojn, kun la paĝaj historiaj linioj, a la nunan version kun la informo pri la lasta redakto.
 
-En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la paĝo "[[{{MediaWiki:Mainpage}}]]".',
+En la lasta okazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la paĝo "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Entenas nur la aktualan version, ne la malnovajn.',
 'exportnohistory'   => "----
 '''Notu:''' Eksportado de la plena historio de paĝoj per ĉi paĝo estis malebligita pro funkciigaj kialoj.",
