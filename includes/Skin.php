@@ -1472,7 +1472,7 @@ class Skin extends Linker {
 	}
 
 	function pageStats() {
-		global $wgOut, $wgLang, $wgArticle, $wgRequest, $wgUser;
+		global $wgOut, $wgLang, $wgRequest, $wgUser;
 		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax, $wgPageShowWatchingUsers;
 
 		if ( !is_null( $wgRequest->getVal( 'oldid' ) ) || !is_null( $wgRequest->getVal( 'diff' ) ) ) {
