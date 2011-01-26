@@ -21,7 +21,7 @@ class JavaScriptDistiller {
 	public static function stripWhiteSpace( $script, $stripVerticalSpace = false ) {
 		$script = self::stripHorizontalSpace( $script );
 		// If requested, make some vertical whitespace collapsing as well
-		if ( $collapseVertical ) {
+		if ( $stripVerticalSpace ) {
 			$script = self::stripVerticalSpace( $script );
 		}
 		// Done

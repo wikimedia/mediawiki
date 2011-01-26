@@ -233,7 +233,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModules() {
-		return $this->mModules;
+		return array_values( array_unique( $this->mModules ) );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class OutputPage {
 	 * @return array of module names
 	 */
 	public function getModuleScripts() {
-		return $this->mModuleScripts;
+		return array_values( array_unique( $this->mModuleScripts ) );
 	}
 
 	/**
@@ -272,7 +272,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModuleStyles() {
-		return $this->mModuleStyles;
+		return array_values( array_unique( $this->mModuleStyles ) );
 	}
 
 	/**
@@ -292,7 +292,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModuleMessages() {
-		return $this->mModuleMessages;
+		return array_values( array_unique( $this->mModuleMessages ) );
 	}
 
 	/**
@@ -2350,7 +2350,7 @@ class OutputPage {
 	 */
 	protected function makeResourceLoaderLink( Skin $skin, $modules, $only, $useESI = false ) {
 		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
-			$wgResourceLoaderInlinePrivateModules;
+			$wgResourceLoaderInlinePrivateModules, $wgRequest;
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
@@ -2360,6 +2360,13 @@ class OutputPage {
 			'skin' => $skin->getSkinName(),
 			'only' => $only,
 		);
+		// Propagate printable and handheld parameters if present
+		if ( $wgRequest->getBool( 'printable' ) ) {
+			$query['printable'] = 1;
+		}
+		if ( $wgRequest->getBool( 'handheld' ) ) {
+			$query['handheld'] = 1;
+		}
 		
 		if ( !count( $modules ) ) {
 			return '';
@@ -2745,7 +2752,7 @@ class OutputPage {
 		}
 
 		if( isset( $options['media'] ) ) {
-			$media = $this->transformCssMedia( $options['media'] );
+			$media = self::transformCssMedia( $options['media'] );
 			if( is_null( $media ) ) {
 				return '';
 			}
@@ -2777,7 +2784,7 @@ class OutputPage {
 	 * @param $media String: current value of the "media" attribute
 	 * @return String: modified value of the "media" attribute
 	 */
-	function transformCssMedia( $media ) {
+	public static function transformCssMedia( $media ) {
 		global $wgRequest, $wgHandheldForIPhone;
 
 		// Switch in on-screen display for media testing

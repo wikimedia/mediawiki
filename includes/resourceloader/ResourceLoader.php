@@ -390,7 +390,11 @@ class ResourceLoader {
 				// See also http://bugs.php.net/bug.php?id=51579
 				// To work around this, we tear down all output buffering before
 				// sending the 304.
-				while ( ob_get_level() > 0 ) {
+				// On some setups, ob_get_level() doesn't seem to go down to zero
+				// no matter how often we call ob_get_clean(), so instead of doing
+				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
+				// we have to be safe here and avoid an infinite loop.
+				for ( $i = 0; $i < ob_get_level(); $i++ ) {
 					ob_end_clean();
 				}
 				
@@ -575,7 +579,18 @@ class ResourceLoader {
 	public static function makeCombinedStyles( array $styles ) {
 		$out = '';
 		foreach ( $styles as $media => $style ) {
-			$out .= "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+			// Transform the media type based on request params and config
+			// The way that this relies on $wgRequest to propagate request params is slightly evil
+			$media = OutputPage::transformCssMedia( $media );
+			
+			if ( $media === null ) {
+				// Skip
+			} else if ( $media === '' || $media == 'all' ) {
+				// Don't output invalid or frivolous @media statements
+				$out .= "$style\n";
+			} else {
+				$out .= "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+			}
 		}
 		return $out;
 	}
