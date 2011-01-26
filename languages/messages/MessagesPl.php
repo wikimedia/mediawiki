@@ -1036,7 +1036,7 @@ Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/del
 'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator możesz [$1 obejrzeć tę wersję].",
-'rev-suppressed-text-unhide'  => "Ta wersja strony została '''utajniona'''.
+'rev-suppressed-text-unhide'  => "Ta wersja strony została '''ukryta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].
 Jako administrator możesz [$1 obejrzeć tę wersję].",
 'rev-deleted-text-view'       => "Ta wersja strony została '''usunięta'''.
@@ -1046,12 +1046,12 @@ Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdow
 'rev-deleted-no-diff'         => "Nie możesz zobaczyć porównania wersji, ponieważ jedna z nich została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-no-diff'      => "Nie można wyświetlić różnic, ponieważ jedna z wersji została '''usunięta'''.",
-'rev-deleted-unhide-diff'     => "Jedna z wersji tej strony została '''usunięta'''.
+'rev-deleted-unhide-diff'     => "Jedna z porównywanych wersji została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator możesz [$1 obejrzeć porównanie wersji].",
 'rev-suppressed-unhide-diff'  => "Jedna z porównywanych wersji została '''ukryta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].
-Ponieważ jesteś administratorem możesz [$1 obejrzeć to porównanie wersji].",
+Jako administrator możesz [$1 obejrzeć to porównanie wersji].",
 'rev-deleted-diff-view'       => "Jedna z wersji użytych w porównaniu została '''usunięta'''.
 Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-diff-view'    => "Jedna z wersji użytych w porównaniu została '''ukryta'''.

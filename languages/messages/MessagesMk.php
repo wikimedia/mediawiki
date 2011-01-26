@@ -3210,7 +3210,7 @@ Variants for Chinese language
 'exif-sharpness'                   => 'Острина',
 'exif-devicesettingdescription'    => 'Опис на поставките на апаратот',
 'exif-subjectdistancerange'        => 'Опсег на оддалеченост на објектот',
-'exif-imageuniqueid'               => 'Единствен идентификатор на сликата',
+'exif-imageuniqueid'               => 'Назнака на сликата',
 'exif-gpsversionid'                => 'Верзија на ознака за GPS податоци',
 'exif-gpslatituderef'              => 'Северна или јужна ГШ',
 'exif-gpslatitude'                 => 'Геог. ширина',

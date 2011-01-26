@@ -1416,6 +1416,7 @@ kerem kere yewna nameyo eşkera bıvicinê.",
 'upload-failure-msg'          => 'Bar kerdişê tu de yew problem esta:
 
 $1',
+'upload-warning-subj'         => 'İqazê barkerdışi',
 
 'upload-proto-error'        => 'Porotokol raşt ni yo.',
 'upload-proto-error-text'   => 'Bar kerdişê durî gani  URLî estbiye ke pe <code>http://</code> ya zi <code>ftp://</code> başli beno.',
@@ -1429,6 +1430,9 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'upload-too-many-redirects' => 'Eno URL de zaf redireksiyonî esto.',
 'upload-unknown-size'       => 'Ebat nizanyeno',
 'upload-http-error'         => 'Yew ğeletê HTTPî biyo: $1',
+
+# Special:UploadStash
+'uploadstash' => 'Nımıtışê barkerdışi',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Cıkewtış red biyo',
@@ -1577,13 +1581,13 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # Statistics
 'statistics'                   => 'İstatistiki',
-'statistics-header-pages'      => 'Îstatistiksê pelî',
+'statistics-header-pages'      => '↓ İstatistikê pele',
 'statistics-header-edits'      => 'Îstatistiksê vurnayîşî',
 'statistics-header-views'      => 'Îstatistiksê vînayîşî',
 'statistics-header-users'      => 'Îstatistiksê karberî',
 'statistics-header-hooks'      => 'Îstatistiksê binî',
 'statistics-articles'          => 'Pelanê tedesteyî',
-'statistics-pages'             => 'Pelî',
+'statistics-pages'             => '↓ Peli',
 'statistics-pages-desc'        => 'Pelanê hemî ke wîkî de estê, pelanê mineqeşeyî, redireksiyon ucb... dehil o.',
 'statistics-files'             => 'Dosyayê bar biye',
 'statistics-edits'             => 'Amarê vurnayîşî ke wextê {{SITENAME}} ronayîşî ra',
@@ -1591,7 +1595,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-views-total'       => 'Yekunî bivîne',
 'statistics-views-peredit'     => 'Ser her vurnayîşî de vînayîşî',
 'statistics-users'             => 'Qeyd biye [[Special:ListUsers|karberî]]',
-'statistics-users-active'      => 'Karberê aktivî',
+'statistics-users-active'      => '↓ Karberê aktifi',
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular'       => 'Pelayanê ke tewr zafî vînî biye',
 
@@ -1814,6 +1818,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 # Watchlist
 'watchlist'            => 'lista mına seyr-kerdışi',
 'mywatchlist'          => 'Lista mına seyr-kerdışi',
+'watchlistfor2'        => 'Semedê $1 ($2)',
 'nowatchlist'          => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext'    => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
 'watchnologin'         => 'hesab akerde niyo',
@@ -2985,13 +2990,13 @@ Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
 'imgmultigoto'     => 'Şi pel $1',
 
 # Table pager
-'ascending_abbrev'         => 'cor',
-'descending_abbrev'        => 'cêr',
-'table_pager_next'         => 'Pelo serîn',
-'table_pager_prev'         => 'pelo binîn',
-'table_pager_first'        => 'Peleyê  yewin',
-'table_pager_last'         => 'Peleyê peni',
-'table_pager_limit'        => 'Yew pele de $1 tene bimocne',
+'ascending_abbrev'         => 'berz',
+'descending_abbrev'        => 'nızm',
+'table_pager_next'         => 'Pela badê cû',
+'table_pager_prev'         => 'Pela verêne',
+'table_pager_first'        => 'Pela jûyıne',
+'table_pager_last'         => 'Pela peyêne',
+'table_pager_limit'        => 'Jû pele de $1 unsuran bımocne',
 'table_pager_limit_label'  => 'Her pele ra xacetan',
 'table_pager_limit_submit' => 'Şi',
 'table_pager_empty'        => 'Netice çini yo',
@@ -3049,6 +3054,7 @@ Ti hem zi eşkeno [[Special:Watchlist/edit|use the standard editor]].',
 'version-specialpages'             => 'Pelanê xasiyan',
 'version-parserhooks'              => 'Çengelê Parserî',
 'version-variables'                => 'Vurnayeyî',
+'version-skins'                    => 'Cıldi',
 'version-other'                    => 'Bin',
 'version-mediahandlers'            => 'Kulbê medyayî',
 'version-hooks'                    => 'Çengelî',
@@ -3104,7 +3110,7 @@ Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 'specialpages-group-spam'        => 'hacetê spami',
 
 # Special:BlankPage
-'blankpage'              => 'Pelo veng',
+'blankpage'              => 'Pela venge',
 'intentionallyblankpage' => 'Ena pel bi zanayişî weng mendo.',
 
 # External image whitelist
