@@ -13,12 +13,11 @@ class TitlePermissionTest extends MediaWikiTestCase {
 	protected $altUserName;
 
 	function setUp() {
-		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang, $wgMessageCache;
+		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang;
 
 		if(!$wgMemc) {
 			$wgMemc = new FakeMemCachedClient;
 		}
-		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
 		$wgContLang = $wgLang = Language::factory( 'en' );
 
 		$this->userName = "Useruser";

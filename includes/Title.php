@@ -3193,20 +3193,19 @@ class Title {
 			$u->doUpdate();
 		}
 		# Update message cache for interface messages
-		global $wgMessageCache;
 		if ( $this->getNamespace() == NS_MEDIAWIKI ) {
 			# @bug 17860: old article can be deleted, if this the case,
 			# delete it from message cache
 			if ( $this->getArticleID() === 0 ) {
-				$wgMessageCache->replace( $this->getDBkey(), false );
+				MessageCache::singleton()->replace( $this->getDBkey(), false );
 			} else {
 				$oldarticle = new Article( $this );
-				$wgMessageCache->replace( $this->getDBkey(), $oldarticle->getContent() );
+				MessageCache::singleton()->replace( $this->getDBkey(), $oldarticle->getContent() );
 			}
 		}
 		if ( $nt->getNamespace() == NS_MEDIAWIKI ) {
 			$newarticle = new Article( $nt );
-			$wgMessageCache->replace( $nt->getDBkey(), $newarticle->getContent() );
+			MessageCache::singleton()->replace( $nt->getDBkey(), $newarticle->getContent() );
 		}
 
 		global $wgUser;

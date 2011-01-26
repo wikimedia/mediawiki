@@ -842,12 +842,7 @@ class LanguageConverter {
 	 *
 	 */
 	function parseCachedTable( $code, $subpage = '', $recursive = true ) {
-		global $wgMessageCache;
 		static $parsed = array();
-
-		if ( !is_object( $wgMessageCache ) ) {
-			return array();
-		}
 
 		$key = 'Conversiontable/' . $code;
 		if ( $subpage ) {
@@ -858,7 +853,7 @@ class LanguageConverter {
 		}
 
 		if ( strpos( $code, '/' ) === false ) {
-			$txt = $wgMessageCache->get( 'Conversiontable', true, $code );
+			$txt = MessageCache::singleton()->get( 'Conversiontable', true, $code );
 			if ( $txt === false ) {
 				# FIXME: this method doesn't seem to be expecting
 				# this possible outcome...

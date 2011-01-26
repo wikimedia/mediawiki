@@ -134,9 +134,8 @@ class ParserTest {
 	static function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-			$wgThumbnailScriptPath, $wgScriptPath,
+			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
 
 		$wgScript = '/index.php';
@@ -172,9 +171,6 @@ class ParserTest {
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 		$wgRequest = new WebRequest;
 
-		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-										  array( $messageMemc, $wgUseDatabaseMessages,
-												 $wgMsgCacheExpiry ) );
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory   = "$IP/skins";
 		}
@@ -821,9 +817,8 @@ class ParserTest {
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
 
-		# Make a new message cache
-		global $wgMessageCache, $wgMemc;
-		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
+		# Clear the message cache
+		MessageCache::singleton()->clear();
 
 		$this->uploadDir = $this->setupUploadDir();
 		$user = User::createNew( 'WikiSysop' );

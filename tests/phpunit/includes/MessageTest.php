@@ -3,12 +3,12 @@
 class MessageTest extends MediaWikiTestCase {
 
 	function setUp() {
-		global $wgLanguageCode, $wgLang, $wgContLang, $wgMessageCache;
+		global $wgLanguageCode, $wgLang, $wgContLang;
 
 		$wgLanguageCode = 'en'; # For mainpage to be 'Main Page'
 		//Note that a Stub Object is not enough for this test
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
-		$wgMessageCache = new MessageCache( false, false, 3600 );
+		MessageCache::singleton()->disable();
 	}
 
 	function testExists() {

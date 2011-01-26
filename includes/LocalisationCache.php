@@ -78,12 +78,6 @@ class LocalisationCache {
 	var $recachedLangs = array();
 
 	/**
-	 * Data added by extensions using the deprecated $wgMessageCache->addMessages() 
-	 * interface.
-	 */
-	var $legacyData = array();
-
-	/**
 	 * All item keys
 	 */
 	static public $allKeys = array(
@@ -215,9 +209,6 @@ class LocalisationCache {
 	 * Get a subitem, for instance a single message for a given language.
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
-		if ( isset( $this->legacyData[$code][$key][$subkey] ) ) {
-			return $this->legacyData[$code][$key][$subkey];
-		}
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) 
 			&& !isset( $this->loadedItems[$code][$key] ) ) 
 		{
@@ -663,8 +654,6 @@ class LocalisationCache {
 		unset( $this->loadedItems[$code] );
 		unset( $this->loadedSubitems[$code] );
 		unset( $this->initialisedLangs[$code] );
-		// We don't unload legacyData because there's no way to get it back 
-		// again, it's not really a cache
 		foreach ( $this->shallowFallbacks as $shallowCode => $fbCode ) {
 			if ( $fbCode === $code ) {
 				$this->unload( $shallowCode );
@@ -678,22 +667,6 @@ class LocalisationCache {
 	public function unloadAll() {
 		foreach ( $this->initialisedLangs as $lang => $unused ) {
 			$this->unload( $lang );
-		}
-	}
-
-	/**
-	 * Add messages to the cache, from an extension that has not yet been 
-	 * migrated to $wgExtensionMessages or the LocalisationCacheRecache hook. 
-	 * Called by deprecated function $wgMessageCache->addMessages(). 
-	 */
-	public function addLegacyMessages( $messages ) {
-		foreach ( $messages as $lang => $langMessages ) {
-			if ( isset( $this->legacyData[$lang]['messages'] ) ) {
-				$this->legacyData[$lang]['messages'] = 
-					$langMessages + $this->legacyData[$lang]['messages'];
-			} else {
-				$this->legacyData[$lang]['messages'] = $langMessages;
-			}
 		}
 	}
 

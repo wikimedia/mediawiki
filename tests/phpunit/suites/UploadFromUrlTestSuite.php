@@ -16,9 +16,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
 				  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-				  $wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
 				  $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-				  $wgThumbnailScriptPath, $wgScriptPath,
+				  $parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 				  $wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
 
 		$wgScript = '/index.php';
@@ -54,9 +53,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 		$wgRequest = new WebRequest;
 
-		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-										  array( $messageMemc, $wgUseDatabaseMessages,
-												 $wgMsgCacheExpiry ) );
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory   = "$IP/skins";
 		}

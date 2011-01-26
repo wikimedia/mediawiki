@@ -68,6 +68,3 @@ $wgRequest
 
 $wgMemc, $messageMemc, $parserMemc
 	Object caches
-
-$wgMessageCache
-	Message cache, to manage interface messages
