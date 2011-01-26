@@ -345,9 +345,11 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
 		if ( $out->isArticle() && ( !isset( $oldid ) || isset( $diff ) ) &&
-			$this->mTitle->exists() ){
+			$this->mTitle->exists() )
+		{
+			$article = new Article( $this->mTitle, 0 );
 			if ( !$wgDisableCounters ) {
-				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
+				$viewcount = $wgLang->formatNum( $article->getCount() );
 				if ( $viewcount ) {
 					$tpl->set( 'viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
 				} else {
@@ -383,7 +385,7 @@ class SkinTemplate extends Skin {
 			$this->credits = false;
 
 			if( $wgMaxCredits != 0 ){
-				$this->credits = Credits::getCredits( $wgArticle, $wgMaxCredits, $wgShowCreditsIfMax );
+				$this->credits = Credits::getCredits( $article, $wgMaxCredits, $wgShowCreditsIfMax );
 			} else {
 				$tpl->set( 'lastmod', $this->lastModified() );
 			}
