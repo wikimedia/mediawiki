@@ -3570,7 +3570,6 @@ class Title {
 		return $stack;
 	}
 
-
 	/**
 	 * Get an associative array for selecting this title from
 	 * the "page" table

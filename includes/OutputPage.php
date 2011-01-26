@@ -1001,7 +1001,8 @@ class OutputPage {
 			array( 'page_id', 'page_namespace', 'page_title', 'page_len', 'page_is_redirect', 'page_latest', 'pp_value' ),
 			$lb->constructSet( 'page', $dbr ),
 			__METHOD__,
-			array( 'LEFT JOIN' => array( "pp_propname='hiddencat'", "pp_page=page_id"  ) )
+			array(),
+			array( 'page_props' => array( 'LEFT JOIN' => array( "pp_propname='hiddencat'", "pp_page=page_id" ) ) )
 		);
 
 		# Add the results to the link cache
