@@ -249,7 +249,7 @@ class Article {
 	 * @return Return the text of this revision
 	 */
 	public function getContent() {
-		global $wgUser, $wgContLang, $wgMessageCache;
+		global $wgUser, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -258,7 +258,7 @@ class Article {
 			# and return the message value for x.
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				# If this is a system message, get the default text.
-				list( $message, $lang ) = $wgMessageCache->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
+				list( $message, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
 				$text = wfMsgGetKey( $message, false, $lang, false );
 
 				if ( wfEmptyMsg( $message, $text ) )
@@ -1712,15 +1712,13 @@ class Article {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			global $wgMessageCache;
-
 			if ( $this->getID() == 0 ) {
 				$text = false;
 			} else {
 				$text = $this->getRawText();
 			}
 
-			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
+			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
 		}
 	}
 
@@ -3632,7 +3630,7 @@ class Article {
 	 * @param $user User object: User doing the edit
 	 */
 	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true, User $user = null ) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgEnableParserCache;
+		global $wgDeferredUpdateList, $wgUser, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -3710,7 +3708,7 @@ class Article {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$wgMessageCache->replace( $shortTitle, $text );
+			MessageCache::singleton()->replace( $shortTitle, $text );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -4051,8 +4049,6 @@ class Article {
 	 * Clears caches when article is deleted
 	 */
 	public static function onArticleDelete( $title ) {
-		global $wgMessageCache;
-
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -4071,7 +4067,7 @@ class Article {
 
 		# Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			$wgMessageCache->replace( $title->getDBkey(), false );
+			MessageCache::singleton()->replace( $title->getDBkey(), false );
 		}
 
 		# Images

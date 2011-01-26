@@ -2897,7 +2897,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace;
+		global $wgLang, $wgUseFileCache, $wgShowDBErrorBacktrace;
 
 		$sorry = 'Sorry! This site is experiencing technical difficulties.';
 		$again = 'Try waiting a few minutes and reloading.';
@@ -2910,9 +2910,7 @@ class DBConnectionError extends DBError {
 		}
 
 		# No database access
-		if ( is_object( $wgMessageCache ) ) {
-			$wgMessageCache->disable();
-		}
+		MessageCache::singleton()->disable();
 
 		if ( trim( $this->error ) == '' ) {
 			$this->error = $this->db->getProperty( 'mServer' );

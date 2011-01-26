@@ -88,7 +88,7 @@ class CoreParserFunctions {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMsgGetKey( $part1, true, $parser->getOptions()->getUserLang(), false );
 			$message = wfMsgReplaceArgs( $message, $args );
-			$message = $parser->replaceVariables( $message ); // like $wgMessageCache->transform()
+			$message = $parser->replaceVariables( $message ); // like MessageCache::transform()
 			return $message;
 		} else {
 			return array( 'found' => false );

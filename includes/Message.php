@@ -385,8 +385,7 @@ class Message {
 	 * @return Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
-		global $wgMessageCache;
-		return $wgMessageCache->transform( $string, $this->interface, $this->language );
+		return MessageCache::singleton()->transform( $string, $this->interface, $this->language );
 	}
 
 	/**
@@ -407,17 +406,17 @@ class Message {
 	 */
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
-			global $wgMessageCache;
+			$cache = MessageCache::singleton();
 			if ( is_array($this->key) ) {
 				foreach ( $this->key as $key ) {
-					$message = $wgMessageCache->get( $key, $this->useDatabase, $this->language );
+					$message = $cache->get( $key, $this->useDatabase, $this->language );
 					if ( $message !== false && $message !== '' ) {
 						break;
 					}
 				}
 				$this->message = $message;
 			} else {
-				$this->message = $wgMessageCache->get( $this->key, $this->useDatabase, $this->language );
+				$this->message = $cache->get( $this->key, $this->useDatabase, $this->language );
 			}
 		}
 		return $this->message;

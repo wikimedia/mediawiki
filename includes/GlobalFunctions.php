@@ -628,19 +628,14 @@ function wfMsgWeirdKey( $key ) {
  * @return string
  */
 function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
-	global $wgMessageCache;
-
 	wfRunHooks( 'NormalizeMessageKey', array( &$key, &$useDB, &$langCode, &$transform ) );
 
-	if ( !is_object( $wgMessageCache ) ) {
-		throw new MWException( 'Trying to get message before message cache is initialised' );
-	}
-
-	$message = $wgMessageCache->get( $key, $useDB, $langCode );
+	$cache = MessageCache::singleton();
+	$message = $cache->get( $key, $useDB, $langCode );
 	if( $message === false ) {
 		$message = '&lt;' . htmlspecialchars( $key ) . '&gt;';
 	} elseif ( $transform ) {
-		$message = $wgMessageCache->transform( $message );
+		$message = $cache->transform( $message );
 	}
 	return $message;
 }
@@ -775,11 +770,8 @@ function wfMsgExt( $key, $options ) {
 			$string = $m[1];
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
-		global $wgMessageCache;
-		if ( isset( $wgMessageCache ) ) {
-			$string = $wgMessageCache->transform( $string,
+		$string = MessageCache::singleton()->transform( $string,
 				!$forContent, $langCodeObj );
-		}
 	}
 
 	if ( in_array( 'escape', $options, true ) ) {
@@ -2250,8 +2242,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * @return Boolean True if the message *doesn't* exist.
  */
 function wfEmptyMsg( $key ) {
-	global $wgMessageCache;
-	return $wgMessageCache->get( $key, /*useDB*/true, /*content*/false ) === false;
+	return MessageCache::singleton()->get( $key, /*useDB*/true, /*content*/false ) === false;
 }
 
 /**

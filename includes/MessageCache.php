@@ -62,6 +62,34 @@ class MessageCache {
 	 */
 	protected static $mAdaptiveInclusionThreshold = 0.05;
 
+	/**
+	 * Singleton instance
+	 */
+	private static $instance;
+
+	/**
+	 * Get the signleton instance of this class
+	 *
+	 * @since 1.18
+	 * @return MessageCache object
+	 */
+	public static function singleton() {
+		if ( is_null( self::$instance ) ) {
+			global $wgUseDatabaseMessages, $wgMsgCacheExpiry;
+			self::$instance = new self( wfGetMessageCacheStorage(), $wgUseDatabaseMessages, $wgMsgCacheExpiry );
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Destroy the signleton instance
+	 *
+	 * @since 1.18
+	 */
+	public static function destroyInstance() {
+		self::$instance = null;
+	}
+
 	function __construct( $memCached, $useDB, $expiry ) {
 		if ( !$memCached ) {
 			$memCached = wfGetCache( CACHE_NONE );
@@ -729,21 +757,6 @@ class MessageCache {
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
 
-	/** @deprecated */
-	function disableTransform(){
-		wfDeprecated( __METHOD__ );
-	}
-	function enableTransform() {
-		wfDeprecated( __METHOD__ );
-	}
-	function setTransform( $x ) {
-		wfDeprecated( __METHOD__ );
-	}
-	function getTransform() {
-		wfDeprecated( __METHOD__ );
-		return false;
-	}
-
 	/**
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
@@ -756,64 +769,6 @@ class MessageCache {
 			$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
 		}
 		$this->mLoadedLanguages = array();
-	}
-
- 	/**
-	 * Add a message to the cache
-	 * @deprecated Use $wgExtensionMessagesFiles
-	 *
-	 * @param $key Mixed
-	 * @param $value Mixed
-	 * @param $lang String: the messages language, English by default
-	 */
-	function addMessage( $key, $value, $lang = 'en' ) {
-		wfDeprecated( __METHOD__ );
-		$lc = Language::getLocalisationCache();
-		$lc->addLegacyMessages( array( $lang => array( $key => $value ) ) );
-	}
-
-	/**
-	 * Add an associative array of message to the cache
-	 * @deprecated Use $wgExtensionMessagesFiles
-	 *
-	 * @param $messages Array: an associative array of key => values to be added
-	 * @param $lang String: the messages language, English by default
-	 */
-	function addMessages( $messages, $lang = 'en' ) {
-		wfDeprecated( __METHOD__ );
-		$lc = Language::getLocalisationCache();
-		$lc->addLegacyMessages( array( $lang => $messages ) );
-	}
-
-	/**
-	 * Add a 2-D array of messages by lang. Useful for extensions.
-	 * @deprecated Use $wgExtensionMessagesFiles
-	 *
-	 * @param $messages Array: the array to be added
-	 */
-	function addMessagesByLang( $messages ) {
-		wfDeprecated( __METHOD__ );
-		$lc = Language::getLocalisationCache();
-		$lc->addLegacyMessages( $messages );
-	}
-
-	/**
-	 * Set a hook for addMessagesByLang()
-	 */
-	function setExtensionMessagesHook( $callback ) {
-		$this->mAddMessagesHook = $callback;
-	}
-
-	/**
-	 * @deprecated
-	 */
-	function loadAllMessages( $lang = false ) {
-	}
-
-	/**
-	 * @deprecated
-	 */
-	function loadMessagesFile( $filename, $langcode = false ) {
 	}
 
 	public function figureMessage( $key ) {
@@ -832,8 +787,8 @@ class MessageCache {
 	}
 
 	public static function logMessages() {
-		global $wgMessageCache, $wgAdaptiveMessageCache;
-		if ( !$wgAdaptiveMessageCache || !$wgMessageCache instanceof MessageCache ) {
+		global $wgAdaptiveMessageCache;
+		if ( !$wgAdaptiveMessageCache || !self::$instance instanceof MessageCache ) {
 			return;
 		}
 
@@ -852,7 +807,7 @@ class MessageCache {
 		$index = substr( wfTimestampNow(), 0, 8 );
 		if ( !isset( $data[$index] ) ) $data[$index] = array();
 
-		foreach ( $wgMessageCache->mRequestedMessages as $message => $_ ) {
+		foreach ( self::$instance->mRequestedMessages as $message => $_ ) {
 			if ( !isset( $data[$index][$message] ) ) $data[$index][$message] = 0;
 			$data[$index][$message]++;
 		}

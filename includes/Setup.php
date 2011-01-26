@@ -387,9 +387,6 @@ $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
-$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry ) );
-
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );

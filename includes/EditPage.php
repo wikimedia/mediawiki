@@ -124,7 +124,7 @@ class EditPage {
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {
-		global $wgOut, $wgRequest, $wgParser, $wgContLang, $wgMessageCache;
+		global $wgOut, $wgRequest, $wgParser, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
@@ -141,7 +141,7 @@ class EditPage {
 		if ( !$this->mTitle->exists() ) {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				# If this is a system message, get the default text.
-				list( $message, $lang ) = $wgMessageCache->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
+				list( $message, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
 				$text = wfMsgGetKey( $message, false, $lang, false );
 				if( wfEmptyMsg( $message, $text ) )
 					$text = $this->getPreloadedText( $preload );
@@ -1887,7 +1887,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser, $wgMessageCache;
+		global $wgOut, $wgUser, $wgParser;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1956,7 +1956,7 @@ HTML
 
 				// Parse mediawiki messages with correct target language
 				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-					list( /* $unused */, $lang ) = $wgMessageCache->figureMessage( $this->mTitle->getText() );
+					list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->mTitle->getText() );
 					$obj = wfGetLangObj( $lang );
 					$parserOptions->setTargetLanguage( $obj );
 				}

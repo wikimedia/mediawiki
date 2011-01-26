@@ -28,14 +28,12 @@ dependencies.
 EOF;
 }
 
-global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
-global $wgMessageCache, $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgMemc;
+global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages, $wgMemc;
 $wgMainCacheType = CACHE_NONE;
 $wgMessageCacheType = CACHE_NONE;
 $wgParserCacheType = CACHE_NONE;
 $wgUseDatabaseMessages = false; # Set for future resets
 $wgMemc = new FakeMemCachedClient;
 
-# The message cache was already created in Setup.php
-$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry ) );
+/** @todo Check if this is really needed */
+MessageCache::destroyInstance();
