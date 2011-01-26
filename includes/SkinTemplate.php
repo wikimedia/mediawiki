@@ -387,7 +387,7 @@ class SkinTemplate extends Skin {
 			if( $wgMaxCredits != 0 ){
 				$this->credits = Credits::getCredits( $article, $wgMaxCredits, $wgShowCreditsIfMax );
 			} else {
-				$tpl->set( 'lastmod', $this->lastModified() );
+				$tpl->set( 'lastmod', $this->lastModified( $article ) );
 			}
 
 			$tpl->setRef( 'credits', $this->credits );
