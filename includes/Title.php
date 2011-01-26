@@ -3516,18 +3516,23 @@ class Title {
 	public function getParentCategories() {
 		global $wgContLang;
 
-		$titlekey = $this->getArticleId();
+		$data = array();
+
+		$titleKey = $this->getArticleId();
+
+		if ( $titleKey === 0 ) {
+			return $data;
+		}
+
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'categorylinks', '*',
 			array(
 				'cl_from' => $titleKey,
-				"cl_from <> '0'",
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'cl_sortkey' )
+			array()
 		);
-		$data = array();
 
 		if ( $dbr->numRows( $res ) > 0 ) {
 			foreach ( $res as $row ) {
