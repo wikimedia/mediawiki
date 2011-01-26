@@ -1427,12 +1427,7 @@ abstract class Installer {
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
 		try {
-			// STUPID STUPID $wgTitle. PST calls getUserSig(), which joyfully
-			// calls for a parsed message and uses $wgTitle. There isn't even
-			// a signature in this...
-			global $wgTitle;
-			$wgTitle = Title::newMainPage();
-			$article = new Article( $wgTitle );
+			$article = new Article( Title::newMainPage() );
 			$article->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
 								wfMsgForContent( 'mainpagedocfooter' ),
 								'',
