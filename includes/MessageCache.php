@@ -7,9 +7,9 @@
 /**
  *
  */
-define( 'MSG_LOAD_TIMEOUT', 60);
-define( 'MSG_LOCK_TIMEOUT', 10);
-define( 'MSG_WAIT_TIMEOUT', 10);
+define( 'MSG_LOAD_TIMEOUT', 60 );
+define( 'MSG_LOCK_TIMEOUT', 10 );
+define( 'MSG_WAIT_TIMEOUT', 10 );
 define( 'MSG_CACHE_VERSION', 1 );
 
 /**
@@ -82,7 +82,7 @@ class MessageCache {
 	}
 
 	/**
-	 * Destroy the signleton instance
+	 * Destroy the singleton instance
 	 *
 	 * @since 1.18
 	 */
@@ -99,7 +99,6 @@ class MessageCache {
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
 	}
-
 
 	/**
 	 * ParserOptions is lazy initialised.
@@ -149,9 +148,9 @@ class MessageCache {
 				return false; // Wrong hash
 			}
 		} else {
-			$localHash=substr(fread($file,40),8);
-			fclose($file);
-			if ($hash!=$localHash) {
+			$localHash = substr( fread( $file, 40 ), 8 );
+			fclose( $file );
+			if ( $hash != $localHash ) {
 				return false; // Wrong hash
 			}
 
@@ -192,7 +191,7 @@ class MessageCache {
   		wfMkdirParents( $wgCacheDirectory ); // might fail
 
 		wfSuppressWarnings();
-		$file = fopen( $tempFilename, 'w');
+		$file = fopen( $tempFilename, 'w' );
 		wfRestoreWarnings();
 
 		if ( !$file ) {
@@ -200,20 +199,20 @@ class MessageCache {
 			return;
 		}
 
-		fwrite($file,"<?php\n//$hash\n\n \$this->mCache = array(");
+		fwrite( $file, "<?php\n//$hash\n\n \$this->mCache = array(" );
 
 		foreach ( $array as $key => $message ) {
-			$key = $this->escapeForScript($key);
-			$message = $this->escapeForScript($message);
-			fwrite($file, "'$key' => '$message',\n");
+			$key = $this->escapeForScript( $key );
+			$message = $this->escapeForScript( $message );
+			fwrite( $file, "'$key' => '$message',\n" );
 		}
 
-		fwrite($file,");\n?>");
-		fclose($file);
-		rename($tempFilename, $filename);
+		fwrite( $file, ");\n?>" );
+		fclose( $file);
+		rename( $tempFilename, $filename );
 	}
 
-	function escapeForScript($string) {
+	function escapeForScript( $string ) {
 		$string = str_replace( '\\', '\\\\', $string );
 		$string = str_replace( '\'', '\\\'', $string );
 		return $string;
@@ -260,7 +259,9 @@ class MessageCache {
 		}
 
 		# Don't do double loading...
-		if ( isset($this->mLoadedLanguages[$code]) ) return true;
+		if ( isset( $this->mLoadedLanguages[$code] ) ) {
+			return true;
+		}
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -277,7 +278,6 @@ class MessageCache {
 		$success = false; # Keep track of success
 		$where = array(); # Debug info, delayed to avoid spamming debug log too much
 		$cacheKey = wfMemcKey( 'messages', $code ); # Key in memc for messages
-
 
 		# (1) local cache
 		# Hash of the contents is stored in memcache, to detect if local cache goes
@@ -306,14 +306,13 @@ class MessageCache {
 			wfProfileOut( __METHOD__ . '-fromcache' );
 		}
 
-
 		# (3)
 		# Nothing in caches... so we need create one and store it in caches
 		if ( !$success ) {
 			$where[] = 'cache is empty';
 			$where[] = 'loading from database';
 
-			$this->lock($cacheKey);
+			$this->lock( $cacheKey );
 
 			# Limit the concurrency of loadFromDB to a single process
 			# This prevents the site from going down when the cache expires
@@ -328,7 +327,7 @@ class MessageCache {
 				if ( $success ) {
 					$this->mMemc->delete( $statusKey );
 				} else {
-					$this->mMemc->set( $statusKey, 'error', 60*5 );
+					$this->mMemc->set( $statusKey, 'error', 60 * 5 );
 					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 				}
 			}
@@ -357,8 +356,8 @@ class MessageCache {
 	 * $wgMaxMsgCacheEntrySize are assigned a special value, and are loaded
 	 * on-demand from the database later.
 	 *
-	 * @param $code \string Language code.
-	 * @return \array Loaded messages for storing in caches.
+	 * @param $code String: language code.
+	 * @return Array: loaded messages for storing in caches.
 	 */
 	function loadFromDB( $code ) {
 		wfProfileIn( __METHOD__ );
@@ -376,7 +375,9 @@ class MessageCache {
 		if ( $wgAdaptiveMessageCache ) {
 			$mostused = $this->getMostUsedMessages();
 			if ( $code !== $wgLanguageCode ) {
-				foreach ( $mostused as $key => $value ) $mostused[$key] = "$value/$code";
+				foreach ( $mostused as $key => $value ) {
+					$mostused[$key] = "$value/$code";
+				}
 			}
 		}
 
@@ -406,9 +407,12 @@ class MessageCache {
 		$smallConds[] = 'rev_text_id=old_id';
 		$smallConds[] = 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize );
 
-		$res = $dbr->select( array( 'page', 'revision', 'text' ),
+		$res = $dbr->select(
+			array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
-			$smallConds, __METHOD__ . "($code)-small" );
+			$smallConds,
+			__METHOD__ . "($code)-small"
+		);
 
 		foreach ( $res as $row ) {
 			$cache[$row->page_title] = ' ' . Revision::getRevisionText( $row );
@@ -451,12 +455,10 @@ class MessageCache {
 			# Article was deleted
 			$this->mCache[$code][$title] = '!NONEXISTENT';
 			$this->mMemc->delete( $titleKey );
-
 		} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
 			# Check for size
 			$this->mCache[$code][$title] = '!TOO BIG';
 			$this->mMemc->set( $titleKey, ' ' . $text, $this->mExpiry );
-
 		} else {
 			$this->mCache[$code][$title] = ' ' . $text;
 			$this->mMemc->delete( $titleKey );
@@ -479,12 +481,12 @@ class MessageCache {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
 			$parserMemc->delete( $sidebarKey );
 		}
-		
+
 		// Update the message in the message blob store
 		global $wgContLang;
 		MessageBlobStore::updateMessage( $wgContLang->lcfirst( $msg ) );
 
-		wfRunHooks( "MessageCacheReplace", array( $title, $text ) );
+		wfRunHooks( 'MessageCacheReplace', array( $title, $text ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -530,16 +532,16 @@ class MessageCache {
 	 *
 	 * @return Boolean: success
 	 */
-	function lock($key) {
+	function lock( $key ) {
 		$lockKey = $key . ':lock';
-		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
-			sleep(1);
+		for ( $i = 0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
+			sleep( 1 );
 		}
 
 		return $i >= MSG_WAIT_TIMEOUT;
 	}
 
-	function unlock($key) {
+	function unlock( $key ) {
 		$lockKey = $key . ':lock';
 		$this->mMemc->delete( $lockKey );
 	}
@@ -565,7 +567,7 @@ class MessageCache {
 		global $wgLanguageCode, $wgContLang;
 
 		if ( !is_string( $key ) ) {
-			throw new MWException( "Non-string key given" );
+			throw new MWException( 'Non-string key given' );
 		}
 
 		if ( strval( $key ) === '' ) {
@@ -594,15 +596,17 @@ class MessageCache {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
-		/* Record each message request, but only once per request.
+		/**
+		 * Record each message request, but only once per request.
 		 * This information is not used unless $wgAdaptiveMessageCache
-		 * is enabled. */
+		 * is enabled.
+		 */
 		$this->mRequestedMessages[$uckey] = true;
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
 			$title = $uckey;
-			if(!$isFullKey && ( $langcode != $wgLanguageCode ) ) {
+			if( !$isFullKey && ( $langcode != $wgLanguageCode ) ) {
 				$title .= '/' . $langcode;
 			}
 			$message = $this->getMsgFromNamespace( $title, $langcode );
@@ -631,9 +635,9 @@ class MessageCache {
 		}
 
 		# Is this a custom message? Try the default language in the db...
-		if( ($message === false || $message === '-' ) &&
+		if( ( $message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
-			!$isFullKey && ($langcode != $wgLanguageCode) ) {
+			!$isFullKey && ( $langcode != $wgLanguageCode ) ) {
 			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
 		}
 
@@ -678,12 +682,13 @@ class MessageCache {
 		} else {
 			// XXX: This is not cached in process cache, should it?
 			$message = false;
-			wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
+			wfRunHooks( 'MessagesPreLoad', array( $title, &$message ) );
 			if ( $message !== false ) {
 				return $message;
 			}
 
-			/* If message cache is in normal mode, it is guaranteed
+			/**
+			 * If message cache is in normal mode, it is guaranteed
 			 * (except bugs) that there is always entry (or placeholder)
 			 * in the cache if message exists. Thus we can do minor
 			 * performance improvement and return false early.
@@ -754,8 +759,13 @@ class MessageCache {
 		return $message;
 	}
 
-	function disable() { $this->mDisable = true; }
-	function enable() { $this->mDisable = false; }
+	function disable() {
+		$this->mDisable = true;
+	}
+
+	function enable() {
+		$this->mDisable = false;
+	}
 
 	/**
 	 * Clear all stored messages. Mainly used after a mass rebuild.
@@ -774,13 +784,15 @@ class MessageCache {
 	public function figureMessage( $key ) {
 		global $wgLanguageCode;
 		$pieces = explode( '/', $key );
-		if( count( $pieces ) < 2 )
+		if( count( $pieces ) < 2 ) {
 			return array( $key, $wgLanguageCode );
+		}
 
 		$lang = array_pop( $pieces );
 		$validCodes = Language::getLanguageNames();
-		if( !array_key_exists( $lang, $validCodes ) )
+		if( !array_key_exists( $lang, $validCodes ) ) {
 			return array( $key, $wgLanguageCode );
+		}
 
 		$message = implode( '/', $pieces );
 		return array( $message, $lang );
@@ -796,19 +808,27 @@ class MessageCache {
 		$cache = wfGetCache( CACHE_DB );
 		$data = $cache->get( $cachekey );
 
-		if ( !$data ) $data = array();
+		if ( !$data ) {
+			$data = array();
+		}
 
 		$age = self::$mAdaptiveDataAge;
-		$filterDate = substr( wfTimestamp( TS_MW, time()-$age ), 0, 8 );
+		$filterDate = substr( wfTimestamp( TS_MW, time() - $age ), 0, 8 );
 		foreach ( array_keys( $data ) as $key ) {
-			if ( $key < $filterDate ) unset( $data[$key] );
+			if ( $key < $filterDate ) {
+				unset( $data[$key] );
+			}
 		}
 
 		$index = substr( wfTimestampNow(), 0, 8 );
-		if ( !isset( $data[$index] ) ) $data[$index] = array();
+		if ( !isset( $data[$index] ) ) {
+			$data[$index] = array();
+		}
 
 		foreach ( self::$instance->mRequestedMessages as $message => $_ ) {
-			if ( !isset( $data[$index][$message] ) ) $data[$index][$message] = 0;
+			if ( !isset( $data[$index][$message] ) ) {
+				$data[$index][$message] = 0;
+			}
 			$data[$index][$message]++;
 		}
 
@@ -816,17 +836,21 @@ class MessageCache {
 	}
 
 	public function getMostUsedMessages() {
-		$cachekey = wfMemckey( 'message-profiling' );
+		$cachekey = wfMemcKey( 'message-profiling' );
 		$cache = wfGetCache( CACHE_DB );
 		$data = $cache->get( $cachekey );
-		if ( !$data ) return array();
+		if ( !$data ) {
+			return array();
+		}
 
 		$list = array();
 
 		foreach( $data as $messages ) {
 			foreach( $messages as $message => $count ) {
 				$key = $message;
-				if ( !isset( $list[$key] ) ) $list[$key] = 0;
+				if ( !isset( $list[$key] ) ) {
+					$list[$key] = 0;
+				}
 				$list[$key] += $count;
 			}
 		}
