@@ -1210,8 +1210,7 @@ A table with nothing but a caption
 |}
 !! result
 <table>
-<caption>
-caption
+<caption> caption
 </caption><tr><td></td></tr></table>
 
 !! end
@@ -1227,22 +1226,12 @@ Simple table
 !! result
 <table>
 <tr>
-<td>
-<p>1
-</p>
-</td>
-<td>
-<p>2
-</p>
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td>
-<p>3
-</p>
-</td>
-<td>
-<p>4
-</p>
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -1272,110 +1261,48 @@ Multiplication table
 |}
 !! result
 <table border="1" cellpadding="2">
-<caption>
-Multiplication table
+<caption>Multiplication table
 </caption>
 <tr>
-<th>
-<p>&times;
-</p>
-</th>
-<th>
-<p>1
-</p>
-</th>
-<th>
-<p>2
-</p>
-</th>
-<th>
-<p>3
-</p>
+<th> &times; </th>
+<th> 1 </th>
+<th> 2 </th>
+<th> 3
 </th></tr>
 <tr>
-<th>
-<p>1
-</p>
+<th> 1
 </th>
-<td>
-<p>1
-</p>
-</td>
-<td>
-<p>2
-</p>
-</td>
-<td>
-<p>3
-</p>
+<td> 1 </td>
+<td> 2 </td>
+<td> 3
 </td></tr>
 <tr>
-<th>
-<p>2
-</p>
+<th> 2
 </th>
-<td>
-<p>2
-</p>
-</td>
-<td>
-<p>4
-</p>
-</td>
-<td>
-<p>6
-</p>
+<td> 2 </td>
+<td> 4 </td>
+<td> 6
 </td></tr>
 <tr>
-<th>
-<p>3
-</p>
+<th> 3
 </th>
-<td>
-<p>3
-</p>
-</td>
-<td>
-<p>6
-</p>
-</td>
-<td>
-<p>9
-</p>
+<td> 3 </td>
+<td> 6 </td>
+<td> 9
 </td></tr>
 <tr>
-<th>
-<p>4
-</p>
+<th> 4
 </th>
-<td>
-<p>4
-</p>
-</td>
-<td>
-<p>8
-</p>
-</td>
-<td>
-<p>12
-</p>
+<td> 4 </td>
+<td> 8 </td>
+<td> 12
 </td></tr>
 <tr>
-<th>
-<p>5
-</p>
+<th> 5
 </th>
-<td>
-<p>5
-</p>
-</td>
-<td>
-<p>10
-</p>
-</td>
-<td>
-<p>15
-</p>
+<td> 5 </td>
+<td> 10 </td>
+<td> 15
 </td></tr></table>
 
 !! end
@@ -1394,26 +1321,16 @@ Table rowspan
 !! result
 <table align="right" border="1">
 <tr>
-<td>
-<p>Cell 1, row 1
-</p>
+<td> Cell 1, row 1
 </td>
-<td rowspan="2">
-<p>Cell 2, row 1 (and 2)
-</p>
+<td rowspan="2"> Cell 2, row 1 (and 2)
 </td>
-<td>
-<p>Cell 3, row 1
-</p>
+<td> Cell 3, row 1
 </td></tr>
 <tr>
-<td>
-<p>Cell 1, row 2
-</p>
+<td> Cell 1, row 2
 </td>
-<td>
-<p>Cell 3, row 2
-</p>
+<td> Cell 3, row 2
 </td></tr></table>
 
 !! end
@@ -1434,26 +1351,18 @@ Nested table
 !! result
 <table border="1">
 <tr>
-<td>
-<p>&alpha;
-</p>
+<td> &alpha;
 </td>
 <td>
 <table bgcolor="#ABCDEF" border="2">
 <tr>
-<td>
-<p>nested
-</p>
+<td>nested
 </td></tr>
 <tr>
-<td>
-<p>table
-</p>
+<td>table
 </td></tr></table>
 </td>
-<td>
-<p>the original table again
-</p>
+<td>the original table again
 </td></tr></table>
 
 !! end
@@ -1467,9 +1376,7 @@ Invalid attributes in table cell (bug 1830)
 !! result
 <table>
 <tr>
-<td>
-<p>broken
-</p>
+<td>broken
 </td></tr></table>
 
 !! end
@@ -1483,13 +1390,8 @@ Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitec
 !! result
 <table>
 <tr>
-<td>
-<p>[<a href="ftp://%7Cx" class="external free" rel="nofollow">ftp://%7Cx</a>
-</p>
-</td>
-<td>
-<p>]" onmouseover="alert(document.cookie)"&gt;test
-</p>
+<td>[<a href="ftp://%7Cx" class="external free" rel="nofollow">ftp://%7Cx</a></td>
+<td>]" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
 </table>
@@ -2702,9 +2604,7 @@ BUG 553: link with two variables in a piped link
 !! result
 <table>
 <tr>
-<td>
-<p>[[{{{1}}}|{{{2}}}]]
-</p>
+<td>[[{{{1}}}|{{{2}}}]]
 </td></tr></table>
 
 !! end
@@ -2814,22 +2714,12 @@ foo {{table}}
 </p>
 <table>
 <tr>
-<td>
-<p>1
-</p>
-</td>
-<td>
-<p>2
-</p>
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td>
-<p>3
-</p>
-</td>
-<td>
-<p>4
-</p>
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -2844,22 +2734,12 @@ foo
 </p>
 <table>
 <tr>
-<td>
-<p>1
-</p>
-</td>
-<td>
-<p>2
-</p>
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td>
-<p>3
-</p>
-</td>
-<td>
-<p>4
-</p>
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 
 !! end
@@ -4440,9 +4320,7 @@ Table multiple attributes correction
 !! result
 <table>
 <tr>
-<th class="awesome">
-<p>status
-</p>
+<th class="awesome"> status
 </th></tr></table>
 
 !!end
@@ -4896,9 +4774,7 @@ Table attribute legitimate extension
 !! result
 <table>
 <tr>
-<th style="color:blue">
-<p>status
-</p>
+<th style="color:blue"> status
 </th></tr></table>
 
 !!end
@@ -4912,9 +4788,7 @@ Table attribute safety
 !! result
 <table>
 <tr>
-<th style="/* insecure input */">
-<p>status
-</p>
+<th style="/* insecure input */"> status
 </th></tr></table>
 
 !! end
@@ -5583,14 +5457,9 @@ noxml
 !! result
 <table>
 <tr>
-<th>
-<p>https://
-</p>
-</th>
-<th>
-</th>
-<th>
-</th>
+<th>https://</th>
+<th></th>
+<th></th>
 <th>
 </td>
 </tr>
@@ -5607,9 +5476,7 @@ Fuzz testing: Parser21
 !! result
 <table>
 <tr>
-<th>
-<p><a href="irc://{{ftp://a" class="external free" rel="nofollow">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
-</p>
+<th> <a href="irc://{{ftp://a" class="external free" rel="nofollow">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
 </th>
 <td>
 </td>
@@ -5655,9 +5522,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <tr>
-<td>
-<p></u>
-</p>
+<td></u>
 </td>
 </tr>
 </table>
@@ -7772,17 +7637,18 @@ Template:Bullet
 !!endarticle
 
 !! test
-Bug 529/12974: Uncovered bullet
+Bug 529: Uncovered bullet
 !! input
 * Foo {{bullet}}
 !! result
-<ul><li> Foo * Bar
+<ul><li> Foo 
+</li><li> Bar
 </li></ul>
 
 !! end
 
 !! test
-Bug 529/12974: Uncovered table already at line-start
+Bug 529: Uncovered table already at line-start
 !! input
 x
 
@@ -7793,33 +7659,24 @@ y
 </p>
 <table>
 <tr>
-<td>
-<p>1
-</p>
-</td>
-<td>
-<p>2
-</p>
+<td> 1 </td>
+<td> 2
 </td></tr>
 <tr>
-<td>
-<p>3
-</p>
-</td>
-<td>
-<p>4
-</p>
+<td> 3 </td>
+<td> 4
 </td></tr></table>
 <p>y
 </p>
 !! end
 
 !! test
-Bug 529/12974: Uncovered bullet in parser function result
+Bug 529: Uncovered bullet in parser function result
 !! input
 * Foo {{lc:{{bullet}} }}
 !! result
-<ul><li> Foo * bar
+<ul><li> Foo 
+</li><li> bar
 </li></ul>
 
 !! end

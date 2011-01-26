@@ -91,11 +91,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   members.
 * (bug 2585) Image pages should send 404 if no image, no shared image and no
   description page.
-* (bug 12974) The behaviour of wikitable and template parsing was altered.  Previously,
-  all templates were treated as being at the start of a block context for the purposes
-  of evaluating wikitext elements like #, :, *, and tables (bug 529).  Now this 
-  behaviour is only applied to wikitable-start {|, but the first line of a wikitable
-  cell is now treated as a linestart.
 * Custom editintro's using the editintro url parameter will no longer show <noinclude>
   sections on pages they are included on.
 * (bug 26449) Keep underlines from headings outside of tables and thumbs by
