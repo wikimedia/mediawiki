@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrewboltachev
  * @author Kaganer
  * @author ОйЛ
  * @author לערי ריינהארט
@@ -38,23 +39,122 @@ $fallback8bitEncoding = 'windows-1251';
 $separatorTransformTable = array( ',' => ' ', '.' => ',' );
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Линкъёс ултӥз гожен сызоно',
+
+'underline-always'  => 'Котьку',
+'underline-never'   => 'Ноку',
+'underline-default' => 'Браузерысь настройкаос уже кутоно',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Тупатон бусыысь шрифтлэн стилез',
+'editfont-default'   => 'Браузерысь настройкаосысь шрифтез уже кутоно',
+'editfont-monospace' => 'Огвыллем пасьталаен шрифт',
+'editfont-sansserif' => 'Засечкатэк шрифт',
+'editfont-serif'     => 'Засечкаен шрифт',
+
+# Dates
+'sunday'        => 'арнянунал',
+'monday'        => 'вордӥськон',
+'tuesday'       => 'пуксён',
+'wednesday'     => 'вирнунал',
+'thursday'      => 'покчиарня',
+'friday'        => 'удмуртарня',
+'saturday'      => 'кӧснунал',
+'sun'           => 'Арн',
+'mon'           => 'Врд',
+'tue'           => 'Пкс',
+'wed'           => 'Врн',
+'thu'           => 'Пкч',
+'fri'           => 'Удм',
+'sat'           => 'Ксн',
+'january'       => 'толшор',
+'february'      => 'тулыспал',
+'march'         => 'южтолэзь',
+'april'         => 'оштолэзь',
+'may_long'      => 'куартолэзь',
+'june'          => 'инвожо',
+'july'          => 'пӧсьтолэзь',
+'august'        => 'гудырикошкон',
+'september'     => 'куарусён',
+'october'       => 'коньывуон',
+'november'      => 'шуркынмон',
+'december'      => 'толсур',
+'january-gen'   => 'толшоре',
+'february-gen'  => 'тулыспалэ',
+'march-gen'     => 'южтолэзе',
+'april-gen'     => 'оштолэзе',
+'may-gen'       => 'куартолэзе',
+'june-gen'      => 'Инвожое',
+'july-gen'      => 'пӧсьтолэзе',
+'august-gen'    => 'гудырикошконэ',
+'september-gen' => 'куарусёнэ',
+'october-gen'   => 'коньывуонэ',
+'november-gen'  => 'шуркынмонэ',
+'december-gen'  => 'толсурэ',
+'jan'           => 'тшт',
+'feb'           => 'тпт',
+'mar'           => 'южт',
+'apr'           => 'ошт',
+'may'           => 'южт',
+'jun'           => 'ивт',
+'jul'           => 'пст',
+'aug'           => 'гкт',
+'sep'           => 'кст',
+'oct'           => 'квт',
+'nov'           => 'шкт',
+'dec'           => 'тст',
+
 # Categories related messages
-'hidden-category-category' => 'Ватэм категориос',
+'pagecategories'                 => '$1 категория',
+'category_header'                => '«$1» категориысь бамъёс',
+'subcategories'                  => 'Подкатегориос',
+'category-media-header'          => '«$1» категориысь файлъёс',
+'category-empty'                 => "↓ ''Та категориын али бамъёс но, файлъёс но ӧвӧл.''",
+'hidden-categories'              => '↓ {{PLURAL:$1|Ватэм категория|Ватэм категориос}}',
+'hidden-category-category'       => 'Ватэм категориос',
+'category-subcat-count'          => '↓ {{PLURAL:$2|Со категориын одӥг подкатегория гинэ.|Возьматэмын $1 подкатегория $2 пӧлысь.}}',
+'category-subcat-count-limited'  => '↓ Со категориын $1 подкатегория.',
+'category-article-count'         => '↓ {{PLURAL:$2|Со категориын одӥг бам гинэ.|Возьматэмын $1 бам $2 пӧлысь.}}',
+'category-article-count-limited' => '↓ Со категориын $1 бам.',
+'category-file-count'            => '↓ {{PLURAL:$2|Со категориын одӥг файл гинэ.|Возьматэмын $1 файл $2 пӧлысь.}}',
+'category-file-count-limited'    => 'Со категориын $1 файл.',
+'listingcontinuesabbrev'         => 'азьлань',
+'index-category'                 => 'Индексировать кароно бамъёс',
+'noindex-category'               => 'Индексировать каронтэм бамъёс',
 
-'linkprefix' => '/^(.*?)(„|«)$/sDu',
+'linkprefix'   => '/^(.*?)(„|«)$/sDu',
+'mainpagetext' => "↓ '''MediaWiki движок азинлыко пуктэмын.'''",
 
-'article' => 'Статья',
-'mypage'  => 'Ас бам',
-'mytalk'  => 'викиавтор сярысь вераськон',
+'article'  => 'Статья',
+'mypage'   => 'Ас бам',
+'mytalk'   => 'викиавтор сярысь вераськон',
+'anontalk' => 'Со IP-адрес сярысь вераськон',
 
 # Cologne Blue skin
+'qbpageoptions'  => 'Бамлэн настройкаосыз',
 'qbspecialpages' => 'Ваньмыз панельёс',
+'faq'            => 'Юан-веран',
+'faqpage'        => 'Project:Юан-веран',
 
+# Vector skin
+'vector-action-addsection' => 'Выль темаез ватсано',
+'vector-action-delete'     => 'Быдтоно',
+'vector-action-move'       => 'Мукет интые выжтыны',
+'vector-action-protect'    => 'Утьыны',
+'vector-view-create'       => 'Кылдытоно',
+'vector-view-edit'         => 'Тупатоно',
+'vector-view-history'      => 'История',
+'vector-view-view'         => 'Лыдӟоно',
+'vector-view-viewsource'   => '↓ Кодзэ учкыны',
+
+'errorpagetitle'   => 'Янгыш',
 'help'             => 'Валэктонъёс',
 'history'          => 'Бамлэн историез',
 'history_short'    => 'история',
 'printableversion' => 'Печатламон версия',
 'permalink'        => 'Ӵапак та версиезлы линк',
+'print'            => 'Печатлано',
 'edit'             => 'тупатыны',
 'delete'           => 'Быдтыны',
 'protect'          => 'Утьыны',

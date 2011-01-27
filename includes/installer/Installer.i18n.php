@@ -780,7 +780,7 @@ Die standaardlys word oorgeslaan.",
 Oorweeg om dit handmatig te wysig.",
 	'config-install-sysop' => "Skep 'n gebruiker vir die administrateur",
 	'config-install-mainpage' => 'Skep die hoofblad met standaard inhoud',
-	'config-install-mainpage-failed' => 'Kon nie die hoofblad laai nie.',
+	'config-install-mainpage-failed' => 'Kon nie die hoofblad laai nie: $1',
 	'config-install-done' => "'''Veels geluk!''' 
 U het MediaWiki suksesvol geïnstalleer. 
 
@@ -1281,6 +1281,7 @@ chmod a+w $3</pre>',
 	'config-install-interwiki-sql' => 'Немагчыма знайсьці файл <code>interwiki.sql</code>.',
 	'config-install-interwiki-exists' => "'''Папярэджаньне''': выглядае, што табліца інтэрвікі ўжо запоўненая.
 Сьпіс па змоўчваньні прапушчаны.",
+	'config-install-stats' => 'Ініцыялізацыі статыстыкі',
 	'config-install-secretkey' => 'Стварэньне сакрэтнага ключа',
 	'config-insecure-secret' => "'''Папярэджаньне:''' немагчыма стварыць <code>$1</code> бясьпекі.
 Верагодна трэба зьмяніць яго ўручную.",
@@ -1288,7 +1289,7 @@ chmod a+w $3</pre>',
 	'config-install-sysop' => 'Стварэньне рахунку адміністратара',
 	'config-install-subscribe-fail' => 'Немагчыма падпісацца на «mediawiki-announce»',
 	'config-install-mainpage' => 'Стварэньне галоўнай старонкі са зьместам па змоўчваньні',
-	'config-install-mainpage-failed' => 'Немагчыма ўставіць галоўную старонку.',
+	'config-install-mainpage-failed' => 'Немагчыма ўставіць галоўную старонку: $1',
 	'config-install-done' => "'''Віншуем!'''
 Вы пасьпяхова ўсталявалі MediaWiki.
 
@@ -1679,7 +1680,7 @@ $1
 	'config-install-sysop' => 'Създаване на администраторска сметка',
 	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce',
 	'config-install-mainpage' => 'Създаване на Началната страница със съдържание по подразбиране',
-	'config-install-mainpage-failed' => 'Вмъкването на Началната страница беше невъзможно.',
+	'config-install-mainpage-failed' => 'Вмъкването на Началната страница беше невъзможно: $1',
 	'config-install-done' => "'''Поздравления!'''
 Инсталирането на МедияУики приключи успешно.
 
@@ -1901,7 +1902,7 @@ Lennit [$2 ar c'hemennoù-mañ], mar plij, pe goulennit war #postgresql war irc.
 	'config-install-sysop' => 'Krouidigezh kont ar merour',
 	'config-install-subscribe-fail' => "Ne c'haller ket koumanantiñ da mediawiki-announce",
 	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
-	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ.",
+	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	'config-download-localsettings' => 'Pellgargañ LocalSettings.php',
 	'config-help' => 'skoazell',
 );
@@ -2452,7 +2453,7 @@ Dies muss manuell nachgeholt werden.",
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-subscribe-fail' => 'Abonnierung von „mediawiki-announce“ ist gescheitert',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
-	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden.',
+	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden: $1',
 	'config-install-done' => "'''Herzlichen Glückwunsch!'''
 MediaWiki wurde erfolgreich installiert.
 
@@ -3479,7 +3480,7 @@ Envisagez de le changer manuellement.",
 	'config-install-sysop' => 'Création du compte administrateur',
 	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
-	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale.',
+	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale: $1',
 	'config-install-done' => "'''Félicitations!''' 
 Vous avez réussi à installer MediaWiki. 
 
@@ -3931,7 +3932,7 @@ Considere cambiala manualmente.",
 	'config-install-upgradekey' => 'Xerando a clave de actualización por defecto',
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
-	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal.',
+	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal: $1',
 	'config-install-done' => "'''Parabéns!'''
 Instalou correctamente MediaWiki.
 
@@ -4427,7 +4428,7 @@ Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 	'config-install-subscribe-fail' => 'Abonowanje "mediawiki-announce" njemóžno',
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
-	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć.',
+	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć: $1',
 	'config-download-localsettings' => 'LocalSettings.php sćahnyć',
 	'config-help' => 'pomoc',
 );
@@ -5159,7 +5160,7 @@ Considera cambiar lo manualmente.",
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
 	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
-	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal.',
+	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal: $1',
 	'config-install-done' => "'''Felicitationes!'''
 Tu ha installate MediaWiki con successo.
 
@@ -5636,7 +5637,7 @@ Pertimbangkan untuk mengubahnya secara manual.",
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 	'config-install-subscribe-fail' => 'Tidak dapat berlangganan mediawiki-announce',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
-	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama.',
+	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama: $1',
 	'config-install-done' => "'''Selamat!'''
 Anda telah berhasil menginstal MediaWiki.
 
@@ -6121,7 +6122,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-upgradekey' => '既定の更新キーを生成',
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 	'config-install-mainpage' => '既定の接続でメインページを作成',
-	'config-install-mainpage-failed' => 'メインページを挿入できませんでした。',
+	'config-install-mainpage-failed' => 'メインページを挿入できませんでした:$1',
 	'config-install-done' => "'''おめでとうございます！''' 
 MediaWikiのインストールに成功しました。
 
@@ -6949,7 +6950,7 @@ chmod a+w $3</pre>',
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
 	'config-install-subscribe-fail' => 'Не можам да ве претплатам на објавите на МедијаВики',
 	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
-	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница.',
+	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница: $1',
 	'config-install-done' => "'''Честитаме!'''
 Успешно го инсталиравте МедијаВики.
 
@@ -7100,7 +7101,7 @@ $1
 	'config-install-user' => 'ഡേറ്റാബേസ് ഉപയോക്താവിനെ സൃഷ്ടിക്കുന്നു',
 	'config-install-sysop' => 'കാര്യനിർവാഹക അംഗത്വം സൃഷ്ടിക്കുന്നു',
 	'config-install-mainpage' => 'സ്വാഭാവിക ഉള്ളടക്കത്തോടുകൂടി പ്രധാനതാൾ സൃഷ്ടിക്കുന്നു',
-	'config-install-mainpage-failed' => 'പ്രധാന താൾ ഉൾപ്പെടുത്താൻ കഴിഞ്ഞില്ല.',
+	'config-install-mainpage-failed' => 'പ്രധാന താൾ ഉൾപ്പെടുത്താൻ കഴിഞ്ഞില്ല: $1',
 	'config-install-done' => "'''അഭിനന്ദനങ്ങൾ!'''
 താങ്കൾ വിജയകരമായി മീഡിയവിക്കി ഇൻസ്റ്റോൾ ചെയ്തിരിക്കുന്നു.
 
@@ -7602,7 +7603,7 @@ Overweeg deze handmatig te wijzigen.',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
-	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen.',
+	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen: $1',
 	'config-install-done' => "'''Gefeliciteerd!'''
 U hebt MediaWiki met succes geïnstalleerd.
 
@@ -8401,7 +8402,7 @@ Rozważ ręczne jego ustawienie.",
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
-	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej.',
+	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
 	'config-help' => 'pomoc',
 );
@@ -9310,7 +9311,7 @@ Considere alterá-la manualmente.",
 	'config-install-sysop' => 'A criar a conta de administrador',
 	'config-install-subscribe-fail' => 'Não foi possível subscrever a lista mediawiki-announce',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
-	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal.',
+	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal: $1',
 	'config-install-done' => "'''Parabéns!'''
 Terminou a instalação do MediaWiki.
 
@@ -9917,7 +9918,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-subscribe-fail' => 'Не удаётся подписаться на mediawiki-announce',
 	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
-	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу.',
+	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу: $1',
 	'config-install-done' => "'''Поздравляем!'''
 Вы успешно установили MediaWiki.
 
@@ -10707,7 +10708,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-sysop' => '正在创建管理员用户帐号',
 	'config-install-subscribe-fail' => '无法订阅mediawiki-announce',
 	'config-install-mainpage' => '正在创建显示默认内容的首页',
-	'config-install-mainpage-failed' => '无法插入首页。',
+	'config-install-mainpage-failed' => '无法插入首页:$1',
 	'config-install-done' => "'''恭喜！'''
 您已经成功地安装了MediaWiki。
 

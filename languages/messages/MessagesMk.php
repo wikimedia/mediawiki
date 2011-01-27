@@ -536,6 +536,7 @@ $1',
 
 'ok'                      => 'ОК',
 'pagetitle'               => '$1 - {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Преземено од „$1“',
 'youhavenewmessages'      => 'Имате $1 ($2).',
 'newmessageslink'         => 'нови пораки',
@@ -585,9 +586,9 @@ $1',
 Можеби има грешка во пишувањето на URL или сте следеле погрешна врска.
 Ова може исто така да биде и грешка во програмската опрема на {{SITENAME}}.',
 'nosuchspecialpage' => 'Не постои таква специјална страница',
-'nospecialpagetext' => '<strong>Побаравте неважечка специјална страница.</strong>
+'nospecialpagetext' => '<strong>Побаравте непостоечка специјална страница.</strong>
 
-Списокот на важечки специјални страници ќе го најдете на [[Special:SpecialPages|{{int:specialpages}}]].',
+Списокот на постоечки специјални страници: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Грешка',
@@ -708,6 +709,7 @@ $2',
 Ве молиме активирајте ги и обидете се повторно.',
 'nocookiesfornew'            => 'Корисничката сметка не е создадена бидејќи не можеше да се потврди нејзиниот извор.
 За оваа цел ќе ви требаат колачиња. Проверете дали се овозможени, превчитајте ја страницава и обидете се повторно.',
+'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'Внесовте погрешно корисничко име.',
 'loginsuccesstitle'          => 'Најавувањето е успешно',
 'loginsuccess'               => 'Сега сте најавени на {{SITENAME}} како „$1“.',
@@ -1516,7 +1518,7 @@ $1",
 'right-noratelimit'           => 'Без временски ограничувања на уредување',
 'right-import'                => 'Увезување страници од други викија',
 'right-importupload'          => 'Увезување страници од подигната податотека',
-'right-patrol'                => 'Означување на уредувањата на другите како патролирани',
+'right-patrol'                => 'Означување на уредувањата на другите како испатролирани',
 'right-autopatrol'            => 'Сопствените уредувања автоматски да се обележуваат како испатролирани',
 'right-patrolmarks'           => 'Преглед на одбележаните патролирања на скорешните промени',
 'right-unwatchedpages'        => 'Прегледување на список на ненабљудувани страници',
@@ -1831,12 +1833,12 @@ $1',
 Со клик на насловот на колоната може да се промени подредувањето.',
 'listfiles_search_for'  => 'Побарај име на податотека:',
 'imgfile'               => 'податотека',
-'listfiles'             => 'Список на слики',
+'listfiles'             => 'Список на податотеки',
 'listfiles_thumb'       => 'Минијатура',
 'listfiles_date'        => 'Датум',
 'listfiles_name'        => 'Име',
 'listfiles_user'        => 'Корисник',
-'listfiles_size'        => 'Големина (бајти)',
+'listfiles_size'        => 'Големина',
 'listfiles_description' => 'Опис',
 'listfiles_count'       => 'Верзии',
 
@@ -3248,6 +3250,7 @@ Variants for Chinese language
 'exif-compression-6' => 'JPEG',
 
 'exif-photometricinterpretation-2' => 'ЦЗС (RGB)',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Непознат датум',
 
