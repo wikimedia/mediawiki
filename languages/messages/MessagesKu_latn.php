@@ -1529,7 +1529,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'immobile-source-page'      => 'Nava vê rûpelê nikare were guherandin.',
 
 # Export
-'export' => 'Rûpelên hinarde (export)',
+'export' => 'Rûpelan eksport bike',
 
 # Namespace 8 related
 'allmessages'               => 'Hemû mesajên sîstemê',
