@@ -623,6 +623,7 @@ $wgMessageStructure = array(
 		'template-semiprotected',
 		'hiddencategories',
 		'edittools',
+		'edittools-upload',
 		'nocreatetitle',
 		'nocreatetext',
 		'nocreate-loggedin',

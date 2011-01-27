@@ -994,6 +994,7 @@ class UploadForm extends HTMLForm {
 			'EditTools' => array(
 				'type' => 'edittools',
 				'section' => 'description',
+				'message' => 'edittools-upload',
 			)
 		);
 

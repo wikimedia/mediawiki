@@ -1616,11 +1616,20 @@ class HTMLEditTools extends HTMLFormField {
 	}
 
 	public function getTableRow( $value ) {
-		return "<tr><td></td><td class=\"mw-input\">"
+		if ( empty( $this->mParams['message'] ) ) {
+			$msg = wfMessage( 'edittools' );
+		} else {
+			$msg = wfMessage( $this->mParams['message'] );
+			if ( $msg->isDisabled() ) {
+				$msg = wfMessage( 'edittools' );
+			}
+		}
+		$msg->inContentLanguage();
+		
+		
+		return '<tr><td></td><td class="mw-input">'
 			. '<div class="mw-editTools">'
-			. wfMsgExt( empty( $this->mParams['message'] )
-				? 'edittools' : $this->mParams['message'],
-				array( 'parse', 'content' ) )
+			. $msg->parseAsBlock()
 			. "</div></td></tr>\n";
 	}
 }
