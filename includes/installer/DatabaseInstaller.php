@@ -213,14 +213,6 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Get a Database connection object. Throw an exception if we can't get one.
-	 *
-	 * @return DatabaseBase
-	 */
-	public function getConnectionOrDie() {
-	}
-
-	/**
 	 * Perform database upgrades
 	 *
 	 * @return Boolean
