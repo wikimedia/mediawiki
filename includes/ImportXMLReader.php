@@ -548,7 +548,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 
 			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this->reader,
-						$pageInfo, $revisionInfo ) ) {
+						$pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();

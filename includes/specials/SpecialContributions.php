@@ -666,7 +666,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				array( 'oldid' => intval( $row->rev_id ) )
 			);
 		} else {
-			$d = $date;
+			$d = htmlspecialchars( $date );
 		}
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$d = '<span class="history-deleted">' . $d . '</span>';
