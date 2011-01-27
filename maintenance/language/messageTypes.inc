@@ -296,6 +296,7 @@ $wgOptionalMessages = array(
 	'pagetitle',
 	'filename-prefix-blacklist',
 	'edittools',
+	'edittools-upload',
 	'size-bytes',
 	'size-kilobytes',
 	'size-megabytes',
