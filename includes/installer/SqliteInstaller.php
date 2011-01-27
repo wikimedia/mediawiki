@@ -144,6 +144,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$this->setVar( 'wgDBserver', '' );
 		$this->setVar( 'wgDBuser', '' );
 		$this->setVar( 'wgDBpassword', '' );
+		$this->setupSchemaVars();
 		return $this->getConnection();
 	}
 

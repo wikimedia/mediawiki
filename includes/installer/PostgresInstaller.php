@@ -215,6 +215,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		$this->setupSchemaVars();
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );

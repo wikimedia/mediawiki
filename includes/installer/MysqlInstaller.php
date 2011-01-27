@@ -414,6 +414,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ), __METHOD__ );
 			$conn->selectDB( $dbName );
 		}
+		$this->setupSchemaVars();
 		return $status;
 	}
 

@@ -1086,10 +1086,16 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function selectDB( $db ) {
-		if ( $db == null || $db == $this->mUser ) { return true; }
+		$this->mDBname = $db;
+		if ( $db == null || $db == $this->mUser ) {
+			return true;
+		}
 		$sql = 'ALTER SESSION SET CURRENT_SCHEMA=' . strtoupper($db);
 		$stmt = oci_parse( $this->mConn, $sql );
-		if ( !oci_execute( $stmt ) ) {
+		wfSuppressWarnings();
+		$success = oci_execute( $stmt );
+		wfRestoreWarnings();
+		if ( !$success ) {
 			$e = oci_error( $stmt );
 			if ( $e['code'] != '1435' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );

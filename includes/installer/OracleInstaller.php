@@ -31,6 +31,8 @@ class OracleInstaller extends DatabaseInstaller {
 
 	public $minimumVersion = '9.0.1'; // 9iR1
 
+	protected $sysConn, $userConn;
+
 	public function getName() {
 		return 'oracle';
 	}
@@ -117,7 +119,7 @@ class OracleInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
-					$this->getVar( 'wgDBname' ),
+					$this->getVar( '_InstallUser' ),
 					DBO_SYSDBA | DBO_DDLMODE,
 					$this->getVar( 'wgDBprefix' )
 				);
@@ -135,6 +137,42 @@ class OracleInstaller extends DatabaseInstaller {
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
+		return $status;
+	}
+
+	/**
+	 * Cache the two different types of connection which can be returned by 
+	 * openConnection().
+	 *
+	 * $this->db will be set to the last used connection object.
+	 *
+	 * FIXME: openConnection() should not be doing two different things.
+	 */
+	public function getConnection() {
+		// Check cache
+		if ( $this->useSysDBA ) {
+			$conn = $this->sysConn;
+		} else {
+			$conn = $this->userConn;
+		}
+		if ( $conn !== null ) {
+			$this->db = $conn;
+			return Status::newGood( $conn );
+		}
+
+		// Open a new connection
+		$status = $this->openConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		// Save to the cache
+		if ( $this->useSysDBA ) {
+			$this->sysConn = $status->value;
+		} else {
+			$this->userConn = $status->value;
+		}
+		$this->db = $status->value;
 		return $status;
 	}
 
@@ -175,6 +213,8 @@ class OracleInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
+		$this->setupSchemaVars();
+
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
 			$this->db->setFlag( DBO_DDLMODE );
 			$error = $this->db->sourceFile( "$IP/maintenance/oracle/user.sql" );
@@ -183,6 +223,7 @@ class OracleInstaller extends DatabaseInstaller {
 			}
 		}
 
+
 		return $status;
 	}
 
@@ -190,6 +231,8 @@ class OracleInstaller extends DatabaseInstaller {
 	 * Overload: after this action field info table has to be rebuilt
 	 */
 	public function createTables() {
+		$this->setupSchemaVars();
+		$this->db->selectDB( $this->getVar( 'wgDBuser' ) );
 		$status = parent::createTables();
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
@@ -198,13 +241,21 @@ class OracleInstaller extends DatabaseInstaller {
 	}
 
 	public function getSchemaVars() {
-		/**
-		 * The variables $_OracleDefTS, $_OracleTempTS are used by maintenance/oracle/user.sql
-		 */
-		return array(
-			'_OracleDefTS' => $this->getVar( '_OracleDefTS' ),
-			'_OracleTempTS' => $this->getVar( '_OracleTempTS' ),
+		$varNames = array(
+			# These variables are used by maintenance/oracle/user.sql
+			'_OracleDefTS',
+			'_OracleTempTS',
+			'wgDBuser',
+			'wgDBpassword',
+
+			# These are used by tables.sql
+			'wgDBprefix',
 		);
+		$vars = array();
+		foreach ( $varNames as $name ) {
+			$vars[$name] = $this->getVar( $name );
+		}
+		return $vars;
 	}
 
 	public function getLocalSettings() {
