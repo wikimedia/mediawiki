@@ -55,6 +55,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Upload warnings now show a thumbnail of the uploaded file
 * Introduced the edittools-upload message, which will be inserted under the
   upload form instead of edittools if available
+* (bug 26285) Extensions will be automatically generated on upload if the user
+  specified a filename without extension. 
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
