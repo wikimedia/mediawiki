@@ -195,6 +195,8 @@ abstract class DatabaseInstaller {
 		$status = $this->getConnection();
 		if ( $status->isOK() ) {
 			$status->value->setSchemaVars( $this->getSchemaVars() );
+		} else {
+			throw new MWException( __METHOD__.': unexpected DB connection error' );
 		}
 	}
 

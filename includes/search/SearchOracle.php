@@ -246,8 +246,16 @@ class SearchOracle extends SearchEngine {
 				'si_title' => $title,
 				'si_text' => $text
 			), 'SearchOracle::update' );
-		$dbw->query("CALL ctx_ddl.sync_index('si_text_idx')");
-		$dbw->query("CALL ctx_ddl.sync_index('si_title_idx')");
+
+		// Sync the index
+		// We need to specify the DB name (i.e. user/schema) here so that 
+		// it can work from the installer, where
+		//     ALTER SESSION SET CURRENT_SCHEMA = ...
+		// was used.
+		$dbw->query( "CALL ctx_ddl.sync_index(" . 
+			$dbw->addQuotes( $dbw->getDBname() . '.si_text_idx' ) . ")" );
+		$dbw->query( "CALL ctx_ddl.sync_index(" . 
+			$dbw->addQuotes( $dbw->getDBname() . '.si_title_idx' ) . ")" );
 	}
 
 	/**

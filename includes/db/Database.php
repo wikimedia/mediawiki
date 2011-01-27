@@ -1474,6 +1474,7 @@ abstract class DatabaseBase implements DatabaseType {
 		# Stub.  Shouldn't cause serious problems if it's not overridden, but
 		# if your database engine supports a concept similar to MySQL's
 		# databases you may as well.
+		$this->mDBname = $db;
 		return true;
 	}
 

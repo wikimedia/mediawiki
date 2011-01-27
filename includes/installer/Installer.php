@@ -1272,7 +1272,6 @@ abstract class Installer {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
 		$installer->preInstall();
-		$installer->setupSchemaVars();
 		$steps = $this->getInstallSteps( $installer );
 		foreach( $steps as $stepObj ) {
 			$name = $stepObj['name'];
