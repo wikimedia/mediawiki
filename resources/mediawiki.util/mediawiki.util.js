@@ -486,7 +486,7 @@
 			 *	<let-dig-hyp> ::= <let-dig> | "-"
 			 *	<let-dig> ::= <letter> | <digit>
 			 */
-			var rfc1034_ldh_str = "a-z0-9\\-",
+				rfc1034_ldh_str = "a-z0-9\\-",
 
 				HTML5_email_regexp = new RegExp(
 					// start of string
