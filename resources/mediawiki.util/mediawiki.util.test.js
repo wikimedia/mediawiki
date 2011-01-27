@@ -273,6 +273,17 @@
 						mw.test.addTest( 'mw.util.validateEmail( "user@localhost" )',
 							'true (boolean)' );
 
+						// testEmailWithCommasAreInvalids
+						mw.test.addTest( 'mw.util.validateEmail( "user,foo@example.org" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.validateEmail( "userfoo@ex,ample.org" )',
+							'false (boolean)' );
+						// testEmailWithHyphens
+						mw.test.addTest( 'mw.util.validateEmail( "user-foo@example.org" )',
+							'true (boolean)' );
+						mw.test.addTest( 'mw.util.validateEmail( "userfoo@ex-ample.org" )',
+							'true (boolean)' );
+						
 						// jQuery plugins
 						mw.test.addHead( 'jQuery plugins' );
 

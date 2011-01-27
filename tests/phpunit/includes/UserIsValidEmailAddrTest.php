@@ -47,6 +47,15 @@ class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 		$this->invalid( "first last@mycompany" );
 		$this->invalid( "firstlast@my company" );
 	}
+	// bug 26948 : comma were matched by an incorrect regexp range
+	function testEmailWithCommasAreInvalids() {
+		$this->invalid( "user,foo@example.org" );
+		$this->invalid( "userfoo@ex,ample.org" );
+	}
+	function testEmailWithHyphens() {
+		$this->valid( "user-foo@example.org" );
+		$this->valid( "userfoo@ex-ample.org" );
+	}
 	function testEmailDomainCanNotBeginWithDot() {
 		$this->invalid( "user@." );
 		$this->invalid( "user@.localdomain" );
