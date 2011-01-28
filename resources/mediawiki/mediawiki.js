@@ -307,7 +307,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		function generateId() {
 			var id = '';
-			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 			for ( var i = 0, r; i < 32; i++ ) {
 				r = Math.floor( Math.random() * seed.length );
 				id += seed.substring( r, r + 1 );
@@ -1137,7 +1137,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		this.element = function( name, attrs, contents ) {
 			var s = '<' + name;
-			for ( attrName in attrs ) {
+			for ( var attrName in attrs ) {
 				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
 			}
 			if ( typeof contents == 'undefined' || contents === null ) {
@@ -1147,7 +1147,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Regular open tag
 			s += '>';
-			if (typeof contents === 'string') {
+			if ( typeof contents === 'string') {
 				// Escaped
 				s += this.escape( contents );
 			} else if ( contents instanceof this.Raw ) {
