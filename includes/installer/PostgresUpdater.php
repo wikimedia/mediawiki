@@ -514,7 +514,7 @@ END;
 	 * Verify that this user is configured correctly
 	 */
 	protected function checkPgUser() {
-		global $wgDBmwschema, $wgDBts2schema, $wgDBuser;
+		global $wgDBmwschema, $wgDBuser;
 
 		$config = $this->db->selectField( 
 			'pg_catalog.pg_user', "array_to_string(useconfig,'*')",
@@ -535,10 +535,6 @@ END;
 		if ( strpos( $search_path, $wgDBmwschema ) === false ) {
 			$this->output( "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n" );
 			$search_path = "$wgDBmwschema, $search_path";
-		}
-		if ( strpos( $search_path, $wgDBts2schema ) === false ) {
-			$this->output( "Adding in schema \"$wgDBts2schema\" to search_path for user \"$wgDBuser\"\n" );
-			$search_path = "$search_path, $wgDBts2schema";
 		}
 		$search_path = str_replace( ', ,', ',', $search_path );
 		if ( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
