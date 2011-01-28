@@ -1180,8 +1180,6 @@ $wgSQLMode = '';
 
 /** Mediawiki schema */
 $wgDBmwschema       = 'mediawiki';
-/** Tsearch2 schema */
-$wgDBts2schema      = 'public';
 
 /** To override default SQLite data directory ($docroot/../data) */
 $wgSQLiteDataDir    = '';

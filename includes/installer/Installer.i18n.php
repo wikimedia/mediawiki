@@ -195,7 +195,6 @@ but it will not let you store characters above the [http://en.wikipedia.org/wiki
 	'config-mysql-old'                => 'MySQL $1 or later is required, you have $2.',
 	'config-db-port'                  => 'Database port:',
 	'config-db-schema'                => 'Schema for MediaWiki',
-	'config-db-ts2-schema'            => 'Schema for tsearch2',
 	'config-db-schema-help'           => 'The above schemas are usually correct.
 Only change them if you know you need to.',
 	'config-sqlite-dir'               => 'SQLite data directory:',
@@ -242,8 +241,6 @@ Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-
 
 Check the host, username and password below and try again.',
 	'config-invalid-schema'           => 'Invalid schema for MediaWiki "$1".
-Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
-	'config-invalid-ts2schema'        => 'Invalid schema for TSearch2 "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-postgres-old'             => 'PostgreSQL $1 or later is required, you have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
@@ -450,9 +447,6 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
 	'config-install-pg-plpgsql'       => 'Checking for language PL/pgSQL',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
-	'config-install-pg-ts2'           => 'Checking for tsearch2',
-	'config-install-pg-ts2-failed'    => "'''FAILED''' tsearch2 must be installed in the database $1.
-Please read [$2 these instructions] or ask on #postgresql on irc.freenode.net",
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
