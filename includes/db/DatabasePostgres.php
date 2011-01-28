@@ -192,7 +192,7 @@ class DatabasePostgres extends DatabaseBase {
 
 		$this->doQuery( "SET client_encoding='UTF8'" );
 
-		global $wgDBmwschema, $wgDBts2schema;
+		global $wgDBmwschema;
 		if ( isset( $wgDBmwschema )
 			&& $wgDBmwschema !== 'mediawiki'
 			&& preg_match( '/^\w+$/', $wgDBmwschema )
@@ -293,27 +293,6 @@ class DatabasePostgres extends DatabaseBase {
 				print "OK</li>\n";
 			}
 
-			if ( $this->numeric_version < 8.3 ) {
-				// Tsearch2 checks
-				print '<li>Checking that tsearch2 is installed in the database "' .
-					htmlspecialchars( $wgDBname ) . '"...';
-				if ( !$this->tableExists( 'pg_ts_cfg', $wgDBts2schema ) ) {
-					print '<b>FAILED</b>. tsearch2 must be installed in the database "' .
-						htmlspecialchars( $wgDBname ) . '".';
-					print 'Please see <a href="http://www.devx.com/opensource/Article/21674/0/page/2">this article</a>';
-					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
-					dieout( );
-				}
-				print "OK</li>\n";
-				print '<li>Ensuring that user "' . htmlspecialchars( $wgDBuser ) .
-					'" has select rights on the tsearch2 tables...';
-				foreach ( array( 'cfg', 'cfgmap', 'dict', 'parser' ) as $table ) {
-					$SQL = "GRANT SELECT ON pg_ts_$table TO $safeuser";
-					$this->doQuery( $SQL );
-				}
-				print "OK</li>\n";
-			}
-
 			// Setup the schema for this user if needed
 			$result = $this->schemaExists( $wgDBmwschema );
 			$safeschema = $this->addIdentifierQuotes( $wgDBmwschema );
@@ -359,84 +338,6 @@ class DatabasePostgres extends DatabaseBase {
 		} // end superuser
 
 		if ( !defined( 'POSTGRES_SEARCHPATH' ) ) {
-
-			if ( $this->numeric_version < 8.3 ) {
-				// Do we have the basic tsearch2 table?
-				print '<li>Checking for tsearch2 in the schema "' . htmlspecialchars( $wgDBts2schema ) . '"...';
-				if ( !$this->tableExists( 'pg_ts_dict', $wgDBts2schema ) ) {
-					print '<b>FAILED</b>. Make sure tsearch2 is installed. See <a href="';
-					print 'http://www.devx.com/opensource/Article/21674/0/page/2">this article</a>';
-					print " for instructions.</li>\n";
-					dieout( );
-				}
-				print "OK</li>\n";
-
-				// Does this user have the rights to the tsearch2 tables?
-				$ctype = pg_fetch_result( $this->doQuery( 'SHOW lc_ctype' ), 0, 0 );
-				print '<li>Checking tsearch2 permissions...';
-				// Let's check all four, just to be safe
-				error_reporting( 0 );
-				$ts2tables = array( 'cfg', 'cfgmap', 'dict', 'parser' );
-				$safetsschema = $this->addIdentifierQuotes( $wgDBts2schema );
-				foreach ( $ts2tables as $tname ) {
-					$SQL = "SELECT count(*) FROM $safetsschema.pg_ts_$tname";
-					$res = $this->doQuery( $SQL );
-					if ( !$res ) {
-						print "<b>FAILED</b> to access " . htmlspecialchars( "pg_ts_$tname" ) .
-							". Make sure that the user \"". htmlspecialchars( $wgDBuser ) .
-							"\" has SELECT access to all four tsearch2 tables</li>\n";
-						dieout( );
-					}
-				}
-				$SQL = "SELECT ts_name FROM $safetsschema.pg_ts_cfg WHERE locale = " . $this->addQuotes( $ctype ) ;
-				$SQL .= " ORDER BY CASE WHEN ts_name <> 'default' THEN 1 ELSE 0 END";
-				$res = $this->doQuery( $SQL );
-				error_reporting( E_ALL );
-				if ( !$res ) {
-					print "<b>FAILED</b>. Could not determine the tsearch2 locale information</li>\n";
-					dieout("</ul>");
-				}
-				print 'OK</li>';
-
-				// Will the current locale work? Can we force it to?
-				print '<li>Verifying tsearch2 locale with ' . htmlspecialchars( $ctype ) . '...';
-				$rows = $this->numRows( $res );
-				$resetlocale = 0;
-				if ( !$rows ) {
-					print "<b>not found</b></li>\n";
-					print '<li>Attempting to set default tsearch2 locale to "' . htmlspecialchars( $ctype ) . '"...';
-					$resetlocale = 1;
-				} else {
-					$tsname = pg_fetch_result( $res, 0, 0 );
-					if ( $tsname != 'default' ) {
-						print "<b>not set to default (" . htmlspecialchars( $tsname ) . ")</b>";
-						print "<li>Attempting to change tsearch2 default locale to \"" .
-							htmlspecialchars( $ctype ) . "\"...";
-						$resetlocale = 1;
-					}
-				}
-				if ( $resetlocale ) {
-					$SQL = "UPDATE $safetsschema.pg_ts_cfg SET locale = " . $this->addQuotes( $ctype ) . " WHERE ts_name = 'default'";
-					$res = $this->doQuery( $SQL );
-					if ( !$res ) {
-						print '<b>FAILED</b>. ';
-						print 'Please make sure that the locale in pg_ts_cfg for "default" is set to "' .
-							htmlspecialchars( $ctype ) . "\"</li>\n";
-						dieout( );
-					}
-					print 'OK</li>';
-				}
-
-				// Final test: try out a simple tsearch2 query
-				$SQL = "SELECT $safetsschema.to_tsvector('default','MediaWiki tsearch2 testing')";
-				$res = $this->doQuery( $SQL );
-				if ( !$res ) {
-					print '<b>FAILED</b>. Specifically, "' . htmlspecialchars( $SQL ) . '" did not work.</li>';
-					dieout( );
-				}
-				print 'OK</li>';
-			}
-
 			// Install plpgsql if needed
 			$this->setup_plpgsql();
 
