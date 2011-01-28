@@ -18,13 +18,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
+ * @defgroup PHPBugTests
+ * @ingroup PHPBugTests
  */
 
 /**
  * Test for PHP+libxml2 bug which breaks XML input subtly with certain versions.
  * Known fixed with PHP 5.2.9 + libxml2-2.7.3
  * @see http://bugs.php.net/bug.php?id=45996
+ * @ingroup PHPBugTests
  */
 class PhpXmlBugTester {
 	private $parsedData = '';
@@ -46,6 +48,7 @@ class PhpXmlBugTester {
 /**
  * Test for PHP bug #50394 (PHP 5.3.x conversion to null only, not 5.2.x)
  * @see http://bugs.php.net/bug.php?id=45996
+ * @ingroup PHPBugTests
  */
 class PhpRefCallBugTester {
 	public $ok = false;

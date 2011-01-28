@@ -24,11 +24,9 @@
 abstract class Installer {
 
 	/**
-	 * TODO: make protected?
-	 *
 	 * @var array
 	 */
-	public $settings;
+	protected $settings;
 
 	/**
 	 * Cached DB installer instances, access using getDBInstaller().

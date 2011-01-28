@@ -31,12 +31,13 @@ class WebInstaller extends Installer {
 	 *
 	 * @var array
 	 */
-	public $session;
+	protected $session;
 
 	/**
 	 * Captured PHP error text. Temporary.
+	 * @var array
 	 */
-	public $phpErrors;
+	protected $phpErrors;
 
 	/**
 	 * The main sequence of page names. These will be displayed in turn.
@@ -44,6 +45,7 @@ class WebInstaller extends Installer {
 	 *    * Add it here
 	 *    * Add a config-page-<name> message
 	 *    * Add a WebInstaller_<name> class
+	 * @var array
 	 */
 	public $pageSequence = array(
 		'Language',
@@ -60,8 +62,9 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Out of sequence pages, selectable by the user at any time.
+	 * @var array
 	 */
-	public $otherPages = array(
+	protected $otherPages = array(
 		'Restart',
 		'Readme',
 		'ReleaseNotes',
@@ -72,24 +75,35 @@ class WebInstaller extends Installer {
 	/**
 	 * Array of pages which have declared that they have been submitted, have validated
 	 * their input, and need no further processing.
+	 * @var array
 	 */
-	public $happyPages;
+	protected $happyPages;
 
 	/**
 	 * List of "skipped" pages. These are pages that will automatically continue
 	 * to the next page on any GET request. To avoid breaking the "back" button,
 	 * they need to be skipped during a back operation.
+	 * @var array
 	 */
-	public $skippedPages;
+	protected $skippedPages;
 
 	/**
 	 * Flag indicating that session data may have been lost.
+	 * @var bool
 	 */
 	public $showSessionWarning = false;
 
-	public $tabIndex = 1;
+	/**
+	 * Numeric index of the page we're on
+	 * @var int
+	 */
+	protected $tabIndex = 1;
 
-	public $currentPageName;
+	/**
+	 * Name of the page we're on
+	 * @var string
+	 */
+	protected $currentPageName;
 
 	/**
 	 * Constructor.
@@ -265,6 +279,10 @@ class WebInstaller extends Installer {
 		return $this->finish();
 	}
 
+	/**
+	 * Find the next page in sequence that hasn't been completed
+	 * @return int
+	 */
 	public function getLowestUnhappy() {
 		if ( count( $this->happyPages ) == 0 ) {
 			return 0;
@@ -348,9 +366,19 @@ class WebInstaller extends Installer {
 	}
 
 	/**
+	 * We're restarting the installation, reset the session, happyPages, etc
+	 */
+	public function reset() {
+		$this->session = array();
+		$this->happyPages = array();
+		$this->settings = array();
+	}
+
+	/**
 	 * Get a URL for submission back to the same script.
 	 *
 	 * @param $query: Array
+	 * @return string
 	 */
 	public function getUrl( $query = array() ) {
 		$url = $this->request->getRequestURL();
@@ -368,7 +396,6 @@ class WebInstaller extends Installer {
 	 * Get a WebInstallerPage by name.
 	 *
 	 * @param $pageName String
-	 *
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
@@ -396,6 +423,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Set a session variable.
+	 * @param $name String key for the variable
+	 * @param $value Mixed
 	 */
 	public function setSession( $name, $value ) {
 		$this->session[$name] = $value;
@@ -403,6 +432,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get the next tabindex attribute value.
+	 * @return int
 	 */
 	public function nextTabIndex() {
 		return $this->tabIndex++;
@@ -608,6 +638,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output a help box.
+	 * @param $msg String key for wfMsg()
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -920,6 +951,10 @@ class WebInstaller extends Installer {
 		return $url;
 	}
 
+	/**
+	 * Helper for "Download LocalSettings" link on WebInstall_Complete
+	 * @return String Html for download link
+	 */
 	public function downloadLinkHook( $text, $attribs, $parser  ) {
 		$img = Html::element( 'img', array(
 			'src' => '../skins/common/images/download-32.png',
