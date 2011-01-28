@@ -83,13 +83,13 @@
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki JavaScript library</p>'
 							+ '<p>' + skinLinksText + '</p>'
 							+ '<hr />'
-							+ '<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\';font-size:0.8em; width:100%;">'
+							+ '<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\'; width:100%;">'
 							+ '<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>'
 							+ '</table>'
 						);
 
 						// Override wikitable padding for <td>
-						$('head').append('<style>#mw-mwutiltest-table tr td {padding:0 !important;}</style>');
+						mw.util.addCSS( '#mw-mwutiltest-table tr td { padding:0 !important; }' );
 
 						mw.test.$table = $( 'table#mw-mwutiltest-table' );
 
@@ -319,73 +319,75 @@
 						var	exec,
 							result,
 							resulttype,
-							numberoftests = 0,
-							numberofpasseds = 0,
-							numberofpartials = 0,
-							numberoferrors = 0,
-							headnumberoftests = 0,
-							headnumberofpasseds = 0,
-							headnumberofpartials = 0,
-							headnumberoferrors = 0,
-							numberofheaders = 0,
+							numberOfTests = 0,
+							numberOfPasseds = 0,
+							numberOfPartials = 0,
+							numberOfErrors = 0,
+							headNumberOfTests = 0,
+							headNumberOfPasseds = 0,
+							headNumberOfPartials = 0,
+							headNumberOfErrors = 0,
+							numberOfHeaders = 0,
+							previousHeadTitle = '',
 							$testrows = mw.test.$table.find( 'tr:has(td)' );
 
-						$.each( mw.test.addedTests, function( i ) {
+						$.each( mw.test.addedTests, function( i, item ) {
 
 							// New header
-							if( mw.test.addedTests[i][0] == 'HEADER' ) {
-								headertitle = mw.test.addedTests[i][1];
+							if( item[0] == 'HEADER' ) {
 
 								// update current header with its tests results
-								mw.test.$table.find( 'tr#mw-mwutiltest-head'+numberofheaders+' > th' )
-									.text( headertitle + ' ('
-										+ 'T: ' + headnumberoftests
-										+ ' ok: ' + headnumberofpasseds
-										+ ' partial: ' + headnumberofpartials
-										+ ' err: ' + headnumberoferrors	
-										+ ')' );
+								mw.test.$table.find( 'tr#mw-mwutiltest-head' + ( numberOfHeaders ) +' > th' )
+									.html( previousHeadTitle + ' <span style="float:right">('
+										+ 'T: ' + headNumberOfTests
+										+ ' ok: ' + headNumberOfPasseds
+										+ ' partial: ' + headNumberOfPartials
+										+ ' err: ' + headNumberOfErrors	
+										+ ')</span>' );
 
-								numberofheaders++;
+								numberOfHeaders++;
 								// Reset values for the new header;
-								headnumberoftests = 0;
-								headnumberofpasseds = 0;
-								headnumberofpartials = 0;
-								headnumberoferrors = 0;
+								headNumberOfTests = 0;
+								headNumberOfPasseds = 0;
+								headNumberOfPartials = 0;
+								headNumberOfErrors = 0;
+								
+								previousHeadTitle = mw.test.addedTests[i][1];
 								
 								return true;
 							}
 
-							exec = mw.test.addedTests[i][0];
-							shouldreturn = mw.test.addedTests[i][1];
-							shouldcontain = mw.test.addedTests[i][2];
+							exec = item[0];
+							shouldreturn = item[1];
+							shouldcontain = item[2];
 							
-							numberoftests++;
-							headnumberoftests++;
-							doesreturn = eval( exec );
-							doesreturn = doesreturn + ' (' + typeof doesreturn + ')';
-							$thisrow = $testrows.eq( i - numberofheaders ); // since headers are rows as well
-							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesreturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
+							numberOfTests++;
+							headNumberOfTests++;
+							doesReturn = eval( exec );
+							doesReturn = doesReturn + ' (' + typeof doesReturn + ')';
+							$thisrow = $testrows.eq( i - numberOfHeaders ); // since headers are rows as well
+							$thisrow.find( '> td' ).eq(2).html( mw.html.escape( doesReturn ).replace(/  /g, '&nbsp;&nbsp;' ) );
 
-							if ( doesreturn.indexOf( shouldcontain ) !== -1 ) {
-								if ( doesreturn == shouldreturn ) {
+							if ( doesReturn.indexOf( shouldcontain ) !== -1 ) {
+								if ( doesReturn == shouldreturn ) {
 									$thisrow.find( '> td' ).eq(3).css( 'background', '#AFA' ).text( 'OK' );
-									numberofpasseds++;
-									headnumberofpasseds++;
+									numberOfPasseds++;
+									headNumberOfPasseds++;
 								} else {
 									$thisrow.find( '> td' ).eq(3).css( 'background', '#FFA' ).html( '<small>PARTIALLY</small>' );
-									numberofpartials++;
-									headnumberofpartials++;
+									numberOfPartials++;
+									headNumberOfPartials++;
 								}
 							} else {
 								$thisrow.find( '> td' ).eq(3).css( 'background', '#FAA' ).text( 'ERROR' );
-								numberoferrors++;
-								headnumberoferrors++;
+								numberOfErrors++;
+								headNumberOfErrors++;
 							}
 
 						} );
-						mw.test.$table.before( '<p><strong>Ran ' + numberoftests + ' tests. ' +
-							numberofpasseds + ' passed test(s). ' + numberoferrors + ' error(s). ' +
-							numberofpartials + ' partially passed test(s). </p>' );
+						mw.test.$table.before( '<p><strong>Ran ' + numberOfTests + ' tests. ' +
+							numberOfPasseds + ' passed test(s). ' + numberOfErrors + ' error(s). ' +
+							numberOfPartials + ' partially passed test(s). </p>' );
 
 						// hide all tests. TODO hide only OK?
 						mw.test.$table.find( '.mw-mwutiltest-test' ).hide();
