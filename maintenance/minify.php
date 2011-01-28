@@ -35,6 +35,9 @@ class MinifyScript extends Maintenance {
 			"Directory for output. If this is not specified, and neither is --outfile, then the\n" .
 			"output files will be sent to the same directories as the input files.",
 			false, true );
+		$this->addOption( 'minify-vertical-space',
+			"Boolean value for minifying the vertical space for javascript.",
+			false, true );
 		$this->mDescription = "Minify a file or set of files.\n\n" .
 			"If --outfile is not specified, then the output file names will have a .min extension\n" .
 			"added, e.g. jquery.js -> jquery.min.js.";
@@ -96,6 +99,8 @@ class MinifyScript extends Maintenance {
 	}
 
 	public function minify( $inPath, $outPath ) {
+		global $wgResourceLoaderMinifyJSVerticalSpace;
+
 		$extension = $this->getExtension( $inPath );
 		$this->output( basename( $inPath ) . ' -> ' . basename( $outPath ) . '...' );
 
@@ -112,7 +117,7 @@ class MinifyScript extends Maintenance {
 
 		switch ( $extension ) {
 			case 'js':
-				$outText = JSMin::minify( $inText );
+				$outText = JavaScriptDistiller::stripWhiteSpace( $inText, $this->getOption( 'minify-vertical-space', $wgResourceLoaderMinifyJSVerticalSpace ) );
 				break;
 			case 'css':
 				$outText = CSSMin::minify( $inText );
