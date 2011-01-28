@@ -624,7 +624,7 @@ class WebInstaller_Name extends WebInstallerPage {
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPassword2', '_AdminEmail',
-			'_Subscribe', '_SkipOptional' ) );
+			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ) );
 
 		// Validate site name
 		if ( strval( $this->getVar( 'wgSitename' ) ) === '' ) {

@@ -46,6 +46,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', 'wgRightsCode', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
+				'wgMetaNamespace'
 			),
 			$db->getGlobalNames()
 		);
@@ -171,6 +172,10 @@ class LocalSettingsGenerator {
 
 		$rights = $this->values['wgRightsUrl'] ? '' : '#';
 		$hashedUploads = $this->safeMode ? '' : '#';
+		$metaNamespace = '';
+		if( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
+			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
+		}
 
 		switch( $this->values['wgMainCacheType'] ) {
 			case 'anything':
@@ -205,8 +210,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # \$wgDisableOutputCompression = true;
 
-\$wgSitename         = \"{$this->values['wgSitename']}\";
-
+\$wgSitename      = \"{$this->values['wgSitename']}\";
+{$metaNamespace}
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs please see:
