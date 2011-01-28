@@ -88,8 +88,10 @@
 							+ '</table>'
 						);
 
-						// Override wikitable padding for <td>
-						mw.util.addCSS( '#mw-mwutiltest-table tr td { padding:0 !important; }' );
+						mw.util.addCSS(
+							'#mw-mwutiltest-table tr td { padding:0 !important; }' +	// Override wikitable padding for <td>
+							'.mw-mwutiltest-head:hover { cursor: pointer; } '			// Header-clicks hide/show the below rows
+						);
 
 						mw.test.$table = $( 'table#mw-mwutiltest-table' );
 
@@ -295,7 +297,7 @@
 							'true (boolean)' );
 						mw.test.addTest( 'mw.util.validateEmail( "userfoo@ex-ample.org" )',
 							'true (boolean)' );
-						
+
 						// jQuery plugins
 						mw.test.addHead( 'jQuery plugins' );
 
@@ -337,12 +339,12 @@
 							if( item[0] == 'HEADER' ) {
 
 								// update current header with its tests results
-								mw.test.$table.find( 'tr#mw-mwutiltest-head' + ( numberOfHeaders ) +' > th' )
+								mw.test.$table.find( 'tr#mw-mwutiltest-head' + numberOfHeaders +' > th' )
 									.html( previousHeadTitle + ' <span style="float:right">('
 										+ 'T: ' + headNumberOfTests
 										+ ' ok: ' + headNumberOfPasseds
 										+ ' partial: ' + headNumberOfPartials
-										+ ' err: ' + headNumberOfErrors	
+										+ ' err: ' + headNumberOfErrors
 										+ ')</span>' );
 
 								numberOfHeaders++;
@@ -351,16 +353,16 @@
 								headNumberOfPasseds = 0;
 								headNumberOfPartials = 0;
 								headNumberOfErrors = 0;
-								
-								previousHeadTitle = mw.test.addedTests[i][1];
-								
+
+								previousHeadTitle = item[1];
+
 								return true;
 							}
 
 							exec = item[0];
 							shouldreturn = item[1];
 							shouldcontain = item[2];
-							
+
 							numberOfTests++;
 							headNumberOfTests++;
 							doesReturn = eval( exec );
