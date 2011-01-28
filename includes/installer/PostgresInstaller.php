@@ -21,7 +21,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		'wgDBuser',
 		'wgDBpassword',
 		'wgDBmwschema',
-		'wgDBts2schema',
 	);
 
 	var $minimumVersion = '8.3';
@@ -288,12 +287,10 @@ class PostgresInstaller extends DatabaseInstaller {
 	function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$schema = $this->getVar( 'wgDBmwschema' );
-		$ts2 = $this->getVar( 'wgDBts2schema' );
 		return
 "# Postgres specific settings
 \$wgDBport           = \"{$port}\";
-\$wgDBmwschema       = \"{$schema}\";
-\$wgDBts2schema      = \"{$ts2}\";";
+\$wgDBmwschema       = \"{$schema}\";";
 	}
 
 	public function preUpgrade() {
