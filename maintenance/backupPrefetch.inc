@@ -45,9 +45,12 @@ class BaseDump {
 	var $atPageEnd = false;
 	var $lastPage = 0;
 	var $lastRev = 0;
+	var $infiles = null;
 
 	function BaseDump( $infile ) {
+		$this->infiles = explode(';',$infile);
 		$this->reader = new XMLReader();
+		$infile = array_shift($this->infiles);
 		$this->reader->open( $infile );
 	}
 
@@ -101,7 +104,12 @@ class BaseDump {
 				$this->atPageEnd = false;
 			}
 		} else {
-			$this->atEnd = true;
+			$this->close();
+			if (count($this->infiles)) {
+				$infile = array_shift($this->infiles);
+				$this->reader->open( $infile );
+				$this->atEnd = false;
+			}
 		}
 	}
 
