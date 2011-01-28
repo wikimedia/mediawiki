@@ -661,7 +661,7 @@ abstract class UploadBase {
 	 * @return File: stashed file
 	 */
 	public function stashSessionFile( $key = null ) { 
-		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();;
+		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 		$data = array( 
 			'mFileProps' => $this->mFileProps,
 			'mSourceType' => $this->getSourceType(),
