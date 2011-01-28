@@ -1002,7 +1002,7 @@ class OutputPage {
 			$lb->constructSet( 'page', $dbr ),
 			__METHOD__,
 			array(),
-			array( 'page_props' => array( 'LEFT JOIN', array( 'pp_propname' => 'hiddencat', 'pp_page = page_id' ) )
+			array( 'page_props' => array( 'LEFT JOIN', array( 'pp_propname' => 'hiddencat', 'pp_page = page_id' ) ) )
 		);
 
 		# Add the results to the link cache
