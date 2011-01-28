@@ -4152,9 +4152,10 @@ class Title {
 	public function getCategorySortkey( $prefix = '' ) {
 		$unprefixed = $this->getText();
 		if ( $prefix !== '' ) {
-			# Separate with a null byte, so the unprefixed part is only used as
-			# a tiebreaker when two pages have the exact same prefix -- null
-			# sorts before everything else (hopefully).
+			# Separate with a line feed, so the unprefixed part is only used as
+			# a tiebreaker when two pages have the exact same prefix.
+			# In UCA, tab is the only character that can sort above LF
+			# so we strip both of them from the original prefix.
 			$prefix = strtr( $prefix, "\n\t", '  ' );
 			return "$prefix\n$unprefixed";
 		}
