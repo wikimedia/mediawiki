@@ -324,7 +324,12 @@ class ApiParse extends ApiBase {
 		foreach ( $links as $link ) {
 			$entry = array();
 			$bits = explode( ':', $link, 2 );
+			$title = Title::newFromText( $link );
+			
 			$entry['lang'] = $bits[0];
+			if ( $title ) {
+				$entry['url'] = $title->getFullURL();
+			}
 			$this->getResult()->setContent( $entry, $bits[1] );
 			$result[] = $entry;
 		}
