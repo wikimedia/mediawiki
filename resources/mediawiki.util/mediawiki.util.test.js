@@ -83,7 +83,7 @@
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki JavaScript library</p>'
 							+ '<p>' + skinLinksText + '</p>'
 							+ '<hr />'
-							+ '<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\'; width:100%;">'
+							+ '<table id="mw-mwutiltest-table" class="wikitable" style="white-space:break; font-family:monospace,\'Courier New\'; width:100%;">'
 							+ '<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>'
 							+ '</table>'
 						);
