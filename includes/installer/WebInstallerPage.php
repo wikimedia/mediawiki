@@ -1082,9 +1082,7 @@ class WebInstaller_Restart extends WebInstallerPage {
 		if ( $r->wasPosted() ) {
 			$really = $r->getVal( 'submit-restart' );
 			if ( $really ) {
-				$this->parent->session = array();
-				$this->parent->happyPages = array();
-				$this->parent->settings = array();
+				$this->parent->reset();
 			}
 			return 'continue';
 		}
