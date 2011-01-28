@@ -592,7 +592,6 @@ abstract class Installer {
 		global $wgLang;
 
 		$compiledDBs = array();
-		$goodNames = array();
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
@@ -601,9 +600,7 @@ abstract class Installer {
 
 			if ( $db->isCompiled() ) {
 				$compiledDBs[] = $name;
-				$goodNames[] = $readableName;
 			}
-
 			$allNames[] = $readableName;
 		}
 
