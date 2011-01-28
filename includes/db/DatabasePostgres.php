@@ -193,13 +193,12 @@ class DatabasePostgres extends DatabaseBase {
 		$this->doQuery( "SET client_encoding='UTF8'" );
 
 		global $wgDBmwschema, $wgDBts2schema;
-		if ( isset( $wgDBmwschema ) && isset( $wgDBts2schema )
+		if ( isset( $wgDBmwschema )
 			&& $wgDBmwschema !== 'mediawiki'
 			&& preg_match( '/^\w+$/', $wgDBmwschema )
-			&& preg_match( '/^\w+$/', $wgDBts2schema )
 		) {
 			$safeschema = $this->addIdentifierQuotes( $wgDBmwschema );
-			$this->doQuery( "SET search_path = $safeschema, $wgDBts2schema, public" );
+			$this->doQuery( "SET search_path = $safeschema, public" );
 		}
 
 		return $this->mConn;

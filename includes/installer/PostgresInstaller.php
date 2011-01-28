@@ -24,8 +24,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		'wgDBts2schema',
 	);
 
-	var $minimumVersion = '8.1';
-	private $ts2MaxVersion = '8.3'; // Doing ts2 is not necessary in PG > 8.3
+	var $minimumVersion = '8.3';
 
 	function getName() {
 		return 'postgres';
@@ -43,7 +42,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			Html::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
 			$this->getTextBox( 'wgDBmwschema', 'config-db-schema', array(), $this->parent->getHelpBox( 'config-db-schema-help' ) ) .
-			$this->getTextBox( 'wgDBts2schema', 'config-db-ts2-schema' ) .
 			Html::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox();
 	}
@@ -51,7 +49,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	function submitConnectForm() {
 		// Get variables from the request
 		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBport',
-			'wgDBname', 'wgDBmwschema', 'wgDBts2schema' ) );
+			'wgDBname', 'wgDBmwschema' ) );
 
 		// Validate them
 		$status = Status::newGood();
@@ -62,9 +60,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBmwschema'] ) ) {
 			$status->fatal( 'config-invalid-schema', $newValues['wgDBmwschema'] );
-		}
-		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBts2schema'] ) ) {
-			$status->fatal( 'config-invalid-ts2schema', $newValues['wgDBts2schema'] );
 		}
 
 		// Submit user box
@@ -196,17 +191,12 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'user',
 			'callback' => array( $this, 'setupUser' ),
 		);
-		$ts2CB = array(
-			'name' => 'pg-ts2',
-			'callback' => array( $this, 'setupTs2' ),
-		);
 		$plpgCB = array(
 			'name' => 'pg-plpgsql',
 			'callback' => array( $this, 'setupPLpgSQL' ),
 		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
 		$this->parent->addInstallStep( $userCB );
-		$this->parent->addInstallStep( $ts2CB, 'database' );
 		$this->parent->addInstallStep( $plpgCB, 'database' );
 	}
 
@@ -264,36 +254,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			}
 		}
 		return $status;
-	}
-
-	/**
-	 * Ts2 isn't needed in newer versions of Postgres, so wrap it in a nice big
-	 * version check and skip it if we're new. Maybe we can bump $minimumVersion
-	 * one day and render this obsolete :)
-	 *
-	 * @return Status
-	 */
-	function setupTs2() {
-		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		if( version_compare( $this->db->getServerVersion(), $this->ts2MaxVersion, '<' ) ) {
-			if ( !$this->db->tableExists( 'pg_ts_cfg', $this->getVar( 'wgDBts2schema' ) ) ) {
-				return Status::newFatal( 
-					'config-install-pg-ts2-failed',
-					$this->getVar( 'wgDBname' ),
-					'http://www.devx.com/opensource/Article/21674/0/page/2'
-				);
-			}
-			$safeuser = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
-			foreach ( array( 'cfg', 'cfgmap', 'dict', 'parser' ) as $table ) {
-				$sql = "GRANT SELECT ON pg_ts_$table TO $safeuser";
-				$this->db->query( $sql, __METHOD__ );
-			}
-		}
-		return Status::newGood();
 	}
 
 	function commitChanges() {

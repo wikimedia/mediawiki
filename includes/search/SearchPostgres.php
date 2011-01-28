@@ -141,13 +141,11 @@ class SearchPostgres extends SearchEngine {
 	function searchQuery( $term, $fulltext, $colname ) {
 		$postgresVersion = $this->db->getServerVersion();
 
-		$prefix = $postgresVersion < 8.3 ? "'default'," : '';
-
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 
 		## We need a separate query here so gin does not complain about empty searches
-		$SQL = "SELECT to_tsquery($prefix $searchstring)";
+		$SQL = "SELECT to_tsquery($searchstring)";
 		$res = $this->db->doQuery($SQL);
 		if (!$res) {
 			## TODO: Better output (example to catch: one 'two)
@@ -168,12 +166,10 @@ class SearchPostgres extends SearchEngine {
 				}
 			}
 
-			$rankscore = $postgresVersion > 8.2 ? 5 : 1;
-			$rank = $postgresVersion < 8.3 ? 'rank' : 'ts_rank';
 			$query = "SELECT page_id, page_namespace, page_title, ".
-			"$rank($fulltext, to_tsquery($prefix $searchstring), $rankscore) AS score ".
+			"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($prefix $searchstring)";
+			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
 		}
 
 		## Redirects
