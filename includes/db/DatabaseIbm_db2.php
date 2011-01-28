@@ -264,6 +264,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 							$dbName = false, $flags = 0,
 							$schema = self::USE_GLOBAL )
 	{
+		global $wgDBmwschema;
+
 		if ( $schema == self::USE_GLOBAL ) {
 			$this->mSchema = $wgDBmwschema;
 		} else {
