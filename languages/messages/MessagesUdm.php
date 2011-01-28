@@ -126,10 +126,11 @@ $messages = array(
 'linkprefix'   => '/^(.*?)(„|«)$/sDu',
 'mainpagetext' => "↓ '''MediaWiki движок азинлыко пуктэмын.'''",
 
-'article'  => 'Статья',
-'mypage'   => 'Ас бам',
-'mytalk'   => 'викиавтор сярысь вераськон',
-'anontalk' => 'Со IP-адрес сярысь вераськон',
+'article'    => 'Статья',
+'mypage'     => 'Ас бам',
+'mytalk'     => 'викиавтор сярысь вераськон',
+'anontalk'   => 'Со IP-адрес сярысь вераськон',
+'navigation' => 'Навигация',
 
 # Cologne Blue skin
 'qbpageoptions'  => 'Бамлэн настройкаосыз',
@@ -149,7 +150,11 @@ $messages = array(
 'vector-view-viewsource'   => '↓ Кодзэ учкыны',
 
 'errorpagetitle'   => 'Янгыш',
+'tagline'          => '{{SITENAME}}-лэсь материал',
 'help'             => 'Валэктонъёс',
+'search'           => 'Утчан',
+'searchbutton'     => 'Утчано',
+'searcharticle'    => 'Мыноно',
 'history'          => 'Бамлэн историез',
 'history_short'    => 'история',
 'printableversion' => 'Печатламон версия',
@@ -158,7 +163,11 @@ $messages = array(
 'edit'             => 'тупатыны',
 'delete'           => 'Быдтыны',
 'protect'          => 'Утьыны',
+'talkpagelinktext' => 'Вераськон',
 'talk'             => 'Вераськон',
+'toolbox'          => 'Инструментъёс',
+'jumptonavigation' => 'навигация',
+'jumptosearch'     => 'утчан',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'Выль иворъёс',
@@ -169,7 +178,12 @@ $messages = array(
 'portal'               => 'Сообщество',
 'portal-url'           => 'Project:Портал сообщества',
 
-'editsection' => 'тупатыны',
+'retrievedfrom'   => '«$1»-лэсь басьтэмын',
+'editsection'     => 'тупатыны',
+'editsectionhint' => '$1 секциез тупатоно',
+'site-rss-feed'   => '$1 — RSS-лента',
+'site-atom-feed'  => '$1 — Atom-лента',
+'red-link-title'  => '$1 (со бам ӧвӧл)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'викиавтор',
@@ -195,8 +209,10 @@ $messages = array(
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 
 # Search results
-'searchresulttext' => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
-'searchhelp-url'   => 'Help:Валэктон',
+'searchresults'      => 'Шедьтэмын',
+'searchresulttext'   => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
+'searchhelp-url'     => 'Help:Валэктон',
+'search-result-size' => '$1 кыл',
 
 # Preferences page
 'preferences'     => 'настройкаос',
@@ -222,7 +238,8 @@ $messages = array(
 'randompage' => 'Олокыӵе статья',
 
 # Miscellaneous special pages
-'move' => 'Мукет интые выжтыны',
+'nbytes' => '$1 байт',
+'move'   => 'Мукет интые выжтыны',
 
 # E-mail user
 'emailmessage' => 'Ивортон:',
@@ -246,6 +263,17 @@ $messages = array(
 
 # Namespace 8 related
 'allmessagesname' => 'Ивортон',
+
+# Tooltip help for the actions
+'tooltip-ca-talk'                => 'Бамлэсь контентзэ сярысь вераськон',
+'tooltip-search'                 => 'Утчано {{SITENAME}}',
+'tooltip-n-mainpage'             => 'Кутскон баме мыноно',
+'tooltip-n-mainpage-description' => 'Кутскон баме мыноно',
+'tooltip-n-portal'               => 'Проект сярысь, мар карыны быгатоды, кытын кулэ арбериос шедьтоно',
+'tooltip-n-recentchanges'        => 'Берпуметӥ тупатонъёс список',
+'tooltip-n-randompage'           => 'Олокыӵе бамез учконо',
+'tooltip-t-whatlinkshere'        => 'Ваньмыз бамъёс, кудъёсаз та бамлы линксы вань',
+'tooltip-t-specialpages'         => 'Специальной бамъёс список',
 
 # Special:SpecialPages
 'specialpages' => 'Ваньмыз панельёс',
