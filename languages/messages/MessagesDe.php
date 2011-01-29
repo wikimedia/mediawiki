@@ -3399,6 +3399,20 @@ um die E-Mail-Adress-Bestätigung abzubrechen:
 $5
 
 Dieser Bestätigungscode ist gültig bis $4.',
+'confirmemail_body_set'     => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst,
+hat die E-Mail-Adresse des Benutzerkontos „$2“ auf {{SITENAME}} zu dieser E-Mail-Adresse abgeändert.
+
+Um zu bestätigen, dass dieses Benutzerkonto wirklich zu dir gehört
+und um die E-Mail-Funktionen auf {{SITENAME}} wieder zu aktivieren, öffne bitte den folgenden Link in deinem Browser:
+
+$3
+
+Falls das Konto *nicht* zu dir gehört, bitte den nachfolgenden Link öffnen,
+um die Bestätigung der E-Mail-Adresse abzubrechen:
+
+$5
+
+Dieser Bestätigungscode ist gültig bis $4.',
 'confirmemail_invalidated'  => 'E-Mail-Adressbestätigung abbrechen',
 'invalidateemail'           => 'E-Mail-Adressbestätigung abbrechen',
 
