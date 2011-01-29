@@ -4058,6 +4058,20 @@ to cancel the e-mail address confirmation:
 $5
 
 This confirmation code will expire at $4.',
+'confirmemail_body_set'     => 'Someone, probably you, from IP address $1,
+has set the e-mail address of the account "$2" to this address on {{SITENAME}}.
+
+To confirm that this account really does belong to you and reactivate
+e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If the account does *not* belong to you, follow this link
+to cancel the e-mail address confirmation:
+
+$5
+
+This confirmation code will expire at $4.',
 'confirmemail_invalidated'  => 'E-mail address confirmation canceled',
 'invalidateemail'           => 'Cancel e-mail confirmation',
 

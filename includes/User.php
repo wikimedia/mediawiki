@@ -2917,10 +2917,10 @@ class User {
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
-	 * @param $changed Boolean: whether the adress changed
+	 * @param $type String: message to send, either "created", "changed" or "set"
 	 * @return Status object
 	 */
-	function sendConfirmationMail( $changed = false ) {
+	function sendConfirmationMail( $type = 'created' ) {
 		global $wgLang;
 		$expiration = null; // gets passed-by-ref and defined in next line.
 		$token = $this->confirmationToken( $expiration );
@@ -2928,7 +2928,14 @@ class User {
 		$invalidateURL = $this->invalidationTokenUrl( $token );
 		$this->saveSettings();
 
-		$message = $changed ? 'confirmemail_body_changed' : 'confirmemail_body';
+		if ( $type == 'created' || $type === false ) {
+			$message = 'confirmemail_body';
+		} elseif ( $type === true ) {
+			$message = 'confirmemail_body_changed';
+		} else {
+			$message = 'confirmemail_body_' . $type;
+		}
+
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( $message,
 				wfGetIP(),

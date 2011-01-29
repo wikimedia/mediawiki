@@ -1288,7 +1288,8 @@ class Preferences {
 				if ( $wgEmailAuthentication ) {
 					# Mail a temporary password to the dirty address.
 					# User can come back through the confirmation URL to re-enable email.
-					$result = $wgUser->sendConfirmationMail( $oldaddr != '' );
+					$type = $oldaddr != '' ? 'changed' : 'set';
+					$result = $wgUser->sendConfirmationMail( $type );
 					if ( !$result->isGood() ) {
 						return htmlspecialchars( $result->getWikiText( 'mailerror' ) );
 					} elseif ( $entryPoint == 'ui' ) {
