@@ -407,6 +407,9 @@ abstract class QueryPage extends SpecialPage {
 		if ( $offset !== false ) {
 			$options['OFFSET'] = intval( $offset );
 		}
+		if ( $this->sortDescending() ) {
+			$options['ORDER BY'] = 'qc_value DESC';
+		}
 		$res = $dbr->select( 'querycache', array( 'qc_type',
 				'qc_namespace AS namespace',
 				'qc_title AS title',
@@ -416,7 +419,7 @@ abstract class QueryPage extends SpecialPage {
 		);
 		return $dbr->resultObject( $res );
 	}
-	
+
 	public function getCachedTimestamp() {
 		if ( !is_null( $this->cachedTimestamp ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
