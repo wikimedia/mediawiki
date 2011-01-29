@@ -3210,6 +3210,20 @@ evit nullañ kadarnaat ar chomlec'h postel :
 \$5
 
 Mont a raio ar c'hod kadarnaat-mañ d'e dermen d'ar \$4.",
+'confirmemail_body_set'     => "Unan bennak, c'hwi moarvat, gant ar chomlec'h IP \$1,
+en deus enrollet ur gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
+
+Evit kadarnaat eo deoc'h ar gont-se ha gweredekaat en-dro
+an arc'hwelioù postelerezh war {{SITENAME}}, digorit al liamm-mañ en ho merdeer :
+
+\$3
+
+Ma n'eo *ket* deoc'h ar gont heuilhit al liamm-mañ
+evit nullañ kadarnaat ar chomlec'h postel :
+
+\$5
+
+Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
 'confirmemail_invalidated'  => "Nullet eo bet kadarnaat ar chomlec'h postel",
 'invalidateemail'           => 'Nullañ kadarnaat ar postel',
 

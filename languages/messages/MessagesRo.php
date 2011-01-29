@@ -3340,6 +3340,17 @@ Dacă însă NU este contul dumneavoastră, accesați pagina de mai jos pentru a
 $5
 
 Acest cod de confirmare va expira la $4.',
+'confirmemail_body_set'     => 'Cineva, probabil dumneavoastră de la adresa IP $1, a asociat prezenta adresă de e-mail contului „$2” de la la {{SITENAME}}.
+
+Pentru a confirma că acest cont vă aparține într-adevăr și pentru a vă reactiva funcțiile de e-mail de la {{SITENAME}}, accesați pagina:
+
+$3
+
+Dacă însă NU este contul dumneavoastră, accesați pagina de mai jos pentru a anula confirmarea adresei de e-mail:
+
+$5
+
+Acest cod de confirmare va expira la $4.',
 'confirmemail_invalidated'  => 'Confirmarea adresei de e-mail a fost anulată',
 'invalidateemail'           => 'Anulează confirmarea adresei de e-mail',
 

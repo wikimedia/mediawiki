@@ -9,6 +9,7 @@
  *
  * @author Andrewboltachev
  * @author Kaganer
+ * @author Udmwiki
  * @author ОйЛ
  * @author לערי ריינהארט
  */
@@ -44,12 +45,12 @@ $messages = array(
 
 'underline-always'  => 'Котьку',
 'underline-never'   => 'Ноку',
-'underline-default' => 'Браузерысь настройкаос уже кутоно',
+'underline-default' => 'Браузерысь настройкаосты уже кутоно',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Тупатон бусыысь шрифтлэн стилез',
-'editfont-default'   => 'Браузерысь настройкаосысь шрифтез уже кутоно',
-'editfont-monospace' => 'Огвыллем пасьталаен шрифт',
+'editfont-default'   => 'Браузерлэн настройкаосысьтыз шрифтэз уже кутоно',
+'editfont-monospace' => 'Огпасьтала пусъёсын шрифт',
 'editfont-sansserif' => 'Засечкатэк шрифт',
 'editfont-serif'     => 'Засечкаен шрифт',
 
@@ -85,7 +86,7 @@ $messages = array(
 'march-gen'     => 'южтолэзе',
 'april-gen'     => 'оштолэзе',
 'may-gen'       => 'куартолэзе',
-'june-gen'      => 'Инвожое',
+'june-gen'      => 'инвожое',
 'july-gen'      => 'пӧсьтолэзе',
 'august-gen'    => 'гудырикошконэ',
 'september-gen' => 'куарусёнэ',
@@ -110,22 +111,23 @@ $messages = array(
 'category_header'                => '«$1» категориысь бамъёс',
 'subcategories'                  => 'Подкатегориос',
 'category-media-header'          => '«$1» категориысь файлъёс',
-'category-empty'                 => "↓ ''Та категориын али бамъёс но, файлъёс но ӧвӧл.''",
-'hidden-categories'              => '↓ {{PLURAL:$1|Ватэм категория|Ватэм категориос}}',
+'category-empty'                 => "''Та категориын али бамъёс но, файлъёс но ӧвӧл.''",
+'hidden-categories'              => '{{PLURAL:$1|Ватэм категория|Ватэм категориос}}',
 'hidden-category-category'       => 'Ватэм категориос',
-'category-subcat-count'          => '↓ {{PLURAL:$2|Со категориын одӥг подкатегория гинэ.|Возьматэмын $1 подкатегория $2 пӧлысь.}}',
-'category-subcat-count-limited'  => '↓ Со категориын $1 подкатегория.',
-'category-article-count'         => '↓ {{PLURAL:$2|Со категориын одӥг бам гинэ.|Возьматэмын $1 бам $2 пӧлысь.}}',
-'category-article-count-limited' => '↓ Со категориын $1 бам.',
-'category-file-count'            => '↓ {{PLURAL:$2|Со категориын одӥг файл гинэ.|Возьматэмын $1 файл $2 пӧлысь.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Со категориын одӥг подкатегория гинэ.|Возьматэмын $1 подкатегория $2 пӧлысь.}}',
+'category-subcat-count-limited'  => 'Со категориын $1 подкатегория.',
+'category-article-count'         => '{{PLURAL:$2|Со категориын одӥг бам гинэ.|Возьматэмын $1 бам $2 пӧлысь.}}',
+'category-article-count-limited' => 'Со категориын $1 бам.',
+'category-file-count'            => '{{PLURAL:$2|Со категориын одӥг файл гинэ.|Возьматэмын $1 файл $2 пӧлысь.}}',
 'category-file-count-limited'    => 'Со категориын $1 файл.',
 'listingcontinuesabbrev'         => 'азьлань',
 'index-category'                 => 'Индексировать кароно бамъёс',
 'noindex-category'               => 'Индексировать каронтэм бамъёс',
 
 'linkprefix'   => '/^(.*?)(„|«)$/sDu',
-'mainpagetext' => "↓ '''MediaWiki движок азинлыко пуктэмын.'''",
+'mainpagetext' => "'''MediaWiki движок азинлыко пуктэмын.'''",
 
+'about'      => 'Та сярысь',
 'article'    => 'Статья',
 'mypage'     => 'Ас бам',
 'mytalk'     => 'викиавтор сярысь вераськон',
@@ -147,10 +149,10 @@ $messages = array(
 'vector-view-edit'         => 'Тупатоно',
 'vector-view-history'      => 'История',
 'vector-view-view'         => 'Лыдӟоно',
-'vector-view-viewsource'   => '↓ Кодзэ учкыны',
+'vector-view-viewsource'   => 'Кодзэ учкыны',
 
 'errorpagetitle'   => 'Янгыш',
-'tagline'          => '{{SITENAME}}-лэсь материал',
+'tagline'          => '{{SITENAME}}-ысь материал',
 'help'             => 'Валэктонъёс',
 'search'           => 'Утчан',
 'searchbutton'     => 'Утчано',
@@ -183,7 +185,7 @@ $messages = array(
 'editsectionhint' => '$1 секциез тупатоно',
 'site-rss-feed'   => '$1 — RSS-лента',
 'site-atom-feed'  => '$1 — Atom-лента',
-'red-link-title'  => '$1 (со бам ӧвӧл)',
+'red-link-title'  => '$1 (таӵе бам ӧвӧл)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'викиавтор',
@@ -207,6 +209,10 @@ $messages = array(
 Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] на других страницах,
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов],
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
+
+# Revision deletion
+'revdelete-radio-set'   => 'Бен',
+'revdelete-radio-unset' => 'Ӧвӧл',
 
 # Search results
 'searchresults'      => 'Шедьтэмын',
@@ -265,15 +271,15 @@ $messages = array(
 'allmessagesname' => 'Ивортон',
 
 # Tooltip help for the actions
-'tooltip-ca-talk'                => 'Бамлэсь контентзэ сярысь вераськон',
+'tooltip-ca-talk'                => 'Бамлэн контентэз сярысь вераськон',
 'tooltip-search'                 => 'Утчано {{SITENAME}}',
 'tooltip-n-mainpage'             => 'Кутскон баме мыноно',
 'tooltip-n-mainpage-description' => 'Кутскон баме мыноно',
 'tooltip-n-portal'               => 'Проект сярысь, мар карыны быгатоды, кытын кулэ арбериос шедьтоно',
-'tooltip-n-recentchanges'        => 'Берпуметӥ тупатонъёс список',
+'tooltip-n-recentchanges'        => 'Берпуметӥ тупатонъёслэн списоксы',
 'tooltip-n-randompage'           => 'Олокыӵе бамез учконо',
 'tooltip-t-whatlinkshere'        => 'Ваньмыз бамъёс, кудъёсаз та бамлы линксы вань',
-'tooltip-t-specialpages'         => 'Специальной бамъёс список',
+'tooltip-t-specialpages'         => 'Специальной бамъёслэн списоксы',
 
 # Special:SpecialPages
 'specialpages' => 'Ваньмыз панельёс',

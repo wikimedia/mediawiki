@@ -1630,7 +1630,7 @@ $1',
 'statistics-views-total-desc'  => 'Зображіня неєствуючіх і шпеціалных сторінок ся не рахують',
 'statistics-views-peredit'     => 'Чісло зображінь на едітованя',
 'statistics-users'             => 'Реґістрованы [[Special:ListUsers|хоснователї]]',
-'statistics-users-active'      => 'Аківны хоснователї',
+'statistics-users-active'      => 'Актівны хоснователї',
 'statistics-users-active-desc' => 'Хоснователї, котры в {{plural:$1|минулого дня|минулых  $1 днїв}} провели даяку операцію',
 'statistics-mostpopular'       => 'Найчітанїшы сторінкы',
 

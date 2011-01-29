@@ -1008,7 +1008,6 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-mysql-old' => 'Патрабуецца MySQL $1 ці навейшая, усталяваная вэрсія $2.',
 	'config-db-port' => 'Порт базы зьвестак:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-ts2-schema' => 'Схема для tsearch2',
 	'config-db-schema-help' => 'Вышэй пададзеныя схемы слушныя ў большасьці выпадкаў.
 Зьмяняйце іх толькі тады, калі Вы ведаеце, што гэта неабходна.',
 	'config-sqlite-dir' => 'Дырэкторыя зьвестак SQLite:',
@@ -1056,8 +1055,6 @@ $1
 Праверце хост, імя карыстальніка і пароль ніжэй і паспрабуйце зноў.',
 	'config-invalid-schema' => 'Няслушная схема для MediaWiki «$1».
 Выкарыстоўвайце толькі ASCII-літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня (_).',
-	'config-invalid-ts2schema' => 'Няслушная схема «$1» для TSearch2.
-Выкарыстоўвайце толькі літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня (_).',
 	'config-postgres-old' => 'Патрабуецца PostgreSQL $1 ці навейшая, усталяваная вэрсія $2.',
 	'config-sqlite-name-help' => 'Выберыце назву, якая будзе ідэнтыфікаваць Вашую вікі.
 Не выкарыстоўвайце прагалы ці злучкі.
@@ -1182,7 +1179,7 @@ chmod a+w $3</pre>',
 Больш складаныя правы ўдзельнікаў даступныя пасьля ўсталяваньня, глядзіце [http://www.mediawiki.org/wiki/Manual:User_rights адпаведную старонку дакумэнтацыі].",
 	'config-license' => 'Аўтарскія правы і ліцэнзія:',
 	'config-license-none' => 'Без інфармацыі пра ліцэнзію',
-	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (сумяшчальная зь Вікіпэдыяй)',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ці болей позьняя',
@@ -1262,9 +1259,6 @@ chmod a+w $3</pre>',
 	'config-install-pg-commit' => 'Захаваньне зьменаў',
 	'config-install-pg-plpgsql' => 'Праверка падтрымкі мовы PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
-	'config-install-pg-ts2' => 'Праверка tsearch2',
-	'config-install-pg-ts2-failed' => "'''ПАМЫЛКА''' tsearch2 павінен быць усталяваны ў базе зьвестак $1.
-Калі ласка, прачытайце [$2 гэтыя інструкцыі] ці запытайце на #postgresql на irc.freenode.net",
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
 	'config-install-user-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
 	'config-install-tables' => 'Стварэньне табліцаў',
@@ -1459,7 +1453,6 @@ $1
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-port' => 'Порт на базата от данни:',
 	'config-db-schema' => 'Схема за МедияУики',
-	'config-db-ts2-schema' => 'Схема за tsearch2',
 	'config-db-schema-help' => 'Схемите по-горе обикновено са правилни.
 Промени се извършват ако наистина е необходимо.',
 	'config-sqlite-dir' => 'Директория за данни на SQLite:',
@@ -1497,8 +1490,6 @@ $1
 
 Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
 	'config-invalid-schema' => 'Невалидна схема за МедияУики "$1".
-Допустими са само ASCII букви (a-z, A-Z), цифри (0-9) и долни черти (_).',
-	'config-invalid-ts2schema' => 'Невалидна схема за TSearch2 "$1".
 Допустими са само ASCII букви (a-z, A-Z), цифри (0-9) и долни черти (_).',
 	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
@@ -1589,7 +1580,7 @@ $1
 Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [http://www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].",
 	'config-license' => 'Авторски права и лиценз:',
 	'config-license-none' => 'Без лиценз',
-	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното (съвместим с Уикипедия)',
+	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното',
 	'config-license-cc-by-nc-sa' => 'Криейтив Комънс Признание-Некомерсиално-Споделяне на споделеното',
 	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
 	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
@@ -1649,6 +1640,8 @@ $1
 	'config-cache-accel' => 'PHP обектно кеширане (APC, eAccelerator, XCache или WinCache)',
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
 	'config-memcached-servers' => 'Memcached сървъри:',
+	'config-memcached-help' => 'Списък с IP адреси за използване за Memcached.
+Необходимо е да бъдат разделени със запетаи, както и да е посочен порта (пример: 127.0.0.1:11211, 192.168.1.25:11211).',
 	'config-extensions' => 'Разширения',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',
@@ -1656,6 +1649,7 @@ $1
 	'config-install-database' => 'Създаване на базата от данни',
 	'config-install-pg-schema-failed' => 'Създаването на таблиците пропадна.
 Необходимо е потребител "$1" да има права за писане в схемата "$2".',
+	'config-install-pg-plpgsql' => 'Проверяване за езика PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Необходимо е да се инсталира езикът PL/pgSQL в базата от данни $1',
 	'config-install-user' => 'Създаване на потребител за базата от данни',
 	'config-install-user-failed' => 'Предоставянето на права на потребител "$1" беше неуспешно: $2',
@@ -1667,6 +1661,7 @@ $1
 	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
 	'config-install-interwiki-exists' => "'''Предупреждение''': Таблицата с междууикита изглежда вече съдържа данни.
 Пропускане на списъка по подразбиране.",
+	'config-install-stats' => 'Инициализиране на статистиките',
 	'config-install-secretkey' => 'Генериране на таен ключ',
 	'config-insecure-secret' => "'''Предупреждение:''' Беше невъзможно да се създаде таен <code>$1</code>.
 Препоръчително е да бъде променен ръчно.",
@@ -2173,7 +2168,6 @@ allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Ba
 	'config-mysql-old' => 'MySQL $1 oder höher wird benötigt. MySQL $2 ist momentan vorhanden.',
 	'config-db-port' => 'Datenbankport:',
 	'config-db-schema' => 'Datenschema für MediaWiki',
-	'config-db-ts2-schema' => 'Datenschema für tsearch2',
 	'config-db-schema-help' => 'Die obigen Datenschemata sind in der Regel richtig.
 Nur Änderungen vornehmen, sofern es Gründe dafür gibt.',
 	'config-sqlite-dir' => 'SQLite-Datenverzeichnis:',
@@ -2220,8 +2214,6 @@ Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9), Unter- (_) so
 
 Bitte unten angegebenen Servernamen, Benutzernamen sowie das Passwort überprüfen und es danach erneut versuchen.',
 	'config-invalid-schema' => 'Ungültiges Datenschema für MediaWiki „$1“.
-Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
-	'config-invalid-ts2schema' => 'Ungültiges Datenschema für TSearch2 „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
 	'config-postgres-old' => 'PostgreSQL $1 oder höher wird benötigt. PostgreSQL $2 ist momentan vorhanden.',
 	'config-sqlite-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
@@ -2345,7 +2337,7 @@ Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, bietet höhere Ve
 Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Installationsvorgang eingerichtet werden. Hierzu gibt es weitere Informationen auf der Website mit der [http://www.mediawiki.org/wiki/Manual:User_rights entsprechenden Anleitung].",
 	'config-license' => 'Lizenz:',
 	'config-license-none' => 'Keine Lizenzangabe in der Fußzeile',
-	'config-license-cc-by-sa' => 'Creative Commons „Namensnennung, Weitergabe unter gleichen Bedingungen“ (kompatibel mit Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons „Namensnennung, Weitergabe unter gleichen Bedingungen“',
 	'config-license-cc-by-nc-sa' => 'Creative Commons „Namensnennung, nicht kommerziell, Weitergabe unter gleichen Bedingungen“',
 	'config-license-gfdl-old' => 'GNU-Lizenz für freie Dokumentation 1.2',
 	'config-license-gfdl-current' => 'GNU-Lizenz für freie Dokumentation 1.3 oder höher',
@@ -2426,9 +2418,6 @@ Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datensch
 	'config-install-pg-commit' => 'Änderungen anwenden',
 	'config-install-pg-plpgsql' => 'Suche nach der Datenbanksprache PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
-	'config-install-pg-ts2' => 'Suche nach tsearch2',
-	'config-install-pg-ts2-failed' => "'''Fehler:''' tsearch2 muss in der Datenbank $1 installiert sein.
-Bitte hierzu [$2 diese Anleitung] lesen oder bei #postgresql im irc.freenode.net nachfragen",
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
 	'config-install-user-failed' => 'Gewährung der Berechtigung für „$1“ ist gescheitert: $2',
 	'config-install-tables' => 'Datentabellen werden erstellt',
@@ -2622,7 +2611,6 @@ Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegi
 	'config-mysql-old' => 'Se necesita MySQL $1 o una versión más reciente. Tienes la versión $2.',
 	'config-db-port' => 'Puerto de la base de datos:',
 	'config-db-schema' => 'Esquema para MediaWiki',
-	'config-db-ts2-schema' => 'Esquema para tsearch2',
 	'config-db-schema-help' => 'Normalmente, los esquemas arriba son los correctos.
 Altéralos sólo si tienes la seguridad de que necesitas alterarlos.',
 	'config-sqlite-dir' => 'Directorio de datos SQLite:',
@@ -2653,8 +2641,6 @@ Use sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_
 
 Verifique el servidor, el nombre de usuario y la contraseña, e intente de nuevo.',
 	'config-invalid-schema' => 'El esquema de la base de datos "$1"  es inválido.
-Use sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).',
-	'config-invalid-ts2schema' => 'El esquema de TSearch2 "$1"  es inválido.
 Use sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).',
 	'config-postgres-old' => 'Se necesita PostgreSQL $1 o una versión más reciente; tienes la versión $2.',
 	'config-sqlite-name-help' => 'Elige el nombre que identificará tu wiki.
@@ -2731,7 +2717,7 @@ Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterm
 	'config-profile-private' => 'Wiki privado',
 	'config-license' => 'Copyright and licencia:',
 	'config-license-none' => 'Pie sin licencia',
-	'config-license-cc-by-sa' => 'Creative Commons Reconocimiento Compartir Igual (compatible con Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons Reconocimiento Compartir Igual',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Reconocimiento Compartir Igual no comercial',
 	'config-license-gfdl-old' => 'GNU Licencia de Documentación Libre 1.2',
 	'config-license-gfdl-current' => 'Licencia de documentación libre GNU 1.3 o más reciente',
@@ -3199,7 +3185,6 @@ En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pou
 	'config-mysql-old' => 'MySQL $1 ou version ultérieure est requis, vous avez $2.',
 	'config-db-port' => 'Port de la base de données :',
 	'config-db-schema' => 'Schéma pour MediaWiki',
-	'config-db-ts2-schema' => 'Schéma pour tsearch2',
 	'config-db-schema-help' => "Les schémas ci-dessus sont généralement corrects.
 Ne les changez que si vous êtes sûr que c'est nécessaire.",
 	'config-sqlite-dir' => 'Dossier des données SQLite :',
@@ -3246,8 +3231,6 @@ Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9), des 
 
 Vérifier le nom d’hôte, le nom d’utilisateur et le mot de passe ci-dessous puis réessayer.',
 	'config-invalid-schema' => 'Schéma invalide pour MediaWiki « $1 ». 
-Utilisez seulement des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
-	'config-invalid-ts2schema' => 'Schéma non valide pour TSearch2 « $1 ». 
 Utilisez seulement des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-postgres-old' => 'PostgreSQL $1 ou version ultérieure est requis, vous avez $2.',
 	'config-sqlite-name-help' => "Choisir un nom qui identifie votre wiki. 
@@ -3372,7 +3355,7 @@ Vous avez donc le choix.
 Des configurations de droits d’utilisateurs plus complexes sont disponibles après l'installation, voir la [http://www.mediawiki.org/wiki/Manual:User_rights page correspondante du manuel].",
 	'config-license' => "Droits d'auteur et licence :",
 	'config-license-none' => 'Aucune licence en bas de page',
-	'config-license-cc-by-sa' => "Creative Commons attribution partage à l'identique (compatible avec Wikipédia)",
+	'config-license-cc-by-sa' => "Creative Commons attribution partage à l'identique",
 	'config-license-cc-by-nc-sa' => "Creative Commons attribution non commercial partage à l'identique",
 	'config-license-gfdl-old' => 'Licence de documentation libre GNU 1.2',
 	'config-license-gfdl-current' => 'Licence de documentation libre GNU 1.3 ou plus récent',
@@ -3453,9 +3436,6 @@ Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 »."
 	'config-install-pg-commit' => 'Validation des modifications',
 	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
-	'config-install-pg-ts2' => 'Vérification de tsearch2',
-	'config-install-pg-ts2-failed' => "'''ÉCHEC''' tsearch2 doit être installé dans la base de données $1.
-Veuillez lire [$2 ces instructions] ou demander sur #postgresql sur irc.freenode.net",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
 	'config-install-user-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-tables' => 'Création des tables',
@@ -3662,7 +3642,6 @@ pero non lle deixará gardar caracteres por riba do [http://en.wikipedia.org/wik
 	'config-mysql-old' => 'Necesítase MySQL $1 ou posterior; ten a versión $2.',
 	'config-db-port' => 'Porto da base de datos:',
 	'config-db-schema' => 'Esquema para MediaWiki',
-	'config-db-ts2-schema' => 'Esquema para tsearch2',
 	'config-db-schema-help' => 'O normal é que os esquemas anteriores sexan correctos.
 Cámbieos soamente se sabe que é necesario.',
 	'config-sqlite-dir' => 'Directorio de datos SQLite:',
@@ -3708,8 +3687,6 @@ Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 
 Comprobe o servidor, nome de usuario e contrasinal que hai a continuación e inténteo de novo.',
 	'config-invalid-schema' => 'O esquema de MediaWiki, "$1", é incorrecto.
-Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
-	'config-invalid-ts2schema' => 'O esquema de TSearch2, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 	'config-postgres-old' => 'Necesítase PostgreSQL $1 ou posterior; ten a versión $2.',
 	'config-sqlite-name-help' => 'Escolla un nome que identifique o seu wiki.
@@ -3831,7 +3808,7 @@ O tipo '''{{int:config-profile-private}}''' só deixa que os usuarios aprobados 
 Hai dispoñibles configuracións de dereitos de usuario máis complexas despois da instalación; bótelle un ollo a [http://www.mediawiki.org/wiki/Manual:User_rights esta entrada no manual].",
 	'config-license' => 'Dereitos de autor e licenza:',
 	'config-license-none' => 'Sen licenza ao pé',
-	'config-license-cc-by-sa' => 'Creative Commons recoñecemento compartir igual (compatible coa Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons recoñecemento compartir igual',
 	'config-license-cc-by-nc-sa' => 'Creative Commons recoñecemento non comercial compartir igual',
 	'config-license-gfdl-old' => 'Licenza de documentación libre de GNU 1.2',
 	'config-license-gfdl-current' => 'Licenza de documentación libre de GNU 1.3 ou posterior',
@@ -4253,7 +4230,6 @@ To njeje hesło konta MediaWiki; to je hesło za twoju datowu banku.',
 	'config-mysql-old' => 'MySQL $1 abo nowši trěbny, maš $2.',
 	'config-db-port' => 'Port datoweje banki:',
 	'config-db-schema' => 'Šema za MediaWiki',
-	'config-db-ts2-schema' => 'Šema za tsearch2',
 	'config-db-schema-help' => 'Hornje šemy su zwjetša korektne.
 Změń je jenož, jeli wěš, štož činiš.',
 	'config-sqlite-dir' => 'Zapis SQLite-datow:',
@@ -4282,8 +4258,6 @@ Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a wjazawki 
 Skontroluj serwer, wužiwarske a hesło a spytaj hišće raz.',
 	'config-invalid-schema' => 'Njepłaćiwe šema za MediaWiki "$1".
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
-	'config-invalid-ts2schema' => 'Njepłaćiwe šema za TSearch2 "$1".
-Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_)',
 	'config-postgres-old' => 'PostgreSQL $1 abo nowši trěbny, maš $2.',
 	'config-sqlite-name-help' => 'Wubjer mjeno, kotrež twój wiki identifikuje.
 Njewužij mjezery abo wjazawki.
@@ -4356,7 +4330,7 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-profile-private' => 'Priwatny wiki',
 	'config-license' => 'Awtorske prawo a licenca:',
 	'config-license-none' => 'Žane licencne podaća w nohowej lince',
-	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (kompatibelny z Wikipediju)',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 abo nowša',
@@ -4404,7 +4378,6 @@ Zawěsć, zo wužiwar "$1" móže do šemy "$2" pisać.',
 	'config-install-pg-commit' => 'Změny so wotesyłaja',
 	'config-install-pg-plpgsql' => 'Pruwowanje za rěču PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Dyrbiš rěč PL/pgSQL w datowej bance $1 instalować',
-	'config-install-pg-ts2' => 'Pruwowanje za tsearch2',
 	'config-install-user' => 'Tworjenje wužiwarja datoweje banki',
 	'config-install-user-failed' => 'Prawo njeda so wužiwarjej "$1" dać: $2',
 	'config-install-tables' => 'Tworjenje tabelow',
@@ -4557,7 +4530,6 @@ nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_p
 	'config-mysql-old' => 'A MySQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.',
 	'config-db-port' => 'Adatbázisport:',
 	'config-db-schema' => 'MediaWiki-séma',
-	'config-db-ts2-schema' => 'Tsearch2-séma',
 	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
 Csak akkor módosíts rajta, ha szükség van rá.',
 	'config-sqlite-dir' => 'SQLite-adatkönyvtár:',
@@ -4580,8 +4552,6 @@ Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható
 
 Ellenőrizd a hosztot, felhasználónevet és jelszót, majd próbáld újra.',
 	'config-invalid-schema' => 'Érvénytelen MediaWiki séma: „$1”.
-Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
-	'config-invalid-ts2schema' => 'Érvénytelen TSearch2 séma: „$1”.
 Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
 	'config-postgres-old' => 'A PostgreSQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.',
 	'config-sqlite-parent-unwritable-nogroup' => 'Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).
@@ -4642,7 +4612,7 @@ Ajánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki
 	'config-profile-fishbowl' => 'Csak engedélyezett szerkesztők',
 	'config-profile-private' => 'Privát wiki',
 	'config-license-none' => 'Licenc lábléc kikapcsolása',
-	'config-license-cc-by-sa' => 'Creative Commons Nevezd meg! - Így add tovább! (Wikipédia-kompatibilis)',
+	'config-license-cc-by-sa' => 'Creative Commons Nevezd meg! - Így add tovább!',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Nevezd meg! - Ne add el! - Így add tovább!',
 	'config-license-gfdl-old' => 'GNU Szabad Dokumentációs Licenc 1.2',
 	'config-license-gfdl-current' => 'GNU Szabad Dokumentációs Licenc 1.3 vagy újabb',
@@ -4878,7 +4848,6 @@ ma non te permittera immagazinar characteres supra le [http://en.wikipedia.org/w
 	'config-mysql-old' => 'MySQL $1 o plus recente es requirite, tu ha $2.',
 	'config-db-port' => 'Porto de base de datos:',
 	'config-db-schema' => 'Schema pro MediaWiki',
-	'config-db-ts2-schema' => 'Schema pro tsearch2',
 	'config-db-schema-help' => 'Le schemas hic supra es generalmente correcte.
 Solmente cambia los si tu es secur que es necessari.',
 	'config-sqlite-dir' => 'Directorio pro le datos de SQLite:',
@@ -4925,8 +4894,6 @@ Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineame
 
 Verifica le servitor, nomine de usator e contrasigno hic infra e reproba.',
 	'config-invalid-schema' => 'Schema invalide pro MediaWiki "$1".
-Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
-	'config-invalid-ts2schema' => 'Schema invalide pro TSearch2 "$1".
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
 	'config-postgres-old' => 'PostgreSQL $1 o plus recente es requirite, tu ha $2.',
 	'config-sqlite-name-help' => 'Selige un nomine que identifica tu wiki.
@@ -5052,7 +5019,7 @@ Un '''{{int:config-profile-private}}''' permitte solmente al usatores approbate 
 Configurationes de derectos de usator plus complexe es disponibile post installation, vide le [http://www.mediawiki.org/wiki/Manual:User_rights pertinente section del manual].",
 	'config-license' => 'Copyright e licentia:',
 	'config-license-none' => 'Nulle licentia in pede de paginas',
-	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (compatibile con Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-gfdl-old' => 'Licentia GNU pro Documentation Libere 1.2',
 	'config-license-gfdl-current' => 'Licentia GNU pro Documentation Libere 1.3 o plus recente',
@@ -5133,9 +5100,6 @@ Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-install-pg-commit' => 'Committer cambiamentos',
 	'config-install-pg-plpgsql' => 'Verifica le presentia del linguage PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Es necessari installar le linguage PL/pgSQL in le base de datos $1',
-	'config-install-pg-ts2' => 'Verifica le presentia de tsearch2',
-	'config-install-pg-ts2-failed' => "'''FALTA:''' tsearch2 debe esser installate in le base de datos $1.
-Per favor lege [$2 iste instructiones] o demanda adjuta in #postgresql sur irc.freenode.net",
 	'config-install-user' => 'Crea usator pro base de datos',
 	'config-install-user-failed' => 'Le concession de permission al usator "$1" falleva: $2',
 	'config-install-tables' => 'Crea tabellas',
@@ -5356,7 +5320,6 @@ Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data anda dan dapat me
 	'config-mysql-old' => 'MySQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
 	'config-db-port' => 'Porta basis data:',
 	'config-db-schema' => 'Skema untuk MediaWiki',
-	'config-db-ts2-schema' => 'Skema untuk tsearch2',
 	'config-db-schema-help' => 'Skema di atas biasanya benar. 
 Ubah hanya jika Anda tahu Anda perlu mengubahnya.',
 	'config-sqlite-dir' => 'Direktori data SQLite:',
@@ -5403,8 +5366,6 @@ Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan tanda hu
 
 Periksa nama inang, pengguna, dan sandi di bawah ini dan coba lagi.',
 	'config-invalid-schema' => 'Skema MediaWiki "$1" tidak sah.
-Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
-	'config-invalid-ts2schema' => 'Skema TSearch2 "$1" tidak sah.
 Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
 	'config-postgres-old' => 'PostgreSQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
 	'config-sqlite-name-help' => 'Pilih nama yang mengidentifikasi wiki Anda. 
@@ -5530,7 +5491,7 @@ Jadi, Anda yang menentukan.
 Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [http://www.mediawiki.org/wiki/Manual:User_rights/id entri manual terkait].",
 	'config-license' => 'Hak cipta dan lisensi:',
 	'config-license-none' => 'Tidak ada lisensi',
-	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa (cocok untuk Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Atribusi Non-Komersial Berbagi Serupa',
 	'config-license-gfdl-old' => 'Lisensi Dokumentasi Bebas GNU 1.2',
 	'config-license-gfdl-current' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
@@ -5611,9 +5572,6 @@ Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-commit' => 'Melakukan perubahan',
 	'config-install-pg-plpgsql' => 'Memeriksa bahasa PL / pgSQL',
 	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
-	'config-install-pg-ts2' => 'Memeriksa tsearch2',
-	'config-install-pg-ts2-failed' => "'''GAGAL''' tsearch2 harus terinstal dalam database $1.
-Baca [$2 petunjuk ini] atau tanyakan melalui #postgresql pada irc.freenode.net",
 	'config-install-user' => 'Membuat pengguna basis data',
 	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
@@ -5850,7 +5808,6 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 	'config-mysql-old' => 'MySQLの$1以降が要求されています。あなたの所有のものは$2です。',
 	'config-db-port' => 'データベースポート:',
 	'config-db-schema' => 'メディアウィキの図式',
-	'config-db-ts2-schema' => 'tsearch2のためのスキーマ',
 	'config-db-schema-help' => '上の図式は常に正確です。
 必要である場合のみ、変更してください。',
 	'config-sqlite-dir' => 'SQLiteのデータディレクトリ:',
@@ -5895,8 +5852,6 @@ $1
 
 以下のホスト名、ユーザ名、パスワードをチェックして、再度試してみてください。',
 	'config-invalid-schema' => 'メディアウィキ"$1"における無効な図式です。
-アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
-	'config-invalid-ts2schema' => 'TSearch2 "$1"における無効な図式です。
 アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
 	'config-postgres-old' => 'PostgreSQLの$1あるいはそれ以降が必要で、いまのバージョンは$2です。',
 	'config-sqlite-name-help' => 'あなたのウェキと同一性のある名前を選んでください。
@@ -6021,7 +5976,7 @@ MediaWikiでは、最近の更新を確認し、神経質な、もしくは悪�
 より複雑な利用者権限の設定は、インストール後に設定可能です。詳細は[http://www.mediawiki.org/wiki/Manual:User_rights 関連するマニュアル]をご覧ください。",
 	'config-license' => '著作権とライセンス:',
 	'config-license-none' => 'ライセンスのフッターを付けない',
-	'config-license-cc-by-sa' => 'クリエイティブ・コモンズ 表示-継承 (Wikipedia互換)',
+	'config-license-cc-by-sa' => 'クリエイティブ・コモンズ 表示-継承',
 	'config-license-cc-by-nc-sa' => 'クリエイティブ・コモンズ 表示-非営利-継承',
 	'config-license-gfdl-old' => 'GNUフリー文書利用許諾契約書 1.2',
 	'config-license-gfdl-current' => 'GNUフリー文書利用許諾契約書 1.3 またはそれ以降',
@@ -6668,7 +6623,6 @@ $1
 	'config-mysql-old' => 'Се бара MySQL $1 или поново, а вие имате $2.',
 	'config-db-port' => 'Порта на базата:',
 	'config-db-schema' => 'Шема за МедијаВики',
-	'config-db-ts2-schema' => 'Шема за tsearch2',
 	'config-db-schema-help' => 'Горенаведените шеми обично се точни.
 Менувајте ги само ако знаете дека треба да се сменат.',
 	'config-sqlite-dir' => 'Папка на SQLite-податоци:',
@@ -6715,8 +6669,6 @@ $1
 
 Проверете го долунаведениот домаќин, корисничко име и лозинка и обидете се повторно.',
 	'config-invalid-schema' => 'Неважечка шема за МедијаВики „$1“.
-Користете само букви, бројки и долни црти.',
-	'config-invalid-ts2schema' => 'Неважечка шема за TSearch2 „$1“.
 Користете само букви, бројки и долни црти.',
 	'config-postgres-old' => 'Се бара PostgreSQL $1 или поново, а вие имате $2.',
 	'config-sqlite-name-help' => 'Одберете име кое ќе го претставува вашето вики.
@@ -6842,7 +6794,7 @@ chmod a+w $3</pre>',
 По инсталацијата имате на избор и посложени кориснички права и поставки. Погледајте во [http://www.mediawiki.org/wiki/Manual:User_rights прирачникот].",
 	'config-license' => 'Авторски права и лиценца:',
 	'config-license-none' => 'Без подножје за лиценца',
-	'config-license-cc-by-sa' => 'Creative Commons НаведиИзвор СподелиПодИстиУслови (како Википедија)',
+	'config-license-cc-by-sa' => 'Creative Commons НаведиИзвор СподелиПодИстиУслови',
 	'config-license-cc-by-nc-sa' => 'Creative Commons НаведиИзвор-Некомерцијално-СподелиПодИстиУслови',
 	'config-license-gfdl-old' => 'ГНУ-ова лиценца за слободна документација 1.2',
 	'config-license-gfdl-current' => 'ГНУ-ова лиценца за слободна документација 1.3 или понова',
@@ -6923,9 +6875,6 @@ chmod a+w $3</pre>',
 	'config-install-pg-commit' => 'Спроведување на промени',
 	'config-install-pg-plpgsql' => 'Проверувам јазик PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
-	'config-install-pg-ts2' => 'Го барам tsearch2',
-	'config-install-pg-ts2-failed' => "'''НЕУСПЕШНО''' - tsearch2 мора да биде инсталиран во базата $1.
-Прочитајте ги [$2 овие напатствија] или побарајте помош на #postgresql на irc.freenode.net",
 	'config-install-user' => 'Создавам корисник за базата',
 	'config-install-user-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
@@ -7062,7 +7011,7 @@ $1
 	'config-profile-fishbowl' => 'അനുവാദമുള്ളവർ മാത്രം തിരുത്തുക',
 	'config-profile-private' => 'സ്വകാര്യ വിക്കി',
 	'config-license' => 'പകർപ്പവകാശവും അനുമതിയും:',
-	'config-license-cc-by-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ ഷെയർ എലൈക് (വിക്കിപീഡിയ-സമാനം)',
+	'config-license-cc-by-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ ഷെയർ എലൈക്',
 	'config-license-cc-by-nc-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ നോൺ-കൊമേഴ്സ്യൽ ഷെയർ എലൈക്',
 	'config-license-gfdl-old' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.2',
 	'config-license-gfdl-current' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.3 അഥവാ പുതിയത്',
@@ -7317,7 +7266,6 @@ Het is dat niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wi
 U gebruikt $2.',
 	'config-db-port' => 'Databasepoort:',
 	'config-db-schema' => 'Schema voor MediaWiki',
-	'config-db-ts2-schema' => 'Schema voor tsearch2',
 	'config-db-schema-help' => "De bovenstaande schema's kloppen meestal.
 Wijzig ze alleen als u weet dat dit nodig is.",
 	'config-sqlite-dir' => 'Gegevensmap voor SQLite:',
@@ -7365,8 +7313,6 @@ Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en st
 Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
 	'config-invalid-schema' => 'Ongeldig schema voor MediaWiki "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
-	'config-invalid-ts2schema' => 'Ongeldig schema voor TSearch2 "$1".
-Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
 U gebruikt $2.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -7494,7 +7440,7 @@ In een '''{{int:config-profile-private}}''' kunnen alleen goedgekeurde gebruiker
 Meer complexe instellingen voor gebruikersrechten zijn te maken na de installatie; hierover is meer te lezen in de [http://www.mediawiki.org/wiki/Manual:User_rights handleiding].",
 	'config-license' => 'Auteursrechten en licentie:',
 	'config-license-none' => 'Geen licentie in de voettekst',
-	'config-license-cc-by-sa' => 'Creative Commons Naamsvermelding-Gelijk delen (compatibel met Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons Naamsvermelding-Gelijk delen',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Naamsvermelding-Niet Commercieel-Gelijk delen',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2 of hoger',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 of hoger',
@@ -7576,9 +7522,6 @@ Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-install-pg-commit' => 'Wijzigingen worden doorgevoerd',
 	'config-install-pg-plpgsql' => 'Controle op de taal PL/pgSQL',
 	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
-	'config-install-pg-ts2' => 'Zoeken naar tsearch2',
-	'config-install-pg-ts2-failed' => "'''MISLUKT''' tsearch2 moet geinstalleerd zijn in de database $1.
-Lees [$2 deze instructies] of stel uw vraag in #postgresql op irc.freenode.net.",
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
 	'config-install-tables' => 'Tabellen aanmaken',
@@ -7819,7 +7762,6 @@ men det vil ikke la deg lagre tegn over «[http://en.wikipedia.org/wiki/Mapping_
 	'config-mysql-old' => 'MySQL $1 eller senere kreves, du har $2.',
 	'config-db-port' => 'Databaseport:',
 	'config-db-schema' => 'Skjema for MediaWiki',
-	'config-db-ts2-schema' => 'Skjema for tsearch2',
 	'config-db-schema-help' => 'Ovennevnte skjema er som regel riktig.
 Bare endre dem hvis du vet at du trenger det.',
 	'config-sqlite-dir' => 'SQLite datamappe:',
@@ -7864,8 +7806,6 @@ Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
 
 Sjekk verten, brukernavnet og passordet nedenfor og prøv igjen.',
 	'config-invalid-schema' => 'Ugyldig skjema for MediaWiki «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
-	'config-invalid-ts2schema' => 'Ugyldig skjema for TSearch2 «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
 	'config-postgres-old' => 'PostgreSQL $1 eller senere kreves, du har $2.',
 	'config-sqlite-name-help' => 'Velg et navn som identifiserer wikien din.
@@ -7987,7 +7927,7 @@ En '''{{int:config-profile-private}}''' tillater kun godkjente brukere å se sid
 
 Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter installasjon, se det [http://www.mediawiki.org/wiki/Manual:User_rights relevante manualavsnittet].",
 	'config-license' => 'Opphavsrett og lisens:',
-	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår (Wikipedia-kompatibel)',
+	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Navngivelse Ikke-kommersiell Del på samme vilkår',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 eller nyere',
@@ -8221,7 +8161,6 @@ To nie jest hasło konta MediaWiki, lecz hasło do bazy danych.',
 	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
 	'config-db-port' => 'Port bazy danych',
 	'config-db-schema' => 'Schemat dla MediaWiki',
-	'config-db-ts2-schema' => 'Schemat dla tsearch2',
 	'config-db-schema-help' => 'Powyższe schematy są zazwyczaj właściwe.
 Zmień je wyłącznie jeśli jesteś pewien, że powinieneś.',
 	'config-sqlite-dir' => 'Katalog danych SQLite',
@@ -8254,8 +8193,6 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub zn
 
 Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
 	'config-invalid-schema' => 'Nieprawidłowy schemat dla MediaWiki „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
-	'config-invalid-ts2schema' => 'Nieprawidłowy schemat dla TSearch2 „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-postgres-old' => 'Wymagany jest PostgreSQL $1 lub nowszy; korzystasz z $2.',
 	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
@@ -8332,7 +8269,7 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-profile-private' => 'Prywatna wiki',
 	'config-license' => 'Prawa autorskie i licencja',
 	'config-license-none' => 'Brak stopki z licencją',
-	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach (kompatybilna z Wikipedią)',
+	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
 	'config-license-cc-by-nc-sa' => 'Creative Commons – za uznaniem autora, bez użycia komercyjnego, na tych samych zasadach',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 lub późniejsza',
@@ -8378,7 +8315,6 @@ Przejdź do następnej strony.",
 Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-install-pg-commit' => 'Zatwierdzanie zmian',
 	'config-pg-no-plpgsql' => 'Musisz zainstalować język PL/pgSQL w bazie danych $1',
-	'config-install-pg-ts2' => 'Sprawdzanie tsearch2',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-tables' => 'Tworzenie tabel',
@@ -8560,7 +8496,6 @@ An '''manera UTF-8''', MySQL a arconòss an che ansema ëd caràter a son ij sò
 	'config-mysql-old' => "A-i é da manca ëd MySQL $1 o pi recent, chiel a l'ha $2.",
 	'config-db-port' => 'Porta dla base ëd dàit:',
 	'config-db-schema' => 'Schema për MediaWiki',
-	'config-db-ts2-schema' => 'Schema për tsearch2',
 	'config-db-schema-help' => "Jë schema sì-dzora a son normalment giust.
 Ch'a-j cangia mach s'a sa ch'a n'ha da manca.",
 	'config-sqlite-dir' => 'Dossié dij dat SQLite:',
@@ -8602,8 +8537,6 @@ Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9) e sotlignadure (_).',
 
 Controla l'ospitant, lë stranòm d'utent e la ciav sì-sota e prové torna.",
 	'config-invalid-schema' => 'Schema pa bon për MediaWiki "$1".
-Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9) e sotlignadure (_).',
-	'config-invalid-ts2schema' => 'Schema pa bon për TSearch2 "$1".
 Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9) e sotlignadure (_).',
 	'config-postgres-old' => "A-i é da manca ëd PostgreSQL $1 o pi recent, chiel a l'ha $2.",
 	'config-sqlite-name-help' => "Serne un nòm ch'a identìfica soa wiki.
@@ -8723,7 +8656,7 @@ Un '''{{int:config-profile-private}}''' a përmët mach a j'utent aprovà ëd v�
 Configurassion ëd drit d'utent pi complicà a son disponìbij apress l'instalassion, vëdde la [http://www.mediawiki.org/wiki/Manual:User_rights pàgina a pòsta dël manual].",
 	'config-license' => "Drit d'autor e licensa",
 	'config-license-none' => 'Gnun-a licensa an nòta an bass',
-	'config-license-cc-by-sa' => 'Creative Commons atribussion an part uguaj (compatìbil con Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons atribussion an part uguaj',
 	'config-license-cc-by-nc-sa' => 'Creative Commons atribussion nen comersial an part uguaj',
 	'config-license-gfdl-old' => 'Licensa ëd documentassion lìbera GNU 1.2',
 	'config-license-gfdl-current' => 'Licensa ëd documentassion lìbera GNU 1.3 o pi recenta',
@@ -9028,7 +8961,6 @@ mas não lhe permitirá armazenar caracteres acima do [http://en.wikipedia.org/w
 	'config-mysql-old' => 'É necessário o MySQL $1 ou posterior; tem a versão $2.',
 	'config-db-port' => 'Porta da base de dados:',
 	'config-db-schema' => "Esquema ''(schema)'' do MediaWiki",
-	'config-db-ts2-schema' => "Esquema ''(schema)'' do tsearch2",
 	'config-db-schema-help' => 'Normalmente, os esquemas acima estão correctos.
 Altere-os só se souber que precisa de alterá-los.',
 	'config-sqlite-dir' => 'Directório de dados do SQLite:',
@@ -9075,8 +9007,6 @@ Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e hífens (-) dos c
 
 Verifique o servidor, o nome do utilizador e a palavra-chave abaixo e tente novamente.',
 	'config-invalid-schema' => "O esquema ''(schema)'' do MediaWiki, \"\$1\", é inválido.
-Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.",
-	'config-invalid-ts2schema' => "O esquema ''(schema)'' para o TSearch2, \"\$1\", é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.",
 	'config-postgres-old' => 'É necessário o PostgreSQL $1 ou posterior; tem a versão $2.',
 	'config-sqlite-name-help' => 'Escolha o nome que identificará a sua wiki.
@@ -9203,7 +9133,7 @@ Uma '''{{int:config-profile-private}}''' só permite que os utilizadores aprovad
 Após a instalação, estarão disponíveis mais configurações de privilégios. Consulte [http://www.mediawiki.org/wiki/Manual:User_rights a entrada relevante no Manual].",
 	'config-license' => 'Direitos de autor e licença:',
 	'config-license-none' => 'Sem rodapé com a licença',
-	'config-license-cc-by-sa' => 'Atribuição - Partilha nos Mesmos Termos, da Creative Commons (compatível com a Wikipédia)',
+	'config-license-cc-by-sa' => 'Atribuição - Partilha nos Mesmos Termos, da Creative Commons',
 	'config-license-cc-by-nc-sa' => 'Atribuição - Uso Não-Comercial - Partilha nos Mesmos Termos, da Creative Commons',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ou posterior',
@@ -9284,9 +9214,6 @@ Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\'
 	'config-install-pg-commit' => 'A gravar as alterações',
 	'config-install-pg-plpgsql' => 'A verificar a presença da linguagem PL/pgSQL',
 	'config-pg-no-plpgsql' => 'É preciso instalar a linguagem PL/pgSQL na base de dados $1',
-	'config-install-pg-ts2' => 'A verificar a presença de tsearch2',
-	'config-install-pg-ts2-failed' => "'''INSUCESSO''' tsearch2 tem de ser instalado na base de dados $1.
-Leia [$2 estas instruções] ou peça ajuda no canal #postgresql em irc.freenode.net, por favor.",
 	'config-install-user' => 'A criar o utilizador da base de dados',
 	'config-install-user-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
 	'config-install-tables' => 'A criar as tabelas',
@@ -9452,6 +9379,7 @@ $messages['ro'] = array(
 /** Russian (Русский)
  * @author DCamer
  * @author Eleferen
+ * @author Krinkle
  * @author MaxSem
  * @author Александр Сигачёв
  * @author Сrower
@@ -9639,7 +9567,6 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-mysql-old' => 'Необходим MySQL $1 или более поздняя версия. У вас установлен MySQL $2.',
 	'config-db-port' => 'Порт базы данных:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-ts2-schema' => 'Схема для tsearch2',
 	'config-db-schema-help' => 'Вышеприведённые схемы, как правило, работают нормально. 
 Изменяйте их только если знаете, зачем это необходимо.',
 	'config-sqlite-dir' => 'Директория данных SQLite:',
@@ -9686,8 +9613,6 @@ $1
 
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
 	'config-invalid-schema' => 'Неправильная схема для MediaWiki «$1». 
-Используйте только ASCII символы (a-z, A-Z), цифры(0-9) и знаки подчёркивания(_).',
-	'config-invalid-ts2schema' => 'Неправильная схема для TSearch2 «$1». 
 Используйте только ASCII символы (a-z, A-Z), цифры(0-9) и знаки подчёркивания(_).',
 	'config-postgres-old' => 'Необходим PostgreSQL $1 или более поздняя версия. У вас установлен PostgreSQL $2.',
 	'config-sqlite-name-help' => 'Выберите имя-идентификатор для вашей вики. 
@@ -9810,7 +9735,7 @@ chmod a+w $3</pre>',
 Более сложные схемы разграничения прав можно настроить после установки, см. [http://www.mediawiki.org/wiki/Manual:User_rights соответствующее руководство].",
 	'config-license' => 'Авторские права и лицензии:',
 	'config-license-none' => 'Не указывать лицензию в колонтитуле внизу страницы',
-	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (совместимая с Wikipedia)',
+	'config-license-cc-by-sa' => 'Creative Commons Атрибуция — С сохранением условий',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 или более поздней версии',
@@ -9891,9 +9816,6 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-pg-commit' => 'Внесение изменений',
 	'config-install-pg-plpgsql' => 'Проверка языка PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1',
-	'config-install-pg-ts2' => 'Проверка tsearch2',
-	'config-install-pg-ts2-failed' => "'''СБОЙ'''. В базе данных $1 должен быть установлен tsearch2.
-Пожалуйста, прочтите [$2 эту инструкцию] или обратитесь на канал #postgresql на irc.freenode.net",
 	'config-install-user' => 'Создание базы данных пользователей',
 	'config-install-user-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
 	'config-install-tables' => 'Создание таблиц',
@@ -10116,7 +10038,6 @@ Pinigilan ang pag-iinstala.",
 	'config-mysql-old' => 'Hindi kailangan ang MySQL na $1 o mas bago, mayroon kang $2.',
 	'config-db-port' => 'Daungan ng kalipunan ng dato:',
 	'config-db-schema' => 'Panukala para sa MediaWiki',
-	'config-db-ts2-schema' => 'Panukala para sa tsearch2',
 	'config-db-schema-help' => 'Ang nasa itaas na mga panukala ay karaniwang tama.
 Baguhin lamang sila kung alam mong kailangan mo.',
 	'config-sqlite-dir' => 'Direktoryo ng dato ng SQLite:',
@@ -10179,7 +10100,7 @@ Maaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ng
 	'config-profile-private' => 'Pribadong wiki',
 	'config-license' => 'Karapatang-ari at lisensiya:',
 	'config-license-none' => 'Walang talababa ng lisensiya',
-	'config-license-cc-by-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Pamamahaging Magkatulad (Kabagay ng Wikipedia)',
+	'config-license-cc-by-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Pamamahaging Magkatulad',
 	'config-license-cc-by-nc-sa' => 'Malikhaing Pangkaraniwang Pagtukoy Hindi-Pangkalakal Pamamahaging Magkatulad',
 	'config-license-gfdl-old' => 'Lisensiya ng Malayang Dokumenstasyon 1.2 ng GNU',
 	'config-license-gfdl-current' => 'Lisensiya ng Malayang Dokumenstasyon 1.3 ng GNU o mas bago',
@@ -10483,7 +10404,6 @@ Object caching is not enabled.",
 	'config-mysql-old' => '需要MySQL $1或更新的版本，您的版本为$2。',
 	'config-db-port' => '数据库端口：',
 	'config-db-schema' => 'MediaWiki的数据库模式',
-	'config-db-ts2-schema' => 'Tsearch2的数据库模式',
 	'config-db-schema-help' => '上述数据库模式的设置通常是正确的。请在有此需求时才更改它们。',
 	'config-sqlite-dir' => 'SQLite数据目录：',
 	'config-sqlite-dir-help' => "SQLite会将所有的数据存储于单一文件中。
@@ -10521,7 +10441,6 @@ $1
 
 请检查下列的主机、用户名和密码设置后重试。',
 	'config-invalid-schema' => '无效的MediaWiki数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。',
-	'config-invalid-ts2schema' => '无效的TSearch2数据库模式“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）和下划线（_）。',
 	'config-postgres-old' => '需要PostgreSQL $1或更新的版本，您的版本为$2。',
 	'config-sqlite-name-help' => '请为您的wiki指定一个用于标识的名称。请勿使用空格或连字号，该名称将被用作SQLite的数据文件名。',
 	'config-sqlite-parent-unwritable-group' => '由于父目录<code><nowiki>$2</nowiki></code>对网页服务器不可写，无法创建数据目录<code><nowiki>$1</nowiki></code>。
@@ -10622,7 +10541,7 @@ chmod a+w $3</pre>',
 安装完成后，您还可以对用户权限进行更多、更复杂的配置，参见[http://www.mediawiki.org/wiki/Manual:User_rights 相关的使用手册]。",
 	'config-license' => '版权和许可证：',
 	'config-license-none' => '页脚无许可证',
-	'config-license-cc-by-sa' => '知识共享署名-相同方式分享（与维基百科兼容）',
+	'config-license-cc-by-sa' => '知识共享署名-相同方式分享',
 	'config-license-cc-by-nc-sa' => '知识共享署名-非商业性使用-相同方式共享',
 	'config-license-gfdl-old' => 'GNU自由文档许可证 1.2',
 	'config-license-gfdl-current' => 'GNU自由文档许可证 1.3或更高版本',
@@ -10685,8 +10604,6 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-pg-commit' => '正在提交更改',
 	'config-install-pg-plpgsql' => '正在检查PL/pgSQL语言',
 	'config-pg-no-plpgsql' => '您需要为数据库$1安装PL/pgSQL语言',
-	'config-install-pg-ts2' => '正在检查tsearch2',
-	'config-install-pg-ts2-failed' => "'''失败''':数据库$1必须安装有tsearch2。请阅读[$2 这些指引]或在irc.freenode.net的#postgresql中发问。",
 	'config-install-user' => '正在创建数据库用户',
 	'config-install-user-failed' => '授予用户“$1”权限失败：$2',
 	'config-install-tables' => '正在创建数据表',

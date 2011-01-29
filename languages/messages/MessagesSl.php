@@ -3238,20 +3238,34 @@ in tako prekličite potrditev elektronskega naslova:
 $5
 
 Potrditvena koda bo potekla $4.',
-'confirmemail_body_changed' => 'Nekdo, najverjetneje vi, je iz IP-naslova $1
-na strani {{SITENAME}} spremenil e-poštni naslov računa »$2« v ta naslov.
+'confirmemail_body_changed' => 'Nekdo, najverjetneje vi, je z IP-naslova $1
+na strani {{SITENAME}} spremenil e-poštni naslov računa »$2« na ta naslov.
 
 Da potrdite lastništvo tega računa in ponovno aktivirate
 e-poštne funkcije na {{GRAMMAR:dajalnik|{{SITENAME}}}}, odprite to povezavo v vašem brskalniku:
 
 $3
 
-Če ta račun *ni* vaš, sledite spodnji povezavi za preklic
+Če omenjeni račun *ni* vaš, sledite spodnji povezavi za preklic
 potrditve e-poštnega naslova:
 
 $5
 
-Ta potrditvena koda poteče $4.',
+Potrditvena koda poteče $4.',
+'confirmemail_body_set'     => 'Nekdo, najverjetneje vi, je z IP-naslova $1
+na strani {{SITENAME}} nastavil e-poštni naslov računa »$2« na ta naslov.
+
+Da potrdite lastništvo tega računa in ponovno aktivirate
+e-poštne funkcije na {{GRAMMAR:dajalnik|{{SITENAME}}}}, odprite to povezavo v vašem brskalniku:
+
+$3
+
+Če omenjeni račun *ni* vaš, sledite spodnji povezavi za preklic
+potrditve e-poštnega naslova:
+
+$5
+
+Potrditvena koda poteče $4.',
 'confirmemail_invalidated'  => 'Potrditev e-poštnega naslova preklicana',
 'invalidateemail'           => 'Prekliči potrditev e-poštnega naslova',
 

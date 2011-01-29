@@ -3274,6 +3274,20 @@ pro cancellar le confirmation del adresse de e-mail:
 $5
 
 Iste codice de confirmation expirara a $4.',
+'confirmemail_body_set'     => 'Un persona, probabilemente tu, usante le adresse IP $1,
+ha specificate que iste adresse de e-mail pertine al conto "$2" in {{SITENAME}}.
+
+Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
+
+$3
+
+Si le conto *non* pertine a te, seque iste ligamine
+pro cancellar le confirmation del adresse de e-mail:
+
+$5
+
+Iste codice de confirmation expirara a $4.',
 'confirmemail_invalidated'  => 'Confirmation del adresse de e-mail cancellate',
 'invalidateemail'           => 'Cancellar confirmation del adresse de e-mail',
 
