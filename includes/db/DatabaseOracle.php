@@ -7,21 +7,6 @@
  */
 
 /**
- * @ingroup Database
- */
-class ORABlob {
-	var $mData;
-
-	function __construct( $data ) {
-		$this->mData = $data;
-	}
-
-	function getData() {
-		return $this->mData;
-	}
-}
-
-/**
  * The oci8 extension is fairly weak and doesn't support oci_num_rows, among
  * other things.  We use a wrapper class to handle that and other
  * Oracle-specific bits, like converting column names back to lowercase.
@@ -496,7 +481,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( $val === null ) {
-			if ( $col_info != false && $col_info->nullable() == 0 && $col_info->defaultValue() != null ) {
+			if ( $col_info != false && $col_info->isNullable() == 0 && $col_info->defaultValue() != null ) {
 				$bind .= 'DEFAULT';
 			} else {
 				$bind .= 'NULL';
@@ -862,6 +847,37 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->doQuery( 'BEGIN DUPLICATE_TABLE(\'' . $tabName . '\', \'' . $oldPrefix . '\', \'' . strtoupper( $wgDBprefix ) . '\', ' . $temporary . '); END;' );
 	}
 
+	function listTables( $prefix = null, $fname = 'DatabaseOracle::listTables' ) {
+		$listWhere = '';
+		if (!empty($prefix)) {
+			$listWhere = ' AND table_name LIKE \''.strtoupper($prefix).'%\'';
+		}
+		
+		$result = $this->doQuery( "SELECT table_name FROM user_tables WHERE table_name NOT LIKE '%!_IDX$_' ESCAPE '!' $listWhere" );
+
+		// dirty code ... i know
+		$endArray = array();
+		$endArray[] = $prefix.'MWUSER';
+		$endArray[] = $prefix.'PAGE';
+		$endArray[] = $prefix.'IMAGE';
+		$fixedOrderTabs = $endArray;
+		while (($row = $result->fetchRow()) !== false) {
+			if (!in_array($row['table_name'], $fixedOrderTabs))
+				$endArray[] = $row['table_name'];
+		}
+
+		return $endArray;
+	}
+
+	public function dropTable( $tableName, $fName = 'DatabaseOracle::dropTable' ) {
+		$tableName = $this->tableName($tableName);
+		if( !$this->tableExists( $tableName ) ) {
+			return false;
+		}
+		
+		return $this->doQuery( "DROP TABLE $tableName CASCADE CONSTRAINTS PURGE" );
+	}
+
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_ORACLE, $ts );
 	}
@@ -910,6 +926,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
 	function tableExists( $table ) {
+		$table = trim($this->tableName($table), '"');
 		$SQL = "SELECT 1 FROM user_tables WHERE table_name='$table'";
 		$res = $this->doQuery( $SQL );
 		if ( $res ) {
@@ -1048,7 +1065,7 @@ class DatabaseOracle extends DatabaseBase {
 					}
 				} else {
 					foreach ( $replacements as $mwVar => $scVar ) {
-						$cmd = str_replace( '&' . $scVar . '.', '{$' . $mwVar . '}', $cmd );
+						$cmd = str_replace( '&' . $scVar . '.', '`{$' . $mwVar . '}`', $cmd );
 					}
 
 					$cmd = $this->replaceVars( $cmd );
@@ -1126,24 +1143,35 @@ class DatabaseOracle extends DatabaseBase {
 		return "'" . $this->strencode( $s ) . "'";
 	}
 
+	public function addIdentifierQuotes( $s ) {
+		if ( !$this->mFlags & DBO_DDLMODE ) {
+			$s = '"' . str_replace( '"', '""', $s ) . '"';
+		}
+		return $s;
+	}
+
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
 		global $wgContLang;
 
-		$conds2 = array();
-		$conds = ( $conds != null && !is_array( $conds ) ) ? array( $conds ) : $conds;
-		foreach ( $conds as $col => $val ) {
-			$col_info = $this->fieldInfoMulti( $table, $col );
-			$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
-			if ( $col_type == 'CLOB' ) {
-				$conds2['TO_CHAR(' . $col . ')'] = $wgContLang->checkTitleEncoding( $val );
-			} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
-				$conds2[$col] = $wgContLang->checkTitleEncoding( $val );
-			} else {
-				$conds2[$col] = $val;
+		if ($conds != null) {
+			$conds2 = array();
+			$conds = ( !is_array( $conds ) ) ? array( $conds ) : $conds;
+			foreach ( $conds as $col => $val ) {
+				$col_info = $this->fieldInfoMulti( $table, $col );
+				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
+				if ( $col_type == 'CLOB' ) {
+					$conds2['TO_CHAR(' . $col . ')'] = $wgContLang->checkTitleEncoding( $val );
+				} elseif ( $col_type == 'VARCHAR2' && !mb_check_encoding( $val ) ) {
+					$conds2[$col] = $wgContLang->checkTitleEncoding( $val );
+				} else {
+					$conds2[$col] = $val;
+				}
 			}
+
+			return parent::selectRow( $table, $vars, $conds2, $fname, $options, $join_conds );
+		} else {
+			return parent::selectRow( $table, $vars, $conds, $fname, $options, $join_conds );
 		}
-		
-		return parent::selectRow( $table, $vars, $conds2, $fname, $options, $join_conds );
 	}
 
 	/**
@@ -1192,9 +1220,9 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		global $wgContLang;
 
-		if ( $wgContLang != null && $conds != '*' ) {
+		if ( $wgContLang != null && $conds != null && $conds != '*' ) {
 			$conds2 = array();
-			$conds = ( $conds != null && !is_array( $conds ) ) ? array( $conds ) : $conds;
+			$conds = ( !is_array( $conds ) ) ? array( $conds ) : $conds;
 			foreach ( $conds as $col => $val ) {
 				$col_info = $this->fieldInfoMulti( $table, $col );
 				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';

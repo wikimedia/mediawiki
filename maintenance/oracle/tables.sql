@@ -803,7 +803,6 @@ BEGIN
                FROM user_triggers
               WHERE table_name = p_oldprefix || p_tabname) LOOP
     l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'ALTER ') - 1);
-    dbms_output.put_line(l_temp_ei_sql);
     EXECUTE IMMEDIATE l_temp_ei_sql;
   END LOOP;
 END;

@@ -300,7 +300,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 		}
 
 		// Set the relevant variables from LocalSettings.php
-		$requiredVars = array( 'wgDBtype', 'wgDBuser', 'wgDBpassword' );
+		$requiredVars = array( 'wgDBtype' );
 		$status = $this->importVariables( $requiredVars , $vars );
 		$installer = $this->parent->getDBInstaller();
 		$status->merge( $this->importVariables( $installer->getGlobalNames(), $vars ) );
@@ -384,7 +384,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 
 		$dbSupport = '';
 		foreach( $this->parent->getDBTypes() as $type ) {
-			$db = 'Database' . ucfirst( $type );
+			$db = DatabaseBase::classFromType( $type );
 			$dbSupport .= wfMsgNoTrans( "config-support-$type",
 				call_user_func( array( $db, 'getSoftwareLink' ) ) ) . "\n";
 		}

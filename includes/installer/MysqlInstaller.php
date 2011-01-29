@@ -74,6 +74,9 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		// Validate them.
 		$status = Status::newGood();
+		if ( !strlen( $newValues['wgDBserver'] ) ) {
+			$status->fatal( 'config-missing-db-host' );
+		}
 		if ( !strlen( $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-missing-db-name' );
 		} elseif ( !preg_match( '/^[a-z0-9_-]+$/i', $newValues['wgDBname'] ) ) {
@@ -410,7 +413,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if( !$conn->selectDB( $dbName ) ) {
-			$conn->query( "CREATE DATABASE `$dbName`", __METHOD__ );
+			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ), __METHOD__ );
 			$conn->selectDB( $dbName );
 		}
 		return $status;

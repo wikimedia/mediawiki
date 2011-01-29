@@ -229,6 +229,7 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-header-oracle'            => 'Oracle settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
+	'config-missing-db-host'          => 'You must enter a value for "Database host"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "Database TNS"',
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
@@ -450,7 +451,11 @@ Please proceed to the next page.",
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
+	'config-pg-plpgsql'               => 'Checking for language PL/pgSQL',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
+	'config-install-pg-ts2'           => 'Checking for tsearch2',
+	'config-install-pg-ts2-failed'    => "'''FAILED''' tsearch2 must be installed in the database $1
+Please read [$2 these instructions] or ask on #postgresql on irc.freenode.net</li>\n",
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',

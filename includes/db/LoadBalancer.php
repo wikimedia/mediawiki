@@ -625,7 +625,7 @@ class LoadBalancer {
 		}
 
 		# Get class for this database type
-		$class = 'Database' . ucfirst( $type );
+		$class = DatabaseBase::classFromType( $type );
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
