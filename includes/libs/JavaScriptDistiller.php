@@ -161,7 +161,7 @@ class ParseMaster {
 		foreach ($this->_patterns as $reg) {
 			$regexp .= '(' . substr($reg[self::EXPRESSION], 1, -1) . ')|';
 		}
-		$regexp = substr($regexp, 0, -1) . '/';
+		$regexp = substr($regexp, 0, -1) . '/S';
 		$regexp .= ($this->ignoreCase) ? 'i' : '';
 		
 		$string = $this->_escape($string, $this->escapeChar);
