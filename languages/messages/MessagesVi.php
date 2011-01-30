@@ -3368,6 +3368,20 @@ tục xác nhận địa chỉ thư điện tử:
 $5
 
 Mã xác nhận này sẽ hết hạn vào $4.',
+'confirmemail_body_set'     => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đặt địa chỉ này là địa
+chỉ thư điện tử của tài khoản "$2" tại {{SITENAME}}.
+
+Để xác nhận rằng tài khoản này thực sự là của bạn và để tái kích hoạt tính năng
+thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
+
+$3
+
+Nếu tài khoản *không* phải là của bạn, hãy nhấn vào liên kết này để hủy thủ
+tục xác nhận địa chỉ thư điện tử:
+
+$5
+
+Mã xác nhận này sẽ hết hạn vào $4.',
 'confirmemail_invalidated'  => 'Đã hủy xác nhận địa chỉ thư điện tử',
 'invalidateemail'           => 'Hủy xác nhận thư điện tử',
 

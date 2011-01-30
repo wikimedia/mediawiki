@@ -3091,6 +3091,19 @@ Jeli konto ći *nje*słuša, slěduj wotkaz, zo by wobkrućenje e-mejloweje adre
 $5
 
 Tute wobkrućenski kod spadnje $4.',
+'confirmemail_body_set'     => 'Něchtó, najskerje ty, wot IP-adresy $1,
+je e-mejlowu adresu konta "$2" na {{GRAMMAR:lokatiw|{{STENAME}}}} na tutu adresu stajił.
+
+Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{STENAME}}}} znowa aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
+
+$3
+
+Jeli konto ći *nje*słuša, slěduj tutón wotkaz, 
+zo by wobkrućenje e-mejloweje adresy přetorhnył:
+
+$5
+
+Tutón wobkrućenski kod spadnje $4.',
 'confirmemail_invalidated'  => 'E-mejlowe potwjerdźenje přetorhnjene',
 'invalidateemail'           => 'E-mejlowe potwjerdźenje přetorhnyć',
 

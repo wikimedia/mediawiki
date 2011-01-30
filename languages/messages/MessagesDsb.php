@@ -3110,6 +3110,17 @@ Jolic toś to konto śi *nje*słuša, slěduj toś tomu wótkazoju, aby wobkśu�
 $5
 
 Toś ten wobkšuśeński kod płaśi až do $4.',
+'confirmemail_body_set'     => 'Něchten, nejskerjej ty z IP-adresy $1, jo e-mailowu adresu konta "$2" do toś teje adrese na {{GRAMMAR:lokatiw{{SITENAME}}}} změnił.
+
+Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na {{GRAMMAR:lokatiw{{SITENAME}}}} aktiwěrował, wócyń toś ten wótkaz w swójom wobglědowaku:
+
+$3
+
+Jolic toś to konto śi *nje*słuša, slěduj toś tomu wótkazoju, aby wobkśuśenje e-mejloweje adrese anulěrował:
+
+$5
+
+Toś ten wobkšuśeński kod płaśi až do $4.',
 'confirmemail_invalidated'  => 'Emailowe wobkšuśenje pśetergnjone',
 'invalidateemail'           => 'Emailowe wobkšuśenje pśetergnuś',
 

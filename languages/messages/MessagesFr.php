@@ -3414,6 +3414,19 @@ confirmation de votre adresse courriel :
 $5
 
 Ce code de confirmation expirera le $4.',
+'confirmemail_body_set'     => "Quelqu'un, probablement vous, de l'adresse IP address $1,
+a modifié l'adresse de courriel du compte « $2 » à cette adresse sur {{SITENAME}}.
+
+Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel
+sur {{SITENAME}}, ouvrez ce lien dans votre navigateur web :
+
+$3
+
+Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l'adresse de courriel :
+
+$5
+
+Ce code de confirmation expirera le $4.",
 'confirmemail_invalidated'  => 'Confirmation de l’adresse courriel annulée',
 'invalidateemail'           => 'Annuler la confirmation de l’adresse de courriel',
 

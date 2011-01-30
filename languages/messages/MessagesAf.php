@@ -1166,6 +1166,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'searchmenu-legend'                => 'Soekopsies',
 'searchmenu-exists'                => "'''Daar is reeds 'n bladsy genaamd \"[[:\$1]]\" op die wiki'''",
 'searchmenu-new'                   => "'''Skep die bladsy \"[[:\$1]]\" op hierdie wiki'''",
+'searchmenu-new-nocreate'          => '"$1" is \'n ongeldige bladsynaam of dit kan nie deur u geskep word nie.',
 'searchhelp-url'                   => 'Help:Inhoud',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Wys bladsye wat met die voorvoegsel begin]]',
 'searchprofile-articles'           => 'Inhoudelike bladsye',
