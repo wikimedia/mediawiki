@@ -103,7 +103,7 @@ function wfSpecialWatchlist( $par ) {
 	$prefs['days']      = floatval( $wgUser->getOption( 'watchlistdays' ) );
 	$prefs['hideminor'] = $wgUser->getBoolOption( 'watchlisthideminor' );
 	$prefs['hidebots']  = $wgUser->getBoolOption( 'watchlisthidebots' );
-	$prefs['hideanons'] = $wgUser->getBoolOption( 'watchlisthideanon' );
+	$prefs['hideanons'] = $wgUser->getBoolOption( 'watchlisthideanons' );
 	$prefs['hideliu']   = $wgUser->getBoolOption( 'watchlisthideliu' );
 	$prefs['hideown' ]  = $wgUser->getBoolOption( 'watchlisthideown' );
 	$prefs['hidepatrolled' ] = $wgUser->getBoolOption( 'watchlisthidepatrolled' );
