@@ -3305,6 +3305,20 @@ untuk membatalkan konfirmasi alamat surel:
 $5
 
 Kode konfirmasi ini akan kedaluwarsa pada $4.',
+'confirmemail_body_set'     => 'Seseorang, mungkin Anda, dari alamat IP $1,
+telah mengubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
+
+Untuk mengonfirmasi bahwa akun ini adalah milik Anda sekaligus mengaktifkan
+kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:
+
+$3
+
+Jika akun ini *bukan* milik Anda, ikuti pranala berikut
+untuk membatalkan konfirmasi alamat surel:
+
+$5
+
+Kode konfirmasi ini akan kedaluwarsa pada $4.',
 'confirmemail_invalidated'  => 'Konfirmasi alamat surel dibatalkan',
 'invalidateemail'           => 'Batalkan konfirmasi surel',
 

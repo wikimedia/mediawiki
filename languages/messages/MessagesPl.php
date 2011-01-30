@@ -3347,6 +3347,20 @@ poniższy link, aby anulować potwierdzenie adresu e‐mail:
 $5
 
 Kod zawarty w linku straci ważność $4.',
+'confirmemail_body_set'     => 'Ktoś łącząc się z komputera o adresie IP $1
+ustawił w {{GRAMMAR:MS.lp|{{SITENAME}}}} dla konta „$2” adres e‐mail na ten właśnie.
+
+Aby potwierdzić, że to Ty {{GENDER:|ustawiłeś|ustawiłaś}} adres otwórz w swojej
+przeglądarce ten link:
+
+$3
+
+Jeśli *nie* jest to Twoje konto, otwórz w swojej przeglądarce
+poniższy link, aby anulować potwierdzenie adresu e‐mail:
+
+$5
+
+Kod zawarty w linku straci ważność $4.',
 'confirmemail_invalidated'  => 'Potwierdzenie adresu e‐mail zostało anulowane',
 'invalidateemail'           => 'Anulowanie potwierdzenia adresu e‐mail',
 

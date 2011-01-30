@@ -185,10 +185,10 @@ $messages = array(
 'editsectionhint' => '$1 секциез тупатоно',
 'site-rss-feed'   => '$1 — RSS-лента',
 'site-atom-feed'  => '$1 — Atom-лента',
-'red-link-title'  => '$1 (таӵе бам ӧвӧл)',
+'red-link-title'  => '$1 (со бам ӧвӧл на)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'      => 'викиавтор',
+'nstab-user'      => 'Викиавтор',
 'nstab-mediawiki' => 'Ивортон',
 
 # General errors
@@ -216,7 +216,7 @@ $messages = array(
 
 # Search results
 'searchresults'      => 'Шедьтэмын',
-'searchresulttext'   => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
+'searchresulttext'   => 'Проектлэн бамъёстӥз утчан сярысь тыро-быдогес тодэмды потӥз ке, учке [[{{MediaWiki:Helppage}}|«Юан-веран» люкетэз]].',
 'searchhelp-url'     => 'Help:Валэктон',
 'search-result-size' => '$1 кыл',
 
@@ -238,7 +238,7 @@ $messages = array(
 'upload' => 'Файл поныны',
 
 # File description page
-'sharedupload' => 'Этот файл из $1 и может использоваться в других проектах.',
+'sharedupload' => 'Та файл — $1-ысь, сое мукет проектъёсын но уже кутыны луэ.',
 
 # Random page
 'randompage' => 'Олокыӵе статья',
@@ -257,7 +257,7 @@ $messages = array(
 'unwatch'     => 'Чакламысь дугдыны',
 
 # Contributions
-'mycontris' => 'мынам статьяосы',
+'mycontris' => 'Мынам гожтэмъёсы',
 
 # What links here
 'whatlinkshere' => 'Татчы линкъёс',
@@ -275,7 +275,7 @@ $messages = array(
 'tooltip-search'                 => 'Утчано {{SITENAME}}',
 'tooltip-n-mainpage'             => 'Кутскон баме мыноно',
 'tooltip-n-mainpage-description' => 'Кутскон баме мыноно',
-'tooltip-n-portal'               => 'Проект сярысь, мар карыны быгатоды, кытын кулэ арбериос шедьтоно',
+'tooltip-n-portal'               => 'Проект сярысь, мар карыны быгатоды, ужлы кулэ луэмзэ кытысь шедьтоно',
 'tooltip-n-recentchanges'        => 'Берпуметӥ тупатонъёслэн списоксы',
 'tooltip-n-randompage'           => 'Олокыӵе бамез учконо',
 'tooltip-t-whatlinkshere'        => 'Ваньмыз бамъёс, кудъёсаз та бамлы линксы вань',

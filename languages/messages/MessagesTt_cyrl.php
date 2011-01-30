@@ -2286,6 +2286,8 @@ $1',
 
 # action=purge
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Бу битнең кэшын чистартыргамы?',
+'confirm-purge-bottom' => 'Кэшны чистартудан соң аның соңгы юрамасы күрсәтеләчәк.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← алдагы бит',

@@ -3305,6 +3305,19 @@ por nuligi la retadresan konfirmadon:
 $5
 
 Ĉi tiu konfirmkodo malvalidiĝos je $4.',
+'confirmemail_body_set'     => 'Iu, supozeble vi mem, je IP-adreso $1,
+agordis la retpoŝadreson de konto "$2" al ĉi tiu adreso je {{SITENAME}}.
+
+Por konfirmi ke ĉi tiu konto vere apertenas al vi kaj refunkciigi la retpoŝtfunkciojn je {{SITENAME}}, bonvolu
+malfermi la jenon ligon per via foliumilo:
+
+$3
+
+Se ĉi tiu konto *ne* apertenas al vi, bonvolu sekvi jenan ligon por nuligi la konfirmon pir la retpoŝadreso:
+
+$5
+
+Ĉi tiu konfirma kodo eksvalidiĝos je $4',
 'confirmemail_invalidated'  => 'Konfirmado de retadreso estas nuligita',
 'invalidateemail'           => 'Nuligi konfirmadon de retadreso',
 
