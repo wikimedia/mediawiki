@@ -1009,25 +1009,29 @@ class WebInstaller_Options extends WebInstallerPage {
 class WebInstaller_Install extends WebInstallerPage {
 
 	public function execute() {
-		if( $this->parent->request->wasPosted() ) {
-			return 'continue';
-		} elseif( $this->getVar( '_InstallDone' ) ) {
-			$this->startForm();
-			$status = new Status();
-			$status->warning( 'config-install-alreadydone' );
-			$this->parent->showStatusBox( $status );
-		} elseif( $this->getVar( '_UpgradeDone' ) ) {
+		if( $this->getVar( '_UpgradeDone' ) ) {
 			return 'skip';
-		} else {
+		} elseif( $this->getVar( '_InstallDone' ) ) {
+			return 'continue';
+		} elseif( $this->parent->request->wasPosted() ) {
 			$this->startForm();
 			$this->addHTML("<ul>");
-			$this->parent->performInstallation(
+			$results = $this->parent->performInstallation(
 				array( $this, 'startStage'),
 				array( $this, 'endStage' )
 			);
 			$this->addHTML("</ul>");
+			// PerformInstallation bails on a fatal, so make sure the last item
+			// completed before giving 'next.' Likewise, only provide back on failure
+			$lastStep = end( $results );
+			$continue = $lastStep->isOK() ? 'continue' : false;
+			$back = $lastStep->isOK() ? false : 'back';
+			$this->endForm( $continue, $back );
+		} else {
+			$this->startForm();
+			$this->addHTML( $this->parent->getInfoBox( wfMsgNoTrans( 'config-install-begin' ) ) );
+			$this->endForm();
 		}
-		$this->endForm();
 		return true;
 	}
 

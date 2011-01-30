@@ -438,6 +438,8 @@ Should be separated with commas and specify the port to be used (for example: 12
 They may require additional configuration, but you can enable them now',
 	'config-install-alreadydone'      => "'''Warning:''' You seem to have already installed MediaWiki and are trying to install it again.
 Please proceed to the next page.",
+	'config-install-begin'            => 'By pressing next, you will begin the installation of MediaWiki.
+If you still want to make changes, press back.',
 	'config-install-step-done'        => 'done',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
