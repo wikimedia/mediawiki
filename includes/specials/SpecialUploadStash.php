@@ -84,11 +84,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$wgOut->disable();
 
 		try {
-			if ( preg_match( '/^(\d+)px-(.*)$/', $key, $matches ) ) {
-				list( /* full match */, $width, $key ) = $matches;
-				return $this->outputThumbFromStash( $key, $width );
+			$params = $this->parseKey( $key );
+			if ( $params['type'] === 'thumb' ) {
+				return $this->outputThumbFromStash( $params['file'], $params['params'] );
 			} else {
-				return $this->outputFileFromStash( $key );
+				return $this->outputLocalFile( $params['file'] );
 			}
 		} catch( UploadStashFileNotFoundException $e ) {
 			$code = 404; 
@@ -110,16 +110,42 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $message );
 		return false;
 	}
-		
+	
 	/**
-	 * Get a file from stash and stream it out. Rely on parent to catch exceptions and transform them into HTTP
-	 * @param String: $key - key of this file in the stash, which probably looks like a filename with extension.
-	 * @return boolean
+	 * Parse the key passed to the SpecialPage. Returns an array containing 
+	 * the associated file object, the type ('file' or 'thumb') and if 
+	 * application the transform parameters
+	 * 
+	 * @param string $key
+	 * @return array
 	 */
-	private function outputFileFromStash( $key ) {
-		$file = $this->stash->getFile( $key );
-		return $this->outputLocalFile( $file );
+	private function parseKey( $key ) {
+		$type = strtok( $key, '/' );
+
+		if ( $type !== 'file' && $type !== 'thumb' ) {
+			throw new UploadStashBadPathException( "Unknown type '$type'" );
+		}
+		$fileName = strtok( '/' );
+		$thumbPart = strtok( '/' );
+		$file = $this->stash->getFile( $fileName );
+		if ( $type === 'thumb' ) {
+
+			$parts = explode( "-{$fileName}", $thumbPart );
+			
+			if ( count( $parts ) != 2 || $parts[1] !== '' ) {
+				throw new UploadStashBadPathException( 'Invalid suffix' );
+			}
+			
+		
+			$handler = $file->getHandler();
+			$params = $handler->parseParamString( $parts[0] );				
+			return array( 'file' => $file, 'type' => $type, 'params' => $params ); 
+		}
+		
+		return array( 'file' => $file, 'type' => $type );
 	}
+		
+
 
 
 	/**
@@ -128,25 +154,20 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param int $width: width of desired thumbnail
 	 * @return boolean success 
  	 */
-	private function outputThumbFromStash( $key, $width ) {
+	private function outputThumbFromStash( $file, $params ) {
 		
 		// this global, if it exists, points to a "scaler", as you might find in the Wikimedia Foundation cluster. See outputRemoteScaledThumb()
 		// this is part of our horrible NFS-based system, we create a file on a mount point here, but fetch the scaled file from somewhere else that
 		// happens to share it over NFS
 		global $wgUploadStashScalerBaseUrl;
 
-		// let exceptions propagate to caller.
-		$file = $this->stash->getFile( $key );
-
-		// OK, we're here and no exception was thrown,
-		// so the original file must exist.
-
-		// let's get ready to transform the original -- these are standard
-		$params = array( 'width' => $width );	
 		$flags = 0;
+		if ( $wgUploadStashScalerBaseUrl ) {
+			$this->outputRemoteScaledThumb( $file, $params, $flags );
+		} else {
+			$this->outputLocallyScaledThumb( $file, $params, $flags );
+		}
 
-		return $wgUploadStashScalerBaseUrl ? $this->outputRemoteScaledThumb( $file, $params, $flags )
-						   : $this->outputLocallyScaledThumb( $file, $params, $flags );
 
 	}
 
@@ -353,7 +374,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$fileListItemsHtml = '';
 			foreach ( $files as $file ) {
 				$fileListItemsHtml .= Html::rawElement( 'li', array(),
-					Html::element( 'a', array( 'href' => $this->getTitle( $file )->getLocalURL() ), $file )
+					Html::element( 'a', array( 'href' => 
+						$this->getTitle( "file/$file" )->getLocalURL() ), $file )
 				);
 			}
 			$wgOut->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );
