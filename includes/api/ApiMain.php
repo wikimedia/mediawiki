@@ -180,6 +180,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Return true if the API was started by other PHP code using FauxRequest
+	 * @return bool
 	 */
 	public function isInternalMode() {
 		return $this->mInternalMode;
@@ -204,6 +205,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get the API module object. Only works after executeAction()
+	 *
+	 * @return ApiBase
 	 */
 	public function getModule() {
 		return $this->mModule;
@@ -309,6 +312,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Create an instance of an output formatter by its name
+	 *
+	 * @return ApiFormatBase
 	 */
 	public function createPrinterByName( $format ) {
 		if ( !isset( $this->mFormats[$format] ) ) {
@@ -455,6 +460,7 @@ class ApiMain extends ApiBase {
 	 * Replace the result data with the information about an exception.
 	 * Returns the error code
 	 * @param $e Exception
+	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
@@ -516,6 +522,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Set up for the execution.
+	 * @return array
 	 */
 	protected function setupExecuteAction() {
 		// First add the id to the top element
@@ -692,6 +699,9 @@ class ApiMain extends ApiBase {
 		$printer->profileOut();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isReadMode() {
 		return false;
 	}
@@ -977,6 +987,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get the array mapping module names to class names
+	 * @return array
 	 */
 	function getModules() {
 		return $this->mModules;
