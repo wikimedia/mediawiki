@@ -358,7 +358,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getThumbUrl( $thumbName = false ) { 
 		wfDebug( __METHOD__ . " getting for $thumbName \n" );
-		return $this->getSpecialUrl( $thumbName );
+		return $this->getSpecialUrl( 'thumb/' . $this->getUrlName() . '/' . $thumbName );
 	}
 
 	/** 
@@ -382,7 +382,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getUrl() {
 		if ( !isset( $this->url ) ) {
-			$this->url = $this->getSpecialUrl( $this->getUrlName() );
+			$this->url = $this->getSpecialUrl( 'file/' . $this->getUrlName() );
 		}
 		return $this->url;
 	}
