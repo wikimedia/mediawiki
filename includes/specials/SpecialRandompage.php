@@ -139,7 +139,7 @@ class RandomPage extends SpecialPage {
 			$this->extra[] = $this->addExtraSQL();
 		}
 
-		$res = $dbr->doQuery(
+		$res = $dbr->select(
 			'page',
 			array( 'page_title', 'page_namespace' ),
 			array_merge( array(
