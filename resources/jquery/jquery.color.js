@@ -3,7 +3,7 @@
  * Copyright 2007 John Resig
  * Released under the MIT and GPL licenses.
  *
- * - 2011-01-05: Modified by Krinkle to use the jQuery.colorUtil plugin (has to be loaded first)
+ * - 2011-01-05: Modified by Krinkle to use the jQuery.colorUtil plugin (which has to be loaded first!)
  */
 (function( $ ) {
 

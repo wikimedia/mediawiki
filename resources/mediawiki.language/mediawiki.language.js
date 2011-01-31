@@ -5,8 +5,9 @@
  * Language.php in MediaWiki. This object contains methods for loading and
  * transforming message text.
  */
+( function( $, mw ) {
 
-mediaWiki.language = {
+mw.language = {
 	/**
 	 * Process the PLURAL template substitution
 	 *
@@ -19,15 +20,15 @@ mediaWiki.language = {
 	 * @example {{Template:title|params}}
 	 */
 	'procPLURAL': function( template ) {
-		if ( template.title && template.parameters && mediaWiki.language.convertPlural ) {
+		if ( template.title && template.parameters && mw.language.convertPlural ) {
 			// Check if we have forms to replace
 			if ( template.parameters.length == 0 ) {
 				return '';
 			}
 			// Restore the count into a Number ( if it got converted earlier )
-			var count = mediaWiki.language.convertNumber( template.title, true );
+			var count = mw.language.convertNumber( template.title, true );
 			// Do convertPlural call 
-			return mediaWiki.language.convertPlural( parseInt( count ), template.parameters );
+			return mw.language.convertPlural( parseInt( count ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
 		if ( template.parameters[0] ) {
@@ -68,11 +69,11 @@ mediaWiki.language = {
 	 * @param {boolean} integer Convert the return value to an integer
 	 */
 	'convertNumber': function( number, integer ) {
-		if ( !mediaWiki.language.digitTransformTable ) {
+		if ( !mw.language.digitTransformTable ) {
 			return number;
 		}
 		// Set the target Transform table:
-		var transformTable = mediaWiki.language.digitTransformTable;
+		var transformTable = mw.language.digitTransformTable;
 		// Check if the "restore" to Latin number flag is set:
 		if ( integer ) {
 			if ( parseInt( number ) == number ) {
@@ -98,3 +99,4 @@ mediaWiki.language = {
 	// Digit Transform Table, populated by language classes where applicable
 	'digitTransformTable': null
 };
+} )( jQuery, mediaWiki );

@@ -8,6 +8,7 @@
  * @version 0.2.0
  * @license GPL v2
  */
+( function( $ ) {
 
 $.fn.placeholder = function() {
 
@@ -59,3 +60,4 @@ $.fn.placeholder = function() {
 
 	});
 };
+} )( jQuery );

@@ -1,4 +1,8 @@
 /**
+ * jQuery tabIndex
+ */
+( function( $ ) {
+/**
  * Finds the lowerst tabindex in use within a selection
  * 
  * @return number Lowest tabindex on the page
@@ -29,3 +33,4 @@ $.fn.lastTabIndex = function() {
 	} );
 	return maxTabIndex;
 };
+} )( jQuery );

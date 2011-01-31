@@ -6,7 +6,7 @@
  * @author Krinkle <krinklemail@gmail.com>
  * @license GPL v2
  */
-
+( function( $ ) {
 $.fn.checkboxShiftClick = function( text ) {
 	var prevCheckbox = null;
 	var $box = this;
@@ -25,3 +25,4 @@ $.fn.checkboxShiftClick = function( text ) {
 	} );
 	return $box;
 };
+} )( jQuery );

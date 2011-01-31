@@ -8,7 +8,7 @@
 
 ( function( $, mw ) {
 
-	mediaWiki.test = {
+	mw.test = {
 
 		/* Variables */
 		'$table' : null,
@@ -403,6 +403,6 @@
 		}
 	};
 
-	mediaWiki.test.init();
+	mw.test.init();
 
 } )(jQuery, mediaWiki);
