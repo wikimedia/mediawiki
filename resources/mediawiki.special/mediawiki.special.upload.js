@@ -152,7 +152,7 @@ jQuery( function( $ ) {
 				callbackBinary( reader.result );
 				reader.onload = function() {
 					callback( reader.result );
-				}
+				};
 				reader.readAsDataURL( file );
 			} else {
 				callback( reader.result );
