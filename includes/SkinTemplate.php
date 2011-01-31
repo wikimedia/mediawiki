@@ -1173,7 +1173,7 @@ class SkinTemplate extends Skin {
 
 			// Copy in case this undocumented, shady hook tries to mess with internals
 			$revid = $this->mRevisionId;
-			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( $this, &$nav_urls, &$revid, &$revid ) );
+			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
 		}
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
