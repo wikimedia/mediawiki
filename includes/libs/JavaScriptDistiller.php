@@ -84,7 +84,8 @@ class JavaScriptDistiller {
 		$parser->add( '/[^\\w\\$\\/\'"*)\\?:]\\/[^\\/\\r\\n\\*][^\\/\\r\\n]*\\/g?i?/', '$1' );
 		// Remove comments
 		$parser->add( '/\\/\\*(.|[\\r\\n])*?\\*\\//' );
-		$parser->add( '/\\/\\/[^\\r\\n]*[\\r\\n]/' );
+		// Preserve the newline after a C++-style comment -- bug 27046
+		$parser->add( '/\\/\\/[^\\r\\n]*([\\r\\n])/', '$2' );
 		return $parser;
 	}
 }
