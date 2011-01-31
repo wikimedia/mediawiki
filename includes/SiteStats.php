@@ -163,8 +163,8 @@ class SiteStats {
 	private static function isSane( $row ) {
 		if(
 			$row === false
-			or $row->ss_total_pages < $row->ss_good_articles
-			or $row->ss_total_edits < $row->ss_total_pages
+			|| $row->ss_total_pages < $row->ss_good_articles
+			|| $row->ss_total_edits < $row->ss_total_pages
 		) {
 			return false;
 		}
@@ -173,7 +173,7 @@ class SiteStats {
 		'total_pages', 'users', 'admins', 'images' ) as $member ) {
 			if(
 				$row->{"ss_$member"} > 2000000000
-				or $row->{"ss_$member"} < 0
+				|| $row->{"ss_$member"} < 0
 			) {
 				return false;
 			}
