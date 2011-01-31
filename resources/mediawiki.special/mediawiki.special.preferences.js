@@ -1,6 +1,7 @@
 /*
  * JavaScript for Special:Preferences
  */
+( function( $, mw ) {
 
 $( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 $( '#preferences' )
@@ -73,3 +74,4 @@ $( '#mw-input-wpemailaddress' ).one( 'blur', function() {
 		updateMailValidityLabel( $(this).val() );
 	} );
 } );
+} )( jQuery, mediaWiki );

@@ -5,6 +5,7 @@
  * Mostly based on other plugins and functions (taken through JSLint and optimized a little).
  * Sources cited locally.
  */
+( function( $ ) {
 $.colorUtil = {
 
 	// Color Conversion function from highlightFade
@@ -45,7 +46,7 @@ $.colorUtil = {
 		}
 
 		// Otherwise, we're most likely dealing with a named color
-		return $.colorUtil.colors[jQuery.trim(color).toLowerCase()];
+		return $.colorUtil.colors[$.trim(color).toLowerCase()];
 	},
 
 	// Some named colors to work with
@@ -189,3 +190,4 @@ $.colorUtil = {
 	}
 
 };
+} )( jQuery );

@@ -21,6 +21,7 @@
  *			<img src="something.jpg" title="My Title Message" alt="My Alt Message" />
  *		</p>
  */
+( function( $ ) {
 /**
  * Localizes a DOM selection by replacing <msg /> elements with localized text and adding
  * localized title and alt attributes to elements with title-msg and alt-msg attributes
@@ -58,3 +59,4 @@ $.fn.localize = function( options ) {
 
 // Let IE know about the msg tag before it's used...
 document.createElement( 'msg' );
+} )( jQuery );

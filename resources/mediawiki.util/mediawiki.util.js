@@ -1,8 +1,7 @@
 /**
  * Utilities
  */
-
-(function($, mw) {
+( function( $, mw ) {
 
 	mw.util = {
 
@@ -13,7 +12,7 @@
 				this.initialised = true;
 
 				// Any initialisation after the DOM is ready
-				$(function() {
+				$( function() {
 
 					// Shortcut to client profile return
 					var profile = $.client.profile();
@@ -516,4 +515,4 @@
 
 	mw.util.init();
 
-})(jQuery, mediaWiki);
+} )( jQuery, mediaWiki );
