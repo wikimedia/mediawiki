@@ -372,7 +372,7 @@ $messages = array(
 'vector-action-unprotect'        => 'Гlароллех къаста',
 'vector-simplesearch-preference' => 'Шуьйра лахаран хьехар лата де (декъа «Хьушйерг» кечйарца)',
 'vector-view-create'             => 'Кхоллар',
-'vector-view-edit'               => 'Нисйинарг',
+'vector-view-edit'               => 'Нисйé',
 'vector-view-history'            => 'Хьажа исторе',
 'vector-view-view'               => 'Éшар',
 'vector-view-viewsource'         => 'Билглонашка хьажа',
@@ -541,6 +541,7 @@ $1',
 'viewsourcefor'       => 'Агlо «$1»',
 'protectedpagetext'   => 'Хlара агlо дlакъойлина йу рé цадаккхийта.',
 'viewsourcetext'      => 'Хьоьга далундерг хьажар а дезахь хlокху агlон чура йоза хьаэцар:',
+'protectedinterface'  => 'Хlара схьгайтарна гlирса хаамаш латтош йолу агlо йу. Гlуо лелачаьрга гал ца яккхийта, оцун хийцам ба магийна дац.',
 
 # Login and logout pages
 'yourname'                => 'Декъашхон цlе:',
@@ -633,12 +634,14 @@ $1',
 Цундела иза вовзийта лелош ду терахьца IP-долу метаг.
 Иза терахь долу меттиг хила мега кхечу декъашхойчух терра.
 Нагахь хьо къайлах волу декъашхо валахь хьайна хаам кхаьчна аьлла хеташн, хьуна хьажийна доцуш, дехар до, кхолла хьай меттиг кху чохь[[Special:UserLogin/signup|дlавазло]] йа [[Special:UserLogin|хьой вовзийта]],",
-'noarticletext'                    => 'Хlокх хан чохь кху яззамехь йоза дац.
-Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта агlо]] кхечу яззамехь,
-йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха кхечу тептаршкахь].</span>',
-'noarticletext-nopermission'       => 'Хlокх хан чохь кху яззамехь йоза дац.
-Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта агlо]] кхечу яззамехь,
-йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха кхечу тептаршкахь].</span>',
+'noarticletext'                    => "Хlокх хан чохь кху агlонца йоза дац.
+Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта хьехош йолу цlе]] кхечу яззамашкахь,
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лахар кхечу тептаршкахь],
+йа '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} кхолла ишта цlе йолу агlо]'''</span>.",
+'noarticletext-nopermission'       => 'Хlокх хан чохь кху агlонца йоза дац.
+Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта хьехош йолу цlе]] кхечу яззамашкахь,
+йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха оцуьнах терадерг кхечу тептаршкахь].</span>',
+'userpage-userdoesnotexist'        => 'Ишта дlайазвар «$1» хlинца дац. Хьажа билгал, хьуна бакъалла лаьи кхолла йа хийцам ба хlокху агlон.',
 'updated'                          => '(Карла йаькхина)',
 'note'                             => "'''Билгалдаккхар:'''",
 'previewnote'                      => "'''Хlара хьалх хьажар ду, йоза хlинца язданза ду!'''",

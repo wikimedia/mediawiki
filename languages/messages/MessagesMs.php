@@ -1305,26 +1305,26 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 # Groups
 'group'               => 'Kumpulan:',
 'group-user'          => 'Pengguna',
-'group-autoconfirmed' => 'Pengguna yang disahkan secara automatik',
+'group-autoconfirmed' => 'Pengguna sah automatik',
 'group-bot'           => 'Bot',
-'group-sysop'         => 'Penyelia',
+'group-sysop'         => 'Pentadbir',
 'group-bureaucrat'    => 'Birokrat',
-'group-suppress'      => 'Pengawas',
+'group-suppress'      => 'Penyemak',
 'group-all'           => '(semua)',
 
-'group-user-member'          => 'Pengguna',
-'group-autoconfirmed-member' => 'Pengguna yang disahkan secara automatik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Penyelia',
-'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Pengawas',
+'group-user-member'          => 'pengguna',
+'group-autoconfirmed-member' => 'pengguna sah automatik',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'pentadbir',
+'group-bureaucrat-member'    => 'birokrat',
+'group-suppress-member'      => 'penyemak',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna yang disahkan secara automatik',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Pentadbir',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
-'grouppage-suppress'      => '{{ns:project}}:Pengawas',
+'grouppage-suppress'      => '{{ns:project}}:Penyemak',
 
 # Rights
 'right-read'                  => 'Membaca laman',
@@ -1356,7 +1356,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'right-deletedtext'           => 'Lihat teks yang telah dihapuskan dan perubahan antara semakan-semakan yang telah dihapuskan',
 'right-browsearchive'         => 'Menggelintar laman-laman yang telah dihapuskan',
 'right-undelete'              => 'Mengembalikan laman yang telah dihapuskan (nyahhapus)',
-'right-suppressrevision'      => 'Memeriksa dan memulihkan semakan yang terselindung daripada penyelia',
+'right-suppressrevision'      => 'Memeriksa dan memulihkan semakan yang terselindung daripada pentadbir',
 'right-suppressionlog'        => 'Melihat log rahsia',
 'right-block'                 => 'Menyekat pengguna lain daripada menyunting',
 'right-blockemail'            => 'Menyekat pengguna lain daripada mengirim e-mel',
@@ -2155,7 +2155,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-default'             => 'Benarkan semua pengguna',
 'protect-fallback'            => 'Perlukan keizinan "$1"',
 'protect-level-autoconfirmed' => 'Sekat pengguna baru dan pengguna tidak berdaftar',
-'protect-level-sysop'         => 'Penyelia sahaja',
+'protect-level-sysop'         => 'Pentadbir sahaja',
 'protect-summary-cascade'     => 'melata',
 'protect-expiring'            => 'sehingga $1 (UTC)',
 'protect-expiry-indefinite'   => 'tak terbatas',
@@ -3146,6 +3146,17 @@ Untuk mengesahkan bahawa akaun ini milik anda dan untuk mengaktifkan semula kemu
 $3
 
 Jika akaun ini *bukan* milik anda, ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
+
+$5
+
+Kod pengesahan ini akan luput pada $4.',
+'confirmemail_body_set'     => 'Seseorang, barangkali anda, dari alamat IP $1, telah set semula akaun "$2" kepada alamat ini di {{SITENAME}}.
+
+Untuk mengesahkan bahawa akaun ini milik anda dan untuk mengaktifkan kemudahan e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar web anda:
+
+$3
+
+Jika akaun tersebut *bukan* kepunyaan anda, ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
 
 $5
 

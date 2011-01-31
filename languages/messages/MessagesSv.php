@@ -1266,6 +1266,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'searchmenu-legend'                => 'Sökalternativ',
 'searchmenu-exists'                => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki'''",
 'searchmenu-new'                   => "'''Skapa sidan \"[[:\$1]]\" på denna wiki!'''",
+'searchmenu-new-nocreate'          => '"$1" är ett ogiltigt namn eller kan inte skapas av dig.',
 'searchhelp-url'                   => 'Help:Innehåll',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Bläddra igenom sidor med detta prefix]]',
 'searchprofile-articles'           => 'Innehållssidor',
@@ -3359,6 +3360,20 @@ för att avbryta bekräftelsen av e-postadressen:
 $5
 
 Denna bekräftelsekod kommer inte att fungera efter $4.',
+'confirmemail_body_set'     => 'Någon, förmodligen du, från IP-adressen $1,
+har satt e-postadressen till kontot "$2" till den här adressen {{SITENAME}}.
+
+För att bekräfta att kontot verkligen tillhör dig, bör du återaktivera
+e-post funktionerna på {{SITENAME}}, öppna denna länk i din webbläsare:
+
+$3
+
+Om kontot *inte* tillhör dig, följ den här länken
+för att avbryta bekräftelsen av e-postadressen:
+
+$5
+
+Denna bekräftelsekod kommer att sluta fungera efter $4.',
 'confirmemail_invalidated'  => 'Bekräftelsen av e-postadressen har ogiltigförklarats',
 'invalidateemail'           => 'Avbryt bekräftelse av e-postadress',
 
