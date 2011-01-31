@@ -496,14 +496,14 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff5' );
 		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
-		$content_navigation = $this->buildContentNavigationUrls();
+		$tpl->set( 'personal_urls', $this->buildPersonalUrls( $out ) );
+		$content_navigation = $this->buildContentNavigationUrls( $out );
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->setRef( 'content_navigation', $content_navigation );
 		$tpl->setRef( 'content_actions', $content_actions );
 
 		$tpl->set( 'sidebar', $this->buildSidebar() );
-		$tpl->set( 'nav_urls', $this->buildNavUrls() );
+		$tpl->set( 'nav_urls', $this->buildNavUrls( $out ) );
 
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		if ( $this->useHeadElement ) {
@@ -560,12 +560,11 @@ class SkinTemplate extends Skin {
 	/**
 	 * build array of urls for personal toolbar
 	 * @return array
-	 * @private
 	 */
-	function buildPersonalUrls() {
-		global $wgOut, $wgRequest;
+	protected function buildPersonalUrls( OutputPage $out ) {
+		global $wgRequest;
 
-		$title = $wgOut->getTitle();
+		$title = $out->getTitle();
 		$pageurl = $title->getLocalURL();
 		wfProfileIn( __METHOD__ );
 
@@ -791,10 +790,9 @@ class SkinTemplate extends Skin {
 	 *                believes that the accesskey should not be added to the tab.
 	 * 
 	 * @return array
-	 * @private
 	 */
-	function buildContentNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
+	protected function buildContentNavigationUrls( OutputPage $out ) {
+		global $wgContLang, $wgLang, $wgUser, $wgRequest;
 		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );
@@ -893,9 +891,9 @@ class SkinTemplate extends Skin {
 				);
 				// Checks if this is a current rev of talk page and we should show a new
 				// section link
-				if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
+				if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $out->showNewSectionLink() ) ) {
 					// Checks if we should ever show a new section link
-					if ( !$wgOut->forceHideNewSectionLink() ) {
+					if ( !$out->forceHideNewSectionLink() ) {
 						// Adds new section link
 						//$content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = array(
@@ -1133,8 +1131,8 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 * @private
 	 */
-	function buildNavUrls() {
-		global $wgUseTrackbacks, $wgOut, $wgUser, $wgRequest;
+	protected function buildNavUrls( OutputPage $out ) {
+		global $wgUseTrackbacks, $wgUser, $wgRequest;
 		global $wgUploadNavigationUrl;
 
 		wfProfileIn( __METHOD__ );
@@ -1158,7 +1156,7 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ( $action == 'view' || $action == 'purge' ) ) {
-			if ( !$wgOut->isPrintable() ) {
+			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
 					'href' => $wgRequest->appendQuery( 'printable=yes' )
@@ -1169,13 +1167,13 @@ class SkinTemplate extends Skin {
 			if ( $this->mRevisionId ) {
 				$nav_urls['permalink'] = array(
 					'text' => wfMsg( 'permalink' ),
-					'href' => $wgOut->getTitle()->getLocalURL( "oldid=$this->mRevisionId" )
+					'href' => $out->getTitle()->getLocalURL( "oldid=$this->mRevisionId" )
 				);
 			}
 
 			// Copy in case this undocumented, shady hook tries to mess with internals
 			$revid = $this->mRevisionId;
-			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
+			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( $this, &$nav_urls, &$revid, &$revid ) );
 		}
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
@@ -1193,7 +1191,7 @@ class SkinTemplate extends Skin {
 			}
 			if( $wgUseTrackbacks )
 				$nav_urls['trackbacklink'] = array(
-					'href' => $wgOut->getTitle()->trackbackURL()
+					'href' => $out->getTitle()->trackbackURL()
 				);
 		}
 
