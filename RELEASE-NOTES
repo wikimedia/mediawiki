@@ -1,8 +1,6 @@
 = MediaWiki release notes =
 
-== MediaWiki 1.16.1 ==
-
-2011-01-04
+== MediaWiki 1.16.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.16 branch.
 
@@ -43,6 +41,12 @@ or if you want to squeeze as much performance as possible out of Mediawiki,
 set $wgCacheDirectory to a writable path on the local filesystem. Make sure 
 you have the DBA extension for PHP installed, this will improve performance 
 further.
+
+== Changes since 1.16.1 ==
+
+* (bug 26642) Fixed incorrect translated namespace due to a regression in the
+  language converter.
+* The interface translations were updated.
 
 == Changes since 1.16.0 ==
 
