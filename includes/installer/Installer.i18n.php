@@ -467,6 +467,7 @@ Consider changing it manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
 	'config-install-subscribe-fail'   => 'Unable to subscribe to mediawiki-announce',
 	'config-install-mainpage'         => 'Creating main page with default content',
+	'config-install-extension-tables' => 'Creating tables for enabled extensions',
 	'config-install-mainpage-failed'  => 'Could not insert main page: $1',
 	'config-install-done'             => "'''Congratulations!'''
 You have successfully installed MediaWiki.

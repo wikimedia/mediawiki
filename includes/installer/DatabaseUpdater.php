@@ -24,7 +24,17 @@ abstract class DatabaseUpdater {
 	 */
 	protected $updates = array();
 
+	/**
+	 * List of extension-provided database updates
+	 * @var array
+	 */
 	protected $extensionUpdates = array();
+
+	/**
+	 * Used to hold schema files during installation process
+	 * @var array
+	 */
+	protected $newExtensions = array();
 
 	/**
 	 * Handle to the database subclass
@@ -83,7 +93,7 @@ abstract class DatabaseUpdater {
 	 * @param DatabaseBase $db
 	 * @param bool $shared
 	 * @param null $maintenance
-	 * @return
+	 * @return DatabaseUpdater
 	 */
 	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
@@ -144,6 +154,23 @@ abstract class DatabaseUpdater {
 	 */
 	public function addExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'addTable', $tableName, $sqlPath, true );
+	}
+
+	/**
+	 * Add a brand new extension to MediaWiki. Used during the initial install
+	 * @param $ext String Name of extension
+	 * @param $sqlPath String Full path to the schema file
+	 */
+	public function addNewExtension( $ext, $sqlPath ) {
+		$this->newExtensions[ strtolower( $ext ) ] = $sqlPath;
+	}
+
+	/**
+	 * Get the list of extensions that registered a schema with our DB type
+	 * @return array
+	 */
+	public function getNewExtensions() {
+		return $this->newExtensions;
 	}
 
 	/**

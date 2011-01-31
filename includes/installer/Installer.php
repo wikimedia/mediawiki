@@ -1192,8 +1192,21 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function includeExtensions() {
+		global $IP;
 		$exts = $this->getVar( '_Extensions' );
-		$path = $this->getVar( 'IP' ) . '/extensions';
+		$IP = $this->getVar( 'IP' );
+		$path = $IP . '/extensions';
+
+		/**
+		 * We need to include DefaultSettings before including extensions to avoid
+		 * warnings about unset variables. However, the only thing we really
+		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
+		 * if the extension has hidden hook registration in $wgExtensionFunctions,
+		 * but we're not opening that can of worms
+		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
+		 */
+		global $wgHooks, $IP;
+		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
 			require( "$path/$e/$e.php" );
@@ -1250,6 +1263,10 @@ abstract class Installer {
 		if( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps,
 				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
+			);
+			$this->installSteps[] = array(
+				'name' => 'extension-tables',
+				'callback' => array( $installer, 'createExtensionTables' )
 			);
 		}
 		return $this->installSteps;
