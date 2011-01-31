@@ -94,7 +94,6 @@ class RandomPage extends SpecialPage {
 		return $wgContLang->commaList( $nsNames );
 	}
 
-
 	/**
 	 * Choose a random title.
 	 * @return Title object (or null if nothing to choose from)
@@ -126,12 +125,10 @@ class RandomPage extends SpecialPage {
 		}
 	}
 
-	private function selectRandomPageFromDB( $randstr ) {
+	protected function getQueryInfo( $randstr ) {
 		global $wgExtraRandompageSQL;
-		$dbr = wfGetDB( DB_SLAVE );
-
 		$redirect = $this->isRedirect() ? 1 : 0;
-		
+
 		if ( $wgExtraRandompageSQL ) {
 			$this->extra[] = $wgExtraRandompageSQL;
 		}
@@ -139,19 +136,34 @@ class RandomPage extends SpecialPage {
 			$this->extra[] = $this->addExtraSQL();
 		}
 
-		$res = $dbr->select(
-			'page',
-			array( 'page_title', 'page_namespace' ),
-			array_merge( array(
+		return array(
+			'tables' => array( 'page' ),
+			'fields' => array( 'page_title', 'page_namespace' ),
+			'conds' => array_merge( array(
 				'page_namespace' => $this->namespaces,
 				'page_is_redirect' => $redirect,
 				'page_random >= ' . $randstr
 			), $this->extra ),
-			__METHOD__,
-			array(
+			'options' => array(
 				'ORDER BY' => 'page_random',
-				'USE INDEX' => 'page_random'
-			)
+				'USE INDEX' => 'page_random',
+				'LIMIT' => 1,
+			),
+			'join_conds' => array()
+		);
+	}
+
+	private function selectRandomPageFromDB( $randstr, $fname = __METHOD__ ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$query = $this->getQueryInfo( $randstr );
+		$res = $dbr->select(
+			$query['tables'],
+			$query['fields'],
+			$query['conds'],
+			$fname,
+			$query['options'],
+			$query['join_conds']
 		);
 
 		return $dbr->fetchObject( $res );
