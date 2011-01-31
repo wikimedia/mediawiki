@@ -1731,7 +1731,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * MySQL uses `backticks` while basically everything else uses double quotes.
 	 * Since MySQL is the odd one out here the double quotes are our generic
 	 * and we implement backticks in DatabaseMysql.
-	 */ 	 
+	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
@@ -2310,7 +2310,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseBase::duplicateTableStructure' ) {
 		throw new MWException( 'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
-	
+
 	/**
 	 * List all tables on the database
 	 *
@@ -2476,7 +2476,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Set variables to be used in sourceFile/sourceStream, in preference to the
-	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at 
+	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at
 	 * all. If it's set to false, $GLOBALS will be used.
 	 *
 	 * @param $vars False, or array mapping variable name to value.
@@ -2563,13 +2563,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Database independent variable replacement, replaces a set of variables
 	 * in a sql statement with their contents as given by $this->getSchemaVars().
 	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables
-	 * 
+	 *
 	 * '{$var}' should be used for text and is passed through the database's addQuotes method
 	 * `{$var}` should be used for identifiers (eg: table and database names), it is passed through
 	 *          the database's addIdentifierQuotes method which can be overridden if the database
 	 *          uses something other than backticks.
 	 * / *$var* / is just encoded, besides traditional dbprefix and tableoptions it's use should be avoided
-	 * 
+	 *
 	 * @param $ins String: SQL statement to replace variables in
 	 * @return String The new SQL statement with variables replaced
 	 */
@@ -2617,8 +2617,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get schema variables to use if none have been set via setSchemaVars().
-	 * Override this in derived classes to provide variables for tables.sql 
-	 * and SQL patch files. 
+	 * Override this in derived classes to provide variables for tables.sql
+	 * and SQL patch files.
 	 */
 	protected function getDefaultSchemaVars() {
 		return array();
