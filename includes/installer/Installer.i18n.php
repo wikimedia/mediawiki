@@ -2412,6 +2412,8 @@ Sie sollten durch Kommata voneinander getrennt werden. zudem sollte der zu verwe
 Sie könnten zusätzliche Konfigurierung erfordern, können aber bereits jetzt aktiviert werden.',
 	'config-install-alreadydone' => "'''Warnung:''' Es wurde eine vorhandene MediaWiki-Installation gefunden.
 Es muss daher mit den nächsten Seite weitergemacht werden.",
+	'config-install-begin' => 'Durch Drücken von „Weiter“ wird die Installation von MediaWiki gestartet.
+Sofern Änderungen vorgenommen werden sollen, kann man auf „Zurück“ klicken.',
 	'config-install-step-done' => 'erledigt',
 	'config-install-step-failed' => 'gescheitert',
 	'config-install-extensions' => 'Einschließlich Erweiterungen',
@@ -3017,7 +3019,7 @@ Vous la trouverez dans LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => "Un fichier LocalSettings.php a été détecté. 
 Pour mettre à niveau cette installation, s'il vous plaît utiliser --upgrade=yes.",
 	'config-localsettings-key' => 'Clé de mise à jour :',
-	'config-localsettings-badkey' => 'La clé que vous avez fourni est incorrecte',
+	'config-localsettings-badkey' => 'La clé que vous avez fournie est incorrecte',
 	'config-upgrade-key-missing' => 'Une installation existante de MediaWiki a été détectée.
 
 Pour mettre à jour cette installation, veuillez ajouter la ligne suivante à la fin de votre fichier LocalSettings.php
@@ -3430,6 +3432,8 @@ Elles doivent être séparés par des virgules et vous devez spécifier le port 
 Elles peuvent nécessiter une configuration supplémentaire, mais vous pouvez les activer maintenant',
 	'config-install-alreadydone' => "'''Attention''': Vous semblez avoir déjà installé MediaWiki et tentez de l'installer à nouveau. 
 S'il vous plaît, allez à la page suivante.",
+	'config-install-begin' => "En appuyant sur Continuer, vous commencerez l'installation de MediaWiki.
+Si vous voulez apporter des modifications, appuyez sur Retour.",
 	'config-install-step-done' => 'fait',
 	'config-install-step-failed' => 'échec',
 	'config-install-extensions' => 'Inclusion des extensions',
@@ -5094,6 +5098,8 @@ Debe esser separate con commas e specificar le porto a usar (per exemplo: 127.0.
 Istes pote requirer additional configuration, ma tu pote activar los ora.',
 	'config-install-alreadydone' => "'''Aviso:''' Il pare que tu ha jam installate MediaWiki e tenta installar lo de novo.
 Per favor continua al proxime pagina.",
+	'config-install-begin' => 'Un clic sur "Sequente" comencia le installation de MediaWiki.
+Pro facer alterationes, clicca sur "Retro".',
 	'config-install-step-done' => 'finite',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => 'Include le extensiones',
@@ -5128,8 +5134,14 @@ Tu ha installate MediaWiki con successo.
 Le installator ha generate un file <code>LocalSettings.php</code>.
 Iste contine tote le configuration.
 
-Tu debe [$1 discargar] lo e poner lo in le base de tu installation wiki (le mesme directorio que index.php).
-'''Nota''': Si tu non face isto ora, iste file de configuration generate non essera disponibile a te plus tarde si tu exi le installation sin discargar lo.
+Es necessari discargar lo e poner lo in le base del installation wiki (le mesme directorio que index.php).
+Le discargamento debe haber comenciate automaticamente.
+
+Si le discargamento non ha comenciate, o si illo esseva cancellate, es possibile recomenciar le discargamento con un clic sur le ligamine sequente:
+
+$3
+
+'''Nota''': Si tu non discarga iste file de configuration ora, illo non essera disponibile plus tarde.
 
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 	'config-download-localsettings' => 'Discargar LocalSettings.php',
@@ -6869,6 +6881,8 @@ chmod a+w $3</pre>',
 За ова може да треба дополнително нагодување, но можете да ги овозможите сега',
 	'config-install-alreadydone' => "'''Предупредување:''' Изгледа дека веќе го имате инсталирано МедијаВики и сега сакате да го инсталирате повторно.
 Продолжете на следната страница.",
+	'config-install-begin' => 'Стискајќи на „Следно“ ќе ја започнете инсталацијата на МедијаВики.
+Ако сакате да направите измени во досегашното, стиснете на „Назад“.',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'не успеа',
 	'config-install-extensions' => 'Вклучувам додатоци',
@@ -6903,8 +6917,13 @@ chmod a+w $3</pre>',
 Инсталаторот создаде податотека <code>LocalSettings.php</code>.
 Таму се содржат сите ваши нагодувања.
 
-Ќе треба да ја [$1 преземете] и да ја ставите во основата на инсталацијата (истата папка во која се наоѓа index.php).
-'''Напомена''': Ако излезете од инсталацијата без да ја преземете сега, оваа создадена податотека со нагодувања повеќе нема да ви биде на достапна.
+Ќе треба да ја преземете и да ја ставите во основата на инсталацијата (истата папка во која се наоѓа index.php). Преземањето треба да е започнато автоматски.
+
+Ако не ви е понудено преземање, или пак ако сте го откажале, можете да го почнете одново стискајќи на следнава врска:
+
+$3
+
+'''Напомена''': Ако ова не го направите сега, податотеката со поставки повеќе нема да биде на достапна.
 
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
 	'config-download-localsettings' => 'Преземи го LocalSettings.php',

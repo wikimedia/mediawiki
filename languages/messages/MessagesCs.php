@@ -3342,6 +3342,21 @@ Pokud jste o toto potvrzení *nežádali*, klikněte na následující odkaz,
 $5
 
 Platnost tohoto potvrzovacího kódu vyprší $4.',
+'confirmemail_body_set'     => 'Někdo (patrně vy, z IP adresy $1) nastavil e-mailovou adresu
+účtu „$2“ na {{grammar:6sg|{{SITENAME}}}} na tuto adresu.
+
+Pokud si přejete znovu aktivovat e-mailové funkce na
+{{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení, že tato adresa opravdu
+patří vám, přejděte svým internetovým prohlížečem na následující adresu:
+
+$3
+
+Pokud vám tento účet *nepatří*, klikněte na následující
+odkaz, čímž potvrzení zrušíte:
+
+$5
+
+Platnost tohoto potvrzovacího kódu vyprší $4.',
 'confirmemail_invalidated'  => 'Potvrzení e-mailové adresy bylo zrušeno',
 'invalidateemail'           => 'Zrušit potvrzení e-mailové adresy',
 

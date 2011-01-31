@@ -196,7 +196,7 @@ $messages = array(
 'tog-editsection'             => 'Lejo redaktimin e seksioneve me [redakto] lidhje',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve me djathtas-shtypje<br /> mbi emrin e seksionit (JavaScript)',
 'tog-showtoc'                 => 'Trego tabelën e përmbajtjeve<br />(për faqet me më shume se 3 tituj)',
-'tog-rememberpassword'        => 'Mbaj mënd fjalëkalimin për vizitën e ardhshme (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Mbaj mënd fjalëkalimin për vizitën e ardhshme (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',
 'tog-watchcreations'          => 'Shto faqet që krijoj tek lista mbikqyrëse',
 'tog-watchdefault'            => 'Shto faqet që redaktoj tek lista mbikqyrëse',
 'tog-watchmoves'              => 'Shto faqet që zhvendos tek lista mbikqyrëse',
@@ -210,7 +210,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Më ço email kur ka redaktime të vogla të faqeve',
 'tog-enotifrevealaddr'        => 'Trego adresën time në email-et njoftuese',
 'tog-shownumberswatching'     => 'Trego numrin e përdoruesve mbikqyrës',
-'tog-oldsig'                  => 'Pamjeje e nënshkrimit ekzistues:',
+'tog-oldsig'                  => 'Pamje e nënshkrimit ekzistues:',
 'tog-fancysig'                => 'Mos e përpuno nënshkrimin për formatim',
 'tog-externaleditor'          => 'Përdor program të jashtëm për redaktime',
 'tog-externaldiff'            => 'Përdor program të jashtëm për të treguar ndryshimet',
@@ -226,7 +226,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Më dërgo kopje të mesazheve që u dërgoj të tjerëve',
 'tog-diffonly'                => 'Mos trego përmbajtjen e faqes nën ndryshimin',
 'tog-showhiddencats'          => 'Trego kategoritë e fshehura',
-'tog-norollbackdiff'          => 'Ndryshimi mas rikthimit do të fshihet',
+'tog-norollbackdiff'          => 'Ndryshimi pas rikthimit do të fshihet',
 
 'underline-always'  => 'gjithmonë',
 'underline-never'   => 'asnjëherë',
@@ -253,7 +253,7 @@ $messages = array(
 'wed'           => 'Mër',
 'thu'           => 'Enj',
 'fri'           => 'Pre',
-'sat'           => 'Sht',
+'sat'           => 'Shtu',
 'january'       => 'Janar',
 'february'      => 'Shkurt',
 'march'         => 'Mars',
@@ -279,17 +279,17 @@ $messages = array(
 'november-gen'  => 'Nëntor',
 'december-gen'  => 'Dhjetor',
 'jan'           => 'Jan',
-'feb'           => 'Shk',
+'feb'           => 'Shku',
 'mar'           => 'Mar',
 'apr'           => 'Pri',
 'may'           => 'Maj',
 'jun'           => 'Qer',
-'jul'           => 'Kor',
-'aug'           => 'Gus',
-'sep'           => 'Sht',
+'jul'           => 'Korr',
+'aug'           => 'Gush',
+'sep'           => 'Shta',
 'oct'           => 'Tet',
 'nov'           => 'Nën',
-'dec'           => 'Dhj',
+'dec'           => 'Dhje',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategoritë}}',
@@ -346,7 +346,7 @@ $messages = array(
 'vector-action-protect'          => 'Mbroje',
 'vector-action-undelete'         => 'Jo e grisur',
 'vector-action-unprotect'        => 'Liroje',
-'vector-simplesearch-preference' => 'Aktivizoni kërkim të avancuar (vetë për Vektor)',
+'vector-simplesearch-preference' => 'Aktivizoni kërkim të avancuar (vetëm për Vektor)',
 'vector-view-create'             => 'Krijo',
 'vector-view-edit'               => 'Redakto',
 'vector-view-history'            => 'Shiko historikun',
@@ -411,9 +411,9 @@ $messages = array(
 'jumpto'            => 'Shko te:',
 'jumptonavigation'  => 'navigacion',
 'jumptosearch'      => 'kërko',
-'view-pool-error'   => 'Na falni, serverat janë të mbingarkuar momentalisht.
+'view-pool-error'   => 'Ju kërkojmë falje, serverët janë të mbingarkuar momentalisht.
 Shumë përdorues po përpiqen të shikojnë këtë faqe.
-Ju lutem prisni disa momente përpara se të hapni sërish këtë faqe.
+Ju lutemi prisni pak para se të hapni sërish këtë faqe.
 
 $1',
 'pool-timeout'      => 'Koha duke pritur për të bllokoet',
@@ -463,6 +463,8 @@ Edit section: $1',
 'toc'                     => 'Tabela e përmbajtjeve',
 'showtoc'                 => 'trego',
 'hidetoc'                 => 'fshih',
+'collapsible-collapse'    => 'Ngushtoje',
+'collapsible-expand'      => 'Zgjeroje',
 'thisisdeleted'           => 'Shikoni ose restauroni $1?',
 'viewdeleted'             => 'Do ta shikosh $1?',
 'restorelink'             => '{{PLURAL:$1|një redaktim i grisur|$1 redaktime të grisura}}',
@@ -537,7 +539,7 @@ Nëse nuk është kështu, mund të keni gjetur gabim në softuer. Ju lutemi, nj
 'filenotfound'         => 'Nuk munda të gjejë skedën "$1".',
 'fileexistserror'      => 'Skeda "$1" nuk mund të shkruhet : skeda ekziston',
 'unexpected'           => 'Vlerë e papritur: "$1"="$2".',
-'formerror'            => 'Gabim: nuk munda të dërgoj formularin',
+'formerror'            => 'Gabim: nuk mund të dërgohej formulari',
 'badarticleerror'      => 'Ky veprim nuk mund të bëhet në këtë faqe.',
 'cannotdelete'         => 'Faqja ose skedari $1 nuk u fshi.
 Mund të jetë fshirë nga dikush tjetër.',
@@ -568,7 +570,7 @@ $2',
 Arsyeja e dhënë është ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Konfigurim jo i mirë: skanues i pa njohur virusesh: ''$1''",
+'virus-badscanner'     => "Konfigurim i keq: skanues i panjohur virusesh: ''$1''",
 'virus-scanfailed'     => 'Hetimi dështoi (code $1)',
 'virus-unknownscanner' => 'antivirus i pa njohur:',
 
@@ -576,7 +578,7 @@ Arsyeja e dhënë është ''$2''.",
 'logouttext'                 => "'''Ju jeni tashmë jashtë.''' 
 
  Ju mund të vazhdoni të përdorni {{SITENAME}} anonimisht, ose mund të [[Special:UserLogin|hyni brënda përsëri]] si përdoruesi i mëparshëm ose si një përdorues tjetër. 
- Vini re se disa faqe mund të shfaqen sikur ju të ishit identifikuar derisa të fshini \"cache\" e shfletuesit tuaj.",
+ Vini re se disa faqe mund të shfaqen sikur ju të ishit identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
 'welcomecreation'            => '== Mirësevini, $1! == 
  Llogaria juaj është krijuar. 
  Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]].',
@@ -608,7 +610,7 @@ Arsyeja e dhënë është ''$2''.",
 'createaccounterror'         => 'Nuk mund të hapni një llogari: $1',
 'nocookiesnew'               => 'Llogaria e përdoruesit u hap, por nuk keni hyrë brenda akoma. {{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni biskota dhe të provoni përsëri me nofkën dhe fjalëkalimin tuaj.',
 'nocookieslogin'             => '{{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni "biskota" dhe të provoni përsëri.',
-'noname'                     => 'Nuk keni dhënë një emër të saktë.',
+'noname'                     => 'Nuk keni dhënë një emër të pranueshëm.',
 'loginsuccesstitle'          => 'Hyrje me sukses',
 'loginsuccess'               => 'Keni hyrë brënda në {{SITENAME}} si "$1".',
 'nosuchuser'                 => 'Nuk ka ndonjë përdorues me emrin "$1".
