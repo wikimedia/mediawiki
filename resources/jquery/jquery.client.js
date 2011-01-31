@@ -1,7 +1,6 @@
 /**
  * User-agent detection
  */
- */
 ( function( $ ) {
 $.client = new ( function() {
 
@@ -15,15 +14,15 @@ $.client = new ( function() {
 	 * Returns an object containing information about the browser
 	 *
 	 * The resulting client object will be in the following format:
-	 * 	{
-	 * 		'name': 'firefox',
-	 * 		'layout': 'gecko',
-	 * 		'layoutVersion': '20101026',
-	 * 		'platform': 'linux'
-	 * 		'version': '3.5.1',
-	 * 		'versionBase': '3',
-	 * 		'versionNumber': 3.5,
-	 * 	}
+	 *  {
+	 *   'name': 'firefox',
+	 *   'layout': 'gecko',
+	 *   'layoutVersion': '20101026',
+	 *   'platform': 'linux'
+	 *   'version': '3.5.1',
+	 *   'versionBase': '3',
+	 *   'versionNumber': 3.5,
+	 *  }
 	 */
 	this.profile = function() {
 		// Use the cached version if possible
@@ -50,7 +49,7 @@ $.client = new ( function() {
 				// This helps keep differnt versions consistent
 				['Navigator', 'Netscape'],
 				// This prevents version extraction issues, otherwise translation would happen later
-				['PLAYSTATION 3', 'PS3'],
+				['PLAYSTATION 3', 'PS3']
 			];
 			// Strings which precede a version number in a user agent string - combined and used as match 1 in
 			// version detectection
@@ -62,8 +61,8 @@ $.client = new ( function() {
 			var versionSuffix = '(\\/|\\;?\\s|)([a-z0-9\\.\\+]*?)(\\;|dev|rel|\\)|\\s|$)';
 			// Names of known browsers
 			var names = [
-			 	'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
-			 	'iphone', 'blackberry', 'ps3'
+				'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
+				'iphone', 'blackberry', 'ps3'
 			];
 			// Tanslations for conforming browser names
 			var nameTranslations = [];
@@ -81,7 +80,7 @@ $.client = new ( function() {
 			/* Methods */
 
 			// Performs multiple replacements on a string
-			function translate( source, translations ) {
+			var translate = function( source, translations ) {
 				for ( var i = 0; i < translations.length; i++ ) {
 					source = source.replace( translations[i][0], translations[i][1] );
 				}
@@ -107,7 +106,7 @@ $.client = new ( function() {
 				layout = translate( match[1], layoutTranslations );
 			}
 			if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\\/(\\d+)').exec( navigator.userAgent.toLowerCase() ) ) {
-				layoutversion = parseInt(match[2]);
+				layoutversion = parseInt( match[2], 10 );
 			}
 			if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( navigator.platform.toLowerCase() ) ) {
 				platform = translate( match[1], platformTranslations );
@@ -148,20 +147,20 @@ $.client = new ( function() {
 	 * element is classified as either "ltr" or "rtl". If neither is set, "ltr" is assumed.
 	 *
 	 * A browser map is in the following format:
-	 *	{
-	 * 		'ltr': {
-	 * 			// Multiple rules with configurable operators
-	 * 			'msie': [['>=', 7], ['!=', 9]],
-	 *			// Blocked entirely
-	 * 			'iphone': false
-	 * 		},
-	 * 		'rtl': {
-	 * 			// Test against a string
-	 * 			'msie': [['!==', '8.1.2.3']],
-	 * 			// RTL rules do not fall through to LTR rules, you must explicity set each of them
-	 * 			'iphone': false
-	 * 		}
-	 *	}
+	 * {
+	 *   'ltr': {
+	 *     // Multiple rules with configurable operators
+	 *     'msie': [['>=', 7], ['!=', 9]],
+	 *      // Blocked entirely
+	 *     'iphone': false
+	 *   },
+	 *   'rtl': {
+	 *     // Test against a string
+	 *     'msie': [['!==', '8.1.2.3']],
+	 *     // RTL rules do not fall through to LTR rules, you must explicity set each of them
+	 *     'iphone': false
+	 *   }
+	 * }
 	 *
 	 * @param map Object of browser support map
 	 *
