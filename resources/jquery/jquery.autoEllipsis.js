@@ -17,29 +17,29 @@ $.fn.autoEllipsis = function( options ) {
 		'matchText': null
 	}, options );
 	$(this).each( function() {
-		var $this = $(this);
+		var $el = $(this);
 		if ( options.restoreText ) {
-			if ( ! $this.data( 'autoEllipsis.originalText' ) ) {
-				$this.data( 'autoEllipsis.originalText', $this.text() );
+			if ( !$el.data( 'autoEllipsis.originalText' ) ) {
+				$el.data( 'autoEllipsis.originalText', $el.text() );
 			} else {
-				$this.text( $this.data( 'autoEllipsis.originalText' ) );
+				$el.text( $el.data( 'autoEllipsis.originalText' ) );
 			}
 		}
 		
 		// container element - used for measuring against
-		var $container = $this;
+		var $container = $el;
 		// trimmable text element - only the text within this element will be trimmed
 		var $trimmableText = null;
 		// protected text element - the width of this element is counted, but next is never trimmed from it
 		var $protectedText = null;
 
 		if ( options.hasSpan ) {
-			$trimmableText = $this.children( options.selector );
+			$trimmableText = $el.children( options.selector );
 		} else {
 			$trimmableText = $( '<span />' )
 				.css( 'whiteSpace', 'nowrap' )
-				.text( $this.text() );
-			$this
+				.text( $el.text() );
+			$el
 				.empty()
 				.append( $trimmableText );
 		}
@@ -60,14 +60,16 @@ $.fn.autoEllipsis = function( options ) {
 		}
 		if ( !options.matchText && w in cache[text] ) {
 			$container.html( cache[text][w] );
-			if ( options.tooltip )
+			if ( options.tooltip ) {
 				$container.attr( 'title', text );
+			}
 			return;
 		}
 		if( options.matchText && options.matchText in matchTextCache[text] && w in matchTextCache[text][options.matchText] ) {
 			$container.html( matchTextCache[text][options.matchText][w] );
-			if ( options.tooltip )
+			if ( options.tooltip ) {
 				$container.attr( 'title', text );
+			}
 			return;
 		}
 		if ( $trimmableText.width() + pw > w ) {
@@ -94,7 +96,7 @@ $.fn.autoEllipsis = function( options ) {
 					while ( $trimmableText.outerWidth() + pw > w  && i[0] > 0 ) {
 						$trimmableText.text( trimmableText.substr( 0, i[0] ) + '...' + trimmableText.substr( i[1] ) );
 						// Alternate between trimming the end and begining
-						if ( side == 0 ) {
+						if ( side === 0 ) {
 							// Make the begining shorter
 							i[0]--;
 							side = 1;
