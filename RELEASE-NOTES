@@ -2,6 +2,8 @@
 
 == MediaWiki 1.16.2 ==
 
+2011-02-01
+
 This is a security and maintenance release of the MediaWiki 1.16 branch.
 
 === Summary of selected changes in 1.16 ===
@@ -48,6 +50,9 @@ further.
   language converter.
 * The interface translations were updated.
 * (bug 27093, CVE-2011-0047): Fixed CSS injection vulnerability.
+* (bug 27094) Fixed server-side arbitrary script inclusion vulnerability. 
+  Affects Windows servers only. A malicious file with extension ".php" must 
+  exist on the server for the exploit to be effective.
 
 == Changes since 1.16.0 ==
 
