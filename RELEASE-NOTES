@@ -47,6 +47,7 @@ further.
 * (bug 26642) Fixed incorrect translated namespace due to a regression in the
   language converter.
 * The interface translations were updated.
+* (bug 27093, CVE-2011-0047): Fixed CSS injection vulnerability.
 
 == Changes since 1.16.0 ==
 
