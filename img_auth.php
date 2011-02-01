@@ -10,7 +10,7 @@
  *
  * Optional Parameters
  *
- * - Set $wgImgAuthDetails = true if you want the reason the access was denied messages to be displayed 
+ * - Set $wgImgAuthDetails = true if you want the reason the access was denied messages to be displayed
  *       instead of just the 403 error (doesn't work on IE anyway),  otherwise will only appear in error logs
  * - Set $wgImgAuthPublicTest false if you don't want to just check and see if all are public
  *       must be set to false if using specific restrictions such as LockDown or NSFileRepo
@@ -31,7 +31,7 @@ wfProfileIn( 'img_auth.php' );
 require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
 
 // See if this is a public Wiki (no protections)
-if ( $wgImgAuthPublicTest 
+if ( $wgImgAuthPublicTest
 	&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) )
 {
 	wfForbidden('img-auth-accessdenied','img-auth-public');
@@ -41,7 +41,7 @@ if ( $wgImgAuthPublicTest
 if( !isset( $_SERVER['PATH_INFO'] ) ) {
 	$path = $wgRequest->getText( 'path' );
 	if( !$path ) {
-        wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
 	}
 	$path = "/$path";
 } else {
@@ -73,16 +73,16 @@ if( is_dir( $filename ) )
 $title = Title::makeTitleSafe( NS_FILE, $name );
 
 // See if could create the title object
-if( !$title instanceof Title ) 
+if( !$title instanceof Title )
 	wfForbidden('img-auth-accessdenied','img-auth-badtitle',$name);
 
 // Run hook
 if (!wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) )
 	wfForbidden($result[0],$result[1],array_slice($result,2));
-	
+
 //  Check user authorization for this title
 //  UserCanRead Checks Whitelist too
-if( !$title->userCanRead() ) 
+if( !$title->userCanRead() )
 	wfForbidden('img-auth-accessdenied','img-auth-noread',$name);
 
 // Stream the requested file
@@ -93,7 +93,7 @@ wfLogProfilingData();
 /**
  * Issue a standard HTTP 403 Forbidden header ($msg1-a message index, not a message) and an
  * error message ($msg2, also a message index), (both required) then end the script
- * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2 
+ * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2
  */
 function wfForbidden($msg1,$msg2) {
 	global $wgImgAuthDetails;
