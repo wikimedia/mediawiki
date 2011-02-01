@@ -414,7 +414,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param $groups    Array:  Array of groups the user is in
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgLang, $wgRequest;
 
 		$list = array();
 		foreach( $groups as $group ) {
@@ -453,7 +453,8 @@ class UserrightsPage extends SpecialPage {
 						Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
+						Xml::input( 'user-reason', 60, $wgRequest->getVal( 'user-reason', false ),
+							array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
 					"</td>
 				</tr>
 				<tr>
