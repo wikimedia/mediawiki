@@ -173,6 +173,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
 			array( 'dropIndex', 'archive', 'ar_page_revid',         'patch-archive_kill_ar_page_revid.sql' ),
 			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
+			array( 'doLangLinksLengthUpdate' ),
 		);
 	}
 
@@ -812,5 +813,19 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( 'Updating categorylinks (again)...' );
 		$this->applyPatch( 'patch-categorylinks-better-collation2.sql' );
 		$this->output( "done.\n" );
+	}
+
+	protected function doLangLinksLengthUpdate() {
+		$langlinks = $this->db->tableName( 'langlinks' );
+		$res = $this->db->query( "SHOW COLUMNS FROM $langlinks LIKE 'll_lang'" );
+		$row = $this->db->fetchObject( $res );
+
+		if ( $row && $row->Type == "varbinary(210)" ) {
+			$this->output( 'Updating length of ll_lang in langlinks...' );
+			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql' );
+			$this->output( "done.\n" );
+		} else {
+			$this->output( "...ll_lang is up-to-date.\n" );
+		}
 	}
 }
