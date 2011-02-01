@@ -56,7 +56,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduced the edittools-upload message, which will be inserted under the
   upload form instead of edittools if available
 * (bug 26285) Extensions will be automatically generated on upload if the user
-  specified a filename without extension. 
+  specified a filename without extension.
+* (bug 26851) Special:UserRights now allows to prefill the reason field
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
