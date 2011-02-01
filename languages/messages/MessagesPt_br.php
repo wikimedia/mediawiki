@@ -1671,8 +1671,8 @@ A [[Special:NewFiles|galeria de arquivos novos]] oferece uma listagem mais visua
 'filetype-bad-ie-mime'        => 'Este arquivo não pode ser carregado porque o Internet Explorer o detectaria como "$1", que é um tipo de arquivo não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de arquivo não desejado.
 {{PLURAL:\$3|O tipo preferível é|Os tipos preferíveis são}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de arquivo.
-{{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\'  {{PLURAL:$4|não é um tipo de arquivo permitido|não são tipos de arquivos permitidos}}.
+{{PLURAL:$3|O tipo permitido é|Os tipos permitidos são}} $2.',
 'filetype-missing'            => 'O arquivo não possui uma extensão (como, por exemplo, ".jpg").',
 'empty-file'                  => 'O arquivo que você enviou estava vazio.',
 'file-too-large'              => 'O arquivo que você enviou era demasiado grande.',

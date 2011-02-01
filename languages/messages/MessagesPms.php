@@ -1795,8 +1795,8 @@ Për piasì, ch'a nòta che d'àutri sit an sl'aragnà a peulo coleghesse a n'ar
 # Book sources
 'booksources'               => 'Andoa trové dij lìber',
 'booksources-search-legend' => "Sërché antra ij lìber d'arferiment",
-'booksources-go'            => 'Va',
-'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard a ij test che a l'é antramentr che al sërca:",
+'booksources-go'            => 'Andé',
+'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo dij lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard ai test che a l'é antramentr che a sërca:",
 'booksources-invalid-isbn'  => "L'ISBN dàit a smija che a sia pa vàlid; contròla për eror an copiand da la sorziss original.",
 
 # Special:Log
@@ -2366,17 +2366,17 @@ Sòn a veul dì che, se a l'avèissa mai da fé n'operassion nen giusta, a podr�
 '''ATENSION!'''
 Un cambiament dràstich parej a podrìa dé dle gran-e an dzora a na pàgina motobin visità.
 Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.",
-'movepagetext-noredirectfixer' => "Dovré ël formolari sota a arnominerà na pàgina, tramudand tuta soa stòria al nòm neuv.
-Ël tìtol vèj a vnirà na pàgina ëd rediression al tìtol neuv.
-Sigurte ëd controlé ij [[Special:DoubleRedirects|dobi]] o le [[Special:BrokenRedirects|rediression rote]].
-It ses responsàbil ëd sigurete che ij colegament a continuo a ponté andova as pensa ch'a vado.
+'movepagetext-noredirectfixer' => "Dovré ël formolari sì-sota a arnominërà na pàgina, tramudand tuta soa stòria al nòm neuv.
+Ël tìtol vèj a vnirà na pàgina ëd ridiression al tìtol neuv.
+Ch'as sigura ëd controlé le ridiression [[Special:DoubleRedirects|dobie]] o cole [[Special:BrokenRedirects|ch'a marcio nen]].
+A l'é responsàbil ëd fé an manera che j'anliure a continuo a ponté andova as pensa ch'a vado.
 
-Nòta che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, a men ch'a sia veuida o na rediression e ch'a l'abia pa stòria ëd modìfiche passà.
-Sossì a veul dì ch'it peule arnominé na pàgina andré da andova it l'avìa arnominala s'it fas un eror, e ch'it peule pa covaté na pàgina esistenta.
+Ch'a armarca che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, gavà ch'a sia veuida o na ridiression e ch'a l'abia pa na stòria ëd modìfiche passà.
+Son a veul dì ch'a peul torna arnominé na pàgina andré da andova a l'avìa arnominala s'a fa n'eror, e ch'a peul pa coaté na pàgina esistenta.
 
 '''Avis!'''
 Sossì a peul esse un cambi dràstich e pa spetà për na pàgina popolar;
-për piasì sigurte ëd capì le conseguense ëd sossì prima d'andé anans.",
+për piasì ch'as renda bin cont ëd le conseguense ëd sòn prima d'andé anans.",
 'movepagetalktext'             => "La pàgina ëd discussion tacà a costa pàgina d'articol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':
 *quand as tramuda la pàgina tra diferent spassi nominal,
 *quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura

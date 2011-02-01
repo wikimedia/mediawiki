@@ -322,8 +322,8 @@ $messages = array(
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
 'tog-oldsig'                  => '지금 서명 미리보기:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
-'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
+'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
+'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트 사용, 시험 중)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -1231,6 +1231,7 @@ $1",
 'searchmenu-legend'                => '검색 설정',
 'searchmenu-exists'                => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new'                   => "'''이 위키에 \"[[:\$1]]\" 문서를 만드십시오!'''",
+'searchmenu-new-nocreate'          => '"$1"은 잘못된 문서 제목이거나 당신이 생성할 수 없는 문서입니다.',
 'searchhelp-url'                   => 'Help:목차',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|이 접두어로 시작하는 문서 찾기]]',
 'searchprofile-articles'           => '일반 문서',
@@ -1377,7 +1378,8 @@ $1",
 'prefs-help-gender'             => '선택 사항: 소프트웨어에서 성별에 따른 언어 문제를 해결하기 위해 사용됩니다. 이 정보는 공개됩니다.',
 'email'                         => '이메일',
 'prefs-help-realname'           => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
-'prefs-help-email'              => '이메일 주소 입력은 선택 사항입니다. 이메일을 등록해 두면 비밀번호를 잊었을 때 다른 비밀번호를 받을 수 있으며, 이메일을 공개하지 않고도 다른 사용자에게 메일을 받을 수 있습니다.',
+'prefs-help-email'              => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호 변경을 위해 필요합니다.',
+'prefs-help-email-others'       => '당신의 신분을 밝힐 필요 없이 다른 사람들이 사용자 문서나 토론 문서에서 이메일 보내기 기능으로 당신과 연락할 수 있도록 선택할 수 있습니다.',
 'prefs-help-email-required'     => '이메일 주소가 필요합니다.',
 'prefs-info'                    => '기본 정보',
 'prefs-i18n'                    => '언어 설정',
@@ -1393,6 +1395,10 @@ $1",
 'prefs-displaysearchoptions'    => '표시 설정',
 'prefs-displaywatchlist'        => '표시 설정',
 'prefs-diffs'                   => '차이',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '이메일 주소가 유효한 것으로 보입니다.',
+'email-address-validity-invalid' => '유효한 이메일 주소를 입력해주십시오.',
 
 # User rights
 'userrights'                   => '사용자 권한 관리',
@@ -1631,11 +1637,11 @@ $1",
 'minlength1'                  => '파일 이름은 적어도 1글자 이상이어야 합니다.',
 'illegalfilename'             => '파일 이름 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',
 'badfilename'                 => '파일 이름이 ‘$1’(으)로 바뀌었습니다.',
-'filetype-mime-mismatch'      => '파일 확장자와 MIME가 일치하지 않습니다.',
+'filetype-mime-mismatch'      => '파일 확장자 ".$1"와 이 파일의 MIME($2)가 일치하지 않습니다.',
 'filetype-badmime'            => '‘$1’ MIME을 가진 파일은 올릴 수 없습니다.',
 'filetype-bad-ie-mime'        => '인터넷 익스플로러가 잠재적으로 위험한 파일 형식으로 판단되어 사용이 금지된 "$1"로 인식할 수 있기 때문에 이 파일을 올릴 수 없습니다.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' 확장자는 추천하지 않습니다. 추천하는 {{PLURAL:\$3|파일 확장자}}는 \$2입니다.",
-'filetype-banned-type'        => "{{plural:$3}}‘'''.$1'''’ 형식의 파일은 올릴 수 없습니다. $2 형식만 사용할 수 있습니다.",
+'filetype-banned-type'        => '{{PLURAL:$3$4}}\'\'\'".$1"\'\'\' 형식의 파일은 올릴 수 없습니다. $2 형식만 사용할 수 있습니다.',
 'filetype-missing'            => '파일에 확장자(‘.jpg’ 등)가 없습니다.',
 'empty-file'                  => '당신이 올린 파일이 비어 있습니다.',
 'file-too-large'              => '올리려는 파일이 너무 큽니다.',
@@ -1995,6 +2001,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'pager-newer-n'           => '이전 $1개',
 'pager-older-n'           => '다음 $1개',
 'suppress'                => '오버사이트',
+'querypage-disabled'      => '이 특수 문서는 성능상의 이유로 비활성화되었습니다.',
 
 # Book sources
 'booksources'               => '책 찾기',
@@ -2384,6 +2391,7 @@ $1',
 'sp-contributions-newbies-title'       => '새 사용자의 기여',
 'sp-contributions-blocklog'            => '차단 기록',
 'sp-contributions-deleted'             => '삭제된 기여 목록',
+'sp-contributions-uploads'             => '파일 올리기',
 'sp-contributions-logs'                => '기록',
 'sp-contributions-talk'                => '토론',
 'sp-contributions-userrights'          => '사용자 권한 관리',
@@ -2863,7 +2871,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'math_unknown_function' => '알 수 없는 함수',
 'math_lexing_error'     => '어휘 오류',
 'math_syntax_error'     => '구문 오류',
-'math_image_error'      => 'PNG 변환 실패 - latex, dvips, gs, convert가 올바르게 설치되어 있는지 확인해 주세요.',
+'math_image_error'      => 'PNG 변환 실패 - latex, dvipng(혹은 dvips, gs, convert)가 올바르게 설치되어 있는지 확인해 주세요.',
 'math_bad_tmpdir'       => '수식을 임시 폴더에 저장하거나 폴더를 만들 수 없습니다.',
 'math_bad_output'       => '수식을 출력 폴더에 저장하거나 폴더를 만들 수 없습니다.',
 'math_notexvc'          => '실행할 수 있는 texvc이 없습니다. 설정을 위해 math/README를 읽어 주세요.',
@@ -3279,6 +3287,17 @@ $3
 $5
 
 인증 코드는 $4에 만료됩니다.',
+'confirmemail_body_set'     => 'IP 주소 $1을 사용하는 누군가가 {{SITENAME}}의 "$2" 계정의 이메일 주소를 지정하였습니다.
+
+이 계정이 당신의 것이며 {{SITENAME}}에서 이메일 기능을 다시 활성화하려면 이 링크를 열어 주십시오:
+
+$3
+
+만약 이 계정이 당신의 것이 아니라면 다음 링크를 클릭해 이메일 주소 인증을 취소하십시오:
+
+$5
+
+이 인증 코드는 $4에 만료됩니다.',
 'confirmemail_invalidated'  => '이메일 확인이 취소됨',
 'invalidateemail'           => '이메일 확인 취소',
 
