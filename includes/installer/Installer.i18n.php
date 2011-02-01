@@ -1253,6 +1253,8 @@ chmod a+w $3</pre>',
 Яны могуць патрабаваць дадатковых наладаў, але іх можна ўключыць зараз',
 	'config-install-alreadydone' => "'''Папярэджаньне:''' здаецца, што Вы ўжо ўсталёўвалі MediaWiki і спрабуеце зрабіць гэтай зноў.
 Калі ласка, перайдзіце на наступную старонку.",
+	'config-install-begin' => 'Пасьля націску кнопкі «Далей» пачнецца аўтаматычнае ўсталяваньне MediaWiki.
+Калі Вы жадаеце што-небудзь зьмяніць, націсьніце кнопку «Вярнуцца».',
 	'config-install-step-done' => 'зроблена',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
@@ -1280,6 +1282,7 @@ chmod a+w $3</pre>',
 	'config-install-sysop' => 'Стварэньне рахунку адміністратара',
 	'config-install-subscribe-fail' => 'Немагчыма падпісацца на «mediawiki-announce»',
 	'config-install-mainpage' => 'Стварэньне галоўнай старонкі са зьместам па змоўчваньні',
+	'config-install-extension-tables' => 'Стварэньне табліцаў для ўключаных пашырэньняў',
 	'config-install-mainpage-failed' => 'Немагчыма ўставіць галоўную старонку: $1',
 	'config-install-done' => "'''Віншуем!'''
 Вы пасьпяхова ўсталявалі MediaWiki.
@@ -2441,6 +2444,7 @@ Dies muss manuell nachgeholt werden.",
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-subscribe-fail' => 'Abonnierung von „mediawiki-announce“ ist gescheitert',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
+	'config-install-extension-tables' => 'Erstellung der Tabellen für die aktivierten Erweiterungen',
 	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden: $1',
 	'config-install-done' => "'''Herzlichen Glückwunsch!'''
 MediaWiki wurde erfolgreich installiert.
@@ -3461,17 +3465,20 @@ Envisagez de le changer manuellement.",
 	'config-install-sysop' => 'Création du compte administrateur',
 	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
+	'config-install-extension-tables' => 'Création de tables pour les extensions activées',
 	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale: $1',
 	'config-install-done' => "'''Félicitations!''' 
 Vous avez réussi à installer MediaWiki. 
 
-Le programme d'installation a généré un fichier <code>LocalSettings.php</code>. 
-Il contient tous les paramètres de configuration.
+Le programme d'installation a généré <code>LocalSettings.php</code>, un fichier qui contient tous les paramètres de configuration.
 
-Vous devez le [$1 télécharger] et le mettre dans le répertoire de base de l'installation (c'est le même répertoire que celui de <code>index.php</code>). 
+Si le téléchargement n'a pas été offert, ou que vous l'avez annulé, vous pouvez démarrer à nouveau le téléchargement en cliquant ce lien :
+
+$3 
+
 '''Note''': Si vous ne le faites pas maintenant, ce fichier de configuration généré ne sera pas disponible plus tard si vous quittez l'installation sans le télécharger. 
 
-Lorsque cela a été fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
+Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-download-localsettings' => 'Télécharger LocalSettings.php',
 	'config-help' => 'aide',
 );
@@ -5127,6 +5134,7 @@ Considera cambiar lo manualmente.",
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
 	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
+	'config-install-extension-tables' => 'Creation de tabellas pro le extensiones activate',
 	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal: $1',
 	'config-install-done' => "'''Felicitationes!'''
 Tu ha installate MediaWiki con successo.
@@ -6910,6 +6918,7 @@ chmod a+w $3</pre>',
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
 	'config-install-subscribe-fail' => 'Не можам да ве претплатам на објавите на МедијаВики',
 	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
+	'config-install-extension-tables' => 'Изработка на табели за овозможени додатоци',
 	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница: $1',
 	'config-install-done' => "'''Честитаме!'''
 Успешно го инсталиравте МедијаВики.
@@ -7535,6 +7544,8 @@ Deze moeten worden gescheiden met komma's en geef de poort op die moet worden ge
 Mogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen nu inschakelen.',
 	'config-install-alreadydone' => "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.
 Ga alstublieft door naar de volgende pagina.",
+	'config-install-begin' => 'Als u nu op "Volgende" klikt, begint de installatie van MediaWiki.
+Als u nog wijzigingen wilt maken, klik dan op "Terug".',
 	'config-install-step-done' => 'Afgerond',
 	'config-install-step-failed' => 'Mislukt',
 	'config-install-extensions' => 'Inclusief uitbreidingen',
@@ -7562,6 +7573,7 @@ Overweeg deze handmatig te wijzigen.',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
+	'config-install-extension-tables' => 'Tabellen voor ingeschakelde uitbreidingen worden aangemaakt',
 	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen: $1',
 	'config-install-done' => "'''Gefeliciteerd!'''
 U hebt MediaWiki met succes geïnstalleerd.
@@ -9227,6 +9239,8 @@ Devem ser separados por vírgulas e especificar a porta a utilizar (por exemplo:
 Estas talvez necessitem de configurações adicionais, mas pode activá-las agora',
 	'config-install-alreadydone' => "'''Aviso:''' Parece que já instalou o MediaWiki e está a tentar instalá-lo novamente.
 Passe para a próxima página, por favor.",
+	'config-install-begin' => 'Ao clicar Continuar, vai iniciar a instalação do MediaWiki. 
+Se quiser fazer mais alterações, clique Voltar.',
 	'config-install-step-done' => 'terminado',
 	'config-install-step-failed' => 'falhou',
 	'config-install-extensions' => 'A incluir as extensões',
@@ -9254,6 +9268,7 @@ Considere alterá-la manualmente.",
 	'config-install-sysop' => 'A criar a conta de administrador',
 	'config-install-subscribe-fail' => 'Não foi possível subscrever a lista mediawiki-announce',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
+	'config-install-extension-tables' => 'A criar as tabelas das extensões activadas',
 	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal: $1',
 	'config-install-done' => "'''Parabéns!'''
 Terminou a instalação do MediaWiki.
@@ -9829,6 +9844,8 @@ GNU Free Documentation License раньше была основной лицен
 Они могут потребовать дополнительные настройки, но их можно включить прямо сейчас',
 	'config-install-alreadydone' => "'''Предупреждение:''' Вы, кажется, уже устанавливали MediaWiki и пытаетесь произвести повторную установку.
 Пожалуйста, перейдите на следующую страницу.",
+	'config-install-begin' => 'Нажав «Далее», вы начнёте установку MediaWiki.
+Если вы хотите внести изменения, нажмите «Назад».',
 	'config-install-step-done' => 'выполнено',
 	'config-install-step-failed' => 'не удалось',
 	'config-install-extensions' => 'В том числе расширения',
@@ -9856,6 +9873,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-subscribe-fail' => 'Не удаётся подписаться на mediawiki-announce',
 	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
+	'config-install-extension-tables' => 'Создание таблиц для включённых расширений',
 	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу: $1',
 	'config-install-done' => "'''Поздравляем!'''
 Вы успешно установили MediaWiki.
@@ -10618,6 +10636,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 
 您可能要对它们进行额外的配置，但您现在可以启用它们。',
 	'config-install-alreadydone' => "'''警告：'''您似乎已经安装了MediaWiki，并试图重新安装它。请前往下一个页面。",
+	'config-install-begin' => '点击继续后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击后退。',
 	'config-install-step-done' => '完成',
 	'config-install-step-failed' => '失败',
 	'config-install-extensions' => '正在启用扩展',
@@ -10641,6 +10660,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-sysop' => '正在创建管理员用户帐号',
 	'config-install-subscribe-fail' => '无法订阅mediawiki-announce',
 	'config-install-mainpage' => '正在创建显示默认内容的首页',
+	'config-install-extension-tables' => '正在为已启用扩展创建数据表',
 	'config-install-mainpage-failed' => '无法插入首页:$1',
 	'config-install-done' => "'''恭喜！'''
 您已经成功地安装了MediaWiki。

@@ -3121,6 +3121,17 @@ Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn diddymu c
 $5
 
 Bydd y côd cadarnhau yn dod i ben am $4.',
+'confirmemail_body_set'     => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi gosod cyfeiriad e-bost y cyfrif "$2" ar {{SITENAME}} i\'r cyfeiriad e-bost hwn.
+
+I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i ail-alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
+
+$3
+
+Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn diddymu cadarnhad y cyfeiriad e-bost:
+
+$5
+
+Bydd y côd cadarnhau yn dod i ben am $4.',
 'confirmemail_invalidated'  => "Diddymwyd y weithred o gadarnhau'r cyfeiriad e-bost",
 'invalidateemail'           => 'Diddymu cadarnhad y cyfeiriad e-bost.',
 

@@ -305,8 +305,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
 'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
-'tog-externaleditor'          => 'Po potrebi koristite vanjski program za uređivanje (samo za naprednije korisnike, potrebne su promjene na računaru)',
-'tog-externaldiff'            => 'Koristi vanjski (diff) program za prikaz razlika',
+'tog-externaleditor'          => 'Koristi vanjski program za uređivanje po postavkama (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
+'tog-externaldiff'            => 'Koristi vanjski (diff) program po pretpostavljenom za prikaz razlika (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
 'tog-showjumplinks'           => 'Omogući "skoči na" linkove',
 'tog-uselivepreview'          => 'Koristite pregled uživo (JavaScript) (Eksperimentalno)',
 'tog-forceeditsummary'        => 'Opomeni me pri unosu praznog sažetka',
@@ -1661,7 +1661,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 'illegalfilename'             => 'Ime datoteke "$1" sadrži simbol koji nije dozvoljen u imenu datoteke.
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'badfilename'                 => 'Ime datoteke je promijenjeno u "$1".',
-'filetype-mime-mismatch'      => 'Proširenje datoteke ne odgovara MIME tipu.',
+'filetype-mime-mismatch'      => 'Proširenje datoteke "$1" ne odgovara MIME tipu ($2).',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
 'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet Explorer prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.

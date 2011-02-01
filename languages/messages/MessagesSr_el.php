@@ -1910,7 +1910,7 @@ Adresa e-pošte koju ste vi uneli u svojim [[Special:Preferences|korisničkim po
 'emailuserfooter'  => 'Ovaj imejl posla $1 saradniku $2 pomoću "Pošalji imejl" funkcije na sajtu "{{SITENAME}}".',
 
 # Watchlist
-'watchlist'            => 'Moj spisak nadgledanja',
+'watchlist'            => 'Spisak nadgledanja',
 'mywatchlist'          => 'Spisak nadgledanja',
 'nowatchlist'          => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext'    => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
