@@ -489,6 +489,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   selected when the action is "purge".
 * (bug 26733) Wrap initial table creation in transaction
 * (bug 26208) Mark directionality of some interlanguage links
+* (bug 26716) Provide link to instructions for external editor related preferences.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
