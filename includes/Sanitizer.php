@@ -747,6 +747,13 @@ class Sanitizer {
 		// Remove any comments; IE gets token splitting wrong
 		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
 
+		// Remove anything after a comment-start token, to guard against
+		// incorrect client implementations.
+		$commentPos = strpos( $value, '/*' );
+		if ( $commentPos !== false ) {
+			$value = substr( $value, 0, $commentPos );
+		}
+
 		// Decode escape sequences and line continuation
 		// See the grammar in the CSS 2 spec, appendix D.
 		static $decodeRegex;

@@ -81,16 +81,20 @@ class StringUtils {
 			}
 
 			if ( $tokenType == 'start' ) {
-				$inputPos = $tokenOffset + $tokenLength;
 				# Only move the start position if we haven't already found a start
 				# This means that START START END matches outer pair
 				if ( !$foundStart ) {
 					# Found start
+					$inputPos = $tokenOffset + $tokenLength;
 					# Write out the non-matching section
 					$output .= substr( $subject, $outputPos, $tokenOffset - $outputPos );
 					$outputPos = $tokenOffset;
 					$contentPos = $inputPos;
 					$foundStart = true;
+				} else {
+					# Move the input position past the *first character* of START,
+					# to protect against missing END when it overlaps with START
+					$inputPos = $tokenOffset + 1;
 				}
 			} elseif ( $tokenType == 'end' ) {
 				if ( $foundStart ) {
