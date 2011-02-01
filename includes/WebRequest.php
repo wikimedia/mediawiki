@@ -357,7 +357,7 @@ class WebRequest {
 	public function getBool( $name, $default = false ) {
 		return (bool)$this->getVal( $name, $default );
 	}
-	
+
 	/**
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Unlike getBool, the string "false" will result in boolean false, which is
