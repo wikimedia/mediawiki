@@ -10,6 +10,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   bug 24564)
 * Fixed $wgLicenseTerms register globals.
 * (bug 27093, CVE-2011-0047): Fixed CSS injection vulnerability.
+* (bug 27094) Fixed server-side arbitrary script inclusion vulnerability. 
+  Affects Windows servers only. A malicious file with extension ".php" must 
+  exist on the server for the exploit to be effective.
 
 == MediaWiki 1.15.5 ==
 
