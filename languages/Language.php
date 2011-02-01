@@ -196,7 +196,7 @@ class Language {
 	 * not it exists.
 	 */
 	public static function isValidCode( $code ) {
-		return (bool)preg_match( '/^[a-z-]+$/', $code );
+		return strcspn( $code, "/\\\000" ) === strlen( $code );
 	}
 
 	/**
