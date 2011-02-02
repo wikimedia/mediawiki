@@ -37,6 +37,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 	function isSyndicated() { return false; }
 	function isCacheable() { return false; }
+	function isCached() { return false; }
 
 	function linkParameters() {
 		return array( 'filename' => $this->filename );
