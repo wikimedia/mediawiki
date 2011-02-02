@@ -509,7 +509,11 @@ class HTMLForm {
 	function getErrors( $errors ) {
 		if ( $errors instanceof Status ) {
 			global $wgOut;
-			$errorstr = $wgOut->parse( $errors->getWikiText() );
+			if ( $errors->isOK() ) {
+				$errorstr = '';
+			} else {
+				$errorstr = $wgOut->parse( $errors->getWikiText() );
+			}
 		} elseif ( is_array( $errors ) ) {
 			$errorstr = $this->formatErrors( $errors );
 		} else {
