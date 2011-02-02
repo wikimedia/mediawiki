@@ -12,7 +12,7 @@
  * @ingroup Deployment
  * @since 1.17
  */
-class CliInstaller extends CoreInstaller {
+class CliInstaller extends Installer {
 
 	private $optionMap = array(
 		'dbtype' => 'wgDBtype',

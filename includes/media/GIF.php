@@ -75,7 +75,7 @@ class GIFHandler extends BitmapHandler {
 			return $original;
 		
 		$info = array();
-		$info[] = substr( $original, 1, strlen( $original )-2 );
+		$info[] = $original;
 		
 		if ($metadata['looped'])
 			$info[] = wfMsgExt( 'file-info-gif-looped', 'parseinline' );
@@ -86,8 +86,6 @@ class GIFHandler extends BitmapHandler {
 		if ($metadata['duration'])
 			$info[] = $wgLang->formatTimePeriod( $metadata['duration'] );
 		
-		$infoString = $wgLang->commaList( $info );
-		
-		return "($infoString)";
+		return $wgLang->commaList( $info );
 	}
 }

@@ -1849,6 +1849,10 @@ You can also choose to let others contact you through your user or talk page wit
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
 
+# User preference: email validation using JQuery
+'email-address-validity-valid'           => 'E-mail address appears valid',
+'email-address-validity-invalid'         => 'Enter a valid e-mail address',
+
 # User rights
 'userrights'                     => 'User rights management',
 'userrights-summary'             => '', # do not translate or duplicate this message to other languages
@@ -3581,10 +3585,10 @@ By executing it, your system may be compromised.",
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
-'file-info'            => '(file size: $1, MIME type: $2)',
-'file-info-size'       => '($1 × $2 pixels, file size: $3, MIME type: $4)',
+'file-info'            => 'file size: $1, MIME type: $2',
+'file-info-size'       => '$1 × $2 pixels, file size: $3, MIME type: $4',
 'file-nohires'         => '<small>No higher resolution available.</small>',
-'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
+'svg-long-desc'        => 'SVG file, nominally $1 × $2 pixels, file size: $3',
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'looped',

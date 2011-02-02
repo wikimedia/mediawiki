@@ -95,18 +95,28 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function processFileOpt( $val, $param ) {
-		switch( $val ) {
-		case "file":
-			return $param;
-		case "gzip":
-			return "compress.zlib://$param";
-		case "bzip2":
-			return "compress.bzip2://$param";
-		case "7zip":
-			return "mediawiki.compress.7z://$param";
-		default:
-			return $val;
+		$fileURIs = explode(';',$param);
+		foreach ( $fileURIs as $URI ) {
+			switch( $val ) {
+				case "file":
+					$newURI = $URI;
+					break;
+				case "gzip":
+					$newURI = "compress.zlib://$URI";
+					break;
+				case "bzip2":
+					$newURI = "compress.bzip2://$URI";
+					break;
+				case "7zip":
+					$newURI = "mediawiki.compress.7z://$URI";
+					break;
+				default:
+					$newURI = $URI;
+			}
+			$newFileURIs[] = $newURI;
 		}
+		$val = implode( ';', $newFileURIs );
+		return $val;
 	}
 
 	/**

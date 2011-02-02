@@ -1010,6 +1010,10 @@ $wgMessageStructure = array(
 		'prefs-displaywatchlist',
 		'prefs-diffs',
 	),
+	'preferences-email' => array(
+		'email-address-validity-valid',
+		'email-address-validity-invalid',
+	),
 	'userrights' => array(
 		'userrights',
 		'userrights-summary',
@@ -3296,6 +3300,7 @@ XHTML id names.",
 	'opensearch'          => 'OpenSearch description',
 	'quickbar'            => 'Quickbar',
 	'preferences'         => 'Preferences page',
+	'preferences-email'   => 'User preference: e-mail validation using jQuery',
 	'userrights'          => 'User rights',
 	'group'               => 'Groups',
 	'group-member'        => '',

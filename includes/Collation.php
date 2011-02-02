@@ -26,7 +26,7 @@ abstract class Collation {
 	 * Given a string, convert it to a (hopefully short) key that can be used
 	 * for efficient sorting.  A binary sort according to the sortkeys
 	 * corresponds to a logical sort of the corresponding strings.  Current
-	 * code expects that a null character should sort before all others, but
+	 * code expects that a line feed character should sort before all others, but
 	 * has no other particular expectations (and that one can be changed if
 	 * necessary).
 	 *
@@ -130,6 +130,9 @@ class IcuCollation extends Collation {
 	}
 
 	function getSortKey( $string ) {
+		// intl extension produces non null-terminated
+		// strings. Appending '' fixes it so that it doesn't generate
+		// a warning on each access in debug php.
 		wfSuppressWarnings();
 		$key = $this->mainCollator->getSortKey( $string ) . '';
 		wfRestoreWarnings();

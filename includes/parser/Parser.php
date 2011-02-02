@@ -444,7 +444,7 @@ class Parser {
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
 	 */
-	function preprocess( $text, $title, $options, $revid = null ) {
+	function preprocess( $text, Title $title, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->mOptions = $options;
 		$this->clearState();
@@ -467,7 +467,7 @@ class Parser {
 	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
 	 * comments, templates, arguments, tags hooks and parser functions are untouched.
 	 */
-	public function getPreloadText( $text, $title, $options ) {
+	public function getPreloadText( $text, Title $title, ParserOptions $options ) {
 		# Parser (re)initialisation
 		$this->mOptions = $options;
 		$this->clearState();
@@ -4205,7 +4205,7 @@ class Parser {
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
 	 */
-	public function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
+	public function startExternalParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
@@ -4232,7 +4232,13 @@ class Parser {
 		$executing = true;
 
 		wfProfileIn( __METHOD__ );
-		$text = $this->preprocess( $text, $wgTitle, $options );
+		$title = $wgTitle;
+		if ( !$title ) {
+			# It's not uncommon having a null $wgTitle in scripts. See r80898
+			# Create a ghost title in such case
+			$title = Title::newFromText( 'Dwimmerlaik' );
+		}
+		$text = $this->preprocess( $text, $title, $options );
 
 		$executing = false;
 		wfProfileOut( __METHOD__ );
@@ -5074,7 +5080,7 @@ class Parser {
 	/**
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 */
-	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
+	function testSrvus( $text, $title, ParserOptions $options, $outputType = self::OT_HTML ) {
 		$this->mOptions = $options;
 		$this->clearState();
 		if ( !$title instanceof Title ) {

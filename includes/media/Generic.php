@@ -240,8 +240,8 @@ abstract class MediaHandler {
 
 	function getShortDesc( $file ) {
 		global $wgLang;
-		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) ) . ')';
+		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $file->getSize() ) );
 		return "$nbytes";
 	}
 
@@ -255,8 +255,8 @@ abstract class MediaHandler {
 	
 	static function getGeneralShortDesc( $file ) {
 		global $wgLang;
-		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) ) . ')';
+		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $file->getSize() ) );
 		return "$nbytes";
 	}
 

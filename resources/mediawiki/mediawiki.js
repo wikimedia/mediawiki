@@ -978,7 +978,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		this.element = function( name, attrs, contents ) {
 			var s = '<' + name;
-			for ( attrName in attrs ) {
+			for ( var attrName in attrs ) {
 				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
 			}
 			if ( typeof contents == 'undefined' || contents === null ) {
@@ -988,7 +988,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Regular open tag
 			s += '>';
-			if (typeof contents === 'string') {
+			if ( typeof contents === 'string') {
 				// Escaped
 				s += this.escape( contents );
 			} else if ( contents instanceof this.Raw ) {
