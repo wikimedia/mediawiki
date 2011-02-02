@@ -2,7 +2,7 @@
 /**
  * Script to fix double redirects.
  *
- * Copyright (C) 2010 Ilmari Karonen <nospam@vyznev.net>
+ * Copyright (C) 2011 Ilmari Karonen <nospam@vyznev.net>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -31,7 +31,7 @@ class FixDoubleRedirects extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Script to fix double redirects";
-		$this->addOption( 'async', 'Don\'t fix anything directly, just add queue the jobs' );
+		$this->addOption( 'async', 'Don\'t fix anything directly, just queue the jobs' );
 		$this->addOption( 'title', 'Fix only redirects pointing to this page', false, true );
 		$this->addOption( 'dry-run', 'Perform a dry run, fix nothing' );		
 	}
