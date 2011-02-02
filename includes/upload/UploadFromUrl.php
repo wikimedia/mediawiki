@@ -187,7 +187,13 @@ class UploadFromUrl extends UploadBase {
 		return parent::performUpload( $comment, $pageText, $watch, $user );
 	}
 
-
+	/**
+	 * @param  $comment
+	 * @param  $pageText
+	 * @param  $watch
+	 * @param  $user User
+	 * @return
+	 */
 	protected function insertJob( $comment, $pageText, $watch, $user ) {
 		$sessionKey = $this->stashSession();
 		$job = new UploadFromUrlJob( $this->getTitle(), array(
