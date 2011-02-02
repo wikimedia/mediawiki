@@ -424,7 +424,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'style' => "float: $float;",
 				'class' => "mw-history-$name-button",
 			),
-			wfMsg( 'revisionmoveselectedversions' )
+			wfMsg( $msg )
 		) . "\n";
 		$this->buttons .= $element;
 		return $element;
