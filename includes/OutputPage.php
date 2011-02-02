@@ -981,7 +981,7 @@ class OutputPage {
 	/**
 	 * Add an array of categories, with names in the keys
 	 *
-	 * @param $categories Associative array mapping category name to its sort key
+	 * @param $categories Array mapping category name => sort key
 	 */
 	public function addCategoryLinks( $categories ) {
 		global $wgUser, $wgContLang;
@@ -1043,7 +1043,7 @@ class OutputPage {
 	/**
 	 * Reset the category links (but not the category list) and add $categories
 	 *
-	 * @param $categories Associative array mapping category name to its sort key
+	 * @param $categories Array mapping category name => sort key
 	 */
 	public function setCategoryLinks( $categories ) {
 		$this->mCategoryLinks = array();
@@ -1471,7 +1471,7 @@ class OutputPage {
 	 * Add an HTTP header that will influence on the cache
 	 *
 	 * @param $header String: header name
-	 * @param $option either an Array or null
+	 * @param $option Array|null
 	 * @fixme Document the $option parameter; it appears to be for
 	 *        X-Vary-Options but what format is acceptable?
 	 */
@@ -2047,7 +2047,7 @@ class OutputPage {
 	/**
 	 * Format a list of error messages
 	 *
-	 * @param $errors An array of arrays returned by Title::getUserPermissionsErrors
+	 * @param $errors Array of arrays returned by Title::getUserPermissionsErrors
 	 * @param $action String: action that was denied or null if unknown
 	 * @return String: the wikitext error-messages, formatted into a list.
 	 */
