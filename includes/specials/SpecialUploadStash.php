@@ -36,7 +36,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// uploading.
 	const MAX_SERVE_BYTES = 262144; // 256K
 
-	public function __construct( $request = null ) {
+	public function __construct() {
 		global $wgRequest;
 
 		parent::__construct( 'UploadStash', 'upload' );
@@ -46,7 +46,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			return null;
 		}
 
-		$this->loadRequest( is_null( $request ) ? $wgRequest : $request );
+		$this->loadRequest( $wgRequest );
 	}
 
 	/**
