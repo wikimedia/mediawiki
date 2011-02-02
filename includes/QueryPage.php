@@ -409,6 +409,8 @@ abstract class QueryPage extends SpecialPage {
 		}
 		if ( $this->sortDescending() ) {
 			$options['ORDER BY'] = 'qc_value DESC';
+		} else {
+			$options['ORDER BY'] = 'qc_value ASC';
 		}
 		$res = $dbr->select( 'querycache', array( 'qc_type',
 				'qc_namespace AS namespace',
