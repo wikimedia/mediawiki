@@ -626,6 +626,7 @@ abstract class File {
 
 	/**
 	 * Get a MediaHandler instance for this file
+	 * @return MediaHandler
 	 */
 	function getHandler() {
 		if ( !isset( $this->handler ) ) {

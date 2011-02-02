@@ -309,6 +309,7 @@ class MimeMagic {
 
 	/**
 	 * Get an instance of this class
+	 * @return MimeMagic
 	 */
 	static function &singleton() {
 		if ( !isset( self::$instance ) ) {
@@ -325,7 +326,7 @@ class MimeMagic {
 
 		$r = @$this->mMimeToExt[$mime];
 
-		if ( @!$r and isset( $this->mMimeTypeAliases[$mime] ) ) {
+		if ( @!$r && isset( $this->mMimeTypeAliases[$mime] ) ) {
 			$mime = $this->mMimeTypeAliases[$mime];
 			$r = @$this->mMimeToExt[$mime];
 		}
