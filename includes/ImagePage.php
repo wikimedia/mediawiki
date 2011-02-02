@@ -330,7 +330,7 @@ class ImagePage extends Article {
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 
-			$longDesc = wfMsgExt( 'parentheses', 'parseinline', $this->displayImg->getLongDesc() );
+			$longDesc = wfMsg( 'parentheses', $this->displayImg->getLongDesc() );
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$wgOut ) );
 
