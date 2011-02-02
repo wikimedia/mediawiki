@@ -490,10 +490,12 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26733) Wrap initial table creation in transaction
 * (bug 26208) Mark directionality of some interlanguage links
 * (bug 26716) Provide link to instructions for external editor related preferences.
+* (bug 26961) Hide anon edits in watchlist preference now actually works.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
 * BREAKING CHANGE: patrol token is no longer the same as edit token
+* BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead of integers 
 * (bug 24650) Fix API to work with categorylinks changes
 * action=parse now correctly returns an error for nonexistent pages
 

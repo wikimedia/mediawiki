@@ -65,7 +65,7 @@ class RenameDbPrefix extends Maintenance {
 		$count = 0;
 
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->query( "SHOW TABLES LIKE '" . $dbw->escapeLike( $old ) . "%'" );
+		$res = $dbw->query( "SHOW TABLES " . $dbw->buildLike( $old, $dbw->anyString() ) );
 		foreach ( $res as $row ) {
 			// XXX: odd syntax. MySQL outputs an oddly cased "Tables of X"
 			// sort of message. Best not to try $row->x stuff...

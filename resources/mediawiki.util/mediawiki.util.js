@@ -1,8 +1,7 @@
 /*
  * Utilities
  */
-
-(function ($, mw) {
+( function( $, mw ) {
 
 	mediaWiki.util = {
 
@@ -13,7 +12,7 @@
 				this.initialised = true;
 
 				// Any initialisation after the DOM is ready
-				$(function () {
+				$( function() {
 
 					// Shortcut
 					var profile = $.client.profile();
@@ -394,4 +393,4 @@
 
 	mediaWiki.util.init();
 
-})(jQuery, mediaWiki);
+} )( jQuery, mediaWiki );

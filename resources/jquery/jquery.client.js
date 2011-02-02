@@ -1,7 +1,8 @@
 /*
  * User-agent detection
  */
-jQuery.client = new ( function() {
+( function( $ ) {
+$.client = new ( function() {
 
 	/* Private Members */
 
@@ -201,3 +202,5 @@ $( document ).ready( function() {
 		.addClass( 'client-' + profile.layout )
 		.addClass( 'client-' + profile.platform );
 } );
+
+} )( jQuery );

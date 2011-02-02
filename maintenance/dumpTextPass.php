@@ -157,7 +157,7 @@ class TextPassDumper extends BackupDumper {
 		$reader = new XMLReader();
 		$reader->open( $this->input );
 		$writer = new XMLWriter();
-		$writer->openURI( 'php://stdout' );
+		$writer->openMemory();
 
 
 		while ( $reader->read() ) {
@@ -216,8 +216,8 @@ class TextPassDumper extends BackupDumper {
 				}
 				$writer->text( $reader->value );
 			}
+			$this->sink->write( $writer->outputMemory() );
 		}
-		$writer->flush();
 	}
 
 	function getText( $id ) {
@@ -451,6 +451,8 @@ Options:
   --report=n  Report position and speed after every n pages processed.
 			  (Default: 100)
   --server=h  Force reading from MySQL server h
+  --output=<type>:<file> Write to a file instead of stdout
+              <type>s: file, gzip, bzip2, 7zip
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
   --help      Display this help message
