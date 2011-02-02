@@ -85,7 +85,7 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 	$hash = '';
 	$filename =  isset( $par ) ?  $par : $wgRequest->getText( 'filename' );
 
-	$title = Title::newFromText( $filename );
+	$title = Title::makeTitleSafe( NS_FILE, $filename );
 	if( $title && $title->getText() != '' ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
