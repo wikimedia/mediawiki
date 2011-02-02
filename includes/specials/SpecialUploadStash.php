@@ -20,12 +20,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
-	// is the edit request authorized? boolean
-	private $isEditAuthorized;
-
-	// did the user request us to clear the stash? boolean
-	private $requestedClear;
-
 	// Since we are directly writing the file to STDOUT, 
 	// we should not be reading in really big files and serving them out.
 	//
@@ -37,16 +31,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	const MAX_SERVE_BYTES = 262144; // 256K
 
 	public function __construct() {
-		global $wgRequest;
-
 		parent::__construct( 'UploadStash', 'upload' );
 		try {
 			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 		} catch ( UploadStashNotAvailableException $e ) {
 			return null;
 		}
-
-		$this->loadRequest( $wgRequest );
 	}
 
 	/**
@@ -293,23 +283,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		header( "Content-Length: $size", true ); 
 	}
 
-
-	/**
-	 * Initialize authorization & actions to take, from the request
-	 * @param $request: WebRequest
-	 */
-	private function loadRequest( $request ) {
-                global $wgUser;
-		if ( $request->wasPosted() ) {
-
-			$token = $request->getVal( 'wpEditToken' );
-			$this->isEditAuthorized = $wgUser->matchEditToken( $token );
-
-			$this->requestedClear = $request->getBool( 'clear' );
-
-		}
-	}
-
 	/**
 	 * Static callback for the HTMLForm in showUploads, to process 
 	 * Note the stash has to be recreated since this is being called in a static context.
@@ -318,9 +291,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return Status
 	 */ 
 	public static function tryClearStashedUploads( $formData ) {
-		wfDebug( __METHOD__ . " form data : " . print_r( $formData, 1 ) );
-		if ( isset( $formData['clear'] ) and $formData['clear'] ) {
-			$stash = new UploadStash();
+		if ( isset( $formData['Clear'] ) ) {
+			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 			wfDebug( "stash has: " . print_r( $stash->listFiles(), 1 ) );
 			if ( ! $stash->clear() ) {
 				return Status::newFatal( 'uploadstash-errclear' );
@@ -355,29 +327,31 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				'name' => 'clear',
 			) 
 		), 'clearStashedUploads' );
-		$form->setSubmitCallback( array( __CLASS__, 'tryClearStashedUploads' ) ); 
+		$form->setSubmitCallback( __CLASS__ . '::tryClearStashedUploads' ); 
 		$form->setTitle( $this->getTitle() );
-		$form->addHiddenField( 'clear', true, array( 'type' => 'boolean' ) );
 		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
 
-                $form->prepareForm();                                                
-                $formResult = $form->tryAuthorizedSubmit();
+		$form->prepareForm();                                                
+		$formResult = $form->tryAuthorizedSubmit();
                                                                     
 
 		// show the files + form, if there are any, or just say there are none
-		$refreshHtml = Html::element( 'a', array( 'href' => $this->getTitle()->getLocalURL() ), wfMsg( 'uploadstash-refresh' ) );
+		$refreshHtml = Html::element( 'a', 
+			array( 'href' => $this->getTitle()->getLocalURL() ), 
+			wfMsg( 'uploadstash-refresh' ) );
 		$files = $this->stash->listFiles();
 		if ( count( $files ) ) {
 			sort( $files );
 			$fileListItemsHtml = '';
 			foreach ( $files as $file ) {
+				// TODO: Use Linker::link or even construct the list in plain wikitext
 				$fileListItemsHtml .= Html::rawElement( 'li', array(),
 					Html::element( 'a', array( 'href' => 
 						$this->getTitle( "file/$file" )->getLocalURL() ), $file )
 				);
 			}
 			$wgOut->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );
-                	$form->displayForm( $formResult );
+			$form->displayForm( $formResult );
 			$wgOut->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
 		} else {
 			$wgOut->addHtml( Html::rawElement( 'p', array(), 
