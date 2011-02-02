@@ -820,7 +820,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$res = $this->db->query( "SHOW COLUMNS FROM $langlinks LIKE 'll_lang'" );
 		$row = $this->db->fetchObject( $res );
 
-		if ( $row && $row->Type == "varbinary(210)" ) {
+		if ( $row && $row->Type == "varbinary(10)" ) {
 			$this->output( 'Updating length of ll_lang in langlinks...' );
 			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql' );
 			$this->output( "done.\n" );
