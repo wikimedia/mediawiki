@@ -30,6 +30,7 @@ require_once( dirname( __FILE__ ) . '/includes/WebStart.php' );
 wfProfileIn( 'img_auth.php' );
 require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
 
+$wgActionPaths[] = $_SERVER['SCRIPT_NAME'];
 // See if this is a public Wiki (no protections)
 if ( $wgImgAuthPublicTest
 	&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) )
@@ -37,17 +38,8 @@ if ( $wgImgAuthPublicTest
 	wfForbidden('img-auth-accessdenied','img-auth-public');
 }
 
-// Extract path and image information
-if( !isset( $_SERVER['PATH_INFO'] ) ) {
-	$path = $wgRequest->getText( 'path' );
-	if( !$path ) {
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
-	}
-	$path = "/$path";
-} else {
-	$path = $_SERVER['PATH_INFO'];
-}
-
+$matches = WebRequest::getPathInfo();
+$path = $matches['title'];
 $filename = realpath( $wgUploadDirectory . $path );
 $realUpload = realpath( $wgUploadDirectory );
 
