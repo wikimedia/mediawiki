@@ -56,6 +56,7 @@ class WebRequest {
 	}
 
 	static public function getPathInfo( $want = 'all' ) {
+		$matches = array();
 		if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
 			// Slurp out the path portion to examine...
 			$url = $_SERVER['REQUEST_URI'];
@@ -70,7 +71,7 @@ class WebRequest {
 				if( $path == $wgScript && $want !== 'all' ) {
 					// Script inside a rewrite path?
 					// Abort to keep from breaking...
-					return array();
+					return $matches;
 				}
 				// Raw PATH_INFO style
 				$matches = self::extractTitle( $path, "$wgScript/$1" );
