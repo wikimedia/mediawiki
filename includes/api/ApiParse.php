@@ -185,7 +185,7 @@ class ApiParse extends ApiBase {
 				$this->getResult()->addValue( null, $this->getModuleName(), $result_array );
 				return;
 			}
-			$p_result = $wgParser->parse( $this->text, $titleObj, $popts );
+			$p_result = $wgParser->parse( $params['pst'] ? $this->pstText : $this->text, $titleObj, $popts );
 		}
 
 		// Return result
