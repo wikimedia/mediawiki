@@ -55,7 +55,21 @@ class WebRequest {
 		$this->data = $_POST + $_GET;
 	}
 
+	/**
+	 * Extract the PATH_INFO variable even when it isn't a reasonable
+	 * value. On some large webhosts, PATH_INFO includes the script
+	 * path as well as everything after it.
+	 *
+	 * @param $want string: If this is not 'all', then the function
+	 * will return an empty array if it determines that the URL is
+	 * inside a rewrite path.
+	 *
+	 * @return Array: 'title' key is the title of the article.
+	 */
 	static public function getPathInfo( $want = 'all' ) {
+		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
+		// And also by Apache 2.x, double slashes are converted to single slashes.
+		// So we will use REQUEST_URI if possible.
 		$matches = array();
 		if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
 			// Slurp out the path portion to examine...
@@ -125,9 +139,11 @@ class WebRequest {
 			return;
 		}
 
-		$matches = self::getPathInfo( 'title' );
-		foreach( $matches as $key => $val) {
-			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
+		if ( $wgUsePathInfo ) {
+			$matches = self::getPathInfo( 'title' );
+			foreach( $matches as $key => $val) {
+				$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
+			}
 		}
 	}
 
