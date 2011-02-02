@@ -401,42 +401,33 @@ class HistoryPager extends ReverseChronologicalPager {
 		) . "\n";
 
 		if ( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$this->preventClickjacking();
-			$float = $wgContLang->alignEnd();
-			# Note bug #20966, <button> is non-standard in IE<8
-			$element = Html::element( 'button',
-				array(
-					'type' => 'submit',
-					'name' => 'revisiondelete',
-					'value' => '1',
-					'style' => "float: $float;",
-					'class' => 'mw-history-revisiondelete-button',
-				),
-				wfMsg( 'showhideselectedversions' )
-			) . "\n";
-			$s .= $element;
-			$this->buttons .= $element;
+			$s .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
 		}
 		if ( $wgUser->isAllowed( 'revisionmove' ) ) {
-			$this->preventClickjacking();
-			$float = $wgContLang->alignEnd();
-			# Note bug #20966, <button> is non-standard in IE<8
-			$element = Html::element( 'button',
-				array(
-					'type' => 'submit',
-					'name' => 'revisionmove',
-					'value' => '1',
-					'style' => "float: $float;",
-					'class' => 'mw-history-revisionmove-button',
-				),
-				wfMsg( 'revisionmoveselectedversions' )
-			) . "\n";
-			$s .= $element;
-			$this->buttons .= $element;
+			$s .= $this->getRevisionButton( 'revisionmove', 'revisionmoveselectedversions' );
 		}
 		$this->buttons .= '</div>';
 		$s .= '</div><ul id="pagehistory">' . "\n";
 		return $s;
+	}
+
+	private function getRevisionButton( $name, $msg ) {
+		global $wgContLang;
+		$this->preventClickjacking();
+		$float = $wgContLang->alignEnd();
+		# Note bug #20966, <button> is non-standard in IE<8
+		$element = Html::element( 'button',
+			array(
+				'type' => 'submit',
+				'name' => $name,
+				'value' => '1',
+				'style' => "float: $float;",
+				'class' => "mw-history-$name-button",
+			),
+			wfMsg( 'revisionmoveselectedversions' )
+		) . "\n";
+		$this->buttons .= $element;
+		return $element;
 	}
 
 	function getEndBody() {
