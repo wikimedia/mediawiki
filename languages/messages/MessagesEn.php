@@ -2435,6 +2435,7 @@ Each row contains links to the first and second redirect, as well as the target 
 <del>Crossed out</del> entries have been solved.',
 'double-redirect-fixed-move' => '[[$1]] has been moved.
 It now redirects to [[$2]].',
+'double-redirect-fixed-maintenance' => 'Fixing double redirect from [[$1]] to [[$2]].',
 'double-redirect-fixer'      => 'Redirect fixer',
 
 'brokenredirects'         => 'Broken redirects',

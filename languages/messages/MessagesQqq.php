@@ -2050,6 +2050,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'doubleredirects'            => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext'        => 'Shown on top of [[Special:Doubleredirects]]',
 'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
+'double-redirect-fixed-maintenance' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after running maintenance/fixDoubleRedirects.php. Compare with {{msg|double-redirect-fixed-move}}.',
 'double-redirect-fixer'      => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
 'brokenredirects'        => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
