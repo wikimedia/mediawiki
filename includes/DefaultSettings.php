@@ -551,9 +551,16 @@ $wgMimeTypeBlacklist = array(
 	# A ZIP file may be a valid Java archive containing an applet which exploits the
 	# same-origin policy to steal cookies
 	'application/zip',
+
 	# MS Office OpenXML and other Open Package Conventions files are zip files
-	# and thus blacklisted just as other zip files
+	# and thus blacklisted just as other zip files. If you remove these entries
+	# from the blacklist in your local configuration, a malicious file upload
+	# will be able to compromise the wiki's user accounts, and the user 
+	# accounts of any other website in the same cookie domain.
 	'application/x-opc+zip',
+	'application/msword',
+	'application/vnd.ms-powerpoint',
+	'application/vnd.msexcel',
 );
 
 /**
