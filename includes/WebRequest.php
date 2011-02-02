@@ -70,7 +70,7 @@ class WebRequest {
 				if( $path == $wgScript && $want !== 'all' ) {
 					// Script inside a rewrite path?
 					// Abort to keep from breaking...
-					return;
+					return array();
 				}
 				// Raw PATH_INFO style
 				$matches = self::extractTitle( $path, "$wgScript/$1" );
