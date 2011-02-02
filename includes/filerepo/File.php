@@ -157,6 +157,7 @@ abstract class File {
 
 	/**
 	 * Return the associated title object
+	 * @return Title
 	 */
 	public function getTitle() { return $this->title; }
 	
@@ -269,14 +270,14 @@ abstract class File {
 	/**
          *  Return true if the file is vectorized
          */
-        public function isVectorized() {
-                $handler = $this->getHandler();
-                if ( $handler ) {
-                        return $handler->isVectorized( $this );
-                } else {
-                        return false;
-                }
-        }
+	public function isVectorized() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->isVectorized( $this );
+		} else {
+			return false;
+		}
+	}
 
 
 	/**

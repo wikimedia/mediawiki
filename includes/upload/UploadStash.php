@@ -186,14 +186,12 @@ class UploadStash {
 		return true;
 	}
 
-
 	/**
 	 * List all files in the stash.
 	 */
 	public function listFiles() {
 		return array_keys( $_SESSION[UploadBase::SESSION_KEYNAME] );
 	}
-	
 
 	/**
 	 * Find or guess extension -- ensuring that our extension matches our mime type.
@@ -268,8 +266,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 			wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
 			throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 		}
-
-			
 
 		parent::__construct( false, $repo, $path, false );
 
@@ -346,7 +342,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 		return SpecialPage::getTitleFor( 'UploadStash', $subPage )->getLocalURL();
 	}
 
-
 	/** 
 	 * Get a URL to access the thumbnail 
 	 * This is required because the model of how files work requires that 
@@ -396,7 +391,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 	public function getFullUrl() { 
 		return $this->getUrl();
 	}
-
 
 	/**
 	 * Getter for session key (the session-unique id by which this file's location & metadata is stored in the session)
