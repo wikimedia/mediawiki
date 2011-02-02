@@ -108,7 +108,7 @@ class ExternalUser_vB extends ExternalUser {
 			$wgExternalAuthConf['username'],
 			$wgExternalAuthConf['password'],
 			$wgExternalAuthConf['dbname'],
-			false, 0,
+			0,
 			$wgExternalAuthConf['tableprefix']
 		);
 	}
