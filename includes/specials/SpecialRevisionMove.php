@@ -151,8 +151,10 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			Xml::fieldset( wfMsg( 'revmove-legend' ) ) .
 			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Html::hidden( 'oldTitle', $this->mOldTitle->getPrefixedText() ) .
-			'<div>' . Xml::inputLabel( wfMsg( 'revmove-reasonfield' ), 'wpReason', 'revmove-reasonfield', 60 ) . '</div>' .
-			Xml::inputLabel( wfMsg( 'revmove-titlefield' ), 'newTitle', 'revmove-titlefield', 20, $this->mOldTitle->getPrefixedText() ) .
+			'<div>' . Xml::inputLabel( wfMsg( 'revmove-reasonfield' ), 'wpReason',
+			'revmove-reasonfield', 60 ) . '</div>' .
+			Xml::inputLabel( wfMsg( 'revmove-titlefield' ), 'newTitle', 'revmove-titlefield', 20,
+				$this->mOldTitle->getPrefixedText() ) .
 			Html::hidden( 'ids', implode( ',', $this->mIds ) ) .
 			Xml::submitButton( wfMsg( 'revmove-submit' ),
 							array( 'name' => 'wpSubmit' ) ) .
@@ -237,8 +239,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		$oldArticle = new Article( $this->mOldTitle );
 		$newArticle = new Article( $this->mNewTitle );
 
-		$idstring = implode( ", ", $this->mIds );
-
 		# Get DB connection and begin transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -256,7 +256,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		$dbw->update( 'revision',
 			array( 'rev_page' => $this->mNewTitle->getArticleID() ),
 			array(
-				'rev_id IN (' . $idstring . ')',
+				'rev_id' => $this->mIds,
 				'rev_page' => $this->mOldTitle->getArticleID(),
 			),
 			__METHOD__
@@ -266,9 +266,8 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		# Check if we need to update page_latest
 		# Get the latest version of the revisions we are moving
 		$timestampNewPage = $this->queryLatestTimestamp(
-			$dbw,
 			$this->mNewTitle->getArticleID(),
-			array( 'rev_id IN (' . $idstring . ')' )
+			array( 'rev_id' => $this->mIds )
 		);
 
 		# Compare the new page's page_latest against db query.
@@ -278,17 +277,15 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		if ( $this->createArticle || $timestampNewPage > $currentNewPageRev->getTimestamp() ) {
 			# we have to set page_latest to $timestampNewPage's revid
 			$this->updatePageLatest(
-				$dbw,
 				$this->mNewTitle,
 				$newArticle,
 				$timestampNewPage,
-				array( 'rev_id IN (' . $idstring . ')' )
+				array( 'rev_id' => $this->mIds  )
 			);
 		}
 
 		# Update the old page's page_latest field
 		$timestampOldPage = $this->queryLatestTimestamp(
-			$dbw,
 			$this->mOldTitle->getArticleID()
 		);
 
@@ -298,7 +295,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 		if ( is_null( $timestampOldPage ) ) {
 			$dbw->delete(
 				'page',
-				array( 'page_id = ' . $this->mOldTitle->getArticleID() ),
+				array( 'page_id' => $this->mOldTitle->getArticleID() ),
 				__METHOD__
 			);
 		} else {
@@ -306,7 +303,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 			$currentOldPageRev = Revision::newFromId( $this->mOldTitle->getLatestRevID() );
 			if ( $timestampOldPage < $currentOldPageRev->getTimestamp() ) {
 				$this->updatePageLatest(
-					$dbw,
 					$this->mOldTitle,
 					$oldArticle,
 					$timestampOldPage
@@ -331,13 +327,13 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	/**
 	 * Query for the latest timestamp in order to update page_latest and
 	 * page_timestamp.
-	 * @param &$dbw Database object (Master)
 	 * @param $articleId Integer page_id
 	 * @param $conds array database conditions
 	 *
 	 * @return String timestamp
 	 */
-	protected function queryLatestTimestamp( &$dbw, $articleId, $conds = array() ) {
+	protected function queryLatestTimestamp( $articleId, $conds = array() ) {
+		$dbw = wfGetDB( DB_MASTER );
 		$timestampNewRow = $dbw->selectRow(
 			'revision',
 			'max(rev_timestamp) AS maxtime',
@@ -351,7 +347,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 * Updates page_latest and similar database fields (see Article::updateRevisionOn).
 	 * Called two times, for the new and the old page
 	 *
-	 * @param &$dbw Database object (Master)
 	 * @param $articleTitle Title object of the page
 	 * @param $articleObj Article object of the page
 	 * @param $timestamp to search for (use queryLatestTimestamp to get the latest)
@@ -359,7 +354,8 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	 *
 	 * @return boolean indicating success
 	 */
-	protected function updatePageLatest( &$dbw, $articleTitle, &$articleObj, $timestamp, $conds = array() ) {
+	protected function updatePageLatest( $articleTitle, $articleObj, $timestamp, $conds = array() ) {
+		$dbw = wfGetDB( DB_MASTER );
 		# Query to find out the rev_id
 		$revisionRow = $dbw->selectRow(
 			'revision',
@@ -373,7 +369,8 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 
 		# Update page_latest
 		$latestRev = Revision::newFromId( $revisionRow->rev_id );
-		return $articleObj->updateRevisionOn( $dbw, $latestRev, $articleTitle->getLatestRevID(), null, /* set new page flag */  true );
+		return $articleObj->updateRevisionOn( $dbw, $latestRev, $articleTitle->getLatestRevID(), null,
+			/* set new page flag */  true );
 	}
 
 	/**
