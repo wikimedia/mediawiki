@@ -1138,7 +1138,6 @@ div#bodyContent {
 #ca-watch.icon {
 	margin-right:1px;
 }
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
 #ca-unwatch.icon a,
 #ca-watch.icon a {
 	margin: 0;
@@ -1148,16 +1147,13 @@ div#bodyContent {
 	width: 26px;
 	/* This hides the text but shows the background image */
 	padding-top: 3.1em;
-	margin-top: -0.8em;
+	margin-top: 0;
+	/* Only applied in IE6 */
+	margin-top: -0.8em !ie;
 	height: 0;
 	overflow: hidden;
 	/* @embed */
 	background-image: url(images/watch-icons.png);
-}
-/* IGNORED BY IE6 */
-html > body #ca-unwatch.icon a,
-html > body #ca-watch.icon a {
-	margin-top: 0;
 }
 #ca-unwatch.icon a {
 	background-position: -43px 60%;
