@@ -22,7 +22,7 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медија',
-	NS_SPECIAL          => 'Специјални',
+	NS_SPECIAL          => 'Специјална',
 	NS_TALK             => 'Разговор',
 	NS_USER             => 'Корисник',
 	NS_USER_TALK        => 'Разговор_со_корисник',
@@ -40,6 +40,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'Специјални' => NS_SPECIAL,
 	'Слика' => NS_FILE,
 	'Разговор_за_слика' => NS_FILE_TALK,
 );
