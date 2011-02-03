@@ -46,8 +46,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig'                  => 'Abhi ke signature ke preview:',
 'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
-'tog-externaleditor'          => 'Apne se bahaari editor ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
-'tog-externaldiff'            => 'Apne se bahaari diff ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
+'tog-externaleditor'          => 'Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => ' Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => '"jump to" accessibility jorr ke laabu karo',
 'tog-uselivepreview'          => 'Jinda jhalak ke kaam me lao (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Ek khali badlao waala summary ke likhe ke time hamse puchho',
@@ -2546,8 +2546,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'math_unknown_function' => 'nai samajhta ki ii kon chij khatir hai',
 'math_lexing_error'     => 'lexing me galti',
 'math_syntax_error'     => 'syntax me galti',
-'math_image_error'      => 'PNG conversion fail hoe gais;
-latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
+'math_image_error'      => 'PNG conversion fail hoe gais; latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
 'math_bad_tmpdir'       => 'Math temporary directory nai banae sakta hai',
 'math_bad_output'       => 'Math output directory me likhe nai to banae nai sakta hai',
 'math_notexvc'          => 'Texvc executable nai hai;

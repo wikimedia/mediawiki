@@ -2687,7 +2687,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'math_unknown_function' => 'funzione sconosciuta',
 'math_lexing_error'     => 'errore lessicale',
 'math_syntax_error'     => 'errore di sintassi',
-'math_image_error'      => 'Conversione in PNG non riuscita; verificare che siano correttamente installati i seguenti programmi: latex, dvips, gs e convert.',
+'math_image_error'      => 'Conversione in PNG non riuscita; verificare che siano correttamente installati i seguenti programmi: latex e dvipng (o dvips, gs e convert).',
 'math_bad_tmpdir'       => 'Impossibile scrivere o creare la directory temporanea per math',
 'math_bad_output'       => 'Impossibile scrivere o creare la directory di output per math',
 'math_notexvc'          => 'Eseguibile texvc mancante; per favore consultare math/README per la configurazione.',

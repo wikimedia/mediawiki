@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Comp1089
  * @author Node ue
  * @author לערי ריינהארט
  */
@@ -65,7 +66,7 @@ $messages = array(
 'views'            => 'Визуализэрь',
 'toolbox'          => 'Кутие де унелте',
 'jumpto'           => 'Салт ла:',
-'jumptonavigation' => 'nавигацие',
+'jumptonavigation' => 'навигацие',
 'jumptosearch'     => 'кэутаре',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

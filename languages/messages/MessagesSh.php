@@ -55,8 +55,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
 'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
-'tog-externaleditor'          => 'Po defaultu koristite eksterni editor (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
-'tog-externaldiff'            => 'Koristi vanjski (diff) program za prikaz razlika (samo za naprednije korisnike, potrebne posebne postavke na vašem računaru)',
+'tog-externaleditor'          => 'Redovno koristite eksterni editor (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
+'tog-externaldiff'            => 'Redovno koristi vanjski (diff) program za prikaz razlika (samo za naprednije korisnike, potrebne posebne postavke na vašem računaru [http://www.mediawiki.org/wiki/Manual:External_editors Više informacija.])',
 'tog-showjumplinks'           => 'Omogući opciju "skoči na" linkove',
 'tog-uselivepreview'          => 'Koristite pretpregled uživo (potreban JavaScript) (eksperimentalno)',
 'tog-forceeditsummary'        => 'Opomeni me pri unosu praznog sažetka',
@@ -1237,6 +1237,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-reset-passwords'       => 'Resetiranje lozinke drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
+'right-versiondetail'         => 'Prikaži informaciju o proširenoj verziji softvera',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log
@@ -1404,6 +1405,7 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je dvojnik {{PLURAL:$1|slijedećoj datoteci|slijedećim datotekama}}:',
 'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
+'successfulupload'            => 'Uspješno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'uploadwarning-text'          => 'Molimo izmijeniti opis datoteke ispod i pokušajte kasnije.',
 'savefile'                    => 'Snimi datoteku',
@@ -1611,6 +1613,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-edits-average'     => 'Prosječno izmjena po stranici',
 'statistics-views-total'       => 'Ukupno pregleda',
 'statistics-views-peredit'     => 'Pregleda po izmjeni',
+'statistics-jobqueue'          => 'Dužina [http://www.mediawiki.org/wiki/Manual:Job_queue akcija na čekanju]',
 'statistics-users'             => 'Registrovani [[Special:ListUsers|korisnici]]',
 'statistics-users-active'      => 'Aktivni korisnici',
 'statistics-users-active-desc' => 'Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}',
@@ -1623,6 +1626,9 @@ Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
 Stranica se smatra stranicom za razvrstavanje, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|stranica za razvrstavanje]]",
 
 'doubleredirects'            => 'Dvostruka preusmjerenja',
+'doubleredirectstext'        => 'This page lists pages which redirect to other redirect pages.
+Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually the "real" target page, which the first redirect should point to.
+<s>Crossed out</s> entries have been solved.',
 'double-redirect-fixed-move' => '[[$1]] je premješten, sada je preusmjerenje na [[$2]]',
 'double-redirect-fixer'      => 'Popravljač preusmjerenja',
 
@@ -2557,8 +2563,7 @@ Ovo je vjerovatno izazvano vezom ka vanjskoj nepoželjnoj stranici.',
 'math_unknown_function' => 'nepoznata funkcija',
 'math_lexing_error'     => 'riječnička greška',
 'math_syntax_error'     => 'sintaksna greška',
-'math_image_error'      => 'PNG konverzija neuspješna; 
-provjerite tačnu instalaciju latex-a, dvips-a, gs-a i convert-a',
+'math_image_error'      => 'PNG konverzija neuspješna; provjerite tačnu instalaciju latex-a i dvipng-a (ili dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Ne može se napisati ili napraviti privremeni matematički direktorijum',
 'math_bad_output'       => 'Ne može se napisati ili napraviti direktorijum za matematički izvještaj.',
 'math_notexvc'          => 'Nedostaje izvršno texvc; molimo Vas da pogledate math/README da podesite.',
@@ -2598,9 +2603,12 @@ $1',
 'nextdiff'     => 'Novija izmjena →',
 
 # Media information
+'mediawarning'         => "'''Upozorenje''': Ova datoteka može sadržavati loš kod.
+Njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'         => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'            => 'Veličina umanjenog prikaza:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'file-info'            => '(veličina datoteke: $1, MIME tip: $2)',
 'file-info-size'       => '($1 × $2 piksela, veličina datoteke/fajla: $3, MIME tip: $4)',
 'file-nohires'         => '<small>Veća rezolucija nije dostupna.</small>',
 'svg-long-desc'        => '(SVG fajl, nominalno $1 × $2 piksela, veličina fajla: $3)',

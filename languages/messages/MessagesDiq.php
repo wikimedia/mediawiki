@@ -1541,13 +1541,13 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # Statistics
 'statistics'                   => 'İstatistiki',
-'statistics-header-pages'      => 'Îstatistiksê pelî',
+'statistics-header-pages'      => '↓ İstatistikê pele',
 'statistics-header-edits'      => 'Îstatistiksê vurnayîşî',
 'statistics-header-views'      => 'Îstatistiksê vînayîşî',
 'statistics-header-users'      => 'Îstatistiksê karberî',
 'statistics-header-hooks'      => 'Îstatistiksê binî',
 'statistics-articles'          => 'Pelanê tedesteyî',
-'statistics-pages'             => 'Pelî',
+'statistics-pages'             => '↓ Peli',
 'statistics-pages-desc'        => 'Pelanê hemî ke wîkî de estê, pelanê mineqeşeyî, redireksiyon ucb... dehil o.',
 'statistics-files'             => 'Dosyayê bar biye',
 'statistics-edits'             => 'Amarê vurnayîşî ke wextê {{SITENAME}} ronayîşî ra',
@@ -1556,7 +1556,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-views-peredit'     => 'Ser her vurnayîşî de vînayîşî',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Derganiyê sirayê gure]',
 'statistics-users'             => 'Qeyd biye [[Special:ListUsers|karberî]]',
-'statistics-users-active'      => 'Karberê aktivî',
+'statistics-users-active'      => '↓ Karberê aktifi',
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular'       => 'Pelayanê ke tewr zafî vînî biye',
 
@@ -2919,13 +2919,13 @@ Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
 'imgmultigoto'     => 'Şi pel $1',
 
 # Table pager
-'ascending_abbrev'         => 'cor',
-'descending_abbrev'        => 'cêr',
-'table_pager_next'         => 'Pelo serîn',
-'table_pager_prev'         => 'pelo binîn',
-'table_pager_first'        => 'Peleyê  yewin',
-'table_pager_last'         => 'Peleyê peni',
-'table_pager_limit'        => 'Yew pele de $1 tene bimocne',
+'ascending_abbrev'         => 'berz',
+'descending_abbrev'        => 'nızm',
+'table_pager_next'         => 'Pela badê cû',
+'table_pager_prev'         => 'Pela verêne',
+'table_pager_first'        => 'Pela jûyıne',
+'table_pager_last'         => 'Pela peyêne',
+'table_pager_limit'        => 'Jû pele de $1 unsuran bımocne',
 'table_pager_limit_submit' => 'Şi',
 'table_pager_empty'        => 'Netice çini yo',
 
@@ -3037,7 +3037,7 @@ Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 'specialpages-group-spam'        => 'hacetê spami',
 
 # Special:BlankPage
-'blankpage'              => 'Pelo veng',
+'blankpage'              => 'Pela venge',
 'intentionallyblankpage' => 'Ena pel bi zanayişî weng mendo.',
 
 # External image whitelist

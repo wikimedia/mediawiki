@@ -377,8 +377,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-oldsig'                  => 'Vorschau der aktuellen Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer)',
-'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer)',
+'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
+'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede als Standard benutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
@@ -1065,7 +1065,7 @@ Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest,
 Grund der Sperre: ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Logbücher für diese Seite anzeigen',
+'viewpagelogs'           => 'Logbücher dieser Seite anzeigen',
 'nohistory'              => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vom $2, $3 Uhr',
@@ -1921,7 +1921,7 @@ Links aus Namensräumen werden hier nicht aufgelistet.',
 'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
 Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
 <s>Durchgestrichene</s> Einträge wurden bereits erledigt.',
-'double-redirect-fixed-move' => 'doppelte Weiterleitung aufgelöst: [[$1]] → [[$2]]',
+'double-redirect-fixed-move' => '[[$1]] wurde verschoben und leitet nun nach [[$2]] weiter.',
 'double-redirect-fixer'      => 'RedirectBot',
 
 'brokenredirects'        => 'Kaputte Weiterleitungen',
@@ -2600,7 +2600,7 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'imagenocrossnamespace'        => 'Dateien können nicht aus dem {{ns:file}}-Namensraum heraus verschoben werden',
 'imagetypemismatch'            => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'         => 'Der Ziel-Dateiname ist ungültig',
-'fix-double-redirects'         => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
+'fix-double-redirects'         => 'Nach dem Verschieben alle Weiterleitungen auf die Ursprungsseite bereinigen',
 'move-leave-redirect'          => 'Weiterleitung erstellen',
 'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde so geschützt, dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann.
 Zur Information folgt der aktuelle Logbucheintrag:",
@@ -3312,7 +3312,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Auto-summaries
 'autosumm-blank'   => 'Die Seite wurde geleert.',
 'autosumm-replace' => 'Der Seiteninhalt wurde durch einen anderen Text ersetzt: „$1“',
-'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
+'autoredircomment' => 'Weiterleitung auf [[$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: „$1“',
 
 # Size units

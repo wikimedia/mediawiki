@@ -617,6 +617,25 @@ oyinza <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist'        => 'Akawunti y\'obwamemba "$1" teri mu nkalala za wiki eno.<br />
 Sooka okakase oba ddala oyagala okukolawo olupapula olupya luno.',
 'userpage-userdoesnotexist-view'   => 'Tewali akawunti ey\'obwamemba "$1".',
+'blocked-notice-logextract'        => "Memba ono mu kaakano agaanidwa.<br />
+Bino ebiddako bye ebikwata ku nsonga eyo mu lukalala lw'ebifuddeyo mu by'okugaana:",
+'clearyourcache'                   => "'''Genderera:''' Bw'omala okubaako by'okaza, kiyinza okukwetaagisa okumala<br />
+okukunkumula eggwanika ezzibizi erya kalambulanetti yo olyoke osobole okulaba enkyukakyuka z'okoze.<br />
+<br />
+'''Okukola kino mu ez'ekika kya Mozilla, Firefox ne Safari:''' Nyweza eppeesa erya ''Shift'' onyige ne ku kabonero<br />
+aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl'' ne ''R'' (''Command'' ne ''R'' ku kompyuta eya Macintosh/Apple);<br />
+<br />
+'''Okukikolera mu ey'ekika kya Konqueror:''' Nyiga ku kabonero aka ''Reload'' oba nyiga eppeesa erya ''F5'';<br />
+<br />
+'''Mu ey'ekika kya Opera:''' Genda mu ''Tools → Preferences'' gy'onosangira ebikola omulimu ogwo;<br />
+<br />
+'''Ate mu Internet Explorer:''' Nyewza erya ''Ctrl'' nga bw'onyiga akabonero aka ''Refresh'', oba nyigira okumu aga ''Ctrl'' ne ''F5''.",
+'usercssyoucanpreview'             => "'''Amagezi:''' Bw'onyiga akabonero aka \"{{int:showpreview}}\" osobola okulozako enfaanana ya CSS gw'otegese nga tosoose okugikaza.",
+'userjsyoucanpreview'              => "'''Amagezi:''' Nyiga ku kabonero aka \"{{int:showpreview}}\" osobole okulozako enkola ya JavaScript gw'otegese nga tosoose okumukaza.",
+'usercsspreview'                   => "'''Jukira nti CSS gw'otegese omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
+'userjspreview'                    => "'''Jukira nti JavaScript gw'otegese omugezesamubugezesa oba omulozakobulozi.'''<br />
+'''Tannakazibwa.'''",
 'previewnote'                      => "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',

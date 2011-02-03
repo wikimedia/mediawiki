@@ -2717,7 +2717,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'math_lexing_error'     => 'leksikale fout',
 'math_syntax_error'     => 'sintaksfout',
 'math_image_error'      => 'PNG-omskakeling het gefaal.
-Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
+Kontroleer of LaTeX en dvipng (of dvips + gs + convert) korrek geïnstalleer is.',
 'math_bad_tmpdir'       => 'Die gids vir tydelike lêers vir wiskundige formules bestaan nie of kan nie geskep word nie',
 'math_bad_output'       => 'Die gids vir lêers met wiskundige formules bestaan nie of kan nie geskep word nie',
 'math_notexvc'          => 'Kan nie die texvc program vind nie;

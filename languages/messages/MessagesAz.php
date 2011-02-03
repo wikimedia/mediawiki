@@ -10,6 +10,7 @@
  * @author Don Alessandro
  * @author Emperyan
  * @author Gulmammad
+ * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
@@ -1726,7 +1727,8 @@ Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şə
 'filepath' => 'Fayl yolu',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'Dublikat fayl axtarışı',
+'fileduplicatesearch'        => 'Dublikat fayl axtarışı',
+'fileduplicatesearch-submit' => 'Axtar',
 
 # Special:SpecialPages
 'specialpages'                   => 'Xüsusi səhifələr',

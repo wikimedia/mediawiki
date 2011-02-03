@@ -11,6 +11,7 @@
  * @author Bangin
  * @author Erdal Ronahi
  * @author Ferhengvan
+ * @author George Animal
  * @author Liangent
  * @author The Evil IP address
  */
@@ -663,9 +664,12 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'rev-deleted-user'            => '(navî bikarhêner hate jêbirin)',
 'rev-deleted-text-permission' => 'Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reşahîya jêbirinê] da hebin.',
 'rev-delundel'                => 'nîşan bide/veşêre',
+'rev-showdeleted'             => 'nîşan bide',
 'revisiondelete'              => 'Rêvîsyona jêbibe/dîsa çêke',
 'revdelete-show-file-submit'  => 'Belê',
 'revdelete-legend'            => 'Guherandina qebûlkirina dîtinê',
+'revdelete-hide-text'         => 'Nivîsa revîzyonê veşêre',
+'revdelete-hide-image'        => 'Naverroka dosyeyê veşêre',
 'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
 'revdelete-hide-restricted'   => 'Ev qebûlkirinan ji koordînatoran ra ye jî û ev rûpela tê girtin',
@@ -674,6 +678,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 'revdelete-log'               => 'Sedem',
 'pagehist'                    => 'Dîroka rûpelê',
+'revdelete-content'           => 'naverrok',
 'revdelete-uname'             => 'navê bikarhêner',
 'revdelete-hid'               => '$1 veşart',
 'revdelete-unhid'             => '$1 nîşanbide',
@@ -720,6 +725,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
 'searchprofile-project-tooltip'  => 'Di $1 da lêbigere',
 'search-result-size'             => '$1 ({{PLURAL:$2|peyvek|$2 peyv}})',
+'search-redirect'                => '(redirect $1)',
 'search-suggest'                 => 'Gelo mebesta te ev bû: $1',
 'search-interwiki-caption'       => 'Projeyên têkildar',
 'search-interwiki-default'       => '$1 encam:',
@@ -733,6 +739,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'powersearch'                    => 'Lê bigere',
 'powersearch-legend'             => 'Lê bigere',
 'powersearch-ns'                 => "Di namespace'an da lêbigere:",
+'powersearch-redir'              => "Lîsteya redirect'an",
 'powersearch-field'              => 'Bigere li',
 'powersearch-toggleall'          => 'Hemî',
 'powersearch-togglenone'         => 'Tune',
@@ -761,6 +768,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'prefs-watchlist-days-max'  => 'Ne zêdetir ji 7 rojan',
 'prefs-misc'                => 'Eyaren cuda',
 'prefs-resetpass'           => 'Şifreyê biguherîne',
+'prefs-rendering'           => 'Rû',
 'saveprefs'                 => 'Tercîhan qeyd bike',
 'resetprefs'                => 'Nivîsarên netomarkirî şondabike',
 'prefs-editing'             => 'Guheranin',
@@ -773,6 +781,11 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'timezoneoffset'            => 'Cudahî¹:',
 'servertime'                => "Dema server'ê:",
 'guesstimezone'             => "Ji browser'î xwe têkê",
+'timezoneregion-africa'     => 'Afrîka',
+'timezoneregion-america'    => 'Amerîka',
+'timezoneregion-antarctica' => 'Antarktîka',
+'timezoneregion-asia'       => 'Asya',
+'timezoneregion-europe'     => 'Ewropa',
 'allowemail'                => 'Qebûlbike ku bikarhênerên di e-nameyan ji te ra bişînin',
 'prefs-searchoptions'       => 'Tercihên lêgerînê',
 'default'                   => 'asayî',
@@ -787,6 +800,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'yournick'                  => 'Leqeba te (ji bo îmza)',
 'badsig'                    => 'Nivîsandinê îmzê ne baş e; xêra xwe nivîsandina HTML seke, ku şaşbûn hene ya na.',
 'badsiglength'              => 'Navî te zêde dirêj e; ew gireke di bin {{PLURAL:$1|nîşanekê|nîşanan}} da be.',
+'gender-male'               => 'Nêr',
+'gender-female'             => 'Mê',
 'email'                     => 'E-name',
 'prefs-help-realname'       => 'Ne gereke. Tu dikarî navî xwe binivisînê, ew ê bi karkirên te were nivîsandin.',
 'prefs-help-email'          => 'Adrêsa te yê e-nameyan ne gereke were nivîsandin, lê ew qebûldike, ku bikarhênerên din vê naskirinê te kanibin e-nameyan ji te ra bişînin.',
@@ -815,7 +830,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'userrights-unchangeable-col' => 'Grûpan yên tu nikarê biguherînê',
 
 # Groups
-'group'            => 'گرووپ:',
+'group'            => 'Grûp',
 'group-user'       => 'Bikarhêneran',
 'group-bot'        => 'Bot',
 'group-sysop'      => 'Koordînatoran',
@@ -836,6 +851,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'right-createaccount' => 'Hesaba bikarînerek nû veke',
 'right-move'          => 'Rûpelan bigerîne',
 'right-upload'        => 'Dosyeyan lê bar bike',
+'right-delete'        => 'Rûpelan jê bibe',
 'right-browsearchive' => 'Li rûpelên jêbirî bigerre',
 'right-undelete'      => 'Jêbirinê betal bike',
 
@@ -865,9 +881,14 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|guherandinek|guherandin}}',
 'recentchanges'                     => 'Guherandinên dawî',
 'recentchanges-legend'              => 'Vebijarkên guherandinên dawî',
+'recentchanges-label-legend'        => 'Ravek: $1.',
+'recentchanges-legend-newpage'      => '$1 - rûpela nû',
+'recentchanges-legend-minor'        => ' $1 guherandina biçûk',
+'recentchanges-label-minor'         => 'Ev guhertineka biçûk e',
+'recentchanges-legend-bot'          => '$1 - guherrandina bot',
 'rcnote'                            => "Jêr {{PLURAL:$1|guherandinek|'''$1''' guherandinên dawî}} di {{PLURAL:$2|rojê|'''$2''' rojên dawî}} de ji $3 şûnde tên nîşan dan.",
 'rclistfrom'                        => 'an jî guherandinên ji $1 şûnda nîşan bide.',
-'rcshowhideminor'                   => '$1 guherandinên biçûk',
+'rcshowhideminor'                   => 'guherandinên biçûk $1',
 'rcshowhidebots'                    => '$1 bot',
 'rcshowhideliu'                     => '$1 bikarhênerê qeydkirî',
 'rcshowhideanons'                   => '$1 bikarhênerên neqeydkirî (IP)',
@@ -914,6 +935,7 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 'filename'               => 'Navê dosyayê',
 'filedesc'               => 'Kurte',
 'fileuploadsummary'      => 'Kurte:',
+'filestatus'             => 'Rewşa telîfê:',
 'filesource'             => 'Çavkanî:',
 'uploadedfiles'          => 'Dosyayên bar kirî',
 'ignorewarning'          => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
@@ -967,6 +989,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Li navî wêneyê bigere:',
+'imgfile'               => 'dosye',
 'listfiles'             => 'Listeya wêneyan',
 'listfiles_date'        => 'Dem',
 'listfiles_name'        => 'Nav',
@@ -991,6 +1014,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'linkstoimage'              => 'Di van rûpelan de lînkek ji vî wêneyî re heye:',
 'nolinkstoimage'            => 'Rûpelekî ku ji vî wêneyî re girêdankê çêdike nîne.',
 'uploadnewversion-linktext' => 'Versyonekî nû yê vê datayê barbike',
+'shared-repo-from'          => 'ji $1',
 
 # File reversion
 'filerevert'         => '"$1" şondabike',
@@ -1033,8 +1057,11 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 # Statistics
 'statistics'              => 'Statîstîk',
+'statistics-header-edits' => 'statîstîka biguherîne',
 'statistics-header-views' => 'Amaran bibîne',
 'statistics-header-users' => 'Statistîkên bikarhêneran',
+'statistics-header-hooks' => 'Statîstîkên din',
+'statistics-articles'     => 'Rûpelên naverrokê',
 'statistics-pages'        => 'Rûpel',
 'statistics-files'        => 'Dosyeyên barkirî',
 'statistics-users'        => '[[Special:ListUsers|Bikarînerên]] tomarkirî',
@@ -1071,6 +1098,9 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'popularpages'            => 'Rûpelên populer',
 'wantedcategories'        => 'Kategorîyên tên xwestin',
 'wantedpages'             => 'Rûpelên ku tên xwestin',
+'wantedfiles'             => 'Dosyeyên ku tên xwestin',
+'mostlinked'              => 'Rûpelên bi lînkên zav',
+'mostlinkedcategories'    => 'Kategorîyên bi lînkên zav',
 'mostcategories'          => 'Gotar bi pir kategorîyan',
 'shortpages'              => 'Rûpelên kurt',
 'longpages'               => 'Rûpelên dirêj',
@@ -1129,10 +1159,12 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Guherandinên bikarhênerekî yê jêbirî',
-'deletedcontributions-title' => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions'             => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions-title'       => 'Guherandinên bikarhênerekî yê jêbirî',
+'sp-deletedcontributions-contribs' => 'tevkarîyan',
 
 # Special:LinkSearch
+'linksearch'    => 'Lînkên derve',
 'linksearch-ns' => 'Boşahîya nav:',
 'linksearch-ok' => 'Lêbigere',
 
@@ -1140,11 +1172,17 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'listusers-submit'   => 'Pêşêkê',
 'listusers-noresult' => 'Ne bikarhênerek hate dîtin.',
 
+# Special:ActiveUsers
+'activeusers-hidebots'   => "Bot'an veşêre",
+'activeusers-hidesysops' => 'Koordînatoran veşêre',
+
 # Special:Log/newusers
 'newuserlogpage'          => 'Reşahiya çêkirina hesabên nû',
 'newuserlog-create-entry' => 'Bikarhênerekî nuh',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Grûp',
+'listgrouprights-rights'  => 'Mafan',
 'listgrouprights-members' => '(lîsteya endaman)',
 
 # E-mail user
@@ -1301,30 +1339,31 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'restriction-level-autoconfirmed' => 'nîv-parastî',
 
 # Undelete
-'undelete'                 => 'Li rûpelên jêbirî seke',
-'undeletepage'             => 'Rûpelên jêbirî bibîne û dîsa çêke',
-'viewdeletedpage'          => 'Rûpelên vemirandî seke',
-'undeletepagetext'         => 'Rûpelên jêr hatine jêbirin, lê ew hên di arşîvê da ne û dikarin dîsa werin çêkirin. Ev arşîva piştî demekê tê pakkirin.',
-'undeleteextrahelp'        => "Ji bo dîsaçêkirina vê rûpelê, li checkbox'an nexe û li '''''Dîsa çêke''''' klîk bike. Eger tu naxazî ku hemû verzyon dîsa werin çêkirin, li checkbox'ên wan verzyonan xe, yê tu dixazî dîsa çêkê û paşê li '''''Dîsa çêke'''' klîk bike. Eger tu li '''''Biskine''''' xê, hemû checkbox û cihê sedemê yê werin valakirin.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|rêvîzyonek çû|rêvîzyon çûn}} arşîv',
-'undeletehistory'          => 'Eger tu vê rûpelê dîsa çêkê, hemû rêvîzyon ê dîsa di dîrokê da werin çêkirin. Eger rûpeleka nuh ji dema jêbirinê da hatîye çêkirin, ew rêvîzyon ê werin pêşî diroka nuh.',
-'undelete-revision'        => 'Rêvîzyonên jêbirî yê $1 (di $2) ji $3:',
-'undelete-nodiff'          => 'Rêvîzyonên berê nehatin dîtin.',
-'undeletebtn'              => 'Dîsa çêke!',
-'undeletelink'             => 'dîtin/dîsa çêkirin',
-'undeletereset'            => 'Biskine',
-'undeletecomment'          => 'Sedem:',
-'undeletedarticle'         => '"[[$1]]" dîsa çêkir',
-'undeletedrevisions'       => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
-'undeletedrevisions-files' => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
-'undeletedfiles'           => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
-'undeletedpage'            => "'''$1 dîsa hate çêkirin'''
+'undelete'                  => 'Li rûpelên jêbirî seke',
+'undeletepage'              => 'Rûpelên jêbirî bibîne û dîsa çêke',
+'viewdeletedpage'           => 'Rûpelên vemirandî seke',
+'undeletepagetext'          => 'Rûpelên jêr hatine jêbirin, lê ew hên di arşîvê da ne û dikarin dîsa werin çêkirin. Ev arşîva piştî demekê tê pakkirin.',
+'undeleteextrahelp'         => "Ji bo dîsaçêkirina vê rûpelê, li checkbox'an nexe û li '''''Dîsa çêke''''' klîk bike. Eger tu naxazî ku hemû verzyon dîsa werin çêkirin, li checkbox'ên wan verzyonan xe, yê tu dixazî dîsa çêkê û paşê li '''''Dîsa çêke'''' klîk bike. Eger tu li '''''Biskine''''' xê, hemû checkbox û cihê sedemê yê werin valakirin.",
+'undeleterevisions'         => '$1 {{PLURAL:$1|rêvîzyonek çû|rêvîzyon çûn}} arşîv',
+'undeletehistory'           => 'Eger tu vê rûpelê dîsa çêkê, hemû rêvîzyon ê dîsa di dîrokê da werin çêkirin. Eger rûpeleka nuh ji dema jêbirinê da hatîye çêkirin, ew rêvîzyon ê werin pêşî diroka nuh.',
+'undelete-revision'         => 'Rêvîzyonên jêbirî yê $1 (di $2) ji $3:',
+'undelete-nodiff'           => 'Rêvîzyonên berê nehatin dîtin.',
+'undeletebtn'               => 'Dîsa çêke!',
+'undeletelink'              => 'dîtin/dîsa çêkirin',
+'undeletereset'             => 'Biskine',
+'undeletecomment'           => 'Sedem:',
+'undeletedarticle'          => '"[[$1]]" dîsa çêkir',
+'undeletedrevisions'        => '{{PLURAL:$1|Verzyonek dîsa hate|$1 verzyon dîsa hatin}} çêkirin',
+'undeletedrevisions-files'  => '{{PLURAL:$1|Verzyonek|$1 verzyon}} û {{PLURAL:$2|medyayek hate|$2 medya hatin}} çêkirin',
+'undeletedfiles'            => '{{PLURAL:$1|Medyayek hate|$1 medya hatin}} çêkirin',
+'undeletedpage'             => "'''$1 dîsa hate çêkirin'''
 
 Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşahîya jêbirinê]] da seke.",
-'undelete-header'          => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
-'undelete-search-box'      => 'Rûpelên jêbirî lêbigere',
-'undelete-search-prefix'   => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
-'undelete-search-submit'   => 'Lêbigere',
+'undelete-header'           => '[[Special:Log/delete|Reşahîya jêbirinê]] bibîne ji bo rûpelên jêbirî.',
+'undelete-search-box'       => 'Rûpelên jêbirî lêbigere',
+'undelete-search-prefix'    => 'Rûpela pêşe min ke ê bi vê destpêdîkin:',
+'undelete-search-submit'    => 'Lêbigere',
+'undelete-show-file-submit' => 'Erê',
 
 # Namespace form on various pages
 'namespace'      => 'Boşahîya nav:',
@@ -1332,12 +1371,13 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'blanknamespace' => '(Serekî)',
 
 # Contributions
-'contributions' => 'Beşdariyên vê bikarhêner',
-'mycontris'     => 'Beşdariyên min',
-'contribsub2'   => 'Ji bo $1 ($2)',
-'uctop'         => ' (ser)',
-'month'         => 'Ji mihê (û zûtir):',
-'year'          => 'Ji salê (û zûtir):',
+'contributions'       => 'Beşdariyên vê bikarhêner',
+'contributions-title' => 'Tevkarîyên ji bo $1',
+'mycontris'           => 'Beşdariyên min',
+'contribsub2'         => 'Ji bo $1 ($2)',
+'uctop'               => ' (ser)',
+'month'               => 'Ji mihê (û zûtir):',
+'year'                => 'Ji salê (û zûtir):',
 
 'sp-contributions-newbies'     => 'Bes beşdarîyên bikarhênerê nû pêşêkê',
 'sp-contributions-newbies-sub' => 'Ji bikarhênerên nû re',
@@ -1408,6 +1448,7 @@ Sedemekê binivîse!',
 'ipb-unblock'                 => "Astengkirina bikarhênerekî ya adrêsa IP'yekê rake",
 'ipb-blocklist-addr'          => 'Astengkirinên niha ji $1 ra bibîne',
 'ipb-blocklist'               => 'Astengkirinên niha bibîne',
+'ipb-blocklist-contribs'      => 'Tevkarîyên ji bo $1',
 'unblockip'                   => "IP'yekê dîsa veke",
 'unblockiptext'               => "Nivîsara jêr bikarwîne ji bo qebûlkirina nivîsandinê bikarhênerekî ya IP'yeka berê astengkirî.",
 'ipusubmit'                   => 'Astengkirina vê adrêsê rake',
@@ -1495,11 +1536,16 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'delete_and_move_reason'    => 'Jêbir ji bo navguherandinê',
 'immobile-source-page'      => 'Nava vê rûpelê nikare were guherandin.',
 
+# Export
+'export' => 'Rûpelan eksport bike',
+
 # Namespace 8 related
 'allmessages'               => 'Hemû mesajên sîstemê',
 'allmessagesname'           => 'Nav',
 'allmessagescurrent'        => 'Texta niha',
 'allmessagestext'           => 'Ev lîsteya hemû mesajên di namespace a MediaWiki: de ye.',
+'allmessages-filter-legend' => 'Fîltre',
+'allmessages-filter-all'    => 'hemû',
 'allmessages-language'      => 'Ziman',
 'allmessages-filter-submit' => 'Gotar',
 
@@ -1510,6 +1556,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 # Special:Import
 'import'                  => 'Rûpelan wîne (import)',
 'import-interwiki-submit' => 'Wîne',
+'import-upload-filename'  => 'Navê dosyeyê:',
 'import-comment'          => 'Nivîs:',
 'importtext'              => 'Please export the file from the source wiki using the {{ns:special}}:Export utility, save it to your disk and upload it here.',
 'importstart'             => 'Rûpel tên împortkirin...',
@@ -1660,6 +1707,7 @@ if (wgUserLanguage == "ku-arab")
 'patrol-log-page' => 'Reşahîya kontrolkirinê',
 'patrol-log-line' => '$1 ji $2 hate kontrolkirin $3',
 'patrol-log-auto' => '(otomatîk)',
+'patrol-log-diff' => 'revîzyon $1',
 
 # Image deletion
 'deletedrevision'                 => 'Rêvîsîyona berê $1 hate jêbirin.',
@@ -1684,6 +1732,7 @@ if (wgUserLanguage == "ku-arab")
 # Special:NewFiles
 'newimages'             => 'Pêşangeha wêneyên nû',
 'imagelisttext'         => "Jêr lîsteyek ji $1 file'an heye, duxrekirin $2.",
+'newimages-legend'      => 'Fîltre',
 'showhidebots'          => "($1 bot'an)",
 'noimages'              => 'Ne tiştek tê dîtin.',
 'ilsubmit'              => 'Lêbigere',
@@ -1706,12 +1755,28 @@ if (wgUserLanguage == "ku-arab")
 'exif-artist'                      => 'Nûser',
 'exif-exposuretime-format'         => '$1 sanî ($2)',
 
+'exif-orientation-1' => 'Normal',
+
+'exif-meteringmode-255' => 'Yên din',
+
+'exif-scenecapturetype-1' => 'Bergeh',
+'exif-scenecapturetype-2' => 'Portre',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Nerm',
+
+'exif-saturation-0' => 'Normal',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Nerm',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hemû',
 'imagelistall'     => 'hemû',
 'watchlistall2'    => 'hemû',
 'namespacesall'    => 'Hemû',
 'monthsall'        => 'giştik',
+'limitall'         => 'hemû',
 
 # E-mail address confirmation
 'confirmemail'          => 'Adrêsa e-nameyan nasbike',
@@ -1785,8 +1850,11 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 
 # Special:Version
 'version'                  => 'Verzîyon',
+'version-specialpages'     => 'Rûpelên taybet',
 'version-other'            => 'yên din',
+'version-version'          => ' (Verzîyon $1)',
 'version-license'          => 'Destûr',
+'version-software-product' => 'Berhem',
 'version-software-version' => 'Verzîyon',
 
 # Special:FilePath
@@ -1794,7 +1862,8 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'filepath-submit' => 'Gotar',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Lêbigere',
+'fileduplicatesearch-filename' => 'Navê dosyeyê:',
+'fileduplicatesearch-submit'   => 'Lêbigere',
 
 # Special:SpecialPages
 'specialpages'               => 'Rûpelên taybet',
@@ -1806,9 +1875,14 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',
 'specialpages-group-media'   => 'Nameyên medyayan û barkirinan',
 'specialpages-group-users'   => 'Bikarhêner û maf',
+'specialpages-group-pages'   => 'Lîstên rûpelan',
 
 # Special:Tags
-'tags-edit' => 'biguherîne',
+'tag-filter-submit' => 'Fîltre',
+'tags-edit'         => 'biguherîne',
+
+# Database error messages
+'dberr-header' => "Problemeka vê wiki'yê heye.",
 
 # HTML forms
 'htmlform-submit'              => 'Bike',

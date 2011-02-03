@@ -326,8 +326,8 @@ pe titlul secțiunii (JavaScript)',
 'tog-shownumberswatching'     => 'Arată numărul utilizatorilor care urmăresc',
 'tog-oldsig'                  => 'Previzualizarea semnăturii actuale:',
 'tog-fancysig'                => 'Tratează semnătura ca wikitext (fără o legătură automată)',
-'tog-externaleditor'          => 'Utilizează, în mod implicit, un editor extern (doar pentru experți, necesită setări speciale pe calculatorul dumneavoastră)',
-'tog-externaldiff'            => 'Utilizează diferențele externe ca standard',
+'tog-externaleditor'          => 'Utilizează, în mod implicit, un editor extern (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
+'tog-externaldiff'            => 'Utilizează, în mod implicit, un program extern pentru diferențele între versiuni (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
 'tog-showjumplinks'           => 'Activează legăturile de accesibilitate „sari la”',
 'tog-uselivepreview'          => 'Folosește previzualizarea în timp real (JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avertizează-mă când uit să descriu modificările',
@@ -338,7 +338,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-watchlisthideanons'      => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-watchlisthidepatrolled'  => 'Ascunde paginile patrulate din lista de pagini urmărite',
 'tog-nolangconversion'        => 'Dezactivează conversia variabilelor',
-'tog-ccmeonemails'            => 'Trimite-mi o copie când trimit un e-mail altui utilizator',
+'tog-ccmeonemails'            => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly'                => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
 'tog-noconvertlink'           => 'Dezactivați conversia titlurilor',
@@ -869,7 +869,7 @@ Vă rugăm să includeți detaliile de mai sus în orice interogări pe care le 
 'nosuchsectiontext'                => 'Ați încercat să modificați o secțiune care nu există.
 Aceasta fie a fost mutată, fie a fost ștearsă în timp ce vizualizați pagina.',
 'loginreqtitle'                    => 'Necesită autentificare',
-'loginreqlink'                     => 'autentifici',
+'loginreqlink'                     => 'autentificați',
 'loginreqpagetext'                 => 'Trebuie să te $1 pentru a vizualiza alte pagini.',
 'accmailtitle'                     => 'Parola a fost trimisă.',
 'accmailtext'                      => "Parola generată automat pentru [[User talk:$1|$1]] a fost trimisă la $2.
@@ -1204,7 +1204,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'shown-title'                      => 'Arată $1 {{PLURAL:$1|rezultat|rezultate}} pe pagină',
 'viewprevnext'                     => 'Vezi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opțiuni căutare',
-'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
+'searchmenu-exists'                => "'''Există o pagină cu titlul „[[:$1]]'” pe acest site.'''",
 'searchmenu-new'                   => "'''Creează pagina „[[:$1]]” pe acest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajutor',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Răsfoiește paginile cu acest prefix]]',
@@ -1319,7 +1319,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'timezoneregion-europe'         => 'Europa',
 'timezoneregion-indian'         => 'Oceanul Indian',
 'timezoneregion-pacific'        => 'Oceanul Pacific',
-'allowemail'                    => 'Activează email de la alți utilizatori',
+'allowemail'                    => 'Acceptă e-mail de la alți utilizatori',
 'prefs-searchoptions'           => 'Opțiuni de căutare',
 'prefs-namespaces'              => 'Spații de nume',
 'defaultns'                     => 'Altfel, caută în aceste spații de nume:',
@@ -1341,16 +1341,18 @@ Acțiunea nu este reversibilă.',
 'yourvariant'                   => 'Varianta:',
 'yournick'                      => 'Semnătură:',
 'prefs-help-signature'          => 'Comentariile de pe paginile de discuții vor trebuie semnate cu „<nowiki>~~~~</nowiki>”, tildele transformându-se în semnătura dumneavoastră urmată de ora la care ați introdus comentariul.',
-'badsig'                        => 'Semnătură brută incorectă; verificați tag-urile HTML.',
+'badsig'                        => 'Semnătură brută incorectă; verificați tagurile HTML.',
 'badsiglength'                  => 'Semnătura este prea lungă.
-Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
+Lungimea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'yourgender'                    => 'Gen:',
 'gender-unknown'                => 'Nespecificat',
 'gender-male'                   => 'Bărbat',
 'gender-female'                 => 'Femeie',
-'prefs-help-gender'             => 'Opțional - sexul utilizatorului: folosit pentru adresarea corectă de către software. Această informație va fi publică.',
+'prefs-help-gender'             => 'Opțional: sexul utilizatorului este folosit pentru adresarea corectă de către software.
+Această informație va fi publică.',
 'email'                         => 'E-mail',
-'prefs-help-realname'           => '* Numele dumneavoastră real (opțional): Dacă decideți introducerea numelui real aici, acesta va fi folosit pentru a vă atribui munca.<br />',
+'prefs-help-realname'           => 'Numele real este opțional.
+Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.',
 'prefs-help-email'              => '*Adresa de e-mail (opțional): Permite altor utilizatori să vă contacteze prin e-mail via {{SITENAME}}, fără a vă divulga identitatea. De asemenea, permite recuperarea parolei în cazul în care o uitați.',
 'prefs-help-email-required'     => 'Adresa de e-mail este necesară.',
 'prefs-info'                    => 'Informații de bază',
@@ -1581,13 +1583,13 @@ Paginile pe care le [[Special:Watchlist|urmăriți]] apar în '''aldine'''.",
 'upload_directory_missing'    => 'Directorul în care sunt încărcate fișierele ($1) lipsește și nu poate fi creat de serverul web.',
 'upload_directory_read_only'  => 'Directorul de încărcare ($1) nu poate fi scris de server.',
 'uploaderror'                 => 'Eroare la trimitere fișier',
-'uploadtext'                  => "Folosește formularul de mai jos pentru a trimite fișiere.
-Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:FileList|lista de imagini]], încărcările și ștergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fișierelor trimise]], ștergerile în [[Special:Log/delete|jurnalul fișierelor șterse]].
+'uploadtext'                  => "Utilizați formularul de mai jos pentru a trimite fișiere.
+Pentru a vizualiza sau căuta imagini deja trimise, mergeți la [[Special:FileList|lista cu imagini]]; (re)încărcările și ștergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fișierelor trimise]], respectiv [[Special:Log/delete|jurnalul fișierelor șterse]].
 
-Pentru a include un fișier de sunet într-un articol, folosești o legătură de forma:
+Pentru a insera un fișier într-o pagină, folosiți o legătură de forma:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fișier
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|alt text]]</nowiki></tt>''' pentru a introduce o imagine de 200px într-un chenar cu textul 'alt text' în partea stângă ca descriere
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></tt>''' pentru a lega direct fișierul fără a-l afișa",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|informații]]</nowiki></tt>''' pentru a introduce o imagine cu o lățime de 200 de pixeli într-un chenar plasat în partea stângă, având ca descriere textul „informații”
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></tt>''' pentru o legătură directă către fișier, fără a-l afișa",
 'upload-permitted'            => 'Tipuri de fișiere permise: $1.',
 'upload-preferred'            => 'Tipuri de fișiere preferate: $1.',
 'upload-prohibited'           => 'Tipuri de fișiere interzise: $1.',
@@ -1652,11 +1654,11 @@ Vă rugăm să verificați setările din file_uploads.',
 'uploadscripted'              => 'Fișierul conține HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
 'uploadvirus'                 => 'Fișierul conține un virus! Detalii: $1',
 'upload-source'               => 'Fișier sursă',
-'sourcefilename'              => 'Nume fișier sursă:',
+'sourcefilename'              => 'Numele fișierului sursă:',
 'sourceurl'                   => 'URL sursă:',
 'destfilename'                => 'Numele fișierului de destinație:',
 'upload-maxfilesize'          => 'Mărimea maximă a unui fișier: $1',
-'upload-description'          => 'Descrierea fișierului',
+'upload-description'          => 'Descriere fișier',
 'upload-options'              => 'Opțiuni de încărcare',
 'watchthisupload'             => 'Urmărește acest fișier',
 'filewasdeleted'              => 'Un fișier cu acest nume a fost anterior încărcat și apoi șters. Ar trebui să verificați $1 înainte să îl încărcați din nou.',
@@ -1722,7 +1724,7 @@ Poate dorești să încerci la o oră mai puțin ocupată.',
 'nolicense'          => 'Nici una selectată',
 'license-nopreview'  => '(Previzualizare indisponibilă)',
 'upload_source_url'  => ' (un URL valid, accesibil public)',
-'upload_source_file' => ' (un fișier de pe computerul tău)',
+'upload_source_file' => ' (un fișier de pe computerul dv.)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Această pagină specială arată toate fișierele încărcate.
@@ -2084,9 +2086,8 @@ Adresa de e-mail introdusă de tine în [[Special:Preferences|preferințele de u
 'watchnologin'         => 'Nu sunteți autentificat',
 'watchnologintext'     => 'Trebuie să fiți [[Special:UserLogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addedwatch'           => 'Adăugată la lista de pagini urmărite',
-'addedwatchtext'       => 'Pagina „[[:$1]]” a fost adăugată la lista dv. de [[Special:Watchlist|articole urmărite]]. Modificările viitoare ale acestei pagini și a paginii asociate de discuții vor fi listate aici și, în plus, ele vor apărea cu <b>caractere îngroșate</b> în pagina de [[Special:RecentChanges|modificări recente]] pentru evidențiere.
-
-Dacă doriți să eliminați această pagină din lista dv. de pagini urmărite în viitor, apăsați pe „Nu mai urmări” în bara de comenzi în timp ce această pagină este vizibilă.',
+'addedwatchtext'       => 'Pagina „[[:$1]]” a fost adăugată la lista dumneavoastră de [[Special:Watchlist|pagini urmărite]].
+Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo și, în plus, ele vor apărea cu <b>caractere îngroșate</b> în pagina cu [[Special:RecentChanges|schimbări recente]] pentru evidențiere.',
 'removedwatch'         => 'Eliminată din lista de pagini urmărite',
 'removedwatchtext'     => 'Pagina „[[:$1]]” a fost eliminată din [[Special:Watchlist|lista de pagini urmărite]].',
 'watch'                => 'Urmărește',
@@ -2682,8 +2683,8 @@ Un dosar temporar lipsește.',
 'tooltip-pt-preferences'          => 'Preferințele dumneavoastră',
 'tooltip-pt-watchlist'            => 'Lista paginilor pe care le monitorizați',
 'tooltip-pt-mycontris'            => 'Listă de contribuții',
-'tooltip-pt-login'                => 'Ești încurajat să te autentifici, deși acest lucru nu este obligatoriu.',
-'tooltip-pt-anonlogin'            => 'Ești încurajat să te autentifici, deși acest lucru nu este obligatoriu.',
+'tooltip-pt-login'                => 'Sunteți încurajat să vă autentificați, deși acest lucru nu este obligatoriu.',
+'tooltip-pt-anonlogin'            => 'Sunteți încurajat să vă autentificați, deși acest lucru nu este obligatoriu.',
 'tooltip-pt-logout'               => 'Închide sesiunea',
 'tooltip-ca-talk'                 => 'Discuții despre această pagină',
 'tooltip-ca-edit'                 => 'Puteți modifica această pagină. Înainte de a o salva vă rugăm s-o previzualizați.',
@@ -2693,7 +2694,7 @@ Un dosar temporar lipsește.',
 'tooltip-ca-protect'              => 'Protejează această pagină.',
 'tooltip-ca-unprotect'            => 'Deprotejează această pagină',
 'tooltip-ca-delete'               => 'Șterge această pagină.',
-'tooltip-ca-undelete'             => 'Restaureaza editările făcute acestui document, înainte să fi fost șters.',
+'tooltip-ca-undelete'             => 'Restaurează modificările efectuate asupra acestui document înainte de a fi fost șters',
 'tooltip-ca-move'                 => 'Redenumește această pagină.',
 'tooltip-ca-watch'                => 'Adaugă la lista de pagini urmărite',
 'tooltip-ca-unwatch'              => 'Elimină această pagină din lista mea de monitorizare',
@@ -2707,14 +2708,14 @@ Un dosar temporar lipsește.',
 'tooltip-n-currentevents'         => 'Informații despre evenimentele curente',
 'tooltip-n-recentchanges'         => 'Lista ultimelor schimbări realizate în acest wiki.',
 'tooltip-n-randompage'            => 'Afișează o pagină aleatoare',
-'tooltip-n-help'                  => 'Locul în care găsești ajutor.',
+'tooltip-n-help'                  => 'Locul în care găsiți ajutor',
 'tooltip-t-whatlinkshere'         => 'Lista tuturor paginilor wiki care conduc spre această pagină',
 'tooltip-t-recentchangeslinked'   => 'Schimbări recente în legătură cu această pagină',
 'tooltip-feed-rss'                => 'Alimentează fluxul RSS pentru această pagină',
 'tooltip-feed-atom'               => 'Alimentează fluxul Atom pentru această pagină',
 'tooltip-t-contributions'         => 'Vezi lista de contribuții ale acestui utilizator',
 'tooltip-t-emailuser'             => 'Trimite un e-mail acestui utilizator',
-'tooltip-t-upload'                => 'Încarcă fișiere',
+'tooltip-t-upload'                => 'Încărcare de fișiere',
 'tooltip-t-specialpages'          => 'Lista tuturor paginilor speciale',
 'tooltip-t-print'                 => 'Versiunea de tipărit a acestei pagini',
 'tooltip-t-permalink'             => 'Legătura permanentă către această versiune a paginii',
@@ -3082,15 +3083,15 @@ Altele vor fi ascunse implicit.
 'exif-lightsource-255' => 'Altă sursă de lumină',
 
 # Flash modes
-'exif-flash-fired-0'    => 'Flash-ul nu a fost declanșat',
-'exif-flash-fired-1'    => 'Flash declanșat',
+'exif-flash-fired-0'    => 'Blițul nu a declanșat',
+'exif-flash-fired-1'    => 'Bliț declanșat',
 'exif-flash-return-0'   => 'niciun stroboscop nu întoarce funcție de detecție',
 'exif-flash-return-2'   => 'stroboscopul întoarce o lumină nedetectată',
 'exif-flash-return-3'   => 'stroboscopul întoarce o lumină detectată',
-'exif-flash-mode-1'     => 'obligatorie declanșarea flash-ului',
-'exif-flash-mode-2'     => 'obligatorie suprimarea flash-ului',
+'exif-flash-mode-1'     => 'declanșarea obligatorie a blițului',
+'exif-flash-mode-2'     => 'suprimarea obligatorie a blițului',
 'exif-flash-mode-3'     => 'modul automat',
-'exif-flash-function-1' => 'Fără funcție flash',
+'exif-flash-function-1' => 'Fără funcție pentru bliț',
 'exif-flash-redeye-1'   => 'mod de îndepărtare a ochilor roșii',
 
 'exif-focalplaneresolutionunit-2' => 'țoli',
@@ -3112,8 +3113,8 @@ Altele vor fi ascunse implicit.
 'exif-exposuremode-1' => 'Expunere manuală',
 'exif-exposuremode-2' => 'Serie automată de expuneri',
 
-'exif-whitebalance-0' => 'Auto-balanța albă',
-'exif-whitebalance-1' => 'Balanța manuală albă',
+'exif-whitebalance-0' => 'Balanță alb automată',
+'exif-whitebalance-1' => 'Balanță alb manuală',
 
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Portret',
@@ -3179,34 +3180,34 @@ Altele vor fi ascunse implicit.
 'limitall'         => 'toate',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmă adresa de email',
-'confirmemail_noemail'     => 'Nu aveți o adresă de email validă setată la [[Special:Preferences|preferințe]].',
-'confirmemail_text'        => '{{SITENAME}} necesită validarea adresei de e-mail înaintea folosirii funcțiilor e-mail.
-Apăsați butonul de dedesupt pentru a trimite un e-mail de confirmare către adresa dvs.
-Acesta va include o legătură care va conține codul;
-încărcați legătura în browser pentru a valida adresa de e-mail.',
+'confirmemail'             => 'Confirmă adresa de e-mail',
+'confirmemail_noemail'     => 'Nu aveți o adresă de e-mail validă setată la [[Special:Preferences|preferințe]].',
+'confirmemail_text'        => '{{SITENAME}} solicită validarea adresei de e-mail înaintea utilizării funcțiilor specifice poștei electronice.
+Apăsați butonul de mai jos pentru ca un e-mail de confirmare să fie trimis către adresa dumneavoastră.
+Acesta va include o legătură conținând un cod;
+încărcați legătura în navigator pentru a valida adresa de e-mail.',
 'confirmemail_pending'     => 'Un cod de confirmare a fost trimis deja la adresa de e-mail indicată;
-dacă ai creat recent contul, ar fi bine să aștepți câteva minute e-mailul de confirmare, înainte de a cere un nou cod.',
+dacă ați creat recent contul, ar fi bine să așteptați câteva minute e-mailul de confirmare înainte de a cere un nou cod.',
 'confirmemail_send'        => 'Trimite un cod de confirmare',
 'confirmemail_sent'        => 'E-mailul de confirmare a fost trimis.',
-'confirmemail_oncreate'    => 'Un cod de confirmare a fost trimis la adresa de e-mail.
-Acest cod nu este necesar pentru autentificare, dar trebuie transmis înainte de activarea oricăror proprietăți bazate pe e-mail din wiki.',
+'confirmemail_oncreate'    => 'Un cod de confirmare a fost trimis la adresa dumnevoastră de e-mail.
+Acest cod nu este necesar pentru autentificare, dar trebuie transmis înainte de activarea oricăror funcții din wiki specifice e-mailului.',
 'confirmemail_sendfailed'  => 'Nu am putut trimite e-mailul de confirmare. Verificați adresa după caractere invalide.
 
 Serverul de mail a returnat: $1',
 'confirmemail_invalid'     => 'Cod de confirmare invalid. Acest cod poate fi expirat.',
-'confirmemail_needlogin'   => 'Trebuie să vă $1 pentru a vă confirma adresa de email.',
+'confirmemail_needlogin'   => 'Trebuie să vă $1 pentru a vă confirma adresa de e-mail.',
 'confirmemail_success'     => 'Adresa de e-mail a fost confirmată. Acum vă puteți [[Special:UserLogin|autentifica]] și bucura de wiki.',
-'confirmemail_loggedin'    => 'Adresa de email a fost confirmată.',
+'confirmemail_loggedin'    => 'Adresa de e-mail a fost confirmată.',
 'confirmemail_error'       => 'Ceva nu a funcționat la salvarea confirmării.',
-'confirmemail_subject'     => 'Confirmare adresă email la {{SITENAME}}',
+'confirmemail_subject'     => 'Confirmarea adresei de e-mail la {{SITENAME}}',
 'confirmemail_body'        => 'Cineva, probabil dumneavoastră de la adresa IP $1, și-a înregistrat la {{SITENAME}} contul „$2” cu această adresă de e-mail.
 
 Pentru a confirma că acest cont vă aparține într-adevăr și pentru a vă activa funcțiile de e-mail de la {{SITENAME}}, accesați pagina:
 
 $3
 
-Dacă însă NU e contul dumneavoastră, accesați pagina:
+Dacă însă NU este contul dumneavoastră, accesați pagina:
 
 $5
 
@@ -3216,7 +3217,7 @@ Acest cod de confirmare va expira la $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
-'scarytranscludefailed'   => '[Şiretlicul formatului a dat greș pentru $1]',
+'scarytranscludefailed'   => '[Șiretlicul formatului a dat greș pentru $1]',
 'scarytranscludetoolong'  => '[URL-ul este prea lung]',
 
 # Trackbacks
@@ -3227,8 +3228,8 @@ $1',
 'trackbackdeleteok' => 'Urmăritorul a fost șters cu succes.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Atenție''': Această pagină a fost ștearsă după ce ai început să o modifici!",
-'confirmrecreate'     => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuție]]) a șters acest articol după ce ați început să contribuți la el din motivul:
+'deletedwhileediting' => "'''Atenție''': Această pagină a fost ștearsă după ce ați început s-o modificați!",
+'confirmrecreate'     => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuție]]) a șters acest articol după ce ați început să contribuiți la el din motivul:
 : ''$2''
 Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest articol.",
 'recreate'            => 'Recreează',
@@ -3256,7 +3257,7 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'table_pager_empty'        => 'Nici un rezultat',
 
 # Auto-summaries
-'autosumm-blank'   => 'Şters conținutul paginii',
+'autosumm-blank'   => 'Ștergerea conținutului paginii',
 'autosumm-replace' => 'Pagină înlocuită cu „$1”',
 'autoredircomment' => 'Redirecționat înspre [[$1]]',
 'autosumm-new'     => 'Pagină nouă: $1',

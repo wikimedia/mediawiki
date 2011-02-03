@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alebcay
  * @author Bencmq
  * @author Biŋhai
  * @author Chenxiaoqino
@@ -26,6 +27,7 @@
  * @author Shinjiman
  * @author Shizhao
  * @author Tommyang
+ * @author Waihorace
  * @author Wmr89502270
  * @author Wong128hk
  * @author Xiaomingyan
@@ -237,8 +239,8 @@ $messages = array(
 'tog-shownumberswatching'     => '显示监视此页的用户数',
 'tog-oldsig'                  => '原签名预览：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
-'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置）',
-'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置）',
+'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks'           => '启用“跳转到”访问链接',
 'tog-uselivepreview'          => '使用实时预览（Javascript）（试验中）',
 'tog-forceeditsummary'        => '当没有输入摘要时提醒我',
@@ -333,8 +335,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|本分类只有下列一个文件。|本分类包含下列$1个文件，共有$2个文件。}}',
 'category-file-count-limited'    => '本分类包含下列$1个文件。',
 'listingcontinuesabbrev'         => '续',
-'index-category'                 => '已做索引的页面',
-'noindex-category'               => '未做索引的页面',
+'index-category'                 => '允许索引的页面',
+'noindex-category'               => '禁止索引的页面',
 
 'mainpagetext'      => "'''已成功安装MediaWiki。'''",
 'mainpagedocfooter' => '请查阅[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！
@@ -1124,8 +1126,8 @@ $1",
 'searcheverything-enable'          => '在所有名字空间中搜索',
 'searchrelated'                    => '相关',
 'searchall'                        => '所有',
-'showingresults'                   => '下面显示从第<b>$2</b>条开始的<b>$1</b>条结果：',
-'showingresultsnum'                => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果：',
+'showingresults'                   => "下面显示从第'''$2'''条开始的'''{{PLURAL:$1|1|$1}}'''条结果。",
+'showingresultsnum'                => "下面显示从第'''$2'''条开始的'''{{PLURAL:$3|1|$3}}'''条结果。",
 'showingresultsheader'             => "对'''$4'''的{{PLURAL:$5|第'''$1'''至第'''$3'''项结果|第'''$1－$2'''项，共'''$3'''项结果}}",
 'nonefound'                        => "'''注意'''：只有部分名字空间的页面会被默认搜索。尝试在您的搜索语句前添加“all:”前缀，这样可以搜索全部页面（包括讨论页、模板等），或者亦可使用所需名字空间作为前缀。",
 'search-nonefound'                 => '找不到和查询相匹配的结果。',
@@ -1164,7 +1166,7 @@ $1",
 'prefs-rc'                      => '最近更改',
 'prefs-watchlist'               => '监视列表',
 'prefs-watchlist-days'          => '监视列表中显示记录的天数：',
-'prefs-watchlist-days-max'      => '最多7天',
+'prefs-watchlist-days-max'      => '最多 7 天',
 'prefs-watchlist-edits'         => '在增强的监视列表中显示最多更改次数：',
 'prefs-watchlist-edits-max'     => '最多数量：1000',
 'prefs-watchlist-token'         => '监视列表权标：',
@@ -1185,7 +1187,7 @@ $1",
 'contextchars'                  => '每行显示字数：',
 'stub-threshold'                => '<a href="#" class="stub">短页面链接</a>格式门槛值（字节）：',
 'recentchangesdays'             => '最近更改中的显示日数：',
-'recentchangesdays-max'         => '最大 $1 日',
+'recentchangesdays-max'         => '最多 $1 {{PLURAL:$1|天|天}}',
 'recentchangescount'            => '默认显示的编辑数：',
 'prefs-help-recentchangescount' => '这个包括最近更改、页面历史以及日志。',
 'prefs-help-watchlist-token'    => '此栏填写的密钥可以生成您监视列表的RSS源。任何知晓本栏密钥的人都能阅读您的监视列表，因此请使用安全的数值。这里已提供了一个随机生成的数值供您选择：$1',
@@ -1812,6 +1814,7 @@ Template:消除歧義',
 # Book sources
 'booksources'               => '网络书源',
 'booksources-search-legend' => '搜索网络书源',
+'booksources-isbn'          => '国际书号:',
 'booksources-go'            => '转到',
 'booksources-text'          => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息：',
 'booksources-invalid-isbn'  => '提供的ISBN号码并不正确，请检查原始复制来源号码是否有误。',
@@ -2649,6 +2652,7 @@ $1已被封禁。您是否想更改封禁设置？',
 'skinname-standard'    => '标准',
 'skinname-nostalgia'   => '怀旧',
 'skinname-cologneblue' => '科隆香水蓝',
+'skinname-simple'      => '简单',
 'skinname-modern'      => '现代',
 
 # Math options
@@ -2665,10 +2669,10 @@ $1已被封禁。您是否想更改封禁设置？',
 'math_unknown_function' => '未知函数',
 'math_lexing_error'     => '句法错误',
 'math_syntax_error'     => '语法错误',
-'math_image_error'      => 'PNG转换失败；请检查是否正确安装了latex、dvips、gs和convert',
+'math_image_error'      => 'PNG 转换失败 ；检查正确安装的 latex 和 dvipng （或 dvips + gs + convert）',
 'math_bad_tmpdir'       => '无法写入或建立数学公式临时目录',
 'math_bad_output'       => '无法写入或建立数学公式输出目录',
-'math_notexvc'          => '无法执行texvc；请参照math/README进行配置。',
+'math_notexvc'          => '"texvc"执行文件遗失；请参照math/README进行配置。',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标记为已巡查',
@@ -2750,6 +2754,12 @@ Variants for Chinese language
 'variantname-zh-hk'   => '香港繁体',
 'variantname-zh-sg'   => '新加坡简体',
 'variantname-zh'      => '不转换',
+
+# Variants for Gan language
+'variantname-gan-hans' => '简体中文',
+
+# Variants for Kazakh language
+'variantname-kk-cyrl' => '西里尔',
 
 # Metadata
 'metadata'          => '元数据',
@@ -2890,6 +2900,7 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
+'exif-compression-6' => '联合图像专家组格',
 
 'exif-unknowndate' => '未知的日期',
 

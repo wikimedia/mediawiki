@@ -231,8 +231,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Zeich de Aanzahl Metmaacher, die op die Sigg am oppasse sin',
 'tog-oldsig'                  => 'Esu&nbsp;süht&nbsp;Ding „Ongerschreff“&nbsp;us:',
 'tog-fancysig'                => 'Donn de „Ungerschreff“ als Wiki-Tex behandelle (ohne enne automattesche Lengk)',
-'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
-'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
+'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm (Doför bruchs de extra Enstellunge op Dingem Kompjutor. Dat es jet för Fachlück. Doh kanns De [http://www.mediawiki.org/wiki/Manual:External_editors mieh drövver lässe])',
+'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm (Doför bruchs de extra Enstellunge op Dingem Kompjutor. Dat es jet för Fachlück. Doh kanns De [http://www.mediawiki.org/wiki/Manual:External_editors mieh drövver lässe])',
 'tog-showjumplinks'           => '„Jangk-noh“-Links usjevve, die bei em „Zojang ohne Barrikad“ helfe dun',
 'tog-uselivepreview'          => 'Dun de „Lebendije Vör-Aansich“ zeije (em Usprobierstadium, un bruch Java_Skripp)',
 'tog-forceeditsummary'        => 'Froch noh, wann en däm Feld „Koot zosammejefass, Quell“ beim Avspeichere nix dren steiht',
@@ -552,7 +552,7 @@ Verzällt et enem [[Special:ListUsers/sysop|Wiki_Köbes]],
 un doht em och de URL vun dä Sigg heh sage.',
 'missingarticle-rev'   => '(Version Numero: $1)',
 'missingarticle-diff'  => '(Ongerscheed zwesche de Versione $1 un $2)',
-'readonly_lag'         => 'De Daatebank es för en koote Zigg jesperrt, för de Daate avzejliche.',
+'readonly_lag'         => 'De Daatebank es för en koote Zigg automattesch jesperrt, för de Daate vun de ongerjeodente Rääschner mem Houprääschner avzejliiche.',
 'internalerror'        => 'De Wiki-Soffwär hät ene Fähler jefunge',
 'internalerror_info'   => 'Enne ennere Fäähler en de ẞoffwäer es opjetrodde: $1',
 'fileappenderrorread'  => 'Mer kunnte „$1“ nit lässe, beim Aanhänge.',
@@ -585,7 +585,7 @@ De Aanfroch es: „<code>$2</code>“<br />',
 'actionthrottled'      => "Dat ka'mer nit esu öff maache",
 'actionthrottledtext'  => 'Dat darf mer nor en jeweße Zahl Mole hengerenander maache. Do bes jrad aan de Jrenz jekumme. Kannze jo en e paar Menutte widder probeere.',
 'protectedpagetext'    => 'Die Sigg es jeschöz, un mer kann se nit ändere.',
-'viewsourcetext'       => 'Heh es dä Sigg ier Wikitex zum Belooere un Koppeere:',
+'viewsourcetext'       => 'Heh es dä Sigg ier Wikitex zom Belooere un Koppeere:',
 'protectedinterface'   => 'Op dä Sigg heh steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.',
 'editinginterface'     => '<strong>Opjepass:</strong>
 Op dä Sigg heh steiht Tex uß em Ingerfäiß vun de Wiki-Soffwär. Dröm es
@@ -594,14 +594,14 @@ Nor de Wiki-Köbesse künne se ändere. Denk dran, heh Ändere deit et
 Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de
 Besöker drop aankütt!
 
-Wann De die en Ding Shprooch övveräze wellß, do jangk op
-[http://translatewiki.net/wiki/Main_Page?setlang=ksh translatewiki.net],
+Wann De die en Ding Shprooch övversäze wellß, do jangk op
+<code lang="en">[http://translatewiki.net/wiki/Main_Page?setlang=ksh translatewiki.net]</code>,
 woh et MediaWiki Ingerfäiß en alle Shprooche översaz weedt.
 
-Wann De weße wells, wat dä Täx he bedügg, do häß De en Schangß, dat De op
-http://www.mediawiki.org/wiki/Manual:Interface/{{BASEPAGENAMEE}}?setlang=ksh
+Wann De weße wells, wat dä Täx heh bedügg, do häß De en Schangß, dat De op
+<code lang="en">http://www.mediawiki.org/wiki/Manual:Interface/{{BASEPAGENAMEE}}?setlang=ksh</code>
 jet doh drövver fenge kanns, udder op
-http://translatewiki.net/wiki/MediaWiki:{{BASEPAGENAMEE}}/qqq?setlang=ksh',
+<code lang="en">http://translatewiki.net/wiki/MediaWiki:{{BASEPAGENAMEE}}/qqq?setlang=ksh</code>',
 'sqlhidden'            => "(Dä SQL_Befähl du'mer nit zeije)",
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
@@ -1445,7 +1445,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätichte Metmaacher',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Wiki Köbes',
-'grouppage-bureaucrat'    => '{{ns:project}}:Bürrokrade',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürrokrad',
 'grouppage-suppress'      => '{{ns:project}}:Kontrolletti',
 
 # Rights
@@ -1772,7 +1772,7 @@ Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
 'http-read-error'       => 'Et Lässe beim <code lang="en">HTTP</code> es donävve jeange.',
 'http-timed-out'        => 'Di <code lang="en">HTTP</code>-Aanforderung hät zoh lang jebruch.',
 'http-curl-error'       => 'Ene Fähler es opjetrodde beim Holle vun däm <code lang="en">URL</code>: $1',
-'http-host-unreachable' => 'Mer sen nit noh dämm <code lang="en">URL</code> dorschjekumme.',
+'http-host-unreachable' => 'Mer sen nit noh dämm <i lang="en">URL</i> dorschjekumme.',
 'http-bad-status'       => 'Bei dä <code lang="en">HTTP</code>-Aanforderung es e Problem opjetrodde: Fähler&nbsp;$1 — $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1812,7 +1812,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'filehist-revert'           => 'Zeröck nemme',
 'filehist-current'          => 'Von jetz',
 'filehist-datetime'         => 'Version vom',
-'filehist-thumb'            => 'Mini-Beldsche',
+'filehist-thumb'            => 'Minni-Belldsche',
 'filehist-thumbtext'        => 'Mini-Beldsche för de Version fum $2 öm $3 Uhr',
 'filehist-nothumb'          => 'Kei Mini-Beldsche',
 'filehist-user'             => 'Metmaacher',
@@ -2251,6 +2251,7 @@ Do kanns hee noh Hölp luure:
 'exbeforeblank'          => 'drop stundt vörher: „$1“',
 'exblank'                => 'drop stundt nix',
 'delete-confirm'         => '„$1“ fottschmieße',
+'delete-backlink'        => '←&nbsp;$1',
 'delete-legend'          => 'Fottschmieße',
 'historywarning'         => '<strong>Opjepass:</strong> Die Sigg, di De fott schmiiße wells, hät {{PLURAL:$1|ein ällder Version|ald Stöcker $1 ällder Versione|jaa kei ällder Versione}}.',
 'confirmdeletetext'      => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss heh jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
@@ -2299,6 +2300,7 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'movedarticleprotection'      => 'hät de Enstellunge för der Sigge-Schotz fun „[[$2]]“ noh „[[$1]]“ övvernomme',
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
 'prot_1movedto2'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
+'protect-backlink'            => '←&nbsp;$1',
 'protect-legend'              => 'Sigg schötze',
 'protectcomment'              => 'Aanlaß odder Jrund:',
 'protectexpiry'               => 'Duur, wi lang:',
@@ -2434,6 +2436,7 @@ $1',
 'whatlinkshere'            => 'Wat noh heh link',
 'whatlinkshere-title'      => 'Sigge, woh Links op „$1“ dren sen',
 'whatlinkshere-page'       => 'Sigg:',
+'whatlinkshere-backlink'   => '←&nbsp;$1',
 'linkshere'                => 'Dat sin de Sigge, die op <strong>„[[:$1]]“</strong> linke dun:',
 'nolinkshere'              => 'Kein Sigg link noh <strong>„[[:$1]]“</strong>.',
 'nolinkshere-ns'           => 'Nix link op <strong>„[[:$1]]“</strong> en dämm Appachtemang.',
@@ -2588,20 +2591,20 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'move-page-legend'             => 'Sigg Ömnenne',
 'movepagetext'                 => "Heh kanns De en Sigg ömnenne.
 Domet kritt die Sigg ene neue Name, un all vörherije Versione vun dä Sigg och.
-Unger däm ahle Name weed automatisch en Ömleitung op dä neue Name enjedrage.
+Unger däm ahle Tittel weed automatisch en Ömleitung op dä neue Tittel enjedrage.
 
-Do kannß dat Höksche setze domet Ömleidonge automattesch aanjepaß wääde, di op dä ahle Name zeije — dat weet ävver nur allmählesch pö a pö hengerher jemaat.
-Links op dä ahle Name blieve ävver wie se wore, wann De dat Höksche nit setz.
-Dat heiß, Do muss selver nohluure, ov do jetz [[Special:DoubleRedirects|dubbelde Ömleidunge]] <!-- udder [[Special:BrokenRedirects|kapodde Ömleidunge]] --> bei eruskumme.
+Do kannß dat Höksche setze domet Ömleidonge automattesch aanjepaß wääde, di op dä ahle Tittel zeije — dat weet ävver nur allmählesch pö a pö hengerher jemaat.
+Links op dä ahle Tittel blieve ävver wie se wore, wann De dat Höksche nit setz.
+Dat heiß, dann moß De selver nohluure, ov do jetz [[Special:DoubleRedirects|dubbelde Ömleidunge]] udder [[Special:BrokenRedirects|kapodde Ömleidunge]] bei eruskumme.
 Wann De en Sigg ömnenne deis, häs Do och doför ze sorje, dat de betroffene Links do henjonn, wo se hen jonn solle.
-Alsu holl Der de Liss „Wat noh heh link“ fun dä Sigg heh un jangk se durch!
+Alsu holl Der de Liss „Wat noh heh link“ fun dä Sigg heh un jangk se dorch!
 
-De Sigg weed '''nit''' ömjenannt, wann et met däm neue Name ald en Sigg jitt, <strong>usser</strong> do es nix drop, oder et es en Ömleitung un se es noch nie jeändert woode.
-Esu ka'mer en Sigg jlich widder zeröck ömnenne, wa'mer sich mem Ömnenne verdonn hät, un mer kann och kein Sigge kapottmaache, wo ald jet drop steiht.
+De Sigg weed '''nit''' ömjenannt, wann et met däm neue Name ald en Sigg jitt, '''ußer''' et es nix drop, oder et es en Ömleitung un se es noch nie jeändert woode.
+Esu kam_mer en Sigg jlich widder zeröck ömnenne, wam_mer sich bem Ömnenne verdonn hät, un mer kann och kein Sigge kapottmaache, wo ald jet drop steiht.
 
 '''Oppjepass!'''
-Wat beim Ömnenne erus kütt, künnt en opfällije un villeich stürende Änderung am Wiki sin, besönders bei off jebruchte Sigge.
-Alsu bes secher, datte versteihs, watte heh am maache bes, ih dattet mähs!",
+Wat beim Ömnenne erus kütt, künnt en opfällije un villeich stürende Änderung aam Wiki sin, besönders bei öff jebruchte Sigge.
+Alsu bes secher, dat De versteihs, wat De heh am maache bes, ih dat De et mähs!",
 'movepagetalktext'             => "Dä Sigg ehr Klaafsigg, wann se ein hät, weed automatisch met  ömjenannt, '''usser''' wann:
 * de Sigg en en ander Appachtemeng kütt,
 * en Klaafsigg met däm neue Name ald do es, un et steiht och jet drop,
@@ -2656,7 +2659,7 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm heh di Sigg �
 'immobile-target-namespace-iw' => 'Ene Ingerwikilink es nix, woh mer en Sigg hen ömnenne künnt!',
 'immobile-source-page'         => 'Di Sigg kann nit ömjenannt wääde.',
 'immobile-target-page'         => 'Op dä Tittel kann kei Sigg ömjenannt wääde.',
-'imagenocrossnamespace'        => 'Dateije kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
+'imagenocrossnamespace'        => 'Dateije kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh woanders hen kam_mer se och nit ömnemme!',
 'imagetypemismatch'            => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
 'imageinvalidfilename'         => 'Dä Ziel-Name för de Datei es verkeht',
 'fix-double-redirects'         => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
@@ -2846,6 +2849,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'chick.css'       => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Höhnsche" */',
 'simple.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Eijfach" */',
 'modern.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Modern" */',
+'vector.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Vector" */',
 'print.css'       => '/* CSS hee aan dä Stell wirrek nur op et Sigge Drokke */',
 'handheld.css'    => '/* dat CSS hee wirrek sesch uß op su jeannte Handheld-Apparaate, opjebout op de Ovverflääsch uß $wgHandheldStyle */',
 
@@ -2859,6 +2863,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'chick.js'       => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Höhnsche" jescheck */',
 'simple.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Eijfach" jescheck */',
 'modern.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Modern" jescheck */',
+'vector.js'      => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Vector" jescheck */',
 
 # Metadata
 'nodublincore'      => 'De RDF_Meta_Daate vun de „Dublin Core“ Aat sin avjeschalt.',
@@ -2918,7 +2923,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'math_unknown_function' => 'en Funktion, die mer nit kenne',
 'math_lexing_error'     => 'Fähler beim Lexing',
 'math_syntax_error'     => 'Fähler en de Syntax',
-'math_image_error'      => 'Dat Ömwandele noh PNG es donevve jejange. Dun ens noh de richtije Enstallation luure bei <i lang="en">latex</i>, <i lang="en">dvips</i>, <i lang="en">gs</i>, un <i lang="en">convert</i>. Oder saach et enem Administrator vum ẞööver, oder enem Wiki_Köbes.',
+'math_image_error'      => 'Dat Ömwandele noh PNG es donevve jejange. Dun ens noh de richtije Enstallation luure bei <code lang="en">latex</code> un <code lang="en">dvips</code>, udder bei <code lang="en">dvips</code>, un <code lang="en">gs</code>, un <code lang="en">convert</code>.',
 'math_bad_tmpdir'       => 'Dat Zwescheverzeichnis för de mathematische Formele lööt sich nit aanläje oder nix eren schrieve. Dat es Dress. Sag et enem Wiki-Köbes oder enem ẞööver-Minsch.',
 'math_bad_output'       => 'Dat Verzeichnis för de mathematische Formele lööt sich nit aanläje oder mer kann nix eren schrieve. Dat es Dress. Sag et enem Wiki-Köbes oder enem ẞööver-Minsch.',
 'math_notexvc'          => 'Dat Projamm <code>texvc</code> haM_mer nit jefunge.
@@ -3554,7 +3559,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 
 # Database error messages
 'dberr-header'      => 'Dat Wiki heh häd en Schwierischkeit',
-'dberr-problems'    => 'Deit uns leid,  die Sigg heh häd för der Momang e teschnisch Problem.',
+'dberr-problems'    => 'Deit uns leid, die Sigg heh häd för der Momang e teschnisch Problem.',
 'dberr-again'       => 'Versök eijfach en e paa Menutte, norr_ens die Sigg afzeroofe.',
 'dberr-info'        => '(Mer han kei Verbindung noh_m Datebank-ẞööver krijje künne: $1)',
 'dberr-usegoogle'   => 'De künnß zweschedorsch ad met <i lang="en">Google</i> söke.',
