@@ -460,11 +460,6 @@ return array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
-	'mediawiki.legacy.password' => array(
-		'scripts' => 'skins/common/password.js',
-		'styles' => 'skins/common/password.css',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.prefs' => array(
 		'scripts' => 'skins/common/prefs.js',
 		'dependencies' => array( 'mediawiki.legacy.wikibits', 'mediawiki.legacy.htmlform' ),

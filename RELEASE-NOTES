@@ -181,8 +181,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 ** When several pages are given the same sort key, they sort by their names
    instead of randomly.
 * (bug 23848) Add {{ARTICLEPATH}} Magic Word.
-* JavaScript-based password complexity checker on account creation and
-  password change.
 * The HTML ID's generated for sections are now much prettier when they contain
   punctuation or non-English letters, so a section named "Hello?" will now
   result in a URL ending in "#Hello?" rather than "#Hello.3F".

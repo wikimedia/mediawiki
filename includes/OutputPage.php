@@ -2088,27 +2088,6 @@ class OutputPage {
 		}
 	}
 
-	/**
-	 * Adds JS-based password security checker
-	 * @param $passwordId String ID of input box containing password
-	 * @param $retypeId String ID of input box containing retyped password
-	 * @return none
-	 */
-	public function addPasswordSecurity( $passwordId, $retypeId ) {
-		$data = array(
-			'password' => '#' . $passwordId,
-			'retype' => '#' . $retypeId,
-			'messages' => array(),
-		);
-		foreach ( array( 'password-strength', 'password-strength-bad', 'password-strength-mediocre',
-				'password-strength-acceptable', 'password-strength-good', 'password-retype', 'password-retype-mismatch'
-			) as $message ) {
-			$data['messages'][$message] = wfMsg( $message );
-		}
-		$this->addScript( Html::inlineScript( 'var passwordSecurity=' . FormatJson::encode( $data ) ) );
-		$this->addModules( 'mediawiki.legacy.password' );
-	}
-
 	/** @deprecated */
 	public function errorpage( $title, $msg ) {
 		wfDeprecated( __METHOD__ );
