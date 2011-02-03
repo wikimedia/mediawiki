@@ -16,7 +16,10 @@ http://nostalgia.wikipedia.org/
 
 * Cologne Blue: A nicer-looking alternative to Standard.
 
-* Monobook: after the black-and-white photo of a book, in the page background.
+The other skin that is widely used (and is the MediaWiki default before 1.17)
+is Monobook.
+
+* Monobook: Named after the black-and-white photo of a book, in the page background.
 This was introduced in the 2004 release of 1.3
 
 And there are four Monobook-derived skins which have been introduced since 1.3:
@@ -31,7 +34,6 @@ given at the bottom of the page instead, as in the unstyled MySkin.
 top bar.
 
 * Modern: An attractive blue/grey theme with sidebar and top bar.
-
 
 == Custom CSS/JS ==
 
