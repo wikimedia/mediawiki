@@ -118,6 +118,8 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'Meng_Benotzersäit' ),
 	'Mytalk'                    => array( 'Meng_Diskussiounssäit' ),
 	'Mycontributions'           => array( 'Meng_Kontributiounen' ),
+	'Myuploads'                 => array( 'Meng_eropgeluede_Fichieren' ),
+	'PermanentLink'             => array( 'Permanente_Link' ),
 	'Listadmins'                => array( 'Lëscht_vun_den_Administrateuren' ),
 	'Listbots'                  => array( 'Botten' ),
 	'Popularpages'              => array( 'Beléifste_Säiten' ),
@@ -132,8 +134,10 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Geläschte_Kontributiounen' ),
 	'Tags'                      => array( 'Taggen' ),
 	'Activeusers'               => array( 'Aktiv_Benotzer' ),
+	'RevisionMove'              => array( 'Versioun_réckelen' ),
 	'ComparePages'              => array( 'Säite_vergkäichen' ),
 	'Badtitle'                  => array( 'Net_valabelen_Titel' ),
+	'DisableAccount'            => array( 'Benotzerkont_ausschalten' ),
 );
 
 $magicWords = array(

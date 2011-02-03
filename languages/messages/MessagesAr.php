@@ -328,6 +328,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'قائمة_المراقبة' ),
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
 	'Upload'                    => array( 'رفع' ),
+	'UploadStash'               => array( 'رفع_مخفي' ),
 	'Listfiles'                 => array( 'عرض_الملفات', 'قائمة_الملفات', 'قائمة_الصور' ),
 	'Newimages'                 => array( 'ملفات_جديدة', 'صور_جديدة' ),
 	'Listusers'                 => array( 'عرض_المستخدمين', 'قائمة_المستخدمين' ),
@@ -393,6 +394,8 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'صفحتي' ),
 	'Mytalk'                    => array( 'نقاشي' ),
 	'Mycontributions'           => array( 'مساهماتي' ),
+	'Myuploads'                 => array( 'رفوعاتي' ),
+	'PermanentLink'             => array( 'وصلة_دائمة', 'رابط_دائم' ),
 	'Listadmins'                => array( 'عرض_الإداريين' ),
 	'Listbots'                  => array( 'عرض_البوتات' ),
 	'Popularpages'              => array( 'صفحات_مشهورة' ),
@@ -408,6 +411,9 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'وسوم' ),
 	'Activeusers'               => array( 'مستخدمون_نشطون' ),
 	'RevisionMove'              => array( 'نقل_مراجعة' ),
+	'ComparePages'              => array( 'مقارنة_الصفحات' ),
+	'Badtitle'                  => array( 'عوان_سئ' ),
+	'DisableAccount'            => array( 'تعطيل_الحساب' ),
 );
 
 /**
