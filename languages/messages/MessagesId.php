@@ -331,8 +331,10 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
 'tog-oldsig'                  => 'Pratayang tanda tangan:',
 'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
-'tog-externaleditor'          => 'Gunakan perangkat lunak pengolah kata luar',
-'tog-externaldiff'            => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
+'tog-externaleditor'          => 'Gunakan editor eksternal secara bawaan (hanya untuk ahli, perlu pengaturan khusus pada komputer Anda.
+[http://www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapnya].)',
+'tog-externaldiff'            => 'Gunakan diff eksternal secara bawaan (hanya untuk ahli, perlu pengaturan khusus pada komputer Anda.
+[http://www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapnya].)',
 'tog-showjumplinks'           => 'Aktifkan pranala pembantu "langsung ke"',
 'tog-uselivepreview'          => 'Gunakan pratayang langsung (JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Ingatkan saya bila kotak ringkasan suntingan masih kosong',
@@ -1408,6 +1410,10 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'prefs-displaywatchlist'        => 'Pilihan tampilan',
 'prefs-diffs'                   => 'Beda',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Alamat surel tampaknya sah',
+'email-address-validity-invalid' => 'Masukkan alamat surel yang sah',
+
 # User rights
 'userrights'                   => 'Manajemen hak pengguna',
 'userrights-lookup-user'       => 'Mengatur kelompok pengguna',
@@ -1981,7 +1987,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
 'unusedimagestext'        => 'Berkas berikut ada tapi tidak disertakan di halaman manapun.
-Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskiput sudah tidak digunakan aktif.',
+Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas dengan URL langsung, dan karenanya masih terdaftar di sini meskipun sudah tidak digunakan aktif.',
 'unusedcategoriestext'    => 'Kategori berikut ada, walaupun tidak ada halaman atau kategori lain yang menggunakannya.',
 'notargettitle'           => 'Tidak ada sasaran',
 'notargettext'            => 'Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.',
@@ -2910,10 +2916,10 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
-'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',
-'file-info-size'       => '($1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4)',
+'file-info'            => 'ukuran berkas: $1, tipe MIME: $2',
+'file-info-size'       => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-nohires'         => '<small>Tak tersedia resolusi yang lebih tinggi.</small>',
-'svg-long-desc'        => '(Berkas SVG, nominal $1 × $2 piksel, besar berkas: $3)',
+'svg-long-desc'        => 'Berkas SVG, nominal $1 × $2 piksel, besar berkas: $3',
 'show-big-image'       => 'Resolusi penuh',
 'show-big-image-thumb' => '<small>Ukuran pratayang ini: $1 × $2 piksel</small>',
 'file-info-gif-looped' => 'melingkar',
@@ -3272,6 +3278,20 @@ Kode konfirmasi ini akan kedaluwarsa pada $4.',
 telah mengubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
 
 Untuk mengkonfirmasi bahwa akun ini adalah benar milik Anda sekaligus mengaktifkan
+kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:
+
+$3
+
+Jika akun ini *bukan* milik Anda, ikuti pranala berikut
+untuk membatalkan konfirmasi alamat surel:
+
+$5
+
+Kode konfirmasi ini akan kedaluwarsa pada $4.',
+'confirmemail_body_set'     => 'Seseorang, mungkin Anda, dari alamat IP $1,
+telah mengubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
+
+Untuk mengonfirmasi bahwa akun ini adalah milik Anda sekaligus mengaktifkan
 kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:
 
 $3

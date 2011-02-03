@@ -1539,9 +1539,9 @@ $1",
 'nextdiff'     => '新版→',
 
 # Media information
-'file-info-size'       => '（$1×$2像素，文件大小：$3，MIME类型：$4）',
+'file-info-size'       => '$1×$2像素，文件大小：$3，MIME类型：$4',
 'file-nohires'         => '<small>无更高分辨率可提供。</small>',
-'svg-long-desc'        => '（SVG文件，名义大小：$1×$2像素，文件大小：$3）',
+'svg-long-desc'        => 'SVG文件，名义大小：$1×$2像素，文件大小：$3',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>迭幅缩略图个分辨率：$1×$2像素</small>',
 

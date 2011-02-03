@@ -1603,7 +1603,8 @@ Jeneng sing wis <del>dicorèk</del> tegesé wis rampung didandani.',
 'ancientpages'            => 'Kaca-kaca langkung sepuh',
 'move'                    => 'Pindhahen',
 'movethispage'            => 'Pindhahna kaca iki',
-'unusedimagestext'        => '<p>Gatèkna yèn situs wèb liyané mbok-menawa bisa nyambung ing sawijining berkas sacara langsung, lan berkas-berkas kaya mengkéné iku mbok-menawa ana ing daftar iki senadyan isih dienggo déning situs wèb liya.',
+'unusedimagestext'        => 'Berkas-berkas sing kapacak iki ana nanging ora dienggo ing kaca apa waé.
+Tulung digatèkaké yèn situs wèb liyané mbok-menawa bisa nyambung ing sawijining berkas sacara langsung mawa URL langsung, lan berkas-berkas kaya mengkéné iku mbok-menawa ana ing daftar iki senadyan ora dienggo aktif manèh.',
 'unusedcategoriestext'    => 'Kategori iki ana senadyan ora ana artikel utawa kategori liyané sing nganggo.',
 'notargettitle'           => 'Ora ana sasaran',
 'notargettext'            => 'Panjenengan ora nemtokaké kaca utawa panganggo tujuan fungsi iki.',
@@ -1720,6 +1721,7 @@ Informasi tambahan perkara hak-hak individual bisa ditemokaké ing [[{{MediaWiki
 Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi panjenengan]] bakal dadi alamat "Saka" jroning layang-e kasebut, mula panampa layang-e bakal bisa mbalesi langsung menyang panjenengan.',
 'usermailererror'  => 'Kaluputan obyèk layang:',
 'defemailsubject'  => 'Layang e-mail {{SITENAME}}',
+'usermaildisabled' => 'E-mail panganggo dinonaktifaké',
 'noemailtitle'     => 'Ora ana alamat layang e-mail',
 'noemailtext'      => 'Panganggo iki ora mènèhi alamat layang-e sing absah.',
 'nowikiemailtitle' => 'Layang-e ora diidinaké',
@@ -1739,6 +1741,7 @@ Alamat layang-e sing panjenengan lebokaké ing [[Special:Preferences|préferèsi
 # Watchlist
 'watchlist'            => 'Daftar artikel pilihan',
 'mywatchlist'          => 'Daftar pangawasanku',
+'watchlistfor2'        => 'Kanggo $1 $2',
 'nowatchlist'          => 'Daftar pangawasan panjenengan kosong.',
 'watchlistanontext'    => 'Mangga $1 kanggo mirsani utawa nyunting daftar pangawasan panjenengan.',
 'watchnologin'         => 'Durung mlebu log',
@@ -1852,7 +1855,8 @@ Suntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]]{{in
 diowahi bali menyang vèrsi pungkasan déning $2.',
 
 # Edit tokens
-'sessionfailure' => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
+'sessionfailure-title' => 'Sèsi gagal',
+'sessionfailure'       => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
 
 # Protect
 'protectlogpage'              => 'Log pangreksan',
@@ -2461,10 +2465,10 @@ $1',
 'imagemaxsize'         => "Wates ukuran gambar:<br />''(kanggo kaca dhèskripsi berkas)''",
 'thumbsize'            => 'Ukuran gambar cilik (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
-'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',
-'file-info-size'       => '($1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4)',
+'file-info'            => 'ukuran berkas: $1, tipe MIME: $2',
+'file-info-size'       => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-nohires'         => '<small>Ora ana résolusi sing luwih dhuwur.</small>',
-'svg-long-desc'        => '(Berkas SVG, nominal $1 × $2 piksel, gedhené berkas: $3)',
+'svg-long-desc'        => 'Berkas SVG, nominal $1 × $2 piksel, gedhené berkas: $3',
 'show-big-image'       => 'Résolusi kebak',
 'show-big-image-thumb' => '<small>Ukuran pratayang iki: $1 × $2 piksel</small>',
 'file-info-gif-looped' => 'mubeng',
@@ -3013,5 +3017,10 @@ Katrangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalna pangowahan',
 'htmlform-selectorother-other' => 'Liya',
+
+# Special:DisableAccount
+'disableaccount'        => 'Nonaktifaké akun panganggo',
+'disableaccount-user'   => 'Jeneng panganggo:',
+'disableaccount-reason' => 'Alesan:',
 
 );

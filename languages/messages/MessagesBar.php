@@ -1170,9 +1170,9 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'nextdiff'     => 'zum nextn Untaschied in de Veasionen →',
 
 # Media information
-'file-info-size'       => '($1 × $2 Pixl, Dateigreßn: $3, MIME-Typ: $4)',
+'file-info-size'       => '$1 × $2 Pixl, Dateigreßn: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Es gibt ka hechane Auflösung.</small>',
-'svg-long-desc'        => '(SVG-Datei, Basisgreß: $1 × $2 Pixl, Dateigreß: $3)',
+'svg-long-desc'        => 'SVG-Datei, Basisgreß: $1 × $2 Pixl, Dateigreß: $3',
 'show-big-image'       => 'Version in hechana Auflösung',
 'show-big-image-thumb' => '<small>Greßn vu da Voaãnsicht: $1 × $2 Pixl</small>',
 

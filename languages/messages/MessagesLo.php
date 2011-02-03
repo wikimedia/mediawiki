@@ -918,7 +918,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Media information
 'imagemaxsize'         => 'ກຳນົດຄວາມໃຫຍ່ຂອງ ຮູບ ຫຼື ໜ້າອະທິບາຍຮູບ ບໍ່ໃຫ້ກາຍ:',
 'thumbsize'            => 'ຂະໜາດສະແດງ:',
-'file-info-size'       => '($1 × $2  ປິກເຊລ, ຂະໜາດໄຟລ໌: $3, MIME type: $4)',
+'file-info-size'       => '$1 × $2  ປິກເຊລ, ຂະໜາດໄຟລ໌: $3, MIME type: $4',
 'file-nohires'         => 'ບໍ່ມີຂະໜາດລະອຽດກວ່າ',
 'show-big-image'       => 'ເຕັມຂະໜາດ',
 'show-big-image-thumb' => '<small>ຂະໜາດລອງເບິ່ງ: $1 × $2 ປິກເຊລ</small>',

@@ -164,8 +164,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
 'tog-oldsig'                  => 'Přehlad eksistowaceje signatury:',
 'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
-'tog-externaleditor'          => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
-'tog-externaldiff'            => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
+'tog-externaleditor'          => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [http://www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
+'tog-externaldiff'            => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [http://www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
 'tog-showjumplinks'           => 'Wotkazy typa „dźi do” zmóžnić',
 'tog-uselivepreview'          => 'Live-přehlad wužiwać (JavaScript) (eksperimentalnje)',
 'tog-forceeditsummary'        => 'Mje skedźbnić, jeli zabudu zjeće',
@@ -1222,6 +1222,10 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-displaysearchoptions'    => 'Zwobraznjenske opcije',
 'prefs-displaywatchlist'        => 'Zwobraznjenske opcije',
 'prefs-diffs'                   => 'Rozdźěle',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Zda so, zo e-mejlowa adresa je płaćiwa',
+'email-address-validity-invalid' => 'Zapodaj płaćiwu e-mejlowu adresu',
 
 # User rights
 'userrights'                   => 'Zrjadowanje wužiwarskich prawow',
@@ -2712,9 +2716,9 @@ $1',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
 'file-info'            => 'Wulkosć dataje: $1, typ MIME: $2',
-'file-info-size'       => '($1 × $2 pikselow, wulkosć dataje: $3, typ MIME: $4)',
+'file-info-size'       => '$1 × $2 pikselow, wulkosć dataje: $3, typ MIME: $4',
 'file-nohires'         => '<small>Za tutu dataju žane wyše rozeznaće njeje.</small>',
-'svg-long-desc'        => '(SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3)',
+'svg-long-desc'        => 'SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3',
 'show-big-image'       => 'Wersija z wyšim rozeznaćom',
 'show-big-image-thumb' => '<small>Wulkosć miniaturki: $1 × $2 pikselow</small>',
 'file-info-gif-looped' => 'Bjezkónčna sekla',
@@ -3069,6 +3073,19 @@ Jeli konto ći *nje*słuša, slěduj wotkaz, zo by wobkrućenje e-mejloweje adre
 $5
 
 Tute wobkrućenski kod spadnje $4.',
+'confirmemail_body_set'     => 'Něchtó, najskerje ty, wot IP-adresy $1,
+je e-mejlowu adresu konta "$2" na {{GRAMMAR:lokatiw|{{STENAME}}}} na tutu adresu stajił.
+
+Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{STENAME}}}} znowa aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
+
+$3
+
+Jeli konto ći *nje*słuša, slěduj tutón wotkaz, 
+zo by wobkrućenje e-mejloweje adresy přetorhnył:
+
+$5
+
+Tutón wobkrućenski kod spadnje $4.',
 'confirmemail_invalidated'  => 'E-mejlowe potwjerdźenje přetorhnjene',
 'invalidateemail'           => 'E-mejlowe potwjerdźenje přetorhnyć',
 
@@ -3300,9 +3317,9 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'disableaccount-user'        => 'Wužiwarske mjeno:',
 'disableaccount-reason'      => 'Přičina:',
 'disableaccount-confirm'     => "Znjemóžń tute wužiwarske konto.
-Wužiwar njemóže so přizjewić, woje hesło wróćo stajić abo e-mejlowe zdźělenki dóstać.
+Wužiwar njemóže so přizjewić, swoje hesło wróćo stajić abo e-mejlowe zdźělenki dóstać.
 Jeli wužiwar je tuchwilu druhdźe přizjewjeny, budźe so hnydom wotzjewjeć.
-''Wobkedźbuj, zo znjemóžnjenje konta njeje rewersibelne bjez zapřimowanja administratora.''",
+''Wobkedźbuj, zo znjemóžnjenje konta njeje rewersibelne bjez zapřimowanja systemoweho administratora.''",
 'disableaccount-mustconfirm' => 'Dyrbiš wobkrućić, zo chceš tute konto znjemóžnić.',
 'disableaccount-nosuchuser'  => 'Wužiwarske konto "$1" njeeksistuje.',
 'disableaccount-success'     => 'Wužiwarske konto "$1" bu na přeco znjemóžnjene.',

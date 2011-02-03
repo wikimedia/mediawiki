@@ -321,8 +321,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
 'tog-oldsig'                  => 'Antevisão da assinatura:',
 'tog-fancysig'                => 'Tratar assinatura como texto wiki (sem link automático)',
-'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador)',
-'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador)',
+'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
+'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
 'tog-uselivepreview'          => 'Usar a antevisão em tempo real (requer JavaScript; é experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um resumo vazio',
@@ -1444,6 +1444,10 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'prefs-displaysearchoptions'    => 'Opções de apresentação',
 'prefs-displaywatchlist'        => 'Opções de apresentação',
 'prefs-diffs'                   => 'Diferenças',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Parece válido',
+'email-address-validity-invalid' => 'Endereço válido necessário!',
 
 # User rights
 'userrights'                   => 'Privilégios dos utilizadores',
@@ -3010,10 +3014,10 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'         => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
-'file-info'            => '(tamanho: $1, tipo MIME: $2)',
-'file-info-size'       => '($1 × $2 pixels, tamanho: $3, tipo MIME: $4)',
+'file-info'            => 'tamanho: $1, tipo MIME: $2',
+'file-info-size'       => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
 'file-nohires'         => '<small>Sem resolução maior disponível.</small>',
-'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
+'svg-long-desc'        => 'ficheiro SVG, de $1 × $2 pixels, tamanho: $3',
 'show-big-image'       => 'Resolução completa',
 'show-big-image-thumb' => '<small>Dimensões desta antevisão: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'cíclico',
@@ -3385,6 +3389,21 @@ para cancelar a confirmação do endereço de correio electrónico:
 $5
 
 Este código de confirmação irá expirar a $4.',
+'confirmemail_body_set'     => 'Alguém, provavelmente você com o endereço IP $1,
+definiu o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
+
+Para confirmar que esta conta é realmente sua e reactivar
+as funcionalidades de correio electrónico na {{SITENAME}},
+abra o seguinte link no seu browser:
+
+$3
+
+Caso a conta *não* lhe pertença, siga o seguinte link
+para cancelar a confirmação do endereço de correio electrónico:
+
+$5
+
+Este código de confirmação irá expirar a $4.',
 'confirmemail_invalidated'  => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'           => 'Cancelar confirmação de correio electrónico',
 
@@ -3616,7 +3635,7 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'disableaccount-confirm'     => "Desactivar esta conta.
 O utilizador ficará impossibilitado de se autenticar, de reiniciar a palavra-chave e de receber notificações por correio electrónico.
 Se neste momento o utilizador estiver autenticado algures, sairá de imediato.
-''Note que a desactivação de uma conta não pode ser revertida sem intervenção de um administrador.''",
+''Note que a desactivação de uma conta não pode ser revertida sem intervenção de um administrador de sistema.''",
 'disableaccount-mustconfirm' => 'Tem de confirmar que pretende desactivar esta conta.',
 'disableaccount-nosuchuser'  => 'A conta de utilizador "$1" não existe.',
 'disableaccount-success'     => 'A conta de utilizador "$1" foi desactivada permanentemente.',

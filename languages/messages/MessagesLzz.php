@@ -698,9 +698,9 @@ Mu iqʼven başka coxo doçʼari.',
 'nextdiff'     => 'Ukʼaçxineri versiyoni kʼala na ren farkʼi →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pikseli, dosyaşi didinoba: $3, MIME type: $4)',
+'file-info-size'       => '$1 × $2 pikseli, dosyaşi didinoba: $3, MIME type: $4',
 'file-nohires'         => '<small>Çkva kʼai ozʼiramuşis na uğun versiyoni va ren.</small>',
-'svg-long-desc'        => '(SVG dosya, coxoten $1 × $2 pʼikʼseli, dosyaşi didinoba: $3)',
+'svg-long-desc'        => 'SVG dosya, coxoten $1 × $2 pʼikʼseli, dosyaşi didinoba: $3',
 'show-big-image'       => 'Tam ozʼiramuşi',
 'show-big-image-thumb' => '<small>"Evvelişen i3ʼkʼedi" fonkʼsionişi didinoba: $1 × $2 pikseli</small>',
 

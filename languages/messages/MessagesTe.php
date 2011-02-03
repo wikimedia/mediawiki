@@ -1241,6 +1241,9 @@ $1",
 'prefs-displaywatchlist'        => 'ప్రదర్శన ఎంపికలు',
 'prefs-diffs'                   => 'తేడాలు',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'దయచేసి సరైన ఈమెయిలు చిరునామాని ఇవ్వండి',
+
 # User rights
 'userrights'                   => 'వాడుకరి హక్కుల నిర్వహణ',
 'userrights-lookup-user'       => 'వాడుకరి సమూహాలను సంభాళించండి',
@@ -2720,10 +2723,10 @@ $1',
 'imagemaxsize'         => "బొమ్మ పరిమాణంపై పరిమితి:<br />''(దస్త్రపు వివరణ పుటల కొరకు)''",
 'thumbsize'            => 'నఖచిత్రం వైశాల్యం:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|పేజీ|పేజీలు}}',
-'file-info'            => '(ఫైలు పరిమాణం: $1, MIME రకం: $2)',
-'file-info-size'       => '($1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3, MIME రకం: $4)',
+'file-info'            => 'ఫైలు పరిమాణం: $1, MIME రకం: $2',
+'file-info-size'       => '$1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3, MIME రకం: $4',
 'file-nohires'         => '<small>మరింత స్పష్టమైన బొమ్మ లేదు.</small>',
-'svg-long-desc'        => '(SVG ఫైలు, నామమాత్రంగా $1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3)',
+'svg-long-desc'        => 'SVG ఫైలు, నామమాత్రంగా $1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3',
 'show-big-image'       => 'అసలు పరిమాణం',
 'show-big-image-thumb' => '<small>ఈ మునుజూపు సైజు: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'లూపులో పడింది',

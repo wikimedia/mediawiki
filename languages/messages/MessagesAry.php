@@ -1715,9 +1715,9 @@ Imken lek ṫċof l-ĝin dyalha.',
 
 # Media information
 'widthheight'          => '$1×$2',
-'file-info-size'       => '($1 × $2 piksel, ṫqel l-fiċyé: $3, ċkel MIME : $4)',
+'file-info-size'       => '$1 × $2 piksel, ṫqel l-fiċyé: $3, ċkel MIME : $4',
 'file-nohires'         => '<small>Ma kayenċ ċi rézolusyon kber men hadi.</small>',
-'svg-long-desc'        => '(Fiċyé SVG, rézolusyon $1 × $2 pikselaṫ, ḫajm : $3)',
+'svg-long-desc'        => 'Fiċyé SVG, rézolusyon $1 × $2 pikselaṫ, ḫajm : $3',
 'show-big-image'       => 'Rézolusyon kamla',
 'show-big-image-thumb' => '<small>L-Ḫajm dyal had l-prévizualizasyon : $1 × $2 pikselaṫ</small>',
 'file-info-gif-looped' => 'mlfoof',

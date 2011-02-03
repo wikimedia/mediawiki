@@ -239,8 +239,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig'                  => 'Vista previa da sinatura actual:',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
-'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
+'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
+'tog-externaldiff'            => 'Usar as diferenzas externas por omisión (só para expertos, precisa duns parámetros especiais no seu computador [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview'          => 'Usar a vista previa en tempo real (necesita JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avisádeme cando o campo resumo estea baleiro',
@@ -1352,6 +1352,10 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'prefs-displaysearchoptions'    => 'Opcións de visualización',
 'prefs-displaywatchlist'        => 'Opcións de visualización',
 'prefs-diffs'                   => 'Diferenzas',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'O enderezo de correo electrónico semella válido',
+'email-address-validity-invalid' => 'Escriba un enderezo de correo electrónico válido',
 
 # User rights
 'userrights'                   => 'Xestión dos dereitos de usuario',
@@ -2912,9 +2916,9 @@ O seu sistema pode quedar comprometido se o executa.",
 'thumbsize'            => 'Tamaño da miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
 'file-info'            => 'Tamaño do ficheiro: $1, tipo MIME: $2',
-'file-info-size'       => '($1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4)',
+'file-info-size'       => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4',
 'file-nohires'         => '<small>Non se dispón dunha resolución máis grande.</small>',
-'svg-long-desc'        => '(ficheiro SVG, nominalmente $1 × $2 píxeles, tamaño do ficheiro: $3)',
+'svg-long-desc'        => 'ficheiro SVG, nominalmente $1 × $2 píxeles, tamaño do ficheiro: $3',
 'show-big-image'       => 'Imaxe na máxima resolución',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 'file-info-gif-looped' => 'en bucle',

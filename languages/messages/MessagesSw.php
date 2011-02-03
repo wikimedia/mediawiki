@@ -2464,10 +2464,10 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'imagemaxsize'         => "Kikomo cha ukubwa wa picha:<br />''(cha kurasa za maelezo ya mafaili)''",
 'thumbsize'            => 'Ukubwa wa picha ndogo:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
-'file-info'            => '(ukubwa wa faili: $1, aina ya MIME: $2)',
-'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',
+'file-info'            => 'ukubwa wa faili: $1, aina ya MIME: $2',
+'file-info-size'       => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
 'file-nohires'         => '<small>Hakuna saizi kubwa zaidi.</small>',
-'svg-long-desc'        => '(faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3)',
+'svg-long-desc'        => 'faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3',
 'show-big-image'       => 'Ukubwa wa awali',
 'show-big-image-thumb' => '<small>Ukubwa wa hakikisho hili: piseli $1 x $2</small>',
 'file-info-png-repeat' => 'inachezwa {{PLURAL:$1|mara}} $1',
@@ -2659,6 +2659,17 @@ $5
 
 Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_body_changed' => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye amebadilisha anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
+
+Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
+
+$3
+
+na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho wa anwani ya barua pepe:
+
+$5
+
+Ishara hizi za uthibitisho zitaishia mnamo $4.',
+'confirmemail_body_set'     => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye ameweka anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
 
 Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
 

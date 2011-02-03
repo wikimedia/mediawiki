@@ -316,8 +316,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig'                  => 'Antaŭvido de nuna subskribo:',
 'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
-'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
-'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
+'tog-externaleditor'          => 'Defaŭlte uzi eksteran tekstprilaborilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
+'tog-externaldiff'            => 'Defaŭlte uzi eksteran ŝanĝmontrilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview'          => 'Uzi tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
@@ -1315,7 +1315,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-personal'                => 'Uzanta profilo',
 'prefs-rc'                      => 'Lastaj ŝanĝoj',
 'prefs-watchlist'               => 'Atentaro',
-'prefs-watchlist-days'          => 'Nombro de tagoj montri en la atentaro:',
+'prefs-watchlist-days'          => 'Kiom da tagoj montriĝu en la atentaro:',
 'prefs-watchlist-days-max'      => '(maksimume 7 tagoj)',
 'prefs-watchlist-edits'         => 'Maksimuma nombro de ŝanĝoj montrendaj en ekspandita atentaro:',
 'prefs-watchlist-edits-max'     => '(maksimuma nombro: 1000)',
@@ -1327,7 +1327,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'saveprefs'                     => 'Konservi preferojn',
 'resetprefs'                    => 'Forviŝi nekonservitajn ŝanĝojn',
 'restoreprefs'                  => 'Restarigi ĉiujn defaŭltajn preferojn',
-'prefs-editing'                 => 'Grandeco de redakta tekstujo',
+'prefs-editing'                 => 'Redaktado',
 'prefs-edit-boxsize'            => 'Grandeco de la redakto-kesko.',
 'rows'                          => 'Linioj:',
 'columns'                       => 'Kolumnoj:',
@@ -1412,6 +1412,10 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'prefs-displaysearchoptions'    => 'Montraj opcioj',
 'prefs-displaywatchlist'        => 'Montraj opcioj',
 'prefs-diffs'                   => 'Diferencoj',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Ŝajnas ke la retpoŝtadreso estas valida',
+'email-address-validity-invalid' => 'Tajpu validan retpoŝtadreson',
 
 # User rights
 'userrights'                   => 'Prizorgi rajtojn de uzantoj',
@@ -2449,8 +2453,8 @@ Jen la lasta ero de la forbara protokolo:',
 'ipbotheroption'                  => 'alia',
 'ipbotherreason'                  => 'Alia/kroma kialo:',
 'ipbhidename'                     => 'Kaŝi salutnomon de redaktoj kaj listoj',
-'ipbwatchuser'                    => 'Kontroli la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
-'ipballowusertalk'                => 'Permsi al ĉi tiu uzanto redakti propran diskuto-paĝon dum forbaro',
+'ipbwatchuser'                    => 'Atenti la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
+'ipballowusertalk'                => 'Permesi al ĉi tiu uzanto redakti propran diskuto-paĝon dum forbariteco',
 'ipb-change-block'                => 'Reforbari la uzanton kun ĉi tiuj preferoj',
 'badipaddress'                    => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'               => 'Oni sukcese forbaris la adreson/nomon.',
@@ -2658,9 +2662,9 @@ Bonvolu elekti alian nomon.',
 'exporttext'        => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML.
 Ĉi tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro per la [[Special:Import|import-paĝo]].
 
-Eksporti paĝojn, enigu la titolojn en la jena tekst-skatolo, po unu por linio, kaj elektu ĉu vi volas kaj la nunan version kaj ĉiujn antaŭajn versiojn, kun la paĝaj historiaj linioj, a la nunan version kun la informo pri la lasta redakto.
+Por eksporti paĝojn, enigu la titolojn en la jena tekst-skatolo, po unu por linio, kaj elektu ĉu vi volas kaj la nunan version kaj ĉiujn antaŭajn versiojn, kun la paĝaj historiaj linioj, aŭ la nunan version kun la informo pri la lasta redakto.
 
-En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la paĝo "[[{{MediaWiki:Mainpage}}]]".',
+En la lasta okazo, vi ankaŭ povas uzi ligilon, ekz-e [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la paĝo "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Entenas nur la aktualan version, ne la malnovajn.',
 'exportnohistory'   => "----
 '''Notu:''' Eksportado de la plena historio de paĝoj per ĉi paĝo estis malebligita pro funkciigaj kialoj.",
@@ -2916,10 +2920,10 @@ By executing it, your system may be compromised.",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
-'file-info'            => '(pezo de dosiero: $1, MIME-tipo: $2)',
-'file-info-size'       => '($1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4)',
+'file-info'            => 'pezo de dosiero: $1, MIME-tipo: $2',
+'file-info-size'       => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',
-'svg-long-desc'        => '(SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3)',
+'svg-long-desc'        => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'show-big-image'       => 'Plena distingivo',
 'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
 'file-info-gif-looped' => 'ripeta GIF',
@@ -3285,6 +3289,19 @@ por nuligi la retadresan konfirmadon:
 $5
 
 Ĉi tiu konfirmkodo malvalidiĝos je $4.',
+'confirmemail_body_set'     => 'Iu, supozeble vi mem, je IP-adreso $1,
+agordis la retpoŝadreson de konto "$2" al ĉi tiu adreso je {{SITENAME}}.
+
+Por konfirmi ke ĉi tiu konto vere apertenas al vi kaj refunkciigi la retpoŝtfunkciojn je {{SITENAME}}, bonvolu
+malfermi la jenon ligon per via foliumilo:
+
+$3
+
+Se ĉi tiu konto *ne* apertenas al vi, bonvolu sekvi jenan ligon por nuligi la konfirmon pir la retpoŝadreso:
+
+$5
+
+Ĉi tiu konfirma kodo eksvalidiĝos je $4',
 'confirmemail_invalidated'  => 'Konfirmado de retadreso estas nuligita',
 'invalidateemail'           => 'Nuligi konfirmadon de retadreso',
 

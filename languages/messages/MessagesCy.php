@@ -147,8 +147,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Dangos y nifer o ddefnyddwyr sy'n gwylio",
 'tog-oldsig'                  => "Rhagolwg o'r llofnod presennol:",
 'tog-fancysig'                => 'Trin y llofnod fel testun wici (heb gyswllt wici awtomatig)',
-'tog-externaleditor'          => 'Defnyddio golygydd allanol trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae angen gosodiadau arbennig ar eich cyfrifiadur)',
-'tog-externaldiff'            => 'Defnyddio "external diff" trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae angen gosodiadau arbennig ar eich cyfrifiadur)',
+'tog-externaleditor'          => 'Defnyddio golygydd allanol trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [http://www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
+'tog-externaldiff'            => 'Defnyddio "external diff" trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [http://www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
 'tog-showjumplinks'           => 'Galluogi dolenni hygyrchedd "neidio i"',
 'tog-uselivepreview'          => 'Defnyddio rhagolwg byw (JavaScript) (Arbrofol)',
 'tog-forceeditsummary'        => 'Tynnu fy sylw pan adawaf flwch crynodeb golygu yn wag',
@@ -1225,6 +1225,10 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'prefs-displaysearchoptions'    => 'Dewisiadau arddangos',
 'prefs-displaywatchlist'        => 'Dewisiadau arddangos',
 'prefs-diffs'                   => "Cymharu golygiadau ('gwahan')",
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Y cyfeiriad e-bost yn ymddangos yn un dilys',
+'email-address-validity-invalid' => 'Rhowch gyfeiriad e-bost dilys',
 
 # User rights
 'userrights'                   => 'Rheoli galluoedd defnyddwyr',
@@ -2733,10 +2737,10 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
-'file-info'            => '(maint y ffeil: $1, ffurf MIME: $2)',
-'file-info-size'       => '($1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4)',
+'file-info'            => 'maint y ffeil: $1, ffurf MIME: $2',
+'file-info-size'       => '$1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4',
 'file-nohires'         => '<small>Wedi ei chwyddo hyd yr eithaf.</small>',
-'svg-long-desc'        => '(Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3)',
+'svg-long-desc'        => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'show-big-image'       => 'Maint llawn',
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 'file-info-gif-looped' => 'dolennog',
@@ -3091,6 +3095,17 @@ $5
 
 Bydd y côd cadarnhau yn dod i ben am $4.',
 'confirmemail_body_changed' => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi newid cyfeiriad e-bost y cyfrif "$2" ar {{SITENAME}} i\'r cyfeiriad e-bost hwn.
+
+I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i ail-alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
+
+$3
+
+Os *nad* chi sydd berchen y cyfrif hwn, dilynwch y cyswllt hwn er mwyn diddymu cadarnhad y cyfeiriad e-bost:
+
+$5
+
+Bydd y côd cadarnhau yn dod i ben am $4.',
+'confirmemail_body_set'     => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi gosod cyfeiriad e-bost y cyfrif "$2" ar {{SITENAME}} i\'r cyfeiriad e-bost hwn.
 
 I gadarnhau mai chi yn wir yw perchennog y cyfrif hwn, ac i ail-alluogi nodweddion e-bost ar {{SITENAME}}, agorwch y cyswllt hwn yn eich porwr:
 

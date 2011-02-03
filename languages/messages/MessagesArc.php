@@ -1348,7 +1348,7 @@ $1',
 
 # Media information
 'thumbsize'      => 'ܥܓܪܐ ܕܨܘܪܬܐ ܙܥܘܪܬܐ:',
-'file-info'      => '(ܥܓܪܐ ܕܠܦܦܐ: $1, MIME ܐܕܫܐ: $2)',
+'file-info'      => 'ܥܓܪܐ ܕܠܦܦܐ: $1, MIME ܐܕܫܐ: $2',
 'file-nohires'   => '<small>ܠܝܬ ܢܩܕܘܬܐ ܝܬܝܪ ܡܢ ܗܢܐ.</small>',
 'show-big-image' => 'ܢܩܕܘܬܐ ܓܡܝܪܬܐ',
 

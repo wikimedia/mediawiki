@@ -29,6 +29,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Nghtwlkr
+ * @author Peter Alberti
  * @author Peter Andersen
  * @author Purodha
  * @author Qaqqalik
@@ -1290,6 +1291,9 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-displaysearchoptions'    => 'Visningsmuligheder',
 'prefs-displaywatchlist'        => 'Visningsmuligheder',
 'prefs-diffs'                   => 'Forskelle',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'Indtast en gyldig e-mail adresse',
 
 # User rights
 'userrights'                   => 'Håndtering af brugerrettigheder',
@@ -2776,10 +2780,10 @@ Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
-'file-info'            => '(Filstørrelse: $1, MIME-Type: $2)',
-'file-info-size'       => '($1 × $2 punkter, filstørrelse: $3, MIME-Type: $4)',
+'file-info'            => 'Filstørrelse: $1, MIME-Type: $2',
+'file-info-size'       => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
 'file-nohires'         => '<small>Ingen højere opløsning fundet.</small>',
-'svg-long-desc'        => '(SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3)',
+'svg-long-desc'        => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'gentaget',

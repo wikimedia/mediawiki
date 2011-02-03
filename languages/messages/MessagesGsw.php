@@ -147,8 +147,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
 'tog-oldsig'                  => 'Vorschau vu dr aktuälle Unterschrift:',
 'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
-'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer)',
-'tog-externaldiff'            => 'Externi diff als default',
+'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
+'tog-externaldiff'            => 'Extern Programm fir Versionsunterschid als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
 'tog-showjumplinks'           => '«Wächsle-zu»-Links ermügleche',
 'tog-uselivepreview'          => 'Live-Vorschau bruche (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Sag mer s, wänn i s Zämmefassigsfeld läär loss',
@@ -1229,6 +1229,10 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-displaysearchoptions'    => 'Aazeigoptione',
 'prefs-displaywatchlist'        => 'Aazeigoptione',
 'prefs-diffs'                   => 'Versionsverglych',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Siht giltig uus',
+'email-address-validity-invalid' => 'S brucht e giltigi Adräss!',
 
 # User rights
 'userrights'                   => 'Benutzerrächtsverwaltig',
@@ -2687,10 +2691,10 @@ $1',
 'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
-'file-info'            => '(Dateigressi: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4)',
+'file-info'            => 'Dateigressi: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Kei höcheri Uflösig verfüegbar.</small>',
-'svg-long-desc'        => '(SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3)',
+'svg-long-desc'        => 'SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3',
 'show-big-image'       => 'Originalgrößi',
 'show-big-image-thumb' => '<small>Größi vo dere Vorschou: $1 × $2 Pixel</small>',
 'file-info-gif-looped' => 'Ändlosschlupf',
@@ -3043,6 +3047,20 @@ De Bstätigungs-Code isch gültig bis $4.
 
 Fründlechi Grüess',
 'confirmemail_body_changed' => 'Eber mit dr IP-Adräss $1, wahrschyns Du sälber,
+het d E-Mail-Adräss vum Benutzerkonto „$2“ uf die Adräss gänderet uf {{SITENAME}}.
+
+Go bstetige, ass des Benutzerkonto wirkli Dir ghert
+un go d E-Mail-Feature uf {{SITENAME}} reaktiviere, mach des Gleich in Dyym Browser uf:
+
+$3
+
+Wänn des Konto imfall *nit* Dir ghert, gang däm Gleich noo
+go d E-Mail-Adräss-Bstetigung abbräche:
+
+$5
+
+Dää Bstetigungscode isch giltig bis am $4.',
+'confirmemail_body_set'     => 'Eber mit dr IP-Adräss $1, wahrschyns Du sälber,
 het d E-Mail-Adräss vum Benutzerkonto „$2“ uf die Adräss gänderet uf {{SITENAME}}.
 
 Go bstetige, ass des Benutzerkonto wirkli Dir ghert

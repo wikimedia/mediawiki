@@ -2170,10 +2170,10 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
 'thumbsize'            => 'Stærð smámynda:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
-'file-info'            => '(stærð skráar: $1, MIME-tegund: $2)',
-'file-info-size'       => '($1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4)',
+'file-info'            => 'stærð skráar: $1, MIME-tegund: $2',
+'file-info-size'       => '$1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4',
 'file-nohires'         => '<small>Það er engin hærri upplausn til.</small>',
-'svg-long-desc'        => '(SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3)',
+'svg-long-desc'        => 'SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3',
 'show-big-image'       => 'Mesta upplausn',
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 

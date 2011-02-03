@@ -1336,6 +1336,10 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-displaywatchlist'        => 'Visningsalternativer',
 'prefs-diffs'                   => 'Forskjeller',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-postadressen ser gyldig ut',
+'email-address-validity-invalid' => 'Skriv inn en gyldig e-postadresse',
+
 # User rights
 'userrights'                     => 'Brukerrettighetskontroll',
 'userrights-lookup-user'         => 'Ordne brukergrupper',
@@ -2860,10 +2864,10 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'imagemaxsize'         => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
 'thumbsize'            => 'Miniatyrbildestørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|én side|$3 sider}}',
-'file-info'            => '(filstørrelse: $1, MIME-type: $2)',
-'file-info-size'       => '($1 × $2 piksler, filstørrelse: $3, MIME-type: $4)',
+'file-info'            => 'filstørrelse: $1, MIME-type: $2',
+'file-info-size'       => '$1 × $2 piksler, filstørrelse: $3, MIME-type: $4',
 'file-nohires'         => '<small>Ingen høyere oppløsning tilgjengelig.</small>',
-'svg-long-desc'        => '(SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse: $3)',
+'svg-long-desc'        => 'SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse: $3',
 'show-big-image'       => 'Full oppløsning',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
 'file-info-gif-looped' => 'gjentas',

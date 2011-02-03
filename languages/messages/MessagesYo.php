@@ -2027,10 +2027,10 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 # Media information
 'thumbsize'            => 'Ìtóbi àwòrán kékeré:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
-'file-info'            => '(ìtóbi faili: $1, irú MIME: $2)',
-'file-info-size'       => '($1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4)',
+'file-info'            => 'ìtóbi faili: $1, irú MIME: $2',
+'file-info-size'       => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4',
 'file-nohires'         => '<small>Kò sí ìgbéhàn gíga jù báun lọ.</small>',
-'svg-long-desc'        => '(faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3)',
+'svg-long-desc'        => 'faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3',
 'show-big-image'       => 'Pẹ̀lú ìgbéhàn gíga',
 'show-big-image-thumb' => '<small>Ìtóbi àkọ́kọ́yẹ̀wò yìí: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'lílọ́po',

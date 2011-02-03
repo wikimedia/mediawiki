@@ -1558,9 +1558,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nextdiff'     => 'নুৱা পতা →',
 
 # Media information
-'file-info-size'       => '($1 × $2 পিক্সেল, ফাইলর সাইজহান: $3, এমআইএমই-র অংতা: $4)',
+'file-info-size'       => '$1 × $2 পিক্সেল, ফাইলর সাইজহান: $3, এমআইএমই-র অংতা: $4',
 'file-nohires'         => '<small>এহাত্ত গজর রিজরিউশন নেই।</small>',
-'svg-long-desc'        => '(SVG ফাইল, সাধারনত $1 × $2 পিক্সেল, ফাইলর সাইজহান: $3)',
+'svg-long-desc'        => 'SVG ফাইল, সাধারনত $1 × $2 পিক্সেল, ফাইলর সাইজহান: $3',
 'show-big-image'       => 'পুল্লাপ রিজলিউশন',
 'show-big-image-thumb' => '<small>আগচা হানর সাইজহান: $1 × $2 পিক্সেলস</small>',
 

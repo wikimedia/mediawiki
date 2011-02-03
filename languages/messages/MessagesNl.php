@@ -351,8 +351,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
-'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
-'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
+'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer information]).',
+'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer information]).',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
 'tog-uselivepreview'          => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary'        => 'Een melding geven bij een lege samenvatting',
@@ -1325,7 +1325,7 @@ Probeer een andere zoekopdracht.',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) bekijken.',
 'searchmenu-legend'                => 'Zoekopties',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" aanmaken op deze wiki'''",
+'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" aanmaken op deze wiki.'''",
 'searchhelp-url'                   => 'Help:Inhoud',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Paginanamen met dit voorvoegsel weergeven]]',
 'searchprofile-articles'           => "Inhoudelijke pagina's",
@@ -1496,6 +1496,10 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'prefs-displaysearchoptions'    => 'Weergaveopties',
 'prefs-displaywatchlist'        => 'Weergaveopties',
 'prefs-diffs'                   => 'Verschillen',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Het e-mailadres lijkt geldig',
+'email-address-validity-invalid' => 'Geef een geldig e-mailadres op',
 
 # User rights
 'userrights'                   => 'Gebruikersrechtenbeheer',
@@ -3088,10 +3092,10 @@ $1',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
-'file-info'            => '(bestandsgrootte: $1, MIME-type: $2)',
-'file-info-size'       => '($1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4)',
+'file-info'            => 'bestandsgrootte: $1, MIME-type: $2',
+'file-info-size'       => '$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4',
 'file-nohires'         => '<small>Geen hogere resolutie beschikbaar.</small>',
-'svg-long-desc'        => '(SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3)',
+'svg-long-desc'        => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'show-big-image'       => 'Volledige resolutie',
 'show-big-image-thumb' => '<small>Afmetingen van deze weergave: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'herhalend',
@@ -3460,6 +3464,18 @@ Open de volgende verwijzing in uw webbrowser om te bevestigen dat u deze gebruik
 $3
 
 Als u uzelf *niet* hebt aangemeld, volg dan de volgende verwijzing om de bevestiging van uw e-mailadres te annuleren:
+
+$5
+
+De bevestigingscode vervalt op $4.',
+'confirmemail_body_set'     => 'Iemand, waarschijnlijk u, met het IP-adres $1,
+heeft het het e-mailadres voor gebruiker "$2" op {{SITENAME}} ingesteld op dit e-mailadres.
+
+Open de volgende verwijzing in uw webbrowser om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} opnieuw te activeren:
+
+$3
+
+Als u zelf deze wijziging *niet* hebt gemaakt, volg dan de volgende verwijzing om de bevestiging van uw e-mailadres te annuleren:
 
 $5
 

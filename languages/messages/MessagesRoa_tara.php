@@ -53,8 +53,10 @@ $messages = array(
 'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-oldsig'                  => "Andeprime d'a firme esistende:",
 'tog-fancysig'                => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
-'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
-'tog-externaldiff'            => "Ause na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tue)",
+'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tune. <br />
+[http://www.mediawiki.org/wiki/Manual:External_editors Pe cchiù 'mbormaziune.])",
+'tog-externaldiff'            => "Ause 'na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tune. <br />
+[http://www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks'           => 'Abbilite "zumbe a" pe accedere a le collegaminde',
 'tog-uselivepreview'          => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
 'tog-forceeditsummary'        => "Ciercheme conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
@@ -479,6 +481,7 @@ Prueve n'otra vote.",
 Mitta n'otra vota.",
 'passwordtooshort'           => 'Le password onne a essere almene {{PLURAL:$1|1 carattere|$1 carattere}}.',
 'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
+'password-login-forbidden'   => "L'ause de stu nome utende e passuord onne state vietate.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
 'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4).
@@ -1176,6 +1179,10 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-displaysearchoptions'    => "Fà vedè l'opzione",
 'prefs-displaywatchlist'        => "Fà vedè l'opzione",
 'prefs-diffs'                   => 'Diff',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "L'indirizze e-mail pare valide",
+'email-address-validity-invalid' => "Mitte 'n'indirizze e-mail valide",
 
 # User rights
 'userrights'                     => 'Gestione de le deritte utende',
@@ -2677,7 +2684,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'math_lexing_error'     => 'errore de lessiche',
 'math_syntax_error'     => 'errore de sintassi',
 'math_image_error'      => "'A conversione d'u PNG ha fallite;
-condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
+condrolle ce l'installazione de latex e dvips (o dvipg + gs + convertitore) jè corrette",
 'math_bad_tmpdir'       => "Non ge puè scrivere o ccrejà 'na cartelle temboranea de math",
 'math_bad_output'       => "Non ge puè scrivere o ccrejà 'na cartelle de destinazzione de math",
 'math_notexvc'          => 'texvc eseguibbele perdute;
@@ -2723,10 +2730,10 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'         => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'            => "Dimenziona d'a miniature:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
-'file-info'            => "(dimenzione d'u fail: $1, tipe de MIME: $2)",
-'file-info-size'       => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
+'file-info'            => "dimenzione d'u fail: $1, tipe de MIME: $2",
+'file-info-size'       => "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
 'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",
-'svg-long-desc'        => "(Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3)",
+'svg-long-desc'        => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
 'show-big-image'       => 'Risoluzione chiena chiena',
 'show-big-image-thumb' => '<small>Dimenziune de sta andeprime: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'infinite',

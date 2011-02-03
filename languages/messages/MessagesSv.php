@@ -37,6 +37,7 @@
  * @author StefanB
  * @author Steinninn
  * @author Str4nd
+ * @author Tobulos1
  * @author Where next Columbus
  * @author Where next Columbus?
  * @author לערי ריינהארט
@@ -306,7 +307,7 @@ $messages = array(
 'tog-underline'               => 'Stryk under länkar',
 'tog-highlightbroken'         => 'Formatera trasiga länkar <a href="" class="new">så här</a> (alternativt: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Marginaljustera stycken',
-'tog-hideminor'               => 'Visa inte mindre redigeringar i Senaste ändringar',
+'tog-hideminor'               => 'Visa inte mindre redigeringar i senaste ändringar',
 'tog-hidepatrolled'           => 'Dölj patrullerade redigeringar i senaste ändringar',
 'tog-newpageshidepatrolled'   => 'Göm patrullerade sidor från listan över nya sidor',
 'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste',
@@ -499,7 +500,7 @@ $messages = array(
 'create'            => 'Skapa',
 'editthispage'      => 'Redigera denna sida',
 'create-this-page'  => 'Skapa denna sida',
-'delete'            => 'radera',
+'delete'            => 'Radera',
 'deletethispage'    => 'Radera denna sida',
 'undelete_short'    => 'Återställ {{PLURAL:$1|en version|$1 versioner}}',
 'protect'           => 'Skrivskydda',
@@ -1425,6 +1426,10 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-displaysearchoptions'    => 'Visningalternativ',
 'prefs-displaywatchlist'        => 'Visningalternativ',
 'prefs-diffs'                   => 'Skillnader',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Ser giltig ut',
+'email-address-validity-invalid' => 'Giltig adress krävs!',
 
 # User rights
 'userrights'                   => 'Hantering av användarrättigheter',
@@ -2970,10 +2975,10 @@ Om du kör den kan din dator skadas.",
 'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
-'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
-'file-info-size'       => '($1 × $2 pixel, filstorlek: $3, MIME-typ: $4)',
+'file-info'            => 'filstorlek: $1, MIME-typ: $2',
+'file-info-size'       => '$1 × $2 pixel, filstorlek: $3, MIME-typ: $4',
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',
-'svg-long-desc'        => '(SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3)',
+'svg-long-desc'        => 'SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3',
 'show-big-image'       => 'Högupplöst version',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'upprepad',
@@ -3338,6 +3343,20 @@ för att avbryta bekräftelsen av e-postadressen:
 $5
 
 Denna bekräftelsekod kommer inte att fungera efter $4.',
+'confirmemail_body_set'     => 'Någon, förmodligen du, från IP-adressen $1,
+har satt e-postadressen till kontot "$2" till den här adressen {{SITENAME}}.
+
+För att bekräfta att kontot verkligen tillhör dig, bör du återaktivera
+e-post funktionerna på {{SITENAME}}, öppna denna länk i din webbläsare:
+
+$3
+
+Om kontot *inte* tillhör dig, följ den här länken
+för att avbryta bekräftelsen av e-postadressen:
+
+$5
+
+Denna bekräftelsekod kommer att sluta fungera efter $4.',
 'confirmemail_invalidated'  => 'Bekräftelsen av e-postadressen har ogiltigförklarats',
 'invalidateemail'           => 'Avbryt bekräftelse av e-postadress',
 

@@ -635,6 +635,20 @@ Wenn Sie das genannte Benutzerkonto *nicht* registriert haben, folgen Sie diesem
 $5
 
 Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
+'confirmemail_body_set'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst,
+hat die E-Mail-Adresse des Benutzerkontos „$2“ auf {{SITENAME}} zu dieser E-Mail-Adresse abgeändert.
+
+Um zu bestätigen, dass dieses Benutzerkonto wirklich zu Ihnen gehört
+und um die E-Mail-Funktionen auf {{SITENAME}} wieder zu aktivieren, öffnen Sie bitte den folgenden Link in Ihrem Browser:
+
+$3
+
+Falls das Konto *nicht* zu Ihnen gehört, bitte den nachfolgenden Link öffnen,
+um die Bestätigung der E-Mail-Adresse abzubrechen:
+
+$5
+
+Dieser Bestätigungscode ist gültig bis $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben sie zu bearbeiten!

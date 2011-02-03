@@ -374,8 +374,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Zobrazovat počet sledujících uživatelů',
 'tog-oldsig'                  => 'Náhled stávajícího podpisu:',
 'tog-fancysig'                => 'Používat v podpisu wikitext (bez automatického odkazu)',
-'tog-externaleditor'          => 'Implicitně používat externí editor',
-'tog-externaldiff'            => 'Implicitně používat externí porovnávací program',
+'tog-externaleditor'          => 'Implicitně používat externí editor (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [http://www.mediawiki.org/wiki/Manual:External_editors další informace])',
+'tog-externaldiff'            => 'Implicitně používat externí porovnávací program (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [http://www.mediawiki.org/wiki/Manual:External_editors další informace])',
 'tog-showjumplinks'           => 'Používat odkazy „skočit na“ pro vyšší přístupnost',
 'tog-uselivepreview'          => 'Používat rychlý náhled (JavaScript) (Experimentální)',
 'tog-forceeditsummary'        => 'Upozornit, když nevyplním shrnutí editace',
@@ -1448,6 +1448,10 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'prefs-displaysearchoptions'    => 'Možnosti zobrazení',
 'prefs-displaywatchlist'        => 'Možnosti zobrazení',
 'prefs-diffs'                   => 'Porovnání verzí',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mailová adresa vypadá platně',
+'email-address-validity-invalid' => 'Zadejte platnou e-mailovou adresu',
 
 # User rights
 'userrights'                   => 'Správa uživatelských skupin',
@@ -2959,10 +2963,10 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
-'file-info'            => '(velikost souboru: $1, MIME typ: $2)',
-'file-info-size'       => '(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
+'file-info'            => 'velikost souboru: $1, MIME typ: $2',
+'file-info-size'       => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
 'file-nohires'         => '<small>Větší rozlišení není k dispozici.</small>',
-'svg-long-desc'        => '(soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3)',
+'svg-long-desc'        => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
 'show-big-image'       => 'Obrázek ve vyšším rozlišení',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 'file-info-gif-looped' => 've smyčce',
@@ -3320,6 +3324,21 @@ $3
 
 Pokud jste o toto potvrzení *nežádali*, klikněte na následující odkaz,
 čímž potvrzení zrušíte:
+
+$5
+
+Platnost tohoto potvrzovacího kódu vyprší $4.',
+'confirmemail_body_set'     => 'Někdo (patrně vy, z IP adresy $1) nastavil e-mailovou adresu
+účtu „$2“ na {{grammar:6sg|{{SITENAME}}}} na tuto adresu.
+
+Pokud si přejete znovu aktivovat e-mailové funkce na
+{{grammar:6sg|{{SITENAME}}}}, tak pro potvrzení, že tato adresa opravdu
+patří vám, přejděte svým internetovým prohlížečem na následující adresu:
+
+$3
+
+Pokud vám tento účet *nepatří*, klikněte na následující
+odkaz, čímž potvrzení zrušíte:
 
 $5
 

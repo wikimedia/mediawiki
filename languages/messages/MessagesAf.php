@@ -1328,6 +1328,10 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'prefs-displaywatchlist'        => 'Weergaweopsies',
 'prefs-diffs'                   => 'Verskille',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Die e-posadres lyk geldig',
+'email-address-validity-invalid' => "Verskaf 'n geldige e-posadres",
+
 # User rights
 'userrights'                   => 'Bestuur gebruikersregte',
 'userrights-lookup-user'       => 'Beheer gebruikersgroepe',
@@ -2818,7 +2822,7 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'math_lexing_error'     => 'leksikale fout',
 'math_syntax_error'     => 'sintaksfout',
 'math_image_error'      => 'PNG-omskakeling het gefaal.
-Kontroleer of latex, dvips en gs korrek geïnstalleer is en skakel om',
+Kontroleer of LaTeX en dvipng (of dvips + gs + convert) korrek geïnstalleer is.',
 'math_bad_tmpdir'       => 'Die gids vir tydelike lêers vir wiskundige formules bestaan nie of kan nie geskep word nie',
 'math_bad_output'       => 'Die gids vir lêers met wiskundige formules bestaan nie of kan nie geskep word nie',
 'math_notexvc'          => 'Kan nie die texvc program vind nie;
@@ -2863,10 +2867,10 @@ $1',
 'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
-'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',
-'file-info-size'       => '($1 × $2 pixels, lêergrootte: $3, MIME type: $4)',
+'file-info'            => 'lêergrootte: $1, MIME-tipe: $2',
+'file-info-size'       => '$1 × $2 pixels, lêergrootte: $3, MIME type: $4',
 'file-nohires'         => '<small>Geen hoër resolusie is beskikbaar nie.</small>',
-'svg-long-desc'        => '(SVG-lêer, nominaal $1 × $2 pixels, lêergrootte: $3)',
+'svg-long-desc'        => 'SVG-lêer, nominaal $1 × $2 pixels, lêergrootte: $3',
 'show-big-image'       => 'Volle resolusie',
 'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'herhalend',

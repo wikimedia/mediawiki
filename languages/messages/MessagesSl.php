@@ -212,8 +212,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži število uporabnikov, ki spremljajo temo',
 'tog-oldsig'                  => 'Predogled obstoječega podpisa:',
 'tog-fancysig'                => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
-'tog-externaleditor'          => 'Po privzetem uporabljaj zunanji urejevalnik',
-'tog-externaldiff'            => 'Po privzetem uporabljaj zunanje primerjanje',
+'tog-externaleditor'          => 'Po privzetem uporabljaj zunanji urejevalnik (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
+'tog-externaldiff'            => 'Po privzetem uporabljaj zunanje primerjanje (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
 'tog-showjumplinks'           => 'Prikaži pomožni povezavi »Skoči na«',
 'tog-uselivepreview'          => 'Uporabi hitri predogled (zahteva JavaScript) (preizkusno)',
 'tog-forceeditsummary'        => 'Ob vpisu praznega povzetka urejanja me opozori',
@@ -1312,6 +1312,10 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'prefs-displaysearchoptions'    => 'Možnosti prikaza',
 'prefs-displaywatchlist'        => 'Možnosti prikaza',
 'prefs-diffs'                   => 'Primerjave',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Izgleda veljaven',
+'email-address-validity-invalid' => 'Obvezen je veljaven naslov!',
 
 # User rights
 'userrights'                   => 'Upravljanje s pravicami uporabnikov',
@@ -2856,9 +2860,9 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'widthheight'          => '$1&nbsp;×&nbsp;$2',
 'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|stran|strani}}',
 'file-info'            => 'Velikost datoteke: $1, MIME-vrsta: <code>$2</code>',
-'file-info-size'       => '($1 × $2 točk, velikost datoteke: $3, MIME-vrsta: $4)',
+'file-info-size'       => '$1 × $2 točk, velikost datoteke: $3, MIME-vrsta: $4',
 'file-nohires'         => '<small>Slika višje ločljivosti ni na voljo.</small>',
-'svg-long-desc'        => '(datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3)',
+'svg-long-desc'        => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'show-big-image'       => 'Slika v višji ločljivosti',
 'show-big-image-thumb' => '<small>Velikost predogleda: $1 × $2 točk</small>',
 'file-info-gif-looped' => 'ponavljajoče',
@@ -3217,20 +3221,34 @@ in tako prekličite potrditev elektronskega naslova:
 $5
 
 Potrditvena koda bo potekla $4.',
-'confirmemail_body_changed' => 'Nekdo, najverjetneje vi, je iz IP-naslova $1
-na strani {{SITENAME}} spremenil e-poštni naslov računa »$2« v ta naslov.
+'confirmemail_body_changed' => 'Nekdo, najverjetneje vi, je z IP-naslova $1
+na strani {{SITENAME}} spremenil e-poštni naslov računa »$2« na ta naslov.
 
 Da potrdite lastništvo tega računa in ponovno aktivirate
 e-poštne funkcije na {{GRAMMAR:dajalnik|{{SITENAME}}}}, odprite to povezavo v vašem brskalniku:
 
 $3
 
-Če ta račun *ni* vaš, sledite spodnji povezavi za preklic
+Če omenjeni račun *ni* vaš, sledite spodnji povezavi za preklic
 potrditve e-poštnega naslova:
 
 $5
 
-Ta potrditvena koda poteče $4.',
+Potrditvena koda poteče $4.',
+'confirmemail_body_set'     => 'Nekdo, najverjetneje vi, je z IP-naslova $1
+na strani {{SITENAME}} nastavil e-poštni naslov računa »$2« na ta naslov.
+
+Da potrdite lastništvo tega računa in ponovno aktivirate
+e-poštne funkcije na {{GRAMMAR:dajalnik|{{SITENAME}}}}, odprite to povezavo v vašem brskalniku:
+
+$3
+
+Če omenjeni račun *ni* vaš, sledite spodnji povezavi za preklic
+potrditve e-poštnega naslova:
+
+$5
+
+Potrditvena koda poteče $4.',
 'confirmemail_invalidated'  => 'Potrditev e-poštnega naslova preklicana',
 'invalidateemail'           => 'Prekliči potrditev e-poštnega naslova',
 

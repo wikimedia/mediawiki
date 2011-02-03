@@ -54,7 +54,7 @@ $messages = array(
 'tog-watchlisthidebots'       => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 'tog-watchlisthideminor'      => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 'tog-watchlisthideliu'        => "In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent registrè",
-'tog-watchlisthideanons'      => " ↓ In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent senza nom",
+'tog-watchlisthideanons'      => "In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent senza nom",
 'tog-watchlisthidepatrolled'  => "Nascond tòt al mudèfic za cuntrulèdi in tla lèsta dal pàgin da tnì d'occ",
 'tog-ccmeonemails'            => "Mènd'm una còpia d'j mesèg ch'a spedèss a j étar druvador",
 'tog-diffonly'                => "T'an fëga avdé e' contnù dla pàgina dop e' cunfront tra l'versiòn",
@@ -702,9 +702,9 @@ Par piasé, met insem al du pàgin te, fasend copia e incola.",
 'nextdiff'     => 'Mudèfica piò nova →',
 
 # Media information
-'file-info-size'       => "($1 × $2 pixel, amsùra d'e' file: $3, tipo MIME: $4)",
+'file-info-size'       => "$1 × $2 pixel, amsùra d'e' file: $3, tipo MIME: $4",
 'file-nohires'         => "<small>U n' è pusèbil d'avdé cun òna risoluziòn piò élta. </small>",
-'svg-long-desc'        => "(file d'taja SVG, dimensiòn numinèli $1 × $2 pixel, dimensiòn d'e' file: $3)",
+'svg-long-desc'        => "file d'taja SVG, dimensiòn numinèli $1 × $2 pixel, dimensiòn d'e' file: $3",
 'show-big-image'       => 'Versiòn ad amsura pina',
 'show-big-image-thumb' => "<small>Amsùra d'sta versiòn: $1 × $2 pixel</small>",
 

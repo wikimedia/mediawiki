@@ -595,9 +595,9 @@ Toož, võittõ tširjutta väänteüssee süü.',
 'nextdiff'     => 'Uuvvõpi muutuz →',
 
 # Media information
-'file-info-size'       => '($1 × $2 px, $3, MIME-sortta: $4)',
+'file-info-size'       => '$1 × $2 px, $3, MIME-sortta: $4',
 'file-nohires'         => '<small>Suurõpaa kuva ebõõ.</small>',
-'svg-long-desc'        => '(SVG-faili $1 × $2 px, failii suuruz: $3)',
+'svg-long-desc'        => 'SVG-faili $1 × $2 px, failii suuruz: $3',
 'show-big-image'       => 'Kõrka-rezoľuuttsiin verzija',
 'show-big-image-thumb' => '<small>Prestavľeńńaa suuruz: $1 × $2 px</small>',
 

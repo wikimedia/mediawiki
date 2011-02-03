@@ -11,6 +11,7 @@
  * @author Kayau
  * @author Mark85296341
  * @author PhiLiP
+ * @author Waihorace
  * @author Wong128hk
  * @author Yukiseaside
  * @author Yuyu
@@ -43,6 +44,13 @@ $messages = array(
 'october'   => '十月',
 'november'  => '十一月',
 'december'  => '十二月',
+
+'mainpagedocfooter' => '請參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！
+
+== 入門 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
 
 'mytalk' => '我的討論頁',
 
@@ -79,6 +87,9 @@ $messages = array(
 
 # Search results
 'search-mwsuggest-disabled' => '沒有意見',
+
+# Preferences page
+'prefs-help-gender' => '可選：用於軟件中的性別指定。此項資料將會被公開。',
 
 # Groups
 'group-bot' => '機械人',

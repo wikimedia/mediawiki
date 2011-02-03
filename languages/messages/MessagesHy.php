@@ -845,7 +845,7 @@ $2',
 'noarticletext'                    => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission'       => 'Ներկայումս այս էջում որևէ տեքստ չկա։
-Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանունը]] այլ էջերում կամ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել այն տեղեկամատյաններում]</span>.',
+Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանունը]] այլ էջերում կամ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել այն տեղեկամատյաններում]</span>։',
 'userpage-userdoesnotexist'        => '«$1» անվանմամբ մասնակից գոյություն չունի։
 Խնդրում ենք հավաստիանալ նրանում, թե արդյոք ուզում եք ստեղծել/խմբագրել այս էջը։',
 'userpage-userdoesnotexist-view'   => '«$1» անվանմամբ գրանցված մասնակից չկա։',
@@ -2266,10 +2266,10 @@ $1',
 'imagemaxsize'         => 'Պատկերի էջում պատկերի չափի սահմանափակում.',
 'thumbsize'            => 'Պատկերների փոքրացված չափ.',
 'widthheightpage'      => '$1 × $2, $3 էջեր',
-'file-info'            => '(ֆայլի չափ. $1, MIME-տեսակ. $2)',
-'file-info-size'       => '($1 × $2 փիքսել, ֆայլի չափ՝ $3, MIME-տեսակ՝ $4)',
+'file-info'            => 'ֆայլի չափ. $1, MIME-տեսակ. $2',
+'file-info-size'       => '$1 × $2 փիքսել, ֆայլի չափ՝ $3, MIME-տեսակ՝ $4',
 'file-nohires'         => '<small>Բարձր թույլատվությամբ տարբերակ չկա։</small>',
-'svg-long-desc'        => '(SVG-ֆայլ, անվանապես $1 × $2 փիքսել, ֆայլի չափ. $3)',
+'svg-long-desc'        => 'SVG-ֆայլ, անվանապես $1 × $2 փիքսել, ֆայլի չափ. $3',
 'show-big-image'       => 'Լրիվ թույլատվությամբ',
 'show-big-image-thumb' => '<small>Նախադիտման չափ. $1 × $2 փիքսել</small>',
 

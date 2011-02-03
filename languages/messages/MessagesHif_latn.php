@@ -45,8 +45,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
 'tog-oldsig'                  => 'Abhi ke signature ke preview:',
 'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
-'tog-externaleditor'          => 'Apne se bahaari editor ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
-'tog-externaldiff'            => 'Apne se bahaari diff ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
+'tog-externaleditor'          => 'Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => ' Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => '"jump to" accessibility jorr ke laabu karo',
 'tog-uselivepreview'          => 'Jinda jhalak ke kaam me lao (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Ek khali badlao waala summary ke likhe ke time hamse puchho',
@@ -461,6 +461,7 @@ Aapan spelling check karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
 'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
 'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
+'password-login-forbidden'   => 'Ii sadasya ke naam aur password ke kaam me laae ke ijaajat nai hae.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi (hoe sake hai aap, IP address $1 se)
@@ -1151,6 +1152,10 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-displaysearchoptions'    => 'Choice dekhao',
 'prefs-displaywatchlist'        => 'Choice dekhao',
 'prefs-diffs'                   => 'Farka',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mail address kanuni hae',
+'email-address-validity-invalid' => 'Ek kanuni e-mail ke likho',
 
 # User rights
 'userrights'                   => 'Sadasya ke adhikaar ke chalao',
@@ -2624,8 +2629,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'math_unknown_function' => 'nai samajhta ki ii kon chij khatir hai',
 'math_lexing_error'     => 'lexing me galti',
 'math_syntax_error'     => 'syntax me galti',
-'math_image_error'      => 'PNG conversion fail hoe gais;
-latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
+'math_image_error'      => 'PNG conversion fail hoe gais; latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
 'math_bad_tmpdir'       => 'Math temporary directory nai banae sakta hai',
 'math_bad_output'       => 'Math output directory me likhe nai to banae nai sakta hai',
 'math_notexvc'          => 'Texvc executable nai hai;
@@ -2671,10 +2675,10 @@ Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
 'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',
-'file-info'            => '(file etnaa barraa: $1, MIME rakam: $2)',
-'file-info-size'       => '($1 × $2 pixel, file ke size: $3, MIME type: $4)',
+'file-info'            => 'file etnaa barraa: $1, MIME rakam: $2',
+'file-info-size'       => '$1 × $2 pixel, file ke size: $3, MIME type: $4',
 'file-nohires'         => '<small>Aur achchha resolution nai hai.</small>',
-'svg-long-desc'        => '(SVG file, naam kare ke khatir  $1 × $2 pixels, file size: $3)',
+'svg-long-desc'        => 'SVG file, naam kare ke khatir  $1 × $2 pixels, file size: $3',
 'show-big-image'       => 'Puura resolution',
 'show-big-image-thumb' => '<small>Ii preview ke size: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'Ghuum ghumae ke wahii jagha pe aawe hae',

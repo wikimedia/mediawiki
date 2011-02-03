@@ -357,14 +357,14 @@ $messages = array(
 'tog-editsection'             => 'Activer les modifications de sections grâce aux liens « [modifier] »',
 'tog-editsectiononrightclick' => 'Un clic droit sur un titre de section permet de modifier celle-ci (nécessite JavaScript)',
 'tog-showtoc'                 => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
-'tog-rememberpassword'        => 'Se souvenir de mon identification dans ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
+'tog-rememberpassword'        => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'tog-watchcreations'          => 'Ajouter les pages que je crée à ma liste de suivi',
 'tog-watchdefault'            => 'Ajouter les pages que je modifie à ma liste de suivi',
 'tog-watchmoves'              => 'Ajouter les pages que je renomme à ma liste de suivi',
 'tog-watchdeletion'           => 'Ajouter les pages que je supprime à ma liste de suivi',
 'tog-minordefault'            => 'Marquer mes modifications comme mineures par défaut',
-'tog-previewontop'            => 'Montrer la prévisualisation au-dessus de la zone de modification',
-'tog-previewonfirst'          => 'Montrer la prévisualisation lors de la première modification',
+'tog-previewontop'            => 'Afficher la prévisualisation au-dessus de la zone de modification',
+'tog-previewonfirst'          => 'Afficher la prévisualisation lors de la première modification',
 'tog-nocache'                 => 'Désactiver le cache des pages par le navigateur',
 'tog-enotifwatchlistpages'    => 'M’avertir par courrier électronique lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
@@ -373,8 +373,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig'                  => 'Aperçu de la signature existante :',
 'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
-'tog-externaleditor'          => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur)',
-'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
+'tog-externaleditor'          => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur. [http://www.mediawiki.org/wiki/Manual:External_editors/fr Plus d’informations].)',
+'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur. [http://www.mediawiki.org/wiki/Manual:External_editors/fr Plus d’informations].)',
 'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page',
 'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (nécessite JavaScript) (expérimental)',
 'tog-forceeditsummary'        => 'M’avertir lorsque je n’ai pas spécifié de résumé de modification',
@@ -393,7 +393,7 @@ $messages = array(
 
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
-'underline-default' => 'Selon le navigateur',
+'underline-default' => 'Valeur par défaut du navigateur',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Style de police de la zone d’édition :',
@@ -1320,10 +1320,10 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searcheverything-enable'          => 'Rechercher dans tous les espaces de noms',
 'searchrelated'                    => 'relaté',
 'searchall'                        => 'tout',
-'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
-'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
+'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du n°<b>$2</b>.',
+'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du n°<b>$2</b>.',
 'showingresultsheader'             => "{{PLURAL:$5|Résultat '''$1'''|Résultats '''$1–$2'''}} de '''$3''' pour '''$4'''",
-'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont fouillés par défaut.
+'nonefound'                        => "'''Note''' : par défaut, seuls certains espaces de noms sont utilisés pour la recherche.
 Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
 'search-nonefound'                 => 'Il n’y a aucun résultat correspondant à la requête.',
 'powersearch'                      => 'Rechercher',
@@ -1458,6 +1458,10 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'prefs-displaywatchlist'        => 'Options d’affichage',
 'prefs-diffs'                   => 'Différences',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Semble valide',
+'email-address-validity-invalid' => 'Une adresse valide est nécessaire !',
+
 # User rights
 'userrights'                   => 'Gestion des droits des utilisateurs',
 'userrights-lookup-user'       => 'Gestion des groupes d’utilisateurs',
@@ -1490,12 +1494,12 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'group-suppress'      => 'Superviseurs',
 'group-all'           => '(tous)',
 
-'group-user-member'          => 'Utilisateur',
-'group-autoconfirmed-member' => 'Utilisateur enregistré',
+'group-user-member'          => 'utilisateur',
+'group-autoconfirmed-member' => 'utilisateur enregistré',
 'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'Administrateur',
-'group-bureaucrat-member'    => 'Bureaucrate',
-'group-suppress-member'      => 'Superviseur',
+'group-sysop-member'         => 'administrateur',
+'group-bureaucrat-member'    => 'bureaucrate',
+'group-suppress-member'      => 'superviseur',
 
 'grouppage-user'          => '{{ns:project}}:Utilisateurs',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
@@ -1634,7 +1638,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'diff'                              => 'diff',
 'hist'                              => 'hist',
 'hide'                              => 'masquer',
-'show'                              => 'afficher',
+'show'                              => 'Afficher',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1713,7 +1717,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'unknown-error'               => 'Une erreur inconnue s’est produite.',
 'tmp-create-error'            => 'Impossible de créer le fichier temporaire.',
 'tmp-write-error'             => 'Erreur d’écriture du fichier temporaire.',
-'large-file'                  => 'Les fichiers téléversés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
+'large-file'                  => 'Les fichiers téléversés ne devraient pas dépasser $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez téléverser semble vide.
 Ceci peut être dû à une erreur dans le nom du fichier.
@@ -1999,7 +2003,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 # Miscellaneous special pages
 'nbytes'                  => '$1 octet{{PLURAL:$1||s}}',
 'ncategories'             => '$1 catégorie{{PLURAL:$1||s}}',
-'nlinks'                  => '$1 lien{{PLURAL:$1||s}}',
+'nlinks'                  => '$1 {{PLURAL:$1|page liée|pages liées}}',
 'nmembers'                => '$1 membre{{PLURAL:$1||s}}',
 'nrevisions'              => '$1 version{{PLURAL:$1||s}}',
 'nviews'                  => '$1 consultation{{PLURAL:$1||s}}',
@@ -2008,10 +2012,10 @@ Les entrées <del>barrées</del> ont été résolues.',
 'specialpage-empty'       => 'Il n’y a aucun résultat à afficher.',
 'lonelypages'             => 'Pages orphelines',
 'lonelypagestext'         => 'Les pages suivantes ne sont ni pointées, ni incluses par d’autres pages du wiki.',
-'uncategorizedpages'      => 'Pages non catégorisées',
-'uncategorizedcategories' => 'Catégories non catégorisées',
-'uncategorizedimages'     => 'Fichiers non catégorisés',
-'uncategorizedtemplates'  => 'Modèles sans catégorie',
+'uncategorizedpages'      => 'Pages sans catégories',
+'uncategorizedcategories' => 'Catégories sans catégories',
+'uncategorizedimages'     => 'Fichiers sans catégories',
+'uncategorizedtemplates'  => 'Modèles sans catégories',
 'unusedcategories'        => 'Catégories inutilisées',
 'unusedimages'            => 'Fichiers orphelins',
 'popularpages'            => 'Pages les plus consultées',
@@ -2026,7 +2030,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'mostcategories'          => 'Pages utilisant le plus de catégories',
 'mostimages'              => 'Fichiers les plus utilisés',
 'mostrevisions'           => 'Pages les plus modifiées',
-'prefixindex'             => 'Toutes les pages débutant par…',
+'prefixindex'             => 'Toutes les pages commençant par…',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
 'deadendpages'            => 'Pages en impasse',
@@ -2272,7 +2276,7 @@ Retour et assistance :
 'exblank'                => 'la page était vide',
 'delete-confirm'         => 'Supprimer « $1 »',
 'delete-legend'          => 'Supprimer',
-'historywarning'         => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique qui contient approximativement $1 {{PLURAL:$1|révision|révisions}} :",
+'historywarning'         => "'''Attention :''' la page que vous êtes sur le point de supprimer a un historique avec environ $1 {{PLURAL:$1|version|versions}} :",
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',
@@ -3010,9 +3014,9 @@ Si vous l’exécutez, votre système peut être compromis.",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'            => 'Taille du fichier : $1, type MIME : $2',
-'file-info-size'       => '($1 × $2 pixels, taille du fichier : $3, type MIME : $4)',
+'file-info-size'       => '$1 × $2 pixels, taille du fichier : $3, type MIME : $4',
 'file-nohires'         => '<small>Pas de plus haute résolution disponible.</small>',
-'svg-long-desc'        => '(Fichier SVG, résolution de $1 × $2 pixels, taille : $3)',
+'svg-long-desc'        => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'show-big-image'       => 'Image en plus haute résolution',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'en boucle',
@@ -3042,8 +3046,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 # Metadata
 'metadata'          => 'Métadonnées',
 'metadata-help'     => 'Ce fichier contient des informations supplémentaires, probablement ajoutées par l’appareil photo numérique ou le numériseur utilisé pour le créer. Si le fichier a été modifié depuis son état original, certains détails peuvent ne pas refléter entièrement l’image modifiée.',
-'metadata-expand'   => 'Montrer les informations détaillées',
-'metadata-collapse' => 'Cacher les informations détaillées',
+'metadata-expand'   => 'Afficher les informations détaillées',
+'metadata-collapse' => 'Masquer les informations détaillées',
 'metadata-fields'   => 'Les champs de métadonnées d’EXIF listés dans ce message seront inclus dans la page de description de l’image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.
 * make
 * model
@@ -3392,6 +3396,19 @@ confirmation de votre adresse courriel :
 $5
 
 Ce code de confirmation expirera le $4.',
+'confirmemail_body_set'     => "Quelqu'un, probablement vous, de l'adresse IP address $1,
+a modifié l'adresse de courriel du compte « $2 » à cette adresse sur {{SITENAME}}.
+
+Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel
+sur {{SITENAME}}, ouvrez ce lien dans votre navigateur web :
+
+$3
+
+Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l'adresse de courriel :
+
+$5
+
+Ce code de confirmation expirera le $4.",
 'confirmemail_invalidated'  => 'Confirmation de l’adresse courriel annulée',
 'invalidateemail'           => 'Annuler la confirmation de l’adresse de courriel',
 

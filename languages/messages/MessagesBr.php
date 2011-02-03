@@ -194,8 +194,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Diskouez an niver a lennerien',
 'tog-oldsig'                  => 'Rakwelet ar sinadur zo evit poent :',
 'tog-fancysig'                => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
-'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
-'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
+'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
+'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
 'tog-showjumplinks'           => 'Gweredekaat al liammoù moned "lammat da"',
 'tog-uselivepreview'          => 'Implijout Rakwelet prim (JavaScript) (taol-arnod)',
 'tog-forceeditsummary'        => 'Kemenn din pa ne skrivan netra er stern diverrañ',
@@ -1279,6 +1279,10 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'prefs-displaysearchoptions'    => 'Dibarzhioù diskwel',
 'prefs-displaywatchlist'        => 'Dibarzhioù diskwel',
 'prefs-diffs'                   => "Diforc'hioù",
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "Reizh eo ar chomlec'h postel war a seblant",
+'email-address-validity-invalid' => "Ebarzhit ur chomlec'h postel reizh",
 
 # User rights
 'userrights'                   => 'Merañ statud an implijerien',
@@ -2822,10 +2826,10 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'imagemaxsize'         => "Bevenn ment vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
 'thumbsize'            => 'Ment an alberz :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pajenn|pajenn}}',
-'file-info'            => '(ment ar restr : $1, seurt MIME : $2)',
-'file-info-size'       => '($1 × $2 piksel, ment ar restr : $3, seurt MIME : $4)',
+'file-info'            => 'ment ar restr : $1, seurt MIME : $2',
+'file-info-size'       => '$1 × $2 piksel, ment ar restr : $3, seurt MIME : $4',
 'file-nohires'         => "<small>N'haller ket gwellaat ar pizhder.</small>",
-'svg-long-desc'        => '(restr SVG file, pizhder $1 × $2 piksel, ment ar restr : $3)',
+'svg-long-desc'        => 'restr SVG file, pizhder $1 × $2 piksel, ment ar restr : $3',
 'show-big-image'       => 'Pizhder leun',
 'show-big-image-thumb' => '<small>Ment ar rakweled-mañ : $1 × $2 piksel</small>',
 'file-info-gif-looped' => "e kelc'h",
@@ -3189,6 +3193,20 @@ evit nullañ kadarnaat ar chomlec'h postel :
 \$5
 
 Mont a raio ar c'hod kadarnaat-mañ d'e dermen d'ar \$4.",
+'confirmemail_body_set'     => "Unan bennak, c'hwi moarvat, gant ar chomlec'h IP \$1,
+en deus enrollet ur gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
+
+Evit kadarnaat eo deoc'h ar gont-se ha gweredekaat en-dro
+an arc'hwelioù postelerezh war {{SITENAME}}, digorit al liamm-mañ en ho merdeer :
+
+\$3
+
+Ma n'eo *ket* deoc'h ar gont heuilhit al liamm-mañ
+evit nullañ kadarnaat ar chomlec'h postel :
+
+\$5
+
+Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
 'confirmemail_invalidated'  => "Nullet eo bet kadarnaat ar chomlec'h postel",
 'invalidateemail'           => 'Nullañ kadarnaat ar postel',
 

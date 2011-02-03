@@ -1235,6 +1235,9 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'prefs-displaywatchlist'        => 'Weddergaav-Instellungen',
 'prefs-diffs'                   => 'Ünnerscheed',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'E-Mail-Adress lett good',
+
 # User rights
 'userrights'                  => 'Brukerrechten inrichten',
 'userrights-lookup-user'      => 'Brukergruppen verwalten',
@@ -2585,10 +2588,10 @@ $1',
 'imagemaxsize'         => 'Biller op de Bildsied begrenzen op:',
 'thumbsize'            => 'Grött vun dat Duumnagel-Bild:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|Ene Siet|$3 Sieden}}',
-'file-info'            => '(Grött: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 Pixel, Grött: $3, MIME-Typ: $4)',
+'file-info'            => 'Grött: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 Pixel, Grött: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Gifft dat Bild nich grötter.</small>',
-'svg-long-desc'        => '(SVG-Datei, Utgangsgrött: $1 × $2 Pixel, Dateigrött: $3)',
+'svg-long-desc'        => 'SVG-Datei, Utgangsgrött: $1 × $2 Pixel, Dateigrött: $3',
 'show-big-image'       => 'Dat Bild wat grötter',
 'show-big-image-thumb' => '<small>Grött vun disse Vörschau: $1 × $2 Pixels</small>',
 'file-info-gif-looped' => 'löppt as Slööp',

@@ -1472,9 +1472,9 @@ Biko meríáríá ozor.',
 'nextdiff'     => 'Orü nke ohúrù →',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixel, ívù akwukwo orunótu: $3, MIME nke: $4)',
+'file-info-size'       => '$1 × $2 pixel, ívù akwukwo orunótu: $3, MIME nke: $4',
 'file-nohires'         => '<small>Nke káchá mmá na ányá àdíghị.</small>',
-'svg-long-desc'        => "(ákwúkwó orunotu SVG, nà áhà pixel $1 × $2, ívụ ákwú'notu: $3)",
+'svg-long-desc'        => "ákwúkwó orunotu SVG, nà áhà pixel $1 × $2, ívụ ákwú'notu: $3",
 'show-big-image'       => 'Hü ya ka o dị',
 'show-big-image-thumb' => '<small>Ívù nlétú nke: pixel $1 × $2</small>',
 'file-info-gif-looped' => 'etemte',

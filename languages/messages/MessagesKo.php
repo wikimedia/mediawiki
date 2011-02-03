@@ -322,8 +322,8 @@ $messages = array(
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
 'tog-oldsig'                  => '지금 서명 미리보기:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
-'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
+'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
+'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트 사용, 시험 중)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -1388,6 +1388,10 @@ $1",
 'prefs-displaywatchlist'        => '표시 설정',
 'prefs-diffs'                   => '차이',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '이메일 주소가 유효한 것으로 보입니다.',
+'email-address-validity-invalid' => '유효한 이메일 주소를 입력해주십시오.',
+
 # User rights
 'userrights'                   => '사용자 권한 관리',
 'userrights-lookup-user'       => '사용자 권한 관리',
@@ -2378,6 +2382,7 @@ $1',
 'sp-contributions-newbies-title'       => '새 사용자의 기여',
 'sp-contributions-blocklog'            => '차단 기록',
 'sp-contributions-deleted'             => '삭제된 기여 목록',
+'sp-contributions-uploads'             => '파일 올리기',
 'sp-contributions-logs'                => '기록',
 'sp-contributions-talk'                => '토론',
 'sp-contributions-userrights'          => '사용자 권한 관리',
@@ -2857,7 +2862,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'math_unknown_function' => '알 수 없는 함수',
 'math_lexing_error'     => '어휘 오류',
 'math_syntax_error'     => '구문 오류',
-'math_image_error'      => 'PNG 변환 실패 - latex, dvips, gs, convert가 올바르게 설치되어 있는지 확인해 주세요.',
+'math_image_error'      => 'PNG 변환 실패 - latex, dvipng(혹은 dvips, gs, convert)가 올바르게 설치되어 있는지 확인해 주세요.',
 'math_bad_tmpdir'       => '수식을 임시 폴더에 저장하거나 폴더를 만들 수 없습니다.',
 'math_bad_output'       => '수식을 출력 폴더에 저장하거나 폴더를 만들 수 없습니다.',
 'math_notexvc'          => '실행할 수 있는 texvc이 없습니다. 설정을 위해 math/README를 읽어 주세요.',
@@ -2901,10 +2906,10 @@ $1',
 'imagemaxsize'         => "그림 최대 크기:<br />''(파일 문서에 적용되는 기능)''",
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
-'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
-'file-info-size'       => '($1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4)',
+'file-info'            => '파일 크기: $1, MIME 종류: $2',
+'file-info-size'       => '$1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4',
 'file-nohires'         => '<small>최대 해상도입니다.</small>',
-'svg-long-desc'        => '(SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기 $3)',
+'svg-long-desc'        => 'SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기 $3',
 'show-big-image'       => '최대 해상도',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
 'file-info-gif-looped' => '반복됨',
@@ -3273,6 +3278,17 @@ $3
 $5
 
 인증 코드는 $4에 만료됩니다.',
+'confirmemail_body_set'     => 'IP 주소 $1을 사용하는 누군가가 {{SITENAME}}의 "$2" 계정의 이메일 주소를 지정하였습니다.
+
+이 계정이 당신의 것이며 {{SITENAME}}에서 이메일 기능을 다시 활성화하려면 이 링크를 열어 주십시오:
+
+$3
+
+만약 이 계정이 당신의 것이 아니라면 다음 링크를 클릭해 이메일 주소 인증을 취소하십시오:
+
+$5
+
+이 인증 코드는 $4에 만료됩니다.',
 'confirmemail_invalidated'  => '이메일 확인이 취소됨',
 'invalidateemail'           => '이메일 확인 취소',
 

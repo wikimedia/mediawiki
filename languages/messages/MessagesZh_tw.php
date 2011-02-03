@@ -317,13 +317,13 @@ $messages = array(
 'minoredit'                  => '這是一個細微修改',
 'savearticle'                => '儲存頁面',
 'blockedtitle'               => '使用者被封鎖',
-'confirmedittext'            => '在編輯此頁之前您必須確認您的電子郵件地址。請透過[[Special:Preferences|參數設定]]設定並驗証您的電子郵件地址。',
+'confirmedittext'            => '在編輯此頁之前您必須確認您的電子郵件地址。請透過[[Special:Preferences|偏好設定]]設定並驗證您的電子郵件地址。',
 'accmailtext'                => "'[[User talk:$1|$1]]'的隨機產生密碼已經寄到$2。
 
 這個新帳號的密碼可以在登入後的''[[Special:ChangePassword|更改密碼]]''頁面中更改。",
 'newarticletext'             => '您進入了一個尚未建立的頁面。
 要建立該頁面，請在下面的編輯框中輸入內容(詳情參見[[{{MediaWiki:Helppage}}|說明]])。
-如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
+如果您是不小心來到此頁面，直接點擊您瀏覽器中的「返回」按鈕返回。',
 'anontalkpagetext'           => "---- ''這是一個還未建立帳號的匿名使用者的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名使用者共享。如果您是一名匿名使用者並認為本頁上的評語與您無關，請[[Special:UserLogin|建立新帳號或登入]]以避免在未來於其他匿名使用者混淆。''",
 'noarticletext'              => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
@@ -332,8 +332,10 @@ $messages = array(
 'clearyourcache'             => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 使用者需要在 ''工具-設定'' 中完整地清除它們的快取。",
 'usercsspreview'             => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
 'userjspreview'              => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
-'previewnote'                => "'''請記住這只是預覽，內容還未保存！'''",
-'session_fail_preview'       => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。'''",
+'previewnote'                => "'''請記住這只是預覽，內容尚未儲存！'''",
+'session_fail_preview'       => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
+請再試一次。
+如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html'  => "'''很抱歉！部份資料已遺失，我們無法處理您的編輯。''''''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。'''",
 'token_suffix_mismatch'      => "'''由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網路為主的匿名代理服務的時候。'''",
@@ -366,8 +368,8 @@ $messages = array(
 當中被$3封鎖的原因是''$2''",
 
 # History pages
-'histlegend' => '差異選擇: 標記要比較版本的單選按鈕並點擊底部的按鈕進行比較。<br />
-說明: (目前) 指與目前版本比較，(先前) 指與前一個修訂版本比較，小 = 細微修改。',
+'histlegend' => '差異選擇：標記要比較版本的單選按鈕並點擊底部的按鈕進行比較。<br />
+說明：(目前) 指與目前版本比較，(先前) 指與前一個修訂版本比較，小 = 細微修改。',
 
 # Revision feed
 'history-feed-title'       => '修訂沿革',
@@ -432,18 +434,19 @@ $messages = array(
 'searchresultshead'    => '搜尋結果設定',
 'recentchangesdays'    => '近期變動中的顯示日數:',
 'recentchangescount'   => '近期變動中的編輯數:',
-'savedprefs'           => '您的個人偏好設定已經保存。',
+'savedprefs'           => '您的個人偏好設定已經儲存。',
 'timezonelegend'       => '時區',
 'localtime'            => '當地時間',
 'timezoneoffset'       => '時差¹',
 'servertime'           => '伺服器時間',
 'allowemail'           => '接受來自其他使用者的郵件',
-'defaultns'            => '預設搜尋的名字空間',
+'defaultns'            => '否則在這些名字空間搜尋：',
 'username'             => '使用者名:',
 'uid'                  => '使用者ID:',
 'yournick'             => '暱稱:',
 'badsig'               => '錯誤的原始簽名；請檢查HTML標籤。',
 'badsiglength'         => '你的簽名過長；簽名長度必須在$1個字元以下。',
+'prefs-help-gender'    => '可選：用於軟體中的性別指定。此項資料將會被公開。',
 'prefs-help-realname'  => '真實姓名是選填的，如果您選擇提供它，那它便用以對您的貢獻署名。',
 'prefs-help-email'     => '電子郵件是選填的，但當啟用它後可以在您忘記您的個密碼時需要將新密碼重設寄回給您。而在您未公開自己的使用者身分時也能透過您的用戶頁或用戶討論頁與您聯繫。',
 
@@ -472,7 +475,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges'                     => '近期變動',
-'recentchanges-feed-description'    => '跟蹤此訂閱在 wiki 上的近期變動。',
+'recentchanges-feed-description'    => '追蹤此訂閱在 wiki 上的近期變動。',
 'rcnotefrom'                        => '下面是自<b>$2</b>(最多顯示<b>$1</b>):',
 'rcshowhideminor'                   => '$1細微修改',
 'rcshowhidebots'                    => '$1機器人的編輯',
@@ -574,7 +577,7 @@ $messages = array(
 'unusedimages'        => '未使用圖片',
 'popularpages'        => '熱門頁面',
 'mostimages'          => '最多連結圖片',
-'prefixindex'         => '前綴索引',
+'prefixindex'         => '所有頁面之前綴',
 'deadendpagestext'    => '以下頁面沒有連結到這個wiki中的其它頁面。',
 'listusers'           => '使用者列表',
 'newpages-username'   => '使用者帳號:',
@@ -584,7 +587,7 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => '使用者:',
-'alllogstext'         => '綜合顯示上傳、刪除、保護、封鎖以及站務日誌。',
+'alllogstext'         => '綜合顯示 {{SITENAME}} 的上傳、刪除、保護、查封以及站務日誌。',
 
 # Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',
@@ -667,7 +670,7 @@ $NEWPAGE
 'rollback-success' => '復原由$1的編輯；更改回$2的最後一個版本。',
 
 # Protect
-'protect-title'               => '正在保護"$1"',
+'protect-title'               => '正在更改「$1」的保護等級',
 'protect-locked-blocked'      => "您不能在被封鎖時更改保護級別。
 以下是'''$1'''現時的保護級別:",
 'protect-locked-access'       => "您的帳號權限不能修改保護級別。
@@ -791,13 +794,13 @@ $NEWPAGE
 'revertmove'      => '復原該移動',
 
 # Export
-'exporttext'      => '您可以將特定頁面或一組頁面的文字以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過"[[Special:Import|匯入頁面]]"頁面匯入到另一個運行 MediaWiki 的網站。
+'exporttext'      => '您可以將特定頁面或一組頁面的文字以及編輯歷史以 XML 格式匯出；這樣可以將有關頁面透過「[[Special:Import|匯入頁面]]」頁面匯入到另一個執行 MediaWiki 的網站。
 
 要匯出頁面，請在下面的文字框中輸入頁面標題，每行一個標題，
-並選擇你是否需要匯出帶有修訂記錄的以前的版本，
+並選擇你是否需要匯出帶有修訂紀錄的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的目前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 匯出「[[{{MediaWiki:Mainpage}}]]」頁面。',
 'export-download' => '提供一個檔案以供另存',
 
 # Namespace 8 related

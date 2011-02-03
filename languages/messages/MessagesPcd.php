@@ -828,9 +828,9 @@ Os pouvez vir l'source",
 'nextdiff'     => 'Nouvèle édichon →',
 
 # Media information
-'file-info-size'       => '($1 × $2 picséls, diminchon dech fichié: $3, MIME tipe: $4)',
+'file-info-size'       => '$1 × $2 picséls, diminchon dech fichié: $3, MIME tipe: $4',
 'file-nohires'         => '<small>Poin éd pu grande résoluchon possibe.</small>',
-'svg-long-desc'        => '(Fichié SVG, résoluchon éd $1 × $2 picsels, diminchon: $3)',
+'svg-long-desc'        => 'Fichié SVG, résoluchon éd $1 × $2 picsels, diminchon: $3',
 'show-big-image'       => 'Plinne résoluchon',
 'show-big-image-thumb' => '<small>Diminchon del intérvue-lo : $1 × $2 picséls</small>',
 

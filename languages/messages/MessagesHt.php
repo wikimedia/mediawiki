@@ -133,12 +133,12 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kache modifikasyon yo ki fèk fèt pou moun ki ap veye yo',
 'tog-newpageshidepatrolled'   => 'Kache paj ki siveye yo nan mitan lis nouvo paj yo',
 'tog-extendwatchlist'         => 'Etann lis swivi pou ou kapab wè tout chanjman yo, pa sèlman sa ki fèk fèt yo',
-'tog-usenewrc'                => 'Itilize vèsyon modifikasyon ki fèk fèt yo ki miyò a (li bezwen ou aktive JavaScript)',
+'tog-usenewrc'                => 'Itilize modifikasyon ki fèk fèt yo ki alemye (sa mande JavaScript)',
 'tog-numberheadings'          => 'Nimewote otomatikman tit yo',
-'tog-showtoolbar'             => 'Montre meni modifikasyon an',
-'tog-editondblclick'          => 'Klike de fwa pou modifye yon paj (JavaScript)',
+'tog-showtoolbar'             => 'Montre meni modifikasyon an (sa mande JavaScript)',
+'tog-editondblclick'          => 'Klike de fwa pou modifye yon paj (sa mande JavaScript)',
 'tog-editsection'             => 'Pemèt modifye yon seksyon grasa lyen [modifye] yo',
-'tog-editsectiononrightclick' => 'Pemèt edite yon seksyon pa klike a dwat tit seksyon an (JavaScrip)',
+'tog-editsectiononrightclick' => 'Pemèt modifye yon seksyon lè ou klike a dwat sou tit seksyon an (sa mande JavaScript)',
 'tog-showtoc'                 => 'Montre tab de matyè yo (pou tout paj ki gen plis pase 3 tit)',
 'tog-rememberpassword'        => 'Sonje mopas mwen nan òdinatè sa (pou $1 {{PLURAL:$1|jou|jou}} maximum)',
 'tog-watchcreations'          => 'Mete paj mwen kreye yo nan lis swivi mwen.',
@@ -159,7 +159,7 @@ $messages = array(
 'tog-externaleditor'          => 'Itilize editè ki pa nan sistèm wikimedya pa defo',
 'tog-externaldiff'            => 'Itilize yon konparatè ki pa nan sitsèm wikimedya pa defo',
 'tog-showjumplinks'           => 'Pèmèt lyen aksesibilite « ale nan »',
-'tog-uselivepreview'          => 'Itilize previzializasyon kouran (JavaScrip) (Esperimantal)',
+'tog-uselivepreview'          => 'Itilize kout je an dirèk (sa mande JavaScrip) (Esperimantal)',
 'tog-forceeditsummary'        => 'Notifye m lè m ap antre yon somè modifikasyon vid',
 'tog-watchlisthideown'        => 'Kache modifikasyon m yo nan lis swivi mwen a',
 'tog-watchlisthidebots'       => 'Kache modifikasyon wobo nan lis swivi mwen a',
@@ -505,7 +505,7 @@ Demann : $2',
 $2',
 'namespaceprotected'   => "Ou pa gen dwa modifye paj nan espas non « '''$1''' ».",
 'customcssjsprotected' => 'Ou pa kapab modifye paj sa paske li manke w kèk otorizasyon; li genyen preferans yon lòt itilizatè.',
-'ns-specialprotected'  => 'Paj yon ki nan espas non « {{ns:special}} » pa kapab modifye.',
+'ns-specialprotected'  => 'Paj yo ki nan espas non « {{ns:special}} » pa kapab modifye.',
 'titleprotected'       => "Tit, sijè sa pwoteje pandan kreyasyon l pa [[User:$1|$1]].
 Rezon li bay yo se « ''$2'' ».",
 
@@ -561,13 +561,13 @@ Byen gade ke ou te byen ekri non ou, oubyen [[Special:UserLogin/signup|kreye yon
 'login-userblocked'          => 'Itilizatè sa bloke.  Li pa gendwa konekte.',
 'wrongpassword'              => 'Mopas an pa korèk. Eseye ankò.',
 'wrongpasswordempty'         => 'Ou pa antre mopas ou an. Eseye ankò.',
-'passwordtooshort'           => 'Mopas ou an twò kout. Li dwe genyen omwens $1 karaktè.',
+'passwordtooshort'           => 'Mopas ou an twò kout. Li dwe genyen omwens {{PLURAL:$1|1 karaktè|$1 karaktè}}.',
 'password-name-match'        => 'Mopas ou dwe diferan ak non itilizatè ou.',
 'password-login-forbidden'   => 'Nou pa gendwa pran non itilizatè ak mopas sa yo.',
 'mailmypassword'             => 'Voye mwen yon nouvo mopas pa imèl',
 'passwordremindertitle'      => 'Nouvo mopas tanporè, li pap dire (yon kout tan) pou pajwèb sa a {{SITENAME}}',
 'passwordremindertext'       => 'Kèk moun (ou menm oubyen yon moun ki genyen adrès IP sa a $1) mande pou nou voye w yon nouvo mopas pou {{SITENAME}} ($4).
-Mopas tanporè itilizatè "$2" kounye a se "$3". Si se sa ou te vle, nou konseye ou konekte ou epi modifye mopas sa a rapidman, si posib kounye a.  Mopas tanporè sa a pral ekspire nan {{PLURAL $5|jou|jou}}.
+Mopas tanporè itilizatè "$2" kounye a se "$3". Si se sa ou te vle, nou konseye ou konekte ou epi modifye mopas sa a rapidman, si posib kounye a.  Mopas tanporè sa a pral ekspire nan {{PLURAL:$5|jou|jou}}.
 
 Si se pa ou menm ki mande modifye mopas ou an oubyen si ou konnen mopas ou an e ke ou pa ta vle modifye li, pa konsidere mesaj sa a epi kontinye ak mopas ou a.',
 'noemail'                    => 'Pa genyen pyès adrès imèl ki anrejistre pou itilizatè sa a « $1 ».',
@@ -818,6 +818,9 @@ Kèk modèl yo pap enkli.",
 'parser-template-recursion-depth-warning' => 'Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)',
 'language-converter-depth-warning'        => 'Limit sou pwofondè konvètisè lang yo depase ($1)',
 
+# "Undo" feature
+'undo-summary' => 'Revoke revizyon $1 ki te fèt pa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskite]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Ou pa kapab kreye yon kont.',
 
@@ -891,7 +894,7 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'difference'              => '(Diferans ant vèsyon yo)',
 'lineno'                  => 'Liy $1 :',
 'compareselectedversions' => 'Konpare vèsyon ki seleksyone yo',
-'editundo'                => 'Defè, anile',
+'editundo'                => 'Revoke',
 'diff-multi'              => '(Genyen {{PLURAL:$1|yon revizyon|$1 revizyon yo}} ki te fèt pa {{PLURAL:$2|yon itilizatè|$2 itilizatè yo}} nan mitan evolisyon ki kache)',
 
 # Search results
@@ -936,7 +939,7 @@ Eseye mete prefiks ''all:'' devan tèm rechèche ou an pou chache nan tout kontn
 'yourlanguage'              => 'Lang:',
 'yournick'                  => 'Siyati pou espas diskisyon :',
 'badsig'                    => 'Siyati ou an pa bon; tcheke baliz HTML ou yo.',
-'badsiglength'              => 'Siyati ou an two long: li pa kapab pi long pase $1 karaktè.',
+'badsiglength'              => 'Siyati ou an twò long: li pa dwe pi long pase $1 {{PLURAL:$1|karaktè|karaktè}}.',
 'gender-male'               => 'Maskilen',
 'email'                     => 'Imèl',
 'prefs-help-realname'       => 'Vrè non an opsyonèl.
@@ -977,7 +980,7 @@ Si ou mete li, n ap itilize li pou nou ka nonmen ou pou kontribisyon ou yo.',
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
-'rc-enhanced-expand'             => 'Wè detay yo (li nesesite ou genyen JavaScript)',
+'rc-enhanced-expand'             => 'Montre detay yo (sa mande JavaScript)',
 'rc-enhanced-hide'               => 'Kache detay yo',
 
 # Recent changes linked
@@ -1342,8 +1345,8 @@ Nan ka sa yo, ou dwe renonmen oubyen fizyone paj la ou menm si ou vle.',
 'tooltip-diff'                    => 'Montre ki chanjman ou fè nan tèks an.',
 'tooltip-compareselectedversions' => 'Afiche diferans ant de vèsyon paj sa a ou seleksyone.',
 'tooltip-watch'                   => 'Ajoute paj sa a nan lis swivi ou an',
-'tooltip-rollback'                => '« Revoke » ap anile modifikasyon dènyè kontribitè te fè sou paj sa',
-'tooltip-undo'                    => '« Anile » ap efase modifikasyon sa epi li ap ouvri fenèt modifikasyon an nan mòd kote ou kapab wè sa sa ou fè a ap bay.
+'tooltip-rollback'                => '« Revoke » ap anile ak yon sèl klik modifikasyon dènye kontribitè te fè sou paj sa a',
+'tooltip-undo'                    => '« Revoke » ap efase modifikasyon sa epi li ap ouvri fenèt modifikasyon an nan mòd kote ou kapab wè sa sa ou fè a ap bay.
 Li pèmèt retabli vèsyon ki te anvan li epi ajoute yon rezon ki esplike poukisa ou revoke modifikasyon sa nan bwat rezime a.',
 
 # Browsing diffs
@@ -1351,9 +1354,9 @@ Li pèmèt retabli vèsyon ki te anvan li epi ajoute yon rezon ki esplike poukis
 'nextdiff'     => 'Modifikasyon swivan →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksèl, lajè fichye a : $3, tip MIME li ye : $4)',
+'file-info-size'       => '$1 × $2 piksèl, gwosè fichye a : $3, tip MIME li ye : $4',
 'file-nohires'         => '<small>Pa genyen rezolisyon ki pi wo ki disponib.</small>',
-'svg-long-desc'        => '(Fichye SVG, rezolisyon pou de $1 × $2 piksèl, lajè : $3)',
+'svg-long-desc'        => 'Fichye SVG, rezolisyon de $1 × $2 piksèl, gwosè fichye : $3',
 'show-big-image'       => 'Pi bon rezolisyon',
 'show-big-image-thumb' => '<small>Lajè apèsi sa a : $1 × $2 piksèl</small>',
 
@@ -1370,7 +1373,7 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 # Metadata
 'metadata'          => 'Metadone',
 'metadata-help'     => 'Fichye sa genyen enfòmasyon adisyonèl, petèt ki soti nan yon kamera dijital oubyen yon nimerizè itilize pou kreye oubyen dijitalize li.  Si fichye sa te modifye depi kreyasyon li, kèk detay ka pa menm avèk original la.',
-'metadata-expand'   => 'Montre tout enfòmasyon ak tout detay yo',
+'metadata-expand'   => 'Montre detay konplè yo',
 'metadata-collapse' => 'Kache enfòmasyon ak tout detay yo',
 'metadata-fields'   => 'Chan metadone EXIF ki liste nan mesaj sa a ap parèt nan paj deskripsyon imaj la lè tab metadone a ap pi piti. Lòt chan yo ap kache pa defo.
 * make
@@ -1400,5 +1403,8 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 
 # Special:SpecialPages
 'specialpages' => 'Paj espesyal yo',
+
+# HTML forms
+'htmlform-reset' => 'Revoke chanjman yo',
 
 );

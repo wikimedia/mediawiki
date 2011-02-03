@@ -991,9 +991,9 @@ Permite ajustar una razón al resumen de edición.',
 'nextdiff'     => 'Edición más nueva →',
 
 # Media information
-'file-info-size'       => '($1 × $2 píkseles; boy del arxivo: $3; tipo MIME: $4)',
+'file-info-size'       => '$1 × $2 píkseles; boy del arxivo: $3; tipo MIME: $4',
 'file-nohires'         => '<small>No disponible a mayor resolución.</small>',
-'svg-long-desc'        => '(arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3)',
+'svg-long-desc'        => 'arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3',
 'show-big-image'       => 'Resolución original',
 'show-big-image-thumb' => '<small>Boy de esta vista previa: $1 × $2 píkseles</small>',
 

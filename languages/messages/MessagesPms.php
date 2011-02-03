@@ -71,8 +71,8 @@ dj'artìcoj ancó pa scrit",
 'tog-shownumberswatching'     => "Smon ël nùmer d'utent che as ten-o la pàgina sot euj",
 'tog-oldsig'                  => 'Anteprima dla firma esistenta:',
 'tog-fancysig'                => "Trata la firma com test wiki (sensa n'anliura automàtica)",
-'tog-externaleditor'          => "Dovré coma stàndard n'editor estern (mach për espert, a-i é dabzògn d'ampostassion speciaj dzora a sò ordinator)",
-'tog-externaldiff'            => "Dovré për stàndard un programa comparator estern (mach për espert, a-i é dabzògn d'ampostassion speciaj ansima a sò ordinator)",
+'tog-externaleditor'          => "Dovré coma stàndard n'editor estern (mach për espert, a-i é dabzògn d'ampostassion speciaj dzora a sò ordinator. [http://www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
+'tog-externaldiff'            => "Dovré për stàndard un programa comparator estern (mach për espert, a-i é dabzògn d'ampostassion speciaj ansima a sò ordinator [http://www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
 'tog-showjumplinks'           => 'Dovré j\'anliure d\'acessibilità dla sòrt "Va a"',
 'tog-uselivepreview'          => "Dovré la fonsion ''Preuva dal viv'' (a-i va JavaScript e a l'é mach sperimental)",
 'tog-forceeditsummary'        => "Ciama conferma se ël somari dla modìfica a l'é veujd",
@@ -441,7 +441,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'yourpassword'               => 'Soa ciav',
 'yourpasswordagain'          => 'Che a bata torna soa ciav',
 'remembermypassword'         => "↓ Vis-te mia ciav ansima a st'ordinator-sì (për al pi $1 {{PLURAL:$1|di|di}})",
-'securelogin-stick-https'    => "Stà colegà a HTTPS d'apress dël login",
+'securelogin-stick-https'    => "Resté colegà an HTTPS apress d'esse intrà ant ël sistema",
 'yourdomainname'             => 'Sò domini',
 'externaldberror'            => "Ò che a l'é rivaje n'eror d'autenticassion esterna, ò pura a l'é chiel (chila) che a l'é nen autorisà a agiornesse sò cont estern.",
 'login'                      => 'Rintré ant ël sistema',
@@ -1164,6 +1164,10 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'prefs-displaywatchlist'        => 'Opsion ëd visualisassion',
 'prefs-diffs'                   => 'Diferense',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'A smija bon',
+'email-address-validity-invalid' => "A l'é ciamà n'adrëssa bon-a!",
+
 # User rights
 'userrights'                     => "Gestion dij drit dj'utent",
 'userrights-lookup-user'         => "Gestion dle partìe d'utent",
@@ -1560,7 +1564,7 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'ó
 'listfiles_search_for'  => "Arserché un nòm d'archivi multimojen:",
 'imgfile'               => 'archivi',
 'listfiles'             => "Lista d'archivi",
-'listfiles_thumb'       => 'Figurin-a',
+'listfiles_thumb'       => 'Miniadura',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nòm',
 'listfiles_user'        => 'Utent',
@@ -1675,7 +1679,7 @@ Ch'as visa ëd controlé che në stamp a-j serva nen a dj'àutri stamp anans che
 'statistics-edits'             => "Pàgine modificà da quand ël {{SITENAME}} a l'é stàit tirà su",
 'statistics-edits-average'     => 'Media dle modìfiche për pàgina',
 'statistics-views-total'       => 'Total dle visualisassion',
-'statistics-views-total-desc'  => 'Visualisassion ëd pàgine pa esistente e ëd pàgine speciaj a son pa comprèise',
+'statistics-views-total-desc'  => 'Le visualisassion ëd le pàgine pa esistente e ëd le pàgine speciaj a son nen comprèise',
 'statistics-views-peredit'     => 'Visualisassion për modìfica',
 'statistics-users'             => '[[Special:ListUsers|Utent]] argistrà',
 'statistics-users-active'      => 'Utent ativ',
@@ -1766,16 +1770,16 @@ Për piasì, ch'a nòta che d'àutri sit an sl'aragnà a peulo coleghesse a n'ar
 'notargettitle'           => 'A manco ij dat',
 'notargettext'            => "A l'ha pa dit a che pàgina ò Utent apliché l'operassion ciamà.",
 'nopagetitle'             => 'La pàgina ëd destinassion a-i é pa',
-'nopagetext'              => "La pàgina che it l'has spessificà a esist pa.",
+'nopagetext'              => "La pàgina che a l'ha spessificà a esist pa.",
 'pager-newer-n'           => '{{PLURAL:$1|1|$1}} pì neuv',
 'pager-older-n'           => '{{PLURAL:$1|1|$1}} pì vej',
-'suppress'                => 'Oversight',
+'suppress'                => 'Supervisor',
 
 # Book sources
 'booksources'               => 'Andoa trové dij lìber',
-'booksources-search-legend' => 'Sërca dle sorgiss ëd lìber',
-'booksources-go'            => 'Va',
-'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard a ij test che a l'é antramentr che al sërca:",
+'booksources-search-legend' => "Sërché antra ij lìber d'arferiment",
+'booksources-go'            => 'Andé',
+'booksources-text'          => "Ambelessì sota a-i é na lista d'àotri sit che a vendo dij lìber neuv e dë sconda man, e che a peulo ëdcò smon-e dj'anformassion rësgoard ai test che a l'é antramentr che a sërca:",
 'booksources-invalid-isbn'  => "L'ISBN dàit a smija che a sia pa vàlid; contròla për eror an copiand da la sorziss original.",
 
 # Special:Log
@@ -2345,17 +2349,17 @@ Sòn a veul dì che, se a l'avèissa mai da fé n'operassion nen giusta, a podr�
 '''ATENSION!'''
 Un cambiament dràstich parej a podrìa dé dle gran-e an dzora a na pàgina motobin visità.
 Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.",
-'movepagetext-noredirectfixer' => "Dovré ël formolari sota a arnominerà na pàgina, tramudand tuta soa stòria al nòm neuv.
-Ël tìtol vèj a vnirà na pàgina ëd rediression al tìtol neuv.
-Sigurte ëd controlé ij [[Special:DoubleRedirects|dobi]] o le [[Special:BrokenRedirects|rediression rote]].
-It ses responsàbil ëd sigurete che ij colegament a continuo a ponté andova as pensa ch'a vado.
+'movepagetext-noredirectfixer' => "Dovré ël formolari sì-sota a arnominërà na pàgina, tramudand tuta soa stòria al nòm neuv.
+Ël tìtol vèj a vnirà na pàgina ëd ridiression al tìtol neuv.
+Ch'as sigura ëd controlé le ridiression [[Special:DoubleRedirects|dobie]] o cole [[Special:BrokenRedirects|ch'a marcio nen]].
+A l'é responsàbil ëd fé an manera che j'anliure a continuo a ponté andova as pensa ch'a vado.
 
-Nòta che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, a men ch'a sia veuida o na rediression e ch'a l'abia pa stòria ëd modìfiche passà.
-Sossì a veul dì ch'it peule arnominé na pàgina andré da andova it l'avìa arnominala s'it fas un eror, e ch'it peule pa covaté na pàgina esistenta.
+Ch'a armarca che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, gavà ch'a sia veuida o na ridiression e ch'a l'abia pa na stòria ëd modìfiche passà.
+Son a veul dì ch'a peul torna arnominé na pàgina andré da andova a l'avìa arnominala s'a fa n'eror, e ch'a peul pa coaté na pàgina esistenta.
 
 '''Avis!'''
 Sossì a peul esse un cambi dràstich e pa spetà për na pàgina popolar;
-për piasì sigurte ëd capì le conseguense ëd sossì prima d'andé anans.",
+për piasì ch'as renda bin cont ëd le conseguense ëd sòn prima d'andé anans.",
 'movepagetalktext'             => "La pàgina ëd discussion tacà a costa pàgina d'articol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':
 *quand as tramuda la pàgina tra diferent spassi nominal,
 *quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura
@@ -2694,10 +2698,10 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'imagemaxsize'         => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
 'thumbsize'            => 'Amzura dle figurin-e:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',
-'file-info'            => "(amzura dl'archivi: $1, sòrt MIME: $2)",
-'file-info-size'       => '($1 × $2 pixel, amzure: $3, sòrt MIME: $4)',
+'file-info'            => "amzura dl'archivi: $1, sòrt MIME: $2",
+'file-info-size'       => '$1 × $2 pixel, amzure: $3, sòrt MIME: $4',
 'file-nohires'         => '<small>Gnun-a risolussion pì bela disponibila.</small>',
-'svg-long-desc'        => "(archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3)",
+'svg-long-desc'        => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
 'show-big-image'       => 'Version a amzura pijn-a',
 'show-big-image-thumb' => '<small>Amzure dë sta figurin-a: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'ciclà',

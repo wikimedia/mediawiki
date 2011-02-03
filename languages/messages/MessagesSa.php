@@ -1096,9 +1096,9 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'nextdiff'     => 'नवतरं संपादनम् →',
 
 # Media information
-'file-info-size'       => '($1 × $2 पिक्सेलानि, संचिकायाः आकारः: $3, MIME-प्रकारः: $4)',
+'file-info-size'       => '$1 × $2 पिक्सेलानि, संचिकायाः आकारः: $3, MIME-प्रकारः: $4',
 'file-nohires'         => '<small>उच्चतरं विभेदनं नोपलब्धम्</small>',
-'svg-long-desc'        => '(SVG संचिका, साधारणतया $1 × $2 पिक्सेलानि, संचिकायाः आकारः : $3)',
+'svg-long-desc'        => 'SVG संचिका, साधारणतया $1 × $2 पिक्सेलानि, संचिकायाः आकारः : $3',
 'show-big-image'       => 'पूर्णं विभेदनम्',
 'show-big-image-thumb' => '<small>अस्य प्राग्दृश्यस्य आकारः : $1 × $2 पिक्सेलानि</small>',
 

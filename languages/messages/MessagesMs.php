@@ -187,8 +187,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
 'tog-oldsig'                  => 'Pratonton bagi tanda tangan yang sedia ada:',
 'tog-fancysig'                => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
-'tog-externaleditor'          => 'Gunakan penyunting luar secara lalai',
-'tog-externaldiff'            => 'Gunakan pembeza luar secara lalai (untuk pakar sahaja, perlu penetapan khas pada komputer anda)',
+'tog-externaleditor'          => 'Guna penyunting luar secara lalai (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
+'tog-externaldiff'            => 'Guna pembeza luar secara lalai (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
 'tog-showjumplinks'           => 'Bolehkan pautan ketercapaian "lompat ke"',
 'tog-uselivepreview'          => 'Gunakan pratonton langsung (JavaScript) (masih dalam uji kaji)',
 'tog-forceeditsummary'        => 'Tanya saya jika ringkasan suntingan kosong',
@@ -556,6 +556,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
 'remembermypassword'         => '↓ Ingat kata laluan saya dalam komputer ini (maximum of $1 {{PLURAL:$1|hari|hari}})',
+'securelogin-stick-https'    => 'Kekal disambungkan ke HTTPS selepas log masuk',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'login'                      => 'Log masuk',
@@ -590,6 +591,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'wrongpasswordempty'         => 'Kata laluan yang dimasukkan adalah kosong. Sila cuba lagi.',
 'passwordtooshort'           => 'Kata laluan mestilah sekurang-kurangnya {{PLURAL:$1|1 aksara|$1 aksara}}.',
 'password-name-match'        => 'Kata laluan anda mesti berbeza daripada nama pengguna anda.',
+'password-login-forbidden'   => 'Penggunaan nama pengguna dan kata laluan ini adalah dilarang.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
 'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) telah meminta kata laluan baru untuk {{SITENAME}} ($4). Kata laluan sementara baru untuk pengguna "$2" ialah "$3". Untuk menamatkan prosedur ini, anda perlu log masuk dan tetapkan kata laluan yang baru dengan segera. Kata laluan sementara anda akan luput dalam $5 hari.
@@ -630,6 +632,9 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Anggaran kekebalan kata laluan: $1',
@@ -767,6 +772,10 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'userjsyoucanpreview'              => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
 'userjspreview'                    => "'''Ingat bahawa anda hanya menguji/melihat pratonton JavaScript anda, ia belum lagi disimpan!'''",
+'sitecsspreview'                   => "'''Ingat bahawa anda cuma melihat pratonton CSS ini.'''
+'''Ia belum lagi disimpan!'''",
+'sitejspreview'                    => "'''Ingat bahawa anda cuma melihat pratonton kod JavaScript ini.'''
+'''Ia belum lagi disimpan!'''",
 'userinvalidcssjstitle'            => "'''Amaran:''' Rupa \"\$1\" tidak wujud. Ingat bahawa laman tempahan .css dan .js menggunakan tajuk berhuruf kecil, contohnya {{ns:user}}:Anu/vector.css tidak sama dengan {{ns:user}}:Anu/Vector.css.",
 'updated'                          => '(Dikemaskinikan)',
 'note'                             => "'''Catatan:'''",
@@ -1219,6 +1228,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-files'                   => 'Fail',
 'prefs-custom-css'              => 'CSS tempahan',
 'prefs-custom-js'               => 'JS tempahan',
+'prefs-common-css-js'           => 'CSS/JavaScript kongsi untuk semua rupa:',
 'prefs-reset-intro'             => 'Anda boleh menggunakan laman ini untuk set semula keutamaan anda kepada lalaian tapak ini.',
 'prefs-emailconfirm-label'      => 'Pengesahan e-mail:',
 'prefs-textboxsize'             => 'Saiz tetingkap penyuntingan',
@@ -1258,6 +1268,10 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-displaywatchlist'        => 'Papar pilihan',
 'prefs-diffs'                   => 'Beza',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Alamat e-mel adalah sah',
+'email-address-validity-invalid' => 'Sila masukkan alamat e-mel yang sah',
+
 # User rights
 'userrights'                   => 'Pengurusan hak pengguna',
 'userrights-lookup-user'       => 'Urus kumpulan pengguna',
@@ -1283,26 +1297,26 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 # Groups
 'group'               => 'Kumpulan:',
 'group-user'          => 'Pengguna',
-'group-autoconfirmed' => 'Pengguna yang disahkan secara automatik',
+'group-autoconfirmed' => 'Pengguna sah automatik',
 'group-bot'           => 'Bot',
-'group-sysop'         => 'Penyelia',
+'group-sysop'         => 'Pentadbir',
 'group-bureaucrat'    => 'Birokrat',
-'group-suppress'      => 'Pengawas',
+'group-suppress'      => 'Penyemak',
 'group-all'           => '(semua)',
 
-'group-user-member'          => 'Pengguna',
-'group-autoconfirmed-member' => 'Pengguna yang disahkan secara automatik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Penyelia',
-'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Pengawas',
+'group-user-member'          => 'pengguna',
+'group-autoconfirmed-member' => 'pengguna sah automatik',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'pentadbir',
+'group-bureaucrat-member'    => 'birokrat',
+'group-suppress-member'      => 'penyemak',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna yang disahkan secara automatik',
 'grouppage-bot'           => '{{ns:project}}:Bot',
 'grouppage-sysop'         => '{{ns:project}}:Pentadbir',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
-'grouppage-suppress'      => '{{ns:project}}:Pengawas',
+'grouppage-suppress'      => '{{ns:project}}:Penyemak',
 
 # Rights
 'right-read'                  => 'Membaca laman',
@@ -1334,7 +1348,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'right-deletedtext'           => 'Lihat teks yang telah dihapuskan dan perubahan antara semakan-semakan yang telah dihapuskan',
 'right-browsearchive'         => 'Menggelintar laman-laman yang telah dihapuskan',
 'right-undelete'              => 'Mengembalikan laman yang telah dihapuskan (nyahhapus)',
-'right-suppressrevision'      => 'Memeriksa dan memulihkan semakan yang terselindung daripada penyelia',
+'right-suppressrevision'      => 'Memeriksa dan memulihkan semakan yang terselindung daripada pentadbir',
 'right-suppressionlog'        => 'Melihat log rahsia',
 'right-block'                 => 'Menyekat pengguna lain daripada menyunting',
 'right-blockemail'            => 'Menyekat pengguna lain daripada mengirim e-mel',
@@ -1366,6 +1380,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
 'right-revisionmove'          => 'Memindahkan semakan',
+'right-disableaccount'        => 'Matikan akaun',
 
 # User rights log
 'rightslog'      => 'Log hak pengguna',
@@ -1432,8 +1447,8 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'rclinks'                           => 'Paparkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
 'diff'                              => 'beza',
 'hist'                              => 'sej',
-'hide'                              => 'Sembunyi',
-'show'                              => 'Papar',
+'hide'                              => 'Sorok',
+'show'                              => 'Tunjuk',
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
@@ -1539,6 +1554,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'overwroteimage'              => 'memuat naik versi baru bagi "[[$1]]"',
 'uploaddisabled'              => 'Ciri muat naik dimatikan',
 'copyuploaddisabled'          => 'Ciri muat naik melalui URL telah dilumpuhkan.',
+'uploadfromurl-queued'        => 'Muat naik anda telah digilirkan.',
 'uploaddisabledtext'          => 'Ciri muat naik fail dimatikan.',
 'php-uploaddisabledtext'      => 'Pemuatnaikan fail PHP dilumpuhkan. Sila semak tetapan file_uploads.',
 'uploadscripted'              => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
@@ -1558,6 +1574,7 @@ Anda harus mempertimbangkan perlunya memuat naik fail ini.
 Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'filename-bad-prefix'         => "Nama bagi fail yang dimuat naik bermula dengan '''\"\$1\"''', yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.",
 'upload-success-subj'         => 'Muat naik berjaya',
+'upload-success-msg'          => 'Muat naik anda dari [$2] berjaya. Ia ada di sini: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Masalah muat naik',
 'upload-failure-msg'          => 'Terdapat masalah dengan muat naik anda daripada [$2]:
 
@@ -1622,6 +1639,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'listfiles_search_for'  => 'Cari nama imej:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Senarai fail',
+'listfiles_thumb'       => 'Thumbnail',
 'listfiles_date'        => 'Tarikh',
 'listfiles_name'        => 'Nama',
 'listfiles_user'        => 'Pengguna',
@@ -1735,6 +1753,7 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 'statistics-edits'             => 'Suntingan laman sejak {{SITENAME}} dibuka',
 'statistics-edits-average'     => 'Purata suntingan bagi setiap laman',
 'statistics-views-total'       => 'Jumlah pandangan',
+'statistics-views-total-desc'  => 'Paparan ke laman-laman yang tidak wujud dan laman-laman khas tidak disertakan',
 'statistics-views-peredit'     => 'Pandangan setiap suntingan',
 'statistics-users'             => '[[Special:ListUsers|Pengguna]] berdaftar',
 'statistics-users-active'      => 'Pengguna aktif',
@@ -1770,6 +1789,8 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'nmembers'                => '$1 ahli',
 'nrevisions'              => '$1 semakan',
 'nviews'                  => 'Dilihat $1 kali',
+'nimagelinks'             => 'Digunakan pada {{PLURAL:$1|sebuah|$1 buah}} laman',
+'ntransclusions'          => 'digunakan pada {{PLURAL:$1|sebuah|$1 buah}} laman',
 'specialpage-empty'       => 'Tiada keputusan bagi laporan ini.',
 'lonelypages'             => 'Laman yatim',
 'lonelypagestext'         => 'Laman-laman berikut tidak dipaut atau disertakan dari laman lain dalam {{SITENAME}}.',
@@ -2116,7 +2137,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 'protect-default'             => 'Benarkan semua pengguna',
 'protect-fallback'            => 'Perlukan keizinan "$1"',
 'protect-level-autoconfirmed' => 'Sekat pengguna baru dan pengguna tidak berdaftar',
-'protect-level-sysop'         => 'Penyelia sahaja',
+'protect-level-sysop'         => 'Pentadbir sahaja',
 'protect-summary-cascade'     => 'melata',
 'protect-expiring'            => 'sehingga $1 (UTC)',
 'protect-expiry-indefinite'   => 'tak terbatas',
@@ -2221,6 +2242,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Sumbangan oleh pengguna baru',
 'sp-contributions-blocklog'            => 'Log sekatan',
 'sp-contributions-deleted'             => 'sumbangan dihapuskan',
+'sp-contributions-uploads'             => 'muat naik',
 'sp-contributions-logs'                => 'log',
 'sp-contributions-talk'                => 'perbincangan',
 'sp-contributions-userrights'          => 'pengurusan hak pengguna',
@@ -2401,6 +2423,17 @@ laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah
 laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
 
 '''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular. Oleh itu, sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
+'movepagetext-noredirectfixer' => "Borang di bawah akan menamakan semula sesebuah laman, memindahkan kesemua sejarahnya ke nama baru.
+Nama lamanya akan menjadi sebuah laman lencongan ke laman baru tadi.
+Pastikan [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|rosak]] sudah diperiksa.
+Anda bertanggungjawab memastikan pautan-pautan sampai ke tujuan yang sepatutnya.
+
+Sila maklum bahawa laman tadi '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan ia kosong atau sebuah pelencongan dan tiada sejarah suntingan lampau.
+Ini bermakna anda boleh menamakan semula sesebuah laman balik kepada nama asalnya jika anda melakukan kesilapan, dan anda tidak boleh menulis ganti sebuah laman yang sudah wujud.
+
+'''AMARAN!'''
+Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular;
+sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
 'movepagetalktext'             => "Laman perbincangan yang berkaitan, jika ada, akan dipindahkan bersama-sama laman ini secara automatik '''kecuali''':
 * Sebuah laman perbincangan dengan nama baru telah pun wujud, atau
 * Anda membuang tanda kotak di bawah.
@@ -2684,7 +2717,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'math_unknown_function' => 'fungsi yang tidak dikenali',
 'math_lexing_error'     => "ralat ''lexing''",
 'math_syntax_error'     => 'ralat sintaks',
-'math_image_error'      => 'penukaran PNG gagal; sila pastikan bahawa latex, dvips, gs dan convert dipasang dengan betul',
+'math_image_error'      => 'Penukaran PNG gagal; periksa sama ada latex dan dvipng (atau dvips + gs + convert) telah dipasang dengan betul',
 'math_bad_tmpdir'       => 'Direktori temp matematik tidak boleh ditulis atau dicipta',
 'math_bad_output'       => 'Direktori output matematik tidak boleh ditulis atau dicipta',
 'math_notexvc'          => 'Atur cara texvc hilang; sila lihat fail math/README untuk maklumat konfigurasi.',
@@ -2729,10 +2762,10 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',
-'file-info'            => '(saiz file: $1, jenis MIME: $2)',
-'file-info-size'       => '($1 × $2 piksel, saiz fail: $3, jenis MIME: $4)',
+'file-info'            => 'saiz file: $1, jenis MIME: $2',
+'file-info-size'       => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4',
 'file-nohires'         => '<small>Tiada leraian lebih besar.</small>',
-'svg-long-desc'        => '(Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3)',
+'svg-long-desc'        => 'Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3',
 'show-big-image'       => 'Leraian penuh',
 'show-big-image-thumb' => '<small>Saiz pratonton ini: $1 × $2 piksel</small>',
 'file-info-gif-looped' => 'berulang',
@@ -3099,6 +3132,17 @@ Jika akaun ini *bukan* milik anda, ikuti pautan ini untuk membatalkan pengesahan
 $5
 
 Kod pengesahan ini akan luput pada $4.',
+'confirmemail_body_set'     => 'Seseorang, barangkali anda, dari alamat IP $1, telah set semula akaun "$2" kepada alamat ini di {{SITENAME}}.
+
+Untuk mengesahkan bahawa akaun ini milik anda dan untuk mengaktifkan kemudahan e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar web anda:
+
+$3
+
+Jika akaun tersebut *bukan* kepunyaan anda, ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
+
+$5
+
+Kod pengesahan ini akan luput pada $4.',
 'confirmemail_invalidated'  => 'Pengesahan alamat e-mel telah dibatalkan',
 'invalidateemail'           => 'Batalkan pengesahan e-mel',
 
@@ -3210,6 +3254,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting piawai]].',
 'version-specialpages'             => 'Laman khas',
 'version-parserhooks'              => 'Penyangkuk penghurai',
 'version-variables'                => 'Pemboleh ubah',
+'version-skins'                    => 'Rupa',
 'version-other'                    => 'Lain-lain',
 'version-mediahandlers'            => 'Pengelola media',
 'version-hooks'                    => 'Penyangkuk',
@@ -3327,5 +3372,22 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'htmlform-submit'              => 'Hantar',
 'htmlform-reset'               => 'Undur perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 dengan sokongan carian teks penuh',
+'sqlite-no-fts'  => '$1 tanpa sokongan carian teks penuh',
+
+# Special:DisableAccount
+'disableaccount'             => 'Lumpuhkan akaun pengguna',
+'disableaccount-user'        => 'Nama pengguna:',
+'disableaccount-reason'      => 'Alasan:',
+'disableaccount-confirm'     => "Lumpuhkan akaun pengguna ini.
+Pengguna ini tidak akan dapat log masuk, set semula kata laluannya, atau menerima makluman e-mel.
+Jika pengguna ini sedang log masuk di mana-mana, dia akan log keluar serta-merta.
+''Sila maklum bahasa tindakan melumpuhkan sesuatu akaun tidak boleh diundurkan tanpa bantuan pentadbir sistem.''",
+'disableaccount-mustconfirm' => 'Anda perlu mengesahkan bahawa anda ingin melumpuhkan akaun ini.',
+'disableaccount-nosuchuser'  => 'Akaun pengguna "$1" tidak wujud.',
+'disableaccount-success'     => 'Akaun pengguna "$1" telah dilumpuhkan selama-lamanya.',
+'disableaccount-logentry'    => 'lumpuhkan selama-lamanya akaun pengguna [[$1]]',
 
 );

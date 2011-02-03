@@ -15,6 +15,7 @@
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
  * @author Thaisk
+ * @author Thanhtai2009
  * @author Tmct
  * @author Trần Nguyễn Minh Huy
  * @author Trần Thế Trung
@@ -311,8 +312,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Hiển thị số người đang xem',
 'tog-oldsig'                  => 'Chữ ký hiện tại:',
 'tog-fancysig'                => 'Xem chữ ký là mã wiki (không có liên kết tự động)',
-'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
-'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
+'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn; [http://www.mediawiki.org/wiki/Manual:External_editors?uselang=vi chi tiết])',
+'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn; [http://www.mediawiki.org/wiki/Manual:External_editors?uselang=vi chi tiết])',
 'tog-showjumplinks'           => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
 'tog-uselivepreview'          => 'Xem thử trực tiếp (JavaScript; chưa ổn định)',
 'tog-forceeditsummary'        => 'Nhắc tôi khi tôi quên tóm lược sửa đổi',
@@ -1388,6 +1389,10 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'prefs-displaywatchlist'        => 'Tùy chọn hiển thị',
 'prefs-diffs'                   => 'Khác biệt',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Có vẻ hợp lệ',
+'email-address-validity-invalid' => 'Yêu cầu địa chỉ hợp lệ!',
+
 # User rights
 'userrights'                   => 'Quản lý quyền thành viên',
 'userrights-lookup-user'       => 'Quản lý nhóm thành viên',
@@ -1420,12 +1425,12 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
 
-'group-user-member'          => 'Thành viên',
-'group-autoconfirmed-member' => 'Thành viên tự động xác nhận',
-'group-bot-member'           => 'Robot',
+'group-user-member'          => 'thành viên',
+'group-autoconfirmed-member' => 'thành viên tự động xác nhận',
+'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'bảo quản viên',
 'group-bureaucrat-member'    => 'Hành chính viên',
-'group-suppress-member'      => 'Giám sát viên',
+'group-suppress-member'      => 'giám sát viên',
 
 'grouppage-user'          => '{{ns:project}}:Thành viên',
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',
@@ -2931,10 +2936,10 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize'         => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize'            => 'Cỡ hình thu nhỏ:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',
-'file-info'            => '(kích thước tập tin: $1, định dạng MIME: $2)',
-'file-info-size'       => '($1×$2 điểm ảnh, kích thước: $3, định dạng MIME: $4)',
+'file-info'            => 'kích thước tập tin: $1, định dạng MIME: $2',
+'file-info-size'       => '$1×$2 điểm ảnh, kích thước: $3, định dạng MIME: $4',
 'file-nohires'         => '<small>Không có độ phân giải cao hơn.</small>',
-'svg-long-desc'        => '(tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3)',
+'svg-long-desc'        => 'tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3',
 'show-big-image'       => 'Độ phân giải tối đa',
 'show-big-image-thumb' => '<small>Kích thước xem thử: $1 × $2 điểm ảnh</small>',
 'file-info-gif-looped' => 'có lặp',
@@ -3336,6 +3341,20 @@ Mã xác nhận này sẽ hết hạn vào $4.',
 tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
 Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt tính năng
+thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
+
+$3
+
+Nếu tài khoản *không* phải là của bạn, hãy nhấn vào liên kết này để hủy thủ
+tục xác nhận địa chỉ thư điện tử:
+
+$5
+
+Mã xác nhận này sẽ hết hạn vào $4.',
+'confirmemail_body_set'     => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đặt địa chỉ này là địa
+chỉ thư điện tử của tài khoản "$2" tại {{SITENAME}}.
+
+Để xác nhận rằng tài khoản này thực sự là của bạn và để tái kích hoạt tính năng
 thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
 
 $3

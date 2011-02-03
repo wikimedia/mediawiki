@@ -146,6 +146,8 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|ဤကဏ္ဍတွင် အောက်ပါစာမျက်နှာသာ ရှိသည်။|စုစုပေါင်း $2 အနက်မှ အောက်ပါ {{PLURAL:$1|စာမျက်နှာသည်|စာမျက်နှာ $1 ခုသည်}} ဤကဏ္ဍတွင် ရှိသည်။}}',
 'listingcontinuesabbrev' => 'ပံ့ပိုး',
 
+'mainpagetext' => "'''မီဒီယာဝီကီကို အောင်မြင်စွာ သွင်းပြီးပါပြီ။'''",
+
 'about'         => 'အကြောင်း',
 'article'       => 'စာမျက်နှာ',
 'newwindow'     => '(ဝင်းဒိုးအသစ်တခုကိုဖွင့်ရန်)',
@@ -318,6 +320,7 @@ $messages = array(
 'filedeleteerror'      => 'ဖိုင် "$1" ကို ဖျက်မရပါ။',
 'directorycreateerror' => 'လမ်းညွှန် "$1" ကို ဖန်တီးမရနိုင်ပါ။',
 'filenotfound'         => 'ဖိုင် "$1" ကို ရှာမတွေ့ပါ။',
+'badtitle'             => 'ညံ့ဖျင်းသော ခေါင်းစဉ်',
 'badtitletext'         => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
 'viewsource'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
 'viewsourcefor'        => '$1 အတွက်',
@@ -329,9 +332,9 @@ $messages = array(
 'welcomecreation'         => '== မင်္ဂလာပါ $1! ==
 သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
 [[Special:Preferences|{{SITENAME}} စိတ်​ကြိုက်​ရွေးချယ်စရာတို့]]ကို ပြောင်းရန် မမေ့ပါနှင့်။',
-'yourname'                => 'မှတ်​ပုံ​တင်​အ​မည်:',
+'yourname'                => 'အသုံးပြုသူအမည် -',
 'yourpassword'            => 'စကားဝှက် -',
-'yourpasswordagain'       => 'ပြန်​ရိုက်​ပါ:',
+'yourpasswordagain'       => 'စကားဝှက် ပြန်​ရိုက်​ပါ -',
 'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
 'yourdomainname'          => 'သင့်ဒိုမိန်း -',
 'login'                   => 'Log in ဝင်ရန်',
@@ -487,6 +490,7 @@ $messages = array(
 
 # History pages
 'viewpagelogs'           => 'ဤစာမျက်နှာအတွက် မှတ်တမ်းများကို ကြည့်ရန်',
+'currentrev'             => 'နောက်ဆုံးမူ',
 'currentrev-asof'        => '$1 က နောက်ဆုံး တည်းဖြတ်မူ',
 'revisionasof'           => '$1 ရက်နေ့က မူ',
 'previousrevision'       => 'မူဟောင်း',
@@ -552,6 +556,7 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-offender'         => 'မူရေးသားသူ -',
 
 # Revision move
+'revisionmove'                 => '"$1" မှ တည်းဖြတ်မူများကို ရွှေ့ရန်',
 'revmove-legend'               => 'ရည်ရွယ်ရာစာမျက်နှာနှင့် အကျဉ်းချုပ်ကို သတ်မှတ်ရန်',
 'revmove-submit'               => 'မူများကို ရွေးချယ်ထားသောစာမျက်နှာသို့ ရွှေ့ရန်',
 'revisionmoveselectedversions' => 'ရွေးချယ်ထားသောမူများကို ရွှေ့ရန်',
@@ -1040,6 +1045,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'filedelete-legend'           => 'ဖိုင်ကိုဖျက်ပါ',
 'filedelete-comment'          => 'အ​ကြောင်း​ပြ​ချက်:',
 'filedelete-submit'           => 'ဖျက်',
+'filedelete-success'          => "'''$1''' ကို ဖျက်ပစ်လိုက်ပြီ။",
+'filedelete-nofile'           => "'''$1''' မရှိပါ။",
 'filedelete-otherreason'      => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'filedelete-reason-otherlist' => 'အခြား အကြောင်းပြချက်',
 'filedelete-edit-reasonlist'  => 'ဖျက်ပစ်လိုက်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်',
@@ -1096,6 +1103,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'withoutinterwiki'         => 'ဘာသာစကားလင့်မပါသော စာမျက်နှာများ',
 'withoutinterwiki-summary' => 'အောက်ပါစာမျက်နှာများသည် အခြားဘာသာစကားဗားရှင်းများသို့ လင့်မထားပါ။',
 'withoutinterwiki-submit'  => 'ပြ',
+
+'fewestrevisions' => 'တည်းဖြတ်မူအနည်းဆုံး စာမျက်နှာများ',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|ဘိုက်|ဘိုက်}}',
@@ -1625,9 +1634,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'nextdiff'     => 'ပိုသစ်သော တည်းဖြတ်မှု',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4)',
+'file-info-size'       => '$1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4',
 'file-nohires'         => '<small>သည်ထက်ကြီးသော resolution မရှိပါ.</small>',
-'svg-long-desc'        => '(SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3)',
+'svg-long-desc'        => 'SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3',
 'show-big-image'       => 'resolution အပြည့်',
 'show-big-image-thumb' => '<small>နမူနာကြည့်ရန် အရွယ်အစား - $1 × $2 pixels</small>',
 
@@ -1806,7 +1815,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'specialpages'                   => 'အ​ထူး ​စာ​မျက်​နှာ​များ',
 'specialpages-group-maintenance' => 'ထိန်းသိမ်းမှု အစီရင်ခံချက်များ',
 'specialpages-group-other'       => 'အခြားအထူးစာမျက်နှာများ',
-'specialpages-group-login'       => 'Login ဝင်ရန်/ မှတ်ပုံတင်ပြုလုပ်ရန်',
+'specialpages-group-login'       => 'Login ဝင်ရန်/ အကောင့်လုပ်ရန်',
 'specialpages-group-changes'     => 'လတ်တလောအေကြာင်းအလဲနှင့် မှတ်တမ်းများ',
 'specialpages-group-media'       => 'မီဒီယာ အစီရင်ခံချက်များနှင့် Upload တင်ထားသည်များ',
 'specialpages-group-users'       => 'အသုံးပြုသူများနှင့် အခွင့်အရေးများ',

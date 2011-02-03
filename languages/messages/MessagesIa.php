@@ -165,8 +165,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
 'tog-oldsig'                  => 'Previsualisation del signatura existente:',
 'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
-'tog-externaleditor'          => 'Usar editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator)',
-'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator)",
+'tog-externaleditor'          => 'Usar un editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])',
+'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])",
 'tog-showjumplinks'           => 'Activar ligamines de accessibilitate "saltar a"',
 'tog-uselivepreview'          => 'Usar previsualisation in directo (require JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avisar me si io non entra un summario de modification',
@@ -1288,6 +1288,10 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-displaywatchlist'        => 'Optiones de presentation',
 'prefs-diffs'                   => 'Differentias',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Sembla valide',
+'email-address-validity-invalid' => 'Un adresse valide es obligatori!',
+
 # User rights
 'userrights'                   => 'Gestion de derectos de usator',
 'userrights-lookup-user'       => 'Gerer gruppos de usatores',
@@ -1448,7 +1452,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchangestext'                 => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'recentchanges-feed-description'    => 'Seque le modificationes le plus recente al wiki in iste syndication.',
 'recentchanges-label-newpage'       => 'Iste modification creava un nove pagina',
-'recentchanges-label-minor'         => 'Iste es un modification minor',
+'recentchanges-label-minor'         => 'Isto es un modification minor',
 'recentchanges-label-bot'           => 'Iste modification ha essite effectuate per un robot',
 'recentchanges-label-unpatrolled'   => 'Iste modification non ha ancora essite patruliate',
 'rcnote'                            => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
@@ -2877,10 +2881,10 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'            => 'Grandor del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
-'file-info'            => '(grandor del file: $1, typo MIME: $2)',
-'file-info-size'       => '($1 × $2 pixel, grandor del file: $3, typo MIME: $4)',
+'file-info'            => 'grandor del file: $1, typo MIME: $2',
+'file-info-size'       => '$1 × $2 pixel, grandor del file: $3, typo MIME: $4',
 'file-nohires'         => '<small>Non disponibile in resolution plus alte.</small>',
-'svg-long-desc'        => '(File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3)',
+'svg-long-desc'        => 'File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'repetente',
@@ -3240,6 +3244,20 @@ $5
 Iste codice de confirmation expirara a $4.',
 'confirmemail_body_changed' => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha cambiate le adresse de e-mail del conto "$2" a iste adresse in {{SITENAME}}.
+
+Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
+de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
+
+$3
+
+Si le conto *non* pertine a te, seque iste ligamine
+pro cancellar le confirmation del adresse de e-mail:
+
+$5
+
+Iste codice de confirmation expirara a $4.',
+'confirmemail_body_set'     => 'Un persona, probabilemente tu, usante le adresse IP $1,
+ha specificate que iste adresse de e-mail pertine al conto "$2" in {{SITENAME}}.
 
 Pro confirmar que iste conto es de facto tue, e pro reactivar le functiones
 de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:

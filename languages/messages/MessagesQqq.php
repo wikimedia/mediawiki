@@ -64,6 +64,7 @@
  * @author Nike
  * @author Node ue
  * @author Octahedron80
+ * @author Onecountry
  * @author OsamaK
  * @author PhiLiP
  * @author Platonides
@@ -94,6 +95,7 @@
  * @author Verdy p
  * @author Vinhtantran
  * @author Waldir
+ * @author Whym
  * @author Yyy
  * @author פוילישער
  */
@@ -361,19 +363,23 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'delete'            => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
 
 {{Identical|Delete}}',
-'deletethispage'    => '{{Identical|Delete this page}}',
+'deletethispage'    => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
+{{Identical|Delete this page}}',
 'undelete_short'    => "It is tab label. It's really can be named ''nstab-undelete''.",
 'protect'           => 'Name of protect tab displayed for admins
 
 {{Identical|Protect}}',
 'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
 {{Identical|Change}}',
-'protectthispage'   => '{{Identical|Protect this page}}',
+'protectthispage'   => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to protect the page in admin view.
+{{Identical|Protect this page}}',
 'unprotect'         => 'Name of unprotect tab displayed for admins
 
 {{Identical|Unprotect}}',
-'unprotectthispage' => '{{Identical|Unprotect this page}}',
+'unprotectthispage' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to unprotect the page in admin view.
+{{Identical|Unprotect this page}}',
 'newpage'           => '{{Identical|New page}}',
+'talkpage'          => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to discuss the page.',
 'talkpagelinktext'  => 'Used as name of links going to talk page in some places, like in [[Special:RecentChanges]], [[Special:Allmessages]], [[Special:Logs]], and [[Special:Watchlist/edit]].
 
 {{Identical|Talk}}',
@@ -408,7 +414,8 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 
 {{Identical|Search}}',
 'pool-timeout'      => 'Part of {{msg-mw|view-pool-error}}.',
-'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}.
+'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}
+
 "Pool" refers to a pool of processes.',
 'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.',
 
@@ -431,26 +438,25 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'disclaimers'          => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'disclaimerpage'       => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
-{{doc-important|Do not change <tt>Project:</tt> part.}}',
+{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'edithelp'             => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
 'edithelppage'         => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.
-{{doc-important|Do not change <tt>Help:</tt> part.}}',
+{{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
 'helppage'             => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}.
-{{doc-important|Do not change <tt>Help:</tt> part.}}
+{{doc-important|Do not change the "<tt>Help:</tt>" part.}}
 {{Identical|HelpContent}}',
 'mainpage'             => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
 {{Identical|Main page}}',
 'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.',
 'policy-url'           => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
-{{doc-important|Do not change "Project:" part.}}',
+{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'portal'               => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.",
 'portal-url'           => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).
-{{doc-important|Do not change "Project:" part.}}',
+{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 'privacy'              => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].',
 'privacypage'          => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
-
-{{doc-important|Do not change <tt>Project:</tt> part.}}',
+{{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
 
 'badaccess'        => 'Title shown within page indicating unauthorized access.',
 'badaccess-group0' => 'Shown when you are not allowed to do something.',
@@ -1210,7 +1216,7 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchmenu-new'                 => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
 'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
-{{doc-important|Do not change "Help:" part.}}',
+{{doc-important|Do not change the "<tt>Help:</tt>" part.}}',
 'searchprofile-articles'         => "A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [http://www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
@@ -3507,6 +3513,8 @@ $1 is a message from the e-mail delivery system.',
 *$5 is a URL to [[Special:InvalidateEmail]]
 *$6 is a date
 *$7 is a time',
+'confirmemail_body_set'     => 'This is used in a confirmation e-mail sent when a contact e-mail address is set.
+See also [[MediaWiki:Confirmemail_body_changed]].',
 'confirmemail_invalidated'  => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail'           => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
@@ -3873,8 +3881,10 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
 # Special:DisableAccount
+'disableaccount'          => 'Name of the special page',
 'disableaccount-user'     => '{{Identical|Username}}',
 'disableaccount-reason'   => '{{Identical|Reason}}',
+'disableaccount-confirm'  => 'A system administrator here is one having access to the system the wiki is running on beyond that of a sysop or a bureaucrat. In Wikimedia terminology they have \'shell access\'. This message refers to "no return without direct database changes."',
 'disableaccount-logentry' => 'This message is used as a [[Special:Log|log entry]], appearing after the username of the person who did the action. Parameters:
 * $1 is a user page',
 

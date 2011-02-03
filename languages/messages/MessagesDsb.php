@@ -183,8 +183,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Licbu wobglědujucych wužywarjow pokazaś',
 'tog-oldsig'                  => 'Pśeglěd eksistěrowaceje signatury:',
 'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadaś (bźez awtomatiskego wótkaza)',
-'tog-externaleditor'          => 'Eksterny editor ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle)',
-'tog-externaldiff'            => 'Eksterny diff-program ako standard wužywaś (jano za ekspertow, pominma sebje specialne nastajenja na wašom licadle)',
+'tog-externaleditor'          => 'Eksterny editor ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [http://www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
+'tog-externaldiff'            => 'Eksterny diff ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle. [http://www.mediawiki.org/wiki/Manual:External_editors Dalšne informacije.])',
 'tog-showjumplinks'           => 'Wótkaze typa „źi do” zmóžniś',
 'tog-uselivepreview'          => 'Live-pśeglěd wužywaś (JavaScript) (eksperimentelnje)',
 'tog-forceeditsummary'        => 'Warnowaś, gaž pśi składowanju zespominanje felujo',
@@ -1239,6 +1239,10 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'prefs-displaysearchoptions'    => 'Zwobraznjowańske opcije',
 'prefs-displaywatchlist'        => 'Zwobraznjowańske opcije',
 'prefs-diffs'                   => 'Rozdźěle',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Zda se, až e-mailowa adresa jo płaśiwa',
+'email-address-validity-invalid' => 'Zapódaj płaśiwu e-mailowu adresu',
 
 # User rights
 'userrights'                   => 'Zastojanje wužywarskich pšawow',
@@ -2726,10 +2730,10 @@ $1',
 'imagemaxsize'         => "Maksimalna wobrazowa wjelikosć:<br />'' (za boki datajowego wopisanja)''",
 'thumbsize'            => 'Rozměra miniaturow:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
-'file-info'            => '(wjelikosć dataje: $1, MIME-Typ: $2)',
-'file-info-size'       => '($1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4)',
+'file-info'            => 'wjelikosć dataje: $1, MIME-Typ: $2',
+'file-info-size'       => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Wuše wótgranicowanje njeeksistěrujo.</small>',
-'svg-long-desc'        => '(dataja SVG, nominalnje: $1 × $2 piksele, wjelikosć dataje: $3)',
+'svg-long-desc'        => 'dataja SVG, nominalnje: $1 × $2 piksele, wjelikosć dataje: $3',
 'show-big-image'       => 'Połne optiske wótgranicowanje.',
 'show-big-image-thumb' => '<small>wjelikosć pśeglěda: $1 × $2 pikselow</small>',
 'file-info-gif-looped' => 'bźezkóńcna šlejfa',
@@ -3078,6 +3082,17 @@ $5
 
 Toś ten wobkšuśeński kod płaśi do $4.',
 'confirmemail_body_changed' => 'Něchten, nejskerjej ty z IP-adresy $1, jo e-mailowu adresu konta "$2" do toś teje adrese na {{GRAMMAR:lokatiw{{SITENAME}}}} změnił.
+
+Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na {{GRAMMAR:lokatiw{{SITENAME}}}} aktiwěrował, wócyń toś ten wótkaz w swójom wobglědowaku:
+
+$3
+
+Jolic toś to konto śi *nje*słuša, slěduj toś tomu wótkazoju, aby wobkśuśenje e-mejloweje adrese anulěrował:
+
+$5
+
+Toś ten wobkšuśeński kod płaśi až do $4.',
+'confirmemail_body_set'     => 'Něchten, nejskerjej ty z IP-adresy $1, jo e-mailowu adresu konta "$2" do toś teje adrese na {{GRAMMAR:lokatiw{{SITENAME}}}} změnił.
 
 Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na {{GRAMMAR:lokatiw{{SITENAME}}}} aktiwěrował, wócyń toś ten wótkaz w swójom wobglědowaku:
 

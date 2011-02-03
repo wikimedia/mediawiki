@@ -10,6 +10,7 @@
  * @author Don Alessandro
  * @author Emperyan
  * @author Gulmammad
+ * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
@@ -1610,9 +1611,9 @@ $1',
 # Media information
 'imagemaxsize'         => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
 'thumbsize'            => 'Kiçik ölçü:',
-'file-info-size'       => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
+'file-info-size'       => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
 'file-nohires'         => '<small>Daha dəqiq versiyası yoxdur.</small>',
-'svg-long-desc'        => '(SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3)',
+'svg-long-desc'        => 'SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3',
 'show-big-image'       => 'Daha yüksək keyfiyyətli şəkil',
 'show-big-image-thumb' => '<small>Sınaq göstərişi ölçüsü: $1 × $2 piksel</small>',
 
@@ -1712,7 +1713,8 @@ Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şə
 'filepath' => 'Fayl yolu',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'Dublikat fayl axtarışı',
+'fileduplicatesearch'        => 'Dublikat fayl axtarışı',
+'fileduplicatesearch-submit' => 'Axtar',
 
 # Special:SpecialPages
 'specialpages'                   => 'Xüsusi səhifələr',

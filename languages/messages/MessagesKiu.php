@@ -474,6 +474,9 @@ Kerem ke, oncia bıcerrebne.',
 'usernamehasherror'       => 'Namê karberi de karakteri gunê têwerte ra mebê',
 'loginlanguagelabel'      => 'Zon: $1',
 
+# JavaScript password checks
+'password-strength-good' => 'rınd',
+
 # Password reset dialog
 'resetpass'                 => 'Parola bıvurne',
 'resetpass_header'          => 'Parola hesabi bıvurne',
@@ -699,6 +702,7 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'searchhelp-url'            => 'Help:Tedeestey',
 'searchprofile-articles'    => 'Pelê tedeesteu',
 'searchprofile-images'      => 'Multimedya',
+'searchprofile-everything'  => 'Her çi',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 çekuye|$2 çekuy}})',
 'search-redirect'           => '(hetêcıraberdene $1)',
 'search-section'            => '(qısımo $1)',
@@ -708,7 +712,8 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'search-interwiki-more'     => '(zafêr)',
 'search-mwsuggest-enabled'  => 'ebe teklifu',
 'search-mwsuggest-disabled' => 'teklifi çinê',
-'searchrelated'             => 'aleqeder',
+'search-relatedarticle'     => 'alaqedar',
+'searchrelated'             => 'alaqedar',
 'searchall'                 => 'pêro',
 'nonefound'                 => "'''Not''': Teyna taê namê cau jê saybiyau cı fetelino.
 Verê cıfeteliyaene de be ilawekerdena verbendê '''all:'''i ra (ebe pelunê hurênaişi, şablonu uêb.) bıcerebnê ya ki namê cayo ke wajino jê verbendi bıgurênê.",
@@ -923,17 +928,21 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'watchthisupload'            => 'Na dosya de şêr ke',
 
 # Special:ListFiles
-'imgfile'        => 'dosya',
-'listfiles'      => 'Lista dosya',
-'listfiles_date' => 'Tarix',
-'listfiles_name' => 'Name',
-'listfiles_user' => 'Karber',
+'imgfile'               => 'dosya',
+'listfiles'             => 'Lista dosya',
+'listfiles_date'        => 'Tarix',
+'listfiles_name'        => 'Name',
+'listfiles_user'        => 'Karber',
+'listfiles_size'        => 'Ebad',
+'listfiles_description' => 'Terif',
 
 # File description page
 'file-anchor-link'          => 'Dosya',
 'filehist'                  => 'Tarixê dosya',
 'filehist-help'             => "Serba diyaena viartê dosya tarixê ke qısımê tarix/zeman'i derê inu bıteqne.",
+'filehist-deleteall'        => 'Pêrune bıestere',
 'filehist-deleteone'        => 'bıestere',
+'filehist-revert'           => 'raçarne',
 'filehist-current'          => 'nıkaên',
 'filehist-datetime'         => 'Tarix/Dem',
 'filehist-thumb'            => 'Resmo qızkek',
@@ -942,6 +951,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'filehist-dimensions'       => 'Budi',
 'filehist-filesize'         => 'Gırşênia dosya',
 'filehist-comment'          => 'Areze-kerdene',
+'filehist-missing'          => 'Dosya vindbiyaiya',
 'imagelinks'                => 'Girê dosya',
 'linkstoimage'              => 'Ano {{PLURAL:$1|girê pele|$1 girê pelu}} be na dosya:',
 'sharedupload'              => 'Na dosya depoê $1 rawa u beno ke procunê binu de gurenina.',
@@ -949,12 +959,15 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'shared-repo-from'          => '$1 ra',
 
 # File reversion
+'filerevert'         => '$1 raçarne',
+'filerevert-legend'  => 'Dosya raçarne',
 'filerevert-comment' => 'Arezekerdene:',
 'filerevert-submit'  => 'Raçarne',
 
 # File deletion
 'filedelete'                  => 'Bıestere $1',
 'filedelete-legend'           => 'Dosya bıestere',
+'filedelete-comment'          => 'Sebeb:',
 'filedelete-submit'           => 'Bıestere',
 'filedelete-reason-otherlist' => 'Sebebo bin',
 
@@ -968,6 +981,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'brokenredirects-edit'   => 'bıvurne',
 'brokenredirects-delete' => 'bıestere',
 
+'withoutinterwiki-legend' => 'Verbend',
 'withoutinterwiki-submit' => 'Bıasne',
 
 # Miscellaneous special pages
@@ -1003,6 +1017,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 # Special:AllPages
 'allpages'       => 'Peli pêro',
 'alphaindexline' => '$1 bere $2',
+'nextpage'       => 'Pela peyê coy ($1)',
 'prevpage'       => 'Pela verêne ($1)',
 'allpagesfrom'   => 'Pelê ke be na herfe dest niyo pıra bıasne:',
 'allpagesto'     => 'Pelunê ke be na herfe qedinê bıasne:',
@@ -1016,7 +1031,8 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'sp-deletedcontributions-contribs' => 'iştıraki',
 
 # Special:LinkSearch
-'linksearch' => 'Girê teberi',
+'linksearch'    => 'Girê teberi',
+'linksearch-ok' => 'Cıfeteliye',
 
 # Special:ListUsers
 'listusers-submit' => 'Bıasne',
@@ -1027,11 +1043,17 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Kome',
+'listgrouprights-rights'  => 'Heqi',
 'listgrouprights-members' => '(lista azau)',
 
 # E-mail user
-'emailuser' => 'Nê karberi rê e-poste bırusne',
-'emailsend' => 'Bırusne',
+'emailuser'    => 'Nê karberi rê e-poste bırusne',
+'emailpage'    => 'Karberi rê e-poste bırusne',
+'emailfrom'    => 'Kami ra:',
+'emailto'      => 'Kami rê:',
+'emailsubject' => 'Mewzu:',
+'emailmessage' => 'Mesac:',
+'emailsend'    => 'Bırusne',
 
 # Watchlist
 'watchlist'         => 'Pela mına şêrkerdene',
@@ -1052,8 +1074,11 @@ Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, 
 'watching'   => 'Şêr ke…',
 'unwatching' => 'Şêr meke…',
 
+'changed' => 'vuriya',
+
 # Delete
 'deletepage'            => 'Pele bıestere',
+'delete-legend'         => 'Bıestere',
 'confirmdeletetext'     => 'Tı hawo kena ke jü pele be tarixê dae pêro bıne ra bıesterê.
 Eke ferqê neticê na kerdene de bena u no kar be gorê [[{{MediaWiki:Policy-url}}|qeydunê esterıtene]] beno, wa gurêy tesdiq ke.',
 'actioncomplete'        => 'Kar bi temam',
@@ -1093,9 +1118,11 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'restriction-level'           => 'Sinorê desturi:',
 
 # Undelete
-'undeletebtn'      => 'Peyser bia',
-'undeletelink'     => 'bıvêne/peyser bia',
-'undeletedarticle' => 'peyser ard "[[$1]]"',
+'undeletebtn'               => 'Peyser bia',
+'undeletelink'              => 'bıvêne/peyser bia',
+'undeletecomment'           => 'Sebeb:',
+'undeletedarticle'          => 'peyser ard "[[$1]]"',
+'undelete-show-file-submit' => 'Heya',
 
 # Namespace form on various pages
 'namespace'      => 'Caê namey:',
@@ -1113,6 +1140,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 
 'sp-contributions-newbies'  => 'Teyna iştırakunê neweqeydbiyaoğu basne',
 'sp-contributions-blocklog' => 'qeydê engeli',
+'sp-contributions-talk'     => 'hurênais',
 'sp-contributions-search'   => 'Ebe iştıraku cı feteliye',
 'sp-contributions-username' => 'IP ya ki karber:',
 'sp-contributions-submit'   => 'Cıfeteliye',
@@ -1158,6 +1186,7 @@ Serba men- u kilıt-biyaene nıkaêne qaytê [[Special:IPBlockList|lista kilıt-
 'block-log-flags-noemail'         => 'e-mail kilıt bi',
 'block-log-flags-nousertalk'      => 'pela hurênaişi ho nêşikina bıvurnê',
 'block-log-flags-angry-autoblock' => 'kilıto otomatiko qewetın bi ra',
+'block-log-flags-hiddenname'      => 'namê karberi wedariyaeo',
 'range_block_disabled'            => 'Qabılıyetê idarekeri be afernaena komuna têdine qapan bi.',
 'ipb_expiry_invalid'              => 'Xêlê zeman nêvêreno.',
 
@@ -1200,10 +1229,15 @@ Kerem ke, zerreki ebe ho dest bere.'''",
 'export' => 'Pelu qeyd ke',
 
 # Namespace 8 related
-'allmessages' => 'Mesacê sistemi',
+'allmessages'               => 'Mesacê sistemi',
+'allmessages-language'      => 'Zon:',
+'allmessages-filter-submit' => 'So',
 
 # Thumbnails
 'thumbnail-more' => 'Gırs ke',
+
+# Special:Import
+'import-upload-filename' => 'Namê dosya:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pela sımawa karberi',
@@ -1290,9 +1324,9 @@ Serba areze-kerdene qaytê ''math/README''y ke.",
 'nextdiff'     => 'Vurnaena newêre →',
 
 # Media information
-'file-info-size'       => '($1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4)',
+'file-info-size'       => '$1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4',
 'file-nohires'         => '<small>Tewrêna berz rovıleşiyaene nêbena.</small>',
-'svg-long-desc'        => '(Dosya SVGy, seha ke $1 × $2 pixels, gırşênia dosya: $3)',
+'svg-long-desc'        => 'Dosya SVGy, seha ke $1 × $2 pixels, gırşênia dosya: $3',
 'show-big-image'       => 'Rovıleşiyaena tame',
 'show-big-image-thumb' => '<small>Gırsênia verqayti: $1 × $2 piksel</small>',
 
@@ -1359,19 +1393,41 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 * isospeedratings
 * focallength",
 
+# EXIF tags
+'exif-imagewidth'  => 'Verındêni',
+'exif-imagelength' => 'Berzêni',
+
+'exif-meteringmode-255' => 'Bin',
+
 # External editor support
 'edit-externally'      => 'Na dosya be mırecaetê de teberi bıvurne',
 'edit-externally-help' => '(Serba daêna melumati qaytê pelga [http://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'pêro',
-'namespacesall' => 'pêro',
-'monthsall'     => 'pêro',
+'recentchangesall' => 'pêro',
+'imagelistall'     => 'pêro',
+'watchlistall2'    => 'pêro',
+'namespacesall'    => 'pêro',
+'monthsall'        => 'pêro',
+'limitall'         => 'pêro',
+
+# action=purge
+'confirm_purge_button' => 'Temam',
+
+# Table pager
+'table_pager_limit_submit' => 'So',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vurnaisunê alaqadaru bımısne',
 'watchlisttools-edit' => 'Lista şêrkerdene bıvêne u vıraze',
 'watchlisttools-raw'  => 'Lista şêrkerdena xame vıraze',
+
+# Special:FilePath
+'filepath-page'   => 'Dosya:',
+'filepath-submit' => 'So',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Namê dosya:',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pelê xaşi',
@@ -1393,5 +1449,13 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 
 # Special:BlankPage
 'blankpage' => 'Pela thale',
+
+# Special:ComparePages
+'compare-page1' => 'Pele 1',
+'compare-page2' => 'Pele 2',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'Namê karberi:',
+'disableaccount-reason' => 'Sebeb:',
 
 );

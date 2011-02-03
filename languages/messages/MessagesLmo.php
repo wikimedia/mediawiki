@@ -1328,9 +1328,9 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 # Media information
 'imagemaxsize'         => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
 'thumbsize'            => 'Dimensiún diapusitiif:',
-'file-info-size'       => '($1 × $2 pixel, dimensión : $3, sort MIME: $4)',
+'file-info-size'       => '$1 × $2 pixel, dimensión : $3, sort MIME: $4',
 'file-nohires'         => '<small>Nissüna resulüzión püssee granda dispunibila.</small>',
-'svg-long-desc'        => "(archivi in furmaa SVG, dimensión nominaj  $1 × $2 pixel, dimensión de l'archivi: $3)",
+'svg-long-desc'        => "archivi in furmaa SVG, dimensión nominaj  $1 × $2 pixel, dimensión de l'archivi: $3",
 'show-big-image'       => 'Versión a resolüzión volta',
 'show-big-image-thumb' => '<small>Dimensión de quela anteprima chì: $1 × $2 pixel</small>',
 
