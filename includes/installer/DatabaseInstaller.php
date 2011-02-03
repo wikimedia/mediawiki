@@ -465,6 +465,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard install-user fieldset.
+	 *
+	 * @return String
 	 */
 	public function getInstallUserBox() {
 		return
@@ -487,6 +489,8 @@ abstract class DatabaseInstaller {
 	 * Get a standard web-user fieldset
 	 * @param $noCreateMsg String: Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox.
+	 *
+	 * @return String
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$s = Html::openElement( 'fieldset' ) .
@@ -528,6 +532,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Common function for databases that don't understand the MySQLish syntax of interwiki.sql.
+	 *
+	 * @return Status
 	 */
 	public function populateInterwikiTable() {
 		$status = $this->getConnection();
