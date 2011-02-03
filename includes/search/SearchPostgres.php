@@ -151,7 +151,8 @@ class SearchPostgres extends SearchEngine {
 			## TODO: Better output (example to catch: one 'two)
 			die ("Sorry, that was not a valid search string. Please go back and try again");
 		}
-		$top = pg_fetch_result($res,0,0);
+		$top = $res->fetchRow();
+		$top = $top[0];
 
 		if ($top === "") { ## e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score ".
