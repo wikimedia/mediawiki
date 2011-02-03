@@ -141,10 +141,10 @@ class EditPage {
 		if ( !$this->mTitle->exists() ) {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				# If this is a system message, get the default text.
-				list( $message, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
-				$text = wfMsgGetKey( $message, false, $lang, false );
-				if( wfEmptyMsg( $message, $text ) )
+				$text = $this->mArticle->getDefaultMessageText();
+				if( $text === false ) {
 					$text = $this->getPreloadedText( $preload );
+				}
 			} else {
 				# If requested, preload some text.
 				$text = $this->getPreloadedText( $preload );
