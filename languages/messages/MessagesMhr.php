@@ -22,13 +22,13 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Пайдаланышын_каҥашымаш',
 	NS_PROJECT_TALK     => '$1ын_каҥашымаш',
 	NS_FILE             => 'Файл',
-	NS_FILE_TALK        => 'Файлын_каҥашымаш',
+	NS_FILE_TALK        => 'Файл_шотышто_каҥашымаш',
 	NS_TEMPLATE         => 'Ямдылык',
-	NS_TEMPLATE_TALK    => 'Ямдылыкын_каҥашымаш',
+	NS_TEMPLATE_TALK    => 'Ямдылык_шотышто_каҥашымаш',
 	NS_HELP             => 'Полшык',
-	NS_HELP_TALK        => 'Полшыкын_каҥашымаш',
+	NS_HELP_TALK        => 'Полшык_шотышто_каҥашымаш',
 	NS_CATEGORY         => 'Категорий',
-	NS_CATEGORY_TALK    => 'Категорийын_каҥашымаш',
+	NS_CATEGORY_TALK    => 'Категорий_шотышто_каҥашымаш',
 );
 
 $namespaceAliases = array(
@@ -48,6 +48,12 @@ $namespaceAliases = array(
 	'Обсуждение_справки' => NS_HELP_TALK,
 	'Категория' => NS_CATEGORY,
 	'Обсуждение_категории' => NS_CATEGORY_TALK,
+
+	// Namspace changes
+	'Файлын_каҥашымаш' => NS_FILE_TALK,
+	'Ямдылыкын_каҥашымаш' => NS_TEMPLATE_TALK,
+	'Полшыкын_каҥашымаш' => NS_HELP_TALK,
+	'Категорийын_каҥашымаш' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
@@ -61,6 +67,12 @@ $specialPageAliases = array(
 $magicWords = array(
 	'img_right'             => array( '1', 'пурла', 'справа', 'right' ),
 	'img_left'              => array( '1', 'шола', 'слева', 'left' ),
+	'img_border'            => array( '1', 'чек', 'граница', 'border' ),
+	'img_sub'               => array( '1', 'йымалне', 'под', 'sub' ),
+	'img_super'             => array( '1', 'ӱмбалне', 'над', 'super', 'sup' ),
+	'img_top'               => array( '1', 'кӱшычын', 'сверху', 'top' ),
+	'img_middle'            => array( '1', 'покшелне', 'посередине', 'middle' ),
+	'img_bottom'            => array( '1', 'ӱлычын', 'снизу', 'bottom' ),
 );
 
 $messages = array(

@@ -170,12 +170,14 @@ $specialPageAliases = array(
 	'Mypage'                    => array( '我的用户页' ),
 	'Mytalk'                    => array( '我的讨论页' ),
 	'Mycontributions'           => array( '我的贡献' ),
+	'Myuploads'                 => array( '我的上传' ),
+	'PermanentLink'             => array( '永久链接' ),
 	'Listadmins'                => array( '管理员列表' ),
 	'Listbots'                  => array( '机器人列表' ),
 	'Popularpages'              => array( '热点页面' ),
 	'Search'                    => array( '搜索' ),
 	'Resetpass'                 => array( '修改密码' ),
-	'Withoutinterwiki'          => array( '无跨wiki链接页面' ),
+	'Withoutinterwiki'          => array( '无跨维基链接页面' ),
 	'MergeHistory'              => array( '合并历史' ),
 	'Filepath'                  => array( '文件路径' ),
 	'Invalidateemail'           => array( '不可识别的电邮地址' ),
@@ -184,6 +186,9 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已删除的用户贡献' ),
 	'Tags'                      => array( '标签' ),
 	'Activeusers'               => array( '活跃用户' ),
+	'ComparePages'              => array( '对比页子' ),
+	'Badtitle'                  => array( '坏标题' ),
+	'DisableAccount'            => array( '禁用帐户' ),
 );
 
 $linkTrail = '/^()(.*)$/sD';

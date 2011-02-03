@@ -165,6 +165,8 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'Meine_Benutzerseite' ),
 	'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
 	'Mycontributions'           => array( 'Meine_Beiträge' ),
+	'Myuploads'                 => array( 'Meine_hochgeladenen_Dateien' ),
+	'PermanentLink'             => array( 'Permanenter_Link' ),
 	'Listadmins'                => array( 'Administratoren' ),
 	'Listbots'                  => array( 'Bots' ),
 	'Popularpages'              => array( 'Beliebteste_Seiten' ),
@@ -181,6 +183,7 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktive_Benutzer' ),
 	'ComparePages'              => array( 'Seiten_vergleichen' ),
 	'Badtitle'                  => array( 'Ungültiger_Titel' ),
+	'DisableAccount'            => array( 'Benutzerkonto_deaktivieren' ),
 );
 
 $datePreferences = array(
