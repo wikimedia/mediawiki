@@ -70,7 +70,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		// Try to connect
-		$status->merge( $this->getConnection() );
+		$status->merge( $this->getConnection( 'template1' ) );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -107,8 +107,32 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	function getConnection($database = null) {
+		$status = Status::newGood();
+
+		if( is_null( $database ) ) {
+			$dbname = $this->getVar( 'wgDBname' );
+			$dbuser = $this->getVar( 'wgDBuser' );
+			$dbpass = $this->getVar( 'wgDBpassword' );
+		} else {
+			$dbname = $database;
+			$dbuser = $this->getVar( '_InstallUser' );
+			$dbpass = $this->getVar( '_InstallPassword' );
+		}
+
+		try {
+			$this->db = new DatabasePostgres(
+				$this->getVar( 'wgDBserver' ),
+				$dbuser, $dbpass, $dbname );
+			$status->value = $this->db;
+		} catch ( DBConnectionError $e ) {
+			$status->fatal( 'config-connection-error', $e->getMessage() );
+		}
+		return $status;
+	}
+
 	protected function canCreateAccounts() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( 'template1' );
 		if ( !$status->isOK() ) {
 			return false;
 		}
@@ -200,7 +224,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function setupDatabase() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( 'template1' );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -265,7 +289,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return Status::newGood();
 		}
 
-		$status = $this->getConnection();
+		$status = $this->getConnection( 'template1' );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -273,12 +297,18 @@ class PostgresInstaller extends DatabaseInstaller {
 		$db = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $db );
 		$safeuser = $this->db->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
+		$safeusercheck = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $this->db->addQuotes( $this->getVar( 'wgDBpassword' ) );
-		$res = $this->db->query( "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass", __METHOD__ );
-		return $status;
 
-		if ( $res !== true ) {
-			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ) );
+		$rows = $this->db->numRows(
+			$this->db->query( "SELECT 1 FROM pg_catalog.pg_shadow WHERE usename = $safeusercheck" )
+		);
+		if ( $rows < 1 ) {
+		$res = $this->db->query( "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass", __METHOD__ );
+
+			if ( $res !== true && !( $res instanceOf ResultWrapper ) ) {
+				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $res );
+		}
 		}
 
 		return $status;

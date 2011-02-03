@@ -9,6 +9,21 @@
 BEGIN;
 SET client_min_messages = 'ERROR';
 
+DROP SEQUENCE IF EXISTS user_user_id_seq;
+DROP SEQUENCE IF EXISTS page_page_id_seq;
+DROP SEQUENCE IF EXISTS revision_rev_id_seq;
+DROP SEQUENCE IF EXISTS page_restrictions_id_seq;
+DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq;
+DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq;
+DROP SEQUENCE IF EXISTS logging_log_id_seq;
+DROP SEQUENCE IF EXISTS trackbacks_tb_id_seq;
+DROP SEQUENCE IF EXISTS job_job_id_seq;
+DROP SEQUENCE IF EXISTS category_cat_id_seq;
+DROP FUNCTION IF EXISTS page_deleted();
+DROP FUNCTION IF EXISTS ts2_page_title();
+DROP FUNCTION IF EXISTS ts2_page_text();
+DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT);
+
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
 CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_id                   INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('user_user_id_seq'),
@@ -495,7 +510,7 @@ CREATE TABLE job (
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
--- Note: if version 8.3 or higher, we remove the 'default' arg
+-- Version 8.3 or higher only. Previous versions would need another parmeter for to_tsvector.
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 
 ALTER TABLE page ADD titlevector tsvector;
@@ -503,9 +518,9 @@ CREATE FUNCTION ts2_page_title() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
 IF TG_OP = 'INSERT' THEN
-  NEW.titlevector = to_tsvector('default',REPLACE(NEW.page_title,'/',' '));
+  NEW.titlevector = to_tsvector(REPLACE(NEW.page_title,'/',' '));
 ELSIF NEW.page_title != OLD.page_title THEN
-  NEW.titlevector := to_tsvector('default',REPLACE(NEW.page_title,'/',' '));
+  NEW.titlevector := to_tsvector(REPLACE(NEW.page_title,'/',' '));
 END IF;
 RETURN NEW;
 END;
@@ -520,9 +535,9 @@ CREATE FUNCTION ts2_page_text() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
 IF TG_OP = 'INSERT' THEN
-  NEW.textvector = to_tsvector('default',NEW.old_text);
+  NEW.textvector = to_tsvector(NEW.old_text);
 ELSIF NEW.old_text != OLD.old_text THEN
-  NEW.textvector := to_tsvector('default',NEW.old_text);
+  NEW.textvector := to_tsvector(NEW.old_text);
 END IF;
 RETURN NEW;
 END;
