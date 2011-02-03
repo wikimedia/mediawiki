@@ -151,7 +151,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'SilinenKatkılar' ),
 	'Tags'                      => array( 'Etiketler' ),
 	'Activeusers'               => array( 'AktifKullanıcılar' ),
-	'RevisionMove'              => array( 'SürümTaşı' ),
 	'ComparePages'              => array( 'SayfaKarşılaştır' ),
 	'Badtitle'                  => array( 'KötüBaşlık' ),
 	'DisableAccount'            => array( 'HesapKapat' ),

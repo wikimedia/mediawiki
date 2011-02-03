@@ -133,7 +133,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'SiprimeKontribisyon' ),
 	'Tags'                      => array( 'Etikèt' ),
 	'Activeusers'               => array( 'ItilizatèAktif' ),
-	'RevisionMove'              => array( 'DeplaseRevizyon' ),
 	'ComparePages'              => array( 'KonparePaj' ),
 	'Badtitle'                  => array( 'MovèTit' ),
 	'DisableAccount'            => array( 'DeaktiveKont' ),

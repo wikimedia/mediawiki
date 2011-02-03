@@ -134,7 +134,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Geläschte_Kontributiounen' ),
 	'Tags'                      => array( 'Taggen' ),
 	'Activeusers'               => array( 'Aktiv_Benotzer' ),
-	'RevisionMove'              => array( 'Versioun_réckelen' ),
 	'ComparePages'              => array( 'Säite_vergkäichen' ),
 	'Badtitle'                  => array( 'Net_valabelen_Titel' ),
 	'DisableAccount'            => array( 'Benotzerkont_ausschalten' ),

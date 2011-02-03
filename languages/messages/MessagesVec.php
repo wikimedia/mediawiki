@@ -140,7 +140,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'ContributiScancelà' ),
 	'Tags'                      => array( 'Tag' ),
 	'Activeusers'               => array( 'UtentiAtivi' ),
-	'RevisionMove'              => array( 'SpostaRevision' ),
 	'ComparePages'              => array( 'ConfrontaPagine' ),
 	'Badtitle'                  => array( 'TitoloSbalià' ),
 );

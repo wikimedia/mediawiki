@@ -182,7 +182,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
 	'Tags'                      => array( 'Oзнаки', 'Приврзоци' ),
 	'Activeusers'               => array( 'АктивниКорисници' ),
-	'RevisionMove'              => array( 'ПреместиРевизија' ),
 	'ComparePages'              => array( 'СпоредиСтраници' ),
 	'Badtitle'                  => array( 'ЛошНаслов' ),
 	'DisableAccount'            => array( 'ОневозможиСметка' ),
