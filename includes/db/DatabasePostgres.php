@@ -192,8 +192,6 @@ class DatabasePostgres extends DatabaseBase {
 		}
 
 		$this->doQuery( "SET client_encoding='UTF8'" );
-		$this->doQuery( "SET datestyle = 'ISO, YMD'" );
-		$this->doQuery( "SET timezone = 'GMT'" );
 
 		global $wgDBmwschema;
 		if ( isset( $wgDBmwschema )
