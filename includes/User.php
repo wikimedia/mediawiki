@@ -102,7 +102,9 @@ class User {
 		'disableaccount',
 		'edit',
 		'editinterface',
-		'editusercssjs',
+		'editusercssjs', #deprecated
+		'editusercss',
+		'edituserjs',
 		'hideuser',
 		'import',
 		'importupload',
