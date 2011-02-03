@@ -171,7 +171,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Usunięty_wkład' ),
 	'Tags'                      => array( 'Znaczniki' ),
 	'Activeusers'               => array( 'Aktywni_użytkownicy' ),
-	'RevisionMove'              => array( 'Przenoszenie_wersji' ),
 	'ComparePages'              => array( 'Porównywanie_stron' ),
 );
 
@@ -728,15 +727,6 @@ Odczekaj chwilę zanim ponowisz próbę.',
 # E-mail sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Szacowane bezpieczeństwo hasła – $1',
-'password-strength-bad'        => 'ZŁE',
-'password-strength-mediocre'   => 'mierne',
-'password-strength-acceptable' => 'akceptowalne',
-'password-strength-good'       => 'dobre',
-'password-retype'              => 'Powtórz hasło',
-'password-retype-mismatch'     => 'Hasła nie są identyczne',
-
 # Password reset dialog
 'resetpass'                 => 'Zmień hasło',
 'resetpass_announce'        => '{{GENDER:|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e‐mail.
@@ -1128,24 +1118,6 @@ Proszę sprawdzić rejestr operacji.',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
 Zobacz [[Special:IPBlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
-# Revision move
-'moverevlogentry'              => 'przeniósł {{PLURAL:$3|jedną wersję|$3 wersje|$3 wersji}} z $1 do $2',
-'revisionmove'                 => 'Przenieś wersje z „$1“',
-'revmove-explain'              => 'Następujące zmiany zostaną przeniesione z $1 do wybranej strony docelowej. Jeśli cel nie istnieje, zostanie utworzony. W przeciwnym wypadku, wersje zostaną dołączone do historii strony.',
-'revmove-legend'               => 'Ustaw stronę docelową i podsumowanie',
-'revmove-submit'               => 'Przenieś wersje do wybranej strony',
-'revisionmoveselectedversions' => 'Przenieś wybrane wersje',
-'revmove-reasonfield'          => 'Powód',
-'revmove-titlefield'           => 'Strona docelowa',
-'revmove-badparam-title'       => 'Złe parametry',
-'revmove-badparam'             => 'Żądanie zawiera niedozwolone lub niewystarczające parametry. Naciśnij „wstecz“ i spróbuj ponownie.',
-'revmove-norevisions-title'    => 'Nieprawidłowa wersja docelowa',
-'revmove-norevisions'          => 'Nie określono jednej lub kilku wersji, na których ma zostać wykonana funkcja, lub wybrana wersja nie istnieje.',
-'revmove-nullmove-title'       => 'Zły tytuł',
-'revmove-nullmove'             => 'Strona źródłowa i docelowa są takie same. Naciśnij „wstecz“ i wpisz nazwę strony różną od „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji istniejącej strony [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji nowo utworzonej strony [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
 'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z historią innej, nowszej strony.
@@ -1487,7 +1459,6 @@ Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpo
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
-'right-revisionmove'          => 'Przenoszenie wersji',
 'right-disableaccount'        => 'Wyłączanie kont',
 
 # User rights log
@@ -1531,7 +1502,6 @@ Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpo
 'action-userrights'           => 'edytowania uprawnień wszystkich użytkowników',
 'action-userrights-interwiki' => 'edytowania uprawnień użytkowników na innych witrynach wiki',
 'action-siteadmin'            => 'blokowania i odblokowywania bazy danych',
-'action-revisionmove'         => 'przenieś wersje',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',

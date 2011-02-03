@@ -783,15 +783,6 @@ Aguarde antes de tentar novamente, por favor.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Estimativa da segurança da palavra-chave: $1',
-'password-strength-bad'        => 'MÁ',
-'password-strength-mediocre'   => 'medíocre',
-'password-strength-acceptable' => 'aceitável',
-'password-strength-good'       => 'boa',
-'password-retype'              => 'Repita a palavra-chave aqui',
-'password-retype-mismatch'     => 'As palavras-chave não coincidem',
-
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
 'resetpass_announce'        => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.
@@ -1195,24 +1186,6 @@ Verifique os registos, por favor.',
 'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
-# Revision move
-'moverevlogentry'              => 'moveu {{PLURAL:$3|uma revisão|$3 revisões}} de $1 para $2',
-'revisionmove'                 => 'Mover revisões de "$1"',
-'revmove-explain'              => 'As seguintes revisões serão movidas de $1 para a página de destino especificada. Se a página de destino não existir, será criada. Se existir, estas revisões serão fundidas no histórico de revisões da página.',
-'revmove-legend'               => 'Definir a página de destino e o resumo',
-'revmove-submit'               => 'Mover as revisões para a página seleccionada',
-'revisionmoveselectedversions' => 'Mover as revisões seleccionadas',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Página de destino:',
-'revmove-badparam-title'       => 'Parâmetros incorrectos',
-'revmove-badparam'             => 'O seu pedido contém parâmetros ilegais ou insuficientes. Clique "voltar" e tente novamente.',
-'revmove-norevisions-title'    => 'A revisão especificada é inválida',
-'revmove-norevisions'          => 'Não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.',
-'revmove-nullmove-title'       => 'Título incorrecto',
-'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'Esta página permite fundir o histórico de revisões de uma página no de outra.
@@ -1556,7 +1529,6 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
-'right-revisionmove'          => 'Mover revisões',
 'right-disableaccount'        => 'Desactivar contas',
 
 # User rights log
@@ -1600,7 +1572,6 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'action-userrights'           => 'editar os privilégios de utilizadores',
 'action-userrights-interwiki' => 'editar privilégios de utilizadores de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear a base de dados',
-'action-revisionmove'         => 'mover revisões',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',

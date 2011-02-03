@@ -656,15 +656,6 @@ Vent venligst før du prøver igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 
-# JavaScript password checks
-'password-strength'            => 'Anslået passwordstyrke: $1',
-'password-strength-bad'        => 'DÅRLIG',
-'password-strength-mediocre'   => 'middelmådig',
-'password-strength-acceptable' => 'acceptabel',
-'password-strength-good'       => 'god',
-'password-retype'              => 'Gentag adgangskode her',
-'password-retype-mismatch'     => 'Adgangskoderne er ikke ens',
-
 # Password reset dialog
 'resetpass'                 => 'Skift adgangskode',
 'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
@@ -1044,26 +1035,6 @@ Se venligst loglisterne.',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.Below is a list of deletions and blocks involving content hidden from sysops.
 Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 
-# Revision move
-'moverevlogentry'              => 'flyttede {{PLURAL:$3|en version|$3 versioner}} fra $1 til $2',
-'revisionmove'                 => 'Flyt ændringer fra "$1"',
-'revmove-explain'              => 'Følgende versioner vil blive flyttet fra $1 til den angivne målside. Hvis målsiden ikke findes, vil den blive oprettet. Ellers vil disse versioner blive flettet ind i sidens historik.',
-'revmove-legend'               => 'Sæt målside og opsummering',
-'revmove-submit'               => 'Flyt revisioner til den valgte side',
-'revisionmoveselectedversions' => 'Flyt valgte revisioner',
-'revmove-reasonfield'          => 'Begrundelse:',
-'revmove-titlefield'           => 'Målside:',
-'revmove-badparam-title'       => 'Forkerte parametre',
-'revmove-badparam'             => 'Din forespørgsel indeholder ugyldige eller utilstrækkelige parametre.
-Vend tilbage til forrige side og prøv igen.',
-'revmove-norevisions-title'    => 'Ugyldig målversion',
-'revmove-norevisions'          => 'Du har ikke angivet en eller flere målversioner for at udføre denne funktion eller den angivne version eksisterer ikke.',
-'revmove-nullmove-title'       => 'Forkert titel',
-'revmove-nullmove'             => 'Slutsiden kan ikke være identisk med startsiden.
-Vend tilbage til forrige side og vælg et andet navn fra "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den eksisterende side [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den nyligt oprettede side [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
 'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side.
@@ -1402,7 +1373,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
-'right-revisionmove'          => 'Flyt revisioner',
 'right-disableaccount'        => 'Deaktivere konti',
 
 # User rights log
@@ -1446,7 +1416,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'action-userrights'           => 'ændre alle brugerrettigheder',
 'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
 'action-siteadmin'            => 'låse eller låse databasen op',
-'action-revisionmove'         => 'flyt versioner',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ændring|ændringer}}',

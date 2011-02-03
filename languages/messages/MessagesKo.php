@@ -766,15 +766,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
 
-# JavaScript password checks
-'password-strength'            => '예상 비밀 번호 강도: $1',
-'password-strength-bad'        => '나쁨',
-'password-strength-mediocre'   => '별로 좋지 않음',
-'password-strength-acceptable' => '양호',
-'password-strength-good'       => '좋음',
-'password-retype'              => '비밀번호 확인:',
-'password-retype-mismatch'     => '비밀번호가 맞지 않습니다.',
-
 # Password reset dialog
 'resetpass'                 => '비밀번호 바꾸기',
 'resetpass_announce'        => '이메일로 받은 임시 암호로 로그인했습니다. 로그인을 마치려면 새 암호를 입력해 주세요:',
@@ -1145,24 +1136,6 @@ $1",
 'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 대한 삭제, 차단 기록입니다.
 현재 차단된 사용자 목록을 보시려면 [[Special:IPBlockList|차단된 사용자 목록]]을 참조하십시오.',
 
-# Revision move
-'moverevlogentry'              => '$1 문서의 편집 $3개를 $2 문서로 옮김',
-'revisionmove'                 => '"$1" 문서에서 특정 판 옮기기',
-'revmove-explain'              => '다음 판은 $1 문서에서 지정된 문서로 옮겨질 것입니다. 이동시킬 문서가 없다면 문서를 생성할 것이지만 그렇지 않다면 해당 판은 문서 역사에 합쳐질 것입니다.',
-'revmove-legend'               => '옮길 문서와 이유',
-'revmove-submit'               => '선택한 문서에 해당 편집을 옮기기',
-'revisionmoveselectedversions' => '선택한 편집을 옮기기',
-'revmove-reasonfield'          => '이유:',
-'revmove-titlefield'           => '대상 문서:',
-'revmove-badparam-title'       => '잘못된 변수',
-'revmove-badparam'             => '당신의 요청이 잘못된 변수를 갖고 있거나 변수 내용이 부족합니다. "뒤로"를 클릭하여 다시 시도해 보십시오.',
-'revmove-norevisions-title'    => '대상 판 선택이 잘못됨',
-'revmove-norevisions'          => '당신은 이 기능을 수행할 대상 판을 설정하지 않았거나 존재하지 않는 판을 선택하였습니다.',
-'revmove-nullmove-title'       => '제목이 잘못됨',
-'revmove-nullmove'             => '옮기기 전 문서와 대상 문서의 제목이 같습니다. "뒤로"를 클릭하여 "$1"과 다른 문서 이름을 입력해주세요.',
-'revmove-success-existing'     => '[[$2]] 문서의 편집 $1개가 [[$3]] 문서로 옮겨졌습니다.',
-'revmove-success-created'      => '[[$2]] 문서의 편집 $1개가 [[$3]] 문서로 옮기면서 새 문서를 생성했습니다.',
-
 # History merging
 'mergehistory'                     => '문서 역사 합치기',
 'mergehistory-header'              => '이 문서는 한 문서에서 다른 문서로 문서 역사를 합치게 할 것입니다.
@@ -1499,7 +1472,6 @@ $1",
 'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
-'right-revisionmove'          => '특정 판 옮기기',
 'right-disableaccount'        => '계정을 비활성화하기',
 
 # User rights log
@@ -1543,7 +1515,6 @@ $1",
 'action-userrights'           => '모든 사용자의 권한을 조정',
 'action-userrights-interwiki' => '다른 위키의 사용자 권한을 조정',
 'action-siteadmin'            => '데이터베이스를 잠그거나 잠금 해제하기',
-'action-revisionmove'         => '특정 판을 이동할',
 
 # Recent changes
 'nchanges'                          => '$1개 바뀜',

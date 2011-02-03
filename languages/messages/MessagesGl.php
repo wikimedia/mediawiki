@@ -144,7 +144,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contribucións_borradas' ),
 	'Tags'                      => array( 'Etiquetas' ),
 	'Activeusers'               => array( 'Usuarios_activos' ),
-	'RevisionMove'              => array( 'Traslado_de_revisión' ),
 	'ComparePages'              => array( 'Comparar_as_páxinas' ),
 	'Badtitle'                  => array( 'Título_incorrecto' ),
 );
@@ -706,15 +705,6 @@ Por favor, agarde antes de probar outra vez.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Fortaleza estimada do contrasinal: $1',
-'password-strength-bad'        => 'MALA',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'aceptable',
-'password-strength-good'       => 'boa',
-'password-retype'              => 'Insira o seu contrasinal outra vez',
-'password-retype-mismatch'     => 'Os contrasinais non coinciden',
-
 # Password reset dialog
 'resetpass'                 => 'Cambiar o contrasinal',
 'resetpass_announce'        => 'Debe rexistrarse co código temporal que recibiu por correo electrónico. Para finalizar o rexistro debe indicar un novo contrasinal aquí:',
@@ -1107,24 +1097,6 @@ Por favor, comprobe o rexistros.',
 'suppressionlogtext' => 'Embaixo amósase unha lista coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
 Vexa a [[Special:IPBlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
-# Revision move
-'moverevlogentry'              => 'moveu {{PLURAL:$3|unha revisión|$3 revisións}} de $1 a $2',
-'revisionmove'                 => 'Mover as revisións de "$1"',
-'revmove-explain'              => 'As seguintes revisións moveranse de "$1" á páxina de destino especificada. Se a páxina de destino non existe, esta será creada. En caso de existir, estas revisións fusionaranse co historial de revisións desa páxina.',
-'revmove-legend'               => 'Establecer a páxina de destino e o resumo',
-'revmove-submit'               => 'Mover as revisións á páxina seleccionada',
-'revisionmoveselectedversions' => 'Mover as revisións seleccionadas',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Páxina de destino:',
-'revmove-badparam-title'       => 'Parámetros incorrectos',
-'revmove-badparam'             => 'A súa solicitude contén parámetros insuficientes ou ilegais. Volva atrás e inténteo de novo.',
-'revmove-norevisions-title'    => 'A revisión especificada é incorrecta',
-'revmove-norevisions'          => 'Non especificou unha ou máis revisións sobre as que levar a cabo esta operación; ou poida tamén que a revisión especificada non exista.',
-'revmove-nullmove-title'       => 'Título incorrecto',
-'revmove-nullmove'             => 'As páxinas de orixe e destino son idénticas. Volva atrás e introduza un nome de páxina diferente de "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á páxina "[[$3]]".',
-'revmove-success-created'      => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á nova páxina "[[$3]]", creada hai uns intres.',
-
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
 'mergehistory-header'              => 'Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
@@ -1464,7 +1436,6 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
-'right-revisionmove'          => 'Mover revisións',
 'right-disableaccount'        => 'Desactivar contas',
 
 # User rights log
@@ -1508,7 +1479,6 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'action-userrights'           => 'editar todos os permisos de usuario',
 'action-userrights-interwiki' => 'editar os permisos de usuario dos usuarios doutros wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear a base de datos',
-'action-revisionmove'         => 'mover revisións',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',

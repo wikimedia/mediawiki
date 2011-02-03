@@ -522,14 +522,6 @@ $2',
 পুনরায় চেষ্টা করার পূর্বে অনুগ্রহ করে কিছুক্ষণ অপেক্ষা করুন।',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'খুব দুর্বল',
-'password-strength-mediocre'   => 'দুর্বল',
-'password-strength-acceptable' => 'গ্রহণযোগ্য',
-'password-strength-good'       => 'ভাল',
-'password-retype'              => 'শব্দচাবিটি (password) আবার লিখুন',
-'password-retype-mismatch'     => 'শব্দচাবি মিলেনি',
-
 # Password reset dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',
 'resetpass_announce'        => 'আপন ই-মেইলকৃত সংকেত দ্বারা লগ-ইন আছেন। লগ-ইন পদ্ধতি সম্পূর্ণ করতে আপনাকে অবশ্যই একটি নতুন শব্দচাবি গ্রহণ করতে হবে:',
@@ -838,10 +830,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 # Suppression log
 'suppressionlog' => 'দমন লগ',
-
-# Revision move
-'revmove-reasonfield'    => 'কারণ:',
-'revmove-nullmove-title' => 'শিরোনামটি গ্রহনযোগ্য নয়।',
 
 # History merging
 'mergehistory'                     => 'পাতার ইতিহাসগুলি একত্র করা হোক',

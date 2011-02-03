@@ -1130,9 +1130,6 @@ Verificatz los jornals.",
 'suppressionlog'     => 'Jornal de las supressions',
 'suppressionlogtext' => 'Çaijós, se tròba la tièra de las supressions e dels blocatges que comprenon las revisions amagadas als administrators. Vejatz [[Special:IPBlockList|la lista dels blocatges de las IP]] per la lista dels fòrabandiments e dels blocatges operacionals.',
 
-# Revision move
-'revmove-reasonfield' => 'Motiu :',
-
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
 'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina cap a una novèla.

@@ -504,15 +504,6 @@ Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 Lūdzu uzgaidi pirms mēģini vēlreiz.',
 'loginlanguagelabel'         => 'Valoda: $1',
 
-# JavaScript password checks
-'password-strength'            => 'Paroles drošības novērtējums: $1',
-'password-strength-bad'        => 'VĀJA',
-'password-strength-mediocre'   => 'vidēja',
-'password-strength-acceptable' => 'pieņemama',
-'password-strength-good'       => 'laba',
-'password-retype'              => 'Pārrakstiet paroli šeit',
-'password-retype-mismatch'     => 'Paroles nesakrīt',
-
 # Password reset dialog
 'resetpass'                 => 'Mainīt paroli',
 'resetpass_header'          => 'Mainīt konta paroli',
@@ -832,20 +823,6 @@ $1",
 'revdelete-edit-reasonlist'   => 'Izmainīt dzēšanas iemeslus',
 'revdelete-offender'          => 'Versijas autors:',
 
-# Revision move
-'moverevlogentry'              => 'pārvietota {{PLURAL:$3|viena versija|$3 versijas}} no $1 uz $2',
-'revisionmove'                 => 'Pārvietot versijas no "$1"',
-'revmove-legend'               => 'Ievadīt mērķa lapu un kopsavilkumu',
-'revmove-submit'               => 'Pārvietot versijas uz izvēlēto lapu',
-'revisionmoveselectedversions' => 'Pārvietot izvēlētās versijas',
-'revmove-reasonfield'          => 'Iemesls:',
-'revmove-titlefield'           => 'Mērķa lapa:',
-'revmove-badparam-title'       => 'Slikti parametri',
-'revmove-badparam'             => 'Jūsu pieprasījums satur nelikumīgus vai nepietiekamus parametrus. 
-Lūdzu, ejiet atpakaļ uz iepriekšējo lapu un mēģiniet vēlreiz.',
-'revmove-norevisions-title'    => 'Nederīga mērķa versija',
-'revmove-nullmove-title'       => 'Nepiemērots nosaukums',
-
 # History merging
 'mergehistory'                     => 'Apvienot lapu vēstures',
 'mergehistory-box'                 => 'Apvienot versijas no divām lapām:',
@@ -1157,7 +1134,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-siteadmin'            => 'Bloķēt un atbloķēt datubāzi',
 'right-reset-passwords'      => 'Atiestatīt citu lietotāju paroles',
 'right-sendemail'            => 'Sūtīt e-pastu citiem lietotājiem',
-'right-revisionmove'         => 'Pārvietot versijas',
 
 # User rights log
 'rightslog'      => 'Lietotāju tiesību reģistrs',
@@ -1198,7 +1174,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'action-userrights'           => 'mainīt visu lietotāju tiesības',
 'action-userrights-interwiki' => 'mainīt lietotāju tiesības citās Vikipēdijās',
 'action-siteadmin'            => 'bloķēt vai atbloķēt datubāzi',
-'action-revisionmove'         => 'pārvietošanas versijas',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',

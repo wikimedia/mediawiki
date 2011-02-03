@@ -775,15 +775,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка у PHP mail() функцији',
 
-# JavaScript password checks
-'password-strength'            => 'Снага лозинке: $1',
-'password-strength-bad'        => 'лоша',
-'password-strength-mediocre'   => 'осредња',
-'password-strength-acceptable' => 'прихватљива',
-'password-strength-good'       => 'добра',
-'password-retype'              => 'Поновите лозинку',
-'password-retype-mismatch'     => 'Лозинке се не поклапају',
-
 # Password reset dialog
 'resetpass'                 => 'Промена лозинке',
 'resetpass_announce'        => 'Пријавили сте се са привременом лозинком послатом електронском поштом. Да бисте завршили са пријавом, морате подесити нову лозинку овде:',
@@ -1135,20 +1126,6 @@ $1",
 'suppressionlog'     => 'Извештај сакривања',
 'suppressionlogtext' => 'Испод се налази списак блокова и обрисаних страница који су сакривени од администратора. Погледај [[Special:IPBlockList|списак блокираних ИП адреса]] за списак тренутно важећих банова и блокова.',
 
-# Revision move
-'moverevlogentry'              => '{{GENDER:|је преместио|је преместила|премести}} {{PLURAL:$3|измену|$3 измене|$3 измена}} из $1 у $2',
-'revisionmove'                 => 'Премештање измена из „$1“',
-'revmove-legend'               => 'Постави циљну страницу и сажетак',
-'revmove-submit'               => 'Премести измене на изабрану страницу',
-'revisionmoveselectedversions' => 'Премести изабране измене',
-'revmove-reasonfield'          => 'Разлог:',
-'revmove-titlefield'           => 'Циљна страница:',
-'revmove-badparam-title'       => 'Лоши параметри',
-'revmove-badparam'             => 'Ваш захтев садржи недовољно параметара.
-Вратите се на претходну страницу и покушајте поново.',
-'revmove-norevisions-title'    => 'Нема одабране ревизије',
-'revmove-nullmove-title'       => 'Лош наслов',
-
 # History merging
 'mergehistory'                     => 'Споји историјате страница',
 'mergehistory-header'              => 'Ова страница омогућава спајање верзија једне странице у другу. Уверите се претходно да ће ова измена одржати континуитет историје странице.',
@@ -1480,7 +1457,6 @@ $1",
 'right-reset-passwords'       => 'Обнављање туђих лозинки',
 'right-override-export-depth' => 'Извези стране, укључујући повезане стране, до дубине 5',
 'right-sendemail'             => 'Пошаљи е-пошту осталим корисницима',
-'right-revisionmove'          => 'Премештање измена',
 'right-disableaccount'        => 'Онемогућавање налога',
 
 # User rights log
@@ -1524,7 +1500,6 @@ $1",
 'action-userrights'           => 'измени сва корисничка права',
 'action-userrights-interwiki' => 'измени права корисника са других Викија',
 'action-siteadmin'            => 'закључавање или откључавање базе података',
-'action-revisionmove'         => 'премести измене',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|измена|измене|измена}}',

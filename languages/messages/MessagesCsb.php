@@ -415,14 +415,6 @@ Ni mòżesz miec ju wicy.',
 'createaccount-title'        => 'Kònto ùsôdzoné dlô {{SITENAME}}',
 'loginlanguagelabel'         => 'Jãzëk: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'LËCHÔ',
-'password-strength-mediocre'   => 'strzédnô',
-'password-strength-acceptable' => 'akceptowalnô',
-'password-strength-good'       => 'dobrô',
-'password-retype'              => 'Wpiszë parolã znowa',
-'password-retype-mismatch'     => 'Parole nie są równé',
-
 # Password reset dialog
 'resetpass'                 => 'Zmieni parolã',
 'oldpassword'               => 'Stôrô parola:',

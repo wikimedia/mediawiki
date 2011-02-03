@@ -762,15 +762,6 @@ Prosím, počkajte predtým, než to skúsite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Odhadovaná sila hesla: $1',
-'password-strength-bad'        => 'VEĽMI SLABÉ',
-'password-strength-mediocre'   => 'slabé',
-'password-strength-acceptable' => 'prijateľné',
-'password-strength-good'       => 'dobré',
-'password-retype'              => 'Sem znova napíšte svoje heslo',
-'password-retype-mismatch'     => 'Heslá sa nezhodujú',
-
 # Password reset dialog
 'resetpass'                 => 'Zmeniť heslo',
 'resetpass_announce'        => 'Prishlásili ste sa pomocou dočasného emailom zaslaného kódu. Pre dokončenie prihlásenia je potrebné tu nastaviť nové heslo:',
@@ -1159,24 +1150,6 @@ Pozrite sa prosím do záznamov.',
 'suppressionlog'     => 'Záznam potlačení',
 'suppressionlogtext' => 'Toto je zoznam zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:IPBlockList|Zoznam blokovaní IP]].',
 
-# Revision move
-'moverevlogentry'              => 'presunul {{PLURAL:$3|jednu revíziu|$3 revízie|$3 revízií}} z $1 do $2',
-'revisionmove'                 => 'Presunúť revízie z „$1“',
-'revmove-explain'              => 'Nasledovné revízie budú presnuté z $1 na uvedenú cieľovú stránku. Ak cieľová stránka neexistuje, bude vytvorená. Inak sa tieto revízie začlenia do histórie stránky.',
-'revmove-legend'               => 'Nastaviť cieľovú stránku a zhrnutie',
-'revmove-submit'               => 'Presunúť revízie na vybranú stránku',
-'revisionmoveselectedversions' => 'Presunúť vybrané revízie',
-'revmove-reasonfield'          => 'Dôvod:',
-'revmove-titlefield'           => 'Cieľová stránka:',
-'revmove-badparam-title'       => 'Chybné parametre',
-'revmove-badparam'             => 'Vaša požiadavka obsahuje neplatné alebo nedostatočné parametre. Prosím, stlačte tlačidlo „Späť“ a skúste to znova.',
-'revmove-norevisions-title'    => 'Neplatná cieľová revízia',
-'revmove-norevisions'          => 'Buď ste neuviedli jednu alebo viac cieľových revízií alebo uvedená revízia neexistuje.',
-'revmove-nullmove-title'       => 'Chybný názov',
-'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do existujúcej stránky [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do novo vytvorenej stránky [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
 'mergehistory-header'              => 'Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.
@@ -1511,7 +1484,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
-'right-revisionmove'          => 'Presunúť revízie',
 'right-disableaccount'        => 'Zakázať účty',
 
 # User rights log
@@ -1555,7 +1527,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'action-userrights'           => 'upravovať práva všetkých používateľov',
 'action-userrights-interwiki' => 'upravovať práva používateľov na iných wiki',
 'action-siteadmin'            => 'zamykať alebo odomykať databázu',
-'action-revisionmove'         => 'presunúť revízie',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',

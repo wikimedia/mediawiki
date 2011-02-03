@@ -568,15 +568,6 @@ Yañadan qabatlağançı beraz kötüegez sorala.',
 'loginlanguagelabel'         => 'Tel: $1',
 'suspicious-userlogout'      => 'Sezneñ eşçänlekne beterü sorawığız kire qağıldı, çönki ul yalğış brauzer yäisä keşlawçı proksi aşa cibärelerge mömkin.',
 
-# JavaScript password checks
-'password-strength'            => 'Sersüzneñ sıyfatın tikşerü: $1',
-'password-strength-bad'        => 'NAÇAR',
-'password-strength-mediocre'   => 'urtaça',
-'password-strength-acceptable' => 'qänäğätlänerlek',
-'password-strength-good'       => 'yaxşı',
-'password-retype'              => 'Sersüzne yañadan kertegez',
-'password-retype-mismatch'     => 'Sersüzlär turı kilmi',
-
 # Password reset dialog
 'resetpass'                 => 'Sersüzne üzgärtü',
 'resetpass_announce'        => 'Sez elektron poçta aşa waqıtlıça birelgän sersüz yärdämendä kerdegez. Sistemağa kerüne tögälläw öçen yaña sersüz tözegez.',
@@ -903,12 +894,6 @@ Sez idaräçe bulu säbäple, [$1 yäşerelgän yuramanı qarıy alasız]",
 
 # Suppression log
 'suppressionlog' => 'Yäşerü köndälege',
-
-# Revision move
-'revmove-reasonfield'    => 'Säbäp:',
-'revmove-titlefield'     => 'Töp bit:',
-'revmove-badparam-title' => 'Yaraqsız parametrlar',
-'revmove-nullmove-title' => 'Yaraqsız isem',
 
 # History merging
 'mergehistory'        => 'Üzgärtülär tarixın berläşterü',

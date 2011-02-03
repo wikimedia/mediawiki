@@ -282,11 +282,6 @@ Sie haben darauf keinen Zugriff.',
 Bitte prüfen Sie die Logbücher.',
 'revdelete-only-restricted'   => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Sie können keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 
-# Revision move
-'revmove-badparam'    => 'Ihre Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicken Sie auf „zurück“ und versuchen Sie es erneut.',
-'revmove-norevisions' => 'Sie haben keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
-'revmove-nullmove'    => 'Quell- und Zielseite sind identisch. Bitte klicken Sie auf „zurück“ und geben Sie einen anderen Seitennamen als „$1“ ein.',
-
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
 Stellen Sie sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',

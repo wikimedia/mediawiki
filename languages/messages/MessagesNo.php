@@ -173,7 +173,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Slettede_bidrag' ),
 	'Tags'                      => array( 'Tagger' ),
 	'Activeusers'               => array( 'Aktive_brukere' ),
-	'RevisionMove'              => array( 'Revisjonsflytting' ),
 	'ComparePages'              => array( 'Sammenlign_sider' ),
 	'Badtitle'                  => array( 'Ugyldig_tittel' ),
 );
@@ -708,15 +707,6 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
 
-# JavaScript password checks
-'password-strength'            => 'Passordstyrke: $1',
-'password-strength-bad'        => 'DÅRLIG',
-'password-strength-mediocre'   => 'middels',
-'password-strength-acceptable' => 'akseptabel',
-'password-strength-good'       => 'god',
-'password-retype'              => 'Gjenta passord',
-'password-retype-mismatch'     => 'Passordene er ikke like',
-
 # Password reset dialog
 'resetpass'                 => 'Endre passord',
 'resetpass_announce'        => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
@@ -1093,24 +1083,6 @@ Vennligst sjekk loggen.',
 'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer.
 Se [[Special:IPBlockList|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
 
-# Revision move
-'moverevlogentry'              => 'flyttet {{PLURAL:$3|én revisjon|$3 revisjoner}} fra $1 til $2',
-'revisionmove'                 => 'Flytt revisjoner fra «$1»',
-'revmove-explain'              => 'Følgende revisjoner vil flyttes fra $1 til den gitte målsiden. Om målsiden ikke eksisterer vil den bli opprettet. Hvis den finnes vil disse revisjonene flettes med målsidens historikk.',
-'revmove-legend'               => 'Sett målside og sammendrag',
-'revmove-submit'               => 'Flytt revisjoner til valgte side',
-'revisionmoveselectedversions' => 'Flytt valgte revisjoner',
-'revmove-reasonfield'          => 'Årsak:',
-'revmove-titlefield'           => 'Målside:',
-'revmove-badparam-title'       => 'Ugyldige parametere',
-'revmove-badparam'             => 'Forespørselen din har ugyldige eller utilstrekkelige parametere. Trykk «tilbake» og prøv igjen.',
-'revmove-norevisions-title'    => 'Ugyldig målrevisjon',
-'revmove-norevisions'          => 'Du har ikke oppgitt noen målrevisjon(er) å utføre denne funksjonen på, ellers finnes ikke den gitte revisjonen.',
-'revmove-nullmove-title'       => 'Ugyldig tittel',
-'revmove-nullmove'             => 'Kilde- og målside er identiske. Trykk «tilbake» og skriv inn et annet sidenavn enn «$1».',
-'revmove-success-existing'     => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} fra [[$2]] ble flyttet til den eksisterende siden [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} fra [[$2]] ble flyttet til den nyopprettede siden [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
 'mergehistory-header'              => 'Denne siden lar deg flette historikken til to sider.
@@ -1448,7 +1420,6 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-reset-passwords'       => 'Nullstille andre brukeres passord',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
-'right-revisionmove'          => 'Flytte revisjoner',
 'right-disableaccount'        => 'Deaktivere kontoer',
 
 # User rights log
@@ -1492,7 +1463,6 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'action-userrights'           => 'redigere alle brukerrettigheter',
 'action-userrights-interwiki' => 'endre brukerrettigheter for brukere på andre wikier',
 'action-siteadmin'            => 'låse eller låse opp databasen',
-'action-revisionmove'         => 'flytte revisjoner',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|endring|endringer}}',

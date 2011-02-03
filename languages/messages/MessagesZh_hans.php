@@ -684,15 +684,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',
 
-# JavaScript password checks
-'password-strength'            => '预估密码强度： $1',
-'password-strength-bad'        => '差',
-'password-strength-mediocre'   => '一般',
-'password-strength-acceptable' => '可接受',
-'password-strength-good'       => '好',
-'password-retype'              => '再次输入密码',
-'password-retype-mismatch'     => '密码不匹配',
-
 # Password reset dialog
 'resetpass'                 => '更改密码',
 'resetpass_announce'        => '您是通过一个临时的发送到邮件中的代码登录的。要完成登录，您必须在这里设定一个新密码：',
@@ -1062,26 +1053,6 @@ $1",
 'suppressionlogtext' => '以下是删除以及由操作员牵涉到内容封锁的列表。
 参看[[Special:IPBlockList|IP封锁名单]]去参看现时进行中的禁止以及封锁之名单。',
 
-# Revision move
-'moverevlogentry'              => '移动了$1的{{PLURAL:$3|一次修订版本|$3次修订版本}}至$2',
-'revisionmove'                 => '由 "$1" 移动修订版本',
-'revmove-explain'              => '以下的修订版本将会由$1移动至所指定的目标页面。如果目标不存在的话，它就将会建立。否则，这些的修订版本就将会合并到页面历史中。',
-'revmove-legend'               => '设置目标页面以及摘要',
-'revmove-submit'               => '移动修订版本到所选定的页面上',
-'revisionmoveselectedversions' => '移动已选取的修订版本',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '目标页面：',
-'revmove-badparam-title'       => '坏的参数',
-'revmove-badparam'             => '您的请求含有不合法的者不足的参数。
-请返回先前的页面再试。',
-'revmove-norevisions-title'    => '无效的目标修订版本',
-'revmove-norevisions'          => '您尚未指定一个或者多个目标修订版本去做这项功能或者所指定的修订版本不存在。',
-'revmove-nullmove-title'       => '坏的标题',
-'revmove-nullmove'             => '目标页面不可以跟来源页面相同。
-请返回先前的页面再输入跟 "$1" 不相同的名字。',
-'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现有的页面[[$3]]。',
-'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建的页面[[$3]]。',
-
 # History merging
 'mergehistory'                     => '合并页面历史',
 'mergehistory-header'              => '这一页可以让您将来源页面的修订历史合并到新页面中去。
@@ -1415,7 +1386,6 @@ $1",
 'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
-'right-revisionmove'          => '移动修订版本',
 'right-disableaccount'        => '禁用账户',
 
 # User rights log
@@ -1459,7 +1429,6 @@ $1",
 'action-userrights'           => '编辑所有的权限',
 'action-userrights-interwiki' => '编辑在其它wiki上用户的权限',
 'action-siteadmin'            => '锁定和解除锁定数据库',
-'action-revisionmove'         => '移动修订',
 
 # Recent changes
 'nchanges'                          => '$1次更改',

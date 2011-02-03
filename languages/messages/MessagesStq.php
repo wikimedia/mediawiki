@@ -502,15 +502,6 @@ Täif, eer du fon näien fersäkst.',
 'loginlanguagelabel'         => 'Sproake: $1',
 'suspicious-userlogout'      => 'Dien Oumälde-Anfroage wuud ferwäigerd, deer ju fermoudelk fon n defekten Browser of n Cache-Proxy soand wuud.',
 
-# JavaScript password checks
-'password-strength'            => 'Schätsede Paaswoudstäärke: $1',
-'password-strength-bad'        => 'LÄIP',
-'password-strength-mediocre'   => 'middelmäitich',
-'password-strength-acceptable' => 'akzeptoabel',
-'password-strength-good'       => 'goud',
-'password-retype'              => 'Paaswoud wierhoalje:',
-'password-retype-mismatch'     => 'Paaswoude stimme nit uureen',
-
 # Password reset dialog
 'resetpass'                 => 'Paaswoud annerje',
 'resetpass_announce'        => 'Anmäldenge mäd dän uur E-Mail tousoande Code. Uum ju Anmäldenge outousluuten, moast du nu n näi Paaswoud wääle.',
@@ -885,23 +876,6 @@ Wröigje do Logbouke.',
 # Suppression log
 'suppressionlog'     => 'Uursicht-Logbouk',
 'suppressionlogtext' => 'Dit is dät Logbouk fon do Uursicht-Aktione (Annerengen fon ju Sichtboarhaid fon Versione, Beorbaidengskommentare, Benutsernoomen un Benutserspeeren).',
-
-# Revision move
-'moverevlogentry'              => 'ferschäuw {{PLURAL:$3|een Version|$3 Versione}} fon $1 ätter $2',
-'revisionmove'                 => 'Moor Revisione fon "$1"',
-'revmove-explain'              => 'Do foulgjende Versione wäide fon $1 tou ju anroate Sielsiede ferschäuwen. Fals ju Sielsiede nit bestoant, wäd ju moaked. Uurfals wäide disse Versione in ju Versionsgeschichte touhoopefierd.',
-'revmove-legend'               => 'Sielsiede un Touhoopefpatenge fäästlääse',
-'revmove-submit'               => 'Versione tou ju uutwäälde Siede ferschäuwen',
-'revisionmoveselectedversions' => 'Uutwäälde Versione ferschuuwe',
-'revmove-reasonfield'          => 'Gruund:',
-'revmove-titlefield'           => 'Sielsiede:',
-'revmove-badparam-title'       => 'Falske Parameetere',
-'revmove-badparam'             => 'Dien Anfroage änthaalt nit-ferlööwede of gebräkkelke Parameetere. Klik ap "tourääch" un fersäik dät nochmoal.',
-'revmove-norevisions-title'    => 'Uunjäildige Sielversion',
-'revmove-norevisions'          => 'Du hääst neen Sielversion ounroat, uum disse Aktion truchtoufieren of ju ounroate Version bestoant nit.',
-'revmove-nullmove-title'       => 'Uungultigen Tittel',
-'revmove-nullmove'             => 'Wälle- un Sielsiede sunt identisk. Klik ap "tourääch" un reek n uur Siedennoome as "$1" ien.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ne Version fon [[$2]] wuud|$1 Versione fon [[$2]] wuuden}} tou ju existierende Siede [[$3]] ferschäuwen.',
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichten fereenigje',

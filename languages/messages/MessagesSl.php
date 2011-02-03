@@ -673,15 +673,6 @@ Prosimo počakajte, preden poskusite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Ocenjena moč gesla: $1',
-'password-strength-bad'        => 'SLABO',
-'password-strength-mediocre'   => 'povprečno',
-'password-strength-acceptable' => 'sprejemljivo',
-'password-strength-good'       => 'dobro',
-'password-retype'              => 'Ponovno vpišite geslo tukaj',
-'password-retype-mismatch'     => 'Gesli se ne ujemata',
-
 # Password reset dialog
 'resetpass'                 => 'Spremeni geslo',
 'resetpass_announce'        => 'Trenutno ste prijavljeni z začasno e-poštno kodo.
@@ -1063,24 +1054,6 @@ Prosimo, preverite dnevnik.',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
 Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
-# Revision move
-'moverevlogentry'              => 'premaknil(-a) $3 {{PLURAL:$3|redakcijo|redakciji|redakcije|redakcij}} z $1 na $2',
-'revisionmove'                 => 'Premakni redakcije z »$1«',
-'revmove-explain'              => 'Naslednje redakcije bodo prestavljene s strani $1 na določeno ciljno stran. Če cilj ne obstaja, bo ustvarjen. V nasprotnem primeru bodo redakcije združene z zgodovino strani.',
-'revmove-legend'               => 'Določite ciljno stran in povzetek',
-'revmove-submit'               => 'Prestavi redakcije na izbrano stran',
-'revisionmoveselectedversions' => 'Prestavi izbrane redakcije',
-'revmove-reasonfield'          => 'Razlog:',
-'revmove-titlefield'           => 'Ciljna stran:',
-'revmove-badparam-title'       => 'Nepravilni parametri',
-'revmove-badparam'             => 'Vaša zahteva vsebuje neveljavne ali pomanjkljive parametre. Prosimo, izberite »nazaj« in poskusite znova.',
-'revmove-norevisions-title'    => 'Neveljavna ciljna redakcija',
-'revmove-norevisions'          => 'Niste določili ene ali več ciljnih redakcij za izvedbo te funkcije ali pa izbrana redakcija ne obstaja.',
-'revmove-nullmove-title'       => 'Nepravilen naslov',
-'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »$1«.',
-'revmove-success-existing'     => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na obstoječo stran [[$3]].',
-'revmove-success-created'      => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na novo ustvarjeno stran [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Združi zgodovine strani',
 'mergehistory-header'              => 'Ta stran omogoča združevanje redakcij zgodovine ene izvorne strani v novejšo stran.
@@ -1424,7 +1397,6 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
-'right-revisionmove'          => 'Prestavi redakcije',
 'right-disableaccount'        => 'Onemogočanje računov',
 
 # User rights log
@@ -1468,7 +1440,6 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'action-userrights'           => 'upravljanje vseh uporabnikovih pravic',
 'action-userrights-interwiki' => 'upravljanje uporabniških pravic za uporabnike drugih wikijev',
 'action-siteadmin'            => 'zaklenitev ali odklepanje podatkovne baze',
-'action-revisionmove'         => 'prestavitev redakcije',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',

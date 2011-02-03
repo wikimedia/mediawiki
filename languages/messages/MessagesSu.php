@@ -588,14 +588,6 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 Tungguan heula sakeudeung, laju cobaan deui.',
 'loginlanguagelabel'         => 'Basa: $1',
 
-# JavaScript password checks
-'password-strength'            => 'Kakuatan sandi: $1',
-'password-strength-bad'        => 'AWON',
-'password-strength-acceptable' => 'meueusan',
-'password-strength-good'       => 'alus',
-'password-retype'              => 'Ketik deui sandi anjeun',
-'password-retype-mismatch'     => 'Sandi teu cocog',
-
 # Password reset dialog
 'resetpass'                 => 'Ganti kecap sandi rekening',
 'resetpass_announce'        => 'Anjeun asup log migunakeun sandi samentara. Salajengna, mangga gentos ku sandi anyar di dieu:',
@@ -940,11 +932,6 @@ Anjeun teu diwenangkeun asup.',
 'suppressionlog'     => 'Log nyumputken',
 'suppressionlogtext' => 'Katut, nyaéta daptar hapusan sarta dipeungpeuk kaasup eusi anu disumputkeun ti para kuncén.
 Tempo [[Special:IPBlockList|daptar IP anu dipeungpeuk]] pikeun daptar larangan sarta dipeungpeuk ayeuna.',
-
-# Revision move
-'revmove-reasonfield'       => 'Alesan:',
-'revmove-norevisions-title' => 'Udagan révisi salah',
-'revmove-nullmove-title'    => 'Judul goréng',
 
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',

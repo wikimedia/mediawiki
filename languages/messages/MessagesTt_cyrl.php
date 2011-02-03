@@ -681,15 +681,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
 
-# JavaScript password checks
-'password-strength'            => 'Серсүзнең сыйфатын тикшерү: $1',
-'password-strength-bad'        => 'НАЧАР',
-'password-strength-mediocre'   => 'уртача',
-'password-strength-acceptable' => 'канәгатьләнерлек',
-'password-strength-good'       => 'яхшы',
-'password-retype'              => 'Серсүзне яңадан кертегез',
-'password-retype-mismatch'     => 'Серсүзләр туры килми',
-
 # Password reset dialog
 'resetpass'                 => 'Серсүзне үзгәртү',
 'resetpass_announce'        => 'Сез электрон почта аша вакытлыча бирелгән серсүз ярдәмендә кердегез. Системага керүне төгәлләү өчен яңа серсүз төзегез.',
@@ -1017,12 +1008,6 @@ $3 күрсәткән сәбәп: ''$2''",
 
 # Suppression log
 'suppressionlog' => 'Яшерү көндәлеге',
-
-# Revision move
-'revmove-reasonfield'    => 'Сәбәп:',
-'revmove-titlefield'     => 'Төп бит:',
-'revmove-badparam-title' => 'Яраксыз параметрлар',
-'revmove-nullmove-title' => 'Яраксыз исем',
 
 # History merging
 'mergehistory'        => 'Үзгәртүләр тарихын берләштерү',

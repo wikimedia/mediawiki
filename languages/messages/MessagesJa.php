@@ -186,7 +186,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '削除された投稿記録', '削除された投稿履歴', '削除歴' ),
 	'Tags'                      => array( 'タグ一覧' ),
 	'Activeusers'               => array( '活動中の利用者', '活動中の利用者一覧' ),
-	'RevisionMove'              => array( '版移動' ),
 	'ComparePages'              => array( 'ページの比較' ),
 	'Badtitle'                  => array( '不正なページ名' ),
 );
@@ -840,15 +839,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
 
-# JavaScript password checks
-'password-strength'            => 'パスワードの推定強度：$1',
-'password-strength-bad'        => '悪い',
-'password-strength-mediocre'   => 'あまり良くない',
-'password-strength-acceptable' => '許容範囲',
-'password-strength-good'       => '良い',
-'password-retype'              => 'パスワードを再入力',
-'password-retype-mismatch'     => 'パスワードが一致しません',
-
 # Password reset dialog
 'resetpass'                 => 'パスワードの変更',
 'resetpass_announce'        => '電子メールで送信された仮パスワードでログインしています。
@@ -1249,25 +1239,6 @@ $1",
 'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロック記録です。
 現在操作できるブロックについては[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|$3版}}を$1から$2へ移動しました',
-'revisionmove'                 => '「$1」から版を移動',
-'revmove-explain'              => '以下の版が、$1から指定されたページへ移動されます。これらの版は指定先のページの履歴に統合指定されますが、指定先のページが存在しない場合は、ページは新規作成されます。',
-'revmove-legend'               => 'ページの指定と要約',
-'revmove-submit'               => '選択されたページに版を移動',
-'revisionmoveselectedversions' => '選択された版を移動',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '対象ページ：',
-'revmove-badparam-title'       => '不正な引数',
-'revmove-badparam'             => '不正あるいは不十分な引数が指定されました。ページを戻りもう一度やり直してください。',
-'revmove-norevisions-title'    => '無効な指定版',
-'revmove-norevisions'          => '指定した版が存在しないか、この機能を利用するために1つ以上の版を指定していません。',
-'revmove-nullmove-title'       => '不正なページ名',
-'revmove-nullmove'             => '移動元と移動先のページが同一のものです。
-ページを戻り、「$1」とは違う名前を選択してください。',
-'revmove-success-existing'     => '{{PLURAL:$1|$1版が、[[$2]]から}}既存のページ[[$3]]へ移動されました。',
-'revmove-success-created'      => '{{PLURAL:$1|$1版が、[[$2]]から}}新規作成されたページ[[$3]]へ移動されました。',
-
 # History merging
 'mergehistory'                     => 'ページ履歴の統合',
 'mergehistory-header'              => 'このページは、1つの元ページの履歴を新しいページに統合します。
@@ -1611,7 +1582,6 @@ HTMLタグを見直してください。',
 'right-reset-passwords'       => '他の利用者のパスワードを再設定する',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
-'right-revisionmove'          => '版の移動',
 'right-disableaccount'        => 'アカウントを無効化',
 
 # User rights log
@@ -1655,7 +1625,6 @@ HTMLタグを見直してください。',
 'action-userrights'           => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
 'action-siteadmin'            => 'データベースのロックもしくはロック解除',
-'action-revisionmove'         => '版の移動',
 
 # Recent changes
 'nchanges'                          => '$1回の変更',

@@ -709,16 +709,6 @@ Parameters:
 *Parameter $4 is a URL to the wiki',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 
-# JavaScript password checks
-'password-strength'            => 'Indicator of [[w:Password strength|password strength]] shown when entering a new password (during user registration or password reset).
-
-<code>$1</code> is one of {{msg-mw|Password-strength-bad}}, {{msg-mw|Password-strength-mediocre}}, {{msg-mw|Password-strength-acceptable}}, {{msg-mw|Password-strength-good}}',
-'password-strength-bad'        => 'See {{msg-mw|password-strength}} for context',
-'password-strength-mediocre'   => 'See {{msg-mw|password-strength}} for context',
-'password-strength-acceptable' => 'See {{msg-mw|password-strength}} for context',
-'password-strength-good'       => 'See {{msg-mw|password-strength}} for context',
-'password-retype-mismatch'     => '{{Identical|Passwords do not match}}',
-
 # Password reset dialog
 'resetpass'                 => 'The caption of [[Special:Resetpass]]
 
@@ -1104,44 +1094,6 @@ Parameters:
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
-
-# Revision move
-'moverevlogentry'              => "Description of action in a log. The name of the user who did this action appears before this message.
-
-Refers to an action using the Revmove feature. The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
-'revisionmove'                 => 'Title for a special page. $1 is the title of a page.',
-'revmove-legend'               => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
-
-This message appears to be the legend of a fieldset. I guess that "Target page" should be the destination page of the move.',
-'revmove-submit'               => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
-'revisionmoveselectedversions' => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.",
-'revmove-reasonfield'          => '{{Identical|Reason}}',
-'revmove-titlefield'           => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
-
-This message appears to be a field legend. I guess that "Target page" is the destination page of the move.',
-'revmove-norevisions-title'    => 'This is the title of the page which contains the body text [[MediaWiki:Revmove-norevisions]].
-
-"Target revision" refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
-
-This text is for an error page of an error that normally should not happen (or only very rarely). A rough translation should suffice.',
-'revmove-norevisions'          => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
-
-This message appears to be an error message. The word 'target' appears to be redundant (that means you can leave it out when translating).",
-'revmove-nullmove'             => 'The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don\'t change, only their associated page is changed.
-
-It appears that "Target page" is the destination page of the move.',
-'revmove-success-existing'     => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
-
-Variables:
-* $1 is the number of revisions moved
-* $2 is the name of the source page
-* $3 is the name of the destination page",
-'revmove-success-created'      => "The Revmove feature refers to one or more revisions which should be moved from one page to another. The revisions themselves don't change, only their associated page is changed.
-
-Variables:
-* $1 is the number of revisions moved
-* $2 is the name of the source page
-* $3 is the name of the destination page",
 
 # History merging
 'mergehistory-autocomment'      => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.
@@ -1585,7 +1537,6 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-sendemail'             => '{{doc-right}}',
-'right-revisionmove'          => '{{doc-right|revisionmove}}',
 'right-disableaccount'        => '{{doc-right|disableaccount}}',
 
 # User rights log
@@ -1642,7 +1593,6 @@ API is an abbreviation for [http://en.wikipedia.org/wiki/API application program
 This action allows editing of all of the "user rights", not just the rights of the group "all users".',
 'action-userrights-interwiki' => '{{Doc-action}}',
 'action-siteadmin'            => '{{Doc-action}}',
-'action-revisionmove'         => '{{doc-action|revisionmove}}',
 
 # Recent changes
 'nchanges'                        => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',

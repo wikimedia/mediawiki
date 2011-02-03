@@ -610,15 +610,6 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel'         => 'Lugha: $1',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
-# JavaScript password checks
-'password-strength'            => 'Nguvu ya neno la siri: $1',
-'password-strength-bad'        => 'MBAYA',
-'password-strength-mediocre'   => 'hafifu',
-'password-strength-acceptable' => 'inakubalika',
-'password-strength-good'       => 'nzuri',
-'password-retype'              => 'Andika tena neno la siri',
-'password-retype-mismatch'     => 'Maneno ya siri ni tofauti',
-
 # Password reset dialog
 'resetpass'                 => 'Kubadilisha neno la siri',
 'resetpass_announce'        => 'Umeingia na kodi za barua pepe za muda tu.
@@ -965,19 +956,6 @@ Haliwezi kufichwa.',
 'suppressionlogtext' => 'Hapo chini panaonyeshwa orodha ya matukio ya ufutaji na ya uzuio ambayo maelezo yao yamefichwa kutoka kwa wakabidhi.
 Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
 
-# Revision move
-'moverevlogentry'              => 'alihamisha {{PLURAL:$3|pitio moja|mapitio $3}} kutoka $1 kwenda $2',
-'revisionmove'                 => 'Hamisha mapitio kutoka "$1"',
-'revmove-legend'               => 'Weka ukurasa unaolengwa pamoja na muhtasari',
-'revmove-submit'               => 'Hamisha mapitio kwenda ukurasa uliochaguliwa',
-'revisionmoveselectedversions' => 'Hamisha mapitio yaliyochaguliwa',
-'revmove-reasonfield'          => 'Sababu:',
-'revmove-titlefield'           => 'Ukurasa unaolengwa',
-'revmove-norevisions-title'    => 'Pitio lililolengwa ni batili',
-'revmove-nullmove-title'       => 'Jina halifai',
-'revmove-success-existing'     => '{{PLURAL:$1|Pitio moja kutoka [[$2]] limehamishwa|mapitio $1 kutoka kwa [[$2]] yamehamishwa}} kwenda ukurasa uliopo tayari unaoitwa [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Pitio moja kutoka [[$2]] limehamishwa|mapitio $1 kutoka [[$2]] yamehamishwa}} kwenda ukurasa mpya unaoitwa [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Unganisha historia za kurasa',
 'mergehistory-box'                 => 'Unganisha mapitio ya kurasa mbili:',
@@ -1290,7 +1268,6 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
 'right-siteadmin'            => 'Kufunga na kufungua hifadhidata',
 'right-sendemail'            => 'Kutuma barua-pepe kwa watumiaji wengine',
-'right-revisionmove'         => 'Kuhamisha mapitio',
 
 # User rights log
 'rightslog'      => 'Kumbukumbu za vyeo vya watumiaji',
@@ -1327,7 +1304,6 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-userrights'           => 'kubadilisha wezo zote za watumiaji',
 'action-userrights-interwiki' => 'kuhariri wezo za watumiaji kwenye wiki zingine',
 'action-siteadmin'            => 'kufunga na kufungua hifadhidata',
-'action-revisionmove'         => 'kuhamisha mapitio',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|badiliko|mabadiliko}} $1',

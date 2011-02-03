@@ -128,7 +128,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contributiones_delite' ),
 	'Tags'                      => array( 'Etiquettas' ),
 	'Activeusers'               => array( 'Usatores_active' ),
-	'RevisionMove'              => array( 'Displaciar_versiones' ),
 	'ComparePages'              => array( 'Comparar_paginas' ),
 	'Badtitle'                  => array( 'Titulo_invalide' ),
 );
@@ -633,15 +632,6 @@ Per favor attende ante de probar lo novemente.',
 # E-mail sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Estimation del securitate del contrasigno: $1',
-'password-strength-bad'        => 'MAL',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'acceptabile',
-'password-strength-good'       => 'bon',
-'password-retype'              => 'Repete contrasigno hic',
-'password-retype-mismatch'     => 'Le contrasignos non es identic',
-
 # Password reset dialog
 'resetpass'                 => 'Cambiar contrasigno',
 'resetpass_announce'        => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
@@ -1039,25 +1029,6 @@ Per favor verifica le registros.',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
 Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
-# Revision move
-'moverevlogentry'              => 'displaciava {{PLURAL:$3|un version|$3 versiones}} de $1 a $2',
-'revisionmove'                 => 'Displaciar versiones de "$1"',
-'revisionmove-backlink'        => '← $1',
-'revmove-explain'              => 'Le sequente versiones essera displaciate de $1 al pagina de destination specificate. Si le destination non existe, illo essera create. Alteremente, iste versiones essera fusionate con le historia del pagina.',
-'revmove-legend'               => 'Entrar pagina de destination e summario',
-'revmove-submit'               => 'Displaciar versiones al pagina seligite',
-'revisionmoveselectedversions' => 'Displaciar versiones seligite',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Pagina de destination:',
-'revmove-badparam-title'       => 'Parametros incorrecte',
-'revmove-badparam'             => 'Tu requesta contine parametros invalide o insufficiente. Per favor preme "retro" e reproba.',
-'revmove-norevisions-title'    => 'Le version de destination es invalide',
-'revmove-norevisions'          => 'Tu non ha specificate un o plus versiones de destination pro executar iste function o le version specificate non existe.',
-'revmove-nullmove-title'       => 'Titulo invalide',
-'revmove-nullmove'             => 'Le paginas de origine e de destination es identic. Per favor preme "retro" e entra un nomine de pagina differente de "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al pagina existente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Un version|$1 versiones}} de [[$2]] ha essite displaciate al nove pagina [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
 'mergehistory-header'              => 'Iste pagina te permitte fusionar versiones del historia de un pagina de origine in un pagina plus nove.
@@ -1399,7 +1370,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
-'right-revisionmove'          => 'Displaciar versiones',
 'right-disableaccount'        => 'Disactivar contos',
 
 # User rights log
@@ -1443,7 +1413,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-userrights'           => 'modificar tote le derectos de usator',
 'action-userrights-interwiki' => 'modificar le derectos de usatores in altere wikis',
 'action-siteadmin'            => 'blocar e disblocar le base de datos',
-'action-revisionmove'         => 'displaciar versiones',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modification|modificationes}}',

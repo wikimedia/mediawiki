@@ -179,7 +179,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Gelöschte_Beiträge' ),
 	'Tags'                      => array( 'Markierungen' ),
 	'Activeusers'               => array( 'Aktive_Benutzer' ),
-	'RevisionMove'              => array( 'Version_verschieben' ),
 	'ComparePages'              => array( 'Seiten_vergleichen' ),
 	'Badtitle'                  => array( 'Ungültiger_Titel' ),
 );
@@ -836,15 +835,6 @@ Bitte warte, bevor du es erneut probierst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Geschätzte Passwortstärke: $1',
-'password-strength-bad'        => 'SCHLECHT',
-'password-strength-mediocre'   => 'mittelmäßig',
-'password-strength-acceptable' => 'akzeptabel',
-'password-strength-good'       => 'gut',
-'password-retype'              => 'Passwort wiederholen',
-'password-retype-mismatch'     => 'Passwörter stimmen nicht überein',
-
 # Password reset dialog
 'resetpass'                 => 'Passwort ändern',
 'resetpass_announce'        => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
@@ -1221,24 +1211,6 @@ Bitte prüfe die Logbücher.',
 'suppressionlogtext' => 'Dies ist das Logbuch der Oversight-Aktionen (Änderungen der Sichtbarkeit von Versionen, Bearbeitungskommentaren, Benutzernamen und Benutzersperren).
 Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für aktuelle Sperren.',
 
-# Revision move
-'moverevlogentry'              => 'verschob {{PLURAL:$3|eine Version|$3 Versionen}} von $1 nach $2',
-'revisionmove'                 => 'Versionen verschieben von „$1“',
-'revmove-explain'              => 'Die folgenden Versionen werden von $1 zur angegebenen Zielseite verschoben. Falls die Zielseite nicht existiert, wird sie erstellt. Anderenfalls werden diese Versionen in der Versionsgeschichte zusammengeführt.',
-'revmove-legend'               => 'Zielseite und Zusammenfassung festlegen',
-'revmove-submit'               => 'Versionen zur ausgewählten Seite verschieben',
-'revisionmoveselectedversions' => 'Ausgewählte Versionen verschieben',
-'revmove-reasonfield'          => 'Grund:',
-'revmove-titlefield'           => 'Zielseite:',
-'revmove-badparam-title'       => 'Falsche Parameter',
-'revmove-badparam'             => 'Deine Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicke auf „zurück“ und versuche es erneut.',
-'revmove-norevisions-title'    => 'Ungültige Zielversion',
-'revmove-norevisions'          => 'Du hast keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
-'revmove-nullmove-title'       => 'Ungültiger Titel',
-'revmove-nullmove'             => 'Quell- und Zielseite sind identisch. Bitte klicke auf „zurück“ und gib einen anderen Seitennamen als „$1“ ein.',
-'revmove-success-existing'     => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur existierenden Seite [[$3]] verschoben.',
-'revmove-success-created'      => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur neu angelegten Seite [[$3]] verschoben.',
-
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
 'mergehistory-header'              => 'Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
@@ -1575,7 +1547,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-reset-passwords'       => 'Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
-'right-revisionmove'          => 'Versionen verschieben',
 'right-disableaccount'        => 'Benutzerkonto deaktivieren',
 
 # User rights log
@@ -1619,7 +1590,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'action-userrights'           => 'Benutzerrechte zu ändern',
 'action-userrights-interwiki' => 'die Rechte von Benutzern in anderen Wikis zu ändern',
 'action-siteadmin'            => 'die Datenbank zu sperren oder freizugeben',
-'action-revisionmove'         => 'Versionen zu verschieben',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderung|Änderungen}}',

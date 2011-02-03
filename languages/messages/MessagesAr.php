@@ -407,7 +407,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Tags'                      => array( 'وسوم' ),
 	'Activeusers'               => array( 'مستخدمون_نشطون' ),
-	'RevisionMove'              => array( 'نقل_مراجعة' ),
 );
 
 /**
@@ -926,15 +925,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 
-# JavaScript password checks
-'password-strength'            => 'قوة كلمة المرور المقدرة: $1',
-'password-strength-bad'        => 'غير صالحة',
-'password-strength-mediocre'   => 'متوسطة',
-'password-strength-acceptable' => 'مقبولة',
-'password-strength-good'       => 'جيدة',
-'password-retype'              => 'أعد كتابة كلمة المرور هنا',
-'password-retype-mismatch'     => 'كلمتا المرور لا تتطابقان',
-
 # Password reset dialog
 'resetpass'                 => 'تغيير كلمة السر',
 'resetpass_announce'        => 'تم تسجيل دخولك بكلمة سر مؤقتة.
@@ -1330,24 +1320,6 @@ $1",
 'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
 انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
-# Revision move
-'moverevlogentry'              => 'نقل {{PLURAL:$3|مراجعة واحدة|مراجعتين|$3 مراجعات|$3 مراجعة}} من $1 إلى $2',
-'revisionmove'                 => 'مزيد من المراجعات من "$1"',
-'revmove-explain'              => 'سوف تنقل المراجعات التالية من $1 إلى الصفحة الهدف المُحدّدة. إذا لم تكن الصفحة الهدف موجودة، فسوف تُنشأ. إذا كانت موجودة فستدمج المراجعات مع تاريخ الصفحة.',
-'revmove-legend'               => 'اضبط الصفحة الهدف والملخص',
-'revmove-submit'               => 'انقل المراجعات إلى الصفحة المُحدّدة',
-'revisionmoveselectedversions' => 'انقل المراجعات المُحدّدة',
-'revmove-reasonfield'          => 'السبب:',
-'revmove-titlefield'           => 'الصفحة الهدف:',
-'revmove-badparam-title'       => 'محدادات سيئة',
-'revmove-badparam'             => 'يحتوي طلبك على محددات غير نظامية أو غير كافية. من فضلك انقر "للخلف" وحاول مرة أخرى.',
-'revmove-norevisions-title'    => 'مراجعة مستهدفة غير صالحة',
-'revmove-norevisions'          => 'لم تحدد مراجعة هدفًا أو أكثر لتنفيذ الدالة أو أن المراجعة المحددة غير موجودة.',
-'revmove-nullmove-title'       => 'عنوان سيء',
-'revmove-nullmove'             => 'الصفحة المصدر والصفحة الهدف متطابقتان. من فضلك انقر "للخلف" وأدخل اسم صفحة غير "$1".',
-'revmove-success-existing'     => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة الموجودة [[$3]]',
-'revmove-success-created'      => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة المنشأة حديثًا [[$3]]',
-
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
 'mergehistory-header'              => 'هذه الصفحة تسمح لك بدمج نسخ تاريخ صفحة ما إلى صفحة أخرى.
@@ -1690,7 +1662,6 @@ $1",
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
-'right-revisionmove'          => 'نقل المراجعات',
 'right-disableaccount'        => 'تعطيل الحسابات',
 
 # User rights log
@@ -1734,7 +1705,6 @@ $1",
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'action-siteadmin'            => 'غلق أو رفع غلق قاعدة البيانات',
-'action-revisionmove'         => 'نقل المراجعات',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',

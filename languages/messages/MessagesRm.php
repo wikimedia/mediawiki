@@ -521,15 +521,6 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 # E-mail sending
 'php-mail-error-unknown' => 'Errur nunenconuschenta en la funcziun mail() da PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Fermezza stimada dal pled-clav: $1',
-'password-strength-bad'        => 'DEBEL',
-'password-strength-mediocre'   => 'mediocher',
-'password-strength-acceptable' => 'acceptabel',
-'password-strength-good'       => 'bun',
-'password-retype'              => 'Repeter qua il pled-clav',
-'password-retype-mismatch'     => 'Ils pleds-clav na correspundan betg',
-
 # Password reset dialog
 'resetpass'                 => 'Midar il pled-clav',
 'resetpass_announce'        => "Ti ès t'annunzià cun in pled-clav temporar che ti has retschavì per e-mail. 
@@ -851,10 +842,6 @@ Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl
 'revdelete-edit-reasonlist'   => 'Modifitgar ils motivs per stizzar',
 'revdelete-offender'          => 'Autur da la versiun:',
 
-# Revision move
-'revisionmoveselectedversions' => 'Spustar las versiuns selecziunadas',
-'revmove-reasonfield'          => 'Motiv:',
-
 # History merging
 'mergehistory'                     => 'Unir la cronologia da paginas',
 'mergehistory-header'              => "Cun questa pagina speziala pos ti integrar versiuns da la cronologia d'ina pagina originala en ina pagina pli nova. 
@@ -1157,7 +1144,6 @@ Questa infurmaziun è publica.',
 'right-siteadmin'            => 'Bloccar u debloccar la banca da datas',
 'right-reset-passwords'      => "Redefinir pleds-clav d'auters utilisaders",
 'right-sendemail'            => 'Trametter e-mails ad auters utilisaders',
-'right-revisionmove'         => 'Spustar versiuns',
 'right-disableaccount'       => 'Deactivar contos',
 
 # User rights log
@@ -1201,7 +1187,6 @@ Questa infurmaziun è publica.',
 'action-userrights'           => 'modifitgar ils dretgs dals utilisaders',
 'action-userrights-interwiki' => "modifitgar ils dretgs d'utilisaders sin autras wikis",
 'action-siteadmin'            => 'bloccar u debloccar la banca da datas',
-'action-revisionmove'         => 'spustar versiuns',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|midada|midadas}}',

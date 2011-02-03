@@ -179,7 +179,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
 	'Tags'                      => array( '標籤' ),
 	'Activeusers'               => array( '活躍用戶' ),
-	'RevisionMove'              => array( '版本移動' ),
 	'ComparePages'              => array( '頁面比較' ),
 	'Badtitle'                  => array( '不好的標題' ),
 );
@@ -670,15 +669,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 
-# JavaScript password checks
-'password-strength'            => '預估密碼強度： $1',
-'password-strength-bad'        => '差',
-'password-strength-mediocre'   => '一般',
-'password-strength-acceptable' => '可接受',
-'password-strength-good'       => '好',
-'password-retype'              => '再次輸入密碼',
-'password-retype-mismatch'     => '密碼不匹配',
-
 # Password reset dialog
 'resetpass'                 => '更改密碼',
 'resetpass_announce'        => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
@@ -1053,26 +1043,6 @@ $1",
 'suppressionlogtext' => '以下是刪除以及由操作員牽涉到內容封鎖的清單。
 參看[[Special:IPBlockList|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
 
-# Revision move
-'moverevlogentry'              => '移動了$1的{{PLURAL:$3|一次修訂版本|$3次修訂版本}}至$2',
-'revisionmove'                 => '由 "$1" 移動修訂版本',
-'revmove-explain'              => '以下的修訂版本將會由$1移動至所指定的目標頁面。如果目標不存在的話，它就將會建立。否則，這些的修訂版本就將會合併到頁面歷史中。',
-'revmove-legend'               => '設定目標頁面以及摘要',
-'revmove-submit'               => '移動修訂版本到所選定的頁面上',
-'revisionmoveselectedversions' => '移動已選取的修訂版本',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '目標頁面：',
-'revmove-badparam-title'       => '壞的參數',
-'revmove-badparam'             => '您的請求含有不合法的者不足的參數。
-請返回先前的頁面再試。',
-'revmove-norevisions-title'    => '無效的目標修訂版本',
-'revmove-norevisions'          => '您尚未指定一個或者多個目標修訂版本去做這項功能或者所指定的修訂版本不存在。',
-'revmove-nullmove-title'       => '壞的標題',
-'revmove-nullmove'             => '目標頁面不可以跟來源頁面相同。
-請返回先前的頁面再輸入跟 "$1" 不相同的名字。',
-'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至現有的頁面[[$3]]。',
-'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至新建的頁面[[$3]]。',
-
 # History merging
 'mergehistory'                     => '合併頁面歷史',
 'mergehistory-header'              => '這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
@@ -1408,7 +1378,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
-'right-revisionmove'          => '移動修訂版本',
 'right-disableaccount'        => '禁用帳號',
 
 # User rights log
@@ -1452,7 +1421,6 @@ $1",
 'action-userrights'           => '編輯所有的權限',
 'action-userrights-interwiki' => '編輯在其它wiki上用戶的權限',
 'action-siteadmin'            => '鎖定和解除鎖定資料庫',
-'action-revisionmove'         => '移動修訂',
 
 # Recent changes
 'nchanges'                          => '$1次更改',

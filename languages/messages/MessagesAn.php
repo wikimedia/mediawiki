@@ -592,15 +592,6 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
 
-# JavaScript password checks
-'password-strength'            => "Livel de seguranza d'a contrasenya: $1",
-'password-strength-bad'        => 'MALA',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'bueno',
-'password-retype'              => 'Torne a escribir aquí a contrasenya',
-'password-retype-mismatch'     => 'As contrasenyas no concuerdan',
-
 # Password reset dialog
 'resetpass'                 => 'Cambiar a contrasenya',
 'resetpass_announce'        => 'Ha encetato una sesión con una contrasenya temporal que se le ninvió por correu. Por favor, escriba aquí una nueva contrasenya:',
@@ -966,24 +957,6 @@ No tien acceso a ell.',
 'suppressionlog'     => 'Rechistro de supresions',
 'suppressionlogtext' => "En o cobaixo bi ye una lista de borraus y bloqueyos referitos a contenius amagaus ta os almenistradors. Mire-se a [[Special:IPBlockList|lista d'adrezas IP bloqueyatas]] ta veyer a lista de bloqueyos y vedas bichents.",
 
-# Revision move
-'moverevlogentry'              => "S'ha tresladato {{PLURAL:$3|una versión|$3 versions}} dende $1 ta $2",
-'revisionmove'                 => 'Tresladar versions dende "$1"',
-'revmove-explain'              => "As siguients versions se tresladarán dende $1 t'a pachina destín especificata. Si o destín no existe, se creyará. D'atra traza, istas versions se fusionarán en o historial d'a pachina.",
-'revmove-legend'               => 'Establir a pachina de destín y resumen',
-'revmove-submit'               => "Tresladar versions t'a pachina trigada",
-'revisionmoveselectedversions' => 'Tresladar as versions trigadas',
-'revmove-reasonfield'          => 'Razón:',
-'revmove-titlefield'           => 'Pachina de destín:',
-'revmove-badparam-title'       => 'Parametros no conformes',
-'revmove-badparam'             => 'A requesta contién parametros insuficients u erronios. Torne enta zaga y mire de fer-lo de nuevas.',
-'revmove-norevisions-title'    => 'A versión de destino no ye conforme',
-'revmove-norevisions'          => 'No ha especificato una u más version a on aplicar ista función u bien as versions especificatas no existen.',
-'revmove-nullmove-title'       => 'Títol no conforme',
-'revmove-nullmove'             => "As pachinas d'orichen y destín son a mesma. Torne enta zaga y escriba una pachina diferent de «$1».",
-'revmove-success-existing'     => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina existent [[$3]].",
-'revmove-success-created'      => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina recient creyata [[$3]].",
-
 # History merging
 'mergehistory'                     => 'Fusionar historials',
 'mergehistory-header'              => "Ista pachina li premite de fusionar versions d'o historial d'una pachina d'orichen con una nueva pachina.
@@ -1315,7 +1288,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-reset-passwords'       => "Reiniciar a contrasenya d'atros usuarios",
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
-'right-revisionmove'          => 'Tresladar versions',
 
 # User rights log
 'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",
@@ -1358,7 +1330,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'action-userrights'           => "cambiar totz os dreitos d'usuario",
 'action-userrights-interwiki' => "cambiar os dreitos d'usuario en atros wikis",
 'action-siteadmin'            => 'bloqueyar u desbloqueyar a base de datos',
-'action-revisionmove'         => 'tresladar versions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambeo|cambeos}}',

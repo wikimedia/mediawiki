@@ -548,15 +548,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
 
-# JavaScript password checks
-'password-strength'            => 'पासवर्डको अनुमानित बल: $1',
-'password-strength-bad'        => 'नराम्रो',
-'password-strength-mediocre'   => 'साधारण',
-'password-strength-acceptable' => 'ठिकै',
-'password-strength-good'       => 'राम्रो',
-'password-retype'              => 'पासवर्ड फेरी टाईप गर्नुहोस्',
-'password-retype-mismatch'     => 'पासवर्डहरु मिलेनन्',
-
 # Password reset dialog
 'resetpass'                 => 'प्रवेशशव्द परिवर्तन गर्नुहोस्',
 'resetpass_announce'        => 'तपाईंले अस्थायी ई-मेल कोडको आधारमा प्रवेश गर्नु भएकोछ।
@@ -848,10 +839,6 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'कमगरेको लग',
-
-# Revision move
-'revmove-reasonfield'    => 'कारण:',
-'revmove-nullmove-title' => 'गलत शीर्षक',
 
 # History merging
 'mergehistory'                     => 'पृष्ठ इतिहासहरु जोड्नुहोस्',
@@ -1170,7 +1157,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-reset-passwords'       => 'अरु प्रयोगकर्ताको प्रवेशशव्द पुनर्प्रविष्ठीगर्ने',
 'right-override-export-depth' => 'गहिराइ ५ सम्मको लिंकगरिएका पृष्ठहरु सहित निर्यात गर्ने',
 'right-sendemail'             => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
-'right-revisionmove'          => 'संशोधन सार्ने',
 'right-disableaccount'        => 'खातालाई अक्षम गर्ने',
 
 # User rights log

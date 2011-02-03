@@ -285,7 +285,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Poistetut_muokkaukset' ),
 	'Tags'                      => array( 'Merkinnät' ),
 	'Activeusers'               => array( 'Aktiiviset_käyttäjät' ),
-	'RevisionMove'              => array( 'Versioiden_siirto' ),
 	'ComparePages'              => array( 'Vertaa_sivuja' ),
 	'Badtitle'                  => array( 'Kelpaamaton_otsikko' ),
 );
@@ -767,15 +766,6 @@ Odota ennen kuin yrität uudelleen.',
 'loginlanguagelabel'         => 'Kieli: $1',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
-# JavaScript password checks
-'password-strength'            => 'Arvioitu salasanan vahvuus: $1',
-'password-strength-bad'        => 'HUONO',
-'password-strength-mediocre'   => 'keskinkertainen',
-'password-strength-acceptable' => 'hyväksyttävä',
-'password-strength-good'       => 'hyvä',
-'password-retype'              => 'Salasana uudelleen',
-'password-retype-mismatch'     => 'Salasanat eivät vastaa toisiaan',
-
 # Password reset dialog
 'resetpass'                 => 'Muuta salasana',
 'resetpass_announce'        => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',
@@ -1135,24 +1125,6 @@ Sinulla ei ole oikeutta siihen.',
 'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
 [[Special:IPBlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
-# Revision move
-'moverevlogentry'              => 'siirsi {{PLURAL:$3|yhden version|$3 versiota}} sivulta $1 sivulle $2',
-'revisionmove'                 => 'Siirrä versioita sivulta ”$1”',
-'revmove-explain'              => 'Seuraavat versiot siirretään sivulta $1 kohdesivulle. Jos kohdetta ei ole olemassa, se luodaan. Muussa tapauksessa nämä versiot yhdistetään muutoshistoriaan.',
-'revmove-legend'               => 'Aseta kohdesivu ja yhteenveto',
-'revmove-submit'               => 'Siirrä versiot valitulle sivulle',
-'revisionmoveselectedversions' => 'Siirrä valitut versiot',
-'revmove-reasonfield'          => 'Syy',
-'revmove-titlefield'           => 'Kohdesivu',
-'revmove-badparam-title'       => 'Virheelliset parametrit',
-'revmove-badparam'             => 'Pyyntösi sisältää virheellisiä tai riittämättömiä parametreja. Napauta "takaisin" ja yritä uudelleen.',
-'revmove-norevisions-title'    => 'Virheellinen kohdeversio',
-'revmove-norevisions'          => 'Et määrittänyt yhtä tai useampaa versiota tämän funktion suoritettavaksi, tai määritettyä versiota ei ole olemassa.',
-'revmove-nullmove-title'       => 'Virheellinen otsikko',
-'revmove-nullmove'             => 'Lähde- ja kohdesivu ovat samat. Palaa edelliselle sivulle ja valitse sivunimi, joka on eri kuin "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty olemassa olevalle sivulle [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty juuri luodulle sivulle [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
 'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
@@ -1485,7 +1457,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
-'right-revisionmove'          => 'Siirtää versioita',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -1528,7 +1499,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'action-userrights'           => 'muokata kaikkia käyttöoikeuksia',
 'action-userrights-interwiki' => 'muokata muiden wikien käyttäjien käyttöoikeuksia',
 'action-siteadmin'            => 'lukita tai avata tietokantaa',
-'action-revisionmove'         => 'siirtää versioita',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muutos|muutosta}}',

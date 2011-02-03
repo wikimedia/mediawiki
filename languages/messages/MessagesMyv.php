@@ -581,14 +581,6 @@ $messages = array(
 'accountcreatedtext'         => '$1-нь совицянь таркась теевсь-шкавсь.',
 'loginlanguagelabel'         => 'Кель: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'БЕРЯНЬ',
-'password-strength-mediocre'   => 'берякшке',
-'password-strength-acceptable' => 'маштови',
-'password-strength-good'       => 'вадря',
-'password-retype'              => 'Тезэнь сёрмадык одов салава валонть',
-'password-retype-mismatch'     => 'Салава валтнэ а вейкеть',
-
 # Password reset dialog
 'resetpass'                 => 'Полавтомс совамо валот',
 'resetpass_header'          => 'Полавтомс совамо валот',
@@ -775,11 +767,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'revdelete-reasonotherlist' => 'Лия тувтал',
 'revdelete-edit-reasonlist' => 'Витнемс-петнемс нардамонь тувталтнэсэ',
 'revdelete-offender'        => 'Версиянть теицязо:',
-
-# Revision move
-'revmove-reasonfield'    => 'Тувталось:',
-'revmove-titlefield'     => 'Норовазь лопась:',
-'revmove-nullmove-title' => 'Берянь конякс',
 
 # History merging
 'mergehistory'                     => 'Совавтомс лопатнень лиякстомтомадо сёрмадовкстнэнь ве лувс',

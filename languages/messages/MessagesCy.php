@@ -593,15 +593,6 @@ Oedwch ychydig cyn mentro eto.',
 # E-mail sending
 'php-mail-error-unknown' => 'Gwall anhysbys yng ngweithrediad post() PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Amcangyfrif o gryfder y cyfrinair: $1',
-'password-strength-bad'        => 'GWAEL',
-'password-strength-mediocre'   => 'tila',
-'password-strength-acceptable' => 'derbyniol',
-'password-strength-good'       => 'da',
-'password-retype'              => 'Ail-deipiwch y cyfrinair fan hyn',
-'password-retype-mismatch'     => 'Y cyfrineiriau yn wahanol',
-
 # Password reset dialog
 'resetpass'                 => 'Newid cyfrinair y cyfrif',
 'resetpass_announce'        => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
@@ -980,24 +971,6 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 'suppressionlogtext' => "Dyma restr y dileuon a'r blociau lle y cuddiwyd cynnwys rhag y gweinyddwyr.
 Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlockList|rhestr blociau IP]].",
 
-# Revision move
-'moverevlogentry'              => 'wedi symud {{PLURAL:$3||un diwygiad|$3 ddiwygiad|$3 diwygiad|$3 diwygiad|$3 diwygiad}} o $1 i $2',
-'revisionmove'                 => 'Symud diwygiadau oddi wrth "$1"',
-'revmove-explain'              => "Caiff y diwygiadau hyn eu symud o $1 i dudalen y cyrchfan a benwyd. Os nad yw'r cyrchfan yn bodoli, fe gaiff ei greu. Fel arall, caiff y diwygiadau eu cyfuno gyda hanes y dudalen.",
-'revmove-legend'               => 'Gosod crynodeb a thudalen y cyrchfan',
-'revmove-submit'               => "Symud y diwygiadau i'r dudalen dewisedig",
-'revisionmoveselectedversions' => 'Symud y diwygiadau dewisedig',
-'revmove-reasonfield'          => 'Rheswm:',
-'revmove-titlefield'           => 'Tudalen y cyrchfan:',
-'revmove-badparam-title'       => 'Paramedrau gwallus',
-'revmove-badparam'             => 'Mae eich cais yn cynnwys paramedrau annigonol neu anghyfreithlon. Pwyswch y botwm "Nôl" a rhowch gynnig arall arni.',
-'revmove-norevisions-title'    => 'Penwyd diwygiad annilys',
-'revmove-norevisions'          => "Nid ydych wedi nodi un neu ragor o ddiwygiadau i'w symud, ynteu nid yw'r diwygiad a nodwyd ar gael.",
-'revmove-nullmove-title'       => 'Teitl gwallus',
-'revmove-nullmove'             => 'Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "$1".',
-'revmove-success-existing'     => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen sydd newydd gael ei chreu [[$3]].",
-
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
 'mergehistory-header'              => 'Pwrpas y dudalen hon yw cyfuno diwygiadau o hanes un dudalen gwreiddiol ar dudalen newydd.
@@ -1337,7 +1310,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
-'right-revisionmove'          => 'Symud diwygiadau',
 'right-disableaccount'        => 'Analluogi cyfrifon',
 
 # User rights log
@@ -1381,7 +1353,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
 'action-userrights-interwiki' => 'golygu galluoedd y defnyddwyr ar wicïau eraill',
 'action-siteadmin'            => "cloi neu ddatgloi'r databas",
-'action-revisionmove'         => 'symud diwygiadau',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',

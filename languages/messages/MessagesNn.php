@@ -739,15 +739,6 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Forespurnaden din om å logge ut vart nekta fordi han såg ut til å være sendt av ein øydelagt nettlesar eller mellomtenar.',
 
-# JavaScript password checks
-'password-strength'            => 'Utrekna passordstyrke: $1',
-'password-strength-bad'        => 'DÅRLEG',
-'password-strength-mediocre'   => 'medels',
-'password-strength-acceptable' => 'dugande',
-'password-strength-good'       => 'god',
-'password-retype'              => 'Skriv opp att passordet',
-'password-retype-mismatch'     => 'Passorda er ikkje dei same',
-
 # Password reset dialog
 'resetpass'                 => 'Endra passord',
 'resetpass_announce'        => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
@@ -1113,20 +1104,6 @@ Sjekk gjerne loggføringa.',
 'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
 Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
-# Revision move
-'moverevlogentry'              => 'flytta {{PLURAL:$3|éin versjon|$3 versjonar}} frå $1 til $2',
-'revisionmove'                 => 'Flytt versjonar frå «$1»',
-'revmove-explain'              => 'Dei fylgjande versjonane vil verta flytta frå $1 til målsida som er gjeven opp. Om målet ikkje finst vil det verta oppretta.
-Elles vil desse versjonane verta fletta inn i sidehistorikken.',
-'revmove-legend'               => 'Set målsida og samandrag',
-'revmove-submit'               => 'Flytt versjonane til den valde sida',
-'revisionmoveselectedversions' => 'Flytt dei valde versjonane',
-'revmove-reasonfield'          => 'Årsak:',
-'revmove-titlefield'           => 'Målsida:',
-'revmove-badparam-title'       => 'Dårlege parametrar',
-'revmove-norevisions-title'    => 'Ugyldig målversjon',
-'revmove-nullmove-title'       => 'Feil i tittelen',
-
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
 'mergehistory-header'              => 'Denne sida lar deg flette historikken til to sider.
@@ -1459,7 +1436,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
-'right-revisionmove'          => 'Flytta versjonar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1502,7 +1478,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'action-userrights'           => 'endre alle brukarrettar',
 'action-userrights-interwiki' => 'endre brukarrettar for brukarar på andre wikiar',
 'action-siteadmin'            => 'låse eller låse opp databasen',
-'action-revisionmove'         => 'flytta versjonar',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',

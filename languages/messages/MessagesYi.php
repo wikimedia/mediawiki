@@ -653,15 +653,6 @@ $2',
 'loginlanguagelabel'         => 'שפראך: $1',
 'suspicious-userlogout'      => ' אײַער בקשה אַרויסלאָגירן זיך איז אפגעלייגט געווארן ווייַל אייגנטלעך איז זי געשיקט דורך אַ צעבראכענעם בלעטערער אָדער א פראקסי מיט א זאפאס.',
 
-# JavaScript password checks
-'password-strength'            => 'געשאַצטע פאַסווארט־שטאַרקייט: $1',
-'password-strength-bad'        => 'שוואַך',
-'password-strength-mediocre'   => 'מיטלמעסיק',
-'password-strength-acceptable' => 'נישקשה',
-'password-strength-good'       => 'גוט',
-'password-retype'              => 'ווידער ארײַנקלאַפן פאַסווארט דאָ',
-'password-retype-mismatch'     => 'פאַסווערטער שטימען נישט',
-
 # Password reset dialog
 'resetpass'                 => 'ענדערן קאנטע פאסווארט',
 'resetpass_announce'        => 'איר האט אריינלאגירט מיט א פראוויזארישן קאד געשיקט דורכן ע-פאסט. צו פארענדיגן אריינלאגירן, ברויכט איר אנשטעלן א ניי פאסווארט דא:',
@@ -1026,19 +1017,6 @@ $1",
 # Suppression log
 'suppressionlog' => 'באהאלטונגען לאג',
 
-# Revision move
-'revisionmove'                 => ' באַוועגן ווערסיעס פון "$1"',
-'revmove-legend'               => 'שטעלן צילבלאַט און רעזומע',
-'revmove-submit'               => 'באַוועגן רעוויזיעס צו אויסגעוויילטן בלאַט',
-'revisionmoveselectedversions' => 'באַוועגן סעלעקטירטע ווערסיעס',
-'revmove-reasonfield'          => 'אורזאַך:',
-'revmove-titlefield'           => 'ציל בלאַט:',
-'revmove-badparam-title'       => 'פֿאַלשע פאַראַמעטערס',
-'revmove-norevisions-title'    => 'ציל ווערסיע נישט גילטיג',
-'revmove-nullmove-title'       => 'אומגילדיגער טיטל',
-'revmove-success-existing'     => '{{PLURAL:$1| איין רעוויזיע פֿון [[$2]] איז|$1 רעוויזיעס פֿון [[$2]] זענען}} געווארן באַוועגט צום עקזיסטירנדן בלאַט [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1| איין רעוויזיע פֿון [[$2]] איז|$1 רעוויזיעס פֿון [[$2]] זענען}} געווארן באַוועגט צום נײַעם בלאַט [[$3]].',
-
 # History merging
 'mergehistory'                     => 'צונויפֿגיסן בלאט היסטאריעס',
 'mergehistory-box'                 => 'צונויפֿגיסן רעוויזיעס פֿון צוויי בלעטער:',
@@ -1389,7 +1367,6 @@ $1",
 'action-userrights'           => 'רעדאַקטירן אלע באַניצער רעכטן',
 'action-userrights-interwiki' => 'רעדאַקטירן רעכטן פון באַניצער אויף אַנדערע וויקיס',
 'action-siteadmin'            => 'שליסן אדער אויפשליסן די דאטנבאזע',
-'action-revisionmove'         => 'באַוועגן ווערסיעס',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',

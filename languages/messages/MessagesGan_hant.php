@@ -492,9 +492,6 @@ $2',
 要係帳戶創建不對嗰話，倷就莫搭箇隻消息。',
 'loginlanguagelabel'         => '語言: $1',
 
-# JavaScript password checks
-'password-retype' => '輸過道密碼',
-
 # Password reset dialog
 'resetpass'                 => '設過帳戶密碼',
 'resetpass_announce'        => '倷係用到臨時email嗰代碼登入嗰。要登正入，倷要到箇首設定隻新密碼:',

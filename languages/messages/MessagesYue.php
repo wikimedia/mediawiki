@@ -621,15 +621,6 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => '響 PHP 嘅 mail() 參數度出現咗未知嘅錯誤',
 
-# JavaScript password checks
-'password-strength'            => '預計嘅密碼強度：$1',
-'password-strength-bad'        => '壞',
-'password-strength-mediocre'   => '中等',
-'password-strength-acceptable' => '可接受',
-'password-strength-good'       => '好',
-'password-retype'              => '響呢度再輸入密碼',
-'password-retype-mismatch'     => '密碼唔對',
-
 # Password reset dialog
 'resetpass'                 => '改密碼',
 'resetpass_announce'        => '你已經用咗一個臨時電郵碼登入。要完成登入，你一定要響呢度定一個新嘅密碼：',
@@ -1006,26 +997,6 @@ $1",
 'suppressionlogtext' => '下面係刪除同埋由操作員牽涉到內容封鎖嘅一覽。
 睇吓[[Special:IPBlockList|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
 
-# Revision move
-'moverevlogentry'              => '由$1搬咗{{PLURAL:$3|一次修訂|$3次修訂}}到$2',
-'revisionmove'                 => '由 "$1" 搬修訂',
-'revmove-explain'              => '下面嘅修訂將會由$1搬到所指定嘅目標頁。如果目標唔存在嘅話，佢就將會建立。唔係嘅話，呢啲嘅修訂就將會合併到版歷史度。',
-'revmove-legend'               => '設定目標頁同埋摘要',
-'revmove-submit'               => '搬修訂到所選嘅版度',
-'revisionmoveselectedversions' => '搬揀咗嘅修訂',
-'revmove-reasonfield'          => '原因:',
-'revmove-titlefield'           => '目標頁:',
-'revmove-badparam-title'       => '壞參數',
-'revmove-badparam'             => '你嘅請求有唔合法嘅或者唔夠嘅參數。
-請返去上一版再試過。',
-'revmove-norevisions-title'    => '無效嘅目標修訂',
-'revmove-norevisions'          => '你未指定一個或者多個目標修訂去做呢項功能或者所指定嘅修訂唔存在。',
-'revmove-nullmove-title'       => '壞標題',
-'revmove-nullmove'             => '目標頁嘅唔可以同埋來源版一模一樣。
-請返去上一版再輸入同 "$1" 唔同嘅名。',
-'revmove-success-existing'     => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去現有嘅頁[[$3]]。',
-'revmove-success-created'      => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去新開嘅頁[[$3]]。',
-
 # History merging
 'mergehistory'                     => '合併頁歷史',
 'mergehistory-header'              => '呢一版可以畀你去合併一個來源頁嘅修訂記錄到另一個新頁。
@@ -1361,7 +1332,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
-'right-revisionmove'          => '搬修訂',
 'right-disableaccount'        => '停用戶口',
 
 # User rights log
@@ -1405,7 +1375,6 @@ $1",
 'action-userrights'           => '編輯全部嘅權限',
 'action-userrights-interwiki' => '編輯響其它wiki用戶嘅權限',
 'action-siteadmin'            => '鎖同解鎖資料庫',
-'action-revisionmove'         => '搬修訂',
 
 # Recent changes
 'nchanges'                          => '$1次更改',

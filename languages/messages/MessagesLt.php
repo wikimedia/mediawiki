@@ -658,15 +658,6 @@ Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
-# JavaScript password checks
-'password-strength'            => 'Apskaičiuotas slaptažodžio stiprumas: $1',
-'password-strength-bad'        => 'BLOGAS',
-'password-strength-mediocre'   => 'vidutiniškas',
-'password-strength-acceptable' => 'priimtinas',
-'password-strength-good'       => 'geras',
-'password-retype'              => 'Čia pakartokite slaptažodį',
-'password-retype-mismatch'     => 'Slaptažodžiai nesutampa',
-
 # Password reset dialog
 'resetpass'                 => 'Keisti slaptažodį',
 'resetpass_announce'        => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
@@ -1046,26 +1037,6 @@ Prašome patikrinti sąrašus.',
 'suppressionlogtext' => 'Žemiau yra trynimų ir blokavimų sąrašas, įtraukiant turinį, paslėptą nuo administratorių.
 Žiūrėkite [[Special:IPBlockList|IP blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|perkelta $3 versija|perkeltos $3 versijos|perkeltos $3 versijų}} iš $1 į $2',
-'revisionmove'                 => 'Daugiau versijų iš „$1“',
-'revmove-explain'              => 'Šie pakeitimai bus perkelti iš $1 į nurodytą paskirties puslapį. Jeigu paskirties puslapio nėra, jis bus sukurtas. Priešingu atveju šie pakeitimai bus sujungti su puslapio istorija.',
-'revmove-legend'               => 'Nurodykite paskirties puslapį ir komentarą',
-'revmove-submit'               => 'Perkelti versijas į pasirinktą puslapį',
-'revisionmoveselectedversions' => 'Perkelti pasirinktas versijas',
-'revmove-reasonfield'          => 'Priežastis:',
-'revmove-titlefield'           => 'Paskirties puslapis:',
-'revmove-badparam-title'       => 'Netinkami parametrai',
-'revmove-badparam'             => 'Jūsų užklausoje yra negalimų parametrų ar jų nepakanka.
-Grįžkite į ankstesnį puslapį ir bandykite dar kartą.',
-'revmove-norevisions-title'    => 'Neleistina paskirties versija',
-'revmove-norevisions'          => 'Nenurodėte nė vienos versijos arba nurodyta versija neegzistuoja.',
-'revmove-nullmove-title'       => 'Blogas pavadinimas',
-'revmove-nullmove'             => 'Puslapis, į kurį perkeliamas keitimas, negali būti tokio paties pavadinimo, kaip šaltinio puslapis.
-Grįžkite į ankstesnį puslapį ir pasirinkite kitą pavadinimą iš "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] keitimas buvo perkeltas|$1 [[$2]] keitimai buvo perkelti}} į egzistuojantį puslapį [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Vienas [[$2]] keitimas buvo|$1 [[$2]] keitimai buvo}} perkelti į naujai sukurtą puslapį [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
 'mergehistory-header'              => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
@@ -1401,7 +1372,6 @@ teisės",
 'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
-'right-revisionmove'          => 'Perkelti versijas',
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',
@@ -1444,7 +1414,6 @@ teisės",
 'action-userrights'           => 'keisti visų naudotojų teises',
 'action-userrights-interwiki' => 'keisti naudotojų teises kitose wiki svetainėse',
 'action-siteadmin'            => 'užrakinti ar atrakinti duomenų bazę',
-'action-revisionmove'         => 'perkelti versijas',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',

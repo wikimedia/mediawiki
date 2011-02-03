@@ -596,10 +596,6 @@ Aspetta tanticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tò dumanna di discunnissioni fu niàta prichì pari ca veni di nu browser nun funziunanti o nu proxy di caching.',
 
-# JavaScript password checks
-'password-retype'          => "Scrivi la password n'àutra vota",
-'password-retype-mismatch' => 'Li password nun currispunninu',
-
 # Password reset dialog
 'resetpass'                 => "Scrivi n'àutra vota la password",
 'resetpass_announce'        => "Hai effittuatu l'accessu cu na password timpurània ca t'hà statu mannata via email. Pi tirminari l'accessu, hai a nziriri na password nova ccà:",
@@ -928,9 +924,6 @@ Cuntrolla lu log.",
 # Suppression log
 'suppressionlog'     => 'Log dê supprissioni',
 'suppressionlogtext' => "Ccà veni prisintatu n'elencu dê cancillazioni e dê blocchi cchiù ricenti supra cuntinuti ammucciati d'amministraturi. Vidi l'[[Special:IPBlockList|elenco d'IP bloccati]] pi l'elencu dî ban e dî blocchi attivi.",
-
-# Revision move
-'revmove-reasonfield' => 'Mutivu:',
 
 # History merging
 'mergehistory'                     => 'Unioni storie',

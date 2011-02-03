@@ -825,15 +825,6 @@ Počkejte chvíli, než to zkusíte znovu.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Odhad síly hesla: $1',
-'password-strength-bad'        => 'ŠPATNÉ',
-'password-strength-mediocre'   => 'průměrné',
-'password-strength-acceptable' => 'přijatelné',
-'password-strength-good'       => 'dobré',
-'password-retype'              => 'Zde zopakujte heslo',
-'password-retype-mismatch'     => 'Hesla se neshodují',
-
 # Password reset dialog
 'resetpass'                 => 'Změna hesla',
 'resetpass_announce'        => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
@@ -1206,24 +1197,6 @@ Prohlédněte si protokolovací záznamy.',
 'suppressionlog'     => 'Záznam utajení',
 'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
-# Revision move
-'moverevlogentry'              => 'přesunul {{PLURAL:$3|jednu revizi|$3 revize|$3 revizí}} z $1 do $2',
-'revisionmove'                 => 'Přesunout revize z „$1“',
-'revmove-explain'              => 'Následující revize budou přesunuty z $1 do uvedené cílové stránky. Pokud cílová stránka neexistuje, bude vytvořena. Jinak budou tyto revize začleněny do historie stránky.',
-'revmove-legend'               => 'Nastavte cílovou stránku a shrnutí',
-'revmove-submit'               => 'Přesunout revize do vybrané stránky',
-'revisionmoveselectedversions' => 'Přesunout vybrané revize',
-'revmove-reasonfield'          => 'Důvod:',
-'revmove-titlefield'           => 'Cílová stránka:',
-'revmove-badparam-title'       => 'Chybné parametry',
-'revmove-badparam'             => 'Váš požadavek obsahuje neplatné nebo nedostatečné parametry. Stiskněte prosím tlačítko „zpět“ a zkuste to znovu.',
-'revmove-norevisions-title'    => 'Neplatná cílová revize',
-'revmove-norevisions'          => 'Neuvedli jste jednu nebo více cílových revizí nebo uvedená revize neexistuje.',
-'revmove-nullmove-title'       => 'Chybný název',
-'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do existující stránky [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do nově vytvořené stránky [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
 'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
@@ -1560,7 +1533,6 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
-'right-revisionmove'          => 'Přesouvání verzí',
 'right-disableaccount'        => 'Deaktivování účtů',
 
 # User rights log
@@ -1604,7 +1576,6 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'action-userrights'           => 'upravovat práva všech uživatelů',
 'action-userrights-interwiki' => 'upravovat práva uživatelů na jiných wiki',
 'action-siteadmin'            => 'zamykat nebo odemykat databázi',
-'action-revisionmove'         => 'přesouvat verze',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změny|změn}}',

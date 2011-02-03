@@ -370,14 +370,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'createaccount-title'        => '{{SITENAME}} ਲਈ ਅਕਾਊਂਟ ਬਣਾਉਣਾ',
 'loginlanguagelabel'         => 'ਭਾਸ਼ਾ: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'ਖ਼ਰਾਬ',
-'password-strength-mediocre'   => 'ਠੀਕ-ਠਾਕ',
-'password-strength-acceptable' => 'ਮੰਨਣਯੋਗ',
-'password-strength-good'       => 'ਚੰਗਾ',
-'password-retype'              => 'ਇੱਥੇ ਪਾਸਵਰਡ ਮੁੜ-ਲਿਖੋ',
-'password-retype-mismatch'     => 'ਪਾਸਵਰਡ ਮਿਲਦਾ ਨਹੀਂ ਹੈ',
-
 # Password reset dialog
 'resetpass'                 => 'ਪਾਸਵਰਡ ਬਦਲੋ',
 'resetpass_announce'        => 'ਤੁਸੀਂ ਇੱਕ ਆਰਜ਼ੀ ਈ-ਮੇਲ ਕੀਤੇ ਕੋਡ ਨਾਲ ਲਾਗਇਨ ਕੀਤਾ ਹੈ। ਲਾਗਇਨ ਪੂਰਾ ਕਰਨ ਲਈ, ਤੁਹਾਨੂੰ ਇੱਥੇ ਨਵਾਂ ਪਾਸਵਰਡ ਦੇਣਾ ਪਵੇਗਾ:',

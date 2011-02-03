@@ -653,15 +653,6 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 # E-mail sending
 'php-mail-error-unknown' => 'Gabim i panjohur në funksionin e postës PHP ()',
 
-# JavaScript password checks
-'password-strength'            => 'Forca e vlerësuar të fjalëkalimit: $1',
-'password-strength-bad'        => 'KEQ',
-'password-strength-mediocre'   => 'mesatar',
-'password-strength-acceptable' => 'i pranueshëm',
-'password-strength-good'       => 'mirë',
-'password-retype'              => 'Fusni fjalëkalimin përsëri',
-'password-retype-mismatch'     => 'Fjalëkalimi nuk përputhet',
-
 # Password reset dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
 'resetpass_announce'        => 'Ju keni hyrë me një kod të përkohshëm.
@@ -1032,26 +1023,6 @@ Ju lutemi kontrolloni regjistrat.',
 'suppressionlog'     => 'Regjistri i ndalimeve',
 'suppressionlogtext' => 'Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:IPBlockList|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.',
 
-# Revision move
-'moverevlogentry'              => 'lëvizi {{PLURAL:$3|one revision|$3 revisions}} nga $1 tek $2',
-'revisionmove'                 => 'Lëviz versionet nga "$1"',
-'revmove-explain'              => 'Versioni i mëposhtëm do të largohet nga $1 tek faqja e përcaktuar. N.q.s. faqja e përcaktuar nuk ekziston, ajo është krijuar. Përndryshe, këto versione do të bashkohen tek historiku i faqes.',
-'revmove-legend'               => 'Vendosni faqen objektive dhe përmbledhjen',
-'revmove-submit'               => 'Lëviz versionet tek faqja e zgjedhur',
-'revisionmoveselectedversions' => 'Lëviz versionet e zgjedhura',
-'revmove-reasonfield'          => 'Arsyeja:',
-'revmove-titlefield'           => 'Faqja objektive:',
-'revmove-badparam-title'       => 'Parametra të pavlefshëm',
-'revmove-badparam'             => 'Kërkesa juaj përmban parametra të paligjshme ose të pamjaftueshme. 
-Kthehuni mbrapa tek faqja e mëparshme dhe të provoni përsëri.',
-'revmove-norevisions-title'    => 'Version i dëshiruar i pavfleshëm',
-'revmove-norevisions'          => 'Nuk keni dhënë një ose më shumë versione të synuara për të performuar këtë funksion ose versioni i specifikuar nuk ekziston.',
-'revmove-nullmove-title'       => 'Titull i pasaktë',
-'revmove-nullmove'             => 'Faqja objektive nuk mund të jetë njëlloj si burimi i faqes.
-Shkoni prapa tek faqja e mëparshme dhe zgjidhni një emër të ndryshëm nga "$1"',
-'revmove-success-existing'     => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur nga faqja ekzistuese [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur tek faqja e re e krijuar [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Bashko historikët e faqeve',
 'mergehistory-header'              => 'Kjo faqe ju lejon bashkimin e versionet e historikut të një faqeje "burim" në një faqe "mbledhje".
@@ -1390,7 +1361,6 @@ Kjo informatë është publike.',
 'right-reset-passwords'       => 'Rivendos fjalëkalimet e përdoruesit të tjerë',
 'right-override-export-depth' => 'Eksoprto faqet duke përfshirë e lidhura deri në një thellësi prej 5',
 'right-sendemail'             => 'Dërgo e-mail tek përdoruesit e tjerë',
-'right-revisionmove'          => 'Lëviz versionet',
 'right-disableaccount'        => 'Çaktivizo llogaritë',
 
 # User rights log
@@ -1434,7 +1404,6 @@ Kjo informatë është publike.',
 'action-userrights'           => 'ndrysho të gjitha të drejtat e përdoruesit',
 'action-userrights-interwiki' => 'ndrysho të drejtat e përdoruesve në wiki-t tjera',
 'action-siteadmin'            => 'mbyll ose hap bazën e të dhënave',
-'action-revisionmove'         => 'lëviz versionet',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',

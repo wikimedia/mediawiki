@@ -752,12 +752,6 @@ $2',
 जर ही नोंदणी चुकीने झाली असेल तर तुम्ही या संदेशाकडे दुर्लक्ष करू शकता.',
 'loginlanguagelabel'         => 'भाषा: $1',
 
-# JavaScript password checks
-'password-strength-acceptable' => 'वापरण्यायोग्य',
-'password-strength-good'       => 'चांगले',
-'password-retype'              => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'password-retype-mismatch'     => 'परवलीचे शब्द जुळले नाहीत',
-
 # Password reset dialog
 'resetpass'                 => 'परवलीचा शब्द बदला',
 'resetpass_announce'        => 'तुम्ही इमेलमधून दिलेल्या तात्पुरत्या शब्दांकाने प्रवेश केलेला आहे. आपली सदस्य नोंदणी पूर्ण करण्यासाठी कृपया इथे नवीन परवलीचा शब्द द्या:',

@@ -754,12 +754,6 @@ $2',
 សូមរងចាំមួយរយៈ មុនពេលសាកល្បងម្ដងទៀត។',
 'loginlanguagelabel'         => 'ភាសា៖ $1',
 
-# JavaScript password checks
-'password-strength-acceptable' => 'អាចទទួលយកបាន',
-'password-strength-good'       => 'ល្អ',
-'password-retype'              => 'វាយពាក្យសំងាត់ម្តងទៀត',
-'password-retype-mismatch'     => 'ពាក្យសំងាត់​មិន​ត្រូវគ្នា​ទេ',
-
 # Password reset dialog
 'resetpass'                 => '​ប្តូរ​ពាក្យសំងាត់​',
 'resetpass_announce'        => 'អ្នកបានកត់ឈ្មោះចូលដោយ​អក្សរកូដអ៊ីមែល​បណ្តោះអាសន្ន​មួយ​។
@@ -1147,13 +1141,6 @@ $1",
 
 សូមមើលបំរាមនិងការរាំងខ្ទប់អនុវត្តបច្ចុប្បន្ននៅក្នុង [[Special:IPBlockList|បញ្ជីរាំងខ្ទប់IP]]។',
 
-# Revision move
-'moverevlogentry'           => 'ប្ដូរទីតាំង {{PLURAL:$3|កំណែ១|$3 កំណែ}} ពី $1 ទៅ $2',
-'revisionmove'              => 'ប្ដូរទីតាំងកំណែពី "$1"',
-'revmove-reasonfield'       => 'មូលហេតុ៖',
-'revmove-norevisions-title' => 'កំណែគោលដៅមិនត្រឹមត្រូវ',
-'revmove-nullmove-title'    => 'ចំណងជើង​មិនល្អ',
-
 # History merging
 'mergehistory'                     => 'ច្របាច់ប្រវត្តិទាំងឡាយរបស់ទំព័របញ្ចូលគ្នា',
 'mergehistory-header'              => 'ទំព័រនេះអាចអោយអ្នកច្របាច់កំណែរបស់ប្រវត្តិទំព័រប្រភពមួយបញ្ចូលគ្នាចូលទៅក្នុងទំព័រថ្មីមួយ។
@@ -1525,7 +1512,6 @@ $1",
 'action-userrights'           => 'កែប្រែសិទ្ធិរបស់អ្នកប្រើប្រាស់ទាំងអស់',
 'action-userrights-interwiki' => 'កែប្រែសិទ្ធិនានារបស់អ្នកប្រើប្រាស់នៅលើវិគីដទៃ',
 'action-siteadmin'            => 'ចាក់សោឬដោះសោមូលដ្ឋានទិន្នន័យ',
-'action-revisionmove'         => 'ប្ដូរទីតាំងកំណែ',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}',

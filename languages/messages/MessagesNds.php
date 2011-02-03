@@ -670,15 +670,6 @@ Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
 
-# JavaScript password checks
-'password-strength'            => 'Estemeert Weert, wo good dat Passwoord is: $1',
-'password-strength-bad'        => 'SWACK',
-'password-strength-mediocre'   => 'middel',
-'password-strength-acceptable' => 'geiht',
-'password-strength-good'       => 'good',
-'password-retype'              => 'Passwoord noch wedder ingeven',
-'password-retype-mismatch'     => 'Passwöör sünd nich övereen',
-
 # Password reset dialog
 'resetpass'                 => 'Passwoord ännern',
 'resetpass_announce'        => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',

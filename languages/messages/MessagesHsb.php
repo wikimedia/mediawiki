@@ -608,15 +608,6 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Trochowana hesłowa sylnosć: $1',
-'password-strength-bad'        => 'ŠPATNA',
-'password-strength-mediocre'   => 'SRĚNJA',
-'password-strength-acceptable' => 'akceptabelna',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Hesło wospjetować',
-'password-retype-mismatch'     => 'Hesle so njekryjetej',
-
 # Password reset dialog
 'resetpass'                 => 'Hesło změnić',
 'resetpass_announce'        => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
@@ -980,24 +971,6 @@ Prošu přepruwuj protokole.',
 'suppressionlog'     => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow. Hlej [[Special:IPBlockList|Lisćina zablokowanjow IP]] za lisćinu tuchwilnych zablokowanjow.',
 
-# Revision move
-'moverevlogentry'              => 'je {{PLURAL:$3|jednu wersiju|$3 wersiji|$3 wersije|$3 wersijow}} wot $1 do $2 přesunył',
-'revisionmove'                 => 'Wersije wot "$1" přesunyć',
-'revmove-explain'              => 'Slědowace wersije přesunu so wot $1 k podatej cilowej stronje . Jeli cil njeeksistuje, wutwori so. Hewak so tute wersije w stawiznach strony zjednoćeja.',
-'revmove-legend'               => 'Cilowu stronu a zjeće zwěsćić',
-'revmove-submit'               => 'Wersije k wubranej stronje přesunyć',
-'revisionmoveselectedversions' => 'Wubrane wersije přesunyć',
-'revmove-reasonfield'          => 'Přičina:',
-'revmove-titlefield'           => 'Cilowa strona:',
-'revmove-badparam-title'       => 'Wopačne parametry',
-'revmove-badparam'             => 'Twoje naprašowanje wobsahuje njedowolene abo njedosahace parametry. Prošu klikń na "wróći" a spytaj hišće raz.',
-'revmove-norevisions-title'    => 'Njepłaćiwa cilowa wersija',
-'revmove-norevisions'          => 'Njejsy jednu wersiju abo wjace wersijow podał, zo by tutu funkciju wuwjedł, abo podata wersija njeeksistuje.',
-'revmove-nullmove-title'       => 'Njepłaćiwy titul',
-'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do eksistowaceje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do runje wutworjeneje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
-
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
 'mergehistory-header'              => 'Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
@@ -1334,7 +1307,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
-'right-revisionmove'          => 'Wersije přesunyć',
 'right-disableaccount'        => 'Konta znjemóžnić',
 
 # User rights log
@@ -1378,7 +1350,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'action-userrights'           => 'wšě wužiwarske prawa wobdźěłać',
 'action-userrights-interwiki' => 'Wužiwarske prawa wužiwarjow w druhich wikijach wobdźěłać',
 'action-siteadmin'            => 'Datowu banku zawrěć abo wotewrić',
-'action-revisionmove'         => 'wersije  přesunyć',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',

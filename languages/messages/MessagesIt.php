@@ -726,15 +726,6 @@ Riprovare più tardi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Robustezza stimata della password: $1',
-'password-strength-bad'        => 'DEBOLE',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'accettabile',
-'password-strength-good'       => 'buono',
-'password-retype'              => 'Ripeti la password',
-'password-retype-mismatch'     => 'Le password non corrispondono',
-
 # Password reset dialog
 'resetpass'                 => 'Cambia la password',
 'resetpass_announce'        => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
@@ -1095,24 +1086,6 @@ $1",
 'suppressionlog'     => 'Log delle soppressioni',
 'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:IPBlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|spostata una revisione|spostate $3 revisioni}} da $1 a $2',
-'revisionmove'                 => 'Sposta revisione da "$1"',
-'revmove-explain'              => 'Le seguenti revisioni saranno spostate da $1 alla pagina di destinazione specificata. Se la destinazione non esiste, sarà creata. Altrimenti, queste revisioni saranno unite nella cronologia della pagina.',
-'revmove-legend'               => "Imposta la pagina di destinazione e l'oggetto",
-'revmove-submit'               => 'Sposta le revisioni alla pagina selezionata',
-'revisionmoveselectedversions' => 'Sposta le versioni selezionate',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Pagina di destinazione:',
-'revmove-badparam-title'       => 'Parametri invalidi',
-'revmove-badparam'             => 'La tua richiesta contiene parametri errati o insufficienti. Premere "indietro" e provare ancora.',
-'revmove-norevisions-title'    => 'Versione non specificata',
-'revmove-norevisions'          => 'Non hai specificato una o più revisioni per eseguire questa funzione o la revisione specificata non esiste.',
-'revmove-nullmove-title'       => 'Titolo invalido',
-'revmove-nullmove'             => 'La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella pagina esistente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella nuova pagina creata [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Unione cronologie',
 'mergehistory-header'              => 'Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente.
@@ -1445,7 +1418,6 @@ L'operazione non può essere annullata.",
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
-'right-revisionmove'          => 'Sposta le revisioni',
 'right-disableaccount'        => 'Disabilitare gli account',
 
 # User rights log
@@ -1489,7 +1461,6 @@ L'operazione non può essere annullata.",
 'action-userrights'           => 'modificare tutti i diritti degli utenti',
 'action-userrights-interwiki' => 'modificare i diritti degli utenti su altre wiki',
 'action-siteadmin'            => 'bloccare e sbloccare il database',
-'action-revisionmove'         => 'sposta le revisioni',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',

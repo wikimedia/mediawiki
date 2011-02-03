@@ -280,11 +280,6 @@ Je hebt geen toegang tot dit object.',
 Je hebt geen toegang tot dit object.',
 'revdelete-only-restricted'   => 'Er is een fout opgetreden bij het verbergen van het item van $1, $2: je kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.',
 
-# Revision move
-'revmove-badparam'    => 'Je verzoek bevat ongeldige of onvoldoende parameters.
-Klik "Terug" en probeer het opnieuw.',
-'revmove-norevisions' => 'Je hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.',
-
 # History merging
 'mergehistory-header' => 'Via deze pagina kun je versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
 Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',

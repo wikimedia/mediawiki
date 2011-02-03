@@ -700,15 +700,6 @@ Andraso kely ary andramo indray.",
 'loginlanguagelabel'         => 'fiteny : $1',
 'suspicious-userlogout'      => "Ny fangataham-pialanao dia tsy nekena satria ohatry ny nalfan'ny mpizahan-tsehatra simba izy na kasy ny proxy.",
 
-# JavaScript password checks
-'password-strength'            => "Lentan'ny antoka (Niveau de sécurité) ho an'io tenimiafina io : $1",
-'password-strength-bad'        => 'ratsy',
-'password-strength-mediocre'   => 'kely',
-'password-strength-acceptable' => 'azo ekena',
-'password-strength-good'       => 'avo',
-'password-retype'              => 'Avereno sotary eto ny tenimiafina',
-'password-retype-mismatch'     => 'Tsy miady ny tenimiafina',
-
 # Password reset dialog
 'resetpass'                 => 'Hanova ny tenimiafina',
 'resetpass_announce'        => "Nihiditra tenimiafina mailaka nalefanay tamin'ny imailaka ianao. Ampidiro ity tenimiafina ity mba hanapitra ny fampidirana.",
@@ -1080,19 +1071,6 @@ Jereo ny laogy.",
 'suppressionlogtext' => "Ity ny lisitra ny famafàna sy ny fanakanana asitrika amin'ny mpandrindra.
 Hijery ny [[Special:IPBlockList|lisitra ny adiresy IP sy mpikambana voasakana]] ho an'ny lisitra ny voaraoka sy ny fanakanana mbola miasa.",
 
-# Revision move
-'revisionmove'                 => "Hanisaka ny santiôna avy amin'ny « $1 »",
-'revmove-legend'               => 'Atsofohy ny pejy tanjona sy ny antony',
-'revmove-submit'               => "Akisaka ny revision mankany amin'ilay pejy nofidiana",
-'revisionmoveselectedversions' => 'Ahisaka ny revision nofidiana',
-'revmove-reasonfield'          => 'Antony :',
-'revmove-titlefield'           => 'Pejy tanjona :',
-'revmove-badparam-title'       => 'Diso ny parametatra',
-'revmove-badparam'             => "Ny hatakao dia misy parametatra tsy ampy na tsy ara-dalàna. Mankanesa any amin'ny pejy taloha ary andramo fanindroany.",
-'revmove-norevisions-title'    => 'Tsy mety ny revision tanjona',
-'revmove-norevisions'          => "Tsy nisafidy revision iray na maro ianao mba hanao an'io tao io, na tsy misy koa ilay revision nambaranao ho tanjona.",
-'revmove-nullmove-title'       => 'Diso ny lohateny',
-
 # History merging
 'mergehistory'                     => 'Atsonika ny tantara ny pejy',
 'mergehistory-header'              => "Amin'ity pejy ity, afaka manonika santiônan'ny tantara pejy iaviana makany amina pejy vaovao ianao.
@@ -1413,7 +1391,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-reset-passwords'       => "Manova ny tenimiafin'ny mpikambana hafa",
 'right-override-export-depth' => "Mamoaka ny pejy miaraka amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
-'right-revisionmove'          => 'Afindra ny revision',
 
 # User rights log
 'rightslog'      => 'Tatitr’asa momban’ny fanovana satam-pikambana',
@@ -1456,7 +1433,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'action-userrights'           => "hanova ny fahefan'ny mpikambana rehetra",
 'action-userrights-interwiki' => "hanova ny fahefan'ny mpikambana any amin'ny wiki hafa",
 'action-siteadmin'            => 'Manidy sy manokatra ny banky angona',
-'action-revisionmove'         => 'hanisaka ny revision',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|fanovana|fanovana}} $1',

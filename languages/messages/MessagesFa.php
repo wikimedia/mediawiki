@@ -142,7 +142,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
 	'Tags'                      => array( 'برچسب‌ها' ),
 	'Activeusers'               => array( 'کاربران_فعال' ),
-	'RevisionMove'              => array( 'انتقال_نسخه' ),
 	'ComparePages'              => array( 'مقایسه_صفحات' ),
 	'Badtitle'                  => array( 'عنوان_نامناسب' ),
 );
@@ -909,15 +908,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'خطای ناشناخته در تابع  mail() پی‌اچ‌پی',
 
-# JavaScript password checks
-'password-strength'            => 'تخمین قدرت گذرواژه: $1',
-'password-strength-bad'        => 'بد',
-'password-strength-mediocre'   => 'متوسط',
-'password-strength-acceptable' => 'قابل قبول',
-'password-strength-good'       => 'خوب',
-'password-retype'              => 'گذرواژه را دوباره وارد کنید',
-'password-retype-mismatch'     => 'گذرواژه‌ها مطابقت ندارند.',
-
 # Password reset dialog
 'resetpass'                 => 'تغییر گذرواژه',
 'resetpass_announce'        => 'شما با کد موقتی ارسال شده وارد شده‌اید.
@@ -1306,24 +1296,6 @@ $1",
 'suppressionlogtext' => 'در زیر فهرستی از آخرین حذف‌ها و قطع دسترسی‌هایی که حاوی محتوایی هستند که از مدیران پنهان شده‌اند را می‌بینید.
 برای مشاهدهٔ فهرستی از قطع دسترسی‌های فعال [[Special:IPBlockList|فهرست قطع‌دسترسی‌ها]] را ببینید.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|یک نسخه|$3 نسخه}}را از $1 به $2 انتقال داد',
-'revisionmove'                 => 'انتقال نسخه‌ها از «$1»',
-'revmove-explain'              => 'نسخه‌های زیر از $1 به صفحهٔ هدف مشخص شده منتقل خواهند شد. اگر صفحهٔ مقصد وجود نداشته باشد، ساخته خواهد شد. در غیر این صورت، نسخه‌ها با تاریخچهٔ قبلی صفحه ادغام خواهند شد.',
-'revmove-legend'               => 'صفحهٔ مقصد و خلاصه ویرایش را مشخص کنید',
-'revmove-submit'               => 'انتقال نسخه‌ها به صفحهٔ انتخاب شده',
-'revisionmoveselectedversions' => 'انتقال نسخه‌های انتخاب شده',
-'revmove-reasonfield'          => 'دلیل:',
-'revmove-titlefield'           => 'صفحه مقصد:',
-'revmove-badparam-title'       => 'پارامترهای بد',
-'revmove-badparam'             => 'درخواست شما شامل پارامترهای غیر مجاز یا ناکافی است. لطفاً دکمهٔ «بازگشت» را بزنید و دوباره تلاش کنید.',
-'revmove-norevisions-title'    => 'نسخه نهایی غیر مجاز',
-'revmove-norevisions'          => 'شما یک یا چند نسخه هدف را برای انجام این عمل مشخص نکرده‌اید یا نسخه‌های مشخص شده وجود ندارند.',
-'revmove-nullmove-title'       => 'عنوان بد',
-'revmove-nullmove'             => 'صفحه‌های مبدأ و مقصد یکی هستند. لطفاً دکمهٔ «بازگشت» را بزنید و عنوان غیر از «$1» وارد کنید.',
-'revmove-success-existing'     => '{{PLURAL:$1|یک نسخه از [[$2]]|$1 نسخه از [[$2]]}} به صفحهٔ [[$3]] که از قبل وجود داشت انتقال {{PLURAL:$1|یافته‌است|یافته‌اند}}.',
-'revmove-success-created'      => '{{PLURAL:$1|یک نسخه از [[$2]]|$1 نسخه از [[$2]]}} به صفحهٔ تازه ساخته شده [[$3]] انتقال {{PLURAL:$1|یافته‌است|یافته‌اند}}.',
-
 # History merging
 'mergehistory'                     => 'ادغام تاریخچه صفحه‌ها',
 'mergehistory-header'              => "این صفحه به شما این امکان را می‌دهد که نسخه‌های تاریخچهٔ یک مقاله را با یک مقاله دیگر ادغام کنید.
@@ -1664,7 +1636,6 @@ $1",
 'right-reset-passwords'       => 'از نو تنظیم کردن گذرواژهٔ دیگر کاربران',
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-sendemail'             => 'ارسال پست الکترونیک به دیگر کاربران',
-'right-revisionmove'          => 'ادغام نسخه‌ها',
 'right-disableaccount'        => 'غیر فعال کردن حساب‌ها',
 
 # User rights log
@@ -1708,7 +1679,6 @@ $1",
 'action-userrights'           => 'ویرایش همهٔ اختیارات کاربری',
 'action-userrights-interwiki' => 'ویرایش اختیارات کاربری کاربران یک ویکی دیگر',
 'action-siteadmin'            => 'قفل کردن و باز کردن پایگاه داده',
-'action-revisionmove'         => 'ادغام نسخه‌ها',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',

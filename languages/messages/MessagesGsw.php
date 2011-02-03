@@ -599,15 +599,6 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Gschätzti Passwortsterki: $1',
-'password-strength-bad'        => 'SCHLÄCHT',
-'password-strength-mediocre'   => 'mittelmäßig',
-'password-strength-acceptable' => 'akzeptabel',
-'password-strength-good'       => 'guet',
-'password-retype'              => 'Passwort no mol yygee',
-'password-retype-mismatch'     => 'D Passwerter stimme nit zämme',
-
 # Password reset dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
 'resetpass_announce'        => 'Aamäldig mit em Code, wu per Mail zuegschickt woren isch. Zum d Aamäldig abzschliesse, muesch jetz e nej Passwort wehle.',
@@ -988,24 +979,6 @@ Bitte prief d Logbiecher.',
 'suppressionlog'     => 'Oversight-Logbuech',
 'suppressionlogtext' => 'Des isch s Logbuech vu dr Oversight-Aktione (Änderige vu dr Sichtbarkeit vu Versione, Bearbeitigskommentar, Benutzernäme un Benutzersperrine).',
 
-# Revision move
-'moverevlogentry'              => 'het {{PLURAL:$3|ei Version|$3 Versione}} vu $1 no $2 verschobe',
-'revisionmove'                 => 'Versione verschiebe vu „$1“',
-'revmove-explain'              => 'Die Versione wäre vu $1 uf d Ziilsyte, wu aagee isch, verschobe. Wänn s d Ziilsyte nit git, no wird si aagleit. Sunscht wäre die Versione in dr Versionsgschicht zämmegfiert.',
-'revmove-legend'               => 'Ziilsyte un Zämmefassig feschtlege',
-'revmove-submit'               => 'Versione zue dr uusgwehlte Syte verschiebe',
-'revisionmoveselectedversions' => 'Uusgwehlti Versione verschiebe',
-'revmove-reasonfield'          => 'Grund:',
-'revmove-titlefield'           => 'Ziilsyte:',
-'revmove-badparam-title'       => 'Falschi Parameter',
-'revmove-badparam'             => 'In dyyre Aafrog het s nit erlaubti oder mangelhafti Parameter. Bitte druck uf „zruck“ un versuech s nomol.',
-'revmove-norevisions-title'    => 'Nit giltigi Ziilversion',
-'revmove-norevisions'          => 'Du hesch kei Ziilversion aagee, zum die Aktion durzfiere oder d Version, wu Du aagee hesch, git s nit.',
-'revmove-nullmove-title'       => 'Nit giltige Titel',
-'revmove-nullmove'             => 'Quäll- un Ziilsyte sin idäntisch. Bitte druck uf „zruck“ un gib e andere Sytenname wie „$1“ yy.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zu dr exischtänte Syte [[$3]] verschobe wore.',
-'revmove-success-created'      => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zue dr nej aagleite Syte [[$3]] verschobe wore.',
-
 # History merging
 'mergehistory'                     => 'Versionsgschichte zämmefiere',
 'mergehistory-header'              => 'Mit däre Spezialsyte chasch d Versionsgschicht vun ere Ursprungssyte mit dr Versionsgchicht vun ee Ziilsyte zämefiere.
@@ -1340,7 +1313,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
-'right-revisionmove'          => 'Versione verschiebe',
 'right-disableaccount'        => 'Benutzerkonto deaktiviere',
 
 # User rights log
@@ -1384,7 +1356,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'action-userrights'           => 'Benutzerrächt z ändere',
 'action-userrights-interwiki' => 'd Rächt vu Benutzer in andere Wiki z ändere',
 'action-siteadmin'            => 'd Datebank z sperre oder frejzgee',
-'action-revisionmove'         => 'Versione verschiebe',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderig|Änderige}}',

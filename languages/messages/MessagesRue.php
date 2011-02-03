@@ -497,15 +497,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Незнама хыба у PHP mail() функції',
 
-# JavaScript password checks
-'password-strength'            => 'Оцінка силы гесла: $1',
-'password-strength-bad'        => 'НЕДОБРЕ',
-'password-strength-mediocre'   => 'середнє',
-'password-strength-acceptable' => 'приятельне',
-'password-strength-good'       => 'добре',
-'password-retype'              => 'Ту повторяйте гесло:',
-'password-retype-mismatch'     => 'Гесла ся не згодують',
-
 # Password reset dialog
 'resetpass'                 => 'Змінити гесло',
 'resetpass_announce'        => 'Приголошуєте ся дочасным геслом, котре было послане електронічнов поштов. Про закончіня приголошіня треба задати нове гесло ту:',
@@ -879,24 +870,6 @@ $1",
 'suppressionlog'     => 'Запис затаїня',
 'suppressionlogtext' => 'Тото є  список змазаня і б локованя котрый має обсяг схованый перед адміністраторами. Видьте тыж [[Special:IPBlockList|список вшыткых блоковань]].',
 
-# Revision move
-'moverevlogentry'              => 'перенїс {{PLURAL:$3|єдну ревізію|$3 ревізії|$3 ревізій}} з $1 до $2',
-'revisionmove'                 => 'Переміщеня ревізій з "$1"',
-'revmove-explain'              => 'Наслїдуючі ревізії будуть перенесены з $1 до  выбраной цілёвой сторінкы. Покы цілёва сторінка не екзістує, буде створена. Інакше будуть тоты ревізії включены до історії сторінкы.',
-'revmove-legend'               => 'Настав цілёву сторінку і коментарь',
-'revmove-submit'               => 'Пересунути ревізію на выбрану сторінку',
-'revisionmoveselectedversions' => 'Перемістити выбраны верзії',
-'revmove-reasonfield'          => 'Причіна:',
-'revmove-titlefield'           => 'Цілёва сторінка:',
-'revmove-badparam-title'       => 'Неправилны параметры',
-'revmove-badparam'             => 'Ваша пожадавка обсягує недоволены або недостаточны параметры. Стисните "back" і спробуйте знову.',
-'revmove-norevisions-title'    => 'Хыбна цілёва ревізія',
-'revmove-norevisions'          => 'Не задали сьте єдну або веце цілёвых ревізій жебы ся выконала тота функція або задана ревізія не екзістує.',
-'revmove-nullmove-title'       => 'Неприпустна назва',
-'revmove-nullmove'             => 'Здройова а цілёва сторінка є ідентічна. Стисните "back" і задайте сторінку різну од "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Єдна ревізія з [[$2]] має|$1 ревізії з [[$2]] має}} была пересунута на екзістуючу сторінку [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Єдна ревізія з [[$2]] має|$1 ревізії з [[$2]] має}} была пересунута на новостворену сторінку [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Злучованя історії сторінок',
 'mergehistory-header'              => 'Тота сторінка Вам доволить злучіти історію єдной здройовой сторінкы з новшов сторінков.
@@ -1234,7 +1207,6 @@ $1",
 'right-reset-passwords'       => 'Наставованя гесел іншым хоснователям',
 'right-override-export-depth' => 'Експорт сторінок включаючі звязаны сторінкы з глубков до 5',
 'right-sendemail'             => 'Посыланя пошты іншым хоснователям',
-'right-revisionmove'          => 'Перенесеня ревізій',
 'right-disableaccount'        => 'Заказати конта',
 
 # User rights log
@@ -1278,7 +1250,6 @@ $1",
 'action-userrights'           => 'Зміна прав вшыткым хоснователям',
 'action-userrights-interwiki' => 'зміна прав хоснователїв на іншых вікі',
 'action-siteadmin'            => 'замыкати або одомыкати датабазу',
-'action-revisionmove'         => 'Перенесеня ревізій',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|зміна|зміны|змін}}',

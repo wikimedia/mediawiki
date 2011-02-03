@@ -662,15 +662,6 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Força estimada de la contrasenya: $1',
-'password-strength-bad'        => 'DOLENT',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'bo',
-'password-retype'              => 'Escriviu una altra vegada la contrasenya aquí',
-'password-retype-mismatch'     => 'Les contrasenyes no coincideixen.',
-
 # Password reset dialog
 'resetpass'                 => 'Canvia la contrasenya',
 'resetpass_announce'        => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
@@ -1050,24 +1041,6 @@ Si us plau, verifica els registres.",
 'suppressionlog'     => 'Registre de supressió',
 'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i bloquejos que impliquen un contingut amagat als administradors. Vegeu la [[Special:IPBlockList|llista de bloquejos]] per a consultar la llista de bandejos i bloquejos actualment en curs.',
 
-# Revision move
-'moverevlogentry'              => "{{PLURAL:$3|s'ha mogut una revisió|s'han mogut $3 revisions}} des de $1 a $2",
-'revisionmove'                 => 'Moure revisions des de «$1»',
-'revmove-explain'              => "Les següents revisions seran traslladades des de $1 a la pàgina de destinació especificada. Si la destinació no existeix, es crearà. En cas contrari, aquestes revisions es fusionaran amb l'historial de la pàgina.",
-'revmove-legend'               => 'Establir pàgina de destinació i resum',
-'revmove-submit'               => 'Moure revisions a la pàgina seleccionada',
-'revisionmoveselectedversions' => 'Moure revisions seleccionades',
-'revmove-reasonfield'          => 'Motiu:',
-'revmove-titlefield'           => 'Pàgina de destinació:',
-'revmove-badparam-title'       => 'paràmetres inadequats',
-'revmove-badparam'             => 'La soŀlicitud conté paràmetres insuficients o erronis. Torneu enrere i intenteu-ho de nou.',
-'revmove-norevisions-title'    => 'Revisió especificada no vàlida',
-'revmove-norevisions'          => 'No heu especificat una o més revisions on aplicar aquesta funció o bé les revisions especificades no existeixen.',
-'revmove-nullmove-title'       => 'Títol inadequat',
-'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «$1».",
-'revmove-success-existing'     => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la pàgina existent [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la nova pàgina [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
 'mergehistory-header'              => "Aquesta pàgina us permet fusionar les revisions de l'historial d'una pàgina origen en una més nova.
@@ -1400,7 +1373,6 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Envia un correu electrònic a altres usuaris.',
-'right-revisionmove'          => 'Moure revisions',
 'right-disableaccount'        => 'Deshabilita comptes',
 
 # User rights log
@@ -1444,7 +1416,6 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'action-userrights'           => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin'            => 'bloquejar o desbloquejar la base de dades',
-'action-revisionmove'         => 'moure revisions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',

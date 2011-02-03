@@ -787,15 +787,6 @@ Vänta innan du försöker igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
 
-# JavaScript password checks
-'password-strength'            => 'Beräknad styrka på lösenord: $1',
-'password-strength-bad'        => 'DÅLIG',
-'password-strength-mediocre'   => 'medelmåttig',
-'password-strength-acceptable' => 'godtagbar',
-'password-strength-good'       => 'bra',
-'password-retype'              => 'Upprepa lösenord här',
-'password-retype-mismatch'     => 'Lösenorden stämmer inte överrens',
-
 # Password reset dialog
 'resetpass'                 => 'Ändra lösenord',
 'resetpass_announce'        => 'Du loggade in med ett temporärt lösenord. För att slutföra inloggningen måste du välja ett nytt lösenord.',
@@ -1182,24 +1173,6 @@ Vänligen kontrollera loggarna.',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
 Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
-# Revision move
-'moverevlogentry'              => 'flyttade {{PLURAL:$3|en version|$3 versioner}} från $1 till $2',
-'revisionmove'                 => 'Flytta versioner från "$1"',
-'revmove-explain'              => 'Följande versioner kommer att flyttas från $1 till den angivna målsidan. Om målsidan inte finns, skapas den. Annars kommer de här versionerna att läggas till i sidans historik.',
-'revmove-legend'               => 'Sätt målsida och sammanfattning',
-'revmove-submit'               => 'Flytta versioner till vald sida',
-'revisionmoveselectedversions' => 'Flytta valda versioner',
-'revmove-reasonfield'          => 'Anledning:',
-'revmove-titlefield'           => 'Målsida:',
-'revmove-badparam-title'       => 'Dåliga parametrar',
-'revmove-badparam'             => 'Din begäran innehåller olagliga eller otillräckliga parametrar. Klicka på "tillbaka" och försök igen.',
-'revmove-norevisions-title'    => 'Ogiltig målversion',
-'revmove-norevisions'          => 'Du har inte angivit en eller flera målversioner för att utföra denna funktion eller den angivna versionen finns inte.',
-'revmove-nullmove-title'       => 'Dålig titel',
-'revmove-nullmove'             => 'Källa och målsida är identiska. Klicka på "tillbaka" och ange ett sidnamn som skiljer sig från "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|En version från [[$2]] har|$1 versioner från [[$2]] har}} flyttats till den befintliga sidan [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|En version från [[$2]] har|$1 versioner från [[$2]] har}} flyttats till den nyskapade sidan [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
 'mergehistory-header'              => 'Med den här specialsidan kan du infoga versioner av en sida i en nyare sidas historik.
@@ -1538,7 +1511,6 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
-'right-revisionmove'          => 'Flytta versioner',
 'right-disableaccount'        => 'Inaktivera konton',
 
 # User rights log
@@ -1582,7 +1554,6 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'action-userrights'           => 'ändra alla användarrättigheter',
 'action-userrights-interwiki' => 'ändra rättigheter för användare på andra wikier',
 'action-siteadmin'            => 'låsa eller låsa upp databasen',
-'action-revisionmove'         => 'flytta versioner',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ändring|ändringar}}',

@@ -148,7 +148,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Forigitaj_kontribuoj' ),
 	'Tags'                      => array( 'Etikedoj' ),
 	'Activeusers'               => array( 'Aktivaj_uzantoj' ),
-	'RevisionMove'              => array( 'Movi_revizion' ),
 );
 
 $magicWords = array(
@@ -777,15 +776,6 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Taksita pasvorta forteco: $1',
-'password-strength-bad'        => 'MALBONA',
-'password-strength-mediocre'   => 'mezbona',
-'password-strength-acceptable' => 'akceptinda',
-'password-strength-good'       => 'bona',
-'password-retype'              => 'Retajpu pasvorton',
-'password-retype-mismatch'     => 'Pasvortoj ne estas samaj',
-
 # Password reset dialog
 'resetpass'                 => 'Ŝanĝi pasvorton',
 'resetpass_announce'        => 'Vi ensalutis kun provizora retpoŝtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton ĉi tien:',
@@ -1168,24 +1158,6 @@ Bonvolu kontroli la protokolojn.',
 'suppressionlogtext' => 'Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj.
 Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.',
 
-# Revision move
-'moverevlogentry'              => 'movis {{PLURAL:$3|unu revizion|$3 reviziojn}} de $1 al $2',
-'revisionmove'                 => 'Movi reviziojn de "$1"',
-'revmove-explain'              => 'La jenaj revizioj estos movita de $1 al la donita cela paĝo. Se la celo ne ekzistas, ĝi estos kreita. Alie, ĉi tiuj revizioj estos kunigita en la paĝa historio.',
-'revmove-legend'               => 'Aldoni celan paĝon kaj resumon',
-'revmove-submit'               => 'Movi reviziojn al la selektita  paĝo',
-'revisionmoveselectedversions' => 'Movi elektitajn reviziojn',
-'revmove-reasonfield'          => 'Kialo:',
-'revmove-titlefield'           => 'Cela paĝo:',
-'revmove-badparam-title'       => 'Malbonaj parametroj',
-'revmove-badparam'             => 'Via peto enhavas kontraŭleĝajn aŭ nesufiĉajn parametrojn. Bonvolu premi "malantaŭen" kaj provi denove.',
-'revmove-norevisions-title'    => 'Nevalida cela revizio',
-'revmove-norevisions'          => 'Vi ne specifis unu aŭ pliajn reviziojn por apliki ĉi tiun funkcion aŭ la specifita revizio ne ekzistas.',
-'revmove-nullmove-title'       => 'Fuŝa titolo',
-'revmove-nullmove'             => 'Origina kaj cela paĝoj samas. Bonvolu malantaŭeniri kaj tajpi paĝon malsaman de "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Unu revizio de [[$2]]  estis movita|$1 revizioj de [[$2]] estis movitaj}} al la ekzistanta paĝo [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Unu revizio de [[$2]]  estis movita|$1 revizioj de [[$2]] estis movitaj}} al la novkreita paĝo [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',
 'mergehistory-header'              => 'Ĉi tiu paĝo permesas al vi kunigi versiojn de la historio de unu fonta paĝo en pli novan paĝon.
@@ -1524,7 +1496,6 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
-'right-revisionmove'          => 'Movi reviziojn',
 'right-disableaccount'        => 'Malŝalti kontojn',
 
 # User rights log
@@ -1568,7 +1539,6 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
 'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
 'action-siteadmin'            => 'ŝlosi aŭ malŝlosi la datumbazon',
-'action-revisionmove'         => 'movi reviziojn',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',

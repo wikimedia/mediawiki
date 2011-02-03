@@ -518,15 +518,6 @@ Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Sessiýa ýapmak boýunça talabyňyz ret edildi, sebäbi ol nädogry brauzer ýa-da keşleýji proksi tarapyndan iberilen ýaly-la.',
 
-# JavaScript password checks
-'password-strength'            => 'Çak edilýän parol güýji: $1',
-'password-strength-bad'        => 'ERBET',
-'password-strength-mediocre'   => 'ortaça',
-'password-strength-acceptable' => 'Kabul ederlik',
-'password-strength-good'       => 'gowy',
-'password-retype'              => 'Paroly şu ýere gaýtadan ýazyň',
-'password-retype-mismatch'     => 'Parollar gabat gelmeýär',
-
 # Password reset dialog
 'resetpass'                 => 'Paroly üýtget',
 'resetpass_announce'        => 'Size iberilen wagtlaýyn parol bilen sessiýa açdyňyz.
@@ -917,24 +908,6 @@ Oňa baryp bilmeýärsiňiz.',
 'suppressionlogtext' => 'Aşakdaky sanaw administratorlardan gizlenilen mazmunlary öz içine alýan öçürmeleri we blokirlemeleri görkezýär.
 Häzirki wagtda bar bolan blokirlemelriň sanawy üçin [[Special:IPBlockList|IP blokirleme sanawyna]] serediň.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|bir wersiýany|$3 sany wersiýany}} $1 sahypasyndan $2 sahypasyna geçiridi',
-'revisionmove'                 => 'Wersiýalary "$1" sahypasyndan geçir',
-'revmove-explain'              => 'Aşakdaky wersiýalar $1 sahypasyndan görkezilen niýetlenilýän sahypa geçiriljekdir. Eger niýetlenilýän sahypa ýok bolsa, onda ol dörediler. Ýogsam, bu wersiýalar sahypanyň geçmişi bilen birleşdiriler.',
-'revmove-legend'               => 'Niýetlenilýän sahypany we düşündirişi belle',
-'revmove-submit'               => 'Wersiýalary saýlanan sahypa geçir',
-'revisionmoveselectedversions' => 'Saýlanan wersiýalary geçir',
-'revmove-reasonfield'          => 'Sebäp:',
-'revmove-titlefield'           => 'Niýetlenilýän sahypa:',
-'revmove-badparam-title'       => 'Erbet parametrler',
-'revmove-badparam'             => 'Talabyňyzda rugsat berilmeýän ýa-da ýeterliksiz parametrler bar. Öňki sahypa dolanyň we täzeden synanyşyň.',
-'revmove-norevisions-title'    => 'Nädogry niýetlenilýän wersiýa',
-'revmove-norevisions'          => 'Bu funksiýany ýerine ýetirmek üçin bir ýa-da birnäçe niýetlenilýän wersiýa görkezmediňiz ýa-da görkezilen wersiýa ýok.',
-'revmove-nullmove-title'       => 'Gelşiksiz at',
-'revmove-nullmove'             => 'Niýetlenilýän sahypa bilen çeşme sahypa birmeňzeş bolup bilmeýär. Yza dolanyp, "$1" arkaly başga bir sahypa adyny saýlaň.',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} bar bolan [[$3]] sahypasyna geçirildi.',
-'revmove-success-created'      => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} täze döredilen [[$3]] sahypasyna geçirildi.',
-
 # History merging
 'mergehistory'                     => 'Sahypa geçmişlerini birleşdir',
 'mergehistory-header'              => 'Bu sahypa bir çeşme sahypanyň geçmişiniň wersiýalaryny täze bir sahypa bilen birleşdirmeklige mümkinçilik berýär.
@@ -1270,7 +1243,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-reset-passwords'       => 'Başga ulanyjylaryň parollaryny başky ýagdaýyna getir',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail'             => 'Başga ulanyjylara e-poçta iber',
-'right-revisionmove'          => 'Wersiýalary geçir',
 
 # User rights log
 'rightslog'      => 'Ulanyjy hukuklarynyň gündeligi',
@@ -1313,7 +1285,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'action-userrights'           => 'ähli ulanyjy hukuklaryny redaktirlemäge',
 'action-userrights-interwiki' => 'başga wikilerde ulanyjylaryň ulanyjy hukuklaryny redaktirlemäge',
 'action-siteadmin'            => 'maglumat bazasyny gulplamaga ýa-da açmaga',
-'action-revisionmove'         => 'wersiýalary geçir',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',

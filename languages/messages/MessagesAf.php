@@ -691,15 +691,6 @@ Wag asseblief alvorens u weer probeer.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
 
-# JavaScript password checks
-'password-strength'            => 'Geskatte wagwoordsterkte: $1',
-'password-strength-bad'        => 'SLEG',
-'password-strength-mediocre'   => 'middelmatig',
-'password-strength-acceptable' => 'aanvaarbaar',
-'password-strength-good'       => 'goed',
-'password-retype'              => 'Verskaf die wagwoord weer hier',
-'password-retype-mismatch'     => 'Die wagwoorde kom nie ooreen nie',
-
 # Password reset dialog
 'resetpass'                 => 'Verander wagwoord',
 'resetpass_announce'        => "U het aangeteken met 'n tydelike e-poskode.
@@ -1080,24 +1071,6 @@ Kontroleer asseblief die logboeke.",
 'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs verborge is.
 Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te sien.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|een wysiging|$3 wysigings}} van $1 na $2 verskuif',
-'revisionmove'                 => 'Skuif weergawes van "$1"',
-'revmove-explain'              => 'Die volgende wysigings sal vanaf $1 na die aangewese teikenbladsy geskuif word. As die teiken nie bestaan nie, word dit geskep. Andersins, sal hierdie wysigings met die bladsygeskiedenis versmelt word.',
-'revmove-legend'               => 'Stel teiken-bladsy en opsomming',
-'revmove-submit'               => 'Skuif weergawes na geselekteerde bladsy',
-'revisionmoveselectedversions' => 'Skuif geselekteerde weergawes',
-'revmove-reasonfield'          => 'Rede:',
-'revmove-titlefield'           => 'Na bladsy:',
-'revmove-badparam-title'       => 'Slegte parameters',
-'revmove-badparam'             => 'U versoek bevat onwettige of onvoldoende parameters. Kliek op "terug" en probeer weer.',
-'revmove-norevisions-title'    => 'Ongeldige teiken-weergawe',
-'revmove-norevisions'          => 'U het nie een of meer teiken-weergawes gespesifiseer om die funksie te kan uitvoer nie; of die gespesifiseerde weergawe bestaan nie.',
-'revmove-nullmove-title'       => 'Ongeldige titel',
-'revmove-nullmove'             => 'Die bron- en teiken-bladsye is identies. Kliek op "terug" en verskaf \'n bladsynaam (nie "$1" nie).',
-'revmove-success-existing'     => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die bestaande bladsy [[$3]] geskuif.',
-'revmove-success-created'      => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die nuutgeskepte bladsy [[$3]] verskuif.',
-
 # History merging
 'mergehistory'                     => 'Geskiedenis van bladsy samesmeltings',
 'mergehistory-header'              => "Hierdie bladsy laat u toe om weergawes uit die geskiedenis van 'n bronbladsy na 'n ander nuwer bladsy oor te dra.
@@ -1439,7 +1412,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-reset-passwords'       => 'Herstel ander gebruikers se wagwoorde',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
-'right-revisionmove'          => 'Skuif wysigings',
 'right-disableaccount'        => 'Deaktiveer gebruikers',
 
 # User rights log
@@ -1483,7 +1455,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'action-userrights'           => 'Wysig alle gebruikersregte',
 'action-userrights-interwiki' => 'wysig gebruikersregte van gebruikers op ander wikis',
 'action-siteadmin'            => 'sluit of ontsluit die databasis',
-'action-revisionmove'         => 'skuif wysigings',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wysiging|wysigings}}',

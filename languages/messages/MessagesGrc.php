@@ -756,10 +756,6 @@ $1",
 # Suppression log
 'suppressionlog' => 'Κατάλογος διαγραφῶν',
 
-# Revision move
-'revmove-reasonfield'    => 'Αἰτία:',
-'revmove-nullmove-title' => 'Κακὸν τὸ ἐπώνυμον',
-
 # History merging
 'mergehistory'                     => 'Συγχωνεύειν ἱστορίας δέλτων',
 'mergehistory-box'                 => 'Συγχωνεύειν τὰς ἀναθεωρήσεις τῶν δύο δέλτων:',

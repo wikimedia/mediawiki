@@ -602,15 +602,6 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
 
-# JavaScript password checks
-'password-strength'            => 'Pasahitzaren ustezko sendotasuna: $1',
-'password-strength-bad'        => 'KASKARRA',
-'password-strength-mediocre'   => 'erdipurdikoa',
-'password-strength-acceptable' => 'onargarria',
-'password-strength-good'       => 'ona',
-'password-retype'              => 'Berridatzi hemen pasahitza',
-'password-retype-mismatch'     => 'Pasahitzak ez datoz bat',
-
 # Password reset dialog
 'resetpass'                 => 'Pasahitza aldatu',
 'resetpass_announce'        => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',
@@ -979,14 +970,6 @@ Begira itzazu erregistroak.',
 'suppressionlogtext' => 'Azpian administratzaileek ezkutatutako edukia duten ezabaketa eta blokeoen zerrenda dago.
 Ikusi [[Special:IPBlockList|IP blokeoen zerrenda]] orain dauden blokeoak ikusi ahal izateko.',
 
-# Revision move
-'revmove-legend'               => 'Xede-orrialdea eta laburpena ezarri',
-'revisionmoveselectedversions' => 'Aukeratutako berrikuspenak mugitu',
-'revmove-reasonfield'          => 'Arrazoia:',
-'revmove-titlefield'           => 'Xede-orrialdea:',
-'revmove-badparam-title'       => 'Parametro desegokiak',
-'revmove-nullmove-title'       => 'Izenburu desegokia',
-
 # History merging
 'mergehistory'                     => 'Orrialdeen historiak bateratu',
 'mergehistory-header'              => 'Orri honek iturri baten historiaren berrikuspenak bateratzea ahalbidetzen du, orri berri batean.
@@ -1315,7 +1298,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'right-reset-passwords'       => 'Bese erabiltzaile batzuen pasahitzak berritu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
-'right-revisionmove'          => 'Berrikuspenak mugitu',
 'right-disableaccount'        => 'Kontuak ezgaitu',
 
 # User rights log
@@ -1359,7 +1341,6 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'action-userrights'           => 'lankide guztien eskumenak aldatu',
 'action-userrights-interwiki' => 'beste wikietako lankideen lankide-eskumenak aldatu',
 'action-siteadmin'            => 'datubasea babestu edo babesa kendu',
-'action-revisionmove'         => 'berrikuspenak mugitu',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|aldaketa 1|$1 aldaketa}}',

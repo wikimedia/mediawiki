@@ -530,15 +530,6 @@ $2',
 'loginlanguagelabel'         => 'Мова: $1',
 'suspicious-userlogout'      => 'Ваш запыт на выхад быў адмоўлены, паколькі ён выглядае як накіраваны са зламанага браўзера або кэшаванне проксі-сервераў.',
 
-# JavaScript password checks
-'password-strength'            => 'Ацэнка сілы пароля: $1',
-'password-strength-bad'        => 'СЛАБА',
-'password-strength-mediocre'   => 'ледзьве-ледзьве',
-'password-strength-acceptable' => 'нядрэнна',
-'password-strength-good'       => 'добра',
-'password-retype'              => 'Тут трэба паўтарыць пароль',
-'password-retype-mismatch'     => 'Неаднолькавыя паролі',
-
 # Password reset dialog
 'resetpass'                 => 'Змяніць пароль',
 'resetpass_announce'        => 'Вы ўвайшлі ў сістэму пад тымчасовым паролем, прысланым эл.поштай. Каб правільна аформіць уваход, належыць вызначыць новы пароль вось тут:',
@@ -876,18 +867,6 @@ $1",
 'suppressionlogtext' => 'Ніжэй пералічаныя сціранні і блокі, якія датычаць зместу, скрытага ад адміністратараў.
 Бач актуальныя забароны і блокі ў [[Special:IPBlockList|спісе блокаў IP]].',
 
-# Revision move
-'revmove-legend'               => 'Устанавіць мэтавую старонку і рэзюмэ',
-'revisionmoveselectedversions' => 'Перамясціць выбраныя змены',
-'revmove-reasonfield'          => 'Прычына:',
-'revmove-titlefield'           => 'Мэтавая старонка:',
-'revmove-badparam-title'       => 'Дрэнныя параметры',
-'revmove-badparam'             => 'Параметры Вашага запыту недапушчальныя або недастатковыя.
-Вярнуцца на папярэднюю старонку і паспрабуйце зноў.',
-'revmove-norevisions-title'    => 'Недапушчальная мэтавая версія',
-'revmove-norevisions'          => 'Вы не пазначылі адну або некалькі мэтавых версій для выканання гэтай функцыі або пэўнай версіі не існуе.',
-'revmove-nullmove-title'       => 'Няправільная назва',
-
 # History merging
 'mergehistory'                     => "Аб'яднаць гісторыі старонак",
 'mergehistory-header'              => "Тут можна аб'ядноўваць версіі з гісторыі адной старонкі ў іншую, навейшую старонку.
@@ -1214,7 +1193,6 @@ $1",
 'right-reset-passwords'       => 'Скідаць паролі іншых удзельнікаў',
 'right-override-export-depth' => 'Экспартаваць старонкі, у тым ліку звязаныя, да глыбіні спасылак 5.',
 'right-sendemail'             => 'Адправіць па электроннай пошце іншым карыстальнікам',
-'right-revisionmove'          => 'Перамясціць версіі',
 
 # User rights log
 'rightslog'      => 'Журнал правоў удзельнікаў',
@@ -1257,7 +1235,6 @@ $1",
 'action-userrights'           => 'мяняць усе дазволы ўдзельніка',
 'action-userrights-interwiki' => 'мяняць дазволы ўдзельнікаў на іншых вікі',
 'action-siteadmin'            => 'зачыняць і адчыняць базу даных',
-'action-revisionmove'         => 'перамясціць версіі',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|мена|менаў}}',

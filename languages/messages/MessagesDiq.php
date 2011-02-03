@@ -866,25 +866,6 @@ rocaneyan kontrol bıkere.',
 'suppressionlog'     => 'qeydê pinani kerdışi',
 'suppressionlogtext' => 'qey listeya qedexan bıewne: [[Special:IPBlockList|IP listeya vergırewteyan]]',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|yew revizyon|$3 reviyanan}} $1 ra berd $2',
-'revisionmove'                 => 'Revizyonan "$1" ra bere',
-'revmove-explain'              => 'Ena revizyonanê $1i ra yew hedefê pele xususi rê beni. Eka pele hedefi cini ya, ena pele viraziyena. Eka nibeno, ena revizyanan u tarixê pelan piya keno yani yew keno.',
-'revmove-legend'               => 'Yew pele hedefi u xulasa viraze',
-'revmove-submit'               => 'Revizyonan pelanê vecinayiş rê bere',
-'revisionmoveselectedversions' => 'Revizyonanê weçinıtan bere',
-'revmove-reasonfield'          => 'Sebeb:',
-'revmove-titlefield'           => 'Pelê hedefi:',
-'revmove-badparam-title'       => 'Parametreyê xeleti',
-'revmove-badparam'             => 'Waştişê tu de cikek ke illegal ya zi kem est ê. Ma rica keni "peyser" şo u reyna deneme bike.',
-'revmove-norevisions-title'    => 'Çımraviyarnayışo waşte nêvêreno',
-'revmove-norevisions'          => 'Seba kerdişê ena fonksiyon, ti hama yew ya zi yew ra zafyer revizyonê hedefi belli nikerd ya zi revizyonê ke belli biyo ey cini yo.',
-'revmove-nullmove-title'       => 'Sernameo xırabın',
-'revmove-nullmove'             => 'Peleyê hedefi u peleyê cimeyi eyni name nigene.
-Eka peyser şo pele verini u reyna "$1" ra yew nameya newe biwecine.',
-'revmove-success-existing'     => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] rê berda.',
-'revmove-success-created'      => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] ke newe a biya o rê berda.',
-
 # History merging
 'mergehistory'                     => 'vere cûye pelan bıhewelın',
 'mergehistory-header'              => 'No pel, reviyonê yew peli eşkeno yewna pelo newe de piyawano.
@@ -1213,7 +1194,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'right-reset-passwords'       => 'Parolayê karberanê binî reset bike',
 'right-override-export-depth' => 'Peleyanê ke tede linkanê 5 ra zafyer estê ay export bike',
 'right-sendemail'             => 'Karberanê binî ra e-mail bişirav',
-'right-revisionmove'          => 'Revizyonanê bere',
 
 # User rights log
 'rightslog'      => 'Qeydê heqanê karberi',
@@ -1256,7 +1236,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'action-userrights'           => 'heqqa karberanê hemî bivurne',
 'action-userrights-interwiki' => 'heqqa karberanê ke wikiyê binî de hemî bivurne',
 'action-siteadmin'            => 'database kilit bike ya zi a bike',
-'action-revisionmove'         => 'revizyonanê bere',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|vurnayış|vurnayışan}}',

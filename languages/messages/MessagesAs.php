@@ -541,15 +541,6 @@ $messages = array(
 অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি আকৌ প্ৰয়াস কৰক ।',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
-# JavaScript password checks
-'password-strength'            => 'গুপ্তশব্দৰ শক্তি অনুমান: $1',
-'password-strength-bad'        => 'অতিকৈ দুৰ্বল',
-'password-strength-mediocre'   => 'দুৰ্বল',
-'password-strength-acceptable' => 'গ্ৰহণযোগ্য',
-'password-strength-good'       => 'শ্ৰেষ্ঠ',
-'password-retype'              => 'গুপ্তশব্দ আকৌ এবাৰ লিখক',
-'password-retype-mismatch'     => 'গুপ্তশব্দকেইটা মিলা নাই',
-
 # Password reset dialog
 'resetpass'                 => 'গুপ্তশব্দ শলনি',
 'resetpass_announce'        => 'আপুনি ই-মেইলত পোৱা অস্থায়ী গুপ্তশব্দৰে প্ৰৱেশ কৰিছে।
@@ -768,10 +759,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'revdelete-reasonotherlist' => 'অন্য কাৰণ',
 'revdelete-edit-reasonlist' => 'অপসাৰণৰ কাৰণ সম্পাদনা',
 'revdelete-offender'        => 'সংশোধন লেখক:',
-
-# Revision move
-'revmove-reasonfield'    => 'কাৰণ:',
-'revmove-nullmove-title' => 'শিৰোনামাটি গ্ৰহণযোগ্য নহয় ।',
 
 # History merging
 'mergehistory-from'   => 'উৎস পৃষ্ঠা',

@@ -152,7 +152,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Sumbangan_dihapuskan' ),
 	'Tags'                      => array( 'Label' ),
 	'Activeusers'               => array( 'Pengguna_aktif' ),
-	'RevisionMove'              => array( 'Pindah_semakan' ),
 );
 
 $messages = array(
@@ -636,15 +635,6 @@ Sila tunggu sebentar dan cuba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Anggaran kekebalan kata laluan: $1',
-'password-strength-bad'        => 'LEMAH',
-'password-strength-mediocre'   => 'sederhana',
-'password-strength-acceptable' => 'memuaskan',
-'password-strength-good'       => 'baik',
-'password-retype'              => 'Ulangi kata laluan',
-'password-retype-mismatch'     => 'Kata laluan tidak sama',
-
 # Password reset dialog
 'resetpass'                 => 'Tukar kata laluan',
 'resetpass_announce'        => 'Anda sedang log masuk dengan kata laluan sementara. Untuk log masuk dengan sempurna, sila tetapkan kata laluan baru di sini:',
@@ -1024,25 +1014,6 @@ Mohon semak log.',
 'suppressionlogtext' => 'Yang berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
 Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
 
-# Revision move
-'moverevlogentry'              => 'memindahkan $3 {{PLURAL:$3|semakan|semakan}} dari $1 ke $2',
-'revisionmove'                 => 'Pindah semakan dari "$1"',
-'revmove-explain'              => 'Semakan-semakan berikut akan dipindahkan dari $1 ke laman sasaran yang telah ditentukan. Jika laman sasaran tersebut tidak wujud, laman baru akan dicipta. Sebaliknya, semakan-semakan ini akan digabungkan ke dalam sejarah laman tersebut.',
-'revmove-legend'               => 'Tetapkan laman sasaran dan ringkasan',
-'revmove-submit'               => 'Pindah semakan ke laman yang dipilih',
-'revisionmoveselectedversions' => 'Pindah semakan-semakan yang dipilih',
-'revmove-reasonfield'          => 'Sebab:',
-'revmove-titlefield'           => 'Laman sasaran:',
-'revmove-badparam-title'       => 'Parameter buruk',
-'revmove-badparam'             => 'Permintaan anda mengandungi parameter tidak sah atau tidak lengkap. Sila kembali ke laman sebelumnya dan cuba lagi.',
-'revmove-norevisions-title'    => 'Tiada semakan sasaran',
-'revmove-norevisions'          => 'Anda tidak menentukan mana-mana semakan atau semakan yang telah ditentukan tidak wujud.',
-'revmove-nullmove-title'       => 'Tajuk tidak sah',
-'revmove-nullmove'             => 'Laman sasaran tidak boleh sama dengan laman sumber.
-Kembali ke laman sebelumnya dan pilih nama yang berbeza daripada "$1".',
-'revmove-success-existing'     => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman wujud [[$3]].',
-'revmove-success-created'      => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman baru [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
 'mergehistory-header'              => "Anda boleh menggabungkan semua semakan dalam sejarah bagi sesebuah laman sumber ke dalam laman lain.
@@ -1379,7 +1350,6 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
 'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
-'right-revisionmove'          => 'Memindahkan semakan',
 'right-disableaccount'        => 'Matikan akaun',
 
 # User rights log
@@ -1423,7 +1393,6 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'action-userrights'           => 'mengubah semua hak pengguna',
 'action-userrights-interwiki' => 'mengubah hak pengguna dari wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci pangkalan data wiki ini',
-'action-revisionmove'         => 'memindahkan semakan',
 
 # Recent changes
 'nchanges'                          => '$1 perubahan',

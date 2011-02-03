@@ -362,9 +362,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'revdelete-otherreason'      => 'Өске/немелде чылдагаан:',
 'revdelete-reasonotherlist'  => 'Өске чылдагаан',
 
-# Revision move
-'revmove-reasonfield' => 'Чылдагаан:',
-
 # History merging
 'mergehistory-reason' => 'Чылдагаан:',
 

@@ -644,15 +644,6 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
 
-# JavaScript password checks
-'password-strength'            => 'Geschate Stäerkt vum Passwuert: $1',
-'password-strength-bad'        => 'SCHLECHT',
-'password-strength-mediocre'   => 'mëttelméisseg',
-'password-strength-acceptable' => 'akzeptabel',
-'password-strength-good'       => 'gutt',
-'password-retype'              => 'Passwuert hei nach eemol antippen',
-'password-retype-mismatch'     => 'Déi Passwierder déi Dir aginn hutt sinn net identesch',
-
 # Password reset dialog
 'resetpass'                 => 'Passwuert änneren',
 'resetpass_announce'        => 'Dir sidd mat engem temporären , per E-Mail geschéckte Code ageloggt.
@@ -1029,25 +1020,6 @@ Kuckt w.e.g. an de Logbicher no.",
 'suppressionlogtext' => "Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären déi fir d'Administrateuren net sichtbar sinn.
 Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Spären.",
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|eng Versioun|$3 Versioune}} vun $1 op $2 geréckelt',
-'revisionmove'                 => 'Versioune vun "$1" réckelen',
-'revmove-explain'              => "Dës Versioune gi vu(n) $1 op déi spezifizéiert Zilsäit geréckelt. Wann et d'Zilsäit net gëtt, da gëtt se ugeluecht. Soss ginn d'Versiounen an de Versiounshistorique integréiert.",
-'revmove-legend'               => 'Zilsäit a Resumé festleeën',
-'revmove-submit'               => 'Versiounen op déi erausgesichte Säit réckelen',
-'revisionmoveselectedversions' => 'Erausgesichte Versioune réckelen',
-'revmove-reasonfield'          => 'Grond:',
-'revmove-titlefield'           => 'Zilsäit:',
-'revmove-badparam-title'       => 'Falsch Parameter',
-'revmove-badparam'             => 'An Ärer Ufro sinn net erlaabten oder net genuch Parameter dran.
-Gitt zréck op déi säit virdrun a probéiert nach emol.',
-'revmove-norevisions-title'    => 'Net-valabel Zilversioun',
-'revmove-norevisions'          => 'Dir hutt keng Zilversioun uginn, fir dës Fonctionalitéit ze benotzen oder déi Versioun déi Dir uginn hutt gëtt et net.',
-'revmove-nullmove-title'       => 'Schlechten Titel',
-'revmove-nullmove'             => 'D\'Quell- an d\'Zilsäit sinn déi selwëscht. Klickt w.e.g. op „zréck“ a gitt en anere Säitennumm wéi "$1" un.',
-'revmove-success-existing'     => "{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op d'Säit [[$3]] geréckelt.",
-'revmove-success-created'      => '{{PLURAL:$1|Eng Versioun vu(n) [[$2]] gouf|$1 Versioune vu(n) [[$2]] goufen}} op déi nei Säit [[$3]] geréckelt.',
-
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
 'mergehistory-header'              => "Mat dëser Spezialsäit kënnt Dir d'Versiounsgeschicht vun enger Ursprungssäit mat der Versiounsgeschicht vun enger Zilsäit zesummeleeën.
@@ -1388,7 +1360,6 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-reset-passwords'       => 'Anere Benotzer hir Passwierder zrécksetzen',
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
-'right-revisionmove'          => 'Versioune réckelen',
 'right-disableaccount'        => 'Benotzerkonten desaktivéieren',
 
 # User rights log
@@ -1432,7 +1403,6 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'action-userrights'           => "all Benotzerrechter z'änneren",
 'action-userrights-interwiki' => "d'Rechter vu Benotzer vun anere Wikien z'änneren",
 'action-siteadmin'            => "d'Datebank ze spären oder d'Spär opzehiewen",
-'action-revisionmove'         => 'Versioune réckelen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',

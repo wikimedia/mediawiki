@@ -525,15 +525,6 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 # E-mail sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 
-# JavaScript password checks
-'password-strength'            => "Lunghezze d'a passuord stimate: $1",
-'password-strength-bad'        => 'SCKEFUSE',
-'password-strength-mediocre'   => 'megghie de ninde',
-'password-strength-acceptable' => 'pò scè',
-'password-strength-good'       => 'bbuène',
-'password-retype'              => "Rescrive 'a passuord aqquà",
-'password-retype-mismatch'     => 'Le passuord no ge sonde uguale',
-
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
 'resetpass_announce'        => "Tu tè colleghete cu 'nu codece mannete pe e-mail temboranee.
@@ -929,26 +920,6 @@ Pe piacere condrolle l'archivije.",
 'suppressionlogtext' => "Sotte stè 'na liste de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
 Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
-# Revision move
-'moverevlogentry'              => "spustate {{PLURAL:$3|'na revisione|$3 revisiune}} da $1 a $2",
-'revisionmove'                 => 'Spuèste revisiune da "$1"',
-'revmove-explain'              => "Le revisiune successive onna essere spustate da $1 a 'a pàgene de destinazione specificate. Ce 'a destinazione non g'esiste, avène ccrejate. A 'u condrarie, ste revisiune avenene scuagghiate jndr'à 'u cunde d'a pàgene.",
-'revmove-legend'               => "'Mboste 'a pàgene de destinazione e 'u riepileghe",
-'revmove-submit'               => "Spuèste le revisiune jndr'à pàgene scacchiate",
-'revisionmoveselectedversions' => 'Spuèste le revisiune scacchiate',
-'revmove-reasonfield'          => 'Mutive:',
-'revmove-titlefield'           => 'Pàgene de destinazione:',
-'revmove-badparam-title'       => 'Parametre sbagliate',
-'revmove-badparam'             => "'A richiesta toje tène parametre non valide o insufficiende.
-Tuèrne rrete a 'a pàgene precedende e pruève arrete.",
-'revmove-norevisions-title'    => 'Revisione de destinazione invalide',
-'revmove-norevisions'          => "Tu non g'è specificate une o cchiù revisiune de destinazione pe fà sta funzione o 'a revisione specificate non g'esiste.",
-'revmove-nullmove-title'       => 'Titele sbagliate',
-'revmove-nullmove'             => "'A pàgene de destinazione non ge pò essere 'a stesse d'à pàgene de origgene.
-Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"\$1\".",
-'revmove-success-existing'     => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene esistende [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene appene ccrejate [[$3]].",
-
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
 'mergehistory-header'              => "Sta pàgene te face squagghia le revisiune d'a storie de 'na pàgena sorgende jndr'à 'na pàgena nove.
@@ -1292,7 +1263,6 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
-'right-revisionmove'          => 'Spuèste le revisiune',
 'right-disableaccount'        => 'Disabbilete le cunde utinde',
 
 # User rights log
@@ -1336,7 +1306,6 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'action-userrights'           => "cange tutte le deritte de l'utende",
 'action-userrights-interwiki' => "cange le deritte de l'utende de l'utinde de le otre Uicchi",
 'action-siteadmin'            => "blocche o sblocche 'u database",
-'action-revisionmove'         => 'spuèste le revisiune',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',

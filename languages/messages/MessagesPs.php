@@ -601,15 +601,6 @@ $1',
 'usernamehasherror'          => 'کارن-نوم نشي کېدلای چې کرښکې لوښې ولري',
 'loginlanguagelabel'         => 'ژبه: $1',
 
-# JavaScript password checks
-'password-strength'            => 'د پټنوم اټکليز سېک: $1',
-'password-strength-bad'        => 'بد',
-'password-strength-mediocre'   => 'منځګوړی',
-'password-strength-acceptable' => 'د منلو وړ',
-'password-strength-good'       => 'ښه',
-'password-retype'              => 'پټنوم بيا وليکه',
-'password-retype-mismatch'     => 'پټنوم مو کټ مټ د يو بل سره سمون نه خوري',
-
 # Password reset dialog
 'resetpass'                 => 'پټنوم بدلول',
 'resetpass_header'          => 'د کارن-حساب پټنوم بدلول',
@@ -840,12 +831,6 @@ $1',
 'revdelete-reasonotherlist'  => 'بل سبب',
 'revdelete-edit-reasonlist'  => 'د ړنګولو سببونه سمول',
 'revdelete-offender'         => 'د مخکتنې ليکوال:',
-
-# Revision move
-'revmove-reasonfield'    => 'سبب:',
-'revmove-titlefield'     => 'د موخې مخ:',
-'revmove-badparam-title' => 'بد پاراميترونه',
-'revmove-nullmove-title' => 'بد سرليک',
 
 # History merging
 'mergehistory-from'                => 'د سرچينې مخ:',

@@ -773,15 +773,6 @@ Vă rugăm să așteptați până să mai încercați.',
 # E-mail sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Nivelul de securitate al parolei: $1',
-'password-strength-bad'        => 'scăzut',
-'password-strength-mediocre'   => 'modest',
-'password-strength-acceptable' => 'acceptabil',
-'password-strength-good'       => 'bun',
-'password-retype'              => 'Reintroduceți parola',
-'password-retype-mismatch'     => 'Parolele nu sunt identice',
-
 # Password reset dialog
 'resetpass'                 => 'Modifică parola',
 'resetpass_announce'        => 'Sunteți autentificat cu un cod temporar trimis pe e-mail. Pentru a termina acțiunea de autentificare, trebuie să setați o parolă nouă aici:',
@@ -1160,24 +1151,6 @@ Nu ai acces asupra lui.',
 'suppressionlogtext' => 'Mai jos este afișată o listă a ștergerilor și a blocărilor care implică conținutul ascuns de administratori.
 Vezi [[Special:IPBlockList|adresele IP blocate]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
 
-# Revision move
-'moverevlogentry'              => 'a mutat {{PLURAL:$3|o versiune|$3 versiuni}} de la $1 la $2',
-'revisionmove'                 => 'Mutare de versiuni de la „$1”',
-'revmove-explain'              => 'Versiunile următoare vor fi mutate de la „$1” la pagina de destinație specificată. Dacă aceasta nu există atunci va fi creată. Dacă există, versiunile mutate vor fi integrate în istoricul ei.',
-'revmove-legend'               => 'Precizați pagina de destinație și explicați',
-'revmove-submit'               => 'Mutarea versiunilor la pagina specificată',
-'revisionmoveselectedversions' => 'Mută versiunile selectate',
-'revmove-reasonfield'          => 'Motiv:',
-'revmove-titlefield'           => 'Pagina de destinație:',
-'revmove-badparam-title'       => 'Parametri invalizi',
-'revmove-badparam'             => 'Cererea are parametri insuficienți sau invalizi. Apăsați „înapoi” și încercați din nou.',
-'revmove-norevisions-title'    => 'Versiune invalidă',
-'revmove-norevisions'          => 'Nu ați specificat una sau mai multe versiuni pentru a efectua operația sau versiunea specificată nu există.',
-'revmove-nullmove-title'       => 'Titlu incorect',
-'revmove-nullmove'             => 'Destinația și sursa sînt identice. Apăsați „înapoi” și alegeți un nume de pagină diferit de „$1”.',
-'revmove-success-existing'     => '{{PLURAL:$1|S-a mutat o versiune|S-au mutat $1 versiuni}} de la [[$2]] la pagina existentă [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|S-a mutat o versiune|S-au mutat $1 versiuni}} de la [[$2]] la pagina nou creată [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Unește istoricul paginilor',
 'mergehistory-header'              => 'Această pagină permite să combini reviziile din istoric dintr-o pagină sursă într-o pagină nouă.
@@ -1518,7 +1491,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
-'right-revisionmove'          => 'Mută versiuni',
 'right-disableaccount'        => 'Dezactivează conturi',
 
 # User rights log
@@ -1562,7 +1534,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-userrights'           => 'modificați toate permisiunile utilizatorilor',
 'action-userrights-interwiki' => 'modificați permisiunile utilizatorilor de pe alte wiki',
 'action-siteadmin'            => 'blocați sau deblocați baza de date',
-'action-revisionmove'         => 'mutați versiuni',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',

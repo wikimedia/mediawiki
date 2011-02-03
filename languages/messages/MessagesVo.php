@@ -559,13 +559,6 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 Stebedolös büä osteifülol nogna.',
 'loginlanguagelabel'         => 'Pük: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'BADIK',
-'password-strength-mediocre'   => 'zänedöfik',
-'password-strength-acceptable' => 'zepabik',
-'password-strength-good'       => 'gudik',
-'password-retype'              => 'Klavolös dönu letavödi is',
-
 # Password reset dialog
 'resetpass'                 => 'Votükön letavödi',
 'resetpass_announce'        => 'Enunädol oli me kot nelaidüpik pisedöl ole. Ad finükön nunädami, mutol välön letavödi nulik is:',
@@ -872,11 +865,6 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'suppressionlog'     => 'Lovelogam-jenotalised',
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
-# Revision move
-'moverevlogentry'        => 'petopätükon {{PLURAL:$3|revid bal|revids $3}} de "$1" lü "$2"',
-'revmove-reasonfield'    => 'Kod:',
-'revmove-nullmove-title' => 'Tiäd badik',
-
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
 'mergehistory-header'              => 'Pad at mogükon balami fomamis se jenotem fonätapada ad fomön padi nulik.
@@ -1174,7 +1162,6 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'right-userrights-interwiki' => 'Redakön gebanagitätis gebanas vükas votik',
 'right-siteadmin'            => 'Lökofärmükön e maifükön nünodemi',
 'right-sendemail'            => 'Sedön penedis leäktronik lü gebans votik',
-'right-revisionmove'         => 'Topätükön fomamis',
 
 # User rights log
 'rightslog'      => 'Jenotalised gebanagitätas',

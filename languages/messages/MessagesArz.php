@@ -785,12 +785,6 @@ $2',
 من فضلك استنى قبل المحاولة مرة تانيه.',
 'loginlanguagelabel'         => 'اللغة: $1',
 
-# JavaScript password checks
-'password-strength-acceptable' => 'مقبول',
-'password-strength-good'       => 'جيدة',
-'password-retype'              => 'اكتب الباسورد تاني',
-'password-retype-mismatch'     => 'كلمات السر لا تتطابق',
-
 # Password reset dialog
 'resetpass'                 => 'غيّر الباسورد',
 'resetpass_announce'        => 'اتسجل دخولك دلوقتى بالكود اللى اتبعتلك فى الايميل. علشان تخلص عملية الدخول ،لازم تعملك باسورد جديدة هنا:',
@@ -1166,12 +1160,6 @@ $1",
 'suppressionlog'     => 'سجل الإخفاء',
 'suppressionlogtext' => 'تحت فى لستة بعمليات المسح والمنع اللى فيها محتوى مستخبى على الإداريين.
 شوف [[Special:IPBlockList|للستة المنع]] علشان تشوف عمليات المنع الشغالة دلوقتى .',
-
-# Revision move
-'revisionmove'              => ' انقل المراجعات من "$1"',
-'revmove-reasonfield'       => 'السبب:',
-'revmove-norevisions-title' => 'مراجعة هدف مش صح',
-'revmove-nullmove-title'    => 'عنوان غلط',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',

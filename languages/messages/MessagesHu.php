@@ -779,15 +779,6 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
 
-# JavaScript password checks
-'password-strength'            => 'Becsült jelszóerősség: $1',
-'password-strength-bad'        => 'GYENGE',
-'password-strength-mediocre'   => 'közepes',
-'password-strength-acceptable' => 'elfogadható',
-'password-strength-good'       => 'jó',
-'password-retype'              => 'Jelszavad még egyszer:',
-'password-retype-mismatch'     => 'A jelszavak nem egyeznek meg',
-
 # Password reset dialog
 'resetpass'                 => 'Jelszó módosítása',
 'resetpass_announce'        => 'Az e-mailben elküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell megadnod egy új jelszót:',
@@ -1173,24 +1164,6 @@ Ellenőrizd a naplókat.',
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
 'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:IPBlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
-# Revision move
-'moverevlogentry'              => 'áthelyezett {{PLURAL:$3|egy|$3}} lapváltozatot a(z) $1 lapról $2 lapra',
-'revisionmove'                 => 'Lapváltozatok áthelyezése a(z) „$1” lapról',
-'revmove-explain'              => 'A következő lapváltozatok át lesznek helyezve a(z) $1 lapról a megadott céllapra. Ha a cél nem létezik, akkor létre lesz hozva. Egyébként ezek a lapváltozatok össze lesznek vonva annak a lapnak a laptörténetével.',
-'revmove-legend'               => 'Céllap és összefoglaló megadása',
-'revmove-submit'               => 'Lapváltozatok áthelyezése egy kiválasztott lapra',
-'revisionmoveselectedversions' => 'Kiválasztott lapváltozatok áthelyezése',
-'revmove-reasonfield'          => 'Ok:',
-'revmove-titlefield'           => 'Céllap:',
-'revmove-badparam-title'       => 'Hibás paraméterek',
-'revmove-badparam'             => 'A kérésed érvénytelen vagy nem elegendő paramétert tartalmaz. Kattints a „Vissza” gombra, majd próbáld újra.',
-'revmove-norevisions-title'    => 'Érvénytelen célváltozat',
-'revmove-norevisions'          => 'Nem adtad meg az(oka)t a lapváltozato(ka)t, mely(ek)en végre akarod hajtani ezt a műveletet, vagy a kiválasztott lapváltozat nem létezik.',
-'revmove-nullmove-title'       => 'Hibás cím',
-'revmove-nullmove'             => 'A forrás és a céllap megegyezik. Kattints a „Vissza” gombra, majd adj meg a jelenlegi, „$1” címtől különbözőt.',
-'revmove-success-existing'     => '{{PLURAL:$1|Egy|$1}} lapváltozat át lett helyezve a(z) [[$2]] lapról a már létező [[$3]] lapra.',
-'revmove-success-created'      => '{{PLURAL:$1|Egy|$1}} lapváltozat át lett helyezve a(z) [[$2]] lapról az újonnan létrehozott [[$3]] lapra.',
-
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
 'mergehistory-header'              => 'Ez az oldal lehetővé teszi egy oldal laptörténetének egyesítését egy másikéval.
@@ -1522,7 +1495,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
-'right-revisionmove'          => 'lapváltozatok áthelyezése',
 'right-disableaccount'        => 'fiókok letiltása',
 
 # User rights log
@@ -1566,7 +1538,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'action-userrights'           => 'összes szerkesztő jogainak módosítása',
 'action-userrights-interwiki' => 'más wikik szerkesztői jogainak módosítása',
 'action-siteadmin'            => 'adatbázis lezárása vagy felnyitása',
-'action-revisionmove'         => 'lapváltozatok áthelyezése',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',

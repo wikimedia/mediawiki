@@ -620,15 +620,6 @@ Please log in again after you receive it.
 # E-mail sending
 'php-mail-error-unknown' => 'PHPની મેલ() કામગીરીમાં અજ્ઞાત ત્રુટિ',
 
-# JavaScript password checks
-'password-strength'            => 'અંદાજીત ગુપ્તસંજ્ઞા ક્ષમતા: $1',
-'password-strength-bad'        => 'ખરાબ',
-'password-strength-mediocre'   => 'મધ્યમ',
-'password-strength-acceptable' => 'સ્વીકાર્ય',
-'password-strength-good'       => 'સારી',
-'password-retype'              => 'ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો',
-'password-retype-mismatch'     => 'ગુપ્તસંજ્ઞાઓ મેળ ખાતી નથી',
-
 # Password reset dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
 'resetpass_announce'        => 'તમે હંગામી ઇમેઇલ કોડ સાથે લોગ ઇન કર્યું.
@@ -874,17 +865,6 @@ $1",
 
 # Suppression log
 'suppressionlog' => 'દાબ નોંધ',
-
-# Revision move
-'revisionmove'                 => '"$1" થી ફેરફાર હટાવો',
-'revmove-legend'               => 'લક્ષ્ય પાનું અને સરાંશ પુન;સંયોજીત કરો.',
-'revmove-submit'               => 'પુનરાવર્તનો પસંદ કરેલા પાના પર હટાવો',
-'revisionmoveselectedversions' => 'પસંદ કરેલા ફેરફારો ખસેડો',
-'revmove-reasonfield'          => 'કારણ:',
-'revmove-titlefield'           => 'લક્ષ્ય પાનું',
-'revmove-badparam-title'       => 'ખરાબ વિકલ્પો',
-'revmove-norevisions-title'    => 'અવૈધ લક્ષ્ય ફેરફાર',
-'revmove-nullmove-title'       => 'ખરાબ નામ',
 
 # History merging
 'mergehistory'                     => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
@@ -1194,7 +1174,6 @@ HTML નાકું ચકાસો',
 'right-reset-passwords'       => 'અન્ય સભ્યોની ગુપ્ત સંજ્ઞાઓ ફરી ગોઠવો',
 'right-override-export-depth' => '૫ સ્તર સુધી જોડાયેલ પાના સહીત પાના નિકાસ કરો',
 'right-sendemail'             => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
-'right-revisionmove'          => 'પુનરાવર્તનો ખસેડો',
 'right-disableaccount'        => 'ખાતું નિષ્ક્રીય બનાવો',
 
 # User rights log
@@ -1236,7 +1215,6 @@ HTML નાકું ચકાસો',
 'action-userrights'           => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
 'action-userrights-interwiki' => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
 'action-siteadmin'            => 'માહિતી સંચયને ઉઘાડો અને વાસો.',
-'action-revisionmove'         => 'પુનરાવર્તનો ખસેડો',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',

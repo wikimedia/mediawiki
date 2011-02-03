@@ -509,13 +509,6 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 'loginlanguagelabel'         => 'Basa: $1',
 'suspicious-userlogout'      => 'Panjaluk panjenengan supaya metu ditolak amarga katoné panjlajah internt utawa proksi panyinggah.',
 
-# JavaScript password checks
-'password-strength-bad'        => 'ALA (ÈLÈK)',
-'password-strength-acceptable' => 'lumayan',
-'password-strength-good'       => 'apik',
-'password-retype'              => 'Balènana tembung sandhi',
-'password-retype-mismatch'     => 'Tembung sandhiné ora cocog',
-
 # Password reset dialog
 'resetpass'                 => 'Ganti tembung sandi',
 'resetpass_announce'        => 'Panjenengan wis mlebu log mawa kodhe sementara sing dikirim mawa e-mail. Menawa kersa nglanjutaké, panjenengan kudu milih tembung sandhi anyar ing kéné:',
@@ -854,11 +847,6 @@ Mangga priksa cathetan log.',
 # Suppression log
 'suppressionlog'     => "Log barang-barang sing didelikaké (''oversight'')",
 'suppressionlogtext' => "Ing ngisor iki kapacak daftar pambusakan lan pamblokiran pungkasan sing uga nyangkut isi sing didelikaké saka para opsis. Mangga mirsani [[Special:IPBlockList|daftar pamblokiran IP]] kanggo daftar pambuwangan (''ban'') lan pamblokiran sing saiki lagi operasional.",
-
-# Revision move
-'revmove-reasonfield'       => 'Alesan:',
-'revmove-norevisions-title' => 'Target revisi ora ditemokaké',
-'revmove-nullmove-title'    => 'Judhulé ora sah',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah kaca',

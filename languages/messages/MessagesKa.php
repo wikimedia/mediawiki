@@ -605,14 +605,6 @@ $1 საათში.',
 # E-mail sending
 'php-mail-error-unknown' => 'ამოუცნობი შეცდომა PHP-ის mail() ფუნქციაში',
 
-# JavaScript password checks
-'password-strength'            => 'პაროლის საიმედოობის შეფასება: $1',
-'password-strength-bad'        => 'ცუდი',
-'password-strength-acceptable' => 'მისაღები',
-'password-strength-good'       => 'კარგი',
-'password-retype'              => 'ხელმეორედ შეიყვანეთ პაროლი',
-'password-retype-mismatch'     => 'პაროლები არ ემთხვევა',
-
 # Password reset dialog
 'resetpass'                 => 'შეცვალეთ პაროლი',
 'resetpass_announce'        => 'თქვენ შემოხვედით დროებით ელ-ფოსტის კოდით. რეგისტრაციის დასრულებისთვის, უნდა შექმნათ ახალი პაროლი აქ:',
@@ -996,22 +988,6 @@ $1",
 'suppressionlog'     => 'დამალვათა ჟურნალი',
 'suppressionlogtext' => 'ეს არის მომხმარებლების დაბლოკვის და განბლოკვის ჟურნალი. ავტომატურად დაბლოკილი IP მისამართები არაა ჩამოთვლილი. იხილეთ [[Special:IPBlockList|IP ბლოკირების სია]] მიმდინარე დაბლოკვებისთვის.',
 
-# Revision move
-'moverevlogentry'              => 'გადატანილია {{PLURAL:$3|ვერსია}} $1-დან $2-ში',
-'revisionmove'                 => 'ვერსიის გადატანა "$1"დან',
-'revmove-legend'               => 'მიზნობრივი გვერდის დაყენება და აღწერა',
-'revmove-submit'               => 'ვერსიების გადატანა არჩეულ გვერდზე',
-'revisionmoveselectedversions' => 'არჩეული ვერსიების გადატანა',
-'revmove-reasonfield'          => 'მიზეზი:',
-'revmove-titlefield'           => 'მიზნობრივი გვერდი:',
-'revmove-badparam-title'       => 'ცუდი პარამეტრები',
-'revmove-badparam'             => 'თქვენი მოთხოვნა შეიცავს პარამეტრების დაუშვებელ მნიშვნელობას, ან პარამეტრების მნიშვნელობა არ არის მითითებული.
-დაბრუნდით წინა გვერდზე და სცადეთ თავიდან.',
-'revmove-norevisions-title'    => 'დაუშვებელი სამიზნო ვერსია',
-'revmove-nullmove-title'       => 'ცუდი სათაური',
-'revmove-success-existing'     => '{{PLURAL:$1|ვერსია [[$2]]-დან გადატანილია|$1 ვერსიები [[$2]] გადატანილია}} არსებულ გვერდზე [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|ვერსია [[$2]]-დან გადატანილია|$1 ვერსიები [[$2]]-დან გადატანილია}} ახლად შექმნილ გვერდ [[$3]]-ში.',
-
 # History merging
 'mergehistory'                     => 'გვერდების ისტორიის შერწყმა',
 'mergehistory-header'              => 'ეს გვერდი გაძლევთ ნებართვას გააერთიანოთ ორი სხვადასხვა გვერდის ისტორია, რაც შეინარჩუნებს მათ ერთიანობას.',
@@ -1347,7 +1323,6 @@ $1",
 'right-reset-passwords'       => 'სხვა მომხმარებლების პაროლების ჩაშვება',
 'right-override-export-depth' => 'გვერდების ექსპორტირება, დაკავშირებული გვერდების ჩათვლით 5-მდე სიიღრმით',
 'right-sendemail'             => 'გაგუგზავნე ელექტრონული ფოსტა სხვა მომხმარებლებს',
-'right-revisionmove'          => 'გვერდის ვერსიების გადატანა',
 'right-disableaccount'        => 'ანგარიშის გამორთვა',
 
 # User rights log
@@ -1391,7 +1366,6 @@ $1",
 'action-userrights'           => 'მომხმარებელთა უფლებების ცვლილება',
 'action-userrights-interwiki' => 'მომხმარებლების უფლებების შეცვლა სხვა ვიკიებში',
 'action-siteadmin'            => 'მონაცემთა ბაზის დაბლოკვა და განბლოკვა',
-'action-revisionmove'         => 'გვერდის ვერსიების გადატანა',
 
 # Recent changes
 'nchanges'                          => '$1 ცვლილება',

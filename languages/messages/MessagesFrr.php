@@ -498,15 +498,6 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 'loginlanguagelabel'         => 'Spräke: $1',
 'suspicious-userlogout'      => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
-# JavaScript password checks
-'password-strength'            => 'Taksiird pååsuurdstarkhäid: $1',
-'password-strength-bad'        => 'HIINJ',
-'password-strength-mediocre'   => 'döörsnitlik',
-'password-strength-acceptable' => 'önjnaamboor',
-'password-strength-good'       => 'gödj',
-'password-retype'              => 'Pååsuurd widerhååle',
-'password-retype-mismatch'     => 'Pååsuurde kaame ai oueriinj',
-
 # Password reset dialog
 'resetpass'                 => 'Pååsuurd änre',
 'resetpass_announce'        => 'Önjmälding ma di ouer E-mail tusånde kode. Am e önjmälding ouftusliten, möist dü en nai pååsuurd kiise.',

@@ -495,13 +495,6 @@ $2',
 ಆ ಖಾತೆ ತಪ್ಪಾಗಿ ತೆಗೆದಿದ್ದಲ್ಲಿ, ಈ ಸಂದೇಶವನ್ನು ನೀವು ಅಲಕ್ಷಿಸಬಹುದು.',
 'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
-# JavaScript password checks
-'password-strength'            => 'ಅಂದಾಜಿಸಲ್ಪಟ್ಟ ಪ್ರವೇಶಪದ ಬಲ: $1',
-'password-strength-bad'        => 'ದುರ್ಬಲ',
-'password-strength-mediocre'   => 'ಸಾಧಾರಣ',
-'password-strength-acceptable' => 'ಸ್ವೀಕಾರಾರ್ಹ',
-'password-strength-good'       => 'ಉತ್ತಮ',
-
 # Password reset dialog
 'resetpass'                 => 'ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿ',
 'resetpass_announce'        => 'ನೀವು ತಾತ್ಕಾಲಿಕ ಇ-ಅಂಚೆ ಕೋಡ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿರುವಿರಿ.
@@ -751,11 +744,6 @@ $2',
 'revdelete-edit-reasonlist'  => 'ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳನ್ನು ಸಂಪಾದಿಸು',
 'revdelete-offender'         => 'ಆವೃತ್ತಿಯ ಸಂಪಾದಕ:',
 
-# Revision move
-'revmove-submit'               => 'ಆವೃತ್ತಿಗಳನ್ನು ಆಯ್ದ ಪುಟಕ್ಕೆ ವರ್ಗಾಯಿಸಿ',
-'revisionmoveselectedversions' => 'ಆಯ್ಕೆ ಮಾಡಿದ ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿಸಿ',
-'revmove-reasonfield'          => 'ಕಾರಣ:',
-
 # History merging
 'mergehistory'                     => 'ಪುಟ ಇತಿಹಾಸಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
 'mergehistory-header'              => 'ಈ ಪುಟವು ಒಂದು ಮೂಲ ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸವನ್ನು ಇನ್ನೊಂದು ಪುಟದೊಳಕ್ಕೆ ಸೇರ್ಪಡೆ ಮಾಡಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.
@@ -982,7 +970,6 @@ $2',
 'right-deleterevision' => 'ಪುಟದ ಕೆಲ ಆವೃತ್ತಿಗಳನ್ನು ಅಳಿಸಿ ಹಾಗು ಉಳಿಸಿ',
 'right-deletedtext'    => 'ಆಳಿಸಿದ ಪಠ್ಯ ಮತ್ತು ಅಳಿಸಿದ ಆವೃತ್ತಿಗಳ ನಡುವಿನ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
 'right-browsearchive'  => 'ಅಳಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕಿ',
-'right-revisionmove'   => 'ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿಸಿ',
 
 # User rights log
 'rightslog'      => 'ಸದಸ್ಯರ ಹಕ್ಕುಗಳ ದಾಖಲೆಗಳು',
@@ -1000,7 +987,6 @@ $2',
 'action-browsearchive'  => 'ಅಳಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕು',
 'action-block'          => 'ಈ ಸದಸ್ಯರನ್ನು ಸಂಪಾದಿಸಲು ಆಗದಂತೆ ನಿರ್ಭಂಧಿಸಿ',
 'action-protect'        => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟಗಳನ್ನು ಬದಲಾಯಿಸಲು',
-'action-revisionmove'   => 'ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿ',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',

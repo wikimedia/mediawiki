@@ -380,15 +380,6 @@ $messages = array(
 ကျေးဇူးပြု၍ ထပ်မဝင်ခင် စောင့်ပေးပါ။',
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
-# JavaScript password checks
-'password-strength'            => 'စကားဝှက်၏ ခန့်မှန်းခြေ လုံခြံုမှု - $1',
-'password-strength-bad'        => 'မကောင်း',
-'password-strength-mediocre'   => 'ဆိုးရွား',
-'password-strength-acceptable' => 'လက်ခံနိုင်',
-'password-strength-good'       => 'ကောင်း၏',
-'password-retype'              => 'ဤနေရာတွင် စကားဝှက်ပြန်ရိုက်ရန်',
-'password-retype-mismatch'     => 'စကားဝှက်နှစ်ခု  မကိုက်ညီပါ',
-
 # Password reset dialog
 'resetpass'                 => 'စကားဝှက်ပြောင်းရန်',
 'resetpass_header'          => 'အကောင့်စကားဝှက်ပြောင်းရန်',
@@ -554,16 +545,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-reasonotherlist'  => 'အခြား အကြောင်းပြချက်',
 'revdelete-edit-reasonlist'  => 'ဖျက်ပစ်လိုက်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်',
 'revdelete-offender'         => 'မူရေးသားသူ -',
-
-# Revision move
-'revisionmove'                 => '"$1" မှ တည်းဖြတ်မူများကို ရွှေ့ရန်',
-'revmove-legend'               => 'ရည်ရွယ်ရာစာမျက်နှာနှင့် အကျဉ်းချုပ်ကို သတ်မှတ်ရန်',
-'revmove-submit'               => 'မူများကို ရွေးချယ်ထားသောစာမျက်နှာသို့ ရွှေ့ရန်',
-'revisionmoveselectedversions' => 'ရွေးချယ်ထားသောမူများကို ရွှေ့ရန်',
-'revmove-reasonfield'          => 'အ​ကြောင်း​ပြ​ချက် -',
-'revmove-titlefield'           => 'ရည်ရွယ်ရာစာမျက်နှာ -',
-'revmove-norevisions-title'    => 'တရားမဝင်သော မူအမည်',
-'revmove-nullmove-title'       => 'ညံ့ဖျင်းသော ခေါင်းစဉ်',
 
 # History merging
 'mergehistory'                     => 'စာမျက်နှာမှတ်တမ်းများကို ပေါင်းရန်',
@@ -837,7 +818,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'right-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
 'right-reset-passwords'      => 'အခြားအသုံးပြုသူများ၏ စကားဝှက်များကို ပြန်သတ်မှတ်ရန်',
 'right-sendemail'            => 'အခြားအသုံးပြုသူများကို အီးမေးပို့ရန်',
-'right-revisionmove'         => 'မူများကို ရွှေ့ရန်',
 
 # User rights log
 'rightslog'      => 'အသုံးပြုသူ၏ အခွင့်အရေးများ မှတ်တမ်း',
@@ -873,7 +853,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'action-mergehistory'         => 'ဤစာမျက်နှာ၏မှတ်တမ်းကို ပေါင်းရန်',
 'action-userrights'           => 'အသုံးပြုသူ၏အခွင့်အရေးများအားလုံးကို တည်းဖြတ်ရန်',
 'action-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
-'action-revisionmove'         => 'မူများကို ရွှေ့ရန်',
 
 # Recent changes
 'nchanges'                          => 'ပြောင်းလဲချက် $1 {{PLURAL:$1|ခု|ခု}}',

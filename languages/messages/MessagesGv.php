@@ -352,12 +352,6 @@ Myr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chr
 'createaccount-title'        => 'Coontys crooit dy {{SITENAME}}',
 'loginlanguagelabel'         => 'Çhengey: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'LOGHTAGH',
-'password-strength-acceptable' => 'lowallagh',
-'password-strength-good'       => 'mie',
-'password-retype'              => "Aascreeu d'ockle arrey:",
-
 # Password reset dialog
 'resetpass'                 => 'Caghlaa fockle yn arrey',
 'resetpass_header'          => 'Caghlaa fockle arrey y choontys',

@@ -782,15 +782,6 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
 
-# JavaScript password checks
-'password-strength'            => 'Procijenjena snaga lozinke: $1',
-'password-strength-bad'        => 'LOŠA',
-'password-strength-mediocre'   => 'osrednja',
-'password-strength-acceptable' => 'prihvatljiva',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Ponovno upišite lozinku ovdje',
-'password-retype-mismatch'     => 'Lozinke se ne poklapaju',
-
 # Password reset dialog
 'resetpass'                 => 'Promijeni lozinku',
 'resetpass_announce'        => 'Prijavljeni ste s privremenom lozinkom. Da završite proces mijenjanja lozinke, upišite ovdje novu lozinku:',
@@ -1158,24 +1149,6 @@ Provjerite evidencije.',
 'suppressionlogtext' => 'Slijedi popis brisanja i blokiranja koji uključuje sadržaj skriven za administratore.<br />
 Vidi [[Special:IPBlockList|Popis blokiranih IP adresa]] za popis trenutačno aktivnih blokiranih adresa.',
 
-# Revision move
-'moverevlogentry'              => 'premjestio {{PLURAL:$3|jednu inačicu|$3 inačice}} iz $1 u $2',
-'revisionmove'                 => 'Premjesti inačice iz "$1"',
-'revmove-explain'              => 'Sljedeće inačice bit će premještene iz $1 u navedenu ciljnu stranicu i spojene u njenu povijest izmjena. Ako ciljna stranica ne postoji, bit će stvorena.',
-'revmove-legend'               => 'Postavi odredišnu stranicu i sažetak',
-'revmove-submit'               => 'Premjesti inačice u odabranu stranicu',
-'revisionmoveselectedversions' => 'Premjesti odabrane inačice',
-'revmove-reasonfield'          => 'Razlog:',
-'revmove-titlefield'           => 'Ciljna stranica:',
-'revmove-badparam-title'       => 'Neispravni parametri',
-'revmove-badparam'             => 'Vaš zahtjev sadrži nedopuštene parametre, ili nedovoljan broj parametara. Vratite se na prethodnu stranicu i pokušajte ponovo.',
-'revmove-norevisions-title'    => 'Nevaljana ciljna inačica',
-'revmove-norevisions'          => 'Niste naveli jednu ili više ciljnih inačica potrebnih za obavljanje ove funkcije, ili odabrana inačica ne postoji.',
-'revmove-nullmove-title'       => 'Loš naslov',
-'revmove-nullmove'             => 'Odredišna stranica ne može biti ista kao izvorna stranica. Vratite se na prethodnu stranicu i odaberite ime koje nije "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna inačica iz [[$2]] je premještena|$1 inačice iz [[$2]] su premještene|$1 inačica iz [[$2]] su premještene}} u postojeću stranicu [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna inačica iz [[$2]] je premještena|$1 inačice iz [[$2]] su premještene|$1 inačica iz [[$2]] su premještene}} u novostvorenu stranicu [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
 'mergehistory-header'              => 'Na ovoj stranici spajate povijest jedne stranice u drugu (noviju) stranicu.
@@ -1507,7 +1480,6 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
-'right-revisionmove'          => 'Premjesti izmjene',
 'right-disableaccount'        => 'Onemogući račune',
 
 # User rights log
@@ -1551,7 +1523,6 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'action-userrights'           => 'uređivanje svih suradničkih prava',
 'action-userrights-interwiki' => 'uređivanje suradničkih prava suradnika na drugim wikijima',
 'action-siteadmin'            => 'zaključavanje ili otključavanje baze podataka',
-'action-revisionmove'         => 'premjesti izmjene',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}}',

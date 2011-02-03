@@ -312,7 +312,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
 	'Tags'                      => array( 'Labels' ),
 	'Activeusers'               => array( 'ActieveGebruikers' ),
-	'RevisionMove'              => array( 'VersieVerplaatsen' ),
 	'ComparePages'              => array( 'PaginasVergelijken', 'Pagina\'sVergelijken' ),
 	'Badtitle'                  => array( 'OnjuisteNaam' ),
 );
@@ -829,15 +828,6 @@ Wacht even voordat u het opnieuw probeert.',
 # E-mail sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Geschatte wachtwoordsterkte: $1',
-'password-strength-bad'        => 'LAAG',
-'password-strength-mediocre'   => 'middelmatig',
-'password-strength-acceptable' => 'aanvaardbaar',
-'password-strength-good'       => 'goed',
-'password-retype'              => 'Geef uw wachtwoord opnieuw in',
-'password-retype-mismatch'     => 'De wachtwoorden komen niet overeen',
-
 # Password reset dialog
 'resetpass'                 => 'Wachtwoord wijzigen',
 'resetpass_announce'        => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.
@@ -1241,28 +1231,6 @@ Controleer de logboeken.',
 'suppressionlogtext' => 'De onderstaande lijst bevat de verwijderingen en blokkades die voor beheerders verborgen zijn.
 In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
 
-# Revision move
-'moverevlogentry'              => 'heeft $3 {{PLURAL:$3|versie|versies}} verplaatst van $1 naar $2',
-'revisionmove'                 => 'Versies van "$1" verplaatsen',
-'revmove-explain'              => 'De volgende versies worden verplaatst van $1 naar de aangegeven doelpagina.
-Als de doelpagina niet bestaat, wordt deze aangemaakt.
-Als deze wel bestaat, worden de versies ingevoegd in de paginageschiedenis.',
-'revmove-legend'               => 'Voer doelpagina en samenvatting in',
-'revmove-submit'               => 'Versies naar de aangegeven pagina verplaatsen',
-'revisionmoveselectedversions' => 'Geselecteerde versies verplaatsen',
-'revmove-reasonfield'          => 'Reden:',
-'revmove-titlefield'           => 'Doelpagina:',
-'revmove-badparam-title'       => 'Onjuiste parameters',
-'revmove-badparam'             => 'Uw verzoek bevat ongeldige of onvoldoende parameters.
-Klik "Terug" en probeer het opnieuw.',
-'revmove-norevisions-title'    => 'De te verplaatsen versie is ongeldig',
-'revmove-norevisions'          => 'U hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.',
-'revmove-nullmove-title'       => 'Ongeldige paginanaam',
-'revmove-nullmove'             => 'De bronpagina en doelpagina zijn hetzelfde.
-Klik "Terug" en geef een andere pagina dan "$1" op.',
-'revmove-success-existing'     => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de bestaande pagina [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de nieuwe pagina [[$3]].',
-
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
 'mergehistory-header'              => 'Via deze pagina kunt u versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
@@ -1608,7 +1576,6 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
-'right-revisionmove'          => 'Versies verplaatsen',
 'right-disableaccount'        => 'Gebruikers uitschakelen',
 
 # User rights log
@@ -1652,7 +1619,6 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
 'action-siteadmin'            => 'de database af te sluiten of open te stellen',
-'action-revisionmove'         => 'versies verplaatsen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',

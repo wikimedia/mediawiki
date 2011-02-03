@@ -308,7 +308,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
 	'Tags'                      => array( 'תגיות' ),
 	'Activeusers'               => array( 'משתמשים_פעילים' ),
-	'RevisionMove'              => array( 'העברת_גרסאות' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Badtitle'                  => array( 'כותרת_שגויה' ),
 	'DisableAccount'            => array( 'ביטול_חשבון' ),
@@ -822,15 +821,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail() של PHP',
 
-# JavaScript password checks
-'password-strength'            => 'חוזק סיסמה מוערך: $1',
-'password-strength-bad'        => 'רע',
-'password-strength-mediocre'   => 'בינוני',
-'password-strength-acceptable' => 'סביר',
-'password-strength-good'       => 'טוב',
-'password-retype'              => 'הקלידו מחדש את סיסמתכם כאן',
-'password-retype-mismatch'     => 'הסיסמאות אינן מתאימות',
-
 # Password reset dialog
 'resetpass'                 => 'שינוי סיסמה',
 'resetpass_announce'        => 'נכנסתם באמצעות סיסמה זמנית שנשלחה אליכם בדוא"ל.
@@ -1214,27 +1204,6 @@ $1",
 'suppressionlog'     => 'יומן הסתרות',
 'suppressionlogtext' => 'להלן רשימת המחיקות והחסימות הכוללות תוכן המוסתר ממפעילי המערכת. ראו את  [[Special:IPBlockList|רשימת המשתמשים החסומים]] לרשימת החסימות הפעילות כעת.',
 
-# Revision move
-'moverevlogentry'              => 'העביר {{PLURAL:$3|גרסה אחת|$3 גרסאות}} מ$1 ל$2',
-'revisionmove'                 => 'העברת גרסאות מהדף "$1"',
-'revisionmove-backlink'        => '→ $1',
-'revmove-explain'              => 'הגרסאות הבאות יועברו מהדף $1 לדף היעד שצוין. אם דף היעד לא קיים, הוא ייווצר. אחרת, גרסאות אלה ימוזגו לתוך היסטוריית הדף.',
-'revmove-legend'               => 'הגדרת דף היעד והתקציר',
-'revmove-submit'               => 'העברת הגרסאות לדף שנבחר',
-'revisionmoveselectedversions' => 'העברת הגרסאות שנבחרו',
-'revmove-reasonfield'          => 'סיבה:',
-'revmove-titlefield'           => 'דף היעד:',
-'revmove-badparam-title'       => 'פרמטרים שגויים',
-'revmove-badparam'             => 'בקשתכם כוללת פרמטרים בלתי חוקיים או בלתי מספיקים.
-אנא חזרו לדף הקודם ונסו שוב.',
-'revmove-norevisions-title'    => 'גרסת יעד בלתי תקינה',
-'revmove-norevisions'          => 'לא ציינתם גרסת יעד אחת או יותר שיש לבצע עליה פעולה זו, או שהגרסה שציינתם אינה קיימת.',
-'revmove-nullmove-title'       => 'כותרת שגויה',
-'revmove-nullmove'             => 'דף המקור אינו יכול להיות זהה לדף היעד.
-אנא חזרו לדף הקודם והקלידו שם דף שונה מ"$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|גרסה אחת מ[[$2]] הועברה|$1 גרסאות מ[[$2]] הועברו}} לדף הקיים [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|גרסה אחת מ[[$2]] הועברה|$1 גרסאות מ[[$2]] הועברו}} לדף החדש [[$3]].',
-
 # History merging
 'mergehistory'                     => 'מיזוג גרסאות של דפים',
 'mergehistory-header'              => "דף זה מאפשר לכם למזג גרסאות מהיסטוריית הדף של דף מקור לתוך דף חדש יותר.
@@ -1575,7 +1544,6 @@ $1",
 'right-reset-passwords'       => 'איפוס סיסמאות של משתמשים אחרים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
-'right-revisionmove'          => 'העברת גרסאות',
 'right-disableaccount'        => 'ביטול חשבונות',
 
 # User rights log
@@ -1619,7 +1587,6 @@ $1",
 'action-userrights'           => 'לערוך את כל הרשאות המשתמש',
 'action-userrights-interwiki' => 'לערוך את ההרשאות של משתמשים באתרי ויקי אחרים',
 'action-siteadmin'            => 'לנעול או לבטל את נעילת בסיס הנתונים',
-'action-revisionmove'         => 'להעביר גרסאות',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',

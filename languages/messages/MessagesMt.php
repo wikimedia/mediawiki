@@ -1080,9 +1080,6 @@ $1",
 'suppressionlogtext' => "Il-lista ta' tħassir u blokjar tinsab hawn taħt din tinkludi kontenut li huwa moħbi mill-amministraturi.
 Ara [[Special:IPBlockList|IP lista ta' blokjar]] għal lista ta' ċaħdiet u blokjar kurrenti.",
 
-# Revision move
-'revmove-nullmove-title' => 'Titlu ħażin',
-
 # History merging
 'mergehistory'                     => 'Waħħad l-istorji tal-paġni',
 'mergehistory-header'              => "Din il-paġna tħallik twaħħad reviżjonijiet li jappartjenu lil kronoloġija ta' paġna (magħrufa bħala paġna t'oriġini) mal-kronoloġija ta' paġna aktar riċenti.

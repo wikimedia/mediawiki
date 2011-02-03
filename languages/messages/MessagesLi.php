@@ -630,15 +630,6 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'loginlanguagelabel'         => 'Taol: $1',
 'suspicious-userlogout'      => "Die verzeuk óm aaf te mèlje is genegeerdj gewaoren, ómdet 't liek det 't verzeuk is verzónje dórch 'ne browser of cacheproxy dae kepót is.",
 
-# JavaScript password checks
-'password-strength'            => 'Gesjatdje wachwaordjstèrkdje: $1',
-'password-strength-bad'        => 'LIEËG',
-'password-strength-mediocre'   => 'middelig',
-'password-strength-acceptable' => 'aannömber',
-'password-strength-good'       => 'good',
-'password-retype'              => 'Typ wachwaordj óppernuuj',
-'password-retype-mismatch'     => 'De wachwäörd kómme neet euverein',
-
 # Password reset dialog
 'resetpass'                 => 'Wachwaord obbenuuts insjtèlle',
 'resetpass_announce'        => "Doe bös aangemeld mèt 'ne tiejdelikke code dae per e-mail is toegezönje. Veur 'n nuuj wachwaord in om 't aanmelje te voltooie:",
@@ -1002,28 +993,6 @@ Controleer de logbeuk.",
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
 In de [[Special:IPBlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
 
-# Revision move
-'moverevlogentry'              => 'verplaatsdje $3 {{PLURAL:$3|versie|versies}} ven $1 nao $2',
-'revisionmove'                 => 'Verplaats versies ven "$1"',
-'revmove-explain'              => 'De volgende versies waere verplaats van $1 nao de aangeweze doelpaasj.
-Es de doelpagina neet besteit, wört dees aangemaak.
-Es dees waal besteit, waere de versies ingevoog in de paginagesjiedenis.',
-'revmove-legend'               => 'Veur doelpaasj en saamvatting in',
-'revmove-submit'               => 'Verplaats versies nao de aangegaeve paasj',
-'revisionmoveselectedversions' => 'Versjuuf geselecteerde versies',
-'revmove-reasonfield'          => 'Raeje:',
-'revmove-titlefield'           => 'Doelpagina:',
-'revmove-badparam-title'       => 'Ónzjuuste paramaeters',
-'revmove-badparam'             => 'Die verzeuk bevat ongeljige of onvoldoonde paramaeters.
-Klik "Trök" en probeer t opnuuj.',
-'revmove-norevisions-title'    => 'Ongeldige doelverzie',
-'revmove-norevisions'          => 'De hes gein versies aangegaeve om dees handeling op oet te veuren of de aangegaeve versie besteit nit.',
-'revmove-nullmove-title'       => 'Óngeljige pazjenatitel',
-'revmove-nullmove'             => 'De bronpagina en doelpagina zeen tzelfde.
-Klik "Trök" en gaef n anger pagina dan "$1" op.',
-'revmove-success-existing'     => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao de aldao [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao [[$3]].",
-
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
 'mergehistory-header'              => "Deze pagina laot uch toe om versies van de gesjiedenis van 'n brónpagina nao 'n nuujere pagina same te voege.
@@ -1360,7 +1329,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-reset-passwords'       => 'Wachtwoorde van andere gebroekers opnieuw instelle',
 'right-override-export-depth' => "Export paazjes midin geslinkdje paazjes mit 'n deepdje ven 5",
 'right-sendemail'             => 'Versjik e-mail aan anger gebroekers',
-'right-revisionmove'          => 'Versjuuf versies',
 
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',
@@ -1403,7 +1371,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'action-userrights'           => 'alle gebroekersrechte te bewerke',
 'action-userrights-interwiki' => "gebroekersrechte van gebroekers van anger wiki's te bewerke",
 'action-siteadmin'            => 'de database aaf te sloete of aope te stelle',
-'action-revisionmove'         => 'versjuuf versie',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',

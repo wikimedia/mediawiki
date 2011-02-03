@@ -474,9 +474,6 @@ Kerem ke, oncia bıcerrebne.',
 'usernamehasherror'       => 'Namê karberi de karakteri gunê têwerte ra mebê',
 'loginlanguagelabel'      => 'Zon: $1',
 
-# JavaScript password checks
-'password-strength-good' => 'rınd',
-
 # Password reset dialog
 'resetpass'                 => 'Parola bıvurne',
 'resetpass_header'          => 'Parola hesabi bıvurne',

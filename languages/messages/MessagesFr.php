@@ -828,15 +828,6 @@ Veuillez attendre avant d’essayer à nouveau.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 
-# JavaScript password checks
-'password-strength'            => 'Niveau de sécurité du mot de passe : $1',
-'password-strength-bad'        => 'faible',
-'password-strength-mediocre'   => 'médiocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'élevé',
-'password-retype'              => 'Confirmez le mot de passe',
-'password-retype-mismatch'     => 'Les mots de passe ne correspondent pas',
-
 # Password reset dialog
 'resetpass'                 => 'Changer de mot de passe',
 'resetpass_announce'        => 'Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
@@ -1214,24 +1205,6 @@ Vérifiez les journaux.',
 'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
 Voir la [[Special:IPBlockList|liste des adresses IP et utilisateurs bloqués]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
-# Revision move
-'moverevlogentry'              => 'a déplacé {{PLURAL:$3|une révision|$3 révisions}} de $1 à $2',
-'revisionmove'                 => 'Déplacer des révisions depuis « $1 »',
-'revmove-explain'              => 'Les révisions suivantes seront déplacés de $1 vers la page cible spécifiée. Si la cible n’existe pas, elle sera créée, sinon ces révisions seront fusionnées avec l’historique de la page.',
-'revmove-legend'               => 'Entrez la page cible et la raison',
-'revmove-submit'               => 'Déplacer les révisions vers la page sélectionnée',
-'revisionmoveselectedversions' => 'Déplacer les révisions sélectionnées',
-'revmove-reasonfield'          => 'Motif :',
-'revmove-titlefield'           => 'Page cible :',
-'revmove-badparam-title'       => 'Mauvais paramètres',
-'revmove-badparam'             => 'Votre requête contient des paramètres insuffisants ou illégaux. Veuillez cliquer sur « précédent » et essayez à nouveau.',
-'revmove-norevisions-title'    => 'Révision cible invalide',
-'revmove-norevisions'          => 'Vous n’avez pas spécifié un ou plusieurs révisions cibles pour effectuer cette fonctionnalité ou la révision spécifiée n’existe pas.',
-'revmove-nullmove-title'       => 'Mauvais titre',
-'revmove-nullmove'             => 'Les pages source et cible sont identiques. Veuillez cliquer sur « précédent » et entrez un nom de page différent de « $1 ».',
-'revmove-success-existing'     => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page existante [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page [[$3]] nouvellement créée.',
-
 # History merging
 'mergehistory'                     => 'Fusionner les historiques des pages',
 'mergehistory-header'              => 'Cette page vous permet de fusionner des versions de l’historique d’une page d’origine vers une nouvelle page.
@@ -1569,7 +1542,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
-'right-revisionmove'          => 'Déplacer des révisions',
 'right-disableaccount'        => 'Désactiver des comptes',
 
 # User rights log
@@ -1613,7 +1585,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'action-userrights'           => 'modifier tous les droits d’utilisateur',
 'action-userrights-interwiki' => 'modifier les droits des utilisateurs sur d’autres wikis',
 'action-siteadmin'            => 'verrouiller ou déverrouiller la base de données',
-'action-revisionmove'         => 'déplacer des révisions',
 
 # Recent changes
 'nchanges'                          => '$1 modification{{PLURAL:$1||s}}',

@@ -735,15 +735,6 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 # E-mail sending
 'php-mail-error-unknown' => 'Mana riqsisqa pantasqa PHP mail() rurananpi',
 
-# JavaScript password checks
-'password-strength'            => 'Yaykuna rimap chhikaynasqa kallpan: $1',
-'password-strength-bad'        => 'MANAM ALLINCHU',
-'password-strength-mediocre'   => 'taksa kallpayuq',
-'password-strength-acceptable' => 'chaskina kallpayuq',
-'password-strength-good'       => 'allin',
-'password-retype'              => 'Yaykuna rimaykita kaypi musuqmanta yaykuchiy',
-'password-retype-mismatch'     => 'Yaykuna rimaykunaqa manam paqtanakunkuchu',
-
 # Password reset dialog
 'resetpass'                 => 'Ruraqpa yaykuna rimanta hukchay',
 'resetpass_announce'        => "E-chaskiwan kachasqa mit'alla yaykuna rimawanmi yaykurqunki. Ama hina kaspa, musuq yaykuna rimaykita qillqamuy:",
@@ -1107,24 +1098,6 @@ Ama hina kaspa, hallch'akunapi qhaway.",
 'suppressionlog'     => "Ñit'ipay hallch'asqa",
 'suppressionlogtext' => "Kay qatiq sutisuyupiqa ñaqha qullusqakunatam hark'asqakunatapas rikunki, kamachiqkunamanta pakasqa samiqniyuq. [[Special:IPBlockList|IP hark'ay sutisuyuta]] qhaway kunan hark'asqakunata rikunaykipaq.",
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|huk musuqchasqa|$3 musuqchasqa}} astasqa $1-manta $2-man',
-'revisionmove'                 => 'Musuqchasqakunata "$1"-manta astay',
-'revmove-explain'              => "Kay qatiq musuqchasqakunaqa $1-manta akllasqa p'anqamanmi astasqa kanqa. Akllasqa p'anqa manaraq kaspanqa, kamarisqam kanqa. Ña kaspanqa, p'anqap wiñay kawsayninpi huñuchasqam kanqa.",
-'revmove-legend'               => "Taripana p'anqata willapuytapas churay",
-'revmove-submit'               => "Musuqchasqakunata akllasqa p'anqaman astay",
-'revisionmoveselectedversions' => 'Akllasqa musuqchasqakunata astay',
-'revmove-reasonfield'          => 'Kayrayku:',
-'revmove-titlefield'           => "Taripana p'anqa:",
-'revmove-badparam-title'       => 'Kuskanachina tupukunaqa manam allinchu',
-'revmove-badparam'             => 'Mañakuyniykipiqa mana allin kuskanachina tupukunam kachkan icha imapas illachkanmi. "Ñawpaqman" ñit\'ispa musuqmanta ruraykachay.',
-'revmove-norevisions-title'    => 'Akllasqa musuqchasqaqa manam allinchu',
-'revmove-norevisions'          => 'Taripana musuqchasqa sutikunataqa manam akllarqunki kayta ruranapaq icha akllasqayki musuqchasqa suti manam kanchu.',
-'revmove-nullmove-title'       => "P'anqap sutinqa manam allinchu",
-'revmove-nullmove'             => 'Pukyu p\'anqawan taripana p\'anqawanqa kaqllallam kachkan. "Ñawpaqman" ñit\'ispa mana "$1" hinalla kaq sutinta yaykuchiy.',
-'revmove-success-existing'     => "{{PLURAL:$1|Huk musuqchasqaqa [[$2]]-manta|$1 musuqchasqaqa [[$2]]-manta}} [[$3]] sutiyuq kachkaqña p'anqaman astasqa.",
-'revmove-success-created'      => "{{PLURAL:$1|Huk musuqchasqaqa [[$2]]-manta|$1 musuqchasqaqa [[$2]]-manta}} [[$3]] sutiyuq musuq p'anqaman astasqa.",
-
 # History merging
 'mergehistory'                     => "P'anqa wiñay kawsaykunata huñuy",
 'mergehistory-header'              => "Kay p'anqawanqa huk pukyu p'anqamanta llamk'apusqakunata huk taripana p'anqamanmi huñuyta atinki.
@@ -1456,7 +1429,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
-'right-revisionmove'          => 'Musuqchasqakunata astay',
 'right-disableaccount'        => "Rakiqunakunata hark'ay",
 
 # User rights log
@@ -1500,7 +1472,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'action-userrights'           => "tukuy ruraqkunap hayñinkunata llamk'apuy",
 'action-userrights-interwiki' => "hawa wikikunapi ruraqkunap hayñinkunata llamk'apuy",
 'action-siteadmin'            => "willañiqintinta hark'ay icha paskay",
-'action-revisionmove'         => 'musuqchasqakunata astay',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}',

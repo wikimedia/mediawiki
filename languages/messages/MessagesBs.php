@@ -135,7 +135,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'ObrisaniDoprinosi' ),
 	'Tags'                      => array( 'Oznake' ),
 	'Activeusers'               => array( 'AktivniKorisnici' ),
-	'RevisionMove'              => array( 'PremjestanjeRevizije' ),
 	'ComparePages'              => array( 'UporedjivanjeStranica' ),
 	'Badtitle'                  => array( 'Losnaslov' ),
 );
@@ -762,15 +761,6 @@ Molimo Vas da sačekate prije nego što pokušate ponovo.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Procijenjena snaga šifre: $1',
-'password-strength-bad'        => 'LOŠA',
-'password-strength-mediocre'   => 'osrednja',
-'password-strength-acceptable' => 'prihvatljiva',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Ponovite šifru ovdje',
-'password-retype-mismatch'     => 'Šifre se ne slažu',
-
 # Password reset dialog
 'resetpass'                 => 'Promijeni korisničku šifru',
 'resetpass_announce'        => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
@@ -1168,24 +1158,6 @@ Molimo provjerite zapise.',
 'suppressionlog'     => 'Zapisi sakrivanja',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|Premještena jedna revizija|Premještene $3 revizije|Premješteno $3 revizija}} iz $1 na $2',
-'revisionmove'                 => 'Premještanje revizija sa "$1"',
-'revmove-explain'              => 'Slijedeće revizije će biti premještene sa $1 na određenu ciljnu stranicu. Ako ciljna stranica ne postoji, bit će napravljenja. U suprotnom, ove revizije će biti spojene u historiji ciljne stranice.',
-'revmove-legend'               => 'Postavite ciljnu stranicu i sažetak',
-'revmove-submit'               => 'Premjestite revizije na odabranu stranicu',
-'revisionmoveselectedversions' => 'Premjesti označene revizije',
-'revmove-reasonfield'          => 'Razlog:',
-'revmove-titlefield'           => 'Ciljna stranica:',
-'revmove-badparam-title'       => 'Loši parametri',
-'revmove-badparam'             => 'Vaš zahtjev sadrži nevaljane ili nedovoljne parametre. Molimo pritisnite "natrag" i pokušajte ponovo.',
-'revmove-norevisions-title'    => 'Nevaljana ciljna revizija',
-'revmove-norevisions'          => 'Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.',
-'revmove-nullmove-title'       => 'Loš naslov',
-'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} postojeće stranice [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} na novonapravljenu stranicu [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
 'mergehistory-header'              => 'Ova stranica Vam omogućuje spajanje revizija historije neke izvorne stranice u novu stranicu. Zapamtite da će ova promjena ostaviti nepromjenjen sadržaj historije stranice.',
@@ -1526,7 +1498,6 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
-'right-revisionmove'          => 'Premještanje revizija',
 'right-disableaccount'        => 'Onemogućavanje računa',
 
 # User rights log
@@ -1570,7 +1541,6 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'action-userrights'           => 'uređujete sva korisnička prava',
 'action-userrights-interwiki' => 'uređujete korisnička prava korisnika na drugim wikijima',
 'action-siteadmin'            => 'zaključavate ili otključavate bazu podataka',
-'action-revisionmove'         => 'premještanje revizija',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',

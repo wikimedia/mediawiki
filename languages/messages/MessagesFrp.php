@@ -800,15 +800,6 @@ Volyéd atendre devant que tornar èprovar.',
 # E-mail sending
 'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
 
-# JavaScript password checks
-'password-strength'            => 'Nivél de sècuritât du mot de pâssa : $1',
-'password-strength-bad'        => 'FÊBLO',
-'password-strength-mediocre'   => 'prod moyen',
-'password-strength-acceptable' => 'accèptâblo',
-'password-strength-good'       => 'fôrt',
-'password-retype'              => 'Confirmâd lo mot de pâssa ique',
-'password-retype-mismatch'     => 'Los mots de pâssa sont pas pariérs',
-
 # Password reset dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
 'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèssageria èlèctronica.
@@ -1210,26 +1201,6 @@ Volyéd controlar los jornals.',
 'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
 Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 
-# Revision move
-'moverevlogentry'              => 'at dèplaciê {{PLURAL:$3|yona vèrsion|$3 vèrsions}} de $1 a $2',
-'revisionmove'                 => 'Dèplaciér des vèrsions dês « $1 »',
-'revmove-explain'              => 'Cetes vèrsions seront dèplaciês de $1 vers la pâge ciba spècefiâ. Se la ciba ègziste pas, serat fêta, ôtrament celes vèrsions seront fusionâs avouéc l’historico de la pâge.',
-'revmove-legend'               => 'Buchiéd la pâge ciba et pués la rêson',
-'revmove-submit'               => 'Dèplaciér les vèrsions vers la pâge chouèsia',
-'revisionmoveselectedversions' => 'Dèplaciér les vèrsions chouèsies',
-'revmove-reasonfield'          => 'Rêson :',
-'revmove-titlefield'           => 'Pâge ciba :',
-'revmove-badparam-title'       => 'Crouyos paramètres',
-'revmove-badparam'             => 'Voutra requéta contint des paramètres ilègâls ou ben ensufisents.
-Volyéd clicar dessus « Devant » et pués tornâd èprovar.',
-'revmove-norevisions-title'    => 'Vèrsion ciba envalida',
-'revmove-norevisions'          => 'Vos éd pas spècefiâ yona ou ben un mouél de vèrsions cibes por fâre cela fonccionalitât ou ben la vèrsion spècefiâ ègziste pas.',
-'revmove-nullmove-title'       => 'Crouyo titro',
-'revmove-nullmove'             => 'Les pâges sôrsa et ciba sont pariéres.
-Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « $1 ».',
-'revmove-success-existing'     => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge ègzistenta [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge [[$3]] novèlament fêta.',
-
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
 'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers una pâge novèla.
@@ -1569,7 +1540,6 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
-'right-revisionmove'          => 'Dèplaciér des vèrsions',
 'right-disableaccount'        => 'Dèsactivar des comptos',
 
 # User rights log
@@ -1613,7 +1583,6 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'action-userrights'           => 'changiér tôs los drêts d’utilisator',
 'action-userrights-interwiki' => 'changiér los drêts ux utilisators sur d’ôtros vouiquis',
 'action-siteadmin'            => 'vèrrolyér ou ben dèvèrrolyér la bâsa de balyês',
-'action-revisionmove'         => 'dèplaciér des vèrsions',
 
 # Recent changes
 'nchanges'                          => '$1 changement{{PLURAL:$1||s}}',

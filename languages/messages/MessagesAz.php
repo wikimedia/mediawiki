@@ -501,9 +501,6 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 
-# JavaScript password checks
-'password-retype' => 'Parolu təkrar yazın',
-
 # Password reset dialog
 'resetpass'                 => 'Parolu dəyiş',
 'resetpass_text'            => '<!-- Şərhinizi bura daxil edin -->',

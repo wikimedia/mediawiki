@@ -647,15 +647,6 @@ Gortozit a-raok klask en-dro.",
 # E-mail sending
 'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
 
-# JavaScript password checks
-'password-strength'            => 'Live surentez ar ger-tremen : $1',
-'password-strength-bad'        => 'FALL',
-'password-strength-mediocre'   => 'dister',
-'password-strength-acceptable' => 'degemeradus',
-'password-strength-good'       => 'mat',
-'password-retype'              => 'Skrivit ho ker-tremen en-dro amañ',
-'password-retype-mismatch'     => 'Ne glot ket ar gerioù-tremen',
-
 # Password reset dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',
 'resetpass_announce'        => "Enskrivet oc’h bet dre ur ger-tremen da c'hortoz kaset deoc'h dre bostel. A-benn bezañ enrollet da vat e rankit spisaat ur ger-tremen nevez amañ :",
@@ -1034,26 +1025,6 @@ N\'oc\'h ket aotreet da vont outi.',
 'suppressionlog'     => 'Marilh diverkañ',
 'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
-# Revision move
-'moverevlogentry'              => "en deus dilec'hiet {{PLURAL:$3|un adweladenn|$3 adweladenn}} eus $1 da $2",
-'revisionmove'                 => 'Dilec\'hiañ adweladennoù eus "$1"',
-'revmove-explain'              => "Dielc'hiet e vo an adweladennoù da-heul eus $1 d'ar bajenn dal resisaet. Ma n'eus ket eus ar bajenn dal e vo krouet. A-hend-all e vo kendeuzet ar c'hemmoù-mañ gant istor ar bajenn.",
-'revmove-legend'               => 'Lakait ar pajenn voned hag an abeg',
-'revmove-submit'               => "Dilec'hiañ an adweladennoù davet ar bajenn diuzet",
-'revisionmoveselectedversions' => "Dilec'hiañ an adweladennoù diuzet",
-'revmove-reasonfield'          => 'Abeg :',
-'revmove-titlefield'           => 'Pajenn voned :',
-'revmove-badparam-title'       => 'Arventennoù fall',
-'revmove-badparam'             => "Direizh pe re zister eo arventennoù ho reked.
-Distroit d'ar bajenn a-raok ha klaskit en-dro.",
-'revmove-norevisions-title'    => "N'eus stumm pal ebet evit an degasadennoù",
-'revmove-norevisions'          => "N'hoc'h eus ket resisaet adweladenn dal pe adweladennoù tal ebet evit seveniñ an arc'hwel-mañ pe neuze n'eus ket eus an adweladenn merket",
-'revmove-nullmove-title'       => 'Titl fall',
-'revmove-nullmove'             => 'N\'hall ket ar bajenn dal bezañ heñvel ouzh ar bajenn gein.
-Distroit d\'ar bajenn a-raok ha dibabit un anv disheñvel diouzh "$1".',
-'revmove-success-existing'     => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn ez eus outi dija [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn [[$3]] bet krouet nevez zo.",
-
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
 'mergehistory-header'              => "Gant ar bajenn-mañ e c'hallit kendeuziñ an adweladennoù c'hoarvezet da istor ur bajenn war-du unan nevez.
@@ -1391,7 +1362,6 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
-'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
 'right-disableaccount'        => 'Diweredekaat kontoù',
 
 # User rights log
@@ -1435,7 +1405,6 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
 'action-siteadmin'            => 'Prennañ pe dibrennañ ar bank roadennoù',
-'action-revisionmove'         => "dilec'hiañ an adweladennoù",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',
