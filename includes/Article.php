@@ -249,7 +249,7 @@ class Article {
 	 * @return Return the text of this revision
 	 */
 	public function getContent() {
-		global $wgUser, $wgContLang;
+		global $wgUser;
 
 		wfProfileIn( __METHOD__ );
 
