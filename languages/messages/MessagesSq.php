@@ -114,7 +114,8 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#RIDREJTO', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'MUAJIMOMENTAL', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth'          => array( '1', 'MUAJIMOMENTAL', 'MUAJIMOMENTAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'         => array( '1', 'MUAJIMOMENTAL1', 'CURRENTMONTH1' ),
 	'currentmonthname'      => array( '1', 'EMRIIMUAJITMOMENTAL', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'DITASOT', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'DITASOT2', 'CURRENTDAY2' ),
@@ -147,7 +148,7 @@ $magicWords = array(
 	'talkpagenamee'         => array( '1', 'EMRIIFAQESSËDISKUTIMITE', 'TALKPAGENAMEE' ),
 	'subst'                 => array( '0', 'ZËVN', 'SUBST:' ),
 	'img_thumbnail'         => array( '1', 'parapamje', 'pamje', 'thumbnail', 'thumb' ),
-	'img_manualthumb'       => array( '1', 'parapamje=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_manualthumb'       => array( '1', 'parapamje=$1', 'pamje=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', 'djathtas', 'right' ),
 	'img_left'              => array( '1', 'majtas', 'left' ),
 	'img_none'              => array( '1', 's\'ka', 'none' ),

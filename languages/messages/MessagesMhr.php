@@ -61,6 +61,12 @@ $specialPageAliases = array(
 $magicWords = array(
 	'img_right'             => array( '1', 'пурла', 'справа', 'right' ),
 	'img_left'              => array( '1', 'шола', 'слева', 'left' ),
+	'img_border'            => array( '1', 'чек', 'граница', 'border' ),
+	'img_sub'               => array( '1', 'йымалне', 'под', 'sub' ),
+	'img_super'             => array( '1', 'ӱмбалне', 'над', 'super', 'sup' ),
+	'img_top'               => array( '1', 'кӱшычын', 'сверху', 'top' ),
+	'img_middle'            => array( '1', 'покшелне', 'посередине', 'middle' ),
+	'img_bottom'            => array( '1', 'ӱлычын', 'снизу', 'bottom' ),
 );
 
 $messages = array(

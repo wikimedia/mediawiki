@@ -254,6 +254,7 @@ $magicWords = array(
 	'nse'                   => array( '0', 'نطم:', 'NSE:' ),
 	'localurl'              => array( '0', 'مسار_محلي:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'عنوان_المسار_المحلي:', 'LOCALURLE:' ),
+	'articlepath'           => array( '0', 'مسار_المقالة', 'ARTICLEPATH' ),
 	'server'                => array( '0', 'خادم', 'SERVER' ),
 	'servername'            => array( '0', 'اسم_الخادم', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'مسار_السكريبت', 'مسار_سكريبت', 'SCRIPTPATH' ),

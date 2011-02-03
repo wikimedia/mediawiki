@@ -71,6 +71,8 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'ܡܢܝܢܐ_ܕܡܠܘܐ̈ܐ', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'ܡܢܝܢܐ_ܕܠܦܦ̈ܐ', 'NUMBEROFFILES' ),
 	'pagename'              => array( '1', 'ܫܡܐ_ܕܦܐܬܐ', 'PAGENAME' ),
+	'pagenamee'             => array( '1', 'ܟܘܢܝܐ_ܕܦܐܬܐ', 'PAGENAMEE' ),
+	'namespace'             => array( '1', 'ܚܩܠܐ', 'NAMESPACE' ),
 	'msg'                   => array( '0', 'ܐܓܪܬܐ:', 'MSG:' ),
 	'img_thumbnail'         => array( '1', 'ܙܥܘܪܬܐ', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'ܙܥܘܪܬܐ=$1', 'thumbnail=$1', 'thumb=$1' ),
@@ -78,9 +80,16 @@ $magicWords = array(
 	'img_left'              => array( '1', 'ܣܡܠܐ', 'left' ),
 	'img_none'              => array( '1', 'ܠܐ_ܡܕܡ', 'none' ),
 	'img_center'            => array( '1', 'ܡܨܥܐ', 'center', 'centre' ),
-	'grammar'               => array( '0', 'ܬܘܪܨ_ܡܡܠܠܐ', 'GRAMMAR:' ),
+	'img_page'              => array( '1', 'ܦܐܬܐ=$1', 'ܦܐܬܐ $1', 'page=$1', 'page $1' ),
+	'img_border'            => array( '1', 'ܬܚܘܡܐ', 'border' ),
+	'img_baseline'          => array( '1', 'ܣܪܛܐ_ܫܪܫܝܐ', 'baseline' ),
+	'img_sub'               => array( '1', 'ܦܪܥܝܐ', 'sub' ),
+	'grammar'               => array( '0', 'ܬܘܪܨ_ܡܡܠܠܐ:', 'GRAMMAR:' ),
+	'gender'                => array( '0', 'ܓܢܣܐ:', 'GENDER:' ),
 	'language'              => array( '0', '#ܠܫܢܐ:', '#LANGUAGE:' ),
 	'special'               => array( '0', 'ܕܝܠܢܝܐ', 'special' ),
+	'url_path'              => array( '0', 'ܫܒܝܠܐ', 'PATH' ),
+	'url_wiki'              => array( '0', 'ܘܝܩܝ', 'WIKI' ),
 );
 
 $rtl = true;

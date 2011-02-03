@@ -202,6 +202,7 @@ $magicWords = array(
 	'namespace'             => array( '1', 'NAZWAPRZESTRZENI', 'NAMESPACE' ),
 	'talkspace'             => array( '1', 'DYSKUSJA', 'TALKSPACE' ),
 	'fullpagename'          => array( '1', 'PELNANAZWASTRONY', 'FULLPAGENAME' ),
+	'subst'                 => array( '0', 'podst:', 'SUBST:' ),
 	'img_thumbnail'         => array( '1', 'mały', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'mały=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', 'prawo', 'right' ),
