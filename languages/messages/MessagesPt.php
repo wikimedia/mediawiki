@@ -1991,13 +1991,14 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 Estes links deviam ser desambiguados, apontando-os para a página apropriada.<br />
 Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].',
 
-'doubleredirects'            => 'Redireccionamentos duplos',
-'doubleredirectstext'        => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
+'doubleredirects'                   => 'Redireccionamentos duplos',
+'doubleredirectstext'               => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
 Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
 <del>Entradas cortadas</del> já foram solucionadas.',
-'double-redirect-fixed-move' => '[[$1]] foi movido.
+'double-redirect-fixed-move'        => '[[$1]] foi movido.
 Agora redirecciona para [[$2]].',
-'double-redirect-fixer'      => 'Corrector de redireccionamentos',
+'double-redirect-fixed-maintenance' => 'A corrigir redireccionamento duplo de [[$1]] para [[$2]].',
+'double-redirect-fixer'             => 'Corrector de redireccionamentos',
 
 'brokenredirects'        => 'Redireccionamentos quebrados',
 'brokenredirectstext'    => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',

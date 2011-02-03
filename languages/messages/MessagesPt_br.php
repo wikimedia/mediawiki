@@ -30,6 +30,7 @@
  * @author Luckas Blade
  * @author Malafaya
  * @author McDutchie
+ * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
  * @author Vuln
@@ -1671,8 +1672,8 @@ A [[Special:NewFiles|galeria de arquivos novos]] oferece uma listagem mais visua
 'filetype-bad-ie-mime'        => 'Este arquivo não pode ser carregado porque o Internet Explorer o detectaria como "$1", que é um tipo de arquivo não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de arquivo não desejado.
 {{PLURAL:\$3|O tipo preferível é|Os tipos preferíveis são}} \$2.",
-'filetype-banned-type'        => '\'\'\'".$1"\'\'\'  {{PLURAL:$4|não é um tipo de arquivo permitido|não são tipos de arquivos permitidos}}.
-{{PLURAL:$3|O tipo permitido é|Os tipos permitidos são}} $2.',
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' {{PLURAL:$4|não é um tipo de ficheiro permitido|não são tipos de ficheiro permitidos}}.
+{{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos são}} $2.',
 'filetype-missing'            => 'O arquivo não possui uma extensão (como, por exemplo, ".jpg").',
 'empty-file'                  => 'O arquivo que você enviou estava vazio.',
 'file-too-large'              => 'O arquivo que você enviou era demasiado grande.',
@@ -1952,12 +1953,13 @@ A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 'disambiguations-text' => 'As páginas a seguir ligam a "páginas de desambiguação" ao invés de aos tópicos adequados.<br />
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]',
 
-'doubleredirects'            => 'Redirecionamentos duplos',
-'doubleredirectstext'        => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
+'doubleredirects'                   => 'Redirecionamentos duplos',
+'doubleredirectstext'               => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
 Cada linha contém ligações para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
 Entradas <del>riscadas</del> foram resolvidas.',
-'double-redirect-fixed-move' => '[[$1]] foi movido e agora é um redirecionamento para [[$2]]',
-'double-redirect-fixer'      => 'Corretor de redirecionamentos',
+'double-redirect-fixed-move'        => '[[$1]] foi movido e agora é um redirecionamento para [[$2]]',
+'double-redirect-fixed-maintenance' => 'Corrigindo redirecionamento duplo de [[$1]] para [[$2]].',
+'double-redirect-fixer'             => 'Corretor de redirecionamentos',
 
 'brokenredirects'        => 'Redirecionamentos quebrados',
 'brokenredirectstext'    => 'Os seguintes redirecionamentos ligam para páginas inexistentes:',
@@ -2033,7 +2035,7 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 'nopagetext'              => 'A página alvo especificada não existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 recente|$1 recentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 antiga|$1 antigas}}',
-'suppress'                => 'Visão geral',
+'suppress'                => 'Supervisor',
 'querypage-disabled'      => 'Esta página especial está desativada para não prejudicar o desempenho.',
 
 # Book sources
@@ -3328,6 +3330,21 @@ $3
 
 Caso a conta *não* lhe pertença, siga o seguinte link
 para cancelar a confirmação do endereço de e-mail:
+
+$5
+
+Este código de confirmação irá expirar em $4.',
+'confirmemail_body_set'     => 'Alguém, provavelmente você com o endereço IP $1,
+definiu o endereço de correio eletrónico da conta "$2" para este na {{SITENAME}}.
+
+Para confirmar que esta conta é realmente sua e reativar
+as funcionalidades de correio electrónico na {{SITENAME}},
+abra o seguinte link no seu browser:
+
+$3
+
+Caso a conta *não* lhe pertença, siga o seguinte link
+para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 

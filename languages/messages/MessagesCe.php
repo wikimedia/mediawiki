@@ -1412,7 +1412,7 @@ PICT # тайп тайпан
 # Media information
 'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|агlо|агlонаш|агlонаш}}',
 'file-info-size'       => '$1 × $2 сиртакх, хlуман барам: $3, MIME-тайп: $4',
-'file-nohires'         => '<small>Яц тайпанара оцу йоккхачу бакъонца.</small>',
+'file-nohires'         => '<small>Кхи йоккха гlоле башхо яц.</small>',
 'svg-long-desc'        => 'SVG-хlума, хlоттамца $1 × $2 цинташ, хlуман барам: $3',
 'show-big-image'       => 'Сурт цlанал лаккхара бакъонца',
 'show-big-image-thumb' => '<small>Хьажарна барам: $1 × $2 цинташ</small>',

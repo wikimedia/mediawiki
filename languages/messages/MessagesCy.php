@@ -1064,6 +1064,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'searchmenu-legend'                => 'Dewisiadau chwilio',
 'searchmenu-exists'                => "'''Mae tudalen o'r enw \"[[\$1]]\" ar y wici hwn'''",
 'searchmenu-new'                   => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
+'searchmenu-new-nocreate'          => 'Naill ai mae "$1" yn enw annilys ar dudalen, neu nid oes caniatad gennych i\'w ddechrau.',
 'searchhelp-url'                   => 'Help:Cymorth',
 'searchmenu-prefix'                => "[[Special:PrefixIndex/$1|Chwilio drwy tudalennau gyda'r rhagddodiad hwn]]",
 'searchprofile-articles'           => 'Tudalennau pwnc (erthyglau/ffeiliau)',

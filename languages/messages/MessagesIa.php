@@ -1838,12 +1838,13 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
 
-'doubleredirects'            => 'Redirectiones duple',
-'doubleredirectstext'        => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
+'doubleredirects'                   => 'Redirectiones duple',
+'doubleredirectstext'               => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
 Cata linea contine ligamines al prime e al secunde redirection, con le destination del secunde redirection. Iste es normalmente le "ver" pagina de destination, al qual le prime redirection tamben deberea punctar.
 Le entratas <del>cancellate</del> ha essite resolvite.',
-'double-redirect-fixed-move' => '[[$1]] ha essite renominate, illo es ora un redirection verso [[$2]]',
-'double-redirect-fixer'      => 'Corrector de redirectiones',
+'double-redirect-fixed-move'        => '[[$1]] ha essite renominate, illo es ora un redirection verso [[$2]]',
+'double-redirect-fixed-maintenance' => 'Corrige redirection duple de [[$1]] a [[$2]].',
+'double-redirect-fixer'             => 'Corrector de redirectiones',
 
 'brokenredirects'        => 'Redirectiones rupte',
 'brokenredirectstext'    => 'Le sequente redirectiones mena a paginas non existente:',

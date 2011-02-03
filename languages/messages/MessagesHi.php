@@ -741,8 +741,8 @@ $2',
 'semiprotectedpagewarning'         => 'अर्ध संरक्षित पृष्ठ चेतावनी',
 'cascadeprotectedwarning'          => "'''सावधान:''' यह लेख निम्नलिखीत सुरक्षा-सीढी {{PLURAL:$1|पन्ने से|पन्नों से}} जुडा हुआ होने के कारण सुरक्षित हुआ हैं, और सिर्फ प्रबंधक ही इसमें बदलाव कर सकतें हैं:",
 'titleprotectedwarning'            => 'शीर्षक चेतावनी सुरक्षित',
-'templatesused'                    => 'पूर्वावलोकन प्रयोग टेम्पलेट्स',
-'templatesusedpreview'             => 'प्रयुक्त अनुभाग टेम्पलेट्स',
+'templatesused'                    => 'पूर्वावलोकन प्रयोग साँचा',
+'templatesusedpreview'             => 'प्रयुक्त अनुभाग साँचा',
 'templatesusedsection'             => 'प्रयुक्त अनुभाग टेम्पलेट्स',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-सुरक्षीत)',
@@ -3265,12 +3265,13 @@ $1',
 'tags-display-header'     => 'बदलाव सूचियों में प्रदर्शन',
 'tags-description-header' => 'अर्थ का पूरा वर्णन',
 'tags-hitcount-header'    => 'चिप्पी वाले बदलाव',
-'tags-edit'               => 'संपादन',
+'tags-edit'               => 'सम्पादन',
 'tags-hitcount'           => '$1 {{PLURAL:$1|बदलाव|बदलाव}}',
 
 # Special:ComparePages
 'comparepages'     => 'पृष्ठों की तुलना करें',
 'compare-selector' => 'पृष्ठ संशोधन की तुलना करें',
+'compare-submit'   => 'तुलना करें',
 
 # Database error messages
 'dberr-header'      => 'इस विकि को कुछ दिक्कत आ रही है',
@@ -3294,6 +3295,13 @@ $1',
 'htmlform-selectorother-other' => 'अन्य',
 
 # Special:DisableAccount
-'disableaccount' => 'कोई उपयोगकर्ता खाते को निष्क्रिय करें',
+'disableaccount'          => 'कोई उपयोगकर्ता खाते को निष्क्रिय करें',
+'disableaccount-user'     => 'प्रयोक्तानाम:',
+'disableaccount-reason'   => 'कारण:',
+'disableaccount-confirm'  => "इस प्रयोक्ता खाते को अक्षम करें:
+यह प्रयोक्ता लॉगिन करने, कूटशब्द पुनः सेट करने, या ईमेल सूचनाएं प्राप्त करने में सक्षम नहीं होगा।
+यदि प्रयोक्ता अभी कहीं लॉगिन है, तो वह तुरन्त लॉग आउट कर दिया जाएगा।
+''कृपया श्यान दें कि किसी अक्षम खाते को बिना प्रशासक के हस्तक्षेप के प्रतिवर्ती नहीं किया जा सकता।",
+'disableaccount-logentry' => 'प्रयोक्ता खाता [[$1]] स्थाई रूप से अक्षम किया गया',
 
 );
