@@ -119,7 +119,7 @@ abstract class DatabaseInstaller {
 	 * 
 	 * This will return a cached connection if one is available.
 	 *
-	 * @return DatabaseBase
+	 * @return Status
 	 */
 	public function getConnection() {
 		if ( $this->db ) {
