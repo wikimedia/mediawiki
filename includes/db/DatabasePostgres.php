@@ -151,6 +151,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return;
 		}
+
 		$this->close();
 		$this->mServer = $server;
 		$this->mPort = $port = $wgDBport;
@@ -1014,6 +1015,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$schema ) {
 			$schema = $wgDBmwschema;
 		}
+		$table = $this->tableName( $table );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
