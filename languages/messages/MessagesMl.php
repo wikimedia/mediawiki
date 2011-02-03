@@ -88,6 +88,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ശ്രദ്ധിക്കുന്നവ' ),
 	'Recentchanges'             => array( 'സമീപകാലമാറ്റങ്ങൾ' ),
 	'Upload'                    => array( 'അപ്‌ലോഡ്' ),
+	'UploadStash'               => array( 'അപ്‌ലോഡ്_മറയ്ക്കൽ' ),
 	'Listfiles'                 => array( 'പ്രമാണങ്ങളുടെ_പട്ടിക', 'ചിത്രങ്ങളുടെ_പട്ടിക' ),
 	'Newimages'                 => array( 'പുതിയ_പ്രമാണങ്ങൾ', 'പുതിയ_ചിത്രങ്ങൾ' ),
 	'Listusers'                 => array( 'ഉപയോക്താക്കളുടെ_പട്ടിക' ),
@@ -153,6 +154,8 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'എന്റെതാൾ' ),
 	'Mytalk'                    => array( 'എന്റെസംവാദം' ),
 	'Mycontributions'           => array( 'എന്റെസംഭാവനകൾ' ),
+	'Myuploads'                 => array( 'ഞാൻഅപ്‌ലോഡ്‌ചെയ്തവ' ),
+	'PermanentLink'             => array( 'സ്ഥിരംകണ്ണി' ),
 	'Listadmins'                => array( 'കാര്യനിർവാഹകപട്ടിക' ),
 	'Listbots'                  => array( 'യന്ത്രങ്ങളുടെ_പട്ടിക' ),
 	'Popularpages'              => array( 'ജനപ്രിയതാളുകൾ' ),
@@ -170,6 +173,7 @@ $specialPageAliases = array(
 	'RevisionMove'              => array( 'നാൾപ്പതിപ്പ്മാറ്റൽ' ),
 	'ComparePages'              => array( 'താളുകളുടെതാരതമ്യം' ),
 	'Badtitle'                  => array( 'മോശംതലക്കെട്ട്' ),
+	'DisableAccount'            => array( 'അംഗത്വംനിർജ്ജീവമാക്കുക' ),
 );
 
 $magicWords = array(

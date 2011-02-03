@@ -52,7 +52,11 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'Userlogin'                 => array( 'HyrjePërdoruesi' ),
+	'Userlogout'                => array( 'DaljePërdoruesi' ),
+	'CreateAccount'             => array( 'HapLlogari' ),
 	'Preferences'               => array( 'Preferencat' ),
+	'Recentchanges'             => array( 'NdryshimeSëFundmi' ),
 	'Upload'                    => array( 'Ngarko' ),
 	'Listfiles'                 => array( 'ListaSkedave' ),
 	'Newimages'                 => array( 'SkedaTëReja' ),
@@ -76,6 +80,7 @@ $specialPageAliases = array(
 	'Protectedpages'            => array( 'FaqeteMbrojtura' ),
 	'Protectedtitles'           => array( 'TitujteMbrojtur' ),
 	'Allpages'                  => array( 'TëgjithaFaqet' ),
+	'Unblock'                   => array( 'Zhblloko' ),
 	'Specialpages'              => array( 'FaqetSpeciale' ),
 	'Contributions'             => array( 'Kontributet' ),
 	'Emailuser'                 => array( 'EmailPërdoruesit' ),
@@ -96,10 +101,13 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'FaqjaIme' ),
 	'Mytalk'                    => array( 'DiskutimiImë' ),
 	'Mycontributions'           => array( 'KontributetëMiat' ),
+	'Myuploads'                 => array( 'NgarkimeteMia' ),
 	'Listadmins'                => array( 'RreshtoAdmin' ),
 	'Listbots'                  => array( 'RreshtoBotët' ),
 	'Popularpages'              => array( 'FaqetëFamshme' ),
 	'Search'                    => array( 'Kërkim' ),
+	'Resetpass'                 => array( 'NdryshoFjalëkalimin' ),
+	'Withoutinterwiki'          => array( 'PaInterwiki' ),
 	'Blankpage'                 => array( 'FaqeBosh' ),
 	'DeletedContributions'      => array( 'GrisKontributet' ),
 );
