@@ -40,7 +40,7 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	*/
 	function __construct( $source ) {
-		$this->reader = new XMLReader2();
+		$this->reader = new XMLReader();
 
 		stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		$id = UploadSourceAdapter::registerSource( $source );
@@ -281,7 +281,23 @@ class WikiImporter {
 	 * @access private
 	 */
 	private function nodeContents() {
-		return $this->reader->nodeContents();
+		if( $this->reader->isEmptyElement ) {
+			return "";
+		}
+		$buffer = "";
+		while( $this->reader->read() ) {
+			switch( $this->reader->nodeType ) {
+			case XmlReader::TEXT:
+			case XmlReader::SIGNIFICANT_WHITESPACE:
+				$buffer .= $this->reader->value;
+				break;
+			case XmlReader::END_ELEMENT:
+				return $buffer;
+			}
+		}
+		
+		$this->reader->close();
+		return '';
 	}
 
 	# --------------
@@ -344,7 +360,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 			$type = $this->reader->nodeType;
 
-			if ( !wfRunHooks( 'ImportHandleToplevelXMLTag', $this->reader ) ) {
+			if ( !wfRunHooks( 'ImportHandleToplevelXMLTag', $this ) ) {
 				// Do nothing
 			} elseif ( $tag == 'mediawiki' && $type == XmlReader::END_ELEMENT ) {
 				break;
@@ -399,7 +415,7 @@ class WikiImporter {
 			$tag = $this->reader->name;
 
 			if ( !wfRunHooks( 'ImportHandleLogItemXMLTag',
-						$this->reader, $logInfo ) ) {
+						$this, $logInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -459,7 +475,7 @@ class WikiImporter {
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
 				$skip = true;
-			} elseif ( !wfRunHooks( 'ImportHandlePageXMLTag', array( $this->reader,
+			} elseif ( !wfRunHooks( 'ImportHandlePageXMLTag', array( $this,
 						&$pageInfo ) ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
@@ -507,7 +523,7 @@ class WikiImporter {
 
 			$tag = $this->reader->name;
 
-			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', $this->reader,
+			if ( !wfRunHooks( 'ImportHandleRevisionXMLTag', $this,
 						$pageInfo, $revisionInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
@@ -568,7 +584,7 @@ class WikiImporter {
 
 			$tag = $this->reader->name;
 
-			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this->reader,
+			if ( !wfRunHooks( 'ImportHandleUploadXMLTag', $this,
 						$pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
