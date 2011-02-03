@@ -1698,7 +1698,7 @@ class Skin extends Linker {
 		if ( is_string( $icon ) ) {
 			$html = $icon;
 		} else { // Assuming array
-			$url = $icon["url"];
+			$url = isset($icon["url"]) ? $icon["url"] : null;
 			unset( $icon["url"] );
 			if ( isset( $icon["src"] ) && $withImage === 'withImage' ) {
 				$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
