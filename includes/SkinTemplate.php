@@ -1727,7 +1727,6 @@ abstract class BaseTemplate extends QuickTemplate {
 				}
 			}
 		} elseif ( $option == 'nocopyright' ) {
-			$footericons = $this->data['footericons'];
 			unset( $footericons['copyright']['copyright'] );
 			if ( count( $footericons['copyright'] ) <= 0 ) {
 				unset( $footericons['copyright'] );
