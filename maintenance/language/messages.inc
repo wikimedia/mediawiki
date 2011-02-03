@@ -1539,6 +1539,7 @@ $wgMessageStructure = array(
 		'doubleredirects-summary',
 		'doubleredirectstext',
 		'double-redirect-fixed-move',
+		'double-redirect-fixed-maintenance',
 		'double-redirect-fixer',
 	),
 	'brokenredirects' => array(
