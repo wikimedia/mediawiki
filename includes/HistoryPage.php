@@ -417,23 +417,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= $element;
 			$this->buttons .= $element;
 		}
-		if ( $wgUser->isAllowed( 'revisionmove' ) ) {
-			$this->preventClickjacking();
-			$float = $wgContLang->alignEnd();
-			# Note bug #20966, <button> is non-standard in IE<8
-			$element = Html::element( 'button',
-				array(
-					'type' => 'submit',
-					'name' => 'revisionmove',
-					'value' => '1',
-					'style' => "float: $float;",
-					'class' => 'mw-history-revisionmove-button',
-				),
-				wfMsg( 'revisionmoveselectedversions' )
-			) . "\n";
-			$s .= $element;
-			$this->buttons .= $element;
-		}
 		$this->buttons .= '</div>';
 		$s .= '</div><ul id="pagehistory">' . "\n";
 		return $s;
@@ -519,11 +502,10 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		// Show checkboxes for each revision
-		if ( $wgUser->isAllowed( 'deleterevision' ) || $wgUser->isAllowed( 'revisionmove' ) ) {
+		if ( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops, disable the checkbox
-			// However, if the user has revisionmove rights, we cannot disable the checkbox
-			if ( !$rev->userCan( Revision::DELETED_RESTRICTED ) && !$wgUser->isAllowed( 'revisionmove' ) ) {
+			if ( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {

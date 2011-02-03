@@ -193,7 +193,6 @@ class SpecialPage {
 		'Mytalk'                    => 'SpecialMytalk',
 		'Myuploads'                 => 'SpecialMyuploads',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
-		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
 	);
