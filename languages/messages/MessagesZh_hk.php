@@ -23,7 +23,6 @@ $fallback8bitEncoding = 'Big5-HKSCS';
 
 $specialPageAliases = array(
 	'Unblock'                   => array( '解除封禁' ),
-	'RevisionMove'              => array( '移動版本' ),
 	'ComparePages'              => array( '頁面比較' ),
 );
 

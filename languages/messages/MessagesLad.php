@@ -157,7 +157,6 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'AjustamientosEfassados' ),
 	'Tags'                      => array( 'Etiquetas' ),
 	'Activeusers'               => array( 'UsadoresActivos' ),
-	'RevisionMove'              => array( 'TashireaRēvizyón' ),
 	'ComparePages'              => array( 'ApariguarHojas' ),
 	'Badtitle'                  => array( 'TítůloNegro' ),
 );
