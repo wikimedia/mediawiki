@@ -110,6 +110,7 @@ class User {
 		'importupload',
 		'ipblock-exempt',
 		'markbotedits',
+		'mergehistory',
 		'minoredit',
 		'move',
 		'movefile',
