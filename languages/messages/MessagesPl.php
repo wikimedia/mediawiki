@@ -1366,8 +1366,7 @@ Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'email'                         => 'E‐mail',
 'prefs-help-realname'           => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
-'prefs-help-email'              => 'Podanie adresu e‐mail nie jest obowiązkowe, lecz jest konieczne do zresetowania zapomnianego hasła.
-Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
+'prefs-help-email'              => 'Podanie adresu e‐mail nie jest obowiązkowe, lecz jest konieczne do zresetowania zapomnianego hasła.',
 'prefs-help-email-others'       => 'Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
 'prefs-help-email-required'     => 'Wymagany jest adres e‐mail.',
 'prefs-info'                    => 'Podstawowe informacje',
@@ -1923,12 +1922,13 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 a powinny odwoływać się bezpośrednio do stron treści.<br />
 Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Podwójne przekierowania',
-'doubleredirectstext'        => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
+'doubleredirects'                   => 'Podwójne przekierowania',
+'doubleredirectstext'               => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
 Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.
 <del>Skreślenie</del> oznacza naprawienie przekierowania.',
-'double-redirect-fixed-move' => 'Naprawa podwójnego przekierowania [[$1]] → [[$2]]',
-'double-redirect-fixer'      => 'Naprawiacz przekierowań',
+'double-redirect-fixed-move'        => 'Naprawa podwójnego przekierowania [[$1]] → [[$2]]',
+'double-redirect-fixed-maintenance' => 'Naprawiono podwójne przekierowanie z [[$1]] do [[$2]].',
+'double-redirect-fixer'             => 'Naprawiacz przekierowań',
 
 'brokenredirects'        => 'Zerwane przekierowania',
 'brokenredirectstext'    => 'Poniższe przekierowania wskazują na nieistniejące strony.',

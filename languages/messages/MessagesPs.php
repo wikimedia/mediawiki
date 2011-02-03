@@ -524,24 +524,24 @@ $1',
 دا په پام کې وساتۍ چې تر څو تاسې د خپل کتنمل حافظه نه وي سپينه کړې، نو ځينې مخونو کې به لا تر اوسه پورې په غونډال کې ننوتي ښکارۍ.",
 'welcomecreation'            => '==$1 ښه راغلاست! ==
 
-ستاسې کارن-حساب جوړ شو. لطفاً د [[Special:Preferences|{{SITENAME}} غوره توبونو]] ټاکل مو مه هېروی.',
+ستاسې ګڼون جوړ شو. لطفاً د [[Special:Preferences|{{SITENAME}} غوره توبونو]] ټاکل مو مه هېروی.',
 'yourname'                   => 'کارن-نوم:',
 'yourpassword'               => 'پټنوم:',
 'yourpasswordagain'          => 'پټنوم بيا وليکه',
 'remembermypassword'         => 'زما پټنوم په دې کمپيوټر (تر $1 {{PLURAL:$1|ورځې|ورځو}}) په ياد وساته!',
 'yourdomainname'             => 'ستاسې شپول:',
 'login'                      => 'ننوتل',
-'nav-login-createaccount'    => 'ننوتل / کارن-حساب جوړول',
+'nav-login-createaccount'    => 'ننوتل / ګڼون جوړول',
 'loginprompt'                => 'ددې لپاره چې {{SITENAME}} کې ننوځۍ نو بايد ستاسې د کمپيوټر کوکيز چارن وي.',
-'userlogin'                  => 'ننوتل / کارن-حساب جوړول',
+'userlogin'                  => 'ننوتل / ګڼون جوړول',
 'userloginnocreate'          => 'ننوتل',
 'logout'                     => 'وتل',
 'userlogout'                 => 'وتل',
 'notloggedin'                => 'غونډال کې نه ياست ننوتي',
 'nologin'                    => 'کارن-نوم نه لرې؟ $1.',
-'nologinlink'                => 'يو کارن-حساب جوړول',
-'createaccount'              => 'کارن-حساب جوړول',
-'gotaccount'                 => 'آيا وار دمخې يو کارن-حساب لری؟ $1.',
+'nologinlink'                => 'يو ګڼون جوړول',
+'createaccount'              => 'ګڼون جوړول',
+'gotaccount'                 => 'آيا وار دمخې يو ګڼون لری؟ $1.',
 'gotaccountlink'             => 'ننوتل',
 'createaccountmail'          => 'د برېښليک له مخې',
 'createaccountreason'        => 'سبب:',
@@ -562,7 +562,7 @@ $1',
 'loginsuccess'               => "'''تاسې اوس {{SITENAME}} کې د \"\$1\" په نوم ننوتي ياست.'''",
 'nosuchuser'                 => 'د "$1" په نوم هېڅ کارن نشته.
 د کارنانو نومونه د غټو او واړو تورو سره حساس دي.
-خپل حجا وڅارۍ، او يا هم [[Special:UserLogin/signup|يو نوی کارن-حساب جوړ کړی]].',
+خپل حجا وڅارۍ، او يا هم [[Special:UserLogin/signup|يو نوی ګڼون جوړ کړی]].',
 'nosuchusershort'            => 'د "<nowiki>$1</nowiki>" په نوم هېڅ کوم کارن-حساب نشته. لطفاً خپل د نوم ليکلې بڼې ته ځير شی چې پکې تېروتنه نه وي.',
 'nouserspecified'            => 'تاسې ځان ته کوم کارن نوم نه دی ځانګړی کړی.',
 'login-userblocked'          => 'په دې کارن بنديز لګېدلی. غونډال کې ننوتلو ته پرې نه ښودلی شو.',
@@ -595,7 +595,7 @@ $1',
 'emailconfirmlink'           => 'د خپل د برېښليک پتې پخلی وکړی',
 'accountcreated'             => 'کارن-حساب مو جوړ شو.',
 'accountcreatedtext'         => 'د $1 لپاره يو کارن-حساب جوړ شو.',
-'createaccount-title'        => 'د {{SITENAME}} د کارن-حساب جوړېدنه',
+'createaccount-title'        => 'د {{SITENAME}} د ګڼون جوړېدنه',
 'createaccount-text'         => 'يو چا د {{SITENAME}} په وېبځي ($4) کې ستاسې د برېښليک پتې لپاره د "$2" په نامه يو کارن-حساب جوړ کړی چې پټنوم يې "$3" دی.
 تاسې بايد غونډال ته ورننوځۍ او همدا اوس خپل پټنوم بدل کړی.
 
@@ -1463,7 +1463,7 @@ $1',
 'newuserlogpagetext'          => 'دا د کارن-نوم د جوړېدو يادښت دی',
 'newuserlog-byemail'          => 'پټنوم مو برېښليک ته درولېږه',
 'newuserlog-create-entry'     => 'نوی کارن',
-'newuserlog-create2-entry'    => 'نوی جوړ شوی کارن-حساب $1',
+'newuserlog-create2-entry'    => 'نوی جوړ شوی ګڼون $1',
 'newuserlog-autocreate-entry' => 'کارن-حساب په اتوماتيک ډول جوړ شو',
 
 # Special:ListGroupRights
@@ -2253,5 +2253,9 @@ $5
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'کارن-نوم:',
+'disableaccount-reason' => 'سبب:',
 
 );

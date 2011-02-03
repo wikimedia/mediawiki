@@ -1035,6 +1035,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 'searchmenu-legend'                => 'Hitiari za kutafuta',
 'searchmenu-exists'                => "'''Ukurasa wa \"[[:\$1]]\" upo kwenye wiki hii'''",
 'searchmenu-new'                   => "'''Anzisha ukurasa wa \"[[:\$1]]\" katika wiki hii!'''",
+'searchmenu-new-nocreate'          => 'Huenda jina la "$1" ni jina batili la ukurasa, ama huna uwezo wa kuanzisha ukurasa wenye jina hili.',
 'searchhelp-url'                   => 'Help:Yaliyomo',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
 'searchprofile-articles'           => 'Kurasa kwa kusudi ya wiki',
@@ -2663,6 +2664,17 @@ $5
 
 Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_body_changed' => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye amebadilisha anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
+
+Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
+
+$3
+
+na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho wa anwani ya barua pepe:
+
+$5
+
+Ishara hizi za uthibitisho zitaishia mnamo $4.',
+'confirmemail_body_set'     => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, ambaye ameweka anwani ya barua pepe ya akaunti "$2" iwe anwani ya barua pepe hii, kule {{SITENAME}}.
 
 Ili kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, pamoja na kuwezesha upya zana zinazotumia barua pepe kule {{SITENAME}}, ufungue kiungo hiki katika kivinjari chako:
 

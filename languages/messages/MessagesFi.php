@@ -1867,13 +1867,13 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 'disambiguationspage'  => 'Template:Täsmennyssivu',
 'disambiguations-text' => "Seuraavat artikkelit linkittävät ''täsmennyssivuun''. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Kaksinkertaiset ohjaukset',
-'doubleredirectstext'        => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
+'doubleredirects'                   => 'Kaksinkertaiset ohjaukset',
+'doubleredirectstext'               => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
 Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.
 <del>Yliviivatut</del> kohteet on korjattu.',
-'double-redirect-fixed-move' => '[[$1]] on siirretty, ja se ohjaa nyt sivulle [[$2]]',
+'double-redirect-fixed-move'        => '[[$1]] on siirretty, ja se ohjaa nyt sivulle [[$2]]',
 'double-redirect-fixed-maintenance' => 'Korjataan kaksinkertainen ohjaus sivulta [[$1]] sivulle [[$2]]',
-'double-redirect-fixer'      => 'Ohjausten korjaaja',
+'double-redirect-fixer'             => 'Ohjausten korjaaja',
 
 'brokenredirects'        => 'Virheelliset ohjaukset',
 'brokenredirectstext'    => 'Seuraavat ohjaukset osoittavat sivuihin, joita ei ole olemassa.',

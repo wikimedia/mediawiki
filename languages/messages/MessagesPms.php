@@ -1707,13 +1707,14 @@ Ch'as visa ëd controlé che në stamp a-j serva nen a dj'àutri stamp anans che
 'disambiguations-text' => "Ste pàgine-sì a men-o a na '''pàgina ëd gestion dj'omònim''', mach che a dovrìo ëmné bele drit a n'artìcol.<br />
 Na pàgina as trata coma \"pàgina ëd gestion dj'omònim\" se a deuvra në stamp dont l'anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Ridiression dobie',
-'doubleredirectstext'        => "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.
+'doubleredirects'                   => 'Ridiression dobie',
+'doubleredirectstext'               => "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.
 Vira riga a l'ha andrinta j'anliure a la prima e a la sconda ridiression, ant sël pat ëd la prima riga ëd test dla seconda ridiression, che për sòlit a l'ha andrinta l'artìcol ëd destinassion vèir, col andoa che a dovrìa ëmné ëdcò la prima ridiression.
 Le ridiression <del>sganfà</del> a son stàite arzolvùe.",
-'double-redirect-fixed-move' => "[[$1]] a l'é stàit spostà.
+'double-redirect-fixed-move'        => "[[$1]] a l'é stàit spostà.
 Adess a l'é na ridiression a [[$2]].",
-'double-redirect-fixer'      => 'Coretor ëd ridiression',
+'double-redirect-fixed-maintenance' => 'Rangé le rediression dobie da [[$1]] a [[$2]].',
+'double-redirect-fixer'             => 'Coretor ëd ridiression',
 
 'brokenredirects'        => 'Ridiression nen giuste',
 'brokenredirectstext'    => "Coste ridiression-sì a men-o a d'artìcoj ch'a-i son pa:",
@@ -3096,6 +3097,20 @@ për scancelé la conferma dl'adrëssa ëd pòsta eletrònica:
 \$5
 
 Ës còdes ëd conferma a scadrà a \$4.",
+'confirmemail_body_set'     => 'Quaidun, miraco ti, da l\'adrëssa IP $1,
+a l\'ha ampostà l\'adrëssa ëd corel dël cont "$2" con costa adrëssa su {{SITENAME}}.
+
+Për confirmé che sto cont a l\'é pròpi tò e torna ativé
+le funsion ëd corel su {{SITENAME}}, deurb sto colegament an tò browser:
+
+$3
+
+Se ël cont a l\'é *pa* tò, va daré a sto colegament
+për scanselé la confirma ëd l\'adrëssa ëd corel:
+
+$5
+
+Sto còdes ëd confirma a scad ai $4.',
 'confirmemail_invalidated'  => "Conferma ëd l'adrëssa e-mail scanselà",
 'invalidateemail'           => "Scansela l'e-mail ëd conferma",
 

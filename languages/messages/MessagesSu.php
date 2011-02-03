@@ -320,6 +320,7 @@ $messages = array(
 'delete'            => 'Hapus',
 'deletethispage'    => 'Hapus kaca ieu',
 'undelete_short'    => 'Bolaykeun ngahapus {{PLURAL:$1|hiji éditan|$1 éditan}}',
+'viewdeleted_short' => 'Témbongkeun {{PLURAL:$1|hiji éditan nu dihapus|$1 éditan nu dihapus}}',
 'protect'           => 'Konci',
 'protect_change'    => 'robah',
 'protectthispage'   => 'Konci kaca ieu',
@@ -357,6 +358,7 @@ Loba teuing nu nyoba muka ieu kaca.
 Mangga cobian sanés waktos.
 
 $1',
+'pool-errorunknown' => 'Éror teu dipikawanoh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ngeunaan {{SITENAME}}',
@@ -724,6 +726,10 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'userjsyoucanpreview'              => "Tip:''' Paké tombol \"{{int:showpreview}}\" pikeun nyobaan JavaScript anyar anjeun méméh nyimpen.",
 'usercsspreview'                   => "'''Inget yén anjeun ukur nyawang css pamaké anjeun, can disimpen!'''",
 'userjspreview'                    => "'''Inget yén anjeun ukur nguji/nyawang ''javascript'' pamaké anjeun, can disimpen!'''",
+'sitecsspreview'                   => "'''Inget yén ieu CSS ukur pramidang.'''
+'''Can disimpen!'''",
+'sitejspreview'                    => "'''Inget yén ieu kodeu JavaScript ukur pramidang.'''
+'''Can disimpen!'''",
 'userinvalidcssjstitle'            => "'''Awas''': kulit \"\$1\" mah teu aya. Sing émut yén kaca .css jeung .js mah migunakeun aksara leutik dina judulna, contona baé {{ns:user}}:Foo/vector.css lawan {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Geus diropéa)',
 'note'                             => "'''Catetan:'''",
@@ -777,6 +783,7 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 Mangga édit artikel nu geus aya, atawa [[Special:UserLogin|asup log/daptar heula]].',
 'nocreate-loggedin'                => 'Anjeun teu diwenangkeun pikeun nyieun kaca anyar.',
 'sectioneditnotsupported-title'    => 'Teu bisa ngarobah dina sub-judul',
+'sectioneditnotsupported-text'     => 'Eusi subjudul di ieu kaca teu bisa diédit.',
 'permissionserrors'                => 'Kasalahan Hak Aksés',
 'permissionserrorstext'            => 'Anjeung teu boga kawenangan pikeun peta kitu, kalawan {{PLURAL:$1|alesan|alesan}} di handap ieu:',
 'permissionserrorstext-withaction' => 'Anjeun teu ngabogaan hak keur $2, kusabab {{PLURAL:$1|alesan|alesan}} katut:',
@@ -836,6 +843,7 @@ Alesanana $3 cenah ''$2''.",
 Katerangan: (kiw) = bédana jeung vérsi kiwari,
 (ahir) = bédana jeung vérsi nu harita, m = éditan minor.',
 'history-fieldset-title' => 'Sungsi jujutan',
+'history-show-deleted'   => 'Ukur nu dihapus',
 'histfirst'              => 'Pangheubeulna',
 'histlast'               => 'Pangahirna',
 'historysize'            => '($1 {{PLURAL:$1|bit|bit}})',

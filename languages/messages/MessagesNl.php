@@ -2060,13 +2060,14 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
 <br />Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Dubbele doorverwijzingen',
-'doubleredirectstext'        => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
+'doubleredirects'                   => 'Dubbele doorverwijzingen',
+'doubleredirectstext'               => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
 Elke rij bevat verwijzingen naar de eerste en de tweede doorverwijspagina en een verwijzing naar de doelpagina van de tweede doorverwijspagina.
 Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou moeten doorverwijzen.
 <del>Doorgehaalde regels</del> geven aan dat het probleem al is opgelost.",
-'double-redirect-fixed-move' => '[[$1]] is verplaatst en is nu een doorverwijzing naar [[$2]]',
-'double-redirect-fixer'      => 'Doorverwijzingen opschonen',
+'double-redirect-fixed-move'        => '[[$1]] is verplaatst en is nu een doorverwijzing naar [[$2]]',
+'double-redirect-fixed-maintenance' => 'Correctie dubbele doorverwijzing van [[$1]] naar [[$2]].',
+'double-redirect-fixer'             => 'Doorverwijzingen opschonen',
 
 'brokenredirects'        => 'Defecte doorverwijzingen',
 'brokenredirectstext'    => "De onderstaande doorverwijzigingen verwijzen naar niet-bestaande pagina's.",

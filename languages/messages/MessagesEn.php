@@ -2428,15 +2428,15 @@ Remember to check for other links to the templates before deleting them.',
 They should link to the appropriate topic instead.<br />
 A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Double redirects',
-'doubleredirects-summary'    => '', # do not translate or duplicate this message to other languages
-'doubleredirectstext'        => 'This page lists pages which redirect to other redirect pages.
+'doubleredirects'                   => 'Double redirects',
+'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages
+'doubleredirectstext'               => 'This page lists pages which redirect to other redirect pages.
 Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually the "real" target page, which the first redirect should point to.
 <del>Crossed out</del> entries have been solved.',
-'double-redirect-fixed-move' => '[[$1]] has been moved.
+'double-redirect-fixed-move'        => '[[$1]] has been moved.
 It now redirects to [[$2]].',
 'double-redirect-fixed-maintenance' => 'Fixing double redirect from [[$1]] to [[$2]].',
-'double-redirect-fixer'      => 'Redirect fixer',
+'double-redirect-fixer'             => 'Redirect fixer',
 
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages

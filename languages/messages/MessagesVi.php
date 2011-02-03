@@ -1927,12 +1927,13 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Đổi hướng kép',
-'doubleredirectstext'        => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
+'doubleredirects'                   => 'Đổi hướng kép',
+'doubleredirectstext'               => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
 Mỗi hàng có chứa các liên kết đến trang đổi hướng thứ nhất và thứ hai, cũng như mục tiêu của trang đổi hướng thứ hai, thường là trang đích “thực sự”, là nơi mà trang đổi hướng đầu tiên nên trỏ đến.
 Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
-'double-redirect-fixed-move' => '[[$1]] đã được đổi tên, giờ nó là trang đổi hướng đến [[$2]]',
-'double-redirect-fixer'      => 'Người sửa trang đổi hướng',
+'double-redirect-fixed-move'        => '[[$1]] đã được đổi tên, giờ nó là trang đổi hướng đến [[$2]]',
+'double-redirect-fixed-maintenance' => 'Giải quyết đổi hướng kép từ [[$1]] đến [[$2]].',
+'double-redirect-fixer'             => 'Người sửa trang đổi hướng',
 
 'brokenredirects'        => 'Đổi hướng sai',
 'brokenredirectstext'    => 'Các trang đổi hướng sau đây liên kết đến trang không tồn tại:',

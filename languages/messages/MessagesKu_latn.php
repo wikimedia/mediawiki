@@ -669,6 +669,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-radio-unset'       => 'Na',
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 'revdelete-log'               => 'Sedem',
+'revdel-restore-deleted'      => 'revîzyonên hatine jêbirin',
 'pagehist'                    => 'Dîroka rûpelê',
 'revdelete-content'           => 'naverrok',
 'revdelete-uname'             => 'navê bikarhêner',
@@ -781,7 +782,9 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'timezoneregion-africa'     => 'Afrîka',
 'timezoneregion-america'    => 'Amerîka',
 'timezoneregion-antarctica' => 'Antarktîka',
+'timezoneregion-arctic'     => 'Arktîk',
 'timezoneregion-asia'       => 'Asya',
+'timezoneregion-australia'  => 'Awistralya',
 'timezoneregion-europe'     => 'Ewropa',
 'allowemail'                => 'Qebûlbike ku bikarhênerên di e-nameyan ji te ra bişînin',
 'prefs-searchoptions'       => 'Tercihên lêgerînê',
@@ -1051,6 +1054,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 # Statistics
 'statistics'              => 'Statîstîk',
+'statistics-header-pages' => 'Statîstîkên rûpelê',
 'statistics-header-edits' => 'statîstîka biguherîne',
 'statistics-header-views' => 'Amaran bibîne',
 'statistics-header-users' => 'Statistîkên bikarhêneran',
@@ -1073,6 +1077,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'brokenredirects-delete' => 'jêbibe',
 
 'withoutinterwiki'        => 'Rûpel vê lînkên berve zimanên din',
+'withoutinterwiki-legend' => 'Pêşbendik',
 'withoutinterwiki-submit' => 'Nîşan bide',
 
 # Miscellaneous special pages
@@ -1744,8 +1749,12 @@ if (wgUserLanguage == "ku-arab")
 'exif-imagelength'                 => 'Dirêjbûn',
 'exif-jpeginterchangeformatlength' => "Byte'ên data'ya JPEG",
 'exif-imagedescription'            => 'Navî wêneyê',
+'exif-model'                       => 'Modela kamerayê',
 'exif-artist'                      => 'Nûser',
 'exif-exposuretime-format'         => '$1 sanî ($2)',
+'exif-brightnessvalue'             => 'Zelalî',
+'exif-flash'                       => 'Flaş',
+'exif-contrast'                    => 'Kontrast',
 
 'exif-orientation-1' => 'Normal',
 

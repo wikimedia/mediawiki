@@ -825,10 +825,10 @@ $2',
 
 # JavaScript password checks
 'password-strength'            => 'Εκτιμώμενη ισχύς κωδικού:  $1',
-'password-strength-bad'        => 'Κακό',
-'password-strength-mediocre'   => 'μέτριος',
+'password-strength-bad'        => 'ΚΑΚΗ',
+'password-strength-mediocre'   => 'μέτρια',
 'password-strength-acceptable' => 'αποδεκτή',
-'password-strength-good'       => 'καλός',
+'password-strength-good'       => 'καλή',
 'password-retype'              => 'Πληκτρολογήστε ξανά τον κωδικό πρόσβασης',
 'password-retype-mismatch'     => 'Οι κωδικοί πρόσβασης δεν ταιριάζουν',
 

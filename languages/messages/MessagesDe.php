@@ -2009,12 +2009,13 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 Eine Seite gilt als Begriffsklärungsseite, wenn sie eine der in [[MediaWiki:Disambiguationspage]] aufgeführte(n) Vorlage(n) einbindet.<br />
 Links aus Namensräumen werden hier nicht aufgelistet.',
 
-'doubleredirects'            => 'Doppelte Weiterleitungen',
-'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
+'doubleredirects'                   => 'Doppelte Weiterleitungen',
+'doubleredirectstext'               => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
 Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
 <del>Durchgestrichene</del> Einträge wurden bereits erledigt.',
-'double-redirect-fixed-move' => 'doppelte Weiterleitung aufgelöst: [[$1]] → [[$2]]',
-'double-redirect-fixer'      => 'RedirectBot',
+'double-redirect-fixed-move'        => '[[$1]] wurde verschoben und leitet nun nach [[$2]] weiter.',
+'double-redirect-fixed-maintenance' => 'Bereinigung der doppelten Weiterleitung von [[$1]] nach [[$2]].',
+'double-redirect-fixer'             => 'RedirectBot',
 
 'brokenredirects'        => 'Kaputte Weiterleitungen',
 'brokenredirectstext'    => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
@@ -2722,7 +2723,7 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'nonfile-cannot-move-to-file'  => 'Nichtdateien können nicht in den {{ns:file}}-Namensraum hinein verschoben werden',
 'imagetypemismatch'            => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'         => 'Der Ziel-Dateiname ist ungültig',
-'fix-double-redirects'         => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
+'fix-double-redirects'         => 'Nach dem Verschieben alle Weiterleitungen auf die Ursprungsseite bereinigen',
 'move-leave-redirect'          => 'Weiterleitung erstellen',
 'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde so geschützt, dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann.
 Zur Information folgt der aktuelle Logbucheintrag:",
