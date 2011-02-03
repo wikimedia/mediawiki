@@ -24,7 +24,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	);
 
 	var $minimumVersion = '8.3';
-	var $useAdmin = FALSE;
+	private $useAdmin = false;
 
 	function getName() {
 		return 'postgres';
@@ -70,7 +70,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		$this->useAdmin = TRUE;
+		$this->useAdmin = true;
 		// Try to connect
 		$status->merge( $this->getConnection() );
 		if ( !$status->isOK() ) {
@@ -78,7 +78,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		//Make sure install user can create
-		$status->merge( $this->canCreateAccounts() );
+		if( !$this->canCreateAccounts() ) {
+			$status->fatal( 'config-pg-no-create-privs' );
+		}
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -118,7 +120,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	protected function canCreateAccounts() {
-		$this->useAdmin = TRUE;
+		$this->useAdmin = true;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return false;
@@ -324,10 +326,9 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
     public function createTables() {
-		$this->db = NULL;
-		$this->useAdmin = FALSE;
+		$this->db = null;
+		$this->useAdmin = false;
         $status = $this->getConnection();
-		var_export($status);
         if ( !$status->isOK() ) {
             return $status;
         }
