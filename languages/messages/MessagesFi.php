@@ -159,6 +159,7 @@ $magicWords = array(
 	'img_top'               => array( '1', 'ylös', 'ylhäällä', 'top' ),
 	'img_middle'            => array( '1', 'keskellä', 'middle' ),
 	'img_bottom'            => array( '1', 'alas', 'alhaalla', 'bottom' ),
+	'img_link'              => array( '1', 'linkki=$1', 'link=$1' ),
 	'sitename'              => array( '1', 'SIVUSTONIMI', 'SITENAME' ),
 	'ns'                    => array( '0', 'NA:', 'NS:' ),
 	'localurl'              => array( '0', 'PAIKALLINENOSOITE:', 'LOCALURL:' ),

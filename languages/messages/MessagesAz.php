@@ -60,6 +60,12 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#İSTİQAMƏTLƏNDİRMƏ', '#İSTİQAMƏTLƏNDİR', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__MÜNDƏRİCATYOX__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__QALEREYAYOX__', '__NOGALLERY__' ),
+);
+
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $messages = array(
