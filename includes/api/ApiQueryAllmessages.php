@@ -43,12 +43,11 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		global $wgLang;
-
-		$oldLang = null;
-		if ( !is_null( $params['lang'] ) ) {
-			$oldLang = $wgLang; // Keep $wgLang for restore later
-			$wgLang = Language::factory( $params['lang'] );
+		if ( is_null( $params['lang'] ) ) {
+			global $wgLang;
+			$langObj = $wgLang;
+		} else {
+			$langObj = Language::factory( $params['lang'] );
 		}
 
 		$prop = array_flip( (array)$params['prop'] );
@@ -90,32 +89,29 @@ class ApiQueryAllmessages extends ApiQueryBase {
 
 			if ( !$skip ) {
 				$a = array( 'name' => $message );
-				$args = null;
+				$args = array();
 				if ( isset( $params['args'] ) && count( $params['args'] ) != 0 ) {
 					$args = $params['args'];
 				}
-				// Check if the parser is enabled:
-				if ( $params['enableparser'] ) {
-					$msg = wfMsgExt( $message, array( 'parsemag' ), $args );
-				} elseif ( $args ) {
-					$msgString = wfMsgGetKey( $message, true, false, false );
-					$msg = wfMsgReplaceArgs( $msgString, $args );
-				} else {
-					$msg = wfMsgGetKey( $message, true, false, false );
-				}
 
-				if ( wfEmptyMsg( $message, $msg ) ) {
+				$msg = wfMessage( $message, $args )->inLanguage( $langObj );
+
+				if ( !$msg->exists() ) {
 					$a['missing'] = '';
 				} else {
-					ApiResult::setContent( $a, $msg );
+					// Check if the parser is enabled:
+					if ( $params['enableparser'] ) {
+						$msgString = $msg->text();
+					} else {
+						$msgString = $msg->plain();
+					}
+					ApiResult::setContent( $a, $msgString );
 					if ( isset( $prop['default'] ) ) {
-						$default = wfMsgGetKey( $message, false, false, false );
-						if ( $default !== $msg ) {
-							if ( wfEmptyMsg( $message, $default ) ) {
-								$a['defaultmissing'] = '';
-							} else {
-								$a['default'] = $default;
-							}
+						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
+						if ( !$default->exists() ) {
+							$a['defaultmissing'] = '';
+						} elseif ( $default->plain() != $msgString ) {
+							$a['default'] = $default->plain();
 						}
 					}
 				}
@@ -127,10 +123,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			}
 		}
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'message' );
-
-		if ( !is_null( $oldLang ) ) {
-			$wgLang = $oldLang; // Restore $oldLang
-		}
 	}
 
 	public function getCacheMode( $params ) {
