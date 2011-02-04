@@ -146,16 +146,23 @@ class FSRepo extends FileRepo {
 	 *                             same contents as the source
 	 */
 	function storeBatch( $triplets, $flags = 0 ) {
+		wfDebug( __METHOD__  . ': Storing ' . count( $triplets ) . 
+			" triplets; flags: {$flags}\n" );
+		
+		// Try creating directories
 		if ( !wfMkdirParents( $this->directory ) ) {
 			return $this->newFatal( 'upload_directory_missing', $this->directory );
 		}
 		if ( !is_writable( $this->directory ) ) {
 			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
+		
+		// Validate each triplet 
 		$status = $this->newGood();
 		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
 
+			// Resolve destination path
 			$root = $this->getZonePath( $dstZone );
 			if ( !$root ) {
 				throw new MWException( "Invalid zone: $dstZone" );
@@ -166,6 +173,7 @@ class FSRepo extends FileRepo {
 			$dstPath = "$root/$dstRel";
 			$dstDir = dirname( $dstPath );
 
+			// Create destination directories for this triplet
 			if ( !is_dir( $dstDir ) ) {
 				if ( !wfMkdirParents( $dstDir ) ) {
 					return $this->newFatal( 'directorycreateerror', $dstDir );
@@ -175,6 +183,7 @@ class FSRepo extends FileRepo {
 				}
 			}
 
+			// Resolve source 
 			if ( self::isVirtualUrl( $srcPath ) ) {
 				$srcPath = $triplets[$i][0] = $this->resolveVirtualUrl( $srcPath );
 			}
@@ -183,6 +192,8 @@ class FSRepo extends FileRepo {
 				$status->fatal( 'filenotfound', $srcPath );
 				continue;
 			}
+			
+			// Check overwriting
 			if ( !( $flags & self::OVERWRITE ) && file_exists( $dstPath ) ) {
 				if ( $flags & self::OVERWRITE_SAME ) {
 					$hashSource = sha1_file( $srcPath );
@@ -196,6 +207,7 @@ class FSRepo extends FileRepo {
 			}
 		}
 
+		// Windows does not support moving over existing files, so explicitly delete them
 		$deleteDest = wfIsWindows() && ( $flags & self::OVERWRITE );
 
 		// Abort now on failure
@@ -203,7 +215,8 @@ class FSRepo extends FileRepo {
 			return $status;
 		}
 
-		foreach ( $triplets as $triplet ) {
+		// Execute the store operation for each triplet
+		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
 			$root = $this->getZonePath( $dstZone );
 			$dstPath = "$root/$dstRel";
@@ -222,6 +235,20 @@ class FSRepo extends FileRepo {
 					$status->error( 'filecopyerror', $srcPath, $dstPath );
 					$good = false;
 				}
+				if ( !( $flags & self::SKIP_VALIDATION ) ) {
+					wfSuppressWarnings();
+					$hashSource = sha1_file( $srcPath );
+					$hashDest = sha1_file( $dstPath );
+					wfRestoreWarnings();
+					
+					if ( $hashDest === false || $hashSource !== $hashDest ) {
+						wfDebug( __METHOD__ . ': File copy validation failed: ' . 
+							"$srcPath ($hashSource) to $dstPath ($hashDest)\n" );
+						
+						$status->error( 'filecopyerror', $srcPath, $dstPath );
+						$good = false;
+					}
+				}
 			}
 			if ( $good ) {
 				$this->chmod( $dstPath );
@@ -229,8 +256,27 @@ class FSRepo extends FileRepo {
 			} else {
 				$status->failCount++;
 			}
+			$status->success[$i] = $good;
 		}
 		return $status;
+	}
+	
+	/**
+	 * Deletes a batch of (zone, rel) pairs. It will try to delete each pair,
+	 * but ignores any errors doing so.
+	 * 
+	 * @param $pairs array Pair of (zone, rel) pairs to delete
+	 */
+	function cleanupBatch( $pairs ) {
+		foreach ( $pairs as $i => $pair ) {
+			list( $zone, $rel ) = $pair;
+			$root = $this->getZonePath( $zone );
+			$path = "$root/$rel";
+			
+			wfSuppressWarnings();
+			unlink( $path );
+			wfRestoreWarnings();
+		}
 	}
 
 	function append( $srcPath, $toAppendPath, $flags = 0 ) {

@@ -1197,7 +1197,7 @@ class LocalFile extends File {
 
 		$status = $batch->execute();
 
-		if ( !$status->ok ) {
+		if ( !$status->isGood() ) {
 			return $status;
 		}
 
@@ -1807,9 +1807,11 @@ class LocalFileRestoreBatch {
 		$storeStatus = $this->file->repo->storeBatch( $storeBatch, FileRepo::OVERWRITE_SAME );
 		$status->merge( $storeStatus );
 
-		if ( !$status->ok ) {
-			// Store batch returned a critical error -- this usually means nothing was stored
-			// Stop now and return an error
+		if ( !$status->isGood() ) {
+			// Even if some files could be copied, fail entirely as that is the
+			// easiest thing to do without data loss
+			$this->cleanupFailedBatch( $storeStatus, $storeBatch );
+			$status->ok = false;
 			$this->file->unlock();
 
 			return $status;
@@ -1913,6 +1915,17 @@ class LocalFileRestoreBatch {
 		$status = $this->file->repo->cleanupDeletedBatch( $this->cleanupBatch );
 
 		return $status;
+	}
+	
+	function cleanupFailedBatch( $storeStatus, $storeBatch ) {
+		$cleanupBatch = array(); 
+		
+		foreach ( $storeStatus->success as $i => $success ) {
+			if ( $success ) {
+				$cleanupBatch[] = array( $storeBatch[$i][1], $storeBatch[$i][1] );
+			}
+		}
+		$this->file->repo->cleanupBatch( $cleanupBatch );
 	}
 }
 
