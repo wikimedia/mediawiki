@@ -14,6 +14,12 @@
 				// Any initialisation after the DOM is ready
 				$( function() {
 
+					/* Set up $.jsMessage */
+					$.jsMessageNew( {
+						'id': 'mw-js-message',
+						'parent': '#content'
+					} );
+
 					// Shortcut to client profile return
 					var profile = $.client.profile();
 

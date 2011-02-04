@@ -89,6 +89,10 @@ return array(
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
 	),
+	'jquery.jsMessage' => array(
+		'scripts' => 'resources/jquery/jquery.jsMessage.js',
+		'styles' => 'resources/jquery/jquery.jsMessage.css',
+	),
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
 	),
@@ -366,8 +370,9 @@ return array(
 		'dependencies' => array(
 			'jquery.checkboxShiftClick',
 			'jquery.client',
-			'jquery.makeCollapsible',
 			'jquery.cookie',
+			'jquery.jsMessage',
+			'jquery.makeCollapsible',
 			'jquery.placeholder',
 		),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',

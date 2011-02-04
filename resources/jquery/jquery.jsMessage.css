@@ -1,0 +1,15 @@
+.js-message-box {
+	margin: 1em 5%;
+	padding: 0.5em 2.5%;
+	border: 1px solid #ccc;
+	background-color: #fcfcfc;
+	font-size: 0.8em;
+}
+.js-message-box .js-message-group {
+	margin: 1px;
+	padding: 0.5em 2.5%;
+	border-bottom: 1px solid #ddd;
+}
+.js-message-box .js-message-group:last-child {
+	border-bottom: thin none transparent;
+}
