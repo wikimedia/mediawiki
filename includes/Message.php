@@ -148,7 +148,11 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
-		$args_values = array_values( func_get_args() );
+		$args = func_get_args();
+		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
+			$args = $args[0];
+		}
+		$args_values = array_values( $args );
 		$this->parameters = array_merge( $this->parameters, $args_values );
 		return $this;
 	}
@@ -163,6 +167,9 @@ class Message {
 	 */
 	public function rawParams( /*...*/ ) {
 		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
 		foreach( $params as $param ) {
 			$this->parameters[] = self::rawParam( $param );
 		}
@@ -177,6 +184,9 @@ class Message {
 	 */
 	public function numParams( /*...*/ ) {
 		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
 		foreach( $params as $param ) {
 			$this->parameters[] = self::numParam( $param );
 		}
