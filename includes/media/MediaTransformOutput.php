@@ -212,8 +212,8 @@ class MediaTransformError extends MediaTransformOutput {
 		$htmlArgs = array_map( 'htmlspecialchars', $args );
 		$htmlArgs = array_map( 'nl2br', $htmlArgs );
 
-		$this->htmlMsg = wfMsgReplaceArgs( htmlspecialchars( wfMsgGetKey( $msg, true ) ), $htmlArgs );
-		$this->textMsg = wfMsgReal( $msg, $args );
+		$this->htmlMsg = wfMessage( $msg )->rawParams( $htmlArgs )->escaped();
+		$this->textMsg = wfMessage( $msg )->rawParams( $htmlArgs )->text();
 		$this->width = intval( $width );
 		$this->height = intval( $height );
 		$this->url = false;
