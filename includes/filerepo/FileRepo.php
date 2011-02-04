@@ -17,6 +17,7 @@ abstract class FileRepo {
 	const DELETE_SOURCE = 1;
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
+	const SKIP_VALIDATION = 8;
 
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $scriptExtension, $articleUrl;

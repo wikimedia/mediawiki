@@ -112,6 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26809) Uploading files with multiple extensions where one of the extensions
   is blacklisted now gives the proper extension in the error message.
 * (bug 26961) Hide anon edits in watchlist preference now actually works.
+* (bug 19751) Filesystem is now checked during image undeletion
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

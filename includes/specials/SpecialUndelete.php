@@ -336,6 +336,9 @@ class PageArchive {
 		if( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
 			$img = wfLocalFile( $this->title );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
+			if ( !$this->fileStatus->isOk() ) {
+				return false;
+			}
 			$filesRestored = $this->fileStatus->successCount;
 		} else {
 			$filesRestored = 0;
