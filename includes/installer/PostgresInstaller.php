@@ -137,15 +137,11 @@ class PostgresInstaller extends DatabaseInstaller {
 			array( 'usename' => $superuser ), __METHOD__
 		);
 
-		if( !$rights ) {
-			return false;
+		if( !$rights || ( $rights != 1 && $rights != 3 ) ) {
+			$status = Status::newFatal("can't create");
 		}
 
-		if( $rights != 1 && $rights != 3 ) {
-			return false;
-		}
-
-		return true;
+		return $status;
 	}
 
 	public function getSettingsForm() {
@@ -166,26 +162,21 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		// Validate the create checkbox
+		$create = true;
 		$canCreate = $this->canCreateAccounts();
-		if ( !$canCreate ) {
+		if ( !$canCreate->isOK() ) {
 			$this->setVar( '_CreateDBAccount', false );
 			$create = false;
 		} else {
 			$create = $this->getVar( '_CreateDBAccount' );
 		}
 
-		if ( !$create ) {
+		// Don't test the web account if it is the same as the admin.
+		if ( !$create && $this->getVar( 'wgDBuser' ) != $this->getVar( '_InstallUser' ) ) {
 			// Test the web account
 			try {
-				new DatabasePostgres(
-					$this->getVar( 'wgDBserver' ),
-					$this->getVar( 'wgDBuser' ),
-					$this->getVar( 'wgDBpassword' ),
-					false,
-					false,
-					0,
-					$this->getVar( 'wgDBprefix' )
-				);
+				$this->useAdmin = FALSE;
+				return $this->openConnection();
 			} catch ( DBConnectionError $e ) {
 				return Status::newFatal( 'config-connection-error', $e->getMessage() );
 			}
