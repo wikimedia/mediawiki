@@ -14,7 +14,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * @todo document
  * @ingroup Skins
  */
-class SkinStandard extends Skin {
+class SkinStandard extends SkinLegacy {
+	var $skinname = 'standard', $stylename = 'standard',
+		$template = 'StandardTemplate';
 
 	/**
 	 *
@@ -48,6 +50,10 @@ class SkinStandard extends Skin {
 		$out->addInlineStyle( $style );
 	}
 
+}
+
+class StandardTemplate extends LegacyTemplate {
+
 	function doAfterContent() {
 		global $wgContLang, $wgLang;
 		wfProfileIn( __METHOD__ );
@@ -60,7 +66,7 @@ class SkinStandard extends Skin {
 		wfProfileOut( __METHOD__ . '-1' );
 		wfProfileIn( __METHOD__ . '-2' );
 
-		$qb = $this->qbSetting();
+		$qb = $this->getSkin()->qbSetting();
 		$shove = ( $qb != 0 );
 		$left = ( $qb == 1 || $qb == 3 );
 
@@ -74,9 +80,9 @@ class SkinStandard extends Skin {
 
 		$s .= $this->bottomLinks();
 		$s .= "\n<br />" . $wgLang->pipeList( array(
-			$this->mainPageLink(),
-			$this->aboutLink(),
-			$this->specialLink( 'Recentchanges' ),
+			$this->getSkin()->mainPageLink(),
+			$this->getSkin()->aboutLink(),
+			$this->getSkin()->specialLink( 'Recentchanges' ),
 			$this->searchForm() ) )
 			. '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
@@ -103,15 +109,15 @@ class SkinStandard extends Skin {
 
 		$action = $wgRequest->getText( 'action' );
 		$wpPreview = $wgRequest->getBool( 'wpPreview' );
-		$tns = $this->mTitle->getNamespace();
+		$tns = $this->getSkin()->getTitle()->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
-		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
+		$s .= "\n" . $this->getSkin()->logoText() . "\n<hr class='sep' />";
 
 		$sep = "\n<br />";
 
 		# Use the first heading from the Monobook sidebar as the "browse" section
-		$bar = $this->buildSidebar();
+		$bar = $this->getSkin()->buildSidebar();
 		unset( $bar['SEARCH'] );
 		unset( $bar['LANGUAGES'] );
 		unset( $bar['TOOLBOX'] );
@@ -125,8 +131,8 @@ class SkinStandard extends Skin {
 		}
 
 		if( $wgUser->isLoggedIn() ) {
-			$s.= $this->specialLink( 'Watchlist' ) ;
-			$s .= $sep . $this->linkKnown(
+			$s.= $this->getSkin()->specialLink( 'Watchlist' ) ;
+			$s .= $sep . $this->getSkin()->linkKnown(
 				SpecialPage::getTitleFor( 'Contributions' ),
 				wfMsg( 'mycontris' ),
 				array(),
@@ -135,7 +141,7 @@ class SkinStandard extends Skin {
 		}
 		// only show watchlist link if logged in
 		$s .= "\n<hr class='sep' />";
-		$articleExists = $this->mTitle->getArticleId();
+		$articleExists = $this->getSkin()->getTitle()->getArticleId();
 		if ( $wgOut->isArticle() || $action == 'edit' || $action == 'history' || $wpPreview ) {
 			if( $wgOut->isArticle() ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';
@@ -180,17 +186,17 @@ class SkinStandard extends Skin {
 							$text = wfMsg( 'articlepage' );
 					}
 
-					$link = $this->mTitle->getText();
+					$link = $this->getSkin()->getTitle()->getText();
 					$nstext = $wgContLang->getNsText( $tns );
 					if( $nstext ) { # add namespace if necessary
 						$link = $nstext . ':' . $link;
 					}
 
-					$s .= $this->link(
+					$s .= $this->getSkin()->link(
 						Title::newFromText( $link ),
 						$text
 					);
-				} elseif( $this->mTitle->getNamespace() != NS_SPECIAL ) {
+				} elseif( $this->getSkin()->getTitle()->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
 					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
@@ -198,9 +204,9 @@ class SkinStandard extends Skin {
 			}
 
 			# "Post a comment" link
-			if( ( $this->mTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
-				$s .= '<br />' . $this->link(
-					$this->mTitle,
+			if( ( $this->getSkin()->getTitle()->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+				$s .= '<br />' . $this->getSkin()->link(
+					$this->getSkin()->getTitle(),
 					wfMsg( 'postcomment' ),
 					array(),
 					array(
@@ -220,7 +226,7 @@ class SkinStandard extends Skin {
 				if( $action != 'edit' && $action != 'submit' ) {
 					$s .= $sep . $this->watchThisPage();
 				}
-				if ( $this->mTitle->userCan( 'edit' ) )
+				if ( $this->getSkin()->getTitle()->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isAllowed( 'delete' ) && $articleExists ) {
@@ -238,12 +244,12 @@ class SkinStandard extends Skin {
 			}
 
 			if (
-				NS_USER == $this->mTitle->getNamespace() ||
-				$this->mTitle->getNamespace() == NS_USER_TALK
+				NS_USER == $this->getSkin()->getTitle()->getNamespace() ||
+				$this->getSkin()->getTitle()->getNamespace() == NS_USER_TALK
 			) {
 
-				$id = User::idFromName( $this->mTitle->getText() );
-				$ip = User::isIP( $this->mTitle->getText() );
+				$id = User::idFromName( $this->getSkin()->getTitle()->getText() );
+				$ip = User::isIP( $this->getSkin()->getTitle()->getText() );
 
 				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();
@@ -259,7 +265,7 @@ class SkinStandard extends Skin {
 			$s .= $this->getUploadLink() . $sep;
 		}
 
-		$s .= $this->specialLink( 'Specialpages' );
+		$s .= $this->getSkin()->specialLink( 'Specialpages' );
 
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {

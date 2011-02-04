@@ -15,92 +15,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * @todo document
  * @ingroup Skins
  */
-class SkinCologneBlue extends Skin {
-
-	function getSkinName() {
-		return 'cologneblue';
-	}
-
-	function doBeforeContent() {
-		$mainPageObj = Title::newMainPage();
-
-		$s = "\n<div id='content'>\n<div id='topbar'>" .
-		  '<table width="100%" border="0" cellspacing="0" cellpadding="8"><tr>';
-
-		$s .= '<td class="top" nowrap="nowrap">';
-		$s .= '<a href="' . $mainPageObj->escapeLocalURL() . '">';
-		$s .= '<span id="sitetitle">' . wfMsg( 'sitetitle' ) . '</span></a>';
-
-		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
-		$s .= $this->sysLinks();
-		$s .= '</td></tr><tr><td class="top-linkcollection">';
-
-		$s .= '<font size="-1"><span id="sitesub">';
-		$s .= htmlspecialchars( wfMsg( 'sitesubtitle' ) ) . '</span></font>';
-		$s .= '</td><td class="top-linkcollection">';
-
-		$s .= '<font size="-1"><span id="langlinks">';
-		$s .= str_replace( '<br />', '', $this->otherLanguages() );
-		$cat = $this->getCategoryLinks();
-		if( $cat ) {
-			$s .= "<br />$cat\n";
-		}
-		$s .= '<br />' . $this->pageTitleLinks();
-		$s .= '</span></font>';
-
-		$s .= "</td></tr></table>\n";
-
-		$s .= "\n</div>\n<div id='article'>";
-
-		$notice = wfGetSiteNotice();
-		if( $notice ) {
-			$s .= "\n<div id='siteNotice'>$notice</div>\n";
-		}
-		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n";
-		return $s;
-	}
-
-	function doAfterContent(){
-		global $wgLang;
-
-		$s = "\n</div><br clear='all' />\n";
-
-		$s .= "\n<div id='footer'>";
-		$s .= '<table width="98%" border="0" cellspacing="0"><tr>';
-
-		$qb = $this->qbSetting();
-		if ( 1 == $qb || 3 == $qb ) { # Left
-			$s .= $this->getQuickbarCompensator();
-		}
-		$s .= '<td class="bottom">';
-
-		$s .= $this->bottomLinks();
-		$s .= $wgLang->pipeList( array(
-			"\n<br />" . $this->link(
-				Title::newMainPage(),
-				null,
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			),
-			$this->aboutLink(),
-			$this->searchForm( wfMsg( 'qbfind' ) )
-		) );
-
-		$s .= "\n<br />" . $this->pageStats();
-
-		$s .= '</td>';
-		if ( 2 == $qb ) { # Right
-			$s .= $this->getQuickbarCompensator();
-		}
-		$s .= "</tr></table>\n</div>\n</div>\n";
-
-		if ( 0 != $qb ) {
-			$s .= $this->quickBar();
-		}
-		return $s;
-	}
+class SkinCologneBlue extends SkinLegacy {
+	var $skinname = 'cologneblue', $stylename = 'cologneblue',
+		$template = 'CologneBlueTemplate';
 
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
@@ -134,12 +51,97 @@ class SkinCologneBlue extends Skin {
 		$out->addInlineStyle( $style );
 	}
 
+}
+
+class CologneBlueTemplate extends LegacyTemplate {
+
+	function doBeforeContent() {
+		$mainPageObj = Title::newMainPage();
+
+		$s = "\n<div id='content'>\n<div id='topbar'>" .
+		  '<table width="100%" border="0" cellspacing="0" cellpadding="8"><tr>';
+
+		$s .= '<td class="top" nowrap="nowrap">';
+		$s .= '<a href="' . $mainPageObj->escapeLocalURL() . '">';
+		$s .= '<span id="sitetitle">' . wfMsg( 'sitetitle' ) . '</span></a>';
+
+		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
+		$s .= $this->sysLinks();
+		$s .= '</td></tr><tr><td class="top-linkcollection">';
+
+		$s .= '<font size="-1"><span id="sitesub">';
+		$s .= htmlspecialchars( wfMsg( 'sitesubtitle' ) ) . '</span></font>';
+		$s .= '</td><td class="top-linkcollection">';
+
+		$s .= '<font size="-1"><span id="langlinks">';
+		$s .= str_replace( '<br />', '', $this->otherLanguages() );
+		$cat = $this->getSkin()->getCategoryLinks();
+		if( $cat ) {
+			$s .= "<br />$cat\n";
+		}
+		$s .= '<br />' . $this->pageTitleLinks();
+		$s .= '</span></font>';
+
+		$s .= "</td></tr></table>\n";
+
+		$s .= "\n</div>\n<div id='article'>";
+
+		$notice = wfGetSiteNotice();
+		if( $notice ) {
+			$s .= "\n<div id='siteNotice'>$notice</div>\n";
+		}
+		$s .= $this->pageTitle();
+		$s .= $this->pageSubtitle() . "\n";
+		return $s;
+	}
+
+	function doAfterContent(){
+		global $wgLang;
+
+		$s = "\n</div><br clear='all' />\n";
+
+		$s .= "\n<div id='footer'>";
+		$s .= '<table width="98%" border="0" cellspacing="0"><tr>';
+
+		$qb = $this->getSkin()->qbSetting();
+		if ( 1 == $qb || 3 == $qb ) { # Left
+			$s .= $this->getQuickbarCompensator();
+		}
+		$s .= '<td class="bottom">';
+
+		$s .= $this->bottomLinks();
+		$s .= $wgLang->pipeList( array(
+			"\n<br />" . $this->getSkin()->link(
+				Title::newMainPage(),
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			),
+			$this->getSkin()->aboutLink(),
+			$this->searchForm( wfMsg( 'qbfind' ) )
+		) );
+
+		$s .= "\n<br />" . $this->pageStats();
+
+		$s .= '</td>';
+		if ( 2 == $qb ) { # Right
+			$s .= $this->getQuickbarCompensator();
+		}
+		$s .= "</tr></table>\n</div>\n</div>\n";
+
+		if ( 0 != $qb ) {
+			$s .= $this->quickBar();
+		}
+		return $s;
+	}
+
 	function sysLinks() {
 		global $wgUser, $wgLang;
 		$li = SpecialPage::getTitleFor( 'Userlogin' );
 		$lo = SpecialPage::getTitleFor( 'Userlogout' );
 
-		$rt = $this->mTitle->getPrefixedURL();
+		$rt = $this->getSkin()->getTitle()->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
 			$q = array();
 		} else {
@@ -147,20 +149,20 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s = array(
-			$this->mainPageLink(),
-			$this->linkKnown(
+			$this->getSkin()->mainPageLink(),
+			$this->getSkin()->linkKnown(
 				Title::newFromText( wfMsgForContent( 'aboutpage' ) ),
 				wfMsg( 'about' )
 			),
-			$this->linkKnown(
+			$this->getSkin()->linkKnown(
 				Title::newFromText( wfMsgForContent( 'helppage' ) ),
 				wfMsg( 'help' )
 			),
-			$this->linkKnown(
+			$this->getSkin()->linkKnown(
 				Title::newFromText( wfMsgForContent( 'faqpage' ) ),
 				wfMsg( 'faq' )
 			),
-			$this->specialLink( 'Specialpages' )
+			$this->getSkin()->specialLink( 'Specialpages' )
 		);
 
 		/* show links to different language variants */
@@ -171,14 +173,14 @@ class SkinCologneBlue extends Skin {
 			$s[] = $this->extensionTabLinks();
 		}
 		if ( $wgUser->isLoggedIn() ) {
-			$s[] = $this->linkKnown(
+			$s[] = $this->getSkin()->linkKnown(
 				$lo,
 				wfMsg( 'logout' ),
 				array(),
 				$q
 			);
 		} else {
-			$s[] = $this->linkKnown(
+			$s[] = $this->getSkin()->linkKnown(
 				$li,
 				wfMsg( 'login' ),
 				array(),
@@ -196,7 +198,7 @@ class SkinCologneBlue extends Skin {
 	function quickBar(){
 		global $wgOut, $wgUser;
 
-		$tns = $this->mTitle->getNamespace();
+		$tns = $this->getSkin()->getTitle()->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
 
@@ -207,7 +209,7 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( 'qbbrowse' );
 
 		# Use the first heading from the Monobook sidebar as the "browse" section
-		$bar = $this->buildSidebar();
+		$bar = $this->getSkin()->buildSidebar();
 		unset( $bar['SEARCH'] );
 		unset( $bar['LANGUAGES'] );
 		unset( $bar['TOOLBOX'] );
@@ -224,7 +226,7 @@ class SkinCologneBlue extends Skin {
 			$s .= $this->menuHead( 'qbedit' );
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
 
-			$s .= $sep . $this->linkKnown(
+			$s .= $sep . $this->getSkin()->linkKnown(
 				Title::newFromText( wfMsgForContent( 'edithelppage' ) ),
 				wfMsg( 'edithelp' )
 			);
@@ -262,10 +264,10 @@ class SkinCologneBlue extends Skin {
 					. $sep . $this->watchPageLinksLink();
 
 			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
-				$id = User::idFromName( $this->mTitle->getText() );
+				$id = User::idFromName( $this->getSkin()->getTitle()->getText() );
 				if( $id != 0 ) {
 					$s .= $sep . $this->userContribsLink();
-					if( $this->showEmailUser( $id ) ) {
+					if( $this->getSkin()->showEmailUser( $id ) ) {
 						$s .= $sep . $this->emailUserLink();
 					}
 				}
@@ -275,7 +277,7 @@ class SkinCologneBlue extends Skin {
 
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $wgUser->isLoggedIn() ) {
-			$tl = $this->link(
+			$tl = $this->getSkin()->link(
 				$wgUser->getTalkPage(),
 				wfMsg( 'mytalk' ),
 				array(),
@@ -286,30 +288,30 @@ class SkinCologneBlue extends Skin {
 				$tl .= ' *';
 			}
 
-			$s .= $this->link(
+			$s .= $this->getSkin()->link(
 					$wgUser->getUserPage(),
 					wfMsg( 'mypage' ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $tl . $sep . $this->specialLink( 'Watchlist' )
+				) . $sep . $tl . $sep . $this->getSkin()->specialLink( 'Watchlist' )
 					. $sep .
-				$this->link(
+				$this->getSkin()->link(
 					SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
 					wfMsg( 'mycontris' ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $this->specialLink( 'Preferences' )
-				. $sep . $this->specialLink( 'Userlogout' );
+				) . $sep . $this->getSkin()->specialLink( 'Preferences' )
+				. $sep . $this->getSkin()->specialLink( 'Userlogout' );
 		} else {
-			$s .= $this->specialLink( 'Userlogin' );
+			$s .= $this->getSkin()->specialLink( 'Userlogin' );
 		}
 
 		$s .= $this->menuHead( 'qbspecialpages' )
-			. $this->specialLink( 'Newpages' )
-			. $sep . $this->specialLink( 'Listfiles' )
-			. $sep . $this->specialLink( 'Statistics' );
+			. $this->getSkin()->specialLink( 'Newpages' )
+			. $sep . $this->getSkin()->specialLink( 'Listfiles' )
+			. $sep . $this->getSkin()->specialLink( 'Statistics' );
 		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
 			$s .= $sep . $this->getUploadLink();
 		}
@@ -321,7 +323,7 @@ class SkinCologneBlue extends Skin {
 					. wfMsg( 'sitesupport' ) . '</a>';
 		}
 
-		$s .= $sep . $this->link(
+		$s .= $sep . $this->getSkin()->link(
 			SpecialPage::getTitleFor( 'Specialpages' ),
 			wfMsg( 'moredotdotdot' ),
 			array(),
@@ -342,7 +344,7 @@ class SkinCologneBlue extends Skin {
 		global $wgRequest, $wgUseTwoButtonsSearchForm;
 
 		$search = $wgRequest->getText( 'search' );
-		$action = $this->escapeSearchLink();
+		$action = $this->data['searchaction'];
 		$s = "<form id=\"searchform{$this->searchboxes}\" method=\"get\" class=\"inline\" action=\"$action\">";
 		if( $label != '' ) {
 			$s .= "{$label}: ";
