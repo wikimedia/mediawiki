@@ -957,6 +957,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'reuploaddesc'        => 'Return to the upload form.',
 'uploadnologintext'   => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
 'uploaderror'         => 'Yükləmə xətası',
+'upload-permitted'    => 'İcazə verilən fayl tipləri: $1.',
 'uploadlog'           => 'yükləmə qeydi',
 'uploadlogpage'       => 'Yükləmə qeydi',
 'uploadlogpagetext'   => 'Aşağıda ən yeni yükləmə jurnal qeydləri verilmişdir.',
@@ -975,8 +976,10 @@ Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək is
 'uploadwarning'       => 'Yükləyiş xəbərdarlıqı',
 'savefile'            => 'Faylı qeyd et',
 'uploadedimage'       => 'yükləndi "[[$1]]"',
+'upload-source'       => 'Mənbə faylı',
 'sourcefilename'      => 'Fayl adı mənbələri',
 'destfilename'        => 'Fayl adı',
+'upload-description'  => 'Faylın izahı',
 'watchthisupload'     => 'Bu faylı izlə',
 'upload-wasdeleted'   => "'''Diqqət:Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
 

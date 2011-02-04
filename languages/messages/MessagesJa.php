@@ -1869,7 +1869,7 @@ $1',
 'upload-http-error'         => 'HTTPエラー発生：$1',
 
 # Special:UploadStash
-'uploadstash'          => '下書きをアップロードする',
+'uploadstash'          => '未公開アップロード',
 'uploadstash-summary'  => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルを表示します。これらのファイルは、アップロードした利用者以外閲覧できません。',
 'uploadstash-clear'    => '未公開ファイルを消去',
 'uploadstash-nofiles'  => '未公開ファイルはありません。',

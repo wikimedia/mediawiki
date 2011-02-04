@@ -8,6 +8,7 @@
  * @file
  *
  * @author Danny B.
+ * @author Dontlietome7
  * @author Helix84
  * @author Kuvaly
  * @author Li-sung
@@ -1798,6 +1799,10 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-http-error'         => 'Došlo k chybě HTTP: $1',
 
 # Special:UploadStash
+'uploadstash'          => 'Skrýš nahraných souborů',
+'uploadstash-summary'  => 'Tato stránka nabízí přístup k nahraným (nebo právě nahrávaným) souborům, ale dosud nejsou zveřejněné na wiki. Tyto soubory se nezobrazí nikomu kromě uživatele, který je nahrál.',
+'uploadstash-clear'    => 'Smazat skrýš nahraných souborů',
+'uploadstash-nofiles'  => 'Nemáte žádné soubory ve skrýši nahraných souborů.',
 'uploadstash-badtoken' => 'Operace se nezdařila, možná vypršela platnost vašeho oprávnění k editaci. Zkuste to znovu.',
 'uploadstash-errclear' => 'Soubory se nepodařilo vymazat.',
 'uploadstash-refresh'  => 'Aktualizovat seznam souborů',
@@ -1975,12 +1980,13 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'disambiguationspage'  => 'Template:Rozcestník',
 'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
-'doubleredirects'            => 'Dvojitá přesměrování',
-'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
+'doubleredirects'                   => 'Dvojitá přesměrování',
+'doubleredirectstext'               => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
 Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.
 <del>Přeškrtnuté</del> položky již byly vyřešeny.',
-'double-redirect-fixed-move' => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
-'double-redirect-fixer'      => 'Opravář přesměrování',
+'double-redirect-fixed-move'        => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
+'double-redirect-fixed-maintenance' => 'Opravování dvojitého přesměrování z [[$1]] na [[$2]].',
+'double-redirect-fixer'             => 'Opravář přesměrování',
 
 'brokenredirects'        => 'Přerušená přesměrování',
 'brokenredirectstext'    => 'Tato přesměrování vedou na neexistující stránky:',
