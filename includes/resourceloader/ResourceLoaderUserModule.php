@@ -26,6 +26,7 @@
 class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 
 	/* Protected Methods */
+	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 
 	protected function getPages( ResourceLoaderContext $context ) {
 		if ( $context->getUser() ) {
