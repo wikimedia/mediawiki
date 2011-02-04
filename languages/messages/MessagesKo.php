@@ -1919,12 +1919,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
-'doubleredirects'            => '이중 넘겨주기 목록',
-'doubleredirectstext'        => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
+'doubleredirects'                   => '이중 넘겨주기 목록',
+'doubleredirectstext'               => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
 매 줄에는 첫 번째 문서와 두 번째 문서의 링크가 있습니다. 그리고 보통 첫 번째 문서가 넘겨주어야 할 "실제" 문서인 두 번째 넘겨주기의 대상이 있습니다.
 <del>취소선이 그인</del> 부분은 이미 해결되었습니다.',
-'double-redirect-fixed-move' => '[[$1]] 문서를 옮겼습니다. 이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
-'double-redirect-fixer'      => '넘겨주기 수리꾼',
+'double-redirect-fixed-move'        => '[[$1]] 문서를 옮겼습니다. 이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
+'double-redirect-fixed-maintenance' => '[[$1]]에서 [[$2]]로 이중 넘겨주기를 고치는 중',
+'double-redirect-fixer'             => '넘겨주기 수리꾼',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
 'brokenredirectstext'    => '존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:',

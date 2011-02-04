@@ -181,15 +181,15 @@ $messages = array(
 'noindex-category'               => 'सुचिकरण नगरिएको पृष्ठ',
 
 'mainpagetext'      => "'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''",
-'mainpagedocfooter' => " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] हेर्नुहोस्
+'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
 
 == सुरू गर्नको लागि  ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]',
 
 'about'         => 'बारेमा',
-'article'       => 'मुख्य-लेख पृष्ठ',
+'article'       => 'सामाग्री पृष्ठ',
 'newwindow'     => '(नयाँ विन्डोमा खुल्छ)',
 'cancel'        => 'रद्द',
 'moredotdotdot' => 'थप...',
@@ -201,7 +201,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'पत्ता लगाउनु',
-'qbbrowse'       => 'खोज',
+'qbbrowse'       => 'ब्राउज गर्नु',
 'qbedit'         => 'परिवर्तन्',
 'qbpageoptions'  => 'यो पेज',
 'qbpageinfo'     => 'सन्दर्भ',
@@ -211,7 +211,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'       => 'पाठ थप्नुहोस',
+'vector-action-addsection'       => 'विषय थप्नुहोस',
 'vector-action-delete'           => 'हटाउने',
 'vector-action-move'             => 'सार्ने',
 'vector-action-protect'          => 'सुरक्षित गर्ने',
@@ -293,7 +293,7 @@ $1',
 'pool-errorunknown' => 'अज्ञात त्रुटी',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} बारेमा',
+'aboutsite'            => '{{SITENAME}}को बारेमा',
 'aboutpage'            => 'Project:बारेमा',
 'copyright'            => 'लेखका सामाग्री $1 अनुसार उपलब्ध छ।',
 'copyrightpage'        => '{{ns:project}}:प्रतिलिपी अधिकारहरु',
@@ -688,21 +688,33 @@ $2',
 'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "$1" दर्ता गरिएको छैन।',
 'blocked-notice-logextract'        => 'यो प्रयोगकर्ता हाल प्रतिबन्धित छ।
 भर्खरैको प्रतिबन्ध लग प्रविष्टि सन्दर्भको निम्ति तल दिइन्छ:',
-'usercssyoucanpreview'             => "'''सुझाउ:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
-'userjsyoucanpreview'              => "↓ '''सुझाउ:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
+'clearyourcache'                   => "'''सूचना: सेभ गरेपछि, परिवर्तन हेर्न लाइ तपाइले आफ्नो ब्राउजर मा क्याश बाईपास गर्न पर्ने हुन सक्छ।'''
+'''मोजिला / फायरफक्स / सफारी:''' ''Shift'' लाइ चाँपिराखेर ''Reload'' क्लिक गर्नु पर्छ, वा ''Ctrl-F5'' वा ''Ctrl-R'' दबाउनुहोस(Macintosh मा ''Command-R'');
+'''कन्करर:''' मा ''Reload'' क्लिक गर्नुहोस या ''F5'' दबाउनुहोस;
+'''ओपेरा:''' ''Tools → Preferences'' मा गएर क्याश हटाउनुहोस;
+''''इंटरनेट एक्सप्लोरर'''': ''Ctrl'' लाइ चाँपिराखेर ''Refresh'' क्लिक गर्नुहोस वा ''Ctrl-F5'' चाँप्नुहोस",
+'usercssyoucanpreview'             => "'''सुझाव:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
+'userjsyoucanpreview'              => "↓ '''सुझाव:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
 'usercsspreview'                   => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता CSSको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'userjspreview'                    => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता JavaScript को पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'sitecsspreview'                   => "'''याद राख्नुहोस तपाईँले केवल वैश्विक CSS. को पूर्वावलोकन मात्र अवलोकन गर्नु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'sitejspreview'                    => "याद राख्नुहोस तपाईँले केवल JavaScript code को पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
-'userinvalidcssjstitle'            => "'''चेतावनी:'''  \"\$1\" स्कीन छैन ।
-Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css as opposed to {{ns:user}}:Foo/Vector.css.",
-'updated'                          => 'अद्यतन गरिएको',
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
+'userinvalidcssjstitle'            => "'''चेतावनी:''' यहाँ कुनैपनि \"\$1\" नामको स्कीन छैन ।
+प्रचलित .css तथा .js पृष्ठहरुले lowercase शिर्षक प्रयोग गर्छन्, जस्तै {{ns:user}}:Foo/Vector.css को सट्टामा {{ns:user}}:Foo/vector.css",
+'updated'                          => 'नवीन',
 'note'                             => "'''सूचना:'''",
-'previewnote'                      => "'''यो केवल पूर्वालोकन मात्र हो; परिवर्तनहरू संग्रह गरिएको छैन!'''",
+'previewnote'                      => "'''यो केवल पूर्वालोकन मात्र हो; तपाइँका परिवर्तनहरू संग्रह भइसकेको छैन!'''",
+'previewconflict'                  => 'यस पूर्वावलोकनले संपादन क्षेत्र को माथिल्लो भागको पाठ परिवर्तन गर्ने ठाउँको पाठलाइ देखाउँछ अनि तपाइले यसलाइ सेभ गरेपछि देखापर्छ।',
+'session_fail_preview_html'        => "'''माफ गर्नुहोला! सत्र को डेटा को नोकसान को कारण ले गर्दा तपाइको सम्पादन लाइ जारी राख्न सकिएन।'''
+
+''जावास्क्रिप्ट हमलाहरु रोक्नको लागि यो पूर्वावलोकन लाइ देखाइएको छैन किनकी {{SITENAME}} मा काँचो HTML को प्रयोग गर्न मिल्ने बनाइएको छ।''
+
+'''यदि यो एक वैध प्रयास हो भने, कृपया पुन: प्रयास गर्नुहोला.'''
+यदि अझै पनि काम गरेन भने [[Special:UserLogout|निर्गमन(logging out)]] र पुन:आगमन(login) गर्ने प्रयास गर्नुहोला।",
 'editing'                          => '$1 सम्पादन गरिँदै',
 'editingsection'                   => '$1 (खण्ड) सम्पादन गरिँदै',
 'editingcomment'                   => '$1 सम्पादन गर्दै(नयाँ खण्ड)',
@@ -1205,7 +1217,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'action-deleterevision'     => 'यो पुनरावलोकन मेट्ने',
 'action-deletedhistory'     => 'यो पृष्ठको मेटाइएको इतिहास हेर्ने',
 'action-browsearchive'      => 'मेटिएका पृष्ठहरु खोज्ने',
-'action-undelete'           => 'यो पृष्ठ मेट्ने',
+'action-undelete'           => 'यो पृष्ठ लाइ पुन:स्थापना गर्ने',
 'action-suppressrevision'   => 'यो लुकाइएको पुनरावलोकनको पुर्वालोकन गर्ने र पुनरावृत्ति गर्ने',
 'action-suppressionlog'     => 'यो व्यक्तिगत लग हेर्ने',
 'action-block'              => 'यो प्रयोगकर्तालाई सम्पादन गर्नबाट रोक्ने',
@@ -1226,6 +1238,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'recentchanges-label-bot'         => 'यो सम्पादन बोट द्वारा गरिएको थियो',
 'recentchanges-label-unpatrolled' => 'यो सम्पादन अहिले सम्म पट्रोल गरिएको छैन',
 'rcnote'                          => "तल पछिल्ला {{PLURAL:$2|day|'''$2''' दिनहरु}} मा  $5, $4 सम्म भएका {{PLURAL:$1|is '''1''' change|पछिल्ला '''$1''' परिवर्तनहरु}} देखाइएको छ ।",
+'rcnotefrom'                      => "'''$2''' देखिका परिवर्तनहरु तल ('''$1''' सम्मका देखाइन्छ)।",
 'rclistfrom'                      => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
 'rcshowhideminor'                 => '$1 सामान्य सम्पादन',
 'rcshowhidebots'                  => '$1 बोटहरू',
@@ -1307,6 +1320,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'unknown-error'          => 'एउटा अज्ञात त्रुटि भयो।',
 'tmp-create-error'       => 'अस्थायी फाइल सृजना गर्न सकिएन।',
 'tmp-write-error'        => 'अस्थायी फाइल लेख्दै गर्दा त्रुटि।',
+'large-file'             => 'यो सिफारिस गरिन्छ कि फाइलहरु  $1 भन्दा ठूला हुनु हुँदैन;
+यो फाइल $2 छ।',
 'uploadwarning'          => 'उर्ध्वभरण चेतावनी',
 'savefile'               => 'फाइल बचत गर्नुहोस्',
 'uploadedimage'          => 'उर्ध्वभरण(upload) गरियो  "[[$1]]"',

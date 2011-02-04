@@ -3521,6 +3521,9 @@ $1 is a message from the e-mail delivery system.',
 *$6 is a date
 *$7 is a time',
 'confirmemail_body_changed' => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
+
+See also [[MediaWiki:Confirmemail_body_set]].
+
 *$1 is the IP address of the user that changed the e-mail address
 *$2 is the name of the user
 *$3 is a URL to [[Special:ConfirmEmail]]
@@ -3529,7 +3532,16 @@ $1 is a message from the e-mail delivery system.',
 *$6 is a date
 *$7 is a time',
 'confirmemail_body_set'     => 'This is used in a confirmation e-mail sent when a contact e-mail address is set.
-See also [[MediaWiki:Confirmemail_body_changed]].',
+
+See also [[MediaWiki:Confirmemail_body_changed]].
+
+*$1 is the IP address of the user that set the e-mail address
+*$2 is the name of the user
+*$3 is a URL to [[Special:ConfirmEmail]]
+*$4 is a time and date (duplicated by $6 and $7)
+*$5 is a URL to [[Special:InvalidateEmail]]
+*$6 is a date
+*$7 is a time',
 'confirmemail_invalidated'  => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail'           => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
