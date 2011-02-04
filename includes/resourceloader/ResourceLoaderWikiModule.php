@@ -32,6 +32,9 @@ defined( 'MEDIAWIKI' ) || die( 1 );
 abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	/* Protected Members */
+
+	# Origin is user-supplied code
+	protected $origin = self::ORIGIN_USER_SITEWIDE;
 	
 	// In-object cache for modified time
 	protected $modifiedTime = array();

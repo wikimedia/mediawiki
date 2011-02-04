@@ -29,6 +29,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	protected $modifiedTime = array();
 
+	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
+
 	/* Methods */
 
 	public function getModifiedTime( ResourceLoaderContext $context ) {

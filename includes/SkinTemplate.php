@@ -201,6 +201,8 @@ class SkinTemplate extends Skin {
 			$tpl->setRef( 'usercss', $this->usercss );
 
 			$this->userjs = $this->userjsprev = false;
+			# FIXME: this is the only use of OutputPage::isUserJsAllowed() anywhere; can we
+			# get rid of it?  For that matter, why is any of this here at all?
 			$this->setupUserJs( $out->isUserJsAllowed() );
 			$tpl->setRef( 'userjs', $this->userjs );
 			$tpl->setRef( 'userjsprev', $this->userjsprev );
@@ -1255,6 +1257,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * @private
+	 * FIXME: why is this duplicated in/from OutputPage::getHeadScripts()??
 	 */
 	function setupUserJs( $allowUserJs ) {
 		global $wgRequest, $wgJsMimeType;
