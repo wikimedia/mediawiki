@@ -404,17 +404,17 @@ END;
 	protected function renameTable( $old, $new ) {
 		if ( $this->db->tableExists( $old ) ) {
 			$this->output( "Renaming table $old to $new\n" );
-			$this->db->query( "ALTER TABLE \"$old\" RENAME TO $new" );
+			$this->db->query( "ALTER TABLE '$old' RENAME TO $new" );
 		}
 	}
 
 	protected function addPgField( $table, $field, $type ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( !is_null( $fi ) ) {
-			$this->output( "... column \"$table.$field\" already exists\n" );
+			$this->output( "... column '$table.$field' already exists\n" );
 			return;
 		} else {
-			$this->output( "Adding column \"$table.$field\"\n" );
+			$this->output( "Adding column '$table.$field'\n" );
 			$this->db->query( "ALTER TABLE $table ADD $field $type" );
 		}
 	}
@@ -427,9 +427,9 @@ END;
 		}
 
 		if ( $fi->type() === $newtype )
-			$this->output( "... column \"$table.$field\" is already of type \"$newtype\"\n" );
+			$this->output( "... column '$table.$field' is already of type '$newtype'\n" );
 		else {
-			$this->output( "Changing column type of \"$table.$field\" from \"{$fi->type()}\" to \"$newtype\"\n" );
+			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {
 				$res = array();
@@ -454,37 +454,37 @@ END;
 		if ( $fi->isNullable() ) {
 			# # It's NULL - does it need to be NOT NULL?
 			if ( 'NOT NULL' === $null ) {
-				$this->output( "Changing \"$table.$field\" to not allow NULLs\n" );
+				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
 				$this->db->query( "ALTER TABLE $table ALTER $field SET NOT NULL" );
 			} else {
-				$this->output( "... column \"$table.$field\" is already set as NULL\n" );
+				$this->output( "... column '$table.$field' is already set as NULL\n" );
 			}
 		} else {
 			# # It's NOT NULL - does it need to be NULL?
 			if ( 'NULL' === $null ) {
-				$this->output( "Changing \"$table.$field\" to allow NULLs\n" );
+				$this->output( "Changing '$table.$field' to allow NULLs\n" );
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL" );
 			}
 			else {
-				$this->output( "... column \"$table.$field\" is already set as NOT NULL\n" );
+				$this->output( "... column '$table.$field' is already set as NOT NULL\n" );
 			}
 		}
 	}
 
 	public function addPgIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			$this->output( "... index \"$index\" on table \"$table\" already exists\n" );
+			$this->output( "... index '$index' on table '$table' already exists\n" );
 		} else {
-			$this->output( "Creating index \"$index\" on table \"$table\" $type\n" );
+			$this->output( "Creating index '$index' on table '$table' $type\n" );
 			$this->db->query( "CREATE INDEX $index ON $table $type" );
 		}
 	}
 
 	public function addPgExtIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			$this->output( "... index \"$index\" on table \"$table\" already exists\n" );
+			$this->output( "... index '$index' on table '$table' already exists\n" );
 		} else {
-			$this->output( "Creating index \"$index\" on table \"$table\"\n" );
+			$this->output( "Creating index '$index' on table '$table'\n" );
 			if ( preg_match( '/^\(/', $type ) ) {
 				$this->db->query( "CREATE INDEX $index ON $table $type" );
 			} else {
@@ -496,13 +496,13 @@ END;
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
-			$this->output( "WARNING! Column \"$table.$field\" does not exist but it should! Please report this.\n" );
+			$this->output( "WARNING! Column '$table.$field' does not exist but it should! Please report this.\n" );
 			return;
 		}
 		if ( $fi->is_deferred() && $fi->is_deferrable() ) {
 			return;
 		}
-		$this->output( "Altering column \"$table.$field\" to be DEFERRABLE INITIALLY DEFERRED\n" );
+		$this->output( "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED\n" );
 		$conname = $fi->conname();
 		$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
 		$this->db->query( $command );
@@ -516,7 +516,7 @@ END;
 	protected function checkPgUser() {
 		global $wgDBmwschema, $wgDBuser;
 
-		$config = $this->db->selectField( 
+		$config = $this->db->selectField(
 			'pg_catalog.pg_user', "array_to_string(useconfig,'*')",
 			array( 'usename' => $wgDBuser ), __METHOD__ );
 
@@ -533,7 +533,7 @@ END;
 		}
 
 		if ( strpos( $search_path, $wgDBmwschema ) === false ) {
-			$this->output( "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n" );
+			$this->output( "Adding in schema '$wgDBmwschema' to search_path for user '$wgDBuser'\n" );
 			$search_path = "$wgDBmwschema, $search_path";
 		}
 		$search_path = str_replace( ', ,', ',', $search_path );
@@ -542,7 +542,7 @@ END;
 			$this->db->query( "SET search_path = $search_path" );
 		} else {
 			$path = $conf['search_path'];
-			$this->output( "... search_path for user \"$wgDBuser\" looks correct ($path)\n" );
+			$this->output( "... search_path for user '$wgDBuser' looks correct ($path)\n" );
 		}
 
 		$goodconf = array(
@@ -553,46 +553,46 @@ END;
 
 		foreach ( $goodconf as $key => $value ) {
 			if ( !array_key_exists( $key, $conf ) or $conf[$key] !== $value ) {
-				$this->output( "Setting $key to '$value' for user \"$wgDBuser\"\n" );
+				$this->output( "Setting $key to '$value' for user '$wgDBuser'\n" );
 				$this->db->query( "ALTER USER $wgDBuser SET $key = '$value'" );
 				$this->db->query( "SET $key = '$value'" );
 			} else {
-				$this->output( "... default value of \"$key\" is correctly set to \"$value\" for user \"$wgDBuser\"\n" );
+				$this->output( "... default value of '$key' is correctly set to '$value' for user '$wgDBuser'\n" );
 			}
 		}
 	}
 
 	protected function convertArchive2() {
 		if ( $this->db->tableExists( "archive2" ) ) {
-			$this->output( "Converting \"archive2\" back to normal archive table\n" );
+			$this->output( "Converting 'archive2' back to normal archive table\n" );
 			if ( $this->db->ruleExists( 'archive', 'archive_insert' ) ) {
-				$this->output( "Dropping rule \"archive_insert\"\n" );
+				$this->output( "Dropping rule 'archive_insert'\n" );
 				$this->db->query( 'DROP RULE archive_insert ON archive' );
 			}
 			if ( $this->db->ruleExists( 'archive', 'archive_delete' ) ) {
-				$this->output( "Dropping rule \"archive_delete\"\n" );
+				$this->output( "Dropping rule 'archive_delete'\n" );
 				$this->db->query( 'DROP RULE archive_delete ON archive' );
 			}
 			$this->applyPatch( 'patch-remove-archive2.sql' );
 		} else {
-			$this->output( "... obsolete table \"archive2\" does not exist\n" );
+			$this->output( "... obsolete table 'archive2' does not exist\n" );
 		}
 	}
 
 	protected function checkOiDeleted() {
 		if ( $this->db->fieldInfo( 'oldimage', 'oi_deleted' )->type() !== 'smallint' ) {
-			$this->output( "Changing \"oldimage.oi_deleted\" to type \"smallint\"\n" );
+			$this->output( "Changing 'oldimage.oi_deleted' to type 'smallint'\n" );
 			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT" );
 			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)" );
 			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0" );
 		} else {
-			$this->output( "... column \"oldimage.oi_deleted\" is already of type \"smallint\"\n" );
+			$this->output( "... column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
 		}
 	}
 
 	protected function checkOiNameConstraint() {
 		if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascaded" ) ) {
-			$this->output( "... table \"oldimage\" has correct cascading delete/update foreign key to image\n" );
+			$this->output( "... table 'oldimage' has correct cascading delete/update foreign key to image\n" );
 		} else {
 			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey" ) ) {
 				$this->db->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
@@ -600,7 +600,7 @@ END;
 			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascade" ) ) {
 				$this->db->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade" );
 			}
-			$this->output( "Making foreign key on table \"oldimage\" (to image) a cascade delete/update\n" );
+			$this->output( "Making foreign key on table 'oldimage' (to image) a cascade delete/update\n" );
 			$this->db->query( "ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded " .
 				"FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE ON UPDATE CASCADE" );
 		}
@@ -608,46 +608,46 @@ END;
 
 	protected function checkPageDeletedTrigger() {
 		if ( !$this->db->triggerExists( 'page', 'page_deleted' ) ) {
-			$this->output( "Adding function and trigger \"page_deleted\" to table \"page\"\n" );
+			$this->output( "Adding function and trigger 'page_deleted' to table 'page'\n" );
 			$this->applyPatch( 'patch-page_deleted.sql' );
 		} else {
-			$this->output( "... table \"page\" has \"page_deleted\" trigger\n" );
+			$this->output( "... table 'page' has 'page_deleted' trigger\n" );
 		}
 	}
 
 	protected function checkRcCurIdNullable(){
 		$fi = $this->db->fieldInfo( 'recentchanges', 'rc_cur_id' );
 		if ( !$fi->isNullable() ) {
-			$this->output( "Removing NOT NULL constraint from \"recentchanges.rc_cur_id\"\n" );
+			$this->output( "Removing NOT NULL constraint from 'recentchanges.rc_cur_id'\n" );
 			$this->applyPatch( 'patch-rc_cur_id-not-null.sql' );
 		} else {
-			$this->output( "... column \"recentchanges.rc_cur_id\" has a NOT NULL constraint\n" );
+			$this->output( "... column 'recentchanges.rc_cur_id' has a NOT NULL constraint\n" );
 		}
 	}
 
 	protected function checkPagelinkUniqueIndex() {
 		$pu = $this->describeIndex( 'pagelink_unique' );
 		if ( !is_null( $pu ) && ( $pu[0] != 'pl_from' || $pu[1] != 'pl_namespace' || $pu[2] != 'pl_title' ) ) {
-			$this->output( "Dropping obsolete version of index \"pagelink_unique index\"\n" );
+			$this->output( "Dropping obsolete version of index 'pagelink_unique index'\n" );
 			$this->db->query( 'DROP INDEX pagelink_unique' );
 			$pu = null;
 		} else {
-			$this->output( "... obsolete version of index \"pagelink_unique index\" does not exist\n" );
+			$this->output( "... obsolete version of index 'pagelink_unique index' does not exist\n" );
 		}
 
 		if ( is_null( $pu ) ) {
-			$this->output( "Creating index \"pagelink_unique index\"\n" );
+			$this->output( "Creating index 'pagelink_unique index'\n" );
 			$this->db->query( 'CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)' );
 		} else {
-			$this->output( "... index \"pagelink_unique_index\" already exists\n" );
+			$this->output( "... index 'pagelink_unique_index' already exists\n" );
 		}
 	}
 
 	protected function checkRevUserFkey() {
 		if ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
-			$this->output( "... constraint \"revision_rev_user_fkey\" is ON DELETE RESTRICT\n" );
+			$this->output( "... constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
 		} else {
-			$this->output( "Changing constraint \"revision_rev_user_fkey\" to ON DELETE RESTRICT\n" );
+			$this->output( "Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT\n" );
 			$this->applyPatch( 'patch-revision_rev_user_fkey.sql' );
 		}
 	}
