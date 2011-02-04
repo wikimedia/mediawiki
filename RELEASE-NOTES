@@ -35,6 +35,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   per upload type.
 * $wgAPICacheHelp added in 1.16 is now removed. To disable API help caching, set
   $wgAPICacheHelpTimeout = 0;
+* OutputPage::isUserJsAllowed() no longer returns false when scripts are allowed by the page,
+  but $wgAllowUserJs is set to false.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
