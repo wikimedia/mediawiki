@@ -58,10 +58,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'msg_resource_links','patch-msg_resource_links.sql' ),
 			array( 'addTable', 'module_deps',       'patch-module_deps.sql' ),
 
-			# rename tables
-			array( 'renameTable', 'text',       'pagecontent' ),
-			array( 'renameTable', 'user',       'mwuser' ),
-
 			# Needed before new field
 			array( 'convertArchive2' ),
 
