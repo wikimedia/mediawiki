@@ -138,10 +138,10 @@ class PostgresInstaller extends DatabaseInstaller {
 		);
 
 		if( !$rights || ( $rights != 1 && $rights != 3 ) ) {
-			$status = Status::newFatal("can't create");
+			return false;
 		}
 
-		return $status;
+		return true;
 	}
 
 	public function getSettingsForm() {
@@ -164,7 +164,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		// Validate the create checkbox
 		$create = true;
 		$canCreate = $this->canCreateAccounts();
-		if ( !$canCreate->isOK() ) {
+		if ( $canCreate ) {
 			$this->setVar( '_CreateDBAccount', false );
 			$create = false;
 		} else {
