@@ -269,7 +269,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return Status::newGood();
 		}
 
-		$this->useAdmin = TRUE;
+		$this->useAdmin = true;
 		$status = $this->getConnection();
 
 		if ( !$status->isOK() ) {
@@ -348,7 +348,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	public function setupPLpgSQL() {
-		$this->useAdmin = TRUE;
+		$this->useAdmin = true;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
