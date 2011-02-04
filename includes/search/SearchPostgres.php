@@ -146,7 +146,7 @@ class SearchPostgres extends SearchEngine {
 
 		## We need a separate query here so gin does not complain about empty searches
 		$SQL = "SELECT to_tsquery($searchstring)";
-		$res = $this->db->doQuery($SQL);
+		$res = $this->db->query($SQL);
 		if (!$res) {
 			## TODO: Better output (example to catch: one 'two)
 			die ("Sorry, that was not a valid search string. Please go back and try again");
@@ -201,7 +201,7 @@ class SearchPostgres extends SearchEngine {
 	function update( $pageid, $title, $text ) {
 		## We don't want to index older revisions
 		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id IN ".
-				"(SELECT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) . 
+				"(SELECT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) .
 				" ORDER BY rev_text_id DESC OFFSET 1)";
 		$this->db->query($SQL);
 		return true;
