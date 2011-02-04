@@ -175,7 +175,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$create && $this->getVar( 'wgDBuser' ) != $this->getVar( '_InstallUser' ) ) {
 			// Test the web account
 			try {
-				$this->useAdmin = FALSE;
+				$this->useAdmin = false;
 				return $this->openConnection();
 			} catch ( DBConnectionError $e ) {
 				return Status::newFatal( 'config-connection-error', $e->getMessage() );
@@ -204,7 +204,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function setupDatabase() {
-		$this->useAdmin = TRUE;
+		$this->useAdmin = true;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
