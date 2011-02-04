@@ -547,11 +547,13 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 		global $IP;
+		wfSuppressWarnings();
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+		wfRestoreWarnings();
 		$interwikis = array();
 		if ( !$rows ) {
-			return Status::newFatal( 'config-install-interwiki-sql' );
+			return Status::newFatal( 'config-install-interwiki-list' );
 		}
 		foreach( $rows as $row ) {
 			$row = preg_replace( '/^\s*([^#]*?)\s*(#.*)?$/', '\\1', $row ); // strip comments - whee

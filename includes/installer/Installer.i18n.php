@@ -457,7 +457,7 @@ Make sure that the user "$1" can write to the schema "$2".',
 Skipping creation.",
 	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error: $1",
 	'config-install-interwiki'        => 'Populating default interwiki table',
-	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>.',
+	'config-install-interwiki-list'   => 'Could not read file <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
 Skipping default list.",
 	'config-install-stats'            => 'Initializing statistics',
