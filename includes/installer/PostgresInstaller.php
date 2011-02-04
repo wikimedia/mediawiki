@@ -278,7 +278,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$db = $this->getVar( 'wgDBname' );
 		$schema = $this->getVar( 'wgDBmwschema' );
-		$this->db->selectDB( $db );
 		$safeuser = $this->db->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safeusercheck = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $this->db->addQuotes( $this->getVar( 'wgDBpassword' ) );
