@@ -179,8 +179,6 @@ CONTROL;
 			return;
 		}
 
-		$wgOut->suppressQuickbar();
-
 		$oldTitle = $this->mOldPage->getPrefixedText();
 		$newTitle = $this->mNewPage->getPrefixedText();
 		if ( $oldTitle == $newTitle ) {
@@ -204,6 +202,9 @@ CONTROL;
 		}
 
 		$sk = $wgUser->getSkin();
+		if ( method_exists( $sk, 'suppressQuickbar' ) ) {
+			$sk->suppressQuickbar();
+		}
 
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );

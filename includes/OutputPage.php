@@ -129,13 +129,6 @@ class OutputPage {
 	var $mAllowUserJs;
 
 	/**
-	 * This was for the old skins and for users with 640x480 screen.
-	 * Please note old skins are still used and might prove useful for
-	 * users having old computers or visually impaired.
-	 */
-	var $mSuppressQuickbar = false;
-
-	/**
 	 * @EasterEgg I just love the name for this self documenting variable.
 	 * @todo document
 	 */
@@ -1069,23 +1062,6 @@ class OutputPage {
 	 */
 	public function getCategories() {
 		return $this->mCategories;
-	}
-
-	/**
-	 * Suppress the quickbar from the output, only for skin supporting
-	 * the quickbar
-	 */
-	public function suppressQuickbar() {
-		$this->mSuppressQuickbar = true;
-	}
-
-	/**
-	 * Return whether the quickbar should be suppressed from the output
-	 *
-	 * @return Boolean
-	 */
-	public function isQuickbarSuppressed() {
-		return $this->mSuppressQuickbar;
 	}
 
 	/**
