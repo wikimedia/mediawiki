@@ -210,10 +210,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return String or false
 	 */
 	public function checkLastModified( $feedFormat ) {
-		global $wgUseRCPatrol, $wgOut;
+		global $wgOut, $wgUser;
 		$dbr = wfGetDB( DB_SLAVE );
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
-		if( $feedFormat || !$wgUseRCPatrol ) {
+		if( $feedFormat || !$wgUser->useRCPatrol() ) {
 			if( $lastmod && $wgOut->checkLastModified( $lastmod ) ) {
 				# Client cache fresh and headers sent, nothing more to do.
 				return false;
