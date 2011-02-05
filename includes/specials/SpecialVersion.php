@@ -445,7 +445,7 @@ class SpecialVersion extends SpecialPage {
 		
 		$author = isset ( $extension['author'] ) ? $extension['author'] : array();
 		$extDescAuthor = "<td>$description</td>
-			<td>" . $this->listToText( (array)$author, false ) . "</td>
+			<td>" . $this->listAuthors( $author, false ) . "</td>
 			</tr>\n";
 		
 		return $extNameVer . $extDescAuthor;
@@ -510,6 +510,24 @@ class SpecialVersion extends SpecialPage {
 		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n" .
 			"<span style='display:none'>visited from $ip</span>";
+	}
+
+	/**
+	 * Return a formatted unsorted list of authors
+	 *
+	 * @param $authors mixed: string or array of strings
+	 * @return String: HTML fragment
+	 */
+	function listAuthors( $authors ) {
+		$list = array();
+		foreach( (array)$authors as $item ) {
+			if( $item == '...' ) {
+				$list[] = wfMsg( 'version-poweredby-others' );
+			} else {
+				$list[] = $item;
+			}
+		}
+		return $this->listToText( $list, false );
 	}
 
 	/**
