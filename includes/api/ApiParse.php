@@ -378,11 +378,44 @@ class ApiParse extends ApiBase {
 		return $sk->getCategories();
 	}
 
+	/**
+	 * @deprecated No modern skin generates langlinks this way, please use langlinks data to generate your own html
+	 */
 	private function languagesHtml( $languages ) {
-		global $wgOut, $wgUser;
-		$wgOut->setLanguageLinks( $languages );
-		$sk = $wgUser->getSkin();
-		return $sk->otherLanguages();
+		global $wgOut, $wgUser, $wgContLang, $wgHideInterlanguageLinks;
+
+		wfDeprecated( __METHOD__ );
+
+		if ( $wgHideInterlanguageLinks || count( $languages ) == 0 ) {
+			return '';
+		}
+
+		$sk = $wgUser->getSkin(); // @todo Kill this once we kill getExternalLinkAttributes
+
+		$s = htmlspecialchars( wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' ) );
+
+		$langs = array();
+		foreach ( $languages as $l ) {
+			$nt = Title::newFromText( $l );
+			$url = $nt->escapeFullURL();
+			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
+			$title = htmlspecialchars( $nt->getText() );
+
+			if ( $text == '' ) {
+				$text = $l;
+			}
+
+			$style = $sk->getExternalLinkAttributes(); // @fixme Linker::getExternalLinkAttributes is best off completely killed
+			$langs[] = "<a href=\"{$url}\" title=\"{$title}\"{$style}>{$text}</a>"; // @fixme Use Html::
+		}
+
+		$s .= implode( htmlspecialchars( wfMsgExt( 'pipe-separator', 'escapenoentities' ) ), $langs );
+
+		if ( $wgContLang->isRTL() ) {
+			$s = Html::rawElement( 'span', array( 'dir' => "LTR" ), $s );
+		}
+
+		return $s;
 	}
 
 	private function formatLinks( $links ) {
