@@ -129,7 +129,7 @@ class AddWiki extends Maintenance {
 			}
 		}
 
-		$title = Title::newFromText( wfMsgWeirdKey( "mainpage/$lang" ) );
+		$title = Title::newFromText( wfMessage( 'mainpage' )->inLanguage( $lang )->useDatabase( false )->plain() );
 		$this->output( "Writing main page to " . $title->getPrefixedDBkey() . "\n" );
 		$article = new Article( $title );
 		$ucsite = ucfirst( $site );

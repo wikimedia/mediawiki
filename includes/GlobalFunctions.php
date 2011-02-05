@@ -607,7 +607,9 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
 
 /**
  * This function provides the message source for messages to be edited which are *not* stored in the database.
- * @param $key String:
+ *
+ * @deprecated in 1.18; use wfMessage()
+ * @param $key String
  */
 function wfMsgWeirdKey( $key ) {
 	$source = wfMsgGetKey( $key, false, true, false );

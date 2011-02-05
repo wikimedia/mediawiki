@@ -257,7 +257,7 @@ class Article {
 			# If this is a MediaWiki:x message, then load the messages
 			# and return the message value for x.
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$text = $this->getDefaultMessageText();
+				$text = $this->mTitle->getDefaultMessageText();
 				if ( $text === false ) {
 					$text = '';
 				}
@@ -272,28 +272,6 @@ class Article {
 			wfProfileOut( __METHOD__ );
 
 			return $this->mContent;
-		}
-	}
-
-	/**
-	 * Get the default message text or false if the message doesn't exist
-	 *
-	 * @return String or false
-	 */
-	public function getDefaultMessageText() {
-		global $wgContLang;
-
-		if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI ) { // Just in case
-			return false;
-		}
-
-		list( $name, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
-		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );
-
-		if ( $message->exists() ) {
-			return $message->plain();
-		} else {
-			return false;
 		}
 	}
 
@@ -1411,7 +1389,7 @@ class Article {
 				wfMsgNoTrans( 'missingarticle-rev', $oldid ) );
 		} elseif ( $this->mTitle->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
-			$text = $this->getDefaultMessageText();
+			$text = $this->mTitle->getDefaultMessageText();
 		} else {
 			$createErrors = $this->mTitle->getUserPermissionsErrors( 'create', $wgUser );
 			$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
@@ -4162,7 +4140,7 @@ class Article {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				// This doesn't quite make sense; the user is asking for
 				// information about the _page_, not the message... -- RC
-				$wgOut->addHTML( htmlspecialchars( wfMsgWeirdKey( $this->mTitle->getText() ) ) );
+				$wgOut->addHTML( htmlspecialchars( $this->mTitle->getDefaultMessageText() ) );
 			} else {
 				$msg = $wgUser->isLoggedIn()
 					? 'noarticletext'
