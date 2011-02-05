@@ -1584,13 +1584,13 @@ Om die lêer in 'n artikel te gebruik, plaas 'n skakel in een van die volgende f
 'minlength1'                  => 'Prentname moet ten minste een letter lank wees.',
 'illegalfilename'             => 'Die lêernaam "$1" bevat karakters wat nie toegelaat word in bladsytitels nie. Verander asseblief die naam en probeer die lêer weer laai.',
 'badfilename'                 => 'Prentnaam is verander na "$1".',
-'filetype-mime-mismatch'      => 'Lêer-uitbreiding stem nie met die MIME-tipe ooreen nie.',
+'filetype-mime-mismatch'      => 'Lêer-uitbreiding ".$1" stem nie met die MIME-tipe van die lêer ($2) ooreen nie.',
 'filetype-badmime'            => 'Lêers met MIME-tipe "$1" word nie toegelaat nie.',
 'filetype-bad-ie-mime'        => 'Die lêer kan nie opgelaai word nie omdat Internet Explorer dit sal identifiseer as "$1", \'n nie toegelate lêertipe wat moontlik skadelik is.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is 'n ongewenste lêertipe.
 Aanbevole {{PLURAL:\$3|lêertipe|lêertipes}} is \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' is nie 'n toegelate lêertipe nie.
-Toelaatbare {{PLURAL:\$3|lêertipes|lêertipes}} is \$2.",
+'filetype-banned-type'        => 'Die {{PLURAL:$4|lêertipe|lêertipes}} word \'\'\'".$1"\'\'\' nie toegelaat nie.
+Toelaatbare {{PLURAL:$3|lêertipes|lêertipes}} is $2.',
 'filetype-missing'            => 'Die lêer het geen uitbreiding (soos ".jpg").',
 'empty-file'                  => 'Die lêer wat u probeer oplaai is leeg.',
 'file-too-large'              => 'Die lêer wat u probeer oplaai is te groot.',
@@ -1872,12 +1872,13 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Dubbele aansture',
-'doubleredirectstext'        => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
+'doubleredirects'                   => 'Dubbele aansture',
+'doubleredirectstext'               => 'Hierdie lys bevat bladsye wat aansture na ander aanstuurblaaie is.
 Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken-bladsy gee waarna die eerste aanstuur behoort te wys.
 <del>Doodgekrapte reëls</del> dui aan dat die probleem reeds opgelos is.',
-'double-redirect-fixed-move' => "[[$1]] was geskuif en is nou 'n deurverwysing na [[$2]].",
-'double-redirect-fixer'      => 'Aanstuur hersteller',
+'double-redirect-fixed-move'        => "[[$1]] was geskuif en is nou 'n deurverwysing na [[$2]].",
+'double-redirect-fixed-maintenance' => 'Maak dubbele aanstuur vanaf [[$1]] na [[$2]] reg.',
+'double-redirect-fixer'             => 'Aanstuur hersteller',
 
 'brokenredirects'        => 'Stukkende aansture',
 'brokenredirectstext'    => 'Die volgende aansture skakel na bladsye wat nie bestaan nie.',
