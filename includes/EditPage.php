@@ -141,7 +141,7 @@ class EditPage {
 		if ( !$this->mTitle->exists() ) {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				# If this is a system message, get the default text.
-				$text = $this->mArticle->getDefaultMessageText();
+				$text = $this->mTitle->getDefaultMessageText();
 				if( $text === false ) {
 					$text = $this->getPreloadedText( $preload );
 				}
