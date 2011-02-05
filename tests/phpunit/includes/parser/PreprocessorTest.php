@@ -90,6 +90,10 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{Foo| [[Bar] }}", "<root>{{Foo| [[Bar] }}</root>"),
 			array( "{{Foo| [[Bar|Baz] }}", "<root>{{Foo| [[Bar|Baz] }}</root>"),
 			array( "{{Foo|bar=[[baz]}}", "<root>{{Foo|bar=[[baz]}}</root>"),
+			array( "{{foo|", "<root>{{foo|</root>"),
+			array( "{{foo|}", "<root>{{foo|}</root>"),
+			array( "{{foo|} }}", "<root><template><title>foo</title><part><name index=\"1\" /><value>} </value></part></template></root>"),
+			array( "{{foo|bar=|}", "<root>{{foo|bar=|}</root>"),
 			/* array( file_get_contents( dirname( __FILE__ ) . '/QuoteQuran.txt' ), file_get_contents( dirname( __FILE__ ) . '/QuoteQuranExpanded.txt' ) ), */
 		);
 	}
