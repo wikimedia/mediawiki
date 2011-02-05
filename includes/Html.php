@@ -352,7 +352,7 @@ class Html {
 		$ret = '';
 		$attribs = (array)$attribs;
 		foreach ( $attribs as $key => $value ) {
-			if ( $value === false ) {
+			if ( $value === false || is_null( $value ) ) {
 				continue;
 			}
 
