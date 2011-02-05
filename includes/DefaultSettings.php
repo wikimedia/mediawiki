@@ -3654,7 +3654,7 @@ $wgProxyKey = false;
 $wgCookieExpiration = 30*86400;
 
 /**
- * Set to set an explicit domain on the login cookies eg, "justthis.domain. org"
+ * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
  * or ".any.subdomain.net"
  */
 $wgCookieDomain = '';
