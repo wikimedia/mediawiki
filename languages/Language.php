@@ -156,9 +156,7 @@ class Language {
 		static $recursionLevel = 0;
 
 		// Protect against path traversal below
-		if ( !Language::isValidCode( $code ) 
-			|| strcspn( $code, "/\\\000" ) !== strlen( $code ) ) 
-		{
+		if ( !Language::isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
@@ -2829,9 +2827,7 @@ class Language {
 	 */
 	static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		// Protect against path traversal
-		if ( !Language::isValidCode( $code ) 
-			|| strcspn( $code, "/\\\000" ) !== strlen( $code ) ) 
-		{
+		if ( !Language::isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 		
