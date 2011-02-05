@@ -9,20 +9,20 @@
 BEGIN;
 SET client_min_messages = 'ERROR';
 
-DROP SEQUENCE IF EXISTS user_user_id_seq;
-DROP SEQUENCE IF EXISTS page_page_id_seq;
-DROP SEQUENCE IF EXISTS revision_rev_id_seq;
-DROP SEQUENCE IF EXISTS page_restrictions_id_seq;
-DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq;
-DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq;
-DROP SEQUENCE IF EXISTS logging_log_id_seq;
-DROP SEQUENCE IF EXISTS trackbacks_tb_id_seq;
-DROP SEQUENCE IF EXISTS job_job_id_seq;
-DROP SEQUENCE IF EXISTS category_cat_id_seq;
-DROP FUNCTION IF EXISTS page_deleted();
-DROP FUNCTION IF EXISTS ts2_page_title();
-DROP FUNCTION IF EXISTS ts2_page_text();
-DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT);
+DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS page_restrictions_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS trackbacks_tb_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
+DROP FUNCTION IF EXISTS page_deleted() CASCADE;
+DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
+DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
+DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT) CASCADE;
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
 CREATE TABLE mwuser ( -- replace reserved word 'user'
