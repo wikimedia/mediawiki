@@ -23,23 +23,28 @@ $( '#preferences' )
 							.append(
 								$( '<a></a>')
 									.text( $(this).text() )
-									.attr( 'href', '#prefsection-' + i )
+									.attr( 'id', 'preftab-' + i + '-tab' )
+									.attr( 'href', '#preftab-' + i ) // Use #preftab-N instead of #prefsection-N to avoid jumping on click
 									.mousedown( function( e ) {
 										$(this).parent().parent().find( 'li' ).removeClass( 'selected' );
 										$(this).parent().addClass( 'selected' );
-										e.preventDefault();
-										return false;
 									} )
 									.click( function( e ) {
 										$( '#preferences > fieldset' ).hide();
 										$( '#prefsection-' + i ).show();
-										e.preventDefault();
-										return false;
 									} )
 							)
 					);
 				}
 			);
+
+// If we've reloaded the page or followed an open-in-new-window,
+// make the selected tab visible.
+var hash = window.location.hash;
+if( hash.match( /^#preftab-[\d]+$/ ) ) {
+	var tab = $( hash + '-tab' );
+	tab.mousedown().click();
+}
 
 /**
  * Given an email validity status (true, false, null) update the label CSS class
