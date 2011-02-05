@@ -384,8 +384,6 @@ class ApiParse extends ApiBase {
 	private function languagesHtml( $languages ) {
 		global $wgOut, $wgUser, $wgContLang, $wgHideInterlanguageLinks;
 
-		wfDeprecated( __METHOD__ );
-
 		if ( $wgHideInterlanguageLinks || count( $languages ) == 0 ) {
 			return '';
 		}
