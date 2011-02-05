@@ -23,13 +23,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	);
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
-		if ($name !== null) {
-			$this->setName($name);
-		}
+		parent::__construct( $name, $data, $dataName );
 
-		$this->data = $data;
-		$this->dataName = $dataName;
-		
 		$this->backupGlobals = false;
         $this->backupStaticAttributes = false;
 	}
