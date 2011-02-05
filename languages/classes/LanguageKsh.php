@@ -40,7 +40,7 @@ class LanguageKsh extends Language {
 	 *	Betoont               focussed or stressed article
 	 *	-omitted-             unstressed or unfocussed article
 	 *
-	 * Possible values for for the type of genitive are:
+	 * Possible values for the type of genitive are:
 	 *	Sing, Iehr            prepositioned genitive = possessive dative
 	 *	Vun, Fon, -omitted-   postpositioned genitive
 	 *	                               = preposition "vun" with dative
