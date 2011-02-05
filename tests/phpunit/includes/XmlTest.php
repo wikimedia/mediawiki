@@ -173,7 +173,3 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 }
-
-// TODO
-class XmlSelectTest extends MediaWikiTestCase {
-}
