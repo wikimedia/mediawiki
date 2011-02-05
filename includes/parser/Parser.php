@@ -1111,10 +1111,9 @@ class Parser {
 				throw new MWException( __METHOD__.': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
-			$url = wfMsgForContent( $urlmsg, $id);
+			$url = wfMsgForContent( $urlmsg, $id );
 			$sk = $this->mOptions->getSkin( $this->mTitle );
-			$la = $sk->getExternalLinkAttributes( "external $CssClass" );
-			return "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
+			return $sk->makeExternalLink( $url, "{$keyword} {$id}", true, $CssClass );
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
 			$isbn = $m[5];

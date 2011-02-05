@@ -388,23 +388,16 @@ class ApiParse extends ApiBase {
 			return '';
 		}
 
-		$sk = $wgUser->getSkin(); // @todo Kill this once we kill getExternalLinkAttributes
-
 		$s = htmlspecialchars( wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' ) );
 
 		$langs = array();
 		foreach ( $languages as $l ) {
 			$nt = Title::newFromText( $l );
-			$url = $nt->escapeFullURL();
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
-			$title = htmlspecialchars( $nt->getText() );
 
-			if ( $text == '' ) {
-				$text = $l;
-			}
-
-			$style = $sk->getExternalLinkAttributes(); // @fixme Linker::getExternalLinkAttributes is best off completely killed
-			$langs[] = "<a href=\"{$url}\" title=\"{$title}\"{$style}>{$text}</a>"; // @fixme Use Html::
+			$langs[] = Html::element( 'a',
+				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
+				$text == '' ? $l : $text );
 		}
 
 		$s .= implode( htmlspecialchars( wfMsgExt( 'pipe-separator', 'escapenoentities' ) ), $langs );

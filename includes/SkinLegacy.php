@@ -412,16 +412,11 @@ class LegacyTemplate extends BaseTemplate {
 			$first = false;
 
 			$nt = Title::newFromText( $l );
-			$url = $nt->escapeFullURL();
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
-			$title = htmlspecialchars( $nt->getText() );
 
-			if ( $text == '' ) {
-				$text = $l;
-			}
-
-			$style = $this->getExternalLinkAttributes();
-			$s .= "<a href=\"{$url}\" title=\"{$title}\"{$style}>{$text}</a>";
+			$s .= Html::element( 'a',
+				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
+				$text == '' ? $l : $text );
 		}
 
 		if ( $wgContLang->isRTL() ) {
