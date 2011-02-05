@@ -16,6 +16,11 @@ class FormatJson {
 	 * 
 	 * @param $value Mixed: the value being encoded. Can be any type except a resource.
 	 * @param $isHtml Boolean
+	 *
+	 * @fixme "$isHtml" parameter's purpose is not documented. It appears to
+	 *        map to a parameter labeled "pretty-print output with indents and
+	 *        newlines" in Services_JSON::encode(), which has no string relation
+	 *        to HTML output.
 	 * 
 	 * @return string
 	 */
