@@ -76,10 +76,25 @@ class ForeignAPIFile extends File {
 			// show icon
 			return parent::transform( $params, $flags );
 		}
+
+		$otherParams = "";
+		// Not using implode, since associative array.
+		foreach ( $params as $name => $value ) {
+			if ( $name === 'width' || $name === 'height' ) {
+				continue;
+			}
+			$otherParams .= "{$name}={$value}|";
+		}
+		// Remove the last |
+		if ( $otherParams !== "" ) {
+			$otherParams = substr( $otherParams, 0, -1 );
+		}
+
 		$thumbUrl = $this->repo->getThumbUrlFromCache(
 			$this->getName(),
 			isset( $params['width'] ) ? $params['width'] : -1,
-			isset( $params['height'] ) ? $params['height'] : -1 );
+			isset( $params['height'] ) ? $params['height'] : -1,
+			$otherParams );
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
 	}
 

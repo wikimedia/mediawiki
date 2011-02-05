@@ -115,6 +115,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19751) Filesystem is now checked during image undeletion
 * Send last modified headers for Special:Recentchanges when RC patrol is
   enabled, but user cannot see rc patrol links.
+* (bug 26548) ForeignAPIRepo (InstantCommons) now works with PDF files
+  and other multi-paged file formats.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
@@ -140,6 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26650) Remove $wgAPICacheHelp in favour of $wgAPICacheHelpTimeout
 * (bug 24650) Fix API to work with categorylinks changes
 * Expose list of skins in meta=siteinfo
+* (bug 26548) Add iiurlparam param to query=imageinfo and query=stashimageinfo
 
 === Languages updated in 1.18 ===
 

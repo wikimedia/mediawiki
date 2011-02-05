@@ -197,12 +197,13 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
-	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null ) {
+	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
 			'iiprop' => 'url|timestamp',
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
+			'iiurlparam'  => $otherParams,
 			'prop' => 'imageinfo' ) );
 		$info = $this->getImageInfo( $data );
 
@@ -224,15 +225,16 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param $name String is a dbkey form of a title
 	 * @param $width
 	 * @param $height
+	 * @param String $param Other rendering parameters (page number, etc). | separated.
 	 */
-	function getThumbUrlFromCache( $name, $width, $height ) {
+	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
 		global $wgMemc;
 
 		if ( !$this->canCacheThumbs() ) {
-			return $this->getThumbUrl( $name, $width, $height );
+			return $this->getThumbUrl( $name, $width, $height, null, $params );
 		}
 		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
-		$sizekey = "$width:$height";
+		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
 		$knownThumbUrls = $wgMemc->get($key);
@@ -248,7 +250,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		$metadata = null;
-		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata );
+		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata, $params );
 
 		if( !$foreignUrl ) {
 			wfDebug( __METHOD__ . " Could not find thumburl\n" );
@@ -273,7 +275,7 @@ class ForeignAPIRepo extends FileRepo {
 			$diff = abs( $modified - $current );
 			if( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
-				$knownThumbUrls["$width:$height"] = $localUrl;
+				$knownThumbUrls[$sizekey] = $localUrl;
 				$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 				return $localUrl;
 			}
