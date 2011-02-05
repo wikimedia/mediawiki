@@ -2990,7 +2990,7 @@ class OutputPage {
 			}
 			$s = str_replace( '$' . ( $n + 1 ), wfMsgExt( $name, $options, $args ), $s );
 		}
-		$this->addHTML( $this->parse( $s, /*linestart*/true, /*uilang*/true ) );
+		$this->addWikiText( $s );
 	}
 
 	/**
