@@ -23,8 +23,10 @@ class Linker {
 	 *
 	 * @param $class String: the contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
+	 * @deprecated Just pass the external class directly to something using Html::expandAttributes
 	 */
 	function getExternalLinkAttributes( $class = 'external' ) {
+		wfDeprecated( __METHOD__ );
 		return $this->getLinkAttributesInternal( '', $class );
 	}
 
@@ -795,25 +797,17 @@ class Linker {
 	 * @param $escape Boolean: do we escape the link text?
 	 * @param $linktype String: type of external link. Gets added to the classes
 	 * @param $attribs Array of extra attributes to <a>
-	 *
-	 * @todo FIXME: This is a really crappy implementation. $linktype and
-	 * 'external' are mashed into the class attrib for the link (which is made
-	 * into a string). Then, if we've got additional params in $attribs, we
-	 * add to it. People using this might want to change the classes (or other
-	 * default link attributes), but passing $attribsText is just messy. Would
-	 * make a lot more sense to make put the classes into $attribs, let the
-	 * hook play with them, *then* expand it all at once.
 	 */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
-		if ( isset( $attribs['class'] ) ) {
-			# yet another hack :(
-			$class = $attribs['class'];
-		} else {
-			$class =  "external $linktype";
+		$class = "external";
+		if ( isset($linktype) && $linktype ) {
+			$class .= " $linktype";
 		}
-
-		$attribsText = $this->getExternalLinkAttributes( $class );
-		$url = htmlspecialchars( $url );
+		if ( isset($attribs['class']) && $attribs['class'] ) {
+			$class .= " {$attribs['class']}";
+		}
+		$attribs['class'] = $class;
+		
 		if ( $escape ) {
 			$text = htmlspecialchars( $text );
 		}
@@ -823,10 +817,8 @@ class Linker {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}\n", true );
 			return $link;
 		}
-		if ( $attribs ) {
-			$attribsText .= Html::expandAttributes( $attribs );
-		}
-		return '<a href="' . $url . '"' . $attribsText . '>' . $text . '</a>';
+		$attribs['href'] = $url;
+		return Html::rawElement( 'a', $attribs, $text );
 	}
 
 	/**
