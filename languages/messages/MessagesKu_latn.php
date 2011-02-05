@@ -41,6 +41,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Lînkan berve gotarên vala biguherîne',
 'tog-justify'                 => 'Gotar bi forma "block"',
 'tog-hideminor'               => 'Guherandinên biçûk ji listêya guherandinên dawî veşêre',
+'tog-hidepatrolled'           => 'Guherrandinê hatine kontrolkirin di guherrandinên dawî de veşêre',
+'tog-newpageshidepatrolled'   => 'Rûpelên hatine kontrolkirin di lîsteya rûpelên nû de veşêre',
 'tog-extendwatchlist'         => 'Lîsteya şopandinê berfireh bike bo dîtina hemî guherandinan, ne tenê yên nû',
 'tog-usenewrc'                => 'Wêşandinê zêdetir (JavaScript gireke)',
 'tog-numberheadings'          => 'Sernavan otomatîk bihejmêre',
@@ -692,12 +694,13 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'mergelog' => 'Reşahîya yekkirinê',
 
 # Diffs
-'history-title'           => 'Dîroka versyonên "$1"',
-'difference'              => '(Ciyawaziya nav revîzyonan)',
-'lineno'                  => 'Dêrra $1:',
-'compareselectedversions' => 'Guhartoyan bide ber hev',
-'editundo'                => 'Betalbike',
-'diff-multi'              => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
+'history-title'            => 'Dîroka versyonên "$1"',
+'difference'               => '(Ciyawaziya nav revîzyonan)',
+'lineno'                   => 'Dêrra $1:',
+'compareselectedversions'  => 'Guhartoyan bide ber hev',
+'showhideselectedversions' => 'Revîzyonên bijartî nîşan bide/veşêre',
+'editundo'                 => 'Betalbike',
+'diff-multi'               => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
 
 # Search results
 'searchresults'                  => 'Encamên lêgerînê',
@@ -1051,6 +1054,9 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 # Random page
 'randompage' => 'Rûpelek bi helkeft',
+
+# Random redirect
+'randomredirect' => 'Redirecta tesadufî',
 
 # Statistics
 'statistics'              => 'Statîstîk',

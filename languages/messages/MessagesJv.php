@@ -76,8 +76,10 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tuduhna cacahé pangawas',
 'tog-oldsig'                  => 'Pratayang tapak asta sing ana:',
 'tog-fancysig'                => 'Anggepen tapak asta minangka teks wiki (tanpa pranala otomatis)',
-'tog-externaleditor'          => 'Nganggoa program pangolah tembung jaba (external wordprocessor)',
-'tog-externaldiff'            => 'Nganggoa program njaba kanggo mirsani prabédan suntingan',
+'tog-externaleditor'          => 'Pigunakaken program pangolah tembung jawi (namung tumrap ahli, perlu pangaturan mligi ing komputer panjenengan. 
+[http://www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
+'tog-externaldiff'            => 'Pigunakaken diff eksternal sacara bektan (namung tumrap para ahli, perlu pangaturan mligi ing komputer panjenengan.
+[http://www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
 'tog-showjumplinks'           => 'Aktifna pranala pambiyantu "langsung menyang"',
 'tog-uselivepreview'          => 'Nganggoa pratayang langsung (JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Élingna aku menawa kothak ringkesan suntingan isih kosong',
@@ -431,10 +433,10 @@ Alesané yaiku ''$2''.",
 'virus-unknownscanner' => 'Antivirus ora ditepungi:',
 
 # Login and logout pages
-'logouttext'                 => "'''Panjenengan wis metu (oncat) saka cathetan sistem.'''
+'logouttext'                 => "'''Panjenengan sampun medal (oncat) saking sistem.'''
 
-Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
-Supaya dimangertèni bilih ana kaca sing isih nganggo panjenengan kacathet ing sistém amerga panjenengan durung mbusak <em>cache</em> ''browser'' panjenengan.",
+Panjenengan saged migunakaken {{SITENAME}} kanthi anonim, utawi panjenengan saged [[Special:UserLogin|mlebet malih]] minangka pangangge ingkang sami utawi pangangge sanes.
+Supados dipunmangertosi bilih wonten kaca ingkang nedahaken manawi panjenengan taksih mlebet log ngantos panjenengan mbusak singgahan ing panjelajah web panjenengan.",
 'welcomecreation'            => '== Sugeng rawuh, $1! ==
 
 Akun panjenengan wis kacipta. Aja lali nata konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] panjenengan.',

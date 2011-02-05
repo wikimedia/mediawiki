@@ -1607,8 +1607,8 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'filetype-bad-ie-mime'        => 'Non se pode cargar este ficheiro porque o Internet Explorer detectaríao como "$1", o cal é un tipo de ficheiro non permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de ficheiro non desexado.
 {{PLURAL:\$3|O tipo de ficheiro preferido é|Os tipos de ficheiro preferidos son}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.
-{{PLURAL:\$3|O tipo de ficheiro permitido é|Os tipos de ficheiros permitidos son}} \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' non {{PLURAL:$4|é un tipo de ficheiro permitido|son tipos de ficheiro permitidos}}.
+{{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos son}} $2.',
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'empty-file'                  => 'O ficheiro que enviou estaba baleiro.',
 'file-too-large'              => 'O ficheiro que enviou era grande de máis.',
@@ -1901,12 +1901,13 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Redireccións dobres',
-'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
+'doubleredirects'                   => 'Redireccións dobres',
+'doubleredirectstext'               => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
 Cada ringleira contén ligazóns cara á primeira e segunda redireccións, así como a primeira liña de texto da segunda páxina, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.
 As entradas <del>riscadas</del> xa foron resoltas.',
-'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
-'double-redirect-fixer'      => 'Amañador de redireccións',
+'double-redirect-fixed-move'        => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
+'double-redirect-fixed-maintenance' => 'Arranxo a redirección dobre entre "[[$1]]" e "[[$2]]".',
+'double-redirect-fixer'             => 'Amañador de redireccións',
 
 'brokenredirects'        => 'Redireccións rotas',
 'brokenredirectstext'    => 'As seguintes redireccións ligan cara a páxinas que non existen:',
@@ -3307,6 +3308,20 @@ para cancelar a confirmación do enderezo de correo electrónico:
 $5
 
 Este código de confirmación caducará o $4.',
+'confirmemail_body_set'     => 'Alguén, probablemente vostede, desde o enderezo IP $1,
+estableceu este enderezo de correo electrónico como o da conta "$2" en {{SITENAME}}.
+
+Para confirmar que realmente esta conta pertence a vostede e reactivar
+as características do correo electónico en {{SITENAME}}, abra esta ligazón no seu navegador:
+
+$3
+
+Se a conta *non* é súa, siga esta ligazón
+para cancelar a confirmación do enderezo de correo electrónico:
+
+$5
+
+O código de confirmación caduca o $6 ás $7.',
 'confirmemail_invalidated'  => 'A confirmación do enderezo de correo electrónico foi cancelada',
 'invalidateemail'           => 'Cancelar a confirmación do correo electrónico',
 

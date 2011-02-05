@@ -977,7 +977,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 # Merge log
 'mergelog'           => 'Log gabung',
 'pagemerge-logentry' => '[[$1]] geus ngagabung jeung [[$2]] (révisi nepi ka $3)',
-'revertmerge'        => 'Bengkahkeun',
+'revertmerge'        => 'Pisahkeun',
 'mergelogpagetext'   => 'Di handap ieu béréndélan prosés gabung jujutan kaca.',
 
 # Diffs
@@ -1289,7 +1289,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'hist'                              => 'juj',
 'hide'                              => 'sumputkeun',
 'show'                              => 'témbongkeun',
-'minoreditletter'                   => 's',
+'minoreditletter'                   => 'm',
 'newpageletter'                     => 'A',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|ngawaskeun|ngawaskeun}}]',
@@ -2000,8 +2000,8 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'ipblocklist-empty'           => 'Daptar peungpeuk kosong.',
 'ipblocklist-no-results'      => 'Alamat IP atawa landihan pamaké nu dipundut teu dipeungpeuk.',
 'blocklink'                   => 'blokir',
-'unblocklink'                 => 'buka peungpeuk',
-'change-blocklink'            => 'Robah peungpeuk',
+'unblocklink'                 => 'buka blokir',
+'change-blocklink'            => 'Robah status blokir',
 'contribslink'                => 'kontribusi',
 'autoblocker'                 => 'Otomatis dipeungpeuk sabab alamat IP anjeun sarua jeung "$1". Alesan "$2".',
 'blocklogpage'                => 'Log_peungpeuk',
@@ -2095,7 +2095,7 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'movesubpagetext'              => 'Ieu kaca mibanda $1 {{PLURAL:$1|subkaca|subkaca}} anu dipidangkeun di handap.',
 'movenosubpage'                => 'Ieu kaca teu boga subkaca.',
 'movereason'                   => 'Alesan:',
-'revertmove'                   => 'balikeun',
+'revertmove'                   => 'balikkeun',
 'delete_and_move'              => 'Hapus jeung pindahkeun',
 'delete_and_move_text'         => '==Merlukeun hapusan==
 

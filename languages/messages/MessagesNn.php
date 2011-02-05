@@ -2564,12 +2564,12 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagestext'               => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB'     => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
-'allmessages-filter-legend'     => 'Filtrér',
-'allmessages-filter'            => 'Filtrér etter tilpassingsgrad:',
+'allmessages-filter-legend'     => 'Filtrer',
+'allmessages-filter'            => 'Filtrer etter tilpassingsgrad:',
 'allmessages-filter-unmodified' => 'Ikkje endra',
 'allmessages-filter-all'        => 'Alle',
 'allmessages-filter-modified'   => 'Endra',
-'allmessages-prefix'            => 'Filtrér etter prefiks:',
+'allmessages-prefix'            => 'Filtrer etter prefiks:',
 'allmessages-language'          => 'Språk:',
 'allmessages-filter-submit'     => 'Gå',
 
@@ -3392,6 +3392,10 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
 
 # Special:DisableAccount
-'disableaccount-reason' => '↓Grunngjeving:',
+'disableaccount-reason'      => '↓Grunngjeving:',
+'disableaccount-mustconfirm' => 'Du lyt stadfesta at du ynskjer å deaktivera denne kontoen.',
+'disableaccount-nosuchuser'  => 'Brukarkontoen «$1» finst ikkje.',
+'disableaccount-success'     => 'Brukarkontoen «$1» er permanent deaktivert.',
+'disableaccount-logentry'    => 'deaktiverte brukarkontoen [[$1]] permanent',
 
 );
