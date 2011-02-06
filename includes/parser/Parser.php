@@ -3948,10 +3948,10 @@ class Parser {
 				// We use a page and section attribute to stop the language converter from converting these important bits
 				// of data, but put the headline hint inside a content block because the language converter is supposed to
 				// be able to convert that piece of data.
-				$editlink = '<editsection page="' . htmlspecialchars($editlinkArgs[0]);
+				$editlink = '<mw:editsection page="' . htmlspecialchars($editlinkArgs[0]);
 				$editlink .= '" section="' . htmlspecialchars($editlinkArgs[1]) .'"';
 				if ( isset($editlinkArgs[2]) ) {
-					$editlink .= '>' . $editlinkArgs[2] . '</editsection>';
+					$editlink .= '>' . $editlinkArgs[2] . '</mw:editsection>';
 				} else {
 					$editlink .= '/>';
 				}
