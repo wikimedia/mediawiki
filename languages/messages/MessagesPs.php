@@ -165,6 +165,7 @@ $defaultUserOptionOverrides = array(
 $messages = array(
 # User preference toggles
 'tog-underline'              => 'کرښنې تړنې:',
+'tog-justify'                => 'پاراګرافونه همجوليزول',
 'tog-hideminor'              => 'په وروستيو بدلونو کې واړه سمونونه پټول',
 'tog-hidepatrolled'          => 'په وروستيو بدلونونو کې څارل شوې سمونونه پټول',
 'tog-newpageshidepatrolled'  => 'د نوؤ مخونو په لړليک کې کتل شوي مخونه پټول',
@@ -435,6 +436,8 @@ $1',
 'toc'                     => 'نيوليک',
 'showtoc'                 => 'ښکاره کول',
 'hidetoc'                 => 'پټول',
+'collapsible-collapse'    => 'پرزول',
+'collapsible-expand'      => 'غځول',
 'thisisdeleted'           => '$1 کتل او يا بيازېرمل؟',
 'viewdeleted'             => '$1 کتل؟',
 'restorelink'             => '{{PLURAL:$1|يو ړنګ شوی سمون|$1 ړنګ شوي سمونونه}}',
@@ -813,6 +816,7 @@ $1',
 'rev-delundel'               => 'ښکاره کول/ پټول',
 'rev-showdeleted'            => 'ښکاره کول',
 'revisiondelete'             => 'د ړنګولو/ناړنګولو مخکتنې',
+'revdelete-nologtype-title'  => 'د يادښت ډول نه دی ځانګړی شوی',
 'revdelete-no-file'          => 'ځانګړې شوې دوتنه نشته.',
 'revdelete-show-file-submit' => 'هو',
 'revdelete-selected'         => "'''د [[:$1]] {{PLURAL:$2|ټاکلې بڼه|ټاکلې بڼې}}:'''",
@@ -844,14 +848,18 @@ $1',
 'revdelete-offender'         => 'د مخکتنې ليکوال:',
 
 # Revision move
-'revmove-reasonfield'    => 'سبب:',
-'revmove-titlefield'     => 'د موخې مخ:',
-'revmove-badparam-title' => 'بد پاراميترونه',
-'revmove-nullmove-title' => 'بد سرليک',
+'revmove-submit'               => 'بڼې ټاکلي مخ ته لېږدول',
+'revisionmoveselectedversions' => 'ټاکلې بڼې لېږدول',
+'revmove-reasonfield'          => 'سبب:',
+'revmove-titlefield'           => 'د موخې مخ:',
+'revmove-badparam-title'       => 'بد پاراميترونه',
+'revmove-nullmove-title'       => 'بد سرليک',
 
 # History merging
+'mergehistory'                     => 'د مخ پېښليکونه سره يوځای کول',
 'mergehistory-from'                => 'د سرچينې مخ:',
 'mergehistory-into'                => 'د موخې مخ:',
+'mergehistory-submit'              => 'بڼې سره يوځای کول',
 'mergehistory-no-source'           => 'د سرچينې مخ $1 نشته.',
 'mergehistory-no-destination'      => 'د $1 موخنيز مخ نشته.',
 'mergehistory-invalid-source'      => 'د سرچينې مخ بايد يو سم سرليک وي.',
@@ -1015,8 +1023,7 @@ $1',
 'gender-female'               => 'ښځه',
 'email'                       => 'برېښليک',
 'prefs-help-realname'         => 'د اصلي نوم ليکل ستاسو په خوښه دی خو که تاسو خپل اصلي نوم وټاکۍ پدې سره به ستاسو ټول کارونه او ونډې ستاسو د نوم په اړوندولو کې وکارېږي.',
-'prefs-help-email'            => 'د برېښليک ليکل ستاسې په خوښه دی، خو په ورکړې سره به يې د يوه نوي پټنوم درلېږلو چار آسانه کړي هغه هم کله چې تاسې نه خپل پټنوم هېر شوی وي.
-دا هم ستاسې خپله خوښه ده چې نورو کارنانو ته اجازه ورکړی چې تاسې سره د کارن-نوم او يا هم د کارن د خبرې اترو لخوا، پرته له دې چې ستاسې پېژندنه وشي، اړيکې ټينګې کړي.',
+'prefs-help-email'            => 'د برېښليک ورکړه ستاسې په خوښه ده، خو په ورکړې سره به يې د يوه نوي پټنوم د لېږلو چار آسانه کړي هغه هم کله چې تاسې نه خپل پټنوم هېر شوی وي.',
 'prefs-help-email-required'   => 'ستاسو د برېښليک پته پکار ده.',
 'prefs-info'                  => 'بنسټيزه مالومات',
 'prefs-i18n'                  => 'نړېوالتوب',
@@ -1095,10 +1102,12 @@ $1',
 'right-userrights-interwiki' => 'په نورو ويکي ګانو د نورو کارنانو  کارن-رښتې سمول',
 'right-reset-passwords'      => 'د نورو کارنانو پټتوري بياامستل',
 'right-sendemail'            => 'نورو کارنانو ته برېښليک لېږل',
+'right-disableaccount'       => 'ګڼونونه ناچارنول',
 
 # User rights log
-'rightslog'  => 'د کارن د رښتو يادښت',
-'rightsnone' => '(هېڅ)',
+'rightslog'     => 'د کارن د رښتو يادښت',
+'rightslogtext' => 'دا د کارن رښتو د بدلونونو يو يادښت دی',
+'rightsnone'    => '(هېڅ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'           => 'همدا مخ لوستل',
@@ -1539,6 +1548,7 @@ $1',
 'enotif_impersonal_salutation' => '{{SITENAME}} کارن',
 'changed'                      => 'بدل شو',
 'created'                      => 'جوړ شو',
+'enotif_subject'               => 'د {{SITENAME}} مخ $PAGETITLE د  $PAGEEDITOR لخوا $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'د ټولو هغو بدلونونو د کتلو لپاره چې ستاسو د وروستي ځل راتګ نه وروسته پېښې شوي، $1 وګورۍ.',
 'enotif_lastdiff'              => 'د همدغه بدلون د کتلو لپاره $1 وګورۍ.',
 'enotif_anon_editor'           => 'ورکنومی کارن $1',
@@ -2255,11 +2265,16 @@ $5
 'htmlform-selectorother-other' => 'بل',
 
 # Special:DisableAccount
-'disableaccount'            => 'د يو کارن ګڼون ناچارنول',
-'disableaccount-user'       => 'کارن-نوم:',
-'disableaccount-reason'     => 'سبب:',
-'disableaccount-nosuchuser' => 'د "$1" کارن ګڼون نشته.',
-'disableaccount-success'    => 'د "$1" کارن ګڼون د تل لپاره ناچارن شو.',
-'disableaccount-logentry'   => 'د تل لپاره د [[$1]] د کارن ګڼون ناچارنول',
+'disableaccount'             => 'د يو کارن ګڼون ناچارنول',
+'disableaccount-user'        => 'کارن-نوم:',
+'disableaccount-reason'      => 'سبب:',
+'disableaccount-confirm'     => "د کارن دا ګڼون ناچارنول.
+د دې ګڼون کارن به و نه توانېږي چې غونډال کې ننوځي، خپل پټنوم پرځاي کړي، او يا د خبراوي برېښليک ترلاسه کړي.
+که دم مهال د دې ګڼون کارن له هر ځای نه پرليکه وي، هغه به سمدلاسه د غونډال نه ووځي.
+''دا مه هېروۍ چې د يوه ګڼون ناچارنولو چاره بېرته پرشا نه ګرځي تر هاغه پورې چې د غونډال د پازوال منځګړتوب پکې نه وي.''",
+'disableaccount-mustconfirm' => 'تاسې بايد د دې چارې پخلی وکړی چې تاسې همدا ګڼون ناچارنول غواړۍ.',
+'disableaccount-nosuchuser'  => 'د "$1" کارن ګڼون نشته.',
+'disableaccount-success'     => 'د "$1" کارن ګڼون د تل لپاره ناچارن شو.',
+'disableaccount-logentry'    => 'د تل لپاره د [[$1]] د کارن ګڼون ناچارنول',
 
 );

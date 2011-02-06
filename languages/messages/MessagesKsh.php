@@ -384,7 +384,7 @@ Dat es och all op Änglesch:
 
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Jangk widder noh: „$1“.',
-'tagline'           => 'Us de {{SITENAME}}',
+'tagline'           => 'Us {{GRAMMAR:Dative|{{SITENAME}}}}',
 'help'              => 'Hölp',
 'search'            => 'Söke',
 'searchbutton'      => 'em Tex',
@@ -448,8 +448,8 @@ $1',
 'pool-errorunknown' => 'Dä Fähler kenne mer nit',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Üvver de {{SITENAME}}',
-'aboutpage'            => 'Project:Üvver de {{SITENAME}}',
+'aboutsite'            => 'Üvver {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
+'aboutpage'            => 'Project:Üvver {{GRAMMAR:Nom|{{SITENAME}}}}',
 'copyright'            => 'Dä Enhald steiht unger de $1.',
 'copyrightpage'        => '{{ns:project}}:Lizenz',
 'currentevents'        => 'Et Neuste',
@@ -462,7 +462,7 @@ $1',
 'mainpage'             => 'Haupsigg',
 'mainpage-description' => 'Haupsigg',
 'policy-url'           => 'Project:Rejelle',
-'portal'               => 'Üvver {{SITENAME}} för Metmaacher',
+'portal'               => 'Üvver {{GRAMMAR:Acc|{{SITENAME}}}} för Metmaacher',
 'portal-url'           => 'Project:Metmaacher Pooz',
 'privacy'              => 'Daateschotz un Jeheimhaldung',
 'privacypage'          => 'Project:Daateschotz un Jeheimhaldung',
@@ -619,12 +619,12 @@ $2',
 # Login and logout pages
 'logouttext'                 => "'''Jetz bes de usjelogg'''
 
-Do künnts op de {{SITENAME}} wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.
-Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe Cache fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
+Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.
+Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe <i lang=\"en\">Cache</i> fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
 'welcomecreation'            => '== Dach, $1! ==
 Dinge Zojang för heh es do.
 Do bes jetz aanjemeldt.
-Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh op de {{SITENAME}} zeräächmaache]].',
+Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAMMAR:Akk|{{SITENAME}}}} zeräächmaache]].',
 'yourname'                   => 'Metmaacher Name:',
 'yourpassword'               => 'Passwood',
 'yourpasswordagain'          => 'Noch ens dat Passwood',
@@ -634,7 +634,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh op de {{SIT
 'externaldberror'            => 'Do wor ene Fähler en de externe Daatebank, oder Do darfs Ding extern Daate nit ändere. Dat Aanmelde jingk jedenfalls donevve.',
 'login'                      => 'Enlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
-'loginprompt'                => 'Öm op de {{SITENAME}} enlogge ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
+'loginprompt'                => 'Öm heh enlogge ze künne, muss De de <i lang="en">Cookies</i> en Dingem Brauser enjeschalt han.',
 'userlogin'                  => 'Enlogge odder Metmaacher wääde',
 'userloginnocreate'          => 'Enlogge',
 'logout'                     => 'Uslogge',
@@ -643,7 +643,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh op de {{SIT
 'nologin'                    => "Wann De Dich noch nit aanjemeldt häs, dann dun Dich '''$1'''.",
 'nologinlink'                => 'neu aanmelde',
 'createaccount'              => 'Aanmelde als ene neue Metmaacher',
-'gotaccount'                 => "Do bes ald aanjemeldt op de {{SITENAME}}? Dann jangk nohm '''$1'''.",
+'gotaccount'                 => "Do bes ald aanjemeldt {{GRAMMAR:en|{{SITENAME}}}}? Dann jangk nohm '''$1'''.",
 'gotaccountlink'             => 'Enlogge',
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
 'createaccountreason'        => 'Jrond:',
@@ -653,16 +653,16 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh op de {{SIT
 'createaccounterror'         => 'Kunnt keine Zohjang för der Metmaacher-Name „$1“ aanlääje.',
 'nocookiesnew'               => 'Dinge neue Metmaacher Name es enjerich, ävver dat automatisch Enlogge wor dann nix.
 Schad.
-De {{SITENAME}} bruch Cookies, öm ze merke, wä enjelogg es.
+{{ucfirst:{{GRAMMAR:Nom|{{SITENAME}}}}}} bruch Cookies, öm ze merke, wä enjelogg es.
 Wann De Cookies avjeschald häs en Dingem Brauser, dann kann dat nit laufe.
 Sök Der ene Brauser, dä et kann, dun se enschalte, un dann log Dich noch ens neu en, met Dingem neue Metmaacher Name un Passwood.',
-'nocookieslogin'             => 'De {{SITENAME}} bruch Cookies för et Enlogge. Et süht esu us, als hätts de Cookies avjeschalt. Dun se aanschalte un dann versök et noch ens. Odder söök Der ene Brauser, dä et kann.',
+'nocookieslogin'             => '{{ucfirst:{{GRAMMAR:Nominativ|{{SITENAME}}}}}} bruch <i lang="en">cookies</i> för et Enlogge. Et süht esu us, als hätts De de <i lang="en">cookies</i> avjeschalt. Dun se aanschalte un dann versök et noch ens. Odder söök Der ene Brauser, dä et kann.',
 'nocookiesfornew'            => 'Et wood keine Zohjang opjemaat, weil mer nit jeweß sin künne, woh de Daate her kohme.
 Dinge Brauser moß <i lang="en">cookies</i> enjeschalldt han.
 Donn dat prööfe, donn heh di Sigg norr_ens neu laade, un dann versöhk et norr_ens.',
 'noname'                     => 'Dat jeiht nit als ene Metmaacher Name. Jetz muss De et noch ens versöke.',
 'loginsuccesstitle'          => 'Dat Enlogge hät jeflupp.',
-'loginsuccess'               => '<br />Do bes jetz enjelogg bei de <strong>{{SITENAME}}</strong>, un Dinge Metmaacher Name es „<strong>$1</strong>“.<br />',
+'loginsuccess'               => "'''Do bes jetz enjelogg {{GRAMMAR:en|{{SITENAME}}}}, un Dinge Name als ene Metmaacher es „$1“.'''",
 'nosuchuser'                 => 'Dä Metmaacher Name „$1“ wor verkihrt.
 Jroß- un Kleinboochshtabe maache ene Ungerscheid!
 <br />
@@ -677,12 +677,12 @@ Udder donn_[[Special:UserLogin/signup|ene neue Metmaacher aanmelde]].',
 'password-name-match'        => 'Ding Poßwoot moß anders wi Dinge Name als ene Metmaacher sin.',
 'password-login-forbidden'   => 'Dä Zohjang met däm Metmaacher-Name un däm Paßwoot es verbodde.',
 'mailmypassword'             => 'Passwood verjesse?',
-'passwordremindertitle'      => 'Enlogge op {{SITENAME}}',
+'passwordremindertitle'      => 'Neu Paßwoot för {{GRAMMAR:Dat|{{SITENAME}}}}',
 'passwordremindertext'       => 'Jod müjjelich, Do wors et selver,
 vun de IP Adress $1,
 jedenfalls hät eine aanjefroch, dat
 mer Dir e neu Passwood zoschecke soll,
-för et Enlogge en de {{SITENAME}} op
+för et Enlogge en {{GRAMMAR:Akk|{{SITENAME}}}} op
 {{FULLURL:{{MediaWiki:Mainpage}}}}
 ($4)
 
@@ -706,7 +706,7 @@ ze don, do kanns De Ding ahl Passwood wigger
 bruche, un die e-mail heh, die kanns De
 jlatt verjesse.
 
-Ene schöne Jroß vun de {{SITENAME}}.
+Ene schöne Jroß vun {{GRAMMAR:Dat|{{SITENAME}}}}.
 
 --
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
@@ -714,7 +714,7 @@ Ene schöne Jroß vun de {{SITENAME}}.
 'noemailcreate'              => 'Do moß en jöltijje Adräß för Ding <i lang="en">e-mail</i> aanjävve',
 'passwordsent'               => 'E neu Passwood es aan de E-Mail Adress vun däm Metmaacher „$1“ ungerwähs. Meld dich domet aan, wann De et häs. Dat ahle Passwood bliev erhalde un kann och noch jebruch wääde, bes dat De Dich et eetste Mol met däm Neue enjelogg häs.',
 'blocked-mailpassword'       => 'Ding IP Adress es blockeet.',
-'eauthentsent'               => 'En E-Mail es jetz ungerwähs aan de Adress, die en de Enstellunge steiht. Ih dat E-Mails üvver de {{SITENAME}} ehre E-Mail-Knopp verscheck wääde künne, muss de E-Mail Adress eets ens bestätich woode sin. Wat mer doför maache moß, steiht en dä E-Mail dren, die jrad avjescheck woode es.',
+'eauthentsent'               => 'En <i lang="en">e-mail</i> es jetz ungerwähs aan di Adress, die en de Enstellunge steiht. Ih dat <i lang="en">e-mails</i> üvver {{GRAMMAR:Genitiv iere male|{{SITENAME}}}} <i lang="en">e-mail</i>-Knopp verscheck wääde künne, muss de <i lang="en">e-mail</i>-Adress eets ens bestätich woode sin. Wat mer doför maache moß, steiht en dä <i lang="en">e-mail</i> dren, die jrad avjescheck woode es.',
 'throttled-mailpassword'     => 'En Erennerung för di Passwood es ungerwähs. Domet ene fiese Möpp keine Dress fabrizeet, passeet dat hüchstens eimol en {{PLURAL:$1|der Stund|$1 Stunde|nidd ens eine Stund}}.',
 'mailerror'                  => 'Fähler beim E-Mail Verschecke: $1.',
 'acct_creation_throttle_hit' => '<b>Schad.</b>
@@ -730,8 +730,8 @@ för der Momang nit noch mit Metmaacher neu aanmellde.',
 'invalidemailaddress'        => 'Wat De do als en E-Mail Adress aanjejovve häs, süht noh Dress us. En E-Mail Adress en däm Format, dat jitt et nit. Muss De repareere - oder Do mähs dat Feld leddich un schrievs nix eren. Un dann versök et noch ens.',
 'accountcreated'             => 'Aanjemeldt',
 'accountcreatedtext'         => 'De Aanmeldung för dä Metmaacher „<strong>$1</strong>“ es durch, kann jetz enlogge.',
-'createaccount-title'        => 'Enne neue Metmaacher aanmelde för de {{SITENAME}}',
-'createaccount-text'         => 'Einer hät Desch als Medmaacher „$2“ op de {{SITENAME}} aanjemelldt.
+'createaccount-title'        => 'Enne neue Metmaacher aanmelde för {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
+'createaccount-text'         => 'Einer hät Desch als Medmaacher „$2“ {{GRAMMAR:em|{{SITENAME}}}} aanjemelldt.
 Dat es e Wiki, un De fengks et onger däm URL:
  $4
 Dat Passwoot „$3“ hät sesch dat Wiki för Disch usjewörfelt.
@@ -783,7 +783,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'italic_sample'   => 'Scheive Schreff',
 'italic_tip'      => 'Scheive Schreff',
 'link_sample'     => 'Anker Tex',
-'link_tip'        => 'Ene Link en de {{SITENAME}}',
+'link_tip'        => 'Ene Link en {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
 'extlink_sample'  => 'http://www.example.com/dat_he_oohne_Zwescheräum Donoh dä Anker Tex',
 'extlink_tip'     => 'Ene Link noh drusse (denk dran, http:// aan dr Aanfang!)',
 'headline_sample' => 'Üvverschreff',
@@ -980,7 +980,7 @@ Bes De secher, watte mähs?
 '''",
 'yourdiff'                         => 'Ungerscheide',
 'copyrightwarning'                 => 'Ding Beidräch stonn unger de [[$2]], süch $1. Wann De nit han wells, dat Dinge Tex ömjemodelt weed, un söns wohin verdeilt, dun en hee nit speichere. Mem Avspeichere sähs De och zo, dat et vun Dir selvs es, un/oder Do dat Rääch häs, en hee zo verbreide. Wann et nit stemmp, oder Do kanns et nit nohwiese, kann Dich dat en dr Bau bränge!',
-'copyrightwarning2'                => 'De Beidräch en de {{SITENAME}} künne vun andere Metmaacher ömjemodelt
+'copyrightwarning2'                => 'De Beidräch {{GRAMMAR:en|{{SITENAME}}}} künne vun andere Metmaacher ömjemodelt
 oder fottjeschmesse wääde. Wann Der dat nit rääch es, schriev nix. Et es och nüdich, dat et vun Dir selvs es, oder dat Do dat Rääch häs, et hee öffentlich wigger ze jevve. Süch $1. Wann et nit stemmp, oder Do kanns et nit nohwiese, künnt Dich dat en dr Bau bränge!',
 'longpageerror'                    => "'''Janz schlemme Fähler:'''
 Dä Tex, dä De heh jescheck häs, dä es '''$1''' Kilobyte jroß.
@@ -1086,7 +1086,7 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 
 # Revision feed
 'history-feed-title'          => 'De Versione',
-'history-feed-description'    => 'Ählere Versione vun dä Sigg en de {{SITENAME}}',
+'history-feed-description'    => 'Ähler Versione vun dä Wikisigg',
 'history-feed-item-nocomment' => '$1 aam $3 öm $4 Uhr',
 'history-feed-empty'          => 'De aanjefrochte Sigg jitt et nit. Künnt sin, dat se enzwesche fottjeschmesse udder ömjenannt woode es. Kanns jo ens [[Special:Search|em Wiki söke looße]], öm de zopass, neu Sigge ze finge.',
 
@@ -1260,7 +1260,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 # Search results
 'searchresults'                    => 'Wat beim Söke eruskom',
 'searchresults-title'              => 'Noh „$1“ jesoht.',
-'searchresulttext'                 => 'Luur en de [[{{MediaWiki:Helppage}}|{{int:help}}]]-Sigge noh, wann de mieh drüvver wesse wells, wie mer en de {{SITENAME}} jet fingk.',
+'searchresulttext'                 => 'Luur en de [[{{MediaWiki:Helppage}}|{{int:help}}]]-Sigge noh, wann de mieh drüvver wesse wells, wie mer {{GRAMMAR:em|{{SITENAME}}}} jet fingk.',
 'searchsubtitle'                   => 'För Ding Froch noh „[[:$1|$1]]“ — ([[Special:Prefixindex/$1|Sigge, di met „$1“ annfange]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|Sigge, di Links noh „$1“ han]])',
 'searchsubtitleinvalid'            => 'För Ding Froch noh „$1“',
 'toomanymatches'                   => 'Dat wore zo vill Treffer, beß esu joot, un donn en annder Ußwahl probeere!',
@@ -1324,15 +1324,15 @@ Appachtemangs-Name.',
 'powersearch-toggleall'            => 'Övverall Höhksche draan maache',
 'powersearch-togglenone'           => 'All Höhksche fott nämme',
 'search-external'                  => 'Söke fun Ußerhallef',
-'searchdisabled'                   => 'Dat Söke hee op de {{SITENAME}} es em Momang avjeschalt.
+'searchdisabled'                   => 'Dat Söke hee {{GRAMMAR:en|{{SITENAME}}}} es em Momang avjeschalt.
 Dat weed op dänne ẞööver ad ens jemaat, domet de Lass op inne nit ze jroß weed,
 un winnichstens dat normale Sigge Oprofe flöck jenoch jeiht.
 
 Ehr künnt esu lang üvver en Sökmaschin vun usserhalv immer noch
-Sigge op de {{SITENAME}} finge.
+Sigge us {{GRAMMAR:Dative|{{SITENAME}}}} finge.
 Et es nit jesaht,
 dat dänne ihr Daate topaktuell sin,
-ävver et es besser wie jar nix.',
+ävver et es besser wie jaa_nix.',
 
 # Quickbar
 'qbsettings'               => '„Flöcke Links“',
@@ -2118,7 +2118,7 @@ kein Saachjrupp dren ze finge.',
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Loß Jonn!',
 'booksources-text'          => 'Hee noh küdd_en Leßß met Websigge,
-wo mir fun de {{SITENAME}} nix wigger med ze donn hänn,
+wo mir {{GRAMMAR:Dative fun|{{SITENAME}}}} nix wigger med ze donn hänn,
 wo mer jät övver Böösher erfaare
 un zom Dëijl och Böösher koufe kann.
 Doför moßß De Desh mannshmool allodengs eetß ennß aanmällde,
@@ -2133,7 +2133,7 @@ wadd_Er am Sööke sidt.',
 'speciallogtitlelabel' => 'Siggename:',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
 'all-logs-page'        => 'All de öffentlich Logböcher',
-'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher en de {{SITENAME}}.
+'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher {{GRAMMAR:en|{{SITENAME}}}}.
 Dä Logböcher ehre Enhald ka'mer all noh de Aat, de Metmaacher,
 oder de Sigge ehr Name, un esu, einzel zoteet aanluure.
 Bei de Name moß mer op Jruß- un Kleinschreff aachjävve.",
@@ -2242,7 +2242,7 @@ die weed als em Avsender sing Adress en die E-Mail enjedrage.
 Domet kann, wä die E-Mail kritt, drop antwoote, un die Antwood jeiht tirek aan Dech.
 Alles klor?',
 'usermailererror'      => 'Dat E-Mail-Objek jov ene Fähler us:',
-'defemailsubject'      => 'E-Mail üvver de {{SITENAME}}.',
+'defemailsubject'      => 'e-mail {{GRAMMAR:fun|{{SITENAME}}}}.',
 'usermaildisabled'     => 'De <i lang="en">e-mail</i> zwesche Metmaachere es ußjeschalt',
 'usermaildisabledtext' => 'Do kanns kein <i lang="en">e-mail</i> aan ander Metmaacher heh en dämm Wiki schecke',
 'noemailtitle'         => 'Kein E-Mail Adress',
@@ -2304,19 +2304,19 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'watching'   => 'Drop oppasse…',
 'unwatching' => 'Nimmieh drop oppasse',
 
-'enotif_mailer'                => 'Dä {{SITENAME}} Nachrichte Versand',
+'enotif_mailer'                => '{{ucfirst:{{GRAMMAR:Genitive singe male|{{SITENAME}}}}}} Nohreechte-Versand',
 'enotif_reset'                 => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
 'enotif_newpagetext'           => 'Dat es en neu aanjelahte Sigg.',
-'enotif_impersonal_salutation' => 'Metmaacher en de {{SITENAME}}',
+'enotif_impersonal_salutation' => 'Metmaacher {{GRAMMAR:Genitiv vun|{{SITENAME}}}}',
 'changed'                      => 'jeändert',
 'created'                      => 'neu aanjelaht',
-'enotif_subject'               => '{{SITENAME}}: Sigg "$PAGETITLE" vun "$PAGEEDITOR" $CHANGEDORCREATED.',
+'enotif_subject'               => 'De Sigg "$PAGETITLE" wood $CHANGEDORCREATE vum "$PAGEEDITOR" {{GRAMMAR:em|{{SITENAME}}}}',
 'enotif_lastvisited'           => 'Luur unger „$1“ - do fings de all die Änderunge zick Dingem letzte Besoch hee.',
 'enotif_lastdiff'              => 'Loor op $1 för heh di Änderung aan_ze_loore.',
 'enotif_anon_editor'           => 'Dä namelose Metmaacher $1',
 'enotif_body'                  => 'Leeven $WATCHINGUSERNAME,
 
-en de {{SITENAME}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE vun „$PAGEEDITOR“ $CHANGEDORCREATED, unger $PAGETITLE_URL fings Do de Neuste Version.
+{{GRAMMAR:em|{{SITENAME}}}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE vun „$PAGEEDITOR“ $CHANGEDORCREATED, unger $PAGETITLE_URL fings Do de neuste Version.
 
 $NEWPAGE
 
@@ -2326,13 +2326,13 @@ Do kanns dä Metmaacher „$PAGEEDITOR“ aanspreche:
 * E-mail: $PAGEEDITOR_EMAIL
 * Em Wiki: $PAGEEDITOR_WIKI
 
-Do kriss vun jetz aan kein E-Mail mieh, bes dat Do Der die Sigg aanjeluurt häs,
-och wann se norrens verändert weed.
-Do kanns ävver och all die E-Mail Merker för die Sigge en Dinger Oppassliss op eimol ändere.
+Do kriss vun jetz aan kein e-mail mieh, bes dat Do Der di Sigg aanjeluurt häs,
+och wann se norr_ens verändert weed.
+Do kanns ävver och all die Merker för e-mail för die Sigge en Dinger Oppassliss op eimol ändere.
 
-Ene schöne Jroß vun de {{SITENAME}}.
+Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 
---
+-- 
 Do kanns hee Ding Oppassliss ändere:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
@@ -2688,7 +2688,7 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'locknoconfirm'       => 'Do häs kei Hökche en däm Feld zem Bestätije jemaht.',
 'lockdbsuccesssub'    => 'De Daatebank es jetz jesperrt',
 'unlockdbsuccesssub'  => 'De Daatebank es jetz freijejovve',
-'lockdbsuccesstext'   => 'De Daatebank vun de {{SITENAME}} jetz jesperrt.<br /> Dun se widder freijevve, wann Ding Waadung durch es.',
+'lockdbsuccesstext'   => '{{ucfirst:{{GRAMMAR:Genitive sing|{{SITENAME}}}}}} Daatebank jetz jesperrt.<br /> Dun se widder [[Special:UnlockDB|freijevve]], wann Ding Waadung eröm es.',
 'unlockdbsuccesstext' => 'De Daatebank es jetz freijejovve.',
 'lockfilenotwritable' => 'De Datei, wo de Daatebank met jesperrt wääde wööd, künne mer nit aanläje, oder nit dren schrieve. Esu ene Dress! Dat mööt dä Websörver ävver künne! Verzäll dat enem Verantwortliche för de Installation vun däm ẞööver oder repareer et selvs, wann De et kanns.',
 'databasenotlocked'   => '<strong>Opjepass:</strong> De Daatebank es <strong>nit</strong> jesperrt.',
@@ -2919,7 +2919,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-ca-move'                 => 'Dun die Sigg ömbenenne',
 'tooltip-ca-watch'                => 'Dun die Sigg en Ding Oppassliss opnemme',
 'tooltip-ca-unwatch'              => 'Schmieß die Sigg us Dinge eije Oppassliss erus',
-'tooltip-search'                  => 'En de {{SITENAME}} söke',
+'tooltip-search'                  => '{{ucfirst:{{GRAMMAR:en|{{SITENAME}}}}}} söke',
 'tooltip-search-go'               => 'Jank noh dä Sigg med jenou dämm Name',
 'tooltip-search-fulltext'         => 'Sök noh Sigge, wo dä Tex dren enthallde es',
 'tooltip-p-logo'                  => 'Houpsigg',
@@ -2997,13 +2997,13 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'notacceptable'     => '<strong>Blöd:</strong> Dä Wiki_Sörver kann de Daate nit en einem Format erüvverjevve, wat Dinge Client oder Brauser verstonn künnt.',
 
 # Attribution
-'anonymous'        => 'Namelose {{PLURAL:$1|Metmaacher|Metmaacher|Metmaacher}} vun de {{SITENAME}}',
-'siteuser'         => '{{SITENAME}}-{{GENDER:$1|Metmaacher|Metmaacheren|Metmaacher|Metmaacher|Metmaacheren}} $1',
+'anonymous'        => 'Namelose {{PLURAL:$1|Metmaacher|Metmaacher|Metmaacher}} vun {{GRAMMAR:Dat|{{SITENAME}}}}',
+'siteuser'         => '{{SITENAME}}-{{GENDER:$2|Metmaacher|Metmaacheren|Metmaacher|Metmaacher|Metmaacheren}} $1',
 'anonuser'         => 'dä nameloose Metmaacher $1 vun de {{SITENAME}}',
 'lastmodifiedatby' => 'Die Sigg heh wood et letz am $1 öm $2 Uhr {{GENDER:$4|vum|vun dä|vum|vum|vun dä}} $3 jeändert.',
 'othercontribs'    => 'Bout op et Werk vun $1 op.',
 'others'           => 'ander',
-'siteusers'        => '{{PLURAL:$2|däm|de|keine}} {{PLURAL:$2|Metmaacher|Metmaachere|Metmaacher}} $1 aan de {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|däm|de|keine}} {{PLURAL:$2|Metmaacher|Metmaachere|Metmaacher}} $1 aan {{GRAMMAR:Dat|{{SITENAME}}}}',
 'anonusers'        => '{{PLURAL:$2|dä|de|keine}} nameloose Metmaacher $1 vun de translatewiki.net',
 'creditspage'      => 'Üvver de Metmaacher un ehre Beidräch för heh die Sigg',
 'nocredits'        => "För die Sigg ha'mer nix en de Liss.",
@@ -3447,9 +3447,9 @@ Dä E-Mail-ẞööver hät jesaat: ''$1''",
 Jetz künns De och noch enlogge. Vill Spass!',
 'confirmemail_loggedin'     => 'Ding E-Mail Adress es jetz bestätich!',
 'confirmemail_error'        => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
-'confirmemail_subject'      => 'Dun Ding E-Mail Adress bestätije för de {{SITENAME}}.',
+'confirmemail_subject'      => 'Dun Ding <i lang="en">e-mail</i> Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
 'confirmemail_body'         => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
-jedenfalls einer jemeldt, un well dä Metmaacher "$2" op de {{SITENAME}}
+jedenfalls einer jemeldt, un well dä Metmaacher "$2" {{GRAMMAR:vun|{{SITENAME}}}}
 sin, un hät en E-Mail Adress aanjejovve.
 
 Öm jetz klor ze krije, dat die E-Mail Adress un dä neue Metmaacher och
