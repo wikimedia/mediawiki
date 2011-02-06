@@ -138,7 +138,7 @@ class SpecialImport extends SpecialPage {
 				# Success!
 				$wgOut->addWikiMsg( 'importsuccess' );
 			}
-			$wgOut->addWikiText( '<hr />' );
+			$wgOut->addHTML( '<hr />' );
 		}
 	}
 
