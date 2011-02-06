@@ -226,15 +226,12 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
 
-			$conn = new DatabasePostgres(
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( 'wgDBuser' ),
-				$this->getVar( 'wgDBpassword' ),
-				$dbName,
-				false,
-				0,
-				$this->getVar( 'wgDBprefix' )
-			);
+			$this->useAdmin = false;
+			$status = $this->getConnection();
+			if ( !$status->isOK() ) {
+				return $status;
+			}
+			$conn = $status->value;
 
 			$result = $conn->schemaExists( $schema );
 			if( !$result ) {
@@ -253,6 +250,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					"pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n" .
 					"FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n" .
 					"WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
+				$conn->query( "SET search_path = $safeschema" );
 				$res = $conn->query( $SQL );
 			}
 		}
@@ -316,6 +314,9 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	public function createTables() {
+		$schema = $this->getVar( 'wgDBmwschema' );
+		$user = $this->getVar( 'wgDBuser' );
+
 		$this->db = null;
 		$this->useAdmin = false;
 		$status = $this->getConnection();
@@ -332,6 +333,13 @@ class PostgresInstaller extends DatabaseInstaller {
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->db->begin( __METHOD__ );
 
+
+		if( !$this->db->schemaExists( $schema ) ) {
+			$status->error( 'config-install-pg-schema-not-exist' );
+			return $status;
+		}
+		$safeschema = $this->db->addIdentifierQuotes( $schema );
+		$this->db->query( "SET search_path = $safeschema" );
 		$error = $this->db->sourceFile( $this->db->getSchema() );
 		if( $error !== true ) {
 			$this->db->reportQueryError( $error, 0, '', __METHOD__ );

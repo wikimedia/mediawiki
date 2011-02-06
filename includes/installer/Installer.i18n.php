@@ -444,6 +444,7 @@ If you still want to make changes, press back.',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
 	'config-install-database'         => 'Setting up database',
+	'config-install-pg-schema-not-exist' => 'PostgreSQL schema does not exist',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
