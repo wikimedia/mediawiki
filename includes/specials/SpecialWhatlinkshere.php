@@ -239,7 +239,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$wgOut->addHTML( $prevnext );
 		}
 
-		$wgOut->addHTML( $this->listStart() );
+		$wgOut->addHTML( $this->listStart( $level ) );
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
@@ -259,8 +259,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 	}
 
-	protected function listStart() {
-		return Xml::openElement( 'ul', array ( 'id' => 'mw-whatlinkshere-list' ) );
+	protected function listStart( $level ) {
+		return Xml::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
