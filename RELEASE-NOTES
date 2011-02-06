@@ -149,6 +149,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Expose list of skins in meta=siteinfo
 * (bug 26548) Add iiurlparam param to query=imageinfo and query=stashimageinfo
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
+* (bug 27205) aiprop=metadata and aiprop=parsedcomment need help text
 
 === Languages updated in 1.18 ===
 

@@ -424,6 +424,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * Returns all possible parameters to iiprop
+	 * @static
+	 * @return Array
 	 */
 	public static function getPropertyNames() {
 		return array(
@@ -444,15 +446,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-
 	/**
-	 * Return the API documentation for the parameters.
-	 * @return {Array} parameter documentation.
+	 * Returns the descriptions for the properties provided by getPropertyNames()
+	 *
+	 * @static
+	 * @return array
 	 */
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
+	public static function getPropertyDescriptions() {
 		return array(
-			'prop' => array(
 				'What image information to get:',
 				' timestamp     - Adds timestamp for the uploaded version',
 				' user          - Adds the user who uploaded the image version',
@@ -468,7 +469,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' metadata      - Lists EXIF metadata for the version of the image',
 				' archivename   - Adds the file name of the archive version for non-latest versions',
 				' bitdepth      - Adds the bit depth of the version',
-			),
+			);
+	}
+
+	/**
+	 * Return the API documentation for the parameters.
+	 * @return {Array} parameter documentation.
+	 */
+	public function getParamDescription() {
+		$p = $this->getModulePrefix();
+		return array(
+			'prop' => self::getPropertyDescriptions(),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 					    'Only the current version of the image can be scaled' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
