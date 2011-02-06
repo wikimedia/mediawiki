@@ -2368,16 +2368,8 @@ class OutputPage {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}
-		$bodyAttrs['class'] .= ' ns-' . $this->getTitle()->getNamespace();
-		if ( $this->getTitle()->getNamespace() == NS_SPECIAL ) {
-			$bodyAttrs['class'] .= ' ns-special';
-		} elseif ( $this->getTitle()->isTalkPage() ) {
-			$bodyAttrs['class'] .= ' ns-talk';
-		} else {
-			$bodyAttrs['class'] .= ' ns-subject';
-		}
-		$bodyAttrs['class'] .= ' ' . Sanitizer::escapeClass( 'page-' . $this->getTitle()->getPrefixedText() );
-		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $wgUser->getSkin()->getSkinName() );
+		$bodyAttrs['class'] .= ' ' . $sk->getPageClasses( $this->getTitle() );
+		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 
 		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
 		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
