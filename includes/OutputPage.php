@@ -2063,7 +2063,7 @@ class OutputPage {
 			array( 'returnto' => $this->getTitle()->getPrefixedText() ),
 			array( 'known', 'noclasses' )
 		);
-		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
+		$this->addWikiMsgArray( 'loginreqpagetext', array( $loginLink ), array( 'replaceafter' ) );
 		$this->addHTML( "\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );
 
 		# Don't return to the main page if the user can't read it

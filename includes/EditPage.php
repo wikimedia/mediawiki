@@ -2049,7 +2049,7 @@ HTML
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addHTML( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
+		$wgOut->addWikiMsgArray( 'whitelistedittext', array( $loginLink ), array( 'replaceafter' ) );
 		$wgOut->returnToMain( false, $wgTitle );
 	}
 

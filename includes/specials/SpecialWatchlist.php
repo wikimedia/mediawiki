@@ -57,12 +57,12 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->isAnon() ) {
 		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
 		$llink = $skin->linkKnown(
-			SpecialPage::getTitleFor( 'Userlogin' ), 
+			SpecialPage::getTitleFor( 'Userlogin' ),
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
 			array( 'returnto' => $specialTitle->getPrefixedText() )
 		);
-		$wgOut->addHTML( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
+		$wgOut->addWikiMsgArray( 'watchlistanontext', array( $llink ), array( 'replaceafter' ) );
 		return;
 	}
 

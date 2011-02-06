@@ -68,7 +68,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 					array(),
 					array( 'returnto' => $this->getTitle()->getPrefixedText() )
 				);
-				$wgOut->addHTML( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
+				$wgOut->addWikiMsgArray( 'confirmemail_needlogin', array( $llink ), array( 'replaceafter' ) );
 			}
 		} else {
 			$this->attemptConfirm( $code );

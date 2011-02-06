@@ -231,7 +231,7 @@ class LoginForm extends SpecialPage {
 			# Confirm that the account was created
 			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
-			$wgOut->addHTML( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
+			$wgOut->addWikiMsg( 'accountcreatedtext', $u->getName() );
 			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry( false, $this->mReason );
@@ -680,7 +680,7 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::NOT_EXISTS:
 				if( $wgUser->isAllowed( 'createaccount' ) ) {
-					$this->mainLoginForm( wfMsgWikiHtml( 'nosuchuser', htmlspecialchars( $this->mUsername ) ) );
+					$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', $this->mUsername ) );
 				} else {
 					$this->mainLoginForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->mUsername ) ) );
 				}
@@ -775,7 +775,7 @@ class LoginForm extends SpecialPage {
 			return;
 		}
 		if ( 0 == $u->getID() ) {
-			$this->mainLoginForm( wfMsgWikiHtml( 'nosuchuser', htmlspecialchars( $u->getName() ) ) );
+			$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', $u->getName() ) );
 			return;
 		}
 
