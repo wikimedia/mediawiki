@@ -195,7 +195,6 @@ class DatabasePostgres extends DatabaseBase {
 
 		global $wgDBmwschema;
 		if ( isset( $wgDBmwschema )
-			&& $wgDBmwschema !== 'mediawiki'
 			&& preg_match( '/^\w+$/', $wgDBmwschema )
 		) {
 			$safeschema = $this->addIdentifierQuotes( $wgDBmwschema );
