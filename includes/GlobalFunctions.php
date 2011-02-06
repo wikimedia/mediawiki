@@ -22,29 +22,33 @@ require_once dirname( __FILE__ ) . '/normal/UtfNormalUtil.php';
  */
 
 if( !function_exists( 'iconv' ) ) {
+	/** @codeCoverageIgnore */
 	function iconv( $from, $to, $string ) {
 		return Fallback::iconv( $from, $to, $string );
 	}
 }
 
 if ( !function_exists( 'mb_substr' ) ) {
+	/** @codeCoverageIgnore */
 	function mb_substr( $str, $start, $count='end' ) {
 		return Fallback::mb_substr( $str, $start, $count );
 	}
 
+	/** @codeCoverageIgnore */
 	function mb_substr_split_unicode( $str, $splitPos ) {
 		return Fallback::mb_substr_split_unicode( $str, $splitPos );
 	}
 }
 
 if ( !function_exists( 'mb_strlen' ) ) {
+	/** @codeCoverageIgnore */
 	function mb_strlen( $str, $enc = '' ) {
 		return Fallback::mb_strlen( $str, $enc );
 	}
 }
 
 if( !function_exists( 'mb_strpos' ) ) {
-	
+	/** @codeCoverageIgnore */
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -52,6 +56,7 @@ if( !function_exists( 'mb_strpos' ) ) {
 }
 
 if( !function_exists( 'mb_strrpos' ) ) {
+	/** @codeCoverageIgnore */
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -60,10 +65,13 @@ if( !function_exists( 'mb_strrpos' ) ) {
 
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
+	/** @codeCoverageIgnore */
 	function istainted( $var ) {
 		return 0;
 	}
+	/** @codeCoverageIgnore */
 	function taint( $var, $level = 0 ) {}
+	/** @codeCoverageIgnore */
 	function untaint( $var, $level = 0 ) {}
 	define( 'TC_HTML', 1 );
 	define( 'TC_SHELL', 1 );
@@ -72,8 +80,6 @@ if ( !function_exists( 'istainted' ) ) {
 	define( 'TC_SELF', 1 );
 }
 /// @endcond
-
-
 
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
@@ -3067,6 +3073,7 @@ function wfLocalFile( $title ) {
  * Should low-performance queries be disabled?
  *
  * @return Boolean
+ * @codeCoverageIgnore
  */
 function wfQueriesMustScale() {
 	global $wgMiserMode;
@@ -3125,6 +3132,7 @@ function wfBoolToStr( $value ) {
 /**
  * Load an extension messages file
  * @deprecated in 1.16, warnings in 1.18, remove in 1.20
+ * @codeCoverageIgnore
  */
 function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
 	wfDeprecated( __FUNCTION__ );
@@ -3262,6 +3270,7 @@ function wfOut( $s ) {
 /**
  * Count down from $n to zero on the terminal, with a one-second pause
  * between showing each number. For use in command-line scripts.
+ * @codeCoverageIgnore
  */
 function wfCountDown( $n ) {
 	for ( $i = $n; $i >= 0; $i-- ) {
@@ -3281,6 +3290,7 @@ function wfCountDown( $n ) {
  * Generate a random 32-character hexadecimal token.
  * @param $salt Mixed: some sort of salt, if necessary, to add to random
  *              characters before hashing.
+ * @codeCoverageIgnore
  */
 function wfGenerateToken( $salt = '' ) {
 	$salt = serialize( $salt );
