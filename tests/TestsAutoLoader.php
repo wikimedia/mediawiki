@@ -19,5 +19,8 @@ $wgAutoloadClasses += array(
 		
 	//Selenium
 	'SeleniumTestConstants' => "$testFolder/selenium/SeleniumTestConstants.php",
+
+	//Generic providers
+	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",
 );
 
