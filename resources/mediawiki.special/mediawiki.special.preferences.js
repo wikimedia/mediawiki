@@ -12,24 +12,22 @@ $( '#preferences' )
 		.addClass( 'prefsection' )
 		.children( 'legend' )
 			.addClass( 'mainLegend' )
-			.each( function( i ) {
-					$(this).parent().attr( 'id', 'prefsection-' + i );
+			.each( function( i, legend ) {
+					$(legend).parent().attr( 'id', 'prefsection-' + i );
 					if ( i === 0 ) {
-						$(this).parent().show();
+						$(legend).parent().show();
 					}
 					$( '#preftoc' ).append(
 						$( '<li></li>' )
 							.addClass( i === 0 ? 'selected' : null )
 							.append(
 								$( '<a></a>')
-									.text( $(this).text() )
+									.text( $(legend).text() )
 									.attr( 'id', 'preftab-' + i + '-tab' )
 									.attr( 'href', '#preftab-' + i ) // Use #preftab-N instead of #prefsection-N to avoid jumping on click
-									.mousedown( function( e ) {
+									.click( function() {
 										$(this).parent().parent().find( 'li' ).removeClass( 'selected' );
-										$(this).parent().addClass( 'selected' );
-									} )
-									.click( function( e ) {
+										$(this).parent().addClass( 'selected' )
 										$( '#preferences > fieldset' ).hide();
 										$( '#prefsection-' + i ).show();
 									} )
@@ -40,11 +38,14 @@ $( '#preferences' )
 
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
-var hash = window.location.hash;
-if( hash.match( /^#preftab-[\d]+$/ ) ) {
-	var tab = $( hash + '-tab' );
-	tab.mousedown().click();
-}
+// On document ready:
+$( function() {
+	var hash = window.location.hash;
+	if( hash.match( /^#preftab-[\d]+$/ ) ) {
+		var $tab = $( hash + '-tab' );
+		$tab.click();
+	}
+} );
 
 /**
  * Given an email validity status (true, false, null) update the label CSS class
