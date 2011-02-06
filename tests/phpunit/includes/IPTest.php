@@ -102,7 +102,7 @@ class IPTest extends MediaWikiTestCase {
 				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv4 address" );
 			}
 		}
-		foreach ( range( 0x0, 0xFFFF ) as $i ) {
+		foreach ( range( 0x0, 0xFFFF, 0xF ) as $i ) {
 			$a = sprintf( "%04x", $i );
 			$b = sprintf( "%03x", $i );
 			$c = sprintf( "%02x", $i );
