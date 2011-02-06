@@ -17,6 +17,30 @@ class GlobalTest extends MediaWikiTestCase {
 		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
 	}
 
+	/** @dataProvider provideForWfArrayDiff2 */
+	public function testWfArrayDiff2( $a, $b, $expected ) {
+		$this->assertEquals(
+			wfArrayDiff2( $a, $b), $expected
+		);
+	}
+
+	// @todo Provide more tests
+	public function provideForWfArrayDiff2() {
+		// $a $b $expected
+		return array(
+			array(
+				array( 'a', 'b'),
+				array( 'a', 'b'),
+				array(),
+			),
+			array(
+				array( array( 'a'), array( 'a', 'b', 'c' )),
+				array( array( 'a'), array( 'a', 'b' )),
+				array( 1 => array( 'a', 'b', 'c' ) ),
+			),
+		);
+	}
+
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
