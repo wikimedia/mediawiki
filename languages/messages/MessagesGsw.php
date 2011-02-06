@@ -1749,12 +1749,13 @@ Iberprief anderi Gleicher zue dr Vorlage, voreb Du die leschesch.',
 'disambiguationspage'  => 'Template:Begriffsklärig',
 'disambiguations-text' => 'Die Syte vergleiche uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte vergleiche, wu eigetli gmeint sin.<br />E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si vergleicht.<br />Gleicher us Namensryym wäre do nit ufglischtet.',
 
-'doubleredirects'            => 'Doppleti Wyterleitige (Redirects)',
-'doubleredirectstext'        => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige vergleiche.
+'doubleredirects'                   => 'Doppleti Wyterleitige (Redirects)',
+'doubleredirectstext'               => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige vergleiche.
 In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Ziil vu dr zwote Wyterleitig, wu normalerwys di gwinscht Ziilsyten isch. Do sott eigetli scho di erscht Wyterleitig druf zeige.
 <del>Durgstricheni</del> Yytreg sin scho erledigt wore.',
-'double-redirect-fixed-move' => 'doppleti Wyterleitig ufglest: [[$1]] → [[$2]]',
-'double-redirect-fixer'      => 'DoubleRedirectBot',
+'double-redirect-fixed-move'        => 'doppleti Wyterleitig ufglest: [[$1]] → [[$2]]',
+'double-redirect-fixed-maintenance' => 'Di dopplet Wyterleitig vu [[$1]] no [[$2]] isch ufglest wore.',
+'double-redirect-fixer'             => 'DoubleRedirectBot',
 
 'brokenredirects'        => 'Kaputti Wyterleitige',
 'brokenredirectstext'    => 'Die Spezialsyte lischtet Wyterleitige uf, wu zue Artikel fiere, wu s gar nid git:',

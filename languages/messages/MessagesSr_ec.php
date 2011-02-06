@@ -1,5 +1,5 @@
 <?php
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+/**  ()
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -451,7 +451,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Омогући проширене предлоге за претрагу (само за Vector тему)',
 'vector-view-create'             => 'Направи',
 'vector-view-edit'               => 'Уреди',
-'vector-view-history'            => 'Историјат',
+'vector-view-history'            => 'Историја',
 'vector-view-view'               => 'Читај',
 'vector-view-viewsource'         => 'Изворник',
 'actions'                        => 'Радње',

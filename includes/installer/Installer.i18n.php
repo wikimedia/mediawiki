@@ -545,6 +545,7 @@ $messages['qqq'] = array(
 * {{msg-mw|config-profile-no-anon}}
 * {{msg-mw|config-profile-fishbowl}}
 * {{msg-mw|config-profile-private}}',
+	'config-logo-help' => '{{doc-important|For languages with right-to-left script, translate "top left corner" as "top right corner".}}',
 	'config-cc-not-chosen' => 'Should we use "int:key" here (and to which key)?',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
@@ -2419,6 +2420,7 @@ Sofern Änderungen vorgenommen werden sollen, kann man auf „Zurück“ klicken
 	'config-install-step-failed' => 'gescheitert',
 	'config-install-extensions' => 'Einschließlich Erweiterungen',
 	'config-install-database' => 'Datenbank wird eingerichtet',
+	'config-install-pg-schema-not-exist' => 'Das PostgesSQL-Schema ist nicht vorhanden',
 	'config-install-pg-schema-failed' => 'Das Erstellen der Datentabellen ist gescheitert.
 Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
 	'config-install-pg-commit' => 'Änderungen anwenden',
@@ -4048,22 +4050,45 @@ Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch
 );
 
 /** Hebrew (עברית)
+ * @author Amire80
  * @author YaronSh
  */
 $messages['he'] = array(
 	'config-desc' => 'תכנית ההתקנה של מדיה־ויקי',
 	'config-title' => 'התקנת מדיה־ויקי $1',
 	'config-information' => 'פרטים',
+	'config-localsettings-upgrade' => 'זוהה קובץ <code>LocalSettings.php</code>.
+כדי לשדרג את ההתקנה הזאת, נא להקליד את הערך של <code>$wgUpgradeKey</code> בתיבה להלן.
+אפשר למצוא אותו בקובץ LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'זוהה קובץ LocalSettings.php.
+כדי לשדרג את ההתקנה הזאת, תנו את האופציה <span dir="ltr">--upgrade=yes</span>.',
 	'config-localsettings-key' => 'מפתח השדרוג:',
-	'config-localsettings-badkey' => 'המפתח שסיפקת שגוי',
-	'config-your-language' => 'השפה שלך:',
+	'config-localsettings-badkey' => 'המפתח שהקלדתם שגוי',
+	'config-upgrade-key-missing' => 'זוהתה התקנה קיימת של מדיה־ויקי.
+כדי לשדרג את ההתקנה הזאת, אנא כתבו את השורה הבא בתחתית קובץ LocalSettings.php שלכם:
+
+$1',
+	'config-localsettings-incomplete' => 'נראה שקובץ LocalSettings.php הקיים אינו שלם.
+המשתנה $1 אינו מוגדר.
+נו לשנות את קובץ LocalSettings.php שלכם כך שהמשתנה הזה יהיה מוגדר וללחוץ "המשך".',
+	'config-localsettings-connection-error' => 'אירעה שגיאה בעת חיבור למסד נתונים עם הגדרות ב־LocalSettings.php או ב־AdminSettings.php. נא לתקן את ההגדרות האלו ולנסות שוב.
+
+$1',
+	'config-session-error' => 'שגיאה באתחול שיחה: $1',
+	'config-session-expired' => 'נראה שנתוני השיחה שלכם פגו.
+השיחות מוגדרות להיות תקפות לזמן של $1.
+אפשר להגדיל את זה ב־<code>session.gc_maxlifetime</code> בקובץ php.ini.
+יש להתחיל מחדש את תהליך ההתקנה.',
+	'config-no-session' => 'נתוני השיחה שלכם אבדו!
+יש לבדוק את קובץ php.ini שלכם ולוודא שתיקייה נכונה מוגדרת ב־<code>session.save_path</code>.',
+	'config-your-language' => 'השפה שלכם:',
 	'config-your-language-help' => 'נא לבחור את השפה שתשמש במהלך ההתקנה.',
 	'config-wiki-language' => 'שפת הוויקי:',
 	'config-wiki-language-help' => 'נא לבחור את השפה העיקרית שבה ייכתב ויקי זה.',
-	'config-back' => '← חזרה',
-	'config-continue' => 'המשך →',
+	'config-back' => '→ חזרה',
+	'config-continue' => 'המשך ←',
 	'config-page-language' => 'שפה',
-	'config-page-welcome' => 'ברוך בואך למדיה־ויקי!',
+	'config-page-welcome' => 'ברוכים הבאים למדיה־ויקי!',
 	'config-page-dbconnect' => 'התחברות למסד הנתונים',
 	'config-page-upgrade' => 'שדרוג התקנה קיימת',
 	'config-page-dbsettings' => 'הגדרות מסד הנתונים',
@@ -4072,12 +4097,16 @@ $messages['he'] = array(
 	'config-page-install' => 'התקנה',
 	'config-page-complete' => 'הושלמה!',
 	'config-page-restart' => 'הפעלת ההתקנה מחדש',
-	'config-page-readme' => 'מסמך לקריאה',
-	'config-page-releasenotes' => 'הערות שחרור',
+	'config-page-readme' => 'קרא־אותי',
+	'config-page-releasenotes' => 'הערות גרסה',
 	'config-page-copying' => 'העתקה',
 	'config-page-upgradedoc' => 'שדרוג',
+	'config-page-existingwiki' => 'ויקי קיים',
 	'config-help-restart' => 'האם ברצונך לפנות את כל הנתונים שנשמרו שהוזנו על ידיך ולהתחיל מחדש את תהליך ההתקנה?',
 	'config-restart' => 'כן, להפעיל מחדש',
+	'config-welcome' => '=== בדיקות סביבה ===
+בדיקות בסיסיות מתבצעות כדי לבדוק שהסביבה מתאימה להתקנת מדיה־ויקי.
+יש לתת את תוצאות הבדיקות האלו אם תזדקקו לעזרה בזמן ההתקנה.',
 	'config-copyright' => "=== זכויות יוצרים ותנאים ===
 
 $1
@@ -4086,29 +4115,160 @@ $1
 
 תכנית זו מופצת בתקווה שתהיה מועילה, אבל '''בלא אחריות כלשהי'''; ואפילו ללא האחריות המשתמעת בדבר '''מסחריותה''' או '''התאמתה למטרה '''מסוימת'''. לפרטים נוספים, ניתן לעיין ברישיון הציבורי הכללי של GNU.
 
-לתכנית זו אמור היה להיות מצורף <doclink href=Copying>עותק של הרישיון הציבורי הכללי של GNU</doclink>; במידה שלא, עליך לכתוב ל־Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, , MA 02111-1307, USA. או [http://www.gnu.org/copyleft/gpl.html לקרוא אותו דרך האינטרנט].",
-	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki בית]
+לתכנית זו אמור היה להיות מצורף <doclink href=Copying>עותק של הרישיון הציבורי הכללי של GNU</doclink>; אם לא, עליך לכתוב ל־Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, , MA 02111-1307, USA. או [http://www.gnu.org/copyleft/gpl.html לקרוא אותו דרך האינטרנט].",
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki אתר הבית של מדיה־ויקי]
 * [http://www.mediawiki.org/wiki/Help:Contents המדריך למשתמשים]
 * [http://www.mediawiki.org/wiki/Manual:Contents המדריך למנהלים]
 * [http://www.mediawiki.org/wiki/Manual:FAQ שו״ת]',
+	'config-env-good' => 'הסביבה שלכם נבדקה.
+אפשר להתקין מדיה־ויקי.',
+	'config-env-bad' => 'הסביבה שלכם נבדקה.
+אי־אפשר להתקין מדיה־ויקי.',
+	'config-env-php' => 'מותקן PHP $1.',
+	'config-unicode-using-utf8' => 'משתמש ב־normalize.so של בריון ויבר לנרמול יוניקוד.',
+	'config-unicode-using-intl' => 'משתמש בהרחבת [http://pecl.php.net/intl הרחבת intl PECL] לנרמול יוניקוד',
+	'config-unicode-pure-php-warning' => "'''אזהרה''': [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.
+אם זה אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
+	'config-unicode-update-warning' => "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].
+כדאי [http://www.mediawiki.org/wiki/Unicode_normalization_considerations לעדכן] אם יש חשוב לכם הטיפול ביוניקוד.",
+	'config-no-db' => 'לא נמצא דרייבר מסד נתונים מתאים.',
+	'config-no-db-help' => 'יש להתקין דרייבר מסד נתונים ל־PHP.
+נתמכים הסוגים הבאים של מסדי נתונים: $1.
+
+אם אתם משתמשים באירוח משותף, בקשו מספק האירוח שלכם להתקין דרייבר מסד נתונים מתאים.
+אם קמפלתם את PHP בעצמכם, הגדירו אותו מחדש והפעילו את לקוח מסד נתונים (database client), למשל בעזרת <code>./configure --with-mysql</code>.
+אם התקנתם את PHP מחבילה של דביאן או אובונטו, יש להתקין את המודול php5-mysql.',
+	'config-no-fts3' => "'''אזהרה''': SQLite מקומפל ללא [http://sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
+	'config-register-globals' => "'''אזהרה: האופציה <code>[http://php.net/register_globals register_globals]</code> של PHP מופעלת.'''
+'''כבו אותה אם אתם יכולים.'''
+מדיה־ויקי תעבוד, אבל השרת שלכם חשוף לפגיעות אבטחה.",
+	'config-magic-quotes-runtime' => "'''שגיאה סופנית: האפשרות [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] פעילה!'''
+האפשרות הזאת מעוותת את נתוני הקלט באופן בלתי־צפוי.
+לא ניתן להתקין את מדיה־ויקי אלא אם האפשרות הזאת תכובה.",
+	'config-magic-quotes-sybase' => "'''שגיאה סופנית''': האפשרות [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] פעילה!'''
+האפשרות הזאת מעוותת את נתוני הקלט באופן בלתי־צפוי.
+לא ניתן להתקין את מדיה־ויקי או להשתמש בה אלא אם האפשרות הזאת תכובה.",
+	'config-mbstring' => "'''שגיאה סופנית''': האפשרות [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] פעילה!'''
+האפשרות הזאת גורמת לשגיאות ומעוותת את נתוני הקלט באופן בלתי־צפוי.
+לא ניתן להתקין את מדיה־ויקי או להשתמש בה אלא אם האפשרות הזאת תכובה.",
+	'config-ze1' => "'''שגיאה סופנית''': האפשרות [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] פעילה!'''
+האפשרות הזאת גורמת לתקלות מזעזעות במדיה־ויקי.
+לא ניתן להתקין את מדיה־ויקי או להשתמש בה אלא אם האפשרות הזאת תכובה.",
+	'config-safe-mode' => "'''אזהרה:''' האפשרות [http://www.php.net/features.safe-mode safe mode] של PHP פעילה.
+היא יכולה לגרום לבעיות, במיוחד אם אתם משתמשים בהעלאת קבצים או ב־<code>math</code>.",
+	'config-xml-bad' => 'מודול XML של PHP חסר.
+מדיה־ויקי דורשת פונקציות של המודול ולא תעבוד עם הגדרות כאלו.
+אם מערכת ההפעלה שלהם היא Mandrake, התקינו את החבילה php-xml.',
+	'config-pcre' => 'נראה שחסרה תמיכה במודול PCRE.
+כדי שמדיה־ויקי תעבוד, נדרשת תמיכה בביטויים רגולריים תואמי Perl.',
+	'config-pcre-no-utf8' => "'''שגיאה סופנית:''': נראה שמודול PCRE של PHP מקומפל ללא תמיכה ב־PCRE_UTF8.
+מדיה־ויקי דורשת תמיכה ב־UTF-8 לפעילות נכונה.",
+	'config-memory-raised' => 'ערך האפשרות <code>memory_limit</code> של PHP הוא $1, הועלה ל־$2.',
+	'config-memory-bad' => "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.
+זה כנראה נמוך מדי.
+ההתקנה עשויה להיכשל!",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] מותקן',
+	'config-apc' => '[http://www.php.net/apc APC] מותקן',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] מותקן',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן',
+	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://trac.lighttpd.net/xcache/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
+מטמון עצמים לא מופעל.",
 	'config-diff3-bad' => 'GNU diff3 לא נמצא.',
+	'config-imagemagick' => 'נמצא ImageMagick&rlm;: <code>$1</code>.
+מזעור תמונות יופעל, אם תפעילו את האפשרות להעלות קבצים.',
+	'config-gd' => 'נמצאה ספריית הגרפיקה GD המובנית.
+מזעור תמונות יופעל, אם תפעילו את האפשרות להעלות קבצים.',
+	'config-no-scaling' => 'ספריית GD או ImageMagick לא נמצאו.
+מזעור תמונות לא יופעל.',
+	'config-no-uri' => "'''שגיאה:''' אי־אפשר לזהות את הכתובת הנוכחית.
+ההתקנה בוטלה.",
+	'config-uploads-not-safe' => "'''אזהרה:''' התיקייה ההתחלתית להעלות <code>$1</code> חשופה להרצת סקריפטים.
+מדיה־ויקי בודקת את כל הקבצים המוּעלים לאיומי אבטחה, מומלץ מאוד למנוע את [http://www.mediawiki.org/wiki/Manual:Security#Upload_security פרצת האבטחה] הזאת לפני שאתם מפעילים את ההעלאות.",
+	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
+שדרגו ל־PHP 5.2.9 או לגרסה חדשה יותר ול־libxml2 2.7.3 או גרסה חדשה יותר ([http://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).
+ההתקנה בוטלה.',
+	'config-using531' => 'PHP $1 אינו תואם למדיה־ויקי בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
+שדרגו ל־PHP 5.3.0 כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]).
+ההתקנה בוטלה.',
 	'config-db-type' => 'סוג מסד הנתונים:',
-	'config-db-host' => 'מארח מסד הנתונים:',
+	'config-db-host' => 'שרת מסד הנתונים:',
+	'config-db-host-help' => 'אם שרת מסד הנתונים שלכם נמצא על שרת מחשב אחר, הקלידו את שם המחשב או כתובת ה־IP כאן.
+
+אם אתם משתמשים באירוח משותף, ספק האירוח שלכם אמור לתת לכם את שם השרת הנכון במסמכים.
+
+אם אתם מתקינים בשרת חלונות ומשתמשים ב־MySQL, השימוש ב־localhost עשוי לא לעבוד. אם הוא לא עובד, נסו את "127.0.0.1" בתור כתובת ה־IP המקומית.',
+	'config-db-host-oracle' => 'TNS של מסד הנתונים:',
+	'config-db-host-oracle-help' => 'הקלידו [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm שם חיבור מקומי (Local Connect Name)] תקין; הקובץ tnsnames.ora צריך להיות זמין להתקנה הזאת.<br />
+אם אתם משתמשים ב־client libraries 10g או בגרסה חדשה יותר, אתם יכולים גם להשתמש בשיטת מתן השמות [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'זיהוי ויקי זה',
 	'config-db-name' => 'שם מסד הנתונים:',
+	'config-db-name-help' => 'בחרו שם שמזהה את הוויקי שלכם.
+לא צריכים להיות בו רווחים.
+
+אם אתם משתמשים באירוח משותף, ספק האירוח שלכם ייתן לכם שם מסד נתונים מסוים שתוכלו להשתמש בו או יאפשר לכם ליצור מסד נתונים דרך לוח בקרה.',
+	'config-db-name-oracle' => 'סכמה של מסד נתונים:',
+	'config-db-install-account' => 'חשבון משתמש להתקנה',
 	'config-db-username' => 'שם המשתמש במסד הנתונים:',
 	'config-db-password' => 'הססמה במסד הנתונים:',
-	'config-db-port' => 'פתחת מסד הנתונים:',
+	'config-db-install-username' => 'הכניסו שם משתמש שישמש אתכם לחיבור למסד נתונים במהלך ההתקנה.
+זהו לא שם משתמש לחשבון במדיה־ויקי; זהו שם משתמש בשרת מסד נתונים.',
+	'config-db-install-password' => 'הקלידו ססמה שתשמש אתכם לצורך חיבור למסד נתונים במהלך ההתקנה.
+זוהי לא ססמה של חשבון במדיה־ויקי; זוהי ססמה לשרת מסד נתונים.',
+	'config-db-install-help' => 'הקלידו את שם המשתמש ואת הססמה להתחברות למסד הנתונים במהלך ההתקנה.',
+	'config-db-account-lock' => 'להשתמש באותו שם המשתמש ובאותה ססמה בזמן הפעלה רגילה',
+	'config-db-wiki-account' => 'חשבון משתמש להפעלה רגילה',
+	'config-db-wiki-help' => 'הקלידו את שם המשתמש והססמה לחיבור למסד הנתונים במהלך פעילות רגילה של הוויקי.
+אם החשבון אינו קיים ולחשבון שבו מתבצעת ההתקנה יש הרשאות מספיקות, החשבון הזה ייווצר עם ההרשאות המזעריות הנחוצות להפעלת הוויקי.',
+	'config-db-prefix' => 'תחילית לטבלאות של מסד נתונים (database table prefix):',
+	'config-db-prefix-help' => 'אם אתם צריכים לשתף מסד נתונים אחד בין אתרי ויקי שונים או בין מדיה־ויקי ויישום וב אחר, תוכלו לבחור להוסיף תחילית וכל שמות הטבלאות כדי להימנע מהתנגשויות.
+אל תשתמשו ברווחים.
+
+השדה הזה בדרך כלל אמור להיות ריק.',
+	'config-db-charset' => 'קבוצת התווים (character set) של מסד הנתונים',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 backwards-compatible UTF-8',
+	'config-charset-help' => "'''אזהרה:''' אם אתם משתמשים ב־'''backwards-compatible UTF-8''' ב־<span dir=\"ltr\">MySQL 4.1+</span>, ומגבים את מסד הנתונים באמצעות <code>mysqldump</code>, זה יכול להרוס את כל תווי ה־ASCII ויהרוס באופן בלתי־הפיך את הגיבויים שלכם!
+
+ב'''מצב בינרי''' (binary mode) מדיה־ויקי שומרת טקסט UTF-8 במסד הנתונים בשדות בינריים.
+זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
+ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע באיזו קבוצת תווים (character set) הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
+	'config-mysql-old' => 'נדרשת גרסה $1 של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלכם היא $2.',
+	'config-db-port' => 'פִּתְחַת מסד הנתונים (database port):',
+	'config-db-schema' => 'סכמה למדיה־ויקי',
+	'config-db-schema-help' => 'הסְכֵמוֹת הבאות בדרך כלל נכונות.
+שנו אותן רק אם אתם יודעים שאתם חייבים.',
+	'config-sqlite-dir' => 'תיקיית נתונים (data directory) של SQLite:',
+	'config-sqlite-dir-help' => 'SQLite שומר את כל הנתונים בקובץ אחד.
+
+לשרת הווב צריכה להיות הרשאה לכתוב לתיקייה שאתם מגדירים.
+
+היא לא צריכה נגישה לכולם דרך האינטרנט – בגלל זה איננו שמים אותה באותו מקום עם קובצי ה־PHP.
+
+תוכנת ההתקנה תכתוב קובץ <span dir="ltr"><code>.htaccess</code></span> יחד אִתו, אבל אם זה ייכשל, מישהו יוכל להשיג גישה למסד הנתונים שלכם. שם נמצא מידע מפורש של משתמשים (כתובות דוא״ל, ססמאות מגובבות) וגם גרסאות מחוקות של דפים ומידע מוגבל אחר.
+
+כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<span dir="ltr"><code>/var/lib/mediawiki/yourwik</code></span>.',
+	'config-oracle-def-ts' => 'מרחב טבלאות לפי בררת מחדל (default tablespace):',
+	'config-oracle-temp-ts' => 'מרחב טבלאות זמני (temporary tablespace):',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
 	'config-header-oracle' => 'הגדרות Oracle',
 	'config-invalid-db-type' => 'סוג מסד הנתונים שגוי',
 	'config-missing-db-name' => 'עליך להזין ערך עבור "שם מסד הנתונים"',
+	'config-missing-db-host' => 'יש להכניס ערך לשדה "שרת מסד הנתונים"',
+	'config-missing-db-server-oracle' => 'יש להכניס ערך לשדה "TNS של מסד הנתונים"',
 	'config-sqlite-mkdir-error' => 'אירעה שגיאה בעת יצירת תיקיית הנתונים "$1".
 נא לבדוק את המיקום ולנסות שוב.',
+	'config-sqlite-connection-error' => '$1.
+
+בִדקו את תיקיית הנתונים את שם מסת הנתונים להלן ונסו שוב.',
 	'config-sqlite-readonly' => 'לא ניתן לכתוב אל הקובץ <code>$1</code>.',
 	'config-sqlite-cant-create-db' => 'לא ניתן ליצור את קובץ מסד הנתונים <code>$1</code>.',
+	'config-can-upgrade' => "יש טבלאות מדיה־ויקי במסד הנתונים.
+כדי לשדרג אותן למדיה־ויקי $1, לחצו '''המשך'''.",
+	'config-regenerate' => 'לחולל מחדש את LocalSettings.php ←',
+	'config-show-table-status' => 'שאילתת SHOW TABLE STATUS נכשלה!',
 	'config-mysql-engine' => 'מנגנון האחסון:',
 	'config-mysql-innodb' => '',
 	'config-mysql-myisam' => '',
@@ -4118,10 +4278,11 @@ $1
 	'config-site-name-blank' => 'נא להזין שם לאתר.',
 	'config-ns-generic' => 'מיזם',
 	'config-ns-other' => 'אחר (לציין)',
-	'config-admin-name' => 'שמך:',
+	'config-admin-box' => 'חשבון מפעיל',
+	'config-admin-name' => 'שמכם:',
 	'config-admin-password' => 'ססמה:',
 	'config-admin-password-confirm' => 'הססמה שוב:',
-	'config-admin-name-blank' => 'נא להזין את שם המשתמש של המנהל.',
+	'config-admin-name-blank' => 'נא להזין את שם המשתמש של המפעיל.',
 	'config-admin-password-same' => 'הססמה לא יכולה להיות זהה לשם המשתמש.',
 	'config-admin-password-mismatch' => 'שתי הססמאות שהוזנו אינן מתאימות.',
 	'config-admin-email' => 'כתובת הדוא״ל:',
@@ -4131,13 +4292,101 @@ $1
 	'config-profile-fishbowl' => 'עורכים מורשים בלבד',
 	'config-profile-private' => 'ויקי פרטי',
 	'config-license' => 'זכויות יוצרים ורישיון:',
+	'config-license-pd' => 'נחלת הכלל',
 	'config-email-settings' => 'הגדרות דוא״ל',
 	'config-email-watchlist' => 'הפעלת התרעה על רשימת המעקב',
 	'config-email-auth' => 'הפעלת התרעה בדוא״ל',
+	'config-email-auth-help' => "אם האפשרות הזאת מופעלת, משתמשים יצטרכו לאשר את כתובת הדוא״ל שלהם באמצעות קישור שיישלח אליהם בכל פעם שהם יגדירו או ישנו אותה.
+רק כתובות דוא״ל מאושרות יכולות לקבלת דוא״ל ממשתמשים אחרים או מכתבים עם הודעות על שינויים.
+'''מומלץ''' להגדיר את האפשרות הזאת לאתרי ויקי ציבוריים כי אפשר לעשות שימוש לרעה בתכונות הדוא״ל.",
+	'config-email-sender' => 'כתובת דוא״ל לתשובות:',
+	'config-email-sender-help' => 'הכניסו את כתובת הדוא״ל שתשמש ככתובת לתשובה לכל הדואר היוצא.
+לשם יישלחו תגובות שגיאה (bounce).
+שרתי דוא״ל רבים דורשים שלפחות החלק של המתחם יהיה תקין.',
 	'config-upload-settings' => 'העלאת קבצים ותמונות',
 	'config-upload-enable' => 'אפשור העלאת קבצים',
+	'config-upload-help' => 'העלאות קבצים חושפות את השרת שלכם לסיכוני אבטחה.
+למידע נוסף, קִראו את [http://www.mediawiki.org/wiki/Manual:Security חלק האבטחה] בספר ההדרכה.
+
+כדי להפעיל העלאת קבצים שנו את ההרשאות של התיקייה <code>images</code> תחת תיקיית השורש של מדיה־ויקי כך ששרת הווב יוכל לכתוב אליה.
+זה מפעיל את האפשרות הזאת.',
 	'config-upload-deleted' => 'תיקיית הקבצים שנמחקו:',
-	'config-logo' => 'כתובת הלוגו:',
+	'config-upload-deleted-help' => 'בחרו את התיקייה לארכוב קבצים מחוקים.
+כדאי שזה לא יהיה נגיש לכל העולם דרך הרשת.',
+	'config-logo' => 'כתובת הסמל:',
+	'config-logo-help' => 'המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה השמאלית העליונה (ימנית עבור שפות שנכתבות מימין לשמאל).
+יש להעלות תמונה בגודל מתאים ולהכניס את הכתובת כאן.
+
+אם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.',
+	'config-instantcommons' => 'להפעיל את Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [http://commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).
+כדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.
+
+למידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos את ספר ההדרכה].',
+	'config-cc-error' => 'בורר רישיונות קריאייטיב קומונז לא החזיר שום תוצאה.
+הקלידו את שם הרישיון ידנית.',
+	'config-cc-again' => 'נא לבחור שוב...',
+	'config-cc-not-chosen' => 'בחרו באיזה רישיון קריאייטיב קומונז להשתמש ולחצו "המשך".',
+	'config-advanced-settings' => 'הגדרות מתקדמות',
+	'config-cache-options' => 'הגדרות למטמון עצמים (object caching):',
+	'config-cache-help' => 'מטמון עצמים משמש לשיפור המהירות של מדיה־ויקי על־ידי שמירה של נתונים שהשימוש בהם נפוץ במטמון.
+לאתרים בינוניים וגדולים כדאי מאוד להפעיל את זה, וגם אתרים קטנים ייהנו מזה.',
+	'config-extensions' => 'הרחבות',
+	'config-extensions-help' => 'ההרחבות ברשימה לעיל התגלו בתיקיית <span dir="ltr"><code>./extensions</code></span> שלכם.
+
+ייתכן שזה ידרוש הגדרות נוספות, אבל תוכלו להפעיל אותן עכשיו.',
+	'config-install-alreadydone' => "'''אזהרה:''' נראה שכבר התקנתם את מדיה־ויקי ואתם מנסים להתקין אותה שוב.
+אנה התקדמו לדף הבא.",
+	'config-install-begin' => 'כשתלחצו על "הבא", תתחילו את ההתקנה של מדיה־ויקי.
+אם אתם עדיין רוצים לשנות משהו, לחצו על "הקודם".',
+	'config-install-step-done' => 'בוצע',
+	'config-install-step-failed' => 'נכשל',
+	'config-install-extensions' => 'כולל הרחבות',
+	'config-install-database' => 'הקמת מסד נתונים',
+	'config-install-pg-schema-not-exist' => 'סכמה של PostgreSQL אינה קיימת',
+	'config-install-pg-schema-failed' => 'יצירת טבלאות נכשלה.
+ודאו כי המשתמש "$1" יכול לכתוב לסכמה "$2".',
+	'config-install-pg-commit' => 'שמירת שינויים',
+	'config-install-pg-plpgsql' => 'בדיקת שפת PL/pgSQL',
+	'config-pg-no-plpgsql' => 'צריך להתקין את שפת PL/pgSQL במסד הנתונים $1',
+	'config-pg-no-create-privs' => 'לחשבון שהגדרתם להתקנה אין מספיק הרשאות ליצירת חשבון.',
+	'config-install-user' => 'יצירת חשבון במסד נתונים',
+	'config-install-user-failed' => 'מתן הרשאות למשתמש "$1" נכשל: $2',
+	'config-install-tables' => 'יצירת טבלאות',
+	'config-install-tables-exist' => "'''אזהרה:''' נראה שטבלאות מדיה־ויקי כבר קיימות.
+מדלג על יצירתן.",
+	'config-install-tables-failed' => "'''שגיאה:''' יצירת הטבלה נכשלה עם השגיאה הבאה: $1",
+	'config-install-interwiki' => 'אכלוס טבלת בינוויקי התחלתית',
+	'config-install-interwiki-list' => 'קריאת הקובץ <code>interwiki.list</code> לא הצליחה.',
+	'config-install-interwiki-exists' => "'''אזהרה:''': נראה שבטבלת הבינוויקי כבר יש רשומות.
+מדלג על הרשומה ההתחלתית.",
+	'config-install-stats' => 'אתחול סטטיסטיקות',
+	'config-install-secretkey' => 'יצירת מפתח סודי',
+	'config-insecure-secret' => "'''אזהרה:''' אי־אפשר ליצור <code>$1</code> מאובטח.
+יש לשקול לשנותו ידנית.",
+	'config-install-upgradekey' => 'יצירת מפתח שדרוג התחלתי',
+	'config-install-sysop' => 'יצירת חשבון מפעיל',
+	'config-install-subscribe-fail' => 'הרישום ל־mediawiki-announce לא הצליח',
+	'config-install-mainpage' => 'יצירת דף ראשי עם תוכן לפי בררת מחדל.',
+	'config-install-extension-tables' => 'יצירת טבלאות להרחבות מופעלות',
+	'config-install-mainpage-failed' => 'לא הצליחה הכנסת דף ראשי: $1.',
+	'config-install-done' => "'''מזל טוב!'''
+התקנתם בהצלחה את מדיה־ויקי.
+
+תוכנת ההתקנה יצרה את הקובץ <code>LocalSettings.php</code>.
+הוא מכיל את כל ההגדרות שלכם.
+
+תצטרכו להוריד אותו ולשים אותו בבסיס ההתקנה של הוויקי שלכם (אות התיקייה שבה נמצא הקובץ index.php). ההורדה הייתה אמורה להתחיל באופן אוטומטי.
+
+אם ההורדה לא התחילה, אם אם ביטלתם אותה, אפשר להתחיל אותה מחדש בלחיצה על הקישור הבא:
+
+$3
+
+'''שימו לב''': אם לא תעשו זאת עכשיו, קובץ ההגדרות המחולל לא יהיה זמין לכם שוב.
+
+אחרי שתעשו את זה, תוכלו '''[$2 להיכנס לוויקי שלכם]'''.",
+	'config-download-localsettings' => 'הורדת LocalSettings.php',
+	'config-help' => 'עזרה',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -5110,6 +5359,7 @@ Pro facer alterationes, clicca sur "Retro".',
 	'config-install-step-failed' => 'fallite',
 	'config-install-extensions' => 'Include le extensiones',
 	'config-install-database' => 'Configura le base de datos',
+	'config-install-pg-schema-not-exist' => 'Iste schema de PostgreSQL non existe',
 	'config-install-pg-schema-failed' => 'Le creation del tabellas falleva.
 Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-install-pg-commit' => 'Committer cambiamentos',
@@ -6894,6 +7144,7 @@ chmod a+w $3</pre>',
 	'config-install-step-failed' => 'не успеа',
 	'config-install-extensions' => 'Вклучувам додатоци',
 	'config-install-database' => 'Ја поставувам базата на податоци',
+	'config-install-pg-schema-not-exist' => 'PostgreSQL-шемата не постои',
 	'config-install-pg-schema-failed' => 'Создавањето натабелите не успеа.
 Проверете дали корисникот „$1“ може да запишува во шемата „$2“.',
 	'config-install-pg-commit' => 'Спроведување на промени',
@@ -9245,6 +9496,7 @@ Se quiser fazer mais alterações, clique Voltar.',
 	'config-install-step-failed' => 'falhou',
 	'config-install-extensions' => 'A incluir as extensões',
 	'config-install-database' => 'A preparar a base de dados',
+	'config-install-pg-schema-not-exist' => "O esquema ''(schema)'' PostgreSQL não existe",
 	'config-install-pg-schema-failed' => 'A criação das tabelas falhou.
 Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\' "$2".',
 	'config-install-pg-commit' => 'A gravar as alterações',
@@ -10646,6 +10898,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-pg-commit' => '正在提交更改',
 	'config-install-pg-plpgsql' => '正在检查PL/pgSQL语言',
 	'config-pg-no-plpgsql' => '您需要为数据库$1安装PL/pgSQL语言',
+	'config-pg-no-create-privs' => '为安装程序指定的帐号缺少创建帐号的权限。',
 	'config-install-user' => '正在创建数据库用户',
 	'config-install-user-failed' => '授予用户“$1”权限失败：$2',
 	'config-install-tables' => '正在创建数据表',

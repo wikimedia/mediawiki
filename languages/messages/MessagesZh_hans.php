@@ -1831,7 +1831,7 @@ Template:消除歧義',
 'doubleredirects'                   => '双重重定向页面',
 'doubleredirectstext'               => '此页列出了所有重定向到另一重定向页面的页面。每一行都包含有到第一和第二个重定向页面的链接，以及第二个重定向页面的目标——通常就是“真正的”目标页面，亦即是第一个重定向页面应该指向的页面。<del>已划去</del>的为已经解决的项目。',
 'double-redirect-fixed-move'        => '[[$1]]已经完成移动，它现在重定向到[[$2]]。',
-'double-redirect-fixed-maintenance' => '固定双重定向，从 [[$1]] 至 [[$2]]。',
+'double-redirect-fixed-maintenance' => '修复从[[$1]]到[[$2]]的双重重定向。',
 'double-redirect-fixer'             => '重定向修正器',
 
 'brokenredirects'        => '损坏的重定向页',

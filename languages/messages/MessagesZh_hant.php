@@ -1821,11 +1821,12 @@ Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的連結，但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
 
-'doubleredirects'            => '雙重重定向頁面',
-'doubleredirectstext'        => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
+'doubleredirects'                   => '雙重重定向頁面',
+'doubleredirectstext'               => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
 <del>已劃去</del>的為已經解決之項目。',
-'double-redirect-fixed-move' => '[[$1]]已經完成移動，它現在重新定向到[[$2]]。',
-'double-redirect-fixer'      => '重新定向修正器',
+'double-redirect-fixed-move'        => '[[$1]]已經完成移動，它現在重新定向到[[$2]]。',
+'double-redirect-fixed-maintenance' => '修復從[[$1]]到[[$2]]的雙重重定向。',
+'double-redirect-fixer'             => '重新定向修正器',
 
 'brokenredirects'        => '損壞的重定向頁',
 'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
@@ -2169,7 +2170,7 @@ $UNWATCHURL
 'modifiedarticleprotection'   => '已經更改「[[$1]]」的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'movedarticleprotection'      => '已將「[[$2]]」的保護設定移動至「[[$1]]」',
-'protect-title'               => '正在更改「$1」的保護等級',
+'protect-title'               => '更改「$1」的保護等級',
 'prot_1movedto2'              => '[[$1]]移動到[[$2]]',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '理由：',

@@ -489,7 +489,7 @@ $1",
 'hidetoc'                 => 'versteek',
 'collapsible-collapse'    => 'Vou toe',
 'collapsible-expand'      => 'Vou oop',
-'thisisdeleted'           => 'Bekyk of herstel $1?',
+'thisisdeleted'           => 'Wys of herstel $1?',
 'viewdeleted'             => 'Bekyk $1?',
 'restorelink'             => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
 'feedlinks'               => 'Voer:',
@@ -899,10 +899,10 @@ U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of re
 'permissionserrors'                => 'Toestemmings Foute',
 'permissionserrorstext'            => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
 'permissionserrorstext-withaction' => 'U het geen regte om $2, vir die volgende {{PLURAL:$1|rede|redes}}:',
-'recreate-moveddeleted-warn'       => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
+'recreate-moveddeleted-warn'       => "'''Waarskuwing: U herskep 'n bladsy wat vantevore verwyder is.'''
 
-U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk.
-Die verwyderingslogboek vir die blad word hier onder vertoon vir u gerief:",
+U moet besluit of dit wys is om voort te gaan om aan hierdie bladsy te werk.
+Die skrap- en skuiflogboeke vir die bladsy word vir u gerief hier onder vertoon:",
 'moveddeleted-notice'              => 'Hierdie bladsy is verwyder.
 Die skrap- en skuif-logboeke word hieronder ter inligting weergegee.',
 'log-fulllog'                      => 'Wys volledige logboek',
@@ -2284,7 +2284,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 
 # Undelete
 'undelete'                     => 'Besigtig geskrapte bladsye',
-'undeletepage'                 => 'Bekyk en herstel geskrapte bladsye',
+'undeletepage'                 => 'Kyk na en herstel geskrapte bladsye',
 'undeletepagetitle'            => "'''Hier onder is die verwyderde weergawes van [[:$1]]'''.",
 'viewdeletedpage'              => 'Bekyk geskrapte bladsye',
 'undeletepagetext'             => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
@@ -2305,7 +2305,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit die argief verwyder.",
 'undelete-nodiff'              => 'Geen vorige wysigings gevind.',
 'undeletebtn'                  => 'Plaas terug',
-'undeletelink'                 => 'bekyk/herstel',
+'undeletelink'                 => 'wys/herstel',
 'undeleteviewlink'             => 'bekyk',
 'undeletereset'                => 'Herinstel',
 'undeleteinvert'               => 'Omgekeerde seleksie',
