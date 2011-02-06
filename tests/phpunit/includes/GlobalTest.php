@@ -633,6 +633,61 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * test @see wfShorthandToInteger()
+	 * @dataProvider provideShorthand
+	 */
+	public function testWfShorthandToInteger( $shorthand, $expected ) {
+		$this->assertEquals( $expected,
+			wfShorthandToInteger( $shorthand )
+		);	
+	}
+
+	/** array( shorthand, expected integer ) */
+	public function provideShorthand() {
+		return array(
+			# Null, empty ... 
+			array(     '', -1),
+			array(   '  ', -1),
+			array(   null, -1),
+
+			# Failures returns 0 :(
+			array( 'ABCDEFG', 0 ),
+			array( 'Ak',      0 ),
+
+			# Int, strings with spaces
+			array(        1,    1 ),
+			array(    ' 1 ',    1 ),
+			array(     1023, 1023 ),
+			array( ' 1023 ', 1023 ),
+
+			# kilo, Mega, Giga
+			array(   '1k', 1024 ),
+			array(   '1K', 1024 ),
+			array(   '1m', 1024 * 1024 ),
+			array(   '1M', 1024 * 1024 ),
+			array(   '1g', 1024 * 1024 * 1024 ),
+			array(   '1G', 1024 * 1024 * 1024 ),
+
+			# Negatives
+			array(     -1,    -1 ),
+			array(   -500,  -500 ),
+			array( '-500',  -500 ),
+			array(  '-1k', -1024 ),
+
+			# Zeroes
+			array(   '0', 0 ),
+			array(  '0k', 0 ),
+			array(  '0M', 0 ),
+			array(  '0G', 0 ),
+			array(  '-0', 0 ),
+			array( '-0k', 0 ),
+			array( '-0M', 0 ),
+			array( '-0G', 0 ),
+		);
+	}
+
+
+	/**
 	 * test @see wfBCP47().
 	 * Please note the BCP explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
