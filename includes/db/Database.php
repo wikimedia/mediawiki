@@ -2494,7 +2494,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Read and execute commands from an open file handle
 	 * Returns true on success, error string or exception on failure (depending on object's error ignore settings)
-	 * @param $fp String: File handle
+	 * @param $fp Resource: File handle
 	 * @param $lineCallback Callback: Optional function called before reading each line
 	 * @param $resultCallback Callback: Optional function called for each MySQL result
 	 * @param $fname String: Calling function name
@@ -3124,6 +3124,9 @@ class ResultWrapper implements Iterator {
 
 	/**
 	 * Create a new result object from a result resource and a Database object
+	 *
+	 * @param Database $database
+	 * @param resource $result
 	 */
 	function __construct( $database, $result ) {
 		$this->db = $database;
@@ -3137,6 +3140,8 @@ class ResultWrapper implements Iterator {
 
 	/**
 	 * Get the number of rows in a result object
+	 *
+	 * @return integer
 	 */
 	function numRows() {
 		return $this->db->numRows( $this );
@@ -3175,8 +3180,10 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * Change the position of the cursor in a result object
+	 * Change the position of the cursor in a result object.
 	 * See mysql_data_seek()
+	 *
+	 * @param $row integer
 	 */
 	function seek( $row ) {
 		$this->db->dataSeek( $this, $row );
@@ -3266,10 +3273,20 @@ class FakeResultWrapper extends ResultWrapper {
 class LikeMatch {
 	private $str;
 
+	/**
+	 * Store a string into a LikeMatch marker object.
+	 *
+	 * @param String $s
+	 */
 	public function __construct( $s ) {
 		$this->str = $s;
 	}
 
+	/**
+	 * Return the original stored string.
+	 *
+	 * @return String
+	 */
 	public function toString() {
 		return $this->str;
 	}
