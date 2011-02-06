@@ -52,38 +52,38 @@ class MagicVariableTest extends PHPUnit_Framework_TestCase {
 
 	# day
 
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testCurrentdayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'currentday', $day );
 	}
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testCurrentdaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'currentday2', $day );
 	}
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testLocaldayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'localday', $day );
 	}
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testLocaldaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'localday2', $day );
 	}
 	
 	# month
 
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testCurrentmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'currentmonth', $month );
 	}
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testCurrentmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'currentmonth1', $month );
 	}
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testLocalmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'localmonth', $month );
 	}
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testLocalmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'localmonth1', $month );
 	}
@@ -91,22 +91,22 @@ class MagicVariableTest extends PHPUnit_Framework_TestCase {
 
 	# revision day
 
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testRevisiondayIsUnPadded( $day ) {
 		$this->assertUnPadded( 'revisionday', $day );
 	}
-	/** @dataProvider provideDays */
+	/** @dataProvider MediaWikiProvide::Days */
 	function testRevisiondaytwoIsZeroPadded( $day ) {
 		$this->assertZeroPadded( 'revisionday2', $day );
 	}
 	
 	# revision month
 
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testRevisionmonthIsZeroPadded( $month ) {
 		$this->assertZeroPadded( 'revisionmonth', $month );
 	}
-	/** @dataProvider provideMonths */
+	/** @dataProvider MediaWikiProvide::Months */
 	function testRevisionmonthoneIsUnPadded( $month ) {
 		$this->assertUnPadded( 'revisionmonth1', $month );
 	}
@@ -173,27 +173,5 @@ class MagicVariableTest extends PHPUnit_Framework_TestCase {
 			$this->testParser->getVariableValue( $magic ),
 			$msg
 		);
-	}
-
-
-	############## PROVIDERS ##########################################
-
-	/* provide an array of numbers from 1 up to @param $num */
-	private function createProviderUpTo( $num ) {
-		$ret = array();
-		for( $i=1; $i<=$num;$i++ ) {
-			$ret[] = array( $i );
-		}
-		return $ret;
-	}
-
-	/* array of months numbers (as an integer) */
-	public function provideMonths() {
-		return $this->createProviderUpTo( 12 );
-	}
-
-	/* array of days numbers (as an integer) */
-	public function provideDays() {
-		return $this->createProviderUpTo( 31 );
 	}
 }
