@@ -63,6 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   specified a filename without extension.
 * (bug 26851) Special:UserRights now allows to prefill the reason field
 * New maintenance script to fix double redirects (maintenance/fixDoubleRedirects.php)
+* (bug 23315) New body classes to allow easier styling of special pages
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
