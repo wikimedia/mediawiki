@@ -301,7 +301,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$n = 0;
 
 		if ( !$fromList || !$toList ) {
-			$out = wfMsgWikiHtml( 'allpagesbadtitle' );
+			$out = wfMsgExt( 'allpagesbadtitle', 'parse' );
 		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
 			// Show errormessage and reset to NS_MAIN
 			$out = wfMsgExt( 'allpages-bad-ns', array( 'parseinline' ), $namespace );

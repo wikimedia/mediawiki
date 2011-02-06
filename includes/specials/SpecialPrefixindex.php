@@ -126,7 +126,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$namespaces = $wgContLang->getNamespaces();
 
 		if ( !$prefixList || !$fromList ) {
-			$out = wfMsgWikiHtml( 'allpagesbadtitle' );
+			$out = wfMsgExt( 'allpagesbadtitle', 'parse' );
 		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
 			// Show errormessage and reset to NS_MAIN
 			$out = wfMsgExt( 'allpages-bad-ns', array( 'parseinline' ), $namespace );
