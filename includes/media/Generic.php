@@ -141,6 +141,18 @@ abstract class MediaHandler {
 	 * @return array thumbnail extension and MIME type
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
+		$magic = MimeMagic::singleton();
+		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
+			// The extension is not valid for this mime type and we do 
+			// recognize the mime type
+			$extensions = $magic->getExtensionsForType( $mime );
+			if ( $extensions ) {
+				return array( strtok( $extensions, ' ' ), $mime );
+			}
+		}
+		
+		// The extension is correct (true) or the mime type is unknown to
+		// MediaWiki (null)
 		return array( $ext, $mime );
 	}
 
