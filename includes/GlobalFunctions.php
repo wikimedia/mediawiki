@@ -3397,6 +3397,7 @@ function wfShorthandToInteger( $string = '' ) {
 
 /**
  * Get the normalised IETF language tag
+ * See unit test for examples.
  * @param $code String: The language code.
  * @return $langCode String: The language code which complying with BCP 47 standards.
  */
@@ -3404,12 +3405,15 @@ function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
 	foreach ( $codeSegment as $segNo => $seg ) {
 		if ( count( $codeSegment ) > 0 ) {
+			// when previous segment is x, it is a private segment and should be lc 
+			if( $segNo > 0 && strtolower( $codeSegment[($segNo - 1)] ) == 'x') {
+				$codeBCP[$segNo] = strtolower( $seg );
 			// ISO 3166 country code
-			if ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) ) {
+			} elseif ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) ) {
 				$codeBCP[$segNo] = strtoupper( $seg );
 			// ISO 15924 script code
 			} elseif ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) ) {
-				$codeBCP[$segNo] = ucfirst( $seg );
+				$codeBCP[$segNo] = ucfirst( strtolower( $seg ) );
 			// Use lowercase for other cases
 			} else {
 				$codeBCP[$segNo] = strtolower( $seg );
