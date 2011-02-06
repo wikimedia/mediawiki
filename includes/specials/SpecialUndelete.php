@@ -1411,7 +1411,7 @@ class SpecialUndelete extends SpecialPage {
 				$wgOut->addWikiMsgArray( 'undeletedpage', array( $link ), array( 'replaceafter' ) );
 			} else {
 				$wgOut->showFatalError( wfMsg( "cannotundelete" ) );
-				$wgOut->addHTML( '<p>' . wfMsgHtml( "undeleterevdel" ) . '</p>' );
+				$wgOut->addWikiMsg( 'undeleterevdel' );
 			}
 
 			// Show file deletion warnings and errors
