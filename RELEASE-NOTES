@@ -37,6 +37,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAPICacheHelpTimeout = 0;
 * OutputPage::isUserJsAllowed() no longer returns false when scripts are allowed by the page,
   but $wgAllowUserJs is set to false.
+* Pure "Skin" class based custom skins are no longer supported, all custom skins
+  should be put together using SkinTemplate and BaseTemplate or QuickTemplate.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
