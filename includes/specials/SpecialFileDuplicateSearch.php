@@ -29,7 +29,12 @@
  * @ingroup SpecialPage
  */
 class FileDuplicateSearchPage extends QueryPage {
-	protected $hash, $filename;
+	protected $hash = '', $filename = '';
+
+	/**
+	 * @var File $file selected reference file, if present
+	 */
+	protected $file = null;
 
 	function __construct( $name = 'FileDuplicateSearch' ) {
 		parent::__construct( $name );
@@ -41,6 +46,35 @@ class FileDuplicateSearchPage extends QueryPage {
 
 	function linkParameters() {
 		return array( 'filename' => $this->filename );
+	}
+
+	/**
+	 * Fetch dupes from all connected file repositories.
+	 *
+	 * @return Array of File objects
+	 */
+	function getDupes() {
+		return RepoGroup::singleton()->findBySha1( $this->hash );
+	}
+
+	/**
+	 *
+	 * @param Array of File objects $dupes
+	 */
+	function showList( $dupes ) {
+		global $wgUser, $wgOut;
+		$skin = $wgUser->getSkin();
+
+		$html = array();
+		$html[] = $this->openList( 0 );
+
+		foreach ( $dupes as $key => $dupe ) {
+			$line = $this->formatResult( $skin, $dupe );
+			$html[] = "<li>" . $line . "</li>";
+		}
+		$html[] = $this->closeList();
+
+		$wgOut->addHtml( implode( "\n", $html ) );
 	}
 
 	function getQueryInfo() {
@@ -63,11 +97,11 @@ class FileDuplicateSearchPage extends QueryPage {
 		$this->outputHeader();
 		
 		$this->filename =  isset( $par ) ?  $par : $wgRequest->getText( 'filename' );
+		$this->file = null;
 		$this->hash = '';
-		$title = Title::makeTitleSafe( NS_FILE, $this->filename );
+		$title = Title::newFromText( $this->filename, NS_FILE );
 		if( $title && $title->getText() != '' ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$this->hash = $dbr->selectField( 'image', 'img_sha1', array( 'img_name' => $title->getDBkey() ), __METHOD__ );
+			$this->file = wfFindFile( $title );
 		}
 
 		# Create the input form
@@ -82,11 +116,20 @@ class FileDuplicateSearchPage extends QueryPage {
 			Xml::closeElement( 'form' )
 		);
 
+		if( $this->file ) {
+			$this->hash = $this->file->getSha1();
+		} else {
+			$wgOut->wrapWikiMsg(
+				"<p class='mw-fileduplicatesearch-noresults'>\n$1\n</p>",
+				array( 'fileduplicatesearch-noresults', wfEscapeWikiText( $this->filename ) )
+			);
+		}
+
 		if( $this->hash != '' ) {
 			$align = $wgContLang->alignEnd();
 
 			# Show a thumbnail of the file
-			$img = wfFindFile( $title );
+			$img = $this->file;
 			if ( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
@@ -102,36 +145,46 @@ class FileDuplicateSearchPage extends QueryPage {
 				}
 			}
 
-			parent::execute( $par );
+			$dupes = $this->getDupes();
+			$numRows = count( $dupes );
 
 			# Show a short summary
-			if( $this->numRows == 1 ) {
+			if( $numRows == 1 ) {
 				$wgOut->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-1'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-1', $this->filename )
+					array( 'fileduplicatesearch-result-1', wfEscapeWikiText( $this->filename ) )
 				);
-			} elseif ( $this->numRows > 1 ) {
+			} elseif ( $numRows ) {
 				$wgOut->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-n'>\n$1\n</p>",
-					array( 'fileduplicatesearch-result-n', $this->filename,
-						$wgLang->formatNum( $this->numRows - 1 ) )
+					array( 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
+						$wgLang->formatNum( $numRows - 1 ) )
 				);
 			}
+
+			$this->showList( $dupes );
 		}
 	}
 
+	/**
+	 *
+	 * @param Skin $skin
+	 * @param File $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgContLang, $wgLang;
 
-		$nt = Title::makeTitle( NS_FILE, $result->title );
+		$nt = $result->getTitle();
 		$text = $wgContLang->convert( $nt->getText() );
 		$plink = $skin->link(
 			Title::newFromText( $nt->getPrefixedText() ),
 			$text
 		);
 
-		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
-		$time = $wgLang->timeanddate( $result->img_timestamp );
+		$userText = $result->getUser( 'text' );
+		$user = $skin->link( Title::makeTitle( NS_USER, $userText ), $userText );
+		$time = $wgLang->timeanddate( $result->getTimestamp() );
 
 		return "$plink . . $user . . $time";
 	}

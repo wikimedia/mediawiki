@@ -4318,15 +4318,14 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Search for duplicate files',
-'fileduplicatesearch-summary'  => 'Search for duplicate files based on hash values.
-
-Enter the filename without the "{{ns:file}}:" prefix.',
+'fileduplicatesearch-summary'  => 'Search for duplicate files based on hash values.',
 'fileduplicatesearch-legend'   => 'Search for a duplicate',
 'fileduplicatesearch-filename' => 'Filename:',
 'fileduplicatesearch-submit'   => 'Search',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />File size: $3<br />MIME type: $4',
 'fileduplicatesearch-result-1' => 'The file "$1" has no identical duplication.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
+'fileduplicatesearch-noresults' => 'No file named "$1" found.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Special pages',
