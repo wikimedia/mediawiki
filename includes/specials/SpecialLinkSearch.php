@@ -101,7 +101,7 @@ class LinkSearchPage extends QueryPage {
 				'protocol' => $protocol ) );
 			parent::execute( $par );
 			if( $this->mMungedQuery === false )
-				$wgOut->addWikiText( wfMsg( 'linksearch-error' ) );
+				$wgOut->addWikiMsg( 'linksearch-error' );
 		}
 	}
 

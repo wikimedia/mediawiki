@@ -233,7 +233,7 @@ class SpecialSearch extends SpecialPage {
 
 		// Sometimes the search engine knows there are too many hits
 		if( $titleMatches instanceof SearchResultTooMany ) {
-			$wgOut->addWikiText( '==' . wfMsg( 'toomanymatches' ) . "==\n" );
+			$wgOut->wrapWikiMsg( "==$1==\n", 'toomanymatches' );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
