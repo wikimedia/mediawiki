@@ -261,7 +261,7 @@ setSelection: function( options ) {
  */
 scrollToCaretPosition: function( options ) {
 	function getLineLength( e ) {
-		return Math.floor( e.scrollWidth / ( $.os.name == 'linux' ? 7 : 8 ) );
+		return Math.floor( e.scrollWidth / ( $.client.platform == 'linux' ? 7 : 8 ) );
 	}
 	function getCaretScrollPosition( e ) {
 		// FIXME: This functions sucks and is off by a few lines most
@@ -304,7 +304,7 @@ scrollToCaretPosition: function( options ) {
 			charInLine = caret - lastSpaceInLine;
 			row++;
 		}
-		return ( $.os.name == 'mac' ? 13 : ( $.os.name == 'linux' ? 15 : 16 ) ) * row;
+		return ( $.client.platform == 'mac' ? 13 : ( $.client.platform == 'linux' ? 15 : 16 ) ) * row;
 	}
 	return this.each(function() {
 		if ( $(this).is( ':hidden' ) ) {
