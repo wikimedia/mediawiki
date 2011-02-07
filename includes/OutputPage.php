@@ -2309,7 +2309,8 @@ class OutputPage {
 		}
 		$sk->setupUserCss( $this );
 
-		$ret = Html::htmlHeader( array( 'lang' => wfUILang()->getCode() ) );
+		$lang = wfUILang();
+		$ret = Html::htmlHeader( array( 'lang' => $lang->getCode(), 'dir' => $lang->getDir() ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
