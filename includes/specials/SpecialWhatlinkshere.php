@@ -236,7 +236,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$wgOut->addHTML( $prevnext );
 		}
 
-		$wgOut->addHTML( $this->listStart() );
+		$wgOut->addHTML( $this->listStart( $level ) );
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
@@ -256,18 +256,16 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 	}
 
-	protected function listStart() {
-		return Xml::openElement( 'ul', array ( 'id' => 'mw-whatlinkshere-list' ) );
+	protected function listStart( $level ) {
+		return Xml::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
-		global $wgLang;
-
 		# local message cache
 		static $msgcache = null;
 		if ( $msgcache === null ) {
 			static $msgs = array( 'isredirect', 'istemplate', 'semicolon-separator',
-				'whatlinkshere-links', 'isimage', 'hist' );
+				'whatlinkshere-links', 'isimage' );
 			$msgcache = array();
 			foreach ( $msgs as $msg ) {
 				$msgcache[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
@@ -302,10 +300,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		# Space for utilities links, with a what-links-here link provided
-		$tools = array();
-		$tools[] = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
-		$tools[] = $this->skin->linkKnown( $nt, $msgcache['hist'], array(), array( 'action' => 'history' ) );
-		$wlh = Xml::wrapClass( '(' . $wgLang->pipeList( $tools ) . ')', 'mw-whatlinkshere-tools' );
+		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
+		$wlh = Xml::wrapClass( "($wlhLink)", 'mw-whatlinkshere-tools' );
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :

@@ -4996,7 +4996,11 @@ class Parser {
 
 	/**
 	 * Accessor for $mDefaultSort
-	 * Will use the title/prefixed title if none is set
+	 * Will use the empty string if none is set.
+	 *
+	 * This value is treated as a prefix, so the
+	 * empty string is equivalent to sorting by
+	 * page name.
 	 *
 	 * @return string
 	 */
@@ -5004,7 +5008,7 @@ class Parser {
 		if ( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
 		} else {
-			return $this->mTitle->getCategorySortkey();
+			return '';
 		}
 	}
 

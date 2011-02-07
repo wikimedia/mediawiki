@@ -58,7 +58,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
 );
 
-$separatorTransformTable = array( ',' => '.', '.' => ',' );
+# Per discussion on http://translatewiki.net/wiki/Thread:Support/Customization_of number format
+$separatorTransformTable = array(
+	',' => "\xc2\xa0", # nbsp
+	'.' => ','
+);
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 
