@@ -87,7 +87,7 @@ class IPUnblockForm extends SpecialPage {
 
 			if( $action == 'unblock' ){
 				# Show unblock form
-				$this->showForm( '' );
+				$this->showForm();
 			} elseif( $action == 'submit' 
 				&& $wgRequest->wasPosted()
 				&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
@@ -116,19 +116,20 @@ class IPUnblockForm extends SpecialPage {
 	/**
 	 * Generates the unblock form
 	 *
-	 * @param $err string: error message
+	 * @param $err String, Array or null: error message name or an array if
+	 *             there are parameters. Null indicates no error.
 	 * @return $out string: HTML form
 	 */
-	function showForm( $err ) {
+	function showForm( $err = null ) {
 		global $wgOut, $wgUser, $wgSysopUserBans;
 
 		$wgOut->addWikiMsg( 'unblockiptext' );
 
 		$action = $this->getTitle()->getLocalURL( 'action=submit' );
 
-		if ( $err != '' ) {
+		if ( $err !== null ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addWikiText( Html::rawElement( 'span', array( 'class' => 'error' ), $err ) . "\n" );
+			$wgOut->wrapWikiMsg( "<span class='error'>$1</span>\n", $err );
 		}
 
 		$addressPart = false;
@@ -251,9 +252,8 @@ class IPUnblockForm extends SpecialPage {
 		global $wgOut, $wgUser;
 
 		$retval = self::doUnblock( $this->id, $this->ip, $this->reason, $range, $wgUser );
-		if( !empty( $retval ) ) {
-			$key = array_shift( $retval );
-			$this->showForm( wfMsgReal( $key, $retval ) );
+		if ( count( $retval ) ) {
+			$this->showForm( $retval );
 			return;
 		}
 
