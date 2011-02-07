@@ -327,7 +327,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				'name' => 'clear',
 			) 
 		), 'clearStashedUploads' );
-		$form->setSubmitCallback( __CLASS__ . '::tryClearStashedUploads' ); 
+		$form->setSubmitCallback( array( __CLASS__ , 'tryClearStashedUploads' ) ); 
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
 
