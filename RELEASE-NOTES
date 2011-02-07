@@ -122,6 +122,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and other multi-paged file formats.
 * Files with a mime type that does not match the extension are now properly
   thumbnailed 
+* (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
@@ -148,7 +149,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24650) Fix API to work with categorylinks changes
 * Expose list of skins in meta=siteinfo
 * (bug 26548) Add iiurlparam param to query=imageinfo and query=stashimageinfo
-* (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
 * (bug 27205) aiprop=metadata and aiprop=parsedcomment need help text
 
 === Languages updated in 1.18 ===
