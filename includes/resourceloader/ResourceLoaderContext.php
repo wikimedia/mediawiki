@@ -91,7 +91,8 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->request->getVal( 'dir' );
 			if ( !$this->direction ) {
-				$this->direction = Language::factory( $this->language )->getDir();
+				global $wgContLang;
+				$this->direction = $wgContLang->getDir();
 			}
 		}
 		return $this->direction;
