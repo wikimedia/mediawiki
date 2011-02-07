@@ -1625,7 +1625,7 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( !$alias || $alias == $name ) {
 			return $this->tableName( $name );
 		} else {
-			return $this->tableName( $name ) . ' `' . $alias . '`';
+			return $this->tableName( $name ) . $this->addQuotes( $alias );
 		}
 	}
 
