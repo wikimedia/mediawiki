@@ -11,6 +11,7 @@
  * @author Crazymadlover
  * @author Daemorris
  * @author Giro720
+ * @author GoEThe
  * @author Hamilton Abreu
  * @author Helder.wiki
  * @author Indech
@@ -3556,16 +3557,15 @@ Ficheiros de outro tipo serão abertos pelo browser directamente no programa que
 Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Ficheiros duplicados',
-'fileduplicatesearch-summary'  => "Procure ficheiros duplicados tendo por base o seu resumo criptográfico ''(hash value)''.
-
-Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
-'fileduplicatesearch-legend'   => 'Procurar duplicados',
-'fileduplicatesearch-filename' => 'Ficheiro:',
-'fileduplicatesearch-submit'   => 'Procurar',
-'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'O ficheiro "$1" não possui cópias idênticas.',
-'fileduplicatesearch-result-n' => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+'fileduplicatesearch'           => 'Ficheiros duplicados',
+'fileduplicatesearch-summary'   => "Procure ficheiros duplicados tendo por base o seu resumo criptográfico ''(hash value)''.",
+'fileduplicatesearch-legend'    => 'Procurar duplicados',
+'fileduplicatesearch-filename'  => 'Ficheiro:',
+'fileduplicatesearch-submit'    => 'Procurar',
+'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
+'fileduplicatesearch-result-1'  => 'O ficheiro "$1" não possui cópias idênticas.',
+'fileduplicatesearch-result-n'  => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+'fileduplicatesearch-noresults' => 'Nenhum ficheiro com o nome "$1" foi encontrado.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',

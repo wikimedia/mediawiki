@@ -3495,9 +3495,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'دور على الملفات المتكررة',
-'fileduplicatesearch-summary'  => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.
-
-دخل اسم الملف من غير البريفكس "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.',
 'fileduplicatesearch-legend'   => 'تدوير على متكرر',
 'fileduplicatesearch-filename' => 'اسم الملف:',
 'fileduplicatesearch-submit'   => 'تدوير',

@@ -3350,9 +3350,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cerca fitxers duplicats',
-'fileduplicatesearch-summary'  => "Cerca fitxers duplicats d'acord amb el seu valor de resum.
-
-Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
+'fileduplicatesearch-summary'  => "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
 'fileduplicatesearch-legend'   => 'Cerca duplicats',
 'fileduplicatesearch-filename' => 'Nom del fitxer:',
 'fileduplicatesearch-submit'   => 'Cerca',

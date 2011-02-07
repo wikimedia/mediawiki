@@ -1260,6 +1260,7 @@ chmod a+w $3</pre>',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
 	'config-install-database' => 'Устаноўка базы зьвестак',
+	'config-install-pg-schema-not-exist' => 'Схема PostgreSQL не існуе',
 	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
 	'config-install-pg-commit' => 'Захаваньне зьменаў',
@@ -4232,7 +4233,7 @@ $1
 
 ב'''מצב בינרי''' (binary mode) מדיה־ויקי שומרת טקסט UTF-8 במסד הנתונים בשדות בינריים.
 זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
-ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע באיזו קבוצת תווים (character set) הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
+ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע מה קבוצת התווים (character set) של הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
 	'config-mysql-old' => 'נדרשת גרסה $1 של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלכם היא $2.',
 	'config-db-port' => 'פִּתְחַת מסד הנתונים (database port):',
 	'config-db-schema' => 'סכמה למדיה־ויקי',
@@ -4250,6 +4251,15 @@ $1
 כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<span dir="ltr"><code>/var/lib/mediawiki/yourwik</code></span>.',
 	'config-oracle-def-ts' => 'מרחב טבלאות לפי בררת מחדל (default tablespace):',
 	'config-oracle-temp-ts' => 'מרחב טבלאות זמני (temporary tablespace):',
+	'config-support-info' => 'מדיה־ויקי תומכת במערכות מסדי הנתונים הבאות:
+
+$1
+
+אם אינכם רואים את מסד הנתונים שלכם ברשימה, עקבו אחר ההוראות המקושרות לעיל כדי להפעיל את התמיכה.',
+	'config-support-mysql' => '* $1 הוא היעד העיקרי עבור מדיה־ויקי ולו התמיכה הטובה ביותר (ר׳ [http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
+	'config-support-postgres' => '* $1 הוא מסד נתונים בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])',
+	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
+	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
@@ -4258,43 +4268,164 @@ $1
 	'config-missing-db-name' => 'עליך להזין ערך עבור "שם מסד הנתונים"',
 	'config-missing-db-host' => 'יש להכניס ערך לשדה "שרת מסד הנתונים"',
 	'config-missing-db-server-oracle' => 'יש להכניס ערך לשדה "TNS של מסד הנתונים"',
+	'config-invalid-db-server-oracle' => '"$1" הוא TNS בלתי תקין.
+יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ונקודות (.).',
+	'config-invalid-db-name' => '"$1" הוא שם מסד נתונים בלתי תקין.
+יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ומינוסים (-).',
+	'config-invalid-db-prefix' => '"$1" היא תחילית מסד נתונים בלתי תקינה.
+יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ומינוסים (-).',
+	'config-connection-error' => '$1.
+
+בדקו את שם השרת, את שם המשתמש ואת הססמה ונסו שוב.',
+	'config-invalid-schema' => '"$1" היא סכמה לא תקינה עבור מדיה־ויקי.
+יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9) וקווים תחתיים (_).',
+	'config-postgres-old' => 'נדרש PostgreSQL $1 או גרסה חדשה יותר, הגרסה הנוכחית שלכם היא $2.',
+	'config-sqlite-name-help' => 'בחרו בשם שמזהה את הוויקי שלכם.
+אל תשתמשו ברווחים או במינוסים.
+זה יהיה שם קובץ הנתונים ל־SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'לא ניתן ליצור את תיקיית הנתונים <code><nowiki>$1</nowiki></code>, כי לשָׁרַת הווב אין הרשאות לכתוב לתיקיית האם <code><nowiki>$2</nowiki></code> .
+
+תוכנת ההתקנה זיהתה את החשבון שתחתיו רץ שרת הווב שלכם.
+אפשרו לשָׁרַת הווב לכתוב לתיקייה <code><nowiki>$3</nowiki></code>.
+במערכת Unix/Linux כִתבו:
+
+<div dir="ltr"><pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre></div>',
+	'config-sqlite-parent-unwritable-nogroup' => 'לא ניתן ליצור את תיקיית הנתונים <code><nowiki>$1</nowiki></code>, כי לשָׁרַת הווב אין הרשאות לכתוב לתיקיית האם <code><nowiki>$2</nowiki></code> .
+
+תוכנת ההתקנה לא זיהתה את החשבון שתחתיו רץ שרת הווב שלכם.
+אפשרו לכל החשבונות לכתוב לתיקייה <code><nowiki>$3</nowiki></code> כדי להמשיך.
+במערכת Unix/Linux כִתבו:
+
+<div dir="ltr"><pre>cd $2
+mkdir $3
+chmod a+w $3</pre></div>',
 	'config-sqlite-mkdir-error' => 'אירעה שגיאה בעת יצירת תיקיית הנתונים "$1".
 נא לבדוק את המיקום ולנסות שוב.',
+	'config-sqlite-dir-unwritable' => 'אי־אפשר לכתוב לתיקייה "$1".
+שנו את ההרשאות שלה כך ששרת הווב יוכל לכתוב אליה ונסו שוב.',
 	'config-sqlite-connection-error' => '$1.
 
 בִדקו את תיקיית הנתונים את שם מסת הנתונים להלן ונסו שוב.',
 	'config-sqlite-readonly' => 'לא ניתן לכתוב אל הקובץ <code>$1</code>.',
 	'config-sqlite-cant-create-db' => 'לא ניתן ליצור את קובץ מסד הנתונים <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'ב־PHP חסרה תמיכה ב־FTS3, יבתצע שנמוך טבלאות',
 	'config-can-upgrade' => "יש טבלאות מדיה־ויקי במסד הנתונים.
 כדי לשדרג אותן למדיה־ויקי $1, לחצו '''המשך'''.",
+	'config-upgrade-done' => "השדרוג הושלם.
+
+עכשיו אפשר [$1 להשתמש בוויקי שלכם].
+
+אם תרצו ליצור מחדש את קובץ ה־<code>LocalSettings.php</code> שלכם, לחצו על הכפתור להלן.
+זה '''לא מומלץ''', אלא אם כן יש לכם בעיות עם הוויקי שלכם.",
+	'config-upgrade-done-no-regenerate' => 'השדרוג הושלם.
+
+עכשיו אפשר [$1 להתחיל להשתמש בוויקי שלכם].',
 	'config-regenerate' => 'לחולל מחדש את LocalSettings.php ←',
 	'config-show-table-status' => 'שאילתת SHOW TABLE STATUS נכשלה!',
+	'config-unknown-collation' => "'''אזהרה:''' מסד הנתונים משתמש בשיטת מיון שאינה מוּכּרת.",
+	'config-db-web-account' => 'חשבון במסד הנתונים לגישה מהרשת',
+	'config-db-web-help' => 'לבחור את שם המשתמש ואת הססמה ששרת הווב ישתמש בו להתחברות לשרת מסד הנתונים בזמן פעילות רגילה של הוויקי.',
+	'config-db-web-account-same' => 'להשתמש באותו חשבון כמו עבור ההתקנה',
+	'config-db-web-create' => 'ליצור חשבון אם הוא אינו קיים כבר.',
+	'config-db-web-no-create-privs' => 'לחשבון שהקלדתם להתקנה אין מספיק הרשאות ליצירת חשבות.
+החשבון שאתם מקלידים כאן צריך להיות קיים.',
 	'config-mysql-engine' => 'מנגנון האחסון:',
 	'config-mysql-innodb' => '',
 	'config-mysql-myisam' => '',
+	'config-mysql-engine-help' => "'''InnoDB''' הוא כמעט תמיד האפשרות הטובה ביותר, כי במנוע הזה יש תמיכה טובה ביותר בעיבוד מקבילי.
+
+'''MyISAM''' עשוי להיות בהתקנות שמיועדות למשתמש אחד ולהתקנות לקריאה בלבד.
+מסדי נתונים עם MyISAM נוטים להיהרס לעתים קרובות יותר מאשר מסדי נתונים עם InnoDB.",
 	'config-mysql-charset' => 'ערכת הקידוד של מסד הנתונים:',
 	'config-mysql-binary' => 'בינרי',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "ב'''מצב בינרי''' (binary mode) מדיה־ויקי שומרת טקסט UTF-8 במסד הנתונים בשדות בינריים.
+זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
+
+ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע מה קבוצת התווים (character set) של הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
 	'config-site-name' => 'שם הוויקי:',
+	'config-site-name-help' => 'זה יופיע בשורת הכותרת של הדפדפן ובמקומות רבים אחרים.',
 	'config-site-name-blank' => 'נא להזין שם לאתר.',
+	'config-project-namespace' => 'מרחב שמות לדפי מיזם:',
 	'config-ns-generic' => 'מיזם',
+	'config-ns-site-name' => 'זהה לשם הוויקי: $1',
 	'config-ns-other' => 'אחר (לציין)',
+	'config-ns-other-default' => 'הוויקי־שלי',
+	'config-project-namespace-help' => "בהתאם לדוגמה של ויקיפדיה, אתרי ויקי רבים שומרים על דפי המדיניות שלהם בנפרד מדפי התוכן שלהם ב\"'''מרחב השמות של המיזם'''\" (\"'''project namespace'''\").
+כל שמות הדפים במרחב השמות הזה נפתחים בתחילית מסוימת שאתם יכולים להגדיר כאן.
+באופן מסורתי התחילית הזאת מבוססת על שם הוויקי, אבל אינו יכול להכיל תווי פיסוק כגון \"#\" או \":\".",
+	'config-ns-invalid' => 'מרחב השמות "<nowiki>$1</nowiki>" אינו תקין.
+הקלידו שם אחר למרחב השמות של המיזם.',
 	'config-admin-box' => 'חשבון מפעיל',
 	'config-admin-name' => 'שמכם:',
 	'config-admin-password' => 'ססמה:',
 	'config-admin-password-confirm' => 'הססמה שוב:',
+	'config-admin-help' => 'הקלידו כאן את שם המשתמש, למשל "שקד לוי" או "Joe Bloggs".
+זה השם שישמש אתכם כדי להיכנס לוויקי.',
 	'config-admin-name-blank' => 'נא להזין את שם המשתמש של המפעיל.',
+	'config-admin-name-invalid' => 'שם המשתמש שהוקלד "<nowiki>$1</nowiki>" אינו תקין.
+הקלידו שם משתמש אחר.',
+	'config-admin-password-blank' => 'הקלידו ססמה לחשבון המפעיל.',
 	'config-admin-password-same' => 'הססמה לא יכולה להיות זהה לשם המשתמש.',
 	'config-admin-password-mismatch' => 'שתי הססמאות שהוזנו אינן מתאימות.',
 	'config-admin-email' => 'כתובת הדוא״ל:',
+	'config-admin-email-help' => 'הקלידו כתובת דוא״ל שתאפשר לכם לקבל מכתבים ממשתמשים אחרים בוויקי, לאתחל את הססמה, ולקבל הודעות על שינויים בדפים ברשימת המעקב שלכם.',
+	'config-admin-error-user' => 'שגיאה פנימית ביצירת מפעיל בשם "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'שגיאה פנימית בהגדרת ססמה עבור המפעיל "<nowiki>$1</nowiki>"&rlm;: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'הכנסתם כתובת דוא״ל לא תקינה.',
+	'config-subscribe' => 'להירשם ל[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה עם הודעות על גרסאות חדשות].',
+	'config-subscribe-help' => 'זוהי רשימת תפוצה עם הודעות מעטות שמשמשת להודעות על הוצאת גרסאות, כולל עדכוני אבטחה חשובים.
+מומלץ להירשם אליה ולעדכן את מדיה־ויקי כאשר יוצאות גרסאות חדשות.',
+	'config-almost-done' => 'כמעט סיימתם!
+אפשר לדלג על שאר ההגדרות ולהתקין את הוויקי כבר עכשיו.',
 	'config-optional-continue' => 'הצגת שאלות נוספות.',
+	'config-optional-skip' => 'משעמם לי, תתקינו לי כבר את הוויקי הזה.',
+	'config-profile' => 'תסריט הרשאות משתמשים:',
 	'config-profile-wiki' => 'ויקי מסורתי',
 	'config-profile-no-anon' => 'נדרשת יצירת חשבון',
 	'config-profile-fishbowl' => 'עורכים מורשים בלבד',
 	'config-profile-private' => 'ויקי פרטי',
+	'config-profile-help' => "אתרי ויקי עובדים הכי טוב כאשר אתם מאפשרים לכמה שיותר אנשים לערוך אותם.
+במדיה־ויקי קל לסקור את השינויים האחרונים ולשחזר כל נזק שעושים משתמשים תמימים או משחיתים.
+
+עם זאת, אנשים שונים מצאו למדיה־ויקי שימושים מגוּונים ולעתים לא קל לשכנע את כולם ביתרונות של \"דרך הוויקי\" המסורתית. ולכן יש לכם בררה.
+
+באתר '''{{int:config-profile-wiki}}''' – לכולם יש הרשאה לערוך, אפילו בלי להיכנס לחשבון.
+באתר וויקי מסוג '''{{int:config-profile-no-anon}}''' יש ביטחון גדול יותר, אבל הגדרה כזאת יכולה להרתיע תורמים מזדמנים.
+
+בתסריט '''{{int:config-profile-fishbowl}}''' רק משתמשים שקיבלו אישור יכולים לערוך, אבל כל הגולשים יכולים לקרוא את הדפים ואת גרסאותיהם הקודמות.
+ב'''{{int:config-profile-private}}''' רק משתמשים שקיבלו אישור יכולים לקרוא ולערוך דפים.
+
+הגדרות מורכבות של הרשאות אפשריות אחרי ההתקנה, ר׳ את [http://www.mediawiki.org/wiki/Manual:User_rights הפרק על הנושא הזה בספר ההדרכה].",
 	'config-license' => 'זכויות יוצרים ורישיון:',
+	'config-license-none' => 'ללא כותרת תחתית עם רישיון',
+	'config-license-cc-by-sa' => 'קריאייטיב קומונז–ייחוס–שיתוף זהה',
+	'config-license-cc-by-nc-sa' => 'קריאייטיב קומונז ייחוס–ללא שימוש מסחרי–שיתוף זהה',
+	'config-license-gfdl-old' => 'רישיון חופשי למסמכים של גנו, גרסה 1.2',
+	'config-license-gfdl-current' => 'רישיון חופשי למסמכים של גנו, גרסה 1.3 או גרסה מאוחרת יותר',
 	'config-license-pd' => 'נחלת הכלל',
+	'config-license-cc-choose' => 'בחרו רישיון קריאייטיב קומונז מותאם אישית',
+	'config-license-help' => "אתרי ויקי ציבוריים רבים מפרסמים את כל התרומות תחת [http://freedomdefined.org/Definition רישיון חופשי].
+זה עוזר ליצור תחושה של בעלות קהילתית ומעודד תרומה לאורך זמן.
+זה בדרך כלל לא נחוץ לאתר ויקי פרטי או בחברה מסחרית.
+
+אם אתם רוצים אפשרות להשתמש בטקסט מוויקיפדיה ואתם רוצים שוויקיפדיה תוכל לקבל עותקים של טקסטים מהוויקי שלכם, כדאי לכם לבחור ב'''רישיון קריאייטיב קומונז ייחוס–שיתוף זהה''' (CC-BY-SA).
+
+הרישיון החופשי למסמכים של גנו הוא הרישיון שבו ויקיפדיה השתמשה בעבר (GNU FDL או GFDL).
+הוא עדיין תקין, אבל יש בו תכונות מסוימות שמקשות על שימוש חוזר ועל פרשנות.",
 	'config-email-settings' => 'הגדרות דוא״ל',
+	'config-enable-email' => 'להפעיל דוא״ל יוצא',
+	'config-enable-email-help' => 'אם אתם רוצים שדוא״ל יעבוד, [http://www.php.net/manual/en/mail.configuration.php אפשרויות הדוא״ל של PHP] צריכות להיות מוגדרות נכון.
+אם אינכם רוצים להפעיל שום אפשרויות דוא״ל, כבו אותן כאן ועכשיו.',
+	'config-email-user' => 'לאפשר שליחת דוא״ל ממשתמש למשתמש',
+	'config-email-user-help' => 'לאפשר לכל המשתמשים לשלוח אחד לשני דוא״ל אם הם הפעילו את זה בהעדפות שלהם.',
+	'config-email-usertalk' => 'לאפשר הודעות על דף שיחת משתמש',
+	'config-email-usertalk-help' => 'לאפשר למשתמשים לקבל הודעות על שינויים בדפי המשתמש שלהם, אם הם הפעילו את זה בהעדפות שלהם.',
 	'config-email-watchlist' => 'הפעלת התרעה על רשימת המעקב',
+	'config-email-watchlist-help' => 'לאפשר למשתמשים לקבל הודעות על הדפים ברשימת המעקב שלהם אם הם הפעילו את זה בהעדפות שלהם.',
 	'config-email-auth' => 'הפעלת התרעה בדוא״ל',
 	'config-email-auth-help' => "אם האפשרות הזאת מופעלת, משתמשים יצטרכו לאשר את כתובת הדוא״ל שלהם באמצעות קישור שיישלח אליהם בכל פעם שהם יגדירו או ישנו אותה.
 רק כתובות דוא״ל מאושרות יכולות לקבלת דוא״ל ממשתמשים אחרים או מכתבים עם הודעות על שינויים.
@@ -4331,6 +4462,12 @@ $1
 	'config-cache-options' => 'הגדרות למטמון עצמים (object caching):',
 	'config-cache-help' => 'מטמון עצמים משמש לשיפור המהירות של מדיה־ויקי על־ידי שמירה של נתונים שהשימוש בהם נפוץ במטמון.
 לאתרים בינוניים וגדולים כדאי מאוד להפעיל את זה, וגם אתרים קטנים ייהנו מזה.',
+	'config-cache-none' => 'ללא מטמון (שום יכולת אינה מוסרת, אבל הביצועים באתרים גדולים ייפגעו)',
+	'config-cache-accel' => 'מטמון עצמים (object caching) של PHP&rlm; (APC&rlm;, eAccelerator&rlm;, XCache או WinCache)',
+	'config-cache-memcached' => 'להשתמש ב־Memcached (דורש התקנות והגדרות נוספות)',
+	'config-memcached-servers' => 'שרתי Memcached:',
+	'config-memcached-help' => 'רשימת כתובות IP ש־Memcached ישתמש בהן.
+יש להפריד אותן בפסיקים ולציין את הפִּתְחָה (port), למשל: 127.0.0.1:11211, 192.168.1.25:11211.',
 	'config-extensions' => 'הרחבות',
 	'config-extensions-help' => 'ההרחבות ברשימה לעיל התגלו בתיקיית <span dir="ltr"><code>./extensions</code></span> שלכם.
 
@@ -10103,11 +10240,13 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-step-failed' => 'не удалось',
 	'config-install-extensions' => 'В том числе расширения',
 	'config-install-database' => 'Настройка базы данных',
+	'config-install-pg-schema-not-exist' => 'Схемы PostgreSQL не существует',
 	'config-install-pg-schema-failed' => 'Не удалось создать таблицы.
 Убедитесь в том, что пользователь «$1» может писать в схему «$2».',
 	'config-install-pg-commit' => 'Внесение изменений',
 	'config-install-pg-plpgsql' => 'Проверка языка PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1',
+	'config-pg-no-create-privs' => 'Учётная запись, указанная для установки, не обладает достаточными привилегиями для создания учётной записи.',
 	'config-install-user' => 'Создание базы данных пользователей',
 	'config-install-user-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
 	'config-install-tables' => 'Создание таблиц',

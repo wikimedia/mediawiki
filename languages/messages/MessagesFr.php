@@ -3579,9 +3579,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Recherche de doublons',
-'fileduplicatesearch-summary'  => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.
-
-Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
+'fileduplicatesearch-summary'  => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.',
 'fileduplicatesearch-legend'   => 'Rechercher un doublon',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit'   => 'Rechercher',

@@ -3223,9 +3223,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Datei-Duplikat sueche',
-'fileduplicatesearch-summary'  => 'Suech no Datei-Duplikat uf dr Grundlag vu ihrem Hash-Wärt.
-
-D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
+'fileduplicatesearch-summary'  => 'Suech no Datei-Duplikat uf dr Grundlag vu ihrem Hash-Wärt.',
 'fileduplicatesearch-legend'   => 'No Duplikat sueche',
 'fileduplicatesearch-filename' => 'Dateiname:',
 'fileduplicatesearch-submit'   => 'Sueche',

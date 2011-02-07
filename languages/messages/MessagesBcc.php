@@ -3158,9 +3158,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'گردگ په کپی  فایلان',
-'fileduplicatesearch-summary'  => 'گردگ په کپی فایلان په اساس درهمین ارزش.
-
-نا فایل بی پیش وند "{{ns:file}}:" وارد کنیت',
+'fileduplicatesearch-summary'  => 'گردگ په کپی فایلان په اساس درهمین ارزش.',
 'fileduplicatesearch-legend'   => 'گردگ په  کپی',
 'fileduplicatesearch-filename' => ':نام فایل',
 'fileduplicatesearch-submit'   => 'گردگ',

@@ -3495,9 +3495,7 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Pencarian berkas duplikat',
-'fileduplicatesearch-summary'  => 'Pencarian duplikat berkas berdasarkan nilai hash-nya.
-
-Masukkan nama berkas tanpa prefiks "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Pencarian duplikat berkas berdasarkan nilai hash-nya.',
 'fileduplicatesearch-legend'   => 'Cari duplikat',
 'fileduplicatesearch-filename' => 'Nama berkas:',
 'fileduplicatesearch-submit'   => 'Cari',

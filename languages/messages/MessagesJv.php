@@ -2943,9 +2943,7 @@ Lebokna jeneng berkas tanpa imbuhan awalan "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Golèk berkas duplikat',
-'fileduplicatesearch-summary'  => 'Golèk duplikat berkas adhedhasar biji hash-é.
-
-Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Golèk duplikat berkas adhedhasar biji hash-é.',
 'fileduplicatesearch-legend'   => 'Golèk duplikat',
 'fileduplicatesearch-filename' => 'Jeneng berkas:',
 'fileduplicatesearch-submit'   => 'Golèk',

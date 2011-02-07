@@ -3322,9 +3322,7 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Ieškoti dublikuotų failų',
-'fileduplicatesearch-summary'  => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.
-
-Įveskite failo pavadinimą be „{{ns:file}}:“ priešdėlio.',
+'fileduplicatesearch-summary'  => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.',
 'fileduplicatesearch-legend'   => 'Ieškoti dublikatų',
 'fileduplicatesearch-filename' => 'Failo vardas:',
 'fileduplicatesearch-submit'   => 'Ieškoti',

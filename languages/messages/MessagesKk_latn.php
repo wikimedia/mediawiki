@@ -2944,9 +2944,7 @@ Faýl atawın «{{ns:file}}:» degen bastawışsız eñgiziñiz.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Faýl telnusqaların izdew',
-'fileduplicatesearch-summary'  => 'Faýl xeşi mağınası negizinde telnusqaların izdew.
-
-Faýl atawın «{{ns:file}}:» degen bastawışsız engiziñiz.',
+'fileduplicatesearch-summary'  => 'Faýl xeşi mağınası negizinde telnusqaların izdew.',
 'fileduplicatesearch-legend'   => 'Telnusqanı izdew',
 'fileduplicatesearch-filename' => 'Faýl atawı:',
 'fileduplicatesearch-submit'   => 'İzde',

@@ -2365,9 +2365,7 @@ Nişonai pajvandro biduni peşvand "{{ns:file}}:" vorid kuned.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Çustuçū baroi parvandahoi takrorī',
-'fileduplicatesearch-summary'  => 'Çustuçū baroi parvandahoi takrorī bar asosi miqdori dar ham şudai onho surat megirad.
-
-Nomi parvandaro be peşvandi "{{ns:file}}:" vorid kuned.',
+'fileduplicatesearch-summary'  => 'Çustuçū baroi parvandahoi takrorī bar asosi miqdori dar ham şudai onho surat megirad.',
 'fileduplicatesearch-legend'   => 'Çustuçūi mavoridi takrorī',
 'fileduplicatesearch-filename' => 'Nomi parvanda:',
 'fileduplicatesearch-submit'   => 'Çustuçū',

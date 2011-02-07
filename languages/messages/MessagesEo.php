@@ -1947,12 +1947,13 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 Ili devus anstataŭe alligi la ĝustan temon.<br />
 Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Duoblaj alidirektadoj',
-'doubleredirectstext'        => 'Ĉi tiu paĝo montras paĝojn kiuj alidirektas al aliaj alidirektiloj.
+'doubleredirects'                   => 'Duoblaj alidirektadoj',
+'doubleredirectstext'               => 'Ĉi tiu paĝo montras paĝojn kiuj alidirektas al aliaj alidirektiloj.
 Ĉiu vico enhavas ligilojn ĉe la unua kaj dua alidirektadoj, kaj la unua linio de la dua alidirektado, kiu ĝenerale montras la "veran" celpaĝon, kiu celu la unuan alidirektadon.
 <del>Forstrekitaj</del> listeroj estis riparitaj.',
-'double-redirect-fixed-move' => '[[$1]] estis alinomita; ĝi nun alidirektas al [[$2]]',
-'double-redirect-fixer'      => 'Alidirektila riparilo',
+'double-redirect-fixed-move'        => '[[$1]] estis alinomita; ĝi nun alidirektas al [[$2]]',
+'double-redirect-fixed-maintenance' => 'Riparas duoblan alidirektilon de [[$1]] al [[$2]].',
+'double-redirect-fixer'             => 'Alidirektila riparilo',
 
 'brokenredirects'        => 'Rompitaj alidirektadoj',
 'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj paĝoj:',
@@ -3458,16 +3459,15 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Serĉu duplikatajn dosierojn',
-'fileduplicatesearch-summary'  => 'Serĉu duplikatajn dosierojn bazite de haketvaloro.
-
-Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
-'fileduplicatesearch-legend'   => 'Serĉi duplikaton',
-'fileduplicatesearch-filename' => 'Dosiernomo:',
-'fileduplicatesearch-submit'   => 'Serĉi',
-'fileduplicatesearch-info'     => '$1 × $2 rastrumero<br />Dosiera pezo: $3<br />MIME-tipo: $4',
-'fileduplicatesearch-result-1' => 'La dosiero "$1" ne havas identan duplikaton.',
-'fileduplicatesearch-result-n' => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
+'fileduplicatesearch'           => 'Serĉu duplikatajn dosierojn',
+'fileduplicatesearch-summary'   => 'Serĉi duplikatajn dosierojn bazite de haketvaloro.',
+'fileduplicatesearch-legend'    => 'Serĉi duplikaton',
+'fileduplicatesearch-filename'  => 'Dosiernomo:',
+'fileduplicatesearch-submit'    => 'Serĉi',
+'fileduplicatesearch-info'      => '$1 × $2 rastrumero<br />Dosiera pezo: $3<br />MIME-tipo: $4',
+'fileduplicatesearch-result-1'  => 'La dosiero "$1" ne havas identan duplikaton.',
+'fileduplicatesearch-result-n'  => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
+'fileduplicatesearch-noresults' => 'Neniu dosiero nomita "$1" troviĝis.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialaj paĝoj',

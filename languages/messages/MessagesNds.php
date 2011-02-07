@@ -3065,9 +3065,7 @@ Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Söök na Datein, de jüst gliek sünd',
-'fileduplicatesearch-summary'  => 'Söök na Datein, de na jemehr Hash-Tallen jüst gliek sünd.
-
-Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
+'fileduplicatesearch-summary'  => 'Söök na Datein, de na jemehr Hash-Tallen jüst gliek sünd.',
 'fileduplicatesearch-legend'   => 'Söök na Datein, de jüst gliek sünd',
 'fileduplicatesearch-filename' => 'Dateinaam:',
 'fileduplicatesearch-submit'   => 'Söken',

@@ -3236,9 +3236,7 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cirche pe le file duplichete',
-'fileduplicatesearch-summary'  => "Cirche pe file duplichete sus a base d'u valore hash.
-
-Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
+'fileduplicatesearch-summary'  => "Cirche pe file duplichete sus a base d'u valore hash.",
 'fileduplicatesearch-legend'   => "Cirche pe 'nu duplichete",
 'fileduplicatesearch-filename' => "Nome d'u faile:",
 'fileduplicatesearch-submit'   => 'Cirche',

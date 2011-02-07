@@ -3498,9 +3498,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Αναζήτηση για διπλά αρχεία',
-'fileduplicatesearch-summary'  => 'Αναζήτηση για διπλά αρχεία με βάση την τιμή hash του αρχείου.
-
-Εισάγετε το όνομα του αρχείου χωρίς το πρόθεμα "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Αναζήτηση για διπλά αρχεία με βάση την τιμή hash του αρχείου.',
 'fileduplicatesearch-legend'   => 'Αναζήτηση για διπλό αρχείο',
 'fileduplicatesearch-filename' => 'Όνομα αρχείου:',
 'fileduplicatesearch-submit'   => 'Αναζήτηση',

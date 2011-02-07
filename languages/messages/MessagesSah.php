@@ -3232,9 +3232,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Хос билэлэри көрдөөһүн',
-'fileduplicatesearch-summary'  => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.
-
-Билэ аатын "{{ns:file}}:" префикса суох киллэр.',
+'fileduplicatesearch-summary'  => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.',
 'fileduplicatesearch-legend'   => 'Хатылааһыннары көрдөөһүн',
 'fileduplicatesearch-filename' => 'Билэ аата:',
 'fileduplicatesearch-submit'   => 'Бул',

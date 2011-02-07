@@ -3662,9 +3662,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Rechèrche des fichiérs en doblo',
-'fileduplicatesearch-summary'  => 'Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.
-
-Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
+'fileduplicatesearch-summary'  => 'Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.',
 'fileduplicatesearch-legend'   => 'Rechèrche d’un doblo',
 'fileduplicatesearch-filename' => 'Nom du fichiér :',
 'fileduplicatesearch-submit'   => 'Rechèrchiér',

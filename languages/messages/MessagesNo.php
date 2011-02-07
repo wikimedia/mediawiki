@@ -3410,9 +3410,7 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Søk etter duplikatfiler',
-'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på dets hash-verdi.
-
-Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
+'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på dets hash-verdi.',
 'fileduplicatesearch-legend'   => 'Søk etter en duplikatfil',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Søk',

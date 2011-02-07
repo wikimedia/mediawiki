@@ -3402,16 +3402,15 @@ Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v z
 Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Iskanje podvojenih datotek',
-'fileduplicatesearch-summary'  => 'Iskanje podvojenih datotek temelji na podlagi njenih hashvrednosti.
-
-Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
-'fileduplicatesearch-legend'   => 'Poišči dvojnik',
-'fileduplicatesearch-filename' => 'Ime datoteke:',
-'fileduplicatesearch-submit'   => 'Iskanje',
-'fileduplicatesearch-info'     => '$1 × $2 pik<br />Velikost datoteke: $3<br />Vrsta MIME: $4',
-'fileduplicatesearch-result-1' => 'Datoteka »$1« nima identičnih dvojnikov.',
-'fileduplicatesearch-result-n' => 'Datoteka »$1« ima $2 {{PLURAL:$2|identični dvojnik|identična dvojnika|identične dvojnike|identičnih dvojnikov}}.',
+'fileduplicatesearch'           => 'Iskanje podvojenih datotek',
+'fileduplicatesearch-summary'   => 'Iskanje podvojenih datotek, ki temelji na podlagi njenih hashvrednosti.',
+'fileduplicatesearch-legend'    => 'Poišči dvojnik',
+'fileduplicatesearch-filename'  => 'Ime datoteke:',
+'fileduplicatesearch-submit'    => 'Iskanje',
+'fileduplicatesearch-info'      => '$1 × $2 pik<br />Velikost datoteke: $3<br />Vrsta MIME: $4',
+'fileduplicatesearch-result-1'  => 'Datoteka »$1« nima identičnih dvojnikov.',
+'fileduplicatesearch-result-n'  => 'Datoteka »$1« ima $2 {{PLURAL:$2|identični dvojnik|identična dvojnika|identične dvojnike|identičnih dvojnikov}}.',
+'fileduplicatesearch-noresults' => 'Datoteke imenovane »$1« ni mogoče najti.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne strani',

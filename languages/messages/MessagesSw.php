@@ -2795,16 +2795,15 @@ Picha zinaonyeshwa kwenye ukubwa mzima, na mafaili ya aina zingine yanaanzishwa 
 Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Tafuta mafaili ya nakili',
-'fileduplicatesearch-summary'  => 'Kutafuta mafaili ya nakili kwa kuzingatia thamani za reli.
-
-Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'Kutafuta kifani',
-'fileduplicatesearch-filename' => 'Jina la faili:',
-'fileduplicatesearch-submit'   => 'Tafuta',
-'fileduplicatesearch-info'     => 'Piseli $1 × $2<br />Ukubwa wa faili: $3<br />Aina ya MIME: $4',
-'fileduplicatesearch-result-1' => 'Faili la "$1" halina kifani.',
-'fileduplicatesearch-result-n' => 'Faili la "$1" lina {{PLURAL:$2|kifani 1|vifani $2}}.',
+'fileduplicatesearch'           => 'Tafuta mafaili ya nakili',
+'fileduplicatesearch-summary'   => 'Kutafuta mafaili ya nakili kwa kuzingatia thamani za reli.',
+'fileduplicatesearch-legend'    => 'Kutafuta kifani',
+'fileduplicatesearch-filename'  => 'Jina la faili:',
+'fileduplicatesearch-submit'    => 'Tafuta',
+'fileduplicatesearch-info'      => 'Piseli $1 × $2<br />Ukubwa wa faili: $3<br />Aina ya MIME: $4',
+'fileduplicatesearch-result-1'  => 'Faili la "$1" halina kifani.',
+'fileduplicatesearch-result-n'  => 'Faili la "$1" lina {{PLURAL:$2|kifani 1|vifani $2}}.',
+'fileduplicatesearch-noresults' => 'Faili linaloitwa "$1" halikupatikana.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Kurasa maalum',

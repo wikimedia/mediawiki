@@ -2979,9 +2979,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Пошук дублікатных файлаў',
-'fileduplicatesearch-summary'  => 'Пошук дублікатных файлах на падставе іх хэшаў.
-
-Упішыце назву файла без прыстаўкі "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Пошук дублікатных файлах на падставе іх хэшаў.',
 'fileduplicatesearch-legend'   => 'Знайсці дублікаты',
 'fileduplicatesearch-filename' => 'Назва файла:',
 'fileduplicatesearch-submit'   => 'Знайсці',

@@ -3424,9 +3424,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Пошук дублікатаў файлаў',
-'fileduplicatesearch-summary'  => 'Пошук аднолькавых файлаў на падставе іх хэшаў.
-
-Увядзіце назву файла бяз прэфіксу «{{ns:file}}:».',
+'fileduplicatesearch-summary'  => 'Пошук аднолькавых файлаў на падставе іх хэшаў.',
 'fileduplicatesearch-legend'   => 'Пошук аднолькавых файлаў',
 'fileduplicatesearch-filename' => 'Назва файла:',
 'fileduplicatesearch-submit'   => 'Шукаць',

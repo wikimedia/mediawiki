@@ -3322,9 +3322,7 @@ Shtypni emrin e skedës pa parashtesën "Figura:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Kërkoni për skeda të dyfishta',
-'fileduplicatesearch-summary'  => 'Kërkoni për dyfishime të skedave në bazë të vlerës përmbledhëse («hash»).
-
-Vendosni emrin e skedës pa parashtesën "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Kërkoni për dyfishime të skedave në bazë të vlerës përmbledhëse («hash»).',
 'fileduplicatesearch-legend'   => 'Kërko për dyfishime',
 'fileduplicatesearch-filename' => 'Emri i skedës:',
 'fileduplicatesearch-submit'   => 'Kërko',

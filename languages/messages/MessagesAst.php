@@ -2745,9 +2745,7 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Buscar archivos duplicaos',
-'fileduplicatesearch-summary'  => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.
-
-Escribi\'l nome del archivu ensin el prefixu "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
 'fileduplicatesearch-legend'   => 'Buscar duplicaos',
 'fileduplicatesearch-filename' => "Nome d'archivu:",
 'fileduplicatesearch-submit'   => 'Buscar',

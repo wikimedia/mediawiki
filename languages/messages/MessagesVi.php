@@ -3566,16 +3566,15 @@ hoặc [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực 
 Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Tìm kiếm các tập tin trùng lắp',
-'fileduplicatesearch-summary'  => 'Tìm kiếm các bản sao y hệt với tập tin khác, theo giá trị băm của nó.
-
-Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
-'fileduplicatesearch-legend'   => 'Tìm kiếm tập tin trùng lắp',
-'fileduplicatesearch-filename' => 'Tên tập tin:',
-'fileduplicatesearch-submit'   => 'Tìm kiếm',
-'fileduplicatesearch-info'     => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
-'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
-'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
+'fileduplicatesearch'           => 'Tìm kiếm các tập tin trùng lắp',
+'fileduplicatesearch-summary'   => 'Tìm kiếm các bản sao y hệt với tập tin khác, theo giá trị băm của nó.',
+'fileduplicatesearch-legend'    => 'Tìm kiếm tập tin trùng lắp',
+'fileduplicatesearch-filename'  => 'Tên tập tin:',
+'fileduplicatesearch-submit'    => 'Tìm kiếm',
+'fileduplicatesearch-info'      => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Định dạng MIME: $4',
+'fileduplicatesearch-result-1'  => 'Không có bản sao y hệt với tập tin “$1”.',
+'fileduplicatesearch-result-n'  => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
+'fileduplicatesearch-noresults' => 'Không tìm thấy tập tin nào tên “$1”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Các trang đặc biệt',

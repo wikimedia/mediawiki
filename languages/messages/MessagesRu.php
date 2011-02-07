@@ -3541,16 +3541,15 @@ MediaWiki распространяется в надежде, что она бу
 Введите имя файла без префикса <code>{{ns:file}}:</code>.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Поиск одинаковых файлов',
-'fileduplicatesearch-summary'  => 'Поиск одинаковых файлов по их хэш-коду.
-
-Введите имя файла без приставки «{{ns:file}}:».',
-'fileduplicatesearch-legend'   => 'Поиск дубликатов',
-'fileduplicatesearch-filename' => 'Имя файла:',
-'fileduplicatesearch-submit'   => 'Найти',
-'fileduplicatesearch-info'     => '$1 × $2 пикселов<br />Размер файла: $3<br />MIME-тип: $4',
-'fileduplicatesearch-result-1' => 'Файл «$1» не имеет идентичных дубликатов.',
-'fileduplicatesearch-result-n' => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
+'fileduplicatesearch'           => 'Поиск одинаковых файлов',
+'fileduplicatesearch-summary'   => 'Поиск одинаковых файлов по хэш-коду.',
+'fileduplicatesearch-legend'    => 'Поиск дубликатов',
+'fileduplicatesearch-filename'  => 'Имя файла:',
+'fileduplicatesearch-submit'    => 'Найти',
+'fileduplicatesearch-info'      => '$1 × $2 пикселов<br />Размер файла: $3<br />MIME-тип: $4',
+'fileduplicatesearch-result-1'  => 'Файл «$1» не имеет идентичных дубликатов.',
+'fileduplicatesearch-result-n'  => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
+'fileduplicatesearch-noresults' => 'Не найден файл с именем «$1».',
 
 # Special:SpecialPages
 'specialpages'                   => 'Спецстраницы',

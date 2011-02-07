@@ -3248,9 +3248,7 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Дубликат файлланы изле',
-'fileduplicatesearch-summary'  => 'Хэш-кодлары бла дубликат файланны изле.
-
-Файлны атын «{{ns:file}}:» префикссиз джазыгъыз.',
+'fileduplicatesearch-summary'  => 'Хэш-кодлары бла дубликат файланны изле.',
 'fileduplicatesearch-legend'   => 'Дубликатланы изле',
 'fileduplicatesearch-filename' => 'Файлны аты:',
 'fileduplicatesearch-submit'   => 'Таб',

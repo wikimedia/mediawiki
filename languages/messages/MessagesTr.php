@@ -3488,9 +3488,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Benzer dosyaları ara',
-'fileduplicatesearch-summary'  => 'Sağlama değeri tabanında benzer dosyaları ara.
-
-Dosya adını "{{ns:file}}:" öneki olmadan gir.',
+'fileduplicatesearch-summary'  => 'Sağlama değeri tabanında benzer dosyaları ara.',
 'fileduplicatesearch-legend'   => 'Bir benzerini ara',
 'fileduplicatesearch-filename' => 'Dosya adı:',
 'fileduplicatesearch-submit'   => 'Ara',

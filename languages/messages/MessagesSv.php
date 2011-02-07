@@ -3515,9 +3515,7 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sök efter dubblettfiler',
-'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden.
-
-Skriv filnamnet utan prefixet "{{ns:file}}:" .',
+'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden.',
 'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Sök',

@@ -2828,9 +2828,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Вешендемс кафонзаф файлхне',
-'fileduplicatesearch-summary'  => 'Вешендемс кафонзаф файлхнень хэш-кодонь лувкс коряс.
-
-Сёрматт файллем "{{ns:file}}:" валынгольксфтома.',
+'fileduplicatesearch-summary'  => 'Вешендемс кафонзаф файлхнень хэш-кодонь лувкс коряс.',
 'fileduplicatesearch-legend'   => 'Вешендемс кафонзафкс',
 'fileduplicatesearch-filename' => 'Файллем:',
 'fileduplicatesearch-submit'   => 'Вешендемс',

@@ -3205,9 +3205,7 @@ Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Zeuk veur döbbelbestaondje bestenj',
-'fileduplicatesearch-summary'  => 'Zeuk veur döbbel bestaondje bestenj op basis van zien hashwaarde.
-
-Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
+'fileduplicatesearch-summary'  => 'Zeuk veur döbbel bestaondje bestenj op basis van zien hashwaarde.',
 'fileduplicatesearch-legend'   => "Zeuk veur 'ne döbbele",
 'fileduplicatesearch-filename' => 'Bestandjsnaam:',
 'fileduplicatesearch-submit'   => 'Zeuk',

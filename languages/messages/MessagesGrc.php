@@ -2681,9 +2681,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Ζήτησις διπλότυπων ἀρχείων',
-'fileduplicatesearch-summary'  => 'Ζητεῖν διπλότυπα ἀρχεῖα βάσει κερματιζομένων τιμῶν.
-
-Εἰσάγαγε τὸ ὄνομα ἀρχείου ἄνευ τοῦ προθέματος "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Ζητεῖν διπλότυπα ἀρχεῖα βάσει κερματιζομένων τιμῶν.',
 'fileduplicatesearch-legend'   => 'Ζήτησις διπλότυπου',
 'fileduplicatesearch-filename' => 'Ὄνομα ἀρχείου:',
 'fileduplicatesearch-submit'   => 'Ἀναζήτησις',

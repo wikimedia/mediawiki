@@ -3081,9 +3081,7 @@ Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
-'fileduplicatesearch-summary'  => 'Qe dosyayê herdî bine harsh value de bigêre.
-
-Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
+'fileduplicatesearch-summary'  => 'Qe dosyayê herdî bine harsh value de bigêre.',
 'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
 'fileduplicatesearch-filename' => 'Nameyê dosyayi',
 'fileduplicatesearch-submit'   => 'bigêre',

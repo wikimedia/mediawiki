@@ -3304,16 +3304,15 @@ $1',
 กรุณาป้อนชื่อไฟล์โดยไม่มี "{{ns:file}}:" นำหน้า',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'ค้นหาไฟล์ที่ซ้ำซ้อน',
-'fileduplicatesearch-summary'  => 'ค้นหาไฟล์ที่ซ้ำซ้อนด้วยค่าแฮชของไฟล์
-
-กรุณาป้อนชื่อไฟล์โดยไม่มี "{{ns:file}}:" นำหน้า',
-'fileduplicatesearch-legend'   => 'ค้นหาไฟล์ที่ซ้ำกัน',
-'fileduplicatesearch-filename' => 'ชื่อไฟล์ :',
-'fileduplicatesearch-submit'   => 'สืบค้น',
-'fileduplicatesearch-info'     => '$1 × $2 พิกเซล<br />ขนาดไฟล์: $3<br />ชนิดของไมม์: $4',
-'fileduplicatesearch-result-1' => 'ไม่มีไฟล์ที่ซ้ำกับไฟล์ "$1"',
-'fileduplicatesearch-result-n' => 'มี {{PLURAL:$2|ไฟล์เดียว|$2 ไฟล์}}ที่ซ้ำกับไฟล์ "$1"',
+'fileduplicatesearch'           => 'ค้นหาไฟล์ที่ซ้ำซ้อน',
+'fileduplicatesearch-summary'   => 'ค้นหาไฟล์ที่ซ้ำกันตามค่าแฮช',
+'fileduplicatesearch-legend'    => 'ค้นหาไฟล์ที่ซ้ำกัน',
+'fileduplicatesearch-filename'  => 'ชื่อไฟล์ :',
+'fileduplicatesearch-submit'    => 'สืบค้น',
+'fileduplicatesearch-info'      => '$1 × $2 พิกเซล<br />ขนาดไฟล์: $3<br />ชนิดของไมม์: $4',
+'fileduplicatesearch-result-1'  => 'ไม่มีไฟล์ที่ซ้ำกับไฟล์ "$1"',
+'fileduplicatesearch-result-n'  => 'มี {{PLURAL:$2|ไฟล์เดียว|$2 ไฟล์}}ที่ซ้ำกับไฟล์ "$1"',
+'fileduplicatesearch-noresults' => 'ไม่พบไฟล์ที่มีชื่อ "$1"',
 
 # Special:SpecialPages
 'specialpages'                   => 'หน้าพิเศษ',

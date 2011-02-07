@@ -3432,9 +3432,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '중복된 파일 찾기',
-'fileduplicatesearch-summary'  => '파일 해시값을 이용해 중복 파일을 찾습니다.
-
-"{{ns:file}}:" 접두어를 뺀 파일 이름을 넣어주세요.',
+'fileduplicatesearch-summary'  => '파일 해시값을 이용해 중복 파일을 찾습니다.',
 'fileduplicatesearch-legend'   => '중복 찾기',
 'fileduplicatesearch-filename' => '파일 이름:',
 'fileduplicatesearch-submit'   => '찾기',

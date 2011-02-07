@@ -3222,8 +3222,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'ఫైళ్ల మారుప్రతుల కోసం వెతుకు',
-'fileduplicatesearch-summary'  => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.
-ఫైలు పేరుకు ముందు "{{ns:file}}:"ను చేర్చకుండా ఇవ్వండి.',
+'fileduplicatesearch-summary'  => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.',
 'fileduplicatesearch-legend'   => 'మారుప్రతి కొరకు వెతుకు',
 'fileduplicatesearch-filename' => 'ఫైలు పేరు:',
 'fileduplicatesearch-submit'   => 'వెతుకు',

@@ -306,8 +306,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
 'tog-oldsig'                  => 'Náhľad súčasného podpisu:',
 'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
-'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
-'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
+'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
+'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
 'tog-uselivepreview'          => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
 'tog-forceeditsummary'        => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
@@ -1243,6 +1243,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'searchmenu-legend'                => 'Možnosti hľadania',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
 'searchmenu-new'                   => "'''Vytvoriť stránku „[[:$1|$1]]“ na tejto wiki'''",
+'searchmenu-new-nocreate'          => '„$1“ nie je platný názov stránky alebo ju nemôžete vytvoriť.',
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Prehliadať stránky s touto predponou]]',
 'searchprofile-articles'           => 'Stránky s obsahom',
@@ -1649,12 +1650,12 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'minlength1'                  => 'Názvy súborov musia mať aspoň jedno písmeno.',
 'illegalfilename'             => 'Názov súboru „$1“ obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Názov obrázka bol zmenený na „$1“.',
-'filetype-mime-mismatch'      => 'Prípona súboru nezodpovedá typu MIME.',
+'filetype-mime-mismatch'      => 'Prípona súboru „.$1“ nezodpovedá zistenému typu MIME súboru ($2).',
 'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom „$1“.',
 'filetype-bad-ie-mime'        => 'Nie je možné nahrať tento typ súboru, pretože Internet Explorer by ho rozpoznal ako „$1“, čo je nepovolený a potenciálne nebezpečný typ súboru.',
 'filetype-unwanted-type'      => "„.$1“''' je nežiadúci typ súboru.
 {{PLURAL:$3|Uprednostňovaný typ súborov je|Uprednostňované typy súborov sú}} $2.",
-'filetype-banned-type'        => "„.$1“''' nie je povolený typ súboru.
+'filetype-banned-type'        => "'''„.$1“''' {{PLURAL:$4|nie je povolený typ súboru|nie sú povolené typy súboru}}.
 {{PLURAL:$3|Povolený typ súborov je|Povolené typy súborov sú}} $2.",
 'filetype-missing'            => 'Súbor nemá príponu (ako „.jpg“).',
 'empty-file'                  => 'Súbor, ktorý ste poslali bol prázdny.',
@@ -1936,12 +1937,13 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 Mali by však odkazovať priamo na príslušnú tému.<br />
 Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Dvojité presmerovania',
-'doubleredirectstext'        => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.
+'doubleredirects'                   => 'Dvojité presmerovania',
+'doubleredirectstext'               => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.
 Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.
 <del>Prečiarknuté</del> položky boli vyriešené.',
-'double-redirect-fixed-move' => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
-'double-redirect-fixer'      => 'Korektor presmerovaní',
+'double-redirect-fixed-move'        => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
+'double-redirect-fixed-maintenance' => 'Opravuje sa dvojité presmerovanie z [[$1]] na [[$2]].',
+'double-redirect-fixer'             => 'Korektor presmerovaní',
 
 'brokenredirects'        => 'Pokazené presmerovania',
 'brokenredirectstext'    => 'Nasledovné presmerovania odkazujú na neexistujúce stránky:',
@@ -3345,6 +3347,20 @@ ktorý zruší potvrdenie emailovej adresy:
 $5
 
 Platnosť tohto potvrdzovacieho kódu vyprší $4.',
+'confirmemail_body_set'     => 'Niekto, pravdepodobne vy, z IP adresy $1, 
+nastavil e-mailovú adresu účtu „$2“ na túto adresu na {{GRAMMAR:genitív|{{SITENAME}}}}.
+
+Ak chcete potvrdiť, že tento účet skutočne patrí vám a aktivovať
+e-mailové funkcie na {{GRAMMAR:genitív|{{SITENAME}}}}, otvorte tento odkaz vo vašom prehliadači:
+
+$3
+
+Ak účet nie je *nepatrí* patrí k vám, nasledujte tento odkaz,
+ktorú zruší potvrdenie e-mailovej adresy:
+
+$5
+
+Platnosť tohto potvrdzovacieho kódu vyprší $4.',
 'confirmemail_invalidated'  => 'Potvrdenie emailovej adresy bolo zrušené',
 'invalidateemail'           => 'Zrušiť potvrdenie emailovej adresy',
 
@@ -3481,16 +3497,15 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Hľadať duplicitné súbory',
-'fileduplicatesearch-summary'  => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.
-
-Zadajte názov súboru bez predpony „{{ns:file}}:“.',
-'fileduplicatesearch-legend'   => 'Hľadať duplicity',
-'fileduplicatesearch-filename' => 'Názov súboru:',
-'fileduplicatesearch-submit'   => 'Hľadať',
-'fileduplicatesearch-info'     => '$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4',
-'fileduplicatesearch-result-1' => 'Súbor „$1“ nemá žiadny identický duplikát.',
-'fileduplicatesearch-result-n' => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$2 identických duplikátov}}.',
+'fileduplicatesearch'           => 'Hľadať duplicitné súbory',
+'fileduplicatesearch-summary'   => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.',
+'fileduplicatesearch-legend'    => 'Hľadať duplicity',
+'fileduplicatesearch-filename'  => 'Názov súboru:',
+'fileduplicatesearch-submit'    => 'Hľadať',
+'fileduplicatesearch-info'      => '$1 × $2 pixelov<br />Veľkosť súboru: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1'  => 'Súbor „$1“ nemá žiadny identický duplikát.',
+'fileduplicatesearch-result-n'  => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$2 identických duplikátov}}.',
+'fileduplicatesearch-noresults' => 'Súbor s názvom „$1“ nebol nájdený.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Špeciálne stránky',
