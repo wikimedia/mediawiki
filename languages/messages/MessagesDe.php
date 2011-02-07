@@ -3556,16 +3556,15 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der GNU General Public License] sol
 Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Datei-Duplikat-Suche',
-'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihres Hash-Wertes.
-
-Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
-'fileduplicatesearch-legend'   => 'Suche nach Duplikaten',
-'fileduplicatesearch-filename' => 'Dateiname:',
-'fileduplicatesearch-submit'   => 'Suchen',
-'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4',
-'fileduplicatesearch-result-1' => 'Die Datei „$1“ hat keine identischen Duplikate.',
-'fileduplicatesearch-result-n' => 'Die Datei „$1“ hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
+'fileduplicatesearch'           => 'Datei-Duplikat-Suche',
+'fileduplicatesearch-summary'   => 'Suche nach Dateiduplikaten auf Basis ihres Hashwertes.',
+'fileduplicatesearch-legend'    => 'Suche nach Duplikaten',
+'fileduplicatesearch-filename'  => 'Dateiname:',
+'fileduplicatesearch-submit'    => 'Suchen',
+'fileduplicatesearch-info'      => '$1 × $2 Pixel<br />Dateigröße: $3<br />MIME-Typ: $4',
+'fileduplicatesearch-result-1'  => 'Die Datei „$1“ hat keine identischen Duplikate.',
+'fileduplicatesearch-result-n'  => 'Die Datei „$1“ hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
+'fileduplicatesearch-noresults' => 'Es wurde keine Datei namens „$1“ gefunden.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spezialseiten',

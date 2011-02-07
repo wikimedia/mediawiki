@@ -596,7 +596,7 @@ Eger tu qeyd bikî, hemû guhertinên ji vê revîzyonê piştre winda dibin.
 'copyrightwarning'                 => "Dîqat bike: Hemû tevkariyên {{SITENAME}} di bin $2 de tên belav kirin (ji bo hûragahiyan li $1 binêre). Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.<br />
 Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane ''(public domain)'' girt.
 '''BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!'''",
-'protectedpagewarning'             => "'''ŞIYARÎ:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên \"sysop\" ne, dikarin vê rûpelê biguherînin.'''",
+'protectedpagewarning'             => "'''ŞIYARÎ:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên \"koordînator\" ne, dikarin vê rûpelê biguherînin.'''",
 'templatesused'                    => 'Şablon di van rûpelan da tê bikaranîn',
 'templatesusedpreview'             => 'Şablon yê di vê pêşdîtinê da tên bikaranîn:',
 'templatesusedsection'             => 'Şablon yê di vê perçê da tên bikaranîn:',
@@ -1597,6 +1597,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-ca-viewsource'           => 'Ev rûpela tê parastin. Tu dikarê bes li çavkanîyê sekê.',
 'tooltip-ca-history'              => 'Versyonên berê yên vê rûpelê.',
 'tooltip-ca-protect'              => 'Vê rûplê biparêze',
+'tooltip-ca-unprotect'            => 'Parastina vê rûpelê rake',
 'tooltip-ca-delete'               => 'Vê rûpelê jê bibe',
 'tooltip-ca-move'                 => 'Navekî nû bide vê rûpelê',
 'tooltip-ca-watch'                => 'Vê rûpelê têke nav lîsteya te ya şopandinê',
@@ -1886,16 +1887,17 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'fileduplicatesearch-submit'   => 'Lêbigere',
 
 # Special:SpecialPages
-'specialpages'               => 'Rûpelên taybet',
-'specialpages-note'          => '----
+'specialpages'                 => 'Rûpelên taybet',
+'specialpages-note'            => '----
 * Rûpelên taybetî ji her kesan ra
 * <strong class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</strong>',
-'specialpages-group-other'   => 'Rûpelên taybetî yên din',
-'specialpages-group-login'   => 'Têkevê',
-'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',
-'specialpages-group-media'   => 'Nameyên medyayan û barkirinan',
-'specialpages-group-users'   => 'Bikarhêner û maf',
-'specialpages-group-pages'   => 'Lîstên rûpelan',
+'specialpages-group-other'     => 'Rûpelên taybetî yên din',
+'specialpages-group-login'     => 'Têkevê',
+'specialpages-group-changes'   => 'Guherandinên dawî û reşahîyan',
+'specialpages-group-media'     => 'Nameyên medyayan û barkirinan',
+'specialpages-group-users'     => 'Bikarhêner û maf',
+'specialpages-group-pages'     => 'Lîstên rûpelan',
+'specialpages-group-pagetools' => 'Amûrên rûpelê',
 
 # Special:Tags
 'tag-filter-submit' => 'Fîltre',

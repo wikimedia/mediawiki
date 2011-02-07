@@ -3217,9 +3217,7 @@ Inserissi el nome del file senza el prefisso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Riçerca dei file duplicà',
-'fileduplicatesearch-summary'  => "Riçerca de eventuali duplicati del file in base al valor de ''hash''.
-
-Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
+'fileduplicatesearch-summary'  => "Riçerca de eventuali duplicati del file in base al valor de ''hash''.",
 'fileduplicatesearch-legend'   => 'Riçerca de un duplicato',
 'fileduplicatesearch-filename' => 'Nome del file:',
 'fileduplicatesearch-submit'   => 'Riçerca',

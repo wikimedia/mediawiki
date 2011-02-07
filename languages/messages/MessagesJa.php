@@ -2056,13 +2056,14 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 これらのページは、より適した主題のページへリンクされるべきです。<br />
 [[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページは、曖昧さ回避ページと見なされます。",
 
-'doubleredirects'            => '二重転送',
-'doubleredirectstext'        => 'これは他のリダイレクトページへのリダイレクトの一覧です。
+'doubleredirects'                   => '二重転送',
+'doubleredirectstext'               => 'これは他のリダイレクトページへのリダイレクトの一覧です。
 各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。。
 <del>打ち消し線</del>のはいった項目は既に修正されています。',
-'double-redirect-fixed-move' => '[[$1]]が移動されています。
+'double-redirect-fixed-move'        => '[[$1]]が移動されています。
 [[$2]]に転送されます。',
-'double-redirect-fixer'      => '転送修正係',
+'double-redirect-fixed-maintenance' => '[[$1]]から[[$2]]への二重転送を修正します。',
+'double-redirect-fixer'             => '転送修正係',
 
 'brokenredirects'        => '迷子のリダイレクト',
 'brokenredirectstext'    => '以下のページは、存在しないページへのリダイレクトです：',
@@ -3713,16 +3714,15 @@ MediaWikiは、有用であることを期待して配布されていますが�
 ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => '重複ファイルの検索',
-'fileduplicatesearch-summary'  => '重複ファイルを、ファイルのハッシュ値に基づいて検索します。
-
-ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
-'fileduplicatesearch-legend'   => '重複の検索',
-'fileduplicatesearch-filename' => 'ファイル名：',
-'fileduplicatesearch-submit'   => '検索',
-'fileduplicatesearch-info'     => '$1×$2ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
-'fileduplicatesearch-result-1' => 'ファイル「$1」と重複するファイルはありません。',
-'fileduplicatesearch-result-n' => 'ファイル「$1」は$2ファイルと重複しています。',
+'fileduplicatesearch'           => '重複ファイルの検索',
+'fileduplicatesearch-summary'   => '重複ファイルをハッシュ値に基づいて検索します。',
+'fileduplicatesearch-legend'    => '重複の検索',
+'fileduplicatesearch-filename'  => 'ファイル名：',
+'fileduplicatesearch-submit'    => '検索',
+'fileduplicatesearch-info'      => '$1×$2ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
+'fileduplicatesearch-result-1'  => 'ファイル「$1」と重複するファイルはありません。',
+'fileduplicatesearch-result-n'  => 'ファイル「$1」は$2ファイルと重複しています。',
+'fileduplicatesearch-noresults' => '「$1」という名前のファイルがみつかりません。',
 
 # Special:SpecialPages
 'specialpages'                   => '特別ページ',

@@ -3368,9 +3368,7 @@ Voer de bestaansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Dubbele bestanen zeuken',
-'fileduplicatesearch-summary'  => 'Dubbele bestanen zeuken op baosis van de hashweerde.
-
-Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Dubbele bestanen zeuken op baosis van de hashweerde.',
 'fileduplicatesearch-legend'   => 'Dubbele bestanen zeuken',
 'fileduplicatesearch-filename' => 'Bestaansnaam:',
 'fileduplicatesearch-submit'   => 'Zeuken',

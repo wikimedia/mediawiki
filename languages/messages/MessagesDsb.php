@@ -3259,16 +3259,15 @@ Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywa�
 Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Za duplikatnymi datajami pytaś',
-'fileduplicatesearch-summary'  => 'Za datajowymi duplikatami na zakłaźe gótnoty hash pytaś.
-
-Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'pytaś duplikata',
-'fileduplicatesearch-filename' => 'Datajowe mě:',
-'fileduplicatesearch-submit'   => 'Pytaś',
-'fileduplicatesearch-info'     => '$1 × $2 Piksel<br />wjelikosć dataja: $3<br />typ MIME: $4',
-'fileduplicatesearch-result-1' => 'Dataja "$1" njama identiske duplikaty.',
-'fileduplicatesearch-result-n' => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikata|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
+'fileduplicatesearch'           => 'Za duplikatnymi datajami pytaś',
+'fileduplicatesearch-summary'   => 'Za datajowymi duplikatami na zakłaźe gótnoty hash pytaś.',
+'fileduplicatesearch-legend'    => 'pytaś duplikata',
+'fileduplicatesearch-filename'  => 'Datajowe mě:',
+'fileduplicatesearch-submit'    => 'Pytaś',
+'fileduplicatesearch-info'      => '$1 × $2 Piksel<br />wjelikosć dataja: $3<br />typ MIME: $4',
+'fileduplicatesearch-result-1'  => 'Dataja "$1" njama identiske duplikaty.',
+'fileduplicatesearch-result-n'  => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikata|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
+'fileduplicatesearch-noresults' => 'Žedna dataja z mjenim "$1" namakana.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialne boki',

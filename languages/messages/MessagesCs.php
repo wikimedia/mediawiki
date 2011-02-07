@@ -3554,16 +3554,15 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Hledání duplicitních souborů',
-'fileduplicatesearch-summary'  => 'Hledání duplicitních souborů vychází z hodnoty hashovací funkce.
-
-Zadejte jméno souboru bez označení "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'Hledání duplikátů',
-'fileduplicatesearch-filename' => 'Jméno souboru:',
-'fileduplicatesearch-submit'   => 'Hledat',
-'fileduplicatesearch-info'     => '(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
-'fileduplicatesearch-result-1' => 'Soubor „$1“ nemá žádný identický duplikát.',
-'fileduplicatesearch-result-n' => 'Soubor „$1“ má {{PLURAL:$2|jeden identický duplikát|$2 identické duplikáty|$2 identických duplikátů}}.',
+'fileduplicatesearch'           => 'Hledání duplicitních souborů',
+'fileduplicatesearch-summary'   => 'Hledání duplicitních souborů vychází z hodnoty hashovací funkce.',
+'fileduplicatesearch-legend'    => 'Hledání duplikátů',
+'fileduplicatesearch-filename'  => 'Jméno souboru:',
+'fileduplicatesearch-submit'    => 'Hledat',
+'fileduplicatesearch-info'      => '(rozměr: $1 × $2 pixelů, velikost souboru: $3, MIME typ: $4)',
+'fileduplicatesearch-result-1'  => 'Soubor „$1“ nemá žádný identický duplikát.',
+'fileduplicatesearch-result-n'  => 'Soubor „$1“ má {{PLURAL:$2|jeden identický duplikát|$2 identické duplikáty|$2 identických duplikátů}}.',
+'fileduplicatesearch-noresults' => 'Žádný soubor s názvem „$1“ nebyl nalezen.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Speciální stránky',

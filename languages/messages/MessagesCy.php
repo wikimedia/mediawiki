@@ -3265,16 +3265,15 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Chwilio am ffeiliau dyblyg',
-'fileduplicatesearch-summary'  => 'Chwilier am ffeiliau dyblyg ar sail ei werth stwnsh.
-
-Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'Chwilio am ddyblygeb',
-'fileduplicatesearch-filename' => "Enw'r ffeil:",
-'fileduplicatesearch-submit'   => 'Chwilier',
-'fileduplicatesearch-info'     => '$1 × $2 picsel<br />Maint y ffeil: $3<br />math MIME: $4',
-'fileduplicatesearch-result-1' => 'Nid oes yr un ffeil i gael sydd yn union yr un fath â\'r ffeil "$1".',
-'fileduplicatesearch-result-n' => '{{PLURAL:$2|Nid oes yr un ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|}} i gael sydd yn union yr un fath â\'r ffeil "$1".',
+'fileduplicatesearch'           => 'Chwilio am ffeiliau dyblyg',
+'fileduplicatesearch-summary'   => 'Chwilier am ffeiliau dyblyg ar sail ei werth stwnsh.',
+'fileduplicatesearch-legend'    => 'Chwilio am ddyblygeb',
+'fileduplicatesearch-filename'  => "Enw'r ffeil:",
+'fileduplicatesearch-submit'    => 'Chwilier',
+'fileduplicatesearch-info'      => '$1 × $2 picsel<br />Maint y ffeil: $3<br />math MIME: $4',
+'fileduplicatesearch-result-1'  => 'Nid oes yr un ffeil i gael sydd yn union yr un fath â\'r ffeil "$1".',
+'fileduplicatesearch-result-n'  => '{{PLURAL:$2|Nid oes yr un ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|}} i gael sydd yn union yr un fath â\'r ffeil "$1".',
+'fileduplicatesearch-noresults' => 'Ni ddaethpwyd o hyd i ffeil o\'r enw "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Tudalennau arbennig',

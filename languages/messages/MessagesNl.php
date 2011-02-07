@@ -3656,16 +3656,15 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Duplicaatbestanden zoeken',
-'fileduplicatesearch-summary'  => 'Duplicaatbestanden zoeken op basis van de hashwaarde.
-
-Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'Duplicaatbestanden zoeken',
-'fileduplicatesearch-filename' => 'Bestandsnaam:',
-'fileduplicatesearch-submit'   => 'Zoeken',
-'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Bestandsgrootte: $3<br />MIME-type: $4',
-'fileduplicatesearch-result-1' => 'Het bestand "$1" heeft geen duplicaten.',
-'fileduplicatesearch-result-n' => 'Het bestand "$1" heeft {{PLURAL:$2|één duplicaat|$2 duplicaten}}.',
+'fileduplicatesearch'           => 'Duplicaatbestanden zoeken',
+'fileduplicatesearch-summary'   => 'Duplicaatbestanden zoeken op basis van de hashwaarde.',
+'fileduplicatesearch-legend'    => 'Duplicaatbestanden zoeken',
+'fileduplicatesearch-filename'  => 'Bestandsnaam:',
+'fileduplicatesearch-submit'    => 'Zoeken',
+'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Bestandsgrootte: $3<br />MIME-type: $4',
+'fileduplicatesearch-result-1'  => 'Het bestand "$1" heeft geen duplicaten.',
+'fileduplicatesearch-result-n'  => 'Het bestand "$1" heeft {{PLURAL:$2|één duplicaat|$2 duplicaten}}.',
+'fileduplicatesearch-noresults' => 'Er is geen bestand met de naam "$1" gevonden.',
 
 # Special:SpecialPages
 'specialpages'                   => "Speciale pagina's",

@@ -3278,9 +3278,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Find dubletfiler',
-'fileduplicatesearch-summary'  => 'Find dublerede filer baseret på deres hash-værdi.
-
-Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
+'fileduplicatesearch-summary'  => 'Find dublerede filer baseret på deres hash-værdi.',
 'fileduplicatesearch-legend'   => 'Find dubletfiler.',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Find',

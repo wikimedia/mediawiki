@@ -2592,9 +2592,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Ҷустуҷӯ барои парвандаҳои такрорӣ',
-'fileduplicatesearch-summary'  => 'Ҷустуҷӯ барои парвандаҳои такрорӣ бар асоси миқдори дар ҳам шудаи онҳо сурат мегирад.
-
-Номи парвандаро бе пешванди "{{ns:file}}:" ворид кунед.',
+'fileduplicatesearch-summary'  => 'Ҷустуҷӯ барои парвандаҳои такрорӣ бар асоси миқдори дар ҳам шудаи онҳо сурат мегирад.',
 'fileduplicatesearch-legend'   => 'Ҷустуҷӯи мавориди такрорӣ',
 'fileduplicatesearch-filename' => 'Номи парванда:',
 'fileduplicatesearch-submit'   => 'Ҷустуҷӯ',

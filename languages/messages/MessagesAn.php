@@ -3171,9 +3171,7 @@ Escriba o nombre d'o fichero sin o prefixo \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Mirar fichers duplicatos',
-'fileduplicatesearch-summary'  => 'Mirar archivos duplicatos basatos en a suya valura hash.
-
-Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Mirar archivos duplicatos basatos en a suya valura hash.',
 'fileduplicatesearch-legend'   => 'Mirar duplicatos',
 'fileduplicatesearch-filename' => "Nombre d'o fichero:",
 'fileduplicatesearch-submit'   => 'Mirar',

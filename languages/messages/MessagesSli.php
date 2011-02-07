@@ -2271,9 +2271,7 @@ Du koast au de [[Special:Watchlist/edit|Standard-Beoarbeetungsseyte]] benutza.',
 De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-summary'  => 'Siche noach Datei-Duplikaten uff Basis ihres Hash-Wertes.
-
-De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
+'fileduplicatesearch-summary'  => 'Siche noach Datei-Duplikaten uff Basis ihres Hash-Wertes.',
 'fileduplicatesearch-legend'   => 'Suche noach Duplikata',
 'fileduplicatesearch-filename' => 'Dateinoame:',
 'fileduplicatesearch-submit'   => 'Sucha',

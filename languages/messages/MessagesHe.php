@@ -3613,9 +3613,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'חיפוש קבצים כפולים',
-'fileduplicatesearch-summary'  => 'חיפוש קבצים כפולים על בסיס ערכי ה־Hash שלהם.
-
-הקלידו את שם הקובץ ללא הקידומת "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'חיפוש קבצים כפולים על בסיס ערכי ה־Hash שלהם.',
 'fileduplicatesearch-legend'   => 'חיפוש קבצים כפולים',
 'fileduplicatesearch-filename' => 'קובץ:',
 'fileduplicatesearch-submit'   => 'חיפוש',

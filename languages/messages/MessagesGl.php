@@ -3455,9 +3455,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar ficheiros duplicados',
-'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).
-
-Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).',
 'fileduplicatesearch-legend'   => 'Procurar un duplicado',
 'fileduplicatesearch-filename' => 'Nome do ficheiro:',
 'fileduplicatesearch-submit'   => 'Procurar',

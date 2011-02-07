@@ -2796,9 +2796,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Meklēt failu kopijas',
-'fileduplicatesearch-summary'  => 'Meklē dublējošos failus, izmantojot uz jaucējfunkcijas vērtības.
-
-Ievadi faila nosaukumu bez "{{ns:file}}:" prefiksa.',
+'fileduplicatesearch-summary'  => 'Meklē dublējošos failus, izmantojot uz jaucējfunkcijas vērtības.',
 'fileduplicatesearch-legend'   => 'Meklēt kopiju',
 'fileduplicatesearch-filename' => 'Faila vārds:',
 'fileduplicatesearch-submit'   => 'Meklēt',

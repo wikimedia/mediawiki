@@ -3127,9 +3127,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Давхардсан файлуудыг хайх',
-'fileduplicatesearch-summary'  => 'Хэш кодыг ашиглан давхардсан файлуудын хайна.
-
-Файлын нэрийг "{{ns:file}}:" угтваргүйгээр оруулна уу.',
+'fileduplicatesearch-summary'  => 'Хэш кодыг ашиглан давхардсан файлуудын хайна.',
 'fileduplicatesearch-legend'   => 'Давхардалтыг хайх',
 'fileduplicatesearch-filename' => 'Файлын нэр:',
 'fileduplicatesearch-submit'   => 'Хайх',

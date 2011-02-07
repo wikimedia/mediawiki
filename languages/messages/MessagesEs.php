@@ -3489,9 +3489,7 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Búsqueda de archivos duplicados',
-'fileduplicatesearch-summary'  => 'Búsqueda de archivos duplicados en base a su valor hash.
-
-Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Búsqueda de archivos duplicados en base a su valor hash.',
 'fileduplicatesearch-legend'   => 'Busca duplicados',
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',

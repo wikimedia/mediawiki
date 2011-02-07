@@ -3298,9 +3298,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '㨂重覆檔案',
-'fileduplicatesearch-summary'  => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。
-
-輸入檔名嗰陣唔使輸入 "{{ns:file}}:" 開頭。',
+'fileduplicatesearch-summary'  => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。',
 'fileduplicatesearch-legend'   => '搵重覆',
 'fileduplicatesearch-filename' => '檔名:',
 'fileduplicatesearch-submit'   => '搵',

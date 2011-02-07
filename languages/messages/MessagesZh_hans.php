@@ -2408,7 +2408,7 @@ $1被封禁的理由是：“$2”',
 'blocklogentry'                   => '[[$1]]已被封禁，终止时间为$2 $3',
 'reblock-logentry'                => '更改[[$1]]的封禁终止时间 $2 $3',
 'blocklogtext'                    => '此处给出了封禁和解封用户的操作日志，被自动封禁的IP地址不在此表。请查看[[Special:IPBlockList|封禁列表]]获知当前被封禁的用户和IP地址。',
-'unblocklogentry'                 => '$1已被解除封禁',
+'unblocklogentry'                 => '已解封 $1',
 'block-log-flags-anononly'        => '仅限匿名用户',
 'block-log-flags-nocreate'        => '创建账户已禁用',
 'block-log-flags-noautoblock'     => '禁用自动封禁',
@@ -3387,9 +3387,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '搜索重复文件',
-'fileduplicatesearch-summary'  => '根据散列值（Hash值）搜索重复文件。
-
-输入文件名时不需要输入“{{ns:file}}:”前缀。',
+'fileduplicatesearch-summary'  => '根据散列值（Hash值）搜索重复文件。',
 'fileduplicatesearch-legend'   => '搜索重复文件',
 'fileduplicatesearch-filename' => '文件名：',
 'fileduplicatesearch-submit'   => '搜索',

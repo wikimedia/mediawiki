@@ -3302,9 +3302,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Søk etter duplikatfiler',
-'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på hash-verdiane deira.
-
-Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
+'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på hash-verdiane deira.',
 'fileduplicatesearch-legend'   => 'Søk etter ei duplikatfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Søk',

@@ -2828,9 +2828,7 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sukön ragivis petelüköl',
-'fileduplicatesearch-summary'  => 'Sukön ragivis petelüköl stabü völad kontrolasaedota onsik.
-
-Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
+'fileduplicatesearch-summary'  => 'Sukön ragivis petelüköl stabü völad kontrolasaedota onsik.',
 'fileduplicatesearch-legend'   => 'Sukön telükoti',
 'fileduplicatesearch-filename' => 'Ragivanem:',
 'fileduplicatesearch-submit'   => 'Sukön',

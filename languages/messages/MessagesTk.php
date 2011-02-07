@@ -3167,9 +3167,7 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Dublikat faýllaryň gözlegi',
-'fileduplicatesearch-summary'  => 'Heş kodlary boýunça meňzeş faýllary gözle.
-
-Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
+'fileduplicatesearch-summary'  => 'Heş kodlary boýunça meňzeş faýllary gözle.',
 'fileduplicatesearch-legend'   => 'Dublikatyny gözle',
 'fileduplicatesearch-filename' => 'Faýlyň ady:',
 'fileduplicatesearch-submit'   => 'Gözle',

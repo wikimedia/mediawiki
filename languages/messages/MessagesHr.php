@@ -3419,9 +3419,7 @@ Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Traži kopije datoteka',
-'fileduplicatesearch-summary'  => 'Traži kopije datoteka na temelju njihove hash vrijednosti.
-
-Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
+'fileduplicatesearch-summary'  => 'Traži kopije datoteka na temelju njihove hash vrijednosti.',
 'fileduplicatesearch-legend'   => 'Traži kopije datoteka',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',

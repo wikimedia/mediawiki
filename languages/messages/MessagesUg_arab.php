@@ -3214,9 +3214,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'تەكرار ھۆججەت ئىزدە',
-'fileduplicatesearch-summary'  => 'چاچما (hash) قىممىتىگە ئاساسەن تەكرار ھۆججەت ئىزدە.
-
-ھۆججەت ئاتى كىرگۈزگەندە ئالدى قوشۇلغۇچى "{{ns:file}}:" كىرگۈزمىسىڭىزمۇ بولىدۇ.',
+'fileduplicatesearch-summary'  => 'چاچما (hash) قىممىتىگە ئاساسەن تەكرار ھۆججەت ئىزدە.',
 'fileduplicatesearch-legend'   => 'تەكرار ھۆججەت ئىزدە',
 'fileduplicatesearch-filename' => ':ھۆججەت ئاتى',
 'fileduplicatesearch-submit'   => 'ئىزدە',

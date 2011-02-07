@@ -2999,7 +2999,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 # Attribution
 'anonymous'        => 'Namelose {{PLURAL:$1|Metmaacher|Metmaacher|Metmaacher}} vun {{GRAMMAR:Dat|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}}-{{GENDER:$2|Metmaacher|Metmaacheren|Metmaacher|Metmaacher|Metmaacheren}} $1',
-'anonuser'         => 'dä nameloose Metmaacher $1 vun de {{SITENAME}}',
+'anonuser'         => 'dä nameloose Metmaacher $1 {{GRAMMAR:Genitive vum|{{SITENAME}}}}',
 'lastmodifiedatby' => 'Die Sigg heh wood et letz am $1 öm $2 Uhr {{GENDER:$4|vum|vun dä|vum|vum|vun dä}} $3 jeändert.',
 'othercontribs'    => 'Bout op et Werk vun $1 op.',
 'others'           => 'ander',
@@ -3677,16 +3677,15 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Sök noh dubbelte Dateie',
-'fileduplicatesearch-summary'  => 'Söök noh dubbelte Dateie övver dänne iere Häsh-Zahl.
-
-Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
-'fileduplicatesearch-legend'   => 'Sök noh ene dubbelte Datei',
-'fileduplicatesearch-filename' => 'Dateiname:',
-'fileduplicatesearch-submit'   => 'Sööke',
-'fileduplicatesearch-info'     => '{{PLURAL:$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />MIME-Tüp: <code>$4</code>',
-'fileduplicatesearch-result-1' => 'Mer han kein akoraat dubbelte Dateie för „$1“ jefonge.',
-'fileduplicatesearch-result-n' => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
+'fileduplicatesearch'           => 'Sök noh dubbelte Dateie',
+'fileduplicatesearch-summary'   => 'Söhhk noh dubbelte Dateie övver dänne iere Häsh-Zahl.',
+'fileduplicatesearch-legend'    => 'Sök noh ene dubbelte Datei',
+'fileduplicatesearch-filename'  => 'Dateiname:',
+'fileduplicatesearch-submit'    => 'Sööke',
+'fileduplicatesearch-info'      => '{{PLURAL:$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />MIME-Tüp: <code>$4</code>',
+'fileduplicatesearch-result-1'  => 'Mer han kein akoraat dubbelte Dateie för „$1“ jefonge.',
+'fileduplicatesearch-result-n'  => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
+'fileduplicatesearch-noresults' => 'Mer han kein Dattei met däm Name „$1“ jefonge.',
 
 # Special:SpecialPages
 'specialpages'                   => '{{int:nstab-special}}e',

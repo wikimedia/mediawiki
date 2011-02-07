@@ -3483,9 +3483,7 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar por arquivos duplicados',
-'fileduplicatesearch-summary'  => 'Procure por arquivos duplicados tendo por base seu valor "hash".
-
-Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Procure por arquivos duplicados tendo por base seu valor "hash".',
 'fileduplicatesearch-legend'   => 'Procurar por duplicatas',
 'fileduplicatesearch-filename' => 'Nome do arquivo:',
 'fileduplicatesearch-submit'   => 'Pesquisa',

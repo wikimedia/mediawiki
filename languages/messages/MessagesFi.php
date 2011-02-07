@@ -3335,9 +3335,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Kaksoiskappaleiden haku',
-'fileduplicatesearch-summary'  => 'Etsii tiedoston kaksoiskappaleita hajautusarvon perusteella.
-
-Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
+'fileduplicatesearch-summary'  => 'Etsii tiedoston kaksoiskappaleita hajautusarvon perusteella.',
 'fileduplicatesearch-legend'   => 'Etsi kaksoiskappaleita',
 'fileduplicatesearch-filename' => 'Tiedostonimi',
 'fileduplicatesearch-submit'   => 'Etsi',

@@ -3450,9 +3450,7 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Duplikátumok keresése',
-'fileduplicatesearch-summary'  => 'Fájlok duplikátumainak keresése hash értékük alapján.
-
-Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
+'fileduplicatesearch-summary'  => 'Fájlok duplikátumainak keresése hash értékük alapján.',
 'fileduplicatesearch-legend'   => 'Duplikátum keresése',
 'fileduplicatesearch-filename' => 'Fájlnév:',
 'fileduplicatesearch-submit'   => 'Keresés',

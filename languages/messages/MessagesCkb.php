@@ -2971,9 +2971,7 @@ $5
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'گەڕان بۆ پەڕگە دووپات کراوەکان',
-'fileduplicatesearch-summary'  => 'گەڕان بۆ پەڕگە دووبارەکراوەکان لەسەر بنەمای نرخی hash.
-
-ناوی پەڕگەکە بێ پێشگری "{{ns:file}}" بنووسە.',
+'fileduplicatesearch-summary'  => 'گەڕان بۆ پەڕگە دووبارەکراوەکان لەسەر بنەمای نرخی hash.',
 'fileduplicatesearch-legend'   => 'گەڕان بۆ دووبارەکردنێک',
 'fileduplicatesearch-filename' => 'ناوی پەرگە:',
 'fileduplicatesearch-submit'   => 'گەڕان',

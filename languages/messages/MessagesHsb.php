@@ -3242,16 +3242,15 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Dwójne dataje pytać',
-'fileduplicatesearch-summary'  => "Pytanje za duplikatnymi datajemi na zakładźe jich hašoweje hódnoty.
-
-Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
-'fileduplicatesearch-legend'   => 'Duplikaty pytać',
-'fileduplicatesearch-filename' => 'Datajowe mjeno:',
-'fileduplicatesearch-submit'   => 'Pytać',
-'fileduplicatesearch-info'     => '$1 × $2 pikselow<br />Datajowa wulkosć: $3<br />Typ MIME: $4',
-'fileduplicatesearch-result-1' => 'Dataja "$1" identiske duplikaty nima.',
-'fileduplicatesearch-result-n' => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikataj|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
+'fileduplicatesearch'           => 'Dwójne dataje pytać',
+'fileduplicatesearch-summary'   => 'Pytanje za duplikatnymi datajemi na zakładźe jich hašoweje hódnoty.',
+'fileduplicatesearch-legend'    => 'Duplikaty pytać',
+'fileduplicatesearch-filename'  => 'Datajowe mjeno:',
+'fileduplicatesearch-submit'    => 'Pytać',
+'fileduplicatesearch-info'      => '$1 × $2 pikselow<br />Datajowa wulkosć: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1'  => 'Dataja "$1" identiske duplikaty nima.',
+'fileduplicatesearch-result-n'  => 'Dataja "$1" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikataj|$2 identiske duplikaty|$2 identiskich duplikatow}}.',
+'fileduplicatesearch-noresults' => 'Žana dataja z mjenom "$1" namakana.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialne strony',

@@ -2987,9 +2987,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'فايل تەلنۇسقالارىن ىزدەۋ',
-'fileduplicatesearch-summary'  => 'فايل حەشى ماعىناسى نەگىزىندە تەلنۇسقالارىن ىزدەۋ.
-
-فايل اتاۋىن «{{ns:file}}:» دەگەن باستاۋىشسىز ەنگىزىڭىز.',
+'fileduplicatesearch-summary'  => 'فايل حەشى ماعىناسى نەگىزىندە تەلنۇسقالارىن ىزدەۋ.',
 'fileduplicatesearch-legend'   => 'تەلنۇسقانى ىزدەۋ',
 'fileduplicatesearch-filename' => 'فايل اتاۋى:',
 'fileduplicatesearch-submit'   => 'ىزدە',

@@ -3421,16 +3421,15 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Cercar files duplicate',
-'fileduplicatesearch-summary'  => "Cercar files duplicate a base de lor summas de verification ''(hash).''
-
-Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
-'fileduplicatesearch-legend'   => 'Cercar un duplicato',
-'fileduplicatesearch-filename' => 'Nomine del file:',
-'fileduplicatesearch-submit'   => 'Cercar',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Grandor del file: $3<br />Typo MIME: $4',
-'fileduplicatesearch-result-1' => 'Le file "$1" ha nulle duplicato identic.',
-'fileduplicatesearch-result-n' => 'Le file "$1" ha {{PLURAL:$2|1 duplicato|$2 duplicatos}} identic.',
+'fileduplicatesearch'           => 'Cercar files duplicate',
+'fileduplicatesearch-summary'   => "Cercar files duplicate a base de lor summas de verification ''(hash).''",
+'fileduplicatesearch-legend'    => 'Cercar un duplicato',
+'fileduplicatesearch-filename'  => 'Nomine del file:',
+'fileduplicatesearch-submit'    => 'Cercar',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Grandor del file: $3<br />Typo MIME: $4',
+'fileduplicatesearch-result-1'  => 'Le file "$1" ha nulle duplicato identic.',
+'fileduplicatesearch-result-n'  => 'Le file "$1" ha {{PLURAL:$2|1 duplicato|$2 duplicatos}} identic.',
+'fileduplicatesearch-noresults' => 'Nulle file con nomine "$1" trovate.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Paginas special',

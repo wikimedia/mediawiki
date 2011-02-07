@@ -3202,9 +3202,7 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Бер иш файлдарҙы эҙләү',
-'fileduplicatesearch-summary'  => 'Бер иш файлдарҙы хэш-кодтары буйынса эҙләү.
-
-Файлдың исемен "{{ns:file}}:" ҡушылмаһын өҫтәмәйенсә керетегеҙ.',
+'fileduplicatesearch-summary'  => 'Бер иш файлдарҙы хэш-кодтары буйынса эҙләү.',
 'fileduplicatesearch-legend'   => 'Бер иш файлдарҙы эҙләү',
 'fileduplicatesearch-filename' => 'Файл исеме:',
 'fileduplicatesearch-submit'   => 'Эҙләү',

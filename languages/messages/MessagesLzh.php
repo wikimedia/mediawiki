@@ -2790,9 +2790,7 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '擇重檔',
-'fileduplicatesearch-summary'  => '以重檔之切去查重也。
-
-入名時無 "{{ns:file}}:" 首也。',
+'fileduplicatesearch-summary'  => '以重檔之切去查重也。',
 'fileduplicatesearch-legend'   => '尋重',
 'fileduplicatesearch-filename' => '名：',
 'fileduplicatesearch-submit'   => '尋',

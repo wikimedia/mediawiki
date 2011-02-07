@@ -3391,9 +3391,7 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Soek duplikaat lêers',
-'fileduplicatesearch-summary'  => 'Soek na duplikaat lêers volgends hul hashwaardes.
-
-Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
+'fileduplicatesearch-summary'  => 'Soek na duplikaat lêers volgends hul hashwaardes.',
 'fileduplicatesearch-legend'   => "Soek vir 'n duplikaat",
 'fileduplicatesearch-filename' => 'Lêernaam:',
 'fileduplicatesearch-submit'   => 'Soek',

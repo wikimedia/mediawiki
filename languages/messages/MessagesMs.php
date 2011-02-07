@@ -3307,9 +3307,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cari fail serupa',
-'fileduplicatesearch-summary'  => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.
-
-Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.',
 'fileduplicatesearch-legend'   => 'Cari fail serupa',
 'fileduplicatesearch-filename' => 'Nama fail:',
 'fileduplicatesearch-submit'   => 'Gelintar',

@@ -3041,9 +3041,7 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:Watchlist/raw|Liestenfor
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Doatäi-Duplikoat-Säike',
-'fileduplicatesearch-summary'  => 'Säike ätter Doatäi-Duplikoate ap Basis fon hieren Hash-Wäid.
-
-Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
+'fileduplicatesearch-summary'  => 'Säike ätter Doatäi-Duplikoate ap Basis fon hieren Hash-Wäid.',
 'fileduplicatesearch-legend'   => 'Säike ätter Duplikoate',
 'fileduplicatesearch-filename' => 'Doatäinoome:',
 'fileduplicatesearch-submit'   => 'Säike (016)',

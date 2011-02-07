@@ -3320,9 +3320,7 @@ Willañiqi sutita yaykuchispaqa ama \"{{ns:file}}:\" ñawpaq k'askaqta qillqamuy
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Iskaychasqa willañiqikunata maskay',
-'fileduplicatesearch-summary'  => "Iskaychasqa willañiqikunata maskay ''hash'' chaninpi tiksispa.
-
-Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
+'fileduplicatesearch-summary'  => "Iskaychasqa willañiqikunata maskay ''hash'' chaninpi tiksispa.",
 'fileduplicatesearch-legend'   => 'Iskaychasqata maskay',
 'fileduplicatesearch-filename' => 'Willañiqip sutin:',
 'fileduplicatesearch-submit'   => 'Maskay',

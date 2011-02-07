@@ -3388,16 +3388,15 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Klask ar restroù e doubl',
-'fileduplicatesearch-summary'  => 'Klask restroù e doubl war diazez talvoudennoù darnek.
-
-Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
-'fileduplicatesearch-legend'   => 'Klask un doubl',
-'fileduplicatesearch-filename' => 'Anv ar restr :',
-'fileduplicatesearch-submit'   => 'Klask',
-'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ment ar restr : $3<br />seurt MIME : $4',
-'fileduplicatesearch-result-1' => 'N\'eus ket a zoubloù heñvel-poch gant ar restr "$1".',
-'fileduplicatesearch-result-n' => '{{PLURAL:$2|1 doubl heñvel-poch|$2 doubl heñvel-poch}} zo gant ar restr "$1".',
+'fileduplicatesearch'           => 'Klask ar restroù e doubl',
+'fileduplicatesearch-summary'   => 'Klask restroù e doubl war diazez talvoudennoù krennet.',
+'fileduplicatesearch-legend'    => 'Klask un doubl',
+'fileduplicatesearch-filename'  => 'Anv ar restr :',
+'fileduplicatesearch-submit'    => 'Klask',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />Ment ar restr : $3<br />seurt MIME : $4',
+'fileduplicatesearch-result-1'  => 'N\'eus ket a zoubloù heñvel-poch gant ar restr "$1".',
+'fileduplicatesearch-result-n'  => '{{PLURAL:$2|1 doubl heñvel-poch|$2 doubl heñvel-poch}} zo gant ar restr "$1".',
+'fileduplicatesearch-noresults' => 'N\'eus bet kavet restr ebet anvet "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pajennoù dibar',

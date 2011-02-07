@@ -3249,9 +3249,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'ერთნაირი ფაილების ძიება',
-'fileduplicatesearch-summary'  => 'ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.
-
-შეიყვანეთ ფაილის სახელი წინსართ  "{{ns:file}}:"-ის გარეშე.',
+'fileduplicatesearch-summary'  => 'ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.',
 'fileduplicatesearch-legend'   => 'დუბლიკატების ძიება',
 'fileduplicatesearch-filename' => 'ფაილის სახელი:',
 'fileduplicatesearch-submit'   => 'ძიება',

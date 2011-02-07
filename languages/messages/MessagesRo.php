@@ -3484,16 +3484,15 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Caută fișiere duplicate',
-'fileduplicatesearch-summary'  => 'Caută fișiere duplicat bazate pe valoarea sa hash.
-
-Introdu numele fișierului fără prefixul "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'Caută un duplicat',
-'fileduplicatesearch-filename' => 'Nume fișier:',
-'fileduplicatesearch-submit'   => 'Caută',
-'fileduplicatesearch-info'     => '$1 × $2 pixeli<br />Mărime fișier: $3<br />Tip MIME: $4',
-'fileduplicatesearch-result-1' => 'Fișierul "$1" nu are un duplicat identic.',
-'fileduplicatesearch-result-n' => 'Fișierul "$1" are {{PLURAL:$2|1 duplicat identic|$2 duplicate identice}}.',
+'fileduplicatesearch'           => 'Căutare fișiere duplicate',
+'fileduplicatesearch-summary'   => 'Căutarea fișierelor duplicate bazată pe valorile hash.',
+'fileduplicatesearch-legend'    => 'Căutare duplicat',
+'fileduplicatesearch-filename'  => 'Nume fișier:',
+'fileduplicatesearch-submit'    => 'Caută',
+'fileduplicatesearch-info'      => '$1 × $2 pixeli<br />Mărime fișier: $3<br />Tip MIME: $4',
+'fileduplicatesearch-result-1'  => 'Fișierul "$1" nu are un duplicat identic.',
+'fileduplicatesearch-result-n'  => 'Fișierul "$1" are {{PLURAL:$2|1 duplicat identic|$2 duplicate identice}}.',
+'fileduplicatesearch-noresults' => 'Nu s-a găsit niciun fișier cu numele „$1”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pagini speciale',

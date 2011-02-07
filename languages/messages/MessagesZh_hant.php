@@ -2401,7 +2401,7 @@ $1被封禁的理由是“$2”',
 'blocklogentry'                   => '“[[$1]]”已被查封，終止時間為$2 $3',
 'reblock-logentry'                => '更改[[$1]]的封禁設定時間 $2 $3',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
-'unblocklogentry'                 => '$1已被解封',
+'unblocklogentry'                 => '已解封 $1',
 'block-log-flags-anononly'        => '僅限匿名用戶',
 'block-log-flags-nocreate'        => '建立帳號已禁用',
 'block-log-flags-noautoblock'     => '停用自動封禁',
@@ -3374,9 +3374,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '選擇重覆檔案',
-'fileduplicatesearch-summary'  => '用重覆檔案的切細值去找出檔案是否重覆。
-
-輸入檔名時不需要輸入 "{{ns:file}}:" 開頭。',
+'fileduplicatesearch-summary'  => '用重覆檔案的切細值去找出檔案是否重覆。',
 'fileduplicatesearch-legend'   => '找重覆',
 'fileduplicatesearch-filename' => '檔案名稱：',
 'fileduplicatesearch-submit'   => '找',

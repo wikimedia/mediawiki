@@ -2971,9 +2971,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Файл телнұсқаларын іздеу',
-'fileduplicatesearch-summary'  => 'Файл хеші мағынасы негізінде телнұсқаларын іздеу.
-
-Файл атауын «{{ns:file}}:» деген бастауышсыз енгізіңіз.',
+'fileduplicatesearch-summary'  => 'Файл хеші мағынасы негізінде телнұсқаларын іздеу.',
 'fileduplicatesearch-legend'   => 'Телнұсқаны іздеу',
 'fileduplicatesearch-filename' => 'Файл атауы:',
 'fileduplicatesearch-submit'   => 'Ізде',

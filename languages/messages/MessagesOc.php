@@ -3366,9 +3366,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Recèrca dels fichièrs en doble',
-'fileduplicatesearch-summary'  => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.
-
-Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
+'fileduplicatesearch-summary'  => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.',
 'fileduplicatesearch-legend'   => 'Recèrca d’un doble',
 'fileduplicatesearch-filename' => 'Nom del fichièr :',
 'fileduplicatesearch-submit'   => 'Recercar',

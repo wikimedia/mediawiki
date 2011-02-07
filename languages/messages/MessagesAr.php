@@ -2138,12 +2138,13 @@ $1',
 ينبغي في المقابل أن تصل إلى الصفحة الملائمة. <br />
 تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'تحويلات مزدوجة',
-'doubleredirectstext'        => 'هذه الصفحة تعرض الصفحات التي تحول إلى صفحات تحويل أخرى.
+'doubleredirects'                   => 'تحويلات مزدوجة',
+'doubleredirectstext'               => 'هذه الصفحة تعرض الصفحات التي تحول إلى صفحات تحويل أخرى.
 كل سطر يحتوي على وصلات للتحويلة الأولى والثانية وهدف التحويلة الثانية، والذي عادة ما يشير إلى صفحة الهدف "الحقيقية"، التي من المفترض أن تحول إليها التحويلة الأولى.
 المدخلات <del>المشطوبة</del> صححت.',
-'double-redirect-fixed-move' => '[[$1]] تم نقلها، هي الآن تحويلة إلى [[$2]]',
-'double-redirect-fixer'      => 'مصلح التحويل',
+'double-redirect-fixed-move'        => '[[$1]] تم نقلها، هي الآن تحويلة إلى [[$2]]',
+'double-redirect-fixed-maintenance' => 'تصليح تحويلة مزدوجة من [[$1]] إلى [[$2]].',
+'double-redirect-fixer'             => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسورة',
 'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة:',
@@ -3803,16 +3804,15 @@ $1',
 أدخل اسم الملف بدون البادئة "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'بحث عن ملفات مكررة',
-'fileduplicatesearch-summary'  => 'ابحث عن الملفات المكررة بناء على قيمة الهاش الخاصة بها.
-
-أدخل اسم الملف بدون بادئة "{{ns:file}}:".',
-'fileduplicatesearch-legend'   => 'بحث عن مكرر',
-'fileduplicatesearch-filename' => 'اسم الملف:',
-'fileduplicatesearch-submit'   => 'ابحث',
-'fileduplicatesearch-info'     => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
-'fileduplicatesearch-result-1' => 'الملف "$1" ليس له تكرار مطابق.',
-'fileduplicatesearch-result-n' => 'الملف "$1" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.',
+'fileduplicatesearch'           => 'بحث عن ملفات مكررة',
+'fileduplicatesearch-summary'   => 'ابحث عن الملفات المكررة بناء على قيم الهاش.',
+'fileduplicatesearch-legend'    => 'بحث عن مكرر',
+'fileduplicatesearch-filename'  => 'اسم الملف:',
+'fileduplicatesearch-submit'    => 'ابحث',
+'fileduplicatesearch-info'      => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
+'fileduplicatesearch-result-1'  => 'الملف "$1" ليس له تكرار مطابق.',
+'fileduplicatesearch-result-n'  => 'الملف "$1" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.',
+'fileduplicatesearch-noresults' => 'لا ملف بالاسم "$1" تم العثور عليه.',
 
 # Special:SpecialPages
 'specialpages'                   => 'الصفحات الخاصة',

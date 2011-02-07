@@ -502,13 +502,13 @@ $messages = array(
 'october'       => 'اکتبر',
 'november'      => 'نوامبر',
 'december'      => 'دسامبر',
-'january-gen'   => 'ژانویه',
-'february-gen'  => 'فوریه',
+'january-gen'   => 'ژانویهٔ',
+'february-gen'  => 'فوریهٔ',
 'march-gen'     => 'مارس',
 'april-gen'     => 'آوریل',
-'may-gen'       => 'مه',
+'may-gen'       => 'مهٔ',
 'june-gen'      => 'ژوئن',
-'july-gen'      => 'ژوئیه',
+'july-gen'      => 'ژوئیهٔ',
 'august-gen'    => 'اوت',
 'september-gen' => 'سپتامبر',
 'october-gen'   => 'اکتبر',
@@ -1945,7 +1945,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 'license'            => 'اجازه‌نامه:',
 'license-header'     => 'اجازه‌نامه',
-'nolicense'          => 'هیچیک انتخاب نشده‌است.',
+'nolicense'          => 'هیچ کدام انتخاب نشده‌است',
 'license-nopreview'  => '(پیش‌نمایش وجود ندارد)',
 'upload_source_url'  => '(یک نشانی اینترنتی معتبر و قابل دسترسی برای عموم)',
 'upload_source_file' => '(پرونده‌ای در رایانهٔ شما)',
@@ -2087,12 +2087,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 این صفحه‌ها باید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
 یک صفحه هنگامی صفحهٔ ابهام‌زدایی در نظر گرفته می‌شود که در آن از الگویی که به [[MediaWiki:Disambiguationspage]] پیوند دارد استفاده شده باشد.",
 
-'doubleredirects'            => 'تغییرمسیرهای دوتایی',
-'doubleredirectstext'        => 'این صفحه فهرستی از صفحه‌های تغییر مسیری را ارائه می‌کند که به صفحهٔ تغییر مسیر دیگری اشاره می‌کنند.
+'doubleredirects'                   => 'تغییرمسیرهای دوتایی',
+'doubleredirectstext'               => 'این صفحه فهرستی از صفحه‌های تغییر مسیری را ارائه می‌کند که به صفحهٔ تغییر مسیر دیگری اشاره می‌کنند.
 هر سطر دربردارندهٔ پیوندهایی به تغییر مسیر اول و دوم و همچنین مقصد تغییر مسیر دوم است، که معمولاً صفحهٔ مقصد واقعی است و نخستین تغییر مسیر باید به آن اشاره کند.
 موارد <del>خط خورده</del> درست شده‌اند.',
-'double-redirect-fixed-move' => '[[$1]] انتقال داده شده‌است، و در حال حاضر تغییر مسیری به [[$2]] است',
-'double-redirect-fixer'      => 'تعمیرکار تغییر مسیرها',
+'double-redirect-fixed-move'        => '[[$1]] انتقال داده شده‌است، و در حال حاضر تغییر مسیری به [[$2]] است',
+'double-redirect-fixed-maintenance' => 'رفع تغییر مسیر دوتایی از [[$1]] به [[$2]].',
+'double-redirect-fixer'             => 'تعمیرکار تغییر مسیرها',
 
 'brokenredirects'        => 'تغییرمسیرهای خراب',
 'brokenredirectstext'    => 'تغییرمسیرهای زیر به یک صفحهٔ ناموجود پیوند دارند:',
@@ -3675,16 +3676,15 @@ $1',
 نشانی پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'جستجو برای پرونده‌های تکراری',
-'fileduplicatesearch-summary'  => 'جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.
-
-نام پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',
-'fileduplicatesearch-legend'   => 'جستجوی موارد تکراری',
-'fileduplicatesearch-filename' => 'نام پرونده:',
-'fileduplicatesearch-submit'   => 'جستجو',
-'fileduplicatesearch-info'     => '$1 Ã— $2 پیکسل<br />اندازه پرونده: $3<br />نوع MIME: $4',
-'fileduplicatesearch-result-1' => 'پروندهٔ «$1» مورد تکراری ندارد.',
-'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
+'fileduplicatesearch'           => 'جستجو برای پرونده‌های تکراری',
+'fileduplicatesearch-summary'   => 'جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.',
+'fileduplicatesearch-legend'    => 'جستجوی موارد تکراری',
+'fileduplicatesearch-filename'  => 'نام پرونده:',
+'fileduplicatesearch-submit'    => 'جستجو',
+'fileduplicatesearch-info'      => '$1 Ã— $2 پیکسل<br />اندازه پرونده: $3<br />نوع MIME: $4',
+'fileduplicatesearch-result-1'  => 'پروندهٔ «$1» مورد تکراری ندارد.',
+'fileduplicatesearch-result-n'  => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
+'fileduplicatesearch-noresults' => 'پرونده‌ای با نام «$1» یافت نشد.',
 
 # Special:SpecialPages
 'specialpages'                   => 'صفحه‌های ویژه',

@@ -3123,9 +3123,7 @@ Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Fittex fajls duplikati',
-'fileduplicatesearch-summary'  => "Fittex fajls duplikati fil-bażi għal valur ''hash''.
-
-Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
+'fileduplicatesearch-summary'  => "Fittex fajls duplikati fil-bażi għal valur ''hash''.",
 'fileduplicatesearch-legend'   => 'Fittex għal duplikat',
 'fileduplicatesearch-filename' => 'Isem il-fajl:',
 'fileduplicatesearch-submit'   => 'Fittex',

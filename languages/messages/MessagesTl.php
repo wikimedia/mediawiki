@@ -3344,9 +3344,7 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Maghanap ng kaparehong mga talaksan',
-'fileduplicatesearch-summary'  => "Maghanap ng mga kaparehong mga talaksan sa baba ng kanyang halaga ng ''hash''.
-
-Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
+'fileduplicatesearch-summary'  => "Maghanap ng mga kaparehong mga talaksan sa baba ng kanyang halaga ng ''hash''.",
 'fileduplicatesearch-legend'   => 'Maghanap ng mga kapareho',
 'fileduplicatesearch-filename' => 'Pangalan ng talaksan:',
 'fileduplicatesearch-submit'   => 'Hanapin',

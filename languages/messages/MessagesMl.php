@@ -3460,9 +3460,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'ഒരേ പ്രമാണത്തിന്റെ പലപകർപ്പുകളുണ്ടോയെന്നു തിരയുക',
-'fileduplicatesearch-summary'  => 'ഒരേ പ്രമാണം തന്നെ വിവിധപേരിലുണ്ടോയെന്നു ഹാഷ് വാല്യൂവധിഷ്ഠിതമായി തിരയുക.
-
-പ്രമാണത്തിന്റെ പേര്‌ "{{ns:file}}:" എന്ന പൂർവ്വപദമില്ലാതെ നൽകുക.',
+'fileduplicatesearch-summary'  => 'ഒരേ പ്രമാണം തന്നെ വിവിധപേരിലുണ്ടോയെന്നു ഹാഷ് വാല്യൂവധിഷ്ഠിതമായി തിരയുക.',
 'fileduplicatesearch-legend'   => 'അപരനെ തിരയുക',
 'fileduplicatesearch-filename' => 'പ്രമാണത്തിന്റെ പേര്:',
 'fileduplicatesearch-submit'   => 'തിരയൂ',

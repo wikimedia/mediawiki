@@ -2749,9 +2749,7 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Laukīs dwigubbintans zūrbrukins',
-'fileduplicatesearch-summary'  => 'Laukīs dwigubbintans zūrbrukins pa tenēisan kōntrōlingin summin.
-
-Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
+'fileduplicatesearch-summary'  => 'Laukīs dwigubbintans zūrbrukins pa tenēisan kōntrōlingin summin.',
 'fileduplicatesearch-legend'   => 'Laukīs dwigubbintans zūrbrukins',
 'fileduplicatesearch-filename' => 'Zūrbrukes pabilīsna:',
 'fileduplicatesearch-submit'   => 'Laukīs',

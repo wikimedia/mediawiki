@@ -3368,9 +3368,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Faili duplikaatide otsimine',
-'fileduplicatesearch-summary'  => 'Otsi duplikaatfaile nende räsiväärtuse järgi.
-
-Sisesta faili nimi eesliiteta "{{ns:file}}:".',
+'fileduplicatesearch-summary'  => 'Otsi duplikaatfaile nende räsiväärtuse järgi.',
 'fileduplicatesearch-legend'   => 'Otsi faili duplikaati',
 'fileduplicatesearch-filename' => 'Faili nimi:',
 'fileduplicatesearch-submit'   => 'Otsi',

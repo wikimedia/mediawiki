@@ -3213,9 +3213,7 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'फ़ाईल द्विरावृत्ति खोजें',
-'fileduplicatesearch-summary'  => 'हैश वैल्यू के अनुसार फ़ाईल की द्विरावृत्ति खोजें।
-
-फ़ाईलनाम "{{ns:file}}:" उपपद के बिना लिखें।',
+'fileduplicatesearch-summary'  => 'हैश वैल्यू के अनुसार फ़ाईल की द्विरावृत्ति खोजें।',
 'fileduplicatesearch-legend'   => 'द्विरावृत्ति के लिये खोजें',
 'fileduplicatesearch-filename' => 'फ़ाईलनाम:',
 'fileduplicatesearch-submit'   => 'खोज',
