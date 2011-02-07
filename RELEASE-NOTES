@@ -21,40 +21,46 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
   WantedPages::getQueryInfo . This may break older extensions.
-* $wgUseCombinedLoginLink controls whether to output a combined login / create account
-  link in the personal bar, or to output separate login and create account links
-* Skin names are no longer created based on a ucfirst version of the key in $wgValidSkinNames but now
-  the value. This means for $wgValidSkinNames["monobook"] = "MonoBook"; the skin
-  loader will no longer try loading SkinMonobook and will instead load SkinMonoBook.
-* The parser now attempts to output markers for editsection tokens and defer the rendering
-  of them so skin and language specific markup does not need to be saved inside the parser cache
-  note that this changes the cache key making all old entries in the parser cache invalid you
-  can set $wgUseEditSectionTokens to false to disable this and keep your old parser cache entries.
+* $wgUseCombinedLoginLink controls whether to output a combined
+  login / create account link in the personal bar, or to output separate login
+  and create account links
+* Skin names are no longer created based on a ucfirst version of the key in
+  $wgValidSkinNames but now the value. This means for
+  $wgValidSkinNames["monobook"] = "MonoBook"; the skin loader will no longer try
+  loading SkinMonobook and will instead load SkinMonoBook.
+* The parser now attempts to output markers for editsection tokens and defer the
+  rendering of them so skin and language specific markup does not need to be
+  saved inside the parser cache note that this changes the cache key making all
+  old entries in the parser cache invalid you can set $wgUseEditSectionTokens to
+  false to disable this and keep your old parser cache entries.
   Note that this feature should reduce parser cache fragmentation when enabled.
-* $wgMaxUploadSize may now be set to an array to specify the upload size limit 
+* $wgMaxUploadSize may now be set to an array to specify the upload size limit
   per upload type.
 * $wgAPICacheHelp added in 1.16 is now removed. To disable API help caching, set
   $wgAPICacheHelpTimeout = 0;
-* OutputPage::isUserJsAllowed() no longer returns false when scripts are allowed by the page,
-  but $wgAllowUserJs is set to false.
+* OutputPage::isUserJsAllowed() no longer returns false when scripts are allowed
+  by the page, but $wgAllowUserJs is set to false.
 * Pure "Skin" class based custom skins are no longer supported, all custom skins
   should be put together using SkinTemplate and BaseTemplate or QuickTemplate.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
   'disableaccount' privilege to permanently deactivate user accounts.
-* (bug 8130) Query pages should limit to content namespaces, not just main namespace 
+* (bug 8130) Query pages should limit to content namespaces, not just main
+  namespace
 * Search suggestions (other than in the Vector skin) will now use the HTML5
   datalist feature where supported, currently only Firefox 4.
 * Special:Contribs now redirects to Special:Contributions
-* (bug 6672) Images are now autorotated according to their EXIF orientation. 
+* (bug 6672) Images are now autorotated according to their EXIF orientation.
   This only affects thumbnails; the source remains unrotated.
 * (bug 25708) Update case mappings and normalization to Unicode 6.0.0
-* New hook ArticlePrepareTextForEdit added, called when preparing text to be saved.
+* New hook ArticlePrepareTextForEdit added, called when preparing text to be
+  saved.
 * New parser option PreSaveTransform added, allows the pre-save transformation
   to be selectively disabled.
-* Alternative to $wgHooks implemented, using the new Hooks class. 
-* Add width parameter to Special:Filepath to allow getting the file path of a thumbnail.
+* Alternative to $wgHooks implemented, using the new Hooks class.
+* Add width parameter to Special:Filepath to allow getting the file path of a
+  thumbnail.
 * (bug 26870) Add size to {{filepath:}}
 * Upload warnings now show a thumbnail of the uploaded file
 * Introduced the edittools-upload message, which will be inserted under the
@@ -62,7 +68,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26285) Extensions will be automatically generated on upload if the user
   specified a filename without extension.
 * (bug 26851) Special:UserRights now allows to prefill the reason field
-* New maintenance script to fix double redirects (maintenance/fixDoubleRedirects.php)
+* New maintenance script to fix double redirects
+  (maintenance/fixDoubleRedirects.php)
 * (bug 23315) New body classes to allow easier styling of special pages
 
 === Bug fixes in 1.18 ===
@@ -75,26 +82,26 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   cannot read the page in question.
 * (bug 19006) {{REVISIONUSER}} no longer acts like {{CURRENTUSER}} in some cases
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
-* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as
-  "Permitted file types" on the upload form
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown
+  as "Permitted file types" on the upload form
 * (bug 26379) importImages.php gives more descriptive error message on failure.
-* (bug 26410) + signs are no longer treated as spaces in internal links if 
+* (bug 26410) + signs are no longer treated as spaces in internal links if
   link has a % sign in it.
 * (bug 26412) Search results headers no longer show a bogus edit link.
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
-* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
-  pages to be queried via the API and Special:ProtectedPages, and allowing 
+* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected
+  pages to be queried via the API and Special:ProtectedPages, and allowing
   disabling upload protection by removing it from $wgRestrictionTypes.
 * If an edit summary exceeds 250 bytes and is truncated, add an ellipse
 * (bug 26638) Database error pages display correctly in RTL languages
 * (bug 26187) Confirmrecreate no longer parses the edit summary
-* (bug 25506) Exception is thrown if OutputPage::parse is called inside a tag hook,
-  which would reset parser state
+* (bug 25506) Exception is thrown if OutputPage::parse is called inside a tag
+  hook, which would reset parser state
 * (bug 26208) Mark directionality of some interlanguage links
 * (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
   selected when the action is "purge".
-* (bug 14267) Support a MediaWiki:Mainpage-nstab override for the subject namespace
-  tab on the mainpage of a wiki.
+* (bug 14267) Support a MediaWiki:Mainpage-nstab override for the subject
+  namespace tab on the mainpage of a wiki.
 * (bug 10158) Do not mention allowing others to contact you when the feature
   is disabled ($wgEnableUserEmail=false)
 * (bug 26733) Wrap initial table creation in transaction
@@ -102,18 +109,20 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   members.
 * (bug 2585) Image pages should send 404 if no image, no shared image and no
   description page.
-* Custom editintro's using the editintro url parameter will no longer show <noinclude>
-  sections on pages they are included on.
+* Custom editintro's using the editintro url parameter will no longer show
+  <noinclude> sections on pages they are included on.
 * (bug 26449) Keep underlines from headings outside of tables and thumbs by
   adding overflow:hidden to h1,h2,h3,h4,h5,h6 (also fixes editsection bunching).
 * (bug 26708) Remove background-color:white from tables in Monobook and Vector.
-* (bug 26781) {{PAGENAME}} and related parser functions escape their output better.
-* (bug 26716) Provide link to instructions for external editor related preferences
-  and add a comment to the ini control file explaining what is going on.
-* Trying to upload a file with no extension or with a disallowed MIME type now gives
-  the right message instead of complaining about a MIME/extension mismatch
-* (bug 26809) Uploading files with multiple extensions where one of the extensions
-  is blacklisted now gives the proper extension in the error message.
+* (bug 26781) {{PAGENAME}} and related parser functions escape their output
+  better.
+* (bug 26716) Provide link to instructions for external editor related
+  preferences and add a comment to the ini control file explaining what is
+  going on.
+* Trying to upload a file with no extension or with a disallowed MIME type now
+  gives the right message instead of complaining about a MIME/extension mismatch
+* (bug 26809) Uploading files with multiple extensions where one of the
+  extensions is blacklisted now gives the proper extension in the error message.
 * (bug 26961) Hide anon edits in watchlist preference now actually works.
 * (bug 19751) Filesystem is now checked during image undeletion
 * Send last modified headers for Special:Recentchanges when RC patrol is
@@ -129,14 +138,18 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14869) Add API module for accessing QueryPage-based special pages
 * (bug 14020) API for Special:Unwatchedpages
 * (bug 24287) Wrap API Help output at 100 characters
-* Add a realname uiprop option to query=userinfo so a user's realname can be extracted
+* Add a realname uiprop option to query=userinfo so a user's realname can be
+  extracted
 * Add a &watchuser option to ApiBlock
 * (bug 26541) Generator-ise ApiQueryRecentChanges
 * action=parse now correctly returns an error for nonexistent pages
 * (bug 25767) Add userrights properties to allusers and users query lists
-* (bug 26558) list=allusers auprop=groups does not list groups a user is automatically a member of
-* (bug 26559) list=allusers auprop=rights does not match list=users usprop=rights
-* (bug 26560) On allusers if limit < total number of users, last user gets duplicate
+* (bug 26558) list=allusers auprop=groups does not list groups a user is
+  automatically a member of
+* (bug 26559) list=allusers auprop=rights does not match
+  list=users usprop=rights
+* (bug 26560) On allusers if limit < total number of users, last user gets
+  duplicate
 * (bug 25135) add "normalized" to action=parse
 * (bug 26460) Add support for listing category members by category pageid
 * (bug 26482) add a imimages param to prop=images
