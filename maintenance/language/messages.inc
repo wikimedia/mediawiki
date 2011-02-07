@@ -3207,6 +3207,7 @@ $wgMessageStructure = array(
 		'fileduplicatesearch-info',
 		'fileduplicatesearch-result-1',
 		'fileduplicatesearch-result-n',
+		'fileduplicatesearch-noresults',
 	),
 	'special-specialpages' => array(
 		'specialpages',
