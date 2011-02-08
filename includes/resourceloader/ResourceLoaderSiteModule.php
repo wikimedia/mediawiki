@@ -36,15 +36,14 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		global $wgHandheldStyle;
 
 		$pages = array(
-			'Common.js' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'script' ),
-			'Common.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style' ),
-			ucfirst( $context->getSkin() ) . '.js' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'script' ),
-			ucfirst( $context->getSkin() ) . '.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style' ),
-			'Print.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style', 'media' => 'print' ),
+			'MediaWiki:Common.js' => array( 'type' => 'script' ),
+			'MediaWiki:Common.css' => array( 'type' => 'style' ),
+			'MediaWiki:' . ucfirst( $context->getSkin() ) . '.js' => array( 'type' => 'script' ),
+			'MediaWiki:' . ucfirst( $context->getSkin() ) . '.css' => array( 'type' => 'style' ),
+			'MediaWiki:Print.css' => array( 'type' => 'style', 'media' => 'print' ),
 		);
 		if ( $wgHandheldStyle ) {
-			$pages['Handheld.css'] = array( 
-				'ns' => NS_MEDIAWIKI, 
+			$pages['MediaWiki:Handheld.css'] = array( 
 				'type' => 'style', 
 				'media' => 'handheld' );
 		}

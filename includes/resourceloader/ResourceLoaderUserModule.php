@@ -32,12 +32,12 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		if ( $context->getUser() ) {
 			$username = $context->getUser();
 			return array(
-				"$username/common.js" => array( 'ns' => NS_USER, 'type' => 'script' ),
-				"$username/" . $context->getSkin() . '.js' => 
-					array( 'ns' => NS_USER, 'type' => 'script' ),
-				"$username/common.css" => array( 'ns' => NS_USER, 'type' => 'style' ),
-				"$username/" . $context->getSkin() . '.css' => 
-					array( 'ns' => NS_USER, 'type' => 'style' ),
+				"User:$username/common.js" => array( 'type' => 'script' ),
+				"User:$username/" . $context->getSkin() . '.js' => 
+					array( 'type' => 'script' ),
+				"User:$username/common.css" => array( 'type' => 'style' ),
+				"User:$username/" . $context->getSkin() . '.css' => 
+					array( 'type' => 'style' ),
 			);
 		}
 		return array();
