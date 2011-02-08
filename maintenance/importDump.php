@@ -28,6 +28,7 @@ require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
 /**
  * @ingroup Maintenance
+ * @todo port to Maintenance class
  */
 class BackupReader {
 	var $reportingInterval = 100;
@@ -131,6 +132,10 @@ class BackupReader {
 
 	function importFromStdin() {
 		$file = fopen( 'php://stdin', 'rt' );
+		if( posix_isatty( $file ) ) {
+			$this->showHelp();
+			exit();
+		}
 		return $this->importFromHandle( $file );
 	}
 
@@ -155,6 +160,33 @@ class BackupReader {
 
 		return $importer->doImport();
 	}
+
+	function showHelp() {
+		$gz = in_array('compress.zlib', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP zlib module)';
+		$bz2 = in_array('compress.bzip2', stream_get_wrappers()) ? 'ok' : '(disabled; requires PHP bzip2 module)';
+		echo "This script reads pages from an XML file as produced from Special:Export\n";
+		echo "or dumpBackup.php, and saves them into the current wiki.\n";
+		echo "\n";
+		echo "Note that for very large data sets, importDump.php may be slow; there are\n";
+		echo "alternate methods which can be much faster for full site restoration:\n";
+		echo "http://www.mediawiki.org/wiki/Manual:Importing_XML_dumps\n";
+		echo "\n";
+		echo "Usage: php importDump.php [<options>] [<file>]\n";
+		echo "If no file is listed, input may be piped from stdin.\n";
+		echo "\n";
+		echo "Options:\n";
+		echo "  --quiet    Don't dump status reports to stderr.\n";
+		echo "  --report=n Report position and speed after every n pages processed.\n";
+		echo "  --dry-run  Parse dump without actually importing pages.\n";
+		echo "  --debug    Output extra verbose debug information\n";
+		echo "  --uploads  Process file upload data if included (experimental)\n";
+		echo "\n";
+		echo "Compressed XML files may be read directly:\n";
+		echo "  .gz $gz\n";
+		echo "  .bz2 $bz2\n";
+		echo "  .7z (if 7za executable is in PATH)\n";
+		echo "\n";
+	}
 }
 
 if ( wfReadOnly() ) {
@@ -178,7 +210,10 @@ if ( isset( $options['uploads'] ) ) {
 	$reader->uploads = true; // experimental!
 }
 
-if ( isset( $args[0] ) ) {
+if ( isset( $options['help'] ) ) {
+	$reader->showHelp();
+	exit();
+} elseif ( isset( $args[0] ) ) {
 	$result = $reader->importFromFile( $args[0] );
 } else {
 	$result = $reader->importFromStdin();
