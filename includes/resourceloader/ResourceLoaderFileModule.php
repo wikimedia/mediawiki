@@ -206,8 +206,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return String: JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgServer;
-		
 		$files = array_merge(
 			$this->scripts,
 			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
@@ -218,7 +216,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( $this->debugRaw ) {
 				$script = '';
 				foreach ( $files as $file ) {
-					$path = $wgServer . $this->getRemotePath( $file );
+					$path = $this->getRemotePath( $file );
 					$script .= "\n\t" . Xml::encodeJsCall( 'mediaWiki.loader.load', array( $path ) );
 				}
 				return $script;
