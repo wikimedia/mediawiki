@@ -95,7 +95,8 @@ class ResourceLoader {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang, $row->mr_timestamp );
+				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang, 
+					wfTimestamp( TS_UNIX, $row->mr_timestamp ) );
 				unset( $modulesWithoutMessages[$row->mr_resource] );
 			}
 		} 
