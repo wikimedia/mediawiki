@@ -124,7 +124,7 @@ class EditPage {
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {
-		global $wgOut, $wgRequest, $wgParser, $wgContLang;
+		global $wgOut, $wgRequest, $wgParser;
 
 		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
