@@ -44,7 +44,11 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	abstract protected function getPages( ResourceLoaderContext $context );
 	
 	/* Protected Methods */
-	
+
+	/**
+	 * @param $title Title
+	 * @return null|string
+	 */
 	protected function getContent( $title ) {
 		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
 			$dbkey = $title->getDBkey();

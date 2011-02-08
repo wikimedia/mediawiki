@@ -143,6 +143,7 @@ class ResourceLoader {
 			return $cacheEntry;
 		}
 
+		$result = '';
 		// Run the filter - we've already verified one of these will work
 		try {
 			switch ( $filter ) {
@@ -253,7 +254,7 @@ class ResourceLoader {
 	 * Get the ResourceLoaderModule object for a given module name.
 	 *
 	 * @param $name String: Module name
-	 * @return Mixed: ResourceLoaderModule if module has been registered, null otherwise
+	 * @return ResourceLoaderModule if module has been registered, null otherwise
 	 */
 	public function getModule( $name ) {
 		if ( !isset( $this->modules[$name] ) ) {
