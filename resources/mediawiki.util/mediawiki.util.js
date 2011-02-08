@@ -14,8 +14,8 @@
 				// Any initialisation after the DOM is ready
 				$( function() {
 
-					/* Set up $.jsMessage */
-					$.jsMessageNew( {
+					/* Set up $.messageBox */
+					$.messageBoxNew( {
 						'id': 'mw-js-message',
 						'parent': '#content'
 					} );
