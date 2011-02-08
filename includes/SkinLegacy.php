@@ -48,7 +48,7 @@ class SkinLegacy extends SkinTemplate {
 	}
 
 	function qbSetting() {
-		global $wgOut, $wgUser;
+		global $wgUser;
 		if ( $this->isQuickbarSuppressed() ) {
 			return 0;
 		}
