@@ -194,7 +194,9 @@ class Parser {
 			$this->firstCallInit();
 		}
 		$this->mOutput = new ParserOutput;
-		$this->mOptions->registerWatcher( array( $this->mOutput, 'recordOption' ) );
+		if( $this->mOptions ) {
+			$this->mOptions->registerWatcher( array( $this->mOutput, 'recordOption' ) );
+		}
 		$this->mAutonumber = 0;
 		$this->mLastSection = '';
 		$this->mDTopen = false;
