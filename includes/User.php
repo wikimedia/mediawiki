@@ -2247,21 +2247,16 @@ class User {
 	 * @todo: FIXME : need to check the old failback system [AV]
 	 */
 	function getSkin( $t = null ) {
-		if ( $t ) {
+		if( !$this->mSkin ) {
+			global $wgOut;
+			$this->mSkin = $this->createSkinObject();
+			$this->mSkin->setTitle( $wgOut->getTitle() );
+		}
+		if ( $t && !$t->equals( $this->mSkin->getTitle() ) ) {
 			$skin = $this->createSkinObject();
 			$skin->setTitle( $t );
 			return $skin;
 		} else {
-			if ( !$this->mSkin ) {
-				$this->mSkin = $this->createSkinObject();
-			}
-
-			if ( !$this->mSkin->getTitle() ) {
-				global $wgOut;
-				$t = $wgOut->getTitle();
-				$this->mSkin->setTitle($t);
-			}
-
 			return $this->mSkin;
 		}
 	}
