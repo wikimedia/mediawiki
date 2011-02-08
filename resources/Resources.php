@@ -490,7 +490,7 @@ return array(
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'common/ajax.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",,
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'messages' => array(
 			'watch',
 			'unwatch',
@@ -504,13 +504,13 @@ return array(
 	'mediawiki.legacy.block' => array(
 		'scripts' => 'common/block.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",,
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",,
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'mediawiki.legacy.config' => array(
 		'scripts' => 'common/config.js',
