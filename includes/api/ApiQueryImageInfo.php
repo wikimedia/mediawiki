@@ -247,7 +247,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$p = $this->getModulePrefix();
 
 		$h = $image->getHandler();
-		if ( !h ) {
+		if ( !$h ) {
 			// No handler, so no value for iiurlparam is valid.
 			$this->dieUsage( "Invalid value for {$p}urlparam", "urlparam" );
 		}
