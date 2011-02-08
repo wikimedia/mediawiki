@@ -301,12 +301,21 @@ function wfErrorLog( $text, $file ) {
 		} else {
 			throw new MWException( __METHOD__ . ': Invalid UDP specification' );
 		}
+
 		// Clean it up for the multiplexer
 		if ( strval( $prefix ) !== '' ) {
 			$text = preg_replace( '/^/m', $prefix . ' ', $text );
+
+			// Limit to 64KB
+			if ( strlen( $text ) > 65534 ) {
+				$text = substr( $text, 0, 65534 );
+			}
+
 			if ( substr( $text, -1 ) != "\n" ) {
 				$text .= "\n";
 			}
+		} elseif ( strlen( $text ) > 65535 ) {
+			$text = substr( $text, 0, 65535 );
 		}
 
 		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
