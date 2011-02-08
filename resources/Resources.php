@@ -14,45 +14,45 @@ return array(
 	'skins.vector' => array(
 		'styles' => array( 'vector/screen.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.monobook' => array(
 		'styles' => array(
 			'monobook/main.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.simple' => array(
 		'styles' => array( 'simple/main.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.chick' => array(
 		'styles' => array( 'chick/main.css' => array( 'media' => 'screen,handheld' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.modern' => array(
 		'styles' => array( 'modern/main.css' => array( 'media' => 'screen' ),
 				   'modern/print.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.cologneblue' => array(
 		'styles' => array( 'common/cologneblue.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.nostalgia' => array(
 		'styles' => array( 'common/nostalgia.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'skins.standard' => array(
 		'styles' => array( 'common/wikistandard.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 
 	/* jQuery */
@@ -490,7 +490,7 @@ return array(
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'common/ajax.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",,
 		'messages' => array(
 			'watch',
 			'unwatch',
@@ -504,124 +504,124 @@ return array(
 	'mediawiki.legacy.block' => array(
 		'scripts' => 'common/block.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",,
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",,
 	),
 	'mediawiki.legacy.config' => array(
 		'scripts' => 'common/config.js',
 		'styles' => array( 'common/config.css', 'common/config-cc.css' ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.diff' => array(
 		'scripts' => 'common/diff.js',
 		'styles' => 'common/diff.css',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'common/edit.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.history' => array(
 		'scripts' => 'common/history.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.htmlform' => array(
 		'scripts' => 'common/htmlform.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.IEFixes' => array(
 		'scripts' => 'common/IEFixes.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.metadata' => array(
 		'scripts' => 'common/metadata.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 		'messages' => array( 'metadata-expand', 'metadata-collapse' ),
 	),
 	'mediawiki.legacy.mwsuggest' => array(
 		'scripts' => 'common/mwsuggest.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.client' ),
 		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
 	'mediawiki.legacy.password' => array(
 		'scripts' => 'common/password.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'styles' => 'common/password.css',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.prefs' => array(
 		'scripts' => 'common/prefs.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => array( 'mediawiki.legacy.wikibits', 'mediawiki.legacy.htmlform' ),
 	),
 	'mediawiki.legacy.preview' => array(
 		'scripts' => 'common/preview.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.search' => array(
 		'scripts' => 'common/search.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'styles' => 'common/search.css',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.shared' => array(
 		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'mediawiki.legacy.oldshared' => array(
 		'styles' => array( 'common/oldshared.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 	'mediawiki.legacy.upload' => array(
 		'scripts' => 'common/upload.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.wikibits' => array(
 		'scripts' => 'common/wikibits.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.language',
 		'messages' => array( 'showtoc', 'hidetoc' ),
 	),
 	'mediawiki.legacy.wikiprintable' => array(
 		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins"
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 	),
 );
