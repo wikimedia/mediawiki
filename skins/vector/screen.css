@@ -1173,7 +1173,7 @@ div#bodyContent {
 #ca-watch.icon a.loading {
 	/* @embed */
 	background-image: url(images/watch-icon-loading.gif);
-	background-position: center 60%;
+	background-position: 5px 60%;
 }
 #ca-unwatch.icon a span,
 #ca-watch.icon a span {
