@@ -2911,7 +2911,10 @@ class Article {
 			//FIXME: lego
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
-				wfMsgHtml( 'word-separator' ) . $skin->historyLink() .
+				wfMsgHtml( 'word-separator' ) . $skin->link( $this->mTitle,
+					wfMsgHtml( 'history' ),
+					array( 'rel' => 'archives' ),
+					array( 'action' => 'history' ) ) .
 				'</strong>'
 			);
 
