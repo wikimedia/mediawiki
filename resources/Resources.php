@@ -89,9 +89,9 @@ return array(
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
 	),
-	'jquery.jsMessage' => array(
-		'scripts' => 'resources/jquery/jquery.jsMessage.js',
-		'styles' => 'resources/jquery/jquery.jsMessage.css',
+	'jquery.messageBox' => array(
+		'scripts' => 'resources/jquery/jquery.messageBox.js',
+		'styles' => 'resources/jquery/jquery.messageBox.css',
 	),
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
@@ -371,7 +371,7 @@ return array(
 			'jquery.checkboxShiftClick',
 			'jquery.client',
 			'jquery.cookie',
-			'jquery.jsMessage',
+			'jquery.messageBox',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
 		),
