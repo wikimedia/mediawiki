@@ -10,6 +10,11 @@
  * @ingroup Parser
  */
 class CoreTagHooks {
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @return void
+	 */
 	static function register( $parser ) {
 		global $wgRawHtml, $wgUseTeX;
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
@@ -52,6 +57,13 @@ class CoreTagHooks {
 		return $wgContLang->armourMath( MathRenderer::renderMath( $content, $attributes, $parser->getOptions() ) );
 	}
 
+	/**
+	 * @static
+	 * @param  $content
+	 * @param  $attributes
+	 * @param $parser Parser
+	 * @return
+	 */
 	static function gallery( $content, $attributes, $parser ) {
 		return $parser->renderImageGallery( $content, $attributes );
 	}
