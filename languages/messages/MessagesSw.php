@@ -1462,7 +1462,7 @@ Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[Fil
 Kama bado unataka kupakia faili lako, tafadhali rudi na utumie jina jipya.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Faili hili ni nakala ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
-'file-deleted-duplicate'      => 'Faili linalofanana na faili hili ([[$1]]) limeshafutwa hapo awali.
+'file-deleted-duplicate'      => 'Faili linalofanana na faili hili ([[:$1]]) limeshafutwa hapo awali.
 Tazama kumbukumbu za kufuta faili lile kabla hujaendelea kulipakia upya.',
 'uploadwarning'               => 'Ilani kuhusu kupakia',
 'uploadwarning-text'          => 'Tafadhali ubadilishe maelezo ya faili hapo chini, halafu jaribu tena.',

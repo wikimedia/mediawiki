@@ -765,6 +765,11 @@ Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
 
+# JavaScript password checks
+'password-strength-good'   => 'corrècta',
+'password-retype'          => 'Picatz vòstre senhal tornarmai :',
+'password-retype-mismatch' => "Los senhals qu'avètz picats son pas identics.",
+
 # Password reset dialog
 'resetpass'                 => 'Cambiar lo senhal del compte',
 'resetpass_announce'        => 'Vos sètz enregistrat amb un senhal temporari mandat per corrièr electronic. Per acabar l’enregistrament, vos cal picar un senhal novèl aicí :',
@@ -820,7 +825,7 @@ Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
 'anonpreviewwarning'               => "''Sètz pas identificat. Salvar enregistrarà vòstra adreça IP dins l’istoric de las modificacions de la pagina.''",
 'missingsummary'                   => "'''Atencion :''' avètz pas modificat lo resumit de vòstra modificacion. Se clicatz tornarmai sul boton « Salvar », lo salvament serà fach sens avertiment mai.",
 'missingcommenttext'               => 'Mercé de metre un comentari çaijós.',
-'missingcommentheader'             => "'''Rampèl :''' Avètz pas provesit de subjècte/títol per aqueste comentari. Se clicatz tornamai sus ''Salvar'', vòstra edicion serà enregistrada sens aquò.",
+'missingcommentheader'             => "'''*Rampèl:''' Avètz pas escrich de títol per aqueste comentari. Se tornatz clicar sus \"{{*int:*savearticle}}\" serà enregistrat sens títol.",
 'summary-preview'                  => 'Previsualizacion del resumit :',
 'subject-preview'                  => 'Previsualizacion del subjècte/títol :',
 'blockedtitle'                     => "L'utilizaire es blocat",
@@ -890,6 +895,9 @@ La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d�
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
 '''Es pas estada encara enregistrada !'''",
 'userjspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
+'sitecsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
+'''Es pas estada encara enregistrada !'''",
+'sitejspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
 'userinvalidcssjstitle'            => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas, per exemple, {{ns:user}}:Foo/vector.css e non pas {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Mes a jorn)',
 'note'                             => "'''Nòta :'''",
@@ -1633,7 +1641,7 @@ Se volètz totjorn importar aquel fichièr, mercé de tornar en arrièr e d'util
 'fileexists-shared-forbidden' => "Un fichièr amb lo meteis nom existís ja dins la banca de donadas comuna.
 S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Aqueste fichièr es un doble {{PLURAL:$1|del fichièr seguent|dels fichièrs seguents}} :',
-'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
+'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[:$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
 'uploadwarning'               => 'Atencion !',
 'uploadwarning-text'          => 'Modificatz la descripcion del fichièr e ensajatz tornarmai.',
 'savefile'                    => 'Salvar lo fichièr',

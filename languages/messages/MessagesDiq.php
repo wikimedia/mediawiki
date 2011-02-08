@@ -1382,7 +1382,7 @@ eke şıma qayile dosyaya xo bar keri tepiya agerê u yew nameyo newe bınusi. [
 'fileexists-shared-forbidden' => 'no name de yew dosya hewza ortaxi de ca ra esta.
 eke şıma hhene zi qayili dosyaya xo bar keri ager3e u newe yew name bışuxulnê. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ena pel yew kopyayê ena {{PLURAL:$1|pel|pelan}} o:',
-'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[$1]]) cuwa ver battal biya.',
+'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[:$1]]) cuwa ver battal biya.',
 'uploadwarning'               => 'Îkazê bar kerdişî',
 'uploadwarning-text'          => 'Bînê de deskripyonê dosyayî bivurne u reyna qeyd bike.',
 'savefile'                    => 'Dosya qeyd ke',

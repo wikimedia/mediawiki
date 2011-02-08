@@ -356,7 +356,7 @@ Upload je bestand onder een andere naam.
 'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelte bestanden.
 Als je het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 [[File:$1|thumb|center|$1]]',
-'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[$1]]) is voorheen verwijderd.
+'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[:$1]]) is voorheen verwijderd.
 Raadpleeg het verwijderingslogboek voordat je verder gaat.',
 'uploadfromurl-queued'        => 'Je upload is in de wachtrij geplaatst.',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd.

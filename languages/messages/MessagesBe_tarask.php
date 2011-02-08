@@ -1660,7 +1660,7 @@ $1",
 'fileexists-shared-forbidden' => 'Файл з такой назвай ужо існуе ў агульным сховішчы файлаў.
 Калі Вы жадаеце загрузіць Ваш файл, вярніцеся назад і загрузіце гэты файл з новай назвай. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Гэты файл дублюе {{PLURAL:$1|наступны файл|наступныя файлы}}:',
-'file-deleted-duplicate'      => 'Падобны файл ([[$1]]) ужо выдаляўся. Калі ласка, паглядзіце гісторыю выдаленьняў гэтага файла перад яго паўторнай загрузкай.',
+'file-deleted-duplicate'      => 'Падобны файл ([[:$1]]) ужо выдаляўся. Калі ласка, паглядзіце гісторыю выдаленьняў гэтага файла перад яго паўторнай загрузкай.',
 'uploadwarning'               => 'Папярэджаньне',
 'uploadwarning-text'          => 'Калі ласка, зьмяніце апісаньне файла ніжэй і паспрабуйце ізноў.',
 'savefile'                    => 'Захаваць файл',
@@ -3423,14 +3423,15 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 Увядзіце назву файла бяз прэфіксу «{{ns:file}}:»',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Пошук дублікатаў файлаў',
-'fileduplicatesearch-summary'  => 'Пошук аднолькавых файлаў на падставе іх хэшаў.',
-'fileduplicatesearch-legend'   => 'Пошук аднолькавых файлаў',
-'fileduplicatesearch-filename' => 'Назва файла:',
-'fileduplicatesearch-submit'   => 'Шукаць',
-'fileduplicatesearch-info'     => '$1 × $2 піксэляў<br />Памер файла: $3<br />Тып MIME: $4',
-'fileduplicatesearch-result-1' => 'Файл «$1» ня мае ідэнтычных копіяў.',
-'fileduplicatesearch-result-n' => 'Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычныя копіі|ідэнтычных копіяў}}.',
+'fileduplicatesearch'           => 'Пошук дублікатаў файлаў',
+'fileduplicatesearch-summary'   => 'Пошук аднолькавых файлаў на падставе іх хэшаў.',
+'fileduplicatesearch-legend'    => 'Пошук аднолькавых файлаў',
+'fileduplicatesearch-filename'  => 'Назва файла:',
+'fileduplicatesearch-submit'    => 'Шукаць',
+'fileduplicatesearch-info'      => '$1 × $2 піксэляў<br />Памер файла: $3<br />Тып MIME: $4',
+'fileduplicatesearch-result-1'  => 'Файл «$1» ня мае ідэнтычных копіяў.',
+'fileduplicatesearch-result-n'  => 'Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычныя копіі|ідэнтычных копіяў}}.',
+'fileduplicatesearch-noresults' => 'Файл з назвай «$1» ня знойдзены.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Спэцыяльныя старонкі',

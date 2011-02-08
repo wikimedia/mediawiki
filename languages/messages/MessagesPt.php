@@ -1742,7 +1742,7 @@ Se ainda pretende carregar o seu ficheiro volte atrás e use outro nome, por fav
 'fileexists-shared-forbidden' => 'Já existe um ficheiro com este nome no repositório de ficheiros partilhados.
 Caso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um novo nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
-'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[$1]]) foi eliminado anteriormente.
+'file-deleted-duplicate'      => 'Um ficheiro idêntico a este ([[:$1]]) foi eliminado anteriormente.
 Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.',
 'uploadwarning'               => 'Aviso de envio',
 'uploadwarning-text'          => 'Modifique a descrição do ficheiro abaixo e tente novamente, por favor.',
@@ -3565,7 +3565,7 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
 'fileduplicatesearch-result-1'  => 'O ficheiro "$1" não possui cópias idênticas.',
 'fileduplicatesearch-result-n'  => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
-'fileduplicatesearch-noresults' => 'Nenhum ficheiro com o nome "$1" foi encontrado.',
+'fileduplicatesearch-noresults' => 'Não foi encontrado nenhum ficheiro com o nome "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',

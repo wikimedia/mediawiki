@@ -1447,7 +1447,7 @@ Agar jo aap fir bhi aapan file ke upload kare mangta hai, tab pichhe jaae ke naw
 'fileexists-shared-forbidden' => 'Ii naam ke file abhi shared file repository me hai.
 Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa naam use karo. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ii file following file ke duplicate hai {{PLURAL:$1|file|files}}:',
-'file-deleted-duplicate'      => 'Yahii rakam ke ek aur file ([[$1]]) ke pahile delete karaa gais hai. Aap ke file ke deletion history ke check kare ke chaahi, upload kare se pahile.',
+'file-deleted-duplicate'      => 'Yahii rakam ke ek aur file ([[:$1]]) ke pahile delete karaa gais hai. Aap ke file ke deletion history ke check kare ke chaahi, upload kare se pahile.',
 'uploadwarning'               => 'Upload ke baare me chetauni',
 'uploadwarning-text'          => 'Meharbani kar ke file ke baaare me aur jankari ke niche badal ke aur fir se kosis karo.',
 'savefile'                    => 'File ke save karo',
