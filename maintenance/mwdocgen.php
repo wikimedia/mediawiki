@@ -148,17 +148,13 @@ function getSvnRevision( $dir ) {
  * @param $currentVersion String: Version number of the software
  * @param $svnstat String: path to the svnstat file
  * @param $input String: Path to analyze.
+ * @param $exclude String: Additionals path regex to exclude
  * @param $exclude_patterns String: Additionals path regex to exclude
  *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
  */
 function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude_patterns ) {
 
 	$template = file_get_contents( $doxygenTemplate );
-
-	// Generate path exclusions
-	global $mwExcludePaths, $mwPath;
-	$excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths ); 
-	print "EXCLUDE: $excludedPaths\n\n";
 
 	// Replace template placeholders by correct values.
 	$replacements = array(
@@ -167,7 +163,7 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 		'{{CURRENT_VERSION}}'  => $currentVersion,
 		'{{SVNSTAT}}'          => $svnstat,
 		'{{INPUT}}'            => $input,
-		'{{EXCLUDE}}'          => $excludedPaths,
+		'{{EXCLUDE}}'          => $exclude,
 		'{{EXCLUDE_PATTERNS}}' => $exclude_patterns,
 		'{{HAVE_DOT}}'         => `which dot` ? 'YES' : 'NO',
 	);
@@ -247,7 +243,11 @@ if ( $versionNumber === false ) { # Not using subversion ?
 	$version = "trunk (r$versionNumber)";
 }
 
-$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $svnstat, $input, $exclude_patterns );
+// Generate path exclusions
+$excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths );
+print "EXCLUDE: $excludedPaths\n\n";
+
+$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $svnstat, $input, $excludedPaths, $exclude_patterns );
 $command = $doxygenBin . ' ' . $generatedConf;
 
 echo <<<TEXT
