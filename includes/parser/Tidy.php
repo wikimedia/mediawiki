@@ -26,9 +26,11 @@ class MWTidyWrapper {
 
 	public function getWrapped( $text ) {
 		$this->mTokens = new ReplacementArray;
-		$this->mUniqPrefix = "\x7fUNIQ" . dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
+		$this->mUniqPrefix = "\x7fUNIQ" .
+			dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 		$this->mMarkerIndex = 0;
-		$wrappedtext = preg_replace_callback( '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#', array( &$this, 'replaceEditSectionLinksCallback' ), $text );
+		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
+			array( &$this, 'replaceEditSectionLinksCallback' ), $text );
 
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 			' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
