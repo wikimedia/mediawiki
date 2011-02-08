@@ -192,6 +192,7 @@ class MagicWord {
 	/**
 	 * Factory: creates an object representing an ID
 	 * @static
+	 * @return MagicWord
 	 */
 	static function &get( $id ) {
 		wfProfileIn( __METHOD__ );

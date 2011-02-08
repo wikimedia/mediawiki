@@ -111,6 +111,10 @@ class Parser_DiffTest
 		}
 	}
 
+	/**
+	 * @param $parser Parser
+	 * @return bool
+	 */
 	function onClearState( &$parser ) {
 		// hack marker prefixes to get identical output
 		if ( !isset( $this->dtUniqPrefix ) ) {

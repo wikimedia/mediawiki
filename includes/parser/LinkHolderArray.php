@@ -28,6 +28,7 @@ class LinkHolderArray {
 
 	/**
 	 * Merge another LinkHolderArray into this one
+	 * @param $other LinkHolderArray
 	 */
 	function merge( $other ) {
 		foreach ( $other->internals as $ns => $entries ) {
