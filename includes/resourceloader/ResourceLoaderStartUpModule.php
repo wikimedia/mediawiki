@@ -27,7 +27,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected $modifiedTime = array();
 
 	/* Protected Methods */
-	
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	protected function getConfig( $context ) {
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, 
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, 
