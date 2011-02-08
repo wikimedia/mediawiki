@@ -1516,7 +1516,7 @@ Os ydych am uwchlwytho'ch ffeil, ewch nôl ac uwchlwythwch hi ac enw newydd arni
 Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
-'file-deleted-duplicate'      => "Mae ffeil union debyg i hon ([[$1]]) eisoes wedi cael ei dileu.
+'file-deleted-duplicate'      => "Mae ffeil union debyg i hon ([[:$1]]) eisoes wedi cael ei dileu.
 Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
 'uploadwarning'               => 'Rhybudd uwchlwytho',
 'uploadwarning-text'          => 'Newidiwch ddisgrifiad y ffeil isod ac yna ceisiwch ei huwchlwytho eto, os gwelwch yn dda.',

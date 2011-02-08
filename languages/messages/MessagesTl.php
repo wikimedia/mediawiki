@@ -1556,7 +1556,7 @@ Kung nais mo pa ring ikarga pataas ang iyong talaksan, paki bumalik lamang at gu
 'fileexists-shared-forbidden' => 'Mayroon nang ganitong talaksan sa binabahaging repositoryo;
 bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ang talaksang ito ay isang kakambal ng sumusunod na {{PLURAL:$1|talaksan|mga talaksan}}:',
-'file-deleted-duplicate'      => 'Dating nabura ang isang talaksang katulad ng talaksang ito ([[$1]]).  Dapat mong suriin ang kasaysayan ng pagbubura ng talaksang iyon bago magpatuloy sa muling pagkarga nito.',
+'file-deleted-duplicate'      => 'Dating nabura ang isang talaksang katulad ng talaksang ito ([[:$1]]).  Dapat mong suriin ang kasaysayan ng pagbubura ng talaksang iyon bago magpatuloy sa muling pagkarga nito.',
 'uploadwarning'               => 'Babala sa pagkakarga',
 'uploadwarning-text'          => 'Pakibago ang nasa ibabang paglalarawan ng talaksan at subukan muli.',
 'savefile'                    => 'Sagipin ang talaksan',

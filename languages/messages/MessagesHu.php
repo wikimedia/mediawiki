@@ -1699,7 +1699,7 @@ Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kér
 Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy új nevet. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak, ha még mindig fel akarod tölteni! [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ez a következő {{PLURAL:$1|fájl|fájlok}} duplikátuma:',
-'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
+'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[:$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
 'uploadwarning-text'          => 'Kérlek módosítsd a fájl leírását alább, majd próbáld újra.',
 'savefile'                    => 'Fájl mentése',

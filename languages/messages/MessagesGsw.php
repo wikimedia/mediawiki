@@ -1521,7 +1521,7 @@ Bitte prief, eb D s Bild in voller Uflesig vorlige hesch un lad derno des unter 
 Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Die Datei isch e Duplikat vu {{PLURAL:$1|däre Datei|däne $1 Dateie}}:',
-'file-deleted-duplicate'      => 'E identischi Version vu däre Datei ([[$1]]) isch friejer scho mol glescht wore. Iberprief s Leschlogbuech, voreb Du si uffeladesch.',
+'file-deleted-duplicate'      => 'E identischi Version vu däre Datei ([[:$1]]) isch friejer scho mol glescht wore. Iberprief s Leschlogbuech, voreb Du si uffeladesch.',
 'uploadwarning'               => 'Warnig',
 'uploadwarning-text'          => 'Bitte tue unte d Dateibsschryybig ändere un versuech s nomol.',
 'savefile'                    => 'Datei spychere',

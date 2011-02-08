@@ -1483,7 +1483,7 @@ Oraindik fitxategia igo nahi baduzu, mesedez atzera itzuli eta igo fitxategia iz
 'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian.
 Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili, mesedez. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fitxategi hau beste fitxategi {{PLURAL:$1|honen|hauen}} kopia bat da:',
-'file-deleted-duplicate'      => 'Fitxategi honen ([[$1]]) fitxategi berbera aldez aurretik ezabatua izan da. Fitxategi horren ezabaketa-erregistroa begiratu beharko zenuke berriz igo baino lehen.',
+'file-deleted-duplicate'      => 'Fitxategi honen ([[:$1]]) fitxategi berbera aldez aurretik ezabatua izan da. Fitxategi horren ezabaketa-erregistroa begiratu beharko zenuke berriz igo baino lehen.',
 'uploadwarning'               => 'Igotzeko oharra',
 'uploadwarning-text'          => 'Aldatu beheko fitxategiaren deskribapena, mesedez, eta saiatu berriz.',
 'savefile'                    => 'Fitxategia gorde',

@@ -1473,7 +1473,7 @@ Ce tu vuè angore carecà 'u file tue, pe piacere tuèrne rrete e ause 'nu nome 
 'fileexists-shared-forbidden' => "'Nu file cu stu nome già esiste jndr'à 'u repository condivise de le file.<br />
 ce tu vuè angore carecà stu file, pe piacere tuèrne rrete e ause 'nu nome nuève. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Stu file jè 'na copie {{PLURAL:$1|d'u seguende file|de le seguende file}}:",
-'file-deleted-duplicate'      => "'Nu file uguale a stu file ([[$1]]) ha state scangellate precedendemende.<br />
+'file-deleted-duplicate'      => "'Nu file uguale a stu file ([[:$1]]) ha state scangellate precedendemende.<br />
 Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a carecarle.",
 'uploadwarning'               => 'Avvise de carecamende',
 'uploadwarning-text'          => "Pe piacere cange 'a descrizione d'u file sotte e pruève 'notra vote.",

@@ -1598,7 +1598,7 @@ $1",
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
 如果你仍然想去上传它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件与以下{{PLURAL:$1|一|多}}个文件重复：',
-'file-deleted-duplicate'      => '一个相同名称的文件 （[[$1]]） 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。',
+'file-deleted-duplicate'      => '一个相同名称的文件 （[[:$1]]） 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。',
 'uploadwarning'               => '上传警告',
 'uploadwarning-text'          => '请修改以下的文件描述并重试。',
 'savefile'                    => '保存文件',

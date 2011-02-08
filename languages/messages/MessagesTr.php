@@ -1694,7 +1694,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri dönüp yeni bir isim k
 'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut.
 Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kullanın. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu dosya aşağıdaki {{PLURAL:$1|dosyanın|dosyaların}} kopyasıdır:',
-'file-deleted-duplicate'      => 'Bu dosyanın özdeşi olan başka bir dosya ([[$1]]) daha önceden silindi. Bu dosyayı yeniden yüklemeden önce diğer dosyanın silme kayıtlarını kontrol etmelisiniz.',
+'file-deleted-duplicate'      => 'Bu dosyanın özdeşi olan başka bir dosya ([[:$1]]) daha önceden silindi. Bu dosyayı yeniden yüklemeden önce diğer dosyanın silme kayıtlarını kontrol etmelisiniz.',
 'uploadwarning'               => 'Yükleme uyarısı',
 'uploadwarning-text'          => 'Lütfen aşağıdaki dosya açıklamasını değiştirin ve tekrar deneyin.',
 'savefile'                    => 'Dosyayı kaydet',

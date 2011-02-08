@@ -1751,7 +1751,7 @@ Si vous voulez toujours téléverser votre fichier, merci de retourner en arriè
 'fileexists-shared-forbidden' => 'Un fichier portant ce nom existe déjà dans le dépôt de fichiers partagé.
 Si vous voulez toujours téléverser votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
-'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
+'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le téléverser à nouveau.',
 'uploadwarning'               => 'Attention !',
 'uploadwarning-text'          => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',

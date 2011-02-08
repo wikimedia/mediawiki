@@ -1579,7 +1579,7 @@ Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, pë
 'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsht dhe ngarkojeni këtë skedë me një emër të ri. 
  [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Kjo skedë është dyfish i {{PLURAL:$1|skedës|skedave}} në vijim:',
-'file-deleted-duplicate'      => 'Një skedë identike më këtë skedë ([[$1]]) është grisur më përpara.
+'file-deleted-duplicate'      => 'Një skedë identike më këtë skedë ([[:$1]]) është grisur më përpara.
 Ju duhet të kontrolloni historikun e grisjes të asaj skede përpara se ta ri-ngarkoni atë.',
 'uploadwarning'               => 'Kujdes dhënie',
 'uploadwarning-text'          => 'Ju lutemi modifikoni përshkrimin e skedës dhe provojen përsëri.',

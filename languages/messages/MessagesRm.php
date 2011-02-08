@@ -1339,7 +1339,7 @@ Sche ti vuls anc adina chargiar si tia datoteca, turna per plaschair anavos e ts
 Sche ti vuls anc adina chargiar si tia datoteca, turna anavos e tscherna in auter num.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Questa datoteca è in duplicat da {{PLURAL:$1|suandanta datoteca|suandantas datotecas}}:',
-'file-deleted-duplicate'      => 'Ina daoteca identica a questa ([[$1]]) è vegnida stizzada pli baud.
+'file-deleted-duplicate'      => 'Ina daoteca identica a questa ([[:$1]]) è vegnida stizzada pli baud.
 Ti duessas controllar la cronologia da stizzar da questa datoteca avant che puspè chargiar si ella.',
 'uploadwarning'               => 'Attenziun',
 'uploadwarning-text'          => 'Mida per plaschair la descripziun da la datoteca sutvart ed emprova danovamain.',

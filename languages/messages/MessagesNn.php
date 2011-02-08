@@ -1625,7 +1625,7 @@ Om du framleis ynskjer å laste opp fila, lyt du gå attende og nytte eit anna n
 'fileexists-shared-forbidden' => 'Ei fil med dette namnet finst frå før i det delte fillageret.
 Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit anna namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fila er ein duplikat av følgjande {{PLURAL:$1|fil|filer}}:',
-'file-deleted-duplicate'      => 'Ei identisk fil ([[$1]]) har tidlegare blitt sletta. Du bør sjekka slettehistorikken til denne før du held fram med å lasta ho opp på nytt.',
+'file-deleted-duplicate'      => 'Ei identisk fil ([[:$1]]) er tidlegare sletta. Du bør sjekka slettehistorikken hennar før du held fram med å lasta henne opp på nytt.',
 'uploadwarning'               => 'Opplastingsåtvaring',
 'uploadwarning-text'          => 'Ver venleg og endra filskildringa nedanfor og prøv på nytt',
 'savefile'                    => 'Lagre fil',

@@ -1737,7 +1737,7 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
-'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
+'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[:$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
 'uploadwarning'               => 'Upozornění k načítání',
 'uploadwarning-text'          => 'Prosíme, upravte popis souboru níže a zkuste to znovu.',
 'savefile'                    => 'Uložit soubor',

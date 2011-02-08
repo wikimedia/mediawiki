@@ -1458,7 +1458,7 @@ Se a veul ancó cariè sò archivi, për piasì ch'a torna andré e ch'a deuvra 
 'fileexists-shared-forbidden' => "Belavans n'archivi con ës nòm-sì ant la diretris dj'archivi condivis a-i é già.
 Se a veul ancó carié sò archivi, për piasì ch'a torna andré e ch'a deuvra un nòm diferent. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "S'archivi a l'é un duplicà ëd {{PLURAL:$1|cost-sì|costi-sì}}:",
-'file-deleted-duplicate'      => "N'archivi idéntich a cost-sì ([[$1]]) a l'é scàit ëscancelà an passà.
+'file-deleted-duplicate'      => "N'archivi idéntich a cost-sì ([[:$1]]) a l'é scàit ëscancelà an passà.
 A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo torna.",
 'uploadwarning'               => 'Avis che i soma dapress a carié',
 'uploadwarning-text'          => "Për piasì, ch'a modìfica la descrission ëd l'archivi sì-sota e ch'a preuva torna.",

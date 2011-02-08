@@ -1585,7 +1585,7 @@ Raha mbola te-hampiditra ny rakitrao foana ianao, misaotra anao miverina any aor
 Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mampiasà anarana hafa.
 . [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Ity rakitra ity dia mitovy amin'ny rakitra {{PLURAL:$1|||}} :",
-'file-deleted-duplicate'      => "Efa voafafa ny rakitra mitovy amin'ity rakitra ity ([[$1]]). Tokony jerena any amin'ny tantaran'asan'ny famafana io pejy io alohan'ny mampiditra azy indray.",
+'file-deleted-duplicate'      => "Efa voafafa ny rakitra mitovy amin'ity rakitra ity ([[:$1]]). Tokony jerena any amin'ny tantaran'asan'ny famafana io pejy io alohan'ny mampiditra azy indray.",
 'uploadwarning'               => 'Fampitandremana',
 'uploadwarning-text'          => "Ovay ny fanoritan' ilay rakitra ary andrao fanindroany.",
 'savefile'                    => 'Tehirizo ny rakitra',

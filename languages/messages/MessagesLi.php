@@ -1531,7 +1531,7 @@ Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wi
 'fileexists-shared-forbidden' => "d'r Besteit al 'n bestand met deze naam bie de gedeilde bestenj. Upload 't bestand onger  'ne angere naam.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit besjtandj is identiek aon {{PLURAL:$1|'t volgende besjtandj|de volgende besjtande}}:",
-'file-deleted-duplicate'      => 'n Bestandj det identiek is aan dit bestandj ([[$1]]) is veurhaer verwiederd.
+'file-deleted-duplicate'      => 'n Bestandj det identiek is aan dit bestandj ([[:$1]]) is veurhaer verwiederd.
 Raodpleeg t verwiederingslogbook veurdet se wiejer geis.',
 'uploadwarning'               => 'Upload waarsjuwing',
 'uploadwarning-text'          => 'Pas de ongerstaonde bestandjsbesjrieving aan en perbeer t daonao opnuuj.',

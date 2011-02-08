@@ -1608,7 +1608,7 @@ Izgleda, da je to pomanjšana slika ''(thumbnail)''.
 Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ta datoteka je dvojnik {{PLURAL:$1|naslednje datoteke|naslednjih datotek}}:',
-'file-deleted-duplicate'      => 'Datoteka je identična tej ([[$1]]), ki je bila predhodno izbrisana.
+'file-deleted-duplicate'      => 'Datoteka je identična tej ([[:$1]]), ki je bila predhodno izbrisana.
 Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
 'uploadwarning'               => 'Opozorilo!',
 'uploadwarning-text'          => 'Prosimo, spremenite opis datoteke spodaj in poskusite ponovno.',

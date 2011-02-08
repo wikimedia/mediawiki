@@ -1632,7 +1632,7 @@ As u steeds die lêer wil oplaai, gebruik asseblief 'n ander naam.
 Indien u die lêer nog wil oplaai, gaan asseblief terug en kies 'n ander naam.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
-'file-deleted-duplicate'      => "'n Lêer identies aan dié een ([[$1]]) was al voorheen geskrap. <br />
+'file-deleted-duplicate'      => "'n Lêer identies aan dié een ([[:$1]]) was al voorheen geskrap. <br />
 Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om dit weer op te laai.",
 'uploadwarning'               => 'Laaiwaarskuwing',
 'uploadwarning-text'          => 'Verander die onderstaande lêerbeskrywing en probeer dan weer.',

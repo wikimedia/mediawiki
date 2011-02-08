@@ -1393,7 +1393,7 @@ Pröif, of du ju Bielde in fulle Aplöösenge foarlääsen hääst un leed ju un
 'fileexists-shared-forbidden' => 'Mäd dissen Noome bestoant al ne Doatäi in dät zentroale Medienarchiv.
 Wan du ju Doatäi daach hoochleede moatest, gung dan tourääch un leed dien Doatäi unner n uur Noome hooch. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Disse Doatäi is n Duplikoat fon foulgjende {{PLURAL:$1|Doatäi|$1 Doatäie}}:',
-'file-deleted-duplicate'      => 'Ne identiske Doatäi fon disse Doatäi ([[$1]]) wuud fröier läsked. Wröich dät Läsklogbouk, eer du ju hoochlatst.',
+'file-deleted-duplicate'      => 'Ne identiske Doatäi fon disse Doatäi ([[:$1]]) wuud fröier läsked. Wröich dät Läsklogbouk, eer du ju hoochlatst.',
 'uploadwarning'               => 'Woarschauenge',
 'uploadwarning-text'          => 'Annerje hierunner ju Doatäibeschrieuwenge un fersäik dät nochmoal.',
 'savefile'                    => 'Doatäi spiekerje',

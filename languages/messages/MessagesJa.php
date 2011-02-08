@@ -1669,7 +1669,7 @@ HTMLタグを見直してください。',
 'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
-'recentchangestext'                 => 'このページでそのウィキへの最近の更新を追跡。',
+'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-newpage'       => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor'         => 'これは細部の編集です',
@@ -1800,7 +1800,7 @@ HTMLタグを見直してください。',
 アップロードを継続したい場合は、前のページに戻り、別のファイル名を使用してください。
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下の{{PLURAL:$1|ファイル}}と重複しています：',
-'file-deleted-duplicate'      => 'このファイル（[[$1]]）と同一のファイルが以前に削除されています。
+'file-deleted-duplicate'      => 'このファイル（[[:$1]]）と同一のファイルが以前に削除されています。
 再度アップロードをする前に、以前削除されたファイルの削除記録を確認してください。',
 'uploadwarning'               => 'アップロード警告',
 'uploadwarning-text'          => '下記のファイル解説を修正して再試行してください。',

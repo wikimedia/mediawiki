@@ -1804,7 +1804,7 @@ Upload uw bestand onder een andere naam.
 Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
-'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[$1]]) is voorheen verwijderd.
+'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[:$1]]) is voorheen verwijderd.
 Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'uploadwarning'               => 'Uploadwaarschuwing',
 'uploadwarning-text'          => 'Pas de onderstaande bestandsbeschrijving aan en probeer het daarna opnieuw.',
