@@ -380,7 +380,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript, $wgUser, $wgOut, $wgContLang;
+		global $wgScript, $wgUser, $wgOut;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
