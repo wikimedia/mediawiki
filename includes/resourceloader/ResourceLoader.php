@@ -207,6 +207,7 @@ class ResourceLoader {
 			foreach ( $name as $key => $value ) {
 				$this->register( $key, $value );
 			}
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
