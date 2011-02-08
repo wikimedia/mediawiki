@@ -232,7 +232,7 @@ class ProtectionForm {
 			if( wfReadOnly() ) {
 				$wgOut->readOnlyPage();
 			} elseif( $this->mPermErrors ) {
-				$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $this->mPermErrors ) );
+				$wgOut->showPermissionsErrorPage( $this->mPermErrors );
 			}
 		} else {
 			$wgOut->addWikiMsg( 'protect-text', $this->mTitle->getPrefixedText() );
