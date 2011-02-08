@@ -1205,7 +1205,6 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
 		 */
-		global $wgHooks, $IP;
 		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
