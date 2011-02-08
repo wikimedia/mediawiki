@@ -59,12 +59,12 @@ window.wgUploadSetup = function() {
 		row.appendChild( td );
 	}
 	
-	if ( wgAjaxLicensePreview ) {
+	var wpLicense = document.getElementById( 'wpLicense' );
+	if ( wgAjaxLicensePreview && wpLicense ) {
 		// License selector check
-		document.getElementById( 'wpLicense' ).onchange = licenseSelectorCheck;
+		wpLicense.onchange = licenseSelectorCheck;
 	
 		// License selector table row
-		var wpLicense = document.getElementById( 'wpLicense' );
 		var wpLicenseRow = wpLicense.parentNode.parentNode;
 		var wpLicenseTbody = wpLicenseRow.parentNode;
 		
