@@ -1,5 +1,5 @@
 /**
- * jQuery jsMessage
+ * jQuery messageBox
  *
  * Function to inform the user of something. Use sparingly (since there's mw.log for
  * messages aimed at developers / debuggers). Based on the function in MediaWiki's
@@ -13,24 +13,24 @@
  */
 ( function( $, mw ) {
 // @return jQuery object of the message box
-$.jsMessageNew = function( options ) {
+$.messageBoxNew = function( options ) {
 	options = $.extend( {
-		'id': 'js-message', // unique identifier for this message box
+		'id': 'js-messagebox', // unique identifier for this message box
 		'parent': 'body', // jQuery/CSS selector
 		'insert': 'prepend' // 'prepend' or 'append'
 	}, options );
 	var $curBox = $( '#'+ options.id );
 	// Only create a new box if it doesn't exist already
 	if ( $curBox.size() > 0 ) {
-		if ( $curBox.hasClass( 'js-message-box' ) ) {
+		if ( $curBox.hasClass( 'js-messagebox' ) ) {
 			return $curBox;
 		} else {
-			return $curBox.addClass( 'js-message-box' );
+			return $curBox.addClass( 'js-messagebox' );
 		}
 	} else {
 		var $newBox = $( '<div/>', {
 			'id': options.id,
-			'class': 'js-message-box',
+			'class': 'js-messagebox',
 			'css': {
 				'display': 'none'
 			}
@@ -49,21 +49,21 @@ $.jsMessageNew = function( options ) {
 // If there are no visible groups the main message box is hidden automatically,
 // and shown again once there are messages
 // @return jQuery object of message group
-$.jsMessage = function( options ) {
+$.messageBox = function( options ) {
 	options = $.extend( {
 		'message': '',
 		'group': 'default',
 		'replace': false, // if true replaces any previous message in this group
-		'target': 'js-message'
+		'target': 'js-messagebox'
 	}, options );	  
-	var $target = $.jsMessageNew( { id: options.target } );
+	var $target = $.messageBoxNew( { id: options.target } );
 	var groupID = options.target + '-' + options.group;
 	var $group = $( '#' + groupID );
 	// Create group container if not existant
 	if ( $group.size() < 1 ) {
 		$group = $( '<div/>', {
 			'id': groupID,
-			'class': 'js-message-group'
+			'class': 'js-messagebox-group'
 		});
 		$target.prepend( $group );
 	}
@@ -77,7 +77,7 @@ $.jsMessage = function( options ) {
 	} else {
 		// Actual message addition
 		$group.prepend( $( '<p/>' ).append( options.message ) ).show();
-		$target.slideDown()
+		$target.slideDown();
 	}
 	// If the last visible group was just hidden, slide the entire box up
 	// Othere wise slideDown (if already visible nothing will happen)
