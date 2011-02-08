@@ -274,7 +274,7 @@ class ParserOptions {
 		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.
 		// The conditional is here to avoid a confusing 0
-		if ( in_array( 'stubthreshold', $forOptions ) )
+		if ( true || in_array( 'stubthreshold', $forOptions ) )
 			$confstr .= '!0' ;
 		else
 			$confstr .= '!*' ;
