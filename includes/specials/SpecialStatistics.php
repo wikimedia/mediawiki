@@ -30,7 +30,7 @@
 class SpecialStatistics extends SpecialPage {
 	
 	private $views, $edits, $good, $images, $total, $users,
-			$activeUsers, $admins = 0;
+			$activeUsers = 0;
 	
 	public function __construct() {
 		parent::__construct( 'Statistics' );
@@ -49,7 +49,6 @@ class SpecialStatistics extends SpecialPage {
 		$this->total = SiteStats::pages();
 		$this->users = SiteStats::users();
 		$this->activeUsers = SiteStats::activeUsers();
-		$this->admins = SiteStats::numberingroup('sysop');
 		$this->hook = '';
 	
 		# Staticic - views
