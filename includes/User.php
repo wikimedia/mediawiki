@@ -2255,7 +2255,7 @@ class User {
 			$this->mSkin = $this->createSkinObject();
 			$this->mSkin->setTitle( $wgOut->getTitle() );
 		}
-		if ( $t && !$t->equals( $this->mSkin->getTitle() ) ) {
+		if ( $t && ( !$this->mSkin->getTitle() || !$t->equals( $this->mSkin->getTitle() ) ) ) {
 			$skin = $this->createSkinObject();
 			$skin->setTitle( $t );
 			return $skin;
