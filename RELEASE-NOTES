@@ -163,6 +163,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Expose list of skins in meta=siteinfo
 * (bug 26548) Add iiurlparam param to query=imageinfo and query=stashimageinfo
 * (bug 27205) aiprop=metadata and aiprop=parsedcomment need help text
+* Add a amtitle param to meta=allmessages
 
 === Languages updated in 1.18 ===
 

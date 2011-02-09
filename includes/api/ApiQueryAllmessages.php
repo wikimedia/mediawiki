@@ -50,6 +50,17 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			$langObj = Language::factory( $params['lang'] );
 		}
 
+		if ( $params['enableparser'] ) {
+			if ( !is_null( $params['title'] ) ) {
+				$title = Title::newFromText( $params['title'] );
+				if ( !$title ) {
+					$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+				}
+			} else {
+				$title = Title::newFromText( 'API' );
+			}
+		}
+
 		$prop = array_flip( (array)$params['prop'] );
 
 		// Determine which messages should we print
@@ -101,7 +112,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				} else {
 					// Check if the parser is enabled:
 					if ( $params['enableparser'] ) {
-						$msgString = $msg->text();
+						$msgString = $msg->title( $title )->text();
 					} else {
 						$msgString = $msg->plain();
 					}
@@ -158,6 +169,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'lang' => null,
 			'from' => null,
 			'to' => null,
+			'title' => null,
 		);
 	}
 
@@ -167,6 +179,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
 							  'Will substitute magic words, handle templates etc.' ),
+			'title' => 'Page name to use as context when parsing message (for enableparser option)',
 			'args' => 'Arguments to be substituted into message',
 			'filter' => 'Return only messages that contain this string',
 			'lang' => 'Return messages in this language',

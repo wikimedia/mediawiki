@@ -4269,10 +4269,10 @@ class Parser {
 	 *
 	 * @param $text String: the text to preprocess
 	 * @param $options ParserOptions: options
+	 * @param $title Title object or null to use $wgTitle
 	 * @return String
 	 */
-	public function transformMsg( $text, $options ) {
-		global $wgTitle;
+	public function transformMsg( $text, $options, $title = null ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -4282,7 +4282,10 @@ class Parser {
 		$executing = true;
 
 		wfProfileIn( __METHOD__ );
-		$title = $wgTitle;
+		if ( !$title ) {
+			global $wgTitle;
+			$title = $wgTitle;
+		}
 		if ( !$title ) {
 			# It's not uncommon having a null $wgTitle in scripts. See r80898
 			# Create a ghost title in such case
