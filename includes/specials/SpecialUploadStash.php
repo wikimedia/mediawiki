@@ -293,7 +293,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public static function tryClearStashedUploads( $formData ) {
 		if ( isset( $formData['Clear'] ) ) {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
-			wfDebug( "stash has: " . print_r( $stash->listFiles(), 1 ) );
+			wfDebug( "stash has: " . print_r( $stash->listFiles(), true ) );
 			if ( ! $stash->clear() ) {
 				return Status::newFatal( 'uploadstash-errclear' );
 			}
