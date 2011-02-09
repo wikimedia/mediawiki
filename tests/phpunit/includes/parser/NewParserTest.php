@@ -504,11 +504,7 @@ class NewParserTest extends MediaWikiTestCase {
 				$parser->parse( $input, $title, $opts );
 				$this->assertTrue( true, "Test $id, fuzz seed {$this->fuzzSeed}" );
 			} catch ( Exception $exception ) {
-				
-				ob_start();
-				var_dump( $input );
-				$input_dump = ob_get_contents();
-				ob_end_clean();
+				$input_dump = sprintf( "string(%d) \"%s\"\n", strlen( $input ), $input );
 				
 				$this->assertTrue( false, "Test $id, fuzz seed {$this->fuzzSeed}. \n\nInput: $input_dump\n\nError: {$exception->getMessage()}\n\nBacktrace: {$exception->getTraceAsString()}" );
 			}

@@ -249,8 +249,7 @@ class ParserTest {
 			if ( $fail ) {
 				echo "Test failed with seed {$this->fuzzSeed}\n";
 				echo "Input:\n";
-				var_dump( $input );
-				echo "\n\n";
+				printf( "string(%d) \"%s\"\n\n", strlen( $input ), $input );
 				echo "$exception\n";
 			} else {
 				$numSuccess++;
