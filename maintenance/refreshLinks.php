@@ -93,6 +93,8 @@ class RefreshLinks extends Maintenance {
 			$num = $dbr->numRows( $res );
 			$this->output( "Refreshing $num old redirects from $start...\n" );
 
+			$i = 0;
+
 			foreach ( $res as $row ) {
 				if ( !( ++$i % $reportingInterval ) ) {
 					$this->output( "$i\n" );
