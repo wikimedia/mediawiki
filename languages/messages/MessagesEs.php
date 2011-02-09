@@ -61,6 +61,7 @@
  * @author Toniher
  * @author Translationista
  * @author Urhixidur
+ * @author Wilfredor
  * @author XalD
  * @author לערי ריינהארט
  */
@@ -509,6 +510,7 @@ $messages = array(
 'printableversion'  => 'Versión para imprimir',
 'permalink'         => 'Enlace permanente',
 'print'             => 'Imprimir',
+'view'              => 'Ver',
 'edit'              => 'Editar',
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta página',
@@ -516,6 +518,7 @@ $messages = array(
 'delete'            => 'Borrar',
 'deletethispage'    => 'Borrar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
+'viewdeleted_short' => 'Ver {{PLURAL:$1|una edición borrada|$1 ediciones borradas}}',
 'protect'           => 'Proteger',
 'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger esta página',
@@ -599,6 +602,8 @@ $1',
 'toc'                     => 'Contenido',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'ocultar',
+'collapsible-collapse'    => 'Ocultar',
+'collapsible-expand'      => 'Mostrar',
 'thisisdeleted'           => '¿Ver o restaurar $1?',
 'viewdeleted'             => '¿Desea ver $1?',
 'restorelink'             => '{{PLURAL:$1|una edición borrada|$1 ediciones borradas}}',
@@ -745,6 +750,8 @@ Por favor, indica un nombre diferente.',
 'createaccounterror'         => 'No se pudo crear cuenta: $1',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero en este momento no has iniciado la sesión. {{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados, pero parecen deshabilitadas. Por favor, habilítalas e identifícate con nombre de usuario y contraseña.',
 'nocookieslogin'             => '{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están deshabilitadas en tu navegador. Por favor, actívalas e inténtalo de nuevo.',
+'nocookiesfornew'            => 'No se pudo crear la cuenta de usuario, porque no pudimos confirmar su origen.
+Asegurarse de que tiene las cookies habilitadas, luego recargue esta página e inténtelo otra vez.',
 'noname'                     => 'No se ha especificado un nombre de usuario válido.',
 'loginsuccesstitle'          => 'Inicio de sesión exitoso',
 'loginsuccess'               => 'Has iniciado sesión en {{SITENAME}} como "$1".',
@@ -1275,6 +1282,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada «[[$1]]» en esta wiki'''",
 'searchmenu-new'                   => "'''¡Crear la página «[[:$1]]» en esta wiki!'''",
+'searchmenu-new-nocreate'          => '"$1" es un nombre de página inválido o no la puedes crear.',
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'páginas de contenido',
@@ -1423,8 +1431,9 @@ Esto no puede ser deshecho.',
 'prefs-help-gender'             => 'Opcional: empleado para que sea usado correctamente el género por parte del software. Esta información será pública.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
-'prefs-help-email'              => 'La dirección de correo es opcional, pero permite enviar una nueva contraseña en caso de olvidarla.
-También puede permitir a otros usuarios que te contacten a través de tu página de usuario o de tu página de discusión sin necesidad de revelar su identidad.',
+'prefs-help-email'              => 'La dirección de correo es opcional, sin embargo, permite enviar una nueva contraseña en caso de olvidarla.
+También permite que otros usuarios te contacten a través de tu página de usuario o de tu página de discusión sin necesidad de revelar tu identidad.',
+'prefs-help-email-others'       => 'También puede elegir para que los demás le contacten a través de su usuario o página de discusión sin necesidad de revelar su identidad.',
 'prefs-help-email-required'     => 'Es necesario proporcionar una dirección de correo electrónico.',
 'prefs-info'                    => 'Información básica',
 'prefs-i18n'                    => 'Internacionalización',
@@ -1958,12 +1967,13 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 En lugar de ello deberían enlazar con  el tema apropiado.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Redirecciones dobles',
-'doubleredirectstext'        => 'Esta página contiene una lista de páginas que redirigen a otras páginas de redirección.
+'doubleredirects'                   => 'Redirecciones dobles',
+'doubleredirectstext'               => 'Esta página contiene una lista de páginas que redirigen a otras páginas de redirección.
 Cada fila contiene enlaces a la segunda y tercera redirección, así como la primera línea de la segunda redirección, en la que usualmente se encontrará el artículo "real" al que la primera redirección debería apuntar.
 Las entradas <del>tachadas</del> han sido resueltas.',
-'double-redirect-fixed-move' => '[[$1]] ha sido trasladado, ahora es una redirección a [[$2]]',
-'double-redirect-fixer'      => 'Corrector de redirecciones',
+'double-redirect-fixed-move'        => '[[$1]] ha sido trasladado, ahora es una redirección a [[$2]]',
+'double-redirect-fixed-maintenance' => 'Corrigiendo la doble redirección desde [[$1]] a [[$2]].',
+'double-redirect-fixer'             => 'Corrector de redirecciones',
 
 'brokenredirects'        => 'Redirecciones incorrectas',
 'brokenredirectstext'    => 'Las siguientes redirecciones enlazan a páginas que no existen:',
@@ -2040,6 +2050,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
+'querypage-disabled'      => 'Esta página especial está deshabilitada por motivos de rendimiento.',
 
 # Book sources
 'booksources'               => 'Fuentes de libros',
@@ -3488,14 +3499,15 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Búsqueda de archivos duplicados',
-'fileduplicatesearch-summary'  => 'Búsqueda de archivos duplicados en base a su valor hash.',
-'fileduplicatesearch-legend'   => 'Busca duplicados',
-'fileduplicatesearch-filename' => 'Nombre del fichero:',
-'fileduplicatesearch-submit'   => 'Buscar',
-'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamaño: $3<br />Tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'El archivo "$1" no tiene duplicados idénticos.',
-'fileduplicatesearch-result-n' => 'El archivo "$1" tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+'fileduplicatesearch'           => 'Búsqueda de archivos duplicados',
+'fileduplicatesearch-summary'   => 'Búsqueda de archivos duplicados en base a su valor hash.',
+'fileduplicatesearch-legend'    => 'Busca duplicados',
+'fileduplicatesearch-filename'  => 'Nombre del fichero:',
+'fileduplicatesearch-submit'    => 'Buscar',
+'fileduplicatesearch-info'      => '$1 × $2 píxeles<br />Tamaño: $3<br />Tipo MIME: $4',
+'fileduplicatesearch-result-1'  => 'El archivo "$1" no tiene duplicados idénticos.',
+'fileduplicatesearch-result-n'  => 'El archivo "$1" tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+'fileduplicatesearch-noresults' => 'Ningún archivo con el nombre "$1" encontrado.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',

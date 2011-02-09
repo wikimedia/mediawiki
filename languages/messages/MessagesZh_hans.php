@@ -3386,14 +3386,15 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 请输入文件名，不要包含“{{ns:file}}:”前缀。',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => '搜索重复文件',
-'fileduplicatesearch-summary'  => '根据散列值（Hash值）搜索重复文件。',
-'fileduplicatesearch-legend'   => '搜索重复文件',
-'fileduplicatesearch-filename' => '文件名：',
-'fileduplicatesearch-submit'   => '搜索',
-'fileduplicatesearch-info'     => '$1×$2像素<br />文件大小：$3<br />MIME类型：$4',
-'fileduplicatesearch-result-1' => '文件“$1”没有完全相同的重复副本。',
-'fileduplicatesearch-result-n' => '文件“$1”有$2项完全相同的重复副本。',
+'fileduplicatesearch'           => '搜索重复文件',
+'fileduplicatesearch-summary'   => '根据散列值（Hash值）搜索重复文件。',
+'fileduplicatesearch-legend'    => '搜索重复文件',
+'fileduplicatesearch-filename'  => '文件名：',
+'fileduplicatesearch-submit'    => '搜索',
+'fileduplicatesearch-info'      => '$1×$2像素<br />文件大小：$3<br />MIME类型：$4',
+'fileduplicatesearch-result-1'  => '文件“$1”没有完全相同的重复副本。',
+'fileduplicatesearch-result-n'  => '文件“$1”有$2项完全相同的重复副本。',
+'fileduplicatesearch-noresults' => '没有文件命名为"$1"发现。',
 
 # Special:SpecialPages
 'specialpages'                   => '特殊页面',

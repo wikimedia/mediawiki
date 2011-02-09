@@ -993,10 +993,9 @@ Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogi
 'permissionserrors'                => 'Engedélyezési hiba',
 'permissionserrorstext'            => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
 'permissionserrorstext-withaction' => 'Nincs jogosultságod a következő művelet elvégzéséhez: $2, a következő {{PLURAL:$1|ok|okok}} miatt:',
-'recreate-moveddeleted-warn'       => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amit korábban már töröltek.'''
+'recreate-moveddeleted-warn'       => "'''Figyelem! Olyan lapot készülsz létrehozni, amit már legalább egyszer töröltek.'''
 
-Mielőtt létrehoznád, nézd meg, miért került törölték és ellenőrizd,
-hogy a törlés indoka nem érvényes-e még. A törlési és átnevezési naplókban a lapról az alábbi bejegyzések szerepelnek:",
+Mielőtt létrehoznád, nézd meg, miért törölték a lap korábbi tartalmát, és győződj meg róla, hogy a törlés indoka érvényes-e még. A törlési és átnevezési naplókban az érintett lapról az alábbi bejegyzések szerepelnek:",
 'moveddeleted-notice'              => 'Az oldal korábban törölve lett.
 A lap törlési és átnevezési naplója alább olvasható.',
 'log-fulllog'                      => 'Teljes napló megtekintése',

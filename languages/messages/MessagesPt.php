@@ -3391,7 +3391,7 @@ para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar a $4.',
+Este código de confirmação irá expirar às $4.',
 'confirmemail_body_changed' => 'Alguém, provavelmente você com o endereço IP $1,
 alterou o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
 
@@ -3406,7 +3406,7 @@ para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar a $4.',
+Este código de confirmação irá expirar às $4.',
 'confirmemail_body_set'     => 'Alguém, provavelmente você com o endereço IP $1,
 definiu o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
 
@@ -3421,7 +3421,7 @@ para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar a $4.',
+Este código de confirmação irá expirar às $4.',
 'confirmemail_invalidated'  => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'           => 'Cancelar confirmação de correio electrónico',
 
