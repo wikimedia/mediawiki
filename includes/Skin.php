@@ -655,7 +655,7 @@ abstract class Skin extends Linker {
 			// bug 23315: provide a class based on the canonical special page name without subpages
 			list( $canonicalName ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
 			if ( $canonicalName ) {
-				$type .= ' ' . Sanitizer::escapeClass( "special-$canonicalName" );
+				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
 			} else {
 				$type .= ' mw-invalidspecialpage';
 			}
