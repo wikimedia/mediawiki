@@ -585,10 +585,13 @@ class User {
 			return false;
 		}
 
-		if( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to wgInvalidUsernameCharacters" );
-			return false;
+		// Preg yells if you try to give it an empty string
+		if( $wgInvalidUsernameCharacters ) {
+			if( preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name ) ) {
+				wfDebugLog( 'username', __METHOD__ .
+					": '$name' invalid due to wgInvalidUsernameCharacters" );
+				return false;
+			}
 		}
 
 		return self::isUsableName( $name );
