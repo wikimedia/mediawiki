@@ -35,7 +35,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup API
  */
 class ApiQueryAllUsers extends ApiQueryBase {
-
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'au' );
 	}
@@ -53,7 +52,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_rights = isset( $prop['rights'] );
 			$fld_registration = isset( $prop['registration'] );
 		} else {
-			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = false;
+			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = $fld_rights = false;
 		}
 
 		$limit = $params['limit'];
