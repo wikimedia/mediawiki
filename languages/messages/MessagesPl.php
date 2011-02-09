@@ -1671,7 +1671,8 @@ Jeśli chcesz przesłać plik cofnij się i prześlij go pod inną nazwą. [[Fil
 'fileexists-shared-forbidden' => 'Plik o tej nazwie już istnieje we współdzielonym repozytorium plików.
 Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
-'file-deleted-duplicate'      => 'Identyczny do tego plik ([[:$1]]) został wcześniej usunięty. Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
+'file-deleted-duplicate'      => 'Identyczny do tego plik ([[:$1]]) został wcześniej usunięty.
+Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
 'uploadwarning'               => 'Ostrzeżenie o przesyłaniu',
 'uploadwarning-text'          => 'Zmień poniższy opis pliku i spróbuj ponownie.',
 'savefile'                    => 'Zapisz plik',
@@ -3542,14 +3543,15 @@ Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwieran
 Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Szukaj duplikatów pliku',
-'fileduplicatesearch-summary'  => 'Szukaj duplikatów pliku na podstawie wartości funkcji skrótu.',
-'fileduplicatesearch-legend'   => 'Szukaj duplikatów pliku',
-'fileduplicatesearch-filename' => 'Nazwa pliku',
-'fileduplicatesearch-submit'   => 'Szukaj',
-'fileduplicatesearch-info'     => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
-'fileduplicatesearch-result-1' => 'Brak duplikatu pliku „$1”.',
-'fileduplicatesearch-result-n' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku „$1”.',
+'fileduplicatesearch'           => 'Szukaj duplikatów pliku',
+'fileduplicatesearch-summary'   => 'Szukaj duplikatów pliku na podstawie wartości funkcji skrótu.',
+'fileduplicatesearch-legend'    => 'Szukaj duplikatów pliku',
+'fileduplicatesearch-filename'  => 'Nazwa pliku',
+'fileduplicatesearch-submit'    => 'Szukaj',
+'fileduplicatesearch-info'      => '$1 × $2 pikseli<br />Wielkość pliku: $3<br />Typ MIME: $4',
+'fileduplicatesearch-result-1'  => 'Brak duplikatu pliku „$1”.',
+'fileduplicatesearch-result-n'  => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku „$1”.',
+'fileduplicatesearch-noresults' => 'Brak pliku o nazwie „$1”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Strony specjalne',

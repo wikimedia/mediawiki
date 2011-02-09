@@ -808,6 +808,7 @@ Please log in again after you receive it.
 તેને સાચવી ન શકાયા.",
 'protectedpagewarning'             => "'''ચેતવણી : આ પાના પર સંરક્ષણ વિકલ્પ સક્રીય છે અને માત્ર પ્રબંધકો જ આમાં ફેરફાર કરી શકે.'''
 તમારા સંદર્ભ માટે તાજેતરની લોગ યાદિ આપી છે:",
+'cascadeprotectedwarning'          => "'''ચેતવણી:''' આ પાનું સંરક્ષીત છે.  પ્રબંધન અધિકાર ધરાવતા સભ્યોજ આમાં ફેરફાર કરી શકે છે. આ પાનાને નીચેના પગથિયામય સંરક્ષણ{{PLURAL:$1|page|pages}} દ્વારા સુરક્ષીત છે.",
 'templatesused'                    => 'આ પાનામાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
 'templatesusedpreview'             => 'આ પૂર્વાવલોકનમાં વપરાયેલ {{PLURAL:$1|ઢાંચો|ઢાંચાઓ}}:',
 'templatesusedsection'             => 'આ ખંડ માં વપરાયેલા {{PLURAL:$1|ઢાંચો|ઢાંચા}} :',
@@ -913,6 +914,7 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'revdelete-nologtype-title'   => 'આવો કોઈ લોગા નથી ફરી પ્રયત્ન કરો',
 'revdelete-nologtype-text'    => 'આ ક્રિયા શેના પર કરવાની છે તે લોગ નો પ્રકાર તમે જણાવ્યો નથી',
 'revdelete-nologid-title'     => 'લોગ પ્રવેશ અવૈદ્ય',
+'revdelete-nologid-text'      => 'આ ક્રિયા જેના પર કરવાની છે તે લક્ષ્ય ઘટના તમે જણાવી નથી અથવા તેવી કોઇ ઘટના નથી.',
 'revdelete-no-file'           => 'વર્ણવેલી ફાઈલ અસ્તિત્વમાં નથી',
 'revdelete-show-file-submit'  => 'હા',
 'revdelete-selected'          => "''' [[:$1]] ના {{PLURAL:$2|પસંદ કરેલ ફેરફાર |પસંદ કરેલ ફેરફારો}}: '''",
@@ -988,6 +990,8 @@ $1",
 'revmove-badparam-title'       => 'ખરાબ વિકલ્પો',
 'revmove-norevisions-title'    => 'અવૈધ લક્ષ્ય ફેરફાર',
 'revmove-nullmove-title'       => 'ખરાબ નામ',
+'revmove-nullmove'             => 'લક્ષ્ય પાનું અને સ્ત્રોત પાનું સમાન ન હોઇ શકે.
+પાછલા પાને ફરી જાવ અને અન્ય "$1" માંથી અન્ય નામ પસંદ કરો.',
 'revmove-success-existing'     => '[[$2]]  માંથી{{PLURAL:$1|ફેરફાર|$1 ફેરફારો }} પાના [[$3]] પર લઈ જવાયા.',
 'revmove-success-created'      => '[[$2]] માંથી {{PLURAL:$1|ફેરફાર|$1 ફેરફારો }} પાના [[$3]] પર ખસેડાયા.',
 
@@ -1173,6 +1177,8 @@ $1",
 'prefs-custom-css'              => 'ખાસ  CSS',
 'prefs-custom-js'               => 'સભ્ય નિર્મિત JavaScript',
 'prefs-common-css-js'           => 'બધા જ ફલક માટે સહીયારી CSS/JavaScript',
+'prefs-reset-intro'             => 'તમી આ પાનાનો ઉપયોગ કરીને તમારા વિકલ્પો ની ગોઠવણી મૂળના વિકલ્પો સમાન ગોઠવી શકો છો.
+આને ઉલટાવી ન શકાય.',
 'prefs-emailconfirm-label'      => 'ઇ-મેલ પુષ્ટી',
 'prefs-textboxsize'             => 'ફેરફાર ફલકનું માપ',
 'youremail'                     => 'ઇ-મેઇલ:',
@@ -1183,6 +1189,7 @@ $1",
 'yourrealname'                  => 'સાચું નામ:',
 'yourlanguage'                  => 'ભાષા',
 'yournick'                      => 'સહી:',
+'prefs-help-signature'          => 'ચર્ચા પાના પરની ટિપ્પણી "<nowiki>~~~~</nowiki>" દ્વારા હસ્તાક્ષરીત હોવા જોઇએ તેમાં તમારા હસ્તાક્ષર અને સમય શામિલ થશે.',
 'badsig'                        => 'અવૈધ કાચી સહી
 HTML નાકું ચકાસો',
 'badsiglength'                  => 'તમારી સહી વધુ લાંબી છે.
@@ -1191,6 +1198,8 @@ HTML નાકું ચકાસો',
 'gender-unknown'                => 'અનિર્દિષ્ટ',
 'gender-male'                   => 'પુરુષ',
 'gender-female'                 => 'સ્ત્રી',
+'prefs-help-gender'             => 'વૈકલ્પિક:  સોફ્ટવેર દ્વારા લિંગ  ઓળખ માટે વપરાયેલ .
+આ માહિતી જન સમુદાય માટે જાહેર હશે.',
 'email'                         => 'ઇ-મેઇલ',
 'prefs-help-realname'           => 'સાચું નામ મરજીયાત છે.
 જો આપ સાચું નામ આપવાનું પસંદ કરશો, તો તેનો ઉપયોગ તમારા કરેલાં યોગદાનનું શ્રેય આપવા માટે થશે.',
@@ -1303,6 +1312,7 @@ HTML નાકું ચકાસો',
 'right-edituserjs'            => 'અન્ય સભ્યોની JavaScript ફાઇલમાં ફેરફાર કરો',
 'right-rollback'              => 'ચોક્કસ પાનામાં જે છેલ્લા સભ્યએ ફેરફારો કર્યાં હોય તેને ઝડપથી ઉલટાવો',
 'right-markbotedits'          => 'ઉલટાવનારા અને બોટ ફેરફારો નોંધો',
+'right-noratelimit'           => 'ઝડપ્ની સીમાને કારણે અસર ન થવે જોઇએ.',
 'right-import'                => 'અન્ય વિકિમાંથી પાના આયાત કરો',
 'right-importupload'          => 'ચઢાવેલી ફાઇલ પરથી આ પાનું આયાત કરો.',
 'right-patrol'                => 'અન્યો ના ફેરફારો નીરીક્ષીત અંકિત કરો',
@@ -1469,6 +1479,8 @@ HTML નાકું ચકાસો',
 તેમ છતાં પણ તમે ફાઇલ ચડાવવા માંગતા હોવ તો ફાઇલનું નામ બદલો અને નવા નામે ફરીથી ચડાવો.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'આ ફાઇલ {{PLURAL:$1|ફાઇલ|ફાઇલો}} ની પ્રત છે.',
+'file-deleted-duplicate'      => 'ફાઇલ ([[:$1]]) ને સમાન ફાઇલ પહેલાં ભૂંસાડી દેવાઇ છે.
+આ ફાઇલને ચડાવત પહેલાં હટાવ ઇતિહાસ ચકાસી લો.',
 'uploadwarning'               => 'ફાઇલ ચઢાવ ચેતવણી',
 'uploadwarning-text'          => 'કૃપયા ફાઈલ સંબધી વર્ણન સુધારો અને ફરી પ્રયત્ન કરો',
 'savefile'                    => 'સાચવો',
@@ -1478,6 +1490,7 @@ HTML નાકું ચકાસો',
 'copyuploaddisabled'          => 'URL દ્વાર ફાઇલ ચઢાવ પ્રતિબંધિત',
 'uploadfromurl-queued'        => 'તમારી ચઢાવેલી ફાઇલ કતારમાં ઉમેરાઇ છે.',
 'uploaddisabledtext'          => 'ફાઇલ ચઢાવવું નિષ્ક્રીય બનાવ્યું છે',
+'uploadscripted'              => 'આ ફાઇલ HTML કે અન્ય સ્ક્રીપ્ટ કોડ ધરાવે છે જે વેબ બ્રાઉઝર દ્વારા ભૂલથી ઉપયોગમાં લઇ શકાય છે.',
 'uploadvirus'                 => 'ફાઇલ વાયરસ સંક્ર્મિત છે
 વિવરણ : $1',
 'upload-source'               => 'સ્ત્રોત ફાઇલ',
@@ -1488,6 +1501,10 @@ HTML નાકું ચકાસો',
 'upload-description'          => 'ફાઇલ માહિતી',
 'upload-options'              => 'ચડાવ વિકલ્પ',
 'watchthisupload'             => 'આ પાનાને ધ્યાનમાં રાખો',
+'upload-wasdeleted'           => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
+
+આ પાનું સંપાદિત કરતા પહેલાં ગંભીરતાપૂર્વક વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
+પાનું હટાવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી અનુકૂળતા માટે અહીં આપી છે:",
 'upload-success-subj'         => 'ફાઇલ ચડાવ સફળ',
 'upload-success-msg'          => '[$2]થી તમારુઁ ફાઇલ ચડાવ સફળ રહ્યો. તે અહીઁ ઉપલબ્ધ છે. : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'ફાઇલ ચઢાવ મુશ્કેલી',
@@ -1495,6 +1512,7 @@ HTML નાકું ચકાસો',
 
 $1',
 'upload-warning-subj'         => 'ફાઇલ ચઢાવ ચેતવણી',
+'upload-warning-msg'          => '[$2]થી કરાયેલ તમારા ચડાવા માં તકલીફ હતી. તમે [[Special:Upload/stash/$1|upload form]]  પર ફરી જઇ આ ત્રુટિ હટાવી ફરી ફાઇલ ચડાવો',
 
 'upload-proto-error'        => 'ખોટો શિષ્ટાચાર',
 'upload-proto-error-text'   => 'દુરના ફાઇલ ચઢાવના  URL ની શરૂઆત <code>http://</code> કે <code>ftp://</code>થી થવી જોઇએ.',
@@ -1703,6 +1721,7 @@ $1',
 'ntransclusions'          => '$1 {{PLURAL:$1|પાના|પાનાઓ}} પર વપરાયો',
 'specialpage-empty'       => 'આ પાનું ખાલી છે.',
 'lonelypages'             => 'અનાથ પાના',
+'lonelypagestext'         => 'નીચે બતાવેલા પાના {{SITENAME}} પર કે થી કડી દ્વારા જોડાયેલ નથી',
 'uncategorizedpages'      => 'અવર્ગિકૃત પાનાં',
 'uncategorizedcategories' => 'અવર્ગિકૃત શ્રેણીઓ',
 'uncategorizedimages'     => 'અવર્ગિકૃત દસ્તાવેજો',
@@ -1915,6 +1934,7 @@ $1',
 'enotif_impersonal_salutation' => '{{SITENAME}} સભ્ય',
 'changed'                      => 'બદલાયેલું',
 'created'                      => 'બનાવ્યું',
+'enotif_subject'               => '{{SITENAME}} નું પાનું $PAGETITLE $PAGEEDITOR દ્વારા $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'તમારા છેલ્લા ફેરફાર પછી થયેલા ફેરફાર $1 જુઓ',
 'enotif_lastdiff'              => 'આ ફેરફાર જોવા $1 જુઓ',
 'enotif_anon_editor'           => 'અજ્ઞાત સભ્ય $1',
@@ -1951,6 +1971,12 @@ $1',
 'delete-edit-reasonlist' => 'ભુંસવાનું કારણ બદલો.',
 'delete-toobig'          => 'આ પાનાના ફેરફારોનો ઇતિહાસ ખૂબ લાંબો છે , $1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}થી પણ વધારે.
 {{SITENAME}}ને અક્સ્માતે ખોરવાતું અટકાવવા આવા પાનાને હટાવવા પર પ્રતિબંધ છે.',
+'delete-warning-toobig'  => 'આ પાનાનો ઇતિહાસ ઘણો લાંબો છે લગભગ  $1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}.
+તેને ભૂંસતા {{SITENAME}}ના માહિતીસંચને લાગતા કામકાજ પર અસર થૈ શકે છે;
+સંભાળ પૂર્વક આગળ વધો.
+
+
+Deleting it may disrupt database operations of {{SITENAME}};',
 
 # Rollback
 'rollback'          => 'ફેરફારો ઉલટાવો',
@@ -2188,6 +2214,8 @@ $1',
 'blocklogpage'                    => 'પ્રતિબંધ સૂચિ',
 'blocklog-showlog'                => 'આ સભ્ય પર પહેલા રોક લગાવાઈ છે.
 રોકા લગાવાયેલા સભ્યોની યાદિ આ મુજબ છે',
+'blocklog-showsuppresslog'        => 'આ સભ્ય પર પહેલા રોક કે પ્રતિબંધ લગાવાયો છે.
+રોક લગાવાયેલા સભ્યોની યાદિ આ મુજબ છે',
 'blocklogentry'                   => '[[$1]] પર પ્રતિબંધ $2 $3 સુધી મુકવામાં આવ્યો છે.',
 'reblock-logentry'                => '[[$1]] ની પ્રતિબંધ વિકલ્પો બદલ્યા જે નો કલાતિત સમય છે   $2 $3',
 'unblocklogentry'                 => '$1 પરનો પ્રતિબંધ ઉઠાવ્યો',
@@ -2230,12 +2258,14 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'lockdbsuccesstext'   => 'માહિતીસંચ પરા રોક લગાવી દેવાઈ.<br />
 તમારું સમારાકામ પત્યા પછી તેને [[Special:UnlockDB|remove the lock]] કરવાનું ભૂલશો નહીં',
 'unlockdbsuccesstext' => 'આ માહિતી સંચ મુક્ત કરી દેવાયો',
+'lockfilenotwritable' => 'માહિતીસંચ તાળુ ફાઇલ લેખનક્ષમ નથી.
+માહિતીસંચને તાળું લગાડવા કે ખોલવા વેબ સર્વર દ્વારા તે લેખનક્ષમ હોવું જરૂરી છે.',
 'databasenotlocked'   => 'માહિતીસંચ પરા તાળું નથી લગાવી શકાયું',
 
 # Move page
-'move-page'                   => '$1 ખસેડો',
-'move-page-legend'            => 'પાનું ખસેડો',
-'movepagetext'                => "નીચેનું ફોર્મ વાપરવાથી આ પાનાનું નામ બદલાઇ જશે અને તેમાં રહેલી બધી મહિતિ નવા નામે બનેલાં પાનામાં ખસેડાઇ જશે.
+'move-page'                    => '$1 ખસેડો',
+'move-page-legend'             => 'પાનું ખસેડો',
+'movepagetext'                 => "નીચેનું ફોર્મ વાપરવાથી આ પાનાનું નામ બદલાઇ જશે અને તેમાં રહેલી બધી મહિતિ નવા નામે બનેલાં પાનામાં ખસેડાઇ જશે.
 જુનું પાનું, નવા બનેલા પાના તરફ વાળતું થશે.
 તમે આવા અન્યત્ર વાળેલાં પનાઓને આપોઆપ જ તેના મુળ શીર્ષક સાથે જોડી શકશો.
 જો તમે તેમ કરવા ના ઇચ્છતા હોવ તો, [[Special:DoubleRedirects|બેવડા]] અથવા [[Special:BrokenRedirects|ત્રુટક કડી વાળા]] અન્યત્ર વાળેલા પાનાઓની યાદી ચકાસીને ખાતરી કરી લેશો.
@@ -2247,60 +2277,70 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 '''ચેતવણી!'''
 લોકપ્રિય પાનાં સાથે આવું કરવું બિનઅપેક્ષિત અને જોરદાર પરિણામકારક નિવડી શકે છે;
 આગળ વધતાં પહેલાં આની અસરોનો પુરે પુરો તાગ મેળવી લેવો આવશ્યક છે.",
-'movepagetalktext'            => "આની સાથે સાથે તેનું સંલગ્ન ચર્ચાનું પાનું પણ ખસેડવામાં આવશે, '''સિવાયકે:'''
+'movepagetalktext'             => "આની સાથે સાથે તેનું સંલગ્ન ચર્ચાનું પાનું પણ ખસેડવામાં આવશે, '''સિવાયકે:'''
 *નવા નામ વાળું ચર્ચાનું પાનું અસ્તિત્વમાં હોય અને તેમાં લખાણ હોય, અથવા
 *નીચેનાં ખાનામાંથી ખરાની નિશાની તમે દૂર કરી હોય.
 
 આ સંજોગોમાં, જો તમે ચાહતા હોવ તો તમારે અહિંનું લખાણ જાતે નવા પાના પર ખસેડવું પડશે.",
-'movearticle'                 => 'આ પાનાનું નામ બદલો:',
-'movenologin'                 => 'પ્રવેશ કરેલ નથી',
-'movenologintext'             => 'કોઇ પાનું હટાવવા માટે તેમે નોંધણી કૃત સભ્ય અને [[Special:UserLogin|logged in]]  હોવા જોઇએ',
-'movenotallowed'              => 'તમને નવા પાના ખસેડવાની પરવાનગી નથી.',
-'movenotallowedfile'          => 'તમને ફાઈલ ખસેડવાની પરવાનગી નથી.',
-'cant-move-user-page'         => 'તમને સભ્ય પાના હટાવવાની પરવાનગી નથી (ઉપપાના સિવાય).',
-'cant-move-to-user-page'      => 'તમને   કોઇ પાનાને સભ્ય પાનામાં ખસેડવાની પ્રવાનગી નથી (સિવાય કે સભ્ય ઉપપાના)',
-'newtitle'                    => 'આ નવું નામ આપો:',
-'move-watch'                  => 'આ પાનું ધ્યાનમાં રાખો',
-'movepagebtn'                 => 'પાનું ખસેડો',
-'pagemovedsub'                => 'પાનું સફળતા પૂર્વક ખસેડવામાં આવ્યું છે',
-'movepage-moved'              => '\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'',
-'movepage-moved-redirect'     => 'દિશાનિર્દેશના રચાયું',
-'movepage-moved-noredirect'   => 'દિશા નિર્દેશનોની રચના ને સંતાડી દેવાઇ છે',
-'articleexists'               => 'આ નામનું પાનું અસ્તિત્વમાં છે, અથવાતો તમે પસંદ કરેલું નામ અસ્વિકાર્ય છો.
+'movearticle'                  => 'આ પાનાનું નામ બદલો:',
+'moveuserpage-warning'         => "'''ચેતવણી :''' તમે સભ્યનું પાનું હટાવી રહ્યાં છો.  કૃપયા યાદરાખશો કે માત્ર પાનું જ હટાવીશકાશે અને સભ્ય્ને નૂતન નામ નહીં અપાય.",
+'movenologin'                  => 'પ્રવેશ કરેલ નથી',
+'movenologintext'              => 'કોઇ પાનું હટાવવા માટે તેમે નોંધણી કૃત સભ્ય અને [[Special:UserLogin|logged in]]  હોવા જોઇએ',
+'movenotallowed'               => 'તમને નવા પાના ખસેડવાની પરવાનગી નથી.',
+'movenotallowedfile'           => 'તમને ફાઈલ ખસેડવાની પરવાનગી નથી.',
+'cant-move-user-page'          => 'તમને સભ્ય પાના હટાવવાની પરવાનગી નથી (ઉપપાના સિવાય).',
+'cant-move-to-user-page'       => 'તમને   કોઇ પાનાને સભ્ય પાનામાં ખસેડવાની પ્રવાનગી નથી (સિવાય કે સભ્ય ઉપપાના)',
+'newtitle'                     => 'આ નવું નામ આપો:',
+'move-watch'                   => 'આ પાનું ધ્યાનમાં રાખો',
+'movepagebtn'                  => 'પાનું ખસેડો',
+'pagemovedsub'                 => 'પાનું સફળતા પૂર્વક ખસેડવામાં આવ્યું છે',
+'movepage-moved'               => '\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'',
+'movepage-moved-redirect'      => 'દિશાનિર્દેશના રચાયું',
+'movepage-moved-noredirect'    => 'દિશા નિર્દેશનોની રચના ને સંતાડી દેવાઇ છે',
+'articleexists'                => 'આ નામનું પાનું અસ્તિત્વમાં છે, અથવાતો તમે પસંદ કરેલું નામ અસ્વિકાર્ય છો.
 કૃપા કરી અન્ય નામ પસંદ કરો.',
-'cantmove-titleprotected'     => 'આ સ્થાને તમે પાનું નહીં હટાવી શકો કેમ કે નવું શીર્ષક રચના કરવા પહેલેથી આરક્ષીત છે',
-'talkexists'                  => "'''મુખ્ય પાનું સફળતાપૂર્વક ખસેડવામાં આવ્યું છે, પરંતુ તેનું ચર્ચાનું પાનું ખસેડી શકાયું નથી, કેમકે નવા શિર્ષક હેઠળ તે પાનું પહેલેથી અસ્તિત્વમાં છે.
+'cantmove-titleprotected'      => 'આ સ્થાને તમે પાનું નહીં હટાવી શકો કેમ કે નવું શીર્ષક રચના કરવા પહેલેથી આરક્ષીત છે',
+'talkexists'                   => "'''મુખ્ય પાનું સફળતાપૂર્વક ખસેડવામાં આવ્યું છે, પરંતુ તેનું ચર્ચાનું પાનું ખસેડી શકાયું નથી, કેમકે નવા શિર્ષક હેઠળ તે પાનું પહેલેથી અસ્તિત્વમાં છે.
 કૃપા કરી જાતે તેને નવાં નામ વાળાં પાનાંમાં વિલિન કરો.'''",
-'movedto'                     => 'બદલ્યા પછીનું નામ',
-'movetalk'                    => 'સંલગ્ન ચર્ચાનું પાનું પણ ખસેડો',
-'move-subpages'               => '($1 સુધી) ઉપ-પાના હટાવાયા',
-'move-talk-subpages'          => 'ઉપપાનને ચર્ચાના પાના પર ખસેડો ( $1 સુધે)',
-'movepage-page-exists'        => 'પાનું  $1 પહેલેથી અસ્તિત્વમાં છે તેના પર સ્વયં ચલિત રીતે નવું લેખન ન થાય.',
-'movepage-page-moved'         => 'પાના $1 ને $2 પર ખસેડાયું',
-'movepage-page-unmoved'       => 'પાના $1ને $2 પર ન લઈ જઈ શકાયું',
-'1movedto2'                   => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
-'1movedto2_redir'             => 'નામ બદલતા [[$1]] ને [[$2]] બનાવ્યું',
-'move-redirect-suppressed'    => 'દિશા નિર્દેશનો છુપાડાયા',
-'movelogpage'                 => 'નામ ફેર માહિતિ પત્રક',
-'movelogpagetext'             => 'બધા હટાવેલ પાનાની માહિતી',
-'movesubpage'                 => '{{PLURAL:$1|ઉપપાનું|ઉપપાના}}',
-'movesubpagetext'             => 'આ પાનાના $1 {{PLURAL:$1|ઉપપાના |ઉપપાનાઓ }} છે',
-'movenosubpage'               => 'આ પાનાના કોઈ ઉપ-પાના નથી',
-'movereason'                  => 'કારણ:',
-'revertmove'                  => 'પૂર્વવત',
-'delete_and_move'             => 'હટાવો અને નામ બદલો',
-'delete_and_move_confirm'     => 'હા, આ પાનું હટાવો',
-'delete_and_move_reason'      => 'હટાવવાનું કામ આગળ વધાવવા ભૂંસી દેવાયુ',
-'immobile-source-namespace'   => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
-'immobile-target-namespace'   => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
-'immobile-source-page'        => 'આ પાનું ખસેડી નહીં શકાય',
-'immobile-target-page'        => 'તે લક્ષ્ય શીર્ષક પર ન ખસેડી શકાયા.',
-'imagenocrossnamespace'       => 'ફાઇલ ને બિન-ફાઇલ નામસ્થળમાં ન ખસેડી શકાય',
-'nonfile-cannot-move-to-file' => 'ફાઇલ ન હોય તેમને ફાઇલ નામ સ્થળમાં ન ખસેડી શકાય',
-'imagetypemismatch'           => 'નવો ફાઈલ વિસ્તાર શબ્દ તેના પ્રકારાને નથી મળતો',
-'imageinvalidfilename'        => 'લક્ષ્ય ફાઈલ અવૈધ છે',
-'move-leave-redirect'         => 'પાછળ દિશા સૂચન છોડો',
-'file-exists-sharedrepo'      => 'પસંદ કરેલ ફાઇલ ના નામે અન્ય ફાઇલ પહેલેથી સર્વ સામાન્ય ફાઇલ સંગ્રહમાં મોજૂદ છે/
+'movedto'                      => 'બદલ્યા પછીનું નામ',
+'movetalk'                     => 'સંલગ્ન ચર્ચાનું પાનું પણ ખસેડો',
+'move-subpages'                => '($1 સુધી) ઉપ-પાના હટાવાયા',
+'move-talk-subpages'           => 'ઉપપાનને ચર્ચાના પાના પર ખસેડો ( $1 સુધે)',
+'movepage-page-exists'         => 'પાનું  $1 પહેલેથી અસ્તિત્વમાં છે તેના પર સ્વયં ચલિત રીતે નવું લેખન ન થાય.',
+'movepage-page-moved'          => 'પાના $1 ને $2 પર ખસેડાયું',
+'movepage-page-unmoved'        => 'પાના $1ને $2 પર ન લઈ જઈ શકાયું',
+'movepage-max-pages'           => 'મહત્તમ એવા $1 {{PLURAL:$1|પાનું|પાનાઓ}} કાઢી નખાયા છે. સ્વયંચાલિત રીત આનાથી વધુ પાના કાઢી શકાશે નહીં.',
+'1movedto2'                    => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
+'1movedto2_redir'              => 'નામ બદલતા [[$1]] ને [[$2]] બનાવ્યું',
+'move-redirect-suppressed'     => 'દિશા નિર્દેશનો છુપાડાયા',
+'movelogpage'                  => 'નામ ફેર માહિતિ પત્રક',
+'movelogpagetext'              => 'બધા હટાવેલ પાનાની માહિતી',
+'movesubpage'                  => '{{PLURAL:$1|ઉપપાનું|ઉપપાના}}',
+'movesubpagetext'              => 'આ પાનાના $1 {{PLURAL:$1|ઉપપાના |ઉપપાનાઓ }} છે',
+'movenosubpage'                => 'આ પાનાના કોઈ ઉપ-પાના નથી',
+'movereason'                   => 'કારણ:',
+'revertmove'                   => 'પૂર્વવત',
+'delete_and_move'              => 'હટાવો અને નામ બદલો',
+'delete_and_move_text'         => '== પાનું દૂર કરવાની જરૂર છે  ==
+લક્ષ્ય પાનું  "[[:$1]]" પહેલેથી અસ્તિત્વમાં છે.
+શું તમે આને હટાવીને સ્થળાંતર કરવાનો માર્ગ મોકળો કરવા માંગો છો?',
+'delete_and_move_confirm'      => 'હા, આ પાનું હટાવો',
+'delete_and_move_reason'       => 'હટાવવાનું કામ આગળ વધાવવા ભૂંસી દેવાયુ',
+'selfmove'                     => 'સ્ત્રોત ને લક્ષ્ય શીર્ષકો સમાન છે.
+પાના ને તેવા જ નામ ધરાવતા પાના પર પુનઃ સ્થાપન નહીં કરી શકાય.',
+'immobile-source-namespace'    => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
+'immobile-target-namespace'    => '"$1" નામાસ્થળમાં પાના ન ખસેડી શાકાયા',
+'immobile-target-namespace-iw' => 'પાનું હટાવવા આંતરવિકિ કડી એ કોઇ વૈધ શીર્ષક ન હોઇ શકે.',
+'immobile-source-page'         => 'આ પાનું ખસેડી નહીં શકાય',
+'immobile-target-page'         => 'તે લક્ષ્ય શીર્ષક પર ન ખસેડી શકાયા.',
+'imagenocrossnamespace'        => 'ફાઇલ ને બિન-ફાઇલ નામસ્થળમાં ન ખસેડી શકાય',
+'nonfile-cannot-move-to-file'  => 'ફાઇલ ન હોય તેમને ફાઇલ નામ સ્થળમાં ન ખસેડી શકાય',
+'imagetypemismatch'            => 'નવો ફાઈલ વિસ્તાર શબ્દ તેના પ્રકારાને નથી મળતો',
+'imageinvalidfilename'         => 'લક્ષ્ય ફાઈલ અવૈધ છે',
+'move-leave-redirect'          => 'પાછળ દિશા સૂચન છોડો',
+'move-over-sharedrepo'         => '== ફાઇલ અસ્તિત્વ ધારાવે છે ==
+સર્વસામાન્ય ફાઇલ સંગ્રહમાં [[:$1]] પહેલેથી મોજૂદ છે.  આ સ્થળે કોઇ અન્ય ફાઇલ હટાવતા વિહરમાન ફાઇલની માહિતી પર આ ફાઇલ લખાશે.',
+'file-exists-sharedrepo'       => 'પસંદ કરેલ ફાઇલ ના નામે અન્ય ફાઇલ પહેલેથી સર્વ સામાન્ય ફાઇલ સંગ્રહમાં મોજૂદ છે/
 કૃપયા અન્ય નામ પસંદ કરો.',
 
 # Export
@@ -2470,11 +2510,12 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'spam_reverting'      => ' $1 પર કડી ન ધરાવતા છેલ્લા ફેરેફાર પર પુનઃ સ્થાપન કરાય છે',
 
 # Info page
-'infosubtitle' => 'પાના વિષે માહિતી',
-'numedits'     => 'ફેરફારોની સંખ્યા (લેખ): $1',
-'numtalkedits' => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
-'numwatchers'  => 'નીરીક્ષકોની સંખ્યા : $1',
-'numauthors'   => 'લેખકોની સંખ્યા (પાનું): $1',
+'infosubtitle'   => 'પાના વિષે માહિતી',
+'numedits'       => 'ફેરફારોની સંખ્યા (લેખ): $1',
+'numtalkedits'   => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
+'numwatchers'    => 'નીરીક્ષકોની સંખ્યા : $1',
+'numauthors'     => 'લેખકોની સંખ્યા (પાનું): $1',
+'numtalkauthors' => 'લેખકોની સંખ્યા (ચર્ચા પાનું): $1',
 
 # Math options
 'mw_math_png'    => 'PNGને હમેંશા પરત કરો',
@@ -2487,6 +2528,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'math_unknown_function' => 'અજ્ઞાત ફંક્શન',
 'math_lexing_error'     => 'લેખન ક્ર્મ / વિધી ત્રુટિ',
 'math_syntax_error'     => 'સૂત્ર લેખન ત્રુટિ',
+'math_bad_tmpdir'       => 'હંગામી ગણિત ડીરેક્ટરી લખી કે રચી નહીં શકાય.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'નિરીક્ષીત અંકિત કરો',
@@ -2588,6 +2630,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-compressedbitsperpixel'    => 'ચિત્ર સરખામણી મોડ',
 'exif-pixelydimension'           => 'ચિત્ર માટે વૈધ પહોળાઇ',
 'exif-pixelxdimension'           => 'ચિત્રની વૈધ ઊઁચાઈ',
+'exif-makernote'                 => 'ઉત્પાદકની નોંધ',
 'exif-usercomment'               => 'સભ્યની ટિપ્પણી',
 'exif-relatedsoundfile'          => 'સંબંધિત શ્રાવ્ય ફાઈલો',
 'exif-datetimeoriginal'          => 'નિર્મિતીનો સમય અને તારીખ',
@@ -2658,10 +2701,12 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-lightsource-0'   => 'અજાણ્યો',
 'exif-lightsource-1'   => 'દિવસ પ્રકાશ',
 'exif-lightsource-2'   => 'ફ્લોરોસ્કેન્ટ રંગો',
+'exif-lightsource-3'   => 'ટંગસ્ટાન  (બલ્બ પ્રકાશ)',
 'exif-lightsource-4'   => 'જબકારો (ફ્લેશ)',
 'exif-lightsource-9'   => 'સામાન્ય વાતાવરણ',
 'exif-lightsource-10'  => 'વાદળીયું વાતાવરણ',
 'exif-lightsource-11'  => 'છાયા',
+'exif-lightsource-12'  => 'દિવસ પ્રકાશ ટ્યૂબ લાઇટ (D 5700 – 7100K)',
 'exif-lightsource-17'  => 'પ્રમાણભૂત પ્રકાશ A',
 'exif-lightsource-18'  => 'પ્રમાણભૂત પ્રકાશ B',
 'exif-lightsource-19'  => 'પ્રમાણભૂત પ્રકાશ C',
@@ -2669,14 +2714,21 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-lightsource-255' => 'પ્રકાશના અન્ય સ્ત્રોત',
 
 # Flash modes
-'exif-flash-fired-0'  => 'પ્રકાશ ઝબકારો ન થયો',
-'exif-flash-fired-1'  => 'ઝબકારો કરાયો',
-'exif-flash-mode-3'   => 'સ્વયંચાલિત ઢબ',
-'exif-flash-redeye-1' => 'રાતી આંખના ઘટાડાની ઢબ',
+'exif-flash-fired-0'    => 'પ્રકાશ ઝબકારો ન થયો',
+'exif-flash-fired-1'    => 'ઝબકારો કરાયો',
+'exif-flash-mode-3'     => 'સ્વયંચાલિત ઢબ',
+'exif-flash-function-1' => 'ઝબકારો નહીં',
+'exif-flash-redeye-1'   => 'રાતી આંખના ઘટાડાની ઢબ',
 
 'exif-focalplaneresolutionunit-2' => 'ઈંચ',
 
 'exif-sensingmethod-1' => 'અવ્યાખ્યાયિત',
+
+'exif-exposuremode-0' => 'સ્વયંચાલિત પ્રકાશાભિમુખતા',
+'exif-exposuremode-1' => 'માનવ ચાલિત પ્રકાશાભિમુખતા',
+
+'exif-whitebalance-0' => 'સ્વયંચાલિત ધવલ સમતોલન',
+'exif-whitebalance-1' => 'માનવાચાલિત ધવલ સમતોલન',
 
 'exif-scenecapturetype-1' => 'પ્રાકૃતિક દ્રશ્ય',
 'exif-scenecapturetype-2' => 'શિલ્પ',
@@ -2697,6 +2749,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-sharpness-2' => 'તીવ્ર',
 
 'exif-subjectdistancerange-0' => 'અજાણ્યો',
+'exif-subjectdistancerange-1' => 'કાર્યસૂચના- મેક્રો',
 'exif-subjectdistancerange-2' => 'નજીક દર્શન',
 'exif-subjectdistancerange-3' => 'દૂરનું દ્રશ્ય',
 
@@ -2736,8 +2789,11 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 
 # E-mail address confirmation
 'confirmemail'             => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
+'confirmemail_noemail'     => 'તમારા [[Special:Preferences|user preferences]] માં વૈધ ઈ-મેલ સરનામું નથી.',
 'confirmemail_send'        => 'ઈ-મેલ બહાલી સંકેત ઇ-મેલમાં મોકલો',
 'confirmemail_sent'        => 'બહાલીનો ઇ-મેલ મોકલી દેવાયો છે',
+'confirmemail_oncreate'    => 'પુષ્ટિકોડ તમને ઇમેલ દ્વારા મોકલવામાં આવ્યો છે. 
+પ્રવેશ કરવા માટ તમને આ કોડની જરૂર નથી.  પણ ઇ-મેલ આધારિત વિકિ સેવાઓ વાપરવા આની જરૂર છે.',
 'confirmemail_invalid'     => 'અવૈધ બહાલી સંકેત
 સંકેત કાલાતિત થયું હોય',
 'confirmemail_needlogin'   => 'તમારે ઈ-મેલ ને બહાલી આપવા $1 કરવું પડશે',
@@ -2750,8 +2806,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'invalidateemail'          => 'ઇ-મેલ બહાલી રદ્દ કરો',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[$1 માટે ઢાંચો ખેંચી લાવવામાં અસફળ ]',
-'scarytranscludetoolong' => '[URL ઘણો લાંબો છે]',
+'scarytranscludedisabled' => 'આંતરવિકિ આંશિક સંદર્ભીકરણ નિષ્ક્રીય',
+'scarytranscludefailed'   => '[$1 માટે ઢાંચો ખેંચી લાવવામાં અસફળ ]',
+'scarytranscludetoolong'  => '[URL ઘણો લાંબો છે]',
 
 # Trackbacks
 'trackbackbox'      => 'આ પાનાના ટ્રેક બેક:<br />
@@ -2766,6 +2823,7 @@ $1',
 
 # action=purge
 'confirm_purge_button' => 'મંજૂર',
+'confirm-purge-top'    => 'આ પાનાનો સ્મૃતિ ભંડાર ખાલી કરું?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← પાછલું પાનું',
@@ -2799,7 +2857,11 @@ $1',
 'livepreview-error'   => ' $1 "$2" નો સંપર્ક અસફળ
 સામાન્ય ઝલક જુઓ',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}} પછી થયેલ  નવા સુધારા કદાચ ન બતાવી શકાય.',
+
 # Watchlist editor
+'watchlistedit-numitems'      => 'તમારી ધ્યાન સૂચિ {{PLURAL:$1|1 શીર્ષક |$1 શીર્ષકો}} ધરાવે છે, ચર્ચાના પાના સિવાય.',
 'watchlistedit-noitems'       => 'તમારી ધ્યાન સૂચિમાં કોઇ શીર્ષક નથી.',
 'watchlistedit-normal-title'  => 'ધ્યાનસૂચિ માં ફેરફાર કરો',
 'watchlistedit-normal-legend' => 'ધ્યાનસૂચિમાંથી આશીર્ષકો કાઢી નાખો',
@@ -2809,6 +2871,7 @@ $1',
 'watchlistedit-raw-legend'    => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 'watchlistedit-raw-titles'    => 'શિર્ષક:',
 'watchlistedit-raw-submit'    => 'ધ્યાનસૂચિ અધ્યતન બનાવો',
+'watchlistedit-raw-done'      => 'તમારી ધ્યાના સૂચિ અધ્યતન કરાઈ.',
 'watchlistedit-raw-added'     => '{{PLURAL:$1|1 શીર્ષક |$1 શીર્ષકો}} ઉમેરાયા :',
 'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 શીર્ષક |$1 શીર્ષકો  }} હટાવાયા :',
 
@@ -2817,20 +2880,32 @@ $1',
 'watchlisttools-edit' => 'ધ્યાનસૂચી જુઓ અને બદલો',
 'watchlisttools-raw'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 
+# Core parser functions
+'unknown_extension_tag' => 'અજ્ઞાત વિસ્તારક શબ્દ "$1"',
+'duplicate-defaultsort' => '\'\'\'ચેતવણી:\'\'\'  કી "$2" આગળનામૂળે પ્રસ્થાપિત ક્રમિકાવર્ગીકરણ કી "$1"નું સ્થાન લઈ લેશે..',
+
 # Special:Version
-'version'                      => 'આવૃત્તિ',
-'version-specialpages'         => 'ખાસ પાના',
-'version-parserhooks'          => 'પદચ્છેદ ખૂંટો',
-'version-variables'            => 'સહગુણકો',
-'version-other'                => 'અન્ય',
-'version-hooks'                => 'ખૂંટા',
-'version-parser-extensiontags' => 'પદચ્ચેદ વિસ્તારક નાકા',
-'version-hook-name'            => 'ખૂંટાનું નામ્',
-'version-version'              => '(આવૃત્તિ $1)',
-'version-license'              => 'પરવાનો',
-'version-poweredby-others'     => 'અન્યો',
-'version-software-product'     => 'ઉત્પાદ',
-'version-software-version'     => 'આવૃત્તિ',
+'version'                          => 'આવૃત્તિ',
+'version-extensions'               => 'પ્રસ્થાપિત વિસ્તારકો',
+'version-specialpages'             => 'ખાસ પાના',
+'version-parserhooks'              => 'પદચ્છેદ ખૂંટો',
+'version-variables'                => 'સહગુણકો',
+'version-antispam'                 => 'સ્પેમ સંરક્ષણ',
+'version-skins'                    => 'ફલક',
+'version-other'                    => 'અન્ય',
+'version-mediahandlers'            => 'દ્રશ્યશ્રાવ્ય માધ્યમના ધારક',
+'version-hooks'                    => 'ખૂંટા',
+'version-extension-functions'      => 'વિસ્તારક કાર્ય',
+'version-parser-extensiontags'     => 'પદચ્ચેદ વિસ્તારક નાકા',
+'version-parser-function-hooks'    => 'પદચ્છેદ કાર્ય ખૂંટા',
+'version-skin-extension-functions' => 'ફલક વિસ્તારક કાર્ય',
+'version-hook-name'                => 'ખૂંટાનું નામ્',
+'version-version'                  => '(આવૃત્તિ $1)',
+'version-license'                  => 'પરવાનો',
+'version-poweredby-others'         => 'અન્યો',
+'version-software'                 => 'બેસાડેલા સોફ્ટવેર',
+'version-software-product'         => 'ઉત્પાદ',
+'version-software-version'         => 'આવૃત્તિ',
 
 # Special:FilePath
 'filepath'        => 'ફાઈલ પથ',
@@ -2839,9 +2914,11 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'નકલ ફાઇલ શોધો',
+'fileduplicatesearch-summary'   => 'હેશ કિંમત પર આધારિત આબેહૂબ ફાઇલો શોધો.',
 'fileduplicatesearch-legend'    => 'નકલ શોધો',
 'fileduplicatesearch-filename'  => 'ફાઇલ નામ',
 'fileduplicatesearch-submit'    => 'શોધ',
+'fileduplicatesearch-result-1'  => 'ફાઇલ "$1" ની  સમાન કોઇ નકલ નથી.',
 'fileduplicatesearch-noresults' => ' "$1" નામ ધરાવતી કોઇ ફાઇલ ન મળી',
 
 # Special:SpecialPages
@@ -2891,6 +2968,7 @@ $1',
 'dberr-again'     => 'થોડી વાર રાહ જોઈને ફરી પેજ લોડ કરવાનો પ્રયત્ન કરો.',
 'dberr-info'      => '(માહિતી સંચય સર્વર : $1નો સંપર્ક નથી કરી શકાયો)',
 'dberr-usegoogle' => 'તેસમયા દરમ્યાન તમે ગુગલ દ્વારા શોધી શકો',
+'dberr-outofdate' => 'આપણી માહિતી સંબંધી તેમની સૂચિ કાલાતિત હોઇ શકે.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'તમારા અમુક ઉમેરા માંઅમુક તકલીફ છે',

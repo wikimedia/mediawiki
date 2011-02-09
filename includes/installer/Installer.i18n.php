@@ -3445,11 +3445,13 @@ Si vous voulez apporter des modifications, appuyez sur Retour.",
 	'config-install-step-failed' => 'échec',
 	'config-install-extensions' => 'Inclusion des extensions',
 	'config-install-database' => 'Création de la base de données',
+	'config-install-pg-schema-not-exist' => "Le schéma PostgreSQL n'existe pas",
 	'config-install-pg-schema-failed' => "Échec lors de la création des tables. 
 Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 ».",
 	'config-install-pg-commit' => 'Validation des modifications',
 	'config-install-pg-plpgsql' => 'Vérification du language PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
+	'config-pg-no-create-privs' => "Le compte que vous avez spécifié pour l'installation n'a pas suffisamment de privilèges pour créer un compte.",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
 	'config-install-user-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-tables' => 'Création des tables',
@@ -6641,7 +6643,6 @@ Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider D
 	'config-mysql-old' => 'Mer bruche MySQL $1 udder neuer. Em Momang es MySQL $2 aam loufe.',
 	'config-db-port' => 'De Pooz-Nommer (<i lang="en">port</i>) för de Daatebangk:',
 	'config-db-schema' => 'Et Schema en de Datebangk för MediaWiki:',
-	'config-db-ts2-schema' => 'Daateschema för <code lang="en">tsearch2</code>',
 	'config-db-schema-help' => 'För jewöhnlesch sin bovven de Schemas en Odenong.
 Donn bloß jät draan ändere, wann dat nüüdesch es.',
 	'config-sqlite-dir' => '<i lang="en">SQLite</i> sing Daateverzeishnes:',
@@ -6675,6 +6676,21 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-ns-generic' => 'Projäk',
 	'config-ns-site-name' => 'Et sällve wi däm Wiki singe Name: $1',
 	'config-ns-other' => 'Andere (jiff aan wälshe)',
+	'config-profile-help' => "Wikis loufe et beß, wam_mer esu vill Lück wi müjjelesch draan metmaache uin schrieve löht.
+Met MediaWiki es et ejfach, de neuste Änderunge ze beloore un wat ahnungslose udder fiese Lück kapott jemaat han wider retuur ze maache.
+
+However, many have found MediaWiki to be useful in a wide variety of roles, and sometimes it is not easy to convince everyone of the benefits of the wiki way.
+So you have the choice.
+
+A '''{{int:config-profile-wiki}}''' allows anyone to edit, without even logging in.
+A wiki with '''{{int:config-profile-no-anon}}''' provides extra accountability, but may deter casual contributors.
+
+The '''{{int:config-profile-fishbowl}}''' scenario allows approved users to edit, but the public can view the pages, including history.
+A '''{{int:config-profile-private}}''' only allows approved users to view pages, with the same group allowed to edit.
+
+More complex user rights configurations are available after installation, see the [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
+	'config-license' => 'Urhävverrääsch un Lizänz:',
+	'config-license-none' => 'Kein Fooßreih övver de Lizänz',
 );
 
 /** Kurdish (Latin) (Kurdî (Latin))

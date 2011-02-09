@@ -1998,12 +1998,13 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 Ces liens ambigus devraient plutôt pointer vers le bon article.<br />
 Une page est considérée comme une page d’homonymie si elle inclut (directement ou récursivement) un des modèles listés sur [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Doubles redirections',
-'doubleredirectstext'        => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
+'doubleredirects'                   => 'Doubles redirections',
+'doubleredirectstext'               => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
 Chaque entrée contient des liens vers la première et la seconde redirections, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.
 Les entrées <del>barrées</del> ont été résolues.',
-'double-redirect-fixed-move' => 'Cette redirection, dont la cible [[$1]] a été renommée, mène maintenant vers [[$2]].',
-'double-redirect-fixer'      => 'Correcteur de redirection',
+'double-redirect-fixed-move'        => 'Cette redirection, dont la cible [[$1]] a été renommée, mène maintenant vers [[$2]].',
+'double-redirect-fixed-maintenance' => 'Corrige la double redirection de [[$1]] vers [[$2]].',
+'double-redirect-fixer'             => 'Correcteur de redirection',
 
 'brokenredirects'        => 'Redirections cassées',
 'brokenredirectstext'    => 'Ces redirections mènent vers des pages inexistantes :',
@@ -3578,14 +3579,15 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Recherche de doublons',
-'fileduplicatesearch-summary'  => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.',
-'fileduplicatesearch-legend'   => 'Rechercher un doublon',
-'fileduplicatesearch-filename' => 'Nom du fichier :',
-'fileduplicatesearch-submit'   => 'Rechercher',
-'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
-'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a aucun doublon.',
-'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
+'fileduplicatesearch'           => 'Recherche de doublons',
+'fileduplicatesearch-summary'   => 'Recherche des copies de fichiers identiques d’après leur empreinte de hachage.',
+'fileduplicatesearch-legend'    => 'Rechercher un doublon',
+'fileduplicatesearch-filename'  => 'Nom du fichier :',
+'fileduplicatesearch-submit'    => 'Rechercher',
+'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
+'fileduplicatesearch-result-1'  => 'Le fichier « $1 » n’a aucun doublon.',
+'fileduplicatesearch-result-n'  => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
+'fileduplicatesearch-noresults' => 'Aucun fichier nommé « $1 » n’a été trouvé.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pages spéciales',
