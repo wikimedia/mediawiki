@@ -70,9 +70,7 @@ class RefreshLinks extends Maintenance {
 		$wgUser->setOption( 'math', MW_MATH_SOURCE );
 
 		# Don't generate extension images (e.g. Timeline)
-		if ( method_exists( $wgParser, "clearTagHooks" ) ) {
-			$wgParser->clearTagHooks();
-		}
+		$wgParser->clearTagHooks();
 
 		# Don't use HTML tidy
 		$wgUseTidy = false;
@@ -81,14 +79,25 @@ class RefreshLinks extends Maintenance {
 
 		if ( $oldRedirectsOnly ) {
 			# This entire code path is cut-and-pasted from below.  Hurrah.
-			$res = $dbr->query(
-				"SELECT page_id " .
-				"FROM page " .
-				"LEFT JOIN redirect ON page_id=rd_from " .
-				"WHERE page_is_redirect=1 AND rd_from IS NULL AND " .
-				( $end == 0 ? "page_id >= $start"
-						   : "page_id BETWEEN $start AND $end" ),
-				__METHOD__
+
+			$conds = array(
+				"page_is_redirect=1",
+				"rd_from IS NULL"
+			);
+
+			if ( $end == 0 ) {
+				$conds[] = "page_id >= $start";
+			} else {
+				$conds[] = "page_id BETWEEN $start AND $end";
+			}
+
+			$res = $dbr->select(
+				array( 'page', 'redirect' ),
+				'page_id',
+				$conds,
+				__METHOD__,
+				array(),
+				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
 			);
 			$num = $dbr->numRows( $res );
 			$this->output( "Refreshing $num old redirects from $start...\n" );
@@ -120,10 +129,11 @@ class RefreshLinks extends Maintenance {
 					$this->output( "$i\n" );
 					wfWaitForSlaves( $maxLag );
 				}
-				if ( $redirectsOnly )
+				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
-				else
+				} else {
 					self::fixLinksFromArticle( $row->page_id );
+				}
 			}
 		} else {
 			if ( !$end ) {
