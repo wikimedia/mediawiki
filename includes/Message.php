@@ -95,6 +95,11 @@ class Message {
 	protected $useDatabase = true;
 
 	/**
+	 * Title object to use as context
+	 */
+	protected $title = null;
+
+	/**
 	 * Constructor.
 	 * @param $key: message key, or array of message keys to try and use the first non-empty message for
 	 * @param $params Array message parameters
@@ -235,6 +240,17 @@ class Message {
 	 */
 	public function useDatabase( $value ) {
 		$this->useDatabase = (bool) $value;
+		return $this;
+	}
+
+	/**
+	 * Set the Title object to use as context when transforming the message
+	 *
+	 * @param $title Title object
+	 * @return Message: $this
+	 */
+	public function title( $title ) {
+		$this->title = $title;
 		return $this;
 	}
 
@@ -395,7 +411,7 @@ class Message {
 	 * @return Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
-		return MessageCache::singleton()->transform( $string, $this->interface, $this->language );
+		return MessageCache::singleton()->transform( $string, $this->interface, $this->language, $this->title );
 	}
 
 	/**
