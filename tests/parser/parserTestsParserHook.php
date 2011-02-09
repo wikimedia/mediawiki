@@ -28,12 +28,12 @@
 class ParserTestParserHook {
 
 	static function setup( &$parser ) {
-		$parser->setHook( 'tag', array( __CLASS__, 'hook' ) );
+		$parser->setHook( 'tag', array( __CLASS__, 'dumpHook' ) );
 
 		return true;
 	}
 
-	static function hook( $in, $argv ) {
+	static function dumpHook( $in, $argv ) {
 		ob_start();
 		var_dump(
 			$in,
