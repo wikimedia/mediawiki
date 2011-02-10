@@ -2448,6 +2448,7 @@ class Parser {
 		}
 		if ( $stack > 0 ) {
 			wfDebug( __METHOD__.": Invalid input; not enough close tags (stack $stack, state $state)\n" );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		wfProfileOut( __METHOD__ );
