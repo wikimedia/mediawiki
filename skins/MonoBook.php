@@ -203,12 +203,6 @@ class MonoBookTemplate extends BaseTemplate {
 		<div class="pBody">
 			<ul><?php
 				foreach($this->data['content_actions'] as $key => $tab) {
-					echo '
-				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
-					if( $tab['class'] ) {
-						echo ' class="'.htmlspecialchars($tab['class']).'"';
-					}
-					echo '>';
 					$linkAttribs = array( 'href' => $tab['href'] );
 					
 				 	if( isset( $tab["tooltiponly"] ) && $tab["tooltiponly"] ) {
@@ -219,8 +213,15 @@ class MonoBookTemplate extends BaseTemplate {
 				 	} else {
 						$linkAttribs += $skin->tooltipAndAccesskeyAttribs( "ca-$key" );
 				 	}
-				 	echo Html::element( 'a', $linkAttribs, $tab['text'] );
-				 	echo '</li>';
+				 	$linkHtml = Html::element( 'a', $linkAttribs, $tab['text'] );
+				 	
+				 	/* Surround with a <li> */
+				 	$liAttribs = array( 'id' => Sanitizer::escapeId( "ca-$key" ) );
+					if( $tab['class'] ) {
+						$liAttribs['class'] = $tab['class'];
+					}
+				 	echo '
+				' . Html::rawElement( 'li', $liAttribs, $linkHtml );
 				} ?>
 
 			</ul>
