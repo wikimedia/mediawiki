@@ -350,6 +350,7 @@ class Message {
 	/**
 	 * Check whether a message does not exist, or is an empty string
 	 * @return Bool: true if is is and false if not
+	 * @todo Merge with isDisabled()?
 	 */
 	public function isBlank() {
 		$message = $this->fetchMessage();
@@ -375,24 +376,40 @@ class Message {
 
 	/**
 	 * Substitutes any paramaters into the message text.
-	 * @param $message String, the message text
+	 * @param $message String: the message text
 	 * @param $type String: either before or after
 	 * @return String
 	 */
 	protected function replaceParameters( $message, $type = 'before' ) {
 		$replacementKeys = array();
 		foreach( $this->parameters as $n => $param ) {
-			if ( $type === 'before' && !is_array( $param ) ) {
-				$replacementKeys['$' . ($n + 1)] = $param;
-			} elseif ( $type === 'after' && isset( $param['raw'] ) ) {
-				$replacementKeys['$' . ($n + 1)] = $param['raw'];
-			} elseif ( isset( $param['num'] ) ) {
-				$replacementKeys['$' . ($n + 1)] = 
-					$this->language->formatNum( $param['num'] );
+			list( $paramType, $value ) = $this->extractParam( $param );
+			if ( $type === $paramType ) {
+				$replacementKeys['$' . ($n + 1)] = $value;
 			}
 		}
 		$message = strtr( $message, $replacementKeys );
 		return $message;
+	}
+
+	/**
+	 * Extracts the parameter type and preprocessed the value if needed.
+	 * @param $param String|Array: Parameter as defined in this class.
+	 * @return Tuple(type, value)
+	 * @throws MWException
+	 */
+	protected function extractParam( $param ) {
+		if ( is_array( $param ) && isset( $param['raw'] ) ) {
+			return array( 'after', $param['raw'] );
+		} elseif ( is_array( $param ) && isset( $param['num'] ) ) {
+			// Replace number params always in before step for now.
+			// No support for combined raw and num params
+			return array( 'before', $this->language->formatNum( $param['num'] ) );
+		} elseif ( !is_array( $param ) ) {
+			return array( 'before', $param );
+		} else {
+			throw new MWException( "Invalid message parameter" );
+		}
 	}
 
 	/**
