@@ -11,7 +11,7 @@
  * interfaces.
  *
  * EditPage cares about two distinct titles:
- * $wgTitle is the page that forms submit to, links point to,
+ * $this->mContextTitle is the page that forms submit to, links point to,
  * redirects go to, etc. $this->mTitle (as well as $mArticle) is the
  * page in the database that is actually being edited. These are
  * usually the same, but they are now allowed to be different.
@@ -44,6 +44,7 @@ class EditPage {
 
 	var $mArticle;
 	var $mTitle;
+	private $mContextTitle = null;
 	var $action;
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
@@ -117,6 +118,30 @@ class EditPage {
 		return $this->mArticle;
 	}
 
+	/**
+	 * Set the context Title object
+	 *
+	 * @param $title Title object or null
+	 */
+	public function setContextTitle( $title ) {
+		$this->mContextTitle = $title;
+	}
+
+	/**
+	 * Get the context title object.
+	 * If not set, $wgTitle will be returned. This behavior might changed in
+	 * the future to return $this->mTitle instead.
+	 *
+	 * @return Title object
+	 */
+	public function getContextTitle() {
+		if ( is_null( $this->mContextTitle ) ) {
+			global $wgTitle;
+			return $wgTitle;
+		} else {
+			return $this->mContextTitle;
+		}
+	}
 
 	/**
 	 * Fetch initial editing page content.
@@ -1200,23 +1225,23 @@ class EditPage {
 	}
 
 	function setHeaders() {
-		global $wgOut, $wgTitle;
+		global $wgOut;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		if ( $this->formtype == 'preview' ) {
 			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
 		}
 		if ( $this->isConflict ) {
-			$wgOut->setPageTitle( wfMsg( 'editconflict', $wgTitle->getPrefixedText() ) );
+			$wgOut->setPageTitle( wfMsg( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
 		} elseif ( $this->section != '' ) {
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
-			$wgOut->setPageTitle( wfMsg( $msg, $wgTitle->getPrefixedText() ) );
+			$wgOut->setPageTitle( wfMsg( $msg, $this->getContextTitle()->getPrefixedText() ) );
 		} else {
 			# Use the title defined by DISPLAYTITLE magic word when present
 			if ( isset( $this->mParserOutput )
 			 && ( $dt = $this->mParserOutput->getDisplayTitle() ) !== false ) {
 				$title = $dt;
 			} else {
-				$title = $wgTitle->getPrefixedText();
+				$title = $this->getContextTitle()->getPrefixedText();
 			}
 			$wgOut->setPageTitle( wfMsg( 'editing', $title ) );
 		}
@@ -1229,14 +1254,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
-		global $wgOut, $wgUser, $wgTitle;
-
-		# If $wgTitle is null, that means we're in API mode.
-		# Some hook probably called this function  without checking
-		# for is_null($wgTitle) first. Bail out right here so we don't
-		# do lots of work just to discard it right after.
-		if ( is_null( $wgTitle ) )
-			return;
+		global $wgOut, $wgUser;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1263,7 +1281,7 @@ class EditPage {
 			return;
 		}
 
-		$action = htmlspecialchars( $this->getActionURL( $wgTitle ) );
+		$action = htmlspecialchars( $this->getActionURL( $this->getContextTitle() ) );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
@@ -1397,7 +1415,7 @@ HTML
 	}
 
 	protected function showHeader() {
-		global $wgOut, $wgUser, $wgTitle, $wgMaxArticleSize, $wgLang;
+		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
 			$this->edittime = $this->mArticle->getTimestamp();
@@ -1471,7 +1489,7 @@ HTML
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
 				if ( $this->isWrongCaseCssJsPage ) {
-					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() ) );
+					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $this->getContextTitle()->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
 					if ( $this->isCssSubpage )
@@ -1922,7 +1940,7 @@ HTML
 		}
 
 		# don't parse user css/js, show message about preview
-		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
+		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
 
 		if ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) {
 			$level = 'user';
@@ -2040,7 +2058,7 @@ HTML
 	 * Produce the stock "please login to edit pages" page
 	 */
 	function userNotLoggedInPage() {
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
@@ -2048,7 +2066,7 @@ HTML
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $wgTitle->getPrefixedText() ),
+			array( 'returnto' => $this->getContextTitle()->getPrefixedText() ),
 			array( 'known', 'noclasses' )
 		);
 
@@ -2057,7 +2075,7 @@ HTML
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiMsgArray( 'whitelistedittext', array( $loginLink ), array( 'replaceafter' ) );
-		$wgOut->returnToMain( false, $wgTitle );
+		$wgOut->returnToMain( false, $this->getContextTitle() );
 	}
 
 	/**
@@ -2107,7 +2125,7 @@ HTML
 	 * @param $match Text which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
-		global $wgOut, $wgTitle;
+		global $wgOut;
 		$this->textbox2 = $this->textbox1;
 
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
@@ -2129,7 +2147,7 @@ HTML
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 		$this->showTextbox2();
 
-		$wgOut->addReturnTo( $wgTitle, array( 'action' => 'edit' ) );
+		$wgOut->addReturnTo( $this->getContextTitle(), array( 'action' => 'edit' ) );
 	}
 
 
@@ -2504,7 +2522,7 @@ HTML
 
 
 	public function getCancelLink() {
-		global $wgUser, $wgTitle;
+		global $wgUser;
 
 		$cancelParams = array();
 		if ( !$this->isConflict && $this->mArticle->getOldID() > 0 ) {
@@ -2512,7 +2530,7 @@ HTML
 		}
 
 		return $wgUser->getSkin()->link(
-			$wgTitle,
+			$this->getContextTitle(),
 			wfMsgExt( 'cancel', array( 'parseinline' ) ),
 			array( 'id' => 'mw-editform-cancel' ),
 			$cancelParams,
@@ -2683,7 +2701,7 @@ HTML
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 
 		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
@@ -2761,7 +2779,7 @@ HTML
 		 		return;
 
 			case self::AS_BLANK_ARTICLE:
-		 		$wgOut->redirect( $wgTitle->getFullURL() );
+		 		$wgOut->redirect( $this->getContextTitle()->getFullURL() );
 		 		return false;
 
 			case self::AS_IMAGE_REDIRECT_LOGGED:
