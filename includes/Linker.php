@@ -1667,11 +1667,10 @@ class Linker {
 	 *   escape), or false for no accesskey attribute
 	 */
 	public function accesskey( $name ) {
-		wfProfileIn( __METHOD__ );
-
 		if ( isset( $this->accesskeycache[$name] ) ) {
 			return $this->accesskeycache[$name];
 		}
+		wfProfileIn( __METHOD__ );
 
 		$message = wfMessage( "accesskey-$name" );
 
