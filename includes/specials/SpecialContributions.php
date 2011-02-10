@@ -184,7 +184,7 @@ class SpecialContributions extends SpecialPage {
 	 * @todo Fixme: almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
 	 */
 	protected function contributionsSub( $nt, $id ) {
-		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 
@@ -196,78 +196,7 @@ class SpecialContributions extends SpecialPage {
 		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
-			# Talk page link
-			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
-			if( ( $id !== null && $wgSysopUserBans ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
-				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-					if ( $userObj->isBlocked() ) {
-						$tools[] = $sk->linkKnown( # Change block link
-							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
-							wfMsgHtml( 'change-blocklink' )
-						);
-						$tools[] = $sk->linkKnown( # Unblock link
-							SpecialPage::getTitleFor( 'Ipblocklist' ),
-							wfMsgHtml( 'unblocklink' ),
-							array(),
-							array(
-								'action' => 'unblock',
-								'ip' => $nt->getDBkey()
-							)
-						);
-					}
-					else { # User is not blocked
-						$tools[] = $sk->linkKnown( # Block link
-							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
-							wfMsgHtml( 'blocklink' )
-						);
-					}
-				}
-				# Block log link
-				$tools[] = $sk->linkKnown(
-					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'sp-contributions-blocklog' ),
-					array(),
-					array(
-						'type' => 'block',
-						'page' => $nt->getPrefixedText()
-					)
-				);
-			}
-			# Uploads
-			$tools[] = $sk->linkKnown(
-				SpecialPage::getTitleFor( 'Listfiles' ),
-				wfMsgHtml( 'sp-contributions-uploads' ),
-				array(),
-				array( 'user' => $nt->getText() )
-			);
-			
-			# Other logs link
-			$tools[] = $sk->linkKnown(
-				SpecialPage::getTitleFor( 'Log' ),
-				wfMsgHtml( 'sp-contributions-logs' ),
-				array(),
-				array( 'user' => $nt->getText() )
-			);
-
-			# Add link to deleted user contributions for priviledged users
-			if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-				$tools[] = $sk->linkKnown(
-					SpecialPage::getTitleFor( 'DeletedContributions', $nt->getDBkey() ),
-					wfMsgHtml( 'sp-contributions-deleted' )
-				);
-			}
-
-			# Add a link to change user rights for privileged users
-			$userrightsPage = new UserrightsPage();
-			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
-				$tools[] = $sk->linkKnown(
-					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
-					wfMsgHtml( 'sp-contributions-userrights' )
-				);
-			}
-
-			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
-
+			$tools = self::getUserLinks( $nt, $talk, $userObj, $wgUser );
 			$links = $wgLang->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
@@ -301,6 +230,93 @@ class SpecialContributions extends SpecialPage {
 		} else {
 			return wfMsgHtml( 'contribsub', "$user ($links)" );
 		}
+	}
+
+	/**
+	 * Links to different places.
+	 * @param $userpage Title: Target user page
+	 * @param $talkpage Title: Talk page
+	 * @param $target User: Target user object
+	 * @param $subject User: The viewing user ($wgUser is still checked in some cases, like userrights page!!)
+	 */
+	public static function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
+		global $wgSysopUserBans;
+
+		$sk = $subject->getSkin();
+		$id = $target->getId();
+		$username = $target->getName();
+
+		$tools[] = $sk->link( $talkpage, wfMsgHtml( 'sp-contributions-talk' ) );
+
+		if( ( $id !== null && $wgSysopUserBans ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
+			if( $subject->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+				if ( $target->isBlocked() ) {
+					$tools[] = $sk->linkKnown( # Change block link
+						SpecialPage::getTitleFor( 'Blockip', $username ),
+						wfMsgHtml( 'change-blocklink' )
+					);
+					$tools[] = $sk->linkKnown( # Unblock link
+						SpecialPage::getTitleFor( 'Ipblocklist' ),
+						wfMsgHtml( 'unblocklink' ),
+						array(),
+						array(
+							'action' => 'unblock',
+							'ip' => $username
+						)
+					);
+				} else { # User is not blocked
+					$tools[] = $sk->linkKnown( # Block link
+						SpecialPage::getTitleFor( 'Blockip', $username ),
+						wfMsgHtml( 'blocklink' )
+					);
+				}
+			}
+			# Block log link
+			$tools[] = $sk->linkKnown(
+				SpecialPage::getTitleFor( 'Log' ),
+				wfMsgHtml( 'sp-contributions-blocklog' ),
+				array(),
+				array(
+					'type' => 'block',
+					'page' => $userpage->getPrefixedText()
+				)
+			);
+		}
+		# Uploads
+		$tools[] = $sk->linkKnown(
+			SpecialPage::getTitleFor( 'Listfiles' ),
+			wfMsgHtml( 'sp-contributions-uploads' ),
+			array(),
+			array( 'user' => $username )
+		);
+		
+		# Other logs link
+		$tools[] = $sk->linkKnown(
+			SpecialPage::getTitleFor( 'Log' ),
+			wfMsgHtml( 'sp-contributions-logs' ),
+			array(),
+			array( 'user' => $username )
+		);
+
+		# Add link to deleted user contributions for priviledged users
+		if( $subject->isAllowed( 'deletedhistory' ) ) {
+			$tools[] = $sk->linkKnown(
+				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
+				wfMsgHtml( 'sp-contributions-deleted' )
+			);
+		}
+
+		# Add a link to change user rights for privileged users
+		$userrightsPage = new UserrightsPage();
+		if( $id !== null && $userrightsPage->userCanChangeRights( $target ) ) {
+			$tools[] = $sk->linkKnown(
+				SpecialPage::getTitleFor( 'Userrights', $username ),
+				wfMsgHtml( 'sp-contributions-userrights' )
+			);
+		}
+
+		wfRunHooks( 'ContributionsToolLinks', array( $id, $userpage, &$tools ) );
+		return $tools;
 	}
 
 	/**
