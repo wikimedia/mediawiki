@@ -345,6 +345,7 @@ class LanguageConverter {
 		if ( !$toVariant ) {
 			$toVariant = $this->getPreferredVariant();
 			if ( !$toVariant ) {
+				wfProfileOut( __METHOD__ );
 				return $text;
 			}
 		}
