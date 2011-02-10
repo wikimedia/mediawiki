@@ -2095,14 +2095,20 @@ class Language {
 		return self::$dataCache->getItem( $this->mCode, 'magicWords' );
 	}
 
+	protected function doMagicHook() {
+		if ( $this->mMagicHookDone ) {
+			return;
+		}
+		$this->mMagicHookDone = true;
+		wfProfileIn( 'LanguageGetMagic' );
+		wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
+		wfProfileOut( 'LanguageGetMagic' );
+	}
+
 	# Fill a MagicWord object with data from here
 	function getMagic( $mw ) {
-		if ( !$this->mMagicHookDone ) {
-			$this->mMagicHookDone = true;
-			wfProfileIn( 'LanguageGetMagic' );
-			wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
-			wfProfileOut( 'LanguageGetMagic' );
-		}
+		$this->doMagicHook();
+
 		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
 			$rawEntry = $this->mMagicExtensions[$mw->mId];
 		} else {
