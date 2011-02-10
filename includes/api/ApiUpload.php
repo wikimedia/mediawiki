@@ -147,14 +147,15 @@ class ApiUpload extends ApiBase {
 	 * @return bool
 	 */
 	protected function selectUploadModule() {
-		global $wgAllowAsyncCopyUploads;
 		$request = $this->getMain()->getRequest();
 
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url', 'statuskey' );
 
-		if ( $wgAllowAsyncCopyUploads && $this->mParams['statuskey'] ) {
+		if ( $this->mParams['statuskey'] ) {
+			$this->checkAsyncDownloadEnabled();
+			
 			// Status request for an async upload
 			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
 			if ( !isset( $sessionData['result'] ) ) {
@@ -200,6 +201,8 @@ class ApiUpload extends ApiBase {
 
 			$async = false;
 			if ( $this->mParams['asyncdownload'] ) {
+				$this->checkAsyncDownloadEnabled();
+				
 				if ( $this->mParams['leavemessage'] && !$this->mParams['ignorewarnings'] ) {
 					$this->dieUsage( 'Using leavemessage without ignorewarnings is not supported',
 						'missing-ignorewarnings' );
@@ -376,6 +379,16 @@ class ApiUpload extends ApiBase {
 
 		return $result;
 	}
+	
+	/**
+	 * Checks if asynchronous copy uploads are enabled and throws an error if they are not.
+	 */
+	protected function checkAsyncDownloadEnabled() {
+		global $wgAllowAsyncCopyUploads;
+		if ( !$wgAllowAsyncCopyUploads ) {
+			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled');
+		}
+	}
 
 	public function mustBePosted() {
 		return true;
@@ -412,16 +425,12 @@ class ApiUpload extends ApiBase {
 			'url' => null,
 			'sessionkey' => null,
 			'stash' => false,
+
+			'asyncdownload' => false,
+			'leavemessage' => false,
+			'statuskey' => null,
 		);
 
-		global $wgAllowAsyncCopyUploads;
-		if ( $wgAllowAsyncCopyUploads ) {
-			$params += array(
-				'asyncdownload' => false,
-				'leavemessage' => false,
-				'statuskey' => null,
-			);
-		}
 		return $params;
 	}
 
@@ -437,17 +446,12 @@ class ApiUpload extends ApiBase {
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
 			'sessionkey' => 'Session key that identifies a previous upload that was stashed temporarily.',
-			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.'
-		);
+			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.',
 
-		global $wgAllowAsyncCopyUploads;
-		if ( $wgAllowAsyncCopyUploads ) {
-			$params += array(
-				'asyncdownload' => 'Make fetching a URL asynchronous',
-				'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
-				'statuskey' => 'Fetch the upload status for this session key',
-			);
-		}
+			'asyncdownload' => 'Make fetching a URL asynchronous',
+			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
+			'statuskey' => 'Fetch the upload status for this session key',
+		);
 
 		return $params;
 
@@ -483,6 +487,7 @@ class ApiUpload extends ApiBase {
 			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
 			array( 'code' => 'missingparam', 'info' => 'One of the parameters sessionkey, file, url, statuskey is required' ),
 			array( 'code' => 'invalidparammix', 'info' => 'The parameters sessionkey, file, url, statuskey can not be used together' ),
+			array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
 		) );
 	}
 
