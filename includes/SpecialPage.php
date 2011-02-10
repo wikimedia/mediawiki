@@ -74,6 +74,22 @@ class SpecialPage {
 	 */
 	var $mAddedRedirectParams = array();
 	/**
+	 * Current request
+	 * @var WebRequest 
+	 */
+	protected $mRequest;
+	/**
+	 * Current output page
+	 * @var OutputPage
+	 */
+	protected $mOutput;
+	/**
+	 * Full title including $par
+	 * @var Title
+	 */
+	protected $mFullTitle;
+		
+	/**
 	 * List of special pages, followed by parameters.
 	 * If the only parameter is a string, that is the page name.
 	 * Otherwise, it is an array. The format is one of:
@@ -539,6 +555,9 @@ class SpecialPage {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+		
+		# Page exists, set the context
+		$page->setContext( $wgRequest, $wgOut );
 
 		# Check for redirect
 		if ( !$including ) {
@@ -950,6 +969,27 @@ class SpecialPage {
 		return count( $params )
 			? $params
 			: false;
+	}
+	
+	/**
+	 * Sets the context this SpecialPage is executed in
+	 * 
+	 * @param $request WebRequest
+	 * @param $output OutputPage
+	 */
+	protected function setContext( $request, $output ) {
+		$this->mRequest = $request;
+		$this->mOutput = $output;
+		$this->mFullTitle = $output->getTitle();
+	}
+	/**
+	 * Wrapper around wfMessage that sets the current context. Currently this
+	 * is only the title.
+	 * 
+	 * @see wfMessage
+	 */
+	public function msg( /* $args */ ) {
+		return call_user_func_array( 'wfMessage', func_get_args() )->title( $this->mFullTitle );
 	}
 }
 
