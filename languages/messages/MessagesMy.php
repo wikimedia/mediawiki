@@ -1391,11 +1391,11 @@ HTML tags ကို စစ်ဆေးပါ။',
 'sp-contributions-talk'        => 'ဆွေးနွေးချက်',
 'sp-contributions-userrights'  => 'အသုံးပြုသူ၏ အခွင့်အရေးများကို စီမံခန့်ခွဲခြင်း',
 'sp-contributions-search'      => 'ပံ့ပိုးမှုများကို ရှာရန်',
-'sp-contributions-username'    => 'IP address သို့ -',
+'sp-contributions-username'    => 'အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် :',
 'sp-contributions-submit'      => 'ရှာ​ဖွေ​ရန်​',
 
 # What links here
-'whatlinkshere'            => 'ဤစာမျက်နှာတွင်ရှိသောလင့်များ',
+'whatlinkshere'            => '',
 'whatlinkshere-title'      => '"$1" ကို လင့်ထားသော စာမျက်နှာများ',
 'whatlinkshere-page'       => 'စာမျက်နှာ -',
 'linkshere'                => "အောက်ပါစာမျက်နှာများသည် '''[[:$1]]''' သို့ လင့်ထားသည် -",

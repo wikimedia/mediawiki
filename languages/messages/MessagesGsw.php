@@ -3222,14 +3222,15 @@ E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott 
 D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Datei-Duplikat sueche',
-'fileduplicatesearch-summary'  => 'Suech no Datei-Duplikat uf dr Grundlag vu ihrem Hash-Wärt.',
-'fileduplicatesearch-legend'   => 'No Duplikat sueche',
-'fileduplicatesearch-filename' => 'Dateiname:',
-'fileduplicatesearch-submit'   => 'Sueche',
-'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Dateigressi: $3<br />MIME-Typ: $4',
-'fileduplicatesearch-result-1' => 'D Datei „$1“ het kei identischi Duplikat.',
-'fileduplicatesearch-result-n' => 'D Datei „$1“ het {{PLURAL:$2|1 identisch Duplikat|$2 identischi Duplikat}}.',
+'fileduplicatesearch'           => 'Datei-Duplikat sueche',
+'fileduplicatesearch-summary'   => 'Suech no Datei-Duplikat uf dr Grundlag vu ihrem Hash-Wärt.',
+'fileduplicatesearch-legend'    => 'No Duplikat sueche',
+'fileduplicatesearch-filename'  => 'Dateiname:',
+'fileduplicatesearch-submit'    => 'Sueche',
+'fileduplicatesearch-info'      => '$1 × $2 Pixel<br />Dateigressi: $3<br />MIME-Typ: $4',
+'fileduplicatesearch-result-1'  => 'D Datei „$1“ het kei identischi Duplikat.',
+'fileduplicatesearch-result-n'  => 'D Datei „$1“ het {{PLURAL:$2|1 identisch Duplikat|$2 identischi Duplikat}}.',
+'fileduplicatesearch-noresults' => 'S isch kei Datei mit em Name „$1“ gfunde wore.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsytene',

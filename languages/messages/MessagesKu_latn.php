@@ -220,6 +220,7 @@ $messages = array(
 'printableversion'  => 'Versiyon ji bo çapkirinê',
 'permalink'         => 'Lînkê tim',
 'print'             => 'Çap',
+'view'              => 'Bibîne',
 'edit'              => 'Biguherîne',
 'create'            => 'Afirandin',
 'editthispage'      => 'Vê rûpelê biguherîne',
@@ -859,6 +860,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'right-delete'        => 'Rûpelan jê bibe',
 'right-browsearchive' => 'Li rûpelên jêbirî bigerre',
 'right-undelete'      => 'Jêbirinê betal bike',
+'right-import'        => 'Rûpelan ji wikiyên din împort bike',
 
 # User rights log
 'rightslog'      => 'Reşahîya mafên bikarhêneran',
@@ -1554,6 +1556,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 
 # Export
 'export'          => 'Rûpelan eksport bike',
+'export-addcat'   => 'Zêde bike',
 'export-download' => 'Weka dosyeyê qeyd bike',
 
 # Namespace 8 related

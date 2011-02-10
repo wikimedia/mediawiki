@@ -1699,12 +1699,13 @@ $1',
 'disambiguationspage'  => 'Template:элбэх суолталаах өйдөбүллэр',
 'disambiguations-text' => "Маннык сирэйдэр '''омонимнар сирэйдэрин''' кытта сибээстээхтэр. Ол оннугар чуолаан теманы кытта сибээстэһиэхтээхтэр.<br />Өскө бу халыыбы [[MediaWiki:Disambiguationspage]] туттубут буоллахтарына, сирэй омонимнары суох оҥоруу курдук обработкаламмыт.",
 
-'doubleredirects'            => 'Хос көһөрөөһүн',
-'doubleredirectstext'        => 'Бу сирэйгэ атын сиргэ утаарар хос утаарыылар тиһиктэрэ көстөр.
+'doubleredirects'                   => 'Хос көһөрөөһүн',
+'doubleredirectstext'               => 'Бу сирэйгэ атын сиргэ утаарар хос утаарыылар тиһиктэрэ көстөр.
 Хас устуруока аайы бастакы уонна иккис утаарыга сигэ баар, ону таһынан иккис утаарыыга баар сирэй аадырыһа (аата) баар, ол аата бастакы утаарыы дьиҥинэн ханна утаарыахтааҕа көстөр.
 <del>Сотуллубут</del> суруктар көннөрүллүбүттэр.',
-'double-redirect-fixed-move' => '[[$1]] сирэй аата уларытыллыбыт, билигин манна утаарар [[$2]]',
-'double-redirect-fixer'      => 'Утаарыылары көннөрөөччү',
+'double-redirect-fixed-move'        => '[[$1]] сирэй аата уларытыллыбыт, билигин манна утаарар [[$2]]',
+'double-redirect-fixed-maintenance' => '[[$1]] сирэйтэн [[$2]] сирэйгэ хос утаарыыны көннөрүү.',
+'double-redirect-fixer'             => 'Утаарыылары көннөрөөччү',
 
 'brokenredirects'        => 'Быстыбыт көһөрүүлэр',
 'brokenredirectstext'    => 'Бу утаарыы сирэйдэрэ суох ыстатыйаларга сигэнэллэр (ыыталлар):',
@@ -3231,14 +3232,15 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 Билэ аатын префикса суох киллэр <code>{{ns:file}}:</code>.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Хос билэлэри көрдөөһүн',
-'fileduplicatesearch-summary'  => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.',
-'fileduplicatesearch-legend'   => 'Хатылааһыннары көрдөөһүн',
-'fileduplicatesearch-filename' => 'Билэ аата:',
-'fileduplicatesearch-submit'   => 'Бул',
-'fileduplicatesearch-info'     => '$1 × $2 пииксэл<br />Билэ кээмэйэ: $3<br />MIME-тиип: $4',
-'fileduplicatesearch-result-1' => '"$1" билэ хатылааһыннара суох эбит.',
-'fileduplicatesearch-result-n' => '"$1" билэ {{PLURAL:$2|1 хатылааһыннаах эбит|$2 хатылааһыннардаах эбит}}.',
+'fileduplicatesearch'           => 'Хос билэлэри көрдөөһүн',
+'fileduplicatesearch-summary'   => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.',
+'fileduplicatesearch-legend'    => 'Хатылааһыннары көрдөөһүн',
+'fileduplicatesearch-filename'  => 'Билэ аата:',
+'fileduplicatesearch-submit'    => 'Бул',
+'fileduplicatesearch-info'      => '$1 × $2 пииксэл<br />Билэ кээмэйэ: $3<br />MIME-тиип: $4',
+'fileduplicatesearch-result-1'  => '"$1" билэ хатылааһыннара суох эбит.',
+'fileduplicatesearch-result-n'  => '"$1" билэ {{PLURAL:$2|1 хатылааһыннаах эбит|$2 хатылааһыннардаах эбит}}.',
+'fileduplicatesearch-noresults' => '«$1» диэн билэ суох эбит.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Анал сирэйдэр',
