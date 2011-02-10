@@ -173,15 +173,13 @@ class MWTidy {
 			$retval = -1;	
 		}
 
-		wfProfileOut( __METHOD__ );
-
 		if( !$stderr && $cleansource == '' && $text != '' ) {
 			// Some kind of error happened, so we couldn't get the corrected text.
 			// Just give up; we'll use the source text and append a warning.
-			return null;
-		} else {
-			return $cleansource;
+			$cleansource = null;
 		}
+		wfProfileOut( __METHOD__ );
+		return $cleansource;
 	}
 
 	/**
@@ -199,6 +197,7 @@ class MWTidy {
 
 		if( $stderr ) {
 			$retval = $tidy->getStatus();
+			wfProfileOut( __METHOD__ );
 			return $tidy->errorBuffer;
 		} else {
 			$tidy->cleanRepair();

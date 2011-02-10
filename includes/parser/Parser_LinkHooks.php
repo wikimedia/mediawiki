@@ -265,9 +265,10 @@ class Parser_LinkHooks extends Parser
 		if( $return === false ) {
 			# False (no link) was returned, output plain wikitext
 			# Build it again as the hook is allowed to modify $paramText
-			return isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
+			$return = isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
 		}
 		# Content was returned, return it
+		wfProfileOut( __METHOD__ );
 		return $return;
 	}
 	

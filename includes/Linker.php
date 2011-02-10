@@ -722,6 +722,7 @@ class Linker {
 				return $this->linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 			}
 		} else {
+			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 	}
@@ -1668,6 +1669,7 @@ class Linker {
 	 */
 	public function accesskey( $name ) {
 		if ( isset( $this->accesskeycache[$name] ) ) {
+			wfProfileOut( __METHOD__ );
 			return $this->accesskeycache[$name];
 		}
 		wfProfileIn( __METHOD__ );
