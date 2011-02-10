@@ -177,8 +177,8 @@ class WikiExporter {
 				"</id>" .
 				"</contributor>";
 		}
-		wfProfileOut( __METHOD__ );
 		$this->author_list .= "</contributors>";
+		wfProfileOut( __METHOD__ );
 	}
 
 	protected function dumpFrom( $cond = '' ) {

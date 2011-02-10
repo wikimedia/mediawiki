@@ -99,6 +99,8 @@ class RefreshLinksJob2 extends Job {
 				$jobs[] = new RefreshLinksJob( $title, '' );
 			}
 			Job::batchInsert( $jobs );
+
+			wfProfileOut( __METHOD__ );
 			return true;
 		}
 		# Re-parse each page that transcludes this page and update their tracking links...

@@ -353,6 +353,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// If a module is nothing but a list of dependencies, we need to avoid 
 		// giving max() an empty array
 		if ( count( $files ) === 0 ) {
+			wfProfileOut( __METHOD__ );
 			return $this->modifiedTime[$context->getHash()] = 1;
 		}
 		
@@ -362,6 +363,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$this->modifiedTime[$context->getHash()] = max( 
 			$filesMtime, 
 			$this->getMsgBlobMtime( $context->getLanguage() ) );
+
 		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
 	}
