@@ -133,6 +133,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Files with a mime type that does not match the extension are now properly
   thumbnailed 
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
+* (bug 15905) Nostalgia skin could become more usable by including a Talk:
+  link at the top of the page
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

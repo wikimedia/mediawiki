@@ -67,7 +67,8 @@ class NostalgiaTemplate extends LegacyTemplate {
 		  . $this->getSkin()->specialLink( 'Recentchanges' );
 
 		if ( $wgOut->isArticle() ) {
-			$s .= $sep . '<strong>' . $this->editThisPage() . '</strong>' . $sep . $this->historyLink();
+			$s .= $sep . '<strong>' . $this->editThisPage() . '</strong>' . $sep . $this->talkLink() .
+					$sep . $this->historyLink();
 		}
 
 		/* show links to different language variants */
