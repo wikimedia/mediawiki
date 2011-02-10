@@ -2982,8 +2982,9 @@ class User {
 	 * @private
 	 */
 	function confirmationToken( &$expiration ) {
+		global $wgUserEmailConfirmationTokenExpiry;
 		$now = time();
-		$expires = $now + 7 * 24 * 60 * 60;
+		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
 		$expiration = wfTimestamp( TS_MW, $expires );
 		$token = self::generateToken( $this->mId . $this->mEmail . $expires );
 		$hash = md5( $token );

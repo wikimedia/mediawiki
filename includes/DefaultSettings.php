@@ -1046,6 +1046,11 @@ $wgPasswordReminderResendTime = 24;
 $wgNewPasswordExpiry  = 3600 * 24 * 7;
 
 /**
+ * The time, in seconds, when an email confirmation email expires
+ */
+$wgUserEmailConfirmationTokenExpiry = 7 * 24 * 60 * 60;
+
+/**
  * SMTP Mode
  * For using a direct (authenticated) SMTP server connection.
  * Default to false or fill an array :
