@@ -795,6 +795,8 @@ class EditPage {
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__  );
 			return self::AS_HOOK_ERROR;
 		}
 
@@ -802,11 +804,12 @@ class EditPage {
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
 			!$wgUser->isAllowed( 'upload' ) ) {
-				if ( $wgUser->isAnon() ) {
-					return self::AS_IMAGE_REDIRECT_ANON;
-				} else {
-					return self::AS_IMAGE_REDIRECT_LOGGED;
-				}
+				$isAnon = $wgUser->isAnon();
+
+				wfProfileOut( __METHOD__ . '-checks' );
+				wfProfileOut( __METHOD__  );
+
+				return $isAnon ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 		}
 
 		# Check for spam
@@ -1255,8 +1258,10 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		if ( $this->showHeader() === false )
+		if ( $this->showHeader() === false ) {
+			wfProfileOut( __METHOD__ );
 			return;
+		}
 
 		$action = htmlspecialchars( $this->getActionURL( $wgTitle ) );
 
@@ -1910,8 +1915,10 @@ HTML
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
-			return $wgOut->parse( "<div class='previewnote'>" .
+			$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
 				wfMsg( 'session_fail_preview_html' ) . "</div>" );
+			wfProfileOut( __METHOD__ );
+			return $parsedNote;
 		}
 
 		# don't parse user css/js, show message about preview
