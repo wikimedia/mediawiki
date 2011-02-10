@@ -183,7 +183,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	static private assertEmpty2( $value, $msg ) {
+	private function assertEmpty2( $value, $msg ) {
 		return $this->assertTrue( $value == '', $msg );
 	}
 	
