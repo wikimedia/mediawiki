@@ -5284,7 +5284,7 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-header-oracle' => 'Configuration de Oracle',
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
-	'config-missing-db-host' => 'Tu debe entrar un valor pro "Hospite del base de datos"',
+	'config-missing-db-host' => 'Tu debe entrar un valor pro "Host del base de datos"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "TNS del base de datos"',
 	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e punctos (.).',
@@ -6522,6 +6522,7 @@ $messages['km'] = array(
 	'config-page-install' => 'តំលើង',
 	'config-page-complete' => 'បញ្ចប់!',
 	'config-page-restart' => 'តំលើងឡើងវិញ',
+	'config-help' => 'ជំនួយ',
 );
 
 /** Colognian (Ripoarisch)

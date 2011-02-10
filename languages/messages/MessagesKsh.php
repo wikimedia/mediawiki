@@ -444,7 +444,7 @@ Bes esu joot un waat e Weilsche, ih dat de versöhks, di Sigg noch ens opzeroofe
 
 $1',
 'pool-timeout'      => 'Zick zem Waade affjeloufe, diweil mer op en Sperr am Waade wohre',
-'pool-queuefull'    => 'De Schlang zom Waade op der <i lang="en">pool</i> es vull',
+'pool-queuefull'    => 'De Schlang zom Waade op ene freie Prozäß zom Beärbeide es vull',
 'pool-errorunknown' => 'Dä Fähler kenne mer nit',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

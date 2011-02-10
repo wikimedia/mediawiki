@@ -3316,14 +3316,15 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Sich no duebele Fichieren',
-'fileduplicatesearch-summary'  => "Sich no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
-'fileduplicatesearch-legend'   => 'Sich no engem Doublon',
-'fileduplicatesearch-filename' => 'Numm vum Fichier:',
-'fileduplicatesearch-submit'   => 'Sichen',
-'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Gréisst vum Fichier: $3<br />MIME Typ: $4',
-'fileduplicatesearch-result-1' => 'De Fichier "$1" huet keen identeschen Doublon.',
-'fileduplicatesearch-result-n' => 'De Fichier "$1" huet {{PLURAL:$2|1 identeschen Doublon|$2 identesch Doublonen}}.',
+'fileduplicatesearch'           => 'Sich no duebele Fichieren',
+'fileduplicatesearch-summary'   => "Sich no Doublone vu Fichieren op der Basis vun hirem ''Hash-Wäert''.",
+'fileduplicatesearch-legend'    => 'Sich no engem Doublon',
+'fileduplicatesearch-filename'  => 'Numm vum Fichier:',
+'fileduplicatesearch-submit'    => 'Sichen',
+'fileduplicatesearch-info'      => '$1 × $2 Pixel<br />Gréisst vum Fichier: $3<br />MIME Typ: $4',
+'fileduplicatesearch-result-1'  => 'De Fichier "$1" huet keen identeschen Doublon.',
+'fileduplicatesearch-result-n'  => 'De Fichier "$1" huet {{PLURAL:$2|1 identeschen Doublon|$2 identesch Doublonen}}.',
+'fileduplicatesearch-noresults' => 'Et gouf kee Fichier mam Numm "$1" fonnt.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsäiten',

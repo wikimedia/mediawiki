@@ -3263,14 +3263,15 @@ Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite pa
 Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => "Arsërca dj'archivi dobi",
-'fileduplicatesearch-summary'  => "Arsërca dj'archivi dobi a parte dal valor d'ordinament.",
-'fileduplicatesearch-legend'   => 'Arsërca ëd na dobia',
-'fileduplicatesearch-filename' => "Nòm dl'archivi:",
-'fileduplicatesearch-submit'   => 'Arsërca',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Amzure: $3<br />Sòrt MIME: $4',
-'fileduplicatesearch-result-1' => 'Pa gnun-a dobia për l\'archivi "$1".',
-'fileduplicatesearch-result-n' => 'A-i {{PLURAL:$2|é \'n dobion midem|son $2 dobion midem}} ëd l\'archivi "$1".',
+'fileduplicatesearch'           => "Arsërca dj'archivi dobi",
+'fileduplicatesearch-summary'   => "Arsërca dj'archivi dobi a parte dal valor d'ordinament.",
+'fileduplicatesearch-legend'    => 'Arsërca ëd na dobia',
+'fileduplicatesearch-filename'  => "Nòm dl'archivi:",
+'fileduplicatesearch-submit'    => 'Arsërca',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Amzure: $3<br />Sòrt MIME: $4',
+'fileduplicatesearch-result-1'  => 'Pa gnun-a dobia për l\'archivi "$1".',
+'fileduplicatesearch-result-n'  => 'A-i {{PLURAL:$2|é \'n dobion midem|son $2 dobion midem}} ëd l\'archivi "$1".',
+'fileduplicatesearch-noresults' => 'Pa trovà gnun file ciamà "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàgine Speciaj',
