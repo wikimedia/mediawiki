@@ -263,12 +263,7 @@ class Profiler {
 
 		# Estimate profiling overhead
 		$profileCount = count($this->mStack);
-		wfProfileIn( '-overhead-total' );
-		for( $i = 0; $i < $profileCount; $i ++ ){
-			wfProfileIn( '-overhead-internal' );
-			wfProfileOut( '-overhead-internal' );
-		}
-		wfProfileOut( '-overhead-total' );
+		self::calculateOverhead( $profileCount );
 
 		# First, subtract the overhead!
 		$overheadTotal = $overheadMemory = $overheadInternal = array();
@@ -347,6 +342,18 @@ class Profiler {
 		return $prof;
 	}
 
+	/**
+	 * Dummy calls to wfProfileIn/wfProfileOut to calculate its overhead
+	 */
+	protected static function calculateOverhead( $profileCount ) {
+		wfProfileIn( '-overhead-total' );
+		for( $i = 0; $i < $profileCount; $i++ ){
+			wfProfileIn( '-overhead-internal' );
+			wfProfileOut( '-overhead-internal' );
+		}
+		wfProfileOut( '-overhead-total' );
+	}
+	
 	/**
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
