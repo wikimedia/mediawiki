@@ -109,9 +109,13 @@ class MonoBookTemplate extends BaseTemplate {
 		</div>
 	</div>
 	<div class="portlet" id="p-logo">
-		<a style="background-image: url(<?php $this->text('logopath') ?>);" <?php
-			?>href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"<?php
-			echo $skin->tooltipAndAccesskey('p-logo') ?>></a>
+		<?php
+			$logoAttribs = array() + $skin->tooltipAndAccesskeyAttribs('p-logo');
+			$logoAttribs['style'] = "background-image: url({$this->data['logopath']});";
+			$logoAttribs['href'] = $this->data['nav_urls']['mainpage']['href'];
+			echo Html::element( 'a', $logoAttribs );
+		?>
+
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 <?php
@@ -272,8 +276,14 @@ class MonoBookTemplate extends BaseTemplate {
 
 	/*************************************************************************************************/
 	function customBox( $bar, $cont ) {
+		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ) );
+		$tooltip = $this->skin->titleAttrib( "p-$bar" );
+		if ( $tooltip !== false ) {
+			$portletAttribs['title'] = $tooltip;
+		}
+		echo '	' . Html::openElement( 'div', $portletAttribs );
 ?>
-	<div class='generated-sidebar portlet' id='<?php echo Sanitizer::escapeId( "p-$bar" ) ?>'<?php echo $this->skin->tooltip('p-'.$bar) ?>>
+
 		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
