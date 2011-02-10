@@ -1831,25 +1831,25 @@ class Article {
 		// Delete if changing from redirect to non-redirect
 		$isRedirect = !is_null( $redirectTitle );
 
-		if ( $isRedirect || is_null( $lastRevIsRedirect ) || $lastRevIsRedirect !== $isRedirect ) {
-			wfProfileIn( __METHOD__ );
-			if ( $isRedirect ) {
-				$this->insertRedirectEntry( $redirectTitle );
-			} else {
-				// This is not a redirect, remove row from redirect table
-				$where = array( 'rd_from' => $this->getId() );
-				$dbw->delete( 'redirect', $where, __METHOD__ );
-			}
-
-			if ( $this->getTitle()->getNamespace() == NS_FILE ) {
-				RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
-			}
-			wfProfileOut( __METHOD__ );
-
-			return ( $dbw->affectedRows() != 0 );
+		if ( !$isRedirect && !is_null( $lastRevIsRedirect ) && $lastRevIsRedirect === $isRedirect ) {
+			return true;
+		}
+		
+		wfProfileIn( __METHOD__ );
+		if ( $isRedirect ) {
+			$this->insertRedirectEntry( $redirectTitle );
+		} else {
+			// This is not a redirect, remove row from redirect table
+			$where = array( 'rd_from' => $this->getId() );
+			$dbw->delete( 'redirect', $where, __METHOD__ );
 		}
 
-		return true;
+		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
+			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
+		}
+		wfProfileOut( __METHOD__ );
+
+		return ( $dbw->affectedRows() != 0 );
 	}
 
 	/**
