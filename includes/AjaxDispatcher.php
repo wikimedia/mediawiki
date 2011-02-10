@@ -133,7 +133,7 @@ class AjaxDispatcher {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		$wgOut = null;
+		wfProfileOut( __METHOD__ );
 	}
 }

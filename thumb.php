@@ -56,11 +56,13 @@ function wfThumbMain() {
 		$bits = explode( '!', $fileName, 2 );
 		if( !isset($bits[1]) ) {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 		if( is_null($title) ) {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
@@ -73,6 +75,7 @@ function wfThumbMain() {
 		if ( !$img->getTitle()->userCanRead() ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' . 
 				'the source file.' );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$headers[] = 'Cache-Control: private';
@@ -81,15 +84,18 @@ function wfThumbMain() {
 
 	if ( !$img ) {
 		wfThumbError( 404, wfMsg( 'badtitletext' ) );
+		wfProfileOut( __METHOD__ );
 		return;
 	}
 	if ( !$img->exists() ) {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+		wfProfileOut( __METHOD__ );
 		return;
 	}
 	$sourcePath = $img->getPath();
 	if ( $sourcePath === false ) {
 		wfThumbError( 500, 'The source file is not locally accessible.' );
+		wfProfileOut( __METHOD__ );
 		return;
 	}
 
@@ -105,6 +111,7 @@ function wfThumbMain() {
 		wfRestoreWarnings();
 		if ( $stat['mtime'] <= $imsUnix ) {
 			header( 'HTTP/1.1 304 Not Modified' );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 	}
@@ -116,11 +123,13 @@ function wfThumbMain() {
 
 			if ( is_file( $thumbPath ) ) {
 				wfStreamFile( $thumbPath, $headers );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );
+		wfProfileOut( __METHOD__ );
 		return;
 	}
 

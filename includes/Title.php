@@ -2103,8 +2103,6 @@ class Title {
 			Title::purgeExpiredRestrictions();
 		}
 
-		wfProfileOut( __METHOD__ );
-
 		if ( $getPages ) {
 			$this->mCascadeSources = $sources;
 			$this->mCascadingRestrictions = $pagerestrictions;
@@ -2112,6 +2110,7 @@ class Title {
 			$this->mHasCascadingRestrictions = $sources;
 		}
 
+		wfProfileOut( __METHOD__ );
 		return array( $sources, $pagerestrictions );
 	}
 

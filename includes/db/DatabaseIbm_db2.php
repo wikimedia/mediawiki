@@ -280,7 +280,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$this->setDB2Option( 'rowcount', 'DB2_ROWCOUNT_PREFETCH_ON',
 			self::STMT_OPTION );
 
-		parent::__construct( $server, $user, $password, $dbName, $flags );
+		parent::__construct( $server, $user, $password, $dbName, DBO_TRX | $flags );
 	}
 
 	/**
@@ -344,6 +344,7 @@ ERROR;
 		}
 
 		if ( strlen( $user ) < 1 ) {
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -371,6 +372,8 @@ ERROR;
 				"Server: $server, Database: $dbName, User: $user, Password: "
 				. substr( $password, 0, 3 ) . "...\n" );
 			$this->installPrint( $this->lastError() . "\n" );
+
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
