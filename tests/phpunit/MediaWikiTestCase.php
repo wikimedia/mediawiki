@@ -170,6 +170,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			'assertInternalType' => 'assertType',
 			'assertNotInternalType' => 'assertNotType',
 			'assertInstanceOf' => 'assertType',
+			'assertEmpty' => 'assertEmpty2',
 		);
 
 		if ( method_exists( $this->suite, $func ) ) {
@@ -180,6 +181,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			throw new MWException( "Called non-existant $func method on "
 				. get_class( $this ) );
 		}
+	}
+
+	static private assertEmpty2( $value, $msg ) {
+		return $this->assertTrue( $value == '', $msg );
 	}
 	
 	static private function unprefixTable( $tableName ) {
