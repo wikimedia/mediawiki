@@ -181,6 +181,8 @@ class ApiEditPage extends ApiBase {
 		}
 
 		$ep = new EditPage( $articleObj );
+		$ep->setContextTitle( $titleObj );
+
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
 		$reqArr = array(
