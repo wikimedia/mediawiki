@@ -444,6 +444,7 @@ class ResourceLoader {
 			return '/* No modules requested. Max made me put this here */';
 		}
 		
+		wfProfileIn( __METHOD__ );
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			try {
@@ -524,15 +525,16 @@ class ResourceLoader {
 			}
 		}
 
-		if ( $context->getDebug() ) {
-			return $exceptions . $out;
-		} else {
+		if ( !$context->getDebug() ) {
 			if ( $context->getOnly() === 'styles' ) {
-				return $exceptions . $this->filter( 'minify-css', $out );
+				$out = $this->filter( 'minify-css', $out );
 			} else {
-				return $exceptions . $this->filter( 'minify-js', $out );
+				$out = $this->filter( 'minify-js', $out );
 			}
 		}
+		
+		wfProfileOut( __METHOD__ );
+		return $exceptions . $out;
 	}
 
 	/* Static Methods */
