@@ -58,27 +58,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="mw_main">
 	<div id="mw_contentwrapper">
 	<!-- navigation portlet -->
-	<div id="p-cactions" class="portlet">
-		<h5><?php $this->msg('views') ?></h5>
-		<div class="pBody">
-			<ul>
-	<?php		foreach($this->data['content_actions'] as $key => $tab) {
-					echo '
-				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
-					if( $tab['class'] ) {
-						echo ' class="'.htmlspecialchars($tab['class']).'"';
-					}
-					echo'><a href="'.htmlspecialchars($tab['href']).'"';
-				 	if( isset($tab["tooltiponly"]) && $tab["tooltiponly"] ) {
-				 		echo $skin->tooltip( "ca-$key" );
-				 	} else {
-				 		echo $skin->tooltipAndAccesskey( "ca-$key" );
-				 	}
-				 	echo '>'.htmlspecialchars($tab['text']).'</a></li>';
-				} ?>
-			</ul>
-		</div>
-	</div>
+<?php $this->cactions( $skin ); ?>
 
 	<!-- content -->
 	<div id="mw_content">

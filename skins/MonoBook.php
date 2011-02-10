@@ -96,28 +96,7 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 </div></div>
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
-	<div id="p-cactions" class="portlet">
-		<h5><?php $this->msg('views') ?></h5>
-		<div class="pBody">
-			<ul><?php
-				foreach($this->data['content_actions'] as $key => $tab) {
-					echo '
-				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
-					if( $tab['class'] ) {
-						echo ' class="'.htmlspecialchars($tab['class']).'"';
-					}
-					echo '><a href="'.htmlspecialchars($tab['href']).'"';
-				 	if( $tab["tooltiponly"] ) {
-				 		echo $skin->tooltip( "ca-$key" );
-				 	} else {
-				 		echo $skin->tooltipAndAccesskey( "ca-$key" );
-				 	}
-				 	echo '>'.htmlspecialchars($tab['text']).'</a></li>';
-				} ?>
-
-			</ul>
-		</div>
-	</div>
+<?php $this->cactions( $skin ); ?>
 	<div class="portlet" id="p-personal">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
@@ -213,6 +192,42 @@ class MonoBookTemplate extends BaseTemplate {
 <?php
 	}
 
+	/**
+	 * Prints the cactions bar.
+	 * Shared between MonoBook and Modern
+	 */
+	function cactions( Skin $skin ) {
+?>
+	<div id="p-cactions" class="portlet">
+		<h5><?php $this->msg('views') ?></h5>
+		<div class="pBody">
+			<ul><?php
+				foreach($this->data['content_actions'] as $key => $tab) {
+					echo '
+				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
+					if( $tab['class'] ) {
+						echo ' class="'.htmlspecialchars($tab['class']).'"';
+					}
+					echo '>';
+					$linkAttribs = array( 'href' => $tab['href'] );
+					
+				 	if( isset( $tab["tooltiponly"] ) && $tab["tooltiponly"] ) {
+						$title = $skin->titleAttrib( "ca-$key" );
+						if ( $title !== false ) {
+							$linkAttribs['title'] = $title;
+						}
+				 	} else {
+						$linkAttribs += $skin->tooltipAndAccesskeyAttribs( "ca-$key" );
+				 	}
+				 	echo Html::element( 'a', $linkAttribs, $tab['text'] );
+				 	echo '</li>';
+				} ?>
+
+			</ul>
+		</div>
+	</div>
+<?php
+	}
 	/*************************************************************************************************/
 	function toolbox() {
 ?>
