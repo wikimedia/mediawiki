@@ -440,6 +440,7 @@ class MessageCache {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->mDisable ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
