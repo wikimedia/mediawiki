@@ -29,7 +29,6 @@ class CliInstaller extends Installer {
 		'dbuser' => 'wgDBuser',
 		'dbpass' => 'wgDBpassword',
 		'dbschema' => 'wgDBmwschema',
-		'dbts2schema' => 'wgDBts2schema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'scriptpath' => 'wgScriptPath',
 		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
