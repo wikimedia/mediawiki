@@ -77,11 +77,10 @@ class UploadTest extends MediaWikiTestCase {
 
 	// Helper used to create an empty file of size $size.
 	private function createFileOfSize( $size ) {
-		$filename = '/tmp/mwuploadtest-' . posix_getpid() . '.txt' ;
+		$filename = tempnam( wfTempDir(), "mwuploadtest" );
 
 		$fh = fopen( $filename, 'w' );
-		fseek( $fh, $size-1, SEEK_SET);
-		fwrite( $fh, 0x00 );
+		ftruncate( $fh, $size );
 		fclose( $fh );
 
 		return $filename;
