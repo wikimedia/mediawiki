@@ -167,6 +167,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26548) Add iiurlparam param to query=imageinfo and query=stashimageinfo
 * (bug 27205) aiprop=metadata and aiprop=parsedcomment need help text
 * Add a amtitle param to meta=allmessages
+* (bug 25832) query=allimages now outputs ns/title as well
 
 === Languages updated in 1.18 ===
 
