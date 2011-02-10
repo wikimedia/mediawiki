@@ -666,10 +666,10 @@ class EditPage {
 			// Custom edit intro for new sections
 			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
-		wfProfileOut( __METHOD__ );
-
 		// Allow extensions to modify form data
 		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
