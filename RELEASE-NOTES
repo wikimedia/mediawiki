@@ -168,6 +168,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27205) aiprop=metadata and aiprop=parsedcomment need help text
 * Add a amtitle param to meta=allmessages
 * (bug 25832) query=allimages now outputs ns/title as well
+* (bug 27199) Thumbnail urls can be fetched for old files as well
 
 === Languages updated in 1.18 ===
 

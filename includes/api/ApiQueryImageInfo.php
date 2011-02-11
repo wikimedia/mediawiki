@@ -107,6 +107,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 					break;
 				}
+				
+				// Check if we can make the requested thumbnail
+				$this->validateThumbParams( $img, $thumbParams );
 
 				// Get information about the current version first
 				// Check that the current version is within the start-end boundaries
@@ -117,7 +120,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				)
 				{
 					$gotOne = true;
-					$this->validateThumbParams( $img, $thumbParams );
+					
 					$fit = $this->addPageSubItem( $pageId,
 						self::getInfo( $img, $prop, $result, $thumbParams ) );
 					if ( !$fit ) {
@@ -148,7 +151,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						break;
 					}
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $oldie, $prop, $result ) );
+						self::getInfo( $oldie, $prop, $result, $thumbParams ) );
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
@@ -301,7 +304,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 		if ( isset( $prop['url'] ) ) {
-			if ( !is_null( $thumbParams ) && !$file->isOld() ) {
+			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
@@ -320,6 +323,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
 						$vals['thumbmime'] = $thumbFile->getMimeType();
 					}
+				}
+				if ( $mto && $mto->isError() ) {
+					$this->setWarning( 'Error creating thumbnail for ' . $file->getName . 
+						': ' . $mto->toText() );
 				}
 			}
 			$vals['url'] = $file->getFullURL();
