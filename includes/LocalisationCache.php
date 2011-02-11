@@ -95,7 +95,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames',
-		'dateFormats', 'defaultUserOptionOverrides', 'magicWords', 'imageFiles',
+		'dateFormats', 'defaultUserOptionOverrides', 'imageFiles',
 		'preloadedMessages',
 	);
 
@@ -116,6 +116,11 @@ class LocalisationCache {
 	 * key is removed after the first merge.
 	 */
 	static public $optionalMergeKeys = array( 'bookstoreList' );
+
+	/**
+	 * Keys for items that are formatted like $magicWords
+	 */
+	static public $magicWordKeys = array( 'magicWords' );
 
 	/**
 	 * Keys for items where the subitems are stored in the backend separately.
@@ -181,7 +186,8 @@ class LocalisationCache {
 				self::$mergeableMapKeys,
 				self::$mergeableListKeys,
 				self::$mergeableAliasListKeys,
-				self::$optionalMergeKeys
+				self::$optionalMergeKeys,
+				self::$magicWordKeys
 			) );
 		}
 		return isset( $this->mergeableKeys[$key] );
@@ -426,10 +432,25 @@ class LocalisationCache {
 					if ( isset( $value['inherit'] ) ) {
 						unset( $value['inherit'] );
 					}
+				} elseif ( in_array( $key, self::$magicWordKeys ) ) {
+					$this->mergeMagicWords( $value, $fallbackValue );
 				}
 			}
 		} else {
 			$value = $fallbackValue;
+		}
+	}
+
+	protected function mergeMagicWords( &$value, $fallbackValue ) {
+		foreach ( $fallbackValue as $magicName => $fallbackInfo ) {
+			if ( !isset( $value[$magicName] ) ) {
+				$value[$magicName] = $fallbackInfo;
+			} else {
+				$oldSynonyms = array_slice( $fallbackInfo, 1 );
+				$newSynonyms = array_slice( $value[$magicName], 1 );
+				$synonyms = array_unique( array_merge( $oldSynonyms, $newSynonyms ) );
+				$value[$magicName] = array_merge( array( $fallbackInfo[0] ), $synonyms );
+			}
 		}
 	}
 
