@@ -327,7 +327,7 @@ class MessageCache {
 		if ( $code ) {
 			# Is this fast enough. Should not matter if the filtering is done in the
 			# database or in code.
-			if ( $code !== $wgLanguageCode ) {
+			if ( $code !== $wgContLanguageCode ) {
 				# Messages for particular language
 				$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), "/$code" );
 			} else {
