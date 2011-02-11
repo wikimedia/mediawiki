@@ -152,9 +152,8 @@ $.fn.makeCollapsible = function() {
 				return;
 			},
 			// Toggles collapsible and togglelink class
-			toggleLinkPremade = function( that, e ) {
-				var	$that = $(that),
-					$collapsible = $that.closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
+			toggleLinkPremade = function( $that, e ) {
+				var	$collapsible = $that.eq(0).closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				e.preventDefault();
 				
 				// It's expanded right now
@@ -245,7 +244,7 @@ $.fn.makeCollapsible = function() {
 					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkPremade( this, e );
+						toggleLinkPremade( $toggle, e );
 					} );
 				}
 				
@@ -264,7 +263,7 @@ $.fn.makeCollapsible = function() {
 					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li">' ).parent() );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkPremade( this, e );
+						toggleLinkPremade( $toggle, e );
 					} );
 				}
 	
@@ -282,7 +281,7 @@ $.fn.makeCollapsible = function() {
 					$that.prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkPremade( this, e );
+						toggleLinkPremade( $toggle, e );
 					} );
 				}
 			}
@@ -291,7 +290,10 @@ $.fn.makeCollapsible = function() {
 		// Initial state (only for those that are not custom)
 		if ( $that.hasClass( 'mw-collapsed' ) && $that.attr( 'id' ).indexOf( 'mw-customcollapsible-' ) !== 0 ) {
 			$that.removeClass( 'mw-collapsed' );
-			$toggleLink.click();
+			// The collapsible element could have multiple togglers
+			// To toggle the initial state only click one of them (ie. the first one, eq(0) )
+			// Else it would go like: hide,show,hide,show for each toggle link.
+			$toggleLink.eq(0).click();
 		}
 	} );
 };
