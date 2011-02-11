@@ -36,7 +36,7 @@ class CSSMin {
 	 * which when base64 encoded will result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
-	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\s*\)';
+	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*)\??[^\)\'"]*[\'"]?\s*\)';
 	
 	/* Protected Static Members */
 	
@@ -79,6 +79,32 @@ class CSSMin {
 		return $files;
 	}
 	
+	protected static function getMimeType( $file ) {
+		$realpath = realpath( $file );
+		// Try a couple of different ways to get the mime-type of a file, in order of
+		// preference
+		if (
+			$realpath
+			&& function_exists( 'finfo_file' )
+			&& function_exists( 'finfo_open' )
+			&& defined( 'FILEINFO_MIME_TYPE' )
+		) {
+			// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo
+			// PECL extension
+			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
+		} else if ( function_exists( 'mime_content_type' ) ) {
+			// Before this was deprecated in PHP 5.3, this was how you got the mime-type of a file
+			return mime_content_type( $file );
+		} else {
+			// Worst-case scenario has happened, use the file extension to infer the mime-type
+			$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+			if ( isset( self::$mimeTypes[$ext] ) ) {
+				return self::$mimeTypes[$ext];
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Remaps CSS URL paths and automatically embeds data URIs for URL rules
 	 * preceded by an /* @embed * / comment
@@ -94,63 +120,56 @@ class CSSMin {
 			self::URL_REGEX . '(?P<post>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
+			// Skip absolute URIs
+			if ( preg_match( '/^https?:\/\//', $match['file'][0] ) ) {
+				// Move the offset to the end of the match, leaving it alone
+				$offset = $match[0][1] + strlen( $match[0][0] );
+				continue;
+			}
 			// Shortcuts
 			$embed = $match['embed'][0];
 			$pre = $match['pre'][0];
 			$post = $match['post'][0];
-			$file = "{$local}/{$match['file'][0]}";
 			$url = "{$remote}/{$match['file'][0]}";
-			// Only proceed if we can access the file
-			if ( file_exists( $file ) ) {
+			$file = "{$local}/{$match['file'][0]}";
+			$replacement = false;
+			if ( $local !== false && file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format,
 				// using Z for the timezone, meaning GMT
 				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
-				// If we the mime-type can't be determined, no embedding will take place
-				$type = false;
-				$realpath = realpath( $file );
-				// Try a couple of different ways to get the mime-type of a file,
-				// in order of preference
-				if ( $realpath
-					&& function_exists( 'finfo_file' ) && function_exists( 'finfo_open' )
-					&& defined( 'FILEINFO_MIME_TYPE' ) )
-				{
-					// As of PHP 5.3, this is how you get the mime-type of a file;
-					// it uses the Fileinfo PECL extension
-					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
-				} else if ( function_exists( 'mime_content_type' ) ) {
-					// Before this was deprecated in PHP 5.3,
-					// this used to be how you get the mime-type of a file
-					$type = mime_content_type( $file );
-				} else {
-					// Worst-case scenario has happened,
-					// use the file extension to infer the mime-type
-					$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
-					if ( isset( self::$mimeTypes[$ext] ) ) {
-						$type = self::$mimeTypes[$ext];
+				// Embedding requires a bit of extra processing, so let's skip that if we can
+				if ( $embed ) {
+					$type = self::getMimeType( $file );
+					// Detect when URLs were preceeded with embed tags, and also verify file size is
+					// below the limit
+					if (
+						$type
+						&& $match['embed'][1] > 0
+						&& filesize( $file ) < self::EMBED_SIZE_LIMIT
+					) {
+						// Strip off any trailing = symbols (makes browsers freak out)
+						$data = base64_encode( file_get_contents( $file ) );
+						// Build 2 CSS properties; one which uses a base64 encoded data URI in place
+						// of the @embed comment to try and retain line-number integrity, and the
+						// other with a remapped an versioned URL and an Internet Explorer hack
+						// making it ignored in all browsers that support data URIs
+						$replacement = "{$pre}url(data:{$type};base64,{$data}){$post};";
+						$replacement .= "{$pre}url({$url}){$post}!ie;";
 					}
 				}
-				// Detect when URLs were preceeded with embed tags,
-				// and also verify file size is below the limit
-				if ( $embed && $type && $match['embed'][1] > 0
-					&& filesize( $file ) < self::EMBED_SIZE_LIMIT )
-				{
-					// Strip off any trailing = symbols (makes browsers freak out)
-					$data = base64_encode( file_get_contents( $file ) );
-					// Build 2 CSS properties; one which uses a base64 encoded data URI
-					// in place of the @embed comment to try and retain line-number integrity,
-					// and the other with a remapped an versioned URL and an Internet Explorer
-					// hack making it ignored in all browsers that support data URIs
-					$replacement = "{$pre}url(data:{$type};base64,{$data}){$post};";
-					$replacement .= "{$pre}url({$url}){$post}!ie;";
-				} else {
-					// Build a CSS property with a remapped and versioned URL,
-					// preserving comment for debug mode
-					$replacement = "{$embed}{$pre}url({$url}){$post};";
+				if ( $replacement === false ) {
+					// Assume that all paths are relative to $remote, and make them absolute
+					$replacement = "{$embed}{$pre}url({$url}){$post};";				
 				}
-
+			} else if ( $local === false ) {
+				// Assume that all paths are relative to $remote, and make them absolute
+				$replacement = "{$embed}{$pre}url({$url}){$post};";
+			}
+			if ( $replacement !== false ) {
 				// Perform replacement on the source
-				$source = substr_replace( $source,
-					$replacement, $match[0][1], strlen( $match[0][0] ) );
+				$source = substr_replace(
+					$source, $replacement, $match[0][1], strlen( $match[0][0] )
+				);
 				// Move the offset to the end of the replacement in the source
 				$offset = $match[0][1] + strlen( $replacement );
 				continue;
@@ -160,7 +179,7 @@ class CSSMin {
 		}
 		return $source;
 	}
-	
+
 	/**
 	 * Removes whitespace from CSS data
 	 *
