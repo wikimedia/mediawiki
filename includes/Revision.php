@@ -152,7 +152,7 @@ class Revision {
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $title Title
 	 * @param $timestamp String
 	 * @return Revision or null
