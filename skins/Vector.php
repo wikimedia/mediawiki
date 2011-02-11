@@ -1,7 +1,7 @@
 <?php
 /**
- * Vector - Branch of MonoBook which has many usability improvements and
- * somewhat cleaner code.
+ * Vector - Modern version of MonoBook with fresh look and many usability
+ * improvements.
  *
  * @todo document
  * @file
@@ -18,7 +18,6 @@ if( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinVector extends SkinTemplate {
 
-	/* Functions */
 	var $skinname = 'vector', $stylename = 'vector',
 		$template = 'VectorTemplate', $useHeadElement = true;
 
@@ -69,13 +68,12 @@ class VectorTemplate extends BaseTemplate {
 	/* Functions */
 
 	/**
-	 * Outputs the entire contents of the XHTML page
+	 * Outputs the entire contents of the (X)HTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgLang, $wgVectorUseIconWatch;
+		global $wgLang, $wgVectorUseIconWatch;
 
 		$this->skin = $this->data['skin'];
-		$action = $wgRequest->getText( 'action' );
 
 		// Build additional attributes for navigation urls
 		//$nav = $this->skin->buildNavigationUrls();
