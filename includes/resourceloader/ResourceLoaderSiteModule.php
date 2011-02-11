@@ -60,4 +60,10 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	public function getGroup() {
 		return 'site';
 	}
+	
+	public function getFlip( $context ) {
+		global $wgContLang;
+
+		return $wgContLang->getDir() !== $context->getDirection();
+	}
 }
