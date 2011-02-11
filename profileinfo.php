@@ -31,6 +31,8 @@ $wgEnableProfileInfo = $wgProfileToDatabase = false;
 
 require_once( './includes/WebStart.php' );
 
+header( 'Content-Type: text/html; charset=utf-8' );
+
 ?>
 <html>
 <head>
