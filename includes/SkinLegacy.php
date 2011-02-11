@@ -107,7 +107,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( !$shove ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
-				$this->logoText() . '</td>';
+				$this->getSkin()->logoText() . '</td>';
 		} elseif ( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
