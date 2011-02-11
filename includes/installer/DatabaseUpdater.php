@@ -108,7 +108,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
-	 * @return DatabaseBase object
+	 * @return DatabaseBase
 	 */
 	public function getDB() {
 		return $this->db;
