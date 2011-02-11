@@ -476,7 +476,7 @@ abstract class File {
 	 * @private -ish
 	 */
 	function thumbName( $params ) {
-		return $this->getNamedThumbName( $this->getName(), $params );
+		return $this->generateThumbName( $this->getName(), $params );
 	}
 	
 	/**
