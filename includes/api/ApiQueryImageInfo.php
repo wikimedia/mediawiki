@@ -248,8 +248,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$h = $image->getHandler();
 		if ( !$h ) {
-			// No handler, so no value for iiurlparam is valid.
-			$this->dieUsage( "Invalid value for {$p}urlparam", "urlparam" );
+			$this->setWarning( 'Could not create thumbnail because ' . 
+				$image->getName() . ' does not have an associated image handler' );
+			return;
 		}
 		foreach ( $thumbParams as $name => $value ) {
 			if ( !$h->validateParam( $name, $value ) ) {
