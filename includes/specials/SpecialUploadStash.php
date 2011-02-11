@@ -215,8 +215,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// do not use trailing slash
 		global $wgUploadStashScalerBaseUrl;
 
-		$scalerThumbName = $file->getParamThumbName( $file->name, $params );
-		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getRel() . '/' . $scalerThumbName;
+		// We need to use generateThumbName() instead of thumbName(), because 
+		// the suffix needs to match the file name for the remote thumbnailer 
+		// to work
+		$scalerThumbName = $file->generateThumbName( $file->getName(), $params );
+		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getUrlRel() . 
+			'/' . rawurlencode( $scalerThumbName );
 		
 		// make a curl call to the scaler to create a thumbnail
 		$httpOptions = array( 
@@ -226,7 +230,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions );
 		$status = $req->execute();
 		if ( ! $status->isOK() ) {
-			$errors = $status->getErrorsArray();	
+			$errors = $status->getWikiTextArray( $status->getErrorsArray() );
 			throw new MWException( "Fetching thumbnail failed: " . join( ", ", $errors ) );
 		}
 		$contentType = $req->getResponseHeader( "content-type" );

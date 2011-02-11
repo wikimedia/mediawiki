@@ -476,12 +476,22 @@ abstract class File {
 	 * @private -ish
 	 */
 	function thumbName( $params ) {
+		return $this->getNamedThumbName( $this->getName(), $params );
+	}
+	
+	/**
+	 * Generate a thumbnail file name from a name and specified parameters
+	 *
+	 * @param string $name
+	 * @param array $params Parameters which will be passed to MediaHandler::makeParamString
+	 */
+	function generateThumbName( $name, $params ) {
 		if ( !$this->getHandler() ) {
 			return null;
 		}
 		$extension = $this->getExtension();
 		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType( $extension, $this->getMimeType(), $params );
-		$thumbName = $this->handler->makeParamString( $params ) . '-' . $this->getName();
+		$thumbName = $this->handler->makeParamString( $params ) . '-' . $name;
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
 		}
