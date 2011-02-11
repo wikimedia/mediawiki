@@ -46,15 +46,11 @@ class SpecialResetpass extends SpecialPage {
 		$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
 		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
 		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
+		$this->mDomain = $wgRequest->getVal( 'wpDomain' );
 		
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->disallowUserJs();
-
-		if( !$wgAuth->allowPasswordChange() ) {
-			$this->error( wfMsg( 'resetpass_forbidden' ) );
-			return;
-		}
 
 		if( !$wgRequest->wasPosted() && !$wgUser->isLoggedIn() ) {
 			$this->error( wfMsg( 'resetpass-no-info' ) );
@@ -66,16 +62,26 @@ class SpecialResetpass extends SpecialPage {
 			return;
 		}
 
-		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal('token') ) ) {
+		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
 			try {
+				$wgAuth->setDomain( $this->mDomain );
+				if( !$wgAuth->allowPasswordChange() ) {
+					$this->error( wfMsg( 'resetpass_forbidden' ) );
+					return;
+				}
+
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 				$wgOut->addWikiMsg( 'resetpass_success' );
 				if( !$wgUser->isLoggedIn() ) {
+					LoginForm::setLoginToken();
+					$token = LoginForm::getLoginToken();
 					$data = array(
-						'action'     => 'submitlogin',
-						'wpName'     => $this->mUserName,
-						'wpPassword' => $this->mNewpass,
-						'returnto'   => $wgRequest->getVal( 'returnto' ),
+						'action'       => 'submitlogin',
+						'wpName'       => $this->mUserName,
+						'wpDomain'     => $this->mDomain,
+						'wpLoginToken' => $token,
+						'wpPassword'   => $this->mNewpass,
+						'returnto'     => $wgRequest->getVal( 'returnto' ),
 					);
 					if( $wgRequest->getCheck( 'wpRemember' ) ) {
 						$data['wpRemember'] = 1;
@@ -142,6 +148,7 @@ class SpecialResetpass extends SpecialPage {
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
 			Html::hidden( 'token', $wgUser->editToken() ) . "\n" .
 			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
+			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
 			Html::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
