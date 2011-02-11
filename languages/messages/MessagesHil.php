@@ -413,27 +413,103 @@ Ang iya rason amo ang "\'\'$2\'\'".',
 'virus-unknownscanner' => 'wala makilal-an nga kontra-virus:',
 
 # Login and logout pages
-'logouttext'              => "'''Naka-guha ka na.'''
+'logouttext'                 => "'''Naka-guha ka na.'''
 
 Makapadayon ka sa gihapon sa paggamit sang {{SITENAME}} nga indi makilal-an, ukon mahimo ka man [[Special:UserLogin|magsulod liwat]] bilang amo sa gihapon ukon lain nga nga manug-gamit.
 Tandaan nga may mga panid nga mahimo ma-display sa gihapon nga daw nakasulod ka sa gihapon, hasta mapanas mo na ang tinago sang imo brawser.",
-'welcomecreation'         => '== Pagtamyaw, $1! ==
+'welcomecreation'            => '== Pagtamyaw, $1! ==
 Ang imo account nahimo na.
 Indi pagkalimti ang pag-ilis sang imo mga [[Special:Preferences|{{SITENAME}} pagpasulabi]].',
-'yourname'                => 'Ngalan sang Manog-gamit:',
-'yourpassword'            => 'Kontra-senyas:',
-'yourpasswordagain'       => 'Suliton ang kontra-senyas:',
-'remembermypassword'      => 'Dumdumon ang akon pagsulod sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
-'login'                   => 'Mag sulod',
-'nav-login-createaccount' => 'Magsulod / maghimo account',
-'userlogin'               => 'Mag sulod / maghimo account',
-'logout'                  => 'Mag guha',
-'userlogout'              => 'Mag guha',
-'notloggedin'             => 'Wala naka-sulod',
-'nologinlink'             => 'Maghimo account',
-'createaccount'           => 'Maghimo Account',
-'gotaccountlink'          => 'Mag sulod',
-'mailmypassword'          => 'i-E-mail ang bag-o na pasword',
+'yourname'                   => 'Ngalan sang Manog-gamit:',
+'yourpassword'               => 'Kontra-senyas:',
+'yourpasswordagain'          => 'Suliton ang kontra-senyas:',
+'remembermypassword'         => 'Dumdumon ang akon pagsulod sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
+'securelogin-stick-https'    => 'Magpabilin nga nakatakod sa HTTPS pagkatapos magsulod',
+'yourdomainname'             => 'Imo dominyo',
+'externaldberror'            => 'Mahimo nga may ara sang sala sa pagpamatood sang database ukon wala ka sa lugar nga magbag-o sang imo pang-guha nga akawnt.',
+'login'                      => 'Mag sulod',
+'nav-login-createaccount'    => 'Magsulod / maghimo account',
+'loginprompt'                => 'Kinahanglan mo nga pasugtan ang kokes agod nga makasulod ka sa {{SITENAME}}.',
+'userlogin'                  => 'Mag sulod / maghimo account',
+'userloginnocreate'          => 'Magsulod',
+'logout'                     => 'Mag guha',
+'userlogout'                 => 'Mag guha',
+'notloggedin'                => 'Wala naka-sulod',
+'nologin'                    => 'Wala ka sang imo akawnt? $1.',
+'nologinlink'                => 'Maghimo account',
+'createaccount'              => 'Maghimo Account',
+'gotaccount'                 => 'May yara ka na sang akawnt? $1.',
+'gotaccountlink'             => 'Mag sulod',
+'createaccountmail'          => 'Paagi sa e-mail',
+'createaccountreason'        => 'Rason:',
+'badretype'                  => 'Ang mga pasword nga imo gintum-ok wala naga-santo.',
+'userexists'                 => 'Ang gamit-pangalan nga imo ginbutang ginagamit na.
+Palihog magpili sang lain nga pangalan.',
+'loginerror'                 => 'May sala sa pagsulod',
+'createaccounterror'         => 'Indi mahimo ang akawnt: $1',
+'nocookiesnew'               => 'Nahimo ang imo nga akawnt, apang wala ka pa kasulod.
+Ang {{SITENAME}} nagagamit sang kokes (cookies) para makasulod ang mga manug-gamit.
+Ang imo kokes wala nabuksan.
+Palihog bukas sa ila, dayon magsulod gamit ang imo bag-o nga gamit-pangalan kag pasword.',
+'nocookieslogin'             => 'Ang {{SITENAME}} nagagamit sang kokes (cookies) para makasulod ang mga manug-gamit.
+Ang imo kokes wala nabuksan. 
+Palihog bukas sa ila, dayon magsulod gamit ang imo bag-o nga gamit-pangalan kag pasword.',
+'nocookiesfornew'            => 'Ang akawnt sang manug-gamit wala nabuhat, bangud nga wala namon mahibal-i ang iya ginhalinan.
+Palihog sigurado kon nakabukas ang imo kokes, dayon ipakarga liwat ang ini nga panid kag tilawan mo liwat.',
+'noname'                     => 'Wala ka nagbutang sang tood-tood nga gamit-pangalan.',
+'loginsuccesstitle'          => 'Madinalag-on nga pagsulod',
+'loginsuccess'               => "'''Nakasulod ka na subong sa {{SITENAME}} bilang si \"\$1\".'''",
+'nosuchuser'                 => 'Wala sang manug-gamit nga iya pangalan "$1".
+Ang mga gamit-pangalan sensitibo sa kadakoon sang letra.
+Siguradoha ang pagbaybay sang pumolongon, ukon  [[Special:UserLogin/signup|magbuhat sang bag-o nga akawnt]].',
+'nosuchusershort'            => 'Wala sang manug-gamit nga iya pangalan "<nowiki>$1</nowiki>".
+Siguradoha ang pagbaybay sang pumolongon.',
+'nouserspecified'            => 'Kinahanglan mo magbutang sa gamit-pangalan.',
+'login-userblocked'          => 'Ang ini nga manug-gamit ginapungga. Indi ka mahimo nga magsulod.',
+'wrongpassword'              => 'Sala nga pasword ang ginbutang.
+Palihog tilawi liwat butang.',
+'wrongpasswordempty'         => 'Wala ka sang may ginbutang nga pasword.
+Palihog tilawi liwat butang.',
+'passwordtooshort'           => 'Ang mga pasword dapat indi magnubo sa {{PLURAL:$1|isa ka letra|$1 ka letra}}.',
+'password-name-match'        => 'Ang imo pasword dapat lain sa imo gamit-pangalan.',
+'password-login-forbidden'   => 'Wala ginatugotan ang paggamit sang sini nga gamit-pangalan kag pasword.',
+'mailmypassword'             => 'i-E-mail ang bag-o na pasword',
+'passwordremindertitle'      => 'Bag-o nga temporaryo nga pasword para sa {{SITENAME}}',
+'passwordremindertext'       => 'May yara nga nagpangayo (basi ikaw, may IP address nga $1) sang bag-o
+nga pasword para sa {{SITENAME}} ($4). May temporaryo nga pasword 
+nga para kay "$2" kag ini amo ang "$3". Kon imo ini nga kagustohan,
+kinahanglan mo magsulod kag magpili sang bag-o nga pasword dayon.
+Ang imo temporaryo nga pasword magatapos sa {{PLURAL:$5|isa ka adlaw|$5 ka adlaw}}.
+
+Kon lain ang nagbuhat sang sini nga pagpangayo, ukon nadumdoman mo imo pasword,
+kag indi mo na luyag mag-ilis sini, mahimo mo nga pabayaan ang ini nga mensahe kag
+magpadayon sa paggamit sang imo daan nga pasword.',
+'noemail'                    => 'Wala sang e-mail adres nga nakalista para kay "$1".',
+'noemailcreate'              => 'Kinahanglan mo maghatag sang matood-tood nga e-mail adres',
+'passwordsent'               => 'May bag-o nga pasword ang ginpadala sa e-mail adres ni "$1".
+Palihog magsulod liwat pagkatapos mo adto mabaton.',
+'blocked-mailpassword'       => 'Ang imo IP adres ginapunggan sa pag-ilis, gani indi mahimo nga magamit ang katungdanan nga pagbawi sang pasword para malikawan ang pag-abuso.',
+'eauthentsent'               => 'May e-mail sang konpermasyon nga ginpadala san gin-nominar nga e-mail adres.
+Bag-o pa makapadala sang bisan ano nga e-mail sa akawnt, kinahanglan mo nga sundon ang mga pagsulundan sa e-mail, agod to nga ma konpermar nga ang akawnt imo gid sing matood.',
+'throttled-mailpassword'     => 'May yara na sang pahanumdom sa pasword nga ginpadala, wala nagsobra {{PLURAL:$1|ka oras|$1 ka oras}} nga nagligad.
+Para malikawan ang pag-abuso, isa lamang ka pahanumdom ang igapadala kada {{PLURAL:$1|ka oras|$1 ka oras}}.',
+'mailerror'                  => 'May sala sa pagpadala sang sulat: $1',
+'acct_creation_throttle_hit' => 'Ang mga manugbisita nga naggamit sang imo IP adres nagtuga sang {{PLURAL:$1|1 ka akawnt|$1 ka mga akawnt}} sang isa ka adlaw nga amo lamang ang ginapasugtan sa sini nga tinion.
+Tungod sini, ang mga manugbisita nga nagagamit sang sini nga IP adres indi na makahimo pa sang iban nga akawnt karon.',
+'emailauthenticated'         => 'Ang imo e-mail adres ginpamatood sang $2, $3.',
+'emailnotauthenticated'      => 'Ang imo e-mail adres wala pa mapamatood.
+Wala pa sang e-mail nga ipadala diri para sa bisan ano sa masunod nga mga katungdanan.',
+'noemailprefs'               => 'Magbutang sang e-mail adres sa imo mga pagpalabi agod nga magamit ang ini nga mga katungdanan.',
+'emailconfirmlink'           => 'Palihog pamatud-i ang imo e-mail adres',
+'invalidemailaddress'        => 'Ang e-mail adres indi mabaton tungod kay nagagwa nga sala ang iya plastar.
+Palihog butang sang ginplastar sing maayo nga adres ukon panason nal lang ang lugar.',
+'accountcreated'             => 'Nahimo na ang akawnt',
+'accountcreatedtext'         => 'Ang akawnt sang manug-gamit nga $1 nahimo na.',
+'createaccount-title'        => 'Pagbuhat sang akawnt para sa {{SITENAME}}',
+'createaccount-text'         => 'May naghimo na sang akawnt para sa imo e-mail adres sa {{SITENAME}} ($4), nakapangalan nga "$2", nga may pasword nga "$3".
+Dapat ka na magsulod kag islan ang imo pasword subong.
+
+Mahimo nga imo pabayaan ang ini nga mensahe, kon ang ini nga akawnt sala lang ang paghimo.',
 
 # Edit page toolbar
 'bold_sample'     => 'Dukot nga teksto',

@@ -911,11 +911,29 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'rev-deleted-user-contribs'   => '[સભ્યનામ કે IP સરનામું  હટાવી દેવાયું છે - યોગદાનામાં આ ફેરફાર અદ્રશ્ય છે]',
 'rev-deleted-text-permission' => 'આ પુનરાવર્તન હટાવી દેવાયું છે
 આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
+'rev-deleted-text-unhide'     => 'આ ફરકમાંનો કોઇ  એક ફેરફાર હટાવી દેવાયો છે.
+આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] પરથી મળી જશે.
+પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
+'rev-suppressed-text-unhide'  => 'આ ફરકમાંનો કોઇ  એક ફેરફાર સંતાડી દેવાયો છે.
+આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log]  પરથી મળી જશે.
+પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
 'rev-deleted-text-view'       => 'આ પુનરાવર્તન હટાવી દેવાયું છે
 પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
+'rev-suppressed-text-view'    => 'આ પુનરાવર્તન સંતાડી દેવાયું છે
+પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
 'rev-deleted-no-diff'         => 'તમને આ ફરક નહીં દેખાય કેમકે કોઇ એક ફેરફાર હટાવી દેવાયો છે.
 આની માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'rev-suppressed-no-diff'      => "તમને ફરક નહીં દેખાય કેમકે કોઈ એક પુનરાવર્તન '''હટાવાયું છે'''.",
+'rev-deleted-unhide-diff'     => 'આ ફરકમાંનો કોઇ  એક ફેરફાર હટાવી દેવાયો છે.
+આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] પરથી મળી જશે.
+પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
+'rev-suppressed-unhide-diff'  => 'આ ફરકમાંનો કોઇ  એક ફેરફાર સંતાડી દેવાયો છે.
+આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] પરથી મળી જશે.
+પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
+'rev-deleted-diff-view'       => 'આ પુનરાવર્તન હટાવી દેવાયું છે
+પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]..',
+'rev-suppressed-diff-view'    => 'આ પુનરાવર્તન સંતાડી દેવાયું છે
+પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
 'rev-delundel'                => 'બતાવો/છુપાવો',
 'rev-showdeleted'             => 'બતાવો',
 'revisiondelete'              => 'પુનરાવર્તન રદ્દ કરો/પુનર્જીવીત કરો',
@@ -925,6 +943,7 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'revdelete-nologid-title'     => 'લોગ પ્રવેશ અવૈદ્ય',
 'revdelete-nologid-text'      => 'આ ક્રિયા જેના પર કરવાની છે તે લક્ષ્ય ઘટના તમે જણાવી નથી અથવા તેવી કોઇ ઘટના નથી.',
 'revdelete-no-file'           => 'વર્ણવેલી ફાઈલ અસ્તિત્વમાં નથી',
+'revdelete-show-file-confirm' => 'શું તમને ખાત્રી છે કેતમે $2 તારીખ $3 વાગ્યા સુધીના "<nowiki>$1</nowiki>" ફાઇલ ના ફેરફાર જોવા માંગો છો?',
 'revdelete-show-file-submit'  => 'હા',
 'revdelete-selected'          => "''' [[:$1]] ના {{PLURAL:$2|પસંદ કરેલ ફેરફાર |પસંદ કરેલ ફેરફારો}}: '''",
 'logdelete-selected'          => "'''{{PLURAL:$1|પસંદગી કરેલ લોગ ઘટના | પસંદગી કરેલ લોગ ઘટનાઓ }}:'''",
@@ -1487,6 +1506,9 @@ HTML નાકું ચકાસો',
 * ચડાવાતી ફાઇલનું નામ છે: '''<tt>[[:$1]]</tt>'''
 * ઓઅહેલેથી વિહરમાન ફાઇલનું નામ : '''<tt>[[:$2]]</tt>'''
 કૃપયા અન્ય નામ આપો.",
+'fileexists-forbidden'        => 'આ નામની ફાઇલ પહેલેથી મોજુદ છે અને તેના ઉપર લેખન કરી શકાશે નહી.
+તેમ છતાં પણ તમે ફાઇલ ચડાવવા માંગતા હોવ તો ફાઇલનું નામ બદલો અને નવા નામે ફરીથી ચડાવો.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'સર્વસામાન્ય ફાઇલ સંગ્રહમાં આ નામની ફાઇલ મોજુદ છે.
 તેમ છતાં પણ તમે ફાઇલ ચડાવવા માંગતા હોવ તો ફાઇલનું નામ બદલો અને નવા નામે ફરીથી ચડાવો.
 [[File:$1|thumb|center|$1]]',
@@ -1565,10 +1587,13 @@ $1',
 'http-bad-status'       => 'HTTP અરજી વખતે કોઈ અડચણ આવી : $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'      => 'URL સુધી ન પહોંચી શકાયું.',
-'upload-curl-error6-text' => 'અપાયેલ URL સુધી પહોંચી ન શકાયું 
+'upload-curl-error6'       => 'URL સુધી ન પહોંચી શકાયું.',
+'upload-curl-error6-text'  => 'અપાયેલ URL સુધી પહોંચી ન શકાયું 
 કૃપયા ફરી  URL ચકાસો અને ખાત્રી કરો કે સાઇટ સક્રિય છે.',
-'upload-curl-error28'     => 'સમય સમાપ્ત સંદેશ ચડાવો',
+'upload-curl-error28'      => 'સમય સમાપ્ત સંદેશ ચડાવો',
+'upload-curl-error28-text' => 'આ વેબ સાઇટે પ્રત્યુત્ત આપવામાં ઘણો લંબો સમય લે છે.
+કૃપયા ખાત્રી કરો કે સાઇટ સક્રીય છે કે. થોસો સમ્ય રાહ જોઇ ફરી પ્રતિક્ષા કરો.
+અથવા તમે અમુક ઓછા વ્યસ્ત સમયે પ્રયત્ન કરશો.',
 
 'license'            => 'પરવાના',
 'license-header'     => 'પરવાના',
@@ -2226,6 +2251,8 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'unblocklink'                     => 'પ્રતિબંધ હટાવો',
 'change-blocklink'                => 'પ્રતિબંધમાં ફેરફાર કરો',
 'contribslink'                    => 'યોગદાન',
+'autoblocker'                     => 'તમારા પર સ્વયંચાલિત રીતે રોક લગાવાઇ છે કેમકે તમારો IP હાલમાં "[[User:$1|$1]]" સભ્ય દ્વારા વપરાયો છે.
+તેનું કારણ આ છે : "$2"',
 'blocklogpage'                    => 'પ્રતિબંધ સૂચિ',
 'blocklog-showlog'                => 'આ સભ્ય પર પહેલા રોક લગાવાઈ છે.
 રોકા લગાવાયેલા સભ્યોની યાદિ આ મુજબ છે',
@@ -2353,6 +2380,8 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'imagetypemismatch'            => 'નવો ફાઈલ વિસ્તાર શબ્દ તેના પ્રકારાને નથી મળતો',
 'imageinvalidfilename'         => 'લક્ષ્ય ફાઈલ અવૈધ છે',
 'move-leave-redirect'          => 'પાછળ દિશા સૂચન છોડો',
+'protectedpagemovewarning'     => "'''નોંધ : આ પાના પર સંરક્ષણ વિકલ્પ સક્રીય છે અને માત્ર પ્રબંધકો જ આમાં ફેરફાર કરી શકે.'''
+તમારા સંદર્ભ માટે તાજેતરની લોગ યાદિ આપી છે:",
 'move-over-sharedrepo'         => '== ફાઇલ અસ્તિત્વ ધારાવે છે ==
 સર્વસામાન્ય ફાઇલ સંગ્રહમાં [[:$1]] પહેલેથી મોજૂદ છે.  આ સ્થળે કોઇ અન્ય ફાઇલ હટાવતા વિહરમાન ફાઇલની માહિતી પર આ ફાઇલ લખાશે.',
 'file-exists-sharedrepo'       => 'પસંદ કરેલ ફાઇલ ના નામે અન્ય ફાઇલ પહેલેથી સર્વ સામાન્ય ફાઇલ સંગ્રહમાં મોજૂદ છે/

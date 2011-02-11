@@ -531,7 +531,7 @@ Astengkirinê te ji $1 hate çêkirin. Sedemê astengkirinê te ev e: ''$2''.
 Tu dikarî bi $1 ya [[{{MediaWiki:Grouppage-sysop}}|koordînatorekî]] din ra ji astengkirinê te ra dengkê. Tu nikanê 'Ji vê/î bikarhênerê/î re e-name bişîne' bikarwîne eger te di [[Special:Preferences|tercihên xwe]] da adrêsê e-nameyekê nenivîsandîye ya tu ji vê fonksîyonê ra jî hatîyê astengkirin.
 
 IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van nimran têke peyamê xwe.",
-'autoblockedtext'                  => "Adrêsa IP ya te otomatîk hate astenkirin, ji ber ku bikarhênerekî din bi wê kardikir, yê niha ji $1 hate astengkirin.
+'autoblockedtext'                  => "Adresa IP ya te otomatîk hate astengkirin, ji ber ku bikarhênerekî din bi wê kardikir, yê niha ji $1 hate astengkirin.
 Sedemê astengkirinê ev e:
 
 : ''$2''
@@ -539,11 +539,11 @@ Sedemê astengkirinê ev e:
 *Destpêka astengkirinê: $8
 *Dawîya astengkirinê: $6
 
-Eger tu difikirê ku ev astengkirina ne serrast e, xêra xwe bi $1 ya yekî din ji [[{{MediaWiki:Grouppage-sysop}}|koordînatoran]] ra dengke.
+Eger tu difikirî ku ev astengkirin ne serrast e, xêra xwe bi $1 ya yekî din ji [[{{MediaWiki:Grouppage-sysop}}|koordînatoran]] ra dengke.
 
 Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercihên xwe]] da adrêsa e-nameyan binivîsînê. Tu nikanê e-nameya bişînê eger ew tişta jî hatîye qedexekirin ji te ra.
 
-'''Eger tu dixazê nivîsarekê bişînê, xêra xwe van tiştan têke nameya xwe:'''
+'''Eger tu dbixawzî nivîsarekî bişînê, xêra xwe van tiştan têke nameya xwe:'''
 
 *Koordînator, yê te astengkir: $1
 *Sedema astengkirinê: $2
@@ -675,6 +675,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdel-restore-deleted'      => 'revîzyonên hatine jêbirin',
 'pagehist'                    => 'Dîroka rûpelê',
 'revdelete-content'           => 'naverrok',
+'revdelete-summary'           => 'kurteyê biguherîne',
 'revdelete-uname'             => 'navê bikarhêner',
 'revdelete-hid'               => '$1 veşart',
 'revdelete-unhid'             => '$1 nîşanbide',
@@ -683,7 +684,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-edit-reasonlist'   => 'Sedemên jêbirinê biguherîne',
 
 # Revision move
-'revmove-reasonfield'    => 'Sebeb:',
+'revmove-reasonfield'    => 'Sedem:',
 'revmove-titlefield'     => 'Rûpela armanc:',
 'revmove-nullmove-title' => 'Sernivîsa nebaş',
 
