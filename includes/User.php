@@ -2040,7 +2040,7 @@ class User {
 	 * Reset all options to the site defaults
 	 */
 	function resetOptions() {
-		$this->mOptions = User::getDefaultOptions();
+		$this->mOptions = self::getDefaultOptions();
 	}
 
 	/**
