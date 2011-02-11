@@ -245,8 +245,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Asehoy ny isan'ny mpikambana manara-maso ny pejy",
 'tog-oldsig'                  => 'Topi-maso ny sonia :',
 'tog-fancysig'                => 'Sonia tsotra (tsy misy rohy)',
-'tog-externaleditor'          => 'Fitaovana hafa no hanaovana ny fanovana pejy',
-'tog-externaldiff'            => 'Fitaovana hafa no hanaovana ny fampitahana',
+'tog-externaleditor'          => "Hampiasa mpanova soratra ivelany (ho an'ny mpikambana havanana ihany, mila fampifanarahana manokana eo amin'ny mpikajinao [http://www.mediawiki.org/wiki/Manual:External_editors Fampahalalana fanampiny.])",
+'tog-externaldiff'            => "Hampiasa mpampitaha ivelany (ho an'ny mpikambana havanana ihany, mila fampifanarahana manokana eo amin'ny mpikajinao [http://www.mediawiki.org/wiki/Manual:External_editors Fampahalalana fanampiny.])",
 'tog-showjumplinks'           => 'Ampiasao ny rohy "handeha eto"',
 'tog-uselivepreview'          => 'Ampesao ny topi-maso maikamaika (mila Javascript) (mbola am-panandramana)',
 'tog-forceeditsummary'        => 'Teneno ahy ra tsy nametraka ny ambangovangony',
@@ -451,6 +451,7 @@ Miandrasa kely, dia avereno.
 
 $1',
 'pool-timeout'      => "Fe-potoana voahoatra ho an'ny hidy.",
+'pool-queuefull'    => 'Feno ny lisitry ny asa hatao',
 'pool-errorunknown' => 'Tsi-fetezana tsy fantatra',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

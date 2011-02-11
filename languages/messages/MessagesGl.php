@@ -3283,8 +3283,8 @@ Pode ser que caducase.',
 'confirmemail_body'         => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 rexistrou a conta "$2" con este enderezo de correo electrónico en {{SITENAME}}.
 
-Para confirmar que esta conta realmente lle pertence e así poder activar
-as funcións de correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
+Para confirmar que realmente esta conta lle pertence a vostede e activar
+as características do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
 
 $3
 
@@ -3293,30 +3293,30 @@ para cancelar a confirmación do enderezo de correo electrónico:
 
 $5
 
-Este código de confirmación caducará o $6 ás $7.',
+O código de confirmación caduca o $6 ás $7.',
 'confirmemail_body_changed' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 cambiou o enderezo de correo electrónico da conta "$2" a estoutro en {{SITENAME}}.
 
-Para confirmar que esta conta realmente lle pertence e así poder reactivar
-as funcións do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
+Para confirmar que realmente esta conta lle pertence a vostede e reactivar
+as características do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
 
 $3
 
-Se a conta *non* lle pertence siga estoutra ligazón
+Se a conta *non* é súa, siga estoutra ligazón
 para cancelar a confirmación do enderezo de correo electrónico:
 
 $5
 
-Este código de confirmación caducará o $4.',
+O código de confirmación caduca o $6 ás $7.',
 'confirmemail_body_set'     => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 estableceu este enderezo de correo electrónico como o da conta "$2" en {{SITENAME}}.
 
-Para confirmar que realmente esta conta pertence a vostede e reactivar
-as características do correo electónico en {{SITENAME}}, abra esta ligazón no seu navegador:
+Para confirmar que realmente esta conta lle pertence a vostede e reactivar
+as características do correo electrónico en {{SITENAME}}, abra esta ligazón no seu navegador:
 
 $3
 
-Se a conta *non* é súa, siga esta ligazón
+Se a conta *non* é súa, siga estoutra ligazón
 para cancelar a confirmación do enderezo de correo electrónico:
 
 $5
@@ -3454,14 +3454,15 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Procurar ficheiros duplicados',
-'fileduplicatesearch-summary'  => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).',
-'fileduplicatesearch-legend'   => 'Procurar un duplicado',
-'fileduplicatesearch-filename' => 'Nome do ficheiro:',
-'fileduplicatesearch-submit'   => 'Procurar',
-'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamaño do ficheiro: $3<br />Tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'O ficheiro "$1" non ten un duplicado idéntico.',
-'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+'fileduplicatesearch'           => 'Procurar ficheiros duplicados',
+'fileduplicatesearch-summary'   => 'Procurar ficheiros duplicados a partir do valor de <i>hash</i> (un mecanismo de comprobación).',
+'fileduplicatesearch-legend'    => 'Procurar un duplicado',
+'fileduplicatesearch-filename'  => 'Nome do ficheiro:',
+'fileduplicatesearch-submit'    => 'Procurar',
+'fileduplicatesearch-info'      => '$1 × $2 píxeles<br />Tamaño do ficheiro: $3<br />Tipo MIME: $4',
+'fileduplicatesearch-result-1'  => 'O ficheiro "$1" non ten un duplicado idéntico.',
+'fileduplicatesearch-result-n'  => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
+'fileduplicatesearch-noresults' => 'Non se atopou ningún ficheiro chamado "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páxinas especiais',

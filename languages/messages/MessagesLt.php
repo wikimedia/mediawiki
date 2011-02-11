@@ -719,7 +719,7 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'showdiff'                         => 'Rodyti skirtumus',
 'anoneditwarning'                  => "'''Dėmesio:''' Jūs nesate prisijungęs. Jūsų IP adresas bus įrašytas į šio puslapio istoriją.",
 'anonpreviewwarning'               => "''Jūs nesate prisijungęs. Išsaugojant jūsų IP adresas bus rodomas šio puslapio redagavimo istorijoje.''",
-'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įšsaugoti, jūsų keitimas bus išsaugotas be jo.",
+'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite „{{int:savearticle}}“, jūsų keitimas bus išsaugotas be jo.",
 'missingcommenttext'               => 'Prašome įvesti komentarą.',
 'missingcommentheader'             => "'''Priminimas:''' Jūs nenurodėte šio komentaro pavadinimo/antraštės.
 Jei vėl paspausite „{{int:savearticle}}“, jūsų keitimas bus įrašytas be jo.",
