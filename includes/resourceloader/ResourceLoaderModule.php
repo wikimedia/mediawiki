@@ -244,8 +244,8 @@ abstract class ResourceLoaderModule {
 			);
 			// If no blob was found, but the module does have messages, that means we need
 			// to regenerate it. Return NOW
-			if ( !$msgBlobMtime ) {
-				$msgBlobMtime = wfTimestamp( TS_UNIX );
+			if ( $msgBlobMtime === false ) {
+				$msgBlobMtime = wfTimestampNow();
 			}
 			$this->msgBlobMtime[$lang] = wfTimestamp( TS_UNIX, $msgBlobMtime );
 		}
