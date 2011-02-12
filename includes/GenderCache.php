@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Caches user genders when needed to use correct namespace alises.
+ * Caches user genders when needed to use correct namespace aliases.
  * @author Niklas Laxström
  * @since 1.18
  */
