@@ -373,8 +373,12 @@ $wgImgAuthPublicTest = true;
  *   - apibase              Use for the foreign API's URL
  *   - apiThumbCacheExpiry  How long to locally cache thumbs for
  *
- * The default is to initialise these arrays from the MW<1.11 backwards compatible settings:
- * $wgUploadPath, $wgThumbnailScriptPath, $wgSharedUploadDirectory, etc.
+ * If you leave $wgLocalFileRepo set to false, Setup will fill in appropriate values.
+ * Otherwise, set $wgLocalFileRepo to a repository structure as described above.
+ * If you set $wgUseInstantCommons to true, it will add an entry for Commons.
+ * If you set $wgForeignFileRepos to an array of repostory structures, those will
+ * be searched after the local file repo.
+ * Otherwise, you will only have access to local media files.
  */
 $wgLocalFileRepo = false;
 
