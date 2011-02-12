@@ -339,6 +339,29 @@ class Language {
 	}
 
 	/**
+	 * Returns gender-dependent namespace alias if available.
+	 * @param $index Int: namespace index
+	 * @param $gender String: gender key (male, female... )
+	 * @return String
+	 * @since 1.18
+	 */
+	function getGenderNsText( $index, $gender ) {
+		$ns = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
+	}
+
+	/**
+	 * Whether this language makes distinguishes genders for example in
+	 * namespaces.
+	 * @return bool
+	 * @since 1.18
+	 */
+	function needsGenderDistinction() {
+		$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+		return count( $aliases ) > 0;
+	}
+
+	/**
 	 * Get a namespace key by value, case insensitive.
 	 * Only matches namespace names for the current language, not the
 	 * canonical ones defined in Namespace.php.
@@ -366,6 +389,14 @@ class Language {
 					}
 				}
 			}
+
+			$genders = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			foreach ( $genders as $index => $forms ) {
+				foreach ( $forms as $alias ) {
+					$aliases[$alias] = $index;
+				}
+			}
+
 			$this->namespaceAliases = $aliases;
 		}
 		return $this->namespaceAliases;

@@ -87,7 +87,7 @@ class LocalisationCache {
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
-		'imageFiles', 'preloadedMessages',
+		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
 	);
 
 	/**

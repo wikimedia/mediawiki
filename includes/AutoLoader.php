@@ -98,6 +98,7 @@ $wgAutoloadLocalClasses = array(
 	'ForkController' => 'includes/ForkController.php',
 	'FormatExif' => 'includes/Exif.php',
 	'FormOptions' => 'includes/FormOptions.php',
+	'GenderCache' => 'includes/GenderCache.php',
 	'GlobalDependency' => 'includes/CacheDependency.php',
 	'HashBagOStuff' => 'includes/BagOStuff.php',
 	'HashtableReplacer' => 'includes/StringUtils.php',
