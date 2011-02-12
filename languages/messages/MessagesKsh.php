@@ -1542,7 +1542,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-hideuser'              => 'Ene Metmaacher sperre un em singe Name versteiche',
 'right-ipblock-exempt'        => 'Es ußjenomme vun automatesche Sperre, vun Sperre fun IP-Adresse, un vun Sperre vun Bereiche vun IP-Adresse',
 'right-proxyunbannable'       => 'Es ußjenomme fun automatische Sperre fun Proxy-Servere',
-'right-unblockself'           => 'retuur nämme, wam_mer sellver jesperrt woode es',
+'right-unblockself'           => 'Retuur nämme, wam_mer sellver jesperrt woode es',
 'right-protect'               => 'Sigge schöze, jeschözde Sigge änndere, un der iere Schoz widder ophevve',
 'right-editprotected'         => 'Jeschötzte Sigge ändere, ohne Kaskadeschoz',
 'right-editinterface'         => 'Sigge met de Texte ändere, die et Wiki kallt',

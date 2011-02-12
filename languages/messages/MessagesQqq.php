@@ -2367,12 +2367,13 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'watching'   => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 
+'enotif_newpagetext' => 'Part of text of a notification e-mail sent when a watched page has been created. See [[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]',
 'changed'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'created'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'enotif_subject'     => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 'enotif_lastvisited' => '$1 is a URL address.',
 'enotif_lastdiff'    => '* $1 is a link to diff, shown as a plainlink',
-'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
+'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
 * <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 

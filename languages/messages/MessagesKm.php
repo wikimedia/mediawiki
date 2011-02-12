@@ -1163,11 +1163,26 @@ $1",
 សូមមើលបំរាមនិងការរាំងខ្ទប់អនុវត្តបច្ចុប្បន្ននៅក្នុង [[Special:IPBlockList|បញ្ជីរាំងខ្ទប់IP]]។',
 
 # Revision move
-'moverevlogentry'           => 'ប្ដូរទីតាំង {{PLURAL:$3|កំណែ១|$3 កំណែ}} ពី $1 ទៅ $2',
-'revisionmove'              => 'ប្ដូរទីតាំងកំណែពី "$1"',
-'revmove-reasonfield'       => 'មូលហេតុ៖',
-'revmove-norevisions-title' => 'កំណែគោលដៅមិនត្រឹមត្រូវ',
-'revmove-nullmove-title'    => 'ចំណងជើង​មិនល្អ',
+'moverevlogentry'              => 'ប្ដូរទីតាំង {{PLURAL:$3|កំណែ១|$3 កំណែ}} ពី $1 ទៅ $2',
+'revisionmove'                 => 'ប្ដូរទីតាំងកំណែពី "$1"',
+'revmove-explain'              => 'កំណែដូចតទៅនេះនឹងត្រូវប្ដូរទីតាំងពី $1 ទៅទំព័រគោលដៅដែលបានកំណត់។ ប្រសិនបើទំព័រគោលដៅនោះមិនទាន់មានទេ វានឹងត្រូវបង្កើត។ ករណីក្រៅពីនេះ កំណែទាំងនេះនឹងត្រូវច្របាច់បញ្ចូលទៅក្នុងទំព័រប្រវត្តិ។',
+'revmove-legend'               => 'កំណត់ទំព័រគោលដៅនិងចំណារពន្យល់',
+'revmove-submit'               => 'ប្ដូរទីតាំងកំណែទៅទំព័រដែលបានកំណត់',
+'revisionmoveselectedversions' => 'ប្ដូរទីតាំងកំណែដែលបានជ្រើសយក',
+'revmove-reasonfield'          => 'មូលហេតុ៖',
+'revmove-titlefield'           => 'ទំព័រគោលដៅ៖',
+'revmove-badparam-title'       => 'ប៉ារ៉ាម៉ែតមិនល្អ',
+'revmove-badparam'             => 'ការស្នើសុំរបស់អ្នកមានប៉ារ៉ាម៉ែតហាមឃាត់ឬមិនគ្រប់គ្រាន់។
+
+ត្រលប់ទៅកាន់ទំព័រមុននេះរួចព្យាយាមម្ដងទៀត។',
+'revmove-norevisions-title'    => 'កំណែគោលដៅមិនត្រឹមត្រូវ',
+'revmove-norevisions'          => 'អ្នកមិនបានកំណត់កំណែគោលដៅមួយឬច្រើនសំរាប់អនុវត្តមុខងារនេះ ឬគ្មានកំណែដែលបានកំណត់។',
+'revmove-nullmove-title'       => 'ចំណងជើង​មិនល្អ',
+'revmove-nullmove'             => 'ទំព័រគោលដៅមិនអាចមានឈ្មោះដូចទំព័រប្រភពទេ។
+
+ត្រលប់ទៅកាន់ទំព័រមុននេះរួចជ្រើសរើសឈ្មោះផ្សេងពី "$1"។',
+'revmove-success-existing'     => 'កំណែពី[[$2]] ចំនួន$1 ត្រូវបានប្ដូទីតាំងទៅកាន់ទំព័រដែលមានហើយ [[$3]]។',
+'revmove-success-created'      => 'កំណែពី[[$2]] ចំនួន$1 ត្រូវបានប្ដូទីតាំងទៅកាន់ទំព័របង្កើតថ្មី [[$3]]។',
 
 # History merging
 'mergehistory'                     => 'ច្របាច់ប្រវត្តិទាំងឡាយរបស់ទំព័របញ្ចូលគ្នា',
@@ -2887,6 +2902,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 
 $1',
 'filedelete-missing'              => 'មិនអាចលុប ឯកសារ "$1"  ព្រោះ វាមិនមាន។',
+'filedelete-old-unregistered'     => 'កំណែ "$1" របស់ឯកសារដែលអ្នកបានបញ្ជាក់គ្មាននៅក្នុងមូលដ្ឋានទិន្នន័យទេ។',
 'filedelete-current-unregistered' => 'ឯកសារ "$1" មិនមាន ក្នុងមូលដ្ឋានទិន្នន័យ។',
 'filedelete-archive-read-only'    => 'ម៉ាស៊ីនបម្រើសេវាវ៉ែប មិនអាច សរសេរទុក ថតបណ្ណសារ "$1" ។',
 
@@ -2918,7 +2934,7 @@ $1',
 'newimages-legend'      => 'តម្រងការពារ',
 'newimages-label'       => 'ឈ្មោះរូបភាព៖',
 'showhidebots'          => '($1រូបយន្ត)',
-'noimages'              => 'គ្មានឃើញអី សោះ។',
+'noimages'              => 'គ្មានអ្វីសំរាប់មើលទេ។',
 'ilsubmit'              => 'ស្វែងរក',
 'bydate'                => 'តាមកាលបរិច្ឆេទ',
 'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ពី$2 $1',
@@ -3040,7 +3056,7 @@ $1',
 'exif-lightsource-3'   => 'អំពូលតឹងស្តែន (ចង្កៀងរង្គុំ)',
 'exif-lightsource-4'   => 'បញ្ចេញពន្លឺ',
 'exif-lightsource-9'   => 'ធាតុអាកាសស្រឡះល្អ',
-'exif-lightsource-10'  => 'អាកាស​ធាតុ​​មាន​ពពក​ច្រើន​ (Cloudy weather)',
+'exif-lightsource-10'  => 'អាកាស​ធាតុ​​មាន​ពពក​ច្រើន​',
 'exif-lightsource-11'  => 'ម្លប់​',
 'exif-lightsource-17'  => 'ពន្លឺ​ស្តង់​ដារ​ A',
 'exif-lightsource-18'  => 'ពន្លឺ​ស្តង់​ដារ​ B',
@@ -3220,6 +3236,7 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'បំលាស់ប្តូរថ្មីជាង {{PLURAL:$1|second|វិនាទី}}អាចមិនត្រូវបានបង្ហាញក្នុងបញ្ជីនេះ​។',
+'lag-warn-high'   => 'ដោយសារប្រព័ន្ធបំរើការមូលដ្ឋានទិន្នន័យមានភាពយឺតយ៉ាវខ្លាំង បំលាស់ប្ដូរដែលថ្មីជាង $1 វិនាទីមិនអាចបង្ហាញបានទេនៅក្នុងបញ្ជីនេះ។',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'បញ្ជីតាមដានរបស់អ្នកមាន{{PLURAL:$1|១ចំណងជើង|$1ចំណងជើង}}ដោយមិនរាប់បញ្ចូលទំព័រពិភាក្សាទេ។',
@@ -3259,6 +3276,7 @@ $1',
 'version-specialpages'             => 'ទំព័រពិសេសៗ',
 'version-variables'                => 'អថេរ',
 'version-antispam'                 => 'ការបង្ការស្ប៉ាម',
+'version-skins'                    => 'សំបក',
 'version-other'                    => 'ផ្សេង',
 'version-mediahandlers'            => 'កម្មវិធី​បើក​មេឌា​ (Media handlers)',
 'version-extension-functions'      => 'មុខងារផ្នែកបន្ថែម',
@@ -3283,13 +3301,14 @@ $1',
 បញ្ចូល ឈ្មោះឯកសារ ដោយគ្មានការភ្ជាប់ "{{ns:file}}:" នៅពីមុខវា ។',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'ស្វែងរកឯកសារដូចគ្នាបេះបិទ',
-'fileduplicatesearch-legend'   => 'ស្វែងរកឯកសារដូចគ្នាបេះបិទ',
-'fileduplicatesearch-filename' => 'ឈ្មោះឯកសារ៖',
-'fileduplicatesearch-submit'   => 'ស្វែងរក',
-'fileduplicatesearch-info'     => '$1 × $2 ភីកសែល<br />ទំហំឯកសារ:$3<br />ប្រភេទMIME:$4',
-'fileduplicatesearch-result-1' => 'គ្មានឯកសារដែលដូចគ្នាបេះបិទទៅនឹងឯកសារ "$1" ទេ។',
-'fileduplicatesearch-result-n' => 'មាន {{PLURAL:$2|1 ឯកសារដូចគ្នាបេះបិទ|$2 ឯកសារដូចគ្នាបេះបិទ}}ទៅនឹងឯកសារ "$1"។',
+'fileduplicatesearch'           => 'ស្វែងរកឯកសារដូចគ្នាបេះបិទ',
+'fileduplicatesearch-legend'    => 'ស្វែងរកឯកសារដូចគ្នាបេះបិទ',
+'fileduplicatesearch-filename'  => 'ឈ្មោះឯកសារ៖',
+'fileduplicatesearch-submit'    => 'ស្វែងរក',
+'fileduplicatesearch-info'      => '$1 × $2 ភីកសែល<br />ទំហំឯកសារ:$3<br />ប្រភេទMIME:$4',
+'fileduplicatesearch-result-1'  => 'គ្មានឯកសារដែលដូចគ្នាបេះបិទទៅនឹងឯកសារ "$1" ទេ។',
+'fileduplicatesearch-result-n'  => 'មាន {{PLURAL:$2|1 ឯកសារដូចគ្នាបេះបិទ|$2 ឯកសារដូចគ្នាបេះបិទ}}ទៅនឹងឯកសារ "$1"។',
+'fileduplicatesearch-noresults' => 'រកមិនឃើញឯកសារដែលមានឈ្មោះ "$1" ទេ។',
 
 # Special:SpecialPages
 'specialpages'                   => 'ទំព័រ​ពិសេស​ៗ',
