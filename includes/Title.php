@@ -617,6 +617,13 @@ class Title {
 				return MWNamespace::getCanonicalName( $this->mNamespace );
 			}
 		}
+
+		if ( $wgContLang->needsGenderDistinction() &&
+				MWNamespace::hasGenderDistinction( $this->mNamespace ) ) {
+			$gender = GenderCache::singleton()->getGenderOf( $this->getText(), __METHOD__ );
+			return $wgContLang->getGenderNsText( $this->mNamespace, $gender );
+		}
+
 		return $wgContLang->getNsText( $this->mNamespace );
 	}
 

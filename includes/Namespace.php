@@ -276,4 +276,17 @@ class MWNamespace {
 		// Default to the global setting
 		return $wgCapitalLinks;
 	}
+
+	/**
+	 * Does the namespace (potentially) have different aliases for different
+	 * genders. Not all languages make a distinction here.
+	 *
+	 * @since 1.18
+	 * @param $index int Index to check
+	 * @return bool
+	 */
+	public static function hasGenderDistinction( $index ) {
+		return $index == NS_USER || $index == NS_USER_TALK;
+	}
+
 }
