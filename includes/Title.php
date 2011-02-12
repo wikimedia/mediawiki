@@ -3870,7 +3870,8 @@ class Title {
 		}
 		// Check cache first
 		$uid = $user->getId();
-		if ( isset( $this->mNotificationTimestamp[$uid] ) ) {
+		// avoid isset here, as it'll return false for null entries
+		if ( array_key_exists( $uid, $this->mNotificationTimestamp ) ) {
 			return $this->mNotificationTimestamp[$uid];
 		}
 		if ( !$uid || !$wgShowUpdatedMarker ) {
