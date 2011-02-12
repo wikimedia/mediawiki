@@ -442,7 +442,7 @@ $messages = array(
 'cancel'        => 'İptal',
 'moredotdotdot' => 'Daha...',
 'mypage'        => 'sayfam',
-'mytalk'        => 'ileti sayfam',
+'mytalk'        => 'mesaj sayfam',
 'anontalk'      => "Bu IP'nin iletileri",
 'navigation'    => 'gezinti',
 'and'           => '&#32;ve',
@@ -1869,7 +1869,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 # File reversion
 'filerevert'                => '$1 dosyasını eski haline döndür',
 'filerevert-legend'         => 'Dosyayı eski haline döndür',
-'filerevert-intro'          => "'''[[Media:$1|$1]]''' medyasının [$4 $3, $2 tarihli versiyonu]nu geri getiriyorsunuz.",
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' medyasının [$4 $3, $2 tarihli sürüm]ünü geri getiriyorsunuz.",
 'filerevert-comment'        => 'Neden:',
 'filerevert-defaultcomment' => '$2, $1 tarihli sürüme geri döndürüldü',
 'filerevert-submit'         => 'Eski haline döndür',
@@ -1888,7 +1888,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'filedelete-nofile'           => "'''$1''' mevcut değildir.",
 'filedelete-nofile-old'       => "'''$1''' için belirtilen niteliklerde arşivlenmiş bir sürüm yok.",
 'filedelete-otherreason'      => 'Diğer/ilave gerekçe:',
-'filedelete-reason-otherlist' => 'Başka sebeb',
+'filedelete-reason-otherlist' => 'Başka neden',
 'filedelete-reason-dropdown'  => '*Genel silme gerekçeleri
 ** Telif hakları ihlali
 ** Çift/kopya dosya',
@@ -1897,8 +1897,8 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 
 # MIME search
 'mimesearch'         => 'MIME araması',
-'mimesearch-summary' => 'Bu sayfa, MIME tipi dosyaların süzülmesini sağlar. Girdi: içeriktipi/alttipi, e.g. <tt>resim/jpeg</tt>.',
-'mimetype'           => 'MIME tipi:',
+'mimesearch-summary' => 'Bu sayfa, MIME türü dosyaların süzülmesini sağlar. Girdi: içeriktürü/alttürü, e.g. <tt>resim/jpeg</tt>.',
+'mimetype'           => 'MIME türü:',
 'download'           => 'yükle',
 
 # Unwatched pages
@@ -1976,14 +1976,14 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'ntransclusions'          => '$1 {{PLURAL:$1|sayfada|sayfada}} kullanılıyor',
 'specialpage-empty'       => 'Bu rapor için hiç sonuç yok.',
 'lonelypages'             => 'Kendisine hiç bağlantı olmayan sayfalar',
-'lonelypagestext'         => 'Aşağıdaki sayfalara {{SITENAME}} sitesindeki diğer sayfalardan bağlantı verilmemiş yada çapraz dahil edilmemişler.',
+'lonelypagestext'         => 'Aşağıdaki sayfalara {{SITENAME}} sitesindeki diğer sayfalardan bağlantı verilmemiş ya da çapraz dahil edilmemişler.',
 'uncategorizedpages'      => 'Kategorisiz sayfalar',
 'uncategorizedcategories' => 'Kategorisiz kategoriler',
 'uncategorizedimages'     => 'Kategorisiz dosyalar',
 'uncategorizedtemplates'  => 'Kategorisiz şablonlar',
 'unusedcategories'        => 'Kullanılmayan kategoriler',
 'unusedimages'            => 'Kullanılmayan dosyalar',
-'popularpages'            => 'Popüler sayfalar',
+'popularpages'            => 'En ünlü sayfalar',
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
 'wantedpages-badtitle'    => 'Sonuç kümesinde geçersiz başlık: $1',
@@ -2004,15 +2004,15 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'protectedpages-indef'    => 'Sadece süresiz korumalar',
 'protectedpages-cascade'  => 'Sadece ardışık korumalar',
 'protectedpagestext'      => 'Aşağıdaki sayfalar koruma altına alınmıştır',
-'protectedpagesempty'     => 'Şuanda, bu parametrelerle korunan hiç bir sayfa yok.',
+'protectedpagesempty'     => 'Şu anda, bu parametrelerle korunan hiç bir sayfa yok.',
 'protectedtitles'         => 'Korunan başlıklar',
-'protectedtitlestext'     => 'Aşağıdaki başlıklar oluşturulmaya karşı korumalıdır',
-'protectedtitlesempty'    => 'Şuanda, bu parametrelerle korunan hiç bir başlık yok.',
+'protectedtitlestext'     => 'Aşağıdaki başlıklar açılmaya karşı korumalıdır',
+'protectedtitlesempty'    => 'Şu anda, bu parametrelerle korunan hiç bir başlık yok.',
 'listusers'               => 'Kullanıcı listesi',
 'listusers-editsonly'     => 'Sadece değişiklik yapan kullanıcıları göster',
-'listusers-creationsort'  => 'Oluşturma tarihine göre sırala',
+'listusers-creationsort'  => 'Açılma tarihine göre sırala',
 'usereditcount'           => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
-'usercreated'             => "$1 tarihinde $2'de oluşturuldu",
+'usercreated'             => "$1 tarihinde $2'de açıldı",
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
@@ -2022,7 +2022,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile bağlantı verebilir, ve bu yüzden etkin kullanımda olmasa bile hala burada listenebilir.',
 'unusedcategoriestext'    => 'Aşağıda bulunan kategoriler mevcut olduğu halde, hiçbir madde ya da kategori tarafından kullanılmıyor.',
 'notargettitle'           => 'Hedef yok',
-'notargettext'            => 'Bu fonksiyonu uygulamak için bir hedef sayfası ya da kullanıcısı belirtmediniz.',
+'notargettext'            => 'Bu işlevi uygulamak için bir hedef sayfası ya da kullanıcısı belirtmediniz.',
 'nopagetitle'             => 'Böyle bir hedef sayfası yok',
 'nopagetext'              => 'Belirttiğiniz hedef sayfası mevcut değil.',
 'pager-newer-n'           => '{{PLURAL:$1|1 daha yeni|$1 daha yeni}}',
@@ -2035,7 +2035,7 @@ Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile ba�
 'booksources-search-legend' => 'Kitap kaynaklarını ara',
 'booksources-go'            => 'Git',
 'booksources-text'          => 'Aşağıdaki, yeni ve kullanılmış kitap satan diğer sitelere bağlantıların listesidir, ve aradığınız kitaplar hakkında daha fazla bilgiye sahip olabilirler:',
-'booksources-invalid-isbn'  => 'Verilen ISBN geçersiz gibi görünüyor; orijinal kaynaktan kopyalama hataları için kontrol edin.',
+'booksources-invalid-isbn'  => 'Verilen ISBN geçersiz gibi görünüyor; özgün kaynaktan kopyalama hataları için kontrol edin.',
 
 # Special:Log
 'specialloguserlabel'  => 'Kullanıcı:',
@@ -2106,7 +2106,7 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 # Special:Log/newusers
 'newuserlogpage'              => 'Yeni kullanıcı kayıtları',
 'newuserlogpagetext'          => 'En son kaydolan kullanıcı kayıtları.',
-'newuserlog-byemail'          => 'eposta yoluyla şifre gönderilmiştir',
+'newuserlog-byemail'          => 'e-posta yoluyla şifre gönderilmiştir',
 'newuserlog-create-entry'     => 'Yeni kullanıcı',
 'newuserlog-create2-entry'    => '$1 yeni hesabını oluşturdu',
 'newuserlog-autocreate-entry' => 'Otomatik hesap oluşturuldu',
@@ -2135,9 +2135,9 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'mailnologintext'      => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser'            => 'Kullanıcıya e-posta gönder',
 'emailpage'            => 'Kullanıcıya e-posta gönder',
-'emailpagetext'        => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
+'emailpagetext'        => 'Bu kullanıcıya e-posta iletisi göndermek için aşağıdaki formu kullanabilirsiniz.
 [[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
-'usermailererror'      => 'Eposta hizmeti hata verdi:',
+'usermailererror'      => 'E-posta hizmeti hata verdi:',
 'defemailsubject'      => '{{SITENAME}} e-posta',
 'usermaildisabled'     => 'Kullanıcı e-postası devre dışı',
 'usermaildisabledtext' => 'Bu vikide diğer kullanıcılara e-posta gönderemezsiniz',
@@ -2151,22 +2151,22 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'emailsubject'         => 'Konu:',
 'emailmessage'         => 'E-posta:',
 'emailsend'            => 'Gönder',
-'emailccme'            => 'Mesajın bir kopyasını da bana gönder.',
-'emailccsubject'       => "$1'e gönderdiğiniz mesajın kopyası: $2",
+'emailccme'            => 'E-posta iletisinin bir kopyasını da bana gönder.',
+'emailccsubject'       => "$1'e gönderdiğiniz iletinin kopyası: $2",
 'emailsent'            => 'E-posta gönderildi',
 'emailsenttext'        => 'E-postanız gönderildi.',
-'emailuserfooter'      => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" fonksiyonu ile gönderilmiştir.',
+'emailuserfooter'      => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" işlevi ile gönderilmiştir.',
 
 # User Messenger
-'usermessage-summary' => 'Sistem mesajı bırakın.',
+'usermessage-summary' => 'Sistem iletisi bırakın.',
 'usermessage-editor'  => 'Sistem habercisi',
 
 # Watchlist
-'watchlist'            => 'izleme listem',
-'mywatchlist'          => 'izleme listem',
+'watchlist'            => 'İzleme listem',
+'mywatchlist'          => 'İzleme listem',
 'watchlistfor2'        => '$1 için $2',
 'nowatchlist'          => 'İzleme listesinde hiçbir madde bulunmuyor.',
-'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek yada değiştirmek için $1.',
+'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek ya da değiştirmek için $1.',
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:UserLogin|oturum açmalısınız]].',
 'addedwatch'           => 'İzleme listesine kaydedildi.',
@@ -2187,7 +2187,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'notvisiblerev'        => 'Revizyon silinmiş',
 'watchnochange'        => 'İzleme listenizdeki sayfaların hiçbiri, gösterilen zaman aralığında güncellenmemiş.',
 'watchlist-details'    => 'Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.',
-'wlheader-enotif'      => '* E-mail ile haber verme açılmıştır.',
+'wlheader-enotif'      => '* E-posta ile haber verme açılmıştır.',
 'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişiklikleri '''kalın yazıyla''' gösterilmiştir.",
 'watchmethod-recent'   => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
 'watchmethod-list'     => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
@@ -2234,7 +2234,7 @@ Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik
 Sayfayı izleme listenizden silmek için:
 $UNWATCHURL
 
-Geridönüt ve daha fazla yardım için:
+Geri bildirim ve daha fazla yardım için:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2343,14 +2343,14 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite',
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Kısıtlama düzeyi:',
-'minimum-size'                => 'Minumum boyutu',
-'maximum-size'                => 'Maksimum boyutu:',
+'minimum-size'                => 'En küçük boyut',
+'maximum-size'                => 'En büyük boyut:',
 'pagesize'                    => '(bayt)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'değiştir',
 'restriction-move'   => 'Taşı',
-'restriction-create' => 'Yarat',
+'restriction-create' => 'Oluştur',
 'restriction-upload' => 'Yükle',
 
 # Restriction levels
@@ -2416,7 +2416,7 @@ $1',
 # Contributions
 'contributions'       => 'Kullanıcının katkıları',
 'contributions-title' => '$1 için kullanıcı katkıları',
-'mycontris'           => 'katkılarım',
+'mycontris'           => 'Katkılarım',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'               => '(son)',
@@ -2432,9 +2432,9 @@ $1',
 'sp-contributions-logs'                => 'günlükler',
 'sp-contributions-talk'                => 'tartışma',
 'sp-contributions-userrights'          => 'kullanıcı hakları yönetimi',
-'sp-contributions-blocked-notice'      => 'Bu kullanıcı engellenmiştir. Referans için en son engellenme kaydı aşağıda belirtilmiştir:',
-'sp-contributions-blocked-notice-anon' => 'Bu IP adresi şuanda engellenmiş.
-Son engelleme günlüğü girdisi referans amacıyla aşağıda verilmiştir:',
+'sp-contributions-blocked-notice'      => 'Bu kullanıcı engellenmiştir. Kaynek için en son engellenme kaydı aşağıda belirtilmiştir:',
+'sp-contributions-blocked-notice-anon' => 'Bu IP adresi şu anda engellenmiş.
+Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'sp-contributions-search'              => 'Katkıları ara',
 'sp-contributions-username'            => 'IP veya kullanıcı:',
 'sp-contributions-toponly'             => 'Sadece en üsteki sürümleri göster',
@@ -2457,7 +2457,7 @@ Son engelleme günlüğü girdisi referans amacıyla aşağıda verilmiştir:',
 'whatlinkshere-hidetrans'  => 'Çapraz eklemeleri $1',
 'whatlinkshere-hidelinks'  => 'bağlantıları $1',
 'whatlinkshere-hideimages' => 'Resim bağlantılarını $1',
-'whatlinkshere-filters'    => 'Filtreler',
+'whatlinkshere-filters'    => 'Süzgeçler',
 
 # Block/unblock
 'blockip'                         => 'Kullanıcıyı engelle',
@@ -2468,8 +2468,8 @@ Son engelleme günlüğü girdisi referans amacıyla aşağıda verilmiştir:',
 'ipadressorusername'              => 'IP adresi veya kullanıcı adı',
 'ipbexpiry'                       => 'Bitiş süresi',
 'ipbreason'                       => 'Neden:',
-'ipbreasonotherlist'              => 'Başka sebep',
-'ipbreason-dropdown'              => '*Genel engelleme sebepleri
+'ipbreasonotherlist'              => 'Başka neden',
+'ipbreason-dropdown'              => '*Genel engelleme nedenleri
 ** Yanlış bilgi eklemek
 ** Sayfalardan içeriği çıkarmak
 ** Dış sitelere spam bağlantı vermek
@@ -2518,7 +2518,7 @@ Son engelleme günlüğü girdisi referans amacıyla aşağıda verilmiştir:',
 'expiringblock'                   => '$1 $2 tarihinde doluyor',
 'anononlyblock'                   => 'sadece anonim',
 'noautoblockblock'                => 'otomatik engelleme devre dışı bırakıldı',
-'createaccountblock'              => 'hesap yaratımı engellendi',
+'createaccountblock'              => 'hesap açımı engellendi',
 'emailblock'                      => 'e-posta engellendi',
 'blocklist-nousertalk'            => 'kendi tartışma sayfasını değiştiremez',
 'ipblocklist-empty'               => 'Engelleme listesi boş.',

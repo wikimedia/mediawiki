@@ -852,7 +852,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'grouppage-sysop' => '{{ns:project}}:Admînistrator',
 
 # Rights
-'right-read'          => 'Rûpelan bixûne',
+'right-read'          => 'Rûpelan bixwîne',
 'right-edit'          => 'Rûpelan biguherîne',
 'right-createtalk'    => 'Rûpelên gotûbêjê çêke',
 'right-createaccount' => 'Hesaba bikarînerek nû veke',
@@ -952,7 +952,7 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 'filetype-unwanted-type'  => '\'\'\'".$1"\'\'\' formatekî nexastî ye.
 Format {{PLURAL:$3|yê tê|yên tên}} qebûlkirin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-banned-type'    => '\'\'\'".$1"\'\'\' formatekî qedexe ye.
-Format {{PLURAL:$3|yê tê|yên tên}} xastin {{PLURAL:$3|ev e|ev in}}: $2.',
+Format {{PLURAL:$3|yê tê|yên tên}} xwestin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-missing'        => 'Piştnavî datayê tune (wek ".jpg").',
 'large-file'              => "Mezinbûna data'yan bila ne ji $1 mezintir bin; ev data'ya $2 mezin e.",
 'emptyfile'               => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
@@ -1187,8 +1187,10 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'listusers-noresult' => 'Ne bikarhênerek hate dîtin.',
 
 # Special:ActiveUsers
+'activeusers'            => 'Lîsteya bikarhênerên çalak',
 'activeusers-hidebots'   => "Bot'an veşêre",
 'activeusers-hidesysops' => 'Koordînatoran veşêre',
+'activeusers-noresult'   => 'Tu bikarhêner nehate dîtin.',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Reşahiya çêkirina hesabên nû',
