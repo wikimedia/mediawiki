@@ -325,8 +325,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 				}
 				if ( $mto && $mto->isError() ) {
-					$this->setWarning( 'Error creating thumbnail for ' . $file->getName() . 
-						': ' . $mto->toText() );
+					$vals['thumberror'] = $mto->toText();
 				}
 			}
 			$vals['url'] = $file->getFullURL();
