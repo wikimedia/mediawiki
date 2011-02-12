@@ -381,7 +381,8 @@ class ResourceLoader {
 		// Some clients send "timestamp;length=123". Strip the part after the first ';'
 		// so we get a valid timestamp.
 		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
-		if ( $ims !== false ) {
+		// Never send 304s in debug mode
+		if ( $ims !== false && !$context->getDebug() ) {
 			$imsTS = strtok( $ims, ';' );
 			if ( $mtime <= wfTimestamp( TS_UNIX, $imsTS ) ) {
 				// There's another bug in ob_gzhandler (see also the comment at
