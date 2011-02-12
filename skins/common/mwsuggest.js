@@ -7,6 +7,12 @@
  * by Robert Stojnic (April 2008)
  */
 
+// Make sure wgMWSuggestTemplate is defined
+if ( !mw.config.exists( 'wgMWSuggestTemplate' ) ) {
+	mw.config.set( 'wgMWSuggestTemplate', mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' )
+		 + "/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest" );
+}
+
 // search_box_id -> Results object
 window.os_map = {};
 // cached data, url -> json_text
@@ -416,7 +422,7 @@ window.os_delayedFetch = function() {
 	var r = os_timer.r;
 	var query = os_timer.query;
 	os_timer = null;
-	var path = wgMWSuggestTemplate.replace( "{namespaces}", os_getNamespaces( r ) )
+	var path = mw.config.get( 'wgMWSuggestTemplate' ).replace( "{namespaces}", os_getNamespaces( r ) )
 									.replace( "{dbname}", wgDBname )
 									.replace( "{searchTerms}", os_encodeQuery( query ) );
 
