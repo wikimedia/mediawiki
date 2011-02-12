@@ -77,7 +77,7 @@ class UploadTest extends MediaWikiTestCase {
 
 	// Helper used to create an empty file of size $size.
 	private function createFileOfSize( $size ) {
-		$filename = tempnam( wfTempDir(), "mwuploadtest" ) . ".txt";
+		$filename = tempnam( wfTempDir(), "mwuploadtest" );
 
 		$fh = fopen( $filename, 'w' );
 		ftruncate( $fh, $size );
@@ -101,7 +101,7 @@ class UploadTest extends MediaWikiTestCase {
 		$wgMaxUploadSize = 100;
 
 		$filename = $this->createFileOfSize( $wgMaxUploadSize );
-		$this->upload->initializePathInfo( basename($filename), $filename, 100 );
+		$this->upload->initializePathInfo( basename($filename) . '.txt', $filename, 100 );
 		$result = $this->upload->verifyUpload();
 		unlink( $filename );
 
