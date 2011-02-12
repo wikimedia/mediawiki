@@ -443,11 +443,11 @@ $wgAllowCopyUploads = false;
 $wgAllowAsyncCopyUploads = false;
 
 /**
- * Max size for uploads, in bytes. If not set to an array, applies to all 
+ * Max size for uploads, in bytes. If not set to an array, applies to all
  * uploads. If set to an array, per upload type maximums can be set, using the
  * file and url keys. If the * key is set this value will be used as maximum
  * for non-specified types.
- * 
+ *
  * For example:
  * 	$wgUploadSize = array(
  * 		'*' => 250 * 1024,
@@ -455,7 +455,7 @@ $wgAllowAsyncCopyUploads = false;
  * 	);
  * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
  * will have a maximum of 500 kB.
- * 
+ *
  */
 $wgMaxUploadSize = 1024*1024*100; # 100MB
 
@@ -559,7 +559,7 @@ $wgMimeTypeBlacklist = array(
 	# MS Office OpenXML and other Open Package Conventions files are zip files
 	# and thus blacklisted just as other zip files. If you remove these entries
 	# from the blacklist in your local configuration, a malicious file upload
-	# will be able to compromise the wiki's user accounts, and the user 
+	# will be able to compromise the wiki's user accounts, and the user
 	# accounts of any other website in the same cookie domain.
 	'application/x-opc+zip',
 	'application/msword',
@@ -1697,9 +1697,9 @@ $wgClockSkewFudge = 5;
  * to setting $wgCacheEpoch to the modification time of LocalSettings.php, as
  * was previously done in the default LocalSettings.php file.
  *
- * On high-traffic wikis, this should be set to false, to avoid the need to 
+ * On high-traffic wikis, this should be set to false, to avoid the need to
  * check the file modification time, and to avoid the performance impact of
- * unnecessary cache invalidations. 
+ * unnecessary cache invalidations.
  */
 $wgInvalidateCacheOnLocalSettingsChange = true;
 
@@ -2293,7 +2293,7 @@ $wgEnableTooltipsAndAccesskeys = true;
 $wgBreakFrames = false;
 
 /**
- * The X-Frame-Options header to send on pages sensitive to clickjacking 
+ * The X-Frame-Options header to send on pages sensitive to clickjacking
  * attacks, such as edit pages. This prevents those pages from being displayed
  * in a frame or iframe. The options are:
  *
@@ -2303,9 +2303,9 @@ $wgBreakFrames = false;
  *         to allow framing within a trusted domain. This is insecure if there
  *         is a page on the same domain which allows framing of arbitrary URLs.
  *
- *   - false: Allow all framing. This opens up the wiki to XSS attacks and thus 
- *         full compromise of local user accounts. Private wikis behind a 
- *         corporate firewall are especially vulnerable. This is not 
+ *   - false: Allow all framing. This opens up the wiki to XSS attacks and thus
+ *         full compromise of local user accounts. Private wikis behind a
+ *         corporate firewall are especially vulnerable. This is not
  *         recommended.
  *
  * For extra safety, set $wgBreakFrames = true, to prevent framing on all pages,
@@ -2334,17 +2334,17 @@ $wgExperimentalHtmlIds = true;
  * You can add new icons to the built in copyright or poweredby, or you can create
  * a new block. Though note that you may need to add some custom css to get good styling
  * of new blocks in monobook. vector and modern should work without any special css.
- * 
+ *
  * $wgFooterIcons itself is a key/value array.
- * The key is the name of a block that the icons will be wrapped in. The final id varies 
- * by skin; Monobook and Vector will turn poweredby into f-poweredbyico while Modern 
+ * The key is the name of a block that the icons will be wrapped in. The final id varies
+ * by skin; Monobook and Vector will turn poweredby into f-poweredbyico while Modern
  * turns it into mw_poweredby.
  * The value is either key/value array of icons or a string.
  * In the key/value array the key may or may not be used by the skin but it can
  * be used to find the icon and unset it or change the icon if needed.
  * This is useful for disabling icons that are set by extensions.
- * The value should be either a string or an array. If it is a string it will be output 
- * directly as html, however some skins may choose to ignore it. An array is the preferred format 
+ * The value should be either a string or an array. If it is a string it will be output
+ * directly as html, however some skins may choose to ignore it. An array is the preferred format
  * for the icon, the following keys are used:
  *   src: An absolute url to the image to use for the icon, this is recommended
  *        but not required, however some skins will ignore icons without an image
@@ -3373,7 +3373,7 @@ $wgGroupsRemoveFromSelf = array();
  * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
  * Translated through restriction-* messages.
- * Title::getRestrictionTypes() will remove restrictions that are not 
+ * Title::getRestrictionTypes() will remove restrictions that are not
  * applicable to a specific title (upload currently)
  */
 $wgRestrictionTypes = array( 'edit', 'move', 'upload' );
@@ -4185,12 +4185,12 @@ $wgReadOnly             = null;
 $wgReadOnlyFile         = false;
 
 /**
- * When you run the web-based upgrade utility, it will tell you what to set 
+ * When you run the web-based upgrade utility, it will tell you what to set
  * this to in order to authorize the upgrade process. It will subsequently be
  * used as a password, to authorize further upgrades.
  *
- * For security, do not set this to a guessable string. Use the value supplied 
- * by the install/upgrade process. To cause the upgrader to generate a new key, 
+ * For security, do not set this to a guessable string. Use the value supplied
+ * by the install/upgrade process. To cause the upgrader to generate a new key,
  * delete the old key from LocalSettings.php.
  */
 $wgUpgradeKey = false;
@@ -4636,24 +4636,24 @@ $wgCategoryMagicGallery = true;
 $wgCategoryPagingLimit = 200;
 
 /**
- * Specify how category names should be sorted, when listed on a category page. 
+ * Specify how category names should be sorted, when listed on a category page.
  * A sorting scheme is also known as a collation.
  *
  * Available values are:
  *
  *   - uppercase: Converts the category name to upper case, and sorts by that.
  *
- *   - uca-default: Provides access to the Unicode Collation Algorithm with 
+ *   - uca-default: Provides access to the Unicode Collation Algorithm with
  *     the default element table. This is a compromise collation which sorts
  *     all languages in a mediocre way. However, it is better than "uppercase".
  *
- * To use the uca-default collation, you must have PHP's intl extension 
- * installed. See http://php.net/manual/en/intl.setup.php . The details of the 
- * resulting collation will depend on the version of ICU installed on the 
+ * To use the uca-default collation, you must have PHP's intl extension
+ * installed. See http://php.net/manual/en/intl.setup.php . The details of the
+ * resulting collation will depend on the version of ICU installed on the
  * server.
  *
  * After you change this, you must run maintenance/updateCollation.php to fix
- * the sort keys in the database. 
+ * the sort keys in the database.
  */
 $wgCategoryCollation = 'uppercase';
 

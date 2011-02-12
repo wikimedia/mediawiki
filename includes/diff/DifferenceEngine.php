@@ -445,7 +445,7 @@ CONTROL;
 
 			$this->loadNewText();
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
-	
+
 			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
@@ -465,7 +465,7 @@ CONTROL;
 					$wgOut->addParserOutput( $pOutput );
 				} else {
 					$article->doViewParse();
-				} 
+				}
 			} else {
 				$wgOut->addWikiTextTidy( $this->mNewtext );
 			}

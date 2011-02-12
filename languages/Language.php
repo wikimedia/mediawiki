@@ -2730,11 +2730,11 @@ class Language {
 	function getPreferredVariant() {
 		return $this->mConverter->getPreferredVariant();
 	}
-	
+
 	function getDefaultVariant() {
 		return $this->mConverter->getDefaultVariant();
 	}
-	
+
 	function getURLVariant() {
 		return $this->mConverter->getURLVariant();
 	}

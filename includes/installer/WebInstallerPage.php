@@ -368,6 +368,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$status = $this->submit();
+
 			if ( $status->isGood() ) {
 				$this->setVar( '_UpgradeDone', false );
 				return 'continue';

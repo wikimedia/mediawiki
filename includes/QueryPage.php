@@ -130,7 +130,7 @@ abstract class QueryPage extends SpecialPage {
 	function getQueryInfo() {
 		return null;
 	}
-	
+
 	/**
 	 * For back-compat, subclasses may return a raw SQL query here, as a string.
 	 * This is stronly deprecated; getQueryInfo() should be overridden instead.
@@ -274,7 +274,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( !$this->isCacheable() ) {
 			return 0;
 		}
-		
+
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );

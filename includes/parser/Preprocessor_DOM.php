@@ -5,7 +5,7 @@
  * @file
  * @ingroup Parser
  */
- 
+
 /**
  * @ingroup Parser
  */
@@ -40,7 +40,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$xml = "<list>";
 
 		foreach ( $values as $k => $val ) {
-			 
+
 			if ( is_int( $k ) ) {
 				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) ."</value></part>";
 			} else {
@@ -95,7 +95,7 @@ class Preprocessor_DOM implements Preprocessor {
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		global $wgMemc, $wgPreprocessorCacheThreshold;
-		
+
 		$xml = false;
 		$cacheable = $wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold;
 		if ( $cacheable ) {
@@ -146,7 +146,7 @@ class Preprocessor_DOM implements Preprocessor {
 		wfProfileOut( __METHOD__ );
 		return $obj;
 	}
-	
+
 	function preprocessToXml( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		$rules = array(
@@ -388,8 +388,8 @@ class Preprocessor_DOM implements Preprocessor {
 				} else {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
-					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i", 
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) ) 
+					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
+							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) )
 					{
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
@@ -654,7 +654,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$xml = $stack->rootAccum;
 
 		wfProfileOut( __METHOD__ );
-		
+
 		return $xml;
 	}
 }
@@ -1057,11 +1057,11 @@ class PPFrame_DOM implements PPFrame {
 					# Heading
 					$s = $this->expand( $contextNode->childNodes, $flags );
 
-                    # Insert a heading marker only for <h> children of <root>
-                    # This is to stop extractSections from going over multiple tree levels
-                    if ( $contextNode->parentNode->nodeName == 'root'
-                      && $this->parser->ot['html'] )
-                    {
+					# Insert a heading marker only for <h> children of <root>
+					# This is to stop extractSections from going over multiple tree levels
+					if ( $contextNode->parentNode->nodeName == 'root'
+					  && $this->parser->ot['html'] )
+					{
 						# Insert heading index marker
 						$headingIndex = $contextNode->getAttribute( 'i' );
 						$titleText = $this->title->getPrefixedDBkey();
@@ -1320,7 +1320,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		}
 		return $arguments;
 	}
-	
+
 	function getNumberedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->numberedArgs) as $key ) {
@@ -1328,7 +1328,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		}
 		return $arguments;
 	}
-	
+
 	function getNamedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->namedArgs) as $key ) {

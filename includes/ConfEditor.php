@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * This is a state machine style parser with two internal stacks:
  *   * A next state stack, which determines the state the machine will progress to next
  *   * A path stack, which keeps track of the logical location in the file.
@@ -40,8 +40,8 @@ class ConfEditor {
 	/** The previous ConfEditorToken object */
 	var $prevToken;
 
-	/** 
-	 * The state machine stack. This is an array of strings where the topmost 
+	/**
+	 * The state machine stack. This is an array of strings where the topmost
 	 * element will be popped off and become the next parser state.
 	 */
 	var $stateStack;
@@ -66,7 +66,7 @@ class ConfEditor {
 	var $pathStack;
 
 	/**
-	 * The elements of the top of the pathStack for every path encountered, indexed 
+	 * The elements of the top of the pathStack for every path encountered, indexed
 	 * by slash-separated path.
 	 */
 	var $pathInfo;
@@ -77,7 +77,7 @@ class ConfEditor {
 	var $serial;
 
 	/**
-	 * Editor state. This consists of the internal copy/insert operations which 
+	 * Editor state. This consists of the internal copy/insert operations which
 	 * are applied to the source string to obtain the destination string.
 	 */
 	var $edits;
@@ -103,7 +103,7 @@ class ConfEditor {
 	}
 
 	/**
-	 * Edit the text. Returns the edited text. 
+	 * Edit the text. Returns the edited text.
 	 * @param $ops Array of operations.
 	 *
 	 * Operations are given as an associative array, with members:
@@ -114,20 +114,20 @@ class ConfEditor {
 	 *
 	 * delete
 	 *    Deletes an array element or statement with the specified path.
-	 *    e.g. 
+	 *    e.g.
 	 *        array('type' => 'delete', 'path' => '$foo/bar/baz' )
 	 *    is equivalent to the runtime PHP code:
 	 *        unset( $foo['bar']['baz'] );
 	 *
 	 * set
-	 *    Sets the value of an array element. If the element doesn't exist, it 
-	 *    is appended to the array. If it does exist, the value is set, with 
+	 *    Sets the value of an array element. If the element doesn't exist, it
+	 *    is appended to the array. If it does exist, the value is set, with
 	 *    comments and indenting preserved.
 	 *
 	 * append
 	 *    Appends a new element to the end of the array. Adds a trailing comma.
 	 *    e.g.
-	 *        array( 'type' => 'append', 'path', '$foo/bar', 
+	 *        array( 'type' => 'append', 'path', '$foo/bar',
 	 *            'key' => 'baz', 'value' => "'x'" )
 	 *    is like the PHP code:
 	 *        $foo['bar']['baz'] = 'x';
@@ -187,7 +187,7 @@ class ConfEditor {
 					list( $indent, ) = $this->getIndent( $start );
 					$textToInsert = "$indent$value,";
 				} else {
-					list( $indent, $arrowIndent ) = 
+					list( $indent, $arrowIndent ) =
 						$this->getIndent( $start, $key, $lastEltInfo['arrowByte'] );
 					$textToInsert = "$indent$key$arrowIndent=> $value,";
 				}
@@ -210,7 +210,7 @@ class ConfEditor {
 					list( $indent, ) = $this->getIndent( $start );
 					$textToInsert = "$indent$value,";
 				} else {
-					list( $indent, $arrowIndent ) = 
+					list( $indent, $arrowIndent ) =
 						$this->getIndent( $start, $key, $info['arrowByte'] );
 					$textToInsert = "$indent$key$arrowIndent=> $value,";
 				}
@@ -239,13 +239,13 @@ class ConfEditor {
 		try {
 			$this->parse();
 		} catch ( ConfEditorParseError $e ) {
-			throw new MWException( 
+			throw new MWException(
 				"Sorry, ConfEditor broke the file during editing and it won't parse anymore: " .
 				$e->getMessage() );
 		}
 		return $out;
 	}
-	
+
 	/**
 	 * Get the variables defined in the text
 	 * @return array( varname => value )
@@ -266,7 +266,7 @@ class ConfEditor {
 				strlen( $trimmedPath ) - strlen( $name ) );
 			if( substr( $parentPath, -1 ) == '/' )
 				$parentPath = substr( $parentPath, 0, -1 );
-			
+
 			$value = substr( $this->text, $data['valueStartByte'],
 				$data['valueEndByte'] - $data['valueStartByte']
 			);
@@ -275,7 +275,7 @@ class ConfEditor {
 		}
 		return $vars;
 	}
-	
+
 	/**
 	 * Set a value in an array, unless it's set already. For instance,
 	 * setVar( $arr, 'foo/bar', 'baz', 3 ); will set
@@ -298,7 +298,7 @@ class ConfEditor {
 		if ( !isset( $target[$key] ) )
 			$target[$key] = $value;
 	}
-	
+
 	/**
 	 * Parse a scalar value in PHP
 	 * @return mixed Parsed value
@@ -364,8 +364,8 @@ class ConfEditor {
 	}
 
 	/**
-	 * Finds the source byte region which you would want to delete, if $pathName 
-	 * was to be deleted. Includes the leading spaces and tabs, the trailing line 
+	 * Finds the source byte region which you would want to delete, if $pathName
+	 * was to be deleted. Includes the leading spaces and tabs, the trailing line
 	 * break, and any comments in between.
 	 */
 	function findDeletionRegion( $pathName ) {
@@ -419,9 +419,9 @@ class ConfEditor {
 	}
 
 	/**
-	 * Find the byte region in the source corresponding to the value part. 
-	 * This includes the quotes, but does not include the trailing comma 
-	 * or semicolon. 
+	 * Find the byte region in the source corresponding to the value part.
+	 * This includes the quotes, but does not include the trailing comma
+	 * or semicolon.
 	 *
 	 * The end position is the past-the-end (end + 1) value as per convention.
 	 */
@@ -519,7 +519,7 @@ class ConfEditor {
 	}
 
 	/**
-	 * Run the parser on the text. Throws an exception if the string does not 
+	 * Run the parser on the text. Throws an exception if the string does not
 	 * match our defined subset of PHP syntax.
 	 */
 	public function parse() {
@@ -706,7 +706,7 @@ class ConfEditor {
 	}
 
 	/**
-	 * Set the parse position. Do not call this except from firstToken() and 
+	 * Set the parse position. Do not call this except from firstToken() and
 	 * nextToken(), there is more to update than just the position.
 	 */
 	protected function setPos( $pos ) {
@@ -800,7 +800,7 @@ class ConfEditor {
 		if ( $this->currentToken && $this->currentToken->type == $type ) {
 			return $this->nextToken();
 		} else {
-			$this->error( "expected " . $this->getTypeName( $type ) . 
+			$this->error( "expected " . $this->getTypeName( $type ) .
 				", got " . $this->getTypeName( $this->currentToken->type ) );
 		}
 	}
@@ -875,7 +875,7 @@ class ConfEditor {
 	}
 
 	/**
-	 * Go to the next path on the same level. This ends the current path and 
+	 * Go to the next path on the same level. This ends the current path and
 	 * starts a new one. If $path is \@next, the new path is set to the next
 	 * numeric array element.
 	 */
@@ -889,7 +889,7 @@ class ConfEditor {
 		} else {
 			$this->pathStack[$i]['name'] = $path;
 		}
-		$this->pathStack[$i] = 
+		$this->pathStack[$i] =
 			array(
 				'startByte' => $this->byteNum,
 				'startToken' => $this->pos,
@@ -955,8 +955,8 @@ class ConfEditor {
 	}
 
 	/**
-	 * Looks ahead to see if the given type is the next token type, starting 
-	 * from the current position plus the given offset. Skips any intervening 
+	 * Looks ahead to see if the given type is the next token type, starting
+	 * from the current position plus the given offset. Skips any intervening
 	 * whitespace.
 	 */
 	function isAhead( $type, $offset = 0 ) {
@@ -992,8 +992,8 @@ class ConfEditor {
 		$out = '';
 		foreach ( $this->tokens as $token ) {
 			$obj = $this->newTokenObj( $token );
-			$out .= sprintf( "%-28s %s\n", 
-				$this->getTypeName( $obj->type ), 
+			$out .= sprintf( "%-28s %s\n",
+				$this->getTypeName( $obj->type ),
 				addcslashes( $obj->text, "\0..\37" ) );
 		}
 		echo "<pre>" . htmlspecialchars( $out ) . "</pre>";
@@ -1008,7 +1008,7 @@ class ConfEditorParseError extends MWException {
 	function __construct( $editor, $msg ) {
 		$this->lineNum = $editor->lineNum;
 		$this->colNum = $editor->colNum;
-		parent::__construct( "Parse error on line {$editor->lineNum} " . 
+		parent::__construct( "Parse error on line {$editor->lineNum} " .
 			"col {$editor->colNum}: $msg" );
 	}
 
@@ -1028,7 +1028,7 @@ class ConfEditorParseError extends MWException {
  */
 class ConfEditorToken {
 	var $type, $text;
-	
+
 	static $scalarTypes = array( T_LNUMBER, T_DNUMBER, T_STRING, T_CONSTANT_ENCAPSED_STRING );
 	static $skipTypes = array( T_WHITESPACE, T_COMMENT, T_DOC_COMMENT );
 

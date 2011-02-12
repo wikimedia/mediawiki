@@ -150,7 +150,7 @@ class LinkCache {
 			wfProfileOut( __METHOD__ );
 			return 0;
 		}
-		
+
 		# Some fields heavily used for linking...
 		if ( $this->mForUpdate ) {
 			$db = wfGetDB( DB_MASTER );
@@ -164,7 +164,7 @@ class LinkCache {
 			$options = array();
 		}
 
-		$s = $db->selectRow( 'page', 
+		$s = $db->selectRow( 'page',
 			array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
 			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
 			__METHOD__, $options );
