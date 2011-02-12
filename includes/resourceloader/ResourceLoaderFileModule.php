@@ -150,6 +150,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			global $wgExtensionAssetsPath;
 			$this->remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
 		}
+		$this->remoteBasePath = wfExpandUrl( $this->remoteBasePath );
 
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
