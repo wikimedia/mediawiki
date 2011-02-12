@@ -86,7 +86,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= "\n</div>\n<div id='article'>";
 
-		$notice = wfGetSiteNotice();
+		$notice = $this->getSkin()->getSiteNotice();
 		if( $notice ) {
 			$s .= "\n<div id='siteNotice'>$notice</div>\n";
 		}

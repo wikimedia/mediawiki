@@ -1550,4 +1550,115 @@ abstract class Skin extends Linker {
 
 		return $ntl;
 	}
+
+	/**
+	 * Get a cached notice
+	 *
+	 * @param $name String: message name, or 'default' for $wgSiteNotice
+	 * @return String: HTML fragment
+	 */
+	private function getCachedNotice( $name ) {
+		global $wgOut, $wgRenderHashAppend, $parserMemc;
+
+		wfProfileIn( __METHOD__ );
+
+		$needParse = false;
+
+		if( $name === 'default' ) {
+			// special case
+			global $wgSiteNotice;
+			$notice = $wgSiteNotice;
+			if( empty( $notice ) ) {
+				wfProfileOut( __METHOD__ );
+				return false;
+			}
+		} else {
+			$msg = wfMessage( $name )->inContentLanguage();
+			if( $msg->isDisabled() ) {
+				wfProfileOut( __METHOD__ );
+				return false;
+			}
+			$notice = $msg->plain();
+		}
+
+		// Use the extra hash appender to let eg SSL variants separately cache.
+		$key = wfMemcKey( $name . $wgRenderHashAppend );
+		$cachedNotice = $parserMemc->get( $key );
+		if( is_array( $cachedNotice ) ) {
+			if( md5( $notice ) == $cachedNotice['hash'] ) {
+				$notice = $cachedNotice['html'];
+			} else {
+				$needParse = true;
+			}
+		} else {
+			$needParse = true;
+		}
+
+		if ( $needParse ) {
+			if( is_object( $wgOut ) ) {
+				$parsed = $wgOut->parse( $notice );
+				$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
+				$notice = $parsed;
+			} else {
+				wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' . "\n" );
+				$notice = '';
+			}
+		}
+
+		$notice = '<div id="localNotice">' .$notice . '</div>';
+		wfProfileOut( __METHOD__ );
+		return $notice;
+	}
+
+	/**
+	 * Get a notice based on page's namespace
+	 *
+	 * @return String: HTML fragment
+	 */
+	function getNamespaceNotice() {
+		wfProfileIn( __METHOD__ );
+
+		$key = 'namespacenotice-' . $this->mTitle->getNsText();
+		$namespaceNotice = wfGetCachedNotice( $key );
+		if ( $namespaceNotice && substr( $namespaceNotice, 0, 7 ) != '<p>&lt;' ) {
+			$namespaceNotice = '<div id="namespacebanner">' . $namespaceNotice . '</div>';
+		} else {
+			$namespaceNotice = '';
+		}
+
+		wfProfileOut( $fname );
+		return $namespaceNotice;
+	}
+
+	/**
+	 * Get the site notice
+	 *
+	 * @return String: HTML fragment
+	 */
+	function getSiteNotice() {
+		global $wgUser;
+
+		wfProfileIn( __METHOD__ );
+		$siteNotice = '';
+
+		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
+			if ( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
+				$siteNotice = $this->getCachedNotice( 'sitenotice' );
+			} else {
+				$anonNotice = $this->getCachedNotice( 'anonnotice' );
+				if ( !$anonNotice ) {
+					$siteNotice = $this->getCachedNotice( 'sitenotice' );
+				} else {
+					$siteNotice = $anonNotice;
+				}
+			}
+			if ( !$siteNotice ) {
+				$siteNotice = $this->getCachedNotice( 'default' );
+			}
+		}
+
+		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
+		wfProfileOut( __METHOD__ );
+		return $siteNotice;
+}
 }
