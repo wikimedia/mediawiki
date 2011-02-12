@@ -19,7 +19,7 @@ class ArticleTablesTest extends MediaWikiTestCase {
 		$status = $article->doEdit( '{{:{{int:history}}}}', 'Test code for bug 14404', 0 );
 		$templates1 = $article->getUsedTemplates();
 
-		$wgLang = Language::factory( 'de' );		
+		$wgLang = Language::factory( 'de' );
 		$article->mParserOptions = null; // Let it pick the new user language
 		$article->mPreparedEdit = false; // In order to force the rerendering of the same wikitext
 		
