@@ -156,10 +156,6 @@ class SkinTemplate extends Skin {
 
 		$this->setMembers();
 		$tpl = $this->setupTemplate( $this->template, 'skins' );
-
-		#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
-		$tpl->setTranslator( new MediaWiki_I18N() );
-		#}
 		wfProfileOut( __METHOD__ . '-init' );
 
 		wfProfileIn( __METHOD__ . '-stuff' );
