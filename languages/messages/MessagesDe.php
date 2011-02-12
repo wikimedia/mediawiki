@@ -80,7 +80,10 @@ $namespaceAliases = array(
 	'Bild' => NS_FILE,
 	'Bild_Diskussion' => NS_FILE_TALK,
 );
-
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Benutzer', 'female' => 'Benutzerin' ),
+	NS_USER_TALK => array( 'male' => 'Benutzer_Diskussion', 'female' => 'Benutzerin_Diskussion' ),
+);
 
 $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
