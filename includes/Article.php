@@ -1765,7 +1765,7 @@ class Article {
 	 *
 	 * @param $dbw DatabaseBase: object
 	 * @param $revision Revision: For ID number, and text used to set
-	                    length and redirect status fields
+						length and redirect status fields
 	 * @param $lastRevision Integer: if given, will not overwrite the page field
 	 *                      when different from the currently set value.
 	 *                      Giving 0 indicates the new page flag should be set
@@ -4403,7 +4403,7 @@ class Article {
 			$parserOptions = new ParserOptions( $user );
 			$parserOptions->setTidy( true );
 			$parserOptions->enableLimitReport();
-			
+
 			if ( $canonical ) {
 				$parserOptions->setUserLang( $wgLanguageCode ); # Must be set explicitely
 				return $parserOptions;

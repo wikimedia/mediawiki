@@ -168,13 +168,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->typeInfo = self::$allowedTypes[$this->typeName];
 
 		# If we have revisions, get the title from the first one
-		# since they should all be from the same page. This allows 
+		# since they should all be from the same page. This allows
 		# for more flexibility with page moves...
 		if( $this->typeName == 'revision' ) {
 			$rev = Revision::newFromId( $this->ids[0] );
 			$this->targetObj = $rev ? $rev->getTitle() : $this->targetObj;
 		}
-		
+
 		$this->otherReason = $wgRequest->getVal( 'wpReason' );
 		# We need a target page!
 		if( is_null($this->targetObj) ) {
@@ -201,7 +201,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$this->showForm();
 		}
-		
+
 		$qc = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
@@ -337,7 +337,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Show a list of items that we will operate on, and show a form with checkboxes 
+	 * Show a list of items that we will operate on, and show a form with checkboxes
 	 * which will allow the user to choose new visibility settings.
 	 */
 	protected function showForm() {
@@ -373,7 +373,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 			return;
 		}
-		
+
 		$wgOut->addHTML( "</ul>" );
 		// Explanation text
 		$this->addUsageText();
@@ -384,7 +384,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Show form if the user can submit
 		if( $this->mIsAllowed ) {
 			$out = Xml::openElement( 'form', array( 'method' => 'post',
-					'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ), 
+					'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
 				Xml::fieldset( wfMsg( 'revdelete-legend' ) ) .
 				$this->buildCheckBoxes() .
@@ -453,7 +453,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$wgOut->addWikiMsg( 'revdelete-confirm' );
 		}
 	}
-	
+
 	/**
 	* @return String: HTML
 	*/
@@ -503,7 +503,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$html .= "<tr>$line</tr>\n";
 			}
 		}
-		
+
 		$html .= '</table>';
 		return $html;
 	}
@@ -586,7 +586,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		return $bitfield;
 	}
-	
+
 	/**
 	 * Put together a rev_deleted bitfield
 	 * @param $bitPars array extractBitParams() params

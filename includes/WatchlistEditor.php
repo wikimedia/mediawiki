@@ -220,7 +220,7 @@ class WatchlistEditor {
 
 		if( $res && $dbr->numRows( $res ) > 0 ) {
 			$cache = LinkCache::singleton();
-			foreach ( $res as $row ) {			
+			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if( $title instanceof Title ) {
 					// Update the link cache while we're at it

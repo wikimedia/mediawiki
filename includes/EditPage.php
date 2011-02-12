@@ -1333,7 +1333,7 @@ HTML
 		if ( $this->wasDeletedSinceLastEdit() && 'save' == $this->formtype ) {
 			$username = $this->lastDelete->user_name;
 			$comment = $this->lastDelete->log_comment;
-	
+
 			// It is better to not parse the comment at all than to have templates expanded in the middle
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
 			$wgOut->addHTML(
@@ -1878,20 +1878,20 @@ HTML
 		$data = $dbr->selectRow(
 			array( 'logging', 'user' ),
 			array( 'log_type',
-			       'log_action',
-			       'log_timestamp',
-			       'log_user',
-			       'log_namespace',
-			       'log_title',
-			       'log_comment',
-			       'log_params',
-			       'log_deleted',
-			       'user_name' ),
+				   'log_action',
+				   'log_timestamp',
+				   'log_user',
+				   'log_namespace',
+				   'log_title',
+				   'log_comment',
+				   'log_params',
+				   'log_deleted',
+				   'user_name' ),
 			array( 'log_namespace' => $this->mTitle->getNamespace(),
-			       'log_title' => $this->mTitle->getDBkey(),
-			       'log_type' => 'delete',
-			       'log_action' => 'delete',
-			       'user_id=log_user' ),
+				   'log_title' => $this->mTitle->getDBkey(),
+				   'log_type' => 'delete',
+				   'log_action' => 'delete',
+				   'user_id=log_user' ),
 			__METHOD__,
 			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' )
 		);
@@ -2379,11 +2379,11 @@ HTML
 				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
 			$script .= "addButton($paramList);\n";
 		}
-		
+
 		$wgOut->addScript( Html::inlineScript(
 			"if ( window.mediaWiki ) { jQuery(function(){{$script}}); }"
 		) );
-		
+
 		$toolbar .= "\n</div>";
 
 		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
@@ -2715,7 +2715,7 @@ HTML
 		switch ( $value ) {
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONTENT_TOO_BIG:
-		 	case self::AS_ARTICLE_WAS_DELETED:
+			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_CONFLICT_DETECTED:
 			case self::AS_SUMMARY_NEEDED:
 			case self::AS_TEXTBOX_EMPTY:
@@ -2765,22 +2765,22 @@ HTML
 				$this->userNotLoggedInPage();
 				return false;
 
-		 	case self::AS_READ_ONLY_PAGE_LOGGED:
-		 	case self::AS_READ_ONLY_PAGE:
-		 		$wgOut->readOnlyPage();
-		 		return false;
+			case self::AS_READ_ONLY_PAGE_LOGGED:
+			case self::AS_READ_ONLY_PAGE:
+				$wgOut->readOnlyPage();
+				return false;
 
-		 	case self::AS_RATE_LIMITED:
-		 		$wgOut->rateLimited();
-		 		return false;
+			case self::AS_RATE_LIMITED:
+				$wgOut->rateLimited();
+				return false;
 
-		 	case self::AS_NO_CREATE_PERMISSION:
-		 		$this->noCreatePermission();
-		 		return;
+			case self::AS_NO_CREATE_PERMISSION:
+				$this->noCreatePermission();
+				return;
 
 			case self::AS_BLANK_ARTICLE:
-		 		$wgOut->redirect( $this->getContextTitle()->getFullURL() );
-		 		return false;
+				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
+				return false;
 
 			case self::AS_IMAGE_REDIRECT_LOGGED:
 				$wgOut->permissionRequired( 'upload' );

@@ -307,7 +307,7 @@ class LinkHolderArray {
 		$threshold = $this->getStubThreshold();
 		$titlesToBeConverted = '';
 		$titlesAttrs = array();
-		
+
 		// Concatenate titles to a single string, thus we only need auto convert the
 		// single string to all variants. This would improve parser's performance
 		// significantly.
@@ -322,14 +322,14 @@ class LinkHolderArray {
 						'ns' => $ns,
 						'key' => "$ns:$index",
 						'titleText' => $titleText,
-					);					
+					);
 					// separate titles with \0 because it would never appears
 					// in a valid title
 					$titlesToBeConverted .= $titleText . "\0";
 				}
 			}
 		}
-		
+
 		// Now do the conversion and explode string to text of titles
 		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( $titlesToBeConverted );
 		$allVariantsName = array_keys( $titlesAllVariants );

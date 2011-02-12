@@ -27,7 +27,7 @@ class CoreLinkFunctions {
 		}
 		return $holders->makeHolder( $title, isset($displayText) ? $displayText : $titleText, '', '', '' );
 	}
-	
+
 	static function categoryLinkHook( $parser, $holders, $markers,
 			Title $title, $titleText, &$sortText = null, &$leadingColon = false ) {
 		global $wgContLang;
@@ -48,5 +48,5 @@ class CoreLinkFunctions {
 		$parser->mOutput->addCategory( $title->getDBkey(), $sortText );
 		return '';
 	}
-	
+
 }
