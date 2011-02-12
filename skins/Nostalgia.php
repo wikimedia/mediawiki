@@ -37,7 +37,7 @@ class NostalgiaTemplate extends LegacyTemplate {
 		$s .= '<div id="topbar">';
 		$s .= $this->topLinks() . "\n<br />";
 
-		$notice = wfGetSiteNotice();
+		$notice = $this->getSkin()->getSiteNotice();
 		if( $notice ) {
 			$s .= "\n<div id='siteNotice'>$notice</div>\n";
 		}

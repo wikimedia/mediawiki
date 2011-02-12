@@ -1459,11 +1459,13 @@ $page: The SpecialSearch object.
 
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
+$skin: Skin object
 Return true to allow the normal method of notice selection/rendering to work,
 or change the value of $siteNotice and return false to alter it.
 
 'SiteNoticeAfter': After the sitenotice/anonnotice is composed
 &$siteNotice: HTML sitenotice
+$skin: Skin object
 Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 
 'SkinAfterBottomScripts': At the end of Skin::bottomScripts()

@@ -134,7 +134,7 @@ class LegacyTemplate extends BaseTemplate {
 		$s .= "</tr>\n</table>\n</div>\n";
 		$s .= "\n<div id='article'>\n";
 
-		$notice = wfGetSiteNotice();
+		$notice = $this->getSkin()->getSiteNotice();
 
 		if ( $notice ) {
 			$s .= "\n<div id='siteNotice'>$notice</div>\n";
