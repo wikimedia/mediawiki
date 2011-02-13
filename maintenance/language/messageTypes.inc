@@ -617,4 +617,5 @@ $wgEXIFMessages = array(
 	'exif-gpsdestdistance-n',
 	'exif-gpsdirection-t',
 	'exif-gpsdirection-m',
+	'exif-objectname',
 );
