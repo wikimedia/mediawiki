@@ -841,7 +841,7 @@ window.mediaWiki = new ( function( $ ) {
 					}
 					return html;
 				}
-				// Load asynchronously after doumument ready
+				// Load asynchronously after documument ready
 				if ( ready ) {
 					setTimeout( function() { $( 'body' ).append( request() ); }, 0 )
 				} else {
