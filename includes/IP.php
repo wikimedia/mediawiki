@@ -48,7 +48,7 @@ define( 'RE_IPV6_ADD',
 	'|' . // contains no "::"
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
 	')'
-	// NOTE: With PCRE 7.2+, we can combine the last two cases into one regex:
+	// NOTE: With PCRE 7.2+, we can combine the two '"::" in the middle' cases into:
 	//		RE_IPV6_WORD . '(?::((?(-1)|:))?' . RE_IPV6_WORD . '){1,6}(?(-2)|^)'
 	// This also improves regex concatenation by using relative references.
 );
