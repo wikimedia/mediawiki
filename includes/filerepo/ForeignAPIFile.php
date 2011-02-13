@@ -77,18 +77,9 @@ class ForeignAPIFile extends File {
 			return parent::transform( $params, $flags );
 		}
 
-		$otherParams = "";
-		// Not using implode, since associative array.
-		foreach ( $params as $name => $value ) {
-			if ( $name === 'width' || $name === 'height' ) {
-				continue;
-			}
-			$otherParams .= "{$name}={$value}|";
-		}
-		// Remove the last |
-		if ( $otherParams !== "" ) {
-			$otherParams = substr( $otherParams, 0, -1 );
-		}
+		// Note, the this->canRender() check above implies
+		// that we have a handler, and it can do makeParamString.
+		$otherParams = $this->handler->makeParamString( $params );
 
 		$thumbUrl = $this->repo->getThumbUrlFromCache(
 			$this->getName(),
