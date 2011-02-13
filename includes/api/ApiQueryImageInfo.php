@@ -50,7 +50,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$prop = array_flip( $params['prop'] );
 
-		$thumbParams = $this->makeThumbParams( $params );
+		$scale = $this->getScale( $params );
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
@@ -108,8 +108,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 				
-				// Check if we can make the requested thumbnail
-				$this->validateThumbParams( $img, $thumbParams );
+				// Check if we can make the requested thumbnail, and get transform parameters.
+				$finalThumbParams = $this->mergeThumbParams( $img, $scale, $params['urlparam'] );
 
 				// Get information about the current version first
 				// Check that the current version is within the start-end boundaries
@@ -122,7 +122,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$gotOne = true;
 					
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $img, $prop, $result, $thumbParams ) );
+						self::getInfo( $img, $prop, $result, $finalThumbParams ) );
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
@@ -151,7 +151,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						break;
 					}
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $oldie, $prop, $result, $thumbParams ) );
+						self::getInfo( $oldie, $prop, $result, $finalThumbParams ) );
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
@@ -184,24 +184,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * From parameters, construct a 'scale' array
-	 * @param $params Array:
+	 * @param $params Array: Parameters passed to api.
 	 * @return Array or Null: key-val array of 'width' and 'height', or null
 	 */
 	public function getScale( $params ) {
-		wfDeprecated( __METHOD__ );
-		if ( !isset( $params['urlparam'] ) ) {
-			// In case there are subclasses that
-			// don't have this param set to anything.
-			$params['urlparam'] = null;
-		}
-		return $this->makeThumbParams( $params );
-	}
-
-	/* Take parameters for transforming thumbnail, validate and turn into array.
-	 * @param $params Array: Parameters from the request.
-	 * @return Array or null: If array, suitable to passing to $file->transform.
-	 */
-	public function makeThumbParams( $params ) {
 		$p = $this->getModulePrefix();
 
 		// Height and width.
@@ -221,50 +207,54 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			return $scale;
 		}
 
-		// Other parameters.
-		if ( is_array( $params['urlparam'] ) ) {
-			foreach( $params['urlparam'] as $item ) {
-				$parameter = explode( '=', $item, 2 );
-
-				if ( count( $parameter ) !== 2
-					|| $parameter[0] === 'width'
-					|| $parameter[0] === 'height'
-				) {
-					$this->dieUsage( "Invalid value for {$p}urlparam ($item)", "urlparam" );
-				}
-				$scale[$parameter[0]] = $parameter[1];
-			}
-		}
 		return $scale;
 	}
 
-	/** Validate the thumb parameters, give error if invalid.
+	/** Validate and merge scale parameters with handler thumb parameters, give error if invalid.
 	 *
-	 * We do this later than makeThumbParams, since we need the image
+	 * We do this later than getScale, since we need the image
 	 * to know which handler, since handlers can make their own parameters.
 	 * @param File $image Image that params are for.
-	 * @param Array $thumbParams thumbnail parameters
+	 * @param Array $thumbParams thumbnail parameters from getScale
+	 * @param String String of otherParams (iiurlparam).
+	 * @return Array of parameters for transform.
 	 */
-	protected function validateThumbParams ( $image, $thumbParams ) {
-		if ( !$thumbParams ) return;
+	protected function mergeThumbParams ( $image, $thumbParams, $otherParams ) {
+		if ( !$otherParams ) return $thumbParams;
 		$p = $this->getModulePrefix();
 
 		$h = $image->getHandler();
 		if ( !$h ) {
 			$this->setWarning( 'Could not create thumbnail because ' . 
 				$image->getName() . ' does not have an associated image handler' );
-			return;
+			return $thumbParams;
 		}
-		foreach ( $thumbParams as $name => $value ) {
+
+		$paramList = $h->parseParamString( $otherParams );
+		if ( !$paramList ) {
+			// Just set a warning (instead of dieUsage), as in many cases
+			// we could still render the image using width and height parameters,
+			// and this type of thing could happen between different versions of
+			// handlers.
+			$this->setWarning( "Could not parse {$p}urlparam for " . $image->getName()
+				. '. Using only width and height' );
+			return $thumbParams;
+		}
+
+		if ( isset( $paramList['width'] ) ) {
+			if ( $paramList['width'] !== $thumbParams['width'] ) {
+				$this->dieUsage( "{$p}urlparam had width of {$paramList['width']} but "
+					. "{$p}urlwidth was {$thumbParams['width']}", "urlparam_urlwidth_mismatch" );
+			}
+		}
+
+		foreach ( $paramList as $name => $value ) {
 			if ( !$h->validateParam( $name, $value ) ) {
-				/* This doesn't work well with height=-1 placeholder */
-				if ( $name === 'height' ) continue;
 				$this->dieUsage( "Invalid value for {$p}urlparam ($name=$value)", "urlparam" );
 			}
 		}
-		// This could also potentially check normaliseParams as well, However that seems
-		// to fall more into a thumbnail rendering error than a user input error, and
-		// will be checked by the transform functions.
+
+		return $thumbParams + $paramList;
 	}
 
 	/**
@@ -423,7 +413,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => -1
 			),
 			'urlparam' => array(
-				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DFLT => '',
+				ApiBase::PARAM_TYPE => 'string',
 			),
 			'continue' => null,
 		);
@@ -490,8 +481,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 					    'Only the current version of the image can be scaled' ),
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
-			'urlparam' => array( "Other rending parameters, such as page=2 for multipaged documents.",
-					"Multiple parameters should be seperated with a |. {$p}urlwidth must also be used"),
+			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
+				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
 			'limit' => 'How many image revisions to return',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
@@ -508,7 +499,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'iiurlwidth', 'info' => 'iiurlheight cannot be used without iiurlwidth' ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),
-			array( 'code' => 'urlparam_no_width', 'info' => "iiurlparam requires {$p}urlwidth" ),
+			array( 'code' => 'urlparam_no_width', 'info' => "{$p}urlparam requires {$p}urlwidth" ),
+			array( 'code' => 'urlparam_urlwidth_mismatch', 'info' => "The width set in {$p}urlparm doesnt't " .
+				"match the one in {$p}urlwidth" ), 
 		) );
 	}
 

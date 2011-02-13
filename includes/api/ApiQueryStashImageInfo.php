@@ -37,7 +37,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 		$prop = array_flip( $params['prop'] );
 
-		$scale = $this->makeThumbParams( $params );
+		$scale = $this->getScale( $params );
 
 		$result = $this->getResult();
 
@@ -46,8 +46,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 			foreach ( $params['sessionkey'] as $sessionkey ) {
 				$file = $stash->getFile( $sessionkey );
-				$this->validateThumbParams( $file, $scale );
-				$imageInfo = self::getInfo( $file, $prop, $result, $scale );
+				$finalThumbParam = $this->mergeThumbParams( $file, $scale, $params['urlparam'] );
+				$imageInfo = self::getInfo( $file, $prop, $result, $finalThumbParam );
 				$result->addValue( array( 'query', $this->getModuleName() ), null, $imageInfo );
 				$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $modulePrefix );
 			}
@@ -100,7 +100,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				ApiBase::PARAM_DFLT => -1
 			),
 			'urlparam' => array(
-				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => '',
 			),
 		);
 	}
@@ -127,8 +128,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			'sessionkey' => 'Session key that identifies a previous upload that was stashed temporarily.',
 			'urlwidth' => "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
-			'urlparam' => array( "Other rending parameters, such as page=2 for multipaged documents.",
-					"Multiple parameters should be seperated with a |. {$p}urlwidth must also be used" ),
+			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
+				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
 		);
 	}
 

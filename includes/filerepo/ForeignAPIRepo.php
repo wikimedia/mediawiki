@@ -25,7 +25,7 @@ class ForeignAPIRepo extends FileRepo {
 	/* This version string is used in the user agent for requests and will help
 	 * server maintainers in identify ForeignAPI usage.
 	 * Update the version every time you make breaking or significant changes. */
-	const VERSION = "2.0";
+	const VERSION = "2.1";
 
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	/* Check back with Commons after a day */
@@ -225,7 +225,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param $name String is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param String $param Other rendering parameters (page number, etc). | separated.
+	 * @param String $param Other rendering parameters (page number, etc) from handler's makeParamString.
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
 		global $wgMemc;
