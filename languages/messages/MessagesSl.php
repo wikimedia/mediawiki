@@ -3045,6 +3045,7 @@ Druga bodo po privzetem skrita.
 'exif-gpsareainformation'          => 'Ime GPS-območja',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Diferencialni popravek GPS',
+'exif-objectname'                  => 'Kratek naslov',
 
 # EXIF attributes
 'exif-compression-1' => 'Nestisnjeno',

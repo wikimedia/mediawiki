@@ -3201,6 +3201,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsareainformation'          => 'Name des GPS-Gebietes',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
+'exif-objectname'                  => 'Kurztitel',
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',

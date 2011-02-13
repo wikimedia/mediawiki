@@ -2981,6 +2981,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
+'exif-objectname'                  => 'Kuerzen Titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',

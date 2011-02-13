@@ -3137,6 +3137,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsareainformation'          => 'Nazwa przestrzeni GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Korekcja różnicy GPS',
+'exif-objectname'                  => 'Krótki tytuł',
 
 # EXIF attributes
 'exif-compression-1' => 'nieskompresowany',

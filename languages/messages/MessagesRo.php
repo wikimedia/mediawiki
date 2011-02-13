@@ -3141,6 +3141,7 @@ Altele vor fi ascunse implicit.
 'exif-gpsareainformation'          => 'Numele domeniului GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Corecția diferențială GPS',
+'exif-objectname'                  => 'Titlu scurt',
 
 # EXIF attributes
 'exif-compression-1' => 'Necomprimată',

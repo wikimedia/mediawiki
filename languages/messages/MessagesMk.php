@@ -3196,7 +3196,7 @@ Variants for Chinese language
 'exif-ycbcrcoefficients'           => 'Матрични коефициенти на трансформација на бојниот простор',
 'exif-referenceblackwhite'         => 'Упатни вредности на парот бела и црна точка',
 'exif-datetime'                    => 'Датум и време на измената на податотеката',
-'exif-imagedescription'            => 'Назив на сликата',
+'exif-imagedescription'            => 'Наслов на сликата',
 'exif-make'                        => 'Произведувач',
 'exif-model'                       => 'Модел',
 'exif-software'                    => 'Користен програм',
@@ -3292,6 +3292,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'Назив на GPS-подрачје',
 'exif-gpsdatestamp'                => 'GPS-датум',
 'exif-gpsdifferential'             => 'Диференцијална исправка на GPS',
+'exif-objectname'                  => 'Краток наслов',
 
 # EXIF attributes
 'exif-compression-1' => 'Ненабиена',

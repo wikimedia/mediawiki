@@ -42,8 +42,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Ndaganga obungi bw'abagoberera olupapula",
 'tog-oldsig'                  => 'Omukono gwo kakano:',
 'tog-fancysig'                => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
-'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)',
-'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)",
+'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, kubanga wetaaga okutegeka kompyuta yo mu ngeri ezitali za bulijjo. [http://www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])',
+'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo. [http://www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])",
 'tog-showjumplinks'           => 'Wabeerewo enyunzi eza "Genda ku"',
 'tog-uselivepreview'          => 'Enkyukakyuka ze nkoze zirabikirewo nga tekyetaagisiza kumala kunyiga ppeesa (kyetaagisa JavaScript)(Kikyagezesebwa)',
 'tog-forceeditsummary'        => 'Ŋambaako bwe mba ŋenda okuleka nga sinnyonyodde bye nkyusizza',
@@ -394,6 +394,7 @@ Lindako eddakiika entonotono oly'oke oddemu okugezako ekikolwa.",
 Luliko ebikugizo ebirugaana okwonooebwa.",
 'editinginterface'     => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
+'sqlhidden'            => '(Waliwo wo ebya SQL ebibikkidwa)',
 'cascadeprotected'     => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
 $2',
 'namespaceprotected'   => "Tolina buyinza bwa kukyusa ku mpapula ez'omu kkuŋaanizo erya '''$1'''.",
@@ -670,6 +671,8 @@ aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl
 'userinvalidcssjstitle'            => "'''Kulabula:''' Tewali endabika eyitibwa \"\$1\".<br />
 Empapula eza .css ne .js bamemba ze b'ekoledde, amannya ga zo ennukuta za mu<br />
 zonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns:user}}:Foo/Vector.css''.",
+'updated'                          => '(Ebituukanisidwa)',
+'note'                             => "'''Okunnyonyola:'''",
 'previewnote'                      => "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',
