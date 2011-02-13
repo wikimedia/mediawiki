@@ -84,6 +84,8 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function removeWatch() {
+		wfProfileIn( __METHOD__ );
+
 		$success = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist',
@@ -112,6 +114,8 @@ class WatchedItem {
 		if ( $dbw->affectedRows() ) {
 			$success = true;
 		}
+
+		wfProfileOut( __METHOD__ );
 		return $success;
 	}
 
