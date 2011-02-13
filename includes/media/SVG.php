@@ -206,11 +206,22 @@ class SvgHandler extends ImageHandler {
 
 		// Sort fields into visible and collapsed
 		$visibleFields = $this->visibleMetadataFields();
+
+		// Rename fields to be compatible with exif, so that
+		// the labels for these fields work.
+		$conversion = array( 'width' => 'imagewidth',
+			'height' => 'imagelength',
+			'description' => 'imagedescription',
+			'title' => 'objectname',
+		);
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
+			if ( isset( $conversion[$tag] ) ) {
+				$tag = $conversion[$tag];
+			}
 			self::addMeta( $result,
 				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
-				'svg',
+				'exif',
 				$tag,
 				$value
 			);

@@ -3361,6 +3361,7 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Digital_zoom digital zoom].'
 See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography focal length].',
 'exif-gpslatitude'                 => '{{Identical|Latitude}}',
 'exif-gpslongitude'                => '{{Identical|Longitude}}',
+'exif-objectname'                  => 'This message labels a field in the image metadata table that is a short name or title for the image. (As compared to {{msg-mw|exif-imagedescription}} which is a long description of the image).',
 
 # EXIF attributes
 'exif-compression-6' => '{{optional}}',
