@@ -242,7 +242,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $paramList['width'] ) ) {
-			if ( $paramList['width'] !== $thumbParams['width'] ) {
+			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
 				$this->dieUsage( "{$p}urlparam had width of {$paramList['width']} but "
 					. "{$p}urlwidth was {$thumbParams['width']}", "urlparam_urlwidth_mismatch" );
 			}
