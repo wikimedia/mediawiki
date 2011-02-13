@@ -169,6 +169,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a amtitle param to meta=allmessages
 * (bug 25832) query=allimages now outputs ns/title as well
 * (bug 27199) Thumbnail urls can be fetched for old files as well
+* (bug 27376) when using ApiBase::PARAM_TYPE => 'integer' without a min or
+  max value, api doesn't validate the input is actually an integer
 
 === Languages updated in 1.18 ===
 
