@@ -3118,6 +3118,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS പ്രദേശത്തിന്റെ പേര്‌',
 'exif-gpsdatestamp'                => 'GPS തീയതി',
 'exif-gpsdifferential'             => 'ജി.പി.എസ്. വ്യത്യാസം ശരിയാക്കൽ',
+'exif-objectname'                  => 'ചെറിയ തലക്കെട്ട്',
 
 # EXIF attributes
 'exif-compression-1' => 'ചുരുക്കാത്തത്',

@@ -236,8 +236,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Wys die aantal gebruikers wat dophou',
 'tog-oldsig'                  => 'Voorskou van bestaande handtekening:',
 'tog-fancysig'                => 'Hanteer handtekening as wikiteks (sonder outomatiese skakels)',
-'tog-externaleditor'          => "Gebruik outomaties 'n eksterne redigeringsprogram",
-'tog-externaldiff'            => "Gebruik 'n eksterne vergelykingsprogram (net vir deskundiges - benodig spesiale verstellings op u rekenaar)",
+'tog-externaleditor'          => "Gebruik outomaties 'n eksterne redigeringsprogram (net vir kundiges - benodig spesiale verstellings op u rekenaar. [http://www.mediawiki.org/wiki/Manual:External_editors Meer inligting.])",
+'tog-externaldiff'            => "Gebruik outomaties 'n eksterne vergelykingsprogram (net vir kundiges - benodig spesiale verstellings op u rekenaar)",
 'tog-showjumplinks'           => 'Wys "spring na"-skakels vir toeganklikheid',
 'tog-uselivepreview'          => 'Gebruik lewendige voorskou (JavaScript) (eksperimenteel)',
 'tog-forceeditsummary'        => "Let my daarop as ek nie 'n opsomming van my wysiging gee nie",
@@ -3051,6 +3051,7 @@ Ander velde sal versteek wees.
 'exif-gpsareainformation'          => 'Naam van GPS-gebied',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differensiële GPS-korreksie',
+'exif-objectname'                  => 'Kort titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Ongekompakteerd',
@@ -3251,6 +3252,18 @@ Indien die rekening *nie* aan u behoort nie, volg hierdie skakel om die bevestig
 $5
 
 Die bevestigingskode sal om $4 verval.',
+'confirmemail_body_set'     => 'Iemand, waarskynlik u vanaf IP-adres $1
+het die e-posadres van rekening "$2" na hierdie adres op {{SITENAME}} verander.
+
+Om te bevestig dat hierdie adres werklik aan u behoort, en die e-pos-funksies op {{SITENAME}} te heraktiveer, maak hierdie skakel in u blaaier oop:
+
+$3
+
+Indien die rekening *nie* aan u behoort nie, volg hierdie skakel om die bevestiging te kanselleer:
+
+$5
+
+Die bevestigingskode sal om $4 verval.',
 'confirmemail_invalidated'  => 'Die e-pos bevestiging is gekanselleer.',
 'invalidateemail'           => 'Kanselleer e-pos bevestiging',
 
@@ -3390,14 +3403,15 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Soek duplikaat lêers',
-'fileduplicatesearch-summary'  => 'Soek na duplikaat lêers volgends hul hashwaardes.',
-'fileduplicatesearch-legend'   => "Soek vir 'n duplikaat",
-'fileduplicatesearch-filename' => 'Lêernaam:',
-'fileduplicatesearch-submit'   => 'Soek',
-'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Lêergrootte: $3<br />MIME-tipe: $4',
-'fileduplicatesearch-result-1' => 'Die lêer "$1" het geen identiese duplikate nie.',
-'fileduplicatesearch-result-n' => 'Die lêer "$1" het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.',
+'fileduplicatesearch'           => 'Soek duplikaat lêers',
+'fileduplicatesearch-summary'   => 'Soek na duplikaat lêers volgends hul hashwaardes.',
+'fileduplicatesearch-legend'    => "Soek vir 'n duplikaat",
+'fileduplicatesearch-filename'  => 'Lêernaam:',
+'fileduplicatesearch-submit'    => 'Soek',
+'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Lêergrootte: $3<br />MIME-tipe: $4',
+'fileduplicatesearch-result-1'  => 'Die lêer "$1" het geen identiese duplikate nie.',
+'fileduplicatesearch-result-n'  => 'Die lêer "$1" het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.',
+'fileduplicatesearch-noresults' => 'Daar is nie \'n lêer met die naam "$1" nie.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spesiale bladsye',

@@ -860,6 +860,9 @@ Please log in again after you receive it.
 તે પહેલેથી હાજર છે.',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "'''ચેતવણી:''' આ પાનું ખૂબ ખર્ચાળ પદચ્છેદ સૂત્ર ધરાવે છે.
+
+તેમાં $2 કરતા ઓછાં{{PLURAL:$2|પૃછા|પૃછાઓ}}હોવા જોઇએ, અત્યારે તેમાં  {{PLURAL:$1|$1 પૃછા| $1 પૃછાઓ }} છે.",
 'expensive-parserfunction-category'       => 'ઘણા પદચ્છેદ સૂત્ર ધરાવતું પાનું',
 'post-expand-template-inclusion-warning'  => "'''ચેતવણી:''' ઢાંચાનું માપ ખૂબ મોટું છે.
 અમુક ઢાંચા શામિલ નહીં કરાય.",
@@ -950,6 +953,7 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'rev-showdeleted'             => 'બતાવો',
 'revisiondelete'              => 'પુનરાવર્તન રદ્દ કરો/પુનર્જીવીત કરો',
 'revdelete-nooldid-title'     => 'અવૈધ લક્ષ્ય ફેરફાર',
+'revdelete-nooldid-text'      => 'આ ક્રિયા જેના પર  કરવાની છે તે લક્ષ્ય ફેરફાર તમે જણાવ્યો નથી અથવા એવો કોઇ ફેરફાર અસ્તિત્વમાં નથી અથવા તમે હાલનો ફેરફાર સંતાડવાનો પ્રયત્ન કરી રહ્યાં છો.',
 'revdelete-nologtype-title'   => 'આવો કોઈ લોગા નથી ફરી પ્રયત્ન કરો',
 'revdelete-nologtype-text'    => 'આ ક્રિયા શેના પર કરવાની છે તે લોગ નો પ્રકાર તમે જણાવ્યો નથી',
 'revdelete-nologid-title'     => 'લોગ પ્રવેશ અવૈદ્ય',
@@ -1159,6 +1163,7 @@ $1",
 'mypreferences'                 => 'મારી પસંદ',
 'prefs-edits'                   => 'સંપાદનોની સંખ્યા',
 'prefsnologin'                  => 'પ્રવેશ કરેલ નથી',
+'prefsnologintext'              => 'સભ્યના અધિકારો બદલવા તમે <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> પ્રવેશ કરેલો હોવો જોઈએ',
 'changepassword'                => 'ગુપ્તસંજ્ઞા બદલો',
 'prefs-skin'                    => 'ફલક',
 'skin-preview'                  => 'ફેરફાર બતાવો',
@@ -1327,6 +1332,7 @@ HTML નાકું ચકાસો',
 'right-upload'                => 'ફાઇલ ચડાવો',
 'right-reupload'              => 'વિહરમાન ફાઇલ પર પુનર્લેખન કરો',
 'right-reupload-own'          => 'સભ્ય દ્વારા જાતે ચઢાવેલી તાઇલ પર પુનર્લેખન કરો',
+'right-reupload-shared'       => 'સર્વસામાન્ય સ્થાનીયા દ્રશ્યશ્રાવ્ય ફાઈલ સંચને અવગણી આગળ વધો.',
 'right-upload_by_url'         => 'URL પરથી ફાઇલ ચઢાવો',
 'right-purge'                 => 'પુષ્ટિકરણ ન થયેલ પાનાની સાઇટ સંબંધી માહિતી મીટાવો.',
 'right-autoconfirmed'         => 'અર્ધ સંરક્ષિત પાના સંપાદિત કરો',
@@ -1528,6 +1534,9 @@ HTML નાકું ચકાસો',
 [[$1|thumb]]
 કૃપયા ફાઇલ તપાસો  '''<tt>[[:$1]]</tt>'''.
 જો તપાસેલી ફાઇલ તેની મૂળ પ્રતની આકૃતિ હોય તો વધારાની લઘુચિત્ર ચડાવવાની જરૂર નથી.",
+'file-thumbnail-no'           => "ફાઇલનું નામ '''<tt>$1</tt>'''થી શરૂ થાય છે.
+લાગે છે કે આ ઘટાડેલા કદનું ચિત્ર  ''(thumbnail)'' છે..
+જો તમારી સાથે પૂર્ણ ઘનત્વ ધરાવતી ચિત્રની ફાઇલ હોય તો જ આ ફાઇલ ચડાવશો, અન્યથા ફાઇલનું નામ બદલશો.",
 'fileexists-forbidden'        => 'આ નામની ફાઇલ પહેલેથી મોજુદ છે અને તેના ઉપર લેખન કરી શકાશે નહી.
 તેમ છતાં પણ તમે ફાઇલ ચડાવવા માંગતા હોવ તો ફાઇલનું નામ બદલો અને નવા નામે ફરીથી ચડાવો.
 [[File:$1|thumb|center|$1]]',
@@ -1565,6 +1574,8 @@ HTML નાકું ચકાસો',
 
 આ પાનું સંપાદિત કરતા પહેલાં ગંભીરતાપૂર્વક વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
 પાનું હટાવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી અનુકૂળતા માટે અહીં આપી છે:",
+'filename-bad-prefix'         => "તમે ચડાવેલી ફાઇલનું નામ '''\"\$1\"''' થી શરૂ થાય છે, જેમાં ફાઇલની માહિતી વિષે વર્ણન નથી. લાગે ચે તે ડિજીટલ કેમેરા દ્વારા સામાન્ય રીતે સ્વયંચાલિત રીતે અપાતું છબીનું નામ છે.
+કૃપયા તમે ચડાવેલી ફાઇલ માટે એક વર્ણનાત્મક નામ આપો.",
 'upload-success-subj'         => 'ફાઇલ ચડાવ સફળ',
 'upload-success-msg'          => '[$2]થી તમારુઁ ફાઇલ ચડાવ સફળ રહ્યો. તે અહીઁ ઉપલબ્ધ છે. : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'ફાઇલ ચઢાવ મુશ્કેલી',
@@ -1577,6 +1588,8 @@ $1',
 'upload-proto-error'        => 'ખોટો શિષ્ટાચાર',
 'upload-proto-error-text'   => 'દુરના ફાઇલ ચઢાવના  URL ની શરૂઆત <code>http://</code> કે <code>ftp://</code>થી થવી જોઇએ.',
 'upload-file-error'         => 'આંતરિક ત્રુટિ',
+'upload-file-error-text'    => 'સર્વર પર હંગામી ફાઇલ રચતા કોઇ આંતરીક ત્રુટિ નિર્માણ થઇ.
+કૃપયા [[Special:ListUsers/sysop|administrator]]નો સંપર્ક કરો.',
 'upload-misc-error'         => 'અજ્ઞાત ફાઇલ ચડાવ ચૂક',
 'upload-misc-error-text'    => 'ફાઈલ ચડાવતી વખતે કાંઇક ત્રુટિ રહી ગઇ.
 ખાત્રી કરો કે URL વૈધ છે અને સક્રીય છે અને ફરી પ્રયત્ન કરો.
@@ -1587,6 +1600,7 @@ $1',
 
 # Special:UploadStash
 'uploadstash'          => 'ગુપ્ત ફાઈલ ચડાવો',
+'uploadstash-summary'  => 'આ પાનું તે ફાઇલો સુધી પહોંચાડે છે જે ફાઇલો ચડાવાઇ/ચડાવાઇ રહી છે પણ વિકિ પર પ્રસિદ્ધ થવાની બાકી છે. આ ફાઇલ તેને ચડાવનાર સિવાય અન્ય કોઇ સભ્યને દ્રશ્યમાન નથી.',
 'uploadstash-clear'    => 'ગુપ્ત ફાઈલ સાફ કરો',
 'uploadstash-nofiles'  => 'કોઈ ગુપ્ત ફાઈલ નથી',
 'uploadstash-errclear' => 'ફાઇલ સાફ સફાઇ અસફળ રહી',
@@ -1726,8 +1740,10 @@ $1',
 'listredirects' => 'અન્યત્ર વાળેલાં પાનાંઓની યાદી',
 
 # Unused templates
-'unusedtemplates'    => 'વણ વપરાયેલાં ઢાંચા',
-'unusedtemplateswlh' => 'અન્ય કડીઓ',
+'unusedtemplates'     => 'વણ વપરાયેલાં ઢાંચા',
+'unusedtemplatestext' => 'આ પાનું નામ સ્થળ {{ns:template}} માં આવેલ અને અન્ય પાનામાં ન સમાવિષ્ટ પાના ની યાદિ બતાવે છે.
+ઢાંચાને હટાવતા પહેલા તેમાં વપરાયેલી અન્ય પાનાને જોડતી કડીઓ તપાસી લેશો.',
+'unusedtemplateswlh'  => 'અન્ય કડીઓ',
 
 # Random page
 'randompage'         => 'કોઈ પણ એક લેખ',
@@ -1758,8 +1774,11 @@ $1',
 'statistics-users-active-desc' => 'સભ્ય કે જેમણે છેલ્લા {{PLURAL:$1|દિવસ|$1 દિવસો}}માં ફેરફારો કર્યાં છે',
 'statistics-mostpopular'       => 'સૌથી વધુ જોવાયેલા પાના',
 
-'disambiguations'     => 'અસંદિગ્ધ શબ્દોવાળા પાના',
-'disambiguationspage' => 'Template:અસંદિગ્ધ',
+'disambiguations'      => 'અસંદિગ્ધ શબ્દોવાળા પાના',
+'disambiguationspage'  => 'Template:અસંદિગ્ધ',
+'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે કડી દ્વારા જોડાયેલા છે.
+તેના કરતા તેને યોગ્ય તે વિષ્ય સાથે જોડાયેલા હોવા જોઇએ.<br />
+આ પાનાને સંદિગ્ધ  વાક્યો વાળા પાના ત્યારે કહી શકાય જ્યારે તે [[MediaWiki:Disambiguationspage]] નામના ઢાંચા સાથે જોડાયેલા હોય.",
 
 'doubleredirects'                   => 'બનણું દિશાનિર્દેશિત',
 'double-redirect-fixed-move'        => '[[$1]] હટાવી દેવાયું છે.
@@ -1855,6 +1874,8 @@ $1',
 'speciallogtitlelabel' => 'શિર્ષક:',
 'log'                  => 'લૉગ',
 'all-logs-page'        => 'બધાં જાહેર માહિતીપત્રકો',
+'alllogstext'          => '{{SITENAME}} ના લોગનો સંયુક્ત વર્ણન.
+તમે લોગનો પ્રકાર,સભ્ય નામ અથવા અસરગ્રસ્ત પાના આદિ પસંદ કરી તમારી યાદિ ટૂંકાવી શકો.',
 'logempty'             => 'લોગમાં આને મળતી કોઇ વસ્તુ નથી',
 'log-title-wildcard'   => 'આ શબ્દો દ્વારા શરૂ થનાર શીર્ષકો શોધો',
 
@@ -2012,6 +2033,32 @@ $1',
 'enotif_lastvisited'           => 'તમારા છેલ્લા ફેરફાર પછી થયેલા ફેરફાર $1 જુઓ',
 'enotif_lastdiff'              => 'આ ફેરફાર જોવા $1 જુઓ',
 'enotif_anon_editor'           => 'અજ્ઞાત સભ્ય $1',
+'enotif_body'                  => '↓ પ્રિય $WATCHINGUSERNAME,
+
+
+ {{SITENAME}}નું પાનું  $PAGETITLE $PAGEEDITDATE ના દિવસે by $PAGEEDITOR દ્વારા $CHANGEDORCREATED છે , તાજા પુનરાવર્તન માટે $PAGETITLE_URL જુઓ.
+
+$NEWPAGE
+
+સભ્યનો સારાંશ: $PAGESUMMARY $PAGEMINOREDIT
+
+તંત્રી નો સંપર્ક :
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+આ પાનામાં ભવિષ્યમાં થનાર કોઇ પણ ફેરફારની સૂચના તમને નહીં મળે  સિવાય કે તમે તે પાનાની મુલાકાત લો.
+તમે તમારી ધ્યાન સૂચિમાં તમે જોયેલા પાના સંબંધી સૂચનાને લાગતા વિલપોમાં ફેરફાર કરી શકો છો.
+
+             તમારો મિત્ર {{SITENAME}} સૂચના પ્રક્રિયા   
+ 
+--
+તમારી ધ્યાનસૂચિ ના  વિક્લ્પ ગોઠવણ માટે  આ જુઓ {{fullurl:{{#special:Watchlist}}/edit}}
+
+ધ્યાનસૂચિમાંથી વિષ્ય હટાવવા , આ જુઓ  
+$UNWATCHURL
+
+મંતવ્યો અને આગળની મદદ માટે 
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'પાનું હટાવો',
@@ -2140,8 +2187,15 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'undeletepage'               => 'હટાવેલ પાના જુઓ અને પુંર્જીવીત કરો',
 'undeletepagetitle'          => "'''નીચે [[:$1|$1]] ના ભૂંસાડેલ સંપાદનો છે.'''.",
 'viewdeletedpage'            => 'ભૂંસાડેલા પાના બતાવો',
+'undeletepagetext'           => 'નીચેના {{PLURAL:$1|પાનું હટાવી દેવાયું છે |$1 પાના હટાવી દેવાયા છે}} તે હજી પ્રાચીન દસ્તવેજમાં છે અને પુનઃસ્થાપિત કરી શકાશે.
+પ્રાચીન દસ્તાવેજ કાલાંતરે સાફ કરી શકાય છે.',
 'undelete-fieldset-title'    => 'સંપાદનો પાછા લાવો',
+'undeleteextrahelp'          => "આ પાનાનો આખો ઇતિહાસ પુનઃસ્થાપિત કરવા , બધા ખાનાને બિન-અંકિત રાખો  અને અહીં  '''''{{int:undeletebtn}}'''''  ક્લિક કરો.
+To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''{{int:undeletebtn}}'''''.
+Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'          => '$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}} દસ્તાવેજીત કરાયા',
+'undeletehistory'            => 'જો તમે આપાનું પુનઃસ્થાપિત કરશો તો બધાં ફેરફારો પણ ઈતિહાસમાં પુનઃસ્થાપિત થશે.
+તે પાનું હટાવાયા પછી આજ નામે જો કોઈ અન્ય પાનું બનાવાયું હશે તો પુનઃ સ્થપનના ફેર્ફાર પ્રાચીન ઇતિહાસમાં દેખાશે.',
 'undeletehistorynoadmin'     => 'આ પાનું ભૂંસાડી દેવાયું છે.
 ભૂંસાડીદેવાનું કારણ નીચે આપેલ સારાંશામાં આપેલ છે.
 આ ભૂંસાડેલ લેખન પ્રબંધકો પાસે મળશે.',
@@ -2304,6 +2358,9 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 રોક લગાવાયેલા સભ્યોની યાદિ આ મુજબ છે',
 'blocklogentry'                   => '[[$1]] પર પ્રતિબંધ $2 $3 સુધી મુકવામાં આવ્યો છે.',
 'reblock-logentry'                => '[[$1]] ની પ્રતિબંધ વિકલ્પો બદલ્યા જે નો કલાતિત સમય છે   $2 $3',
+'blocklogtext'                    => 'આ સભ્યો પર રોક લગાવવા અને હટાવવા સંબંધિત યાદિ છે.
+સ્વયંચાલિત રીતે રોક લગાવાયેલ IP સરનામાની યાદિ અહીં નથી આપી.
+હાલમાં પ્રવર્તમાન રોક ની યાદિ અહીં જુઓ [[Special:IPBlockList|IP block list]].',
 'unblocklogentry'                 => '$1 પરનો પ્રતિબંધ ઉઠાવ્યો',
 'block-log-flags-anononly'        => 'માત્ર અજ્ઞાત સભ્ય',
 'block-log-flags-nocreate'        => 'ખાતું ખોલવા પર પ્રતિબંધ છે',
@@ -2464,6 +2521,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'allmessagesname'               => 'નામ',
 'allmessagesdefault'            => 'મૂળ સંદેશ',
 'allmessagescurrent'            => 'વર્તમાન દસ્તાવેજ',
+'allmessagesnotsupportedDB'     => "આ પાનું ન વાપરી શકાશે કેમકે '''\$wgUseDatabaseMessages'''  નિષ્ક્રીય કરાયું છે",
 'allmessages-filter-legend'     => 'ચાળણી',
 'allmessages-filter'            => 'સ્થાનીયકરણ સ્થિતિ દ્વારા ચાળો',
 'allmessages-filter-unmodified' => 'અસંપાદિત',
@@ -2488,6 +2546,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 # Special:Import
 'import'                     => 'પાના આયાત કરો',
 'importinterwiki'            => 'ટ્રાંસ વિકિ આયાત',
+'import-interwiki-text'      => 'આયાત કરવાના વિકિ અને પાનાનું શીર્ષક પસંદ કરો.
+ફેરફરની તારીખ અને લેખકો વિષે ની માહિતી સચવાશે.
+આંતર વિકિ આયાત આદિ [[Special:Log/import|import log]] માં અંકિત થાય છે.',
 'import-interwiki-source'    => 'સ્ત્રોત વિકિ/પાનું',
 'import-interwiki-history'   => 'આ પાના બધા ઐતિહાસીક ફેરફારોની નકલ કરો',
 'import-interwiki-templates' => 'બધા ઢાંચા શામિલ કરો',
@@ -2615,6 +2676,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 
 # Spam protection
 'spamprotectiontitle' => 'સ્પામ સંરક્ષણ ચાળણી',
+'spamprotectionmatch' => 'આ શબ્દો એ સ્પેમ સંરક્ષણ ચાળણીને સક્રીય કરી : $1',
 'spambot_username'    => 'મિડિયાવિકી સ્પેમ સફાઇ',
 'spam_reverting'      => ' $1 પર કડી ન ધરાવતા છેલ્લા ફેરેફાર પર પુનઃ સ્થાપન કરાય છે',
 'spam_blanking'       => 'બધા ફેરફારોમાં  $1 પર કડી હતી, આને હટાવી દેવામાં આવે છે',
@@ -2732,6 +2794,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-compression'               => 'સંકોચન પ્રણાલી',
 'exif-photometricinterpretation' => 'Pixel સંરચના',
 'exif-orientation'               => 'દિશામાન્',
+'exif-samplesperpixel'           => 'ભાગની સંખ્યા',
 'exif-planarconfiguration'       => 'માહિતી ગોઠવણ',
 'exif-ycbcrpositioning'          => 'Y અને C સ્થાનાંતરણ',
 'exif-xresolution'               => 'આડું ઘનત્વ',
@@ -2770,10 +2833,12 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-shutterspeedvalue'         => 'દ્વારની ઝડપ',
 'exif-aperturevalue'             => 'છીદ્ર માપ',
 'exif-brightnessvalue'           => 'તેજસ્વીતા',
+'exif-exposurebiasvalue'         => 'પ્રકાશાગમ ફરક્',
 'exif-maxaperturevalue'          => 'મહત્તમ ભૂમિ છીદ્ર',
 'exif-subjectdistance'           => 'વસ્તુનું અંતર',
 'exif-lightsource'               => 'પ્રકાશા સ્ત્રોત',
 'exif-flash'                     => 'જબકારો (ફ્લેશ)',
+'exif-focallength'               => 'કાંચનું કેન્દ્રીય લંબાઇ (ફોકલ લેંથ)',
 'exif-subjectarea'               => 'વિષ્યવસ્તુ  ક્ષેત્ર',
 'exif-flashenergy'               => 'ઝબકારાની શક્તિ',
 'exif-focalplanexresolution'     => 'કેન્દ્રીત X ફલક નું ઘનત્વ',
@@ -2810,6 +2875,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-gpsdop'                    => 'માપન ચોકસાઈ',
 'exif-gpsspeedref'               => 'ઝડપનું એકમ',
 'exif-gpsspeed'                  => 'GPS ગ્રાહક ઝડપ',
+'exif-gpsimgdirectionref'        => 'ચિત્રની દિશાનો સંદર્ભ',
 'exif-gpsimgdirection'           => 'ચિત્રની દિશા',
 'exif-gpsmapdatum'               => 'ભૂમાપન સર્વેક્ષણ માહિતી વપરાઇ',
 'exif-gpsdestlatituderef'        => 'સ્થાનનો અક્ષાંસ સંદર્ભ',
@@ -2876,6 +2942,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 # Flash modes
 'exif-flash-fired-0'    => 'પ્રકાશ ઝબકારો ન થયો',
 'exif-flash-fired-1'    => 'ઝબકારો કરાયો',
+'exif-flash-return-2'   => 'પરતીનો સ્ટ્રોબ પ્રકાશ ન મેળવાયો.',
+'exif-flash-mode-1'     => 'ફરજિયાત  ઝાકારો રાખો',
+'exif-flash-mode-2'     => 'ફરજીયાત ઝબકારો બંધ રાખો',
 'exif-flash-mode-3'     => 'સ્વયંચાલિત ઢબ',
 'exif-flash-function-1' => 'ઝબકારો નહીં',
 'exif-flash-redeye-1'   => 'રાતી આંખના ઘટાડાની ઢબ',
@@ -2890,6 +2959,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-sensingmethod-7' => 'ત્રિરેખીક સંવેદક',
 
 'exif-scenetype-1' => 'અસલ ફોટો ધરાવતું ચિત્ર',
+
+'exif-customrendered-0' => 'સામાન્ય પ્રક્રિયા',
+'exif-customrendered-1' => 'પસંદગી પ્રક્રિયા',
 
 'exif-exposuremode-0' => 'સ્વયંચાલિત પ્રકાશાભિમુખતા',
 'exif-exposuremode-1' => 'માનવ ચાલિત પ્રકાશાભિમુખતા',
@@ -2962,31 +3034,67 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'limitall'         => 'બધા',
 
 # E-mail address confirmation
-'confirmemail'             => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
-'confirmemail_noemail'     => 'તમારા [[Special:Preferences|user preferences]] માં વૈધ ઈ-મેલ સરનામું નથી.',
-'confirmemail_text'        => '{{SITENAME}} માં તમારા ઇ-મેલ સરનામાની પુષ્ટિ થયેલી હોવી જરૂરી છે.
+'confirmemail'              => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
+'confirmemail_noemail'      => 'તમારા [[Special:Preferences|user preferences]] માં વૈધ ઈ-મેલ સરનામું નથી.',
+'confirmemail_text'         => '{{SITENAME}} માં તમારા ઇ-મેલ સરનામાની પુષ્ટિ થયેલી હોવી જરૂરી છે.
 નીચેના બટન પર  ક્લિક કરો અને પુષ્ટિ કરનાર ઇ-મેલ પાઠવો.
 આ મેલમાં કોડ ધરાવતી એક કડી પણ મોકલાવાશે;
 ઈ-મેલની પુષ્ટિ કરવા તે કડી તમારા બ્રાઉઝરમાં સક્રીય કરો.',
-'confirmemail_pending'     => 'પુષ્ટિ કરતું કોડ તમને ઇ-મેલ કરી દેવાયો છે;
+'confirmemail_pending'      => 'પુષ્ટિ કરતું કોડ તમને ઇ-મેલ કરી દેવાયો છે;
 તમે જો હાલમાં તમારું ખાતું ખોલ્યું હોય, તો તમે અમુક ક્ષણો પ્રતિક્ષા કરી અને નવા કોડની વિનંતી કરવાનું ટાળી શકો.',
-'confirmemail_send'        => 'ઈ-મેલ બહાલી સંકેત ઇ-મેલમાં મોકલો',
-'confirmemail_sent'        => 'બહાલીનો ઇ-મેલ મોકલી દેવાયો છે',
-'confirmemail_oncreate'    => 'પુષ્ટિકોડ તમને ઇમેલ દ્વારા મોકલવામાં આવ્યો છે. 
+'confirmemail_send'         => 'ઈ-મેલ બહાલી સંકેત ઇ-મેલમાં મોકલો',
+'confirmemail_sent'         => 'બહાલીનો ઇ-મેલ મોકલી દેવાયો છે',
+'confirmemail_oncreate'     => 'પુષ્ટિકોડ તમને ઇમેલ દ્વારા મોકલવામાં આવ્યો છે. 
 પ્રવેશ કરવા માટ તમને આ કોડની જરૂર નથી.  પણ ઇ-મેલ આધારિત વિકિ સેવાઓ વાપરવા આની જરૂર છે.',
-'confirmemail_sendfailed'  => '{{SITENAME}} તમારો પુષ્ટિ કરનાર ઇ-મેલ નહીં મોકલી શકી.
+'confirmemail_sendfailed'   => '{{SITENAME}} તમારો પુષ્ટિ કરનાર ઇ-મેલ નહીં મોકલી શકી.
 કૃપયા તમારો ઇ-મેલ તપાસી અવૈધ અક્ષરો હોય તો તપાસો.
 મેલની પહોંચ પાછી ફરી: $1',
-'confirmemail_invalid'     => 'અવૈધ બહાલી સંકેત
+'confirmemail_invalid'      => 'અવૈધ બહાલી સંકેત
 સંકેત કાલાતિત થયું હોય',
-'confirmemail_needlogin'   => 'તમારે ઈ-મેલ ને બહાલી આપવા $1 કરવું પડશે',
-'confirmemail_success'     => 'તમારા ઈ-મેલની પુષ્ટિ થઈ ગઈ છે.
+'confirmemail_needlogin'    => 'તમારે ઈ-મેલ ને બહાલી આપવા $1 કરવું પડશે',
+'confirmemail_success'      => 'તમારા ઈ-મેલની પુષ્ટિ થઈ ગઈ છે.
 તમે હવે પ્રવેશ [[Special:UserLogin|log in]] કરી વિકિનો આનંદ ઉઠાવી શકો.',
-'confirmemail_loggedin'    => 'તમારા ઇ-મેલ સરનામાની પુષ્ટિ કરાઇ છે.',
-'confirmemail_error'       => 'પુષ્ટિ સાચવતા કોઈ ત્રુટિ રહી ગઈ',
-'confirmemail_subject'     => '{{SITENAME}} ઈ-મેલ સરનામાની પુષ્ટિ',
-'confirmemail_invalidated' => 'ઇ-મેલ સરનામાનું બહાલીકરણ રદ્દ',
-'invalidateemail'          => 'ઇ-મેલ બહાલી રદ્દ કરો',
+'confirmemail_loggedin'     => 'તમારા ઇ-મેલ સરનામાની પુષ્ટિ કરાઇ છે.',
+'confirmemail_error'        => 'પુષ્ટિ સાચવતા કોઈ ત્રુટિ રહી ગઈ',
+'confirmemail_subject'      => '{{SITENAME}} ઈ-મેલ સરનામાની પુષ્ટિ',
+'confirmemail_body'         => 'કોઇકે, કદાચ તમે પોતે જ , IP સરનામા  $1 પરથી,
+ "$2" ખાતાનું ઇ-મેલ સરનામું બદલ્યું  {{SITENAME}} પર છે.
+
+એ વાતની પુષ્ટિ કરવા માટે કે આ એ-મેલ ખાતું તમારું જ છે અને {{SITENAME}}ના ઇ-મેલ સંબંધિત વિકલ્પો સક્રીય કરવા માટે અપેલ કડીને તમારા બ્રાઉઝરમાં સક્રીય કરો. :
+
+$3
+
+જો ખાતું તમારું ના હોય તો,આકડીનેઅનુસરીઈ-મેલાખાતાનીપુષ્ટિનીનોંધણીને રદ્દ કરો:
+
+$5
+
+આ પુષ્ટિ કોડ  $4 ના કાલાતિત થશે.',
+'confirmemail_body_changed' => 'કોઇકે, કદાચ તમે પોતે જ , IP સરનામા  $1 પરથી,
+ "$2" ખાતાનું ઇ-મેલ સરનામું બદલ્યું  {{SITENAME}} પર છે.
+
+એ વાતની પુષ્ટિ કરવા માટે કે આ એ-મેલ ખાતું તમારું જ છે અને {{SITENAME}}ના ઇ-મેલ સંબંધિત વિકલ્પો સક્રીય કરવા માટે અપ્ેલ કડીને તમારા બ્રાઉઝરમાં સક્રીય કરો. :
+
+$3
+
+જો ખાતું તમારું ના હોય તો,આકડીનેઅનુસરીઈ-મેલાખાતાનીપુષ્ટિનીનોંધણીને રદ્દ કરો:
+
+$5
+
+આ પુષ્ટિ કોડા  $4 ના કાલાતિત થશે.',
+'confirmemail_body_set'     => 'કોઇકે, કદાચ તમે પોતે જ , IP સરનામા  $1 પરથી,
+ "$2" ખાતાનું ઇ-મેલ સરનામું બદલ્યું  {{SITENAME}} પર છે.
+
+એ વાતની પુષ્ટિ કરવા માટે કે આ એ-મેલ ખાતું તમારું જ છે અને {{SITENAME}}ના ઇ-મેલ સંબંધિત વિકલ્પો સક્રીય કરવા માટે અપેલ કડીને તમારા બ્રાઉઝરમાં સક્રીય કરો. :
+
+$3
+
+જો ખાતું તમારું ના હોય તો,આકડીનેઅનુસરીઈ-મેલાખાતાનીપુષ્ટિનીનોંધણીને રદ્દ કરો:
+
+$5
+
+આ પુષ્ટિ કોડ  $4 ના કાલાતિત થશે.',
+'confirmemail_invalidated'  => 'ઇ-મેલ સરનામાનું બહાલીકરણ રદ્દ',
+'invalidateemail'           => 'ઇ-મેલ બહાલી રદ્દ કરો',
 
 # Scary transclusion
 'scarytranscludedisabled' => 'આંતરવિકિ આંશિક સંદર્ભીકરણ નિષ્ક્રીય',
@@ -3060,6 +3168,10 @@ $1',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 શીર્ષક |$1 શીર્ષકો }} ને તમારી ધ્યાનસૂચિમાંથી હટાવાયા:',
 'watchlistedit-raw-title'      => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 'watchlistedit-raw-legend'     => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
+'watchlistedit-raw-explain'    => 'તમારી ધ્યાનસૂચિના શીર્ષકો અહીં બતાવ્યાં છે , તેમાં વસ્તુ ઓ ઉમેરીએ અને હટાવીને તેમાં ફેરફાર કરી શકાય છે;
+એક શીર્ષક પ્રતિ લિટી.
+જ્યારે કાર્ય સમાપ્ત થાય ત્યારે, અહીં ક્લિક કરો "{{int:Watchlistedit-raw-submit}}".
+તેમે  [[Special:Watchlist/edit|use the standard editor]] પણ કરી શકો.',
 'watchlistedit-raw-titles'     => 'શિર્ષક:',
 'watchlistedit-raw-submit'     => 'ધ્યાનસૂચિ અધ્યતન બનાવો',
 'watchlistedit-raw-done'       => 'તમારી ધ્યાના સૂચિ અધ્યતન કરાઈ.',
@@ -3096,6 +3208,11 @@ $1',
 'version-license'                  => 'પરવાનો',
 'version-poweredby-credits'        => "આ વિકિ  '''[http://www.mediawiki.org/ MediaWiki]''' દ્વારા ચાલે છે, પ્રકાશન અધિકાર © 2001-$1 $2.",
 'version-poweredby-others'         => 'અન્યો',
+'version-license-info'             => 'મિડિયાવિકિ એક મુક્ત સોફ્ટવેર છે. તમે તેનું પુનઃવિતરણ કરી શકો છો અને/અથવા તેને the Free Software Foundation દ્વારા પ્રકાશિત  GNU General Public License હેઠળ તેના સંસ્કરણ 2 ને કે તે પછીના સંસ્કરણ   મઠારી શકો છો . 
+
+મિડિયા વિકિ ને તે આશાથી વિતરીત કરાયું છે કે તે લોકોને ઉપયોગિ થશે કોઇ વોરેંટી વિના અથવા કોઇ કાર્ય સંબધી વેચાણકે તેની યોગ્યતા બદ્દલ ખાત્રી સિવાય. વધારે  માહિતે માટે GNU General Public Licens જુઓ.
+
+આ પ્રોગ્રામ સાથે તમને  [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License]ની કૉપી મળી હશે. જો ન મલી હોય તો અહીં લખશો the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA કે  [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html ઓનલાઇન વાંચો ].',
 'version-software'                 => 'બેસાડેલા સોફ્ટવેર',
 'version-software-product'         => 'ઉત્પાદ',
 'version-software-version'         => 'આવૃત્તિ',
@@ -3140,6 +3257,16 @@ $1',
 # Special:BlankPage
 'blankpage'              => 'કોરું પાનું',
 'intentionallyblankpage' => 'આપાનું જાણે કરીને કોરું રખાયું છે',
+
+# External image whitelist
+'external_image_whitelist' => ' #આ લીટી જેમ છે તેમ જ રહેવા દો. <pre>
+#પ્રાયઃ મુકાતા ખંડન કરનારા ચિન્હો મુકો (જેમ કે // વચ્ચે મુકાતા ભાગ) 
+#આને બહારથી આવતી ચિત્રોના URLs સાથે સરાખાવાશે 
+#જે મેળ ખાશે તેને ચિત્ર તરીકે બતાવાશે , અન્યથા માત્ર તે ચિત્ર પર દોરી જતી કડી બતાવાશે
+#લીટીઓ કે જે  # થી શરૂ થશે તેને નોંધ માનવામાં આવશે.
+#આ બધી અક્ષર અને માત્રાઅ સંવેદન હશે. 
+
+#દરેક regex ટુકડાઓ આ લીટીની ઉપર મુકો. અને આ લીટીને જેમ છે તેમ મુકો </pre>',
 
 # Special:Tags
 'tags'                    => 'વૈધ ફેરફાર પાના',
