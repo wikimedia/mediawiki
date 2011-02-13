@@ -59,6 +59,10 @@ $namespaceAliases = array(
 	'Dyskusja_grafiki' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Użytkownik', 'female' => 'Użytkowniczka' ),
+	NS_USER_TALK => array( 'male' => 'Dyskusja_użytkownika', 'female' => 'Dyskusja_użytkowniczki' ), 
+);
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
