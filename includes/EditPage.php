@@ -1825,7 +1825,8 @@ HTML
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		wfRunHooks( 'EditPageCopyrightWarning', array( $this->mTitle, &$copywarnMsg ) );
 
-		return "<div id=\"editpage-copywarn\">\n" . call_user_func_array("wfMsgNoTrans", $copywarnMsg) . "\n</div>";
+		return "<div id=\"editpage-copywarn\">\n" .
+			call_user_func_array("wfMsgNoTrans", $copywarnMsg) . "\n</div>";
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
