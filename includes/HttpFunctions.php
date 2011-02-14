@@ -188,7 +188,7 @@ class MWHttpRequest {
 		}
 
 		$members = array( "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
-				  "method", "followRedirects", "maxRedirects", "sslVerifyCert" );
+				  "method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" );
 
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
