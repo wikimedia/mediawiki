@@ -271,7 +271,7 @@ class GenerateSitemap extends Maintenance {
 			$i = $smcount = 0;
 
 			$fns = $wgContLang->getFormattedNsText( $namespace );
-			$this->output( "$namespace ($fns)" );
+			$this->output( "$namespace ($fns)\n" );
 			foreach ( $res as $row ) {
 				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
 					if ( $this->file !== false ) {
