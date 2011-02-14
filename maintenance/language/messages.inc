@@ -596,6 +596,7 @@ $wgMessageStructure = array(
 		'session_fail_preview',
 		'session_fail_preview_html',
 		'token_suffix_mismatch',
+		'edit_form_incomplete',
 		'editing',
 		'editingsection',
 		'editingcomment',
