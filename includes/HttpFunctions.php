@@ -89,6 +89,7 @@ class Http {
 			// Check if this domain or any superdomain is listed in $wgConf as a local virtual host
 			$domainParts = array_reverse( $domainParts );
 
+			$domain = '';
 			for ( $i = 0; $i < count( $domainParts ); $i++ ) {
 				$domainPart = $domainParts[$i];
 				if ( $i == 0 ) {
@@ -198,6 +199,8 @@ class MWHttpRequest {
 
 	/**
 	 * Generate a new request object
+        * @param $url String: url to use
+	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 * @see MWHttpRequest::__construct
 	 */
 	public static function factory( $url, $options = null ) {
