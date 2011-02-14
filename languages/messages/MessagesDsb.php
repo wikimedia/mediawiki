@@ -777,6 +777,7 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 
 '''Jo-lic to legitiměrowane wobźěłanje, wopytaj hyšći raz. Gaž to zasej njejźo, wopytaj se wót- a zasej pśizjawiś.'''",
 'token_suffix_mismatch'            => "'''Twójo wobźěłanje jo se wótpokazało, dokulaž jo twój browser znamuška we wobźěłańskem tokenje rozsekał. Składowanje by mógało wopśimjeśe boka znicyś. Take casy se źejo, gaž wužywaš web-bazěrowanu, zmólkatu, anonymnu proksy-słužbu.'''",
+'edit_form_incomplete'             => "'''Někotare źěle wobźěłowańskego formulara njwejsu serwer dojśpili; pśeglědaj, lěc twóje změny su w pórěźe  a wopytaj hyšći raz.'''",
 'editing'                          => 'Wobźěłanje boka $1',
 'editingsection'                   => 'Wobźěłanje boka $1 (wótrězk)',
 'editingcomment'                   => '$1 (nowy wótrězk) se wobźěłujo',
@@ -2913,6 +2914,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsareainformation'          => 'Mě wobcerka GPS',
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
+'exif-objectname'                  => 'Krotki titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',

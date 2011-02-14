@@ -203,8 +203,10 @@ $messages = array(
 'tog-shownumberswatching'     => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
 'tog-oldsig'                  => 'פאראויסדיגער ווייזונג פונעם איצטיגער אונטערשריפט:',
 'tog-fancysig'                => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
-'tog-externaleditor'          => 'ניצט א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
-'tog-externaldiff'            => 'ניצט א דרויסנדיגן פֿארגלייכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
+'tog-externaleditor'          => 'ניצן א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען).
+[http://www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
+'tog-externaldiff'            => 'ניצן א דרויסנדיגן פֿאַרגלײַכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)
+[http://www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
 'tog-showjumplinks'           => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
 'tog-uselivepreview'          => 'באנוצט זיך מיט לייוו פאראויסדיגע ווייזונג (JavaScript) (עקספירענמעטל)',
 'tog-forceeditsummary'        => 'ווארן מיך ווען איך לייג א ליידיג קורץ ווארט ענדערונג',
@@ -1261,6 +1263,7 @@ $1",
 'prefs-diffs'                   => 'צווישנשיידן',
 
 # User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'ע-פּאָסט אַדרעס זעט אויס גילטיק',
 'email-address-validity-invalid' => 'לייגט אַרײַן א גילטיקן ע־פאסט אַדרעס',
 
 # User rights
@@ -1477,6 +1480,7 @@ $1",
 'filename-tooshort'     => 'דער טעקענאמען איז צו קורץ',
 'illegal-filename'      => 'דער טעקע־נאָמען איז נישט ערלויבט',
 'unknown-error'         => 'אַן אומבאַקאַנט טעות איז פֿארגעקומען.',
+'tmp-write-error'       => 'טעות בײַם שרייַבן צייַטווייַליקע טעקע.',
 'large-file'            => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
 'emptyfile'             => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
@@ -1504,6 +1508,7 @@ $1",
 'watchthisupload'       => 'אויפֿפאַסן דעם בלאט',
 'upload-success-subj'   => 'דערפֿאלגרייכער ארויפֿלאָד',
 'upload-failure-subj'   => 'אַרויפֿלאָדן פראבלעם',
+'upload-warning-subj'   => 'אַרויפֿלאָדן וואָרענונג',
 
 'upload-proto-error'        => 'פאלשער פראטאקאל',
 'upload-file-error'         => 'אינערליכער פעלער',
@@ -1520,6 +1525,7 @@ $1",
 
 # HTTP errors
 'http-invalid-url'      => 'אומגילטיג URL: $1',
+'http-read-error'       => 'HTTP לייענען גרײַז.',
 'http-curl-error'       => 'גרײַז בײַם ברענגען URL: $1',
 'http-host-unreachable' => "מ'קען נישט דערגרייכן דעם URL",
 'http-bad-status'       => "ס'איז געווען א פראבלעם ביים HTTP פֿאַרלאַנג: $1 $2",
@@ -1682,6 +1688,8 @@ $1",
 'nmembers'                => '$1 {{PLURAL:$1|בלאט|בלעטער}}',
 'nrevisions'              => '{{PLURAL:$1|איין רעוויזיע|$1 רעוויזיעס}}',
 'nviews'                  => '{{PLURAL:$1|איין קוק|$1 קוקן}}',
+'nimagelinks'             => 'געניצט אויף $1 {{PLURAL:$1|בלאַט|בלעטער}}',
+'ntransclusions'          => 'געניצט אויף $1 {{PLURAL:$1|בלאַט|בלעטער}}',
 'specialpage-empty'       => 'דער בלאט איז ליידיג.',
 'lonelypages'             => "פֿאר'יתומ'טע בלעטער",
 'lonelypagestext'         => 'די פֿאלגנדע בלעטער זענען נישט פֿאַרבינדן פֿון אדער אריבערגעשלאסן אין אנדערע בלעטער אין {{SITENAME}}.',
@@ -2324,6 +2332,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 'immobile-source-page'         => 'דער דאזיגער בלאט קען נישט ווערן באוועגט.',
 'immobile-target-page'         => 'קען נישט באַוועגן צו דעם ציל טיטל.',
 'imagenocrossnamespace'        => 'קען נישט באַוועגן טעקע צו נישט-טעקע נאָמענטייל',
+'nonfile-cannot-move-to-file'  => 'קען נישט באַוועגן וואָס איז נישט קיין טעקע צום טעקע נאָמענטייל',
 'imageinvalidfilename'         => 'דער ציל טעקע נאמען איז נישט גילטיק.',
 'move-leave-redirect'          => 'איבערלאזן א ווײַטערפֿירונג',
 
@@ -2813,7 +2822,8 @@ $5
 'invalidateemail'           => 'אַנולירן בליצפאסט באַשטעטיקונג',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL צו לאנג]',
+'scarytranscludedisabled' => '[אינטערוויקי אריבערשליסן איז אַנולירט]',
+'scarytranscludetoolong'  => '[URL צו לאנג]',
 
 # Trackbacks
 'trackbackremove' => '([$1 אויסמעקן])',
@@ -2867,6 +2877,8 @@ $5
 'watchlistedit-raw-titles'    => 'טיטלען:',
 'watchlistedit-raw-submit'    => 'דערהיינטיג אויפפאסונג ליסטע',
 'watchlistedit-raw-done'      => 'אייער אויפֿפאַסונג ליסטע איז געווארן דערהײַנטיקט',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 טיטל איז|$1 טיטלען זענען}} געווען צוגעלייגט:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 טיטל איז|$1 טיטלען זענען}} געווען אַראָפגענומען:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ווייזן שייכדיגע ענדערונגען',
@@ -2914,6 +2926,7 @@ $5
 'version-other'            => 'אנדער',
 'version-version'          => '(ווערסיע $1)',
 'version-poweredby-others' => 'אַנדערע',
+'version-software'         => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
 

@@ -3073,6 +3073,7 @@ $1',
 'exif-gpsareainformation'          => 'Назва GPS-зоны',
 'exif-gpsdatestamp'                => 'Дата GPS',
 'exif-gpsdifferential'             => 'Дыфэрэнцыяльная папраўка GPS',
+'exif-objectname'                  => 'Кароткая назва',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясьціснуты',

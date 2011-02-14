@@ -813,6 +813,7 @@ Wann de Problem dann ëmmer nach bestoe sollt, versicht Iech [[Special:UserLogou
 'token_suffix_mismatch'            => "'''Är Ännerung gouf refuséiert, well Äre Browser Zeechen am Ännerungs-Identifiant verännert huet.'''
 D'Ännerung gouf refuséiert, fir ze verhënneren datt den Text op der Säit onliesbar gëtt.
 Dëst geschitt heiandsdo wann Dir en anonyme Proxy-Service um Internet benotzt.",
+'edit_form_incomplete'             => "'''En Deel vum Ännerungsformulaire koum net um Server un; iwwerpréift w.e.g ob Är Ännerunge komplett sinn a probéiert nach emol.'''",
 'editing'                          => 'Ännere vu(n) $1',
 'editingsection'                   => 'Ännere vu(n) $1 (Abschnitt)',
 'editingcomment'                   => 'Ännere vu(n) $1 (neien Abschnitt)',
