@@ -78,6 +78,9 @@ class PrefixSearch {
 	protected static function specialSearch( $search, $limit ) {
 		global $wgContLang;
 
+		# normalize searchKey, so aliases with spaces can be found - bug 25675
+		$search = str_replace( ' ', '_', $search );
+
 		$searchKey = $wgContLang->caseFold( $search );
 
 		// Unlike SpecialPage itself, we want the canonical forms of both
