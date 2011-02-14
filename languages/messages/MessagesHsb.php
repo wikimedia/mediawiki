@@ -758,6 +758,7 @@ Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so zaso
 '''Jeli to je legitimny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.'''",
 'token_suffix_mismatch'            => "'''Twoja změna je so wotpokazała, dokelž twój wobhladowak je znamješka skepsał.
 Składowanje móže wobsah strony zničić. Móže so to na přikład přez wopačnje dźěłowacy proksy stać.'''",
+'edit_form_incomplete'             => "'''Někotre dźěle wobdźěłowanskeho formulara njejsu serwer docpěli; prošu přepruwuj, hač twoje změny su w porjadku a spytaj hišće raz.'''",
 'editing'                          => 'Wobdźěłanje strony $1',
 'editingsection'                   => 'Wobdźěłanje strony $1 (wotrězk)',
 'editingcomment'                   => '$1 so wobdźěłuje (nowy wotrězk)',
@@ -2897,6 +2898,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsareainformation'          => 'Mjeno wobwoda GPS',
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
+'exif-objectname'                  => 'Krótki titul',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',

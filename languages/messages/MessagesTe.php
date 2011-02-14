@@ -336,6 +336,7 @@ $messages = array(
 'delete'            => 'తుడిచివేయి',
 'deletethispage'    => 'ఈ పేజీని తుడిచివేయి',
 'undelete_short'    => '{{PLURAL:$1|ఒక్క రచనను|$1 రచనలను}} పునఃస్థాపించు',
+'viewdeleted_short' => '{{PLURAL:$1|తొలగించిన ఒక మార్పు|$1 తొలగించిన మార్పుల}}ను చూడండి',
 'protect'           => 'సంరక్షించు',
 'protect_change'    => 'మార్చు',
 'protectthispage'   => 'ఈ పేజీని సంరక్షించు',
@@ -419,6 +420,8 @@ $1',
 'toc'                     => 'విషయ సూచిక',
 'showtoc'                 => 'చూపించు',
 'hidetoc'                 => 'దాచు',
+'collapsible-collapse'    => 'కుదించు',
+'collapsible-expand'      => 'విస్తరించు',
 'thisisdeleted'           => '$1ను చూస్తారా, పునఃస్థాపిస్తారా?',
 'viewdeleted'             => '$1 చూస్తారా?',
 'restorelink'             => '{{PLURAL:$1|ఒక తొలగించిన మార్పు|$1 తొలగించిన మార్పులు}}',
@@ -1243,6 +1246,7 @@ $1",
 'prefs-diffs'                   => 'తేడాలు',
 
 # User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'ఈ-మెయిలు చిరునామా సరిగానే ఉన్నట్టుంది',
 'email-address-validity-invalid' => 'దయచేసి సరైన ఈమెయిలు చిరునామాని ఇవ్వండి',
 
 # User rights
@@ -1570,6 +1574,9 @@ $1',
 'upload-unknown-size'       => 'సైజు తెలియదు',
 'upload-http-error'         => 'ఒక HTTP పొరపాటు జరిగింది: $1',
 
+# Special:UploadStash
+'uploadstash-refresh' => 'దస్త్రాల జాబిజాను తాజాకరించు',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'అనుమతిని నిరాకరించారు',
 'img-auth-nopathinfo'   => 'PATH_INFO లేదు.
@@ -1631,7 +1638,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'filehist'                          => 'ఫైలు చరితం',
 'filehist-help'                     => 'తేదీ/సమయం ను నొక్కి ఆ సమయాన ఫైలు ఎలా ఉండేదో చూడవచ్చు.',
 'filehist-deleteall'                => 'అన్నిటినీ తొలగించు',
-'filehist-deleteone'                => 'దీన్ని తొలగించు',
+'filehist-deleteone'                => 'తొలగించు',
 'filehist-revert'                   => 'తిరుగుసేత',
 'filehist-current'                  => 'ప్రస్తుత',
 'filehist-datetime'                 => 'తేదీ/సమయం',
@@ -3221,14 +3228,15 @@ $1',
 పేరుకు ముందు "{{ns:file}}:" అని చేర్చవద్దు.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'ఫైళ్ల మారుప్రతుల కోసం వెతుకు',
-'fileduplicatesearch-summary'  => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.',
-'fileduplicatesearch-legend'   => 'మారుప్రతి కొరకు వెతుకు',
-'fileduplicatesearch-filename' => 'ఫైలు పేరు:',
-'fileduplicatesearch-submit'   => 'వెతుకు',
-'fileduplicatesearch-info'     => '$1 × $2 పిక్సెళ్లు<br />దస్త్రపు పరిమాణం: $3<br />MIME రకం: $4',
-'fileduplicatesearch-result-1' => '"$1" అనే పేరుగల ఫైలుకు సరిసమానమైన మారుప్రతులు లేవు.',
-'fileduplicatesearch-result-n' => '"$1" అనే పేరుగల ఫైలుకు {{PLURAL:$2|ఒక మారుప్రతి ఉంది|$2 మారుప్రతులున్నాయి}}.',
+'fileduplicatesearch'           => 'ఫైళ్ల మారుప్రతుల కోసం వెతుకు',
+'fileduplicatesearch-summary'   => 'మారుప్రతుల కోసం ఫైళ్ల హాష్ విలువ ఆధారంగా వెతుకు.',
+'fileduplicatesearch-legend'    => 'మారుప్రతి కొరకు వెతుకు',
+'fileduplicatesearch-filename'  => 'ఫైలు పేరు:',
+'fileduplicatesearch-submit'    => 'వెతుకు',
+'fileduplicatesearch-info'      => '$1 × $2 పిక్సెళ్లు<br />దస్త్రపు పరిమాణం: $3<br />MIME రకం: $4',
+'fileduplicatesearch-result-1'  => '"$1" అనే పేరుగల ఫైలుకు సరిసమానమైన మారుప్రతులు లేవు.',
+'fileduplicatesearch-result-n'  => '"$1" అనే పేరుగల ఫైలుకు {{PLURAL:$2|ఒక మారుప్రతి ఉంది|$2 మారుప్రతులున్నాయి}}.',
+'fileduplicatesearch-noresults' => '"$1" అనే పేరుగల దస్త్రమేమీ కనబడలేదు.',
 
 # Special:SpecialPages
 'specialpages'                   => 'ప్రత్యేక పుటలు',
@@ -3310,6 +3318,7 @@ $1',
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
 
 # Special:DisableAccount
+'disableaccount'            => 'వాడుకరి ఖాతాని అచేతనంచేయి',
 'disableaccount-user'       => 'వాడుకరిపేరు:',
 'disableaccount-reason'     => 'కారణం:',
 'disableaccount-nosuchuser' => '"$1" అనే వాడుకరి ఖాతా లేనే లేదు.',

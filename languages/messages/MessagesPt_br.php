@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bani
+ * @author Brion
  * @author BrunaaAa
  * @author Brunoy Anastasiya Seryozhenko
  * @author Capmo
@@ -1255,7 +1256,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
-'searchmenu-exists'                => "*'''Há uma página chamada \"[[\$1]]\" nesta wiki'''",
+'searchmenu-exists'                => "*'''Há uma página chamada \"[[:\$1]]\" nesta wiki'''",
 'searchmenu-new'                   => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
 'searchmenu-new-nocreate'          => '"$1" é um nome de página inválido ou não pode ser criado por você.',
 'searchhelp-url'                   => 'Help:Conteúdos',

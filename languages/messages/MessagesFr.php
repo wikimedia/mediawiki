@@ -3195,6 +3195,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsareainformation'          => 'Nom de la zone GPS',
 'exif-gpsdatestamp'                => 'Date GPS',
 'exif-gpsdifferential'             => 'Correction différentielle GPS',
+'exif-objectname'                  => 'Titre court',
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',

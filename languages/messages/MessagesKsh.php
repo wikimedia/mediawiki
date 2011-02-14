@@ -951,6 +951,7 @@ Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]
 
 '''Falls för Dich söns alles jod ussüht, versök et jrad noch ens. Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]] un widder Enlogge.'''",
 'token_suffix_mismatch'            => "'''Ding Änderung ham_mer nit övvernomme. Dinge Brauser hät Sazzeijche em verstoche <i lang=\"en\">Token</i> för et Ändere versout. Dat paßeet och ens, wann enne <i lang=\"en\">Proxy</i> nit fungkßjeneet. Et Affspeichere wör do jefährlesch, do künt dä Sigge_Enhaldt kapott bei jon.'''",
+'edit_form_incomplete'             => "'''Ene Aandeil vun dämm Fommulaa es nit reshtesh om ẞööver aanjekumme. Donn Ding Ennjaabe prööve, repareere, un versöhg et norrens.'''",
 'editing'                          => 'De Sigg „$1“ ändere',
 'editingsection'                   => 'Ne Avschnedd vun dä Sigg: „$1“ ändere',
 'editingcomment'                   => '„$1“ ändere (ene neue Avschnedd schrieve)',
@@ -3263,6 +3264,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsareainformation'          => 'Dä Name fum GPS-Jebeet',
 'exif-gpsdatestamp'                => 'GPS-Dattum',
 'exif-gpsdifferential'             => 'De Differenzjahl-Bereschtijong fum GPS',
+'exif-objectname'                  => 'Tittel en koot',
 
 # EXIF attributes
 'exif-compression-1' => 'Oohne Kompressjuhn',

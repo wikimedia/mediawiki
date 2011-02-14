@@ -982,6 +982,7 @@ Pokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]
 'token_suffix_mismatch'            => "'''Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu.
 Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.'''",
+'edit_form_incomplete'             => "'''Část editačního formuláře nedorazila na server; překontrolujte úplnost změn a zkuste to znovu.'''",
 'editing'                          => 'Editace stránky $1',
 'editingsection'                   => 'Editace stránky $1 (část)',
 'editingcomment'                   => 'Editace stránky $1 (nová sekce)',
@@ -3145,6 +3146,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpsareainformation'          => 'Označení GPS oblasti',
 'exif-gpsdatestamp'                => 'Datum podle GPS',
 'exif-gpsdifferential'             => 'Diferenciální korekce GPS',
+'exif-objectname'                  => 'Krátký název',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekomprimovaný',

@@ -356,6 +356,7 @@ $messages = array(
 
 $1',
 'pool-timeout'      => 'ბლოკირების ლოდინის დრო ამოიწურა',
+'pool-queuefull'    => 'მოთხოვნების დამგროვებელი სავსეა',
 'pool-errorunknown' => 'უცნობი შეცდომა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1759,13 +1760,14 @@ $1',
 ამის ნაცვლად იგი უნდა შეესაბამოს კონკრეტულ სტატიას.<br />
 გვერდი ითვლება მრავალმნიშვნელოვნად, თუ მასზე გამოყენებულია [[MediaWiki:Disambiguationspage|მითსათითებელი თარგი]].",
 
-'doubleredirects'            => 'ორმაგი გადამისამართება',
-'doubleredirectstext'        => 'ამ გვერდზე ჩამოთვლილია გვერდები, რომლებიც გადამისამართებულია სხვა გადამისამართების გვერდებზე.
+'doubleredirects'                   => 'ორმაგი გადამისამართება',
+'doubleredirectstext'               => 'ამ გვერდზე ჩამოთვლილია გვერდები, რომლებიც გადამისამართებულია სხვა გადამისამართების გვერდებზე.
 ყოველი მწკრივი შეიცავს ბმულებს პირველ და მეორე გადამისამართებაზე, აგრეთვე მეორე გადამისამართების ტექსტის პირველ სტრიქონს, რომელშიც ჩვეულებრივ მითითებულია რეალური “სამიზნე” გვერდის სათაური. საჭიროა, რომ პირველი გადამისამართებაც უთითებდეს ამ გვერდზე.
 <del>გადახაზული</del> მონაცემები უკვე გამართულია.',
-'double-redirect-fixed-move' => '[[$1]] გადატანილ იქნა.
+'double-redirect-fixed-move'        => '[[$1]] გადატანილ იქნა.
 ამჟამად ის გადამისამართებულია [[$2]]-ზე.',
-'double-redirect-fixer'      => 'გადამისამართება შემსწორებელი',
+'double-redirect-fixed-maintenance' => 'ორმაგი გადამისამართების გასწორება [[$1]]დან [[$2]]ზე.',
+'double-redirect-fixer'             => 'გადამისამართება შემსწორებელი',
 
 'brokenredirects'        => 'გაწყვეტილი გადამისამართება',
 'brokenredirectstext'    => 'შემდეგი გადამისამართებები გაკეთებულია არარსებულ გვერდებზე:',
@@ -2751,6 +2753,7 @@ $1',
 'file-info-gif-looped' => 'დარგოლილი',
 'file-info-gif-frames' => '$1 კადრი',
 'file-info-png-looped' => 'დარგოლილი',
+'file-info-png-repeat' => 'დაკრულია $1 {{PLURAL:$1|ჯერ}}',
 'file-info-png-frames' => '$1 კადრი',
 
 # Special:NewFiles
@@ -3248,14 +3251,15 @@ $1',
  შეიყვანეთ ფაილის სახელი პრეფიქს <code>{{ns:file}}:</code>-ის გარეშე.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'ერთნაირი ფაილების ძიება',
-'fileduplicatesearch-summary'  => 'ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.',
-'fileduplicatesearch-legend'   => 'დუბლიკატების ძიება',
-'fileduplicatesearch-filename' => 'ფაილის სახელი:',
-'fileduplicatesearch-submit'   => 'ძიება',
-'fileduplicatesearch-info'     => '$1 × $2 პიქსელზე<br />ფაილის ზომაა: $3<br />MIME-ტიპი: $4',
-'fileduplicatesearch-result-1' => 'ფაილ «$1» არ გააჩნია იდენტური დუბლიკატები.',
-'fileduplicatesearch-result-n' => 'ფაილს «$1» გააჩნია $2 {{PLURAL:$2|იდენტური დუბლიკატი|იდენტური დუბლიკატები|იდენტური დუბლიკატი}}.',
+'fileduplicatesearch'           => 'ერთნაირი ფაილების ძიება',
+'fileduplicatesearch-summary'   => 'ერთნაირი ფაილების ძიება ჰეშ-კოდის მიხედვით.',
+'fileduplicatesearch-legend'    => 'დუბლიკატების ძიება',
+'fileduplicatesearch-filename'  => 'ფაილის სახელი:',
+'fileduplicatesearch-submit'    => 'ძიება',
+'fileduplicatesearch-info'      => '$1 × $2 პიქსელზე<br />ფაილის ზომაა: $3<br />MIME-ტიპი: $4',
+'fileduplicatesearch-result-1'  => 'ფაილ «$1» არ გააჩნია იდენტური დუბლიკატები.',
+'fileduplicatesearch-result-n'  => 'ფაილს «$1» გააჩნია $2 {{PLURAL:$2|იდენტური დუბლიკატი|იდენტური დუბლიკატები|იდენტური დუბლიკატი}}.',
+'fileduplicatesearch-noresults' => 'ფაილი სახელით "$1" ვერ მოიძებნა.',
 
 # Special:SpecialPages
 'specialpages'                   => 'სპეციალური გვერდები',

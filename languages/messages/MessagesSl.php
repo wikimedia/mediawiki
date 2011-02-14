@@ -835,6 +835,7 @@ Prosimo, poskusite znova.
 'token_suffix_mismatch'            => "'''Vaše urejanje je bilo zavrnjeno, ker je vaš odjemalec pokvaril ločila v urejevalnem zahtevku.'''
 Urejanje je bilo zavrnjeno z namenom preprečitve okvare v besedilu strani.
 Največkrat je razlog uporaba hroščato spletno anonimizacijsko storitev.",
+'edit_form_incomplete'             => "'''Nekateri deli urejevalnega obrazca niso dosegli strežnika; prepričajte se, da so vaša urejanja neokrnjena in poskusite znova.'''",
 'editing'                          => 'Urejanje $1',
 'editingsection'                   => 'Urejanje $1 (razdelek)',
 'editingcomment'                   => 'Urejanje $1 (nov razdelek)',
