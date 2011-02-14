@@ -248,4 +248,36 @@ class XmlTest extends MediaWikiTestCase {
 			'encodeJsVar() with object'
 		);
 	}
+
+	function testEncodeJsVarInt() {
+		$this->assertEquals(
+			'123456',
+			Xml::encodeJsVar( 123456 ),
+			'encodeJsVar() with int'
+		);
+	}
+
+	function testEncodeJsVarFloat() {
+		$this->assertEquals(
+			'1.23456',
+			Xml::encodeJsVar( 1.23456 ),
+			'encodeJsVar() with float'
+		);
+	}
+
+	function testEncodeJsVarIntString() {
+		$this->assertEquals(
+			'"123456"',
+			Xml::encodeJsVar( '123456' ),
+			'encodeJsVar() with int-like string'
+		);
+	}
+
+	function testEncodeJsVarFloatString() {
+		$this->assertEquals(
+			'"1.23456"',
+			Xml::encodeJsVar( '1.23456' ),
+			'encodeJsVar() with float-like string'
+		);
+	}
 }
