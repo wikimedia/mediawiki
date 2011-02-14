@@ -57,6 +57,7 @@ class EditPage {
 	var $mTokenOk = false;
 	var $mTokenOkExceptSuffix = false;
 	var $mTriedSave = false;
+	var $incompleteForm = false;
 	var $tooBig = false;
 	var $kblength = false;
 	var $missingComment = false;
@@ -599,7 +600,17 @@ class EditPage {
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
-			if ( is_null( $this->edittime ) ) {
+			if ($this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null) {
+				// wpTextbox1 field is missing, possibly due to being "too big"
+				// according to some filter rules such as Suhosin's setting for
+				// suhosin.request.max_value_length (d'oh)
+				$this->incompleteForm = true;
+			} else {
+				// edittime should be one of our last fields; if it's missing,
+				// the submission probably broke somewhere in the middle.
+				$this->incompleteForm = is_null( $this->edittime );
+			}
+			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
 				wfDebug( __METHOD__ . ": Form data appears to be incomplete\n" );
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
@@ -1921,6 +1932,8 @@ HTML
 			} else {
 				$note = wfMsg( 'session_fail_preview' );
 			}
+		} else if ( $this->incompleteForm ) {
+			$note = wfMsg( 'edit_form_incomplete' );
 		} else {
 			$note = wfMsg( 'previewnote' );
 		}
