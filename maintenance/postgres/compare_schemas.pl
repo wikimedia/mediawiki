@@ -94,7 +94,7 @@ sub parse_sql {
 		next if /^\s*\-\-/ or /^\s+$/;
 		s/\s*\-\- [\w ]+$//;
 		chomp;
-
+	
 		if (/CREATE\s*TABLE/i) {
 			if (m{^CREATE TABLE /\*_\*/(\w+) \($}) {
 				$table = $1;
@@ -179,6 +179,10 @@ while (<$newfh>) {
 	next if /^CREATE TRIGGER/ or /^  FOR EACH ROW/;
 	next if /^INSERT INTO/ or /^  VALUES \(/;
 	next if /^ALTER TABLE/;
+	next if /^DROP SEQUENCE/;
+	next if /^DROP FUNCTION/;
+
+
 	chomp;
 
 	if (/^\$mw\$;?$/) {
