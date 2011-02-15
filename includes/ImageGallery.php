@@ -156,11 +156,11 @@ class ImageGallery
 	}
 
 	/**
- 	* Add an image at the beginning of the gallery.
- 	*
- 	* @param $title Title object of the image that is added to the gallery
- 	* @param $html  String:  Additional HTML text to be shown. The name and size of the image are always shown.
- 	*/
+	* Add an image at the beginning of the gallery.
+	*
+	* @param $title Title object of the image that is added to the gallery
+	* @param $html  String:  Additional HTML text to be shown. The name and size of the image are always shown.
+	*/
 	function insert( $title, $html='' ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
@@ -286,14 +286,13 @@ class ImageGallery
 					$imageParameters['alt'] = $nt->getText();
 				}
 
-				# Set both fixed width and height. Otherwise we might have problems
-				# with the vertical centering of images where height<line-size
+				# Set both fixed width and min-height.
 				$thumbhtml = "\n\t\t\t".
-					'<div class="thumb" style="width: ' .($this->mWidths+30).'px; height: ' .($this->mHeights+30).'px;">'
+					'<div class="thumb" style="width: ' .($this->mWidths+30).'px; min-height: ' .($this->mHeights+30).'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
-					. '<div style="margin:'.$vpad.'px auto;">'
+					. '<div style="margin:'.$vpad.'px auto 0;">'
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
