@@ -350,6 +350,9 @@ div#mw-head h5 {
 		margin-top: 0.4em;
 	}
 	div#simpleSearch {
+		display: block;
+		width: 14em;
+		height: 1.4em;
 		margin-top: 0.65em;
 		position: relative;
 		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
@@ -368,9 +371,11 @@ div#mw-head h5 {
 		*/
 		font-size: 13px;
 		top: 0.25em;
+		direction: ltr;
 	}
 	div#simpleSearch input {
 		color: black;
+		direction: ltr;
 	}
 	div#simpleSearch input:focus {
 		outline: none;
@@ -382,39 +387,49 @@ div#mw-head h5 {
 		color: #999999;
 	}
 	div#simpleSearch input#searchInput {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 90%;
 		margin: 0;
-		border-width: 0;
-		padding: 3px;
-		vertical-align: top;
+		padding: 0;
+		padding-left: 0.2em;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+		outline: none;
+		border: none;
 		/*
 		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
 		 * this from ever being shown anyways.
 		*/
 		font-size: 13px;
-		width: 14em;
 		background-color: transparent;
 		direction: ltr;
 	}
 	div#simpleSearch button#searchButton {
+		position: absolute;
+		width: 10%;
+		right: 0;
+		top: 0;
 		padding: 0;
-		margin: 0 5px;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+		padding-right: 0.4em;
+		margin: 0;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
-		font-size: x-small;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton img {
 		border: none;
 		margin: 0;
+		margin-top: -3px;
 		padding: 0;
-		padding-top: 0.5em;
-		vertical-align: middle;
 	}
 	/* IGNORED BY IE6 */
 	div#simpleSearch button#searchButton > img {
-		padding-top: 0;
-		margin-top: -1px;
+		margin: 0;
 	}
 /* Panel */
 div#mw-panel {
