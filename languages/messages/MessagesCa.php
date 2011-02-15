@@ -750,7 +750,7 @@ Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges 
 
 La vostra adreça IP actual és $3, i el número d'identificació del blocatge és #$5.
 Si us plau, incloeu aquestes dades en totes les consultes que feu.",
-'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
+'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'{{GENDER:$1|administrador|administradora}} $1. El motiu donat per al bloqueig ha estat:
 
 :''$2''
 
@@ -954,7 +954,7 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
-Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
+Com a {{GENDER:|administrador|administradora}} encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-suppressed-text-unhide'  => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador, encara podeu [$1 veure aquesta revisió].",

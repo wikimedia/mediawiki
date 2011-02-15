@@ -823,6 +823,7 @@ Ma ne'z a ket en-dro c'hoazh, klaskit [[Special:UserLogout|digevreañ]] hag adke
 Mar ned a ket en-dro, klaskit [[Special:UserLogout|digevreañ]] ha kevreañ en-dro.",
 'token_suffix_mismatch'            => "'''Distaolet eo bet ar c'hemmoù degaset ganeoc'h abalamour ma oa bet kemmesket an arouezennoù poentadur gant ho merdeer en daveer kemmañ. Distaolet eo bet ar c'hemmoù kuit na vije breinet ar bajennad skrid.
 C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",
+'edit_form_incomplete'             => "'''Darn eus ar furmskrid kemmañ zo chomet hep tizhout ar servijer ; gwiriit ervat emañ mat ho kemmoù tre evel m'int bet graet ganeoc'h ha klaskit en-dro.'''",
 'editing'                          => "Oc'h aozañ $1",
 'editingsection'                   => "Oc'h aozañ $1 (rann)",
 'editingcomment'                   => "Oc'h aozañ $1 (rann nevez)",
