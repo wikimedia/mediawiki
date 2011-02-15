@@ -584,7 +584,8 @@ CONTROL;
 	 */
 	function showDiffStyle() {
 		global $wgOut;
-		$wgOut->addModules( 'mediawiki.legacy.diff' );
+		$wgOut->addModuleStyles( 'mediawiki.legacy.diff' );
+		$wgOut->addModuleScripts( 'mediawiki.legacy.diff' );
 	}
 
 	/**

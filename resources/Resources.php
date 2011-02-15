@@ -399,6 +399,7 @@ return array(
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
 		'dependencies' => 'mediawiki.legacy.history',
+		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
@@ -522,6 +523,7 @@ return array(
 	'mediawiki.legacy.diff' => array(
 		'scripts' => 'common/diff.js',
 		'styles' => 'common/diff.css',
+		'group' => 'mediawiki.action.history',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
@@ -534,6 +536,7 @@ return array(
 	),
 	'mediawiki.legacy.history' => array(
 		'scripts' => 'common/history.js',
+		'group' => 'mediawiki.action.history',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
