@@ -321,7 +321,7 @@ Gheibh thu liosta nan duilleagan sònraichte 's dligheach aig [[Special:SpecialP
 
 # General errors
 'error'                => 'Mearachd',
-'databaseerror'        => 'Mearachd an stor-dàta',
+'databaseerror'        => 'Mearachd an stòir-dhàta',
 'dberrortext'          => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
 Faodaidh gu bheil seo a\' comharrachadh mearachd sa bhathar-bhog.
 Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
@@ -636,7 +636,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'upload'        => 'Luchdaich a-nuas faidhle',
 'uploadlogpage' => 'Loga an luchdaidh suas',
 'filename'      => 'Ainm-faidhle',
-'filedesc'      => 'Geàrr-chùnntas',
+'filedesc'      => 'Gearr-chunntas',
 'filestatus'    => 'Cor dlighe-sgrìobhaidh:',
 'ignorewarning' => 'Leig an rabhadh seachad agus sàbhail am faidhle codhiù.',
 'badfilename'   => 'Ainm ìomhaigh air atharrachadh ri "$1".',
@@ -712,7 +712,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'allpagessubmit' => 'Rach',
 
 # Special:Categories
-'categories'         => 'Gnethan',
+'categories'         => 'Roinnean-seòrsa',
 'categoriespagetext' => "Tha duilleagan no meadhan {{PLURAL:$1|san roinn-seòrsa|san roinn-seòrsa|san roinn-seòrsa|san roinn-seòrsa|sna roinntean-seòrsa|san roinn-seòrsa}} a leanas.
 Chan fhaicear [[Special:UnusedCategories|roinntean-seòrsa gun chleachdadh an-seo]].
 Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan iarraidh cuideachd]].",
@@ -857,12 +857,12 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 
 # Block/unblock
 'blockip'                  => 'Bac cleachdaiche',
-'ipaddress'                => 'IP Seòladh/ainm-cleachdair',
+'ipaddress'                => 'IP Seòladh/ainm-cleachdaiche',
 'ipbreason'                => 'Adhbhar:',
-'ipbsubmit'                => 'Bac an cleachdair seo',
+'ipbsubmit'                => 'Bac an cleachdaiche seo',
 'ipboptions'               => '2 uair a thìde:2 hours, 1 latha:1 day, 3 làithean:3 days, 1 seachdain:1 week, 2 sheachdain:2 weeks, 1 mhìos:1 month, 3 mìosan:3 months, 6 mìosan:6 months, 1 bhliadhna:1 year,neo-chrìochnach:infinite',
 'badipaddress'             => "Chan eil an seòladh IP aig a' cleachdair seo iomchaidh",
-'blockipsuccesssub'        => 'Shoirbhich bacadh',
+'blockipsuccesssub'        => "Shoirbhich leat leis a' bhacadh",
 'blockipsuccesstext'       => "Tha [[Special:Contributions/$1|$1]] air a bhacadh.
 <br />Faic [[Special:IPBlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
 'unblockip'                => 'Neo-bhac cleachdair',
@@ -997,6 +997,7 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'tooltip-undo'                    => 'Tillidh "Neo-dhèan" am mùthadh seo \'s fosglaidh e am foirm mùthaidh ann am modh an ro-sheallaidh. \'S urrainn dhut adhbhar a chur an cèill sa ghearr-chunntas air an dòigh seo.',
 
 # Attribution
+'anonymous'     => '{{PLURAL:$1|cleachdaiche|cleachdaichean|cleachdaichean|cleachdaichean|cleachdaichean|cleachdaichean}} gun ainm o {{SITENAME}}',
 'othercontribs' => 'Stèidhichte air obair le $1.',
 'others'        => 'eile',
 

@@ -917,6 +917,7 @@ Nếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xu
 'token_suffix_mismatch'            => "'''Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.'''",
+'edit_form_incomplete'             => "'''Một số phần của biểu mẫu sửa đổi không tới được máy chủ. Hãy kiểm tra rằng các sửa đổi của bạn còn nguyên và thử lại.'''",
 'editing'                          => 'Sửa đổi $1',
 'editingsection'                   => 'Sửa đổi $1 (đề mục)',
 'editingcomment'                   => 'Sửa đổi $1 (đề mục mới)',
@@ -3159,6 +3160,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsareainformation'          => 'Tên khu vực theo GPS',
 'exif-gpsdatestamp'                => 'Ngày theo GPS',
 'exif-gpsdifferential'             => 'Sửa vi sai GPS',
+'exif-objectname'                  => 'Tên ngắn',
 
 # EXIF attributes
 'exif-compression-1' => 'Không nén',

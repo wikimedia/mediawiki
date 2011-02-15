@@ -39,6 +39,7 @@
  * @author Wong128hk
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 阿pp
  */
 
 $fallback8bitEncoding = 'windows-936';
@@ -832,6 +833,7 @@ $2',
 '''如果这是一次合法的编辑，请重新进行尝试。'''如果还不行，请[[Special:UserLogout|退出]]并重新登录。",
 'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
+'edit_form_incomplete'             => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
 'editing'                          => '正在编辑$1',
 'editingsection'                   => '正在编辑$1（段落）',
 'editingcomment'                   => '正在编辑$1（新段落）',

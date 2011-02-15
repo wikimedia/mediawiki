@@ -959,6 +959,7 @@ Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a ent
 'token_suffix_mismatch'            => "'''A edição foi rejeitada porque o seu browser alterou os sinais de pontuação no editor.'''
 A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
+'edit_form_incomplete'             => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing'                          => 'A editar $1',
 'editingsection'                   => 'A editar $1 (secção)',
 'editingcomment'                   => 'A editar $1 (nova secção)',
@@ -2698,7 +2699,7 @@ Faça a fusão manual das páginas de discussão, por favor.'''",
 'movepage-page-unmoved'        => 'Não foi possível mover a página $1 para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] com redireccionamento',
+'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] com redirecionamento',
 'move-redirect-suppressed'     => 'redireccionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
