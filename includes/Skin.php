@@ -500,6 +500,9 @@ abstract class Skin extends Linker {
 			'wgCategories' => $wgOut->getCategories(),
 			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
 		);
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
+		}
 		foreach ( $wgTitle->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
 		}
