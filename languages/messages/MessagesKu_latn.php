@@ -1285,7 +1285,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 # Delete
 'deletepage'             => 'Rûpelê jê bibe',
 'confirm'                => 'Pesend bike',
-'excontent'              => "Naverroka berê: '$1'",
+'excontent'              => "Naveroka berê: '$1'",
 'excontentauthor'        => "Naverroka vê rûpelê ev bû: '$1' (û tenya bikarhêner '$2' bû)",
 'exbeforeblank'          => "Nawerok berî betal kirinê ew bû: '$1'
 Naverroka berî betalkirinê ev bû:'$1'",

@@ -805,6 +805,7 @@ Si illo ancora non va, prova [[Special:UserLogout|clauder tu session]] e aperir 
 'token_suffix_mismatch'            => "'''Tu modification ha essite refusate proque tu cliente corrumpeva le characteres de punctuation in le indicio de modification.
 Iste refusa es pro evitar le corruption del texto del pagina.
 Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a base de web.'''",
+'edit_form_incomplete'             => "'''Certe partes del formulario de modification non attingeva le servitor; re-verifica que tu modificationes es intacte e reproba.'''",
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nove section)',
@@ -3066,6 +3067,7 @@ Le alteres essera initialmente celate.
 'exif-gpsareainformation'          => 'Nomine de area GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correction differential GPS',
+'exif-objectname'                  => 'Titulo curte',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimite',

@@ -993,6 +993,7 @@ Si cela échoue de nouveau, [[Special:UserLogout|déconnectez-vous]], puis recon
 'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''
 Ce rejet est nécessaire pour empêcher la corruption du texte de la page.
 Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
+'edit_form_incomplete'             => "'''Certaines parties du formulaire de modification n'ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.'''",
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',

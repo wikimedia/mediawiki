@@ -933,6 +933,7 @@ kako će izgledati ako pritisnete "Sačuvaj članak".',
 'token_suffix_mismatch'            => "'''Vaša izmjena nije prihvaćena jer je Vaš web preglednik ubacio znakove interpunkcije u token uređivanja.
 Izmjena je odbačena da bi se spriječilo uništavanje teksta stranice.
 To se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.'''",
+'edit_form_incomplete'             => "'''Neki dijelovi uređivačkog obrasca nisu došli do servera; dvaput provjerite da su vaše izmjene nepromjenjene i pokušajte ponovno.'''",
 'editing'                          => 'Uređujete $1',
 'editingsection'                   => 'Uređujete $1 (dio)',
 'editingcomment'                   => 'Uređujete $1 (nova sekcija)',
@@ -1253,6 +1254,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
 'searchmenu-new'                   => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
+'searchmenu-new-nocreate'          => '"$1" je nevaljan naziv stranice i vi je ne možete napraviti.',
 'searchhelp-url'                   => 'Help:Sadržaj',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
 'searchprofile-articles'           => 'Stranice sadržaja',
@@ -1958,12 +1960,13 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
 Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|čvor stranica]]",
 
-'doubleredirects'            => 'Dvostruka preusmjerenja',
-'doubleredirectstext'        => 'Ova stranica prikazuje stranice koje preusmjeravaju na druga preusmjerenja.
+'doubleredirects'                   => 'Dvostruka preusmjerenja',
+'doubleredirectstext'               => 'Ova stranica prikazuje stranice koje preusmjeravaju na druga preusmjerenja.
 Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju teksta drugog preusmjerenja, što obično daje "pravi" ciljni članak, na koji bi prvo preusmjerenje i trebalo da pokazuje.
 <del>Precrtane</del> stavke su riješene.',
-'double-redirect-fixed-move' => '[[$1]] je premješten, sada je preusmjerenje na [[$2]]',
-'double-redirect-fixer'      => 'Popravljač preusmjerenja',
+'double-redirect-fixed-move'        => '[[$1]] je premješten, sada je preusmjerenje na [[$2]]',
+'double-redirect-fixed-maintenance' => 'Ispravljanje dvostrukih preusmjerenja sa [[$1]] na [[$2]].',
+'double-redirect-fixer'             => 'Popravljač preusmjerenja',
 
 'brokenredirects'        => 'Pokvarena preusmjerenja',
 'brokenredirectstext'    => 'Slijedeća preusmjerenja vode na nepostojeće stranice:',
@@ -3170,6 +3173,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsareainformation'          => 'Naziv GPS područja',
 'exif-gpsdatestamp'                => 'GPS datum',
 'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
+'exif-objectname'                  => 'Kratki naslov',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresovano',
@@ -3363,6 +3367,18 @@ $5
 Ovaj kod za potvrdu će isteći u $4.',
 'confirmemail_body_changed' => 'Neko, vjerovatno Vi, je sa IP adrese $1
 je promijenio adresu e-pošte računa "$2" na ovu adresu za {{SITENAME}}.
+
+Da potvrdite da ovaj nalog stvarno pripada Vama i da reaktivirate mogućnosti e-pošte na {{SITENAME}}, otvorite ovaj link u Vašem pregledniku:
+
+$3
+
+Ako ovaj račun *ne* pripada Vama, pratite ovaj link da prekinete odobravanje adrese e-pošte:
+
+$5
+
+Ovaj kod za potvrdu će isteći u $4.',
+'confirmemail_body_set'     => 'Neko, vjerovatno Vi, je sa IP adrese $1
+je postavio adresu e-pošte računa "$2" na ovu adresu za {{SITENAME}}.
 
 Da potvrdite da ovaj nalog stvarno pripada Vama i da reaktivirate mogućnosti e-pošte na {{SITENAME}}, otvorite ovaj link u Vašem pregledniku:
 
@@ -3575,14 +3591,15 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Pretraga za duplim datotekama',
-'fileduplicatesearch-summary'  => 'Pretraga za duplim datotekama na bazi njihove haš vrijednosti.',
-'fileduplicatesearch-legend'   => 'Pretraga za dvojnicima',
-'fileduplicatesearch-filename' => 'Ime datoteke:',
-'fileduplicatesearch-submit'   => 'Traži',
-'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Veličina datoteke: $3<br />MIME vrsta: $4',
-'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih dvojnika.',
-'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.',
+'fileduplicatesearch'           => 'Pretraga za duplim datotekama',
+'fileduplicatesearch-summary'   => 'Pretraga za duplim datotekama na bazi njihove haš vrijednosti.',
+'fileduplicatesearch-legend'    => 'Pretraga za dvojnicima',
+'fileduplicatesearch-filename'  => 'Ime datoteke:',
+'fileduplicatesearch-submit'    => 'Traži',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />Veličina datoteke: $3<br />MIME vrsta: $4',
+'fileduplicatesearch-result-1'  => 'Datoteka "$1" nema identičnih dvojnika.',
+'fileduplicatesearch-result-n'  => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.',
+'fileduplicatesearch-noresults' => 'Nije pronađena datoteka sa imenom "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne stranice',

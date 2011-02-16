@@ -497,6 +497,7 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
  * @author McDutchie
  * @author Nike
  * @author Platonides
+ * @author Purodha
  * @author Raymond
  * @author Siebrand
  * @author Umherirrender
@@ -506,6 +507,7 @@ $messages['qqq'] = array(
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
+	'config-localsettings-cli-upgrade' => 'Do not translate the <code>LocalSettings.php</code> and the <code>--upgrade=yes</code> parts.',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
@@ -549,6 +551,9 @@ $messages['qqq'] = array(
 	'config-cc-not-chosen' => 'Should we use "int:key" here (and to which key)?',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
+	'config-install-pg-schema-failed' => 'Parameters:
+* $1 = database user name (usernames in the database are unrelated to wiki user names)
+* $2 =',
 	'config-install-user' => 'Message indicates that the user is being created',
 	'config-install-user-failed' => 'Parameters:
 * $1 is the username for which granting rights failed
@@ -2425,7 +2430,7 @@ Sofern Änderungen vorgenommen werden sollen, kann man auf „Zurück“ klicken
 	'config-install-database' => 'Datenbank wird eingerichtet',
 	'config-install-pg-schema-not-exist' => 'Das PostgesSQL-Schema ist nicht vorhanden',
 	'config-install-pg-schema-failed' => 'Das Erstellen der Datentabellen ist gescheitert.
-Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
+Es muss sichergestellt sein, dass der Benutzer „$1“ Schreibzugriff auf das Datenschema „$2“ hat.',
 	'config-install-pg-commit' => 'Änderungen anwenden',
 	'config-install-pg-plpgsql' => 'Suche nach der Datenbanksprache PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
@@ -6536,6 +6541,19 @@ $messages['ksh'] = array(
 	'config-localsettings-upgrade' => "'''Opjepaß''': De Dattei <code>LocalSettings.php</code> es ald doh.
 Di Projramme, di ald doh sin, künne op der neuste Shtand jebraat wääde.
 Donn de <code>LocalSettings.php</code> aan enem seshere Plaz aflääje, un dann dat Projramm för et Opsäze norr_ens aanschmiiße.",
+	'config-localsettings-cli-upgrade' => 'En Dattei <code lang="en">LocalSettings.php</code> es jefonge woode.
+Jiff der Parrameeter <code lang="en">--upgrade=yes</code> aan, öm et Projramm op ene neue Schtand ze bränge.',
+	'config-localsettings-key' => 'Der Schlößel för et Projramm op ene neue Schtand ze bränge:',
+	'config-localsettings-badkey' => 'Dinge Schlößel paß nit.',
+	'config-upgrade-key-missing' => 'Mer han jefonge, dat MediaWiki ald enschtalleed es.
+Üm de Projramme un Daate o der neue Schtand bränge ze künne, dunn aan et Engk vun dä Dattei <code lang="en">LocalSettings.php</code> op dämm ẞööver:
+
+$1
+
+aanhange.',
+	'config-localsettings-incomplete' => 'Mer han en Dattei <code lang="en">LocalSettings.php:</code> jefonge, ävver di schingk nit kumplätt ze sin.
+De Varijable <code lang="en">$1</code> es nit jesatz.
+Bes esu joot, un donn di Dattei esu aanpaße, dat se jesaz ea, un dann donn op „{{int:config-continue}}“ klecke.',
 	'config-session-error' => 'Ene Fähler es opjetrodde beim Aanmelde för en Sezung: $1',
 	'config-session-expired' => 'De Daate för Ding Setzung sinn wall övverholld of afjeloufe.
 De Setzungunge sin esu enjeshtallt, nit mieh wi $1 ze doore.
@@ -6590,6 +6608,7 @@ Mer künne met heh dä Daatebangke ömjonn: $1.
 Wann De nit om eijene Rääshner bes, moß De Dinge <i lang="en">provider</i> bedde, dat hä Der ene zopaß Driiver enresht.
 Wann de PHP sellver övversaz häs, donn ene Zohjang för en Daatebangk enbenge, för e Beishpell met: <code  lang="en">./configure --with-mysql</code> op ene <i lang="en">command shell</i>.
 Wann De PHP uss enem <i lang="en">Debian</i> udder <i lang="en">Ubuntu</i> Pakätt enjeresht häs, moß De dann och noch et <code lang="en">php5-mysql</code> op Dinge Räschner bränge.',
+	'config-no-fts3' => "'''Opjepaß:''' De Projramme vum <i lang=\"en\">SQLite</i> sin der ohne et [http://sqlite.org/fts3.html FTS3-Modul] övversaz, dröm wääde de Funxjohne för et Söhke fähle.",
 	'config-register-globals' => "'''Opjepaß:''' dem PHP singe Schallder <code lang=\"en\">[http://php.net/register_globals register_globals]</code> es enjeschalldt.
 '''Donn dä ußmaache, wann De kann.'''
 MediaWiki löp och esu, dä künnt ävver Sesherheitslöcke opmaache, di mer noch nit jefonge un eruß jemaat hät.",
@@ -6609,8 +6628,15 @@ Dat heiß, mer moß en affschallde, söns jeiht nix.",
 Dat sorresch för schräcklejje Fähler em MediaWiki.
 Dat kam_mer domet nit ennreeshte un och nit loufe lohße.
 Dat heiß, mer moß en affschallde, söns jeiht nix.",
-	'config-memory-raised' => 'Dem PHP singe Parameeter <code lang="en">memory_limit</code> es $1.
-Op $2 erop jesaz.',
+	'config-safe-mode' => "'''Opjepaß:''' Dem PHP singe <code lang=\"en\">[http://www.php.net/features.safe-mode safe mode]</code> es aanjeschalldt. Dat kann Ärjer maache, besönders beim Datteie Huhlaade bei de Ongershtözung för <code lang=\"en\">math</code>-Befähle.",
+	'config-xml-bad' => 'Dem PHP sing XML-Modul es nit ze fenge.
+MediaWiki bruch Funxjohne en däm Modul un deiht et esu nit.
+Wann De <i lang="en">Mandrake</i> aam loufehäs, donn dat Pakätt <code lang="en">php-xml</code> enstalleere.',
+	'config-pcre' => 'Dem PHP sing Modul för <i lang="en">PCRE</i> schingk ze fähle.
+MediaWiki deiht et nit ohne de Funxjohne för de <i lang="en">Perl-compatible regular expressions</i>.',
+	'config-pcre-no-utf8' => "'''Dä:''' Et PHP-Modul <i lang=\"en\">PCRE</i> schingk ohne de <i lang=\"en\">PCRE_UTF8</i>-Aandeile övversaz ze sin.
+MediaWiki bruch dä UTF-8-Krohm ävver, öm ohne Fähler loufe ze künne.",
+	'config-memory-raised' => 'Der jrühzte zohjelasse Shpeisherbedarf vum PHP, et <code lang="en">memory_limit</code>, shtund op $1 un es op $2 erop jesaz woode.',
 	'config-memory-bad' => "'''Opjepaß:''' Dem PHP singe Parameeter <code lang=\"en\">memory_limit</code> es \$1.
 Dat es wall ze winnisch.
 Et Enreeschte kunnt doh draan kappott jon!",
@@ -6621,16 +6647,27 @@ Et Enreeschte kunnt doh draan kappott jon!",
 	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
 	'config-diff3-bad' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
-	'config-db-type' => 'Zoot Daatebangk:',
+	'config-imagemagick' => 'Mer han <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
+Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
+	'config-gd' => 'Mer han de ennjeboute GD-Jrafik-Projramm-Biblijotheek jefonge.
+Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
+	'config-no-scaling' => 'Mer han weeder de GD-Jrafik-Projramm-Biblijotheek, noch <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
+Et Ömrääschne en Minni-Beldsche weed ußjeschalldt.',
+	'config-no-uri' => "'''Fähler:''' Mer kunnte der aktoälle <i lang=\"en\">URI</i> nit erusfenge.
+Et Enreeschte es domet heh aam Engk.",
+	'config-uploads-not-safe' => "'''Opjepaß:''' Uß däm jewöhnlijje Verzeichnes för de huhjelaade Datteie, dat es <code>$1</code>, künnte öhnzwällsche Skrepte un Projramme ußjeföhrt wääde. Och wann MediaWiki de huhjelaade Datteie prööf, dat kein bekannte Risike dren sin, sullt mer doch dat [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sesherheitsloch] zoh maache, ih dat mer et Dattei Huhlaade zohlöht.",
+	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
 	'config-db-host-help' => 'If your Zoot Daatebangk: server is on different server, enter the host name or IP address here.
 
 If you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.',
+	'config-db-host-oracle' => 'Dä Daatebangk ier <i lang="en" title="Transparent Network Substrate">TNS</i>:',
 	'config-db-name' => 'Dä Name vun dä Daatebangk:',
 	'config-db-name-help' => 'Jiff ene Name aan, dä för Ding Wiki passe deiht.
 Doh sullte kei Zweschrereum un kein Stresche dren sin.
 
 Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider Der ene extra Name för de Daatebangk jejovve hät, udder dat De Daatebangke övver e Fommulaa selver enreeschte moß.',
+	'config-db-name-oracle' => 'Schema för de Daatebangk:',
 	'config-db-install-account' => 'Der Zohjang för en Enreeschte',
 	'config-db-username' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk:',
 	'config-db-password' => 'Et Paßwoot vun däm Aanwender för dä Zohjref op de Daatebangk:',
@@ -6638,6 +6675,10 @@ Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider D
 	'config-db-account-lock' => 'Donn dersälve Name un et sälve Paßwoot för der nomaale Bedrief vum Wiki bruche',
 	'config-db-wiki-account' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk em nomaale Bedrief:',
 	'config-db-prefix' => 'Vörsaz för de Name vun de Tabälle en de Daatebangk:',
+	'config-db-prefix-help' => 'Wann ein Daatebangk för mieh wi ein Wiki udder e Wiki uns söns jät zosamme jebruch weed, dann kam_mer noch jet vör de Tabälle ier Name säze. Esu ene Vörsaz sull dubblte Tabällename vermeide hälfe.
+Donn kein Zwescheräum enjävve!
+
+Jewöhnlesch bliev dat Feld heh ävver läddesch.',
 	'config-db-charset' => 'Dä Daatebangk iere Zeishesaz',
 	'config-charset-mysql5-binary' => 'MySQL (4.1 udder 5.0) binär',
 	'config-charset-mysql5' => 'MySQL (4.1 udder 5.0) UTF-8',
@@ -6648,6 +6689,8 @@ Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider D
 	'config-db-schema-help' => 'För jewöhnlesch sin bovven de Schemas en Odenong.
 Donn bloß jät draan ändere, wann dat nüüdesch es.',
 	'config-sqlite-dir' => '<i lang="en">SQLite</i> sing Daateverzeishnes:',
+	'config-oracle-def-ts' => 'Tabälleroum för der Shtandattjebruch:',
+	'config-oracle-temp-ts' => 'Tabälleroum för der Jebruch zweschedorsh:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -6660,7 +6703,8 @@ Donn bloß jät draan ändere, wann dat nüüdesch es.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
 Gebruik geen spaties of koppeltekens.
-Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.',
+Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.
+',
 	'config-db-web-create' => 'Donn dä Zohjang aanlääje, wann dä noch nit doh es.',
 	'config-mysql-engine' => 'De Zoot udder et Fommaat vun de Tabälle:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -6671,6 +6715,7 @@ Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.'
 MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoDB-Daatebangke.",
 	'config-mysql-charset' => 'Dä Daatebangk iere Zeishesaz:',
 	'config-mysql-binary' => 'binär',
+	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Däm Wiki singe Name:',
 	'config-site-name-help' => 'Dä douch em Tittel vun de Brauserfinstere un aan ätlije andere Shtälle op.',
 	'config-site-name-blank' => 'Donn ene Name för di Sait aanjävve.',
@@ -6678,6 +6723,15 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-ns-generic' => 'Projäk',
 	'config-ns-site-name' => 'Et sällve wi däm Wiki singe Name: $1',
 	'config-ns-other' => 'Andere (jiff aan wälshe)',
+	'config-ns-other-default' => 'MingWiki',
+	'config-admin-name' => 'Dinge Name:',
+	'config-admin-password' => 'Paßwoot:',
+	'config-admin-password-confirm' => 'Norrens dat Paßwoot:',
+	'config-admin-help' => 'Jif Dinge leevste Name als Metmaacher för Desch aan, för e Beishpell „Schmitzens Pitter“
+— Dat weed dä Name wääde, met dämm De Desch enlogge deihs.',
+	'config-admin-name-blank' => 'Jif ene Name aan för ene Metmaacher, dä Wiki-Köbes es.
+',
+	'config-admin-email' => 'Addräß för de <i lang="en">e-mail</i>:',
 	'config-profile-help' => "Wikis loufe et beß, wam_mer esu vill Lück wi müjjelesch draan metmaache uin schrieve löht.
 Met MediaWiki es et ejfach, de neuste Änderunge ze beloore un wat ahnungslose udder fiese Lück kapott jemaat han wider retuur ze maache.
 
@@ -6693,6 +6747,48 @@ A '''{{int:config-profile-private}}''' only allows approved users to view pages,
 More complex user rights configurations are available after installation, see the [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
 	'config-license' => 'Urhävverrääsch un Lizänz:',
 	'config-license-none' => 'Kein Fooßreih övver de Lizänz',
+	'config-license-cc-by-sa' => '<i lang="en">Creative Commons</i> Der Name moß jenannt sin, et Wiggerjävve es zohjelohße unger dersellve Bedengunge',
+	'config-license-cc-by-nc-sa' => '<i lang="en">Creative Commons</i> Nit för e Jeschäff ze maache, et Wiggerjävve es zohjelohße unger dersellve Bedengunge',
+	'config-license-gfdl-old' => 'De <i lang="en">GNU</i>-Lizänz för frei Dokemäntazjuhne Version 1.2',
+	'config-license-gfdl-current' => 'De <i lang="en">GNU</i>-Lizänz för frei Dokemäntazjuhne, Version 1.3 udder en späädere',
+	'config-license-pd' => 'Allmende (jemeinfrei, <i lang="en">public domain</i>)',
+	'config-license-cc-choose' => '<i lang="en">Creative Commons</i> Lizänz sellver ußjesöhk',
+	'config-email-settings' => 'Enschtellunge för de <i lang="en">e-mail</i>',
+	'config-enable-email' => 'De <i lang="en">e-mail</i> noh druße zohlohße',
+	'config-enable-email-help' => 'Sulle <i lang="en">e-mails</i> zohjelohße sin, moß mer, domet et noher flupp, de [http://www.php.net/manual/en/mail.configuration.php Enschtellunge em PHP för de <i lang="en">e-mails</i>] zopaß jemaat han.
+Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
+	'config-email-user' => '<i lang="en">e-mails</i> zwesche de Metmaacher zohlohße',
+	'config-email-user-help' => 'Määt et müjjelesch, dat sesch de Metmaacher jääjesiggesch <i lang="en">e-mails</i> schecke künne, wann se dat en iehre eije Enschtellunge och enjeschalldt han.',
+	'config-email-usertalk' => '<i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
+	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
+	'config-install-step-done' => 'jedonn',
+	'config-install-step-failed' => 'donävve jejange',
+	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
+	'config-install-database' => 'Ben de Daatebangk aam ennreeschte.',
+	'config-install-pg-schema-not-exist' => 'Dat Scheema för <i lang="en">PostgreSQL</i> es nit doh.',
+	'config-install-pg-schema-failed' => 'Et Tabälle-Opsäze es donävve jejange.
+Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangkscheema „$2“ schrieve kann.',
+	'config-install-pg-commit' => 'Ben de Änderonge aam ennbränge.',
+	'config-install-user' => 'Ben unse Daatebangk-Aanwänder en de Daatebangk am aanlääje.',
+	'config-install-user-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
+	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',
+	'config-install-tables-exist' => "'''Opjepaß''': Et schingk, dem MediaWiki sing Tabälle sin alt doh.
+Doh dom_mer nix aanlääje.",
+	'config-install-tables-failed' => "'''Fähler''': De Tabälle kunnte nit aanjelaat wääde, wääje: $1",
+	'config-install-interwiki' => 'Ben de Engerwiki-Tabäll met de shtandattmääßejje Daate aam fölle.',
+	'config-install-interwiki-list' => 'Mer kunnte de Dattei <code lang="en">interwiki.list</code> nit fenge.',
+	'config-install-interwiki-exists' => "'''Opjepaß''': En der Engewiki-Tabäll schingk alt jät dren ze shtonn.
+Doh dom_mer nix dobei.",
+	'config-install-stats' => 'De Shtatestek-Zahle wääde op Aanfang jeshtallt.',
+	'config-install-secretkey' => 'Ene jeheime Schlößel weeed opjebout.',
+	'config-install-upgradekey' => 'Der shtandattmääßejje Schlößel för et Projramm op ene neue Schtand ze bränge weed opjebout.',
+	'config-install-sysop' => 'Dä Zohjang för der Wiki-Köbes weed aanjelaat.',
+	'config-install-subscribe-fail' => 'Mer künne de <i lang="en">e-mail</i>-Leß <code lang="en">mediawiki-announce</code> nit abonneere.',
+	'config-install-mainpage' => 'Ben de Houpsigg med enem shtandatmääßeje Enhald aam aanlääje',
+	'config-install-extension-tables' => 'Ben Datebangk-Tabälle för de Zohsazprojramme aam ennreschte',
+	'config-install-mainpage-failed' => 'Kunnt de Houpsigg nit afshpeishere: $1',
+	'config-download-localsettings' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> eronger laade',
+	'config-help' => 'Hölp',
 );
 
 /** Kurdish (Latin) (Kurdî (Latin))
@@ -7519,6 +7615,7 @@ $messages['myv'] = array(
 /** Dutch (Nederlands)
  * @author Catrope
  * @author McDutchie
+ * @author Purodha
  * @author SPQRobin
  * @author Siebrand
  */
@@ -7880,7 +7977,7 @@ Meer complexe instellingen voor gebruikersrechten zijn te maken na de installati
 	'config-license-none' => 'Geen licentie in de voettekst',
 	'config-license-cc-by-sa' => 'Creative Commons Naamsvermelding-Gelijk delen',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Naamsvermelding-Niet Commercieel-Gelijk delen',
-	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2 of hoger',
+	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 of hoger',
 	'config-license-pd' => 'Publiek domein',
 	'config-license-cc-choose' => 'Een Creative Commons-licentie selecteren',
@@ -10717,6 +10814,7 @@ $messages['yi'] = array(
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hydra
  * @author PhiLiP
+ * @author 阿pp
  */
 $messages['zh-hans'] = array(
 	'config-desc' => 'MediaWiki安装程序',
@@ -11054,6 +11152,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-step-failed' => '失败',
 	'config-install-extensions' => '正在启用扩展',
 	'config-install-database' => '正在配置数据库',
+	'config-install-pg-schema-not-exist' => 'PostgreSQL 架构不存在',
 	'config-install-pg-schema-failed' => '创建数据表失败。请确保用户“$1”拥有写入模式“$2”的权限。',
 	'config-install-pg-commit' => '正在提交更改',
 	'config-install-pg-plpgsql' => '正在检查PL/pgSQL语言',

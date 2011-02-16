@@ -822,7 +822,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'showlivepreview'                  => 'Xem thử nhanh',
 'showdiff'                         => 'Xem thay đổi',
 'anoneditwarning'                  => "'''Cảnh báo:''' Bạn chưa đăng nhập. Địa chỉ IP của bạn sẽ được ghi lại trong lịch sử sửa đổi của trang.",
-'anonpreviewwarning'               => "''Bạn chưa đăng nhập. Lúc khi lưu trang này, địa chỉ IP của bạn sẽ được ghi vào lịch sử trang.''",
+'anonpreviewwarning'               => "''Bạn chưa đăng nhập. Khi lưu trang này, địa chỉ IP của bạn sẽ được ghi vào lịch sử trang.''",
 'missingsummary'                   => "'''Nhắc nhở:''' Bạn đã không ghi lại tóm lược sửa đổi. Nếu bạn nhấn Lưu trang một lần nữa, sửa đổi của bạn sẽ được lưu mà không có tóm lược.",
 'missingcommenttext'               => 'Xin hãy gõ vào lời bàn luận ở dưới.',
 'missingcommentheader'             => "'''Nhắc nhở:''' Bạn chưa ghi chủ đề/tiêu đề cho bàn luận này.

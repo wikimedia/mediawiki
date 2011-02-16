@@ -357,7 +357,7 @@ $messages = array(
 'and'           => '&#32;а',
 
 # Cologne Blue skin
-'qbfind'         => 'Лахар',
+'qbfind'         => 'Лаха',
 'qbbrowse'       => 'Хьажар',
 'qbedit'         => 'Нисйé',
 'qbpageoptions'  => 'Агlо нисйар',
@@ -388,7 +388,7 @@ $messages = array(
 'returnto'          => 'Юхагlо оцу агlоне $1.',
 'tagline'           => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
 'help'              => 'Нисвохаам',
-'search'            => 'Лахар',
+'search'            => 'Лаха',
 'searchbutton'      => 'Лаха',
 'go'                => 'Дехьа вала',
 'searcharticle'     => 'Дехьа вала',
@@ -439,7 +439,7 @@ $messages = array(
 'protectedpage'     => 'Гlароллийца йолу агlо',
 'jumpto'            => 'Дехьавала оцу:',
 'jumptonavigation'  => 'шавигар',
-'jumptosearch'      => 'лахар',
+'jumptosearch'      => 'лаха',
 'view-pool-error'   => 'Бехк цабиллар доьха, хlинц гlулкхдириг йоьттина йу.
 Каьчна дуккха дехарш хlокху агlонтlе хьажарца.
 Дехар до, собардеш а йуха хьажа хlокху агlонтlе жим тlаьхьо.
@@ -744,7 +744,7 @@ $1',
 
 # Search results
 'searchresults'                    => 'Лахарна хилам',
-'searchresults-title'              => 'Лахар «$1»',
+'searchresults-title'              => 'Лаха «$1»',
 'searchresulttext'                 => 'Хlокху кхолламан агlонаш чохь лахарх лаьцна кхетош хаам, хьажа. [[{{MediaWiki:Helppage}}|нисвохааман дакъанчу]].',
 'searchsubtitle'                   => 'Дехарца йолу «[[:$1]]» ([[Special:Prefixindex/$1|агlонаш, дlайуьлалуш йу хlо цlарца]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|тlетовжуш йу хlо цlарна]])',
 'searchsubtitleinvalid'            => 'Кху дехарца «$1»',
@@ -788,7 +788,7 @@ $1',
 'powersearch-legend'               => 'Шуьро лахар',
 'powersearch-ns'                   => 'Цlераши анахь лахар:',
 'powersearch-redir'                => 'Схьагайта дlасахьажийнарш',
-'powersearch-field'                => 'Лахар',
+'powersearch-field'                => 'Лаха',
 'powersearch-toggleall'            => 'Массо',
 'powersearch-togglenone'           => 'Хlумма цаоьшу',
 
@@ -806,7 +806,7 @@ $1',
 'prefs-rendering'     => 'Арахьара хатl',
 'saveprefs'           => 'lалашдан',
 'prefs-editing'       => 'Редаккхар',
-'searchresultshead'   => 'Лахар',
+'searchresultshead'   => 'Лаха',
 'timezonelegend'      => 'Сахьатан аса:',
 'prefs-searchoptions' => 'Лахарна гlирс нисба',
 'prefs-files'         => 'Хlумнаш',

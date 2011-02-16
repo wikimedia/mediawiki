@@ -674,6 +674,11 @@ zonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns
 'updated'                          => '(Ebituukanisidwa)',
 'note'                             => "'''Okunnyonyola:'''",
 'previewnote'                      => "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",
+'previewconflict'                  => "Okulagako kuno y'engeri ebiri w'owandikira gye binaafaananamu singa oba obikazizza.",
+'session_fail_preview'             => "'''Tetusobodde okukola ku by'okyusizza olw'okubanga olutuula'''<br />
+'''lwa wiki luno luzzemu okugootaana olwa data okubula.'''<br /> 
+Kikwetaagisa okuddamu by'okoze. <br />
+Ekyo bwe kitagonjoola ebizibu sooka [[Special:UserLogout|oveemu]] mu wiki oddemu ate okugiyingira.",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',
 'editingcomment'                   => 'Okyusa $1 (kitundu kipya)',
