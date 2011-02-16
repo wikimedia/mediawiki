@@ -637,7 +637,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		$classes = array();
 
 		$page = Title::newFromRow( $row );
-		$page->resetArticleId( $row->rev_page ); // use process cache
 		$link = $sk->link(
 			$page,
 			htmlspecialchars( $page->getPrefixedText() ),
