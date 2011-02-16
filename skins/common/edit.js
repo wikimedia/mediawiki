@@ -1,7 +1,7 @@
 window.currentFocused = undefined;
 
 // this function adds a toolbar button to the mwEditButtons list
-window.addButton = function( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId ) {
+window.addButton = function( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
 	mwEditButtons.push({
@@ -10,7 +10,8 @@ window.addButton = function( imageFile, speedTip, tagOpen, tagClose, sampleText,
 		'speedTip': speedTip,
 		'tagOpen': tagOpen,
 		'tagClose': tagClose,
-		'sampleText': sampleText
+		'sampleText': sampleText,
+		'selectText': selectText
 	});
 };
 
@@ -29,7 +30,7 @@ window.mwInsertEditButton = function( parent, item ) {
 	image.title = item.speedTip;
 	image.style.cursor = 'pointer';
 	image.onclick = function() {
-		insertTags( item.tagOpen, item.tagClose, item.sampleText );
+		insertTags( item.tagOpen, item.tagClose, item.sampleText, item.selectText );
 		// click tracking
 		if ( ( typeof $ != 'undefined' )  && ( typeof $.trackAction != 'undefined' ) ) {
 			$.trackAction( 'oldedit.' + item.speedTip.replace(/ /g, "-") );
@@ -77,7 +78,7 @@ window.mwSetupToolbar = function() {
 
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
-window.insertTags = function( tagOpen, tagClose, sampleText ) {
+window.insertTags = function( tagOpen, tagClose, sampleText, selectText) {
 	if ( typeof $ != 'undefined' && typeof $.fn.textSelection != 'undefined' && currentFocused &&
 			( currentFocused.nodeName.toLowerCase() == 'iframe' || currentFocused.id == 'wpTextbox1' ) ) {
 		$( '#wpTextbox1' ).textSelection(
@@ -109,15 +110,17 @@ window.insertTags = function( tagOpen, tagClose, sampleText ) {
 		// insert tags
 		checkSelectedText();
 		range.text = tagOpen + selText + tagClose;
-		// mark sample text as selected
-		if ( isSample && range.moveStart ) {
-			if ( window.opera ) {
-				tagClose = tagClose.replace(/\n/g,'');
+		// mark sample text as selected if not switched off by option
+		if ( selectText !== false ) {
+			if ( isSample && range.moveStart ) {
+				if ( window.opera ) {
+					tagClose = tagClose.replace(/\n/g,'');
+				}
+				range.moveStart('character', - tagClose.length - selText.length);
+				range.moveEnd('character', - tagClose.length);
 			}
-			range.moveStart('character', - tagClose.length - selText.length);
-			range.moveEnd('character', - tagClose.length);
+			range.select();
 		}
-		range.select();
 		// restore window scroll position
 		if ( document.documentElement && document.documentElement.scrollTop ) {
 			document.documentElement.scrollTop = winScroll;
@@ -139,7 +142,7 @@ window.insertTags = function( tagOpen, tagClose, sampleText ) {
 			+ tagOpen + selText + tagClose
 			+ txtarea.value.substring(endPos, txtarea.value.length);
 		// set new selection
-		if ( isSample ) {
+		if ( isSample && ( selectText !== false )) {
 			txtarea.selectionStart = startPos + tagOpen.length;
 			txtarea.selectionEnd = startPos + tagOpen.length + selText.length;
 		} else {
