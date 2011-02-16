@@ -576,6 +576,15 @@ class MessageCache {
 			return false;
 		}
 
+		$lang = wfGetLangObj( $langcode );
+		if ( !$lang ) {
+			throw new MWException( "Bad lang code $langcode given" );
+		}
+
+		$langcode = $lang->getCode();
+
+		$message = false;
+
 		# Normalise title-case input (with some inlining)
 		$lckey = str_replace( ' ', '_', $key );
 		if ( ord( $key ) < 128 ) {
@@ -585,31 +594,6 @@ class MessageCache {
 			$lckey = $wgContLang->lcfirst( $lckey );
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
-
-		$lang = wfGetLangObj( $langcode );
-		if ( !$lang ) {
-			throw new MWException( "Bad lang code $langcode given" );
-		}
-
-		/**
-		 * Find a suitable sub-language to present the message to user,
-		 * but prevent doing it if the message is for css/js.
-		 *
-		 * Some language like Chinese has multiple variant languages. Only
-		 * getPreferredVariant() (in LanguageConverter) could return such
-		 * sub-language. It won't effect other languages without variants.
-		 */
-		$title = Title::newFromText( $uckey, NS_MEDIAWIKI );
-		if ( !$title->isCssOrJsPage() ) {
-			$langcode = $lang->getPreferredVariant();
-			if ( $langcode != $lang->getCode() ) {
-				$lang = wfGetLangObj( $langcode );
-			}
-		} else {
-			$langcode = $lang->getCode();
-		}
-
-		$message = false;
 
 		/**
 		 * Record each message request, but only once per request.
