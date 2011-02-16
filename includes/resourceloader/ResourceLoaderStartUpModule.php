@@ -37,7 +37,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, 
 			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, 
-			$wgSitename, $wgFileExtensions;
+			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath;
 
 		// Pre-process information
 		$separatorTransTable = $wgContLang->separatorTransformTable();
@@ -85,6 +85,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// not find a way to add vars only for a certain module
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
+			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
