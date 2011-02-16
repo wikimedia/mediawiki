@@ -780,10 +780,6 @@ li.gallerybox div.thumb {
 	margin: 2px;
 }
 
-li.gallerybox div.thumb a.image img {
-	vertical-align: text-top;
-}
-
 div.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
