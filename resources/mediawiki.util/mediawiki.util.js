@@ -273,6 +273,36 @@
 		'$content' : null,
 
 		/**
+		 * Checks wether the current page is the wiki's main page.
+		 *
+		 * @param alsoRelated Boolean value, if true this function also returns true if the current page is
+		 * in a different namespace page of the main page rather than the main page itself (eg. talk page)
+		 * @return Boolean
+		 */
+		'isMainPage' : function( alsoRelated ) {
+			var isRelatedToMainpage = false;
+
+			// Don't insert colon between namespace and title if the namespace is empty (eg. main namespace)
+			var namespace = mw.config.get( 'wgFormattedNamespaces' )[mw.config.get( 'wgNamespaceNumber' )];
+			namespace = namespace ? namespace + ':' : '';
+
+			// We can't use (wgMainPageTitle == wgPageName) since the latter is escaped (underscores) and has other
+			// slight variations that make comparison harder.
+			var isTheMainPage = mw.config.get( 'wgMainPageTitle' ) === ( namespace + mw.config.get( 'wgTitle' ) );
+
+			// Also check for the title in related namespaces ?
+			if ( typeof alsoRelated !== 'undefined' && alsoRelated === true ) {
+				var contentTabLink = wgServer + $( '#ca-talk' ).prev( 'li' ).find( 'a:first' ).attr( 'href' );
+				isRelatedToMainpage = contentTabLink === mw.util.wikiGetlink( mw.config.get( 'wgMainPageTitle' ) );
+
+				return isRelatedToMainpage || isTheMainPage;
+			}
+
+			return isTheMainPage;
+		},
+
+
+		/**
 		 * Add a link to a portlet menu on the page, such as:
 		 *
 		 * p-cactions (Content actions), p-personal (Personal tools),
