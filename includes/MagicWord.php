@@ -273,13 +273,13 @@ class MagicWord {
 	 * @private
 	 */
 	function initRegex() {
-		#$variableClass = Title::legalChars();
-		# This was used for matching "$1" variables, but different uses of the feature will have
-		# different restrictions, which should be checked *after* the MagicWord has been matched,
-		# not here. - IMSoP
+		// Sort the synonyms by length, descending, so that the longest synonym
+		// matches in precedence to the shortest
+		$synonyms = $this->mSynonyms;
+		usort( $synonyms, array( $this, 'compareStringLength' ) );
 
 		$escSyn = array();
-		foreach ( $this->mSynonyms as $synonym )
+		foreach ( $synonyms as $synonym )
 			// In case a magic word contains /, like that's going to happen;)
 			$escSyn[] = preg_quote( $synonym, '/' );
 		$this->mBaseRegex = implode( '|', $escSyn );
@@ -290,6 +290,23 @@ class MagicWord {
 		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
 		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)",
 			"/^(?:{$this->mBaseRegex})$/{$case}" );
+	}
+
+	/**
+	 * A comparison function that returns -1, 0 or 1 depending on whether the 
+	 * first string is longer, the same length or shorter than the second 
+	 * string.
+	 */
+	function compareStringLength( $s1, $s2 ) {
+		$l1 = strlen( $s1 );
+		$l2 = strlen( $s2 );
+		if ( $l1 < $l2 ) {
+			return 1;
+		} elseif ( $l1 > $l2 ) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 
 	/**
