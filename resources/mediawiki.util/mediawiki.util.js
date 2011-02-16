@@ -292,8 +292,8 @@
 
 			// Also check for the title in related namespaces ?
 			if ( typeof alsoRelated !== 'undefined' && alsoRelated === true ) {
-				var contentTabLink = wgServer + $( '#ca-talk' ).prev( 'li' ).find( 'a:first' ).attr( 'href' );
-				isRelatedToMainpage = contentTabLink === mw.util.wikiGetlink( mw.config.get( 'wgMainPageTitle' ) );
+				var tabLink = mw.config.get( 'wgServer' ) + $( '#ca-talk' ).prev().find( 'a:first' ).attr( 'href' );
+				isRelatedToMainpage = tabLink === mw.util.wikiGetlink( mw.config.get( 'wgMainPageTitle' ) );
 
 				return isRelatedToMainpage || isTheMainPage;
 			}
