@@ -2535,23 +2535,22 @@ class OutputPage {
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
-		// Configuration -- This could be merged together with the load and go, but
-		// makeGlobalVariablesScript returns a whole script tag -- grumble grumble...
-		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
-
 		// Script and Messages "only" requests
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts( true ), ResourceLoaderModule::TYPE_SCRIPTS );
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages( true ), ResourceLoaderModule::TYPE_MESSAGES );
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
+		$loader = '';
 		if ( $this->getModules( true ) ) {
-			$scripts .= Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mediaWiki.loader.load', array( $this->getModules( true ) ) ) .
-					Xml::encodeJsCall( 'mediaWiki.loader.go', array() )
-				)
-			) . "\n";
+			$loader = Xml::encodeJsCall( 'mediaWiki.loader.load', array( $this->getModules( true ) ) ) .
+				Xml::encodeJsCall( 'mediaWiki.loader.go', array() );
 		}
+		
+		$scripts .= Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( $this->getJSVars() ) . $loader
+			)
+		);
 
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
@@ -2580,6 +2579,53 @@ class OutputPage {
 		}
 
 		return $scripts;
+	}
+
+	/**
+	 * Get an array containing global JS variables
+	 * 
+	 * Do not add things here which can be evaluated in
+	 * ResourceLoaderStartupScript - in other words, without state.
+	 * You will only be adding bloat to the page and causing page caches to
+	 * have to be purged on configuration changes.
+	 */
+	protected function getJSVars() {
+		global $wgUser, $wgRequest, $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
+
+		$title = $this->getTitle();
+		$ns = $title->getNamespace();
+		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+
+		$vars = array(
+			'wgCanonicalNamespace' => $nsname,
+			'wgCanonicalSpecialPageName' => $ns == NS_SPECIAL ?
+				SpecialPage::resolveAlias( $title->getDBkey() ) : false, # bug 21115
+			'wgNamespaceNumber' => $title->getNamespace(),
+			'wgPageName' => $title->getPrefixedDBKey(),
+			'wgTitle' => $title->getText(),
+			'wgCurRevisionId' => $title->getLatestRevID(),
+			'wgArticleId' => $title->getArticleId(),
+			'wgIsArticle' => $this->isArticle(),
+			'wgAction' => $wgRequest->getText( 'action', 'view' ),
+			'wgUserName' => $wgUser->isAnon() ? null : $wgUser->getName(),
+			'wgUserGroups' => $wgUser->getEffectiveGroups(),
+			'wgCategories' => $this->getCategories(),
+			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
+		);
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
+		}
+		foreach ( $title->getRestrictionTypes() as $type ) {
+			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
+		}
+		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
+			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
+		}
+		
+		// Allow extensions to add their custom variables to the global JS variables
+		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
+		
+		return $vars;
 	}
 
 	/**

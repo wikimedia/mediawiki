@@ -471,52 +471,6 @@ abstract class Skin extends Linker {
 	}
 
 	/**
-	 * Make a <script> tag containing global variables
-	 * @param $skinName string Name of the skin
-	 * The odd calling convention is for backwards compatibility
-	 * @todo FIXME: Make this not depend on $wgTitle!
-	 * 
-	 * Do not add things here which can be evaluated in ResourceLoaderStartupScript - in other words, without state.
-	 * You will only be adding bloat to the page and causing page caches to have to be purged on configuration changes.
-	 */
-	static function makeGlobalVariablesScript( $skinName ) {
-		global $wgTitle, $wgUser, $wgRequest, $wgOut, $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
-		
-		$ns = $wgTitle->getNamespace();
-		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
-		$vars = array(
-			'wgCanonicalNamespace' => $nsname,
-			'wgCanonicalSpecialPageName' => $ns == NS_SPECIAL ?
-				SpecialPage::resolveAlias( $wgTitle->getDBkey() ) : false, # bug 21115
-			'wgNamespaceNumber' => $wgTitle->getNamespace(),
-			'wgPageName' => $wgTitle->getPrefixedDBKey(),
-			'wgTitle' => $wgTitle->getText(),
-			'wgAction' => $wgRequest->getText( 'action', 'view' ),
-			'wgArticleId' => $wgTitle->getArticleId(),
-			'wgIsArticle' => $wgOut->isArticle(),
-			'wgUserName' => $wgUser->isAnon() ? null : $wgUser->getName(),
-			'wgUserGroups' => $wgUser->getEffectiveGroups(),
-			'wgCurRevisionId' => $wgTitle->getLatestRevID(),
-			'wgCategories' => $wgOut->getCategories(),
-			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
-		);
-		if ( $wgContLang->hasVariants() ) {
-			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
-		}
-		foreach ( $wgTitle->getRestrictionTypes() as $type ) {
-			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
-		}
-		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
-			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
-		}
-		
-		// Allow extensions to add their custom variables to the global JS variables
-		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
-		
-		return self::makeVariablesScript( $vars );
-	}
-
-	/**
 	 * To make it harder for someone to slip a user a fake
 	 * user-JavaScript or user-CSS preview, a random token
 	 * is associated with the login session. If it's not
