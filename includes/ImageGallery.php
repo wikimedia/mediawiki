@@ -288,7 +288,7 @@ class ImageGallery
 
 				# Set both fixed width and min-height.
 				$thumbhtml = "\n\t\t\t".
-					'<div class="thumb" style="width: ' .($this->mWidths+30).'px; min-height: ' .($this->mHeights+30).'px;">'
+					'<div class="thumb" style="width: ' .($this->mWidths+30).'px; height: ' .($this->mHeights+30).'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
