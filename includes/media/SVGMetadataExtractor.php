@@ -74,7 +74,7 @@ class SVGReader {
 			$keepReading = $this->reader->read();
 		}
 
-		if ( $this->reader->name != 'svg' ) {
+		if ( !$this->qualifiedNameEquals( $this->reader->name, 'svg', 'svg' ) ) {
 			throw new MWException( "Expected <svg> tag, got ".
 				$this->reader->name );
 		}
@@ -90,13 +90,13 @@ class SVGReader {
 
 			$this->debug( "$tag" );
 
-			if ( $tag == 'svg' && $type == XmlReader::END_ELEMENT && $this->reader->depth <= $exitDepth ) {
+			if ( $this->qualifiedNameEquals( $tag, 'svg', 'svg' ) && $type == XmlReader::END_ELEMENT && $this->reader->depth <= $exitDepth ) {
 				break;
-			} elseif ( $tag == 'title' ) {
+			} elseif ( $this->qualifiedNameEquals( $tag, 'svg', 'title' ) ) {
 				$this->readField( $tag, 'title' );
-			} elseif ( $tag == 'desc' ) {
+			} elseif ( $this->qualifiedNameEquals( $tag, 'svg', 'desc' )  ) {
 				$this->readField( $tag, 'description' );
-			} elseif ( $tag == 'metadata' && $type == XmlReader::ELEMENT ) {
+			} elseif ( $this->qualifiedNameEquals( $tag, 'svg', 'metadata' ) && $type == XmlReader::ELEMENT ) {
 				$this->readXml( $tag, 'metadata' );
 			} elseif ( $tag !== '#text' ) {
 				$this->debug( "Unhandled top-level XML tag $tag" );
@@ -172,10 +172,15 @@ class SVGReader {
 			} elseif ( $this->reader->nodeType == XmlReader::ELEMENT ) {
 				switch( $this->reader->name ) {
 					case 'animate':
+					case 'svg:animate':
 					case 'set':
+					case 'svg:set':
 					case 'animateMotion':
+					case 'svg:animateMotion':
 					case 'animateColor':
+					case 'svg:animateColor':
 					case 'animateTransform':
+					case 'svg:animateTransform':
 						$this->debug( "HOUSTON WE HAVE ANIMATION" );
 						$this->metadata['animated'] = true;
 						break;
@@ -283,5 +288,23 @@ class SVGReader {
 			// Assume pixels
 			return floatval( $length );
 		}
+	}
+
+	/**
+	 * XML namespace check
+	 *
+	 * Check if a read node name matches the expected nodeName
+	 * @param $qualifiedName as read by XMLReader
+	 * @param $prefix the namespace prefix that you expect for this element, defaults to svg namespace
+	 * @param $localName the localName part of the element that you want to match
+	 *
+	 * @return boolean
+	 */
+	private function qualifiedNameEquals( $qualifiedName, $prefix="svg", $localName ) {
+		if( ($qualifiedName == $localName && $prefix == "svg" ) ||
+		     $qualifiedName == ($prefix . ":" . $localName) ) {
+			return true;
+		}
+		return false;
 	}
 }
