@@ -27,14 +27,69 @@
  * @ingroup SpecialPage
  */
 class SpecialResetpass extends SpecialPage {
+
+	public $mFormFields = array(
+		'NameInfo' => array(
+			'type'          => 'info',
+			'label-message' => 'yourname',
+			'default'       => '',
+		),
+		'Name' => array(
+			'type'          => 'hidden',
+			'name'          => 'wpName',
+			'default'       => null,
+		),
+		'OldPassword' => array(
+			'type'          => 'password',
+			'label-message' => 'oldpassword',
+			'size'          => '20',
+			'id'            => 'wpPassword',
+			'required'      => '',
+		),
+		'NewPassword' => array(
+			'type'          => 'password',
+			'label-message' => 'newpassword',
+			'size'          => '20',
+			'id'            => 'wpNewPassword',
+			'required'      => '',
+		),
+		'Retype' => array(
+			'type'          => 'password',
+			'label-message' => 'retypenew',
+			'size'          => '20',
+			'id'            => 'wpRetype',
+			'required'      => '',
+		),
+		'Remember' => array(
+			'type'          => 'check',
+			'id'            => 'wpRemember',
+		),
+	);
+
+	protected $mUsername;
+	protected $mLogin;
+
 	public function __construct() {
+		global $wgRequest, $wgUser, $wgLang, $wgCookieExpiration;
+
 		parent::__construct( 'Resetpass' );
+		$this->mFormFields['Retype']['validation-callback'] = array( 'SpecialCreateAccount', 'formValidateRetype' );
+
+		$this->mUsername = $wgRequest->getVal( 'wpName', $wgUser->getName() );
+		$this->mReturnTo = $wgRequest->getVal( 'returnto' );
+		$this->mReturnToQuery = $wgRequest->getVal( 'returntoquery' );
+
+		$this->mFormFields['Remember']['label'] = wfMsgExt(
+			'remembermypassword',
+			'parseinline',
+			$wgLang->formatNum( ceil( $wgCookieExpiration / 86400 ) )
+		);
 	}
 
 	/**
 	 * Main execution point
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgUser, $wgAuth, $wgOut, $wgRequest;
 
 		if ( wfReadOnly() ) {
@@ -42,196 +97,134 @@ class SpecialResetpass extends SpecialPage {
 			return;
 		}
 
-		$this->mUserName = $wgRequest->getVal( 'wpName' );
-		$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
-		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
-		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
-		$this->mDomain = $wgRequest->getVal( 'wpDomain' );
-		
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->disallowUserJs();
 
+		if( wfReadOnly() ){
+			$wgOut->readOnlyPage();
+			return false;
+		}
+		if( !$wgAuth->allowPasswordChange() ) {
+			$wgOut->showErrorPage( 'errorpagetitle', 'resetpass_forbidden' );
+			return false;
+		}
+
 		if( !$wgRequest->wasPosted() && !$wgUser->isLoggedIn() ) {
-			$this->error( wfMsg( 'resetpass-no-info' ) );
-			return;
+			$wgOut->showErrorPage( 'errorpagetitle', 'resetpass-no-info' );
+			return false;
 		}
 
-		if( $wgRequest->wasPosted() && $wgRequest->getBool( 'wpCancel' ) ) {
-			$this->doReturnTo();
-			return;
-		}
+		$this->getForm()->show();
 
-		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
-			try {
-				$wgAuth->setDomain( $this->mDomain );
-				if( !$wgAuth->allowPasswordChange() ) {
-					$this->error( wfMsg( 'resetpass_forbidden' ) );
-					return;
-				}
+	}
 
-				$this->attemptReset( $this->mNewpass, $this->mRetype );
-				$wgOut->addWikiMsg( 'resetpass_success' );
-				if( !$wgUser->isLoggedIn() ) {
-					LoginForm::setLoginToken();
-					$token = LoginForm::getLoginToken();
-					$data = array(
-						'action'       => 'submitlogin',
-						'wpName'       => $this->mUserName,
-						'wpDomain'     => $this->mDomain,
-						'wpLoginToken' => $token,
-						'wpPassword'   => $this->mNewpass,
-						'returnto'     => $wgRequest->getVal( 'returnto' ),
-					);
-					if( $wgRequest->getCheck( 'wpRemember' ) ) {
-						$data['wpRemember'] = 1;
-					}
-					$login = new LoginForm( new FauxRequest( $data, true ) );
-					$login->execute( null );
-				}
-				$this->doReturnTo();
-			} catch( PasswordError $e ) {
-				$this->error( $e->getMessage() );
+	public function formSubmitCallback( $data ){
+		$data['Password'] = $data['OldPassword'];
+		$this->mLogin =  new Login( $data );
+		$result = $this->attemptReset( $data );
+
+		if( $result === true ){
+			# Log the user in if they're not already (ie we're
+			# coming from the e-mail-password-reset route
+			global $wgUser;
+			if( !$wgUser->isLoggedIn() ) {
+				$this->mLogin->attemptLogin( $data['NewPassword'] );
+				# Redirect out to the appropriate target.
+				SpecialUserlogin::successfulLogin(
+					'resetpass_success',
+					$this->mReturnTo,
+					$this->mReturnToQuery,
+					$this->mLogin->mLoginResult
+				);
+			} else {
+				# Redirect out to the appropriate target.
+				SpecialUserlogin::successfulLogin(
+					'resetpass_success',
+					$this->mReturnTo,
+					$this->mReturnToQuery
+				);
 			}
-		}
-		$this->showForm();
-	}
-	
-	function doReturnTo() {
-		global $wgRequest, $wgOut;
-		$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
-		if ( !$titleObj instanceof Title ) {
-			$titleObj = Title::newMainPage();
-		}
-		$wgOut->redirect( $titleObj->getFullURL() );
-	}
-
-	function error( $msg ) {
-		global $wgOut;
-		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
-	}
-
-	function showForm() {
-		global $wgOut, $wgUser, $wgRequest, $wgLivePasswordStrengthChecks;
-
-		if ( $wgLivePasswordStrengthChecks ) {
-			$wgOut->addPasswordSecurity( 'wpNewPassword', 'wpRetype' );
-		}
-		$self = $this->getTitle();
-		if ( !$this->mUserName ) {
-			$this->mUserName = $wgUser->getName();
-		}
-		$rememberMe = '';
-		if ( !$wgUser->isLoggedIn() ) {
-			global $wgCookieExpiration, $wgLang;
-			$rememberMe = '<tr>' .
-				'<td></td>' .
-				'<td class="mw-input">' .
-					Xml::checkLabel( 
-						wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
-						'wpRemember', 'wpRemember',
-						$wgRequest->getCheck( 'wpRemember' ) ) .
-				'</td>' .
-			'</tr>';
-			$submitMsg = 'resetpass_submit';
-			$oldpassMsg = 'resetpass-temp-password';
+			return true;
 		} else {
-			$oldpassMsg = 'oldpassword';
+			return $result;
+		}
+	}
+
+	public function getForm( $reset=false ) {
+		global $wgOut, $wgUser, $wgRequest;
+
+		if( $reset || $wgRequest->getCheck( 'reset' ) ){
+			# Request is coming from Special:UserLogin after it
+			# authenticated someone with a temporary password.
+			$this->mFormFields['OldPassword']['label-message'] = 'resetpass-temp-password';
+			$submitMsg = 'resetpass_submit';
+			$this->mFormFields['OldPassword']['default'] = $wgRequest->getText( 'wpPassword' );
+			#perpetuate
+			$this->mFormFields['reset'] = array(
+				'type' => 'hidden',
+				'default' => '1',
+			);
+		} else {
+			unset( $this->mFormFields['Remember'] );
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
-		$wgOut->addHTML(
-			Xml::fieldset( wfMsg( 'resetpass_header' ) ) .
-			Xml::openElement( 'form',
-				array(
-					'method' => 'post',
-					'action' => $self->getLocalUrl(),
-					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Html::hidden( 'token', $wgUser->editToken() ) . "\n" .
-			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
-			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
-			Html::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
-			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
-			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
-			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mUserName, '' ),
-				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass, '' ),
-				array( 'wpNewPassword', 'newpassword', 'password', null, '<div id="password-strength"></div>' ),
-				array( 'wpRetype', 'retypenew', 'password', null, '<div id="password-retype"></div>' ),
-			) ) . "\n" .
-			$rememberMe .
-			"<tr>\n" .
-				"<td></td>\n" .
-				'<td class="mw-input">' .
-					Xml::submitButton( wfMsg( $submitMsg ) ) .
-					Xml::submitButton( wfMsg( 'resetpass-submit-cancel' ), array( 'name' => 'wpCancel' ) ) .
-				"</td>\n" .
-			"</tr>\n" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'form' ) .
-			Xml::closeElement( 'fieldset' ) . "\n"
-		);
-	}
 
-	function pretty( $fields ) {
-		$out = '';
-		foreach ( $fields as $list ) {
-			list( $name, $label, $type, $value, $extra ) = $list;
-			if( $type == 'text' ) {
-				$field = htmlspecialchars( $value );
-			} else {
-				$attribs = array( 'id' => $name );
-				if ( $name == 'wpNewPassword' || $name == 'wpRetype' ) {
-					$attribs = array_merge( $attribs,
-						User::passwordChangeInputAttribs() );
-				}
-				if ( $name == 'wpPassword' ) {
-					$attribs[] = 'autofocus';
-				}
-				$field = Html::input( $name, $value, $type, $attribs );
-			}
-			$out .= "<tr>\n";
-			$out .= "\t<td class='mw-label'>";
-			if ( $type != 'text' )
-				$out .= Xml::label( wfMsg( $label ), $name );
-			else 
-				$out .=  wfMsgHtml( $label );
-			$out .= "</td>\n";
-			$out .= "\t<td class='mw-input'>$field</td>\n";
-			$out .= "\t<td>$extra</td>\n";
-			$out .= "</tr>";
-		}
-		return $out;
+		$this->mFormFields['Name']['default'] =
+		$this->mFormFields['NameInfo']['default'] = $this->mUsername;
+
+		$form = new HTMLForm( $this->mFormFields, '' );
+		$form->suppressReset();
+		$form->setSubmitText( wfMsg( $submitMsg ) );
+		$form->setTitle( $this->getTitle() );
+		$form->addHiddenField( 'returnto', $this->mReturnTo );
+		$form->setWrapperLegend( wfMsg( 'resetpass_header' ) );
+
+		$form->setSubmitCallback( array( $this, 'formSubmitCallback' ) );
+		$form->loadData();
+
+		return $form;
 	}
 
 	/**
-	 * @throws PasswordError when cannot set the new password because requirements not met.
+	 * Try to reset the user's password
 	 */
-	protected function attemptReset( $newpass, $retype ) {
-		$user = User::newFromName( $this->mUserName );
-		if( !$user || $user->isAnon() ) {
-			throw new PasswordError( 'no such user' );
-		}
-		
-		if( $newpass !== $retype ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
-			throw new PasswordError( wfMsg( 'badretype' ) );
+	protected function attemptReset( $data ) {
+
+		if(    !$data['Name']
+			|| !$data['OldPassword']
+			|| !$data['NewPassword']
+			|| !$data['Retype'] )
+		{
+			return false;
 		}
 
-		if( !$user->checkTemporaryPassword($this->mOldpass) && !$user->checkPassword($this->mOldpass) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( wfMsg( 'resetpass-wrong-oldpass' ) );
+		$user = $this->mLogin->getUser();
+		if( !( $user instanceof User ) ){
+			return wfMsgExt( 'nosuchuser', 'parse' );
 		}
-		
+
+		if( $data['NewPassword'] !== $data['Retype'] ) {
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $data['NewPassword'], 'badretype' ) );
+			return wfMsgExt( 'badretype', 'parse' );
+		}
+
+		if( !$user->checkPassword( $data['OldPassword'] ) && !$user->checkTemporaryPassword( $data['OldPassword'] ) )
+		{
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $data['NewPassword'], 'wrongpassword' ) );
+			return wfMsgExt( 'resetpass-wrong-oldpass', 'parse' );
+		}
+
 		try {
-			$user->setPassword( $this->mNewpass );
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
-			$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
+			$user->setPassword( $data['NewPassword'] );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $data['NewPassword'], 'success' ) );
 		} catch( PasswordError $e ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
-			throw new PasswordError( $e->getMessage() );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $data['NewPassword'], 'error' ) );
+			return $e->getMessage();
 		}
-		
+
 		$user->setCookies();
 		$user->saveSettings();
+		return true;
 	}
 }
