@@ -956,6 +956,7 @@ See [[Special:Version|version page]].',
 'nstab-template'  => 'Template',
 'nstab-help'      => 'Help page',
 'nstab-category'  => 'Category',
+'mainpage-nstab'  => '', # do not translate or duplicate this message to other languages
 
 # Main script and global functions
 'nosuchaction'      => 'No such action',

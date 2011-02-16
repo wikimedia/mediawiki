@@ -349,6 +349,7 @@ $wgMessageStructure = array(
 		'nstab-template',
 		'nstab-help',
 		'nstab-category',
+		'mainpage-nstab',
 	),
 	'main' => array(
 		'nosuchaction',
