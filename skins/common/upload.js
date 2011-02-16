@@ -35,11 +35,6 @@ window.wgUploadSetup = function() {
 		}
 	}
 	
-	// Toggle source type
-	var sourceTypeCheckboxes = document.getElementsByName( 'wpSourceType' );
-	for ( var i = 0; i < sourceTypeCheckboxes.length; i++ ) {
-		sourceTypeCheckboxes[i].onchange = toggleUploadInputs;
-	}
 	
 	// AJAX wpDestFile warnings
 	if ( wgAjaxUploadDestCheck ) {
@@ -86,44 +81,6 @@ window.wgUploadSetup = function() {
 		};
 };
 
-/**
- * Iterate over all upload source fields and disable all except the selected one.
- * 
- * @return emptiness
- */
-window.toggleUploadInputs = function() {
-	// Iterate over all rows with UploadSourceField
-	var rows;
-	if ( document.getElementsByClassName ) {
-		rows = document.getElementsByClassName( 'mw-htmlform-field-UploadSourceField' );
-	} else {
-		// Older browsers don't support getElementsByClassName
-		rows = new Array();
-		
-		var allRows = document.getElementsByTagName( 'tr' );
-		for ( var i = 0; i < allRows.length; i++ ) {
-			if ( allRows[i].className == 'mw-htmlform-field-UploadSourceField' )
-				rows.push( allRows[i] );
-		}
-	}
-	
-	for ( var i = 0; i < rows.length; i++ ) {
-		var inputs = rows[i].getElementsByTagName( 'input' );
-		
-		// Check if this row is selected
-		var isChecked = true; // Default true in case wpSourceType is not found
-		for ( var j = 0; j < inputs.length; j++ ) {
-			if ( inputs[j].name == 'wpSourceType' )
-				isChecked = inputs[j].checked;
-		}
-		
-		// Disable all unselected rows
-		for ( var j = 0; j < inputs.length; j++ ) {
-			if ( inputs[j].type != 'radio')
-				inputs[j].disabled = !isChecked;
-		}
-	}
-};
 
 window.wgUploadWarningObj = {
 	'responseCache' : { '' : '&nbsp;' },
