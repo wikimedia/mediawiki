@@ -2496,7 +2496,7 @@ class OutputPage {
 					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
-				$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, round( $timestamp, -2 ) );
+				$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 			}
 			// Make queries uniform in order
 			ksort( $query );
