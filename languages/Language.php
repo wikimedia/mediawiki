@@ -1613,21 +1613,11 @@ class Language {
 	}
 
 	function getMessage( $key ) {
-		// Don't change getPreferredVariant() to getCode() / mCode, because:
-
-		// 1. Some language like Chinese has multiple variant languages. Only
-		//    getPreferredVariant() (in LanguageConverter) could return a
-		//    sub-language which would be more suitable for the user.
-		// 2. To languages without multiple variants, getPreferredVariant()
-		//    (in FakeConverter) functions exactly same as getCode() / mCode,
-		//    it won't break anything.
-
-		// The same below.
-		return self::$dataCache->getSubitem( $this->getPreferredVariant(), 'messages', $key );
+		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
 	}
 
 	function getAllMessages() {
-		return self::$dataCache->getItem( $this->getPreferredVariant(), 'messages' );
+		return self::$dataCache->getItem( $this->mCode, 'messages' );
 	}
 
 	function iconv( $in, $out, $string ) {
