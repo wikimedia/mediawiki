@@ -87,7 +87,7 @@ class OutputPage {
 	var $mCategoryLinks = array();
 	var $mCategories = array();
 
-	/// Should be private. Associative array mapping language code to the page name
+	/// Should be private. Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	var $mLanguageLinks = array();
 
 	/**
@@ -980,7 +980,7 @@ class OutputPage {
 	/**
 	 * Get the list of language links
 	 *
-	 * @return Associative array mapping language code to the page name
+	 * @return Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	 */
 	public function getLanguageLinks() {
 		return $this->mLanguageLinks;
