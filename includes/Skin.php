@@ -480,7 +480,7 @@ abstract class Skin extends Linker {
 	 * You will only be adding bloat to the page and causing page caches to have to be purged on configuration changes.
 	 */
 	static function makeGlobalVariablesScript( $skinName ) {
-		global $wgTitle, $wgUser, $wgRequest, $wgOut, $wgUseAjax, $wgEnableMWSuggest;
+		global $wgTitle, $wgUser, $wgRequest, $wgOut, $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 		
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
