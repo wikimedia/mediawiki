@@ -570,7 +570,7 @@ class SkinTemplate extends Skin {
 		$personal_urls = array();
 		$page = $wgRequest->getVal( 'returnto', $this->thisurl );
 		$query = $wgRequest->getVal( 'returntoquery', $this->thisquery );
-		$returnto = "returnto=$page";
+		$returnto = wfArrayToCGI( array( 'returnto' => $page ) );
 		if( $this->thisquery != '' ) {
 			$returnto .= "&returntoquery=$query";
 		}
