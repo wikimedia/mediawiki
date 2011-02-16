@@ -173,6 +173,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27199) Thumbnail urls can be fetched for old files as well
 * (bug 27376) when using ApiBase::PARAM_TYPE => 'integer' without a min or
   max value, api doesn't validate the input is actually an integer
+* (bug 27479) API error when using both prop=pageprops and
+  prop=info&inprop=displaytitle
 
 === Languages updated in 1.18 ===
 
