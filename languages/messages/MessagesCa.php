@@ -819,6 +819,7 @@ Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, proveu de
 
 '''Si es tracta d'una contribució legítima, si us plau, intenteu-ho una altra vegada. Si continua havent-hi problemes, [[Special:UserLogout|finalitzeu la sessió]] i torneu a iniciar-ne una.'''",
 'token_suffix_mismatch'            => "'''S'ha rebutjat la vostra modificació perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat la modificació per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.'''",
+'edit_form_incomplete'             => "'''Certes parts del formulari de modificació no han arribat al servidor, verifiqueu que les vostres modificacions estan intactes i proveu-ho de nou.'''",
 'editing'                          => "S'està editant $1",
 'editingsection'                   => "S'està editant $1 (secció)",
 'editingcomment'                   => "S'està editant $1 (nova secció)",
@@ -2991,6 +2992,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsareainformation'          => "Nom de l'àrea GPS",
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correcció diferencial GPS',
+'exif-objectname'                  => 'Títol abreujat',
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',
@@ -3349,14 +3351,15 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Cerca fitxers duplicats',
-'fileduplicatesearch-summary'  => "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
-'fileduplicatesearch-legend'   => 'Cerca duplicats',
-'fileduplicatesearch-filename' => 'Nom del fitxer:',
-'fileduplicatesearch-submit'   => 'Cerca',
-'fileduplicatesearch-info'     => '$1 × $2 píxels<br />Mida del fitxer: $3<br />Tipus MIME: $4',
-'fileduplicatesearch-result-1' => 'El fitxer «$1» no té cap duplicació idèntica.',
-'fileduplicatesearch-result-n' => 'El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.',
+'fileduplicatesearch'           => 'Cerca fitxers duplicats',
+'fileduplicatesearch-summary'   => "Cerca fitxers duplicats d'acord amb el seu valor de resum.",
+'fileduplicatesearch-legend'    => 'Cerca duplicats',
+'fileduplicatesearch-filename'  => 'Nom del fitxer:',
+'fileduplicatesearch-submit'    => 'Cerca',
+'fileduplicatesearch-info'      => '$1 × $2 píxels<br />Mida del fitxer: $3<br />Tipus MIME: $4',
+'fileduplicatesearch-result-1'  => 'El fitxer «$1» no té cap duplicació idèntica.',
+'fileduplicatesearch-result-n'  => 'El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.',
+'fileduplicatesearch-noresults' => "No s'ha trobat cap fitxer anomenat «$1».",
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàgines especials',

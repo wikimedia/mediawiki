@@ -315,6 +315,7 @@ $messages = array(
 'nowiki_sample'   => 'Форматтаваан сөзүглелини бээр салыры',
 'nowiki_tip'      => 'Вики форматтаарын херекке албас',
 'image_sample'    => 'Чижек.jpg',
+'image_tip'       => 'Киир туткан файл',
 'media_sample'    => 'Чижек.ogg',
 'media_tip'       => 'Файлдың холбаазы',
 
@@ -387,24 +388,30 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 # History merging
 'mergehistory-reason' => 'Чылдагаан:',
 
+# Merge log
+'revertmerge' => 'Чарары',
+
 # Diffs
 'history-title'           => '"$1" деп арынның үндүрери төөгүзү',
 'lineno'                  => 'Одуруг $1:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
 
 # Search results
-'searchresults'            => 'Түңнелдер',
-'prevn'                    => 'бүрүнгү {{PLURAL:$1|$1}}',
-'nextn'                    => 'соонда {{PLURAL:$1|$1}}',
-'viewprevnext'             => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
-'searchhelp-url'           => 'Help:Допчузу',
-'searchprofile-images'     => 'Мультимедиа',
-'searchprofile-everything' => 'Бүгүде',
-'search-result-size'       => '$1 ({{PLURAL:$2|$2 сөс}})',
-'search-section'           => '("$1" деп салбыр)',
-'searchall'                => 'шупту',
-'powersearch'              => 'Advanced search',
-'powersearch-toggleall'    => 'Шупту',
+'searchresults'             => 'Түңнелдер',
+'prevn'                     => 'бүрүнгү {{PLURAL:$1|$1}}',
+'nextn'                     => 'соонда {{PLURAL:$1|$1}}',
+'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
+'searchhelp-url'            => 'Help:Допчузу',
+'searchprofile-images'      => 'Мультимедиа',
+'searchprofile-everything'  => 'Бүгүде',
+'search-result-size'        => '$1 ({{PLURAL:$2|$2 сөс}})',
+'search-section'            => '("$1" деп салбыр)',
+'search-interwiki-more'     => '(артык)',
+'search-mwsuggest-enabled'  => 'саналдар',
+'search-mwsuggest-disabled' => 'саналдар чок',
+'searchall'                 => 'шупту',
+'powersearch'               => 'Advanced search',
+'powersearch-toggleall'     => 'Шупту',
 
 # Preferences page
 'preferences'               => 'Шилиирилер',
@@ -522,17 +529,18 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'listfiles_description' => 'Тодарадып бижээни',
 
 # File description page
-'file-anchor-link'   => 'Файл',
-'filehist'           => 'Файлдың төөгүзү',
-'filehist-deleteall' => 'шуптуну ырадыры',
-'filehist-deleteone' => 'ырадыры',
-'filehist-current'   => 'амгы',
-'filehist-datetime'  => 'Үе/Шак',
-'filehist-thumb'     => 'Бичии чурук',
-'filehist-user'      => 'Ажыглакчы',
-'filehist-filesize'  => 'Файл хемчээли',
-'filehist-comment'   => 'Тайылбыр',
-'imagelinks'         => 'Файлдың xолбаалары',
+'file-anchor-link'    => 'Файл',
+'filehist'            => 'Файлдың төөгүзү',
+'filehist-deleteall'  => 'шуптуну ырадыры',
+'filehist-deleteone'  => 'ырадыры',
+'filehist-current'    => 'амгы',
+'filehist-datetime'   => 'Үе/Шак',
+'filehist-thumb'      => 'Бичии чурук',
+'filehist-user'       => 'Ажыглакчы',
+'filehist-dimensions' => 'Хемчээлдери',
+'filehist-filesize'   => 'Файл хемчээли',
+'filehist-comment'    => 'Тайылбыр',
+'imagelinks'          => 'Файлдың xолбаалары',
 
 # File reversion
 'filerevert-comment' => 'Чылдагаан:',
@@ -611,6 +619,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Special:AllPages
 'allpages'       => 'Шупту арыннар',
+'alphaindexline' => '$1 деп арындан $2 деп арында',
 'nextpage'       => 'Соонда арын ($1)',
 'prevpage'       => 'Бүрүнгү арын ($1)',
 'allarticles'    => 'Шупту арыннар',
@@ -620,6 +629,9 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Special:Categories
 'categories' => 'Бөлүктер',
+
+# Special:LinkSearch
+'linksearch' => 'Даштыкы холбаалар',
 
 # Special:ListUsers
 'listusers-submit' => 'Көргүзери',
@@ -631,6 +643,9 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 # Special:Log/newusers
 'newuserlog-create-entry'  => 'Чаа бүрүткел бижик',
 'newuserlog-create2-entry' => '$1 деп чаа бүрүткел бижикти бүдүрген',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(кежигүннүң даңзызы)',
 
 # E-mail user
 'emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаары',
@@ -686,6 +701,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Undelete
 'undeletebtn'            => 'Диргисир',
+'undeletelink'           => 'көөрү/диргисири',
 'undeletecomment'        => 'Чылдагаан:',
 'undelete-search-submit' => 'Дилээр',
 
@@ -695,6 +711,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 # Contributions
 'contributions' => 'Ажыглакчыниң немелделери',
 'mycontris'     => 'Мээң немелделерим',
+'contribsub2'   => '$1 ($2)',
 'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң немелделерин көргүзерн',
@@ -708,6 +725,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'isimage'                 => 'чуруктуң холбаазы',
 'whatlinkshere-links'     => '← холбаалар',
 'whatlinkshere-hidelinks' => 'холбааларны $1',
+'whatlinkshere-filters'   => 'Шүүрлер',
 
 # Block/unblock
 'ipaddress'                => 'ИП-адрес',
@@ -722,6 +740,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'ipblocklist-username'     => 'Ажыглакчының ады азы ИП-адрес:',
 'ipblocklist-submit'       => 'Дилээр',
 'infiniteblock'            => 'кезээ-мөңгеде',
+'blocklink'                => 'ниимиктээри',
 'contribslink'             => 'немелделер',
 'block-log-flags-anononly' => 'чүгле ат эвес ажыглакчылар',
 

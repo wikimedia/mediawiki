@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alexsh
+ * @author Andrew971218
  * @author Bencmq
  * @author FireJackey
  * @author Frankou
@@ -828,6 +829,7 @@ $2',
 '''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:UserLogout|登出]]後再重新登入一次。'''",
 'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
+'edit_form_incomplete'             => '編輯表單的某些部分沒有到達伺服器 ；請檢查您的編輯內容是否完整並再試一次。',
 'editing'                          => '正在編輯$1',
 'editingsection'                   => '正在編輯$1（段落）',
 'editingcomment'                   => '正在編輯$1（新段落）',
@@ -3024,6 +3026,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 區域名稱',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
+'exif-objectname'                  => '簡稱',
 
 # EXIF attributes
 'exif-compression-1' => '未壓縮',
@@ -3373,14 +3376,15 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 請輸入檔名，不要包含"{{ns:file}}:"開頭。',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => '選擇重覆檔案',
-'fileduplicatesearch-summary'  => '用重覆檔案的切細值去找出檔案是否重覆。',
-'fileduplicatesearch-legend'   => '找重覆',
-'fileduplicatesearch-filename' => '檔案名稱：',
-'fileduplicatesearch-submit'   => '找',
-'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大小：$3<br />MIME 類型：$4',
-'fileduplicatesearch-result-1' => '檔案 "$1" 無完全相同的重覆。',
-'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
+'fileduplicatesearch'           => '選擇重覆檔案',
+'fileduplicatesearch-summary'   => '用重覆檔案的切細值去找出檔案是否重覆。',
+'fileduplicatesearch-legend'    => '找重覆',
+'fileduplicatesearch-filename'  => '檔案名稱：',
+'fileduplicatesearch-submit'    => '找',
+'fileduplicatesearch-info'      => '$1 × $2 像素<br />檔案大小：$3<br />MIME 類型：$4',
+'fileduplicatesearch-result-1'  => '檔案 "$1" 無完全相同的重覆。',
+'fileduplicatesearch-result-n'  => '檔案 "$1" 有$2項完全相同的重覆。',
+'fileduplicatesearch-noresults' => '沒有發現名為"$1"的文件。',
 
 # Special:SpecialPages
 'specialpages'                   => '特殊頁面',

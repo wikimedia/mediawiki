@@ -626,7 +626,7 @@ Dinge Zojang för heh es do.
 Do bes jetz aanjemeldt.
 Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAMMAR:Akk|{{SITENAME}}}} zeräächmaache]].',
 'yourname'                   => 'Metmaacher Name:',
-'yourpassword'               => 'Passwood',
+'yourpassword'               => 'Paßwoot:',
 'yourpasswordagain'          => 'Noch ens dat Passwood',
 'remembermypassword'         => 'Op Duur aanmelde (hält {{PLURAL:$1|för eine Daach|bes op $1 Dääsch|bloß för hück}})',
 'securelogin-stick-https'    => 'Noh em Enlogge övver HTTPS verbonge blieve.',

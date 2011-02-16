@@ -534,6 +534,7 @@ $2',
 'suspicious-userlogout'      => 'আপনার প্রস্থানের অনুরোধ বাতিল হয়েছে কারণ অনুমিত যে আপনার ব্রাউজার অসম্পূর্ণ অথবা পূবর্বতী তথ্য প্রেরণ করেছে।',
 
 # JavaScript password checks
+'password-strength'            => 'নির্ণিত শ্বব্দচাবির শক্তি $1',
 'password-strength-bad'        => 'খুব দুর্বল',
 'password-strength-mediocre'   => 'দুর্বল',
 'password-strength-acceptable' => 'গ্রহণযোগ্য',
