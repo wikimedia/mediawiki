@@ -8,7 +8,6 @@ return array(
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
-	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 
 	/* Skins */
 
