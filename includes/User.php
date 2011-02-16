@@ -5,6 +5,12 @@
  */
 
 /**
+ * Int Number of characters in user_token field.
+ * @ingroup Constants
+ */
+define( 'USER_TOKEN_LENGTH', 32 );
+
+/**
  * Int Serialized record version.
  * @ingroup Constants
  */
@@ -35,6 +41,13 @@ class PasswordError extends MWException {
  * of the database.
  */
 class User {
+	/**
+	 * Global constants made accessible as class constants so that autoloader
+	 * magic can be used.
+	 */
+	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
+	const MW_USER_VERSION = MW_USER_VERSION;
+	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
 	 * Array of Strings List of member variables which are saved to the
@@ -364,7 +377,7 @@ class User {
 	/**
 	 * Create a new user object from a user row.
 	 * The row should have all fields from the user table in it.
-	 * @param $row array A row from the user table
+	 * @param $row Array A row from the user table
 	 * @return User
 	 */
 	static function newFromRow( $row ) {
@@ -613,7 +626,6 @@ class User {
 
 		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
 			return $result;
-
 
 		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
@@ -1238,9 +1250,6 @@ class User {
 			// Deprecated, but kept for backwards-compatibility config
 			return false;
 		}
-
-
-
 		if( in_array( wfGetIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
@@ -1777,7 +1786,7 @@ class User {
 			}
 
 			if( !$this->isValidPassword( $str ) ) {
- 				global $wgMinimalPasswordLength;
+				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
 				if ( is_array( $valid ) ) {
 					$message = array_shift( $valid );
@@ -1787,7 +1796,7 @@ class User {
 					$params = array( $wgMinimalPasswordLength );
 				}
 				throw new PasswordError( wfMsgExt( $message, array( 'parsemag' ), $params ) );
- 			}
+			}
 		}
 
 		if( !$wgAuth->setPassword( $this, $str ) ) {
@@ -2197,7 +2206,6 @@ class User {
 	}
 
 	/**
-
 	 * Check if user is allowed to access a feature / make an action
 	 * @param $action String action to be checked
 	 * @return Boolean: True if action is allowed, else false
@@ -2521,8 +2529,8 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
-		 		'user_email' => $this->mEmail,
-		 		'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+				'user_email' => $this->mEmail,
+				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_options' => '',
 				'user_touched' => $dbw->timestamp( $this->mTouched ),
 				'user_token' => $this->mToken,
@@ -2581,6 +2589,7 @@ class User {
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
+
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
@@ -2792,7 +2801,7 @@ class User {
 		// are shorter than this, doesn't mean people wont be able
 		// to. Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
-		// check this (incase $wgAuth->strict() is false).
+		// check this (in case $wgAuth->strict() is false).
 		if( !$this->isValidPassword( $password ) ) {
 			return false;
 		}
@@ -2851,7 +2860,7 @@ class User {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
 			if( !isset( $_SESSION['wsEditToken'] ) ) {
-				$token = $this->generateToken();
+				$token = self::generateToken();
 				$_SESSION['wsEditToken'] = $token;
 			} else {
 				$token = $_SESSION['wsEditToken'];
@@ -2869,7 +2878,7 @@ class User {
 	 * @param $salt String Optional salt value
 	 * @return String The new random token
 	 */
-	function generateToken( $salt = '' ) {
+	public static function generateToken( $salt = '' ) {
 		$token = dechex( mt_rand() ) . dechex( mt_rand() );
 		return md5( $token . $salt );
 	}
@@ -2977,7 +2986,7 @@ class User {
 		$now = time();
 		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
 		$expiration = wfTimestamp( TS_MW, $expires );
-		$token = wfGenerateToken( $this->mId . $this->mEmail . $expires );
+		$token = self::generateToken( $this->mId . $this->mEmail . $expires );
 		$hash = md5( $token );
 		$this->load();
 		$this->mEmailToken = $hash;
@@ -3131,7 +3140,7 @@ class User {
 	 * Get the timestamp of account creation.
 	 *
 	 * @return String|Bool Timestamp of account creation, or false for
-	 *                                non-existent/anonymous user accounts.
+	 *     non-existent/anonymous user accounts.
 	 */
 	public function getRegistration() {
 		return $this->getId() > 0
@@ -3143,7 +3152,7 @@ class User {
 	 * Get the timestamp of the first edit
 	 *
 	 * @return String|Bool Timestamp of first edit, or false for
-	 *                                non-existent/anonymous user accounts.
+	 *     non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
 		if( $this->getId() == 0 ) {
@@ -3333,9 +3342,9 @@ class User {
 	 *
 	 * @param $group String: the group to check for whether it can add/remove
 	 * @return Array array( 'add' => array( addablegroups ),
-	 *  'remove' => array( removablegroups ),
-	 *  'add-self' => array( addablegroups to self),
-	 *  'remove-self' => array( removable groups from self) )
+	 *     'remove' => array( removablegroups ),
+	 *     'add-self' => array( addablegroups to self),
+	 *     'remove-self' => array( removable groups from self) )
 	 */
 	static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
@@ -3573,27 +3582,31 @@ class User {
 	 * @param $byEmail Boolean: account made by email?
 	 * @param $reason String: user supplied reason
 	 */
-	public function addNewUserLogEntry( $creator, $byEmail = false ) {
-		global $wgUser, $wgNewUserLog;
+	public function addNewUserLogEntry( $byEmail = false, $reason = '' ) {
+		global $wgUser, $wgContLang, $wgNewUserLog;
 		if( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
 
-		$action = ( $creator == $wgUser )
-			? 'create2' # Safe to publish the creator
-			: 'create'; # Creator is an IP, don't splash it all over Special:Log
-
-		$message = $byEmail
-			? wfMsgForContent( 'newuserlog-byemail' )
-			: '';
-
+		if( $this->getName() == $wgUser->getName() ) {
+			$action = 'create';
+		} else {
+			$action = 'create2';
+			if ( $byEmail ) {
+				if ( $reason === '' ) {
+					$reason = wfMsgForContent( 'newuserlog-byemail' );
+				} else {
+					$reason = $wgContLang->commaList( array(
+						$reason, wfMsgForContent( 'newuserlog-byemail' ) ) );
+				}
+			}
+		}
 		$log = new LogPage( 'newusers' );
 		$log->addEntry(
 			$action,
 			$this->getUserPage(),
-			$message,
-			array( $this->getId() ),
-			$creator
+			$reason,
+			array( $this->getId() )
 		);
 		return true;
 	}
@@ -3603,18 +3616,12 @@ class User {
 	 * Used by things like CentralAuth and perhaps other authplugins.
 	 */
 	public function addNewUserLogEntryAutoCreate() {
-		global $wgNewUserLog;
-		if( empty( $wgNewUserLog ) ) {
+		global $wgNewUserLog, $wgLogAutocreatedAccounts;
+		if( !$wgNewUserLog || !$wgLogAutocreatedAccounts ) {
 			return true; // disabled
 		}
 		$log = new LogPage( 'newusers', false );
-		$log->addEntry(
-			'autocreate',
-			$this->getUserPage(),
-			'',
-			array( $this->getId() ),
-			$this->getId()
-			);
+		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ) );
 		return true;
 	}
 
