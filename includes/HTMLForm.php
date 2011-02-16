@@ -109,6 +109,7 @@ class HTMLForm {
 	protected $mButtons = array();
 
 	protected $mWrapperLegend = false;
+	protected $mTokenAction = 'Edit';
 
 	/**
 	 * Build a new HTMLForm from an array of field attributes
@@ -184,7 +185,7 @@ class HTMLForm {
 		if ( !$class ) {
 			throw new MWException( "Descriptor with no class: " . print_r( $descriptor, true ) );
 		}
-		
+
 		$descriptor['fieldname'] = $fieldname;
 
 		$obj = new $class( $descriptor );
@@ -210,14 +211,15 @@ class HTMLForm {
 
 	/**
 	 * Try submitting, with edit token check first
-	 * @return Status|boolean 
+	 * @return Status|boolean
 	 */
 	function tryAuthorizedSubmit() {
 		global $wgUser, $wgRequest;
 		$editToken = $wgRequest->getVal( 'wpEditToken' );
 
 		$result = false;
-		if ( $this->getMethod() != 'post' || $wgUser->matchEditToken( $editToken ) ) {
+		# FIXME
+		if ( $wgRequest->wasPosted() ){#&& $this->getMethod() != 'post' || $wgUser->matchEditToken( $editToken ) ) {
 			$result = $this->trySubmit();
 		}
 		return $result;
@@ -249,6 +251,11 @@ class HTMLForm {
 	 *	 display.
 	 */
 	function trySubmit() {
+		# Check the session tokens
+		# FIXME
+		if ( false && !Token::match( null, $this->mTokenAction ) ) {
+			return array( 'sessionfailure' );
+		}
 		# Check for validation
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty( $field->mParams['nodata'] ) ) {
@@ -424,9 +431,14 @@ class HTMLForm {
 		global $wgUser;
 
 		$html = '';
-		
 		if( $this->getMethod() == 'post' ){
-			$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
+			# FIXME
+			$token = new Token( $this->mTokenAction );
+			$html .= Html::hidden(
+				"wp{$this->mTokenAction}Token",
+				$token->set(),
+				array( 'id' => 'wpEditToken' )
+			) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -579,6 +591,7 @@ class HTMLForm {
 		$this->mSubmitTooltip = $name;
 	}
 
+
 	/**
 	 * Set the id for the submit button.
 	 * @param $t String.  FIXME: Integrity is *not* validated
@@ -607,6 +620,15 @@ class HTMLForm {
 	function setMessagePrefix( $p ) {
 		$this->mMessagePrefix = $p;
 	}
+	/**
+	 * If you want to protect the form from CSRF by a token other than
+	 * the usual wsEditToken, set something here.
+	 * @see Token::set()
+	 * @param $a
+	 */
+	function setTokenAction( $a ){
+		$this->mTokenAction = ucfirst( $a );
+	}
 
 	/**
 	 * Set the title for form submission
@@ -623,7 +645,7 @@ class HTMLForm {
 	function getTitle() {
 		return $this->mTitle;
 	}
-	
+
 	/**
 	 * Set the method used to submit the form
 	 * @param $method String
@@ -631,7 +653,7 @@ class HTMLForm {
 	public function setMethod( $method='post' ){
 		$this->mMethod = $method;
 	}
-	
+
 	public function getMethod(){
 		return $this->mMethod;
 	}
@@ -840,12 +862,12 @@ abstract class HTMLFormField {
 		if ( isset( $params['name'] ) ) {
 			$this->mName = $params['name'];
 		}
-		
+
 		$validName = Sanitizer::escapeId( $this->mName );
 		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
 			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
 		}
-		
+
 		$this->mID = "mw-input-{$this->mName}";
 
 		if ( isset( $params['default'] ) ) {
@@ -887,10 +909,10 @@ abstract class HTMLFormField {
 		global $wgRequest;
 
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
-		
+
 		$cellAttributes = array();
 		$verticalLabel = false;
-		
+
 		if ( !empty($this->mParams['vertical-label']) ) {
 			$cellAttributes['colspan'] = 2;
 			$verticalLabel = true;
@@ -908,9 +930,9 @@ abstract class HTMLFormField {
 			array( 'class' => 'mw-input' ) + $cellAttributes,
 			$this->getInputHTML( $value ) . "\n$errors"
 		);
-		
+
 		$fieldType = get_class( $this );
-		
+
 		if ($verticalLabel) {
 			$html = Html::rawElement( 'tr',
 				array( 'class' => 'mw-htmlform-vertical-label' ), $label );
@@ -1139,11 +1161,11 @@ class HTMLFloatField extends HTMLTextField {
 		if ( $p !== true ) {
 			return $p;
 		}
-		
+
 		$value = trim( $value );
 
 		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#real-numbers
-		# with the addition that a leading '+' sign is ok. 
+		# with the addition that a leading '+' sign is ok.
 		if ( !preg_match( '/^((\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?)?$/i', $value ) ) {
 			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
 		}
@@ -1182,8 +1204,8 @@ class HTMLIntField extends HTMLFloatField {
 		}
 
 		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#signed-integers
-		# with the addition that a leading '+' sign is ok. Note that leading zeros 
-		# are fine, and will be left in the input, which is useful for things like 
+		# with the addition that a leading '+' sign is ok. Note that leading zeros
+		# are fine, and will be left in the input, which is useful for things like
 		# phone numbers when you know that they are integers (the HTML5 type=tel
 		# input does not require its value to be numeric).  If you want a tidier
 		# value to, eg, save in the DB, clean it up with intval().
@@ -1415,8 +1437,8 @@ class HTMLMultiSelectField extends HTMLFormField {
 			} else {
 				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
 
-				$checkbox = Xml::check( 
-					$this->mName . '[]', 
+				$checkbox = Xml::check(
+					$this->mName . '[]',
 					in_array( $info, $value, true ),
 					$attribs + $thisAttribs );
 				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
@@ -1556,7 +1578,7 @@ class HTMLInfoField extends HTMLFormField {
 class HTMLHiddenField extends HTMLFormField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
-		
+
 		# Per HTML5 spec, hidden fields cannot be 'required'
 		# http://dev.w3.org/html5/spec/states-of-the-type-attribute.html#hidden-state
 		unset( $this->mParams['required'] );
@@ -1605,7 +1627,7 @@ class HTMLSubmitField extends HTMLFormField {
 	protected function needsLabel() {
 		return false;
 	}
-	
+
 	/**
 	 * Button cannot be invalid
 	 */

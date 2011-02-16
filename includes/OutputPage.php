@@ -2555,28 +2555,29 @@ class OutputPage {
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
+		$userScripts = array( 'user.options' );
+
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
 			$scripts .= $this->makeResourceLoaderLink( $sk, 'site', ResourceLoaderModule::TYPE_SCRIPTS );
+			if( $wgUser->isLoggedIn() ){
+				$userScripts[] = 'user.groups';
+			}
 		}
 
-		// Add user JS if enabled - trying to load user.options as a bundle if possible
-		$userOptionsAdded = false;
+		// Add user JS if enabled
 		if ( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$action = $wgRequest->getVal( 'action', 'view' );
 			if( $this->mTitle && $this->mTitle->isJsSubpage() && $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$scripts .= Html::inlineScript( "\n" . $wgRequest->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
-				$scripts .= $this->makeResourceLoaderLink(
-					$sk, array( 'user', 'user.options' ), ResourceLoaderModule::TYPE_SCRIPTS
-				);
-				$userOptionsAdded = true;
+				# FIXME: this means that User:Me/Common.js doesn't load when previewing
+				# User:Me/Vector.js, and vice versa (bug26283)
+				$userScripts[] = 'user';
 			}
 		}
-		if ( !$userOptionsAdded ) {
-			$scripts .= $this->makeResourceLoaderLink( $sk, 'user.options', ResourceLoaderModule::TYPE_SCRIPTS );
-		}
+		$scripts .= $this->makeResourceLoaderLink( $sk, $userScripts, ResourceLoaderModule::TYPE_SCRIPTS );
 
 		return $scripts;
 	}
