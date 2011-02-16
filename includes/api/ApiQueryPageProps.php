@@ -112,7 +112,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 * @return bool True if it fits in the result
 	 */
 	private function addPageProps( $result, $page, $props ) {
-		$fit = $result->addValue( array( 'query', 'pages' ), $page, $props );
+		$fit = $result->addValue( array( 'query', 'pages', $page ), 'pageprops', $props );
 
 		if ( !$fit ) {
 			$this->setContinueEnumParameter( 'continue', $page );
