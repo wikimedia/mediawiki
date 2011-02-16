@@ -448,7 +448,8 @@ class LocalisationCache {
 			} else {
 				$oldSynonyms = array_slice( $fallbackInfo, 1 );
 				$newSynonyms = array_slice( $value[$magicName], 1 );
-				$synonyms = array_unique( array_merge( $oldSynonyms, $newSynonyms ) );
+				$synonyms = array_values( array_unique( array_merge( 
+					$newSynonyms, $oldSynonyms ) ) );
 				$value[$magicName] = array_merge( array( $fallbackInfo[0] ), $synonyms );
 			}
 		}
