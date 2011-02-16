@@ -72,6 +72,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (maintenance/fixDoubleRedirects.php)
 * (bug 23315) New body classes to allow easier styling of special pages
 * (bug 27159) Make email confirmation code expiration time configurable
+* CSS/JS for each user group is imported from MediaWiki:Sysop.js, 
+  MediaWiki:Autoconfirmed.css, etc.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated

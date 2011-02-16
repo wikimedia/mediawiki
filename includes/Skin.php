@@ -546,7 +546,7 @@ abstract class Skin extends Linker {
 	 * @private
 	 */
 	function setupUserCss( OutputPage $out ) {
-		global $wgRequest;
+		global $wgRequest, $wgUser;
 		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
 
 		wfProfileIn( __METHOD__ );
@@ -560,6 +560,9 @@ abstract class Skin extends Linker {
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
 			$out->addModuleStyles( 'site' );
+			if( $wgUser->isLoggedIn() ){
+				$out->addModuleStyles( 'user.groups' );
+			}
 		}
 
 		// Per-user custom styles

@@ -211,6 +211,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderFileModule' => 'includes/resourceloader/ResourceLoaderFileModule.php',
 	'ResourceLoaderSiteModule' => 'includes/resourceloader/ResourceLoaderSiteModule.php',
 	'ResourceLoaderUserModule' => 'includes/resourceloader/ResourceLoaderUserModule.php',
+	'ResourceLoaderUserGroupsModule' => 'includes/resourceloader/ResourceLoaderUserGroupsModule.php',
 	'ResourceLoaderUserOptionsModule' => 'includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderStartUpModule' => 'includes/resourceloader/ResourceLoaderStartUpModule.php',
 	'ReverseChronologicalPager' => 'includes/Pager.php',
