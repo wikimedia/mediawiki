@@ -2451,6 +2451,10 @@ $wgMessageStructure = array(
 		'vector.css',
 		'print.css',
 		'handheld.css',
+		'autoconfirmed.css',
+		'bot.css',
+		'sysop.css',
+		'bureaucrat.css',
 	),
 	'scripts' => array(
 		'common.js',
@@ -2463,6 +2467,10 @@ $wgMessageStructure = array(
 		'simple.js',
 		'modern.js',
 		'vector.js',
+		'autoconfirmed.js',
+		'bot.js',
+		'sysop.js',
+		'bureaucrat.js',
 	),
 	'metadata_cc' => array(
 		'nodublincore',
