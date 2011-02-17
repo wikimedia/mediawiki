@@ -2387,7 +2387,6 @@ HTML
 				$close = $tool['close'],
 				$sample = $tool['sample'],
 				$cssId = $tool['id'],
-				$select = $tool['select'],
 			);
 
 			$paramList = implode( ',',
