@@ -341,10 +341,10 @@
 								// update current header with its tests results
 								mw.test.$table.find( 'tr#mw-mwutiltest-head' + numberOfHeaders +' > th' )
 									.html( previousHeadTitle + ' <span style="float:right">('
-										+ 'T: ' + headNumberOfTests
-										+ ' ok: ' + headNumberOfPasseds
-										+ ' partial: ' + headNumberOfPartials
-										+ ' err: ' + headNumberOfErrors
+										+ 'Tests: ' + headNumberOfTests
+										+ ' OK: ' + headNumberOfPasseds
+										+ ' Partial: ' + headNumberOfPartials
+										+ ' Error: ' + headNumberOfErrors
 										+ ')</span>' );
 
 								numberOfHeaders++;
