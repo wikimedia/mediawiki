@@ -169,7 +169,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
 		$formatter = $changesFeed->getFeedObject(
 			wfMsgForContent( 'recentchanges' ),
-			wfMsgForContent( 'recentchanges-feed-description' )
+			wfMsgForContent( 'recentchanges-feed-description' ),
+			$this->getTitle()->getFullUrl()
 		);
 		return array( $changesFeed, $formatter );
 	}

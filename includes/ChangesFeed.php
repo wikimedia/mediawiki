@@ -24,15 +24,19 @@ class ChangesFeed {
 	 *
 	 * @param $title String: feed's title
 	 * @param $description String: feed's description
+	 * @param $url String: url of origin page
 	 * @return ChannelFeed subclass or false on failure
 	 */
-	public function getFeedObject( $title, $description ) {
-		global $wgSitename, $wgLanguageCode, $wgFeedClasses, $wgTitle;
-		$feedTitle = "$wgSitename  - {$title} [$wgLanguageCode]";
-		if( !isset($wgFeedClasses[$this->format] ) )
+	public function getFeedObject( $title, $description, $url ) {
+		global $wgSitename, $wgLanguageCode, $wgFeedClasses;
+
+		if ( !isset( $wgFeedClasses[$this->format] ) ) {
 			return false;
+		}
+
+		$feedTitle = "$wgSitename  - {$title} [$wgLanguageCode]";
 		return new $wgFeedClasses[$this->format](
-			$feedTitle, htmlspecialchars( $description ), $wgTitle->getFullUrl() );
+			$feedTitle, htmlspecialchars( $description ), $url );
 	}
 
 	/**

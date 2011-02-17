@@ -56,7 +56,8 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$feed = new ChangesFeed( $feedFormat, false );
 		$feedObj = $feed->getFeedObject(
 			wfMsgForContent( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() ),
-			wfMsgForContent( 'recentchangeslinked-feed' )
+			wfMsgForContent( 'recentchangeslinked-feed' ),
+			$this->getTitle()->getFullUrl()
 		);
 		return array( $feed, $feedObj );
 	}
