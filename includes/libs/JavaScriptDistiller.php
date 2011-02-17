@@ -77,8 +77,8 @@ class JavaScriptDistiller {
 		// Protect strings. The original code had [^\'\\v] here, but that didn't armor multiline
 		// strings correctly. This also armors multiline strings that don't have backslashes at the
 		// end of the line (these are invalid), but that's fine because we're just armoring here.
-		$parser->add( '/\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\'/', '$1' );
-		$parser->add( '/"([^"\\\\]*(\\\\.[^"\\\\]*)*)"/', '$1' );
+		$parser->add( '/\'([^\'\\\\]*(\\\\(.|[\r\n])[^\'\\\\]*)*)\'/', '$1' );
+		$parser->add( '/"([^"\\\\]*(\\\\(.|[\r\n])[^"\\\\]*)*)"/', '$1' );
 		// Protect regular expressions
 		$parser->add( '/[ \\t]+((\\/[^\\r\\n\\*][^\\/\\r\\n\\\\]*(\\\\.[^\\/\\r\\n\\\\]*)*\\/(i|g)*))/', '$1' );
 		$parser->add( '/([^\\w\\$\\/\'"*)\\?:](\\/[^\\r\\n\\*][^\\/\\r\\n\\\\]*(\\\\.[^\\/\\r\\n\\\\]*)*\\/(i|g)*))/', '$1' );
