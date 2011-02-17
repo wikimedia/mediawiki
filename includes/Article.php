@@ -1033,10 +1033,11 @@ class Article {
 		# tents of 'pagetitle-view-mainpage' instead of the default (if
 		# that's not empty).
 		# This message always exists because it is in the i18n files
-		if ( $this->mTitle->equals( Title::newMainPage() )
-			&& ( $m = wfMsgForContent( 'pagetitle-view-mainpage' ) ) !== '' )
-		{
-			$wgOut->setHTMLTitle( $m );
+		if ( $this->mTitle->equals( Title::newMainPage() ) ) {
+			$msg = wfMessage( 'pagetitle-view-mainpage' )->inContentLanguage();
+			if ( !$msg->isDisabled() ) {
+				$wgOut->setHTMLTitle( $msg->title( $this->mTitle )->text() );
+			}
 		}
 
 		# Now that we've filled $this->mParserOutput, we know whether
