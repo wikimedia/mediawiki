@@ -529,6 +529,7 @@ $1',
 'toc'                     => 'Indice',
 'showtoc'                 => 'mostra',
 'hidetoc'                 => 'nascondi',
+'collapsible-collapse'    => 'Comprimi',
 'collapsible-expand'      => 'Espandi',
 'thisisdeleted'           => 'Vedi o ripristina $1?',
 'viewdeleted'             => 'Vedi $1?',
@@ -1175,6 +1176,7 @@ $1",
 'searchmenu-legend'                => 'Opzioni di ricerca',
 'searchmenu-exists'                => "'''Sul sito esiste una pagina il cui nome è \"[[:\$1]]\"'''",
 'searchmenu-new'                   => 'Crea la pagina "[[:$1]]" su questo sito',
+'searchmenu-new-nocreate'          => '"$1" è un nome di pagina non valido o che non può essere creato da te.',
 'searchhelp-url'                   => 'Help:Indice',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualizza le pagine con questo prefisso]]',
 'searchprofile-articles'           => 'Pagine di contenuti',
@@ -1575,11 +1577,11 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'minlength1'                  => "Il nome del file dev'essere composto da almeno un carattere.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
-'filetype-mime-mismatch'      => "L'estensione del file non corrisponde con il tipo MIME.",
+'filetype-mime-mismatch'      => 'L\'estensione del file ".$1" non corrisponde al tipo MIME rilevato dal file ($2).',
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
 'filetype-bad-ie-mime'        => 'Impossibile caricare il file perché Internet Explorer lo rileverebbe come "$1", che è un tipo di file non consentito e potenzialmente pericoloso.',
 'filetype-unwanted-type'      => "Caricare file di tipo '''\".\$1\"''' è sconsigliato. {{PLURAL:\$3|Il tipo di file consigliato è|I tipi di file consigliati sono}} \$2.",
-'filetype-banned-type'        => "Caricare file di tipo '''\".\$1\"''' non è consentito. {{PLURAL:\$3|Il tipo di file consentito è|I tipi di file consentiti sono}} \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' {{PLURAL:$4|non è un tipo di file consentito|non sono tipi di file consentiti}}. {{PLURAL:$3|Il tipo di file consentito è|I tipi di file consentiti sono}} $2.',
 'filetype-missing'            => 'Il file è privo di estensione (ad es. ".jpg").',
 'empty-file'                  => 'Il file che hai inviato è vuoto.',
 'file-too-large'              => 'Il file che hai inviato è troppo grande.',
@@ -1849,12 +1851,13 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'disambiguationspage'  => 'Template:Disambigua',
 'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Redirect doppi',
-'doubleredirectstext'        => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
+'doubleredirects'                   => 'Redirect doppi',
+'doubleredirectstext'               => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
 Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.
 I redirect <del>cancellati</del> sono stati corretti.',
-'double-redirect-fixed-move' => '[[$1]] è stata spostata automaticamente, ora è un redirect a [[$2]]',
-'double-redirect-fixer'      => 'Correttore di redirect',
+'double-redirect-fixed-move'        => '[[$1]] è stata spostata automaticamente, ora è un redirect a [[$2]]',
+'double-redirect-fixed-maintenance' => 'Corretto doppio redirect da [[$1]] a [[$2]].',
+'double-redirect-fixer'             => 'Correttore di redirect',
 
 'brokenredirects'        => 'Redirect errati',
 'brokenredirectstext'    => 'I seguenti redirect puntano a pagine inesistenti:',
@@ -2998,6 +3001,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsareainformation'          => 'Nome della zona GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
+'exif-objectname'                  => 'Titolo breve',
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',
@@ -3210,6 +3214,20 @@ per annullare la conferma dell\'indirizzo e-mail:
 $5
 
 Questo codice di conferma scadrà automaticamente alle $4.',
+'confirmemail_body_set'     => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1,
+ha impostato l\'indirizzo e-mail dell\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
+
+Per confermare che l\'account ti appartiene veramente e riattivare le funzioni relative all\'invio
+di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
+
+$3
+
+Se l\'account *non* ti appartiene, segui questo collegamento
+per annullare la conferma dell\'indirizzo e-mail:
+
+$5
+
+Questo codice di conferma scadrà automaticamente alle $4.',
 'confirmemail_invalidated'  => 'Richiesta di conferma indirizzo e-mail annullata',
 'invalidateemail'           => 'Annulla richiesta di conferma e-mail',
 
@@ -3348,14 +3366,15 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Ricerca dei file duplicati',
-'fileduplicatesearch-summary'  => "Ricerca di eventuali duplicati del file in base al valore di ''hash''.",
-'fileduplicatesearch-legend'   => 'Ricerca di un duplicato',
-'fileduplicatesearch-filename' => 'Nome del file:',
-'fileduplicatesearch-submit'   => 'Ricerca',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Dimensione del file: $3<br />Tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'Non esistono duplicati identici al file "$1".',
-'fileduplicatesearch-result-n' => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
+'fileduplicatesearch'           => 'Ricerca dei file duplicati',
+'fileduplicatesearch-summary'   => "Ricerca di eventuali duplicati del file in base al valore di ''hash''.",
+'fileduplicatesearch-legend'    => 'Ricerca di un duplicato',
+'fileduplicatesearch-filename'  => 'Nome del file:',
+'fileduplicatesearch-submit'    => 'Ricerca',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Dimensione del file: $3<br />Tipo MIME: $4',
+'fileduplicatesearch-result-1'  => 'Non esistono duplicati identici al file "$1".',
+'fileduplicatesearch-result-n'  => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
+'fileduplicatesearch-noresults' => 'Nessun file di nome "$1" trovato.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pagine speciali',

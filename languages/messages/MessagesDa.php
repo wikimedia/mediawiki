@@ -1293,6 +1293,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-diffs'                   => 'Forskelle',
 
 # User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mailadressen ser ud til at være gyldig',
 'email-address-validity-invalid' => 'Indtast en gyldig e-mail adresse',
 
 # User rights
@@ -1535,7 +1536,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'filetype-badmime'            => 'Filer med MIME-typen „$1“ må ikke uploades.',
 'filetype-bad-ie-mime'        => 'Kan ikke lægge denne fil op fordi Internet Explorer ville betragte den som værende af typen "$1", som er en ikke-tilladt og en potentiel farlig filtype.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' er ikke en foretrukken filtype. {{PLURAL:\$3|Den foretrukne filtype|De foretrukne filtyper}} er \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' er en uønsket filtype. {{PLURAL:\$3|Den tilladte filtype|De tillatdte filtyper}} er \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' er {{PLURAL:$4|en uønsket filtype|uønskede filtyper}}. {{PLURAL:$3|Den tilladte filtype|De tilladte filtyper}} er $2.',
 'filetype-missing'            => 'Filen der skal uploades har ingen endelse (f.eks. „.jpg“).',
 'empty-file'                  => 'Den fil du indsendte var tom.',
 'file-too-large'              => 'Den fil du indsendte var for stor.',

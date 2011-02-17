@@ -488,6 +488,7 @@ $messages = array(
 'printableversion'  => 'Nyomtatható változat',
 'permalink'         => 'Link erre a változatra',
 'print'             => 'Nyomtatás',
+'view'              => 'Olvasás',
 'edit'              => 'Szerkesztés',
 'create'            => 'Létrehozás',
 'editthispage'      => 'Lap szerkesztése',
@@ -1418,6 +1419,10 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'prefs-displaywatchlist'        => 'Megjelenítési beállítások',
 'prefs-diffs'                   => 'Eltérések (diffek)',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Az e-mail cím érvényesnek tűnik',
+'email-address-validity-invalid' => 'Írj be egy érvényes e-mail címet',
+
 # User rights
 'userrights'                   => 'Szerkesztői jogok beállítása',
 'userrights-lookup-user'       => 'Szerkesztőcsoportok beállítása',
@@ -1936,12 +1941,13 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 A megfelelő szócikkre kellene mutatniuk inkább.<br />
 Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
-'doubleredirects'            => 'Dupla átirányítások',
-'doubleredirectstext'        => 'Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.
+'doubleredirects'                   => 'Dupla átirányítások',
+'doubleredirectstext'               => 'Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.
 Minden sor tartalmaz egy hivatkozást az első, valamint a második átirányításra, valamint a második átirányítás céljára, ami általában a valódi céllap, erre kellene az első átirányításnak mutatnia.
 Az <del>áthúzott</del> sorok a lista elkészülése óta javítva lettek.',
-'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
-'double-redirect-fixer'      => 'Átirányításjavító',
+'double-redirect-fixed-move'        => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
+'double-redirect-fixed-maintenance' => '[[$1]] dupla átirányítás javítása a következőre: [[$2]]',
+'double-redirect-fixer'             => 'Átirányításjavító',
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'A következő átirányítások nem létező lapokra hivatkoznak:',
@@ -3113,6 +3119,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsareainformation'          => 'GPS terület neve',
 'exif-gpsdatestamp'                => 'GPS dátum',
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
+'exif-objectname'                  => 'Rövid cím',
 
 # EXIF attributes
 'exif-compression-1' => 'Nem tömörített',
@@ -3416,6 +3423,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-specialpages'             => 'Speciális lapok',
 'version-parserhooks'              => 'Értelmező hookok',
 'version-variables'                => 'Változók',
+'version-antispam'                 => 'Spammegelőzés',
 'version-skins'                    => 'Felületek',
 'version-other'                    => 'Egyéb',
 'version-mediahandlers'            => 'Médiafájl-kezelők',
@@ -3448,14 +3456,15 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Duplikátumok keresése',
-'fileduplicatesearch-summary'  => 'Fájlok duplikátumainak keresése hash értékük alapján.',
-'fileduplicatesearch-legend'   => 'Duplikátum keresése',
-'fileduplicatesearch-filename' => 'Fájlnév:',
-'fileduplicatesearch-submit'   => 'Keresés',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
-'fileduplicatesearch-result-1' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
-'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak {{PLURAL:$2|egy|$2}} duplikátuma van.',
+'fileduplicatesearch'           => 'Duplikátumok keresése',
+'fileduplicatesearch-summary'   => 'Fájlok duplikátumainak keresése hash értékük alapján.',
+'fileduplicatesearch-legend'    => 'Duplikátum keresése',
+'fileduplicatesearch-filename'  => 'Fájlnév:',
+'fileduplicatesearch-submit'    => 'Keresés',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
+'fileduplicatesearch-result-1'  => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
+'fileduplicatesearch-result-n'  => 'A(z) „$1” nevű fájlnak {{PLURAL:$2|egy|$2}} duplikátuma van.',
+'fileduplicatesearch-noresults' => 'Nincs „$1” nevű fájl.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Speciális lapok',
@@ -3540,6 +3549,10 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 'disableaccount'             => 'Felhasználói fiók letiltása',
 'disableaccount-user'        => 'Felhasználónév:',
 'disableaccount-reason'      => 'Ok:',
+'disableaccount-confirm'     => "Felhasználói fiók letiltása.
+A felhasználó nem jelentkezhet be, nem kérhet új jelszót és nem kap e-mailes értesítéseket.
+Ha a felhasználó bárhol be van jelentkezve, ki lesz jelentkeztetve.
+''Fontos, hogy felhasználói fiók letiltása nem állítható vissza rendszeradminisztrátor közreműködése nélkül.''",
 'disableaccount-mustconfirm' => 'Meg kell erősítened, hogy biztosan le szeretnéd tiltani ezt a fiókot.',
 'disableaccount-nosuchuser'  => 'Nem létezik „$1” nevű felhasználói fiók.',
 'disableaccount-success'     => '„$1” felhasználói fiókja véglegesen le lett tiltva.',

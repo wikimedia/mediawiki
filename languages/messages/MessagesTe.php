@@ -3309,7 +3309,7 @@ $1',
 'htmlform-int-toolow'          => 'మీరిచ్చిన విలువ $1 యొక్క కనిష్ఠ విలువ కంటే తక్కువగా ఉంది.',
 'htmlform-int-toohigh'         => 'మీరిచ్చిన విలువ $1 యొక్క గరిష్ఠ విలువకంటే ఎక్కవగా ఉంది.',
 'htmlform-required'            => 'ఈ విలువ తప్పనిసరి',
-'htmlform-submit'              => 'సమర్పించు',
+'htmlform-submit'              => 'దాఖలుచెయ్యి',
 'htmlform-reset'               => 'మార్పులను రద్దుచెయ్యి',
 'htmlform-selectorother-other' => 'ఇతర',
 
