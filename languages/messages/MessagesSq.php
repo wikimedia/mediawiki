@@ -821,6 +821,7 @@ Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
 '''Nëse ky është një redaktim i vlefshëm, ju lutem provojeni përsëri. Nëse s'punon përsëri atëherë provoni të dilni dhe të hyni përsëri nga llogaria juaj.'''",
 'token_suffix_mismatch'            => "'''Redaktimi s'është pranuar pasi shfletuesi juaj ka prishur përmbajtjen e shkronjave. Redaktimi është shpërfilluar për të ruajtur përmbajtjen e tekstit.
 Kjo ndodh ndonjëherë kur përdoren shërbime ndërjmetësash anonim.'''",
+'edit_form_incomplete'             => "'''Disa pjesë të formës së redaktimit nuk e arritit serverin; rikontrolloni që redaktimiet tuaja janë të paprekura dhe provoni përsëri.'''",
 'editing'                          => 'Duke redaktuar $1',
 'editingsection'                   => 'Duke redaktuar $1 (seksion)',
 'editingcomment'                   => 'Duke redaktuar (sekcionin e ri) $1',
@@ -1543,8 +1544,8 @@ Të gjithë orët janë me orën e shërbyesit.',
 'filetype-bad-ie-mime'        => 'Nuk mund të ngarkoni këtë skedë sepse Internet Explorer do ta zbulonte si "$1", që është një lloj skede e papranuar dhe potencialisht e rrezikshme.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' është një lloj skede i padëshiruar.
 Parapëlqehet {{PLURAL:\$3|skeda të jetë e |skedat të jenë të}} llojit \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' nuk është lloj i lejuar i skedave.
-Si {{PLURAL:\$3|i lejuar është lloji i skedës|të lejuara janë llojet e skedave}} \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' {{PLURAL:$4|nuk është një lloj i skedës së lejuar|nuk janë lloje të lejuara të skedave}}.
+{{PLURAL:$3|Lloji i lejuar i skedës është|Llojet e lejuara të skedave janë}} $2.',
 'filetype-missing'            => 'Skeda nuk ka mbaresë (si p.sh. ".jpg").',
 'empty-file'                  => 'Skeda që paraqitët ishte bosh.',
 'file-too-large'              => 'Skeda që paraqitët ishte shumë e madhe.',
@@ -1633,6 +1634,15 @@ Nëse problemi vazhdon atëherë kontaktoni një [[Special:ListUsers/sysop|admin
 'upload-too-many-redirects' => 'Adresa URL përmbante shumë përcjellime.',
 'upload-unknown-size'       => 'Madhësia e panjohur',
 'upload-http-error'         => 'Ndodhi një gabim HTTP: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Fshehje ngarkimi',
+'uploadstash-summary'  => 'Kjo faqe ofron qasje tek skedat të cilat janë ngarkuar (ose janë në proçes ngarkimi) por që nuk janë publikuat akoma në wiki. Këto skeda nuk janë të dukshme për këdo përveç për përdoruesin që i ka ngarkuar ato.',
+'uploadstash-clear'    => 'Spastro skedat e fshehura',
+'uploadstash-nofiles'  => 'Ju nuk keni skeda të fshehura.',
+'uploadstash-badtoken' => 'Kryerja e këtij veprimi ishte e pasuksesshme, ndoshta sepse kredencialet redaktuese tuaja kanë skaduar. Provoni përsëri.',
+'uploadstash-errclear' => 'Spastrimi i skedave ishte i pasuksesshëm.',
+'uploadstash-refresh'  => 'Rifreskoni listën e skedave',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Refuzohet hyrja',
@@ -1813,12 +1823,13 @@ Mos harroni të shihni nyje tjera të stampave para grisjes së tyre.',
 Ato duhet të kenë lidhje të drejtpërdrejtë tek artikujt e nevojshëm.<br />
 Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Përcjellime dopjo',
-'doubleredirectstext'        => "Kjo faqe liston faqet përcjellëse tek faqet e tjera përcjellëse.
+'doubleredirects'                   => 'Përcjellime dopjo',
+'doubleredirectstext'               => "Kjo faqe liston faqet përcjellëse tek faqet e tjera përcjellëse.
 Secili rresht përmban lidhjet tek përcjellimi i parë dhe përcjellimi i dytë, gjithashtu synimin e përcjellimit të dytë, që është zakonisht faqja synuese '''e vërtetë''', që faqja w parë duhej të ishte përcjellëse e kësaj faqeje.
 <del>Kalimet nga</del> hyrjet janë zgjidhur.",
-'double-redirect-fixed-move' => '[[$1]] u zhvendos, tani është gjendet në [[$2]]',
-'double-redirect-fixer'      => 'Rregullues zhvendosjesh',
+'double-redirect-fixed-move'        => '[[$1]] u zhvendos, tani është gjendet në [[$2]]',
+'double-redirect-fixed-maintenance' => 'Duke zgjidhur përcjellimin e dyfishtë nga [[$1]] tek [[$2]].',
+'double-redirect-fixer'             => 'Rregullues zhvendosjesh',
 
 'brokenredirects'        => 'Përcjellime të prishura',
 'brokenredirectstext'    => "Përcjellimet që vijojnë lidhen tek një artikull që s'ekziston:",
@@ -1895,6 +1906,7 @@ Ju lutemi, vini re se faqe të tjera në rrjet si mund të lidhin një figurë m
 'pager-newer-n'           => '{{PLURAL:$1|1 më i reja|$1 më të reja}}',
 'pager-older-n'           => '{{PLURAL:$1|1 më i vjetër|$1 më të vjetra}}',
 'suppress'                => 'Kujdestari',
+'querypage-disabled'      => 'Kjo faqe speciale është çaktivizuar për arsye të performancës.',
 
 # Book sources
 'booksources'               => 'Burime librash',
@@ -2977,6 +2989,7 @@ Të tjerat do të fshihen.
 'exif-gpsareainformation'          => 'Emri i zonës GPS',
 'exif-gpsdatestamp'                => 'E dhënë GPS',
 'exif-gpsdifferential'             => 'Korrigjim diferencial i GPS',
+'exif-objectname'                  => 'Titull i shkurtër',
 
 # EXIF attributes
 'exif-compression-1' => 'E pangjeshur',
@@ -3324,14 +3337,15 @@ Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU Ge
 Shtypni emrin e skedës pa parashtesën "Figura:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Kërkoni për skeda të dyfishta',
-'fileduplicatesearch-summary'  => 'Kërkoni për dyfishime të skedave në bazë të vlerës përmbledhëse («hash»).',
-'fileduplicatesearch-legend'   => 'Kërko për dyfishime',
-'fileduplicatesearch-filename' => 'Emri i skedës:',
-'fileduplicatesearch-submit'   => 'Kërko',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Madhësia e skedës: $3<br />Lloji MIME: $4',
-'fileduplicatesearch-result-1' => 'Skeda "$1" nuk ka kopje të njëjta',
-'fileduplicatesearch-result-n' => 'Skeda "$1" ka {{PLURAL:$2|1 dyfishim|$2 dyfishime}}.',
+'fileduplicatesearch'           => 'Kërkoni për skeda të dyfishta',
+'fileduplicatesearch-summary'   => 'Kërkoni për dyfishime të skedave në bazë të vlerës përmbledhëse («hash»).',
+'fileduplicatesearch-legend'    => 'Kërko për dyfishime',
+'fileduplicatesearch-filename'  => 'Emri i skedës:',
+'fileduplicatesearch-submit'    => 'Kërko',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Madhësia e skedës: $3<br />Lloji MIME: $4',
+'fileduplicatesearch-result-1'  => 'Skeda "$1" nuk ka kopje të njëjta',
+'fileduplicatesearch-result-n'  => 'Skeda "$1" ka {{PLURAL:$2|1 dyfishim|$2 dyfishime}}.',
+'fileduplicatesearch-noresults' => 'Nuk u gjet asnjë skedë me emrin "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Faqet speciale',

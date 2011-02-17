@@ -1015,6 +1015,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'token_suffix_mismatch'            => "'''使用中のクライアントが編集トークン内の句読点を正しく処理していないため、編集を受け付けられません。'''
 ページ本文の破損を防ぐため、編集は反映されません。
 これは、問題のある匿名プロキシサービスを利用していると、起こることがあります。",
+'edit_form_incomplete'             => "'''一部の編集フォームの値がサーバーに届きませんでした。ご確認の上、そのまま再度投稿してください。'''",
 'editing'                          => '「$1」を編集中',
 'editingsection'                   => '「$1」を編集中 (節単位)',
 'editingcomment'                   => '「$1」を編集中 (新しい節)',
@@ -3285,6 +3286,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPSエリア名',
 'exif-gpsdatestamp'                => 'GPS測位日時',
 'exif-gpsdifferential'             => 'ディファレンシャル補正',
+'exif-objectname'                  => '短いタイトル',
 
 # EXIF attributes
 'exif-compression-1' => '非圧縮',

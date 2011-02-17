@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chiak
  * @author Danny B.
  * @author Helix84
  * @author Liso
@@ -1298,7 +1299,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Preferences page
 'preferences'                   => 'Nastavenia',
-'mypreferences'                 => 'nastavenia',
+'mypreferences'                 => 'Nastavenia',
 'prefs-edits'                   => 'Počet úprav:',
 'prefsnologin'                  => 'Nie ste prihlásený/á',
 'prefsnologintext'              => 'Aby ste mohli zmeniť svoje nastavenia, musíte byť <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prihlásený]</span>.',

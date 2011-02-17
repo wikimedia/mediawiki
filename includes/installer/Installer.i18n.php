@@ -556,7 +556,7 @@ $messages['qqq'] = array(
 * $2 =',
 	'config-install-user' => 'Message indicates that the user is being created',
 	'config-install-user-failed' => 'Parameters:
-* $1 is the username for which granting rights failed
+* $1 is the database username for which granting rights failed
 * $2 is the error message',
 	'config-install-tables' => 'Message indicates that the tables are being created',
 	'config-install-interwiki' => 'Message indicates that the interwikitables are being populated',
@@ -6651,7 +6651,7 @@ Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
 	'config-gd' => 'Mer han de ennjeboute GD-Jrafik-Projramm-Biblijotheek jefonge.
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
-	'config-no-scaling' => 'Mer han weeder de GD-Jrafik-Projramm-Biblijotheek, noch <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
+	'config-no-scaling' => 'Mer han weeder de GD-Jrafik-Projramm-Biblijotheek, noch <i lang="en">ImageMagick</i> jefonge.
 Et Ömrääschne en Minni-Beldsche weed ußjeschalldt.',
 	'config-no-uri' => "'''Fähler:''' Mer kunnte der aktoälle <i lang=\"en\">URI</i> nit erusfenge.
 Et Enreeschte es domet heh aam Engk.",
@@ -6666,7 +6666,7 @@ If you are using shared web hosting, your hosting provider should give you the c
 	'config-db-name-help' => 'Jiff ene Name aan, dä för Ding Wiki passe deiht.
 Doh sullte kei Zweschrereum un kein Stresche dren sin.
 
-Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider Der ene extra Name för de Daatebangk jejovve hät, udder dat De Daatebangke övver e Fommulaa selver enreeschte moß.',
+Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider Der extra ene beshtemmpte Name för de Daatebangk jejovve hät, uffr dat de dä drom froore moß udder dat De de Daatebangke övver e Fommulaa selver enreeschte moß.',
 	'config-db-name-oracle' => 'Schema för de Daatebangk:',
 	'config-db-install-account' => 'Der Zohjang för en Enreeschte',
 	'config-db-username' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk:',
@@ -6761,6 +6761,13 @@ Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
 	'config-email-user-help' => 'Määt et müjjelesch, dat sesch de Metmaacher jääjesiggesch <i lang="en">e-mails</i> schecke künne, wann se dat en iehre eije Enschtellunge och enjeschalldt han.',
 	'config-email-usertalk' => '<i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
 	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
+	'config-logo' => 'Dem Logo sing <i lang="en">URL</i>:',
+	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
+	'config-cc-again' => 'Nch ens ußsöhke&nbsp;…',
+	'config-cache-options' => 'Enshtällunge för et Faßhallde vun Objäkte em Zweschsheisher:',
+	'config-cache-help' => 'Objäkte em Zwescheshpeisher faßhallde, dat heiß öff jebruchte Daate en der <i lang="en">cache</i> donn, bruche mer, öm MediaWiki flöcker ze maache, 
+Meddlere un jruuße Wiki-ẞaits sullte dat onbedengk ußnoze, un och bei klein Wikis weed mer et jood merke.',
+	'config-extensions' => 'Projramm-Zosätz (<i lang="en">extensions</i>)',
 	'config-install-step-done' => 'jedonn',
 	'config-install-step-failed' => 'donävve jejange',
 	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
@@ -6769,6 +6776,9 @@ Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
 	'config-install-pg-schema-failed' => 'Et Tabälle-Opsäze es donävve jejange.
 Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangkscheema „$2“ schrieve kann.',
 	'config-install-pg-commit' => 'Ben de Änderonge aam ennbränge.',
+	'config-install-pg-plpgsql' => 'Ben noh dä Daatebangkshprooch <code lang="en">PL/pgSQL</code> aam söhke.',
+	'config-pg-no-plpgsql' => 'Do moß de Daatebangkshprooch <code lang="en">PL/pgSQL</code> en dä Daatebangk $1 enreeschte.',
+	'config-pg-no-create-privs' => 'Dä Daatebangk-Aanwänder för et Enreeschte hät nit jenooch Rääschde, öm ene andere Daatebangk-Aanwänder en dä Daatebangk aanzelääje.',
 	'config-install-user' => 'Ben unse Daatebangk-Aanwänder en de Daatebangk am aanlääje.',
 	'config-install-user-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
 	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',

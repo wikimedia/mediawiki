@@ -131,7 +131,7 @@ $messages = array(
 'article'       => 'Допчу арын',
 'newwindow'     => '(чаа көзенээ ажыытынар)',
 'cancel'        => 'Соксаары',
-'moredotdotdot' => 'Ам-даа...',
+'moredotdotdot' => 'Артык...',
 'mypage'        => 'Мээң арыным',
 'mytalk'        => 'Мээң чугаам',
 'anontalk'      => 'Бо ИП-адрестиң чугаа',
@@ -156,7 +156,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Алдаг',
 'returnto'          => '$1 деп арынже эглири.',
-'tagline'           => '{{grammar:ablative|{{SITENAME}}}}',
+'tagline'           => '{{SITENAME}} деп веб-сайттен',
 'help'              => 'Дуза',
 'search'            => 'Дилээри',
 'searchbutton'      => 'Дилээри',
@@ -206,9 +206,11 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} дугайында',
 'aboutpage'            => 'Project:Дугайында',
+'copyrightpage'        => '{{ns:project}}:Чогаалчының эргелери',
 'currentevents'        => 'Амгы үеде болуушкуннар',
 'currentevents-url'    => 'Project:Амгы үеде болуушкуннар',
-'disclaimers'          => 'Ажыглаарынка чомпээрежил',
+'disclaimers'          => 'Ажыглаарынка чомпээрежилдер',
+'disclaimerpage'       => 'Project:Ажыглаарынка чомпээрежил',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
 'helppage'             => 'Help:Допчузу',
@@ -260,6 +262,7 @@ $messages = array(
 'databaseerror'      => 'Медээ шыгжамыры алдаг',
 'laggedslavemode'    => 'Оваарымчалыг: Бо арында чаартыышкыннар чок болуп болур',
 'readonly'           => 'шоочалаарынга медээ шыгжамыры',
+'missingarticle-rev' => '(үндүрериниң саны: $1)',
 'internalerror'      => 'Иштики алдаг',
 'internalerror_info' => 'Иштики алдаг: $1',
 'badtitle'           => 'Багай ат',
@@ -268,7 +271,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Aжыглакчының ады',
 'yourpassword'            => 'Чажыт сөс',
-'remembermypassword'      => 'Remember my login on this computer (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Мени бо компютерде сактып алыры (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Кирери',
 'nav-login-createaccount' => 'Кирери / бүрүткел бижикти бүдүрери',
 'userlogin'               => 'Кирери / бүрүткел бижикти бүдүрери',
@@ -346,8 +349,10 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'template-protected' => '(камгалаан)',
 
 # History pages
+'viewpagelogs'           => 'Бо арынның журналын көргүзери',
 'nohistory'              => 'Бо арынның өскерлиишкин төөгүзү чок.',
 'currentrev'             => 'Амгы үе үндүрери',
+'revisionasof'           => '$1 ündüreri',
 'previousrevision'       => '←Артык эрги үндүрери',
 'nextrevision'           => 'Артык чаа үндүрери→',
 'currentrevisionlink'    => 'Амгы үе үндүрери',
@@ -500,6 +505,8 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'boteditletter'                     => 'р',
 'number_of_watching_users_pageview' => '[$1 хайгаараар {{PLURAL:$1|ажыглакчы}}]',
 'newsectionsummary'                 => '/* $1 */ чаа салбыр',
+'rc-enhanced-expand'                => 'Тодаларны көргүзери (JavaScript херек)',
+'rc-enhanced-hide'                  => 'Тодаларны чажырары',
 
 # Recent changes linked
 'recentchangeslinked-page' => 'Арынның ады:',
@@ -641,6 +648,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'activeusers-hidesysops' => 'Эргелекчыларны чажырары',
 
 # Special:Log/newusers
+'newuserlogpage'           => 'Чаа ажыглакчы кырында журнал',
 'newuserlog-create-entry'  => 'Чаа бүрүткел бижик',
 'newuserlog-create2-entry' => '$1 деп чаа бүрүткел бижикти бүдүрген',
 
@@ -687,6 +695,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Protect
 'protectlogpage'         => 'Камгалал кырында журнал',
+'protectedarticle'       => '"[[$1]]" деп арынны камгалаан',
 'protectcomment'         => 'Чылдагаан:',
 'protect-default'        => 'Allow all users',
 'protect-level-sysop'    => 'Чүгле эргелекчылар',
@@ -703,6 +712,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'undeletebtn'            => 'Диргисир',
 'undeletelink'           => 'көөрү/диргисири',
 'undeletecomment'        => 'Чылдагаан:',
+'undeletedarticle'       => '"[[$1]]" диргискен',
 'undelete-search-submit' => 'Дилээр',
 
 # Namespace form on various pages
@@ -713,8 +723,11 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'mycontris'     => 'Мээң немелделерим',
 'contribsub2'   => '$1 ($2)',
 'uctop'         => '(баш)',
+'month'         => 'Айдан:',
+'year'          => 'Чылдан:',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң немелделерин көргүзерн',
+'sp-contributions-blocklog' => 'ниимиктээриге журнал',
 'sp-contributions-logs'     => 'журналдар',
 'sp-contributions-talk'     => 'чугаалажыры',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
@@ -728,6 +741,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'whatlinkshere-filters'   => 'Шүүрлер',
 
 # Block/unblock
+'blockip'                  => 'Ажыглакчыны ниимиктээри',
 'ipaddress'                => 'ИП-адрес',
 'ipadressorusername'       => 'ИП-адрес азы aжыглaкчының aды',
 'ipbreason'                => 'Чылдагаан:',
@@ -742,6 +756,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'infiniteblock'            => 'кезээ-мөңгеде',
 'blocklink'                => 'ниимиктээри',
 'contribslink'             => 'немелделер',
+'blocklogpage'             => 'Ниимиктээриге журнал',
 'block-log-flags-anononly' => 'чүгле ат эвес ажыглакчылар',
 
 # Developer tools
@@ -756,6 +771,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'newtitle'         => 'Чаа ат:',
 'move-watch'       => 'Бо арынны хайгаараары',
 'movepagebtn'      => 'Арынны шимчээри',
+'movelogpage'      => 'Шимчээринге журнал',
 'movereason'       => 'Чылдагаан:',
 'delete_and_move'  => 'Ырадыры болгаш шимчээри',
 
@@ -783,6 +799,8 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'tooltip-ca-protect'        => 'Бо арынны камгалаары',
 'tooltip-ca-delete'         => 'Бо арынны ырадыры',
 'tooltip-ca-move'           => 'Бо арынны шимчээри',
+'tooltip-ca-watch'          => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
+'tooltip-ca-unwatch'        => 'Силерниң хайгаарылга даңзызындан бо арынны ырадыры',
 'tooltip-search'            => '{{grammar:locative|{{SITENAME}}}} дилээри',
 'tooltip-p-logo'            => 'Кол Арын',
 'tooltip-n-mainpage'        => 'Кол Арынны баары',
@@ -802,6 +820,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'tooltip-ca-nstab-help'     => 'Дуза арынын көөрү',
 'tooltip-ca-nstab-category' => 'Бөлүктүң арынын көөрү',
 'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаары',
+'tooltip-watch'             => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
 
 # Attribution
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес {{PLURAL:$1|ажыглакчызы|ажыглакчылары}}',
