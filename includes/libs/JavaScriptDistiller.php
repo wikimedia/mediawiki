@@ -19,12 +19,20 @@ class JavaScriptDistiller {
 	 * @param $stripVerticalSpace Boolean: Try to remove as much vertical whitespace as possible
 	 */
 	public static function stripWhiteSpace( $script, $stripVerticalSpace = false ) {
+		// Try to avoid segfaulting
+		// I saw segfaults with a limit of 10000, 1000 seems to work
+		$oldLimit = ini_get( 'pcre.recursion_limit' );
+		if ( intval( $oldLimit ) > 1000 ) {
+			ini_set( 'pcre.recursion_limit', '1000' );
+		}
+
 		$script = self::stripHorizontalSpace( $script );
 		// If requested, make some vertical whitespace collapsing as well
 		if ( $stripVerticalSpace ) {
 			$script = self::stripVerticalSpace( $script );
 		}
 		// Done
+		ini_set( 'pcre.recursion_limit', $oldLimit );
 		return $script;
 	}
 
@@ -74,55 +82,44 @@ class JavaScriptDistiller {
 		// to \s if we use a backslash as the escape character. We work around this by using an
 		// obscure escape character that we hope will never appear at the end of a line.
 		$parser->escapeChar = chr( 1 );
+		
+		// C-style comment: use non-greedy repetition to find the end
+		$parser->add( '\/ \* .*? \* \/' );
+
+		// Preserve the newline after a C++-style comment -- bug 27046
+		$parser->add( '\/ \/ [^\r\n]* ( [\r\n] )', '$2' );
+
 		// Protect strings. The original code had [^\'\\v] here, but that didn't armor multiline
 		// strings correctly. This also armors multiline strings that don't have backslashes at the
 		// end of the line (these are invalid), but that's fine because we're just armoring here.
 
 		// Single quotes
-		$parser->add( 
-			'\' (' . // start quote
+		$parser->add(
+			'\'' . // start quote
 			'[^\'\\\\]*' . // a run of non-special characters
-			'(' .
-				'\\\\ ( . | [\r\n] )' . // a backslash followed by a character or line ending
+			'(?:' .
+				'\\\\ .' . // a backslash followed by a character or line ending
 				'[^\'\\\\]*' . // a run of non-special characters
 			')*' . // any number of the above
-			') \'', // end quote
+			'\'', // end quote
 			'$1' );
 
 		// Double quotes: same as above
-		$parser->add( '" ( [^"\\\\]* ( \\\\ ( . | [\r\n] ) [^"\\\\]* )* ) "', '$1' );
+		$parser->add( '" [^"\\\\]* (?: \\\\ . [^"\\\\]* )* "', '$1' );
 
 		// Protect regular expressions
 		// Regular expression with whitespace before it
 		$parser->add(
-			'[ \t]+ ( ( \/' . // whitespace then start slash
+			'(?<= [ \t] | [^\w\$\/\'"*)\?:] )' . // assert that whitespace or punctuation precedes
+			'\/' . // start slash
 			'[^\r\n\*]' . // not a comment-start or line ending
 			'[^\/\r\n\\\\]*' . // a sequence of non-special characters
-			'(' . 
+			'(?:' . 
 				'\\\\.' . // an escaped dot
 				'[^\/\r\n\\\\]*' . // a sequence of non-special characters
 			')*' . // any number of the above
-			'\/(i|g)*' . // pattern end, optional modifier
-			') )', 
+			'\/[ig]*' , // pattern end, optional modifier
 			'$1' );
-		// Regular expression with an operator before it
-		$parser->add( 
-			'( [^\w\$\/\'"*)\?:] (\/' . // certain kinds of punctuation and then start slash
-			'[^\r\n\*]' . // not a comment-start or line ending
-			'[^\/\r\n\\\\]*' . // a sequence of non-special characters
-			'(' . 
-				'\\\\.' . // an escaped dot
-				'[^\/\r\n\\\\]*' . // a sequence of non-special characters
-			')*' . // any number of the above
-			'\/(i|g)*)' . // pattern end, optional modifier
-			')',
-			'$1' );
-
-		// C-style comment: use non-greedy repetition to find the end
-		$parser->add( '\/ \* ( . | [\r\n] )*? \* \/' );
-
-		// Preserve the newline after a C++-style comment -- bug 27046
-		$parser->add( '\/ \/ [^\r\n]* ( [\r\n] )', '$2' );
 		return $parser;
 	}
 }
@@ -149,10 +146,9 @@ class ParseMaster {
 	const LENGTH = 2;
 
 	// used to determine nesting levels
-	private $GROUPS = '/\(/';//g
+	private $GROUPS = '/\( (?! \? ) /x';//g
 	private $SUB_REPLACE = '/\$\d/';
 	private $INDEXED = '/^\$\d+$/';
-	//private $TRIM = '/([\'"])\1\.(.*)\.\1\1$/';
 	private $ESCAPE = '/\\\./';//g
 	private $QUOTE = '/\'/';
 	private $DELETED = '/\x01[^\x01]*\x01/';//g
@@ -197,9 +193,9 @@ class ParseMaster {
 		// simulate the _patterns.toSTring of Dean
 		$regexp = '/';
 		foreach ($this->_patterns as $reg) {
-			$regexp .= '(' . $reg[self::EXPRESSION] . ')|';
+			$regexp .= '(' . $reg[self::EXPRESSION] . ")|\n";
 		}
-		$regexp = substr($regexp, 0, -1) . '/Sx';
+		$regexp = substr($regexp, 0, -2) . '/Sxs';
 		$regexp .= ($this->ignoreCase) ? 'i' : '';
 
 		$string = $this->_escape($string, $this->escapeChar);
