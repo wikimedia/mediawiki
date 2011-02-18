@@ -1754,7 +1754,7 @@ class Article {
 
 		if ( $affected ) {
 			$newid = $dbw->insertId();
-			$this->mTitle->resetArticleId( $newid );
+			$this->mTitle->resetArticleID( $newid );
 		}
 		wfProfileOut( __METHOD__ );
 
@@ -2271,6 +2271,8 @@ class Article {
 			$revisionId = $revision->insertOn( $dbw );
 
 			$this->mTitle->resetArticleID( $newid );
+			# Update the LinkCache. Resetting the Title ArticleID means it will rely on having that already cached (FIXME?)
+			LinkCache::singleton()->addGoodLinkObj( $newid, $this->mTitle, strlen( $text ), (bool)Title::newFromRedirect( $text ), $revisionId );
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
