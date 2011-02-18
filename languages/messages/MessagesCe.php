@@ -713,7 +713,7 @@ $1',
 'history-feed-item-nocomment' => '$1 оцу $2',
 
 # Revision deletion
-'rev-delundel'               => 'гайта/къайлайаккха',
+'rev-delundel'               => 'гайта/къайла',
 'rev-showdeleted'            => 'гайта',
 'revdelete-show-file-submit' => 'Хlаъ',
 'revdelete-radio-same'       => '(ма хийца)',

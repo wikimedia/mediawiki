@@ -923,7 +923,7 @@ An abeg roet gant $3 zo ''$2''",
 'currentrevisionlink'    => 'Gwelet ar stumm red',
 'cur'                    => 'red',
 'next'                   => "War-lerc'h",
-'last'                   => 'diwez',
+'last'                   => 'kent',
 'page_first'             => 'kentañ',
 'page_last'              => 'diwezhañ',
 'histlegend'             => "Sellet ouzh an diforc'hioù : lakait un ask adal d'ar stummoù a fell deoc'h keñveriañ ha pouezit war kadarnaat pe war ar bouton en traoñ.<br />
