@@ -2942,8 +2942,7 @@ $1',
 'nextdiff'     => 'Pli nova redakto →',
 
 # Media information
-'mediawarning'         => "'''Warning''': This file type may contain malicious code.
-By executing it, your system may be compromised.",
+'mediawarning'         => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',

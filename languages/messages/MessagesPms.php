@@ -687,6 +687,7 @@ Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, 
 'token_suffix_mismatch'            => "'''Soa modìfica a l'é nen stàita acetà përché sò navigator a l'hai fàit ciadel con ij pont e le vìrgole
 ant ël quàder ëd modìfica. La rason che a l'é nen stàit acetà a l'é për evité ch'a-i fasa darmagi al
 test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un programa proxy ëd coj un pòch dla Bajòna.'''",
+'edit_form_incomplete'             => "'''Quàich part dël formolari ëd modìfica a l'é pa rivà al sërvent; contròla doe vire che toe modìfiche a-i sio anco' e preuva torna.'''",
 'editing'                          => 'Modìfica ëd $1',
 'editingsection'                   => 'I soma dapress a modifiché $1 (session)',
 'editingcomment'                   => 'I soma dapress a modifiché $1 (neuva session)',
@@ -2879,6 +2880,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-gpsareainformation'          => 'Nòm dlë spassi GPS',
 'exif-gpsdatestamp'                => 'Data dël GPS',
 'exif-gpsdifferential'             => 'Coression diferensial dël GPS',
+'exif-objectname'                  => 'Tìtol curt',
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',

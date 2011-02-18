@@ -2545,6 +2545,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
 'exif-gpsdatestamp'                => 'Tarehe ya GPS',
+'exif-objectname'                  => 'Jina fupi',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
