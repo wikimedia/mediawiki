@@ -1157,7 +1157,7 @@ class SkinTemplate extends Skin {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
-					'href' => $wgRequest->appendQuery( 'printable=yes' )
+					'href' => $this->mTitle->getLocalURL( $wgRequest->appendQueryValue( 'printable', 'yes', true ) )
 				);
 			}
 
