@@ -16,7 +16,13 @@
  * @ingroup FileRepo
  */
 class RepoGroup {
-	var $localRepo, $foreignRepos, $reposInitialised = false;
+
+	/**
+	 * @var LocalRepo
+	 */
+	var $localRepo;
+
+	var $foreignRepos, $reposInitialised = false;
 	var $localInfo, $foreignInfo;
 	var $cache;
 

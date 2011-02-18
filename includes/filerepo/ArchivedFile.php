@@ -16,7 +16,6 @@ class ArchivedFile {
 	 * @private
 	 */
 	var $id, # filearchive row ID
-		$title, # image title
 		$name, # image name
 		$group,	# FileStore storage group
 		$key, # FileStore sha1 key
@@ -33,6 +32,11 @@ class ArchivedFile {
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
 		$deleted; # Bitfield akin to rev_deleted
+
+	/**
+	 * @var Title
+	 */
+	var $title; # image title
 
 	/**#@-*/
 

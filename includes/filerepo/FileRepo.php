@@ -66,6 +66,8 @@ abstract class FileRepo {
 	 *              instance of the repository's old file class instead of a
 	 *              current file. Repositories not supporting version control
 	 *              should return false if this parameter is set.
+	 *
+	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
 		if ( !($title instanceof Title) ) {
@@ -140,7 +142,7 @@ abstract class FileRepo {
 			return false;
 		}
 		$redir = $this->checkRedirect( $title );
-		if( $redir && $redir->getNamespace() == NS_FILE) {
+		if( $redir && $title->getNamespace() == NS_FILE) {
 			$img = $this->newFile( $redir );
 			if( !$img ) {
 				return false;
@@ -189,6 +191,8 @@ abstract class FileRepo {
 	 *              of the repository's old file class instead of a current
 	 *              file. Repositories not supporting version control should
 	 *              return false if this parameter is set.
+	 *
+	 * @return File
 	 */
 	function newFileFromKey( $sha1, $time = false ) {
 		if ( $time ) {
@@ -265,6 +269,7 @@ abstract class FileRepo {
 
 	/**
 	 * Get the name of an image from its title object
+	 * @param $title Title
 	 */
 	function getNameFromTitle( $title ) {
 		if ( $this->initialCapital != MWNamespace::isCapitalized( NS_FILE ) ) {
@@ -624,6 +629,7 @@ abstract class FileRepo {
 	 * STUB
 	 *
 	 * @param $title Title of image
+	 * @return Bool
 	 */
 	function checkRedirect( $title ) {
 		return false;

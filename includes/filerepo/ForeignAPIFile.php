@@ -15,7 +15,13 @@
 class ForeignAPIFile extends File {
 	
 	private $mExists;
-	
+
+	/**
+	 * @param  $title
+	 * @param  $repo ForeignApiRepo
+	 * @param  $info
+	 * @param bool $exists
+	 */
 	function __construct( $title, $repo, $info, $exists = false ) {
 		parent::__construct( $title, $repo );
 		$this->mInfo = $info;

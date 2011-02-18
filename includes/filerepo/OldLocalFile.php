@@ -34,7 +34,14 @@ class OldLocalFile extends LocalFile {
 		$file->loadFromRow( $row, 'oi_' );
 		return $file;
 	}
-	
+
+	/**
+	 * @static
+	 * @param  $sha1
+	 * @param $repo LocalRepo
+	 * @param bool $timestamp
+	 * @return bool|OldLocalFile
+	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$conds = array( 'oi_sha1' => $sha1 );
 		if( $timestamp ) {

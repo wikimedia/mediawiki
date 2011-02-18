@@ -28,6 +28,9 @@ class FileRepoStatus extends Status {
 		return $result;
 	}
 
+	/**
+	 * @param $repo FileRepo
+	 */
 	function __construct( $repo = false ) {
 		if ( $repo ) {
 			$this->cleanCallback = $repo->getErrorCleanupFunction();
