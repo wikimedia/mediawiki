@@ -145,4 +145,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$this->modifiedTime[$hash] = $modifiedTime;
 		return $modifiedTime;
 	}
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
+	public function getFlip( $context ) {
+		global $wgContLang;
+
+		return $wgContLang->getDir() !== $context->getDirection();
+	}
 }
