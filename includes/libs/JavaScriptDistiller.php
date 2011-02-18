@@ -152,7 +152,7 @@ class ParseMaster {
 	private $GROUPS = '/\(/';//g
 	private $SUB_REPLACE = '/\$\d/';
 	private $INDEXED = '/^\$\d+$/';
-	private $TRIM = '/([\'"])\1\.(.*)\.\1\1$/';
+	//private $TRIM = '/([\'"])\1\.(.*)\.\1\1$/';
 	private $ESCAPE = '/\\\./';//g
 	private $QUOTE = '/\'/';
 	private $DELETED = '/\x01[^\x01]*\x01/';//g
@@ -266,7 +266,7 @@ class ParseMaster {
 
 	private function _backReferences($match, $offset) {
 		$replacement = $this->buffer['replacement'];
-		$quote = $this->buffer['quote'];
+		//$quote = $this->buffer['quote'];
 		$i = $this->buffer['length'];
 		while ($i) {
 			$replacement = str_replace('$'.$i--, $match[$offset + $i], $replacement);
