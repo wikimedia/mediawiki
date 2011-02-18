@@ -85,7 +85,7 @@ class LocalRepo extends FSRepo {
 		global $wgMemc;
 
 		if( is_string( $title ) ) {
-			$title = Title::newFromTitle( $title );
+			$title = Title::newFromText( $title );
 		}
 		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
 			$title = Title::makeTitle( NS_FILE, $title->getText() );
