@@ -211,10 +211,8 @@ class ImageListPager extends TablePager {
 		) );
 		$s = Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
 			Xml::fieldset( wfMsg( 'listfiles' ) ) .
-			Html::openElement( 'table', array( 'id' => 'mw-listfiles-table' ) ) .
 			Xml::buildForm( $inputForm, 'table_pager_limit_submit' ) .
 			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user' ) ) .
-			Html::closeElement( 'table' ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n";
 		return $s;
