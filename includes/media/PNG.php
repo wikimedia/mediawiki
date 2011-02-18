@@ -31,7 +31,11 @@ class PNGHandler extends BitmapHandler {
 	function formatMetadata( $image ) {
 		return false;
 	}
-	
+
+	/**
+	 * @param $image File
+	 * @return bool
+	 */
 	function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ($ser) {
@@ -51,6 +55,11 @@ class PNGHandler extends BitmapHandler {
 		wfRestoreWarnings();
 		return (boolean) $data;
 	}
+
+	/**
+	 * @param $image File
+	 * @return string
+	 */
 	function getLongDesc( $image ) {
 		global $wgLang;
 		$original = parent::getLongDesc( $image );

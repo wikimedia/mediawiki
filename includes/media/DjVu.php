@@ -68,6 +68,14 @@ class DjVuHandler extends ImageHandler {
 		);
 	}
 
+	/**
+	 * @param $image File
+	 * @param  $dstPath
+	 * @param  $dstUrl
+	 * @param  $params
+	 * @param int $flags
+	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
+	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
@@ -139,6 +147,7 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Cache a document tree for the DjVu XML metadata
+	 * @param $image File
 	 */
 	function getMetaTree( $image , $gettext = false ) {
 		if ( isset( $image->dejaMetaTree ) ) {

@@ -32,6 +32,10 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * @param $file File
+	 * @return bool
+	 */
 	function isAnimatedImage( $file ) {
 		# TODO: detect animated SVGs
 		$metadata = $file->getMetadata();
@@ -44,6 +48,11 @@ class SvgHandler extends ImageHandler {
 		return false;
 	}
 
+	/**
+	 * @param $image File
+	 * @param  $params
+	 * @return bool
+	 */
 	function normaliseParams( $image, &$params ) {
 		global $wgSVGMaxSize;
 		if ( !parent::normaliseParams( $image, $params ) ) {
@@ -61,6 +70,14 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * @param $image File
+	 * @param  $dstPath
+	 * @param  $dstUrl
+	 * @param  $params
+	 * @param int $flags
+	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
+	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
@@ -125,6 +142,12 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * @param $file File
+	 * @param  $path
+	 * @param bool $metadata
+	 * @return array
+	 */
 	function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false ) {
 			$metadata = $file->getMetaData();
@@ -141,6 +164,10 @@ class SvgHandler extends ImageHandler {
 		return array( 'png', 'image/png' );
 	}
 
+	/**
+	 * @param $file File
+	 * @return string
+	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
 		return wfMsgExt( 'svg-long-desc', 'parseinline',
@@ -183,6 +210,10 @@ class SvgHandler extends ImageHandler {
 		return $fields;
 	}
 
+	/**
+	 * @param $file File
+	 * @return array|bool
+	 */
 	function formatMetadata( $file ) {
 		$result = array(
 			'visible' => array(),
