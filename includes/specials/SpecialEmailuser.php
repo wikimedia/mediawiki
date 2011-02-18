@@ -90,7 +90,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$this->mTarget = is_null( $par )
-			? $wgRequest->getVal( 'wpTarget', '' )
+			? $wgRequest->getVal( 'wpTarget', $wgRequest->getVal( 'target', '' ) )
 			: $par;
 			
 		$ret = self::getTarget( $this->mTarget );
