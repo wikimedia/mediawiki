@@ -478,7 +478,6 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
 	}
 
-
 	/**
 	 * Determines if the last failure was due to a deadlock
 	 */
