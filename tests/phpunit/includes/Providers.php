@@ -32,8 +32,8 @@ class MediaWikiProvide {
 	public function DaysMonths() {
 		$ret = array();
 
-		$months = self::Months();
-		$days   = self::Days();
+		$months = $this->Months();
+		$days   = $this->Days();
 		foreach( $months as $month) {
 			foreach( $days as $day ) {
 				$ret[] = array( $day[0], $month[0] );
