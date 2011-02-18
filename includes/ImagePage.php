@@ -1,8 +1,5 @@
 <?php
 
-if ( !defined( 'MEDIAWIKI' ) )
-	die( 1 );
-
 /**
  * Special handling for image description pages
  *
@@ -10,10 +7,10 @@ if ( !defined( 'MEDIAWIKI' ) )
  */
 class ImagePage extends Article {
 
-	/* private */ var $img;  // Image object
-	/* private */ var $displayImg;
-	/* private */ var $repo;
-	/* private */ var $fileLoaded;
+	private $img;  // Image object
+	private $displayImg;
+	private $repo;
+	private $fileLoaded;
 	var $mExtraDescription = false;
 	var $dupes;
 
