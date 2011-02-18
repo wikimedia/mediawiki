@@ -98,7 +98,7 @@ class JavaScriptDistiller {
 			'\'' . // start quote
 			'[^\'\\\\]*' . // a run of non-special characters
 			'(?:' .
-				'\\\\ .' . // a backslash followed by a character or line ending
+				'\\\\ .' . // a backslash followed by any character
 				'[^\'\\\\]*' . // a run of non-special characters
 			')*' . // any number of the above
 			'\'', // end quote
@@ -115,7 +115,7 @@ class JavaScriptDistiller {
 			'[^\r\n\*]' . // not a comment-start or line ending
 			'[^\/\r\n\\\\]*' . // a sequence of non-special characters
 			'(?:' . 
-				'\\\\.' . // an escaped dot
+				'\\\\ .' . // a backslash followed by any character
 				'[^\/\r\n\\\\]*' . // a sequence of non-special characters
 			')*' . // any number of the above
 			'\/[ig]*' , // pattern end, optional modifier
