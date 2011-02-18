@@ -31,7 +31,13 @@ class GIFHandler extends BitmapHandler {
 	function formatMetadata( $image ) {
 		return false;
 	}
-	
+
+	/**
+	 * @param $image File
+	 * @param  $width
+	 * @param  $height
+	 * @return
+	 */
 	function getImageArea( $image, $width, $height ) {
 		$ser = $image->getMetadata();
 		if ($ser) {
@@ -42,6 +48,10 @@ class GIFHandler extends BitmapHandler {
 		}
 	}
 
+	/**
+	 * @param $image File
+	 * @return bool
+	 */
 	function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ($ser) {
@@ -62,6 +72,10 @@ class GIFHandler extends BitmapHandler {
 		return (boolean) $data;
 	}
 
+	/**
+	 * @param $image File
+	 * @return string
+	 */
 	function getLongDesc( $image ) {
 		global $wgLang;
 

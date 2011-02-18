@@ -12,6 +12,12 @@
  * @ingroup Media
  */
 class BitmapHandler extends ImageHandler {
+
+	/**
+	 * @param $image File
+	 * @param  $params
+	 * @return bool
+	 */
 	function normaliseParams( $image, &$params ) {
 		global $wgMaxImageArea;
 		if ( !parent::normaliseParams( $image, $params ) ) {
@@ -65,6 +71,14 @@ class BitmapHandler extends ImageHandler {
 		return $width * $height;
 	}
 
+	/**
+	 * @param $image File
+	 * @param  $dstPath
+	 * @param  $dstUrl
+	 * @param  $params
+	 * @param int $flags
+	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
+	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
@@ -614,6 +628,10 @@ class BitmapHandler extends ImageHandler {
 		return $fields;
 	}
 
+	/**
+	 * @param $image File
+	 * @return array|bool
+	 */
 	function formatMetadata( $image ) {
 		$result = array(
 			'visible' => array(),

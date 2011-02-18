@@ -12,7 +12,12 @@
  * @ingroup Media
  */
 abstract class MediaTransformOutput {
-	var $file, $width, $height, $url, $page, $path;
+	/**
+	 * @var File
+	 */
+	var $file;
+
+	var $width, $height, $url, $page, $path;
 
 	/**
 	 * Get the width of the output box
