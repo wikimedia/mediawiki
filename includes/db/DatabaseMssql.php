@@ -500,7 +500,7 @@ class DatabaseMssql extends DatabaseBase {
 		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
 
 		if ( $ret === false ) {
-			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
+			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), /*$sql*/ '', $fname );
 		} elseif ( $ret != NULL ) {
 			// remember number of rows affected
 			$this->mAffectedRows = sqlsrv_rows_affected( $ret );
@@ -1108,7 +1108,10 @@ class MssqlResult {
 		$this->mRows = array();
 		$this->mNumFields = sqlsrv_num_fields( $queryresult );
 		$this->mFieldMeta = sqlsrv_field_metadata( $queryresult );
-		while ( $row = sqlsrv_fetch_array( $queryresult, SQLSRV_FETCH_ASSOC ) ) {
+
+		$rows = sqlsrv_fetch_array( $queryresult, SQLSRV_FETCH_ASSOC );
+
+		foreach( $rows as $row ) {
 			if ( $row !== null ) {
 				foreach ( $row as $k => $v ) {
 					if ( is_object( $v ) && method_exists( $v, 'format' ) ) {// DateTime Object
