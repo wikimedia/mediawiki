@@ -108,7 +108,6 @@ class JavaScriptDistiller {
 		$parser->add( '" [^"\\\\]* (?: \\\\ . [^"\\\\]* )* "', '$1' );
 
 		// Protect regular expressions
-		// Regular expression with whitespace before it
 		$parser->add(
 			'(?<= [ \t] | [^\w\$\/\'"*)\?:] )' . // assert that whitespace or punctuation precedes
 			'\/' . // start slash
