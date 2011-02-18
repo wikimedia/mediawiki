@@ -125,7 +125,7 @@ class Spyc {
 			$indent += $this->_dumpIndent;
 			// Yamlize the array
 			$string .= $this->_yamlizeArray( $value, $indent );
-		} elseif ( !is_array( $value ) ) {
+		} else {
 			// It doesn't have children.  Yip.
 			$string = $this->_dumpNode( $key, $value, $indent );
 		}
