@@ -1364,12 +1364,15 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Makes an encoded list of strings from an array
-	 * $mode:
+	 * @param $a Array
+	 * @param $mode
 	 *        LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
 	 *        LIST_OR            - ORed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
 	 *        LIST_NAMES         - comma separated field names
+	 *
+	 * @return string
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
@@ -2838,7 +2841,7 @@ class DBError extends MWException {
 	/**
 	 * Construct a database error
 	 * @param $db Database object which threw the error
-	 * @param $error A simple error message to be used for debugging
+	 * @param $error String A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase &$db, $error ) {
 		$this->db =& $db;
