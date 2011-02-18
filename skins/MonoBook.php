@@ -65,7 +65,6 @@ class MonoBookTemplate extends BaseTemplate {
 		global $wgRequest;
 
 		$this->skin = $skin = $this->data['skin'];
-		$action = $wgRequest->getText( 'action' );
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();

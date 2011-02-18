@@ -68,7 +68,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$html = array();
 		$html[] = $this->openList( 0 );
 
-		foreach ( $dupes as $key => $dupe ) {
+		foreach ( $dupes as $dupe ) {
 			$line = $this->formatResult( $skin, $dupe );
 			$html[] = "<li>" . $line . "</li>";
 		}

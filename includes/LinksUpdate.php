@@ -67,7 +67,7 @@ class LinksUpdate {
 			$this->mInterlangs[$key] = $title;
 		}
 
-		foreach ( $this->mCategories as $cat => &$sortkey ) {
+		foreach ( $this->mCategories as &$sortkey ) {
 			# If the sortkey is longer then 255 bytes,
 			# it truncated by DB, and then doesn't get
 			# matched when comparing existing vs current
