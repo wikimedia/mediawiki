@@ -52,7 +52,7 @@ class LanguageConverter {
 	/**
 	 * Constructor
 	 *
-	 * @param $langobj The Language Object
+	 * @param $langobj Language The Language Object
 	 * @param $maincode String: the main language code of this language
 	 * @param $variants Array: the supported variants of this language
 	 * @param $variantfallbacks Array: the fallback language of each variant
