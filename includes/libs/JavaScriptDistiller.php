@@ -28,33 +28,33 @@ class JavaScriptDistiller {
 		return $script;
 	}
 
-	private static function stripHorizontalSpace( $script ) {
+	public static function stripHorizontalSpace( $script ) {
 		$parser = self::createParser();
 		// Collapse horizontal whitespaces between variable names into a single space
-		$parser->add( '/(\\b|\\$)[ \\t]+(\\b|\\$)/', '$2 $3' );
+		$parser->add( '/(\b|\$)[ \t]+(\b|\$)/', '$2 $3' );
 		// Collapse horizontal whitespaces between unary operators into a single space
-		$parser->add( '/([+\\-])[ \\t]+([+\\-])/', '$2 $3' );
+		$parser->add( '/([+\-])[ \t]+([+\-])/', '$2 $3' );
 		// Remove all remaining un-protected horizontal whitespace
-		$parser->add( '/[ \\t]+/');
+		$parser->add( '/[ \t]+/');
 		// Collapse multiple vertical whitespaces with some horizontal spaces between them
-		$parser->add( '/[\\r\\n]+[ \\t]*[\\r\\n]+/', "\n" );
+		$parser->add( '/[\r\n]+[ \t]*[\r\n]+/', "\n" );
 		// Execute and return
 		return $parser->exec($script);
 	}
 
-	private static function stripVerticalSpace( $script ) {
+	public static function stripVerticalSpace( $script ) {
 		$parser = self::createParser();
 		// Collapse whitespaces between and after a ){ pair (function definitions)
-		$parser->add( '/\\)\\s+\\{\\s+/', '){' );
+		$parser->add( '/\)\s+\{\s+/', '){' );
 		// Collapse whitespaces between and after a ({ pair (JSON argument)
-		$parser->add( '/\\(\\s+\\{\\s+/', '({' );
+		$parser->add( '/\(\s+\{\s+/', '({' );
 		// Collapse whitespaces between a parenthesis and a period (call chaining)
-		$parser->add( '/\\)\\s+\\./', ').');
+		$parser->add( '/\)\s+\./', ').');
 		// Collapse vertical whitespaces which come directly after a semicolon or a comma
-		$parser->add( '/([;,])\\s+/', '$2' );
+		$parser->add( '/([;,])\s+/', '$2' );
 		// Collapse whitespaces between multiple parenthesis/brackets of similar direction
-		$parser->add( '/([\\)\\}])\\s+([\\)\\}])/', '$2$3' );
-		$parser->add( '/([\\(\\{])\\s+([\\(\\{])/', '$2$3' );
+		$parser->add( '/([\)\}])\s+([\)\}])/', '$2$3' );
+		$parser->add( '/([\(\{])\\s+([\(\{])/', '$2$3' );
 		return $parser->exec( $script );
 	}
 
@@ -80,12 +80,12 @@ class JavaScriptDistiller {
 		$parser->add( '/\'([^\'\\\\]*(\\\\(.|[\r\n])[^\'\\\\]*)*)\'/', '$1' );
 		$parser->add( '/"([^"\\\\]*(\\\\(.|[\r\n])[^"\\\\]*)*)"/', '$1' );
 		// Protect regular expressions
-		$parser->add( '/[ \\t]+((\\/[^\\r\\n\\*][^\\/\\r\\n\\\\]*(\\\\.[^\\/\\r\\n\\\\]*)*\\/(i|g)*))/', '$1' );
-		$parser->add( '/([^\\w\\$\\/\'"*)\\?:](\\/[^\\r\\n\\*][^\\/\\r\\n\\\\]*(\\\\.[^\\/\\r\\n\\\\]*)*\\/(i|g)*))/', '$1' );
+		$parser->add( '/[ \t]+((\/[^\r\n\*][^\/\r\n\\\\]*(\\\\.[^\/\r\n\\\\]*)*\/(i|g)*))/', '$1' );
+		$parser->add( '/([^\w\$\/\'"*)\?:](\/[^\r\n\*][^\/\r\n\\\\]*(\\\\.[^\/\r\n\\\\]*)*\/(i|g)*))/', '$1' );
 		// Remove comments
-		$parser->add( '/\\/\\*(.|[\\r\\n])*?\\*\\//' );
+		$parser->add( '/\/\*(.|[\r\n])*?\*\//' );
 		// Preserve the newline after a C++-style comment -- bug 27046
-		$parser->add( '/\\/\\/[^\\r\\n]*([\\r\\n])/', '$2' );
+		$parser->add( '/\/\/[^\r\n]*([\r\n])/', '$2' );
 		return $parser;
 	}
 }
@@ -112,13 +112,13 @@ class ParseMaster {
 	const LENGTH = 2;
 
 	// used to determine nesting levels
-	private $GROUPS = '/\\(/';//g
-	private $SUB_REPLACE = '/\\$\\d/';
-	private $INDEXED = '/^\\$\\d+$/';
-	private $TRIM = '/([\'"])\\1\\.(.*)\\.\\1\\1$/';
+	private $GROUPS = '/\(/';//g
+	private $SUB_REPLACE = '/\$\d/';
+	private $INDEXED = '/^\$\d+$/';
+	private $TRIM = '/([\'"])\1\.(.*)\.\1\1$/';
 	private $ESCAPE = '/\\\./';//g
 	private $QUOTE = '/\'/';
-	private $DELETED = '/\\x01[^\\x01]*\\x01/';//g
+	private $DELETED = '/\x01[^\x01]*\x01/';//g
 
 	public function add($expression, $replacement = '') {
 		// count the number of sub-expressions
