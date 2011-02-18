@@ -23,7 +23,10 @@ abstract class Skin extends Linker {
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard';
-	// @todo Fixme: should be protected :-\
+	/**
+	 * todo Fixme: should be protected :-\
+	 * @var Title
+	 */
 	var $mTitle = null;
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
@@ -1586,7 +1589,7 @@ abstract class Skin extends Linker {
 			$namespaceNotice = '';
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $namespaceNotice;
 	}
 

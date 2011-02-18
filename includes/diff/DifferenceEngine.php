@@ -770,7 +770,6 @@ CONTROL;
 		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
 		wfProfileOut( __METHOD__ );
 		return $difftext;
-		$this->debug();
 	}
 
 	/**
