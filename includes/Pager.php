@@ -868,7 +868,12 @@ abstract class TablePager extends IndexPager {
 
 	function formatRow( $row ) {
 		$this->mCurrentRow = $row;  	# In case formatValue etc need to know
-		$s = Xml::openElement( 'tr', $this->getRowAttrs($row) );
+		$classArray = $this->getRowAttrs($row);
+		if ( $classArray['class'] === '' ) {
+			$s = Html::openElement( 'tr' );
+		} else {
+			$s = Html::openElement( 'tr', $classArray );
+		}
 		$fieldNames = $this->getFieldNames();
 		foreach ( $fieldNames as $field => $name ) {
 			$value = isset( $row->$field ) ? $row->$field : null;
