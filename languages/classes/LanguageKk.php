@@ -18,6 +18,8 @@ define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
  */
 class KkConverter extends LanguageConverter {
 
+	protected $mCyrl2Latn, $mLatn2Cyrl, $mCyLa2Arab;
+
 	function __construct( $langobj, $maincode,
 								$variants = array(),
 								$variantfallbacks = array(),
@@ -200,6 +202,7 @@ class KkConverter extends LanguageConverter {
 			return parent::parseManualRule( $rule, $flags );
 		}
 
+		$carray = array();
 		// otherwise ignore all formatting
 		foreach ( $this->mVariants as $v ) {
 			$carray[$v] = $rule;
