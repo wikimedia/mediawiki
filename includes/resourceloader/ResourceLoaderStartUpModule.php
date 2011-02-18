@@ -217,6 +217,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $this->modifiedTime[$hash] = $time;
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
 	public function getFlip( $context ) {
 		global $wgContLang;
 
