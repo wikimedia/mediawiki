@@ -30,7 +30,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class PreprocessDump extends Maintenance {
 
 	private $count = 0;
-	private $outputDirectory, $startTime;
+	private $startTime;
 
 	/* Variables for dressing up as a parser */
 	public $mTitle = 'PreprocessDump';

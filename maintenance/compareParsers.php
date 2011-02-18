@@ -32,7 +32,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class CompareParsers extends Maintenance {
 
 	private $count = 0;
-	private $outputDirectory, $startTime;
+	private $startTime;
 
 	public function __construct() {
 		parent::__construct();

@@ -1091,7 +1091,7 @@ class SkinTemplate extends Skin {
 		
 		$content_actions = array();
 		
-		foreach ( $content_navigation as $section => $links ) {
+		foreach ( $content_navigation as $links ) {
 			
 			foreach ( $links as $key => $value ) {
 				
