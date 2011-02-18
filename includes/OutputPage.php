@@ -2411,7 +2411,7 @@ class OutputPage {
 			'only' => $only,
 		);
 		// Propagate printable and handheld parameters if present
-		if ( $wgRequest->getBool( 'printable' ) ) {
+		if ( $this->isPrintable() ) {
 			$query['printable'] = 1;
 		}
 		if ( $wgRequest->getBool( 'handheld' ) ) {
