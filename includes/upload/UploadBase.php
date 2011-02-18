@@ -443,7 +443,6 @@ abstract class UploadBase {
 
 		$localFile = $this->getLocalFile();
 		$filename = $localFile->getName();
-		$n = strrpos( $filename, '.' );
 
 		/**
 		 * Check whether the resulting filename is different from the desired one,

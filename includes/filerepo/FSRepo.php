@@ -268,7 +268,7 @@ class FSRepo extends FileRepo {
 	 * @param $pairs array Pair of (zone, rel) pairs to delete
 	 */
 	function cleanupBatch( $pairs ) {
-		foreach ( $pairs as $i => $pair ) {
+		foreach ( $pairs as $pair ) {
 			list( $zone, $rel ) = $pair;
 			$root = $this->getZonePath( $zone );
 			$path = "$root/$rel";
