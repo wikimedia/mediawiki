@@ -1193,7 +1193,8 @@ class SkinTemplate extends Skin {
 				);
 		}
 
-		if ( $user = $this->getRelevantUser() ) {
+		$user = $this->getRelevantUser();
+		if ( $user ) {
 			$id = $user->getID();
 			$ip = $user->isAnon();
 			$rootUser = $user->getName();
