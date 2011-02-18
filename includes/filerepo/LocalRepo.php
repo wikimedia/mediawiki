@@ -133,6 +133,7 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
+	 * @param $title Title
 	 */
 	protected function getArticleID( $title ) {
 		if( !$title instanceof Title ) {

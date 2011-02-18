@@ -21,6 +21,8 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
+	 *
+	 * @return MediaHandler
 	 */
 	static function getHandler( $type ) {
 		global $wgMediaHandlers;

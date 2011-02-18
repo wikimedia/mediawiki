@@ -52,7 +52,18 @@ abstract class File {
 	/**
 	 * The following member variables are not lazy-initialised
 	 */
-	var $repo, $title, $lastError, $redirected, $redirectedTitle;
+
+	/**
+	 * @var LocalRepo
+	 */
+	var $repo;
+
+	/**
+	 * @var Title
+	 */
+	var $title;
+
+	var $lastError, $redirected, $redirectedTitle;
 
 	/**
 	 * Call this constructor from child classes
@@ -1117,9 +1128,13 @@ abstract class File {
 		if( $this->isLocal() ) {
 			global $wgParser;
 			$revision = Revision::newFromTitle( $this->title );
-			if ( !$revision ) return false;
+			if ( !$revision ) {
+				return false;
+			}
 			$text = $revision->getText();
-			if ( !$text ) return false;
+			if ( !$text ) {
+				return false;
+			}
 			$pout = $wgParser->parse( $text, $this->title, new ParserOptions() );
 			return $pout->getText();
 		}

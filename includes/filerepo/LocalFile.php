@@ -83,6 +83,9 @@ class LocalFile extends File {
 	/**
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
+	 * @param $sha1
+	 * @param $repo LocalRepo
+	 * @param $timestamp
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$conds = array( 'img_sha1' => $sha1 );
@@ -1292,7 +1295,13 @@ class LocalFile extends File {
  * @ingroup FileRepo
  */
 class LocalFileDeleteBatch {
-	var $file, $reason, $srcRels = array(), $archiveUrls = array(), $deletionBatch, $suppress;
+
+	/**
+	 * @var LocalFile
+	 */
+	var $file;
+
+	var $reason, $srcRels = array(), $archiveUrls = array(), $deletionBatch, $suppress;
 	var $status;
 
 	function __construct( File $file, $reason = '', $suppress = false ) {
@@ -1603,7 +1612,12 @@ class LocalFileDeleteBatch {
  * @ingroup FileRepo
  */
 class LocalFileRestoreBatch {
-	var $file, $cleanupBatch, $ids, $all, $unsuppress = false;
+	/**
+	 * @var LocalFile
+	 */
+	var $file;
+
+	var $cleanupBatch, $ids, $all, $unsuppress = false;
 
 	function __construct( File $file, $unsuppress = false ) {
 		$this->file = $file;
