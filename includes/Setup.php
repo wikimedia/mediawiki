@@ -308,37 +308,16 @@ global $wgCommandLineMode;
 if ( $wgCommandLineMode ) {
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
-	wfDebug( "Start request\n\n" );
-	# Output the REQUEST_URI. This is not supported by IIS in rewrite mode,
-	# so use an alternative
-	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-		$requestUri = $_SERVER['REQUEST_URI'];
-	} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] ) ) {
-		$requestUri = $_SERVER['HTTP_X_ORIGINAL_URL'];
-	} else {
-		$requestUri = $_SERVER['PHP_SELF'];
-	}
-
-	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$requestUri}\n" );
+	$debug = "Start request\n\n{$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}";
 
 	if ( $wgDebugPrintHttpHeaders ) {
-		$headerOut = "HTTP HEADERS:\n";
+		$debug .= "\nHTTP HEADERS:\n";
 
-		if ( function_exists( 'getallheaders' ) ) {
-			$headers = getallheaders();
-			foreach ( $headers as $name => $value ) {
-				$headerOut .= "$name: $value\n";
-			}
-		} else {
-			$headers = $_SERVER;
-			foreach ( $headers as $name => $value ) {
-				if ( substr( $name, 0, 5 ) !== 'HTTP_' ) continue;
-				$name = substr( $name, 5 );
-				$headerOut .= "$name: $value\n";
-			}
+		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
+			$debug .= "$name: $value\n";
 		}
-		wfDebug( "$headerOut\n" );
 	}
+	wfDebug( "$debug\n" );
 }
 
 wfProfileOut( $fname . '-misc1' );

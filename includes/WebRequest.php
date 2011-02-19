@@ -492,10 +492,12 @@ class WebRequest {
 	 * @return String
 	 */
 	public function getRequestURL() {
-		if( isset( $_SERVER['REQUEST_URI']) && strlen($_SERVER['REQUEST_URI']) ) {
+		if( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
-		} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] ) && strlen( $_SERVER['HTTP_X_ORIGINAL_URL'] ) ) {
 			// Probably IIS; doesn't set REQUEST_URI
+			$base = $_SERVER['HTTP_X_ORIGINAL_URL'];
+		} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 			$base = $_SERVER['SCRIPT_NAME'];
 			if( isset( $_SERVER['QUERY_STRING'] ) && $_SERVER['QUERY_STRING'] != '' ) {
 				$base .= '?' . $_SERVER['QUERY_STRING'];
@@ -503,8 +505,8 @@ class WebRequest {
 		} else {
 			// This shouldn't happen!
 			throw new MWException( "Web server doesn't provide either " .
-				"REQUEST_URI or SCRIPT_NAME. Report details of your " .
-				"web server configuration to http://bugzilla.wikimedia.org/" );
+				"REQUEST_URI, HTTP_X_ORIGINAL_URL or SCRIPT_NAME. Report details " .
+				"of your web server configuration to http://bugzilla.wikimedia.org/" );
 		}
 		// User-agents should not send a fragment with the URI, but
 		// if they do, and the web server passes it on to us, we
@@ -701,32 +703,50 @@ class WebRequest {
 	}
 
 	/**
+	 * Initialise the header list
+	 */
+	private function initHeaders() {
+		if ( count( $this->headers ) ) {
+			return;
+		}
+
+		if ( function_exists( 'apache_request_headers' ) ) {
+			foreach ( apache_request_headers() as $tempName => $tempValue ) {
+				$this->headers[ strtoupper( $tempName ) ] = $tempValue;
+			}
+		} else {
+			$headers = $_SERVER;
+			foreach ( $_SERVER as $name => $value ) {
+				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
+					$name = str_replace( '_', '-',  substr( $name, 5 ) );
+					$this->headers[$name] = $value;
+				} elseif ( $name === 'CONTENT_LENGTH' ) {
+					$this->headers['CONTENT-LENGTH'] = $value;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get an array containing all request headers
+	 *
+	 * @return Array mapping header name to its value
+	 */
+	public function getAllHeaders() {
+		$this->initHeaders();
+		return $this->headers;
+	}
+
+	/**
 	 * Get a request header, or false if it isn't set
 	 * @param $name String: case-insensitive header name
 	 */
 	public function getHeader( $name ) {
 		$name = strtoupper( $name );
-		if ( function_exists( 'apache_request_headers' ) ) {
-			if ( !$this->headers ) {
-				foreach ( apache_request_headers() as $tempName => $tempValue ) {
-					$this->headers[ strtoupper( $tempName ) ] = $tempValue;
-				}
-			}
-			if ( isset( $this->headers[$name] ) ) {
-				return $this->headers[$name];
-			} else {
-				return false;
-			}
+		if ( isset( $this->headers[$name] ) ) {
+			return $this->headers[$name];
 		} else {
-			$name = 'HTTP_' . str_replace( '-', '_', $name );
-			if ( $name === 'HTTP_CONTENT_LENGTH' && !isset( $_SERVER[$name] ) ) {
-				$name = 'CONTENT_LENGTH';
-			}
-			if ( isset( $_SERVER[$name] ) ) {
-				return $_SERVER[$name];
-			} else {
-				return false;
-			}
+			return false;
 		}
 	}
 
