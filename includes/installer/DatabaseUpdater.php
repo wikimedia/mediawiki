@@ -489,6 +489,21 @@ abstract class DatabaseUpdater {
 		$this->output( "...ss_active_users user count set...\n" );
 	}
 
+	protected function doLogUsertextPopulation() {
+		if ( $this->updateRowExists( 'populate log_usertext' ) ) {
+			$this->output( "...log_user_text field already populated.\n" );
+			return;
+		}
+
+		$this->output(
+			"Populating log_user_text field, printing progress markers. For large\n" .
+			"databases, you may want to hit Ctrl-C and do this manually with\n" .
+			"maintenance/populateLogUsertext.php.\n" );
+		$task = new PopulateLogUsertext();
+		$task->execute();
+		$this->output( "Done populating log_user_text field.\n" );
+	}
+
 	protected function doLogSearchPopulation() {
 		if ( $this->updateRowExists( 'populate log_search' ) ) {
 			$this->output( "...log_search table already populated.\n" );
