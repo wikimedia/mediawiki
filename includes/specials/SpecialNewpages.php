@@ -222,42 +222,42 @@ class SpecialNewpages extends IncludableSpecialPage {
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( wfMsg( 'newpages' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
-			"<tr>
-				<td class='mw-label'>" .
+			'<tr>
+				<td class="mw-label">' .
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
-				"</td>
-				<td class='mw-input'>" .
+				'</td>
+				<td class="mw-input">' .
 					Xml::namespaceSelector( $namespace, 'all' ) .
-				"</td>
-			</tr>" . ( $tagFilter ? (
-			"<tr>
-				<td class='mw-label'>" .
+				'</td>
+			</tr>' . ( $tagFilter ? (
+			'<tr>
+				<td class="mw-label">' .
 					$tagFilterLabel .
-				"</td>
-				<td class='mw-input'>" .
+				'</td>
+				<td class="mw-input">' .
 					$tagFilterSelector .
-				"</td>
-			</tr>" ) : '' ) .
+				'</td>
+			</tr>' ) : '' ) .
 			( $wgEnableNewpagesUserFilter ?
-			"<tr>
-				<td class='mw-label'>" .
+			'<tr>
+				<td class="mw-label">' .
 					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
-				"</td>
-				<td class='mw-input'>" .
+				'</td>
+				<td class="mw-input">' .
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
-				"</td>
-			</tr>" : '' ) .
-			"<tr> <td></td>
-				<td class='mw-submit'>" .
+				'</td>
+			</tr>' : '' ) .
+			'<tr> <td></td>
+				<td class="mw-submit">' .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
-				"</td>
-			</tr>" .
-			"<tr>
+				'</td>
+			</tr>' .
+			'<tr>
 				<td></td>
-				<td class='mw-input'>" .
+				<td class="mw-input">' .
 					$this->filterLinks() .
-				"</td>
-			</tr>" .
+				'</td>
+			</tr>' .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
 			$hidden .
