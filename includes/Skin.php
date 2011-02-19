@@ -1386,6 +1386,7 @@ abstract class Skin extends Linker {
 				$line = trim( $line, '* ' );
 
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
+					$line = MessageCache::singleton()->transform( $line, false, null, $this->mTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					$link = wfMsgForContent( $line[0] );
 
