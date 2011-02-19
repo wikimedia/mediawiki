@@ -137,6 +137,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
 * (bug 15905) Nostalgia skin could become more usable by including a Talk:
   link at the top of the page
+* (bug 27560) Search queries no longer fail in walloon language
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

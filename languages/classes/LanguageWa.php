@@ -25,6 +25,7 @@ class LanguageWa extends Language {
 	## # "<day> d' <monthname>" for months starting with a vowel
 	## #
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
+		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 		$datePreference = $this->dateFormat( $format );
 
