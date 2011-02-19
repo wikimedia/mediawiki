@@ -52,7 +52,12 @@ class SkinMonoBook extends SkinTemplate {
  * @ingroup Skins
  */
 class MonoBookTemplate extends BaseTemplate {
+
+	/**
+	 * @var Skin
+	 */
 	var $skin;
+
 	/**
 	 * Template filter callback for MonoBook skin.
 	 * Takes an associative array of data set from a SkinTemplate-based

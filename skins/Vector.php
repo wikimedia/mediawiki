@@ -61,7 +61,7 @@ class VectorTemplate extends BaseTemplate {
 	/* Members */
 
 	/**
-	 * @var Cached skin object
+	 * @var Skin Cached skin object
 	 */
 	var $skin;
 
@@ -80,7 +80,7 @@ class VectorTemplate extends BaseTemplate {
 		$nav = $this->data['content_navigation'];
 		
 		if ( $wgVectorUseIconWatch ) {
-			$mode = $this->skin->mTitle->userIsWatching() ? 'unwatch' : 'watch';
+			$mode = $this->skin->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
 			if ( isset($nav['actions'][$mode]) ) {
 				$nav['views'][$mode] = $nav['actions'][$mode];
 				$nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
@@ -88,7 +88,8 @@ class VectorTemplate extends BaseTemplate {
 				unset($nav['actions'][$mode]);
 			}
 		}
-		
+
+		$xmlID = '';
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
 				if ( $section == "views" && !(isset($link["primary"]) && $link["primary"]) ) {

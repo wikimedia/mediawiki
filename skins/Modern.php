@@ -32,6 +32,10 @@ class SkinModern extends SkinTemplate {
  * @ingroup Skins
  */
 class ModernTemplate extends MonoBookTemplate {
+
+	/**
+	 * @var Skin
+	 */
 	var $skin;
 	/**
 	 * Template filter callback for Modern skin.
@@ -44,7 +48,6 @@ class ModernTemplate extends MonoBookTemplate {
 	function execute() {
 		global $wgRequest;
 		$this->skin = $skin = $this->data['skin'];
-		$action = $wgRequest->getText( 'action' );
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
