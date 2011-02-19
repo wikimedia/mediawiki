@@ -66,6 +66,7 @@ class LinkHolderArray {
 	 * parsing of interwiki links, and secondly to allow all existence checks and
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
+	 * @param $nt Title
 	 */
 	function makeHolder( $nt, $text = '', $query = '', $trail = '', $prefix = ''  ) {
 		wfProfileIn( __METHOD__ );

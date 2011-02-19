@@ -13,6 +13,9 @@
  * @ingroup Parser
  */
 class Preprocessor_Hash implements Preprocessor {
+	/**
+	 * @var Parser
+	 */
 	var $parser;
 
 	const CACHE_VERSION = 1;
@@ -80,7 +83,6 @@ class Preprocessor_Hash implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
-
 
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;

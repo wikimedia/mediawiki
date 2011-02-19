@@ -260,6 +260,12 @@ class ParserOutput extends CacheTime {
 		$this->mImages[$name] = 1;
 	}
 
+	/**
+	 * @param $title Title
+	 * @param  $page_id
+	 * @param  $rev_id
+	 * @return void
+	 */
 	function addTemplate( $title, $page_id, $rev_id ) {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();

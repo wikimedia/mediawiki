@@ -119,7 +119,11 @@ class Parser {
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
-	var $mOptions;      # ParserOptions object
+
+	/**
+	 * @var ParserOptions
+	 */
+	var $mOptions;
 	var $mTitle;        # Title context, used for self-link rendering and similar things
 	var $mOutputType;   # Output type, one of the OT_xxx constants
 	var $ot;            # Shortcut alias, see setOutputType()
@@ -614,6 +618,9 @@ class Parser {
 		return $this->mLinkID++;
 	}
 
+	/**
+	 * @return Language
+	 */
 	function getFunctionLang() {
 		global $wgLang, $wgContLang;
 
