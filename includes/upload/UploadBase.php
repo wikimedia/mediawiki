@@ -857,6 +857,7 @@ abstract class UploadBase {
 
 		foreach( $tags as $tag ) {
 			if( false !== strpos( $chunk, $tag ) ) {
+				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag\n" );
 				return true;
 			}
 		}
@@ -870,16 +871,19 @@ abstract class UploadBase {
 
 		# look for script-types
 		if( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim', $chunk ) ) {
+			wfDebug( __METHOD__ . ": found script types\n" );
 			return true;
 		}
 
 		# look for html-style script-urls
 		if( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
+			wfDebug( __METHOD__ . ": found html-style script urls\n" );
 			return true;
 		}
 
 		# look for css-style script-urls
 		if( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
+			wfDebug( __METHOD__ . ": found css-style script urls\n" );
 			return true;
 		}
 

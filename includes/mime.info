@@ -102,6 +102,6 @@ application/vnd.ms-excel.sheet.macroEnabled.12					[OFFICE]
 application/vnd.ms-excel.template.macroEnabled.12				[OFFICE]
 application/vnd.ms-excel.addin.macroEnabled.12					[OFFICE]
 application/vnd.ms-excel.sheet.binary.macroEnabled.12				[OFFICE]
-
 application/acad application/x-acad application/autocad_dwg image/x-dwg application/dwg application/x-dwg application/x-autocad image/vnd.dwg drawing/dwg [DRAWING]
-
+application/vnd.google-earth.kml+xml [DATA]
+application/vnd.google-earth.kmz     [DATA]

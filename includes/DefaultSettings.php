@@ -881,6 +881,9 @@ $wgXMLMimeTypes = array(
 		'http://www.lysator.liu.se/~alla/dia/:diagram' 	=> 'application/x-dia-diagram',
 		'http://www.w3.org/1999/xhtml:html'				=> 'text/html', // application/xhtml+xml?
 		'html'                              			=> 'text/html', // application/xhtml+xml?
+		'http://www.opengis.net/kml/2.1:kml'			=> 'application/vnd.google-earth.kml+xml',
+		'http://www.opengis.net/kml/2.2:kml'			=> 'application/vnd.google-earth.kml+xml',
+		'kml'											=> 'application/vnd.google-earth.kml+xml',
 );
 
 /**
