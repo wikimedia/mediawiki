@@ -725,7 +725,7 @@ abstract class Installer {
 			return false;
 		}
 		wfSuppressWarnings();
-		$regexd = preg_replace( '/[\x{0400}-\x{04FF}]/u', '', '-АБВГД-' );
+		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		wfRestoreWarnings();
 		if ( $regexd != '--' ) {
 			$this->showMessage( 'config-pcre-no-utf8' );
