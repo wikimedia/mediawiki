@@ -566,18 +566,19 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function printableLink() {
-		global $wgOut, $wgFeedClasses, $wgRequest, $wgLang;
+		global $wgOut, $wgRequest, $wgLang;
 
 		$s = array();
 
 		if ( !$wgOut->isPrintable() ) {
-			$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
+			$printurl = htmlspecialchars( $this->getSkin()->getTitle()->getLocalUrl(
+				$wgRequest->appendQueryValue( 'printable', 'yes', true ) ) );
 			$s[] = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
 		}
 
 		if ( $wgOut->isSyndicated() ) {
-			foreach ( $wgFeedClasses as $format => $class ) {
-				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
+			foreach ( $wgOut->getSyndicationLinks() as $format => $link ) {
+				$feedurl = htmlspecialchars( $link );
 				$s[] = "<a href=\"$feedurl\" rel=\"alternate\" type=\"application/{$format}+xml\""
 						. " class=\"feedlink\">" . wfMsgHtml( "feed-$format" ) . "</a>";
 			}
