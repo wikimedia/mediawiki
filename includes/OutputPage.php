@@ -2462,14 +2462,29 @@ class OutputPage {
 
 		$links = '';
 		foreach ( $groups as $group => $modules ) {
-			$query['modules'] = implode( '|', array_keys( $modules ) );
 			// Special handling for user-specific groups
 			if ( ( $group === 'user' || $group === 'private' ) && $wgUser->isLoggedIn() ) {
 				$query['user'] = $wgUser->getName();
 			}
+			
+			// Create a fake request based on the one we are about to make so modules return
+			// correct timestamp and emptiness data
+			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
+			// Drop modules that know they're empty
+			foreach ( $modules as $key => $module ) {
+				if ( $module->isKnownEmpty( $context ) ) {
+					unset( $modules[$key] );
+				}
+			}
+			// If there are no modules left, skip this group
+			if ( $modules === array() ) {
+				continue;
+			}
+			
+			$query['modules'] = implode( '|', array_keys( $modules ) );
+			
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
-				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$links .= Html::inlineStyle(
 						$resourceLoader->makeModuleResponse( $context, $modules )
@@ -2487,9 +2502,6 @@ class OutputPage {
 			// on-wiki like site or user pages, or user preferences; we need to find the highest
 			// timestamp of these user-changable modules so we can ensure cache misses on change
 			if ( $group === 'user' || $group === 'site' ) {
-				// Create a fake request based on the one we are about to make so modules return
-				// correct times
-				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				// Get the maximum timestamp
 				$timestamp = 1;
 				foreach ( $modules as $module ) {

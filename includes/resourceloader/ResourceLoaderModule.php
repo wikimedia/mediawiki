@@ -279,4 +279,17 @@ abstract class ResourceLoaderModule {
 		// 0 would mean now
 		return 1;
 	}
+	
+	/**
+	 * Check whether this module is known to be empty. If a child class
+	 * has an easy and cheap way to determine that this module is
+	 * definitely going to be empty, it should override this method to
+	 * return true in that case. Callers may optimize the request for this
+	 * module away if this function returns true.
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Boolean
+	 */
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		return false;
+	}
 }
