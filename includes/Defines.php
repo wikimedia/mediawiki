@@ -126,6 +126,7 @@ define( 'MEDIATYPE_OFFICE',     'OFFICE' );      // Office Documents, Spreadshee
 define( 'MEDIATYPE_TEXT',       'TEXT' );        // Plain text (possibly containing program code or scripts)
 define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );  // binary executable
 define( 'MEDIATYPE_ARCHIVE',    'ARCHIVE' );     // archive file (zip, tar, etc)
+define( 'MEDIATYPE_DATA',       'DATA' );        // A generic data file (like kml and kmz)
 /**@}*/
 
 /**@{

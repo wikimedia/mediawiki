@@ -161,3 +161,5 @@ application/vnd.ms-excel.sheet.binary.macroEnabled.12 xlsb
 model/vnd.dwfx+xps dwfx
 application/vnd.ms-xpsdocument xps
 application/x-opc+zip docx dotx docm dotm potx ppsx pptx ppam pptm potm ppsm xlsx xltx xlsm xltm xlam xlsb dwfx xps
+application/vnd.google-earth.kml+xml kml
+application/vnd.google-earth.kmz kmz
