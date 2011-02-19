@@ -125,10 +125,17 @@ class RevisionDeleter {
 			return null;
 		}
 	}
-	
-	// Checks if a revision still exists in the revision table.
-	//  If it doesn't, returns the corresponding ar_timestamp field
-	//  so that this key can be used instead.
+
+	/**
+	 * Checks if a revision still exists in the revision table.
+	 * If it doesn't, returns the corresponding ar_timestamp field
+	 * so that this key can be used instead.
+	 *
+	 * @static
+	 * @param $title Title
+	 * @param  $revid
+	 * @return bool|mixed
+	 */
 	public static function checkRevisionExistence( $title, $revid ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$exists = $dbr->selectField( 'revision', '1',
@@ -145,8 +152,17 @@ class RevisionDeleter {
 		
 		return $timestamp;
 	}
-	
-	// Creates utility links for log entries.
+
+	/**
+	 * Creates utility links for log entries.
+	 *
+	 * @static
+	 * @param $title Title
+	 * @param $paramArray Array
+	 * @param $skin Skin
+	 * @param $messages
+	 * @return String
+	 */
 	public static function getLogLinks( $title, $paramArray, $skin, $messages ) {
 		global $wgLang;
 		
@@ -215,7 +231,7 @@ class RevisionDeleter {
 			}
 			
 			// View/modify link...
-			if ( count($undeletedRevisions) ) {
+			if ( count( $undeletedRevisions ) ) {
 				// FIXME THIS IS A HORRIBLE HORRIBLE HACK AND SHOULD DIE
 				// It's not possible to pass a list of both deleted and
 				// undeleted revisions to SpecialRevisionDelete, so we're
@@ -229,7 +245,7 @@ class RevisionDeleter {
 					array(
 						'target' => $title->getPrefixedText(),
 						'type' => $originalKey,
-						'ids' => implode(',', $undeletedRevisions),
+						'ids' => implode( ',', $undeletedRevisions ),
 					),
 					array( 'known', 'noclasses' )
 				);
