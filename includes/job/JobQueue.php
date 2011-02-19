@@ -16,8 +16,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup JobQueue
  */
 abstract class Job {
+
+	/**
+	 * @var Title
+	 */
+	var $title;
+
 	var $command,
-		$title,
 		$params,
 		$id,
 		$removeDuplicates,

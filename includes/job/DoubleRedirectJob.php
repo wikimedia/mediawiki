@@ -13,6 +13,10 @@
  */
 class DoubleRedirectJob extends Job {
 	var $reason, $redirTitle, $destTitleText;
+
+	/**
+	 * @var User
+	 */
 	static $user;
 
 	/** 
@@ -53,6 +57,7 @@ class DoubleRedirectJob extends Job {
 		}
 		Job::batchInsert( $jobs );
 	}
+
 	function __construct( $title, $params = false, $id = 0 ) {
 		parent::__construct( 'fixDoubleRedirect', $title, $params, $id );
 		$this->reason = $params['reason'];
