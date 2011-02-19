@@ -26,7 +26,7 @@ $.fn.makeCollapsible = function() {
 			that = this,
 			collapsetext = $(this).attr( 'data-collapsetext' ),
 			expandtext = $(this).attr( 'data-expandtext' ),
-			toggleElement = function( $collapsible, action, $defaultToggle ) {
+			toggleElement = function( $collapsible, action, $defaultToggle, instantHide ) {
 				// Validate parameters
 				if ( !$collapsible.jquery ) { // $collapsible must be an instance of jQuery
 					return;
@@ -35,10 +35,11 @@ $.fn.makeCollapsible = function() {
 					// action must be string with 'expand' or 'collapse'
 					return;
 				}
-				if ( typeof $defaultToggle !== 'undefined' && !$defaultToggle.jquery ) {
+				if ( $defaultToggle && !$defaultToggle.jquery ) {
 					// is optional, but if passed must be an instance of jQuery
 					return;
 				}
+				var $containers = null;
 
 				if ( action == 'collapse' ) {
 
@@ -47,20 +48,29 @@ $.fn.makeCollapsible = function() {
 						// Hide all table rows of this table
 						// Slide doens't work with tables, but fade does as of jQuery 1.1.3
 						// http://stackoverflow.com/questions/467336#920480
-
-						if ( $defaultToggle.jquery ) {
+						$containers = $collapsible.find( '>tbody>tr' );
+						if ( $defaultToggle && $defaultToggle.jquery ) { 
 							// Exclude tablerow containing togglelink
-							$collapsible.find( '>tbody>tr' ).not( $defaultToggle.parent().parent() ).stop(true, true).fadeOut();
+							$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeOut();
 						} else {
-							$collapsible.find( '>tbody>tr' ).stop( true, true ).fadeOut();
+							if ( instantHide ) {	
+								$containers.hide();
+							} else {
+								$containers.stop( true, true ).fadeOut();
+							}
 						}
 	
 					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-						if ( $defaultToggle.jquery ) {
+						$containers = $collapsible.find( '> li' );
+						if ( $defaultToggle && $defaultToggle.jquery ) {
 							// Exclude list-item containing togglelink
-							$collapsible.find( '> li' ).not( $defaultToggle.parent() ).stop( true, true ).slideUp();
+							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideUp();
 						} else {
-							$collapsible.find( '> li' ).stop( true, true ).slideUp();
+							if ( instantHide ) {
+								$containers.hide();
+							} else {
+								$containers.stop( true, true ).slideUp();
+							}
 						}
 	
 					} else { // <div>, <p> etc.
@@ -68,7 +78,11 @@ $.fn.makeCollapsible = function() {
 						
 						// If a collapsible-content is defined, collapse it
 						if ( $collapsibleContent.size() ) {
-							$collapsibleContent.slideUp();
+							if ( instantHide ) {
+								$collapsibleContent.hide();
+							} else {
+								$collapsibleContent.slideUp();
+							}
 
 						// Otherwise assume this is a customcollapse with a remote toggle
 						// .. and there is no collapsible-content because the entire element should be toggled
@@ -85,19 +99,21 @@ $.fn.makeCollapsible = function() {
 				
 					// Expand the element
 					if ( $collapsible.is( 'table' ) ) {
-						if ( $defaultToggle.jquery ) {
+						$containers = $collapsible.find( '>tbody>tr' );
+						if ( $defaultToggle && $defaultToggle.jquery ) {
 							// Exclude tablerow containing togglelink
-							$collapsible.find( '>tbody>tr' ).not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
+							$containers.not( $defaultToggle.parent().parent() ).stop(true, true).fadeIn();
 						} else {
-							$collapsible.find( '>tbody>tr' ).stop(true, true).fadeIn();
+							$containers.stop(true, true).fadeIn();
 						}
 	
 					} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
-						if ( $defaultToggle.jquery ) {
+						$containers = $collapsible.find( '> li' );
+						if ( $defaultToggle && $defaultToggle.jquery ) {
 							// Exclude list-item containing togglelink
-							$collapsible.find( '> li' ).not( $defaultToggle.parent() ).stop( true, true ).slideDown();
+							$containers.not( $defaultToggle.parent() ).stop( true, true ).slideDown();
 						} else {
-							$collapsible.find( '> li' ).stop( true, true ).slideDown();
+							$containers.stop( true, true ).slideDown();
 						}
 	
 					} else { // <div>, <p> etc.
@@ -293,6 +309,7 @@ $.fn.makeCollapsible = function() {
 			// The collapsible element could have multiple togglers
 			// To toggle the initial state only click one of them (ie. the first one, eq(0) )
 			// Else it would go like: hide,show,hide,show for each toggle link.
+			toggleElement( $that, 'collapse', null, /* instantHide = */ true );
 			$toggleLink.eq(0).click();
 		}
 	} );

@@ -77,8 +77,8 @@
 
 					} else {
 						// #content is present on almost all if not all skins. Most skins (the above cases)
-						// have #content too, but as a outer wrapper instead of the article text container.
-						// The skins that don't have an outer wrapper have #content for everything
+						// have #content too, but as an outer wrapper instead of the article text container.
+						// The skins that don't have an outer wrapper do have #content for everything
 						// so it's a good fallback
 						mw.util.$content = $( '#content' );
 					}
@@ -323,17 +323,16 @@
 		 *
 		 * @param portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
 		 * @param href Link URL
-		 * @param text Link text (will be automatically converted to lower
-		 *	 case by CSS for p-cactions in Monobook)
+		 * @param text Link text
 		 * @param id ID of the new item, should be unique and preferably have
 		 *	 the appropriate prefix ( 'ca-', 'pt-', 'n-' or 't-' )
 		 * @param tooltip Text to show when hovering over the link, without accesskey suffix
 		 * @param accesskey Access key to activate this link (one character, try
-		 *	 to avoid conflicts. Use $( '[accesskey=x' ).get() in the console to
+		 *	 to avoid conflicts. Use $( '[accesskey=x]' ).get() in the console to
 		 *	 see if 'x' is already used.
-		 * @param nextnode DOM node or jQuery-selector of the item that the new
+		 * @param nextnode DOM node or jQuery-selector string of the item that the new
 		 *	 item should be added before, should be another item in the same
-		 *	 list will be ignored if not the so
+		 *	 list, it will be ignored otherwise
 		 *
 		 * @return The DOM node of the new item (a LI element, or A element for
 		 *	 older skins) or null.
@@ -352,28 +351,28 @@
 
 			// Some skins don't have any portlets
 			// just add it to the bottom of their 'sidebar' element as a fallback
-			switch ( skin ) {
+			switch ( mw.config.get( 'skin' ) ) {
 			case 'standard' :
 			case 'cologneblue' :
-				$("#quickbar").append($link.after( '<br />' ));
-				return $link.get(0);
+				$( '#quickbar' ).append( $link.after( '<br />' ) );
+				return $link[0];
 			case 'nostalgia' :
-				$("#searchform").before($link).before( ' &#124; ' );
-				return $link.get(0);
+				$( '#searchform' ).before( $link).before( ' &#124; ' );
+				return $link[0];
 			default : // Skins like chick, modern, monobook, myskin, simple, vector...
 
 				// Select the specified portlet
-				var $portlet = $( '#' + portlet);
+				var $portlet = $( '#' + portlet );
 				if ( $portlet.length === 0 ) {
 					return null;
 				}
 				// Select the first (most likely only) unordered list inside the portlet
-				var $ul = $portlet.find( 'ul' ).eq( 0 );
+				var $ul = $portlet.find( 'ul' );
 
 				// If it didn't have an unordered list yet, create it
-				if ($ul.length === 0) {
+				if ( $ul.length === 0 ) {
 					// If there's no <div> inside, append it to the portlet directly
-					if ($portlet.find( 'div' ).length === 0) {
+					if ( $portlet.find( 'div:first' ).length === 0 ) {
 						$portlet.append( '<ul/>' );
 					} else {
 						// otherwise if there's a div (such as div.body or div.pBody)
@@ -409,7 +408,7 @@
 				}
 
 				// Append using DOM-element passing
-				if ( nextnode && nextnode.parentNode == $ul.get( 0 ) ) {
+				if ( nextnode && nextnode.parentNode == $ul[0] ) {
 					$(nextnode).before( $item );
 				} else {
 					// If the jQuery selector isn't found within the <ul>, just
@@ -422,7 +421,7 @@
 					}
 				}
 
-				return $item.get( 0 );
+				return $item[0];
 			}
 		},
 
