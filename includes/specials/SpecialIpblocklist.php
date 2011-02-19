@@ -425,6 +425,8 @@ class IPUnblockForm extends SpecialPage {
 
 	/**
 	 * Callback function to output a block
+	 *
+	 * @param $block  Block
 	 */
 	function formatRow( $block ) {
 		global $wgUser, $wgLang, $wgBlockAllowsUTEdit;

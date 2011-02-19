@@ -588,6 +588,9 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Attempt to automatically create a user on login. Only succeeds if there
 	 * is an external authentication method which allows it.
+	 *
+	 * @param $user User
+	 *
 	 * @return integer Status code
 	 */
 	function attemptAutoCreate( $user ) {
@@ -1070,14 +1073,18 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 *
+	 * @param $user User
+	 *
+	 * @return Boolean
 	 */
 	function showCreateOrLoginLink( &$user ) {
 		if( $this->mType == 'signup' ) {
-			return( true );
+			return true;
 		} elseif( $user->isAllowed( 'createaccount' ) ) {
-			return( true );
+			return true;
 		} else {
-			return( false );
+			return false;
 		}
 	}
 

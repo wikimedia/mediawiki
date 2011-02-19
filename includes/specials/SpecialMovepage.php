@@ -27,6 +27,10 @@
  * @ingroup SpecialPage
  */
 class MovePageForm extends UnlistedSpecialPage {
+
+	/**
+	 * @var Title
+	 */
 	var $oldTitle, $newTitle; # Objects
 	var $reason; # Text input
 	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared; # Checks

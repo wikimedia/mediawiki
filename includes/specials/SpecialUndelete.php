@@ -27,6 +27,10 @@
  * @ingroup SpecialPage
  */
 class PageArchive {
+
+	/**
+	 * @var Title
+	 */
 	protected $title;
 	var $fileStatus;
 
@@ -555,6 +559,9 @@ class PageArchive {
 		return $restored;
 	}
 
+	/**
+	 * @return Status
+	 */
 	function getFileStatus() { return $this->fileStatus; }
 }
 
@@ -920,6 +927,11 @@ class SpecialUndelete extends SpecialPage {
 		);
 	}
 
+	/**
+	 * @param $rev Revision
+	 * @param  $prefix
+	 * @return string
+	 */
 	private function diffHeader( $rev, $prefix ) {
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
@@ -1301,6 +1313,9 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * Fetch revision text link if it's available to all users
+	 *
+	 * @param $rev Revision
+	 * @param $sk Skin
 	 * @return string
 	 */
 	function getPageLink( $rev, $titleObj, $ts, $sk ) {
@@ -1329,6 +1344,8 @@ class SpecialUndelete extends SpecialPage {
 	/**
 	 * Fetch image view link if it's available to all users
 	 *
+	 * @param $file File
+	 * @param $sk Skin
 	 * @return String: HTML fragment
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key, $sk ) {
@@ -1356,6 +1373,8 @@ class SpecialUndelete extends SpecialPage {
 	/**
 	 * Fetch file's user id if it's available to this user
 	 *
+	 * @param $file File
+	 * @param $sk Skin
 	 * @return String: HTML fragment
 	 */
 	function getFileUser( $file, $sk ) {
@@ -1373,6 +1392,8 @@ class SpecialUndelete extends SpecialPage {
 	/**
 	 * Fetch file upload comment if it's available to this user
 	 *
+	 * @param $file File
+	 * @param $sk Skin
 	 * @return String: HTML fragment
 	 */
 	function getFileComment( $file, $sk ) {

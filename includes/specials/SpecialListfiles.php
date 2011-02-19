@@ -70,6 +70,9 @@ class ImageListPager extends TablePager {
 		parent::__construct();
 	}
 
+	/**
+	 * @return Array
+	 */
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			global $wgMiserMode;

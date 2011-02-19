@@ -52,6 +52,8 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 	/**
 	 * Fetch user page links and cache their existence
+	 *
+	 * @param $db DatabaseBase
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
@@ -67,6 +69,11 @@ class MostlinkedCategoriesPage extends QueryPage {
 		}
 	}
 
+	/**
+	 * @param $skin Skin
+	 * @param  $result
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 

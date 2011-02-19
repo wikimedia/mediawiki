@@ -480,10 +480,18 @@ class SpecialContributions extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param $revision Revision
+	 * @return string
+	 */
 	protected function feedItemAuthor( $revision ) {
 		return $revision->getUserText();
 	}
 
+	/**
+	 * @param $revision Revision
+	 * @return string
+	 */
 	protected function feedItemDesc( $revision ) {
 		if( $revision ) {
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
