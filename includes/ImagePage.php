@@ -1,8 +1,5 @@
 <?php
 
-if ( !defined( 'MEDIAWIKI' ) )
-	die( 1 );
-
 /**
  * Special handling for image description pages
  *
