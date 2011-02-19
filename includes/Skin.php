@@ -360,7 +360,10 @@ abstract class Skin extends Linker {
 		$this->mTitle = $t;
 	}
 
-	/** Get the title */
+	/** Get the title
+	 *
+	 * @return Title
+	 */
 	public function getTitle() {
 		return $this->mTitle;
 	}

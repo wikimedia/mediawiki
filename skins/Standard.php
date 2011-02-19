@@ -18,9 +18,6 @@ class SkinStandard extends SkinLegacy {
 	var $skinname = 'standard', $stylename = 'standard',
 		$template = 'StandardTemplate';
 
-	/**
-	 *
-	 */
 	function setupSkinUserCss( OutputPage $out ){
 		parent::setupSkinUserCss( $out );
 		$out->AddModuleStyles( 'skins.standard' );
