@@ -11,17 +11,17 @@ wgAjaxWatch.setLinkText = function( $link, action ) {
 	if ( action == 'watch' || action == 'unwatch' ) {
 		// save the accesskey from the title
 		var keyCommand = $link.attr( 'title' ).match( /\[.*?\]$/ ) ? $link.attr( 'title' ).match( /\[.*?\]$/ )[0] : '';
-		$link.attr( 'title', mediaWiki.msg( 'tooltip-ca-' + action ) + ' ' + keyCommand );
+		$link.attr( 'title', mw.msg( 'tooltip-ca-' + action ) + ' ' + keyCommand );
 	}
 	if ( $link.data( 'icon' ) ) {
-		$link.attr( 'alt', mediaWiki.msg( action ) );
+		$link.attr( 'alt', mw.msg( action ) );
 		if ( action == 'watching' || action == 'unwatching' ) {
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
 		}
 	} else {
-		$link.html( mediaWiki.msg( action ) );
+		$link.html( mw.msg( action ) );
 	}
 };
 
@@ -117,7 +117,7 @@ $( document ).ready( function() {
 			if( $link.closest( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.closest( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
-				$link.text( mediaWiki.msg( otheraction ) );
+				$link.text( mw.msg( otheraction ) );
 			}
 		}
 

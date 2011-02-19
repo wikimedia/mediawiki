@@ -36,8 +36,9 @@ $.fn.localize = function( options ) {
 	return $(this)
 		.find( 'msg,html\\:msg' )
 			.each( function() {
+				var $el = $(this);
 				$(this)
-					.text( mediaWiki.msg( options.prefix + $(this).attr( 'key' ) ) )
+					.text( mw.msg( options.prefix + $(this).attr( 'key' ) ) )
 					.replaceWith( $(this).html() );
 			} )
 			.end()

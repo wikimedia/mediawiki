@@ -128,9 +128,9 @@ jQuery( function( $ ) {
 				$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 			};
 			img.src = dataURL;
-		}, mediaWiki.config.get( 'wgFileCanRotate' ) ? function ( data ) {
+		}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
 			try {
-				meta = mediaWiki.util.jpegmeta( data, file.fileName );
+				meta = mw.util.jpegmeta( data, file.fileName );
 				meta._binary_data = null;
 			} catch ( e ) {
 				meta = null;

@@ -348,7 +348,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * This ID is ephemeral for everyone, staying in their browser only until they close
 		 * their browser.
 		 * 
-		 * Do not use this method before the first call to mediaWiki.loader.go(), it depends on
+		 * Do not use this method before the first call to mw.loader.go(), it depends on
 		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
 		 * won't be loaded until the first call to go().
 		 * 
@@ -370,7 +370,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * expiration time is reset each time the ID is queried, so in most cases this ID will
 		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
 		 * 
-		 * Do not use this method before the first call to mediaWiki.loader.go(), it depends on
+		 * Do not use this method before the first call to mw.loader.go(), it depends on
 		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
 		 * won't be loaded until the first call to go().
 		 * 
@@ -1112,14 +1112,14 @@ window.mediaWiki = new ( function( $ ) {
 		};
 
 		/**
-		 * Wrapper object for raw HTML passed to mediaWiki.html.element().
+		 * Wrapper object for raw HTML passed to mw.html.element().
 		 */
 		this.Raw = function( value ) {
 			this.value = value;
 		};
 
 		/**
-		 * Wrapper object for CDATA element contents passed to mediaWiki.html.element()
+		 * Wrapper object for CDATA element contents passed to mw.html.element()
 		 */
 		this.Cdata = function( value ) {
 			this.value = value;
@@ -1139,7 +1139,7 @@ window.mediaWiki = new ( function( $ ) {
 		 *      See http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2
 		 *
 		 * Example:
-		 *    var h = mediaWiki.html;
+		 *    var h = mw.html;
 		 *    return h.element( 'div', {},
 		 *        new h.Raw( h.element( 'img', {src: '<'} ) ) );
 		 * Returns <div><img src="&lt;"/></div>

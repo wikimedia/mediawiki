@@ -219,7 +219,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$script = '';
 				foreach ( $files as $file ) {
 					$path = $this->getRemotePath( $file );
-					$script .= "\n\t" . Xml::encodeJsCall( 'mediaWiki.loader.load', array( $path ) );
+					$script .= "\n\t" . Xml::encodeJsCall( 'mw.loader.load', array( $path ) );
 				}
 				return $script;
 			}

@@ -49,5 +49,5 @@ window.attachMetadataToggle = function( tableId, showText, hideText ) {
 };
 
 $( document ).ready( function() { 
-	attachMetadataToggle( 'mw_metadata', mediaWiki.msg( 'metadata-expand' ), mediaWiki.msg( 'metadata-collapse' ) );
+	attachMetadataToggle( 'mw_metadata', mw.msg( 'metadata-expand' ), mw.msg( 'metadata-collapse' ) );
 } );
