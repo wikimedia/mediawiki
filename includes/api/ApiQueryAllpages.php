@@ -48,6 +48,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		return 'public';
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
 			$this->dieUsage( 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params' );
@@ -56,6 +60,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
 

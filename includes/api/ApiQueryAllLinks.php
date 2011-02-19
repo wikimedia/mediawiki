@@ -52,6 +52,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();

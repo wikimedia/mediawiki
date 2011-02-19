@@ -60,6 +60,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	public function run( $resultPageSet = null ) {
 		global $wgUser;
 		$params = $this->extractRequestParams();

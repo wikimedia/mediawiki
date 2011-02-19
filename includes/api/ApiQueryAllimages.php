@@ -64,6 +64,10 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		return 'public';
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
 			$this->dieUsage( 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator', 'params' );
@@ -72,6 +76,10 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$repo = $this->mRepo;
 		if ( !$repo instanceof LocalRepo ) {

@@ -47,6 +47,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'in' );
 	}
 
+	/**
+	 * @param $pageSet ApiPageSet
+	 * @return void
+	 */
 	public function requestExtraData( $pageSet ) {
 		global $wgDisableCounters;
 

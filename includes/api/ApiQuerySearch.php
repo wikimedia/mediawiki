@@ -48,6 +48,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		global $wgContLang;
 		$params = $this->extractRequestParams();

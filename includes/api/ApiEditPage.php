@@ -67,7 +67,6 @@ class ApiEditPage extends ApiBase {
 
 				$this->getResult()->addValue( null, 'foo', $titles );
 
-
 				$redirValues = array();
 				foreach ( $titles as $id => $newTitle ) {
 

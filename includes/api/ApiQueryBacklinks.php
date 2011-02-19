@@ -39,7 +39,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
-	private $params, $rootTitle, $contID, $redirID, $redirect;
+	/**
+	 * @var Title
+	 */
+	private $rootTitle;
+
+	private $params, $contID, $redirID, $redirect;
 	private $bl_ns, $bl_from, $bl_table, $bl_code, $bl_title, $bl_sort, $bl_fields, $hasNS;
 	private $pageMap, $resultArr;
 
@@ -103,6 +108,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function prepareFirstQuery( $resultPageSet = null ) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect
 		 * FROM pagelinks, page WHERE pl_from=page_id
@@ -141,6 +150,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'STRAIGHT_JOIN' );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function prepareSecondQuery( $resultPageSet = null ) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect, pl_title, pl_namespace
 		   FROM pagelinks, page WHERE pl_from=page_id
@@ -199,6 +212,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'USE INDEX', array( 'page' => 'PRIMARY' ) );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$this->params = $this->extractRequestParams( false );
 		$this->redirect = isset( $this->params['redirect'] ) && $this->params['redirect'];

@@ -33,7 +33,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
+
+	/**
+	 * @var UploadBase
+	 */
 	protected $mUpload = null;
+
 	protected $mParams;
 
 	public function __construct( $main, $action ) {
@@ -137,7 +142,6 @@ class ApiUpload extends ApiBase {
 		}
 		return $sessionKey;
 	}
-
 
 	/**
 	 * Select an upload module and set it to mUpload. Dies on failure. If the
@@ -375,7 +379,6 @@ class ApiUpload extends ApiBase {
 
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
-
 
 		return $result;
 	}

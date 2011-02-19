@@ -48,6 +48,10 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 

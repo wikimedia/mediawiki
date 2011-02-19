@@ -52,6 +52,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return
+	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
 			return;	// nothing to do

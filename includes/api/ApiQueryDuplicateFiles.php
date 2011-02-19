@@ -52,6 +52,10 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return
+	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 		$namespaces = $this->getPageSet()->getAllTitlesByNamespace();

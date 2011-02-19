@@ -73,6 +73,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
+	/**
+	 * @static
+	 * @param $pageid
+	 * @param $title Title
+	 * @param $rev Revision
+	 * @return bool|String
+	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowed( 'rollback' ) ) {

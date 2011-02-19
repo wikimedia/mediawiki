@@ -53,6 +53,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
 			$fld_notificationtimestamp = false, $fld_userid = false;
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$this->selectNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 

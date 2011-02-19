@@ -71,6 +71,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		return $this->tokenFunctions;
 	}
 
+	/**
+	 * @static
+	 * @param  $pageid
+	 * @param  $title
+	 * @param $rc RecentChange
+	 * @return bool|String
+	 */
 	public static function getPatrolToken( $pageid, $title, $rc ) {
 		global $wgUser;
 		if ( !$wgUser->useRCPatrol() && ( !$wgUser->useNPPatrol() ||
@@ -118,6 +125,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	/**
 	 * Generates and outputs the result of this query based upon the provided parameters.
+	 *
+	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		global $wgUser;

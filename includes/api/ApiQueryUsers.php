@@ -66,6 +66,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		return $this->tokenFunctions;
 	}
 
+	 /**
+	  * @static
+	  * @param $user User
+	  * @return String
+	  */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,
