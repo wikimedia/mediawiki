@@ -138,7 +138,7 @@ class LogEventsList {
 	 * @return String: Formatted HTML
 	 */
 	private function getFilterLinks( $filter ) {
-		global $wgTitle, $wgLang;
+		global $wgLang;
 		// show/hide links
 		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 		// Option value -> message mapping
@@ -154,7 +154,7 @@ class LogEventsList {
 			$query[$queryKey] = $hideVal;
 
 			$link = $this->skin->link(
-				$wgTitle,
+				$this->out->getTitle(),
 				$messages[$hideVal],
 				array(),
 				$query,
