@@ -1108,16 +1108,34 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	background: url("images/document-icon.png?2") center right no-repeat;
 	padding-right: 13px;
 }
-/* Interwiki Styling  (Disabled) */
+
+/* Interwiki Styling */
 div#content a.extiw,
 div#content a.extiw:active {
 	color: #36b;
+	/* Don't show icons for interwiki links */
 	background: none;
 	padding: 0;
 }
+div#content a.extiw:visited {
+	color: #636;
+}
+div#content a.extiw:active {
+	color: #b63;
+}
+
+/* External links */
 div#content a.external {
 	color: #36b;
 }
+div#content a.external:visited {
+	color: #636; /* bug 3112 */
+}
+div#content a.external:active {
+	color: #b63;
+}
+
+
 div#content .printfooter {
 	display: none;
 }
