@@ -1357,7 +1357,7 @@ abstract class Skin extends Linker {
 	 * @param $message String
 	 */
 	function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMsgForContent( $message ) );
+		$this->addToSidebarPlain( $bar, wfMsgForContentNoTrans( $message ) );
 	}
 
 	/**
@@ -1423,14 +1423,14 @@ abstract class Skin extends Linker {
 						'active' => false
 					);
 				} else if ( ( substr( $line, 0, 2 ) == '{{' ) && ( substr( $line, -2 ) == '}}' ) ) {
-					global $wgParser, $wgTitle;
+					global $wgParser;
 
 					$line = substr( $line, 2, strlen( $line ) - 4 );
 
 					$options = new ParserOptions();
 					$options->setEditSection( false );
 					$options->setInterfaceMessage( true );
-					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $wgTitle, $options )->getText();
+					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $this->mTitle, $options )->getText();
 				} else {
 					continue;
 				}
