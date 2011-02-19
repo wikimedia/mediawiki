@@ -62,8 +62,6 @@ class MonoBookTemplate extends BaseTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgRequest;
-
 		$this->skin = $skin = $this->data['skin'];
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
