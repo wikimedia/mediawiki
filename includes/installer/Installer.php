@@ -1274,8 +1274,8 @@ abstract class Installer {
 	/**
 	 * Actually perform the installation.
 	 *
-	 * @param $startCB A callback array for the beginning of each step
-	 * @param $endCB A callback array for the end of each step
+	 * @param $startCB Array A callback array for the beginning of each step
+	 * @param $endCB Array A callback array for the end of each step
 	 *
 	 * @return Array of Status objects
 	 */

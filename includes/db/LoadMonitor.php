@@ -117,6 +117,11 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		return $lagTimes;
 	}
 
+	/**
+	 * @param $conn DatabaseBase
+	 * @param $threshold
+	 * @return int
+	 */
 	function postConnectionBackoff( $conn, $threshold ) {
 		if ( !$threshold ) {
 			return 0;

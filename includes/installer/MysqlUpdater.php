@@ -364,7 +364,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "......<b>Deleted</b> " . $this->db->affectedRows() . " records.\n" );
 		}
 
-
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Creating tables.\n" );
 		$this->db->query( "CREATE TABLE $page (

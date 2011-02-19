@@ -9,8 +9,15 @@
 class PostgresField implements Field {
 	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
-	static function fromText($db, $table, $field) {
-	global $wgDBmwschema;
+	/**
+	 * @static
+	 * @param $db DatabaseBase
+	 * @param  $table
+	 * @param  $field
+	 * @return null|PostgresField
+	 */
+	static function fromText( $db, $table, $field ) {
+		global $wgDBmwschema;
 
 		$q = <<<SQL
 SELECT

@@ -145,6 +145,8 @@ interface DatabaseType {
 	 *
 	 * @param $table string: table name
 	 * @param $field string: field name
+	 *
+	 * @return Field
 	 */
 	function fieldInfo( $table, $field );
 

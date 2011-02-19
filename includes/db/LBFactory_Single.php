@@ -39,6 +39,10 @@ class LBFactory_Single extends LBFactory {
  * Helper class for LBFactory_Single.
  */
 class LoadBalancer_Single extends LoadBalancer {
+
+	/**
+	 * @var DatabaseBase
+	 */
 	var $db;
 
 	function __construct( $params ) {

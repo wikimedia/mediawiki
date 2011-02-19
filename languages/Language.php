@@ -199,6 +199,8 @@ class Language {
 
 	/**
 	 * Get the LocalisationCache instance
+	 *
+	 * @return LocalisationCache
 	 */
 	public static function getLocalisationCache() {
 		if ( is_null( self::$dataCache ) ) {
