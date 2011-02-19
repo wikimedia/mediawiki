@@ -120,8 +120,8 @@ class CSSMin {
 			self::URL_REGEX . '(?P<post>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
-			// Skip absolute URIs and relative URIs with absolute paths
-			if ( preg_match( '/^(\/|https?:\/\/)/', $match['file'][0] ) ) {
+			// Skip absolute URIs
+			if ( preg_match( '/^https?:\/\//', $match['file'][0] ) ) {
 				// Move the offset to the end of the match, leaving it alone
 				$offset = $match[0][1] + strlen( $match[0][0] );
 				continue;
