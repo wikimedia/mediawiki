@@ -37,6 +37,11 @@ class ParserCache {
 		$this->mMemc = $memCached;
 	}
 
+	/**
+	 * @param $article Article
+	 * @param  $hash
+	 * @return mixed|string
+	 */
 	protected function getParserOutputKey( $article, $hash ) {
 		global $wgRequest;
 
@@ -48,6 +53,10 @@ class ParserCache {
 		return $key;
 	}
 
+	/**
+	 * @param $article Article
+	 * @return mixed|string
+	 */
 	protected function getOptionsKey( $article ) {
 		$pageid = $article->getID();
 		return wfMemcKey( 'pcache', 'idoptions', "{$pageid}" );
@@ -62,6 +71,9 @@ class ParserCache {
 	 * $article. For example give a Chinese interface to a user with
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
+	 *
+	 * @param $article Article
+	 * @param $popts ParserOptions
 	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
@@ -81,6 +93,9 @@ class ParserCache {
 	 * Used to provide a unique id for the PoolCounter.
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
+	 *
+	 * @param $article Article
+	 * @param $popts ParserOptions
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
@@ -160,7 +175,12 @@ class ParserCache {
 		return $value;
 	}
 
-
+	/**
+	 * @param $parserOutput ParserOutput
+	 * @param $article Article
+	 * @param $popts ParserOptions
+	 * @return void
+	 */
 	public function save( $parserOutput, $article, $popts ) {
 		$expire = $parserOutput->getCacheExpiry();
 

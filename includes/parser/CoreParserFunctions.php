@@ -88,6 +88,12 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $part1
+	 * @return array
+	 */
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
@@ -99,6 +105,13 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param  $date
+	 * @param null $defaultPref
+	 * @return mixed|string
+	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$df = DateFormatter::getInstance();
 
@@ -176,6 +189,12 @@ class CoreParserFunctions {
 		return $wgContLang->ucfirst( $s );
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $s
+	 * @return
+	 */
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
 		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
@@ -185,6 +204,12 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $s
+	 * @return
+	 */
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
 		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
@@ -223,6 +248,13 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $num
+	 * @param null $raw
+	 * @return
+	 */
 	static function formatNum( $parser, $num = '', $raw = null) {
 		if ( self::israw( $raw ) ) {
 			return $parser->getFunctionLang()->parseFormattedNumber( $num );
@@ -231,10 +263,23 @@ class CoreParserFunctions {
 		}
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $case
+	 * @param string $word
+	 * @return
+	 */
 	static function grammar( $parser, $case = '', $word = '' ) {
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param $user User
+	 * @return
+	 */
 	static function gender( $parser, $user ) {
 		wfProfileIn( __METHOD__ );
 		$forms = array_slice( func_get_args(), 2);
@@ -259,6 +304,13 @@ class CoreParserFunctions {
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
+
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param string $text
+	 * @return
+	 */
 	static function plural( $parser, $text = '' ) {
 		$forms = array_slice( func_get_args(), 2 );
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );

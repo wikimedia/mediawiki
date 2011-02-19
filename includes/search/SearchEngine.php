@@ -22,6 +22,11 @@ class SearchEngine {
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
 
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+
 	function __construct($db = null) {
 		if ( $db ) {
 			$this->db = $db;

@@ -52,6 +52,13 @@ class CoreTagHooks {
 		return array( Xml::escapeTagsOnly( $content ), 'markerType' => 'nowiki' );
 	}
 
+	/**
+	 * @static
+	 * @param  $content
+	 * @param  $attributes
+	 * @param $parser Parser
+	 * @return
+	 */
 	static function math( $content, $attributes, $parser ) {
 		global $wgContLang;
 		return $wgContLang->armourMath( MathRenderer::renderMath( $content, $attributes, $parser->getOptions() ) );

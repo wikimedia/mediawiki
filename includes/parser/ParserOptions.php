@@ -43,6 +43,9 @@ class ParserOptions {
 	var $mThumbSize;                 # Thumb size preferred by the user.
 	var $mUserLang;                  # Language code of the User language.
 
+	/**
+	 * @var User
+	 */
 	var $mUser;                      # Stored user object
 	var $mIsPreview = false;         # Parsing the page for a "preview" operation
 	var $mIsSectionPreview = false;  # Parsing the page for a "preview" operation on a single section

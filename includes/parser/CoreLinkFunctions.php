@@ -10,11 +10,27 @@
  * @ingroup Parser
  */
 class CoreLinkFunctions {
+	/**
+	 * @static
+	 * @param $parser Parser_LinkHooks
+	 * @return bool
+	 */
 	static function register( $parser ) {
 		$parser->setLinkHook( NS_CATEGORY, array( __CLASS__, 'categoryLinkHook' ) );
 		return true;
 	}
 
+	/**
+	 * @static
+	 * @param $parser Parser
+	 * @param $holders LinkHolderArray
+	 * @param $markers LinkMarkerReplacer
+	 * @param Title $title
+	 * @param $titleText
+	 * @param null $displayText
+	 * @param bool $leadingColon
+	 * @return bool
+	 */
 	static function defaultLinkHook( $parser, $holders, $markers,
 			Title $title, $titleText, &$displayText = null, &$leadingColon = false ) {
 		if( isset($displayText) && $markers->findMarker( $displayText ) ) {
@@ -28,6 +44,17 @@ class CoreLinkFunctions {
 		return $holders->makeHolder( $title, isset($displayText) ? $displayText : $titleText, '', '', '' );
 	}
 
+	/**
+	 * @static
+	 * @param  $parser Parser
+	 * @param  $holders LinkHolderArray
+	 * @param  $markers LinkMarkerReplacer
+	 * @param Title $title
+	 * @param  $titleText
+	 * @param null $sortText
+	 * @param bool $leadingColon
+	 * @return bool|string
+	 */
 	static function categoryLinkHook( $parser, $holders, $markers,
 			Title $title, $titleText, &$sortText = null, &$leadingColon = false ) {
 		global $wgContLang;
