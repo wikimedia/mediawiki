@@ -68,5 +68,46 @@ class SanitizerTest extends MediaWikiTestCase {
 			'Self-closing closing div'
 		);
 	}
+	
+	function testDecodeTagAttributes() {
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=bar' ), array( 'foo' => 'bar' ), 'Unquoted attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( '    foo   =   bar    ' ), array( 'foo' => 'bar' ), 'Spaced attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo="bar"' ), array( 'foo' => 'bar' ), 'Double-quoted attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=\'bar\'' ), array( 'foo' => 'bar' ), 'Single-quoted attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=\'bar\'   baz="foo"' ), array( 'foo' => 'bar', 'baz' => 'foo' ), 'Several attributes' );
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=\'bar\'   baz="foo"' ), array( 'foo' => 'bar', 'baz' => 'foo' ), 'Several attributes' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=\'bar\'   baz="foo"' ), array( 'foo' => 'bar', 'baz' => 'foo' ), 'Several attributes' );
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( ':foo=\'bar\'' ), array( ':foo' => 'bar' ), 'Leading :' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( '_foo=\'bar\'' ), array( '_foo' => 'bar' ), 'Leading _' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'Foo=\'bar\'' ), array( 'foo' => 'bar' ), 'Leading capital' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'FOO=BAR' ), array( 'foo' => 'BAR' ), 'Attribute keys are normalized to lowercase' );
+		
+		# Invalid beginning
+		$this->assertEquals( Sanitizer::decodeTagAttributes( '-foo=bar' ), array(), 'Leading - is forbidden' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( '.foo=bar' ), array(), 'Leading . is forbidden' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo-bar=bar' ), array( 'foo-bar' => 'bar' ), 'A - is allowed inside the attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo-=bar' ), array( 'foo-' => 'bar' ), 'A - is allowed inside the attribute' );
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo.bar=baz' ), array( 'foo.bar' => 'baz' ), 'A . is allowed inside the attribute' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo.=baz' ), array( 'foo.' => 'baz' ), 'A . is allowed as last character' );
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo6=baz' ), array( 'foo6' => 'baz' ), 'Numbers are allowed' );
+		
+		# This bit is more relaxed than XML rules, but some extensions use it, like ProofreadPage (see bug 27539)
+		$this->assertEquals( Sanitizer::decodeTagAttributes( '1foo=baz' ), array( '1foo' => 'baz' ), 'Leading numbers are allowed' );
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo$=baz' ), array(), 'Symbols are not allowed' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo@=baz' ), array(), 'Symbols are not allowed' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo~=baz' ), array(), 'Symbols are not allowed' );
+		
+		
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=1[#^`*%w/(' ), array( 'foo' => '1[#^`*%w/(' ), 'All kind of characters are allowed as values' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo="1[#^`*%\'w/("' ), array( 'foo' => '1[#^`*%\'w/(' ), 'Double quotes are allowed if quoted by single quotes' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=\'1[#^`*%"w/(\'' ), array( 'foo' => '1[#^`*%"w/(' ), 'Single quotes are allowed if quoted by double quotes' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=&amp;&quot;' ), array( 'foo' => '&"' ), 'Special chars can be provided as entities' );
+		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=&foobar;' ), array( 'foo' => '&foobar;' ), 'Entity-like items are accepted' );
+	}
 }
 
