@@ -752,6 +752,7 @@ Os methwch unwaith eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngo
 'token_suffix_mismatch'            => "'''Gwrthodwyd eich golygiad oherwydd bod eich gweinydd cleient wedi gwneud cawl o'r atalnodau yn y tocyn golygu.
 Gwrthodwyd y golygiad rhag i destun y dudalen gael ei lygru.
 Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn seiliedig ar y we.'''",
+'edit_form_incomplete'             => "'''Nid yw peth o'r ffurflen golygu wedi cyrraedd y gweinydd; sicrhewch bod eich golygiadau'n gyfan o hyd ac yna ceisiwch eto.'''",
 'editing'                          => 'Yn golygu $1',
 'editingsection'                   => 'Yn golygu $1 (adran)',
 'editingcomment'                   => 'Yn golygu $1 (adran newydd)',
@@ -1832,7 +1833,7 @@ Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynn
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis defnyddiwr neu dudalen i weithredu arno.',
 'nopagetitle'             => "Nid yw'r dudalen a ddynodwyd ar gael",
-'nopagetext'              => "Nid yw'r dudalen a ddynodwyd ar gael.",
+'nopagetext'              => "Nid yw'r dudalen a enwyd ar gael.",
 'pager-newer-n'           => '{{PLURAL:$1|y $1 mwy diweddar|yr 1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar}}.',
 'pager-older-n'           => '{{PLURAL:$1|y $1 cynharach|yr $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach}}',
 'suppress'                => 'Goruchwylio',

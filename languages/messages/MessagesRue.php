@@ -8,6 +8,7 @@
  * @file
  *
  * @author Gazeb
+ * @author Gleb Borisov
  * @author Reedy
  * @author Tkalyn
  */
@@ -1832,7 +1833,7 @@ $1',
 'listgrouprights-group'                => 'Ґрупа',
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права хоснователїв',
-'listgrouprights-members'              => '(списok членїв)',
+'listgrouprights-members'              => '(списoк членїв)',
 'listgrouprights-addgroup'             => 'Придаваня хоснователїв до {{PLURAL:$2|ґрупы|ґруп}} $1',
 'listgrouprights-removegroup'          => 'Одобераня хоснователїв до {{PLURAL:$2|ґрупы|ґруп}} $1',
 'listgrouprights-addgroup-all'         => 'може додавати до вшыткых ґруп',

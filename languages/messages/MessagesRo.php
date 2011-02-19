@@ -2960,7 +2960,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 $1',
 'filedelete-missing'              => 'Fișierul „$1” nu poate fi șters, deoarece nu există.',
 'filedelete-old-unregistered'     => 'Revizia specificată a fișierului "$1" nu este în baza de date.',
-'filedelete-current-unregistered' => 'Fișierul specificat "$1" nu este în baza de date.',
+'filedelete-current-unregistered' => 'Fișierul specificat „$1” nu este în baza de date.',
 'filedelete-archive-read-only'    => 'Directorul arhivei "$1" nu poate fi scris de serverul web.',
 
 # Browsing diffs
