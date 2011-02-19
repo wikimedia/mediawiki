@@ -718,6 +718,7 @@ $wgAutoloadLocalClasses = array(
 	'DeleteDefaultMessages' => 'maintenance/deleteDefaultMessages.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateLogSearch' => 'maintenance/populateLogSearch.php',
+	'PopulateLogUsertext' => 'maintenance/populateLogUsertext.php',
 	'PopulateParentId' => 'maintenance/populateParentId.php',
 	'PopulateRevisionLength' => 'maintenance/populateRevisionLength.php',
 	'SevenZipStream' => 'maintenance/7zip.inc',

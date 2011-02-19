@@ -147,8 +147,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.16
 			array( 'addTable', 'user_properties',                   'patch-user_properties.sql' ),
 			array( 'addTable', 'log_search',                        'patch-log_search.sql' ),
-			array( 'doLogSearchPopulation' ),
 			array( 'addField', 'logging',       'log_user_text',    'patch-log_user_text.sql' ),
+			array( 'doLogUsertextPopulation' ), # listed separately from the previous update because 1.16 was released without this update
+			array( 'doLogSearchPopulation' ),
 			array( 'addTable', 'l10n_cache',                        'patch-l10n_cache.sql' ),
 			array( 'addTable', 'external_user',                     'patch-external_user.sql' ),
 			array( 'addIndex', 'log_search',    'ls_field_val',     'patch-log_search-rename-index.sql' ),
