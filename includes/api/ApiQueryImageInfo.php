@@ -462,7 +462,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' comment       - Comment on the version',
 				' parsedcomment - Parse the comment on the version',
 				' url           - Gives URL to the image and the description page',
-				' size          - Adds the size of the image in bytes and the height and width',
+				' size          - Adds the size of the image in bytes and the height, width and page count (if applicable)',
 				' dimensions    - Alias for size',
 				' sha1          - Adds SHA-1 hash for the image',
 				' mime          - Adds MIME type of the image',
