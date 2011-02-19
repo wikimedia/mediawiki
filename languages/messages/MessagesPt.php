@@ -1373,7 +1373,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'resultsperpage'                => 'Resultados por página:',
 'contextlines'                  => 'Linhas por resultado:',
 'contextchars'                  => 'Contexto por linha:',
-'stub-threshold'                => 'Links para páginas provisórias \'\'(stubs)\'\' terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
+'stub-threshold'                => 'Links para páginas provisórias <i>(stubs)</i> terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Dias a apresentar nas mudanças recentes:',
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',

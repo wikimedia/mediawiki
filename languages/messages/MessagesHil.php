@@ -510,6 +510,41 @@ Palihog butang sang ginplastar sing maayo nga adres ukon panason nal lang ang lu
 Dapat ka na magsulod kag islan ang imo pasword subong.
 
 Mahimo nga imo pabayaan ang ini nga mensahe, kon ang ini nga akawnt sala lang ang paghimo.',
+'usernamehasherror'          => 'Ang gamit-pangalan indi mahimo nga may hash nga karakter',
+'login-throttled'            => 'May tuman ka na na kadamo nga pagtilaw sa pagsulod.
+Palihog maghulat anay bag-o tilawan liwat.',
+'loginlanguagelabel'         => 'Hambalanon: $1',
+'suspicious-userlogout'      => 'Ang imo pagpangabay nga mag-guha ginpungga bangud nga ini mahimo nga ginpadala sang guba nga brawser ukon sang proksy nga nagapang-tago.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Wala nahibaluan nga sala sa kapuslanan nga sulat() sang PHP.',
+
+# JavaScript password checks
+'password-strength'            => 'Paghaum-haom nga kakusogon sang pasword: $1',
+'password-strength-mediocre'   => 'ordinaryo',
+'password-strength-acceptable' => 'mabaton',
+'password-strength-good'       => 'maayo',
+'password-retype'              => 'Ibutang liwat ang pasword dire',
+'password-retype-mismatch'     => 'Wala nagasanto ang mga pasword',
+
+# Password reset dialog
+'resetpass'                 => 'Ilisan ang pasword',
+'resetpass_announce'        => 'Nagsulod ka paagi sang temporary nga kod nga gin-email.
+Agod nga makatapos ka sa pagsulod, kinahanglan mo magbutang sang bag-o nga pasword dire:',
+'resetpass_header'          => 'Ilisan ang pasword sang akawnt',
+'oldpassword'               => 'Daan nga pasword:',
+'newpassword'               => 'Bag-o nga pasword:',
+'retypenew'                 => 'Suliton ang bag-o nga pasword:',
+'resetpass_submit'          => 'Ibutang ang pasword kag magsulod',
+'resetpass_success'         => 'Ang imo pasword madinalag-on nga gin-ilisan!
+Ginapasulod ka na...',
+'resetpass_forbidden'       => 'Ang mga pasword indi mahimo nga paga-ilisan',
+'resetpass-no-info'         => 'Kinahanglan nga nakasulod ka agod nga makadtoan ang ini nga panid sing derecho.',
+'resetpass-submit-loggedin' => 'Ilisan ang pasword',
+'resetpass-submit-cancel'   => 'Kanselahon',
+'resetpass-wrong-oldpass'   => 'Sala nga temporaryo ukon subong nga pasword.
+Mahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay ka na sang bag-o nga temporaryo nga pasword.',
+'resetpass-temp-password'   => 'Temporaryo nga pasword:',
 
 # Edit page toolbar
 'bold_sample'     => 'Dukot nga teksto',
@@ -539,10 +574,19 @@ Mahimo nga imo pabayaan ang ini nga mensahe, kon ang ini nga akawnt sala lang an
 'savearticle'                      => 'Tiponon ining panid',
 'preview'                          => 'Ipakita subong',
 'showpreview'                      => 'Ipakita nga daan',
+'showlivepreview'                  => 'Prebiyu nga karon dayon',
 'showdiff'                         => 'Ipakita ang inislan',
 'anoneditwarning'                  => "'''Pa-andam:''' Wala ka pa nakasulod.
 Igasulat ang imo IP adres sa historya sini nga inislan na pahina.",
+'anonpreviewwarning'               => "''Wala ka pa nakasulod. Igasulat ang imo IP adres sa historya sini nga inislan na pahina.''",
+'missingsummary'                   => "'''Pahanumdom:''' Wala ka naghatag sang malip-ot nga pagsaysay sang imo gin-ilisan.
+Kon tum-okon mo liwat ang \"{{int:savearticle}}\", ang imo gin-ilisan pagatiponon nga wala sini.",
+'missingcommenttext'               => 'Palihog butangi sang komento sa idalom.',
+'missingcommentheader'             => "'''Pahanumdom:''' Wala ka naghatag sang topiko/ulo sang topiko para sa sini nga komento.
+Kon tum-okon mo liwat ang \"{{int:savearticle}}\", ang imo gin-ilisan pagatiponon nga wala sini.",
 'summary-preview'                  => 'Kabilugan nga prebyu:',
+'subject-preview'                  => 'Prebyu sang topiko/ulo sang topiko:',
+'blockedtitle'                     => 'Ang manuggamit ginapunggan',
 'whitelistedittitle'               => 'Kinahanglan Magsulod para maka ilis',
 'loginreqlink'                     => 'mag sulod',
 'newarticle'                       => '(Bag-o)',

@@ -3703,6 +3703,7 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-header-oracle' => 'Configuración do Oracle',
 	'config-invalid-db-type' => 'Tipo de base de datos incorrecto',
 	'config-missing-db-name' => 'Debe escribir un valor "Nome da base de datos"',
+	'config-missing-db-host' => 'Debe escribir un valor "Servidor da base de datos"',
 	'config-missing-db-server-oracle' => 'Debe escribir un valor "TNS da base de datos"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de datos, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e puntos (.).',
@@ -6052,6 +6053,7 @@ $messages['it'] = array(
 /** Japanese (日本語)
  * @author Aphaia
  * @author Iwai.masaharu
+ * @author Mizusumashi
  * @author Ohgi
  * @author Whym
  * @author Yanajin66
@@ -6444,7 +6446,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 適切なサイズのイメージをアップロードし、ここにURLを入力してください。
 
 もし、ロゴを望まないならば、このボックスを空白状態のままにしてください。',
-	'config-instantcommons' => '瞬時のコモンズを有効にする',
+	'config-instantcommons' => 'InstantCommons機能を有効にする',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons InstantCommons]は、[http://commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトで見つかった画像や音声、その他のメディアをウィキ上で利用することができるようになる機能です。
 これを有効化するには、MediaWikiはインターネットに接続できなければなりません。
 
@@ -6463,12 +6465,14 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-memcached-servers' => 'メモリをキャッシュされたサーバ:',
 	'config-memcached-help' => 'Memcachedを使用するIPアドレスの一覧。
 カンマ区切りで、利用する特定のポートの指定が必要です（例：127.0.0.1:11211, 192.168.1.25:11211）。',
-	'config-extensions' => '拡張子',
-	'config-extensions-help' => '上記のリストにある拡張子は<code>./extensions</code>ディレクトリ上で検出された。
+	'config-extensions' => '拡張機能',
+	'config-extensions-help' => '<code>./extensions</code>ディレクトリ内で、上記リストの拡張機能が発見されました。
 
-これらは更に多くの設定を要求しているかもしれない、しかし今あなたはそれらを有効にできる。',
+これらは更に多くの設定を要求するかもしれませんが、今これらを有効にすることができます。',
 	'config-install-alreadydone' => "'''警告:''' 既にMediaWikiがインストール済みで、再びインストールし直そうとしています。
 次のページへ進んでください。",
+	'config-install-begin' => '↓ 「続き」ボタンを押すと、MediaWikiのインストールを開始します。
+もし、変更したい設定があれば、「戻る」ボタンを押してください。',
 	'config-install-step-done' => '実行',
 	'config-install-step-failed' => '失敗した',
 	'config-install-extensions' => '拡張機能を含む',

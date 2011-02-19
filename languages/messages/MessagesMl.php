@@ -3474,7 +3474,7 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'പ്രത്യേക താളുകൾ',
 'specialpages-note'              => '----
-* സർവോപയോഗ പ്രത്യേക താളുകൾ.
+* സർവ്വോപയോഗ പ്രത്യേക താളുകൾ.
 * <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</strong>',
 'specialpages-group-maintenance' => 'പരിചരണം ആവശ്യമായവ',
 'specialpages-group-other'       => 'മറ്റു പ്രത്യേക താളുകൾ',
