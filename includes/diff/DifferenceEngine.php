@@ -25,8 +25,16 @@ class DifferenceEngine {
 	var $mOldid, $mNewid, $mTitle;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
 	var $mOldtext, $mNewtext;
+
+	/**
+	 * @var Title
+	 */
 	var $mOldPage, $mNewPage;
 	var $mRcidMarkPatrolled;
+
+	/**
+	 * @var Revision
+	 */
 	var $mOldRev, $mNewRev;
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
@@ -401,6 +409,10 @@ CONTROL;
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @param $rev Revision
+	 * @return String
+	 */
 	protected function revisionDeleteLink( $rev ) {
 		global $wgUser;
 		$link = '';

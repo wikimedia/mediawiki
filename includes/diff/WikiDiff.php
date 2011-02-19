@@ -137,6 +137,13 @@ class _DiffEngine {
 
 	protected $xchanged, $ychanged;
 
+	protected $xv = array(), $yv = array();
+	protected $xind = array(), $yind = array();
+
+	protected $seq = array(), $in_seq = array();
+
+	protected $lcs = 0;
+
 	function diff ( $from_lines, $to_lines ) {
 		wfProfileIn( __METHOD__ );
 
@@ -841,8 +848,7 @@ class DiffFormatter {
 					}
 				}
 				$context = $edit->orig;
-			}
-			else {
+			} else {
 				if ( ! is_array( $block ) ) {
 					$context = array_slice( $context, sizeof( $context ) - $nlead );
 					$x0 = $xi - sizeof( $context );
