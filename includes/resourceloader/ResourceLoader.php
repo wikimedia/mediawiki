@@ -563,7 +563,7 @@ class ResourceLoader {
 			'mw.loader.implement', 
 			array(
 				$name,
-				new XmlJsCode( "function( $, mw ) {{$scripts}}" ),
+				new XmlJsCode( "function( $ ) {{$scripts}}" ),
 				(object)$styles,
 				(object)$messages
 			) );
@@ -667,10 +667,10 @@ class ResourceLoader {
 		$dependencies = null, $group = null ) 
 	{
 		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
+			return Xml::encodeJsCall( 'mediaWiki.loader.register', array( $name ) );
 		} else {
 			$version = (int) $version > 1 ? (int) $version : 1;
-			return Xml::encodeJsCall( 'mw.loader.register', 
+			return Xml::encodeJsCall( 'mediaWiki.loader.register', 
 				array( $name, $version, $dependencies, $group ) );
 		}
 	}
@@ -693,7 +693,7 @@ class ResourceLoader {
 	 * @param $configuration Array: List of configuration values keyed by variable name
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ) );
+		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
 	}
 	
 	/**

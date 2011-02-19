@@ -2,7 +2,7 @@
  * Implementation for mediaWiki.log stub
  */
 
-(function ($, mw) {
+(function ($) {
 
 	/**
 	 * Log output to the console.
@@ -22,7 +22,7 @@
 		}
 		// Try to use an existing console
 		if ( typeof window.console !== 'undefined' && typeof window.console.log == 'function' ) {
-			window.console.log( string );
+			console.log( string );
 		} else {
 			// Set timestamp
 			var d = new Date();
@@ -61,4 +61,4 @@
 		}
 	};
 
-})(jQuery, mediaWiki);
+})(jQuery);
