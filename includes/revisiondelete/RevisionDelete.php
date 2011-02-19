@@ -10,6 +10,10 @@ class RevDel_RevisionList extends RevDel_List {
 	var $authorIdField = 'rev_user';
 	var $authorNameField = 'rev_user_text';
 
+	/**
+	 * @param $db DatabaseBase
+	 * @return mixed
+	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 		return $db->select( array('revision','page'), '*',
@@ -186,6 +190,10 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	var $authorIdField = 'ar_user';
 	var $authorNameField = 'ar_user_text';
 
+	/**
+	 * @param $db DatabaseBase
+	 * @return mixed
+	 */
 	public function doQuery( $db ) {
 		$timestamps = array();
 		foreach ( $this->ids as $id ) {
@@ -348,6 +356,10 @@ class RevDel_FileList extends RevDel_List {
  * Item class for an oldimage table row
  */
 class RevDel_FileItem extends RevDel_Item {
+
+	/**
+	 * @var File
+	 */
 	var $file;
 
 	public function __construct( $list, $row ) {

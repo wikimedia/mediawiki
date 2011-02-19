@@ -4,7 +4,13 @@
  * Abstract base class for a list of deletable items
  */
 abstract class RevDel_List {
-	var $special, $title, $ids, $res, $current;
+
+	/**
+	 * @var Title
+	 */
+	var $title;
+
+	var $special, $ids, $res, $current;
 	var $type = null; // override this
 	var $idField = null; // override this
 	var $dateField = false; // override this
@@ -329,7 +335,7 @@ abstract class RevDel_List {
 
 	/**
 	 * Do the DB query to iterate through the objects.
-	 * @param $db Database object to use for the query
+	 * @param $db DatabaseBase object to use for the query
 	 */
 	abstract public function doQuery( $db );
 
