@@ -36,7 +36,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryTags extends ApiQueryBase {
 
-	private $limit, $result;
+	/**
+	 * @var ApiResult
+	 */
+	private $result;
+
+	private $limit;
 	private $fld_displayname = false, $fld_description = false,
 			$fld_hitcount = false;
 

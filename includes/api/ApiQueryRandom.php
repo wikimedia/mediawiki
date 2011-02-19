@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup API
  */
 
- class ApiQueryRandom extends ApiQueryGeneratorBase {
+class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rn' );
@@ -50,6 +50,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param  $randstr
+	 * @param  $limit
+	 * @param  $namespace
+	 * @param $resultPageSet ApiPageSet
+	 * @param  $redirect
+	 * @return void
+	 */
 	protected function prepareQuery( $randstr, $limit, $namespace, &$resultPageSet, $redirect ) {
 		$this->resetQueryParams();
 		$this->addTables( 'page' );

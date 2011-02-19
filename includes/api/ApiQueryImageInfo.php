@@ -117,8 +117,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if (
 					( is_null( $start ) || $img->getTimestamp() <= $start ) &&
 					( is_null( $params['end'] ) || $img->getTimestamp() >= $params['end'] )
-				)
-				{
+				) {
 					$gotOne = true;
 					
 					$fit = $this->addPageSubItem( $pageId,
@@ -352,7 +351,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $vals;
 	}
 
-	/*
+	/**
 	 *
 	 * @param $metadata Array
 	 * @param $result ApiResult
@@ -379,6 +378,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return 'public';
 	}
 
+	/**
+	 * @param $img File
+	 * @return string
+	 */
 	private function getContinueStr( $img ) {
 		return $img->getOriginalTitle()->getText() .
 			'|' .  $img->getTimestamp();

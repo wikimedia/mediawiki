@@ -48,6 +48,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
