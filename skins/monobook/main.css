@@ -552,15 +552,33 @@ table.rimage {
 	background: url("document.png") center right no-repeat;
 	padding-right: 12px;
 }
-
-/* disable interwiki styling */
+ 
+/* Interwiki Styling */
 #bodyContent a.extiw,
 #bodyContent a.extiw:active {
 	color: #36b;
+	/* Don't show icons for interwiki links */
+	background: none;
+	padding: 0;
 }
+#bodyContent a.extiw:visited {
+	color: #636;
+}
+#bodyContent a.extiw:active {
+	color: #b63;
+}
+
+/* External links */
 #bodyContent a.external {
 	color: #36b;
 }
+#bodyContent a.external:visited {
+	color: #636; /* bug 3112 */
+}
+#bodyContent a.external:active {
+	color: #b63;
+}
+
 /*
 ** Structural Elements
 */
