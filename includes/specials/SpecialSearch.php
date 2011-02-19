@@ -518,7 +518,6 @@ class SpecialSearch extends SpecialPage {
 
 		$section = '';
 
-
 		if( !is_null($sectionTitle) ) {
 			if( $sectionText == '' )
 				$sectionText = null;
