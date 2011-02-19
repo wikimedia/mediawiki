@@ -430,8 +430,8 @@ class MysqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		$db = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $db );
+		$this->setupSchemaVars();
 		$error = $this->db->sourceFile( "$IP/maintenance/users.sql" );
 		if ( $error !== true ) {
 			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
@@ -463,6 +463,9 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function getSchemaVars() {
 		return array(
 			'wgDBTableOptions' => $this->getTableOptions(),
+			'wgDBname' => $this->getVar( 'wgDBname' ),
+			'wgDBuser' => $this->getVar( 'wgDBuser' ),
+			'wgDBpassword' => $this->getVar( 'wgDBpassword' ),
 		);
 	}
 
