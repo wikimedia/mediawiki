@@ -292,6 +292,10 @@ class RevDel_FileList extends RevDel_List {
 	var $authorNameField = 'oi_user_text';
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
+	/**
+	 * @param $db DatabaseBase
+	 * @return mixed
+	 */
 	public function doQuery( $db ) {
 		$archiveNames = array();
 		foreach( $this->ids as $timestamp ) {
@@ -515,7 +519,11 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	var $dateField = 'fa_timestamp';
 	var $authorIdField = 'fa_user';
 	var $authorNameField = 'fa_user_text';
-	
+
+	/**
+	 * @param $db DatabaseBase
+	 * @return mixed
+	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 		return $db->select( 'filearchive', '*',
@@ -593,6 +601,10 @@ class RevDel_LogList extends RevDel_List {
 	var $authorIdField = 'log_user';
 	var $authorNameField = 'log_user_text';
 
+	/**
+	 * @param $db DatabaseBase
+	 * @return mixed
+	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 		return $db->select( 'logging', '*',
