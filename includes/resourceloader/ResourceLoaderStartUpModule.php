@@ -127,18 +127,18 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
 				$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
 				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
-				// mediaWiki.loader.register()
+				// mw.loader.register()
 				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
 					$registrations[] = array( $name, $mtime );
 				}
 				// Modules with dependencies but no group pass three arguments 
-				// (name, timestamp, dependencies) to mediaWiki.loader.register()
+				// (name, timestamp, dependencies) to mw.loader.register()
 				else if ( $module->getGroup() === null ) {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies() );
 				}
 				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group) 
-				// to mediaWiki.loader.register()
+				// to mw.loader.register()
 				else {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies(), $module->getGroup() );
@@ -178,7 +178,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$registrations = self::getModuleRegistrations( $context );
 			$out .= "var startUp = function() {\n" . 
 				"\t$registrations\n" . 
-				"\t" . Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) ) . 
+				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) . 
 				"};\n";
 			
 			// Conditional script injection

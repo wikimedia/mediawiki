@@ -492,7 +492,7 @@ class ResourceLoader {
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 						break;
 					default:
-						// Minify CSS before embedding in mediaWiki.loader.implement call
+						// Minify CSS before embedding in mw.loader.implement call
 						// (unless in debug mode)
 						if ( !$context->getDebug() ) {
 							foreach ( $styles as $media => $style ) {
@@ -544,7 +544,7 @@ class ResourceLoader {
 	/* Static Methods */
 
 	/**
-	 * Returns JS code to call to mediaWiki.loader.implement for a module with 
+	 * Returns JS code to call to mw.loader.implement for a module with 
 	 * given properties.
 	 *
 	 * @param $name Module name
@@ -560,7 +560,7 @@ class ResourceLoader {
 			$scripts = implode( $scripts, "\n" );
 		}
 		return Xml::encodeJsCall( 
-			'mediaWiki.loader.implement', 
+			'mw.loader.implement', 
 			array(
 				$name,
 				new XmlJsCode( "function( $, mw ) {{$scripts}}" ),
@@ -576,7 +576,7 @@ class ResourceLoader {
 	 *     JSON-encoded message blob containing the same data, wrapped in an XmlJsCode object.
 	 */
 	public static function makeMessageSetScript( $messages ) {
-		return Xml::encodeJsCall( 'mediaWiki.messages.set', array( (object)$messages ) );
+		return Xml::encodeJsCall( 'mw.messages.set', array( (object)$messages ) );
 	}
 
 	/**
@@ -605,7 +605,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Returns a JS call to mediaWiki.loader.state, which sets the state of a 
+	 * Returns a JS call to mw.loader.state, which sets the state of a 
 	 * module or modules to a given value. Has two calling conventions:
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
@@ -616,9 +616,9 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall( 'mediaWiki.loader.state', array( $name ) );
+			return Xml::encodeJsCall( 'mw.loader.state', array( $name ) );
 		} else {
-			return Xml::encodeJsCall( 'mediaWiki.loader.state', array( $name, $state ) );
+			return Xml::encodeJsCall( 'mw.loader.state', array( $name, $state ) );
 		}
 	}
 
@@ -642,7 +642,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Returns JS code which calls mediaWiki.loader.register with the given 
+	 * Returns JS code which calls mw.loader.register with the given 
 	 * parameters. Has three calling conventions:
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group ):
@@ -667,10 +667,10 @@ class ResourceLoader {
 		$dependencies = null, $group = null ) 
 	{
 		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall( 'mediaWiki.loader.register', array( $name ) );
+			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
 		} else {
 			$version = (int) $version > 1 ? (int) $version : 1;
-			return Xml::encodeJsCall( 'mediaWiki.loader.register', 
+			return Xml::encodeJsCall( 'mw.loader.register', 
 				array( $name, $version, $dependencies, $group ) );
 		}
 	}
@@ -693,7 +693,7 @@ class ResourceLoader {
 	 * @param $configuration Array: List of configuration values keyed by variable name
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
+		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ) );
 	}
 	
 	/**

@@ -2554,8 +2554,8 @@ class OutputPage {
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		$loader = '';
 		if ( $this->getModules( true ) ) {
-			$loader = Xml::encodeJsCall( 'mediaWiki.loader.load', array( $this->getModules( true ) ) ) .
-				Xml::encodeJsCall( 'mediaWiki.loader.go', array() );
+			$loader = Xml::encodeJsCall( 'mw.loader.load', array( $this->getModules( true ) ) ) .
+				Xml::encodeJsCall( 'mw.loader.go', array() );
 		}
 		
 		$scripts .= Html::inlineScript(
