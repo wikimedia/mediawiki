@@ -1806,7 +1806,7 @@ Por optimuma sekureco, img_auth.php estas malŝalta.',
 'upload-curl-error28'      => 'Tempolimo de alŝuto atingita',
 'upload-curl-error28-text' => 'La retejo atendas tro sen respondo. Bonvolu verigi ke la retejo ankoraŭ funkcias kaj reprovi. Vi eble volus trovi dum malpli okupa tempo.',
 
-'license'            => 'Licencado:',
+'license'            => 'Permesiloj:',
 'license-header'     => 'Licencado:',
 'nolicense'          => 'Neniu elektita',
 'license-nopreview'  => '(Antaŭvido ne montrebla)',

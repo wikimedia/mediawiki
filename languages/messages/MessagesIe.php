@@ -373,12 +373,19 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'allmessages' => 'Liste del missages del sistema',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'      => 'Vor discussion',
-'tooltip-pt-preferences' => 'Mi preferenties',
-'tooltip-ca-delete'      => 'Deleter ti págine',
-'tooltip-ca-move'        => 'Moer ti págine',
-'tooltip-n-mainpage'     => 'Visita li Principal págine',
-'tooltip-t-specialpages' => 'Liste de omni special págines',
+'tooltip-pt-mytalk'       => 'Vor discussion',
+'tooltip-pt-preferences'  => 'Mi preferenties',
+'tooltip-pt-logout'       => 'Surtida',
+'tooltip-ca-talk'         => 'Discussion pri li contenete de págine',
+'tooltip-ca-delete'       => 'Deleter ti págine',
+'tooltip-ca-move'         => 'Moer ti págine',
+'tooltip-n-mainpage'      => 'Visita li págine principal',
+'tooltip-n-portal'        => 'Pri li projecte, quo vu posse executer, u constatar coses',
+'tooltip-n-currentevents' => 'Constata funde de information sur eventus current',
+'tooltip-n-recentchanges' => 'Li liste de nov changes vice wiki',
+'tooltip-n-randompage'    => 'Cargar un págine sporadic',
+'tooltip-n-help'          => 'Li loco por constatar auxilie',
+'tooltip-t-specialpages'  => 'Liste de omni special págines',
 
 # Special:NewFiles
 'newimages' => 'Galerie de nov images',

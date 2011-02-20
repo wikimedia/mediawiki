@@ -8896,6 +8896,7 @@ Rozważ ręczne jego ustawienie.",
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
+ * @author Krinkle
  */
 $messages['pms'] = array(
 	'config-desc' => "L'instalador për mediaWiki",
@@ -9046,7 +9047,7 @@ Cost camp a l'é lassà normalment veuid.",
 	'config-charset-mysql4' => "MySQL 4.0 compatìbil a l'andaré con UTF-8",
 	'config-charset-help' => "'''Avis:''' S'a deuvra '''UTF-8 compatìbil a l'andaré''' su MySQL 4.1+, e peui a fa na còpia con <code>mysqldump</code>, a podrìa scancelé tùit ij caràter nen-ASCII, dësbland sensa speranse soe còpie!
 
-An '''manera binaria''', mediaWiki a memorisa ël test UTF-8 an dij camp binari ant la base ëd dàit.
+An '''manera binaria''', MediaWiki a memorisa ël test UTF-8 an dij camp binari ant la base ëd dàit.
 Sossì a l'é pi eficient che la manera UTF-8 ëd MySQL, e a përmët ëd dovré tut l'ansema ëd caràter Unicode.
 An '''manera UTF-8''', MySQL a arconòss an che ansema ëd caràter a son ij sò dat, e a peul presenteje e convertije apropriatament, ma a-j lassrà pa memorisé ij caràter dzora al [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes pian multilenghe ëd base].",
 	'config-mysql-old' => "A-i é da manca ëd MySQL $1 o pi recent, chiel a l'ha $2.",
@@ -10247,7 +10248,7 @@ chmod a+w $3</pre>',
 	'config-project-namespace' => 'Пространство имён проекта:',
 	'config-ns-generic' => 'Проект',
 	'config-ns-site-name' => 'То же, что имя вики: $1',
-	'config-ns-other' => 'Другие (укажите)',
+	'config-ns-other' => 'Другое (укажите)',
 	'config-ns-other-default' => 'MyWiki',
 	'config-project-namespace-help' => "Следуя примеру Википедии, многие вики хранят свои страницы правил отдельно от страниц основного содержания, в так называемом '''«пространстве имён проекта»'''. 
 Все названия страниц в этом пространстве имён начинается с определённого префикса, который вы можете задать здесь. 
@@ -10407,8 +10408,13 @@ GNU Free Documentation License раньше была основной лицен
 Во время установки был создан файл <code>LocalSettings.php</code>.
 Он содержит всю конфигурации вики.
 
-Вам необходимо [$1 скачать] его и положить в корневую директорию вашей вики (в ту же директорию, где находится файл index.php).
-'''Примечание''': Если вы не сделаете этого сейчас, то сгенерированный файл конфигурации не будет доступен вам в дальнейшем, если вы выйдите из установки, не скачивая его.
+Вам необходимо скачать его и положить в корневую директорию вашей вики (ту же директорию, где находится файл index.php). Его загрузка должна начаться автоматически.
+
+Если автоматическая загрузка не началась или вы её отменили, вы можете скачать по ссылке ниже:
+
+$3
+
+'''Примечание''': Если вы не сделаете этого сейчас, то сгенерированный файл конфигурации не будет доступен вам в дальнейшем, если вы выйдете из установки, не скачивая его.
 
 По окончании действий, описанных выше, вы сможете '''[$2 войти в вашу вики]'''.",
 	'config-download-localsettings' => 'Загрузить LocalSettings.php',
