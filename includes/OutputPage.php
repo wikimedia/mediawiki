@@ -2404,7 +2404,7 @@ class OutputPage {
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
-		$query = array(
+		$baseQuery = array(
 			'lang' => $wgLang->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'skin' => $skin->getSkinName(),
@@ -2412,10 +2412,10 @@ class OutputPage {
 		);
 		// Propagate printable and handheld parameters if present
 		if ( $this->isPrintable() ) {
-			$query['printable'] = 1;
+			$baseQuery['printable'] = 1;
 		}
 		if ( $wgRequest->getBool( 'handheld' ) ) {
-			$query['handheld'] = 1;
+			$baseQuery['handheld'] = 1;
 		}
 
 		if ( !count( $modules ) ) {
@@ -2444,7 +2444,7 @@ class OutputPage {
 		foreach ( (array) $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			# Check that we're allowed to include this module on this page
-			if( ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS )
+			if ( ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS )
 					&& $only == ResourceLoaderModule::TYPE_SCRIPTS )
 				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
 					&& $only == ResourceLoaderModule::TYPE_STYLES )
@@ -2462,6 +2462,7 @@ class OutputPage {
 
 		$links = '';
 		foreach ( $groups as $group => $modules ) {
+			$query = $baseQuery;
 			// Special handling for user-specific groups
 			if ( ( $group === 'user' || $group === 'private' ) && $wgUser->isLoggedIn() ) {
 				$query['user'] = $wgUser->getName();
@@ -2816,19 +2817,19 @@ class OutputPage {
 	public function buildCssLinks( $sk ) {
 		$ret = '';
 		// Add ResourceLoader styles
-		// Split the styles into three groups
-		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
+		// Split the styles into four groups
+		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array() );
 		$resourceLoader = $this->getResourceLoader();
 		foreach ( $this->getModuleStyles() as $name ) {
 			$group = $resourceLoader->getModule( $name )->getGroup();
-			// Modules in groups named "other" or anything different than "user" or "site" will
-			// be placed in the "other" group
+			// Modules in groups named "other" or anything different than "user", "site" or "private"
+			// will be placed in the "other" group
 			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
 
-		// We want site and user styles to override dynamically added styles from modules, but we want
+		// We want site, private and user styles to override dynamically added styles from modules, but we want
 		// dynamically added styles to override statically added styles from other modules. So the order
-		// has to be other, dynamic, site, user
+		// has to be other, dynamic, site, private, user
 		// Add statically added styles for other modules
 		$ret .= $this->makeResourceLoaderLink( $sk, $styles['other'], ResourceLoaderModule::TYPE_STYLES );
 		// Add normal styles added through addStyle()/addInlineStyle() here
@@ -2836,10 +2837,15 @@ class OutputPage {
 		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML
 		$ret .= Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) );
-		// Add site and user styles
-		$ret .= $this->makeResourceLoaderLink(
-			$sk, array_merge( $styles['site'], $styles['user'] ), ResourceLoaderModule::TYPE_STYLES
-		);
+		
+		// Add site, private and user styles
+		// 'private' at present only contains user.options, so put that before 'user'
+		// Any future private modules will likely have a similar user-specific character
+		foreach ( array( 'site', 'private', 'user' ) as $group ) {
+			$ret .= $this->makeResourceLoaderLink( $sk, $styles[$group],
+					ResourceLoaderModule::TYPE_STYLES
+			);
+		}
 		return $ret;
 	}
 
