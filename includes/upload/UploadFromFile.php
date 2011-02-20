@@ -8,8 +8,15 @@
  */
 
 class UploadFromFile extends UploadBase {
+
+	/**
+	 * @var WebRequestUpload
+	 */
 	protected $mUpload = null;
 
+	/**
+	 * @param $request WebRequest
+	 */
 	function initializeFromRequest( &$request ) {
 		$upload = $request->getUpload( 'wpUploadFile' );		
 		$desiredDestName = $request->getText( 'wpDestFile' );
@@ -61,6 +68,4 @@ class UploadFromFile extends UploadBase {
 	public function getFileTempname() {
 		return $this->mUpload->getTempname();
 	}
-
-	
 }

@@ -473,7 +473,7 @@ function wfUILang() {
  * The intention is that this function replaces all old wfMsg* functions.
  * @param $key \string Message key.
  * Varargs: normal message parameters.
- * @return \type{Message}
+ * @return Message
  * @since 1.17
  */
 function wfMessage( $key /*...*/) {

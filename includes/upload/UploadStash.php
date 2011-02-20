@@ -21,7 +21,7 @@ class UploadStash {
 	public $repo; 
 	
 	// array of initialized objects obtained from session (lazily initialized upon getFile())
-	private $files = array();  
+	private $files = array();
 
 	// TODO: Once UploadBase starts using this, switch to use these constants rather than UploadBase::SESSION*
 	// const SESSION_VERSION = 2;
@@ -45,7 +45,6 @@ class UploadStash {
 		}
 		
 	}
-
 
 	/**
 	 * Get a file and its metadata from the stash.
@@ -125,7 +124,6 @@ class UploadStash {
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		} 
-
 
 		// if not already in a temporary area, put it there
 		$status = $this->repo->storeTemp( basename( $path ), $path );
@@ -230,6 +228,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	private $sessionKey;
 	private $sessionData;
 	private $urlName;
+	protected $url;
 
 	/**
 	 * A LocalFile wrapper around a file that has been temporarily stashed, so we can do things like create thumbnails for it

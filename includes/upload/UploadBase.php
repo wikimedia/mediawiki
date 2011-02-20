@@ -18,7 +18,8 @@ abstract class UploadBase {
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
 	protected $mTitle = false, $mTitleError = 0;
 	protected $mFilteredName, $mFinalExtension;
-	protected $mLocalFile;
+	protected $mLocalFile, $mFileSize, $mFileProps;
+	protected $mBlackListedExtensions;
 
 	const SUCCESS = 0;
 	const OK = 0;
@@ -81,6 +82,8 @@ abstract class UploadBase {
 	 * Returns true if the user can use this upload module or else a string
 	 * identifying the missing permission.
 	 * Can be overriden by subclasses.
+	 *
+	 * @param $user User
 	 */
 	public static function isAllowed( $user ) {
 		foreach ( array( 'upload', 'edit' ) as $permission ) {
@@ -96,6 +99,8 @@ abstract class UploadBase {
 
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
+	 *
+	 * @param $request WebRequest
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType', 'File' );
@@ -399,7 +404,7 @@ abstract class UploadBase {
 	 * isAllowed() should be called as well for generic is-user-blocked or
 	 * can-user-upload checking.
 	 *
-	 * @param $user the User object to verify the permissions against
+	 * @param $user User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *               in case the user has proper permissions.
 	 */
@@ -503,6 +508,8 @@ abstract class UploadBase {
 	/**
 	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
+	 *
+	 * @param $user User
 	 *
 	 * @return Status indicating the whether the upload succeeded.
 	 */
@@ -618,6 +625,8 @@ abstract class UploadBase {
 
 	/**
 	 * Return the local file and initializes if necessary.
+	 *
+	 * @return LocalFile
 	 */
 	public function getLocalFile() {
 		if( is_null( $this->mLocalFile ) ) {
@@ -1048,6 +1057,8 @@ abstract class UploadBase {
 	/**
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
+	 *
+	 * @param $user User
 	 *
 	 * @return mixed true on success, error string on failure
 	 */

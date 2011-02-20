@@ -440,7 +440,6 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-
 		// Upload verification
 		$details = $this->mUpload->verifyUpload();
 		if ( $details['status'] != UploadBase::OK ) {
