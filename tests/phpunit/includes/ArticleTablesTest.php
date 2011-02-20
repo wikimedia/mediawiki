@@ -6,13 +6,27 @@
  */
 class ArticleTablesTest extends MediaWikiTestCase {
 	
+	function setUp() {
+		global $wgLanguageCode;
+		
+		$this->languageCode = $wgLanguageCode;
+	}
+	
+	function tearDown() {
+		global $wgLanguageCode, $wgContLang, $wgLang;
+		$wgLanguageCode = $this->languageCode;
+		$wgContLang = new StubContLang;
+		$wgLang = new StubUserLang;
+	}
+	
 	function testbug14404() {
-		global $wgUser, $wgContLang, $wgLang;
+		global $wgUser, $wgContLang, $wgLanguageCode, $wgLang;
 		
 		$title = Title::newFromText("Bug 14404");
 		$article = new Article( $title );
 		$wgUser = new User();
 		$wgUser->mRights = array( 'createpage', 'edit', 'purge' );
+		$wgLanguageCode = 'es';
 		$wgContLang = Language::factory( 'es' );
 		
 		$wgLang = Language::factory( 'fr' );
