@@ -430,6 +430,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
+		$db = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $db );
 		$this->setupSchemaVars();
 		$error = $this->db->sourceFile( "$IP/maintenance/users.sql" );
