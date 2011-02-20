@@ -167,7 +167,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Non-file pages can no longer be moved to the file namespace, nor vice versa.
 * (bug 671) The <dfn>, <kbd> and <samp> elements have been whitelisted in user
   input
-* (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
 * (bug 21503) There's now a "reason" field when creating account for other users
 * (bug 24418) action=markpatrolled now requires a token
 * A variety of category sort-related fixes, including:
