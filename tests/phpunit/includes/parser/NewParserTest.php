@@ -436,6 +436,7 @@ class NewParserTest extends MediaWikiTestCase {
 								$out = '';
 							}
 						}
+						$parser->mPreprocessor = null;
 			
 						$result = $this->tidy( $result );
 					}
