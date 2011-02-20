@@ -131,7 +131,7 @@ class IPBlockForm extends SpecialPage {
 		$otherBlockedMsgs = array();
 		if( $err && $err[0] != 'ipb_already_blocked' ) {
 			$key = array_shift( $err );
-			$msg = wfMsgReal( $key, $err );
+			$msg = wfMsgExt( $key, 'parsemag', $err );
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 		} elseif( $this->BlockAddress !== null ) {
