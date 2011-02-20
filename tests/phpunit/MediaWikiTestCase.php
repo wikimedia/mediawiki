@@ -26,7 +26,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;
-        $this->backupStaticAttributes = false;
+		$this->backupStaticAttributes = false;
 	}
 	
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
