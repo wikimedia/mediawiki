@@ -117,7 +117,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				'What image information to get:',
 				' timestamp    - Adds timestamp for the uploaded version',
 				' url          - Gives URL to the image and the description page',
-				' size         - Adds the size of the image in bytes and the height and width',
+				' size         - Adds the size of the image in bytes and the height, width and page count (if applicable)',
 				' dimensions   - Alias for size',
 				' sha1         - Adds sha1 hash for the image',
 				' mime         - Adds MIME of the image',
