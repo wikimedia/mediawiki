@@ -2763,7 +2763,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'talkexists'                   => "'''ページ自身は無事に移動されましたが、トークページは移動先のページが存在したため移動できませんでした。
 手動で統合してください。'''",
 'movedto'                      => '移動先：',
-'movetalk'                     => '関連付けられたトークページを移動',
+'movetalk'                     => '付随するトークページも移動',
 'move-subpages'                => '下位ページも移動する（$1ページまで）',
 'move-talk-subpages'           => 'トークページの下位ページも移動する（$1個まで）',
 'movepage-page-exists'         => 'ページ$1は既に存在するため、自動的に上書きされませんでした。',
@@ -3596,7 +3596,7 @@ $1',
 'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名が以下に表示されています。
 ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:Watchlist/raw|そのままの一覧で編集]]することもできます。',
-'watchlistedit-normal-submit'  => 'ページ名の除去',
+'watchlistedit-normal-submit'  => 'ページの除去',
 'watchlistedit-normal-done'    => 'ウォッチリストから$1のページ名を除去しました：',
 'watchlistedit-raw-title'      => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをそのまま編集',

@@ -443,7 +443,7 @@ $messages = array(
 'faqpage'        => 'Project:НПП',
 
 # Vector skin
-'vector-action-addsection'       => 'Додај тему',
+'vector-action-addsection'       => '+',
 'vector-action-delete'           => 'Обриши',
 'vector-action-move'             => 'Премести',
 'vector-action-protect'          => 'Заштити',
@@ -1875,7 +1875,7 @@ $1',
 'unusedtemplateswlh'  => 'остале везе',
 
 # Random page
-'randompage'         => 'Насумична страница',
+'randompage'         => 'Случајна страница',
 'randompage-nopages' => 'Нема страница у {{PLURAL:$2|следећем именском простору|следећим именским просторима}}: $1.',
 
 # Random redirect

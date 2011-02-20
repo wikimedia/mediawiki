@@ -372,7 +372,7 @@ $messages = array(
 'faqpage'        => 'Project:NPP',
 
 # Vector skin
-'vector-action-addsection' => 'Dodaj temu',
+'vector-action-addsection' => '+',
 'vector-action-delete'     => 'Obriši',
 'vector-action-move'       => 'Premesti',
 'vector-action-protect'    => 'Zaštiti',
