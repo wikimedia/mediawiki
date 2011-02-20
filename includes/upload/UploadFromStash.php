@@ -8,6 +8,10 @@
  */
 
 class UploadFromStash extends UploadBase {
+
+	protected $initializePathInfo, $mSessionKey, $mVirtualTempPath,
+		$mFileProps, $mSourceType;
+
 	public static function isValidSessionKey( $key, $sessionData ) {
 		return !empty( $key ) &&
 			is_array( $sessionData ) &&
@@ -16,6 +20,11 @@ class UploadFromStash extends UploadBase {
 			$sessionData[$key]['version'] == UploadBase::SESSION_VERSION;
 	}
 
+	/**
+	 * @param $request WebRequest
+	 *
+	 * @return Boolean
+	 */
 	public static function isValidRequest( $request ) {
 		$sessionData = $request->getSessionData( UploadBase::SESSION_KEYNAME );
 		return self::isValidSessionKey(
@@ -45,6 +54,9 @@ class UploadFromStash extends UploadBase {
 			$sessionData['mSourceType'] : null;
 	}
 
+	/**
+	 * @param $request WebRequest
+	 */
 	public function initializeFromRequest( &$request ) {
 		$sessionKey = $request->getText( 'wpSessionKey' );
 		$sessionData = $request->getSessionData( UploadBase::SESSION_KEYNAME );
@@ -65,7 +77,6 @@ class UploadFromStash extends UploadBase {
 	protected function verifyFile() {
 		return true;
 	}
-
 
 	/**
 	 * There is no need to stash the image twice

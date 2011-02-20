@@ -12,9 +12,13 @@ class UploadFromUrl extends UploadBase {
 	protected $mAsync, $mUrl;
 	protected $mIgnoreWarnings = true;
 
+	protected $mTempPath;
+
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
 	 * user is allowed, pass on permissions checking to the parent.
+	 *
+	 * @param $user User
 	 */
 	public static function isAllowed( $user ) {
 		if ( !$user->isAllowed( 'upload_by_url' ) )
@@ -56,7 +60,7 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Entry point for SpecialUpload
-	 * @param $request Object: WebRequest object
+	 * @param $request WebRequest object
 	 */
 	public function initializeFromRequest( &$request ) {
 		$desiredDestName = $request->getText( 'wpDestFile' );
@@ -70,7 +74,7 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * @param $request Object: WebRequest object
+	 * @param $request WebRequest object
 	 */
 	public static function isValidRequest( $request ) {
 		global $wgUser;
@@ -214,6 +218,5 @@ class UploadFromUrl extends UploadBase {
 		$job->insert();
 		return $sessionKey;
 	}
-
 
 }
