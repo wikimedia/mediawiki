@@ -56,6 +56,7 @@ class NewParserTest extends MediaWikiTestCase {
 		);
 		
 		$tmpGlobals['wgEnableParserCache'] = false;
+		$tmpGlobals['wgHooks'] = array();
 		$tmpGlobals['wgDeferredUpdateList'] = array();
 		$tmpGlobals['wgMemc'] = &wfGetMainCache();
 		$tmpGlobals['messageMemc'] = &wfGetMessageCacheStorage();
