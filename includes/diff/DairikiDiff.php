@@ -41,9 +41,10 @@ class _DiffOp {
 class _DiffOp_Copy extends _DiffOp {
 	var $type = 'copy';
 
-	function __construct ( $orig, $closing = false ) {
-		if ( !is_array( $closing ) )
-		$closing = $orig;
+	function __construct( $orig, $closing = false ) {
+		if ( !is_array( $closing ) ) {
+			$closing = $orig;
+		}
 		$this->orig = $orig;
 		$this->closing = $closing;
 	}
@@ -61,7 +62,7 @@ class _DiffOp_Copy extends _DiffOp {
 class _DiffOp_Delete extends _DiffOp {
 	var $type = 'delete';
 
-	function __construct ( $lines ) {
+	function __construct( $lines ) {
 		$this->orig = $lines;
 		$this->closing = false;
 	}
@@ -79,7 +80,7 @@ class _DiffOp_Delete extends _DiffOp {
 class _DiffOp_Add extends _DiffOp {
 	var $type = 'add';
 
-	function __construct ( $lines ) {
+	function __construct( $lines ) {
 		$this->closing = $lines;
 		$this->orig = false;
 	}
@@ -97,7 +98,7 @@ class _DiffOp_Add extends _DiffOp {
 class _DiffOp_Change extends _DiffOp {
 	var $type = 'change';
 
-	function __construct ( $orig, $closing ) {
+	function __construct( $orig, $closing ) {
 		$this->orig = $orig;
 		$this->closing = $closing;
 	}
@@ -222,15 +223,17 @@ class _DiffEngine {
 
 			// Skip leading common lines.
 			for ( $skip = 0; $skip < $n_from && $skip < $n_to; $skip++ ) {
-				if ( $from_lines[$skip] !== $to_lines[$skip] )
-				break;
+				if ( $from_lines[$skip] !== $to_lines[$skip] ) {
+					break;
+				}
 				$this->xchanged[$skip] = $this->ychanged[$skip] = false;
 			}
 			// Skip trailing common lines.
 			$xi = $n_from; $yi = $n_to;
 			for ( $endskip = 0; --$xi > $skip && --$yi > $skip; $endskip++ ) {
-				if ( $from_lines[$xi] !== $to_lines[$yi] )
-				break;
+				if ( $from_lines[$xi] !== $to_lines[$yi] ) {
+					break;
+				}
 				$this->xchanged[$xi] = $this->ychanged[$yi] = false;
 			}
 
@@ -241,16 +244,18 @@ class _DiffEngine {
 
 			for ( $yi = $skip; $yi < $n_to - $endskip; $yi++ ) {
 				$line = $to_lines[$yi];
-				if ( ( $this->ychanged[$yi] = empty( $xhash[$this->_line_hash( $line )] ) ) )
-				continue;
+				if ( ( $this->ychanged[$yi] = empty( $xhash[$this->_line_hash( $line )] ) ) ) {
+					continue;
+				}
 				$yhash[$this->_line_hash( $line )] = 1;
 				$this->yv[] = $line;
 				$this->yind[] = $yi;
 			}
 			for ( $xi = $skip; $xi < $n_from - $endskip; $xi++ ) {
 				$line = $from_lines[$xi];
-				if ( ( $this->xchanged[$xi] = empty( $yhash[$this->_line_hash( $line )] ) ) )
-				continue;
+				if ( ( $this->xchanged[$xi] = empty( $yhash[$this->_line_hash( $line )] ) ) ) {
+					continue;
+				}
 				$this->xv[] = $line;
 				$this->xind[] = $xi;
 			}
@@ -272,7 +277,8 @@ class _DiffEngine {
 		}
 	}
 
-	/* Divide the Largest Common Subsequence (LCS) of the sequences
+	/**
+	 * Divide the Largest Common Subsequence (LCS) of the sequences
 	 * [XOFF, XLIM) and [YOFF, YLIM) into NCHUNKS approximately equally
 	 * sized segments.
 	 *
@@ -288,14 +294,14 @@ class _DiffEngine {
 	 * match.  The caller must trim matching lines from the beginning and end
 	 * of the portions it is going to specify.
 	 */
-	function _diag ( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
+	function _diag( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
 		$flip = false;
 
 		if ( $xlim - $xoff > $ylim - $yoff ) {
 			// Things seems faster (I'm not sure I understand why)
 			// when the shortest sequence in X.
 			$flip = true;
-			list ( $xoff, $xlim, $yoff, $ylim ) = array( $yoff, $ylim, $xoff, $xlim );
+			list( $xoff, $xlim, $yoff, $ylim ) = array( $yoff, $ylim, $xoff, $xlim );
 		}
 
 		if ( $flip ) {
@@ -367,7 +373,7 @@ class _DiffEngine {
 		return array( $this->lcs, $seps );
 	}
 
-	function _lcs_pos ( $ypos ) {
+	function _lcs_pos( $ypos ) {
 		$end = $this->lcs;
 		if ( $end == 0 || $ypos > $this->seq[$end] ) {
 			$this->seq[++$this->lcs] = $ypos;
@@ -378,10 +384,11 @@ class _DiffEngine {
 		$beg = 1;
 		while ( $beg < $end ) {
 			$mid = (int)( ( $beg + $end ) / 2 );
-			if ( $ypos > $this->seq[$mid] )
-			$beg = $mid + 1;
-			else
-			$end = $mid;
+			if ( $ypos > $this->seq[$mid] ) {
+				$beg = $mid + 1;
+			} else {
+				$end = $mid;
+			}
 		}
 
 		assert( $ypos != $this->seq[$end] );
@@ -392,7 +399,8 @@ class _DiffEngine {
 		return $end;
 	}
 
-	/* Find LCS of two sequences.
+	/**
+	 * Find LCS of two sequences.
 	 *
 	 * The results are recorded in the vectors $this->{x,y}changed[], by
 	 * storing a 1 in the element for each line that is an insertion
@@ -449,7 +457,8 @@ class _DiffEngine {
 		}
 	}
 
-	/* Adjust inserts/deletes of identical lines to join changes
+	/**
+	 * Adjust inserts/deletes of identical lines to join changes
 	 * as much as possible.
 	 *
 	 * We do something when a run of changed lines include a
@@ -461,7 +470,7 @@ class _DiffEngine {
 	 *
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 */
-	function _shift_boundaries ( $lines, &$changed, $other_changed ) {
+	function _shift_boundaries( $lines, &$changed, $other_changed ) {
 		wfProfileIn( __METHOD__ );
 		$i = 0;
 		$j = 0;
@@ -585,8 +594,7 @@ class _DiffEngine {
  * @private
  * @ingroup DifferenceEngine
  */
-class Diff
-{
+class Diff {
 	var $edits;
 
 	/**
@@ -613,7 +621,7 @@ class Diff
 	 * @return object A Diff object representing the inverse of the
 	 *				  original diff.
 	 */
-	function reverse () {
+	function reverse() {
 		$rev = $this;
 		$rev->edits = array();
 		foreach ( $this->edits as $edit ) {
@@ -627,7 +635,7 @@ class Diff
 	 *
 	 * @return bool True iff two sequences were identical.
 	 */
-	function isEmpty () {
+	function isEmpty() {
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type != 'copy' ) {
 				return false;
@@ -643,7 +651,7 @@ class Diff
 	 *
 	 * @return int The length of the LCS.
 	 */
-	function lcs () {
+	function lcs() {
 		$lcs = 0;
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
@@ -696,7 +704,7 @@ class Diff
 	 *
 	 * This is here only for debugging purposes.
 	 */
-	function _check ( $from_lines, $to_lines ) {
+	function _check( $from_lines, $to_lines ) {
 		wfProfileIn( __METHOD__ );
 		if ( serialize( $from_lines ) != serialize( $this->orig() ) ) {
 			trigger_error( "Reconstructed original doesn't match", E_USER_ERROR );
@@ -717,7 +725,7 @@ class Diff
 		$prevtype = 'none';
 		foreach ( $this->edits as $edit ) {
 			if ( $prevtype == $edit->type ) {
-				trigger_error( "Edit sequence is non-optimal", E_USER_ERROR );
+				trigger_error( 'Edit sequence is non-optimal', E_USER_ERROR );
 			}
 			$prevtype = $edit->type;
 		}
@@ -733,8 +741,7 @@ class Diff
  * @private
  * @ingroup DifferenceEngine
  */
-class MappedDiff extends Diff
-{
+class MappedDiff extends Diff {
 	/**
 	 * Constructor.
 	 *
@@ -835,8 +842,7 @@ class DiffFormatter {
 				if ( is_array( $block ) ) {
 					if ( sizeof( $edit->orig ) <= $nlead + $ntrail ) {
 						$block[] = $edit;
-					}
-					else {
+					} else {
 						if ( $ntrail ) {
 							$context = array_slice( $edit->orig, 0, $ntrail );
 							$block[] = new _DiffOp_Copy( $context );
@@ -849,7 +855,7 @@ class DiffFormatter {
 				}
 				$context = $edit->orig;
 			} else {
-				if ( ! is_array( $block ) ) {
+				if ( !is_array( $block ) ) {
 					$context = array_slice( $context, sizeof( $context ) - $nlead );
 					$x0 = $xi - sizeof( $context );
 					$y0 = $yi - sizeof( $context );
@@ -912,10 +918,10 @@ class DiffFormatter {
 
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
 		if ( $xlen > 1 ) {
-			$xbeg .= "," . ( $xbeg + $xlen - 1 );
+			$xbeg .= ',' . ( $xbeg + $xlen - 1 );
 		}
 		if ( $ylen > 1 ) {
-			$ybeg .= "," . ( $ybeg + $ylen - 1 );
+			$ybeg .= ',' . ( $ybeg + $ylen - 1 );
 		}
 
 		return $xbeg . ( $xlen ? ( $ylen ? 'c' : 'd' ) : 'a' ) . $ybeg;
@@ -956,7 +962,6 @@ class DiffFormatter {
  * A formatter that outputs unified diffs
  * @ingroup DifferenceEngine
  */
-
 class UnifiedDiffFormatter extends DiffFormatter {
 	var $leading_context_lines = 2;
 	var $trailing_context_lines = 2;
@@ -990,29 +995,29 @@ class ArrayDiffFormatter extends DiffFormatter {
 				case 'add':
 					foreach ( $edit->closing as $l ) {
 						$retval[] = array(
-								'action' => 'add',
-								'new' => $l,
-								'newline' => $newline++
+							'action' => 'add',
+							'new' => $l,
+							'newline' => $newline++
 						);
 					}
 					break;
 				case 'delete':
 					foreach ( $edit->orig as $l ) {
 						$retval[] = array(
-								'action' => 'delete',
-								'old' => $l,
-								'oldline' => $oldline++,
+							'action' => 'delete',
+							'old' => $l,
+							'oldline' => $oldline++,
 						);
 					}
 					break;
 				case 'change':
 					foreach ( $edit->orig as $i => $l ) {
 						$retval[] = array(
-								'action' => 'change',
-								'old' => $l,
-								'new' => @$edit->closing[$i],
-								'oldline' => $oldline++,
-								'newline' => $newline++,
+							'action' => 'change',
+							'old' => $l,
+							'new' => @$edit->closing[$i],
+							'oldline' => $oldline++,
+							'newline' => $newline++,
 						);
 					}
 					break;
@@ -1026,8 +1031,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 }
 
 /**
- *	Additions by Axel Boldt follow, partly taken from diff.php, phpwiki-1.3.3
- *
+ * Additions by Axel Boldt follow, partly taken from diff.php, phpwiki-1.3.3
  */
 
 define( 'NBSP', '&#160;' ); // iso-8859-x non-breaking space.
@@ -1038,36 +1042,36 @@ define( 'NBSP', '&#160;' ); // iso-8859-x non-breaking space.
  * @ingroup DifferenceEngine
  */
 class _HWLDF_WordAccumulator {
-	function __construct () {
+	function __construct() {
 		$this->_lines = array();
 		$this->_line = '';
 		$this->_group = '';
 		$this->_tag = '';
 	}
 
-	function _flushGroup ( $new_tag ) {
+	function _flushGroup( $new_tag ) {
 		if ( $this->_group !== '' ) {
 			if ( $this->_tag == 'ins' ) {
 				$this->_line .= '<ins class="diffchange diffchange-inline">' .
-						htmlspecialchars ( $this->_group ) . '</ins>';
+						htmlspecialchars( $this->_group ) . '</ins>';
 			} elseif ( $this->_tag == 'del' ) {
 				$this->_line .= '<del class="diffchange diffchange-inline">' .
-						htmlspecialchars ( $this->_group ) . '</del>';
+						htmlspecialchars( $this->_group ) . '</del>';
 			} else {
-				$this->_line .= htmlspecialchars ( $this->_group );
+				$this->_line .= htmlspecialchars( $this->_group );
 			}
 		}
 		$this->_group = '';
 		$this->_tag = $new_tag;
 	}
 
-	function _flushLine ( $new_tag ) {
+	function _flushLine( $new_tag ) {
 		$this->_flushGroup( $new_tag );
 		if ( $this->_line != '' ) {
-			array_push ( $this->_lines, $this->_line );
+			array_push( $this->_lines, $this->_line );
 		} else {
 			# make empty lines visible by inserting an NBSP
-			array_push ( $this->_lines, NBSP );
+			array_push( $this->_lines, NBSP );
 		}
 		$this->_line = '';
 	}
@@ -1108,8 +1112,8 @@ class WordLevelDiff extends MappedDiff {
 	function __construct ( $orig_lines, $closing_lines ) {
 		wfProfileIn( __METHOD__ );
 
-		list ( $orig_words, $orig_stripped ) = $this->_split( $orig_lines );
-		list ( $closing_words, $closing_stripped ) = $this->_split( $closing_lines );
+		list( $orig_words, $orig_stripped ) = $this->_split( $orig_lines );
+		list( $closing_words, $closing_stripped ) = $this->_split( $closing_lines );
 
 		parent::__construct( $orig_words, $closing_words,
 		$orig_stripped, $closing_stripped );
@@ -1148,7 +1152,7 @@ class WordLevelDiff extends MappedDiff {
 		return array( $words, $stripped );
 	}
 
-	function orig () {
+	function orig() {
 		wfProfileIn( __METHOD__ );
 		$orig = new _HWLDF_WordAccumulator;
 
@@ -1164,7 +1168,7 @@ class WordLevelDiff extends MappedDiff {
 		return $lines;
 	}
 
-	function closing () {
+	function closing() {
 		wfProfileIn( __METHOD__ );
 		$closing = new _HWLDF_WordAccumulator;
 
@@ -1247,14 +1251,14 @@ class TableDiffFormatter extends DiffFormatter {
 		foreach ( $lines as $line ) {
 			echo '<tr>' . $this->emptyLine() .
 			$this->addedLine( '<ins class="diffchange">' .
-			htmlspecialchars ( $line ) . '</ins>' ) . "</tr>\n";
+			htmlspecialchars( $line ) . '</ins>' ) . "</tr>\n";
 		}
 	}
 
 	function _deleted( $lines ) {
 		foreach ( $lines as $line ) {
 			echo '<tr>' . $this->deletedLine( '<del class="diffchange">' .
-			htmlspecialchars ( $line ) . '</del>' ) .
+			htmlspecialchars( $line ) . '</del>' ) .
 			$this->emptyLine() . "</tr>\n";
 		}
 	}
@@ -1262,8 +1266,8 @@ class TableDiffFormatter extends DiffFormatter {
 	function _context( $lines ) {
 		foreach ( $lines as $line ) {
 			echo '<tr>' .
-			$this->contextLine( htmlspecialchars ( $line ) ) .
-			$this->contextLine( htmlspecialchars ( $line ) ) . "</tr>\n";
+			$this->contextLine( htmlspecialchars( $line ) ) .
+			$this->contextLine( htmlspecialchars( $line ) ) . "</tr>\n";
 		}
 	}
 
