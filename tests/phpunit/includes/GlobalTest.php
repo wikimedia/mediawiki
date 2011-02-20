@@ -492,10 +492,11 @@ class GlobalTest extends MediaWikiTestCase {
 	
 	function testDebugFunctionTest() {
 	
-		global $wgDebugLogFile, $wgOut, $wgShowDebug;
+		global $wgDebugLogFile, $wgOut, $wgShowDebug, $wgDebugTimestamps;
 		
 		$old_log_file = $wgDebugLogFile;
 		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
+		$wgDebugTimestamps = false; # FIXME: this setting should be tested
 		
 		
 		
