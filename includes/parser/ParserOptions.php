@@ -41,6 +41,7 @@ class ParserOptions {
 	var $mNumberHeadings;            # Automatically number headings
 	var $mMath;                      # User math preference (as integer)
 	var $mThumbSize;                 # Thumb size preferred by the user.
+	private $mStubThreshold;         # Maximum article size of an article to be marked as "stub"
 	var $mUserLang;                  # Language code of the User language.
 
 	/**
@@ -80,6 +81,8 @@ class ParserOptions {
 												  return $this->mMath; }
 	function getThumbSize()                     { $this->optionUsed('thumbsize');
 												  return $this->mThumbSize; }
+	function getStubThreshold()                 { $this->optionUsed('stubthreshold');
+												  return $this->mStubThreshold; }
 
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
@@ -145,6 +148,7 @@ class ParserOptions {
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  { return wfSetVar( $this->mUserLang, $x ); }
 	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
+	function setStubThreshold( $x )             { return wfSetVar( $this->mStubThreshold, $x ); }
 	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
 
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
@@ -210,6 +214,7 @@ class ParserOptions {
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mMath = $user->getOption( 'math' );
 		$this->mThumbSize = $user->getOption( 'thumbsize' );
+		$this->mStubThreshold = $user->getStubThreshold();
 		$this->mUserLang = $wgLang->getCode();
 
 		wfProfileOut( __METHOD__ );
@@ -276,9 +281,8 @@ class ParserOptions {
 		// Space assigned for the stubthreshold but unused
 		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.
-		// The conditional is here to avoid a confusing 0
-		if ( true || in_array( 'stubthreshold', $forOptions ) )
-			$confstr .= '!0' ;
+		if ( in_array( 'stubthreshold', $forOptions ) )
+			$confstr .= '!' . $this->mStubThreshold;
 		else
 			$confstr .= '!*' ;
 
