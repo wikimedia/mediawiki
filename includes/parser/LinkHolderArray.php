@@ -104,16 +104,6 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * Get the stub threshold
-	 */
-	function getStubThreshold() {
-		if ( !isset( $this->stubThreshold ) ) {
-			$this->stubThreshold = $this->parent->getUser()->getStubThreshold();
-		}
-		return $this->stubThreshold;
-	}
-
-	/**
 	 * FIXME: update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
@@ -148,7 +138,7 @@ class LinkHolderArray {
 		wfProfileIn( __METHOD__.'-check' );
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
-		$threshold = $this->getStubThreshold();
+		$threshold = $this->parent->getOptions()->getStubThreshold();
 
 		# Sort by namespace
 		ksort( $this->internals );
@@ -305,7 +295,7 @@ class LinkHolderArray {
 		$output = $this->parent->getOutput();
 		$linkCache = LinkCache::singleton();
 		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
-		$threshold = $this->getStubThreshold();
+		$threshold = $this->parent->getOptions()->getStubThreshold();
 		$titlesToBeConverted = '';
 		$titlesAttrs = array();
 
