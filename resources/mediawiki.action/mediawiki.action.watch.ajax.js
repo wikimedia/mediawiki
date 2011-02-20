@@ -113,7 +113,11 @@ $( document ).ready( function() {
 
 			$link.data( 'action', otheraction );
 			wgAjaxWatch.setLinkText( $link, otheraction );
-			$link.attr( 'href', $link.attr( 'href' ).replace( '&action=' + action , '&action=' + otheraction ) );
+			$link.attr( 'href',
+				mw.config.get( 'wgScript' )
+				+ '?title=' + mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
+				+ '&action=' + otheraction
+			);
 			if( $link.closest( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.closest( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
