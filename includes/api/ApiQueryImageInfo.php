@@ -500,7 +500,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function getPossibleErrors() {
 		$p = $this->getModulePrefix();
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'iiurlwidth', 'info' => 'iiurlheight cannot be used without iiurlwidth' ),
+			array( 'code' => 'iiurlwidth', 'info' => "{$p}urlheight cannot be used without {$p}urlwidth" ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),
 			array( 'code' => 'urlparam_no_width', 'info' => "{$p}urlparam requires {$p}urlwidth" ),
 			array( 'code' => 'urlparam_urlwidth_mismatch', 'info' => "The width set in {$p}urlparm doesnt't " .

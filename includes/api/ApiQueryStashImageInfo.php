@@ -137,12 +137,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		return 'Returns image information for stashed images';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'siiurlwidth', 'info' => 'siiurlheight cannot be used without iiurlwidth' ),
-		) );
-	}
-
 	protected function getExamples() {
 		return array(
 			'api.php?action=query&prop=stashimageinfo&siisessionkey=124sd34rsdf567',
