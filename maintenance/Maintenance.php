@@ -130,7 +130,7 @@ abstract class Maintenance {
 		if( count( $bt ) !== 2 ) {
 			return false;
 		}
-		return $bt[1]['function'] == 'require_once' &&
+		return ( $bt[1]['function'] == 'require_once' || $bt[1]['function'] == 'require' ) &&
 			$bt[0]['class'] == 'Maintenance' &&
 			$bt[0]['function'] == 'shouldExecute';
 	}
