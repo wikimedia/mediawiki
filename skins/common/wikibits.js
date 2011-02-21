@@ -332,15 +332,17 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 };
 
 window.getInnerText = function( el ) {
-	if ( el.getAttribute( 'data-sort-value' ) !== null ) {
-		return el.getAttribute( 'data-sort-value' );
-	}
-	
 	if ( typeof el == 'string' ) {
 		return el;
 	}
 	if ( typeof el == 'undefined' ) {
 		return el;
+	}
+	// Custom sort value through 'data-sort-value' attribute
+	// (no need to prepend hidden text to change sort value)
+	if ( el.nodeType && el.getAttribute( 'data-sort-value' ) !== null ) {
+		// Make sure it's a valid DOM element (.nodeType) and that the attribute is set (!null)
+		return el.getAttribute( 'data-sort-value' );
 	}
 	if ( el.textContent ) {
 		return el.textContent; // not needed but it is faster
