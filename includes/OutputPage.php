@@ -1182,7 +1182,7 @@ class OutputPage {
 	 *
 	 * @param $options either the ParserOption to use or null to only get the
 	 *                 current ParserOption object
-	 * @return current ParserOption object
+	 * @return ParserOptions object
 	 */
 	public function parserOptions( $options = null ) {
 		if ( !$this->mParserOptions ) {
@@ -2382,6 +2382,8 @@ class OutputPage {
 
 	/**
 	 * Get a ResourceLoader object associated with this OutputPage
+	 *
+	 * @return ResourceLoader
 	 */
 	public function getResourceLoader() {
 		if ( is_null( $this->mResourceLoader ) ) {
