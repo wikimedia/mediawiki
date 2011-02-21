@@ -28,12 +28,5 @@ dependencies.
 EOF;
 }
 
-global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages, $wgMemc;
-$wgMainCacheType = CACHE_NONE;
-$wgMessageCacheType = CACHE_NONE;
-$wgParserCacheType = CACHE_NONE;
-$wgUseDatabaseMessages = false; # Set for future resets
-$wgMemc = new FakeMemCachedClient;
-
 /** @todo Check if this is really needed */
 MessageCache::destroyInstance();
