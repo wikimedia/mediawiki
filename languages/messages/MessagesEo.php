@@ -580,7 +580,7 @@ $1',
 'toc'                     => 'Enhavo',
 'showtoc'                 => 'montri',
 'hidetoc'                 => 'kaŝi',
-'collapsible-collapse'    => 'maletendi',
+'collapsible-collapse'    => 'kaŝi',
 'collapsible-expand'      => 'etendi',
 'thisisdeleted'           => 'Vidi aŭ restarigi $1?',
 'viewdeleted'             => 'Ĉu rigardi $1?',
@@ -948,6 +948,7 @@ Se ankoraŭ ne funkcias, provu [[Special:UserLogout|elsaluti]] kaj reensaluti.",
 'token_suffix_mismatch'            => "'''Via redakto estis malpermesita ĉar via klienta fuŝis la interpunkcio en la redakto-signo.
 La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.'''",
+'edit_form_incomplete'             => "'''Kelkaj partoj de la redaktada formo ne atingis la servilon; rekontrolu ke via redakto estas ĝusta kaj reprovu.'''",
 'editing'                          => 'Redaktante $1',
 'editingsection'                   => 'Redaktante $1 (sekcion)',
 'editingcomment'                   => 'Redaktante $1 (nova sekcio)',
@@ -3111,6 +3112,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsareainformation'          => 'Nomo de GPS areo',
 'exif-gpsdatestamp'                => 'GPS dato',
 'exif-gpsdifferential'             => 'GPS diferenca korektado',
+'exif-objectname'                  => 'Mallonga titolo',
 
 # EXIF attributes
 'exif-compression-1' => 'Nedensigita',

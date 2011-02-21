@@ -679,9 +679,31 @@ zonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns
 '''lwa wiki luno luzzemu okugootaana olwa data okubula.'''<br /> 
 Kikwetaagisa okuddamu by'okoze. <br />
 Ekyo bwe kitagonjoola ebizibu sooka [[Special:UserLogout|oveemu]] mu wiki oddemu ate okugiyingira.",
+'session_fail_preview_html'        => "'''Tukwetondera! Tekisobose okukola ku nkyukakyuka z'okozewo kubanga data ekwata ku lutuula lwo evuddewo.'''<br />
+<br />
+''{{SITENAME}} esobozesa abantu okukola ku buwandike bwa yo obw'ennono obwa HTML.''<br />
+''Olw'ensonga eyo tukisizza okulagako kw'ebigikyusidwako nga tugeza okwetaasa''<br />
+''abakola enkyukakyuka ez'ekiyaaye nga bayitira mu JavaScript.''<br />
+<br />
+'''Bw'oba nga ddala ogenderera okukola enkyukakyuka wano mu bwesimbu, ddamu ogezeko.'''<br />
+Ekyo bwe kitakola, sooka [[Special:UserLogout|oveemu]] mu wiki oryoke oddemu<br />
+okugiyingira ogezeeko n'ate okukola enkyukakyuka zo.",
+'token_suffix_mismatch'            => "'''Enkyukakyuka zo zigaanidwa olw'okuba nti puloguramu gy'okozesa etabuddetabudde'''<br />
+'''obubonero obumenya mu bubaka obukakasa obugenderevu bw'omulimu ogwo.'''<br />
+Okukyusakyusa kugaanidwa ebigambo ebiri ku lupapula lw'obadde okyusamu bireme nabyo okujjamu entabukatabuka.<br />
+Kino kijjawo oluusi bw'obanga okozesa sisitemu ekusobozesa okulambula yintaneti ebikufaako ne bitayolesebwa<br /> abalala abagiriko, sisitemu eyo nga erimu ebitaatereera.",
+'edit_form_incomplete'             => "'''Ebitundu ebimu ku by'okoze tebituuse ku kiwereza kyaffe; sooka okebere okukakase'''<br />
+'''nti by'owandise biri nga bw'ogenderedde oryoke oddeemu okugeza okubisindika.'''",
 'editing'                          => 'Kati okyusa $1',
 'editingsection'                   => 'Okyusa $1 (kitundu)',
 'editingcomment'                   => 'Okyusa $1 (kitundu kipya)',
+'editconflict'                     => 'Ebikyusidwamu bireesewo okusobagana: $1',
+'explainconflict'                  => "Waliwo omulala akyusizza mu lupapula luno nga okyalukolako.<br />
+Ekitundu eky'ebiwandike ekisooka wano kikulaga ebigambo ebiruliko kakano.<br />
+By'owandise byo biri mu kitundu eky'ebiwandike ekiddako.<br />
+Ebigambo ebibyo on'obigatta mu ebyo ebiriwo ku lupapula kakano.<br />
+Ebinaaba birabika mu kitundu eky'ebiwandike ekisooka w'on'onyigira ku<br />
+\"{{int:savearticle}}\" '''bye byokka''' ebij'okukazibwa.",
 'yourtext'                         => 'Ebigambo ebibyo',
 'copyrightwarning'                 => "Genderera nti buli kyowandika muno mu {{SITENAME}} kibalibwa ng'ekifugibwa $2 (okuyiga ebisingawo, laba $1).
 Obanga tewetegese okulaba by'owandise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandika muno.<br />

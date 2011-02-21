@@ -1061,7 +1061,7 @@ N\'oc\'h ket aotreet da vont outi.',
 'revmove-submit'               => "Dilec'hiañ an adweladennoù davet ar bajenn diuzet",
 'revisionmoveselectedversions' => "Dilec'hiañ an adweladennoù diuzet",
 'revmove-reasonfield'          => 'Abeg :',
-'revmove-titlefield'           => 'Pajenn voned :',
+'revmove-titlefield'           => 'Pajenn dal :',
 'revmove-badparam-title'       => 'Arventennoù fall',
 'revmove-badparam'             => "Direizh pe re zister eo arventennoù ho reked.
 Distroit d'ar bajenn a-raok ha klaskit en-dro.",

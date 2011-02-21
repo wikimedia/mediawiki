@@ -298,8 +298,8 @@ $messages = array(
 'newwindow'     => '(in nuuj venster)',
 'cancel'        => 'Aafbraeke',
 'moredotdotdot' => 'Miè...',
-'mypage'        => 'Mien gebroekerspazjena',
-'mytalk'        => 'Mien euverlèkpazjena',
+'mypage'        => 'Mien gebroekerspagina',
+'mytalk'        => 'Mien euverlèkpagina',
 'anontalk'      => 'Euverlèk veur dit IP adres',
 'navigation'    => 'Navigatie',
 'and'           => '&#32;en',
@@ -308,8 +308,8 @@ $messages = array(
 'qbfind'         => 'Zeuke',
 'qbbrowse'       => 'Bladere',
 'qbedit'         => 'Bewirke',
-'qbpageoptions'  => 'Pazjena-opties',
-'qbpageinfo'     => 'Pazjena-informatie',
+'qbpageoptions'  => 'Pagina-opties',
+'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => 'mien opties',
 'qbspecialpages' => "Speciaal pagina's",
 'faq'            => 'FAQ (väölgesjtèlde vraoge)',
@@ -328,7 +328,7 @@ $messages = array(
 'vector-view-history'            => 'Bekiek de gesjiedenis',
 'vector-view-view'               => 'Laes',
 'vector-view-viewsource'         => 'Bekiek bróntèks',
-'actions'                        => 'Henjeling',
+'actions'                        => 'Hanjeling',
 'namespaces'                     => 'Naamruumdes',
 'variants'                       => 'Anger vorme',
 
@@ -359,8 +359,8 @@ $messages = array(
 'protectthispage'   => 'Beveilige',
 'unprotect'         => 'vriegaeve',
 'unprotectthispage' => 'Besjerming opheffe',
-'newpage'           => 'Nuuj pazjena',
-'talkpage'          => 'euverlèkpazjena',
+'newpage'           => 'Nuuj pagina',
+'talkpage'          => 'euverlèkpagina',
 'talkpagelinktext'  => 'Euverlègk',
 'specialpage'       => 'Speciaal pagina',
 'personaltools'     => 'Persuunlike hulpmiddele',
@@ -369,28 +369,28 @@ $messages = array(
 'talk'              => 'Euverlègk',
 'views'             => 'Weergave',
 'toolbox'           => 'Gereidsjapskis',
-'userpage'          => 'gebroekerspazjena',
-'projectpage'       => 'Projekpazjena tuine',
+'userpage'          => 'gebroekerspagina',
+'projectpage'       => 'Projekpagina tuine',
 'imagepage'         => 'Besjtandjspagina tuine',
-'mediawikipage'     => 'Berichpazjena tuine',
-'templatepage'      => 'Sjabloonpazjena tuine',
-'viewhelppage'      => 'Hulppazjena tuine',
-'categorypage'      => 'Categoriepazjena tuine',
+'mediawikipage'     => 'Berichpagina tuine',
+'templatepage'      => 'Sjabloonpagina tuine',
+'viewhelppage'      => 'Hulppagina tuine',
+'categorypage'      => 'Categoriepagina tuine',
 'viewtalkpage'      => 'Euverlèk tuine',
 'otherlanguages'    => 'Anger tale',
 'redirectedfrom'    => '(Doorverweze van $1)',
-'redirectpagesub'   => 'Doorverwiespazjena',
+'redirectpagesub'   => 'Doorverwiespagina',
 'lastmodifiedat'    => "Dees pagina is 't lèts verangerd op $2, $1.",
-'viewcount'         => 'Dees pazjena is {{PLURAL:$1|1 kier|$1 kier}} bekeke.',
-'protectedpage'     => 'Beveiligde pazjena',
+'viewcount'         => 'Dees pagina is {{PLURAL:$1|1 kier|$1 kier}} bekeke.',
+'protectedpage'     => 'Beveiligde pagina',
 'jumpto'            => 'Gank nao:',
 'jumptonavigation'  => 'navigatie',
 'jumptosearch'      => 'zeuke',
-'view-pool-error'   => "Ós excuses, de servers zeen noe euverbelas.
-Te väöl gebroekers perberen óm dees pazjena te bekieke.
-Wach estebleef nag efkes veudet g'r óppernuuj toegank verzeuk te kriege toet dees pazjena.
+'view-pool-error'   => 'Perdóng, de servers zeen noe euverbelas.
+Te väöl gebroekers perberen óm dees pagina te bekieke.
+Wach estebleef effe veurdets doe opnuuj toegank perbeers te kriege tót dees pagina.
 
-$1",
+$1',
 'pool-timeout'      => "Timeout-wachte veur 't sloete",
 'pool-queuefull'    => 'De wachrie van de pool is vól',
 'pool-errorunknown' => 'Ónbekènde fout',
@@ -452,9 +452,9 @@ $1",
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',
 'nstab-user'      => 'Gebroeker',
-'nstab-media'     => 'Mediapazjena',
+'nstab-media'     => 'Mediapagina',
 'nstab-special'   => 'Speciaal pagina',
-'nstab-project'   => 'Projekpazjena',
+'nstab-project'   => 'Projekpagina',
 'nstab-image'     => 'Besjtand',
 'nstab-mediawiki' => 'Berich',
 'nstab-template'  => 'Sjabloon',
@@ -466,10 +466,10 @@ $1",
 'nosuchactiontext'  => "De opdrach in de URL is ongeldig.
 Mäögelik höbs te 'n typefout gemaak in de URL, of 'n verkierde verwiezing gevolg.
 't Kan ouch wieze op 'n fout in de software van {{SITENAME}}.",
-'nosuchspecialpage' => "D'r besjteit gein speciaal pazjena mit deze naam",
-'nospecialpagetext' => "<strong>Doe höbs 'n neet bestaonde speciaal pazjena aongevraog.</strong>
+'nosuchspecialpage' => "D'r besjteit gein speciaal pagina mit deze naam",
+'nospecialpagetext' => "<strong>Doe höbs 'n neet bestaonde speciaal pagina aongevraog.</strong>
 
-'n Lies mit besjtaonde speciaal pazjena's sjteit op [[Special:SpecialPages|speciaal pazjena’s]].",
+'n Lies mit besjtaonde speciaal pagina's sjteit op [[Special:SpecialPages|speciaal pagina’s]].",
 
 # General errors
 'error'                => 'Fout',
@@ -485,7 +485,7 @@ De lèste opgevraogde zeukactie waor:
 "$1"
 vanoet de functie "$2".
 Database brach fout "$3" nao veure: "$4"',
-'laggedslavemode'      => 'Waorsjuwing: De pazjena kin veraajerd zeen.',
+'laggedslavemode'      => 'Waarsjoewing: de pagina kin verauwerd zien.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
 'readonlytext'         => 'De database van {{SITENAME}} is geblokkeerd veur bewirkinge, waorsjienelik veur besjtandsongerhaud. Nao aafloup waert de functionaliteit weer hersteld.
@@ -583,7 +583,7 @@ Vergaet neet dien [[Special:Preferences|veurkäöre veur {{SITENAME}}]] aan te p
 'nocookieslogin'             => "{{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Doe accepteers gén cookies. Sjakel deze optie a.u.b. in en perbeer 't oppernuuj.",
 'noname'                     => "De mos 'n gebroekersnaam opgaeve.",
 'loginsuccesstitle'          => 'Aanmèlde geluk.',
-'loginsuccess'               => 'De bis noe es "$1" aangemèld bie {{SITENAME}}.',
+'loginsuccess'               => 'Doe bis noe es "$1" aangemeld bie {{SITENAME}}.',
 'nosuchuser'                 => 'D\'r besjteit geine gebroeker mit de naam "$1".
 Die seen huidlettegevullig
 Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n [[Special:UserLogin/signup|nuuj]] gebroekersprofiel aan te make.',

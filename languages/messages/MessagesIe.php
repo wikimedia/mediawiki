@@ -385,7 +385,9 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'tooltip-n-recentchanges' => 'Li liste de nov changes vice wiki',
 'tooltip-n-randompage'    => 'Cargar un págine sporadic',
 'tooltip-n-help'          => 'Li loco por constatar auxilie',
-'tooltip-t-specialpages'  => 'Liste de omni special págines',
+'tooltip-t-whatlinkshere' => 'Liste de omni págines que liga quel por ci',
+'tooltip-t-upload'        => 'Cargar files',
+'tooltip-t-specialpages'  => 'Liste de omni págines special',
 
 # Special:NewFiles
 'newimages' => 'Galerie de nov images',

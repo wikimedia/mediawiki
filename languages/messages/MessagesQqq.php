@@ -2524,7 +2524,9 @@ This message was something like "unlock move protection" in the past.',
 
 {{Identical|View deleted pages}}',
 'undeletepage'               => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
-'viewdeletedpage'            => '{{Identical|View deleted pages}}',
+'viewdeletedpage'            => 'Title of the [[Special:Undelete]].
+
+{{Identical|View deleted pages}}',
 'undeleteextrahelp'          => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
 'undelete-revision'          => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
 
