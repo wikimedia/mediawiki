@@ -300,34 +300,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Caption convert, base on preg_replace_callback.
-	 *
-	 * To convert text in "title" or "alt", like '<img alt="text" ... '
-	 * or '<span title="text" ... '
-	 *
-	 * @return String like ' alt="yyyy"' or ' title="yyyy"'
-	 */
-	protected function captionConvert( $matches ) {
-		// TODO: cache the preferred variant in every autoConvert() process,
-		// this helps improve performance in a way.
-		$toVariant = $this->getPreferredVariant();
-		$title = $matches[1];
-		$text = $matches[2];
-		
-		// we convert captions except URL
-		if ( !strpos( $text, '://' ) ) {
-			$text = $this->translate( $text, $toVariant );
-		}
-		
-		// remove HTML tags to prevent disrupting the layout
-		$text = preg_replace( '/<[^>]+>/', '', $text );
-		// escape HTML special chars to prevent disrupting the layout
-		$text = htmlspecialchars( $text );
-		
-		return " {$title}=\"{$text}\"";
-	}
-
-	/**
 	 * Dictionary-based conversion.
 	 * This function would not parse the conversion rules.
 	 * If you want to parse rules, try to use convert() or
@@ -374,41 +346,75 @@ class LanguageConverter {
 
 		$reg = '/' . $codefix . $scriptfix . $prefix .
 			'<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
+		$startPos = 0;
+		$sourceBlob = '';
+		$literalBlob = '';
 
-		$matches = preg_split( $reg, $text, - 1, PREG_SPLIT_OFFSET_CAPTURE );
+		// Guard against delimiter nulls in the input
+		$text = str_replace( "\000", '', $text );
 
-		$m = array_shift( $matches );
+		while ( $startPos < strlen( $text ) ) {
+			if ( preg_match( $reg, $text, $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
+				$elementPos = $markupMatches[0][1];
+				$element = $markupMatches[0][0];
+			} else {
+				$elementPos = strlen( $text );
+				$element = '';
+			}
 
-		$ret = $this->translate( $m[0], $toVariant );
-		$mstart = $m[1] + strlen( $m[0] );
+			// Queue the part before the markup for translation in a batch
+			$sourceBlob .= substr( $text, $startPos, $elementPos - $startPos ) . "\000";
 
-		// enable convertsion of '<img alt="xxxx" ... '
-		// or '<span title="xxxx" ... '
-		$captionpattern	 = '/\s(title|alt)\s*=\s*"([\s\S]*?)"/';
+			// Advance to the next position
+			$startPos = $elementPos + strlen( $element );		
 
-		$trtext = '';
-		$trtextmark = "\0";
-		$notrtext = array();
-		foreach ( $matches as $m ) {
-			$mark = substr( $text, $mstart, $m[1] - $mstart );
-			$mark = preg_replace_callback( $captionpattern,
-										   array( &$this, 'captionConvert' ),
-										   $mark );
-			// Let's convert the trtext only once,
-			// it would give us more performance improvement
-			$notrtext[] = $mark;
-			$trtext .= $m[0] . $trtextmark;
-			$mstart = $m[1] + strlen( $m[0] );
+			// Translate any alt or title attributes inside the matched element
+			if ( $element !== '' && preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element, 
+				$elementMatches  ) ) 
+			{
+				$attrs = Sanitizer::decodeTagAttributes( $elementMatches[2] );
+				$changed = false;
+				foreach ( array( 'title', 'alt' ) as $attrName ) {
+					if ( !isset( $attrs[$attrName] ) ) {
+						continue;
+					}
+					$attr = $attrs[$attrName];
+					// Don't convert URLs
+					if ( !strpos( $attr, '://' ) ) {
+						$attr = $this->translate( $attr, $toVariant );
+					}
+					
+					// Remove HTML tags to avoid disrupting the layout
+					$attr = preg_replace( '/<[^>]+>/', '', $attr );
+					if ( $attr !== $attrs[$attrName] ) {
+						$attrs[$attrName] = $attr;
+						$changed = true;
+					}
+				}
+				if ( $changed ) {
+					$element = $elementMatches[1] . Html::expandAttributes( $attrs ) . 
+						$elementMatches[3];
+				}
+			}
+			$literalBlob .= $element . "\000";
 		}
-		$notrtext[] = '';
-		$trtext = $this->translate( $trtext, $toVariant );
-		$trtext = StringUtils::explode( $trtextmark, $trtext );
-		foreach ( $trtext as $t ) {
-			$ret .= array_shift( $notrtext );
-			$ret .= $t;
+
+		// Do the main translation batch
+		$translatedBlob = $this->translate( $sourceBlob, $toVariant );
+
+		// Put the output back together
+		$translatedIter = StringUtils::explode( "\000", $translatedBlob );
+		$literalIter = StringUtils::explode( "\000", $literalBlob );
+		$output = '';
+		while ( $translatedIter->valid() && $literalIter->valid() ) {
+			$output .= $translatedIter->current();
+			$output .= $literalIter->current();
+			$translatedIter->next();
+			$literalIter->next();
 		}
+
 		wfProfileOut( __METHOD__ );
-		return $ret;
+		return $output;
 	}
 
 	/**
