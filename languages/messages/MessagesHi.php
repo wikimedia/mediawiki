@@ -59,7 +59,7 @@ $digitTransformTable = array(
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
 );
-$linkTrail = "/^([a-z]+)(.*)\$/sD";
+$linkTrail = "/^([a-z]+)(.*)$/sD";
 
 $messages = array(
 # User preference toggles

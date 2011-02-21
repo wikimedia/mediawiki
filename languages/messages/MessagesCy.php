@@ -113,7 +113,7 @@ $magicWords = array(
 	'pagesize'              => array( '1', 'MAINTTUD', 'PAGESIZE' ),
 );
 
-$linkTrail = "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)\$/sDu";
+$linkTrail = "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles

@@ -53,7 +53,7 @@ $dateFormats = array(
 	'ymd both' => 'H:i, Y M j',
 );
 
-$linkTrail = "/^([a-z]+)(.*)\$/sD";
+$linkTrail = "/^([a-z]+)(.*)$/sD";
 
 $messages = array(
 # User preference toggles

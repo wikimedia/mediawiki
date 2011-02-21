@@ -286,7 +286,7 @@ $dateFormats = array(
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
-$linkTrail = "/^([a-zàâçéèêîôû]+)(.*)\$/sDu";
+$linkTrail = "/^([a-zàâçéèêîôû]+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles
