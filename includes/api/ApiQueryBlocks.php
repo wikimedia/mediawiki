@@ -36,7 +36,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
-	var $users;
+	/**
+	 * @var Array
+	 */
+	protected $usernames;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'bk' );
@@ -53,7 +56,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$prop = array_flip( $params['prop'] );
 		$fld_id = isset( $prop['id'] );
 		$fld_user = isset( $prop['user'] );
+		$fld_userid = isset( $prop['userid'] );
 		$fld_by = isset( $prop['by'] );
+		$fld_byid = isset( $prop['byid'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_expiry = isset( $prop['expiry'] );
 		$fld_reason = isset( $prop['reason'] );
@@ -68,11 +73,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 		if ( $fld_id ) {
 			$this->addFields( 'ipb_id' );
 		}
-		if ( $fld_user ) {
+		if ( $fld_user || $fld_userid ) {
 			$this->addFields( array( 'ipb_address', 'ipb_user' ) );
 		}
 		if ( $fld_by ) {
 			$this->addFields( 'ipb_by_text' );
+		}
+		if ( $fld_byid ) {
+			$this->addFields( 'ipb_by' );
 		}
 		if ( $fld_timestamp ) {
 			$this->addFields( 'ipb_timestamp' );
@@ -149,8 +157,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if ( $fld_user && !$row->ipb_auto ) {
 				$block['user'] = $row->ipb_address;
 			}
+			if ( $fld_userid && !$row->ipb_auto ) {
+				$block['userid'] = $row->ipb_user;
+			}
 			if ( $fld_by ) {
 				$block['by'] = $row->ipb_by_text;
+			}
+			if ( $fld_byid ) {
+				$block['byid'] = $row->ipb_by;
 			}
 			if ( $fld_timestamp ) {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
@@ -246,7 +260,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'id',
 					'user',
+					'userid',
 					'by',
+					'byid',
 					'timestamp',
 					'expiry',
 					'reason',
@@ -272,7 +288,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'Which properties to get',
 				' id         - Adds the ID of the block',
 				' user       - Adds the username of the blocked user',
-				' by         - Adds the username of the blocking admin',
+				' userid     - Adds the user ID of the blocked user',
+				' by         - Adds the username of the blocking user',
+				' byid       - Adds the user ID of the blocking user',
 				' timestamp  - Adds the timestamp of when the block was given',
 				' expiry     - Adds the timestamp of when the block expires',
 				' reason     - Adds the reason given for the block',

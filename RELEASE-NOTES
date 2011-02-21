@@ -178,6 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   prop=info&inprop=displaytitle
 * (bug 27554) Update api information text to reflect change in bug 26125
 * (bug 27611) list=blocks: Use ipb_by_text instead of join with user table
+* (bug 27616) Add userid of blocked user and blocker to list=blocks
 
 === Languages updated in 1.18 ===
 
