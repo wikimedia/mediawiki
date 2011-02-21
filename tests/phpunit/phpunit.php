@@ -15,7 +15,27 @@ $IP = dirname( dirname( dirname( __FILE__ ) ) );
 define( 'MW_PHPUNIT_TEST', true );
 
 // Start up MediaWiki in command-line mode
-require_once( "$IP/maintenance/commandLine.inc" );
+require_once( "$IP/maintenance/Maintenance.php" );
+
+class PHPUnitMaintClass extends Maintenance {
+	public function finalSetup() {
+		$settings = parent::finalSetup();
+
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages;
+
+		$wgMainCacheType = CACHE_NONE;
+		$wgMessageCacheType = CACHE_NONE;
+		$wgParserCacheType = CACHE_NONE;
+		$wgUseDatabaseMessages = false; # Set for future resets
+	}
+	public function execute() { }
+	public function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+}
+
+$maintClass = 'PHPUnitMaintClass';
+require( RUN_MAINTENANCE_IF_MAIN );
 
 // Assume UTC for testing purposes
 $wgLocaltimezone = 'UTC';
