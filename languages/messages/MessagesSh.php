@@ -26,7 +26,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
-$linkTrail = '/^([a-zčćđžš]+)(.*)$/sD';
+$linkTrail = '/^([a-zčćđžš]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
