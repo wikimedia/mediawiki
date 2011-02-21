@@ -202,7 +202,7 @@ $specialPageAliases = array(
 # Reference: AWS Reël 7.4 p. 52, 2002 edition
 # glibc is wrong in this respect in some versions
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
-$linkTrail = "/^([a-z]+)(.*)\$/sD";
+$linkTrail = "/^([a-z]+)(.*)$/sD";
 
 $messages = array(
 # User preference toggles
