@@ -40,6 +40,7 @@
  * @author Tobulos1
  * @author Where next Columbus
  * @author Where next Columbus?
+ * @author WikiPhoenix
  * @author לערי ריינהארט
  */
 
@@ -1681,8 +1682,8 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'filetype-bad-ie-mime'        => 'Kan inte ladda upp denna fil på grund av att Internet Explorer skulle upptäcka att den är "$1", vilket är en otillåten och möjligtvis farlig filtyp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp.
 {{PLURAL:\$3|Föredragen filtyp|Föredragna filtyper}} är \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp.
-{{PLURAL:\$3|Tillåtna filtyper|Tillåten filtyp}} är \$2.",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' är inte {{PLURAL:$4|en tillåten filtyp|tillåtna filtyper}}.
+{{PLURAL:$3|Tillåtna filtyper|Tillåten filtyp}} är $2.',
 'filetype-missing'            => 'Filnamnet saknar ändelse (t ex ".jpg").',
 'empty-file'                  => 'Filen du skickade var tom.',
 'file-too-large'              => 'Filen du skickade var för stor.',
@@ -1968,11 +1969,12 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Dubbla omdirigeringar',
-'doubleredirectstext'        => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
+'doubleredirects'                   => 'Dubbla omdirigeringar',
+'doubleredirectstext'               => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
 <del>Stryk över</del> poster som har åtgärdats.',
-'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
-'double-redirect-fixer'      => 'Omdirigeringsrättaren',
+'double-redirect-fixed-move'        => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
+'double-redirect-fixed-maintenance' => 'Fixar dubbel omdirigering från [[$1]] till [[$2]].',
+'double-redirect-fixer'             => 'Omdirigeringsrättaren',
 
 'brokenredirects'        => 'Trasiga omdirigeringar',
 'brokenredirectstext'    => 'Följande omdirigerar länkar till ej existerande sidor:',
@@ -3161,6 +3163,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpsareainformation'          => 'GPS-områdets namn',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differentiell GPS-korrektion',
+'exif-objectname'                  => 'Kort titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Inte komprimerad',
@@ -3514,14 +3517,15 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 Ange filens namn utan prefixet "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Sök efter dubblettfiler',
-'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden.',
-'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',
-'fileduplicatesearch-filename' => 'Filnamn:',
-'fileduplicatesearch-submit'   => 'Sök',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
-'fileduplicatesearch-result-1' => 'Filen "$1" har inga identiska dubbletter.',
-'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
+'fileduplicatesearch'           => 'Sök efter dubblettfiler',
+'fileduplicatesearch-summary'   => 'Sök efter dubblettfiler baserat på filernas hash-värden.',
+'fileduplicatesearch-legend'    => 'Sök efter en dubblettfil',
+'fileduplicatesearch-filename'  => 'Filnamn:',
+'fileduplicatesearch-submit'    => 'Sök',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Filstorlek: $3<br />MIME-typ: $4',
+'fileduplicatesearch-result-1'  => 'Filen "$1" har inga identiska dubbletter.',
+'fileduplicatesearch-result-n'  => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
+'fileduplicatesearch-noresults' => 'Ingen fil med namnet "$1" hittades.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialsidor',

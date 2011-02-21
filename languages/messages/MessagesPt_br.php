@@ -944,6 +944,7 @@ Caso continue não funcionando, tente [[Special:UserLogout|sair]] e voltar a ent
 Caso continue não funcionando, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.'''",
 'token_suffix_mismatch'            => "'''A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
+'edit_form_incomplete'             => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (seção)',
 'editingcomment'                   => 'Editando $1 (nova seção)',
@@ -3130,6 +3131,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsareainformation'          => 'Nome da área do GPS',
 'exif-gpsdatestamp'                => 'Data do GPS',
 'exif-gpsdifferential'             => 'Correção do diferencial do GPS',
+'exif-objectname'                  => 'Título curto',
 
 # EXIF attributes
 'exif-compression-1' => 'Sem compressão',
@@ -3483,14 +3485,15 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Procurar por arquivos duplicados',
-'fileduplicatesearch-summary'  => 'Procure por arquivos duplicados tendo por base seu valor "hash".',
-'fileduplicatesearch-legend'   => 'Procurar por duplicatas',
-'fileduplicatesearch-filename' => 'Nome do arquivo:',
-'fileduplicatesearch-submit'   => 'Pesquisa',
-'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
-'fileduplicatesearch-result-1' => 'O arquivo "$1" não possui cópias idênticas.',
-'fileduplicatesearch-result-n' => 'O arquivo "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+'fileduplicatesearch'           => 'Procurar por arquivos duplicados',
+'fileduplicatesearch-summary'   => 'Procure por arquivos duplicados tendo por base seu valor "hash".',
+'fileduplicatesearch-legend'    => 'Procurar por duplicatas',
+'fileduplicatesearch-filename'  => 'Nome do arquivo:',
+'fileduplicatesearch-submit'    => 'Pesquisa',
+'fileduplicatesearch-info'      => '$1 × $2 pixels<br />Tamanho: $3<br />tipo MIME: $4',
+'fileduplicatesearch-result-1'  => 'O arquivo "$1" não possui cópias idênticas.',
+'fileduplicatesearch-result-n'  => 'O arquivo "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+'fileduplicatesearch-noresults' => 'Não foi encontrado nenhum arquivo com o nome "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',

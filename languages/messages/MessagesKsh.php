@@ -2254,7 +2254,7 @@ Alles klor?',
 'emailfrom'            => 'Vun:',
 'emailto'              => 'Aan:',
 'emailsubject'         => 'Üvverschreff:',
-'emailmessage'         => 'Dä Tex fun Dinge Nohresch:',
+'emailmessage'         => 'Dä Tex fun Dinge Nohreesch:',
 'emailsend'            => 'Avschecke',
 'emailccme'            => 'Scheck mer en Kopie vun dä E-Mail.',
 'emailccsubject'       => 'En Kopie vun Dinger E-Mail aan $1: $2',
@@ -2263,7 +2263,7 @@ Alles klor?',
 'emailuserfooter'      => 'Hee di e-mail hät {{GENDER:$1|dä|et|dä Metmaacher|di|dat}} „$1“ an {{GENDER:$2|dä|et|dä Metmaacher|di|dat}} „$2“ jescheck, un doför {{GRAMMAR:en dative|{{SITENAME}}}} dat „{{int:emailuser}}“ jebruch.',
 
 # User Messenger
-'usermessage-summary' => 'En Nohreesh vum Wiki afjelivvert.',
+'usermessage-summary' => 'En Nohreesch vum Wiki afjelivvert.',
 'usermessage-editor'  => 'Name vum Metmaacher för de Täxte un Nohreshte vum Wiki ze beärbeide',
 
 # Watchlist

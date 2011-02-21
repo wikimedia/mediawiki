@@ -2330,13 +2330,14 @@ $1',
 'hijri-calendar-m9' => 'Рамазан',
 
 # Special:Version
-'version'                  => 'Юрама',
-'version-specialpages'     => 'Махсус битләр',
-'version-other'            => 'Башка',
-'version-license'          => 'Лицензия',
-'version-software'         => 'Урнаштырылган программа белән тәэмин ителешне',
-'version-software-product' => 'Продукт',
-'version-software-version' => 'Версия',
+'version'                   => 'Юрама',
+'version-specialpages'      => 'Махсус битләр',
+'version-other'             => 'Башка',
+'version-hook-subscribedby' => 'Түбәндәгеләргә язылган:',
+'version-license'           => 'Лицензия',
+'version-software'          => 'Урнаштырылган программа белән тәэмин ителешне',
+'version-software-product'  => 'Продукт',
+'version-software-version'  => 'Версия',
 
 # Special:FilePath
 'filepath'        => 'Файлга юл',
