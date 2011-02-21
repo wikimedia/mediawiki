@@ -26,6 +26,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
+$linkTrail = '/^([a-zčćđžš]+)(.*)$/sD';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podvuci linkove:',
