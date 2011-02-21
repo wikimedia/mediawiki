@@ -54,6 +54,22 @@ class MWNamespace {
 	private static $alwaysCapitalizedNamespaces = array( NS_SPECIAL, NS_USER, NS_MEDIAWIKI );
 
 	/**
+	 * Trow an exception when trying to get the subject or talk page
+	 * for a given namespace where it does not make sens.
+	 * Special namespaces are defined in includes/define.php and have
+	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
+	 *
+	 * @param $ns Int: namespace index
+	 */
+	private static function isMethodValidFor( $index, $method ) {
+		if( $index < NS_MAIN ) {
+			throw new MWException( "$method does not make any sens for given namespace $index" );
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Can pages in the given namespace be moved?
 	 *
 	 * @param $index Int: namespace index
@@ -92,6 +108,7 @@ class MWNamespace {
 	 * @return int
 	 */
 	public static function getTalk( $index ) {
+		self::isMethodValidFor( $index, __METHOD__ );
 		return self::isTalk( $index )
 			? $index
 			: $index + 1;
@@ -99,14 +116,40 @@ class MWNamespace {
 
 	/**
 	 * Get the subject namespace index for a given namespace
+	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
 	 *
 	 * @param $index Int: Namespace index
 	 * @return int
 	 */
 	public static function getSubject( $index ) {
+		# Handle special namespaces
+		if( $index < NS_MAIN ) {
+			return $index;
+		}
+
 		return self::isTalk( $index )
 			? $index - 1
 			: $index;
+	}
+
+	/**
+	 * Get the associated namespace.
+	 * For talk namespaces, returns the subject (non-talk) namespace
+	 * For subject (non-talk) namespaces, returns the talk namespace
+	 *
+	 * @param $index Int: namespace index
+	 * @return int or null if no associated namespace could be found
+	 */
+	public static function getAssociated( $index ) {
+		self::isMethodValidFor( $index, __METHOD__ );
+
+		if( self::isMain( $index ) ) {
+			return self::getTalk( $index );
+		} elseif( self::isTalk( $index ) ) {
+			return self::getSubject( $index );
+		} else {
+			return null;
+		}
 	}
 
 	/**
