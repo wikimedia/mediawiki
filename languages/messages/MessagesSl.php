@@ -152,7 +152,7 @@ $magicWords = array(
 	'url_query'             => array( '0', 'POIZVEDBA', 'QUERY' ),
 );
 
-$linkTrail = '/^([a-zčćđžš]+)(.*)$/sD';
+$linkTrail = '/^([a-zčćđžš]+)(.*)$/sDu';
 
 $datePreferences = array(
 	'default',
