@@ -29,7 +29,16 @@
 class SpecialNewpages extends IncludableSpecialPage {
 
 	// Stored objects
-	protected $opts, $skin;
+
+	/**
+	 * @var FormOptions
+	 */
+	protected $opts;
+
+	/**
+	 * @var Skin
+	 */
+	protected $skin;
 
 	// Some internal settings
 	protected $showNavigation = false;
