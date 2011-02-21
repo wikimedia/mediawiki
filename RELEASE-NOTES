@@ -177,6 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27479) API error when using both prop=pageprops and
   prop=info&inprop=displaytitle
 * (bug 27554) Update api information text to reflect change in bug 26125
+* (bug 27611) list=blocks: Use ipb_by_text instead of join with user table
 
 === Languages updated in 1.18 ===
 
