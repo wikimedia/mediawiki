@@ -72,9 +72,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addFields( array( 'ipb_address', 'ipb_user' ) );
 		}
 		if ( $fld_by ) {
-			$this->addTables( 'user' );
-			$this->addFields( array( 'ipb_by', 'user_name' ) );
-			$this->addWhere( 'user_id = ipb_by' );
+			$this->addFields( 'ipb_by_text' );
 		}
 		if ( $fld_timestamp ) {
 			$this->addFields( 'ipb_timestamp' );
@@ -152,7 +150,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['user'] = $row->ipb_address;
 			}
 			if ( $fld_by ) {
-				$block['by'] = $row->user_name;
+				$block['by'] = $row->ipb_by_text;
 			}
 			if ( $fld_timestamp ) {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
