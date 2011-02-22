@@ -187,6 +187,8 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * (bug 17160) Gender specific display text for User namespace
+* Link trail added for sl and sh
+* (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br)
 
 == Compatibility ==
 
