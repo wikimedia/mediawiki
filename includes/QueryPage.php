@@ -382,8 +382,10 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Parameters and order changed in 1.18
+	 *
+	 * Somewhat deprecated, you probably want to be using execute()
 	 */
-	function doQuery( $limit, $offset = false ) {
+	function doQuery( $offset = false, $limit ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
 			return $this->fetchFromCache( $limit, $offset );
 		} else {
@@ -552,8 +554,9 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( $num > 0 ) {
 			$html = array();
-			if ( !$this->listoutput )
+			if ( !$this->listoutput ) {
 				$html[] = $this->openList( $offset );
+			}
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
@@ -583,8 +586,9 @@ abstract class QueryPage extends SpecialPage {
 				}
 			}
 
-			if ( !$this->listoutput )
+			if ( !$this->listoutput ) {
 				$html[] = $this->closeList();
+			}
 
 			$html = $this->listoutput
 				? $wgContLang->listToText( $html )
@@ -631,7 +635,6 @@ abstract class QueryPage extends SpecialPage {
 				$this->feedUrl() );
 			$feed->outHeader();
 
-			$dbr = wfGetDB( DB_SLAVE );
 			$res = $this->reallyDoQuery( $limit, 0 );
 			foreach ( $res as $obj ) {
 				$item = $this->feedResult( $obj );
