@@ -381,8 +381,6 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Parameters and order changed in 1.18
-	 *
 	 * Somewhat deprecated, you probably want to be using execute()
 	 */
 	function doQuery( $offset = false, $limit ) {
