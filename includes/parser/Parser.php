@@ -275,7 +275,7 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
-		$this->startExternalParse( $title, $options, self::OT_HTML, $clearState );
+		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionObject = $this->mRevisionObject;
@@ -459,7 +459,7 @@ class Parser {
 	 */
 	function preprocess( $text, Title $title, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
-		$this->startExternalParse( $title, $options, self::OT_PREPROCESS, true );
+		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
@@ -479,7 +479,7 @@ class Parser {
 	 */
 	public function getPreloadText( $text, Title $title, ParserOptions $options ) {
 		# Parser (re)initialisation
-		$this->startExternalParse( $title, $options, self::OT_PLAIN, true );
+		$this->startParse( $title, $options, self::OT_PLAIN, true );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
@@ -4038,7 +4038,7 @@ class Parser {
 	 * @return String: the altered wiki markup
 	 */
 	public function preSaveTransform( $text, Title $title, User $user, ParserOptions $options, $clearState = true ) {
-		$this->startExternalParse( $title, $options, self::OT_WIKI, $clearState );
+		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
 		$pairs = array(
@@ -4266,6 +4266,10 @@ class Parser {
 	 * so that an external function can call some class members with confidence
 	 */
 	public function startExternalParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
+		$this->startParse( $title, $options, $outputType, $clearState );
+	}
+	
+	private function startParse( Title $title = null, ParserOptions $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
@@ -4881,7 +4885,7 @@ class Parser {
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
-		$this->startExternalParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
+		$this->startParse( $wgTitle, new ParserOptions, self::OT_PLAIN, true );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
 
@@ -5176,7 +5180,7 @@ class Parser {
 		if ( !$title instanceof Title ) {
 			$title = Title::newFromText( $title );
 		}
-		$this->startExternalParse( $title, $options, $outputType, true );
+		$this->startParse( $title, $options, $outputType, true );
 
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
