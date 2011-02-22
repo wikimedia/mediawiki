@@ -383,7 +383,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
 	 */
-	function doQuery( $offset = false, $limit ) {
+	function doQuery( $offset = false, $limit = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
 			return $this->fetchFromCache( $limit, $offset );
 		} else {
