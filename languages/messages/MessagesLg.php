@@ -705,6 +705,13 @@ Ebigambo ebibyo on'obigatta mu ebyo ebiriwo ku lupapula kakano.<br />
 Ebinaaba birabika mu kitundu eky'ebiwandike ekisooka w'on'onyigira ku<br />
 \"{{int:savearticle}}\" '''bye byokka''' ebij'okukazibwa.",
 'yourtext'                         => 'Ebigambo ebibyo',
+'storedversion'                    => 'Ebiriwo kakano',
+'nonunicodebrowser'                => "'''Kulabula: Kalambulaneti yo tekwatagana bulungi n'enkola ya unicode.'''<br />
+Okuvvuunuka obuzibu buno osobole okukyusa mu mpapula, buli lw'on'owandikawo<br />
+akabonero akatali ka ASCII kajjanga okuteekebwawo mu mpandika eya nengakkuminabbiri.",
+'editingold'                       => "'''Kulabula: Olupapula lw'okyusamu luliko oluwandika lwa lwo olusinga luno obugya.'''<br />
+By'okoze wano bw'on'obikaza enkyukakyuka endala zonna ezaakakolebwa abalala zijjakusaanawo.",
+'yourdiff'                         => 'Ebikyuse',
 'copyrightwarning'                 => "Genderera nti buli kyowandika muno mu {{SITENAME}} kibalibwa ng'ekifugibwa $2 (okuyiga ebisingawo, laba $1).
 Obanga tewetegese okulaba by'owandise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandika muno.<br />
 Tukwesiga nti by'owandika muno bibyo oba wabigya mu kya bonna oba awalala gye batalina bikugizo eby'obwa nannyini.
@@ -712,6 +719,20 @@ Tukwesiga nti by'owandika muno bibyo oba wabigya mu kya bonna oba awalala gye ba
 'copyrightwarning2'                => "Genderera nti buli kyowandika muno mu {{SITENAME}} abalala bayinza okubikyusa oba n'okubigiramu ddala. Obanga tewetegese okulaba by'owandise nga babikyusakyusa n'okubisaasaanya nga bwe balaba, tobiwandika muno.<br />
 Tukwesiga nti by'owandika muno bibyo oba wabigya mu kya bonna oba awalala gye batalina bikugizo eby'obwa nannyini. (okuyiga ebisingawo, laba $1).
 '''TOTEEKAMU EBIRIKO EBIKUGIZO EBY'OBWA NANNYINI NGA BA NYINI BYO TEBAKUWADDE LUKUSA!'''",
+'longpageerror'                    => "'''Kulabula: By'owandise birimu kilobayiti $1.'''<br />
+'''Ebisukka mu kilobayiti $2 tebikkirizibwa.'''<br />
+Tekisobose kukaza by'owandise.",
+'readonlywarning'                  => "'''Kulabula: Eggwanika lya data ku ssaawa eno terikkirizamu ebipya, kubanga balilongoosa.'''<br />
+'''Tojjakusobola okukaza by'okola.'''<br />
+Oyinza okukoppa by'owandise n'obitereka mu fayiro ku kompyuta yo osobole okubiteeka wano edda.<br />
+<br />
+Omuteesiteesi eyalisibye annyonyodde bwatyi: $1",
+'protectedpagewarning'             => "'''Kulabula: Olupapula luno luliko ekikugizo ekikkiriza abalina endukusa z'obuteesiteesi bokka okulukyusamu.'''<br />
+Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okukutangaaza ku nsonga eno:",
+'semiprotectedpagewarning'         => "'''Genderera: Olupapula luno luliko ekikugizo ekikkirizako ab'ewandisa ku wiki eno bokka okulukyusamu.'''<br />
+Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okukutangaaza ku nsonga eno:",
+'cascadeprotectedwarning'          => "'''Kulabula:''' Olupapula luno luliko ekikugizo ekikkiriza abalina olukusa lw'obuteesiteesi bokka okulukyusamu.<br />
+Kino kikoledwa olw'okuba nti lukozesebwa {{PLURAL:$1|olupapula oluliko ekikugizo ekiranda luna|empapula eziriko ebikugizo ebiranda zino}}:",
 'templatesused'                    => 'Olupapula luno lukozesa {{PLURAL:$1|olutiba luno|ntiba zino}} :',
 'templatesusedpreview'             => 'Okulagako kuno kweyambisa {{PLURAL:$1|olutiba luno|ntiba zino}}:',
 'templatesusedsection'             => 'Ekitundu kino kyeyambisa {{PLURAL:$1|olutiba luno|ntiba zino}}:',
