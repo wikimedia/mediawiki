@@ -1060,9 +1060,13 @@ class WebInstaller_Complete extends WebInstallerPage {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
 		$lsUrl = $GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) );
-		$this->addHtml( '<script type="' . $GLOBALS['wgJsMimeType'] . '">jQuery( document ).ready( function() { document.location='
-			. Xml::encodeJsVar( $lsUrl) . "; } );</script>\n" );
-		// JS appears the only method that works consistently with IE7+
+		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
+			// JS appears the only method that works consistently with IE7+
+			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] . '">jQuery( document ).ready( function() { document.location='
+				. Xml::encodeJsVar( $lsUrl) . "; } );</script>\n" );
+		} else {
+			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
+		}
 
 		$this->startForm();
 		$this->parent->disableLinkPopups();
