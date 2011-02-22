@@ -359,10 +359,6 @@ class Title {
 	 */
 	public static function newFromRedirectArray( $text ) {
 		global $wgMaxRedirects;
-		// are redirects disabled?
-		if ( $wgMaxRedirects < 1 ) {
-			return null;
-		}
 		$title = self::newFromRedirectInternal( $text );
 		if ( is_null( $title ) ) {
 			return null;
@@ -397,6 +393,11 @@ class Title {
 	 * @return Title
 	 */
 	protected static function newFromRedirectInternal( $text ) {
+		global $wgMaxRedirects;
+		if ( $wgMaxRedirects < 1 ) {
+			//redirects are disabled, so quit early
+			return null;
+		}
 		$redir = MagicWord::get( 'redirect' );
 		$text = trim( $text );
 		if ( $redir->matchStartAndRemove( $text ) ) {

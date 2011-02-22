@@ -1564,13 +1564,12 @@ class Article {
 		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
 		$alt = $wgContLang->isRTL() ? '←' : '→';
 		// Automatically append redirect=no to each link, since most of them are redirect pages themselves.
-		// FIXME: where this happens?
 		foreach ( $target as $rt ) {
 			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
 			if ( $forceKnown ) {
-				$link .= $sk->linkKnown( $rt, htmlspecialchars( $rt->getFullText() ) );
+				$link .= $sk->linkKnown( $rt, htmlspecialchars( $rt->getFullText(), array(), array( 'redirect' => 'no' ) ) );
 			} else {
-				$link .= $sk->link( $rt, htmlspecialchars( $rt->getFullText() ) );
+				$link .= $sk->link( $rt, htmlspecialchars( $rt->getFullText() ), array(), array( 'redirect' => 'no' ) );
 			}
 		}
 
