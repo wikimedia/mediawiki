@@ -1744,6 +1744,15 @@ $1',
 'upload-unknown-size'       => '크기를 알 수 없음',
 'upload-http-error'         => 'HTTP 오류 발생: $1',
 
+# Special:UploadStash
+'uploadstash'          => '파일 올리기 임시 저장',
+'uploadstash-summary'  => '이 페이지는 위키에 등록되지는 않았지만 올리는 과정 중에 있는 파일을 열람할 수 있습니다. 이 파일들은 올린이 외에는 볼 수 없습니다.',
+'uploadstash-clear'    => '임시 저장한 파일 제거하기',
+'uploadstash-nofiles'  => '임시 저장한 파일이 없습니다.',
+'uploadstash-badtoken' => '이 동작을 수행하는 데 실패했습니다. 편집 토큰이 만료되었을 가능성이 있습니다. 다시 시도해 보십시오.',
+'uploadstash-errclear' => '파일을 제거하는 데 실패했습니다.',
+'uploadstash-refresh'  => '파일 목록을 새로고침',
+
 # img_auth script messages
 'img-auth-accessdenied' => '접근 거부됨',
 'img-auth-nopathinfo'   => 'PATH_INFO 가 빠졌습니다.

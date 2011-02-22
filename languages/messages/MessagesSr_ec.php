@@ -2383,7 +2383,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Прилози корисника',
-'contributions-title' => 'Прилози корисника за $1',
+'contributions-title' => 'Прилози {{GENDER:$1|корисника|кориснице|члана}} $1',
 'mycontris'           => 'Прилози',
 'contribsub2'         => 'За $1 ($2)',
 'nocontribs'          => 'Нису нађене промене које задовољавају ове услове.',

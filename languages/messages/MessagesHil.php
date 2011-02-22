@@ -521,6 +521,7 @@ Palihog maghulat anay bag-o tilawan liwat.',
 
 # JavaScript password checks
 'password-strength'            => 'Paghaum-haom nga kakusogon sang pasword: $1',
+'password-strength-bad'        => 'MALAIN',
 'password-strength-mediocre'   => 'ordinaryo',
 'password-strength-acceptable' => 'mabaton',
 'password-strength-good'       => 'maayo',
@@ -587,18 +588,96 @@ Kon tum-okon mo liwat ang \"{{int:savearticle}}\", ang imo gin-ilisan pagatipono
 'summary-preview'                  => 'Kabilugan nga prebyu:',
 'subject-preview'                  => 'Prebyu sang topiko/ulo sang topiko:',
 'blockedtitle'                     => 'Ang manuggamit ginapunggan',
+'blockedtext'                      => "'''Ang imo gamit-pangalan ukon adres sang IP ginpunggan.'''
+
+Ang pagpuggon ginhimo ni $1.
+Ang rason amo ang ''$2''.
+
+* Pag-umpisa sa pagpuggong: $8
+* Katapusan sang pagpuggong: $6
+* Tuyo nga pagapunggan: $7
+
+Mahimo ka nga makipag-angot kay $1 ukon sa iban [[{{MediaWiki:Grouppage-sysop}}|administrator]] agod nga ma-estoryahan ang pagpuggong.
+Indi mo magamit ang 'i-email ining manuggamit' samtang wala ka sang matood nga e-mail adres nga ibutang sa imo [[Special:Preferences|espesyal nga pagpalabi]] kag kon wala ka ginapunggan sa paggamit sini.
+Ang imo adres sang IP karon amo ang $3, kag ang ID sang pagpuggong amo ang #$5.
+Palihog dala sang mga nasulat sa ibabaw sa mga pagpamangkot nga imo ubrahon.",
+'autoblockedtext'                  => "Ang adres sang imo IP ginpunggan dayon tungod kay ini gingamit sang lain nga manuggamit, nga ginpunggan ni $1.
+Ang rason nga ginhatag amo sini:
+
+:''$2''
+
+* Pag-umpisa sa pagpuggong: $8
+* Katapusan sang pagpuggong: $6
+* Tuyo nga pagapunggan: $7
+
+Mahimo ka nga makipag-angot kay $1 ukon sa iban [[{{MediaWiki:Grouppage-sysop}}|administrator]] agod nga ma-estoryahan ang pagpuggong.
+
+Indi mo magamit ang 'i-email ining manuggamit' samtang wala ka sang matood nga e-mail adres nga ibutang sa imo [[Special:Preferences|espesyal nga pagpalabi]] kag kon wala ka ginapunggan sa paggamit sini.
+
+Ang imo adres sang IP karon amo ang $3, kag ang ID sang pagpuggong amo ang #$5.
+Palihog dala sang mga nasulat sa ibabaw sa mga pagpamangkot nga imo ubrahon.",
+'blockednoreason'                  => 'wala sang rason nga ginhatag',
+'blockedoriginalsource'            => "Ang ginhalinan sang '''$1''' ginapakita sa dalom:",
+'blockededitsource'                => "Ang mga letra sang '''imo gin-ilisan''' sa '''$1''' ginapakita sa dalom:",
 'whitelistedittitle'               => 'Kinahanglan Magsulod para maka ilis',
+'whitelistedittext'                => 'Kinahanglan mo ang $1 agod maka-ilis sang mga panid.',
+'confirmedittext'                  => 'Kinahanglan mo nga kumpirmahon ang imo e-mail adres bag-o ka mag-ilis sang mga panid.
+Palihog plastar kag magpamatood sang imo e-mail adres paagi sang imo [[Special:Preferences|pagpalabi]].',
+'nosuchsectiontitle'               => 'Indi makit-an ang seksyon',
+'nosuchsectiontext'                => 'Gintilawan mo nga mag-ilis sang seksyon nga wala naga-eksister.
+Mahimo nga ini ginsaylo na ukon ginpanas samtang nagalantaw ka sang panid.',
+'loginreqtitle'                    => 'Kinahanglan magsulod',
 'loginreqlink'                     => 'mag sulod',
+'loginreqpagetext'                 => 'Kinahanglan mo nga mag-$1 agod nga makita ang iban nga mga panid.',
+'accmailtitle'                     => 'Napadala na ang pasword.',
+'accmailtext'                      => "May pasword nga wala ginpilian nga ginhimo para kay [[User talk:$1|$1]] nga ginpadala sa $2.
+
+Ang pasword para sa sini nga bag-o nga akawnt mahimo ma-ilisan sa ''[[Special:ChangePassword|ilisan ang pasword]]'' nga panid pagkatapos magsulod.",
 'newarticle'                       => '(Bag-o)',
 'newarticletext'                   => "Nagbukas ka sang isa ka tabid pakadto sa isa ka pahina nga wala pa nahimo.
 Para maghimo sang sina na pahina, sugod ka lang sa pagtayp sa sulod sang kahon nga makit an mo sa idalum (tan-awa ang [[{{MediaWiki:Helppage}}|bulig nga pahina]] para sa dugang nga impormasyon).
 Pero kung nakasulod nga aksidente lamang, palihog lang i-klik sa imo internet nga may ngalan ukon simbolo nga '''back''' button.",
+'anontalkpagetext'                 => "----''Ini ang panid para sa pagtalakay sa wala makilala-an nga manuggamit nga wala pa nakatuga sang akawnt, ukon wala nagagamit sang isa.
+Amo nga kinahanglan naton mag-gamit sang IP adres nga de numero agod nga mahibaluan naton siya.
+Ang amo sini nga adres sang IP mahimo nga pagasaluhan sang madamo nga manuggamit.
+Kon ikaw manuggamit nga wala makilal-i kag nabatyagan mo nga may mga komento nga wala man sing labot nga ginapakadto sa imo, palihog [[Special:UserLogin/signup|maghimo ka sang akawnt]] ukon [[Special:UserLogin|magsulod]] para malikawan ang iban pa nga pagsala sa iban pa nga wala makilal-an nga manuggamit.''",
 'noarticletext'                    => 'Wala subong sang teksto ang ini nga pahina.
 Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga pahina]] sa iban man nga pahina,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} islan ini nga pahina]</span>.',
+'noarticletext-nopermission'       => 'Wala subong sang teksto ang ini nga panid.
+Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga panid]] sa iban man nga panid,
+ukon <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs]</span>.',
+'userpage-userdoesnotexist'        => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.
+Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
+'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.',
+'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
+Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
+'clearyourcache'                   => "'''Pahibalo: Pagkatapos mo magtipon, mahimo nga kinahanglan mo pa nga laktawan ang talaguan sang imo brawser agod nga makita ang mga pag-ilis.'''
+'''Mozilla / Firefox / Safari:''' tum-ukon sang madugay ang ''Shift'' samtang ginatum-ok ang ''Reload'', ukon tum-ukon ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Macintosh);
+'''Konqueror: '''tum-ukon ang ''Reload'' ukon ang ''F5'';
+'''Opera:''' panason ang talaguan sa ''Tools → Preferences'';
+'''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
+'usercssyoucanpreview'             => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga CSS bag-o magtipon.",
+'userjsyoucanpreview'              => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga JavaScript bag-o magtipon.",
+'usercsspreview'                   => "'''Tandai nga ginalantaw mo pa lang ang imo CSS sang manuggamit.'''
+'''Wala pa ini matipon!'''",
+'userjspreview'                    => "'''Tandai nga ginalantaw/ginatilawan mo pa lang ang imo JavaScript sang manuggamit.'''
+'''Wala pa ini matipon!'''",
+'sitecsspreview'                   => "'''Tandai nga ginalantaw mo pa lang ang ini nga CSS.'''
+'''Wala pa ini matipon!'''",
+'sitejspreview'                    => "'''Tandai nga ginalantaw mo pa lang ang ini nga kodigo sang JavaScript.'''
+'''Wala pa ini matipon!'''",
+'userinvalidcssjstitle'            => "'''Aviso:''' Wala sang panit nga \"\$1\".
+Sa mga pahungod nga mga panid nga .css and .js magamit sang titulo nga may gagmay nga letra (lowercase), e.g. {{ns:user}}:Foo/vector.css kontra sa {{ns:user}}:Foo/Vector.css.",
+'updated'                          => '(Suno sa oras)',
+'note'                             => "'''Pansinon:'''",
 'previewnote'                      => "'''Tandaan nga prebyu lamang ini.'''
 Wala pa nabutang ang imo nga ginbag-o!",
+'previewconflict'                  => 'Ang ini nga paglantaw nagapakita sang mga teksto nga yara sa may ibabaw ayon nga amo man ang magagwa kon luyag mo na ini nga pagatiponon.',
+'session_fail_preview'             => "'''Nagapangayo kami sang pasaylo! Indi namon ma-proseso ang imo pag-ilis tungod sa pagkadula sang datos sang sesyon.'''
+Palihog tilawi liwat.
+Kon indi man sa gihapon mag-gana, tilawi [[Special:UserLogout|mag-guha]] kag magsulod liwat.",
 'editing'                          => 'Gina-islan $1',
 'editingsection'                   => 'Gina-Islan $1 (seksiyon)',
 'copyrightwarning'                 => "Tandaan mo ini palihog na ang tanan nga kontribusyon sa {{SITENAME}} ay ginapasugtan nga i-paguha sa idalum sang $2 (tan-awa $1 para sa mga detalye).
