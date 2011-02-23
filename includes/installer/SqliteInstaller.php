@@ -45,16 +45,30 @@ class SqliteInstaller extends DatabaseInstaller {
 			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-sqlite-name-help' ) );
 	}
 
+	/*
+	 * Safe wrapper for PHP's realpath() that fails gracefully if it's unable to canonicalize the path.
+	 */
+	private static function realpath( $path ) {
+		$result = realpath( $path );
+		if ( !$result ) {
+			return $path;
+		}
+		return $result;
+	}
+
 	public function submitConnectForm() {
 		$this->setVarsFromRequest( array( 'wgSQLiteDataDir', 'wgDBname' ) );
 
-		$dir = realpath( $this->getVar( 'wgSQLiteDataDir' ) );
-		if ( !$dir ) {
-			// realpath() sometimes fails, especially on Windows
-			$dir = $this->getVar( 'wgSQLiteDataDir' );
+		# Try realpath() if the directory already exists
+		$dir = self::realpath( $this->getVar( 'wgSQLiteDataDir' ) );
+		$result = self::dataDirOKmaybeCreate( $dir, true /* create? */ );
+		if ( $result->isOK() )
+		{
+			# Try expanding again in case we've just created it
+			$dir = self::realpath( $dir );
+			$this->setVar( 'wgSQLiteDataDir', $dir );
 		}
-		$this->setVar( 'wgSQLiteDataDir', $dir );
-		return self::dataDirOKmaybeCreate( $dir, true /* create? */ );
+		return $result;
 	}
 
 	private static function dataDirOKmaybeCreate( $dir, $create = false ) {
