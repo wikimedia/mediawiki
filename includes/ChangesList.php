@@ -115,7 +115,7 @@ class ChangesList {
 				'botedit' => array( 'boteditletter', 'recentchanges-label-bot' ),
 				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ), 
 			);
-			foreach( $messages as $key => &$value ) {
+			foreach( $messages as &$value ) {
 				$value[0] = wfMsgExt( $value[0], 'escapenoentities' );
 				$value[1] = wfMsgExt( $value[1], 'escapenoentities' );
 			}

@@ -1713,7 +1713,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( $option == 'icononly' ) {
 			// Unset any icons which don't have an image
-			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			foreach ( $footericons as &$footerIconsBlock ) {
 				foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
 					if ( !is_string( $footerIcon ) && !isset( $footerIcon['src'] ) ) {
 						unset( $footerIconsBlock[$footerIconKey] );
