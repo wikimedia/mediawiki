@@ -78,7 +78,12 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 	'config-sidebar'                  => "* [http://www.mediawiki.org MediaWiki home]
 * [http://www.mediawiki.org/wiki/Help:Contents User's Guide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]",
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+----
+* <doclink href=Readme>Read me</doclink>
+* <doclink href=ReleaseNotes>Release notes</doclink>
+* <doclink href=Copying>Copying</doclink>
+* <doclink href=UpgradeDoc>Upgrading</doclink>",
 	'config-env-good'                 => 'The environment has been checked.
 You can install MediaWiki.',
 	'config-env-bad'                  => 'The environment has been checked.
