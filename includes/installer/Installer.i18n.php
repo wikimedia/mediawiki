@@ -438,7 +438,14 @@ Medium to large sites are highly encouraged to enable this, and small sites will
 	'config-cache-memcached'          => 'Use Memcached (requires additional setup and configuration)',
 	'config-memcached-servers'        => 'Memcached servers:',
 	'config-memcached-help'           => 'List of IP addresses to use for Memcached.
-Should be separated with commas and specify the port to be used (for example: 127.0.0.1:11211, 192.168.1.25:11211).',
+Should specify one per line and specify the port to be used. For example:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers'     => 'You selected Memcached as your cache type but did not specify any servers',
+	'config-memcache-badip'           => 'You have entered an invalid IP address for Memcached: $1',
+	'config-memcache-noport'          => 'You did not specify a port to use for Memcached server: $1.
+If you do not know the port, the default is 11211',
+	'config-memcache-badport'         => 'Memcached port numbers should be between $1 and $2',
 	'config-extensions'               => 'Extensions',
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
