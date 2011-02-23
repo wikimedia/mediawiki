@@ -353,6 +353,8 @@ class LanguageConverter {
 		// Guard against delimiter nulls in the input
 		$text = str_replace( "\000", '', $text );
 
+		$markupMatches = null;
+		$elementMatches = null;
 		while ( $startPos < strlen( $text ) ) {
 			if ( preg_match( $reg, $text, $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
 				$elementPos = $markupMatches[0][1];
