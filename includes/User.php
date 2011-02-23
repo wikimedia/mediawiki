@@ -873,32 +873,30 @@ class User {
 			}
 		}
 
-		if ( $wgRequest->getCookie( 'UserID' ) !== null ) {
-			$sId = intval( $wgRequest->getCookie( 'UserID' ) );
-			if( isset( $_SESSION['wsUserID'] ) && $sId != $_SESSION['wsUserID'] ) {
+		$cookieId = $wgRequest->getCookie( 'UserID' );
+		$sessId = $wgRequest->getSessionData( 'wsUserID' );
+
+		if ( $cookieId !== null ) {
+			$sId = intval( $cookieId );
+			if( $sessId !== null && $cookieId != $sessId ) {
 				$this->loadDefaults(); // Possible collision!
-				wfDebugLog( 'loginSessions', "Session user ID ({$_SESSION['wsUserID']}) and
+				wfDebugLog( 'loginSessions', "Session user ID ($sessId) and
 					cookie user ID ($sId) don't match!" );
 				return false;
 			}
-			$_SESSION['wsUserID'] = $sId;
-		} else if ( isset( $_SESSION['wsUserID'] ) ) {
-			if ( $_SESSION['wsUserID'] != 0 ) {
-				$sId = $_SESSION['wsUserID'];
-			} else {
-				$this->loadDefaults();
-				return false;
-			}
+			$wgRequest->setSessionData( 'wsUserID', $sId );
+		} else if ( $sessId !== null && $sessId != 0 ) {
+			$sId = $sessId;
 		} else {
 			$this->loadDefaults();
 			return false;
 		}
 
-		if ( isset( $_SESSION['wsUserName'] ) ) {
-			$sName = $_SESSION['wsUserName'];
-		} else if ( $wgRequest->getCookie('UserName') !== null ) {
-			$sName = $wgRequest->getCookie('UserName');
-			$_SESSION['wsUserName'] = $sName;
+		if ( $wgRequest->getSessionData( 'wsUserName' ) !== null ) {
+			$sName = $wgRequest->getSessionData( 'wsUserName' );
+		} else if ( $wgRequest->getCookie( 'UserName' ) !== null ) {
+			$sName = $wgRequest->getCookie( 'UserName' );
+			$wgRequest->setSessionData( 'wsUserName', $sName );
 		} else {
 			$this->loadDefaults();
 			return false;
@@ -917,8 +915,8 @@ class User {
 			return false;
 		}
 
-		if ( isset( $_SESSION['wsToken'] ) ) {
-			$passwordCorrect = $_SESSION['wsToken'] == $this->mToken;
+		if ( $wgRequest->getSessionData( 'wsToken' ) !== null ) {
+			$passwordCorrect = $this->mToken == $wgRequest->getSessionData( 'wsToken' );
 			$from = 'session';
 		} else if ( $wgRequest->getCookie( 'Token' ) !== null ) {
 			$passwordCorrect = $this->mToken == $wgRequest->getCookie( 'Token' );
@@ -930,7 +928,7 @@ class User {
 		}
 
 		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
-			$_SESSION['wsToken'] = $this->mToken;
+			$wgRequest->setSessionData( 'wsToken', $this->mToken );
 			wfDebug( "User: logged in from $from\n" );
 			return true;
 		} else {
@@ -2453,6 +2451,8 @@ class User {
 	 * Set the default cookies for this session on the user's client.
 	 */
 	function setCookies() {
+		global $wgRequest;
+
 		$this->load();
 		if ( 0 == $this->mId ) return;
 		$session = array(
@@ -2471,9 +2471,9 @@ class User {
 		}
 
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
-		#check for null, since the hook could cause a null value
-		if ( !is_null( $session ) && isset( $_SESSION ) ){
-			$_SESSION = $session + $_SESSION;
+
+		foreach ( $session as $name => $value ) {
+			$wgRequest->setSessionData( $name, $value );
 		}
 		foreach ( $cookies as $name => $value ) {
 			if ( $value === false ) {
@@ -2499,9 +2499,11 @@ class User {
 	 * @see logout()
 	 */
 	function doLogout() {
+		global $wgRequest;
+
 		$this->clearInstanceCache( 'defaults' );
 
-		$_SESSION['wsUserID'] = 0;
+		$wgRequest->setSessionData( 'wsUserID', 0 );
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
@@ -2856,14 +2858,15 @@ class User {
 	 * @return String The new edit token
 	 */
 	function editToken( $salt = '' ) {
+		global $wgRequest;
+
 		if ( $this->isAnon() ) {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
-			if( !isset( $_SESSION['wsEditToken'] ) ) {
+			$token = $wgRequest->getSessionData( 'wsEditToken' );
+			if ( $token === null ) {
 				$token = self::generateToken();
-				$_SESSION['wsEditToken'] = $token;
-			} else {
-				$token = $_SESSION['wsEditToken'];
+				$wgRequest->setSessionData( 'wsEditToken', $token );
 			}
 			if( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
