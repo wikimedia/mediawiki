@@ -1018,7 +1018,7 @@ class PPFrame_Hash implements PPFrame {
 						$serial = count( $this->parser->mHeadings ) - 1;
 						$marker = "{$this->parser->mUniqPrefix}-h-$serial-" . Parser::MARKER_SUFFIX;
 						$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
-						$this->parser->mStripState->general->setPair( $marker, '' );
+						$this->parser->mStripState->setGeneral( $marker, '' );
 						$out .= $s;
 					} else {
 						# Expand in virtual stack

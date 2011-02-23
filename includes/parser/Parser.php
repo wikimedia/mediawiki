@@ -55,6 +55,12 @@ class Parser {
 	 */
 	const VERSION = '1.6.4';
 
+	/**
+	 * Update this version number when the output of serialiseHalfParsedText()
+	 * changes in an incompatible way
+	 */
+	const HALF_PARSED_VERSION = 2;
+
 	# Flags for Parser::setFunctionHook
 	# Also available as global constants from Defines.php
 	const SFH_NO_HASH = 1;
@@ -203,7 +209,6 @@ class Parser {
 		$this->mLastSection = '';
 		$this->mDTopen = false;
 		$this->mIncludeCount = array();
-		$this->mStripState = new StripState;
 		$this->mArgStack = false;
 		$this->mInPre = false;
 		$this->mLinkHolders = new LinkHolderArray( $this );
@@ -226,6 +231,7 @@ class Parser {
 		# $this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 		# Changed to \x7f to allow XML double-parsing -- TS
 		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
+		$this->mStripState = new StripState( $this->mUniqPrefix );
 
 
 		# Clear these on every parse, bug 4549
@@ -353,23 +359,7 @@ class Parser {
 
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 
-//!JF Move to its own function
-
-		$uniq_prefix = $this->mUniqPrefix;
-		$matches = array();
-		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = $this->extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
-
-		foreach ( $matches as $marker => $data ) {
-			list( $element, $content, $params, $tag ) = $data;
-			$tagName = strtolower( $element );
-			if ( isset( $this->mTransparentTagHooks[$tagName] ) ) {
-				$output = call_user_func_array( $this->mTransparentTagHooks[$tagName], array( $content, $params, $this ) );
-			} else {
-				$output = $tag;
-			}
-			$this->mStripState->general->setPair( $marker, $output );
-		}
+		$text = $this->replaceTransparentTags( $text );
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
@@ -620,6 +610,10 @@ class Parser {
 		return $this->mLinkID++;
 	}
 
+	function setLinkID( $id ) {
+		$this->mLinkID = $id;
+	}
+
 	/**
 	 * @return Language
 	 */
@@ -793,7 +787,7 @@ class Parser {
 	function insertStripItem( $text ) {
 		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
-		$this->mStripState->general->setPair( $rnd, $text );
+		$this->mStripState->addGeneral( $rnd, $text );
 		return $rnd;
 	}
 
@@ -3542,9 +3536,9 @@ class Parser {
 		if ( $markerType === 'none' ) {
 			return $output;
 		} elseif ( $markerType === 'nowiki' ) {
-			$this->mStripState->nowiki->setPair( $marker, $output );
+			$this->mStripState->addNoWiki( $marker, $output );
 		} elseif ( $markerType === 'general' ) {
-			$this->mStripState->general->setPair( $marker, $output );
+			$this->mStripState->addGeneral( $marker, $output );
 		} else {
 			throw new MWException( __METHOD__.': invalid marker type' );
 		}
@@ -4859,6 +4853,30 @@ class Parser {
 	}
 
 	/**
+	 * Replace transparent tags in $text with the values given by the callbacks.
+	 *
+	 * Transparent tag hooks are like regular XML-style tag hooks, except they 
+	 * operate late in the transformation sequence, on HTML instead of wikitext.
+	 */
+	function replaceTransparentTags( $text ) {
+		$matches = array();
+		$elements = array_keys( $this->mTransparentTagHooks );
+		$text = $this->extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
+
+		foreach ( $matches as $marker => $data ) {
+			list( $element, $content, $params, $tag ) = $data;
+			$tagName = strtolower( $element );
+			if ( isset( $this->mTransparentTagHooks[$tagName] ) ) {
+				$output = call_user_func_array( $this->mTransparentTagHooks[$tagName], array( $content, $params, $this ) );
+			} else {
+				$output = $tag;
+			}
+			$this->mStripState->addGeneral( $marker, $output );
+		}
+		return $text;
+	}
+
+	/**
 	 * Break wikitext input into sections, and either pull or replace
 	 * some particular section's text.
 	 *
@@ -5203,6 +5221,17 @@ class Parser {
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
 
+	/**
+	 * Call a callback function on all regions of the given text that are not 
+	 * inside strip markers, and replace those regions with the return value 
+	 * of the callback. For example, with input:
+	 *
+	 *  aaa<MARKER>bbb
+	 *
+	 * This will call the callback function twice, with 'aaa' and 'bbb'. Those 
+	 * two strings will be replaced with the value returned by the callback in
+	 * each case.
+	 */
 	function markerSkipCallback( $s, $callback ) {
 		$i = 0;
 		$out = '';
@@ -5227,168 +5256,68 @@ class Parser {
 		return $out;
 	}
 
-	function serialiseHalfParsedText( $text ) {
-		$data = array();
-		$data['text'] = $text;
-
-		# First, find all strip markers, and store their
-		#  data in an array.
-		$stripState = new StripState;
-		$pos = 0;
-		while ( ( $start_pos = strpos( $text, $this->mUniqPrefix, $pos ) )
-			&& ( $end_pos = strpos( $text, self::MARKER_SUFFIX, $pos ) ) )
-		{
-			$end_pos += strlen( self::MARKER_SUFFIX );
-			$marker = substr( $text, $start_pos, $end_pos-$start_pos );
-
-			if ( !empty( $this->mStripState->general->data[$marker] ) ) {
-				$replaceArray = $stripState->general;
-				$stripText = $this->mStripState->general->data[$marker];
-			} elseif ( !empty( $this->mStripState->nowiki->data[$marker] ) ) {
-				$replaceArray = $stripState->nowiki;
-				$stripText = $this->mStripState->nowiki->data[$marker];
-			} else {
-				throw new MWException( "Hanging strip marker: '$marker'." );
-			}
-
-			$replaceArray->setPair( $marker, $stripText );
-			$pos = $end_pos;
-		}
-		$data['stripstate'] = $stripState;
-
-		# Now, find all of our links, and store THEIR
-		#  data in an array! :)
-		$links = array( 'internal' => array(), 'interwiki' => array() );
-		$pos = 0;
-
-		# Internal links
-		while ( ( $start_pos = strpos( $text, '<!--LINK ', $pos ) ) ) {
-			list( $ns, $trail ) = explode( ':', substr( $text, $start_pos + strlen( '<!--LINK ' ) ), 2 );
-
-			$ns = trim( $ns );
-			if ( empty( $links['internal'][$ns] ) ) {
-				$links['internal'][$ns] = array();
-			}
-
-			$key = trim( substr( $trail, 0, strpos( $trail, '-->' ) ) );
-			$links['internal'][$ns][] = $this->mLinkHolders->internals[$ns][$key];
-			$pos = $start_pos + strlen( "<!--LINK $ns:$key-->" );
-		}
-
-		$pos = 0;
-
-		# Interwiki links
-		while ( ( $start_pos = strpos( $text, '<!--IWLINK ', $pos ) ) ) {
-			$data = substr( $text, $start_pos );
-			$key = trim( substr( $data, 0, strpos( $data, '-->' ) ) );
-			$links['interwiki'][] = $this->mLinkHolders->interwiki[$key];
-			$pos = $start_pos + strlen( "<!--IWLINK $key-->" );
-		}
-
-		$data['linkholder'] = $links;
-
+	/**
+	 * Save the parser state required to convert the given half-parsed text to 
+	 * HTML. "Half-parsed" in this context means the output of 
+	 * recursiveTagParse() or internalParse(). This output has strip markers 
+	 * from replaceVariables (extensionSubstitution() etc.), and link 
+	 * placeholders from replaceLinkHolders(). 
+	 *
+	 * Returns an array which can be serialized and stored persistently. This 
+	 * array can later be loaded into another parser instance with 
+	 * unserializeHalfParsed(). The text can then be safely incorporated into 
+	 * the return value of a parser hook.
+	 */
+	function serializeHalfParsedText( $text ) {
+		wfProfileIn( __METHOD__ );
+		$data = array(
+			'text' => $text,
+			'version' => self::HALF_PARSED_VERSION,
+			'stripState' => $this->mStripState->getSubState( $text ),
+			'linkHolders' => $this->mLinkHolders->getSubArray( $text )
+		);
+		wfProfileOut( __METHOD__ );
 		return $data;
 	}
 
 	/**
-	 * TODO: document
-	 * @param $data Array
-	 * @param $intPrefix String unique identifying prefix
+	 * Load the parser state given in the $data array, which is assumed to
+	 * have been generated by serializeHalfParsedText(). The text contents is 
+	 * extracted from the array, and its markers are transformed into markers 
+	 * appropriate for the current Parser instance. This transformed text is 
+	 * returned, and can be safely included in the return value of a parser
+	 * hook.
+	 *
+	 * If the $data array has been stored persistently, the caller should first 
+	 * check whether it is still valid, by calling isValidHalfParsedData().
+	 *
+	 * @param $data Serialized data
 	 * @return String
 	 */
-	function unserialiseHalfParsedText( $data, $intPrefix = null ) {
-		if ( !$intPrefix ) {
-			$intPrefix = self::getRandomString();
+	function unserializeHalfParsedText( $data ) {
+		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
+			throw new MWException( __METHOD__.': invalid version' );
 		}
 
 		# First, extract the strip state.
-		$stripState = $data['stripstate'];
-		$this->mStripState->general->merge( $stripState->general );
-		$this->mStripState->nowiki->merge( $stripState->nowiki );
+		$texts = array( $data['text'] );
+		$texts = $this->mStripState->merge( $data['stripState'], $texts );
 
-		# Now, extract the text, and renumber links
-		$text = $data['text'];
-		$links = $data['linkholder'];
-
-		# Internal...
-		foreach ( $links['internal'] as $ns => $nsLinks ) {
-			foreach ( $nsLinks as $key => $entry ) {
-				$newKey = $intPrefix . '-' . $key;
-				$this->mLinkHolders->internals[$ns][$newKey] = $entry;
-
-				$text = str_replace( "<!--LINK $ns:$key-->", "<!--LINK $ns:$newKey-->", $text );
-			}
-		}
-
-		# Interwiki...
-		foreach ( $links['interwiki'] as $key => $entry ) {
-			$newKey = "$intPrefix-$key";
-			$this->mLinkHolders->interwikis[$newKey] = $entry;
-
-			$text = str_replace( "<!--IWLINK $key-->", "<!--IWLINK $newKey-->", $text );
-		}
+		# Now renumber links
+		$texts = $this->mLinkHolders->mergeForeign( $data['linkHolders'], $texts );
 
 		# Should be good to go.
-		return $text;
-	}
-}
-
-/**
- * @todo document, briefly.
- * @ingroup Parser
- */
-class StripState {
-	var $general, $nowiki;
-
-	function __construct() {
-		$this->general = new ReplacementArray;
-		$this->nowiki = new ReplacementArray;
+		return $texts[0];
 	}
 
-	function unstripGeneral( $text ) {
-		wfProfileIn( __METHOD__ );
-		do {
-			$oldText = $text;
-			$text = $this->general->replace( $text );
-		} while ( $text !== $oldText );
-		wfProfileOut( __METHOD__ );
-		return $text;
-	}
-
-	function unstripNoWiki( $text ) {
-		wfProfileIn( __METHOD__ );
-		do {
-			$oldText = $text;
-			$text = $this->nowiki->replace( $text );
-		} while ( $text !== $oldText );
-		wfProfileOut( __METHOD__ );
-		return $text;
-	}
-
-	function unstripBoth( $text ) {
-		wfProfileIn( __METHOD__ );
-		do {
-			$oldText = $text;
-			$text = $this->general->replace( $text );
-			$text = $this->nowiki->replace( $text );
-		} while ( $text !== $oldText );
-		wfProfileOut( __METHOD__ );
-		return $text;
-	}
-}
-
-/**
- * @todo document, briefly.
- * @ingroup Parser
- */
-class OnlyIncludeReplacer {
-	var $output = '';
-
-	function replace( $matches ) {
-		if ( substr( $matches[1], -1 ) === "\n" ) {
-			$this->output .= substr( $matches[1], 0, -1 );
-		} else {
-			$this->output .= $matches[1];
-		}
+	/**
+	 * Returns true if the given array, presumed to be generated by 
+	 * serializeHalfParsedText(), is compatible with the current version of the 
+	 * parser.
+	 *
+	 * @param $data Array.
+	 */
+	function isValidHalfParsedData( $data ) {
+		return isset( $data['version'] ) && $data['version'] == self::HALF_PARSED_VERSION;
 	}
 }
