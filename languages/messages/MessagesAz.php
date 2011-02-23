@@ -682,6 +682,8 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-hide-comment'      => 'Dəyişikliklərin şərhini gizlə',
 'revdelete-hide-user'         => 'Redaktə müəllifinin istifadəçi adını/IP ünvanını gizlə',
 'revdelete-hide-restricted'   => 'Məlumatları idarəçilərdən də gizlə',
+'revdelete-radio-set'         => 'Hə',
+'revdelete-radio-unset'       => 'Yox',
 'revdelete-suppress'          => 'Məlumatları idarəçilərdən də gizlə',
 'revdelete-unsuppress'        => 'Bərpa olunan versiyalar üzərindən məhdudiyyətləri qaldır',
 'revdelete-log'               => 'Səbəb:',
