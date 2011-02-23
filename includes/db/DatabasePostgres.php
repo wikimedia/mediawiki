@@ -161,7 +161,7 @@ class DatabasePostgres extends DatabaseBase {
 
 		$this->close();
 		$this->mServer = $server;
-		$this->mPort = $port = $wgDBport;
+		$port = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
