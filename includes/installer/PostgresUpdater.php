@@ -397,7 +397,8 @@ END;
 	protected function renameTable( $old, $new ) {
 		if ( $this->db->tableExists( $old ) ) {
 			$this->output( "Renaming table $old to $new\n" );
-			$this->db->query( "ALTER TABLE '$old' RENAME TO $new" );
+			$old = $this->db->addQuotes( $old );
+			$this->db->query( "ALTER TABLE $old RENAME TO $new" );
 		}
 	}
 
