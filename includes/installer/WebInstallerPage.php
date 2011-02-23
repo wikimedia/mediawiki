@@ -867,7 +867,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			) ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
 			'<div id="config-memcachewrapper">' .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextArea( array(
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',
 				'help' => $this->parent->getHelpBox( 'config-memcached-help' )
@@ -1002,6 +1002,28 @@ class WebInstaller_Options extends WebInstallerPage {
 			}
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
+
+		if( $this->getVar( 'wgMainCacheType' ) == 'memcached' ) {
+			$memcServers = explode( "\n", $this->getVar( '_MemCachedServers' ) );
+			if( !$memcServers ) {
+				$this->parent->showError( 'config-memcache-needservers' );
+				return false;
+			}
+
+			foreach( $memcServers as $server ) {
+				$memcParts = explode( ":", $server );
+				if( !IP::isValid( $memcParts[0] ) ) {
+					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );
+					return false;
+				} elseif( !isset( $memcParts[1] )  ) {
+					$this->parent->showError( 'config-memcache-noport', $memcParts[0] );
+					return false;
+				} elseif( $memcParts[1] < 1 || $memcParts[1] > 65535 ) {
+					$this->parent->showError( 'config-memcache-badport', 1, 65535 );
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 
