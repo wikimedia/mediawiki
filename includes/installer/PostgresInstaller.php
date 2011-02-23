@@ -162,7 +162,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		// Validate the create checkbox
-		$create = true;
 		$canCreate = $this->canCreateAccounts();
 		if ( $canCreate ) {
 			$this->setVar( '_CreateDBAccount', false );
@@ -314,7 +313,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function createTables() {
 		$schema = $this->getVar( 'wgDBmwschema' );
-		$user = $this->getVar( 'wgDBuser' );
 
 		$this->db = null;
 		$this->useAdmin = false;

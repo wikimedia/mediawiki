@@ -139,8 +139,6 @@ class SearchPostgres extends SearchEngine {
 	 * @param $colname
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {
-		$postgresVersion = $this->db->getServerVersion();
-
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 

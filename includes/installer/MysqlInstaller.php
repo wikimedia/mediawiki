@@ -349,7 +349,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function submitSettingsForm() {
-		$newValues = $this->setVarsFromRequest( array( '_MysqlEngine', '_MysqlCharset' ) );
+		$this->setVarsFromRequest( array( '_MysqlEngine', '_MysqlCharset' ) );
 		$status = $this->submitWebUserBox();
 		if ( !$status->isOK() ) {
 			return $status;

@@ -30,6 +30,11 @@
 class SpecialAllmessages extends SpecialPage {
 
 	/**
+	 * @var AllmessagesTablePager
+	 */
+	protected $table;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -59,7 +64,7 @@ class SpecialAllmessages extends SpecialPage {
 
 		$this->table = new AllmessagesTablePager(
 			$this,
-			$conds = array(),
+			array(),
 			wfGetLangObj( $wgRequest->getVal( 'lang', $par ) )
 		);
 
@@ -150,6 +155,11 @@ class SpecialAllmessages extends SpecialPage {
 class AllmessagesTablePager extends TablePager {
 
 	public $mLimitsShown;
+
+	/**
+	 * @var Language 
+	 */
+	public $lang;
 
 	function __construct( $page, $conds, $langObj = null ) {
 		parent::__construct();
