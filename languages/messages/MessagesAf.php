@@ -850,6 +850,7 @@ Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLog
 'token_suffix_mismatch'            => "'''U wysiging is geweier omdat u webblaaier leestekens in die wysigingsveld verkeerdelik geïnterpreteer het.
 Die bewerking is geweier om verminking van die bladsy se teks te voorkom.
 Dit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute bevat.",
+'edit_form_incomplete'             => "'''Dele van die vorm het nie die bediener bereik nie. Kyk of alles reg lyk en probeer weer.'''",
 'editing'                          => 'Besig om $1 te wysig',
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 te wysig (nuwe opskrif)',

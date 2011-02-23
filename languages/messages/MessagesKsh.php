@@ -1874,7 +1874,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 
 'license'            => 'Lizenz:',
 'license-header'     => 'Lizänz',
-'nolicense'          => 'Nix usjesök',
+'nolicense'          => 'Nix usjesöhk',
 'license-nopreview'  => '(Kein Vör-Aansich ze hann)',
 'upload_source_url'  => ' (richtije öffentlije URL)',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',

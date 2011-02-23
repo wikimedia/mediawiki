@@ -695,7 +695,12 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki tuisblad]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrateurshandleiding] (Engelstalig)
-* [http://www.mediawiki.org/wiki/Manual:FAQ Algemene vrae] (Engelstalig)',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Algemene vrae] (Engelstalig)
+----
+* <doclink href=Readme>Lees my</doclink>
+* <doclink href=ReleaseNotes>Vrystellingsnotas</doclink>
+* <doclink href=Copying>Kopiëring</doclink>
+* <doclink href=UpgradeDoc>Opgradering</doclink>',
 	'config-env-good' => 'Die omgewing is gekontroleer.
 U kan MediaWiki installeer.',
 	'config-env-bad' => 'Die omgewing is gekontroleer.
@@ -713,8 +718,10 @@ Die installasie mag moontlik faal!",
 	'config-diff3-bad' => 'GNU diff3 nie gevind nie.',
 	'config-db-type' => 'Databasistipe:',
 	'config-db-host' => 'Databasisbediener:',
+	'config-db-host-oracle' => 'Databasis-TNS:',
 	'config-db-wiki-settings' => 'Identifiseer hierdie wiki',
 	'config-db-name' => 'Databasisnaam:',
+	'config-db-name-oracle' => 'Databasis-skema:',
 	'config-db-install-account' => 'Gebruiker vir die installasie',
 	'config-db-username' => 'Databasis gebruikersnaam:',
 	'config-db-password' => 'Databasis wagwoord:',
@@ -726,12 +733,15 @@ U gebruik tans $2.',
 	'config-db-port' => 'Databasispoort:',
 	'config-db-schema' => 'Skema vir MediaWiki',
 	'config-sqlite-dir' => 'Gids vir SQLite se data:',
+	'config-oracle-def-ts' => 'Standaard tabelruimte:',
+	'config-oracle-temp-ts' => 'Tydelike tabelruimte:',
 	'config-header-mysql' => 'MySQL-instellings',
 	'config-header-postgres' => 'PostgreSQL-instellings',
 	'config-header-sqlite' => 'SQLite-instellings',
 	'config-header-oracle' => 'Oracle-instellings',
 	'config-invalid-db-type' => 'Ongeldige databasistipe',
 	'config-missing-db-name' => 'U moet \'n waarde vir "Databasnaam" verskaf',
+	'config-sqlite-readonly' => 'Die lêer <code>$1</code> kan nie geskryf word nie.',
 	'config-sqlite-cant-create-db' => 'Kon nie databasislêer <code>$1</code> skep nie.',
 	'config-regenerate' => 'Herskep LocalSettings.php →',
 	'config-show-table-status' => 'Die uitvoer van SHOW TABLE STATUS het gefaal!',
@@ -2091,7 +2101,12 @@ Eine <doclink href=Copying>Kopie der ''GNU General Public License''</doclink> so
 	'config-sidebar' => '* [http://www.mediawiki.org Website von MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]
+----
+* <doclink href=Readme>Lies mich</doclink>
+* <doclink href=ReleaseNotes>Versionsinformationen</doclink>
+* <doclink href=Copying>Lizenzbestimmungen</doclink>
+* <doclink href=UpgradeDoc>Aktualisierung</doclink>',
 	'config-env-good' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann installiert werden.',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
@@ -2179,6 +2194,8 @@ Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster d
 	'config-db-install-account' => 'Benutzerkonto für die Installation',
 	'config-db-username' => 'Name des Datenbankbenutzers:',
 	'config-db-password' => 'Passwort des Datenbankbenutzers:',
+	'config-db-password-empty' => 'Bitte ein Passwort für den neuen Datenbankbenutzer angeben: $1
+Obzwar es möglich ist Datenbankbenutzer ohne Passwort anzulegen, so ist dies aber nicht sicher.',
 	'config-db-install-username' => 'Den Benutzernamen angeben, der für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um den Benutzernamen für das MediaWiki-Konto, sondern um den Benutzernamen der vorgesehenen Datenbank.',
 	'config-db-install-password' => 'Das Passwort angeben, das für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um das Passwort für das MediaWiki-Konto, sondern um das Passwort der vorgesehenen Datenbank.',
 	'config-db-install-help' => 'Benutzername und Passwort, die während des Installationsvorgangs, für die Verbindung mit der Datenbank, genutzt werden sollen, sind nun anzugeben.',
@@ -2438,7 +2455,14 @@ Mittelgroße bis große Wikis werden sehr ermutigt dies zu nutzen, aber auch fü
 	'config-cache-memcached' => 'Memchached Cacheserver nutzen (erfordert einen zusätzliche Installationsvorgang mitsamt Konfiguration)',
 	'config-memcached-servers' => 'Memcached Cacheserver',
 	'config-memcached-help' => 'Liste der für Memcached nutzbaren IP-Adressen.
-Sie sollten durch Kommata voneinander getrennt werden. zudem sollte der zu verwendende Port angegeben werden (z. B. 127.0.0.1:11211, 192.168.1.25:11211).',
+Es sollte eine je Zeile mitsamt des vorgesehenen Ports angegeben werden. Beispiele:
+127.0.0.1:11211
+192.168.1.25:1234',
+	'config-memcache-needservers' => 'Memcached wurde als Cacheserver ausgewählt. Dabei wurde allerdings kein Server angegeben.',
+	'config-memcache-badip' => 'Es wurde für Memcached eine ungültige IP-Adresse angegeben: $1',
+	'config-memcache-noport' => 'Es wurde kein Port zur Nutzung durch den Memcached Cacheserver angegeben: $1
+Sofern der Port unbekannt ist, ist 11211 die Standardangabe.',
+	'config-memcache-badport' => 'Der Ports für den Memcached Cacheserver sollten zwischen $1 und $2 liegen',
 	'config-extensions' => 'Erweiterungen',
 	'config-extensions-help' => 'Die obig angegebenen Erweiterungen wurden im Verzeichnis <code>./extensions</code> gefunden.
 
@@ -4153,7 +4177,12 @@ $1
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki אתר הבית של מדיה־ויקי]
 * [http://www.mediawiki.org/wiki/Help:Contents המדריך למשתמשים]
 * [http://www.mediawiki.org/wiki/Manual:Contents המדריך למנהלים]
-* [http://www.mediawiki.org/wiki/Manual:FAQ שו״ת]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ שו״ת]
+----
+* <doclink href=Readme>קרא אותי</doclink>
+* <doclink href=ReleaseNotes>הערות גרסה</doclink>
+* <doclink href=Copying>העתקה</doclink>
+* <doclink href=UpgradeDoc>שדרוג</doclink>',
 	'config-env-good' => 'הסביבה שלכם נבדקה.
 אפשר להתקין מדיה־ויקי.',
 	'config-env-bad' => 'הסביבה שלכם נבדקה.
@@ -4500,7 +4529,9 @@ chmod a+w $3</pre></div>',
 	'config-cache-memcached' => 'להשתמש ב־Memcached (דורש התקנות והגדרות נוספות)',
 	'config-memcached-servers' => 'שרתי Memcached:',
 	'config-memcached-help' => 'רשימת כתובות IP ש־Memcached ישתמש בהן.
-יש להפריד אותן בפסיקים ולציין את הפִּתְחָה (port), למשל: 127.0.0.1:11211, 192.168.1.25:11211.',
+יש לרשום כתובת אחת בכל שורה ולציין את הפִּתְחָה (port), למשל:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
 	'config-extensions' => 'הרחבות',
 	'config-extensions-help' => 'ההרחבות ברשימה לעיל התגלו בתיקיית <span dir="ltr"><code>./extensions</code></span> שלכם.
 
@@ -5176,7 +5207,12 @@ Vos deberea haber recipite <doclink href=Copying>un exemplar del Licentia Public
 	'config-sidebar' => '* [http://www.mediawiki.org Pagina principal de MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Guida pro usatores]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida pro administratores]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+----
+* <doclink href=Readme>Lege me</doclink>
+* <doclink href=ReleaseNotes>Notas de iste version</doclink>
+* <doclink href=Copying>Conditiones de copia</doclink>
+* <doclink href=UpgradeDoc>Actualisation</doclink>',
 	'config-env-good' => 'Le ambiente ha essite verificate.
 Tu pote installar MediaWiki.',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
@@ -5266,6 +5302,8 @@ Si tu usa un servitor web usate in commun, tu providitor te fornira le nomine sp
 	'config-db-install-account' => 'Conto de usator pro installation',
 	'config-db-username' => 'Nomine de usator del base de datos:',
 	'config-db-password' => 'Contrasigno del base de datos:',
+	'config-db-password-empty' => 'Per favor entra un contrasigno pro le nove usator del base de datos: $1.
+Ben que il es possibile crear usatores sin contrasigno, isto non es secur.',
 	'config-db-install-username' => 'Entra le nomine de usator que essera usate pro connecter al base de datos durante le processo de installation. Isto non es le nomine de usator del conto MediaWiki; isto es le nomine de usator pro tu base de datos.',
 	'config-db-install-password' => 'Entra le contrasigno que essera usate pro connecter al base de datos durante le processo de installation. Isto non es le contrasigno del conto MediaWiki; isto es le contrasigno pro tu base de datos.',
 	'config-db-install-help' => 'Entra le nomine de usator e contrasigno que essera usate pro connecter al base de datos durante le processo de installation.',
@@ -5527,7 +5565,14 @@ Le sitos medie o grande es multo incoragiate de activar isto, ma anque le sitos 
 	'config-cache-memcached' => 'Usar Memcached (require additional installation e configuration)',
 	'config-memcached-servers' => 'Servitores Memcached:',
 	'config-memcached-help' => 'Lista de adresses IP a usar pro Memcached.
-Debe esser separate con commas e specificar le porto a usar (per exemplo: 127.0.0.1:11211, 192.168.1.25:11211).',
+Debe specificar un per linea e specificar le porto a usar. Per exemplo:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Tu seligeva Memcached como typo de cache ma non specificava alcun servitores',
+	'config-memcache-badip' => 'Tu ha entrate un adresse IP invalide pro Memcached: $1',
+	'config-memcache-noport' => 'Tu non specificava un porto a usar pro le servitor Memcached: $1.
+Si tu non cognosce le porto, le standard es 11211',
+	'config-memcache-badport' => 'Le numeros de porto de Memcached debe esser inter $1 e $2',
 	'config-extensions' => 'Extensiones',
 	'config-extensions-help' => 'Le extensiones listate hic supra esseva detegite in tu directorio <code>./extensions</code>.
 
@@ -7009,6 +7054,56 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-interwiki-list' => 'De Fichier <code>interwiki.list</code> gouf net fonnt.',
 	'config-install-secretkey' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
+);
+
+/** Malagasy (Malagasy)
+ * @author Jagwar
+ */
+$messages['mg'] = array(
+	'config-session-error' => 'Hadisoana teo am-panombohana ny fidirana : $1',
+	'config-your-language' => 'Ny fiteninao :',
+	'config-wiki-language' => "Fiteny ho ampiasain'ny wiki :",
+	'config-back' => '← Miverina',
+	'config-continue' => 'Manohy →',
+	'config-page-language' => 'Fiteny',
+	'config-page-welcome' => "Tonga soa eto amin'i MediaWiki !",
+	'config-page-dbconnect' => "Hiditra eo amin'i banky angona",
+	'config-page-name' => 'Anarana',
+	'config-page-readme' => 'Vakio aho',
+	'config-page-copying' => 'Hala-tahaka',
+	'config-page-upgradedoc' => 'Fanavaozina',
+	'config-page-existingwiki' => 'Wiki efa misy',
+	'config-help-restart' => "Tianao hofafana avokoa ve ny data voaangona natsofokao ary hamerina ny fizotran'ny fametrahana ?",
+	'config-restart' => 'Eny, avereno atao',
+	'config-db-username' => "Anaram-pikamban'ny banky angona :",
+	'config-db-password' => "Tenimiafin'ny banky angona :",
+	'config-header-mysql' => "Parametatr'i MySQL",
+	'config-header-sqlite' => "Parametatr'i SQLite",
+	'config-header-oracle' => "Parametatr'i Oracle",
+	'config-mysql-innodb' => 'innoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-ns-generic' => 'Tetikasa',
+	'config-ns-other' => 'Hafa (lazao)',
+	'config-admin-name' => 'Ny anaranao :',
+	'config-admin-password' => 'Tenimiafina :',
+	'config-admin-email' => 'Adiresy imailaka :',
+	'config-profile-wiki' => 'Wiki tsotra',
+	'config-profile-no-anon' => 'Mila mamorona kaonty',
+	'config-profile-fishbowl' => 'Mpanova mahazo alalana ihany',
+	'config-profile-private' => 'Wiki tsy sarababem-bahoaka',
+	'config-license' => 'Zom-pamorona ary lisansa :',
+	'config-license-none' => 'Tsy misy lisansa any an-tongom-pejy',
+	'config-email-user' => 'Avela mifandefa imailaka ny mpikambana',
+	'config-email-user-help' => "Hahafahan'ny mpikambana mifandefa imailaka raha omen'ny mpikambana alalana ao amin'ny safidiny.",
+	'config-upload-deleted' => "Petra-drakitra ho an'ny rakitra voafafa :",
+	'config-extensions' => 'Fanitarana',
+	'config-install-step-done' => 'vita',
+	'config-install-step-failed' => 'hadisoana',
+	'config-install-user' => "Famoronana mpapiasan'ny banky angona",
+	'config-install-tables' => 'Famoronana tabilao',
+	'config-install-stats' => 'Fanombohana ny statistika',
+	'config-install-secretkey' => 'Fanamboarana lakile miafina$',
+	'config-help' => 'fanoroana',
 );
 
 /** Macedonian (Македонски)

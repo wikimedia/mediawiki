@@ -3309,14 +3309,15 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Cari fail serupa',
-'fileduplicatesearch-summary'  => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.',
-'fileduplicatesearch-legend'   => 'Cari fail serupa',
-'fileduplicatesearch-filename' => 'Nama fail:',
-'fileduplicatesearch-submit'   => 'Gelintar',
-'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Saiz fail: $3<br />Jenis MIME: $4',
-'fileduplicatesearch-result-1' => 'Tiada fail yang serupa dengan "$1".',
-'fileduplicatesearch-result-n' => 'Terdapat $2 fail yang serupa dengan "$1".',
+'fileduplicatesearch'           => 'Cari fail serupa',
+'fileduplicatesearch-summary'   => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.',
+'fileduplicatesearch-legend'    => 'Cari fail serupa',
+'fileduplicatesearch-filename'  => 'Nama fail:',
+'fileduplicatesearch-submit'    => 'Gelintar',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />Saiz fail: $3<br />Jenis MIME: $4',
+'fileduplicatesearch-result-1'  => 'Tiada fail yang serupa dengan "$1".',
+'fileduplicatesearch-result-n'  => 'Terdapat $2 fail yang serupa dengan "$1".',
+'fileduplicatesearch-noresults' => 'Tidak ada gambar-gambar dengan nama "$1" dijumpai.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Laman khas',
