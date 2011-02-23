@@ -198,7 +198,9 @@ class DatabasePostgres extends DatabaseBase {
 			$this->doQuery( "SET client_min_messages = 'ERROR'" );
 		}
 
-		$this->doQuery( "SET client_encoding='UTF8'" );
+		$this->query( "SET client_encoding='UTF8'", __METHOD__ );
+		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
+		$this->query( "SET timezone = 'GMT'", __METHOD__ );
 
 		global $wgDBmwschema;
 		if ( isset( $wgDBmwschema )
