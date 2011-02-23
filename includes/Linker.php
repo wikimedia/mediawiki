@@ -1322,10 +1322,11 @@ class Linker {
 	 * Wraps the TOC in a table and provides the hide/collapse javascript.
 	 *
 	 * @param $toc String: html of the Table Of Contents
+	 * @param $lang mixed: Language code for the toc title
 	 * @return String: full html of the TOC
 	 */
-	function tocList( $toc ) {
-		$title = wfMsgHtml( 'toc' ) ;
+	function tocList( $toc, $lang = false ) {
+		$title = wfMsgExt( 'toc', array( 'language' => $lang, 'escape' ) );
 		return
 		   '<table id="toc" class="toc"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
