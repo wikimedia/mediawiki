@@ -54,8 +54,8 @@ class MWNamespace {
 	private static $alwaysCapitalizedNamespaces = array( NS_SPECIAL, NS_USER, NS_MEDIAWIKI );
 
 	/**
-	 * Trow an exception when trying to get the subject or talk page
-	 * for a given namespace where it does not make sens.
+	 * Throw an exception when trying to get the subject or talk page
+	 * for a given namespace where it does not make sense.
 	 * Special namespaces are defined in includes/define.php and have
 	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
 	 *
@@ -63,7 +63,7 @@ class MWNamespace {
 	 */
 	private static function isMethodValidFor( $index, $method ) {
 		if( $index < NS_MAIN ) {
-			throw new MWException( "$method does not make any sens for given namespace $index" );
+			throw new MWException( "$method does not make any sense for given namespace $index" );
 			return false;
 		}
 		return true;
