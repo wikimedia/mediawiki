@@ -188,17 +188,18 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
 		);
-		$userCB = array(
-			'name' => 'user',
-			'callback' => array( $this, 'setupUser' ),
-		);
 		$plpgCB = array(
 			'name' => 'pg-plpgsql',
 			'callback' => array( $this, 'setupPLpgSQL' ),
 		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
-		$this->parent->addInstallStep( $userCB );
 		$this->parent->addInstallStep( $plpgCB, 'database' );
+		if( $this->getVar( '_CreateDBAccount' ) ) {
+			$this->parent->addInstallStep( array(
+				'name' => 'user',
+				'callback' => array( $this, 'setupUser' ),
+			) );
+		}
 	}
 
 	function setupDatabase() {
@@ -211,46 +212,45 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
+		$schema = $this->getVar( 'wgDBmwschema' );
+		$user = $this->getVar( 'wgDBuser' );
+		$safeschema = $conn->addIdentifierQuotes( $schema );
+		$safeuser = $conn->addIdentifierQuotes( $user );
+
 		$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
 		$rows = $conn->numRows( $conn->query( $SQL ) );
 		if( !$rows ) {
-			$schema = $this->getVar( 'wgDBmwschema' );
-			$user = $this->getVar( 'wgDBuser' );
-
-			$safeschema = $conn->addIdentifierQuotes( $schema );
-			$safeuser = $conn->addIdentifierQuotes( $user );
-
 			$safedb = $conn->addIdentifierQuotes( $dbName );
-
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
-
-			$this->useAdmin = false;
+		} else {
+			$conn->query( "ALTER DATABASE $safedb OWNER TO $safeuser", __METHOD__ );
+		}
+		
+		$this->useAdmin = false;
 			$status = $this->getConnection();
 			if ( !$status->isOK() ) {
 				return $status;
 			}
-			$conn = $status->value;
+		$conn = $status->value;
 
-			$result = $conn->schemaExists( $schema );
+		if( !$conn->schemaExists( $schema ) ) {
+			$result = $conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
 			if( !$result ) {
-				$result = $conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
-				if( !$result ) {
-					$status->fatal( 'config-install-pg-schema-failed', $user, $schema );
-				}
-			} else {
-				$safeschema2 = $conn->addQuotes( $schema );
-				$SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
-					"FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n" .
-					"WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n" .
-					"AND p.relkind IN ('r','S','v')\n";
-				$SQL .= "UNION\n";
-				$SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
-					"pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n" .
-					"FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n" .
-					"WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
-				$conn->query( "SET search_path = $safeschema" );
-				$res = $conn->query( $SQL );
+				$status->fatal( 'config-install-pg-schema-failed', $user, $schema );
 			}
+		} else {
+			$safeschema2 = $conn->addQuotes( $schema );
+			$SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
+				"FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n" .
+				"WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n" .
+				"AND p.relkind IN ('r','S','v')\n";
+			$SQL .= "UNION\n";
+			$SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
+				"pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n" .
+				"FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n" .
+				"WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
+			$conn->query( "SET search_path = $safeschema" );
+			$res = $conn->query( $SQL );
 		}
 		return $status;
 	}
@@ -286,6 +286,9 @@ class PostgresInstaller extends DatabaseInstaller {
 			if ( $res !== true && !( $res instanceOf ResultWrapper ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $res );
 			}
+			if( $status->isOK() ) {
+				$this->db->query("ALTER USER $safeuser SET search_path = $safeschema");
+			}
 		}
 
 		return $status;
@@ -318,7 +321,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 
 		if( $this->db->tableExists( 'user' ) ) {
 			$status->warning( 'config-install-tables-exist' );

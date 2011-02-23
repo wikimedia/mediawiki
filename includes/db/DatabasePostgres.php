@@ -203,14 +203,23 @@ class DatabasePostgres extends DatabaseBase {
 		$this->query( "SET timezone = 'GMT'", __METHOD__ );
 
 		global $wgDBmwschema;
-		if ( isset( $wgDBmwschema )
-			&& preg_match( '/^\w+$/', $wgDBmwschema )
-		) {
+		if ( $this->schemaExists( $wgDBmwschema ) ) {
 			$safeschema = $this->addIdentifierQuotes( $wgDBmwschema );
-			$this->doQuery( "SET search_path = $safeschema, public" );
+			$this->doQuery( "SET search_path = $safeschema" );
+		} else {
+			$this->doQuery( "SET search_path = public" );
 		}
 
 		return $this->mConn;
+	}
+
+	/**
+	 * Postgres doesn't support selectDB in the same way MySQL does. So if the
+	 * DB name doesn't match the open connection, open a new one
+	 * @return
+	 */
+	function selectDB( $db ) {
+		return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
 	}
 
 	function makeConnectionString( $vars ) {
