@@ -83,7 +83,7 @@ class UsersPager extends AlphabeticPager {
 		if( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
 		} else {
-			$options['USE INDEX'] = $this->creationSort ? 'PRIMARY' : 'user_name';
+			//$options['USE INDEX'] = $this->creationSort ? 'PRIMARY' : 'user_name';
 		}
 		if( $this->requestedUser != '' ) {
 			# Sorted either by account creation or name
