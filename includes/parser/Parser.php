@@ -481,10 +481,9 @@ class Parser {
 	/**
 	 * Get a random string
 	 *
-	 * @private
 	 * @static
 	 */
-	static private function getRandomString() {
+	static public function getRandomString() {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 	}
 
@@ -5265,7 +5264,7 @@ class Parser {
 	 *
 	 * Returns an array which can be serialized and stored persistently. This 
 	 * array can later be loaded into another parser instance with 
-	 * unserializeHalfParsed(). The text can then be safely incorporated into 
+	 * unserializeHalfParsedText(). The text can then be safely incorporated into 
 	 * the return value of a parser hook.
 	 */
 	function serializeHalfParsedText( $text ) {
