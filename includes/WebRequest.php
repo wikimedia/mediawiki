@@ -443,6 +443,16 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the values passed in the query string.
+	 * No transformation is performed on the values.
+	 *
+	 * @return Array
+	 */
+	 public function getQueryValues() {
+	 	return $_GET;
+	 }
+
+	/**
 	 * Returns true if the present request was reached by a POST operation,
 	 * false otherwise (GET, HEAD, or command-line).
 	 *
@@ -541,25 +551,7 @@ class WebRequest {
 	 * @return String
 	 */
 	public function appendQuery( $query ) {
-		global $wgTitle;
-		$basequery = '';
-		foreach( $_GET as $var => $val ) {
-			if ( $var == 'title' ) {
-				continue;
-			}
-			if ( is_array( $val ) ) {
-				/* This will happen given a request like
-				 * http://en.wikipedia.org/w/index.php?title[]=Special:Userlogin&returnto[]=Main_Page
-				 */
-				continue;
-			}
-			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
-		}
-		$basequery .= '&' . $query;
-
-		# Trim the extra &
-		$basequery = substr( $basequery, 1 );
-		return $wgTitle->getLocalURL( $basequery );
+		return $this->appendQueryArray( wfCgiToArray( $query ) );
 	}
 
 	/**
@@ -586,7 +578,7 @@ class WebRequest {
 	 */
 	public function appendQueryArray( $array, $onlyquery = false ) {
 		global $wgTitle;
-		$newquery = $_GET;
+		$newquery = $this->getQueryValues();
 		unset( $newquery['title'] );
 		$newquery = array_merge( $newquery, $array );
 		$query = wfArrayToCGI( $newquery );
@@ -995,6 +987,14 @@ class FauxRequest extends WebRequest {
 		return $this->data;
 	}
 
+	public function getQueryValues() {
+		if ( $this->wasPosted ) {
+			return array();
+		} else {
+			return $this->data;
+		}
+	}
+
 	public function wasPosted() {
 		return $this->wasPosted;
 	}
@@ -1005,28 +1005,6 @@ class FauxRequest extends WebRequest {
 
 	public function getRequestURL() {
 		$this->notImplemented( __METHOD__ );
-	}
-
-	public function appendQuery( $query ) {
-		global $wgTitle;
-		$basequery = '';
-		foreach( $this->data as $var => $val ) {
-			if ( $var == 'title' ) {
-				continue;
-			}
-			if ( is_array( $val ) ) {
-				/* This will happen given a request like
-				 * http://en.wikipedia.org/w/index.php?title[]=Special:Userlogin&returnto[]=Main_Page
-				 */
-				continue;
-			}
-			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
-		}
-		$basequery .= '&' . $query;
-
-		# Trim the extra &
-		$basequery = substr( $basequery, 1 );
-		return $wgTitle->getLocalURL( $basequery );
 	}
 
 	public function getHeader( $name ) {
