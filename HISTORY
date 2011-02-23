@@ -450,6 +450,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * rebuildFileCache.php no longer creates inappropriate cache files for redirects
 * (bug 18372) $wgFileExtensions will now override $wgFileBlacklist 
 * (bug 25512) Subcategory list should not include category prefix for members.
+* (bug 20244) Installer does not validate SQLite database directory for stable path
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
