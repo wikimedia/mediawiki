@@ -27,13 +27,46 @@ class LinkHolderArray {
 		}
 	}
 
-	/**
+ 	/**
 	 * Don't serialize the parent object, it is big, and not needed when it is
 	 * a parameter to mergeForeign(), which is the only application of 
 	 * serializing at present.
+	 *
+	 * Compact the titles, only serialize the text form.
 	 */
 	function __sleep() {
+		foreach ( $this->internals as $ns => &$nsLinks ) {
+			foreach ( $nsLinks as $key => &$entry ) {
+				unset( $entry['title'] );
+			}
+		}
+		unset( $nsLinks );
+		unset( $entry );
+
+		foreach ( $this->interwikis as $key => &$entry ) {
+			unset( $entry['title'] );
+		}
+		unset( $entry );
+
 		return array( 'internals', 'interwikis', 'size' );
+	}
+
+	/**
+	 * Recreate the Title objects
+	 */
+	function __wakeup() {
+		foreach ( $this->internals as $ns => &$nsLinks ) {
+			foreach ( $nsLinks as $key => &$entry ) {
+				$entry['title'] = Title::newFromText( $entry['pdbk'] );
+			}
+		}
+		unset( $nsLinks );
+		unset( $entry );
+
+		foreach ( $this->interwikis as $key => &$entry ) {
+			$entry['title'] = Title::newFromText( $entry['pdbk'] );
+		}
+		unset( $entry );
 	}
 
 	/**
@@ -76,22 +109,22 @@ class LinkHolderArray {
 				$maxId = $newKey > $maxId ? $newKey : $maxId;
 			}
 		}
-		$texts = preg_replace_callback( '(<!--LINK \d+:)(\d+)(-->)', 
+		$texts = preg_replace_callback( '/(<!--LINK \d+:)(\d+)(-->)/', 
 			array( $this, 'mergeForeignCallback' ), $texts );
 
 		# Renumber interwiki links
-		foreach ( $links['interwiki'] as $key => $entry ) {
+		foreach ( $other->interwikis as $key => $entry ) {
 			$newKey = $idOffset + $key;
 			$this->interwikis[$newKey] = $entry;
 			$maxId = $newKey > $maxId ? $newKey : $maxId;
-
 		}
-		$texts = preg_replace_callback( '(<!--IWLINK )(\d+)(-->)', 
+		$texts = preg_replace_callback( '/(<!--IWLINK )(\d+)(-->)/', 
 			array( $this, 'mergeForeignCallback' ), $texts );
 
-		# Set the parent link ID to be the highest used ID
-		$this->parent->setLinkID( $maxId );
+		# Set the parent link ID to be beyond the highest used ID
+		$this->parent->setLinkID( $maxId + 1 );
 		$this->tempIdOffset = null;
+		return $texts;
 	}
 
 	protected function mergeForeignCallback( $m ) {
