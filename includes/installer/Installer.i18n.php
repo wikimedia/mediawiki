@@ -168,6 +168,8 @@ If you are using shared web hosting, your hosting provider will either give you 
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
 	'config-db-password'              => 'Database password:',
+	'config-db-password-empty'        => 'Please enter a password for the new database user: $1.
+While some database systems do allow users with no passwords, it is not secure.',
 	'config-db-install-username'	  => 'Enter the username that will be used to connect to the database during the installation process.
 This is not the username of the MediaWiki account; this is the username for your database.',
 	'config-db-install-password'	  => 'Enter the password that will be used to connect to the database during the installation process.
