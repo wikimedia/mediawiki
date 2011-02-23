@@ -501,11 +501,7 @@ class WebInstaller extends Installer {
 		}
 
 		$s .= "</ul><br/><ul>\n";
-
-		foreach ( $this->otherPages as $pageName ) {
-			$s .= $this->getPageListItem( $pageName, true, $currentPageName );
-		}
-
+		$s .= $this->getPageListItem( 'Restart', true, $currentPageName );
 		$s .= "</ul></div>\n"; // end list pane
 		$s .= Html::element( 'h2', array(),
 				wfMsg( 'config-page-' . strtolower( $currentPageName ) ) );
