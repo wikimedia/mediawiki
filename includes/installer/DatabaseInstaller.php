@@ -527,6 +527,10 @@ abstract class DatabaseInstaller {
 			$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
 		}
 
+		if( $this->getVar( '_CreateDBAccount' ) && strval( $this->getVar( 'wgDBpassword' ) ) == '' ) {
+			return Status::newFatal( 'config-db-password-empty', $this->getVar( 'wgDBuser' ) );
+		}
+
 		return Status::newGood();
 	}
 
