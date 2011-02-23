@@ -518,7 +518,6 @@ $wgAutoloadLocalClasses = array(
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
 	'LinkMarkerReplacer' => 'includes/parser/Parser_LinkHooks.php',
-	'OnlyIncludeReplacer' => 'includes/parser/Parser.php',
 	'PPCustomFrame_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'PPCustomFrame_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'PPDAccum_Hash' => 'includes/parser/Preprocessor_Hash.php',
@@ -548,7 +547,7 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor' => 'includes/parser/Preprocessor.php',
 	'Preprocessor_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
-	'StripState' => 'includes/parser/Parser.php',
+	'StripState' => 'includes/parser/StripState.php',
 	'MWTidy' => 'includes/parser/Tidy.php',
 
 	# includes/search

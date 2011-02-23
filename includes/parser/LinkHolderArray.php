@@ -12,6 +12,7 @@ class LinkHolderArray {
 	var $internals = array(), $interwikis = array();
 	var $size = 0;
 	var $parent;
+	protected $tempIdOffset;
 
 	function __construct( $parent ) {
 		$this->parent = $parent;
@@ -24,6 +25,15 @@ class LinkHolderArray {
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}
+	}
+
+	/**
+	 * Don't serialize the parent object, it is big, and not needed when it is
+	 * a parameter to mergeForeign(), which is the only application of 
+	 * serializing at present.
+	 */
+	function __sleep() {
+		return array( 'internals', 'interwikis', 'size' );
 	}
 
 	/**
@@ -40,6 +50,86 @@ class LinkHolderArray {
 			}
 		}
 		$this->interwikis += $other->interwikis;
+	}
+
+	/**
+	 * Merge a LinkHolderArray from another parser instance into this one. The 
+	 * keys will not be preserved. Any text which went with the old 
+	 * LinkHolderArray and needs to work with the new one should be passed in 
+	 * the $texts array. The strings in this array will have their link holders
+	 * converted for use in the destination link holder. The resulting array of
+	 * strings will be returned.
+	 *
+	 * @param $other LinkHolderArray
+	 * @param $text Array of strings
+	 * @return Array
+	 */
+	function mergeForeign( $other, $texts ) {
+		$this->tempIdOffset = $idOffset = $this->parent->nextLinkID();
+		$maxId = 0;
+
+		# Renumber internal links
+		foreach ( $other->internals as $ns => $nsLinks ) {
+			foreach ( $nsLinks as $key => $entry ) {
+				$newKey = $idOffset + $key;
+				$this->internals[$ns][$newKey] = $entry;
+				$maxId = $newKey > $maxId ? $newKey : $maxId;
+			}
+		}
+		$texts = preg_replace_callback( '(<!--LINK \d+:)(\d+)(-->)', 
+			array( $this, 'mergeForeignCallback' ), $texts );
+
+		# Renumber interwiki links
+		foreach ( $links['interwiki'] as $key => $entry ) {
+			$newKey = $idOffset + $key;
+			$this->interwikis[$newKey] = $entry;
+			$maxId = $newKey > $maxId ? $newKey : $maxId;
+
+		}
+		$texts = preg_replace_callback( '(<!--IWLINK )(\d+)(-->)', 
+			array( $this, 'mergeForeignCallback' ), $texts );
+
+		# Set the parent link ID to be the highest used ID
+		$this->parent->setLinkID( $maxId );
+		$this->tempIdOffset = null;
+	}
+
+	protected function mergeForeignCallback( $m ) {
+		return $m[1] . ( $m[2] + $this->tempIdOffset ) . $m[3];
+	}
+
+	/**
+	 * Get a subset of the current LinkHolderArray which is sufficient to
+	 * interpret the given text.
+	 */
+	function getSubArray( $text ) {
+		$sub = new LinkHolderArray( $this->parent );
+
+		# Internal links
+		$pos = 0;
+		while ( $pos < strlen( $text ) ) {
+			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/', 
+				$text, $m, PREG_OFFSET_CAPTURE, $pos ) ) 
+			{
+				break;
+			}
+			$ns = $m[1][0];
+			$key = $m[2][0];
+			$sub->internals[$ns][$key] = $this->internals[$ns][$key];
+			$pos = $m[0][1] + strlen( $m[0][0] );
+		}
+
+		# Interwiki links
+		$pos = 0;
+		while ( $pos < strlen( $text ) ) {
+			if ( !preg_match( '/<!--IWLINK (\d+)-->/', $text, $m, PREG_OFFSET_CAPTURE, $pos ) ) {
+				break;
+			}
+			$key = $m[1][0];
+			$sub->interwikis[$key] = $this->interwikis[$key];
+			$pos = $m[0][1] + strlen( $m[0][0] );
+		}
+		return $sub;
 	}
 
 	/**
