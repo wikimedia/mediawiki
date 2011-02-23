@@ -162,8 +162,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		// Validate the create checkbox
-		$canCreate = $this->canCreateAccounts();
-		if ( $canCreate ) {
+		if ( !$this->canCreateAccounts() ) {
 			$this->setVar( '_CreateDBAccount', false );
 			$create = false;
 		} else {
@@ -287,7 +286,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			if ( $res !== true && !( $res instanceOf ResultWrapper ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $res );
 			}
-			$this->db->query("ALTER USER $safeuser SET search_path = $safeschema");
 		}
 
 		return $status;
