@@ -19,11 +19,11 @@ $.fn.placeholder = function() {
 			return;
 		}
 
-		var placeholder = this.getAttribute('placeholder');
+		var placeholder = this.getAttribute( 'placeholder' );
 		var $input = $(this);
 
 		// Show initially, if empty
-		if ( this.value === '' || this.value == placeholder ) {
+		if ( this.value === '' || this.value === placeholder ) {
 			$input.addClass( 'placeholder' ).val( placeholder );
 		}
 
@@ -40,23 +40,25 @@ $.fn.placeholder = function() {
 
 			// Hide on focus
 			.focus( function() {
-				if ($input.hasClass('placeholder')) {
+				if ( $input.hasClass( 'placeholder' ) ) {
 					this.value = '';
 					$input.removeClass( 'placeholder' );
 				}
 			} );
 
 		// Blank on submit -- prevents submitting with unintended value
-		this.form && $( this.form ).submit( function() {
-			// $input.trigger( 'focus' ); would be problematic
-			// because it actually focuses $input, leading
-			// to nasty behavior in mobile browsers
-			if ( $input.hasClass('placeholder') ) {
-				$input
-					.val( '' )
-					.removeClass( 'placeholder' );
-			}
-		});
+		if ( this.form ) {
+			$( this.form ).submit( function() {
+				// $input.trigger( 'focus' ); would be problematic
+				// because it actually focuses $input, leading
+				// to nasty behavior in mobile browsers
+				if ( $input.hasClass( 'placeholder' ) ) {
+					$input
+						.val( '' )
+						.removeClass( 'placeholder' );
+				}
+			});
+		}
 
 	});
 };
