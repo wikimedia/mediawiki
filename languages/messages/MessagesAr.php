@@ -167,6 +167,17 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array(
+		'male' => 'مستخدم',
+		'female' => 'مستخدمة'
+	),
+	NS_USER_TALK => array(
+		'male' => 'نقاش_المستخدم',
+		'female' => 'نقاش_المستخدمة'
+	), 
+);
+
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__NOTOC__' ),
