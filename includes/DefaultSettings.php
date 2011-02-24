@@ -449,7 +449,7 @@ $wgAllowAsyncCopyUploads = false;
  * for non-specified types.
  *
  * For example:
- * 	$wgUploadSize = array(
+ * 	$wgMaxUploadSize = array(
  * 		'*' => 250 * 1024,
  * 		'url' => 500 * 1024,
  * 	);
