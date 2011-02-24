@@ -136,8 +136,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 
+		$count = 0;
 		if ( is_null( $resultPageSet ) ) {
-			$count = 0;
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
