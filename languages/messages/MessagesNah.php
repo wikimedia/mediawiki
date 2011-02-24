@@ -82,7 +82,7 @@ $messages = array(
 'tog-showtoolbar'          => 'Tiquittāz in tlein motequitiltia tlapatlaliztechcopa (JavaScript)',
 'tog-editondblclick'       => 'Tiquimpatlāz zāzaniltin ōme clicca (JavaScript)',
 'tog-showtoc'              => 'Tiquittāz in tlein cah zāzotlahcuilōlco',
-'tog-rememberpassword'     => 'Ticpiyāz motlacalaquiliz inīn chīuhpōhualhuazco (īxquich {{PLURAL:$1|tōnalli|tōnalli}})',
+'tog-rememberpassword'     => 'Ticpiyāz moMotlatequitiltilīltōca īhuān motlahtōlichtacāyo inīn chīuhpōhualhuazco (īxquich {{PLURAL:$1|tōnalli|tōnalli}})',
 'tog-watchcreations'       => 'Tiquintlachiyāz zāzaniltin tiquinchīhua',
 'tog-watchdefault'         => 'Tiquintlachiyāz zāzaniltin tiquimpatla',
 'tog-watchmoves'           => 'Tiquintlachiyāz zāzaniltin tiquinzaca',
@@ -590,12 +590,12 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'difference'    => '(Ahneneuhquiliztli tlapatlaliznepantlah)',
 'lineno'        => 'Pāntli $1:',
 'editundo'      => 'Tichuelōz',
-'diff-multi'    => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta|$1 tlapatlaliztli nepantlah ahmo mottah}}.)',
+'diff-multi'    => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta in ōquichīuh|$1 Tlapatlaliztli nepantlah ahmo mottah in ōquinchīuh}}  {{PLURAL:$2|cē tlatequitiltilīlli|$2 tlatequitiltilīltin}})',
 
 # Search results
 'searchresults'                    => 'Tlatēmoliztli',
 'searchsubtitle'                   => 'Ōtictēmōz \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|mochīntīn zāzaniltin mopēhua īca "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|mochīntīn zāzaniltin tzonhuilia "$1" īhuīc]])',
-'searchsubtitleinvalid'            => "Ōtictēmōz '''$1'''",
+'searchsubtitleinvalid'            => "Ōtictēmo '''$1'''",
 'prevn'                            => '{{PLURAL:$1|$1}} achtopa',
 'nextn'                            => 'niman {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'Xiquintta ($1 {{int:pipe-separator}} $2) ($3).',
@@ -918,7 +918,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'withoutinterwiki-submit' => 'Tiquittāz',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|neneuhcāyōtl|neneuhcāyōtl}}',
 'nlinks'                  => '$1 {{PLURAL:$1|tzonhuiliztli|tzonhuiliztli}}',
 'nmembers'                => '$1 {{PLURAL:$1|tlahcuilōlli|tlahcuilōlli}}',
@@ -1030,17 +1030,17 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'changed'                      => 'ōmotlacuep',
 'created'                      => 'ōmochīuh',
 'enotif_anon_editor'           => 'ahtōcātlatequitiltilīlli $1',
-'enotif_body'                  => 'Mahuizoh $WATCHINGUSERNAME,
+'enotif_body'                  => 'Māhuizzoh $WATCHINGUSERNAME,
 
-{{SITENAME}} zāzanilli "$PAGETITLE" $CHANGEDORCREATED īpal tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
-Āxcān tlachiyaliztli mopiya īpan {{fullurl:$PAGETITLE}}
+In {{SITENAME}} zāzanilli "$PAGETITLE" $CHANGEDORCREATED īpal in tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
+Xiquitta in āxcān tlachiyaliztli īpan $PAGETITLE_URL.
 
 $NEWPAGE
 
-Tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
+In tlapatlaliztli īxtlamatiliztli cah: $PAGESUMMARY $PAGEMINOREDIT
 
-Ic ticnotzāz tlatequitiltilīlli:
-e-mail: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
+Ic ticnotzāz in tlatequitiltilīlli:
+correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
 huiquipan: {{fullurl:User:$PAGEEDITOR}}
 
 Ic ticpiyāz yancuīc tlanōnōtzaliztli tlapatlalizcopa inīn zāzanilpan, tihuīquilīz tictlahpolōz occeppa.
@@ -1049,8 +1049,14 @@ Nō tihuelīti, motlachiyalizpan, ticpatlāz motlanequiliz tlanōnōtzaliztechco
              Mocnīuh {{SITENAME}} ītlanōnōtzaliz.
 
 --
-Ticpatlāz motlanequiliz:
-{{fullurl:Special:Watchlist|edit=yes}}',
+Ic ticpatla totlachiyaliz, xiquitta
+{{fullurl:{{#special:Watchlist}}/edit}}
+
+Ic ticpoloa in zāzanilli ītech totlachiyaliz, xiquitta
+$UNWATCHURL
+
+Tlacaquiztiliztli īhuān ocachi tēpalēhuiliztli:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ticpolōz inīn zāzanilli',
@@ -1347,7 +1353,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'metadata-collapse' => 'Tictlātīz tlanōnōtzaliztli huehca ōmpa',
 
 # EXIF tags
-'exif-photometricinterpretation' => 'Pixelli chīhualiztli',
+'exif-photometricinterpretation' => 'Pixel tlachīhualiztli',
 'exif-imagedescription'          => 'Īxiptli ītōcā',
 'exif-software'                  => 'Software ōmotēquitilti',
 'exif-artist'                    => 'Chīhualōni',
@@ -1416,8 +1422,8 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 # E-mail address confirmation
 'confirmemail'           => 'Ticchicāhuāz e-mail',
 'confirmemail_needlogin' => 'Tihuīquilia $1 ic ticchicāhua mo e-mail.',
-'confirmemail_success'   => 'Mocorreo ōmochicāuh.
-Niman tihuelīti timocalaqui auh quiyōlēhua huiquipan.',
+'confirmemail_success'   => 'Mocorreo ōmotlahtōlneltilih
+Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 'confirmemail_loggedin'  => 'Mo e-mailcān ōmochicāuh.',
 'confirmemail_error'     => 'Achi ōcatcah ahcualli mochicāhualiztechcopa.',
 'confirmemail_subject'   => 'e-mailcān {{SITENAME}} ītlachicāhualiz',

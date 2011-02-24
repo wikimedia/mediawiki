@@ -354,6 +354,7 @@ $messages = array(
 
 $1',
 'pool-timeout'      => 'ბლოკირების ლოდინის დრო ამოიწურა',
+'pool-queuefull'    => 'მოთხოვნების დამგროვებელი სავსეა',
 'pool-errorunknown' => 'უცნობი შეცდომა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1493,7 +1494,7 @@ $1",
 თუ თქვენ მაინც გსურთ მისი ატვირთვა დაბრუნდით უკან და ატვირთეთ სხვა სახელით. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'ფაილი ამ სახელწოდებით უკვე არსებობს ფაილების საერთო საცავში. თუ შეიძლება, უკან დაბრუნდით და ჩატვირთეთ ფაილი სხვა სახელწოდებით. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'ეს ფაილი არის შემდეგი {{PLURAL:$1|შემდეგი ფაილის|сშემდეგი ფაილების}} დუბლიკატი:',
-'file-deleted-duplicate'      => 'მსგავსი ფაილი ([[$1]]) უკვე წაშლილა. გთხოვთ, გაეცანით ფაილის წაშლის ისტორიას, მანამდე ვიდრე მას ხელმეორედ ატვირტავთ.',
+'file-deleted-duplicate'      => 'მსგავსი ფაილი ([[:$1]]) უკვე წაშლილა. გთხოვთ, გაეცანით ფაილის წაშლის ისტორიას, მანამდე ვიდრე მას ხელმეორედ ატვირტავთ.',
 'uploadwarning'               => 'გადატვირთვის შეხსენება',
 'uploadwarning-text'          => 'გთხოვთ ჩაასწოროთ ფაილის აღწერა ქვევით და ხელმეორედ სცადოთ.',
 'savefile'                    => 'ფაილის შენახვა',
@@ -2711,6 +2712,7 @@ $1',
 'file-info-gif-looped' => 'დარგოლილი',
 'file-info-gif-frames' => '$1 კადრი',
 'file-info-png-looped' => 'დარგოლილი',
+'file-info-png-repeat' => 'დაკრულია $1 {{PLURAL:$1|ჯერ}}',
 'file-info-png-frames' => '$1 კადრი',
 
 # Special:NewFiles

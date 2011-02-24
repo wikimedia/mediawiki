@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chiak
  * @author Danny B.
  * @author Helix84
  * @author Liso
@@ -306,8 +307,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
 'tog-oldsig'                  => 'Náhľad súčasného podpisu:',
 'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
-'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
-'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
+'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
+'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
 'tog-uselivepreview'          => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
 'tog-forceeditsummary'        => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
@@ -1264,7 +1265,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Preferences page
 'preferences'                   => 'Nastavenia',
-'mypreferences'                 => 'nastavenia',
+'mypreferences'                 => 'Nastavenia',
 'prefs-edits'                   => 'Počet úprav:',
 'prefsnologin'                  => 'Nie ste prihlásený/á',
 'prefsnologintext'              => 'Aby ste mohli zmeniť svoje nastavenia, musíte byť <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prihlásený]</span>.',
@@ -1656,7 +1657,7 @@ Ak si aj tak želáte nahrať svoj súbor, choďte prosím späť a nahrajte ten
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov.
 Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný názov. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento súbor je duplikátom {{PLURAL:$1|nasledovného súboru|nasledovných súborov}}:',
-'file-deleted-duplicate'      => 'Súbor zhodný s týmto súborom ([[$1]]) už bol v minulosti zmazaný. Mali by ste skontrolovať históriu nahrávania tohto súboru predtým, než budete pokračovať v jeho nahrávaní.',
+'file-deleted-duplicate'      => 'Súbor zhodný s týmto súborom ([[:$1]]) už bol v minulosti zmazaný. Mali by ste skontrolovať históriu nahrávania tohto súboru predtým, než budete pokračovať v jeho nahrávaní.',
 'uploadwarning'               => 'Varovanie pri nahrávaní',
 'uploadwarning-text'          => 'Prosím, zmeňte popis súboru nižšie a skúste to znova.',
 'savefile'                    => 'Uložiť súbor',
@@ -3295,6 +3296,20 @@ $3
 
 Ak vám účet *nepatrí*, otvorte namiesto toho tento odkaz,
 ktorý zruší potvrdenie emailovej adresy:
+
+$5
+
+Platnosť tohto potvrdzovacieho kódu vyprší $4.',
+'confirmemail_body_set'     => 'Niekto, pravdepodobne vy, z IP adresy $1, 
+nastavil e-mailovú adresu účtu „$2“ na túto adresu na {{GRAMMAR:genitív|{{SITENAME}}}}.
+
+Ak chcete potvrdiť, že tento účet skutočne patrí vám a aktivovať
+e-mailové funkcie na {{GRAMMAR:genitív|{{SITENAME}}}}, otvorte tento odkaz vo vašom prehliadači:
+
+$3
+
+Ak účet nie je *nepatrí* patrí k vám, nasledujte tento odkaz,
+ktorú zruší potvrdenie e-mailovej adresy:
 
 $5
 

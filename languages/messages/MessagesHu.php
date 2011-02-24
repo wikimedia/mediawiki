@@ -981,10 +981,9 @@ Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogi
 'permissionserrors'                => 'Engedélyezési hiba',
 'permissionserrorstext'            => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
 'permissionserrorstext-withaction' => 'Nincs jogosultságod a következő művelet elvégzéséhez: $2, a következő {{PLURAL:$1|ok|okok}} miatt:',
-'recreate-moveddeleted-warn'       => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amit korábban már töröltek.'''
+'recreate-moveddeleted-warn'       => "'''Figyelem! Olyan lapot készülsz létrehozni, amit már legalább egyszer töröltek.'''
 
-Mielőtt létrehoznád, nézd meg, miért került törölték és ellenőrizd,
-hogy a törlés indoka nem érvényes-e még. A törlési és átnevezési naplókban a lapról az alábbi bejegyzések szerepelnek:",
+Mielőtt létrehoznád, nézd meg, miért törölték a lap korábbi tartalmát, és győződj meg róla, hogy a törlés indoka érvényes-e még. A törlési és átnevezési naplókban az érintett lapról az alábbi bejegyzések szerepelnek:",
 'moveddeleted-notice'              => 'Az oldal korábban törölve lett.
 A lap törlési és átnevezési naplója alább olvasható.',
 'log-fulllog'                      => 'Teljes napló megtekintése',
@@ -1389,6 +1388,10 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'prefs-displaywatchlist'        => 'Megjelenítési beállítások',
 'prefs-diffs'                   => 'Eltérések (diffek)',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Az e-mail cím érvényesnek tűnik',
+'email-address-validity-invalid' => 'Írj be egy érvényes e-mail címet',
+
 # User rights
 'userrights'                   => 'Szerkesztői jogok beállítása',
 'userrights-lookup-user'       => 'Szerkesztőcsoportok beállítása',
@@ -1667,7 +1670,7 @@ Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kér
 Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy új nevet. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak, ha még mindig fel akarod tölteni! [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ez a következő {{PLURAL:$1|fájl|fájlok}} duplikátuma:',
-'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
+'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[:$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
 'uploadwarning-text'          => 'Kérlek módosítsd a fájl leírását alább, majd próbáld újra.',
 'savefile'                    => 'Fájl mentése',
@@ -3506,6 +3509,10 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'disableaccount'             => 'Felhasználói fiók letiltása',
 'disableaccount-user'        => 'Felhasználónév:',
 'disableaccount-reason'      => 'Ok:',
+'disableaccount-confirm'     => "Felhasználói fiók letiltása.
+A felhasználó nem jelentkezhet be, nem kérhet új jelszót és nem kap e-mailes értesítéseket.
+Ha a felhasználó bárhol be van jelentkezve, ki lesz jelentkeztetve.
+''Fontos, hogy felhasználói fiók letiltása nem állítható vissza rendszeradminisztrátor közreműködése nélkül.''",
 'disableaccount-mustconfirm' => 'Meg kell erősítened, hogy biztosan le szeretnéd tiltani ezt a fiókot.',
 'disableaccount-nosuchuser'  => 'Nem létezik „$1” nevű felhasználói fiók.',
 'disableaccount-success'     => '„$1” felhasználói fiókja véglegesen le lett tiltva.',

@@ -346,8 +346,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig'                  => 'Vista previa de firma existente:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor'          => 'Utilizar editor externo por defecto',
-'tog-externaldiff'            => "Utilizar ''diff'' externo por defecto",
+'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-showjumplinks'           => 'Habilitar enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview'          => 'Usar live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Alertar al grabar sin resumen de edición.',
@@ -757,6 +757,7 @@ Revisa la ortografía, o [[Special:UserLogin/signup|crea una nueva cuenta]].',
 Por favor, inténtalo de nuevo.',
 'passwordtooshort'           => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
+'password-login-forbidden'   => 'El uso de este nombre de usuario y contraseña han sido prohibidos.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
@@ -1076,7 +1077,7 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-comment'         => '(comentario eliminado)',
 'rev-deleted-user'            => '(nombre de usuario eliminado)',
 'rev-deleted-event'           => '(entrada borrada)',
-'rev-deleted-user-contribs'   => '[nombre de usuario o dirección IP eliminada - edición ocultada de las contribuciones]',
+'rev-deleted-user-contribs'   => '[nombre de usuario o dirección IP eliminada - edición ocultada de la lista de contribuciones]',
 'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión de página ha sido '''borrada'''.
@@ -1411,6 +1412,10 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'prefs-displaywatchlist'        => 'Opciones de visualización',
 'prefs-diffs'                   => 'Diferencias',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'La dirección de correo electrónico parece ser válida',
+'email-address-validity-invalid' => 'Introduce una dirección de correo válida',
+
 # User rights
 'userrights'                   => 'Configuración de permisos de usuarios',
 'userrights-lookup-user'       => 'Configurar grupos de usuarios',
@@ -1443,8 +1448,8 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'group-suppress'      => 'Supresores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'Usuario',
-'group-autoconfirmed-member' => 'Usuario autoconfirmado',
+'group-user-member'          => 'usuario',
+'group-autoconfirmed-member' => 'usuario autoconfirmado',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'burócrata',
@@ -1688,7 +1693,7 @@ Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nomb
 'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
-'file-deleted-duplicate'      => 'Un archivo idéntico a este ([[$1]]) ha sido borrado con anterioridad. Debes comprobar el historial de borrado del archivo ante de volver a subirlo.',
+'file-deleted-duplicate'      => 'Un archivo idéntico a este ([[:$1]]) ha sido borrado con anterioridad. Debes comprobar el historial de borrado del archivo ante de volver a subirlo.',
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'uploadwarning-text'          => 'Por favor, modifique la descripción del archivo abajo indicada e inténtelo de nuevo.',
 'savefile'                    => 'Guardar archivo',
@@ -3296,6 +3301,18 @@ Si la cuenta *no* te pertenece, sigue el siguiente enlace para cancelar la confi
 $5
 
 Este código de confirmación expirará el $4.',
+'confirmemail_body_set'     => 'Alguien, probablemente tu desde la dirección IP $1,
+ha cambiado la dirección de correo electrónico de la cuenta $2 a esta dirección en {{SITENAME}}.
+
+Para confirmar que esta cuenta realmente te pertenece y reactivar las capacidades del correo electrónico en {{SITENAME}}, abre este enlace en tu navegador:
+
+$3
+
+Si la cuenta *no* te pertenece sigue entonces este otro enlace para cancelar la confirmación del correo electrónico:
+
+$5
+
+Este código de confirmación caducará el $4.',
 'confirmemail_invalidated'  => 'La confirmación de la dirección de correo electrónico ha sido cancelada',
 'invalidateemail'           => 'Cancelar confirmación de correo electrónico',
 
@@ -3531,6 +3548,6 @@ Si el usuario está conectado, será desconectado de inmediato.
 'disableaccount-mustconfirm' => 'Tienes que confirmar que quieres desactivar esta cuenta.',
 'disableaccount-nosuchuser'  => 'La cuenta de usuario «$1» no existe.',
 'disableaccount-success'     => 'La cuenta de usuario «$1» ha sido deshabilitada definitivamente.',
-'disableaccount-logentry'    => 'desactivada permanentemente la cuenta «[[$1]]»',
+'disableaccount-logentry'    => 'desactivó permanentemente la cuenta «[[$1]]»',
 
 );

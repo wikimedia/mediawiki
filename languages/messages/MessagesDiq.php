@@ -1360,7 +1360,7 @@ eke şıma qayile dosyaya xo bar keri tepiya agerê u yew nameyo newe bınusi. [
 'fileexists-shared-forbidden' => 'no name de yew dosya hewza ortaxi de ca ra esta.
 eke şıma hhene zi qayili dosyaya xo bar keri ager3e u newe yew name bışuxulnê. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ena pel yew kopyayê ena {{PLURAL:$1|pel|pelan}} o:',
-'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[$1]]) cuwa ver battal biya.',
+'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[:$1]]) cuwa ver battal biya.',
 'uploadwarning'               => 'Îkazê bar kerdişî',
 'uploadwarning-text'          => 'Bînê de deskripyonê dosyayî bivurne u reyna qeyd bike.',
 'savefile'                    => 'Dosya qeyd ke',
@@ -1556,13 +1556,13 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # Statistics
 'statistics'                   => 'İstatistiki',
-'statistics-header-pages'      => 'İstatistikê pele',
+'statistics-header-pages'      => '↓ İstatistikê pele',
 'statistics-header-edits'      => 'Îstatistiksê vurnayîşî',
 'statistics-header-views'      => 'Îstatistiksê vînayîşî',
 'statistics-header-users'      => 'Îstatistiksê karberî',
 'statistics-header-hooks'      => 'Îstatistiksê binî',
 'statistics-articles'          => 'Pelanê tedesteyî',
-'statistics-pages'             => 'Peli',
+'statistics-pages'             => '↓ Peli',
 'statistics-pages-desc'        => 'Pelanê hemî ke wîkî de estê, pelanê mineqeşeyî, redireksiyon ucb... dehil o.',
 'statistics-files'             => 'Dosyayê bar biye',
 'statistics-edits'             => 'Amarê vurnayîşî ke wextê {{SITENAME}} ronayîşî ra',
@@ -1570,7 +1570,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-views-total'       => 'Yekunî bivîne',
 'statistics-views-peredit'     => 'Ser her vurnayîşî de vînayîşî',
 'statistics-users'             => 'Qeyd biye [[Special:ListUsers|karberî]]',
-'statistics-users-active'      => 'Karberê aktifi',
+'statistics-users-active'      => '↓ Karberê aktifi',
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular'       => 'Pelayanê ke tewr zafî vînî biye',
 

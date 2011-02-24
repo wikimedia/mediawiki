@@ -1219,7 +1219,7 @@ Si tovía asina quies xubir el ficheru, por favor vuelvi atrás y usa otru nome.
 'fileexists-shared-forbidden' => "Yá esiste un archivu con esti nome nel direutoriu d'archivos compartíos.
 Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Esti archivu ye un duplicáu {{PLURAL:$1|del siguiente archivu|de los siguientes archivos}}:',
-'file-deleted-duplicate'      => 'Yá se desanició enantes un ficheru idénticu a esti ([[$1]]). Deberíes revisar el historial del ficheru enantes de xubilu otra vuelta.',
+'file-deleted-duplicate'      => 'Yá se desanició enantes un ficheru idénticu a esti ([[:$1]]). Deberíes revisar el historial del ficheru enantes de xubilu otra vuelta.',
 'uploadwarning'               => "Avisu de xubíes d'archivos",
 'savefile'                    => 'Grabar archivu',
 'uploadedimage'               => 'xubió "[[$1]]"',

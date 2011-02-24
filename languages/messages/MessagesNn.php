@@ -1600,7 +1600,7 @@ Om du framleis ynskjer å laste opp fila, lyt du gå attende og nytte eit anna n
 'fileexists-shared-forbidden' => 'Ei fil med dette namnet finst frå før i det delte fillageret.
 Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit anna namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fila er ein duplikat av følgjande {{PLURAL:$1|fil|filer}}:',
-'file-deleted-duplicate'      => 'Ei identisk fil ([[$1]]) har tidlegare blitt sletta. Du bør sjekka slettehistorikken til denne før du held fram med å lasta ho opp på nytt.',
+'file-deleted-duplicate'      => 'Ei identisk fil ([[:$1]]) er tidlegare sletta. Du bør sjekka slettehistorikken hennar før du held fram med å lasta henne opp på nytt.',
 'uploadwarning'               => 'Opplastingsåtvaring',
 'uploadwarning-text'          => 'Ver venleg og endra filskildringa nedanfor og prøv på nytt',
 'savefile'                    => 'Lagre fil',
@@ -2539,12 +2539,12 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagestext'               => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB'     => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
-'allmessages-filter-legend'     => 'Filtrér',
-'allmessages-filter'            => 'Filtrér etter tilpassingsgrad:',
+'allmessages-filter-legend'     => 'Filtrer',
+'allmessages-filter'            => 'Filtrer etter tilpassingsgrad:',
 'allmessages-filter-unmodified' => 'Ikkje endra',
 'allmessages-filter-all'        => 'Alle',
 'allmessages-filter-modified'   => 'Endra',
-'allmessages-prefix'            => 'Filtrér etter prefiks:',
+'allmessages-prefix'            => 'Filtrer etter prefiks:',
 'allmessages-language'          => 'Språk:',
 'allmessages-filter-submit'     => 'Gå',
 
@@ -3367,6 +3367,10 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
 
 # Special:DisableAccount
-'disableaccount-reason' => '↓Grunngjeving:',
+'disableaccount-reason'      => '↓Grunngjeving:',
+'disableaccount-mustconfirm' => 'Du lyt stadfesta at du ynskjer å deaktivera denne kontoen.',
+'disableaccount-nosuchuser'  => 'Brukarkontoen «$1» finst ikkje.',
+'disableaccount-success'     => 'Brukarkontoen «$1» er permanent deaktivert.',
+'disableaccount-logentry'    => 'deaktiverte brukarkontoen [[$1]] permanent',
 
 );

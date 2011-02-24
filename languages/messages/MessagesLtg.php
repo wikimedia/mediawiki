@@ -97,6 +97,8 @@ $messages = array(
 'qbpageoptions'  => 'Ita puslopa',
 'qbmyoptions'    => 'Munys puslopys',
 'qbspecialpages' => 'Specialuos puslopys',
+'faq'            => 'BUV',
+'faqpage'        => 'Project:BUV',
 
 # Vector skin
 'vector-action-addsection' => 'Dalikt padaļu',

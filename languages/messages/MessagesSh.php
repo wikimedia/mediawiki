@@ -1145,6 +1145,10 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'prefs-displaywatchlist'        => 'Postavke prikaza',
 'prefs-diffs'                   => 'Razlike',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mail adresa izgleda valjano',
+'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
+
 # User rights
 'userrights'                   => 'Postavke korisničkih prava',
 'userrights-lookup-user'       => 'Menadžment korisničkih prava',
@@ -1427,7 +1431,7 @@ Ako imate ovu sliku u punoj rezoluciji, postavite nju; ili promijenite naslov ov
 Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je dvojnik {{PLURAL:$1|slijedećoj datoteci|slijedećim datotekama}}:',
-'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
+'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[:$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'uploadwarning-text'          => 'Molimo izmijeniti opis datoteke ispod i pokušajte kasnije.',
 'savefile'                    => 'Snimi datoteku',
@@ -3044,6 +3048,20 @@ Da potvrdite da ovaj nalog stvarno pripada Vama i da reaktivirate mogućnosti e-
 $3
 
 Ako ovaj račun *ne* pripada Vama, pratite ovaj link da prekinete odobravanje adrese e-pošte:
+
+$5
+
+Ovaj kod za potvrdu će isteći u $4.',
+'confirmemail_body_set'     => 'Netko, vjerovatno Vi, sa IP adrese $1,
+je postavio e-mail adresu za račun "$2" na ovoj adresi za {{SITENAME}}.
+
+Da potvrdite kako ovaj račun uistinu pripada Vama i reaktivirate
+e-mail postavke na {{SITENAME}}, otvoriti ovaj link u vašem pregledniku:
+
+$3
+
+Ako račun *ne* pripada Vama, pratite ovaj link
+kako bi poništili potvrdu e-mail adrese:
 
 $5
 

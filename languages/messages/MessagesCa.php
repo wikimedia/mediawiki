@@ -213,8 +213,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
 'tog-oldsig'                  => 'Previsualització de la signatura:',
 'tog-fancysig'                => 'Tractar la signatura com a text wiki (sense enllaç automàtic)',
-'tog-externaleditor'          => "Utilitza per defecte un editor extern (opció per a experts, requereix la configuració adient de l'ordinador)",
-'tog-externaldiff'            => "Utilitza per defecte un altre visualitzador de diferències (opció per a experts, requereix la configuració adient de l'ordinador)",
+'tog-externaleditor'          => "Utilitza per defecte un editor extern (opció per a experts, requereix la configuració adient de l'ordinador, [http://www.mediawiki.org/wiki/Manual:External_editors consulteu-ho al manual])",
+'tog-externaldiff'            => "Utilitza per defecte un altre visualitzador de diferències (opció per a experts, requereix la configuració adient de l'ordinador, [http://www.mediawiki.org/wiki/Manual:External_editors consulteu-ho al manual])",
 'tog-showjumplinks'           => "Habilita els enllaços de dreceres d'accessibilitat",
 'tog-uselivepreview'          => 'Utilitza la previsualització automàtica (cal JavaScript) (experimental)',
 'tog-forceeditsummary'        => "Avisa'm en introduir un camp de resum en blanc",
@@ -735,7 +735,7 @@ Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges 
 
 La vostra adreça IP actual és $3, i el número d'identificació del blocatge és #$5.
 Si us plau, incloeu aquestes dades en totes les consultes que feu.",
-'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
+'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'{{GENDER:$1|administrador|administradora}} $1. El motiu donat per al bloqueig ha estat:
 
 :''$2''
 
@@ -939,7 +939,7 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
-Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
+Com a {{GENDER:|administrador|administradora}} encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-suppressed-text-unhide'  => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador, encara podeu [$1 veure aquesta revisió].",
@@ -1266,6 +1266,10 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-displaywatchlist'        => 'Opcions de visualització',
 'prefs-diffs'                   => 'Difs',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "L'adreça de correu electrònic sembla vàlida",
+'email-address-validity-invalid' => 'Escriviu una adreça vàlida de correu electrònic',
+
 # User rights
 'userrights'                   => "Gestió dels permisos d'usuari",
 'userrights-lookup-user'       => "Gestiona els grups d'usuari",
@@ -1466,16 +1470,16 @@ Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en
 'upload'                      => 'Carrega',
 'uploadbtn'                   => 'Carrega un fitxer',
 'reuploaddesc'                => 'Torna al formulari per apujar.',
-'upload-tryagain'             => "Envia la descripció de l'arxiu modificat",
+'upload-tryagain'             => 'Envia la descripció del fitxer modificat',
 'uploadnologin'               => 'No heu iniciat una sessió',
 'uploadnologintext'           => "Heu d'[[Special:UserLogin|iniciar una sessió]]
 per a penjar-hi fitxers.",
 'upload_directory_missing'    => "No s'ha trobat el directori de càrrega ($1) i tampoc no ha pogut ser creat pel servidor web.",
 'upload_directory_read_only'  => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror'                 => "S'ha produït un error en l'intent de carregar",
-'upload-recreate-warning'     => "'''Atenció: S'ha eliminat o reanomenat un arxiu amb aquest mateix nom.'''
+'upload-recreate-warning'     => "'''Atenció: S'ha eliminat o reanomenat un fitxer amb aquest mateix nom.'''
 
-S'hi mostren els registres de supressió i reanomenament per a aquesta pàgina:",
+A continuació es mostren els registres de supressió i reanomenament d'aquesta pàgina:",
 'uploadtext'                  => "Feu servir el formulari de sota per a carregar fitxers.
 Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:FileList|llista de fitxers carregats]]. Les càrregues es registren en el [[Special:Log/upload|registre de càrregues]] i els fitxers esborrats en el [[Special:Log/delete|registre d'esborrats]].
 
@@ -1517,14 +1521,16 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'illegal-filename'            => 'El nom del fitxer no està permès.',
 'overwrite'                   => 'No es permet sobreescriure un fitxer existent.',
 'unknown-error'               => "S'ha produït un error desconegut.",
-'tmp-create-error'            => "No s'ha pogut crear l'arxiu temporal.",
+'tmp-create-error'            => "No s'ha pogut crear el fitxer temporal.",
 'tmp-write-error'             => 'Error en escriure el fitxer temporal.',
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
-'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit. Açò por ser degut a un mal caràcter en el nom del fitxer. Si us plau, reviseu si realment voleu carregar aquest arxiu.',
+'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit.
+Açò por ser degut a un mal caràcter en el nom del fitxer.
+Comproveu si realment voleu carregar aquest fitxer.',
 'fileexists'                  => "Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu '''<tt>[[:$1]]</tt>''' si no esteu segurs de voler substituir-lo.
 [[$1|thumb]]",
-'filepageexists'              => "La pàgina de descripció d'aquest fitxer ja ha estat creada ('''<tt>[[:$1]]</tt>'''), però de moment no hi ha cap arxiu amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.
+'filepageexists'              => "La pàgina de descripció d'aquest fitxer ja ha estat creada ('''<tt>[[:$1]]</tt>'''), però de moment no hi ha cap fitxer amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.
 [[$1|thumb]]",
 'fileexists-extension'        => "Ja existeix un fitxer amb un nom semblant: [[$2|thumb]]
 * Nom del fitxer que es puja: '''<tt>[[:$1]]</tt>'''
@@ -1541,7 +1547,7 @@ Si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers.
 Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
-'file-deleted-duplicate'      => "Un fitxer idèntic a aquest ([[$1]]) ha estat esborrat amb anterioritat. Hauríeu de comprovar el registre d'esborrat del fitxer abans de tornar-lo a carregar.",
+'file-deleted-duplicate'      => "Un fitxer idèntic a aquest ([[:$1]]) ha estat esborrat amb anterioritat. Hauríeu de comprovar el registre d'esborrat del fitxer abans de tornar-lo a carregar.",
 'uploadwarning'               => 'Avís de càrrega',
 'uploadwarning-text'          => 'Modifiqueu la descripció de la imatge i torneu a intentar-ho.',
 'savefile'                    => 'Desa el fitxer',
@@ -1597,8 +1603,8 @@ Vegeu http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-badtitle'     => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
 'img-auth-nologinnWL'   => 'No has iniciat sessió i "$1" no està a la llista blanca.',
 'img-auth-nofile'       => 'No existeix el fitxer "$1".',
-'img-auth-isdir'        => "Estàs intentant accedir al directori $1.
-Només està permès l'accés a arxius.",
+'img-auth-isdir'        => 'Esteu intentant accedir al directori «$1».
+Només teniu permès accedir als fitxers.',
 'img-auth-streaming'    => 'Lectura corrent de "$1".',
 'img-auth-public'       => "La funció de img_auth.php és de sortida de fitxers d'un lloc wiki privat.
 Aquest wiki està configurat com a wiki públic.
@@ -1707,7 +1713,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 ** Violació dels drets d'autor / copyright
 ** Fitxer duplicat",
 'filedelete-edit-reasonlist'  => "Edita els motius d'eliminació",
-'filedelete-maintenance'      => "L'esborrament i recuperació d'arxius està temporalment deshabilitada durant el manteniment.",
+'filedelete-maintenance'      => "L'esborrament i recuperació de fitxers està temporalment deshabilitada durant el manteniment.",
 
 # MIME search
 'mimesearch'         => 'Cerca per MIME',
@@ -2170,7 +2176,7 @@ Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'undeletepage'                 => 'Mostra i restaura pàgines esborrades',
 'undeletepagetitle'            => "'''A continuació teniu revisions eliminades de [[:$1]]'''.",
 'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
-'undeletepagetext'             => "S'ha eliminat {{PLURAL:|la pàgina $1, però encara és a l'arxiu i pot ser restaurada|les pàgines $1, però encara són a l'arxiu i poden ser restaurades}}. Pot netejar-se l'arxiu periòdicament.",
+'undeletepagetext'             => "S'ha eliminat {{PLURAL:|la pàgina $1, però encara és a l'arxiu i pot ser restaurada|les pàgines $1, però encara són a l'arxiu i poden ser restaurades}}. Es Pot netejar l'arxiu periòdicament.",
 'undelete-fieldset-title'      => 'Restaura revisions',
 'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
 cliqueu a  '''''Restaura'''''.
@@ -2207,7 +2213,7 @@ Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esbo
 'undelete-search-box'          => 'Cerca pàgines esborrades',
 'undelete-search-prefix'       => 'Mostra pàgines que comencin:',
 'undelete-search-submit'       => 'Cerca',
-'undelete-no-results'          => "Amb aquest criteri de búsqueda, no s'ha trobat cap pàgina esborrada en l'arxiu de supressions",
+'undelete-no-results'          => "Amb aquest criteri de cerca, no s'ha trobat cap pàgina a l'arxiu de supressions",
 'undelete-filename-mismatch'   => "No es pot revertir l'eliminació de la revisió de fitxer amb marca horària $1: no coincideix el nom de fitxer",
 'undelete-bad-store-key'       => 'No es pot revertir la revisió de fitxer amb marca horària $1: el fitxer no hi era abans i tot de ser eliminat.',
 'undelete-cleanup-error'       => "S'ha produït un error en eliminar el fitxer d'arxiu sense utilitzar «$1».",
@@ -2727,7 +2733,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'math_unknown_function' => 'funció desconeguda',
 'math_lexing_error'     => 'error de lèxic',
 'math_syntax_error'     => 'error de sintaxi',
-'math_image_error'      => "Hi ha hagut una errada en la conversió cap el format PNG; verifiqueu la instaŀlació de ''latex'', ''dvips'', ''gs'' i ''convert''.",
+'math_image_error'      => 'Hi ha hagut una errada en la conversió a PNG. Verifiqueu la instaŀlació de latex i dvipng (o dvips, gs i convert).',
 'math_bad_tmpdir'       => 'No ha estat possible crear el directori temporal de math o escriure-hi dins.',
 'math_bad_output'       => "No ha estat possible crear el directori d'eixida de math o escriure-hi dins.",
 'math_notexvc'          => "No s'ha trobat el fitxer executable ''texvc''; si us plau, vegeu math/README per a configurar-lo.",
@@ -3150,6 +3156,19 @@ per a cancel·lar la confirmació d\'adreça de correu:
 $5
 
 Aquest codi de confirmació expirarà el $4.',
+'confirmemail_body_set'     => "Algú, probablement vós, des de l'adreça IP $1, 
+ha establert aquesta adreça de correu electrònic com la del compte «$2» del lloc {{SITENAME}}. 
+
+Per confirmar que aquest compte realment us pertany i reactivar 
+les facilitats de correu electrònic a {{SITENAME}}, cal que obriu al navegador aquest enllaç:
+
+$3
+
+Si el compte *no* us pertany, canceŀleu l'adreça de correu electrònic seguint aquest enllaç: 
+
+$5
+
+Aquest codi de confirmació caducarà el $4.",
 'confirmemail_invalidated'  => "Confirmació d'adreça electrònica canceŀlada",
 'invalidateemail'           => "Canceŀlació d'adreça electrònica",
 
@@ -3376,6 +3395,10 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'disableaccount'             => "Deshabilita un compte d'usuari/a",
 'disableaccount-user'        => "Nom d'usuari/a :",
 'disableaccount-reason'      => 'Raó:',
+'disableaccount-confirm'     => "Desactivació d'aquest compte d'usuari.
+L'usuari no podrà entrar al seu compte, recuperar la contrasenya o rebre notificacions per correu electònic.
+Si l'usuari està fent servir el compte actualment serà immediatament desconnectat.
+''Tingueu en compte que la desactivació d'un compte no és una operació reversible sense la intervenció d'algú amb accés al servidor del sistema.''",
 'disableaccount-mustconfirm' => 'Has de confirmar que vols desactivar aquest compte.',
 'disableaccount-nosuchuser'  => 'El compte d\'usuari/a "$1" no existeix.',
 'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',

@@ -1350,7 +1350,7 @@ Bied jo triem ûnder in oare namme oan.
 As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dizze triem is idintyk oan {{PLURAL:$1|de folgjende triem|de folgjende triemmen}}:',
-'file-deleted-duplicate'      => "In bestân idintyk oan dit bestân ([[$1]]) is foarhinne fuorthelle.
+'file-deleted-duplicate'      => "In bestân idintyk oan dit bestân ([[:$1]]) is foarhinne fuorthelle.
 Rieplachtsje it fuorthel-logboek foar't jo fierder geane.",
 'uploadwarning'               => 'Oanbied-warskôging',
 'savefile'                    => 'Lis triem fêst',

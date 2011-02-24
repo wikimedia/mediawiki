@@ -54,12 +54,12 @@ $messages = array(
 'tog-underline'               => 'सम्बन्ध निम्न रेखाङ्कन:',
 'tog-highlightbroken'         => 'प्रारूप टुटेको लिङ्क <a href="" class="new">यस्तो </a> (alternative: यस्तै<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'अनुच्छेद जस्टिफाइ(justify) गर्ने',
-'tog-hideminor'               => 'तत्कालका मामूली सम्पादनहरुलाई लुकाउनुहोस्',
+'tog-hideminor'               => 'भर्खरका मामूली सम्पादनहरुलाई लुकाउनुहोस्',
 'tog-hidepatrolled'           => 'गस्ती(patrolled)सम्पादनहरु हालको परिवर्तनहरुबाट लुकाउने',
 'tog-newpageshidepatrolled'   => 'गस्ती(patrolled) पृष्ठहरु नयाँ पृष्ठ सूचीबाट लुकाउने',
 'tog-extendwatchlist'         => 'निगरानी सूचीलाई सबै परिवर्ताहरू देखाउने गरी बढाउने , हालैको  बाहेक',
 'tog-usenewrc'                => 'विकसित हालको परिवर्तन प्रयोग गर्ने ( जाभास्क्रिप्ट चाहिन्छ)',
-'tog-numberheadings'          => 'शिर्षकहरुलाई स्वत:अङ्कित गर्नुहोस्',
+'tog-numberheadings'          => 'शीर्षकहरुलाई स्वत:अङ्कित गर्नुहोस्',
 'tog-showtoolbar'             => 'सम्पादन औजारबट्टा देखाउने( जाभा स्क्रिप्ट चाहिन्छ)',
 'tog-editondblclick'          => 'दोहोरो क्लिकमा पृष्ठ सम्पादन गर्ने (जाभा स्क्रिप्ट चाहिन्छ)',
 'tog-editsection'             => '[परिवर्तन्]सम्बन्ध मार्फत हुने खण्ड सम्पादनलाई सक्षमपार्ने',
@@ -105,13 +105,13 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'फन्ट प्रकार क्षेत्र सम्पादन गर्नुहोस् :',
-'editfont-default'   => 'ब्राउजर पूर्वस्थिती',
+'editfont-default'   => 'ब्राउजर पूर्वस्थिति',
 'editfont-monospace' => 'मोनोस्पेस्ड फन्ट',
 'editfont-sansserif' => 'सान्स-सेरिफ फन्ट',
 'editfont-serif'     => 'सेरिफ फन्ट',
 
 # Dates
-'sunday'        => 'आईतबार',
+'sunday'        => 'आइतबार',
 'monday'        => 'सोमबार',
 'tuesday'       => 'मंगलबार',
 'wednesday'     => 'बुधबार',
@@ -181,15 +181,15 @@ $messages = array(
 'noindex-category'               => 'सुचिकरण नगरिएको पृष्ठ',
 
 'mainpagetext'      => "'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''",
-'mainpagedocfooter' => " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] हेर्नुहोस्
+'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
 
 == सुरू गर्नको लागि  ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]
+* [http://www.mediawiki.org/wiki/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]',
 
 'about'         => 'बारेमा',
-'article'       => 'मुख्य-लेख पृष्ठ',
+'article'       => 'सामाग्री पृष्ठ',
 'newwindow'     => '(नयाँ विन्डोमा खुल्छ)',
 'cancel'        => 'रद्द',
 'moredotdotdot' => 'थप...',
@@ -201,7 +201,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'पत्ता लगाउनु',
-'qbbrowse'       => 'खोज',
+'qbbrowse'       => 'ब्राउज गर्नु',
 'qbedit'         => 'परिवर्तन्',
 'qbpageoptions'  => 'यो पेज',
 'qbpageinfo'     => 'सन्दर्भ',
@@ -211,7 +211,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'       => 'पाठ थप्नुहोस',
+'vector-action-addsection'       => 'विषय थप्नुहोस',
 'vector-action-delete'           => 'हटाउने',
 'vector-action-move'             => 'सार्ने',
 'vector-action-protect'          => 'सुरक्षित गर्ने',
@@ -291,7 +291,7 @@ $1',
 'pool-errorunknown' => 'अज्ञात त्रुटी',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} बारेमा',
+'aboutsite'            => '{{SITENAME}}को बारेमा',
 'aboutpage'            => 'Project:बारेमा',
 'copyright'            => 'लेखका सामाग्री $1 अनुसार उपलब्ध छ।',
 'copyrightpage'        => '{{ns:project}}:प्रतिलिपी अधिकारहरु',
@@ -326,7 +326,7 @@ $1',
 'newmessageslink'         => 'नयाँ सन्देशहरू',
 'newmessagesdifflink'     => 'आखिरी परिवर्तन',
 'youhavenewmessagesmulti' => 'तपाईंको लागि $1 मा  नयाँ सन्देशहरू छन्',
-'editsection'             => 'परिवर्तन्',
+'editsection'             => 'सम्पादन',
 'editsection-brackets'    => '[$1]',
 'editold'                 => 'सम्पादन',
 'viewsourceold'           => 'स्रोत हेर्नुहोस्',
@@ -375,7 +375,7 @@ $1',
 # General errors
 'error'                => 'त्रुटी',
 'databaseerror'        => 'डेटावेस त्रुटी',
-'dberrortext'          => '↓ डेटाबेस क्वेरी सुत्र त्रुटि भएको छ ।
+'dberrortext'          => '↓ डेटाबेस क्वेरी सूत्र त्रुटि भएको छ ।
 यसले सफ्टवेयरमा बग रहेको देखाउँदछ ।
 डेटावेसमा पछिल्लो पटक प्रयास गरिएको क्वेरी:
 <blockquote><tt>$1</tt></blockquote>
@@ -402,7 +402,7 @@ $1',
 'internalerror_info'   => 'आन्तरिक त्रुटि: $1',
 'fileappenderrorread'  => 'जोड़ने बेलामा "$1" पढ्न सकिएन।',
 'fileappenderror'      => ' "$2".लाई"$1" मा जोडन सकिएन ।',
-'filecopyerror'        => 'फाइल  "$1" लाई "$2" मा प्रतिलिपी गर्न सकिएन ।',
+'filecopyerror'        => 'फाइल  "$1" लाई "$2" मा प्रतिलिपि गर्न सकिएन ।',
 'filerenameerror'      => 'फाइल "$1" को नाम "$2" मा परिवर्तन गर्न सकिएन ।',
 'filedeleteerror'      => 'फाइल "$1"  मेट्न सकिएन ।',
 'directorycreateerror' => 'डाइरेक्टरी "$1" निर्माण गर्न सकिएन ।',
@@ -439,7 +439,7 @@ $2',
 'namespaceprotected'   => " '''$1'''  नेमस्पेसमा रहेका पृष्ठहरु सम्पादन गर्ने अनुमति यहाँलाई छैन ।",
 'customcssjsprotected' => 'यो पृष्ठ सम्पादन गर्ने अनुमति यहाँलाई छैन ,किनकी यसमा अरु प्रयोगकर्ताको व्यक्तिगत जानकारीहरु छन् ।',
 'ns-specialprotected'  => 'विशेष पृष्ठ सम्पादन गर्न सकिदैन ।',
-'titleprotected'       => ' [[User:$1|$1]]द्वारा निम्न शिर्षकहरु निर्माणहुनबाट जोगाइएको छ।
+'titleprotected'       => ' [[User:$1|$1]]द्वारा यो शीर्षक निर्माणहुनबाट जोगाइएको छ।
 कारण   "\'\'$2\'\'" हो ।',
 
 # Virus scanner
@@ -478,26 +478,16 @@ $2',
 'badretype'                  => 'तपाईंले दिनुभएको पासवर्ड मिल्दैन।',
 'userexists'                 => 'तपाईले प्रविष्ट गर्नुभएको प्रयोगकर्ताको नाम पहिले देखिनै प्रयोगमा छ ।
 कृपया फरक नाम छान्नुहोला ।',
-'loginerror'                 => 'प्रवेश त्रुटी',
+'loginerror'                 => 'प्रवेश त्रुटि',
 'createaccounterror'         => 'खाता बनाउन सकिएन: $1',
 'nocookiesnew'               => 'तपाईँको खाता बनाइयो, तर तपाईँ प्रवेश गर्नुभएको छैन ।
 {{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ ।
 तपाईँको कुकीहरू निस्क्रिय गरिएको छ।
 कृपया सक्रिय बनाइ , नाम र प्रवेशशव्द राखी प्रवेश गर्नुहोला ।',
 'nocookieslogin'             => '{{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ । तपाईँको कुकीहरू निस्क्रिय गरिएको छ। कृपया सक्रिय बनाइ , नाम र प्रवेशशव्द राखी प्रवेश गर्नुहोला ।',
-'noname'                     => 'तपाईले सहि युजर नेम उल्लेख गर्नु भएन.',
+'noname'                     => 'तपाईले सही प्रयोगकर्ता नाम दिनु भएन।',
 'loginsuccesstitle'          => 'प्रवेश सफल',
-'loginsuccess'               => '{| style="clear:both; background:none; color:black;"
-|-
-| width="60%" style="padding:1em 1em 1em 1em; border:1px solid #87CEEB; background-color:#FAD1F6" valign="top"|
-<span style="font-size:16pt"><center> स्वागतम्!</center></span> 
-[[File:Dancer in Sari.jpg|center|40px]]
-<center>\'\'\'नमस्कार !\'\'\' तपाईं {{SITENAME}}मा "$1" प्रयोगकर्ताको नामले प्रवेश गर्नु भएकोछ।</br> {{SITENAME}}मा तपाईंलाई हार्दिक स्वागत छ।</center>
-|-
-| width="60%" style="padding:1em 1em 1em 1em; border:1px solid #87CEEB; background-color:#FAD1F6" valign="top"|
-आशा छ {{SITENAME}}मा संपादन गर्नमा तपाईंलाई आनन्द आउनेछ। {{SITENAME}} सबै विषयहरुमा प्रामाणिक एवं उपयोग, परिवर्तन र पुनर्वितरणको लागि स्वतन्त्र विश्वकोष बनाउने एउटा बहुभाषीय प्रकल्प हो। यो यथासम्भव निष्पक्ष दृष्टिकोण भएको सूचना प्रसारित गर्न कृतसंकल्प छ। आउनुहोस्, यस ज्ञानकोषलाई पूरा गर्न संकल्प गरौं जसबाट सबै नेपाली भाषी लाभान्वित हुनेछन्, हामीलाई आशा छ कि यस ज्ञानकोषलाई बढाउनमा तपाईंले सहयोग गर्नु हुनेछ। 
-।</div></div>
-|}',
+'loginsuccess'               => "'''तपाईंले {{SITENAME}}मा  \"\$1\" को रुपमा प्रवेश गर्नुभएकोछ।'''",
 'nosuchuser'                 => '"$1" को नामबाट कुनै पनि प्रयोगकर्ता भेटिएनन् ।
 प्रयोगकर्ता नाम वर्णसंवेदनशील हुन्छन् ।
 हिज्जे जाँच्नुहोस् , या [[Special:UserLogin/signup|नयाँ खाता बनाउनुहोस्]].',
@@ -512,7 +502,7 @@ $2',
 'password-login-forbidden'   => 'यो प्रयोगकर्ता नाम र प्रवेश शव्द वर्जित गरिएकोछ ।',
 'mailmypassword'             => 'नयाँ प्रवेशशव्द इमेल गर्नुहोस्',
 'passwordremindertitle'      => '{{SITENAME}}को लागि नयाँ अस्थायी पासवर्ड',
-'passwordremindertext'       => 'कसैले (सायद तपाईँ, IP ठेगाना $1 बाट), {{SITENAME}}($4) को लागि नयाँ प्रवेशशव्द अनुरोध गर्नुभएको छ । प्रयोगकर्ता "$2" को लागि नयाँ अस्थायी प्रवेशशव्द "$3"तयार पारिएको छ। यदि यो तपाईको इच्छामा भएको भए अहिले तपाईले तपाईँले प्रवेशगरी नयाँ प्रवेशशव्द छान्नु पर्ने हुन्छ।
+'passwordremindertext'       => 'कसैले (सायद तपाईँ, IP ठेगाना $1 बाट), {{SITENAME}}($4) को लागि नयाँ प्रवेशशव्द अनुरोध गर्नुभएको छ । प्रयोगकर्ता "$2" को लागि नयाँ अस्थायी प्रवेशशव्द "$3"तयार पारिएको छ। यदि यो तपाईको इच्छामा भएको भए अहिले तपाईँले प्रवेशगरी नयाँ प्रवेशशव्द छान्नु पर्ने हुन्छ।
 तपाईको अस्थायी प्रवेशशव्द  {{PLURAL:$5|एक दिन|$5 दिनहरू पछि}} अमान्य हुनेछ ।
 
 यदि कोही अरुले नै अनुरोध गरेको हो भने , या तपाईले आफ्नो प्रवेशशव्द सम्झिनु भयो भने, अथवा
@@ -540,8 +530,8 @@ $2',
 'createaccount-title'        => '{{SITENAME}}कोलागि खाता खोल्ने काम',
 'createaccount-text'         => 'कसैले तपाईको इमेल ठेगानालाई {{SITENAME}} ($4) मा "$2" नामको खाता बनाएको छ, जसको पासवर्ड "$3" छ।',
 'usernamehasherror'          => 'प्रयोगकर्तानाममा ह्यास अक्षरहरु राख्न मिल्दैन।',
-'login-throttled'            => 'तपाँईले अति धेरै प्रबेश प्रयत्न गरिसक्नु भयो।
-कृपया केही समयपछि मात्र प्रयास गर्नुहोस्।',
+'login-throttled'            => 'तपाईंले भर्खरै धेरै पल्ट प्रवेशको निम्ति प्रयास गर्नुभयो।
+कृपया पर्खेर केही समयपछि मात्र प्रयास गर्नुहोस्।',
 'loginlanguagelabel'         => 'भाषा: $1',
 'suspicious-userlogout'      => 'तपाँईको निर्गमन अनुरोध अस्विकार गरिन्छ किनकी यो खराब ब्राउजर वा क्यासिङ प्रोक्सिले पठाएको जस्तो देखिन्छ।',
 
@@ -650,7 +640,7 @@ $2',
 'loginreqlink'                     => 'प्रवेश (लग ईन)',
 'loginreqpagetext'                 => 'अरु पृष्ठहेर्न तपाईले $1 गर्नुपर्छ ।',
 'accmailtitle'                     => 'पासवर्ड पठाइयो',
-'accmailtext'                      => "जथाभावीरुपमा शृजना गरिएको प्रवेशशब्द प्रयोगकर्ता [[User talk:$1|$1]] को  $2 मा पठाइएको छ।
+'accmailtext'                      => "जथाभावीरुपमा सृजना गरिएको प्रवेशशब्द प्रयोगकर्ता [[User talk:$1|$1]] को  $2 मा पठाइएको छ।
 
 यो नयाँ खाताको प्रवेशशब्द  ''[[Special:ChangePassword|change password]]'' मा प्रवेश गरेर परिवर्तन गर्न सकिन्छ ।",
 'newarticle'                       => '(नयाँ)',
@@ -673,31 +663,50 @@ $2',
 'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "$1" दर्ता गरिएको छैन।',
 'blocked-notice-logextract'        => 'यो प्रयोगकर्ता हाल प्रतिबन्धित छ।
 भर्खरैको प्रतिबन्ध लग प्रविष्टि सन्दर्भको निम्ति तल दिइन्छ:',
-'usercssyoucanpreview'             => "'''सुझाउ:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
-'userjsyoucanpreview'              => "↓ '''सुझाउ:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
+'clearyourcache'                   => "'''सूचना: सेभ गरेपछि, परिवर्तन हेर्न लाइ तपाइले आफ्नो ब्राउजर मा क्याश बाईपास गर्न पर्ने हुन सक्छ।'''
+'''मोजिला / फायरफक्स / सफारी:''' ''Shift'' लाइ चाँपिराखेर ''Reload'' क्लिक गर्नु पर्छ, वा ''Ctrl-F5'' वा ''Ctrl-R'' दबाउनुहोस(Macintosh मा ''Command-R'');
+'''कन्करर:''' मा ''Reload'' क्लिक गर्नुहोस या ''F5'' दबाउनुहोस;
+'''ओपेरा:''' ''Tools → Preferences'' मा गएर क्याश हटाउनुहोस;
+''''इंटरनेट एक्सप्लोरर'''': ''Ctrl'' लाइ चाँपिराखेर ''Refresh'' क्लिक गर्नुहोस वा ''Ctrl-F5'' चाँप्नुहोस",
+'usercssyoucanpreview'             => "'''सुझाव:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
+'userjsyoucanpreview'              => "↓ '''सुझाव:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
 'usercsspreview'                   => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता CSSको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'userjspreview'                    => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता JavaScript को पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'sitecsspreview'                   => "'''याद राख्नुहोस तपाईँले केवल वैश्विक CSS. को पूर्वावलोकन मात्र अवलोकन गर्नु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
 'sitejspreview'                    => "याद राख्नुहोस तपाईँले केवल JavaScript code को पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
-'''अहिले सम्म संग्रह गरिएको छैन!'''",
-'userinvalidcssjstitle'            => "'''चेतावनी:'''  \"\$1\" स्कीन छैन ।
-Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css as opposed to {{ns:user}}:Foo/Vector.css.",
-'updated'                          => 'अद्यतन गरिएको',
+'''यसलाइ अहिले सम्म संग्रह गरिएको छैन!'''",
+'userinvalidcssjstitle'            => "'''चेतावनी:''' यहाँ कुनैपनि \"\$1\" नामको स्कीन छैन ।
+प्रचलित .css तथा .js पृष्ठहरुले lowercase शीर्षक प्रयोग गर्छन्, जस्तै {{ns:user}}:Foo/Vector.css को सट्टामा {{ns:user}}:Foo/vector.css",
+'updated'                          => 'नवीन',
 'note'                             => "'''सूचना:'''",
-'previewnote'                      => "'''यो केवल पूर्वालोकन मात्र हो; परिवर्तनहरू संग्रह गरिएको छैन!'''",
+'previewnote'                      => "'''यो केवल पूर्वालोकन मात्र हो; तपाइँका परिवर्तनहरू संग्रह भइसकेको छैन!'''",
+'previewconflict'                  => 'यस पूर्वावलोकनले संपादन क्षेत्र को माथिल्लो भागको पाठ परिवर्तन गर्ने ठाउँको पाठलाइ देखाउँछ अनि तपाइले यसलाइ सेभ गरेपछि देखापर्छ।',
+'session_fail_preview'             => "'''माफ गर्नुहोस्! सत्र-आँकड़ा (session data) हराउनाले हामीले तपाईंको सम्पादन प्रक्रिया अघि बढाउन सकेनौं।.'''
+कृपया पुनः प्रयास गर्नुहोस्।
+यदि फेरि पनि काम भएन भनें, [[Special:UserLogout|बाहिर गई(लग आउट गरी)]]  फेरि प्रवेश गर्नुहोस्।",
+'session_fail_preview_html'        => "'''माफ गर्नुहोला! सत्र को डेटा को नोकसान को कारण ले गर्दा तपाइको सम्पादन लाइ जारी राख्न सकिएन।'''
+
+''जावास्क्रिप्ट हमलाहरु रोक्नको लागि यो पूर्वावलोकन लाइ देखाइएको छैन किन कि {{SITENAME}} मा काँचो HTML को प्रयोग गर्न मिल्ने बनाइएको छ।''
+
+'''यदि यो एक वैध प्रयास हो भने, कृपया पुन: प्रयास गर्नुहोला.'''
+यदि अझै पनि काम गरेन भने [[Special:UserLogout|निर्गमन(logging out)]] र पुन:आगमन(login) गर्ने प्रयास गर्नुहोला।",
 'editing'                          => '$1 सम्पादन गरिँदै',
 'editingsection'                   => '$1 (खण्ड) सम्पादन गरिँदै',
 'editingcomment'                   => '$1 सम्पादन गर्दै(नयाँ खण्ड)',
 'editconflict'                     => 'सम्पादन बाँझियो: $1',
+'explainconflict'                  => "तपाईंले सम्पादन कार्य सुरु गरेपछि कसैले यस पृष्टलाई परिवर्तन गरेकोछ।
+माथिल्लो पाठक्षेत्रमा पृष्ठको वर्तमान पाठ छ।
+तपाईंको परिवर्तन तल्लो भागमा दर्शाइएकोछ। 
+तपाईंले गर्नुभएको परिवर्तनलाई वर्तमान पाठसित मिसाउनु पर्नेछ, यदि तपाईंले \"{{int:savearticle}}\" थिच्नु भयो भनें पाठको माथिल्लो भाग '''मात्र''' संग्रह गरिनेछ।",
 'yourtext'                         => 'तपाइका शव्दहरु',
 'storedversion'                    => 'संग्रहित पुनरावलोकन',
 'yourdiff'                         => 'भिन्नताहरु',
 'copyrightwarning'                 => "कृपया ध्यान दिनुहोस् यस {{SITENAME}}मा दिइएका योगदानहरु $2को तहत सम्पादन र पुनर्वितरणकोलागि मुक्त मानिनेछ (विवरणकोलागि $1 हेर्नुहोस्) । यदि  तपाईंको लेखलाई सम्पादन अथवा पुनः वितरण गराउन चाहनु हुन्न भनें  कृपया यहाँ  तपाईंको लेख प्रस्तुत नगर्नुहोस् ।<br />       
 यदि तपाईं किटानसाथ भन्नुहुन्छ कि कुनै लेख मैले लेखेको हो अथवा सार्वजनिक ज्ञानक्षेत्र अथवा मुक्त संसाधनबाट लिइएको हो, '''यस्तो लेख बिना कपीराइट यहाँ नदिनुहोस्!'''",
-'semiprotectedpagewarning'         => "'''सूचना:''' यो पृष्ठलाई सुरक्षित गरिए हुँदा दर्ता भएका प्रयोगकर्ताहरुले मात्र यसलाई सम्पादन गर्न सक्छन्। संदर्भको लागि नवीनतम लॉग प्रविष्टि  तल दिइएको छ:",
+'semiprotectedpagewarning'         => "'''सूचना:''' यो पृष्ठलाई सुरक्षित गरिएको हुँदा दर्ता भएका प्रयोगकर्ताहरुले मात्र यसलाई सम्पादन गर्न सक्छन्। संदर्भको लागि नविनतम लग प्रविष्टि  तल दिइएको छ:",
 'cascadeprotectedwarning'          => "'''चेतावनी:''' यस पृष्ठलाई सुरक्षित गरिएको छ जसको संशोधन प्रबन्धनको अधिकार प्राप्त प्रयोगकर्ताले मात्र सम्पादन गर्न सक्नेछन् किन भनें निम्न लाममा सुरक्षित छ {{PLURAL:$1|page|pages}}:",
 'titleprotectedwarning'            => "'''चेतावनी:''' यो पृष्ठलाई सुरक्षित गरिएकोछ र यसलाई सृजना गर्न  [[Special:ListGroupRights|विशेषाधिकार]] चाहिन्छ । संदर्भको लागि नवीनतम लग प्रविष्टि  तल दिइएको छ:",
 'templatesused'                    => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
@@ -732,6 +741,8 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 यो पहिले देखि नै रहेको छ।',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "'''चेतावनी:''' यस पृष्टका अति धेरै संख्याका महँगा पार्सर फंक्सन कल्स (expensive parser function calls)  छन्।
+यसमा $2 भन्दा कम {{PLURAL:$2|कल|कल्स}} हुनुपर्छ,  यहाँ {{PLURAL:$1|अहिले $1 कल छ|अहिले $1 कल्स छ्न्}}.",
 'expensive-parserfunction-category'       => "अति धेरे मेहनत पर्ने '''पार्सर फङ्सन कल'''हरु भएका पृष्ठहरु",
 'post-expand-template-inclusion-warning'  => "'''चेतावनी:''' समेट्नुपर्ने टेम्प्लेट(नमुना) आकार अति ठूलो छ।
 केही टेम्प्लेटहरु(नमुनाहरु) समेटिने छैनन् ।",
@@ -741,7 +752,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'parser-template-recursion-depth-warning' => 'टेम्पलेट पुन:चक्र गहिराई सिमा ($1) भन्दा बढि भयो',
 
 # "Undo" feature
-'undo-failure' => 'द्वन्दात्मक निम्नसम्पादनको कारण सम्पादन खारेज गर्न सकिन्न',
+'undo-failure' => 'सम्पादनमा अन्तर्द्वन्द्वको कारण सम्पादन रद्द गर्न सकिन्न।',
 'undo-norev'   => 'यो मेटिएको या नरहेको कारणले गर्दा सम्पादन खारेज गर्न सकिन्न ।',
 'undo-summary' => '  $1द्वारा पुनरावलोकन [[Special:Contributions/$2|$2]] ([[User talk:$2|वार्तालाप]]) खारेज गर्नुहोस',
 
@@ -763,7 +774,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'currentrevisionlink'    => 'हालको पुनरावलोकन',
 'cur'                    => 'cur पृष्ठको लिंक इतिहास',
 'next'                   => 'अर्को',
-'last'                   => 'पूर्वरुप',
+'last'                   => 'अघिल्लो',
 'page_first'             => 'पहिलो',
 'page_last'              => 'अन्तिम',
 'histlegend'             => "अंतर चयन:संशोधनहरुको तुलनाको लागि रेडियो बक्समा क्लिक गरेर एण्टर गर्नुहोस् अथवा तल दिएको बटनमा थिच्नुहोस् <br />
@@ -784,6 +795,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'rev-deleted-comment'         => '(टिप्पणी हटाइयो)',
 'rev-deleted-user'            => '(प्रयोगकर्ता नाम हटाइयो)',
 'rev-deleted-event'           => '(लग कार्य हटाइयो)',
+'rev-deleted-user-contribs'   => '[प्रयोगकर्ताको नाम अथवा IP ठेगाना हटाइयो - योगदानहरुबाट सम्पादन लुकाइयो]',
 'rev-delundel'                => 'देखाउने/लुकाउने',
 'rev-showdeleted'             => 'देखाउनु',
 'revisiondelete'              => 'मेटाउने/मेटाएको रद्दगर्ने  पुनरावलोकनहरु',
@@ -1185,7 +1197,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'action-deleterevision'     => 'यो पुनरावलोकन मेट्ने',
 'action-deletedhistory'     => 'यो पृष्ठको मेटाइएको इतिहास हेर्ने',
 'action-browsearchive'      => 'मेटिएका पृष्ठहरु खोज्ने',
-'action-undelete'           => 'यो पृष्ठ मेट्ने',
+'action-undelete'           => 'यो पृष्ठ लाइ पुन:स्थापना गर्ने',
 'action-suppressrevision'   => 'यो लुकाइएको पुनरावलोकनको पुर्वालोकन गर्ने र पुनरावृत्ति गर्ने',
 'action-suppressionlog'     => 'यो व्यक्तिगत लग हेर्ने',
 'action-block'              => 'यो प्रयोगकर्तालाई सम्पादन गर्नबाट रोक्ने',
@@ -1206,6 +1218,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'recentchanges-label-bot'         => 'यो सम्पादन बोट द्वारा गरिएको थियो',
 'recentchanges-label-unpatrolled' => 'यो सम्पादन अहिले सम्म पट्रोल गरिएको छैन',
 'rcnote'                          => "तल पछिल्ला {{PLURAL:$2|day|'''$2''' दिनहरु}} मा  $5, $4 सम्म भएका {{PLURAL:$1|is '''1''' change|पछिल्ला '''$1''' परिवर्तनहरु}} देखाइएको छ ।",
+'rcnotefrom'                      => "'''$2''' देखिका परिवर्तनहरु तल ('''$1''' सम्मका देखाइन्छ)।",
 'rclistfrom'                      => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
 'rcshowhideminor'                 => '$1 सामान्य सम्पादन',
 'rcshowhidebots'                  => '$1 बोटहरू',
@@ -1287,6 +1300,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'unknown-error'          => 'एउटा अज्ञात त्रुटि भयो।',
 'tmp-create-error'       => 'अस्थायी फाइल सृजना गर्न सकिएन।',
 'tmp-write-error'        => 'अस्थायी फाइल लेख्दै गर्दा त्रुटि।',
+'large-file'             => 'यो सिफारिस गरिन्छ कि फाइलहरु  $1 भन्दा ठूला हुनु हुँदैन;
+यो फाइल $2 छ।',
 'uploadwarning'          => 'उर्ध्वभरण चेतावनी',
 'savefile'               => 'फाइल बचत गर्नुहोस्',
 'uploadedimage'          => 'उर्ध्वभरण(upload) गरियो  "[[$1]]"',
@@ -1428,7 +1443,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'statistics-views-peredit'     => 'प्रति पृष्ठ सम्पादन',
 'statistics-users'             => 'दर्तागरिएको [[Special:ListUsers|प्रयोगकर्ताहरु]]',
 'statistics-users-active'      => 'सकृय प्रयोगकर्ताहरु',
-'statistics-users-active-desc' => 'प्रयोगकर्ताहरु {{PLURAL:$1|बितेको एक घण्टा|बितेका $1 घण्टाहरु}}मा  जसले यो कार्य गरेका हुन्',
+'statistics-users-active-desc' => 'प्रयोगकर्ताहरु {{PLURAL:$1|बितेको एक दिन|बितेका $1 दिन}}मा  जसले यो कार्य गरेका हुन्',
 'statistics-mostpopular'       => 'सबैभन्दा धेरै हेरिएको पृष्ठहरु',
 
 'disambiguations'     => 'बहुविकल्पी पृष्ठहरु',
@@ -1490,7 +1505,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'protectedtitlesempty'    => 'दिइएको प्यारामिटर प्रयोग गरि सुरक्षा गरिएका शिर्षकहरु छैनन् ।',
 'listusers'               => 'प्रयोगकर्ता सूची',
 'listusers-editsonly'     => 'सम्पादन गरेका प्रयोगकर्तामात्र देखाउने',
-'listusers-creationsort'  => 'शृजना मिति अनुसार क्रमवद्ध गर्ने',
+'listusers-creationsort'  => 'सृजना मिति अनुसार क्रमवद्ध गर्ने',
 'usereditcount'           => '$1 {{PLURAL:$1|सम्पादन|सम्पादनहरु}}',
 'usercreated'             => ' $1को $2 मा सृजना गरिएको',
 'newpages'                => 'नयाँ पृष्ठहरू',
@@ -1516,7 +1531,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'log'                  => 'लगहरु',
 'all-logs-page'        => 'सबै सार्वजनिक लगहरु',
 'logempty'             => 'लगमा मिल्ने वस्तु भेटिएन ।',
-'log-title-wildcard'   => 'पाठबाट सुरुहुने शिर्षकहरु खोज्नुहोस्',
+'log-title-wildcard'   => 'पाठबाट सुरुहुने शीर्षकहरु खोज्नुहोस्',
 
 # Special:AllPages
 'allpages'        => 'सबै पृष्ठहरु',
@@ -1560,7 +1575,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 
 # Special:ActiveUsers
 'activeusers'          => 'सक्रिय प्रयोगकर्ताहरुको सूची',
-'activeusers-count'    => '{{PLURAL:$3|बितेको दिनमा|$3 बितेका दिनहरुमा}}  $1 {{PLURAL:$1|गरिएको सम्पादन|गरिएका सम्पादनहरु}}',
+'activeusers-count'    => 'बिगत {{PLURAL:$3|दिनमा| $3 दिनहरुमा}}  $1 {{PLURAL:$1| सम्पादन गरियो|सम्पादनहरु गरिए}}',
 'activeusers-from'     => 'यहाँबाट सुरु हुने प्रयोगकर्ताहरु देखाउनुहोस्:',
 'activeusers-noresult' => 'प्रयोगकर्ताहरु भेटिएनन्।',
 
@@ -1568,7 +1583,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'newuserlogpage'              => 'प्रयोगकर्ता श्रृजना लग',
 'newuserlog-create-entry'     => 'नयाँ प्रयोगकर्ता',
 'newuserlog-create2-entry'    => 'नयाँ खाता $1 खोलियो',
-'newuserlog-autocreate-entry' => 'स्वचालित रूपमा पूर्व पद वर्णक फाइल',
+'newuserlog-autocreate-entry' => 'खाता स्वतः निर्माण गरियो',
 
 # Special:ListGroupRights
 'listgrouprights'                   => 'प्रयोगकर्ता समूह अधिकार',
@@ -1619,6 +1634,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 # Watchlist
 'watchlist'            => 'मेरो अवलोकन',
 'mywatchlist'          => 'मेरो अवलोकनसूची',
+'watchlistfor2'        => '$1को $2',
 'nowatchlist'          => 'तपाईको अवलोकन(वाचलिस्ट)मा कुनैपनि चिज छैन।',
 'watchnologin'         => 'प्रवेश (लग ईन) नगरिएको',
 'watchnologintext'     => 'आफ्नो अवलोकनलाइ परिवर्तन गर्नको लागि त तपाइ यसमा [[Special:UserLogin|प्रवेश(लगइन)]] गर्नुपर्छ।',
@@ -1636,6 +1652,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'watchlist-details'    => 'तपाईको निगरानी सूचीमा रहेका{{PLURAL:$1|$1 पृष्ठ|$1 पृष्ठहरु}}वार्तालापमा पृष्ठमा गनिएका छैनन् ।',
 'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका enable गरियो ।',
 'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
+'wlnote'               => "विगत {{PLURAL:$2|घण्टामा|'''$2''' घण्टाहरुमा}} {{PLURAL:$1|गरिएको अन्तिम परिवर्तन तल दिइएकोछ|गरिएका अन्तिम  '''$1''' परिवर्तनहरु तल दिइएकाछन्}}।",
 'wlshowlast'           => 'पछिल्ला $2 दिनहरूका $3 $1 घण्टाहरूका देखाउनुहोस्',
 'watchlist-options'    => 'निगरानि सूची विकल्प',
 
@@ -1644,10 +1661,14 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'unwatching' => 'निगरानीबाट हटाउँदै...',
 
 'enotif_mailer'                => '{{SITENAME}} जानकारी प्रेषक',
+'enotif_reset'                 => 'सबै पृष्ठहरु भनी दाग दिने',
 'enotif_newpagetext'           => 'यो नयाँ पृष्ठ हो।',
 'enotif_impersonal_salutation' => '{{SITENAME}} प्रयोगकर्ता',
 'changed'                      => 'परिवर्तन भइसकेको',
 'created'                      => 'शृजित',
+'enotif_subject'               => '$PAGEEDITORद्वारा {{SITENAME}} पृष्ठ $PAGETITLE $CHANGEDORCREATED गरिएको',
+'enotif_lastvisited'           => 'अघिल्लो हेराइपछिका सबै परिवर्तनहरु हेर्न हेर्नुहोस्: $1',
+'enotif_lastdiff'              => 'यो परिवर्तन हेर्न यो $1 हेर्नुहोस्',
 'enotif_anon_editor'           => 'अज्ञात  प्रयोगकर्ता  $1',
 
 # Delete
@@ -1714,7 +1735,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 ** जवाबी सम्पादन-झगडा
 ** अधिकतम खोलिने पृष्ठ',
 'protect-edit-reasonlist'     => 'सुरक्षाको कारणहरु सम्पादन गर्नुहोस्',
-'protect-expiry-options'      => '२ घण्टाहरु:2 hours, १ दिन :1 day, ३ दिनहरु:3 days, १ हप्ता:1 week, २ हप्ताहरु:2 weeks, १ महिना:1 month, ३ महिनाहरु:3 months,६ महिनाहरु:6 months, १ वर्ष:1 year, अनिश्चितकाल:infinite',
+'protect-expiry-options'      => ' १ घण्टा:1 hour, १ दिन :1 day, १ हप्ता:1 week, २ हप्ता:2 weeks, १ महिना:1 month, ३ महिना:3 months,६ महिना:6 months, १ वर्ष:1 year, अनिश्चितकाल:infinite',
 'restriction-type'            => 'अनुमति:',
 'restriction-level'           => 'प्रतिबन्ध स्तरः',
 'minimum-size'                => 'न्यूनतम आकार',
@@ -1959,7 +1980,7 @@ $1को बन्देजको कारण : "$2" हो',
 'movelogpage'               => 'लग सार्ने',
 'movereason'                => 'कारण :',
 'revertmove'                => 'पहिलेको रुपमा फर्काउने',
-'delete_and_move'           => 'I र P बिचमा B फ्रेम',
+'delete_and_move'           => 'मेट्ने अनि हटाउने',
 'delete_and_move_confirm'   => 'हो, पृष्ठ मेट्नुहोस्',
 'immobile-source-page'      => 'यो पृष्ट सार्न योग्यको छैन।',
 'imageinvalidfilename'      => 'गन्तव्य फाइल नाम अमान्य छ',
@@ -1978,20 +1999,21 @@ $1को बन्देजको कारण : "$2" हो',
 # Namespace 8 related
 'allmessages'                 => 'सिस्टम सन्देशहरू',
 'allmessagesname'             => 'नाम',
-'allmessagesdefault'          => 'पाठ पूर्वनिर्धारित रङ',
-'allmessagescurrent'          => 'उपशीर्षक पाठ सङ्केतन',
-'allmessagestext'             => 'यो मिडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।',
+'allmessagesdefault'          => 'डिफल्ट सन्देश पाठ',
+'allmessagescurrent'          => 'वर्तमान सन्देश पाठ',
+'allmessagestext'             => 'यो मीडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।
+यदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [http://translatewiki.net translatewiki.net]मा जानुहोस्।',
 'allmessages-filter-legend'   => 'फिल्टर',
 'allmessages-filter-all'      => 'सबै',
-'allmessages-filter-modified' => 'परिमार्जन गरिएको',
-'allmessages-prefix'          => 'कक्ष प्रकार्य उपसर्ग:',
+'allmessages-filter-modified' => 'परिवर्तन गरिएको',
+'allmessages-prefix'          => 'प्रिफिक्स अनुसार फिल्टर:',
 'allmessages-language'        => 'भाषा:',
 'allmessages-filter-submit'   => 'जाउ',
 
 # Thumbnails
 'thumbnail-more'           => 'ठूलो बनाउने',
 'filemissing'              => 'फाइल हराएकोछ',
-'thumbnail_error'          => 'डाटावेस सिर्जना गर्दा त्रुटि: %s',
+'thumbnail_error'          => 'थम्बनेल(thumbnail) निर्माणमा त्रुटि: $1',
 'thumbnail_invalid_params' => "नोड parameters हराइरहेछ: '%s'",
 'thumbnail_dest_directory' => '%s सिर्जना गर्दै ... डाइरेक्टरी सिर्जना गर्न असफल',
 'thumbnail_image-type'     => "अनुक्रमणिका फाइल प्रकार '%s' समर्थित छैन",

@@ -1630,7 +1630,7 @@ HTMLタグを見直してください。',
 'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
-'recentchangestext'                 => 'このページでそのウィキへの最近の更新を追跡。',
+'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-newpage'       => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor'         => 'これは細部の編集です',
@@ -1761,7 +1761,7 @@ HTMLタグを見直してください。',
 アップロードを継続したい場合は、前のページに戻り、別のファイル名を使用してください。
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下の{{PLURAL:$1|ファイル}}と重複しています：',
-'file-deleted-duplicate'      => 'このファイル（[[$1]]）と同一のファイルが以前に削除されています。
+'file-deleted-duplicate'      => 'このファイル（[[:$1]]）と同一のファイルが以前に削除されています。
 再度アップロードをする前に、以前削除されたファイルの削除記録を確認してください。',
 'uploadwarning'               => 'アップロード警告',
 'uploadwarning-text'          => '下記のファイル解説を修正して再試行してください。',
@@ -2712,7 +2712,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'talkexists'                   => "'''ページ自身は無事に移動されましたが、トークページは移動先のページが存在したため移動できませんでした。
 手動で統合してください。'''",
 'movedto'                      => '移動先：',
-'movetalk'                     => '関連付けられたトークページを移動',
+'movetalk'                     => '付随するトークページも移動',
 'move-subpages'                => '下位ページも移動する（$1ページまで）',
 'move-talk-subpages'           => 'トークページの下位ページも移動する（$1個まで）',
 'movepage-page-exists'         => 'ページ$1は既に存在するため、自動的に上書きされませんでした。',
@@ -3544,7 +3544,7 @@ $1',
 'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名が以下に表示されています。
 ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:Watchlist/raw|そのままの一覧で編集]]することもできます。',
-'watchlistedit-normal-submit'  => 'ページ名の除去',
+'watchlistedit-normal-submit'  => 'ページの除去',
 'watchlistedit-normal-done'    => 'ウォッチリストから$1のページ名を除去しました：',
 'watchlistedit-raw-title'      => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをそのまま編集',

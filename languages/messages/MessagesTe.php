@@ -1215,6 +1215,7 @@ $1",
 'prefs-diffs'                   => 'తేడాలు',
 
 # User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'ఈ-మెయిలు చిరునామా సరిగానే ఉన్నట్టుంది',
 'email-address-validity-invalid' => 'దయచేసి సరైన ఈమెయిలు చిరునామాని ఇవ్వండి',
 
 # User rights
@@ -1493,7 +1494,7 @@ $1",
 'fileexists-shared-forbidden' => 'ఈ పేరుతో ఇప్పటికే ఒక ఫైలు అందరి ఫైళ్ళ ఖజానాలో ఉంది.
 ఇప్పటికీ మీ ఫైలుని ఎగుమతి చేయాలనుకుంటే, వెనక్కివెళ్ళి మరో పేరు వాడండి. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'ఈ ఫైలు క్రింద పేర్కొన్న {{PLURAL:$1|ఫైలుకి|ఫైళ్ళకి}} నకలు:',
-'file-deleted-duplicate'      => 'గతంలో ఈ ఫైలు లాంటిదే ఒక ఫైలుని ([[$1]]) తొలగించివున్నారు. మీరు దీన్ని ఎగుమతి చేసేముందు ఆ ఫైలు యొక్క తొలగింపు చరిత్రని ఒక్కసారి చూడండి.',
+'file-deleted-duplicate'      => 'గతంలో ఈ ఫైలు లాంటిదే ఒక ఫైలుని ([[:$1]]) తొలగించివున్నారు. మీరు దీన్ని ఎగుమతి చేసేముందు ఆ ఫైలు యొక్క తొలగింపు చరిత్రని ఒక్కసారి చూడండి.',
 'uploadwarning'               => 'ఎక్కింపు హెచ్చరిక',
 'uploadwarning-text'          => 'ఫైలు వివరణని క్రింద మార్చి మళ్ళీ ప్రయత్నించండి.',
 'savefile'                    => 'ఫైలు భధ్రపరచు',
@@ -1601,7 +1602,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'filehist'                          => 'ఫైలు చరితం',
 'filehist-help'                     => 'తేదీ/సమయం ను నొక్కి ఆ సమయాన ఫైలు ఎలా ఉండేదో చూడవచ్చు.',
 'filehist-deleteall'                => 'అన్నిటినీ తొలగించు',
-'filehist-deleteone'                => 'దీన్ని తొలగించు',
+'filehist-deleteone'                => 'తొలగించు',
 'filehist-revert'                   => 'తిరుగుసేత',
 'filehist-current'                  => 'ప్రస్తుత',
 'filehist-datetime'                 => 'తేదీ/సమయం',
@@ -3272,7 +3273,7 @@ $1',
 'htmlform-int-toolow'          => 'మీరిచ్చిన విలువ $1 యొక్క కనిష్ఠ విలువ కంటే తక్కువగా ఉంది.',
 'htmlform-int-toohigh'         => 'మీరిచ్చిన విలువ $1 యొక్క గరిష్ఠ విలువకంటే ఎక్కవగా ఉంది.',
 'htmlform-required'            => 'ఈ విలువ తప్పనిసరి',
-'htmlform-submit'              => 'సమర్పించు',
+'htmlform-submit'              => 'దాఖలుచెయ్యి',
 'htmlform-reset'               => 'మార్పులను రద్దుచెయ్యి',
 'htmlform-selectorother-other' => 'ఇతర',
 
@@ -3281,6 +3282,7 @@ $1',
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
 
 # Special:DisableAccount
+'disableaccount'            => 'వాడుకరి ఖాతాని అచేతనంచేయి',
 'disableaccount-user'       => 'వాడుకరిపేరు:',
 'disableaccount-reason'     => 'కారణం:',
 'disableaccount-nosuchuser' => '"$1" అనే వాడుకరి ఖాతా లేనే లేదు.',

@@ -384,11 +384,16 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error'                => 'Xəta',
 'databaseerror'        => 'Verilənlər bazası xətası',
-'dberrortextcl'        => 'Verilənlər bazası sorğu söz səhvi yarandı.
+'dberrortext'          => 'Məlumat bazası sorğu söz xətası yarandı.
+Bu yazılımdaki bir xətadan qaynaqlana bilər.
+"<tt>$2</tt>" funksiyasından sınanan sonuncu istintaq:
+<blockquote><tt>$1</tt></blockquote>.
+Məlumat bazasının hesabat etdiyi xəta "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Məlumat bazası sorğu söz xətası yarandı.
 Son edilən verilənlər bazası sorğusu:
 "$1"
 İstifadə edilən funksiya "$2".
-Verilənlər bazasının verdiyi səhv mesajı "$3: $4"',
+Məlumat bazasının verdiyi xəta mesajı "$3: $4"',
 'laggedslavemode'      => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly'             => 'Verilənlər bazası kilidli',
 'enterlockreason'      => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
@@ -674,6 +679,8 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-hide-comment'      => 'Dəyişikliklərin şərhini gizlə',
 'revdelete-hide-user'         => 'Redaktə müəllifinin istifadəçi adını/IP ünvanını gizlə',
 'revdelete-hide-restricted'   => 'Məlumatları idarəçilərdən də gizlə',
+'revdelete-radio-set'         => 'Hə',
+'revdelete-radio-unset'       => 'Yox',
 'revdelete-suppress'          => 'Məlumatları idarəçilərdən də gizlə',
 'revdelete-unsuppress'        => 'Bərpa olunan versiyalar üzərindən məhdudiyyətləri qaldır',
 'revdelete-log'               => 'Səbəb:',
@@ -954,6 +961,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'reuploaddesc'        => 'Return to the upload form.',
 'uploadnologintext'   => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
 'uploaderror'         => 'Yükləmə xətası',
+'upload-permitted'    => 'İcazə verilən fayl tipləri: $1.',
 'uploadlog'           => 'yükləmə qeydi',
 'uploadlogpage'       => 'Yükləmə qeydi',
 'uploadlogpagetext'   => 'Aşağıda ən yeni yükləmə jurnal qeydləri verilmişdir.',
@@ -972,8 +980,10 @@ Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək is
 'uploadwarning'       => 'Yükləyiş xəbərdarlıqı',
 'savefile'            => 'Faylı qeyd et',
 'uploadedimage'       => 'yükləndi "[[$1]]"',
+'upload-source'       => 'Mənbə faylı',
 'sourcefilename'      => 'Fayl adı mənbələri',
 'destfilename'        => 'Fayl adı',
+'upload-description'  => 'Faylın izahı',
 'watchthisupload'     => 'Bu faylı izlə',
 'upload-wasdeleted'   => "'''Diqqət:Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
 
