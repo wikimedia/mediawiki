@@ -576,9 +576,12 @@ abstract class ApiBase {
 	 * @param $titleObj Title the page under consideration
 	 * @param $userOption String The user option to consider when $watchlist=preferences.
 	 * 	If not set will magically default to either watchdefault or watchcreations
-	 * @returns mixed
+	 * @returns Boolean
 	 */
 	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
+
+		$userWatching = $titleObj->userIsWatching();
+
 		global $wgUser;
 		switch ( $watchlist ) {
 			case 'watch':
@@ -589,22 +592,22 @@ abstract class ApiBase {
 
 			case 'preferences':
 				# If the user is already watching, don't bother checking
-				if ( $titleObj->userIsWatching() ) {
-					return null;
+				if ( $userWatching ) {
+					return true;
 				}
 				# If no user option was passed, use watchdefault or watchcreation
 				if ( is_null( $userOption ) ) {
 					$userOption = $titleObj->exists()
 						? 'watchdefault' : 'watchcreations';
 				}
-				# If the corresponding user option is true, watch, else no change
-				return $wgUser->getOption( $userOption ) ? true : null;
+				# Watch the article based on the user preference
+				return (bool)$wgUser->getOption( $userOption );
 
 			case 'nochange':
-				return null;
+				return $userWatching;
 
 			default:
-				return null;
+				return $userWatching;
 		}
 	}
 
