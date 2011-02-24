@@ -72,6 +72,11 @@ $namespaceAliases = array(
 	'Arquivo_Discussão' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Utilizador', 'female' => 'Utilizadora' ),
+	NS_USER_TALK => array( 'male' => 'Utilizador_Discussão', 'female' => 'Utilizadora_Discussão' ),
+);
+
 $defaultDateFormat = 'dmy';
 
 $dateFormats = array(

@@ -69,6 +69,10 @@ $namespaceAliases = array(
 	'Ficheiro_Discussão' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuário', 'female' => 'Usuária' ),
+	NS_USER_TALK => array( 'male' => 'Usuário_Discussão', 'female' => 'Usuária_Discussão' ),
+);
 
 $defaultDateFormat = 'dmy';
 
