@@ -42,7 +42,14 @@ class EditPage {
 	const AS_IMAGE_REDIRECT_ANON       = 233;
 	const AS_IMAGE_REDIRECT_LOGGED     = 234;
 
+	/**
+	 * @var Article
+	 */
 	var $mArticle;
+
+	/**
+	 * @var Title
+	 */
 	var $mTitle;
 	private $mContextTitle = null;
 	var $action;
