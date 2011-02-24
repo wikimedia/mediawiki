@@ -441,11 +441,11 @@ Medium to large sites are highly encouraged to enable this, and small sites will
 Should specify one per line and specify the port to be used. For example:
  127.0.0.1:11211
  192.168.1.25:1234',
-	'config-memcache-needservers'     => 'You selected Memcached as your cache type but did not specify any servers',
-	'config-memcache-badip'           => 'You have entered an invalid IP address for Memcached: $1',
+	'config-memcache-needservers'     => 'You selected Memcached as your cache type but did not specify any servers.',
+	'config-memcache-badip'           => 'You have entered an invalid IP address for Memcached: $1.',
 	'config-memcache-noport'          => 'You did not specify a port to use for Memcached server: $1.
-If you do not know the port, the default is 11211',
-	'config-memcache-badport'         => 'Memcached port numbers should be between $1 and $2',
+If you do not know the port, the default is 11211.',
+	'config-memcache-badport'         => 'Memcached port numbers should be between $1 and $2.',
 	'config-extensions'               => 'Extensions',
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
@@ -458,7 +458,7 @@ If you still want to make changes, press back.',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
 	'config-install-database'         => 'Setting up database',
-	'config-install-pg-schema-not-exist' => 'PostgreSQL schema does not exist',
+	'config-install-pg-schema-not-exist' => 'PostgreSQL schema does not exist.',
 	'config-install-pg-schema-failed' => 'Tables creation failed.
 Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-pg-commit'        => 'Committing changes',
