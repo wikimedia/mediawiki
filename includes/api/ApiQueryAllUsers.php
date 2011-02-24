@@ -56,18 +56,18 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		$limit = $params['limit'];
-		$this->addTables( 'user', 'u1' );
+		$this->addTables( 'user' );
 		$useIndex = true;
 
 		if ( !is_null( $params['from'] ) ) {
-			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
+			$this->addWhere( 'user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
 		}
 		if ( !is_null( $params['to'] ) ) {
-			$this->addWhere( 'u1.user_name <= ' . $db->addQuotes( $this->keyToTitle( $params['to'] ) ) );
+			$this->addWhere( 'user_name <= ' . $db->addQuotes( $this->keyToTitle( $params['to'] ) ) );
 		}
 
 		if ( !is_null( $params['prefix'] ) ) {
-			$this->addWhere( 'u1.user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		if ( !is_null( $params['rights'] ) ) {
@@ -90,12 +90,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// Filter only users that belong to a given group
 			$this->addTables( 'user_groups', 'ug1' );
 			$ug1 = $this->getAliasedName( 'user_groups', 'ug1' );
-			$this->addJoinConds( array( $ug1 => array( 'INNER JOIN', array( 'ug1.ug_user=u1.user_id',
+			$this->addJoinConds( array( $ug1 => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
 					'ug1.ug_group' => $params['group'] ) ) ) );
 		}
 
 		if ( $params['witheditsonly'] ) {
-			$this->addWhere( 'u1.user_editcount > 0' );
+			$this->addWhere( 'user_editcount > 0' );
 		}
 
 		if ( $fld_groups || $fld_rights ) {
@@ -106,7 +106,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			$this->addTables( 'user_groups', 'ug2' );
 			$tname = $this->getAliasedName( 'user_groups', 'ug2' );
-			$this->addJoinConds( array( $tname => array( 'LEFT JOIN', 'ug2.ug_user=u1.user_id' ) ) );
+			$this->addJoinConds( array( $tname => array( 'LEFT JOIN', 'ug2.ug_user=user_id' ) ) );
 			$this->addFields( 'ug2.ug_group ug_group2' );
 		} else {
 			$sqlLimit = $limit + 1;
@@ -115,7 +115,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if ( $fld_blockinfo ) {
 			$this->addTables( 'ipblocks' );
 			$this->addJoinConds( array(
-				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
+				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
 			) );
 			$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
 		}
@@ -123,16 +123,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $sqlLimit );
 
 		$this->addFields( array(
-			'u1.user_name',
-			'u1.user_id'
+			'user_name',
+			'user_id'
 		) );
-		$this->addFieldsIf( 'u1.user_editcount', $fld_editcount );
-		$this->addFieldsIf( 'u1.user_registration', $fld_registration );
+		$this->addFieldsIf( 'user_editcount', $fld_editcount );
+		$this->addFieldsIf( 'user_registration', $fld_registration );
 
-		$this->addOption( 'ORDER BY', 'u1.user_name' );
+		$this->addOption( 'ORDER BY', 'user_name' );
 		if ( $useIndex ) {
-			$u1 = $this->getAliasedName( 'user', 'u1' );
-			$this->addOption( 'USE INDEX', array( $u1 => 'user_name' ) );
+			$this->addOption( 'USE INDEX', array( 'user' => 'user_name' ) );
 		}
 
 		$res = $this->select( __METHOD__ );
