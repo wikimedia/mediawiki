@@ -110,19 +110,19 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		}
 
 		if ( count( $goodNames ) ) {
-			$this->addTables( 'user', 'u1' );
-			$this->addFields( 'u1.*' );
-			$this->addWhereFld( 'u1.user_name', $goodNames );
+			$this->addTables( 'user' );
+			$this->addFields( '*' );
+			$this->addWhereFld( 'user_name', $goodNames );
 
 			if ( isset( $this->prop['groups'] ) ) {
 				$this->addTables( 'user_groups' );
-				$this->addJoinConds( array( 'user_groups' => array( 'LEFT JOIN', 'ug_user=u1.user_id' ) ) );
+				$this->addJoinConds( array( 'user_groups' => array( 'LEFT JOIN', 'ug_user=user_id' ) ) );
 				$this->addFields( 'ug_group' );
 			}
 			if ( isset( $this->prop['blockinfo'] ) ) {
 				$this->addTables( 'ipblocks' );
 				$this->addJoinConds( array(
-					'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
+					'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
 				) );
 				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
 			}
