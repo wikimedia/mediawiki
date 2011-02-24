@@ -169,8 +169,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_TYPE => array(
-					'older',
-					'newer'
+					'newer',
+					'older'
 				)
 			),
 			'start' => array(
