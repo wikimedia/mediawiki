@@ -165,7 +165,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$result->setIndexedTagName( $data[$name]['rights'], 'r' );
 				}
 
-				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
+				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
 					$data[$name]['blockedby'] = $row->ipb_by_text;
 					$data[$name]['blockreason'] = $row->ipb_reason;
 					$data[$name]['blockexpiry'] = $row->ipb_expiry;
