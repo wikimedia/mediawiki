@@ -2431,6 +2431,9 @@ class Article {
 
 	/**
 	 * Add this page to $wgUser's watchlist
+	 *
+	 * This is safe to be called multiple times
+	 *
 	 * @return bool true on successful watch operation
 	 */
 	public function doWatch() {

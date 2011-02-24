@@ -602,8 +602,8 @@ abstract class ApiBase {
 					$userOption = $titleObj->exists()
 						? 'watchdefault' : 'watchcreations';
 				}
-				# If the corresponding user option is true, watch, don't
-				return $wgUser->getOption( $userOption ) ? true : false;
+				# Watch the article based on the user preference
+				return (bool)$wgUser->getOption( $userOption );
 
 			case 'nochange':
 				return $userWatching;
