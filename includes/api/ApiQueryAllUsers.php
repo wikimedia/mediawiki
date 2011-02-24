@@ -114,12 +114,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $fld_blockinfo ) {
 			$this->addTables( 'ipblocks' );
-			$this->addTables( 'user', 'u2' );
-			$u2 = $this->getAliasedName( 'user', 'u2' );
 			$this->addJoinConds( array(
 				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
-				$u2 => array( 'LEFT JOIN', 'ipb_by=u2.user_id' ) ) );
-			$this->addFields( array( 'ipb_reason', 'u2.user_name AS blocker_name' ) );
+			) );
+			$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
 		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
@@ -181,9 +179,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'name' => $lastUser,
 					'userid' => $row->user_id,
 				);
-				if ( $fld_blockinfo && !is_null( $row->blocker_name ) ) {
-					$lastUserData['blockedby'] = $row->blocker_name;
+				if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
+					$lastUserData['blockedby'] = $row->ipb_by_text;
 					$lastUserData['blockreason'] = $row->ipb_reason;
+					$lastUserData['blockexpiry'] = $row->ipb_expiry;
 				}
 				if ( $fld_editcount ) {
 					$lastUserData['editcount'] = intval( $row->user_editcount );
