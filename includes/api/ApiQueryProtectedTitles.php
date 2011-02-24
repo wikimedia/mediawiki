@@ -81,6 +81,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 		$count = 0;
 		$result = $this->getResult();
+
+		$titles = array();
+
 		foreach ( $res as $row ) {
 			if ( ++ $count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...

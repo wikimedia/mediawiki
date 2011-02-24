@@ -47,7 +47,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			foreach ( $params['sessionkey'] as $sessionkey ) {
 				$file = $stash->getFile( $sessionkey );
 				$finalThumbParam = $this->mergeThumbParams( $file, $scale, $params['urlparam'] );
-				$imageInfo = self::getInfo( $file, $prop, $result, $finalThumbParam );
+				$imageInfo = ApiQueryImageInfo::getInfo( $file, $prop, $result, $finalThumbParam );
 				$result->addValue( array( 'query', $this->getModuleName() ), null, $imageInfo );
 				$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $modulePrefix );
 			}

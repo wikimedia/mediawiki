@@ -29,7 +29,7 @@
  */
 class IPBlockForm extends SpecialPage {
 	var $BlockAddress, $BlockExpiry, $BlockReason, $BlockReasonList, $BlockOther, $BlockAnonOnly, $BlockCreateAccount,
-		$BlockEnableAutoblock, $BlockEmail, $BlockHideName, $BlockAllowUsertalk, $BlockReblock;
+		$BlockEnableAutoblock, $BlockEmail, $BlockHideName, $BlockAllowUsertalk, $BlockReblock, $BlockWatchUser;
 	// The maximum number of edits a user can have and still be hidden
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 

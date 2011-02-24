@@ -100,6 +100,10 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		return $count;
 	}
 
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
