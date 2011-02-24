@@ -826,7 +826,15 @@ class PPFrame_Hash implements PPFrame {
 	 */
 	var $parser;
 
-	var $preprocessor, $title;
+	/**
+	 * @var Preprocessor
+	 */
+	var $preprocessor;
+
+	/**
+	 * @var Title
+	 */
+	var $title;
 	var $titleCache;
 
 	/**
@@ -894,8 +902,7 @@ class PPFrame_Hash implements PPFrame {
 			return $root;
 		}
 
-		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() )
-		{
+		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
 		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
@@ -1203,6 +1210,8 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
+	 *
+	 * @param $title Title
 	 */
 	function loopCheck( $title ) {
 		return !isset( $this->loopCheckHash[$title->getPrefixedDBkey()] );
