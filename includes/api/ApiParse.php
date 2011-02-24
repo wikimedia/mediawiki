@@ -253,23 +253,23 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
 			$out = new OutputPage;
 			$out->addParserOutputNoText( $p_result );
-			$userSkin = $wgUser->getSkin();
-		}
 
-		if ( isset( $prop['headitems'] ) ) {
-			$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
+			if ( isset( $prop['headitems'] ) ) {
+				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
 
-			$userSkin->setupUserCss( $out );
-			$css = $this->formatCss( $out->buildCssLinksArray() );
+				$userSkin = $wgUser->getSkin();
+				$userSkin->setupUserCss( $out );
+				$css = $this->formatCss( $out->buildCssLinksArray() );
 
-			$scripts = array( $out->getHeadScripts( $userSkin ) );
+				$scripts = array( $out->getHeadScripts( $userSkin ) );
 
-			$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
-		}
+				$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
+			}
 
-		if ( isset( $prop['headhtml'] ) ) {
-			$result_array['headhtml'] = array();
-			$result->setContent( $result_array['headhtml'], $out->headElement( $userSkin ) );
+			if ( isset( $prop['headhtml'] ) ) {
+				$result_array['headhtml'] = array();
+				$result->setContent( $result_array['headhtml'], $out->headElement( $userSkin ) );
+			}
 		}
 
 		if ( isset( $prop['iwlinks'] ) ) {
