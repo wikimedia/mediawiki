@@ -820,7 +820,13 @@ class PPDAccum_Hash {
  * @ingroup Parser
  */
 class PPFrame_Hash implements PPFrame {
-	var $preprocessor, $parser, $title;
+
+	/**
+	 * @var Parser
+	 */
+	var $parser;
+
+	var $preprocessor, $title;
 	var $titleCache;
 
 	/**
