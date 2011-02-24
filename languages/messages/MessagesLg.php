@@ -733,18 +733,29 @@ Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okuk
 Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okukutangaaza ku nsonga eno:",
 'cascadeprotectedwarning'          => "'''Kulabula:''' Olupapula luno luliko ekikugizo ekikkiriza abalina olukusa lw'obuteesiteesi bokka okulukyusamu.<br />
 Kino kikoledwa olw'okuba nti lukozesebwa {{PLURAL:$1|olupapula oluliko ekikugizo ekiranda luna|empapula eziriko ebikugizo ebiranda zino}}:",
+'titleprotectedwarning'            => "'''Kulabula: Olupapula luno luliko ekikugizo ekikwetaagisa [[Special:ListGroupRights|obuyinza obw'enjawulo]] okulukyusamu.'''<br />
+Ekyasemba okuyingizibwa mu lukalala olw'ebifuddeyo lwa lwo bibino okwongera okukutangaaza ku nsonga eno:",
 'templatesused'                    => 'Olupapula luno lukozesa {{PLURAL:$1|olutiba luno|ntiba zino}} :',
 'templatesusedpreview'             => 'Okulagako kuno kweyambisa {{PLURAL:$1|olutiba luno|ntiba zino}}:',
 'templatesusedsection'             => 'Ekitundu kino kyeyambisa {{PLURAL:$1|olutiba luno|ntiba zino}}:',
 'template-protected'               => '(luno lusibidwa)',
 'template-semiprotected'           => '(ebimu ku lupapula luno bisibidwa)',
 'hiddencategories'                 => 'Olupapula luno lusangibwa mu {{PLURAL:$1|ttuluba erikise limu|matuluba amakise $1}}:',
+'nocreatetitle'                    => 'Okukolawo empapula kuliko obukwakkulizo',
 'nocreatetext'                     => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:UserLogin|okufuna obuyinza obw'obwamemba]].",
+'nocreate-loggedin'                => 'Tolina buyinza bwa kukolawo empapula mpya.',
+'sectioneditnotsupported-title'    => 'Okukyusa mu bitundu tekukkirizibwa',
+'sectioneditnotsupported-text'     => 'Olupapula luno terukkiriza okukyusa mu bitundu.',
+'permissionserrors'                => 'Wazzewo kiremya mu ndukusa zo',
+'permissionserrorstext'            => "Kyoyagala okukola tekikukkirizibwa, olw'ensonga {{PLURAL:$1|eno|zino}}:",
 'permissionserrorstext-withaction' => "Tokkirizibwa $2, olw'ensonga {{PLURAL:eno|zino|$1}}:",
 'recreate-moveddeleted-warn'       => "'''Kulabula: Ogenda okuzzaawo olupapuka olwagyibwawo.'''
 
 Okakasa nti kisaanira okuluzzaawo?
 Ebifa ku kugyibwawo kw'olupapula luno bye bino:",
+'moveddeleted-notice'              => "Olupapula luno lwagyibwawo.<br />
+Ebiri mu lukalala olw'ebifa ku kulugyawo n'okulujjulula bibino okukutangaaza ku nsonga eno:",
+'log-fulllog'                      => "Ndaga olukalala olw'ebifuddeyo mu bujjuvu",
 
 # History pages
 'viewpagelogs'           => "Kebera likooda ez'olupapula luno",
@@ -821,9 +832,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'username'          => "Ery'obwa memba:",
 'yourlanguage'      => 'Lulimi lwo:',
 'yournick'          => 'Empaako yo (ssi ya tteeka):',
-'prefs-help-email'  => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.
-
-Osobola okusalawo okuba nga ab'etaaga okukutuukirira bayitira ku nfo yo ey'obwa memba oba olupapula lwo olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
+'prefs-help-email'  => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.",
 
 # User rights
 'editinguser'       => "Okyusa ndukusa za memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -899,6 +908,9 @@ Osobola okusalawo okuba nga ab'etaaga okukutuukirira bayitira ku nfo yo ey'obwa 
 'nolinkstoimage'            => 'Tewali mpapula ziriko nyunzi ezigguka ku fayiro eno.',
 'sharedupload'              => "Fayiro eno, ey'omu $1, y'emu esobola okuba nga empapula ez'omu pulojekiti endala zigikozesa",
 'uploadnewversion-linktext' => 'Teekayo oluwandika lwa fayiro eno olupya',
+
+# File deletion
+'filedelete-comment' => 'Ekigyisizzawo fayiro:',
 
 # Random page
 'randompage' => 'Nondera olupapula muwawa',

@@ -282,6 +282,9 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 'group-sysop-member' => 'Moyángeli',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'Kokoma lonkásá óyo',
+
 # Recent changes
 'recentchanges'   => 'Mbóngwana ya nsúka',
 'rcnote'          => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1'''|izalí mbóngwana '''$1'''}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, {{PLURAL:$1|etángámí|itángámí}} o $3.",
@@ -355,6 +358,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'alphaindexline' => '$1 kina $2',
 'nextpage'       => 'Lokásá ya nsima ($1)',
 'prevpage'       => 'Lonkasá o libosó ($1)',
+'allarticles'    => 'Nkásá ínsɔ',
 'allpagesprev'   => '< ya libosó',
 'allpagesnext'   => 'bolɛngɛli >',
 'allpagessubmit' => 'kokɛndɛ',
@@ -406,10 +410,12 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'contributions-title' => 'Mosálá ya moto mpɔ̂ na $1',
 'mycontris'           => 'Nkásá nakomí',
 
-'sp-contributions-talk' => 'Ntembe',
+'sp-contributions-talk'   => 'Ntembe',
+'sp-contributions-submit' => 'Boluki',
 
 # What links here
 'whatlinkshere'       => 'Ekangísí áwa',
+'whatlinkshere-page'  => 'Lonkásá:',
 'isredirect'          => 'Lonkásá ya bopengoli',
 'whatlinkshere-links' => '← ekangisi',
 
