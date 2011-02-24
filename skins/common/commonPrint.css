@@ -233,30 +233,34 @@ span.texhtml { font-family: serif; }
 
 #siteNotice { display: none; }
 
-/* image galleries */
-table.gallery {
-	border: 1px solid #ccc;
+/* Galleries (see shared.css for more info) */
+li.gallerybox {
+	vertical-align: top;
+	background-color: #f9f9f9;
+	border: solid 2px white;
+	display: -moz-inline-box;
+	display: inline-block;
+}
+
+ul.gallery, li.gallerybox {
+	zoom: 1;
+	*display: inline;
+}
+
+ul.gallery {
 	margin: 2px;
 	padding: 2px;
-	background-color: white;
-	border-collapse: collapse;
+	display: block;
 }
 
-table.gallery tr {
-	vertical-align: top;
+li.gallerycaption {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	word-wrap: break-word;
 }
 
-table.gallery td {
-	vertical-align: top;
-	padding: 1px;
-	border: 1px solid #ccc;
-}
-
-div.gallerybox {
-	margin: 2px;
-}
-
-div.gallerybox div.thumb {
+li.gallerybox div.thumb {
 	text-align: center;
 	border: 1px solid #ccc;
 	margin: 2px;
@@ -266,8 +270,8 @@ div.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
 	padding: 2px 4px;
+	word-wrap: break-word;
 }
-
 /*
 ** Diff rendering
 */
