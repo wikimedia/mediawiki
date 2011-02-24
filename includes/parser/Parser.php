@@ -114,7 +114,13 @@ class Parser {
 
 
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
+	var $mOutput, $mAutonumber, $mDTopen;
+
+	/**
+	 * @var StripState
+	 */
+	var $mStripState;
+
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mLinkHolders, $mLinkID;
 	var $mIncludeSizes, $mPPNodeCount, $mDefaultSort;
