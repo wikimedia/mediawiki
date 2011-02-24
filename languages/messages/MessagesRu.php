@@ -2429,7 +2429,7 @@ $1',
 Ниже приведена последняя запись из журнала блокировок:',
 'sp-contributions-search'              => 'Поиск вклада',
 'sp-contributions-username'            => 'IP-адрес или имя участника:',
-'sp-contributions-toponly'             => 'Показывать только последние версии',
+'sp-contributions-toponly'             => 'Показывать только правки, являющиеся последними версиями',
 'sp-contributions-submit'              => 'Найти',
 
 # What links here

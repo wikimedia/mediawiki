@@ -345,9 +345,9 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens :',
-'tog-highlightbroken'         => 'Afficher <a href="" class="new">en rouge</a> les liens vers les pages inexistantes (sinon :  comme ceci<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'Afficher les liens vers les pages inexistantes <a href="" class="new">comme ceci</a> (alternative : comme cela <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justifier les paragraphes',
-'tog-hideminor'               => 'Cacher les modifications récentes mineures',
+'tog-hideminor'               => 'Masquer les modifications mineures parmi les modifications récentes',
 'tog-hidepatrolled'           => 'Masquer les modifications surveillées parmi les modifications récentes',
 'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées parmi les nouvelles pages',
 'tog-extendwatchlist'         => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',

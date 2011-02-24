@@ -923,10 +923,15 @@ This program is distributed in the hope that it will be useful, but '''without a
 See the GNU General Public License for more details.
 
 You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
-	'config-sidebar' => '* [http://www.mediawiki.org Сайт MediaWiki]
-* [http://www.mediawiki.org/wiki/Help:Contents Дапамога карыстальнікам]
-* [http://www.mediawiki.org/wiki/Manual:Contents Дапамога адміністратарам]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+	'config-sidebar' => '* [http://www.mediawiki.org Хатняя старонка MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Даведка для ўдзельнікаў]
+* [http://www.mediawiki.org/wiki/Manual:Contents Даведка для адміністратараў]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Адказы на частыя пытаньні]
+----
+* <doclink href=Readme>Прачытайце</doclink>
+* <doclink href=ReleaseNotes>Паляпшэньні ў вэрсіі</doclink>
+* <doclink href=Copying>Капіяваньне</doclink>
+* <doclink href=UpgradeDoc>Абнаўленьне</doclink>',
 	'config-env-good' => 'Асяродзьдзе было праверанае.
 Вы можаце ўсталёўваць MediaWiki.',
 	'config-env-bad' => 'Асяродзьдзе было праверанае.
@@ -1016,6 +1021,8 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-db-install-account' => 'Імя карыстальніка для ўсталяваньня',
 	'config-db-username' => 'Імя карыстальніка базы зьвестак:',
 	'config-db-password' => 'Пароль базы зьвестак:',
+	'config-db-password-empty' => 'Калі ласка, увядзіце пароль для новага карыстальніка базы зьвестак: $1.
+Магчыма стварыць карыстальніка без паролю, але гэта небясьпечна.',
 	'config-db-install-username' => 'Увядзіце імя карыстальніка, якое будзе выкарыстоўвацца для злучэньня з базай зьвестак падчас усталяваньня. Гэта не назва рахунку MediaWiki; гэта імя карыстальніка Вашай базы зьвестак.',
 	'config-db-install-password' => 'Увядзіце пароль, які будзе выкарыстоўвацца для злучэньня з базай зьвестак падчас усталяваньня. Гэта не пароль рахунку MediaWiki; гэта пароль Вашай базы зьвестак.',
 	'config-db-install-help' => 'Увядзіце імя карыстальніка і пароль, якія будуць выкарыстаныя для далучэньня да базы зьвестак падчас працэсу ўсталяваньня.',
@@ -1276,7 +1283,14 @@ chmod a+w $3</pre>',
 	'config-cache-memcached' => 'Выкарыстоўваць Memcached (патрабуе дадатковай канфігурацыі)',
 	'config-memcached-servers' => 'Сэрвэры memcached:',
 	'config-memcached-help' => 'Сьпіс IP-адрасоў, якія будуць выкарыстоўвацца Memcached.
-Адрасы павінны падзяляцца коскамі і пазначаць порт, які будзе выкарыстоўвацца (напрыклад: 127.0.0.1:11211, 192.168.1.25:11211).',
+Адрасы павінны быць у асобным радку з пазначэньнем порту, які будзе выкарыстоўвацца. Напрыклад:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Вы выбралі Memcached у якасьці тыпу Вашага кэша, але не пазначылі ніякага сэрвэра',
+	'config-memcache-badip' => 'Вы ўвялі няслушны IP-адрас для Memcached: $1',
+	'config-memcache-noport' => 'Вы не пазначылі порт для выкарыстаньня сэрвэрам Memcached: $1.
+Калі Вы ня ведаеце порт, то па змоўчваньні выкарыстоўваецца 11211',
+	'config-memcache-badport' => 'Нумар порту Memcached павінен быць паміж $1 і $2',
 	'config-extensions' => 'Пашырэньні',
 	'config-extensions-help' => 'Пашырэньні пададзеныя вышэй, былі знойдзеныя ў Вашай дырэкторыі <code>./extensions</code>.
 
@@ -4647,7 +4661,12 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Startowa strona MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Nawod za wužiwarjow]
 * [http://www.mediawiki.org/wiki/Manual:Contents Nawod za administratorow]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Huste prašenja]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Huste prašenja]
+----
+* <doclink href=Readme>Čitaj mje</doclink>
+* <doclink href=ReleaseNotes>Wersijowe informacije</doclink>
+* <doclink href=Copying>Licencne postajenja</doclink>
+* <doclink href=UpgradeDoc>Aktualizacija</doclink>',
 	'config-env-good' => 'Wokolina je so skontrolowała.
 Móžeš MediaWiki instalować.',
 	'config-env-bad' => 'Wokolina je so skontrolowała.
@@ -4685,6 +4704,8 @@ Instalacija bu přetorhnjena.",
 	'config-db-install-account' => 'Wužiwarske konto za instalaciju',
 	'config-db-username' => 'Wužiwarske mjeno datoweje banki:',
 	'config-db-password' => 'Hesło datoweje banki:',
+	'config-db-password-empty' => 'Prošu zapodaj hesło za noweho wužiwarja datoweje banki: $1.
+Byrnjež było móžno wužiwarjow bjez hesłow wutworić, njeje to wěste.',
 	'config-db-install-username' => 'Zapodaj wužiwarske mjeno, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać. 
 To njeje wužiwarske mjeno konta MediaWiki; to je wužiwarske mjeno za twoju datowu banku.',
 	'config-db-install-password' => 'Zapodaj hesło, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać.
@@ -4709,6 +4730,8 @@ Změń je jenož, jeli wěš, štož činiš.',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-mysql' => '* $1 je primarny cil za MediaWiki a podpěruje so najlěpje ([http://www.php.net/manual/en/mysql.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])',
+	'config-support-postgres' => '* $1 je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL ([http://www.php.net/manual/en/pgsql.installation.php nawod za kompilowanje PHP z podpěru PostgreSQL])',
 	'config-header-mysql' => 'Nastajenja MySQL',
 	'config-header-postgres' => 'Nastajenja PostgreSQL',
 	'config-header-sqlite' => 'Nastajenja SQLite',
@@ -4833,12 +4856,23 @@ Zapodaj licencne mjeno manuelnje.',
 	'config-cache-accel' => 'Objektowe pufrowanje PHP (APC, eAccelerator, XCache abo WinCache)',
 	'config-cache-memcached' => 'Memcached wužiwać (wužaduje sej přidatnu instalaciju a konfiguraciju)',
 	'config-memcached-servers' => 'Serwery memcached:',
+	'config-memcached-help' => 'Lisćina IP-adresow, kotrež maja so za Memcached wužiwać.
+Kóžda linka měła jenož jednu IP-adresu a port, kotryž ma so wužiwać, wobsahować. Na přikład:
+127.0.0.1:11211
+192.168.1.25:1234',
+	'config-memcache-needservers' => 'Sy Memcached jako swój pufrowakowy typ wubrał, ale njejsy žane serwery podał',
+	'config-memcache-badip' => 'Sy njepłaćiwu IP-adresu za Memcached zapodał: $1',
+	'config-memcache-noport' => 'Njejsy žadyn port za wužiwanje serwera Memcached podał: $1.
+Jeli port njewěš, standard je 11211.',
+	'config-memcache-badport' => 'Portowe čisła za Memcached měli mjez $1 a $2 być',
 	'config-extensions' => 'Rozšěrjenja',
 	'config-extensions-help' => 'Rozšěrjenja podate horjeka buchu w twojim zapisu <code>./extensions</code> namakane.
 
 To móže sej přidatnu konfiguraciju wužadać, ale móžeš je nětko zmóžnić.',
 	'config-install-alreadydone' => "'''Warnowanje:''' Zda so, zo sy hižo MediaWiki instalował a pospytuješ jón znowa instalować.
 Prošu pokročuj z přichodnej stronu.",
+	'config-install-begin' => 'Přez kliknjenja na "Dale" budźe so instalacija MediaWiki startować.
+Jeli hišće chceš něšto změnić, klikń na "Wróćo".',
 	'config-install-step-done' => 'dokónčene',
 	'config-install-step-failed' => 'njeporadźiło',
 	'config-install-extensions' => 'Inkluziwnje rozšěrjenja',
@@ -6934,7 +6968,12 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Haaptsäit]
 * [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+----
+* <doclink href=Readme>Liest dëst</doclink>
+* <doclink href=ReleaseNotes>Informatioune vun der aktueller Versioun</doclink>
+* <doclink href=Copying>Lizenzbedingungen</doclink>
+* <doclink href=UpgradeDoc>Aktualisatioun</doclink>',
 	'config-env-good' => 'Den Environement gouf nogekuckt.
 Dir kënnt MediaWiki installéieren.',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
@@ -7174,9 +7213,14 @@ $1
 
 Би требало да имате добиено <doclink href=Copying>примерок од ГНУ-овата општа јавна лиценца</doclink> заедно со програмов; ако немате добиено, тогаш пишете ни на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. или [http://www.gnu.org/copyleft/gpl.html прочитајте ја тука].",
 	'config-sidebar' => '* [http://www.mediawiki.org Домашна страница на МедијаВики]
-* [http://www.mediawiki.org/wiki/Help:Contents Водич закорисници]
+* [http://www.mediawiki.org/wiki/Help:Contents Водич за корисници]
 * [http://www.mediawiki.org/wiki/Manual:Contents Водич за администратори]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ЧПП]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧПП]
+----
+* <doclink href=Readme>Прочитај ме</doclink>
+* <doclink href=ReleaseNotes>Белешки за изданието</doclink>
+* <doclink href=Copying>Копирање</doclink>
+* <doclink href=UpgradeDoc>Надградување</doclink>',
 	'config-env-good' => 'Околината е проверена.
 Можете да го инсталирате МедијаВики.',
 	'config-env-bad' => 'Околината е проверена.
@@ -7265,6 +7309,8 @@ $1
 	'config-db-install-account' => 'Корисничка смета за инсталација',
 	'config-db-username' => 'Корисничко име за базата:',
 	'config-db-password' => 'Лозинка за базата:',
+	'config-db-password-empty' => 'Внесете лозинка за новиот корисник на базата: $1.
+Иако може да се создаваат корисници без лозинка, тоа не е безбедно.',
 	'config-db-install-username' => 'Внесете корисничко име што ќе се користи за поврзување со базата во текот на инсталацијата. Ова не е корисничкото име од сметката на МедијаВики, туку посебно корисничко име за вашата база на податоци.',
 	'config-db-install-password' => 'Внесете клозинка што ќе се користи за поврзување со базата во текот на инсталацијата. Ова не е лозинката од сметката на МедијаВики, туку посебна лозинка за вашата база на податоци.',
 	'config-db-install-help' => 'Внесете го корисничкото име и лозинката што ќе се користи за поврзување со базата на податоци во текот на инсталацијата.',
@@ -7525,8 +7571,15 @@ chmod a+w $3</pre>',
 	'config-cache-accel' => 'Кеширање на PHP-објекти (APC, eAccelerator, XCache или WinCache)',
 	'config-cache-memcached' => 'Користи Memcached (бара дополнително поставување и нагодување)',
 	'config-memcached-servers' => 'Memcached-опслужувачи:',
-	'config-memcached-help' => 'Список на IP-адреси што ќе се употребуваат за Memcached.
-Треба да се одделени со запирки и треба да назначите која порта ќе ја користите (на пример: 127.0.0.1:11211, 192.168.1.25:11211).',
+	'config-memcached-help' => 'Список на IP-адреси за употреба во Memcached.
+Треба да се наведе по една во секој ред, како и портата што ќе се користи. На пример:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Го одбравте Memcached како ваш ваш тип на скришно памтење (кеш), но не наведовте опслужувач(и)',
+	'config-memcache-badip' => 'Внесовте неважечка IP-адреса за Memcached: $1',
+	'config-memcache-noport' => 'Не ја наведовте портата за опслужувачот на Memcached: $1.
+Ако не знаете која порта треба да се користи, основната е 11211',
+	'config-memcache-badport' => 'Бројките за портата на Memcached треба да бидат помеѓу $1 и $2',
 	'config-extensions' => 'Додатоци',
 	'config-extensions-help' => 'Во вашата папка <code>./extensions</code> беа востановени горенаведените додатоци.
 
@@ -7829,7 +7882,12 @@ Samen met dit programma hoort u een <doclink href=Copying>exemplaar van de GNU G
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki thuispagina]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Beheerdershandleiding] (Engelstalig)
-* [http://www.mediawiki.org/wiki/Manual:FAQ Veel gestelde vragen] (Engelstalig)',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Veel gestelde vragen] (Engelstalig)
+----
+* <doclink href=Readme>Leesmij</doclink> (Engelstalig)
+* <doclink href=ReleaseNotes>Release notes</doclink> (Engelstalig)
+* <doclink href=Copying>Kopiëren</doclink> (Engelstalig)
+* <doclink href=UpgradeDoc>Versie bijwerken</doclink> (Engelstalig)',
 	'config-env-good' => 'De omgeving is gecontroleerd.
 U kunt MediaWiki installeren.',
 	'config-env-bad' => 'De omgeving is gecontroleerd.
@@ -7918,6 +7976,8 @@ Als u gebruik maakt van gedeelde webhosting, dan hoort uw provider ofwel u een t
 	'config-db-install-account' => 'Gebruiker voor installatie',
 	'config-db-username' => 'Gebruikersnaam voor database:',
 	'config-db-password' => 'Wachtwoord voor database:',
+	'config-db-password-empty' => 'Voer een wachtwoord in voor de nieuwe databasegebruiker: $1.
+Hoewel het wellicht mogelijk is gebruikers aan te maken zonder wachtwoord, is dit niet veilig.',
 	'config-db-install-username' => 'Voer de gebruikersnaam in die gebruikt moet worden om te verbinden met de database tijdens het installatieproces. Dit is niet de gebruikersnaam van de MediaWikigebruiker. Dit is de gebruikersnaam voor de database.',
 	'config-db-install-password' => 'Voer het wachtwoord in dat gebruikt moet worden om te verbinden met de database tijdens het installatieproces. Dit is niet het wachtwoord van de MediaWikigebruiker. Dit is het wachtwoord voor de database.',
 	'config-db-install-help' => 'Voer de gebruikersnaam en het wachtwoord in die worden gebruikt voor de databaseverbinding tijdens het installatieproces.',
@@ -8183,8 +8243,16 @@ Er gaat geen functionaliteit verloren, maar dit kan invloed hebben op de snelhei
 	'config-cache-accel' => 'Cachen van objecten via PHP (APC, eAccelerator, XCache of WinCache)',
 	'config-cache-memcached' => 'Memcached gebruiken (dit vereist aanvullende instellingen)',
 	'config-memcached-servers' => 'Memcachedservers:',
-	'config-memcached-help' => "Lijst met IP-adressen te gebruiken voor Memcached.
-Deze moeten worden gescheiden met komma's en geef de poort op die moet worden gebruikt (bijvoorbeeld: 127.0.0.1:11211, 192.168.1.25:11211).",
+	'config-memcached-help' => 'Lijst met IP-adressen te gebruiken voor Memcached.
+Eén IP-adres per regel met een poortnummer.
+Bijvoorbeeld:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'U hebt Memcached geselecteerd als uw cache, maar u hebt geen servers opgegeven.',
+	'config-memcache-badip' => 'U hebt een ongeldig IP-adres ingevoerd voor Memcached: $1.',
+	'config-memcache-noport' => 'U hebt geen poort opgegeven voor de Memcachedserver: $1.
+De standaardpoort is 11211.',
+	'config-memcache-badport' => 'Poortnummers voor Memcached moeten tussen $1 en $2 liggen.',
 	'config-extensions' => 'Uitbreidingen',
 	'config-extensions-help' => 'De bovenstaande uitbreidingen zijn aangetroffen in de map <code>./extensions</code>.
 
@@ -10070,6 +10138,7 @@ $messages['ro'] = array(
  * @author Eleferen
  * @author Krinkle
  * @author MaxSem
+ * @author Yuriy Apostol
  * @author Александр Сигачёв
  * @author Сrower
  */
@@ -10139,7 +10208,12 @@ MediaWiki распространяется в надежде, что она бу
 	'config-sidebar' => '* [http://www.mediawiki.org Сайт MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents/ru Справка для пользователей]
 * [http://www.mediawiki.org/wiki/Manual:Contents/ru Справка для администраторов]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/ru FAQ]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ/ru FAQ]
+----
+* <doclink href=Readme>Readme-файл</doclink>
+* <doclink href=ReleaseNotes>Информация о выпуске</doclink>
+* <doclink href=Copying>Лицензия</doclink>
+* <doclink href=UpgradeDoc>Обновление</doclink>',
 	'config-env-good' => 'Проверка внешней среды была успешно проведена.
 Вы можете установить MediaWiki.',
 	'config-env-bad' => 'Была проведена проверка внешней среды. 
@@ -10229,6 +10303,8 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-db-install-account' => 'Учётная запись для установки',
 	'config-db-username' => 'Имя пользователя базы данных:',
 	'config-db-password' => 'Пароль базы данных:',
+	'config-db-password-empty' => 'Пожалуйста, введите пароль для нового пользователя базы данных «$1». 
+Хотя и возможно создание пользователей без паролей, это небезопасно.',
 	'config-db-install-username' => 'Введите имя пользователя, которое будет использоваться для подключения к базе данных в процессе установки. 
 Это не имя пользователя MediaWiki, это имя пользователя для базы данных.',
 	'config-db-install-password' => 'Введите пароль, который будет использоваться для подключения к базе данных в процессе установки. 
@@ -10489,7 +10565,14 @@ GNU Free Documentation License раньше была основной лицен
 	'config-cache-memcached' => 'Использовать Memcached (требует дополнительной настройки)',
 	'config-memcached-servers' => 'Сервера Memcached:',
 	'config-memcached-help' => 'Список IP-адресов, используемых Memcached. 
-Адреса должны быть разделены запятыми и указывать порт, который будет использоваться (например, 127.0.0.1:11211, 192.168.1.25:11211).',
+Перечислите по одному адресу на строку с указанием портов. Например:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Вы выбрали тип кэширования Memcached, но не задали адреса серверов.',
+	'config-memcache-badip' => 'Вы ввели неверный IP-адрес для Memcached: $1.',
+	'config-memcache-noport' => 'Не указан порт для сервера Memcached: $1.
+Если вы не знаете порт, по умолчанию используется 11211.',
+	'config-memcache-badport' => 'Номера портов Memcached должны лежать в пределах от $1 до $2.',
 	'config-extensions' => 'Расширения',
 	'config-extensions-help' => 'Расширения MediaWiki, перечисленные выше, были найдены в каталоге <code>./extensions</code>. 
 

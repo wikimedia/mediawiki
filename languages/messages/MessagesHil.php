@@ -768,28 +768,88 @@ May iban nga templeyt indi madala.",
 Ang ini nga pagbinaisay wala na gin-upod pa.",
 'post-expand-template-argument-category'  => 'Mga panid nga may yara sang ginlaktawan nga mga pagbinaisay sa templeyt',
 'parser-template-loop-warning'            => 'Ang natiktikan nga pagpukot: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Ang ginalimitahan nga rekursyon sang templeyt nalab-ot na ($1)',
+'language-converter-depth-warning'        => 'Ang ginalimitahan nga kadalumon sa pag-ilis sang hambalanon nalab-ot na ($1)',
+
+# "Undo" feature
+'undo-success' => 'Ang pag-ilis indi mahuman.
+Palihog lantaw sang pagbaki-baki sa dalom agod to nga mapamatud-an kon amo gid man sini ang imo luyag buhaton, dayon tipona ang mga pagbag-o sa dalom agod to nga matapos ang pagliwat sang pag-ilis.',
+'undo-failure' => 'Ang pag-ilis indi na maliwat pa tungod sang nagakonplikto nga mga pang-tunga nga pag-ilis.',
+'undo-norev'   => 'Ang pag-ilis indii na maliwat pa tungod kay ini wala naga-eksister ukon ginpanas na.',
+'undo-summary' => 'Liwaton ang pagbag-o sang $1 sa [[Special:Contributions/$2|$2]] ([[User talk:$2|$2]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Indi mabuhat ang akawnt',
+'cantcreateaccount-text' => "Ang pagbuhat sang akawnt sang sini nga adres sang IP ('''$1''') ginpunggan ni [[User:$3|$3]].
+
+Ang rason nga ginhatag ni $3 amo ang ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Tan-awon ang mga log para sa sini nga pahina',
+'nohistory'              => 'Wala sang kasaysayan sang pag-ilis sang sini nga panid.',
 'currentrev'             => 'Mga Inislan Subong',
 'currentrev-asof'        => 'Bag-o nga rebisyon sang $1',
 'revisionasof'           => 'Ang Pagliwat sang $1',
+'revision-info'          => 'Ang pag-ilis ni $1 halin sang $2',
 'previousrevision'       => '← Daan nga rebisyon',
 'nextrevision'           => 'Mas bag-o nga rebisyon →',
 'currentrevisionlink'    => 'Mga Inislan Subong',
 'cur'                    => 'karon',
+'next'                   => 'dason',
 'last'                   => 'ulihi',
+'page_first'             => 'pinaka-una',
 'page_last'              => 'ulihi',
 'histlegend'             => "Diff pililian: markahan ang mga radyo kahon sa mga ginrebisyon para makompara kag pinduton ang sulod ukon ang pindut sa idalum.<br />
 Legend: '''({{int:cur}})''' = ang ginalain niya sa bag-o nga na rebisyon,
 '''({{int:last}})''' = ang ginalain niya sa gapadayun nga rebisyon, '''{{int:minoreditletter}}''' = menor nga inislan.",
 'history-fieldset-title' => 'Historya sa mga nalantawan',
+'history-show-deleted'   => 'Ginpanas lamang',
 'histfirst'              => 'Pinaka timprano',
 'histlast'               => 'Pinaka Bag-o',
+'historysize'            => '({{PLURAL:$1|1 ka bayt|$1 ka mga bayt}})',
+'historyempty'           => '(wala unod)',
+
+# Revision feed
+'history-feed-title'          => 'Kasaysayan sang pagbag-o',
+'history-feed-description'    => 'Ang kasaysayan sang pagbag-o sang sini nga panid sa wiki',
+'history-feed-item-nocomment' => '$1 sa $2',
+'history-feed-empty'          => 'Ang ginapangayo nga panid indi matood.
+Mahimo nga ini ginpanas na sa wiki, ukon gin-ilisan ang pangalan.
+Tilawi ang [[Special:Search|searching on the wiki]] para sa mga napamatud-an nga mga bag-o nga panid.',
 
 # Revision deletion
-'rev-delundel'   => 'pakita/tagu-on',
-'revdel-restore' => 'pagbag-o sang makita',
+'rev-deleted-comment'         => '(ginkakas ang kumento)',
+'rev-deleted-user'            => '(ginkakas ang gamit-pangalan)',
+'rev-deleted-event'           => '(ang log sang tikang ginkakas)',
+'rev-deleted-user-contribs'   => '[ang gamit-pangalan ukon adres sang IP ginkakas - ang pag-ilis gintago halin sa mga ginhatag]',
+'rev-deleted-text-permission' => "Ang pagbag-o sa sini nga panid '''ginpanas'''.
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+'rev-deleted-text-unhide'     => "Ang pagbag-o sa sini nga panid '''ginpanas'''. 
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].
+Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga pagbag-o] kon luyag mo pa magpadayon.",
+'rev-suppressed-text-unhide'  => "Ang pagbag-o sa sini nga panid '''ginpahugotan'''. 
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].
+Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga pagbag-o] kon luyag mo pa magpadayon.",
+'rev-deleted-text-view'       => "Ang pagbag-o sa sini nga panid '''ginpanas'''.
+Bilang administrador makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+'rev-suppressed-text-view'    => "Ang pagbag-o sa sini nga panid '''ginpahugotan'''.
+Bilang administrador makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
+'rev-deleted-no-diff'         => "Indi mo makita ang ini nga diff tungod na ang isa sa mga pagbag-o '''ginpanas'''.
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+'rev-suppressed-no-diff'      => "Indi mo makita ang ini nga diff tungod nga ang isa sa mga pagbag-o '''ginpanas'''.",
+'rev-deleted-unhide-diff'     => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].
+Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
+'rev-suppressed-unhide-diff'  => "Ang isa sang mga pagbag-o sang sini nga diff '''ginpahugotan'''.
+Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].
+Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
+'rev-deleted-diff-view'       => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.
+Bilang administrador makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+'rev-suppressed-diff-view'    => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpahugotan'''.
+Bilang administrador makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
+'rev-delundel'                => 'pakita/tagu-on',
+'rev-showdeleted'             => 'ipakita',
+'revdel-restore'              => 'pagbag-o sang makita',
 
 # Merge log
 'revertmerge' => 'Di pag-upod',

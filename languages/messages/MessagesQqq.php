@@ -98,6 +98,7 @@
  * @author Vinhtantran
  * @author Waldir
  * @author Whym
+ * @author Yuriy Apostol
  * @author Yyy
  * @author פוילישער
  */
@@ -1400,6 +1401,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-help-realname'           => 'In user preferences.
 {{Identical|Real name attribution}}',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'prefs-help-email-others'       => 'Виводиться як підказка до поля «Адреса електронної пошти» (друге речення) в налаштуваннях, на вкладці «Особисті дані».',
 'prefs-info'                    => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-signature'               => '{{Identical|Signature}}',
 'prefs-dateformat'              => 'Used in [[Special:Preferences]], tab "Date and time".',
@@ -2587,7 +2589,8 @@ The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}
 ( talk | block log | logs | deleted contributions | rights management )",
 'sp-contributions-userrights'          => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
 'sp-contributions-blocked-notice'      => 'Shown on top of contributions special page of currently blocked users. Parameters:
-* $1 is the blocked user. Can be used for GENDER (optional)',
+* $1 is the blocked user. Can be used for GENDER (optional)
+Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-blocked-notice-anon' => 'Same as {{msg-mw|Sp-contributions-blocked-notice}} but for anonymous users.',
 'sp-contributions-username'            => 'This message appears whenever someone requests [[Special:Contributions]].
 
