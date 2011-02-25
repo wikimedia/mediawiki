@@ -2611,11 +2611,16 @@ class OutputPage {
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+		if ( $ns == NS_SPECIAL ) {
+			$parts = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+			$canonicalName = $parts[0];
+		} else {
+			$canonicalName = false; # bug 21115
+		}
 
 		$vars = array(
 			'wgCanonicalNamespace' => $nsname,
-			'wgCanonicalSpecialPageName' => $ns == NS_SPECIAL ?
-				SpecialPage::resolveAlias( $title->getDBkey() ) : false, # bug 21115
+			'wgCanonicalSpecialPageName' => $canonicalName,
 			'wgNamespaceNumber' => $title->getNamespace(),
 			'wgPageName' => $title->getPrefixedDBKey(),
 			'wgTitle' => $title->getText(),
