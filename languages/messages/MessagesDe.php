@@ -1779,6 +1779,8 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 Bitte überprüfe die <code>file_uploads</code>-Einstellung.',
 'uploadscripted'              => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus'                 => 'Diese Datei enthält einen Virus! Details: $1',
+'uploadjava'                  => 'Dies ist eine ZIP-Datei, die ein CLASS-Datei von Java enthält.
+Das Hochladen von Java-Dateien ist nicht gestattet, da sie die Umgehung von Sicherheitseinschränkungen ermöglichen könnten.',
 'upload-source'               => 'Quelldatei',
 'sourcefilename'              => 'Quelldatei:',
 'sourceurl'                   => 'Quell-URL:',
@@ -1829,6 +1831,14 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload-too-many-redirects' => 'Die URL beinhaltete zu viele Weiterleitungen',
 'upload-unknown-size'       => 'Unbekannte Größe',
 'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Es ist ein Fehler beim Öffnen der Datei zur ZIP-Überprüfung aufgetreten.',
+'zip-wrong-format'    => 'Die angegebene Datei ist keine ZIP-Datei.',
+'zip-bad'             => 'Die Datei ist beschädigt oder eine aus anderweitigen Gründen nicht lesbare ZIP-Datei.
+Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werden.',
+'zip-unsupported'     => 'Diese ZIP-Datei verfügt über Komprimierungseigenschaften, die nicht von MediaWiki unterstützt werden.
+Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werden.',
 
 # Special:UploadStash
 'uploadstash'          => 'Vorabspeicherung beim Hochladen',
@@ -2982,11 +2992,11 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG darstellen',
-'mw_math_simple' => 'Einfaches TeX als HTML darstellen, sonst PNG',
-'mw_math_html'   => 'Wenn möglich als HTML darstellen, sonst PNG',
+'mw_math_simple' => 'Einfaches TeX als HTML darstellen, ansonsten als PNG',
+'mw_math_html'   => 'Sofern möglich als HTML darstellen, ansonsten als PNG',
 'mw_math_source' => 'Als TeX belassen (für Textbrowser)',
-'mw_math_modern' => 'Empfehlenswert für moderne Browser',
-'mw_math_mathml' => 'MathML (experimentell)',
+'mw_math_modern' => 'Für moderne Browser empfohlene Darstellungsmethode',
+'mw_math_mathml' => 'Sofern möglich als MathML darstellen (experimentell)',
 
 # Math errors
 'math_failure'          => 'Parser-Fehler',

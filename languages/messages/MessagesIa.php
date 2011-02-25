@@ -1599,6 +1599,8 @@ Si tu vole totevia incargar iste file, per favor retorna e usa un nove nomine. [
 'php-uploaddisabledtext'      => 'Le incargamento de files PHP es disactivate. Per favor verifica le configuration file_uploads.',
 'uploadscripted'              => 'Iste file contine codice de HTML o de script que pote esser interpretate erroneemente per un navigator del web.',
 'uploadvirus'                 => 'Le file contine un virus! Detalios: $1',
+'uploadjava'                  => 'Iste file es un archivo ZIP que contine un file .class de Java.
+Non es permittite incargar files Java, proque istes pote contornar le restrictiones de securitate.',
 'upload-source'               => 'File de origine',
 'sourcefilename'              => 'Nomine del file de origine:',
 'sourceurl'                   => 'URL de origine:',
@@ -1650,6 +1652,14 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'upload-too-many-redirects' => 'Le URL contineva troppo de redirectiones',
 'upload-unknown-size'       => 'Dimension incognite',
 'upload-http-error'         => 'Un error HTTP occurreva: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Un error esseva incontrate durante le apertura del file pro verification de ZIP.',
+'zip-wrong-format'    => 'Le file specificate non es un file ZIP.',
+'zip-bad'             => 'Iste file es un archivo ZIP defectuose o alteremente illegibile.
+Un verification correcte de su securitate es impossibile.',
+'zip-unsupported'     => 'Iste file es un archivo ZIP que usa functionalitate de ZIP non supportate per MediaWiki.
+Un verification correcte de su securitate es impossibile.',
 
 # Special:UploadStash
 'uploadstash'          => 'Pila de files incargate',

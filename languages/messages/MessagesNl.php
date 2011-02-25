@@ -1819,6 +1819,8 @@ Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'php-uploaddisabledtext'      => 'PHP-bestanduploads zijn uitgeschakeld. Controleer a.u.b. de file_uploads-instelling.',
 'uploadscripted'              => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
 'uploadvirus'                 => 'Het bestand bevat een virus! Details: $1',
+'uploadjava'                  => 'Het bestand is een ZIP-bestand dat een Java .class-bestand bevat.
+Het uploaden van Java-bestanden is niet toegestaan omdat hiermee beveiligingsinstellingen omzeild kunnen worden.',
 'upload-source'               => 'Bronbestand',
 'sourcefilename'              => 'Oorspronkelijke bestandsnaam:',
 'sourceurl'                   => 'Bron-URL:',
@@ -1871,6 +1873,14 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'upload-too-many-redirects' => 'De URL bevatte te veel doorverwijzingen',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Er is een fout opgetreden bij het openen van het bestand voor de ZIP-controle.',
+'zip-wrong-format'    => 'Het opgegeven bestand was geen ZIP-bestand.',
+'zip-bad'             => 'Het bestand is een corrupt of onleesbare ZIP-bestand.
+De veiligheid kan niet worden gecontroleerd.',
+'zip-unsupported'     => 'Het bestand is een ZIP-bestand dat gebruik maakt van ZIP-mogelijkheden die MediaWiki niet ondersteunt.
+De veiligheid kan niet worden gecontroleerd.',
 
 # Special:UploadStash
 'uploadstash'          => 'Verborgen uploads',

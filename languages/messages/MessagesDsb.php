@@ -1545,6 +1545,8 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 'php-uploaddisabledtext'      => 'Nagraśa PHP-datajow su znjemóžnjone. Pšosym pśekontrolěruj nastajenje file_uploads.',
 'uploadscripted'              => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',
 'uploadvirus'                 => 'Toś ta dataja ma wirus! Nadrobnosći: $1',
+'uploadjava'                  => 'Toś ta dataja jo ZIP-dataja, kótaraž wopśimujo dataju .class z Javy.
+Nagrawanje datajow Javy njejo dowólone, dokulaž mógli wobjeźenje wěstotnych wobgranicowanjow zmóžniś.',
 'upload-source'               => 'Žrědłowa dataja',
 'sourcefilename'              => 'Mě žrědłoweje dataje:',
 'sourceurl'                   => 'URL žrědła:',
@@ -1591,6 +1593,14 @@ $1',
 'upload-too-many-redirects' => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',
 'upload-unknown-size'       => 'Njeznata wjelikosć',
 'upload-http-error'         => 'HTTP-zmólka nastata: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Pśi wocynjenju dataja za ZIP-pśekontrolěrowanje jo zmólka nastała.',
+'zip-wrong-format'    => 'Pódana dataja njejo była ZIP-dataja.',
+'zip-bad'             => 'ZIP-dataja jo wobškóźona abo z hynakšych pśicynow njecytajobna.
+Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
+'zip-unsupported'     => 'Toś ta dataja jo ZIP-dataja, kótaraž wužywa ZIP-funkcije, kótarež njepódpěraju se wót MediaWiki.
+Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 
 # Special:UploadStash
 'uploadstash'          => 'Schowanje nagratych datajow',

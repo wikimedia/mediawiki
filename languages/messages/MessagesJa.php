@@ -1817,6 +1817,8 @@ file_uploadsの設定を確認してください。',
 'uploadscripted'              => 'このファイルは、ウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています！
 詳細：$1',
+'uploadjava'                  => 'このファイルは、Java .classファイルを含むZIPファイルです。
+セキュリティの制限を回避されるおそれがあるため、Javaファイルをアップロードすることは許可されていません。',
 'upload-source'               => 'アップロード先のファイル',
 'sourcefilename'              => 'アップロード元のファイル名：',
 'sourceurl'                   => 'アップロード元のURL：',
@@ -1868,6 +1870,14 @@ $1',
 'upload-too-many-redirects' => 'そのURLに含まれるリダイレクトが多すぎます',
 'upload-unknown-size'       => 'サイズ不明',
 'upload-http-error'         => 'HTTPエラー発生：$1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'ZIPのチェックを開始する際にエラーが検出されました。',
+'zip-wrong-format'    => '指定されたファイルはZIPファイルではありませんでした。',
+'zip-bad'             => 'このファイルは破損しているか解読不能のZIPファイルです。
+セキュリティについて適切に検査することができません。',
+'zip-unsupported'     => 'このファイルはMediaWikiで利用することができないZIP形式を使用したZIPファイルです。
+セキュリティについて適切に検査することができません。',
 
 # Special:UploadStash
 'uploadstash'          => '未公開アップロード',
@@ -2592,7 +2602,7 @@ $1',
 ** ページへ無意味な/意味不明な内容の挿入
 ** 威圧的な態度/嫌がらせ
 ** 複数アカウントの不正利用
-** 許可されていない利用者名',
+** 不適切な利用者名',
 'ipbanononly'                     => '匿名利用者のみブロック',
 'ipbcreateaccount'                => 'アカウント作成を禁止する',
 'ipbemailban'                     => 'メール送信を防止',
@@ -2607,7 +2617,7 @@ $1',
 'ipballowusertalk'                => 'この利用者に対して、ブロック中の自身のトークページ編集を許可',
 'ipb-change-block'                => 'これらの設定で、利用者を再びブロック',
 'badipaddress'                    => '不正なIPアドレス',
-'blockipsuccesssub'               => 'ブロックに成功しました',
+'blockipsuccesssub'               => 'ブロックしました',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
 [[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',

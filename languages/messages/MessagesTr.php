@@ -1764,6 +1764,9 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'upload-unknown-size'       => 'Bilinmeyen boyut',
 'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
 
+# ZipDirectoryReader
+'zip-wrong-format' => 'Belirtilen dosya ZIP dosyası değil.',
+
 # Special:UploadStash
 'uploadstash'          => 'Geçici düzenlenebilir yükleme yap',
 'uploadstash-summary'  => "Bu sayfa yüklenmiş(veya yüklenmekte olan) ama henüz viki'de yayınlanmamış dosyalara erişmeyi sağlar. Bu dosyalar sadece yükleyeni tarafından görülebilir.",
