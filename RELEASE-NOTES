@@ -184,6 +184,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27611) list=blocks: Use ipb_by_text instead of join with user table
 * (bug 27616) Add userid of blocked user and blocker to list=blocks
 * (bug 27688) Simplify queries to list user block information
+* (bug 27708) list=users does not have a property to return user id
 
 === Languages updated in 1.18 ===
 

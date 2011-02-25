@@ -135,6 +135,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 			foreach ( $res as $row ) {
 				$user = User::newFromRow( $row );
 				$name = $user->getName();
+
+				$data[$name]['userid'] = $user->getId();
 				$data[$name]['name'] = $name;
 
 				if ( isset( $this->prop['editcount'] ) ) {
