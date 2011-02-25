@@ -175,8 +175,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				// Record new user's data
 				$lastUser = $row->user_name;
 				$lastUserData = array(
-					'name' => $lastUser,
 					'userid' => $row->user_id,
+					'name' => $lastUser,
 				);
 				if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
 					$lastUserData['blockedby'] = $row->ipb_by_text;
