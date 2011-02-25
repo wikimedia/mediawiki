@@ -281,7 +281,7 @@ class Status {
 				if( $error['params'] ) {
 					$result[] = array_merge( array( $error['message'] ), $error['params'] );
 				} else {
-					$result[] = $error['message'];
+					$result[] = array( $error['message'] );
 				}
 			}
 		}

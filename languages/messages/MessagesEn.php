@@ -2185,6 +2185,8 @@ You should check that file's deletion history before proceeding to re-upload it.
 'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
+'uploadjava'                  => 'The file is a ZIP file which contains a Java .class file.
+Uploading Java files is not allowed, because they can cause security restrictions to be bypassed.',
 'uploadvirus'                 => 'The file contains a virus!
 Details: $1',
 'upload-source'               => 'Source file',
@@ -2238,6 +2240,14 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => 'The URL contained too many redirects',
 'upload-unknown-size'       => 'Unknown size',
 'upload-http-error'         => 'An HTTP error occured: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'An error was encountered when opening the file for ZIP checks.',
+'zip-wrong-format' => 'The specified file was not a ZIP file.',
+'zip-bad' => 'The file is a corrupt or otherwise unreadable ZIP file.
+It cannot be properly checked for security.',
+'zip-unsupported' => 'The file is a ZIP file which uses ZIP features not supported by MediaWiki.
+It cannot be properly checked for security.',
 
 # Special:UploadStash
 'uploadstash'          => 'Upload stash',

@@ -275,6 +275,7 @@ $wgAutoloadLocalClasses = array(
 	'XmlSelect' => 'includes/Xml.php',
 	'XmlTypeCheck' => 'includes/XmlTypeCheck.php',
 	'ZhClient' => 'includes/ZhClient.php',
+	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 
 	# includes/api
 	'ApiBase' => 'includes/api/ApiBase.php',

@@ -1319,6 +1319,7 @@ $wgMessageStructure = array(
 		'php-uploaddisabledtext',
 		'uploadscripted',
 		'uploadvirus',
+		'uploadjava',
 		'upload-source',
 		'sourcefilename',
 		'sourceurl',
@@ -1348,6 +1349,13 @@ $wgMessageStructure = array(
 		'upload-too-many-redirects',
 		'upload-unknown-size',
 		'upload-http-error',
+	),
+
+	'zip' => array(
+		'zip-file-open-error',
+		'zip-wrong-format',
+		'zip-bad',
+		'zip-unsupported'
 	),
 
 	'uploadstash' => array(
@@ -3362,6 +3370,7 @@ XHTML id names.",
 	'recentchanges'       => 'Recent changes',
 	'recentchangeslinked' => 'Recent changes linked',
 	'upload'              => 'Upload',
+	'zip'                 => 'ZipDirectoryReader',
 	'upload-errors'       => '',
 	'uploadstash'         => 'Special:UploadStash',
 	'img-auth'            => 'img_auth script messages',
