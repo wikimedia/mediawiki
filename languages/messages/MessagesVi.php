@@ -1695,6 +1695,8 @@ Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại v
 'php-uploaddisabledtext'      => 'Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.',
 'uploadscripted'              => 'Tập tin này có chứa mã HTML hoặc script có thể khiến trình duyệt web thông dịch sai.',
 'uploadvirus'                 => 'Tập tin có virút! Chi tiết: $1',
+'uploadjava'                  => 'Tập tin ZIP này chứa một tập tin Java .class.
+Không được phép tải lên các tập tin Java, bởi vì chúng có thể vượt qua các hạn chế bảo mật.',
 'upload-source'               => 'Tập tin gốc',
 'sourcefilename'              => 'Tên tập tin nguồn:',
 'sourceurl'                   => 'URL gốc:',
@@ -1743,6 +1745,14 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload-too-many-redirects' => 'URL có quá nhiều chuyển hướng',
 'upload-unknown-size'       => 'Không rõ kích thước',
 'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Lỗi khi mở tập tin để kiểm tra tập tin ZIP.',
+'zip-wrong-format'    => 'Tập tin này không phải là tập tin ZIP.',
+'zip-bad'             => 'Tập tin ZIP này bị hỏng hoặc không mở được vì lý do khác.
+Không thể kiểm tra nó về bảo mật.',
+'zip-unsupported'     => 'Tập tin ZIP này sử dụng các tính năng ZIP không được hỗ trợ bởi MediaWiki.
+Không thể kiểm tra nó về bảo mật.',
 
 # Special:UploadStash
 'uploadstash'          => 'Hàng đợi tải lên',

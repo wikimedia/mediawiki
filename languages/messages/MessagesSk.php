@@ -927,6 +927,7 @@ Ak to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu pri
 
 '''Ak je toto legitímny pokus o úpravu, skúste to prosím znova. Ak to stále nefunguje, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť.'''",
 'token_suffix_mismatch'            => "'''Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.'''",
+'edit_form_incomplete'             => "'''Niektoré časti editačného formulára nedosiahli server. Prosím, znova skontrolujte, že vaše úpravy sú nepoškodené a skúste to znova.'''",
 'editing'                          => 'Úprava stránky $1',
 'editingsection'                   => 'Úprava stránky $1 (sekcia)',
 'editingcomment'                   => 'Úprava stránky $1 (nová sekcia)',
@@ -3138,6 +3139,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsareainformation'          => 'Názov GPS oblasti',
 'exif-gpsdatestamp'                => 'Dátum GPS',
 'exif-gpsdifferential'             => 'Diferenciálna korekcia GPS',
+'exif-objectname'                  => 'Krátky názov',
 
 # EXIF attributes
 'exif-compression-1' => 'Bez kompresie',

@@ -739,7 +739,7 @@ Please log in again after you receive it.
 
 તમે $1 અથવા  કોઇ અન્ય  [[{{MediaWiki:Grouppage-sysop}}|પ્રબંધક ]] નો સંપર્ક કરી રોકની ચર્ચા કરી શકો.
 
-નોંધો કે તેમે "આ સભ્યને ઈ-મેલ કરો" વિકલ્પના વાપરી શકો સિવાયકે તમરી પાસે તમારા [[Special:વિકલ્પો|user preferences]] માં વૈધ ઈ-મેલ સરનામું હોય અનેતેવાપરી તમરા પર રોક લગાડવામાં આવી ન હોય.
+નોંધો કે તેમે "આ સભ્યને ઈ-મેલ કરો" વિકલ્પના વાપરી શકો સિવાયકે તમરી પાસે તમારા [[Special:Preferences|user preferences]] માં વૈધ ઈ-મેલ સરનામું હોય અનેતેવાપરી તમરા પર રોક લગાડવામાં આવી ન હોય.
 
 તમારું હાલનું   IP સરનામું  $3 છે, અને રોકની  ID છે  #$5.
 આ માહિતી તમારી પૂછપરછમાં જરૂર ઉમેરશો',
@@ -894,6 +894,7 @@ Please log in again after you receive it.
 તેના વિકલ્પો હટાવી દેવાયા છે.",
 'post-expand-template-argument-category'  => 'ઢાંચાના વિકલ્પો અધૂરા રહી ગયેલ હોય તેવા પાનાની યાદિ',
 'parser-template-loop-warning'            => 'આવર્તી ઢાંચો મળ્યો : [[$1]]',
+'parser-template-recursion-depth-warning' => 'ઢાંચાની આવર્તન સ્તરની સીમા પાર થઈ ($1) ગઈ',
 'language-converter-depth-warning'        => 'ભાષા રૂપાંતરણ ઊંડાઈ સીમા વટાવાઈ ($1)',
 
 # "Undo" feature
@@ -1227,6 +1228,7 @@ $1",
 'resultsperpage'                => 'પ્રતિ પાના પર પરિણામો',
 'contextlines'                  => 'પ્રતિ પરિણામ માં હરોળ',
 'contextchars'                  => 'સંદર્ભ પ્રતિ હરોળ',
+'stub-threshold'                => '<a href="#" class="stub">stub link</a>નાફોર્મમેટિંગ માટે શરૂઆતિ પગથિયું  (બાઈટ્સ):',
 'stub-threshold-disabled'       => 'નિષ્ક્રીયાન્વીત',
 'recentchangesdays'             => 'તાજા ફેરફારોમાં દેખાડવાના દિવસો',
 'recentchangesdays-max'         => 'મહત્તમ  $1 {{PLURAL:$1|દિવસ|દિવસો}}',
@@ -1367,6 +1369,7 @@ HTML નાકું ચકાસો',
 'right-move-subpages'         => 'પાનાઓને તેમના ઉપ પાના સાથે ખસેડો.',
 'right-move-rootuserpages'    => 'મૂળ સભ્ય પાના હટાવો',
 'right-movefile'              => 'ફાઈલો હટાવો',
+'right-suppressredirect'      => 'પાના હટાવતી વખતના સમયે સ્ત્રોત પાનામાંથી દિશા નિર્દેશ વર્જીત',
 'right-upload'                => 'ફાઇલ ચડાવો',
 'right-reupload'              => 'વિહરમાન ફાઇલ પર પુનર્લેખન કરો',
 'right-reupload-own'          => 'સભ્ય દ્વારા જાતે ચઢાવેલી તાઇલ પર પુનર્લેખન કરો',
@@ -1375,6 +1378,7 @@ HTML નાકું ચકાસો',
 'right-purge'                 => 'પુષ્ટિકરણ ન થયેલ પાનાની સાઇટ સંબંધી માહિતી મીટાવો.',
 'right-autoconfirmed'         => 'અર્ધ સંરક્ષિત પાના સંપાદિત કરો',
 'right-bot'                   => 'આને સ્વયં ચાલિત પ્રિયા ગણો',
+'right-nominornewtalk'        => 'ચર્ચાના પાનામાં લઘુ ફેરફારો તરીકે કરેલ ફેરફારની સૂચના ન મોકલાશે.',
 'right-apihighlimits'         => 'પૂછતાછમાં  APની  ચઢિયાતી સીમા વાપરો',
 'right-writeapi'              => 'લેખન API વાપરો',
 'right-delete'                => 'પાનું હટાવો',
@@ -1609,6 +1613,8 @@ HTML નાકું ચકાસો',
 'uploadscripted'              => 'આ ફાઇલ HTML કે અન્ય સ્ક્રીપ્ટ કોડ ધરાવે છે જે વેબ બ્રાઉઝર દ્વારા ભૂલથી ઉપયોગમાં લઇ શકાય છે.',
 'uploadvirus'                 => 'ફાઇલ વાયરસ સંક્ર્મિત છે
 વિવરણ : $1',
+'uploadjava'                  => 'આ ફાઇલ એ ZIP ફાઈલ છે જે Java .class ધરાવે છે.
+Java ફાઇલ ચડાવવાની પરવાનગી નથી, કેમકે તેઓ સુરક્ષા તપાસને અવગણી નાખવાની ક્ષમતા ધરાવે છે.',
 'upload-source'               => 'સ્ત્રોત ફાઇલ',
 'sourcefilename'              => 'સ્ત્રોત ફાઇલ નામ',
 'sourceurl'                   => 'સ્ત્રોત  URL:',
@@ -1646,6 +1652,14 @@ $1',
 'upload-too-many-redirects' => 'URLમાં ઘણાં ઉપ નિર્દેશનો છે.',
 'upload-unknown-size'       => 'અજ્ઞાત કદ',
 'upload-http-error'         => ' HTTP ત્રુટિ : $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'ZIP તપાસ કરતી વખતે ત્રુટિ નિર્માણ થઈ',
+'zip-wrong-format'    => 'જણાવેલી ફાઇલ ZIP ફાઇલ નથી.',
+'zip-bad'             => 'આ ફાઇલોઅ યા તો ખરાબ છે અથવા તો ન વાંચી શકાય એવી ZIP ફાઇલ છે.
+આની સંતોષકારક સુરક્ષા તપાસ ન થઈ શકી.',
+'zip-unsupported'     => 'આ ZIP ફાઇલ એવા આયામો વાપરે છે જેને મિડિયા વિકિ નથી સમજતું
+સુરક્ષા સંબંધી તપાસ સંતોષ પૂર્વક નહીં થાય.',
 
 # Special:UploadStash
 'uploadstash'          => 'ગુપ્ત ફાઈલ ચડાવો',
@@ -2235,7 +2249,7 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 ** અ-ફળદાયી ફેરફાર ચેતવણી
 ** અત્યંત મુલાકાત લેવાતું પાનું',
 'protect-edit-reasonlist'     => 'ભુંસવાનું કારણ બદલો.',
-'protect-expiry-options'      => '૨ કલાક:2 hours,૧ દિવસ:1 day,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
+'protect-expiry-options'      => '૧ કલાક:1 hour,૧ દિવસ:1 day,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
 'restriction-type'            => 'પરવાનગી:',
 'restriction-level'           => 'નિયંત્રણ સ્તર:',
 'minimum-size'                => 'લઘુત્તમ કદ',
@@ -2671,6 +2685,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'importnotext'               => 'ખાલી કે શબ્દ વિહીન',
 'importsuccess'              => 'આયાત સંપૂર્ણ',
 'importhistoryconflict'      => 'એક બીજાથી વિસંગત ફેરફારો અસ્તિત્વ ધરાવે છે ( કદાક આ પાનું પહેલાં આયાત કરાયું હોય)',
+'importnosources'            => 'કોઇ પણ આંતર વિકિ સ્ત્રોત જણાવાયા નથી અને સીધા ઇતિહાસ ફાઇલ ચડાવવા પર રોક લાગેલી છે.',
 'importnofile'               => 'કોઇ પણ આયાતી ફાઇલ ન ચડાવી શકાઇ',
 'importuploaderrorsize'      => 'આયાતી ફાઇલ ચડાવવાનું અસફળ
 મંજૂર કદ કરતા આ ફાઈલાનું કદ મોટું છે.',
@@ -2764,7 +2779,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'tooltip-summary'                 => 'ટૂંક સારાંશ ઉમેરો',
 
 # Metadata
-'notacceptable' => 'તમારા ગ્રાહક સમજી શકે તે રીતે વિકિ માહિતી નહીં આપી શકે',
+'nodublincore'      => 'સર્વર માટે Dublin Core RDF metadata નિષ્ક્રીય કરાયો.',
+'nocreativecommons' => 'આ સર્વર માટે કલાકૃતિ Commons RDF metadata નિષ્ક્રીય કરાયો.',
+'notacceptable'     => 'તમારા ગ્રાહક સમજી શકે તે રીતે વિકિ માહિતી નહીં આપી શકે',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} ના અ‍જ્ઞાત {{PLURAL:$1|સભ્ય|સભ્યો}}',
@@ -2916,9 +2933,12 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-stripoffsets'                => 'ચિત્ર સંબંધિત માહિતીનું સ્થાન',
 'exif-rowsperstrip'                => 'દરેક પટ્ટીમાં હરોળની સંખ્યા',
 'exif-stripbytecounts'             => 'સંકુચિત પટ્ટીમાં બાઈટની સંખ્યા',
+'exif-jpeginterchangeformat'       => 'JPEG SOI નો ફણગો',
 'exif-jpeginterchangeformatlength' => 'JPEG માહિતીની બાઇટ્સ',
 'exif-transferfunction'            => 'સ્થળાંતર કાર્ય',
 'exif-whitepoint'                  => 'ધવલ બિંદુ રંગ તીવ્રતા',
+'exif-primarychromaticities'       => 'મૂળ રંગોની રંગછટા',
+'exif-ycbcrcoefficients'           => 'રંગ અવકાશ પરિવર્તન ગર્ભ અચળાંક',
 'exif-referenceblackwhite'         => 'શ્યામ અને ધવલ સંદર્ભ કિંમતોની જોડી',
 'exif-datetime'                    => 'ફાઇલ સુધારાની તારીખ અને સમય',
 'exif-imagedescription'            => 'ચિત્ર શીર્ષક',
@@ -2945,6 +2965,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-exposuretime'                => 'પ્રકાશાગમ સમય',
 'exif-exposuretime-format'         => ' $1 સેકંડ ($2)',
 'exif-fnumber'                     => 'F ક્રમ',
+'exif-exposureprogram'             => 'પ્રકાશાગમ પ્રોગ્રામ',
 'exif-spectralsensitivity'         => 'રંગપટલ સંવેદના',
 'exif-isospeedratings'             => 'ISO ઝડપ ક્ર્માંક',
 'exif-oecf'                        => 'દ્રસ્ટિ ઇલેક્ટ્રોનીક રૂપાંતરણ અચળાંક',
@@ -2960,6 +2981,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-focallength'                 => 'કાંચનું કેન્દ્રીય લંબાઇ (ફોકલ લેંથ)',
 'exif-subjectarea'                 => 'વિષ્યવસ્તુ  ક્ષેત્ર',
 'exif-flashenergy'                 => 'ઝબકારાની શક્તિ',
+'exif-spatialfrequencyresponse'    => 'અવકાશી કંપન પ્રત્યુત્તર',
 'exif-focalplanexresolution'       => 'કેન્દ્રીત X ફલક નું ઘનત્વ',
 'exif-focalplaneyresolution'       => 'કેન્દ્રીત Y ફલક નું ઘનત્વ',
 'exif-focalplaneresolutionunit'    => 'કેંન્દ્રીત ફલક ઘનત્વનો એકમ',
@@ -2996,6 +3018,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-gpsdop'                      => 'માપન ચોકસાઈ',
 'exif-gpsspeedref'                 => 'ઝડપનું એકમ',
 'exif-gpsspeed'                    => 'GPS ગ્રાહક ઝડપ',
+'exif-gpstrackref'                 => 'દિશા કે ચલનનો સંદર્ભ',
 'exif-gpstrack'                    => 'હલનચલનની દિશા',
 'exif-gpsimgdirectionref'          => 'ચિત્રની દિશાનો સંદર્ભ',
 'exif-gpsimgdirection'             => 'ચિત્રની દિશા',
@@ -3036,8 +3059,10 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-exposureprogram-0' => 'અવ્યાખ્યાયિત',
 'exif-exposureprogram-1' => 'માનવ ચાલિત',
 'exif-exposureprogram-2' => 'સામાન્ય પ્રણાલી',
+'exif-exposureprogram-3' => 'છીદ્ર અગ્રતા',
 'exif-exposureprogram-4' => 'શટર અગ્રતા',
 'exif-exposureprogram-5' => 'રચનાત્મક પ્રોગ્રામ ( દ્રશ્યની ઊંડાઇ તરફ પૂર્વગ્રાહી)',
+'exif-exposureprogram-6' => 'સક્રિય પ્રોગ્રામ ( ઝડપી શટર ગતિ પ્રત્યે પક્ષપાતી)',
 'exif-exposureprogram-7' => 'વ્યક્તિ વિશેષ ચિત્રિકરણ ઢબ ( નજીકના કે ચહેરા પર લક્ષ્ય કેંદ્રીત અને પાછળનો દેખાવ લક્ષ્યથી બહાર)',
 'exif-exposureprogram-8' => 'દેખાવ ચિત્રિકરણ ઢબ  (આજુબાજુ અને પાછળ ના પ્રાકૃતિક દેખાવ પર લક્ષ્ય કેન્દ્રીત)',
 
@@ -3073,6 +3098,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 # Flash modes
 'exif-flash-fired-0'    => 'પ્રકાશ ઝબકારો ન થયો',
 'exif-flash-fired-1'    => 'ઝબકારો કરાયો',
+'exif-flash-return-0'   => 'પરતીનો સ્ટ્રોબ શોધ કાર્ય',
 'exif-flash-return-2'   => 'પરતીનો સ્ટ્રોબ પ્રકાશ ન મેળવાયો.',
 'exif-flash-return-3'   => 'પરતીનો સ્ટ્રોબ પ્રકાશ જ્ઞાત થયો .',
 'exif-flash-mode-1'     => 'ફરજિયાત  ઝાકારો રાખો',

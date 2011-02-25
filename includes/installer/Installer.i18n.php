@@ -4684,6 +4684,9 @@ Tuta opcija zawinuje grawěrowace zmylki při MediaWiki.
 Njemóžeš MediaWiki instalować abo wužiwać, chibazo tuta opcija je znjemóžnjena.",
 	'config-safe-mode' => "'''Warnowanje:''' [http://www.php.net/features.safe-mode wěsty modus] PHP je aktiwny.
 To móže problemy zawinować, předewšěm, jeli so datajowe nahraća a podpěra <code>math</code> wužiwaja.",
+	'config-xml-bad' => 'XML-modul za PHP faluje.
+MediaWiki trjeba funkcije w tutym modulu a njebudźe w tutej konfiguraciji fungować.
+Jeli wužiwaš Mandrake, instaluj paket php-xml.',
 	'config-memory-raised' => 'PHP-parameter <code>memory_limit</code> je $1, je so na hódnotu $2 zwyšił.',
 	'config-memory-bad' => "'''Warnowanje:''' PHP-parameter <code>memory_limit</code> ma hódnotu $1,
 To je najskerje přeniske.
@@ -4808,6 +4811,7 @@ Podaj druhe wužiwarske mjeno.',
 	'config-admin-password-same' => 'Hesło dyrbi so wot wužiwarskeho mjena rozeznać.',
 	'config-admin-password-mismatch' => 'Wobě hesle, kotrejž sy zapodał, njejstej jenakej.',
 	'config-admin-email' => 'E-mejlowa adresa:',
+	'config-admin-email-help' => 'Zapodaj tu e-mejlowu adresu, zo by přijimanje e-mejlow wot druhich wužiwarjow w tutym wikiju zmóžnił, swoje hesło wróćo stajił a zdźělenki wo změnach na swojich wobkedźbowanych stronach  dostał.',
 	'config-admin-error-user' => 'Interny zmylk při wutworjenju administratora z mjenom "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interny zmylk při nastajenju hesła za administratora "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Sy njepłaćiwu e-mejlowu adresu zapodał.',
@@ -4831,6 +4835,8 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-license-cc-choose' => 'Swójsku licencu Creative Commons wubrać',
 	'config-email-settings' => 'E-mejlowe nastajenja',
 	'config-enable-email' => 'Wuchadźace e-mejlki zmóžnić',
+	'config-enable-email-help' => 'Jeli chceš e-mejl wužiwać, dyrbja so [http://www.php.net/manual/en/mail.configuration.php e-mejlowe nastajenja PHP] prawje konfigurować.
+Jeli nochceš e-mejlowe funkcije wužiwać, móžeš je tu znjemóžnić.',
 	'config-email-user' => 'E-mejl mjez wužiwarjemi zmóžnić',
 	'config-email-user-help' => 'Wšěm wužiwarjam dowolić, jednomu druhemu e-mejlki pósłać, jeli su tutu funkciju w swojich nastajenjach zmóžnili.',
 	'config-email-usertalk' => 'Zdźělenja za wužiwarske diskusijne strony zmóžnić',

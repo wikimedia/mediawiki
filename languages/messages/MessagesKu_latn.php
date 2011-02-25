@@ -1428,7 +1428,7 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'whatlinkshere-prev'       => '{{PLURAL:$1|yê|$1 yên}} berê',
 'whatlinkshere-next'       => '{{PLURAL:$1|yê|$1 yên}} din',
 'whatlinkshere-links'      => '← lînkan',
-'whatlinkshere-hideredirs' => "$1 redirect'an",
+'whatlinkshere-hideredirs' => "redirect'an $1",
 'whatlinkshere-hidelinks'  => '$1 lînkan',
 'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
 'whatlinkshere-filters'    => 'Parzûn',

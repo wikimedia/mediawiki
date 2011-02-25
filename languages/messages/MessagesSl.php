@@ -1627,6 +1627,8 @@ Prosimo preverite file_uploads nastavitev.',
 'uploadscripted'              => 'Datoteka vsebuje HTML- ali skriptno kodo, ki bi jo lahko brskalnik razlagal napačno.',
 'uploadvirus'                 => 'Datoteka vsebuje virus!
 Podrobnosti: $1',
+'uploadjava'                  => 'Datoteka je datoteka ZIP, ki vsebuje javansko datoteko .class.
+Nalaganje javanskih datotek ni dovoljeno, ker je z njimi mogoče obiti varnostne omejitve.',
 'upload-source'               => 'Izvorna datoteka',
 'sourcefilename'              => 'Ime izvorne datoteke:',
 'sourceurl'                   => 'Izvorni URL:',
@@ -1677,6 +1679,14 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
 'upload-unknown-size'       => 'Neznana velikost',
 'upload-http-error'         => 'Prišlo je do napake HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Med odpiranjem datoteke za preverjanja ZIP je prišlo do napake.',
+'zip-wrong-format'    => 'Navedena datoteka ni bila datoteka ZIP.',
+'zip-bad'             => 'Datoteka je pokvarjena ali kako drugače neberljiva datoteka ZIP.
+Ni mogoče ustrezno preveriti njene varnosti.',
+'zip-unsupported'     => 'Datoteka je datoteka ZIP, ki uporablja funkcije ZIP, katere MediaWiki ne podpira.
+Ni mogoče ustrezno preveriti njene varnosti.',
 
 # Special:UploadStash
 'uploadstash'          => 'Skrite naložene datoteke',

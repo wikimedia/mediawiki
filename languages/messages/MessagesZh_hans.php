@@ -1604,6 +1604,8 @@ $1",
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
 'uploadvirus'                 => '该文件包含病毒！
 详情：$1',
+'uploadjava'                  => '该文件是 ZIP 文件，其中包含 Java 的.class 文件。
+不允许上传的 Java 文件，因为他们可能会跳过的安全限制。',
 'upload-source'               => '来源文件',
 'sourcefilename'              => '源文件名：',
 'sourceurl'                   => '来源网址：',
@@ -1636,6 +1638,14 @@ $1',
 'upload-too-many-redirects' => '在网址中有太多重新定向',
 'upload-unknown-size'       => '未知大小',
 'upload-http-error'         => '发生HTTP错误：$1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => '打开文件的 ZIP 检查时遇到一个错误。',
+'zip-wrong-format'    => '指定的文件不是一个 ZIP 文件。',
+'zip-bad'             => '该文件是已损坏或以其它方式无法读取的 ZIP 文件。
+不能正确检查安全。',
+'zip-unsupported'     => '该文件是 ZIP 文件，其中使用不支持的 MediaWiki 的压缩功能。
+不能正确检查安全。',
 
 # Special:UploadStash
 'uploadstash'          => '文件贮藏',
