@@ -502,6 +502,7 @@ are used instead.
 * action=parse now correctly returns an error for nonexistent pages
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
 * (bug 26560) On allusers if limit < total number of users, last user gets duplicate
+* (bug 27715) imageinfo didn't respect revdelete
 
 * (bug 22738) Allow filtering by action type on query=logevent.
 * (bug 22764) uselang parameter for action=parse.
