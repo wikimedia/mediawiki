@@ -271,15 +271,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
 		if ( isset( $prop['user'] ) || isset( $prop['userid'] ) ) {
-
-			if ( isset( $prop['user'] ) ) {
-				$vals['user'] = $file->getUser();
-			}
-			if ( isset( $prop['userid'] ) ) {
-				$vals['userid'] = $file->getUser( 'id' );
-			}
-			if ( !$file->getUser( 'id' ) ) {
-				$vals['anon'] = '';
+			if ( $file->isDeleted( File::DELETED_USER ) ) {
+				$vals['userhidden'] = '';
+			} else {
+				if ( isset( $prop['user'] ) ) {
+					$vals['user'] = $file->getUser();
+				}
+				if ( isset( $prop['userid'] ) ) {
+					$vals['userid'] = $file->getUser( 'id' );
+				}
+				if ( !$file->getUser( 'id' ) ) {
+					$vals['anon'] = '';
+				}
 			}
 		}
 		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
@@ -293,58 +296,90 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 		if ( isset( $prop['url'] ) ) {
-			if ( !is_null( $thumbParams ) ) {
-				$mto = $file->transform( $thumbParams );
-				if ( $mto && !$mto->isError() ) {
-					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				if ( !is_null( $thumbParams ) ) {
+					$mto = $file->transform( $thumbParams );
+					if ( $mto && !$mto->isError() ) {
+						$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
 
-					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
-					// thumbnail sizes for the thumbnail actual size
-					if ( $mto->getUrl() !== $file->getUrl() ) {
-						$vals['thumbwidth'] = intval( $mto->getWidth() );
-						$vals['thumbheight'] = intval( $mto->getHeight() );
-					} else {
-						$vals['thumbwidth'] = intval( $file->getWidth() );
-						$vals['thumbheight'] = intval( $file->getHeight() );
-					}
+						// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
+						// thumbnail sizes for the thumbnail actual size
+						if ( $mto->getUrl() !== $file->getUrl() ) {
+							$vals['thumbwidth'] = intval( $mto->getWidth() );
+							$vals['thumbheight'] = intval( $mto->getHeight() );
+						} else {
+							$vals['thumbwidth'] = intval( $file->getWidth() );
+							$vals['thumbheight'] = intval( $file->getHeight() );
+						}
 
-					if ( isset( $prop['thumbmime'] ) ) {
-						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
-						$vals['thumbmime'] = $thumbFile->getMimeType();
+						if ( isset( $prop['thumbmime'] ) ) {
+							$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
+							$vals['thumbmime'] = $thumbFile->getMimeType();
+						}
+					} else if ( $mto && $mto->isError() ) {
+						$vals['thumberror'] = $mto->toText();
 					}
-				} else if ( $mto && $mto->isError() ) {
-					$vals['thumberror'] = $mto->toText();
 				}
+				$vals['url'] = $file->getFullURL();
+				$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 			}
-			$vals['url'] = $file->getFullURL();
-			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 		}
 		if ( isset( $prop['comment'] ) ) {
-			$vals['comment'] = $file->getDescription();
+			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+				$vals['commenthidden'] = '';
+			} else {
+				$vals['comment'] = $file->getDescription();
+			}
 		}
 		if ( isset( $prop['parsedcomment'] ) ) {
-			global $wgUser;
-			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
+			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+				$vals['commenthidden'] = '';
+			} else {
+				global $wgUser;
+				$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
 					$file->getDescription(), $file->getTitle() );
+			}
 		}
 
 		if ( isset( $prop['sha1'] ) ) {
-			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+			}
 		}
 		if ( isset( $prop['metadata'] ) ) {
-			$metadata = $file->getMetadata();
-			$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				$metadata = $file->getMetadata();
+				$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
+			}
 		}
 		if ( isset( $prop['mime'] ) ) {
-			$vals['mime'] = $file->getMimeType();
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				$vals['mime'] = $file->getMimeType();
+			}
 		}
 
 		if ( isset( $prop['archivename'] ) && $file->isOld() ) {
-			$vals['archivename'] = $file->getArchiveName();
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				$vals['archivename'] = $file->getArchiveName();
+			}
 		}
 
 		if ( isset( $prop['bitdepth'] ) ) {
-			$vals['bitdepth'] = $file->getBitDepth();
+			if ( $file->isDeleted( File::DELETED_FILE ) ) {
+				$vals['filehidden'] = '';
+			} else {
+				$vals['bitdepth'] = $file->getBitDepth();
+			}
 		}
 
 		return $vals;
