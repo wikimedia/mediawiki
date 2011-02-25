@@ -224,15 +224,16 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'missingparam', 'info' => 'One of the parameters from, fromid is required' ),
-			array( 'code' => 'invalidparammix', 'info' => 'The parameters from, fromid can not be used together' ),
-			array( 'invalidtitle', 'from' ),
-			array( 'nosuchpageid', 'fromid' ),
-			array( 'notanarticle' ),
-			array( 'invalidtitle', 'to' ),
-			array( 'sharedfile-exists' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'from', 'fromid' ) ),
+			array(
+				array( 'invalidtitle', 'from' ),
+				array( 'nosuchpageid', 'fromid' ),
+				array( 'notanarticle' ),
+				array( 'invalidtitle', 'to' ),
+				array( 'sharedfile-exists' ),
+			)
+		);
 	}
 
 	public function needsToken() {

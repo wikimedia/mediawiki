@@ -326,13 +326,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'cmmissingparam', 'info' => 'One of the parameters title, pageid is required' ),
-			array( 'code' => 'cminvalidparammix', 'info' => 'The parameters title, pageid can not be used together' ),
-			array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
-			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-			array( 'nosuchpageid', 'pageid' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
+				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+				array( 'nosuchpageid', 'pageid' ),
+			)
+		);
 	}
 
 	protected function getExamples() {
