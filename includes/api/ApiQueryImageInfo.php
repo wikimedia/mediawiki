@@ -368,7 +368,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $prop['bitdepth'] ) ) {
-				$vals['bitdepth'] = $file->getBitDepth();
+			$vals['bitdepth'] = $file->getBitDepth();
 		}
 
 		return $vals;
