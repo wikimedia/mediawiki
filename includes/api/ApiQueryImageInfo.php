@@ -288,6 +288,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 			}
 		}
+
 		// This is shown even if the file is revdelete'd in interface
 		// so do same here.
 		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
@@ -314,58 +315,60 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
-
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
 			$vals['filehidden'] = '';
-		} else {
-			if ( isset( $prop['url'] ) ) {
-				if ( !is_null( $thumbParams ) ) {
-					$mto = $file->transform( $thumbParams );
-					if ( $mto && !$mto->isError() ) {
-						$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
 
-						// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
-						// thumbnail sizes for the thumbnail actual size
-						if ( $mto->getUrl() !== $file->getUrl() ) {
-							$vals['thumbwidth'] = intval( $mto->getWidth() );
-							$vals['thumbheight'] = intval( $mto->getHeight() );
-						} else {
-							$vals['thumbwidth'] = intval( $file->getWidth() );
-							$vals['thumbheight'] = intval( $file->getHeight() );
-						}
+			//Early return, tidier than indenting all following things one level
+			return $vals;
+		}
 
-						if ( isset( $prop['thumbmime'] ) ) {
-							$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
-							$vals['thumbmime'] = $thumbFile->getMimeType();
-						}
-					} else if ( $mto && $mto->isError() ) {
-						$vals['thumberror'] = $mto->toText();
+		if ( isset( $prop['url'] ) ) {
+			if ( !is_null( $thumbParams ) ) {
+				$mto = $file->transform( $thumbParams );
+				if ( $mto && !$mto->isError() ) {
+					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
+
+					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
+					// thumbnail sizes for the thumbnail actual size
+					if ( $mto->getUrl() !== $file->getUrl() ) {
+						$vals['thumbwidth'] = intval( $mto->getWidth() );
+						$vals['thumbheight'] = intval( $mto->getHeight() );
+					} else {
+						$vals['thumbwidth'] = intval( $file->getWidth() );
+						$vals['thumbheight'] = intval( $file->getHeight() );
 					}
+
+					if ( isset( $prop['thumbmime'] ) ) {
+						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
+						$vals['thumbmime'] = $thumbFile->getMimeType();
+					}
+				} else if ( $mto && $mto->isError() ) {
+					$vals['thumberror'] = $mto->toText();
 				}
-				$vals['url'] = $file->getFullURL();
-				$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 			}
+			$vals['url'] = $file->getFullURL();
+			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
+		}
 
-			if ( isset( $prop['sha1'] ) ) {
-				$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
-			}
+		if ( isset( $prop['sha1'] ) ) {
+			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+		}
 
-			if ( isset( $prop['metadata'] ) ) {
-				$metadata = $file->getMetadata();
-				$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
-			}
+		if ( isset( $prop['metadata'] ) ) {
+			$metadata = $file->getMetadata();
+			$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
+		}
 
-			if ( isset( $prop['mime'] ) ) {
-				$vals['mime'] = $file->getMimeType();
-			}
+		if ( isset( $prop['mime'] ) ) {
+			$vals['mime'] = $file->getMimeType();
+		}
 
-			if ( isset( $prop['archivename'] ) && $file->isOld() ) {
-				$vals['archivename'] = $file->getArchiveName();
-			}
+		if ( isset( $prop['archivename'] ) && $file->isOld() ) {
+			$vals['archivename'] = $file->getArchiveName();
+		}
 
-			if ( isset( $prop['bitdepth'] ) ) {
-					$vals['bitdepth'] = $file->getBitDepth();
-			}
+		if ( isset( $prop['bitdepth'] ) ) {
+				$vals['bitdepth'] = $file->getBitDepth();
 		}
 
 		return $vals;
