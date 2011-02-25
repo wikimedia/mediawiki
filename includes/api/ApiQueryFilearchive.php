@@ -69,7 +69,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFields( 'fa_name' );
 		$this->addFieldsIf( 'fa_storage_key', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
-		$this->addFieldsIf( 'fa_user', $fld_user );
+
+		if ( $fld_user ) {
+			$this->addFields( array( 'fa_user', 'fa_user_text' ) );
+		}
 		$this->addFieldsIf( 'fa_size', $fld_size );
 
 		if ( $fld_dimensions ) {
@@ -137,7 +140,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
 			}
 			if ( $fld_user ) {
-				$file['user'] = $row->fa_user;
+				$file['userid'] = $row->fa_user;
+				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_size ) {
 				$file['size'] = $row->fa_size;
@@ -227,7 +231,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				'What image information to get:',
 				' sha1         - Adds SHA-1 hash for the image',
 				' timestamp    - Adds timestamp for the uploaded version',
-				' user         - Adds user for uploaded the image version',
+				' user         - Adds user who uploaded the image version',
 				' size         - Adds the size of the image in bytes',
 				' dimensions   - Adds the height and width of the image',
 				' description  - Adds description the image version',
