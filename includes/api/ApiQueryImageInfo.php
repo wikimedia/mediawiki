@@ -267,13 +267,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null ) {
 		$vals = array();
+		// Timestamp is shown even if the file is revdelete'd in interface
+		// so do same here.
 		if ( isset( $prop['timestamp'] ) ) {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
-		if ( isset( $prop['user'] ) || isset( $prop['userid'] ) ) {
-			if ( $file->isDeleted( File::DELETED_USER ) ) {
-				$vals['userhidden'] = '';
-			} else {
+
+		if ( $file->isDeleted( File::DELETED_USER ) ) {
+			$vals['userhidden'] = '';
+		} else {
+			if ( isset( $prop['user'] ) || isset( $prop['userid'] ) ) {
 				if ( isset( $prop['user'] ) ) {
 					$vals['user'] = $file->getUser();
 				}
@@ -285,6 +288,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 			}
 		}
+		// This is shown even if the file is revdelete'd in interface
+		// so do same here.
 		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
 			$vals['size'] = intval( $file->getSize() );
 			$vals['width'] = intval( $file->getWidth() );
@@ -295,10 +300,25 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$vals['pagecount'] = $pageCount;
 			}
 		}
-		if ( isset( $prop['url'] ) ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
+
+		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+			$vals['commenthidden'] = '';
+		} else {
+			if ( isset( $prop['parsedcomment'] ) ) {
+				global $wgUser;
+				$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
+					$file->getDescription(), $file->getTitle() );
+			}
+			if ( isset( $prop['comment'] ) ) {
+				$vals['comment'] = $file->getDescription();
+			}
+		}
+
+
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			$vals['filehidden'] = '';
+		} else {
+			if ( isset( $prop['url'] ) ) {
 				if ( !is_null( $thumbParams ) ) {
 					$mto = $file->transform( $thumbParams );
 					if ( $mto && !$mto->isError() ) {
@@ -325,60 +345,26 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$vals['url'] = $file->getFullURL();
 				$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 			}
-		}
-		if ( isset( $prop['comment'] ) ) {
-			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
-			} else {
-				$vals['comment'] = $file->getDescription();
-			}
-		}
-		if ( isset( $prop['parsedcomment'] ) ) {
-			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
-			} else {
-				global $wgUser;
-				$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
-					$file->getDescription(), $file->getTitle() );
-			}
-		}
 
-		if ( isset( $prop['sha1'] ) ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
+			if ( isset( $prop['sha1'] ) ) {
 				$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
 			}
-		}
-		if ( isset( $prop['metadata'] ) ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
+
+			if ( isset( $prop['metadata'] ) ) {
 				$metadata = $file->getMetadata();
 				$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
 			}
-		}
-		if ( isset( $prop['mime'] ) ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
+
+			if ( isset( $prop['mime'] ) ) {
 				$vals['mime'] = $file->getMimeType();
 			}
-		}
 
-		if ( isset( $prop['archivename'] ) && $file->isOld() ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
+			if ( isset( $prop['archivename'] ) && $file->isOld() ) {
 				$vals['archivename'] = $file->getArchiveName();
 			}
-		}
 
-		if ( isset( $prop['bitdepth'] ) ) {
-			if ( $file->isDeleted( File::DELETED_FILE ) ) {
-				$vals['filehidden'] = '';
-			} else {
-				$vals['bitdepth'] = $file->getBitDepth();
+			if ( isset( $prop['bitdepth'] ) ) {
+					$vals['bitdepth'] = $file->getBitDepth();
 			}
 		}
 
