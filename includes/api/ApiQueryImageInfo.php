@@ -273,14 +273,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
 
-		if ( $file->isDeleted( File::DELETED_USER ) ) {
-			$vals['userhidden'] = '';
-		} else {
-			if ( isset( $prop['user'] ) || isset( $prop['userid'] ) ) {
-				if ( isset( $prop['user'] ) ) {
+		$user = isset( $prop['user'] );
+		$userid = isset( $prop['userid'] );
+
+		if ( $user || $userid ) {
+			if ( $file->isDeleted( File::DELETED_USER ) ) {
+				$vals['userhidden'] = '';
+			} else {
+				if ( $user ) {
 					$vals['user'] = $file->getUser();
 				}
-				if ( isset( $prop['userid'] ) ) {
+				if ( $userid ) {
 					$vals['userid'] = $file->getUser( 'id' );
 				}
 				if ( !$file->getUser( 'id' ) ) {
@@ -302,27 +305,40 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$vals['commenthidden'] = '';
-		} else {
-			if ( isset( $prop['parsedcomment'] ) ) {
-				global $wgUser;
-				$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
-					$file->getDescription(), $file->getTitle() );
-			}
-			if ( isset( $prop['comment'] ) ) {
-				$vals['comment'] = $file->getDescription();
+		$pcomment = isset( $prop['parsedcomment'] );
+		$comment = isset( $prop['comment'] );
+
+		if ( $pcomment || $comment ) {
+			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
+				$vals['commenthidden'] = '';
+			} else {
+				if ( $pcomment ) {
+					global $wgUser;
+					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
+						$file->getDescription(), $file->getTitle() );
+				}
+				if ( $comment ) {
+					$vals['comment'] = $file->getDescription();
+				}
 			}
 		}
 
-		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+		$url = isset( $prop['url'] );
+		$sha1 = isset( $prop['sha1'] );
+		$meta = isset( $prop['metadata'] );
+		$mime = isset( $prop['mime'] );
+		$archive = isset( $prop['archivename'] );
+		$bitdepth = isset( $prop['bitdepth'] );
+
+		if ( ( $url || $sha1 || $meta || $mime || $archive || $bitdepth )
+				&& $file->isDeleted( File::DELETED_FILE ) ) {
 			$vals['filehidden'] = '';
 
 			//Early return, tidier than indenting all following things one level
 			return $vals;
 		}
 
-		if ( isset( $prop['url'] ) ) {
+		if ( $url ) {
 			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
 				if ( $mto && !$mto->isError() ) {
@@ -350,24 +366,24 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 		}
 
-		if ( isset( $prop['sha1'] ) ) {
+		if ( $sha1 ) {
 			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
 		}
 
-		if ( isset( $prop['metadata'] ) ) {
+		if ( $meta ) {
 			$metadata = $file->getMetadata();
 			$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
 		}
 
-		if ( isset( $prop['mime'] ) ) {
+		if ( $mime ) {
 			$vals['mime'] = $file->getMimeType();
 		}
 
-		if ( isset( $prop['archivename'] ) && $file->isOld() ) {
+		if ( $archive && $file->isOld() ) {
 			$vals['archivename'] = $file->getArchiveName();
 		}
 
-		if ( isset( $prop['bitdepth'] ) ) {
+		if ( $bitdepth ) {
 			$vals['bitdepth'] = $file->getBitDepth();
 		}
 
