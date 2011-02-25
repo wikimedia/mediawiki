@@ -474,24 +474,25 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'uploaddisabled' ),
-			array( 'invalid-session-key' ),
-			array( 'uploaddisabled' ),
-			array( 'mustbeloggedin', 'upload' ),
-			array( 'badaccess-groups' ),
-			array( 'code' => 'fetchfileerror', 'info' => '' ),
-			array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
-			array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),
-			array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
-			array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
-			array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
-			array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
-			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
-			array( 'code' => 'missingparam', 'info' => 'One of the parameters sessionkey, file, url, statuskey is required' ),
-			array( 'code' => 'invalidparammix', 'info' => 'The parameters sessionkey, file, url, statuskey can not be used together' ),
-			array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'sessionkey', 'file', 'url', 'statuskey' ) ),
+			array(
+				array( 'uploaddisabled' ),
+				array( 'invalid-session-key' ),
+				array( 'uploaddisabled' ),
+				array( 'mustbeloggedin', 'upload' ),
+				array( 'badaccess-groups' ),
+				array( 'code' => 'fetchfileerror', 'info' => '' ),
+				array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
+				array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),
+				array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
+				array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
+				array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
+				array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
+				array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
+				array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
+			)
+		);
 	}
 
 	public function needsToken() {
