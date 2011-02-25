@@ -20,6 +20,7 @@ abstract class UploadBase {
 	protected $mFilteredName, $mFinalExtension;
 	protected $mLocalFile, $mFileSize, $mFileProps;
 	protected $mBlackListedExtensions;
+	protected $mJavaDetected;
 
 	const SUCCESS = 0;
 	const OK = 0;
@@ -347,6 +348,7 @@ abstract class UploadBase {
 	 * @return mixed true of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
+		global $wgAllowJavaUploads;
 		# get the title, even though we are doing nothing with it, because
 		# we need to populate mFinalExtension 
 		$this->getTitle();
@@ -371,9 +373,25 @@ abstract class UploadBase {
 			}
 		}
 
-		/**
-		* Scan the uploaded file for viruses
-		*/
+		# Check for Java applets, which if uploaded can bypass cross-site 
+		# restrictions.
+		if ( !$wgAllowJavaUploads ) {
+			$this->mJavaDetected = false;
+			$zipStatus = ZipDirectoryReader::read( $this->mTempPath, 
+				array( $this, 'zipEntryCallback' ) );
+			if ( !$zipStatus->isOK() ) {
+				$errors = $zipStatus->getErrorsArray();
+				$error = reset( $errors );
+				if ( $error[0] !== 'zip-wrong-format' ) {
+					return $error;
+				}
+			}
+			if ( $this->mJavaDetected ) {
+				return array( 'uploadjava' );
+			}
+		}
+
+		# Scan the uploaded file for viruses
 		$virus = $this->detectVirus( $this->mTempPath );
 		if ( $virus ) {
 			return array( 'uploadvirus', $virus );
@@ -395,6 +413,29 @@ abstract class UploadBase {
 
 		wfDebug( __METHOD__ . ": all clear; passing.\n" );
 		return true;
+	}
+
+	/**
+	 * Callback for ZipDirectoryReader to detect Java class files.
+	 */
+	function zipEntryCallback( $entry ) {
+		$names = array( $entry['name'] );
+
+		// If there is a null character, cut off the name at it, because JDK's
+		// ZIP_GetEntry() uses strcmp() if the name hashes match. If a file name 
+		// were constructed which had ".class\0" followed by a string chosen to 
+		// make the hash collide with the truncated name, that file could be 
+		// returned in response to a request for the .class file.
+		$nullPos = strpos( $entry['name'], "\000" );
+		if ( $nullPos !== false ) {
+			$names[] = substr( $entry['name'], 0, $nullPos );
+		}
+
+		// If there is a trailing slash in the file name, we have to strip it, 
+		// because that's what ZIP_GetEntry() does.
+		if ( preg_grep( '!\.class/?$!', $names ) ) {
+			$this->mJavaDetected = true;
+		}
 	}
 
 	/**

@@ -74,6 +74,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27159) Make email confirmation code expiration time configurable
 * CSS/JS for each user group is imported from MediaWiki:Sysop.js, 
   MediaWiki:Autoconfirmed.css, etc.
+* (bug 24230) Uploads of ZIP types, such as MS Office or OpenOffice can now be
+  safely enabled. A ZIP file reader was added which can scan a ZIP file for
+  potentially dangerous Java applets. This allows applets to be blocked
+  specifically, rather than all ZIP files being blocked.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
