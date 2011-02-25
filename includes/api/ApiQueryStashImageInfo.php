@@ -78,7 +78,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		);
 	}
 
-
 	public function getAllowedParams() {
 		return array(
 			'sessionkey' => array(

@@ -312,8 +312,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
 						$vals['thumbmime'] = $thumbFile->getMimeType();
 					}
-				}
-				if ( $mto && $mto->isError() ) {
+				} else if ( $mto && $mto->isError() ) {
 					$vals['thumberror'] = $mto->toText();
 				}
 			}
