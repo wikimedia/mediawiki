@@ -22,7 +22,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 MediaWiki 1.17 is shipping with a completely redesigned installer to fix
 a lot of outstanding bugs, cleanup the code quality, and make it easier to
 use. Notably, you can now run upgrades from the web without having to move
-LocalSettings.php. The specific bugs are listed below in the general notes.
+LocalSettings.php. Also, configuration script directory has been renamed 
+from config/ to mw-config/. The specific bugs are listed below in the 
+general notes.
 
 === New ResourceLoader in 1.17 ===
 MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and 
@@ -493,6 +495,7 @@ are used instead.
 * (bug 26208) Mark directionality of some interlanguage links
 * (bug 26716) Provide link to instructions for external editor related preferences.
 * (bug 26961) Hide anon edits in watchlist preference now actually works.
+* (bug 1379) Installer directory conflicts with some hosts' configuration panel.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST

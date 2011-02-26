@@ -19,7 +19,7 @@ if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 } else {
 	$scriptUrl = '';
 }
-if ( preg_match( '!^(.*)/config/[^/]*.php$!', $scriptUrl, $m ) ) {
+if ( preg_match( '!^(.*)/(mw-)?config/[^/]*.php$!', $scriptUrl, $m ) ) {
 	$baseUrl = $m[1];
 } elseif ( preg_match( '!^(.*)/[^/]*.php$!', $scriptUrl, $m ) ) {
 	$baseUrl = $m[1];
