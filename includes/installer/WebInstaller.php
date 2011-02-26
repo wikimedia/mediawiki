@@ -316,7 +316,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a hash of data identifying this MW installation.
 	 *
-	 * This is used by config/index.php to prevent multiple installations of MW
+	 * This is used by mw-config/index.php to prevent multiple installations of MW
 	 * on the same cookie domain from interfering with each other.
 	 */
 	public function getFingerprint() {

@@ -65,7 +65,7 @@ available to download from the installer. Download this now, there is not a
 way (yet) to get it after you exit the installer. Place it in the main wiki
 directory, and the wiki should now be working.
 
-Once the wiki is set up, you should remove the config directory (though it will
+Once the wiki is set up, you should remove the mw-config directory (though it will
 refuse to config again if the wiki is set up).
 
 ----
