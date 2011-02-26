@@ -103,8 +103,8 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 		define('MW_CONFIG_FILE', "$IP/LocalSettings.php");
 	
 	# LocalSettings.php is the per site customization file. If it does not exist
-	# the wiki installer needs to be launched or the generated file moved from
-	# ./mw-config/ to ./
+	# the wiki installer needs to be launched or the generated file uploaded to
+	# the root wiki directory
 	if( !file_exists( MW_CONFIG_FILE ) ) {
 		require_once( "$IP/includes/templates/NoLocalSettings.php" );
 		die();
