@@ -2794,7 +2794,7 @@ class User {
 	 * @return Boolean: True if the given password is correct, otherwise False.
 	 */
 	function checkPassword( $password ) {
-		global $wgAuth;
+		global $wgAuth, $wgLegacyEncoding;
 		$this->load();
 
 		// Even though we stop people from creating passwords that
@@ -2817,11 +2817,13 @@ class User {
 		}
 		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
 			return true;
-		} elseif ( function_exists( 'iconv' ) ) {
+		} elseif ( $wgLegacyEncoding ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			# Check for this with iconv
 			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) ) {
+			if ( $cp1252Password != $password && 
+				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
+			{
 				return true;
 			}
 		}
