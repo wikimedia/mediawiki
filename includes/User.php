@@ -1116,7 +1116,10 @@ class User {
 		$this->mAllowUsertalk = 0;
 
 		# Check if we are looking at an IP or a logged-in user
-		if ( $this->isIP( $this->getName() ) ) {
+		if ( $this->isAllowed( 'ipblock-exempt' ) ) {
+			# Exempt from all types of IP-block
+			$ip = '';
+		} elseif ( $this->isIP( $this->getName() ) ) {
 			$ip = $this->getName();
 		} else {
 			# Check if we are looking at the current user
@@ -1128,11 +1131,6 @@ class User {
 				# Get IP of current user
 				$ip = wfGetIP();
 			}
-		}
-
-		if ( $this->isAllowed( 'ipblock-exempt' ) ) {
-			# Exempt from all types of IP-block
-			$ip = '';
 		}
 
 		# User/IP blocking
