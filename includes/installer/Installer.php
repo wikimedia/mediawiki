@@ -485,7 +485,7 @@ abstract class Installer {
 	 * On POSIX systems return the primary group of the webserver we're running under.
 	 * On other systems just returns null.
 	 *
-	 * This is used to advice the user that he should chgrp his config/data/images directory as the
+	 * This is used to advice the user that he should chgrp his mw-config/data/images directory as the
 	 * webserver user before he can install.
 	 *
 	 * Public because SqliteInstaller needs it, and doesn't subclass Installer.
