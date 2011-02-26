@@ -446,14 +446,14 @@ class Xml {
 	 * Build a drop-down box from a textual list.
 	 *
 	 * @param $name Mixed: Name and id for the drop-down
-	 * @param $class Mixed: CSS classes for the drop-down
-	 * @param $other Mixed: Text for the "Other reasons" option
 	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
+	 * @param $other Mixed: Text for the "Other reasons" option
 	 * @param $selected Mixed: Option which should be pre-selected
+	 * @param $class Mixed: CSS classes for the drop-down
 	 * @param $tabindex Mixed: Value of the tabindex attribute
 	 * @return string
 	 */
-	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = Null ) {
+	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
 		$optgroup = false;
 
 		$options = self::option( $other, 'other', $selected === 'other' );
