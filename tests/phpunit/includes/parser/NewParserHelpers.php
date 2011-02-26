@@ -169,11 +169,11 @@ class ParserTestFileIterator implements Iterator {
 					}
 
 					$this->test = array(
-						'test' => $this->parserTest->removeEndingNewline( $data['test'] ),
-						'input' => $this->parserTest->removeEndingNewline( $data['input'] ),
-						'result' => $this->parserTest->removeEndingNewline( $data['result'] ),
-						'options' => $this->parserTest->removeEndingNewline( $data['options'] ),
-						'config' => $this->parserTest->removeEndingNewline( $data['config'] ) );
+						$this->parserTest->removeEndingNewline( $data['test'] ),
+						$this->parserTest->removeEndingNewline( $data['input'] ),
+						$this->parserTest->removeEndingNewline( $data['result'] ),
+						$this->parserTest->removeEndingNewline( $data['options'] ),
+						$this->parserTest->removeEndingNewline( $data['config'] ) );
 
 					return true;
 				}
