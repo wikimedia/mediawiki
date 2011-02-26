@@ -766,6 +766,7 @@ Bitte versuech s nomol. Derzue drucksch unter däre Täxtvorschau nomol uf „Sy
 Wänn s Problem blybt, [[Special:UserLogout|mäld Di ab]] un derno wider aa.'''",
 'token_suffix_mismatch'            => "'''Dyyni Bearbeitig isch zruckgwise wore, wel Dyy Browser Zeiche im Bearbeite-Token verstimmlet het.
 S Spichere cha dr Inhalt vu dr Syte hii mache. Des git s e mänkmol, wänn eber e anonyme Proxy-Dienscht brucht, wu Fähler macht.'''",
+'edit_form_incomplete'             => "'''Dr Inhalt vum Bearbeitigsformular isch nit vollständig zum Server chuu. Bitte prief Dyy Bearbeitigen uf Vollständigkeit un versuech s nomol.'''",
 'editing'                          => 'Bearbeite vo «$1»',
 'editingsection'                   => 'Bearbeite vo «$1» (Absatz)',
 'editingcomment'                   => 'Bearbeite vu $1 (Neje Abschnitt)',
@@ -1534,6 +1535,8 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 'php-uploaddisabledtext'      => 'S Uffelade vu PHP-Dateie isch deaktiviert wore. Bitte iberprief d file_uploads-Yystellig.',
 'uploadscripted'              => 'In däre Datei git s HTML- oder Scriptcode, wu fälschligerwyys vun eme Webbrowser usgfiert chennt were.',
 'uploadvirus'                 => 'In däre Datei het s e Virus! Detail: $1',
+'uploadjava'                  => 'Des isch e ZIP-Datei, wu s e CLASS-Datei vu Java din het.
+S Uffelade vu Java-Dateien isch nit gstattet, wel si s Umgoh vu Sicherheitsyyschränkige chennte megli mache.',
 'upload-source'               => 'Quälldatei',
 'sourcefilename'              => 'Quälldatei:',
 'sourceurl'                   => 'Quäll-URL:',
@@ -1570,6 +1573,14 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'upload-too-many-redirects' => 'In dr URL het s zvyl Wyterleitige',
 'upload-unknown-size'       => 'Nit bekannti Greßi',
 'upload-http-error'         => 'E HTTP-Fähler isch ufträtte: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'S het e Fähler gee bim Ufmache vu dr Datei fir d ZIP-Iberpriefig.',
+'zip-wrong-format'    => 'D Datei, wu Du aagee hesch, isch kei ZIP-Datei.',
+'zip-bad'             => 'D Datei isch kaputt oder e ZIP-Datei, wu us andere Grind nit cha gläse wäre.
+Si cha wäge däm nit richtig iberprieft wäre.',
+'zip-unsupported'     => 'Die ZIP-Datei het Komprimierigseigeschafte, wu nit vu MediaWiki unterstitzt wäre.
+Si cha wäge däm nit richtig iberprieft wäre.',
 
 # Special:UploadStash
 'uploadstash'          => 'Vorabspycherig binm Uffelade',
@@ -2876,6 +2887,7 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-gpsareainformation'          => 'Name vum GPS-Biet',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
+'exif-objectname'                  => 'Churztitel',
 
 # EXIF attributes
 'exif-compression-1' => 'Uukomprimiert',

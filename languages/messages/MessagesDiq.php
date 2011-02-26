@@ -1382,7 +1382,8 @@ eke şıma qayile dosyaya xo bar keri tepiya agerê u yew nameyo newe bınusi. [
 'fileexists-shared-forbidden' => 'no name de yew dosya hewza ortaxi de ca ra esta.
 eke şıma hhene zi qayili dosyaya xo bar keri ager3e u newe yew name bışuxulnê. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ena pel yew kopyayê ena {{PLURAL:$1|pel|pelan}} o:',
-'file-deleted-duplicate'      => 'hemzeyê na dosyayi ([[:$1]]) cuwa ver battal biya.',
+'file-deleted-duplicate'      => 'Jû dosya be zey na dosya ([[:$1]]) verê coy esteriyawa.
+Semedê ancia barkerdışi dewamkerdış ra ver tarixê esterışê dosya gani qontrol kerê.',
 'uploadwarning'               => 'Îkazê bar kerdişî',
 'uploadwarning-text'          => 'Bînê de deskripyonê dosyayî bivurne u reyna qeyd bike.',
 'savefile'                    => 'Dosya qeyd ke',
@@ -3081,7 +3082,7 @@ Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
-'fileduplicatesearch-summary'  => 'Qe dosyayê herdî bine harsh value de bigêre.',
+'fileduplicatesearch-summary'  => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
 'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
 'fileduplicatesearch-filename' => 'Nameyê dosyayi',
 'fileduplicatesearch-submit'   => 'bigêre',

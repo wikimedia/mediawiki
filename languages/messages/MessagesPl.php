@@ -1690,6 +1690,8 @@ Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
 'php-uploaddisabledtext'      => 'Przesyłanie plików PHP zostało zablokowane. Sprawdź ustawienie „file_uploads”.',
 'uploadscripted'              => 'Plik zawiera kod HTML lub skrypt, który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
 'uploadvirus'                 => 'W pliku jest wirus! Szczegóły: $1',
+'uploadjava'                  => 'Ten plik zawiera deklarację klasy Java skompresowaną ZIP.
+Przesyłanie plików Java nie jest dozwolone, ponieważ mogłoby zostać użyte do obchodzenia zabezpieczeń.',
 'upload-source'               => 'Plik źródłowy',
 'sourcefilename'              => 'Nazwa pierwotna',
 'sourceurl'                   => 'Źródłowy adres URL',
@@ -1741,6 +1743,14 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-too-many-redirects' => 'URL zawiera zbyt wiele przekierowań',
 'upload-unknown-size'       => 'Nieznany rozmiar',
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Wystąpił błąd podczas otwierania pliku ZIP, aby go sprawdzić.',
+'zip-wrong-format'    => 'Wybrany plik nie jest w formacie ZIP.',
+'zip-bad'             => 'Plik ZIP jest uszkodzony lub w inny sposób niemożliwy do odczytania. 
+Nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
+'zip-unsupported'     => 'Plik jest w formacie ZIP ale wykorzystuje funkcje, które nie są obsługiwane przez MediaWiki.
+Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 
 # Special:UploadStash
 'uploadstash'          => 'Ukryte przesyłanie',

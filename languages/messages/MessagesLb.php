@@ -1625,6 +1625,11 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-unknown-size'       => 'Onbekannte Gréisst',
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
+# ZipDirectoryReader
+'zip-wrong-format' => 'De Fichier deen Dir uginn hutt war kee ZIP Fichier.',
+'zip-bad'          => 'De Fichier ass korrupt oder ass aus anere Grënn en net liesbare ZIP-Fichier.
+E kann net uerdentlech op seng Sécherheet nogekuckt ginn.',
+
 # Special:UploadStash
 'uploadstash'          => 'Um Server späichere virum Eroplueden',
 'uploadstash-summary'  => 'Op dëser Säit huet en Zougrëff op Fichieren déi eropgeluede sinn (oder am Gaang sinn eropgelueden ze ginn) déi awer nach net op der Wiki publizéiert sinn. Dës Fichier kënnen eenzeg an eleng vun deem Benotzer deen se eropgelueden huet gesi ginn.',

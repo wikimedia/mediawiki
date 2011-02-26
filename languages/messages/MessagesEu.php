@@ -931,7 +931,7 @@ Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{
 'revdelete-hide-restricted'   => 'Mugapen hauek administratzaileei zein besteei aplikatu',
 'revdelete-radio-same'        => '(ez aldatu)',
 'revdelete-radio-set'         => 'Bai',
-'revdelete-radio-unset'       => 'No',
+'revdelete-radio-unset'       => 'Ez',
 'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
 'revdelete-unsuppress'        => 'Berrezarritako aldaketen mugak kendu',
 'revdelete-log'               => 'Arrazoia:',
@@ -3206,7 +3206,7 @@ Sartu fitxategiaren izena "{{ns:file}}:" aurrizkia gabe.',
 'tags-display-header'     => 'Aldaketa zerrenden itxura',
 'tags-description-header' => 'Esanahiaren deskribapen osoa',
 'tags-hitcount-header'    => 'Etiketatutako aldaketak',
-'tags-edit'               => 'edit',
+'tags-edit'               => 'aldatu',
 'tags-hitcount'           => '$1 {{PLURAL:$1|aldaketa|aldaketa}}',
 
 # Special:ComparePages

@@ -779,6 +779,7 @@ $1',
 '''如果呢個係正當嘅編輯嘗試，請再試過。'''如果重係唔得嘅話，請先[[Special:UserLogout|登出]]然後再登入。",
 'token_suffix_mismatch'            => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。'''個編輯已經拒絕，以防止嗰版嘅文字損毀。
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。",
+'edit_form_incomplete'             => "'''編輯表格嘅某個部份同server唔夾，請檢查多次你嘅編輯同埋再試多次。'''",
 'editing'                          => '而家喺度編輯$1',
 'editingsection'                   => '而家喺度編輯$1 （小節）',
 'editingcomment'                   => '而家喺度編輯$1 （新小節）',
@@ -1504,8 +1505,8 @@ $1",
 'filetype-bad-ie-mime'        => '唔可以上載呢個檔案，因為 Internet Explorer 會將佢偵測做 "$1"，佢係一種唔容許同埋有潛在危險性嘅檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''係一種唔需要嘅檔案類型。
 建議嘅{{PLURAL:\$3|一種|多種}}檔案類型有\$2。",
-'filetype-banned-type'        => "'''\".\$1\"'''係一種唔准許嘅檔案類型。
-容許嘅{{PLURAL:\$3|一種|多種}}檔案類型有\$2。",
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\'係{{PLURAL:$4|一種|多種}}唔准許嘅檔案類型。
+容許嘅{{PLURAL:$3|一種|多種}}檔案類型有$2。',
 'filetype-missing'            => '個檔名並冇副檔名（好以「.jpg」）。',
 'empty-file'                  => '你所遞交嘅檔案係空嘅。',
 'file-too-large'              => '你所遞交嘅檔案太大。',
@@ -1551,6 +1552,8 @@ $1",
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
 'uploadvirus'                 => '呢個檔案有病毒！
 詳情：$1',
+'uploadjava'                  => '呢個係個ZIP檔案包括Java .class檔案。
+因為保安問題，上傳Java檔案係禁止左嘅。',
 'upload-source'               => '來源檔案',
 'sourcefilename'              => '來源檔名:',
 'sourceurl'                   => '來源網址:',
@@ -1583,6 +1586,14 @@ $1',
 'upload-too-many-redirects' => '個URL有太多跳轉',
 'upload-unknown-size'       => '未知嘅大細',
 'upload-http-error'         => '一個HTTP錯誤發生咗: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => '在開啟檔案進行ZIP檢查時出錯。',
+'zip-wrong-format'    => '呢個唔係一個ZIP檔案。',
+'zip-bad'             => '呢個係不可讀嘅ZIP檔案。
+因為呢個原因，唔可以進行保安檢查。',
+'zip-unsupported'     => '呢個ZIP檔案嘅功能，MediaWiki唔支持。
+因為呢個原因，做唔到保安檢查。',
 
 # Special:UploadStash
 'uploadstash'          => '上載貯藏',
@@ -1767,11 +1778,12 @@ $1',
 Template:搞清楚',
 'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:Disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
-'doubleredirects'            => '雙重跳轉',
-'doubleredirectstext'        => '每一行都順次序寫住第一頁名，佢嘅目的頁，同埋目的頁再指去邊度。改嘅時候，應該將第一個跳轉頁轉入第三頁。
+'doubleredirects'                   => '雙重跳轉',
+'doubleredirectstext'               => '每一行都順次序寫住第一頁名，佢嘅目的頁，同埋目的頁再指去邊度。改嘅時候，應該將第一個跳轉頁轉入第三頁。
 <del>劃咗</del>嘅項目係已經解決咗嘅。',
-'double-redirect-fixed-move' => '[[$1]]已經搬好咗，佢而家跳轉過去[[$2]]。',
-'double-redirect-fixer'      => '跳轉修正器',
+'double-redirect-fixed-move'        => '[[$1]]已經搬好咗，佢而家跳轉過去[[$2]]。',
+'double-redirect-fixed-maintenance' => '修復[[$1]]嘅重定向到[[$2]]。',
+'double-redirect-fixer'             => '跳轉修正器',
 
 'brokenredirects'        => '破碎嘅跳轉',
 'brokenredirectstext'    => '以下嘅跳轉係指向唔存在嘅頁面:',
@@ -2966,6 +2978,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 地區名',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
+'exif-objectname'                  => '短標題',
 
 # EXIF attributes
 'exif-compression-1' => '未壓過',
@@ -3164,6 +3177,18 @@ $3
 $5
 
 呢個確認代碼會喺$4到期。',
+'confirmemail_body_set'     => '有個人，可能係你，來自$1呢個IP，
+幫係{{SITENAME}}嘅用戶"$2"設定左個電郵地址。
+
+要確認呢個電郵真係你嘅同埋再次啟動{{SITENAME}}嘅電郵功能，請開啟呢個網址確認：
+
+$3
+
+如果呢個*唔係*你嘅戶口，用下面呢個網址去取消呢個電郵確認：
+
+$5
+
+呢個確認碼會喺$4到期。',
 'confirmemail_invalidated'  => '電郵地址確認取消咗',
 'invalidateemail'           => '取消電郵確認',
 
@@ -3297,14 +3322,15 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 請輸入檔名，唔好連埋個"{{ns:file}}:"開頭。',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => '㨂重覆檔案',
-'fileduplicatesearch-summary'  => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。',
-'fileduplicatesearch-legend'   => '搵重覆',
-'fileduplicatesearch-filename' => '檔名:',
-'fileduplicatesearch-submit'   => '搵',
-'fileduplicatesearch-info'     => '$1 × $2 像素<br />檔案大細: $3<br />MIME類型: $4',
-'fileduplicatesearch-result-1' => '個檔案 "$1" 無完全相同嘅重覆。',
-'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
+'fileduplicatesearch'           => '㨂重覆檔案',
+'fileduplicatesearch-summary'   => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。',
+'fileduplicatesearch-legend'    => '搵重覆',
+'fileduplicatesearch-filename'  => '檔名:',
+'fileduplicatesearch-submit'    => '搵',
+'fileduplicatesearch-info'      => '$1 × $2 像素<br />檔案大細: $3<br />MIME類型: $4',
+'fileduplicatesearch-result-1'  => '個檔案 "$1" 無完全相同嘅重覆。',
+'fileduplicatesearch-result-n'  => '個檔案 "$1" 有$2項完全相同嘅重覆。',
+'fileduplicatesearch-noresults' => '檔案名"$1"找不到',
 
 # Special:SpecialPages
 'specialpages'                   => '特別頁',
