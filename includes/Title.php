@@ -4118,13 +4118,21 @@ class Title {
 	public function getRestrictionTypes() {
 		global $wgRestrictionTypes;
 
-		$types = $this->exists() ? $wgRestrictionTypes : array( 'create' );
+		$types = $wgRestrictionTypes;
 
+		if ( !$this->exists() ) {
+			# Only the create and upload types are applicable for non-existing titles
+			$types = array_intersect( $types, array( 'create', 'upload' ) );
+		}
 		if ( $this->getNamespace() != NS_FILE ) {
+			# Remove the upload restriction for non-file titles
 			$types = array_diff( $types, array( 'upload' ) );
 		}
 
 		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
+		
+		wfDebug( __METHOD__ . ': applicable restriction types for ' . 
+			$this->getPrefixedText() . ' are ' . implode( ',', $types ) );
 
 		return $types;
 	}

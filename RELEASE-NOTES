@@ -144,6 +144,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 27560) Search queries no longer fail in walloon language
 * (bug 27679) Broken embedded files with special characters longer double HTML
   escaped
+* (bug 27700) The upload protection can now also be set for files that do not
+  exist.
 
 
 === API changes in 1.18 ===
