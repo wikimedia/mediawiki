@@ -602,7 +602,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$sql = $obj->sql;
 		$sql = preg_replace( '/\b' . preg_quote( $oldName ) . '\b/', $newName, $sql, 1 );
 		if ( $temporary ) {
-			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/', $sql ) ) {
+			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
 				wfDebug( "Table $oldName is virtual, can't create a temporary duplicate.\n" );
 			} else {
 				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
