@@ -837,7 +837,7 @@ abstract class Installer {
 			return false;
 		}
 
-		$uri = preg_replace( '{^(.*)/config.*$}', '$1', $path );
+		$uri = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
 		$this->setVar( 'wgScriptPath', $uri );
 	}
 
