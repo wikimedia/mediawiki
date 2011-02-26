@@ -42,6 +42,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   by the page, but $wgAllowUserJs is set to false.
 * Pure "Skin" class based custom skins are no longer supported, all custom skins
   should be put together using SkinTemplate and BaseTemplate or QuickTemplate.
+* The transliteration for passwords in case they were migrated from an old Latin-1
+  install (previous to MediaWiki 1.5) is now only done for wikis with 
+  $wgLegacyEncoding set.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
