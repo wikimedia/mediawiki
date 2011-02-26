@@ -118,7 +118,7 @@ class LanguageFi extends Language {
 			if ( !is_numeric( $item ) ) {
 				if ( count ( explode( '-', $item ) ) == 3 && strlen( $item ) == 10 ) {
 					list( $yyyy, $mm, $dd ) = explode( '-', $item );
-					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}00000000" );
+					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}000000" );
 					continue;
 				}
 				if ( isset( $weekds[$item] ) ) {
