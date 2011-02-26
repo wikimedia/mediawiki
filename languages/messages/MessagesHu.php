@@ -2514,7 +2514,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'noautoblockblock'                => 'az automatikus blokkolás letiltott',
 'createaccountblock'              => 'új felhasználó létrehozása blokkolva',
 'emailblock'                      => 'e-mail cím blokkolva',
-'blocklist-nousertalk'            => 'nem szerkeszthetik a vitalapjukat',
+'blocklist-nousertalk'            => 'nem szerkesztheti a vitalapját',
 'ipblocklist-empty'               => 'A blokkoltak listája üres.',
 'ipblocklist-no-results'          => 'A kért IP-cím vagy felhasználónév nem blokkolt.',
 'blocklink'                       => 'blokkolás',

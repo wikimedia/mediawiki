@@ -1818,6 +1818,9 @@ Extensions making use of it:
 
 {{Identical|Internal error}}',
 
+# ZipDirectoryReader
+'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
+
 # img_auth script messages
 'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied',
 'img-auth-nopathinfo'   => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description',

@@ -1532,6 +1532,8 @@ Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.
 Gwiriwch y gosodiad ar file_uploads.',
 'uploadscripted'              => "Mae'r ffeil hon yn cynnwys HTML neu sgript a all achosi problemau i borwyr gwe.",
 'uploadvirus'                 => 'Mae firws gan y ffeil hon! Manylion: $1',
+'uploadjava'                  => "Ffeil ZIP yw hwn sy'n cynnwys ffeil Java .class.
+Ni chaniateir uwchlwytho ffeiliau Java, oherwydd y gallant osgoi cyfyngiadau diogelwch.",
 'upload-source'               => 'Y ffeil gwreiddiol',
 'sourcefilename'              => "Enw'r ffeil wreiddiol:",
 'sourceurl'                   => 'URL y gwreiddiol:',
@@ -1568,6 +1570,14 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-too-many-redirects' => 'Roedd gormod o ailgyfeiriadau yn yr URL',
 'upload-unknown-size'       => 'Maint anhysbys',
 'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.',
+'zip-wrong-format'    => "Nid ffeil ZIP yw'r ffeil a enwyd.",
+'zip-bad'             => "Mae'r ffeil yn ffeil ZIP llygredig neu annarllenadwy. 
+Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
+'zip-unsupported'     => "Ffeil ZIP yw hon sy'n defnyddio nodweddion na chefnogir gan MediaWiki.
+Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 
 # Special:UploadStash
 'uploadstash'          => "Uwchlwytho i'r celc",

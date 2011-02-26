@@ -757,9 +757,9 @@ Det adres kan waere gedeild door mierdere gebroekers.
 Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin/signup|'n account crëere]] of [[Special:UserLogin|inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pagina bevat gein teks.
 De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pagina bewirke]</span>.',
-'noarticletext-nopermission'       => 'Dees pazjena bevat gein teks.
-De kèns [[Special:Search/{{PAGENAME}}|nao dees term zeuken]] in anger pazjena\'s of
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk derzeuke]</span>.',
+'noarticletext-nopermission'       => 'Dees pagina bevat gein teks.
+De kans [[Special:Search/{{PAGENAME}}|nao dees term zeuke]] in anger pagina\'s of
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke]</span>.',
 'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspagina van \'ne gebroeker dae neet besjteit (gebroeker "$1"). Controlere ofs doe dees pagina waal wils aanmake/bewirke.',
 'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
@@ -768,12 +768,14 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj CSS te teste veurdets te opsjleis.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj JS te teste veurdets te opsjleis.",
 'usercsspreview'                   => "'''Dit is allein 'n veurvertuun van dien perseunlike css, deze is neet opgeslage!'''",
-'userjspreview'                    => "'''Let op: doe tes noe dien perseunlik JavaScript. De pazjena is neet opgeslage!'''",
+'userjspreview'                    => "'''Lèt op: doe tes noe dien persuunlik JavaScript.'''
+'''De pagina is neet opgesjlage!'''",
 'sitecsspreview'                   => "'''Dit is allein 'n veurvertuin van de CSS.'''
 '''Deze is nog neet opgesjlage!'''",
 'sitejspreview'                    => "'''Dit is allein 'n veurvertuin van de JavaScriptcode.'''
 '''Deze is nog neet opgesjlage!'''",
-'userinvalidcssjstitle'            => "'''Waorsjuwing:''' d'r is geine skin \"\$1\". Let op: dien eige .css- en .js-pazjena's beginne mèt  'ne kleine letter, bijveurbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
+'userinvalidcssjstitle'            => "'''Waarsjoewing:''' d'r is gein skin \"\$1\". 
+Lèt op: dien eige .css- en .js-pagina's beginne mèt  'ne klein lètter, beveurbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Biegewèrk)',
 'note'                             => "'''Opmirking:'''",
 'previewnote'                      => "'''Lèt op: dit is 'n controlepagina; dien teks is nog neet opgesjlage!'''",
@@ -796,8 +798,10 @@ De mós dien eige verangeringe dao-in inpasse.
 '''Allein''' d'n tèks in 't ierste teksveld weurt opgesjlage es te noe op \"{{int:savearticle}}\" duujs.",
 'yourtext'                         => 'Euren teks',
 'storedversion'                    => 'Opgesjlage versie',
-'nonunicodebrowser'                => "'''WAARSJUWING: Diene browser is voldit neet aan de unicode sjtandaarde, gebroek estebleef inne angere browser veurdas e artikele gis bewirke.'''",
-'editingold'                       => "'''WAARSJUWING: De bis 'n aw versie van dees pazjena aan 't bewirke. Es e dees bewirking opjsleis, gaon alle verangeringe die na dees versie zien aangebrach verlore.'''",
+'nonunicodebrowser'                => "'''WAARSJOEWING: Diene browser kan neet good euverweeg mit unicode.
+ Hie waert rekening mit gehauwe om dich zónger probleme pagina's te kinne laote bewirke: neet-ASCII karakters waere in 't bewirkingsveld weergegaeve es hexadecimaal codes.'''",
+'editingold'                       => "'''WAARSJOEWING: De bis 'n auw versie van dees pagina aan 't bewirke.'''
+ Es te dees bewirking opjsleis, gaon alle verangeringe die nao dees versie zien aangebrach verlore.",
 'yourdiff'                         => 'Verangeringe',
 'copyrightwarning'                 => "Opgelèt: Alle biedrage aan {{SITENAME}} weure geach te zeen vriegegaeve ónger de $2 (zuug $1 veur details). Wens te neet wils dat dienen teks door angere bewirk en versjpreid weurt, kees dan neet veur 'Pagina opsjlaon'.<br /> Hiebie belaofs te ós ouch dats te dees teks zelf höbs gesjreve, of höbs euvergenómme oet 'n vriej, openbaar brón.<br /> '''GEBROEK GEI MATERIAAL DAT BESJIRMP WEURT DOOR AUTEURSRECH, BEHAUVE WENS TE DAO TOESJTÖMMING VEUR HÖBS!'''",
 'copyrightwarning2'                => "Mèrk op dat alle biedrages aan {{SITENAME}} kinne weure verangerd, aangepas of weggehaold door anger luuj. As te neet wils dat dienen tèks zoemer kint weure aangepas mós te 't hie neet plaatsje.<br />
@@ -808,9 +812,9 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.''
 'readonlywarning'                  => "WAARSJUWING: De database is vasgezèt veur ongerhoud, dus op 't mement kins e dien verangeringe neet opsjlaon. De kins dien tèks 't biste opsjlaon in 'n tèksbesjtand om 't later hie nog es te prebere.
 
 t Is geslaote waenger: $1",
-'protectedpagewarning'             => "'''WAARSJUWING: Dees pazjena is besjermp zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.'''
-De lèste logbookregel steit hierónger:",
-'semiprotectedpagewarning'         => "'''Let op:''' Dees pazjena is beveilig en kin allein door geregistreerde gebroekers bewerk waere.
+'protectedpagewarning'             => "'''WAARSJOEWING: Dees pagina is besjirmp zoedet ze allein door gebroekers mit administratorrechte kint waere verangerd.'''
+De lèste logbookregel sjteit hiejónger:",
+'semiprotectedpagewarning'         => "'''Lèt op:''' Dees pagina is beveilig en kin allein door geregistreerde gebroekers bewirk waere.
 De lèste logbookregel steit hiejónger:",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
 'titleprotectedwarning'            => "'''WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake. De beneuds [[Special:ListGroupRights|speciale rechte]].'''
@@ -821,18 +825,18 @@ De lèste logbookregel vólg hier:",
 'template-protected'               => '(besjirmp)',
 'template-semiprotected'           => '(semi-besjörmp)',
 'hiddencategories'                 => 'Dees pagina vélt in de volgende verborge {{PLURAL:$1|categorie|categorië}}:',
-'nocreatetitle'                    => "'t Aanmake van pazjena's is beperk",
-'nocreatetext'                     => "{{SITENAME}} haet de mäögelikheid óm nuuj pazjena's te make bepèrk.
-De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:UserLogin|dich aanmelje of 'n gebroekersaccount aanmake]].",
-'nocreate-loggedin'                => "De kèns gein nuuj pazjena's make.",
-'sectioneditnotsupported-title'    => 'De kèns hie gein köpkes bewèrke',
+'nocreatetitle'                    => "'t Aanmake van pagina's is beperk",
+'nocreatetext'                     => "{{SITENAME}} haet de mäögelikheid óm nuuj pagina's te make beperk.
+De kans al besjtaonde pagina's verangere, of de kans [[Special:UserLogin|dich aanmelde of 'n gebroekersaccount aanmake]].",
+'nocreate-loggedin'                => "De höbs gein rechte óm nuuj pagina's te make.",
+'sectioneditnotsupported-title'    => 'De kans hie gein köpkes bewirke',
 'sectioneditnotsupported-text'     => 'Doe kèns hie gein köpkes bewèrke',
 'permissionserrors'                => 'Foute inne rèchter',
 'permissionserrorstext'            => 'Doe höbs gein rèchter om det te daon om de volgende {{PLURAL:$1|reje|rejer}}:',
 'permissionserrorstext-withaction' => 'Geer höb gein rech óm $2 óm de volgende {{PLURAL:$1|raej|raej}}:',
-'recreate-moveddeleted-warn'       => "'''Waorsjuwing: Doe bös bezig mit 't aanmake van 'n pazjena die in 't verleje gewis is.'''
+'recreate-moveddeleted-warn'       => "'''Waarsjoewing: de bis bezig mit 't aanmake van 'n pagina die in 't verleje eweggesjaf is.'''
 
-Euverwaeg of 't terech is dets te wiejer wèrks aan dees pazjena. Veur dien gemaak stuit hiejónger 't logbook eweggesjafde pazjena's veur dees pazjena:",
+Bedink of 't terech is dets te wiejer wirks aan dees pagina. Veur dien gemaak sjteit hiejónger 't wislogbook en 't logbook verplaatste pagina's veur dees pagina:",
 'moveddeleted-notice'              => "Dees pazjena is eweggesjaf.
 Ter informatie weurt 't verwijderingslogbook en 't verplaatsjingslogbook van dees pazjena hiejónger weergegeve.",
 'log-fulllog'                      => "Bekiek 't gans logbook",
@@ -2406,7 +2410,18 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 # Move page
 'move-page'                    => '"$1" hernömme',
 'move-page-legend'             => 'Verplaats pazjena',
-'movepagetext'                 => "Mit 't óngersjtaond formuleer kans te 'n pagina verplaatse. De historie van de auw pagina zal nao de nuuj mitgoon. De auwe titel zal automatisch 'ne redirect nao de nuuj pagina waere. Doe kans 'n pagina allein verplaatse, es gein pagina besjteit mit de nuje naam, of es op die pagina allein 'ne redirect zónger historie sjteit.",
+'movepagetext'                 => "Mit 't óngersjtaond formuleer kans te 'n pagina verplaatse. 
+De historie van de auw pagina zal nao de nuuj mitgoon. 
+De auwe titel zal automatisch 'ne redirect nao de nuuj pagina waere. 
+Verwiezinge nao de auw pagina waere neet aangepas.
+De pagina's die doorverwieze  nao de oersjprunkelike paginanaom weurt otomatisch biegewirk.
+Es dat neet gewunsj is, controleer dan of d'r gein [[Special:DoubleRedirects|dobbel]] of [[Special:BrokenRedirects|gebraoke redirects]] ontsjtange zien.
+
+Doe kans 'n pagina allein verplaatse, es gein pagina besjteit mit de nuje naam, of es op die pagina allein 'ne redirect zónger historie sjteit.
+
+'''Waarsjoewing!'''
+Veur väöl bekeke pagina's ken 't verplaatse drastische en onveurzene gevolge höbbe.
+Zörg deveur dets te die gevolge euverzuus ierdets te dees hanjeling oetvoers.",
 'movepagetalktext'             => "De biebehurende euverlèkpazjena weurt ouch verplaats, mer '''neet''' in de volgende gevalle:
 * es al 'n euverlèkpazjena besjteit ónger de angere naam
 * es doe 't óngersjtaond vekske neet aanvinks",

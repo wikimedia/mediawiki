@@ -691,7 +691,7 @@ Sababu aliyetambua ni ''$2''
 * Aliyezuiwa: $7
 
 Unaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungumza uzuio.
-Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
+Huwezi kutumia kipengele cha 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
 [[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'autoblockedtext'                  => 'Anwani yako ya IP imezuiwa na mashine kwa sababu ilikuwa ikitumiwa na mtumiaji mwingine, ambaye amezuiliwa na $1.
@@ -1002,7 +1002,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 # Merge log
 'mergelog'           => 'Kumbukumbu za kuunganisha',
 'pagemerge-logentry' => 'aliunganisha [[$1]] ndani wa [[$2]] (mapitio hadi $3)',
-'revertmerge'        => 'Rejesha muungano',
+'revertmerge'        => 'Toa muungano',
 'mergelogpagetext'   => 'Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za kurasa mbili.',
 
 # Diffs
@@ -1478,6 +1478,8 @@ Tafadhali utazame kipimo cha file_uploads.',
 'uploadscripted'              => 'Faili hili lina HTML au kodi ambazo labda itaeleweka vibaya na kivinjari.',
 'uploadvirus'                 => 'Faili lina kirusi!
 Maelezo mengine: $1',
+'uploadjava'                  => 'Faili ZIP hili lina faili Java .class humo ndani.
+Hairuhusiki kupakia mafaili ya Java, kwa sababu yanawezesha kuambaa vizuio vya usalama.',
 'upload-source'               => 'Faili la chanzo',
 'sourcefilename'              => 'Jina la faili la chanzo:',
 'sourceurl'                   => 'URL ya chanzo:',
@@ -1515,6 +1517,14 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 'upload-too-many-redirects' => 'URL ilikuwa na maelekezo mengi mno',
 'upload-unknown-size'       => 'Ukubwa haujulikani',
 'upload-http-error'         => 'Imetokea hitilafu ya HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Ilitokea hitilafu wakati wa kufungua faili kwa ajili ya ukaguzi wa ZIP.',
+'zip-wrong-format'    => 'Faili lililotajwa si faili la ZIP.',
+'zip-bad'             => 'Faili ZIP hili limevurugika ama halisomeka.
+Haliwezi kugakuliwa ili kukinga usalama.',
+'zip-unsupported'     => 'Faili ZIP hili linatumia bidhaa pepe ya ZIP zisizoeleweka na MediaWiki.
+Haliwezi kugakuliwa ili kukinga usalama.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',

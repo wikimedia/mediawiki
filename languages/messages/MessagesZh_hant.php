@@ -1601,6 +1601,8 @@ $1",
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadvirus'                 => '該檔案包含有病毒！
 詳情: $1',
+'uploadjava'                  => '該文件是 ZIP 文件，其中包含 Java 的.class 文件。
+不允許上傳 Java 文件，是因為他們可能會跳過安全限制。',
 'upload-source'               => '來源檔案',
 'sourcefilename'              => '來源檔案名：',
 'sourceurl'                   => '來源網址：',
@@ -1633,6 +1635,14 @@ $1',
 'upload-too-many-redirects' => '在網址中有太多重新定向',
 'upload-unknown-size'       => '未知的大小',
 'upload-http-error'         => '已發生一個HTTP錯誤：$1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => '打開文件的 ZIP 檢查時遇到一個錯誤。',
+'zip-wrong-format'    => '指定的檔案不是ZIP文件。',
+'zip-bad'             => '該文件是已損壞或以其它方式無法讀取的 ZIP 文件。
+不能正確檢查安全。',
+'zip-unsupported'     => '該文件是 ZIP 文件，其中使用不支持的 MediaWiki 的壓缩功能。
+不能正確檢查安全。',
 
 # Special:UploadStash
 'uploadstash'          => '上傳貯藏',
