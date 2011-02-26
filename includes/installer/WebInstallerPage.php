@@ -741,7 +741,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'itemLabelPrefix' => 'config-profile-',
 				'values' => array_keys( $this->parent->rightsProfiles ),
 			) ) .
-			$this->parent->getHelpBox( 'config-profile-help' ) .
+			$this->parent->getInfoBox( wfMsgNoTrans( 'config-profile-help' ) ) .
 
 			# Licensing
 			$this->parent->getRadioSet( array(
