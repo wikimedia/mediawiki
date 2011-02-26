@@ -8422,6 +8422,28 @@ percent-encoding and + signs in internal links (Bug 26410)
 </p>
 !! end
 
+!! test
+Special characters in embedded file links (bug 27679)
+!! input
+[[File:Contains & ampersand.jpg]]
+[[File:Does not exist.jpg|Title with & ampersand]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg">File:Contains &amp; ampersand.jpg</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
+</p>
+!! end
+
+!! test
+Special characters in embedded file links (bug 27679)
+!! input
+[[File:Contains & ampersand.jpg]]
+[[File:Does not exist.jpg|Title with & ampersand]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg">File:Contains &amp; ampersand.jpg</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
+</p>
+!! end
+
 TODO:
 more images
 more tables
