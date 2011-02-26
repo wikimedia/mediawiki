@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @ingroup Maintenance
+ * @ingroup Testing
  *
  * Set of classes to help with test output and such. Right now pretty specific
  * to the parser tests but could be more useful one day :)
