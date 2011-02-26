@@ -142,6 +142,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15905) Nostalgia skin could become more usable by including a Talk:
   link at the top of the page
 * (bug 27560) Search queries no longer fail in walloon language
+* (bug 27679) Broken embedded files with special characters longer double HTML
+  escaped
+
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

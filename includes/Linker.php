@@ -686,10 +686,10 @@ class Linker {
 	 * Make a "broken" link to an image
 	 *
 	 * @param $title Title object
-	 * @param $text String: link label
+	 * @param $text String: link label in unescaped text form
 	 * @param $query String: query string
-	 * @param $trail String: link trail
-	 * @param $prefix String: link prefix
+	 * @param $trail String: link trail (HTML fragment)
+	 * @param $prefix String: link prefix (HTML fragment)
 	 * @param $time Boolean: a file of a certain timestamp was requested
 	 * @return String
 	 */
@@ -716,7 +716,7 @@ class Linker {
 				wfProfileOut( __METHOD__ );
 				return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
 					htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-					htmlspecialchars( $prefix . $text . $inside, ENT_NOQUOTES ) . '</a>' . $trail;
+					"$prefix$text$inside</a>$trail";
 			} else {
 				wfProfileOut( __METHOD__ );
 				return $this->linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
