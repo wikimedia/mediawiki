@@ -224,13 +224,11 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getTypeMenu( $pr_type ) {
-		global $wgRestrictionTypes;
-
 		$m = array(); // Temporary array
 		$options = array();
 
 		// First pass to load the log names
-		foreach( $wgRestrictionTypes as $type ) {
+		foreach( Title::getFilteredRestrictionTypes( true ) as $type ) {
 			$text = wfMsg("restriction-$type");
 			$m[$text] = $type;
 		}
