@@ -127,12 +127,10 @@ class UserMailer {
 
 		if ( is_array( $wgSMTP ) ) {
 			$found = false;
-			$pathArray = explode( PATH_SEPARATOR, get_include_path() );
-			foreach ( $pathArray as $path ) {
-				if ( file_exists( $path . DIRECTORY_SEPARATOR . 'Mail.php' ) ) {
-					$found = true;
-					break;
-				}
+			if ( function_exists( 'stream_resolve_include_path' ) ) {
+				$found = stream_resolve_include_path( 'Mail.php' );
+			} else {
+				$found = Fallback::stream_resolve_include_path( 'Mail.php' );
 			}
 			if ( !$found ) {
 				throw new MWException( 'PEAR mail package is not installed' );
