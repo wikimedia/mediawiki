@@ -601,11 +601,12 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		$sql = $obj->sql;
 		$sql = preg_replace( '/\b' . preg_quote( $oldName ) . '\b/', $newName, $sql, 1 );
-		if ( $temporary && strpos( $oldName, 'searchindex' ) === false ) {
-			# For some reason TEMPORARY TABLE doesn't work with searchindex
-			# We need to explicitly look for searchindex rather than VIRTUAL
-			# because we don't want to clone the FTS subtables either
-			$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
+		if ( $temporary ) {
+			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/', $sql ) ) {
+				wfDebug( "Table $oldName is virtual, can't create a temporary duplicate.\n" );
+			} else {
+				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
+			}
 		}
 		return $this->query( $sql, $fname );
 	}
