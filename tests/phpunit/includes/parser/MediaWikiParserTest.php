@@ -1,66 +1,35 @@
 <?php
 
 require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
+require_once( dirname( __FILE__ ) . '/NewParserTest.php' );
 require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
 
 /**
+ * The UnitTest must be either a class that inherits from PHPUnit_Framework_TestCase 
+ * or a class that provides a public static suite() method which returns 
+ * an PHPUnit_Framework_Test object
+ * 
  * @group Parser
- * @group Destructive
  * @group Database
- * @group Broken
- * It's not really broken, but superseded
  */
-class MediaWikiParserTest extends MediaWikiTestCase {
-	public $count;		// Number of tests in the suite.
-	public $articles = array();	// Array of test articles defined by the tests
-	protected $pt;
-	
-	function setUp() {
-		global $wgContLang;
-		$wgContLang = Language::factory( 'en' );
-		
-		$this->pt = new PHPUnitParserTest;
-		$this->pt->setupDatabase();
-		
-	}
-	
-	function tearDown() {
-		if( is_object( $this->pt ) && $this->pt instanceof PHPUnitParserTest ) {
-			$this->pt->teardownDatabase();
-			$this->pt = null;
-		}
-	}
+class MediaWikiParserTest {
 
-	
-	public function testParserTests() {
-		//global $IP;
-		//$wgParserTestFiles = array( "$IP/tests/parser/testparserTests.txt" );
-		
-		global $wgParserTestFiles;
-		
-		foreach( $wgParserTestFiles as $file ) {
+	public static function suite() {
+		global $IP, $wgParserTestFiles;
+
+		$suite = new PHPUnit_Framework_TestSuite;
+
+		foreach ( $wgParserTestFiles as $filename ) {
+			$testsName = basename( $filename, '.txt' );
+			$className = /*ucfirst( basename( dirname( $filename ) ) ) .*/ ucfirst( basename( $filename, '.txt' ) );
 			
-			$iter = new TestFileIterator( $file, $this->pt );
-			
-			try {
-				foreach( $iter as $test ) {
-					$r = $this->pt->runTest( $test['test'], $test['input'],
-						$test['result'], $test['options'], $test['config']
-					);
-					
-					$this->assertTrue( $r, 'Parser test ' . $test['test'] );
-					
-				}
-			} 
-			catch( DBQueryError $e ) {
-				$this->assertTrue( false, 'Parser test ' . $test['test'] . ' (error: "' . $e->getMessage() . '")' );
-				//This is annoying... it always stops on error and doesn't go to the next one.
-				continue;
-			}
-			
+			eval( "/** @group Database\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = \"" . addslashes( $filename ) . "\"; } " );
+
+			$parserTester = new $className( $testsName );
+			$suite->addTestSuite( new ReflectionClass ( $parserTester ) );
 		}
 		
-	}
 
+		return $suite;
+	}
 }
-

@@ -2,9 +2,16 @@
 
 /**
  * @group Database
+ * @group Parser
+ * @group Stub (can also work independently)
  */
 class NewParserTest extends MediaWikiTestCase {
 
+	static protected $articles = array();	// Array of test articles defined by the tests
+	/* The dataProvider is run on a different instance than the test, so it must be static
+	 * When running tests from several files, all tests will see all articles.
+	 */
+	
 	public $uploadDir;
 	public $keepUploads = false;
 	public $runDisabled = false;
@@ -21,10 +28,15 @@ class NewParserTest extends MediaWikiTestCase {
 	public $fuzzSeed = 0;
 	public $memoryLimit = 50;
 
-	//PHPUnit + MediaWikiTestCase functions
-
+	protected $file = false;
+	
+	/*function __construct($a = null,$b = array(),$c = null ) {
+		parent::__construct($a,$b,$c);
+	}*/
+	
 	function setUp() {
-		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases, $IP;
+		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases;
+		global $wgHooks, $IP;
 		$wgContLang = Language::factory( 'en' );
 		
 		//Setup CLI arguments
@@ -56,7 +68,7 @@ class NewParserTest extends MediaWikiTestCase {
 		);
 		
 		$tmpGlobals['wgEnableParserCache'] = false;
-		$tmpGlobals['wgHooks'] = array();
+		$tmpGlobals['wgHooks'] = $wgHooks;
 		$tmpGlobals['wgDeferredUpdateList'] = array();
 		$tmpGlobals['wgMemc'] = &wfGetMainCache();
 		$tmpGlobals['messageMemc'] = &wfGetMessageCacheStorage();
@@ -152,8 +164,9 @@ class NewParserTest extends MediaWikiTestCase {
 		MessageCache::singleton()->clear();
 
 		$this->uploadDir = $this->setupUploadDir();
-		
+
 		$user = User::newFromId( 0 );
+		LinkCache::singleton()->clear(); # Avoids the odd failure at creating the nullRevision
 		
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
@@ -258,7 +271,8 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
-			'wgAdaptiveMessageCache' => true
+			'wgAdaptiveMessageCache' => true,
+			'wgUseDatabaseMessages' => true,
 		);
 
 		if ( $config ) {
@@ -295,6 +309,13 @@ class NewParserTest extends MediaWikiTestCase {
 
 		MagicWord::clearCache();
 
+		# Publish the articles after we have the final language set
+		$this->publishTestArticles();
+
+		# The entries saved into RepoGroup cache with previous globals will be wrong.
+		RepoGroup::destroySingleton();
+		MessageCache::singleton()->destroyInstance();
+		
 		global $wgUser;
 		$wgUser = new User();
 	}
@@ -345,115 +366,93 @@ class NewParserTest extends MediaWikiTestCase {
 		return $dir;
 	}
 	
+	public function parserTestProvider() {
+		if ( $this->file === false ) {
+			global $wgParserTestFiles;
+			$this->file = $wgParserTestFiles[0];
+		}
+		return new ParserTestFileIterator( $this->file, $this );
+	}
 	
+	/**
+	 * Set the file from whose tests will be run by this instance
+	 */
+	public function setParserTestFile( $filename ) {
+		$this->file = $filename;
+	}
 	
-	
-	
-	//Actual test suites
+	/** @dataProvider parserTestProvider */
+	public function testParserTest( $desc, $input, $result, $opts, $config ) {
+		if ( !preg_match( '/' . $this->regex . '/', $desc ) ) return; //$this->markTestSkipped( 'Filtered out by the user' );
+		$opts = $this->parseOptions( $opts );
+		$this->setupGlobals( $opts, $config );
 
-	public function testParserTests() {
-		
-		global $wgParserTestFiles;
-		
-		$files = $wgParserTestFiles;
-		
-		if( $this->getCliArg( 'file=' ) ) {
-			$files = array( $this->getCliArg( 'file=' ) );
+		$user = new User();
+		$options = ParserOptions::newFromUser( $user );
+
+		if ( isset( $opts['title'] ) ) {
+			$titleText = $opts['title'];
 		}
+		else {
+			$titleText = 'Parser test';
+		}
+
+		$local = isset( $opts['local'] );
+		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
+		$parser = $this->getParser( $preprocessor );
 		
-		foreach( $files as $file ) {
-			
-			$iter = new ParserTestFileIterator( $file, $this );
-			
-			foreach ( $iter as $t ) {
-				
-				try {
-					
-					$desc = $t['test'];
-					$input = $t['input'];
-					$result = $t['result'];
-					$opts = $t['options'];
-					$config = $t['config'];
-					
-					
-					$opts = $this->parseOptions( $opts );
-					$this->setupGlobals( $opts, $config );
-			
-					$user = new User();
-					$options = ParserOptions::newFromUser( $user );
-			
-					if ( isset( $opts['title'] ) ) {
-						$titleText = $opts['title'];
-					}
-					else {
-						$titleText = 'Parser test';
-					}
-			
-					$local = isset( $opts['local'] );
-					$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
-					$parser = $this->getParser( $preprocessor );
-					$title = Title::newFromText( $titleText );
-			
-					if ( isset( $opts['pst'] ) ) {
-						$out = $parser->preSaveTransform( $input, $title, $user, $options );
-					} elseif ( isset( $opts['msg'] ) ) {
-						$out = $parser->transformMsg( $input, $options );
-					} elseif ( isset( $opts['section'] ) ) {
-						$section = $opts['section'];
-						$out = $parser->getSection( $input, $section );
-					} elseif ( isset( $opts['replace'] ) ) {
-						$section = $opts['replace'][0];
-						$replace = $opts['replace'][1];
-						$out = $parser->replaceSection( $input, $section, $replace );
-					} elseif ( isset( $opts['comment'] ) ) {
-						$linker = $user->getSkin();
-						$out = $linker->formatComment( $input, $title, $local );
-					} elseif ( isset( $opts['preload'] ) ) {
-						$out = $parser->getpreloadText( $input, $title, $options );
-					} else {
-						$output = $parser->parse( $input, $title, $options, true, true, 1337 );
-						$out = $output->getText();
-			
-						if ( isset( $opts['showtitle'] ) ) {
-							if ( $output->getTitleText() ) {
-								$title = $output->getTitleText();
-							}
-			
-							$out = "$title\n$out";
-						}
-			
-						if ( isset( $opts['ill'] ) ) {
-							$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
-						} elseif ( isset( $opts['cat'] ) ) {
-							global $wgOut;
-			
-							$wgOut->addCategoryLinks( $output->getCategories() );
-							$cats = $wgOut->getCategoryLinks();
-			
-							if ( isset( $cats['normal'] ) ) {
-								$out = $this->tidy( implode( ' ', $cats['normal'] ) );
-							} else {
-								$out = '';
-							}
-						}
-						$parser->mPreprocessor = null;
-			
-						$result = $this->tidy( $result );
-					}
-			
-					$this->teardownGlobals();
-					
-					$this->assertEquals( $result, $out, $desc );
-				
+		$title = Title::newFromText( $titleText );
+
+		if ( isset( $opts['pst'] ) ) {
+			$out = $parser->preSaveTransform( $input, $title, $user, $options );
+		} elseif ( isset( $opts['msg'] ) ) {
+			$out = $parser->transformMsg( $input, $options );
+		} elseif ( isset( $opts['section'] ) ) {
+			$section = $opts['section'];
+			$out = $parser->getSection( $input, $section );
+		} elseif ( isset( $opts['replace'] ) ) {
+			$section = $opts['replace'][0];
+			$replace = $opts['replace'][1];
+			$out = $parser->replaceSection( $input, $section, $replace );
+		} elseif ( isset( $opts['comment'] ) ) {
+			$linker = $user->getSkin();
+			$out = $linker->formatComment( $input, $title, $local );
+		} elseif ( isset( $opts['preload'] ) ) {
+			$out = $parser->getpreloadText( $input, $title, $options );
+		} else {
+			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$out = $output->getText();
+
+			if ( isset( $opts['showtitle'] ) ) {
+				if ( $output->getTitleText() ) {
+					$title = $output->getTitleText();
 				}
-				catch( Exception $e ) {
-					$this->assertTrue( false, $t['test'] . ' (failed: ' . $e->getMessage() . ')' );
-				}
-				
+
+				$out = "$title\n$out";
 			}
-		
+
+			if ( isset( $opts['ill'] ) ) {
+				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
+			} elseif ( isset( $opts['cat'] ) ) {
+				global $wgOut;
+
+				$wgOut->addCategoryLinks( $output->getCategories() );
+				$cats = $wgOut->getCategoryLinks();
+
+				if ( isset( $cats['normal'] ) ) {
+					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+				} else {
+					$out = '';
+				}
+			}
+			$parser->mPreprocessor = null;
+
+			$result = $this->tidy( $result );
 		}
-			
+
+		$this->teardownGlobals();
+		
+		$this->assertEquals( $result, $out, $desc );
 	}
 	
 	/**
@@ -593,19 +592,10 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Get a Parser object
 	 */
 	function getParser( $preprocessor = null ) {
-		global $wgParserConf;
+		global $wgParserConf, $wgHooks;
 
 		$class = $wgParserConf['class'];
 		$parser = new $class( array( 'preprocessorClass' => $preprocessor ) + $wgParserConf );
-
-		foreach ( $this->hooks as $tag => $callback ) {
-			$parser->setHook( $tag, $callback );
-		}
-
-		foreach ( $this->functionHooks as $tag => $bits ) {
-			list( $callback, $flags ) = $bits;
-			$parser->setFunctionHook( $tag, $callback, $flags );
-		}
 
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
 
@@ -613,39 +603,23 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	//Various action functions
+
+	public function addArticle( $name, $text, $line ) {
+		self::$articles[$name] = $text;
+	}	
 	
-	/**
-	 * Insert a temporary test article
-	 * @param $name String: the title, including any prefix
-	 * @param $text String: the article text
-	 * @param $line Integer: the input line number, for reporting errors
-	 */
-	public function addArticle( $name, $text, $line = 'unknown' ) {
-		global $wgCapitalLinks;
-
-		$text = $this->removeEndingNewline($text);
-
-		$oldCapitalLinks = $wgCapitalLinks;
-		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
-
-		$name = $this->removeEndingNewline( $name );
-		$title = Title::newFromText( $name );
-
-		if ( is_null( $title ) ) {
-			throw new MWException( "invalid title ('$name' => '$title') at line $line\n" );
+	public function publishTestArticles() {
+		if ( empty( self::$articles ) ) {
+			return;
 		}
 
-		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
+		foreach ( self::$articles as $name => $text ) {
+			$title = Title::newFromText( $name );
 
-		if ( $aid != 0 ) {
-			debug_print_backtrace();
-			throw new MWException( "duplicate article '$name' at line $line\n" );
+			if ( $title->getArticleID( Title::GAID_FOR_UPDATE ) == 0 ) {
+				ParserTest::addArticle( $name, $text );
+			}
 		}
-
-		$art = new Article( $title );
-		$art->doEdit( $text, '', EDIT_NEW );
-
-		$wgCapitalLinks = $oldCapitalLinks;
 	}
 	
 	/**
@@ -658,19 +632,15 @@ class NewParserTest extends MediaWikiTestCase {
 	 */
 	public function requireHook( $name ) {
 		global $wgParser;
-
 		$wgParser->firstCallInit( ); // make sure hooks are loaded.
-
-		if ( isset( $wgParser->mTagHooks[$name] ) ) {
-			$this->hooks[$name] = $wgParser->mTagHooks[$name];
-		} else {
-			echo "   This test suite requires the '$name' hook extension, skipping.\n";
-			return false;
-		}
-
-		return true;
+		return isset( $wgParser->mTagHooks[$name] );
 	}
 
+	public function requireFunctionHook( $name ) {
+		global $wgParser;
+		$wgParser->firstCallInit( ); // make sure hooks are loaded.
+		return isset( $wgParser->mFunctionHooks[$name] );
+	}
 	//Various "cleanup" functions
 	
 	/*
