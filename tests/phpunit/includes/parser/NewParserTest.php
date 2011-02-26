@@ -371,7 +371,7 @@ class NewParserTest extends MediaWikiTestCase {
 			global $wgParserTestFiles;
 			$this->file = $wgParserTestFiles[0];
 		}
-		return new ParserTestFileIterator( $this->file, $this );
+		return new TestFileIterator( $this->file, $this );
 	}
 	
 	/**
@@ -671,6 +671,10 @@ class NewParserTest extends MediaWikiTestCase {
 		else {
 			return $s;
 		}
+	}
+
+	public function showRunFile( $file ) {
+		/* NOP */
 	}
 
 	//Test options parser functions

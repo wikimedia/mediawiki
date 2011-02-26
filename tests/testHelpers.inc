@@ -451,7 +451,7 @@ class TestFileIterator implements Iterator {
 	private $lineNum;
 	private $eof;
 
-	function __construct( $file, $parserTest = null ) {
+	function __construct( $file ) {
 		global $IP;
 
 		$this->file = $file;
@@ -462,10 +462,7 @@ class TestFileIterator implements Iterator {
 		}
 
 		$this->parserTest = $parserTest;
-
-		if ( $this->parserTest ) {
-			$this->parserTest->showRunFile( wfRelativePath( $this->file, $IP ) );
-		}
+		$this->parserTest->showRunFile( wfRelativePath( $this->file, $IP ) );
 
 		$this->lineNum = $this->index = 0;
 	}
@@ -524,11 +521,8 @@ class TestFileIterator implements Iterator {
 						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
 					}
 
-					if ( $this->parserTest ) {
-						$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
-					} else {wfDie("JAJA");
-						ParserTest::addArticle( $data['article'], $data['text'], $this->lineNum );
-					}
+					$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
+
 					$data = array();
 					$section = null;
 
@@ -544,7 +538,7 @@ class TestFileIterator implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							if ( $this->parserTest && !$this->parserTest->requireHook( $line ) ) {
+							if ( !$this->parserTest->requireHook( $line ) ) {
 								return false;
 							}
 						}
@@ -565,7 +559,7 @@ class TestFileIterator implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							if ( $this->parserTest && !$this->parserTest->requireFunctionHook( $line ) ) {
+							if ( !$this->parserTest->requireFunctionHook( $line ) ) {
 								return false;
 							}
 						}
@@ -597,8 +591,7 @@ class TestFileIterator implements Iterator {
 					if ( !isset( $data['config'] ) )
 						$data['config'] = '';
 
-					if ( $this->parserTest
-						 && ( ( preg_match( '/\\bdisabled\\b/i', $data['options'] ) && !$this->parserTest->runDisabled )
+					if ( ( ( preg_match( '/\\bdisabled\\b/i', $data['options'] ) && !$this->parserTest->runDisabled )
 							 || !preg_match( "/" . $this->parserTest->regex . "/i", $data['test'] ) )  ) {
 						# disabled test
 						$data = array();
@@ -609,8 +602,7 @@ class TestFileIterator implements Iterator {
 
 					global $wgUseTeX;
 
-					if ( $this->parserTest &&
-						 preg_match( '/\\bmath\\b/i', $data['options'] ) && !$wgUseTeX ) {
+					if ( preg_match( '/\\bmath\\b/i', $data['options'] ) && !$wgUseTeX ) {
 						# don't run math tests if $wgUseTeX is set to false in LocalSettings
 						$data = array();
 						$section = null;
@@ -618,16 +610,12 @@ class TestFileIterator implements Iterator {
 						continue;
 					}
 
-					if ( $this->parserTest ) {
-						$this->test = array(
-							'test' => ParserTest::chomp( $data['test'] ),
-							'input' => ParserTest::chomp( $data['input'] ),
-							'result' => ParserTest::chomp( $data['result'] ),
-							'options' => ParserTest::chomp( $data['options'] ),
-							'config' => ParserTest::chomp( $data['config'] ) );
-					} else {
-						$this->test['test'] = $data['test'];
-					}
+					$this->test = array(
+						'test' => ParserTest::chomp( $data['test'] ),
+						'input' => ParserTest::chomp( $data['input'] ),
+						'result' => ParserTest::chomp( $data['result'] ),
+						'options' => ParserTest::chomp( $data['options'] ),
+						'config' => ParserTest::chomp( $data['config'] ) );
 
 					return true;
 				}
