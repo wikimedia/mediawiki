@@ -451,7 +451,7 @@ class TestFileIterator implements Iterator {
 	private $lineNum;
 	private $eof;
 
-	function __construct( $file ) {
+	function __construct( $file, $parserTest ) {
 		global $IP;
 
 		$this->file = $file;
