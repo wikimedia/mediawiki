@@ -219,7 +219,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return Array of parameters for transform.
 	 */
 	protected function mergeThumbParams ( $image, $thumbParams, $otherParams ) {
-		if ( !$otherParams ) return $thumbParams;
+		if ( !$otherParams ) {
+			return $thumbParams;
+		}
 		$p = $this->getModulePrefix();
 
 		$h = $image->getHandler();

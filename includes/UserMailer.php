@@ -114,6 +114,7 @@ class UserMailer {
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
 		if ( is_array( $to ) ) {
+			$emails = '';
 			// This wouldn't be necessary if implode() worked on arrays of
 			// objects using __toString(). http://bugs.php.net/bug.php?id=36612
 			foreach ( $to as $t ) {

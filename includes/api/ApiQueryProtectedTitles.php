@@ -208,8 +208,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			'prop' => array(
 				'Which properties to get',
 				' timestamp      - Adds the timestamp of when protection was added',
-				' user           - Adds the user to add the protection',
-				' userid         - Adds the user id to add the protection',
+				' user           - Adds the user that added the protection',
+				' userid         - Adds the user id that added the protection',
 				' comment        - Adds the comment for the protection',
 				' parsedcomment  - Adds the parsed comment for the protection',
 				' expiry         - Adds the timestamp of when the protection will be lifted',
