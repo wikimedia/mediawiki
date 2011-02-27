@@ -59,21 +59,10 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 
-		//TODO: Refactor out, duplicated from ApiQueryExtLinksUsage
-		if ( !is_null( $query ) || $query != '' ) {
-			if ( is_null( $protocol ) ) {
-				$protocol = 'http://';
-			}
+		$whereQuery = $this->prepareUrlQuerySearchString( $db, $query, $protocol );
 
-			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
-			if ( !$likeQuery ) {
-				$this->dieUsage( 'Invalid query', 'bad_query' );
-			}
-
-			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
-			$this->addWhere( 'el_index ' . $db->buildLike( $likeQuery ) );
-		} elseif ( !is_null( $protocol ) ) {
-			$this->addWhere( 'el_index ' . $db->buildLike( "$protocol", $db->anyString() ) );
+		if ( $whereQuery !== null ) {
+			$this->addWhere( $whereQuery );
 		}
 
 		// Don't order by el_from if it's constant in the WHERE clause

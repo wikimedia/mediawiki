@@ -66,20 +66,10 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addWhere( 'page_id=el_from' );
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
 
-		if ( !is_null( $query ) || $query != '' ) {
-			if ( is_null( $protocol ) ) {
-				$protocol = 'http://';
-			}
+		$whereQuery = $this->prepareUrlQuerySearchString( $db, $query, $protocol );
 
-			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
-			if ( !$likeQuery ) {
-				$this->dieUsage( 'Invalid query', 'bad_query' );
-			}
-
-			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
-			$this->addWhere( 'el_index ' . $db->buildLike( $likeQuery ) );
-		} elseif ( !is_null( $protocol ) ) {
-			$this->addWhere( 'el_index ' . $db->buildLike( "$protocol", $db->anyString() ) );
+		if ( $whereQuery !== null ) {
+			$this->addWhere( $whereQuery );
 		}
 
 		$prop = array_flip( $params['prop'] );
