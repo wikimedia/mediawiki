@@ -440,6 +440,32 @@ abstract class ApiQueryBase extends ApiBase {
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
 
+	/**
+	 * @param $query String
+	 * @param $protocol String
+	 * @return null|string
+	 */
+	public function prepareUrlQuerySearchString( $query = null, $protocol = null) {
+		$db = $this->getDb();
+		if ( !is_null( $query ) || $query != '' ) {
+			if ( is_null( $protocol ) ) {
+				$protocol = 'http://';
+			}
+
+			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
+			if ( !$likeQuery ) {
+				$this->dieUsage( 'Invalid query', 'bad_query' );
+			}
+
+			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
+			return 'el_index ' . $db->buildLike( $likeQuery );
+		} elseif ( !is_null( $protocol ) ) {
+			return 'el_index ' . $db->buildLike( "$protocol", $db->anyString() );
+		}
+
+		return null;
+	}
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
