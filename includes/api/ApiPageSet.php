@@ -684,7 +684,6 @@ class ApiPageSet extends ApiQueryBase {
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 
-
 				if ( $titleObj->getNamespace() < 0 ) {
 					// Handle Special and Media pages
 					$titleObj = $titleObj->fixSpecialName();

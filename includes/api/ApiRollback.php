@@ -38,7 +38,15 @@ class ApiRollback extends ApiBase {
 		parent::__construct( $main, $action );
 	}
 
-	private $mTitleObj = null, $mUser = null;
+	/**
+	 * @var Title
+	 */
+	private $mTitleObj = null;
+
+	/**
+	 * @var User
+	 */
+	private $mUser = null;
 
 	public function execute() {
 		$params = $this->extractRequestParams();

@@ -59,7 +59,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 
-		//TODO: Refactor out,duplicated from ApiQueryExtLinksUsage
+		//TODO: Refactor out, duplicated from ApiQueryExtLinksUsage
 		if ( !is_null( $query ) || $query != '' ) {
 			if ( is_null( $protocol ) ) {
 				$protocol = 'http://';

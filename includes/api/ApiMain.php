@@ -478,9 +478,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $e instanceof UsageException ) {
-			//
 			// User entered incorrect parameters - print usage screen
-			//
 			$errMessage = $e->getMessageArray();
 
 			// Only print the help message when this is for the developer, not runtime
@@ -490,9 +488,7 @@ class ApiMain extends ApiBase {
 
 		} else {
 			global $wgShowSQLErrors, $wgShowExceptionDetails;
-			//
 			// Something is seriously wrong
-			//
 			if ( ( $e instanceof DBQueryError ) && !$wgShowSQLErrors ) {
 				$info = 'Database query error';
 			} else {

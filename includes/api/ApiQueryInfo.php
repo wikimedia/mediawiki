@@ -41,6 +41,13 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_readable = false, $fld_watched = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
+	private $params, $titles, $missing, $everything, $pageCounter;
+
+	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
+		$pageLatest, $pageLength;
+
+	private $protections, $watched, $talkids, $subjectids, $displaytitles;
+
 	private $tokenFunctions;
 
 	public function __construct( $query, $moduleName ) {

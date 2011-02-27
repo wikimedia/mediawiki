@@ -39,7 +39,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryRevisions extends ApiQueryBase {
 
 	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$token;
+		$token, $parseContent;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
@@ -126,8 +126,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$params['diffto'] = 0;
 			}
 			if ( ( !ctype_digit( $params['diffto'] ) || $params['diffto'] < 0 )
-					&& $params['diffto'] != 'prev' && $params['diffto'] != 'next' )
-			{
+					&& $params['diffto'] != 'prev' && $params['diffto'] != 'next' ) {
 				$this->dieUsage( 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"', 'diffto' );
 			}
 			// Check whether the revision exists and is readable,
@@ -175,7 +174,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
 		}
-
 
 		if ( !is_null( $this->token ) || $pageCount > 0 ) {
 			$this->addFields( Revision::selectPageFields() );
@@ -233,7 +231,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		// Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
-
 
 		if ( $enumRevMode ) {
 			// This is mostly to prevent parameter errors (and optimize SQL?)
