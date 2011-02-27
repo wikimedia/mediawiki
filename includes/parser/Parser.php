@@ -112,7 +112,6 @@ class Parser {
 	var $mVariables, $mSubstWords; # Initialised by initialiseVariables()
 	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
-
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen;
 
@@ -127,6 +126,10 @@ class Parser {
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
+
+	/**
+	 * @var User
+	 */
 	var $mUser; # User object; only used when doing pre-save transform
 
 	# Temporary
@@ -136,6 +139,10 @@ class Parser {
 	 * @var ParserOptions
 	 */
 	var $mOptions;
+
+	/**
+	 * @var Title
+	 */
 	var $mTitle;        # Title context, used for self-link rendering and similar things
 	var $mOutputType;   # Output type, one of the OT_xxx constants
 	var $ot;            # Shortcut alias, see setOutputType()

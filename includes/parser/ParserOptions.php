@@ -91,6 +91,10 @@ class ParserOptions {
 	function getUser()                          { return $this->mUser; }
 	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
 
+	/**
+	 * @param $title Title
+	 * @return Skin
+	 */
 	function getSkin( $title = null ) {
 		if ( !isset( $this->mSkin ) ) {
 			$this->mSkin = $this->mUser->getSkin( $title );
