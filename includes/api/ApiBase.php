@@ -403,6 +403,8 @@ abstract class ApiBase {
 	 */
 	public function makeHelpMsg_callback( $matches ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+
+		$file = '';
 		if ( isset( $wgAutoloadLocalClasses[get_class( $this )] ) ) {
 			$file = $wgAutoloadLocalClasses[get_class( $this )];
 		} elseif ( isset( $wgAutoloadClasses[get_class( $this )] ) ) {

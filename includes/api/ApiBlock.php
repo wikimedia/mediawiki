@@ -37,9 +37,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiBlock extends ApiBase {
 
-	/**
-	 * Std ctor.
-	 */
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}

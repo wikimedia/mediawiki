@@ -73,7 +73,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 	}
 
-	protected function runQuery( &$resultPageSet ) {
+	/**
+	 * @param $resultPageSet ApiPageSet
+	 * @return int
+	 */
+	protected function runQuery( $resultPageSet = null ) {
 		$res = $this->select( __METHOD__ );
 		$count = 0;
 		foreach ( $res as $row ) {

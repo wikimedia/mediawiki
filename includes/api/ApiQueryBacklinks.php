@@ -46,7 +46,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private $params, $contID, $redirID, $redirect;
 	private $bl_ns, $bl_from, $bl_table, $bl_code, $bl_title, $bl_sort, $bl_fields, $hasNS;
-	private $pageMap, $resultArr;
+
+	/**
+	 * Maps ns and title to pageid
+	 *
+	 * @var array
+	 */
+	private $pageMap = array();
+	private $resultArr;
+
+	private $redirTitles = array();
+	private $continueStr = null;
 
 	// output element name, database column field prefix, database table
 	private $backlinksSettings = array(
@@ -232,9 +242,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ . '::firstQuery' );
 
 		$count = 0;
-		$this->pageMap = array(); // Maps ns and title to pageid
-		$this->continueStr = null;
-		$this->redirTitles = array();
+
 		foreach ( $res as $row ) {
 			if ( ++ $count > $this->params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...

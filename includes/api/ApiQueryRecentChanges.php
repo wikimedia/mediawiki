@@ -43,7 +43,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
-			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false, $fld_tags = false;
+			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
+			$fld_tags = false, $token = array();
 
 	private $tokenFunctions;
 
