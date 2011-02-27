@@ -121,9 +121,9 @@ testBrowser 		= "firefox"
 	 * @group SeleniumFramework
 	 */
 	public function testErrorOnIncorrectConfigFile() {
-		$seleniumSettings;
-		$seleniumBrowsers;
-		$seleniumTestSuites;
+		$seleniumSettings = array();
+		$seleniumBrowsers = array();
+		$seleniumTestSuites = array();
 
 		SeleniumConfig::getSeleniumSettings($seleniumSettings,
 			$seleniumBrowsers,
@@ -137,9 +137,9 @@ testBrowser 		= "firefox"
 	 * @group SeleniumFramework
 	 */
 	public function testErrorOnMissingConfigFile() {
-		$seleniumSettings;
-		$seleniumBrowsers;
-		$seleniumTestSuites;
+		$seleniumSettings = array();
+		$seleniumBrowsers = array();
+		$seleniumTestSuites = array();
 		global $wgSeleniumConfigFile;
 		$wgSeleniumConfigFile = '';
 		SeleniumConfig::getSeleniumSettings($seleniumSettings,
@@ -151,9 +151,9 @@ testBrowser 		= "firefox"
 	 * @group SeleniumFramework
 	 */
 	public function testUsesGlobalVarForConfigFile() {
-		$seleniumSettings;
-		$seleniumBrowsers;
-		$seleniumTestSuites;
+		$seleniumSettings = array();
+		$seleniumBrowsers = array();
+		$seleniumTestSuites = array();
 		global $wgSeleniumConfigFile;
 		$this->writeToTempFile( $this->testConfig0 );
 		$wgSeleniumConfigFile = $this->tempFileName;
@@ -177,9 +177,9 @@ testBrowser 		= "firefox"
 	 */
 	public function testgetSeleniumSettings($sampleConfig, $expectedSettings, $expectedBrowsers, $expectedSuites ) {
 		$this->writeToTempFile( $sampleConfig );
-		$seleniumSettings;
-		$seleniumBrowsers;
-		$seleniumTestSuites;
+		$seleniumSettings = array();
+		$seleniumBrowsers = array();
+		$seleniumTestSuites = array();
 
 		SeleniumConfig::getSeleniumSettings($seleniumSettings,
 			$seleniumBrowsers,
