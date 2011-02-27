@@ -210,6 +210,16 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'newpassword' => 'Nov passa-parol:',
 'retypenew'   => 'Confirmar nov passa-parol',
 
+# Edit page toolbar
+'bold_tip'     => 'Textu in nigri',
+'italic_tip'   => 'Textu cursivmen',
+'link_tip'     => 'Catenun intern',
+'extlink_tip'  => 'Catenun extern (memorar prefixe http://)',
+'headline_tip' => 'Division de nivelle 2',
+'math_tip'     => 'Formul mathematical (LaTeX)',
+'image_tip'    => 'File fixat',
+'media_tip'    => 'Catenun in file de multimedia',
+
 # Edit pages
 'summary'          => 'Resumate:',
 'minoredit'        => 'Modification minori',

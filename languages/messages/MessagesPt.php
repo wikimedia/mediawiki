@@ -1763,6 +1763,8 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 Verifique a configuração file_uploads, por favor.',
 'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um browser.',
 'uploadvirus'                 => 'O ficheiro contém um vírus! Detalhes: $1',
+'uploadjava'                  => 'Este é um ficheiro ZIP que contém um ficheiro .class de Java.
+Não é permitido o upload de ficheiros Java, porque estes podem contornar as restrições de segurança.',
 'upload-source'               => 'Ficheiro de origem',
 'sourcefilename'              => 'Nome do ficheiro de origem:',
 'sourceurl'                   => 'URL fonte:',
@@ -1813,6 +1815,14 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-too-many-redirects' => 'A URL continha demasiados redireccionamentos',
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Foi encontrado um erro ao abrir o ficheiro ZIP para verificação.',
+'zip-wrong-format'    => 'O ficheiro especificado não é um ficheiro ZIP.',
+'zip-bad'             => 'O ficheiro ZIP encontra-se corrompido ou não é legível.
+A sua segurança não pode ser devidamente verificada.',
+'zip-unsupported'     => 'Este ficheiro ZIP usa funcionalidades ZIP não suportadas pelo MediaWiki.
+A sua segurança não pode ser devidamente verificada.',
 
 # Special:UploadStash
 'uploadstash'          => 'Ficheiros escondidos',

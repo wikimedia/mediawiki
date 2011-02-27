@@ -224,7 +224,7 @@ $messages = array(
 'tog-hideminor'               => 'Fela minniháttar breytingar í nýlegum breytingum',
 'tog-hidepatrolled'           => 'Fela yfirfarnar breytingar í nýlegum breytingum',
 'tog-newpageshidepatrolled'   => 'Fela yfirfarnar breytingar í listanum yfir nýjar síður',
-'tog-extendwatchlist'         => 'Útvíkka vaktlistann svo hann sýni allar viðeigandi breytingar',
+'tog-extendwatchlist'         => 'Sýna allar breytingar á vaktlistanum, ekki einungis þær nýjustu',
 'tog-usenewrc'                => 'Endurbættar auknar nýlegar breytingar (þarfnast JavaScript)',
 'tog-numberheadings'          => 'Númera fyrirsagnir sjálfkrafa',
 'tog-showtoolbar'             => 'Sýna breytingarverkfærastiku (JavaScript)',
@@ -240,7 +240,7 @@ $messages = array(
 'tog-minordefault'            => 'Merkja allar breytingar sem minniháttar sjálfgefið',
 'tog-previewontop'            => 'Sýna forskoðun á undan breytingarkassanum',
 'tog-previewonfirst'          => 'Sýna forskoðun með fyrstu breytingu',
-'tog-nocache'                 => 'Óvirkja skyndiminni síðna',
+'tog-nocache'                 => 'Slökkva á flýtiminni vafrans',
 'tog-enotifwatchlistpages'    => 'Senda mér tölvupóst þegar síðu á vaktlistanum mínu er breytt',
 'tog-enotifusertalkpages'     => 'Senda mér tölvupóst þegar notandaspjallinu mínu er breytt',
 'tog-enotifminoredits'        => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum',
@@ -266,6 +266,13 @@ $messages = array(
 'underline-always'  => 'Alltaf',
 'underline-never'   => 'Aldrei',
 'underline-default' => 'skv. vafrastillingu',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Breyta leturgerð í textareitum',
+'editfont-default'   => 'skv. vafrastillingu',
+'editfont-monospace' => 'Monospaced letur',
+'editfont-sansserif' => 'Sans-serif font',
+'editfont-serif'     => 'Serif letur',
 
 # Dates
 'sunday'        => 'sunnudagur',
@@ -372,13 +379,16 @@ $messages = array(
 'vector-action-delete'     => 'Eyða',
 'vector-action-move'       => 'Færa',
 'vector-action-protect'    => 'Vernda',
+'vector-action-undelete'   => 'Hætta við eyðingu',
 'vector-action-unprotect'  => 'Afvernda',
 'vector-view-create'       => 'Skapa',
 'vector-view-edit'         => 'Breyta',
 'vector-view-history'      => 'Breytingaskrá',
 'vector-view-view'         => 'Lesa',
 'vector-view-viewsource'   => 'Sýna frumkóða',
+'actions'                  => 'Aðgerðir',
 'namespaces'               => 'Nafnrými',
+'variants'                 => 'Útgáfur',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Aftur á: $1.',
@@ -395,6 +405,7 @@ $messages = array(
 'printableversion'  => 'Prentvæn útgáfa',
 'permalink'         => 'Varanlegur tengill',
 'print'             => 'Prenta',
+'view'              => 'Skoða',
 'edit'              => 'Breyta',
 'create'            => 'Skapa',
 'editthispage'      => 'Breyta þessari síðu',
@@ -622,23 +633,25 @@ Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni
 'noname'                     => 'Þú hefur ekki tilgreint gilt notandanafn.',
 'loginsuccesstitle'          => 'Innskráning tókst',
 'loginsuccess'               => "'''Þú ert nú innskráð(ur) á {{SITENAME}} sem „$1“.'''",
-'nosuchuser'                 => 'Það er enginn notandi með nafnið „$1“.
-Athugaðu stafsetning, eða [[Special:UserLogin/signup|búðu til aðgang]].',
+'nosuchuser'                 => 'Það er enginn notandi með þetta nafn: "$1".
+Gerður er greinarmunur á há- og lágstöfum.
+Athugaðu hvort um innsláttavillu er að ræða eða [[Special:UserLogin/signup|búðu til nýtt notendanafn]].',
 'nosuchusershort'            => 'Það er enginn notandi með nafnið „<nowiki>$1</nowiki>“. Athugaðu hvort nafnið sé ritað rétt.',
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
+'login-userblocked'          => 'Þessi notandi hefur verið settur í bann.  Innskráning ekki leyfð.',
 'wrongpassword'              => 'Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.',
 'wrongpasswordempty'         => 'Lykilorðsreiturinn var auður. Vinsamlegast reyndu aftur.',
-'passwordtooshort'           => 'Lykilorðið þitt er ógilt eða of stutt.
-Það verður að hafa að minnsta kosti {{PLURAL:$1|1 rittákn|$1 rittákn}} og einnig frábrugðið notandanafninu þínu.',
+'passwordtooshort'           => 'Lykilorð skal vera að minnsta kosti {{plural: $1 |einn stafur|$1 stafir}}.',
 'password-name-match'        => 'Þarf að lykilorð þitt sé öðruvísi notandanafni þínu',
+'password-login-forbidden'   => 'Notkun þessa notendanafns og lykilorðs er ekki leyfileg.',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
 'passwordremindertitle'      => 'Nýtt tímabundið aðgangsorð fyrir {{SITENAME}}',
 'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1) hefur beðið um að fá nýtt
 lykilorð fyrir {{SITENAME}} ($4). Tímabundið lykilorð fyrir notandan „$2“
-hefur verið búið til og er núna „$3“. Ef þetta var vilji þinn, þarfu að skrá
-þig inn og velja nýtt lykilorð.
+hefur verið búið til og er núna „$3“. Ef þetta er það sem þú vildir, þarfu að skrá
+þig inn og velja nýtt lykilorð.  Þetta tímabundna lykilorð rennur út eftir {{PLURAL:$5|einn dag|$5 daga}}.
 
-Ef einhver annar fór fram á þessa beiðni, eða ef þú mannst lykilorðið þitt,
+Ef það var ekki þú sem fórst fram á þetta, eða ef þú mannst lykilorðið þitt,
 og vilt ekki lengur breyta því, skaltu hunsa þetta skilaboð og
 halda áfram að nota gamla lykilorðið.',
 'noemail'                    => 'Það er ekkert netfang skráð fyrir notandan "$1".',
@@ -650,8 +663,8 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'throttled-mailpassword'     => 'Áminning fyrir lykilorð hefur nú þegar verið send, innan við {{PLURAL:$1|síðasta klukkutímans|$1 síðustu klukkutímanna}}.
 Til að koma í veg fyrir misnotkun, er aðeins ein áminning send {{PLURAL:$1|hvern klukkutíma|hverja $1 klukkutíma}}.',
 'mailerror'                  => 'Upp kom villa við sendingu tölvupósts: $1',
-'acct_creation_throttle_hit' => 'Því miður, þú hefur nú þegar búið til {{PLURAL:$1|1 aðgang|$1 aðganga}}.
-Þú getur ekki búið til fleiri.',
+'acct_creation_throttle_hit' => 'Því miður, hafa verið búnir til {{PLURAL:$1|1 aðgang|$1 aðganga}} nýr aðgangar í dag sem er hámarksfjöldi nýskráninga á einum degi.
+Þú getur því miður ekki búið til nýjan aðgang frá þessari IP-tölu að svo stöddu.',
 'emailauthenticated'         => 'Netfang þitt var staðfest þann $2 klukkan $3.',
 'emailnotauthenticated'      => 'Veffang þitt hefur ekki enn verið sannreynt. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
 'noemailprefs'               => 'Tilgreindu netfang svo þessar aðgerðir virki.',
@@ -665,8 +678,9 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 Þú ættir að skrá þig inn og breyta lykilorðinu núna.
 
 Þú getur hunsað þetta skilaboð, ef villa hefur átt sér stað.',
-'login-throttled'            => 'Þú hefur gert of margar tilraunir nýlega á lykilorð þessa aðgangs.
-Gjörðu svo vel og bíddu áður en að þú reynir aftur.',
+'usernamehasherror'          => 'Notendanöfn mega ekki innihalda kassa (#)',
+'login-throttled'            => 'Þér hefur mistekist að skrá þig inn undir þessu notendanafni of oft.
+Vinsamlegast reynið aftur síðar.',
 'loginlanguagelabel'         => 'Tungumál: $1',
 
 # Password reset dialog
@@ -2274,9 +2288,8 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'confirmemail'             => 'Staðfesta netfang',
 'confirmemail_noemail'     => 'Þú hefur ekki gefið upp gilt netfang í [[Special:Preferences|notandastillingum]] þínum.',
 'confirmemail_text'        => '{{SITENAME}} krefst þess að þú staðfestir netfangið þitt áður en að þú getur notað eiginleika tengt því. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn í vafranum til að staðfesta að netfangið sé rétt.',
-'confirmemail_pending'     => 'Þú hefur nú þegar fengið staðfestingarpóst sendann; ef það er stutt síðan
-þú bjóst til aðganginn þinn, væri ráð að býða í nokkrar mínútur eftir póstinum
-áður en að þú byður um að fá nýjan kóða sendann.',
+'confirmemail_pending'     => 'Þér hefur þegar verið sendur staðfestingarkóði á netfang þitt;
+ef þú varst að enda við að búa til nýtt notendanafn skaltu bíða í nokkrar mínútur og sjá hvort staðfestingarkóðinn berist þér ekki í pósti á næstunni áður en þú reynir aftur að fá nýjan staðfestingarkóða.',
 'confirmemail_send'        => 'Senda staðfestingarkóða með tölvupósti',
 'confirmemail_sent'        => 'Staðfestingartölvupóstur sendur.',
 'confirmemail_oncreate'    => 'Staðfestingarkóði hefur verði sendur á netfangið.

@@ -1192,7 +1192,7 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-text'              => "'''削除された版や記録はページの履歴や記録に表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
 追加の制限がかけられない限り、{{SITENAME}}の他の管理者もこれと同じインターフェースを使って隠された内容にアクセスしたり、復元したりできます。",
 'revdelete-confirm'           => 'この操作を意図して行っていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に沿って行っていることを確認してください。',
-'revdelete-suppress-text'     => "隠蔽は、'''以下の場合に限って'''使用すべきです：
+'revdelete-suppress-text'     => "秘匿は、'''以下の場合に限って'''使用すべきです：
 * 名誉毀損の恐れのある記述
 * 非公開個人情報
 *: ''自宅の住所や電話番号、社会保障番号など''",
@@ -1202,7 +1202,7 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-hide-name'         => '操作および対象を隠す',
 'revdelete-hide-comment'      => '編集の要約を隠す',
 'revdelete-hide-user'         => '投稿者の利用者名またはIPを隠す',
-'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠蔽する',
+'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-radio-same'        => '（変更なし）',
 'revdelete-radio-set'         => 'はい',
 'revdelete-radio-unset'       => 'いいえ',
@@ -1226,7 +1226,7 @@ $1",
 'revdelete-content'           => '本文',
 'revdelete-summary'           => '編集内容の要約',
 'revdelete-uname'             => '利用者名',
-'revdelete-restricted'        => '管理者に対する制限を適用しました',
+'revdelete-restricted'        => '管理者に対する制限を適用',
 'revdelete-unrestricted'      => '管理者に対する制限を除去しました',
 'revdelete-hid'               => '$1を隠しました',
 'revdelete-unhid'             => '$1の版指定削除を解除しました',
@@ -2069,7 +2069,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 
 'doubleredirects'                   => '二重転送',
 'doubleredirectstext'               => 'これは他のリダイレクトページへのリダイレクトの一覧です。
-各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。。
+各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。
 <del>打ち消し線</del>のはいった項目は既に修正されています。',
 'double-redirect-fixed-move'        => '[[$1]]が移動されています。
 [[$2]]に転送されます。',
@@ -2659,7 +2659,7 @@ $1のブロックの理由は「$2」です。',
 'blocklog-showlog'                => 'この利用者は以前にブロックされたことがあります。
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog'        => 'この利用者は以前にブロックされ、隠されたことがあります。
-参考のため、隠蔽記録を以下に示します：',
+参考のため、秘匿記録を以下に示します：',
 'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの詳細$3',
 'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの詳細$3',
 'blocklogtext'                    => 'このページは利用者のブロックと解除の記録です。
@@ -2672,10 +2672,10 @@ $1のブロックの理由は「$2」です。',
 'block-log-flags-noemail'         => 'メール送信のブロック',
 'block-log-flags-nousertalk'      => '自身のトークページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
-'block-log-flags-hiddenname'      => '利用者名を隠す',
+'block-log-flags-hiddenname'      => '利用者名の秘匿',
 'range_block_disabled'            => '範囲ブロックを作成する管理者機能は無効化されています。',
 'ipb_expiry_invalid'              => '有効期限が不正です。',
-'ipb_expiry_temp'                 => '利用者名秘匿のブロックは、無期限ブロックなります。',
+'ipb_expiry_temp'                 => '利用者名秘匿のブロックは、無期限ブロックになります。',
 'ipb_hide_invalid'                => 'このアカウントを秘匿できません。編集回数が非常に多いためだと思われます。',
 'ipb_already_blocked'             => '「$1」は既にブロックされています',
 'ipb-needreblock'                 => '== すでにブロックされています ==
