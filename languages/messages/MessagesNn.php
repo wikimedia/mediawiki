@@ -1534,7 +1534,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Éin brukar|$1 brukarar}} overvakar]',
 'rc_categories'                     => 'Avgrens til kategoriar (skilde med «|»)',
 'rc_categories_any'                 => 'Alle',
-'newsectionsummary'                 => '/* $1 */ ny seksjon',
+'newsectionsummary'                 => '/* $1 */ ny bolk',
 'rc-enhanced-expand'                => 'Vis detaljar (krev JavaScript)',
 'rc-enhanced-hide'                  => 'Skjul detaljar',
 

@@ -837,29 +837,29 @@ De kans al besjtaonde pagina's verangere, of de kans [[Special:UserLogin|dich aa
 'recreate-moveddeleted-warn'       => "'''Waarsjoewing: de bis bezig mit 't aanmake van 'n pagina die in 't verleje eweggesjaf is.'''
 
 Bedink of 't terech is dets te wiejer wirks aan dees pagina. Veur dien gemaak sjteit hiejónger 't wislogbook en 't logbook verplaatste pagina's veur dees pagina:",
-'moveddeleted-notice'              => "Dees pazjena is eweggesjaf.
-Ter informatie weurt 't verwijderingslogbook en 't verplaatsjingslogbook van dees pazjena hiejónger weergegeve.",
+'moveddeleted-notice'              => "Dees pagina is eweggesjaf.
+Ter infermasie weurt 't wislogbook en 't logbook verplaatsjde pagina's van dees pagina hiejónger weergegaeve.",
 'log-fulllog'                      => "Bekiek 't gans logbook",
 'edit-hook-aborted'                => "De bewèrking is aafgebroke door 'ne 'hook'.
 D'r is gein toelichting besjikbaar.",
-'edit-gone-missing'                => 'De pazjena is neet biegewirk.
-Ze liek eweggesjaf te zien.',
+'edit-gone-missing'                => 'De pagina is neet biegewirk.
+Ze lik eweggesjaf te zien.',
 'edit-conflict'                    => 'Bewirkingsconflik.',
 'edit-no-change'                   => "Dien bewirking is genegeerd, ómdet d'r gein verangering in de teks is gemaak.",
 'edit-already-exists'              => 'De pagina is neet aangemaak.
-Zie besteit al.',
+Zie besjteit al.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "Waarschuwing: dees pazjena gebroek te väöl kosbare parserfuncties.
+'expensive-parserfunction-warning'        => "'''Waarschuwing:''' dees pagina gebroek te väöl kosbare parserfuncties.
 
 Noe {{PLURAL:$1|is|zeen}} 't d'r $1, terwiel 't d'r minder es $2 {{PLURAL:$2|mótte|mótte}} zeen.",
-'expensive-parserfunction-category'       => "Pazjena's die te väöl kosbare parserfuncties gebroeke",
+'expensive-parserfunction-category'       => "Pagina's die te väöl kosbare parserfuncties gebroeke",
 'post-expand-template-inclusion-warning'  => 'Waorsjuwing: de maximaal transclusiegruudje veur sjablone is euversjri-jje.
 Sommige sjablone waere neet getranscludeerd.',
-'post-expand-template-inclusion-category' => "Pazjena's woveur de maximaal transclusiegruudje is euversjri-jje",
-'post-expand-template-argument-warning'   => "Waorsjuwing: dees pazjena bevat teminste eine sjabloonparamaeter mit 'n te groeate transclusiegruudje.
-Dees paramaetere zeen eweggelaote.",
-'post-expand-template-argument-category'  => "Pazjena's die missendje sjabloonillemènter bevatte",
+'post-expand-template-inclusion-category' => "Pagina's woeveur de maximaal transclusiegruutde is euversjreje",
+'post-expand-template-argument-warning'   => "Waarsjoewing: dees pagina bevat winnigstes eine sjabloonparameter mit 'n te groete transclusiegruutde.
+Dees parameters zeen eweggelaote.",
+'post-expand-template-argument-category'  => "Pagina's die missende sjabloonillemènte bevatte",
 'parser-template-loop-warning'            => "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
 'parser-template-recursion-depth-warning' => 'De recursiedeepte veur sjablone is euversjrede ($1)',
 'language-converter-depth-warning'        => 'De deepdjelimiet veure spraokómzètter is euversjreje ($1)',
@@ -878,7 +878,7 @@ De door $3 opgegaeve reje is ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Logbeuk veur dees pagina tuine',
-'nohistory'              => 'Dees pazjena is nog neet bewirk.',
+'nohistory'              => 'Dees pagina is nog neet bewirk.',
 'currentrev'             => 'Hujige versie',
 'currentrev-asof'        => 'Hujige versie per $1',
 'revisionasof'           => 'Versie op $1',
@@ -901,11 +901,11 @@ De door $3 opgegaeve reje is ''$2''",
 
 # Revision feed
 'history-feed-title'          => 'Bewerkingseuverzich',
-'history-feed-description'    => 'Bewerkingseuverzich veur dees pazjena op de wiki',
+'history-feed-description'    => 'Bewerkingseuverzich veur dees pagina op de wiki',
 'history-feed-item-nocomment' => '$1 op $2',
-'history-feed-empty'          => "De gevraogde pazjena bestuit neet.
-Wellich is d'r gewis of vernäömp.
-[[Special:Search|Doorzeuk de wiki]] veur relevante pazjena's.",
+'history-feed-empty'          => "De gevraogde pagina besjteit neet.
+Wellich is ze gewis of verplaats.
+[[Special:Search|Doorzeuk de wiki]] veur relevante pagina's.",
 
 # Revision deletion
 'rev-deleted-comment'         => '(opmerking weggehaold)',
@@ -914,8 +914,8 @@ Wellich is d'r gewis of vernäömp.
 'rev-deleted-user-contribs'   => '[gebroeker of IP gewösj - bewèrking verbórge in biedraag]',
 'rev-deleted-text-permission' => "Dees bewerking is '''gewusj'''.
 Dao kónne details aanwezig zeen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-text-unhide'     => "Dees versie van de pazjena is '''eweggesjaf'''.
-Achtergrönj zeen meugelik te vinje in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} wösjlogbook].
+'rev-deleted-text-unhide'     => "Dees versie van de pagina is '''eweggesjaf'''.
+Details zien meugelik te vinde in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} wislogbook].
 Es beheerder kins se [$1 dees versie bekieke] es se wils.",
 'rev-suppressed-text-unhide'  => "Dees paginaversie is '''óngerdrök'''.
 Achtergrönj zeen meugelik te vinje in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logbook ven óngerdrökdje versies].
@@ -1421,7 +1421,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'action-importupload'         => "dees pagina van 'n besjtandsupload importere",
 'action-patrol'               => 'bewerkinge van angere es gecontroleerd te markere',
 'action-autopatrol'           => 'eige bewerkinge as gecontroleerd te laote markere',
-'action-unwatchedpages'       => "de lies met pagina's die neet op 'n volglies staon bekieke",
+'action-unwatchedpages'       => "de lies met pagina's die neet op 'n volglies staon  te bekieke",
 'action-trackback'            => 'ne trackback op te gaeve',
 'action-mergehistory'         => 'de gesjiedenis van deze pagina same te voge',
 'action-userrights'           => 'alle gebroekersrechte te bewerke',
@@ -2001,9 +2001,8 @@ Dae kin dös drek reazjere.",
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
-'addedwatchtext'       => 'De pagina "[[:$1]]" is aan dien [[Special:Watchlist|volglies]] toegevoog.
-Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weure hie vermèld.
-Ouch versjiene gevolgde pagina\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]].',
+'addedwatchtext'       => "De pagina \"[[:\$1]]\" is aan dien [[Special:Watchlist|volglies]] toegeveug.
+Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weure dao vermeld en de pagina weurt '''vèt''' weergegaeve in de [[Special:RecentChanges|lies van recènte verangeringe]].",
 'removedwatch'         => 'Van volglies aafhoale',
 'removedwatchtext'     => 'De pagina "[[:$1]]" is van dien [[Special:Watchlist|volglies]] eweggesjaf.',
 'watch'                => 'Volg',

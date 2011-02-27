@@ -1775,6 +1775,8 @@ Bes esu joot un donn noh de Enshtellung <i lang="en">file_uploads</i> loore.',
 En dä Datei stich e Kompjutervirus!
 <br />
 De Einzelheite: $1',
+'uploadjava'                  => 'Dat es en Sammel_Dattei em ZIP-Fommaat, woh en Java-.class-Datei dren shtich.
+Java-Datteie huhlaade es nit zohjelohße, weil mer domet de Enshtellunge ömjonn kann, di der ẞörver schöze un däm sing Sescherheit jarranteere.',
 'upload-source'               => 'Wo de Daate herkumme',
 'sourcefilename'              => 'Datei zem huhlade:',
 'sourceurl'                   => '<i lang="en">URL</i> för vun eronger ze laade',
@@ -1827,6 +1829,14 @@ Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
 'upload-too-many-redirects' => 'Zoh vill Ömleitunge en däm <i lang="en">URL</i>',
 'upload-unknown-size'       => 'Mer weße nit, wi jruuß',
 'upload-http-error'         => 'Ene <i lang="en">HTTP</i>-Fäähler es opjetrodde: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Ene Fähler es opjetrodde, wi me di ZIP-Sammel_Dattei ußpacke wullte för der Enhallt ze proofe.',
+'zip-wrong-format'    => 'De aanjejovve Dattei es kein ZIP-Sammel_Dattei.',
+'zip-bad'             => 'Di Dattei en beschäädeschte udder sönswi nit lässbaa ZIP-Sammel_Dattei.
+Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
+'zip-unsupported'     => 'Di Dattei es en ZIP-Sammel_Dattei met Eijeschaffte, woh MediaWiki nit met ömjonn kann.
+Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 
 # Special:UploadStash
 'uploadstash'          => 'Zwescheschpeisscher vum Huhlaade',
@@ -2448,7 +2458,7 @@ Di Sigg '''„$1“:''' es jetz jrad:",
 'restriction-edit'   => 'et Ändere',
 'restriction-move'   => 'et Ömnenne',
 'restriction-create' => 'Aanläje',
-'restriction-upload' => 'Huhlade',
+'restriction-upload' => 'Huhlaade',
 
 # Restriction levels
 'restriction-level-sysop'         => 'nur de Wiki-Köbesse',

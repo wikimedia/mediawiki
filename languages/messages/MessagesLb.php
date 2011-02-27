@@ -1589,6 +1589,8 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'php-uploaddisabledtext'      => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
 'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, dee vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
+'uploadjava'                  => "An dësem ZIP-Fichier ass e JAVA CLASS-Fichier dran.
+D'Eropluede vu JAVA-Fichieren ass net erlaabt, well si d'Ëmgoe vu Sécherheetsmoossnamen erméigleche kënnen.",
 'upload-source'               => 'Quellfichier',
 'sourcefilename'              => 'Numm vum Originalfichier:',
 'sourceurl'                   => 'Quell-URL:',
@@ -1626,9 +1628,12 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'De Fichier deen Dir uginn hutt war kee ZIP Fichier.',
-'zip-bad'          => 'De Fichier ass korrupt oder ass aus anere Grënn en net liesbare ZIP-Fichier.
+'zip-file-open-error' => 'Beim Opmaache vum ZIP-Fichier ass e Feeler geschitt.',
+'zip-wrong-format'    => 'De Fichier deen Dir uginn hutt war kee ZIP Fichier.',
+'zip-bad'             => 'De Fichier ass korrupt oder ass aus anere Grënn en net liesbare ZIP-Fichier.
 E kann net uerdentlech op seng Sécherheet nogekuckt ginn.',
+'zip-unsupported'     => "Dëse ZIP-Fichier benotzt ZIP-Fonctiounen déi MediaWiki net ënnerstëtzt.
+E kann net op d'Sécherheet nogekuckt ginn.",
 
 # Special:UploadStash
 'uploadstash'          => 'Um Server späichere virum Eroplueden',

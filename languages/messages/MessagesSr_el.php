@@ -3225,7 +3225,7 @@ Unesite naziv fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
 
 # Special:ComparePages
 'comparepages'     => 'Uporedi strane',
-'compare-selector' => 'Uporedi revizije strana',
+'compare-selector' => 'Upoređivanje izmena stranice',
 'compare-page1'    => 'Strana 1',
 'compare-page2'    => 'Strana 2',
 'compare-rev2'     => 'Revizija 2',

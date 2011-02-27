@@ -1413,7 +1413,12 @@ $1
 	'config-sidebar' => '* [http://www.mediawiki.org Сайт на МедияУики]
 * [http://www.mediawiki.org/wiki/Help:Contents Наръчник на потребителя]
 * [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
-* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]
+----
+* <doclink href=Readme>Документация</doclink>
+* <doclink href=ReleaseNotes>Бележки за версията</doclink>
+* <doclink href=Copying>Авторски права</doclink>
+* <doclink href=UpgradeDoc>Обновяване</doclink>',
 	'config-env-good' => 'Средата беше проверена.
 Инсталирането на МедияУики е възможно.',
 	'config-env-bad' => 'Средата беше проверена.
@@ -1552,6 +1557,15 @@ $1
 	'config-sqlite-fts3-downgrade' => 'Липсва поддръжката на FTS3 за PHP, извършен беше downgradе на таблиците',
 	'config-can-upgrade' => "В базата от данни има таблици за МедияУики.
 За надграждането им за MediaWiki $1, натиска се '''Продължаване'''.",
+	'config-upgrade-done' => "Обновяването приключи.
+
+Вече е възможно [$1 да използвате уикито].
+
+Ако е необходимо, възможно е файлът <code>LocalSettings.php</code> да бъде създаден отново чрез натискане на бутона по-долу.
+Това '''не е препоръчително действие''', освен ако не срещате затруднения с уикито.",
+	'config-upgrade-done-no-regenerate' => 'Обновяването приключи.
+
+Вече е възможно [$1 да използвате уикито].',
 	'config-regenerate' => 'Създаване на LocalSettings.php →',
 	'config-show-table-status' => 'Заявката SHOW TABLE STATUS не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
@@ -1694,7 +1708,10 @@ $1
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
 	'config-memcached-servers' => 'Memcached сървъри:',
 	'config-memcached-help' => 'Списък с IP адреси за използване за Memcached.
-Необходимо е да бъдат разделени със запетаи, както и да е посочен порта (пример: 127.0.0.1:11211, 192.168.1.25:11211).',
+Необходимо е да бъдат разделени по един на ред, както и да е посочен порта. Пример: 
+127.0.0.1:11211
+192.168.1.25:1234',
+	'config-memcache-badip' => 'Беше въведен невалиден IP адрес за Memcached: $1.',
 	'config-extensions' => 'Разширения',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',

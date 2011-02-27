@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jose77
+ * @author Psubhashish
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -25,6 +26,9 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+# Dates
+'january' => 'ଜାନୁଆରି',
+
 'mytalk'     => 'ମୋ କଥା',
 'navigation' => 'ଦିଗ୍ଦର୍ଶକ',
 
@@ -33,13 +37,14 @@ $messages = array(
 'searchbutton'     => 'ସନ୍ଧାନ',
 'history_short'    => 'ଇତିହାସ',
 'protect'          => 'ସୁରଖ୍ଯା',
+'talkpagelinktext' => 'ଆଲୋଚନା',
 'talk'             => 'ଆଲୋଚନା',
 'toolbox'          => 'ଜନ୍ତ୍ର ବାକ୍ସ',
 'jumptonavigation' => 'ଦିଗ୍ଦର୍ଶକ',
 'jumptosearch'     => 'ସନ୍ଧାନ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'             => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'mainpage'             => 'ପ୍ରଧାନ ଫରଦ',
 'mainpage-description' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
 
 'viewsourcelink' => 'େଦଖ ଉର୍ସ',
