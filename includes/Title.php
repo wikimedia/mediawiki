@@ -3704,6 +3704,9 @@ class Title {
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 *
+	 * @param $a Title
+	 * @param $b Title
+	 *
 	 * @return Integer: result of string comparison, or namespace comparison
 	 */
 	public static function compare( $a, $b ) {
