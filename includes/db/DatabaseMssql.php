@@ -820,20 +820,20 @@ class DatabaseMssql extends DatabaseBase {
 		$res = $this->doQuery( $SQL );
 		if ( !$res ) {
 			print "<b>FAILED</b>. Make sure that the user " . htmlspecialchars( $wgDBuser ) . " can write to the database</li>\n";
-			dieout( );
+			die();
 		}
 		$this->doQuery( "DROP TABLE $ctest" );
 
 		$res = $this->sourceFile( "../maintenance/mssql/tables.sql" );
 		if ( $res !== true ) {
 			echo " <b>FAILED</b></li>";
-			dieout( htmlspecialchars( $res ) );
+			die( htmlspecialchars( $res ) );
 		}
 
 		# Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ( $f == false ) {
-			dieout( "<li>Could not find the interwiki.sql file" );
+			die( "<li>Could not find the interwiki.sql file" );
 		}
 		# We simply assume it is already empty as we have just created it
 		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
