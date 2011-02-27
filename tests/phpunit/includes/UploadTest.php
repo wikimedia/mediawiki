@@ -106,7 +106,7 @@ class UploadTest extends MediaWikiTestCase {
 		unlink( $filename );
 
 		$this->assertEquals(
-			array( 'status' => UploadTestHandler::OK ), $result );
+			array( 'status' => UploadBase::OK ), $result );
 
 		$wgMaxUploadSize = $savedGlobal;  // restore global
 	}
