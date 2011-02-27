@@ -139,6 +139,8 @@ class Http {
  * php's HTTP extension.
  */
 class MWHttpRequest {
+	const SUPPORTS_FILE_POSTS = false;
+	
 	protected $content;
 	protected $timeout = 'default';
 	protected $headersOnly = null;
@@ -342,10 +344,6 @@ class MWHttpRequest {
 
 		if ( strtoupper( $this->method ) == "HEAD" ) {
 			$this->headersOnly = true;
-		}
-
-		if ( is_array( $this->postData ) ) {
-			$this->postData = wfArrayToCGI( $this->postData );
 		}
 
 		if ( is_object( $wgTitle ) && !isset( $this->reqHeaders['Referer'] ) ) {
@@ -801,6 +799,8 @@ class CookieJar {
  * MWHttpRequest implemented using internal curl compiled into PHP
  */
 class CurlHttpRequest extends MWHttpRequest {
+	const SUPPORTS_FILE_POSTS = true;
+	
 	static $curlMessageMap = array(
 		6 => 'http-host-unreachable',
 		28 => 'http-timed-out'
@@ -925,6 +925,10 @@ class PhpHttpRequest extends MWHttpRequest {
 	public function execute() {
 		parent::execute();
 
+		if ( is_array( $this->postData ) ) {
+			$this->postData = wfArrayToCGI( $this->postData );
+		}		
+		
 		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
 		// causes a segfault
 		$manuallyRedirect = version_compare( phpversion(), '5.1.7', '<' );
