@@ -21,13 +21,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
+ * @ingroup Testing
  */
 
 $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
-require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
 	echo <<<ENDS
@@ -59,8 +59,9 @@ ENDS;
 
 # Cases of weird db corruption were encountered when running tests on earlyish
 # versions of SQLite
-if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
-	$version = wfGetDB( DB_MASTER )->getServerVersion();
+if ( $wgDBtype == 'sqlite' ) {
+	$db = wfGetDB( DB_MASTER );
+	$version = $db->getServerVersion();
 	if ( version_compare( $version, '3.6' ) < 0 ) {
 		die( "Parser tests require SQLite version 3.6 or later, you have $version\n" );
 	}
