@@ -439,7 +439,6 @@ class ZipDirectoryReader {
 		);
 
 		$extraPos = 0;
-		$extraField = $data['extra field'];
 		while ( $extraPos < strlen( $extraField ) ) {
 			$extra = $this->unpack( $extraField, $extraHeaderInfo, $extraPos );
 			$extraPos += $extraHeaderSize;
