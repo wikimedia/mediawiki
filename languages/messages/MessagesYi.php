@@ -1529,6 +1529,9 @@ $1",
 'upload-unknown-size'       => 'אומוויסנדע גרייס',
 'upload-http-error'         => 'א HTTP גרײַז האט פאַסירט: $1',
 
+# Special:UploadStash
+'uploadstash-refresh' => 'דערפֿרישן די רשימה פון טעקעס',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'צוטריט אָפגעזאָגט',
 'img-auth-nologinnWL'   => 'איר זענט נישט ארײַנלאגירט און "$1" איז נישט אין דער ווײַסער ליסטע.',
@@ -1555,6 +1558,7 @@ $1",
 'listfiles_search_for'  => 'זוכן פֿאַר מעדיע נאָמען:',
 'imgfile'               => 'טעקע',
 'listfiles'             => 'טעקע ליסטע',
+'listfiles_thumb'       => 'געמינערט בילד',
 'listfiles_date'        => 'דאטע',
 'listfiles_name'        => 'נאמען',
 'listfiles_user'        => 'באַניצער',
@@ -1674,12 +1678,13 @@ $1",
 'disambiguationspage'  => 'Template:באדייטן',
 'disambiguations-text' => "די קומענדיגע בלעטער פארבינדען צו א '''באדייטן בלאט'''. זיי ברויכן ענדערשט פֿארבינדן צו דער רעלעוואנטער טעמע בלאט.<br />א בלאט ווערט פאררעכענט אלס א בלאט ווערט גערעכנט פאר א באדײַטן בלאט אויב ער באניצט זיך מיט א מוסטער וואס איז פארבינדען פון [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'געטאפלטע ווײַטערפֿירונגען',
-'doubleredirectstext'        => 'דער בלאט רעכנט אויס בלעטער וואס פירן ווייטער צו אנדערע ווייטערפירן בלעטער.
+'doubleredirects'                   => 'געטאפלטע ווײַטערפֿירונגען',
+'doubleredirectstext'               => 'דער בלאט רעכנט אויס בלעטער וואס פירן ווייטער צו אנדערע ווייטערפירן בלעטער.
 יעדע שורה אנטהאלט א לינק צום ערשטן און צווייטן ווייטערפירונג, ווי אויך די ציל פון דער צווייטער ווייטערפירונג, וואס רוב מאל געפינט זיך די ריכטיגע ציל וואו די ערשטע ווייטערפירונג זאל ווייזן.
 <del>אויסגעשטראכענע</del> טעמעס זענען שוין געלייזט.',
-'double-redirect-fixed-move' => '[[$1]] איז געווארן באוועגט, און איז יעצט א ווייטערפֿירונג צו [[$2]]',
-'double-redirect-fixer'      => 'מתקן ווײַטערפֿירונגען',
+'double-redirect-fixed-move'        => '[[$1]] איז געווארן באוועגט, און איז יעצט א ווייטערפֿירונג צו [[$2]]',
+'double-redirect-fixed-maintenance' => 'פֿאַררעכטן געטאפלטע ווײַטערפֿירונג פֿון [[$1]] צו [[$2]].',
+'double-redirect-fixer'             => 'מתקן ווײַטערפֿירונגען',
 
 'brokenredirects'        => 'צעבראָכענע ווײַטערפֿירונגען',
 'brokenredirectstext'    => 'די פֿאלגנדע ווײַטערפֿירונגען פֿאַרבינדן צו בלעטער וואס עקזיסטירן נאך נישט:',
@@ -1804,6 +1809,7 @@ $1",
 
 # Special:LinkSearch
 'linksearch'      => 'דרויסנדע לינקען',
+'linksearch-pat'  => 'זוך מוסטער:',
 'linksearch-ns'   => 'נאמענטייל:',
 'linksearch-ok'   => 'זוכן',
 'linksearch-line' => '$1 פֿאַרבונדן פֿון $2',
@@ -1835,6 +1841,8 @@ $1",
 'listgrouprights'                      => 'באַניצער גרופע רעכטן',
 'listgrouprights-summary'              => "פֿאלגנד איז א רשימה פֿון באַניצער גרופעס דעפֿינירט אויף דער דאָזיקער וויקי, מיט זײַערע אַסאציאירטע צוטריט רעכטן.
 ס'קען זײַן  [[{{MediaWiki:Listgrouprights-helppage}}|מער אינפֿארמאַציע]] וועגן איינציקע רעכטן.",
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">נאָכגעגעבן רעכט</span> 
+ * <span class="listgrouprights-revoked">אָפגערופֿן רעכט</span>',
 'listgrouprights-group'                => 'גרופע',
 'listgrouprights-rights'               => 'רעכטן',
 'listgrouprights-helppage'             => 'Help: גרופע רעכטן',
@@ -2095,6 +2103,7 @@ $UNWATCHURL
 'undeletedpage'              => "'''דער בלאט $1 איז געווארן צוריקגעשטעלט.'''
 
 זעט דעם [[Special:Log/delete| אויסמעקן לאג]] פֿאר א ליסטע פון די לעצטע אויסגעמעקטע און צוריקגעשטעלטע בלעטער.",
+'undelete-header'            => 'זעט [[Special:Log/delete|דעם אויסמעקונג זשורנאַל]] פֿאַר בלעטער וואָס זענען לעצטנס געווארן אויסגעמעקט recently deleted pages.',
 'undelete-search-box'        => 'זוכן אויסגעמעקטע בלעטער',
 'undelete-search-prefix'     => 'ווײַז בלעטער וואס הייבן אן מיט:',
 'undelete-search-submit'     => 'זוכן',

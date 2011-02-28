@@ -945,7 +945,7 @@ Marteze eo bet diverket eus ar wiki, pe adanvet.
 Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe klotañ.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(evezhiadenn diverket)',
+'rev-deleted-comment'         => "(diverradenn ar c'hemm diverket)",
 'rev-deleted-user'            => '(anv implijer diverket)',
 'rev-deleted-event'           => '(elfenn dilamet)',
 'rev-deleted-user-contribs'   => "[anv implijer pe chomlec'h IP diverket - kemm kuzhet diouzh an degasadennoù]",
@@ -1597,6 +1597,8 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'php-uploaddisabledtext'      => 'Diweredekaet eo bet ar pellgargañ e PHP. Gwiriit an dibarzh arventennoù file_uploads.',
 'uploadscripted'              => "Er restr-mañ ez eus kodoù HTML pe skriptoù a c'hallfe bezañ kammgomprenet gant ur merdeer Kenrouedad.",
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
+'uploadjava'                  => "Ur restr ZIP a ra gant Java .class eo homañ.
+N'haller ket enporzhiañ restroù Java peogwir e c'haller mont dreist da vevennoù surentez ganto.",
 'upload-source'               => 'Restr tarzh',
 'sourcefilename'              => 'Anv ar restr tarzh :',
 'sourceurl'                   => 'URL tarzh :',
@@ -1646,6 +1648,14 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-too-many-redirects' => 'Re a adkasoù zo en URL-mañ.',
 'upload-unknown-size'       => 'Ment dianav',
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Kavet ez eus bet ur fazi en ur zigeriñ ar restr evit kas da benn gwiriadennoù ZIP.',
+'zip-wrong-format'    => "Ar restr spisaet n'eo ket ur restr ZIP anezhi",
+'zip-bad'             => "Brein eo ar restr pe ur restr ZIP dilennus eo.
+N'hall ket bezañ gwiriet ervat evit ar surentez.",
+'zip-unsupported'     => "Ur restr ZIP a ra gant perzhioù ZIP n'int ket skoret gant MediaWiki eo ar restr-mañ.
+N'hall ket bezañ gwiriet ervat evit ar surentez.",
 
 # Special:UploadStash
 'uploadstash'          => 'Krubuilh enporzhiañ',

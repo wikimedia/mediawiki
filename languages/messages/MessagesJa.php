@@ -2977,7 +2977,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-save'                    => '変更を保存',
 'tooltip-preview'                 => '変更をプレビューで確認できます。保存前に使用してください！',
 'tooltip-diff'                    => '文章に加えた変更を表示します',
-'tooltip-compareselectedversions' => '選択された二つのこのページの版間の差分を表示します',
+'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
 'tooltip-watch'                   => 'このページをウォッチリストへ追加します',
 'tooltip-recreate'                => '削除されていても、ページを再作成',
 'tooltip-upload'                  => 'アップロードを開始',
@@ -3164,7 +3164,7 @@ Variants for Chinese language
 # Metadata
 'metadata'          => 'メタデータ',
 'metadata-help'     => 'このファイルは、追加情報を含んでいます（おそらく、デジタルカメラやスキャナーが作成あるいはデジタル化し追加したもの）。
-このファイルが元の状態から変更されている場合、いくつかの項目は、完全には修正されたファイルに反映していないかもしれません。',
+このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルへ完全に反映されていないかもしれません。',
 'metadata-expand'   => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
 'metadata-fields'   => 'ここのメッセージにあるEXIFメタデータフィールドは、メタデータ表が折りたたまれている状態のときに画像ページに読み込まれます。
@@ -3559,7 +3559,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',
 'imgmultipagenext' => '次ページ&rarr;',
-'imgmultigo'       => '表示！',
+'imgmultigo'       => '表示',
 'imgmultigoto'     => '$1へ行く',
 
 # Table pager
