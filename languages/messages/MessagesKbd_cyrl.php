@@ -13,7 +13,7 @@
  * @author Тамэ Балъкъэрхэ
  */
 
-$fallback = 'ru';
+# $fallback = 'ru'; // bug 27785
 
 $messages = array(
 # User preference toggles
