@@ -343,6 +343,12 @@ class LocalisationCache {
 		}
 		$this->initialisedLangs[$code] = true;
 
+		# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
+		if ( !Language::isValidBuiltInCode( $code ) ) {
+			$this->initShallowFallback( $code, 'en' );
+			return;
+		}
+
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
 			if ( file_exists( Language::getMessagesFileName( $code ) ) ) {
