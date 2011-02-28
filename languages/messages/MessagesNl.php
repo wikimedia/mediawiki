@@ -1141,7 +1141,7 @@ Wellicht is die verwijderd of hernoemd.
 [[Special:Search|Doorzoek de wiki]] voor relevante pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(reden verwijderd)',
+'rev-deleted-comment'         => '(bewerkingssamenvatting verwijderd)',
 'rev-deleted-user'            => '(gebruikersnaam verwijderd)',
 'rev-deleted-event'           => '(logboekregel verwijderd)',
 'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres verwijderd - bewerking verborgen in bijdragen]',

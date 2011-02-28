@@ -1808,8 +1808,8 @@ Për piasì, ch'a nòta che d'àutri sit an sl'aragnà a peulo coleghesse a n'ar
 'all-logs-page'        => 'Tùit ij registr pùblich',
 'alllogstext'          => 'Visualisassion combinà ëd tùit ij registr ëd {{SITENAME}}.
 A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë stranòm utent (sensìbil a majùscol/minùscol), e la pàgina anteressà (sensìbil a majùscol/minùscol).',
-'logempty'             => 'Pa gnun element parej che a sia trovasse ant ij registr.',
-'log-title-wildcard'   => "Sërca ant ij tìtoj ch'as anandio për",
+'logempty'             => 'Pa gnun element parèj che a sia trovasse ant ij registr.',
+'log-title-wildcard'   => "Sërché ant ij tìtoj ch'as anandio për",
 
 # Special:AllPages
 'allpages'          => 'Tute le pàgine',

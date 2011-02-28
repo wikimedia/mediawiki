@@ -1858,6 +1858,7 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-db-charset' => 'Strobad arouezennoù an diaz roadennoù',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarel',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 kilkenglotus UTF-8',
 	'config-mysql-old' => "Rekis eo MySQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
@@ -1875,6 +1876,8 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-invalid-schema' => 'Chema direizh evit MediaWiki "$1".
 Grit hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9) hag arouezennoù islinennañ (_).',
 	'config-postgres-old' => "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
+	'config-sqlite-mkdir-error' => 'Ur fazi zo bet e-ser krouiñ ar c\'havlec\'h roadennoù "$1".
+Gwiriañ al lec\'hiadur ha klask en-dro.',
 	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
 	'config-sqlite-cant-create-db' => "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
 	'config-upgrade-done-no-regenerate' => 'Hizivadenn kaset da benn.
@@ -1902,6 +1905,8 @@ Gallout a rit [$1 kregiñ da implijout ho wiki].',
 	'config-admin-name' => "Hoc'h anv :",
 	'config-admin-password' => 'Ger-tremen :',
 	'config-admin-password-confirm' => 'Adskrivañ ar ger-tremen :',
+	'config-admin-help' => 'Merkit hoc\'h anv implijer amañ, da skouer "Yann Vlog".
+Hemañ eo an anv a implijot evit kevreañ d\'ar wiki-mañ.',
 	'config-admin-name-blank' => 'Lakait anv ur merour.',
 	'config-admin-name-invalid' => 'Direizh eo an anv implijer diferet « <nowiki>$1</nowiki> ».
 Diferit un anv implijer all.',
@@ -1934,6 +1939,9 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-email-watchlist' => "Gweredekaat ar c'hemenn listenn evezhiañ",
 	'config-email-auth' => 'Gweredekaat an dilesadur dre bostel',
 	'config-email-sender' => "Chomlec'h postel respont :",
+	'config-email-sender-help' => "Merkit ar chomlec'h postel da vezañ implijet da chomlec'h distreiñ ar posteloù a ya er-maez. 
+Di e vo kaset ar posteloù distaolet.
+Niverus eo ar servijerioù postel a c'houlenn da nebeutañ un [http://fr.wikipedia.org/wiki/Nom_de_domaine anv domani] reizh.",
 	'config-upload-settings' => 'Pellgargañ skeudennoù ha restroù',
 	'config-upload-enable' => 'Gweredekaat ar pellgargañ restroù',
 	'config-upload-deleted' => "Kavlec'h evit ar restroù dilamet :",

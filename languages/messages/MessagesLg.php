@@ -756,6 +756,14 @@ Ebifa ku kugyibwawo kw'olupapula luno bye bino:",
 'moveddeleted-notice'              => "Olupapula luno lwagyibwawo.<br />
 Ebiri mu lukalala olw'ebifa ku kulugyawo n'okulujjulula bibino okukutangaaza ku nsonga eno:",
 'log-fulllog'                      => "Ndaga olukalala olw'ebifuddeyo mu bujjuvu",
+'edit-hook-aborted'                => "Omulimu gwo gutegude emmanduso n'egukomya.<br />
+Tewali kunnyonyola okusingawo.",
+'edit-gone-missing'                => 'Olupapula tekisobose okulutuukanisa.<br />
+Kirabika lwagyibwawo.',
+'edit-conflict'                    => 'Ebikyusidwamu bireesewo okusobagana.',
+'edit-no-change'                   => "Sisitemu ekubaze nga atalina ky'agikozeko, olw'okubanga ebiri ku lupapula obirese nga bwe wabisanze.",
+'edit-already-exists'              => "Olupapula lw'ogeza okukolawo weruli, lwakolebwawo dda.<br />
+Tekisobose kuddamu n'ate oulukolawo.",
 
 # History pages
 'viewpagelogs'           => "Kebera likooda ez'olupapula luno",
