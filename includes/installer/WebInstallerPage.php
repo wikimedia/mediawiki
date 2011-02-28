@@ -666,6 +666,15 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->parent->showError( 'config-ns-invalid', $name );
 			$retVal = false;
 		}
+
+		// Make sure it won't conflict with any existing namespaces
+		global $wgContLang;
+		$nsIndex = $wgContLang->getNsIndex( $name );
+		if( $nsIndex !== false && $nsIndex !== NS_PROJECT ) {
+			$this->parent->showError( 'config-ns-conflict', $name );
+			$retVal = false;
+		}
+
 		$this->setVar( 'wgMetaNamespace', $name );
 
 		// Validate username for creation

@@ -329,6 +329,8 @@ All page titles in this namespace start with a certain prefix, which you can spe
 Traditionally, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
 	'config-ns-invalid'               => 'The specified namespace "<nowiki>$1</nowiki>" is invalid.
 Specify a different project namespace.',
+	'config-ns-conflict'               => 'The specified namespace "<nowiki>$1</nowiki>" conflicts with a default MediaWiki namespace.
+Specify a different project namespace.',
 	'config-admin-box'                => 'Administrator account',
 	'config-admin-name'               => 'Your name:',
 	'config-admin-password'           => 'Password:',
