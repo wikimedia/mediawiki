@@ -1481,7 +1481,7 @@ It may have been deleted from the wiki, or renamed.
 Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comment removed)',
+'rev-deleted-comment'         => '(edit summary removed)',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(log action removed)',
 'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
