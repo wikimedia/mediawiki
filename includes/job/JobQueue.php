@@ -248,6 +248,12 @@ abstract class Job {
 	 * Non-static functions
 	 *------------------------------------------------------------------------*/
 
+	/**
+	 * @param $command
+	 * @param $title
+	 * @param $params array
+	 * @param int $id
+	 */
 	function __construct( $command, $title, $params = false, $id = 0 ) {
 		$this->command = $command;
 		$this->title = $title;
