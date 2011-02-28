@@ -305,6 +305,10 @@ class SquidPurgeClient {
 }
 
 class SquidPurgeClientPool {
+
+	/**
+	 * @var array of SquidPurgeClient
+	 */
 	var $clients = array();
 	var $timeout = 5;
 
@@ -314,6 +318,10 @@ class SquidPurgeClientPool {
 		}
 	}
 
+	/**
+	 * @param $client SquidPurgeClient
+	 * @return void
+	 */
 	public function addClient( $client ) {
 		$this->clients[] = $client;
 	}
