@@ -179,7 +179,7 @@ testBrowser 		= "firefox"
 		$this->writeToTempFile( $sampleConfig );
 		$seleniumSettings = array();
 		$seleniumBrowsers = array();
-		$seleniumTestSuites = array();
+		$seleniumTestSuites = null;
 
 		SeleniumConfig::getSeleniumSettings($seleniumSettings,
 			$seleniumBrowsers,
