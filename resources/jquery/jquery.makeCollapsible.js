@@ -210,7 +210,7 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
-		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
+		var $toggleLink = $( '<a href="#"></a>' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
 			toggleLinkDefault( this, e );
 		} );
 
@@ -276,7 +276,7 @@ $.fn.makeCollapsible = function() {
 					if ( $firstItem.attr( 'value' ) == '' || $firstItem.attr( 'value' ) == '-1' ) { // Will fail with ===
 						$firstItem.attr( 'value', '1' );
 					}
-					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li">' ).parent() );
+					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent() );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 						toggleLinkPremade( $toggle, e );
@@ -286,7 +286,7 @@ $.fn.makeCollapsible = function() {
 			} else { // <div>, <p> etc.
 				// If a direct child .content-wrapper does not exists, create it
 				if ( !$that.find( '> .mw-collapsible-content' ).size() ) {
-					$that.wrapInner( '<div class="mw-collapsible-content">' );
+					$that.wrapInner( '<div class="mw-collapsible-content"></div>' );
 				}
 	
 				// The toggle-link will be the first child of the element
