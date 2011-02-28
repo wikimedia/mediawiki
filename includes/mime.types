@@ -163,3 +163,4 @@ application/vnd.ms-xpsdocument xps
 application/x-opc+zip docx dotx docm dotm potx ppsx pptx ppam pptm potm ppsm xlsx xltx xlsm xltm xlam xlsb dwfx xps
 application/vnd.google-earth.kml+xml kml
 application/vnd.google-earth.kmz kmz
+message/rfc822 eml

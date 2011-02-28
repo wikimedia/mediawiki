@@ -57,6 +57,7 @@ video/quicktime	[MULTIMEDIA]
 video/x-msvideo	[MULTIMEDIA]
 
 text/plain	[TEXT]
+message/rfc822 [TEXT]
 text/html application/xhtml+xml	[TEXT]
 application/xml text/xml	[TEXT]
 text	[TEXT]
