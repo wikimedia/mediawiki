@@ -283,8 +283,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $url ) {
-			if ( !is_null( $thumbParams ) ) {
-				$mto = $file->transform( $thumbParams );
+			if ( !is_null( $scale ) && !$file->isOld() ) {
+				$mto = $file->transform( array( 'width' => $scale['width'], 'height' => $scale['height'] ) );
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
 
