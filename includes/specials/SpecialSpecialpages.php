@@ -97,7 +97,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$total = count( $sortedPages );
 			$count = 0;
 
-			$wgOut->wrapWikiMsg( "<h4 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h4>\n", "specialpages-group-$group" );
+			$wgOut->wrapWikiMsg( "<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n", "specialpages-group-$group" );
 			$wgOut->addHTML(
 				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) ."\n" .
 				Html::openElement( 'tr' ) . "\n" .
