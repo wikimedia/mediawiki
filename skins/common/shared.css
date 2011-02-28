@@ -453,16 +453,6 @@ td.mw-statistics-numbers {
 	text-align: right;
 }
 
-/* Special:SpecialPages styling */
-h4.mw-specialpagesgroup {
-	background-color: #dcdcdc;
-	padding: 2px;
-	margin: .3em 0em 0em 0em;
-}
-.mw-specialpagerestricted {
-	font-weight: bold;
-}
-
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
 }
