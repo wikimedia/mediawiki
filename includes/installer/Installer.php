@@ -562,15 +562,18 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$status->value->insert( 'site_stats', array(
-			'ss_row_id' => 1,
-			'ss_total_views' => 0,
-			'ss_total_edits' => 0,
-			'ss_good_articles' => 0,
-			'ss_total_pages' => 0,
-			'ss_users' => 0,
-			'ss_admins' => 0,
-			'ss_images' => 0 ) );
+		if( !$status->value->selectField( 'site_stats', 'ss_row_id' ) ) {
+			$status->value->insert( 'site_stats', array(
+				'ss_row_id' => 1,
+				'ss_total_views' => 0,
+				'ss_total_edits' => 0,
+				'ss_good_articles' => 0,
+				'ss_total_pages' => 0,
+				'ss_users' => 0,
+				'ss_images' => 0 )
+			);
+		}
+
 		return Status::newGood();
 	}
 
