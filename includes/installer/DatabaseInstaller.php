@@ -149,6 +149,7 @@ abstract class DatabaseInstaller {
 
 		if( $this->db->tableExists( 'user' ) ) {
 			$status->warning( 'config-install-tables-exist' );
+			$this->enableLB();
 			return $status;
 		}
 
