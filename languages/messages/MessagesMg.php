@@ -2112,9 +2112,9 @@ fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny
 'actionfailed'           => 'Tsy nandeha ny tao',
 'deletedtext'            => 'Voafafa i "<nowiki>$1</nowiki>".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
-'deletedarticle'         => 'voafafa "[[$1]]"',
+'deletedarticle'         => 'namafa « [[$1]] »',
 'suppressedarticle'      => 'namafa « [[$1]] »',
-'dellogpage'             => 'Tatitr’asa momban’ ny famafàna pejy',
+'dellogpage'             => 'Laogim-pamafana pejy',
 'dellogpagetext'         => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
 'deletionlog'            => 'laogim-pamafàna',
 'reverted'               => 'Naverina ny votoatiny nisy teo aloha',

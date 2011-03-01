@@ -899,7 +899,7 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 [[Special:Search|Pśepytaj]] {{SITENAME}} za relewantnymi bokami.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(Komentar wulašowany)',
+'rev-deleted-comment'         => '(Zespominanje wulašowane)',
 'rev-deleted-user'            => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'           => '(protokolowa akcija wulašowana)',
 'rev-deleted-user-contribs'   => '[wužywarske mě wótpórane abo IP-adresa wótpórana - změna mjez pśinoskami schowana]',

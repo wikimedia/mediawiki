@@ -334,6 +334,7 @@ $messages = array(
 
 # General errors
 'error'               => 'ܦܘܕܐ',
+'databaseerror'       => 'ܦܘܕܐ ܒܐܣ ܝܕ̈ܥܬܐ',
 'missingarticle-rev'  => '(ܬܢܝܬܐ#: $1)',
 'missingarticle-diff' => '(ܦܪܝܫܘܬܐ: $1, $2)',
 'internalerror'       => 'ܦܘܕܐ ܓܘܝܐ',
@@ -358,6 +359,7 @@ $messages = array(
 'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܡܦܐܬܢܐ ܗܢܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
+'loginprompt'             => 'ܐܠܨܐ ܠܡܦܐܬܢܐ ܕܝܠܟ ܕܣܡܟ ܠܩܘܩܝܙ (cookies) ܠܥܠܠܬܐ ܠ {{SITENAME}}.',
 'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'userloginnocreate'       => 'ܥܘܠ',
 'logout'                  => 'ܦܠܘܛ',

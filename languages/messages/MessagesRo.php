@@ -1059,7 +1059,7 @@ E posibil să fi fost ștearsă sau redenumită.
 Încearcă să [[Special:Search|cauți]] pe wiki pentru pagini noi semnificative.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentariu șters)',
+'rev-deleted-comment'         => '(descrierea modificării ștearsă)',
 'rev-deleted-user'            => '(nume de utilizator șters)',
 'rev-deleted-event'           => '(intrare ștearsă)',
 'rev-deleted-user-contribs'   => '[nume de utilizator sau adresă IP ștearsă - modificare ascunsă din contribuții]',

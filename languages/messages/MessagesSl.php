@@ -962,7 +962,7 @@ Morda je bila izbrisana iz wikija ali pa jo je kdo preimenoval.
 Prosimo, poskusite [[Special:Search|poiskati v wikiju]] ustrezajoče nove strani.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(pripomba je bila odstranjena)',
+'rev-deleted-comment'         => '(povzetek urejanja je odstranjen)',
 'rev-deleted-user'            => '(uporabniško ime je bilo odstranjeno)',
 'rev-deleted-event'           => '(dnevniški vnos je odstranjen)',
 'rev-deleted-user-contribs'   => '[uporabniško ime ali IP naslov odstranjeni - urajenje skrito v prispevkih]',

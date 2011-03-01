@@ -1040,7 +1040,7 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'history-feed-empty'          => 'Trang bạn yêu cầu không tồn tại. Có thể là nó đã bị xóa khỏi wiki hay được đổi tên. Hãy [[Special:Search|tìm kiếm trong wiki]] về các trang mới có liên quan.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(bàn luận đã bị xóa)',
+'rev-deleted-comment'         => '(tóm lược sửa đổi đã bị xóa)',
 'rev-deleted-user'            => '(tên người dùng đã bị xóa)',
 'rev-deleted-event'           => '(tác vụ nhật trình đã bị xóa)',
 'rev-deleted-user-contribs'   => '[tên người dùng hay địa chỉ IP bị ẩn – sửa đổi được ẩn khỏi danh sách đóng góp]',
