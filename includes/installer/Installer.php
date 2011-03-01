@@ -1215,6 +1215,14 @@ abstract class Installer {
 			require( "$path/$e/$e.php" );
 		}
 
+		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
+			$wgHooks['LoadExtensionSchemaUpdates'] : array();
+
+		// Unset everyone else's hooks. Lord knows what someone might be doing
+		// in ParserFirstCallInit (see bug 27171)
+		unset( $wgHooks );
+		$wgHooks = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
+
 		return Status::newGood();
 	}
 
