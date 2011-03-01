@@ -27,11 +27,9 @@ class OracleInstaller extends DatabaseInstaller {
 		'_OracleTempTS' => 'TEMP'
 	);
 	
-	protected $useSysDBA = false;
-
 	public $minimumVersion = '9.0.1'; // 9iR1
 
-	protected $sysConn, $userConn;
+	protected $connError = null;
 
 	public function getName() {
 		return 'oracle';
@@ -41,22 +39,10 @@ class OracleInstaller extends DatabaseInstaller {
 		return self::checkExtension( 'oci8' );
 	}
 
-	public function getWebUserBox( $noCreateMsg = false ) {
-		$this->parent->setVar( '_SameAccount', false );
-		$this->parent->setVar( '_CreateDBAccount', true );
-		$this->parent->setVar( 'wgDBname', '' );
-		return Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
-			Html::openElement( 'div', array( 'id' => 'dbOtherAccount' ) ) .
-			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
-			$this->getPasswordBox( 'wgDBpassword', 'config-db-password', array(), $this->parent->getHelpBox( 'config-db-web-help' ) ) .
-			$this->getCheckBox( '_CreateDBAccount', 'config-db-web-create', array( 'disabled' => true ) ).
-			Html::closeElement( 'div' ) . Html::closeElement( 'fieldset' );
-	}
-
 	public function getConnectForm() {
-		$this->parent->setVar( '_InstallUser', 'sys' );
-		$this->parent->setVar( 'wgDBserver', '' );
+		if ( $this->getVar( 'wgDBserver' ) == 'localhost' ) {
+			$this->parent->setVar( 'wgDBserver', '' );
+		}
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
 			Html::openElement( 'fieldset' ) .
@@ -65,8 +51,15 @@ class OracleInstaller extends DatabaseInstaller {
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
 			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
 			Html::closeElement( 'fieldset' ) .
+			$this->parent->getWarningBox( wfMsg( 'config-db-account-oracle-warn' ) ).
 			$this->getInstallUserBox().
 			$this->getWebUserBox();
+	}
+
+	public function submitInstallUserBox() {
+		parent::submitInstallUserBox();
+		$this->parent->setVar( '_InstallDBname', $this->getVar( '_InstallUser' ) );
+		return Status::newGood();
 	}
 
 	public function submitConnectForm() {
@@ -94,11 +87,34 @@ class OracleInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		// Try to connect
-		$this->useSysDBA = true;
+		// Try to connect trough multiple scenarios
+		// Scenario 1: Install with a manually created account
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			return $status;
+			if ( $this->connError == 28009 ) { 
+				// _InstallUser seems to be a SYSDBA
+				// Scenario 2: Create user with SYSDBA and install with new user
+				$status = $this->submitWebUserBox();
+				if ( !$status->isOK() ) {
+					return $status;
+				}
+				$status = $this->openSYSDBAConnection();
+				if ( !$status->isOK() ) {
+					return $status;
+				}
+				if ( !$this->getVar( '_CreateDBAccount' ) ) {
+					$status->fatal('config-db-sys-create-oracle');
+				}
+			} else {
+				return $status;
+			}
+		} else {
+			// check for web user credentials
+			// Scenario 3: Install with a priviliged user but use a restricted user
+			$statusIS3 = $this->submitWebUserBox();
+			if ( !$statusIS3->isOK() ) {
+				return $statusIS3;
+			}
 		}
 		$conn = $status->value;
 
@@ -114,65 +130,38 @@ class OracleInstaller extends DatabaseInstaller {
 	public function openConnection() {
 		$status = Status::newGood();
 		try {
-			if ( $this->useSysDBA ) {
-				$db = new DatabaseOracle(
-					$this->getVar( 'wgDBserver' ),
-					$this->getVar( '_InstallUser' ),
-					$this->getVar( '_InstallPassword' ),
-					$this->getVar( '_InstallUser' ),
-					DBO_SYSDBA | DBO_DDLMODE,
-					$this->getVar( 'wgDBprefix' )
-				);
-			} else {
-				$db = new DatabaseOracle(
-					$this->getVar( 'wgDBserver' ),
-					$this->getVar( 'wgDBuser' ),
-					$this->getVar( 'wgDBpassword' ),
-					$this->getVar( 'wgDBname' ),
-					0,
-					$this->getVar( 'wgDBprefix' )
-				);
-			}
+			$db = new DatabaseOracle(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				$this->getVar( '_InstallDBname' ),
+				0,
+				$this->getVar( 'wgDBprefix' )
+			);
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
+			$this->connError = $e->db->lastErrno();
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
 		return $status;
 	}
 
-	/**
-	 * Cache the two different types of connection which can be returned by 
-	 * openConnection().
-	 *
-	 * $this->db will be set to the last used connection object.
-	 *
-	 * FIXME: openConnection() should not be doing two different things.
-	 */
-	public function getConnection() {
-		// Check cache
-		if ( $this->useSysDBA ) {
-			$conn = $this->sysConn;
-		} else {
-			$conn = $this->userConn;
+	public function openSYSDBAConnection() {
+		$status = Status::newGood();
+		try {
+			$db = new DatabaseOracle(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				$this->getVar( '_InstallDBname' ),
+				DBO_SYSDBA,
+				$this->getVar( 'wgDBprefix' )
+			);
+			$status->value = $db;
+		} catch ( DBConnectionError $e ) {
+			$this->connError = $e->db->lastErrno();
+			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
-		if ( $conn !== null ) {
-			$this->db = $conn;
-			return Status::newGood( $conn );
-		}
-
-		// Open a new connection
-		$status = $this->openConnection();
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		// Save to the cache
-		if ( $this->useSysDBA ) {
-			$this->sysConn = $status->value;
-		} else {
-			$this->userConn = $status->value;
-		}
-		$this->db = $status->value;
 		return $status;
 	}
 
@@ -195,7 +184,6 @@ class OracleInstaller extends DatabaseInstaller {
 
 
 	public function setupDatabase() {
-		$this->useSysDBA = false;
 		$status = Status::newGood();
 		return $status;
 	}
@@ -207,12 +195,20 @@ class OracleInstaller extends DatabaseInstaller {
 			return Status::newGood();
 		}
 
-		$this->useSysDBA = true;
-		$status = $this->getConnection();
+		// normaly only SYSDBA users can create accounts
+		$status = $this->openSYSDBAConnection();
 		if ( !$status->isOK() ) {
-			return $status;
+			if ( $this->connError == 1031 ) { 
+				// insufficient  privileges (looks like a normal user)
+				$status = $this->openConnection();
+				if ( !$status->isOK() ) {
+					return $status;
+				}
+			} else {
+				return $status;
+			}
 		}
-
+		$this->db = $status->value;
 		$this->setupSchemaVars();
 
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
@@ -221,8 +217,19 @@ class OracleInstaller extends DatabaseInstaller {
 			if ( $error !== true || !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
 			}
+		} elseif ( $this->db->getFlag( DBO_SYSDBA ) ) {
+			$status->fatal( 'config-db-sys-user-exists-oracle', $this->getVar( 'wgDBuser' ) );
 		}
 
+		if ($status->isOK()) {
+			// user created or already existing, switching back to a normal connection
+			// as the new user has all needed privileges to setup the rest of the schema
+			// i will be using that user as _InstallUser from this point on
+			$this->parent->setVar( '_InstallUser', $this->getVar( 'wgDBuser' ) );
+			$this->parent->setVar( '_InstallPassword', $this->getVar( 'wgDBpassword' ) );
+			$this->parent->setVar( '_InstallDBname', $this->getVar( 'wgDBuser' ) );
+			$status = $this->getConnection();
+		}
 
 		return $status;
 	}
@@ -233,7 +240,9 @@ class OracleInstaller extends DatabaseInstaller {
 	public function createTables() {
 		$this->setupSchemaVars();
 		$this->db->selectDB( $this->getVar( 'wgDBuser' ) );
+		$this->db->setFlag( DBO_DDLMODE );
 		$status = parent::createTables();
+		$this->db->clearFlag( DBO_DDLMODE );
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
 
