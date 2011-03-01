@@ -243,11 +243,13 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
+		wfSuppressWarnings();
 		if ( $this->mFlags & DBO_DEFAULT ) {
-			$this->mConn = @oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		} else {
-			$this->mConn = @oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		}
+		wfRestoreWarnings();
 
 		if ( $this->mUser != $this->mDBname ) {
 			//change current schema in session
