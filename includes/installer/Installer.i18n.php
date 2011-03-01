@@ -8167,6 +8167,8 @@ Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat u h
 Dit voorvoegsel wordt meestal afgeleid van de naam van de wiki, maar het kan geen bijzondere tekens bevatten als \"#\" of \":\".",
 	'config-ns-invalid' => 'De aangegeven naamruimte "<nowiki>$1</nowiki>" is ongeldig.
 Geef een andere naamruimte op.',
+	'config-ns-conflict' => 'De aangegeven naamruimte "<nowiki>$1</nowiki>" conflicteert met een standaard naamruimte in MediaWiki.
+Geef een andere naam op voor de projectnaamruimte.',
 	'config-admin-box' => 'Beheerdersgebruiker',
 	'config-admin-name' => 'Uw naam:',
 	'config-admin-password' => 'Wachtwoord:',
@@ -8366,7 +8368,6 @@ Installasjonen kan mislukkast!",
 	'config-mysql-old' => 'MySQL $1 eller seinare krevst, du har $2.',
 	'config-db-port' => 'Databaseport:',
 	'config-db-schema' => 'Skjema for MediaWiki',
-	'config-db-ts2-schema' => 'Skjema for tsearch2',
 	'config-header-mysql' => 'MySQL-innstillingar',
 	'config-header-postgres' => 'PostgreSQL-innstillingar',
 	'config-header-sqlite' => 'SQLite-innstillingar',
@@ -8377,8 +8378,6 @@ Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 	'config-invalid-db-prefix' => 'Ugyldig databaseprefiks «$1».
 Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 	'config-invalid-schema' => 'Ugyldig skjema for MediaWiki «$1».
-Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
-	'config-invalid-ts2schema' => 'Ugyldig skjema for TSearch2 «$1».
 Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 	'config-postgres-old' => 'PostgreSQL $1 eller seinare krevst, du har $2.',
 	'config-email-settings' => 'E-postinnstillingar',
