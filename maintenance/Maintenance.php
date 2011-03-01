@@ -96,6 +96,11 @@ abstract class Maintenance {
 	// a default with setBatchSize()
 	protected $mBatchSize = null;
 
+	// Generic options added by addDefaultParams()
+	private $mGenericParameters = array();
+	// Generic options which might or not be supported by the script
+	private $mDependantParameters = array();
+
 	/**
 	 * List of all the core maintenance scripts. This is added
 	 * to scripts added by extensions in $wgMaintenanceScripts
@@ -379,6 +384,9 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
+
+		# Generic (non script dependant) options:
+
 		$this->addOption( 'help', 'Display this help message' );
 		$this->addOption( 'quiet', 'Whether to supress non-error output' );
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
@@ -388,6 +396,12 @@ abstract class Maintenance {
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 				"http://en.wikipedia.org. This is sometimes necessary because " .
 				"server name detection may fail in command line scripts.", false, true );
+
+		# Save generic options to display them separately in help
+		$this->mGenericParameters = $this->mParams ;
+
+		# Script dependant options:
+
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
@@ -398,6 +412,9 @@ abstract class Maintenance {
 			$this->addOption( 'batch-size', 'Run this many operations ' .
 				'per batch, default: ' . $this->mBatchSize, false, true );
 		}
+		# Save additional script dependant options to display
+		# them separately in help
+		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
 	}
 
 	/**
@@ -693,22 +710,66 @@ abstract class Maintenance {
 		}
 		$this->output( "$output\n\n" );
 
-		// Parameters description
-		foreach ( $this->mParams as $par => $info ) {
+		# TODO abstract some repetitive code below
+
+		// Generic parameters
+		$this->output( "Generic maintenance parameters:\n" );
+		foreach ( $this->mGenericParameters as $par => $info ) {
 			$this->output(
 				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
 						"\n$tab$tab" ) . "\n"
 			);
 		}
+		$this->output( "\n" );
 
-		// Arguments description
-		foreach ( $this->mArgList as $info ) {
-			$openChar = $info['require'] ? '<' : '[';
-			$closeChar = $info['require'] ? '>' : ']';
-			$this->output(
-				wordwrap( "$tab$openChar" . $info['name'] . "$closeChar: " .
-					$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
-			);
+		$scriptDependantParams = $this->mDependantParameters;
+		if( count($scriptDependantParams) > 0 ) {
+			$this->output( "Script dependant parameters:\n" );
+			// Parameters description
+			foreach ( $scriptDependantParams as $par => $info ) {
+				$this->output(
+					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
+							"\n$tab$tab" ) . "\n"
+				);
+			}
+			$this->output( "\n" );
+		}
+
+
+		// Script specific parameters not defined on construction by
+		// Maintenance::addDefaultParams()
+		$scriptSpecificParams = array_diff_key(
+			# all script parameters:
+			$this->mParams,
+			# remove the Maintenance default parameters:
+			$this->mGenericParameters,
+			$this->mDependantParameters
+		);
+		if( count($scriptSpecificParams) > 0 ) {
+			$this->output( "Script specific parameters:\n" );
+			// Parameters description
+			foreach ( $scriptSpecificParams as $par => $info ) {
+				$this->output(
+					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
+							"\n$tab$tab" ) . "\n"
+				);
+			}
+			$this->output( "\n" );
+		}
+
+		// Print arguments
+		if( count( $this->mArgList ) > 0 ) {
+			$this->output( "Arguments:\n" );
+			// Arguments description
+			foreach ( $this->mArgList as $info ) {
+				$openChar = $info['require'] ? '<' : '[';
+				$closeChar = $info['require'] ? '>' : ']';
+				$this->output(
+					wordwrap( "$tab$openChar" . $info['name'] . "$closeChar: " .
+						$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
+				);
+			}
+			$this->output( "\n" );
 		}
 
 		die( 1 );
