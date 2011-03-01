@@ -428,7 +428,7 @@ class LanguageConverter {
 	 * @param $variant String: variant language code
 	 * @return String: translated text
 	 */
-	protected function translate( $text, $variant ) {
+	public function translate( $text, $variant ) {
 		wfProfileIn( __METHOD__ );
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
