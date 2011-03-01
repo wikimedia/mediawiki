@@ -244,9 +244,9 @@ class DatabaseOracle extends DatabaseBase {
 
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
 		if ( $this->mFlags & DBO_DEFAULT ) {
-			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = @oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		} else {
-			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = @oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		}
 
 		if ( $this->mUser != $this->mDBname ) {
@@ -789,12 +789,7 @@ class DatabaseOracle extends DatabaseBase {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$fieldInfoData = $this->fieldInfo( $table, $field );
-		if ( $fieldInfoData->type() == 'varchar' ) {
-			$size = $row->size - 4; // FIXME: $row is undefined
-		} else {
-			$size = $row->size;
-		}
-		return $size;
+		return $fieldInfoData->maxLength();
 	}
 
 	function limitResult( $sql, $limit, $offset = false ) {

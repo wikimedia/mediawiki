@@ -170,6 +170,11 @@ It should not contain spaces.
 
 If you are using shared web hosting, your hosting provider will either give you a specific database name to use or let you create databases via a control panel.',
 	'config-db-name-oracle'           => 'Database schema:',
+	'config-db-account-oracle-warn' => "There are three supported scenarios for installing Oracle as database backend:
+
+If you wish to create database account as part of the installation process, please supply an account with SYSDBA role as database account for installation and specify the desired credentials for the web-access account, otherwise you can either create the web-access account manually and supply only that account (if it has required permissions to create the schema objects) or supply two different accounts, one with create privileges and a restricted one for web access.
+
+Script for creating an account with required privileges can be found in \"maintenance/oracle/\" directory of this installation. Keep in mind that using a restricted account will disable all maintenance capabilities with the default account.",
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
 	'config-db-password'              => 'Database password:',
@@ -249,6 +254,8 @@ Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and hyphens (-
 Check the host, username and password below and try again.',
 	'config-invalid-schema'           => 'Invalid schema for MediaWiki "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+	'config-db-sys-create-oracle' => 'Installer only supports using a SYSDBA account for creating a new account.',
+	'config-db-sys-user-exists-oracle' => 'User account "$1" already exists. SYSDBA can only be used for creating of a new account!',
 	'config-postgres-old'             => 'PostgreSQL $1 or later is required, you have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
 Do not use spaces or hyphens.
