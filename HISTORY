@@ -454,6 +454,7 @@ general notes.
 * (bug 25512) Subcategory list should not include category prefix for members.
 * (bug 20244) Installer does not validate SQLite database directory for stable path
 * (bug 1379) Installer directory conflicts with some hosts' configuration panel.
+* (bug 12070) After Installation MySQL was blocked
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

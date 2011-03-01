@@ -419,8 +419,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function setupUser() {
-		global $IP;
-
 		if ( !$this->getVar( '_CreateDBAccount' ) ) {
 			return Status::newGood();
 		}
@@ -430,15 +428,114 @@ class MysqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		$db = $this->getVar( 'wgDBname' );
-		$this->db->selectDB( $db );
 		$this->setupSchemaVars();
-		$error = $this->db->sourceFile( "$IP/maintenance/users.sql" );
-		if ( $error !== true ) {
-			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
+		$dbName = $this->getVar( 'wgDBname' );
+		$this->db->selectDB( $dbName );
+		$server = $this->getVar( 'wgDBserver' );
+		$dbUser = $this->getVar( 'wgDBuser' );
+		$password = $this->getVar( 'wgDBpassword' );
+		$grantableNames = array();
+
+		// Before we blindly try to create a user that already has access,
+		try { // first attempt to connect to the database
+			new DatabaseMysql(
+				$server,
+				$dbUser,
+				$password,
+				false,
+				false,
+				0,
+				$this->getVar( 'wgDBprefix' )
+			);
+			$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
+			$tryToCreate = false;
+		} catch ( DBConnectionError $e ) {
+			$tryToCreate = true;
+		}
+
+		if( $tryToCreate ) {
+			$createHostList = array($server,
+				'localhost',
+				'localhost.localdomain',
+				'%'
+			);
+
+			$createHostList = array_unique( $createHostList );
+			$escPass = $this->db->addQuotes( $password );
+
+			foreach( $createHostList as $host ) {
+				$fullName = $this->buildFullUserName( $dbUser, $host );
+				if( !$this->userDefinitelyExists( $dbUser, $host ) ) {
+					try{
+						$this->db->begin();
+						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
+						$this->db->commit();
+						$grantableNames[] = $fullName;
+					} catch( DBQueryError $dqe ) {
+						if( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
+							// User (probably) already exists
+							$this->db->rollback();
+							$status->warning( 'config-install-user-alreadyexists', $dbUser );
+							$grantableNames[] = $fullName;
+							break;
+						} else {
+							// If we couldn't create for some bizzare reason and the
+							// user probably doesn't exist, skip the grant
+							$this->db->rollback();
+							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getText() );
+						}
+					}
+				} else {
+					$status->warning( 'config-install-user-alreadyexists', $dbUser );
+					$grantableNames[] = $fullName;
+					break;
+				}
+			}
+		}
+
+		// Try to grant to all the users we know exist or we were able to create
+		$escPass = $this->db->addQuotes( $password );
+		$dbAllTables = $this->db->addIdentifierQuotes( $dbName ) . '.*';
+		foreach( $grantableNames as $name ) {
+			try {
+				$this->db->begin();
+				$this->db->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );
+				$this->db->commit();
+			} catch( DBQueryError $dqe ) {
+				$this->db->rollback();
+				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getText() );
+			}
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Return a formal 'User'@'Host' username for use in queries
+	 * @param $name String Username, quotes will be added
+	 * @param $host String Hostname, quotes will be added
+	 * @return String
+	 */
+	private function buildFullUserName( $name, $host ) {
+		return $this->db->addQuotes( $name ) . '@' . $this->db->addQuotes( $host );
+	}
+
+	/**
+	 * Try to see if the user account exists. Our "superuser" may not have
+	 * access to mysql.user, so false means "no" or "maybe"
+	 * @param $host String Hostname to check
+	 * @param $user String Username to check
+	 * @return boolean
+	 */
+	private function userDefinitelyExists( $host, $user ) {
+		try {
+			$res = $this->db->selectRow( 'mysql.user', array( 'Host', 'User' ),
+				array( 'Host' => $host, 'User' => $user ), __METHOD__ );
+			return (bool)$res;
+		} catch( DBQueryError $dqe ) {
+			return false;
+		}
+		
 	}
 
 	/**

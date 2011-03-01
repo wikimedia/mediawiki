@@ -323,6 +323,8 @@ MyISAM databases tend to get corrupted more often than InnoDB databases.",
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-connection-user-exists'        => 'The database user "$1" already exists.
+Please choose a new username to create or do not try to create the user.',
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
@@ -475,7 +477,9 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
 	'config-pg-no-create-privs'       => 'The account you specified for installation does not have enough privileges to create an account.',
 	'config-install-user'             => 'Creating database user',
-	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
+	'config-install-user-create-failed' => 'User "$1" already exists',
+	'config-install-user-create-failed' => 'Creating user "$1" failed: $2',
+	'config-install-user-grant-failed'  => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
 	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist.
 Skipping creation.",
