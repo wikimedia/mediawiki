@@ -1567,7 +1567,7 @@ abstract class Skin extends Linker {
 				$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
 				$notice = $parsed;
 			} else {
-				wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' . "\n" );
+				wfDebug( 'Skin::getCachedNotice called for ' . $name . ' with no $wgOut available' . "\n" );
 				$notice = '';
 			}
 		}
@@ -1586,7 +1586,7 @@ abstract class Skin extends Linker {
 		wfProfileIn( __METHOD__ );
 
 		$key = 'namespacenotice-' . $this->mTitle->getNsText();
-		$namespaceNotice = wfGetCachedNotice( $key );
+		$namespaceNotice = $this->getCachedNotice( $key );
 		if ( $namespaceNotice && substr( $namespaceNotice, 0, 7 ) != '<p>&lt;' ) {
 			$namespaceNotice = '<div id="namespacebanner">' . $namespaceNotice . '</div>';
 		} else {
