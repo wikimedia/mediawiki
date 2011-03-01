@@ -4129,7 +4129,7 @@ class Title {
 		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
 		
 		wfDebug( __METHOD__ . ': applicable restriction types for ' . 
-			$this->getPrefixedText() . ' are ' . implode( ',', $types ) );
+			$this->getPrefixedText() . ' are ' . implode( ',', $types ) . "\n" );
 
 		return $types;
 	}
