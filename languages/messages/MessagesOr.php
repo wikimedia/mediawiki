@@ -91,6 +91,8 @@ $messages = array(
 'talk'             => 'ଆଲୋଚନା',
 'views'            => 'ଦେଖା',
 'toolbox'          => 'ଜନ୍ତ୍ର ବାକ୍ସ',
+'otherlanguages'   => 'ଅଲଗା ଭାଷା',
+'lastmodifiedat'   => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
 'jumpto'           => 'ଯାଅ->',
 'jumptonavigation' => 'ନାଭିଗେସନକୁ ଯାଅ',
 'jumptosearch'     => 'ସନ୍ଧାନ',
@@ -98,6 +100,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ବିଷୟରେ',
 'aboutpage'            => 'Project:ବିଷୟରେ',
+'copyright'            => '$1 ରେ ସର୍ବସ୍ଵତ୍ଵ ସଂରକ୍ଷିତ',
 'disclaimers'          => 'ଅସ୍ଵୀକାର',
 'disclaimerpage'       => 'Project:ସାଧାରଣ ଅସ୍ଵୀକାର',
 'mainpage'             => 'ମୂଳ ଫରଦ',
@@ -117,6 +120,10 @@ $messages = array(
 'site-atom-feed'          => '$1 କ ଆଟମ ଫିଡ଼',
 'red-link-title'          => ' $1 (ଫରଦଟି ନାହିଁ)',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'    => 'ଫରଦ',
+'nstab-special' => 'ବିଶେଷ ଫରଦ',
+
 # General errors
 'viewsource' => 'ଉତ୍ସ ଦେଖ',
 
@@ -131,9 +138,13 @@ $messages = array(
 'editingsection' => '$1 (ସେକସନ)କୁ ଏଡିଟ କରୁଛି',
 
 # Diffs
+'lineno'   => '$1 କ ଧାଡ଼ି:',
 'editundo' => 'ପଛକୁ ଫେର',
 
 # Search results
+'searchresults'             => 'ଖୋଜା ପରର ଫଳ',
+'searchresults-title'       => '"$1" ପାଇଁ ଖୋଜା ପରର ଫଳ',
+'searchsubtitle'            => 'ଆପଣ  \'\'\'[[:$1]]\'\'\' ପାଇଁ ([[Special:Prefixindex/$1|"$1" ରେ ଆରଭ ହୋଇଥିବା ସବୁ ଫରଦ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" କୁ ଯୋଡ଼ାଥିବା ସବୁତକ ଫରଦ]])',
 'notitlematches'            => 'ଫରଦର ଟାଇଟଲ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
@@ -145,6 +156,10 @@ $messages = array(
 'mypreferences'     => 'ମୋ ପସଁଦସବୁ',
 'searchresultshead' => 'ସନ୍ଧାନ',
 
+# Recent changes
+'hist'            => 'ଇତିହାସ',
+'minoreditletter' => 'ସା',
+
 # Recent changes linked
 'recentchangeslinked'         => 'ଏଇମାତ୍ର ବଦଳାଯାଇଥିବା ଫରଦର ଲିଁକ',
 'recentchangeslinked-feed'    => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
@@ -152,10 +167,12 @@ $messages = array(
 'recentchangeslinked-summary' => "ଏଇଟି ଅଳ୍ପସମୟ ଆଗରୁ ନିର୍ଦିଷ୍ଟ ଫରଦରୁ ଲିଂକ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦିଷ୍ଟ ବିଭାଗର) ଫରଦସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ଫରଦ ସବୁ '''ବୋଲଡ'''।",
 
 # Upload
+'upload'            => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
 'filedesc'          => 'ସାରକଥା',
 'fileuploadsummary' => 'ସାରକଥା:',
 
 # Miscellaneous special pages
+'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
 'wantedcategories'     => 'ଦରକାରି ବିଭାଗ',
 'wantedpages'          => 'ଦରକାରି ଫରଦ',
 'wantedpages-badtitle' => '$1 ଉତ୍ତରସବୁରେ ଥିବା ଭୁଲ ଟାଇଟଲ',
@@ -183,6 +200,9 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'ସନ୍ଧାନ',
 
+# Namespace form on various pages
+'blanknamespace' => '(ମୂଳ)',
+
 # Contributions
 'contributions' => 'ବ୍ଯବହରକାରୀନ୍କ ଅନୁଦାନ',
 'mycontris'     => 'ମୋ ଅବଦାନ',
@@ -194,9 +214,14 @@ $messages = array(
 
 # Block/unblock
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
+'blocklink'          => 'ଅଟକେଇ ଦିଅ',
 'contribslink'       => 'ଯୋଗଦାନ',
 
 # Tooltip help for the actions
+'tooltip-pt-login'               => 'ଆପଣଁକୁ ଲଗ ଇନ କରିବାକୁ ଅନୁରୋଧ କରାଯାଉଛି, ତେବେ ଏଇଟି ବାଧ୍ୟତାମୂଳକ ନୁହେଁ',
+'tooltip-ca-talk'                => 'ଏହି ଫରଦଟି ଉପରେ ଆଲୋଚନା',
+'tooltip-ca-edit'                => 'ଆପଣ ଏହି ଫରଦଟିରେ ଅଦଳ ବଦଳ କରିପାରିବେ, ତେବେ ସାଇତିବା ଆଗରୁ ପ୍ରିଭିଉ ଦେଖଁତୁ ।',
+'tooltip-ca-history'             => 'ଏହି ଫରଦର ପୁରୁଣା ସଁସ୍କରଣ',
 'tooltip-search'                 => '{{SITENAME}} ରେ ଖୋଜ',
 'tooltip-search-go'              => 'ଏଇ ଅବିକଳ ନାଁଟି ଥିଲେ ସେ ଫରଦକୁ ଯାଅ',
 'tooltip-search-fulltext'        => 'ଏଇ ଲେଖାଟି ପାଇଁ ଫରଦସବୁକୁ ଖୋଜ',
@@ -207,7 +232,14 @@ $messages = array(
 'tooltip-n-recentchanges'        => 'ଉଇକିରେ ଏଇମାତ୍ର କରାଯାଇଥିବା ଅଦଳ ବଦଳ',
 'tooltip-n-randompage'           => 'ଯାହିତାହି ଫରଦଟିଏ ଖୋଲ',
 'tooltip-n-help'                 => 'ଖୋଜି ପାଇବା ଭଳି ଜାଗା',
+'tooltip-t-whatlinkshere'        => 'ଏଇଠି ଯୋଡ଼ାଯାଇଥିବା ଫରଦସବୁର ତାଲିକା',
+'tooltip-t-recentchangeslinked'  => 'ଏହି ଫରଦ ସାଗେ ଯୋଡ଼ା ଫରଦଗୁଡ଼ିକରେ ଏଇଲାଗେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
+'tooltip-t-upload'               => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
 'tooltip-t-specialpages'         => 'ବିଶେଷ ଫରଦଗୁଡ଼ିକ',
+'tooltip-t-print'                => 'ଏହି ଫରଦର ଛପାହୋଇପାରିବା ଭର୍ସନ',
+'tooltip-t-permalink'            => 'ସଁଶୋଧିତ ଏହି ଫରଦଟିର ସ୍ଥାୟି ଲିଁକ',
+'tooltip-ca-nstab-main'          => 'ସୂଚି ଫରଦଟି ଦେଖଁତୁ',
+'tooltip-ca-nstab-special'       => 'ଏଇଟି ଗୋଟିଏ ବିଶେଷ ଫରଦ, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-save'                   => 'ବଦଳଗୁଡ଼ିକ ସାଇତିରଖ',
 
 # Special:NewFiles

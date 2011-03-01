@@ -1186,6 +1186,8 @@ chmod a+w $3</pre>',
 Традыцыйна, гэтая прыстаўка вытворная ад назвы вікі, яле яна ня можа ўтрымліваць некаторыя сымбалі, такія як «#» ці «:».",
 	'config-ns-invalid' => 'Пададзеная няслушная прастора назваў «<nowiki>$1</nowiki>».
 Падайце іншую прастору назваў праекту.',
+	'config-ns-conflict' => 'Пазначаная прастора назваў «<nowiki>$1</nowiki>» канфліктуе з прасторай назваў MediaWiki па змоўчваньні.
+Пазначце іншую прастору назваў праекту.',
 	'config-admin-box' => 'Рахунак адміністратара',
 	'config-admin-name' => 'Вашае імя:',
 	'config-admin-password' => 'Пароль:',
@@ -1322,7 +1324,7 @@ chmod a+w $3</pre>',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
 	'config-pg-no-create-privs' => 'Рахунак, які Вы пазначылі для ўсталяваньня ня мае дастаткова правоў для стварэньня рахунку.',
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
-	'config-install-user-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
+	'config-install-user-grant-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
 	'config-install-tables' => 'Стварэньне табліцаў',
 	'config-install-tables-exist' => "'''Папярэджаньне''': Выглядае, што табліцы MediaWiki ужо існуюць.
 Стварэньне прапушчанае.",
@@ -1874,6 +1876,8 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
 	'config-sqlite-dir' => "Kavlec'h roadennoù SQLite :",
+	'config-oracle-def-ts' => 'Esaouenn stokañ ("tablespace") dre ziouer :',
+	'config-oracle-temp-ts' => "Esaouenn stokañ (''tablespace'') da c'hortoz :",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -1947,6 +1951,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-email-settings' => 'Arventennoù ar postel',
 	'config-enable-email' => 'Gweredekaat ar posteloù a ya kuit',
 	'config-email-user' => 'Gweredekaat ar posteloù a implijer da implijer',
+	'config-email-user-help' => "Aotren a ra an holl implijerien da gas posteloù an eil d'egile mard eo bet gweredekaet an arc'hwel ganto en ho penndibaboù.",
 	'config-email-watchlist' => "Gweredekaat ar c'hemenn listenn evezhiañ",
 	'config-email-auth' => 'Gweredekaat an dilesadur dre bostel',
 	'config-email-sender' => "Chomlec'h postel respont :",
@@ -2088,7 +2093,7 @@ $messages['cs'] = array(
 $messages['de'] = array(
 	'config-desc' => 'Das MediaWiki-Installationsprogramm',
 	'config-title' => 'Installation von MediaWiki $1',
-	'config-information' => 'Information',
+	'config-information' => 'Informationen',
 	'config-localsettings-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
 Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.
 Der Parameterwert befindet sich in der Datei LocalSettings.php.',
@@ -2241,6 +2246,11 @@ Dabei sollten keine Leerzeichen verwendet werden.
  
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den Datenbanknamen angegeben oder aber die Erstellung einer Datenbank über ein entsprechendes Interface gestattet haben.',
 	'config-db-name-oracle' => 'Datenbankschema:',
+	'config-db-account-oracle-warn' => 'Es gibt drei von MediaWiki unterstützte Möglichkeiten Oracle als Datenbank einzurichten:
+
+Sofern das Datenbankbenutzerkonto während des Installationsvorgangs erstellt werden soll, muss ein Datenbankbenutzerkonto mit der SYSDBA-Berechtigung zusammen mit den entsprechenden Anmeldeinformationen angegeben werden, mit dem dann über das Web auf die Datenbank zugegriffen werden kann. Alternativ kann man auch lediglich ein einzelnes manuell angelegtes Datenbankbenutzerkonto angeben, mit dem über das Web auf die Datenbank zugegriffen werden kann, sofern dieses über die Berechtigung zur Erstellung von Datenbankschemen verfügt. Zudem ist es möglich zwei Datenbankbenutzerkonten anzugeben von denen eines die Berechtigung zur Erstellung von Datenbankschemen hat und das andere, um mit ihm über das Web auf die Datenbank zuzugreifen.
+
+Ein Skript zum Anlegen eines Datenbankbenutzerkontos mit den notwendigen Berechtigungen findet man unter dem Pfad „…/maintenance/oracle/“ dieser MediaWiki-Installation. Es ist dabei zu bedenken, dass die Verwendung eines Datenbankbenutzerkontos mit beschränkten Berechtigungen die Nutzung der Wartungsfunktionen für das Standarddatenbankbenutzerkonto deaktiviert.',
 	'config-db-install-account' => 'Benutzerkonto für die Installation',
 	'config-db-username' => 'Name des Datenbankbenutzers:',
 	'config-db-password' => 'Passwort des Datenbankbenutzers:',
@@ -2318,6 +2328,8 @@ Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9), Unter- (_) so
 Bitte unten angegebenen Servernamen, Benutzernamen sowie das Passwort überprüfen und es danach erneut versuchen.',
 	'config-invalid-schema' => 'Ungültiges Datenschema für MediaWiki „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
+	'config-db-sys-create-oracle' => 'Das Installationsprogramm unterstützt nur die Verwendung eines Datenbankbenutzerkontos mit SYSDBA-Berechtigung zum Anlegen eines neuen Datenbankbenutzerkontos.',
+	'config-db-sys-user-exists-oracle' => 'Das Datenbankbenutzerkonto „$1“ ist bereits vorhanden. Ein Datenbankbenutzerkontos mit SYSDBA-Berechtigung kann nur zum Anlegen eines neuen Datenbankbenutzerkontos genutzt werden.',
 	'config-postgres-old' => 'PostgreSQL $1 oder höher wird benötigt. PostgreSQL $2 ist momentan vorhanden.',
 	'config-sqlite-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
 Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
@@ -2399,6 +2411,8 @@ allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Ba
 Alle Seiten dieses Namensraumes verfügen über einen Seitenpräfix, der nun an dieser Stelle angegeben werden kann.
 Traditionell steht dieser Seitenpräfix mit dem Namen des Wikis in einem engen Zusammenhang. Dabei können bestimmte Sonderzeichen wie „#“ oder „:“ nicht verwendet werden.",
 	'config-ns-invalid' => 'Der angegebene Namensraum „<nowiki>$1</nowiki>“ ist ungültig.
+Bitte einen abweichenden Projektnamensraum angeben.',
+	'config-ns-conflict' => 'Der angegebene Namensraum „<nowiki>$1</nowiki>“ verursacht Problem mit dem Standardnamensraum von MediaWiki.
 Bitte einen abweichenden Projektnamensraum angeben.',
 	'config-admin-box' => 'Administratorkonto',
 	'config-admin-name' => 'Name:',
@@ -2533,7 +2547,9 @@ Es muss sichergestellt sein, dass der Benutzer „$1“ Schreibzugriff auf das D
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
 	'config-pg-no-create-privs' => 'Das für die Installation angegeben Konto verfügt nicht über ausreichende Berechtigungen, um ein Datenbanknutzerkonto zu erstellen.',
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
-	'config-install-user-failed' => 'Gewährung der Berechtigung für „$1“ ist gescheitert: $2',
+	'config-install-user-alreadyexists' => 'Datenbankbenutzer „$1“ ist bereits vorhanden',
+	'config-install-user-create-failed' => 'Das Anlegen des Datenbankbenutzers „$1“ ist gescheitert: $2',
+	'config-install-user-grant-failed' => 'Die Gewährung der Berechtigung für Datenbankbenutzer „$1“ ist gescheitert: $2',
 	'config-install-tables' => 'Datentabellen werden erstellt',
 	'config-install-tables-exist' => "'''Warnung:''' Es wurden MediaWiki-Datentabellen gefunden.
 Die Erstellung wurde übersprungen.",
@@ -2546,7 +2562,7 @@ Die Standardliste wird übersprungen.",
 	'config-install-secretkey' => 'Erstellung des Geheimschlüssels',
 	'config-insecure-secret' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>$1</code> ist gescheitert.
 Dies muss manuell nachgeholt werden.",
-	'config-install-upgradekey' => 'Der Standardaktualisierungsschlüssel wird generiert',
+	'config-install-upgradekey' => 'Standardaktualisierungsschlüssel wird generiert',
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-subscribe-fail' => 'Abonnierung von „mediawiki-announce“ ist gescheitert',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
@@ -5375,6 +5391,11 @@ Illo non pote continer spatios.
 
 Si tu usa un servitor web usate in commun, tu providitor te fornira le nomine specific de un base de datos a usar, o te permitte crear un base de datos via un pannello de controlo.',
 	'config-db-name-oracle' => 'Schema del base de datos:',
+	'config-db-account-oracle-warn' => 'Il ha tres scenarios supportate pro le installation de Oracle como le base de datos de iste systema:
+
+Si tu vole crear un conto del base de datos como parte del processo de installation, per favor specifica un conto con le rolo SYSDBA como le conto del base de datos pro installation, e specifica le nomine e contrasigno desirate pro le conto de accesso per web. Alteremente tu pote crear le conto de accesso per web manualmente e specificar solmente iste conto (si illo ha le permissiones requisite pro crear le objectos de schema) o specifica duo contos differente, un con privilegios de creation e un conto restringite pro accesso per web.
+
+Un script pro crear un conto con le privilegios requisite se trova in le directorio "maintenance/oracle/" de iste installation. Non oblida que le uso de un conto restringite disactiva tote le capacitates de mantenentia in le conto predefinite.',
 	'config-db-install-account' => 'Conto de usator pro installation',
 	'config-db-username' => 'Nomine de usator del base de datos:',
 	'config-db-password' => 'Contrasigno del base de datos:',
@@ -5452,6 +5473,8 @@ Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineame
 Verifica le servitor, nomine de usator e contrasigno hic infra e reproba.',
 	'config-invalid-schema' => 'Schema invalide pro MediaWiki "$1".
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
+	'config-db-sys-create-oracle' => 'Le installator supporta solmente le uso de un conto SYSDBA pro le creation de un nove conto.',
+	'config-db-sys-user-exists-oracle' => 'Le conto de usator "$1" ja existe. SYSDBA pote solmente esser usate pro le creation de un nove conto!',
 	'config-postgres-old' => 'PostgreSQL $1 o plus recente es requirite, tu ha $2.',
 	'config-sqlite-name-help' => 'Selige un nomine que identifica tu wiki.
 Non usar spatios o tractos de union.
@@ -5532,6 +5555,8 @@ Tote le titulos de pagina in iste spatio de nomines comencia con un certe prefix
 Traditionalmente, iste prefixo deriva del nomine del wiki, ma illo non pote continer characteres de punctuation como "#" o ":".',
 	'config-ns-invalid' => 'Le spatio de nomines specificate "<nowiki>$1</nowiki>" es invalide.
 Specifica un altere spatio de nomines de projecto.',
+	'config-ns-conflict' => 'Le spatio de nomines specificate "<nowiki>$1</nowiki>" conflige con un spatio de nomines predefinite de MediaWiki.
+Specifica un altere spatio de nomines pro le projecto.',
 	'config-admin-box' => 'Conto de administrator',
 	'config-admin-name' => 'Tu nomine:',
 	'config-admin-password' => 'Contrasigno:',
@@ -5669,7 +5694,9 @@ Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-pg-no-plpgsql' => 'Es necessari installar le linguage PL/pgSQL in le base de datos $1',
 	'config-pg-no-create-privs' => 'Le conto que tu specificava pro installation non ha sufficiente privilegios pro crear un conto.',
 	'config-install-user' => 'Crea usator pro base de datos',
-	'config-install-user-failed' => 'Le concession de permission al usator "$1" falleva: $2',
+	'config-install-user-alreadyexists' => 'Le usator "$1" ja existe',
+	'config-install-user-create-failed' => 'Le creation del usator "$1" ha fallite: $2',
+	'config-install-user-grant-failed' => 'Le concession de permission al usator "$1" falleva: $2',
 	'config-install-tables' => 'Crea tabellas',
 	'config-install-tables-exist' => "'''Aviso''': Il pare que le tabellas de MediaWiki jam existe.
 Le creation es saltate.",
@@ -7505,6 +7532,8 @@ chmod a+w $3</pre>',
 По традиција префиксот произлегува од името на викито, но не смее да содржи интерпункциски знаци како „#“ или „:“.",
 	'config-ns-invalid' => 'Назначениот именски простор „<nowiki>$1</nowiki>“ е неважечки.
 Назначете друг проектен именски простор.',
+	'config-ns-conflict' => 'Наведениот именски простор „<nowiki>$1</nowiki>“ се коси со основниот именски простор на МедијаВики.
+Наведете друг именски простор за проектот.',
 	'config-admin-box' => 'Администратоска сметка',
 	'config-admin-name' => 'Вашето име:',
 	'config-admin-password' => 'Лозинка:',
@@ -7642,7 +7671,7 @@ chmod a+w $3</pre>',
 	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
 	'config-pg-no-create-privs' => 'Сметката што ја наведовте за инсталацијата нема доволно привилегии за да создаде друга сметка.',
 	'config-install-user' => 'Создавам корисник за базата',
-	'config-install-user-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
+	'config-install-user-grant-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
 	'config-install-tables-exist' => "'''Предупредување''': Изгледа дека табелите за МедијаВики веќе постојат.
 Го прескокнувам создавањето.",
@@ -8015,6 +8044,11 @@ Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP
 Er mogen geen spaties gebruikt worden.
 Als u gebruik maakt van gedeelde webhosting, dan hoort uw provider ofwel u een te gebruiken databasenaam gegeven te hebben, of u aangegeven te hebben hoe u databases kunt aanmaken.',
 	'config-db-name-oracle' => 'Databaseschema:',
+	'config-db-account-oracle-warn' => 'Er zijn drie ondersteunde scenario\'s voor het installeren van Oracle als databasebackend:
+
+Als u een databasegebruiker wilt aanmaken als onderdeel van het installatieproces, geef dan de gegevens op van een databasegebruiker in met de rol SYSDBA voor de installatie en voer de gewenste aanmeldgegevens in voor de gebruiker met webtoegang. U kunt ook de gebruiker met webtoegang handmatig aanmaken en alleen van die gebruiker de aanmeldgegevens opgeven als deze de vereiste rechten heeft om schemaobjecten aan te maken. Als laatste is het mogelijk om aanmeldgegevens van twee verschillende gebruikers op te geven; een met de rechten om schemaobjecten aan te maken, en een met alleen webtoegang.
+
+Een script voor het aanmaken van een gebruiker met de vereiste rechten is te vinden in de map "maintenance/oracle/" van deze installatie. Onthoud dat het gebruiken van een gebruiker met beperkte rechten alle mogelijkheden om beheerscripts uit te voeren met de standaard gebruiker onmogelijk maakt.',
 	'config-db-install-account' => 'Gebruiker voor installatie',
 	'config-db-username' => 'Gebruikersnaam voor database:',
 	'config-db-password' => 'Wachtwoord voor database:',
@@ -8093,6 +8127,8 @@ Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_) en st
 Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
 	'config-invalid-schema' => 'Ongeldig schema voor MediaWiki "$1".
 Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+	'config-db-sys-create-oracle' => 'Het installatieprogramma biedt alleen de mogelijkheid een nieuwe gebruiker aan te maken met de SYSDBA-gebruiker.',
+	'config-db-sys-user-exists-oracle' => 'De gebruiker "$1" bestaat al. SYSDBA kan alleen gebruikt worden voor het aanmaken van een nieuwe gebruiker!',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
 U gebruikt $2.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -8317,7 +8353,9 @@ Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
 	'config-pg-no-create-privs' => 'De gebruiker die u hebt opgegeven door de installatie heeft niet voldoende rechten om een gebruiker aan te maken.',
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
-	'config-install-user-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
+	'config-install-user-alreadyexists' => 'Gebruiker "$1" bestaat al',
+	'config-install-user-create-failed' => 'Het aanmaken van de gebruiker "$1" is mislukt: $2',
+	'config-install-user-grant-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
 	'config-install-tables' => 'Tabellen aanmaken',
 	'config-install-tables-exist' => "'''Waarschuwing''': de MediaWiki-tabellen lijken al te bestaan. 
 Het aanmaken wordt overgeslagen.",
