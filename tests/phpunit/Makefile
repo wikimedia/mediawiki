@@ -55,6 +55,9 @@ safe:
 databaseless:
 	${PU} --exclude-group Broken,Destructive,Database
 
+database:
+	${PU} --exclude-group Broken,Destructive --group Database
+
 list-groups:
 	${PU} --list-groups
 
