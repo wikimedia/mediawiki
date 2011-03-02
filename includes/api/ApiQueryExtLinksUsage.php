@@ -51,7 +51,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @para $resultPageSet ApiPageSet
+	 * @param $resultPageSet ApiPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {

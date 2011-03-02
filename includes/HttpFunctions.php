@@ -158,6 +158,9 @@ class MWHttpRequest {
 	protected $maxRedirects = 5;
 	protected $followRedirects = false;
 
+	/**
+	 * @var  CookieJar
+	 */
 	protected $cookieJar;
 
 	protected $headerList = array();
@@ -983,6 +986,8 @@ class PhpHttpRequest extends MWHttpRequest {
 		$this->headerList = array();
 		$reqCount = 0;
 		$url = $this->url;
+
+		$result = array();
 
 		do {
 			$reqCount++;
