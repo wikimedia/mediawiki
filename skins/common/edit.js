@@ -33,7 +33,7 @@ window.mwInsertEditButton = function( parent, item ) {
 		insertTags( item.tagOpen, item.tagClose, item.sampleText, item.selectText );
 		// click tracking
 		if ( ( typeof $ != 'undefined' )  && ( typeof $.trackAction != 'undefined' ) ) {
-			$.trackAction( 'oldedit.' + item.speedTip.replace(/ /g, "-") );
+			$.trackAction( 'oldedit.' + item.speedTip.replace(/ /g, '-') );
 		}
 		return false;
 	};
@@ -46,6 +46,7 @@ window.mwInsertEditButton = function( parent, item ) {
 // we use it to avoid creating the toolbar where javascript is not enabled
 window.mwSetupToolbar = function() {
 	var toolbar = document.getElementById( 'toolbar' );
+	var i = 0;
 	if ( !toolbar ) {
 		return false;
 	}
@@ -67,10 +68,10 @@ window.mwSetupToolbar = function() {
 			return false;
 		}
 	}
-	for ( var i = 0; i < mwEditButtons.length; i++ ) {
+	for ( i = 0; i < mwEditButtons.length; i++ ) {
 		mwInsertEditButton( toolbar, mwEditButtons[i] );
 	}
-	for ( var i = 0; i < mwCustomEditButtons.length; i++ ) {
+	for ( i = 0; i < mwCustomEditButtons.length; i++ ) {
 		mwInsertEditButton( toolbar, mwCustomEditButtons[i] );
 	}
 	return true;
@@ -96,12 +97,23 @@ window.insertTags = function( tagOpen, tagClose, sampleText, selectText) {
 	}
 	var selText, isSample = false;
 
+	function checkSelectedText() {
+		if ( !selText ) {
+			selText = sampleText;
+			isSample = true;
+		} else if ( selText.charAt(selText.length - 1) == ' ' ) { // exclude ending space char
+			selText = selText.substring(0, selText.length - 1);
+			tagClose += ' ';
+		}
+	}
+
 	if ( document.selection  && document.selection.createRange ) { // IE/Opera
 		// save window scroll position
+		var winScroll = null;
 		if ( document.documentElement && document.documentElement.scrollTop ) {
-			var winScroll = document.documentElement.scrollTop
+			winScroll = document.documentElement.scrollTop;
 		} else if ( document.body ) {
-			var winScroll = document.body.scrollTop;
+			winScroll = document.body.scrollTop;
 		}
 		// get current selection
 		txtarea.focus();
@@ -151,16 +163,6 @@ window.insertTags = function( tagOpen, tagClose, sampleText, selectText) {
 		}
 		// restore textarea scroll position
 		txtarea.scrollTop = textScroll;
-	}
-
-	function checkSelectedText() {
-		if ( !selText ) {
-			selText = sampleText;
-			isSample = true;
-		} else if ( selText.charAt(selText.length - 1) == ' ' ) { // exclude ending space char
-			selText = selText.substring(0, selText.length - 1);
-			tagClose += ' ';
-		}
 	}
 
 };
@@ -229,6 +231,4 @@ hookEvent( 'load', function() {
 		}
 	}
 
-	editForm
 } );
-
