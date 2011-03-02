@@ -142,7 +142,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-externaldiff'            => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default.",
 'tog-showjumplinks'           => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option).',
 'tog-uselivepreview'          => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again.',
-'tog-forceeditsummary'        => 'Toggle option used in [[Special:Preferences]].',
+'tog-forceeditsummary'        => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''.",
 'tog-watchlisthideown'        => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist.",
 'tog-watchlisthidebots'       => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist.",
 'tog-watchlisthideminor'      => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist.",
@@ -2437,7 +2437,7 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 * $3: the editor that cause collision
 
 {{Identical|Rollback}}",
-'editcomment'       => 'Only shown if there is an edit comment',
+'editcomment'       => "Only shown if there is an edit ''{{msg-mw|summary}}''",
 'revertpage'        => '{{Identical|Revert}}
 Additionally available:
 * $3: revid of the revision reverted to,

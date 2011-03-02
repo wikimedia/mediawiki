@@ -1285,7 +1285,7 @@ Costa anformassion a sarà pùblica.",
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 'right-revisionmove'          => 'Tramudé le revision',
-'right-disableaccount'        => 'Disabìlita cont',
+'right-disableaccount'        => 'Disabilité dij cont',
 
 # User rights log
 'rightslog'      => "Argistr dij drit ëd j'utent",
@@ -1816,8 +1816,8 @@ A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë str
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pàgina che a-i ven ($1)',
 'prevpage'          => 'Pàgina anans ($1)',
-'allpagesfrom'      => 'Most-me la pàgine ën partend da:',
-'allpagesto'        => 'Mosta jë pàgine fin a:',
+'allpagesfrom'      => 'Smon-e le pàgine ën partend da:',
+'allpagesto'        => 'Smon-e le pàgine fin-a a:',
 'allarticles'       => "Tùit j'artìcoj",
 'allinnamespace'    => 'Tute le pàgine (spassi nominal $1)',
 'allnotinnamespace' => 'Tute le pàgine (che a son nen ant lë spassi nominal $1)',
@@ -3356,13 +3356,13 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 
 # Special:DisableAccount
 'disableaccount'             => 'Disabìlita un cont utent',
-'disableaccount-user'        => 'Nòm utent:',
+'disableaccount-user'        => 'Stranòm:',
 'disableaccount-reason'      => 'Rason:',
-'disableaccount-confirm'     => "Disabìlita sto cont utent.
-L'utent a podrà pa pi intré, torna amposté soa ciav, o arseive notìfiche e-mail.
-Se l'utent a l'é al moment intrà an quaich manere, a sarà sùbit campà fòra.
-''Nòta che disabiité un cont a l'é pa riversìbil senta antërvent d'un aministrador ëd sistem.''",
-'disableaccount-mustconfirm' => "It deuve confirmé ch'it veule disabilité sto cont.",
+'disableaccount-confirm'     => "Disabilité sto cont utent.
+L'utent a podrà pi intré ant ël sistema, amposté torna soa ciav, o arsèive notìfiche për pòsta eletrònica.
+Se l'utent a l'é al moment intrà da chèich part, a sarà sùbit barà fòra.
+''Ch'a nòta che disabiité un cont a l'é pa reversìbil senta l'antërvension ëd n'aministrator ëd sistema.''",
+'disableaccount-mustconfirm' => "A dev confirmé ch'a veul disabilité ës cont.",
 'disableaccount-nosuchuser'  => 'Ël cont utent "$1" a esist pa.',
 'disableaccount-success'     => 'Ël cont utent "$1" a l\'é stàit disabilità përmanentement.',
 'disableaccount-logentry'    => 'disabilità përmanentement ël cont utent [[$1]]',

@@ -1004,7 +1004,7 @@ Puido borrarse ou moverse a outro nome.
 Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentario eliminado)',
+'rev-deleted-comment'         => '(resumo de edición eliminado)',
 'rev-deleted-user'            => '(nome de usuario eliminado)',
 'rev-deleted-event'           => '(rexistro de evento eliminado)',
 'rev-deleted-user-contribs'   => '[nome de usuario ou enderezo IP eliminado; edición agochada das contribucións]',
@@ -1663,6 +1663,8 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 'php-uploaddisabledtext'      => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted'              => 'Este ficheiro contén HTML ou código (script code) que pode producir erros ao ser interpretado polo navegador.',
 'uploadvirus'                 => 'O ficheiro contén un virus! Detalles: $1',
+'uploadjava'                  => 'O ficheiro é un ZIP que contén un ficheiro .class de Java.
+Non están permitidas as cargas de ficheiros Java, dado que poden causar restricións de seguridade.',
 'upload-source'               => 'Ficheiro de orixe',
 'sourcefilename'              => 'Nome do ficheiro a cargar:',
 'sourceurl'                   => 'URL de orixe:',
@@ -1714,6 +1716,14 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-too-many-redirects' => 'O enderezo URL contiña moitas redireccións',
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Atopouse un erro ao abrir o ficheiro ZIP para realizar as comprobacións.',
+'zip-wrong-format'    => 'O ficheiro especificado non é ZIP.',
+'zip-bad'             => 'O ficheiro ZIP está corrompido ou a súa lectura é imposible.
+Non pode superar adecuadamente as comprobacións de seguridade.',
+'zip-unsupported'     => 'O ficheiro é un ZIP que emprega características non soportadas por MediaWiki.
+Non pode superar adecuadamente as comprobacións de seguridade.',
 
 # Special:UploadStash
 'uploadstash'          => 'Ficheiros agochados',

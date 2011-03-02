@@ -1828,6 +1828,9 @@ Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</cod
 	'config-page-existingwiki' => 'Wiki zo anezhañ dija',
 	'config-help-restart' => "Ha c'hoant hoc'h eus da ziverkañ an holl roadennoù hoc'h eus ebarzhet ha da adlañsañ an argerzh staliañ ?",
 	'config-restart' => "Ya, adloc'hañ anezhañ",
+	'config-welcome' => "=== Gwiriadennoù a denn d'an endro ===
+Rekis eo un nebeud gwiriadennoù diazez da welet hag azas eo an endro evit gallout staliañ MediaWiki.
+Dleout a rafec'h merkañ disoc'hoù ar gwiriadennoù-se m'hoc'h eus ezhomm skoazell e-pad ar staliadenn.",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Degemer]
 * [http://www.mediawiki.org/wiki/Help:Contents Pajenn-stur an implijer]
 * [http://www.mediawiki.org/wiki/Manual:Contents Pajenn-stur ar merour]
@@ -1844,6 +1847,9 @@ Ne c'hallit ket staliañ MediaWiki.",
 An dibarzh-mañ zo kaoz da zrein euzhus gant MediaWiki.
 Ne c'hallit ket staliañ nag implijout MediaWiki keit ha m'eo gweredekaet an dibarzh-mañ.",
 	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
+	'config-memory-bad' => "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.
+Re izel eo moarvat.
+Marteze e c'hwito ar staliadenn !",
 	'config-xcache' => 'Staliet eo [http://trac.lighttpd.net/xcache/ XCache]',
 	'config-apc' => 'Staliet eo [http://www.php.net/apc APC]',
 	'config-eaccel' => 'Staliet eo [http://eaccelerator.sourceforge.net/ eAccelerator]',
@@ -3614,11 +3620,23 @@ $messages['gl'] = array(
 	'config-desc' => 'O programa de instalación de MediaWiki',
 	'config-title' => 'Instalación de MediaWiki $1',
 	'config-information' => 'Información',
-	'config-localsettings-upgrade' => "'''Atención:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
-O seu software está listo para a actualización.
-Introduza o valor de <code>\$wgUpgradeKey</code> na caixa.",
+	'config-localsettings-upgrade' => 'Detectouse un ficheiro <code>LocalSettings.php</code>.
+Para actualizar esta instalación, introduza o valor de <code>$wgUpgradeKey</code> na caixa.
+Pode atopalo en LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Detectouse un ficheiro LocalSettings.php.
+Para actualizar esta instalación, utilice a opción --upgrade=yes.',
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'A clave dada é incorrecta',
+	'config-upgrade-key-missing' => 'Detectouse unha instalación existente de MediaWiki.
+Para actualizar esta instalación, inclúa esta liña ao final do ficheiro LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Semella que o ficheiro LocalSettings.php existente está incompleto.
+A variable $1 non está establecida.
+Modifique o ficheiro LocalSettings.php de xeito que a variable quede establecida e prema en "Continuar".',
+	'config-localsettings-connection-error' => 'Atopouse un erro ao conectar coa base de datos empregando a configuración especificada no ficheiro LocalSettings.php ou no ficheiro AdminSettings.php. Corrixa esta configuración e inténteo de novo. 
+
+$1',
 	'config-session-error' => 'Erro ao iniciar a sesión: $1',
 	'config-session-expired' => 'Semella que os seus datos da sesión caducaron.
 As sesións están configuradas para unha duración de $1.
@@ -3665,7 +3683,12 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/gl Páxina principal de MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Guía de usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía de administrador]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes]
+----
+* <doclink href=Readme>Léame</doclink>
+* <doclink href=ReleaseNotes>Notas de lanzamento</doclink>
+* <doclink href=Copying>Copia</doclink>
+* <doclink href=UpgradeDoc>Actualización</doclink>',
 	'config-env-good' => 'Rematou a comprobación do entorno.
 Pode instalar MediaWiki.',
 	'config-env-bad' => 'Rematou a comprobación do entorno.
@@ -3748,13 +3771,15 @@ Se está a realizar a instalación nun servidor de Windows con MySQL, o nome "lo
 	'config-db-wiki-settings' => 'Identificar o wiki',
 	'config-db-name' => 'Nome da base de datos:',
 	'config-db-name-help' => 'Escolla un nome que identifique o seu wiki.
-Non debe conter espazos ou guións.
+Non debe conter espazos.
 
 Se está usando un aloxamento web compartido, o seu provedor de hospedaxe daralle un nome específico para a base de datos ou deixaralle crear unha a través do panel de control.',
 	'config-db-name-oracle' => 'Esquema da base de datos:',
 	'config-db-install-account' => 'Conta de usuario para a instalación',
 	'config-db-username' => 'Nome de usuario da base de datos:',
 	'config-db-password' => 'Contrasinal da base de datos:',
+	'config-db-password-empty' => 'Introduza un contrasinal para o novo usuario da base de datos: $1.
+Malia que é posible crear usuarios sen contrasinal, esta práctica non é segura.',
 	'config-db-install-username' => 'Escriba o nome de usuario que empregará para conectarse á base de datos durante o proceso de instalación. Este non é o nome de usuario da conta de MediaWiki, trátase do nome de usuario para a súa base de datos.',
 	'config-db-install-password' => 'Escriba o contrasinal que empregará para conectarse á base de datos durante o proceso de instalación. Este non é o contrasinal da conta de MediaWiki, trátase do contrasinal para a súa base de datos.',
 	'config-db-install-help' => 'Introduza o nome de usuario e contrasinal que se usará para conectar á base de datos durante o proceso de instalación.',
@@ -3764,7 +3789,7 @@ Se está usando un aloxamento web compartido, o seu provedor de hospedaxe darall
 Se a conta non existe e a conta de instalación ten privilexios suficientes, esa conta de usuario será creada cos privilexios mínimos necesarios para o funcionamento do wiki.',
 	'config-db-prefix' => 'Prefixo das táboas da base de datos:',
 	'config-db-prefix-help' => 'Se necesita compartir unha base de datos entre varios wikis ou entre MediaWiki e outra aplicación web, pode optar por engadir un prefixo a todos os nomes da táboa para evitar conflitos.
-Non utilice espazos ou guións.
+Non utilice espazos.
 
 O normal é que este campo quede baleiro.',
 	'config-db-charset' => 'Conxunto de caracteres da base de datos',
@@ -3789,7 +3814,7 @@ O servidor web debe ter permisos sobre o directorio para que poida escribir nel 
 
 Ademais, o servidor '''non''' debe ser accesible a través da web, motivo polo que non está no mesmo lugar ca os ficheiros PHP.
 
-Asemade, o instalador escribirá un ficheiro <code>.htaccess</code>, pero se erra alguén pode obter acceso á súa base de datos.
+Asemade, o programa de instalación escribirá un ficheiro <code>.htaccess</code>, pero se erra alguén pode obter acceso á súa base de datos.
 Isto inclúe datos de usuario (enderezos de correo electrónico, contrasinais codificados), así como revisións borradas e outros datos restrinxidos no wiki.
 
 Considere poñer a base de datos nun só lugar, por exemplo en <code>/var/lib/mediawiki/oseuwiki</code>.",
@@ -3819,21 +3844,23 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-invalid-db-server-oracle' => 'O TNS da base de datos, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e puntos (.).',
 	'config-invalid-db-name' => 'O nome da base de datos, "$1", é incorrecto.
-Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
+Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e guións (-).',
 	'config-invalid-db-prefix' => 'O prefixo da base de datos, "$1", é incorrecto.
-Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
+Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e guións (-).',
 	'config-connection-error' => '$1.
 
 Comprobe o servidor, nome de usuario e contrasinal que hai a continuación e inténteo de novo.',
 	'config-invalid-schema' => 'O esquema de MediaWiki, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
+	'config-db-sys-create-oracle' => 'O programa de instalación soamente soporta o emprego de contas SYSDBA como método para crear unha nova conta.',
+	'config-db-sys-user-exists-oracle' => 'A conta de usuario "$1" xa existe. SYSDBA soamente se pode empregar para a creación dunha nova conta!',
 	'config-postgres-old' => 'Necesítase PostgreSQL $1 ou posterior; ten a versión $2.',
 	'config-sqlite-name-help' => 'Escolla un nome que identifique o seu wiki.
 Non utilice espazos ou guións.
 Este nome será utilizado para o ficheiro de datos SQLite.',
 	'config-sqlite-parent-unwritable-group' => 'Non se puido crear o directorio de datos <code><nowiki>$1</nowiki></code>, porque o servidor web non pode escribir no directorio pai <code><nowiki>$2</nowiki></code>.
 
-O instalador determinou o usuario que executa o seu servidor web.
+O programa de instalación determinou o usuario que executa o seu servidor web.
 Para continuar, faga que se poida escribir no directorio <code><nowiki>$3</nowiki></code>.
 Nun sistema Unix/Linux cómpre realizar:
 
@@ -3843,7 +3870,7 @@ chgrp $4 $3
 chmod g+w $3</pre>',
 	'config-sqlite-parent-unwritable-nogroup' => 'Non se puido crear o directorio de datos <code><nowiki>$1</nowiki></code>, porque o servidor web non pode escribir no directorio pai <code><nowiki>$2</nowiki></code>.
 
-O instalador non puido determinar o usuario que executa o seu servidor web.
+O programa de instalación non puido determinar o usuario que executa o seu servidor web.
 Para continuar, faga que se poida escribir globalmente no directorio <code><nowiki>$3</nowiki></code>.
 Nun sistema Unix/Linux cómpre realizar:
 
@@ -3868,6 +3895,9 @@ Agora pode [$1 comezar a utilizar o seu wiki].
 
 Se quere rexenerar o seu ficheiro <code>LocalSettings.php</code>, prema no botón que aparece a continuación.
 Isto '''non é recomendable''' a menos que estea a ter problemas co seu wiki.",
+	'config-upgrade-done-no-regenerate' => 'Actualización completada.
+
+Xa pode [$1 comezar a usar o seu wiki].',
 	'config-regenerate' => 'Rexenerar LocalSettings.php →',
 	'config-show-table-status' => 'A pescuda SHOW TABLE STATUS fallou!',
 	'config-unknown-collation' => "'''Atención:''' A base de datos está a empregar unha clasificación alfabética irrecoñecible.",
@@ -3905,6 +3935,8 @@ Todos os títulos presentes neste espazo de nomes comezan cun prefixo determinad
 Tradicionalmente, este prefixo deriva do nome do wiki, pero non pode conter caracteres de puntuación como "#" ou ":".',
 	'config-ns-invalid' => 'O espazo de nomes especificado, "<nowiki>$1</nowiki>", é incorrecto.
 Especifique un espazo de nomes do proxecto diferente.',
+	'config-ns-conflict' => 'O espazo de nomes especificado, "<nowiki>$1</nowiki>", entra en conflito co espazo de nomes MediaWiki por defecto.
+Especifique un espazo de nomes do proxecto diferente.',
 	'config-admin-box' => 'Conta de administrador',
 	'config-admin-name' => 'O seu nome:',
 	'config-admin-password' => 'Contrasinal:',
@@ -3921,6 +3953,7 @@ Especifique un nome de usuario diferente.',
 	'config-admin-email-help' => 'Escriba aquí un enderezo de correo electrónico para que poida recibir mensaxes doutros usuarios a través do wiki, restablecer o contrasinal e ser notificado das modificacións feitas nas páxinas presentes na súa lista de vixilancia.',
 	'config-admin-error-user' => 'Erro interno ao crear un administrador co nome "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Erro interno ao establecer un contrasinal para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Escribiu un enderezo de correo electrónico non válido.',
 	'config-subscribe' => 'Subscríbase á [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios sobre lanzamentos].',
 	'config-subscribe-help' => 'Esta é unha lista de correos de baixo volume usada para anuncios sobre lanzamentos de novas versións, incluíndo avisos de seguridade importantes.
 Debería subscribirse a ela e actualizar a súa instalación MediaWiki cando saian as novas versións.',
@@ -4012,22 +4045,37 @@ Escriba o nome da licenza manualmente.',
 	'config-cache-memcached' => 'Empregar o Memcached (necesita unha instalación e configuración adicional)',
 	'config-memcached-servers' => 'Servidores da memoria caché:',
 	'config-memcached-help' => 'Lista de enderezos IP para Memcached.
-Deben separarse por comas e especificar o porto a usar (por exemplo: 127.0.0.1:11211, 192.168.1.25:11211).',
+Debe especificarse un por liña, así como o porto a usar. Por exemplo:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Seleccionou Memcached como o seu tipo de caché, pero non especificou ningún servidor.',
+	'config-memcache-badip' => 'Escribiu un enderezo IP inválido para Memcached: $1.',
+	'config-memcache-noport' => 'Non especificou o porto a usar no servidor Memcached: $1. 
+Se non sabe o porto, o predeterminado é 11211.',
+	'config-memcache-badport' => 'Os números de porto Memcached deben estar entre $1 e $2.',
 	'config-extensions' => 'Extensións',
 	'config-extensions-help' => 'As extensións anteriores detectáronse no seu directorio <code>./extensions</code>.
 
 Quizais necesite algunha configuración adicional, pero pode activalas agora',
 	'config-install-alreadydone' => "'''Atención:''' Semella que xa instalou MediaWiki e que o está a instalar de novo.
 Vaia ata a seguinte páxina.",
+	'config-install-begin' => 'Ao premer en "Seguinte", comezará a instalación de MediaWiki.
+Se aínda quere facer algún cambio, volva atrás.',
 	'config-install-step-done' => 'feito',
 	'config-install-step-failed' => 'erro',
 	'config-install-extensions' => 'Incluíndo as extensións',
 	'config-install-database' => 'Configurando a base de datos',
+	'config-install-pg-schema-not-exist' => 'O esquema PostgreSQL non existe.',
 	'config-install-pg-schema-failed' => 'Fallou a creación de táboas.
 Asegúrese de que o usuario "$1" pode escribir no esquema "$2".',
 	'config-install-pg-commit' => 'Validando os cambios',
+	'config-install-pg-plpgsql' => 'Comprobación da lingua PL/pgSQL',
+	'config-pg-no-plpgsql' => 'Cómpre instalar a lingua PL/pgSQL na base de datos $1',
+	'config-pg-no-create-privs' => 'A conta especificada para a instalación non ten os privilexios necesarios para crear unha conta.',
 	'config-install-user' => 'Creando o usuario da base de datos',
-	'config-install-user-failed' => 'Fallou a concesión de permisos ao usuario "$1": $2',
+	'config-install-user-alreadyexists' => 'O usuario "$1" xa existe',
+	'config-install-user-create-failed' => 'A creación do usuario "$1" fallou: $2',
+	'config-install-user-grant-failed' => 'Fallou a concesión de permisos ao usuario "$1": $2',
 	'config-install-tables' => 'Creando as táboas',
 	'config-install-tables-exist' => "'''Atención:''' Semella que as táboas de MediaWiki xa existen.
 Saltando a creación.",
@@ -4036,23 +4084,31 @@ Saltando a creación.",
 	'config-install-interwiki-list' => 'Non se puido atopar o ficheiro <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Atención:''' Semella que a táboa de interwiki xa contén entradas.
 Saltando a lista por defecto.",
+	'config-install-stats' => 'Iniciando as estatísticas',
 	'config-install-secretkey' => 'Xerando a clave secreta',
 	'config-insecure-secret' => "'''Atención:''' Non se puido crear a clave secreta <code>$1</code>.
 Considere cambiala manualmente.",
 	'config-install-upgradekey' => 'Xerando a clave de actualización por defecto',
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
+	'config-install-subscribe-fail' => 'Non se puido subscribir á lista mediawiki-announce',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
+	'config-install-extension-tables' => 'Creando as táboas para as extensións activadas',
 	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal: $1',
 	'config-install-done' => "'''Parabéns!'''
 Instalou correctamente MediaWiki.
 
-O instalador xerou un ficheiro <code>LocalSettings.php</code>.
-Este contén toda a súa configuración.
+O programa de instalación xerou un ficheiro <code>LocalSettings.php</code>.
+Este ficheiro contén toda a súa configuración.
 
-Terá que [$1 descargalo] e poñelo na base da instalación do seu wiki (no mesmo directorio ca index.php).
+Terá que descargalo e poñelo na base da instalación do seu wiki (no mesmo directorio ca index.php). A descarga debería comezar automaticamente.
+
+Se non comezou a descarga ou se a cancelou, pode facer que comece de novo premendo na ligazón que aparece a continuación:
+
+$3
+
 '''Nota:''' Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.
 
-Cando faga todo isto, xa poderá  '''[$2 entrar no seu wiki]'''.",
+Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	'config-download-localsettings' => 'Descargar o LocalSettings.php',
 	'config-help' => 'axuda',
 );
@@ -7375,6 +7431,11 @@ $1
 
 Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител ќе ви даде конкретно име на база за користење, или пак ќе ви даде да создавате бази преку контролната табла.',
 	'config-db-name-oracle' => 'Шема на базата:',
+	'config-db-account-oracle-warn' => 'Постојат три поддржани сценарија за инсталирање на Oracle како базен услужник:
+
+Ако сакате да создадете сметка на базата како дел од постапката за инсталација, наведете сметка со SYSDBA-улога како сметка за базата што ќе се инсталира и наведете ги саканите податоци за сметката за мрежен пристап. Во друг случај, можете да создадете сметка за мрежен пристап рачно и да ја наведете само таа сметка (ако има дозволи за создавање на шематски објекти) или пак да наведете две различни сметки, една со привилегии за создавање, а друга (ограничена) за мрежен пристап.
+
+Скриптата за создавање сметка со задолжителни привилегии ќе ја најдете во папката „maintenance/oracle/“ од оваа инсталација. Имајте на ум дека ако користите ограничена сметка ќе ги оневозможите сите функции за одржување со основната сметка.',
 	'config-db-install-account' => 'Корисничка смета за инсталација',
 	'config-db-username' => 'Корисничко име за базата:',
 	'config-db-password' => 'Лозинка за базата:',
@@ -7452,6 +7513,8 @@ $1
 Проверете го долунаведениот домаќин, корисничко име и лозинка и обидете се повторно.',
 	'config-invalid-schema' => 'Неважечка шема за МедијаВики „$1“.
 Користете само букви, бројки и долни црти.',
+	'config-db-sys-create-oracle' => 'Инсталаторот поддржува само употреба на SYSDBA-сметка за создавање на нова сметка.',
+	'config-db-sys-user-exists-oracle' => 'Корисничката сметка „$1“ веќе постои. SYSDBA служи само за создавање на нова сметка!',
 	'config-postgres-old' => 'Се бара PostgreSQL $1 или поново, а вие имате $2.',
 	'config-sqlite-name-help' => 'Одберете име кое ќе го претставува вашето вики.
 Не користете празни простори и црти.
@@ -7671,6 +7734,8 @@ chmod a+w $3</pre>',
 	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
 	'config-pg-no-create-privs' => 'Сметката што ја наведовте за инсталацијата нема доволно привилегии за да создаде друга сметка.',
 	'config-install-user' => 'Создавам корисник за базата',
+	'config-install-user-alreadyexists' => 'Корисникот „$1“ веќе постои',
+	'config-install-user-create-failed' => 'Создавањето на корисникот „$1“ не успеа: $2',
 	'config-install-user-grant-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
 	'config-install-tables-exist' => "'''Предупредување''': Изгледа дека табелите за МедијаВики веќе постојат.
@@ -9176,9 +9241,9 @@ $messages['pms'] = array(
 	'config-desc' => "L'instalador për mediaWiki",
 	'config-title' => 'Anstalassion ëd MediaWiki $1',
 	'config-information' => 'Anformassion',
-	'config-localsettings-upgrade' => "'''Avis''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
-Sò programa a peul esse agiornà.
-Për piasì, ch'a ansërissa ël valor ëd <code>\$wgUpgradeKey</code> ant la forma.",
+	'config-localsettings-upgrade' => "A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
+Për agiorné cost'anstalassion, ch'a anserissa ël valor ëd <code>\$wgUpgradeKey</code> ant la casela sì-sota.
+A la trovrà an LocalSetting.php.",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-session-error' => 'Eror an fasend parte la session: $1',
 	'config-session-expired' => "Ij sò dat ëd session a smijo scadù.
@@ -9565,7 +9630,7 @@ Për piasì, ch'a vada a la pàgina ch'a-i ven.",
 	'config-install-pg-schema-failed' => 'Creassion dle tàule falìa.
 Sigurte che l\'utent "$1" a peussa scrive lë schema "$2".',
 	'config-install-user' => "Creassion ëd n'utent ëd la base ëd dàit",
-	'config-install-user-failed' => 'Falì a dé ij përmess a l\'utent "$1": $2',
+	'config-install-user-grant-failed' => 'Falì a dé ij përmess a l\'utent "$1": $2',
 	'config-install-tables' => 'Creassion dle tàule',
 	'config-install-tables-exist' => "'''Avis''': A smija che le tàule ëd mediaWiki a esisto già.
 Sauté la creassion.",

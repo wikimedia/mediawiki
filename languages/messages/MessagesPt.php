@@ -1096,7 +1096,7 @@ Pode ter sido eliminada da wiki ou o nome sido alterado.
 Tente [[Special:Search|pesquisar na wiki]] novas páginas relevantes.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentário removido)',
+'rev-deleted-comment'         => '(resumo da edição suprimido)',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-user-contribs'   => '[nome de utilizador ou IP removido - edição ocultada das contribuições]',

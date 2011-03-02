@@ -284,20 +284,21 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-addsection' => 'Mintzagaia gehitu',
-'vector-action-delete'     => 'Ezabatu',
-'vector-action-move'       => 'Mugitu',
-'vector-action-protect'    => 'Babestu',
-'vector-action-undelete'   => 'Berreskuratu',
-'vector-action-unprotect'  => 'Babesgabetu',
-'vector-view-create'       => 'Sortu',
-'vector-view-edit'         => 'Aldatu',
-'vector-view-history'      => 'Historia ikusi',
-'vector-view-view'         => 'Irakurri',
-'vector-view-viewsource'   => 'Kodea ikusia',
-'actions'                  => 'Ekintzak',
-'namespaces'               => 'Izen-tarteak',
-'variants'                 => 'Aldaerak',
+'vector-action-addsection'       => 'Mintzagaia gehitu',
+'vector-action-delete'           => 'Ezabatu',
+'vector-action-move'             => 'Mugitu',
+'vector-action-protect'          => 'Babestu',
+'vector-action-undelete'         => 'Berreskuratu',
+'vector-action-unprotect'        => 'Babesgabetu',
+'vector-simplesearch-preference' => 'Baimendu bilaketa gomendio hobetuak (Vector itxurarekin bakarrik)',
+'vector-view-create'             => 'Sortu',
+'vector-view-edit'               => 'Aldatu',
+'vector-view-history'            => 'Historia ikusi',
+'vector-view-view'               => 'Irakurri',
+'vector-view-viewsource'         => 'Kodea ikusia',
+'actions'                        => 'Ekintzak',
+'namespaces'                     => 'Izen-tarteak',
+'variants'                       => 'Aldaerak',
 
 'errorpagetitle'    => 'Errorea',
 'returnto'          => '$1(e)ra itzuli.',
@@ -322,6 +323,7 @@ $messages = array(
 'delete'            => 'Ezabatu',
 'deletethispage'    => 'Orrialde hau ezabatu',
 'undelete_short'    => 'Berreskuratu {{PLURAL:$1|aldaketa bat|$1 aldaketa}}',
+'viewdeleted_short' => 'Ikusi ezabatutako {{PLURAL:$1|bidalketa bat|$1 bidalketa}}',
 'protect'           => 'Babestu',
 'protect_change'    => 'aldatu',
 'protectthispage'   => 'Orrialde hau babestu',
@@ -359,6 +361,7 @@ Erabiltzaile gehiegi ari da orrialde hau ikusi nahiean.
 Mesedez itxaron ezazu unetxo bat orrialde honetara berriz sartzen saiatu baino lehen.
 
 $1',
+'pool-queuefull'    => 'Prozesuen zerrenda beteta dago',
 'pool-errorunknown' => 'Errore ezezaguna',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -526,6 +529,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'yourpassword'               => 'Pasahitza:',
 'yourpasswordagain'          => 'Pasahitza berriz',
 'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu ({{PLURAL:$1|egun baterako|$1 egunetarako }} gehienez)',
+'securelogin-stick-https'    => 'Mantendu konektatua HTTPSra sartu ondoren',
 'yourdomainname'             => 'Zure domeinua',
 'externaldberror'            => 'Kanpoko datu-base autentifikazio errorea gertatu da edo ez duzu zure kanpo kontua eguneratzeko baimenik.',
 'login'                      => 'Saioa hasi',
@@ -550,6 +554,8 @@ Mesedez, beste bat aukeratu.',
 'createaccounterror'         => 'Ezin izan da kontua sortu: $1',
 'nocookiesnew'               => 'Erabiltzaile kontua sortu da, baina ez da saioa hasi. {{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta ondoren saiatu saioa hasten zure erabiltzaile izen eta pasahitz berriak erabiliz.',
 'nocookieslogin'             => '{{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta saiatu berriz.',
+'nocookiesfornew'            => 'Erabiltzaile kontua ez da sortu, bere jatorria ezin delako ziurtatu.
+Ziurta ezazu cookiak gaiturik dituzula, birkargatu orrialde hau eta saia saitez berriro ere.',
 'noname'                     => 'Ez duzu baliozko erabiltzaile izen bat zehaztu.',
 'loginsuccesstitle'          => 'Saio hasiera egina',
 'loginsuccess'               => "'''Saioa hasi duzu {{SITENAME}}(e)n \"\$1\" izenarekin.'''",
@@ -563,6 +569,7 @@ Egiaztatu ondo idatzi duzun, edo [[Special:UserLogin/signup|kontu berria sor eza
 'wrongpasswordempty'         => 'Pasahitza hutsik dago. Saiatu berriz.',
 'passwordtooshort'           => 'Pasahitzek {{PLURAL:$1|karaktere 1|$1 karaktere}} gutxienez eduki behar dituzte.',
 'password-name-match'        => 'Zure pasahitza ezin da zure erabiltzaile-izen bera izan.',
+'password-login-forbidden'   => 'Erabiltzaile izen eta pasahitz hau erabiltzea debekaturik dago.',
 'mailmypassword'             => 'Pasahitza berria e-postaz bidali',
 'passwordremindertitle'      => 'Pasahitzaren gogorarazpena {{SITENAME}}(e)tik',
 'passwordremindertext'       => 'Norbaitek (ziurrenik zuk, $1 IP helbidetik) pasahitz berri bat
@@ -604,6 +611,9 @@ Kontu honen sorrera akats bat dela uste baduzu mezu honi ez diozu zertan jaramon
 Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHPren mail() funtzioan arazo ezezagun bat egon da.',
 
 # JavaScript password checks
 'password-strength'            => 'Pasahitzaren ustezko sendotasuna: $1',
@@ -738,6 +748,10 @@ Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
 '''Oraindik gorde gabe dago!'''",
 'userjspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
+'sitecsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
+'''Oraindik gorde gabe dago!'''",
+'sitejspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala'''
+'''Oraindik ez da gorde!'''",
 'userinvalidcssjstitle'            => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/vector.css, eta ez {{ns:user}}:Adibide/Vector.css.",
 'updated'                          => '(Eguneratua)',
 'note'                             => "'''Oharra:'''",
@@ -873,7 +887,7 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'history-feed-empty'          => 'Eskatutako orrialdea ez da existitzen. Baliteke wikitik ezabatu edo izenez aldatu izana. Saiatu [[Special:Search|wikian zerikusia duten orrialdeak bilatzen]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(iruzkina ezabatu da)',
+'rev-deleted-comment'         => '(aldaketa laburpena ezabatu da)',
 'rev-deleted-user'            => '(erabiltzailea ezabatu da)',
 'rev-deleted-event'           => '(log ekintza ezabatu da)',
 'rev-deleted-user-contribs'   => '[lankide izena edo Ip helbidea ezabatua - aldatu ezkutapena ekarpenetatik]',
@@ -983,6 +997,8 @@ Begira itzazu erregistroak.',
 Ikusi [[Special:IPBlockList|IP blokeoen zerrenda]] orain dauden blokeoak ikusi ahal izateko.',
 
 # Revision move
+'moverevlogentry'              => '{{PLURAL:$3|Aldaketa bat|$3 aldaketa}} mugitu dira $1(e)tik $2(e)ra',
+'revisionmove'                 => '"$1"(e)tik berrikusketa mugitu da',
 'revmove-legend'               => 'Xede-orrialdea eta laburpena ezarri',
 'revisionmoveselectedversions' => 'Aukeratutako berrikuspenak mugitu',
 'revmove-reasonfield'          => 'Arrazoia:',

@@ -29,14 +29,14 @@ $digitTransformTable = array(
 $messages = array(
 # Dates
 'january'       => 'ଜାନୁଆରି',
-'february'      => 'ଫେବ୍ରୁଆରି',
+'february'      => 'ଫେବୁଆରି',
 'march'         => 'ମାର୍ଚ',
-'april'         => 'ଅପ୍ରେଲ',
-'may_long'      => 'ମଇ',
+'april'         => 'ଏପ୍ରିଲ',
+'may_long'      => 'ମେ',
 'june'          => 'ଜୁନ',
 'july'          => 'ଜୁଲାଇ',
 'august'        => 'ଅଗଷ୍ଟ',
-'september'     => 'ସେପ୍ଟେଁବର',
+'september'     => 'ସେପଟେଁବର',
 'october'       => 'ଅକଟୋବର',
 'november'      => 'ନଭେଁବର',
 'december'      => 'ଡିସେଁବର',
@@ -68,25 +68,25 @@ $messages = array(
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Category|ବିଭାଗ}}',
 'category_header' => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'subcategories'   => 'ଉପବିଭାଗଗୁଡ଼ିକ',
+'subcategories'   => 'ଉପଶ୍ରେଣୀଗୁଡ଼ିକ',
 
 'cancel'     => 'ନାକଚ କରିଦିଅ',
 'mytalk'     => 'ମୋ କଥା',
 'navigation' => 'ନାଭିଗେସନ',
 
 'tagline'          => '{{SITENAME}} ରୁ',
-'help'             => 'ସାହାଜ୍ଯ',
-'search'           => 'ସନ୍ଧାନ',
-'searchbutton'     => 'ସନ୍ଧାନ',
+'help'             => 'ସାହାଜ୍ୟ',
+'search'           => 'ଖୋଜିବେ',
+'searchbutton'     => 'ଖୋଜିବେ',
 'searcharticle'    => 'ଯାଅ',
 'history_short'    => 'ଇତିହାସ',
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
 'permalink'        => 'ଚିରକାଳର ଲିଁକ',
-'edit'             => 'ଏଡିଟ',
-'delete'           => 'ଲିଭେଇ ଦିଅ',
-'protect'          => 'ସୁରଖ୍ଯା',
+'edit'             => 'ଏଡ଼ିଟ',
+'delete'           => 'ଲିଭେଇବେ',
+'protect'          => 'କିଳିବେ',
 'newpage'          => 'ନୂଆ ଫରଦ',
-'talkpagelinktext' => 'ଆଲୋଚନା',
+'talkpagelinktext' => 'କଥାଭାଷା',
 'personaltools'    => 'ନିଜସ୍ୱ ଟୁଲ',
 'talk'             => 'ଆଲୋଚନା',
 'views'            => 'ଦେଖା',
@@ -98,26 +98,26 @@ $messages = array(
 'jumptosearch'     => 'ସନ୍ଧାନ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} ବିଷୟରେ',
-'aboutpage'            => 'Project:ବିଷୟରେ',
+'aboutsite'            => '{{SITENAME}} ବାବଦରେ',
+'aboutpage'            => 'Project:ବାବଦରେ',
 'copyright'            => '$1 ରେ ସର୍ବସ୍ଵତ୍ଵ ସଂରକ୍ଷିତ',
-'disclaimers'          => 'ଅସ୍ଵୀକାର',
-'disclaimerpage'       => 'Project:ସାଧାରଣ ଅସ୍ଵୀକାର',
+'disclaimers'          => 'ଆମେ ଦାୟୀ ନୋହୁଁ',
+'disclaimerpage'       => 'Project:ଆମେ ଦାୟୀ ନୋହୁଁ',
 'mainpage'             => 'ମୂଳ ଫରଦ',
 'mainpage-description' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
-'privacy'              => 'ଗୋପନ ନୀତି',
-'privacypage'          => 'Project:ଗୋପନ ନୀତି',
+'privacy'              => 'ଗୁମର ନୀତି',
+'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
 'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଛି',
 'youhavenewmessages'      => 'ଆପଣଙ୍କର $1 ($2).',
-'newmessageslink'         => 'ନୂଆ ଚିଠି',
+'newmessageslink'         => 'ନୂଆ ମେସେଜ',
 'youhavenewmessagesmulti' => '$1 ତାରିଖରେ ନୂଆ ଚିଠିଟିଏ ଆସିଛି',
 'editsection'             => 'ଏଡିଟ',
 'editlink'                => 'ଏଡିଟ',
 'viewsourcelink'          => 'ଉତ୍ସ ଦେଖ',
-'editsectionhint'         => '$1 ସେକସନଟିକୁ ବଦଳାଅ',
-'site-rss-feed'           => '$1 ଆର.ଏସ.ଏସ. ଫିଡ',
-'site-atom-feed'          => '$1 କ ଆଟମ ଫିଡ଼',
+'editsectionhint'         => '$1 ସେକସନ ଏଡ଼ିଟିବେ',
+'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
+'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
 'red-link-title'          => ' $1 (ଫରଦଟି ନାହିଁ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -125,7 +125,13 @@ $messages = array(
 'nstab-special' => 'ବିଶେଷ ଫରଦ',
 
 # General errors
-'viewsource' => 'ଉତ୍ସ ଦେଖ',
+'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଲେଖିଥିବା "$1" $2 ଶବଦଟି ପାଇଲା ନାହିଁ । .
+
+ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଲିଭାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
+
+ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟଉଏରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛଁତି ।
+ଦୟାକରି କେହି ଜଣେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏଇ ଇଉ.ଆର.ଏଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅଁତୁ ।',
+'viewsource'      => 'ଉତ୍ସ ଦେଖ',
 
 # Login and logout pages
 'nav-login-createaccount' => 'ଲଗ ଇନ',
@@ -133,9 +139,9 @@ $messages = array(
 
 # Edit pages
 'summary'        => 'ସାରକଥା:',
-'preview'        => 'ପ୍ରଦର୍ଶନ',
+'preview'        => 'ଦେଖଣା',
 'showdiff'       => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
-'editingsection' => '$1 (ସେକସନ)କୁ ଏଡିଟ କରୁଛି',
+'editingsection' => '$1 (ସେକସନ)କୁ ଏଡ଼ିଟ କରିବେ',
 
 # Diffs
 'lineno'   => '$1 କ ଧାଡ଼ି:',
@@ -148,6 +154,7 @@ $messages = array(
 'notitlematches'            => 'ଫରଦର ଟାଇଟଲ ମିଶୁନାହିଁ',
 'prevn'                     => '{{PLURAL:$1|$1}}ର ଆଗରୁ',
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
+'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖ',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
 'search-mwsuggest-enabled'  => 'ମତ ସହ',
 'search-mwsuggest-disabled' => 'କିଛି ମତ ନାହିଁ',
@@ -207,7 +214,7 @@ $messages = array(
 'contributions' => 'ବ୍ଯବହରକାରୀନ୍କ ଅନୁଦାନ',
 'mycontris'     => 'ମୋ ଅବଦାନ',
 
-'sp-contributions-submit' => 'ସନ୍ଧାନ',
+'sp-contributions-submit' => 'ଖୋଜିବେ',
 
 # What links here
 'whatlinkshere' => 'ଏଠି କଣ କଣ ଲିଁକ ଅଛି',
@@ -215,7 +222,7 @@ $messages = array(
 # Block/unblock
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
-'contribslink'       => 'ଯୋଗଦାନ',
+'contribslink'       => 'ଅବଦାନ',
 
 # Tooltip help for the actions
 'tooltip-pt-login'               => 'ଆପଣଁକୁ ଲଗ ଇନ କରିବାକୁ ଅନୁରୋଧ କରାଯାଉଛି, ତେବେ ଏଇଟି ବାଧ୍ୟତାମୂଳକ ନୁହେଁ',
@@ -244,6 +251,13 @@ $messages = array(
 
 # Special:NewFiles
 'ilsubmit' => 'ସନ୍ଧାନ',
+
+# Bad image list
+'bad_image_list' => 'ଗଢ଼ଣଟି ଏମିତି ହେବ:
+
+କେବଳ (ଯେଉଁ ଧାଡ଼ିଗୁଡ଼ିକ * ରୁ ଆରଭ ହୋଇଥାଏ) ସେହି ସବୁକୁ ହିସାବକୁ ନିଆଯିବ ।
+ଗୋଟିଏ ଧାଡ଼ିର ପ୍ରଥମ ଲିଁକଟି ଗୋଟିଏ ଖରାପ ଫାଇଲର ଲିଁକ ହୋଇଥିବା ଦରକାର ।
+ପ୍ରଥମ ଲିକ ପରର ସବୁ ଲିକକୁ ସ୍ଵତଁତ୍ର ବୋଲି ଧରାଯିବ । ମାନେ, ସେଇସବୁ ଫରଦରେ ଯେଉଁଠି ଫାଇଲଟି ଧାଡି ଭିତରେ ରହିଥିବ ।',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'ସନ୍ଧାନ',

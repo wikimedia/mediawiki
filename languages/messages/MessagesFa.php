@@ -1208,7 +1208,7 @@ $2',
 [[Special:Search|جستجوی]] صفحه‌های جدید مرتبطِ موجود در این ویکی را هم بیازمایید. شاید افاقه کرد.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(توضیحات پاک شد)',
+'rev-deleted-comment'         => '(خلاصه ویرایش حذف شد)',
 'rev-deleted-user'            => '(نام کاربری حذف شده‌است)',
 'rev-deleted-event'           => '(مورد پاک شد)',
 'rev-deleted-user-contribs'   => '[نام کاربری یا نشانی آی‌پی حذف شده - ویرایش مخفی شده در مشارکت‌ها]',
