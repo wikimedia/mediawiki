@@ -2915,10 +2915,11 @@ class User {
 	 *
 	 * @param $val String Input value to compare
 	 * @param $salt String Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
 	function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
-		$sessionToken = $this->editToken( $salt );
+		$sessionToken = $this->editToken( $salt, $request );
 		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
 	}
 
