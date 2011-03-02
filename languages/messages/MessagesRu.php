@@ -1634,7 +1634,7 @@ $1",
 
 Для включения файла в статью вы можете использовать строки вида:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' для вставки полной версии файла;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|описание]]</nowiki></tt>''' для вставки уменьшенной до 200 пикселей по ширине версии файла слева от текста с выводом под ним указанного описания;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|описание]]</nowiki></tt>''' для вставки уменьшенной до 200 пикселов по ширине версии файла слева от текста с выводом под ним указанного описания;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' для вставки ссылки на файл, без отображения его содержимого на странице.",
 'upload-permitted'            => 'Разрешённые типы файлов: $1.',
 'upload-preferred'            => 'Предпочтительные типы файлов: $1.',
@@ -2977,7 +2977,7 @@ $1',
 'file-nohires'         => '<small>Нет версии с большим разрешением.</small>',
 'svg-long-desc'        => 'SVG-файл, номинально $1 × $2 пикселов, размер файла: $3',
 'show-big-image'       => 'Изображение в более высоком разрешении',
-'show-big-image-thumb' => '<small>Размер при предпросмотре: $1 × $2 пикселов</small>',
+'show-big-image-thumb' => '<small>Размер при предпросмотре: $1 × $2 {{PLURAL:$2|пиксел|пиксела|пикселов}}</small>',
 'file-info-gif-looped' => 'закольцованный',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|фрейм|фрейма|фреймов}}',
 'file-info-png-looped' => 'закольцованный',
@@ -3558,7 +3558,7 @@ MediaWiki распространяется в надежде, что она бу
 'fileduplicatesearch-legend'    => 'Поиск дубликатов',
 'fileduplicatesearch-filename'  => 'Имя файла:',
 'fileduplicatesearch-submit'    => 'Найти',
-'fileduplicatesearch-info'      => '$1 × $2 пикселов<br />Размер файла: $3<br />MIME-тип: $4',
+'fileduplicatesearch-info'      => '$1 × $2 {{PLURAL:$2|пиксел|пиксела|пикселов}}<br />Размер файла: $3<br />MIME-тип: $4',
 'fileduplicatesearch-result-1'  => 'Файл «$1» не имеет идентичных дубликатов.',
 'fileduplicatesearch-result-n'  => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
 'fileduplicatesearch-noresults' => 'Не найден файл с именем «$1».',

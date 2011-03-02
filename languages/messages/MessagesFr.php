@@ -1112,7 +1112,7 @@ Elle a peut-être été effacée ou renommée.
 Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commentaire enlevé)',
+'rev-deleted-comment'         => "(résumé d'édition enlevé)",
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
 'rev-deleted-user-contribs'   => '[nom d’utilisateur ou adresse IP supprimée - modification cachée sur les contributions]',
@@ -1814,6 +1814,14 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => "Une erreur s'est produite lors de l'ouverture du fichier ZIP pour contrôle.",
+'zip-wrong-format'    => "Le fichier spécifié n'est pas un fichier ZIP.",
+'zip-bad'             => 'Le fichier est un fichier ZIP corrompu ou illisible.
+Il ne peut pas être correctement vérifié pour la sécurité.',
+'zip-unsupported'     => 'Le fichier est un fichier ZIP qui utilise ZIP non supportées par MediaWiki. 
+Il ne peut pas être correctement vérifé pour la sécurité.',
 
 # Special:UploadStash
 'uploadstash'          => "Cache d'import",
