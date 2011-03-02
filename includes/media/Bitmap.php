@@ -402,7 +402,8 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		$src_image = call_user_func( $loader, $params['srcPath'] );
-		$rotation = $this->getRotation( $image );
+		
+		$rotation = function_exists( 'imagerotate' ) ? $this->getRotation( $image ) : 0;
 		if ( $rotation == 90 || $rotation == 270 ) {
 			# We'll resize before rotation, so swap the dimensions again
 			$width = $params['physicalHeight'];
@@ -698,7 +699,18 @@ class BitmapHandler extends ImageHandler {
 	 */
 	public static function canRotate() {
 		$scaler = self::getScalerType( null, false );
-		return $scaler == 'im' || $scaler == 'gd';
+		switch ( $scaler ) {
+			case 'im':
+				# ImageMagick supports autorotation
+				return true;
+			case 'gd':
+				# GD's imagerotate function is used to rotate images, but not
+				# all precompiled PHP versions have that function
+				return function_exists( 'imagerotate' );
+			default:
+				# Other scalers don't support rotation
+				return false;
+		}
 	}
 	
 	/**
