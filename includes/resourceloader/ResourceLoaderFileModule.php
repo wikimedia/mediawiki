@@ -102,8 +102,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     to $IP
 	 * @param $remoteBasePath String: Base path to prepend to all remote paths in $options. Defaults
 	 *     to $wgScriptPath
-	 * 
-	 * @example $options
+	 *
+	 * Below is a description for the $options array: 
+	 * @code
 	 * 	array(
 	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP
 	 * 		'localBasePath' => [base path],
@@ -138,6 +139,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		// Group which this module should be loaded together with
 	 * 		'group' => [group name string],
 	 * 	)
+	 * @endcode
 	 */
 	public function __construct( $options = array(), $localBasePath = null, 
 		$remoteBasePath = null ) 
