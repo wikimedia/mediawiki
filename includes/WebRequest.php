@@ -1024,6 +1024,10 @@ class FauxRequest extends WebRequest {
 		$this->session[$key] = $data;
 	}
 
+	public function getSessionArray() {
+		return $this->session;
+	}
+
 	public function isPathInfoBad() {
 		return false;
 	}

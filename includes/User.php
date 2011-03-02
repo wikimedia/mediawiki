@@ -2855,18 +2855,22 @@ class User {
 	 * submission.
 	 *
 	 * @param $salt String|Array of Strings Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
-	function editToken( $salt = '' ) {
-		global $wgRequest;
+	function editToken( $salt = '', $request = null ) {
+		if ( $request == null ) {
+			global $wgRequest;
+			$request = $wgRequest;
+		}
 
 		if ( $this->isAnon() ) {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
-			$token = $wgRequest->getSessionData( 'wsEditToken' );
+			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
 				$token = self::generateToken();
-				$wgRequest->setSessionData( 'wsEditToken', $token );
+				$request->setSessionData( 'wsEditToken', $token );
 			}
 			if( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
@@ -2894,10 +2898,11 @@ class User {
 	 *
 	 * @param $val String Input value to compare
 	 * @param $salt String Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return Boolean: Whether the token matches
 	 */
-	function matchEditToken( $val, $salt = '' ) {
-		$sessionToken = $this->editToken( $salt );
+	function matchEditToken( $val, $salt = '', $request = null ) {
+		$sessionToken = $this->editToken( $salt, $request );
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
@@ -2912,7 +2917,7 @@ class User {
 	 * @param $salt String Optional function-specific data for hashing
 	 * @return Boolean: Whether the token matches
 	 */
-	function matchEditTokenNoSuffix( $val, $salt = '' ) {
+	function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
 		$sessionToken = $this->editToken( $salt );
 		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
 	}

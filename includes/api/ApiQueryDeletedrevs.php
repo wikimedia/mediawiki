@@ -125,7 +125,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_token ) {
 			// Undelete tokens are identical for all pages, so we cache one here
-			$token = $wgUser->editToken();
+			$token = $wgUser->editToken( '', $this->getMain()->getRequest() );
 		}
 
 		// We need a custom WHERE clause that matches all titles.
