@@ -104,7 +104,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['preferencestoken'] ) &&
 			is_null( $this->getMain()->getRequest()->getVal( 'callback' ) )
 		) {
-			$vals['preferencestoken'] = $wgUser->editToken();
+			$vals['preferencestoken'] = $wgUser->editToken( '', $this->getMain()->getRequest() );
 		}
 
 		if ( isset( $this->prop['editcount'] ) ) {

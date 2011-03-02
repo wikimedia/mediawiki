@@ -106,13 +106,15 @@ abstract class ApiTestCase extends MediaWikiTestCase {
 	}
 
 	protected function doApiRequest( $params, $session = null, $appendModule = false ) {
-		$_SESSION = isset( $session ) ? $session : array();
+		if ( is_null( $session ) ) {
+			$session = array();
+		}
 
-		$request = new FauxRequest( $params, true, $_SESSION );
+		$request = new FauxRequest( $params, true, $session );
 		$module = new ApiMain( $request, true );
 		$module->execute();
 
-		return array( $module->getResultData(), $request, $_SESSION );
+		return array( $module->getResultData(), $request, $request->getSessionArray() );
 	}
 
 	/**
@@ -181,7 +183,7 @@ class ApiUploadTest extends ApiTestCase {
 			'lgname' => $user->username,
 			'lgpassword' => $user->password
 		);
-		list( $result, , ) = $this->doApiRequest( $params );
+		list( $result, , $session ) = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( "login", $result );
 		$this->assertArrayHasKey( "result", $result['login'] );
 		$this->assertEquals( "NeedToken", $result['login']['result'] );
@@ -193,7 +195,7 @@ class ApiUploadTest extends ApiTestCase {
 			'lgname' => $user->username,
 			'lgpassword' => $user->password
 		);
-		list( $result, , $session ) = $this->doApiRequest( $params );
+		list( $result, , $session ) = $this->doApiRequest( $params, $session );
 		$this->assertArrayHasKey( "login", $result );
 		$this->assertArrayHasKey( "result", $result['login'] );
 		$this->assertEquals( "Success", $result['login']['result'] );
