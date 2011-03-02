@@ -2964,6 +2964,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
 'invert'         => 'Invert selection',
+'namespace_association' => 'Associated namespace',
 'blanknamespace' => '(Main)',
 
 # Contributions

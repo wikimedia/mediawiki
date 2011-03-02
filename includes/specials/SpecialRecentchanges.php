@@ -55,6 +55,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
+		$opts->add( 'associated', false );
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
@@ -284,13 +285,26 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		# Namespace filtering
 		if( $opts['namespace'] !== '' ) {
-			if( !$opts['invert'] ) {
-				$conds[] = 'rc_namespace = ' . $dbr->addQuotes( $opts['namespace'] );
-			} else {
-				$conds[] = 'rc_namespace != ' . $dbr->addQuotes( $opts['namespace'] );
-			}
-		}
+			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
+			$operator = $opts['invert'] ? '!='  : '=';
+			$boolean  = $opts['invert'] ? 'AND' : 'OR';
 
+			# namespace association (bug 2429)
+			if( !$opts['associated'] ) {
+				$condition = "rc_namespace $operator $selectedNS";
+			} else {
+				# Also add the associated namespace
+				$associatedNS =  $dbr->addQuotes(
+					MWNamespace::getAssociated( $opts['namespace'] )
+				);
+				$condition = "(rc_namespace $operator $selectedNS "
+				           . $boolean
+				           . " rc_namespace $operator $associatedNS)";
+			}
+
+			$conds[] = $condition;
+		}
+wfVarDump( $conds );
 		return $conds;
 	}
 
@@ -463,7 +477,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$defaults = $opts->getAllValues();
 		$nondefaults = $opts->getChangedValues();
-		$opts->consumeValues( array( 'namespace', 'invert', 'tagfilter',
+		$opts->consumeValues( array( 'namespace', 'invert', 'associated', 'tagfilter',
 			'categories', 'categories_any' ) );
 
 		$panel = array();
@@ -555,6 +569,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Creates the choose namespace selection
 	 *
+	 * @todo Uses radio buttons (HASHAR)
 	 * @param $opts FormOptions
 	 * @return String
 	 */
@@ -562,7 +577,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$nsSelect = Xml::namespaceSelector( $opts['namespace'], '' );
 		$nsLabel = Xml::label( wfMsg('namespace'), 'namespace' );
 		$invert = Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $opts['invert'] );
-		return array( $nsLabel, "$nsSelect $invert" );
+		$associated = Xml::checkLabel( wfMsg('namespace_association'), 'associated', 'nsassociated', $opts['associated'] );
+		return array( $nsLabel, "$nsSelect $invert $associated" );
 	}
 
 	/**
