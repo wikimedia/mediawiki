@@ -304,7 +304,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			$conds[] = $condition;
 		}
-wfVarDump( $conds );
 		return $conds;
 	}
 
