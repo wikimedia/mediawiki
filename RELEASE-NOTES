@@ -81,6 +81,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   safely enabled. A ZIP file reader was added which can scan a ZIP file for
   potentially dangerous Java applets. This allows applets to be blocked
   specifically, rather than all ZIP files being blocked.
+* (bug 2429) Allow selection of associated namespace in recent changes
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
