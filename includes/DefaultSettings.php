@@ -2320,11 +2320,11 @@ $wgDisableOutputCompression = false;
  * not, use only HTML 4-compatible IDs.  This option is for testing -- when the
  * functionality is ready, it will be on by default with no option.
  *
- * Currently this appears to work fine in Chrome 4 and 5, Firefox 3.5 and 3.6, IE6
- * and 8, and Opera 10.50, but it fails in Opera 10.10: Unicode IDs don't seem
- * to work as anchors.  So not quite ready for general use yet.
+ * Currently this appears to work fine in all browsers, but it's disabled by
+ * default because it normalizes id's a bit too aggressively, breaking preexisting
+ * content (particularly Cite).  See bug 27733, bug 27694, bug 27474.
  */
-$wgExperimentalHtmlIds = true;
+$wgExperimentalHtmlIds = false;
 
 /**
  * Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
