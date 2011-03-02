@@ -71,7 +71,7 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an in-
 	 * ternal link, given the Title object for the page we want to link to.
 	 *
-	 * @param $nt The Title object
+	 * @param $nt Title
 	 * @param $unused String: unused
 	 * @param $class String: the contents of the class attribute, default none
 	 * @param $title Mixed: optional (unescaped) string to use in the title
@@ -225,12 +225,14 @@ class Linker {
 
 	/**
 	 * Returns the Url used to link to a Title
+	 *
+	 * @param $target Title
 	 */
 	private function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
-		if ( in_array( 'broken', $options ) and $target->mFragment !== '' ) {
+		if ( in_array( 'broken', $options ) && $target->mFragment !== '' ) {
 			$target = clone $target;
 			$target->mFragment = '';
 		}
@@ -238,8 +240,8 @@ class Linker {
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified, or unless 'edit' makes no sense
 		# (i.e., for a nonexistent special page).
-		if ( in_array( 'broken', $options ) and empty( $query['action'] )
-		and $target->getNamespace() != NS_SPECIAL ) {
+		if ( in_array( 'broken', $options ) && empty( $query['action'] )
+			&& $target->getNamespace() != NS_SPECIAL ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
@@ -250,6 +252,8 @@ class Linker {
 
 	/**
 	 * Returns the array of attributes used when linking to the Title $target
+	 *
+	 * @param $target Title
 	 */
 	private function linkAttribs( $target, $attribs, $options, $linkText ) {
 		wfProfileIn( __METHOD__ );
@@ -309,6 +313,8 @@ class Linker {
 
 	/**
 	 * Default text of the links to the Title $target
+	 *
+	 * @param $target Title
 	 */
 	private function linkText( $target ) {
 		# We might be passed a non-Title by make*LinkObj().  Fail gracefully.
@@ -318,7 +324,7 @@ class Linker {
 
 		# If the target is just a fragment, with no title, we return the frag-
 		# ment text.  Otherwise, we return the title text itself.
-		if ( $target->getPrefixedText() === '' and $target->getFragment() !== '' ) {
+		if ( $target->getPrefixedText() === '' && $target->getFragment() !== '' ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
 		return htmlspecialchars( $target->getPrefixedText() );
@@ -351,6 +357,8 @@ class Linker {
 	 * Make appropriate markup for a link to the current article. This is currently rendered
 	 * as the bold link text. The calling sequence is the same as the other make*LinkObj functions,
 	 * despite $query not being used.
+	 *
+	 * @oaram $nt Title
 	 */
 	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		if ( $text == '' ) {
@@ -444,7 +452,7 @@ class Linker {
 	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
 		$res = null;
 		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$this, &$title,
-		&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
+			&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
 			return $res;
 		}
 
@@ -459,9 +467,15 @@ class Linker {
 
 		// Clean up parameters
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
-		if ( !isset( $fp['align'] ) ) $fp['align'] = '';
-		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
-		if ( !isset( $fp['title'] ) ) $fp['title'] = '';
+		if ( !isset( $fp['align'] ) ) {
+			$fp['align'] = '';
+		}
+		if ( !isset( $fp['alt'] ) ) {
+			$fp['alt'] = '';
+		}
+		if ( !isset( $fp['title'] ) ) {
+			$fp['title'] = '';
+		}
 
 		$prefix = $postfix = '';
 
@@ -587,11 +601,24 @@ class Linker {
 			'caption' => $label,
 			'align' => $align
 		);
-		if ( $framed ) $frameParams['framed'] = true;
-		if ( $manualthumb ) $frameParams['manualthumb'] = $manualthumb;
+		if ( $framed ) {
+			$frameParams['framed'] = true;
+		}
+		if ( $manualthumb ) {
+			$frameParams['manualthumb'] = $manualthumb;
+		}
 		return $this->makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
+	/**
+	 * @param $title Title
+	 * @param  $file File
+	 * @param array $frameParams
+	 * @param array $handlerParams
+	 * @param bool $time
+	 * @param string $query
+	 * @return mixed
+	 */
 	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "" ) {
 		global $wgStylePath;
 		$exists = $file && $file->exists();
@@ -1151,6 +1178,13 @@ class Linker {
 		return $comment;
 	}
 
+	/**
+	 * @static
+	 * @param $contextTitle Title
+	 * @param  $target
+	 * @param  $text
+	 * @return string
+	 */
 	static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
 		# Valid link forms:
 		# Foobar -- normal
@@ -1255,7 +1289,9 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	function revComment( Revision $rev, $local = false, $isPublic = false ) {
-		if ( $rev->getRawComment() == "" ) return "";
+		if ( $rev->getRawComment() == "" ) {
+			return "";
+		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		} else if ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
@@ -1842,7 +1878,6 @@ class Linker {
 	 */
 	function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
-
 		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		if ( $text === '' ) {
@@ -1953,7 +1988,9 @@ class Linker {
 	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		if ( $colour != '' ) {
 			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
-		} else $style = '';
+		} else {
+			$style = '';
+		}
 		return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
 	}
 
@@ -1980,8 +2017,7 @@ class Linker {
 	 * @return String
 	 */
 	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
-	  $thumb = false, $manualthumb = '', $valign = '', $time = false )
-	{
+	  $thumb = false, $manualthumb = '', $valign = '', $time = false ) {
 		$frameParams = array( 'alt' => $alt, 'caption' => $label );
 		if ( $align ) {
 			$frameParams['align'] = $align;
