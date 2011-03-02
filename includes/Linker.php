@@ -358,7 +358,7 @@ class Linker {
 	 * as the bold link text. The calling sequence is the same as the other make*LinkObj functions,
 	 * despite $query not being used.
 	 *
-	 * @oaram $nt Title
+	 * @param $nt Title
 	 */
 	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		if ( $text == '' ) {
