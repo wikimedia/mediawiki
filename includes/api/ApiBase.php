@@ -727,18 +727,18 @@ abstract class ApiBase {
 						$enforceLimits = isset ( $paramSettings[self::PARAM_RANGE_ENFORCE] )
 								? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
 
-						if ( !is_null( $min ) || !is_null( $max ) ) {
-							if ( is_array( $value ) ) {
-								$value = array_map( 'intval', $value );
+						if ( is_array( $value ) ) {
+							$value = array_map( 'intval', $value );
+							if ( !is_null( $min ) || !is_null( $max ) ) {
 								foreach ( $value as &$v ) {
 									$this->validateLimit( $paramName, $v, $min, $max, null, $enforceLimits );
 								}
-							} else {
-								$value = intval( $value );
-								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
 							}
 						} else {
 							$value = intval( $value );
+							if ( !is_null( $min ) || !is_null( $max ) ) {
+								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
+							}
 						}
 						break;
 					case 'limit':
