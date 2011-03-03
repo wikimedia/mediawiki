@@ -2342,9 +2342,10 @@ $1',
 'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
-'namespace'      => 'Imenski prostor:',
-'invert'         => 'Obrni izbor',
-'blanknamespace' => '(Osnovno)',
+'namespace'             => 'Imenski prostor:',
+'invert'                => 'Obrni izbor',
+'namespace_association' => 'Povezan imenski prostor',
+'blanknamespace'        => '(Osnovno)',
 
 # Contributions
 'contributions'       => 'Uporabnikovi prispevki',

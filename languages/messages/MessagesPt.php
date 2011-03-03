@@ -2470,9 +2470,10 @@ $1',
 'undelete-show-file-submit'    => 'Sim',
 
 # Namespace form on various pages
-'namespace'      => 'Espaço nominal:',
-'invert'         => 'Inverter selecção',
-'blanknamespace' => '(Principal)',
+'namespace'             => 'Espaço nominal:',
+'invert'                => 'Inverter selecção',
+'namespace_association' => 'Domínio associado',
+'blanknamespace'        => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contribuições do utilizador',

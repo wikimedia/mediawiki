@@ -2278,9 +2278,10 @@ $1',
 'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
-'namespace'      => '名字空间：',
-'invert'         => '反向选定',
-'blanknamespace' => '（主）',
+'namespace'             => '名字空间：',
+'invert'                => '反向选定',
+'namespace_association' => '关联的命名空间',
+'blanknamespace'        => '（主）',
 
 # Contributions
 'contributions'       => '用户贡献',

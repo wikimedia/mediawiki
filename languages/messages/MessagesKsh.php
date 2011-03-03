@@ -2518,9 +2518,10 @@ $1',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
-'namespace'      => 'Appachtemeng:',
-'invert'         => 'dun de Uswahl ömdrije',
-'blanknamespace' => '(Atikkele)',
+'namespace'             => 'Appachtemeng:',
+'invert'                => 'dun de Uswahl ömdrije',
+'namespace_association' => 'mem zohjehüüreje Appachtemang',
+'blanknamespace'        => '(Atikkele)',
 
 # Contributions
 'contributions'       => 'Däm Metmaacher sing Beidräch',

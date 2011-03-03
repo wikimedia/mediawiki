@@ -2473,9 +2473,10 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'      => 'Namensraum:',
-'invert'         => 'Auswahl umkehren',
-'blanknamespace' => '(Seiten)',
+'namespace'             => 'Namensraum:',
+'invert'                => 'Auswahl umkehren',
+'namespace_association' => 'Zugeordneter Namensraum',
+'blanknamespace'        => '(Seiten)',
 
 # Contributions
 'contributions'       => 'Benutzerbeiträge',

@@ -76,26 +76,28 @@ $messages = array(
 
 'tagline'          => '{{SITENAME}} ରୁ',
 'help'             => 'ସାହାଜ୍ୟ',
-'search'           => 'ଖୋଜିବେ',
-'searchbutton'     => 'ଖୋଜିବେ',
-'searcharticle'    => 'ଯାଅ',
+'search'           => 'ଖୋଜିବା',
+'searchbutton'     => 'ଖୋଜିବା',
+'searcharticle'    => 'ଯିବା',
 'history_short'    => 'ଇତିହାସ',
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
-'permalink'        => 'ଚିରକାଳର ଲିଁକ',
+'permalink'        => 'ସବୁଦିନିଆ ଲିଁକ',
 'edit'             => 'ଏଡ଼ିଟ',
+'create'           => 'ତିଆରିକର',
 'delete'           => 'ଲିଭେଇବେ',
 'protect'          => 'କିଳିବେ',
+'protect_change'   => 'ବଦଳାଁତୁ',
 'newpage'          => 'ନୂଆ ଫରଦ',
 'talkpagelinktext' => 'କଥାଭାଷା',
-'personaltools'    => 'ନିଜସ୍ୱ ଟୁଲ',
+'personaltools'    => 'ନିଜର ଟୁଲ',
 'talk'             => 'ଆଲୋଚନା',
 'views'            => 'ଦେଖା',
-'toolbox'          => 'ଜନ୍ତ୍ର ବାକ୍ସ',
+'toolbox'          => 'ଜନ୍ତ୍ର ପେଡ଼ି',
 'otherlanguages'   => 'ଅଲଗା ଭାଷା',
 'lastmodifiedat'   => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
-'jumpto'           => 'ଯାଅ->',
-'jumptonavigation' => 'ନାଭିଗେସନକୁ ଯାଅ',
-'jumptosearch'     => 'ସନ୍ଧାନ',
+'jumpto'           => 'ଡେଇଁବା',
+'jumptonavigation' => 'ନାଭିଗେସନକୁ',
+'jumptosearch'     => 'ଖୋଜିବା',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ବାବଦରେ',
@@ -108,14 +110,14 @@ $messages = array(
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
-'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଛି',
+'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଅଛି',
 'youhavenewmessages'      => 'ଆପଣଙ୍କର $1 ($2).',
 'newmessageslink'         => 'ନୂଆ ମେସେଜ',
 'youhavenewmessagesmulti' => '$1 ତାରିଖରେ ନୂଆ ଚିଠିଟିଏ ଆସିଛି',
 'editsection'             => 'ଏଡିଟ',
 'editlink'                => 'ଏଡିଟ',
 'viewsourcelink'          => 'ଉତ୍ସ ଦେଖ',
-'editsectionhint'         => '$1 ସେକସନ ଏଡ଼ିଟିବେ',
+'editsectionhint'         => '$1 ଭାଗଟିକୁ ଏଡ଼ିଟିବା',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
 'red-link-title'          => ' $1 (ଫରଦଟି ନାହିଁ)',
@@ -134,18 +136,30 @@ $messages = array(
 'viewsource'      => 'ଉତ୍ସ ଦେଖ',
 
 # Login and logout pages
-'nav-login-createaccount' => 'ଲଗ ଇନ',
+'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'userlogout'              => 'ଲଗ ଆଉଟ',
 
 # Edit pages
 'summary'        => 'ସାରକଥା:',
+'savearticle'    => 'ସାଇତି ରଖ',
 'preview'        => 'ଦେଖଣା',
 'showdiff'       => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
 'editingsection' => '$1 (ସେକସନ)କୁ ଏଡ଼ିଟ କରିବେ',
 
+# History pages
+'revisionasof'     => '$1 ଉପରେ କରାଯାଇଥିବା ବଦଳ',
+'previousrevision' => 'ପୁରୁଣା ସଁକଳନ',
+
+# Revision deletion
+'rev-delundel'   => 'ଦେଖାଅ/ଲୁଚାଅ',
+'revdel-restore' => 'ପ୍ରଦର୍ଶନରେ ବଦଳାଁତୁ',
+
+# Merge log
+'revertmerge' => 'ମିଶାଅ ନାହିଁ',
+
 # Diffs
 'lineno'   => '$1 କ ଧାଡ଼ି:',
-'editundo' => 'ପଛକୁ ଫେର',
+'editundo' => 'ପଛକୁ ଫେରିବା',
 
 # Search results
 'searchresults'             => 'ଖୋଜା ପରର ଫଳ',
@@ -156,8 +170,8 @@ $messages = array(
 'nextn'                     => '{{PLURAL:$1|$1}} ପର',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖ',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ଶବ୍ଦ|$2 ଶବ୍ଦ}})',
-'search-mwsuggest-enabled'  => 'ମତ ସହ',
-'search-mwsuggest-disabled' => 'କିଛି ମତ ନାହିଁ',
+'search-mwsuggest-enabled'  => 'ମତାମତ ସହ',
+'search-mwsuggest-disabled' => 'ମତାମତ ନାହିଁ',
 
 # Preferences page
 'mypreferences'     => 'ମୋ ପସଁଦସବୁ',
@@ -191,6 +205,9 @@ $messages = array(
 'mostcategories'       => 'ବେଶିବିଭାଗ ଥିବା ଫରଦ',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
 
+# Special:AllPages
+'allpagessubmit' => 'ଯାଅ',
+
 # Special:LinkSearch
 'linksearch-ok' => 'ସନ୍ଧାନ',
 
@@ -205,6 +222,7 @@ $messages = array(
 'unwatching' => 'ଦେଖୁନାହିଁ...',
 
 # Undelete
+'undeletelink'           => 'ଦେଖ/ଆଉଥରେ ଫେରାଇଆଣ',
 'undelete-search-submit' => 'ସନ୍ଧାନ',
 
 # Namespace form on various pages
@@ -222,27 +240,29 @@ $messages = array(
 # Block/unblock
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
+'unblocklink'        => 'ଛାଡ଼',
+'change-blocklink'   => 'ଓଗାଳିବାକୁ ବଦଳାଅ',
 'contribslink'       => 'ଅବଦାନ',
 
 # Tooltip help for the actions
-'tooltip-pt-login'               => 'ଆପଣଁକୁ ଲଗ ଇନ କରିବାକୁ ଅନୁରୋଧ କରାଯାଉଛି, ତେବେ ଏଇଟି ବାଧ୍ୟତାମୂଳକ ନୁହେଁ',
+'tooltip-pt-login'               => 'ଆପଣଁକୁ ଲଗିନ କରିବାକୁ କୁହାଯାଉଅଛି ସିନା, ବାଧ୍ୟ କରାଯାଉନାହିଁ',
 'tooltip-ca-talk'                => 'ଏହି ଫରଦଟି ଉପରେ ଆଲୋଚନା',
 'tooltip-ca-edit'                => 'ଆପଣ ଏହି ଫରଦଟିରେ ଅଦଳ ବଦଳ କରିପାରିବେ, ତେବେ ସାଇତିବା ଆଗରୁ ପ୍ରିଭିଉ ଦେଖଁତୁ ।',
 'tooltip-ca-history'             => 'ଏହି ଫରଦର ପୁରୁଣା ସଁସ୍କରଣ',
-'tooltip-search'                 => '{{SITENAME}} ରେ ଖୋଜ',
-'tooltip-search-go'              => 'ଏଇ ଅବିକଳ ନାଁଟି ଥିଲେ ସେ ଫରଦକୁ ଯାଅ',
-'tooltip-search-fulltext'        => 'ଏଇ ଲେଖାଟି ପାଇଁ ଫରଦସବୁକୁ ଖୋଜ',
+'tooltip-search'                 => '{{SITENAME}} ରେ ଖୋଜିବା',
+'tooltip-search-go'              => 'ଏହି ଅବିକଳ ନାଁଟି ଥିଲେ ସେହି ଫରଦକୁ ଯିବା',
+'tooltip-search-fulltext'        => 'ଏହି ଲେଖାଟି ପାଇଁ ଫରଦସବୁକୁ ଖୋଜିବା',
 'tooltip-p-logo'                 => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
 'tooltip-n-mainpage'             => 'ମୁଳ ଫରଦ',
 'tooltip-n-mainpage-description' => 'ମୁଳ ଫରଦ',
 'tooltip-n-portal'               => 'ଏହି ପ୍ରକଳ୍ପଟିରେ ଖୋଜା ଖୋଜି ପାଇଁ ଆପଣ କେମିତି ସାହାଜ୍ୟ କରିପାରିବେ',
-'tooltip-n-recentchanges'        => 'ଉଇକିରେ ଏଇମାତ୍ର କରାଯାଇଥିବା ଅଦଳ ବଦଳ',
+'tooltip-n-recentchanges'        => 'ଉଇକିରେ ଏହିମାତ୍ର କରାଯାଇଥିବା ଅଦଳ ବଦଳ',
 'tooltip-n-randompage'           => 'ଯାହିତାହି ଫରଦଟିଏ ଖୋଲ',
 'tooltip-n-help'                 => 'ଖୋଜି ପାଇବା ଭଳି ଜାଗା',
 'tooltip-t-whatlinkshere'        => 'ଏଇଠି ଯୋଡ଼ାଯାଇଥିବା ଫରଦସବୁର ତାଲିକା',
 'tooltip-t-recentchangeslinked'  => 'ଏହି ଫରଦ ସାଗେ ଯୋଡ଼ା ଫରଦଗୁଡ଼ିକରେ ଏଇଲାଗେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
 'tooltip-t-upload'               => 'ଫାଇଲ ଅପଲୋଡ଼ କର',
-'tooltip-t-specialpages'         => 'ବିଶେଷ ଫରଦଗୁଡ଼ିକ',
+'tooltip-t-specialpages'         => 'ନିଆରା ଫରଦ ତାଲିକା',
 'tooltip-t-print'                => 'ଏହି ଫରଦର ଛପାହୋଇପାରିବା ଭର୍ସନ',
 'tooltip-t-permalink'            => 'ସଁଶୋଧିତ ଏହି ଫରଦଟିର ସ୍ଥାୟି ଲିଁକ',
 'tooltip-ca-nstab-main'          => 'ସୂଚି ଫରଦଟି ଦେଖଁତୁ',
@@ -263,6 +283,6 @@ $messages = array(
 'fileduplicatesearch-submit' => 'ସନ୍ଧାନ',
 
 # Special:SpecialPages
-'specialpages' => 'ବିଶେଷ',
+'specialpages' => 'ନିଆରା ଫରଦ',
 
 );

@@ -2325,9 +2325,10 @@ $1',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
-'namespace'      => 'Spatio de nomine:',
-'invert'         => 'Inverter selection',
-'blanknamespace' => '(Principal)',
+'namespace'             => 'Spatio de nomine:',
+'invert'                => 'Inverter selection',
+'namespace_association' => 'Spatio de nomines associate',
+'blanknamespace'        => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contributiones del usator',

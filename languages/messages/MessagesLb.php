@@ -931,7 +931,7 @@ Vläicht gouf se geläscht oder geréckelt.
 [[Special:Search|Sich op]] {{SITENAME}} no passenden neie Säiten.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(Bemierkung geläscht)',
+'rev-deleted-comment'         => '(Resumé vun der Ännerung ewechgeholl)',
 'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-deleted-user-contribs'   => '[Benotzernumm oder IP-Adress ewechgeholl - Ännerung an der Lescht vun de Kontributioune verstoppt]',

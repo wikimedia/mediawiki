@@ -884,7 +884,7 @@ Labda umeshafutwa, au umebadilishwa jina.
 Jaribu [[Special:Search|kutafuta kurasa mpya zinazohusika kwenye wiki]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(maelezo yalifutwa)',
+'rev-deleted-comment'         => '(muhtasari wa kuhariri ulifutwa)',
 'rev-deleted-user'            => '(jina la mtumiaji lilifutwa)',
 'rev-deleted-event'           => '(ingizo lilifutwa)',
 'rev-deleted-user-contribs'   => '[jina la mtumiaji au anwani wa IP umetolewa - sahihisho lilifichwa kutoka kwa orodha ya michango]',
@@ -921,7 +921,7 @@ Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja
 'revdelete-hide-text'         => 'Ficha maandishi ya pitio',
 'revdelete-hide-image'        => 'Ficha yaliyomo kwenye faili',
 'revdelete-hide-name'         => 'Ficha tendo na shabaha',
-'revdelete-hide-comment'      => 'Ficha muhtasari wa sahihisho',
+'revdelete-hide-comment'      => 'Ficha muhtasari wa kuhariri',
 'revdelete-hide-user'         => 'Ficha jina la mhariri/anwani ya IP ya mhariri',
 'revdelete-hide-restricted'   => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same'        => '(isibadilishwe)',

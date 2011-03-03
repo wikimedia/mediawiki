@@ -2213,9 +2213,10 @@ $1',
 'undelete-show-file-submit'    => 'Haj',
 
 # Namespace form on various pages
-'namespace'      => 'Mjenowy rum:',
-'invert'         => 'Wuběr wobroćić',
-'blanknamespace' => '(Nastawki)',
+'namespace'             => 'Mjenowy rum:',
+'invert'                => 'Wuběr wobroćić',
+'namespace_association' => 'Nawjazany mjenowy rum',
+'blanknamespace'        => '(Nastawki)',
 
 # Contributions
 'contributions'       => 'Přinoški wužiwarja',

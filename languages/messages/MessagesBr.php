@@ -2302,9 +2302,10 @@ $1',
 'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
-'namespace'      => 'Esaouenn anv :',
-'invert'         => 'Eilpennañ an dibab',
-'blanknamespace' => '(Pennañ)',
+'namespace'             => 'Esaouenn anv :',
+'invert'                => 'Eilpennañ an dibab',
+'namespace_association' => 'Esaouennoù anv all da ouzhpennañ',
+'blanknamespace'        => '(Pennañ)',
 
 # Contributions
 'contributions'       => 'Degasadennoù an implijer',
