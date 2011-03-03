@@ -33,8 +33,6 @@ $.fn.placeholder = function() {
 				if ( this.value === '' ) {
 					this.value = placeholder;
 					$input.addClass( 'placeholder' );
-				} else {
-					$input.removeClass( 'placeholder' );
 				}
 			} )
 
