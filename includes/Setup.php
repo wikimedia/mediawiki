@@ -283,7 +283,7 @@ require_once( "$IP/includes/GlobalFunctions.php" );
 require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/includes/Namespace.php" );
 require_once( "$IP/includes/ProxyTools.php" );
-require_once( "$IP/includes/ObjectCache.php" );
+require_once( "$IP/includes/objectcache/ObjectCache.php" );
 require_once( "$IP/includes/ImageFunctions.php" );
 wfProfileOut( $fname . '-includes' );
 wfProfileIn( $fname . '-misc1' );
