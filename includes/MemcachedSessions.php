@@ -92,4 +92,14 @@ function memsess_gc( $maxlifetime ) {
 	return true;
 }
 
+function memsess_write_close() {
+	session_write_close();
+}
+
 session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 'memsess_write', 'memsess_destroy', 'memsess_gc' );
+
+// It's necessary to register a shutdown function to call session_write_close(), 
+// because by the time the request shutdown function for the session module is 
+// called, $wgMemc has already been destroyed. Shutdown functions registered
+// this way are called before object destruction.
+register_shutdown_function( 'memsess_write_close' );

@@ -1519,7 +1519,7 @@ $wgParserCacheType = CACHE_ANYTHING;
  * The other parameters are dependent on the class used.
  */
 $wgObjectCaches = array(
-	CACHE_NONE => array( 'class' => 'FakeMemCachedClient' ),
+	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'table' => 'objectcache' ),
 	CACHE_DBA => array( 'class' => 'DBABagOStuff' ),
 
