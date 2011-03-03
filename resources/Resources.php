@@ -424,6 +424,10 @@ return array(
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 	),
+	'mediawiki.special.block' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
+		'dependencies' => array( 'jquery.effects.blind' ),
+	),
 	'mediawiki.special.upload' => array(
 		// @TODO: merge in remainder of mediawiki.legacy.upload
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
