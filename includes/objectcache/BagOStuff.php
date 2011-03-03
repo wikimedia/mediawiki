@@ -129,7 +129,8 @@ abstract class BagOStuff {
 
 	public function debug( $text ) {
 		if ( $this->debugMode ) {
-			wfDebug( "BagOStuff debug: $text\n" );
+			$class = get_class( $this );
+			wfDebug( "$class debug: $text\n" );
 		}
 	}
 
