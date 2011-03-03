@@ -1788,7 +1788,11 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		// Add base resources
-		$this->addModules( array( 'mediawiki.legacy.wikibits', 'mediawiki.util' ) );
+		$this->addModules( 'mediawiki.util' );
+		global $wgIncludeLegacyJavaScript;
+		if( $wgIncludeLegacyJavaScript ){
+			$this->addModules( 'mediawiki.legacy.wikibits' );
+		}
 
 		// Add various resources if required
 		if ( $wgUseAjax ) {
