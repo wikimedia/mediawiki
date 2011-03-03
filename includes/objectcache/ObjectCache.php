@@ -58,10 +58,10 @@ class ObjectCache {
 		$candidates = array( $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType );
 		foreach ( $candidates as $candidate ) {
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
-				return self::newFromId( $candidate );
+				return self::getInstance( $candidate );
 			}
 		}
-		return self::newFromId( CACHE_DB );
+		return self::getInstance( CACHE_DB );
 	}
 
 	/**
