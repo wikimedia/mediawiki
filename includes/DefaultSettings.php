@@ -2499,6 +2499,12 @@ $wgResourceLoaderUseESI = false;
  */
 $wgResourceLoaderMinifyJSVerticalSpace = false;
 
+/**
+ * Whether to include the mediawiki.legacy JS library (old wikibits.js), and its
+ * dependencies
+ */
+$wgIncludeLegacyJavaScript = true;
+
 /** @} */ # End of resource loader settings }
 
 
