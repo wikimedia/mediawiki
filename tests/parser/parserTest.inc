@@ -683,7 +683,7 @@ class ParserTest {
 		$langObj = Language::factory( $lang );
 		$GLOBALS['wgLang'] = $langObj;
 		$GLOBALS['wgContLang'] = $langObj;
-		$GLOBALS['wgMemc'] = new FakeMemCachedClient;
+		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
 		$GLOBALS['wgOut'] = new OutputPage;
 
 		global $wgHooks;

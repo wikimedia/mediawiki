@@ -9,7 +9,7 @@ class LanguageConverterTest extends MediaWikiTestCase {
 
 		$wgUser = new User;
 		$wgRequest = new FauxRequest( array() );
-		$wgMemc = new FakeMemCachedClient;
+		$wgMemc = new EmptyBagOStuff;
 		$wgContLang = Language::factory( 'tg' );
 		$this->lang = new LanguageToTest();
 		$this->lc = new TestConverter( $this->lang, 'tg',

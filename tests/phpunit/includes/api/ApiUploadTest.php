@@ -81,7 +81,7 @@ abstract class ApiTestCase extends MediaWikiTestCase {
 	function setUp() {
 		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser;
 
-		$wgMemc = new FakeMemCachedClient();
+		$wgMemc = new EmptyBagOStuff();
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 		$wgRequest = new FauxRequest( array() );
