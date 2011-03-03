@@ -653,11 +653,19 @@ abstract class Skin extends Linker {
 		return $wgLogo;
 	}
 
-	function getCategoryLinks() {
-		global $wgOut, $wgUseCategoryBrowser;
-		global $wgContLang, $wgUser;
+	/**
+	 * The format without an explicit $out argument is deprecated
+	 */
+	function getCategoryLinks( OutputPage $out=null ) {
+		global $wgUseCategoryBrowser, $wgContLang, $wgUser;
 
-		if ( count( $wgOut->mCategoryLinks ) == 0 ) {
+		if ( is_null( $out ) ) {
+			// Backwards compatibility for when there was no $out arg
+			global $wgOut;
+			$out = $wgOut;
+		}
+
+		if ( count( $out->mCategoryLinks ) == 0 ) {
 			return '';
 		}
 
@@ -670,7 +678,7 @@ abstract class Skin extends Linker {
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 
-		$allCats = $wgOut->getCategoryLinks();
+		$allCats = $out->getCategoryLinks();
 		$s = '';
 		$colon = wfMsgExt( 'colon-separator', 'escapenoentities' );
 
@@ -745,15 +753,25 @@ abstract class Skin extends Linker {
 		return $return;
 	}
 
-	function getCategories() {
-		$catlinks = $this->getCategoryLinks();
+	/**
+	 * The ->getCategories() form is deprecated, please instead use
+	 * the ->getCategories( $out ) form with whatout OutputPage is on hand
+	 */
+	function getCategories( OutputPage $out=null ) {
+		if ( is_null( $out ) ) {
+			// Backwards compatibility for when there was no $out arg
+			global $wgOut;
+			$out = $wgOut;
+		}
+
+		$catlinks = $this->getCategoryLinks( $out );
 
 		$classes = 'catlinks';
 
-		global $wgOut, $wgUser;
+		global $wgUser;
 
 		// Check what we're showing
-		$allCats = $wgOut->getCategoryLinks();
+		$allCats = $out->getCategoryLinks();
 		$showHidden = $wgUser->getBoolOption( 'showhiddencats' ) ||
 						$this->mTitle->getNamespace() == NS_CATEGORY;
 
@@ -804,11 +822,11 @@ abstract class Skin extends Linker {
 	 * area.
 	 * @return String HTML containing debug data, if enabled (otherwise empty).
 	 */
-	protected function generateDebugHTML() {
-		global $wgShowDebug, $wgOut;
+	protected function generateDebugHTML( OutputPage $out ) {
+		global $wgShowDebug;
 
 		if ( $wgShowDebug ) {
-			$listInternals = $this->formatDebugHTML( $wgOut->mDebugtext );
+			$listInternals = $this->formatDebugHTML( $out->mDebugtext );
 			return "\n<hr />\n<strong>Debug data:</strong><ul style=\"font-family:monospace;\" id=\"mw-debug-html\">" .
 				$listInternals . "</ul>\n";
 		}
@@ -905,16 +923,23 @@ abstract class Skin extends Linker {
 		return '';
 	}
 
-	function subPageSubtitle() {
+	/**
+	 * The format without an explicit $out argument is deprecated
+	 */
+	function subPageSubtitle( OutputPage $out=null ) {
+		if ( is_null( $out ) ) {
+			// Backwards compatibility for when there was no $out arg
+			global $wgOut;
+			$out = $wgOut;
+		}
+
 		$subpages = '';
 
-		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this ) ) ) {
+		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ) ) ) {
 			return $subpages;
 		}
 
-		global $wgOut;
-
-		if ( $wgOut->isArticle() && MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
+		if ( $out->isArticle() && MWNamespace::hasSubpages( $out->getTitle()->getNamespace() ) ) {
 			$ptext = $this->mTitle->getPrefixedText();
 			if ( preg_match( '/\//', $ptext ) ) {
 				$links = explode( '/', $ptext );
@@ -1463,9 +1488,16 @@ abstract class Skin extends Linker {
 	/**
 	 * Gets new talk page messages for the current user.
 	 * @return MediaWiki message or if no new talk page messages, nothing
+	 * The format without an explicit $out argument is deprecated
 	 */
-	function getNewtalks() {
-		global $wgUser, $wgOut;
+	function getNewtalks( OutputPage $out=null ) {
+		global $wgUser;
+
+		if ( is_null( $out ) ) {
+			// Backwards compatibility for when there was no $out arg
+			global $wgOut;
+			$out = $wgOut;
+		}
 
 		$newtalks = $wgUser->getNewMessageLinks();
 		$ntl = '';
@@ -1474,7 +1506,7 @@ abstract class Skin extends Linker {
 			$userTitle = $this->mUser->getUserPage();
 			$userTalkTitle = $userTitle->getTalkPage();
 
-			if ( !$userTalkTitle->equals( $this->mTitle ) ) {
+			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
 				$newMessagesLink = $this->link(
 					$userTalkTitle,
 					wfMsgHtml( 'newmessageslink' ),
@@ -1497,7 +1529,7 @@ abstract class Skin extends Linker {
 					$newMessagesDiffLink
 				);
 				# Disable Squid cache
-				$wgOut->setSquidMaxage( 0 );
+				$out->setSquidMaxage( 0 );
 			}
 		} elseif ( count( $newtalks ) ) {
 			// _>" " for BC <= 1.16
@@ -1512,7 +1544,7 @@ abstract class Skin extends Linker {
 			}
 			$parts = implode( $sep, $msgs );
 			$ntl = wfMsgHtml( 'youhavenewmessagesmulti', $parts );
-			$wgOut->setSquidMaxage( 0 );
+			$out->setSquidMaxage( 0 );
 		}
 
 		return $ntl;
