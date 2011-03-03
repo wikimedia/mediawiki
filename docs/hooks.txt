@@ -1500,6 +1500,7 @@ $skin: Skin object
 'SkinSubPageSubtitle': At the beginning of Skin::subPageSubtitle()
 &$subpages: Subpage links HTML
 $skin: Skin object
+$out: OutputPage object
 If false is returned $subpages will be used instead of the HTML
 subPageSubtitle() generates.
 If true is returned, $subpages will be ignored and the rest of
