@@ -3357,3 +3357,33 @@ function wfArrayMap( $function, $input ) {
 	}
 	return $ret;
 }
+
+
+/**
+ * Get a cache object.
+ * @param $inputType Cache type, one the the CACHE_* constants.
+ *
+ * @return BagOStuff
+ */
+function wfGetCache( $inputType ) {
+	return ObjectCache::getInstance( $inputType );
+}
+
+/** Get the main cache object */
+function wfGetMainCache() {
+	global $wgMainCacheType;
+	return ObjectCache::getInstance( $wgMainCacheType );
+}
+
+/** Get the cache object used by the message cache */
+function wfGetMessageCacheStorage() {
+	global $wgMessageCacheType;
+	return ObjectCache::getInstance( $wgMessageCacheType );
+}
+
+/** Get the cache object used by the parser cache */
+function wfGetParserCacheStorage() {
+	global $wgParserCacheType;
+	return ObjectCache::getInstance( $wgParserCacheType );
+}
+

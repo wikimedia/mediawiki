@@ -42,9 +42,9 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		$wgEnableParserCache = false;
 		$wgDeferredUpdateList = array();
-		$wgMemc = &wfGetMainCache();
-		$messageMemc = &wfGetMessageCacheStorage();
-		$parserMemc = &wfGetParserCacheStorage();
+		$wgMemc = wfGetMainCache();
+		$messageMemc = wfGetMessageCacheStorage();
+		$parserMemc = wfGetParserCacheStorage();
 
 		// $wgContLang = new StubContLang;
 		$wgUser = new User;

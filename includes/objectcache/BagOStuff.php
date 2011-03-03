@@ -43,7 +43,7 @@
 abstract class BagOStuff {
 	var $debugMode = false;
 
-	public function set_debug( $bool ) {
+	public function setDebug( $bool ) {
 		$this->debugMode = $bool;
 	}
 
@@ -87,40 +87,12 @@ abstract class BagOStuff {
 	}
 
 	/* *** Emulated functions *** */
-	/* Better performance can likely be got with custom written versions */
-	public function get_multi( $keys ) {
-		$out = array();
-
-		foreach ( $keys as $key ) {
-			$out[$key] = $this->get( $key );
-		}
-
-		return $out;
-	}
-
-	public function set_multi( $hash, $exptime = 0 ) {
-		foreach ( $hash as $key => $value ) {
-			$this->set( $key, $value, $exptime );
-		}
-	}
 
 	public function add( $key, $value, $exptime = 0 ) {
 		if ( !$this->get( $key ) ) {
 			$this->set( $key, $value, $exptime );
 
 			return true;
-		}
-	}
-
-	public function add_multi( $hash, $exptime = 0 ) {
-		foreach ( $hash as $key => $value ) {
-			$this->add( $key, $value, $exptime );
-		}
-	}
-
-	public function delete_multi( $keys, $time = 0 ) {
-		foreach ( $keys as $key ) {
-			$this->delete( $key, $time );
 		}
 	}
 
