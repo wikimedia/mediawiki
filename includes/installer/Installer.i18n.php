@@ -1324,6 +1324,7 @@ chmod a+w $3</pre>',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
 	'config-pg-no-create-privs' => 'Рахунак, які Вы пазначылі для ўсталяваньня ня мае дастаткова правоў для стварэньня рахунку.',
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
+	'config-install-user-alreadyexists' => 'Удзельнік «$1» ужо існуе',
 	'config-install-user-grant-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
 	'config-install-tables' => 'Стварэньне табліцаў',
 	'config-install-tables-exist' => "'''Папярэджаньне''': Выглядае, што табліцы MediaWiki ужо існуюць.
@@ -7189,6 +7190,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-profile' => 'Profil vun de Benotzerrechter:',
 	'config-profile-wiki' => 'Traditionell Wiki',
 	'config-profile-no-anon' => 'Uleeë vun engem Benotzerkont verlaangt',
+	'config-profile-fishbowl' => 'Nëmmen autoriséiert Editeuren',
 	'config-profile-private' => 'Privat Wiki',
 	'config-license' => 'Copyright a Lizenz:',
 	'config-license-none' => 'Keng Lizenz ënnen op der Säit',
@@ -7213,9 +7215,12 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-database' => 'Datebank gëtt installéiert',
 	'config-pg-no-plpgsql' => "Fir d'Datebank $1 muss d'Datebanksprooch PL/pgSQL installéiert ginn",
 	'config-install-user' => 'Datebank Benotzer uleeën',
+	'config-install-user-alreadyexists' => 'De Benotzer "$1" gëtt et schonn!',
+	'config-install-user-create-failed' => 'D\'Opmaache vum Benotzer "$1" huet net fonctionnéiert: $2',
 	'config-install-tables' => 'Tabelle ginn ugeluecht',
 	'config-install-interwiki' => 'Standard Interwiki-Tabell gëtt ausgefëllt',
 	'config-install-interwiki-list' => 'De Fichier <code>interwiki.list</code> gouf net fonnt.',
+	'config-install-stats' => 'Initialisatioun vun de Statistiken',
 	'config-install-secretkey' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 );
@@ -9742,7 +9747,12 @@ Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/pt Página principal do MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+----
+* <doclink href=Readme>Leia-me</doclink>
+* <doclink href=ReleaseNotes>Notas de lançamento</doclink>
+* <doclink href=Copying>Cópia</doclink>
+* <doclink href=UpgradeDoc>Atualização</doclink>',
 	'config-env-good' => 'O ambiente foi verificado.
 Pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
@@ -10093,8 +10103,10 @@ Sites de tamanho médio ou grande são altamente encorajados a activar esta func
 	'config-cache-accel' => 'Cache de objectos do PHP (APC, eAccelerator, XCache ou WinCache)',
 	'config-cache-memcached' => 'Usar Memcached (requer instalação e configurações adicionais)',
 	'config-memcached-servers' => 'Servidores Memcached:',
-	'config-memcached-help' => 'Lista de endereços IP que serão usados para Memcached.
-Devem ser separados por vírgulas e especificar a porta a utilizar (por exemplo: 127.0.0.1:11211, 192.168.1.25:11211).',
+	'config-memcached-help' => 'Lista de endereços IP que serão usados para o Memcached.
+Deve-se colocar um por linha e indicar a porta a utilizar. Por exemplo:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
 	'config-extensions' => 'Extensões',
 	'config-extensions-help' => 'Foi detectada a existência das extensões listadas acima, no seu directório <code>./extensions</code>.
 
@@ -10115,7 +10127,7 @@ Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\'
 	'config-pg-no-plpgsql' => 'É preciso instalar a linguagem PL/pgSQL na base de dados $1',
 	'config-pg-no-create-privs' => 'A conta que especificou para a instalação não tem privilégios suficientes para criar uma conta.',
 	'config-install-user' => 'A criar o utilizador da base de dados',
-	'config-install-user-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
+	'config-install-user-grant-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
 	'config-install-tables' => 'A criar as tabelas',
 	'config-install-tables-exist' => "'''Aviso''': As tabelas do MediaWiki parecem já existir.
 A criação das tabelas será saltada.",

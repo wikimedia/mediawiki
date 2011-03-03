@@ -2367,9 +2367,10 @@ $1',
 'undelete-show-file-submit'    => 'Так',
 
 # Namespace form on various pages
-'namespace'      => 'Прастора назваў:',
-'invert'         => 'Адваротны выбар',
-'blanknamespace' => '(Асноўная)',
+'namespace'             => 'Прастора назваў:',
+'invert'                => 'Адваротны выбар',
+'namespace_association' => 'Зьвязаная прастора назваў',
+'blanknamespace'        => '(Асноўная)',
 
 # Contributions
 'contributions'       => 'Унёсак',

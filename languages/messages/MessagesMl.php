@@ -2411,9 +2411,10 @@ $1',
 'undelete-show-file-submit'  => 'ശരി',
 
 # Namespace form on various pages
-'namespace'      => 'നാമമേഖല:',
-'invert'         => 'വിപരീതം തിരഞ്ഞെടുക്കുക',
-'blanknamespace' => '(മുഖ്യം)',
+'namespace'             => 'നാമമേഖല:',
+'invert'                => 'വിപരീതം തിരഞ്ഞെടുക്കുക',
+'namespace_association' => 'ആർജ്ജിത നാമമേഖല',
+'blanknamespace'        => '(മുഖ്യം)',
 
 # Contributions
 'contributions'       => 'ഉപയോക്താവിന്റെ സംഭാവനകൾ',

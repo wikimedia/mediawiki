@@ -2411,9 +2411,10 @@ $1',
 'undelete-show-file-submit'    => 'Да',
 
 # Namespace form on various pages
-'namespace'      => 'Пространство имён:',
-'invert'         => 'Обратить выбранное',
-'blanknamespace' => '(Основное)',
+'namespace'             => 'Пространство имён:',
+'invert'                => 'Обратить выбранное',
+'namespace_association' => 'Связанные пространства имён',
+'blanknamespace'        => '(Основное)',
 
 # Contributions
 'contributions'       => 'Вклад участника',

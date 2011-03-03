@@ -560,7 +560,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
-'remembermypassword'         => '↓ Ingat kata laluan saya dalam komputer ini (maximum of $1 {{PLURAL:$1|hari|hari}})',
+'remembermypassword'         => 'Ingat log masuk saya pada pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'securelogin-stick-https'    => 'Kekal disambungkan ke HTTPS selepas log masuk',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
@@ -924,7 +924,7 @@ Mungkin ia telah dihapuskan atau namanya telah ditukar.
 Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komen dibuang)',
+'rev-deleted-comment'         => '(ringkasan suntingan dibuang)',
 'rev-deleted-user'            => '(nama pengguna dibuang)',
 'rev-deleted-event'           => '(entri dibuang)',
 'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dibuang - suntingan disembunyikan daripada sumbangan]',
@@ -1569,6 +1569,8 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'php-uploaddisabledtext'      => 'Pemuatnaikan fail PHP dilumpuhkan. Sila semak tetapan file_uploads.',
 'uploadscripted'              => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
 'uploadvirus'                 => 'Fail tersebut mengandungi virus! Butiran: $1',
+'uploadjava'                  => 'Fail ini ialah fail ZIP yang mengandungi fail .class Java.
+Memuat naik fail Java tidak dibenarkan, kerana boleh menyebabkan sekatan keselamatan dipintas.',
 'upload-source'               => 'Fail sumber',
 'sourcefilename'              => 'Nama fail sumber:',
 'sourceurl'                   => 'URL sumber:',
@@ -1602,6 +1604,14 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'upload-too-many-redirects' => 'URL ini mengandungi terlalu banyak lencongan',
 'upload-unknown-size'       => 'Saiz tidak diketahui',
 'upload-http-error'         => 'Berlaku ralat HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Wujud ralat ketika membuka fail untuk pemeriksaan ZIP.',
+'zip-wrong-format'    => 'Fail yang dinyatakan bukan fail ZIP.',
+'zip-bad'             => 'Fail ini adalah fail ZIP rosak atau tidak dapat dibaca.
+Ia tidak dapat diperiksa dengan betul demi keselamatan.',
+'zip-unsupported'     => 'Fail ini adalah fail ZIP yang menggunakan ciri-ciri ZIP tidak disokong oleh MediaWiki. 
+Ia tidak dapat diperiksa dengan betul demi keselamatan.',
 
 # Special:UploadStash
 'uploadstash'          => 'Sorokan muat naik',
@@ -1783,11 +1793,12 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'            => 'Lencongan berganda',
-'doubleredirectstext'        => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
+'doubleredirects'                   => 'Lencongan berganda',
+'doubleredirectstext'               => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
 Masukan yang <del>dipotong</del> telah diselesaikan.',
-'double-redirect-fixed-move' => '[[$1]] dilencongkan ke [[$2]]',
-'double-redirect-fixer'      => 'Pembaiki lencongan',
+'double-redirect-fixed-move'        => '[[$1]] dilencongkan ke [[$2]]',
+'double-redirect-fixed-maintenance' => 'Membetulkan dwilecongan daripada [[$1]] kepada [[$2]].',
+'double-redirect-fixer'             => 'Pembaiki lencongan',
 
 'brokenredirects'        => 'Lencongan rosak',
 'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
@@ -2243,9 +2254,10 @@ $1',
 'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
-'namespace'      => 'Ruang nama:',
-'invert'         => 'Kecualikan pilihan',
-'blanknamespace' => '(Utama)',
+'namespace'             => 'Ruang nama:',
+'invert'                => 'Kecualikan pilihan',
+'namespace_association' => 'Ruang nama berkaitan',
+'blanknamespace'        => '(Utama)',
 
 # Contributions
 'contributions'       => 'Sumbangan',

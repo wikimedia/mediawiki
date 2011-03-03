@@ -2541,9 +2541,10 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'      => 'Naamruimte:',
-'invert'         => 'Omgekeerde selectie',
-'blanknamespace' => '(Hoofdnaamruimte)',
+'namespace'             => 'Naamruimte:',
+'invert'                => 'Omgekeerde selectie',
+'namespace_association' => 'Gekoppelde naamruimte',
+'blanknamespace'        => '(Hoofdnaamruimte)',
 
 # Contributions
 'contributions'       => 'Gebruikersbijdragen',

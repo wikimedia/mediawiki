@@ -2373,9 +2373,10 @@ $1',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
-'namespace'      => 'Espazo de nomes:',
-'invert'         => 'Inverter a selección',
-'blanknamespace' => '(Principal)',
+'namespace'             => 'Espazo de nomes:',
+'invert'                => 'Inverter a selección',
+'namespace_association' => 'Espazo de nomes asociado',
+'blanknamespace'        => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contribucións do usuario',

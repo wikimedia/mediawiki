@@ -2494,9 +2494,10 @@ $1',
 'undelete-show-file-submit'    => 'Да',
 
 # Namespace form on various pages
-'namespace'      => 'Именски простор:',
-'invert'         => 'Обратен избор',
-'blanknamespace' => '(Главен)',
+'namespace'             => 'Именски простор:',
+'invert'                => 'Обратен избор',
+'namespace_association' => 'Поврзан именски простор',
+'blanknamespace'        => '(Главен)',
 
 # Contributions
 'contributions'       => 'Кориснички придонеси',

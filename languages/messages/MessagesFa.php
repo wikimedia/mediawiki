@@ -2557,9 +2557,10 @@ $1',
 'undelete-show-file-submit'    => 'آری',
 
 # Namespace form on various pages
-'namespace'      => 'فضای نام:',
-'invert'         => 'انتخاب برعکس شود',
-'blanknamespace' => '(اصلی)',
+'namespace'             => 'فضای نام:',
+'invert'                => 'انتخاب برعکس شود',
+'namespace_association' => 'فضای نامی مرتبط',
+'blanknamespace'        => '(اصلی)',
 
 # Contributions
 'contributions'       => 'مشارکت‌ها',

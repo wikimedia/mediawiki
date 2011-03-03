@@ -2230,9 +2230,10 @@ $1',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
-'namespace'      => 'Mjenjowy rum:',
-'invert'         => 'Wuběr wobrośiś',
-'blanknamespace' => '(Nastawki)',
+'namespace'             => 'Mjenjowy rum:',
+'invert'                => 'Wuběr wobrośiś',
+'namespace_association' => 'Nawězany mjenjowy rum',
+'blanknamespace'        => '(Nastawki)',
 
 # Contributions
 'contributions'       => 'Wužywarske pśinoski',
