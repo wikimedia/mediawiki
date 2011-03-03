@@ -165,7 +165,6 @@ class ORAField implements Field {
 class DatabaseOracle extends DatabaseBase {
 	var $mInsertId = null;
 	var $mLastResult = null;
-	var $numeric_version = null;
 	var $lastResult = null;
 	var $cursor = 0;
 	var $mAffectedRows;
