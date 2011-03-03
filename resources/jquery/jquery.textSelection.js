@@ -34,6 +34,8 @@ getSelection: function() {
  *
  * Inserts text at the begining and end of a text selection, optionally
  * inserting text at the caret when selection is empty.
+ *
+ * @fixme document the options parameters
  */
 encapsulateSelection: function( options ) {
 	return this.each( function() {
@@ -134,6 +136,8 @@ encapsulateSelection: function( options ) {
  *
  * Get the position (in resolution of bytes not nessecarily characters)
  * in a textarea
+ *
+ * @fixme document the options parameters
  */
  getCaretPosition: function( options ) {
 	function getCaret( e ) {
@@ -217,6 +221,9 @@ encapsulateSelection: function( options ) {
 	}
 	return getCaret( this.get( 0 ) );
 },
+/**
+ * @fixme document the options parameters
+ */
 setSelection: function( options ) {
 	return this.each( function() {
 		if ( $(this).is( ':hidden' ) ) {
@@ -258,6 +265,8 @@ setSelection: function( options ) {
  * position with setSelection()
  * @param options boolean Whether to force a scroll even if the caret position
  *  is already visible. Defaults to false
+ *
+ * @fixme document the options parameters (function body suggests options.force is a boolean, not options itself)
  */
 scrollToCaretPosition: function( options ) {
 	function getLineLength( e ) {
