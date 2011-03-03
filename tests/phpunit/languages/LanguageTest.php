@@ -58,4 +58,27 @@ class LanguageTest extends MediaWikiTestCase {
 			'formatTimePeriod() rounding (>=1h)'
 		);
 	}
+
+	/**
+	 * Test Language::isValidBuiltInCode()
+	 * @dataProvider provideLanguageCodes
+	 */
+	function testBuiltInCodeValidation( $code, $message = '' ) {
+		$this->assertTrue(
+			(bool) Language::isValidBuiltInCode( $code ),
+			"validating code $code $message"
+		);
+	}
+
+	function provideLanguageCodes() {
+		return array(
+			array( 'fr'       , 'Two letters, minor case' ),
+			array( 'EN'       , 'Two letters, upper case' ),
+			array( 'tyv'      , 'Three letters' ),
+			array( 'tokipona'   , 'long language code' ),
+			array( 'be_tarask', 'With underscore' ),
+			array( 'Zh_classical', 'Begin with upper case, underscore' ),
+			array( 'Be_x_old', 'With extension (two underscores)' ),
+		);
+	}
 }
