@@ -16,7 +16,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang;
 
 		if(!$wgMemc) {
-			$wgMemc = new FakeMemCachedClient;
+			$wgMemc = new EmptyBagOStuff;
 		}
 		$wgContLang = $wgLang = Language::factory( 'en' );
 

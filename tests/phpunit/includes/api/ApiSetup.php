@@ -10,7 +10,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 
 		self::$apiUrl = $wgServer . wfScript( 'api' );
 
-		$wgMemc = new FakeMemCachedClient;
+		$wgMemc = new EmptyBagOStuff;
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 		$wgRequest = new FauxRequest( array() );

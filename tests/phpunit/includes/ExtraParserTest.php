@@ -12,7 +12,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 		$wgShowDBErrorBacktrace = true;
 		$wgContLang = new Language( 'en' );
-		$wgMemc = new FakeMemCachedClient;
+		$wgMemc = new EmptyBagOStuff;
 		
 		$this->options = new ParserOptions;
 		$this->options->setTemplateCallback( array( __CLASS__, 'statelessFetchTemplate' ) );
