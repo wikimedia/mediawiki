@@ -1481,6 +1481,8 @@ $wgCacheDirectory = false;
  *   - CACHE_DBA:        Use PHP's DBA extension to store in a DBM-style
  *                       database. This is slow, and is not recommended for
  *                       anything other than debugging.
+ *   - (other):          A string may be used which identifies a cache 
+ *                       configuration in $wgObjectCaches.
  *
  * @see $wgMessageCacheType, $wgParserCacheType
  */
@@ -1501,6 +1503,36 @@ $wgMessageCacheType = CACHE_ANYTHING;
  * For available types see $wgMainCacheType.
  */
 $wgParserCacheType = CACHE_ANYTHING;
+
+/**
+ * Advanced object cache configuration.
+ *
+ * Use this to define the class names and constructor parameters which are used 
+ * for the various cache types. Custom cache types may be defined here and 
+ * referenced from $wgMainCacheType, $wgMessageCacheType or $wgParserCacheType.
+ *
+ * The format is an associative array where the key is a cache identifier, and 
+ * the value is an associative array of parameters. The "class" parameter is the
+ * class name which will be used. Alternatively, a "factory" parameter may be 
+ * given, giving a callable function which will generate a suitable cache object.
+ *
+ * The other parameters are dependent on the class used.
+ */
+$wgObjectCaches = array(
+	CACHE_NONE => array( 'class' => 'FakeMemCachedClient' ),
+	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'table' => 'objectcache' ),
+	CACHE_DBA => array( 'class' => 'DBABagOStuff' ),
+
+	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
+	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
+	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached' ),
+
+	'eaccelerator' => array( 'class' => 'eAccelBagOStuff' ),
+	'apc' => array( 'class' => 'APCBagOStuff' ),
+	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
+	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
+	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff' ),
+);
 
 /**
  * The expiry time for the parser cache, in seconds. The default is 86.4k

@@ -25,7 +25,7 @@
 /** */
 require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
-$mcc = new MWMemcached( array( 'persistant' => true/*, 'debug' => true*/ ) );
+$mcc = new MWMemcached( array( 'persistent' => true/*, 'debug' => true*/ ) );
 $mcc->set_servers( $wgMemCachedServers );
 # $mcc->set_debug( true );
 

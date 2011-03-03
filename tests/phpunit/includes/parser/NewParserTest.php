@@ -70,9 +70,9 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgEnableParserCache'] = false;
 		$tmpGlobals['wgHooks'] = $wgHooks;
 		$tmpGlobals['wgDeferredUpdateList'] = array();
-		$tmpGlobals['wgMemc'] = &wfGetMainCache();
-		$tmpGlobals['messageMemc'] = &wfGetMessageCacheStorage();
-		$tmpGlobals['parserMemc'] = &wfGetParserCacheStorage();
+		$tmpGlobals['wgMemc'] = wfGetMainCache();
+		$tmpGlobals['messageMemc'] = wfGetMessageCacheStorage();
+		$tmpGlobals['parserMemc'] = wfGetParserCacheStorage();
 
 		// $tmpGlobals['wgContLang'] = new StubContLang;
 		$tmpGlobals['wgUser'] = new User;

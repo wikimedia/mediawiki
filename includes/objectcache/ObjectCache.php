@@ -5,96 +5,90 @@
  * @file
  * @ingroup Cache
  */
+class ObjectCache {
+	static $instances = array();
 
-global $wgCaches;
-$wgCaches = array();
-
-/**
- * Get a cache object.
- * @param $inputType Integer: cache type, one the the CACHE_* constants.
- *
- * @return BagOStuff
- */
-function &wfGetCache( $inputType ) {
-	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
-	$cache = false;
-
-	if ( $inputType == CACHE_ANYTHING ) {
-		reset( $wgCaches );
-		$type = key( $wgCaches );
-		if ( $type === false || $type === CACHE_NONE ) {
-			$type = CACHE_DB;
+	/**
+	 * Get a cached instance of the specified type of cache object.
+	 */
+	static function getInstance( $id ) {
+		if ( isset( self::$instances[$id] ) ) {
+			return self::$instances[$id];
 		}
-	} else {
-		$type = $inputType;
+
+		$object = self::newFromId( $id );
+		self::$instances[$id] = $object;
+		return $object;
 	}
 
-	if ( $type == CACHE_MEMCACHED ) {
-		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ) {
-			$wgCaches[CACHE_MEMCACHED] = new MemCachedClientforWiki(
-				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
-			$wgCaches[CACHE_MEMCACHED]->set_servers( $wgMemCachedServers );
-			$wgCaches[CACHE_MEMCACHED]->set_debug( $wgMemCachedDebug );
+	/**
+	 * Create a new cache object of the specified type.
+	 */
+	static function newFromId( $id ) {
+		global $wgObjectCaches;
+
+		if ( !isset( $wgObjectCaches[$id] ) ) {
+			throw new MWException( "Invalid object cache type \"$id\" requested. " . 
+				"It is not present in \$wgObjectCaches." );
 		}
-		$cache =& $wgCaches[CACHE_MEMCACHED];
-	} elseif ( $type == CACHE_ACCEL ) {
-		if ( !array_key_exists( CACHE_ACCEL, $wgCaches ) ) {
-			if ( function_exists( 'eaccelerator_get' ) ) {
-				$wgCaches[CACHE_ACCEL] = new eAccelBagOStuff;
-			} elseif ( function_exists( 'apc_fetch') ) {
-				$wgCaches[CACHE_ACCEL] = new APCBagOStuff;
-			} elseif( function_exists( 'xcache_get' ) ) {
-				$wgCaches[CACHE_ACCEL] = new XCacheBagOStuff();
-			} elseif( function_exists( 'wincache_ucache_get' ) ) {
-				$wgCaches[CACHE_ACCEL] = new WinCacheBagOStuff();
-			} else {
-				$wgCaches[CACHE_ACCEL] = false;
+
+		return self::newFromParams( $wgObjectCaches[$id] );
+	}
+
+	/**
+	 * Create a new cache object from parameters
+	 */
+	static function newFromParams( $params ) {
+		if ( isset( $params['factory'] ) ) {
+			return call_user_func( $params['factory'], $params );
+		} elseif ( isset( $params['class'] ) ) {
+			$class = $params['class'];
+			return new $class( $params );
+		} else {
+			throw new MWException( "The definition of cache type \"$id\" lacks both " . 
+				"factory and class parameters." );
+		}
+	}
+
+	/**
+	 * Factory function referenced from DefaultSettings.php for CACHE_ANYTHING
+	 */
+	static function newAnything( $params ) {
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+		$candidates = array( $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType );
+		foreach ( $candidates as $candidate ) {
+			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
+				return self::newFromId( $candidate );
 			}
 		}
-		if ( $wgCaches[CACHE_ACCEL] !== false ) {
-			$cache =& $wgCaches[CACHE_ACCEL];
-		}
-	} elseif ( $type == CACHE_DBA ) {
-		if ( !array_key_exists( CACHE_DBA, $wgCaches ) ) {
-			$wgCaches[CACHE_DBA] = new DBABagOStuff;
-		}
-		$cache =& $wgCaches[CACHE_DBA];
+		return self::newFromId( CACHE_DB );
 	}
 
-	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
-		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
-			$wgCaches[CACHE_DB] = new SqlBagOStuff('objectcache');
+	/**
+	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
+	 */
+	static function newAccelerator( $params ) {
+		if ( function_exists( 'eaccelerator_get' ) ) {
+			$id = 'eaccelerator';
+		} elseif ( function_exists( 'apc_fetch') ) {
+			$id = 'apc';
+		} elseif( function_exists( 'xcache_get' ) ) {
+			$id = 'xcache';
+		} elseif( function_exists( 'wincache_ucache_get' ) ) {
+			$id = 'wincache';
+		} else {
+			throw new MWException( "CACHE_ACCEL requested but no suitable object " .
+				"cache is present. You may want to install APC." );
 		}
-		$cache =& $wgCaches[CACHE_DB];
+		return self::newFromId( $id );
 	}
 
-	if ( $cache === false ) {
-		if ( !array_key_exists( CACHE_NONE, $wgCaches ) ) {
-			$wgCaches[CACHE_NONE] = new FakeMemCachedClient;
-		}
-		$cache =& $wgCaches[CACHE_NONE];
+	/**
+	 * Factory function that creates a memcached client object.
+	 * The idea of this is that it might eventually detect and automatically 
+	 * support the PECL extension, assuming someone can get it to compile.
+	 */
+	static function newMemcached( $params ) {
+		return new MemcachedPhpBagOStuff( $params );
 	}
-
-	return $cache;
-}
-
-/** Get the main cache object */
-function &wfGetMainCache() {
-	global $wgMainCacheType;
-	$ret =& wfGetCache( $wgMainCacheType );
-	return $ret;
-}
-
-/** Get the cache object used by the message cache */
-function &wfGetMessageCacheStorage() {
-	global $wgMessageCacheType;
-	$ret =& wfGetCache( $wgMessageCacheType );
-	return $ret;
-}
-
-/** Get the cache object used by the parser cache */
-function &wfGetParserCacheStorage() {
-	global $wgParserCacheType;
-	$ret =& wfGetCache( $wgParserCacheType );
-	return $ret;
 }

@@ -6,21 +6,40 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-	var $lb, $db;
+	var $lb, $db, $serverInfo;
 	var $lastExpireAll = 0;
+
+	/**
+	 * Constructor. Parameters are:
+	 *   - server:   A server info structure in the format required by each 
+	 *               element in $wgDBServers.
+	 */
+	public function __construct( $params ) {
+		if ( isset( $params['server'] ) ) {
+			$this->serverInfo = $params['server'];
+			$this->serverInfo['load'] = 1;
+		}
+	}
 
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {
-			/* We must keep a separate connection to MySQL in order to avoid deadlocks
-			 * However, SQLite has an opposite behaviour.
-			 * @todo Investigate behaviour for other databases
-			 */
-			if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
-				$this->db = wfGetDB( DB_MASTER );
-			} else {
-				$this->lb = wfGetLBFactory()->newMainLB();
+			# If server connection info was given, use that
+			if ( $this->serverInfo ) {
+				$this->lb = new LoadBalancer( array(
+					'servers' => array( $this->serverInfo ) ) );
 				$this->db = $this->lb->getConnection( DB_MASTER );
 				$this->db->clearFlag( DBO_TRX );
+			} else {
+				# We must keep a separate connection to MySQL in order to avoid deadlocks
+				# However, SQLite has an opposite behaviour.
+				# @todo Investigate behaviour for other databases
+				if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
+					$this->db = wfGetDB( DB_MASTER );
+				} else {
+					$this->lb = wfGetLBFactory()->newMainLB();
+					$this->db = $this->lb->getConnection( DB_MASTER );
+					$this->db->clearFlag( DBO_TRX );
+				}
 			}
 		}
 
