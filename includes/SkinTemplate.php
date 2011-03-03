@@ -248,7 +248,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'isarticle', $out->isArticle() );
 
 		$tpl->setRef( 'thispage', $this->thispage );
-		$subpagestr = $this->subPageSubtitle();
+		$subpagestr = $this->subPageSubtitle( $out );
 		$tpl->set(
 			'subtitle', !empty( $subpagestr ) ?
 			'<span class="subpages">' . $subpagestr . '</span>' . $out->getSubtitle() :
@@ -261,7 +261,7 @@ class SkinTemplate extends Skin {
 			''
 		);
 
-		$tpl->set( 'catlinks', $this->getCategories() );
+		$tpl->set( 'catlinks', $this->getCategories( $out ) );
 		if( $out->isSyndicated() ) {
 			$feeds = array();
 			foreach( $out->getSyndicationLinks() as $format => $link ) {
@@ -334,7 +334,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		$newtalks = $this->getNewtalks();
+		$newtalks = $this->getNewtalks( $out );
 
 		wfProfileOut( __METHOD__ . '-stuff2' );
 
@@ -399,7 +399,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'copyright', false );
 			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
+			$tpl->set( 'lastmod', false ); 
 			$tpl->set( 'credits', false );
 			$tpl->set( 'numberofwatchingusers', false );
 		}
@@ -456,13 +456,14 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts( $out ) );
 
+		// @todo Give printfooter userlangattributes
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		global $wgBetterDirectionality;
 		if ( $wgBetterDirectionality ) {
 			$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
-		$out->mBodytext .= $printfooter . $this->generateDebugHTML();
+		$out->mBodytext .= $printfooter . $this->generateDebugHTML( $out );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links
