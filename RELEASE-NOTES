@@ -155,6 +155,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   double HTML escaped
 * (bug 27700) The upload protection can now also be set for files that do not
   exist.
+* (bug 27763) Article::getParserOutput() no longer throws a fatal given when an
+  incorrect revision ID is passed.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
