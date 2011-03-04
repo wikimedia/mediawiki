@@ -6,10 +6,10 @@ Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
 "in-place", as long as you have the necessary prerequisites available.
 
 Required software:
-* Web server with PHP 5.1.x or higher.
+* Web server with PHP 5.2.x or higher.
 * A SQL server, the following types are supported
 ** MySQL 4.0.14 or higher
-** PostgreSQL 8.1 or higher
+** PostgreSQL 8.3 or higher
 ** SQLite
 
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should

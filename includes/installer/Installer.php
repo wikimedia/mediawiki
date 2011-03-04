@@ -23,6 +23,9 @@
  */
 abstract class Installer {
 
+	// This is the absolute minimum PHP version we can support
+	const MINIMUM_PHP_VERSION = '5.2.0';
+
 	/**
 	 * @var array
 	 */
@@ -363,14 +366,21 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function doEnvironmentChecks() {
-		$this->showMessage( 'config-env-php', phpversion() );
+		$phpVersion = phpversion();
+		if( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
+			$this->showMessage( 'config-env-php', $phpVersion );
+			$good = true;
+		} else {
+			$this->showMessage( 'config-env-php-toolow', $phpVersion, self::MINIMUM_PHP_VERSION );
+			$good = false;
+		}
 
-		$good = true;
-
-		foreach ( $this->envChecks as $check ) {
-			$status = $this->$check();
-			if ( $status === false ) {
-				$good = false;
+		if( $good ) {
+			foreach ( $this->envChecks as $check ) {
+				$status = $this->$check();
+				if ( $status === false ) {
+					$good = false;
+				}
 			}
 		}
 
