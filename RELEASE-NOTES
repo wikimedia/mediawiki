@@ -86,6 +86,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   potentially dangerous Java applets. This allows applets to be blocked
   specifically, rather than all ZIP files being blocked.
 * (bug 2429) Allow selection of associated namespace in recent changes
+* (bug 26995) File size is now checked before uploading in HTML5 browsers
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated

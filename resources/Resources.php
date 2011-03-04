@@ -436,6 +436,7 @@ return array(
 			'size-kilobytes',
 			'size-megabytes',
 			'size-gigabytes',
+			'largefileserver',
 		),
 		'dependencies' => array( 'mediawiki.util.jpegmeta' ),
 	),
