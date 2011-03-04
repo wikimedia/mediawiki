@@ -4560,19 +4560,26 @@ class Article {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
-		$parserOutput = false;
 		if ( $useParserCache ) {
 			$parserOutput = ParserCache::singleton()->get( $this, $this->getParserOptions() );
+			if ( $parserOutput !== false ) {
+				return $parserOutput;
+			}
 		}
 
-		if ( $parserOutput === false ) {
-			// Cache miss; parse and output it.
+		$text = false;
+		// Cache miss; parse and output it.
+		if ( $oldid !== null ) {
 			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
-
-			return $this->getOutputFromWikitext( $rev->getText(), $useParserCache );
-		} else {
-			return $parserOutput;
+			if ( $rev !== null ) {
+				$text = $rev->getText();
+			}
 		}
+		if ( $text === false ) {
+			$text = $this->getRawText();
+		}
+
+		return $this->getOutputFromWikitext( $text, $useParserCache );
 	}
 
 }
