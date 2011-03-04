@@ -544,6 +544,32 @@
 					'i'
 				);
 			return (null !== mailtxt.match( HTML5_email_regexp ) );
+		},
+		// Note: borrows from IP.php
+		'isIPv4Address' : function( address, allowBlock ) {
+			var block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
+			var RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
+			var RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
+			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
+		},
+		// Note: borrows from IP.php
+		'isIPv6Address' : function( address, allowBlock ) {
+			var block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
+			var RE_IPV6_ADD =
+			'(?:' + // starts with "::" (including "::")
+			':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
+			'|' + // ends with "::" (except "::")
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::' +
+			'|' + // contains no "::"
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
+			')';
+			if ( address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) != -1 ) {
+				return true;
+			}
+			RE_IPV6_ADD = // contains one "::" in the middle (single '::' check below)
+				'[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
+			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) != -1
+				&& address.search( /::/ ) != -1 && address.search( /::.*::/ ) == -1;
 		}
 
 	};

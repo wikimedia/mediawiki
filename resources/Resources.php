@@ -426,7 +426,6 @@ return array(
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
-		'dependencies' => array( 'jquery.effects.blind' ),
 	),
 	'mediawiki.special.upload' => array(
 		// @TODO: merge in remainder of mediawiki.legacy.upload
