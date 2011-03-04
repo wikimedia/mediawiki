@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-$optionsWithArgs = array( 'report' );
+$optionsWithArgs = array( 'report', 'namespaces' );
 
 require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
@@ -38,9 +38,44 @@ class BackupReader {
 	var $dryRun    = false;
 	var $debug     = false;
 	var $uploads   = false;
+	var $nsFilter  = false;
 
 	function __construct() {
 		$this->stderr = fopen( "php://stderr", "wt" );
+	}
+
+	function setNsfilter( array $namespaces ) {
+		if ( count( $namespaces ) == 0 ) {
+			$this->nsFilter = false;
+			return;
+		}
+		$this->nsFilter = array_unique( array_map( array( $this, 'getNsIndex' ), $namespaces ) );
+	}
+
+	private function getNsIndex( $namespace ) {
+		global $wgContLang;
+		if ( ( $result = $wgContLang->getNsIndex( $namespace ) ) !== false ) {
+			return $result;
+		}
+		$ns = intval( $namespace );
+		if ( strval( $ns ) === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
+			return $ns;
+		}
+		wfDie( "Unknown namespace text / index specified: $namespace\n" );
+	}
+
+	private function skippedNamespace( $obj ) {
+		if ( $obj instanceof Title ) {
+			$ns = $obj->getNamespace();
+		} elseif ( $obj instanceof Revision ) {
+			$ns = $obj->getTitle()->getNamespace();
+		} elseif ( $obj instanceof WikiRevision ) {
+			$ns = $obj->title->getNamespace();
+		} else {
+			echo wfBacktrace();
+			wfDie( "Cannot get namespace of object in " . __METHOD__ . "\n" );
+		}
+		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
 
 	function reportPage( $page ) {
@@ -54,6 +89,10 @@ class BackupReader {
 			return;
 		}
 
+		if ( $this->skippedNamespace( $title ) ) {
+			return;
+		}
+
 		$this->revCount++;
 		$this->report();
 
@@ -64,6 +103,9 @@ class BackupReader {
 
 	function handleUpload( $revision ) {
 		if ( $this->uploads ) {
+			if ( $this->skippedNamespace( $revision ) ) {
+				return;
+			}
 			$this->uploadCount++;
 			// $this->report();
 			$this->progress( "upload: " . $revision->getFilename() );
@@ -78,6 +120,9 @@ class BackupReader {
 	}
 
 	function handleLogItem( $rev ) {
+		if ( $this->skippedNamespace( $rev ) ) {
+			return;
+		}
 		$this->revCount++;
 		$this->report();
 
@@ -177,6 +222,8 @@ class BackupReader {
 		echo "Options:\n";
 		echo "  --quiet    Don't dump status reports to stderr.\n";
 		echo "  --report=n Report position and speed after every n pages processed.\n";
+		echo "  --namespaces=a|b|..|z Import only the pages from namespaces belonging to\n";
+		echo "    the list of pipe-separated namespace names or namespace indexes\n";
 		echo "  --dry-run  Parse dump without actually importing pages.\n";
 		echo "  --debug    Output extra verbose debug information\n";
 		echo "  --uploads  Process file upload data if included (experimental)\n";
@@ -208,6 +255,9 @@ if ( isset( $options['debug'] ) ) {
 }
 if ( isset( $options['uploads'] ) ) {
 	$reader->uploads = true; // experimental!
+}
+if ( isset( $options['namespaces'] ) ) {
+	$reader->setNsfilter( explode( '|', $options['namespaces'] ) );
 }
 
 if ( isset( $options['help'] ) ) {
