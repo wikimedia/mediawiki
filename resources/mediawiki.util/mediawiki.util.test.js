@@ -69,7 +69,7 @@
 						// Build page
 						document.title = 'mediaWiki JavaScript library test suite - ' + mw.config.get( 'wgSiteName' );
 						$( '#firstHeading' ).text( 'mediaWiki JavaScript library test suite' );
-						var	skinLinksText = 'Test in: ';
+						var	skinLinksText = 'Test in: ',
 							skinLinks = [],
 							availableSkins = mw.config.get( 'wgAvailableSkins' ),
 							skincode = '';
@@ -99,7 +99,7 @@
 						// Try to roughly keep the order similar to the order in the files
 						// or alphabetical (depending on the context)
 
-						// Main modules and their aliases
+						/** Main modules and their aliases **/
 						mw.test.addHead( 'Main modules and their aliases' );
 
 						mw.test.addTest( 'typeof mediaWiki',
@@ -114,7 +114,7 @@
 						mw.test.addTest( 'typeof $',
 							'function (string)' );
 
-						// Prototype functions added by MediaWiki
+						/** Prototype functions added by MediaWiki **/
 						mw.test.addHead( 'Prototype functions added by MediaWiki' );
 
 						mw.test.addTest( 'typeof $.trimLeft',
@@ -165,7 +165,7 @@
 						mw.test.addTest( 'typeof $.compareObject',
 							'function (string)' );
 
-						// mediawiki.js
+						/** mediawiki.js **/
 						mw.test.addHead( 'mediawiki.js' );
 
 						mw.test.addTest( 'mw.config instanceof mw.Map',
@@ -216,7 +216,7 @@
 						mw.test.addTest( 'typeof mw.user.anonymous()',
 							'boolean (string)' );
 
-						// mediawiki.util.js
+						/** mediawiki.util.js **/
 						mw.test.addHead( 'mediawiki.util.js' );
 
 						mw.test.addTest( 'typeof mw.util',
@@ -297,6 +297,40 @@
 							'true (boolean)' );
 						mw.test.addTest( 'mw.util.validateEmail( "userfoo@ex-ample.org" )',
 							'true (boolean)' );
+
+						// From IPTest.php IPv6
+						mw.test.addTest( 'mw.util.isIPv6Address( "" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv6Address( ":fc:100::" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv6Address( "fc:100::" )',
+							'true (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv6Address( "fc:100:a:d:1:e:ac::" )',
+							'true (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv6Address( ":::" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv6Address( "::0:" )',
+							'false (boolean)' );
+
+						// From IPTest.php IPv4
+						mw.test.addTest( 'mw.util.isIPv4Address( "" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "...." )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "abc" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "124.24.52" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( ".24.52.13" )',
+							'false (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "124.24.52.13" )',
+							'true (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "1.24.52.13" )',
+							'true (boolean)' );
+						mw.test.addTest( 'mw.util.isIPv4Address( "74.24.52.13/20" )', // Range
+							'false (boolean)' );
+							// @FIXME: The regex that's been in MW JS has never supported ranges but it should
+							// The regex is expected to return false for that reason
 
 						// jQuery plugins
 						mw.test.addHead( 'jQuery plugins' );
