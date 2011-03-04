@@ -295,7 +295,7 @@ class WikiImporter {
 				return $buffer;
 			}
 		}
-		
+
 		$this->reader->close();
 		return '';
 	}
@@ -840,15 +840,15 @@ class WikiRevision {
 	function setSize( $size ) {
 		$this->size = intval( $size );
 	}
-	
+
 	function setType( $type ) {
 		$this->type = $type;
 	}
-	
+
 	function setAction( $action ) {
 		$this->action = $action;
 	}
-	
+
 	function setParams( $params ) {
 		$this->params = $params;
 	}
@@ -892,15 +892,15 @@ class WikiRevision {
 	function getSize() {
 		return $this->size;
 	}
-	
+
 	function getType() {
 		return $this->type;
 	}
-	
+
 	function getAction() {
 		return $this->action;
 	}
-	
+
 	function getParams() {
 		return $this->params;
 	}
@@ -959,7 +959,7 @@ class WikiRevision {
 			) );
 		$revId = $revision->insertOn( $dbw );
 		$changed = $article->updateIfNewerOn( $dbw, $revision );
-		
+
 		# To be on the safe side...
 		$tempTitle = $GLOBALS['wgTitle'];
 		$GLOBALS['wgTitle'] = $this->title;
@@ -987,12 +987,12 @@ class WikiRevision {
 
 		return true;
 	}
-	
+
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 		# FIXME: this will not record autoblocks
 		if( !$this->getTitle() ) {
-			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " . 
+			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
 				$this->timestamp . "\n" );
 			return;
 		}
@@ -1011,7 +1011,7 @@ class WikiRevision {
 		);
 		// FIXME: this could fail slightly for multiple matches :P
 		if( $prior ) {
-			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " . 
+			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " .
 				$this->timestamp . "\n" );
 			return false;
 		}
