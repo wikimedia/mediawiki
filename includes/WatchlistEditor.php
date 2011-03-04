@@ -25,7 +25,7 @@ class WatchlistEditor {
 	 * @param $mode int
 	 */
 	public function execute( $user, $output, $request, $mode ) {
-		global $wgUser;
+		global $wgUser, $wgLang;
 		if( wfReadOnly() ) {
 			$output->readOnlyPage();
 			return;
@@ -48,17 +48,20 @@ class WatchlistEditor {
 						if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 )
 							$output->addHTML( wfMsgExt( 'watchlistedit-raw-done', 'parse' ) );
 						if( ( $count = count( $toWatch ) ) > 0 ) {
-							$output->addHTML( wfMsgExt( 'watchlistedit-raw-added', 'parse', $count ) );
+							$output->addHTML( wfMsgExt( 'watchlistedit-raw-added', 'parse',
+								$wgLang->formatNum( $count ) ) );
 							$this->showTitles( $toWatch, $output, $wgUser->getSkin() );
 						}
 						if( ( $count = count( $toUnwatch ) ) > 0 ) {
-							$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', $count ) );
+							$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse',
+								$wgLang->formatNum( $count ) ) );
 							$this->showTitles( $toUnwatch, $output, $wgUser->getSkin() );
 						}
 					} else {
 						$this->clearWatchlist( $user );
 						$user->invalidateCache();
-						$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', count( $current ) ) );
+						$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', 
+							$wgLang->formatNum( count( $current ) ) ) );
 						$this->showTitles( $current, $output, $wgUser->getSkin() );
 					}
 				}
@@ -71,7 +74,7 @@ class WatchlistEditor {
 					$this->unwatchTitles( $titles, $user );
 					$user->invalidateCache();
 					$output->addHTML( wfMsgExt( 'watchlistedit-normal-done', 'parse',
-						$GLOBALS['wgLang']->formatNum( count( $titles ) ) ) );
+						$wgLang->formatNum( count( $titles ) ) ) );
 					$this->showTitles( $titles, $output, $wgUser->getSkin() );
 				}
 				$this->showNormalForm( $output, $user );
