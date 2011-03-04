@@ -190,6 +190,7 @@
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
 	'lij' => 'Líguru',	# Ligurian
+	'liv' => 'Līvõ kēļ',	# Liv
 	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingála',		# Lingala
 	'lo' => 'ລາວ',# Laotian
