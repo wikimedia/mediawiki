@@ -1,7 +1,7 @@
 /*
  * JavaScript to enable right click edit functionality
  */
-$( function() {
+jQuery( function( $ ) {
 	// Select all h1-h6 elements that contain editsection links
 	$( 'h1:has(.editsection a), ' +
 		'h2:has(.editsection a), ' +
