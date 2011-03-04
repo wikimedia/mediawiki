@@ -68,7 +68,7 @@ class UploadFromUrl extends UploadBase {
 			$desiredDestName = $request->getText( 'wpUploadFileURL' );
 		return $this->initialize(
 			$desiredDestName,
-			$request->getVal( 'wpUploadFileURL' ),
+			trim( $request->getVal( 'wpUploadFileURL' ) ),
 			false
 		);
 	}
