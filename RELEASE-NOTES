@@ -215,6 +215,7 @@ changes to languages because of Bugzilla reports.
 * (bug 27385) Set Polish $namespaceGenderAliases
 * (bug 27681) Set $namespaceGenderAliases for Portuguese (pt and pt-br)
 * (bug 27785) Fallback language for Kabardian (kbd) is English now.
+* (bug 27825) Raw watchlist edit message now uses formatted numbers.
 
 == Compatibility ==
 
