@@ -43,7 +43,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Pure "Skin" class based custom skins are no longer supported, all custom skins
   should be put together using SkinTemplate and BaseTemplate or QuickTemplate.
 * The transliteration for passwords in case they were migrated from an old Latin-1
-  install (previous to MediaWiki 1.5) is now only done for wikis with 
+  install (previous to MediaWiki 1.5) is now only done for wikis with
   $wgLegacyEncoding set.
 
 === New features in 1.18 ===
@@ -75,7 +75,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (maintenance/fixDoubleRedirects.php)
 * (bug 23315) New body classes to allow easier styling of special pages
 * (bug 27159) Make email confirmation code expiration time configurable
-* CSS/JS for each user group is imported from MediaWiki:Sysop.js, 
+* CSS/JS for each user group is imported from MediaWiki:Sysop.js,
   MediaWiki:Autoconfirmed.css, etc.
 * (bug 24230) Uploads of ZIP types, such as MS Office or OpenOffice can now be
   safely enabled. A ZIP file reader was added which can scan a ZIP file for
@@ -141,12 +141,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26548) ForeignAPIRepo (InstantCommons) now works with PDF files
   and other multi-paged file formats.
 * Files with a mime type that does not match the extension are now properly
-  thumbnailed 
+  thumbnailed
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
 * (bug 15905) Nostalgia skin could become more usable by including a Talk:
   link at the top of the page
 * (bug 27560) Search queries no longer fail in walloon language
-* (bug 27679) Broken embedded files with special characters are no longer 
+* (bug 27679) Broken embedded files with special characters are no longer
   double HTML escaped
 * (bug 27700) The upload protection can now also be set for files that do not
   exist.
@@ -200,6 +200,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
+* Liv (liv) (new)
 
 * (bug 17160) Gender specific display text for User namespace
 * Link trail added for sl and sh
