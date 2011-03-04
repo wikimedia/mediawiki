@@ -262,16 +262,28 @@ class FSRepo extends FileRepo {
 	}
 	
 	/**
-	 * Deletes a batch of (zone, rel) pairs. It will try to delete each pair,
-	 * but ignores any errors doing so.
+	 * Deletes a batch of files. Each file can be a (zone, rel) pairs, a
+	 * virtual url or a real path. It will try to delete each file, but 
+	 * ignores any errors that may occur
 	 * 
-	 * @param $pairs array Pair of (zone, rel) pairs to delete
+	 * @param $pairs array List of files to delete
 	 */
-	function cleanupBatch( $pairs ) {
-		foreach ( $pairs as $pair ) {
-			list( $zone, $rel ) = $pair;
-			$root = $this->getZonePath( $zone );
-			$path = "$root/$rel";
+	function cleanupBatch( $files ) {
+		foreach ( $files as $file ) {
+			if ( is_array( $file ) ) {
+				// This is a pair, extract it
+				list( $zone, $rel ) = $file;
+				$root = $this->getZonePath( $zone );
+				$path = "$root/$rel";
+			} else {
+				if ( self::isVirtualUrl( $file ) ) {
+					// This is a virtual url, resolve it 
+					$path = $this->resolveVirtualUrl( $file );
+				} else {
+					// This is a full file name
+					$path = $file;
+				}
+			}
 			
 			wfSuppressWarnings();
 			unlink( $path );

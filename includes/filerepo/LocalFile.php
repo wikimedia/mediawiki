@@ -2043,16 +2043,32 @@ class LocalFileMoveBatch {
 		$triplets = $this->getMoveTriplets();
 
 		$triplets = $this->removeNonexistentFiles( $triplets );
-		$statusDb = $this->doDBUpdates();
-		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
-		$statusMove = $repo->storeBatch( $triplets, FSRepo::DELETE_SOURCE );
+		
+		// Copy the files into their new location
+		$statusMove = $repo->storeBatch( $triplets );
 		wfDebugLog( 'imagemove', "Moved files for {$this->file->name}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
-
-		if ( !$statusMove->isOk() ) {
+		if ( !$statusMove->isGood() ) {
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
-			$this->db->rollback();
+			$this->cleanupTarget( $triplets );
+			$statusMove->ok = false;
+			return $statusMove;
 		}
 
+		$this->db->begin();
+		$statusDb = $this->doDBUpdates();
+		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
+		if ( !$statusDb->isGood() ) {
+			$this->db->rollback();
+			// Something went wrong with the DB updates, so remove the target files
+			$this->cleanupTarget( $triplets );
+			$statusDb->ok = false;
+			return $statusDb;
+		}
+		$this->db->commit();
+		
+		// Everything went ok, remove the source files
+		$this->cleanupSource( $triplets );
+		
 		$status->merge( $statusDb );
 		$status->merge( $statusMove );
 
@@ -2082,6 +2098,8 @@ class LocalFileMoveBatch {
 			$status->successCount++;
 		} else {
 			$status->failCount++;
+			$status->fatal( 'imageinvalidfilename' );
+			return $status;
 		}
 
 		// Update old images
@@ -2099,6 +2117,9 @@ class LocalFileMoveBatch {
 		$total = $this->oldCount;
 		$status->successCount += $affected;
 		$status->failCount += $total - $affected;
+		if ( $status->failCount ) {
+			$status->error( 'imageinvalidfilename' );
+		}
 
 		return $status;
 	}
@@ -2142,5 +2163,33 @@ class LocalFileMoveBatch {
 		}
 
 		return $filteredTriplets;
+	}
+	
+	/**
+	 * Cleanup a partially moved array of triplets by deleting the target 
+	 * files. Called if something went wrong half way.
+	 */
+	function cleanupTarget( $triplets ) {
+		// Create dest pairs from the triplets
+		$pairs = array();
+		foreach ( $triplets as $triplet ) {
+			$pairs[] = array( $triplet[1], $triplet[2] );
+		}
+		
+		$this->file->repo->cleanupBatch( $pairs );
+	}
+	
+	/**
+	 * Cleanup a fully moved array of triplets by deleting the source files.
+	 * Called at the end of the move process if everything else went ok. 
+	 */
+	function cleanupSource( $triplets ) {
+		// Create source file names from the triplets
+		$files = array();
+		foreach ( $triplets as $triplet ) {
+			$files[] = $triplet[0];
+		}
+		
+		$this->file->repo->cleanupBatch( $files );
 	}
 }
