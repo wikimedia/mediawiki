@@ -215,7 +215,7 @@ class Language {
 	 * internal customisation of MediaWiki, via Messages*.php.
 	 */
 	public static function isValidBuiltInCode( $code ) {
-		return preg_match( '/^[a-z0-9-_]*$/i', $code );
+		return preg_match( '/^[a-z0-9-]*$/i', $code );
 	}
 
 	/**
