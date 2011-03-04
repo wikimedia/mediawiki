@@ -197,6 +197,16 @@ if ( !function_exists( 'istainted' ) ) {
 	define( 'TC_PCRE', 1 );
 	define( 'TC_SELF', 1 );
 }
+
+// array_fill_keys() was only added in 5.2, but people use it anyway
+// add a back-compat layer for 5.1. See bug 27781
+if( !function_exists( 'array_fill_keys' ) ) {
+	function array_fill_keys( $keys, $value ) {
+		return array_combine( $keys, array_fill( 0, count( $keys ), $value ) );
+	}
+}
+
+
 /// @endcond
 
 

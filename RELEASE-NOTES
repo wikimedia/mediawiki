@@ -496,6 +496,8 @@ are used instead.
 * (bug 26716) Provide link to instructions for external editor related preferences.
 * (bug 26961) Hide anon edits in watchlist preference now actually works.
 * (bug 1379) Installer directory conflicts with some hosts' configuration panel.
+* (bug 27781) Installer does not warn about 5.1.x. Added a compatibility function
+  for array_key_exists().
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
