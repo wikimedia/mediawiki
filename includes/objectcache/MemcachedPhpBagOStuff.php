@@ -102,7 +102,7 @@ class MemcachedPhpBagOStuff extends BagOStuff {
 	}
 
 	protected function encodeKeyCallback( $m ) {
-		return urlencode( $m[0] );
+		return rawurlencode( $m[0] );
 	}
 
 	/**
