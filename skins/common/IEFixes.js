@@ -69,9 +69,9 @@ window.relativeforfloats = function() {
 	if ( bc ) {
 		var tables = bc.getElementsByTagName( 'table' );
 		var divs = bc.getElementsByTagName( 'div' );
+		setrelative( tables );
+		setrelative( divs );
 	}
-	setrelative( tables );
-	setrelative( divs );
 };
 
 window.setrelative = function( nodes ) {
