@@ -766,10 +766,12 @@ Kirabika lwagyibwawo.',
 Tekisobose kuddamu n'ate oulukolawo.",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />
+'expensive-parserfunction-warning'       => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />
 <br />
 Terukkirizibwa kubaako {{PLURAL:$2|kiragiro ky'ekibekebera ngoberera y'amateeka g'empandika ekisukka|biragiro by'ekikebera mpandika y'amateeka g'empandika ebisukka}} mu $2. Kakano ebiragiro ebyo luliko {{PLURAL:$1|kimu|$1}}.",
-'expensive-parserfunction-category' => "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
+'expensive-parserfunction-category'      => "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
+'post-expand-template-inclusion-warning' => "'''Kulabula:''' Entiba ez'okunonebwa ziyitiridde obungi.<br />
+Ezimu zijjakulebwayo.",
 
 # History pages
 'viewpagelogs'           => "Kebera likooda ez'olupapula luno",

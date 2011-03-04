@@ -2396,9 +2396,10 @@ $1',
 'undelete-show-file-submit'    => 'Có',
 
 # Namespace form on various pages
-'namespace'      => 'Không gian tên:',
-'invert'         => 'Đảo ngược lựa chọn',
-'blanknamespace' => '(Chính)',
+'namespace'             => 'Không gian tên:',
+'invert'                => 'Đảo ngược lựa chọn',
+'namespace_association' => 'Không gian tên cùng đôi',
+'blanknamespace'        => '(Chính)',
 
 # Contributions
 'contributions'       => 'Đóng góp của thành viên',
