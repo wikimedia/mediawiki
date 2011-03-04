@@ -771,6 +771,8 @@ class UploadForm extends HTMLForm {
 	protected $mTextAfterSummary;
 
 	protected $mSourceIds;
+	
+	protected $mMaxFileSize = array();
 
 	public function __construct( $options = array() ) {
 		$this->mWatch = !empty( $options['watch'] );
@@ -851,6 +853,10 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
+		$this->mMaxUploadSize['file'] = min( 
+			wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ), 
+			UploadBase::getMaxUploadSize( 'file' ) );
+			
 		$descriptor['UploadFile'] = array(
 			'class' => 'UploadSourceField',
 			'section' => 'source',
@@ -861,17 +867,12 @@ class UploadForm extends HTMLForm {
 			'radio' => &$radio,
 			'help' => wfMsgExt( 'upload-maxfilesize',
 					array( 'parseinline', 'escapenoentities' ),
-					$wgLang->formatSize(
-						wfShorthandToInteger( min( 
-							wfShorthandToInteger(
-								ini_get( 'upload_max_filesize' )
-							), UploadBase::getMaxUploadSize( 'file' )
-						) )
-					)
+					$wgLang->formatSize( $this->mMaxUploadSize['file'] )
 				) . ' ' . wfMsgHtml( 'upload_source_file' ),
 			'checked' => $selectedSourceType == 'file',
 		);
 		if ( $canUploadByUrl ) {
+			$this->mMaxUploadSize['url'] = UploadBase::getMaxUploadSize( 'url' );
 			$descriptor['UploadFileURL'] = array(
 				'class' => 'UploadSourceField',
 				'section' => 'source',
@@ -881,7 +882,7 @@ class UploadForm extends HTMLForm {
 				'radio' => &$radio,
 				'help' => wfMsgExt( 'upload-maxfilesize',
 						array( 'parseinline', 'escapenoentities' ),
-						$wgLang->formatSize( UploadBase::getMaxUploadSize( 'url' ) )
+						$wgLang->formatSize( $this->mMaxUploadSize['url'] )
 					) . ' ' . wfMsgHtml( 'upload_source_url' ),
 				'checked' => $selectedSourceType == 'url',
 			);
@@ -1095,6 +1096,7 @@ class UploadForm extends HTMLForm {
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
 		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview && $wgEnableAPI;
+		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = array(
 			'wgAjaxUploadDestCheck' => $useAjaxDestCheck,
@@ -1106,6 +1108,7 @@ class UploadForm extends HTMLForm {
 			'wgUploadSourceIds' => $this->mSourceIds,
 			'wgStrictFileExtensions' => $wgStrictFileExtensions,
 			'wgCapitalizeUploads' => MWNamespace::isCapitalized( NS_FILE ),
+			'wgMaxUploadSize' => $this->mMaxUploadSize,
 		);
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );

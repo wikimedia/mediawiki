@@ -191,7 +191,33 @@ jQuery( function( $ ) {
 		$( '#mw-upload-thumbnail' ).remove();
 	}
 	
-
+	/**
+	 * Check if the file does not exceed the maximum size
+	 */
+	function checkMaxUploadSize( file ) {
+		function getMaxUploadSize( type ) {
+			sizes = mw.config.get( 'wgMaxUploadSize' );
+			if ( sizes[type] !== undefined ) {
+				return sizes[type];
+			}
+			return sizes['*'];
+		}
+		$( '.mw-upload-source-error' ).remove();
+		
+		maxSize = getMaxUploadSize( 'file' ); 
+		if ( file.size > maxSize ) {
+			error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' + 
+					mw.msg( 'largefileserver', file.size, maxSize ) + '</p>' );
+			$( '#wpUploadFile' ).after( error );
+			return false;
+		}
+		return true;
+	}
+	
+	
+	/**
+	 * Initialization
+	 */
 	if ( hasFileAPI() ) {
 		// Update thumbnail when the file selection control is updated.
 		$( '#wpUploadFile' ).change( function() {
@@ -199,6 +225,11 @@ jQuery( function( $ ) {
 			if ( this.files && this.files.length ) {
 				// Note: would need to be updated to handle multiple files.
 				var file = this.files[0];
+				
+				if ( !checkMaxUploadSize( file ) ) {
+					return;
+				}
+				
 				if ( fileIsPreviewable( file ) ) {
 					showPreview( file );
 				}
@@ -217,6 +248,7 @@ jQuery( function ( $ ) {
 		$( 'input[name="wpSourceType"]', row ).change( function () {
 			var currentRow = row; // Store current row in our own scope
 			return function () {
+				$( '.mw-upload-source-error' ).remove();
 				if ( this.checked ) {
 					// Disable all inputs
 					$( 'input[name!="wpSourceType"]', rows ).attr( 'disabled', true );
@@ -227,3 +259,4 @@ jQuery( function ( $ ) {
 		}() );
 	}
 } );
+
