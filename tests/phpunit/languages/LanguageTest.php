@@ -70,15 +70,22 @@ class LanguageTest extends MediaWikiTestCase {
 		);
 	}
 
+	function testBuiltInCodeValidationRejectUnderscore() {
+		$this->assertFalse(
+			(bool) Language::isValidBuiltInCode( 'be_tarask' ),
+			"reject underscore in language code"
+		);
+	}
+
 	function provideLanguageCodes() {
 		return array(
 			array( 'fr'       , 'Two letters, minor case' ),
 			array( 'EN'       , 'Two letters, upper case' ),
 			array( 'tyv'      , 'Three letters' ),
 			array( 'tokipona'   , 'long language code' ),
-			array( 'be_tarask', 'With underscore' ),
-			array( 'Zh_classical', 'Begin with upper case, underscore' ),
-			array( 'Be_x_old', 'With extension (two underscores)' ),
+			array( 'be-tarask', 'With dash' ),
+			array( 'Zh-classical', 'Begin with upper case, dash' ),
+			array( 'Be-x-old', 'With extension (two dashes)' ),
 		);
 	}
 }

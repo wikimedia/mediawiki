@@ -5,7 +5,7 @@ class LanguageBeTaraskTest extends MediaWikiTestCase {
 	private $lang;
 
 	function setUp() {
-		$this->lang = Language::factory( 'Be_tarask' );
+		$this->lang = Language::factory( 'Be-tarask' );
 	}
 	function tearDown() {
 		unset( $this->lang );
