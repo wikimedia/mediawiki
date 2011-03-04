@@ -18,6 +18,10 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== PHP 5.2 now required ==
+In 1.18, the lowest supported version of MediaWiki is now 5.2.x. Please upgrade
+PHP if you have not done so prior to upgrading MediaWiki.
+
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
   WantedPages::getQueryInfo . This may break older extensions.

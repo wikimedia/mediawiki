@@ -89,6 +89,8 @@ You can install MediaWiki.',
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 is installed.',
+	'config-env-php-toolow'           => 'PHP $1 is installed.
+However, MediaWiki requires PHP $2 or higher.',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
 	'config-unicode-using-intl'       => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
 	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.
