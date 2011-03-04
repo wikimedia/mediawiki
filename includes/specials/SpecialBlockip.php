@@ -213,7 +213,6 @@ class IPBlockForm extends SpecialPage {
 					Html::input( 'wpBlockAddress', $this->BlockAddress, 'text', array(
 						'tabindex' => '1',
 						'id' => 'mw-bi-target',
-						'onchange' => 'updateBlockOptions()',
 						'size' => '45',
 						'required' => ''
 					) + ( $this->BlockAddress ? array() : array( 'autofocus' ) ) ). "
@@ -231,7 +230,6 @@ class IPBlockForm extends SpecialPage {
 						array(
 							'id' => 'wpBlockExpiry',
 							'name' => 'wpBlockExpiry',
-							'onchange' => 'considerChangingExpiryFocus()',
 							'tabindex' => '2' ),
 						$blockExpiryFormOptions ) .
 				"</td>"
