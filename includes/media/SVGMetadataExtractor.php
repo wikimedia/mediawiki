@@ -161,8 +161,11 @@ class SVGReader {
 	 * @param String $name of the element that we are reading from
 	 */
 	private function animateFilter( $name ) {
-		$this->debug ( "animate filter" );
+		$this->debug ( "animate filter for tag $name" );
 		if( $this->reader->nodeType != XmlReader::ELEMENT ) {
+			return;
+		}
+		if ( $this->reader->isEmptyElement ) {
 			return;
 		}
 		$exitDepth =  $this->reader->depth;
