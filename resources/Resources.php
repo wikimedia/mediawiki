@@ -507,12 +507,6 @@ return array(
 		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
-	'mediawiki.legacy.block' => array(
-		'scripts' => 'common/block.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
