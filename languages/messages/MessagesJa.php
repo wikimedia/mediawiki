@@ -2532,9 +2532,10 @@ $1',
 'undelete-show-file-submit'    => 'はい',
 
 # Namespace form on various pages
-'namespace'      => '名前空間：',
-'invert'         => '選択したものを除く',
-'blanknamespace' => '（標準）',
+'namespace'             => '名前空間：',
+'invert'                => '選択したものを除く',
+'namespace_association' => '関連する名前空間',
+'blanknamespace'        => '（標準）',
 
 # Contributions
 'contributions'       => '利用者の投稿記録',
