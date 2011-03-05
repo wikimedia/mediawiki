@@ -2986,7 +2986,13 @@ class Title {
 		}
 
 		// Image-specific checks
-		$errors = array_merge( $errors, $this->validateFileMoveOperation( $nt ) );
+		if ( $this->getNamespace() == NS_FILE ) {
+			$errors = array_merge( $errors, $this->validateFileMoveOperation( $nt ) );
+		}
+		
+		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
+			$errors[] = array( 'nonfile-cannot-move-to-file' );
+		}
 
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays( $errors,
@@ -3055,10 +3061,6 @@ class Title {
 		$destFile = wfLocalFile( $nt );
 		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
 			$errors[] = array( 'file-exists-sharedrepo' );
-		}
-
-		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
-			$errors[] = array( 'nonfile-cannot-move-to-file' );
 		}
 		
 		return $errors;
