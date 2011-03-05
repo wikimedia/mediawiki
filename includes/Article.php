@@ -4543,7 +4543,7 @@ class Article {
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
 	 * @param $oldid mixed integer Revision ID or null
-	 * @return ParserOutput
+	 * @return ParserOutput or false if the given revsion ID is not found
 	 */
 	public function getParserOutput( $oldid = null ) {
 		global $wgEnableParserCache, $wgUser;
@@ -4567,16 +4567,15 @@ class Article {
 			}
 		}
 
-		$text = false;
 		// Cache miss; parse and output it.
-		if ( $oldid !== null ) {
-			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
-			if ( $rev !== null ) {
-				$text = $rev->getText();
-			}
-		}
-		if ( $text === false ) {
+		if ( $oldid === null ) {
 			$text = $this->getRawText();
+		} else {
+			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
+			if ( $rev === null ) {
+				return false;
+			}
+			$text = $rev->getText();
 		}
 
 		return $this->getOutputFromWikitext( $text, $useParserCache );
