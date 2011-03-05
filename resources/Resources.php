@@ -382,6 +382,9 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false,
 	),
+	'mediawiki.htmlform' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
+	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
 		'dependencies' => array(
