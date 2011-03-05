@@ -69,6 +69,7 @@ class HTMLForm {
 		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
 		'selectorother' => 'HTMLSelectOrOtherField',
+		'selectandother' => 'HTMLSelectAndOtherField',
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
@@ -1453,6 +1454,152 @@ class HTMLMultiSelectField extends HTMLFormField {
 
 	protected function needsLabel() {
 		return false;
+	}
+}
+
+/**
+ * Double field with a dropdown list constructed from a system message in the format
+ *     * Optgroup header
+ *     ** <option value>|<option name>
+ *     ** <option value == option name>
+ *     * New Optgroup header
+ * Plus a text field underneath for an additional reason.  The 'value' of the field is
+ * ""<select>: <extra reason>"", or "<extra reason>" if nothing has been selected in the
+ * select dropdown.
+ * FIXME: If made 'required', only the text field should be compulsory.
+ */
+class HTMLSelectAndOtherField extends HTMLSelectField {
+
+	function __construct( $params ) {
+		if ( array_key_exists( 'other', $params ) ) {
+		} elseif( array_key_exists( 'other-message', $params ) ){
+			$params['other'] = wfMsg( $params['other-message'] );
+		} else {
+			$params['other'] = wfMsg( 'htmlform-selectorother-other' );
+		}
+
+		if ( array_key_exists( 'options', $params ) ) {
+			# Options array already specified
+		} elseif( array_key_exists( 'options-message', $params ) ){
+			# Generate options array from a system message
+			$params['options'] = self::parseMessage( wfMsg( $params['options-message'], $params['other'] ) );
+		} else {
+			# Sulk
+			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
+		}
+		$this->mFlatOptions = self::flattenOptions( $params['options'] );
+
+		parent::__construct( $params );
+	}
+
+	/**
+	 * Build a drop-down box from a textual list.
+	 * @param $string String message text
+	 * @param $otherName String name of "other reason" option
+	 * @return Array
+	 * TODO: this is copied from Xml::listDropDown(), deprecate/avoid duplication?
+	 */
+	public static function parseMessage( $string, $otherName=null ) {
+		if( $otherName === null ){
+			$otherName = wfMsg( 'htmlform-selectorother-other' );
+		}
+
+		$optgroup = false;
+		$options = array( $otherName => 'other' );
+
+		foreach ( explode( "\n", $string ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+				# A new group is starting...
+				$value = trim( substr( $value, 1 ) );
+				$optgroup = $value;
+			} elseif ( substr( $value, 0, 2) == '**' ) {
+				# groupmember
+				$opt = trim( substr( $value, 2 ) );
+				$parts = array_map( 'trim', explode( '|', $opt, 2 ) );
+				if( count( $parts ) === 1 ){
+					$parts[1] = $parts[0];
+				}
+				if( $optgroup === false ){
+					$options[$parts[1]] = $parts[0];
+				} else {
+					$options[$optgroup][$parts[1]] = $parts[0];
+				}
+			} else {
+				# groupless reason list
+				$optgroup = false;
+				$parts = array_map( 'trim', explode( '|', $opt, 2 ) );
+				if( count( $parts ) === 1 ){
+					$parts[1] = $parts[0];
+				}
+				$options[$parts[1]] = $parts[0];
+			}
+		}
+
+		return $options;
+	}
+
+	function getInputHTML( $value ) {
+
+		$select = parent::getInputHTML( $value );
+
+		$textAttribs = array(
+			'id' => $this->mID . '-other',
+			'size' => $this->getSize(),
+		);
+
+		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
+			if ( isset( $this->mParams[$param] ) ) {
+				$textAttribs[$param] = '';
+			}
+		}
+
+		$textbox = Html::input(
+			$this->mName . '-other',
+			'',
+			'text',
+			$textAttribs
+		);
+
+		return "$select<br />\n$textbox";
+	}
+
+	function loadDataFromRequest( $request ) {
+		if ( $request->getCheck( $this->mName ) ) {
+
+			$list = $request->getText( $this->mName );
+			$text = $request->getText( $this->mName . '-other' );
+
+			if ( $list == 'other' ) {
+				return $text;
+			} else {
+				# Need to get the value from the key
+				if( in_array( $list, $this->mFlatOptions ) ){
+					$list = $this->mFlatOptions[$list];
+				} else {
+					# User has spoofed the select form to give an option which wasn't
+					# in the original offer.  Sulk...
+					return $text;
+				}
+			}
+
+			if( $text == '' ) {
+				return $list;
+			} else {
+				return $list . wfMsgForContent( 'colon-separator' ) . $text;
+			}
+
+		} else {
+			return $this->getDefault();
+		}
+	}
+
+	function getSize() {
+		return isset( $this->mParams['size'] )
+			? $this->mParams['size']
+			: 45;
 	}
 }
 
