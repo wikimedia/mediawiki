@@ -54,7 +54,6 @@
  * TODO: Document 'section' / 'subsection' stuff
  */
 class HTMLForm {
-	static $jsAdded = false;
 
 	# A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
@@ -160,14 +159,9 @@ class HTMLForm {
 	/**
 	 * Add the HTMLForm-specific JavaScript, if it hasn't been
 	 * done already.
+	 * @deprecated @since 1.18 load modules with ResourceLoader instead
 	 */
-	static function addJS() {
-		if ( self::$jsAdded ) return;
-
-		global $wgOut;
-
-		$wgOut->addModules( 'mediawiki.legacy.htmlform' );
-	}
+	static function addJS() { }
 
 	/**
 	 * Initialise a new Object for the field
@@ -201,9 +195,6 @@ class HTMLForm {
 		if ( ! $this->mTitle ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
-
-		// FIXME shouldn't this be closer to displayForm() ?
-		self::addJS();
 
 		# Load data from the request.
 		$this->loadData();
