@@ -209,8 +209,8 @@ but it will not let you store characters above the [http://en.wikipedia.org/wiki
 	'config-mysql-old'                => 'MySQL $1 or later is required, you have $2.',
 	'config-db-port'                  => 'Database port:',
 	'config-db-schema'                => 'Schema for MediaWiki',
-	'config-db-schema-help'           => 'The above schemas are usually correct.
-Only change them if you know you need to.',
+	'config-db-schema-help'           => 'This schema will usually be fine.
+Only change it if you know you need to.',
 	'config-sqlite-dir'               => 'SQLite data directory:',
 	'config-sqlite-dir-help'          => "SQLite stores all data in a single file.
 
