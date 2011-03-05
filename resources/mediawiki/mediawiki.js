@@ -254,6 +254,16 @@ window.mediaWiki = new ( function( $ ) {
 			var index = parseInt( match, 10 ) - 1;
 			return index in parameters ? parameters[index] : '$' + match;
 		} );
+		
+		if ( this.format === 'plain' ) {
+			return text;
+		}
+		if ( this.format === 'escaped' ) {
+			// According to Message.php this needs {{-transformation, which is
+			// still todo
+			return mediaWiki.html.escape( text );
+		}
+		
 		/* This should be fixed up when we have a parser
 		if ( this.format === 'parse' && 'language' in mediaWiki ) {
 			text = mediaWiki.language.parse( text );
@@ -281,6 +291,16 @@ window.mediaWiki = new ( function( $ ) {
 		this.format = 'plain';
 		return this.toString();
 	};
+	
+	/**
+	 * Changes the format to html escaped and converts message to string
+	 * 
+	 * @return {string} String form of html escaped message
+	 */
+	Message.prototype.escaped = function() {
+		this.format = 'escaped';
+		return this.toString();
+	}
 
 	/**
 	 * Checks if message exists

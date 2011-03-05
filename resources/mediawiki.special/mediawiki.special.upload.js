@@ -196,7 +196,7 @@ jQuery( function( $ ) {
 	 */
 	function checkMaxUploadSize( file ) {
 		function getMaxUploadSize( type ) {
-			sizes = mw.config.get( 'wgMaxUploadSize' );
+			var sizes = mw.config.get( 'wgMaxUploadSize' );
 			if ( sizes[type] !== undefined ) {
 				return sizes[type];
 			}
@@ -204,10 +204,10 @@ jQuery( function( $ ) {
 		}
 		$( '.mw-upload-source-error' ).remove();
 		
-		maxSize = getMaxUploadSize( 'file' ); 
+		var maxSize = getMaxUploadSize( 'file' ); 
 		if ( file.size > maxSize ) {
-			error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' + 
-					mw.msg( 'largefileserver', file.size, maxSize ) + '</p>' );
+			var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' + 
+					mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
 			$( '#wpUploadFile' ).after( error );
 			return false;
 		}
