@@ -275,6 +275,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiEmailUser' => 'includes/api/ApiEmailUser.php',
 	'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 	'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
+	'ApiFileRevert' => 'includes/api/ApiFileRevert.php',
 	'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatDbg' => 'includes/api/ApiFormatDbg.php',
 	'ApiFormatDump' => 'includes/api/ApiFormatDump.php',
