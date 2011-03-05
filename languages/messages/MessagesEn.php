@@ -3508,6 +3508,7 @@ You can view its source',
 'vector.css'        => '/* CSS placed here will affect users of the Vector skin */', # only translate this message to other languages if you have to change it
 'print.css'         => '/* CSS placed here will affect the print output */', # only translate this message to other languages if you have to change it
 'handheld.css'      => '/* CSS placed here will affect handheld devices based on the skin configured in $wgHandheldStyle */', # only translate this message to other languages if you have to change it
+'noscript.css'      => '/* CSS placed here will affect users with JavaScript disabled */', # only translate this message to other languages if you have to change it
 'autoconfirmed.css' => '/* CSS placed here will affect autoconfirmed users only */', # only translate this message to other languages if you have to change it
 'bot.css'           => '/* CSS placed here will affect bots only */', # only translate this message to other languages if you have to change it
 'sysop.css'         => '/* CSS placed here will affect sysops only */', # only translate this message to other languages if you have to change it
