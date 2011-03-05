@@ -199,7 +199,9 @@ class IPBlockForm extends SpecialPage {
 			wfMsgForContent( 'ipbreason-dropdown' ),
 			wfMsgForContent( 'ipbreasonotherlist' ), $this->BlockReasonList, 'wpBlockDropDown', 4 );
 
-		$wgOut->addModules( 'mediawiki.special.block' );
+		# FIXME: this should actually use HTMLForm, not just some of its JavaScript
+		$wgOut->addModules( array( 'mediawiki.special.block', 'mediawiki.htmlform' ) );
+		
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'blockip' ) ) .
 			Xml::openElement( 'fieldset' ) .
@@ -218,32 +220,34 @@ class IPBlockForm extends SpecialPage {
 					) + ( $this->BlockAddress ? array() : array( 'autofocus' ) ) ). "
 				</td>
 			</tr>
-			<tr>"
-		);
-		if( $showblockoptions ) {
-			$wgOut->addHTML("
+			<tr>
 				<td class='mw-label'>
 					{$mIpbexpiry}
 				</td>
-				<td class='mw-input'>" .
+				<td class='mw-input'>"
+		);
+		if( $showblockoptions ) {
+			$wgOut->addHTML(
 					Xml::tags( 'select',
 						array(
 							'id' => 'wpBlockExpiry',
 							'name' => 'wpBlockExpiry',
+							'class' => 'mw-htmlform-select-or-other', # FIXME: actually make this use HTMLForm
 							'tabindex' => '2' ),
-						$blockExpiryFormOptions ) .
-				"</td>"
+						$blockExpiryFormOptions
+					) . "<br/>\n"
 			);
 		}
-		$wgOut->addHTML("
-			</tr>
-			<tr id='wpBlockOther'>
-				<td class='mw-label'>
-					{$mIpbother}
-				</td>
-				<td class='mw-input'>" .
-					Xml::input( 'wpBlockOther', 45, $this->BlockOther,
-						array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
+		$wgOut->addHTML(
+					Xml::input(
+						'wpBlockOther',
+						45,
+						$this->BlockOther,
+						array(
+							'tabindex' => '3',
+							'id' => 'wpBlockExpiry-other'
+						)
+					) . "
 				</td>
 			</tr>
 			<tr>
