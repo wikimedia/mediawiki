@@ -63,6 +63,17 @@ class ApiEmailUser extends ApiBase {
 			'CCMe' => $params['ccme'],
 		);
 		$retval = SpecialEmailUser::submit( $data );
+
+		if ( $retval instanceof Status ) {
+			// SpecialEmailUser sometimes returns a status
+			// sometimes it doesn't.
+			if ( $retval->isGood() ) {
+				$retval = true;
+			} else {
+				$retval = $retval->getErrorsArray();
+			}
+		}
+
 		if ( $retval === true ) {
 			$result = array( 'result' => 'Success' );
 		} else {
