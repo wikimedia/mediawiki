@@ -69,6 +69,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->destroyDB();
 		}
 	}
+
+	function dbPrefix() {
+		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
+	}
 	
 	function needsDB() {
 		$rc = new ReflectionClass( $this );
@@ -112,15 +116,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$dbType = $this->db->getType();
 		
-		if ( $wgDBprefix === self::DB_PREFIX || ( $dbType == 'oracle' && $wgDBprefix === self::ORA_DB_PREFIX ) ) {
+		if ( $wgDBprefix === $this->dbPrefix() ) {
 			throw new MWException( 'Cannot run unit tests, the database prefix is already "unittest_"' );
 		}
 
 		$tables = $this->listTables();
 		
-		$prefix = $dbType != 'oracle' ? self::DB_PREFIX : self::ORA_DB_PREFIX;
-		
-		$this->dbClone = new CloneDatabase( $this->db, $tables, $prefix );
+		$this->dbClone = new CloneDatabase( $this->db, $tables, $this->dbPrefix() );
 		$this->dbClone->useTemporaryTables( $this->useTemporaryTables );
 		$this->dbClone->cloneTableStructure();
 		
@@ -150,12 +152,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return;
 		}
 		
-		if( $this->db->getType() == 'oracle' ) {
-			$tables = $this->db->listTables( self::ORA_DB_PREFIX, __METHOD__ );
-		}
-		else {
-			$tables = $this->db->listTables( self::DB_PREFIX, __METHOD__ );
-		}
+		$tables = $this->db->listTables( $this->dbPrefix(), __METHOD__ );
 		
 		foreach ( $tables as $table ) {
 			try {
