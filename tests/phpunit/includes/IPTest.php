@@ -230,6 +230,15 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Improve IP::sanitizeIP() code coverage
+	 * @todo Most probably incomplete
+	 */
+	public function testSanitizeIP() {
+		$this->assertNull( IP::sanitizeIP('')  );
+		$this->assertNull( IP::sanitizeIP(' ') );
+	}
+
+	/**
 	 * test wrapper around ip2long which might return -1 or false depending on PHP version
 	 */
 	public function testip2longWrapper() {
@@ -322,5 +331,69 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertNet( '172.17.32.0', '172.17.35.48/21' );
 		$this->assertNet( '10.128.0.0' , '10.135.0.0/9' );
 		$this->assertNet( '134.0.0.0'  , '134.0.5.1/8'  );
+	}
+
+
+	/**
+	 * @covers IP::canonicalize
+	 */
+	public function testIPCanonicalizeOnValidIp() {
+		$this->assertEquals( '192.0.2.152', IP::canonicalize( '192.0.2.152' ),
+	   	'Canonicalization of a valid IP returns it unchanged' );
+	}
+
+	/**
+	 * @covers IP::canonicalize
+	 */
+	public function testIPCanonicalizeMappedAddress() {
+		$this->assertEquals(
+			'192.0.2.152',
+			IP::canonicalize( '::ffff:192.0.2.152' )
+		);
+		$this->assertEquals(
+			'192.0.2.152',
+			IP::canonicalize( '::192.0.2.152' )
+		);
+	}
+
+	/**
+	 * Issues there are most probably from IP::toHex() or IP::parseRange()		
+	 * @covers IP::isInRange
+	 * @dataProvider provideIPsAndRanges
+	 */
+	public function testIPIsInRange( $expected, $addr, $range, $message = '' ) {
+		$this->assertEquals(
+			$expected,
+			IP::isInRange( $addr, $range ),
+			$message
+		);
+	}
+
+	/** Provider for testIPIsInRange() */
+	function provideIPsAndRanges() {
+			# Format: (expected boolean, address, range, optional message)
+		return array(
+			# IPv4
+			array( true , '192.0.2.0'   , '192.0.2.0/24', 'Network address' ),
+			array( true , '192.0.2.77'  , '192.0.2.0/24', 'Simple address' ),
+			array( true , '192.0.2.255' , '192.0.2.0/24', 'Broadcast address' ),
+
+			array( false, '0.0.0.0'     , '192.0.2.0/24' ),
+			array( false, '255.255.255' , '192.0.2.0/24' ),
+
+			# IPv6
+			array( false, '::1'    , '2001:DB8::/32' ),
+			array( false, '::'     , '2001:DB8::/32' ),
+			array( false, 'FE80::1', '2001:DB8::/32' ),
+
+			array( true , '2001:DB8::'  , '2001:DB8::/32' ),
+			array( true , '2001:0DB8::' , '2001:DB8::/32' ),
+			array( true , '2001:DB8::1' , '2001:DB8::/32' ),
+			array( true , '2001:0DB8::1', '2001:DB8::/32' ),
+			array( true , '2001:0DB8:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
+				'2001:DB8::/32' ),
+
+			array( false, '2001:0DB8:F::', '2001:DB8::/96' ),
+		);
 	}
 }
