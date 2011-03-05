@@ -86,7 +86,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   potentially dangerous Java applets. This allows applets to be blocked
   specifically, rather than all ZIP files being blocked.
 * (bug 2429) Allow selection of associated namespace in recent changes
-* (bug 26995) File size is now checked before uploading in HTML5 browsers
+* (bug 26217) File size is now checked before uploading in HTML5 browsers
 * CSS stylesheet MediaWiki:Noscript.css is now loaded for users with JavaScript
   disabled (enclosed in the head in a <noscript> tag)
 
