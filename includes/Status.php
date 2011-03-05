@@ -287,6 +287,24 @@ class Status {
 		}
 		return $result;
 	}
+	
+	/**
+	 * Returns a list of status messages of the given type, with message and
+	 * params left untouched, like a sane version of getStatusArray
+	 * 
+	 * @param $type String
+	 *
+	 * @return Array
+	 */
+	public function getErrorsByType( $type ) {
+		$result = array();
+		foreach ( $this->errors as $error ) {
+			if ( $error['type'] === $type ) {
+				$result[] = $error;
+			}		
+		}
+		return $result;
+	}
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *

@@ -338,6 +338,27 @@ class ApiResult extends ApiBase {
 		global $wgContLang;
 		$s = $wgContLang->normalize( $s );
 	}
+	
+
+	/**
+	 * Converts a Status object to an array suitable for addValue
+	 * @param Status $status
+	 * @param string $errorType
+	 * @return array
+	 */
+	public function convertStatusToArray( $status, $errorType = 'error' ) {
+		if ( $status->isGood() ) {
+			return array();
+		}
+		
+		$result = array();
+		foreach ( $status->getErrorsByType( $errorType ) as $error ) {
+			$this->setIndexedTagName( $error['params'], 'param' );
+			$result[] = $error;
+		}
+		$this->setIndexedTagName( $result, $errorType );
+		return $result;
+	}
 
 	public function execute() {
 		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
