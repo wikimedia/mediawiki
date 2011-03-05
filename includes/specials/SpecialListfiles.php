@@ -77,11 +77,11 @@ class ImageListPager extends TablePager {
 		if ( !$this->mFieldNames ) {
 			global $wgMiserMode;
 			$this->mFieldNames = array(
-				'thumb' => wfMsg( 'listfiles_thumb' ),
 				'img_timestamp' => wfMsg( 'listfiles_date' ),
 				'img_name' => wfMsg( 'listfiles_name' ),
-				'img_user_text' => wfMsg( 'listfiles_user' ),
+				'thumb' => wfMsg( 'listfiles_thumb' ),
 				'img_size' => wfMsg( 'listfiles_size' ),
+				'img_user_text' => wfMsg( 'listfiles_user' ),
 				'img_description' => wfMsg( 'listfiles_description' ),
 			);
 			if( !$wgMiserMode ) {
