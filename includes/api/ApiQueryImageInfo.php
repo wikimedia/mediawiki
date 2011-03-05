@@ -329,10 +329,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
 		$mime = isset( $prop['mime'] );
+		$mediatype = isset( $prop['mediatype'] );
 		$archive = isset( $prop['archivename'] );
 		$bitdepth = isset( $prop['bitdepth'] );
 
-		if ( ( $url || $sha1 || $meta || $mime || $archive || $bitdepth )
+		if ( ( $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
 				&& $file->isDeleted( File::DELETED_FILE ) ) {
 			$vals['filehidden'] = '';
 
@@ -379,6 +380,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $mime ) {
 			$vals['mime'] = $file->getMimeType();
+		}
+		
+		if ( $mediatype ) {
+			$vals['mediatype'] = $file->getMediaType();
 		}
 
 		if ( $archive && $file->isOld() ) {
@@ -482,6 +487,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'sha1',
 			'mime',
 			'thumbmime',
+			'mediatype',
 			'metadata',
 			'archivename',
 			'bitdepth',
@@ -508,6 +514,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' sha1          - Adds SHA-1 hash for the image',
 				' mime          - Adds MIME type of the image',
 				' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
+				' mediatype		- Adds the media type of the image',
 				' metadata      - Lists EXIF metadata for the version of the image',
 				' archivename   - Adds the file name of the archive version for non-latest versions',
 				' bitdepth      - Adds the bit depth of the version',
