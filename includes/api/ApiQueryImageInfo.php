@@ -514,7 +514,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' sha1          - Adds SHA-1 hash for the image',
 				' mime          - Adds MIME type of the image',
 				' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
-				' mediatype		- Adds the media type of the image',
+				' mediatype     - Adds the media type of the image',
 				' metadata      - Lists EXIF metadata for the version of the image',
 				' archivename   - Adds the file name of the archive version for non-latest versions',
 				' bitdepth      - Adds the bit depth of the version',
