@@ -252,6 +252,7 @@ $wgOptionalMessages = array(
 	'vector.css',
 	'print.css',
 	'handheld.css',
+	'noscript.css',
 	'autoconfirmed.css',
 	'bot.css',
 	'sysop.css',
