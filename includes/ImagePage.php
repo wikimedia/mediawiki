@@ -7,10 +7,17 @@
  */
 class ImagePage extends Article {
 
-	/* private */ var $img;  // Image object
+	/**
+	 * @var File
+	 */
+	/* private */ var $img;
+	/**
+	 * @var File
+	 */
 	/* private */ var $displayImg;
 	/* private */ var $repo;
 	/* private */ var $fileLoaded;
+
 	var $mExtraDescription = false;
 	var $dupes;
 
@@ -168,6 +175,7 @@ class ImagePage extends Article {
 		}
 		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
 	}
+
 	public function followRedirect() {
 		$this->loadFile();
 		if ( $this->img->isLocal() ) {
@@ -180,6 +188,7 @@ class ImagePage extends Article {
 		}
 		return Title::makeTitle( NS_FILE, $to );
 	}
+
 	public function isRedirect( $text = false ) {
 		$this->loadFile();
 		if ( $this->img->isLocal() )
@@ -225,7 +234,6 @@ class ImagePage extends Article {
 		return $this->dupes = $dupes;
 		
 	}
-	
 
 	/**
 	 * Create the TOC
@@ -556,7 +564,9 @@ EOT
 	protected function uploadLinksBox() {
 		global $wgUser, $wgOut, $wgEnableUploads, $wgUseExternalEditor;
 
-		if ( !$wgEnableUploads ) { return; }
+		if ( !$wgEnableUploads ) {
+			return;
+		}
 
 		$this->loadFile();
 		if ( !$this->img->isLocal() )
@@ -714,7 +724,9 @@ EOT
 		$this->loadFile();
 
 		$dupes = $this->getDuplicates();
-		if ( count( $dupes ) == 0 ) return;
+		if ( count( $dupes ) == 0 ) {
+			return;
+		}
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
 		$wgOut->addWikiMsg( 'duplicatesoffile',
@@ -805,7 +817,6 @@ EOT
 		$wgOut->addWikiText( $description );
 	}
 
-
 	/**
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
@@ -830,9 +841,32 @@ EOT
  */
 class ImageHistoryList {
 
-	protected $imagePage, $img, $skin, $title, $repo, $showThumb;
+	/**
+	 * @var Title
+	 */
+	protected $title;
+
+	/**
+	 * @var File
+	 */
+	protected $img;
+
+	/**
+	 * @var ImagePage
+	 */
+	protected $imagePage;
+
+	/**
+	 * @var Skin
+	 */
+	protected $skin;
+
+	protected $repo, $showThumb;
 	protected $preventClickjacking = false;
 
+	/**
+	 * @param ImagePage $imagePage
+	 */
 	public function __construct( $imagePage ) {
 		global $wgUser, $wgShowArchiveThumbnails;
 		$this->skin = $wgUser->getSkin();
@@ -876,6 +910,11 @@ class ImageHistoryList {
 		return "</table>\n$navLinks\n</div>\n";
 	}
 
+	/**
+	 * @param  $iscur
+	 * @param File $file
+	 * @return string
+	 */
 	public function imageHistoryLine( $iscur, $file ) {
 		global $wgUser, $wgLang;
 
@@ -1020,6 +1059,10 @@ class ImageHistoryList {
 		return "<tr{$classAttr}>{$row}</tr>\n";
 	}
 
+	/**
+	 * @param File $file
+	 * @return string
+	 */
 	protected function getThumbForLine( $file ) {
 		global $wgLang;
 
@@ -1059,6 +1102,19 @@ class ImageHistoryList {
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $preventClickjacking = false;
 
+	/**
+	 * @var File
+	 */
+	protected $mImg;
+
+	/**
+	 * @var Title
+	 */
+	protected $mTitle;
+
+	/**
+	 * @param ImagePage $imagePage
+	 */
 	function __construct( $imagePage ) {
 		parent::__construct();
 		$this->mImagePage = $imagePage;
