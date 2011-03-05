@@ -544,12 +544,6 @@ return array(
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
-	'mediawiki.legacy.htmlform' => array(
-		'scripts' => 'common/htmlform.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.IEFixes' => array(
 		'scripts' => 'common/IEFixes.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
@@ -581,7 +575,7 @@ return array(
 		'scripts' => 'common/prefs.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => array( 'mediawiki.legacy.wikibits', 'mediawiki.legacy.htmlform' ),
+		'dependencies' => array( 'mediawiki.legacy.wikibits', 'mediawiki.htmlform' ),
 	),
 	'mediawiki.legacy.preview' => array(
 		'scripts' => 'common/preview.js',
