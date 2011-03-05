@@ -4136,6 +4136,10 @@ class Title {
 	 * @return array applicable restriction types
 	 */
 	public function getRestrictionTypes() {
+		if ( $this->getNamespace() == NS_SPECIAL ) {
+			return array();
+		}
+
 		$types = self::getFilteredRestrictionTypes( $this->exists() );
 
 		if ( $this->getNamespace() != NS_FILE ) {
@@ -4162,7 +4166,7 @@ class Title {
 		$types = $wgRestrictionTypes;
 		if ( $exists ) {
 			# Remove the create restriction for existing titles
-			$types = array_diff( $types, array( 'create' ) );			
+			$types = array_diff( $types, array( 'create' ) );
 		} else {
 			# Only the create and upload restrictions apply to non-existing titles
 			$types = array_intersect( $types, array( 'create', 'upload' ) );
