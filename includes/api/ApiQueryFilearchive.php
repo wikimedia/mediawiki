@@ -132,6 +132,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$file = array();
 			$file['name'] = $row->fa_name;
+			self::addTitleInfo( $file, Title::makeTitle( NS_FILE, $row->fa_name ) ); 
 
 			if ( $fld_sha1 ) {
 				$file['sha1'] = wfBaseConvert( $row->fa_storage_key, 36, 16, 40 );

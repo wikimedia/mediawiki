@@ -205,6 +205,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27715) imageinfo didn't respect revdelete
 * (bug 27862) Useremail module didn't properly return success on success.
 * (bug 27590) prop=imageinfo now allows querying the media type
+* (bug 27587) list=filearchive now outputs full title info
 
 === Languages updated in 1.18 ===
 
