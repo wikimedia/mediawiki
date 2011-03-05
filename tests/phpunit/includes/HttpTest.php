@@ -522,4 +522,85 @@ class HttpTest extends MediaWikiTestCase {
 		Http::$httpEngine = 'curl';
 		$this->runCookieRequests();
 	}
+
+	/**
+	 * Test Http::isValidURI()
+	 * @bug 27854 : Http::isValidURI is to lax
+	 *@dataProvider provideURI */
+	function testIsValidUri( $expect, $URI, $message = '' ) {
+		$this->assertEquals(
+			$expect,
+			(bool) Http::isValidURI( $URI ),
+			$message
+		);
+	}
+
+	/**
+	 * Feeds URI to test a long regular expression in Http::isValidURI
+	 */
+	function provideURI() {
+		/** Format: 'boolean expectation', 'URI to test', 'Optional message' */
+		return array(
+			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
+
+			# (ftp|http|https) - only three schemes allowed 
+			array( true,  'http://www.example.org/' ),
+			array( true,  'https://www.example.org/' ),
+			array( true,  'ftp://www.example.org/' ),
+			array( true,  'http://www.example.org', 'URI without directory' ),
+			array( true,  'http://a', 'Short name' ),
+			array( true, 'http://étoile', 'Allow UTF-8 in hostname' ),  # 'étoile' is french for 'star'
+			array( false, '\\host\directory', 'CIFS share' ),
+			array( false, 'gopher://host/dir', 'Reject gopher scheme' ),
+			array( false, 'telnet://host', 'Reject telnet scheme' ),
+			
+			# :\/\/ - double slashes
+			array( false,  'http//example.org', 'Reject missing column in protocol' ),
+			array( false,  'http:/example.org', 'Reject missing slash in protocol' ),
+			array( false,  'http:example.org', 'Must have two slashes' ),
+			# Following fail since hostname can be made of anything
+			array( false,  'http:///example.org', 'Must have exactly two slashes, not three' ),
+
+			# (\w+:{0,1}\w*@)? - optional user:pass
+			array( true,  'http://user@host', 'Username provided' ),
+			array( true,  'http://user:@host', 'Username provided, no password' ),
+			array( true,  'http://user:pass@host', 'Username and password provided' ),
+
+			# (\S+) - host part is made of anything not whitespaces
+			array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
+			array( false, 'http://exam:ple.org/', 'hostname can not use columns!' ),
+
+			# (:[0-9]+)? - port number
+			array( true, 'http://example.org:80/' ),
+			array( true, 'https://example.org:80/' ),
+			array( true, 'http://example.org:443/' ),
+			array( true, 'https://example.org:443/' ),
+			array( true, 'ftp://example.org:1/', 'Minimum' ),
+			array( true, 'ftp://example.org:65535/', 'Maximum port number' ),
+
+			# Part after the hostname is / or / with something else
+			array( true, 'http://example/#' ),
+			array( true, 'http://example/!' ),
+			array( true, 'http://example/:' ),
+			array( true, 'http://example/.' ),
+			array( true, 'http://example/?' ),
+			array( true, 'http://example/+' ),
+			array( true, 'http://example/=' ),
+			array( true, 'http://example/&' ),
+			array( true, 'http://example/%' ),
+			array( true, 'http://example/@' ),
+			array( true, 'http://example/-' ),
+			array( true, 'http://example//' ),
+			array( true, 'http://example/&' ),
+
+			# Fragment
+			array( true, 'http://exam#ple.org', ),  # This one is valid, really!
+			array( true, 'http://example.org:80#anchor' ),
+			array( true, 'http://example.org/?id#anchor' ),
+			array( true, 'http://example.org/?#anchor' ),
+
+			array( false, 'http://a ¿non !!sens after', 'Allow anything after URI' ),
+		);
+	}
+
 }
