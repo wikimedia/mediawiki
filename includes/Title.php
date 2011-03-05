@@ -2986,28 +2986,7 @@ class Title {
 		}
 
 		// Image-specific checks
-		if ( $this->getNamespace() == NS_FILE ) {
-			if ( $nt->getNamespace() != NS_FILE ) {
-				$errors[] = array( 'imagenocrossnamespace' );
-			}
-			$file = wfLocalFile( $this );
-			if ( $file->exists() ) {
-				if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
-					$errors[] = array( 'imageinvalidfilename' );
-				}
-				if ( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
-					$errors[] = array( 'imagetypemismatch' );
-				}
-			}
-			$destfile = wfLocalFile( $nt );
-			if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
-				$errors[] = array( 'file-exists-sharedrepo' );
-			}
-		}
-
-		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
-			$errors[] = array( 'nonfile-cannot-move-to-file' );
-		}
+		$errors = array_merge( $errors, $this->validateFileMoveOperation( $nt ) );
 
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays( $errors,
@@ -3046,6 +3025,42 @@ class Title {
 		if ( empty( $errors ) ) {
 			return true;
 		}
+		return $errors;
+	}
+	
+	/**
+	 * Check if the requested move target is a valid file move target
+	 * @param Title $nt Target title
+	 * @return array List of errors
+	 */
+	protected function validateFileMoveOperation( $nt ) {
+		global $wgUser;
+		
+		$errors = array();
+		
+		if ( $nt->getNamespace() != NS_FILE ) {
+			$errors[] = array( 'imagenocrossnamespace' );
+		}
+		
+		$file = wfLocalFile( $this );
+		if ( $file->exists() ) {
+			if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
+				$errors[] = array( 'imageinvalidfilename' );
+			}
+			if ( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
+				$errors[] = array( 'imagetypemismatch' );
+			}
+		}
+		
+		$destFile = wfLocalFile( $nt );
+		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
+			$errors[] = array( 'file-exists-sharedrepo' );
+		}
+
+		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
+			$errors[] = array( 'nonfile-cannot-move-to-file' );
+		}
+		
 		return $errors;
 	}
 
