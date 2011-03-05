@@ -200,6 +200,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		
 		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
+
+		if ( $this->db->getType() == 'sqlite' ) {
+			$tables = array_flip( $tables );
+			// these are subtables of searchindex and don't need to be duped/dropped separately
+			unset( $tables['searchindex_content'] );
+			unset( $tables['searchindex_segdir'] );
+			unset( $tables['searchindex_segments'] );
+			$tables = array_flip( $tables );
+		}
 		return $tables;
 		
 	}
