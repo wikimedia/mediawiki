@@ -186,19 +186,34 @@ class SpecialExport extends SpecialPage {
 		$form .= '<br />';
 
 		if( $wgExportAllowHistory ) {
-			$form .= Xml::checkLabel( wfMsg( 'exportcuronly' ), 'curonly', 'curonly', true ) . '<br />';
+			$form .= Xml::checkLabel(
+				wfMsg( 'exportcuronly' ),
+				'curonly',
+				'curonly',
+				$wgRequest->wasPosted() ? $wgRequest->getCheck( 'curonly' ) : true
+			) . '<br />';
 		} else {
 			$wgOut->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
 		}
 		
-		$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
+		$form .= Xml::checkLabel(
+			wfMsg( 'export-templates' ), 
+			'templates', 
+			'wpExportTemplates', 
+			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'templates' ) : false
+		) . '<br />';
 		
 		if( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
 			$form .= Xml::inputLabel( wfMsg( 'export-pagelinks' ), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
 		}
 		// Enable this when we can do something useful exporting/importing image information. :)
 		//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
-		$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
+		$form .= Xml::checkLabel(
+			wfMsg( 'export-download' ),
+			'wpDownload',
+			'wpDownload',
+			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'wpDownload' ) : true
+		) . '<br />';
 
 		$form .= Xml::submitButton( wfMsg( 'export-submit' ), $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'export' ) );
 		$form .= Xml::closeElement( 'form' );
