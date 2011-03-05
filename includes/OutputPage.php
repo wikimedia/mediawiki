@@ -2524,17 +2524,23 @@ class OutputPage {
 			if ( $useESI && $wgResourceLoaderUseESI ) {
 				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-					$links .= Html::inlineStyle( $esi );
+					$link = Html::inlineStyle( $esi );
 				} else {
-					$links .= Html::inlineScript( $esi );
+					$link = Html::inlineScript( $esi );
 				}
 			} else {
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+					$link = Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
 				} else {
-					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+					$link = Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
 				}
+			}
+
+			if( $group == 'noscript' ){
+				$links .= Html::rawElement( 'noscript', array(), $link ) . "\n";
+			} else {
+				$links .= $link . "\n";
 			}
 		}
 		return $links;
@@ -2829,7 +2835,7 @@ class OutputPage {
 		$ret = '';
 		// Add ResourceLoader styles
 		// Split the styles into four groups
-		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array() );
+		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array(), 'noscript' => array() );
 		$resourceLoader = $this->getResourceLoader();
 		foreach ( $this->getModuleStyles() as $name ) {
 			$group = $resourceLoader->getModule( $name )->getGroup();
@@ -2847,12 +2853,12 @@ class OutputPage {
 		$ret .= implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
 		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML
-		$ret .= Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) );
+		$ret .= Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) ) . "\n";
 		
 		// Add site, private and user styles
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
-		foreach ( array( 'site', 'private', 'user' ) as $group ) {
+		foreach ( array( 'site', 'noscript', 'private', 'user' ) as $group ) {
 			$ret .= $this->makeResourceLoaderLink( $sk, $styles[$group],
 					ResourceLoaderModule::TYPE_STYLES
 			);

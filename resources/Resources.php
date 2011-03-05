@@ -5,6 +5,7 @@ return array(
 	/* Special resources who have their own classes */
 
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
+	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),

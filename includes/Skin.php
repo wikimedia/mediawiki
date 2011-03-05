@@ -565,7 +565,7 @@ abstract class Skin extends Linker {
 
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
-			$out->addModuleStyles( 'site' );
+			$out->addModuleStyles( array( 'site', 'noscript' ) );
 			if( $wgUser->isLoggedIn() ){
 				$out->addModuleStyles( 'user.groups' );
 			}
