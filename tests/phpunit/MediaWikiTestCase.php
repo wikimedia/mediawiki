@@ -30,12 +30,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 	
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
-		global $wgCaches;
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
-		$wgCaches[CACHE_DB] = new HashBagOStuff;
+		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 		   
 		if( $this->needsDB() ) {
 		
