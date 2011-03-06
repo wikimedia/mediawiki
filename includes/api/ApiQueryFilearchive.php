@@ -135,7 +135,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			self::addTitleInfo( $file, Title::makeTitle( NS_FILE, $row->fa_name ) ); 
 
 			if ( $fld_sha1 ) {
-				$file['sha1'] = LocalRepo::getHashFromKey( $row->fa_storage_key );
+				$file['sha1'] = wfBaseConvert( LocalRepo::getHashFromKey( $row->fa_storage_key ), 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
@@ -155,7 +155,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['description'] = $row->fa_description;
 			}
 			if ( $fld_metadata ) {
-				$file['metadata'] = $row->fa_metadata ? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result ) : null;
+				$file['metadata'] = $row->fa_metadata
+						? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
+						: null;
 			}
 			if ( $fld_bitdepth ) {
 				$file['bitdepth'] = $row->fa_bits;
