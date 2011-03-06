@@ -592,7 +592,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Get a Parser object
 	 */
 	function getParser( $preprocessor = null ) {
-		global $wgParserConf, $wgHooks;
+		global $wgParserConf;
 
 		$class = $wgParserConf['class'];
 		$parser = new $class( array( 'preprocessorClass' => $preprocessor ) + $wgParserConf );
