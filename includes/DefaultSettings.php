@@ -675,6 +675,9 @@ $wgSVGConverter = 'ImageMagick';
 $wgSVGConverterPath = '';
 /** Don't scale a SVG larger than this */
 $wgSVGMaxSize = 2048;
+/** Don't read SVG metadata beyond this point.
+ * Default is 1024*256 bytes */
+$wgSVGMetadataCutoff = 262144; 
 
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't

@@ -47,13 +47,40 @@ class SVGReader {
 	 * @param $source String: URI from which to read
 	 */
 	function __construct( $source ) {
+		global $wgSVGMetadataCutoff;
 		$this->reader = new XMLReader();
-		$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+
+		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.
+		$size = filesize( $source );
+		if ( $size === false ) {
+			throw new MWException( "Error getting filesize of SVG." );
+		} 
+
+		if ( $size > $wgSVGMetadataCutoff ) {
+			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
+			$contents = file_get_contents( $source, false, null, -1, $wgSVGMetadataCutoff );
+			if ($contents === false) {
+				throw new MWException( 'Error reading SVG file.' );
+			}
+			$this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+		} else {
+			$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+		}
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
 		$this->metadata['height'] = self::DEFAULT_HEIGHT;
 
-		$this->read();
+		// Because we cut off the end of the svg making an invalid one. Complicated
+		// try catch thing to make sure warnings get restored. Seems like there should
+		// be a better way.
+		wfSuppressWarnings();
+		try {
+			$this->read();
+		} catch( Exception $e ) {
+			wfRestoreWarnings();
+			throw $e;
+		}
+		wfRestoreWarnings();
 	}
 
 	/*
@@ -83,7 +110,6 @@ class SVGReader {
 
 		$exitDepth =  $this->reader->depth;
 		$keepReading = $this->reader->read();
-		$skip = false;
 		while ( $keepReading ) {
 			$tag = $this->reader->name;
 			$type = $this->reader->nodeType;
@@ -100,17 +126,15 @@ class SVGReader {
 				$this->readXml( $tag, 'metadata' );
 			} elseif ( $tag !== '#text' ) {
 				$this->debug( "Unhandled top-level XML tag $tag" );
-				$this->animateFilter( $tag );
-				//$skip = true;
+
+				if ( !isset( $this->metadata['animated'] ) ) {
+					// Recurse into children of current tag, looking for animation.
+					$this->animateFilter( $tag );
+				}
 			}
 
-			if ($skip) {
-				$keepReading = $this->reader->next();
-				$skip = false;
-				$this->debug( "Skip" );
-			} else {
-				$keepReading = $this->reader->read();
-			}
+			// Goto next element, which is sibling of current (Skip children).
+			$keepReading = $this->reader->next();
 		}
 
 		$this->reader->close();
@@ -134,7 +158,7 @@ class SVGReader {
 			if( $this->reader->name == $name && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
-				$this->metadata[$metafield] = $this->reader->value;
+				$this->metadata[$metafield] = trim( $this->reader->value );
 			}
 			$keepReading = $this->reader->read();
 		}

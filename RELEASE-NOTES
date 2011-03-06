@@ -49,6 +49,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * The transliteration for passwords in case they were migrated from an old Latin-1
   install (previous to MediaWiki 1.5) is now only done for wikis with
   $wgLegacyEncoding set.
+* (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
+  look at when finding metadata to prevent excessive resource usage.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
