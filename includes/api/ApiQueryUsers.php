@@ -34,7 +34,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @ingroup API
  */
- class ApiQueryUsers extends ApiQueryBase {
+class ApiQueryUsers extends ApiQueryBase {
 
 	private $tokenFunctions, $prop;
 
