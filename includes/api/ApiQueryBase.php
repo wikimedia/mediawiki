@@ -489,7 +489,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 			// Don't show hidden names
 			if ( !$userCanViewHiddenUsers ) {
-				$this->addWhere( 'ipb_deleted IS NULL' );
+				$this->addWhereFld( 'ipb_deleted', 0 );
 			}
 		}
 	}
