@@ -91,6 +91,12 @@ $namespaceAliases = array(
 	'Imagen_Discusión' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuario', 'female' => 'Usuaria' ),
+	NS_USER_TALK => array( 'male' => 'Usuario_Discusión', 'female' => 'Usuaria_Discusión' ),
+);
+
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'RedireccionesDobles', 'Redirecciones_dobles' ),
 	'BrokenRedirects'           => array( 'RedireccionesRotas', 'Redirecciones_rotas' ),
