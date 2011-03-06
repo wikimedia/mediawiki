@@ -1818,6 +1818,10 @@ $user: User object
 'UserGetImplicitGroups': Called in User::getImplicitGroups()
 &$groups: List of implicit (automatically-assigned) groups
 
+'UserGetLanguageObject': Called when getting user's interface language object
+$user: User object
+&$code: Langauge code that will be used to create the object
+
 'UserGetReservedNames': allows to modify $wgReservedUsernames at run time
 &$reservedUsernames: $wgReservedUsernames
 
