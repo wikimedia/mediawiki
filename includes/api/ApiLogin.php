@@ -142,7 +142,7 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::ABORTED:
 				$result['result'] = 'Aborted';
-				$result['reason'] =  $this->mAbortLoginErrorMsg;
+				$result['reason'] =  $loginForm->mAbortLoginErrorMsg;
 				break;
 
 			default:
