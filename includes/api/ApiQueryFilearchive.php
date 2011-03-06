@@ -95,16 +95,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		if ( isset( $params['prefix'] ) )
 			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
-		$sha1 = false;
-		if ( isset( $params['sha1'] ) ) {
-			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
-		} elseif ( isset( $params['sha1base36'] ) ) {
-			$sha1 = $params['sha1base36'];
-		}
-		if ( $sha1 ) {
-			$this->addWhere( 'fa_storage_key=' . $db->addQuotes( $sha1 ) );
-		}
-
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption( 'ORDER BY', 'fa_name' .
@@ -186,8 +176,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'descending'
 				)
 			),
-			'sha1' => null,
-			'sha1base36' => null,
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
@@ -212,8 +200,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
 			'limit' => 'How many total images to return',
-			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
-			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => array(
 				'What image information to get:',
 				' sha1         - Adds SHA-1 hash for the image',
