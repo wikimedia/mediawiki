@@ -161,6 +161,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   incorrect revision ID is passed.
 * Trim the form field for uploading by url to remove extra spaces which could
   cause confusing error messages.
+* (bug 27854) Http::isValidURI is way too lax.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
