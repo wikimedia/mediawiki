@@ -311,6 +311,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
+
 		if ( $wgMiserMode ) {
 			$desc['namespace'] = array(
 				$desc['namespace'],

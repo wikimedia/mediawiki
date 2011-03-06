@@ -64,7 +64,14 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addTables( array( 'page', 'externallinks' ) );	// must be in this order for 'USE INDEX'
 		$this->addOption( 'USE INDEX', 'el_index' );
 		$this->addWhere( 'page_id=el_from' );
-		$this->addWhereFld( 'page_namespace', $params['namespace'] );
+
+		global $wgMiserMode;
+		$miser_ns = array();
+		if ( $wgMiserMode ) {
+			$miser_ns = $params['namespace'];
+		} else {
+			$this->addWhereFld( 'page_namespace', $params['namespace'] );
+		}
 
 		$whereQuery = $this->prepareUrlQuerySearchString( $db, $query, $protocol );
 
@@ -104,6 +111,10 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $offset + $limit );
 				break;
+			}
+
+			if ( count( $miser_ns ) && !in_array( $row->page_namespace, $miser_ns ) ) {
+				continue;
 			}
 
 			if ( is_null( $resultPageSet ) ) {
@@ -194,8 +205,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		global $wgMiserMode;
 		$p = $this->getModulePrefix();
-		return array(
+		$desc = array(
 			'prop' => array(
 				'What pieces of information to include',
 				' ids    - Adds the ID of page',
@@ -211,6 +223,16 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many pages to return.'
 		);
+
+		if ( $wgMiserMode ) {
+			$desc['namespace'] = array(
+				$desc['namespace'],
+				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
+				'returned before continuing; in extreme cases, zero results may be returned',
+			);
+		}
+
+		return $desc;
 	}
 
 	public function getDescription() {
