@@ -463,7 +463,7 @@ If you do not know the port, the default is 11211.',
 They may require additional configuration, but you can enable them now',
 	'config-install-alreadydone'      => "'''Warning:''' You seem to have already installed MediaWiki and are trying to install it again.
 Please proceed to the next page.",
-	'config-install-begin'            => 'By pressing continue, you will begin the installation of MediaWiki.
+	'config-install-begin'            => 'By pressing "{{int:config-continue}}", you will begin the installation of MediaWiki.
 If you still want to make changes, press back.',
 	'config-install-step-done'        => 'done',
 	'config-install-step-failed'      => 'failed',
