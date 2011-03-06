@@ -177,6 +177,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['blockreason'] = $row->ipb_reason;
 					$lastUserData['blockexpiry'] = $row->ipb_expiry;
 				}
+				if ( $row->ipb_deleted ) {
+					$lastUserData['hidden'] = '';
+				}
 				if ( $fld_editcount ) {
 					$lastUserData['editcount'] = intval( $row->user_editcount );
 				}

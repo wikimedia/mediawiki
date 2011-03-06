@@ -483,6 +483,8 @@ abstract class ApiQueryBase extends ApiBase {
 				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
 			) );
 
+			$this->addFields( 'ipb_deleted' );
+
 			if ( $showBlockInfo ) {
 				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
 			}

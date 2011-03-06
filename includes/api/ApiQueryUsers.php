@@ -161,7 +161,9 @@ class ApiQueryUsers extends ApiQueryBase {
 						User::getGroupPermissions( array( $row->ug_group ) ) ) );
 					$result->setIndexedTagName( $data[$name]['rights'], 'r' );
 				}
-
+				if ( $row->ipb_deleted ) {
+					$data[$name]['hidden'] = '';
+				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
 					$data[$name]['blockedby'] = $row->ipb_by_text;
 					$data[$name]['blockreason'] = $row->ipb_reason;
