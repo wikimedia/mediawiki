@@ -214,7 +214,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27862) Useremail module didn't properly return success on success.
 * (bug 27590) prop=imageinfo now allows querying the media type
 * (bug 27587) list=filearchive now outputs full title info
-(bug 27018) Added action=filerevert to revert files to an old version
+* (bug 27018) Added action=filerevert to revert files to an old version
+* (bug 27897) list=allusers and list=users list hidden users
 
 === Languages updated in 1.18 ===
 

@@ -112,13 +112,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$sqlLimit = $limit + 1;
 		}
 
-		if ( $fld_blockinfo ) {
-			$this->addTables( 'ipblocks' );
-			$this->addJoinConds( array(
-				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-			) );
-			$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
-		}
+		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
 
 		$this->addOption( 'LIMIT', $sqlLimit );
 

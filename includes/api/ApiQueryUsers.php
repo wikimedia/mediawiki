@@ -119,13 +119,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$this->addJoinConds( array( 'user_groups' => array( 'LEFT JOIN', 'ug_user=user_id' ) ) );
 				$this->addFields( 'ug_group' );
 			}
-			if ( isset( $this->prop['blockinfo'] ) ) {
-				$this->addTables( 'ipblocks' );
-				$this->addJoinConds( array(
-					'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-				) );
-				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
-			}
+
+			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
