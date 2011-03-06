@@ -386,6 +386,7 @@ More complex user rights configurations are available after installation, see th
 	'config-license-none'             => 'No license footer',
 	'config-license-cc-by-sa'         => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa'      => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-cc-0'             => 'Creative Commons Zero',
 	'config-license-gfdl-old'         => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current'     => 'GNU Free Documentation License 1.3 or later',
 	'config-license-pd'               => 'Public Domain',
