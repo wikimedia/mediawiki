@@ -228,7 +228,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		return 'public';
+		return 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {

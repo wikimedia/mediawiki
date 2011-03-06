@@ -251,7 +251,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
 		} else {
-			return 'public';
+			return 'anon-public-user-private';
 		}
 	}
 
