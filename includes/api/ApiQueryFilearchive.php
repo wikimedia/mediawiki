@@ -95,14 +95,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		if ( isset( $params['prefix'] ) )
 			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
-		if ( isset( $params['minsize'] ) ) {
-			$this->addWhere( 'fa_size>=' . intval( $params['minsize'] ) );
-		}
-
-		if ( isset( $params['maxsize'] ) ) {
-			$this->addWhere( 'fa_size<=' . intval( $params['maxsize'] ) );
-		}
-
 		$sha1 = false;
 		if ( isset( $params['sha1'] ) ) {
 			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
@@ -180,12 +172,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		return array (
 			'from' => null,
 			'prefix' => null,
-			'minsize' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'maxsize' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -225,8 +211,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'from' => 'The image title to start enumerating from',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
-			'minsize' => 'Limit to images with at least this many bytes',
-			'maxsize' => 'Limit to images with at most this many bytes',
 			'limit' => 'How many total images to return',
 			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
