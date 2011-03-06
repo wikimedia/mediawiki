@@ -243,6 +243,10 @@ abstract class Installer {
 			'url' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-by-nc-sa.png',
 		),
+		'cc-0' => array(
+			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
+			'icon' => '{$wgStylePath}/common/images/cc-0.png',
+		),
 		'pd' => array(
 			'url' => 'http://creativecommons.org/licenses/publicdomain/',
 			'icon' => '{$wgStylePath}/common/images/public-domain.png',
