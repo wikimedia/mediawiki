@@ -125,6 +125,7 @@ $.client = new ( function() {
 			if ( name === 'opera' && version >= 9.8) {
 				version = userAgent.match( /version\/([0-9\.]*)/i )[1] || 10;
 			}
+			var versionNumber = parseFloat( version, 10 ) || 0.0;
 
 			/* Caching */
 
@@ -134,8 +135,8 @@ $.client = new ( function() {
 				'layoutVersion': layoutversion,
 				'platform': platform,
 				'version': version,
-				'versionBase': ( version !== x ? new String( version ).substr( 0, 1 ) : x ),
-				'versionNumber': ( parseFloat( version, 10 ) || 0.0 )
+				'versionBase': ( version !== x ? Math.floor( versionNumber ).toString() : x ),
+				'versionNumber': versionNumber
 			};
 		}
 		return profile;
@@ -191,7 +192,7 @@ $.client = new ( function() {
 			}
 		}
 		return true;
-	}
+	};
 } )();
 
 $( document ).ready( function() {
