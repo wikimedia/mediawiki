@@ -47,6 +47,7 @@ class LoginForm extends SpecialPage {
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
+	var $mAbortLoginErrorMsg = 'login-abort-generic';
 
 	private $mExtUser = null;
 
@@ -527,7 +528,7 @@ class LoginForm extends SpecialPage {
 
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
-		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort ) ) ) {
+		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$this->mAbortLoginErrorMsg ) ) ) {
 			return $abort;
 		}
 
@@ -706,6 +707,9 @@ class LoginForm extends SpecialPage {
 			case self::USER_BLOCKED:
 				$this->mainLoginForm( wfMsgExt( 'login-userblocked',
 					array( 'parsemag', 'escape' ), $this->mUsername ) );
+				break;
+			case self::ABORTED:
+				$this->mainLoginForm( wfMsg( $this->mAbortLoginErrorMsg  ) );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
