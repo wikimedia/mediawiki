@@ -552,7 +552,11 @@ class WebInstaller_Name extends WebInstallerPage {
 
 		$this->startForm();
 
-		if ( $this->getVar( 'wgSitename' ) == $GLOBALS['wgSitename'] ) {
+		// Encourage people to not name their site 'MediaWiki' by blanking the
+		// field. I think that was the intent with the original $GLOBALS['wgSitename']
+		// but these two always were the same so had the effect of making the
+		// installer forget $wgSitename when navigating back to this page.
+		if ( $this->getVar( 'wgSitename' ) == 'MediaWiki' ) {
 			$this->setVar( 'wgSitename', '' );
 		}
 
