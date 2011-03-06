@@ -4,6 +4,7 @@ require_once dirname( __FILE__ ) . '/api/ApiSetup.php';
 
 /**
  * @group Broken
+ * @group Upload
  */
 class UploadFromUrlTest extends ApiTestSetup {
 
@@ -52,8 +53,8 @@ class UploadFromUrlTest extends ApiTestSetup {
 	public function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
-			'lgname' => self::$userName,
-			'lgpassword' => self::$passWord ) );
+			'lgname' => $this->user->userName,
+			'lgpassword' => $this->user->passWord ) );
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "NeedToken", $data[0]['login']['result'] );
@@ -62,8 +63,8 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			"lgtoken" => $token,
-			"lgname" => self::$userName,
-			"lgpassword" => self::$passWord ) );
+			'lgname' => $this->user->userName,
+			'lgpassword' => $this->user->passWord ) );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -78,7 +79,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testClearQueue
 	 */
 	public function testSetupUrlDownload( $data ) {
-		$token = self::$user->editToken();
+		$token = $this->user->editToken();
 		$exception = false;
 
 		try {
@@ -117,7 +118,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		self::$user->removeGroup( 'sysop' );
+		$this->user->removeGroup( 'sysop' );
 		$exception = false;
 		try {
 			$this->doApiRequest( array(
@@ -132,7 +133,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		self::$user->addGroup( 'sysop' );
+		$this->user->addGroup( 'sysop' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
@@ -152,9 +153,9 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUpload( $data ) {
-		$token = self::$user->editToken();
+		$token = $this->user->editToken();
 
-		self::$user->addGroup( 'users' );
+		$this->user->addGroup( 'users' );
 
 		$data = $this->doAsyncUpload( $token, true );
 		$this->assertEquals( $data[0]['upload']['result'], 'Success' );
@@ -171,9 +172,9 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUploadWarning( $data ) {
-		$token = self::$user->editToken();
+		$token = $this->user->editToken();
 
-		self::$user->addGroup( 'users' );
+		$this->user->addGroup( 'users' );
 
 
 		$data = $this->doAsyncUpload( $token );
@@ -202,12 +203,12 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testClearQueue
 	 */
 	public function testSyncDownload( $data ) {
-		$token = self::$user->editToken();
+		$token = $this->user->editToken();
 
 		$job = Job::pop();
 		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
 
-		self::$user->addGroup( 'users' );
+		$this->user->addGroup( 'users' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
@@ -226,9 +227,9 @@ class UploadFromUrlTest extends ApiTestSetup {
 	}
 
 	public function testLeaveMessage() {
-		$token = self::$user->editToken();
+		$token = $this->user->user->editToken();
 
-		$talk = self::$user->getTalkPage();
+		$talk = $this->user->user->getTalkPage();
 		if ( $talk->exists() ) {
 			$a = new Article( $talk );
 			$a->doDeleteArticle( '' );
