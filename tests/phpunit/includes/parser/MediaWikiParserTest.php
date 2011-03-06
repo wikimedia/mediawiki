@@ -15,7 +15,7 @@ require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
 class MediaWikiParserTest {
 
 	public static function suite() {
-		global $IP, $wgParserTestFiles;
+		global $wgParserTestFiles;
 
 		$suite = new PHPUnit_Framework_TestSuite;
 
