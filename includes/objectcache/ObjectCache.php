@@ -22,6 +22,13 @@ class ObjectCache {
 	}
 
 	/**
+	 * Clear all the cached instances.
+	 */
+	static function clear() {
+		self::$instances = array();
+	}
+
+	/**
 	 * Create a new cache object of the specified type.
 	 */
 	static function newFromId( $id ) {
