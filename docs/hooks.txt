@@ -247,6 +247,7 @@ $password: the password being submitted, not yet checked for validity
 &$retval: a LoginForm class constant to return from authenticateUserData();
           default is LoginForm::ABORTED. Note that the client may be using
           a machine API rather than the HTML user interface.
+&$msg: the message identifier for abort reason (new in 1.18, not available before 1.18)
 
 'AbortMove': allows to abort moving an article (title)
 $old: old title
