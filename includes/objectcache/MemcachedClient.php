@@ -431,12 +431,12 @@ class MWMemcached {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
+		$value = false;
 		if ( isset( $val[$key] ) ) {
-			return $val[$key];
-		} else {
-			return false;
+			$value = $val[$key];
 		}
+		wfProfileOut( __METHOD__ );
+		return $value;
 	}
 
 	// }}}
