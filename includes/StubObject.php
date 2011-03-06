@@ -157,6 +157,8 @@ class StubUserLang extends StubObject {
 			$code = $wgLanguageCode;
 		}
 
+		wfRunHooks( 'UserGetLanguageObject', array( $wgUser, &$code ) );
+
 		if( $code === $wgLanguageCode ) {
 			return $wgContLang;
 		} else {

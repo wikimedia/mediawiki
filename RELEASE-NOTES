@@ -91,6 +91,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 26217) File size is now checked before uploading in HTML5 browsers
 * CSS stylesheet MediaWiki:Noscript.css is now loaded for users with JavaScript
   disabled (enclosed in the head in a <noscript> tag)
+* Added UserGetLanguageObject hook to change the language used in $wgLang
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
