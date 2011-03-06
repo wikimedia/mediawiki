@@ -662,7 +662,7 @@ abstract class Installer {
 		$test = new PhpRefCallBugTester;
 		$test->execute();
 		if ( !$test->ok ) {
-			$this->showMessage( 'config-using531' );
+			$this->showMessage( 'config-using531', phpversion() );
 			return false;
 		}
 	}
