@@ -466,6 +466,34 @@ abstract class ApiQueryBase extends ApiBase {
 		return null;
 	}
 
+	/**
+	 * Filters hidden users (where the user doesn't have the right to view them)
+	 * Also adds relevant block information
+	 *
+	 * @param bool $showBlockInfo
+	 * @return void
+	 */
+	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
+		global $wgUser;
+		$userCanViewHiddenUsers = $wgUser->isAllowed( 'hideuser' );
+
+		if ( $showBlockInfo || !$userCanViewHiddenUsers ) {
+			$this->addTables( 'ipblocks' );
+			$this->addJoinConds( array(
+				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
+			) );
+
+			if ( $showBlockInfo ) {
+				$this->addFields( array( 'ipb_reason', 'ipb_by_text', 'ipb_expiry' ) );
+			}
+
+			// Don't show hidden names
+			if ( !$userCanViewHiddenUsers ) {
+				$this->addWhere( 'ipb_deleted IS NULL' );
+			}
+		}
+	}
+
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
