@@ -135,7 +135,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			self::addTitleInfo( $file, Title::makeTitle( NS_FILE, $row->fa_name ) ); 
 
 			if ( $fld_sha1 ) {
-				$file['sha1'] = wfBaseConvert( $row->fa_storage_key, 36, 16, 40 );
+				$file['sha1'] = LocalRepo::getHashFromKey( $row->fa_storage_key );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );

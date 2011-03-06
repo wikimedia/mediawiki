@@ -217,6 +217,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27018) Added action=filerevert to revert files to an old version
 * (bug 27897) list=allusers and list=users list hidden users
 * (bug 27717) API's exturlusage module does not respect $wgMiserMode
+* (bug 27588) list=filearchive&faprop=sha1 returns empty attribute
 
 === Languages updated in 1.18 ===
 
