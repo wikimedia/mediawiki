@@ -117,16 +117,17 @@ class Http {
 	}
 
 	/**
-	 * Checks that the given URI is a valid one
+	 * Checks that the given URI is a valid one. Hardcoding the
+	 * protocols, because we only want protocols that both cURL
+	 * and php support.
 	 *
 	 * @param $uri Mixed: URI to check for validity
 	 * @returns Boolean
 	 */
 	public static function isValidURI( $uri ) {
 		return preg_match(
-			'/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/',
-			$uri,
-			$matches
+			'/^(f|ht)tps?:\/\/[^\/\s]\S*$/D',
+			$uri
 		);
 	}
 }
