@@ -56,7 +56,7 @@ $wgTitle = $mediaWiki->checkInitialQueries( $wgRequest );
 
 wfProfileOut( 'main-misc-setup' );
 
-$action = $wgRequest->getVal( 'action' );
+$action = $wgRequest->getVal( 'action', 'view' );
 
 # Send Ajax requests to the Ajax dispatcher.
 if( $wgUseAjax && $action == 'ajax' ) {
