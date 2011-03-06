@@ -238,6 +238,11 @@ if ( !$wgAllowUserSkin ) {
 	$wgHiddenPrefs[] = 'skin';
 }
 
+# Doesn't make sense to have if disabled.
+if ( !$wgEnotifMinorEdits ) {
+	$wgHiddenPrefs[] = 'enotifminoredits';
+}
+
 if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
 	if ( $wgMimeType == 'application/xhtml+xml' ) {
