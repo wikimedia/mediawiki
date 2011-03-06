@@ -3685,8 +3685,6 @@ class Parser {
 	function formatHeadings( $text, $origText, $isMain=true ) {
 		global $wgMaxTocLevel, $wgContLang, $wgHtml5, $wgExperimentalHtmlIds;
 
-		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$showEditLink = 0;
@@ -3904,7 +3902,7 @@ class Parser {
 			}
 
 			# Don't number the heading if it is the only one (looks silly)
-			if ( $doNumberHeadings && count( $matches[3] ) > 1) {
+			if ( count( $matches[3] ) > 1 && $this->mOptions->getNumberHeadings() ) {
 				# the two are different if the line contains a link
 				$headline = $numbering . ' ' . $headline;
 			}
