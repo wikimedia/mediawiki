@@ -286,7 +286,7 @@ class MonoBookTemplate extends BaseTemplate {
 		echo '	' . Html::openElement( 'div', $portletAttribs );
 ?>
 
-		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
+		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>

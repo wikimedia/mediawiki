@@ -628,7 +628,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  */
 function wfMsgWeirdKey( $key ) {
 	$source = wfMsgGetKey( $key, false, true, false );
-	if ( wfEmptyMsg( $key, $source ) ) {
+	if ( wfEmptyMsg( $key ) ) {
 		return '';
 	} else {
 		return $source;

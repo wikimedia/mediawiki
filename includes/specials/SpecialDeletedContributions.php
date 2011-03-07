@@ -453,7 +453,7 @@ class DeletedContributionsPage extends SpecialPage {
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
 		// otherwise use 'contribsub2'.
-		if( wfEmptyMsg( 'contribsub', wfMsg( 'contribsub' ) ) ) {
+		if( wfEmptyMsg( 'contribsub' ) ) {
 			return wfMsgHtml( 'contribsub2', $user, $links );
 		} else {
 			return wfMsgHtml( 'contribsub', "$user ($links)" );

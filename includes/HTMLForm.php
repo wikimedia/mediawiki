@@ -920,7 +920,7 @@ abstract class HTMLFormField {
 		if ( isset( $this->mParams['help-message'] ) ) {
 			$msg = $this->mParams['help-message'];
 			$helptext = wfMsgExt( $msg, 'parseinline' );
-			if ( wfEmptyMsg( $msg, $helptext ) ) {
+			if ( wfEmptyMsg( $msg ) ) {
 				# Never mind
 				$helptext = null;
 			}
