@@ -827,7 +827,7 @@ abstract class Skin extends Linker {
 
 		if ( $wgShowDebug ) {
 			$listInternals = $this->formatDebugHTML( $out->mDebugtext );
-			return "\n<hr />\n<strong>Debug data:</strong><ul style=\"font-family:\'Courier New\',monospace;\" id=\"mw-debug-html\">" .
+			return "\n<hr />\n<strong>Debug data:</strong><ul style=\"font-family:'Courier New',monospace;\" id=\"mw-debug-html\">" .
 				$listInternals . "</ul>\n";
 		}
 
@@ -835,15 +835,26 @@ abstract class Skin extends Linker {
 	}
 
 	private function formatDebugHTML( $debugText ) {
+		global $wgDebugTimestamps;
+
 		$lines = explode( "\n", $debugText );
 		$curIdent = 0;
 		$ret = '<li>';
 
 		foreach ( $lines as $line ) {
+			$pre = '';
+			if ( $wgDebugTimestamps ) {
+				$matches = array();
+				if ( preg_match( '/^(\d+\.\d+\s{2})/', $line, $matches ) ) {
+					$pre = $matches[1];
+					$line = substr( $line, strlen( $pre ) );
+				}
+			}
 			$display = ltrim( $line );
 			$ident = strlen( $line ) - strlen( $display );
 			$diff = $ident - $curIdent;
 
+			$display = $pre . $display;
 			if ( $display == '' ) {
 				$display = "\xc2\xa0";
 			}
