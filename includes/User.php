@@ -173,9 +173,19 @@ class User {
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
-	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mSkin, $mRights,
-		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally,
+	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
+		$mBlockreason, $mEffectiveGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
+
+	/**
+	 * @var Skin
+	 */
+	var $mSkin;
+
+	/**
+	 * @var Block
+	 */
+	var $mBlock;
 
 	static $idCacheByName = array();
 
@@ -3774,8 +3784,4 @@ class User {
 
 		return $ret;
 	}
-
-
-
-
 }

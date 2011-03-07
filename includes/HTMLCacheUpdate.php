@@ -25,7 +25,12 @@
  */
 class HTMLCacheUpdate
 {
-	public $mTitle, $mTable, $mPrefix, $mStart, $mEnd;
+	/**
+	 * @var Title
+	 */
+	public $mTitle;
+
+	public $mTable, $mPrefix, $mStart, $mEnd;
 	public $mRowsPerJob, $mRowsPerQuery;
 
 	function __construct( $titleTo, $table, $start = false, $end = false ) {
