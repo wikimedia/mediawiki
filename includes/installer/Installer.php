@@ -816,6 +816,7 @@ abstract class Installer {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
 		$convert = self::locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
 
+		$this->setVar( 'wgImageMagickConvertCommand', '' );
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
 			$this->showMessage( 'config-imagemagick', $convert );
