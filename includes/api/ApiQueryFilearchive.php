@@ -162,17 +162,17 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 			
 			if ( $row->fa_deleted & File::DELETED_FILE ) {
-				$file['deletedfile'] = '';
+				$file['filehidden'] = '';
 			}
 			if ( $row->fa_deleted & File::DELETED_COMMENT ) {
-				$file['deletedcomment'] = '';
+				$file['commenthidden'] = '';
 			}
 			if ( $row->fa_deleted & File::DELETED_USER ) {
-				$file['deleteduser'] = '';
+				$file['userhidden'] = '';
 			}
 			if ( $row->fa_deleted & File::DELETED_RESTRICTED ) {
 				// This file is deleted for normal admins
-				$file['deletedrestricted'] = '';
+				$file['suppressed'] = '';
 			}
 
 			
