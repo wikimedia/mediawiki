@@ -2099,9 +2099,10 @@ $1',
 'undelete-show-file-submit' => 'Ndiyo',
 
 # Namespace form on various pages
-'namespace'      => 'Chagua eneo la wiki:',
-'invert'         => 'Geuza uteuzi',
-'blanknamespace' => '(Kuu)',
+'namespace'             => 'Chagua eneo la wiki:',
+'invert'                => 'Geuza uteuzi',
+'namespace_association' => 'Eneo linalohusisha',
+'blanknamespace'        => '(Kuu)',
 
 # Contributions
 'contributions'       => 'Michango ya mtumiaji',

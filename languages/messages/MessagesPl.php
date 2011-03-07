@@ -2401,9 +2401,10 @@ $1',
 'undelete-show-file-submit'    => 'Tak',
 
 # Namespace form on various pages
-'namespace'      => 'Przestrzeń nazw',
-'invert'         => 'odwróć wybór',
-'blanknamespace' => '(główna)',
+'namespace'             => 'Przestrzeń nazw',
+'invert'                => 'odwróć wybór',
+'namespace_association' => 'powiązana przestrzeń nazw',
+'blanknamespace'        => '(główna)',
 
 # Contributions
 'contributions'       => 'Wkład użytkownika',

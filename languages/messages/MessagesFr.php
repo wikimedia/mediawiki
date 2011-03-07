@@ -367,7 +367,7 @@ $messages = array(
 'tog-previewontop'            => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Afficher la prévisualisation lors de la première modification',
 'tog-nocache'                 => 'Désactiver le cache des pages par le navigateur',
-'tog-enotifwatchlistpages'    => 'M’avertir par courrier électronique lorsqu’une page de ma liste de suivi est modifiée',
+'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse de courriel dans les courriels de notification',
@@ -3497,9 +3497,9 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 
 # Size units
 'size-bytes'     => '$1 o',
-'size-kilobytes' => '$1 Kio',
-'size-megabytes' => '$1 Mio',
-'size-gigabytes' => '$1 Gio',
+'size-kilobytes' => '$1 Ko',
+'size-megabytes' => '$1 Mo',
+'size-gigabytes' => '$1 Go',
 
 # Live preview
 'livepreview-loading' => 'Chargement…',

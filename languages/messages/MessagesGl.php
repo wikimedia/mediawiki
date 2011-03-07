@@ -697,7 +697,7 @@ Como resultado, os visitantes que usen este enderezo IP non poden crear máis co
 'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque semella ter un formato incorrecto.
 Insira un enderezo cun formato válido ou baleire ese campo.',
 'accountcreated'             => 'Conta creada',
-'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
+'accountcreatedtext'         => 'Creouse a conta de usuario para "$1".',
 'createaccount-title'        => 'Creación dunha conta para {{SITENAME}}',
 'createaccount-text'         => 'Alguén creou unha conta chamada "$2" para o seu enderezo de correo electrónico en {{SITENAME}} ($4), e con contrasinal "$3".
 Debe acceder ao sistema e mudar o contrasinal agora.

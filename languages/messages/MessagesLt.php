@@ -364,6 +364,7 @@ $messages = array(
 'printableversion'  => 'Versija spausdinimui',
 'permalink'         => 'Nuolatinė nuoroda',
 'print'             => 'Spausdinti',
+'view'              => 'Žiūrėti',
 'edit'              => 'Redaguoti',
 'create'            => 'Sukurti',
 'editthispage'      => 'Redaguoti šį puslapį',
@@ -371,6 +372,7 @@ $messages = array(
 'delete'            => 'Trinti',
 'deletethispage'    => 'Ištrinti šį puslapį',
 'undelete_short'    => 'Atstatyti $1 {{PLURAL:$1:redagavimą|redagavimus|redagavimų}}',
+'viewdeleted_short' => 'Peržiūrėti $1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
 'protect'           => 'Užrakinti',
 'protect_change'    => 'keisti',
 'protectthispage'   => 'Rakinti šį puslapį',
@@ -454,6 +456,8 @@ $1',
 'toc'                     => 'Turinys',
 'showtoc'                 => 'rodyti',
 'hidetoc'                 => 'slėpti',
+'collapsible-collapse'    => 'Sutraukti',
+'collapsible-expand'      => 'Išplėsti',
 'thisisdeleted'           => 'Žiūrėti ar atkurti $1?',
 'viewdeleted'             => 'Rodyti $1?',
 'restorelink'             => '$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
@@ -657,6 +661,9 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 
 # JavaScript password checks
 'password-strength'            => 'Apskaičiuotas slaptažodžio stiprumas: $1',
@@ -1529,11 +1536,12 @@ Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 'minlength1'                  => 'Failo pavadinimas turi būti bent viena raidė.',
 'illegalfilename'             => 'Failo varde „$1“ yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
 'badfilename'                 => 'Failo pavadinimas pakeistas į „$1“.',
-'filetype-mime-mismatch'      => 'Failo plėtinys neatitinka MIME tipo.',
+'filetype-mime-mismatch'      => 'Failo plėtinys „.$1“ neatitinka nustatyto šio failo MIME tipo($2).',
 'filetype-badmime'            => 'Neleidžiama įkelti „$1“ MIME tipo failų.',
 'filetype-bad-ie-mime'        => 'Negalima įkelti šio failo, kadangi Internet Explorer jį pažymėtų kaip „$1“. Tai yra neleistinas ir potencialiai pavojingas failo tipas.',
 'filetype-unwanted-type'      => "„.$1“''' yra nepageidautinas failo tipas. {{PLURAL:$3|Pageidautinas failų tipas|pageidautini failų tipai}} yra $2.",
-'filetype-banned-type'        => "„.$1“''' nėra leistinas failo tipas. {{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.",
+'filetype-banned-type'        => "'''„.$1“''' nėra {{PLURAL:$4|leistinas failo tipas|leistini failo tipai}}.
+{{PLURAL:$3|Leistinas failų tipas|Leistini failų tipai}} yra $2.",
 'filetype-missing'            => 'Failas neturi galūnės (pavyzdžiui „.jpg“).',
 'empty-file'                  => 'Failas, kurį patvirtinote, tuščias.',
 'file-too-large'              => 'Failas, kurį patvirtinote, pernelyg didelis.',
@@ -1584,6 +1592,8 @@ Jei visvien norite įkelti savo failą, prašome eiti atgal ir įkelti šį fail
 Patikrinkite ''file_uploads'' nustatą.",
 'uploadscripted'              => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
 'uploadvirus'                 => 'Šiame faile yra virusas! Smulkiau: $1',
+'uploadjava'                  => 'Failas yra ZIP failas, kuriame yra Java .class failas.
+Įkelti Java failus neleidžiama, nes jie gali padėti apeiti saugumo apribojimus.',
 'upload-source'               => 'Failo šaltinis',
 'sourcefilename'              => 'Įkeliamas failas:',
 'sourceurl'                   => 'Šaltinio adresas:',
@@ -3408,5 +3418,9 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # SQLite database support
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'Naudotojo vardas:',
+'disableaccount-reason' => 'Priežastis:',
 
 );

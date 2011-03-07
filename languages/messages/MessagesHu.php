@@ -2600,6 +2600,16 @@ Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, �
 '''FIGYELEM!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
 győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
+'movepagetext-noredirectfixer' => "↓ Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.
+A régi cím az új címre való átirányítás lesz.
+Ellenőrizd a [[Special:DoubleRedirects|dupla]] és a [[Special:BrokenRedirects|hibás átirányításoknál]], hogy a linkek továbbra is oda mutatnak, ahová mutatniuk kell.
+
+A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres, vagy átirányítás, aminek nincs laptörténete.
+Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, de nem tudsz egy már létező lapot véletlenül felülírni.
+
+'''Figyelem!'''
+Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
+győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
 'movepagetalktext'             => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''
 *már létezik egy nem üres vitalap az új helyen,
 *nem jelölöd be a lenti pipát.
