@@ -153,8 +153,8 @@ Although MediaWiki checks all uploaded files for security threats, it is highly 
 	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
 Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later ([http://bugs.php.net/bug.php?id=45996 bug filed with PHP]).
 Installation aborted.',
-	'config-using531'                 => 'PHP $1 is not compatible with MediaWiki due to a bug involving reference parameters to <code>__call()</code>.
-Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to fix this ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]).
+	'config-using531'                 => 'MediaWiki cannot be used with PHP $1 due to a bug involving reference parameters to <code>__call()</code>.
+Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to resolve this.
 Installation aborted.',
 	'config-db-type'                  => 'Database type:',
 	'config-db-host'                  => 'Database host:',
