@@ -1848,6 +1848,8 @@ Gallout a rit staliañ MediaWiki.',
 	'config-env-bad' => "Gwiriet eo bet an endro.
 Ne c'hallit ket staliañ MediaWiki.",
 	'config-env-php' => 'Staliet eo PHP $1.',
+	'config-env-php-toolow' => "Staliet eo PHP $1.
+Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 	'config-unicode-using-utf8' => "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
 	'config-unicode-using-intl' => "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
@@ -1958,6 +1960,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-profile-fishbowl' => 'Embanner aotreet hepken',
 	'config-profile-private' => 'Wiki prevez',
 	'config-license' => 'Copyright hag aotre-implijout:',
+	'config-license-none' => 'Aotre ebet en traoñ pajenn',
 	'config-license-gfdl-old' => 'Aotre implijout teuliaouiñ frank GNU 1.2',
 	'config-license-gfdl-current' => "Aotre implijout teuliaouiñ frank GNU 1.3 pe nevesoc'h",
 	'config-license-pd' => 'Domani foran',
@@ -2181,6 +2184,8 @@ MediaWiki kann installiert werden.',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann nicht installiert werden.',
 	'config-env-php' => 'PHP $1 ist installiert.',
+	'config-env-php-toolow' => 'PHP $1 ist installiert.
+Allerdings benötigt MediaWiki PHP $2 oder höher.',
 	'config-unicode-using-utf8' => 'Zur Unicode-Normalisierung wird Brion Vibbers <code>utf8_normalize.so</code> eingesetzt.',
 	'config-unicode-using-intl' => 'Zur  Unicode-Normalisierung wird die [http://pecl.php.net/intl PECL-Erweiterung intl] eingesetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnung:''' Die [http://pecl.php.net/intl PECL-Erweiterung intl] ist für die Unicode-Normalisierung nicht verfügbar, so dass stattdessen die langsame pure-PHP-Implementierung genutzt wird.
@@ -2295,8 +2300,8 @@ allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Ba
 	'config-mysql-old' => 'MySQL $1 oder höher wird benötigt. MySQL $2 ist momentan vorhanden.',
 	'config-db-port' => 'Datenbankport:',
 	'config-db-schema' => 'Datenschema für MediaWiki',
-	'config-db-schema-help' => 'Die obigen Datenschemata sind in der Regel richtig.
-Nur Änderungen vornehmen, sofern es Gründe dafür gibt.',
+	'config-db-schema-help' => 'Dieses Datenschema ist in der Regel allgemein verwendbar.
+Nur Änderungen daran vornehmen, sofern es gute Gründe dafür gibt.',
 	'config-sqlite-dir' => 'SQLite-Datenverzeichnis:',
 	'config-sqlite-dir-help' => "SQLite speichert alle Daten in einer einzigen Datei.
 
@@ -2917,7 +2922,7 @@ Pasa a la próxima página, por favor.",
 	'config-install-pg-schema-failed' => 'La creación de las tablas ha fallado.
 Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-user' => 'Creando el usuario de la base de datos',
-	'config-install-user-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
+	'config-install-user-grant-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
 	'config-install-tables' => 'Creando tablas',
 	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas de MediaWiki ya existen. Saltándose su creación.",
 	'config-install-tables-failed' => "'''Error''': La creación de las tablas falló con el siguiente error: $1",
@@ -3586,7 +3591,7 @@ Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 »."
 	'config-pg-no-plpgsql' => 'Vous devez installer le langage PL/pgSQL dans la base de données $1',
 	'config-pg-no-create-privs' => "Le compte que vous avez spécifié pour l'installation n'a pas suffisamment de privilèges pour créer un compte.",
 	'config-install-user' => "Création d'un utilisateur de la base de données",
-	'config-install-user-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
+	'config-install-user-grant-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-tables' => 'Création des tables',
 	'config-install-tables-exist' => "'''Avertissement:''' Les tables MediaWiki semblent déjà exister. 
 Création omise.",
@@ -4317,7 +4322,9 @@ $1
 אפשר להתקין מדיה־ויקי.',
 	'config-env-bad' => 'הסביבה שלכם נבדקה.
 אי־אפשר להתקין מדיה־ויקי.',
-	'config-env-php' => 'מותקן PHP $1.',
+	'config-env-php' => 'מותקנת PHP $1.',
+	'config-env-php-toolow' => 'מותקנת PHP $1.
+למדיה־ויקי נדרשת PHP $2 או גרסה גבוהה יותר.',
 	'config-unicode-using-utf8' => 'משתמש ב־normalize.so של בריון ויבר לנרמול יוניקוד.',
 	'config-unicode-using-intl' => 'משתמש בהרחבת [http://pecl.php.net/intl הרחבת intl PECL] לנרמול יוניקוד',
 	'config-unicode-pure-php-warning' => "'''אזהרה''': [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.
@@ -4332,7 +4339,7 @@ $1
 אם קמפלתם את PHP בעצמכם, הגדירו אותו מחדש והפעילו את לקוח מסד נתונים (database client), למשל בעזרת <code>./configure --with-mysql</code>.
 אם התקנתם את PHP מחבילה של דביאן או אובונטו, יש להתקין את המודול php5-mysql.',
 	'config-no-fts3' => "'''אזהרה''': SQLite מקומפל ללא [http://sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
-	'config-register-globals' => "'''אזהרה: האופציה <code>[http://php.net/register_globals register_globals]</code> של PHP מופעלת.'''
+	'config-register-globals' => "'''אזהרה: האפשרות <code>[http://php.net/register_globals register_globals]</code> של PHP מופעלת.'''
 '''כבו אותה אם אתם יכולים.'''
 מדיה־ויקי תעבוד, אבל השרת שלכם חשוף לפגיעות אבטחה.",
 	'config-magic-quotes-runtime' => "'''שגיאה סופנית: האפשרות [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] פעילה!'''
@@ -4380,7 +4387,7 @@ $1
 	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
 שדרגו ל־PHP 5.2.9 או לגרסה חדשה יותר ול־libxml2 2.7.3 או גרסה חדשה יותר ([http://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).
 ההתקנה בוטלה.',
-	'config-using531' => 'PHP $1 אינו תואם למדיה־ויקי בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
+	'config-using531' => 'PHP $1 אינה תואמת למדיה־ויקי בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
 שדרגו ל־PHP 5.3.0 כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]).
 ההתקנה בוטלה.',
 	'config-db-type' => 'סוג מסד הנתונים:',
@@ -4436,8 +4443,8 @@ $1
 	'config-mysql-old' => 'נדרשת גרסה $1 של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלכם היא $2.',
 	'config-db-port' => 'פִּתְחַת מסד הנתונים (database port):',
 	'config-db-schema' => 'סכמה למדיה־ויקי',
-	'config-db-schema-help' => 'הסְכֵמוֹת הבאות בדרך כלל נכונות.
-שנו אותן רק אם אתם יודעים שאתם חייבים.',
+	'config-db-schema-help' => 'הסְכֵמָה הבאה בדרך כלל מתאימה.
+שנו אותה רק אם אתם יודעים שאתם חייבים.',
 	'config-sqlite-dir' => 'תיקיית נתונים (data directory) של SQLite:',
 	'config-sqlite-dir-help' => 'SQLite שומר את כל הנתונים בקובץ אחד.
 
@@ -5025,7 +5032,7 @@ Zawěsć, zo wužiwar "$1" móže do šemy "$2" pisać.',
 	'config-pg-no-plpgsql' => 'Dyrbiš rěč PL/pgSQL w datowej bance $1 instalować',
 	'config-pg-no-create-privs' => 'Konto, kotrež sy za instalaciju podał, nima dosahace prawa za wutworjenje konta.',
 	'config-install-user' => 'Tworjenje wužiwarja datoweje banki',
-	'config-install-user-failed' => 'Prawo njeda so wužiwarjej "$1" dać: $2',
+	'config-install-user-grant-failed' => 'Prawo njeda so wužiwarjej "$1" dać: $2',
 	'config-install-tables' => 'Tworjenje tabelow',
 	'config-install-tables-exist' => "'''Warnowanje''': Zda so, zo tabele MediaWiki hižo eksistuja.
 Wutworjenje so přeskakuje.",
@@ -5392,6 +5399,8 @@ Tu pote installar MediaWiki.',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
 Tu non pote installar MediaWiki.',
 	'config-env-php' => 'PHP $1 es installate.',
+	'config-env-php-toolow' => 'PHP $1 es installate.
+Nonobstante, MediaWiki require PHP $2 o plus recente.',
 	'config-unicode-using-utf8' => 'utf8_normalize.so per Brion Vibber es usate pro le normalisation Unicode.',
 	'config-unicode-using-intl' => 'Le [http://pecl.php.net/intl extension PECL intl] es usate pro le normalisation Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': Le [http://pecl.php.net/intl extension PECL intl] non es disponibile pro exequer le normalisation Unicode; le systema recurre al implementation lente in PHP pur.
@@ -6257,7 +6266,7 @@ Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-plpgsql' => 'Memeriksa bahasa PL / pgSQL',
 	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
 	'config-install-user' => 'Membuat pengguna basis data',
-	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
+	'config-install-user-grant-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
 	'config-install-tables-exist' => "'''Peringatan''': Tabel MediaWiki sepertinya sudah ada.
 Melompati pembuatan.",
@@ -6743,7 +6752,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 ユーザ"$1"が図式"$2"に書き込みができるようにしてください。',
 	'config-install-pg-commit' => '変更を送信',
 	'config-install-user' => 'データベースユーザを作成する',
-	'config-install-user-failed' => 'ユーザー「$1」に許可を与えることに失敗しました。：$2',
+	'config-install-user-grant-failed' => 'ユーザー「$1」に許可を与えることに失敗しました。：$2',
 	'config-install-tables' => 'テーブルの作成',
 	'config-install-tables-exist' => "'''警告'''：MediaWikiテーブルが、すでに存在しているようです。
 作成を飛ばします。",
@@ -7048,7 +7057,7 @@ Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangksc
 	'config-pg-no-plpgsql' => 'Do moß de Daatebangkshprooch <code lang="en">PL/pgSQL</code> en dä Daatebangk $1 enreeschte.',
 	'config-pg-no-create-privs' => 'Dä Daatebangk-Aanwänder för et Enreeschte hät nit jenooch Rääschde, öm ene andere Daatebangk-Aanwänder en dä Daatebangk aanzelääje.',
 	'config-install-user' => 'Ben unse Daatebangk-Aanwänder en de Daatebangk am aanlääje.',
-	'config-install-user-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
+	'config-install-user-grant-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
 	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',
 	'config-install-tables-exist' => "'''Opjepaß''': Et schingk, dem MediaWiki sing Tabälle sin alt doh.
 Doh dom_mer nix aanlääje.",
@@ -7381,6 +7390,8 @@ $1
 	'config-env-bad' => 'Околината е проверена.
 Не можете да го инсталирате МедијаВики.',
 	'config-env-php' => 'PHP $1 е инсталиран.',
+	'config-env-php-toolow' => 'PHP $1 е инсталиран.
+Меѓутоа, МедијаВики бара PHP $2 или поново.',
 	'config-unicode-using-utf8' => 'Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).',
 	'config-unicode-using-intl' => 'Со додатокот [http://pecl.php.net/intl intl PECL] за уникодна нормализација.',
 	'config-unicode-pure-php-warning' => "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација, враќајќи се на бавна примена на чист PHP.
@@ -7496,8 +7507,8 @@ $1
 	'config-mysql-old' => 'Се бара MySQL $1 или поново, а вие имате $2.',
 	'config-db-port' => 'Порта на базата:',
 	'config-db-schema' => 'Шема за МедијаВики',
-	'config-db-schema-help' => 'Горенаведените шеми обично се точни.
-Менувајте ги само ако знаете дека треба да се сменат.',
+	'config-db-schema-help' => 'Оваа шема обично по правило ќе работи нормално.
+Сменете ја само ако знаете дека треба да се смени.',
 	'config-sqlite-dir' => 'Папка на SQLite-податоци:',
 	'config-sqlite-dir-help' => "SQLite ги складира сите податоци во една податотека.
 
@@ -9241,7 +9252,7 @@ Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-install-pg-commit' => 'Zatwierdzanie zmian',
 	'config-pg-no-plpgsql' => 'Musisz zainstalować język PL/pgSQL w bazie danych $1',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
-	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
+	'config-install-user-grant-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-tables' => 'Tworzenie tabel',
 	'config-install-tables-exist' => "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją. 
 Pomijam tworzenie tabel.",
@@ -10774,7 +10785,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-pg-no-plpgsql' => 'Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1',
 	'config-pg-no-create-privs' => 'Учётная запись, указанная для установки, не обладает достаточными привилегиями для создания учётной записи.',
 	'config-install-user' => 'Создание базы данных пользователей',
-	'config-install-user-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
+	'config-install-user-grant-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
 	'config-install-tables' => 'Создание таблиц',
 	'config-install-tables-exist' => "'''Предупреждение''': таблицы MediaWiki, возможно, уже существуют.
 Пропуск повторного создания.",
@@ -11099,7 +11110,7 @@ Ipasok na kinakamay ang pangalan ng lisensiya.',
 	'config-install-pg-schema-failed' => 'Nabigo ang paglikha ng mga talahanayan.
 Tiyakin na ang tagagamit na "$1" ay maaaring makasulat sa balangkas na "$2".',
 	'config-install-user' => 'Nililikha ang tagagamit ng kalipunan ng dato',
-	'config-install-user-failed' => 'Nabigo ang pagbibigay ng pahintulot sa tagagamit na "$1": $2',
+	'config-install-user-grant-failed' => 'Nabigo ang pagbibigay ng pahintulot sa tagagamit na "$1": $2',
 	'config-install-tables' => 'Nililikha ang mga talahanayan',
 	'config-install-tables-exist' => "'''Babala''': Tila umiiral na ang mga talahanayan ng MediaWiki.
 Nilalaktawan ang paglikha.",
@@ -11572,7 +11583,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-pg-no-plpgsql' => '您需要为数据库$1安装PL/pgSQL语言',
 	'config-pg-no-create-privs' => '为安装程序指定的帐号缺少创建帐号的权限。',
 	'config-install-user' => '正在创建数据库用户',
-	'config-install-user-failed' => '授予用户“$1”权限失败：$2',
+	'config-install-user-grant-failed' => '授予用户“$1”权限失败：$2',
 	'config-install-tables' => '正在创建数据表',
 	'config-install-tables-exist' => "'''警告'''：MediaWiki的数据表似乎已经存在，跳过创建。",
 	'config-install-tables-failed' => "'''错误'''：创建数据表出错，下为错误信息：$1",

@@ -2224,9 +2224,10 @@ $1',
 'undelete-show-file-submit'    => 'Ydw',
 
 # Namespace form on various pages
-'namespace'      => 'Parth:',
-'invert'         => 'Dewiswch bob parth heblaw am hwn',
-'blanknamespace' => '(Prif)',
+'namespace'             => 'Parth:',
+'invert'                => 'Dewiswch bob parth heblaw am hwn',
+'namespace_association' => "A'r parth cysylltiedig",
+'blanknamespace'        => '(Prif)',
 
 # Contributions
 'contributions'       => "Cyfraniadau'r defnyddiwr",

@@ -1695,6 +1695,8 @@ $1",
 'php-uploaddisabledtext'      => 'PHP 파일 올리기가 비활성화되었습니다. 파일 올리기 설정을 확인하십시오.',
 'uploadscripted'              => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
 'uploadvirus'                 => '파일이 바이러스를 포함하고 있습니다! 상세 설명: $1',
+'uploadjava'                  => '이 ZIP 파일은 자바의 .class 파일을 포함하고 있습니다.
+보안을 위한 제한을 우회할 수 있기 때문에 자바 파일을 올리는 것이 허용되지 않습니다.',
 'upload-source'               => '원본 파일',
 'sourcefilename'              => '원본 파일 이름:',
 'sourceurl'                   => '출처 URL:',
@@ -1743,6 +1745,14 @@ $1',
 'upload-too-many-redirects' => 'URL이 너무 많은 넘겨주기에 연결되어 있습니다.',
 'upload-unknown-size'       => '크기를 알 수 없음',
 'upload-http-error'         => 'HTTP 오류 발생: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'ZIP 파일 검사를 위해 파일을 여는 도중 오류가 발생했습니다.',
+'zip-wrong-format'    => '지정한 파일이 ZIP 파일이 아닙니다.',
+'zip-bad'             => '이 ZIP 파일이 잘못되었거나 읽을 수 없습니다.
+보안을 위한 검사를 정상적으로 수행할 수 없습니다.',
+'zip-unsupported'     => '이 ZIP 파일은 미디어위키에서 지원하지 않는 기능을 사용하고 있습니다.
+보안 검사를 정상적으로 수행할 수 없습니다.',
 
 # Special:UploadStash
 'uploadstash'          => '파일 올리기 임시 저장',
@@ -2383,9 +2393,10 @@ $1',
 'undelete-show-file-submit'    => '예',
 
 # Namespace form on various pages
-'namespace'      => '이름공간:',
-'invert'         => '선택 반전',
-'blanknamespace' => '(일반)',
+'namespace'             => '이름공간:',
+'invert'                => '선택 반전',
+'namespace_association' => '관련된 이름공간',
+'blanknamespace'        => '(일반)',
 
 # Contributions
 'contributions'       => '사용자 기여',
