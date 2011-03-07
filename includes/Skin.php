@@ -1424,11 +1424,11 @@ abstract class Skin extends Linker {
 
 					$text = wfMsgExt( $line[1], 'parsemag' );
 
-					if ( wfEmptyMsg( $line[1], $text ) ) {
+					if ( wfEmptyMsg( $line[1] ) ) {
 						$text = $line[1];
 					}
 
-					if ( wfEmptyMsg( $line[0], $link ) ) {
+					if ( wfEmptyMsg( $line[0] ) ) {
 						$link = $line[0];
 					}
 

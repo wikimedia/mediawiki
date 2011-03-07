@@ -3518,7 +3518,7 @@ class User {
 	static function getRightDescription( $right ) {
 		$key = "right-$right";
 		$name = wfMsg( $key );
-		return $name == '' || wfEmptyMsg( $key, $name )
+		return $name == '' || wfEmptyMsg( $key )
 			? $right
 			: $name;
 	}

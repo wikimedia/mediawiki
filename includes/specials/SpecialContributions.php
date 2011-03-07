@@ -225,7 +225,7 @@ class SpecialContributions extends SpecialPage {
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
 		// otherwise use 'contribsub2'.
-		if( wfEmptyMsg( 'contribsub', wfMsg( 'contribsub' ) ) ) {
+		if( wfEmptyMsg( 'contribsub' ) ) {
 			return wfMsgHtml( 'contribsub2', $user, $links );
 		} else {
 			return wfMsgHtml( 'contribsub', "$user ($links)" );
@@ -397,7 +397,7 @@ class SpecialContributions extends SpecialPage {
 				Xml::submitButton( wfMsg( 'sp-contributions-submit' ) )
 			) . ' ';	
 		$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
-		if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) ) {
+		if( !wfEmptyMsg( 'sp-contributions-explain' ) ) {
 			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
 		}
 		$f .= Xml::closeElement('fieldset' ) .

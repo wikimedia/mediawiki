@@ -278,7 +278,7 @@ class VectorTemplate extends BaseTemplate {
 		}
 		?>
 <div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $name ) ?>>
-	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg, $out ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
+	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
 	<div class="body">
 <?php
 		if ( is_array( $content ) ): ?>
