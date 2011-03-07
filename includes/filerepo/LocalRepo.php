@@ -18,6 +18,11 @@ class LocalRepo extends FSRepo {
 	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
 	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
+	/**
+	 * @throws MWException
+	 * @param  $row
+	 * @return File
+	 */
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
 			return call_user_func( $this->fileFromRowFactory, $row, $this );

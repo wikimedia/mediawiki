@@ -135,6 +135,13 @@ class ApiMove extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
+	/**
+	 * @param Title $fromTitle
+	 * @param Title $toTitle
+	 * @param  $reason
+	 * @param  $noredirect
+	 * @return array
+	 */
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect ) {
 		$retval = array();
 		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );

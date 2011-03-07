@@ -39,7 +39,7 @@ class ApiFileRevert extends ApiBase {
 	 */
 	protected $file;
 	protected $archiveName;
-	
+
 	protected $params;
 
 	public function __construct( $main, $action ) {
@@ -54,11 +54,11 @@ class ApiFileRevert extends ApiBase {
 
 		$this->params = $this->extractRequestParams();
 		$this->validateParameters();
-		
+
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'] );
-		
+
 		if ( $status->isGood() ) {
 			$result = array( 'result' => 'Success' );
 		} else {
@@ -67,7 +67,7 @@ class ApiFileRevert extends ApiBase {
 				'errors' => $this->getResult()->convertStatusToArray( $status ),
 			);
 		}
-			
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );	
 
 	}
@@ -88,7 +88,7 @@ class ApiFileRevert extends ApiBase {
 			}
 		}
 	}
-	
+
 	/**
 	 * Validate the user parameters and set $this->archiveName and $this->file.
 	 * Throws an error if validation fails
@@ -104,7 +104,7 @@ class ApiFileRevert extends ApiBase {
 		if ( !$this->file->exists() ) {
 			$this->dieUsageMsg( array( 'notanarticle' ) );
 		}
-		
+
 		// Check if the archivename is valid for this file
 		$this->archiveName = $this->params['archivename'];
 		$oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $this->archiveName );
@@ -112,8 +112,6 @@ class ApiFileRevert extends ApiBase {
 			$this->dieUsageMsg( array( 'filerevert-badversion' ) );
 		}
 	}
-	
-	
 
 	public function mustBePosted() {
 		return true;
