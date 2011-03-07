@@ -20,7 +20,12 @@
  * @ingroup Cache
  */
 class HTMLFileCache {
-	var $mTitle, $mFileCache, $mType;
+
+	/**
+	 * @var Title
+	 */
+	var $mTitle;
+	var $mFileCache, $mType;
 
 	public function __construct( &$title, $type = 'view' ) {
 		$this->mTitle = $title;

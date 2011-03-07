@@ -38,7 +38,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
-	private $mRepo;
+	protected $mRepo;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
