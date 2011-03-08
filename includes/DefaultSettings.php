@@ -1768,7 +1768,7 @@ $wgUseXVO = false;
  * $wgInternalServer = 'http://yourinternal.tld:8000';
  * </code>
  */
-$wgInternalServer = $wgServer;
+$wgInternalServer = false;
 
 /**
  * Cache timeout for the squid, will be sent as s-maxage (without ESI) or
