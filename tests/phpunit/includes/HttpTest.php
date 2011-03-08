@@ -555,7 +555,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( false, 'telnet://host', 'Reject telnet scheme' ),
 			
 			# :\/\/ - double slashes
-			array( false,  'http//example.org', 'Reject missing column in protocol' ),
+			array( false,  'http//example.org', 'Reject missing colon in protocol' ),
 			array( false,  'http:/example.org', 'Reject missing slash in protocol' ),
 			array( false,  'http:example.org', 'Must have two slashes' ),
 			# Following fail since hostname can be made of anything
@@ -568,7 +568,7 @@ class HttpTest extends MediaWikiTestCase {
 
 			# (\S+) - host part is made of anything not whitespaces
 			array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
-			array( false, 'http://exam:ple.org/', 'hostname can not use columns!' ),
+			array( false, 'http://exam:ple.org/', 'hostname can not use colons!' ),
 
 			# (:[0-9]+)? - port number
 			array( true, 'http://example.org:80/' ),
