@@ -360,7 +360,7 @@ class CategoryViewer {
 			$count = 0;
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				$rawSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+				$rawSortkey = $row->cl_sortkey;
 
 				if ( ++$count > $this->limit ) {
 					# We've reached the one extra which shows that there
