@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Client for the Ehcache RESTful web service - http://ehcache.org/documentation/cache_server.html
+ * TODO: Simplify configuration and add to the installer.
+ */
 class EhcacheBagOStuff extends BagOStuff {
 	var $servers, $cacheName, $connectTimeout, $timeout, $curlOptions, 
 		$requestData, $requestDataPos;
@@ -205,7 +209,7 @@ class EhcacheBagOStuff extends BagOStuff {
 
 	protected function doRequest( $curl, $url, $curlOptions = array() ) {
 		if ( array_diff_key( $curlOptions, $this->curlOptions ) ) {
-			var_dump( array_diff_key( $curlOptions, $this->curlOptions ) );
+			// var_dump( array_diff_key( $curlOptions, $this->curlOptions ) );
 			throw new MWException( __METHOD__.": to prevent options set in one doRequest() " .
 				"call from affecting subsequent doRequest() calls, only options listed " . 
 				"in \$this->curlOptions may be specified in the \$curlOptions parameter." );
