@@ -1834,7 +1834,7 @@ class Article {
 		if ( !$isRedirect && !is_null( $lastRevIsRedirect ) && $lastRevIsRedirect === $isRedirect ) {
 			return true;
 		}
-		
+
 		wfProfileIn( __METHOD__ );
 		if ( $isRedirect ) {
 			$this->insertRedirectEntry( $redirectTitle );

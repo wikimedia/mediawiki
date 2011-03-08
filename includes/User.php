@@ -2831,7 +2831,7 @@ class User {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			# Check for this with iconv
 			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password && 
+			if ( $cp1252Password != $password &&
 				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
 			{
 				return true;

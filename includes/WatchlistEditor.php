@@ -60,7 +60,7 @@ class WatchlistEditor {
 					} else {
 						$this->clearWatchlist( $user );
 						$user->invalidateCache();
-						$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', 
+						$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse',
 							$wgLang->formatNum( count( $current ) ) ) );
 						$this->showTitles( $current, $output, $wgUser->getSkin() );
 					}

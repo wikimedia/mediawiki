@@ -192,7 +192,7 @@ class WikiImporter {
 	 * Dummy for now...
 	 */
 	public function importUpload( $revision ) {
-               $revision->importUpload();
+			   $revision->importUpload();
 		//$dbw = wfGetDB( DB_MASTER );
 		//return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 		return false;
@@ -604,12 +604,12 @@ class WikiImporter {
 
 	private function processUpload( $pageInfo, $uploadInfo ) {
 		$revision = new WikiRevision;
-               $text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
+			   $text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
 
 		$revision->setTitle( $pageInfo['_title'] );
-               $revision->setID( $pageInfo['id'] );
+			   $revision->setID( $pageInfo['id'] );
 		$revision->setTimestamp( $uploadInfo['timestamp'] );
-               $revision->setText( $text );
+			   $revision->setText( $text );
 		$revision->setFilename( $uploadInfo['filename'] );
 		$revision->setSrc( $uploadInfo['src'] );
 		$revision->setSize( intval( $uploadInfo['size'] ) );
@@ -622,7 +622,7 @@ class WikiImporter {
 			$revision->setUserName( $uploadInfo['contributor']['username'] );
 		}
 
-               return call_user_func( $this->mUploadCallback, $revision );
+			   return call_user_func( $this->mUploadCallback, $revision );
 	}
 
 	private function handleContributor() {
@@ -1057,7 +1057,7 @@ class WikiRevision {
 				$resultDetails = array( 'internal' => $status->getWikiText() );
 		*/
 
-               // @todo Fixme: it may create a page without our desire, also wrong potentially.
+			   // @todo Fixme: it may create a page without our desire, also wrong potentially.
 		// and, it will record a *current* upload, but we might want an archive version here
 
 		$file = wfLocalFile( $this->getTitle() );
@@ -1072,15 +1072,15 @@ class WikiRevision {
 			return false;
 		}
 
-               $user = User::newFromName( $this->user_text );
+			   $user = User::newFromName( $this->user_text );
 
 		$status = $file->upload( $source,
 			$this->getComment(),
 			$this->getComment(), // Initial page, if none present...
 			File::DELETE_SOURCE,
 			false, // props...
-                       $this->getTimestamp(),
-                       is_object( $user ) ? ( $user->isLoggedIn() ? $user : null ) : null );
+					   $this->getTimestamp(),
+					   is_object( $user ) ? ( $user->isLoggedIn() ? $user : null ) : null );
 
 		if( $status->isGood() ) {
 			// yay?
