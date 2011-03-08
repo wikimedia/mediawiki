@@ -290,8 +290,7 @@ class Linker {
 		if ( $target->getPrefixedText() == '' ) {
 			# A link like [[#Foo]].  This used to mean an empty title
 			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( $known &&
-			    Language::lc($linkText) !== Language::lc($target->getPrefixedText() ) ) {
+		} elseif ( $known && strtolower($linkText) !== strtolower($target->getPrefixedText() ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} elseif ( !$known ) {
 			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );
