@@ -111,13 +111,19 @@ class LocalSettingsGenerator {
 		$localSettings = $this->getDefaultText();
 
 		if( count( $this->extensions ) ) {
-			$localSettings .= "\n# The following extensions were automatically enabled:\n";
+			$localSettings .= "
+# Enabled Extensions. Most extensions are enabled by including the base extension file here
+# but check specific extension documentation for more details
+# The following extensions were automatically enabled:\n";
 
 			foreach( $this->extensions as $extName ) {
 				$encExtName = self::escapePhpString( $extName );
 				$localSettings .= "require( \"extensions/$encExtName/$encExtName.php\" );\n";
 			}
 		}
+
+		$localSettings .= "\n\n# End of automatically generated settings.
+# Add more configuration options below.\n\n";
 
 		return $localSettings;
 	}
@@ -305,9 +311,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
-
-# Enabled Extensions. Most extensions are enabled by including the base extension file here
-# but check specific extension documentation for more details
 ";
 	}
 
