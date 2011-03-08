@@ -693,7 +693,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( is_array( $this->postData ) ) {
 			$this->postData = wfArrayToCGI( $this->postData );
 		}		
-		
+
 		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
 		// causes a segfault
 		$manuallyRedirect = version_compare( phpversion(), '5.1.7', '<' );
