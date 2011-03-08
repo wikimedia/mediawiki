@@ -8433,6 +8433,26 @@ Special characters in embedded file links (bug 27679)
 </p>
 !! end
 
+!! article
+A
+!! text
+A
+!! endarticle
+
+!! article
+Ä
+!! text
+Ä
+!! endarticle
+
+!! test
+Bug#542 Link text shouldn't be duplicated in title attributes
+!! input
+[[A]] [[a]] [[Ä]] [[ä]]
+!! result
+<p><a href="/wiki/A">A</a> <a href="/wiki/A">a</a> <a href="/wiki/%C3%84">Ä</a> <a href="/wiki/%C3%84">ä</a>
+</p>
+!! end
 
 TODO:
 more images
