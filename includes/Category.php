@@ -13,7 +13,10 @@ class Category {
 	/** Name of the category, normalized to DB-key form */
 	private $mName = null;
 	private $mID = null;
-	/** Category page title */
+	/**
+	 * Category page title
+	 * @var Title
+	 */
 	private $mTitle = null;
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */
 	private $mPages = null, $mSubcats = null, $mFiles = null;
@@ -100,7 +103,7 @@ class Category {
 	 * Factory function.
 	 *
 	 * @param $title Title for the category page
-	 * @return Mixed: category, or false on a totally invalid name
+	 * @return category|false on a totally invalid name
 	 */
 	public static function newFromTitle( $title ) {
 		$cat = new self();
@@ -129,7 +132,7 @@ class Category {
 	 * @param $row result set row, must contain the cat_xxx fields. If the fields are null,
 	 *        the resulting Category object will represent an empty category if a title object
 	 *        was given. If the fields are null and no title was given, this method fails and returns false.
-	 * @param $title optional title object for the category represented by the given row.
+	 * @param Title $title optional title object for the category represented by the given row.
 	 *        May be provided if it is already known, to avoid having to re-create a title object later.
 	 * @return Category
 	 */
@@ -182,7 +185,7 @@ class Category {
 	public function getFileCount() { return $this->getX( 'mFiles' ); }
 
 	/**
-	 * @return mixed The Title for this category, or false on failure.
+	 * @return Title|false Title for this category, or false on failure.
 	 */
 	public function getTitle() {
 		if ( $this->mTitle ) return $this->mTitle;

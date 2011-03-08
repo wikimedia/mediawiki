@@ -82,15 +82,48 @@ class CategoryPage extends Article {
 }
 
 class CategoryViewer {
-	var $title, $limit, $from, $until,
+	var $limit, $from, $until,
 		$articles, $articles_start_char,
 		$children, $children_start_char,
-		$showGallery, $gallery,
-		$imgsNoGalley, $imgsNoGallery_start_char,
-		$skin, $collation;
-	# Category object for this page
+		$showGallery, $imgsNoGalley,
+		$imgsNoGallery_start_char,
+		$skin, $imgsNoGallery;
+
+	/**
+	 * @var 
+	 */
+	var $nextPage;
+
+	/**
+	 * @var Array
+	 */
+	var $flip;
+
+	/**
+	 * @var Title
+	 */
+	var $title;
+
+	/**
+	 * @var Collation
+	 */
+	var $collation;
+
+	/**
+	 * @var ImageGallery
+	 */
+	var $gallery;
+
+	/**
+	 * Category object for this page
+	 * @var Category
+	 */
 	private $cat;
-	# The original query array, to be used in generating paging links.
+
+	/**
+	 * The original query array, to be used in generating paging links.
+	 * @var array
+	 */
 	private $query;
 
 	function __construct( $title, $from = '', $until = '', $query = array() ) {
@@ -160,6 +193,9 @@ class CategoryViewer {
 		}
 	}
 
+	/**
+	 * @return Skin
+	 */
 	function getSkin() {
 		if ( !$this->skin ) {
 			global $wgUser;
@@ -202,6 +238,9 @@ class CategoryViewer {
 	* entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 	* Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 	* else use sortkey...
+	*
+	* @param Title $title
+	* @param string $sortkey
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
 		global $wgContLang;
@@ -528,10 +567,8 @@ class CategoryViewer {
 	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
-		for ( $index = 1; $index < count( $articles ); $index++ )
-		{
-			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] )
-			{
+		for ( $index = 1; $index < count( $articles ); $index++ ) {
+			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] ) {
 				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
 			}
 
@@ -629,8 +666,7 @@ class CategoryViewer {
 		}
 
 		if ( $dbcnt == $rescnt || ( ( $rescnt == $this->limit || $fromOrUntil )
-			&& $dbcnt > $rescnt ) )
-		{
+			&& $dbcnt > $rescnt ) ) {
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
 		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
