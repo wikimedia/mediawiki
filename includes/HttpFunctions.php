@@ -141,7 +141,7 @@ class Http {
  */
 class MWHttpRequest {
 	const SUPPORTS_FILE_POSTS = false;
-	
+
 	protected $content;
 	protected $timeout = 'default';
 	protected $headersOnly = null;
@@ -205,7 +205,7 @@ class MWHttpRequest {
 
 	/**
 	 * Generate a new request object
-        * @param $url String: url to use
+		* @param $url String: url to use
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 * @see MWHttpRequest::__construct
 	 */
@@ -565,7 +565,7 @@ class MWHttpRequest {
  */
 class CurlHttpRequest extends MWHttpRequest {
 	const SUPPORTS_FILE_POSTS = true;
-	
+
 	static $curlMessageMap = array(
 		6 => 'http-host-unreachable',
 		28 => 'http-timed-out'
@@ -692,7 +692,7 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		if ( is_array( $this->postData ) ) {
 			$this->postData = wfArrayToCGI( $this->postData );
-		}		
+		}
 
 		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
 		// causes a segfault
