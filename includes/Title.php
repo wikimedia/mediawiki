@@ -990,8 +990,9 @@ class Title {
 	 * @return String the URL
 	 */
 	public function getInternalURL( $query = '', $variant = false ) {
-		global $wgInternalServer;
-		$url = $wgInternalServer . $this->getLocalURL( $query, $variant );
+		global $wgInternalServer, $wgServer;
+		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
+		$url = $server . $this->getLocalURL( $query, $variant );
 		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
