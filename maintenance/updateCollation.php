@@ -45,9 +45,16 @@ TEXT;
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' . 
 			'supposed to be up-to-date.' );
 	}
+	
+	public function syncDBs() {
+		$lb = wfGetLB();
+		$dbw = $lb->getConnection( DB_MASTER );
+		$pos = $dbw->getMasterPos();
+		$lb->waitForAll( $pos );
+	}
 
 	public function execute() {
-		global $wgCategoryCollation;
+		global $wgCategoryCollation, $wgMiserMode;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
@@ -55,30 +62,32 @@ TEXT;
 		$options = array( 'LIMIT' => self::BATCH_SIZE );
 
 		if ( $force ) {
-			$collationConds = array();
 			$options['ORDER BY'] = 'cl_from, cl_to';
 		} else {
 			$collationConds = array( 0 => 
 				'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ) );
 
-			$count = $dbw->selectField(
-				'categorylinks',
-				'COUNT(*)',
-				$collationConds,
-				__METHOD__
-			);
+			if ( !$wgMiserMode ) {
+				$count = $dbw->selectField(
+					'categorylinks',
+					'COUNT(*)',
+					$collationConds,
+					__METHOD__
+				);
 
-			if ( $count == 0 ) {
-				$this->output( "Collations up-to-date.\n" );
-				return;
+				if ( $count == 0 ) {
+					$this->output( "Collations up-to-date.\n" );
+					return;
+				}
+				$this->output( "Fixing collation for $count rows.\n" );
 			}
-			$this->output( "Fixing collation for $count rows.\n" );
 		}
 
 		$count = 0;
 		$row = false;
 		$batchConds = array();
 		do {
+			$this->output( 'Processing next ' . self::BATCH_SIZE . ' rows... ');
 			$res = $dbw->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
@@ -140,6 +149,8 @@ TEXT;
 
 			$count += $res->numRows();
 			$this->output( "$count done.\n" );
+			
+			$this->syncDBs();
 		} while ( $res->numRows() == self::BATCH_SIZE );
 	}
 }
