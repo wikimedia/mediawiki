@@ -286,11 +286,14 @@ class Linker {
 		}
 
 		# Get a default title attribute.
+		global $wgLang;
 		$known = in_array( 'known', $options );
 		if ( $target->getPrefixedText() == '' ) {
 			# A link like [[#Foo]].  This used to mean an empty title
 			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( $known && strtolower($linkText) !== strtolower($target->getPrefixedText() ) ) {
+		} elseif ( $known &&
+			$wgLang->caseFold($linkText) !== $wgLang->caseFold($target->getPrefixedText() ) )
+		{
 			$defaults['title'] = $target->getPrefixedText();
 		} elseif ( !$known ) {
 			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );
