@@ -6,31 +6,34 @@
 }
 .tipsy-inner {
 	padding: 5px 8px 4px 8px;
-	background-color: #e8f2f8;
+	/*background-color: #e8f2f8;*/
+	background-color: #ffffff;
 	border: solid 1px #a7d7f9;
 	color: black;
 	max-width: 15em;
 	text-align: left;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	/*
 	-moz-box-shadow: 0px 2px 8px #cccccc;
 	-webkit-box-shadow: 0px 2px 8px #cccccc;
 	box-shadow: 0px 2px 8px #cccccc;
 	-ms-filter: "progid:DXImageTransform.Microsoft.DropShadow(OffX=0, OffY=2, Strength=6, Direction=90, Color='#cccccc')";
 	filter: progid:DXImageTransform.Microsoft.DropShadow(OffX=0, OffY=2, Strength=6, Direction=90, Color='#cccccc');
+	*/
 }
 .tipsy-arrow {
 	position: absolute;
 	/* @embed */
 	background: url('images/tipsy.png') no-repeat top left;
-	width: 9px;
-	height: 5px;
+	width: 11px;
+	height: 6px;
 }
 .tipsy-n .tipsy-arrow {
-	top: 1px;
+	top: 0px;
 	left: 50%;
-	margin-left: -4px;
+	margin-left: -5px;
 }
 .tipsy-nw .tipsy-arrow {
 	top: 1px;
@@ -41,33 +44,33 @@
 	right: 10px;
 }
 .tipsy-s .tipsy-arrow {
-	bottom: 1px;
+	bottom: 0px;
 	left: 50%;
-	margin-left: -4px;
+	margin-left: -5px;
 	background-position: bottom left;
 }
 .tipsy-sw .tipsy-arrow {
-	bottom: 1px;
+	bottom: 0px;
 	left: 10px;
 	background-position: bottom left;
 }
 .tipsy-se .tipsy-arrow {
-	bottom: 1px;
+	bottom: 0px;
 	right: 10px;
 	background-position: bottom left;
 }
 .tipsy-e .tipsy-arrow {
 	top: 50%;
-	margin-top: -4px;
+	margin-top: -5px;
 	right: 1px;
 	width: 5px;
-	height: 9px;
+	height: 11px;
 	background-position: top right;
 }
 .tipsy-w .tipsy-arrow {
 	top: 50%;
-	margin-top: -4px;
-	left: 1px;
-	width: 5px;
-	height: 9px;
+	margin-top: -5px;
+	left: 0px;
+	width: 6px;
+	height: 11px;
 }
