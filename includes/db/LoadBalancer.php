@@ -367,7 +367,7 @@ class LoadBalancer {
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
 	 */
-	function doWait( $index, $open ) {
+	function doWait( $index, $open = false ) {
 		# Find a connection to wait on
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
