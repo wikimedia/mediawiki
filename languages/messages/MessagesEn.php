@@ -2963,10 +2963,10 @@ $1',
 'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
-'namespace'      => 'Namespace:',
-'invert'         => 'Invert selection',
+'namespace'             => 'Namespace:',
+'invert'                => 'Invert selection',
 'namespace_association' => 'Associated namespace',
-'blanknamespace' => '(Main)',
+'blanknamespace'        => '(Main)',
 
 # Contributions
 'contributions'       => 'User contributions',
