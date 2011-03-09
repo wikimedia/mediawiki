@@ -493,6 +493,15 @@ td#mw-prefixindex-nav-form {
 	vertical-align: top;
 }
 
+/* Special:Specialpages style */
+.mw-specialpagecached{
+	font-style:italic;
+}
+
+.mw-specialpagerestricted{
+	font-weight:bold;
+}
+
 /*
  * Recreating deleted page warning
  * Reupload file warning

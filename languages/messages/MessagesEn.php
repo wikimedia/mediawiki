@@ -4366,7 +4366,8 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
 'specialpages-note'              => '----
 * Normal special pages.
-* <strong class="mw-specialpagerestricted">Restricted special pages.</strong>',
+* <span class="mw-specialpagerestricted">Restricted special pages.</span>
+* <span class="mw-specialpagecached">Cached-only special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / sign up',
