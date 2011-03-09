@@ -14,6 +14,8 @@
 interface LoadMonitor {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
+	 *
+	 * @param LoadBalancer $parent
 	 */
 	function __construct( $parent );
 	
@@ -57,8 +59,15 @@ interface LoadMonitor {
  * @ingroup Database
  */
 class LoadMonitor_MySQL implements LoadMonitor {
-	var $parent; // LoadBalancer
 
+	/**
+	 * @var LoadBalancer
+	 */
+	var $parent;
+
+	/**
+	 * @param LoadBalancer $parent
+	 */
 	function __construct( $parent ) {
 		$this->parent = $parent;
 	}
