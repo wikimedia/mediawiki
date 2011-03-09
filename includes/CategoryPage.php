@@ -70,10 +70,14 @@ class CategoryPage extends Article {
 	function closeShowCategory() {
 		global $wgOut, $wgRequest;
 
+		// Use these as defaults for back compat --catrope
+		$oldFrom = $wgRequest->getVal( 'from' );
+		$oldUntil = $wgRequest->getVal( 'until' );
+		
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
-			$from[$type] = $wgRequest->getVal( "{$type}from" );
-			$until[$type] = $wgRequest->getVal( "{$type}until" );
+			$from[$type] = $wgRequest->getVal( "{$type}from", $oldFrom );
+			$until[$type] = $wgRequest->getVal( "{$type}until", $oldUntil );
 		}
 
 		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $wgRequest->getValues() );
@@ -344,7 +348,7 @@ class CategoryViewer {
 				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files', 'cl_sortkey_prefix' ),
-				array( 'cl_to' => $this->title->getDBkey() ) + $extraConds,
+				array_merge( array( 'cl_to' => $this->title->getDBkey() ),  $extraConds ),
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
