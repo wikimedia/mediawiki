@@ -138,8 +138,17 @@
 						mw.test.addTest( 'typeof $.escapeRE',
 							'function (string)' );
 
-						mw.test.addTest( '$.escapeRE( ".st{e}$st" )',
-							'\\.st\\{e\\}\\$st (string)' );
+						mw.test.addTest( '$.escapeRE( "<!-- ([{+mW+}]) $^|?>" )',
+							'<!\\-\\- \\(\\[\\{\\+mW\\+\\}\\]\\) \\$\\^\\|\\?> (string)' ); // double escaped
+
+						mw.test.addTest( '$.escapeRE( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" )',
+							'ABCDEFGHIJKLMNOPQRSTUVWXYZ (string)' );
+
+						mw.test.addTest( '$.escapeRE( "abcdefghijklmnopqrstuvwxyz" )',
+							'abcdefghijklmnopqrstuvwxyz (string)' );
+
+						mw.test.addTest( '$.escapeRE( "0123456789" )',
+							'0123456789 (string)' );
 
 						mw.test.addTest( 'typeof $.isEmpty',
 							'function (string)' );
