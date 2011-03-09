@@ -136,8 +136,8 @@ class Http {
  * This wrapper class will call out to curl (if available) or fallback
  * to regular PHP if necessary for handling internal HTTP requests.
  *
- * Renamed from HttpRequest to MWHttpRequst to avoid conflict with
- * php's HTTP extension.
+ * Renamed from HttpRequest to MWHttpRequest to avoid conflict with
+ * PHP's HTTP extension.
  */
 class MWHttpRequest {
 	const SUPPORTS_FILE_POSTS = false;
@@ -205,7 +205,7 @@ class MWHttpRequest {
 
 	/**
 	 * Generate a new request object
-		* @param $url String: url to use
+	 * @param $url String: url to use
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 * @see MWHttpRequest::__construct
 	 */
