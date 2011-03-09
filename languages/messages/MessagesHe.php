@@ -829,6 +829,7 @@ $2',
 'usernamehasherror'          => 'שם משתמש אינו יכול לכלול תווי סולמית',
 'login-throttled'            => 'ביצעתם לאחרונה ניסיונות רבים מדי להיכנס לחשבון זה.
 אנא המתינו לפני שתנסו שוב.',
+'login-abort-generic'        => 'הכניסה לחשבון לא הצליחה - היא הופסקה',
 'loginlanguagelabel'         => 'שפה: $1',
 'suspicious-userlogout'      => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
 
@@ -1779,7 +1780,10 @@ $1",
 'uploaddisabledtext'          => 'אפשרות העלאת הקבצים מבוטלת.',
 'php-uploaddisabledtext'      => 'אפשרות העלאת הקבצים מבוטלת ברמת PHP. אנא בדקו את ההגדרה file_uploads.',
 'uploadscripted'              => 'הקובץ כולל קוד סקריפט או HTML שעשוי להתפרש או להתבצע בטעות על ידי הדפדפן.',
-'uploadvirus'                 => 'הקובץ מכיל וירוס! פרטים: <div style="direction: ltr;">$1</div>',
+'uploadvirus'                 => 'הקובץ מכיל וירוס!
+פרטים: <div style="direction: ltr;">$1</div>',
+'uploadjava'                  => 'קובץ זה הוא קובץ ZIP שמכיל קובץ .class של Java.
+העלאת קובצי Java אסורה, כיוון שהם יכולים לגרום לעקיפת מגבלות האבטחה.',
 'upload-source'               => 'קובץ המקור',
 'sourcefilename'              => 'שם הקובץ:',
 'sourceurl'                   => 'כתובת URL של המקור:',
@@ -1829,6 +1833,14 @@ $1',
 'upload-too-many-redirects' => 'ה־URL כוללת הפניות רבות מדי',
 'upload-unknown-size'       => 'גודל בלתי ידוע',
 'upload-http-error'         => 'התרחשה שגיאת HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'ארעה שגיאה במהלך פתיחת הקובץ לבדיקות ZIP.',
+'zip-wrong-format'    => 'הקובץ שצוין אינו קובץ ZIP.',
+'zip-bad'             => 'הקובץ הוא קובץ ZIP פגום או בלתי קריא מסיבה אחרת.
+לא ניתן לבצע עליו בדיקת אבטחה כנדרש.',
+'zip-unsupported'     => 'קובץ זה הוא קובץ ZIP המשתמש בתכונות ZIP שאינן נתמכות על ידי מדיה־ויקי.
+לא ניתן לבצע עליו בדיקת אבטחה כנדרש.',
 
 # Special:UploadStash
 'uploadstash'          => 'מאגר העלאות',
@@ -2471,9 +2483,10 @@ $1',
 'undelete-show-file-submit'    => 'כן',
 
 # Namespace form on various pages
-'namespace'      => 'מרחב שם:',
-'invert'         => 'ללא מרחב זה',
-'blanknamespace' => '(ראשי)',
+'namespace'             => 'מרחב שם:',
+'invert'                => 'ללא מרחב זה',
+'namespace_association' => 'מרחב שם צמוד',
+'blanknamespace'        => '(ראשי)',
 
 # Contributions
 'contributions'       => 'תרומות המשתמש',
@@ -2929,6 +2942,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'vector.css'        => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */',
 'print.css'         => '/* הסגנונות הנכתבים כאן ישפיעו על הפלט בהדפסה בלבד */',
 'handheld.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על מכשירים ניידים המבוססים על העיצוב שבהגדרה $wgHandheldStyle בלבד */',
+'noscript.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים עם JavaScript מבוטל */',
 'autoconfirmed.css' => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים ותיקים בלבד */',
 'bot.css'           => '/* הסגנונות הנכתבים כאן ישפיעו על בוטים בלבד */',
 'sysop.css'         => '/* הסגנונות הנכתבים כאן ישפיעו על מפעילי מערכת בלבד */',
@@ -3643,7 +3657,8 @@ $1',
 'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
-* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</strong>',
+* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</strong>
+* <span class="mw-specialpagecached">דפים מיוחדים המתקבלים מזיכרון המטמון.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
