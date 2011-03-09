@@ -820,6 +820,18 @@ class SpecialPage {
 	}
 
 	/**
+	 * Is this page expensive (for some definition of expensive)?
+	 * Expensive pages are disabled or cached in miser mode.  Originally used
+	 * (and still overridden) by QueryPage and subclasses, moved here so that
+	 * Special:SpecialPages can safely call it for all special pages.
+	 *
+	 * @return Boolean
+	 */
+	public function isExpensive() {
+		return false;
+	}
+
+	/**
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
