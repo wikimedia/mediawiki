@@ -346,7 +346,7 @@ class LoadBalancer {
 		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
-			$this->doWait( $i );
+			$this->doWait( $i , true );
 		}
 		wfProfileOut( __METHOD__ );
 	}
@@ -367,12 +367,20 @@ class LoadBalancer {
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
 	 */
-	function doWait( $index ) {
+	function doWait( $index, $open ) {
 		# Find a connection to wait on
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
-			wfDebug( __METHOD__ . ": no connection open\n" );
-			return false;
+			if ( !$open ) {
+				wfDebug( __METHOD__ . ": no connection open\n" );
+				return false;
+			} else {
+				$conn = $this->openConnection( $index );
+				if ( !$conn ) {
+					wfDebug( __METHOD__ . ": failed to open connection\n" );
+					return false;
+				}
+			}
 		}
 
 		wfDebug( __METHOD__.": Waiting for slave #$index to catch up...\n" );
