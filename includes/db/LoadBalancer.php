@@ -69,6 +69,8 @@ class LoadBalancer {
 
 	/**
 	 * Get a LoadMonitor instance
+	 *
+	 * @return LoadMonitor
 	 */
 	function getLoadMonitor() {
 		if ( !isset( $this->mLoadMonitor ) ) {
@@ -354,6 +356,8 @@ class LoadBalancer {
 	/**
 	 * Get any open connection to a given server index, local or foreign
 	 * Returns false if there is no connection open
+	 *
+	 * @return DatabaseBase
 	 */
 	function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $conns ) {
@@ -467,6 +471,8 @@ class LoadBalancer {
 	 * Mark a foreign connection as being available for reuse under a different
 	 * DB name or prefix. This mechanism is reference-counted, and must be called
 	 * the same number of times as getConnection() to work.
+	 *
+	 * @param DatabaseBase $conn
 	 */
 	public function reuseConnection( $conn ) {
 		$serverIndex = $conn->getLBInfo('serverIndex');

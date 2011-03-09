@@ -11,6 +11,10 @@
  * @ingroup Database
  */
 abstract class LBFactory {
+
+	/**
+	 * @var LBFactory
+	 */
 	static $instance;
 
 	/**
@@ -133,6 +137,10 @@ abstract class LBFactory {
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
 class LBFactory_Simple extends LBFactory {
+
+	/**
+	 * @var LoadBalancer
+	 */
 	var $mainLB;
 	var $extLBs = array();
 
