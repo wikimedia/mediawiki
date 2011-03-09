@@ -733,6 +733,7 @@ Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomy�
 'usernamehasherror'          => 'Nazwa użytkownika nie może zawierać znaków kratki „#”',
 'login-throttled'            => 'Zbyt wiele razy próbowałeś zalogować się na to konto.
 Odczekaj chwilę zanim ponowisz próbę.',
+'login-abort-generic'        => 'Logowanie nieudane – przerwano',
 'loginlanguagelabel'         => 'Język: $1',
 'suspicious-userlogout'      => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
@@ -2862,6 +2863,7 @@ Pozwala na wpisanie powodu w opisie zmian.',
 'vector.css'      => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Wektor */',
 'print.css'       => '/* Umieszczony tutaj kod CSS wpłynie na wygląd wydruku */',
 'handheld.css'    => '/* Umieszczony tutaj kod CSS wpłynie na wygląd na urządzeniach kieszonkowych skórki ustawionej w zmiennej $wgHandheldStyle */',
+'noscript.css'    => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
 
 # Scripts
 'common.js'      => '/* Umieszczony tutaj kod JavaScript zostanie załadowany przez każdego użytkownika, podczas każdego ładowania strony. */',

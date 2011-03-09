@@ -720,7 +720,7 @@ Parameters:
 *Parameter $3 is a password (randomly generated).
 *Parameter $4 is a URL to the wiki',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
-'login-abort-generic'        => 'The generic unsuccessful login message used unless otherwise specified by hook writers',
+'login-abort-generic'        => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 
 # JavaScript password checks
 'password-strength'            => 'Indicator of [[w:Password strength|password strength]] shown when entering a new password (during user registration or password reset).

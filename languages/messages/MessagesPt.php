@@ -329,7 +329,7 @@ $messages = array(
 'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
-'tog-uselivepreview'          => 'Usar a antevisão em tempo real (requer JavaScript; é experimental)',
+'tog-uselivepreview'          => 'Usar a antevisão ao vivo (requer JavaScript; é experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um resumo vazio',
 'tog-watchlisthideown'        => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidebots'       => 'Esconder edições de robôs ao listar mudanças às páginas vigiadas',
@@ -788,6 +788,7 @@ Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'usernamehasherror'          => 'O nome de utilizador não pode conter o símbolo de cardinal (#).',
 'login-throttled'            => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Aguarde antes de tentar novamente, por favor.',
+'login-abort-generic'        => 'A sua autenticação não teve êxito - Abortada',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 

@@ -834,6 +834,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'usernamehasherror'          => 'Een gebruikersnaam mag het karakter hekje ("#") niet bevatten.',
 'login-throttled'            => 'U hebt recentelijk te vaak geprobeerd aan te melden met een onjuist wachtwoord.
 Wacht even voordat u het opnieuw probeert.',
+'login-abort-generic'        => 'U bent niet aangemeld. De procedure is afgebroken.',
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
@@ -3013,6 +3014,7 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 'vector.css'        => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */',
 'print.css'         => '/* CSS die hier wordt geplaatst heeft alleen invloed op de printuitvoer */',
 'handheld.css'      => '/* CSS die hier wordt geplaatst heeft alleen invloed op handheldapparaten gebaseerd op de skin die is ingesteld in $wgHandheldStyle */',
+'noscript.css'      => '/ * CSS die hier wordt geplaatst heeft invloed voor gebruikers die JavaScript hebben uitgeschakeld * /',
 'autoconfirmed.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op automatisch bevestigde gebruikers */',
 'bot.css'           => '/* CSS die hier wordt geplaatst heeft alleen invloed op robots */',
 'sysop.css'         => '/* CSS die hier wordt geplaatst heeft alleen invloed op beheerders */',
@@ -3695,7 +3697,8 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'specialpages'                   => "Speciale pagina's",
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
-* <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>',
+* <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>
+* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',

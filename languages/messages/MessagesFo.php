@@ -236,6 +236,7 @@ $messages = array(
 'vector-view-create'      => 'Stovna',
 'vector-view-edit'        => 'Rætta',
 'vector-view-history'     => 'Søga',
+'vector-view-viewsource'  => 'Vís keldu',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',

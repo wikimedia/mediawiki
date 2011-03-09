@@ -472,8 +472,8 @@ Për piasì, sern në stranòm diferent.",
 {{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità.
 Për piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stranòm e soa ciav.",
 'nocookieslogin'             => "{{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità. Për piasì, che a j'abìlita e peuj che a preuva torna.",
-'nocookiesfornew'            => "Ël cont utent a l'é pa stàit creà, antlora i podoma pa confirmé soa sorziss.
-Sigurte d'avèj ij cookie abilità, torna carié la pàgina e preuva torna.",
+'nocookiesfornew'            => "Ël cont utent a l'é pa stàit creà, antlora i podoma pa confirmé soa sorgiss.
+Ch'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a preuva torna.",
 'noname'                     => "Lë stranòm che a l'ha batù as peul pa dovresse, as peul nen creésse un cont Utent con ës nòm-sì.",
 'loginsuccesstitle'          => "Compliment! A l'é pen-a rintrà ant ël sistema. A-i é pa staje gnun eror.",
 'loginsuccess'               => 'A l\'ha avù ël përmess ëd conession al servent ëd {{SITENAME}} con lë stranòm utent ëd "$1".',
@@ -525,6 +525,7 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'usernamehasherror'          => "Un nòm utent a peul pa conten-e caràter ciapulà (''hash'')",
 'login-throttled'            => "It l'has fàit tròpi tentativ recent d'intré.
 Për piasì speta prima ëd prové torna.",
+'login-abort-generic'        => "Tò login a l'é pa riussì - Abortì",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
@@ -816,7 +817,7 @@ Legenda: (cor) = diferense con la version corenta,
 Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'àutre pàgine che a podèisso andeje bin.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(coment gavà)',
+'rev-deleted-comment'         => '(resumé dla modìfica gavà)',
 'rev-deleted-user'            => '(stranòm gavà)',
 'rev-deleted-event'           => '(assion dël registr gavà)',
 'rev-deleted-user-contribs'   => '[nòm utent o adrëssa IP gavà - modìfica stërmà ai contributor]',
@@ -1474,6 +1475,8 @@ A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo
 Për piasì, ch'a controla l'ampostassion file_uploads.",
 'uploadscripted'              => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura un senari) che a podrìa esse travajà mal da chèich programa ëd navigassion.",
 'uploadvirus'                 => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
+'uploadjava'                  => "L'archivi a l'é un file ZIP ch'a conten un file Java .class.
+As peul pa cariesse file Java, përché a peulo causé che le restrission ëd sicurëssa a sio superà.",
 'upload-source'               => 'Archivi sorgiss',
 'sourcefilename'              => "Nòm dl'archivi sorgiss:",
 'sourceurl'                   => "Adrëssa dl'aragnà sorgiss:",
@@ -1524,14 +1527,22 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'upload-unknown-size'       => 'Dimension pa conossùa',
 'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
 
+# ZipDirectoryReader
+'zip-file-open-error' => "N'eror a l'é capità an dorbend ël file për ij contròj ZIP.",
+'zip-wrong-format'    => "Ël file specificà a l'é pa un file ZIP.",
+'zip-bad'             => "Ël file a l'é un file ZIP brëccà o autriment pa lesìbil.
+A peul pa esse controlà da bin për la sicurëssa.",
+'zip-unsupported'     => "Ël file a l'é un file ZIP ch'a dòvra funzion ZIP pa apogià da MediaWiki.
+A peul pa esse controlà da bin pël la sicurëssa.",
+
 # Special:UploadStash
-'uploadstash'          => 'Carié artorn',
-'uploadstash-summary'  => "Sta pàgina a dà acess a file ch'a son carià (o an mente ch'as cario) ma a non pa anco' publicà sla wiki. Sti file a son pa visìbij a gnun an gavand l'utent ch'a l'ha cariaje.",
-'uploadstash-clear'    => 'Polida file artornà',
-'uploadstash-nofiles'  => "It l'has pa dij file artornà.",
+'uploadstash'          => "Memorisassion d'amportassion",
+'uploadstash-summary'  => "Sta pàgina a dà acess a d'archivi ch'a son carià (o an mente ch'as cario) ma a son pa anco' publicà an sla wiki. Costi archivi a son pa visìbij a gnun gavà a l'utent ch'a l'ha cariaje.",
+'uploadstash-clear'    => "Scancelé j'archivi an memòria",
+'uploadstash-nofiles'  => "A l'han gnun archivi an memòria d'amportassion.",
 'uploadstash-badtoken' => "L'esecussion dë st'assion a l'é pa andàita bin, miraco përchè toe credensiaj ëd modìfica a son scadùe. Preuva torna.",
-'uploadstash-errclear' => "polidé ij file a l'é pa andàit bin.",
-'uploadstash-refresh'  => 'Agiorna la lista ëd file',
+'uploadstash-errclear' => "La scancelassion ëd j'archivi a l'é falìa.",
+'uploadstash-refresh'  => "Agiorné la lista dj'archivi",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acess negà',
@@ -1823,8 +1834,8 @@ A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë str
 'allnotinnamespace' => 'Tute le pàgine (che a son nen ant lë spassi nominal $1)',
 'allpagesprev'      => 'Cole prima',
 'allpagesnext'      => 'Cole che a ven-o',
-'allpagessubmit'    => 'Va',
-'allpagesprefix'    => "Most-me la pàgine che a l'ha prefiss:",
+'allpagessubmit'    => 'Andé',
+'allpagesprefix'    => "Smon-e le pàgine che a l'han ël prefiss:",
 'allpagesbadtitle'  => "Ël tìtol che a l'ha daje a la pàgina a va nen bin, ò pura a l'ha andrinta un prefiss inter-lenga ò inter-wiki. A peul esse ëdcò che a l'abia andrinta dij caràter che as peulo nen dovresse ant ij tìtoj.",
 'allpages-bad-ns'   => '{{SITENAME}} a l\'ha pa gnun ëspassi nominal "$1".',
 
@@ -2168,9 +2179,10 @@ $1",
 'undelete-show-file-submit'    => 'É!',
 
 # Namespace form on various pages
-'namespace'      => 'Spassi nominal:',
-'invert'         => 'Anvert la selession',
-'blanknamespace' => '(Prinsipal)',
+'namespace'             => 'Spassi nominal:',
+'invert'                => 'Anvert la selession',
+'namespace_association' => 'Spassi nominal assossià',
+'blanknamespace'        => '(Prinsipal)',
 
 # Contributions
 'contributions'       => "Contribussion dë st'Utent-sì",
@@ -3231,7 +3243,7 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-specialpages'             => 'Pàgine speciaj',
 'version-parserhooks'              => 'Gancio dlë scompositor',
 'version-variables'                => 'Variàbij',
-'version-antispam'                 => 'Prevension dlë spam',
+'version-antispam'                 => 'Prevension dla rumenta',
 'version-skins'                    => 'Pej',
 'version-other'                    => 'Àutr',
 'version-mediahandlers'            => 'Gestor multimojen',

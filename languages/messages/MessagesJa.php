@@ -841,6 +841,7 @@ $2',
 'usernamehasherror'          => '利用者名には番号記号を含むことができません',
 'login-throttled'            => 'ログインの失敗が制限回数を超えました。
 しばらく時間をおいてから再度お試しください。',
+'login-abort-generic'        => 'ログインに失敗しました。　‐ 中止',
 'loginlanguagelabel'         => '言語: $1',
 'suspicious-userlogout'      => '壊れたブラウザもしくはキャッシュ・プロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
 
@@ -3608,7 +3609,7 @@ $1',
 ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:Watchlist/raw|そのままの一覧で編集]]することもできます。',
 'watchlistedit-normal-submit'  => 'ページの除去',
-'watchlistedit-normal-done'    => 'ウォッチリストから$1のページ名を除去しました：',
+'watchlistedit-normal-done'    => 'ウォッチリストから $1{{PLURAL:$1|件}}を削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-explain'    => 'ウォッチリストに含まれるページ名が以下に表示されており、この一覧から追加や除去できます。

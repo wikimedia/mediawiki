@@ -994,7 +994,7 @@ Legenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:las
 'history-feed-empty'          => 'La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commento rimosso)',
+'rev-deleted-comment'         => '(Oggetto della modifica rimosso)',
 'rev-deleted-user'            => '(nome utente rimosso)',
 'rev-deleted-event'           => '(azione del log rimossa)',
 'rev-deleted-user-contribs'   => '[nome utente o indirizzo IP rimosso - edit nascosto dalla cronologia]',

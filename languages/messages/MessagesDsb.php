@@ -625,6 +625,7 @@ Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne ko
 Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnje wutwóriło.',
 'usernamehasherror'          => 'Wužywarske mě njesmějo hašowe znamuška wopśimjeś',
 'login-throttled'            => 'Sy pśecesto wopytał se pśizjawiś. Pócakaj pšosym, nježli až wopytajoš znowego.',
+'login-abort-generic'        => 'Twójo pśizjawjenje njejo wuspěšne było - pśetergnjone',
 'loginlanguagelabel'         => 'Rěc: $1',
 'suspicious-userlogout'      => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 

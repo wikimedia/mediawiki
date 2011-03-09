@@ -396,6 +396,7 @@ Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
 'gotaccount'              => "¿Ye ticpiya cē cuentah? '''$1'''.",
 'gotaccountlink'          => 'Ximocalaqui',
 'createaccountmail'       => 'e-mailcopa',
+'createaccountreason'     => 'Tlèka:',
 'badretype'               => 'Ahneneuhqui motlahtōlichtacāyo.',
 'userexists'              => 'Ye ia in tōcāitl ōquihcuilo.
 Timitztlātlauhtiah xitlahcuiloa occē.',

@@ -706,6 +706,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'usernamehasherror'          => 'O nome de usuario non pode conter cancelos ("#")',
 'login-throttled'            => 'Fixo demasiados intentos de inserir o contrasinal.
 Por favor, agarde antes de probar outra vez.',
+'login-abort-generic'        => 'Acceso ao sistema incorrecto; abortado',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
 

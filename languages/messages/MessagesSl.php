@@ -675,6 +675,7 @@ To sporočilo lahko prezrete, če je bil račun ustvarjen pomotoma.',
 'usernamehasherror'          => "Uporabniško ime ne sme vsebovati ''hash'' znakov",
 'login-throttled'            => 'Nedavno ste izvedli preveč poskusov prijave.
 Prosimo počakajte, preden poskusite znova.',
+'login-abort-generic'        => 'Vaša prijava ni bila uspešna – Prekinjeno',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.',
 

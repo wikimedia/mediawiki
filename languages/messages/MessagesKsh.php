@@ -742,6 +742,7 @@ e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 'usernamehasherror'          => 'En Metmaacher iere Name darf dat Zeijche „#“ nit dren vürkumme.',
 'login-throttled'            => 'Do häs zo öff, zo vill, un zo lang en de letzde Zick probeet, ennzelogge.
 Waat e Wielsche, ih dat De et widder versöhks.',
+'login-abort-generic'        => 'Dat Enlogge hät nit jeflup.',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => "Do bes '''nit''' ußjelogg.
 Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööver met Zwescheschpeischer noh däm Ußlogge jefrooch hät.",
