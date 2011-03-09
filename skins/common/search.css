@@ -9,6 +9,6 @@
  *
  * This will only affect IE 7 and lower
  */
-html > body .searchresult {
-	display: inline;
+.searchresult {
+	display: inline !ie;
 }
