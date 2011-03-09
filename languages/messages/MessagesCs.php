@@ -826,6 +826,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'usernamehasherror'          => 'Uživatelské jméno nemůže obsahovat znak mřížka (#)',
 'login-throttled'            => 'Provedli jste příliš mnoho pokusů o přihlášení.
 Počkejte chvíli, než to zkusíte znovu.',
+'login-abort-generic'        => 'Vaše přihlášení se nezdařilo – přerušeno',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 
@@ -1103,7 +1104,7 @@ Mohla být smazána či přejmenována.
 Zkuste [[Special:Search|hledání]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentář odstraněn)',
+'rev-deleted-comment'         => '(shrnutí editace odstraněno)',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'           => '(záznam odstraněn)',
 'rev-deleted-user-contribs'   => '[uživatelské jméno nebo IP adresa odstraněny – editace v příspěvcích skryta]',
@@ -2436,9 +2437,10 @@ $1',
 'undelete-show-file-submit'    => 'Ano',
 
 # Namespace form on various pages
-'namespace'      => 'Jmenný prostor:',
-'invert'         => 'Obrátit výběr',
-'blanknamespace' => '(Hlavní)',
+'namespace'             => 'Jmenný prostor:',
+'invert'                => 'Obrátit výběr',
+'namespace_association' => 'Související jmenný prostor',
+'blanknamespace'        => '(Hlavní)',
 
 # Contributions
 'contributions'       => 'Příspěvky uživatele',

@@ -815,7 +815,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 Манна майгынныыр сирэйдэри [[Special:Search|көрдөөн]] көр.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(ырытыы сотулунна)',
+'rev-deleted-comment'         => '(көннөрүү туһунан сурук сотуллунна)',
 'rev-deleted-user'            => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'           => '(бэлиэтээһин дьайыыта сотулунна)',
 'rev-deleted-user-contribs'   => '[кыттааччы аата эбэтэр IP-аадырыһа сотуллубуттар — уларытыы көстүбэт оҥоһуллубут]',

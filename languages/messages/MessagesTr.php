@@ -2093,7 +2093,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 # Special:LinkSearch
 'linksearch'       => 'Dış bağlantılar',
 'linksearch-pat'   => 'Motif ara:',
-'linksearch-ns'    => 'İsim alanı:',
+'linksearch-ns'    => 'Ad alanı:',
 'linksearch-ok'    => 'Ara',
 'linksearch-text'  => '"*.wikipedia.org" gibi jokerler kullanılabilir.<br />
 Desteklenen iletişim kuralları: <tt>$1</tt>',
@@ -2421,9 +2421,9 @@ $1',
 'undelete-show-file-submit'    => 'Evet',
 
 # Namespace form on various pages
-'namespace'             => 'İsim alanı:',
+'namespace'             => 'Ad alanı:',
 'invert'                => 'Seçili haricindekileri göster',
-'namespace_association' => 'İlişkili isim alanı',
+'namespace_association' => 'İlişkili ad alanı',
 'blanknamespace'        => '(Ana)',
 
 # Contributions
@@ -2718,7 +2718,7 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'export-pagelinks'  => 'Bağlı sayfaları içerecek derinlik:',
 
 # Namespace 8 related
-'allmessages'                   => 'Sistem mesajları',
+'allmessages'                   => 'Sistem iletileri',
 'allmessagesname'               => 'İsim',
 'allmessagesdefault'            => 'Orjinal metin',
 'allmessagescurrent'            => 'Kullanımdaki metin',

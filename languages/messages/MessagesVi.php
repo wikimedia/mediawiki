@@ -756,6 +756,7 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'usernamehasherror'          => 'Tên người dùng không thể chứa dấu rào',
 'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này
 Xin hãy đợi chốc lát rồi thử lại.',
+'login-abort-generic'        => 'Thất bại khi đăng nhập',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 'suspicious-userlogout'      => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
 
@@ -1229,7 +1230,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchmenu-legend'                => 'Tùy chọn tìm kiếm',
 'searchmenu-exists'                => "* Trang '''[[$1]]'''",
 'searchmenu-new'                   => "'''Tạo trang “[[:$1]]” trên wiki này!'''",
-'searchmenu-new-nocreate'          => 'Bạn không có thể tạo ra trang với tên “$1”, có thể vì tên này không hợp lệ.',
+'searchmenu-new-nocreate'          => 'Tên trang “$1” không hợp lệ, hoặc bạn không có quyền tạo trang này.',
 'searchhelp-url'                   => 'Help:Nội dung',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Duyệt các trang với tiền tố này]]',
 'searchprofile-articles'           => 'Trang nội dung',

@@ -774,6 +774,7 @@ Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.'
 'usernamehasherror'          => 'Numele de utilizator nu poate conține caractere diez (#)',
 'login-throttled'            => 'Ați avut prea multe încercări de a vă autentifica.
 Vă rugăm să așteptați până să mai încercați.',
+'login-abort-generic'        => 'Procesul de autentificare a eșuat și a fost abandonat',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
 
@@ -1718,6 +1719,8 @@ Mergeți înapoi și încărcați acest fișier sub un nume nou. [[File:$1|thumb
 Vă rugăm să verificați setările din file_uploads.',
 'uploadscripted'              => 'Fișierul conține HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
 'uploadvirus'                 => 'Fișierul conține un virus! Detalii: $1',
+'uploadjava'                  => 'Fișierul de față este o arhivă ZIP care conține un fișier de clasă Java.
+Încărcarea fișierelor Java nu este permisă, întrucât pot evita restricțiile de securitate.',
 'upload-source'               => 'Fișier sursă',
 'sourcefilename'              => 'Numele fișierului sursă:',
 'sourceurl'                   => 'URL sursă:',
@@ -1754,6 +1757,14 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-too-many-redirects' => 'URL-ul conținea prea multe redirecționări',
 'upload-unknown-size'       => 'Mărime necunoscută',
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'A intervenit o eroare în momentul deschiderii fișierului ZIP pentru verificări.',
+'zip-wrong-format'    => 'Fișierul specificat nu era un fișier de tip ZIP.',
+'zip-bad'             => 'Fișierul este un fișier corupt de tip ZIP, fiind imposibil de citit.
+Nu poate fi verificat în mod corespunzător în vederea securității.',
+'zip-unsupported'     => 'Fișierul este unul de tip ZIP cu caracteristici neacceptate de MediaWiki.
+Nu poate fi verificat în mod corespunzător în vederea securității.',
 
 # Special:UploadStash
 'uploadstash'          => 'Fișiere trimise în așteptare',
@@ -2405,9 +2416,10 @@ $1',
 'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
-'namespace'      => 'Spațiu de nume:',
-'invert'         => 'Inversează selecţia',
-'blanknamespace' => 'Articole',
+'namespace'             => 'Spațiu de nume:',
+'invert'                => 'Inversează selecţia',
+'namespace_association' => 'Spații de nume asociate',
+'blanknamespace'        => 'Articole',
 
 # Contributions
 'contributions'       => 'Contribuțiile utilizatorului',

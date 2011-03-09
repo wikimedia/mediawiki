@@ -507,6 +507,7 @@ Akawunti eno bw\'obanga togyetaaga, gireke tunaagigyawo.',
 'usernamehasherror'          => "Ery'obwa memba terikkirizibwa kubaamu akabonero ak'obusazesaze (#)",
 'login-throttled'            => "Ogezeza okuyingira mu sisitemu emilundi egiyitiridde obungi kaseera kano.<br />
 Sooka olindeko akaseera okuddamu n'ate.",
+'login-abort-generic'        => 'Sisitemu tekuyingizza - Omulimu gukomezedwa',
 'loginlanguagelabel'         => 'Lulimi: $1',
 'suspicious-userlogout'      => "Sisitemu ezize ekiragiro kyo eky'okugivaamu kubanga kirabise nga ekivudde mu kalambulanetti enfu<br />
 oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
@@ -766,12 +767,17 @@ Kirabika lwagyibwawo.',
 Tekisobose kuddamu n'ate oulukolawo.",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'       => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />
+'expensive-parserfunction-warning'        => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />
 <br />
 Terukkirizibwa kubaako {{PLURAL:$2|kiragiro ky'ekibekebera ngoberera y'amateeka g'empandika ekisukka|biragiro by'ekikebera mpandika y'amateeka g'empandika ebisukka}} mu $2. Kakano ebiragiro ebyo luliko {{PLURAL:$1|kimu|$1}}.",
-'expensive-parserfunction-category'      => "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
-'post-expand-template-inclusion-warning' => "'''Kulabula:''' Entiba ez'okunonebwa ziyitiridde obungi.<br />
+'expensive-parserfunction-category'       => "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
+'post-expand-template-inclusion-warning'  => "'''Kulabula:''' Entiba ez'okunonebwa ziyitiridde obungi.<br />
 Ezimu zijjakulebwayo.",
+'post-expand-template-inclusion-category' => "Empapula eziriko entiba eziyitiridde obunene olw'ebinone bye zikozesa",
+'post-expand-template-argument-warning'   => "'''Kulabula''' Olupapula luno luliko agumenti ey'omu lutiba nga amakulu gaamu bwe<br />
+gawandikibwa mu bujjuvu ekivaamu kiyitirira obunene. Muyinz'okubaamu n'endala ez'engeri eno.<br />
+Agumenti ezo sistemu tezikozesezza.",
+'post-expand-template-argument-category'  => "Empapula eziriko agumenti ez'omu ntiba sisitemu z'etakozesezza",
 
 # History pages
 'viewpagelogs'           => "Kebera likooda ez'olupapula luno",
@@ -817,6 +823,7 @@ oba ku gano agali ku lupapula luno.<br />
 'prevn'                     => '{{PLURAL:$1|$1}} ezikulembedde zino',
 'nextn'                     => '{{PLURAL:$1|$1}} eziddako',
 'viewprevnext'              => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'         => 'Kyusamu ennoonya',
 'searchhelp-url'            => 'Help:Endagiriro',
 'search-result-size'        => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
 'search-redirect'           => "(olupapula '$1' lukuggusiza wano)",
@@ -836,19 +843,43 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'powersearch-field'         => 'Nnoonyeza',
 
 # Preferences page
-'preferences'       => 'Enteekateeka yange',
-'mypreferences'     => 'Enteekateeka yange',
-'skin-preview'      => 'Kulozzako',
-'prefs-personal'    => 'Ebikufaako',
-'saveprefs'         => 'Bino bikaze',
-'resetprefs'        => 'Gyawo enkyukakyuka ze sinnakaza',
-'searchresultshead' => 'Noonya',
-'savedprefs'        => 'Enteekateeka yo ekazidwa.',
-'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',
-'username'          => "Ery'obwa memba:",
-'yourlanguage'      => 'Lulimi lwo:',
-'yournick'          => 'Empaako yo (ssi ya tteeka):',
-'prefs-help-email'  => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.",
+'preferences'               => 'Enteekateeka yange',
+'mypreferences'             => 'Enteekateeka yange',
+'skin-preview'              => 'Kulozzako',
+'prefs-personal'            => 'Ebikufaako',
+'prefs-resetpass'           => 'Kyusa ekigambo ekikuumi',
+'prefs-email'               => 'Enteekateeka eza E-mail',
+'prefs-rendering'           => 'Endabika',
+'saveprefs'                 => 'Bino bikaze',
+'resetprefs'                => 'Gyawo enkyukakyuka ze sinnakaza',
+'restoreprefs'              => 'Zawo enteekateeka zi nansangwawo',
+'prefs-editing'             => 'Kukyusa',
+'searchresultshead'         => 'Noonya',
+'savedprefs'                => 'Enteekateeka yo ekazidwa.',
+'timezonelegend'            => 'Ssaawa za mu:',
+'localtime'                 => "Ssaawa za w'oli:",
+'timezoneuseserverdefault'  => 'Kozesa ssaawa sistemu ze yerondera',
+'timezoneuseoffset'         => 'Ndala (tegeka enjawulo mu budde)',
+'timezoneoffset'            => 'Njawulo mu budde¹:',
+'servertime'                => 'Ssaawa ya sisitemu:',
+'guesstimezone'             => 'Kalambulanetti etegeke obudde',
+'timezoneregion-africa'     => 'Afirika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antakitika',
+'timezoneregion-arctic'     => 'Akitiki',
+'timezoneregion-asia'       => 'Ezya',
+'timezoneregion-atlantic'   => 'Liyanja Atalantika',
+'timezoneregion-australia'  => 'Awusitureliya',
+'timezoneregion-europe'     => 'Bulaaya',
+'timezoneregion-indian'     => 'Liyanja ya Buyindi',
+'timezoneregion-pacific'    => 'Liyanja Kirimulaala',
+'allowemail'                => 'Kkiriza bamemba abalala okukusindikira e-mail',
+'prefs-searchoptions'       => 'Enteekateeka ezifuga okunoonya',
+'prefs-namespaces'          => 'Makuŋaanyizo',
+'username'                  => "Ery'obwa memba:",
+'yourlanguage'              => 'Lulimi lwo:',
+'yournick'                  => 'Empaako yo (ssi ya tteeka):',
+'prefs-help-email'          => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.",
 
 # User rights
 'editinguser'       => "Okyusa ndukusa za memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[Special:Contributions/$1|{{int:contribslink}}]])",

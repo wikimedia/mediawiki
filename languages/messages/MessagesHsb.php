@@ -608,6 +608,7 @@ Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w me
 Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutworiło.',
 'usernamehasherror'          => 'Wužiwarske mjeno njesmě hašowe znamješka wpbsahować',
 'login-throttled'            => 'Sy přehusto spytał so přizjewić. Počakaj prošu, prjedy hač znowa spytaš.',
+'login-abort-generic'        => 'Twoje přizjewjenje njebě wuspěšne - přetorhnjene',
 'loginlanguagelabel'         => 'Rěč: $1',
 'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 
@@ -3269,7 +3270,8 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 'specialpages'                   => 'Specialne strony',
 'specialpages-note'              => '----
 * Normalne specialne strony.
-* <strong class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom</strong>',
+* <span class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom.</span>
+* <span class="mw-specialpagecached">Specialne strony z pufrowaka.</span>',
 'specialpages-group-maintenance' => 'Hladanske lisćiny',
 'specialpages-group-other'       => 'Druhe specialne strony',
 'specialpages-group-login'       => 'Přizjewjenje',

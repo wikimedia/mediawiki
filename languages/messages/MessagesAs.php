@@ -243,7 +243,7 @@ $messages = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'         => 'বিষয়ে',
-'article'       => 'লিখনী',
+'article'       => 'লিখনি',
 'newwindow'     => '(নতুন উইণ্ডোত খোল খায়)',
 'cancel'        => 'ৰদ কৰা হওক',
 'moredotdotdot' => 'ক্ৰমশ:...',
@@ -295,6 +295,7 @@ $messages = array(
 'printableversion'  => 'প্ৰিণ্ট কৰাৰ উপযোগী',
 'permalink'         => 'স্থায়ী সুত্ৰ(লিংক)',
 'print'             => 'প্ৰিন্ট কৰিবলৈ',
+'view'              => 'দেখুৱাওক',
 'edit'              => 'সম্পাদন',
 'create'            => 'সৃষ্টি কৰক',
 'editthispage'      => 'বৰ্তমান পৃষ্ঠাটো সম্পাদন কৰিবলৈ',
@@ -544,12 +545,13 @@ $messages = array(
 'accountcreated'             => 'সদস্যতা সৃষ্টি কৰা হল',
 'accountcreatedtext'         => '$1 ৰ কাৰণে সদস্যভুক্তি কৰা হল।',
 'createaccount-title'        => '{{SITENAME}} ৰ কাৰণে সদস্যভুক্তি কৰক।',
-'createaccount-text'         => 'আপোনাৰ ই-মেইল ঠিকণাৰ কাৰণে {{SITENAME}} ($4) ত "$2" নামৰ কোনোবাই, "$3" গুপ্তশব্দ দি সদস্যভুক্তি কৰিছে। আনুগ্ৰহ কৰি আপুনি প্ৰৱেশ কৰক আৰু গুপ্তশব্দটো সলনি কৰক।
+'createaccount-text'         => 'আপোনাৰ ই-মেইল ঠিকনাৰ কাৰণে {{SITENAME}} ($4) ত "$2" নামৰ কোনোবাই, "$3" গুপ্তশব্দ দি সদস্যভুক্তি কৰিছে। অনুগ্ৰহ কৰি আপুনি প্ৰৱেশ কৰক আৰু গুপ্তশব্দটো সলনি কৰক।
 
 যদি এইয়া ভুলতে হৈছে, তেনেহলে আপুনি এই বাৰ্তাটো অবজ্ঞা কৰিব পাৰে ।',
 'usernamehasherror'          => 'সদস্যনামত হেচ আখৰ থাকিব নোৱাৰে',
 'login-throttled'            => 'আপুনি সাম্প্ৰতিক অজস্ৰবাৰ লগইন প্ৰয়াস কৰিছে ।
 অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি আকৌ প্ৰয়াস কৰক ।',
+'login-abort-generic'        => 'আপোনাৰ প্ৰৱেশ অসফল-বাতিল কৰা হ’ল',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
 # JavaScript password checks
@@ -674,9 +676,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'editingcomment'                   => '$1 (নতুন বিভাগ) সম্পদনা কৰি থকা হৈছে',
 'editconflict'                     => 'সম্পাদনা দ্বন্দ্ব: $1',
 'yourtext'                         => 'আপুনাৰ লিখা পাঠ',
-'storedversion'                    => 'যমা সংস্কৰণ',
+'storedversion'                    => 'জমা সংস্কৰণ',
 'editingold'                       => "'''সাৱধান: আপুনি এই পৃষ্ঠাৰ এটি পুৰণি সংস্কৰণ সম্পাদনা কৰি আছে ।
-যদি আপুনি আপুনাৰ সম্পাদনাসমূহ যমা কৰে, সেই পৰবৰ্তি সংস্কৰণসমূহ হেৰাই যাব ‌‌।'''",
+যদি আপুনি আপোনাৰ সম্পাদনাসমূহ জমা কৰে, সেই পৰৱৰ্তী সংস্কৰণসমূহ হেৰাই যাব ‌‌।'''",
 'yourdiff'                         => 'তফাৎ',
 'copyrightwarning'                 => "অনুগ্ৰহ কৰি মন কৰক যে {{SITENAME}}লৈ কৰা সকলো অৱদান $2 ৰ চৰ্তাৱলীৰ মতে প্ৰদান কৰা বুলি ধৰি লোৱা হব (আৰু অধিক জানিবলৈ $1 চাঁওক)। যদি আপুনি আপোনাৰ লিখনি নিৰ্দয়ভাৱে সম্পাদনা কৰা আৰু ইচ্ছামতে পুনৰ্বিতৰণ কৰা ভাল নাপায়, তেনেহ'লে নিজৰ লিখনি ইয়াত নিদিব।
 <br />
@@ -713,7 +715,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 এই পৃষ্ঠাটো বিলোপ আৰু স্থানান্তৰ কৰাৰ অভিলেখ আপোনাৰ সুবিধাৰ্থে ইয়াত দিয়া হৈছে।",
 'log-fulllog'                      => 'সম্পূৰ্ণ অভিলেখ চাওঁক',
 'edit-conflict'                    => 'সম্পাদনা দ্বন্দ ।',
-'edit-no-change'                   => 'আপুননাৰ সম্পাদনা আওকাণ কৰা হৈছে, কাৰণ লেখাত কোনো তফাৎ নাই',
+'edit-no-change'                   => 'আপোনাৰ সম্পাদনা আওকাণ কৰা হৈছে, কাৰণ লেখাত কোনো তফাৎ নাই',
 'edit-already-exists'              => "নতুন পৃষ্ঠা সৃষ্টি কৰা নহ'ল ।
 পৃষ্ঠাখন ইতিমধ্যেই আছেই ।",
 
@@ -754,31 +756,32 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 [[Special:Search|সন্ধান]] ব্যৱহাৰ কৰি চাওক।',
 
 # Revision deletion
-'rev-deleted-comment'       => '(মন্তব্য আতৰোৱা হৈছে)',
-'rev-deleted-user'          => '(সদস্যনাম আতৰোৱা হৈছে)',
-'rev-delundel'              => 'দেখুৱাওক/নেদেখুৱাব',
-'rev-showdeleted'           => 'দেখুওৱাওক',
-'revisiondelete'            => 'সংকলন বিলোপন কৰক / পুণৰ্স্থাপিত কৰক',
-'revdelete-hide-text'       => 'সংশোধিত পাঠ আঁতৰাওক',
-'revdelete-hide-image'      => 'ফাইলৰ বিষয়বস্তু আঁতৰাওক',
-'revdelete-hide-name'       => 'কাৰ্য্য আৰু লক্ষ্য আতৰাই থওঁক',
-'revdelete-hide-comment'    => 'সম্পাদনা মন্তব্য আতৰাই থওঁক',
-'revdelete-hide-user'       => 'সম্পাদকৰ সদস্যনাম/আই-পি টিকনা আতৰাই থওঁক',
-'revdelete-radio-set'       => 'অঁ',
-'revdelete-radio-unset'     => 'না',
-'revdelete-log'             => 'কাৰণ:',
-'revdel-restore'            => 'দৃষ্টিপাত সালসলনি কৰক',
-'pagehist'                  => 'পৃষ্ঠা ইতিহাস',
-'deletedhist'               => 'মচি পেলোৱা ইতিহাস',
-'revdelete-content'         => 'বিষয়বস্তু',
-'revdelete-summary'         => 'সম্পাদনাৰ সাৰমৰ্ম',
-'revdelete-uname'           => 'সদস্যনাম',
-'revdelete-hid'             => '$1 আঁৰ কৰক',
-'revdelete-unhid'           => '$1 দেখোৱাওক',
-'revdelete-otherreason'     => 'অন্য/অতিৰিক্ত কাৰণ:',
-'revdelete-reasonotherlist' => 'অন্য কাৰণ',
-'revdelete-edit-reasonlist' => 'অপসাৰণৰ কাৰণ সম্পাদনা',
-'revdelete-offender'        => 'সংশোধন লেখক:',
+'rev-deleted-comment'        => '(মন্তব্য আতৰোৱা হৈছে)',
+'rev-deleted-user'           => '(সদস্যনাম আতৰোৱা হৈছে)',
+'rev-delundel'               => 'দেখুৱাওক/নেদেখুৱাব',
+'rev-showdeleted'            => 'দেখুওৱাওক',
+'revisiondelete'             => 'সংকলন বিলোপন কৰক / পুণৰ্স্থাপিত কৰক',
+'revdelete-show-file-submit' => 'হয়',
+'revdelete-hide-text'        => 'সংশোধিত পাঠ আঁতৰাওক',
+'revdelete-hide-image'       => 'ফাইলৰ বিষয়বস্তু আঁতৰাওক',
+'revdelete-hide-name'        => 'কাৰ্য্য আৰু লক্ষ্য আতৰাই থওঁক',
+'revdelete-hide-comment'     => 'সম্পাদনা মন্তব্য আতৰাই থওঁক',
+'revdelete-hide-user'        => 'সম্পাদকৰ সদস্যনাম/আই-পি টিকনা আতৰাই থওঁক',
+'revdelete-radio-set'        => 'অঁ',
+'revdelete-radio-unset'      => 'না',
+'revdelete-log'              => 'কাৰণ:',
+'revdel-restore'             => 'দৃষ্টিপাত সালসলনি কৰক',
+'pagehist'                   => 'পৃষ্ঠা ইতিহাস',
+'deletedhist'                => 'মচি পেলোৱা ইতিহাস',
+'revdelete-content'          => 'বিষয়বস্তু',
+'revdelete-summary'          => 'সম্পাদনাৰ সাৰমৰ্ম',
+'revdelete-uname'            => 'সদস্যনাম',
+'revdelete-hid'              => '$1 আঁৰ কৰক',
+'revdelete-unhid'            => '$1 দেখোৱাওক',
+'revdelete-otherreason'      => 'অন্য/অতিৰিক্ত কাৰণ:',
+'revdelete-reasonotherlist'  => 'অন্য কাৰণ',
+'revdelete-edit-reasonlist'  => 'অপসাৰণৰ কাৰণ সম্পাদনা',
+'revdelete-offender'         => 'সংশোধন লেখক:',
 
 # Revision move
 'revmove-reasonfield'    => 'কাৰণ:',
@@ -944,7 +947,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'gender-female'               => 'মহিলা',
 'email'                       => 'ই-মেইল',
 'prefs-help-realname'         => 'আপোনাৰ আচল নাম দিয়াতো জৰুৰী নহয়, কিন্তু দিলে আপোনাৰ কামবোৰ আপোনাৰ নামত দেখুওৱা হব।',
-'prefs-help-email'            => 'ই-মেইল ঠিকন দিয়া বৈকল্পিক, কিন্তু দিলে আন সদস্যই আপোনাৰ চিনাকি নোপোৱাকৈয়ে আপোনাৰ লগত সম্পৰ্ক স্থাপন কৰিব পাৰিব।',
+'prefs-help-email'            => 'ই-মেইল ঠিকনা দিয়া বৈকল্পিক, কিন্তু দিলে আন সদস্যই আপোনাৰ চিনাকি নোপোৱাকৈয়ে আপোনাৰ লগত সম্পৰ্ক স্থাপন কৰিব পাৰিব।',
 'prefs-help-email-required'   => 'ই-মেইল ঠিকনা দিবই লাগিব',
 'prefs-info'                  => 'সাধাৰণ তথ্য',
 'prefs-i18n'                  => 'আন্তঃৰাষ্ট্ৰীয়কিকৰণ',
@@ -1132,8 +1135,26 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Special:Categories
 'categories' => 'শ্ৰেণী',
 
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'অৱদানসমূহ',
+
 # Special:LinkSearch
-'linksearch' => 'বহিঃ-সংযোগ',
+'linksearch'      => 'বহিঃ-সংযোগ',
+'linksearch-ns'   => 'নামস্থান:',
+'linksearch-ok'   => 'অনুসন্ধান',
+'linksearch-line' => '$2 পৰা $1 সংযোগ কৰা হৈছে',
+
+# Special:ListUsers
+'listusersfrom'      => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
+'listusers-submit'   => 'দেখুৱাওক',
+'listusers-noresult' => 'ব্যৱহাৰ কাৰী বিচাৰি পোৱা নগল',
+
+# Special:ActiveUsers
+'activeusers'            => 'সক্রিয় ব্যবহাৰকাৰীৰ তালিকা',
+'activeusers-count'      => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সর্বমুঠ {{PLURAL:$1|সম্পাদনাৰ|সম্পাদনাৰ}} সংখ্যা $1',
+'activeusers-from'       => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
+'activeusers-hidebots'   => 'বট নেদেখুৱাব',
+'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'সদস্যৰ সৃষ্টি অভিলেখ',
@@ -1143,6 +1164,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'newuserlog-autocreate-entry' => 'স্বয়ংক্ৰীয়ভাবে নতুন সদস্যভুক্তি কৰা হল',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'গোট',
+'listgrouprights-rights'  => 'অধিকাৰসমূহ',
 'listgrouprights-members' => '(সদস্যবৃন্দ তালিকা)',
 
 # E-mail user

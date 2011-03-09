@@ -92,7 +92,7 @@ $messages = array(
 'qbfind'         => 'Koluka',
 'qbbrowse'       => 'Kolúka',
 'qbedit'         => 'Kokoma',
-'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
+'qbspecialpages' => 'Nkásá gudi',
 'faq'            => 'Mitúná Mizóngelaka (MM)',
 
 # Vector skin
@@ -118,6 +118,7 @@ $messages = array(
 'create-this-page' => 'Kokela lokásá yango',
 'delete'           => 'Kolímwisa',
 'protect'          => 'Kobátela',
+'protect_change'   => 'kobóngola',
 'unprotect'        => 'Kobátela tɛ̂',
 'newpage'          => 'Lonkásá ya sika',
 'talkpagelinktext' => 'Ntembe',
@@ -128,6 +129,7 @@ $messages = array(
 'otherlanguages'   => 'Na nkótá isúsu',
 'redirectedfrom'   => '(Eyendísí útá $1)',
 'redirectpagesub'  => 'Lokásá la boyendisi',
+'lastmodifiedat'   => 'Lonkásá loye lobóngwámí o mokɔlɔ $1, ngonga $2.',
 'jumpto'           => 'Kokɛndɛ na:',
 'jumptonavigation' => 'bolúki',
 'jumptosearch'     => 'boluki',
@@ -138,6 +140,7 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Mikokisi',
 'currentevents'        => 'Elɔ́kɔ ya sika',
 'disclaimers'          => 'Ndelo ya boyanoli',
+'disclaimerpage'       => 'Project:Boyanoli ndelo',
 'edithelp'             => 'Kobimisela bosálisi',
 'mainpage'             => 'Lonkásá ya libosó',
 'mainpage-description' => 'Lokásá ya libosó',
@@ -152,6 +155,7 @@ $messages = array(
 'editsection'        => 'kokoma',
 'editold'            => 'kokoma',
 'editlink'           => 'kokoma',
+'viewsourcelink'     => 'komɔ́nisa mosólo',
 'editsectionhint'    => 'Kokoma sɛksíɔ : $1',
 'toc'                => 'Etápe',
 'showtoc'            => 'komɔ́nisa',
@@ -163,19 +167,19 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'lonkásá',
-'nstab-user'      => 'lonkásá ya mosáleli',
+'nstab-user'      => 'Lonkásá ya mosáleli',
 'nstab-media'     => 'Mediá',
 'nstab-special'   => 'Lonkásá gudi',
 'nstab-project'   => 'Etalí',
 'nstab-image'     => 'Kásá',
 'nstab-mediawiki' => 'Liyébísí',
-'nstab-template'  => 'Emekoli',
+'nstab-template'  => 'Emekisele',
 'nstab-help'      => 'Lonkásá ya lisálisi',
 'nstab-category'  => 'Katégori',
 
 # Main script and global functions
 'nosuchaction'      => 'Ekelá eyébani tɛ̂',
-'nosuchspecialpage' => 'Lonkásá gudi yangó ezalí tɛ̂',
+'nosuchspecialpage' => 'Lonkásá gudi lwangó lozalí tɛ̂',
 'nospecialpagetext' => '<strong>Otúní lonkásá gudi kasi yangó ezalí tɛ̂.</strong>
 
 Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:specialpages}}]].',
@@ -190,6 +194,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'internalerror_info' => 'Zíko ya káti : $1',
 'perfcached'         => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂.',
 'perfcachedts'       => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂. Bizalí bya $1.',
+'viewsource'         => 'Komɔ́nisa mosólo',
 'viewsourcefor'      => 'na $1',
 
 # Login and logout pages
@@ -200,7 +205,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'nav-login-createaccount' => 'Komíkomisa tǒ kokɔtɔ',
 'userlogin'               => 'Komíkomisa tǒ kokɔtɔ',
 'logout'                  => 'kolongwa',
-'userlogout'              => 'kolongwa (log out)',
+'userlogout'              => 'Kolongwa',
 'nologin'                 => "Omíkomísí naíno tɛ̂? '''$1'''.",
 'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
 'gotaccount'              => "Omíkomísí naíno ? '''$1'''.",
@@ -222,12 +227,14 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'watchthis'              => 'Kolanda lonkásá óyo',
 'savearticle'            => 'kobómbisa lonkásá',
 'preview'                => 'Botáli',
+'showpreview'            => 'Kotála yambo',
+'showdiff'               => 'Komɔ́nisa mbóngwana',
 'newarticle'             => '(Sika)',
 'editing'                => 'Kokoma « $1 »',
 'editingcomment'         => 'Kokoma « $1 » (ndimbola)',
 'yourtext'               => 'Nkomá na yɔ̌',
-'templatesused'          => '{{PLURAL:$1|Emekoli esálélí|Bimekoli bisálélí}} o lonkásá óyo :',
-'templatesusedpreview'   => 'Bimekoli na mosálá o botáli boye :',
+'templatesused'          => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o lonkásá óyo :',
+'templatesusedpreview'   => '{{PLURAL:$1|Emekisele esálélí|Bimekisele bisálélí}} o botáli boye :',
 'template-protected'     => '(na bobáteli)',
 'template-semiprotected' => '(na bobáteli ya ndámbo)',
 
@@ -240,9 +247,14 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'cur'                 => 'sika',
 'next'                => 'bolɛngɛli',
 'last'                => 'ya nsúka',
+'histfirst'           => 'ya yambo',
+'histlast'            => 'ya nsúka',
 
 # Revision deletion
 'rev-delundel' => 'komɔ́nisa/kobomba',
+
+# Merge log
+'revertmerge' => 'Kotangola',
 
 # Diffs
 'history-title' => 'Makambo ya mazóngeli ya « $1 »',
@@ -250,18 +262,22 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'editundo'      => 'kozóngela',
 
 # Search results
-'searchresults'       => 'Bozwi bwa boluki',
-'searchresults-title' => 'Bozwi bwa boluka bwa «$1»',
-'prevn'               => '{{PLURAL:$1|$1}} ya libosó',
-'nextn'               => 'bolɛngɛli {{PLURAL:$1|$1}}',
-'viewprevnext'        => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
-'search-result-size'  => '$1 ({{PLURAL:$2|lokomá 1|nkomá $2}})',
-'search-result-score' => 'Ntína : $1%',
-'search-redirect'     => '(bopengoli útá $1)',
-'search-section'      => '(sɛksió ya $1)',
-'search-suggest'      => 'Ómeka na lokomá : $1',
-'powersearch'         => 'Boluki',
-'powersearch-legend'  => 'Boluki bopúsání',
+'searchresults'             => 'Bozwi bwa boluki',
+'searchresults-title'       => 'Bozwi bwa boluka bwa «$1»',
+'prevn'                     => '{{PLURAL:$1|$1}} ya libosó',
+'nextn'                     => 'bolɛngɛli {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|lokomá 1|nkomá $2}})',
+'search-result-score'       => 'Ntína : $1%',
+'search-redirect'           => '(bopengoli útá $1)',
+'search-section'            => '(sɛksió ya $1)',
+'search-suggest'            => 'Ómeka na lokomá : $1',
+'search-interwiki-more'     => '(elekí)',
+'search-mwsuggest-enabled'  => 'na bokáni',
+'search-mwsuggest-disabled' => 'na bokáni tɛ́',
+'powersearch'               => 'Boluki',
+'powersearch-legend'        => 'Boluki bopúsání',
+'powersearch-field'         => 'Koluka',
 
 # Preferences page
 'preferences'       => 'Malúli',
@@ -290,6 +306,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'rcnote'          => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1'''|izalí mbóngwana '''$1'''}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, {{PLURAL:$1|etángámí|itángámí}} o $3.",
 'rcshowhideminor' => '$1 mbóngwana ya mokɛ́',
 'rcshowhidebots'  => '$1 barobot',
+'rcshowhideliu'   => '$1 basáleli bamíkitólí',
+'rcshowhideanons' => '$1 basáleli sóngóló',
 'rcshowhidemine'  => '$1 mbóngwana ya ngáí',
 'rclinks'         => 'Komɔ́nisa mbóngwana $1 ya nsúka o mikɔ́lɔ $2<br />$3',
 'diff'            => 'mbó.',
@@ -304,6 +322,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'recentchangeslinked'         => 'Bolandi ekangisi',
 'recentchangeslinked-feed'    => 'Bolandi ekangisi',
 'recentchangeslinked-toolbox' => 'Bolandi ekangisi',
+'recentchangeslinked-page'    => 'Nkómbó ya lonkásá :',
 
 # Upload
 'upload'    => 'Kotíya nkásá mɔ̌kɔ́',
@@ -316,6 +335,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # File description page
 'file-anchor-link' => 'Elilingi',
 'filehist'         => 'Mokóló ya kásá',
+'filehist-current' => 'ya sikáwa',
+'filehist-user'    => 'Mosáleli',
 
 # File deletion
 'filedelete-submit' => 'Kolímwisa',
@@ -378,6 +399,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Watchlist
 'watchlist'         => 'Nkásá nalandí',
 'mywatchlist'       => 'Nkásá nalandí',
+'addedwatchtext'    => "Lonkásá « [[:$1]] » lobakísámí na [[Special:Watchlist|nkásá olandí]]. Mbóngwana o lonkásá loye mpé o lokásá lwa ntembe ikomɔ́nisama áwa, ikokɔ́mana '''mbinga''' o [[Special:RecentChanges|Lístɛ ya mbóngwana ya nsúka]] mpɔ̂ na mpási tɛ̂.",
 'watch'             => 'Kolanda',
 'watchthispage'     => 'Kolanda lonkásá óyo',
 'unwatch'           => 'Kolanda tɛ́',
@@ -397,6 +419,12 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'deletionlog'    => 'zonálɛ ya bolímwisi',
 'deletecomment'  => 'Ntína ya bolímwisi',
 
+# Rollback
+'rollbacklink' => 'kolíngola',
+
+# Protect
+'protect-level-autoconfirmed' => 'Kotɛ́lɛmisa basáleli bamíkomísí tɛ́ tǒ ya sika',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Kokoma',
 'restriction-move' => 'Kobóngola nkómbó',
@@ -406,12 +434,13 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'blanknamespace' => '(Ya libosó)',
 
 # Contributions
-'contributions'       => 'Mosálá ya moto óyo',
-'contributions-title' => 'Mosálá ya moto mpɔ̂ na $1',
+'contributions'       => 'Mosálá mwa mosáleli óyo',
+'contributions-title' => 'Mosálá mwa mosáleli $1',
 'mycontris'           => 'Nkásá nakomí',
 
-'sp-contributions-talk'   => 'Ntembe',
-'sp-contributions-submit' => 'Boluki',
+'sp-contributions-blocklog' => 'zunalɛ ya botɛ́lɛmisi',
+'sp-contributions-talk'     => 'Ntembe',
+'sp-contributions-submit'   => 'Boluki',
 
 # What links here
 'whatlinkshere'       => 'Ekangísí áwa',
@@ -420,13 +449,23 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'whatlinkshere-links' => '← ekangisi',
 
 # Block/unblock
-'contribslink' => 'bíteni ya mosálá',
+'blockip'          => 'Kotɛ́lɛmisa mosáleli',
+'ipblocklist'      => 'Adɛ́lɛsɛ IP mpé basáleli batɛ́lɛmísámí',
+'blocklink'        => 'kotɛ́lɛmisa',
+'unblocklink'      => 'koboma botɛ́lɛmisi',
+'change-blocklink' => 'kobóngola botɛ́lɛmisi',
+'contribslink'     => 'bíteni ya mosálá',
+'blocklogpage'     => 'Zunalɛ ya botɛ́lɛmisi',
+'blocklogentry'    => '[[$1]] atɛ́lɛ́mísámí ; bosílisi : $2 $3',
+'unblocklogentry'  => 'ebomí botɛ́lɛmisi $1',
 
 # Move page
 'movearticle'             => 'Kobóngola nkómbó ya ekakoli :',
 'move-watch'              => 'Kolánda lonkásá ya líziba mpé lonkásá ya tíndamelo',
 'movepagebtn'             => 'Kobóngola lokásá',
 'movedto'                 => 'nkómbó ya sika',
+'movelogpage'             => 'Zunalɛ ya bobóngoli nkómbó',
+'movereason'              => 'Ntína :',
 'revertmove'              => 'kozóngela',
 'delete_and_move'         => 'Kolímwisa mpé kobóngola nkómbó',
 'delete_and_move_confirm' => 'Boye, kolímwisa lokásá',
@@ -448,7 +487,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'tooltip-pt-preferences'         => 'Malúli ma ngáí',
 'tooltip-pt-watchlist'           => 'Nkásá nalandí mpɔ̂ na mbóngwana',
 'tooltip-pt-mycontris'           => 'Molɔngɔ́ mwa nkásá nakomí',
-'tooltip-pt-logout'              => 'Ombémbóí',
+'tooltip-pt-login'               => 'Epésí lilako lya komíkitola yɔ̂, kasi esengélí tê.',
+'tooltip-pt-logout'              => 'Kolongwa',
 'tooltip-ca-move'                => 'Kobóngola nkómbó ya lonkásá óyo',
 'tooltip-ca-watch'               => 'Kobakisa na nkásá olandaka',
 'tooltip-ca-unwatch'             => 'Kolongola na nkásá olandaka',
@@ -459,10 +499,13 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'tooltip-n-mainpage'             => 'Kokɛndɛ na Lonkásá ya libosó',
 'tooltip-n-mainpage-description' => 'Kokɛndɛ na lonkásá ya libosó',
 'tooltip-n-portal'               => "etalí ''projet'' óyo",
+'tooltip-n-recentchanges'        => 'Lístɛ ya mbóngwana ya nsúka o wiki',
 'tooltip-n-randompage'           => 'Tómbisa lonkásá na mbɛsɛ',
 'tooltip-n-help'                 => 'Lisálisi',
+'tooltip-t-whatlinkshere'        => 'Lístɛ ya nkásá wiki nyɔ́nsɔ iye ikangísí áwa',
 'tooltip-t-upload'               => 'Kotíya nkásá ebelé',
-'tooltip-ca-nstab-template'      => 'Komɔ́nisela emekoli',
+'tooltip-t-specialpages'         => 'Lístɛ ya nkásá gudi nyɔ́nsɔ',
+'tooltip-ca-nstab-template'      => 'Komɔ́nisela emekisele',
 'tooltip-ca-nstab-category'      => 'Komɔ́nisela lonkásá ya katégori',
 
 # Browsing diffs
@@ -479,6 +522,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'nyɔ́nsɔ',
 'namespacesall' => 'Nyɔ́nsɔ',
+'monthsall'     => 'nyɔ́nsɔ',
 
 # action=purge
 'confirm_purge_button' => 'Nandimi',
@@ -495,6 +539,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'watchlisttools-raw'  => 'Kobimisela nkásá nalandí (na pɛpɛ)',
 
 # Special:SpecialPages
-'specialpages' => 'Nkásá ya ndéngé mosúsu',
+'specialpages' => 'Nkásá gudi',
 
 );
