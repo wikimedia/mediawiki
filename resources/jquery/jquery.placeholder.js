@@ -37,9 +37,16 @@ $.fn.placeholder = function() {
 			} )
 
 			// Hide on focus
-			.focus( function() {
+			// Also listen for other events in case $input was
+			// already focused when the events were bound
+			.bind( 'focus drop keydown paste', function( e ) {
 				if ( $input.hasClass( 'placeholder' ) ) {
-					this.value = '';
+					// Support for drag&drop in Firefox
+					if ( e.type == 'drop' && e.originalEvent.dataTransfer ) {
+						this.value = e.originalEvent.dataTransfer.getData( 'text/plain' );
+					} else {
+						this.value = '';
+					}
 					$input.removeClass( 'placeholder' );
 				}
 			} );
