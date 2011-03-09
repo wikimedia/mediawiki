@@ -41,9 +41,26 @@ $.fn.placeholder = function() {
 			// already focused when the events were bound
 			.bind( 'focus drop keydown paste', function( e ) {
 				if ( $input.hasClass( 'placeholder' ) ) {
-					// Support for drag&drop in Firefox
 					if ( e.type == 'drop' && e.originalEvent.dataTransfer ) {
-						this.value = e.originalEvent.dataTransfer.getData( 'text/plain' );
+						// Support for drag&drop. Instead of inserting the dropped
+						// text somewhere in the middle of the placeholder string,
+						// we want to set the contents of the search box to the
+						// dropped text.
+						
+						// IE wants getData( 'text' ) but Firefox wants getData( 'text/plain' )
+						// Firefox fails gracefully with an empty string, IE barfs with an error
+						try {
+							// Try the Firefox way
+							this.value = e.originalEvent.dataTransfer.getData( 'text/plain' );
+						} catch ( exception ) {
+							// Got an exception, so use the IE way
+							this.value = e.originalEvent.dataTransfer.getData( 'text' );
+						}
+						
+						// On Firefox, drop fires after the dropped text has been inserted,
+						// but on IE it fires before. If we don't prevent the default action,
+						// IE will insert the dropped text twice.
+						e.preventDefault();
 					} else {
 						this.value = '';
 					}
