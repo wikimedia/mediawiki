@@ -15,9 +15,11 @@
 	 * @author Trevor Parscal <tparscal@wikimedia.org>
 	 * @param {string} string Message to output to console
 	 */
-	mw.log = function( string ) {
+	mw.log = function( string, prefix ) {
 		// Allow log messages to use a configured prefix
-		if ( mw.config.exists( 'mw.log.prefix' ) ) {
+		if ( typeof prefix == 'string' ) {
+			string = prefix + '> ' + string;
+		} else if ( mw.config.exists( 'mw.log.prefix' ) ) {
 			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;
 		}
 		// Try to use an existing console
