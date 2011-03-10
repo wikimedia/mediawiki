@@ -11,7 +11,7 @@
 class MediaWikiProvide {
 
 	/* provide an array of numbers from 1 up to @param $num */
-	private function createProviderUpTo( $num ) {
+	private static function createProviderUpTo( $num ) {
 		$ret = array();
 		for( $i=1; $i<=$num;$i++ ) {
 			$ret[] = array( $i );
@@ -20,20 +20,20 @@ class MediaWikiProvide {
 	}
 
 	/* array of months numbers (as an integer) */
-	public function Months() {
-		return $this->createProviderUpTo( 12 );
+	public static function Months() {
+		return self::createProviderUpTo( 12 );
 	}
 
 	/* array of days numbers (as an integer) */
-	public function Days() {
-		return $this->createProviderUpTo( 31 );
+	public static function Days() {
+		return self::createProviderUpTo( 31 );
 	}
 
-	public function DaysMonths() {
+	public static function DaysMonths() {
 		$ret = array();
 
-		$months = $this->Months();
-		$days   = $this->Days();
+		$months = self::Months();
+		$days   = self::Days();
 		foreach( $months as $month) {
 			foreach( $days as $day ) {
 				$ret[] = array( $day[0], $month[0] );
