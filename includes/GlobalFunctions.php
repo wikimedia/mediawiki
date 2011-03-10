@@ -2071,15 +2071,20 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 /**
  * Increment a statistics counter
  */
-function wfIncrStats( $key ) {
+function wfIncrStats( $key, $count = 1 ) {
 	global $wgStatsMethod;
 
+	$count = intval( $count );
+
 	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
 		static $socket;
+
+		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
+
 		if ( !$socket ) {
 			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			$statline = "stats/{$wgDBname} - 1 1 1 1 1 -total\n";
+			$statline = "stats/{$id} - {$count} 1 1 1 1 -total\n";
 			socket_sendto(
 				$socket,
 				$statline,
@@ -2089,7 +2094,7 @@ function wfIncrStats( $key ) {
 				$wgUDPProfilerPort
 			);
 		}
-		$statline = "stats/{$wgDBname} - 1 1 1 1 1 {$key}\n";
+		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
 		wfSuppressWarnings();
 		socket_sendto(
 			$socket,
@@ -2103,8 +2108,8 @@ function wfIncrStats( $key ) {
 	} elseif( $wgStatsMethod == 'cache' ) {
 		global $wgMemc;
 		$key = wfMemcKey( 'stats', $key );
-		if ( is_null( $wgMemc->incr( $key ) ) ) {
-			$wgMemc->add( $key, 1 );
+		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
+			$wgMemc->add( $key, $count );
 		}
 	} else {
 		// Disabled
