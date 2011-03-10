@@ -74,6 +74,7 @@ abstract class Job {
 			return false;
 		}
 
+		wfIncrStats( 'job-pop' );
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
@@ -163,6 +164,7 @@ abstract class Job {
 
 		// If execution got to here, there's a row in $row that has been deleted from the database
 		// by this thread. Hence the concurrent pop was successful.
+		wfIncrStats( 'job-pop' );
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
@@ -238,6 +240,7 @@ abstract class Job {
 			}
 		}
 		if ( $rows ) {
+			wfIncrStats( 'job-insert', count( $rows ) );
 			$dbw->begin();
 			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
 			$dbw->commit();
@@ -280,6 +283,7 @@ abstract class Job {
 				return;
 			}
 		}
+		wfIncrStats( 'job-insert' );
 		return $dbw->insert( 'job', $fields, __METHOD__ );
 	}
 
