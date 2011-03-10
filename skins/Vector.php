@@ -146,9 +146,11 @@ class VectorTemplate extends BaseTemplate {
 			<!-- /firstHeading -->
 			<!-- bodyContent -->
 			<div id="bodyContent">
+				<?php if ( $this->data['isarticle'] ): ?>
 				<!-- tagline -->
 				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 				<!-- /tagline -->
+				<?php endif; ?>
 				<!-- subtitle -->
 				<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html( 'subtitle' ) ?></div>
 				<!-- /subtitle -->

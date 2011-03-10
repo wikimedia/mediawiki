@@ -274,6 +274,7 @@ span.subpages {
 	vertical-align: middle;
 }
 #siteNotice {
+	position: relative;
 	text-align: center;
 	font-size: 95%;
 	padding: 0 0.9em;
