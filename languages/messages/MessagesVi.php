@@ -3594,7 +3594,8 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'specialpages'                   => 'Các trang đặc biệt',
 'specialpages-note'              => '----
 * Trang đặc biệt thông thường.
-* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>
+* <span class="mw-specialpagecached">Trang đặc biệt chỉ được lấy từ vùng nhớ đệm.</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

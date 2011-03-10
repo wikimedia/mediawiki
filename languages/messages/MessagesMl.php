@@ -3487,7 +3487,8 @@ $1',
 'specialpages'                   => 'പ്രത്യേക താളുകൾ',
 'specialpages-note'              => '----
 * സർവ്വോപയോഗ പ്രത്യേക താളുകൾ.
-* <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</strong>',
+* <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</strong>
+* <span class="mw-specialpagecached">പ്രാദേശികമായി സംഭരിച്ചുപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.</span>',
 'specialpages-group-maintenance' => 'പരിചരണം ആവശ്യമായവ',
 'specialpages-group-other'       => 'മറ്റു പ്രത്യേക താളുകൾ',
 'specialpages-group-login'       => 'പ്രവേശിക്കുക / അംഗത്വം എടുക്കുക',

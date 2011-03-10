@@ -3343,8 +3343,9 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsäiten',
 'specialpages-note'              => '----
-* Normal Spezialsäiten
-* <strong class="mw-specialpagerestricted">Fettgeschriwwe</strong> Spezialsäite sinn nëmme fir Benotzer mat méi Rechter.',
+* Normal Spezialsäiten.
+* <span class="mw-specialpagerestricted">Spezialsäite fir Benotzer mat méi Rechter.</span>
+* <span class="mw-specialpagecached">Spezialsäite aus dem Tëschespäicher</span>',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other'       => 'Aner Spezialsäiten',
 'specialpages-group-login'       => 'Aloggen / Umellen',

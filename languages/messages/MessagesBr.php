@@ -12,6 +12,7 @@
  * @author Fohanno
  * @author Fulup
  * @author Gwendal
+ * @author Gwenn-Ael
  * @author Malafaya
  * @author Y-M D
  * @author לערי ריינהארט
@@ -3417,7 +3418,8 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'specialpages'                   => 'Pajennoù dibar',
 'specialpages-note'              => '----
 * Pajennoù dibar boutin.
-* <strong class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</strong>',
+* <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>
+* <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken.</span>',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
 'specialpages-group-other'       => 'Pajennoù dibar all',
 'specialpages-group-login'       => 'Kevreañ / en em enrollañ',
