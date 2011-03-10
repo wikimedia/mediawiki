@@ -1185,7 +1185,7 @@ $1",
 'lineno'                   => 'Радок $1:',
 'compareselectedversions'  => 'Параўнаць выбраныя вэрсіі',
 'showhideselectedversions' => 'Паказаць/схаваць вызначаныя вэрсіі',
-'editundo'                 => 'адмяніць',
+'editundo'                 => 'скасаваць',
 'diff-multi'               => '($1 {{PLURAL:$1|прамежная вэрсія|прамежныя вэрсіі|прамежных вэрсіяў}} $2 {{PLURAL:$2|удзельніка|удзельнікаў|удзельнікаў}} {{PLURAL:$1|не паказаная|не паказаныя|не паказаныя}})',
 'diff-multi-manyusers'     => '($1 {{PLURAL:$1|прамежная вэрсія|прамежныя вэрсіі|прамежных вэрсіяў}} $2 {{PLURAL:$2|удзельніка|удзельнікаў|удзельнікаў}} {{PLURAL:$1|не паказаная|не паказаныя|не паказаныя}})',
 
@@ -3451,7 +3451,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'specialpages'                   => 'Спэцыяльныя старонкі',
 'specialpages-note'              => '----
 * Звычайныя спэцыяльныя старонкі.
-* <strong class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</strong>',
+* <strong class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</strong>
+* <span class="mw-specialpagecached">Толькі кэшаваныя спэцыяльныя старонкі.</span>',
 'specialpages-group-maintenance' => 'Тэхнічныя справаздачы',
 'specialpages-group-other'       => 'Іншыя спэцыяльныя старонкі',
 'specialpages-group-login'       => 'Уваход / стварэньне рахунку',

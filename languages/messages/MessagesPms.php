@@ -3291,7 +3291,8 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'specialpages'                   => 'Pàgine Speciaj',
 'specialpages-note'              => '----
 * Pàgine speciaj normaj.
-* <strong class="mw-specialpagerestricted">Pàgine speciaj riservà.</strong>',
+* <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>
+* <span class="mw-specialpagecached">Pàgine speciaj mach an cache.</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other'       => 'Àutre pàgine speciaj',
 'specialpages-group-login'       => 'Login / registrassion',

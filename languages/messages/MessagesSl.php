@@ -3432,7 +3432,8 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'specialpages'                   => 'Posebne strani',
 'specialpages-note'              => '----
 * Navadne posebne strani.
-* <strong class="mw-specialpagerestricted">Omejene posebne strani.</strong>',
+* <span class="mw-specialpagerestricted">Omejene posebne strani.</span>
+* <span class="mw-specialpagecached">Samo predpomnjene posebne strani.</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',
 'specialpages-group-other'       => 'Ostale posebne strani',
 'specialpages-group-login'       => 'Prijavite se / registrirajte se',

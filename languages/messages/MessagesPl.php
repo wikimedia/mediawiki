@@ -3575,8 +3575,9 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # Special:SpecialPages
 'specialpages'                   => 'Strony specjalne',
 'specialpages-note'              => '----
-* Strony specjalne ogólnie dostępne.
-* <strong class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</strong>',
+* Typowe strony specjalne.
+* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>
+* <span class="mw-specialpagecached">Buforowane strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',

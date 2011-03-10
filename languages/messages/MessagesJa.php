@@ -3741,8 +3741,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # Special:SpecialPages
 'specialpages'                   => '特別ページ',
 'specialpages-note'              => '----
-*通常の特別ページ。
-* <strong class="mw-specialpagerestricted">制限されている特別ページ。</strong>',
+* 通常の特別ページ。
+* <span class="mw-specialpagerestricted">制限されている特別ページ。</strong>
+* <span class="mw-specialpagecached">キャッシュのみの特別ページ。</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other'       => 'その他の特別ページ',
 'specialpages-group-login'       => 'ログイン/利用者登録',
