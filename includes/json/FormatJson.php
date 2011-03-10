@@ -58,7 +58,7 @@ class FormatJson {
 			$jsonDec = $json->decode( $value );
 			return $jsonDec;
 		} else {
-			return json_decode( $value, $assoc );
+			return wfObjectToArray( json_decode( $value, $assoc ) );
 		}
 	}
 	
