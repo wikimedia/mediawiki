@@ -1015,8 +1015,8 @@ window.mediaWiki = new ( function( $ ) {
 		this.load = function( modules, type ) {
 			// Validate input
 			if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
-				throw new Error( 'dependencies must be a string or an array, not a ' +
-					typeof dependencies )
+				throw new Error( 'modules must be a string or an array, not a ' +
+					typeof modules )
 			}
 			// Allow calling with an external script or single dependency as a string
 			if ( typeof modules === 'string' ) {
