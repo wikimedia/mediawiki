@@ -62,6 +62,7 @@ class nextJobDB extends Maintenance {
 				return;
 			}
 
+			$candidates = array_values( $candidates );
 			$db = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
 			if ( !$this->checkJob( $type, $db ) ) {
 				// This job is not available in the current database. Remove it from 
@@ -86,9 +87,9 @@ class nextJobDB extends Maintenance {
 	 * Check if the specified database has a job of the specified type in it.
 	 * The type may be false to indicate "all". 
 	 */
-	function checkJob( $type, $db ) {
-		$lb = wfGetLB( $db );
-		$db = $lb->getConnection( DB_MASTER );
+	function checkJob( $type, $dbName ) {
+		$lb = wfGetLB( $dbName );
+		$db = $lb->getConnection( DB_MASTER, array(), $dbName );
 		if ( $type === false ) {
 			$conds = array();
 		} else {
