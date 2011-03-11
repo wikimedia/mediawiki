@@ -165,9 +165,6 @@ general notes.
 * (bug 23848) Add {{ARTICLEPATH}} Magic Word.
 * JavaScript-based password complexity checker on account creation and
   password change.
-* The HTML ID's generated for sections are now much prettier when they contain
-  punctuation or non-English letters, so a section named "Hello?" will now
-  result in a URL ending in "#Hello?" rather than "#Hello.3F".
 * (bug 8140) Add dedicated CSS classes to Special:Newpages elements
 * (bug 11005) Add CSS class to empty pages in Special:Newpages
 * The parser cache is now shared amongst users whose different settings aren't
