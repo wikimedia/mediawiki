@@ -602,7 +602,7 @@ class LogEventsList {
 	/**
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 *
-	 * @param $out OutputPage or String-by-reference
+	 * @param $out OutputPage|String-by-reference
 	 * @param $types String or Array
 	 * @param $page String The page title to show log entries for
 	 * @param $user String The user who made the log entries

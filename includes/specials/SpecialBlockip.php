@@ -398,7 +398,7 @@ class IPBlockForm extends SpecialPage {
 	 * bug 15810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
-	 * @param $user User, Int or String
+	 * @param $user User|Int|String
 	 */
 	public static function checkUnblockSelf( $user ) {
 		global $wgUser;
@@ -558,7 +558,7 @@ class IPBlockForm extends SpecialPage {
 					$log_action = 'reblock';
 					# Unset _deleted fields if requested
 					if( $currentBlock->mHideName && !$this->BlockHideName ) {
-						self::unsuppressUserName( $this->BlockAddress, $userId );
+						RevisionDeleteUser::unsuppressUserName( $this->BlockAddress, $userId );
 					}
 				}
 			} else {
@@ -568,7 +568,7 @@ class IPBlockForm extends SpecialPage {
 
 			# Set *_deleted fields if requested
 			if( $this->BlockHideName ) {
-				self::suppressUserName( $this->BlockAddress, $userId );
+				RevisionDeleteUser::suppressUserName( $this->BlockAddress, $userId );
 			}
 
 			# Only show watch link when this is no range block
@@ -598,60 +598,14 @@ class IPBlockForm extends SpecialPage {
 		}
 	}
 
+	# @deprecated @since 1.18
 	public static function suppressUserName( $name, $userId, $dbw = null ) {
-		$op = '|'; // bitwise OR
-		return self::setUsernameBitfields( $name, $userId, $op, $dbw );
+		return RevisionDeleteUser::suppressUserName( $name, $userId, $dbw );
 	}
 
+	# @deprecated @since 1.18
 	public static function unsuppressUserName( $name, $userId, $dbw = null ) {
-		$op = '&'; // bitwise AND
-		return self::setUsernameBitfields( $name, $userId, $op, $dbw );
-	}
-
-	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {
-		if( $op !== '|' && $op !== '&' ) return false; // sanity check
-		if( !$dbw )
-			$dbw = wfGetDB( DB_MASTER );
-		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
-		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
-		# Normalize user name
-		$userTitle = Title::makeTitleSafe( NS_USER, $name );
-		$userDbKey = $userTitle->getDBkey();
-		# To suppress, we OR the current bitfields with Revision::DELETED_USER
-		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
-		# current bitfields with the inverse of Revision::DELETED_USER. The
-		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
-		# The same goes for the sysop-restricted *_deleted bit.
-		if( $op == '&' ) {
-			$delUser = "~{$delUser}";
-			$delAction = "~{$delAction}";
-		}
-		# Hide name from live edits
-		$dbw->update( 'revision', array( "rev_deleted = rev_deleted $op $delUser" ),
-			array( 'rev_user' => $userId ), __METHOD__ );
-		# Hide name from deleted edits
-		$dbw->update( 'archive', array( "ar_deleted = ar_deleted $op $delUser" ),
-			array( 'ar_user_text' => $name ), __METHOD__ );
-		# Hide name from logs
-		$dbw->update( 'logging', array( "log_deleted = log_deleted $op $delUser" ),
-			array( 'log_user' => $userId, "log_type != 'suppress'" ), __METHOD__ );
-		$dbw->update( 'logging', array( "log_deleted = log_deleted $op $delAction" ),
-			array( 'log_namespace' => NS_USER, 'log_title' => $userDbKey,
-				"log_type != 'suppress'" ), __METHOD__ );
-		# Hide name from RC
-		$dbw->update( 'recentchanges', array( "rc_deleted = rc_deleted $op $delUser" ),
-			array( 'rc_user_text' => $name ), __METHOD__ );
-		$dbw->update( 'recentchanges', array( "rc_deleted = rc_deleted $op $delAction" ),
-			array( 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ), __METHOD__ );
-		# Hide name from live images
-		$dbw->update( 'oldimage', array( "oi_deleted = oi_deleted $op $delUser" ),
-			array( 'oi_user_text' => $name ), __METHOD__ );
-		# Hide name from deleted images
-		# WMF - schema change pending
-		# $dbw->update( 'filearchive', array( "fa_deleted = fa_deleted $op $delUser" ),
-		#	array( 'fa_user_text' => $name ), __METHOD__ );
-		# Done!
-		return true;
+		return RevisionDeleteUser::unsuppressUserName( $name, $userId, $dbw );
 	}
 
 	/**

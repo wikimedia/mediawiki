@@ -239,7 +239,7 @@ class IPUnblockForm extends SpecialPage {
 		
 		# Unset _deleted fields as needed
 		if( $block->mHideName ) {
-			IPBlockForm::unsuppressUserName( $block->mAddress, $block->mUser );
+			RevisionDeleteUser::unsuppressUserName( $block->mAddress, $block->mUser );
 		}
 
 		# Make log entry
