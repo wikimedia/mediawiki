@@ -586,7 +586,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * @return list of dependencies
 		 * @throws Error if circular reference is detected
 		 */
-		function resolve( module, resolved, unresolved ) {
+		function resolve( module ) {
 			// Allow calling with an array of module names
 			if ( typeof module === 'object' ) {
 				var modules = [];
