@@ -203,6 +203,10 @@ class User {
 		$this->clearInstanceCache( 'defaults' );
 	}
 
+	function __toString(){
+		return $this->getName();
+	}
+
 	/**
 	 * Load the user table data for this object from the source given by mFrom.
 	 */
