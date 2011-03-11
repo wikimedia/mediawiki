@@ -2457,9 +2457,15 @@ class User {
 
 	/**
 	 * Set the default cookies for this session on the user's client.
+	 *
+	 * @param $request WebRequest object to use; $wgRequest will be used if null
+	 *        is passed.
 	 */
-	function setCookies() {
-		global $wgRequest;
+	function setCookies( $request = null ) {
+		if ( $request === null ) {
+			global $wgRequest;
+			$request = $wgRequest;
+		}
 
 		$this->load();
 		if ( 0 == $this->mId ) return;
@@ -2481,7 +2487,7 @@ class User {
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 
 		foreach ( $session as $name => $value ) {
-			$wgRequest->setSessionData( $name, $value );
+			$request->setSessionData( $name, $value );
 		}
 		foreach ( $cookies as $name => $value ) {
 			if ( $value === false ) {
