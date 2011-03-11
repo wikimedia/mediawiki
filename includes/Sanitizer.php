@@ -686,19 +686,6 @@ class Sanitizer {
 		}
 
 		if ( $wgAllowMicrodataAttributes ) {
-			# There are some complicated validity constraints we need to
-			# enforce here.  First of all, we don't want to allow non-standard
-			# itemtypes.
-			$allowedTypes = array(
-				'http://microformats.org/profile/hcard',
-				'http://microformats.org/profile/hcalendar#vevent',
-				'http://n.whatwg.org/work',
-			);
-			if ( isset( $out['itemtype'] ) && !in_array( $out['itemtype'],
-			$allowedTypes ) ) {
-				# Kill everything
-				unset( $out['itemscope'] );
-			}
 			# itemtype, itemid, itemref don't make sense without itemscope
 			if ( !array_key_exists( 'itemscope', $out ) ) {
 				unset( $out['itemtype'] );
