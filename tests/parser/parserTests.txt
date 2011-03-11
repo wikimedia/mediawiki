@@ -1264,7 +1264,7 @@ Multiplication table
 <caption>Multiplication table
 </caption>
 <tr>
-<th> &times; </th>
+<th> &#215; </th>
 <th> 1 </th>
 <th> 2 </th>
 <th> 3
@@ -1351,7 +1351,7 @@ Nested table
 !! result
 <table border="1">
 <tr>
-<td> &alpha;
+<td> &#945;
 </td>
 <td>
 <table bgcolor="#ABCDEF" border="2">
@@ -1730,7 +1730,7 @@ Non-breaking spaces in title
 !! input
 [[&nbsp; Main &nbsp; Page &nbsp;]]
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">&nbsp; Main &nbsp; Page &nbsp;</a>
+<p><a href="/wiki/Main_Page" title="Main Page">&#160; Main &#160; Page &#160;</a>
 </p>
 !!end
 
