@@ -96,6 +96,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   differently (italicized by default) on Special:SpecialPages
 * Added $wgAggregateStatsID, which allows UDP stats to be aggregated over
   several wikis.
+* When $wgAllowMicrodataAttributes is true, all itemtypes are allowed, not just
+  the three that were defined in the original specification.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
