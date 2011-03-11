@@ -1785,8 +1785,6 @@ class OutputPage {
 			}
 		}
 
-		$sk = $wgUser->getSkin();
-
 		// Add base resources
 		$this->addModules( 'mediawiki.util' );
 		global $wgIncludeLegacyJavaScript;
@@ -1849,6 +1847,8 @@ class OutputPage {
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );
 		} else {
+			$sk = $wgUser->getSkin();
+
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
 			wfRunHooks( 'BeforePageDisplay', array( &$this, &$sk ) );
