@@ -789,6 +789,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'usernamehasherror'          => 'Användarnamnet får inte innehålla #.',
 'login-throttled'            => 'Du har gjort för många misslyckade inloggningsförsök till det här kontot.
 Vänta innan du försöker igen.',
+'login-abort-generic'        => 'Din inloggning misslyckades - Avbröts',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 
@@ -954,6 +955,7 @@ Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och
 'token_suffix_mismatch'            => "'''Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens \"edit token\". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.'''",
+'edit_form_incomplete'             => "'''Vissa delar av redigeringen kunde inte nå servern, dubbelkolla att dina ändringar är intakta och försök igen.'''",
 'editing'                          => 'Redigerar $1',
 'editingsection'                   => 'Redigerar $1 (avsnitt)',
 'editingcomment'                   => 'Redigerar $1 (nytt avsnitt)',
@@ -1078,7 +1080,7 @@ Den kan ha tagits bort från wikin eller bytt namn.
 Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kommentar borttagen)',
+'rev-deleted-comment'         => '(redigeringssammanfattning togs bort)',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
 'rev-deleted-user-contribs'   => '[användarnamn eller IP-adress har tagits bort - redigeringen visas ej bland bidragen]',
@@ -1785,6 +1787,10 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload-unknown-size'       => 'Okänd storlek',
 'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => 'Ett fel inträffade när filen öppnades för en ZIP-kontroll.',
+'zip-wrong-format'    => 'Den angivna filen var inte en ZIP-fil.',
+
 # Special:UploadStash
 'uploadstash'          => 'Ladda upp stash',
 'uploadstash-summary'  => 'Denna sida ger tillgång till filer som är uppladdade (eller håller på att laddas upp) men som ännu inte är publicerade till wikin. Dessa filer är inte synliga för någon annan än den användare som laddade upp dem.',
@@ -2421,9 +2427,10 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'      => 'Namnrymd:',
-'invert'         => 'Uteslut vald namnrymd',
-'blanknamespace' => '(Huvudnamnrymden)',
+'namespace'             => 'Namnrymd:',
+'invert'                => 'Uteslut vald namnrymd',
+'namespace_association' => 'Associerade namnutrymmen',
+'blanknamespace'        => '(Huvudnamnrymden)',
 
 # Contributions
 'contributions'       => 'Användarbidrag',
@@ -3531,7 +3538,8 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>',
+* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>
+* <span class="mw-specialpagecached">Endast cachade specialsidor.</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

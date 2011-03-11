@@ -3569,7 +3569,7 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Hledání duplicitních souborů',
-'fileduplicatesearch-summary'   => 'Hledání duplicitních souborů vychází z hodnoty hashovací funkce.',
+'fileduplicatesearch-summary'   => 'Hledání duplicitních souborů podle jejich hašů.',
 'fileduplicatesearch-legend'    => 'Hledání duplikátů',
 'fileduplicatesearch-filename'  => 'Jméno souboru:',
 'fileduplicatesearch-submit'    => 'Hledat',
@@ -3582,7 +3582,8 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'specialpages'                   => 'Speciální stránky',
 'specialpages-note'              => '----
 * Normální speciální stránky
-* <strong class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</strong>',
+* <strong class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</strong>
+* <strong class="mw-specialpagecached">Speciální stránky z&nbsp;cache</strong>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other'       => 'Ostatní',
 'specialpages-group-login'       => 'Přihlašování / registrace',
