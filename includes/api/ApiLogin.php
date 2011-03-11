@@ -75,7 +75,7 @@ class ApiLogin extends ApiBase {
 		switch ( $authRes = $loginForm->authenticateUserData() ) {
 			case LoginForm::SUCCESS:
 				$wgUser->setOption( 'rememberpassword', 1 );
-				$wgUser->setCookies();
+				$wgUser->setCookies( $this->getMain()->getRequest() );
 
 				// Run hooks. FIXME: split back and frontend from this hook.
 				// FIXME: This hook should be placed in the backend
