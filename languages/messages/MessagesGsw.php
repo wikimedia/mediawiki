@@ -599,6 +599,7 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
 'usernamehasherror'          => 'In Benutzernäme derf s kei Rautezeiche din haa',
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
+'login-abort-generic'        => 'Dyy Aamäldig isch nit erfolgryych gsii – Abbroche',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
 
@@ -887,7 +888,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'history-feed-empty'          => 'Di aagforderet Syte git s nid. Villicht isch si glescht oder verschobe wore. [[Special:Search|Suech]] {{SITENAME}} fir neji Syte, wu passe.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(Bearbeitigskommentar uusegnuh)',
+'rev-deleted-comment'         => '(Zämmefassig uusegnuh)',
 'rev-deleted-user'            => '(Benutzername uusegnuh)',
 'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
 'rev-deleted-user-contribs'   => '[Benutzername oder IP-Adräss uusegnuu - Bearbeitig in dr Byytragslischt versteckt]',
@@ -2211,9 +2212,10 @@ $1',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
-'namespace'      => 'Namensruum:',
-'invert'         => 'Uswahl umkehre',
-'blanknamespace' => '(Haupt-)',
+'namespace'             => 'Namensruum:',
+'invert'                => 'Uswahl umkehre',
+'namespace_association' => 'Zuegordnete Namensruum',
+'blanknamespace'        => '(Haupt-)',
 
 # Contributions
 'contributions'       => 'Benutzer-Byträg',
@@ -3247,8 +3249,9 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsytene',
 'specialpages-note'              => '----
-* D Spezialsyte für alli
-* <strong class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</strong>',
+* Reguläri Spezialsyte
+* <span class="mw-specialpagerestricted">Zuegriffsbschränkti Spezialsyte</span>
+* <span class="mw-specialpagecached">Cachegenerierti Spezialsyte</span>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
 'specialpages-group-login'       => 'Aamälde',

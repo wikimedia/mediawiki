@@ -2428,7 +2428,7 @@ $1',
 'year'                => 'വർഷം:',
 
 'sp-contributions-newbies'             => 'പുതിയ അംഗങ്ങൾ നടത്തിയ തിരുത്തലുകൾ മാത്രം',
-'sp-contributions-newbies-sub'         => 'പുതിയ അംഗത്വങ്ങൾക്ക്',
+'sp-contributions-newbies-sub'         => 'പുതിയ ഉപയോക്താക്കൾ ചെയ്തവ',
 'sp-contributions-newbies-title'       => 'പുതിയ അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ സേവനങ്ങൾ',
 'sp-contributions-blocklog'            => 'തടയൽ രേഖ',
 'sp-contributions-deleted'             => 'മായ്ക്കപ്പെട്ട ഉപയോക്തൃസംഭാവനകൾ',

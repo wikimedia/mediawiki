@@ -3430,8 +3430,9 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 # Special:SpecialPages
 'specialpages'                   => 'Mga natatanging pahina',
 'specialpages-note'              => '----
-* Karaniwang natatanging pahina.
-* <strong class="mw-specialpagerestricted">Mga pinaghihigpitang natatanging pahina.</strong>',
+* Pangkaraniwang natatanging mga pahina.
+* <strong class="mw-specialpagerestricted">Pinaghihigpitang natatanging mga pahina.</strong>
+* <span class="mw-specialpagecached">Nakakubli lamang na natatanging mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other'       => 'Iba pang natatanging mga pahina',
 'specialpages-group-login'       => 'Lumagda/tumala',

@@ -208,11 +208,11 @@ $messages = array(
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
-'underline-default' => 'Pelayar asal',
+'underline-default' => 'Lalaian pelayar',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya fon ruang sunting:',
-'editfont-default'   => 'Pelayar asal',
+'editfont-default'   => 'Lalaian pelayar',
 'editfont-monospace' => 'Fon monospace',
 'editfont-sansserif' => 'Fon sans-serif',
 'editfont-serif'     => 'Fon serif',
@@ -398,7 +398,7 @@ Sila tunggu sebentar sebelum cuba mencapai laman ini lagi.
 $1',
 'pool-timeout'      => 'Menunggu sebentar untuk dikunci',
 'pool-queuefull'    => 'Giliran kolam telah penuh',
-'pool-errorunknown' => 'Ralat yang tidak diketahui',
+'pool-errorunknown' => 'Ralat tak diketahui',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Perihal {{SITENAME}}',
@@ -413,7 +413,7 @@ $1',
 'edithelppage'         => 'Help:Menyunting',
 'helppage'             => 'Help:Kandungan',
 'mainpage'             => 'Laman Utama',
-'mainpage-description' => 'Laman Utama',
+'mainpage-description' => 'Laman utama',
 'policy-url'           => 'Project:Dasar',
 'portal'               => 'Portal masyarakat',
 'portal-url'           => 'Project:Portal Masyarakat',

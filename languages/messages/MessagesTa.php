@@ -855,6 +855,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'revdelete-unhid'             => '$1 காட்டுக',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|திருத்தத்திற்கு|திருத்தங்களிற்கு}} $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|நிகழ்விற்கு|நிகழ்வுகளிற்கு}} $1',
+'revdelete-reason-dropdown'   => '* பொதுவான நீக்கு காரணங்கள்
+**பதிப்புரிமை மீறல்
+** தனிப்பட்ட தகவல்கள் வெளியிட்டமை
+** அவதூறாகக் கொள்ளக்கூடிய உள்ளடக்கம்',
 'revdelete-otherreason'       => 'வேறு மேலதிக காரணம்:',
 'revdelete-reasonotherlist'   => 'வேறு காரணம்',
 'revdelete-edit-reasonlist'   => 'நீக்கல் காரணங்களைத் தொகு',

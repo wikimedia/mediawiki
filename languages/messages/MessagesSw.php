@@ -611,6 +611,7 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 'usernamehasherror'          => 'Jina la mtumiaji haliwezi kuwa na herufi ya alama ya reli',
 'login-throttled'            => 'Umejaribu kadha wa kadha kuingia akaunti hii.
 Tafadhali subiri kwanza kabla ya kujaribu tena.',
+'login-abort-generic'        => 'Kuingia kwako hakufaulu: iliachishwa',
 'loginlanguagelabel'         => 'Lugha: $1',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 

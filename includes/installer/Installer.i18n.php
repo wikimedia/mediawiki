@@ -11033,6 +11033,72 @@ $messages['sr-ec'] = array(
 	'config-page-language' => 'Језик',
 );
 
+/** Swedish (Svenska)
+ * @author WikiPhoenix
+ */
+$messages['sv'] = array(
+	'config-desc' => 'Installationsprogram för MediaWiki',
+	'config-title' => 'Installation av MediaWiki $1',
+	'config-information' => 'Information',
+	'config-localsettings-key' => 'Uppgraderingsnyckel:',
+	'config-localsettings-badkey' => 'Nyckeln du angav är inkorrekt.',
+	'config-session-error' => 'Fel vid uppstart av session: $1',
+	'config-your-language' => 'Ditt språk:',
+	'config-your-language-help' => 'Välj ett språk som ska användas under installationen.',
+	'config-wiki-language' => 'Wikispråk:',
+	'config-wiki-language-help' => 'Välj det språk som wikin främst kommer att skrivas i.',
+	'config-back' => '← Tillbaka',
+	'config-continue' => 'Fortsätt →',
+	'config-page-language' => 'Språk',
+	'config-page-welcome' => 'Välkommen till MediaWiki!',
+	'config-page-dbconnect' => 'Anslut till databas',
+	'config-page-upgrade' => 'Uppgradera existerande installation',
+	'config-page-dbsettings' => 'Databasinställningar',
+	'config-page-name' => 'Namn',
+	'config-page-options' => 'Alternativ',
+	'config-page-install' => 'Installera',
+	'config-page-complete' => 'Slutfört!',
+	'config-page-restart' => 'Starta om installationen',
+	'config-page-readme' => 'Läs mig',
+	'config-page-releasenotes' => 'Utgivningsanteckningar',
+	'config-page-copying' => 'Kopiering',
+	'config-page-upgradedoc' => 'Uppgradering',
+	'config-help-restart' => 'Vill du rensa all sparad data som du har skrivit in och starta om installationen?',
+	'config-restart' => 'Ja, starta om',
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWikis hemsida]
+* [http://www.mediawiki.org/wiki/Help:Contents Användarguide]
+* [http://www.mediawiki.org/wiki/Manual:Contents Administratörguide]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Frågor och svar]
+----
+* <doclink href=Readme>Läs mig</doclink>
+* <doclink href=ReleaseNotes>Utgivningsanteckningar</doclink>
+* <doclink href=Copying>Kopiering</doclink>
+* <doclink href=UpgradeDoc>Uppgradering</doclink>',
+	'config-env-good' => 'Miljön har kontrollerats.
+Du kan installera MediaWiki.',
+	'config-env-bad' => 'Miljön har kontrollerats.
+Du kan inte installera MediaWiki.',
+	'config-env-php' => 'PHP $1 är installerad.',
+	'config-env-php-toolow' => 'PHP $1 är installerad.
+MediaWiki kräver PHP $2 eller högre.',
+	'config-header-mysql' => 'MySQL-inställningar',
+	'config-header-postgres' => 'PostgreSQL-inställningar',
+	'config-header-sqlite' => 'SQLite-inställningar',
+	'config-header-oracle' => 'Oracle-inställningar',
+	'config-invalid-db-type' => 'Ogiltig databastyp',
+	'config-missing-db-name' => 'Du måste ange ett värde för "Databasnamn"',
+	'config-missing-db-host' => 'Du måste ange ett värde för "Databasvärd"',
+	'config-invalid-db-name' => '"$1" är ett ogiltigt databasnamn.
+Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
+	'config-invalid-db-prefix' => '"$1" är ett ogiltigt databasprefix.
+Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
+	'config-connection-error' => '$1.
+
+Kontrollera värden, användarnamnet och lösenordet nedan och försök igen',
+	'config-invalid-schema' => '"$1" är ett ogiltigt schema för MediaWiki.
+Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
+);
+
 /** Tamil (தமிழ்)
  * @author TRYPPN
  */

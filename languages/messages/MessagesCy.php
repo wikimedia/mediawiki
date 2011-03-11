@@ -593,6 +593,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'usernamehasherror'          => 'Ni all enw defnyddiwr gynnwys symbolau stwnsh',
 'login-throttled'            => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
 Oedwch ychydig cyn mentro eto.',
+'login-abort-generic'        => 'Ni lwyddodd y mewngofnodi - Rhoddwyd y gorau iddo',
 'loginlanguagelabel'         => 'Iaith: $1',
 'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
 
@@ -3292,7 +3293,8 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'specialpages'                   => 'Tudalennau arbennig',
 'specialpages-note'              => '----
 * Tudalennau arbennig ar gael i bawb.
-* <strong class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</strong>',
+* <strong class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</strong>
+* <span class="mw-specialpagecached">Tudalennau arbennig wedi eu cynhyrchu o\'r celc.</span>',
 'specialpages-group-maintenance' => 'Adroddiadau cynnal a chadw',
 'specialpages-group-other'       => 'Eraill',
 'specialpages-group-login'       => 'Mewngofnodi / creu cyfrif',
