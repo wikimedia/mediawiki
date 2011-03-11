@@ -1216,13 +1216,12 @@ class Article {
 		global $wgOut, $wgUser, $wgRequest, $wgRedirectSources;
 
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
-		$sk = $wgUser->getSkin();
 
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-				$redir = $sk->link(
+				$redir = $wgUser->getSkin()->link(
 					$this->mRedirectedFrom,
 					null,
 					array(),
@@ -1250,7 +1249,7 @@ class Article {
 			// This is an externally redirected view, from some other wiki.
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
-				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
+				$redir = $wgUser->getSkin()->makeExternalLink( $rdfrom, $rdfrom );
 				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
 				$wgOut->setSubtitle( $s );
 
