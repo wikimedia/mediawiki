@@ -239,6 +239,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27897) list=allusers and list=users list hidden users
 * (bug 27717) API's exturlusage module does not respect $wgMiserMode
 * (bug 27588) list=filearchive&faprop=sha1 returns empty attribute
+* (bug 28010) Passing a non existant user to list=users gives internal error
+* (bug 27549) action=query&list=users&usprop=groups doesn't show implicit
+  groups if a user doesn't have explicit groups
 
 === Languages updated in 1.18 ===
 
