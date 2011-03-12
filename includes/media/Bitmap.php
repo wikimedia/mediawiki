@@ -181,13 +181,13 @@ class BitmapHandler extends ImageHandler {
 			$scaler = 'client';
 		} elseif ( !$wgUseImageResize ) {
 			$scaler = 'client';
-		} elseif ( $wgUseImageMagick ) {
+		}/* elseif ( $wgUseImageMagick ) {
 			$scaler = 'im';
 		} elseif ( $wgCustomConvertCommand ) {
 			$scaler = 'custom';
 		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
 			$scaler = 'gd';
-		} elseif ( class_exists( 'Imagick' ) ) {
+		}*/ elseif ( class_exists( 'Imagick' ) ) {
 			$scaler = 'imext';
 		} else {
 			$scaler = 'client';
@@ -367,7 +367,7 @@ class BitmapHandler extends ImageHandler {
 			$im->setImageDepth( 8 );
 			
 			if ( $rotation ) {
-				if ( !$im->rotateImage( new ImagickPixel( 'white' ), $rotation ) ) {
+				if ( !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
 					return $this->getMediaTransformError( $params, "Error rotating $rotation degrees" );
 				}
 			}
