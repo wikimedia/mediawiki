@@ -51,6 +51,10 @@ PHP if you have not done so prior to upgrading MediaWiki.
   $wgLegacyEncoding set.
 * (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
   look at when finding metadata to prevent excessive resource usage.
+* $wgSysopUserBans and $wgSysopRangeBans (deprecated in 1.17) are now removed.
+  Use $wgBlockCIDRLimit = array( 'IPv4' => 43, 'IPv6' => 128 ) to achieve the same
+  functionality as $wgSysopRangeBans; you can use the BlockIp hook to replicate
+  $wgSysopUserBans functionality.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
