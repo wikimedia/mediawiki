@@ -40,6 +40,7 @@ class SpecialContributions extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		$this->opts = array();
 

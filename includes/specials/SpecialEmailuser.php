@@ -88,6 +88,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		$this->mTarget = is_null( $par )
 			? $wgRequest->getVal( 'wpTarget', $wgRequest->getVal( 'target', '' ) )

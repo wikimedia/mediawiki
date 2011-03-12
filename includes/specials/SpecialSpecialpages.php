@@ -37,6 +37,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->allowClickjacking();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		$groups = $this->getPageGroups();
 

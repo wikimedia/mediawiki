@@ -112,7 +112,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$this->outputHeader();
-
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 		$this->setHeaders();
 
 		// show the general form

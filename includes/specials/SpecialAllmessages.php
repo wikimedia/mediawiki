@@ -59,6 +59,8 @@ class SpecialAllmessages extends SpecialPage {
 			$this->outputHeader( 'allmessagestext' );
 		}
 
+		$wgOut->addModuleStyles( 'mediawiki.special' );
+
 		$this->filter = $wgRequest->getVal( 'filter', 'all' );
 		$this->prefix = $wgRequest->getVal( 'prefix', '' );
 
