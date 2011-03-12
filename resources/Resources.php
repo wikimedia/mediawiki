@@ -416,6 +416,12 @@ return array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
 		'dependencies' => 'mediawiki.util',
 	),
+
+	/* Special pages */
+
+	'mediawiki.special' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
+	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
@@ -444,6 +450,7 @@ return array(
 		),
 		'dependencies' => array( 'mediawiki.util.jpegmeta' ),
 	),
+
 	'mediawiki.language' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.js',
 		'languageScripts' => array(

@@ -42,6 +42,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		# GET values
 		$from = $wgRequest->getVal( 'from', '' );

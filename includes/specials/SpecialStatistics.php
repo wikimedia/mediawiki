@@ -41,6 +41,7 @@ class SpecialStatistics extends SpecialPage {
 		global $wgDisableCounters, $wgMiserMode;
 		
 		$this->setHeaders();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 	
 		$this->views = SiteStats::views();
 		$this->edits = SiteStats::edits();

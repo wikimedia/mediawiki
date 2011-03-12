@@ -11,7 +11,9 @@
 
 /* Links to redirects appear italicized on [[Special:AllPages]], [[Special:PrefixIndex]],
    [[Special:Watchlist/edit]] and in category listings */
-.allpagesredirect, .redirect-in-category, .watchlistredir { font-style: italic; }
+.allpagesredirect, .redirect-in-category, .watchlistredir {
+	font-style: italic;
+}
 
 /* Comment and username portions of RC entries */
 span.comment {
@@ -145,213 +147,6 @@ p.mw-revdel-editreasons {
 	float: right;
 }
 
-/* Search results */
-.searchresults {
-}
-
-.searchresults p {
-	margin-left: 0.4em;
-	margin-top: 1em;
-	margin-bottom: 1.2em;
-}
-
-div.searchresult {
-	font-size: 95%;
-	width: 38em;
-}
-
-.mw-search-results {
-	margin-left: 0.4em;
-}
-
-.mw-search-results li {
-	padding-bottom: 1em;
-	list-style: none;
-	list-style-image: none;
-}
-.mw-search-results li a {
-	font-size: 108%;
-}
-
-.mw-search-result-data {
-	color: green;
-	font-size: 97%;
-}
-
-.mw-search-formheader {
-	background-color: #f3f3f3;
-	margin-top: 1em;
-	border: 1px solid silver;
-}
-.mw-search-formheader div.search-types {
-	float: left;
-	padding-left: 0.25em;
-}
-.mw-search-formheader div.search-types ul {
-	margin: 0 !important;
-	padding: 0 !important;
-	list-style: none !important;
-}
-.mw-search-formheader div.search-types ul li {
-	float: left;
-	margin: 0;
-	padding: 0;
-}
-.mw-search-formheader div.search-types ul li a {
-	display: block;
-	padding: 0.5em;
-}
-.mw-search-formheader div.search-types ul li.current a {
-	color: #333333;
-	cursor: default;
-}
-.mw-search-formheader div.search-types ul li.current a:hover {
-	text-decoration: none;
-}
-.mw-search-formheader div.results-info {
-	float: right;
-	padding: 0.5em;
-	padding-right: 0.75em;
-}
-.mw-search-formheader div.results-info ul {
-	margin: 0 !important;
-	padding: 0 !important;
-	list-style: none !important;
-}
-.mw-search-formheader div.results-info ul li {
-	float: right;
-	margin: 0;
-	padding: 0;
-}
-fieldset#mw-searchoptions {
-	margin: 0;
-	padding-left: 0.75em !important;
-	padding-right: 0.75em !important;
-	padding-bottom: 0.5em !important;
-	padding-top: 0.5em !important;
-	border: none;
-	background-color: #f9f9f9;
-	border: 1px solid silver !important;
-	border-top-width: 0 !important;
-}
-fieldset#mw-searchoptions legend {
-	display: none;
-}
-fieldset#mw-searchoptions h4 {
-	padding: 0;
-	margin: 0;
-	float: left;
-}
-fieldset#mw-searchoptions div#mw-search-togglebox {
-	float: right;
-}
-
-fieldset#mw-searchoptions div#mw-search-togglebox label {
-	margin-right: 0.25em;
-}
-fieldset#mw-searchoptions div#mw-search-togglebox input {
-	margin-left: 0.25em;
-}
-fieldset#mw-searchoptions table {
-	float: left;
-	margin-right: 3em;
-}
-fieldset#mw-searchoptions table td {
-	padding-right: 1em;
-}
-fieldset#mw-searchoptions div.divider {
-	clear: both;
-	border-bottom: 1px solid #DDDDDD;
-	padding-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-td#mw-search-menu {
-	padding-left:6em;
-	font-size:85%;
-}
-
-div#mw-search-interwiki {
-	float: right;
-	width: 18em;
-	border-style: solid;
-	border-color: #AAAAAA;
-	border-width: 1px;
-	margin-top: 2ex;
-}
-
-div#mw-search-interwiki li {
-	font-size: 95%;
-}
-
-.mw-search-interwiki-more {
-	float: right;
-	font-size: 90%;
-}
-
-div#mw-search-interwiki-caption {
-	text-align: center;
-	font-weight: bold;
-	font-size: 95%;
-}
-
-.mw-search-interwiki-project {
-	font-size: 97%;
-	text-align: left;
-	padding-left: 0.2em;
-	padding-right: 0.15em;
-	padding-bottom: 0.2em;
-	padding-top: 0.15em;
-	background-color: #ececec;
-	border-top: 1px solid #BBBBBB;
-}
-
-span.searchalttitle {
-	font-size: 95%;
-}
-
-div.searchdidyoumean {
-	font-size: 127%;
-	margin-top: 0.8em;
-	/* Note that this color won't affect the link, as desired. */
-	color: #c00;
-}
-
-div.searchdidyoumean em {
-	font-weight: bold;
-}
-
-.searchmatch {
-	font-weight: bold;
-}
-
-
-/*
- * Advanced PowerSearch box
- */
-td#mw-search-togglebox {
-	text-align: right;
-}
-
-table#mw-search-powertable {
-	width: 100%;
-}
-
-form#powersearch {
-	clear: both;
-}
-
-/*
- * UserRights stuff
- */
-.mw-userrights-disabled {
-	color: #888;
-}
-
-table.mw-userrights-groups * td,table.mw-userrights-groups * th {
-	padding-right: 1.5em;
-}
-
 /*
  * OpenSearch ajax suggestions
  */
@@ -435,71 +230,8 @@ table.os-suggest-results {
 	font-weight: bold;
 }
 
-/* Special:Contributions styling */
-.mw-uctop {
-	font-weight: bold;
-}
-
-/* Special:ListGroupRights styling */
-table.mw-listgrouprights-table tr {
-	vertical-align: top;
-}
-.listgrouprights-revoked {
-	text-decoration: line-through;
-}
-
-/* Special:Statistics styling */
-td.mw-statistics-numbers {
-	text-align: right;
-}
-
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
-}
-
-/* Special:EmailUser styling */
-table.mw-emailuser-table {
-	width: 98%;
-}
-td#mw-emailuser-sender, td#mw-emailuser-recipient {
-	font-weight: bold;
-}
-
-/* Special:Allpages styling */
-table.mw-allpages-table-form, table.mw-allpages-table-chunk {
-	width: 100%;
-}
-td.mw-allpages-alphaindexline {
-	text-align: right;
-}
-td.mw-allpages-nav, p.mw-allpages-nav {
-	text-align: right;
-	font-size: smaller;
-	margin-bottom: 1em;
-}
-table.mw-allpages-table-form tr {
-	vertical-align: top;
-}
-
-/* Special:Prefixindex styling */
-table#mw-prefixindex-list-table,
-table#mw-prefixindex-nav-table {
-	width: 98%;
-}
-td#mw-prefixindex-nav-form {
-	font-size: smaller;
-	margin-bottom: 1em;
-	text-align: right;
-	vertical-align: top;
-}
-
-/* Special:Specialpages style */
-.mw-specialpagecached{
-	font-style:italic;
-}
-
-.mw-specialpagerestricted{
-	font-weight:bold;
 }
 
 /*
@@ -667,23 +399,6 @@ table.collapsed tr.collapsable {
 }
 .imagelist th.TablePager_sort {
 	background-color: #ccccff;
-}
-
-/* Allmessages table */
-#mw-allmessagestable .allmessages-customised td.am_default {
-	background-color: #fcffc4;
-}
-
-#mw-allmessagestable tr.allmessages-customised:hover td.am_default {
-	background-color: #faff90;
-}
-
-#mw-allmessagestable td.am_actual {
-	background-color: #e2ffe2;
-}
-
-#mw-allmessagestable tr.allmessages-customised:hover + tr.allmessages-customised td.am_actual {
-	background-color: #b1ffb1;
 }
 
 /* filetoc */

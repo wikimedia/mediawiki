@@ -51,6 +51,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		$wgOut->addHTML(
 			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .

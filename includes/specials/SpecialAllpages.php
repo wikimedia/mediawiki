@@ -76,6 +76,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 			wfMsg( 'allarticles' )
 		);
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		if( isset($par) ) {
 			$this->showChunk( $namespace, $par, $to );

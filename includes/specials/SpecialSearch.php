@@ -44,6 +44,7 @@ class SpecialSearch extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->allowClickjacking();
+		$wgOut->addModuleStyles( 'mediawiki.special' );
 
 		// Strip underscores from title parameter; most of the time we'll want
 		// text form here. But don't strip underscores from actual text params!
