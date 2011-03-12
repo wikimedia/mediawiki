@@ -834,6 +834,32 @@ class Article {
 
 		# Get variables from query string
 		$oldid = $this->getOldID();
+
+		# getOldID may want us to redirect somewhere else
+		if ( $this->mRedirectUrl ) {
+			$wgOut->redirect( $this->mRedirectUrl );
+			wfDebug( __METHOD__ . ": redirecting due to oldid\n" );
+			wfProfileOut( __METHOD__ );
+
+			return;
+		}
+
+		$wgOut->setArticleFlag( true );
+		# Set page title (may be overridden by DISPLAYTITLE)
+		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+
+		# If we got diff in the query, we want to see a diff page instead of the article.
+		if ( $wgRequest->getCheck( 'diff' ) ) {
+			wfDebug( __METHOD__ . ": showing diff page\n" );
+			$this->showDiffPage();
+			wfProfileOut( __METHOD__ );
+
+			return;
+		}
+
+		# Allow frames by default
+		$wgOut->allowClickjacking();
+
 		$parserCache = ParserCache::singleton();
 
 		$parserOptions = $this->getParserOptions();
@@ -868,31 +894,6 @@ class Article {
 				return;
 			}
 		}
-
-		# getOldID may want us to redirect somewhere else
-		if ( $this->mRedirectUrl ) {
-			$wgOut->redirect( $this->mRedirectUrl );
-			wfDebug( __METHOD__ . ": redirecting due to oldid\n" );
-			wfProfileOut( __METHOD__ );
-
-			return;
-		}
-
-		$wgOut->setArticleFlag( true );
-		# Set page title (may be overridden by DISPLAYTITLE)
-		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-
-		# If we got diff in the query, we want to see a diff page instead of the article.
-		if ( $wgRequest->getCheck( 'diff' ) ) {
-			wfDebug( __METHOD__ . ": showing diff page\n" );
-			$this->showDiffPage();
-			wfProfileOut( __METHOD__ );
-
-			return;
-		}
-
-		# Allow frames by default
-		$wgOut->allowClickjacking();
 
 		if ( !$wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
@@ -1070,9 +1071,7 @@ class Article {
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
 
-		// Needed to get the page's current revision
-		$this->loadPageData();
-		if ( $diff == 0 || $diff == $this->mLatest ) {
+		if ( $diff == 0 || $diff == $this->getLatest() ) {
 			# Run view updates for current revision only
 			$this->viewUpdates();
 		}
