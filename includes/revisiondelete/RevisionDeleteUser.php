@@ -110,9 +110,12 @@ class RevisionDeleteUser {
 		);
 
 		# Hide name from deleted images
-		# WMF - schema change pending
-		# $dbw->update( 'filearchive', array( "fa_deleted = fa_deleted $op $delUser" ),
-		#	array( 'fa_user_text' => $name ), __METHOD__ );
+		$dbw->update(
+			'filearchive',
+			array( "fa_deleted = fa_deleted $op $delUser" ),
+			array( 'fa_user_text' => $name ),
+			__METHOD__
+		);
 		# Done!
 		return true;
 	}
