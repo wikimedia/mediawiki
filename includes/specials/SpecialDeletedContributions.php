@@ -354,7 +354,7 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @todo Fixme: almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $nt, $id ) {
-		global $wgSysopUserBans, $wgLang, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 
@@ -368,7 +368,7 @@ class DeletedContributionsPage extends SpecialPage {
 		if( $talk ) {
 			# Talk page link
 			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
-			if( ( $id !== null && $wgSysopUserBans ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
+			if( ( $id !== null ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
 				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 					if ( $userObj->isBlocked() ) {
 						$tools[] = $sk->linkKnown( # Change block link
