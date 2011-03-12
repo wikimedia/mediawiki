@@ -278,7 +278,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
-			'dir' => 'The direction in which to enumerate',
+			'dir' => $this->getDirectionDescription( $this->getModulePrefix() ),
 			'ids' => 'Pipe-separated list of block IDs to list (optional)',
 			'users' => 'Pipe-separated list of users to search for (optional)',
 			'ip' => array(	'Get all blocks applying to this IP or CIDR range, including range blocks.',

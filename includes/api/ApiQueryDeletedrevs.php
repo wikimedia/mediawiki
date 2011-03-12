@@ -314,7 +314,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		return array(
 			'start' => 'The timestamp to start enumerating from (1,2)',
 			'end' => 'The timestamp to stop enumerating at (1,2)',
-			'dir' => 'The direction in which to enumerate (1,2)',
+			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1,2)' ),
 			'limit' => 'The maximum amount of revisions to list',
 			'prop' => array(
 				'Which properties to get',

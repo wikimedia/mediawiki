@@ -582,10 +582,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',
-			'dir' => 'In which direction to enumerate',
+			'dir' => $this->getDirectionDescription( $p ),
 			'namespace' => 'Filter log entries to only this namespace(s)',
 			'user' => 'Only list changes by this user',
 			'excludeuser' => 'Don\'t list changes by this user',
@@ -608,7 +609,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'token' => 'Which tokens to obtain for each change',
 			'show' => array(
 				'Show only items that meet this criteria.',
-				"For example, to see only minor edits done by logged-in users, set {$this->getModulePrefix()}show=minor|!anon"
+				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
 			),
 			'type' => 'Which types of changes to show',
 			'limit' => 'How many total changes to return',

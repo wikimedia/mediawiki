@@ -364,6 +364,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'allrev' => 'Include multiple revisions of the same page within given timeframe',
 			'start' => 'The timestamp to start enumerating from',
@@ -371,7 +372,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'namespace' => 'Filter changes to only the given namespace(s)',
 			'user' => 'Only list changes by this user',
 			'excludeuser' => 'Don\'t list changes by this user',
-			'dir' => 'In which direction to enumerate pages',
+			'dir' => $this->getDirectionDescription( $p ),
 			'limit' => 'How many total results to return per request',
 			'prop' => array(
 				'Which additional items to get (non-generator mode only).',
@@ -389,7 +390,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'show' => array(
 				'Show only items that meet this criteria.',
-				"For example, to see only minor edits done by logged-in users, set {$this->getModulePrefix()}show=minor|!anon"
+				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
 			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist'

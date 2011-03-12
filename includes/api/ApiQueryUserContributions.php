@@ -422,7 +422,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 			'user' => 'The users to retrieve contributions for',
 			'userprefix' => "Retrieve contibutions for all users whose names begin with this value. Overrides {$p}user",
-			'dir' => 'The direction to search (older or newer)',
+			'dir' => $this->getDirectionDescription( $p ),
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => array(
 				'Include additional pieces of information',
