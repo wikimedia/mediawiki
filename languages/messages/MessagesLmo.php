@@ -1142,7 +1142,6 @@ Quest chì a hinn i regulazión curent per la pagina '''$1''':",
 'blockiptext'              => "Druvee 'l mòdul chì de suta per blucà l'acess cun dirit de scritüra a un indirizz IP specifegh o a un druvadur registraa.
 El bloch gh'è de druvàl dumà per evità el vandalism e in acord cun i [[{{MediaWiki:Policy-url}}|regulament de {{SITENAME}}]].
 Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i titul di paginn che i henn stat suget a vandalism).",
-'ipaddress'                => 'Indirizz IP:',
 'ipadressorusername'       => 'Indirizz IP o nom del druvdur:',
 'ipbexpiry'                => 'Fina al:',
 'ipbreason'                => 'Reson:',

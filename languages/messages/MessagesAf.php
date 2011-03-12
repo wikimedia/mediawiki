@@ -2394,7 +2394,6 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'blockiptext'                     => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
 Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}}-beleid]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
-'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres of gebruikersnaam:',
 'ipbexpiry'                       => 'Duur:',
 'ipbreason'                       => 'Rede:',

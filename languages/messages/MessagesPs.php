@@ -1742,7 +1742,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'blockip'                    => 'په کارن بنديز لګول',
 'blockip-title'              => 'په کارن بنديز لګول',
 'blockip-legend'             => 'په کارن بنديز لګول',
-'ipaddress'                  => 'IP پته',
 'ipadressorusername'         => 'IP پته يا کارن نوم',
 'ipbexpiry'                  => 'د پای نېټه:',
 'ipbreason'                  => 'سبب:',

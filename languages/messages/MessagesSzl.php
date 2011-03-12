@@ -1748,7 +1748,6 @@ $1',
 'blockiptext'                     => 'Tyn formulař suužy do zawjerańo sprowjyń spod uokreślůnygo adresu IP abo kůnkretnymu užytkowńikowi.
 Zawjerać noležy jydyńy po to, by zapobjec wandalizmům, zgodńy s [[{{MediaWiki:Policy-url}}|přijyntymi zasadami]].
 Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wandalizmu).',
-'ipaddress'                       => 'Adres IP',
 'ipadressorusername'              => 'Adres IP abo mjano užytkowńika',
 'ipbexpiry'                       => 'Wygaso:',
 'ipbreason'                       => 'Čymu:',

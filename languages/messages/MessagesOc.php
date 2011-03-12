@@ -2375,7 +2375,6 @@ La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d�
 'blockiptext'                     => "Utilizatz lo formulari çaijós per blocar l'accès a las modificacions a partir d'una adreça IP especifica o d'un nom d'utilizaire.
 Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].
 Donatz çaijós un motiu precís (per exemple en citant las paginas que son estadas vandalizadas).",
-'ipaddress'                       => 'Adreça IP :',
 'ipadressorusername'              => 'Adreça IP o nom d’utilizaire :',
 'ipbexpiry'                       => 'Durada del blocatge :',
 'ipbreason'                       => 'Motiu :',

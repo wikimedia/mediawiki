@@ -2152,7 +2152,6 @@ De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'blockiptext'                     => 'Bruuk dat Formular, ene IP-Adress to blocken.
 Dit schall blots maakt warrn, Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]].
 Ok den Grund för dat Blocken indregen.',
-'ipaddress'                       => 'IP-Adress',
 'ipadressorusername'              => 'IP-Adress oder Brukernaam:',
 'ipbexpiry'                       => 'Aflooptiet',
 'ipbreason'                       => 'Grund:',

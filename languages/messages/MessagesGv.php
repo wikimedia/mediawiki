@@ -1063,7 +1063,6 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 # Block/unblock
 'blockip'                  => 'Glass magh yn ymmydeyr',
 'blockip-legend'           => 'Glass magh yn ymmydeyr',
-'ipaddress'                => 'Enmys IP / ennym ymmydeyr',
 'ipadressorusername'       => 'Enmys IP ny ennym ymmydeyr:',
 'ipbexpiry'                => 'Jerrey:',
 'ipbreason'                => 'Fa:',

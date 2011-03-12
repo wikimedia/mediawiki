@@ -1538,7 +1538,6 @@ $1",
 
 # Block/unblock
 'blockip'                     => 'Brocca utenti',
-'ipaddress'                   => 'Indirizzu IP:',
 'ipadressorusername'          => 'Indirizzu IP o innòmu utenti:',
 'ipbexpiry'                   => 'Ischadènzia di lu broccu:',
 'ipbreason'                   => 'Mutibu di lu broccu:',

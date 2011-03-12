@@ -473,7 +473,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection'       => 'Додај тема',
-'vector-action-delete'           => 'Бриши',
+'vector-action-delete'           => 'Избриши',
 'vector-action-move'             => 'Премести',
 'vector-action-protect'          => 'Заштити',
 'vector-action-undelete'         => 'Врати',
@@ -1604,8 +1604,8 @@ $1",
 'action-reupload-shared'      => 'заменување на оваа податотека на заедничко складиште',
 'action-upload_by_url'        => 'подигни ја податотекава од URL-адреса',
 'action-writeapi'             => 'употребете пишување на API',
-'action-delete'               => 'бриши ја оваа страница',
-'action-deleterevision'       => 'бриши ја оваа ревизија',
+'action-delete'               => 'избриши ја страницава',
+'action-deleterevision'       => 'избриши ја ревизијава',
 'action-deletedhistory'       => 'прегледај ја историјата на бришења за оваа страница',
 'action-browsearchive'        => 'барање на избришани страници',
 'action-undelete'             => 'обнови ја оваа страница',
@@ -1906,7 +1906,7 @@ $1',
 'filehist'                          => 'Историја на податотеката',
 'filehist-help'                     => 'Кликнете на датум/време за да ја видите податотеката како изгледала тогаш.',
 'filehist-deleteall'                => 'избриши ги сите',
-'filehist-deleteone'                => 'бриши',
+'filehist-deleteone'                => 'избриши',
 'filehist-revert'                   => 'врати',
 'filehist-current'                  => 'тековна',
 'filehist-datetime'                 => 'Датум/време',
@@ -1952,13 +1952,13 @@ $1',
 'filerevert-badversion'     => 'Нема претходна локална верзија на оваа податотека со даденото време.',
 
 # File deletion
-'filedelete'                  => 'Бриши $1',
+'filedelete'                  => 'Избриши го $1',
 'filedelete-backlink'         => '← $1',
-'filedelete-legend'           => 'Бриши податотека',
+'filedelete-legend'           => 'Избриши податотека',
 'filedelete-intro'            => "Ја бришете податотеката '''[[Media:$1|$1]]''' заедно со нејзината историја.",
 'filedelete-intro-old'        => "Вие ја бришете верзијата на '''[[Media:$1|$1]]''' од [$4 $3, $2].",
 'filedelete-comment'          => 'Причина:',
-'filedelete-submit'           => 'Бриши',
+'filedelete-submit'           => 'Избриши',
 'filedelete-success'          => "'''$1''' беше избришана.",
 'filedelete-success-old'      => "Верзијата на '''[[Media:$1|$1]]''' од $3, $2 беше избришана.",
 'filedelete-nofile'           => "'''$1''' не постои.",
@@ -2037,7 +2037,7 @@ $1',
 'brokenredirects'        => 'Прекинати пренасочувања',
 'brokenredirectstext'    => 'Следните пренасочувања водат до непостоечки страници.',
 'brokenredirects-edit'   => 'уреди',
-'brokenredirects-delete' => 'бриши',
+'brokenredirects-delete' => 'избриши',
 
 'withoutinterwiki'         => 'Страници без интервики (јазични) врски',
 'withoutinterwiki-summary' => 'Следните страници немаат врски до други јазични верзии.',
@@ -2326,7 +2326,7 @@ $UNWATCHURL
 'exblank'                => 'страницата беше празна',
 'delete-confirm'         => 'Избриши „$1“',
 'delete-backlink'        => '← $1',
-'delete-legend'          => 'Бриши',
+'delete-legend'          => 'Избриши',
 'historywarning'         => "'''Предупредување:''' Страницата којашто сакате да ја избришете има историја со околу $1 {{PLURAL:$1|ревизија|ревизии}}:",
 'confirmdeletetext'      => 'На пат сте трајно да избришете страница заедно со нејзината историја.
 Потврдете дека имате намера да го направите ова, дека ги разбирате последиците од тоа, дека го правите ова во согласност со [[{{MediaWiki:Policy-url}}|политиката]].',
@@ -2554,7 +2554,6 @@ $1',
 'blockiptext'                     => 'Користете го долниот образец за да го забраните пристапот за пишување од одредена IP-адреса или корисничко име.
 Ова единствено треба да се прави за да се спречи вандализам, во согласност со [[{{MediaWiki:Policy-url}}|правилата на Википедија]].
 Изберете конкретна причина подолу (пример: цитирање на конкретни страници што биле вандализирани).',
-'ipaddress'                       => 'IP-адреса',
 'ipadressorusername'              => 'IP-адреса или корисничко име:',
 'ipbexpiry'                       => 'Истек на рокот:',
 'ipbreason'                       => 'Причина:',
@@ -3358,7 +3357,7 @@ Variants for Chinese language
 
 'exif-subjectdistance-value' => '$1 метри',
 
-'exif-meteringmode-0'   => 'Непознато',
+'exif-meteringmode-0'   => 'Непознат',
 'exif-meteringmode-1'   => 'Просечно',
 'exif-meteringmode-2'   => 'Просек со тежиште на средина',
 'exif-meteringmode-3'   => 'Во точка',
@@ -3367,7 +3366,7 @@ Variants for Chinese language
 'exif-meteringmode-6'   => 'Делумен',
 'exif-meteringmode-255' => 'Друго',
 
-'exif-lightsource-0'   => 'Непознато',
+'exif-lightsource-0'   => 'Непознат',
 'exif-lightsource-1'   => 'Дневна светлина',
 'exif-lightsource-2'   => 'Флуоресцентно',
 'exif-lightsource-3'   => 'Волфрамско',
@@ -3444,7 +3443,7 @@ Variants for Chinese language
 'exif-sharpness-1' => 'Меко',
 'exif-sharpness-2' => 'Тврдо',
 
-'exif-subjectdistancerange-0' => 'Непознато',
+'exif-subjectdistancerange-0' => 'Непознат',
 'exif-subjectdistancerange-1' => 'Крупен кадар (макро)',
 'exif-subjectdistancerange-2' => 'Близок кадар',
 'exif-subjectdistancerange-3' => 'Далечен кадар',
@@ -3561,7 +3560,7 @@ $5
 # Trackbacks
 'trackbackbox'      => 'Враќања за оваа страница:<br />
 $1',
-'trackbackremove'   => '([$1 Бриши])',
+'trackbackremove'   => '([$1 Избриши])',
 'trackbacklink'     => 'Враќање',
 'trackbackdeleteok' => 'Враќањето беше успешно избришано.',
 
@@ -3633,7 +3632,7 @@ $1',
 'watchlistedit-normal-explain' => 'Насловите во вашиот список на набљудувања се прикажани подолу.
 За да избришете наслов, штиклирајте го квадратчето лево од насловот, и кликнете на „{{int:Watchlistedit-normal-submit}}“.
 Исто така можете да го [[Special:Watchlist/raw|уредувате списокот како текст]].',
-'watchlistedit-normal-submit'  => 'Бриши Наслови',
+'watchlistedit-normal-submit'  => 'Избриши',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 наслов беше|$1 наслови беа}} избришани од вашиот список на набљудувања:',
 'watchlistedit-raw-title'      => 'Напредно уредување на списокот на набљудувања',
 'watchlistedit-raw-legend'     => 'Уредување на списокот на набљудувања',

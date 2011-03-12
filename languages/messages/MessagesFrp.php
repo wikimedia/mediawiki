@@ -2539,7 +2539,6 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'blockiptext'                     => 'Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’utilisator.
 Una tâla mesera devrêt étre prêsa ren que por empachiér lo vandalismo et en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].
 Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont étâ vandalisâs).',
-'ipaddress'                       => 'Adrèce IP :',
 'ipadressorusername'              => 'Adrèce IP ou ben nom d’utilisator :',
 'ipbexpiry'                       => 'Temps devant èxpiracion :',
 'ipbreason'                       => 'Rêson :',

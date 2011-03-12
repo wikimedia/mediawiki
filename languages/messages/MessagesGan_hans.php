@@ -1471,7 +1471,6 @@ $1',
 # Block/unblock
 'blockip'                     => '封到IP地址',
 'blockiptext'                 => '用下底𠮶表格去阻止某一IP𠮶修改权限。除非倷系为到怕佢乱扤，接到非要符合[[{{MediaWiki:Policy-url}}|守则]]𠮶条件下才能啖做。请到下底话只确切原因（比如引用一只拖破坏𠮶页面）。',
-'ipaddress'                   => 'IP地址:',
 'ipadressorusername'          => 'IP地址或用户名:',
 'ipbexpiry'                   => '期限:',
 'ipbreason'                   => '原因:',

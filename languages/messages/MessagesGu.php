@@ -2379,7 +2379,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'blockiptext'                     => 'કોઇ ચોક્કસ IP સરનામું કે સભ્ય  ના  લેખન યોગદાન પર પ્રતિબંધ મુકવા નીચેનું ફોર્મ વાપરો.
 તેનો ઉપયોગ માત્ર ભાંગફોડિયા પ્રવૃત્તિઓને રોકવા અને  [[{{MediaWiki:Policy-url}}|policy]] અનુસાર જ હોવી જોઇએ.
 કારણનું ખાનું અવશ્ય ફરશો (દા.ત. અમુક ભાંગફોડ કરાયેલ પાનું)',
-'ipaddress'                       => 'IP સરનામું:',
 'ipadressorusername'              => 'IP સરનામું અથવા સભ્યનામ:',
 'ipbexpiry'                       => 'કાલાતિત',
 'ipbreason'                       => 'કારણ:',

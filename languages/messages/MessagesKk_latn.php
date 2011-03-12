@@ -2007,7 +2007,6 @@ $1',
 'blockiptext'                 => 'Tömendegi pişin qatıswşınıñ jazw ruqsatın belgili IP mekenjaýımen ne atımen buğattaw üşin qoldanıladı.
 Bunı tek buzaqılıqtı qaqpaýlaw üşin jäne de [[{{{{ns:mediawiki}}:Policy-url}}|erejeler]] boýınşa atqarwıñız jön.
 Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılıqpen özgertken betterdi keltirip).',
-'ipaddress'                   => 'IP mekenjaýı:',
 'ipadressorusername'          => 'IP mekenjaýı ne qatıswşı atı:',
 'ipbexpiry'                   => 'Merzimi bitpek:',
 'ipbreason'                   => 'Sebebi:',

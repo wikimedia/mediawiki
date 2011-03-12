@@ -457,6 +457,8 @@ $1',
 'toc'                     => 'Indholdsfortegnelse',
 'showtoc'                 => 'vis',
 'hidetoc'                 => 'skjul',
+'collapsible-collapse'    => 'Fold sammen',
+'collapsible-expand'      => 'Fold ud',
 'thisisdeleted'           => 'Se eller gendan $1?',
 'viewdeleted'             => 'Vis $1?',
 'restorelink'             => '{{PLURAL:$1|en slettet ændring|$1 slettede ændringer}}',
@@ -600,6 +602,8 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'createaccounterror'         => 'Kunne ikke oprette konto: $1',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
 'nocookieslogin'             => '{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.',
+'nocookiesfornew'            => 'Denne brugerkonto er ikke oprettet, da vi ikke kunne bekræfte dens kilde.
+Sørg for, at du har aktivereret cookies, genindlæs siden og prøv igen.',
 'noname'                     => 'Du har ikke angivet et gyldigt brugernavn.',
 'loginsuccesstitle'          => 'Du er nu logget på',
 'loginsuccess'               => 'Du er nu logget på {{SITENAME}} som "$1".',
@@ -613,6 +617,7 @@ Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'wrongpasswordempty'         => 'Du glemte at indtaste password. Prøv igen.',
 'passwordtooshort'           => 'Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.',
 'password-name-match'        => 'Kodeordet må ikke være det samme som brugernavnet.',
+'password-login-forbidden'   => 'Brugen af dette brugernavn og adgangskode er blevet forbudt.',
 'mailmypassword'             => 'Send nyt password',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
@@ -651,6 +656,7 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 'usernamehasherror'          => 'Brugernavn må ikke indeholde #',
 'login-throttled'            => 'Du har forsøgt at logge på for mange gange.
 Vent venligst før du prøver igen.',
+'login-abort-generic'        => 'Det lykkedes dig ikke at logge på - afbrudt',
 'loginlanguagelabel'         => 'Sprog: $1',
 'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 
@@ -816,6 +822,7 @@ Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
 
 '''Forsøg venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
 'token_suffix_mismatch'            => "'''Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.'''",
+'edit_form_incomplete'             => "'''Nogle dele af redigeringsformularen nåede ikke serveren; dobbelttjek, at redigeringerne er intakte, og prøv igen.'''",
 'editing'                          => 'Redigerer $1',
 'editingsection'                   => 'Redigerer $1 (afsnit)',
 'editingcomment'                   => 'Redigerer $1 (nyt afsnit)',
@@ -934,7 +941,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennesøg]] {{SITENAME}} efter passende nye sider.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kommentar fjernet)',
+'rev-deleted-comment'         => '(redigeringsbeskrivelsen er fjernet)',
 'rev-deleted-user'            => '(brugernavn fjernet)',
 'rev-deleted-event'           => '(loghandling fjernet)',
 'rev-deleted-user-contribs'   => '[brugernavn eller IP-adresse er fjernet - redigeringer er skjult fra bidragene]',
@@ -1127,6 +1134,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchmenu-legend'                => 'Søgemuligheder',
 'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
 'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
+'searchmenu-new-nocreate'          => '" $1 "er et ugyldigt sidenavn eller kan ikke oprettes af dig.',
 'searchhelp-url'                   => 'Help:Hjælp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynder med dette præfiks]]',
 'searchprofile-articles'           => 'Indholdssider',
@@ -1588,6 +1596,8 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 'php-uploaddisabledtext'      => 'Oplægning af filer er forhindret i PHP. Tjek indstillingen for file_uploads.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
 'uploadvirus'                 => 'Denne fil indeholder en virus! Virusnavn: $1',
+'uploadjava'                  => 'Denne fil er en ZIP-fil, der indeholder en Java .class-fil.
+Det er ikke tilladt at uploade Javafiler, da det kan forårsage, at sikkerhedsrestriktioner bliver sprunget over.',
 'upload-source'               => 'Kildefil',
 'sourcefilename'              => 'Vælg en fil:',
 'sourceurl'                   => 'Kildens URL:',
@@ -1622,8 +1632,12 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-unknown-size'       => 'Ukendt størrelse',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
+# ZipDirectoryReader
+'zip-wrong-format' => 'Den angivne fil var ikke en ZIP-fil.',
+
 # Special:UploadStash
 'uploadstash-summary' => 'Denne side giver adgang til filer, de er uploadet (eller er i gang med at blive det), men som endnu ikke er offentliggjort på wikien. Disse filer er kun synlige for brugeren, der har uploadet dem.',
+'uploadstash-refresh' => 'Opdatér filoversigten',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Adgang nægtet',
@@ -1797,12 +1811,13 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'disambiguationspage'  => 'Template:Flertydig',
 'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
 
-'doubleredirects'            => 'Dobbelte omdirigeringer',
-'doubleredirectstext'        => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
+'doubleredirects'                   => 'Dobbelte omdirigeringer',
+'doubleredirectstext'               => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
 Hver linje indeholder henvisninger til den første og den anden omdirigering, såvel som til målet for den anden omdirigering som sædvanligvis er den "rigtige" målside som den første omdirigering burde henvise til.
 <del>Overstregede</del> poster er rettede.',
-'double-redirect-fixed-move' => '[[$1]] blev flyttet og er nu en omdirigering til [[$2]]',
-'double-redirect-fixer'      => 'Omdirigerings-retter',
+'double-redirect-fixed-move'        => '[[$1]] blev flyttet og er nu en omdirigering til [[$2]]',
+'double-redirect-fixed-maintenance' => 'Rettelse af dobbelt omdirigering fra [[$1]] til [[$2]].',
+'double-redirect-fixer'             => 'Omdirigerings-retter',
 
 'brokenredirects'        => 'Defekte omdirigeringer',
 'brokenredirectstext'    => 'Følgende omdirigeringer peger på en side der ikke eksisterer:',
@@ -1879,6 +1894,7 @@ Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, o
 'pager-newer-n'           => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 ældre|$1 ældre}}',
 'suppress'                => 'Skjul logs',
+'querypage-disabled'      => 'Denne specialside er deaktiveret af hensyn til ydeevnen.',
 
 # Book sources
 'booksources'               => 'Bogkilder',
@@ -2247,9 +2263,10 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'      => 'Navnerum:',
-'invert'         => 'Udeluk valgt navnerum',
-'blanknamespace' => '(Hoved)',
+'namespace'             => 'Navnerum:',
+'invert'                => 'Udeluk valgt navnerum',
+'namespace_association' => 'Tilknyttet navnerum',
+'blanknamespace'        => '(Hoved)',
 
 # Contributions
 'contributions'       => 'Brugerbidrag',
@@ -2304,7 +2321,6 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'blockiptext'                     => 'Brug formularen herunder til at blokere for skriveadgang fra en bestemt IP-adresse eller et brugernavn.
 Dette bør kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].
 Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der har været udsat for vandalisme).',
-'ipaddress'                       => 'IP-adresse/brugernavn',
 'ipadressorusername'              => 'IP-adresse eller brugernavn',
 'ipbexpiry'                       => 'varighed',
 'ipbreason'                       => 'Begrundelse:',
@@ -3246,6 +3262,7 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'version-specialpages'             => 'Specialsider',
 'version-parserhooks'              => 'Oversætter-funktioner',
 'version-variables'                => 'Variabler',
+'version-antispam'                 => 'Spamforebyggelse',
 'version-skins'                    => 'Udseender',
 'version-other'                    => 'Andet',
 'version-mediahandlers'            => 'Specialhåndtering af mediefiler',
@@ -3279,14 +3296,15 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Find dubletfiler',
-'fileduplicatesearch-summary'  => 'Find dublerede filer baseret på deres hash-værdi.',
-'fileduplicatesearch-legend'   => 'Find dubletfiler.',
-'fileduplicatesearch-filename' => 'Filnavn:',
-'fileduplicatesearch-submit'   => 'Find',
-'fileduplicatesearch-info'     => '$1 × $2 punkter<br />Filstørrelse: $3<br />MIME-type: $4',
-'fileduplicatesearch-result-1' => 'Filen "$1" har ingen identiske dubletter.',
-'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|en dublet|$2 dubletter}}.',
+'fileduplicatesearch'           => 'Find dubletfiler',
+'fileduplicatesearch-summary'   => 'Find dublerede filer baseret på deres hash-værdi.',
+'fileduplicatesearch-legend'    => 'Find dubletfiler.',
+'fileduplicatesearch-filename'  => 'Filnavn:',
+'fileduplicatesearch-submit'    => 'Find',
+'fileduplicatesearch-info'      => '$1 × $2 punkter<br />Filstørrelse: $3<br />MIME-type: $4',
+'fileduplicatesearch-result-1'  => 'Filen "$1" har ingen identiske dubletter.',
+'fileduplicatesearch-result-n'  => 'Filen "$1" har {{PLURAL:$2|en dublet|$2 dubletter}}.',
+'fileduplicatesearch-noresults' => 'Ingen fil med navnet "$1" blev fundet.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Specialsider',

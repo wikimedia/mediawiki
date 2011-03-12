@@ -1445,7 +1445,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'blockip-legend'              => 'Blokoutė nauduotuoja',
 'blockiptext'                 => 'Nauduokėt šėta fuorma noriedamė oždraustė redagavėma teises nuruodīto IP adreso a nauduotuojo. Tas torietu būt atlėikama tam, kū sostabdītomiet vandalėzma, ė vagol [[{{ns:project}}:Puolitėka|puolitėka]].
 Žemiau nuruodīkėt tėkslē prižastė.',
-'ipaddress'                   => 'IP adresos',
 'ipadressorusername'          => 'IP adresos a nauduotuojė vards',
 'ipbexpiry'                   => 'Galiuojėma čiesos',
 'ipbreason'                   => 'Prīžastis:',

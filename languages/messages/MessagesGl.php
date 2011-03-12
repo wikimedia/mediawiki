@@ -2432,7 +2432,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
-'ipaddress'                       => 'Enderezo IP:',
 'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry'                       => 'Duración:',
 'ipbreason'                       => 'Motivo:',

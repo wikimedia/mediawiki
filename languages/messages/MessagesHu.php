@@ -2458,7 +2458,6 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.
 Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].
 Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat).',
-'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                       => 'Lejárat:',
 'ipbreason'                       => 'Ok:',

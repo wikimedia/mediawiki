@@ -2338,7 +2338,6 @@ $1',
 'blockiptext'                     => '使用下方的表单来禁止来自特定IP地址或用户名的写访问。
 只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。',
-'ipaddress'                       => 'IP地址：',
 'ipadressorusername'              => 'IP地址或用户名：',
 'ipbexpiry'                       => '期限：',
 'ipbreason'                       => '原因：',

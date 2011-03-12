@@ -2387,7 +2387,6 @@ Isto debe esser facite solmente pro impedir vandalismo, e de
 accordo con le [[{{MediaWiki:Policy-url}}|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).',
-'ipaddress'                       => 'Adresse IP:',
 'ipadressorusername'              => 'Adresse IP o nomine de usator:',
 'ipbexpiry'                       => 'Expiration:',
 'ipbreason'                       => 'Motivo:',

@@ -1904,7 +1904,6 @@ Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 'blockiptext'                     => 'Kävutagat alemba anttud form, miše blokiruida kirjutandan voimuz märitud IP-adresaspäi.
 Nece sab tehta vaiše sen täht, miše borcuidas vandalizmanke, kut om kirjutadud [[{{MediaWiki:Policy-url}}|ohjandimiš]].
 Kirjutagat sü alemba (ozutesikš, citiruigat vandaliziruidud lehtpoled).',
-'ipaddress'                       => 'IP-adres:',
 'ipadressorusername'              => 'IP-adres vai kävutajan nimi:',
 'ipbexpiry'                       => 'Lopindan strok:',
 'ipbreason'                       => 'Sü:',

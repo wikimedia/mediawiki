@@ -2486,7 +2486,6 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'blockiptext'                     => 'Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.
 Detta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].
 Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
-'ipaddress'                       => 'IP-adress',
 'ipadressorusername'              => 'IP-adress eller användarnamn:',
 'ipbexpiry'                       => 'Varaktighet:',
 'ipbreason'                       => 'Anledning:',

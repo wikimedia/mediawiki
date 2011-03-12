@@ -2218,7 +2218,6 @@ Isto habría de fer-se nomás ta privar vandalismos, y d'alcuerdo con
 as [[{{MediaWiki:Policy-url}}|politicas]].
 Escriba a razón especifica ta o bloqueyo (por exemplo, quaternando
 as pachinas que s'han vandalizato).",
-'ipaddress'                       => 'Adreza IP',
 'ipadressorusername'              => "Adreza IP u nombre d'usuario",
 'ipbexpiry'                       => 'Circumducción:',
 'ipbreason'                       => 'Razón:',

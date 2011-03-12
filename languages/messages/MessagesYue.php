@@ -2280,7 +2280,6 @@ $1',
 'blockiptext'                     => '使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。
 僅當僅當為咗避免有版畀人惡意破壞嘅時候先可以使用，而且唔可以違反[[{{MediaWiki:Policy-url}}|政策]]。
 喺下面填寫阻止嘅確切原因（比如：引用咗某啲已經破壞咗嘅頁面）。',
-'ipaddress'                       => 'IP地址:',
 'ipadressorusername'              => 'IP地址或用戶名:',
 'ipbexpiry'                       => '期限:',
 'ipbreason'                       => '原因:',

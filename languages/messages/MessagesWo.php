@@ -1870,7 +1870,6 @@ $1',
 # Block/unblock
 'blockip'                         => 'Téyeb jëfandikukat',
 'blockip-legend'                  => 'Téye jëfandikukat bi',
-'ipaddress'                       => 'Màkkaanu IP :',
 'ipadressorusername'              => 'Màkkaanu IP walla turu jëfandikukat:',
 'ipbexpiry'                       => 'Diiru téye gi',
 'ipbreason'                       => 'Ngirte :',

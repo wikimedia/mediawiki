@@ -1018,7 +1018,6 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 # Block/unblock
 'blockip'                  => 'Демнчиг бүслх',
-'ipaddress'                => 'IP хайг:',
 'ipadressorusername'       => 'IP хайг аль демнчна нернь:',
 'ipbreason'                => 'Учр:',
 'ipbreasonotherlist'       => 'Талдан учр',

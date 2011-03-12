@@ -705,7 +705,6 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 # Block/unblock
 'blockip'                  => 'Hŭng-sō̤ ê̤ṳng-hô',
 'blockiptext'              => 'Sāi-ê̤ṳng â-dā̤ gì dăng-dăng lì hŭng-sō̤ IP dê-cī hĕ̤k-ciā ê̤ṳng-hô-miàng gì siā guòng-âing. Cuòi nâ sê ôi lāu huòng-cī nè̤ng cáuk-ták wiki, bêng-chiā găi-dŏng hù-hăk [[{{MediaWiki:Policy-url}}|céng-cháik]]. Chiāng diŏh â-dā̤ siā giâ hŭng-sō̤ gì nguòng-ĭng (pī-ṳ̀-gōng, īng-ê̤ṳng ké̤ṳk cáuk-ták gì hiĕk-miêng).',
-'ipaddress'                => 'IP dê-cī:',
 'ipadressorusername'       => 'IP dê-cī hĕ̤k ê̤ṳng-hô-miàng:',
 'ipbexpiry'                => 'Guó-gĭ:',
 'ipbreason'                => 'Nguòng-ĭng',

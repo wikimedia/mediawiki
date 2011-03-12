@@ -2450,7 +2450,6 @@ Nižšie si môžete pozrieť najnovšiu položku záznamu blokovaní:',
 'blockiptext'                     => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
 Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
 Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktoré padli za obeť vandalizmu).',
-'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa/meno používateľa:',
 'ipbexpiry'                       => 'Ukončenie:',
 'ipbreason'                       => 'Dôvod:',

@@ -1406,7 +1406,6 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'blockip'                     => 'İstifadəçini blokla',
 'blockip-title'               => 'İstifadəçini blokla',
 'blockip-legend'              => 'İstifadəçinin bloklanması',
-'ipaddress'                   => 'IP ünvanı',
 'ipadressorusername'          => 'IP ünvanı və ya istifadəçi adı',
 'ipbexpiry'                   => 'Bitmə müddəti:',
 'ipbreason'                   => 'Səbəb:',

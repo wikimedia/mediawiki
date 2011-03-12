@@ -701,7 +701,6 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 
 # Block/unblock
 'blockip'            => 'Pasim yusa (Block user)',
-'ipaddress'          => 'IP adres:',
 'ipboptions'         => '2 awa:2 hours,1 de:1 day,3 de:3 days,1 wik:1 week,2 wik:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yia:1 year,oltaim:infinite',
 'ipbotheroption'     => 'narapela',
 'ipblocklist'        => 'Ol IP adres na yusanem i pas',

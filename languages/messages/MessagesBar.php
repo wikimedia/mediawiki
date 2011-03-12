@@ -959,7 +959,6 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'blockiptext'                  => "Mid dem Formular sperrst a IP-Adress oder an Benytzernåmen, das vo durten aus koane Endarungen mer vurgnumma wern kennan.
 Des soid nur dafoing, um an Vandalismus z' vahindern und in Yweraistimmung mid d' [[{{MediaWiki:Policy-url}}|Richtlinien]].
 Gib bittschee an Grund fyr d' Sperrn å.",
-'ipaddress'                    => 'IP-Adressen:',
 'ipadressorusername'           => 'IP-Adress oder Benytzernåm:',
 'ipbexpiry'                    => 'Sperrdauer:',
 'ipbreason'                    => 'Grund:',

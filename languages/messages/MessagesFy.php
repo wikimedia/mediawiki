@@ -1957,7 +1957,6 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 Dat soe allinnich fanwege fandalisme dien wurde moatte, sa't de
 [[{{MediaWiki:Policy-url}}|útslut-rie]] it oanjout.
 Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
-'ipaddress'            => 'Meidochnamme of ynternet-adres',
 'ipadressorusername'   => 'IP Adres of meidoggernamme:',
 'ipbexpiry'            => 'Ferrint nei:',
 'ipbreason'            => 'Reden:',

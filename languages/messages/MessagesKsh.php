@@ -2578,7 +2578,6 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'blockiptext'                     => 'Hee kanns De bestemmte Metmaacher oder IP-Adresse sperre, su dat se hee em Wiki nit mieh schrieve und Sigge ändere künne.
 Dat sollt nor jedon wääde om sujenannte Vandaale ze bremse. Un mer müsse uns dobei natörlich aan uns [[{{MediaWiki:Policy-url}}|Rejelle]] för esu en Fäll halde.
 Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passeet. Nenn un Link op de Sigge wo Einer kapott jemaat hät, zem Beispill.',
-'ipaddress'                       => 'IP-Adress',
 'ipadressorusername'              => 'IP Adress oder Metmaacher Name',
 'ipbexpiry'                       => 'Duur, för wie lang',
 'ipbreason'                       => 'Aanlass:',

@@ -164,6 +164,7 @@ $messages = array(
 'extlink_tip'    => 'ବାହାର ଲିଁକ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
 'headline_tip'   => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
 'math_tip'       => 'ଗାଣିତିକ ସୁତର (ଲାଟେକ୍ସ)',
+'image_tip'      => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
 'media_tip'      => 'ଫାଇଲର ଲିଁକ',
 'sig_tip'        => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
 
@@ -180,6 +181,7 @@ $messages = array(
 'template-semiprotected' => '(ଅଧା କିଳାଯାଇଥିବା)',
 
 # History pages
+'currentrev-asof'  => '$1 ହୋଇଥିବା ରିଭିଜନ',
 'revisionasof'     => '$1 ଉପରେ କରାଯାଇଥିବା ବଦଳ',
 'previousrevision' => 'ପୁରୁଣା ସଁକଳନ',
 'cur'              => 'ଦାନକର',
@@ -233,21 +235,22 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',
 
 # Recent changes
-'recentchanges'      => 'ନଗଦ ବଦଳ',
-'rcshowhideminor'    => '$1 ଟି ଛୋଟମୋଟ ବଦଳ',
-'rcshowhidebots'     => '$1 ଜଣ ବଟ',
-'rcshowhideliu'      => '$1 ଜଣ ନାଆଁ ଲେଖାଇଥିବା ଇଉଜର',
-'rcshowhideanons'    => '$1 ଜଣ ଅଜଣା ଇଉଜର',
-'rcshowhidemine'     => '$1 ମୁଁ କରିଥିବା ବଦଳ',
-'diff'               => 'ଅଦଳ ବଦଳ',
-'hist'               => 'ଇତିହାସ',
-'hide'               => 'ଲୁଚାଅ',
-'show'               => 'ଦେଖାଅ',
-'minoreditletter'    => 'ଟିକେ',
-'newpageletter'      => 'ନୂଆ',
-'boteditletter'      => 'ବଟ',
-'rc-enhanced-expand' => 'ପୁରା ଦେଖାଅ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
-'rc-enhanced-hide'   => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
+'recentchanges'        => 'ନଗଦ ବଦଳ',
+'recentchanges-legend' => 'ଏବେ କରାଯାଇଥିବା ଅଦଳବଦଳ',
+'rcshowhideminor'      => '$1 ଟି ଛୋଟମୋଟ ବଦଳ',
+'rcshowhidebots'       => '$1 ଜଣ ବଟ',
+'rcshowhideliu'        => '$1 ଜଣ ନାଆଁ ଲେଖାଇଥିବା ଇଉଜର',
+'rcshowhideanons'      => '$1 ଜଣ ଅଜଣା ଇଉଜର',
+'rcshowhidemine'       => '$1 ମୁଁ କରିଥିବା ବଦଳ',
+'diff'                 => 'ଅଦଳ ବଦଳ',
+'hist'                 => 'ଇତିହାସ',
+'hide'                 => 'ଲୁଚାଅ',
+'show'                 => 'ଦେଖାଅ',
+'minoreditletter'      => 'ଟିକେ',
+'newpageletter'        => 'ନୂଆ',
+'boteditletter'        => 'ବଟ',
+'rc-enhanced-expand'   => 'ପୁରା ଦେଖାଅ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
+'rc-enhanced-hide'     => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'ଏଇମାତ୍ର ବଦଳାଯାଇଥିବା ଫରଦର ଲିଁକ',
@@ -338,7 +341,10 @@ $messages = array(
 # What links here
 'whatlinkshere'           => 'ଏଠି କଣ କଣ ଲିଁକ ଅଛି',
 'whatlinkshere-page'      => 'ଫରଦ',
+'isimage'                 => 'ଚିତ୍ର ଲିଁକ',
+'whatlinkshere-links'     => '← ଲିଁକ',
 'whatlinkshere-hidelinks' => '$1 ଟି ଲିଁକ',
+'whatlinkshere-filters'   => 'ଛାଣିବା',
 
 # Block/unblock
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
@@ -346,6 +352,10 @@ $messages = array(
 'unblocklink'        => 'ଛାଡ଼',
 'change-blocklink'   => 'ଓଗାଳିବାକୁ ବଦଳାଅ',
 'contribslink'       => 'ଅବଦାନ',
+'blocklogpage'       => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
+
+# Move page
+'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
 
 # Thumbnails
 'thumbnail-more' => 'ବଡ଼କର',

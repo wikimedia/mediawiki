@@ -1178,7 +1178,6 @@ vandales, et çoula doet esse fwait tot shuvant les
 [[{{MediaWiki:Policy-url}}|rîles]].
 Dinez ene råjhon do blocaedje (eg: dijhoz les pådjes k' ont
 stî vandalijheyes).",
-'ipaddress'                   => "Adresse IP/no d' uzeu",
 'ipadressorusername'          => "Adresse IP ou no d' uzeu",
 'ipbexpiry'                   => 'Tins do blocaedje',
 'ipbreason'                   => 'Råjhon',

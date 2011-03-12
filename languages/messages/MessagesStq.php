@@ -2093,7 +2093,6 @@ $1',
 'blockiptext'                     => 'Mäd dit Formular speerst du ne IP-Adresse of n Benutsernoome, so dät fon deer neen Annerengen moor foarnuumen wäide konnen.
 Dit schuul bloot geböäre, uum Vandalismus tou ferhinnerjen un in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]].
 Reek dän Gruund foar ju Speere oun.',
-'ipaddress'                       => 'IP-Adrässe:',
 'ipadressorusername'              => 'IP-Adresse of Benutsernoome:',
 'ipbexpiry'                       => 'Oulooptied (Speerduur):',
 'ipbreason'                       => 'Begruundenge:',

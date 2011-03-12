@@ -1390,7 +1390,6 @@ $1",
 
 # Block/unblock
 'blockip'                  => '查封用户',
-'ipaddress'                => 'IP 地址:',
 'ipadressorusername'       => 'IP地址或用户名：',
 'ipbreason'                => '理由:',
 'ipbreasonotherlist'       => '其它原因',

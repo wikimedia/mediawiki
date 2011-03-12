@@ -1452,6 +1452,8 @@ $1
 	'config-env-bad' => 'Средата беше проверена.
 Не е възможна инсталация на МедияУики.',
 	'config-env-php' => 'Инсталирана е версия на PHP $1.',
+	'config-env-php-toolow' => 'Инсталирана е версия на PHP $1.
+МедияУики изисква версия PHP $2 или по-нова.',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за нормализация на Уникод.',
 	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за нормализация на Уникод.',
 	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Уникод, превключване към по-бавното изпълнение на чист PHP.
@@ -1490,7 +1492,7 @@ $1
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
 	'config-no-cache' => "'''Предупреждение:''' Не бяха открити [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Обектното кеширане не е включено.",
-	'config-diff3-bad' => 'GNU diff3 не е намерен.',
+	'config-diff3-bad' => 'GNU diff3 не беше намерен.',
 	'config-imagemagick' => 'Открит е ImageMagick: <code>$1</code>.
 Преоразмеряването на картинки ще бъде включено ако качването на файлове бъде разрешено.',
 	'config-gd' => 'Открита е вградена графичната библиотека GD.
@@ -1538,7 +1540,7 @@ $1
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-port' => 'Порт на базата от данни:',
 	'config-db-schema' => 'Схема за МедияУики',
-	'config-db-schema-help' => 'Схемите по-горе обикновено са правилни.
+	'config-db-schema-help' => 'Схемата по-горе обикновено е коректна.
 Промени се извършват ако наистина е необходимо.',
 	'config-sqlite-dir' => 'Директория за данни на SQLite:',
 	'config-sqlite-dir-help' => "SQLite съхранява всички данни в един файл.
@@ -1559,7 +1561,7 @@ $1
 	'config-support-mysql' => '* $1 е най-фобре поддържата система за база от данни, най-добре поддържана от МедияУики ([http://www.php.net/manual/en/mysql.installation.php Как се компилира PHP с поддръжка на MySQL])',
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL])',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
-	'config-support-oracle' => '* $1 ш комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
+	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
@@ -1576,6 +1578,8 @@ $1
 Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
 	'config-invalid-schema' => 'Невалидна схема за МедияУики "$1".
 Допустими са само ASCII букви (a-z, A-Z), цифри (0-9) и долни черти (_).',
+	'config-db-sys-create-oracle' => 'Инсталаторът поддържа само сметка SYSDBA за създаване на нова сметка.',
+	'config-db-sys-user-exists-oracle' => 'Потребителската сметка "$1" вече съществува. SYSDBA може да се използва само за създаване на нова сметка!',
 	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
 Не се използват интервали или тирета.
@@ -1739,8 +1743,13 @@ $1
 Необходимо е да бъдат разделени по един на ред, както и да е посочен порта. Пример: 
 127.0.0.1:11211
 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Избран е Memcached като складиращ тип, но не са посочени сървъри.',
 	'config-memcache-badip' => 'Беше въведен невалиден IP адрес за Memcached: $1.',
 	'config-extensions' => 'Разширения',
+	'config-install-alreadydone' => "'''Предупреждение:''' Изглежда вече сте инсталирали МедияУики и се опитвате да го инсталирате отново.
+Продължете към следващата страница.",
+	'config-install-begin' => 'Инсталацията на МедияУики ще започне след натискане на бутона "{{int:config-continue}}".
+Ако желаете да направите промени, натиснете Връщане.',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',
 	'config-install-extensions' => 'Добавяне на разширенията',
@@ -4659,6 +4668,7 @@ chmod a+w $3</pre></div>',
 	'config-license-none' => 'ללא כותרת תחתית עם רישיון',
 	'config-license-cc-by-sa' => 'קריאייטיב קומונז–ייחוס–שיתוף זהה',
 	'config-license-cc-by-nc-sa' => 'קריאייטיב קומונז ייחוס–ללא שימוש מסחרי–שיתוף זהה',
+	'config-license-cc-0' => 'Creative Commons אפס',
 	'config-license-gfdl-old' => 'רישיון חופשי למסמכים של גנו, גרסה 1.2',
 	'config-license-gfdl-current' => 'רישיון חופשי למסמכים של גנו, גרסה 1.3 או גרסה מאוחרת יותר',
 	'config-license-pd' => 'נחלת הכלל',
@@ -11172,6 +11182,8 @@ $messages['tl'] = array(
 	'config-desc' => 'Ang instalador para sa MediaWiki',
 	'config-title' => 'Instalasyong $1 ng MediaWiki',
 	'config-information' => 'Kabatiran',
+	'config-localsettings-key' => 'Susi ng pagsasapanahon:',
+	'config-localsettings-badkey' => 'Hindi tama ang susing ibinigay mo.',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
 	'config-no-session' => 'Nawala ang iyong datos ng sesyon!
 Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.',
@@ -11195,6 +11207,7 @@ Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nak
 	'config-page-releasenotes' => 'Pakawalan ang mga tala',
 	'config-page-copying' => 'Kinokopya',
 	'config-page-upgradedoc' => 'Itinataas ang uri',
+	'config-page-existingwiki' => 'Umiiral na wiki',
 	'config-help-restart' => 'Nais mo bang hawiin ang lahat ng nasagip na datong ipinasok mo at muling simulan ang proseso ng pagluluklok?',
 	'config-restart' => 'Oo, muling simulan ito',
 	'config-welcome' => '=== Pagsusuring pangkapaligiran ===
@@ -11213,12 +11226,19 @@ Dapat nakatanggap ka ng <doclink href=Copying>isang sipi ng Pangkalahatang Pampu
 	'config-sidebar' => '* [http://www.mediawiki.org Tahanan ng MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Gabay ng Tagagamit]
 * [http://www.mediawiki.org/wiki/Manual:Contents Gabay ng Tagapangasiwa]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Mga Malimit Itanong]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mga Malimit Itanong]
+----
+* <doclink href=Readme>Basahin ako</doclink>
+* <doclink href=ReleaseNotes>Mga tala ng paglalabas</doclink>
+* <doclink href=Copying>Pagkopya</doclink>
+* <doclink href=UpgradeDoc>Pagsasapanahon</doclink>',
 	'config-env-good' => 'Nasuri na ang kapaligiran.
 Mailuluklok mo ang MediaWiki.',
 	'config-env-bad' => 'Nasuri na ang kapaligiran.
 Hindi mo mailuklok ang MediaWiki.',
 	'config-env-php' => 'Naitalaga ang PHP na $1.',
+	'config-env-php-toolow' => 'Naitalaga ang PHP $1.
+Subalit, nangangailangan ang MediaWiki ng PHP $2 o mas mataas pa.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
 	'config-unicode-using-intl' => 'Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.',
 	'config-no-db' => 'Hindi matagpuan ang isang angkop na drayber ng kalipunan ng datos!',

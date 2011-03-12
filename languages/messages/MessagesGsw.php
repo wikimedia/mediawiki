@@ -2269,7 +2269,6 @@ Do chunnt dr aktuäll Yytrag us em Benutzersperr-Logbuech:',
 'blockip-legend'                  => 'IP-Adräss/Benutzer sperre',
 'blockiptext'                     => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
 Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
-'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
 'ipbreason'                       => 'Grund:',

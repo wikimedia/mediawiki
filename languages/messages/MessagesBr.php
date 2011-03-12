@@ -2362,7 +2362,6 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'blockiptext'                     => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
 Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
-'ipaddress'                       => "Chomlec'h IP",
 'ipadressorusername'              => "Chomlec'h IP pe anv implijer",
 'ipbexpiry'                       => 'Pad ar stankadenn',
 'ipbreason'                       => 'Abeg :',

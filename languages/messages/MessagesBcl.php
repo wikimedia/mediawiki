@@ -1474,7 +1474,6 @@ $1",
 'blockiptext'                 => 'Gamiton an pormularyo sa babâ para bagaton an pagsurat kan sarong espesipikong IP o ngaran nin parágamit.
 Dapat gibohon sana ini para maibitaran vandalismo, asin kompirmi sa [[{{MediaWiki:Policy-url}}|palakaw]].
 Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang rinaot).',
-'ipaddress'                   => 'Direksyón nin IP:',
 'ipadressorusername'          => 'direksyon nin IP o gahâ:',
 'ipbexpiry'                   => 'Pasó:',
 'ipbreason'                   => 'Rason:',

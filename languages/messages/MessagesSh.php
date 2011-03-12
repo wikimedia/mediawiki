@@ -2233,7 +2233,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'blockiptext'                     => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  
 Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. 
 Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su vandalizovane).',
-'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa ili korisničko ime:',
 'ipbexpiry'                       => 'Ističe:',
 'ipbreason'                       => 'Razlog:',

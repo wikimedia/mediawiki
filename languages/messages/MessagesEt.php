@@ -2418,7 +2418,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'blockiptext'                     => 'See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.
 Seda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].
 Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
-'ipaddress'                       => 'IP-aadress',
 'ipadressorusername'              => 'IP-aadress või kasutajanimi:',
 'ipbexpiry'                       => 'Kehtivus:',
 'ipbreason'                       => 'Põhjus:',

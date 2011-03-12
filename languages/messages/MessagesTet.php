@@ -701,7 +701,6 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Block/unblock
 'blockip'                 => "Blokeiu uza-na'in",
 'blockip-legend'          => "Blokeiu uza-na'in",
-'ipaddress'               => 'Diresaun IP:',
 'ipbreason'               => 'Motivu:',
 'ipbreasonotherlist'      => 'Motivu seluk',
 'ipbsubmit'               => "Blokeiu uza-na'in ne'e",

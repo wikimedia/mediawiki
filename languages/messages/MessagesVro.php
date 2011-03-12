@@ -1524,7 +1524,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 # Block/unblock
 'blockip'                     => 'Piäq puutri võrgoaadrõs kinniq',
 'blockiptext'                 => "Taa vorm om kimmä puutri võrgoaadrõsi päält tettüisi kirotuisi kinniqpidämises. '''Taad tohis tetäq õnnõ lehti ts'urkmisõ vasta ni [[{{MediaWiki:Policy-url}}|{{SITENAME}} sisekõrra perrä]]'''. Kimmähe tulõ täütäq ka rida \"põhjus\". Sinnäq võinuq pandaq nt lingiq noilõ lehile, midä rikuti.",
-'ipaddress'                   => 'Puutri võrgoaadrõs (IP)',
 'ipadressorusername'          => 'Puutri võrgoaadrõs vai pruukjanimi',
 'ipbexpiry'                   => 'Tähtaig',
 'ipbreason'                   => 'Põhjus:',

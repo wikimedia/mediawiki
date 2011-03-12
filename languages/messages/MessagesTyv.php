@@ -742,7 +742,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # Block/unblock
 'blockip'                    => 'Ажыглакчыны ниимиктээри',
-'ipaddress'                  => 'ИП-адрес',
 'ipadressorusername'         => 'ИП-адрес азы aжыглaкчының aды',
 'ipbreason'                  => 'Чылдагаан:',
 'ipbreasonotherlist'         => 'Өске чылдагаан',

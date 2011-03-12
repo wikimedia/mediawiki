@@ -2650,7 +2650,6 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'ipaddress'                    => '{{Identical|IP Address}}',
 'ipadressorusername'           => '{{Identical/IP address or username}}',
 'ipbexpiry'                    => '{{Identical|Expiry}}',
 'ipbreason'                    => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].

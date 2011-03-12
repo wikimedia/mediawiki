@@ -1823,7 +1823,6 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'blockiptext'                 => 'Notaðu eyðublaðið hér að neðan til þess að banna ákveðið vistfang eða notandanafn.
 Þetta ætti einungis að gera til þess að koma í veg fyrir skemmdarverk, og í samræmi við [[{{MediaWiki:Policy-url}}|samþykktir]].
 Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær síður sem skemmdar voru).',
-'ipaddress'                   => 'Vistfang:',
 'ipadressorusername'          => 'Vistfang eða notandanafn:',
 'ipbexpiry'                   => 'Bannið rennur út:',
 'ipbreason'                   => 'Ástæða:',

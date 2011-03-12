@@ -1579,7 +1579,6 @@ $1",
 'blockiptext'                  => "Mit diesem Formular sperrst du anne IP-Atresse oder an'n Nutzernoama, su doaß vu dort kenne Änderunga meh vorgenumma waan kinna.
 Dies sullte ock erfolga, im Vandalismus zu verhindern und ei Iebereinstimmung miet dann [[{{MediaWiki:Policy-url}}|Richtlinien]].
 Bitte gib dann Grund fier de Sperre oa.",
-'ipaddress'                    => 'IP-Atresse oder Benutzernoame:',
 'ipadressorusername'           => 'IP-Atresse oder Benutzernoame:',
 'ipbreason'                    => 'Begriendung:',
 'ipbreasonotherlist'           => 'Andere Begrindung',

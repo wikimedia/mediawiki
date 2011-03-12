@@ -1266,7 +1266,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 # Block/unblock
 'blockip'                     => 'chhà-fûng IP thi-tiám',
 'blockiptext'                 => 'Yung ha-mien ke péu-tân kim-chṳ́ lòi-chhṳ mêu-yit thi̍t-thin IP thi-tiám ke kiên-kói hí-khó-khièn. Chṳ́-yû chhai-vi fòng-chṳ́ pho-fái, khi̍p fù-ha̍p [[{{MediaWiki:Policy-url}}|Sú-chet]] ke chhìn-khóng hâ chhòi khó chhái-chhí chhṳ́ hàng-thung. Chhiáng chhai ha-mien sû-ngi̍p yit-ke khí-thí ke lî-yù （chhiong-he yîn-sut yit-ke pûn-ngìn pho-fái ke hong-mien）.',
-'ipaddress'                   => 'IP thi-tiám',
 'ipadressorusername'          => 'IP thi-tiám fe̍t-he yung-fu-miàng',
 'ipbexpiry'                   => 'Khì-han:',
 'ipbreason'                   => 'Ngièn-yîn:',

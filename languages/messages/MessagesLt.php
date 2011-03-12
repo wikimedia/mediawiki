@@ -2314,7 +2314,6 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'blockip-legend'                  => 'Blokuoti naudotoją',
 'blockiptext'                     => 'Naudokite šią formą norėdami uždrausti rašymo teises nurodytui IP adresui ar naudotojui. Tai turėtų būti atliekama tam, kad sustabdytumėte vandalizmą, ir pagal [[{{MediaWiki:Policy-url}}|politiką]].
 Žemiau nurodykite tikslią priežastį (pavyzdžiui, nurodydami sugadintus puslapius).',
-'ipaddress'                       => 'IP adresas',
 'ipadressorusername'              => 'IP adresas arba naudotojo vardas',
 'ipbexpiry'                       => 'Galiojimo laikas',
 'ipbreason'                       => 'Priežastis:',

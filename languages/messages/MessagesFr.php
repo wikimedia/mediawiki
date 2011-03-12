@@ -2532,7 +2532,6 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'blockiptext'                     => 'Utilisez le formulaire ci-dessous pour bloquer l’accès aux modifications faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.
 Une telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].
 Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont été vandalisées).',
-'ipaddress'                       => 'Adresse IP :',
 'ipadressorusername'              => 'Adresse IP ou nom d’utilisateur :',
 'ipbexpiry'                       => 'Durée avant expiration :',
 'ipbreason'                       => 'Motif :',

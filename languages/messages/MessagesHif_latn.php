@@ -2212,7 +2212,6 @@ Sab se nawaa roke ke suchi ke, aap ke khatir, niche dewa gais hae.',
 'blockiptext'                     => 'Niche ke form ke use kar ke koi khaas IP address nai to username ke write access ke roko.
 Iske khaali vandalism ke roke ke khatir use kare ke chaahi [[{{MediaWiki:Policy-url}}|policy]] ke niche.
 Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandalized).',
-'ipaddress'                       => 'IP Address:',
 'ipadressorusername'              => 'IP Address nai to username:',
 'ipbexpiry'                       => 'Expiry:',
 'ipbreason'                       => 'Kaaran:',

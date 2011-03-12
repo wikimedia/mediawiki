@@ -1155,8 +1155,8 @@ A deuv nen esse pì longh che $1 {{PLURAL:$1|caràter|caràter}}.",
 Costa anformassion a sarà pùblica.",
 'email'                         => 'Pòsta eletrònica',
 'prefs-help-realname'           => '* Nòm vèir (opsional): se i sërne da butelo ambelessì a sarà dovrà për deve mérit ëd vòstr travaj.',
-'prefs-help-email'              => "L'adrëssa ëd pòsta eletrònica a l'é opsional, ma a-i n'a-i é dabzògn për torna amposté la ciav, s'a dovèissa  dësmentié soa ciav.",
-'prefs-help-email-others'       => "It peule ëdcò serne ëd lassé che àutri at contato travers toa pàgina utend o ëd discussion sensa dabzògn d'arvelé toa identità.",
+'prefs-help-email'              => "L'adrëssa ëd pòsta eletrònica a l'é opsional, ma a-i n'a j'é dabzògn për torna amposté la ciav, s'a dovèissa dësmentié soa ciav.",
+'prefs-help-email-others'       => "A peul ëdcò serne ëd lassé che j'àutri a lo contato a travers soa pàgina utent o ëd ciaciarada sensa ch'a-i sia da manca d'arvelé soa identità.",
 'prefs-help-email-required'     => "A-i va l'adrëssa ëd pòsta eletrònica.",
 'prefs-info'                    => 'Anformassion ëd base',
 'prefs-i18n'                    => 'Antërnassionalisassion',
@@ -1175,7 +1175,7 @@ Costa anformassion a sarà pùblica.",
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'A smija bon',
-'email-address-validity-invalid' => "A l'é ciamà n'adrëssa bon-a!",
+'email-address-validity-invalid' => "A-i é da manca ëd n'adrëssa bon-a!",
 
 # User rights
 'userrights'                     => "Gestion dij drit dj'utent",
@@ -1725,7 +1725,7 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda ridiression, ant s�
 Le ridiression <del>sganfà</del> a son stàite arzolvùe.",
 'double-redirect-fixed-move'        => "[[$1]] a l'é stàit spostà.
 Adess a l'é na ridiression a [[$2]].",
-'double-redirect-fixed-maintenance' => 'Rangé le rediression dobie da [[$1]] a [[$2]].',
+'double-redirect-fixed-maintenance' => 'Rangé le ridiression dobie da [[$1]] a [[$2]].',
 'double-redirect-fixer'             => 'Coretor ëd ridiression',
 
 'brokenredirects'        => 'Ridiression nen giuste',
@@ -1842,9 +1842,9 @@ A peul arstrenze la visualisassion an selessionand la sòrt ëd registr, lë str
 # Special:Categories
 'categories'                    => 'Categorìe',
 'categoriespagetext'            => "{{PLURAL:$1|Costa categorìa a conten|Coste categorìe a conten-o}} dle pàgine ò dj'archivi.
-[[Special:UnusedCategories|Le categorìe non dovrà]] A son pa mostà ambelessì.
-Varda ëdcò [[Special:WantedCategories|Categorìe ciamà]].",
-'categoriesfrom'                => 'Mosta le categorìe an partend da:',
+[[Special:UnusedCategories|Le categorìe nen dovrà]] a son pa mostrà ambelessì.
+Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
+'categoriesfrom'                => 'Smon-e le categorìe an partend da:',
 'special-categories-sort-count' => 'ordiné për nùmer',
 'special-categories-sort-abc'   => 'òrdiné për alfabétich',
 
@@ -2239,7 +2239,6 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 Ël blocagi a peul nen ën gnun-a manera esse dovrà për dle question d'ideologìa.
 
 Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP-sì).",
-'ipaddress'                       => 'Adrëssa IP',
 'ipadressorusername'              => 'Adrëssa IP ò stranòm',
 'ipbexpiry'                       => 'Fin-a al',
 'ipbreason'                       => 'Rason:',
@@ -2684,7 +2683,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'math_unknown_function' => 'funsion che as sa pa lòn che a la sia',
 'math_lexing_error'     => 'eror ëd léssich',
 'math_syntax_error'     => 'eror ëd sintassi',
-'math_image_error'      => "Conversion a PNG falà; che a contròla l'ùltima instalassion ëd latex e dvipng (o dvips + gs + convert)",
+'math_image_error'      => "La conversion an PNG a l'é falìa; che a contròla l'ùltima instalassion ëd latex e dvipng (o dvips + gs + convert)",
 'math_bad_tmpdir'       => "Ël sistema a-i la fa pa a creé la diretriss '''math temp''', ò pura a-i la fa nen a scriv-je andrinta",
 'math_bad_output'       => "Ël sistema a-i la fa pa a creé la diretriss '''math output''', ò pura a-i la fa nen a scriv-je andrinta",
 'math_notexvc'          => 'Pa gnun texvc executable; për piasì, che a contròla math/README për la configurassion.',

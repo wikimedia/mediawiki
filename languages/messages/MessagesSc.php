@@ -1248,7 +1248,6 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 'blockip-legend'           => 'Blocca usuàriu',
 'blockiptext'              => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
-'ipaddress'                => 'Indiritzu IP:',
 'ipadressorusername'       => 'Indiritzu IP o nùmene usuàriu:',
 'ipbexpiry'                => 'Scadèntzia:',
 'ipbreason'                => 'Motivu:',

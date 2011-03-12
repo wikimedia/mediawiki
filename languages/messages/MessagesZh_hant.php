@@ -2342,7 +2342,6 @@ $1',
 'blockiptext'                     => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
 只有在為防止破壞，及符合[[{{MediaWiki:Policy-url}}|守則]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。',
-'ipaddress'                       => 'IP 位址：',
 'ipadressorusername'              => 'IP地址或用戶名:',
 'ipbexpiry'                       => '期限：',
 'ipbreason'                       => '原因：',
