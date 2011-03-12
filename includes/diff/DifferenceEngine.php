@@ -1027,15 +1027,15 @@ CONTROL;
 			$this->mOldtitle = "<a href='$oldLink'>{$this->mOldPagetitle}</a>"
 			. " (<a href='$oldEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 			// Add an "undo" link
-			$newUndo = $this->mNewPage->escapeLocalUrl( array(
-				'action' => 'edit',
-				'undoafter' => $this->mOldid,
-				'undo' => $this->mNewid
-			) );
-			$htmlLink = htmlspecialchars( wfMsg( 'editundo' ) );
-			$htmlTitle = Xml::expandAttributes( array( 'title' => $wgUser->getSkin()->titleAttrib( 'undo' ) ) );
 			if ( $editable && !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
-				$this->mNewtitle .= " (<a href='$newUndo' $htmlTitle>" . $htmlLink . "</a>)";
+				$undoLink = Html::element( 'a', array(
+					'href' => $this->mNewPage->getLocalUrl( array(
+						'action' => 'edit',
+						'undoafter' => $this->mOldid,
+						'undo' => $this->mNewid ) ),
+					'title' => $wgUser->getSkin()->titleAttrib( 'undo' )
+				), wfMsg( 'editundo' ) );
+				$this->mNewtitle .= ' (' . $undoLink . ')';
 			}
 
 			if ( !$this->mOldRev->userCan( Revision::DELETED_TEXT ) ) {
