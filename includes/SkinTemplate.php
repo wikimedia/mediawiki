@@ -1224,7 +1224,7 @@ class SkinTemplate extends Skin {
 
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
-					'href' => self::makeSpecialUrlSubpage( 'Blockip', $rootUser )
+					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 				);
 			} else {
 				$nav_urls['blockip'] = false;

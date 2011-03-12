@@ -498,7 +498,7 @@ class IPUnblockForm extends SpecialPage {
 			# Create changeblocklink for all blocks with exception of autoblocks
 			if( !$block->mAuto ) {
 				$changeblocklink = wfMsgExt( 'pipe-separator', 'escapenoentities' ) .
-					$sk->link( SpecialPage::getTitleFor( 'Blockip', $block->mAddress ), 
+					$sk->link( SpecialPage::getTitleFor( 'Block', $block->mAddress ),
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
 			}

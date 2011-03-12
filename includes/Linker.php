@@ -942,7 +942,7 @@ class Linker {
 	 * @private
 	 */
 	function blockLink( $userId, $userText ) {
-		$blockPage = SpecialPage::getTitleFor( 'Blockip', $userText );
+		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$blockLink = $this->link( $blockPage, wfMsgHtml( 'blocklink' ) );
 		return $blockLink;
 	}

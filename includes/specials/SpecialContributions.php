@@ -252,7 +252,7 @@ class SpecialContributions extends SpecialPage {
 			if( $subject->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 				if ( $target->isBlocked() ) {
 					$tools[] = $sk->linkKnown( # Change block link
-						SpecialPage::getTitleFor( 'Blockip', $username ),
+						SpecialPage::getTitleFor( 'Block', $username ),
 						wfMsgHtml( 'change-blocklink' )
 					);
 					$tools[] = $sk->linkKnown( # Unblock link
@@ -266,7 +266,7 @@ class SpecialContributions extends SpecialPage {
 					);
 				} else { # User is not blocked
 					$tools[] = $sk->linkKnown( # Block link
-						SpecialPage::getTitleFor( 'Blockip', $username ),
+						SpecialPage::getTitleFor( 'Block', $username ),
 						wfMsgHtml( 'blocklink' )
 					);
 				}
