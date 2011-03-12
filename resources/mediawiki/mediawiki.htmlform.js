@@ -38,6 +38,7 @@ $( function() {
 	// 'other' is selected
 	$( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function( instant ) {
 		var $other = $( '#' + $(this).attr( 'id' ) + '-other' );
+		$other = $other.add( $other.siblings( 'br' ) );
 		if ( $(this).val() == 'other' ) {
 			$other.goIn( instant );
 		} else {
