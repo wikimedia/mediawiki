@@ -360,16 +360,25 @@ class ImagePage extends Article {
 						# because of rounding.
 					}
 					$msgbig  = wfMsgHtml( 'show-big-image' );
-					$msgsmall = wfMsgExt( 'show-big-image-thumb', 'parseinline',
-						$wgLang->formatNum( $width ),
-						$wgLang->formatNum( $height )
-					);
+					$otherSizes = array();
+					foreach ( $wgImageLimits as $size ) {
+						if ( $size[0] < $width_orig && $size[1] < $height_orig &&
+								$size[0] != $width && $size[1] != $height ) {
+							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );							
+						}
+					}
+					$msgsmall = wfMessage( 'show-big-image-preview' )->
+						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
+						parse() . ' ' . 
+						wfMessage( 'show-big-image-other' )->
+						rawParams( $wgLang->pipeList( $otherSizes ) )->parse();
 				} else {
 					# Image is small enough to show full size on image page
 					$msgsmall = wfMsgExt( 'file-nohires', array( 'parseinline' ) );
 				}
 
 				$params['width'] = $width;
+				$params['height'] = $height;
 				$thumbnail = $this->displayImg->transform( $params );
 
 				$showLink = true;
@@ -513,6 +522,30 @@ EOT
 				// output a 404, to be consistent with articles.
 				$wgRequest->response()->header( "HTTP/1.x 404 Not Found" );
 			}
+		}
+	}
+	
+	/**
+	 * Creates an thumbnail of specified size and returns an HTML link to it  
+	 * @param array $params Scaler parameters
+	 * @param int $width
+	 * @param int $height
+	 */
+	private function makeSizeLink( $params, $width, $height ) {
+		global $wgLang;
+		
+		$params['width'] = $width;
+		$params['height'] = $height;
+		$thumbnail = $this->displayImg->transform( $params );
+		if ( $thumbnail && !$thumbnail->isError() ) {
+			return Html::rawElement( 'a', array(
+				'href' => $thumbnail->getUrl(),
+				'class' => 'mw-thumbnail-link'
+				), wfMessage( 'show-big-image-size' )->numParams(
+					$thumbnail->getWidth(), $thumbnail->getHeight() 
+				)->parse() );
+		} else {
+			return '';
 		}
 	}
 
