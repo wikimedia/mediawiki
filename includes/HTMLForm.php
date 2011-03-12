@@ -1533,8 +1533,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	function getInputHTML( $value ) {
-
-		$select = parent::getInputHTML( $value );
+		$select = parent::getInputHTML( $value[1] );
 
 		$textAttribs = array(
 			'id' => $this->mID . '-other',
@@ -1549,7 +1548,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 		$textbox = Html::input(
 			$this->mName . '-other',
-			'',
+			$value[2],
 			'text',
 			$textAttribs
 		);
@@ -1557,6 +1556,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return "$select<br />\n$textbox";
 	}
 
+	/**
+	 * @param  $request WebRequest
+	 * @return Array( <overall message>, <select value>, <text field value> )
+	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 
@@ -1564,33 +1567,45 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$text = $request->getText( $this->mName . '-other' );
 
 			if ( $list == 'other' ) {
-				return $text;
+				$final = $text;
+			} elseif( !in_array( $list, $this->mFlatOptions ) ){
+				# User has spoofed the select form to give an option which wasn't
+				# in the original offer.  Sulk...
+				$final = $text;
+			} elseif( $text == '' ) {
+				$final = $list;
 			} else {
-				# Need to get the value from the key
-				if( in_array( $list, $this->mFlatOptions ) ){
-					$list = $this->mFlatOptions[$list];
-				} else {
-					# User has spoofed the select form to give an option which wasn't
-					# in the original offer.  Sulk...
-					return $text;
-				}
-			}
-
-			if( $text == '' ) {
-				return $list;
-			} else {
-				return $list . wfMsgForContent( 'colon-separator' ) . $text;
+				$final = $list . wfMsgForContent( 'colon-separator' ) . $text;
 			}
 
 		} else {
-			return $this->getDefault();
+			$final = $this->getDefault();
+			$list = $text = '';
 		}
+		return array( $final, $list, $text );
 	}
 
 	function getSize() {
 		return isset( $this->mParams['size'] )
 			? $this->mParams['size']
 			: 45;
+	}
+
+	function validate( $value, $alldata ) {
+		# HTMLSelectField forces $value to be one of the options in the select
+		# field, which is not useful here.  But we do want the validation further up
+		# the chain
+		$p = parent::validate( $value[1], $alldata );
+
+		if ( $p !== true ) {
+			return $p;
+		}
+
+		if( isset( $this->mParams['required'] ) && $value[1] === '' ){
+			return wfMsgExt( 'htmlform-required', 'parseinline' );
+		}
+
+		return true;
 	}
 }
 
