@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Blockip
+ * Implements Special:Block
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,14 +27,24 @@
  *
  * @ingroup SpecialPage
  */
-class IPBlockForm extends SpecialPage {
-	var $BlockAddress, $BlockExpiry, $BlockReason, $BlockReasonList, $BlockOther, $BlockAnonOnly, $BlockCreateAccount,
-		$BlockEnableAutoblock, $BlockEmail, $BlockHideName, $BlockAllowUsertalk, $BlockReblock, $BlockWatchUser;
-	// The maximum number of edits a user can have and still be hidden
+class SpecialBlock extends SpecialPage {
+
+	# The maximum number of edits a user can have and still be hidden
+	# TODO: config setting?
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
+	# @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
+	# or as subpage (Special:Block/Foo)
+	protected $target;
+
+	# @var Block::TYPE_ constant
+	protected $type;
+
+	# @var Bool
+	protected $alreadyBlocked;
+
 	public function __construct() {
-		parent::__construct( 'Blockip', 'block' );
+		parent::__construct( 'Block', 'block' );
 	}
 
 	public function execute( $par ) {
@@ -51,333 +61,607 @@ class IPBlockForm extends SpecialPage {
 			return;
 		}
 
-		$this->setup( $par );
+		# Extract variables from the request.  Try not to get into a situation where we
+		# need to extract *every* variable from the form just for processing here, but
+		# there are legitimate uses for some variables
+		list( $this->target, $this->type ) = self::getTargetAndType( $par, $wgRequest );
+		if ( $this->target instanceof User ) {
+			# Set the 'relevant user' in the skin, so it displays links like Contributions,
+			# User logs, UserRights, etc.
+			$wgUser->getSkin()->setRelevantUser( $this->target );
+		}
 	
 		# bug 15810: blocked admins should have limited access here
-		if ( $wgUser->isBlocked() ) {
-			$status = IPBlockForm::checkUnblockSelf( $this->BlockAddress );
-			if ( $status !== true ) {
-				throw new ErrorPageError( 'badaccess', $status );
-			}
+		$status = self::checkUnblockSelf( $this->target );
+		if ( $status !== true ) {
+			throw new ErrorPageError( 'badaccess', $status );
 		}
-
-		$action = $wgRequest->getVal( 'action' );
-		if( 'success' == $action ) {
-			$this->showSuccess();
-		} elseif( $wgRequest->wasPosted() && 'submit' == $action &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-			$this->doSubmit();
-		} else {
-			$this->showForm( '' );
-		}
-	}
-
-	private function setup( $par ) {
-		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
-
-		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
-		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
-		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
-		$this->BlockReasonList = $wgRequest->getText( 'wpBlockReasonList' );
-		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg( 'ipbotheroption' ) );
-		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
-
-		# Unchecked checkboxes are not included in the form data at all, so having one
-		# that is true by default is a bit tricky
-		$byDefault = !$wgRequest->wasPosted();
-		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
-		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
-		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
-		$this->BlockEmail = false;
-		if( self::canBlockEmail( $wgUser ) ) {
-			$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
-		}
-		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false ) && $wgUser->isLoggedIn();
-		# Re-check user's rights to hide names, very serious, defaults to null
-		if( $wgUser->isAllowed( 'hideuser' ) ) {
-			$this->BlockHideName = $wgRequest->getBool( 'wpHideName', null );
-		} else {
-			$this->BlockHideName = false;
-		}
-		$this->BlockAllowUsertalk = ( $wgRequest->getBool( 'wpAllowUsertalk', $byDefault ) && $wgBlockAllowsUTEdit );
-		$this->BlockReblock = $wgRequest->getBool( 'wpChangeBlock', false );
-		
-		$this->wasPosted = $wgRequest->wasPosted();
-	}
-
-	public function showForm( $err ) {
-		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
-		$wgOut->addWikiMsg( 'blockiptext' );
+		$wgOut->addModules( 'mediawiki.special', 'mediawiki.special.block' );
 
-		$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );
-		$mIpbexpiry = Xml::label( wfMsg( 'ipbexpiry' ), 'wpBlockExpiry' );
-		$mIpbother = Xml::label( wfMsg( 'ipbother' ), 'mw-bi-other' );
-		$mIpbreasonother = Xml::label( wfMsg( 'ipbreason' ), 'wpBlockReasonList' );
-		$mIpbreason = Xml::label( wfMsg( 'ipbotherreason' ), 'mw-bi-reason' );
+		$fields = self::getFormFields();
+		$this->alreadyBlocked = $this->maybeAlterFormDefaults( $fields );
 
-		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
-		$user = User::newFromName( $this->BlockAddress );
-		if ( is_object( $user ) || User::isIP( $this->BlockAddress ) ) {
-			$wgUser->getSkin()->setRelevantUser( is_object($user) ? $user : User::newFromName( $this->BlockAddress, false ) );
+		$form = new HTMLForm( $fields );
+		$form->setTitle( $this->getTitle() );
+		$form->setWrapperLegend( wfMsg( 'blockip-legend' ) );
+		$form->setSubmitCallback( array( __CLASS__, 'processForm' ) );
+
+		$t = $this->alreadyBlocked
+			? wfMsg( 'ipb-change-block' )
+			: wfMsg( 'ipbsubmit' );
+		$form->setSubmitText( $t );
+
+		$this->doPreText( $form );
+		$this->doPostText( $form );
+
+		if( $form->show() ){
+			$wgOut->setPageTitle( wfMsg( 'blockipsuccesssub' ) );
+			$wgOut->addHTML( wfMsgExt( 'blockipsuccesstext', array( 'parse' ),  $this->target ) );
 		}
+	}
 
-		$alreadyBlocked = false;
-		$otherBlockedMsgs = array();
-		if( $err && $err[0] != 'ipb_already_blocked' ) {
-			$key = array_shift( $err );
-			$msg = wfMsgExt( $key, 'parsemag', $err );
-			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
-			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
-		} elseif( $this->BlockAddress !== null ) {
-			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
-			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockedMsgs, $this->BlockAddress ) );
+	/**
+	 * Get the HTMLForm descriptor array for the block form
+	 * @return Array
+	 */
+	protected static function getFormFields(){
+		global $wgUser, $wgBlockAllowsUTEdit;
 
-			$userId = is_object( $user ) ? $user->getId() : 0;
-			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
-			if( !is_null( $currentBlock ) && !$currentBlock->mAuto && # The block exists and isn't an autoblock
-				( $currentBlock->mRangeStart == $currentBlock->mRangeEnd || # The block isn't a rangeblock
-				# or if it is, the range is what we're about to block
-				( $currentBlock->mAddress == $this->BlockAddress ) )
-			) {
-				$alreadyBlocked = true;
-				# Set the block form settings to the existing block
-				if( !$this->wasPosted ) {
-					$this->BlockAnonOnly = $currentBlock->mAnonOnly;
-					$this->BlockCreateAccount = $currentBlock->mCreateAccount;
-					$this->BlockEnableAutoblock = $currentBlock->mEnableAutoblock;
-					$this->BlockEmail = $currentBlock->mBlockEmail;
-					$this->BlockHideName = $currentBlock->mHideName;
-					$this->BlockAllowUsertalk = $currentBlock->mAllowUsertalk;
-					if( $currentBlock->mExpiry == 'infinity' ) {
-						$this->BlockOther = 'indefinite';
-					} else {
-						$this->BlockOther = wfTimestamp( TS_ISO_8601, $currentBlock->mExpiry );
-					}
-					$this->BlockReason = $currentBlock->mReason;
-				}
-			}
-		}
-
-		# Show other blocks from extensions, i.e. GlockBlocking and TorBlock
-		if( count( $otherBlockedMsgs ) ) {
-			$wgOut->addHTML(
-				Html::rawElement( 'h2', array(), wfMsgExt( 'ipb-otherblocks-header', 'parseinline', count( $otherBlockedMsgs ) ) ) . "\n"
-			);
-			$list = '';
-			foreach( $otherBlockedMsgs as $link ) {
-				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
-			}
-			$wgOut->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-blockip-alreadyblocked' ), $list ) . "\n" );
-		}
-
-		# Username/IP is blocked already locally
-		if( $alreadyBlocked ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-ipb-needreblock'>\n$1\n</div>", array( 'ipb-needreblock', $this->BlockAddress ) );
-		}
-
-		$scBlockExpiryOptions = wfMsgForContent( 'ipboptions' );
-
-		$showblockoptions = $scBlockExpiryOptions != '-';
-		if( !$showblockoptions ) $mIpbother = $mIpbexpiry;
-
-		$blockExpiryFormOptions = Xml::option( wfMsg( 'ipbotheroption' ), 'other' );
-		foreach( explode( ',', $scBlockExpiryOptions ) as $option ) {
-			if( strpos( $option, ':' ) === false ) $option = "$option:$option";
-			list( $show, $value ) = explode( ':', $option );
-			$show = htmlspecialchars( $show );
-			$value = htmlspecialchars( $value );
-			$blockExpiryFormOptions .= Xml::option( $show, $value, $this->BlockExpiry === $value ) . "\n";
-		}
-
-		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList',
-			wfMsgForContent( 'ipbreason-dropdown' ),
-			wfMsgForContent( 'ipbreasonotherlist' ), $this->BlockReasonList, 'wpBlockDropDown', 4 );
-
-		# FIXME: this should actually use HTMLForm, not just some of its JavaScript
-		$wgOut->addModules( array( 'mediawiki.special.block', 'mediawiki.htmlform' ) );
-		
-		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'blockip' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'blockip-legend' ) ) .
-			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-blockip-table' ) ) .
-			"<tr>
-				<td class='mw-label'>
-					{$mIpaddress}
-				</td>
-				<td class='mw-input'>" .
-					Html::input( 'wpBlockAddress', $this->BlockAddress, 'text', array(
-						'tabindex' => '1',
-						'id' => 'mw-bi-target',
-						'size' => '45',
-						'required' => ''
-					) + ( $this->BlockAddress ? array() : array( 'autofocus' ) ) ). "
-				</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>
-					{$mIpbexpiry}
-				</td>
-				<td class='mw-input'>"
+		$a = array(
+			'Target' => array(
+				'type' => 'text',
+				'label-message' => 'ipadressorusername',
+				'tabindex' => '1',
+				'id' => 'mw-bi-target',
+				'size' => '45',
+				'required' => true,
+			),
+			'Expiry' => array(
+				'type' => 'selectorother',
+				'label-message' => 'ipbexpiry',
+				'required' => true,
+				'tabindex' => '2',
+				'options' => self::getSuggestedDurations(),
+				'other' => wfMsg( 'ipbother' ),
+			),
+			'Reason' => array(
+				'type' => 'selectandother',
+				'label-message' => 'ipbreason',
+				'options-message' => 'ipbreason-dropdown',
+			),
+			'CreateAccount' => array(
+				'type' => 'check',
+				'label-message' => 'ipbcreateaccount',
+				'default' => true,
+			),
 		);
-		if( $showblockoptions ) {
-			$wgOut->addHTML(
-					Xml::tags( 'select',
-						array(
-							'id' => 'wpBlockExpiry',
-							'name' => 'wpBlockExpiry',
-							'class' => 'mw-htmlform-select-or-other', # FIXME: actually make this use HTMLForm
-							'tabindex' => '2' ),
-						$blockExpiryFormOptions
-					) . "<br/>\n"
-			);
+
+		if( wfMsgForContent( 'ipboptions' ) == '-' ){
+			$a['Expiry']['type'] = 'text';
 		}
-		$wgOut->addHTML(
-					Xml::input(
-						'wpBlockOther',
-						45,
-						$this->BlockOther,
-						array(
-							'tabindex' => '3',
-							'id' => 'wpBlockExpiry-other'
-						)
-					) . "
-				</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>
-					{$mIpbreasonother}
-				</td>
-				<td class='mw-input'>
-					{$reasonDropDown}
-				</td>
-			</tr>
-			<tr id=\"wpBlockReason\">
-				<td class='mw-label'>
-					{$mIpbreason}
-				</td>
-				<td class='mw-input'>" .
-				Html::input( 'wpBlockReason', $this->BlockReason, 'text', array(
-					'tabindex' => '5',
-					'id' => 'mw-bi-reason',
-					'maxlength' => '200',
-					'size' => '45'
-				) + ( $this->BlockAddress ? array( 'autofocus' ) : array() ) ) . "
-				</td>
-			</tr>
-			<tr id='wpCreateAccountRow'>
-				<td>&#160;</td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'ipbcreateaccount' ),
-						'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
-						array( 'tabindex' => '7' ) ) . "
-				</td>
-			</tr>"
-		);
 
 		if( self::canBlockEmail( $wgUser ) ) {
-			$wgOut->addHTML("
-				<tr id='wpEnableEmailBan'>
-					<td>&#160;</td>
-					<td class='mw-input'>" .
-						Xml::checkLabel( wfMsg( 'ipbemailban' ),
-							'wpEmailBan', 'wpEmailBan', $this->BlockEmail,
-							array( 'tabindex' => '9' ) ) . "
-					</td>
-				</tr>"
+			$a['DisableEmail'] = array(
+				'type' => 'check',
+				'label-message' => 'ipbemailban',
 			);
 		}
 
-		# Can we explicitly disallow the use of user_talk?
-		global $wgBlockAllowsUTEdit;
 		if( $wgBlockAllowsUTEdit ){
-			$wgOut->addHTML("
-				<tr id='wpAllowUsertalkRow'>
-					<td>&#160;</td>
-					<td class='mw-input'>" .
-						Xml::checkLabel( wfMsg( 'ipballowusertalk' ),
-							'wpAllowUsertalk', 'wpAllowUsertalk', $this->BlockAllowUsertalk,
-							array( 'tabindex' => '12' ) ) . "
-					</td>
-				</tr>"
+			$a['DisableUTEdit'] = array(
+				'type' => 'check',
+				'label-message' => 'ipb-disableusertalk',
+				'default' => false,
 			);
 		}
 
-		$wgOut->addHTML( "
-			<tr id='wpEnableAutoblockRow'>
-				<td>&#160;</td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'ipbenableautoblock' ),
-						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
-						array( 'tabindex' => '8' ) ) . "
-				</td>
-			</tr>"
+		$a['AutoBlock'] = array(
+			'type' => 'check',
+			'label-message' => 'ipbenableautoblock',
+			'default' => true,
 		);
 
-		// Allow some users to hide name from block log, blocklist and listusers
+		# Allow some users to hide name from block log, blocklist and listusers
 		if( $wgUser->isAllowed( 'hideuser' ) ) {
-			$wgOut->addHTML("
-				<tr id='wpEnableHideUser'>
-					<td>&#160;</td>
-					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMsg( 'ipbhidename' ),
-							'wpHideName', 'wpHideName', $this->BlockHideName,
-							array( 'tabindex' => '10' )
-						) . "
-					</strong></td>
-				</tr>"
+			$a['HideUser'] = array(
+				'type' => 'check',
+				'label-message' => 'ipbhidename',
+				'cssclass' => 'mw-block-hideuser',
 			);
 		}
 
 		# Watchlist their user page? (Only if user is logged in)
 		if( $wgUser->isLoggedIn() ) {
-			$wgOut->addHTML("
-			<tr id='wpEnableWatchUser'>
-				<td>&#160;</td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'ipbwatchuser' ),
-						'wpWatchUser', 'wpWatchUser', $this->BlockWatchUser,
-						array( 'tabindex' => '11' ) ) . "
-				</td>
-			</tr>"
+			$a['Watch'] = array(
+				'type' => 'check',
+				'label-message' => 'ipbwatchuser',
 			);
 		}
 
-		$wgOut->addHTML("
-			<tr id='wpAnonOnlyRow'>
-				<td>&#160;</td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'ipbanononly' ),
-							'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
-							array( 'tabindex' => '6' ) ) . "
-				</td>
-			</tr>
-			<tr>
-				<td style='padding-top: 1em'>&#160;</td>
-				<td  class='mw-submit' style='padding-top: 1em'>" .
-					Xml::submitButton( wfMsg( $alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ),
-						array( 'name' => 'wpBlock', 'tabindex' => '13' )
-							+ $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'blockip-block' ) ). "
-				</td>
-			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
-			( $alreadyBlocked ? Html::hidden( 'wpChangeBlock', 1 ) : "" ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' )
+		$a['HardBlock'] = array(
+			'type' => 'check',
+			'label-message' => 'ipb-hardblock',
+			'default' => false,
 		);
 
-		$wgOut->addHTML( $this->getConvenienceLinks() );
+		$a['AlreadyBlocked'] = array(
+			'type' => 'hidden',
+			'default' => false,
+		);
 
-		if( is_object( $user ) ) {
-			$this->showLogFragment( $wgOut, $user->getUserPage() );
-		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
-			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
-		} elseif( preg_match( '/^\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}/', $this->BlockAddress ) ) {
-			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
+		return $a;
+	}
+
+	/**
+	 * If the user has already been blocked with similar settings, load that block
+	 * and change the defaults for the form fields to match the existing settings.
+	 * @param &$fields Array HTMLForm descriptor array
+	 * @return Bool whether fields were altered (that is, whether the target is
+	 *     already blocked)
+	 */
+	protected function maybeAlterFormDefaults( &$fields ){
+		$fields['Target']['default'] = $this->target;
+
+		$block = self::getBlockFromTargetAndType( $this->target, $this->type );
+
+		if( $block instanceof Block && !$block->mAuto # The block exists and isn't an autoblock
+			&& ( $this->type != Block::TYPE_RANGE # The block isn't a rangeblock
+			  || $block->mAddress == $this->target ) # or if it is, the range is what we're about to block
+			)
+		{
+			$fields['HardBlock']['default'] = !$block->mAnonOnly;
+			$fields['CreateAccount']['default'] = $block->mCreateAccount;
+			$fields['AutoBlock']['default'] = $block->mEnableAutoblock;
+			$fields['DisableEmail']['default'] = $block->mBlockEmail;
+			$fields['HideUser']['default'] = $block->mHideName;
+			$fields['DisableUTEdit']['default'] = !$block->mAllowUsertalk;
+			$fields['Reason']['default'] = $block->mReason;
+			$fields['AlreadyBlocked']['default'] = true;
+
+			if( $block->mExpiry == 'infinity' ) {
+				$fields['Expiry']['default'] = 'indefinite';
+			} else {
+				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
+			}
+
+			return true;
 		}
+		return false;
+	}
+
+	/**
+	 * Add header elements like block log entries, etc.
+	 * @param  $form HTMLForm
+	 * @return void
+	 */
+	protected function doPreText( HTMLForm &$form ){
+		$form->addPreText( wfMsgExt( 'blockiptext', 'parse' ) );
+
+		$otherBlockMessages = array();
+		if( $this->target !== null ) {
+			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
+			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockMessages, $this->target ) );
+
+			if( count( $otherBlockMessages ) ) {
+				$s = Html::rawElement(
+					'h2',
+					array(),
+					wfMsgExt( 'ipb-otherblocks-header', 'parseinline', count( $otherBlockMessages ) )
+				) . "\n";
+				$list = '';
+				foreach( $otherBlockMessages as $link ) {
+					$list .= Html::rawElement( 'li', array(), $link ) . "\n";
+				}
+				$s .= Html::rawElement(
+					'ul',
+					array( 'class' => 'mw-blockip-alreadyblocked' ),
+					$list
+				) . "\n";
+				$form->addPreText( $s );
+			}
+		}
+
+		# Username/IP is blocked already locally
+		if( $this->alreadyBlocked ) {
+			$form->addPreText( Html::rawElement(
+				'div',
+				array( 'class' => 'mw-ipb-needreblock', ),
+				wfMsgExt(
+					'ipb-needreblock',
+					array( 'parseinline' ),
+					$this->target
+			) ) );
+		}
+	}
+
+	/**
+	 * Add footer elements to the form
+	 * @param  $form HTMLForm
+	 * @return void
+	 */
+	protected function doPostText( HTMLForm &$form ){
+		global $wgUser, $wgLang;
+
+		$skin = $wgUser->getSkin();
+
+		# Link to the user's contributions, if applicable
+		if( $this->target instanceof User ){
+			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
+			$links[] = $skin->link(
+				$contribsPage,
+				wfMsgExt( 'ipb-blocklist-contribs', 'escape', $this->target->getName() )
+			);
+		}
+
+		# Link to unblock the specified user, or to a blank unblock form
+		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
+		$query = array( 'action' => 'unblock' );
+		if( $this->target instanceof User ) {
+			$message = wfMsgExt( 'ipb-unblock-addr', array( 'parseinline' ), $this->target->getName() );
+			$query['ip'] = $this->target->getName();
+		} else {
+			$message = wfMsgExt( 'ipb-unblock', array( 'parseinline' ) );
+		}
+		$links[] = $skin->linkKnown( $list, $message, array(), $query );
+
+		# Link to the block list
+		$links[] = $skin->linkKnown(
+			SpecialPage::getTitleFor( 'Ipblocklist' ),
+			wfMsg( 'ipb-blocklist' )
+		);
+
+		# Link to edit the block dropdown reasons, if applicable
+		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+			$links[] = $skin->link(
+				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
+				wfMsgHtml( 'ipb-edit-dropdown' ),
+				array(),
+				array( 'action' => 'edit' )
+			);
+		}
+
+		$form->addPostText( Html::rawElement(
+			'p',
+			array( 'class' => 'mw-ipb-conveniencelinks' ),
+			$wgLang->pipeList( $links )
+		) );
+
+		if( $this->target instanceof User ){
+			# Get relevant extracts from the block and suppression logs, if possible
+			$userpage = $this->target->getUserPage();
+			$out = '';
+
+			LogEventsList::showLogExtract(
+				$out,
+				'block',
+				$userpage->getPrefixedText(),
+				'',
+				array(
+					'lim' => 10,
+					'msgKey' => array( 'blocklog-showlog', $userpage->getText() ),
+					'showIfEmpty' => false
+				)
+			);
+			$form->addPostText( $out );
+
+			# Add suppression block entries if allowed
+			if( $wgUser->isAllowed( 'suppressionlog' ) ) {
+				LogEventsList::showLogExtract(
+					$out,
+					'suppress',
+					$userpage->getPrefixedText(),
+					'',
+					array(
+						'lim' => 10,
+						'conds' => array( 'log_action' => array( 'block', 'reblock', 'unblock' ) ),
+						'msgKey' => array( 'blocklog-showsuppresslog', $userpage->getText() ),
+						'showIfEmpty' => false
+					)
+				);
+				$form->addPostText( $out );
+			}
+		}
+	}
+
+	/**
+	 * Determine the target of the block, and the type of target
+	 * TODO: should be in Block.php?
+	 * @param $par String subpage parameter passed to setup, or data value from
+	 *     the HTMLForm
+	 * @param $request WebRequest optionally try and get data from a request too
+	 * @return void
+	 */
+	public static function getTargetAndType( $par, WebRequest $request = null ){
+		$i = 0;
+		$target = null;
+		while( true ){
+			switch( $i++ ){
+				case 0:
+					# The HTMLForm will check wpTarget first and only if it doesn't get
+					# a value use the default, which will be generated from the options
+					# below; so this has to have a higher precedence here than $par, or
+					# we could end up with different values in $this->target and the HTMLForm!
+					if( $request instanceof WebRequest ){
+						$target = $request->getText( 'wpTarget', null );
+					}
+			        break;
+				case 1:
+					$target = $par;
+					break;
+				case 2:
+					if( $request instanceof WebRequest ){
+						$target = $request->getText( 'ip', null );
+					}
+			        break;
+				case 3:
+					# B/C @since 1.18
+					if( $request instanceof WebRequest ){
+						$target = $request->getText( 'wpBlockAddress', null );
+					}
+			        break;
+				case 4:
+					break 2;
+			}
+
+			$userObj = User::newFromName( $target );
+			if( $userObj instanceof User ){
+				return array( $userObj, Block::TYPE_USER );
+			} elseif( IP::isValid( $target ) ){
+				# We can still create a User if it's an IP address, but we need to turn
+				# off validation checking (which would exclude IP addresses)
+				return array(
+					User::newFromName( IP::sanitizeIP( $target ), false ),
+					Block::TYPE_IP
+				);
+				break;
+			} elseif( IP::isValidBlock( $target ) ){
+				# Can't create a User from an IP range
+				return array( Block::normaliseRange( $target ), Block::TYPE_RANGE );
+			}
+		}
+		return array( null, null );
+	}
+
+	/**
+	 * Given a target and the target's type, get a block object if possible
+	 * @param $target String|User
+	 * @param $type Block::TYPE_ constant
+	 * @return Block|null
+	 * TODO: this probably belongs in Block.php when that mess is cleared up
+	 */
+	public static function getBlockFromTargetAndType( $target, $type ){
+		if( $target instanceof User ){
+			if( $type == Block::TYPE_IP ){
+				return Block::newFromDB( $target->getName(), 0 );
+			} elseif( $type == Block::TYPE_USER ) {
+				return Block::newFromDB( '', $target->getId() );
+			} else {
+				# Should be unreachable;
+				return null;
+			}
+		} elseif( $type == Block::TYPE_RANGE ){
+			return Block::newFromDB( '', $target );
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Given the form data, actually implement a block
+	 * @param  $data Array
+	 * @return Bool|String
+	 */
+	public static function processForm( array $data ){
+		global $wgUser, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
+
+		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
+
+		if( $type == Block::TYPE_USER ){
+			# TODO: why do we not have a User->exists() method?
+			if( !$target->getId() ){
+				return array( array( 'nosuchusershort', $target->getName() ) );
+			}
+
+			$status = self::checkUnblockSelf( $target );
+			if ( $status !== true ) {
+				return array( array( 'badaccess', $status ) );
+			}
+
+			$user = $target;
+			$target = $user->getName();
+			$userId = $user->getId();
+
+		} elseif( $type == Block::TYPE_RANGE ){
+			list( $ip, $range ) = explode( '/', $target, 2 );
+
+			if( ( IP::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 )
+				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPV6'] == 128 ) )
+			{
+				# Range block effectively disabled
+				return array( 'range_block_disabled' );
+			}
+
+			if( ( IP::isIPv4( $ip ) && $range > 32 )
+				|| ( IP::isIPv6( $ip ) && $range > 128 ) )
+			{
+				# Dodgy range
+				return array( 'ip_range_invalid' );
+			}
+
+			if( IP::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
+				return array( array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] ) );
+			}
+
+			if( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
+				return array( array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] ) );
+			}
+
+			$userId = 0;
+
+		} elseif( $type == Block::TYPE_IP ){
+			# All is well
+			$target = $target->getName();
+			$userId = 0;
+
+		} else {
+			return array( 'badipaddress' );
+		}
+
+		if( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
+			|| !Block::parseExpiryInput( $data['Expiry'] ) )
+		{
+			return array( 'ipb_expiry_invalid' );
+		}
+
+		if( !$wgBlockAllowsUTEdit ){
+			$data['PreventUTEdit'] = true;
+		}
+
+		# If the user has done the form 'properly', they won't even have been given the
+		# option to suppress-block unless they have the 'hideuser' permission
+		if( !isset( $data['HideUser'] ) ){
+			$data['HideUser'] = false;
+		}
+		if( $data['HideUser'] ) {
+			if( !$wgUser->isAllowed('hideuser') ){
+				# this codepath is unreachable except by a malicious user spoofing forms,
+				# or by race conditions (user has oversight and sysop, loads block form,
+				# and is de-oversighted before submission); so need to fail completely
+				# rather than just silently disable hiding
+				return array( 'badaccess-group0' );
+			}
+
+			# Recheck params here...
+			if( $type != Block::TYPE_USER ) {
+				$data['HideUser'] = false; # IP users should not be hidden
+
+			} elseif( !in_array( $data['Expiry'], array( 'inifinite', 'infinity', 'indefinite' ) ) ) {
+				# Bad expiry.
+				return array( 'ipb_expiry_temp' );
+
+			} elseif( $user->getEditCount() > self::HIDEUSER_CONTRIBLIMIT ) {
+				# Typically, the user should have a handful of edits.
+				# Disallow hiding users with many edits for performance.
+				return array( 'ipb_hide_invalid' );
+			}
+		}
+
+		# Create block object.  Note that for a user block, ipb_address is only for display purposes
+		# FIXME: Why do we need to pass fourteen optional parameters to do this!?!
+		$block = new Block(
+			$target,                                    # IP address or User name
+			$userId,                                    # User id
+			$wgUser->getId(),                           # Blocker id
+			$data['Reason'][0],                         # Reason string
+			wfTimestampNow(),                           # Block Timestamp
+			0,                                          # Is this an autoblock (no)
+			Block::parseExpiryInput( $data['Expiry'] ), # Expiry time
+			!$data['HardBlock'],                        # Block anon only
+			$data['CreateAccount'],
+			$data['AutoBlock'],
+			$data['HideUser'],
+			$data['DisableEmail'],
+			!$data['DisableUTEdit']                     # *Allow* UTEdit
+		);
+
+		if( !wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
+			return array( 'hookaborted' );
+		}
+
+		# Try to insert block. Is there a conflicting block?
+		if( !$block->insert() ) {
+
+			# Show form unless the user is already aware of this...
+			if( !$data['AlreadyBlocked'] ) {
+				return array( array( 'ipb_already_blocked', $data['Target'] ) );
+
+			# Otherwise, try to update the block...
+			} else {
+
+				# This returns direct blocks before autoblocks/rangeblocks, since we should
+				# be sure the user is blocked by now it should work for our purposes
+				$currentBlock = Block::newFromDB( $target, $userId );
+
+				if( $block->equals( $currentBlock ) ) {
+					return array( 'ipb_already_blocked' );
+				}
+
+				# If the name was hidden and the blocking user cannot hide
+				# names, then don't allow any block changes...
+				if( $currentBlock->mHideName && !$wgUser->isAllowed( 'hideuser' ) ) {
+					return array( 'cant-see-hidden-user' );
+				}
+
+				$currentBlock->delete();
+				$block->insert();
+				$logaction = 'reblock';
+
+				# Unset _deleted fields if requested
+				if( $currentBlock->mHideName && !$data['HideUser'] ) {
+					RevisionDeleteUser::unsuppressUserName( $target, $userId );
+				}
+
+				# If hiding/unhiding a name, this should go in the private logs
+				if( (bool)$currentBlock->mHideName ){
+					$data['HideUser'] = true;
+				}
+			}
+
+		} else {
+			$logaction = 'block';
+		}
+
+		wfRunHooks( 'BlockIpComplete', array( $block, $wgUser ) );
+
+		# Set *_deleted fields if requested
+		if( $data['HideUser'] ) {
+			RevisionDeleteUser::suppressUserName( $target, $userId );
+		}
+
+		# Can't watch a rangeblock
+		if( $type != Block::TYPE_RANGE && $data['Watch'] ) {
+			$wgUser->addWatch( Title::makeTitle( NS_USER, $target ) );
+		}
+
+		# Block constructor sanitizes certain block options on insert
+		$data['BlockEmail'] = $block->mBlockEmail;
+		$data['AutoBlock'] = $block->mEnableAutoblock;
+
+		# Prepare log parameters
+		$logParams = array();
+		$logParams[] = $data['Expiry'];
+		$logParams[] = self::blockLogFlags( $data, $type );
+
+		# Make log entry, if the name is hidden, put it in the oversight log
+		$log_type = $data['HideUser'] ? 'suppress' : 'block';
+		$log = new LogPage( $log_type );
+		$log->addEntry(
+			$logaction,
+			Title::makeTitle( NS_USER, $target ),
+			$data['Reason'][0],
+			$logParams
+		);
+
+		# Report to the user
+		return true;
+	}
+
+	/**
+	 * Get an array of suggested block durations from MediaWiki:Ipboptions
+	 * FIXME: this uses a rather odd syntax for the options, should it be converted
+	 *     to the standard "**<duration>|<displayname>" format?
+	 * @return Array
+	 */
+	protected static function getSuggestedDurations(){
+		$a = array();
+		foreach( explode( ',', wfMsgForContent( 'ipboptions' ) ) as $option ) {
+			if( strpos( $option, ':' ) === false ) $option = "$option:$option";
+			list( $show, $value ) = explode( ':', $option );
+			$a[htmlspecialchars( $show )] = htmlspecialchars( $value );
+		}
+		return $a;
 	}
 
 	/**
@@ -389,7 +673,7 @@ class IPBlockForm extends SpecialPage {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
 		return ( $wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ) );
 	}
-	
+
 	/**
 	 * bug 15810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
@@ -403,444 +687,63 @@ class IPBlockForm extends SpecialPage {
 		} elseif ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
 		}
-		if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
-			# User is trying to unblock themselves
-			if ( $wgUser->isAllowed( 'unblockself' ) ) {
-				return true;
+		if( $wgUser->isBlocked() ){
+			if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
+				# User is trying to unblock themselves
+				if ( $wgUser->isAllowed( 'unblockself' ) ) {
+					return true;
+				} else {
+					return 'ipbnounblockself';
+				}
 			} else {
-				return 'ipbnounblockself';
+				# User is trying to block/unblock someone else
+				return 'ipbblocked';
 			}
 		} else {
-			# User is trying to block/unblock someone else
-			return 'ipbblocked';
-		}
-	}
-
-	/**
-	 * Backend block code.
-	 * $userID and $expiry will be filled accordingly
-	 * @return array(message key, arguments) on failure, empty array on success
-	 */
-	function doBlock( &$userId = null, &$expiry = null ) {
-		global $wgUser, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
-
-		$userId = 0;
-		# Expand valid IPv6 addresses, usernames are left as is
-		$this->BlockAddress = IP::sanitizeIP( $this->BlockAddress );
-		# isIPv4() and IPv6() are used for final validation
-		$rxIP4 = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
-		$rxIP6 = '\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}';
-		$rxIP = "($rxIP4|$rxIP6)";
-
-		# Check for invalid specifications
-		if( !preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
-			$matches = array();
-		  	if( preg_match( "/^($rxIP4)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
-		  		# IPv4
-				if( $wgBlockCIDRLimit['IPv4'] != 32 ){
-					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] > 32 ) {
-						return array( 'ip_range_invalid' );
-					} elseif ( $matches[2] < $wgBlockCIDRLimit['IPv4'] ) {
-						return array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
-					}
-					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
-				} else {
-					# Range block illegal
-					return array( 'range_block_disabled' );
-				}
-			} elseif( preg_match( "/^($rxIP6)\\/(\\d{1,3})$/", $this->BlockAddress, $matches ) ) {
-		  		# IPv6
-				if( $wgBlockCIDRLimit['IPv6'] != 128 ) {
-					if( !IP::isIPv6( $this->BlockAddress ) || $matches[2] > 128 ) {
-						return array( 'ip_range_invalid' );
-					} elseif( $matches[2] < $wgBlockCIDRLimit['IPv6'] ) {
-						return array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
-					}
-					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
-				} else {
-					# Range block illegal
-					return array('range_block_disabled');
-				}
-			} else {
-				# Username block
-				$user = User::newFromName( $this->BlockAddress );
-				if( $user instanceof User && $user->getId() ) {
-					# Use canonical name
-					$userId = $user->getId();
-					$this->BlockAddress = $user->getName();
-				} else {
-					return array( 'nosuchusershort', htmlspecialchars( $user ? $user->getName() : $this->BlockAddress ) );
-				}
-			}
-		}
-
-		if( $wgUser->isBlocked() && ( $wgUser->getId() !== $userId ) ) {
-			return array( 'cant-block-while-blocked' );
-		}
-
-		$reasonstr = $this->BlockReasonList;
-		if( $reasonstr != 'other' && $this->BlockReason != '' ) {
-			// Entry from drop down menu + additional comment
-			$reasonstr .= wfMsgForContent( 'colon-separator' ) . $this->BlockReason;
-		} elseif( $reasonstr == 'other' ) {
-			$reasonstr = $this->BlockReason;
-		}
-
-		$expirestr = $this->BlockExpiry;
-		if( $expirestr == 'other' )
-			$expirestr = $this->BlockOther;
-
-		if( ( strlen( $expirestr ) == 0) || ( strlen( $expirestr ) > 50 ) ) {
-			return array( 'ipb_expiry_invalid' );
-		}
-		
-		if( false === ( $expiry = Block::parseExpiryInput( $expirestr ) ) ) {
-			// Bad expiry.
-			return array( 'ipb_expiry_invalid' );
-		}
-
-		if( $this->BlockHideName ) {
-			// Recheck params here...
-			if( !$userId || !$wgUser->isAllowed('hideuser') ) {
-				$this->BlockHideName = false; // IP users should not be hidden
-			} elseif( $expiry !== 'infinity' ) {
-				// Bad expiry.
-				return array( 'ipb_expiry_temp' );
-			} elseif( User::edits( $userId ) > self::HIDEUSER_CONTRIBLIMIT ) {
-				// Typically, the user should have a handful of edits.
-				// Disallow hiding users with many edits for performance.
-				return array( 'ipb_hide_invalid' );
-			}
-		}
-
-		# Create block object
-		# Note: for a user block, ipb_address is only for display purposes
-		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
-			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
-			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail,
-			isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit
-		);
-
-		# Should this be privately logged?
-		$suppressLog = (bool)$this->BlockHideName;
-		if( wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
-			# Try to insert block. Is there a conflicting block?
-			if( !$block->insert() ) {
-				# Show form unless the user is already aware of this...
-				if( !$this->BlockReblock ) {
-					return array( 'ipb_already_blocked' );
-				# Otherwise, try to update the block...
-				} else {
-					# This returns direct blocks before autoblocks/rangeblocks, since we should
-					# be sure the user is blocked by now it should work for our purposes
-					$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
-					if( $block->equals( $currentBlock ) ) {
-						return array( 'ipb_already_blocked' );
-					}
-					# If the name was hidden and the blocking user cannot hide
-					# names, then don't allow any block changes...
-					if( $currentBlock->mHideName && !$wgUser->isAllowed( 'hideuser' ) ) {
-						return array( 'cant-see-hidden-user' );
-					}
-					$currentBlock->delete();
-					$block->insert();
-					# If hiding/unhiding a name, this should go in the private logs
-					$suppressLog = $suppressLog || (bool)$currentBlock->mHideName;
-					$log_action = 'reblock';
-					# Unset _deleted fields if requested
-					if( $currentBlock->mHideName && !$this->BlockHideName ) {
-						RevisionDeleteUser::unsuppressUserName( $this->BlockAddress, $userId );
-					}
-				}
-			} else {
-				$log_action = 'block';
-			}
-			wfRunHooks( 'BlockIpComplete', array( $block, $wgUser ) );
-
-			# Set *_deleted fields if requested
-			if( $this->BlockHideName ) {
-				RevisionDeleteUser::suppressUserName( $this->BlockAddress, $userId );
-			}
-
-			# Only show watch link when this is no range block
-			if( $this->BlockWatchUser && $block->mRangeStart == $block->mRangeEnd ) {
-				$wgUser->addWatch( Title::makeTitle( NS_USER, $this->BlockAddress ) );
-			}
-
-			# Block constructor sanitizes certain block options on insert
-			$this->BlockEmail = $block->mBlockEmail;
-			$this->BlockEnableAutoblock = $block->mEnableAutoblock;
-
-			# Prepare log parameters
-			$logParams = array();
-			$logParams[] = $expirestr;
-			$logParams[] = $this->blockLogFlags();
-
-			# Make log entry, if the name is hidden, put it in the oversight log
-			$log_type = $suppressLog ? 'suppress' : 'block';
-			$log = new LogPage( $log_type );
-			$log->addEntry( $log_action, Title::makeTitle( NS_USER, $this->BlockAddress ),
-				$reasonstr, $logParams );
-
-			# Report to the user
-			return array();
-		} else {
-			return array( 'hookaborted' );
-		}
-	}
-
-	# @deprecated since 1.18
-	public static function suppressUserName( $name, $userId, $dbw = null ) {
-		return RevisionDeleteUser::suppressUserName( $name, $userId, $dbw );
-	}
-
-	# @deprecated since 1.18
-	public static function unsuppressUserName( $name, $userId, $dbw = null ) {
-		return RevisionDeleteUser::unsuppressUserName( $name, $userId, $dbw );
-	}
-
-	/**
-	 * UI entry point for blocking
-	 * Wraps around doBlock()
-	 */
-	public function doSubmit() {
-		global $wgOut;
-		$retval = $this->doBlock();
-		if( empty( $retval ) ) {
-			$titleObj = SpecialPage::getTitleFor( 'Blockip' );
-			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
-				urlencode( $this->BlockAddress ) ) );
-			return;
-		}
-		$this->showForm( $retval );
-	}
-
-	public function showSuccess() {
-		global $wgOut;
-
-		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
-		$wgOut->setSubtitle( wfMsg( 'blockipsuccesssub' ) );
-		$text = wfMsgExt( 'blockipsuccesstext', array( 'parse' ), $this->BlockAddress );
-		$wgOut->addHTML( $text );
-	}
-
-	private function showLogFragment( $out, $title ) {
-		global $wgUser;
-
-		// Used to support GENDER in 'blocklog-showlog' and 'blocklog-showsuppresslog'
-		$userBlocked = $title->getText();
-
-		LogEventsList::showLogExtract(
-			$out,
-			'block',
-			$title->getPrefixedText(),
-			'',
-			array(
-				'lim' => 10,
-				'msgKey' => array(
-					'blocklog-showlog',
-					$userBlocked
-				),
-				'showIfEmpty' => false
-			)
-		);
-
-		// Add suppression block entries if allowed
-		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
-			LogEventsList::showLogExtract( $out, 'suppress', $title->getPrefixedText(), '',
-				array(
-					'lim' => 10,
-					'conds' => array(
-						'log_action' => array(
-							'block',
-							'reblock',
-							'unblock'
-						)
-					),
-					'msgKey' => array(
-						'blocklog-showsuppresslog',
-						$userBlocked
-					),
-					'showIfEmpty' => false
-				)
-			);
+			return true;
 		}
 	}
 
 	/**
 	 * Return a comma-delimited list of "flags" to be passed to the log
 	 * reader for this block, to provide more information in the logs
-	 *
+	 * @param $data Array from HTMLForm data
+	 * @param $type Block::TYPE_ constant
 	 * @return array
 	 */
-	private function blockLogFlags() {
+	protected static function blockLogFlags( array $data, $type ) {
 		global $wgBlockAllowsUTEdit;
 		$flags = array();
-		if( $this->BlockAnonOnly && IP::isIPAddress( $this->BlockAddress ) )
-			// when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
+
+		# when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
+		if( !$data['HardBlock'] && $type != Block::TYPE_USER ){
 			$flags[] = 'anononly';
-		if( $this->BlockCreateAccount )
+		}
+
+		if( $data['CreateAccount'] ){
 			$flags[] = 'nocreate';
-		if( !$this->BlockEnableAutoblock && !IP::isIPAddress( $this->BlockAddress ) )
-			// Same as anononly, this is not displayed when blocking an IP address
+		}
+
+		# Same as anononly, this is not displayed when blocking an IP address
+		if( !$data['AutoBlock'] && $type != Block::TYPE_IP ){
 			$flags[] = 'noautoblock';
-		if( $this->BlockEmail )
+		}
+
+		if( $data['DisableEmail'] ){
 			$flags[] = 'noemail';
-		if( !$this->BlockAllowUsertalk && $wgBlockAllowsUTEdit )
+		}
+
+		if( $data['DisableUTEdit'] && $wgBlockAllowsUTEdit ){
 			$flags[] = 'nousertalk';
-		if( $this->BlockHideName )
+		}
+
+		if( $data['HideUser'] ){
 			$flags[] = 'hiddenname';
+		}
+
 		return implode( ',', $flags );
 	}
-
-	/**
-	 * Builds unblock and block list links
-	 *
-	 * @return string
-	 */
-	private function getConvenienceLinks() {
-		global $wgUser, $wgLang;
-		$skin = $wgUser->getSkin();
-		if( $this->BlockAddress )
-			$links[] = $this->getContribsLink( $skin );
-		$links[] = $this->getUnblockLink( $skin );
-		$links[] = $this->getBlockListLink( $skin );
-		if ( $wgUser->isAllowed( 'editinterface' ) ) {
-			$title = Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' );
-			$links[] = $skin->link(
-				$title,
-				wfMsgHtml( 'ipb-edit-dropdown' ),
-				array(),
-				array( 'action' => 'edit' )
-			);
-		}
-		return '<p class="mw-ipb-conveniencelinks">' . $wgLang->pipeList( $links ) . '</p>';
-	}
-
-	/**
-	 * Build a convenient link to a user or IP's contribs
-	 * form
-	 *
-	 * @param $skin Skin to use
-	 * @return string
-	 */
-	private function getContribsLink( $skin ) {
-		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
-		return $skin->link( $contribsPage, wfMsgExt( 'ipb-blocklist-contribs', 'escape', $this->BlockAddress ) );
-	}
-
-	/**
-	 * Build a convenient link to unblock the given username or IP
-	 * address, if available; otherwise link to a blank unblock
-	 * form
-	 *
-	 * @param $skin Skin to use
-	 * @return string
-	 */
-	private function getUnblockLink( $skin ) {
-		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
-		$query = array( 'action' => 'unblock' );
-
-		if( $this->BlockAddress ) {
-			$addr = strtr( $this->BlockAddress, '_', ' ' );
-			$message = wfMsg( 'ipb-unblock-addr', $addr );
-			$query['ip'] = $this->BlockAddress;
-		} else {
-			$message = wfMsg( 'ipb-unblock' );
-		}
-		return $skin->linkKnown(
-			$list,
-			htmlspecialchars( $message ),
-			array(),
-			$query
-		);
-	}
-
-	/**
-	 * Build a convenience link to the block list
-	 *
-	 * @param $skin Skin to use
-	 * @return string
-	 */
-	private function getBlockListLink( $skin ) {
-		return $skin->linkKnown(
-			SpecialPage::getTitleFor( 'Ipblocklist' ),
-			wfMsg( 'ipb-blocklist' )
-		);
-	}
-
-	/**
-	 * Block a list of selected users
-	 *
-	 * @param $users Array
-	 * @param $reason String
-	 * @param $tag String: replaces user pages
-	 * @param $talkTag String: replaces user talk pages
-	 * @return Array: list of html-safe usernames
-	 */
-	public static function doMassUserBlock( $users, $reason = '', $tag = '', $talkTag = '' ) {
-		global $wgUser;
-		$counter = $blockSize = 0;
-		$safeUsers = array();
-		$log = new LogPage( 'block' );
-		foreach( $users as $name ) {
-			# Enforce limits
-			$counter++;
-			$blockSize++;
-			# Lets not go *too* fast
-			if( $blockSize >= 20 ) {
-				$blockSize = 0;
-				wfWaitForSlaves( 5 );
-			}
-			$u = User::newFromName( $name, false );
-			// If user doesn't exist, it ought to be an IP then
-			if( is_null( $u ) || ( !$u->getId() && !IP::isIPAddress( $u->getName() ) ) ) {
-				continue;
-			}
-			$userTitle = $u->getUserPage();
-			$userTalkTitle = $u->getTalkPage();
-			$userpage = new Article( $userTitle );
-			$usertalk = new Article( $userTalkTitle );
-			$safeUsers[] = '[[' . $userTitle->getPrefixedText() . '|' . $userTitle->getText() . ']]';
-			$expirestr = $u->getId() ? 'indefinite' : '1 week';
-			$expiry = Block::parseExpiryInput( $expirestr );
-			$anonOnly = IP::isIPAddress( $u->getName() ) ? 1 : 0;
-			// Create the block
-			$block = new Block( $u->getName(), // victim
-				$u->getId(), // uid
-				$wgUser->getId(), // blocker
-				$reason, // comment
-				wfTimestampNow(), // block time
-				0, // auto ?
-				$expiry, // duration
-				$anonOnly, // anononly?
-				1, // block account creation?
-				1, // autoblocking?
-				0, // suppress name?
-				0 // block from sending email?
-			);
-			$oldblock = Block::newFromDB( $u->getName(), $u->getId() );
-			if( !$oldblock ) {
-				$block->insert();
-				# Prepare log parameters
-				$logParams = array();
-				$logParams[] = $expirestr;
-				if( $anonOnly ) {
-					$logParams[] = 'anononly';
-				}
-				$logParams[] = 'nocreate';
-				# Add log entry
-				$log->addEntry( 'block', $userTitle, $reason, $logParams );
-			}
-			# Tag userpage! (check length to avoid mistakes)
-			if( strlen( $tag ) > 2 ) {
-				$userpage->doEdit( $tag, $reason, EDIT_MINOR );
-			}
-			if( strlen( $talkTag ) > 2 ) {
-				$usertalk->doEdit( $talkTag, $reason, EDIT_MINOR );
-			}
-		}
-		return $safeUsers;
-	}
 }
+
+# BC @since 1.18
+class IPBlockForm extends SpecialBlock {}
