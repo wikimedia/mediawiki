@@ -145,6 +145,7 @@ class BitmapHandler extends ImageHandler {
 				break;
 			case 'imext':
 				$err = $this->transformImageMagickExt( $image, $scalerParams );
+				break;
 			case 'gd':
 			default:
 				$err = $this->transformGd( $image, $scalerParams );
