@@ -112,6 +112,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 14706) Added support for the Imagick PHP extension.
 * (bug 18691) Added support for SVG rasterization using the Imagick PHP 
   extension
+* (bug 2581, bug 6834) Added links to thumbnail in several resolutions to the 
+  file description page. The sizes are set by $wgImageLimits.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
