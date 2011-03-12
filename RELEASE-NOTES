@@ -103,6 +103,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * When $wgAllowMicrodataAttributes is true, all itemtypes are allowed, not just
   the three that were defined in the original specification.
 * (bug 14706) Added support for the Imagick PHP extension.
+* (bug 18691) Added support for SVG rasterization using the Imagick PHP 
+  extension
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated

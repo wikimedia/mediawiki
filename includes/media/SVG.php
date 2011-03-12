@@ -119,19 +119,32 @@ class SvgHandler extends ImageHandler {
 		$err = false;
 		$retval = '';
 		if ( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-			$cmd = str_replace(
-				array( '$path/', '$width', '$height', '$input', '$output' ),
-				array( $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
-					   intval( $width ),
-					   intval( $height ),
-					   wfEscapeShellArg( $srcPath ),
-					   wfEscapeShellArg( $dstPath ) ),
-				$wgSVGConverters[$wgSVGConverter]
-			) . " 2>&1";
-			wfProfileIn( 'rsvg' );
-			wfDebug( __METHOD__.": $cmd\n" );
-			$err = wfShellExec( $cmd, $retval );
-			wfProfileOut( 'rsvg' );
+			if ( is_array( $wgSVGConverters[$wgSVGConverter] ) ) {
+				// This is a PHP callable
+				$func = $wgSVGConverters[$wgSVGConverter][0];
+				$args = array_merge( array( $srcPath, $dstPath, $width, $height ), 
+					array_slice( $wgSVGConverters[$wgSVGConverter], 1 ) );
+				if ( !is_callable( $func ) ) {
+					throw new MWException( "$func is not callable" );
+				}
+				$err = call_user_func_array( $func, $args );
+				$retval = (bool)$err;
+			} else {
+				// External command
+				$cmd = str_replace(
+					array( '$path/', '$width', '$height', '$input', '$output' ),
+					array( $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
+						   intval( $width ),
+						   intval( $height ),
+						   wfEscapeShellArg( $srcPath ),
+						   wfEscapeShellArg( $dstPath ) ),
+					$wgSVGConverters[$wgSVGConverter]
+				) . " 2>&1";
+				wfProfileIn( 'rsvg' );
+				wfDebug( __METHOD__.": $cmd\n" );
+				$err = wfShellExec( $cmd, $retval );
+				wfProfileOut( 'rsvg' );
+			}
 		}
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
@@ -140,6 +153,20 @@ class SvgHandler extends ImageHandler {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		}
 		return true;
+	}
+	
+	public static function rasterizeImagickExt( $srcPath, $dstPath, $width, $height ) {
+		$im = new Imagick( $srcPath );
+		$im->setImageFormat( 'png' );
+		$im->setBackgroundColor( 'transparent' );
+		$im->setImageDepth( 8 );
+		
+		if ( !$im->thumbnailImage( intval( $width ), intval( $height ), /* fit */ false ) ) {
+			return 'Could not resize image';
+		}
+		if ( !$im->writeImage( $dstPath ) ) {
+			return "Could not write to $dstPath";
+		}
 	}
 
 	/**

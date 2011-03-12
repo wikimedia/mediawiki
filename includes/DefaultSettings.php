@@ -660,6 +660,8 @@ $wgCustomConvertCommand = false;
  * necessary to rasterize SVGs to PNG as a fallback format.
  *
  * An external program is required to perform this conversion.
+ * If set to an array, the first item is a PHP callable and any further items
+ * are passed as parameters after $srcPath, $dstPath, $width, $height
  */
 $wgSVGConverters = array(
 	'ImageMagick' => '$path/convert -background white -thumbnail $widthx$height\! $input PNG:$output',
@@ -668,6 +670,7 @@ $wgSVGConverters = array(
 	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
 	'rsvg' => '$path/rsvg -w$width -h$height $input $output',
 	'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',
+	'ImagickExt' => array( 'SvgHandler::rasterizeImagickExt' ),
 	);
 /** Pick a converter defined in $wgSVGConverters */
 $wgSVGConverter = 'ImageMagick';
