@@ -79,7 +79,7 @@ class IPUnblockForm extends SpecialPage {
 				} else {
 					$user = User::newFromName( $ip );
 				}
-				$status = IPBlockForm::checkUnblockSelf( $user );
+				$status = SpecialBlock::checkUnblockSelf( $user );
 				if ( $status !== true ) {
 					throw new ErrorPageError( 'badaccess', $status );
 				}
