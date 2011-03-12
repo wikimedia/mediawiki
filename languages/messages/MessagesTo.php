@@ -884,7 +884,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 # Block/unblock
 'blockip'              => 'Taʻofia ʻa e ʻetita',
 'blockiptext'          => 'Ngāueʻaki ʻa e foomu ʻi lalo ʻe taʻofia ʻa e ngofua tohi ʻo e tuʻasila IP pe hingoa ʻetita ʻe taha. ʻOku pau ʻe fai pehē ʻi he taʻofi laukovi pē, lototaha ia mo e [[{{MediaWiki:Policy-url}}|founga]]. Fakafonu ʻi lalo ʻa e ʻuhinga totonu (fakafuaʻaki, lau ki he ngaahi peesi naʻe laukovi).',
-'ipaddress'            => 'Tuʻasila IP',
 'ipadressorusername'   => 'Tuʻasila IP pe hingoa ʻo e ʻetita',
 'ipbexpiry'            => 'Mate',
 'ipbreason'            => 'ʻUhinga',

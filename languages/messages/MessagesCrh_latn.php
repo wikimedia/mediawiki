@@ -1635,7 +1635,6 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'blockip'                  => 'Bu IP adresinden irişimni blok et',
 'blockip-legend'           => 'Qullanıcını blok et',
 'blockiptext'              => 'Aşağıdaki formanı qullanıp belli bir IP adresiniñ ya da qullanıcınıñ irişimini blok etip olasıñız. Bu tek vandalizmni blok etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa blok etüv ile bağlı bir izaat yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
-'ipaddress'                => 'IP adresi',
 'ipadressorusername'       => 'IP adresi ya da qullanıcı adı',
 'ipbexpiry'                => 'Bitiş müddeti',
 'ipbreason'                => 'Sebep',

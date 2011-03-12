@@ -2475,7 +2475,6 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'blockiptext'                     => "Pentru a bloca un utilizator completați rubricile de mai jos.<br />
 '''Respectați [[{{MediaWiki:Policy-url}}|politica de blocare]].'''<br />
 Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest utilizator.",
-'ipaddress'                       => 'Adresă IP:',
 'ipadressorusername'              => 'Adresă IP sau nume de utilizator',
 'ipbexpiry'                       => 'Expiră',
 'ipbreason'                       => 'Motiv:',

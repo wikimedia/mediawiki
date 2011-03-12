@@ -2197,7 +2197,6 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 'blockiptext'                     => 'Aşakdaky formdan peýdalanyp, belli bir IP-niň ýa-da ulanyjy adynyň ýazmak hukugyny blokirläp bilersiňiz.
 Bu diňe wandalizmiň öňüni almak üçin hem-de [[{{MediaWiki:Policy-url}}|kadalara]] laýyklykda edilmelidir.
 Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypalaryny görkeziň).',
-'ipaddress'                       => 'IP adresi:',
 'ipadressorusername'              => 'IP adresi ýa-da ulanyjy ady:',
 'ipbexpiry'                       => 'Gutarýan wagty:',
 'ipbreason'                       => 'Sebäp:',

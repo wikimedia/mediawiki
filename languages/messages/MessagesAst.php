@@ -2097,7 +2097,6 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'blockip-legend'                  => 'Bloquiar usuariu',
 'blockiptext'                     => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
 Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
-'ipaddress'                       => 'Direición IP:',
 'ipadressorusername'              => "Direición IP o nome d'usuariu:",
 'ipbexpiry'                       => 'Caducidá:',
 'ipbreason'                       => 'Motivu:',

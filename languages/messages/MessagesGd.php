@@ -876,7 +876,6 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 
 # Block/unblock
 'blockip'                  => 'Bac cleachdaiche',
-'ipaddress'                => 'IP Seòladh/ainm-cleachdaiche',
 'ipbreason'                => 'Adhbhar:',
 'ipbsubmit'                => 'Bac an cleachdaiche seo',
 'ipboptions'               => '2 uair a thìde:2 hours, 1 latha:1 day, 3 làithean:3 days, 1 seachdain:1 week, 2 sheachdain:2 weeks, 1 mhìos:1 month, 3 mìosan:3 months, 6 mìosan:6 months, 1 bhliadhna:1 year,neo-chrìochnach:infinite',

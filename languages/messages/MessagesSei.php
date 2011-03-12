@@ -946,7 +946,6 @@ iitom e-iitomde diijömde caitóm.',
 
 # Block/unblock
 'blockip'                 => 'Block caitom',
-'ipaddress'               => 'Addressade IP:',
 'ipadressorusername'      => 'Addressade IP jöx caitom ID:',
 'ipbreason'               => 'Ra:',
 'ipbreasonotherlist'      => "Ra pac'de",

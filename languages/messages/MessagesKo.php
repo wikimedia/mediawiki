@@ -2451,7 +2451,6 @@ $1',
 'blockiptext'                     => '차단할 IP 주소나 사용자 이름을 아래에 적어 주세요.
 차단은 문서 훼손을 막기 위해, [[{{MediaWiki:Policy-url}}|정책]]에 의해서만 이루어져야 합니다.
 차단 이유를 같이 적어주세요(예: 특정 문서 훼손).',
-'ipaddress'                       => 'IP 주소:',
 'ipadressorusername'              => 'IP 주소 또는 계정 이름:',
 'ipbexpiry'                       => '기간:',
 'ipbreason'                       => '이유:',

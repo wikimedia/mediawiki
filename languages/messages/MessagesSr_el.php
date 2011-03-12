@@ -2215,7 +2215,6 @@ Ovo bi trebalo da bude urađeno samo da bi se sprečio vandalizam, i u skladu
 sa [[{{MediaWiki:Policy-url}}|politikom]].
 Unesite konkretan razlog ispod (na primer, navodeći koje
 stranice su vandalizovane).',
-'ipaddress'                       => 'IP adresa',
 'ipadressorusername'              => 'IP adresa ili korisničko ime',
 'ipbexpiry'                       => 'Trajanje',
 'ipbreason'                       => 'Razlog:',

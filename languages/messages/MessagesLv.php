@@ -1973,7 +1973,6 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'blockip-legend'               => 'Bloķēt lietotāju',
 'blockiptext'                  => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[{{MediaWiki:Policy-url}}|noteikumiem]].
 Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
-'ipaddress'                    => 'IP adrese:',
 'ipadressorusername'           => 'IP adrese vai lietotājvārds',
 'ipbexpiry'                    => 'Termiņš',
 'ipbreason'                    => 'Iemesls:',

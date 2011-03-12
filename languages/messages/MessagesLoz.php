@@ -857,7 +857,6 @@ Petohoni di petulo '''$1''' sa:",
 
 # Block/unblock
 'blockip'            => 'Bolok sebelu',
-'ipaddress'          => 'IP:',
 'ipadressorusername' => 'IP/sebelu:',
 'ipboptions'         => '2 ora:2 hours,1 dia:1 day,3 dia:3 days,1 wiki:1 week,2 wiki:2 weeks,1 muna:1 month,3 muna:3 months,6 muna:6 months,1 anu:1 year,di simuluzi:infinite',
 'badipaddress'       => 'IP ni sa',

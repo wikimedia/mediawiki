@@ -1512,7 +1512,6 @@ $1',
 'blockiptext'                 => "Baroi bastani dastrasiji viroişi nişonai IP jo nomi korbarī muşaxxas az formi zerin istifoda kuned.
 In kor faqat bojad baroi çilavgirī az xarobkori va muvofiqi bo [[{{MediaWiki:Policy-url}}|sijosati qat'i dastrasī]] ançom şavad.
 Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe, ki xarobkorī şudaand).",
-'ipaddress'                   => 'Nişonai IP:',
 'ipadressorusername'          => 'IP nişona jo nomi korbar:',
 'ipbexpiry'                   => 'Xotima:',
 'ipbreason'                   => 'Sabab:',

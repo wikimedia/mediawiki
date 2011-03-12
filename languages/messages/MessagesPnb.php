@@ -989,7 +989,6 @@ $messages = array(
 # Block/unblock
 'blockip'                  => 'اس ورتن والے نو روکو',
 'blockip-legend'           => 'ورتن آلے نوں روکو',
-'ipaddress'                => 'آئی پی پتہ:',
 'ipadressorusername'       => 'آئی پی پتہ یا ورتن آلے دا ناں:',
 'ipbexpiry'                => 'انت:',
 'ipbreason'                => 'وجہ:',

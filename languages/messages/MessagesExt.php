@@ -1684,7 +1684,6 @@ $1',
 'blockiptext'                 => "Gasta el hormuláriu d'embahu p'atarugal el acesu duna IP u dun usuáriu.
 Estu solu ebi hazelsi pa evital el vandalismu, i dalcuerdu cola [[{{MediaWiki:Policy-url}}|póliça]].
 Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan siu vandalizás pol esti usuáriu).",
-'ipaddress'                   => 'Direción IP:',
 'ipadressorusername'          => 'IP u nombri d´usuáriu:',
 'ipbexpiry'                   => 'Acabiha:',
 'ipbreason'                   => 'Razón:',

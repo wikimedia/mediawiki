@@ -2034,7 +2034,6 @@ $1',
 'blockiptext'                     => 'Enggonen formulir ing ngisor iki kanggo mblokir sawijining alamat IP utawa panganggo supaya ora bisa nyunting kaca.
 Prekara iki perlu dilakoni kanggo menggak vandalisme, lan miturut [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].
 Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis tau dirusak).',
-'ipaddress'                       => 'Alamat IP',
 'ipadressorusername'              => 'Alamat IP utawa jeneng panganggo',
 'ipbexpiry'                       => 'Kadaluwarsa',
 'ipbreason'                       => 'Alesan:',

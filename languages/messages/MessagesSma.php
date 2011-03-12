@@ -653,7 +653,6 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 
 # Block/unblock
 'blockip'              => 'Tjöödtjehtidh nuhtjien',
-'ipaddress'            => 'IP Tjaalesijjie:',
 'ipadressorusername'   => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'ipbother'             => 'Jeatjebh tïjje:',
 'ipboptions'           => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite',

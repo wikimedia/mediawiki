@@ -1272,7 +1272,6 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'blockip'                  => 'Bloche utent',
 'blockip-title'            => "Bloche l'utent",
 'blockip-legend'           => "Bloche l'utent",
-'ipaddress'                => 'Direzion IP:',
 'ipadressorusername'       => 'Direzion IP o non utent:',
 'ipbexpiry'                => 'Scjadence dal bloc:',
 'ipbreason'                => 'Reson dal bloc:',

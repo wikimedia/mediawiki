@@ -997,7 +997,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 # Block/unblock
 'blockip'              => 'Eastte rievdadusaid',
-'ipaddress'            => 'IP-čujuhus',
 'ipadressorusername'   => 'IP-čujuhus dahje geavaheaddjidovddaldat',
 'ipbexpiry'            => 'Guhkkodat',
 'ipbreason'            => 'Sivva',

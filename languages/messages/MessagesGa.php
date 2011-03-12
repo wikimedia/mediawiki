@@ -1467,7 +1467,6 @@ Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chos
 mar a deirtear sa [[{{MediaWiki:Policy-url}}|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]].
 Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
 leathanaigh áirithe a rinne an duine damáiste ar).',
-'ipaddress'                => 'Seoladh IP / ainm úsáideora',
 'ipadressorusername'       => 'Seoladh IP nó ainm úsáideora:',
 'ipbexpiry'                => 'Am éaga',
 'ipbreason'                => 'Fáth:',

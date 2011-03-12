@@ -800,7 +800,6 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 
 # Block/unblock
 'blockip'                    => 'Lettya an devnydhyer',
-'ipaddress'                  => 'Trigva IP:',
 'ipadressorusername'         => 'Trigva IP po hanow-usyer:',
 'ipbreason'                  => 'Acheson:',
 'ipbreasonotherlist'         => 'Acheson aral',

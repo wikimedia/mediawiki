@@ -919,7 +919,6 @@ Sí $2 fyri fulla skráseting av strikingum.',
 
 # Block/unblock
 'blockip'              => 'Banna brúkara',
-'ipaddress'            => 'IP-adressa:',
 'ipadressorusername'   => 'IP-adressa ella brúkaranavn:',
 'ipbreason'            => 'Orsøk:',
 'ipbsubmit'            => 'Banna henda brúkaran',

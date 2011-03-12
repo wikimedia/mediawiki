@@ -1856,7 +1856,6 @@ L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'blockiptext'                     => "Utilisescha il formular sutvart per bloccar ina adressa IP u in utilisader uschia ch'el na po betg pli far midadas.
 Ti duessas be far quai per impedir vandalissem e en ina moda confurma a las [[{{MediaWiki:Policy-url}}|directivas]].
 Inditgescha sutvart in motiv (per exempel pos ti inditgar paginas ch'èn vegnidas destruidas).",
-'ipaddress'                       => 'Adressa IP:',
 'ipadressorusername'              => "Adressa IP u num d'utilisader:",
 'ipbexpiry'                       => 'Bloccà enfin:',
 'ipbreason'                       => 'Motiv:',

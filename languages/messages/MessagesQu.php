@@ -2362,7 +2362,6 @@ Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'blockiptext'                     => "Kay qatiq hunt'ana p'anqata llamk'achiy huk sapaq IP huchhamanta icha ruraqpa rakiqunanmanta qillqay atiyta hark'anapaq.
 Kayqa rurasqa kachun wandalismullatam hark'anapaq, [[{{MediaWiki:Policy-url}}|{{SITENAME}}pa kawpayninkamallam]].
 Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta willaspa).",
-'ipaddress'                       => 'IP huchha',
 'ipadressorusername'              => 'IP huchha icha ruraqpa sutin',
 'ipbexpiry'                       => "Hark'ay kaykama:",
 'ipbreason'                       => 'Kayrayku:',

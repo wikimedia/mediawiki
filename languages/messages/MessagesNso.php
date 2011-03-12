@@ -956,7 +956,6 @@ Seemo sa go lota ga letlakala '''$1''':",
 
 # Block/unblock
 'blockip'                  => 'Thibela mošomiši go tsena',
-'ipaddress'                => 'IP Atrese:',
 'ipbexpiry'                => 'Fetatšatši:',
 'ipbreason'                => 'Lebaka:',
 'ipbreasonotherlist'       => 'Lebaka le lengwe',

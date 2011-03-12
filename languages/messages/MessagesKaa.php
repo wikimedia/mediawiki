@@ -1616,7 +1616,6 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 # Block/unblock
 'blockip'                     => 'Paydalanıwshını bloklaw',
 'blockip-legend'              => 'Paydalanıwshını bloklaw',
-'ipaddress'                   => 'IP Adres:',
 'ipadressorusername'          => 'IP Adres yamasa paydalanıwshı atı:',
 'ipbexpiry'                   => "Ku'shin joytıw waqtı:",
 'ipbreason'                   => 'Sebep:',

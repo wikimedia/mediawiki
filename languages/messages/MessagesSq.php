@@ -2336,7 +2336,6 @@ Bllokimi i funditë është më poshtë për referencë:',
 'blockiptext'                     => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP specifike.
 Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:Policy-url}}|rregullat e {{SITENAME}}-s]].
 Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).',
-'ipaddress'                       => 'IP Adresë/përdorues',
 'ipadressorusername'              => 'Adresë IP ose emër përdoruesi',
 'ipbexpiry'                       => 'Afati',
 'ipbreason'                       => 'Arsyeja:',

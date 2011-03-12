@@ -1700,7 +1700,6 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'blockip'                      => 'Usorem obstruere',
 'blockip-legend'               => 'Usorem vel locum IP obstruere',
 'blockiptext'                  => 'Forma infera utere ut quendam usorem vel locum IP obstruas ne plus scribere potest. Hoc non nisi secundum [[{{MediaWiki:Policy-url}}|consilium]] fieri potest. Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo vandalorum recensuit).',
-'ipaddress'                    => 'Locus IP:',
 'ipadressorusername'           => 'Locus IP aut nomen usoris:',
 'ipbexpiry'                    => 'Exitus:',
 'ipbreason'                    => 'Causa:',

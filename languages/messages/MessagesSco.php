@@ -1148,7 +1148,6 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 # Block/unblock
 'blockip'                     => 'Block uiser',
 'blockiptext'                 => 'Uise the form ablo tae block write access frae a specific IP address or uisername. This shuid be duin juist tae prevent vandalism, and in accord wi [[{{MediaWiki:Policy-url}}|policy]]. Fill in a specific raeson ablo (for exemplar, citin parteicular pages that wis damaged).',
-'ipaddress'                   => 'IP Address',
 'ipadressorusername'          => 'IP Address or uisername',
 'ipbreason'                   => 'Raeson:',
 'ipbsubmit'                   => 'Block this uiser',

@@ -1553,7 +1553,6 @@ $2',
 # Block/unblock
 'blockip'                  => 'ಈ ಸದಸ್ಯನನ್ನು ತಡೆ ಹಿಡಿಯಿರಿ',
 'blockip-legend'           => 'ಬಳಕೆದಾರನನ್ನು ತಡೆಹಿಡಿ',
-'ipaddress'                => 'IP ವಿಳಾಸ:',
 'ipadressorusername'       => 'IP ವಿಳಾಸ ಅಥವ ಬಳಕೆಯ ಹೆಸರು:',
 'ipbexpiry'                => 'ಅಂತ್ಯ:',
 'ipbreason'                => 'ಕಾರಣ:',

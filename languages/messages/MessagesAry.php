@@ -1444,7 +1444,6 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'blockip'                         => 'Bloké l-mosṫeĥdim',
 'blockip-title'                   => 'Bloki l-mosṫeḫdim',
 'blockip-legend'                  => 'Bloki l-mosṫeḫdim',
-'ipaddress'                       => 'Ĝonwan IP:',
 'ipadressorusername'              => 'Ĝonwan IP ola smiyṫ l-mosṫeĥdim',
 'ipbexpiry'                       => 'Ġayṫqada fe :',
 'ipbreason'                       => 'S-Sabab',
