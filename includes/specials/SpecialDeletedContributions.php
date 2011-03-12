@@ -372,7 +372,7 @@ class DeletedContributionsPage extends SpecialPage {
 				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 					if ( $userObj->isBlocked() ) {
 						$tools[] = $sk->linkKnown( # Change block link
-							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
+							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
 							wfMsgHtml( 'change-blocklink' )
 						);
 						$tools[] = $sk->linkKnown( # Unblock link
@@ -387,7 +387,7 @@ class DeletedContributionsPage extends SpecialPage {
 					}
 					else { # User is not blocked
 						$tools[] = $sk->linkKnown( # Block link
-							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
+							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
 							wfMsgHtml( 'blocklink' )
 						);
 					}

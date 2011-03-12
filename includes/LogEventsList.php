@@ -411,7 +411,7 @@ class LogEventsList {
 				) .
 				$this->message['pipe-separator'] .
 				$this->skin->link(
-					SpecialPage::getTitleFor( 'Blockip', $row->log_title ),
+					SpecialPage::getTitleFor( 'Block', $row->log_title ),
 					$this->message['change-blocklink'],
 					array(),
 					array(),
