@@ -211,6 +211,9 @@ class IPUnblockForm extends SpecialPage {
 				}
 				$ip = $block->getRedactedName();
 			} else {
+				# FIXME: do proper sanitisation/cleanup here
+				$ip = str_replace( '_', ' ', $ip );
+
 				$block = Block::newFromDB( $ip );
 				if ( !$block ) {
 					return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
