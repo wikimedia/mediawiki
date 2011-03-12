@@ -344,7 +344,7 @@ class Linker {
 	 * @param $trail String
 	 * @param $prefix String
 	 * @return string HTML of link
-	 * @deprecated @since 1.17
+	 * @deprecated since 1.17
 	 */
 	function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
@@ -1765,7 +1765,7 @@ class Linker {
 	/* Deprecated methods */
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeLinkObj for further documentation.
@@ -1792,7 +1792,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
@@ -1817,7 +1817,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
@@ -1840,7 +1840,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
@@ -1864,7 +1864,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * Make a link for a title which may or may not be in the database. If you need to
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
@@ -1894,7 +1894,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
@@ -1930,7 +1930,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * Make a red link to the edit page of a given title.
 	 *
@@ -1958,7 +1958,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * Make a brown link to a short article.
 	 *
@@ -1975,7 +1975,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.16 Use link()
+	 * @deprecated since 1.16 Use link()
 	 *
 	 * Make a coloured link.
 	 *
@@ -2005,7 +2005,7 @@ class Linker {
 
 	/**
 	 * Creates the HTML source for images
-	 * @deprecated @since 1.16 use makeImageLink2
+	 * @deprecated since 1.16 use makeImageLink2
 	 *
 	 * @param $title Title object
 	 * @param $label String: label text
@@ -2071,7 +2071,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.14
+	 * @deprecated since 1.14
 	 * Returns raw bits of HTML, use titleAttrib() and accesskey()
 	 */
 	public function tooltipAndAccesskey( $name ) {
@@ -2079,7 +2079,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated @since 1.14
+	 * @deprecated since 1.14
 	 * Returns raw bits of HTML, use titleAttrib()
 	 */
 	public function tooltip( $name, $options = null ) {

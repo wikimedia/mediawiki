@@ -2697,7 +2697,7 @@ class User {
 	 * which will give them a chance to modify this key based on their own
 	 * settings.
 	 *
-	 * @deprecated @since 1.17 use the ParserOptions object to get the relevant options
+	 * @deprecated since 1.17 use the ParserOptions object to get the relevant options
 	 * @return String Page rendering hash
 	 */
 	function getPageRenderingHash() {

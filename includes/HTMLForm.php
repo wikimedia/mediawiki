@@ -159,7 +159,7 @@ class HTMLForm {
 	/**
 	 * Add the HTMLForm-specific JavaScript, if it hasn't been
 	 * done already.
-	 * @deprecated @since 1.18 load modules with ResourceLoader instead
+	 * @deprecated since 1.18 load modules with ResourceLoader instead
 	 */
 	static function addJS() { }
 
