@@ -181,13 +181,13 @@ class BitmapHandler extends ImageHandler {
 			$scaler = 'client';
 		} elseif ( !$wgUseImageResize ) {
 			$scaler = 'client';
-		}/* elseif ( $wgUseImageMagick ) {
+		} elseif ( $wgUseImageMagick ) {
 			$scaler = 'im';
 		} elseif ( $wgCustomConvertCommand ) {
 			$scaler = 'custom';
 		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
 			$scaler = 'gd';
-		}*/ elseif ( class_exists( 'Imagick' ) ) {
+		} elseif ( class_exists( 'Imagick' ) ) {
 			$scaler = 'imext';
 		} else {
 			$scaler = 'client';
