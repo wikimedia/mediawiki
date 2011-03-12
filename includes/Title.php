@@ -1955,7 +1955,7 @@ class Title {
 	 * Is this a *valid* .css or .js subpage of a user page?
 	 *
 	 * @return Bool
-	 * @deprecated @since 1.17
+	 * @deprecated since 1.17
 	 */
 	public function isValidCssJsSubpage() {
 		return $this->isCssJsSubpage();

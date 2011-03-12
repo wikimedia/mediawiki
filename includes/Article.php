@@ -159,7 +159,7 @@ class Article {
 	 *
 	 * @param $text string article content containing redirect info
 	 * @return mixed false, Title of in-wiki target, or string with URL
-	 * @deprecated @since 1.17
+	 * @deprecated since 1.17
 	 */
 	public function followRedirectText( $text ) {
 		// recurse through to only get the final target
@@ -1936,7 +1936,7 @@ class Article {
 	}
 
 	/**
-	 * @deprecated @since 1.7 use Article::doEdit()
+	 * @deprecated since 1.7 use Article::doEdit()
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC = false, $comment = false, $bot = false ) {
 		wfDeprecated( __METHOD__ );
@@ -1970,7 +1970,7 @@ class Article {
 	}
 
 	/**
-	 * @deprecated @since 1.7 use Article::doEdit()
+	 * @deprecated since 1.7 use Article::doEdit()
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		wfDeprecated( __METHOD__ );

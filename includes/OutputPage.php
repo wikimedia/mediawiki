@@ -1092,7 +1092,7 @@ class OutputPage {
 
 	/**
 	 * Return whether user JavaScript is allowed for this page
-	 * @deprecated @since 1.18 Load modules with ResourceLoader, and origin and
+	 * @deprecated since 1.18 Load modules with ResourceLoader, and origin and
 	 *     trustworthiness is identified and enforced automagically. 
 	 * @return Boolean
 	 */
@@ -3075,7 +3075,7 @@ class OutputPage {
 	 * @param $modules Array: list of jQuery modules which should be loaded
 	 * @return Array: the list of modules which were not loaded.
 	 * @since 1.16
-	 * @deprecated @since 1.17
+	 * @deprecated since 1.17
 	 */
 	public function includeJQuery( $modules = array() ) {
 		return array();

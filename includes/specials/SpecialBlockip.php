@@ -590,12 +590,12 @@ class IPBlockForm extends SpecialPage {
 		}
 	}
 
-	# @deprecated @since 1.18
+	# @deprecated since 1.18
 	public static function suppressUserName( $name, $userId, $dbw = null ) {
 		return RevisionDeleteUser::suppressUserName( $name, $userId, $dbw );
 	}
 
-	# @deprecated @since 1.18
+	# @deprecated since 1.18
 	public static function unsuppressUserName( $name, $userId, $dbw = null ) {
 		return RevisionDeleteUser::unsuppressUserName( $name, $userId, $dbw );
 	}
