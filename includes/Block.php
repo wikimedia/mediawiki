@@ -12,6 +12,7 @@
  * Globals used: $wgAutoblockExpiry, $wgAntiLockFlags
  *
  * @todo This could be used everywhere, but it isn't.
+ * FIXME: this whole class is a cesspit, needs a complete rewrite
  */
 class Block {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
@@ -22,6 +23,10 @@ class Block {
 	const EB_KEEP_EXPIRED = 1;
 	const EB_FOR_UPDATE = 2;
 	const EB_RANGE_ONLY = 4;
+
+	const TYPE_USER = 1;
+	const TYPE_IP = 2;
+	const TYPE_RANGE = 3;
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
@@ -63,7 +68,6 @@ class Block {
 	public static function newFromDB( $address, $user = 0, $killExpired = true ) {
 		$block = new Block;
 		$block->load( $address, $user, $killExpired );
-
 		if ( $block->isValid() ) {
 			return $block;
 		} else {

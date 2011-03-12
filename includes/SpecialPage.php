@@ -136,7 +136,7 @@ class SpecialPage {
 		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
 
 		# Users and rights
-		'Blockip'                   => 'IPBlockForm',
+		'Block'                     => 'SpecialBlock',
 		'Ipblocklist'               => 'IPUnblockForm',
 		'Unblock'                   => array( 'SpecialRedirectToSpecial', 'Unblock', 'Ipblocklist', false, array( 'uselang', 'ip', 'id' ), array( 'action' => 'unblock' ) ),
 		'Resetpass'                 => 'SpecialResetpass',

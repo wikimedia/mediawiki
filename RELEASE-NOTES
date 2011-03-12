@@ -55,6 +55,13 @@ PHP if you have not done so prior to upgrading MediaWiki.
   Use $wgBlockCIDRLimit = array( 'IPv4' => 43, 'IPv6' => 128 ) to achieve the same
   functionality as $wgSysopRangeBans; you can use the BlockIp hook to replicate
   $wgSysopUserBans functionality.
+* The options on the block form have been standardised such that checking a box
+  makes the block 'more serious'; so while "check to prevent account creation" and
+  "check to enable autoblock" remain the same, "check to allow user-talk edit" is
+  reversed to "check to *disable* user-talk edit", and "check to block anon-only"
+  becomes "check to block logged-in users too".  The default settings remain the same.
+* Most of the field names on the Special:Block form have been changed, which will
+  probably break screen-scraping bots.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the

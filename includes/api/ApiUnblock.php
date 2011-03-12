@@ -66,7 +66,7 @@ class ApiUnblock extends ApiBase {
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $wgUser->isBlocked() ) {
-			$status = IPBlockForm::checkUnblockSelf( $params['user'] );
+			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( array( $status ) );
 			}

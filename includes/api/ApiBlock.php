@@ -62,7 +62,7 @@ class ApiBlock extends ApiBase {
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $wgUser->isBlocked() ) {
-			$status = IPBlockForm::checkUnblockSelf( $params['user'] );
+			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( array( $status ) );
 			}
@@ -70,35 +70,48 @@ class ApiBlock extends ApiBase {
 		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( array( 'canthide' ) );
 		}
-		if ( $params['noemail'] && !IPBlockForm::canBlockEmail( $wgUser ) ) {
+		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $wgUser ) ) {
 			$this->dieUsageMsg( array( 'cantblock-email' ) );
 		}
 
-		$form = new IPBlockForm( '' );
-		$form->BlockAddress = $params['user'];
-		$form->BlockReason = ( is_null( $params['reason'] ) ? '' : $params['reason'] );
-		$form->BlockReasonList = 'other';
-		$form->BlockExpiry = ( $params['expiry'] == 'never' ? 'infinite' : $params['expiry'] );
-		$form->BlockOther = '';
-		$form->BlockAnonOnly = $params['anononly'];
-		$form->BlockCreateAccount = $params['nocreate'];
-		$form->BlockEnableAutoblock = $params['autoblock'];
-		$form->BlockEmail = $params['noemail'];
-		$form->BlockHideName = $params['hidename'];
-		$form->BlockAllowUsertalk = $params['allowusertalk'] && $wgBlockAllowsUTEdit;
-		$form->BlockReblock = $params['reblock'];
-		$form->BlockWatchUser = $params['watchuser'];
+		$data = array(
+			'Target' => $params['user'],
+			'Reason' => array(
+				is_null( $params['reason'] ) ? '' : $params['reason'],
+				'other',
+				is_null( $params['reason'] ) ? '' : $params['reason']
+			),
+			'Expiry' => $params['expiry'] == 'never' ? 'infinite' : $params['expiry'],
+			'HardBlock' => !$params['anononly'],
+			'CreateAccount' => $params['nocreate'],
+			'AutoBlock' => $params['autoblock'],
+			'DisableEmail' => $params['noemail'],
+			'HideUser' => $params['hidename'],
+			'DisableUTEdit' => $params['allowusertalk'],
+			'AlreadyBlocked' => $params['reblock'],
+			'Watch' => $params['watchuser'],
+		);
 
-		$userID = $expiry = null;
-		$retval = $form->doBlock( $userID, $expiry );
-		if ( count( $retval ) ) {
+		$retval = SpecialBlock::processForm( $data );
+		if ( $retval !== true ) {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( $retval );
 		}
 
+		list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
 		$res['user'] = $params['user'];
-		$res['userID'] = intval( $userID );
-		$res['expiry'] = ( $expiry == Block::infinity() ? 'infinite' : wfTimestamp( TS_ISO_8601, $expiry ) );
+		$res['userID'] = $target instanceof User ? $target->getId() : 0;
+
+		$block = SpecialBlock::getBlockFromTargetAndType( $target, $type );
+		if( $block instanceof Block ){
+			$res['expiry'] = $block->mExpiry == Block::infinity()
+				? 'infinite'
+				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+		} else {
+			# should be unreachable
+			$res['expiry'] = '';
+		}
+
 		$res['reason'] = $params['reason'];
 		if ( $params['anononly'] ) {
 			$res['anononly'] = '';
