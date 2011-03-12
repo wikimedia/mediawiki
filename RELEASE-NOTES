@@ -109,6 +109,12 @@ are used instead.
   which should be resolved by the 1.18 release
 * $wgCopyrightIcon is deprecated and $wgFooterIcons['copyright']['copyright'] should
   be used instead.
+* $wgSysopUserBans is deprecated, and will be made permanently true in 1.18.  
+  If you need this functionality, you should use the BlockIp hook to filter and 
+  reject such blocks.
+* $wgSysopRangeBans is deprecated, you should set $wgBlockCIDRLimit to maximum
+  (32 for IPv4, 128 for IPv6), equivalent to allowing rangeblocks of only 1 
+  address at a time.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
