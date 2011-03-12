@@ -3027,7 +3027,6 @@ The latest block log entry is provided below for reference:',
 'blockiptext'                     => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular pages that were vandalized).',
-'ipaddress'                       => 'IP address:',
 'ipadressorusername'              => 'IP address or username:',
 'ipbexpiry'                       => 'Expiry:',
 'ipbreason'                       => 'Reason:',
