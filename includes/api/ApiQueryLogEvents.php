@@ -402,7 +402,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'action' => "Filter log actions to only this type. Overrides {$this->getModulePrefix()}type",
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',
-			'dir' => 'In which direction to enumerate',
+			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Filter entries to those made by the given user',
 			'title' => 'Filter entries to those related to a page',
 			'limit' => 'How many total event entries to return',

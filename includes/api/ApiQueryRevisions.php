@@ -614,7 +614,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'endid' => 'Stop revision enumeration on this revid (enum)',
 			'start' => 'From which revision timestamp to start enumeration (enum)',
 			'end' => 'Enumerate up to this timestamp (enum)',
-			'dir' => 'Direction of enumeration - towards "newer" or "older" revisions (enum)',
+			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Only include revisions made by user',
 			'excludeuser' => 'Exclude revisions made by user',
 			'expandtemplates' => 'Expand templates in revision content',

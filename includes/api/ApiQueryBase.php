@@ -440,6 +440,14 @@ abstract class ApiQueryBase extends ApiBase {
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
 
+	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
+		return array(
+				"In which direction to enumerate{$extraDirText}",
+				" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
+				" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
+			);
+	}
+
 	/**
 	 * @param $query String
 	 * @param $protocol String

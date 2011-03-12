@@ -203,7 +203,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			'namespace' => 'Only list titles in these namespaces',
 			'start' => 'Start listing at this protection timestamp',
 			'end' => 'Stop listing at this protection timestamp',
-			'dir' => 'The direction in which to list',
+			'dir' => $this->getDirectionDescription( $this->getModulePrefix() ),
 			'limit' => 'How many total pages to return',
 			'prop' => array(
 				'Which properties to get',
