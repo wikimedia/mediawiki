@@ -106,16 +106,12 @@ class IPBlockForm extends SpecialPage {
 	}
 
 	public function showForm( $err ) {
-		global $wgOut, $wgUser, $wgSysopUserBans;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
 		$wgOut->addWikiMsg( 'blockiptext' );
 
-		if( $wgSysopUserBans ) {
-			$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );
-		} else {
-			$mIpaddress = Xml::label( wfMsg( 'ipaddress' ), 'mw-bi-target' );
-		}
+		$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );
 		$mIpbexpiry = Xml::label( wfMsg( 'ipbexpiry' ), 'wpBlockExpiry' );
 		$mIpbother = Xml::label( wfMsg( 'ipbother' ), 'mw-bi-other' );
 		$mIpbreasonother = Xml::label( wfMsg( 'ipbreason' ), 'wpBlockReasonList' );
@@ -426,7 +422,7 @@ class IPBlockForm extends SpecialPage {
 	 * @return array(message key, arguments) on failure, empty array on success
 	 */
 	function doBlock( &$userId = null, &$expiry = null ) {
-		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
+		global $wgUser, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
 
 		$userId = 0;
 		# Expand valid IPv6 addresses, usernames are left as is
@@ -441,7 +437,7 @@ class IPBlockForm extends SpecialPage {
 			$matches = array();
 		  	if( preg_match( "/^($rxIP4)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv4
-				if( $wgSysopRangeBans ) {
+				if( $wgBlockCIDRLimit['IPv4'] != 32 ){
 					if( !IP::isIPv4( $this->BlockAddress ) || $matches[2] > 32 ) {
 						return array( 'ip_range_invalid' );
 					} elseif ( $matches[2] < $wgBlockCIDRLimit['IPv4'] ) {
@@ -454,7 +450,7 @@ class IPBlockForm extends SpecialPage {
 				}
 			} elseif( preg_match( "/^($rxIP6)\\/(\\d{1,3})$/", $this->BlockAddress, $matches ) ) {
 		  		# IPv6
-				if( $wgSysopRangeBans ) {
+				if( $wgBlockCIDRLimit['IPv6'] != 128 ) {
 					if( !IP::isIPv6( $this->BlockAddress ) || $matches[2] > 128 ) {
 						return array( 'ip_range_invalid' );
 					} elseif( $matches[2] < $wgBlockCIDRLimit['IPv6'] ) {
@@ -467,17 +463,13 @@ class IPBlockForm extends SpecialPage {
 				}
 			} else {
 				# Username block
-				if( $wgSysopUserBans ) {
-					$user = User::newFromName( $this->BlockAddress );
-					if( $user instanceof User && $user->getId() ) {
-						# Use canonical name
-						$userId = $user->getId();
-						$this->BlockAddress = $user->getName();
-					} else {
-						return array( 'nosuchusershort', htmlspecialchars( $user ? $user->getName() : $this->BlockAddress ) );
-					}
+				$user = User::newFromName( $this->BlockAddress );
+				if( $user instanceof User && $user->getId() ) {
+					# Use canonical name
+					$userId = $user->getId();
+					$this->BlockAddress = $user->getName();
 				} else {
-					return array( 'badipaddress' );
+					return array( 'nosuchusershort', htmlspecialchars( $user ? $user->getName() : $this->BlockAddress ) );
 				}
 			}
 		}

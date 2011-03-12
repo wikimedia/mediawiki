@@ -121,7 +121,7 @@ class IPUnblockForm extends SpecialPage {
 	 * @return $out string: HTML form
 	 */
 	function showForm( $err = null ) {
-		global $wgOut, $wgUser, $wgSysopUserBans;
+		global $wgOut, $wgUser;
 
 		$wgOut->addWikiMsg( 'unblockiptext' );
 
@@ -139,12 +139,12 @@ class IPUnblockForm extends SpecialPage {
 				$encName = htmlspecialchars( $block->getRedactedName() );
 				$encId = $this->id;
 				$addressPart = $encName . Html::hidden( 'id', $encId );
-				$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
+				$ipa = wfMsgHtml( 'ipadressorusername' );
 			}
 		}
 		if ( !$addressPart ) {
 			$addressPart = Xml::input( 'wpUnblockAddress', 40, $this->ip, array( 'type' => 'text', 'tabindex' => '1' ) );
-			$ipa = Xml::label( wfMsg( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' ), 'wpUnblockAddress' );
+			$ipa = Xml::label( wfMsg( 'ipadressorusername' ), 'wpUnblockAddress' );
 		}
 
 		$wgOut->addHTML(

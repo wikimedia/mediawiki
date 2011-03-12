@@ -3175,10 +3175,16 @@ $wgSecureLogin        = false;
  * @{
  */
 
-/** Allow sysops to ban logged-in users */
+/**
+ * Allow sysops to ban logged-in users
+ * @deprecated @since 1.18
+ */
 $wgSysopUserBans        = true;
 
-/** Allow sysops to ban IP ranges */
+/**
+ * Allow sysops to ban IP ranges
+ * @deprecated @since 1.18; set $wgBlockCIDRLimit to array( 'IPv4' => 32, 'IPv6 => 128 ) instead.
+ */
 $wgSysopRangeBans       = true;
 
 /**

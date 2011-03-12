@@ -240,7 +240,6 @@ class SpecialContributions extends SpecialPage {
 	 * @param $subject User: The viewing user ($wgUser is still checked in some cases, like userrights page!!)
 	 */
 	public static function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
-		global $wgSysopUserBans;
 
 		$sk = $subject->getSkin();
 		$id = $target->getId();
@@ -248,7 +247,7 @@ class SpecialContributions extends SpecialPage {
 
 		$tools[] = $sk->link( $talkpage, wfMsgHtml( 'sp-contributions-talk' ) );
 
-		if( ( $id !== null && $wgSysopUserBans ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
+		if( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
 			if( $subject->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 				if ( $target->isBlocked() ) {
 					$tools[] = $sk->linkKnown( # Change block link

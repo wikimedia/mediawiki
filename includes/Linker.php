@@ -880,9 +880,9 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null ) {
-		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans, $wgLang;
+		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = ( $wgSysopUserBans || 0 == $userId ) && !$flags & self::TOOL_LINKS_NOBLOCK;
+		$blockable = !$flags & self::TOOL_LINKS_NOBLOCK;
 
 		$items = array();
 		if ( $talkable ) {
