@@ -175,6 +175,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropIndex', 'archive', 'ar_page_revid',         'patch-archive_kill_ar_page_revid.sql' ),
 			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
 			array( 'doLangLinksLengthUpdate' ),
+			array( 'doClTypeVarcharUpdate' ),
 		);
 	}
 
@@ -826,6 +827,20 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "done.\n" );
 		} else {
 			$this->output( "...ll_lang is up-to-date.\n" );
+		}
+	}
+	
+	protected function doClTypeVarcharUpdate() {
+		$categorylinks = $this->db->tableName( 'categorylinks' );
+		$res = $this->db->query( "SHOW COLUMNS FROM $categorylinks LIKE 'cl_type'" );
+		$row = $this->db->fetchObject( $res );
+		
+		if ( $row && substr( $row->Type, 0, 4 ) == 'enum' ) {
+			$this->output( 'Changing cl_type from enum to varchar...' );
+			$this->applyPatch( 'patch-cl_type.sql' );
+			$this->output( "done.\n" );
+		} else {
+			$this->output( "...cl_type is up-to-date.\n" );
 		}
 	}
 }
