@@ -1932,7 +1932,7 @@ class Parser {
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
-				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
+				$s .= $this->makeKnownLinkHolder( $nt, $text, array(), $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
 				$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
@@ -1964,16 +1964,26 @@ class Parser {
 	 *
 	 * @param $nt Title
 	 * @param $text String
-	 * @param $query String
+	 * @param $query Array or String
 	 * @param $trail String
 	 * @param $prefix String
 	 * @return String: HTML-wikitext mix oh yuck
 	 */
-	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeKnownLinkHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+		if ( is_string( $query ) ) {
+			$query = wfCgiToArray( $query );
+		}
+
 		$sk = $this->mOptions->getSkin( $this->mTitle );
-		# FIXME: use link() instead of deprecated makeKnownLinkObj()
-		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
+
+		if ( $text == '' ) {
+			$text = $sk->linkText( $title );
+		}
+
+		$link = $sk->linkKnown( $nt, "$prefix$text$inside", array(), $query );
+
 		return $this->armorLinks( $link ) . $trail;
 	}
 
