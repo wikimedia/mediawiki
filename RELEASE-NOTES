@@ -253,6 +253,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27203) add fato param to list=filearchive
 * (bug 27341) Add drto param to list=deletedrevs
 * (bug 26630) Add api for Special:ActiveUsers
+* (bug 27020) API: Allow title prefix search of logevents (only when not in
+  miser mode)
 
 === Languages updated in 1.18 ===
 
