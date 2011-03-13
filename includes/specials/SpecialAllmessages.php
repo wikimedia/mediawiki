@@ -233,12 +233,16 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	/**
-	 * Determine which of the MediaWiki and MediaWiki_talk namespace pages exist. 
-	 * Returns array( 'pages' => ..., 'talks' => ... ), where the subarrays have 
-	 * an entry for each existing page, with the key being the message name and 
+	 * Determine which of the MediaWiki and MediaWiki_talk namespace pages exist.
+	 * Returns array( 'pages' => ..., 'talks' => ... ), where the subarrays have
+	 * an entry for each existing page, with the key being the message name and
 	 * value arbitrary.
+	 *
+	 * @param array $messageNames
+	 * @param string $langcode What language code
+	 * @param bool $foreign Whether the $langcode is not the content language
 	 */
-	function getCustomisedStatuses( $messageNames ) {
+	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
 		wfProfileIn( __METHOD__ . '-db' );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -251,12 +255,12 @@ class AllmessagesTablePager extends TablePager {
 		$xNames = array_flip( $messageNames );
 
 		$pageFlags = $talkFlags = array();
-		
+
 		foreach ( $res as $s ) {
 			if( $s->page_namespace == NS_MEDIAWIKI ) {
-				if( $this->foreign ) {
+				if( $foreign ) {
 					$title = explode( '/', $s->page_title );
-					if( count( $title ) === 2 && $this->langcode == $title[1] 
+					if( count( $title ) === 2 && $langcode == $title[1]
 						&& isset( $xNames[$title[0]] ) ) {
 						$pageFlags["{$title[0]}"] = true;
 					}
@@ -281,7 +285,7 @@ class AllmessagesTablePager extends TablePager {
 		$result = new FakeResultWrapper( array() );
 
 		$messageNames = $this->getAllMessages( $descending );
-		$statuses = $this->getCustomisedStatuses( $messageNames );
+		$statuses = self::getCustomisedStatuses( $messageNames, $this->langcode, $this->foreign );
 
 		$count = 0;
 		foreach( $messageNames as $key ) {
