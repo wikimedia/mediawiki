@@ -1013,8 +1013,10 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Formats one or more errors as accepted by field validation-callback.
 	 * @param $errors String|Message|Array of strings or Message instances
 	 * @return String html
+	 * @since 1.18
 	 */
 	protected static function formatErrors( $errors ) {
 		if ( is_array( $errors ) && count( $errors ) === 1 ) {

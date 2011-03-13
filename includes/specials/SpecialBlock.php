@@ -449,6 +449,11 @@ class SpecialBlock extends SpecialPage {
 		}
 	}
 
+	/**
+	 * HTMLForm field validation-callback for Target field.
+	 * @since 1.18
+	 * @return Message
+	 */
 	public static function validateTargetField( $data, $alldata = null ) {
 		global $wgBlockCIDRLimit;
 
