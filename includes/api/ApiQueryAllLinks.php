@@ -102,9 +102,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->addWhere( 'pl_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
 
-		$this->addFields( array(
-			'pl_title',
-		) );
+		$this->addFields( 'pl_title' );
 		$this->addFieldsIf( 'pl_from', !$params['unique'] );
 
 		$this->addOption( 'USE INDEX', 'pl_namespace' );
@@ -112,7 +110,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( !$params['unique'] ) {
-			$this->addOption( 'ORDER BY', 'pl_from' );
+			$this->addOption( 'ORDER BY', 'pl_title, pl_from' );
 		}
 
 		$res = $this->select( __METHOD__ );

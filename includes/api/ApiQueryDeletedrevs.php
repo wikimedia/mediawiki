@@ -172,7 +172,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $params['unique'] ) {
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
-				$this->addOption( 'ORDER BY', 'ar_timestamp' );
+				$this->addOption( 'ORDER BY', 'ar_title, ar_timestamp' );
 			}
 		} else {
 			if ( $mode == 'revs' ) {
