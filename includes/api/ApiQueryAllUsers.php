@@ -59,12 +59,11 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addTables( 'user' );
 		$useIndex = true;
 
-		if ( !is_null( $params['from'] ) ) {
-			$this->addWhere( 'user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
-		}
-		if ( !is_null( $params['to'] ) ) {
-			$this->addWhere( 'user_name <= ' . $db->addQuotes( $this->keyToTitle( $params['to'] ) ) );
-		}
+		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$from = is_null( $params['from'] ) ? null : $this->keyToTitle( $params['from'] );
+		$to = is_null( $params['to'] ) ? null : $this->keyToTitle( $params['to'] );
+
+		$this->addWhereRange( 'user_name', $dir, $from, $to );
 
 		if ( !is_null( $params['prefix'] ) ) {
 			$this->addWhere( 'user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
@@ -123,7 +122,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addFieldsIf( 'user_editcount', $fld_editcount );
 		$this->addFieldsIf( 'user_registration', $fld_registration );
 
-		$this->addOption( 'ORDER BY', 'user_name' );
 		if ( $useIndex ) {
 			$this->addOption( 'USE INDEX', array( 'user' => 'user_name' ) );
 		}
@@ -239,6 +237,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'from' => null,
 			'to' => null,
 			'prefix' => null,
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				),
+			),
 			'group' => array(
 				ApiBase::PARAM_TYPE => User::getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true,
@@ -273,6 +278,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
 			'prefix' => 'Search for all users that begin with this value',
+			'dir' => 'Direction to sort in',
 			'group' => 'Limit users to given group name(s)',
 			'rights' => 'Limit users to given right(s)',
 			'prop' => array(
