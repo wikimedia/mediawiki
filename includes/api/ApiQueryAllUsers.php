@@ -127,6 +127,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( "rc_log_type IS NULL OR rc_log_type != 'newusers'" );
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
 			$this->addWhere( "rc_timestamp >= {$db->addQuotes( $timestamp )}" );
+
+			$this->addOption( 'GROUP BY', 'user_name' );
 		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
