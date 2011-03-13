@@ -32,6 +32,16 @@
  */
 class ActiveUsersPager extends UsersPager {
 
+	/**
+	 * @var FormOptions
+	 */
+	protected $opts;
+
+	/**
+	 * @var Array
+	 */
+	protected $groups;
+
 	function __construct( $group = null ) {
 		global $wgRequest, $wgActiveUserDays;
 		$this->RCMaxAge = $wgActiveUserDays;
@@ -96,7 +106,7 @@ class ActiveUsersPager extends UsersPager {
 				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
 			),
 			'join_conds' => array(
-				'user' => array( 'INNER JOIN', 'rc_user_text=user_name' ),
+				'user' => array( 'INNER JOIN', 'rc_user=user_id' ),
 				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1' ),
 			),
 			'conds' => $conds
