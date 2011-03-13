@@ -325,7 +325,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if ( $wgMiserMode ) {
 			$desc['namespace'] = array(
 				$desc['namespace'],
-				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
+				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
 				'returned before continuing; in extreme cases, zero results may be returned.',
 				"Note that you can use {$p}type=subcat or {$p}type=file instead of {$p}namespace=14 or 6.",
 			);
