@@ -29,18 +29,18 @@
  */
 class SpecialBlock extends SpecialPage {
 
-	# The maximum number of edits a user can have and still be hidden
-	# TODO: config setting?
+	/** The maximum number of edits a user can have and still be hidden
+	 * TODO: config setting? */
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
-	# @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
-	# or as subpage (Special:Block/Foo)
+	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
+	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
-	# @var Block::TYPE_ constant
+	/// @var Block::TYPE_ constant
 	protected $type;
 
-	# @var Bool
+	/// @var Bool
 	protected $alreadyBlocked;
 
 	public function __construct() {
@@ -98,7 +98,7 @@ class SpecialBlock extends SpecialPage {
 
 		if( $form->show() ){
 			$wgOut->setPageTitle( wfMsg( 'blockipsuccesssub' ) );
-			$wgOut->addHTML( wfMsgExt( 'blockipsuccesstext', array( 'parse' ),  $this->target ) );
+			$wgOut->addWikiMsg( 'blockipsuccesstext',  $this->target );
 		}
 	}
 
@@ -117,6 +117,7 @@ class SpecialBlock extends SpecialPage {
 				'id' => 'mw-bi-target',
 				'size' => '45',
 				'required' => true,
+				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
 			),
 			'Expiry' => array(
 				'type' => 'selectorother',
@@ -448,25 +449,20 @@ class SpecialBlock extends SpecialPage {
 		}
 	}
 
-	/**
-	 * Given the form data, actually implement a block
-	 * @param  $data Array
-	 * @return Bool|String
-	 */
-	public static function processForm( array $data ){
-		global $wgUser, $wgBlockAllowsUTEdit, $wgBlockCIDRLimit;
+	public static function validateTargetField( $data, $alldata = null ) {
+		global $wgBlockCIDRLimit;
 
-		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
+		list( $target, $type ) = self::getTargetAndType( $data );
 
 		if( $type == Block::TYPE_USER ){
 			# TODO: why do we not have a User->exists() method?
 			if( !$target->getId() ){
-				return array( array( 'nosuchusershort', $target->getName() ) );
+				return wfMessage( 'nosuchusershort', $target->getName() );
 			}
 
 			$status = self::checkUnblockSelf( $target );
 			if ( $status !== true ) {
-				return array( array( 'badaccess', $status ) );
+				return wfMessage( 'badaccess', $status );
 			}
 
 			$user = $target;
@@ -480,22 +476,22 @@ class SpecialBlock extends SpecialPage {
 				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPV6'] == 128 ) )
 			{
 				# Range block effectively disabled
-				return array( 'range_block_disabled' );
+				return wfMessage( 'range_block_disabled' );
 			}
 
 			if( ( IP::isIPv4( $ip ) && $range > 32 )
 				|| ( IP::isIPv6( $ip ) && $range > 128 ) )
 			{
 				# Dodgy range
-				return array( 'ip_range_invalid' );
+				return wfMessage( 'ip_range_invalid' );
 			}
 
 			if( IP::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
-				return array( array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] ) );
+				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
 			}
 
 			if( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
-				return array( array( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] ) );
+				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
 
 			$userId = 0;
@@ -506,8 +502,20 @@ class SpecialBlock extends SpecialPage {
 			$userId = 0;
 
 		} else {
-			return array( 'badipaddress' );
+			return wfMessage( 'badipaddress' );
 		}
+	}
+
+	/**
+	 * Given the form data, actually implement a block
+	 * @param  $data Array
+	 * @return Bool|String
+	 */
+	public static function processForm( array $data ){
+		global $wgUser, $wgBlockAllowsUTEdit;
+
+		// Handled by field validator callback
+		// self::validateTargetField( $data['Target'] );
 
 		if( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
 			|| !Block::parseExpiryInput( $data['Expiry'] ) )
