@@ -299,8 +299,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
-			'title' => 'Which category to enumerate (required). Must include Category: prefix. Cannot be used together with cmpageid',
-			'pageid' => 'Page ID of the category to enumerate. Cannot be used together with cmtitle',
+			'title' => "Which category to enumerate (required). Must include Category: prefix. Cannot be used together with {$p}pageid",
+			'pageid' => "Page ID of the category to enumerate. Cannot be used together with {$p}title",
 			'prop' => array(
 				'What pieces of information to include',
 				' ids           - Adds the page ID',
@@ -327,7 +327,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$desc['namespace'],
 				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
 				'returned before continuing; in extreme cases, zero results may be returned.',
-				'Note that you can use cmtype=subcat or cmtype=file instead of cmnamespace=14 or 6.',
+				"Note that you can use {$p}type=subcat or {$p}type=file instead of {$p}namespace=14 or 6.",
 			);
 		}
 		return $desc;
