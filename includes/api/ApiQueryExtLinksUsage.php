@@ -227,7 +227,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		if ( $wgMiserMode ) {
 			$desc['namespace'] = array(
 				$desc['namespace'],
-				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
+				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
 				'returned before continuing; in extreme cases, zero results may be returned',
 			);
 		}
