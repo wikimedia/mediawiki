@@ -249,6 +249,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27182) API: Add filter by prefix for meta=allmessages
 * (bug 27183) API: Add filter by customisation state for meta=allmessages
 * (bug 27340) API: Allow listing of "small" categories
+* (bug 27342) Add audir param to list=allusers
 
 === Languages updated in 1.18 ===
 
