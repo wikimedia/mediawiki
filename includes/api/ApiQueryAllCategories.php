@@ -69,6 +69,10 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
 		$this->addWhereRange( 'cat_title', $dir, $from, $to );
 
+		$min = $params['minpage'];
+		$max = $params['maxpage'];
+		$this->addWhereRange( 'cat_pages', $dir, $min, $max );
+
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'cat_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
@@ -148,6 +152,14 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					'descending'
 				),
 			),
+			'minpage' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_TYPE => 'integer'
+			),
+			'maxpage' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -169,6 +181,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			'to' => 'The category to stop enumerating at',
 			'prefix' => 'Search for all category titles that begin with this value',
 			'dir' => 'Direction to sort in',
+			'minpage' => 'Minimum number of category page members',
+			'maxpage' => 'Maximum number of category page members',
 			'limit' => 'How many categories to return',
 			'prop' => array(
 				'Which properties to get',

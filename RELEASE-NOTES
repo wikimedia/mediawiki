@@ -248,6 +248,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   in auto generated document, as it is on mw.org
 * (bug 27182) API: Add filter by prefix for meta=allmessages
 * (bug 27183) API: Add filter by customisation state for meta=allmessages
+* (bug 27340) API: Allow listing of "small" categories
 
 === Languages updated in 1.18 ===
 
