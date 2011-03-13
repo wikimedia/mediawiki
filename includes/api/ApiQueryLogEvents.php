@@ -384,6 +384,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'prop' => array(
 				'Which properties to get',
@@ -399,7 +400,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				' tags           - Lists tags for the event',
 			),
 			'type' => 'Filter log entries to only this type(s)',
-			'action' => "Filter log actions to only this type. Overrides {$this->getModulePrefix()}type",
+			'action' => "Filter log actions to only this type. Overrides {$p}type",
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',
 			'dir' => $this->getDirectionDescription( $p ),
