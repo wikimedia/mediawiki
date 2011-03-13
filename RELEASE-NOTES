@@ -255,6 +255,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 26630) Add api for Special:ActiveUsers
 * (bug 27020) API: Allow title prefix search of logevents (only when not in
   miser mode)
+* (bug 26629) add Special:MIMESearch to api
 
 === Languages updated in 1.18 ===
 
