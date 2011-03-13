@@ -71,8 +71,27 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		} else {
 			$messages_target = $params['messages'];
 		}
-
-		// Filter messages
+		
+		// Filter messages that have the specified prefix
+		// Because we sorted the message array earlier, they will appear in a clump:
+		if ( isset( $params['prefix'] ) ) {
+			$skip = false;
+			$messages_filtered = array();
+			foreach ( $messages_target as $message ) {
+				// === 0: must be at beginning of string (position 0)
+				if ( strpos( $message, $params['prefix'] ) === 0 ) {
+					if( !$skip ) {
+						$skip = true;
+					}
+					$messages_filtered[] = $message;
+				} else if ( $skip ) {
+					break;
+				}
+			}
+			$messages_target = $messages_filtered;
+		}
+			
+		// Filter messages that contain specified string
 		if ( isset( $params['filter'] ) ) {
 			$messages_filtered = array();
 			foreach ( $messages_target as $message ) {
@@ -170,18 +189,20 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'from' => null,
 			'to' => null,
 			'title' => null,
+			'prefix' => null,
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
-			'messages' => 'Which messages to output. "*" means all messages',
+			'messages' => 'Which messages to output. "*" (default) means all messages',
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
 							  'Will substitute magic words, handle templates etc.' ),
 			'title' => 'Page name to use as context when parsing message (for enableparser option)',
 			'args' => 'Arguments to be substituted into message',
-			'filter' => 'Return only messages that contain this string',
+			'prefix' => 'Return messages with this prefix',
+			'filter' => 'Return only messages with names that contain this string',
 			'lang' => 'Return messages in this language',
 			'from' => 'Return messages starting at this message',
 			'to' => 'Return messages ending at this message',
@@ -194,7 +215,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=query&meta=allmessages&amfilter=ipb-',
+			'api.php?action=query&meta=allmessages&amprefix=ipb-',
 			'api.php?action=query&meta=allmessages&ammessages=august|mainpage&amlang=de',
 		);
 	}
