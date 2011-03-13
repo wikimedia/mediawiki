@@ -71,7 +71,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		} else {
 			$messages_target = $params['messages'];
 		}
-		
+
 		// Filter messages that have the specified prefix
 		// Because we sorted the message array earlier, they will appear in a clump:
 		if ( isset( $params['prefix'] ) ) {
@@ -90,7 +90,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			}
 			$messages_target = $messages_filtered;
 		}
-			
+
 		// Filter messages that contain specified string
 		if ( isset( $params['filter'] ) ) {
 			$messages_filtered = array();
@@ -101,6 +101,18 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				}
 			}
 			$messages_target = $messages_filtered;
+		}
+
+		// Whether we have any sort of message customisation filtering
+		$customiseFilterEnabled = $params['customised'] !== 'all';
+		if ( $customiseFilterEnabled ) {
+			global $wgContLang;
+			$lang = $langObj->getCode();
+
+			$customisedMessages = AllmessagesTablePager::getCustomisedStatuses(
+				array_map( array( $langObj, 'ucfirst'), $messages_target ), $lang, $lang != $wgContLang->getCode() );
+
+			$customised = $params['customised'] === 'modified';
 		}
 
 		// Get all requested messages and print the result
@@ -122,6 +134,17 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				$args = array();
 				if ( isset( $params['args'] ) && count( $params['args'] ) != 0 ) {
 					$args = $params['args'];
+				}
+
+				if ( $customiseFilterEnabled ) {
+					$messageIsCustomised = isset( $customisedMessages['pages'][ $langObj->ucfirst( $message ) ] );
+					if ( $customised === $messageIsCustomised && $customised ) {
+						if ( $customised ) {
+							$a['customised'] = '';
+						}
+					} else {
+						continue;
+					}
 				}
 
 				$msg = wfMessage( $message, $args )->inLanguage( $langObj );
@@ -185,6 +208,14 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'filter' => array(),
+			'customised' => array(
+				ApiBase::PARAM_DFLT => 'all',
+				ApiBase::PARAM_TYPE => array(
+					'all',
+					'modified',
+					'unmodified'
+				)
+			),
 			'lang' => null,
 			'from' => null,
 			'to' => null,
@@ -203,6 +234,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'args' => 'Arguments to be substituted into message',
 			'prefix' => 'Return messages with this prefix',
 			'filter' => 'Return only messages with names that contain this string',
+			'customised' => 'Return only messages in this customisation state',
 			'lang' => 'Return messages in this language',
 			'from' => 'Return messages starting at this message',
 			'to' => 'Return messages ending at this message',
