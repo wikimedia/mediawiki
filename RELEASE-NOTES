@@ -251,6 +251,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27340) API: Allow listing of "small" categories
 * (bug 27342) Add audir param to list=allusers
 * (bug 27203) add fato param to list=filearchive
+* (bug 27341) Add drto param to list=deletedrevs
 
 === Languages updated in 1.18 ===
 
