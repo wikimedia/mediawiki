@@ -31,8 +31,13 @@ class ArchivedFile {
 		$user_text, # user name of uploader
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
-		$deleted; # Bitfield akin to rev_deleted
+		$deleted, # Bitfield akin to rev_deleted
+		$pageCount;
 
+	/**
+	 * @var MediaHandler
+	 */
+	var $handler;
 	/**
 	 * @var Title
 	 */
@@ -277,6 +282,32 @@ class ArchivedFile {
 	public function getMimeType() {
 		$this->load();
 		return $this->mime;
+	}
+
+	/**
+	 * Get a MediaHandler instance for this file
+	 * @return MediaHandler
+	 */
+	function getHandler() {
+		if ( !isset( $this->handler ) ) {
+			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
+		}
+		return $this->handler;
+	}
+
+	/**
+	 * Returns the number of pages of a multipage document, or false for
+	 * documents which aren't multipage documents
+	 */
+	function pageCount() {
+		if ( !isset( $this->pageCount ) ) {
+			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
+				$this->pageCount = $this->handler->pageCount( $this );
+			} else {
+				$this->pageCount = false;
+			}
+		}
+		return $this->pageCount;
 	}
 
 	/**
