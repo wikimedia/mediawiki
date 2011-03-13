@@ -86,17 +86,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_type = isset( $prop['type'] );
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->addFields( array( 'cl_from', 'page_namespace', 'page_title' ) );
+			$this->addFields( array( 'cl_from', 'cl_sortkey', 'cl_type', 'page_namespace', 'page_title' ) );
 			$this->addFieldsIf( 'page_id', $fld_ids );
 			$this->addFieldsIf( 'cl_sortkey_prefix', $fld_sortkeyprefix );
-			$this->addFieldsIf( 'cl_sortkey', $fld_sortkey );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() ); // will include page_ id, ns, title
-			$this->addFields( array( 'cl_from', 'cl_sortkey' ) );
+			$this->addFields( array( 'cl_from', 'cl_sortkey', 'cl_type' ) );
 		}
 
 		$this->addFieldsIf( 'cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp' );
-		$this->addFieldsIf( 'cl_type', $fld_type );
 
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
@@ -123,17 +121,36 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
-			// The below produces ORDER BY cl_type, cl_sortkey, cl_from, possibly with DESC added to each of them
-			$this->addWhereRange( 'cl_type', $dir, null, null );
-			$this->addWhereRange( 'cl_sortkey',
-				$dir,
-				$params['startsortkey'],
-				$params['endsortkey'] );
-			$this->addWhereRange( 'cl_from', $dir, null, null );
+			if ( $params['continue'] ) {
+				// type|from|sortkey
+				$cont = explode( '|', $params['continue'], 3 );
+				if ( count( $cont ) != 3 ) {
+					$this->dieUsage( 'Invalid continue param. You should pass the original value returned '.
+						'by the previous query', '_badcontinue'
+					);
+				}
+				$escType = $this->getDB()->addQuotes( $cont[0] );
+				$from = intval( $cont[1] );
+				$escSortkey = $this->getDB()->addQuotes( $cont[2] );
+				$op = $dir == 'newer' ? '>' : '<';
+				$this->addWhere( "cl_type $op $escType OR " .
+					"(cl_type = $escType AND " .
+					"(cl_sortkey $op $escSortkey OR " .
+					"(cl_sortkey = $escSortkey AND " .
+					"cl_from $op= $from)))"
+				);
+				
+			} else {
+				// The below produces ORDER BY cl_type, cl_sortkey, cl_from, possibly with DESC added to each of them
+				$this->addWhereRange( 'cl_type', $dir, null, null );
+				$this->addWhereRange( 'cl_sortkey',
+					$dir,
+					$params['startsortkey'],
+					$params['endsortkey'] );
+				$this->addWhereRange( 'cl_from', $dir, null, null );
+			}
 			$this->addOption( 'USE INDEX', 'cl_sortkey' );
 		}
-
-		$this->setContinuation( $params['continue'], $params['dir'] );
 
 		$this->addWhere( 'cl_from=page_id' );
 
@@ -149,7 +166,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'timestamp' ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 				} else {
-					$this->setContinueEnumParameter( 'continue', $row->cl_from );
+					// Continue format is type|from|sortkey
+					// The order is a bit weird but it's convenient to put the sortkey at the end
+					// because we don't have to worry about pipes in the sortkey that way
+					// (and type and from can't contain pipes anyway)
+					$this->setContinueEnumParameter( 'continue',
+						"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
+					);
 				}
 				break;
 			}
@@ -189,7 +212,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'timestamp' ) {
 						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 					} else {
-						$this->setContinueEnumParameter( 'continue', $row->cl_from );
+						$this->setContinueEnumParameter( 'continue',
+							"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
+						);
 					}
 					break;
 				}
@@ -202,21 +227,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->getResult()->setIndexedTagName_internal(
 					 array( 'query', $this->getModuleName() ), 'cm' );
 		}
-	}
-
-	/**
-	 * Add DB WHERE clause to continue previous query based on 'continue' parameter
-	 */
-	private function setContinuation( $continue, $dir ) {
-		if ( is_null( $continue ) ) {
-			return;	// This is not a continuation request
-		}
-
-		$encFrom = $this->getDB()->addQuotes( intval( $continue ) );
-
-		$op = ( $dir == 'desc' ? '<=' : '>=' );
-
-		$this->addWhere( "cl_from $op $encFrom" );
 	}
 
 	public function getAllowedParams() {
@@ -316,7 +326,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$desc['namespace'] = array(
 				$desc['namespace'],
 				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
-				'returned before continuing; in extreme cases, zero results may be returned',
+				'returned before continuing; in extreme cases, zero results may be returned.',
+				'Note that you can use cmtype=subcat or cmtype=file instead of cmnamespace=14 or 6.',
 			);
 		}
 		return $desc;
