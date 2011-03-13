@@ -56,6 +56,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		$limit = $params['limit'];
+
 		$this->addTables( 'user' );
 		$useIndex = true;
 
@@ -97,6 +98,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( 'user_editcount > 0' );
 		}
 
+		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
+
 		if ( $fld_groups || $fld_rights ) {
 			// Show the groups the given users belong to
 			// request more than needed to avoid not getting all rows that belong to one user
@@ -111,7 +114,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$sqlLimit = $limit + 1;
 		}
 
-		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
+		if ( $params['activeusers'] ) {
+			global $wgActiveUserDays;
+			$this->addTables( 'recentchanges' );
+
+			$this->addJoinConds( array( 'recentchanges' => array(
+				'INNER JOIN', 'rc_user=user_id'
+			) ) );
+
+			$this->addFields( 'COUNT(*) AS recentedits' );
+
+			$this->addWhere( "rc_log_type IS NULL OR rc_log_type != 'newusers'" );
+			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
+			$this->addWhere( "rc_timestamp >= {$db->addQuotes( $timestamp )}" );
+		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
 
@@ -181,11 +197,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				if ( $fld_editcount ) {
 					$lastUserData['editcount'] = intval( $row->user_editcount );
 				}
+				if ( $params['activeusers'] ) {
+					$lastUserData['recenteditcount'] = intval( $row->recentedits );
+				}
 				if ( $fld_registration ) {
 					$lastUserData['registration'] = $row->user_registration ?
 						wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
 				}
-
 			}
 
 			if ( $sqlLimit == $count ) {
@@ -270,10 +288,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'witheditsonly' => false,
+			'activeusers' => false,
 		);
 	}
 
 	public function getParamDescription() {
+		global $wgActiveUserDays;
 		return array(
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
@@ -291,6 +311,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				),
 			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
+			'activeusers' => "Only list users active in the last {$wgActiveUserDays} days(s)"
 		);
 	}
 
