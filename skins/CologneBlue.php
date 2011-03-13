@@ -213,13 +213,25 @@ class CologneBlueTemplate extends LegacyTemplate {
 		unset( $bar['SEARCH'] );
 		unset( $bar['LANGUAGES'] );
 		unset( $bar['TOOLBOX'] );
-		$browseLinks = reset( $bar );
 
-		foreach ( $browseLinks as $link ) {
-			if ( $link['text'] != '-' ) {
-				$s .= "<a href=\"{$link['href']}\">" .
-					htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+		$barnumber = 1;
+		foreach ( $bar as $heading => $browseLinks ) {
+			$heading_text = wfMsg ( $heading );
+			if ( $barnumber > 1 ) {
+				if ( wfEmptyMsg( $heading, $heading_text ) ) {
+					$h = $heading;
+				} else {
+					$h = $heading_text;
+				}
+				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
 			}
+			foreach ( $browseLinks as $link ) {
+				if ( $link['text'] != '-' ) {
+					$s .= "<a href=\"{$link['href']}\">" .
+						htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+				}
+			}
+			$barnumber = $barnumber + 1;
 		}
 
 		if ( $wgOut->isArticle() ) {
