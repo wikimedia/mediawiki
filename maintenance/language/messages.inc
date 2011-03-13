@@ -2045,6 +2045,7 @@ $wgMessageStructure = array(
 		'whatlinkshere-filters',
 	),
 	'block' => array(
+		'autoblockid',
 		'blockip',
 		'blockip-title',
 		'blockip-legend',

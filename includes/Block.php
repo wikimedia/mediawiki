@@ -758,13 +758,17 @@ class Block {
 
 	/**
 	 * Get the block name, but with autoblocked IPs hidden as per standard privacy policy
-	 * @return String
+	 * @return String, text is escaped
 	 */
 	public function getRedactedName() {
 		if ( $this->mAuto ) {
-			return '#' . $this->mId;
+			return HTML::rawElement(
+				'span',
+				array( 'class' => 'mw-autoblockid' ),
+				wfMessage( 'autoblockid', $this->mId )
+			);
 		} else {
-			return $this->mAddress;
+			return htmlspecialchars( $this->mAddress );
 		}
 	}
 
@@ -989,10 +993,20 @@ class Block {
 	}
 
 	/**
-	 * Get the target and target type for this particular Block
+	 * Get the target and target type for this particular Block.  Note that for autoblocks,
+	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
+	 * in this situation.
 	 * @return array( User|String, Block::TYPE_ constant )
+	 * FIXME: this should be an integral part of the Block member variables
 	 */
 	public function getTargetAndType(){
-		return self::parseTarget( $this->mAddress );
+		list( $target, $type ) = self::parseTarget( $this->mAddress );
+
+		# Check whether it's an autoblock
+		if( $type == self::TYPE_ID && $this->mAuto ){
+			$type = self::TYPE_AUTO;
+		}
+
+		return array( $target, $type );
 	}
 }
