@@ -148,18 +148,20 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$index['logging'] = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
 		}
 
-		global $wgMiserMode;
-		if ( !$wgMiserMode ) {
-			$prefix = $params['prefix'];
+		$prefix = $params['prefix'];
 
-			if ( !is_null( $prefix ) ) {
-				$title = Title::newFromText( $prefix );
-				if ( is_null( $title ) ) {
-					$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
-				}
-				$this->addWhereFld( 'log_namespace',  $title->getNamespace() );
-				$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
+		if ( !is_null( $prefix ) ) {
+			global $wgMiserMode;
+			if ( $wgMiserMode ) {
+				$this->dieUsage( 'Prefix search disabled in Miser Mode', 'prefixsearchdisabled' );
 			}
+
+			$title = Title::newFromText( $prefix );
+			if ( is_null( $title ) ) {
+				$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
+			}
+			$this->addWhereFld( 'log_namespace',  $title->getNamespace() );
+			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
 		}
 
 		$this->addOption( 'USE INDEX', $index );
@@ -348,7 +350,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		global $wgLogTypes, $wgLogActions;
-		$ret = array(
+		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
@@ -386,6 +388,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'user' => null,
 			'title' => null,
+			'prefix' => null,
 			'tag' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -395,17 +398,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			)
 		);
-		global $wgMiserMode;
-		if ( !$wgMiserMode ) {
-			$ret['prefix'] = null;
-		}
-
-		return $ret;
 	}
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		$ret = array(
+		return array(
 			'prop' => array(
 				'Which properties to get',
 				' ids            - Adds the ID of the log event',
@@ -426,16 +423,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Filter entries to those made by the given user',
 			'title' => 'Filter entries to those related to a page',
+			'prefix' => 'Filter entries that start with this prefix. Disabled in MiserMode',
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
 		);
-
-		global $wgMiserMode;
-		if ( !$wgMiserMode ) {
-			$ret['prefix'] = 'Filter entries that start with this prefix';
-		}
-
-		return $ret;
 	}
 
 	public function getDescription() {
@@ -447,6 +438,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
 			array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
 			array( 'code' => 'param_prefix', 'info' => 'Bad title value \'prefix\'' ),
+			array( 'code' => 'prefixsearchdisabled', 'info' => 'Prefix search disabled in Miser Mode' ),
 		) );
 	}
 
