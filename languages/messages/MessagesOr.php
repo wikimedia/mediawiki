@@ -26,6 +26,30 @@ $digitTransformTable = array(
 	'9' => '୯', # &#x0b6f;
 );
 
+/** namespace translations from translatewiki.net 
+ * @author Shijualex
+ * @author Psubhashish
+ */
+$namespaceNames = array(
+	NS_MEDIA            => 'ମାଧ୍ୟମ',
+	NS_SPECIAL          => 'ବିଶେଷ',
+	NS_TALK             => 'ଆଲୋଚନା',
+	NS_USER             => 'ବ୍ୟବହାରକାରି',
+	NS_USER_TALK        => 'ବ୍ୟବହାରକାରିଁକ_ଆଲୋଚନା',
+	NS_PROJECT_TALK     => 'ଉଇକିପିଡ଼ିଆ_ଆଲୋଚନା',
+	NS_FILE             => 'ଫାଇଲ',
+	NS_FILE_TALK        => 'ଫାଇଲ_ଆଲୋଚନା',
+	NS_MEDIAWIKI        => 'ମିଡ଼ିଆଉଇକି',
+	NS_MEDIAWIKI_TALK   => 'ମିଡ଼ିଆଉଇକି_ଆଲୋଚନା',
+	NS_TEMPLATE         => 'ଟେଁପଲେଟ',
+	NS_TEMPLATE_TALK    => 'ଟେଁପଲେଟ_ଆଲୋଚନା',
+	NS_HELP             => 'ସାହାଯ୍ୟ',
+	NS_HELP_TALK        => 'ସାହାଯ୍ୟ_ଆଲୋଚନା',
+	NS_CATEGORY         => 'ବିଭାଗ',
+	NS_CATEGORY_TALK    => 'ବିଭାଗିୟ_ଆଲୋଚନା',
+);
+
+
 $messages = array(
 # Dates
 'january'       => 'ଜାନୁଆରି',
