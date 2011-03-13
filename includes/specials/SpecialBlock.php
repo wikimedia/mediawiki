@@ -205,7 +205,7 @@ class SpecialBlock extends SpecialPage {
 	protected function maybeAlterFormDefaults( &$fields ){
 		$fields['Target']['default'] = (string)$this->target;
 
-		$block = self::getBlockFromTargetAndType( $this->target, $this->type );
+		$block = Block::newFromTargetAndType( $this->target, $this->type );
 
 		if( $block instanceof Block && !$block->mAuto # The block exists and isn't an autoblock
 			&& ( $this->type != Block::TYPE_RANGE # The block isn't a rangeblock
@@ -405,48 +405,12 @@ class SpecialBlock extends SpecialPage {
 				case 4:
 					break 2;
 			}
-
-			$userObj = User::newFromName( $target );
-			if( $userObj instanceof User ){
-				return array( $userObj, Block::TYPE_USER );
-			} elseif( IP::isValid( $target ) ){
-				# We can still create a User if it's an IP address, but we need to turn
-				# off validation checking (which would exclude IP addresses)
-				return array(
-					User::newFromName( IP::sanitizeIP( $target ), false ),
-					Block::TYPE_IP
-				);
-				break;
-			} elseif( IP::isValidBlock( $target ) ){
-				# Can't create a User from an IP range
-				return array( Block::normaliseRange( $target ), Block::TYPE_RANGE );
+			list( $target, $type ) = Block::parseTarget( $target );
+			if( $type !== null ){
+				return array( $target, $type );
 			}
 		}
 		return array( null, null );
-	}
-
-	/**
-	 * Given a target and the target's type, get a block object if possible
-	 * @param $target String|User
-	 * @param $type Block::TYPE_ constant
-	 * @return Block|null
-	 * TODO: this probably belongs in Block.php when that mess is cleared up
-	 */
-	public static function getBlockFromTargetAndType( $target, $type ){
-		if( $target instanceof User ){
-			if( $type == Block::TYPE_IP ){
-				return Block::newFromDB( $target->getName(), 0 );
-			} elseif( $type == Block::TYPE_USER ) {
-				return Block::newFromDB( '', $target->getId() );
-			} else {
-				# Should be unreachable;
-				return null;
-			}
-		} elseif( $type == Block::TYPE_RANGE ){
-			return Block::newFromDB( '', $target );
-		} else {
-			return null;
-		}
 	}
 
 	/**
