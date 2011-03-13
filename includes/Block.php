@@ -1003,7 +1003,7 @@ class Block {
 		list( $target, $type ) = self::parseTarget( $this->mAddress );
 
 		# Check whether it's an autoblock
-		if( $type == self::TYPE_ID && $this->mAuto ){
+		if( $this->mAuto ){
 			$type = self::TYPE_AUTO;
 		}
 
