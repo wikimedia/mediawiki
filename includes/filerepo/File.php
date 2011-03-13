@@ -66,6 +66,11 @@ abstract class File {
 	var $lastError, $redirected, $redirectedTitle;
 
 	/**
+	 * @var MediaHandler
+	 */
+	protected $handler;
+
+	/**
 	 * Call this constructor from child classes
 	 */
 	function __construct( $title, $repo ) {
