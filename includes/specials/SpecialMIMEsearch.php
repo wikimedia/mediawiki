@@ -75,8 +75,9 @@ class MIMEsearchPage extends QueryPage {
 			Xml::closeElement( 'form' )
 		);
 
-		list( $this->major, $this->minor ) = self::parseMIME( $mime );
-		if ( $this->major == '' || $this->minor == '' || !self::isValidType( $this->major ) ) {
+		list( $this->major, $this->minor ) = File::splitMime( $mime );
+		if ( $this->major == '' || $this->minor == '' || $this->minor == 'unknown' ||
+			!self::isValidType( $this->major ) ) {
 			return;
 		}
 		parent::execute( $par );
@@ -105,21 +106,7 @@ class MIMEsearchPage extends QueryPage {
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
-	
-	protected static function parseMIME( $str ) {
-		// searched for an invalid MIME type.
-		if( strpos( $str, '/' ) === false ) {
-			return array( '', '' );
-		}
 
-		list( $major, $minor ) = explode( '/', $str, 2 );
-
-		return array(
-			ltrim( $major, ' ' ),
-			rtrim( $minor, ' ' )
-		);
-	}
-	
 	protected static function isValidType( $type ) {
 		// From maintenance/tables.sql => img_major_mime
 		$types = array(
