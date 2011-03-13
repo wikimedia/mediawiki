@@ -34,6 +34,8 @@ class SpecialAllmessages extends SpecialPage {
 	 */
 	protected $table;
 
+	protected $filter, $prefix, $langCode;
+
 	/**
 	 * Constructor
 	 */
@@ -159,6 +161,11 @@ class AllmessagesTablePager extends TablePager {
 	public $mLimitsShown;
 
 	/**
+	 * @var Skin
+	 */
+	protected $mSkin;
+
+	/**
 	 * @var Language 
 	 */
 	public $lang;
@@ -276,7 +283,7 @@ class AllmessagesTablePager extends TablePager {
 			if( $customised !== $this->custom &&
 				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
-			){
+			) {
 				$actual = wfMessage( $key )->inLanguage( $this->langcode )->plain();
 				$default = wfMessage( $key )->inLanguage( $this->langcode )->useDatabase( false )->plain();
 				$result->result[] = array(
@@ -288,7 +295,9 @@ class AllmessagesTablePager extends TablePager {
 				);
 				$count++;
 			}
-			if( $count == $limit ) break;
+			if( $count == $limit ) {
+				break;
+			}
 		}
 		return $result;
 	}
@@ -394,15 +403,19 @@ class AllmessagesTablePager extends TablePager {
 			'am_default' => wfMsg( 'allmessagesdefault' )
 		);
 	}
+
 	function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
+
 	function isFieldSortable( $x ){
 		return false;
 	}
+
 	function getDefaultSort(){
 		return '';
 	}
+
 	function getQueryInfo(){
 		return '';
 	}
