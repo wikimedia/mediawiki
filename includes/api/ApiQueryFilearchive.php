@@ -91,11 +91,12 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$this->addWhereRange( 'fa_name', $dir, $from, null );
+		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
-		
+
 		if ( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			// Filter out revisions that the user is not allowed to see. There
 			// is no way to indicate that we have skipped stuff because the
@@ -106,8 +107,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			$this->addWhereFld( 'fa_deleted', 0 );
 		}
 
-		
-			
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption( 'ORDER BY', 'fa_name' .
@@ -189,6 +188,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array (
 			'from' => null,
+			'to' => null,
 			'prefix' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -225,9 +225,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The image title to start enumerating from',
+			'to' => 'The image title to stop enumerating at',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
-			'limit' => 'How many total images to return',
+			'limit' => 'How many images to return in total',
 			'prop' => array(
 				'What image information to get:',
 				' sha1         - Adds SHA-1 hash for the image',
