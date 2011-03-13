@@ -203,7 +203,7 @@ class SpecialBlock extends SpecialPage {
 	 *     already blocked)
 	 */
 	protected function maybeAlterFormDefaults( &$fields ){
-		$fields['Target']['default'] = $this->target;
+		$fields['Target']['default'] = (string)$this->target;
 
 		$block = self::getBlockFromTargetAndType( $this->target, $this->type );
 
@@ -454,10 +454,10 @@ class SpecialBlock extends SpecialPage {
 	 * @since 1.18
 	 * @return Message
 	 */
-	public static function validateTargetField( $data, $alldata = null ) {
+	public static function validateTargetField( $value, $alldata = null ) {
 		global $wgBlockCIDRLimit;
 
-		list( $target, $type ) = self::getTargetAndType( $data );
+		list( $target, $type ) = self::getTargetAndType( $value );
 
 		if( $type == Block::TYPE_USER ){
 			# TODO: why do we not have a User->exists() method?
@@ -469,10 +469,6 @@ class SpecialBlock extends SpecialPage {
 			if ( $status !== true ) {
 				return wfMessage( 'badaccess', $status );
 			}
-
-			$user = $target;
-			$target = $user->getName();
-			$userId = $user->getId();
 
 		} elseif( $type == Block::TYPE_RANGE ){
 			list( $ip, $range ) = explode( '/', $target, 2 );
@@ -499,16 +495,14 @@ class SpecialBlock extends SpecialPage {
 				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
 
-			$userId = 0;
-
 		} elseif( $type == Block::TYPE_IP ){
 			# All is well
-			$target = $target->getName();
-			$userId = 0;
 
 		} else {
 			return wfMessage( 'badipaddress' );
 		}
+
+		return true;
 	}
 
 	/**
@@ -521,6 +515,21 @@ class SpecialBlock extends SpecialPage {
 
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
+
+		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
+		if( $type == Block::TYPE_USER ){
+			$user = $target;
+			$target = $user->getName();
+			$userId = $user->getId();
+		} elseif( $type == Block::TYPE_RANGE ){
+			$userId = 0;
+		} elseif( $type == Block::TYPE_IP ){
+			$target = $target->getName();
+			$userId = 0;
+		} else {
+			# This should have been caught in the form field validation
+			return wfMessage( 'badipaddress' );
+		}
 
 		if( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
 			|| !Block::parseExpiryInput( $data['Expiry'] ) )
