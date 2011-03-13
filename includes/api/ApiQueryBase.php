@@ -440,6 +440,13 @@ abstract class ApiQueryBase extends ApiBase {
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
 	}
 
+	/**
+	 * Gets the personalised direction parameter description
+	 *
+	 * @param string $p ModulePrefix
+	 * @param string $extraDirText Any extra text to be appended on the description
+	 * @return array
+	 */
 	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
 		return array(
 				"In which direction to enumerate{$extraDirText}",
