@@ -94,12 +94,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			);
 		}
 
-		if ( !is_null( $params['from'] ) ) {
-			$this->addWhere( 'pl_title>=' . $db->addQuotes( $this->titlePartToKey( $params['from'] ) ) );
-		}
-		if ( !is_null( $params['to'] ) ) {
-			$this->addWhere( 'pl_title<=' . $db->addQuotes( $this->titlePartToKey( $params['to'] ) ) );
-		}
+		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$this->addWhereRange( 'pl_title', 'newer', $from, $to );
+
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'pl_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
@@ -112,10 +110,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'USE INDEX', 'pl_namespace' );
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		if ( $params['unique'] ) {
-			$this->addOption( 'ORDER BY', 'pl_title' );
-		} else {
-			$this->addOption( 'ORDER BY', 'pl_title, pl_from' );
+
+		if ( !$params['unique'] ) {
+			$this->addOption( 'ORDER BY', 'pl_from' );
 		}
 
 		$res = $this->select( __METHOD__ );
