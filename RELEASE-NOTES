@@ -115,7 +115,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 2581, bug 6834) Added links to thumbnail in several resolutions to the 
   file description page. The sizes are set by $wgImageLimits.
 * (bug 28031) Add pageCount support to ArchivedFile
-  
+
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
@@ -257,6 +257,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27020) API: Allow title prefix search of logevents (only when not in
   miser mode)
 * (bug 26629) add Special:MIMESearch to api
+* (bug 27585) add pagecount to list=filearchive
 
 === Languages updated in 1.18 ===
 

@@ -140,6 +140,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 			if ( $fld_size ) {
 				$file['size'] = $row->fa_size;
+
+				$pageCount = ArchivedFile::newFromRow( $row )->pageCount();
+				if ( $pageCount !== false ) {
+					$vals['pagecount'] = $pageCount;
+				}
 			}
 			if ( $fld_dimensions ) {
 				$file['height'] = $row->fa_height;
