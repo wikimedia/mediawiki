@@ -54,7 +54,12 @@ $wgSitename         = 'MediaWiki';
 $wgServer = '';
 
 /** @cond file_level_code */
-if( isset( $_SERVER['SERVER_NAME'] ) ) {
+if( isset( $_SERVER['SERVER_NAME'] )
+	# additionially, for requests made directly to an IPv6 address we have
+	# to make sure the server enclose it in either [] or nothing at all
+	&& (strpos($_SERVER['SERVER_NAME'], '[')
+	    xor strpos( $_SERVER['SERVER_NAME'], ']'))
+	) {
 	$serverName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
 	$serverName = $_SERVER['HOSTNAME'];
