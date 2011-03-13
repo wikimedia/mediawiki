@@ -117,6 +117,18 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			$this->addWhere( 'img_sha1=' . $db->addQuotes( $sha1 ) );
 		}
 
+		if ( !is_null( $params['mime'] ) ) {
+			global $wgMiserMode;
+			if ( $wgMiserMode  ) {
+				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimeearchdisabled' );
+			}
+
+			list( $major, $minor ) = File::splitMime( $params['mime'] );
+
+			$this->addWhereFld( 'img_major_mime', $major );
+			$this->addWhereFld( 'img_minor_mime', $minor );
+		}
+
 		$this->addTables( 'image' );
 
 		$prop = array_flip( $params['prop'] );
@@ -194,7 +206,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames(),
 				ApiBase::PARAM_DFLT => 'timestamp|url',
 				ApiBase::PARAM_ISMULTI => true
-			)
+			),
+			'mime' => null,
 		);
 	}
 
@@ -210,6 +223,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => ApiQueryImageInfo::getPropertyDescriptions(),
+			'mime' => 'What MIME type to search for. e.g. image/jpeg. Disabled in Miser Mode',
 		);
 	}
 
@@ -221,6 +235,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
 			array( 'code' => 'unsupportedrepo', 'info' => 'Local file repository does not support querying all images' ),
+			array( 'code' => 'mimeearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
 		) );
 	}
 
