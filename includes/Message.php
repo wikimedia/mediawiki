@@ -256,12 +256,6 @@ class Message {
 
 	/**
 	 * Returns the message parsed from wikitext to HTML.
-	 * TODO: in PHP >= 5.2.0, we can make this a magic method,
-	 * and then we can do, eg:
-	 *     $foo = Message::get($key);
-	 *     $string = "<abbr>$foo</abbr>";
-	 * But we shouldn't implement that while MediaWiki still supports
-	 * PHP < 5.2; or people will start using it...
 	 * @return String: HTML
 	 */
 	public function toString() {
@@ -291,6 +285,16 @@ class Message {
 		$string = $this->replaceParameters( $string, 'after' );
 		
 		return $string;
+	}
+
+	/**
+	 * Magic method implementation of the above (for PHP >= 5.2.0), so we can do, eg:
+	 *     $foo = Message::get($key);
+	 *     $string = "<abbr>$foo</abbr>";
+	 * @return String
+	 */
+	public function __toString() {
+		return $this->toString();
 	}
 	
 	/**
