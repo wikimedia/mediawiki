@@ -148,6 +148,20 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$index['logging'] = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
 		}
 
+		global $wgMiserMode;
+		if ( !$wgMiserMode ) {
+			$prefix = $params['prefix'];
+
+			if ( !is_null( $prefix ) ) {
+				$title = Title::newFromText( $prefix );
+				if ( is_null( $title ) ) {
+					$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
+				}
+				$this->addWhereFld( 'log_namespace',  $title->getNamespace() );
+				$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
+			}
+		}
+
 		$this->addOption( 'USE INDEX', $index );
 
 		// Paranoia: avoid brute force searches (bug 17342)
@@ -334,7 +348,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		global $wgLogTypes, $wgLogActions;
-		return array(
+		$ret = array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
@@ -381,11 +395,17 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			)
 		);
+		global $wgMiserMode;
+		if ( !$wgMiserMode ) {
+			$ret['prefix'] = null;
+		}
+
+		return $ret;
 	}
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		return array(
+		$ret = array(
 			'prop' => array(
 				'Which properties to get',
 				' ids            - Adds the ID of the log event',
@@ -409,6 +429,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
 		);
+
+		global $wgMiserMode;
+		if ( !$wgMiserMode ) {
+			$ret['prefix'] = 'Filter entries that start with this prefix';
+		}
+
+		return $ret;
 	}
 
 	public function getDescription() {
@@ -419,6 +446,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
 			array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
+			array( 'code' => 'param_prefix', 'info' => 'Bad title value \'prefix\'' ),
 		) );
 	}
 
