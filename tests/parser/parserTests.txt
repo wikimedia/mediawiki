@@ -4349,7 +4349,7 @@ text with character entity: eacute
 !! input
 I always thought &eacute; was a cute letter.
 !! result
-<p>I always thought &eacute; was a cute letter.
+<p>I always thought &#233; was a cute letter.
 </p>
 !! end
 
