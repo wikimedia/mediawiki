@@ -1847,7 +1847,7 @@ class OutputPage {
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );
 		} else {
-			$sk = $wgUser->getSkin();
+			$sk = $wgUser->getSkin( $this->getTitle() );
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
