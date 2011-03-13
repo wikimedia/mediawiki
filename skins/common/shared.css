@@ -123,6 +123,10 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	text-align: left !important;
 }
 
+.mw-htmlform-invalid-input td.mw-input input {
+	border-color: red;
+}
+
 input#wpSummary {
 	width: 80%;
 }
@@ -617,7 +621,7 @@ ol:lang(bn) li {
 .tipsy-arrow {
 	position: absolute;
 	/* @embed */
-	background: url( 'images/tipsy-arrow.gif' ) no-repeat top left;
+	background: url(images/tipsy-arrow.gif) no-repeat top left;
 	width: 13px;
 	height: 13px;
 }

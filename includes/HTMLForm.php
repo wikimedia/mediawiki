@@ -890,8 +890,10 @@ abstract class HTMLFormField {
 
 		if ( $errors === true || ( !$wgRequest->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
 			$errors = '';
+			$errorClass = '';
 		} else {
-			$errors = Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
+			$errors = self::formatErrors( $errors );
+			$errorClass = 'mw-htmlform-invalid-input';
 		}
 
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -903,15 +905,15 @@ abstract class HTMLFormField {
 
 		$fieldType = get_class( $this );
 
-		if ($verticalLabel) {
+		if ( $verticalLabel ) {
 			$html = Html::rawElement( 'tr',
 				array( 'class' => 'mw-htmlform-vertical-label' ), $label );
 			$html .= Html::rawElement( 'tr',
-				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass}" ),
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
 				$field );
 		} else {
 			$html = Html::rawElement( 'tr',
-				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass}" ),
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
 				$label . $field );
 		}
 
@@ -1008,6 +1010,33 @@ abstract class HTMLFormField {
 		}
 
 		return $flatOpts;
+	}
+
+	/**
+	 * @param $errors String|Message|Array of strings or Message instances
+	 * @return String html
+	 */
+	protected static function formatErrors( $errors ) {
+		if ( is_array( $errors ) && count( $errors ) === 1 ) {
+			$errors = array_shift( $errors );
+		}
+
+		if ( is_array( $errors ) ) {
+			$lines = array();
+			foreach ( $errors as $error ) {
+				if ( $error instanceof Message ) {
+					$lines[] = Html::rawElement( 'li', array(), $error->parse() );
+				} else {
+					$lines[] = Html::rawElement( 'li', array(), $error );
+				}
+			}
+			return Html::rawElement( 'ul', array( 'class' => 'error' ), implode( "\n", $lines ) );
+		} else {
+			if ( $errors instanceof Message ) {
+				$errors = $errors->parse();
+			}
+			return Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
+		}
 	}
 }
 
