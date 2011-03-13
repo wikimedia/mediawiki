@@ -102,7 +102,7 @@ class ApiBlock extends ApiBase {
 		$res['user'] = $params['user'];
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
-		$block = SpecialBlock::getBlockFromTargetAndType( $target, $type );
+		$block = Block::newFromTargetAndType( $target, $type );
 		if( $block instanceof Block ){
 			$res['expiry'] = $block->mExpiry == Block::infinity()
 				? 'infinite'
