@@ -198,20 +198,28 @@ class MimeMagic {
 		$lines = explode( "\n",$types );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
-			if ( empty( $s ) ) continue;
-			if ( strpos( $s, '#' ) === 0 ) continue;
+			if ( empty( $s ) ) {
+				continue;
+			}
+			if ( strpos( $s, '#' ) === 0 ) {
+				continue;
+			}
 
 			$s = strtolower( $s );
 			$i = strpos( $s, ' ' );
 
-			if ( $i === false ) continue;
+			if ( $i === false ) {
+				continue;
+			}
 
 			#print "processing MIME line $s<br>";
 
 			$mime = substr( $s, 0, $i );
 			$ext = trim( substr($s, $i+1 ) );
 
-			if ( empty( $ext ) ) continue;
+			if ( empty( $ext ) ) {
+				continue;
+			}
 
 			if ( !empty( $this->mMimeToExt[$mime] ) ) {
 				$this->mMimeToExt[$mime] .= ' ' . $ext;
@@ -223,7 +231,9 @@ class MimeMagic {
 
 			foreach ( $extensions as $e ) {
 				$e = trim( $e );
-				if ( empty( $e ) ) continue;
+				if ( empty( $e ) ) {
+					continue;
+				}
 
 				if ( !empty( $this->mExtToMime[$e] ) ) {
 					$this->mExtToMime[$e] .= ' ' . $mime;
@@ -265,13 +275,19 @@ class MimeMagic {
 		$lines = explode( "\n", $info );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
-			if ( empty( $s ) ) continue;
-			if ( strpos( $s, '#' ) === 0 ) continue;
+			if ( empty( $s ) ) {
+				continue;
+			}
+			if ( strpos( $s, '#' ) === 0 ) {
+				continue;
+			}
 
 			$s = strtolower( $s );
 			$i = strpos( $s, ' ' );
 
-			if ( $i === false ) continue;
+			if ( $i === false ) {
+				continue;
+			}
 
 			#print "processing MIME INFO line $s<br>";
 
@@ -291,7 +307,9 @@ class MimeMagic {
 
 			foreach ( $m as $mime ) {
 				$mime = trim( $mime );
-				if ( empty( $mime ) ) continue;
+				if ( empty( $mime ) ) {
+					continue;
+				}
 
 				$this->mMediaTypes[$mtype][] = $mime;
 			}
@@ -1049,6 +1067,8 @@ class MimeMagic {
 
 	/**
 	 * Get a cached instance of IEContentAnalyzer
+	 *
+	 * @return IEContentAnalyzer
 	 */
 	protected function getIEContentAnalyzer() {
 		if ( is_null( $this->mIEAnalyzer ) ) {
