@@ -244,6 +244,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28010) Passing a non existant user to list=users gives internal error
 * (bug 27549) action=query&list=users&usprop=groups doesn't show implicit
   groups if a user doesn't have explicit groups
+* (bug 27670) Ordering by timestamp (and usage of start and end) isn't as clear
+  in auto generated document, as it is on mw.org
+
 
 === Languages updated in 1.18 ===
 
