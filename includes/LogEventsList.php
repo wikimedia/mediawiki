@@ -424,13 +424,10 @@ class LogEventsList {
 		} else if( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
 			$revert = '(' .
 				$this->skin->link(
-					SpecialPage::getTitleFor( 'Ipblocklist' ),
+					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
 					$this->message['unblocklink'],
 					array(),
-					array(
-						'action' => 'unblock',
-						'ip' => $row->log_title
-					),
+					array(),
 					'known'
 				) .
 				$this->message['pipe-separator'] .

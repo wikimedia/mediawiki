@@ -4948,6 +4948,7 @@ $wgSpecialPageGroups = array(
 	'Listbots'                  => 'users',
 	'Userrights'                => 'users',
 	'Block'                     => 'users',
+	'Unblock'                   => 'users',
 	'Preferences'               => 'users',
 	'Resetpass'                 => 'users',
 	'DeletedContributions'      => 'users',

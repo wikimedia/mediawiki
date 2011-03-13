@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class IPUnblockForm extends SpecialPage {
-	var $ip, $reason, $id;
+	var $ip;
 	var $hideuserblocks, $hidetempblocks, $hideaddressblocks;
 
 	function __construct() {
@@ -48,221 +48,21 @@ class IPUnblockForm extends SpecialPage {
 
 		$ip = $wgRequest->getVal( 'ip', $ip );
 		$this->ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $ip ) );
-		$this->id = $wgRequest->getVal( 'id' );
-		$this->reason = $wgRequest->getText( 'wpUnblockReason' );
 		$this->hideuserblocks = $wgRequest->getBool( 'hideuserblocks' );
 		$this->hidetempblocks = $wgRequest->getBool( 'hidetempblocks' );
 		$this->hideaddressblocks = $wgRequest->getBool( 'hideaddressblocks' );
 
 		$action = $wgRequest->getText( 'action' );
-		$successip = $wgRequest->getVal( 'successip' );
 
 		if( $action == 'unblock' || $action == 'submit' && $wgRequest->wasPosted() ) {
-			# Check permissions
-			if( !$wgUser->isAllowed( 'block' ) ) {
-				$wgOut->permissionRequired( 'block' );
-				return;
-			}
-			# Check for database lock
-			if( wfReadOnly() ) {
-				$wgOut->readOnlyPage();
-				return;
-			}
-	
-			# bug 15810: blocked admins should have limited access here
-			if ( $wgUser->isBlocked() ) {
-				if ( $this->id ) {
-					# This doesn't pick up on autoblocks, but admins
-					# should have the ipblock-exempt permission anyway
-					$block = Block::newFromID( $this->id );
-					$user = User::newFromName( $block->mAddress );
-				} else {
-					$user = User::newFromName( $ip );
-				}
-				$status = SpecialBlock::checkUnblockSelf( $user );
-				if ( $status !== true ) {
-					throw new ErrorPageError( 'badaccess', $status );
-				}
-			}
-
-			if( $action == 'unblock' ){
-				# Show unblock form
-				$this->showForm();
-			} elseif( $action == 'submit' 
-				&& $wgRequest->wasPosted()
-				&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
-			{
-				# Remove blocks and redirect user to success page
-				$this->doSubmit();
-			}
-
-		} elseif( $action == 'success' ) {
-			# Inform the user of a successful unblock
-			# (No need to check permissions or locks here,
-			# if something was done, then it's too late!)
-			if ( substr( $successip, 0, 1) == '#' ) {
-				// A block ID was unblocked
-				$this->showList( $wgOut->parse( wfMsg( 'unblocked-id', $successip ) ) );
-			} else {
-				// A username/IP was unblocked
-				$this->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
-			}
+			# B/C @since 1.18: Unblock interface is now at Special:Unblock
+			$title = SpecialPage::getTitleFor( 'Unblock', $this->ip );
+			$wgOut->redirect( $title->getFullUrl() );
+			return;
 		} else {
 			# Just show the block list
 			$this->showList( '' );
 		}
-	}
-
-	/**
-	 * Generates the unblock form
-	 *
-	 * @param $err String, Array or null: error message name or an array if
-	 *             there are parameters. Null indicates no error.
-	 * @return $out string: HTML form
-	 */
-	function showForm( $err = null ) {
-		global $wgOut, $wgUser;
-
-		$wgOut->addWikiMsg( 'unblockiptext' );
-
-		$action = $this->getTitle()->getLocalURL( 'action=submit' );
-
-		if ( $err !== null ) {
-			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->wrapWikiMsg( "<span class='error'>$1</span>\n", $err );
-		}
-
-		$addressPart = false;
-		if ( $this->id ) {
-			$block = Block::newFromID( $this->id );
-			if ( $block ) {
-				$encName = htmlspecialchars( $block->getRedactedName() );
-				$encId = $this->id;
-				$addressPart = $encName . Html::hidden( 'id', $encId );
-				$ipa = wfMsgHtml( 'ipadressorusername' );
-			}
-		}
-		if ( !$addressPart ) {
-			$addressPart = Xml::input( 'wpUnblockAddress', 40, $this->ip, array( 'type' => 'text', 'tabindex' => '1' ) );
-			$ipa = Xml::label( wfMsg( 'ipadressorusername' ), 'wpUnblockAddress' );
-		}
-
-		$wgOut->addHTML(
-			Html::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
-			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', null, wfMsg( 'ipb-unblock' ) ) .
-			Html::openElement( 'table', array( 'id' => 'mw-unblock-table' ) ).
-			"<tr>
-				<td class='mw-label'>
-					{$ipa}
-				</td>
-				<td class='mw-input'>
-					{$addressPart}
-				</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'ipbreason' ), 'wpUnblockReason' ) .
-				"</td>
-				<td class='mw-input'>" .
-					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
-				"</td>
-			</tr>
-			<tr>
-				<td>&#160;</td>
-				<td class='mw-submit'>" .
-					Xml::submitButton( wfMsg( 'ipusubmit' ), array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
-				"</td>
-			</tr>" .
-			Html::closeElement( 'table' ) .
-			Html::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
-			Html::closeElement( 'form' ) . "\n"
-		);
-
-	}
-
-	const UNBLOCK_SUCCESS = 0; // Success
-	const UNBLOCK_NO_SUCH_ID = 1; // No such block ID
-	const UNBLOCK_USER_NOT_BLOCKED = 2; // IP wasn't blocked
-	const UNBLOCK_BLOCKED_AS_RANGE = 3; // IP is part of a range block
-	const UNBLOCK_UNKNOWNERR = 4; // Unknown error
-
-	/**
-	 * Backend code for unblocking. doSubmit() wraps around this.
-	 * $range is only used when UNBLOCK_BLOCKED_AS_RANGE is returned, in which
-	 * case it contains the range $ip is part of.
-	 * @return array array(message key, parameters) on failure, empty array on success
-	 */
-	public static function doUnblock( &$id, &$ip, &$reason, &$range = null, $blocker = null ) {
-		if ( $id ) {
-			$block = Block::newFromID( $id );
-			if ( !$block ) {
-				return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
-			}
-			$ip = $block->getRedactedName();
-		} else {
-			$ip = trim( $ip );
-			if ( substr( $ip, 0, 1 ) == "#" ) {
-				$id = substr( $ip, 1 );
-				$block = Block::newFromID( $id );
-				if( !$block ) {
-					return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
-				}
-				$ip = $block->getRedactedName();
-			} else {
-				# FIXME: do proper sanitisation/cleanup here
-				$ip = str_replace( '_', ' ', $ip );
-
-				$block = Block::newFromDB( $ip );
-				if ( !$block ) {
-					return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
-				}
-				if( $block->mRangeStart != $block->mRangeEnd && !strstr( $ip, "/" ) ) {
-					/* If the specified IP is a single address, and the block is
-					 * a range block, don't unblock the range. */
-					 $range = $block->mAddress;
-					 return array( 'ipb_blocked_as_range', $ip, $range );
-				}
-			}
-		}
-		// Yes, this is really necessary
-		$id = $block->mId;
-		
-		# If the name was hidden and the blocking user cannot hide
-		# names, then don't allow any block removals...
-		if( $blocker && $block->mHideName && !$blocker->isAllowed( 'hideuser' ) ) {
-			return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
-		}
-
-		# Delete block
-		if ( !$block->delete() ) {
-			return array( 'ipb_cant_unblock', htmlspecialchars( $id ) );
-		}
-		
-		# Unset _deleted fields as needed
-		if( $block->mHideName ) {
-			RevisionDeleteUser::unsuppressUserName( $block->mAddress, $block->mUser );
-		}
-
-		# Make log entry
-		$log = new LogPage( 'block' );
-		$log->addEntry( 'unblock', Title::makeTitle( NS_USER, $ip ), $reason );
-		return array();
-	}
-
-	function doSubmit() {
-		global $wgOut, $wgUser;
-
-		$retval = self::doUnblock( $this->id, $this->ip, $this->reason, $range, $wgUser );
-		if ( count( $retval ) ) {
-			$this->showForm( $retval );
-			return;
-		}
-
-		# Report to the user
-		$success = $this->getTitle()->getFullURL( 'action=success&successip=' . urlencode( $this->ip ) );
-		$wgOut->redirect( $success );
 	}
 
 	function showList( $msg ) {

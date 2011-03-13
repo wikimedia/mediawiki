@@ -3066,6 +3066,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'unblockiptext'                   => 'Use the form below to restore write access to a previously blocked IP address or username.',
 'ipusubmit'                       => 'Remove this block',
 'unblocked'                       => '[[User:$1|$1]] has been unblocked',
+'unblocked-range'                 => '$1 has been unblocked',
 'unblocked-id'                    => 'Block $1 has been removed',
 'ipblocklist'                     => 'Blocked IP addresses and usernames',
 'ipblocklist-legend'              => 'Find a blocked user',
@@ -3120,6 +3121,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 $1 is already blocked.
 Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
+'unblock-hideuser'                => 'You cannot unblock this user, as their username has been hidden.',
 'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
 It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP address $1 is not blocked directly and cannot be unblocked.

@@ -256,13 +256,8 @@ class SpecialContributions extends SpecialPage {
 						wfMsgHtml( 'change-blocklink' )
 					);
 					$tools[] = $sk->linkKnown( # Unblock link
-						SpecialPage::getTitleFor( 'Ipblocklist' ),
-						wfMsgHtml( 'unblocklink' ),
-						array(),
-						array(
-							'action' => 'unblock',
-							'ip' => $username
-						)
+						SpecialPage::getTitleFor( 'Unblock', $username ),
+						wfMsgHtml( 'unblocklink' )
 					);
 				} else { # User is not blocked
 					$tools[] = $sk->linkKnown( # Block link

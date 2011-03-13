@@ -72,17 +72,19 @@ class ApiUnblock extends ApiBase {
 			}
 		}
 
-		$id = $params['id'];
-		$user = $params['user'];
-		$reason = ( is_null( $params['reason'] ) ? '' : $params['reason'] );
-		$retval = IPUnblockForm::doUnblock( $id, $user, $reason, $range );
-		if ( $retval ) {
-			$this->dieUsageMsg( $retval );
+		$data = array(
+			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
+			'Reason' => is_null( $params['reason'] ) ? '' : $params['reason']
+		);
+		$block = Block::newFromTarget( $data['Target'] );
+		$retval = SpecialUnblock::processUnblock( $data );
+		if ( $retval !== true ) {
+			$this->dieUsageMsg( $retval[0] );
 		}
 
-		$res['id'] = intval( $id );
-		$res['user'] = $user;
-		$res['reason'] = $reason;
+		$res['id'] = $block->mId;
+		$res['user'] = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
+		$res['reason'] = $params['reason'];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 

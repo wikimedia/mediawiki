@@ -297,15 +297,14 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Link to unblock the specified user, or to a blank unblock form
-		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
-		$query = array( 'action' => 'unblock' );
 		if( $this->target instanceof User ) {
 			$message = wfMsgExt( 'ipb-unblock-addr', array( 'parseinline' ), $this->target->getName() );
-			$query['ip'] = $this->target->getName();
+			$list = SpecialPage::getTitleFor( 'Unblock', $this->target->getName() );
 		} else {
 			$message = wfMsgExt( 'ipb-unblock', array( 'parseinline' ) );
+			$list = SpecialPage::getTitleFor( 'Unblock' );
 		}
-		$links[] = $skin->linkKnown( $list, $message, array(), $query );
+		$links[] = $skin->linkKnown( $list, $message, array() );
 
 		# Link to the block list
 		$links[] = $skin->linkKnown(
@@ -492,7 +491,7 @@ class SpecialBlock extends SpecialPage {
 			$userId = 0;
 		} else {
 			# This should have been caught in the form field validation
-			return wfMessage( 'badipaddress' );
+			return array( 'badipaddress' );
 		}
 
 		if( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
