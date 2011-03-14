@@ -2505,10 +2505,12 @@ class OutputPage {
 				}
 				continue;
 			}
-			// Special handling for user and site groups; because users might change their stuff
-			// on-wiki like site or user pages, or user preferences; we need to find the highest
+			// Special handling for the user group; because users might change their stuff
+			// on-wiki like user pages, or user preferences; we need to find the highest
 			// timestamp of these user-changable modules so we can ensure cache misses on change
-			if ( $group === 'user' || $group === 'site' ) {
+			// This should NOT be done for the site group (bug 27564) because anons get that too
+			// and we shouldn't be putting timestamps in Squid-cached HTML
+			if ( $group === 'user' ) {
 				// Get the maximum timestamp
 				$timestamp = 1;
 				foreach ( $modules as $module ) {
