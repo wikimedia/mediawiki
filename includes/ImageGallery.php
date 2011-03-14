@@ -35,6 +35,13 @@ class ImageGallery
 	private $mAttribs = array();
 
 	/**
+	 * Fixed margins
+	 */
+	const THUMB_PADDING = 30;
+	const GB_PADDING = 5;
+	const GB_BORDERS = 6;
+
+	/**
 	 * Create a new image gallery object.
 	 */
 	function __construct( ) {
@@ -226,7 +233,7 @@ class ImageGallery
 		$sk = $this->getSkin();
 
 		if ( $this->mPerRow > 0 ) {
-			$maxwidth = $this->mPerRow * ( $this->mWidths + 50 );
+			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ""; 
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
@@ -258,11 +265,11 @@ class ImageGallery
 
 			if( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">'
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">' .
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">' .
 					$sk->link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -273,13 +280,13 @@ class ImageGallery
 					'</div>';
 			} elseif( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">'
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				//We get layout problems with the margin, if the image is smaller 
 				//than the line-height, so we less margin in these cases.
 				$minThumbHeight =  $thumb->height > 17 ? $thumb->height : 17;
-				$vpad = floor(( 30 + $this->mHeights - $minThumbHeight ) /2);
+				$vpad = floor(( self::THUMB_PADDING + $this->mHeights - $minThumbHeight ) /2);
 				
 
 				$imageParameters = array(
@@ -293,7 +300,7 @@ class ImageGallery
 
 				# Set both fixed width and min-height.
 				$thumbhtml = "\n\t\t\t".
-					'<div class="thumb" style="width: ' .($this->mWidths+30).'px;">'
+					'<div class="thumb" style="width: ' .($this->mWidths + self::THUMB_PADDING).'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
@@ -339,8 +346,8 @@ class ImageGallery
 			# Weird double wrapping in div needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existance
 			$s .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + 35 ) . 'px">'
-					. '<div style="width: ' . ( $this->mWidths + 35 ) . 'px">'
+				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
+					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. $thumbhtml
 					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
 						. $textlink . $text . $nb
