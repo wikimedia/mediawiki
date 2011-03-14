@@ -66,10 +66,16 @@ class JavaScriptMinifier {
 	/**
 	 * Returns minified JavaScript code.
 	 *
+	 * NOTE: $maxLineLength isn't a strict maximum. Longer lines will be produced when
+	 *       literals (e.g. quoted strings) longer than $maxLineLength are encountered
+	 *       or when required to guard against semicolon insertion.
+	 *
 	 * @param $s String JavaScript code to minify
+	 * @param $statementsOnOwnLine Bool Whether to put each statement on its own line
+	 * @param $maxLineLength Int Maximum length of a single line, or -1 for no maximum.
 	 * @return String Minified code
 	 */
-	public static function minify( $s ) {
+	public static function minify( $s, $statementsOnOwnLine = false, $maxLineLength = 1000 ) {
 		// First we declare a few tables that contain our parsing rules
 
 		// $opChars : characters, which can be combined without whitespace in between them
@@ -377,6 +383,23 @@ class JavaScriptMinifier {
 				self::TYPE_LITERAL    => true
 			)
 		);
+		
+		// Rules for when newlines should be inserted if
+		// $statementsOnOwnLine is enabled.
+		// $newlineBefore is checked before switching state,
+		// $newlineAfter is checked after
+		$newlineBefore = array(
+			self::STATEMENT => array(
+				self::TYPE_BRACE_CLOSE => true,
+			),
+		);
+		$newlineAfter = array(
+			self::STATEMENT => array(
+				self::TYPE_BRACE_OPEN => true,
+				self::TYPE_PAREN_CLOSE => true,
+				self::TYPE_SEMICOLON => true,
+			),
+		);
 
 		// $divStates : Contains all states that can be followed by a division operator
 		$divStates = array(
@@ -391,6 +414,7 @@ class JavaScriptMinifier {
 		$out = '';
 		$pos = 0;
 		$length = strlen( $s );
+		$lineLength = 0;
 		$newlineFound = true;
 		$state = self::STATEMENT;
 		$stack = array();
@@ -492,7 +516,7 @@ class JavaScriptMinifier {
 			}
 
 			// Now get the token type from our type array
-			$token = substr( $s, $pos, $end - $pos );
+			$token = substr( $s, $pos, $end - $pos ); // so $end - $pos == strlen( $token )
 			$type = isset( $tokenTypes[$token] ) ? $tokenTypes[$token] : self::TYPE_LITERAL;
 
 			if( $newlineFound && isset( $semicolon[$state][$type] ) ) {
@@ -500,20 +524,38 @@ class JavaScriptMinifier {
 				// could add the ; token here ourselves, keeping the newline has a few advantages.
 				$out .= "\n";
 				$state = self::STATEMENT;
-			} elseif( false /* Put your newline condition here */ ) {
+				$lineLength = 0;
+			} elseif( $maxLineLength > 0 && $lineLength + $end - $pos > $maxLineLength &&
+					!isset( $semicolon[$state][$type] ) )
+			{
+				// This line would get too long if we added $token, so add a newline first.
+				// Only do this if it won't trigger semicolon insertion though.
 				$out .= "\n";
+				$lineLength = 0;
 			// Check, whether we have to separate the token from the last one with whitespace
 			} elseif( !isset( $opChars[$last] ) && !isset( $opChars[$ch] ) ) {
 				$out .= ' ';
+				$lineLength++;
 			// Don't accidentally create ++, -- or // tokens
 			} elseif( $last === $ch && ( $ch === '+' || $ch === '-' || $ch === '/' ) ) {
 				$out .= ' ';
+				$lineLength++;
 			}
 			
 			$out .= $token;
+			$lineLength += $end - $pos; // += strlen( $token )
 			$last = $s[$end - 1];
 			$pos = $end;
 			$newlineFound = false;
+			
+			// Output a newline after the token if required
+			// This is checked before AND after switching state
+			$newlineAdded = false;
+			if ( $statementsOnOwnLine && !$newlineAdded && isset( $newlineBefore[$state][$type] ) ) {
+				$out .= "\n";
+				$lineLength = 0;
+				$newlineAdded = true;
+			}
 
 			// Now that we have output our token, transition into the new state.
 			if( isset( $push[$state][$type] ) && count( $stack ) < self::STACK_LIMIT ) {
@@ -523,6 +565,12 @@ class JavaScriptMinifier {
 				$state = array_pop( $stack );
 			} elseif( isset( $goto[$state][$type] ) ) {
 				$state = $goto[$state][$type];
+			}
+			
+			// Check for newline insertion again
+			if ( $statementsOnOwnLine && !$newlineAdded && isset( $newlineAfter[$state][$type] ) ) {
+				$out .= "\n";
+				$lineLength = 0;
 			}
 		}
 		return $out;
