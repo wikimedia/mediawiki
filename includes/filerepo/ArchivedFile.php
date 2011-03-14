@@ -32,7 +32,8 @@ class ArchivedFile {
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
 		$deleted, # Bitfield akin to rev_deleted
-		$pageCount;
+		$pageCount,
+		$archive_name;
 
 	/**
 	 * @var MediaHandler
@@ -45,6 +46,12 @@ class ArchivedFile {
 
 	/**#@-*/
 
+	/**
+	 * @throws MWException
+	 * @param Title $title
+	 * @param int $id
+	 * @param string $key
+	 */
 	function __construct( $title, $id=0, $key='' ) {
 		$this->id = -1;
 		$this->title = false;
@@ -66,19 +73,22 @@ class ArchivedFile {
 		$this->dataLoaded = false;
 		$this->exists = false;
 
-		if( is_object($title) ) {
+		if( is_object( $title ) ) {
 			$this->title = $title;
 			$this->name = $title->getDBkey();
 		}
 
-		if ($id)
+		if ($id) {
 			$this->id = $id;
+		}
 
-		if ($key)
+		if ($key) {
 			$this->key = $key;
+		}
 
-		if (!$id && !$key && !is_object($title))
+		if ( !$id && !$key && !is_object( $title ) ) {
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
+		}
 	}
 
 	/**
@@ -91,17 +101,20 @@ class ArchivedFile {
 		}
 		$conds = array();
 
-		if( $this->id > 0 )
+		if( $this->id > 0 ) {
 			$conds['fa_id'] = $this->id;
+		}
 		if( $this->key ) {
 			$conds['fa_storage_group'] = $this->group;
 			$conds['fa_storage_key'] = $this->key;
 		}
-		if( $this->title )
+		if( $this->title ) {
 			$conds['fa_name'] = $this->title->getDBkey();
+		}
 
-		if( !count($conds))
+		if( !count($conds)) {
 			throw new MWException( "No specific information for retrieving archived file" );
+		}
 
 		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$dbr = wfGetDB( DB_SLAVE );
