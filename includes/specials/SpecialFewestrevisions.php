@@ -32,7 +32,7 @@ class FewestrevisionsPage extends QueryPage {
 	function __construct( $name = 'Fewestrevisions' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() {
 		return true;
 	}
@@ -56,8 +56,7 @@ class FewestrevisionsPage extends QueryPage {
 			// useful to remove this. People _do_ create pages
 			// and never revise them, they aren't necessarily
 			// redirects.
-				'GROUP BY' => 'page_namespace, page_title, ' .
-						'page_is_redirect' )
+			'GROUP BY' => 'page_namespace, page_title, page_is_redirect' )
 		);
 	}
 
