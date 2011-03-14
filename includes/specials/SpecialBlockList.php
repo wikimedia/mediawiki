@@ -265,6 +265,7 @@ class BlockListPager extends TablePager {
 				'blocklist-nousertalk',
 				'unblocklink',
 				'change-blocklink',
+				'infiniteblock',
 			);
 			$msg = array_combine( $msg, array_map( 'wfMessage', $msg ) );
 		}
@@ -300,7 +301,9 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $wgLang->timeanddate( $value );
+				$formatted = $value == Block::infinity()
+					? $msg['infiniteblock']
+					: $wgLang->timeanddate( $value );
 				if( $wgUser->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
 						$links[] = $sk->linkKnown(
