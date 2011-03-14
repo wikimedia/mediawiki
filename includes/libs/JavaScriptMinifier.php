@@ -526,10 +526,11 @@ class JavaScriptMinifier {
 				$state = self::STATEMENT;
 				$lineLength = 0;
 			} elseif( $maxLineLength > 0 && $lineLength + $end - $pos > $maxLineLength &&
-					!isset( $semicolon[$state][$type] ) )
+					!isset( $semicolon[$state][$type] ) && $type !== self::TYPE_INCR_OP )
 			{
 				// This line would get too long if we added $token, so add a newline first.
-				// Only do this if it won't trigger semicolon insertion though.
+				// Only do this if it won't trigger semicolon insertion and if it won't
+				// put a postfix increment operator on its own line, which is illegal in js.
 				$out .= "\n";
 				$lineLength = 0;
 			// Check, whether we have to separate the token from the last one with whitespace

@@ -71,6 +71,9 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			// Division vs. regex nastiness
 			array( "alert( (10+10) / '/'.charCodeAt( 0 ) + '//' );", "alert((10+10)/'/'.charCodeAt(0)+'//');" ),
 			array( "if(1)/a /g.exec('Pa ss');", "if(1)/a /g.exec('Pa ss');" ),
+			
+			// newline insertion after 1000 chars: break after the "++", not before
+			array( str_repeat( ';', 996 ) . "if(x++);", str_repeat( ';', 996 ) . "if(x++\n);" ),
 		);
 	}
 
