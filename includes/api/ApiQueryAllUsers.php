@@ -119,7 +119,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addTables( 'recentchanges' );
 
 			$this->addJoinConds( array( 'recentchanges' => array(
-				'INNER JOIN', 'rc_user=user_id'
+				'INNER JOIN', 'rc_user_text=user_name'
 			) ) );
 
 			$this->addFields( 'COUNT(*) AS recentedits' );
