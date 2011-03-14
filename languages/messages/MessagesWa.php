@@ -1194,7 +1194,6 @@ stî vandalijheyes).",
 'unblocked'                   => '«[[User:$1|$1]]» a stî disbloké',
 'ipblocklist'                 => "Djivêye d' adresses IP et di nos d' uzeus ki sont blokés",
 'ipblocklist-submit'          => 'Cweri',
-'blocklistline'               => '$1, $2 a bloké $3 ($4)',
 'infiniteblock'               => 'po todi',
 'expiringblock'               => "disk' å $1 $2",
 'blocklink'                   => 'bloker',
@@ -1417,12 +1416,11 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'nextdiff'     => 'Diferinces des candjmints shuvants →',
 
 # Media information
-'mediawarning'         => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.",
-'imagemaxsize'         => "Limite pol håynaedje ezès pådjes d' imådje:",
-'thumbsize'            => 'Grandeu po les imådjetes (thumb):',
-'file-info-size'       => '$1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4',
-'show-big-image'       => 'Pus grande imådje',
-'show-big-image-thumb' => '<small>Grandeur di ci prevoeyaedje ci : $1 × $2 picsels</small>',
+'mediawarning'   => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.",
+'imagemaxsize'   => "Limite pol håynaedje ezès pådjes d' imådje:",
+'thumbsize'      => 'Grandeu po les imådjetes (thumb):',
+'file-info-size' => '$1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4',
+'show-big-image' => 'Pus grande imådje',
 
 # Special:NewFiles
 'newimages'             => 'Galreye des nouvès imådjes',

@@ -107,12 +107,11 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'importuploaderrorsize'      => 'Das Hochladen der Importdatei ist fehlgeschlagen. Die Datei ist grösser als die maximal erlaubte Dateigrösse.',
 
 # Media information
-'imagemaxsize'         => "Maximale Bildgrösse:<br />''(für Dateibeschreibungsseiten)''",
-'thumbsize'            => 'Standardgrösse der Vorschaubilder (Thumbnails):',
-'file-info'            => 'Dateigrösse: $1, MIME-Typ: $2',
-'file-info-size'       => '$1 × $2 Pixel, Dateigrösse: $3, MIME-Typ: $4',
-'svg-long-desc'        => 'SVG-Datei, Basisgrösse: $1 × $2 Pixel, Dateigrösse: $3',
-'show-big-image-thumb' => '<small>Grösse der Voransicht: $1 × $2 Pixel</small>',
+'imagemaxsize'   => "Maximale Bildgrösse:<br />''(für Dateibeschreibungsseiten)''",
+'thumbsize'      => 'Standardgrösse der Vorschaubilder (Thumbnails):',
+'file-info'      => 'Dateigrösse: $1, MIME-Typ: $2',
+'file-info-size' => '$1 × $2 Pixel, Dateigrösse: $3, MIME-Typ: $4',
+'svg-long-desc'  => 'SVG-Datei, Basisgrösse: $1 × $2 Pixel, Dateigrösse: $3',
 
 # Metadata
 'metadata-fields' => 'Die folgenden Felder der EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt; weitere standardmässig „eingeklappte“ Details können angezeigt werden.

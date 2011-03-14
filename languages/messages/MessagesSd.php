@@ -905,11 +905,10 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'nextdiff'     => 'نئون تفاوت -->',
 
 # Media information
-'file-info-size'       => '$1 × $2 عڪسلون، فائيل سائيز: $3، MIME ٽائيپ: $4',
-'file-nohires'         => '<small>اڃا سنهو تحلل ميسر ناهي.</small>',
-'svg-long-desc'        => 'ايس وي جي فائيل، اٽڪل $1 × $2 عڪسلون، فائيل سائيز: $3',
-'show-big-image'       => 'سنهو ترين تحلل',
-'show-big-image-thumb' => '<small>هن پيش نگاهه جي ماپ: $1 × $2 عڪسلون</small>',
+'file-info-size' => '$1 × $2 عڪسلون، فائيل سائيز: $3، MIME ٽائيپ: $4',
+'file-nohires'   => '<small>اڃا سنهو تحلل ميسر ناهي.</small>',
+'svg-long-desc'  => 'ايس وي جي فائيل، اٽڪل $1 × $2 عڪسلون، فائيل سائيز: $3',
+'show-big-image' => 'سنهو ترين تحلل',
 
 # Special:NewFiles
 'newimages' => 'نون فائيلن جي گيلري',

@@ -703,11 +703,10 @@ $messages = array(
 'nextdiff'     => 'ಪೊಸ ಎಡಿಟ್ →',
 
 # Media information
-'file-info-size'       => '$1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3, MIME ಪ್ರಕಾರ: $4',
-'file-nohires'         => '<small>ಇಂದೆರ್ದ್ ಜಾಸ್ತಿ ವಿವರವಾಯಿನ ನೋಟ ಇಜ್ಜಿ.</small>',
-'svg-long-desc'        => 'ಎಸ್.ವಿ.ಜಿ ಫೈಲ್, ಸುಮಾರಾದ್ $1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3',
-'show-big-image'       => 'ಪೂರ್ತಿ ರೆಸೊಲ್ಯೂಶನ್',
-'show-big-image-thumb' => '<small>ಈ ಮುನ್ನೋಟದ ಗಾತ್ರ: $1 × $2 ಪಿಕ್ಸೆಲ್</small>',
+'file-info-size' => '$1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3, MIME ಪ್ರಕಾರ: $4',
+'file-nohires'   => '<small>ಇಂದೆರ್ದ್ ಜಾಸ್ತಿ ವಿವರವಾಯಿನ ನೋಟ ಇಜ್ಜಿ.</small>',
+'svg-long-desc'  => 'ಎಸ್.ವಿ.ಜಿ ಫೈಲ್, ಸುಮಾರಾದ್ $1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3',
+'show-big-image' => 'ಪೂರ್ತಿ ರೆಸೊಲ್ಯೂಶನ್',
 
 # Bad image list
 'bad_image_list' => 'ವ್ಯವಸ್ಥೆದ ಆಕಾರ ಈ ರೀತಿ ಉಂಡು:

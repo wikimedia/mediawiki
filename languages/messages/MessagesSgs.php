@@ -1457,7 +1457,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 ** Gondinėmā/Pėktžuodiavėmā
 ** Pėktnaudžiavėms paskėruomis
 ** Netėnkams nauduotuojė vards',
-'ipbanononly'                 => 'Blokoutė tėktās anuonimėnius nauduotuojus',
 'ipbcreateaccount'            => 'Nelaistė kortė paskīrū',
 'ipbemailban'                 => 'Nelaistė nauduotuojō siōstė el. gruomatas',
 'ipbenableautoblock'          => 'Autuomatėškā blokoutė tuo nauduotuojė paskiausē nauduota IP adresa, ė bikuokius paskesnius IP adresus, ėš katrū ons miegin redagoutė',
@@ -1485,9 +1484,7 @@ onkstiau ožbluokoutam IP adresō a nauduotuojō.',
 'unblocked-id'                => 'Bluokavėms $1 bova pašalėnts',
 'ipblocklist'                 => 'Blokoutė IP adresā ė nauduotuojē',
 'ipblocklist-legend'          => 'Rastė ožblokouta nauduotuoja',
-'ipblocklist-username'        => 'Nauduotuos a IP adresos:',
 'ipblocklist-submit'          => 'Ėiškuotė',
-'blocklistline'               => '$1, $2 ožblokava $3 ($4)',
 'infiniteblock'               => 'neribuotā',
 'expiringblock'               => 'beng galiuotė $1 $2',
 'anononlyblock'               => 'vėn anuonėmā',
@@ -1716,16 +1713,15 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'nextdiff'     => 'Paskesinis pakeitėms →',
 
 # Media information
-'mediawarning'         => "'''Diemesė''': Šėts fails gal torietė kenksmėnga kuoda, anū palaidus Tamstas sėstėma gal būtė sogadinta.",
-'imagemaxsize'         => 'Rėbuotė abruozdieliu dėdoma anū aprašīma poslapī lėgė:',
-'thumbsize'            => 'Somažėntu pavēkslieliu didums:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|poslapis|poslapē|poslapiu}}',
-'file-info'            => 'faila dėdoms: $1, MIME tips: $2',
-'file-info-size'       => '$1 × $2 taškū, faila dėdoms: $3, MIME tips: $4',
-'file-nohires'         => '<small>Geresnis ėšraiškėms negalėms.</small>',
-'svg-long-desc'        => 'SVG fails, fuormalē $1 × $2 puškiu, faila dėdoms: $3',
-'show-big-image'       => 'Pėlns ėšraiškėms',
-'show-big-image-thumb' => '<small>Šėtuos parvaizos dėdums: $1 × $2 puškiu</small>',
+'mediawarning'    => "'''Diemesė''': Šėts fails gal torietė kenksmėnga kuoda, anū palaidus Tamstas sėstėma gal būtė sogadinta.",
+'imagemaxsize'    => 'Rėbuotė abruozdieliu dėdoma anū aprašīma poslapī lėgė:',
+'thumbsize'       => 'Somažėntu pavēkslieliu didums:',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|poslapis|poslapē|poslapiu}}',
+'file-info'       => 'faila dėdoms: $1, MIME tips: $2',
+'file-info-size'  => '$1 × $2 taškū, faila dėdoms: $3, MIME tips: $4',
+'file-nohires'    => '<small>Geresnis ėšraiškėms negalėms.</small>',
+'svg-long-desc'   => 'SVG fails, fuormalē $1 × $2 puškiu, faila dėdoms: $3',
+'show-big-image'  => 'Pėlns ėšraiškėms',
 
 # Special:NewFiles
 'newimages'             => 'Naujausiu abruozdieliu galerėjė',

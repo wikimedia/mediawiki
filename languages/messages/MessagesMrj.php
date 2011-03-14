@@ -692,11 +692,10 @@ $messages = array(
 'nextdiff'     => 'Вес тӧрлӹмӓш →',
 
 # Media information
-'file-info-size'       => '$1 × $2 пиксел,  файлын размержӹ: $3, MIME-тип: $4',
-'file-nohires'         => '<small>Кого разрешени доно верси уке.</small>',
-'svg-long-desc'        => 'SVG-файл, номинально $1 × $2 пиксель,  файлын размержӹ: $3',
-'show-big-image'       => 'Кӱкшӹрӓк разрешениӓн изображени',
-'show-big-image-thumb' => '<small>Размер анзыц анжымы годым: $1 × $2 пиксель</small>',
+'file-info-size' => '$1 × $2 пиксел,  файлын размержӹ: $3, MIME-тип: $4',
+'file-nohires'   => '<small>Кого разрешени доно верси уке.</small>',
+'svg-long-desc'  => 'SVG-файл, номинально $1 × $2 пиксель,  файлын размержӹ: $3',
+'show-big-image' => 'Кӱкшӹрӓк разрешениӓн изображени',
 
 # Bad image list
 'bad_image_list' => 'Техень форматан лишӓшлык:

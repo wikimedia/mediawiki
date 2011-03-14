@@ -1267,9 +1267,7 @@ Abbàida sa [[Special:IPBlockList|lista de IP bloccados]] pro bìder sas bloccad
 'unblockiptext'            => 'Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.',
 'ipusubmit'                => 'Boga custu bloccu',
 'ipblocklist'              => 'Usuàrios e indiritzos bloccados',
-'ipblocklist-username'     => 'Nùmene usuàriu o indiritzu IP:',
 'ipblocklist-submit'       => 'Chirca',
-'blocklistline'            => '$1, $2 ha bloccato $3 ($4)',
 'infiniteblock'            => 'infinitu',
 'expiringblock'            => 'scadit su $1 a is $2',
 'blocklink'                => 'blocca',
@@ -1447,11 +1445,10 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 'nextdiff'     => 'Acontzu in fatu →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4',
-'file-nohires'         => '<small>Non si tenent risolutziones prus artas.</small>',
-'svg-long-desc'        => 'file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3',
-'show-big-image'       => 'Versione a risolutzione arta',
-'show-big-image-thumb' => '<small>Mannesa de custa antiprima: $1 × $2 pixels</small>',
+'file-info-size' => '$1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4',
+'file-nohires'   => '<small>Non si tenent risolutziones prus artas.</small>',
+'svg-long-desc'  => 'file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3',
+'show-big-image' => 'Versione a risolutzione arta',
 
 # Special:NewFiles
 'imagelisttext' => "Innoe sighendi du est una lista de '''$1''' {{PLURAL:$1|file|files}} ordinada $2.",

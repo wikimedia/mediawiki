@@ -887,7 +887,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'ipadressorusername'   => 'Tuʻasila IP pe hingoa ʻo e ʻetita',
 'ipbexpiry'            => 'Mate',
 'ipbreason'            => 'ʻUhinga',
-'ipbanononly'          => 'Taʻofia ʻa e kau ʻetita taʻehingoa pē',
 'ipbcreateaccount'     => 'Taʻofia ʻa e fakatupu ʻo ha tohi kau-ki-ai',
 'ipbsubmit'            => 'Taʻofia ʻa e ʻetitá ni',
 'ipbother'             => 'Fuoloa kehe',
@@ -901,7 +900,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'ipusubmit'            => 'Taʻetaʻofia ʻa e ʻetitá ni',
 'unblocked'            => 'Kuo taʻetaʻofia ʻa [[User:$1|$1]]',
 'ipblocklist'          => 'Hokohoko ʻo e ngaahi tuʻasila IP mo e hingoa ʻo e ʻetita kuo taʻofi',
-'blocklistline'        => '$1, $2 taʻofi $3 ($4)',
 'infiniteblock'        => 'taʻengata',
 'expiringblock'        => 'ʻE mate ia $1 $2',
 'anononlyblock'        => 'taʻehingoa pē',
@@ -1066,11 +1064,10 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'nextdiff'     => 'Faikehe hoko →',
 
 # Media information
-'imagemaxsize'         => 'Fakangatangata ngaahi faitā ʻi he ʻū peesi fakamahino ki he:',
-'file-info'            => 'Ko e faile hono lahi: $1, faʻahinga MIME: $2',
-'file-nohires'         => '<small>ʻOku ʻikai ʻi ai ha faitā auiiki.</small>',
-'show-big-image'       => 'ʻAsi ʻa e faitā auiiki',
-'show-big-image-thumb' => '<small>Vakai pē ʻi hono lahi: $1 x $2 tefitoʻifaitā</small>',
+'imagemaxsize'   => 'Fakangatangata ngaahi faitā ʻi he ʻū peesi fakamahino ki he:',
+'file-info'      => 'Ko e faile hono lahi: $1, faʻahinga MIME: $2',
+'file-nohires'   => '<small>ʻOku ʻikai ʻi ai ha faitā auiiki.</small>',
+'show-big-image' => 'ʻAsi ʻa e faitā auiiki',
 
 # Special:NewFiles
 'newimages'             => 'Fakaʻaliʻali ʻo e ngaahi faitā foʻou',

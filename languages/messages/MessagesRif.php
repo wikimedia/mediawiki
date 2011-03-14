@@ -718,11 +718,10 @@ Bbeẓ x ufeskar n uzar-timeẓṛi zzat i gha txemmled min turid',
 'nextdiff'     => 'Amṣebḍi zzat  →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pixel, tiddisize n ufaylu: $3, anawtype n MIME: $4',
-'file-nohires'         => '<small>walu ca n resolution yemɣa x wa.</small>',
-'svg-long-desc'        => 'Afaylu n SVG, dis $1 × $2 pixel, Tiddi n ufaylu: $3',
-'show-big-image'       => 'Resolution ameqran',
-'show-big-image-thumb' => '<small>Tiddi n uzar-ascan: $1 × $2 pixel </small>',
+'file-info-size' => '$1 × $2 pixel, tiddisize n ufaylu: $3, anawtype n MIME: $4',
+'file-nohires'   => '<small>walu ca n resolution yemɣa x wa.</small>',
+'svg-long-desc'  => 'Afaylu n SVG, dis $1 × $2 pixel, Tiddi n ufaylu: $3',
+'show-big-image' => 'Resolution ameqran',
 
 # Special:NewFiles
 'newimages' => 'Amewlaf n ifayluten imaynuten',

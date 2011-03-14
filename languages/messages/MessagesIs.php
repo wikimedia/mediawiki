@@ -1835,7 +1835,6 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 ** Yfirþyrmandi framkoma/áreitni
 ** Misnotkun á fjölda notandanafna
 ** Óásættanlegt notandanafn',
-'ipbanononly'                 => 'Banna einungis ónafngreinda notendur',
 'ipbcreateaccount'            => 'Banna nýskráningu notanda',
 'ipbemailban'                 => 'Banna notanda að senda tölvupóst',
 'ipbenableautoblock'          => 'Banna síðasta vistfang notanda sjálfkrafa; og þau vistföng sem viðkomandi notar til að breyta síðum',
@@ -1846,7 +1845,6 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipbotherreason'              => 'Önnur/auka ástæða:',
 'ipbhidename'                 => 'Fela notandanafn/vistfang úr bannskrá og notandaskrá',
 'ipbwatchuser'                => 'Vakta notanda- og spjallsíður þessa notanda',
-'ipballowusertalk'            => 'Leyfa notanda að breyta eigin spjallsíðu á meðan hann er í banni',
 'ipb-change-block'            => 'Endurbanna notanda með þessum stillingum',
 'badipaddress'                => 'Ógilt vistfang',
 'blockipsuccesssub'           => 'Bann tókst',
@@ -1864,9 +1862,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'unblocked-id'                => 'Bann $1 hefur verið fjarlægt',
 'ipblocklist'                 => 'Bannaðir notendur og vistföng',
 'ipblocklist-legend'          => 'Finna bannaðan notanda',
-'ipblocklist-username'        => 'Notandanafn eða vistfang:',
 'ipblocklist-submit'          => 'Leita',
-'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
 'infiniteblock'               => 'aldrei',
 'expiringblock'               => 'rennur út  $1 $2',
 'anononlyblock'               => 'bara ónafngreindir',
@@ -2179,16 +2175,15 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'nextdiff'     => 'Nýrri breyting →',
 
 # Media information
-'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
-'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
-'thumbsize'            => 'Stærð smámynda:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
-'file-info'            => 'stærð skráar: $1, MIME-tegund: $2',
-'file-info-size'       => '$1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4',
-'file-nohires'         => '<small>Það er engin hærri upplausn til.</small>',
-'svg-long-desc'        => 'SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3',
-'show-big-image'       => 'Mesta upplausn',
-'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
+'mediawarning'    => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
+'imagemaxsize'    => 'Takmarka myndir á skráarlýsingasíðum við:',
+'thumbsize'       => 'Stærð smámynda:',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
+'file-info'       => 'stærð skráar: $1, MIME-tegund: $2',
+'file-info-size'  => '$1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4',
+'file-nohires'    => '<small>Það er engin hærri upplausn til.</small>',
+'svg-long-desc'   => 'SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3',
+'show-big-image'  => 'Mesta upplausn',
 
 # Special:NewFiles
 'newimages'             => 'Myndasafn nýlegra skráa',

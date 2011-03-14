@@ -2643,74 +2643,59 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'whatlinkshere-filters'    => '{{Identical|Filter}}',
 
 # Block/unblock
-'blockip'                      => 'The title of the special page [[Special:BlockIP]].
+'block'                       => 'Name of the special page on [[Special:SpecialPages]]',
+'unblock'                     => 'Name of the special page on [[Special:SpecialPages]]',
+'blockip'                     => 'The title of the special page [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'blockip-title'                => '{{Identical|Block user}}',
-'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
+'blockip-title'               => '{{Identical|Block user}}',
+'blockip-legend'              => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'ipadressorusername'           => '{{Identical/IP address or username}}',
-'ipbexpiry'                    => '{{Identical|Expiry}}',
-'ipbreason'                    => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
+'ipadressorusername'          => '{{Identical/IP address or username}}',
+'ipbexpiry'                   => '{{Identical|Expiry}}',
+'ipbreason'                   => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
 
 {{Identical|Reason}}',
-'ipbreasonotherlist'           => '{{Identical|Other reason}}',
-'ipbanononly'                  => '{{Identical|Block anonymous users only}}',
-'ipbcreateaccount'             => '{{Identical|Prevent account creation}}',
-'ipbemailban'                  => '{{Identical|Prevent user from sending e-mail}}',
-'ipbenableautoblock'           => '{{Identical|Automatically block ...}}',
-'ipbsubmit'                    => '{{Identical|Block this user}}',
-'ipbother'                     => '{{Identical|Other time}}',
-'ipboptions'                   => "* Description: Options for the duration of the block.
+'ipbreasonotherlist'          => '{{Identical|Other reason}}',
+'ipbcreateaccount'            => '{{Identical|Prevent account creation}}',
+'ipbemailban'                 => '{{Identical|Prevent user from sending e-mail}}',
+'ipbenableautoblock'          => '{{Identical|Automatically block ...}}',
+'ipbsubmit'                   => '{{Identical|Block this user}}',
+'ipbother'                    => '{{Identical|Other time}}',
+'ipboptions'                  => "* Description: Options for the duration of the block.
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.
 * Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
 
 {{Identical|Infinite}}",
-'ipbotheroption'               => '{{Identical|Other}}',
-'ipbotherreason'               => '{{Identical|Other/additional reason}}',
-'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
-'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
-'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
-'ipb-change-block'             => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
-'badipaddress'                 => 'An error message shown when one entered an invalid IP address in blocking page.',
-'blockipsuccesstext'           => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
-'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
-'ipusubmit'                    => 'Used as button text on Special:BlockList?action=unblock. To see the message:
+'ipbotheroption'              => '{{Identical|Other}}',
+'ipbotherreason'              => '{{Identical|Other/additional reason}}',
+'ipbhidename'                 => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
+'ipbwatchuser'                => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipb-change-block'            => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
+'badipaddress'                => 'An error message shown when one entered an invalid IP address in blocking page.',
+'blockipsuccesstext'          => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
+'ipb-edit-dropdown'           => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
+'ipusubmit'                   => 'Used as button text on Special:BlockList?action=unblock. To see the message:
 * Go to [[Special:BlockList]]
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
 * It is now the button below the form',
-'unblocked'                    => 'Do not translate the namespace "User:".  $1 - the IP address or username that was unblocked.',
-'unblocked-range'              => 'Shown when successfully lifting a rangeblock, so don\t link to contributions.  $1 - the range that was unblocked.',
-'ipblocklist'                  => 'Title of [[Special:Ipblocklist]].',
-'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
-
-* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
-'ipblocklist-sh-tempblocks'    => 'Top selection button at [[Special:IPBlockList]]
-
-* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
-'ipblocklist-sh-addressblocks' => 'Top selection button at [[Special:IPBlockList]]
-
-* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
-'ipblocklist-submit'           => '{{Identical|Search}}',
-'ipblocklist-localblock'       => '[[File:Special IPBlockList new.png|thumb|Example]]
+'unblocked'                   => 'Do not translate the namespace "User:".  $1 - the IP address or username that was unblocked.',
+'unblocked-range'             => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
+* $1 - the range that was unblocked.',
+'ipblocklist'                 => 'Title of [[Special:Ipblocklist]].',
+'ipblocklist-submit'          => '{{Identical|Search}}',
+'ipblocklist-localblock'      => '[[File:Special IPBlockList new.png|thumb|Example]]
 Used on [[Special:IPBlockList]] as header when global blocks exists too.',
-'ipblocklist-otherblocks'      => '[[File:Special IPBlockList new.png|thumb|Example]]
+'ipblocklist-otherblocks'     => '[[File:Special IPBlockList new.png|thumb|Example]]
 Used on [[Special:IPBlockList]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks.',
-'blocklistline'                => 'This is the text of an entry in the [[Special:BlockList]].
-* $1 is the hour and date of the block.
-* $2 is the sysop.
-* $3 is the blocked user or IP (with link to contributions and talk)
-* $4 contains "hour and date of expiry" ({{msg-mw|Expiringblock}} or {{msg-mw|Infiniteblock}})
-
-See also {{msg-mw|Blocklogentry}}.',
-'infiniteblock'                => "* contents of $4 in {{msg-mw|Blocklistline|notext=1}}: (''{{int:Blocklistline}}'')
+'infiniteblock'               => "* contents of $4 in {{msg-mw|Blocklistline|notext=1}}: (''{{int:Blocklistline}}'')
 * contents of $4 in {{msg-mw|Globalblocking-blocked|notext=1}}:
 <blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
 *See also {{msg-mw|Expiringblock}}
 
 {{Identical|Infinite}}",
-'expiringblock'                => 'Parameters:
+'expiringblock'               => 'Parameters:
 * $1 is a date
 * $2 is a time
 
@@ -2718,49 +2703,49 @@ Usage:
 * Substituted as $4 in in {{msg-mw|Blocklistline|notext=1}}
 * Substituted as $4 in  in {{msg-mw|Globalblocking-blocked|notext=1}}
 * See also {{msg-mw|Infiniteblock}}',
-'anononlyblock'                => 'Part of the log entry of user block.
+'anononlyblock'               => 'Part of the log entry of user block.
 
 {{Identical|Anon only}}',
-'noautoblockblock'             => '{{Identical|Autoblock disabled}}',
-'emailblock'                   => '{{Identical|E-mail blocked}}',
-'blocklist-nousertalk'         => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
-'blocklink'                    => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
-'change-blocklink'             => 'Used to name the link on Special:Log',
-'contribslink'                 => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
-'blocklogpage'                 => "The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
+'noautoblockblock'            => '{{Identical|Autoblock disabled}}',
+'emailblock'                  => '{{Identical|E-mail blocked}}',
+'blocklist-nousertalk'        => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
+'blocklink'                   => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
+'change-blocklink'            => 'Used to name the link on Special:Log',
+'contribslink'                => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
+'blocklogpage'                => "The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
 
 {{Identical|Block log}}",
-'blocklog-showlog'             => 'Parameters:
+'blocklog-showlog'            => 'Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)',
-'blocklog-showsuppresslog'     => 'Parameters:
+'blocklog-showsuppresslog'    => 'Parameters:
 * $1 is the blocked user. Can be used for GENDER (optional)',
-'blocklogentry'                => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name:
+'blocklogentry'               => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name:
 * $1 is the blocked user or IP (with link to contributions and talk)
 * $2 is the duration of the block (hours, days etc.) or the specified expiry date
 * $3 contains "(details) (\'\'reason\'\')"
 See also {{msg-mw|Blocklistline}}.',
-'reblock-logentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
+'reblock-logentry'            => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
 * $3 is the reason for the block',
-'blocklogtext'                 => 'Appears on top of [[Special:Log/block]].',
-'unblocklogentry'              => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
+'blocklogtext'                => 'Appears on top of [[Special:Log/block]].',
+'unblocklogentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
-'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
-'block-log-flags-noemail'      => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
+'block-log-flags-noautoblock' => '{{Identical|Autoblock disabled}}',
+'block-log-flags-noemail'     => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
 {{Identical|E-mail blocked}}",
-'block-log-flags-nousertalk'   => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
-'ipb_expiry_temp'              => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
-'ipb_already_blocked'          => '{{Identical|$1 is already blocked}}',
-'ipb-otherblocks-header'       => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
+'block-log-flags-nousertalk'  => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
+'ipb_expiry_temp'             => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
+'ipb_already_blocked'         => '{{Identical|$1 is already blocked}}',
+'ipb-otherblocks-header'      => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
-'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
-'proxyblocksuccess'            => '{{Identical|Done}}',
-'sorbs'                        => '{{optional}}',
-'cant-see-hidden-user'         => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
-'ipbblocked'                   => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
-'ipbnounblockself'             => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
+'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
+'proxyblocksuccess'           => '{{Identical|Done}}',
+'sorbs'                       => '{{optional}}',
+'cant-see-hidden-user'        => 'Used as (red) error message on Special:Block when you try to change (as sysop w/o the hideuser right) the block of a hidden user.',
+'ipbblocked'                  => 'Error message shown when a user tries to alter block settings when they are themselves blocked.',
+'ipbnounblockself'            => 'Error message shown when a user without the <tt>unblockself</tt> right tries to unblock themselves.',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
@@ -3086,7 +3071,6 @@ The message appears after the name of the patroller.',
 'file-nohires'         => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
 'svg-long-desc'        => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
-'show-big-image-thumb' => 'File info displayed on file description page.',
 'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',
 'file-info-gif-frames' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page.',
 'file-info-png-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/APNG .apng file] on its file description page. Looped means repeating indefinetly in the context of an animated png. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop.',

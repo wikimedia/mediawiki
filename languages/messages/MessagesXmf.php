@@ -765,11 +765,10 @@ $messages = array(
 'nextdiff'     => 'უახალაშ თირაფა →',
 
 # Media information
-'file-info-size'       => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
-'file-nohires'         => '<small> უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.</small>',
-'svg-long-desc'        => '↓ SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
-'show-big-image'       => 'რსული გიშაგორანჯალა',
-'show-big-image-thumb' => '<small>ზომა გიწოთოლორაფაშ ბორჯის: $1 × $2 პიქსელ</small>',
+'file-info-size' => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
+'file-nohires'   => '<small> უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.</small>',
+'svg-long-desc'  => '↓ SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
+'show-big-image' => 'რსული გიშაგორანჯალა',
 
 # Special:NewFiles
 'newimages' => 'ახალ სურათეფ',

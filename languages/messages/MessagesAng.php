@@ -1161,13 +1161,12 @@ Bidde cēos ōðerne naman.',
 'nextdiff'     => 'Nīƿra ādiht',
 
 # Media information
-'imagemaxsize'         => 'Settan biliðu on biliþgemearcungtrametum tō:',
-'thumbsize'            => 'Þumannæglmicelnes:',
-'file-info-size'       => '$1 × $2 pixels, fīlmiċelu: $3, MIMEcynn: $4',
-'file-nohires'         => '<small>Þǣr nis nǣniȝ mā miċelu.</small>',
-'svg-long-desc'        => 'SVG fīl, rihte $1 × $2 pixels, fīlmiċelu: $3',
-'show-big-image'       => 'Fulmiċelu',
-'show-big-image-thumb' => '<small>Þēos forescēaƿe miċelu: $1 × $2 pixels</small>',
+'imagemaxsize'   => 'Settan biliðu on biliþgemearcungtrametum tō:',
+'thumbsize'      => 'Þumannæglmicelnes:',
+'file-info-size' => '$1 × $2 pixels, fīlmiċelu: $3, MIMEcynn: $4',
+'file-nohires'   => '<small>Þǣr nis nǣniȝ mā miċelu.</small>',
+'svg-long-desc'  => 'SVG fīl, rihte $1 × $2 pixels, fīlmiċelu: $3',
+'show-big-image' => 'Fulmiċelu',
 
 # Special:NewFiles
 'imagelisttext' => 'Under is getalu $1 biliða gedæfted $2.',

@@ -652,13 +652,12 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'nextdiff'     => 'Keyingi tahrir →',
 
 # Media information
-'imagemaxsize'         => "Tasvir ta'rifi sahifasidagi tasvirning kattaligi:",
-'thumbsize'            => 'Tasvirning kichiklashtirilgan versiyasining kattaligi:',
-'file-info-size'       => '$1 × $2 piksel, fayl hajmi: $3, MIME tipi: $4',
-'file-nohires'         => '<small>Bundan kattaroq tasvir yoʻq.</small>',
-'svg-long-desc'        => 'SVG fayl, asl oʻlchamlari $1 × $2 piksel, fayl hajmi: $3',
-'show-big-image'       => 'Asl hajmdagi tasvir',
-'show-big-image-thumb' => '<small>Ushbu koʻrinish oʻlchamlari: $1 × $2 piksel</small>',
+'imagemaxsize'   => "Tasvir ta'rifi sahifasidagi tasvirning kattaligi:",
+'thumbsize'      => 'Tasvirning kichiklashtirilgan versiyasining kattaligi:',
+'file-info-size' => '$1 × $2 piksel, fayl hajmi: $3, MIME tipi: $4',
+'file-nohires'   => '<small>Bundan kattaroq tasvir yoʻq.</small>',
+'svg-long-desc'  => 'SVG fayl, asl oʻlchamlari $1 × $2 piksel, fayl hajmi: $3',
+'show-big-image' => 'Asl hajmdagi tasvir',
 
 # Special:NewFiles
 'ilsubmit' => 'Qidirish',

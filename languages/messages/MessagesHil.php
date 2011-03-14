@@ -513,6 +513,7 @@ Mahimo nga imo pabayaan ang ini nga mensahe, kon ang ini nga akawnt sala lang an
 'usernamehasherror'          => 'Ang gamit-pangalan indi mahimo nga may hash nga karakter',
 'login-throttled'            => 'May tuman ka na na kadamo nga pagtilaw sa pagsulod.
 Palihog maghulat anay bag-o tilawan liwat.',
+'login-abort-generic'        => 'Ang imo pagsulod indi madinalag-on - Gin-untat',
 'loginlanguagelabel'         => 'Hambalanon: $1',
 'suspicious-userlogout'      => 'Ang imo pagpangabay nga mag-guha ginpungga bangud nga ini mahimo nga ginpadala sang guba nga brawser ukon sang proksy nga nagapang-tago.',
 
@@ -818,7 +819,7 @@ Mahimo nga ini ginpanas na sa wiki, ukon gin-ilisan ang pangalan.
 Tilawi ang [[Special:Search|searching on the wiki]] para sa mga napamatud-an nga mga bag-o nga panid.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(ginkakas ang kumento)',
+'rev-deleted-comment'         => '(ginkakas ang pag-ilis sang kabilugan)',
 'rev-deleted-user'            => '(ginkakas ang gamit-pangalan)',
 'rev-deleted-event'           => '(ang log sang tikang ginkakas)',
 'rev-deleted-user-contribs'   => '[ang gamit-pangalan ukon adres sang IP ginkakas - ang pag-ilis gintago halin sa mga ginhatag]',
@@ -903,6 +904,18 @@ $1",
 'revdelete-unrestricted'      => 'ginkakas nga pagbawal sa mga administrador',
 'revdelete-hid'               => 'tagu $1',
 'revdelete-unhid'             => 'ditagu $1',
+'revdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|pagbag-o|mga pagbag-o}}',
+'logdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|hinatabo|mga hinatabo}}',
+'revdelete-hide-current'      => 'May sala sa pagtago sang bagay nga may petsa nga $2, $1: amo ini ang pagbag-o karon.
+Indi ini mahimo nga taguon.',
+'revdelete-show-no-access'    => 'May sala sa pagpakita sang bagay nga may petsa nga $2, $1: ang ini nga bagay ginmarkahan nga "ginabawalan".
+Indi mo ini mahimo nga sudlan.',
+'revdelete-modify-no-access'  => 'May sala sa pag-ilis sang bagay nga may petsa nga $2, $1: ang ini nga bagay may marka nga "ginabawalan".
+Indi ka mahimo nga magsulod diri.',
+'revdelete-modify-missing'    => 'May sala sa pagbag-o sa ID sang bagay nga $1: ini nadula sa database!',
+'revdelete-no-change'         => "'''Pahibalo:''' ang bagay nga may petsa $2, $1 nagpangabay na sang mga siting sa pagpakita.",
+'revdelete-concurrent-change' => 'May sala sa pagbag-o sang bagay nga may petsa nga $2, $1: ang iya kahimtangan nagaguwa nga gin-ilisan sang iban samtang ginatuyo mo ini nga bag-uhon.
+Palihog sekyar sang mga logs.',
 
 # Merge log
 'revertmerge' => 'Di pag-upod',
@@ -1309,11 +1322,10 @@ Gapasugot sa pagdugang sang rason sa kabilugan.',
 'nextdiff'     => 'Mas bag-o nga gin-islan →',
 
 # Media information
-'file-info-size'       => '$1 × $2 piksel, kadakuon sang file: $3, MIME type: $4',
-'file-nohires'         => '<small>Wala sang yara na taas nga resolusyon.</small>',
-'svg-long-desc'        => 'SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3',
-'show-big-image'       => 'Kabilogan nga resolusyon',
-'show-big-image-thumb' => '<small>Kadakuon sa sini nga prebyu: $1 × $2 piksels</small>',
+'file-info-size' => '$1 × $2 piksel, kadakuon sang file: $3, MIME type: $4',
+'file-nohires'   => '<small>Wala sang yara na taas nga resolusyon.</small>',
+'svg-long-desc'  => 'SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3',
+'show-big-image' => 'Kabilogan nga resolusyon',
 
 # Special:NewFiles
 'ilsubmit' => 'Pangita-a',

@@ -1328,11 +1328,10 @@ Serba areze-kerdene qaytê ''math/README''y ke.",
 'nextdiff'     => 'Vurnaena newêre →',
 
 # Media information
-'file-info-size'       => '$1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4',
-'file-nohires'         => '<small>Tewrêna berz rovıleşiyaene nêbena.</small>',
-'svg-long-desc'        => 'Dosya SVGy, seha ke $1 × $2 pixels, gırşênia dosya: $3',
-'show-big-image'       => 'Rovıleşiyaena tame',
-'show-big-image-thumb' => '<small>Gırsênia verqayti: $1 × $2 piksel</small>',
+'file-info-size' => '$1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4',
+'file-nohires'   => '<small>Tewrêna berz rovıleşiyaene nêbena.</small>',
+'svg-long-desc'  => 'Dosya SVGy, seha ke $1 × $2 pixels, gırşênia dosya: $3',
+'show-big-image' => 'Rovıleşiyaena tame',
 
 # Bad image list
 'bad_image_list' => 'Sıkılo umumi niaro:

@@ -1916,12 +1916,32 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-info' => "Skoret eo ar reizhiadoù diaz titouroù da-heul gant MediaWiki :
+
+$1
+
+Ma ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti, heuilhit an titouroù a-us (s.o. al liammoù) evit gweredekaat ar skorañ.",
+	'config-support-mysql' => '* $1 eo an dibab kentañ evit MediaWiki hag an hini skoret ar gwellañ ([http://www.php.net/manual/en/mysql.installation.php penaos kempunañ PHP gant skor MySQL])',
+	'config-support-postgres' => "* $1 zo ur reizhiad diaz titouroù brudet ha digor hag a c'hall ober evit MySQL ([http://www.php.net/manual/en/pgsql.installation.php penaos kempunañ PHP gant skor PostgreSQL])",
+	'config-support-sqlite' => "* $1 zo ur reizhiad diaz titouroù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
+	'config-support-oracle' => '* $1 zo un diaz titouroù kenwerzhel. ([http://www.php.net/manual/en/oci8.installation.php Penaos kempunañ PHP gant skor OCI8])',
 	'config-header-mysql' => 'Arventennoù MySQL',
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
 	'config-invalid-db-type' => 'Direizh eo ar seurt diaz roadennoù',
-	'config-missing-db-name' => 'Rediet oc\'h da reiñ un talvoud evit "Anv an diaz roadennoù"',
+	'config-missing-db-name' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv an diaz titouroù"',
+	'config-missing-db-host' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Ostiz an diaz titouroù"',
+	'config-missing-db-server-oracle' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv TNS an diaz titouroù"',
+	'config-invalid-db-server-oracle' => 'Direizh eo anv TNS an diaz titouroù "$1".
+Ober hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha pikoù (.).',
+	'config-invalid-db-name' => 'Direizh eo anv an diaz titouroù "$1".
+Ober hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).',
+	'config-invalid-db-prefix' => 'Direizh eo rakger an diaz titouroù "$1".
+Ober hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).',
+	'config-connection-error' => '$1.
+
+Gwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro.',
 	'config-invalid-schema' => 'Chema direizh evit MediaWiki "$1".
 Grit hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9) hag arouezennoù islinennañ (_).',
 	'config-postgres-old' => "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
@@ -9172,7 +9192,12 @@ Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licen
 	'config-sidebar' => '* [http://www.mediawiki.org Strona domowa MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Podręcznik użytkownika]
 * [http://www.mediawiki.org/wiki/Manual:Contents Podręcznik administratora]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Odpowiedzi na często zadawane pytania]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ Odpowiedzi na często zadawane pytania]
+----
+* <doclink href=Readme>Przeczytaj to</doclink>
+* <doclink href=ReleaseNotes>Informacje o tej wersji</doclink>
+* <doclink href=Copying>Kopiowanie</doclink>
+* <doclink href=UpgradeDoc>Aktualizacja</doclink>',
 	'config-env-good' => 'Środowisko oprogramowania zostało sprawdzone.
 Możesz teraz zainstalować MediaWiki.',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
@@ -9278,8 +9303,8 @@ To nie jest hasło konta MediaWiki, lecz hasło do bazy danych.',
 	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
 	'config-db-port' => 'Port bazy danych',
 	'config-db-schema' => 'Schemat dla MediaWiki',
-	'config-db-schema-help' => 'Powyższe schematy są zazwyczaj właściwe.
-Zmień je wyłącznie jeśli jesteś pewien, że powinieneś.',
+	'config-db-schema-help' => 'Ten schemat jest zazwyczaj właściwy.
+Zmień go wyłącznie jeśli jesteś pewien, że powinieneś.',
 	'config-sqlite-dir' => 'Katalog danych SQLite',
 	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
 	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
@@ -9420,7 +9445,9 @@ Wpisz nazwę licencji ręcznie.',
 	'config-cache-memcached' => 'Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)',
 	'config-memcached-servers' => 'Serwery Memcached:',
 	'config-memcached-help' => 'Lista adresów IP do wykorzystania przez Memcached. 
-Adresy powinny być rozdzielone przecinkami i określać również wykorzystywany port (na przykład: 127.0.0.1:11211, 192.168.1.25:11211).',
+Adresy powinny być umieszczane po jednym w linii i określać również wykorzystywany port. Na przykład:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
 	'config-extensions' => 'Rozszerzenia',
 	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
 Przejdź do następnej strony.",
@@ -11277,8 +11304,8 @@ Pinigilan ang pag-iinstala.",
 	'config-mysql-old' => 'Hindi kailangan ang MySQL na $1 o mas bago, mayroon kang $2.',
 	'config-db-port' => 'Daungan ng kalipunan ng dato:',
 	'config-db-schema' => 'Panukala para sa MediaWiki',
-	'config-db-schema-help' => 'Ang nasa itaas na mga panukala ay karaniwang tama.
-Baguhin lamang sila kung alam mong kailangan mo.',
+	'config-db-schema-help' => 'Ang nasa itaas na panukala ay pangkaraniwang magiging maayos.
+Baguhin lamang ito kung alam mong kinakailangan.',
 	'config-sqlite-dir' => 'Direktoryo ng dato ng SQLite:',
 	'config-header-mysql' => 'Mga katakdaan ng MySQL',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
@@ -11287,9 +11314,9 @@ Baguhin lamang sila kung alam mong kailangan mo.',
 	'config-invalid-db-type' => 'Hindi tanggap na uri ng kalipunan ng dato',
 	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "pangalan ng Kalipunan ng Dao"',
 	'config-invalid-db-name' => 'Hindi tanggap na pangalan ng kalipunan ng dato na "$1".
-Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
+Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
 	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
-Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
+Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
 	'config-sqlite-readonly' => 'Ang talaksang <code>$1</code> ay hindi maisusulat.',
 	'config-sqlite-cant-create-db' => 'Hindi malikha ang talaksang <code>$1</code> ng kalipunan ng dato.',
@@ -11392,12 +11419,17 @@ Isaalang-alang ang pagbabago nito na kinakamay.",
 Matagumpay mong nailuklok ang MediaWiki.
 
 Ang tagapagluklok ay nakagawa ng isang talaksan ng <code>LocalSettings.php</code>.
-Naglalaman ito ng lahat ng iyong mga pagkakaayos.
+Naglalaman ito ng lahat ng iyong mga pagsasaayos.
 
-Kailangan mong [$1 ikargang paibaba] ito at ilagay ito sa kampo ng iyong pagluluklok ng wiki (ang katulad na direktoryo ng index.php).
-'''Paunawa''': Kapag hindi ito ginawa ngayon, ang ginawang talaksan ng pagkakaayos na ito ay hindi mo makukuha paglaon kapag lumabas ka mula sa pagluluklok nang hindi ikinakarga itong paibaba.
+Kailangan mo itong ikargang paibaba at ilagay ito sa lipon ng iyong pagluluklok ng wiki (katulad ng direktoryo ng index.php).  Ang pagkakargang paibaba ay dapat na kusang magsimula.
 
-Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa iyong wiki]'''.",
+Kung ang pagkakargang paibaba ay hindi inialok, o kung hindi mo ito itinuloy, maaari mong muling simulan ang pagkakargang paibaba sa pamamagitan ng pagpindot sa kawing na nasa ibaba:
+
+$3
+
+'''Paunawa''': Kapag hindi mo ito ginawa ngayon, ang nagawang talaksang ito ng pagkakaayos ay hindi mo na makukuha mamaya kapag lumabas ka mula sa pagluluklok na hindi ikinakarga itong paibaba.
+
+Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",
 );
 
 /** Ukrainian (Українська)

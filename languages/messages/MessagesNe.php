@@ -180,7 +180,7 @@ $messages = array(
 'index-category'                 => 'क्रमांकित पृष्ठहरु',
 'noindex-category'               => 'क्रमांकन नगरिएका पृष्ठहरु',
 
-'mainpagetext'      => "'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''",
+'mainpagetext'      => "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
 'mainpagedocfooter' => ' विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्
 
 == सुरू गर्नको लागि  ==
@@ -201,8 +201,8 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'पत्ता लगाउनु',
-'qbbrowse'       => 'ब्राउज गर्नु',
-'qbedit'         => 'परिवर्तन्',
+'qbbrowse'       => 'ब्राउज गर्ने',
+'qbedit'         => 'सम्पादन गर्ने',
 'qbpageoptions'  => 'यो पेज',
 'qbpageinfo'     => 'सन्दर्भ',
 'qbmyoptions'    => 'मेरो पेज',
@@ -395,9 +395,9 @@ $1',
 प्रबन्धक जसले यो बन्द गरेकाछन्, यो स्पष्टीकरण दिएकाछन्: $1',
 'missing-article'      => 'नाम "$1" $2 भएको भेटिनु पर्ने पृष्ठको पाठ डेटाबेसले  भेटाइएन, 
 
-यस्तो प्राय: मिति नाघिसकेको भिन्न वा इतिहास वा कुनै मेटिसकेको पानाको लिंक पछ्याउनाले हुन्छ ।
+यस्तो प्राय: मिति नाघिसकेको भिन्न वा इतिहास वा कुनै मेटिसकेको पानाको लिंक पहिल्याउनाले हुन्छ ।
 
-यदि यस्तो भएको होइन भने सफ्टवेयरको त्रुटी पनि हुनसक्छ ।
+यदि यस्तो भएको होइन भने सफ्टवेयरको त्रुटि पनि हुनसक्छ ।
 कृपया यसको url खुलाइ [[Special:ListUsers/sysop|प्रबन्धक]]लाई उजुरी गर्नुहोस्',
 'missingarticle-rev'   => '(पुनरावलोकन #: $1)',
 'missingarticle-diff'  => '(डिफ diff: $1, $2)',
@@ -459,7 +459,7 @@ $2',
 तपाँईको खाता खोलिएको छ। [[Special:Preferences|{{SITENAME}} preferences]]मा आफ्ना अभिरुचिहरू परिवर्तन गर्न नबिर्सिनुहोला।',
 'yourname'                   => 'प्रयोगकर्ता-नाम',
 'yourpassword'               => 'पासवर्ड',
-'yourpasswordagain'          => 'पासवर्ड फेरी टाईप गर्नुहोस्',
+'yourpasswordagain'          => 'पासवर्ड फेरि टाईप गर्नुहोस्',
 'remembermypassword'         => 'यो कम्प्युटरमा मेरो प्रवेश याद गर । (धेरैमा $1 {{PLURAL:$1|दिन|दिनहरु}})',
 'securelogin-stick-https'    => 'प्रवेश गरेपछि HTTPS सित जोड़िएर बस्ने',
 'yourdomainname'             => 'तपाईंको ज्ञानक्षेत्र(डोमेन)',
@@ -796,7 +796,7 @@ $2',
 'currentrev'             => 'हालको संस्करण',
 'currentrev-asof'        => '$1को रुपमा हालको पुनरावलोकनहरु',
 'revisionasof'           => '$1 जस्तै गरी पुनरावलोकन',
-'revision-info'          => ' $2द्वारा $1को रुपमा पुनरावलोकन गर्ने',
+'revision-info'          => '$2द्वारा $1को संशोधन',
 'previousrevision'       => '← पुरानो संशोधन',
 'nextrevision'           => 'नयाँ संशोधन →',
 'currentrevisionlink'    => 'हालको पुनरावलोकन',
@@ -1063,7 +1063,7 @@ $1",
 'recentchangesdays'             => 'हालको परिवर्तनमा देखाउने दिनहरु:',
 'recentchangesdays-max'         => 'अधिकतम $1 {{PLURAL:$1|दिन|दिन}}',
 'recentchangescount'            => 'पूर्व निर्धारितरुपमा देखाउनुपर्ने सम्पादनहरू :',
-'prefs-help-recentchangescount' => 'यसमा हालका परिवर्रनहरु , पृष्ठ इतिहासहरु , र सुचीहरू समाविष्ठ छन् ।',
+'prefs-help-recentchangescount' => 'यसमा हालका परि्वर्तनहरु , पृष्ठ इतिहासहरु , र लग समाविष्ठ छन् ।',
 'prefs-help-watchlist-token'    => 'यो फिल्डमा गोप्य संकेत राख्नाले तपाईँको निगरानीसूचीको RSS फिड सृजन हुने छ ।
 संकेत थाहा पाउने जो कसैले तपाईको निगरानी सूची पढ्न सक्ने भएकोले , सुरक्षित मान छान्नुहोला ।
 यहाँ जथाभावीरुपमा-सृजना गरिएको तपाईले प्रयोग गर्ने सक्नुहुने मान छ : $1',
@@ -1118,7 +1118,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'gender-unknown'                => 'नखुलेको',
 'gender-male'                   => 'पुरूष',
 'gender-female'                 => 'महिला',
-'prefs-help-gender'             => 'ऐच्छिक: सफ्टवेयरले लिङगानुसार सम्बोधन गर्नको लागि प्रयोग गरिन्छ ।
+'prefs-help-gender'             => 'वैकल्पिक: सफ्टवेयरले लिङगानुसार सम्बोधन गर्नको लागि प्रयोग गरिन्छ ।
 यो जानकारी सार्वजनिक हुनेछ ।',
 'email'                         => 'ईमेल',
 'prefs-help-realname'           => 'वास्तविक नाम ऐच्छिक हो ।
@@ -1409,12 +1409,18 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'upload-maxfilesize'     => 'अधिकतम फाइल आकार : $1',
 'watchthisupload'        => 'यो पृष्ठ निगरानी गर्नुहोस्',
 'upload-success-subj'    => 'उर्ध्वभरण सफल',
+'upload-warning-subj'    => 'उर्ध्वभरण चेतावनी',
 
 'upload-proto-error'  => 'दूषित प्रोटोकल',
 'upload-file-error'   => 'आन्तरिक त्रुटि',
 'upload-misc-error'   => 'अज्ञात अपलोड त्रुटि',
 'upload-unknown-size' => 'अज्ञात  आकार',
 'upload-http-error'   => 'HTTP त्रुटि भयो: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'पहुँच अस्वीकार',
+'img-auth-nofile'       => '"$1" फाइल छैन।',
+'img-auth-streaming'    => '"$1" बग्दै',
 
 # HTTP errors
 'http-invalid-url'      => 'अवैध URL: $1',
@@ -1467,6 +1473,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'morelinkstoimage'          => 'हेर्नुहोस् [[Special:WhatLinksHere/$1|थप लिंकहरु]] यो फाइलको।',
 'redirectstofile'           => 'यहाँ निम्न {{PLURAL:$1|फाइल|$1 फाइलहरु}} रिडाइरेक्ट हुन्छ:',
 'sharedupload'              => 'यो फाइल $1 को हो र अन्य परियोजनामा प्रयोग गरिएको हुनसक्छ।',
+'filepage-nofile'           => 'यस नामको फाइल छैन।',
+'filepage-nofile-link'      => 'यस नामको फाइल छैन तर तपाईं [$1 यो उर्ध्वभरण गर्न सक्नुहुन्छ].',
 'uploadnewversion-linktext' => 'यो फाइलको नयाँ संस्करण उर्ध्वभरण गर्नुहोस् ।',
 'shared-repo-from'          => ' $1 बाट',
 'shared-repo'               => 'एल साझा भण्डार',
@@ -1540,7 +1548,10 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'disambiguations'     => 'बहुविकल्पी पृष्ठहरु',
 'disambiguationspage' => 'Template:बहुविकल्प',
 
-'doubleredirects' => 'दोहोरो अनुप्रेषण',
+'doubleredirects'            => 'दोहोरो अनुप्रेषण',
+'double-redirect-fixed-move' => '[[$1]] सारिएको छ।
+यसले [[$2]] तिर अनुप्रेषित गर्दछ।',
+'double-redirect-fixer'      => 'अनुप्रेषण तय गर्ने',
 
 'brokenredirects'        => 'टुटेका रिडाइरेक्टहरू',
 'brokenredirectstext'    => 'तलका लिङ्कहरु ले हुदै नभएका पृष्ठहररसँग जोडिन्छन्:',
@@ -1561,6 +1572,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'nmembers'                => '$1 {{PLURAL:$1|सदस्य|सदस्यहरू}}',
 'nrevisions'              => '$1 {{PLURAL:$1|पुनरावलोकन|पुनरावलोकनहरु}}',
 'nviews'                  => '$1 {{PLURAL:$1|अवलोकन|अवलोकनहरु}}',
+'nimagelinks'             => '$1 {{PLURAL:$1|पृष्ठ|पृष्ठहरु}}माथि प्रयोग गरिएको',
 'specialpage-empty'       => 'यो पृष्ठ खाली छ।',
 'lonelypages'             => 'अनाथ पृष्ठहरु',
 'uncategorizedpages'      => 'श्रेणीकरण नभएका पृष्ठहरु',
@@ -1572,12 +1584,12 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'popularpages'            => 'धेरै रूचाईएका पृष्ठहरू',
 'wantedcategories'        => 'माग भएका श्रेणीहरु',
 'wantedpages'             => 'खोजिएका पृष्ठहरु',
-'wantedpages-badtitle'    => 'नतिजा सूचीमा अमान्य शिर्षकम:$1',
+'wantedpages-badtitle'    => 'नतिजा सूचीमा अमान्य शीर्षक:$1',
 'wantedfiles'             => 'माग भएका फाइलहरु',
 'wantedtemplates'         => 'माग भएका टेम्प्लेटहरु',
 'mostlinked'              => 'सबैभन्दा बढि लिंक भएको पृष्ठ',
 'mostlinkedcategories'    => 'सबै भन्दा बढी जोडिएको श्रेणीहरु',
-'mostlinkedtemplates'     => 'सबै भन्दा बढी जोडिएक टेम्लेटहरु',
+'mostlinkedtemplates'     => 'ढाँचाहरुसित सबैभन्दा बढि लिंक भएको',
 'mostcategories'          => 'सबैभन्दा धेरै श्रेणीहरू भएका लेखहरू',
 'mostimages'              => 'सबैभन्दा बढि लिंक भएको चित्र',
 'mostrevisions'           => 'सबैभन्दा बढी संशोधित लेखहरू',
@@ -1645,8 +1657,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'special-categories-sort-abc'   => 'वर्णानुक्रम अनुसार मिलाउने',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'प्रयोगकर्ता योगदानहरु मेटाइयो',
-'deletedcontributions-title'       => 'प्रयोगकर्ता योगदानहरु मेटाइयो',
+'deletedcontributions'             => 'प्रयोगकर्ताका मेटिएका योगदानहरु',
+'deletedcontributions-title'       => 'प्रयोगकर्ताका मेटाइएका योगदानहरु',
 'sp-deletedcontributions-contribs' => 'योगदानहरु',
 
 # Special:LinkSearch
@@ -1663,6 +1675,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'listusersfrom'      => 'प्रयोगहरु देखाउन शुरु हुने यहाँ:',
 'listusers-submit'   => 'देखाउनुहोस्',
 'listusers-noresult' => 'प्रयोगकर्ताहरु भेटिएनन्।',
+'listusers-blocked'  => '(प्रतिबन्धित)',
 
 # Special:ActiveUsers
 'activeusers'          => 'सक्रिय प्रयोगकर्ताहरुको सूची',
@@ -1809,25 +1822,36 @@ $UNWATCHURL
 'deletecomment'          => 'कारण :',
 'deleteotherreason'      => 'अरू/थप कारणहरू :',
 'deletereasonotherlist'  => 'अरु कारण',
+'deletereason-dropdown'  => '*मेट्नका सामान्य कारणहरु
+** लेखकको अनुरोध
+** कपीराइट उल्लंघन
+** बर्बरता (Vandalism)',
 'delete-edit-reasonlist' => 'मेट्नुको कारण सम्पादन गर्नुहोस्',
 
 # Rollback
-'rollback'       => 'सम्पादनहरु  पछाडि लाने',
-'rollback_short' => 'रोलब्याक',
-'rollbacklink'   => 'पहिलेको रुपमा फर्काउने',
-'rollbackfailed' => 'रोलब्याक असफल',
-'editcomment'    => "सम्पादन सारांश : \"''\$1''\" ।",
+'rollback'         => 'सम्पादनहरु  पछाडि लाने',
+'rollback_short'   => 'रोलब्याक',
+'rollbacklink'     => 'पहिलेको रुपमा फर्काउने',
+'rollbackfailed'   => 'रोलब्याक असफल',
+'editcomment'      => "सम्पादन सारांश : \"''\$1''\" ।",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|वार्तालाप]])द्वारा [[User:$1|$1]]द्वारा गरिएको पछिल्लो संशोधनतर्फ उल्टाइएका सम्पादनहरु',
+'rollback-success' => '$1द्वारा उल्टाइएका सम्पादनहरु;
+पछिल्लो संशोधनमा $2द्वारा परिवर्तन गरि पुनः फर्काइएको।',
 
 # Protect
 'protectlogpage'              => 'सुरक्षण लग',
 'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
 'modifiedarticleprotection'   => ' "[[$1]]"को सुरक्षा स्तर परिवर्तन गरियो',
+'unprotectedarticle'          => '"[[$1]]" को सुरक्षा रद्द',
+'movedarticleprotection'      => '"[[$2]]" बाट "[[$1]]"मा सुरक्षा व्यवस्था सारियो',
 'protect-title'               => ' "$1" सुरक्षा स्तर परिवर्तन गर्नुहोस',
 'prot_1movedto2'              => '[[$1]] लाई [[$2]]मा सारियो',
+'protect-legend'              => 'सुरक्षा सुनिश्चित गर्ने',
 'protectcomment'              => 'कारण :',
 'protectexpiry'               => 'सकिने:',
 'protect_expiry_invalid'      => 'सकिने समयावधि अमान्य ।',
 'protect_expiry_old'          => 'समाप्ती समय बितिसक्यो ।',
+'protect-unchain-permissions' => 'आगामी सुरक्षा विकल्पहरु खोल्ने',
 'protect-text'                => "तपाईँ  यहाँ '''<nowiki>$1</nowiki>''' पृष्ठको सुरक्षा स्तर हेर्न र परिवर्तन गर्न सक्नुहुन्छ ।",
 'protect-locked-access'       => "तपाईँको खातालाई पृष्ठको सुरक्षा स्तरहरू परिवर्तन गर्ने अनुमति छैन ।
 '''$1''पृष्ठको हालको स्थिति  निम्न छ :",
@@ -1879,6 +1903,10 @@ $UNWATCHURL
 'undeletepagetext'           => 'निम्नलिखित {{PLURAL:$1|पृष्ठ मेटिएकोछ तर पूरालेखभित्रै छ|$1 पृष्ठ मेटिएकाछन् तर पूरालेखभित्रै छन्}} र पुनर्स्थापित गर्न सकिन्छ।
 पूरालेखको समय-समयमा सफाई गर्न सकिन्छ।',
 'undelete-fieldset-title'    => 'पुनरावलोकनहरु  पूर्वावस्थामा ल्याउनुहोस्',
+'undeleterevisions'          => '$1 {{PLURAL:$1|संशोधन|संशोधनहरु}} संग्रहित',
+'undelete-revision'          => 'Deleted revision of $1 (as of $4, at $5) by $3:
+
+$3द्वारा $1को ($4को  समय $5 मा) मेटाइएका संशोधनहरु :',
 'undelete-nodiff'            => 'कुनै पनि पुरानो पुनरावलोकनहरु भेटिएन ।',
 'undeletebtn'                => 'पूर्वावस्थामा ल्याउनुहोस्',
 'undeletelink'               => 'हेर्ने/पूर्वरुपमा फर्काउने',
@@ -1974,7 +2002,6 @@ $UNWATCHURL
 ** भय फैल्याउने व्यवहार/उत्पीड़न (सताउने कार्य)
 ** धेरै खाताहरुको कोस
 ** अस्वीकार्य प्रयोगकर्ता नाम',
-'ipbanononly'                     => 'अज्ञात प्रयोगकर्तालाई मात्र रोक्ने',
 'ipbcreateaccount'                => 'खाता  सिर्जना रोक्नुहोस',
 'ipbemailban'                     => 'प्रयोगकर्तालाई इमेल पठाउनबाट रोक्ने',
 'ipbenableautoblock'              => 'यस प्रयोगकर्ताले प्रयोग गरेको अन्तिम IP ठेगानालाई स्वतः रोक्ने, र पछाड़िका अरु पनि IP ठेगानालाई जहाँबाट तिनीहरुले सम्पादन गर्ने प्रयास गर्छन्।',
@@ -1985,7 +2012,6 @@ $UNWATCHURL
 'ipbotherreason'                  => 'अन्य / थप कारणहरु:',
 'ipbhidename'                     => 'प्रयोगकर्ताको नाम सम्पादनबाट र सूचीबाट हटाउने',
 'ipbwatchuser'                    => 'यो प्रयोगकर्ताको  प्रयपोगकर्ता र वार्तलाप पृष्ठ हेर्नुहोस्',
-'ipballowusertalk'                => 'निषेधित हुँदा पनि यो प्रयोगकर्ताको आफ्नो वार्तालाप पृष्ठ सम्पादन गर्न दिने',
 'ipb-change-block'                => 'निम्म स्थितीमा प्रयोगकर्तालाई पुन: निषेध गर्ने',
 'badipaddress'                    => 'अमान्य IP ठेगाना',
 'blockipsuccesssub'               => 'निषेधकार्य सफल भयो',
@@ -2003,14 +2029,9 @@ $UNWATCHURL
 'unblocked-id'                    => '$1 रोक हटाइएको छ',
 'ipblocklist'                     => 'निषेधित IP ठेगानाहरु र प्रयोगकर्ता नामहरु',
 'ipblocklist-legend'              => 'रोकलगाइएका प्रयोगकर्ताहरु खोज्नुहोस',
-'ipblocklist-username'            => ' ip ठेगाना वा प्रयोगकर्ता नाम:',
-'ipblocklist-sh-userblocks'       => '$1 खाता रोक लगाइयो',
-'ipblocklist-sh-tempblocks'       => '$1अस्थाई रोक',
-'ipblocklist-sh-addressblocks'    => 'एक $1  IP निषेध',
 'ipblocklist-submit'              => 'खोज्नुहोस्',
 'ipblocklist-localblock'          => 'स्थानीय रोक',
 'ipblocklist-otherblocks'         => 'अन्य {{PLURAL:$1|रोक|रोकहरु}}',
-'blocklistline'                   => '$1, $2 द्वारा रोकियो $3 ($4)',
 'infiniteblock'                   => 'अनगिन्ती',
 'expiringblock'                   => ' सकिने $1 ,$2 मा',
 'anononlyblock'                   => 'anon. हरु मात्र',
@@ -2051,6 +2072,7 @@ $1को बन्देजको कारण : "$2" हो',
 'proxyblocker'                    => 'प्रोक्सी निषेध गर्ने',
 'proxyblocker-disabled'           => 'यो कार्य निष्कृय पारिएको छ।',
 'proxyblocksuccess'               => 'सकियो.',
+'ipbblocked'                      => 'तपाईंले अरु प्रयोगकर्ताहरुलाई प्रतिबन्धित गर्न वा उनीहरुको प्रतिबन्ध खोल्न सक्नुहुन्न किनभनें तपाईं आफैं प्रतिबन्धित हुनुहुन्छ।',
 
 # Developer tools
 'lockdb'              => 'डेटाबेस ताल्चामार्ने',
@@ -2108,11 +2130,22 @@ $1को बन्देजको कारण : "$2" हो',
 'movepage-page-unmoved'     => '$1 पृष्ठलाई $2 मा सार्न सकिएन ।',
 '1movedto2'                 => '[[$1]] लाई [[$2]]मा सारियो',
 '1movedto2_redir'           => 'पुनर्निर्देशितमा [[$1]]लाई [[$2]]मा सारियो',
+'move-redirect-suppressed'  => 'अनुप्रेषण अवरोध भयो',
 'movelogpage'               => 'लग सार्ने',
+'movelogpagetext'           => 'सबै सारिएका पृष्ठहरुको सूची तल दिइएकोछ।',
+'movesubpage'               => '{{PLURAL:$1|उपपृष्ठ|उपपृष्ठहरु}}',
+'movenosubpage'             => 'यस पृष्ठका उप पृष्ठहरु छैनन्।',
 'movereason'                => 'कारण :',
 'revertmove'                => 'पहिलेको रुपमा फर्काउने',
 'delete_and_move'           => 'मेट्ने अनि हटाउने',
+'delete_and_move_text'      => '== मेटाउनु आवश्यक ==
+लक्ष्य गरिएको पृष्ठ  "[[:$1]]" पहिलादेखि छ
+के तपाईं यो त्यहाँ सार्न त्यसलाई मेट्न चाहनुहुन्छ?',
 'delete_and_move_confirm'   => 'हो, पृष्ठ मेट्नुहोस्',
+'selfmove'                  => 'स्रोत तथा लक्ष्य गरिएको फाइलको शीर्षक एउटै छ;
+यसैमाथि पृष्ठ सार्न सकिंदैन।',
+'immobile-source-namespace' => 'यो $1 नामस्थानमा पृष्टहरु सार्न सकिंदैन',
+'immobile-target-namespace' => 'यो $1 नामस्थानभित्र पृष्टहरु सार्न सकिंदैन',
 'immobile-source-page'      => 'यो पृष्ट सार्न योग्यको छैन।',
 'imageinvalidfilename'      => 'गन्तव्य फाइल नाम अमान्य छ',
 
@@ -2154,7 +2187,7 @@ $1को बन्देजको कारण : "$2" हो',
 'import'                     => 'पृष्ठहरु आयात गर्नुहोस्',
 'importinterwiki'            => 'Transwiki आयात',
 'import-interwiki-source'    => 'स्रोत विकि/ पृष्ठ :',
-'import-interwiki-history'   => 'यो पृष्ठको पूर्वावलोकनहरुको इतिहास प्रतिलिपी गर्नुहोस्',
+'import-interwiki-history'   => 'यो पृष्ठकोलागि सबै इतिहास संशोधनहरु प्रतिलिपि गर्ने',
 'import-interwiki-templates' => 'सबै टेम्प्लेटहरु(नमुना) समेट्ने',
 'import-interwiki-submit'    => 'आयात',
 'import-interwiki-namespace' => 'गन्तव्य नेमस्पेस :',
@@ -2258,9 +2291,11 @@ $1को बन्देजको कारण : "$2" हो',
 
 # Attribution
 'siteuser'         => '{{SITENAME}} प्रयोगकर्ता $1',
+'anonuser'         => '{{SITENAME}} अनाम प्रयोगकर्ता $1',
 'lastmodifiedatby' => 'यो पृष्ठ अन्तिमपटक $3द्वारा $2, $1 मा परिवर्तन गरिएको थियो।',
 'othercontribs'    => '$1 को कामको आधारमा',
 'others'           => 'अन्य',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|प्रयोगकर्ता|प्रयोगकर्ताहरु}} $1',
 'creditspage'      => 'क्रेडिट पृष्ठ',
 'nocredits'        => 'यो पृष्ठको लागि कुनै श्रेय उपलब्ध छैन ।',
 
@@ -2305,6 +2340,7 @@ $1को बन्देजको कारण : "$2" हो',
 # Image deletion
 'deletedrevision'                 => 'पुराना पुनरावलोकनहरु $1 मेटिए',
 'filedeleteerror-short'           => '$1 फाइल मेटाइमा भूल',
+'filedelete-missing'              => '"$1" फाइल मेट्न सकिंदैन किनभनें यो फाइल नैं छैन।',
 'filedelete-old-unregistered'     => 'निर्दिष्ट फाइल पुनरीक्षण $1 डेटाबेसमा छैन।',
 'filedelete-current-unregistered' => 'निर्दिष्ट फाइल  $1 डाटाबेसमा छैन।',
 
@@ -2320,7 +2356,7 @@ $1को बन्देजको कारण : "$2" हो',
 'file-nohires'         => '<small>उच्च रिजोल्युशन अनुपलब्ध</small>',
 'svg-long-desc'        => 'SVG फाइल,साधारण $1 × $2 पिक्सेलहरु, फाइल आकार: $3',
 'show-big-image'       => 'पूरा रिजोल्युशन',
-'show-big-image-thumb' => '<small>यस पूर्वावलोकनको आकार : $1 × $2 पिक्सल</small>',
+'show-big-image-size'  => '$1 × $2 पिक्सल',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|फ्रेम|फ्रेमहरु}}',
 'file-info-png-looped' => 'ग़ाँठो परेको',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|पल्ट|पल्ट}} खेलियो',
@@ -2366,16 +2402,16 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-ycbcrpositioning'            => 'Y र C व्यवस्थापन',
 'exif-xresolution'                 => 'क्षैतिज संकल्प(resolution)',
 'exif-yresolution'                 => 'ऊर्ध्वाधर संकल्प(resolution)',
-'exif-resolutionunit'              => 'न्यून रिज्योलुसन असङ्केतन',
+'exif-resolutionunit'              => 'यूनिट एक्स र वाईको रिजोलुसन',
 'exif-stripoffsets'                => 'चित्र आँकड़ाको अवस्थिति',
 'exif-rowsperstrip'                => 'प्रतिपंक्ति पट्टीहरुको संख्या',
 'exif-jpeginterchangeformatlength' => 'JPEG आँकड़ाको बाइट',
 'exif-transferfunction'            => 'स्थानान्तरण कार्य',
 'exif-whitepoint'                  => 'सेतो बिंदु क्रोम्यासिटी(chromaticity)',
-'exif-datetime'                    => 'समय, मिति र समयछाप प्रस्तुतिकरण',
+'exif-datetime'                    => 'फाइल परिवर्तन मिति तथा समय',
 'exif-imagedescription'            => 'चित्र नाम',
 'exif-make'                        => 'क्यामेरा निर्माता',
-'exif-model'                       => 'डेटा नमूना',
+'exif-model'                       => 'क्यामरा मोडल',
 'exif-software'                    => 'प्रयोग गरिएको सफ्टवेयर',
 'exif-artist'                      => 'लेखक',
 'exif-copyright'                   => 'कपीराइट धारक',
@@ -2408,54 +2444,58 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-subjectarea'                 => 'विषय क्षेत्र',
 'exif-spatialfrequencyresponse'    => 'स्थानिक आवृत्ति प्रतिक्रिया',
 'exif-focalplanexresolution'       => 'फोकल विमान एक्स संकल्प',
-'exif-focalplaneyresolution'       => 'न्यून रिज्योलुसन असङ्केतन',
+'exif-focalplaneyresolution'       => 'फोकल प्लेन वाई रिजोलुसन',
 'exif-subjectlocation'             => 'विषयको अवस्थिति',
 'exif-exposureindex'               => 'एक्सपोजर सूचकांक',
 'exif-sensingmethod'               => 'संवेदन विधि',
 'exif-filesource'                  => 'फाइल स्रोत',
 'exif-scenetype'                   => 'दृश्य प्रकार',
-'exif-customrendered'              => 'प्रक्रिया पश्चात गुणस्तर',
-'exif-exposuremode'                => 'बजेट मोड',
-'exif-whitebalance'                => 'श्वेत सन्तुलन:',
-'exif-digitalzoomratio'            => 'आकार अनुपात (4:3, 16:9)',
-'exif-scenecapturetype'            => 'Gda प्रकार ह्यान्डलर',
-'exif-gaincontrol'                 => 'नियन्त्रण इन्टरफेस',
-'exif-contrast'                    => 'व्यतिरेक',
-'exif-saturation'                  => 'स्याचुरेसन',
-'exif-devicesettingdescription'    => 'वर्णन प्रवाह निर्गत',
-'exif-subjectdistancerange'        => 'A/52 गतिशिल दायरा सङ्कुचन',
-'exif-imageuniqueid'               => 'अडियो ट्रयाक ID',
-'exif-gpsversionid'                => 'संस्करण सूचना मुद्रण गर्नुहोस्',
+'exif-customrendered'              => 'कस्टम चित्र प्रसंस्करण',
+'exif-exposuremode'                => 'एक्स्पोज़र मोड',
+'exif-whitebalance'                => 'श्वेत सन्तुलन',
+'exif-digitalzoomratio'            => 'डिजिटल जूम अनुपात (4:3, 16:9)',
+'exif-scenecapturetype'            => 'दृश्य पकड़ प्रकार',
+'exif-gaincontrol'                 => 'दृश्य नियन्त्रण',
+'exif-contrast'                    => 'विषमता',
+'exif-saturation'                  => 'परिपूर्णता',
+'exif-sharpness'                   => 'तीक्ष्णता',
+'exif-devicesettingdescription'    => 'यन्त्र सेटिंग्स वर्णन',
+'exif-subjectdistancerange'        => 'विषय दूरी सीमा',
+'exif-imageuniqueid'               => 'अद्वितीय चित्र आईडी(ID)',
+'exif-gpsversionid'                => 'जीपीएस टैग संस्करण',
 'exif-gpslatituderef'              => 'उत्तर वा दक्षिण अक्षांश',
 'exif-gpslatitude'                 => 'अक्षांश',
 'exif-gpslongituderef'             => 'पूर्व वा पश्चिम देशान्तर',
 'exif-gpslongitude'                => 'देशान्तर',
-'exif-gpsaltituderef'              => 'एपीआई (API) सन्दर्भ',
+'exif-gpsaltituderef'              => 'ऊंचाई संदर्भ',
 'exif-gpsaltitude'                 => 'उँचाई',
-'exif-gpssatellites'               => 'ट्रान्सकोडिङका लागि थ्रेडकको नम्बर',
+'exif-gpssatellites'               => 'नाप्नकोलागि प्रयोग गरिएका उपग्रहहरु',
 'exif-gpsstatus'                   => 'रिसिभर अवस्था',
-'exif-gpsmeasuremode'              => 'बजेट मोड',
-'exif-gpsspeedref'                 => 'फिडको गति',
-'exif-gpsspeed'                    => 'गुम एनिमेसन गति',
+'exif-gpsmeasuremode'              => 'माप मोड',
+'exif-gpsspeedref'                 => 'गति इकाई',
+'exif-gpsspeed'                    => 'जीपीएस रिसीवरको गति',
 'exif-gpstrack'                    => 'चलेको दिशा',
-'exif-gpsimgdirectionref'          => 'छल आगतका लागि छवि फाइलको मार्ग',
-'exif-gpsimgdirection'             => 'छवि समायोजन',
-'exif-gpsdestlatitude'             => 'निर्गत गन्तव्य',
-'exif-gpsdestlongitude'            => 'निर्गत गन्तव्य',
-'exif-gpsdestbearing'              => 'निर्गत गन्तव्य',
-'exif-gpsdestdistance'             => 'गन्तव्य अडियो कोडेक',
-'exif-gpsareainformation'          => 'ढाँचा क्षेत्रको उचाइ',
-'exif-gpsdatestamp'                => 'मिति मेटाफाइल',
+'exif-gpsimgdirectionref'          => 'चित्रको दिशाकोलागि सन्दर्भ',
+'exif-gpsimgdirection'             => 'चित्रको दिशा',
+'exif-gpsdestlatitude'             => 'अक्षांश गंतव्य',
+'exif-gpsdestlongitude'            => 'गंतव्यको देशान्तर',
+'exif-gpsdestbearing'              => 'गंतव्यको असर',
+'exif-gpsdestdistance'             => 'गंतव्यसम्मको दूरी',
+'exif-gpsareainformation'          => 'जीपीएस क्षेत्रको नाम',
+'exif-gpsdatestamp'                => 'जी पी एस मिति',
+'exif-gpsdifferential'             => 'जीपीएस अंतर सुधार',
+'exif-objectname'                  => 'छोटो शीर्षक',
 
-'exif-unknowndate' => 'अज्ञात मिति ढाँचा',
+'exif-unknowndate' => 'अज्ञात मिति',
 
 'exif-orientation-1' => 'सामान्य',
-'exif-orientation-2' => 'तेर्सो तरिकाले फ्लिप गर्नुहोस्',
-'exif-orientation-4' => 'ठाडो तरिकाले फ्लिप गर्नुहोस्',
+'exif-orientation-2' => 'क्षैतिज रुपमा फ्लिप(Flip) गरिएको',
+'exif-orientation-3' => '180° मा घुमाइएको',
+'exif-orientation-4' => 'लंब रुपमा फ्लिप (Flip) गरिएको',
 'exif-orientation-6' => '90° CW घुमाइएको',
 
-'exif-planarconfiguration-1' => 'पङ्क्ति ढाँचा',
-'exif-planarconfiguration-2' => 'पङ्क्ति ढाँचा',
+'exif-planarconfiguration-1' => 'टुक्रे प्रारुप',
+'exif-planarconfiguration-2' => 'प्लानर प्रारुप',
 
 'exif-componentsconfiguration-0' => 'अस्तित्वमा छैन',
 
@@ -2465,6 +2505,7 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-exposureprogram-3' => 'एपर्चर प्राथमिकता',
 'exif-exposureprogram-4' => 'शटर प्राथमिकता',
 'exif-exposureprogram-5' => 'शृजनात्मक कार्यक्रम(गहिराइसँग बाझिएको)',
+'exif-exposureprogram-6' => 'क्रिया कार्यक्रम (तेज शटर गतितर्फ झु्केको)',
 
 'exif-subjectdistance-value' => '$1 मिटर',
 
@@ -2487,14 +2528,15 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-lightsource-12'  => 'दिवा फ्लोरोसेन्ट  (D 5700 – 7100K)',
 'exif-lightsource-13'  => 'दिवा फ्लोरोसेन्ट (N 4600 – 5400K)',
 'exif-lightsource-14'  => 'शितल सेतो फ्लोरेसेन्ट (W 3900 – 4500K)',
-'exif-lightsource-17'  => 'मानक त्रुटि:',
-'exif-lightsource-18'  => 'मानक त्रुटि:',
-'exif-lightsource-19'  => 'मानक त्रुटि:',
+'exif-lightsource-17'  => 'मानक प्रकाश A',
+'exif-lightsource-18'  => 'मानक प्रकाश B',
+'exif-lightsource-19'  => 'मानक प्रकाश C',
 'exif-lightsource-24'  => 'ISO सटुडियो  टङ्स्टेन',
 'exif-lightsource-255' => 'अरु प्रकाश स्रोत',
 
 # Flash modes
 'exif-flash-fired-0'    => 'फ्ल्यास बलेन',
+'exif-flash-fired-1'    => 'फ़्लैश फाइर गरिएको',
 'exif-flash-mode-2'     => 'आवश्यक फ्ल्यास संकुचन',
 'exif-flash-mode-3'     => 'स्वचालित रुप',
 'exif-flash-function-1' => 'फ्लास प्रकार्य छैन',
@@ -2517,6 +2559,8 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-whitebalance-1' => 'म्यानुअल स्वेत वचत',
 
 'exif-scenecapturetype-0' => 'स्तरीय',
+'exif-scenecapturetype-1' => 'परिदृश्याकार (ल्याण्डस्केप)',
+'exif-scenecapturetype-2' => 'चित्राकार(पोर्ट्रेट)',
 'exif-scenecapturetype-3' => 'रात्री दृश्य',
 
 'exif-gaincontrol-0' => 'कुनै पनि होइन',
@@ -2555,6 +2599,7 @@ $1को बन्देजको कारण : "$2" हो',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'किलोमिटर प्रति घण्टा',
 'exif-gpsspeed-m' => 'माइल प्रति घण्टा',
+'exif-gpsspeed-n' => 'गाँठाहरु',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'वास्तविक दिशा:',
@@ -2570,22 +2615,66 @@ $1को बन्देजको कारण : "$2" हो',
 'watchlistall2'    => 'सबै',
 'namespacesall'    => 'सबै',
 'monthsall'        => 'सबै',
+'limitall'         => 'सबै',
 
 # E-mail address confirmation
-'confirmemail'      => 'इमेल ठेगाना पक्का गर्नुहोस्',
-'confirmemail_send' => 'यकिन कोड मेल गर्नुहोस',
-'confirmemail_sent' => 'यकिन इमेल पठाइयो ।',
-'invalidateemail'   => 'इमेल यकिन कार्य रद्द गर्नुहोस्',
+'confirmemail'              => 'इमेल ठेगाना पक्का गर्नुहोस्',
+'confirmemail_send'         => 'यकिन कोड मेल गर्नुहोस',
+'confirmemail_sent'         => 'यकिन इमेल पठाइयो ।',
+'confirmemail_subject'      => '{{SITENAME}} ई मेलl ठेगानाको पुष्टि',
+'confirmemail_body'         => 'कसैले, सायद तपाईंले, आई पी ठेगाना $1बाट,
+{{SITENAME}}मा एउटा  खाता  "$2"को नाममा यस ई मेल ठेगानामा  पञ्जीकरण गरेकोछ।
+
+यो खाता साँच्ची नैं तपाईंको हो भनेर पुष्टि गर्न र {{SITENAME}}मा यो ई मेलका सुविधाहरु  सक्रिय गर्न तपाईंको ब्राउजरमा यो लिंक खोल्नुहोस्:
+
+$3 
+
+यदि त्यो खाता तपाईंले पञ्जीकरण गर्नु भएको *होइन* भनें, ई मेलको पुष्टिकरण रद्द गर्न यो लिंक पहिल्याउनुहोस्:
+
+$5
+
+यो पुष्टिकरणको समय  $4 मा सकिनेछ।',
+'confirmemail_body_changed' => 'कसैले, सायद तपाईंले, आई पी ठेगाना $1बाट,
+{{SITENAME}}मा "$2" नामको खाताको  ई मेल ठेगाना यस ठेगानामा  परिवर्तन गरेकोछ।
+
+यो खाता साँच्ची नैं तपाईंको हो भनेर पुष्टि गर्न र {{SITENAME}}मा यो ई मेलका सुविधाहरु  पुनः सक्रिय गर्न तपाईंको ब्राउजरमा यो लिंक खोल्नुहोस्:
+
+$3 
+
+यदि त्यो खाता तपाईंको *होइन* भनें, ई मेल ठेगानाको पुष्टिकरण रद्द गर्न यो लिंक पहिल्याउनुहोस्:
+
+$5
+
+यो पुष्टिकरणको समय  $4 मा सकिनेछ।',
+'confirmemail_body_set'     => 'कसैले, सायद तपाईंले, आई पी ठेगाना $1बाट,
+{{SITENAME}}मा "$2" नामको खाताको  ई मेल ठेगाना यस ठेगानासित  जोड़ेकोछ।
+
+यो खाता साँच्ची नैं तपाईंको हो भनेर पुष्टि गर्न र {{SITENAME}}मा यो ई मेलका सुविधाहरु  पुनः सक्रिय गर्न तपाईंको ब्राउजरमा यो लिंक खोल्नुहोस्:
+
+$3 
+
+यदि त्यो खाता तपाईंको *होइन* भनें, ई मेल ठेगानाको पुष्टिकरण रद्द गर्न यो लिंक पहिल्याउनुहोस्:
+
+$5
+
+यो पुष्टिकरणको समय  $4 मा सकिनेछ।',
+'confirmemail_invalidated'  => 'ई मेल ठेगाना रद्द भएको पुष्टिकरण',
+'invalidateemail'           => 'इमेल यकिन कार्य रद्द गर्नुहोस्',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[ $1को लागि टेम्प्लेट ल्याउन असफल]',
-'scarytranscludetoolong' => '[URL अति लामो छ ]',
+'scarytranscludedisabled' => '[अन्तरविकि दस्तावेज अन्तरकरण निस्क्रिय]',
+'scarytranscludefailed'   => '[ $1को लागि टेम्प्लेट ल्याउन असफल]',
+'scarytranscludetoolong'  => '[URL अति लामो छ ]',
 
 # Trackbacks
+'trackbackbox'    => 'यस पृष्ठको लागि ट्र्याकब्याक:<br />
+$1',
 'trackbackremove' => '([$1 मेट्नुहोस्])',
+'trackbacklink'   => 'ट्र्याक ब्याक',
 
 # Delete conflict
-'recreate' => 'पुनर्निर्माण',
+'deletedwhileediting' => "'''चेतावनी''': तपाईंले सम्पादन सुरु गरेपछि यो पृष्ठ मेटिएकोछ!",
+'recreate'            => 'पुनर्निर्माण',
 
 # action=purge
 'confirm_purge_button' => 'हुन्छ',
@@ -2603,6 +2692,7 @@ $1को बन्देजको कारण : "$2" हो',
 'table_pager_first'        => 'प्रथम पृष्ठ',
 'table_pager_last'         => 'अन्तिम पृष्ठ',
 'table_pager_limit'        => 'प्रतिपृष्ठ $1 वस्तुहरु देखाउने',
+'table_pager_limit_label'  => 'प्रति पृष्ठ सामग्री:',
 'table_pager_limit_submit' => 'जाउ',
 'table_pager_empty'        => 'नतिजाहरु छैन ।',
 
@@ -2655,7 +2745,7 @@ $1को बन्देजको कारण : "$2" हो',
 # Special:FilePath
 'filepath'        => 'फाइल मार्ग:',
 'filepath-page'   => 'फाइल',
-'filepath-submit' => 'मार्ग(path)',
+'filepath-submit' => 'जाने',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'नक्कल फाइल खोज्ने',
@@ -2667,6 +2757,7 @@ $1को बन्देजको कारण : "$2" हो',
 'specialpages'                 => 'विशेष पृष्ठ',
 'specialpages-group-other'     => 'अरु विशेष पृष्ठहरु',
 'specialpages-group-login'     => 'प्रवेशगर्नुहोस/खाता शृजना गर्नुहोस',
+'specialpages-group-changes'   => 'भर्खरैका परिवर्तन र लगहरु',
 'specialpages-group-users'     => 'प्रयोगकर्ता र अधिकारहरु',
 'specialpages-group-highuse'   => 'उच्च प्रयोग भएका पृष्ठहरु',
 'specialpages-group-pages'     => 'पृष्ठहरूको सूची:',
@@ -2677,21 +2768,52 @@ $1को बन्देजको कारण : "$2" हो',
 # Special:BlankPage
 'blankpage' => 'खाली पृष्ठहरु',
 
+# External image whitelist
+'external_image_whitelist' => ' #यस पंक्तिलाई जस्ताको तस्तै छोड़नुहोस्<pre>
+#नियमित अभिव्यक्तिका निम्न टुक्राहरु हाल्नुहोस् ( //को बीचका भागहरु मात्र)
+#बाहिरका यु आर एल (hotlinked) सित मिलाइनेछ।
+#जो मिलानको शर्तमा पर्छन् तिनलाई चित्रको रुपमा प्रदर्शित गरिनेछ, नत्र चित्रको लिंक मात्र दर्शाइनेछ 
+# #बाट सुरु हुने पंक्तिहरुलाई टिप्पणीको रुपमा मानिनेछ
+#यो वर्ण सम्वेदनशील छ
+
+#यो पंक्तिमाथि रिजेक्स(regex) टुक्रा दिनुहोस्। यस पंक्तिलाई जस्ताको तस्तै छोड़नुहोस्</pre>',
+
 # Special:Tags
 'tags'                    => 'मान्य ट्याग परिवर्तनहरु',
 'tag-filter-submit'       => 'फिल्टर',
 'tags-title'              => 'ट्यागहरु',
 'tags-tag'                => 'आन्तरिक ट्याग नाम',
+'tags-display-header'     => 'परिवर्तन सूचीहरुमाथि झलक',
 'tags-description-header' => 'पूर्ण अर्थको वर्णन',
 'tags-hitcount-header'    => 'ट्याग गरिएक परिवर्तनहरू',
 'tags-edit'               => 'सम्पादन गर्नुहोस्',
 'tags-hitcount'           => '$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरु}}',
 
+# Special:ComparePages
+'compare-page1'  => 'पृष्ठ 1',
+'compare-page2'  => 'पृष्ठ 2',
+'compare-rev1'   => 'संशोधन 1',
+'compare-rev2'   => 'संशोधन 2',
+'compare-submit' => 'दँजाउनुहोस्',
+
 # Database error messages
-'dberr-header' => 'यो विकिमा समस्या छ',
+'dberr-header'   => 'यो विकिमा समस्या छ',
+'dberr-problems' => 'क्षमा पाउँ!
+यो साइटमा तकनीकी गड़बड़ी आइपरेकोछ।',
+'dberr-info'     => '(डेटाबेस सर्वर $1सित सम्पर्क साध्न सकिंदैन)',
 
 # HTML forms
+'htmlform-required'            => 'यसको मूल्य(value) चाहिन्छ',
+'htmlform-submit'              => 'बुझाउने',
 'htmlform-reset'               => 'परिवर्तनहरू परित्याग गर्नुहोस्',
 'htmlform-selectorother-other' => 'अन्य',
+
+# Special:DisableAccount
+'disableaccount-user'        => 'प्रयोगकर्ता-नाम:',
+'disableaccount-reason'      => 'कारण:',
+'disableaccount-mustconfirm' => 'तपाईंले यो सुनिश्चित गर्नुपर्छ कि तपाईं यो खाता निस्क्रिय गर्न चाहनुहुन्छ।',
+'disableaccount-nosuchuser'  => 'यो $1 प्रयोगकर्ता खाता छैन।',
+'disableaccount-success'     => '"$1" प्रयोगकर्ता खाता स्थायी रुपले निस्क्रिय गरिएकोछ।',
+'disableaccount-logentry'    => '[[$1]] प्रयोगकर्ता खाता स्थायी रुपले निस्क्रिय पारियो।',
 
 );

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author 82-145
  * @author Bekiroflaz
  * @author Bombola
  * @author Dbl2010
@@ -491,7 +492,7 @@ $messages = array(
 'permalink'         => 'Bu hâline bağlantı',
 'print'             => 'Bastır',
 'view'              => 'Görüntüle',
-'edit'              => 'Düzenle',
+'edit'              => 'Değiştir',
 'create'            => 'oluştur',
 'editthispage'      => 'Sayfayı değiştir',
 'create-this-page'  => 'Bu sayfayı oluştur',
@@ -2489,7 +2490,6 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 ** Tehditvari davranış/Taciz
 ** Birden fazla hesabı kötüye kullanmak
 ** Kabul edilemez kullanıcı adı',
-'ipbanononly'                     => 'Sadece anonim kullanıcıları engelle',
 'ipbcreateaccount'                => 'Hesap oluşturulmasına engel ol',
 'ipbemailban'                     => 'Kullanıcının e-posta göndermesine engel ol',
 'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
@@ -2500,7 +2500,6 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipbotherreason'                  => 'Başka/ek sebepler:',
 'ipbhidename'                     => 'Kullanıcı adını katkılarda ve listelerde gizle',
 'ipbwatchuser'                    => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
-'ipballowusertalk'                => 'Bu kullanıcının engelliyken kendi tartışma sayfasını değiştirebilmesine izin ver',
 'ipb-change-block'                => 'Bu ayarlarla kullanıcıyı yeniden engelle',
 'badipaddress'                    => 'Geçersiz IP adresi',
 'blockipsuccesssub'               => 'IP adresi engelleme işlemi başarılı oldu',
@@ -2518,14 +2517,9 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'unblocked-id'                    => '$1 engeli çıkarıldı',
 'ipblocklist'                     => 'Engellenmiş IP adresleri ve kullanıcı adları',
 'ipblocklist-legend'              => 'Engellenen kullanıcı ara',
-'ipblocklist-username'            => 'Kullanıcı adı veya IP adresi:',
-'ipblocklist-sh-userblocks'       => 'Hesap engellemelerini $1',
-'ipblocklist-sh-tempblocks'       => 'Geçici engellemeleri $1',
-'ipblocklist-sh-addressblocks'    => 'Tek IP engellemelerini $1',
 'ipblocklist-submit'              => 'Ara',
 'ipblocklist-localblock'          => 'Yerel engelleme',
 'ipblocklist-otherblocks'         => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',
-'blocklistline'                   => '$1, $2 engellendi: $3 ($4)',
 'infiniteblock'                   => 'Süresiz',
 'expiringblock'                   => '$1 $2 tarihinde doluyor',
 'anononlyblock'                   => 'sadece anonim',
@@ -2975,7 +2969,6 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'file-nohires'         => '<small>Daha yüksek çözünürlüğe sahip sürüm bulunmamaktadır.</small>',
 'svg-long-desc'        => 'SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
 'show-big-image'       => 'Tam çözünürlük',
-'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 'file-info-gif-looped' => 'döngüye girdi',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kare|kare}}',
 'file-info-png-looped' => 'döngüye girdi',

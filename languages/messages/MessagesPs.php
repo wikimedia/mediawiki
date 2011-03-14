@@ -1775,13 +1775,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblocked'                  => 'له [[User:$1|$1]] بنديز ليري شو',
 'ipblocklist'                => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',
 'ipblocklist-legend'         => 'يو بنديز شوی کارن موندل',
-'ipblocklist-username'       => 'کارن-نوم يا IP پته:',
-'ipblocklist-sh-userblocks'  => 'د ګڼون بنديزونه $1',
-'ipblocklist-sh-tempblocks'  => 'لنډمهاله بنديزونه $1',
 'ipblocklist-submit'         => 'پلټل',
 'ipblocklist-localblock'     => 'سيمه ايز بنديز',
 'ipblocklist-otherblocks'    => '{{PLURAL:$1|بل بنديز|نور بنديزونه}}',
-'blocklistline'              => '$1, $2 په $3 بنديز ولګاوه ($4)',
 'infiniteblock'              => 'لامحدوده',
 'expiringblock'              => 'په $1 نېټه، $2 بجو پای ته رسېږي',
 'anononlyblock'              => 'يواځې ورکنومی',
@@ -2009,13 +2005,12 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'nextdiff'     => 'بل توپير →',
 
 # Media information
-'thumbsize'            => 'د بټنوک کچه:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
-'file-info-size'       => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
-'file-nohires'         => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
-'svg-long-desc'        => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
-'show-big-image'       => 'بشپړ بېلن نښې',
-'show-big-image-thumb' => '<small>د دې مخليدنې کچه: $1 × $2 pixels</small>',
+'thumbsize'       => 'د بټنوک کچه:',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
+'file-info-size'  => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
+'file-nohires'    => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
+'svg-long-desc'   => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
+'show-big-image'  => 'بشپړ بېلن نښې',
 
 # Special:NewFiles
 'newimages'             => 'د نوو دوتنو نندارتون',

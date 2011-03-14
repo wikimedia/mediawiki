@@ -3042,6 +3042,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 ** Intimidating behaviour/harassment
 ** Abusing multiple accounts
 ** Unacceptable username',
+'ipb-hardblock'                   => 'Prevent logged-in users from editing from this IP address',
 'ipbcreateaccount'                => 'Prevent account creation',
 'ipbemailban'                     => 'Prevent user from sending e-mail',
 'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from',
@@ -3053,7 +3054,6 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbhidename'                     => 'Hide username from edits and lists',
 'ipbwatchuser'                    => "Watch this user's user and talk pages",
 'ipb-disableusertalk'             => 'Prevent this user from editing their own talk page while blocked',
-'ipb-hardblock'                   => 'Prevent logged-in users from editing from this IP address',
 'ipb-change-block'                => 'Re-block the user with these settings',
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
@@ -3640,25 +3640,25 @@ $1',
 'nextdiff'     => 'Newer edit →',
 
 # Media information
-'mediawarning'         => "'''Warning''': This file type may contain malicious code.
+'mediawarning'           => "'''Warning''': This file type may contain malicious code.
 By executing it, your system may be compromised.",
-'imagemaxsize'         => "Image size limit:<br />''(for file description pages)''",
-'thumbsize'            => 'Thumbnail size:',
-'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
-'file-info'            => 'file size: $1, MIME type: $2',
-'file-info-size'       => '$1 × $2 pixels, file size: $3, MIME type: $4',
-'file-nohires'         => '<small>No higher resolution available.</small>',
-'svg-long-desc'        => 'SVG file, nominally $1 × $2 pixels, file size: $3',
-'show-big-image'       => 'Full resolution',
+'imagemaxsize'           => "Image size limit:<br />''(for file description pages)''",
+'thumbsize'              => 'Thumbnail size:',
+'widthheight'            => '$1×$2', # only translate this message to other languages if you have to change it
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
+'file-info'              => 'file size: $1, MIME type: $2',
+'file-info-size'         => '$1 × $2 pixels, file size: $3, MIME type: $4',
+'file-nohires'           => '<small>No higher resolution available.</small>',
+'svg-long-desc'          => 'SVG file, nominally $1 × $2 pixels, file size: $3',
+'show-big-image'         => 'Full resolution',
 'show-big-image-preview' => '<small> Size of this preview: $1.</small>',
-'show-big-image-other' => '<small>Other resolutions: $1.</small>',
-'show-big-image-size' => '$1 × $2 pixels',
-'file-info-gif-looped' => 'looped',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
-'file-info-png-looped' => 'looped',
-'file-info-png-repeat' => 'played $1 {{PLURAL:$1|time|times}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'show-big-image-other'   => '<small>Other resolutions: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixels',
+'file-info-gif-looped'   => 'looped',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
+'file-info-png-looped'   => 'looped',
+'file-info-png-repeat'   => 'played $1 {{PLURAL:$1|time|times}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',

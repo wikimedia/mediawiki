@@ -811,10 +811,9 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'nextdiff'     => 'Khì āu 1 ê diff →',
 
 # Media information
-'imagemaxsize'         => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
-'thumbsize'            => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
-'file-nohires'         => '<small>Bô khah koân ê kái-sek-tō͘.</small>',
-'show-big-image-thumb' => '<small>Chit tiuⁿ ū-lám tô͘ (preview) ê toā-sè: $1 × $2 pixel</small>',
+'imagemaxsize' => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
+'thumbsize'    => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
+'file-nohires' => '<small>Bô khah koân ê kái-sek-tō͘.</small>',
 
 # Special:NewFiles
 'newimages'     => 'Sin iáⁿ-siōng oē-lóng',

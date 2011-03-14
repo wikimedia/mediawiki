@@ -10,6 +10,7 @@
  * @author Jose77
  * @author Psubhashish
  * @author Sambiwiki
+ * @author Shijualex
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -48,7 +49,6 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'ବିଭାଗ',
 	NS_CATEGORY_TALK    => 'ବିଭାଗିୟ_ଆଲୋଚନା',
 );
-
 
 $messages = array(
 # Dates
@@ -90,9 +90,11 @@ $messages = array(
 'dec'           => 'ଡିସେଁବର',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Category|ବିଭାଗ}}',
-'category_header' => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'subcategories'   => 'ଉପଶ୍ରେଣୀଗୁଡ଼ିକ',
+'pagecategories'         => '{{PLURAL:$1|Category|ବିଭାଗ}}',
+'category_header'        => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
+'subcategories'          => 'ଉପଶ୍ରେଣୀଗୁଡ଼ିକ',
+'hidden-categories'      => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ବିଭାଗ}}',
+'listingcontinuesabbrev' => 'ଆହୁରି ଅଛି..',
 
 'newwindow'  => 'ନୂଆ ଊଇଁଡୋରେ ଖୋଲ',
 'cancel'     => 'ନାକଚ କରିଦିଅ',
@@ -129,6 +131,7 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} ବାବଦରେ',
 'aboutpage'            => 'Project:ବାବଦରେ',
 'copyright'            => '$1 ରେ ସର୍ବସ୍ଵତ୍ଵ ସଂରକ୍ଷିତ',
+'copyrightpage'        => '{{ns:project}}:କପିରାଇଟ',
 'disclaimers'          => 'ଆମେ ଦାୟୀ ନୋହୁଁ',
 'disclaimerpage'       => 'Project:ଆମେ ଦାୟୀ ନୋହୁଁ',
 'edithelp'             => 'ଲେଖା ସାହାଜ୍ୟ',
@@ -178,26 +181,30 @@ $messages = array(
 'userlogout'              => 'ଲଗ ଆଉଟ',
 
 # Edit page toolbar
-'bold_sample'    => 'ବୋଲ୍ଡ ଲେଖା',
-'bold_tip'       => 'ବୋଲ୍ଡ ଲେଖା',
-'italic_sample'  => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
-'italic_tip'     => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
-'link_sample'    => 'ଲିଁକ ଟାଇଟଲ',
-'link_tip'       => 'ଭିତର ଲିଁକ',
-'extlink_sample' => 'http://www.example.com ଲିଁକ ଟାଇଟଲ',
-'extlink_tip'    => 'ବାହାର ଲିଁକ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
-'headline_tip'   => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
-'math_tip'       => 'ଗାଣିତିକ ସୁତର (ଲାଟେକ୍ସ)',
-'image_tip'      => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
-'media_tip'      => 'ଫାଇଲର ଲିଁକ',
-'sig_tip'        => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
+'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
+'bold_tip'        => 'ବୋଲ୍ଡ ଲେଖା',
+'italic_sample'   => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
+'italic_tip'      => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
+'link_sample'     => 'ଲିଁକ ଟାଇଟଲ',
+'link_tip'        => 'ଭିତର ଲିଁକ',
+'extlink_sample'  => 'http://www.example.com ଲିଁକ ଟାଇଟଲ',
+'extlink_tip'     => 'ବାହାର ଲିଁକ (http:// ଆଗରେ ଲଗାଇବାକୁ ମନେରଖିଥିବେ)',
+'headline_sample' => 'ହେଡଲାଇନ ଲେଖା',
+'headline_tip'    => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
+'math_sample'     => 'ଏଠି ଫରମୁଲା ପୁରାଅ',
+'math_tip'        => 'ଗାଣିତିକ ସୁତର (ଲାଟେକ୍ସ)',
+'image_tip'       => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
+'media_tip'       => 'ଫାଇଲର ଲିଁକ',
+'sig_tip'         => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
 
 # Edit pages
 'summary'                => 'ସାରକଥା:',
 'subject'                => 'ବିଷୟ/ମୂଳ ଲେଖା',
 'minoredit'              => 'ଏହା ଖୁବ ଛୋଟ ବଦଳଟିଏ',
+'watchthis'              => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
 'savearticle'            => 'ସାଇତି ରଖ',
 'preview'                => 'ଦେଖଣା',
+'showpreview'            => 'ପ୍ରିଭିଉ ଦେଖାଅ',
 'showdiff'               => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
 'editing'                => '$1 କୁ ବଦଳାଉଛି',
 'editingsection'         => '$1 (ଭାଗ)କୁ ଏଡ଼ିଟ କରିବେ',
@@ -221,6 +228,7 @@ $messages = array(
 'revertmerge' => 'ମିଶାଅ ନାହିଁ',
 
 # Diffs
+'difference'              => '(ରିଭିଜନ ଭିତରେ ଥିବା ତଫାତ)',
 'lineno'                  => '$1 କ ଧାଡ଼ି:',
 'compareselectedversions' => 'ବଛାହୋଇଥିବା ସଁକଳନ ଗୁଡ଼ିକୁ ତଉଲ',
 'editundo'                => 'ପଛକୁ ଫେରିବା',
@@ -280,6 +288,7 @@ $messages = array(
 'recentchangeslinked'         => 'ଏଇମାତ୍ର ବଦଳାଯାଇଥିବା ଫରଦର ଲିଁକ',
 'recentchangeslinked-feed'    => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
 'recentchangeslinked-toolbox' => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+'recentchangeslinked-title'   => '"$1" ସାଁଗରେ ଜୋଡ଼ାଥିବା ବଦଳ',
 'recentchangeslinked-summary' => "ଏଇଟି ଅଳ୍ପସମୟ ଆଗରୁ ନିର୍ଦିଷ୍ଟ ଫରଦରୁ ଲିଂକ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦିଷ୍ଟ ବିଭାଗର) ଫରଦସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ଫରଦ ସବୁ '''ବୋଲଡ'''।",
 'recentchangeslinked-page'    => 'ଫରଦର ନାଆଁ',
 
@@ -296,6 +305,7 @@ $messages = array(
 'filehist-user'     => 'ଇଉଜର',
 'filehist-comment'  => 'ମତାମତ',
 'imagelinks'        => 'ଫାଇଲର ଲିଁକସବୁ',
+'sharedupload'      => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
 
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
@@ -319,6 +329,7 @@ $messages = array(
 'log' => 'ଲଗ',
 
 # Special:AllPages
+'allpages'       => 'ସବୁ ଫରଦ',
 'alphaindexline' => '$1 ରୁ $2',
 'allpagessubmit' => 'ଯାଅ',
 
@@ -344,7 +355,21 @@ $messages = array(
 'rollbacklink' => 'ପଛକୁ ଫେର',
 
 # Protect
-'protectlogpage' => 'କିଳିବା ଲଗ',
+'protectlogpage'              => 'କିଳିବା ଲଗ',
+'protectcomment'              => 'କାରଣ:',
+'protectexpiry'               => 'ଅଚଳ ହେବ:',
+'protect_expiry_invalid'      => 'ଅଚଳ ହେବାର ବେଳଟି ଭୁଲ.',
+'protect_expiry_old'          => 'ଅଚଳ ହେବାର ବେଳ ଅତୀତରେ ଥିଲା.',
+'protect-default'             => 'ସବୁ ଇଉଜରଁକୁ ଅନୁମତି ଦିଅ',
+'protect-fallback'            => '"$1" ବାଲା ଅନୁମତି ଦରକାର',
+'protect-level-autoconfirmed' => 'ନୁଆ ଓ ନାଆଁ ଲେଖାଇ ନ ଥିବା ଇଉଜରମାନକୁ ଅଟକାଁତୁ',
+'protect-level-sysop'         => 'କେବଳ ପରିଛାମାନଁକ ପାଇଁ',
+'protect-summary-cascade'     => 'କାସକେଡ଼ ହୋଇଥିବା',
+'protect-expiring'            => '$1 (ଇଉଟିସି)ରେ ଅଚଳ ହୋଇଯିବ',
+'protect-cascade'             => 'ଏହି ଫରଦସହ ଜୋଡ଼ା ଫରଦସବୁକୁ କିଳିଦିଅ (କାସକେଡ଼କରା ସୁରକ୍ଷା)',
+'protect-cantedit'            => 'ଆପଣ ଏହି ସୁରକ୍ଷା ସ୍ତରକୁ ବଦଳାଇ ପାରିବେ ନାହିଁ, କାହିଁକି ନା ଏହାକୁ ବଦଳାଇବା ପାଇଁ ଆପଣଁକୁ ଅନୁମତି ନାହିଁ .',
+'restriction-type'            => 'ଅନୁମତି',
+'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
 
 # Undelete
 'undeletelink'           => 'ଦେଖ/ଆଉଥରେ ଫେରାଇଆଣ',
@@ -352,6 +377,7 @@ $messages = array(
 
 # Namespace form on various pages
 'namespace'      => 'ନେମସ୍ପେସ',
+'invert'         => 'ବଛାଯାଇଥିବା ଲେଖାକୁ ଓଲଟେଇପକାଅ',
 'blanknamespace' => '(ମୂଳ)',
 
 # Contributions
@@ -380,6 +406,9 @@ $messages = array(
 
 # Move page
 'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
+
+# Export
+'export' => 'ଫରଦସବୁ ରପ୍ତାନି କର',
 
 # Thumbnails
 'thumbnail-more' => 'ବଡ଼କର',
@@ -431,8 +460,8 @@ $messages = array(
 'previousdiff' => '← ପୁରୁଣା ବଦଳ',
 
 # Media information
-'show-big-image'       => 'ପୁରା ବଡ଼ ଆକାରରେ',
-'show-big-image-thumb' => '<small>ଦେଖଣା ଚିତ୍ରର ଆକାର: $1 × $2 ପିକସେଲ</small>',
+'file-info-size' => '$1 × $2 ପିକସେଲ, ଫାଇଲ ଆକାର: $3, ଏମ.ଆଇ.ଏମ.ଇର ପ୍ରକାର: $4',
+'show-big-image' => 'ପୁରା ବଡ଼ ଆକାରରେ',
 
 # Special:NewFiles
 'ilsubmit' => 'ସନ୍ଧାନ',

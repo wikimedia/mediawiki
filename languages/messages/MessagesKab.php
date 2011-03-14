@@ -1375,14 +1375,13 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Amgirred ameḍfir →',
 
 # Media information
-'mediawarning'         => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.",
-'imagemaxsize'         => 'Ḥedded tiddi n tugniwin deg yiglamen n tugniwim i:',
-'thumbsize'            => 'Tiddi n tugna tamecṭuḥt:',
-'file-info'            => 'tiddi n ufaylu: $1, anaw n MIME: $2',
-'file-info-size'       => '$1 × $2 pixel, tiddi n ufaylu: $3, anaw n MIME: $4',
-'file-nohires'         => '<small>Ulac resolution i tameqqrant fell-as.</small>',
-'show-big-image'       => 'Resolution tameqqrant',
-'show-big-image-thumb' => '<small>Tiddi n pre-timeẓriwt-agi: $1 × $2 pixels</small>',
+'mediawarning'   => "'''Aɣtal''': Waqila afaylu-yagi yesɛa angal aḥraymi, lukan a t-tesseqdceḍ yezmer ad ixesser aselkim inek.",
+'imagemaxsize'   => 'Ḥedded tiddi n tugniwin deg yiglamen n tugniwim i:',
+'thumbsize'      => 'Tiddi n tugna tamecṭuḥt:',
+'file-info'      => 'tiddi n ufaylu: $1, anaw n MIME: $2',
+'file-info-size' => '$1 × $2 pixel, tiddi n ufaylu: $3, anaw n MIME: $4',
+'file-nohires'   => '<small>Ulac resolution i tameqqrant fell-as.</small>',
+'show-big-image' => 'Resolution tameqqrant',
 
 # Special:NewFiles
 'newimages'             => 'Umuɣ n ifayluwen imaynuten',
