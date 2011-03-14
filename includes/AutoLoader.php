@@ -135,6 +135,7 @@ $wgAutoloadLocalClasses = array(
 	'Interwiki' => 'includes/Interwiki.php',
 	'IP' => 'includes/IP.php',
 	'JavaScriptDistiller' => 'includes/libs/JavaScriptDistiller.php',
+	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'LCStore_DB' => 'includes/LocalisationCache.php',
 	'LCStore_CDB' => 'includes/LocalisationCache.php',
 	'LCStore_Null' => 'includes/LocalisationCache.php',
