@@ -138,7 +138,7 @@ class SpecialPage {
 		# Users and rights
 		'Block'                     => 'SpecialBlock',
 		'Unblock'                   => 'SpecialUnblock',
-		'Ipblocklist'               => 'IPUnblockForm',
+		'BlockList'                 => 'SpecialBlockList',
 		'Resetpass'                 => 'SpecialResetpass',
 		'DeletedContributions'      => 'DeletedContributionsPage',
 		'Preferences'               => 'SpecialPreferences',

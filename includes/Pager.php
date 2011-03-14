@@ -51,7 +51,7 @@ interface Pager {
  *
  *  Subclassing the pager to implement concrete functionality should be fairly
  *  simple, please see the examples in HistoryPage.php and
- *  SpecialIpblocklist.php. You just need to override formatRow(),
+ *  SpecialBlockList.php. You just need to override formatRow(),
  *  getQueryInfo() and getIndexField(). Don't forget to call the parent
  *  constructor if you override it.
  *
