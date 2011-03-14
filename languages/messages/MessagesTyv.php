@@ -750,7 +750,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'ipbotheroption'             => 'өске',
 'ipbotherreason'             => 'Өске/немелде чылдагаан:',
 'badipaddress'               => 'Багай ИП-адрес',
-'ipblocklist-username'       => 'Ажыглакчының ады азы ИП-адрес:',
 'ipblocklist-submit'         => 'Дилээр',
 'infiniteblock'              => 'кезээ-мөңгеде',
 'blocklink'                  => 'ниимиктээри',

@@ -1248,7 +1248,6 @@ restauris ad lasta versiono da $2.',
 ** Timidiganta ago
 ** Trouzar multa konti
 ** Neaceptebla uzanto-nomo',
-'ipbanononly'        => 'Blokusez nur anonimala uzanti',
 'ipbcreateaccount'   => 'Preventez kreo di konti',
 'ipbsubmit'          => 'Blokusar ica uzanto',
 'ipbother'           => 'Altra tempo:',
@@ -1265,7 +1264,6 @@ Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
 'ipusubmit'          => 'Desblokusar',
 'ipblocklist'        => 'Blokusita IP-adresi ed uzantonomi',
 'ipblocklist-submit' => 'Serchar',
-'blocklistline'      => '$1, $2 blokusas $3 (expiras $4)',
 'blocklink'          => 'blokusar',
 'unblocklink'        => 'desblokusar',
 'change-blocklink'   => 'chanjar blokuso',
@@ -1445,10 +1443,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 'nextdiff'     => 'Plu recenta versiono →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
-'file-nohires'         => '<small>Ne existas grandeso plu granda.</small>',
-'show-big-image'       => 'Grandeso kompleta',
-'show-big-image-thumb' => '<small>Dimensioni di ca previdajo: $1 × $2 pixel-i</small>',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
+'file-nohires'    => '<small>Ne existas grandeso plu granda.</small>',
+'show-big-image'  => 'Grandeso kompleta',
 
 # Special:NewFiles
 'newimages'        => 'Galerio di nova arkivi',

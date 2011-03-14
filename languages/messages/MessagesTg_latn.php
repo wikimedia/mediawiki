@@ -1524,7 +1524,6 @@ Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe
 ** Raftori ba'd/masxarakuniji digar korbaron
 ** Sūiistifoda az cand hisobi korbarī
 ** Nomi korbariji nomunosib",
-'ipbanononly'                 => 'Faqat bastani korbaroni gumnom',
 'ipbcreateaccount'            => 'Çilavgirī az eçodi hisob',
 'ipbemailban'                 => 'Çilavgiriji korbar az firistodani poctai elektronī',
 'ipbenableautoblock'          => "Nişonai oxire ki az on in korbar istifoda mekunad, ba surati xudkor buband, va digar nişonahoi IP-hoi ba'dina, ki az onho metavonad viroiş kunand",
@@ -1549,9 +1548,7 @@ Baroi barrasī ba [[Special:IPBlockList|fehristi nişonahoi IP va nomhoi korbari
 'unblocked-id'                => "Qat'i dastrasiji şumorai $1 xotima joft",
 'ipblocklist'                 => 'IP nişonaho va nomhoi korbariji basta şuda',
 'ipblocklist-legend'          => 'Çustuçūi korbari basta şuda',
-'ipblocklist-username'        => 'Nomi korbarī jo nişonai IP:',
 'ipblocklist-submit'          => 'Çustuçū',
-'blocklistline'               => '$1, $2 ro bast $3 ($4)',
 'infiniteblock'               => 'be pojon',
 'anononlyblock'               => 'faqat korbaroni gumnom',
 'noautoblockblock'            => "bastani xudkor ƣajrifa'ol ast",
@@ -1901,16 +1898,15 @@ $1',
 'nextdiff'     => 'Tafovuti navtar →',
 
 # Media information
-'mediawarning'         => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
+'mediawarning'    => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
 Bo içroi on, sistemai şumo şojad oseb bubinad.",
-'thumbsize'            => 'Andozai anguştdona (thumbnail):',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
-'file-info'            => "andozai parvanda: $1, nav'i MIME: $2",
-'file-info-size'       => "$1 × $2 piksel, haçmi parvanda: $3, nav'i MIME: $4",
-'file-nohires'         => '<small>Nusxai haçman va sifatan balandtar dastras nest.</small>',
-'svg-long-desc'        => 'SVG parvanda, ismī $1 × $2 piksel, andozai parvanda: $3',
-'show-big-image'       => 'Aksi purra',
-'show-big-image-thumb' => '<small>Andozai in peşnamoiş: $1 × $2 piksel</small>',
+'thumbsize'       => 'Andozai anguştdona (thumbnail):',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
+'file-info'       => "andozai parvanda: $1, nav'i MIME: $2",
+'file-info-size'  => "$1 × $2 piksel, haçmi parvanda: $3, nav'i MIME: $4",
+'file-nohires'    => '<small>Nusxai haçman va sifatan balandtar dastras nest.</small>',
+'svg-long-desc'   => 'SVG parvanda, ismī $1 × $2 piksel, andozai parvanda: $3',
+'show-big-image'  => 'Aksi purra',
 
 # Special:NewFiles
 'newimages'             => 'Namoişgohi parvandahoi çadid',

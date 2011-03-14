@@ -1696,7 +1696,6 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 ** Comportamientu encévicu
 ** Abusal con varias cuentas
 ** Nombris d´usuárius enacetabris',
-'ipbanononly'                 => 'Atarugal sólu a los usuárius anónimus',
 'ipbcreateaccount'            => 'Atarugal el criaeru e cuentas',
 'ipbemailban'                 => 'Atarugal al usuáriu envial emails',
 'ipbenableautoblock'          => "Atarugal autumáticamenti la direción IP gastá pol esti usuáriu, i cualisquiel IP posteriol endi la cual trati d'eital",
@@ -1723,11 +1722,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'unblocked-id'                => 'S´á esborrau el tarugu $1',
 'ipblocklist'                 => "Lista de IP i nombris d'usuárius atarugaus",
 'ipblocklist-legend'          => 'Landeal a un usuáriu atarugau',
-'ipblocklist-username'        => 'Nombri d´usuáriu u IP:',
-'ipblocklist-sh-userblocks'   => '$1 tarugus de cuentas',
-'ipblocklist-sh-tempblocks'   => '$1 tarugus temporalis',
 'ipblocklist-submit'          => 'Landeal',
-'blocklistline'               => '$1, $2 ataruga a $3 ($4)',
 'infiniteblock'               => 'enfinitu',
 'expiringblock'               => 'acabiha $1 $2',
 'anononlyblock'               => 'solu anón.',
@@ -2055,14 +2050,13 @@ $1',
 'nextdiff'     => 'Siguienti def →',
 
 # Media information
-'thumbsize'            => 'Grandol el cuairu:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
-'file-info'            => 'grandol el archivu: $1, MIME type: $2',
-'file-info-size'       => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
-'file-nohires'         => '<small>Nu disponibri a mayol resolución.</small>',
-'svg-long-desc'        => 'archivu SVG, $1 × $2 pixelis, grandol: $3',
-'show-big-image'       => 'Resolución máisima',
-'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
+'thumbsize'       => 'Grandol el cuairu:',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'file-info'       => 'grandol el archivu: $1, MIME type: $2',
+'file-info-size'  => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
+'file-nohires'    => '<small>Nu disponibri a mayol resolución.</small>',
+'svg-long-desc'   => 'archivu SVG, $1 × $2 pixelis, grandol: $3',
+'show-big-image'  => 'Resolución máisima',
 
 # Special:NewFiles
 'newimages'             => 'Correol d´archivus nuevus',

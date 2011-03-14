@@ -1284,11 +1284,10 @@ Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www
 'nextdiff'     => 'Enkyukakyuka ezaddako okukolebwa→',
 
 # Media information
-'file-info-size'       => 'pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4',
-'file-nohires'         => '<small>Tewali kisingako wano.</small>',
-'svg-long-desc'        => 'Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3',
-'show-big-image'       => 'Laga ekifaananyi ekijjuvu',
-'show-big-image-thumb' => '<small>Okulagako kuno kwa pikiseli: $1 ku $2</small>',
+'file-info-size' => 'pikseli $1 ku $2 , bunene bwa fayiro: $3, kika kya MIME: $4',
+'file-nohires'   => '<small>Tewali kisingako wano.</small>',
+'svg-long-desc'  => 'Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3',
+'show-big-image' => 'Laga ekifaananyi ekijjuvu',
 
 # Bad image list
 'bad_image_list' => 'Empandika entuufu:

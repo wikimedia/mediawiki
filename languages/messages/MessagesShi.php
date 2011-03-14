@@ -1044,7 +1044,6 @@ Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
 'ipbotheroption'           => '↓ wayya',
 'ipbhidename'              => '↓ ḥbu assaɣ n umsqdac ɣ imbdln d umuɣn',
 'ipbwatchuser'             => '↓ Tfr tisniwin d imsgdaln n umqdac',
-'ipballowusertalk'         => '↓ Yufa umsqdac ad ad isbddl tasna ns n umsgdal ɣ tizi lliɣas ttuyqqan tins',
 'ipblocklist'              => '↓ Tansa IP d imsqdacn ttuẓnin',
 'blocklink'                => 'Adur tajt',
 'unblocklink'              => 'kkis agdal',
@@ -1164,11 +1163,10 @@ Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fl
 'nextdiff'     => '↓ Ambdl d ittfrn  →',
 
 # Media information
-'file-info-size'       => '$1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4',
-'file-nohires'         => '↓<small>Ur tlli tabudut tamqrant.</small>',
-'svg-long-desc'        => '↓ Asdaw SVG, Tabadut n $1 × $2 ifrdan, Tiddi : $3',
-'show-big-image'       => 'balak',
-'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
+'file-info-size' => '$1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4',
+'file-nohires'   => '↓<small>Ur tlli tabudut tamqrant.</small>',
+'svg-long-desc'  => '↓ Asdaw SVG, Tabadut n $1 × $2 ifrdan, Tiddi : $3',
+'show-big-image' => 'balak',
 
 # Bad image list
 'bad_image_list' => 'zud ghikad :

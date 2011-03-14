@@ -1077,7 +1077,6 @@ Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na 
 'blockipsuccesstext'       => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
 Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
 'ipblocklist'              => 'Lësta zablokòwónëch adresów IP ë mionów brëkòwników',
-'blocklistline'            => '$1, $2 zascëgôł $3 ($4)',
 'blocklink'                => 'blokùjë',
 'unblocklink'              => 'òdblokùjë',
 'change-blocklink'         => 'zmieni blokòwanié',
@@ -1235,13 +1234,12 @@ Zezwôlô na dodanié przëczënë zjinaczi w òpisënkù.',
 'nextdiff'     => 'Nôslédnô edicëjô →',
 
 # Media information
-'imagemaxsize'         => 'Ògrańczë na starnie òpisënkù òbrôzków jich miarã do:',
-'thumbsize'            => 'Miara miniaturków:',
-'file-info-size'       => '$1 × $2 pikslów, miara lopka: $3, ôrt MIME: $4',
-'file-nohires'         => '<small>Felëje wikszô miara.</small>',
-'svg-long-desc'        => 'Lopk SVG, nominalno $1 × $2 pikslów, miara lopka: $3',
-'show-big-image'       => 'Fùl miara',
-'show-big-image-thumb' => '<small>Miara pòdzérkù: $1 × $2 pikslów</small>',
+'imagemaxsize'   => 'Ògrańczë na starnie òpisënkù òbrôzków jich miarã do:',
+'thumbsize'      => 'Miara miniaturków:',
+'file-info-size' => '$1 × $2 pikslów, miara lopka: $3, ôrt MIME: $4',
+'file-nohires'   => '<small>Felëje wikszô miara.</small>',
+'svg-long-desc'  => 'Lopk SVG, nominalno $1 × $2 pikslów, miara lopka: $3',
+'show-big-image' => 'Fùl miara',
 
 # Special:NewFiles
 'newimages' => 'Galerëjô nowich lopków',

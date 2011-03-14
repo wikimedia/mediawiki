@@ -402,7 +402,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Block/unblock
 'ipadressorusername'       => 'Adrizzu IP o nome di cuntributore',
 'ipblocklist-submit'       => 'Ricerca',
-'blocklistline'            => '$1, $2 bluccati $3 ($4)',
 'anononlyblock'            => 'solu i cuntributori anonimi',
 'blocklink'                => 'bluccà',
 'unblocklink'              => 'sbluccà',

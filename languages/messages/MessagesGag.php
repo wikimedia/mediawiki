@@ -977,11 +977,10 @@ Yalvarêrêz başka bir ad seçmää.',
 'nextdiff'     => 'Geerki versiyalan aradaki fark →',
 
 # Media information
-'file-info-size'       => '$1 × $2 piksel, fayl ölçüsü: $3, MIME tipi: $4',
-'file-nohires'         => '<small>Taa üüksek aydınnıklı versiya bulunmêêr.</small>',
-'svg-long-desc'        => 'SVG faylı, nominal $1 × $2 piksel, fayl ölçüsü: $3',
-'show-big-image'       => 'Taman aydınnık',
-'show-big-image-thumb' => '<small>Ön siir ölçüsü: $1 × $2 piksel</small>',
+'file-info-size' => '$1 × $2 piksel, fayl ölçüsü: $3, MIME tipi: $4',
+'file-nohires'   => '<small>Taa üüksek aydınnıklı versiya bulunmêêr.</small>',
+'svg-long-desc'  => 'SVG faylı, nominal $1 × $2 piksel, fayl ölçüsü: $3',
+'show-big-image' => 'Taman aydınnık',
 
 # Special:NewFiles
 'newimages' => 'Eni pätretler',

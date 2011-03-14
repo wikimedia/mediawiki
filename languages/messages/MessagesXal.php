@@ -1150,7 +1150,6 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'file-nohires'         => '<small>Икәр чинртә янз уга.</small>',
 'svg-long-desc'        => 'SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3',
 'show-big-image'       => 'Күцц чинр',
-'show-big-image-thumb' => '<small>Урдаснь хәләврин кемҗән: $1 × $2 цегтә</small>',
 'file-info-gif-looped' => 'билцгсн',
 
 # Bad image list

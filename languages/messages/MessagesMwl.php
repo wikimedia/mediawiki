@@ -1120,11 +1120,10 @@ Premite ajuntar la rezon de la eidiçon ne l sumário.',
 'nextdiff'     => 'Redadeira eidiçon →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pixel, tamanho: $3, tipo MIME: $4',
-'file-nohires'         => '<small>Sin resoluçon maior çponible.</small>',
-'svg-long-desc'        => 'fexeiro SVG, de $1 × $2 pixeles, tamanho: $3',
-'show-big-image'       => 'Resoluçon cumpleta',
-'show-big-image-thumb' => '<small>Tamanho desta prebison: $1 × $2 pixeles</small>',
+'file-info-size' => '$1 × $2 pixel, tamanho: $3, tipo MIME: $4',
+'file-nohires'   => '<small>Sin resoluçon maior çponible.</small>',
+'svg-long-desc'  => 'fexeiro SVG, de $1 × $2 pixeles, tamanho: $3',
+'show-big-image' => 'Resoluçon cumpleta',
 
 # Special:NewFiles
 'newimages' => 'Galerie de nuobos fexeiros',

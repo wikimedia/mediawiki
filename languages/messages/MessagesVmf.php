@@ -923,11 +923,10 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 'nextdiff'     => 'Undârschiid fo där nägsdn ändrung →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pigsl, dadajgrääsn: $3, MIME-tib: $4',
-'file-nohires'         => "<small>A he´äre aafleesung gibd's ghaane.</small>",
-'svg-long-desc'        => 'SVG-dadaj, ufleesung: $1 × $2 pigsl, dadajgreesn: $3',
-'show-big-image'       => 'Bild in hegsdâr aufleesung',
-'show-big-image-thumb' => '<small>Greäs fo där schbigg-ôôsichd: $1 × $2 bhigsl</small>',
+'file-info-size' => '$1 × $2 pigsl, dadajgrääsn: $3, MIME-tib: $4',
+'file-nohires'   => "<small>A he´äre aafleesung gibd's ghaane.</small>",
+'svg-long-desc'  => 'SVG-dadaj, ufleesung: $1 × $2 pigsl, dadajgreesn: $3',
+'show-big-image' => 'Bild in hegsdâr aufleesung',
 
 # Bad image list
 'bad_image_list' => 'Fôrmaad:

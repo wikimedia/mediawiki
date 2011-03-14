@@ -771,11 +771,10 @@ $2',
 'nextdiff'     => 'تفاوت بعدی→',
 
 # Media information
-'file-info-size'       => '$1 × $2 پیکسل, اندازه فایل: $3, MIME نوع: $4',
-'file-nohires'         => '<small>قابلیت تفکیک بالاتری در دسترس نه.</small>',
-'svg-long-desc'        => 'SVG فایل, تقریبا$1 × $2 پیکسل, اندازه فایل: $3',
-'show-big-image'       => 'تصویر با قابلیت تفکیک کامل',
-'show-big-image-thumb' => '<کوچیک>اندازه پیش نمایش: $1 × $2 پیکسلها</کوچیک>',
+'file-info-size' => '$1 × $2 پیکسل, اندازه فایل: $3, MIME نوع: $4',
+'file-nohires'   => '<small>قابلیت تفکیک بالاتری در دسترس نه.</small>',
+'svg-long-desc'  => 'SVG فایل, تقریبا$1 × $2 پیکسل, اندازه فایل: $3',
+'show-big-image' => 'تصویر با قابلیت تفکیک کامل',
 
 # Special:NewFiles
 'newimages' => 'گالری فایلهای تازه',

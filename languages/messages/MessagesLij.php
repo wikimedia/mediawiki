@@ -906,7 +906,6 @@ $1',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] o l'è stæto affermoö.
 <br />Veddi [[Special:IPBlockList|Lista de i indirissi IP affermæ]] te cangia e affermaçioin.",
 'ipblocklist'                 => "Lista de l'indirissi IP e nommi d'ûtenti bloccæ",
-'blocklistline'               => "$1, $2 o l'ha affermoö $3 fin a $4",
 'anononlyblock'               => 'Non ti tè registroö. Non ti peu fanni de i cangiamenti! (Registräse o non vegne ninte!)',
 'emailblock'                  => 'posta elettronega affermaä',
 'ipblocklist-empty'           => "A lista de e affermaçioin a l'è veua.",
@@ -1040,12 +1039,11 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'nextdiff'     => 'Proscima diff →',
 
 # Media information
-'thumbsize'            => 'Dimescion da a imàginetta:',
-'file-info-size'       => '$1 × $2 pixel, dimenscioîn: $3, tippo MIME: $4',
-'file-nohires'         => '<small>No ghe son verscioîn a resolûxon ciû ærta.</small>',
-'svg-long-desc'        => "archivvio in formato SVG, dimensioîn nominâli $1 × $2 pixel, dimension de l'archivvio: $3",
-'show-big-image'       => "Verscion d'ærta resolûxon",
-'show-big-image-thumb' => "<small>Dimensioîn de 'st'anteprimma: $1 × $2 pixel</small>",
+'thumbsize'      => 'Dimescion da a imàginetta:',
+'file-info-size' => '$1 × $2 pixel, dimenscioîn: $3, tippo MIME: $4',
+'file-nohires'   => '<small>No ghe son verscioîn a resolûxon ciû ærta.</small>',
+'svg-long-desc'  => "archivvio in formato SVG, dimensioîn nominâli $1 × $2 pixel, dimension de l'archivvio: $3",
+'show-big-image' => "Verscion d'ærta resolûxon",
 
 # Special:NewFiles
 'newimages' => 'Gallerîa de nêuvi archivvi',

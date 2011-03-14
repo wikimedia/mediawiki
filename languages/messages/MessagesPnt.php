@@ -1117,7 +1117,6 @@ $messages = array(
 'ipbexpiry'                => 'Τέλεμαν:',
 'ipbreason'                => 'Αιτία:',
 'ipbreasonotherlist'       => 'Άλλον αιτία',
-'ipbanononly'              => "Ασπάλισον τ'ανώνυμους τη χρήστες μαναχόν",
 'ipbsubmit'                => 'Ασπάλισον τον χρήστεν',
 'ipbother'                 => 'Άλλον ώρα:',
 'ipboptions'               => '2 ώρας:2 hours,1 ημέρα:1 day,3 ημέρας:3 days,1 εβδομάδα:1 week,2 εβδομάδας:2 weeks,1 μήνα:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνο:1 year,αόριστα:infinite',
@@ -1301,12 +1300,11 @@ $messages = array(
 'nextdiff'     => 'Άλλον διαφορά →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
-'file-info-size'       => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπον: $4',
-'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
-'svg-long-desc'        => "Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3",
-'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
-'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
+'file-info-size'  => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπον: $4',
+'file-nohires'    => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'svg-long-desc'   => "Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3",
+'show-big-image'  => 'Τζιπ τρανόν ανάλυση',
 
 # Special:NewFiles
 'newimages'        => 'Τερέστεν τα καινούρεα φωτογραφίας',

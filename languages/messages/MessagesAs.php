@@ -1290,7 +1290,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'blockip'                  => 'সদস্য বাৰণ কৰক',
 'ipbreason'                => 'কাৰণ:',
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
-'ipbanononly'              => 'কেৱল বেনামী সদস্যক হেঙাৰ দিয়ক',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনিৰ্দিস্ট কাল:infinite',
 'ipbotheroption'           => 'অন্যান্য',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',
@@ -1438,11 +1437,10 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'nextdiff'     => 'নতুনতৰ সম্পাদনা →',
 
 # Media information
-'file-info-size'       => '$1 × $2 পিক্সেল, ফাইলৰ মাত্ৰা: $3, MIME প্ৰকাৰ: $4',
-'file-nohires'         => '<small>ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।</small>',
-'svg-long-desc'        => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
-'show-big-image'       => 'সম্পূৰ্ণ দৃশ্য',
-'show-big-image-thumb' => '<small>এই খচৰাৰ আকাৰ: $1 × $2 পিক্সেল </small>',
+'file-info-size' => '$1 × $2 পিক্সেল, ফাইলৰ মাত্ৰা: $3, MIME প্ৰকাৰ: $4',
+'file-nohires'   => '<small>ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।</small>',
+'svg-long-desc'  => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
+'show-big-image' => 'সম্পূৰ্ণ দৃশ্য',
 
 # Special:NewFiles
 'newimages' => 'নতুন ফাইলৰ বিথীকা',

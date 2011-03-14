@@ -1389,7 +1389,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 ** দরপানির অসারে আচরণ/হিনকরানি
 ** আবকচা অ্যাকাউন্টর অপব্যবহার
 ** আতাকুরার নাঙহান চিঙথি ইসে',
-'ipbanononly'              => 'বেনাঙর আতাকুরারে থেপ কর',
 'ipbcreateaccount'         => 'অ্যাকাউন্ট হঙকরানি নাদি',
 'ipbemailban'              => 'আতাকুরাগরে ই-মেইল দিয়াপেঠানি নাদি',
 'ipbenableautoblock'       => 'এরে আতাকুরা এগই ব্যবহার করিসিল লমিলগা আইপি ঠিকানাহান, বারো পিসেদে যে যে আইপি ঠিকানাত্ত পতানির হৎনা করতই অতারে আপ্পানে নাদি।',
@@ -1404,7 +1403,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'blockipsuccesssub'        => 'থেপকরানিহান চুমিল',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] রে থেপকরিয়া থসি <br />থেপকরানিহান খাল করানি থকিলে,[[Special:IPBlockList| থেপকরিয়া থসি আইপি ঠিকানার তালিকাহান]] চা।',
 'ipblocklist'              => 'থেপকরিয়া থসি আইপি ঠিকানা বারো আতাকুরার লাতঙগি',
-'blocklistline'            => '$1 তারিখে $2, $3 ($4) রে থেপকরানি অসে।',
 'blocklink'                => 'থেপ কর',
 'unblocklink'              => 'ব্লকনাকরি',
 'change-blocklink'         => 'ব্লক সিলকর',
@@ -1557,11 +1555,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nextdiff'     => 'নুৱা পতা →',
 
 # Media information
-'file-info-size'       => '$1 × $2 পিক্সেল, ফাইলর সাইজহান: $3, এমআইএমই-র অংতা: $4',
-'file-nohires'         => '<small>এহাত্ত গজর রিজরিউশন নেই।</small>',
-'svg-long-desc'        => 'SVG ফাইল, সাধারনত $1 × $2 পিক্সেল, ফাইলর সাইজহান: $3',
-'show-big-image'       => 'পুল্লাপ রিজলিউশন',
-'show-big-image-thumb' => '<small>আগচা হানর সাইজহান: $1 × $2 পিক্সেলস</small>',
+'file-info-size' => '$1 × $2 পিক্সেল, ফাইলর সাইজহান: $3, এমআইএমই-র অংতা: $4',
+'file-nohires'   => '<small>এহাত্ত গজর রিজরিউশন নেই।</small>',
+'svg-long-desc'  => 'SVG ফাইল, সাধারনত $1 × $2 পিক্সেল, ফাইলর সাইজহান: $3',
+'show-big-image' => 'পুল্লাপ রিজলিউশন',
 
 # Special:NewFiles
 'newimages'        => 'নুৱা ফাইলর গ্যালারিগ',

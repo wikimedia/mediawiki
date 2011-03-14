@@ -578,11 +578,10 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'nextdiff'     => 'Jo ūd redigīerimizt',
 
 # Media information
-'file-info-size'       => ' $1 × $2 piksõlt, bildā sūrit: $3, MIME tīp: $4',
-'file-nohires'         => '<small>Sīestõ sūrimmõ bildõ äb ūo.</small>',
-'svg-long-desc'        => 'SVG fail, origināli sūrit  $1 × $2 piksõlt, fail sūrit: $3',
-'show-big-image'       => 'täuž rezolūtsij',
-'show-big-image-thumb' => '<small>Sīe jedmõl-vaņtlimiz sūrit: $1 × $2 piksõlt</small>',
+'file-info-size' => ' $1 × $2 piksõlt, bildā sūrit: $3, MIME tīp: $4',
+'file-nohires'   => '<small>Sīestõ sūrimmõ bildõ äb ūo.</small>',
+'svg-long-desc'  => 'SVG fail, origināli sūrit  $1 × $2 piksõlt, fail sūrit: $3',
+'show-big-image' => 'täuž rezolūtsij',
 
 # Bad image list
 'bad_image_list' => 'Tǟdõl panābõd setku nimkēra elementõd ( rīndad, mis irgõbõd simbōlõks *) . Ežmi siḑīm rīndas um kilāb siḑīm äbkȭlbatõb fail jūrõ. Sīel īž rīndas vȯlbiži pierrõ tulbiži siḑīmḑi vaņtlõbõd nemē mūšti ulzõ võtāmiži, se tǟntõb kēratõkši, mis jūrõ failõ võib pānda.',

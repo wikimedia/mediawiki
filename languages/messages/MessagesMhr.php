@@ -1017,12 +1017,11 @@ $messages = array(
 'nextdiff'     => 'Вес тӧрлатымаш →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
-'file-info-size'       => '$1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4',
-'file-nohires'         => '<small>Кугурак чаплык уке.</small>',
-'svg-long-desc'        => 'SVG файл, шкенжын кугытшо: $1 × $2 пиксел, файлын кугытшо: $3',
-'show-big-image'       => 'Шкенжын чаплыкше',
-'show-big-image-thumb' => '<small>Ончылгоч ончымашын кугытшо $1 × $2 пиксель</small>',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
+'file-info-size'  => '$1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4',
+'file-nohires'    => '<small>Кугурак чаплык уке.</small>',
+'svg-long-desc'   => 'SVG файл, шкенжын кугытшо: $1 × $2 пиксел, файлын кугытшо: $3',
+'show-big-image'  => 'Шкенжын чаплыкше',
 
 # Special:NewFiles
 'newimages-legend' => 'Фильтр',

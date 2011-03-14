@@ -1154,7 +1154,6 @@ Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i 
 ** Cumpurtament intimidatori
 ** Avè druvaa püssee dun cünt in manera abüsiva
 ** El nom del druvàt l'è inacetabil",
-'ipbanononly'              => 'Blòca dumà i druvàt anonim',
 'ipbcreateaccount'         => 'Lassegh mia creà di alter cünt',
 'ipbemailban'              => "Fà in manera che quel druvàt chì 'l poda mia spedì di messagg e-mail",
 'ipbenableautoblock'       => "Bloca in manera utumatega l'ültim indirizz IP druvaa da 'stu druvadur chì, e qualsessìa olter indirizz IP cun al qual el cerca de fà di mudifegh.",
@@ -1165,7 +1164,6 @@ Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i 
 'ipbotherreason'           => 'Alter resón/spiegazión',
 'ipbhidename'              => "Scund 'l nom del druvat dai mudifegh e da i list.",
 'ipbwatchuser'             => "Tegn d'ögg i paginn duvrat e de discüssión de quel duvrat chì",
-'ipballowusertalk'         => "Permet a quel duvrat chì de mudifegà la sò pagina de discüssión intanta che l'è blucaa",
 'ipb-change-block'         => 'Blocà ancamò el duvrat cun quij impustazión chì',
 'badipaddress'             => 'Adrèss IP mia valid',
 'blockipsuccesssub'        => 'Blucagg bel-e faa',
@@ -1180,7 +1178,6 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'ipusubmit'                => "Tö via 'stu bloch chì",
 'unblocked'                => "[[User:$1|$1]] l'è staa desblucaa",
 'ipblocklist'              => 'Adrèss IP e druvàt blucaa',
-'blocklistline'            => "$1, $2 l'ha blucaa $3 ($4)",
 'infiniteblock'            => 'per semper',
 'expiringblock'            => 'el finiss el $1 a $2',
 'anononlyblock'            => 'dumà i anònim',
@@ -1325,13 +1322,12 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'nextdiff'     => 'Mudifega püssee növa →',
 
 # Media information
-'imagemaxsize'         => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
-'thumbsize'            => 'Dimensiún diapusitiif:',
-'file-info-size'       => '$1 × $2 pixel, dimensión : $3, sort MIME: $4',
-'file-nohires'         => '<small>Nissüna resulüzión püssee granda dispunibila.</small>',
-'svg-long-desc'        => "archivi in furmaa SVG, dimensión nominaj  $1 × $2 pixel, dimensión de l'archivi: $3",
-'show-big-image'       => 'Versión a resolüzión volta',
-'show-big-image-thumb' => '<small>Dimensión de quela anteprima chì: $1 × $2 pixel</small>',
+'imagemaxsize'   => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
+'thumbsize'      => 'Dimensiún diapusitiif:',
+'file-info-size' => '$1 × $2 pixel, dimensión : $3, sort MIME: $4',
+'file-nohires'   => '<small>Nissüna resulüzión püssee granda dispunibila.</small>',
+'svg-long-desc'  => "archivi in furmaa SVG, dimensión nominaj  $1 × $2 pixel, dimensión de l'archivi: $3",
+'show-big-image' => 'Versión a resolüzión volta',
 
 # Special:NewFiles
 'newimages' => 'Espusizión di imàgin növ',

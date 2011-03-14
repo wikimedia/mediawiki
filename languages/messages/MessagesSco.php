@@ -1163,7 +1163,6 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'unblockiptext'               => 'Uise the form ablo tae restore screivin richts
 tae an afore-blockit IP address or uisername.',
 'ipblocklist'                 => 'Blockit IP addresses an uisernames',
-'blocklistline'               => '$1, $2 blockit $3 (expires $4)',
 'anononlyblock'               => 'anon. juist',
 'createaccountblock'          => 'accoont-makkin blockit',
 'blocklink'                   => 'block',

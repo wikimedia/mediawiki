@@ -481,7 +481,6 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 'ipadressorusername' => 'IP adresse imalt. atuisoq:',
 'ipboptions'         => '2 tiimit:2 hours,ulloq 1:1 day,ullut 3:3 days,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite',
 'ipblocklist-submit' => 'Ujarlerit',
-'blocklistline'      => '$1, $2 asserpaa $3 ($4)',
 'infiniteblock'      => 'killeqanngitsoq',
 'expiringblock'      => 'atorunnaassaaq $1 $2-nngoruni',
 'blocklink'          => 'assersoruk',

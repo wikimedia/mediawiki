@@ -1586,11 +1586,10 @@ Lejon dhânien e arsyes në përmbledhje.',
 'nextdiff'     => 'Redaktimi mâ i ri →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4',
-'file-nohires'         => '<small>Rezolucioni i plotë.</small>',
-'svg-long-desc'        => 'skeda SVG, $1 × $2 pixela, madhësia: $3',
-'show-big-image'       => 'Rezolucion i plotë',
-'show-big-image-thumb' => '<small>Madhësia e parapâmjes: $1 × $2 pixela</small>',
+'file-info-size' => '$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4',
+'file-nohires'   => '<small>Rezolucioni i plotë.</small>',
+'svg-long-desc'  => 'skeda SVG, $1 × $2 pixela, madhësia: $3',
+'show-big-image' => 'Rezolucion i plotë',
 
 # Bad image list
 'bad_image_list' => 'Formati âsht si vijon:

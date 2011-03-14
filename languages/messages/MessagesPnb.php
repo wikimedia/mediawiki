@@ -993,7 +993,6 @@ $messages = array(
 'ipbexpiry'                => 'انت:',
 'ipbreason'                => 'وجہ:',
 'ipbreasonotherlist'       => 'ہور وجہ',
-'ipbanononly'              => 'انجان ورتن آلیاں نوں روکو',
 'ipbcreateaccount'         => 'کھاتہ کھولنا روکو',
 'ipbemailban'              => 'ورتن آلے نوں ای میل پیجن توں روکو',
 'ipbsubmit'                => 'اس ورتن آلے نوں روکو',
@@ -1006,7 +1005,6 @@ $messages = array(
 'ipb-blocklist'            => 'روکیاں گياں نوں ویکھو',
 'unblockip'                => 'ورتن آلے تے روک بند کرو',
 'ipblocklist'              => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
-'ipblocklist-username'     => 'ورتن آلے دا ناں یا آئی پی پتہ:',
 'ipblocklist-submit'       => 'کھوجو',
 'infiniteblock'            => 'بے انت',
 'emailblock'               => 'ای میل روک دتی گئی اے',
@@ -1185,11 +1183,10 @@ $messages = array(
 'nextdiff'     => 'نویں لکھائی →',
 
 # Media information
-'file-info-size'       => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
-'file-nohires'         => '<small>اس توں وڈی فوٹو موجود نہیں۔</small>',
-'svg-long-desc'        => 'ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3',
-'show-big-image'       => 'وڈی مورت',
-'show-big-image-thumb' => '<small>کچے کم دے پکسل:$1 × $2</small>',
+'file-info-size' => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
+'file-nohires'   => '<small>اس توں وڈی فوٹو موجود نہیں۔</small>',
+'svg-long-desc'  => 'ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3',
+'show-big-image' => 'وڈی مورت',
 
 # Special:NewFiles
 'newimages' => 'نئی فائلاں دی نگری',

@@ -1278,7 +1278,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 ** Mò-lî ke hàng-vì, kûng-kit/sâu-yéu phe̍t-ngìn
 ** Lam-yung tô-ke chong-ho
 ** Put-nèn chiap-su ke yung-fu-miàng',
-'ipbanononly'                 => 'Chak kim-chṳ́ ngia̍k-mià yung-fu phiên-cho',
 'ipbcreateaccount'            => 'Chú-chṳ́ chhóng-li̍p sîn chong-ho',
 'ipbenableautoblock'          => 'Chhṳ-thung chhà-fûng ke-yung-fu sṳ́-yung-ko ke IP thi-tiám',
 'ipbsubmit'                   => 'Chhà-fûng ke-yung-fu',
@@ -1301,7 +1300,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'unblocked-id'                => 'Fûng-kim $1 yí-kîn pûn yì-chhù',
 'ipblocklist'                 => 'Pûn fûng IP thi-tiám lie̍t-péu',
 'ipblocklist-submit'          => 'Chhìm-cháu',
-'blocklistline'               => '$1，$2 kim-fûng $3 （$4）',
 'infiniteblock'               => 'yún-kiú',
 'expiringblock'               => '$1 $2 to-khì',
 'anononlyblock'               => 'Han-chṳ ngia̍k-miàng yung-fu.',
@@ -1602,15 +1600,14 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Hâ-yit pán-pún →',
 
 # Media information
-'mediawarning'         => "'''Kín-ko''': Ke-tóng-on khó-nèn pâu-hàm ok-yi am-ho, chṳp-hàng kì khó-nèn tui ngì-ke ne-thúng tai-lòi ngùi-hiám.",
-'imagemaxsize'         => 'Chhai thù-chhiong mèu-siá chông tui thù-chhiong thai-séu han-chṳ he:',
-'thumbsize'            => 'Lio̍k-thù thai-séu:',
-'file-info'            => 'tóng-on thai-séu: $1, MIME lui-hìn: $2',
-'file-info-size'       => '$1 × $2 chhiong-su, tóng-on thai-séu:$3 ，MIME lui-hìn:$4',
-'file-nohires'         => '<small>Mò kien-kô kié-chhiong-thu khó-yî thì-kiûng.</small>',
-'svg-long-desc'        => 'SVG tóng-on, péu-mien thai-séu: $1 × $2 siong-su, tóng-on thai-séu: $3',
-'show-big-image'       => 'Vàn-cháng ke kié-chhiong-thu',
-'show-big-image-thumb' => '<small>Liá-ke puk-suk-thù ke kié-chhiong-thu he: $1 × $2 chhiong-su</small>',
+'mediawarning'   => "'''Kín-ko''': Ke-tóng-on khó-nèn pâu-hàm ok-yi am-ho, chṳp-hàng kì khó-nèn tui ngì-ke ne-thúng tai-lòi ngùi-hiám.",
+'imagemaxsize'   => 'Chhai thù-chhiong mèu-siá chông tui thù-chhiong thai-séu han-chṳ he:',
+'thumbsize'      => 'Lio̍k-thù thai-séu:',
+'file-info'      => 'tóng-on thai-séu: $1, MIME lui-hìn: $2',
+'file-info-size' => '$1 × $2 chhiong-su, tóng-on thai-séu:$3 ，MIME lui-hìn:$4',
+'file-nohires'   => '<small>Mò kien-kô kié-chhiong-thu khó-yî thì-kiûng.</small>',
+'svg-long-desc'  => 'SVG tóng-on, péu-mien thai-séu: $1 × $2 siong-su, tóng-on thai-séu: $3',
+'show-big-image' => 'Vàn-cháng ke kié-chhiong-thu',
 
 # Special:NewFiles
 'newimages'             => 'Sîn-kien thù-chhiong ke va̍k-lòng',

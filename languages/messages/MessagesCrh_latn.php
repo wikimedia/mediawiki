@@ -1650,7 +1650,6 @@ Blok etmelerni közden keçirmek içün [[Special:IPBlockList|IP adresi blok eti
 'unblockip'                => 'Qullanıcınıñ blok etmesini çıqar',
 'ipusubmit'                => 'Bu blok etmeni çıqar',
 'ipblocklist'              => 'Blok etilgen qullanıcılar ve IP adresleri',
-'blocklistline'            => '$1, $2 blok etti: $3 ($4)',
 'infiniteblock'            => 'müddetsiz',
 'expiringblock'            => '$1 $2 tarihında bitecek',
 'blocklink'                => 'blok et',
@@ -1898,17 +1897,16 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'nextdiff'     => 'Soñraki deñişiklik →',
 
 # Media information
-'mediawarning'         => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
+'mediawarning'    => "'''İhtar''': Bu fayl türüniñ içinde yaman niyetli kod ola bile.
 Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.",
-'imagemaxsize'         => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
-'thumbsize'            => 'Kiçik ölçü:',
-'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1|$3}} saife',
-'file-info'            => 'fayl büyükligi: $1, MIME çeşiti: $2',
-'file-info-size'       => '$1 × $2 piksel, fayl büyükligi: $3, MIME çeşiti: $4',
-'file-nohires'         => '<small>Daa yüksek çezinirlikke saip versiya yoq.</small>',
-'svg-long-desc'        => 'SVG faylı, nominal $1 × $2 piksel, fayl büyükligi: $3',
-'show-big-image'       => 'Tam çezinirlik',
-'show-big-image-thumb' => '<small>Baqıp çıquvda resim büyükligi: $1 × $2 piksel</small>',
+'imagemaxsize'    => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
+'thumbsize'       => 'Kiçik ölçü:',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|1|$3}} saife',
+'file-info'       => 'fayl büyükligi: $1, MIME çeşiti: $2',
+'file-info-size'  => '$1 × $2 piksel, fayl büyükligi: $3, MIME çeşiti: $4',
+'file-nohires'    => '<small>Daa yüksek çezinirlikke saip versiya yoq.</small>',
+'svg-long-desc'   => 'SVG faylı, nominal $1 × $2 piksel, fayl büyükligi: $3',
+'show-big-image'  => 'Tam çezinirlik',
 
 # Special:NewFiles
 'newimages'             => 'Yañı resimler',

@@ -1536,7 +1536,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 ** Segämine ja ts'urkminõ
 ** Mitmõ pruukjanime võlsspruukminõ
 ** Sündümäldäq pruukjanimi",
-'ipbanononly'                 => 'Piäq kinniq õnnõ ilma nimeldä pruukjaq',
 'ipbcreateaccount'            => 'Lasku-i pruukjanimme luvvaq',
 'ipbemailban'                 => 'Lubagu-i pruukjal e-posti saataq',
 'ipbenableautoblock'          => 'Piäq kinniq viimäne puutri võrgoaadrõs, kost pruukja om toimõnduisi tennüq, ja edespiten aadrõsiq, kost tä viil pruuv toimõnduisi tetäq.',
@@ -1561,9 +1560,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'unblocked-id'                => '$1 kinniqpidämine võeti maaha',
 'ipblocklist'                 => 'Kinniqpeetüisi IP-aadrõssidõ ja pruukjanimmi nimekiri',
 'ipblocklist-legend'          => 'Otsiq kinniqpeetüt pruukjat',
-'ipblocklist-username'        => 'Pruukjanimi vai puutri võrgoaadrõs:',
 'ipblocklist-submit'          => 'Otsiq',
-'blocklistline'               => '$1 — $2 om kinniq pidänüq pruukja $3 ($4)',
 'infiniteblock'               => 'igäveste',
 'expiringblock'               => 'tähtaig om $1 $2',
 'anononlyblock'               => 'õnnõ nimeldä pruukjaq',
@@ -1879,15 +1876,14 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'nextdiff'     => 'Vahtsõmb toimõndus →',
 
 # Media information
-'mediawarning'         => "'''Kaeq ette''': Taan teedüstün või ollaq sisen ohtlik kuud, miä või su programmilõ vika tetäq.",
-'imagemaxsize'         => 'Pildi seletüslehe pääl näütämise suuruspiir:',
-'thumbsize'            => 'Väikupildi suurus:',
-'file-info'            => '$1, MIME-tüüp: $2',
-'file-info-size'       => '$1×$2 pikslit, $3, MIME-tüüp: $4',
-'file-nohires'         => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
-'svg-long-desc'        => 'SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3',
-'show-big-image'       => 'Täüsterräv kujo',
-'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1×$2 pikslit</small>',
+'mediawarning'   => "'''Kaeq ette''': Taan teedüstün või ollaq sisen ohtlik kuud, miä või su programmilõ vika tetäq.",
+'imagemaxsize'   => 'Pildi seletüslehe pääl näütämise suuruspiir:',
+'thumbsize'      => 'Väikupildi suurus:',
+'file-info'      => '$1, MIME-tüüp: $2',
+'file-info-size' => '$1×$2 pikslit, $3, MIME-tüüp: $4',
+'file-nohires'   => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
+'svg-long-desc'  => 'SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3',
+'show-big-image' => 'Täüsterräv kujo',
 
 # Special:NewFiles
 'newimages'             => 'Vahtsõq pildiq',

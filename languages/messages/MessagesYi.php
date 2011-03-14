@@ -2192,7 +2192,6 @@ $UNWATCHURL
 ** סטראשעט און שטערט
 ** קרומבאניצן מערערע קאנטעס
 ** באַניצער נאָמען פראבלעמאַטיש',
-'ipbanononly'                     => 'בלאקירן נאר אנאנימע באַניצערס',
 'ipbcreateaccount'                => 'פֿאַרמײַדן שאַפֿן קאנטעס',
 'ipbemailban'                     => 'פֿארמײַדן באַניצער פון שיקן ע־פאסט',
 'ipbenableautoblock'              => 'אויטאמאַטיש בלאקירן דעם לעצטן IP אַדרעס פֿ
@@ -2213,7 +2212,6 @@ $UNWATCHURL
 'ipbotherreason'                  => 'אנדער/נאך א סיבה:',
 'ipbhidename'                     => 'באַהאַלטן באַניצער נאָמען פֿון רעדאַקטירונגען און רשימות',
 'ipbwatchuser'                    => 'אויפֿפאַסן דעם באַניצערס באַניצער און רעדן בלעטער',
-'ipballowusertalk'                => 'לאָזן דעם באַניצער ענדערן אייגענעם רעדן בלאַט ווען בלאקירט',
 'badipaddress'                    => 'נישט קיין גוטער IP אַדרעס.',
 'blockipsuccesssub'               => 'בלאק איז דורכגפירט מיט דערפֿאלג',
 'blockipsuccesstext'              => 'באַניצער [[Special:Contributions/$1|$1]] <br />איז פֿאַרשפאַרט.
@@ -2229,13 +2227,9 @@ $UNWATCHURL
 'unblocked-id'                    => 'בלאק $1 איז געווארן אַראָפגענומען.',
 'ipblocklist'                     => 'ליסטע פון בלאקירטע באניצערס און IP אדרעסן',
 'ipblocklist-legend'              => 'געפֿינען א בלאקירטן באניצער',
-'ipblocklist-username'            => 'באניצער נאמען אדער IP אדרעס:',
-'ipblocklist-sh-userblocks'       => '$1 קאנטע בלאקן',
-'ipblocklist-sh-tempblocks'       => '$1 צײַטווײַליקע בלאקן',
 'ipblocklist-submit'              => 'זוכן',
 'ipblocklist-localblock'          => 'לאקאַלע בלאקירונג',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|אַנדער בלאקירונג|אַנדערע בלאקירונגען}}',
-'blocklistline'                   => '$1 $2 האט פֿאַרשפאַרט $3 ($4)',
 'infiniteblock'                   => 'אויף אייביק',
 'expiringblock'                   => 'גייט אויס אום $1 $2',
 'anononlyblock'                   => 'בלויז אַנאנימע',
@@ -2624,7 +2618,6 @@ $1',
 'file-nohires'         => '<small>נישטא מיט א העכערע רעזאלוציע.</small>',
 'svg-long-desc'        => 'טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3',
 'show-big-image'       => 'בילד מיט דער גרעסטער רעזאלוציע',
-'show-big-image-thumb' => '<small>גרייס פון דער ווײַזונג: $1 × $2 פיקסעלן</small>',
 'file-info-gif-looped' => 'אין א פעטליע',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ראם|ראמען}}',
 'file-info-png-looped' => 'אין א פעטליע',

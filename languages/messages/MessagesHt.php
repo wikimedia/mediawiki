@@ -1377,11 +1377,10 @@ Li pèmèt retabli vèsyon ki te anvan li epi ajoute yon rezon ki esplike poukis
 'nextdiff'     => 'Modifikasyon swivan →',
 
 # Media information
-'file-info-size'       => '$1 × $2 piksèl, gwosè fichye a : $3, tip MIME li ye : $4',
-'file-nohires'         => '<small>Pa genyen rezolisyon ki pi wo ki disponib.</small>',
-'svg-long-desc'        => 'Fichye SVG, rezolisyon de $1 × $2 piksèl, gwosè fichye : $3',
-'show-big-image'       => 'Pi bon rezolisyon',
-'show-big-image-thumb' => '<small>Lajè apèsi sa a : $1 × $2 piksèl</small>',
+'file-info-size' => '$1 × $2 piksèl, gwosè fichye a : $3, tip MIME li ye : $4',
+'file-nohires'   => '<small>Pa genyen rezolisyon ki pi wo ki disponib.</small>',
+'svg-long-desc'  => 'Fichye SVG, rezolisyon de $1 × $2 piksèl, gwosè fichye : $3',
+'show-big-image' => 'Pi bon rezolisyon',
 
 # Special:NewFiles
 'newimages' => 'Galri pou nouvo fichye yo',

@@ -914,11 +914,10 @@ Why a ell gweles hy fennfenten.',
 'nextdiff'     => 'Chanj nowyttha →',
 
 # Media information
-'file-info-size'       => '$1 × $2 pixel, mens an restren: $3, sort MIME : $4',
-'file-nohires'         => '<small>Nyns eus clerder uhella cavadow.</small>',
-'svg-long-desc'        => 'Restren SVG, $1 × $2 pixel yn hanow, mens an restren: $3',
-'show-big-image'       => 'Clerder leun',
-'show-big-image-thumb' => '<small>Mens an ragwel-ma: $1 × $2 pixel</small>',
+'file-info-size' => '$1 × $2 pixel, mens an restren: $3, sort MIME : $4',
+'file-nohires'   => '<small>Nyns eus clerder uhella cavadow.</small>',
+'svg-long-desc'  => 'Restren SVG, $1 × $2 pixel yn hanow, mens an restren: $3',
+'show-big-image' => 'Clerder leun',
 
 # Special:NewFiles
 'ilsubmit' => 'Whila',

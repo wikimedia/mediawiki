@@ -1486,7 +1486,6 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 ** Gawî-gawing makatakót/makauyám
 ** Nag-aabuso nin mga lain-lain na ''account''
 ** Dai akong ngaran nin parágamit",
-'ipbanononly'                 => 'Bagaton an mga paragamit na anonimo sana',
 'ipbcreateaccount'            => 'Pugulon an pagibo nin kuenta.',
 'ipbemailban'                 => 'Pugolan ining paragamit na magpadara nin e-surat',
 'ipbenableautoblock'          => 'Enseguidang bagaton an huring direccion nin  IP na ginamit kaining paragamit, asin kon ano pang ibang IP na proprobaran nindang gamiton',
@@ -1511,9 +1510,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'unblocked-id'                => 'Hinali na an bagat na $1',
 'ipblocklist'                 => 'Lista nin mga direksyon nin IP asin ngaran nin paragamit na binagat',
 'ipblocklist-legend'          => 'Hanapon an sarong binagát na paragamit',
-'ipblocklist-username'        => 'Gahâ o dirección nin IP:',
 'ipblocklist-submit'          => 'Hanápon',
-'blocklistline'               => '$1, $2 binagat $3 ($4)',
 'infiniteblock'               => 'daing siring',
 'expiringblock'               => 'minapasó $1 $2',
 'anononlyblock'               => 'anon. sana',
@@ -1823,16 +1820,15 @@ $1",
 'nextdiff'     => 'Sunod na kaibhán →',
 
 # Media information
-'mediawarning'         => "'''Patanid''': May ''malicious code'' sa ''file'' na ini, kun gigibohon ini pwede ser na maraot an saimong ''system''.",
-'imagemaxsize'         => 'Limitaran an mga ladawan sa mga páhinang deskripsyon kan ladawan sa:',
-'thumbsize'            => 'Sokol nin retratito:',
-'widthheightpage'      => '$1×$2, $3 mga pahina',
-'file-info'            => "sokol kan ''file'': $1, tipo nin MIME: $2",
-'file-info-size'       => "$1 × $2 na pixel, sokol kan ''file'': $3, tipo nin MIME: $4",
-'file-nohires'         => '<small>Mayong mas halangkaw na resolusyón.</small>',
-'svg-long-desc'        => 'file na SVG, haros $1 × $2 pixels, sokol kan file: $3',
-'show-big-image'       => 'Todong resolusyon',
-'show-big-image-thumb' => '<small>Sokol kan patânaw: $1 × $2  na pixel</small>',
+'mediawarning'    => "'''Patanid''': May ''malicious code'' sa ''file'' na ini, kun gigibohon ini pwede ser na maraot an saimong ''system''.",
+'imagemaxsize'    => 'Limitaran an mga ladawan sa mga páhinang deskripsyon kan ladawan sa:',
+'thumbsize'       => 'Sokol nin retratito:',
+'widthheightpage' => '$1×$2, $3 mga pahina',
+'file-info'       => "sokol kan ''file'': $1, tipo nin MIME: $2",
+'file-info-size'  => "$1 × $2 na pixel, sokol kan ''file'': $3, tipo nin MIME: $4",
+'file-nohires'    => '<small>Mayong mas halangkaw na resolusyón.</small>',
+'svg-long-desc'   => 'file na SVG, haros $1 × $2 pixels, sokol kan file: $3',
+'show-big-image'  => 'Todong resolusyon',
 
 # Special:NewFiles
 'newimages'             => 'Galeria nin mga bàgong file',
