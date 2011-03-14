@@ -121,6 +121,7 @@ class ResourceLoader {
 	 * @return String: Filtered data, or a comment containing an error message
 	 */
 	protected function filter( $filter, $data ) {
+		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform 
@@ -147,7 +148,10 @@ class ResourceLoader {
 		try {
 			switch ( $filter ) {
 				case 'minify-js':
-					$result = JavaScriptMinifier::minify( $data );
+					$result = JavaScriptMinifier::minify( $data,
+						$wgResourceLoaderMinifierStatementsOnOwnLine,
+						$wgResourceLoaderMinifierMaxLineLength
+					);
 					$result .= "\n\n/* cache key: $key */\n";
 					break;
 				case 'minify-css':
