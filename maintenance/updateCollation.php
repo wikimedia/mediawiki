@@ -48,9 +48,13 @@ TEXT;
 	
 	public function syncDBs() {
 		$lb = wfGetLB();
-		$dbw = $lb->getConnection( DB_MASTER );
-		$pos = $dbw->getMasterPos();
-		$lb->waitForAll( $pos );
+		// bug 27975 - Don't try to wait for slaves if there are none
+		// Prevents permission error when getting master position
+		if ( $lb->getServerCount() > 1 ) {
+			$dbw = $lb->getConnection( DB_MASTER );
+			$pos = $dbw->getMasterPos();
+			$lb->waitForAll( $pos );
+		}
 	}
 
 	public function execute() {
