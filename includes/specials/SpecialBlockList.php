@@ -50,7 +50,7 @@ class SpecialBlockList extends SpecialPage {
 		$par = $wgRequest->getVal( 'ip', $par );
 		$this->target = trim( $wgRequest->getVal( 'wpTarget', $par ) );
 
-		$this->options = $wgRequest->getArray( 'wpOptions' );
+		$this->options = $wgRequest->getArray( 'wpOptions', array() );
 
 		$action = $wgRequest->getText( 'action' );
 
@@ -419,6 +419,6 @@ class BlockListPager extends TablePager {
 	}
 
 	function getTitle() {
-		return $this->mPage->getTitle();
+		return $this->page->getTitle();
 	}
 }
