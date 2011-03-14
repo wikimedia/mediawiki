@@ -259,7 +259,7 @@ class StandardTemplate extends LegacyTemplate {
 				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();
 				}
-				if( $this->showEmailUser( $id ) ) {
+				if( $this->getSkin()->showEmailUser( $id ) ) {
 					$s .= $sep . $this->emailUserLink();
 				}
 			}
