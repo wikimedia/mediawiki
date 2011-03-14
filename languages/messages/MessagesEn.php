@@ -3022,6 +3022,8 @@ The latest block log entry is provided below for reference:',
 
 # Block/unblock
 'autoblockid'                     => 'Autoblock #$1',
+'block'                           => 'Block user/IP address',
+'unblock'                         => 'Unblock user/IP address',
 'blockip'                         => 'Block user',
 'blockip-title'                   => 'Block user',
 'blockip-legend'                  => 'Block user',

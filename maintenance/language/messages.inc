@@ -2046,6 +2046,8 @@ $wgMessageStructure = array(
 	),
 	'block' => array(
 		'autoblockid',
+		'block',
+		'unblock',
 		'blockip',
 		'blockip-title',
 		'blockip-legend',
