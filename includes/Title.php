@@ -3111,19 +3111,26 @@ class Title {
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
-		$prefix = $dbw->selectField(
+		$prefixes = $dbw->select(
 			'categorylinks',
-			'cl_sortkey_prefix',
+			array( 'cl_sortkey_prefix', 'cl_to' ),
 			array( 'cl_from' => $pageid ),
 			__METHOD__
 		);
-		$dbw->update( 'categorylinks',
-			array(
-				'cl_sortkey' => Collation::singleton()->getSortKey(
-					$nt->getCategorySortkey( $prefix ) ),
-				'cl_timestamp=cl_timestamp' ),
-			array( 'cl_from' => $pageid ),
-			__METHOD__ );
+		foreach ( $prefixes as $prefixRow ) {
+			$prefix = $prefixRow->cl_sortkey_prefix;
+			$catTo = $prefixRow->cl_to;
+			$dbw->update( 'categorylinks',
+				array(
+					'cl_sortkey' => Collation::singleton()->getSortKey(
+						$nt->getCategorySortkey( $prefix ) ),
+					'cl_timestamp=cl_timestamp' ),
+				array(
+					'cl_from' => $pageid,
+					'cl_to' => $catTo ),
+				__METHOD__
+			);
+		}
 
 		if ( $protected ) {
 			# Protect the redirect title as the title used to be...
