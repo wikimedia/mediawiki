@@ -308,7 +308,7 @@ class SpecialBlock extends SpecialPage {
 
 		# Link to the block list
 		$links[] = $skin->linkKnown(
-			SpecialPage::getTitleFor( 'Ipblocklist' ),
+			SpecialPage::getTitleFor( 'BlockList' ),
 			wfMsg( 'ipb-blocklist' )
 		);
 

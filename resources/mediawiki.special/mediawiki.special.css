@@ -37,6 +37,13 @@ tr.mw-block-hideuser {
 	font-weight: bold;
 }
 
+/**** Special:BlockList ****/
+table.mw-blocklist span.mw-usertoollinks,
+span.mw-blocklist-actions{
+	white-space: nowrap;
+	font-size: 90%;
+}
+
 /**** Special:Contributions ****/
 .mw-uctop {
 	font-weight: bold;
