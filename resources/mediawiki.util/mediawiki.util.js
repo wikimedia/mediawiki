@@ -274,9 +274,10 @@
 
 		/**
 		 * Checks wether the current page is the wiki's main page.
+		 * This function requires the document to be ready!
 		 *
 		 * @param alsoRelated Boolean value, if true this function also returns true if the current page is
-		 * in a different namespace page of the main page rather than the main page itself (eg. talk page)
+		 * in an associated namespace page of the main page rather than the main page itself (eg. talk page)
 		 * @return Boolean
 		 */
 		'isMainPage' : function( alsoRelated ) {
