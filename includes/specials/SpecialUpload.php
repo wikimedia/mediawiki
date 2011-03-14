@@ -455,8 +455,8 @@ class SpecialUpload extends SpecialPage {
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
 		if( $permErrors !== true ) {
 			$code = array_shift( $permErrors[0] );
-			$this->showRecoverableUploadError( wfMsgExt( $code,
-					'parseinline', $permErrors[0] ) );
+			$this->showRecoverableUploadError( wfMsgExt( $code[0],
+					'parseinline', $code[1] ) );
 			return;
 		}
 

@@ -473,7 +473,7 @@ abstract class UploadBase {
 
 		$overwriteError = $this->checkOverwrite( $user );
 		if ( $overwriteError !== true ) {
-			return array( array( $overwriteError ) );
+			return array( $overwriteError );
 		}
 
 		return true;
@@ -1101,14 +1101,14 @@ abstract class UploadBase {
 	 *
 	 * @param $user User
 	 *
-	 * @return mixed true on success, error string on failure
+	 * @return mixed true on success, array on failure
 	 */
 	private function checkOverwrite( $user ) {
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
 		if( $file->exists() ) {
 			if( !self::userCanReUpload( $user, $file ) ) {
-				return 'fileexists-forbidden';
+				return array( 'fileexists-forbidden', $file->getName() );
 			} else {
 				return true;
 			}
@@ -1119,7 +1119,7 @@ abstract class UploadBase {
 		 */
 		$file = wfFindFile( $this->getTitle() );
 		if ( $file && !$user->isAllowed( 'reupload-shared' ) ) {
-			return 'fileexists-shared-forbidden';
+			return array( 'fileexists-shared-forbidden', $file->getName() );
 		}
 
 		return true;
