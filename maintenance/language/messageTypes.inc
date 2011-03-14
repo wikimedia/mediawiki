@@ -140,7 +140,7 @@ $wgIgnoredMessages = array(
 	'allpages-summary',
 	'booksources-summary',
 	'categories-summary',
-	'ipblocklist-summary',
+	'blocklist-summary',
 	'protectedtitles-summary',
 	'listusers-summary',
 	'longpages-summary',
