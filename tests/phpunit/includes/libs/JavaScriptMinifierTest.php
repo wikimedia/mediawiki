@@ -57,7 +57,20 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "x:{}/  x/g", "x:{}/  x/g" ),
 			array( "switch(x){case y?z:{}/  x/g:{}/  x/g;}", "switch(x){case y?z:{}/x/g:{}/  x/g;}" ),
 			array( "function x(){}/  x/g", "function x(){}/  x/g" ),
-			array( "+function x(){}/  x/g", "+function x(){}/x/g" )
+			array( "+function x(){}/  x/g", "+function x(){}/x/g" ),
+			
+			// Tests for things that broke in the past
+			// Multiline quoted string
+			array( "var foo=\"\\\nblah\\\n\";", "var foo=\"\\\nblah\\\n\";" ),
+			// Multiline quoted string followed by string with spaces
+			array( "var foo=\"\\\nblah\\\n\";\nvar baz = \" foo \";\n", "var foo=\"\\\nblah\\\n\";var baz=\" foo \";" ),
+			// URL in quoted string ( // is not a comment)
+			array( "aNode.setAttribute('href','http://foo.bar.org/baz');", "aNode.setAttribute('href','http://foo.bar.org/baz');" ),
+			// URL in quoted string after multiline quoted string
+			array( "var foo=\"\\\nblah\\\n\";\naNode.setAttribute('href','http://foo.bar.org/baz');", "var foo=\"\\\nblah\\\n\";aNode.setAttribute('href','http://foo.bar.org/baz');" ),
+			// Division vs. regex nastiness
+			array( "alert( (10+10) / '/'.charCodeAt( 0 ) + '//' );", "alert((10+10)/'/'.charCodeAt(0)+'//');" ),
+			array( "if(1)/a /g.exec('Pa ss');", "if(1)/a /g.exec('Pa ss');" ),
 		);
 	}
 
