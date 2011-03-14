@@ -45,6 +45,10 @@ class SpecialUpload extends SpecialPage {
 	/** Misc variables **/
 	public $mRequest;			// The WebRequest or FauxRequest this form is supposed to handle
 	public $mSourceType;
+
+	/**
+	 * @var UploadBase
+	 */
 	public $mUpload;
 
 	/**
