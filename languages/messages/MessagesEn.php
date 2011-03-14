@@ -3082,7 +3082,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'blocklist-by'                    => 'Blocking admin',
 'blocklist-params'                => 'Block parameters',
 'blocklist-reason'                => 'Reason',
-'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
+'blocklist-summary'               => '', # do not translate or duplicate this message to other languages
 'ipblocklist-submit'              => 'Search',
 'ipblocklist-localblock'          => 'Local block',
 'ipblocklist-otherblocks'         => 'Other {{PLURAL:$1|block|blocks}}',
