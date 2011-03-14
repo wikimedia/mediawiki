@@ -468,7 +468,9 @@ class ResourceLoader {
 				// Scripts
 				$scripts = '';
 				if ( $context->shouldIncludeScripts() ) {
-					$scripts .= $module->getScript( $context ) . "\n";
+					// bug 27054: Append semicolon to prevent weird bugs
+					// caused by files not terminating their statements right
+					$scripts .= $module->getScript( $context ) . ";\n";
 				}
 
 				// Styles
