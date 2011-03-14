@@ -193,7 +193,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   for "ABORTED" reason to be returned and displayed to user.
 * (bug 28034) uploading file to local wiki when file exists on shared repository
   (commons) gives spurious info in the warning message
-  
+
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
 * (bug 14869) Add API module for accessing QueryPage-based special pages
