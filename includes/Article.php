@@ -40,7 +40,7 @@ class Article {
 	var $mTouched = '19700101000000'; // !<
 	var $mUser = -1;                  // !< Not loaded
 	var $mUserText = '';              // !< username from Revision if set
-	var $mParserOptions;              // !< ParserOptions object for $wgUser articles
+	var $mParserOptions;              // !< ParserOptions object
 	var $mParserOutput;               // !< ParserCache object if set
 	/**@}}*/
 
@@ -3610,7 +3610,7 @@ class Article {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text, $user, $popts );
-		$edit->popts = $this->getParserOptions( true );
+		$edit->popts = $this->getParserOptions();
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
 
@@ -4395,23 +4395,15 @@ class Article {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @param $canonical boolean Determines that the generated must not depend on user preferences (see bug 14404)
 	 * @return mixed ParserOptions object or boolean false
 	 */
-	public function getParserOptions( $canonical = false ) {
-		global $wgUser, $wgLanguageCode;
+	public function getParserOptions() {
+		global $wgUser;
 
-		if ( !$this->mParserOptions || $canonical ) {
-			$user = !$canonical ? $wgUser : new User;
-			$parserOptions = new ParserOptions( $user );
-			$parserOptions->setTidy( true );
-			$parserOptions->enableLimitReport();
-
-			if ( $canonical ) {
-				$parserOptions->setUserLang( $wgLanguageCode ); # Must be set explicitely
-				return $parserOptions;
-			}
-			$this->mParserOptions = $parserOptions;
+		if ( !$this->mParserOptions ) {
+			$this->mParserOptions = new ParserOptions( $wgUser );
+			$this->mParserOptions->setTidy( true );
+			$this->mParserOptions->enableLimitReport();
 		}
 
 		// Clone to allow modifications of the return value without affecting
