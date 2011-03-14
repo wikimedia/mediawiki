@@ -1444,7 +1444,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 					$attribs + $thisAttribs );
 				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
 
-				$html .= $checkbox . '<br />';
+				$html .= Html::rawElement( 'div', array( 'class' => 'mw-htmlform-multiselect-item' ), $checkbox );
 			}
 		}
 
@@ -1452,17 +1452,22 @@ class HTMLMultiSelectField extends HTMLFormField {
 	}
 
 	function loadDataFromRequest( $request ) {
-		# won't work with getCheck
-		if ( $request->getCheck( 'wpEditToken' ) ) {
-			$arr = $request->getArray( $this->mName );
-
-			if ( !$arr ) {
-				$arr = array();
+		if ( $this->mParent->getMethod() == 'post' ) {
+			if( $request->wasPosted() ){
+				# Checkboxes are just not added to the request arrays if they're not checked,
+				# so it's perfectly possible for there not to be an entry at all
+				return $request->getArray( $this->mName, array() );
+			} else {
+				# That's ok, the user has not yet submitted the form, so show the defaults
+				return $this->getDefault();
 			}
-
-			return $arr;
 		} else {
-			return $this->getDefault();
+			# This is the impossible case: if we look at $_GET and see no data for our
+			# field, is it because the user has not yet submitted the form, or that they
+			# have submitted it with all the options unchecked? We will have to assume the
+			# latter, which basically means that you can't specify 'positive' defaults
+			# for GET forms.  FIXME...
+			return $request->getArray( $this->mName, array() );
 		}
 	}
 
