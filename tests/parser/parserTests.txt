@@ -6732,7 +6732,7 @@ image:foobar.jpg|some '''caption''' [[Main Page]]
 image:foobar.jpg
 </gallery>
 !! result
-<ul class="gallery" style="max-width: 220px;_width: 220px;">
+<ul class="gallery" style="max-width: 202px;_width: 202px;">
 	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
 			<div style="height: 70px;">Nonexistant.jpg</div>
