@@ -144,6 +144,9 @@ class CSSMin {
 			$query = $match['query'][0];
 			$url = "{$remote}/{$match['file'][0]}";
 			$file = "{$local}/{$match['file'][0]}";
+			// bug 27052 - Guard against double slashes, because foo//../bar
+			// apparently resolves to foo/bar on (some?) clients
+			$url = preg_replace( '#//+#', '/', $url );
 			$replacement = false;
 			if ( $local !== false && file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format,
