@@ -126,6 +126,10 @@ tr.mw-htmlform-vertical-label td.mw-label {
 .mw-htmlform-invalid-input td.mw-input input {
 	border-color: red;
 }
+.mw-htmlform-multiselect-flatlist div.mw-htmlform-multiselect-item {
+	display: inline;
+	margin-right: 1em;
+}
 
 input#wpSummary {
 	width: 80%;
