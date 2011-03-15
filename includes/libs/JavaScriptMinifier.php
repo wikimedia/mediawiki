@@ -422,7 +422,7 @@ class JavaScriptMinifier {
 		while( $pos < $length ) {
 			// First, skip over any whitespace and multiline comments, recording whether we
 			// found any newline character
-			$skip = strspn( $s, " \t\n\r\v\f", $pos );
+			$skip = strspn( $s, " \t\n\r\xb\xc", $pos );
 			if( !$skip ) {
 				$ch = $s[$pos];
 				if( $ch === '/' && substr( $s, $pos, 2 ) === '/*' ) {
