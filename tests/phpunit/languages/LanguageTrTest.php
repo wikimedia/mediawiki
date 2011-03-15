@@ -24,7 +24,7 @@ class LanguageTrTest extends MediaWikiTestCase {
 	 * @see http://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
 	 */
-	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
+	function testChangeCaseOfFirstCharBeingDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if( $func == 'ucfirst' ) {
 			$res = $this->lang->ucfirst( $input );
 		} elseif( $func == 'lcfirst' ) {
@@ -61,6 +61,60 @@ class LanguageTrTest extends MediaWikiTestCase {
 			# consider IPhone is English!
 			array( 'lcfirst', 'IPhone', 'upper', 'ıPhone' ),
 
+		);
+	} 
+
+##### LanguageTr specificities  #############################################
+	/**
+	 * @cover LanguageTr:lc
+	 * See @bug 28040
+	 */
+	function testLanguageTrLowerCasingOverride() {
+		$this->assertEquals( 'ııııı', $this->lang->lc( 'IIIII') );
+	}
+	/**
+	 * @cover LanguageTr:uc
+	 * See @bug 28040
+	 */
+	function testLanguageTrUpperCasingOverride() {
+		$this->assertEquals( 'İİİİİ', $this->lang->uc( 'iiiii') );
+	}
+
+##### Upper casing a string #################################################
+	/**
+	 * Generic test for the Turkish dotted and dotless I strings
+	 * See @bug 28040
+	 * @dataProvider provideUppercaseStringsWithDottedAndDotlessI
+	 */
+	function testUpperCasingOfAStringWithDottedAndDotLessI( $expected, $input ) {
+		$this->assertEquals( $expected, $this->lang->uc( $input ) );
+	}
+	function provideUppercaseStringsWithDottedAndDotlessI() {
+		return array(
+			# expected, input string to uc()
+			array( 'IIIII', 'ııııı' ),
+			array( 'IIIII', 'IIIII' ), #identity
+			array( 'İİİİİ', 'iiiii' ), # Specifically handled by LanguageTr:uc
+			array( 'İİİİİ', 'İİİİİ' ), #identity
+		);
+	}
+
+##### Lower casing a string #################################################
+	/**
+	 * Generic test for the Turkish dotted and dotless I strings
+	 * See @bug 28040
+	 * @dataProvider provideLowercaseStringsWithDottedAndDotlessI
+	 */
+	function testLowerCasingOfAStringWithDottedAndDotLessI( $expected, $input ) {
+		$this->assertEquals( $expected, $this->lang->lc( $input ) );
+	}
+	function provideLowercaseStringsWithDottedAndDotlessI() {
+		return array(
+			# expected, input string to lc()
+			array( 'ııııı', 'IIIII' ), # Specifically handled by LanguageTr:lc
+			array( 'ııııı', 'ııııı' ), #identity
+			array( 'iiiii', 'İİİİİ' ),
+			array( 'iiiii', 'iiiii' ), #identity
 		);
 	}
 
