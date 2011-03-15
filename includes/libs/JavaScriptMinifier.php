@@ -512,7 +512,7 @@ class JavaScriptMinifier {
 			} else {
 				// Identifier or reserved word. Search for the end by excluding whitespace and
 				// punctuation.
-				$end += strcspn( $s, " \t\n.;,=<>+-{}()[]?:*/%'\"!&|^~\f\v\r", $end );
+				$end += strcspn( $s, " \t\n.;,=<>+-{}()[]?:*/%'\"!&|^~\xb\xc\r", $end );
 			}
 
 			// Now get the token type from our type array
