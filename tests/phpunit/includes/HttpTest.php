@@ -493,9 +493,6 @@ class HttpTest extends MediaWikiTestCase {
 		$jar = $r->getCookieJar();
 		$this->assertThat( $jar, $this->isInstanceOf( 'CookieJar' ) );
 
-		if ( $r instanceof PhpHttpRequest && version_compare( '5.1.7', phpversion(), '>' ) ) {
-			$this->markTestSkipped( 'Redirection fails or crashes PHP on 5.1.6 and prior' );
-		}
 		$serialized = $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" );
 		$this->assertRegExp( '/\bCOUNTRY=[^=;]+/', $serialized );
 		$this->assertRegExp( '/\bLAST_LANG=[^=;]+/', $serialized );
