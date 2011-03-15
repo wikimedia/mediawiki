@@ -616,29 +616,24 @@ class RecentChange {
 	public function getIRCLine() {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
 
-		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
-		// e.g. list ($rc_type, $rc_id) = array_values ($this->mAttribs); [or something like that]
-		extract($this->mAttribs);
-		extract($this->mExtra);
-
-		if( $rc_type == RC_LOG ) {
-			$titleObj = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
+		if( $this->mAttribs['rc_type'] == RC_LOG ) {
+			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
 		} else {
 			$titleObj =& $this->getTitle();
 		}
 		$title = $titleObj->getPrefixedText();
 		$title = self::cleanupForIRC( $title );
 
-		if( $rc_type == RC_LOG ) {
+		if( $this->mAttribs['rc_type'] == RC_LOG ) {
 			$url = '';
 		} else {
-			if( $rc_type == RC_NEW ) {
-				$url = "oldid=$rc_this_oldid";
+			if( $this->mAttribs['rc_type'] == RC_NEW ) {
+				$url = 'oldid=' . $this->mAttribs['rc_this_oldid'];
 			} else {
-				$url = "diff=$rc_this_oldid&oldid=$rc_last_oldid";
+				$url = 'diff=' . $this->mAttribs['rc_this_oldid'] . '&oldid=' . $this->mAttribs['rc_last_oldid'];
 			}
-			if( $wgUseRCPatrol || ($rc_type == RC_NEW && $wgUseNPPatrol) ) {
-				$url .= "&rcid=$rc_id";
+			if ( $wgUseRCPatrol || ( $this->mAttribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
+				$url .= '&rcid=' . $this->mAttribs['rc_id'];
 			}
 			// XXX: *HACK* this should use getFullURL(), hacked for SSL madness --brion 2005-12-26
 			// XXX: *HACK^2* the preg_replace() undoes much of what getInternalURL() does, but we 
@@ -647,8 +642,8 @@ class RecentChange {
 			$url = preg_replace( '/title=[^&]*&/', '', $titleObj->getInternalURL( $url ) );
 		}
 
-		if( isset( $oldSize ) && isset( $newSize ) ) {
-			$szdiff = $newSize - $oldSize;
+		if( isset( $this->mExtra['oldSize'] ) && isset( $this->mExtra['newSize'] ) ) {
+			$szdiff = $this->mExtra['newSize'] - $this->mExtra['oldSize'];
 			if($szdiff < -500) {
 				$szdiff = "\002$szdiff\002";
 			} elseif($szdiff >= 0) {
@@ -659,19 +654,19 @@ class RecentChange {
 			$szdiff = '';
 		}
 
-		$user = self::cleanupForIRC( $rc_user_text );
+		$user = self::cleanupForIRC( $this->mAttribs['rc_user_text'] );
 
-		if( $rc_type == RC_LOG ) {
+		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
 			$targetText = $this->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace("[[$targetText]]","[[\00302$targetText\00310]]",$actionComment) );
-			$flag = $rc_log_action;
+			$comment = self::cleanupForIRC( str_replace( "[[$targetText]]", "[[\00302$targetText\00310]]", $this->mExtra['actionComment'] ) );
+			$flag = $this->mAttribs['rc_log_action'];
 		} else {
-			$comment = self::cleanupForIRC( $rc_comment );
+			$comment = self::cleanupForIRC( $this->mAttribs['rc_comment'] );
 			$flag = '';
-			if( !$rc_patrolled && ($wgUseRCPatrol || $rc_new && $wgUseNPPatrol) ) {
+			if ( !$this->mAttribs['rc_patrolled'] && ( $wgUseRCPatrol || $this->mAttribs['rc_new'] && $wgUseNPPatrol ) ) {
 				$flag .= '!';
 			}
-			$flag .= ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
+			$flag .= ( $this->mAttribs['rc_new'] ? "N" : "" ) . ( $this->mAttribs['rc_minor'] ? "M" : "" ) . ( $this->mAttribs['rc_bot'] ? "B" : "" );
 		}
 
 		if ( $wgRC2UDPInterwikiPrefix === true && $wgLocalInterwiki !== false ) {
