@@ -22,11 +22,11 @@ $fallback = 'ka';
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'ხაზ გუსვი ბუნილეფს:',
+'tog-underline'       => 'რცხიეფს თუდო ქუდუჸნე ღოზი:',
 'tog-highlightbroken' => 'ქააძირი ვაარარსებულ ბუნილეფ <a href="" class="new">მუჭოთ თენა</a> (ალტერნატივა: მუჭოთ თენა<a href="" class="internal">?</a>).',
 'tog-justify'         => 'გაასწორი პარაგრაფეფ',
 'tog-hideminor'       => 'დოჩული ჭიჭე რედაქტირება ბოლო თირაფეფს',
-'tog-showtoolbar'     => 'რედაქტირებაშ ინსტრუმენტეფიშ ძირაფა (ჯავასკრიპტ)',
+'tog-showtoolbar'     => 'რედაქტირაფაშ ინსტრუმენტეფიშ ძირაფა (ჯავასკრიპტ)',
 
 'underline-always' => 'ირო',
 'underline-never'  => 'შურო',

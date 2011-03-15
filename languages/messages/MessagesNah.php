@@ -247,7 +247,7 @@ $messages = array(
 'unprotectthispage' => 'Ahticquīxtīz inīn zāzanilli',
 'newpage'           => 'Yancuīc zāzanilli',
 'talkpage'          => 'Tictlahtōz inīn zāzaniltechcopa',
-'talkpagelinktext'  => 'Tēixnāmiquiliztli',
+'talkpagelinktext'  => 'Tèìxnàmikilistli',
 'specialpage'       => 'Nōncuahquīzqui āmatl',
 'personaltools'     => 'In tlein nitēquitiltilia',
 'postcomment'       => 'Yancuīc xeliuhcāyōtl',
@@ -319,7 +319,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom huelītiliztli',
 'page-rss-feed'           => '"$1" RSS huelītiliztli',
 'page-atom-feed'          => '"$1" RSS huelītiliztli',
-'red-link-title'          => '$1 (in āmatl ahmo ia)',
+'red-link-title'          => '$1 (in tlaìxtlapalli âmò ka)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Tlaìxtlapalli',

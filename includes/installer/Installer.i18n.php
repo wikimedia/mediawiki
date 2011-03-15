@@ -10738,8 +10738,8 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-mysql-old' => 'Необходим MySQL $1 или более поздняя версия. У вас установлен MySQL $2.',
 	'config-db-port' => 'Порт базы данных:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-schema-help' => 'Вышеприведённые схемы, как правило, работают нормально. 
-Изменяйте их только если знаете, зачем это необходимо.',
+	'config-db-schema-help' => 'Эта схема обычно работают хорошо.
+Изменяйте её только если знаете, что вам это нужно.',
 	'config-sqlite-dir' => 'Директория данных SQLite:',
 	'config-sqlite-dir-help' => "SQLite хранит все данные в одном файле. 
 
@@ -10785,6 +10785,8 @@ $1
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
 	'config-invalid-schema' => 'Неправильная схема для MediaWiki «$1». 
 Используйте только ASCII символы (a-z, A-Z), цифры(0-9) и знаки подчёркивания(_).',
+	'config-db-sys-create-oracle' => 'Программа установки поддерживает только использование SYSDBA для создания новой учётной записи.',
+	'config-db-sys-user-exists-oracle' => 'Учётная запись «$1». SYSDBA может использоваться только для создания новой учётной записи!',
 	'config-postgres-old' => 'Необходим PostgreSQL $1 или более поздняя версия. У вас установлен PostgreSQL $2.',
 	'config-sqlite-name-help' => 'Выберите имя-идентификатор для вашей вики. 
 Не используйте дефисы и пробелы.
@@ -10864,6 +10866,8 @@ chmod a+w $3</pre>',
 Обычно, этот префикс происходит от имени вики, но он не может содержать знаки препинания, символы «#» или «:».",
 	'config-ns-invalid' => 'Указанное пространство имён <nowiki>$1</nowiki> недопустимо. 
 Укажите другое пространство имён проекта.',
+	'config-ns-conflict' => 'Указанное пространство имён «<nowiki>$1</nowiki>» конфликтует со стандартным пространством имён MediaWiki.
+Укажите другое пространство имён проекта.',
 	'config-admin-box' => 'Учётная запись администратора',
 	'config-admin-name' => 'Имя:',
 	'config-admin-password' => 'Пароль:',
@@ -10908,6 +10912,7 @@ chmod a+w $3</pre>',
 	'config-license-none' => 'Не указывать лицензию в колонтитуле внизу страницы',
 	'config-license-cc-by-sa' => 'Creative Commons атрибуция — с сохранением условий',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 или более поздней версии',
 	'config-license-pd' => 'Общественное достояние',
@@ -10985,7 +10990,7 @@ GNU Free Documentation License раньше была основной лицен
 Они могут потребовать дополнительные настройки, но их можно включить прямо сейчас',
 	'config-install-alreadydone' => "'''Предупреждение:''' Вы, кажется, уже устанавливали MediaWiki и пытаетесь произвести повторную установку.
 Пожалуйста, перейдите на следующую страницу.",
-	'config-install-begin' => 'Нажав «Далее», вы начнёте установку MediaWiki.
+	'config-install-begin' => 'Нажав «{{int:config-continue}}», вы начнёте установку MediaWiki.
 Если вы хотите внести изменения, нажмите «Назад».',
 	'config-install-step-done' => 'выполнено',
 	'config-install-step-failed' => 'не удалось',

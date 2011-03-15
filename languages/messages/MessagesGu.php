@@ -546,7 +546,7 @@ $2',
 ધ્યાન રાખો કે જ્યાં સુધી તમે તમારા બ્રાઉઝરનો  કૅશ સાફ નહીં કરો ત્યાં સુધી કેટલાક પાનાં તમે પ્રવેશી ચુક્યા છો તેમ બતાવશે.",
 'welcomecreation'            => '== તમારૂં સ્વાગત છે $1! ==
 તમારૂં ખાતું બની ગયું છે.
-તમારી [[Special:Preferences|{{SITENAME}} પસંદગી]] બદલવાનું ભૂલશો નહીં.',
+તમારી [[Special:Preferences|{{SITENAME}} પસંદ]] બદલવાનું ભૂલશો નહીં.',
 'yourname'                   => 'સભ્ય નામ:',
 'yourpassword'               => 'ગુપ્ત સંજ્ઞા:',
 'yourpasswordagain'          => 'ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો',
@@ -3340,7 +3340,7 @@ $1',
 # Special:Version
 'version'                          => 'આવૃત્તિ',
 'version-extensions'               => 'પ્રસ્થાપિત વિસ્તારકો',
-'version-specialpages'             => 'ખાસ પાના',
+'version-specialpages'             => 'ખાસ પાનાં',
 'version-parserhooks'              => 'પદચ્છેદ ખૂંટો',
 'version-variables'                => 'સહગુણકો',
 'version-antispam'                 => 'સ્પેમ સંરક્ષણ',
@@ -3389,8 +3389,9 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'ખાસ પાનાં',
 'specialpages-note'              => '----
-* સામાન્ય ખાસ પાનાઓ.
-* <strong class="mw-specialpagerestricted">Restricted special pages.</strong>',
+* નિયમિત ખાસ પાનાં.
+* <span class="mw-specialpagerestricted">સીમિત ખાસ પાનાં.</span>
+* <span class="mw-specialpagecached">માત્ર-સંગ્રહિત ખાસ પાનાં.</span>',
 'specialpages-group-maintenance' => 'સમારકામ અહેવાલ',
 'specialpages-group-other'       => 'અન્ય ખાસ પાનાઓ',
 'specialpages-group-login'       => 'પ્રવેશ / નોંધણી કરો',

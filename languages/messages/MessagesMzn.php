@@ -206,7 +206,7 @@ $messages = array(
 'mypage'        => 'مه صفحه',
 'mytalk'        => 'مه گپ',
 'anontalk'      => 'گپ بزوئن اینتا آی‌پی وسّه',
-'navigation'    => 'چـأرخـه‌سـه‌ن',
+'navigation'    => 'بگردستن',
 'and'           => '&#32;و',
 
 # Cologne Blue skin
@@ -240,7 +240,7 @@ $messages = array(
 'errorpagetitle'    => 'خطا!',
 'returnto'          => 'بردگستن تا $1',
 'tagline'           => '{{SITENAME}} جه',
-'help'              => 'دأسـگـیـری',
+'help'              => 'کمک و راهنمایی',
 'search'            => 'چـأرخـه تـو',
 'searchbutton'      => 'چـأرخـه‌تـو',
 'go'                => 'بـور',
@@ -661,7 +661,7 @@ $2، $1',
 'allpagessubmit' => 'بـور',
 
 # Special:Categories
-'categories' => 'دسته ئون',
+'categories' => 'رج‌ئون',
 
 # Special:LinkSearch
 'linksearch' => 'دأیا لـیـنـک‌ئون',
