@@ -1935,7 +1935,7 @@ class Parser {
 				$s .= $this->makeKnownLinkHolder( $nt, $text, array(), $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
-				$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
+				$s .= $holders->makeHolder( $nt, $text, array(), $trail, $prefix );
 			}
 			wfProfileOut( __METHOD__."-always_known" );
 		}
@@ -1951,7 +1951,7 @@ class Parser {
 	 *
 	 * @deprecated
 	 */
-	function makeLinkHolder( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeLinkHolder( &$nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
 		return $this->mLinkHolders->makeHolder( $nt, $text, $query, $trail, $prefix );
 	}
 

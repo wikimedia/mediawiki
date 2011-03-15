@@ -41,7 +41,7 @@ class CoreLinkFunctions {
 			# Return false so that this link is reverted back to WikiText
 			return false;
 		}
-		return $holders->makeHolder( $title, isset($displayText) ? $displayText : $titleText, '', '', '' );
+		return $holders->makeHolder( $title, isset($displayText) ? $displayText : $titleText, array(), '', '' );
 	}
 
 	/**

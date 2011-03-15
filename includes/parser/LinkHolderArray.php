@@ -191,7 +191,7 @@ class LinkHolderArray {
 	 *
 	 * @param $nt Title
 	 */
-	function makeHolder( $nt, $text = '', $query = '', $trail = '', $prefix = ''  ) {
+	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = ''  ) {
 		wfProfileIn( __METHOD__ );
 		if ( ! is_object($nt) ) {
 			# Fail gracefully
@@ -205,7 +205,7 @@ class LinkHolderArray {
 				'text' => $prefix.$text.$inside,
 				'pdbk' => $nt->getPrefixedDBkey(),
 			);
-			if ( $query !== '' ) {
+			if ( $query !== array() ) {
 				$entry['query'] = $query;
 			}
 
@@ -349,23 +349,29 @@ class LinkHolderArray {
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				$title = $entry['title'];
-				$query = isset( $entry['query'] ) ? $entry['query'] : '';
+				$query = isset( $entry['query'] ) ? $entry['query'] : array();
 				$key = "$ns:$index";
 				$searchkey = "<!--LINK $key-->";
-				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] == 'new' ) {
-					$linkCache->addBadLinkObj( $title );
-					$colours[$pdbk] = 'new';
-					$output->addLink( $title, 0 );
-					// FIXME: replace deprecated makeBrokenLinkObj() by link()
-					$replacePairs[$searchkey] = $sk->makeBrokenLinkObj( $title,
-									$entry['text'],
-									$query );
-				} else {
-					// FIXME: replace deprecated makeColouredLinkObj() by link()
-					$replacePairs[$searchkey] = $sk->makeColouredLinkObj( $title, $colours[$pdbk],
-									$entry['text'],
-									$query );
+				$displayText = $entry['text'];
+				if ( $displayText === '' ) {
+					$displayText = null;
 				}
+				if ( !isset( $colours[$pdbk] ) ) {
+					$colours[$pdbk] = 'new';
+				}
+				$attribs = array();
+				if ( $colours[$pdbk] == 'new' ) {
+					$linkCache->addBadLinkObj( $title );
+					$output->addLink( $title, 0 );
+					$type = array( 'broken' );
+				} else {
+					if ( $colours[$pdbk] != '' ) {
+						$attribs['class'] = $colours[$pdbk];
+					}
+					$type = array( 'known', 'noclasses' );
+				}
+				$replacePairs[$searchkey] = $sk->link( $title, $displayText,
+						$attribs, $query, $type );
 			}
 		}
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
