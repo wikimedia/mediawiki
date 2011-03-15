@@ -72,7 +72,8 @@ class ApiLogin extends ApiBase {
 
 		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;
 
-		switch ( $authRes = $loginForm->authenticateUserData() ) {
+		$authRes = $loginForm->authenticateUserData();
+		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
 				$wgUser->setOption( 'rememberpassword', 1 );
 				$wgUser->setCookies( $this->getMain()->getRequest() );
