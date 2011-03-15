@@ -215,9 +215,15 @@ class SpecialBlock extends SpecialPage {
 			$fields['HardBlock']['default'] = !$block->mAnonOnly;
 			$fields['CreateAccount']['default'] = $block->mCreateAccount;
 			$fields['AutoBlock']['default'] = $block->mEnableAutoblock;
-			$fields['DisableEmail']['default'] = $block->mBlockEmail;
-			$fields['HideUser']['default'] = $block->mHideName;
-			$fields['DisableUTEdit']['default'] = !$block->mAllowUsertalk;
+			if( isset( $fields['DisableEmail'] ) ){
+				$fields['DisableEmail']['default'] = $block->mBlockEmail;
+			}
+			if( isset( $fields['HideUser'] ) ){
+				$fields['HideUser']['default'] = $block->mHideName;
+			}
+			if( isset( $fields['DisableUTEdit'] ) ){
+				$fields['DisableUTEdit']['default'] = !$block->mAllowUsertalk;
+			}
 			$fields['Reason']['default'] = $block->mReason;
 			$fields['AlreadyBlocked']['default'] = true;
 
