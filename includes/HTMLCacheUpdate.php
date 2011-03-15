@@ -18,7 +18,7 @@
  * batches, but of course LIMIT with an offset is inefficient on the DB side.
  *
  * The class is nevertheless a vast improvement on the previous method of using
- * Image::getLinksTo() and Title::touchArray(), which uses about 2KB of memory per
+ * File::getLinksTo() and Title::touchArray(), which uses about 2KB of memory per
  * link.
  *
  * @ingroup Cache
