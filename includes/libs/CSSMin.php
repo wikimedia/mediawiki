@@ -146,7 +146,7 @@ class CSSMin {
 			$file = "{$local}/{$match['file'][0]}";
 			// bug 27052 - Guard against double slashes, because foo//../bar
 			// apparently resolves to foo/bar on (some?) clients
-			$url = preg_replace( '#[^:]//+#', '/', $url );
+			$url = preg_replace( '#([^:])//+#', '\1/', $url );
 			$replacement = false;
 			if ( $local !== false && file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format,
