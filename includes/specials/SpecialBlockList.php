@@ -325,7 +325,7 @@ class BlockListPager extends TablePager {
 					$formatted .= ' ' . Html::rawElement(
 						'span',
 						array( 'class' => 'mw-blocklist-actions' ),
-						"[{$wgLang->pipeList($links)}]"
+						wfMsg( 'parentheses', $wgLang->pipeList( $links ) )
 					);
 				}
 				break;
