@@ -732,12 +732,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$options['content'] = $this->postData;
 		}
 
-		$oldTimeout = false;
-		if ( version_compare( '5.2.1', phpversion(), '>' ) ) {
-			$oldTimeout = ini_set( 'default_socket_timeout', $this->timeout );
-		} else {
-			$options['timeout'] = $this->timeout;
-		}
+		$options['timeout'] = $this->timeout;
 
 		$context = stream_context_create( array( 'http' => $options ) );
 
@@ -777,10 +772,6 @@ class PhpHttpRequest extends MWHttpRequest {
 				break;
 			}
 		} while ( true );
-
-		if ( $oldTimeout !== false ) {
-			ini_set( 'default_socket_timeout', $oldTimeout );
-		}
 
 		$this->setStatus();
 
