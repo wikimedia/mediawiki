@@ -694,10 +694,6 @@ class PhpHttpRequest extends MWHttpRequest {
 			$this->postData = wfArrayToCGI( $this->postData );
 		}
 
-		// At least on Centos 4.8 with PHP 5.1.6, using max_redirects to follow redirects
-		// causes a segfault
-		$manuallyRedirect = version_compare( phpversion(), '5.1.7', '<' );
-
 		if ( $this->parsedUrl['scheme'] != 'http' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
@@ -715,7 +711,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$options['request_fulluri'] = true;
 		}
 
-		if ( !$this->followRedirects || $manuallyRedirect ) {
+		if ( !$this->followRedirects ) {
 			$options['max_redirects'] = 0;
 		} else {
 			$options['max_redirects'] = $this->maxRedirects;
@@ -765,7 +761,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$this->headerList = $result['wrapper_data'];
 			$this->parseHeader();
 
-			if ( !$manuallyRedirect || !$this->followRedirects ) {
+			if ( !$this->followRedirects ) {
 				break;
 			}
 
