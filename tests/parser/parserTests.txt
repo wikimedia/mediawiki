@@ -976,6 +976,33 @@ External links: wiki links within external link (Bug 3695)
 !! end
 
 !! test
+External links: links containing empty bracket pair []
+!! input
+[http://example.com?parameter[]=foo link]
+!! result
+<p><a rel="nofollow" class="external text" href="http://example.com?parameter%5B%5D=foo">link</a>
+</p>
+!! end
+
+!! test
+External links: links ending in empty bracket pair []
+!! input
+[http://example.com?parameter[]=foo&option[]]
+!! result
+<p><a rel="nofollow" class="external autonumber" href="http://example.com?parameter%5B%5D=foo&amp;option%5B%5D">[1]</a>
+</p>
+!! end
+
+!! test
+External links: bare links ending in empty bracket pair []
+!! input
+http://example.com?parameter[]=foo&option[]
+!! result
+<p><a rel="nofollow" class="external free" href="http://example.com?parameter%5B%5D=foo&amp;option%5B%5D">http://example.com?parameter%5B%5D=foo&amp;option%5B%5D</a>
+</p>
+!! end
+
+!! test
 BUG 787: Links with one slash after the url protocol are invalid
 !! input
 http:/example.com
