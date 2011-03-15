@@ -2472,9 +2472,9 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'autoblockid'                     => 'Autoblocare #$1',
 'block'                           => 'Blocare utilizator/adresă IP',
 'unblock'                         => 'Deblocare utilizator/adresă IP',
-'blockip'                         => 'Blochează utilizator / IP',
-'blockip-title'                   => 'Blochează utilizator',
-'blockip-legend'                  => 'Blochează utilizator / IP',
+'blockip'                         => 'Blocare utilizator',
+'blockip-title'                   => 'Blocare utilizator',
+'blockip-legend'                  => 'Blocare utilizator/adresă IP',
 'blockiptext'                     => "Pentru a bloca un utilizator completați rubricile de mai jos.<br />
 '''Respectați [[{{MediaWiki:Policy-url}}|politica de blocare]].'''<br />
 Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest utilizator.",
@@ -2484,7 +2484,7 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'ipbreasonotherlist'              => 'Alt motiv',
 'ipbreason-dropdown'              => '*Motivele cele mai frecvente
 ** Introducere de informații false
-** Ştergere conținut fără explicații
+** Ștergere conținut fără explicații
 ** Introducere de legături externe de publicitate (spam)
 ** Creare pagini fără sens
 ** Tentative de intimidare
@@ -2508,18 +2508,23 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
 Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
-'ipb-unblock-addr'                => 'Deblochează $1',
+'ipb-unblock-addr'                => 'Deblochează utilizatorul $1',
 'ipb-unblock'                     => 'Deblocați un nume de utilizator sau o adresă IP',
 'ipb-blocklist'                   => 'Vezi blocările existente',
-'ipb-blocklist-contribs'          => 'Contribuții la $1',
+'ipb-blocklist-contribs'          => 'Contribuțiile utilizatorului $1',
 'unblockip'                       => 'Deblochează adresă IP',
 'unblockiptext'                   => 'Folosiți formularul de mai jos pentru a restaura permisiunea de scriere pentru adrese IP sau nume de utilizator blocate anterior.',
 'ipusubmit'                       => 'Elimină blocarea',
 'unblocked'                       => '[[User:$1|$1]] a fost deblocat',
 'unblocked-range'                 => '$1 a fost deblocat',
 'unblocked-id'                    => 'Blocarea $1 a fost eliminată',
+'blocklist'                       => 'Adrese IP și utilizatori blocați',
 'ipblocklist'                     => 'Lista adreselor IP și a conturilor blocate',
 'ipblocklist-legend'              => 'Găsește un utilizator blocat',
+'blocklist-timestamp'             => 'Data și ora',
+'blocklist-expiry'                => 'Expiră la',
+'blocklist-params'                => 'Parametrii blocării',
+'blocklist-reason'                => 'Motiv',
 'ipblocklist-submit'              => 'Caută',
 'ipblocklist-localblock'          => 'Blocare locală',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Altă blocare|Alte $1 blocări}}',
@@ -2990,7 +2995,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'file-nohires'           => '<small>Rezoluții mai mari nu sunt disponibile.</small>',
 'svg-long-desc'          => 'fișier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
 'show-big-image'         => 'Mărește rezoluția imaginii',
-'show-big-image-preview' => '<small> Mărimea acestei previzualizări: $1.</small>',
+'show-big-image-preview' => '<small>Mărimea acestei previzualizări: $1.</small>',
 'show-big-image-other'   => '<small>Alte rezoluții: $1.</small>',
 'show-big-image-size'    => '$1 × $2 pixeli',
 'file-info-gif-looped'   => 'în buclă',

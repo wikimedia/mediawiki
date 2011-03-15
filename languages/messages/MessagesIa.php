@@ -2379,6 +2379,8 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 
 # Block/unblock
 'autoblockid'                     => 'Auto-blocada №$1',
+'block'                           => 'Blocar un usator o adresse IP',
+'unblock'                         => 'Disblocar un usator o adresse IP',
 'blockip'                         => 'Blocar usator',
 'blockip-title'                   => 'Blocar usator',
 'blockip-legend'                  => 'Blocar usator',
@@ -2427,9 +2429,20 @@ Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le bloc
 a un adresse IP blocate previemente.',
 'ipusubmit'                       => 'Cancellar iste blocada',
 'unblocked'                       => '[[User:$1|$1]] ha essite disblocate',
+'unblocked-range'                 => '$1 ha essite disblocate',
 'unblocked-id'                    => 'Le blocada $1 ha essite eliminate',
+'blocklist'                       => 'Adresses IP e nomines de usator blocate',
 'ipblocklist'                     => 'Adresses IP e nomines de usator blocate',
 'ipblocklist-legend'              => 'Cercar un usator blocate',
+'blocklist-userblocks'            => 'Celar blocadas de conto',
+'blocklist-tempblocks'            => 'Celar blocadas temporari',
+'blocklist-addressblocks'         => 'Celar blocadas de singule adresse IP',
+'blocklist-timestamp'             => 'Data e hora',
+'blocklist-target'                => 'Objectivo',
+'blocklist-expiry'                => 'Expira',
+'blocklist-by'                    => 'Blocate per',
+'blocklist-params'                => 'Parametros del blocada',
+'blocklist-reason'                => 'Motivo',
 'ipblocklist-submit'              => 'Cercar',
 'ipblocklist-localblock'          => 'Blocada local',
 'ipblocklist-otherblocks'         => 'Altere {{PLURAL:$1|blocada|blocadas}}',
@@ -2472,6 +2485,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'ipb-needreblock'                 => '== Ja blocate ==
 $1 es ja blocate. Esque tu vole cambiar le configurationes?',
 'ipb-otherblocks-header'          => 'Altere {{PLURAL:$1|blocada|blocadas}}',
+'unblock-hideuser'                => 'Tu non pote disblocar iste usator, proque su nomine de usator ha essite celate.',
 'ipb_cant_unblock'                => 'Error: ID de blocada $1 non trovate. Es possibile que illo ha ja essite disblocate.',
 'ipb_blocked_as_range'            => 'Error: Le IP $1 non es blocate directemente e non pote esser disblocate.
 Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser disblocate.',

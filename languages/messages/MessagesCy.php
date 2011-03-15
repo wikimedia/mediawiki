@@ -2768,7 +2768,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'file-nohires'           => '<small>Wedi ei chwyddo hyd yr eithaf.</small>',
 'svg-long-desc'          => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'show-big-image'         => 'Maint llawn',
-'show-big-image-preview' => '<small> Maint y rhagolwg: $1.</small>',
+'show-big-image-preview' => '<small>Maint y rhagolwg: $1.</small>',
 'show-big-image-other'   => '<small>Datrysiadau eraill: $1 .</small>',
 'show-big-image-size'    => '$1 × $2 picsel',
 'file-info-gif-looped'   => 'dolennog',

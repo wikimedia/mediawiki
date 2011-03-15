@@ -2575,6 +2575,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'unblocked'                       => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-range'                 => 'Sperre für $1 wurde aufgehoben',
 'unblocked-id'                    => 'Sperr-ID $1 wurde freigegeben',
+'blocklist'                       => 'Gesperrte Benutzernamen und IP-Adressen',
 'ipblocklist'                     => 'Gesperrte IP-Adressen und Benutzernamen',
 'ipblocklist-legend'              => 'Suche nach einem gesperrten Benutzer',
 'blocklist-userblocks'            => 'Benutzersperren ausblenden',
