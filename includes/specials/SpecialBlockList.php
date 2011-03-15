@@ -65,7 +65,7 @@ class SpecialBlockList extends SpecialPage {
 		$fields = array(
 			'Target' => array(
 				'type' => 'text',
-				'label-message' => 'ipaddressorusername',
+				'label-message' => 'ipadressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 			),
