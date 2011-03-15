@@ -507,7 +507,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		if( !$wgBlockAllowsUTEdit ){
-			$data['PreventUTEdit'] = true;
+			$data['DisableUTEdit'] = true;
 		}
 
 		# If the user has done the form 'properly', they won't even have been given the
