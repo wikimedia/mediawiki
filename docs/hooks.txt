@@ -1757,6 +1757,11 @@ $user: the user who sent the message out
 $ip: IP of the user who sent the message out
 $u: the account whose new password will be set
 
+'UserAddGroup': called when adding a group; return false to override
+stock group addition.
+$user: the user object that is to have a group added
+$group: the group to add
+
 'UserArrayFromResult': called when creating an UserArray object from a
 database result
 &$userArray: set this to an object to override the default object returned
@@ -1883,6 +1888,11 @@ $user: the user object that is about to be logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
 $inject_html: Any HTML to inject after the "logged out" message.
 $oldName: name of the user before logout (string)
+
+'UserRemoveGroup': called when removing a group; return false to override
+stock group removal.
+$user: the user object that is to have a group removed
+$group: the group to be removed
 
 'UserRights': After a user's group memberships are changed
 $user  : User object that was changed
