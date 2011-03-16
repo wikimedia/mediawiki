@@ -27,10 +27,10 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if ( version_compare( PHP_VERSION, '5.1.0' ) < 0 ) {
-	die ( "Sorry! This version of MediaWiki requires PHP 5.1.x; you are running " .
+if ( version_compare( PHP_VERSION, Installer::MINIMUM_PHP_VERSION ) < 0 ) {
+	die ( "Sorry! This version of MediaWiki requires PHP " . Installer::MINIMUM_PHP_VERSION . "; you are running " .
 		PHP_VERSION . ".\n\n" .
-		"If you are sure you already have PHP 5.1.x or higher installed, it may be\n" .
+		"If you are sure you already have PHP " . Installer::MINIMUM_PHP_VERSION . " or higher installed, it may be\n" .
 		"installed in a different path from PHP " . PHP_VERSION . ". Check with your system\n" .
 		"administrator.\n" );
 }
