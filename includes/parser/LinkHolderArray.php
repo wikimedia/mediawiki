@@ -461,14 +461,13 @@ class LinkHolderArray {
 		for ( $i = 0; $i < $l; $i ++ ) {
 			foreach ( $allVariantsName as $variantName ) {
 				$textVariant = $titlesAllVariants[$variantName][$i];
-				extract( $titlesAttrs[$i] );
-				if($textVariant != $titleText){
-					$variantTitle = Title::makeTitle( $ns, $textVariant );
+				if ( $textVariant != $titlesAttrs[$i]['titleText'] ) {
+					$variantTitle = Title::makeTitle( $titlesAttrs[$i]['ns'], $textVariant );
 					if( is_null( $variantTitle ) ) {
 						continue;
 					}
 					$linkBatch->addObj( $variantTitle );
-					$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
+					$variantMap[$variantTitle->getPrefixedDBkey()][] = $titlesAttrs[$i]['key'];
 				}
 			}
 		}
