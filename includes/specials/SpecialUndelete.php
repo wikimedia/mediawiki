@@ -350,8 +350,9 @@ class PageArchive {
 
 		if( $restoreText ) {
 			$textRestored = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
-			if($textRestored === false) // It must be one of UNDELETE_*
+			if( $textRestored === false ) { // It must be one of UNDELETE_*
 				return false;
+			}
 		} else {
 			$textRestored = 0;
 		}
@@ -1249,7 +1250,7 @@ class SpecialUndelete extends SpecialPage {
 		$comment = $sk->revComment( $rev );
 		// Revision delete links
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
+		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' )) ) {
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$revdlink = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
@@ -1293,8 +1294,8 @@ class SpecialUndelete extends SpecialPage {
 		$comment = $this->getFileComment( $file, $sk );
 		// Add show/hide deletion links if available
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if( $canHide || ($file->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
-			if( !$file->userCan(File::DELETED_RESTRICTED ) ) {
+		if( $canHide || ( $file->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
+			if( !$file->userCan( File::DELETED_RESTRICTED ) ) {
 				$revdlink = $sk->revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
@@ -1323,7 +1324,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$time = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
 
-		if( !$rev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return '<span class="history-deleted">' . $time . '</span>';
 		} else {
 			$link = $sk->linkKnown(
@@ -1351,7 +1352,7 @@ class SpecialUndelete extends SpecialPage {
 	function getFileLink( $file, $titleObj, $ts, $key, $sk ) {
 		global $wgLang, $wgUser;
 
-		if( !$file->userCan(File::DELETED_FILE) ) {
+		if( !$file->userCan( File::DELETED_FILE ) ) {
 			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
 		} else {
 			$link = $sk->linkKnown(
@@ -1378,12 +1379,12 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	function getFileUser( $file, $sk ) {
-		if( !$file->userCan(File::DELETED_USER) ) {
+		if( !$file->userCan( File::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			$link = $sk->userLink( $file->getRawUser(), $file->getRawUserText() ) .
 				$sk->userToolLinks( $file->getRawUser(), $file->getRawUserText() );
-			if( $file->isDeleted(File::DELETED_USER) )
+			if( $file->isDeleted( File::DELETED_USER ) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
 		}
@@ -1397,7 +1398,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	function getFileComment( $file, $sk ) {
-		if( !$file->userCan(File::DELETED_COMMENT) ) {
+		if( !$file->userCan( File::DELETED_COMMENT ) ) {
 			return '<span class="history-deleted"><span class="comment">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span></span>';
 		} else {
 			$link = $sk->commentBlock( $file->getRawDescription() );
