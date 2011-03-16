@@ -18,6 +18,33 @@ class LanguageTrTest extends MediaWikiTestCase {
 		unset( $this->lang );
 	}
 
+##### Full Turkish alphabet #################################################
+
+	function testLowerCaseTurkishAlphabetToUppercase() {
+		$this->assertEquals( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ',
+			$this->lang->uc( 'abcçdefgğhıijklmnoöprsştuüvyz' ),
+			'Lower case Turkish alphabet to upper case'
+		);
+	}
+	function testUpperCaseTurkishAlphabetToUppercase() {
+		$this->assertEquals( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ',
+			$this->lang->uc( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ' ),
+			'Upper case Turkish alphabet to upper case'
+		);
+	}
+	function testUpperCaseTurkishAlphabetToLowercase() {
+		$this->assertEquals( 'abcçdefgğhıijklmnoöprsştuüvyz',
+			$this->lang->lc( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ' ),
+			'Upper case Turkish alphabet to lower case'
+		);
+	}	
+	function testLowerCaseTurkishAlphabetToLowercase() {
+		$this->assertEquals( 'abcçdefgğhıijklmnoöprsştuüvyz',
+			$this->lang->lc( 'abcçdefgğhıijklmnoöprsştuüvyz' ),
+			'Lower case Turkish alphabet to lower case'
+		);
+	}
+
 	/**
 	 * See @bug 28040
 	 * Credits to #wikipedia-tr users berm, []LuCkY[] and Emperyan
