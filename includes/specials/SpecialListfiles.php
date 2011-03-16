@@ -238,8 +238,18 @@ class ImageListPager extends TablePager {
 		if ( !is_null( $this->mUserName ) ) {
 			# Append the username to the query string
 			foreach ( $queries as &$query ) {
-				$query['username'] = $this->mUserName;
+				$query['user'] = $this->mUserName;
 			}
+		}
+		return $queries;
+	}
+
+	function getDefaultQuery() {
+		$queries = parent::getDefaultQuery();
+		if ( !isset( $queries['user'] )
+			&& !is_null( $this->mUserName ) )
+		{
+			$queries['user'] = $this->mUserName;
 		}
 		return $queries;
 	}
