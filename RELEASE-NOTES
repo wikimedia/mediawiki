@@ -22,15 +22,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 MediaWiki 1.17 is shipping with a completely redesigned installer to fix
 a lot of outstanding bugs, cleanup the code quality, and make it easier to
 use. Notably, you can now run upgrades from the web without having to move
-LocalSettings.php. Also, configuration script directory has been renamed 
-from config/ to mw-config/. The specific bugs are listed below in the 
+LocalSettings.php. Also, configuration script directory has been renamed
+from config/ to mw-config/. The specific bugs are listed below in the
 general notes.
 
 === New ResourceLoader in 1.17 ===
-MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and 
+MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and
 javascript attached to the page. They are served from the new entry point load.php
-If the page is served with the &debug=true parameter, the non-minified files 
-are used instead.
+If the page is served with the &debug=true parameter, the non-minified javascript
+files are used instead.
 
 === Configuration changes in 1.17 ===
 * DatabaseFunctions.php that was needed for compatibility with pre-1.3
@@ -91,29 +91,29 @@ are used instead.
   without having to move LocalSettings.php
 * The FailFunction "error handling" method has now been removed
 * $wgAdditionalMailParams added to allow setting extra options to mail() calls.
-* $wgSecureLogin to optionaly login using HTTPS
-* (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
-  with $wgPasswordSender
+* $wgSecureLogin to optionally login using HTTPS
+* (bug 25728) Added $wgPasswordSenderName to make the name associed
+  with $wgPasswordSender configurable
 * Sysops now have the "suppressredirect" right by default
 * (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
   the footers of skins.
 * $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
-  used for the file cache. Default value is 2, which matches former behavior 
+  used for the file cache. Default value is 2, which matches former behavior
 * It's no longer necessary for LocalSettings.php to include DefaultSettings.php.
 * It's no longer necessary to set $wgCacheEpoch to the file modification time
-  of LocalSettings.php, in LocalSettings.php itself. Instead, this is done 
-  automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is 
-  the default). 
+  of LocalSettings.php, in LocalSettings.php itself. Instead, this is done
+  automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is
+  the default).
 * (bug 26253) $wgPostCommitUpdateList has been removed
 * The PHPUnit test suite has been removed from this release due to serious issues
   which should be resolved by the 1.18 release
 * $wgCopyrightIcon is deprecated and $wgFooterIcons['copyright']['copyright'] should
   be used instead.
-* $wgSysopUserBans is deprecated, and will be made permanently true in 1.18.  
-  If you need this functionality, you should use the BlockIp hook to filter and 
+* $wgSysopUserBans is deprecated, and will be made permanently true in 1.18.
+  If you need this functionality, you should use the BlockIp hook to filter and
   reject such blocks.
 * $wgSysopRangeBans is deprecated, you should set $wgBlockCIDRLimit to maximum
-  (32 for IPv4, 128 for IPv6), equivalent to allowing rangeblocks of only 1 
+  (32 for IPv4, 128 for IPv6), equivalent to allowing rangeblocks of only 1
   address at a time.
 
 === New features in 1.17 ===
@@ -131,7 +131,7 @@ are used instead.
   changes list.
 * (bug 22925) "sp-contributions-blocked-notice-anon" message now displayed when
   viewing contributions of a blocked IP address.
-* (bug 22474) {{urlencode:}} now takes an optional second paramter for type of
+* (bug 22474) {{urlencode:}} now takes an optional second parameter for type of
   escaping.
 * Special:Listfiles now supports a username parameter.
 * Special:Random carries over query string parameters.
@@ -240,11 +240,11 @@ are used instead.
 * Special wrapping setups can now define MW_CONFIG_FILE to load a config file
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
-* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
-  pages to be queried via the API and Special:ProtectedPages, and allowing 
+* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected
+  pages to be queried via the API and Special:ProtectedPages, and allowing
   disabling upload protection by removing it from $wgRestrictionTypes.
-* The name attribute of HTMLForm fields can now be overridden by passing a 
-  'name' key in the descriptor array.  Hidden field names are now treated 
+* The name attribute of HTMLForm fields can now be overridden by passing a
+  'name' key in the descriptor array.  Hidden field names are now treated
   consistently with other fields and, by default, prefixed with 'wp'.
 
 === Bug fixes in 1.17 ===
@@ -330,6 +330,7 @@ are used instead.
 * (Bug 23397) texvc in html mode renders \sim as &tilde; not &sim;
 * (Bug 23241) Remove License selector, because it is not used when uploading a
   new version.
+
 * (bug 23240) Add ID to namespace selector form on Special:Watchlist.
 * The pipe | character in urls is now escaped.
 * (bug 23422) mp3 files can now be moved.
@@ -358,7 +359,7 @@ are used instead.
 * (bug 23787) Corrected $wgDefaultSkin's comment in DefaultSettings.php
 * (bug 23797) Xml::input() now allows '0' for the value parameter
 * (bug 23747) Make sure that on History pages, the RevDel button is not
-  accidently activated when hitting enter.
+  accidentally activated when hitting enter.
 * (bug 23845) Special:ListFiles now uses correct file names without underscores
 * Ask for permanent login in Special:Preferences only if $wgCookieExpiration > 0
 * (bug 16356) Repair dumpInterwiki.inc to use proper normalization.
@@ -399,7 +400,7 @@ are used instead.
 * Shell commands will now work on Linux in filesystems mounted noexec
 * (bug 24804) Corrected commafying in Polish and Ukrainian
 * "Difference between pages" is now displayed instead of "Difference between
-   revisions" on diffs when appropriate.
+  revisions" on diffs when appropriate.
 * (bug 23703) ForeignAPIRepo fails on findBySha1() when using a 1.14 install as
   a repository due to missing 'name' attribute from the API list=allimages
 * (bug 24898) MediaWiki uses /tmp even if a vHost-specific tempdir is set, also
@@ -413,7 +414,7 @@ are used instead.
 * (bug 17913) Don't show "older edit" when no older edit available
 * (bug 6204) TOC not properly rendered when using $wgMaxTocLevel
 * (bug 24977) The accesskey in history page now lead directly to the diff
-  instead of alterning focus between the two buttons.
+  instead of alternating focus between the two buttons.
 * (bug 24987) Special:ListUsers does not take external groups into account
 * (bug 20633) update.php has mixed language output
 * SQLite system table names are now never prefixed.
@@ -499,13 +500,13 @@ are used instead.
 * (bug 27781) Installer does not warn about 5.1.x. Added a compatibility function
   for array_key_exists().
 * Fix XML well-formedness on a few pages when $wgHtml5 is true (the default)
-* (bug 28069) MediaWiki fails streaming files when mod_deflate and ob_gzhandler 
+* (bug 28069) MediaWiki fails streaming files when mod_deflate and ob_gzhandler
   are also set.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
 * BREAKING CHANGE: patrol token is no longer the same as edit token
-* BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead of integers 
+* BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead of integers
 * (bug 24650) Fix API to work with categorylinks changes
 * action=parse now correctly returns an error for nonexistent pages
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs
@@ -607,14 +608,14 @@ are used instead.
 * (bug 26006) prop=langlinks now allows obtaining full URL
 * (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook
 * (bug 26089) add block expiration to blockinfo
-* (bug 26125) prop=imageinfo&iiprop=size now returns the page count if the 
+* (bug 26125) prop=imageinfo&iiprop=size now returns the page count if the
   file is a multi-page file
 * (bug 10268) Added linktodiffs parameter on action=feedwatchlist
 * (bug 26219) Show API limits for multi values in description
 
 === Languages updated in 1.17 ===
 
-MediaWiki supports over 330 languages. Many localisations are updated
+MediaWiki supports over 330 languages. Many localizations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
@@ -653,8 +654,8 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 1.17 has several database changes since 1.16, and will not work without schema
 updates.
 
-If upgrading from before 1.11, and you are using a wiki as a commons reposito-
-ry, make sure that it is updated as well. Otherwise, errors may arise due to
+If upgrading from before 1.11, and you are using a wiki as a commons repository,
+make sure that it is updated as well. Otherwise, errors may arise due to
 database schema changes.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
