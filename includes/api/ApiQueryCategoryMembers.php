@@ -122,39 +122,27 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
 			if ( $params['continue'] ) {
-				// from|sortkey
-				$cont = explode( '|', $params['continue'], 2 );
-				if ( count( $cont ) != 2 ) {
+				// type|from|sortkey
+				$cont = explode( '|', $params['continue'], 3 );
+				if ( count( $cont ) != 3 ) {
 					$this->dieUsage( 'Invalid continue param. You should pass the original value returned '.
 						'by the previous query', '_badcontinue'
 					);
 				}
-				list ( $from, $contsortkey )  = $cont;
-				if ( intval( $from ) == 0 ) {
-					$this->dieUsage( 'Invalid continue param. You should pass the original value returned '.
-						'by the previous query', '_badcontinue'
-					);
-				}
-				$where_outer = array();
-				$where_inner = array();
-				$db = $this->getDB();
-				$op = ( $dir === 'newer' ? '>' : '<' );
-				$sortdir = ( $dir === 'newer' ? 'asc' : 'desc' );
-				$where_outer[] = 'cl_sortkey ' . $op . ' ' .
-					$db->addQuotes( $contsortkey );
-				// OR
-					$where_inner[] = 'cl_sortkey = ' .
-						$db->addQuotes( $contsortkey );
-					// AND
-					$where_inner[] = 'cl_from ' . $op . '= '.  $from;
-
-				$where_outer[] = $db->makeList( $where_inner, LIST_AND );
-				$this->addWhere( $db->makeList( $where_outer, LIST_OR ) );
-				$this->addOption( 'ORDER BY', 
-					'cl_sortkey ' . $sortdir .', cl_from ' . $sortdir );
+				$escType = $this->getDB()->addQuotes( $cont[0] );
+				$from = intval( $cont[1] );
+				$escSortkey = $this->getDB()->addQuotes( $cont[2] );
+				$op = $dir == 'newer' ? '>' : '<';
+				$this->addWhere( "cl_type $op $escType OR " .
+					"(cl_type = $escType AND " .
+					"(cl_sortkey $op $escSortkey OR " .
+					"(cl_sortkey = $escSortkey AND " .
+					"cl_from $op= $from)))"
+				);
 				
 			} else {
-				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
+				// The below produces ORDER BY cl_type, cl_sortkey, cl_from, possibly with DESC added to each of them
+				$this->addWhereRange( 'cl_type', $dir, null, null );
 				$this->addWhereRange( 'cl_sortkey',
 					$dir,
 					$params['startsortkey'],
@@ -183,7 +171,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					// because we don't have to worry about pipes in the sortkey that way
 					// (and type and from can't contain pipes anyway)
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->cl_from}|{$row->cl_sortkey}"
+						"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
 					);
 				}
 				break;
@@ -225,7 +213,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 					} else {
 						$this->setContinueEnumParameter( 'continue',
-							"{$row->cl_from}|{$row->cl_sortkey}"
+							"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
 						);
 					}
 					break;

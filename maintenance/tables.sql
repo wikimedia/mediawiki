@@ -521,7 +521,9 @@ CREATE TABLE /*_*/categorylinks (
   -- paginate the three categories separately.  This never has to be updated
   -- after the page is created, since none of these page types can be moved to
   -- any other.
-  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
+  -- This used to be ENUM('page', 'subcat', 'file') but was changed to a
+  -- varchar because of the weird semantics of < and > when used on enums
+  cl_type varchar(6) NOT NULL default 'page'
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
