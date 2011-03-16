@@ -58,85 +58,13 @@ class MWFunction {
 		
 	}
 	
-	public static function newObj( $class, $args = array(), $force_fallback = false ) {
+	public static function newObj( $class, $args = array() ) {
 		if( !count( $args ) ) {
 			return new $class;
 		}
-		
-		if ( version_compare( PHP_VERSION, '5.1.3', '<' ) || $force_fallback ) {
-		
-			//If only MW needed 5.1.3 and up... sigh
-			
-			$args = array_values( $args );
-			switch ( count( $args ) ) {
-				case 0:
-					return new $class;
-				case 1:
-					return new $class( $args[0] );
-				case 2:
-					return new $class( $args[0], $args[1] );
-				case 3:
-					return new $class( $args[0], $args[1], $args[2] );
-				case 4:
-					return new $class( $args[0], $args[1], $args[2], $args[3] );
-				case 5:
-					return new $class( $args[0], $args[1], $args[2], $args[3], $args[4] );
-				case 6:
-					return new $class( $args[0], $args[1], $args[2], $args[3], $args[4], $args[5] );
-				case 7:
-					return new $class( $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6] );
-				case 8:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7] 
-					);
-				case 9:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8] 
-					);
-				case 10:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9]
-					);
-				case 11:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9], $args[10] 
-					);
-				case 12:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9], $args[10], $args[11] 
-					);
-				case 13:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9], $args[10], $args[11], $args[12]
-					);
-				case 14:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9], $args[10], $args[11], $args[12], $args[13]
-					);
-				case 15:
-					return new $class( 
-						$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], 
-						$args[7], $args[8], $args[9], $args[10], $args[11], $args[12], $args[13], 
-						$args[14]
-					);
-				default:
-					throw new MWException( 'Too many arguments to construtor in MWFunction::newObj' );
-			}
-		}
-	
-		else {
-	
-			$ref = new ReflectionClass($class); 
-			return $ref->newInstanceArgs($args);
-		}
-		
+
+		$ref = new ReflectionClass($class);
+		return $ref->newInstanceArgs($args);
 	}
-	
+
 }

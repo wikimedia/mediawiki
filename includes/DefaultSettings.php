@@ -4030,11 +4030,8 @@ $wgAdvancedSearchHighlighting = false;
 /**
  * Regexp to match word boundaries, defaults for non-CJK languages
  * should be empty for CJK since the words are not separate
- *
- * @todo FIXME: checks for lower than required PHP version (5.1.x).
  */
-$wgSearchHighlightBoundaries = version_compare("5.1", PHP_VERSION, "<")? '[\p{Z}\p{P}\p{C}]'
-	: '[ ,.;:!?~!@#$%\^&*\(\)+=\-\\|\[\]"\'<>\n\r\/{}]'; // PHP 5.0 workaround
+$wgSearchHighlightBoundaries = '[\p{Z}\p{P}\p{C}]';
 
 /**
  * Set to true to have the search engine count total
