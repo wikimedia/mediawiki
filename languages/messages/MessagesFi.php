@@ -778,7 +778,7 @@ Odota ennen kuin yrität uudelleen.',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-toiminnossa',
+'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
 
 # JavaScript password checks
 'password-strength'            => 'Arvioitu salasanan vahvuus: $1',
@@ -1233,7 +1233,7 @@ $1 {{int:pipe-separator}} $2',
 'searchmenu-legend'                => 'Hakuasetukset',
 'searchmenu-exists'                => "'''Sivu [[:$1]] löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",
-'searchmenu-new-nocreate'          => '“$1” on virheellinen sivun nimi tai sinulla ei ole oikeutta luoda sitä.',
+'searchmenu-new-nocreate'          => '”$1” on virheellinen sivun nimi tai sinulla ei ole oikeutta luoda sitä.',
 'searchhelp-url'                   => 'Help:Sisällys',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Selaa sivuja tällä etuliitteellä]]',
 'searchprofile-articles'           => 'Sisältösivut',
@@ -1510,7 +1510,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 'right-revisionmove'          => 'Siirtää versioita',
-'right-disableaccount'        => 'Tilien poistaminen käytöstä',
+'right-disableaccount'        => 'Poistaa tunnuksia käytöstä',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -3466,15 +3466,15 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 
 # Special:DisableAccount
 'disableaccount'             => 'Käyttäjätunnuksen poistaminen käytöstä',
-'disableaccount-user'        => 'Käyttäjätunnus:',
+'disableaccount-user'        => 'Käyttäjätunnus',
 'disableaccount-reason'      => 'Syy',
 'disableaccount-confirm'     => "Poista tämä käyttäjätili.
 Käyttäjä ei pysty kirjautumaan sisään, pyytämään uutta salasanaa tai vastaanottamaan sähköposti-ilmoituksia. 
 Jos käyttäjä on kirjautuneena sisään jonnekin, käyttäjä kirjataan ulos välittömästi.
 ''Huomaa, että tilin käytöstä poistamisen peruminen ei ole mahdollista ilman MediaWiki-alustaan käsiksi pääsevän järjestelmänvalvojan toimia.''",
 'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tilin.',
-'disableaccount-nosuchuser'  => 'Käyttäjää “$1” ei ole olemassa.',
-'disableaccount-success'     => "Käyttäjätili ''$1'' on poistettu käytöstä pysyvästi.",
-'disableaccount-logentry'    => 'poisti ikuisesti käytöstä käyttäjätilin [[$1]]',
+'disableaccount-nosuchuser'  => 'Käyttäjätunnusta ”$1” ei ole olemassa.',
+'disableaccount-success'     => "Käyttäjätunnus ''$1'' on poistettu käytöstä pysyvästi.",
+'disableaccount-logentry'    => 'poisti pysyvästi käytöstä käyttäjätunnuksen [[$1]]',
 
 );

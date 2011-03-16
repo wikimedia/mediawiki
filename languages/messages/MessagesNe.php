@@ -93,7 +93,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'अज्ञात प्रयोगकर्ताहरुबाट गरिएको सम्पादन निगरानी सूचीबाट लुकाउने',
 'tog-watchlisthidepatrolled'  => 'गस्ती(पट्रोल)सम्पादनहरु मेरो निगरानी सूचीबाट लुकाउने',
 'tog-nolangconversion'        => 'बहुरुप रुपान्तरण निस्क्रिय पार्नुहोस',
-'tog-ccmeonemails'            => 'मैले अरु प्रयोगकर्ताहरुलाई पठाउने इ-मेल को प्रतिलिपी मलाई पठाउने',
+'tog-ccmeonemails'            => 'मैले अरु प्रयोगकर्ताहरुलाई पठाउने इ-मेल को प्रतिलिपि मलाई पठाउने',
 'tog-diffonly'                => 'तलका पृष्टहरुको diffहरु सामग्री नदेखाउने',
 'tog-showhiddencats'          => 'लुकाइएको प्रकारहरु देखाउने',
 'tog-noconvertlink'           => 'सम्बन्ध शीर्षक रुपान्तरण निस्क्रिय पार्ने',
@@ -848,6 +848,10 @@ $2',
 'rev-suppressed-unhide-diff'  => "यस पृष्ठको पुनरावलोकनहरु मध्ये एउटा भिन्नता '''दबिएकोछ'''।
 यसको पूर्ण विवरण [{{fullurl:{{#Special:Log}}/suppress|पृष्ठ={{FULLPAGENAMEE}}}}को दबिएको लगमा पाउन सकिन्छ]।
 यदि चाहनु भयो भनें प्रबन्धकको हैसियतमा [यो भिन्नता $1] हेर्न सक्नुहुन्छ।",
+'rev-deleted-diff-view'       => "यस भिन्नताका संशोधनहरुमध्येको एउटा चाहिं  '''मेटियो।''' 
+प्रबन्धकको हैसियतमा यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} मेटाइएको (deletion) लग]मा पाउन सकिनेछ।",
+'rev-suppressed-diff-view'    => "यस भिन्नताका संशोधनहरुमध्येको एउटा चाहिं  '''दबाइयो।''' 
+प्रबन्धकको हैसियतमा यस भिन्नतालाई हेर्न सक्नुहुन्छ; सबै विवरण  [{{fullurl:{{#Special:Log}}/delete|पृष्ठ={{FULLPAGENAMEE}}}} दबाइएको (suppression) लग]मा पाउन सकिनेछ।",
 'rev-delundel'                => 'देखाउने/लुकाउने',
 'rev-showdeleted'             => 'देखाउनुहोस्',
 'revisiondelete'              => 'मेटाउने/मेटाएको रद्दगर्ने  पुनरावलोकनहरु',
@@ -910,8 +914,12 @@ $1",
 'suppressionlog' => 'कमगरेको लग',
 
 # Revision move
-'revmove-reasonfield'    => 'कारण:',
-'revmove-nullmove-title' => 'गलत शीर्षक',
+'moverevlogentry'         => '$1बाट $2मा {{PLURAL:$3|एउटा संशोधन सारियो|$3 संशोधनहरु सारिए}}',
+'revisionmove'            => '"$1"बाट संशोधनहरु सार्ने',
+'revmove-reasonfield'     => 'कारण:',
+'revmove-titlefield'      => 'लक्षित पृष्ठ',
+'revmove-nullmove-title'  => 'गलत शीर्षक',
+'revmove-success-created' => '{{PLURAL:$1|एउटा संशोधन [[$2]]बाट|$1 संशोधनहरु [[$2]]बाट}} नयाँ बनाइएको पृष्ठ [[$3]]मा सार्ने काम भयो।',
 
 # History merging
 'mergehistory'                     => 'पृष्ठ इतिहासहरु जोड्नुहोस्',
@@ -1405,10 +1413,17 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 विवरण:$1',
 'upload-source'          => 'स्रोत फाइल',
 'sourcefilename'         => 'स्रोत फाइलनाम :',
+'sourceurl'              => 'स्रोत URL:',
 'destfilename'           => 'गन्तव्य फाइलनाम :',
 'upload-maxfilesize'     => 'अधिकतम फाइल आकार : $1',
+'upload-options'         => 'उर्ध्वभरण विकल्पहरु',
 'watchthisupload'        => 'यो पृष्ठ निगरानी गर्नुहोस्',
 'upload-success-subj'    => 'उर्ध्वभरण सफल',
+'upload-success-msg'     => '[$2]बाट त्पाईंको उर्ध्वभरण सफल भयो। त्यो यहाँ पाउन सकिनेछ: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'    => 'उर्ध्वभरण समस्या',
+'upload-failure-msg'     => 'तपाईंको उर्ध्वभरण [$2]बाट समस्या आएकोछ:
+
+$1',
 'upload-warning-subj'    => 'उर्ध्वभरण चेतावनी',
 
 'upload-proto-error'  => 'दूषित प्रोटोकल',
@@ -1573,6 +1588,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'nrevisions'              => '$1 {{PLURAL:$1|पुनरावलोकन|पुनरावलोकनहरु}}',
 'nviews'                  => '$1 {{PLURAL:$1|अवलोकन|अवलोकनहरु}}',
 'nimagelinks'             => '$1 {{PLURAL:$1|पृष्ठ|पृष्ठहरु}}माथि प्रयोग गरिएको',
+'ntransclusions'          => '$1 {{PLURAL:$1पृष्ठमा प्रयोग गरिएको|पृष्ठहरुमा प्रयोग गरिएका}}',
 'specialpage-empty'       => 'यो पृष्ठ खाली छ।',
 'lonelypages'             => 'अनाथ पृष्ठहरु',
 'uncategorizedpages'      => 'श्रेणीकरण नभएका पृष्ठहरु',
@@ -1678,13 +1694,16 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'listusers-blocked'  => '(प्रतिबन्धित)',
 
 # Special:ActiveUsers
-'activeusers'          => 'सक्रिय प्रयोगकर्ताहरुको सूची',
-'activeusers-count'    => 'विगत {{PLURAL:$3|दिनमा| $3 दिनहरुमा}}  $1 {{PLURAL:$1| सम्पादन गरियो|सम्पादनहरु गरिए}}',
-'activeusers-from'     => 'यहाँबाट सुरु हुने प्रयोगकर्ताहरु देखाउनुहोस्:',
-'activeusers-noresult' => 'प्रयोगकर्ताहरु भेटिएनन्।',
+'activeusers'            => 'सक्रिय प्रयोगकर्ताहरुको सूची',
+'activeusers-count'      => 'विगत {{PLURAL:$3|दिनमा| $3 दिनहरुमा}}  $1 {{PLURAL:$1| सम्पादन गरियो|सम्पादनहरु गरिए}}',
+'activeusers-from'       => 'यहाँबाट सुरु हुने प्रयोगकर्ताहरु देखाउनुहोस्:',
+'activeusers-hidebots'   => 'बोटहरु लुकाउने',
+'activeusers-hidesysops' => 'प्रबन्धकहरु लुकाउने',
+'activeusers-noresult'   => 'प्रयोगकर्ताहरु भेटिएनन्।',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'प्रयोगकर्ता श्रृजना लग',
+'newuserlog-byemail'          => 'इ मेलबाट पठाइएको प्रवेशशव्द',
 'newuserlog-create-entry'     => 'नयाँ प्रयोगकर्ता',
 'newuserlog-create2-entry'    => 'नयाँ खाता $1 खोलियो',
 'newuserlog-autocreate-entry' => 'खाता स्वतः निर्माण गरियो',
@@ -1833,6 +1852,8 @@ $UNWATCHURL
 'rollback_short'   => 'रोलब्याक',
 'rollbacklink'     => 'पहिलेको रुपमा फर्काउने',
 'rollbackfailed'   => 'रोलब्याक असफल',
+'cantrollback'     => 'फर्काउन सकिंदैन;
+अन्तिम योगदान कर्ता मात्र यस पृष्ठका लेखक थिए।',
 'editcomment'      => "सम्पादन सारांश : \"''\$1''\" ।",
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|वार्तालाप]])द्वारा [[User:$1|$1]]द्वारा गरिएको पछिल्लो संशोधनतर्फ उल्टाइएका सम्पादनहरु',
 'rollback-success' => '$1द्वारा उल्टाइएका सम्पादनहरु;
@@ -1984,6 +2005,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'whatlinkshere-filters'    => 'फिल्टरहरू',
 
 # Block/unblock
+'unblock'                         => 'प्रयोगकर्ता/आई पी ठेगानालाई प्रतिबन्ध हटाउने',
 'blockip'                         => 'प्रयोगकर्तालाइ निषेध गर्नुहोस',
 'blockip-title'                   => 'प्रयोगकर्तालाई रोक लगाउनुहोस्',
 'blockip-legend'                  => 'प्रयोगकर्ता रोक्नुहोस',
@@ -2029,6 +2051,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'unblocked-id'                    => '$1 रोक हटाइएको छ',
 'ipblocklist'                     => 'निषेधित IP ठेगानाहरु र प्रयोगकर्ता नामहरु',
 'ipblocklist-legend'              => 'रोकलगाइएका प्रयोगकर्ताहरु खोज्नुहोस',
+'blocklist-reason'                => 'कारण',
 'ipblocklist-submit'              => 'खोज्नुहोस्',
 'ipblocklist-localblock'          => 'स्थानीय रोक',
 'ipblocklist-otherblocks'         => 'अन्य {{PLURAL:$1|रोक|रोकहरु}}',
@@ -2067,6 +2090,9 @@ $1को बन्देजको कारण : "$2" हो',
 'block-log-flags-hiddenname'      => 'प्रयोगकर्ता नाम लुकाइएको',
 'ipb_expiry_invalid'              => 'समय सिमा अमान्य',
 'ipb_already_blocked'             => '"$1" पहिले नै रोक लगाइएको छ',
+'ipb-needreblock'                 => '== अघिबाट प्रतिबन्धित ==
+$1लाई अघिबाट नैं प्रतिबन्ध लगाइएकोछ।
+के तपाईं यसको व्यवस्थालाई परिवर्तन गर्न चाहनुहुन्छ?',
 'ip_range_invalid'                => 'IP क्षेत्र अमान्य ।',
 'blockme'                         => 'मलाई निषेध गर्ने',
 'proxyblocker'                    => 'प्रोक्सी निषेध गर्ने',

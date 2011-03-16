@@ -1812,7 +1812,7 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 
 # Special:UploadStash
 'uploadstash'          => 'Skrýš načtených souborů',
-'uploadstash-summary'  => 'Tato stránka nabízí přístup k nahraným (nebo právě nahrávaným) souborům, ale dosud nejsou zveřejněné na wiki. Tyto soubory se nezobrazí nikomu kromě uživatele, který je nahrál.',
+'uploadstash-summary'  => 'Tato stránka nabízí přístup k načteným (nebo právě načítaným) souborům, které dosud nejsou zveřejněny na wiki. Tyto soubory se nezobrazí nikomu kromě uživatele, který je načetl.',
 'uploadstash-clear'    => 'Vymazat soubory ve skrýši',
 'uploadstash-nofiles'  => 'Ve skrýši nemáte žádné soubory.',
 'uploadstash-badtoken' => 'Operace se nezdařila, možná vypršela platnost vašeho oprávnění k editaci. Zkuste to znovu.',
@@ -2531,6 +2531,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'unblockiptext'                   => 'Tímto formulářem je možno obnovit právo blokované IP adresy či uživatele opět přispívat do {{grammar:2sg|{{SITENAME}}}}.',
 'ipusubmit'                       => 'Odblokovat',
 'unblocked'                       => '{{GENDER:$1|||Uživatel}} [[User:$1|$1]] {{GENDER:$1|byl odblokován|byla odblokována|byl odblokován}}',
+'unblocked-range'                 => '$1 bylo odblokováno',
 'unblocked-id'                    => 'Blok $1 byl zrušen',
 'ipblocklist'                     => 'Blokované IP adresy a uživatelská jména',
 'ipblocklist-legend'              => 'Hledat zablokovaného uživatele',
@@ -2982,22 +2983,25 @@ $1',
 'nextdiff'     => 'Porovnání s novější verzí →',
 
 # Media information
-'mediawarning'         => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
+'mediawarning'           => "'''Upozornění''': Tento typ souboru může obsahovat škodlivý kód.
 Otevřením souboru můžete ohrozit svůj počítač.",
-'imagemaxsize'         => "Maximální velikost obrázku:<br />
+'imagemaxsize'           => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
-'thumbsize'            => 'Velikost náhledu:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
-'file-info'            => 'velikost souboru: $1, MIME typ: $2',
-'file-info-size'       => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
-'file-nohires'         => '<small>Větší rozlišení není k dispozici.</small>',
-'svg-long-desc'        => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
-'show-big-image'       => 'Obrázek ve vyšším rozlišení',
-'file-info-gif-looped' => 've smyčce',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|snímek|snímky|snímků}}',
-'file-info-png-looped' => 've smyčce',
-'file-info-png-repeat' => 'opakováno $1{{PLURAL:$1|krát|krát}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|snímek|snímky|snímků}}',
+'thumbsize'              => 'Velikost náhledu:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
+'file-info'              => 'velikost souboru: $1, MIME typ: $2',
+'file-info-size'         => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
+'file-nohires'           => '<small>Větší rozlišení není k dispozici.</small>',
+'svg-long-desc'          => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
+'show-big-image'         => 'Obrázek ve vyšším rozlišení',
+'show-big-image-preview' => '<small>Velikost tohoto náhledu: $1 × $2 pixelů</small>',
+'show-big-image-other'   => '<small>Jiná rozlišení: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixelů',
+'file-info-gif-looped'   => 've smyčce',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|snímek|snímky|snímků}}',
+'file-info-png-looped'   => 've smyčce',
+'file-info-png-repeat'   => 'opakováno $1{{PLURAL:$1|krát|krát}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|snímek|snímky|snímků}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie nových souborů',

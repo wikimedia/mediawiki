@@ -945,7 +945,8 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'last'                   => 'Link in page history
 
 {{Identical|Last}}',
-'page_first'             => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.",
+'page_first'             => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.
+{{Identical|First}}",
 'page_last'              => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.
 
 {{Identical|Last}}",

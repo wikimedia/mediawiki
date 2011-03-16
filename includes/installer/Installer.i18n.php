@@ -575,6 +575,7 @@ $messages['qqq'] = array(
 * {{msg-mw|config-profile-no-anon}}
 * {{msg-mw|config-profile-fishbowl}}
 * {{msg-mw|config-profile-private}}',
+	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
 	'config-logo-help' => '{{doc-important|For languages with right-to-left script, translate "top left corner" as "top right corner".}}',
 	'config-cc-not-chosen' => 'Should we use "int:key" here (and to which key)?',
 	'config-extensions' => '{{Identical|Extension}}',
@@ -583,7 +584,7 @@ $messages['qqq'] = array(
 * $1 = database user name (usernames in the database are unrelated to wiki user names)
 * $2 =',
 	'config-install-user' => 'Message indicates that the user is being created',
-	'config-install-user-failed' => 'Parameters:
+	'config-install-user-grant-failed' => 'Parameters:
 * $1 is the database username for which granting rights failed
 * $2 is the error message',
 	'config-install-tables' => 'Message indicates that the tables are being created',
@@ -7087,10 +7088,10 @@ Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
 	'config-sqlite-dir' => '<i lang="en">SQLite</i> sing Daateverzeishnes:',
 	'config-oracle-def-ts' => 'Tabälleroum för der Shtandattjebruch:',
 	'config-oracle-temp-ts' => 'Tabälleroum för der Jebruch zweschedorsh:',
-	'config-type-mysql' => 'MySQL',
-	'config-type-postgres' => 'PostgreSQL',
-	'config-type-sqlite' => 'SQLite',
-	'config-type-oracle' => 'Oracle',
+	'config-type-mysql' => '<i lang="en">MySQL</i>',
+	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
+	'config-type-sqlite' => '<i lang="en">SQLite</i>',
+	'config-type-oracle' => '<i lang="en">Oracle</i>',
 	'config-header-mysql' => 'Enshtällunge för <i lang="en">MySQL</i>',
 	'config-header-postgres' => 'Enshtällunge för <i lang="en">PostgreSQL</i>',
 	'config-header-sqlite' => 'Enshtällunge för <i lang="en">SQLite</i>',
@@ -7103,6 +7104,13 @@ Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
 Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), Ongerstreshe (_), un Punkte (.) dren vörkumme.',
 	'config-invalid-db-name' => 'Dä Daatebangk iere Name kann nit „$1“ sin, dä es esu nit jöltesch.
 Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), Ongerstresh (_), un Bendeshtresh (-) dren vörkumme.',
+	'config-invalid-db-prefix' => 'Dä Vörsaz för de Name vun de Tabälle en de Daatebangk kann nit „$1“ sin, dä es esu nit jöltesch.
+Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), Ongerstreshe (_), un Bendeshtreshe (-) dren vörkumme.',
+	'config-connection-error' => '$1.
+
+Donn de Name för dä Rääschner, vun däm Aanwender för dä Zohjref op de Daatebangk, un et Paßwoot prööfe, repareere, un dann versöhg et norr_ens.',
+	'config-invalid-schema' => 'Dat Schema för MediaWiki kann nit „$1“ sin, dä Name wöhr esu nit jöltesch.
+Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), un Ongerstreshe (_) dren vörkumme.',
 	'config-postgres-old' => 'Mer bruche <i lang="en">PostgreSQL</i> $1 udder neuer. Em Momang es <i lang="en">PostgreSQL</i> $2 aam Loufe.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
 Gebruik geen spaties of koppeltekens.
@@ -7112,6 +7120,9 @@ Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.
 
 Donn onge dat Verzeishnes un der Name vun der Daatebangk prööfe un repareere, un dann versöhg_et norr-ens.',
 	'config-sqlite-readonly' => 'En di Dattei <code lang="en">$1</code> künne mer nit schrieve.',
+	'config-sqlite-cant-create-db' => 'Mer kunnte di Dattei <code lang="en">$1</code> för de Daatebangk nit aanlääje.',
+	'config-show-table-status' => 'Et Kommando <code lang="en">SHOW TABLE STATUS</code> aan de Daatebangk es donävve jejange!',
+	'config-unknown-collation' => "'''Opjepaß:''' De Daatabangk deiht en onbikannte Reijefollsch bruche, för Booshtaabe un Zeishe ze verjliishe un ze zotteere.",
 	'config-db-web-create' => 'Donn dä Zohjang aanlääje, wann dä noch nit doh es.',
 	'config-mysql-engine' => 'De Zoot udder et Fommaat vun de Tabälle:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -7131,6 +7142,10 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-ns-site-name' => 'Et sällve wi däm Wiki singe Name: $1',
 	'config-ns-other' => 'Andere (jiff aan wälshe)',
 	'config-ns-other-default' => 'MingWiki',
+	'config-ns-invalid' => 'Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ es nit jöltesch.
+Nemm ene andere Name för däm Wiki sing eije Appachtemang.',
+	'config-ns-conflict' => 'Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ kütt ald als Standatt-Appachtemang em MediaWiki vör.
+Nemm ene andere Name för däm Wiki sing eije Appachtemang.',
 	'config-admin-box' => 'Der Zohjang för der eezte Wiki_Köbes',
 	'config-admin-name' => 'Metmaacher_Name:',
 	'config-admin-password' => 'Et Paßwoot:',
@@ -7201,9 +7216,21 @@ Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
 	'config-email-user-help' => 'Määt et müjjelesch, dat sesch de Metmaacher jääjesiggesch <i lang="en">e-mails</i> schecke künne, wann se dat en iehre eije Enschtellunge och enjeschalldt han.',
 	'config-email-usertalk' => '<i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
 	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
+	'config-email-watchlist' => 'Nohreeschte övver Änderonge aan Sigg op de Opaßleßte zohlohße.',
+	'config-upload-settings' => 'Belder un Datteie huh laade',
+	'config-upload-enable' => 'Belder un Datteie huh laade zohlohße',
+	'config-upload-help' => 'Dattei huh ze laade künnt e Risiko för dem ẞööver singe Sescherheit sin.
+Mieh doh drövver lässe kam_mer em [http://www.mediawiki.org/wiki/Manual:Security Kapitel övver de Sescherheit] em Handbooch.
+
+Öm et Huhlaade zohzelohße donn de Rääschde för der Zohjreff op dat Ongerverzeischneß <code lang="en">images</code> em MediaWiki singem Houpverzeischneß esu enshtälle, dat et Webßööverprojramm doh Datteije un Verzeischneße eren schrieve kann.
+Donoh donn heh di Saach zohlohße.',
+	'config-upload-deleted' => 'Dat Verzeishneß för fottjeschmeße Datteije:',
+	'config-upload-deleted-help' => 'Söhk e Verzeijschneß uß för de fottjeschmeße Datteije vum Wiki dren afzelääje.
+Et bäß es, wam_mer vum <i lang="en">world wide web</i> doh nit drahn kumme kann.',
 	'config-logo' => 'Dem Logo sing <i lang="en">URL</i>:',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
 	'config-cc-again' => 'Nch ens ußsöhke&nbsp;…',
+	'config-advanced-settings' => 'Fottjeschredde Enshtellunge',
 	'config-cache-options' => 'Enshtällunge för et Faßhallde vun Objäkte em Zweschsheisher:',
 	'config-cache-help' => 'Objäkte em Zwescheshpeisher faßhallde, dat heiß öff jebruchte Daate en der <i lang="en">cache</i> donn, bruche mer, öm MediaWiki flöcker ze maache, 
 Meddlere un jruuße Wiki-ẞaits sullte dat onbedengk ußnoze, un och bei klein Wikis weed mer et jood merke.',
@@ -11312,6 +11339,8 @@ Pinigilan ang pag-iinstala.",
 	'config-db-schema-help' => 'Ang nasa itaas na panukala ay pangkaraniwang magiging maayos.
 Baguhin lamang ito kung alam mong kinakailangan.',
 	'config-sqlite-dir' => 'Direktoryo ng dato ng SQLite:',
+	'config-oracle-def-ts' => 'Likas na nakatakdang puwang ng talahanayan:',
+	'config-oracle-temp-ts' => 'Pansamantalang puwang ng talahanayan:',
 	'config-header-mysql' => 'Mga katakdaan ng MySQL',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
 	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
@@ -11406,7 +11435,13 @@ Ipasok na kinakamay ang pangalan ng lisensiya.',
 	'config-install-database' => 'Inihahanda ang kalipunan ng dato',
 	'config-install-pg-schema-failed' => 'Nabigo ang paglikha ng mga talahanayan.
 Tiyakin na ang tagagamit na "$1" ay maaaring makasulat sa balangkas na "$2".',
+	'config-install-pg-commit' => 'Isinasagawa ang mga pagbabago',
+	'config-install-pg-plpgsql' => 'Sumusuri ng wikang PL/pgSQL',
+	'config-pg-no-plpgsql' => 'Kailangan mong magtalaga ng wikang PL/pgSQL sa loob ng kalipunan ng datong $1',
+	'config-pg-no-create-privs' => 'Ang tinukoy mong akawnt para sa pagtatalaga ay walang sapat na mga pribilehiyo upang makalikha ng isang akawnt.',
 	'config-install-user' => 'Nililikha ang tagagamit ng kalipunan ng dato',
+	'config-install-user-alreadyexists' => 'Umiiral na ang tagagamit na "$1"',
+	'config-install-user-create-failed' => 'Nabigo ang paglikha ng tagagamit na "$1": $2',
 	'config-install-user-grant-failed' => 'Nabigo ang pagbibigay ng pahintulot sa tagagamit na "$1": $2',
 	'config-install-tables' => 'Nililikha ang mga talahanayan',
 	'config-install-tables-exist' => "'''Babala''': Tila umiiral na ang mga talahanayan ng MediaWiki.
@@ -11416,10 +11451,15 @@ Nilalaktawan ang paglikha.",
 	'config-install-interwiki-list' => 'Hindi matagpuan ang talaksang <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Babala''': Tila may mga laman na ang talahanayan ng interwiki.
 Nilalaktawan ang likas na nakatakdang talaan.",
+	'config-install-stats' => 'Sinisimulan ang estadistika',
 	'config-install-secretkey' => 'Ginagawa ang lihim na susi',
 	'config-insecure-secret' => "'''Babala:''' Hindi nalikha ang ligtas na <code>$1</code>.
 Isaalang-alang ang pagbabago nito na kinakamay.",
+	'config-install-upgradekey' => 'Binubuo ang likas na nakatakdang susi ng pagsasapanahon',
 	'config-install-sysop' => 'Nililikha ang akawnt ng tagagamit na tagapangasiwa',
+	'config-install-subscribe-fail' => 'Hindi nagawang sumipi mula sa mediawiki-announce',
+	'config-install-mainpage' => 'Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman',
+	'config-install-extension-tables' => 'Nililikha ang mga talahanayan para sa pinagaganang mga dugtong',
 	'config-install-done' => "'''Maligayang bati!'''
 Matagumpay mong nailuklok ang MediaWiki.
 

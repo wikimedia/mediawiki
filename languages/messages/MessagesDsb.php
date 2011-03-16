@@ -2330,6 +2330,7 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokě
 'unblocked'                       => 'Wužywaŕ [[User:$1|$1]] jo zasej se dopušćił.',
 'unblocked-range'                 => 'Blokěrowanje za $1 jo se wótpórało',
 'unblocked-id'                    => '$1 jo se dopušćił(a).',
+'blocklist'                       => 'Blokěrowane IP-adrese a wužywarske mjenja',
 'ipblocklist'                     => 'Blokěrowane IP-adrese a wužywarske mjenja',
 'ipblocklist-legend'              => 'Blokěrowanego wužywarja pytaś',
 'blocklist-userblocks'            => 'Kontowe blokěrowanja schowaś',
