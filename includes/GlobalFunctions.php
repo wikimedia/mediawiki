@@ -2762,9 +2762,6 @@ function wfCreateObject( $name, $p ) {
 
 function wfHttpOnlySafe() {
 	global $wgHttpOnlyBlacklist;
-	if( !version_compare( '5.2', PHP_VERSION, '<' ) ) {
-		return false;
-	}
 
 	if( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 		foreach( $wgHttpOnlyBlacklist as $regex ) {
