@@ -2160,17 +2160,18 @@ class User {
 	 * @param $group String Name of the group to add
 	 */
 	function addGroup( $group ) {
-		$dbw = wfGetDB( DB_MASTER );
-		if( $this->getId() ) {
-			$dbw->insert( 'user_groups',
-				array(
-					'ug_user'  => $this->getID(),
-					'ug_group' => $group,
-				),
-				__METHOD__,
-				array( 'IGNORE' ) );
+		if( wfRunHooks( 'UserAddGroup', array( &$this, &$group ) ) ) {
+			$dbw = wfGetDB( DB_MASTER );
+			if( $this->getId() ) {
+				$dbw->insert( 'user_groups',
+					array(
+						'ug_user'  => $this->getID(),
+						'ug_group' => $group,
+					),
+					__METHOD__,
+					array( 'IGNORE' ) );
+			}
 		}
-
 		$this->loadGroups();
 		$this->mGroups[] = $group;
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
@@ -2185,13 +2186,14 @@ class User {
 	 */
 	function removeGroup( $group ) {
 		$this->load();
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'user_groups',
-			array(
-				'ug_user'  => $this->getID(),
-				'ug_group' => $group,
-			), __METHOD__ );
-
+		if( wfRunHooks( 'UserRemoveGroup', array( &$this, &$group ) ) ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->delete( 'user_groups',
+				array(
+					'ug_user'  => $this->getID(),
+					'ug_group' => $group,
+				), __METHOD__ );
+		}
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
