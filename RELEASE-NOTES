@@ -92,7 +92,7 @@ files are used instead.
 * The FailFunction "error handling" method has now been removed
 * $wgAdditionalMailParams added to allow setting extra options to mail() calls.
 * $wgSecureLogin to optionally login using HTTPS
-* (bug 25728) Added $wgPasswordSenderName to make the name associed
+* (bug 25728) Added $wgPasswordSenderName to make the name associated
   with $wgPasswordSender configurable
 * Sysops now have the "suppressredirect" right by default
 * (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
