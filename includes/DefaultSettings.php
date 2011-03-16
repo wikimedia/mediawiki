@@ -3743,7 +3743,7 @@ $wgCookiePrefix = false;
  *
  * Only supported on PHP 5.2 or higher.
  */
-$wgCookieHttpOnly = version_compare("5.2", PHP_VERSION, "<");
+$wgCookieHttpOnly = true;
 
 /**
  * If the requesting browser matches a regex in this blacklist, we won't
