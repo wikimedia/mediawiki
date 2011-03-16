@@ -18,6 +18,7 @@
  * @author Jan Luca
  * @author Jens Liebenau
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kebap
  * @author Kghbln
  * @author Khaledelmansoury
  * @author Krinkle
@@ -2943,7 +2944,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'vector.css'      => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css'       => '/* Das folgende CSS wird in der Druckausgabe geladen. */',
 'handheld.css'    => '/* Das folgende CSS wird für Handheld-Geräte, basierend auf der in $wgHandheldStyle konfigurierten Benutzeroberfläche, geladen. */',
-'noscript.css'    => '/* An dieser Stelle gespeichertes CSS wirkt sich für Benutzer aus, die JavaScript deaktiviert haben */',
+'noscript.css'    => '/* Das folgende CSS wirkt sich für Benutzer aus, die JavaScript deaktiviert haben */',
+'bureaucrat.css'  => '/* Das folgende CSS wird nur für Bürokraten geladen. */',
 
 # Scripts
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',

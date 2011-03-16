@@ -908,7 +908,7 @@ Wellich is ze gewis of verplaats.
 [[Special:Search|Doorzeuk de wiki]] veur relevante pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(opmerking weggehaold)',
+'rev-deleted-comment'         => '(bewirkingssamevatting eweggesjaf)',
 'rev-deleted-user'            => '(gebroeker weggehaold)',
 'rev-deleted-event'           => '(actie weggehaold)',
 'rev-deleted-user-contribs'   => '[gebroeker of IP gewösj - bewèrking verbórge in biedraag]',
@@ -3248,8 +3248,8 @@ Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
 # Special:SpecialPages
 'specialpages'                   => "Speciaal pagina's",
 'specialpages-note'              => '----
-* Normale speciale pagina\'s
-* <strong class="mw-specialpagerestricted">Beperk toegankelijke speciale pagina\'s</strong>',
+* <span class="mw-specialpagerestricted">Normale speciaal pagina\'s.</span>
+* <span class="mw-specialpagerestricted">Speciaal pagina\'s mèt allein gegeves oet de cache.</span>',
 'specialpages-group-maintenance' => 'Óngerhajingsrapporter',
 'specialpages-group-other'       => "Euverige speciaal pazjena's",
 'specialpages-group-login'       => 'Aanmelje / registrere',

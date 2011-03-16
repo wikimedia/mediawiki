@@ -152,6 +152,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'মই অন্য সদস্যলৈ পঠোৱা ই-মেইলৰ প্ৰতিলিপী এটা মোলৈও পঠাব',
 'tog-diffonly'                => 'তফাৎৰ তলত পৃষ্ঠাৰ বিষয়বস্তু নেদেখোৱাব',
 'tog-showhiddencats'          => 'নিহিত শ্ৰেণী সমূহ দেখুৱাওক',
+'tog-norollbackdiff'          => 'ৰোলবেক্ কৰা পাচত পাৰ্থক্য নেদেখুৱাব',
 
 'underline-always'  => 'সদায়',
 'underline-never'   => 'কেতিয়াও নহয়',
@@ -379,6 +380,8 @@ $messages = array(
 'toc'                     => 'সূচী',
 'showtoc'                 => 'দেখুওৱাওক',
 'hidetoc'                 => 'দেখুৱাব নালাগে',
+'collapsible-collapse'    => 'সংকোচন',
+'collapsible-expand'      => 'বহলাওক',
 'thisisdeleted'           => '$1 চাওক বা সলনি কৰক?',
 'viewdeleted'             => '$1 চাওক?',
 'feedlinks'               => 'ফিড:',
@@ -657,7 +660,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'loginreqlink'                     => 'প্ৰবেশ',
 'loginreqpagetext'                 => 'অন্যান্য পৃষ্ঠা চাবলৈ আপুনি $1 কৰিব লাগিব।',
 'accmailtitle'                     => 'গুপ্তশব্দ পঠোৱা হৈছে।',
-'accmailtext'                      => '"$1"ৰ পাছৱৰ্ড $2 লৈ পঠোৱা হ\'ল|',
+'accmailtext'                      => "[[User talk:$1|$1]]-ৰ কাৰণে দৈব ভাবে উৎপন্ন কৰা গুপ্তশব্দ $2-লৈ পঠোৱা হ'ল । 
+এই নতুন একাউন্টত প্ৰবেশ কৰি ''[[Special:ChangePassword|change password]]'' পৃষ্ঠাখনত গুপ্তশব্দতো সলনি কৰি লব পাৰিব ।",
 'newarticle'                       => '(নতুন)',
 'newarticletext'                   => 'আপুনি বিচৰা প্ৰবন্ধটো বিচাৰি পোৱা নগল।
 
@@ -767,6 +771,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'revdelete-hide-name'        => 'কাৰ্য্য আৰু লক্ষ্য আতৰাই থওঁক',
 'revdelete-hide-comment'     => 'সম্পাদনা মন্তব্য আতৰাই থওঁক',
 'revdelete-hide-user'        => 'সম্পাদকৰ সদস্যনাম/আই-পি টিকনা আতৰাই থওঁক',
+'revdelete-radio-same'       => '(সলনি নকৰিব)',
 'revdelete-radio-set'        => 'অঁ',
 'revdelete-radio-unset'      => 'না',
 'revdelete-log'              => 'কাৰণ:',
@@ -1048,6 +1053,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'upload-success-subj' => "আপলোড সফল হ'ল",
 
 # Special:ListFiles
+'imgfile'               => 'ফাইল',
 'listfiles'             => 'ফাইলৰ তালিকা',
 'listfiles_date'        => 'তাৰিখ',
 'listfiles_name'        => 'নাম',
@@ -1078,7 +1084,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'shared-repo-from'          => '$1 পৰা',
 
 # File reversion
-'filerevert-comment' => 'মন্তব্য:',
+'filerevert-comment' => 'কাৰণ:',
+
+# File deletion
+'filedelete-legend'           => 'ফাইল বিলোপ কৰক',
+'filedelete-submit'           => 'বিলোপ কৰক',
+'filedelete-reason-otherlist' => 'অন্য কাৰণ',
 
 # List redirects
 'listredirects' => 'পূণঃনিৰ্দেশিত তালিকা',
@@ -1087,7 +1098,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'randompage' => 'আকস্মিক পৃষ্ঠা',
 
 # Statistics
-'statistics' => 'পৰিসংখ্যা',
+'statistics'       => 'পৰিসংখ্যা',
+'statistics-pages' => 'পৃষ্ঠাসমূহ',
 
 'doubleredirects' => 'দ্বি-পূণঃনিৰ্দেশিত',
 
@@ -1097,6 +1109,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'nbytes'         => '$1 {{PLURAL:$1|বাইট|বাইট}}',
 'nlinks'         => '$1 {{PLURAL:$1|সংযোগ|সংযোগ}}',
 'nmembers'       => '{{PLURAL:$1|সদস্য|$1 সদস্যবৃন্দ}}',
+'lonelypages'    => 'অনাথ পৃষ্ঠা',
 'prefixindex'    => 'উপসৰ্গ সহ সকলো পৃষ্ঠা',
 'longpages'      => 'দিঘলীয়া পৃষ্ঠাসমূহ',
 'deadendpages'   => 'ডেড এণ্ড পৃষ্ঠাসমূহ',
@@ -1195,24 +1208,28 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'enotif_anon_editor'           => 'বেনামী সদস্য $1',
 
 # Delete
-'deletepage'            => 'পৃষ্ঠা বিলোপ কৰক',
-'confirm'               => 'নিশ্চিত কৰক',
-'delete-confirm'        => '"$1" বিলোপ কৰক',
-'delete-legend'         => 'বিলোপ কৰক',
-'historywarning'        => "'''সাবধান:''' আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাখনৰ ইতিহাসত প্ৰায় {{PLURAL:$1|সংস্কৰণ|সংস্কৰণ}} আছে:",
-'confirmdeletetext'     => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
+'deletepage'             => 'পৃষ্ঠা বিলোপ কৰক',
+'confirm'                => 'নিশ্চিত কৰক',
+'delete-confirm'         => '"$1" বিলোপ কৰক',
+'delete-legend'          => 'বিলোপ কৰক',
+'historywarning'         => "'''সাবধান:''' আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাখনৰ ইতিহাসত প্ৰায় {{PLURAL:$1|সংস্কৰণ|সংস্কৰণ}} আছে:",
+'confirmdeletetext'      => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
 অনুগ্ৰহ কৰি নিশ্চিত কৰক যে এয়া [[{{MediaWiki:Policy-url}}|নীতিসম্মত]]। লগতে আপুনি ইয়াৰ পৰিণাম জানে আৰু আপুনি এয়া কৰিব বি্চাৰিছে।',
-'actioncomplete'        => 'কাৰ্য্য সম্পূৰ্ণ',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ক বিলোপন কৰা হৈছে।
+'actioncomplete'         => 'কাৰ্য্য সম্পূৰ্ণ',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ক বিলোপন কৰা হৈছে।
 সাম্প্ৰতিক বিলোপনসমূহৰ তালিকা চাবলৈ $2 চাঁওক।',
-'deletedarticle'        => '"[[$1]]" ক বাতিল কৰা হৈছে।',
-'dellogpage'            => 'বাতিল কৰা সুচী',
-'deletecomment'         => 'কাৰণ:',
-'deleteotherreason'     => 'আন/অতিৰিক্ত কাৰণ:',
-'deletereasonotherlist' => 'আন কাৰণ:',
+'deletedarticle'         => '"[[$1]]" ক বাতিল কৰা হৈছে।',
+'dellogpage'             => 'বাতিল কৰা সুচী',
+'deletecomment'          => 'কাৰণ:',
+'deleteotherreason'      => 'আন/অতিৰিক্ত কাৰণ:',
+'deletereasonotherlist'  => 'আন কাৰণ:',
+'delete-edit-reasonlist' => 'অপসাৰণ কৰা কাৰণ সম্পাদনা কৰক',
 
 # Rollback
-'rollbacklink' => 'পূৰ্ববৎ কৰিবলৈ',
+'rollback'       => 'সম্পাদনা পূৰ্ববৎ কৰক',
+'rollback_short' => 'পূৰ্ববৎ কৰক',
+'rollbacklink'   => 'পূৰ্ববৎ কৰিবলৈ',
+'rollbackfailed' => 'পূৰ্ববৎ ব্যৰ্থ',
 
 # Protect
 'protectlogpage'              => 'সুৰক্ষা সুচী',
@@ -1449,8 +1466,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Metadata
 'metadata'          => 'মেটাডাটা',
-'metadata-help'     => 'এই ফাইলত অতিৰিক্ত খবৰ আছে, হয়তো ডিজিটেল কেমেৰা বা স্কেনাৰ ব্যৱহাৰ কৰি সৃষ্টি বা পৰিৱৰ্তন কৰা হৈছে|
-এই ফাইলটো আচলৰ পৰা পৰিৱৰ্তন  কৰা হৈছে, সেয়েহে পৰিৱৰ্তিত ফাইলটোৰ সৈতে নিমিলিব পাৰে|',
+'metadata-help'     => 'এই ফাইলত অতিৰিক্ত খবৰ আছে, হয়তো ডিজিটেল কেমেৰা বা স্কেনাৰ ব্যৱহাৰ কৰি সৃষ্টি বা পৰিৱৰ্তন কৰা হৈছে ।
+এই ফাইলটো আচলৰ পৰা পৰিৱৰ্তন  কৰা হৈছে, সেয়েহে পৰিৱৰ্তিত ফাইলটোৰ সৈতে নিমিলিব পাৰে ।',
 'metadata-expand'   => 'বহলাই ইয়াৰ বিষয়ে জনাওক',
 'metadata-collapse' => 'বিষয় বৰ্ণনা নেদেখুৱাবলৈ',
 'metadata-fields'   => 'এই সুচীত থকা বিষয়বোৰ চিত্ৰৰ পৃষ্ঠাৰ তলত সদায় দেখা যাব ।
@@ -1548,9 +1565,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Special:SpecialPages
 'specialpages'                   => 'বিশেষ পৃষ্ঠাসমূহ',
-'specialpages-note'              => '↓----
-* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।
-* <strong class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</strong>',
+'specialpages-note'              => '* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।
+* <span class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</span>
+* <span class="mw-specialpagecached">কেশ্ব কৰা বিশেষ পৃষ্ঠাসমূহ।</span>',
 'specialpages-group-maintenance' => 'তত্বাৱধানৰ কাৰ্যবিবৰণীসমূহ',
 'specialpages-group-other'       => 'অন্যান্য বিশেষ পৃষ্ঠাসমূহ',
 'specialpages-group-login'       => 'প্ৰৱেশ/সদস্যভুক্তি',

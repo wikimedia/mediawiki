@@ -2526,6 +2526,9 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
+'autoblockid'                     => 'Blocage automatique #$1',
+'block'                           => 'Bloquer un utilisateur ou une adresse IP',
+'unblock'                         => 'Débloquer un utilisateur ou une adresse IP',
 'blockip'                         => 'Bloquer l’utilisateur',
 'blockip-title'                   => 'Bloquer l’utilisateur',
 'blockip-legend'                  => 'Bloquer l’utilisateur',
@@ -2570,9 +2573,20 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'unblockiptext'                   => 'Utilisez le formulaire ci-dessous pour rétablir l’accès aux modifications depuis une adresse IP ou un nom d’utilisateur.',
 'ipusubmit'                       => 'Supprimer ce blocage',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
+'unblocked-range'                 => '$1 a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
+'blocklist'                       => 'Adresses IP et utilisateurs bloqués',
 'ipblocklist'                     => 'Adresses IP et utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
+'blocklist-userblocks'            => 'Masquer les blocages de comptes',
+'blocklist-tempblocks'            => 'Masquer les blocages temporaires',
+'blocklist-addressblocks'         => 'Masquer les blocages d’adresses IP uniques',
+'blocklist-timestamp'             => 'Date et heure',
+'blocklist-target'                => 'Cible',
+'blocklist-expiry'                => 'Date d’expiration',
+'blocklist-by'                    => 'Administrateur ayant effectué le blocage',
+'blocklist-params'                => 'Paramètres de blocage',
+'blocklist-reason'                => 'Motif',
 'ipblocklist-submit'              => 'Rechercher',
 'ipblocklist-localblock'          => 'Blocage local',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
@@ -2615,6 +2629,7 @@ Consultez la [[Special:IPBlockList|liste des IP bloquées]] pour voir les bannis
 'ipb-needreblock'                 => '== Déjà bloqué ==
 $1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
+'unblock-hideuser'                => "Vous ne peut débloquer cet utilisateur, son nom d'utilisateur a été masqué.",
 'ipb_cant_unblock'                => 'Erreur : identifiant de blocage $1 non trouvé.
 Il est possible qu’un déblocage ait déjà été effectué.',
 'ipb_blocked_as_range'            => 'Erreur : l’adresse IP $1 n’est pas bloquée directement et ne peut donc pas être débloquée.
