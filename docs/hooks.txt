@@ -962,6 +962,12 @@ $ignoreRedirect: boolean to skip redirect check
 $target: Title/string of redirect target
 $article: Article object
 
+'InterwikiLoadPrefix': When resolving if a given prefix is an interwiki or not.
+Return true without providing an interwiki to continue interwiki search.
+$prefix: interwiki prefix we are looking for.
+&$iwData: output array describing the interwiki with keys iw_url, iw_local, 
+  iw_trans and optionally iw_api and iw_wikiid.
+
 'InternalParseBeforeLinks': during Parser's internalParse method before links
 but after noinclude/includeonly/onlyinclude and other processing.
 &$parser: Parser object

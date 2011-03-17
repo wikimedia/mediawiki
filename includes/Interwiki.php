@@ -141,11 +141,19 @@ class Interwiki {
 	 */
 	protected static function load( $prefix ) {
 		global $wgMemc, $wgInterwikiExpiry;
-		$key = wfMemcKey( 'interwiki', $prefix );
-		$mc = $wgMemc->get( $key );
 
-		if( $mc && is_array( $mc ) ) { // is_array is hack for old keys
-			$iw = Interwiki::loadFromArray( $mc );
+		$iwData = false;
+		if ( !wfRunHooks('InterwikiLoadPrefix', array( $prefix, &$iwData ) ) ) {
+			return Interwiki::loadFromArray( $iwData );
+		}
+
+		if ( !$iwData ) {
+			$key = wfMemcKey( 'interwiki', $prefix );
+			$iwData = $wgMemc->get( $key );
+		}
+
+		if( $iwData && is_array( $iwData ) ) { // is_array is hack for old keys
+			$iw = Interwiki::loadFromArray( $iwData );
 			if( $iw ) {
 				return $iw;
 			}
