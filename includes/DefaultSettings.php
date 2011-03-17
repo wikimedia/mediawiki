@@ -3740,8 +3740,6 @@ $wgCookiePrefix = false;
  * Set authentication cookies to HttpOnly to prevent access by JavaScript,
  * in browsers that support this feature. This can mitigates some classes of
  * XSS attack.
- *
- * Only supported on PHP 5.2 or higher.
  */
 $wgCookieHttpOnly = true;
 
