@@ -785,7 +785,10 @@ class PhpHttpRequest extends MWHttpRequest {
 			return $this->status;
 		}
 
-		if ( $this->status->isOK() ) {
+		// If everything went OK, or we recieved some error code
+		// get the response body content.
+		if ( $this->status->isOK()
+				|| (int)$this->respStatus >= 300) {
 			while ( !feof( $fh ) ) {
 				$buf = fread( $fh, 8192 );
 
