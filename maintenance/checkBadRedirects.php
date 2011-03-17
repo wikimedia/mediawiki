@@ -27,7 +27,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class CheckBadRedirects extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Look for bad redirects";
+		$this->mDescription = "Check for bad redirects";
 	}
 
 	public function execute() {
@@ -39,8 +39,8 @@ class CheckBadRedirects extends Maintenance {
 			array( 'page_is_redirect' => 1 ) );
 
 		$count = $result->numRows();
-		$this->output( "Found $count total redirects.\n" .
-						"Looking for bad redirects:\n\n" );
+		$this->output( "Found $count redirects.\n" .
+						"Checking for bad redirects:\n\n" );
 
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -52,7 +52,7 @@ class CheckBadRedirects extends Maintenance {
 				}
 			}
 		}
-		$this->output( "\ndone.\n" );
+		$this->output( "\nDone.\n" );
 	}
 }
 
