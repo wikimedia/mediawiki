@@ -13,6 +13,7 @@
  * @author Dnik
  * @author Ex13
  * @author Excaliboor
+ * @author Herr Mlinka
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
@@ -335,8 +336,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
 'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Običan potpis kao wikitekst (bez automatske poveznice)',
-'tog-externaleditor'          => 'Uvijek rabi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu)',
-'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu',
+'tog-externaleditor'          => 'Uvijek koristi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu. [http://www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
+'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu (samo za napredne, potrebne su posebne postavke na računalu. [http://www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
 'tog-showjumplinks'           => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview'          => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary'        => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
@@ -1405,6 +1406,10 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'prefs-displaysearchoptions'    => 'Opcije prikaza',
 'prefs-displaywatchlist'        => 'Opcije prikaza',
 'prefs-diffs'                   => 'razl',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mail adresa se pokazuje ispravnom',
+'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
 
 # User rights
 'userrights'                   => 'Upravljanje suradničkim pravima',
@@ -2862,7 +2867,7 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'math_unknown_function' => 'nepoznata funkcija',
 'math_lexing_error'     => 'rječnička pogreška (lexing error)',
 'math_syntax_error'     => 'sintaksna pogreška',
-'math_image_error'      => 'Konverzija u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
+'math_image_error'      => 'Pretvorba u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
 'math_bad_tmpdir'       => 'Ne mogu otvoriti ili pisati u privremeni direktorij za matematiku',
 'math_bad_output'       => 'Ne mogu otvoriti ili pisati u odredišni direktorij za matematiku',
 'math_notexvc'          => 'Nedostaje izvršna datoteka texvc-a; pogledajte math/README za postavke.',
@@ -3422,7 +3427,7 @@ Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice
-*<strong class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</strong>',
+* <strong class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom.</strong>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
