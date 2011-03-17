@@ -528,7 +528,7 @@ class SpecialBlock extends SpecialPage {
 			if( $type != Block::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
 
-			} elseif( !in_array( $data['Expiry'], array( 'inifinite', 'infinity', 'indefinite' ) ) ) {
+			} elseif( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
 
