@@ -176,6 +176,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
 			array( 'doLangLinksLengthUpdate' ),
 			array( 'doClTypeVarcharUpdate' ),
+
+			// 1.18
+			array( 'doUserNewTalkTimestampNotNull' ),
 		);
 	}
 
@@ -842,5 +845,17 @@ class MysqlUpdater extends DatabaseUpdater {
 		} else {
 			$this->output( "...cl_type is up-to-date.\n" );
 		}
+	}
+
+	protected function doUserNewTalkTimestampNotNull() {
+		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
+		if ( $info->isNullable() ) {
+			$this->output( "...user_last_timestamp is already nullable.\n" );
+			return;
+		}
+
+		$this->output( "Making user_last_timestamp nullable... " );
+		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
+		$this->output( "done.\n" );
 	}
 }
