@@ -56,6 +56,21 @@ class PreprocessDump extends Maintenance {
 		return Maintenance::DB_NONE;
 	}
 
+	public function finalSetup() {
+		parent::finalSetup();
+
+		global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
+		$wgUseDatabaseMessages = false;
+		$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
+		$wgHooks['InterwikiLoadPrefix'][] = 'PreprocessDump::disableInterwikis';
+	}
+
+	static function disableInterwikis( $prefix, &$data ) {
+		# Title::newFromText will check on ach namespaced article if it's an interwiki.
+
+		return false;
+	}
+
 	public function execute() {
 		global $wgParser, $wgParserConf, $wgPreprocessorCacheThreshold;
 		
