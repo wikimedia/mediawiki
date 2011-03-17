@@ -1766,7 +1766,7 @@ $u: the account whose new password will be set
 'UserAddGroup': called when adding a group; return false to override
 stock group addition.
 $user: the user object that is to have a group added
-$group: the group to add
+&$group: the group to add, can be modified
 
 'UserArrayFromResult': called when creating an UserArray object from a
 database result
@@ -1898,7 +1898,7 @@ $oldName: name of the user before logout (string)
 'UserRemoveGroup': called when removing a group; return false to override
 stock group removal.
 $user: the user object that is to have a group removed
-$group: the group to be removed
+&$group: the group to be removed, can be modified
 
 'UserRights': After a user's group memberships are changed
 $user  : User object that was changed
