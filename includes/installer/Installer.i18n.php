@@ -4973,6 +4973,8 @@ Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a wjazawki 
 Skontroluj serwer, wužiwarske a hesło a spytaj hišće raz.',
 	'config-invalid-schema' => 'Njepłaćiwe šema za MediaWiki "$1".
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
+	'config-db-sys-create-oracle' => 'Instalaciski program podpěruje jenož wužiwanje SYSDBA-konta za zakoženje noweho konta.',
+	'config-db-sys-user-exists-oracle' => 'Wužiwarske konto "$1" hižo eksistuje. SYSDBA hodźi so jenož za załoženje noweho konta wužiwać!',
 	'config-postgres-old' => 'PostgreSQL $1 abo nowši trěbny, maš $2.',
 	'config-sqlite-name-help' => 'Wubjer mjeno, kotrež twój wiki identifikuje.
 Njewužij mjezery abo wjazawki.
@@ -5050,6 +5052,7 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-license-none' => 'Žane licencne podaća w nohowej lince',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-cc-0' => 'Creative Commons "Zero"',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 abo nowša',
 	'config-license-pd' => 'Powšitkownosći přistupny',
@@ -10733,6 +10736,11 @@ MediaWiki требует поддержки UTF-8 для корректной р
 
 Если вы используете виртуальный хостинг, провайдер или выдаст вам конкретное имя базы данных, или позволит создавать базы данных с помощью панели управления.',
 	'config-db-name-oracle' => 'Схема базы данных:',
+	'config-db-account-oracle-warn' => 'Поддерживаются три сценария установки Oracle в качестве базы данных:
+
+Если вы хотите создать учётную запись базы данных в процессе установки, пожалуйста, укажите учётную запись роли SYSDBA для установки и укажите желаемые полномочия учётной записи с веб-доступом. вы также можете учётную запись с веб-доступом вручную и указать только её (если у неё есть необходимые разрешения на создание объектов схемы) или указать две учётные записи, одну с правами создания объектов, а другую с ограничениями для веб-доступа.
+
+Сценарий для создания учётной записи с необходимыми привилегиями можно найти в папке «maintenance/oracle/» этой программы установки. Имейте в виду, что использование ограниченной учётной записи приведёт к отключению всех возможностей обслуживания с учётной записи по умолчанию.',
 	'config-db-install-account' => 'Учётная запись для установки',
 	'config-db-username' => 'Имя пользователя базы данных:',
 	'config-db-password' => 'Пароль базы данных:',

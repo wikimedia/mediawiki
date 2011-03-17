@@ -790,6 +790,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Revision move
 'revmove-reasonfield'    => 'কাৰণ:',
+'revmove-titlefield'     => 'লক্ষ্য পৃষ্ঠা:',
 'revmove-nullmove-title' => 'শিৰোনামাটি গ্ৰহণযোগ্য নহয় ।',
 
 # History merging
@@ -831,6 +832,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'searchmenu-new'                 => "'''এই ৱিকিত \"[[:\$1]]\" পৃষ্ঠাখন সৃষ্টি কৰক!'''",
 'searchhelp-url'                 => 'Help:সুচী',
 'searchprofile-articles'         => 'সূচিপত্ৰসমূহ',
+'searchprofile-project'          => 'সহায় আৰু প্ৰকল্প পৃষ্ঠাসমূহ',
 'searchprofile-images'           => 'মাল্টিমিডিয়া',
 'searchprofile-everything'       => 'সকলো',
 'searchprofile-advanced'         => 'উচ্চতৰ',
@@ -964,6 +966,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'prefs-advancedsearchoptions' => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
 'prefs-advancedwatchlist'     => 'উচ্চতৰ উপায়ান্তৰ সমূহ',
 'prefs-displayrc'             => 'প্ৰদৰ্শনী উপায়ান্তৰ সমূহ',
+'prefs-displaysearchoptions'  => 'বিকল্প প্ৰদৰ্শন কৰক',
 'prefs-diffs'                 => 'পাৰ্থক্য',
 
 # User rights
@@ -980,21 +983,30 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Groups
 'group'            => 'গোট:',
 'group-user'       => 'সদস্যসকল',
+'group-bot'        => 'বট',
 'group-sysop'      => 'এডমিনিষ্ট্ৰেটৰসকল',
 'group-bureaucrat' => 'ব্যুৰোক্ৰেটসকল',
 'group-all'        => '(সকলো)',
 
-'group-user-member'  => 'সদস্য',
-'group-bot-member'   => 'বট',
-'group-sysop-member' => 'এডমিনিষ্ট্ৰেটৰ',
+'group-user-member'       => 'সদস্য',
+'group-bot-member'        => 'বট',
+'group-sysop-member'      => 'এডমিনিষ্ট্ৰেটৰ',
+'group-bureaucrat-member' => 'ব্যুৰোক্ৰেট',
 
-'grouppage-sysop' => '{{ns:project}}:প্ৰবন্ধক',
+'grouppage-user'       => '{{ns:project}}:সদস্যসকল',
+'grouppage-bot'        => '{{ns:project}}:বটসমূহ',
+'grouppage-sysop'      => '{{ns:project}}:প্ৰবন্ধক',
+'grouppage-bureaucrat' => '{{ns:project}}:ব্যুৰোক্ৰেটসকল',
 
 # Rights
-'right-read'       => 'পৃষ্ঠাসমূহ পঢ়ক',
-'right-edit'       => 'পৃষ্ঠাসমূহ সম্পাদনা কৰক',
-'right-createpage' => 'পৃষ্ঠাসমূহ সৃষ্টি কৰক (কথাবতৰা পৃষ্ঠা নহয়)',
-'right-createtalk' => 'কথাবতৰা পৃষ্ঠা সৃষ্টি কৰক',
+'right-read'          => 'পৃষ্ঠাসমূহ পঢ়ক',
+'right-edit'          => 'পৃষ্ঠাসমূহ সম্পাদনা কৰক',
+'right-createpage'    => 'পৃষ্ঠাসমূহ সৃষ্টি কৰক (কথাবতৰা পৃষ্ঠা নহয়)',
+'right-createtalk'    => 'কথাবতৰা পৃষ্ঠা সৃষ্টি কৰক',
+'right-createaccount' => 'নতুন সদস্য একাউন্ট সৃষ্টি কৰক',
+'right-move'          => 'পৃস্থাসমূহ স্থানান্তৰ কৰক',
+'right-movefile'      => 'ফাইল স্থানান্তৰ কৰক',
+'right-delete'        => 'পৃষ্ঠাসমূহ বিলোপ কৰক',
 
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
@@ -1004,6 +1016,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'action-edit'       => 'এই পৃষ্ঠা সম্পাদনা কৰক',
 'action-createpage' => 'পৃষ্ঠা সৃষ্টি কৰক',
 'action-createtalk' => 'আলোচনা পৃষ্ঠা সৃষ্টি কৰক',
+'action-userrights' => 'সকলো সদস্য অধিকাৰ সম্পাদনা কৰক',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|সাল-সলনি|সাল-সলনি}}',
@@ -1098,29 +1111,37 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'randompage' => 'আকস্মিক পৃষ্ঠা',
 
 # Statistics
-'statistics'       => 'পৰিসংখ্যা',
-'statistics-pages' => 'পৃষ্ঠাসমূহ',
+'statistics'              => 'পৰিসংখ্যা',
+'statistics-header-pages' => 'পৃষ্ঠা পৰিসংখ্যা',
+'statistics-header-hooks' => 'অন্য পৰিসংখ্যা',
+'statistics-pages'        => 'পৃষ্ঠাসমূহ',
 
 'doubleredirects' => 'দ্বি-পূণঃনিৰ্দেশিত',
 
 'brokenredirects-edit' => 'সম্পাদনা কৰক',
 
 # Miscellaneous special pages
-'nbytes'         => '$1 {{PLURAL:$1|বাইট|বাইট}}',
-'nlinks'         => '$1 {{PLURAL:$1|সংযোগ|সংযোগ}}',
-'nmembers'       => '{{PLURAL:$1|সদস্য|$1 সদস্যবৃন্দ}}',
-'lonelypages'    => 'অনাথ পৃষ্ঠা',
-'prefixindex'    => 'উপসৰ্গ সহ সকলো পৃষ্ঠা',
-'longpages'      => 'দিঘলীয়া পৃষ্ঠাসমূহ',
-'deadendpages'   => 'ডেড এণ্ড পৃষ্ঠাসমূহ',
-'protectedpages' => 'সুৰক্ষিত পৃষ্ঠাসমূহ',
-'listusers'      => 'সদস্য-সুচী',
-'newpages'       => 'নতুন পৃষ্ঠা',
-'ancientpages'   => 'আটাইটকৈ পুৰণি পৃষ্ঠাসমূহ',
-'move'           => 'স্থানান্তৰন',
-'movethispage'   => 'এই পৃষ্ঠাটো স্থানান্তৰিত কৰক',
-'pager-newer-n'  => '{{PLURAL:$1|নতুনতৰ ১টি|নতুনতৰ $1টি}}',
-'pager-older-n'  => '{{PLURAL:$1|পুৰণতৰ ১|পুৰণতৰ $1}}',
+'nbytes'            => '$1 {{PLURAL:$1|বাইট|বাইট}}',
+'nlinks'            => '$1 {{PLURAL:$1|সংযোগ|সংযোগ}}',
+'nmembers'          => '{{PLURAL:$1|সদস্য|$1 সদস্যবৃন্দ}}',
+'lonelypages'       => 'অনাথ পৃষ্ঠা',
+'unusedimages'      => 'অব্যৱহৃত ফাইলসমূহ',
+'popularpages'      => 'জনপ্ৰিয় পৃষ্ঠাসমূহ',
+'wantedcategories'  => 'কাম্য শ্ৰেণীসমূহ',
+'wantedpages'       => 'কাম্য পৃষ্ঠাসমূহ',
+'wantedfiles'       => 'কাম্য ফাইলসমূহ',
+'prefixindex'       => 'উপসৰ্গ সহ সকলো পৃষ্ঠা',
+'longpages'         => 'দিঘলীয়া পৃষ্ঠাসমূহ',
+'deadendpages'      => 'ডেড এণ্ড পৃষ্ঠাসমূহ',
+'protectedpages'    => 'সুৰক্ষিত পৃষ্ঠাসমূহ',
+'listusers'         => 'সদস্য-সুচী',
+'newpages'          => 'নতুন পৃষ্ঠা',
+'newpages-username' => 'সদস্যনাম:',
+'ancientpages'      => 'আটাইটকৈ পুৰণি পৃষ্ঠাসমূহ',
+'move'              => 'স্থানান্তৰন',
+'movethispage'      => 'এই পৃষ্ঠাটো স্থানান্তৰিত কৰক',
+'pager-newer-n'     => '{{PLURAL:$1|নতুনতৰ ১টি|নতুনতৰ $1টি}}',
+'pager-older-n'     => '{{PLURAL:$1|পুৰণতৰ ১|পুৰণতৰ $1}}',
 
 # Book sources
 'booksources'               => 'গ্ৰন্থৰ উৎস সমূহ',
@@ -1454,15 +1475,17 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'nextdiff'     => 'নতুনতৰ সম্পাদনা →',
 
 # Media information
-'file-info-size' => '$1 × $2 পিক্সেল, ফাইলৰ মাত্ৰা: $3, MIME প্ৰকাৰ: $4',
-'file-nohires'   => '<small>ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।</small>',
-'svg-long-desc'  => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
-'show-big-image' => 'সম্পূৰ্ণ দৃশ্য',
+'file-info-size'      => '$1 × $2 পিক্সেল, ফাইলৰ মাত্ৰা: $3, MIME প্ৰকাৰ: $4',
+'file-nohires'        => '<small>ইয়াতকৈ ডাঙৰকৈ দেখুৱাব নোৱাৰি ।</small>',
+'svg-long-desc'       => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
+'show-big-image'      => 'সম্পূৰ্ণ দৃশ্য',
+'show-big-image-size' => '$1 × $2 পিক্সেল',
 
 # Special:NewFiles
-'newimages' => 'নতুন ফাইলৰ বিথীকা',
-'ilsubmit'  => 'সন্ধান কৰক',
-'bydate'    => 'তাৰিখ অনুযায়ী',
+'newimages'        => 'নতুন ফাইলৰ বিথীকা',
+'newimages-legend' => 'ছাকনী',
+'ilsubmit'         => 'সন্ধান কৰক',
+'bydate'           => 'তাৰিখ অনুযায়ী',
 
 # Metadata
 'metadata'          => 'মেটাডাটা',
@@ -1479,6 +1502,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 * fnumber
 * isospeedratings
 * focallength',
+
+# EXIF tags
+'exif-objectname' => 'চমু শীৰ্ষক',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'কিলোমিটাৰ প্ৰতি ঘন্টা',
@@ -1530,6 +1556,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'watchlistedit-numitems'      => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
 'watchlistedit-noitems'       => 'আপুনাৰ লক্ষ্য-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
 'watchlistedit-normal-title'  => 'লক্ষ্য-তালিকা সম্পাদন কৰক',
+'watchlistedit-normal-legend' => 'লক্ষ্য-তালিকাৰ পৰা শীৰ্ষক আতৰোৱাওক',
 'watchlistedit-normal-submit' => 'শিৰোনামা আঁতৰাৱক',
 'watchlistedit-raw-title'     => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
 'watchlistedit-raw-legend'    => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
