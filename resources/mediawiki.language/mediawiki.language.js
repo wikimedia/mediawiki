@@ -65,7 +65,7 @@ mw.language = {
 	/**
 	 * Converts a number using digitTransformTable.
 	 *
-	 * @param {number} number Value to be converted
+	 * @param {num} number Value to be converted
 	 * @param {boolean} integer Convert the return value to an integer
 	 */
 	'convertNumber': function( num, integer ) {
@@ -94,7 +94,7 @@ mw.language = {
 				convertedNumber += numberString[i];
 			}
 		}
-		return integer ? parseInt( convertedNumber ) : convertedNumber;
+		return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
 	},
 	// Digit Transform Table, populated by language classes where applicable
 	'digitTransformTable': null
