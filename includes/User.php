@@ -1963,11 +1963,13 @@ class User {
 	 *
 	 * @param $oname String The option to check
 	 * @param $defaultOverride String A default value returned if the option does not exist
+	 * @bool $ignoreHidden = whether to ignore the effects of $wgHiddenPrefs
 	 * @return String User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
 	 */
-	function getOption( $oname, $defaultOverride = null ) {
+	function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
+		global $wgHiddenPrefs;
 		$this->loadOptions();
 
 		if ( is_null( $this->mOptions ) ) {
@@ -1975,6 +1977,15 @@ class User {
 				return $defaultOverride;
 			}
 			$this->mOptions = User::getDefaultOptions();
+		}
+
+		# We want 'disabled' preferences to always behave as the default value for
+		# users, even if they have set the option explicitly in their settings (ie they
+		# set it, and then it was disabled removing their ability to change it).  But
+		# we don't want to erase the preferences in the database in case the preference
+		# is re-enabled again.  So don't touch $mOptions, just override the returned value
+		if( in_array( $oname, $wgHiddenPrefs ) && !$ignoreHidden ){
+			return self::getDefaultOption( $oname );
 		}
 
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
@@ -1990,8 +2001,23 @@ class User {
 	 * @return array
 	 */
 	public function getOptions() {
+		global $wgHiddenPrefs;
 		$this->loadOptions();
-		return $this->mOptions;
+		$options = $this->mOptions;
+
+		# We want 'disabled' preferences to always behave as the default value for
+		# users, even if they have set the option explicitly in their settings (ie they
+		# set it, and then it was disabled removing their ability to change it).  But
+		# we don't want to erase the preferences in the database in case the preference
+		# is re-enabled again.  So don't touch $mOptions, just override the returned value
+		foreach( $wgHiddenPrefs as $pref ){
+			$default = self::getDefaultOption( $pref );
+			if( $default !== null ){
+				$options[$pref] = $default;
+			}
+		}
+
+		return $options;
 	}
 
 	/**
