@@ -120,7 +120,7 @@ class SpecialBlock extends SpecialPage {
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
 			),
 			'Expiry' => array(
-				'type' => 'selectorother',
+				'type' => self::getSuggestedDurations() === array() ? 'text' : 'selectorother',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
 				'tabindex' => '2',
@@ -138,10 +138,6 @@ class SpecialBlock extends SpecialPage {
 				'default' => true,
 			),
 		);
-
-		if( wfMsgForContent( 'ipboptions' ) == '-' ){
-			$a['Expiry']['type'] = 'text';
-		}
 
 		if( self::canBlockEmail( $wgUser ) ) {
 			$a['DisableEmail'] = array(
@@ -501,7 +497,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		if( ( strlen( $data['Expiry'] ) == 0) || ( strlen( $data['Expiry'] ) > 50 )
-			|| !Block::parseExpiryInput( $data['Expiry'] ) )
+			|| !self::parseExpiryInput( $data['Expiry'] ) )
 		{
 			return array( 'ipb_expiry_invalid' );
 		}
@@ -548,7 +544,7 @@ class SpecialBlock extends SpecialPage {
 			$data['Reason'][0],                         # Reason string
 			wfTimestampNow(),                           # Block Timestamp
 			0,                                          # Is this an autoblock (no)
-			Block::parseExpiryInput( $data['Expiry'] ), # Expiry time
+			self::parseExpiryInput( $data['Expiry'] ), # Expiry time
 			!$data['HardBlock'],                        # Block anon only
 			$data['CreateAccount'],
 			$data['AutoBlock'],
@@ -645,14 +641,43 @@ class SpecialBlock extends SpecialPage {
 	 *     to the standard "**<duration>|<displayname>" format?
 	 * @return Array
 	 */
-	protected static function getSuggestedDurations(){
+	public static function getSuggestedDurations( $lang = null ){
 		$a = array();
-		foreach( explode( ',', wfMsgForContent( 'ipboptions' ) ) as $option ) {
-			if( strpos( $option, ':' ) === false ) $option = "$option:$option";
+		$msg = $lang === null
+			? wfMessage( 'ipboptions' )->inContentLanguage()
+			: wfMessage( 'ipboptions' )->inLanguage( $lang );
+
+		if( $msg == '-' ){
+			return array();
+		}
+
+		foreach( explode( ',', $msg ) as $option ) {
+			if( strpos( $option, ':' ) === false ){
+				$option = "$option:$option";
+			}
 			list( $show, $value ) = explode( ':', $option );
 			$a[htmlspecialchars( $show )] = htmlspecialchars( $value );
 		}
 		return $a;
+	}
+
+	/**
+	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
+	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
+	 * @param $expiry String: whatever was typed into the form
+	 * @return String: timestamp or "infinity" string for the DB implementation
+	 */
+	public static function parseExpiryInput( $expiry ) {
+		if ( $expiry == 'infinite' || $expiry == 'indefinite' ) {
+			$expiry = Block::infinity();
+		} else {
+			$expiry = strtotime( $expiry );
+			if ( $expiry < 0 || $expiry === false ) {
+				return false;
+			}
+			$expiry = wfTimestamp( TS_MW, $expiry );
+		}
+		return $expiry;
 	}
 
 	/**
