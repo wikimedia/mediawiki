@@ -2748,6 +2748,20 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Encode an expiry time
+	 *
+	 * @param $expiry String: timestamp for expiry, or the 'infinity' string
+	 * @return String
+	 */
+	public function encodeExpiry( $expiry ) {
+		if ( $expiry == '' || $expiry == $this->getInfinity() ) {
+			return $this->getInfinity();
+		} else {
+			return $this->timestamp( $expiry );
+		}
+	}
+
+	/**
 	 * Allow or deny "big selects" for this session only. This is done by setting
 	 * the sql_big_selects session variable.
 	 *

@@ -2970,6 +2970,37 @@ class Language {
 		return array( $wikiUpperChars, $wikiLowerChars );
 	}
 
+	/**
+	 * Decode an expiry (block, protection, etc) which has come from the DB
+	 *
+	 * @param $expiry String: Database expiry String
+	 * @param $format Bool|Int true to process using language functions, or TS_ constant
+	 *     to return the expiry in a given timestamp
+	 * @return String
+	 */
+	public function formatExpiry( $expiry, $format = true ) {
+		static $dbr, $msg;
+		if( !$dbr ){
+			$dbr = wfGetDB( DB_SLAVE );
+			$msg = wfMessage( 'infiniteblock' );
+		}
+
+		if ( $expiry == '' || $expiry == $dbr->getInfinity() ) {
+			return $format === true
+				? $msg
+				: $dbr->getInfinity();
+		} else {
+			return $format === true
+				? $this->timeanddate( $expiry )
+				: wfTimestamp( $format, $expiry );
+		}
+	}
+
+	/**
+	 * @todo Document
+	 * @param  $seconds String
+	 * @return string
+	 */
 	function formatTimePeriod( $seconds ) {
 		if ( round( $seconds * 10 ) < 100 ) {
 			return $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) ) . $this->getMessageFromDB( 'seconds-abbrev' );

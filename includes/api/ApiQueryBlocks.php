@@ -46,7 +46,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 
 		$params = $this->extractRequestParams();
 		if ( isset( $params['users'] ) && isset( $params['ip'] ) ) {
@@ -170,7 +170,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
 			}
 			if ( $fld_expiry ) {
-				$block['expiry'] = Block::decodeExpiry( $row->ipb_expiry, TS_ISO_8601 );
+				$block['expiry'] = $wgContLang->formatExpiry( $row->ipb_expiry, TS_ISO_8601 );
 			}
 			if ( $fld_reason ) {
 				$block['reason'] = $row->ipb_reason;

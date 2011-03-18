@@ -93,7 +93,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$stxt = '';
 
 		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
-			$expiry = Block::decodeExpiry( $row->pt_expiry );
+			$expiry = $wgLang->formatExpiry( $row->pt_expiry );
 
 			$expiry_description = wfMsg( 'protect-expiring', $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
