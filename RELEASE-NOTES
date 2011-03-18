@@ -116,6 +116,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   file description page. The sizes are set by $wgImageLimits.
 * (bug 28031) Add pageCount support to ArchivedFile
 * (bug 27924) PhpHttpRequest doesn't return response body if HTTP != 200
+* Added hook BitmapHandlerTransform to allow extension to transform a file 
+  without overriding the entire handler.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
