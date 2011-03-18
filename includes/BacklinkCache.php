@@ -33,22 +33,19 @@ class BacklinkCache {
 	 *    > 'batches' : array( $start, $end )
 	 *
 	 * @see BacklinkCache::partitionResult()
-	 * @todo Should be private
 	 *
 	 * Cleared with BacklinkCache::clear()
 	 */
-	var $partitionCache = array();
+	protected $partitionCache = array();
 
 	/**
 	 * Contains the whole links from a database result.
 	 * This is raw data that will be partitioned in $partitionCache
 	 *
-	 * @todo Should be private
-	 *
 	 * Initialized with BacklinkCache::getLinks()
 	 * Cleared with BacklinkCache::clear()
 	 */
-	var $fullResultCache = array();
+	protected $fullResultCache = array();
 
 	/**
 	 * Local copy of a database object.
@@ -56,16 +53,13 @@ class BacklinkCache {
 	 * Accessor: BacklinkCache::getDB()
 	 * Mutator : BacklinkCache::setDB()
 	 * Cleared with BacklinkCache::clear()
-	 *
-	 * @todo Should be private
 	 */
-	var $db;
+	protected $db;
 
 	/**
 	 * Local copy of a Title object
-	 * @todo Should be private
 	 */
-	var $title;
+	protected $title;
 
 	const CACHE_EXPIRY = 3600;
 
@@ -89,7 +83,7 @@ class BacklinkCache {
 	/**
 	 * Clear locally stored data and database object.
 	 */
-	function clear() {
+	public function clear() {
 		$this->partitionCache = array();
 		$this->fullResultCache = array();
 		unset( $this->db );
