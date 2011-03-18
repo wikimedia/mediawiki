@@ -1963,7 +1963,7 @@ class User {
 	 *
 	 * @param $oname String The option to check
 	 * @param $defaultOverride String A default value returned if the option does not exist
-	 * @bool $ignoreHidden = whether to ignore the effects of $wgHiddenPrefs
+	 * @param $ignoreHidden Bool = whether to ignore the effects of $wgHiddenPrefs
 	 * @return String User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
