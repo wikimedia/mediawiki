@@ -93,7 +93,7 @@ $specialPageAliases = array(
 	'Ancientpages'              => array( 'Elstu síður' ),
 	'Deadendpages'              => array( 'Gøtubotns síður' ),
 	'Allpages'                  => array( 'Allar síður' ),
-	'Ipblocklist'               => array( 'Bannað brúkaranøvn og IP-adressur' ),
+	'BlockList'                 => array( 'Bannað brúkaranøvn og IP-adressur' ),
 	'Specialpages'              => array( 'Serligar síður' ),
 	'Contributions'             => array( 'Brúkaraíkast' ),
 	'Emailuser'                 => array( 'Send t-post til brúkara' ),
@@ -103,7 +103,7 @@ $specialPageAliases = array(
 	'Export'                    => array( 'Útflutningssíður' ),
 	'Version'                   => array( 'Útgáva' ),
 	'Allmessages'               => array( 'Øll kervisboð' ),
-	'Blockip'                   => array( 'Banna brúkara' ),
+	'Block'                     => array( 'Banna brúkara' ),
 	'Undelete'                  => array( 'Endurstovna strikaðar síður' ),
 	'Search'                    => array( 'Leita' ),
 );
