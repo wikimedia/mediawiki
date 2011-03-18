@@ -2251,7 +2251,7 @@ class User {
 	public function isAllowedAny( /*...*/ ){
 		$permissions = func_get_args();
 		foreach( $permissions as $permission ){
-			if( $this->isAllowedInternal( $permission ) ){
+			if( $this->isAllowed( $permission ) ){
 				return true;
 			}
 		}
@@ -2265,7 +2265,7 @@ class User {
 	public function isAllowedAll( /*...*/ ){
 		$permissions = func_get_args();
 		foreach( $permissions as $permission ){
-			if( !$this->isAllowedInternal( $permission ) ){
+			if( !$this->isAllowed( $permission ) ){
 				return false;
 			}
 		}
