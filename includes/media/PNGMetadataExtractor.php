@@ -25,6 +25,8 @@ class PNGMetadataExtractor {
 		$frameCount = 0;
 		$loopCount = 1;
 		$duration = 0.0;
+		$bitDepth = 0;
+		$colorType = 'unknown';
 
 		if (!$filename)
 			throw new Exception( __METHOD__ . ": No file name specified" );
@@ -57,7 +59,35 @@ class PNGMetadataExtractor {
 				throw new Exception( __METHOD__ . ": Read error" );
 			}
 
-			if ( $chunk_type == "acTL" ) {
+			if ( $chunk_type == "IHDR" ) {
+				$buf = fread( $fh, $chunk_size );
+				if( !$buf ) {
+					throw new Exception( __METHOD__ . ": Read error" );
+				}
+				$bitDepth = ord( substr( $buf, 8, 1 ) );
+				// Detect the color type in British English as per the spec
+				// http://www.w3.org/TR/PNG/#11IHDR
+				switch ( ord( substr( $buf, 9, 1 ) ) ) {
+					case 0:
+						$colorType = 'greyscale';
+						break;
+					case 2: 
+						$colorType = 'truecolour';
+						break;
+					case 3:
+						$colorType = 'index-coloured';
+						break;
+					case 4:
+						$colorType = 'greyscale-alpha';
+						break;
+					case 6:
+						$colorType = 'truecolour-alpha';
+						break;
+					default:
+						$colorType = 'unknown';
+						break;
+				}
+			} elseif ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
 				if( !$buf ) {
 					throw new Exception( __METHOD__ . ": Read error" );
@@ -97,7 +127,9 @@ class PNGMetadataExtractor {
 		return array(
 			'frameCount' => $frameCount,
 			'loopCount' => $loopCount,
-			'duration' => $duration
+			'duration' => $duration,
+			'bitDepth' => $bitDepth,
+			'colorType' => $colorType,
 		);
 		
 	}
