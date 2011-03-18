@@ -32,7 +32,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	function __construct( $name = 'BrokenRedirects' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	function sortDescending() { return false; }

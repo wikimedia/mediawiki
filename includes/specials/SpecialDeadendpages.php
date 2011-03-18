@@ -46,7 +46,7 @@ class DeadendPagesPage extends PageQueryPage {
 	}
 
 	function isSyndicated() {
-		return false; 
+		return false;
 	}
 
 	/**
@@ -72,7 +72,7 @@ class DeadendPagesPage extends PageQueryPage {
 			) ) )
 		);
 	}
-	
+
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort

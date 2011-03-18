@@ -61,7 +61,7 @@ class SpecialPreferences extends SpecialPage {
 				'savedprefs'
 			);
 		}
-		
+
 		if ( $wgRequest->getCheck( 'eauth' ) ) {
 			$wgOut->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1\n</div>",
 									'eauthentsent', $wgUser->getName() );

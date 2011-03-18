@@ -85,7 +85,7 @@ class SpecialBlockList extends SpecialPage {
 		$form->setWrapperLegend( wfMsg( 'ipblocklist-legend' ) );
 		$form->setSubmitText( wfMsg( 'ipblocklist-submit' ) );
 		$form->prepareForm();
-		
+
 		$form->displayForm( '' );
 		$this->showList();
 	}
@@ -142,7 +142,7 @@ class SpecialBlockList extends SpecialPage {
 					$chunk = self::getIpFragment( $start );
 					$dbr = wfGetDB( DB_SLAVE );
 					$like = $dbr->buildLike( $chunk, $dbr->anyString() );
-						
+
 					# Fairly hard to make a malicious SQL statement out of hex characters,
 					# but stranger things have happened...
 					$safeStart = $dbr->addQuotes( IP::toHex( $start ) );

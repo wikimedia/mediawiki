@@ -211,7 +211,7 @@ class DeletedContribsPager extends IndexPager {
 		} else {
 			$mflag = '';
 		}
-		
+
 		// Revision delete link
 		$canHide = $wgUser->isAllowed( 'deleterevision' );
 		if( $canHide || ($rev->getVisibility() && $wgUser->isAllowed('deletedhistory')) ) {
@@ -234,9 +234,9 @@ class DeletedContribsPager extends IndexPager {
 			array( 'class' => 'mw-deletedcontribs-tools' ),
 			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
-		
+
 		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
-		
+
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user-contribs') . "</strong>";
@@ -381,7 +381,7 @@ class DeletedContributionsPage extends SpecialPage {
 							array(),
 							array(
 								'action' => 'unblock',
-								'ip' => $nt->getDBkey() 
+								'ip' => $nt->getDBkey()
 							)
 						);
 					}

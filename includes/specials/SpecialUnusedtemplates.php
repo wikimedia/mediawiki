@@ -34,7 +34,7 @@ class UnusedtemplatesPage extends QueryPage {
 	function __construct( $name = 'Unusedtemplates' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	function sortDescending() { return false; }
@@ -53,7 +53,7 @@ class UnusedtemplatesPage extends QueryPage {
 					'tl_namespace = page_namespace' ) ) )
 		);
 	}
-	
+
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
 		$pageLink = $skin->linkKnown(

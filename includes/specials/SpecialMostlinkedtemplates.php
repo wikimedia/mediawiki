@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
- 
+
 /**
  * Special page lists templates with a large number of
  * transclusion links, i.e. "most used" templates

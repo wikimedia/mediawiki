@@ -108,7 +108,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			);
 			foreach( $sortedPages as $desc => $specialpage ) {
 				list( $title, $restricted, $expensive) = $specialpage;
-				
+
 				$pageClasses = array();
 				if ( $expensive && $wgMiserMode ){
 					$includesCachedPages = true;
@@ -118,7 +118,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$includesRestrictedPages = true;
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
-				
+
 				$link = $sk->linkKnown( $title , htmlspecialchars( $desc ) );
 				$wgOut->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
 

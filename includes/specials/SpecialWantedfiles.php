@@ -34,7 +34,7 @@ class WantedFilesPage extends WantedQueryPage {
 	function __construct( $name = 'Wantedfiles' ) {
 		parent::__construct( $name );
 	}
-	
+
 	/**
 	 * KLUGE: The results may contain false positives for files
 	 * that exist e.g. in a shared repo.  Setting this at least
@@ -53,10 +53,10 @@ class WantedFilesPage extends WantedQueryPage {
 					'COUNT(*) AS value' ),
 			'conds' => array ( 'img_name IS NULL' ),
 			'options' => array ( 'GROUP BY' => 'il_to' ),
-			'join_conds' => array ( 'image' => 
+			'join_conds' => array ( 'image' =>
 				array ( 'LEFT JOIN',
-					array ( 'il_to = img_name' ) 
-				) 
+					array ( 'il_to = img_name' )
+				)
 			)
 		);
 	}

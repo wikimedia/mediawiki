@@ -33,7 +33,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	function __construct( $name = 'Withoutinterwiki' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function execute( $par ) {
 		global $wgRequest;
 		$this->prefix = Title::capitalize( $wgRequest->getVal( 'prefix', $par ), NS_MAIN );
@@ -64,7 +64,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	function sortDescending() {
 		return false;
 	}
-	
+
 	function getOrderFields() {
 		return array( 'page_namespace', 'page_title' );
 	}

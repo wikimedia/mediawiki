@@ -215,7 +215,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			 Xml::element( 'legend', null, wfMsg( 'move-page-legend' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
 			 "<tr>
-			 	<td class='mw-label'>" .
+				<td class='mw-label'>" .
 					wfMsgHtml( 'movearticle' ) .
 				"</td>
 				<td class='mw-input'>

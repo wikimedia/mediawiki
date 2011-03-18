@@ -33,7 +33,7 @@ class ListredirectsPage extends QueryPage {
 	function __construct( $name = 'Listredirects' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	function sortDescending() { return false; }
@@ -60,7 +60,7 @@ class ListredirectsPage extends QueryPage {
 	function getOrderFields() {
 		return array ( 'p1.page_namespace', 'p1.page_title' );
 	}
-	
+
 	/**
 	 * Cache page existence for performance
 	 */
@@ -78,7 +78,7 @@ class ListredirectsPage extends QueryPage {
 			$db->dataSeek( $res, 0 );
 		}
 	}
-	
+
 	protected function getRedirectTarget( $row ) {
 		if ( isset( $row->rd_title ) ) {
 			return Title::makeTitle( $row->rd_namespace,

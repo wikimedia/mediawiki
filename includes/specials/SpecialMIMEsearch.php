@@ -41,7 +41,7 @@ class MIMEsearchPage extends QueryPage {
 	function linkParameters() {
 		return array( 'mime' => "{$this->major}/{$this->minor}" );
 	}
-	
+
 	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'image' ),
@@ -57,11 +57,11 @@ class MIMEsearchPage extends QueryPage {
 					'img_minor_mime' => $this->minor )
 		);
 	}
-	
+
 	function execute( $par ) {
 		global $wgRequest, $wgOut;
 		$mime = $par ? $par : $wgRequest->getText( 'mime' );
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->addHTML(
@@ -82,7 +82,7 @@ class MIMEsearchPage extends QueryPage {
 		}
 		parent::execute( $par );
 	}
-		
+
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang, $wgLang;

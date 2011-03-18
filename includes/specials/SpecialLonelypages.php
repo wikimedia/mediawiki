@@ -32,7 +32,7 @@ class LonelyPagesPage extends PageQueryPage {
 	function __construct( $name = 'Lonelypages' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function getPageHeader() {
 		return wfMsgExt( 'lonelypagestext', array( 'parse' ) );
 	}
@@ -68,7 +68,7 @@ class LonelyPagesPage extends PageQueryPage {
 						'tl_title = page_title' ) ) )
 		);
 	}
-	
+
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5

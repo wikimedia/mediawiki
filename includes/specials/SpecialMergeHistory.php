@@ -116,7 +116,7 @@ class SpecialMergeHistory extends SpecialPage {
 				wfEscapeWikiText( $this->mDestObj->getPrefixedText() )
 			);
 		}
-		
+
 		if ( $this->mTargetObj && $this->mDestObj && $this->mTargetObj->equals( $this->mDestObj ) ) {
 			$errors[] = wfMsgExt( 'mergehistory-same-destination', array( 'parse' ) );
 		}

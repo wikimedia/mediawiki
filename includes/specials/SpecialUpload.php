@@ -113,7 +113,7 @@ class SpecialUpload extends SpecialPage {
 
 		$this->mForReUpload       = $request->getBool( 'wpForReUpload' ); // updating a file
 		$this->mCancelUpload      = $request->getCheck( 'wpCancelUpload' )
-		                         || $request->getCheck( 'wpReUpload' ); // b/w compat
+								 || $request->getCheck( 'wpReUpload' ); // b/w compat
 
 		// If it was posted check for the token (no remote POST'ing with user credentials)
 		$token = $request->getVal( 'wpEditToken' );
@@ -204,7 +204,7 @@ class SpecialUpload extends SpecialPage {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 				return;
 			}
-			
+
 
 			$this->showUploadForm( $this->getUploadForm() );
 		}
@@ -275,7 +275,7 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
-			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ), 
+			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ),
 				$desiredTitleObj->getPrefixedText(),
 				'', array( 'lim' => 10,
 					   'conds' => array( "log_action != 'revision'" ),
@@ -286,8 +286,8 @@ class SpecialUpload extends SpecialPage {
 		$form->addPreText( $delNotice );
 
 		# Add text to form
-		$form->addPreText( '<div id="uploadtext">' . 
-			wfMsgExt( 'uploadtext', 'parse', array( $this->mDesiredDestName ) ) . 
+		$form->addPreText( '<div id="uploadtext">' .
+			wfMsgExt( 'uploadtext', 'parse', array( $this->mDesiredDestName ) ) .
 			'</div>' );
 		# Add upload error message
 		$form->addPreText( $message );
@@ -365,8 +365,8 @@ class SpecialUpload extends SpecialPage {
 		# mDestWarningAck is set when some javascript has shown the warning
 		# to the user. mForReUpload is set when the user clicks the "upload a
 		# new version" link.
-		if ( !$warnings || ( count( $warnings ) == 1 && 
-			isset( $warnings['exists'] ) && 
+		if ( !$warnings || ( count( $warnings ) == 1 &&
+			isset( $warnings['exists'] ) &&
 			( $this->mDestWarningAck || $this->mForReUpload ) ) )
 		{
 			return false;
@@ -450,7 +450,7 @@ class SpecialUpload extends SpecialPage {
 			$this->processVerificationError( $details );
 			return;
 		}
-		
+
 		// Verify permissions for this title
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
 		if( $permErrors !== true ) {
@@ -599,16 +599,16 @@ class SpecialUpload extends SpecialPage {
 				}
 				$msg->params( implode( $sep, $wgFileExtensions ),
 					count( $wgFileExtensions ) );
-				
-				// Add PLURAL support for the first parameter. This results 
-				// in a bit unlogical parameter sequence, but does not break 
-				// old translations 
+
+				// Add PLURAL support for the first parameter. This results
+				// in a bit unlogical parameter sequence, but does not break
+				// old translations
 				if ( isset( $details['blacklistedExt'] ) ) {
 					$msg->numParams( count( $details['blacklistedExt'] ) );
 				} else {
 					$msg->numParams( 1 );
 				}
-				
+
 				$this->showUploadError( $msg->parse() );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
@@ -775,7 +775,7 @@ class UploadForm extends HTMLForm {
 	protected $mTextAfterSummary;
 
 	protected $mSourceIds;
-	
+
 	protected $mMaxFileSize = array();
 
 	public function __construct( $options = array() ) {
@@ -794,7 +794,7 @@ class UploadForm extends HTMLForm {
 			? $options['texttop'] : '';
 
 		$this->mTextAfterSummary = isset( $options['textaftersummary'] )
-			? $options['textaftersummary'] : ''; 
+			? $options['textaftersummary'] : '';
 
 		$sourceDescriptor = $this->getSourceSection();
 		$descriptor = $sourceDescriptor
@@ -857,10 +857,10 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$this->mMaxUploadSize['file'] = min( 
-			wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ), 
+		$this->mMaxUploadSize['file'] = min(
+			wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
 			UploadBase::getMaxUploadSize( 'file' ) );
-			
+
 		$descriptor['UploadFile'] = array(
 			'class' => 'UploadSourceField',
 			'section' => 'source',
@@ -951,21 +951,21 @@ class UploadForm extends HTMLForm {
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( MWException $e ) {
-				$file = null;	
+				$file = null;
 			}
 			if ( $file ) {
 				global $wgContLang;
-				
+
 				$mto = $file->transform( array( 'width' => 120 ) );
-				$this->addHeaderText( 
+				$this->addHeaderText(
 					'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
-					Html::element( 'img', array( 
+					Html::element( 'img', array(
 						'src' => $mto->getUrl(),
 						'class' => 'thumbimage',
 					) ) . '</div>', 'description' );
 			}
 		}
-		
+
 		$descriptor = array(
 			'DestFile' => array(
 				'type' => 'text',
@@ -1071,7 +1071,7 @@ class UploadForm extends HTMLForm {
 			'id' => 'wpDestFileWarningAck',
 			'default' => $this->mDestWarningAck ? '1' : '',
 		);
-		
+
 		if ( $this->mForReUpload ) {
 			$descriptor['ForReUpload'] = array(
 				'type' => 'hidden',
@@ -1117,7 +1117,7 @@ class UploadForm extends HTMLForm {
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
 
-		
+
 		$wgOut->addModules( array(
 			'mediawiki.legacy.edit', // For <charinsert> support
 			'mediawiki.legacy.upload', // Old form stuff...

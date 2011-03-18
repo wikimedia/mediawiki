@@ -111,7 +111,7 @@ class PageArchive {
 		$res = $dbr->select( 'archive',
 			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment', 'ar_len', 'ar_deleted' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDBkey() ),
+				   'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::listRevisions',
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		$ret = $dbr->resultObject( $res );
@@ -194,8 +194,8 @@ class PageArchive {
 				'ar_deleted',
 				'ar_len' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDBkey(),
-			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
+				   'ar_title' => $this->title->getDBkey(),
+				   'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
 			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleId() ) );
@@ -221,8 +221,8 @@ class PageArchive {
 		$row = $dbr->selectRow( 'archive',
 			'ar_timestamp',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDBkey(),
-			       'ar_timestamp < ' .
+				   'ar_title' => $this->title->getDBkey(),
+				   'ar_timestamp < ' .
 						$dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
 			__METHOD__,
 			array(
@@ -293,7 +293,7 @@ class PageArchive {
 		$row = $dbr->selectRow( 'archive',
 			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDBkey() ),
+				   'ar_title' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		if( $row ) {
@@ -312,7 +312,7 @@ class PageArchive {
 		$dbr = wfGetDB( DB_SLAVE );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-			       'ar_title' => $this->title->getDBkey() ) );
+				   'ar_title' => $this->title->getDBkey() ) );
 		return ($n > 0);
 	}
 
@@ -407,7 +407,7 @@ class PageArchive {
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
-			       'page_title'     => $this->title->getDBkey() ),
+				   'page_title'     => $this->title->getDBkey() ),
 			__METHOD__,
 			$options
 		);

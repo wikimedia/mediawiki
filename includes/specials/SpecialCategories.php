@@ -69,12 +69,12 @@ class CategoryPager extends AlphabeticPager {
 			$this->mOffset = $from;
 		}
 	}
-	
+
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'cat_title','cat_pages' ),
-			'conds' => array( 'cat_pages > 0' ), 
+			'conds' => array( 'cat_pages > 0' ),
 			'options' => array( 'USE INDEX' => 'cat_title' ),
 		);
 	}
@@ -121,11 +121,11 @@ class CategoryPager extends AlphabeticPager {
 				$wgLang->formatNum( $result->cat_pages ) );
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";
 	}
-	
+
 	public function getStartForm( $from ) {
 		global $wgScript;
 		$t = SpecialPage::getTitleFor( 'Categories' );
-	
+
 		return
 			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
 				Html::hidden( 'title', $t->getPrefixedText() ) .

@@ -172,16 +172,16 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			else
 				$order = array();
 
-			
-			$query = $dbr->selectSQLText( 
-				array_merge( $tables, array( $link_table ) ), 
-				$select, 
+
+			$query = $dbr->selectSQLText(
+				array_merge( $tables, array( $link_table ) ),
+				$select,
 				$conds + $subconds,
-				__METHOD__, 
+				__METHOD__,
 				$order + $query_options,
 				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
 			);
-			
+
 			if( $dbr->unionSupportsOrderAndLimit())
 				$query = $dbr->limitResult( $query, $limit );
 
@@ -197,7 +197,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$sql = $dbr->unionQueries($subsql, false).' ORDER BY rc_timestamp DESC';
 			$sql = $dbr->limitResult($sql, $limit, false);
 		}
-		
+
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		if( $res->numRows() == 0 )
@@ -205,7 +205,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		return $res;
 	}
-	
+
 	function getExtraOptions( $opts ){
 		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
 		$extraOpts = array();
@@ -252,7 +252,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 	function setBottomText( OutputPage $out, FormOptions $opts ) {
 		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ){
-			$out->addWikiMsg( 'recentchangeslinked-noresult' );	
+			$out->addWikiMsg( 'recentchangeslinked-noresult' );
 		}
 	}
 }

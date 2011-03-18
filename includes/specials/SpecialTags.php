@@ -74,7 +74,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		global $wgLang;
-		
+
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'tt', null, $tag ) );
 

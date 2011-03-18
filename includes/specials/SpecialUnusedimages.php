@@ -30,15 +30,15 @@ class UnusedimagesPage extends ImageQueryPage {
 	function __construct( $name = 'Unusedimages' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() {
 		return true;
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}
-	
+
 	function isSyndicated() {
 		return false;
 	}

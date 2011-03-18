@@ -46,14 +46,14 @@ class SpecialFilepath extends SpecialPage {
 			$this->showForm( $title );
 		} else {
 			$file = wfFindFile( $title );
-			
+
 			if ( $file && $file->exists() ) {
 				// Default behaviour: Use the direct link to the file.
 				$url = $file->getURL();
 				$width = $wgRequest->getInt( 'width', -1 );
 				$height = $wgRequest->getInt( 'height', -1 );
 
-				// If a width is requested...			
+				// If a width is requested...
 				if ( $width != -1 ) {
 					$mto = $file->transform( array( 'width' => $width, 'height' => $height ) );
 					// ... and we can

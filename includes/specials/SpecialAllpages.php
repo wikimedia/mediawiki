@@ -20,7 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
- 
+
 /**
  * Implements Special:Allpages
  *
@@ -71,7 +71,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$namespaces = $wgContLang->getNamespaces();
 
-		$wgOut->setPagetitle( 
+		$wgOut->setPagetitle(
 			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
 			wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 			wfMsg( 'allarticles' )
@@ -97,7 +97,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
 		global $wgScript;
 		$t = $this->getTitle();
-	
+
 		$out  = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
@@ -374,7 +374,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					'page_title',
 					array( 'page_namespace' => $namespace, 'page_title < '.$dbr->addQuotes($from) ),
 					__METHOD__,
-					array( 'ORDER BY' => 'page_title DESC', 
+					array( 'ORDER BY' => 'page_title DESC',
 						'LIMIT' => $this->maxPerPage, 'OFFSET' => ($this->maxPerPage - 1 )
 					)
 				);

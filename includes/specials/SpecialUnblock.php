@@ -142,7 +142,7 @@ class SpecialUnblock extends SpecialPage {
 						break;
 				}
 			}
-			
+
 		} else {
 			$fields['Target']['default'] = $this->target;
 			unset( $fields['Name'] );

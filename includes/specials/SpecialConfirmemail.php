@@ -46,12 +46,12 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	function execute( $code ) {
 		global $wgUser, $wgOut;
 		$this->setHeaders();
-		
+
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		
+
 		if( empty( $code ) ) {
 			if( $wgUser->isLoggedIn() ) {
 				if( User::isValidEmailAddr( $wgUser->getEmail() ) ) {
@@ -150,11 +150,11 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		if ( wfReadOnly() ) {
-			global $wgOut;         
+			global $wgOut;
 			$wgOut->readOnlyPage();
 			return;
 		}
-		
+
 		$this->attemptInvalidate( $code );
 	}
 

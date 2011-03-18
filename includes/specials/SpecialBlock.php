@@ -70,7 +70,7 @@ class SpecialBlock extends SpecialPage {
 			# User logs, UserRights, etc.
 			$wgUser->getSkin()->setRelevantUser( $this->target );
 		}
-	
+
 		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target );
 		if ( $status !== true ) {
@@ -388,7 +388,7 @@ class SpecialBlock extends SpecialPage {
 					if( $request instanceof WebRequest ){
 						$target = $request->getText( 'wpTarget', null );
 					}
-			        break;
+					break;
 				case 1:
 					$target = $par;
 					break;
@@ -396,13 +396,13 @@ class SpecialBlock extends SpecialPage {
 					if( $request instanceof WebRequest ){
 						$target = $request->getText( 'ip', null );
 					}
-			        break;
+					break;
 				case 3:
 					# B/C @since 1.18
 					if( $request instanceof WebRequest ){
 						$target = $request->getText( 'wpBlockAddress', null );
 					}
-			        break;
+					break;
 				case 4:
 					break 2;
 			}

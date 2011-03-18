@@ -28,21 +28,21 @@
  * @ingroup SpecialPage
  */
 class SpecialStatistics extends SpecialPage {
-	
+
 	private $views, $edits, $good, $images, $total, $users,
 			$activeUsers = 0;
-	
+
 	public function __construct() {
 		parent::__construct( 'Statistics' );
 	}
-	
+
 	public function execute( $par ) {
 		global $wgOut, $wgMemc;
 		global $wgDisableCounters, $wgMiserMode;
-		
+
 		$this->setHeaders();
 		$wgOut->addModuleStyles( 'mediawiki.special' );
-	
+
 		$this->views = SiteStats::views();
 		$this->edits = SiteStats::edits();
 		$this->good = SiteStats::articles();
@@ -51,13 +51,13 @@ class SpecialStatistics extends SpecialPage {
 		$this->users = SiteStats::users();
 		$this->activeUsers = SiteStats::activeUsers();
 		$this->hook = '';
-	
+
 		# Staticic - views
 		$viewsStats = '';
 		if( !$wgDisableCounters ) {
 			$viewsStats = $this->getViewsStats();
 		}
-		
+
 		# Set active user count
 		if( !$wgMiserMode ) {
 			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
@@ -88,7 +88,7 @@ class SpecialStatistics extends SpecialPage {
 		if( !$wgDisableCounters && !$wgMiserMode ) {
 			$text .= $this->getMostViewedPages();
 		}
-		
+
 		# Statistic - other
 		$extraStats = array();
 		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
@@ -120,7 +120,7 @@ class SpecialStatistics extends SpecialPage {
 			$msg = wfMessage( $descMsg, $descMsgParam );
 			if ( $msg->exists() ) {
 				$descriptionText = $msg->parse();
-				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), 
+				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'),
 					" ($descriptionText)" );
 			}
 		}
@@ -130,7 +130,7 @@ class SpecialStatistics extends SpecialPage {
 			Html::rawElement( 'td', array( 'class' => 'mw-statistics-numbers' ), $number )
 		);
 	}
-	
+
 	/**
 	 * Each of these methods is pretty self-explanatory, get a particular
 	 * row for the table of statistics
@@ -244,7 +244,7 @@ class SpecialStatistics extends SpecialPage {
 					$wgLang->formatNum( $this->views ),
 						array ( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
 				$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
-					$wgLang->formatNum( sprintf( '%.2f', $this->edits ? 
+					$wgLang->formatNum( sprintf( '%.2f', $this->edits ?
 						$this->views / $this->edits : 0 ) ),
 						array ( 'class' => 'mw-statistics-views-peredit' ) );
 	}
@@ -280,7 +280,7 @@ class SpecialStatistics extends SpecialPage {
 					if( $title instanceof Title ) {
 						$text .= $this->formatRow( $sk->link( $title ),
 								$wgLang->formatNum( $row->page_counter ) );
-	
+
 					}
 				}
 				$res->free();
@@ -297,14 +297,14 @@ class SpecialStatistics extends SpecialPage {
 		$return = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-hooks', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' );
-			
+
 		foreach( $stats as $name => $number ) {
 			$name = htmlspecialchars( $name );
 			$number = htmlspecialchars( $number );
-			
+
 			$return .= $this->formatRow( $name, $wgLang->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
 		}
-		
+
 		return $return;
 	}
 }

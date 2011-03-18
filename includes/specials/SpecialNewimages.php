@@ -102,7 +102,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$invertSort = true;
 	}
 	$sql = 'SELECT img_size, img_name, img_user, img_user_text,'.
-	     "img_description,img_timestamp FROM $image";
+		 "img_description,img_timestamp FROM $image";
 
 	if( $hidebotsql ) {
 		$sql .= $hidebotsql;

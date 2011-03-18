@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  * @author Brion Vibber
  */
- 
+
 
 /**
  * Special:LinkSearch to search the external-links table.
@@ -37,16 +37,16 @@ class LinkSearchPage extends QueryPage {
 	function __construct( $name = 'LinkSearch' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isCacheable() {
 		return false;
 	}
-	
+
 	function execute( $par ) {
 		global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang;
 		$this->setHeaders();
 		$wgOut->allowClickjacking();
-		
+
 		$target = $wgRequest->getVal( 'target', $par );
 		$namespace = $wgRequest->getIntorNull( 'namespace', null );
 
@@ -95,7 +95,7 @@ class LinkSearchPage extends QueryPage {
 		$wgOut->addHTML( $s );
 
 		if( $target != '' ) {
-			$this->setParams( array( 
+			$this->setParams( array(
 				'query' => $target2,
 				'namespace' => $namespace,
 				'protocol' => $protocol ) );
@@ -149,7 +149,7 @@ class LinkSearchPage extends QueryPage {
 		if( $this->mMungedQuery === false )
 			// Invalid query; return no results
 			return array( 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' );
-		
+
 		$stripped = LinkFilter::keepOneWildcard( $this->mMungedQuery );
 		$like = $dbr->buildLike( $stripped );
 		$retval = array (

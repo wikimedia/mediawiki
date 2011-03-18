@@ -77,7 +77,7 @@ class SpecialBookSources extends SpecialPage {
 					$sum += 3 * $isbn{$i};
 				}
 			}
-		
+
 			$check = (10 - ($sum % 10)) % 10;
 			if ($check == $isbn{12}) {
 				return true;
@@ -86,7 +86,7 @@ class SpecialBookSources extends SpecialPage {
 			for($i = 0; $i < 9; $i++) {
 				$sum += $isbn{$i} * ($i + 1);
 			}
-		
+
 			$check = $sum % 11;
 			if($check == 10) {
 				$check = "X";

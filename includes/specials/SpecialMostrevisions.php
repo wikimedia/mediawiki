@@ -27,7 +27,7 @@ class MostrevisionsPage extends FewestrevisionsPage {
 	function __construct( $name = 'Mostrevisions' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function sortDescending() {
 		return true;
 	}
