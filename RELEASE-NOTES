@@ -262,6 +262,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   miser mode)
 * (bug 26629) add Special:MIMESearch to api
 * (bug 27585) add pagecount to list=filearchive
+* (bug 28104) Namespace for local pages in interwiki backlinks (iwbacklinks)
+  is missing
 
 === Languages updated in 1.18 ===
 
