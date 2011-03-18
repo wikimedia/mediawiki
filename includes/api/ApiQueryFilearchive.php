@@ -138,15 +138,14 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['userid'] = $row->fa_user;
 				$file['user'] = $row->fa_user_text;
 			}
-			if ( $fld_size ) {
+			if ( $fld_size || $fld_dimensions ) {
 				$file['size'] = $row->fa_size;
 
 				$pageCount = ArchivedFile::newFromRow( $row )->pageCount();
 				if ( $pageCount !== false ) {
 					$vals['pagecount'] = $pageCount;
 				}
-			}
-			if ( $fld_dimensions ) {
+
 				$file['height'] = $row->fa_height;
 				$file['width'] = $row->fa_width;
 			}
@@ -240,7 +239,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' timestamp    - Adds timestamp for the uploaded version',
 				' user         - Adds user who uploaded the image version',
 				' size         - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-				' dimensions   - Adds the height and width of the image',
+				' dimensions   - Alias for size',
 				' description  - Adds description the image version',
 				' mime         - Adds MIME of the image',
 				' metadata     - Lists EXIF metadata for the version of the image',
