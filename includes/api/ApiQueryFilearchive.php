@@ -73,10 +73,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		if ( $fld_user ) {
 			$this->addFields( array( 'fa_user', 'fa_user_text' ) );
 		}
-		$this->addFieldsIf( 'fa_size', $fld_size );
 
-		if ( $fld_dimensions ) {
-			$this->addFields( array( 'fa_height', 'fa_width' ) );
+		if ( $fld_dimensions || $fld_size ) {
+			$this->addFields( array( 'fa_height', 'fa_width', 'fa_size' ) );
 		}
 
 		$this->addFieldsIf( 'fa_description', $fld_description );
