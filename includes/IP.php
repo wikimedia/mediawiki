@@ -614,4 +614,17 @@ class IP {
 
 		return null;  // give up
 	}
+
+	/**
+	 * Gets rid of uneeded numbers in quad-dotted/octet IP strings
+	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
+	 * @param $range String: IP address to normalize
+	 * @return string
+	 */
+	public static function sanitizeRange( $range ){
+		list( /*...*/, $bits ) = self::parseCIDR( $range );
+		list( $start, /*...*/ ) = self::parseRange( $range );
+		$start = self::formatHex( $start );
+		return "$start/$bits";
+	}
 }
