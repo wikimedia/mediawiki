@@ -813,35 +813,10 @@ class Block {
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
 	 * @param $range String: IP address to normalize
 	 * @return string
+	 * @deprecated since 1.18, call IP::sanitizeRange() directly
 	 */
 	public static function normaliseRange( $range ) {
-		$parts = explode( '/', $range );
-		if ( count( $parts ) == 2 ) {
-			// IPv6
-			if ( IP::isIPv6( $range ) && $parts[1] >= 64 && $parts[1] <= 128 ) {
-				$bits = $parts[1];
-				$ipint = IP::toUnsigned( $parts[0] );
-				# Native 32 bit functions WON'T work here!!!
-				# Convert to a padded binary number
-				$network = wfBaseConvert( $ipint, 10, 2, 128 );
-				# Truncate the last (128-$bits) bits and replace them with zeros
-				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
-				# Convert back to an integer
-				$network = wfBaseConvert( $network, 2, 10 );
-				# Reform octet address
-				$newip = IP::toOctet( $network );
-				$range = "$newip/{$parts[1]}";
-			} // IPv4
-			elseif ( IP::isIPv4( $range ) && $parts[1] >= 16 && $parts[1] <= 32 ) {
-				$shift = 32 - $parts[1];
-				$ipint = IP::toUnsigned( $parts[0] );
-				$ipint = $ipint >> $shift << $shift;
-				$newip = long2ip( $ipint );
-				$range = "$newip/{$parts[1]}";
-			}
-		}
-
-		return $range;
+		return IP::sanitizeRange( $range );
 	}
 
 	/**
