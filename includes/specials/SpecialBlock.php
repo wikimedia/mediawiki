@@ -120,7 +120,7 @@ class SpecialBlock extends SpecialPage {
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
 			),
 			'Expiry' => array(
-				'type' => self::getSuggestedDurations() === array() ? 'text' : 'selectorother',
+				'type' => !count( self::getSuggestedDurations() ) ? 'text' : 'selectorother',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
 				'tabindex' => '2',
@@ -668,8 +668,12 @@ class SpecialBlock extends SpecialPage {
 	 * @return String: timestamp or "infinity" string for the DB implementation
 	 */
 	public static function parseExpiryInput( $expiry ) {
+		static $infinity;
+		if( $infinity == null ){
+			$infinity = wfGetDB( DB_READ )->getInfinity();
+		}
 		if ( $expiry == 'infinite' || $expiry == 'indefinite' ) {
-			$expiry = Block::infinity();
+			$expiry = $infinity;
 		} else {
 			$expiry = strtotime( $expiry );
 			if ( $expiry < 0 || $expiry === false ) {

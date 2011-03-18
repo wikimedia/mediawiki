@@ -1909,15 +1909,7 @@ class OutputPage {
 
 		$blockid = $wgUser->mBlock->mId;
 
-		$blockExpiry = $wgUser->mBlock->mExpiry;
-		if ( $blockExpiry == Block::infinity() ) {
-			$blockExpiry = wfMessage( 'infiniteblock' );
-		} else {
-			$blockExpiry = $wgLang->timeanddate(
-				wfTimestamp( TS_MW, $blockExpiry ),
-				true
-			);
-		}
+		$blockExpiry = $wgLang->formatExpiry( $wgUser->mBlock->mExpiry );
 
 		if ( $wgUser->mBlock->mAuto ) {
 			$msg = 'autoblockedtext';

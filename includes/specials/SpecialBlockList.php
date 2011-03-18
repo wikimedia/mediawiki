@@ -301,9 +301,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $value == Block::infinity()
-					? $msg['infiniteblock']
-					: $wgLang->timeanddate( $value );
+				$formatted = $wgLang->formatExpiry( $value );
 				if( $wgUser->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
 						$links[] = $sk->linkKnown(

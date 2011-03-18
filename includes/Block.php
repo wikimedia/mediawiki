@@ -781,11 +781,7 @@ class Block {
 	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
 	 */
 	public static function encodeExpiry( $expiry, $db ) {
-		if ( $expiry == '' || $expiry == Block::infinity() ) {
-			return Block::infinity();
-		} else {
-			return $db->timestamp( $expiry );
-		}
+		return $db->encodeExpiry( $expiry );
 	}
 
 	/**
@@ -859,7 +855,7 @@ class Block {
 	/**
 	 * Get a value to insert into expiry field of the database when infinite expiry
 	 * is desired
-	 *
+	 * @deprecated since 1.18, call $dbr->getInfinity() directly
 	 * @return String
 	 */
 	public static function infinity() {
@@ -887,7 +883,7 @@ class Block {
 		}
 
 		$expiry = $wgContLang->formatExpiry( $encoded_expiry, TS_MW );
-		if ( $expiry == self::infinity() ) {
+		if ( $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;

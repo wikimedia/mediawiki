@@ -80,11 +80,11 @@ class SpecialProtectedpages extends SpecialPage {
 
 		wfProfileIn( __METHOD__ );
 
-		static $skin = null, $dbr = null;
+		static $skin = null, $infinity = null;
 
 		if( is_null( $skin ) ){
 			$skin = $wgUser->getSkin();
-			$dbr = wfGetDB( DB_READ );
+			$infinity = wfGetDB( DB_READ )->getInfinity();
 		}
 
 		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
@@ -103,7 +103,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$stxt = '';
 
 		$expiry = $wgLang->formatExpiry( $row->pr_expiry, TS_MW );
-		if( $expiry != $dbr->getInfinity() ) {
+		if( $expiry != $infinity ) {
 
 			$expiry_description = wfMsg(
 				'protect-expiring',
