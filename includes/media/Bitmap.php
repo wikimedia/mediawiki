@@ -101,6 +101,7 @@ class BitmapHandler extends ImageHandler {
 			'mimeType' => $image->getMimeType(),
 			'srcPath' => $image->getPath(),
 			'dstPath' => $dstPath,
+			'dstUrl' => $dstUrl,
 		);
 
 		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath\n" );
@@ -135,8 +136,20 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
-
+		
+		# Try a hook
+		$mto = null;
+		wfRunHooks( 'BitmapHandlerTransform', array( $this, $image, &$scalerParams, &$mto ) );
+		if ( !is_null( $mto ) ) {
+			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
+			$scaler = 'hookaborted';
+		}
+		
 		switch ( $scaler ) {
+			case 'hookaborted':
+				# Handled by the hook above
+				$err = $mto->isError() ? $mto : false;
+				break;
 			case 'im':
 				$err = $this->transformImageMagick( $image, $scalerParams );
 				break;
@@ -161,6 +174,8 @@ class BitmapHandler extends ImageHandler {
 			# Thumbnail was zero-byte and had to be removed
 			return new MediaTransformError( 'thumbnail_error',
 				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
+		} elseif ( $mto ) {
+			return $mto;
 		} else {
 			return new ThumbnailImage( $image, $dstUrl, $scalerParams['clientWidth'],
 				$scalerParams['clientHeight'], $dstPath );
@@ -443,7 +458,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $errMsg string Error message
 	 * @return MediaTransformError
 	 */
-	protected function getMediaTransformError( $params, $errMsg ) {
+	public function getMediaTransformError( $params, $errMsg ) {
 		return new MediaTransformError( 'thumbnail_error', $params['clientWidth'],
 					$params['clientHeight'], $errMsg );
 	}

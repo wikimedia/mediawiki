@@ -578,6 +578,13 @@ $mediaWiki: Mediawiki object
 &$parser: Parser object
 &$ig: ImageGallery object
 
+'BitmapHandlerTransform': before a file is transformed, gives extension the 
+possibility to transform it themselves
+$handler: BitmapHandler 
+$image: File
+&$scalerParams: Array with scaler parameters 
+&$mto: null, set to a MediaTransformOutput
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
