@@ -52,7 +52,7 @@ $namespaceAliases = array(
 $specialPageAliases = array(
 	'Statistics'                => array( 'Estadístiques' ),
 	'Log'                       => array( 'Rexistru' ),
-	'Blockip'                   => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
+	'Block'                     => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
 );
 
 $messages = array(
