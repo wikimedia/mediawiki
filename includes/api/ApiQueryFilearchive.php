@@ -239,7 +239,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' sha1         - Adds SHA-1 hash for the image',
 				' timestamp    - Adds timestamp for the uploaded version',
 				' user         - Adds user who uploaded the image version',
-				' size         - Adds the size of the image in bytes',
+				' size         - Adds the size of the image in bytes and the height, width and page count (if applicable)',
 				' dimensions   - Adds the height and width of the image',
 				' description  - Adds description the image version',
 				' mime         - Adds MIME of the image',
