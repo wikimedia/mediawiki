@@ -2979,16 +2979,16 @@ class Language {
 	 * @return String
 	 */
 	public function formatExpiry( $expiry, $format = true ) {
-		static $dbr, $msg;
-		if( !$dbr ){
-			$dbr = wfGetDB( DB_SLAVE );
-			$msg = wfMessage( 'infiniteblock' );
+		static $infinity, $infinityMsg;
+		if( $infinity === null ){
+			$infinityMsg = wfMessage( 'infiniteblock' );
+			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
-		if ( $expiry == '' || $expiry == $dbr->getInfinity() ) {
+		if ( $expiry == '' || $expiry == $infinity ) {
 			return $format === true
-				? $msg
-				: $dbr->getInfinity();
+				? $infinityMsg
+				: $infinity;
 		} else {
 			return $format === true
 				? $this->timeanddate( $expiry )
