@@ -77,7 +77,7 @@ class DisambiguationsPage extends PageQueryPage {
 			$set = 'FALSE';
 			wfDebug("Mediawiki:disambiguationspage message does not link to any templates!\n");
 		}
-		
+
 		// FIXME: What are pagelinks and p2 doing here?
 		return array (
 			'tables' => array( 'templatelinks', 'p1' => 'page', 'pagelinks', 'p2' => 'page' ),
@@ -96,11 +96,11 @@ class DisambiguationsPage extends PageQueryPage {
 	function getOrderFields() {
 		return array( 'tl_namespace', 'tl_title', 'value' );
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}
-	
+
 	/**
 	 * Fetch  links and cache their existence
 	 */

@@ -284,7 +284,7 @@ class SpecialContributions extends SpecialPage {
 			array(),
 			array( 'user' => $username )
 		);
-		
+
 		# Other logs link
 		$tools[] = $sk->linkKnown(
 			SpecialPage::getTitleFor( 'Log' ),
@@ -390,7 +390,7 @@ class SpecialContributions extends SpecialPage {
 			Html::rawElement( 'p', array( 'style' => 'white-space: nowrap' ),
 				Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) . ' ' .
 				Xml::submitButton( wfMsg( 'sp-contributions-submit' ) )
-			) . ' ';	
+			) . ' ';
 		$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
 		if( !wfEmptyMsg( 'sp-contributions-explain' ) ) {
 			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";

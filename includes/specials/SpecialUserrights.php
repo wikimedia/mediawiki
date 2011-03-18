@@ -222,7 +222,7 @@ class UserrightsPage extends SpecialPage {
 				$user->removeGroup( $group );
 			}
 		}
- 		if( $add ) {
+		if( $add ) {
 			$newGroups = array_merge( $newGroups, $add );
 			foreach( $add as $group ) {
 				$user->addGroup( $group );

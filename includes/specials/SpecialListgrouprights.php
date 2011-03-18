@@ -61,7 +61,7 @@ class SpecialListGroupRights extends SpecialPage {
 				'</tr>'
 		);
 
-		$allGroups = array_unique( array_merge( 
+		$allGroups = array_unique( array_merge(
 			array_keys( $wgGroupPermissions ),
 			array_keys( $wgRevokePermissions ),
 			array_keys( $wgAddGroups ),
@@ -70,14 +70,14 @@ class SpecialListGroupRights extends SpecialPage {
 			array_keys( $wgGroupsRemoveFromSelf )
 		) );
 		asort( $allGroups );
-				
+
 		foreach ( $allGroups as $group ) {
-			$permissions = isset( $wgGroupPermissions[$group] ) 
-				? $wgGroupPermissions[$group] 
+			$permissions = isset( $wgGroupPermissions[$group] )
+				? $wgGroupPermissions[$group]
 				: array();
 			$groupname = ( $group == '*' ) // Replace * with a more descriptive groupname
-				? 'all' 
-				: $group; 
+				? 'all'
+				: $group;
 
 			$msg = wfMessage( 'group-' . $groupname );
 			$groupnameLocalized = !$msg->isBlank() ? $msg->text() : $groupname;
@@ -153,7 +153,7 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
 	 private static function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
-	 	global $wgLang;
+		global $wgLang;
 
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {

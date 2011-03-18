@@ -29,7 +29,7 @@
 function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
-	
+
 	// Add feed links
 	$wlToken = $wgUser->getOption( 'watchlisttoken' );
 	if (!$wlToken) {
@@ -37,12 +37,12 @@ function wfSpecialWatchlist( $par ) {
 		$wgUser->setOption( 'watchlisttoken', $wlToken );
 		$wgUser->saveSettings();
 	}
-	
+
 	global $wgFeedClasses;
 	$apiParams = array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 						'wlowner' => $wgUser->getName(), 'wltoken' => $wlToken );
 	$feedTemplate = wfScript('api').'?';
-	
+
 	foreach( $wgFeedClasses as $format => $class ) {
 		$theseParams = $apiParams + array( 'feedformat' => $format );
 		$url = $feedTemplate . wfArrayToCGI( $theseParams );
@@ -78,7 +78,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$uid = $wgUser->getId();
-	if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) && 
+	if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) &&
 		$wgRequest->wasPosted() )
 	{
 		$wgUser->clearAllNotifications( $uid );
@@ -209,7 +209,7 @@ function wfSpecialWatchlist( $par ) {
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
- 		$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
+		$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
 		$usePage = false;
 	} else {
 	# Top log Ids for a page are not stored
@@ -241,7 +241,7 @@ function wfSpecialWatchlist( $par ) {
 				Xml::closeElement( 'form' );
 	}
 	$form .= '<hr />';
-	
+
 	$tables = array( 'recentchanges', 'watchlist' );
 	$fields = array( "{$recentchanges}.*" );
 	$join_conds = array(
@@ -259,13 +259,13 @@ function wfSpecialWatchlist( $par ) {
 	if ( $usePage || $rollbacker ) {
 		$tables[] = 'page';
 		$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
-		if ($rollbacker) 
+		if ($rollbacker)
 			$fields[] = 'page_latest';
 	}
 
 	ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
 	wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
-	
+
 	$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 	$numRows = $dbr->numRows( $res );
 
@@ -351,7 +351,7 @@ function wfSpecialWatchlist( $par ) {
 
 	$list = ChangesList::newFromUser( $wgUser );
 	$list->setWatchlistDivs();
-	
+
 	$s = $list->beginRecentChangesList();
 	$counter = 1;
 	foreach ( $res as $obj ) {
@@ -468,7 +468,7 @@ function wlCountItems( &$user, $talk = true ) {
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 	# Fetch the raw count
-	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', 
+	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count',
 		array( 'wl_user' => $user->mId ), 'wlCountItems' );
 	$row = $dbr->fetchObject( $res );
 	$count = $row->count;

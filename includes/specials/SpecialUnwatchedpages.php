@@ -34,7 +34,7 @@ class UnwatchedpagesPage extends QueryPage {
 	function __construct( $name = 'Unwatchedpages' ) {
 		parent::__construct( $name, 'unwatchedpages' );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 
@@ -55,7 +55,7 @@ class UnwatchedpagesPage extends QueryPage {
 	}
 
 	function sortDescending() { return false; }
-	
+
 	function getOrderFields() {
 		return array( 'page_namespace', 'page_title' );
 	}

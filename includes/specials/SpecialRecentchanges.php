@@ -298,8 +298,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 					MWNamespace::getAssociated( $opts['namespace'] )
 				);
 				$condition = "(rc_namespace $operator $selectedNS "
-				           . $boolean
-				           . " rc_namespace $operator $associatedNS)";
+						   . $boolean
+						   . " rc_namespace $operator $associatedNS)";
 			}
 
 			$conds[] = $condition;

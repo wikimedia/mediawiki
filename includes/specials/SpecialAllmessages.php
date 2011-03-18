@@ -167,7 +167,7 @@ class AllmessagesTablePager extends TablePager {
 	protected $mSkin;
 
 	/**
-	 * @var Language 
+	 * @var Language
 	 */
 	public $lang;
 

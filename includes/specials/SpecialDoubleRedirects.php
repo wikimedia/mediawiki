@@ -32,7 +32,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	function sortDescending() { return false; }

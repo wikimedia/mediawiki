@@ -89,13 +89,13 @@ class FileDuplicateSearchPage extends QueryPage {
 			'conds' => array( 'img_sha1' => $this->hash )
 		);
 	}
-	
+
 	function execute( $par ) {
 		global $wgRequest, $wgOut, $wgLang, $wgContLang, $wgScript;
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
-		
+
 		$this->filename =  isset( $par ) ?  $par : $wgRequest->getText( 'filename' );
 		$this->file = null;
 		$this->hash = '';

@@ -199,7 +199,7 @@ class SpecialProtectedpages extends SpecialPage {
 		return
 			Xml::checkLabel( wfMsg('protectedpages-indef'), 'indefonly', 'indefonly', $indefOnly ) . "\n";
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 */
@@ -294,7 +294,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0, 
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0,
 		$indefonly = false, $cascadeonly = false )
 	{
 		$this->mForm = $form;
@@ -329,7 +329,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 				'OR pr_expiry IS NULL)';
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
-		
+
 		if( $this->sizetype=='min' ) {
 			$conds[] = 'page_len>=' . $this->size;
 		} else if( $this->sizetype=='max' ) {

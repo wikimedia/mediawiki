@@ -58,7 +58,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 					'LEFT JOIN', 'cl_from = page_id' ) )
 		);
 	}
-	
+
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort

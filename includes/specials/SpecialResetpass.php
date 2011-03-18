@@ -47,7 +47,7 @@ class SpecialResetpass extends SpecialPage {
 		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
 		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
 		$this->mDomain = $wgRequest->getVal( 'wpDomain' );
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->disallowUserJs();
@@ -96,7 +96,7 @@ class SpecialResetpass extends SpecialPage {
 		}
 		$this->showForm();
 	}
-	
+
 	function doReturnTo() {
 		global $wgRequest, $wgOut;
 		$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
@@ -127,7 +127,7 @@ class SpecialResetpass extends SpecialPage {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
-					Xml::checkLabel( 
+					Xml::checkLabel(
 						wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
 						'wpRemember', 'wpRemember',
 						$wgRequest->getCheck( 'wpRemember' ) ) .
@@ -193,7 +193,7 @@ class SpecialResetpass extends SpecialPage {
 			$out .= "\t<td class='mw-label'>";
 			if ( $type != 'text' )
 				$out .= Xml::label( wfMsg( $label ), $name );
-			else 
+			else
 				$out .=  wfMsgHtml( $label );
 			$out .= "</td>\n";
 			$out .= "\t<td class='mw-input'>$field</td>\n";
@@ -211,7 +211,7 @@ class SpecialResetpass extends SpecialPage {
 		if( !$user || $user->isAnon() ) {
 			throw new PasswordError( 'no such user' );
 		}
-		
+
 		if( $newpass !== $retype ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
 			throw new PasswordError( wfMsg( 'badretype' ) );
@@ -221,7 +221,7 @@ class SpecialResetpass extends SpecialPage {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( wfMsg( 'resetpass-wrong-oldpass' ) );
 		}
-		
+
 		try {
 			$user->setPassword( $this->mNewpass );
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
@@ -230,7 +230,7 @@ class SpecialResetpass extends SpecialPage {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
 			throw new PasswordError( $e->getMessage() );
 		}
-		
+
 		$user->setCookies();
 		$user->saveSettings();
 	}

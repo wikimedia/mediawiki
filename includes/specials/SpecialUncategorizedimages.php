@@ -45,7 +45,7 @@ class UncategorizedImagesPage extends ImageQueryPage {
 	function isSyndicated() {
 		return false;
 	}
-	
+
 	function getQueryInfo() {
 		return array (
 			'tables' => array( 'page', 'categorylinks' ),

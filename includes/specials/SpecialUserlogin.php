@@ -89,9 +89,9 @@ class LoginForm extends SpecialPage {
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
-		                            && $wgEnableEmail;
+									&& $wgEnableEmail;
 		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' )
-		                         && $wgEnableEmail;
+								 && $wgEnableEmail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
@@ -111,9 +111,9 @@ class LoginForm extends SpecialPage {
 			$this->mEmail = '';
 		}
 		if( !in_array( 'realname', $wgHiddenPrefs ) ) {
-		    $this->mRealName = $request->getText( 'wpRealName' );
+			$this->mRealName = $request->getText( 'wpRealName' );
 		} else {
-		    $this->mRealName = '';
+			$this->mRealName = '';
 		}
 
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
