@@ -659,7 +659,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * @param module string module name to execute
 		 */
 		function execute( module ) {
-			var _method = 'mw.loader::execute';
+			var _fn = 'mw.loader::execute> ';
 			if ( typeof registry[module] === 'undefined' ) {
 				throw new Error( 'Module has not been registered yet: ' + module );
 			} else if ( registry[module].state === 'registered' ) {
@@ -692,7 +692,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Execute script
 			try {
 				registry[module].script( jQuery );
-				mw.log( 'State ready: ' + module, _method )
+				mw.log( _fn + 'State ready: ' + module )
 				registry[module].state = 'ready';
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {
@@ -719,8 +719,8 @@ window.mediaWiki = new ( function( $ ) {
 					}
 				}
 			} catch ( e ) {
-				mediaWiki.log( 'Exception thrown by ' + module + ': ' + e.message, _method );
-				mediaWiki.log( e );
+				mw.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
+				mw.log( e );
 				registry[module].state = 'error';
 				// Run error callbacks of jobs affected by this condition
 				for ( var j = 0; j < jobs.length; j++ ) {
