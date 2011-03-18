@@ -290,8 +290,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 	public function formatRow( $result ) {
 		global $wgLang, $wgContLang;
 
+		# Revision deletion works on revisions, so we should cast one
+		$row = array(
+					  'comment' => $result->rc_comment,
+					  'deleted' => $result->rc_deleted,
+					  'user_text' => $result->rc_user_text,
+					  'user' => $result->rc_user,
+					);
+		$rev = new Revision( $row );
+
 		$classes = array();
-		
+
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
@@ -324,10 +333,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'[' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( $result->length ) ) .
 				']'
 		);
-		$ulink = $this->skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
-			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
-		$comment = $this->skin->commentBlock( $result->rc_comment );
-		
+
+		$ulink = $this->skin->revUserTools( $rev );
+		$comment = $this->skin->revComment( $rev );
+
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';
 		}
@@ -507,7 +516,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			'fields' => array(
 				'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user',
 				'rc_user_text', 'rc_comment', 'rc_timestamp', 'rc_patrolled',
-				'rc_id', 'page_len AS length', 'page_latest AS rev_id',
+				'rc_id', 'rc_deleted', 'page_len AS length', 'page_latest AS rev_id',
 				'ts_tags'
 			),
 			'conds' => $conds,
