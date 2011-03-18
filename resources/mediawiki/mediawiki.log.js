@@ -2,7 +2,7 @@
  * Implementation for mediaWiki.log stub
  */
 
-(function ($) {
+(function( $ ) {
 
 	/**
 	 * Log output to the console.
@@ -15,11 +15,9 @@
 	 * @author Trevor Parscal <tparscal@wikimedia.org>
 	 * @param {string} string Message to output to console
 	 */
-	mw.log = function( string, prefix ) {
-		// Allow log messages to use a configured prefix
-		if ( typeof prefix == 'string' ) {
-			string = prefix + '> ' + string;
-		} else if ( mw.config.exists( 'mw.log.prefix' ) ) {
+	mw.log = function( string ) {
+		// Allow log messages to use a configured prefix to identify the source window (ie. frame)
+		if ( mw.config.exists( 'mw.log.prefix' ) ) {
 			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;
 		}
 		// Try to use an existing console
