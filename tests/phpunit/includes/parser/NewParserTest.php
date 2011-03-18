@@ -384,6 +384,9 @@ class NewParserTest extends MediaWikiTestCase {
 	/** @dataProvider parserTestProvider */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( !preg_match( '/' . $this->regex . '/', $desc ) ) return; //$this->markTestSkipped( 'Filtered out by the user' );
+
+		wfDebug( "Running parser test: $desc\n" );
+
 		$opts = $this->parseOptions( $opts );
 		$this->setupGlobals( $opts, $config );
 
