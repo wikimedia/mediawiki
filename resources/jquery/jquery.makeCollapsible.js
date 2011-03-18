@@ -19,7 +19,7 @@
 $.fn.makeCollapsible = function() {
 
 	return this.each(function() {
-		mw.config.set( 'mw.log.prefix', 'jquery.makeCollapsible' );
+		var _fn = 'jquery.makeCollapsible> ';
 
 		// Define reused variables and functions
 		var	$that = $(this).addClass( 'mw-collapsible' ), // case: $( '#myAJAXelement' ).makeCollapsible()
@@ -228,7 +228,7 @@ $.fn.makeCollapsible = function() {
 
 			var thatId = $that.attr( 'id' ),
 				$customTogglers = $( '.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-			mw.log( 'Found custom collapsible: #' + thatId );
+			mw.log( _fn + 'Found custom collapsible: #' + thatId );
 						
 			// Double check that there is actually a customtoggle link
 			if ( $customTogglers.size() ) {
@@ -236,7 +236,7 @@ $.fn.makeCollapsible = function() {
 					toggleLinkCustom( $(this), e, $that );
 				} );
 			} else {
-				mw.log( '#' + thatId + ': Missing toggler!' );
+				mw.log( _fn + '#' + thatId + ': Missing toggler!' );
 			}
 			
 			// Initial state
