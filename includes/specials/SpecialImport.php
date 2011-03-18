@@ -144,7 +144,7 @@ class SpecialImport extends SpecialPage {
 
 	private function showForm() {
 		global $wgUser, $wgOut, $wgImportSources, $wgExportMaxLinkDepth;
-		if( !$wgUser->isAllowed( 'import', 'importupload' ) )
+		if( !$wgUser->isAllowedAny( 'import', 'importupload' ) )
 			return $wgOut->permissionRequired( 'import' );
 
 		$action = $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) );

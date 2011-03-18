@@ -133,7 +133,7 @@ class ProtectionForm {
 				// Prevent users from setting levels that they cannot later unset
 				if( $val == 'sysop' ) {
 					// Special case, rewrite sysop to either protect and editprotected
-					if( !$wgUser->isAllowed( 'protect', 'editprotected' ) )
+					if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) )
 						continue;
 				} else {
 					if( !$wgUser->isAllowed($val) )
@@ -527,7 +527,7 @@ class ProtectionForm {
 			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
 			if( $key == 'sysop' ) {
 				//special case, rewrite sysop to protect and editprotected
-				if( !$wgUser->isAllowed( 'protect', 'editprotected' ) && !$this->disabled )
+				if( !$wgUser->isAllowedAny( 'protect', 'editprotected' ) && !$this->disabled )
 					continue;
 			} else {
 				if( !$wgUser->isAllowed($key) && !$this->disabled )
