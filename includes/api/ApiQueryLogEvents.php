@@ -239,7 +239,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				list( $vals2['duration'], $vals2['flags'] ) = $params;
 
 				// Indefinite blocks have no expiry time
-				if ( Block::parseExpiryInput( $params[0] ) !== Block::infinity() ) {
+				if ( SpecialBlock::parseExpiryInput( $params[0] ) !== Block::infinity() ) {
 					$vals2['expiry'] = wfTimestamp( TS_ISO_8601,
 						strtotime( $params[0], wfTimestamp( TS_UNIX, $ts ) ) );
 				}

@@ -2675,28 +2675,19 @@ class Language {
 	}
 
 	/**
-	 * For translating of expiry times
-	 * @param $str String: the validated block time in English
-	 * @return Somehow translated block time
+	 * Maybe translate block durations.  Note that this function is somewhat misnamed: it
+	 * deals with translating the *duration* ("1 week", "4 days", etc), not the expiry time
+	 * (which is an absolute timestamp).
+	 * @param $str String: the validated block duration in English
+	 * @return Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
-		$scBlockExpiryOptions = $this->getMessageFromDB( 'ipboptions' );
-
-		if ( $scBlockExpiryOptions == '-' ) {
-			return $str;
-		}
-
-		foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
-			if ( strpos( $option, ':' ) === false ) {
-				continue;
-			}
-			list( $show, $value ) = explode( ':', $option );
+		foreach( SpecialBlock::getSuggestedDurations( $this ) as $show => $value ){
 			if ( strcmp( $str, $value ) == 0 ) {
 				return htmlspecialchars( trim( $show ) );
 			}
 		}
-
 		return $str;
 	}
 

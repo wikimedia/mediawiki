@@ -885,8 +885,8 @@ class Block {
 			}
 		}
 
-		$expiry = Block::decodeExpiry( $encoded_expiry );
-		if ( $expiry == 'infinity' ) {
+		$expiry = self::decodeExpiry( $encoded_expiry );
+		if ( $expiry == self::infinity() ) {
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;
@@ -898,26 +898,19 @@ class Block {
 		return $expirystr;
 	}
 
-	/**
-	 * Convert a typed-in expiry time into something we can put into the database.
-	 * @param $expiry_input String: whatever was typed into the form
-	 * @return String: more database friendly
-	 */
-	public static function parseExpiryInput( $expiry_input ) {
-		if ( $expiry_input == 'infinite' || $expiry_input == 'indefinite' ) {
-			$expiry = 'infinity';
-		} else {
-			$expiry = strtotime( $expiry_input );
-
-			if ( $expiry < 0 || $expiry === false ) {
-				return false;
-			}
-		}
-
-		return $expiry;
-	}
-
 	# FIXME: everything above here is a mess, needs much cleaning up
+
+	/**
+	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
+	 * ("24 May 2034"), into an absolute timestamp we can put into the database.
+	 * @param $expiry String: whatever was typed into the form
+	 * @return String: timestamp or "infinity" string for th DB implementation
+	 * @deprecated since 1.18 moved to SpecialBlock::parseExpiryInput()
+	 */
+	public static function parseExpiryInput( $expiry ) {
+		wfDeprecated( __METHOD__ );
+		return SpecialBlock::parseExpiryInput( $expiry );
+	}
 
 	/**
 	 * Given a target and the target's type, get an existing Block object if possible.
@@ -1015,12 +1008,12 @@ class Block {
 	}
 
 	public function getType(){
-		list( $target, $type ) = $this->getTargetAndType();
+		list( /*...*/, $type ) = $this->getTargetAndType();
 		return $type;
 	}
 
 	public function getTarget(){
-		list( $target, $type ) = $this->getTargetAndType();
+		list( $target, /*...*/ ) = $this->getTargetAndType();
 		return $target;
 	}
 }
