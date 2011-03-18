@@ -104,7 +104,7 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTargetAndType( $target, $type );
 		if( $block instanceof Block ){
-			$res['expiry'] = $block->mExpiry == Block::infinity()
+			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
 				? 'infinite'
 				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
 		} else {
