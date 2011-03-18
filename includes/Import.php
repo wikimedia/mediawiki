@@ -1072,7 +1072,7 @@ class WikiRevision {
 			return false;
 		}
 
-			   $user = User::newFromName( $this->user_text );
+		$user = User::newFromName( $this->user_text );
 
 		$status = $file->upload( $source,
 			$this->getComment(),

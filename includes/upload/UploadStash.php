@@ -102,7 +102,7 @@ class UploadStash {
 			wfDebug( "UploadStash: tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
-				$fileProps = File::getPropsFromPath( $path );
+		$fileProps = File::getPropsFromPath( $path );
 
 		// we will be initializing from some tmpnam files that don't have extensions.
 		// most of MediaWiki assumes all uploaded files have good extensions. So, we fix this.

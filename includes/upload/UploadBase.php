@@ -1310,7 +1310,7 @@ abstract class UploadBase {
 		global $wgMaxUploadSize;
 
 		if ( is_array( $wgMaxUploadSize ) ) {
-			if ( !is_null( $forType) && isset( $wgMaxUploadSize[$forType] ) ) {
+			if ( !is_null( $forType ) && isset( $wgMaxUploadSize[$forType] ) ) {
 				return $wgMaxUploadSize[$forType];
 			} else {
 				return $wgMaxUploadSize['*'];
