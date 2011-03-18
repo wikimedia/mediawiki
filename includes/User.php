@@ -2248,7 +2248,7 @@ class User {
 	 * @param varargs String permissions to test
 	 * @return Boolean: True if user is allowed to perform *any* of the given actions
 	 */
-	public function isAllowed( /*...*/ ){
+	public function isAllowedAny( /*...*/ ){
 		$permissions = func_get_args();
 		foreach( $permissions as $permission ){
 			if( $this->isAllowedInternal( $permission ) ){
@@ -2277,7 +2277,7 @@ class User {
 	 * @param $action String
 	 * @return bool
 	 */
-	private function isAllowedInternal( $action = '' ) {
+	public function isAllowed( $action = '' ) {
 		if ( $action === '' ) {
 			return true; // In the spirit of DWIM
 		}
