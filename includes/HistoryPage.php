@@ -510,7 +510,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		// Show checkboxes for each revision
-		if ( $wgUser->isAllowed( 'deleterevision' ) || $wgUser->isAllowed( 'revisionmove' ) ) {
+		if ( $wgUser->isAllowed( 'deleterevision', 'revisionmove' ) ) {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops, disable the checkbox
 			// However, if the user has revisionmove rights, we cannot disable the checkbox

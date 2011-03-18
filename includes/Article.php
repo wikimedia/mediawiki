@@ -3458,7 +3458,7 @@ class Article {
 			$flags |= EDIT_MINOR;
 		}
 
-		if ( $bot && ( $wgUser->isAllowed( 'markbotedits' ) || $wgUser->isAllowed( 'bot' ) ) ) {
+		if ( $bot && ( $wgUser->isAllowed( 'markbotedits', 'bot' ) ) ) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 

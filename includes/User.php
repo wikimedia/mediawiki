@@ -2245,10 +2245,39 @@ class User {
 
 	/**
 	 * Check if user is allowed to access a feature / make an action
-	 * @param $action String action to be checked
-	 * @return Boolean: True if action is allowed, else false
+	 * @param varargs String permissions to test
+	 * @return Boolean: True if user is allowed to perform *any* of the given actions
 	 */
-	function isAllowed( $action = '' ) {
+	public function isAllowed( /*...*/ ){
+		$permissions = func_get_args();
+		foreach( $permissions as $permission ){
+			if( $this->isAllowedInternal( $permission ) ){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @param varargs String
+	 * @return bool True if the user is allowed to perform *all* of the given actions
+	 */
+	public function isAllowedAll( /*...*/ ){
+		$permissions = func_get_args();
+		foreach( $permissions as $permission ){
+			if( !$this->isAllowedInternal( $permission ) ){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Internal mechanics of testing a permission
+	 * @param $action String
+	 * @return bool
+	 */
+	private function isAllowedInternal( $action = '' ) {
 		if ( $action === '' ) {
 			return true; // In the spirit of DWIM
 		}
@@ -2269,7 +2298,7 @@ class User {
 	 */
 	public function useRCPatrol() {
 		global $wgUseRCPatrol;
-		return( $wgUseRCPatrol && ( $this->isAllowed( 'patrol' ) || $this->isAllowed( 'patrolmarks' ) ) );
+		return $wgUseRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
 	}
 
 	/**
@@ -2278,7 +2307,7 @@ class User {
 	 */
 	public function useNPPatrol() {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
-		return( ( $wgUseRCPatrol || $wgUseNPPatrol ) && ( $this->isAllowed( 'patrol' ) || $this->isAllowed( 'patrolmarks' ) ) );
+		return( ( $wgUseRCPatrol || $wgUseNPPatrol ) && ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) ) );
 	}
 
 	/**

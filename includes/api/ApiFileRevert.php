@@ -78,7 +78,7 @@ class ApiFileRevert extends ApiBase {
 	 * @param $user User The user to check.
 	 */
 	protected function checkPermissions( $user ) {
-		$permission = $user->isAllowed( 'edit' ) && $user->isAllowed( 'upload' );
+		$permission = $user->isAllowedAll( 'edit', 'upload' );
 
 		if ( $permission !== true ) {
 			if ( !$user->isLoggedIn() ) {
