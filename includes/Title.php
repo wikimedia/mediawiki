@@ -1566,20 +1566,7 @@ class Title {
 			$blockExpiry = $user->mBlock->mExpiry;
 			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
 			if ( $blockExpiry == 'infinity' ) {
-				// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite' or 'indefinite'
-				$scBlockExpiryOptions = wfMsg( 'ipboptions' );
-
-				foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
-					if ( !strpos( $option, ':' ) )
-						continue;
-
-					list( $show, $value ) = explode( ':', $option );
-
-					if ( $value == 'infinite' || $value == 'indefinite' ) {
-						$blockExpiry = $show;
-						break;
-					}
-				}
+				$blockExpiry = wfMessage( 'infiniteblock' );
 			} else {
 				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
 			}
@@ -1680,10 +1667,10 @@ class Title {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$encodedExpiry = Block::encodeExpiry( $expiry, $dbw );
+		$encodedExpiry = $dbw->encodeExpiry( $expiry );
 
 		$expiry_description = '';
-		if ( $encodedExpiry != 'infinity' ) {
+		if ( $encodedExpiry != $dbw->getInfinity() ) {
 			$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ),
 				$wgContLang->date( $expiry ) , $wgContLang->time( $expiry ) ) . ')';
 		} else {
@@ -1696,7 +1683,7 @@ class Title {
 					'pt_namespace' => $namespace,
 					'pt_title' => $title,
 					'pt_create_perm' => $create_perm,
-					'pt_timestamp' => Block::encodeExpiry( wfTimestampNow(), $dbw ),
+					'pt_timestamp' => $dbw->encodeExpiry( wfTimestampNow() ),
 					'pt_expiry' => $encodedExpiry,
 					'pt_user' => $wgUser->getId(),
 					'pt_reason' => $reason,
@@ -2037,6 +2024,7 @@ class Title {
 	 *     contains a array of unique groups.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
+		global $wgContLang;
 		$pagerestrictions = array();
 
 		if ( isset( $this->mCascadeSources ) && $getPages ) {
@@ -2082,7 +2070,7 @@ class Title {
 		$purgeExpired = false;
 
 		foreach ( $res as $row ) {
-			$expiry = Block::decodeExpiry( $row->pr_expiry );
+			$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
 			if ( $expiry > $now ) {
 				if ( $getPages ) {
 					$page_id = $row->pr_page;
@@ -2163,13 +2151,14 @@ class Title {
 	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+		global $wgContLang;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$restrictionTypes = $this->getRestrictionTypes();
 
 		foreach ( $restrictionTypes as $type ) {
 			$this->mRestrictions[$type] = array();
-			$this->mRestrictionsExpiry[$type] = Block::decodeExpiry( '' );
+			$this->mRestrictionsExpiry[$type] = $wgContLang->formatExpiry( '', TS_MW );
 		}
 
 		$this->mCascadeRestriction = false;
@@ -2212,7 +2201,7 @@ class Title {
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
-				$expiry = Block::decodeExpiry( $row->pr_expiry );
+				$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
 
 				// Only apply the restrictions if they haven't expired!
 				if ( !$expiry || $expiry > $now ) {
@@ -2241,12 +2230,17 @@ class Title {
 	 *        restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
+		global $wgContLang;
 		if ( !$this->mRestrictionsLoaded ) {
 			if ( $this->exists() ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$res = $dbr->select( 'page_restrictions', '*',
-					array( 'pr_page' => $this->getArticleId() ), __METHOD__ );
+				$res = $dbr->select(
+					'page_restrictions',
+					'*',
+					array( 'pr_page' => $this->getArticleId() ),
+					__METHOD__
+				);
 
 				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
 			} else {
@@ -2254,7 +2248,7 @@ class Title {
 
 				if ( $title_protection ) {
 					$now = wfTimestampNow();
-					$expiry = Block::decodeExpiry( $title_protection['pt_expiry'] );
+					$expiry = $wgContLang->formatExpiry( $title_protection['pt_expiry'], TS_MW );
 
 					if ( !$expiry || $expiry > $now ) {
 						// Apply the restrictions
@@ -2265,7 +2259,7 @@ class Title {
 						$this->mTitleProtection = false;
 					}
 				} else {
-					$this->mRestrictionsExpiry['create'] = Block::decodeExpiry( '' );
+					$this->mRestrictionsExpiry['create'] = $wgContLang->formatExpiry( '', TS_MW );
 				}
 				$this->mRestrictionsLoaded = true;
 			}

@@ -2617,7 +2617,7 @@ class Article {
 					if ( !isset( $expiry[$action] ) )
 						$expiry[$action] = Block::infinity();
 
-					$encodedExpiry[$action] = Block::encodeExpiry( $expiry[$action], $dbw );
+					$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
 					if ( $restrictions != '' ) {
 						$protect_description .= "[$action=$restrictions] (";
 						if ( $encodedExpiry[$action] != 'infinity' ) {

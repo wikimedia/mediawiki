@@ -45,7 +45,7 @@ class Block {
 		$this->mAuto = $auto;
 		$this->mAnonOnly = $anonOnly;
 		$this->mCreateAccount = $createAccount;
-		$this->mExpiry = self::decodeExpiry( $expiry );
+		$this->mExpiry = $expiry;
 		$this->mEnableAutoblock = $enableAutoblock;
 		$this->mHideName = $hideName;
 		$this->mBlockEmail = $blockEmail;
@@ -342,7 +342,7 @@ class Block {
 		$this->mAllowUsertalk = $row->ipb_allow_usertalk;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
-		$this->mExpiry = self::decodeExpiry( $row->ipb_expiry );
+		$this->mExpiry = $row->ipb_expiry;
 
 		if ( isset( $row->user_name ) ) {
 			$this->mByName = $row->user_name;
@@ -420,7 +420,7 @@ class Block {
 				'ipb_anon_only' => $this->mAnonOnly,
 				'ipb_create_account' => $this->mCreateAccount,
 				'ipb_enable_autoblock' => $this->mEnableAutoblock,
-				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
+				'ipb_expiry' => $dbw->encodeExpiry( $this->mExpiry ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
 				'ipb_deleted'	=> intval( $this->mHideName ), // typecast required for SQLite
@@ -460,7 +460,7 @@ class Block {
 				'ipb_anon_only' => $this->mAnonOnly,
 				'ipb_create_account' => $this->mCreateAccount,
 				'ipb_enable_autoblock' => $this->mEnableAutoblock,
-				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
+				'ipb_expiry' => $dbw->encodeExpiry( $this->mExpiry ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
 				'ipb_deleted'	=> $this->mHideName,
@@ -778,6 +778,7 @@ class Block {
 	 * @param $expiry String: timestamp for expiry, or
 	 * @param $db Database object
 	 * @return String
+	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
 	 */
 	public static function encodeExpiry( $expiry, $db ) {
 		if ( $expiry == '' || $expiry == Block::infinity() ) {
@@ -793,13 +794,11 @@ class Block {
 	 * @param $expiry String: Database expiry format
 	 * @param $timestampType Requested timestamp format
 	 * @return String
+	 * @deprecated since 1.18; use $wgLang->decodeExpiry() instead
 	 */
 	public static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
-		if ( $expiry == '' || $expiry == Block::infinity() ) {
-			return Block::infinity();
-		} else {
-			return wfTimestamp( $timestampType, $expiry );
-		}
+		global $wgContLang;
+		return $wgContLang->formatExpiry( $expiry, $timestampType );
 	}
 
 	/**
@@ -872,8 +871,10 @@ class Block {
 	 *
 	 * @param $encoded_expiry String: Database encoded expiry time
 	 * @return Html-escaped String
+	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
 	 */
 	public static function formatExpiry( $encoded_expiry ) {
+		global $wgContLang;
 		static $msg = null;
 
 		if ( is_null( $msg ) ) {
@@ -885,7 +886,7 @@ class Block {
 			}
 		}
 
-		$expiry = self::decodeExpiry( $encoded_expiry );
+		$expiry = $wgContLang->formatExpiry( $encoded_expiry, TS_MW );
 		if ( $expiry == self::infinity() ) {
 			$expirystr = $msg['infiniteblock'];
 		} else {
