@@ -163,7 +163,7 @@ class DumpInterwiki extends Maintenance {
 			$this->makeLanguageLinks ( $site, "_" . $site->suffix );
 		}
 
-		foreach ( $dblist as $db ) {
+		foreach ( $this->dblist as $db ) {
 			if ( isset( $this->specials[$db] ) ) {
 				# Special wiki
 				# Has interwiki links and interlanguage links to wikipedia
