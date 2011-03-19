@@ -18,11 +18,7 @@ class Block {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName,
 				$mBlockEmail, $mByName, $mAngryAutoblock, $mAllowUsertalk;
-	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster;
-
-	const EB_KEEP_EXPIRED = 1;
-	const EB_FOR_UPDATE = 2;
-	const EB_RANGE_ONLY = 4;
+	private $mForUpdate, $mFromMaster;
 
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
