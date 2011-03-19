@@ -361,7 +361,8 @@ class OutputPage {
 	}
 
 	/**
-	 * Filter an array of modules to remove insufficiently trustworthy members
+	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
+	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param $modules Array
 	 * @return Array
 	 */
@@ -370,7 +371,9 @@ class OutputPage {
 		$filteredModules = array();
 		foreach( $modules as $val ){
 			$module = $resourceLoader->getModule( $val );
-			if( $module->getOrigin() <= $this->getAllowedModules( $type ) ) {
+			if( $module instanceof ResourceLoaderModule
+				&& $module->getOrigin() <= $this->getAllowedModules( $type ) )
+			{
 				$filteredModules[] = $val;
 			}
 		}
