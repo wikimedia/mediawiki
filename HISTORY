@@ -803,9 +803,6 @@ changes to languages because of Bugzilla reports.
 * Note on non-existing user and user talk pages if user does not exist
 * New hook ShowMissingArticle so extensions can modify the output for
   non-existent pages.
-* Added $wgUseAJAXCategories allow enabling AJAX based categories system.
-  This works on all namespaces. Enabled namespaces can be reduces using
-  $wgAJAXCategoriesNamespaces.
 * Admins could disable some variants using $wgDisabledVariants now. ONLY apply
   on wikis enabled LanguageConverter.
 * (bug 16310) Credits page now lists IP addresses rather than saying the number
