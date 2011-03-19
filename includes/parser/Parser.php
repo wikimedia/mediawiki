@@ -1975,13 +1975,11 @@ class Parser {
 		if ( is_string( $query ) ) {
 			$query = wfCgiToArray( $query );
 		}
-
-		$sk = $this->mOptions->getSkin( $this->mTitle );
-
 		if ( $text == '' ) {
-			$text = $sk->linkText( $title );
+			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 		$link = $sk->linkKnown( $nt, "$prefix$text$inside", array(), $query );
 
 		return $this->armorLinks( $link ) . $trail;
