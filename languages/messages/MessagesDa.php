@@ -2788,21 +2788,24 @@ $1',
 'nextdiff'     => 'Gå til næste ændring →',
 
 # Media information
-'mediawarning'         => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode.
+'mediawarning'           => "'''Advarsel''': Denne filtype kan muligvis indeholde skadelig kode.
 Du kan beskadige dit system hvis du udfører den.",
-'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
-'thumbsize'            => 'Thumbnailstørrelse :',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
-'file-info'            => 'Filstørrelse: $1, MIME-Type: $2',
-'file-info-size'       => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
-'file-nohires'         => '<small>Ingen højere opløsning fundet.</small>',
-'svg-long-desc'        => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
-'show-big-image'       => 'Version i større opløsning',
-'file-info-gif-looped' => 'gentaget',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|ramme|rammer}}',
-'file-info-png-looped' => 'gentaget',
-'file-info-png-repeat' => 'afspillede $1 {{PLURAL:$1|gang|gange}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|billede|billeder}}',
+'imagemaxsize'           => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
+'thumbsize'              => 'Thumbnailstørrelse :',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
+'file-info'              => 'Filstørrelse: $1, MIME-Type: $2',
+'file-info-size'         => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
+'file-nohires'           => '<small>Ingen højere opløsning fundet.</small>',
+'svg-long-desc'          => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
+'show-big-image'         => 'Version i større opløsning',
+'show-big-image-preview' => '<small>Størrelse af denne forhåndsvisning: $1.</small>',
+'show-big-image-other'   => '<small>Andre opløsninger: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixels',
+'file-info-gif-looped'   => 'gentaget',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|ramme|rammer}}',
+'file-info-png-looped'   => 'gentaget',
+'file-info-png-repeat'   => 'afspillede $1 {{PLURAL:$1|gang|gange}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|billede|billeder}}',
 
 # Special:NewFiles
 'newimages'             => 'Galleri med de nyeste billeder',
@@ -3302,7 +3305,8 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'specialpages'                   => 'Specialsider',
 'specialpages-note'              => '----
 * Normale specialsider.
-* <strong class="mw-specialpagerestricted">Specialsider med begrænset adgang.</strong>',
+* <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>
+* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum.</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
 'specialpages-group-login'       => 'Opret bruger / logon',

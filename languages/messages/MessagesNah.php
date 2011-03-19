@@ -74,9 +74,9 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'Tiquimpāntlanīz tzonhuiliztli:',
+'tog-underline'            => 'Mokìnxòîkuilòtzàswis tzòwilistìn:',
 'tog-highlightbroken'      => 'Tiquinttāz tzomoc tzonhuiliztli <a href="" class="new">zan iuhquin inīn</a> (ahnozo: zan iuhquin inīn<a href="" class="internal">?</a>).',
-'tog-hideminor'            => 'Tiquintlātīz tlapatlatzintli yancuīc tlapatlalizpan',
+'tog-hideminor'            => 'Motlàtìs tepỉtzìn tlayèktlàlilistli ìpan welok tlapảtlalistli',
 'tog-extendwatchlist'      => 'Tiquittaz in tlachiyaliztli ic mochīntīn tlapatlaliztli, ahmo zan in ocachi yancuīc.',
 'tog-usenewrc'             => 'Tlacualtīlli yancuīc tlapatlaliztli (quinequi JavaScript)',
 'tog-showtoolbar'          => 'Tiquittāz in tlein motequitiltia tlapatlaliztechcopa (JavaScript)',
@@ -167,32 +167,32 @@ $messages = array(
 'dec'           => 'Īhuānōme',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Neneuhcāyōtl|Neneuhcāyōtl}}',
-'category_header'                => 'Tlahcuilōlli "$1" neneuhcāyōc',
-'subcategories'                  => 'Tlanineneuhcāyōtl',
+'pagecategories'                 => '{{PLURAL:$1|Tlaìxmatkàtlàlilòtl|Tlaìxmatkàtlàlilòmë}}',
+'category_header'                => 'Tlâkuilòlpiltin ìpan tlaìxmatkàtlàlilòtl "$1"',
+'subcategories'                  => 'Tlaìxmatkàtlàlilòpilòmë',
 'category-media-header'          => 'Media "$1" neneuhcāyōc',
 'category-empty'                 => "''Cah ahtlein inīn neneuhcāyōc.''",
-'hidden-categories'              => 'Neneuhcāyōtl {{PLURAL:$1|ōmotlāti|ōmotlātih}}',
-'hidden-category-category'       => 'Neneuhcāyōtl ōmotlāti',
-'category-subcat-count'          => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn neneuhcāyōtzintli|inīn $1 neneuhcāyōtzintli}}, īhuīcpa $2.}}',
+'hidden-categories'              => '{{PLURAL:$1|tlatlàtìlli tlaìxmatkàtlàlilòtl|tlatlàtìltìn tlaìxmatkàtlàlilòmë}}',
+'hidden-category-category'       => 'Tlatlàtìlkàtlaìxmatkàtlàlilòmë',
+'category-subcat-count'          => '{{PLURAL:$2|Inìn tlaìxmatkàtlàlilòtl kipia san inìn tlaìxmatkàtlàlilòpilli.|Inìn tlaìxmatkàtlàlilòtl {{PLURAL:$1|kipia inìn tlaìxmatkàtlàlilòpilli|kimpia inìn $1 tlaìxmatkàtlàlilòpiltìn}}, ìpan $2.}}',
 'category-subcat-count-limited'  => 'Inīn {{PLURAL:$1|neneuhcāyōtzintli cah|$1 neneuhcāyōtzintli cateh}} inīn neneuhcāyōc.',
 'category-article-count'         => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn zāzanilli|inīn $1 zāzanilli}}, īhuīcpa $2.}}',
 'category-article-count-limited' => 'Inīn {{PLURAL:$1|zāzanilli cah|$1 zāzanilli cateh}} inīn neneuhcāyōc.',
 'category-file-count'            => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn tlahcuilōlli|inīn $1 tlahcuilōlli}}, īhuīcpa $2.}}',
-'category-file-count-limited'    => 'Inīn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} inīn neneuhcāyōc.',
+'category-file-count-limited'    => '{{PLURAL:$1|Inìn tlâkuilòlèwalli kä|Inîkë $1 tlâkuilòlèwaltìn katêkë}} ìpan inìn tlaìxmatkàtlàlilòtl.',
 'listingcontinuesabbrev'         => 'niman',
 
 'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
 
 'about'         => 'Ītechpa',
-'article'       => 'Tlahcuilōlli',
+'article'       => 'Tlâkuilòpilli',
 'newwindow'     => '(Motlapoāz cē yancuīc tlanexillōtl)',
 'cancel'        => 'Ticcuepāz',
 'moredotdotdot' => 'Huehca ōmpa...',
 'mypage'        => 'Nozāzanil',
 'mytalk'        => 'Notēixnāmiquiliz',
 'anontalk'      => 'Inīn IP ītēixnāmiquiliz',
-'navigation'    => 'Ācalpapanōliztli',
+'navigation'    => 'Nènemòwalistli',
 'and'           => '&#32;īhuān',
 
 # Cologne Blue skin
@@ -202,7 +202,7 @@ $messages = array(
 'qbpageoptions'  => 'Inīn zāzanilli',
 'qbpageinfo'     => 'Tlahcuilōltechcopa',
 'qbmyoptions'    => 'Nozāzanil',
-'qbspecialpages' => 'Nōncuahquīzqui āmatl',
+'qbspecialpages' => 'Nònkuâkìskàtlaìxtlapaltìn',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
@@ -215,6 +215,7 @@ $messages = array(
 'vector-view-history'    => 'Tlahcuilōlli tlahcuilōlloh',
 'vector-view-view'       => 'Tāmapōhuaz',
 'vector-view-viewsource' => 'Tiquittāz in mēyalli',
+'namespaces'             => 'Tòkâyeyàntìn',
 
 'errorpagetitle'    => 'Ahcuallōtl',
 'returnto'          => 'Timocuepāz īhuīc $1.',
@@ -248,7 +249,7 @@ $messages = array(
 'newpage'           => 'Yancuīc zāzanilli',
 'talkpage'          => 'Tictlahtōz inīn zāzaniltechcopa',
 'talkpagelinktext'  => 'Tèìxnàmikilistli',
-'specialpage'       => 'Nōncuahquīzqui āmatl',
+'specialpage'       => 'Nònkuâkìskàtlaìxtlapalli',
 'personaltools'     => 'In tlein nitēquitiltilia',
 'postcomment'       => 'Yancuīc xeliuhcāyōtl',
 'articlepage'       => 'Xiquittaz in tlahcuilōlli',
@@ -270,7 +271,7 @@ $messages = array(
 'viewcount'         => 'Inīn zāzanilli quintlapōhua {{PLURAL:$1|cē tlahpololiztli|$1 tlahpololiztli}}.',
 'protectedpage'     => 'Ōmoquīxtix zāzanilli',
 'jumpto'            => 'Īhuīcpa ticholōz:',
-'jumptonavigation'  => 'ācalpapanōliztli',
+'jumptonavigation'  => 'nènemòwalistli',
 'jumptosearch'      => 'tlatēmoliztli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -311,6 +312,8 @@ $messages = array(
 'toc'                     => 'Inīn tlahcuilōlco',
 'showtoc'                 => 'xiquitta',
 'hidetoc'                 => 'tictlātīz',
+'collapsible-collapse'    => 'Motlàtìs',
+'collapsible-expand'      => 'Monèxtìs',
 'thisisdeleted'           => '¿Tiquittāz nozo ahticpolōz $1?',
 'viewdeleted'             => '¿Tiquiēlēhuia tiquitta $1?',
 'restorelink'             => '{{PLURAL:$1|cē tlapatlaliztli polotic|$1 tlapatlaliztli polotic}}',
@@ -319,14 +322,14 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom huelītiliztli',
 'page-rss-feed'           => '"$1" RSS huelītiliztli',
 'page-atom-feed'          => '"$1" RSS huelītiliztli',
-'red-link-title'          => '$1 (in tlaìxtlapalli âmò ka)',
+'red-link-title'          => '$1 (ayàk in tlaìxtlapalli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Tlaìxtlapalli',
 'nstab-user'      => 'Tlatequitiltilīlli',
 'nstab-media'     => 'Mēdiatl',
-'nstab-special'   => 'Nōncuahquīzqui āmatl',
-'nstab-project'   => 'Tlachīhualiztli zāzanilli',
+'nstab-special'   => 'Nònkuâkìskàtlaìxtlapalli',
+'nstab-project'   => 'Ìtlaìxtlapal in tlayẻkàntekitl',
 'nstab-image'     => 'Īxiptli',
 'nstab-mediawiki' => 'Tlahcuilōltzintli',
 'nstab-template'  => 'Nemachiòtl',

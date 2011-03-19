@@ -1872,7 +1872,7 @@ Verifique se o endereço está correcto e o site disponível, por favor.',
 'license'            => 'Licença:',
 'license-header'     => 'Licenciamento',
 'nolicense'          => 'Nenhuma seleccionada',
-'license-nopreview'  => '(Antevisão não disponível)',
+'license-nopreview'  => '(Antevisão indisponível)',
 'upload_source_url'  => ' (uma URL válida, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 

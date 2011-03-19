@@ -1558,11 +1558,12 @@ da bikarî navê wê rûpelê biguherînî.',
 Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê ra?',
 'delete_and_move_confirm'   => 'Erê, wê rûpelê jêbibe',
 'delete_and_move_reason'    => 'Jêbir ji bo navguherandinê',
-'immobile-source-page'      => 'Nava vê rûpelê nikare were guherandin.',
+'immobile-source-page'      => 'Navê vê rûpelê nikare were guherandin.',
 
 # Export
 'export'          => 'Rûpelan eksport bike',
 'export-addcat'   => 'Zêde bike',
+'export-addns'    => 'Zêde bike',
 'export-download' => 'Weka dosyeyê qeyd bike',
 
 # Namespace 8 related
@@ -1801,7 +1802,10 @@ if (wgUserLanguage == "ku-arab")
 
 'exif-exposureprogram-2' => 'Programa normal',
 
+'exif-meteringmode-0'   => 'Nenas',
 'exif-meteringmode-255' => 'Yên din',
+
+'exif-lightsource-0' => 'Nenas',
 
 'exif-scenecapturetype-1' => 'Bergeh',
 'exif-scenecapturetype-2' => 'Portre',
@@ -1813,6 +1817,9 @@ if (wgUserLanguage == "ku-arab")
 
 'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Nerm',
+
+# External editor support
+'edit-externally-help' => '(Ji bo agahîyên zav [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hemû',

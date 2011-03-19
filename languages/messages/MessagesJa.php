@@ -2289,7 +2289,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 # Watchlist
 'watchlist'            => 'ウォッチリスト',
 'mywatchlist'          => 'ウォッチリスト',
-'watchlistfor2'        => '利用者:$1$2',
+'watchlistfor2'        => '利用者: $1 $2',
 'nowatchlist'          => 'ウォッチリストに項目がありません。',
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
 'watchnologin'         => 'ログインしていません',
