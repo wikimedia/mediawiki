@@ -59,7 +59,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_user = isset( $prop['user'] );
 		$fld_size = isset( $prop['size'] );
 		$fld_dimensions = isset( $prop['dimensions'] );
-		$fld_description = isset( $prop['description'] );
+		$fld_description = isset( $prop['description'] ) || isset( $prop['parseddescription'] );
 		$fld_mime = isset( $prop['mime'] );
 		$fld_metadata = isset( $prop['metadata'] );
 		$fld_bitdepth = isset( $prop['bitdepth'] );
@@ -150,6 +150,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 			if ( $fld_description ) {
 				$file['description'] = $row->fa_description;
+				if ( isset( $prop['parseddescription'] ) ) {
+					global $wgUser;
+					$file['parseddescription'] = $wgUser->getSkin()->formatComment(
+						$row->fa_description, $row->fa_name );
+				}
 			}
 			if ( $fld_metadata ) {
 				$file['metadata'] = $row->fa_metadata
@@ -217,6 +222,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'size',
 					'dimensions',
 					'description',
+					'parseddescription',
 					'mime',
 					'metadata',
 					'bitdepth'
@@ -234,15 +240,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'limit' => 'How many images to return in total',
 			'prop' => array(
 				'What image information to get:',
-				' sha1         - Adds SHA-1 hash for the image',
-				' timestamp    - Adds timestamp for the uploaded version',
-				' user         - Adds user who uploaded the image version',
-				' size         - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-				' dimensions   - Alias for size',
-				' description  - Adds description the image version',
-				' mime         - Adds MIME of the image',
-				' metadata     - Lists EXIF metadata for the version of the image',
-				' bitdepth     - Adds the bit depth of the version',
+				' sha1              - Adds SHA-1 hash for the image',
+				' timestamp         - Adds timestamp for the uploaded version',
+				' user              - Adds user who uploaded the image version',
+				' size              - Adds the size of the image in bytes and the height, width and page count (if applicable)',
+				' dimensions        - Alias for size',
+				' description       - Adds description the image version',
+				' parseddescription - Parse the description on the version',
+				' mime              - Adds MIME of the image',
+				' metadata          - Lists EXIF metadata for the version of the image',
+				' bitdepth          - Adds the bit depth of the version',
             ),
 		);
 	}

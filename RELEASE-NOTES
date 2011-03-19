@@ -266,6 +266,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27585) add pagecount to list=filearchive
 * (bug 28104) Namespace for local pages in interwiki backlinks (iwbacklinks)
   is missing
+* (bug 27343) Add parseddescription to list=filearchive
 
 === Languages updated in 1.18 ===
 
