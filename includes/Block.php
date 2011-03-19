@@ -933,6 +933,9 @@ class Block {
 
 		$userObj = User::newFromName( $target );
 		if( $userObj instanceof User ){
+			# Note that since numbers are valid usernames, a $target of "12345" will be
+			# considered a User.  If you want to pass a block ID, prepend a hash "#12345",
+			# since hash characters are not valid in usernames or titles generally.
 			return array( $userObj, Block::TYPE_USER );
 
 		} elseif( IP::isValid( $target ) ){
@@ -951,9 +954,9 @@ class Block {
 			# Autoblock reference in the form "#12345"
 			return array( substr( $target, 1 ), Block::TYPE_AUTO );
 
-		} elseif( preg_match( '/^\d+$/', $target ) ){
-			# Block id reference as a pure number
-			return array( $target, Block::TYPE_ID );
+		} else {
+			# WTF?
+			return array( null, null );
 		}
 	}
 
