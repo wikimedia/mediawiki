@@ -197,6 +197,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28034) uploading file to local wiki when file exists on shared repository
   (commons) gives spurious info in the warning message
 * Usernames get lost when selecting different sorts on Special:listfiles
+* (Bug 14005) editing section 0 of an existing but empty page gives no such
+  section error
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
