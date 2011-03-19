@@ -16,10 +16,18 @@
  */
 class Block {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
-				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName,
-				$mBlockEmail, $mByName, $mAngryAutoblock, $mAllowUsertalk;
-	private $mFromMaster;
+				$mEnableAutoblock, $mHideName,
+				$mByName, $mAngryAutoblock;
+	private
+		$mFromMaster,
+		$mRangeStart,
+		$mRangeEnd,
+		$mAnonOnly,
+		$mBlockEmail,
+		$mAllowUsertalk,
+		$mCreateAccount;
 
+	/// TYPE constants
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
 	const TYPE_RANGE = 3;
@@ -224,6 +232,54 @@ class Block {
 		# Give up
 		$this->clear();
 		return false;
+	}
+
+	/**
+	 * Get a set of SQL conditions which will select rangeblocks encompasing a given range
+	 * @param $start String Hexadecimal IP representation
+	 * @param $end String Hexadecimal IP represenation, or null to use $start = $end
+	 * @return String
+	 */
+	public static function getRangeCond( $start, $end = null ){
+		if( $end === null ){
+			$end = $start;
+		}
+		# Per bug 14634, we want to include relevant active rangeblocks; for
+		# rangeblocks, we want to include larger ranges which enclose the given
+		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
+		# so we can improve performance by filtering on a LIKE clause
+		$chunk = self::getIpFragment( $start );
+		$dbr = wfGetDB( DB_SLAVE );
+		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
+
+		# Fairly hard to make a malicious SQL statement out of hex characters,
+		# but stranger things have happened...
+		$safeStart = $dbr->addQuotes( $start );
+		$safeEnd = $dbr->addQuotes( $end );
+
+		return $dbr->makeList(
+			array(
+				"ipb_range_start $like",
+				"ipb_range_start <= $safeStart",
+				"ipb_range_end >= $safeEnd",
+			),
+			LIST_AND
+		);
+	}
+
+	/**
+	 * Get the component of an IP address which is certain to be the same between an IP
+	 * address and a rangeblock containing that IP address.
+	 * @param  $hex String Hexadecimal IP representation
+	 * @return String
+	 */
+	protected static function getIpFragment( $hex ){
+		global $wgBlockCIDRLimit;
+		if( substr( $hex, 0, 3 ) == 'v6-' ){
+			return 'v6-' . substr( substr( $hex, 3 ), 0,  floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
+		} else {
+			return substr( $hex, 0,  floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
+		}
 	}
 
 	/**
@@ -707,6 +763,38 @@ class Block {
 	}
 
 	/**
+	 * Get the IP address at the start of the range in Hex form
+	 * @return String IP in Hex form
+	 */
+	public function getRangeStart(){
+		switch( $this->type ){
+			case self::TYPE_USER:
+				return null;
+			case self::TYPE_IP:
+				return IP::toHex( $this->target );
+			case self::TYPE_RANGE:
+				return $this->mRangeStart;
+			default: throw new MWException( "Block with invalid type" );
+		}
+	}
+
+	/**
+	 * Get the IP address at the start of the range in Hex form
+	 * @return String IP in Hex form
+	 */
+	public function getRangeEnd(){
+		switch( $this->type ){
+			case self::TYPE_USER:
+				return null;
+			case self::TYPE_IP:
+				return IP::toHex( $this->target );
+			case self::TYPE_RANGE:
+				return $this->mRangeEnd;
+			default: throw new MWException( "Block with invalid type" );
+		}
+	}
+
+	/**
 	 * Get the user id of the blocking sysop
 	 *
 	 * @return Integer
@@ -737,6 +825,49 @@ class Block {
 	 */
 	public function fromMaster( $x = null ) {
 		return wfSetVar( $this->mFromMaster, $x );
+	}
+
+	/**
+	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range
+	 * @param $x Bool
+	 * @return  Bool
+	 */
+	public function isHardblock( $x = null ){
+		$y = $this->mAnonOnly;
+		if( $x !== null){
+			$this->mAnonOnly = !$x;
+		}
+		return !$y;
+	}
+
+	/**
+	 * Get/set whether the Block prevents a given action
+	 * @param $action String
+	 * @param $x Bool
+	 * @return Bool
+	 */
+	public function prevents( $action, $x = null ){
+		switch( $action ){
+			case 'edit':
+				# TODO Not actually quite this simple (bug 13611 etc)
+				return true;
+
+			case 'createaccount':
+				return wfSetVar( $this->mCreateAccount, $x );
+
+			case 'sendemail':
+				return wfSetVar( $this->mBlockEmail, $x );
+
+			case 'editusertalk':
+				$y = $this->mAllowUsertalk;
+				if( $x !== null){
+					$this->mAllowUsertalk = !$x;
+				}
+				return !$y;
+
+			default:
+				return null;
+		}
 	}
 
 	/**

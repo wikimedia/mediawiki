@@ -1157,7 +1157,7 @@ class User {
 				$this->mBlockedby = $this->mBlock->mByName;
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
-			$this->mAllowUsertalk = $this->mBlock->mAllowUsertalk;
+			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editusertalk' );
 			if ( $this->isLoggedIn() && $wgUser->getID() == $this->getID() ) {
 				$this->spreadBlock();
 			}
@@ -2801,7 +2801,7 @@ class User {
 	 */
 	function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->mCreateAccount;
+		return $this->mBlock && $this->mBlock->prevents( 'createaccount' );
 	}
 
 	/**
@@ -2810,7 +2810,7 @@ class User {
 	 */
 	function isBlockedFromEmailuser() {
 		$this->getBlockedStatus();
-		return $this->mBlock && $this->mBlock->mBlockEmail;
+		return $this->mBlock && $this->mBlock->prevents( 'sendemail' );
 	}
 
 	/**

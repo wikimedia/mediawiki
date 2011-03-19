@@ -208,17 +208,17 @@ class SpecialBlock extends SpecialPage {
 			  || $block->mAddress == $this->target ) # or if it is, the range is what we're about to block
 			)
 		{
-			$fields['HardBlock']['default'] = !$block->mAnonOnly;
-			$fields['CreateAccount']['default'] = $block->mCreateAccount;
+			$fields['HardBlock']['default'] = $block->isHardblock();
+			$fields['CreateAccount']['default'] = $block->prevents( 'createaccount' );
 			$fields['AutoBlock']['default'] = $block->mEnableAutoblock;
 			if( isset( $fields['DisableEmail'] ) ){
-				$fields['DisableEmail']['default'] = $block->mBlockEmail;
+				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
 			}
 			if( isset( $fields['HideUser'] ) ){
 				$fields['HideUser']['default'] = $block->mHideName;
 			}
 			if( isset( $fields['DisableUTEdit'] ) ){
-				$fields['DisableUTEdit']['default'] = !$block->mAllowUsertalk;
+				$fields['DisableUTEdit']['default'] = $block->prevents( 'editusertalk' );
 			}
 			$fields['Reason']['default'] = $block->mReason;
 			$fields['AlreadyBlocked']['default'] = true;
@@ -502,10 +502,6 @@ class SpecialBlock extends SpecialPage {
 			return array( 'ipb_expiry_invalid' );
 		}
 
-		if( !$wgBlockAllowsUTEdit ){
-			$data['DisableUTEdit'] = true;
-		}
-
 		# If the user has done the form 'properly', they won't even have been given the
 		# option to suppress-block unless they have the 'hideuser' permission
 		if( !isset( $data['HideUser'] ) ){
@@ -548,10 +544,11 @@ class SpecialBlock extends SpecialPage {
 			!$data['HardBlock'],                        # Block anon only
 			$data['CreateAccount'],
 			$data['AutoBlock'],
-			$data['HideUser'],
-			$data['DisableEmail'],
-			!$data['DisableUTEdit']                     # *Allow* UTEdit
+			$data['HideUser']
 		);
+		
+		$block->prevents( 'editusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
+		$block->prevents( 'sendemail', $data['DisableEmail'] );
 
 		if( !wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
 			return array( 'hookaborted' );
@@ -569,7 +566,7 @@ class SpecialBlock extends SpecialPage {
 
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
-				$currentBlock = Block::newFromDB( $target, $userId );
+				$currentBlock = Block::newFromTargetAndType( $target, $type );
 
 				if( $block->equals( $currentBlock ) ) {
 					return array( 'ipb_already_blocked' );
@@ -613,7 +610,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Block constructor sanitizes certain block options on insert
-		$data['BlockEmail'] = $block->mBlockEmail;
+		$data['BlockEmail'] = $block->prevents( 'sendemail' );
 		$data['AutoBlock'] = $block->mEnableAutoblock;
 
 		# Prepare log parameters
