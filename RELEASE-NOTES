@@ -288,7 +288,7 @@ changes to languages because of Bugzilla reports.
 
 == Compatibility ==
 
-MediaWiki 1.18 requires PHP 5.2.3. PHP 4 is no longersupported.
+MediaWiki 1.18 requires PHP 5.2.3. PHP 4 is no longer supported.
 
 MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
