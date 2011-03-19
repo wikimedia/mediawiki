@@ -839,6 +839,7 @@ $1',
 # Special:ListFiles
 'imgfile'               => 'ܠܦܦܐ',
 'listfiles'             => 'ܡܟܬܒܘܬܐ ܕܠܦܦ̈ܐ',
+'listfiles_thumb'       => 'ܙܘܥܪܐ',
 'listfiles_date'        => 'ܣܝܩܘܡܐ',
 'listfiles_name'        => 'ܫܡܐ',
 'listfiles_user'        => 'ܡܦܠܚܢܐ',

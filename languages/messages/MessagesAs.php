@@ -304,6 +304,7 @@ $messages = array(
 'delete'            => 'বিলোপন(ডিলিট)',
 'deletethispage'    => 'বৰ্তমান পৃষ্ঠাৰ বিলোপন(ডিলিট)',
 'undelete_short'    => '{{PLURAL:$1|বিলোপিত পৃষ্ঠাৰ|$1 সংখ্যক বিলোপিত পৃষ্ঠাৰ}} পূৰ্ববৎকৰণ',
+'viewdeleted_short' => '{{PLURAL:$1| এটা বিলুপ্ত সম্পাদনা|$1 টা বিলুপ্ত সম্পাদনা}} দেখুৱাওক',
 'protect'           => 'সংৰক্ষ(প্ৰটেক্ট)',
 'protect_change'    => 'সলাওক',
 'protectthispage'   => 'বৰ্তমান পৃষ্ঠাৰ সংৰক্ষণবিধিৰ পৰিবৰ্তন',
@@ -384,6 +385,7 @@ $messages = array(
 'collapsible-expand'      => 'বহলাওক',
 'thisisdeleted'           => '$1 চাওক বা সলনি কৰক?',
 'viewdeleted'             => '$1 চাওক?',
+'restorelink'             => '{{PLURAL:$1| এটা বিলুপ্ত সম্পাদনা|$1 টা বিলুপ্ত সম্পাদনা}}',
 'feedlinks'               => 'ফিড:',
 'feed-unavailable'        => 'সিন্ডিকেশন ফিড মজুত নাই',
 'site-rss-feed'           => '$1 আৰ এস এস ফিড',
@@ -427,6 +429,7 @@ $messages = array(
 'missingarticle-diff'  => '(তফাৎ: $1, $2)',
 'internalerror'        => 'ভিতৰুৱা গণ্ডোগোল',
 'internalerror_info'   => 'ভিতৰুৱা গণ্ডোগোল: $1',
+'fileappenderrorread'  => 'জোৰা দিয়াৰ সময়ত "$1" পাঠ্য কৰা নহ\'ল ।',
 'fileappenderror'      => '"$2"ৰ লগত "$1"ৰ সংযোগ কৰা নহ\'ল ।',
 'filecopyerror'        => '"$1" ফাইলটো "$2" লৈ প্ৰতিলিপী কৰিব পৰা নগল।',
 'filerenameerror'      => '"$1" ফাইলৰ নাম সলনি কৰি "$2" কৰিব পৰা নগল ।',
@@ -518,6 +521,7 @@ $messages = array(
 'wrongpasswordempty'         => 'দিয়া গুপ্তশব্দতো খালী; অনুগ্ৰহ কৰি আকৌ এবাৰ চেষ্টা কৰক। ।',
 'passwordtooshort'           => "গুপ্তশব্দ কমেও {{PLURAL:$1|১ তা|$1 তা}} আখৰ হ'ব লাগিব ।",
 'password-name-match'        => "আপুনাৰ গুপ্তশব্দ আৰু আপুনাৰ সদস্যনাম বেলেগ হ'ব লাগিব",
+'password-login-forbidden'   => 'এই সদস্যনাম আৰু গুপ্তসব্দৰ ব্যৱহাৰ নিষিদ্ধ কৰা হৈছে ।',
 'mailmypassword'             => 'ই-মেইলত গুপ্তশব্দ পঠাওক',
 'passwordremindertitle'      => '{{SITENAME}} ৰ কাৰণে নতুন অস্থায়ী গুপ্তশব্দ',
 'passwordremindertext'       => 'কোনোবাই (হয়তো আপুনি, $1 আই-পি ঠিকনাৰ পৰা)
@@ -672,6 +676,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 আপুনি আন পৃষ্ঠাত [[Special:Search/{{PAGENAME}}| এই শিৰোণামা অনুসন্ধান কৰিব পাৰে]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} সম্পৰ্কিয় অভিলেখ অনুসন্ধান কৰিব পাৰে],
 বা [{{fullurl:{{FULLPAGENAME}}|action=edit}} এই পৃষ্ঠা সম্পাদনা কৰিব পাৰে]</span>',
+'userpage-userdoesnotexist'        => '"$1" নামৰ সদস্য একাউন্ট নিবন্ধিত নহয় ।
+অনুগ্ৰ কৰি চাওক আপুনি এই পৃষ্ঠা সৃষ্টি/সম্পাদনা কৰিব বিচাৰিছে নেকি ।',
 'userpage-userdoesnotexist-view'   => "সনস্য একাউন্ট ''$1'' পঞ্জীভূত নহয়",
 'note'                             => "'''টোকা:'''",
 'previewnote'                      => "'''মনত ৰাখিব যে এয়া কেৱল খচৰা হে, সাল-সলনিবোৰ এতিয়াও সংৰক্ষিত কৰা হোৱা নাই!'''",
@@ -684,12 +690,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'editingold'                       => "'''সাৱধান: আপুনি এই পৃষ্ঠাৰ এটি পুৰণি সংস্কৰণ সম্পাদনা কৰি আছে ।
 যদি আপুনি আপোনাৰ সম্পাদনাসমূহ জমা কৰে, সেই পৰৱৰ্তী সংস্কৰণসমূহ হেৰাই যাব ‌‌।'''",
 'yourdiff'                         => 'তফাৎ',
-'copyrightwarning'                 => "অনুগ্ৰহ কৰি মন কৰক যে {{SITENAME}}লৈ কৰা সকলো অৱদান $2 ৰ চৰ্তাৱলীৰ মতে প্ৰদান কৰা বুলি ধৰি লোৱা হব (আৰু অধিক জানিবলৈ $1 চাঁওক)। যদি আপুনি আপোনাৰ লিখনি নিৰ্দয়ভাৱে সম্পাদনা কৰা আৰু ইচ্ছামতে পুনৰ্বিতৰণ কৰা ভাল নাপায়, তেনেহ'লে নিজৰ লিখনি ইয়াত নিদিব।
+'copyrightwarning'                 => "অনুগ্ৰহ কৰি মন কৰক যে {{SITENAME}}লৈ কৰা সকলো বৰঙণি $2 ৰ চৰ্তাৱলীৰ মতে প্ৰদান কৰা বুলি ধৰি লোৱা হব (আৰু অধিক জানিবলৈ $1 চাঁওক)। যদি আপুনি আপোনাৰ লিখনি নিৰ্দয়ভাৱে সম্পাদনা কৰা আৰু ইচ্ছামতে পুনৰ্বিতৰণ কৰা ভাল নাপায়, তেনেহ'লে নিজৰ লিখনি ইয়াত নিদিব।
 <br />
 
 ইয়াত আপোনাৰ লিখনি দিয়াৰ লগে লগে আপুনি আপোনা-আপুনি প্ৰতিশ্ৰুতি দিছে যে এই লিখনিটো আপোনাৰ মৌলিক লিখনি, বা কোনো স্বত্বাধিকাৰ নথকা বা কোনো ৰাজহুৱা ৱেবছাইট বা তেনে কোনো মুকলি উৎসৰ পৰা আহৰণ কৰা।
 '''স্বত্বাধিকাৰযুক্ত কোনো সমল অনুমতি অবিহনে দাখিল নকৰে যেন!'''",
-'copyrightwarning2'                => "অনুগ্ৰহ কৰি মন কৰক যে {{SITENAME}}লৈ কৰা সকলো অৱদান আন সদস্যই সম্পাদনা কৰিব, সলনি কৰিব অথবা মচি পেলাব পাৰে ।
+'copyrightwarning2'                => "অনুগ্ৰহ কৰি মন কৰক যে {{SITENAME}}লৈ কৰা সকলো বৰঙণি আন সদস্যই সম্পাদনা কৰিব, সলনি কৰিব অথবা মচি পেলাব পাৰে ।
 আপুনি যদি আপোনাৰ লিখনি নিৰ্দয়ভাৱে সম্পাদনা কৰা ভাল নাপায়, তেনেহলে নিজৰ লিখনি ইয়াত নিদিব ।<br />
 ইয়াত আপোনাৰ লিখনি দিয়াৰ লগে লগে আপুনি আপোনা-আপুনি প্ৰতিশ্ৰুতি দিছে যে এই লিখনিটো আপোনাৰ মৌলিক লিখনি, বা কোনো স্বত্বাধিকাৰ নথকা বা কোনো ৰাজহুৱা ৱেবছাইট বা তেনে কোনো মুকলি উৎসৰ পৰা আহৰণ কৰা| (অধিক জানিবলৈ $1 চাঁওক)
 
@@ -722,6 +728,13 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'edit-no-change'                   => 'আপোনাৰ সম্পাদনা আওকাণ কৰা হৈছে, কাৰণ লেখাত কোনো তফাৎ নাই',
 'edit-already-exists'              => "নতুন পৃষ্ঠা সৃষ্টি কৰা নহ'ল ।
 পৃষ্ঠাখন ইতিমধ্যেই আছেই ।",
+
+# "Undo" feature
+'undo-success' => 'এই সমপাদনা পূৰ্ববৎ কৰিব পাৰি ।
+অনুগ্ৰহ কৰি তলৰ তুলনাটি পৰীক্ষা কৰি ঠাৱৰ কৰক যে এইয়েই আপুনি কৰিব বিচাৰিছে, আৰু তলত সালসলনীসমূহ যমা কৰি এই কাৰ্য্য সম্পন্ন কৰক ।',
+'undo-failure' => "এই সমপাদনা দ্বন্দিক মধ্যবৰ্তী সম্পাদনাসমূহৰ কাৰণে পূৰ্ববৎ কৰা নহ'ব ।",
+'undo-norev'   => "এই সম্পাদনাটি ৰদ কৰিব নোৱাৰি, কাৰণ ই আৰু নাই বা ইয়াক বাতিল কৰা হ'ল ।",
+'undo-summary' => '[[Special:Contributions/$2|$2]]ৰ ([[User talk:$2|আলাপ]]) সম্পাদিত $1 সংশোধনটি বাতিল কৰক',
 
 # Account creation failure
 'cantcreateaccounttitle' => "একাউন্ট সৃষ্টি কৰা নহ'ব",
@@ -760,44 +773,57 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 [[Special:Search|সন্ধান]] ব্যৱহাৰ কৰি চাওক।',
 
 # Revision deletion
-'rev-deleted-comment'        => '(মন্তব্য আতৰোৱা হৈছে)',
-'rev-deleted-user'           => '(সদস্যনাম আতৰোৱা হৈছে)',
-'rev-delundel'               => 'দেখুৱাওক/নেদেখুৱাব',
-'rev-showdeleted'            => 'দেখুওৱাওক',
-'revisiondelete'             => 'সংকলন বিলোপন কৰক / পুণৰ্স্থাপিত কৰক',
-'revdelete-show-file-submit' => 'হয়',
-'revdelete-hide-text'        => 'সংশোধিত পাঠ আঁতৰাওক',
-'revdelete-hide-image'       => 'ফাইলৰ বিষয়বস্তু আঁতৰাওক',
-'revdelete-hide-name'        => 'কাৰ্য্য আৰু লক্ষ্য আতৰাই থওঁক',
-'revdelete-hide-comment'     => 'সম্পাদনা মন্তব্য আতৰাই থওঁক',
-'revdelete-hide-user'        => 'সম্পাদকৰ সদস্যনাম/আই-পি টিকনা আতৰাই থওঁক',
-'revdelete-radio-same'       => '(সলনি নকৰিব)',
-'revdelete-radio-set'        => 'অঁ',
-'revdelete-radio-unset'      => 'না',
-'revdelete-log'              => 'কাৰণ:',
-'revdel-restore'             => 'দৃষ্টিপাত সালসলনি কৰক',
-'pagehist'                   => 'পৃষ্ঠা ইতিহাস',
-'deletedhist'                => 'মচি পেলোৱা ইতিহাস',
-'revdelete-content'          => 'বিষয়বস্তু',
-'revdelete-summary'          => 'সম্পাদনাৰ সাৰমৰ্ম',
-'revdelete-uname'            => 'সদস্যনাম',
-'revdelete-hid'              => '$1 আঁৰ কৰক',
-'revdelete-unhid'            => '$1 দেখোৱাওক',
-'revdelete-otherreason'      => 'অন্য/অতিৰিক্ত কাৰণ:',
-'revdelete-reasonotherlist'  => 'অন্য কাৰণ',
-'revdelete-edit-reasonlist'  => 'অপসাৰণৰ কাৰণ সম্পাদনা',
-'revdelete-offender'         => 'সংশোধন লেখক:',
+'rev-deleted-comment'         => "(সম্পাদন সাৰাংশ আতৰোৱা হ'ল)",
+'rev-deleted-user'            => '(সদস্যনাম আতৰোৱা হৈছে)',
+'rev-deleted-text-permission' => "পৃষ্ঠাৰ এই সংশোধনটি '''বাতিল''' কৰা হ'ল ।
+সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি ল'গত]",
+'rev-delundel'                => 'দেখুৱাওক/নেদেখুৱাব',
+'rev-showdeleted'             => 'দেখুওৱাওক',
+'revisiondelete'              => 'সংকলন বিলোপন কৰক / পুণৰ্স্থাপিত কৰক',
+'revdelete-no-file'           => 'নিৰ্ধাৰিত ফাইলটি নাই ।',
+'revdelete-show-file-submit'  => 'হয়',
+'revdelete-selected'          => "'''[[:$1]]-ৰ {{PLURAL:$2|নিৰ্বাচিত সংশোধন|নিৰ্বাচিত সংশোধনসমূহ}}:'''",
+'revdelete-hide-text'         => 'সংশোধিত পাঠ আঁতৰাওক',
+'revdelete-hide-image'        => 'ফাইলৰ বিষয়বস্তু আঁতৰাওক',
+'revdelete-hide-name'         => 'কাৰ্য্য আৰু লক্ষ্য আতৰাই থওঁক',
+'revdelete-hide-comment'      => 'সম্পাদনা মন্তব্য আতৰাই থওঁক',
+'revdelete-hide-user'         => 'সম্পাদকৰ সদস্যনাম/আই-পি টিকনা আতৰাই থওঁক',
+'revdelete-hide-restricted'   => 'প্রশাসকবৃন্দৰ লগতে আনৰ পৰাও তথ্য ৰোধ কৰক',
+'revdelete-radio-same'        => '(সলনি নকৰিব)',
+'revdelete-radio-set'         => 'অঁ',
+'revdelete-radio-unset'       => 'না',
+'revdelete-suppress'          => 'প্রশাসকবৃন্দৰ লগতে আনৰ পৰাও তথ্য ৰোধ কৰক',
+'revdelete-log'               => 'কাৰণ:',
+'revdel-restore'              => 'দৃষ্টিপাত সালসলনি কৰক',
+'revdel-restore-deleted'      => 'বাতিল কৰা সংশোধনসমূহ',
+'pagehist'                    => 'পৃষ্ঠা ইতিহাস',
+'deletedhist'                 => 'মচি পেলোৱা ইতিহাস',
+'revdelete-content'           => 'বিষয়বস্তু',
+'revdelete-summary'           => 'সম্পাদনাৰ সাৰমৰ্ম',
+'revdelete-uname'             => 'সদস্যনাম',
+'revdelete-hid'               => '$1 আঁৰ কৰক',
+'revdelete-unhid'             => '$1 দেখোৱাওক',
+'revdelete-otherreason'       => 'অন্য/অতিৰিক্ত কাৰণ:',
+'revdelete-reasonotherlist'   => 'অন্য কাৰণ',
+'revdelete-edit-reasonlist'   => 'অপসাৰণৰ কাৰণ সম্পাদনা',
+'revdelete-offender'          => 'সংশোধন লেখক:',
 
 # Revision move
+'revmove-legend'         => 'লক্ষ্য পৃষ্ঠা আৰু সাৰাংশ ধায্য কৰক',
 'revmove-reasonfield'    => 'কাৰণ:',
 'revmove-titlefield'     => 'লক্ষ্য পৃষ্ঠা:',
 'revmove-nullmove-title' => 'শিৰোনামাটি গ্ৰহণযোগ্য নহয় ।',
 
 # History merging
-'mergehistory-from'   => 'উৎস পৃষ্ঠা',
-'mergehistory-into'   => 'গন্তব্য পৃষ্ঠা',
-'mergehistory-go'     => 'একত্ৰীকৰণযোগ্য সম্পাদনাসমূহ দেখোৱাওঁক',
-'mergehistory-reason' => 'কাৰণ:',
+'mergehistory-from'             => 'উৎস পৃষ্ঠা',
+'mergehistory-into'             => 'গন্তব্য পৃষ্ঠা',
+'mergehistory-go'               => 'একত্ৰীকৰণযোগ্য সম্পাদনাসমূহ দেখোৱাওঁক',
+'mergehistory-no-source'        => '$1 নামৰ কোনো উৎস পৃষ্ঠৰ অস্তিত্ব নাই ।',
+'mergehistory-no-destination'   => '$1 নামৰ কোকো গন্তব্য পৃষ্ঠাৰ অস্তিত্ব নাই ।',
+'mergehistory-autocomment'      => "[[:$1]]ক [[:$2]]ত অন্তৰ্ভুক্ত কৰা হ'ল",
+'mergehistory-comment'          => "[[:$1]]ক [[:$2]]ত অন্তৰ্ভুক্ত কৰা হ'ল: $3",
+'mergehistory-same-destination' => "উৎস আৰু গন্তব্য পৃষ্ঠা একে হ'ব নোৱাৰে",
+'mergehistory-reason'           => 'কাৰণ:',
 
 # Merge log
 'mergelog'    => 'অভিলেখ একত্ৰিকৰণ',
@@ -970,15 +996,17 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'prefs-diffs'                 => 'পাৰ্থক্য',
 
 # User rights
-'userrights'               => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
-'userrights-lookup-user'   => 'সদস্য গোটবোৰ ব্যৱস্থাপনা কৰক',
-'userrights-user-editname' => 'সদস্যনাম দিয়ক:',
-'editusergroup'            => 'সদস্য গোটবোৰ সম্পাদনা কৰক',
-'editinguser'              => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) সদস্যজনৰ অধিকাৰ সলনী কৰি থকা হৈছে।",
-'userrights-editusergroup' => 'সদস্য গোট সম্পাদনা কৰক',
-'saveusergroups'           => 'সদস্য গোট সংৰক্ষিত কৰক',
-'userrights-groupsmember'  => 'এই গোটবোৰৰ সদস্য:',
-'userrights-reason'        => 'কাৰণ:',
+'userrights'                  => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
+'userrights-lookup-user'      => 'সদস্য গোটবোৰ ব্যৱস্থাপনা কৰক',
+'userrights-user-editname'    => 'সদস্যনাম দিয়ক:',
+'editusergroup'               => 'সদস্য গোটবোৰ সম্পাদনা কৰক',
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) সদস্যজনৰ অধিকাৰ সলনী কৰি থকা হৈছে।",
+'userrights-editusergroup'    => 'সদস্য গোট সম্পাদনা কৰক',
+'saveusergroups'              => 'সদস্য গোট সংৰক্ষিত কৰক',
+'userrights-groupsmember'     => 'এই গোটবোৰৰ সদস্য:',
+'userrights-reason'           => 'কাৰণ:',
+'userrights-changeable-col'   => 'আপুনি সলনি কৰিব পৰা গোটসমূহ',
+'userrights-unchangeable-col' => 'আপুনি সলনি কৰিব নোৱাৰা গোটসমূহ',
 
 # Groups
 'group'            => 'গোট:',
@@ -999,24 +1027,29 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'grouppage-bureaucrat' => '{{ns:project}}:ব্যুৰোক্ৰেটসকল',
 
 # Rights
-'right-read'          => 'পৃষ্ঠাসমূহ পঢ়ক',
-'right-edit'          => 'পৃষ্ঠাসমূহ সম্পাদনা কৰক',
-'right-createpage'    => 'পৃষ্ঠাসমূহ সৃষ্টি কৰক (কথাবতৰা পৃষ্ঠা নহয়)',
-'right-createtalk'    => 'কথাবতৰা পৃষ্ঠা সৃষ্টি কৰক',
-'right-createaccount' => 'নতুন সদস্য একাউন্ট সৃষ্টি কৰক',
-'right-move'          => 'পৃস্থাসমূহ স্থানান্তৰ কৰক',
-'right-movefile'      => 'ফাইল স্থানান্তৰ কৰক',
-'right-delete'        => 'পৃষ্ঠাসমূহ বিলোপ কৰক',
+'right-read'               => 'পৃষ্ঠাসমূহ পঢ়ক',
+'right-edit'               => 'পৃষ্ঠাসমূহ সম্পাদনা কৰক',
+'right-createpage'         => 'পৃষ্ঠাসমূহ সৃষ্টি কৰক (কথাবতৰা পৃষ্ঠা নহয়)',
+'right-createtalk'         => 'কথাবতৰা পৃষ্ঠা সৃষ্টি কৰক',
+'right-createaccount'      => 'নতুন সদস্য একাউন্ট সৃষ্টি কৰক',
+'right-move'               => 'পৃস্থাসমূহ স্থানান্তৰ কৰক',
+'right-move-rootuserpages' => 'ৰুট সদস্যৰ পৃষ্ঠাসমূহ স্থানান্তৰ কৰক',
+'right-movefile'           => 'ফাইল স্থানান্তৰ কৰক',
+'right-upload'             => 'ফাইল আপলোড কৰক',
+'right-delete'             => 'পৃষ্ঠাসমূহ বিলোপ কৰক',
 
 # User rights log
 'rightslog' => 'সভ্যৰ অধিকাৰৰ লেখ',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'       => 'এই পৃষ্ঠা পঢ়ক',
-'action-edit'       => 'এই পৃষ্ঠা সম্পাদনা কৰক',
-'action-createpage' => 'পৃষ্ঠা সৃষ্টি কৰক',
-'action-createtalk' => 'আলোচনা পৃষ্ঠা সৃষ্টি কৰক',
-'action-userrights' => 'সকলো সদস্য অধিকাৰ সম্পাদনা কৰক',
+'action-read'          => 'এই পৃষ্ঠা পঢ়ক',
+'action-edit'          => 'এই পৃষ্ঠা সম্পাদনা কৰক',
+'action-createpage'    => 'পৃষ্ঠা সৃষ্টি কৰক',
+'action-createtalk'    => 'আলোচনা পৃষ্ঠা সৃষ্টি কৰক',
+'action-createaccount' => 'এই সদস্য একাউন্ট  সৃষ্টি কৰক',
+'action-move'          => 'এই পৃষ্ঠা স্থানান্তৰ কৰক',
+'action-movefile'      => 'এই ফাইল স্থানান্তৰ কৰক',
+'action-userrights'    => 'সকলো সদস্য অধিকাৰ সম্পাদনা কৰক',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|সাল-সলনি|সাল-সলনি}}',
@@ -1062,7 +1095,11 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'uploadwarning'       => 'আপলোড সতৰ্কবাণী',
 'savefile'            => 'সংৰক্ষণ',
 'uploadedimage'       => '"[[$1]]" আপলোড কৰা হ’ল',
+'upload-source'       => 'উৎস ফাইল',
+'sourcefilename'      => 'উৎস ফাইল নাম',
+'sourceurl'           => 'উৎস ইউ-আৰ-এল',
 'upload-options'      => "আপল'ড বিকল্পসমূহ",
+'watchthisupload'     => 'এই ফাইল লক্ষ্য কৰক',
 'upload-success-subj' => "আপলোড সফল হ'ল",
 
 # Special:ListFiles
@@ -1120,6 +1157,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 'brokenredirects-edit' => 'সম্পাদনা কৰক',
 
+'withoutinterwiki-submit' => 'দেখোৱাওক',
+
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|বাইট|বাইট}}',
 'nlinks'            => '$1 {{PLURAL:$1|সংযোগ|সংযোগ}}',
@@ -1163,6 +1202,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'allpagesto'     => 'সেই পৃষ্ঠা দেখোৱাওক যাৰ শেষ:',
 'allarticles'    => 'সকলো পৃষ্ঠা',
 'allpagesprev'   => 'আগৰ',
+'allpagesnext'   => 'পৰবৰ্তী',
 'allpagessubmit' => 'যাওক',
 'allpagesprefix' => 'এই উপশব্দৰে আৰম্ভ হোৱা পৃষ্ঠা দেখুৱাওক:',
 
@@ -1170,7 +1210,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'categories' => 'শ্ৰেণী',
 
 # Special:DeletedContributions
-'sp-deletedcontributions-contribs' => 'অৱদানসমূহ',
+'sp-deletedcontributions-contribs' => 'বৰঙণিসমূহ',
 
 # Special:LinkSearch
 'linksearch'      => 'বহিঃ-সংযোগ',
@@ -1189,6 +1229,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'activeusers-from'       => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
 'activeusers-hidebots'   => 'বট নেদেখুৱাব',
 'activeusers-hidesysops' => 'প্ৰশাসক নেদেখুৱাব',
+'activeusers-noresult'   => 'কোনো সদস্য পোৱা নগল ।',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'সদস্যৰ সৃষ্টি অভিলেখ',
@@ -1198,9 +1239,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'newuserlog-autocreate-entry' => 'স্বয়ংক্ৰীয়ভাবে নতুন সদস্যভুক্তি কৰা হল',
 
 # Special:ListGroupRights
-'listgrouprights-group'   => 'গোট',
-'listgrouprights-rights'  => 'অধিকাৰসমূহ',
-'listgrouprights-members' => '(সদস্যবৃন্দ তালিকা)',
+'listgrouprights-group'           => 'গোট',
+'listgrouprights-rights'          => 'অধিকাৰসমূহ',
+'listgrouprights-members'         => '(সদস্যবৃন্দ তালিকা)',
+'listgrouprights-removegroup'     => '{{PLURAL:$2|গোট|গোটসমূহ}} আঁতৰাওক: $1',
+'listgrouprights-addgroup-all'    => 'সমস্ত গোট সংযোগ কৰক',
+'listgrouprights-removegroup-all' => 'সমস্ত গোট আঁতৰাওক',
 
 # E-mail user
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পথাওক',
@@ -1231,16 +1275,25 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Delete
 'deletepage'             => 'পৃষ্ঠা বিলোপ কৰক',
 'confirm'                => 'নিশ্চিত কৰক',
+'excontent'              => 'বিষয়বস্তু আছিল: "$1"',
+'excontentauthor'        => 'বিষয়বস্তু আছিল: "$1" (আৰু একমাত্ৰ অৱদানকাৰী আছিল "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'খালী কৰাৰ আগেয়ে বিষয়বস্তু আছিল: $1',
+'exblank'                => 'পৃষ্ঠা খালী আছিল',
 'delete-confirm'         => '"$1" বিলোপ কৰক',
 'delete-legend'          => 'বিলোপ কৰক',
 'historywarning'         => "'''সাবধান:''' আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাখনৰ ইতিহাসত প্ৰায় {{PLURAL:$1|সংস্কৰণ|সংস্কৰণ}} আছে:",
 'confirmdeletetext'      => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
 অনুগ্ৰহ কৰি নিশ্চিত কৰক যে এয়া [[{{MediaWiki:Policy-url}}|নীতিসম্মত]]। লগতে আপুনি ইয়াৰ পৰিণাম জানে আৰু আপুনি এয়া কৰিব বি্চাৰিছে।',
 'actioncomplete'         => 'কাৰ্য্য সম্পূৰ্ণ',
+'actionfailed'           => "কাৰ্য্য বিফল হ'ল",
 'deletedtext'            => '"<nowiki>$1</nowiki>" ক বিলোপন কৰা হৈছে।
 সাম্প্ৰতিক বিলোপনসমূহৰ তালিকা চাবলৈ $2 চাঁওক।',
 'deletedarticle'         => '"[[$1]]" ক বাতিল কৰা হৈছে।',
+'suppressedarticle'      => 'দমন কৰা হ\'ল "[[$1]]"',
 'dellogpage'             => 'বাতিল কৰা সুচী',
+'dellogpagetext'         => "তলত সাপ্ৰতিক বিলোপতিৰ তালিকা দিয়া হ'ল ।",
+'deletionlog'            => 'বাতিল কৰা সূচী',
+'reverted'               => "পূৰ্ববৰ্তী সংস্কৰণলৈ উভতি যযোৱা হ'ল",
 'deletecomment'          => 'কাৰণ:',
 'deleteotherreason'      => 'আন/অতিৰিক্ত কাৰণ:',
 'deletereasonotherlist'  => 'আন কাৰণ:',
@@ -1251,6 +1304,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'rollback_short' => 'পূৰ্ববৎ কৰক',
 'rollbacklink'   => 'পূৰ্ববৎ কৰিবলৈ',
 'rollbackfailed' => 'পূৰ্ববৎ ব্যৰ্থ',
+'editcomment'    => "সম্পাদনাৰ সাৰাংশ আছিল: \"''\$1''\"।",
 
 # Protect
 'protectlogpage'              => 'সুৰক্ষা সুচী',
@@ -1284,28 +1338,33 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'undelete-show-file-submit' => 'অঁ',
 
 # Namespace form on various pages
-'namespace'      => 'নামস্থান:',
-'invert'         => 'নিৰ্বাচন ওলোটা কৰক',
-'blanknamespace' => '(মুখ্য)',
+'namespace'             => 'নামস্থান:',
+'invert'                => 'নিৰ্বাচন ওলোটা কৰক',
+'namespace_association' => 'সাংসৰ্গিক নামস্থান',
+'blanknamespace'        => '(মুখ্য)',
 
 # Contributions
-'contributions'       => 'সদস্যৰ অৱদান',
-'contributions-title' => '$1-ৰ অবদানসমূহ',
-'mycontris'           => 'মোৰ অৱদানসমূহ',
+'contributions'       => 'সদস্যৰ বৰঙণিসমূহ',
+'contributions-title' => '$1-ৰ বৰঙণিসমূহ',
+'mycontris'           => 'মোৰ বৰঙণিসমূহ',
 'contribsub2'         => '$1 ৰ কাৰণে($2)',
 'uctop'               => '(ওপৰত)',
 'month'               => 'এই মাহৰ পৰা (আৰু আগৰ):',
 'year'                => 'এই বছৰৰ পৰা (আৰু আগৰ):',
 
-'sp-contributions-newbies'     => 'কেৱল নতুন একাউন্টৰ অবদানসমূহ দেখোৱাওঁক',
-'sp-contributions-newbies-sub' => 'নতুন সভ্যৰ কাৰণে',
-'sp-contributions-blocklog'    => 'বাৰণ সুচী',
-'sp-contributions-logs'        => 'অভিলেখ',
-'sp-contributions-talk'        => 'আলোচনা',
-'sp-contributions-userrights'  => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
-'sp-contributions-search'      => 'অবদানসমূহৰ কাৰণে অনুসন্ধান কৰক',
-'sp-contributions-username'    => 'আইপি ঠিকনা অথবা ব্যৱহাৰকৰ্তাৰ নাম:',
-'sp-contributions-submit'      => 'সন্ধান কৰক',
+'sp-contributions-newbies'       => 'কেৱল নতুন একাউন্টৰ বৰঙণিসমূহ দেখোৱাওঁক',
+'sp-contributions-newbies-sub'   => 'নতুন একাউন্টৰ কাৰণে',
+'sp-contributions-newbies-title' => 'সদস্যৰ বৰঙণি নতুন একাউন্টৰ বাবে',
+'sp-contributions-blocklog'      => 'বাৰণ সূচী',
+'sp-contributions-deleted'       => 'ৰদ কৰা সদস্যৰ বৰঙণিসমূহ',
+'sp-contributions-uploads'       => 'আপলোডসমূহ',
+'sp-contributions-logs'          => 'অভিলেখ',
+'sp-contributions-talk'          => 'আলোচনা',
+'sp-contributions-userrights'    => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
+'sp-contributions-search'        => 'বৰঙণিসমূহৰ কাৰণে অনুসন্ধান কৰক',
+'sp-contributions-username'      => 'আইপি ঠিকনা অথবা ব্যৱহাৰকৰ্তাৰ নাম:',
+'sp-contributions-toponly'       => 'কেৱল সামপ্ৰতিক সংশোধনসমূহ দেখোৱাওঁক',
+'sp-contributions-submit'        => 'সন্ধান কৰক',
 
 # What links here
 'whatlinkshere'            => 'এই পৃষ্ঠা ব্যৱহাৰ কৰিছে...',
@@ -1313,6 +1372,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'whatlinkshere-page'       => 'পৃষ্ঠা:',
 'linkshere'                => "এই পৃষ্ঠাটো '''[[:$1]]''' ৰ লগত সংযোজিত:",
 'nolinkshere'              => "'''[[:$1]]''' ৰ লগত কোনো পৃষ্ঠা সংযোজিত নহয়।",
+'nolinkshere-ns'           => 'নিৰ্বাচিত নামস্থানৰ কোনো পৃষ্ঠাৰ পৰা [[:$1]]-লৈ সংযোগ নাই ।',
 'isredirect'               => 'পূণঃনিৰ্দেশন পৃষ্ঠা',
 'istemplate'               => 'অন্তৰ্ভুক্ত কৰক',
 'isimage'                  => 'চিত্ৰ সংযোগ',
@@ -1322,19 +1382,41 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'whatlinkshere-hideredirs' => '$1 পুননিৰ্দেশনাসমূহ',
 'whatlinkshere-hidetrans'  => '$1 ট্ৰেন্সক্লুস্বন-সমূহ',
 'whatlinkshere-hidelinks'  => '$1 টি সংযোগ',
+'whatlinkshere-hideimages' => '$1 চিত্ৰ সংযোগসমূহ',
 'whatlinkshere-filters'    => 'ছাকনী',
 
 # Block/unblock
+'autoblockid'              => '#$1-ক স্বয়ংক্ৰিয় বাৰণ কৰক',
+'block'                    => 'সদস্য/আই-পি ঠিকনা বাৰণ কৰক',
+'unblock'                  => 'সদস্যৰ/আই-পি ঠিকনাৰ বাৰণ উঠাই লওঁক',
 'blockip'                  => 'সদস্য বাৰণ কৰক',
+'blockip-title'            => 'সদস্য বাৰণ কৰক',
+'blockip-legend'           => 'সদস্য বাৰণ কৰক',
+'ipadressorusername'       => 'আই-পি ঠিকনা বা সদস্যনাম:',
 'ipbreason'                => 'কাৰণ:',
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
+'ipbsubmit'                => 'এই সদস্যক বাৰণ কৰক',
+'ipbother'                 => 'অন্য সময়:',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনিৰ্দিস্ট কাল:infinite',
 'ipbotheroption'           => 'অন্যান্য',
+'ipbotherreason'           => 'অন্য/অতিৰিক্ত কাৰণ:',
+'ipbwatchuser'             => 'এই সদস্যৰ সদস্য আৰু আলোচনা পৃষ্ঠা লক্ষ্য কৰক',
+'badipaddress'             => 'অগ্ৰহনযোগ্য আই-পি ঠিকনা',
+'blockipsuccesssub'        => "বাৰণ কৰা সফল হ'ল",
+'ipusubmit'                => 'এই বাৰণ উঠাই লওঁক',
+'blocklist'                => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যনাম',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',
-'blocklink'                => 'সদস্য বাতিল কৰক',
-'unblocklink'              => 'বাধা উঠাই লওঁক',
-'change-blocklink'         => 'ব্লক সলনি কৰক',
-'contribslink'             => 'অবদান',
+'ipblocklist-legend'       => 'বাৰণ কৰা সদস্য অনুসন্ধান কৰক',
+'blocklist-userblocks'     => 'একাউন্ট বাৰণ আবৰণ কৰক',
+'blocklist-target'         => 'লক্ষ্য',
+'blocklist-reason'         => 'কাৰণ:',
+'ipblocklist-submit'       => 'অনুসন্ধান',
+'ipblocklist-localblock'   => 'স্থানীয় বাৰণ',
+'ipblocklist-otherblocks'  => 'অন্যান্য {{PLURAL:$1|বাৰণ|বাৰণসমূহ}}',
+'blocklink'                => 'বাৰণ কৰক',
+'unblocklink'              => 'বাৰণ উঠাই লওঁক',
+'change-blocklink'         => 'বাৰণ সলনি কৰক',
+'contribslink'             => 'বৰঙণি',
 'blocklogpage'             => 'বাৰণ কৰা সুচী',
 'blocklogentry'            => '"[[$1]]" ক $2 $3 লৈ সাল-সলনি কৰাৰ পৰা বাৰণ কৰা হৈছে।',
 'unblocklogentry'          => '$1 বাৰণ উঠাই লোৱা হ’ল',
@@ -1461,6 +1543,13 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-compareselectedversions' => 'এই পৃষ্ঠাত নিৰ্বাচিত কৰা দুটা অৱতৰৰ মাজত পাৰ্থক্য দেখুৱাওক ।',
 'tooltip-watch'                   => 'এই পৃষ্ঠাটো আপোনাৰ অনুসৰণতালিকাভুক্ত কৰক',
 
+# Attribution
+'anonymous' => '{{SITENAME}}ৰ বেনামী {{PLURAL:$1|সদস্য|সদস্যসকল}}',
+'siteuser'  => '{{SITENAME}} সদস্য $1',
+'anonuser'  => '{{SITENAME}} বেনামী সদস্য $1',
+'others'    => 'অন্যান্য',
+'anonusers' => '{{SITENAME}} বেনামী {{PLURAL:$2|সদস্য|সদস্যসকল}} $1',
+
 # Info page
 'numedits'     => 'সম্পাদনাৰ সংখ্যা (পৃষ্ঠা): $1',
 'numtalkedits' => 'সম্পাদনাৰ সংখ্যা (আলোচনা পৃষ্ঠা): $1',
@@ -1545,24 +1634,31 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'table_pager_empty'        => 'ফলাফল নাই',
 
 # Auto-summaries
-'autosumm-blank' => "পৃষ্ঠাখন খালি কৰা হ'ল",
-'autosumm-new'   => '"$1" দি পৃষ্ঠা সৃষ্টি কৰা হ\'ল',
+'autosumm-blank'   => "পৃষ্ঠাখন খালি কৰা হ'ল",
+'autoredircomment' => "[[$1]]-ক পুনৰ্নিৰ্দেশ কৰা হ'ল",
+'autosumm-new'     => '"$1" দি পৃষ্ঠা সৃষ্টি কৰা হ\'ল',
 
 # Live preview
 'livepreview-loading' => 'লোডিং…',
 'livepreview-ready'   => 'লোডিং… প্ৰস্তুত!',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
-'watchlistedit-noitems'       => 'আপুনাৰ লক্ষ্য-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
-'watchlistedit-normal-title'  => 'লক্ষ্য-তালিকা সম্পাদন কৰক',
-'watchlistedit-normal-legend' => 'লক্ষ্য-তালিকাৰ পৰা শীৰ্ষক আতৰোৱাওক',
-'watchlistedit-normal-submit' => 'শিৰোনামা আঁতৰাৱক',
-'watchlistedit-raw-title'     => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
-'watchlistedit-raw-legend'    => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
-'watchlistedit-raw-titles'    => 'শীৰ্ষক:',
-'watchlistedit-raw-submit'    => 'লক্ষ্য-তালিকা আপডেট কৰক',
-'watchlistedit-raw-done'      => "আপুনাৰ লক্ষ্য-তালিকা আপডেট কৰা হ'ল",
+'watchlistedit-numitems'       => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
+'watchlistedit-noitems'        => 'আপুনাৰ লক্ষ্য-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
+'watchlistedit-normal-title'   => 'লক্ষ্য-তালিকা সম্পাদন কৰক',
+'watchlistedit-normal-legend'  => 'লক্ষ্য-তালিকাৰ পৰা শীৰ্ষক আতৰোৱাওক',
+'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
+To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
+You can also [[Special:Watchlist/raw|edit the raw list]].',
+'watchlistedit-normal-submit'  => 'শিৰোনামা আঁতৰাৱক',
+'watchlistedit-normal-done'    => "{{PLURAL:$1|1 শিৰোনামা|$1 শিৰোনামাসমূহ}} আপুনাৰ লক্ষ্যতালিকাৰ পৰা আতৰোৱা হ'ল:",
+'watchlistedit-raw-title'      => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-legend'     => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-titles'     => 'শীৰ্ষক:',
+'watchlistedit-raw-submit'     => 'লক্ষ্য-তালিকা আপডেট কৰক',
+'watchlistedit-raw-done'       => "আপুনাৰ লক্ষ্য-তালিকা আপডেট কৰা হ'ল",
+'watchlistedit-raw-added'      => "{{PLURAL:$1|এটা শিৰোনামা|$1-টা শিৰোনামা}} যোগ কৰা হ'ল:",
+'watchlistedit-raw-removed'    => "{{PLURAL:$1|এটা শিৰোনামা|$1-টা শিৰোনামা}} আঁতৰোৱা হ'ল:",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওক',
@@ -1570,14 +1666,15 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'watchlisttools-raw'  => 'কেঁচা লক্ষ্য-তালিকা সম্পাদনা কৰক',
 
 # Special:Version
-'version'                  => 'সংস্কৰণ',
-'version-specialpages'     => 'বিশেষ পৃষ্ঠাসমূহ',
-'version-other'            => 'অন্য',
-'version-version'          => '(সংস্কৰণ $1)',
-'version-license'          => 'লাইচেঞ্চ',
-'version-poweredby-others' => 'অন্য',
-'version-software-product' => 'পণ্য',
-'version-software-version' => 'সংস্কৰণ',
+'version'                   => 'সংস্কৰণ',
+'version-specialpages'      => 'বিশেষ পৃষ্ঠাসমূহ',
+'version-other'             => 'অন্য',
+'version-version'           => '(সংস্কৰণ $1)',
+'version-license'           => 'লাইচেঞ্চ',
+'version-poweredby-credits' => "এই ৱিকি '''[http://www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
+'version-poweredby-others'  => 'অন্য',
+'version-software-product'  => 'পণ্য',
+'version-software-version'  => 'সংস্কৰণ',
 
 # Special:FilePath
 'filepath'        => 'ফাইল পথ',
@@ -1585,10 +1682,11 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'filepath-submit' => 'যাওঁক',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
-'fileduplicatesearch-legend'   => 'প্ৰতিলিপিৰ বাবে অনুসন্ধান কৰক',
-'fileduplicatesearch-filename' => 'ফাইলনাম:',
-'fileduplicatesearch-submit'   => 'সন্ধান কৰক',
+'fileduplicatesearch'           => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
+'fileduplicatesearch-legend'    => 'প্ৰতিলিপিৰ বাবে অনুসন্ধান কৰক',
+'fileduplicatesearch-filename'  => 'ফাইলনাম:',
+'fileduplicatesearch-submit'    => 'সন্ধান কৰক',
+'fileduplicatesearch-noresults' => 'কোনো "$1" নামৰ ফাইল সন্ধান পোৱা নগল ।',
 
 # Special:SpecialPages
 'specialpages'                   => 'বিশেষ পৃষ্ঠাসমূহ',
@@ -1599,6 +1697,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'specialpages-group-other'       => 'অন্যান্য বিশেষ পৃষ্ঠাসমূহ',
 'specialpages-group-login'       => 'প্ৰৱেশ/সদস্যভুক্তি',
 'specialpages-group-changes'     => 'সাম্প্ৰতিক সালসলনি আৰু লগসমূহ',
+'specialpages-group-media'       => 'মিডিয়া বিবৰণী আৰু আপলোডসমূহ',
 'specialpages-group-users'       => 'সদস্যবৃন্দ আৰু অধিকাৰসমূহ',
 'specialpages-group-highuse'     => 'অধিক ব্যবহৃত পৃষ্ঠাসমূহ',
 'specialpages-group-pages'       => 'পৃষ্ঠাৰ তালিকাসমূহ',
@@ -1612,10 +1711,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'intentionallyblankpage' => 'এই পৃষ্ঠা ইচ্ছাকৃত ভাবে খালি ৰখা হৈছে',
 
 # Special:Tags
-'tag-filter-submit' => 'সংশোধন',
-'tags-title'        => 'টেগসমূহ',
-'tags-tag'          => 'টেগ নাম',
-'tags-edit'         => 'সম্পাদনা',
+'tag-filter-submit'       => 'সংশোধন',
+'tags-title'              => 'টেগসমূহ',
+'tags-tag'                => 'টেগ নাম',
+'tags-description-header' => 'অৰ্থৰ পূৰ্ণ বৰ্ণনা',
+'tags-edit'               => 'সম্পাদনা',
+'tags-hitcount'           => '$1 {{PLURAL:$1|সাল-সলনি|সাল-সলনিসমূহ}}',
 
 # Special:ComparePages
 'comparepages'     => 'পৃষ্ঠা তুলনা কৰক',

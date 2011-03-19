@@ -763,6 +763,7 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'usernamehasherror'          => 'Používateľské meno nemôže obsahovať znak mriežky.',
 'login-throttled'            => 'Nedávno ste uskutočnili príliš mnoho neúspešných pokusov o prihlásenie.
 Prosím, počkajte predtým, než to skúsite znova.',
+'login-abort-generic'        => 'Vaše prihlásenie nebolo úspešné - zrušené',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
 
@@ -1056,7 +1057,7 @@ Možno bola zmazaná z wiki alebo premenovaná.
 Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentár odstránený)',
+'rev-deleted-comment'         => '(zhrnutie úprav odstránené)',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
 'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
 'rev-deleted-user-contribs'   => '[používateľské meno alebo IP adresa odstránená - úprava skrytá pred prispievateľmi]',
@@ -1708,6 +1709,8 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 'php-uploaddisabledtext'      => 'Nahrávanie PHP súborov je vypnuté. Prosím, skontrolujte nastavenie file_uploads.',
 'uploadscripted'              => 'Tento súbor obsahuje kód HTML alebo skript, ktorý može byť chybne interpretovaný prehliadačom.',
 'uploadvirus'                 => 'Súbor obsahuje vírus! Podrobnosti: $1',
+'uploadjava'                  => 'Súbor je vo formáte ZIP, ktorý obsahuje Java súbor .class.
+Nahrávanie súborov Java nie je povolené, pretože môžu spôsobiť obídenie bezpečnostných obmedzení.',
 'upload-source'               => 'Zdrojový súbor',
 'sourcefilename'              => 'Názov zdrojového súboru:',
 'sourceurl'                   => 'Zdrojový URL:',
@@ -1757,6 +1760,14 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload-too-many-redirects' => 'URL obsahoval príliš mnoho presmerovaní',
 'upload-unknown-size'       => 'Neznáma veľkosť',
 'upload-http-error'         => 'Vyskytla sa chyba HTTP: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Vyskytla sa chyba pri kontrole otvárania súboru ZIP.',
+'zip-wrong-format'    => 'Uvedený súbor nebol súbor ZIP.',
+'zip-bad'             => 'Súbor je poškodený alebo inak nečitateľný súbor ZIP.
+Nie je možné správne skontrolovať jeho bezpečnosť.',
+'zip-unsupported'     => 'Súbor je vo formáte ZIP a používa možnosti ZIP, ktoré MediaWiki nepodporuje.
+Nie je možné správne skontrolovať jeho bezpečnosť.',
 
 # Special:UploadStash
 'uploadstash'          => 'Skrýša nahraných súborov',
@@ -2393,9 +2404,10 @@ $1',
 'undelete-show-file-submit'    => 'Áno',
 
 # Namespace form on various pages
-'namespace'      => 'Menný priestor:',
-'invert'         => 'Invertovať výber',
-'blanknamespace' => '(Hlavný)',
+'namespace'             => 'Menný priestor:',
+'invert'                => 'Invertovať výber',
+'namespace_association' => 'Asociovaný menný priestor',
+'blanknamespace'        => '(Hlavný)',
 
 # Contributions
 'contributions'       => 'Príspevky používateľa',
@@ -2444,6 +2456,9 @@ Nižšie si môžete pozrieť najnovšiu položku záznamu blokovaní:',
 'whatlinkshere-filters'    => 'Filtre',
 
 # Block/unblock
+'autoblockid'                     => 'Autoblokovanie #$1',
+'block'                           => 'Zablokovať používateľa/IP adresu',
+'unblock'                         => 'Odblokovať používateľa/IP adresu',
 'blockip'                         => 'Zablokovať používateľa',
 'blockip-title'                   => 'Zablokovať používateľa',
 'blockip-legend'                  => 'Zablokovať používateľa',
@@ -2462,6 +2477,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 ** Zastrašujúce správanie/obťažovanie
 ** Zneužívanie viacerých účtov
 ** Neprípustné používateľské meno',
+'ipb-hardblock'                   => 'Zabrániť prihláseným používateľom upravovať z tejto IP adresy',
 'ipbcreateaccount'                => 'Zabrániť vytváraniu účtov',
 'ipbemailban'                     => 'Zabrániť používateľovi posielať emaily',
 'ipbenableautoblock'              => 'Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.',
@@ -2472,6 +2488,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbotherreason'                  => 'Iný/ďalší dôvod',
 'ipbhidename'                     => 'Skryť meno používateľa z úprav a zoznamov',
 'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
+'ipb-disableusertalk'             => 'Zabrániť tomuto používateľovi upravovať vlastnú diskusnú stránku, kým je zablokovaný',
 'ipb-change-block'                => 'Znovu zablokovať používateľa s týmito voľbami',
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
@@ -2487,9 +2504,20 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipusubmit'                       => 'Zrušiť toto blokovanie',
 'unblocked'                       => '[[User:$1|$1]] bol odblokovaný',
+'unblocked-range'                 => '$1 bol odblokovaný',
 'unblocked-id'                    => 'Blokovanie $1 bolo odstránené',
+'blocklist'                       => 'Zablokované IP adresy a používateľské mená',
 'ipblocklist'                     => 'Zablokovaní používatelia/IP adresy',
 'ipblocklist-legend'              => 'Nájsť zablokovaného používateľa',
+'blocklist-userblocks'            => 'Skryť blokovania účtov',
+'blocklist-tempblocks'            => 'Skryť dočasné blokovania',
+'blocklist-addressblocks'         => 'Skryť blokovania jednotlivých IP',
+'blocklist-timestamp'             => 'Časová známka',
+'blocklist-target'                => 'Cieľ',
+'blocklist-expiry'                => 'Vyprší',
+'blocklist-by'                    => 'Blokujúci správca',
+'blocklist-params'                => 'Parametre blokovania',
+'blocklist-reason'                => 'Dôvod',
 'ipblocklist-submit'              => 'Hľadať',
 'ipblocklist-localblock'          => 'Lokálne blokovanie',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Iný blok|Iné blokovania}}',
@@ -2532,6 +2560,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'ipb-needreblock'                 => '== Už je zablokovaný ==
 $1 je už zablokovaný. Chcete zmeniť voľby blokovania?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Iný blok|Iné blokovania}}',
+'unblock-hideuser'                => 'Nemôžete odblokovať tohto používateľa, pretože jeho meno bolo skryté.',
 'ipb_cant_unblock'                => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
 'ip_range_invalid'                => 'Neplatný IP rozsah.',
@@ -2963,21 +2992,24 @@ $1',
 'nextdiff'     => 'Ďalšia úprava →',
 
 # Media information
-'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
+'mediawarning'           => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód.
 Jeho spustením môžete kompromitovať svoj systém.",
-'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
-'thumbsize'            => 'Veľkosť náhľadu:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
-'file-info'            => 'veľkosť súboru: $1, MIME typ: $2',
-'file-info-size'       => '$1 × $2 pixelov, veľkosť súboru: $3, MIME typ: $4',
-'file-nohires'         => '<small>Nie je dostupné vyššie rozlíšenie.</small>',
-'svg-long-desc'        => 'SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3',
-'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
-'file-info-gif-looped' => 'v cykle',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
-'file-info-png-looped' => 'opakované',
-'file-info-png-repeat' => 'prehrané $1-krát{{PLURAL:$1|||}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
+'imagemaxsize'           => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
+'thumbsize'              => 'Veľkosť náhľadu:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
+'file-info'              => 'veľkosť súboru: $1, MIME typ: $2',
+'file-info-size'         => '$1 × $2 pixelov, veľkosť súboru: $3, MIME typ: $4',
+'file-nohires'           => '<small>Nie je dostupné vyššie rozlíšenie.</small>',
+'svg-long-desc'          => 'SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3',
+'show-big-image'         => 'Obrázok vo vyššom rozlíšení',
+'show-big-image-preview' => '<small>Veľkosť tohto náhľadu: $1.</small>',
+'show-big-image-other'   => '<small>Iné rozlíšenia: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixlov',
+'file-info-gif-looped'   => 'v cykle',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
+'file-info-png-looped'   => 'opakované',
+'file-info-png-repeat'   => 'prehrané $1-krát{{PLURAL:$1|||}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
 
 # Special:NewFiles
 'newimages'             => 'Galéria nových obrázkov',
@@ -3505,7 +3537,8 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'specialpages'                   => 'Špeciálne stránky',
 'specialpages-note'              => '----
 * Bežné špeciálne stránky.
-* <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>',
+* <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>
+* <span class="mw-specialpagecached">Iba špeciálne stránky vo vyrovnávacej pamäti.</span>',
 'specialpages-group-maintenance' => 'Údržbové správy',
 'specialpages-group-other'       => 'Iné špeciálne stránky',
 'specialpages-group-login'       => 'Prihlásenie / registrácia',
