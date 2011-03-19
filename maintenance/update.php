@@ -50,7 +50,7 @@ class UpdateMediaWiki extends Maintenance {
 		return 2 /* Maintenance::DB_ADMIN */;
 	}
 
-	private function compatChecks() {
+	function compatChecks() {
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
 			$this->error(
