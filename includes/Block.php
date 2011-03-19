@@ -147,8 +147,12 @@ class Block {
 
 		# Try user block
 		if ( $user ) {
-			$res = $db->resultObject( $db->select( 'ipblocks', '*', array( 'ipb_user' => $user ),
-				__METHOD__ ) );
+			$res = $db->resultObject( $db->select(
+				'ipblocks',
+				'*',
+				array( 'ipb_user' => $user ),
+				__METHOD__
+			) );
 
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
@@ -160,7 +164,12 @@ class Block {
 		# Slightly tricky while handling killExpired as well
 		if ( $address !== '' ) {
 			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 0 );
-			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+			$res = $db->resultObject( $db->select(
+				'ipblocks',
+				'*',
+				$conds,
+				__METHOD__
+			) );
 
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				if ( $user && $this->mAnonOnly ) {
@@ -200,7 +209,12 @@ class Block {
 				$conds['ipb_anon_only'] = 0;
 			}
 
-			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+			$res = $db->resultObject( $db->select(
+				'ipblocks',
+				'*',
+				$conds,
+				__METHOD__
+			) );
 
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
