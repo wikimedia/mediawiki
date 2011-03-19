@@ -2984,7 +2984,7 @@ class Title {
 		if ( $this->getNamespace() == NS_FILE ) {
 			$errors = array_merge( $errors, $this->validateFileMoveOperation( $nt ) );
 		}
-		
+
 		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
 			$errors[] = array( 'nonfile-cannot-move-to-file' );
 		}
@@ -3028,7 +3028,7 @@ class Title {
 		}
 		return $errors;
 	}
-	
+
 	/**
 	 * Check if the requested move target is a valid file move target
 	 * @param Title $nt Target title
@@ -3036,13 +3036,13 @@ class Title {
 	 */
 	protected function validateFileMoveOperation( $nt ) {
 		global $wgUser;
-		
+
 		$errors = array();
-		
+
 		if ( $nt->getNamespace() != NS_FILE ) {
 			$errors[] = array( 'imagenocrossnamespace' );
 		}
-		
+
 		$file = wfLocalFile( $this );
 		if ( $file->exists() ) {
 			if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
@@ -3052,12 +3052,12 @@ class Title {
 				$errors[] = array( 'imagetypemismatch' );
 			}
 		}
-		
+
 		$destFile = wfLocalFile( $nt );
 		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destfile->exists() && wfFindFile( $nt ) ) {
 			$errors[] = array( 'file-exists-sharedrepo' );
 		}
-		
+
 		return $errors;
 	}
 
@@ -3232,6 +3232,9 @@ class Title {
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
 
+		$oldns = $this->getNamespace();
+		$olddbk = $this->getDBkey();
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $moveOverRedirect ) {
@@ -3316,6 +3319,17 @@ class Title {
 				__METHOD__ );
 			$redirectSuppressed = false;
 		} else {
+			// Get rid of old new page entries in Special:NewPages and RC.
+			// Needs to be before $this->resetArticleUD( 0 ).
+			$dbw->delete( 'recentchanges', array(
+					'rc_timestamp' => $dbw->timestamp( $this->getEarliestRevTime() ),
+					'rc_namespace' => $oldns,
+					'rc_title' => $olddbk,
+					'rc_new' => 1
+				),
+				__METHOD__
+			);
+
 			$this->resetArticleID( 0 );
 			$redirectSuppressed = true;
 		}
@@ -4150,15 +4164,15 @@ class Title {
 		}
 
 		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
-		
-		wfDebug( __METHOD__ . ': applicable restriction types for ' . 
+
+		wfDebug( __METHOD__ . ': applicable restriction types for ' .
 			$this->getPrefixedText() . ' are ' . implode( ',', $types ) . "\n" );
 
 		return $types;
 	}
 	/**
-	 * Get a filtered list of all restriction types supported by this wiki. 
-	 * @param bool $exists True to get all restriction types that apply to 
+	 * Get a filtered list of all restriction types supported by this wiki.
+	 * @param bool $exists True to get all restriction types that apply to
 	 * titles that do exist, False for all restriction types that apply to
 	 * titles that do not exist
 	 * @return array
