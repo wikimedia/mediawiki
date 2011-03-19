@@ -122,10 +122,12 @@ class CliInstaller extends Installer {
 		$params = func_get_args();
 		array_shift( $params );
 
+		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
 		/* parseinline has the nasty side-effect of putting encoded
-		 * angle brackets, around the message, so the substr removes
-		 * them. */
-		$text = substr( wfMsgExt( $msg, array( 'parseinline' ), $params ), 4, -4 );
+		 * angle brackets, around the message.
+		 */
+		$text = preg_replace( '/(^&lt;|&gt;$)/', '', $text );
+
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
 		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
 		flush();
