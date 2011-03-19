@@ -134,6 +134,13 @@ abstract class PoolCounterWork {
 	function error( $status ) {	
 		return false;
 	}
+
+	/**
+	 * Log an error
+	 */
+	function logError( $status ) {
+		wfDebugLog( 'poolcounter', $status->getWikiText() );
+	}
 	
 	/**
 	 * Get the result of the work (whatever it is), or false.
@@ -180,6 +187,7 @@ abstract class PoolCounterWork {
 					/* continue to the error */
 			}
 		}
+		$this->logError( $status );
 		return $this->error( $status );
 	}
 	
