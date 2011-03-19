@@ -4943,8 +4943,10 @@ class Parser {
 
 		# Find the target section
 		if ( $sectionIndex == 0 ) {
-			# Section zero doesn't nest, level=big
-			$targetLevel = 1000;
+			if ( !$node ) {
+				# The page definitely exists - we checked that earlier - so it must be blank: see bug #14005
+				return $text;
+			}
 		} else {
 			while ( $node ) {
 				if ( $node->getName() === 'h' ) {
