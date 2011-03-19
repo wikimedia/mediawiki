@@ -18,7 +18,7 @@ class Block {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName,
 				$mBlockEmail, $mByName, $mAngryAutoblock, $mAllowUsertalk;
-	private $mForUpdate, $mFromMaster;
+	private $mFromMaster;
 
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
@@ -46,7 +46,6 @@ class Block {
 		$this->mHideName = $hideName;
 		$this->mBlockEmail = $blockEmail;
 		$this->mAllowUsertalk = $allowUsertalk;
-		$this->mForUpdate = false;
 		$this->mFromMaster = false;
 		$this->mByName = $byName;
 		$this->mAngryAutoblock = false;
@@ -126,31 +125,6 @@ class Block {
 	}
 
 	/**
-	 * Get the DB object and set the reference parameter to the select options.
-	 * The options array will contain FOR UPDATE if appropriate.
-	 *
-	 * @param $options Array
-	 * @return Database
-	 */
-	protected function &getDBOptions( &$options ) {
-		global $wgAntiLockFlags;
-
-		if ( $this->mForUpdate || $this->mFromMaster ) {
-			$db = wfGetDB( DB_MASTER );
-			if ( !$this->mForUpdate || ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) ) {
-				$options = array();
-			} else {
-				$options = array( 'FOR UPDATE' );
-			}
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-			$options = array();
-		}
-
-		return $db;
-	}
-
-	/**
 	 * Get a block from the DB, with either the given address or the given username
 	 *
 	 * @param $address string The IP address of the user, or blank to skip IP blocks
@@ -162,8 +136,7 @@ class Block {
 	public function load( $address = '', $user = 0, $killExpired = true ) {
 		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
-		$options = array();
-		$db = $this->getDBOptions( $options );
+		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
 
 		if ( 0 == $user && $address === '' ) {
 			# Invalid user specification, not blocked
@@ -175,7 +148,7 @@ class Block {
 		# Try user block
 		if ( $user ) {
 			$res = $db->resultObject( $db->select( 'ipblocks', '*', array( 'ipb_user' => $user ),
-				__METHOD__, $options ) );
+				__METHOD__ ) );
 
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
@@ -300,8 +273,7 @@ class Block {
 		# Blocks should not cross a /16 boundary.
 		$range = substr( $iaddr, 0, 4 );
 
-		$options = array();
-		$db = $this->getDBOptions( $options );
+		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
 		$conds = array(
 			'ipb_range_start' . $db->buildLike( $range, $db->anyString() ),
 			"ipb_range_start <= '$iaddr'",
@@ -312,7 +284,7 @@ class Block {
 			$conds['ipb_anon_only'] = 0;
 		}
 
-		$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+		$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__ ) );
 		$success = $this->loadFromResult( $res, $killExpired );
 
 		return $success;
@@ -740,9 +712,10 @@ class Block {
 
 	/**
 	 * Get/set the SELECT ... FOR UPDATE flag
+	 * @deprecated since 1.18
 	 */
 	public function forUpdate( $x = null ) {
-		return wfSetVar( $this->mForUpdate, $x );
+		# noop
 	}
 
 	/**
