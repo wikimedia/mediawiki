@@ -275,7 +275,7 @@ class Block {
 	 * @param $user Integer: if not 0, then sets ipb_anon_only
 	 * @return Boolean
 	 */
-	public function loadRange( $address, $killExpired = true, $user = 0 ) {
+	protected function loadRange( $address, $killExpired = true, $user = 0 ) {
 		$iaddr = IP::toHex( $address );
 
 		if ( $iaddr === false ) {
@@ -310,7 +310,7 @@ class Block {
 	 *
 	 * @param $row ResultWrapper: a row from the ipblocks table
 	 */
-	public function initFromRow( $row ) {
+	protected function initFromRow( $row ) {
 		$this->mAddress = $row->ipb_address;
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
@@ -492,7 +492,7 @@ class Block {
 	 *
 	 * @return Boolean: whether or not a retroactive autoblock was made.
 	 */
-	public function doRetroactiveAutoblock() {
+	protected function doRetroactiveAutoblock() {
 		$dbr = wfGetDB( DB_SLAVE );
 		# If autoblock is enabled, autoblock the LAST IP used
 		# - stolen shamelessly from CheckUser_body.php
