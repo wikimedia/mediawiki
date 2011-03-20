@@ -95,6 +95,7 @@ abstract class Job {
 	 * @return Job or false if there's no jobs
 	 */
 	static function pop( $offset = 0 ) {
+		global $wgJobTypesExcludedFromDefaultQueue;
 		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -105,16 +106,23 @@ abstract class Job {
 			NB: If random fetch previously was used, offset
 				will always be ahead of few entries
 		*/
-
-		$row = $dbr->selectRow( 'job', '*', "job_id >= ${offset}", __METHOD__,
-			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ) );
+		$conditions = array();
+		if ( count( $wgJobTypesExcludedFromDefaultQueue ) != 0 ) {
+			foreach ( $wgJobTypesExcludedFromDefaultQueue as $cmdType ) {
+				$conditions[] = "job_cmd != " . $dbr->addQuotes( $cmdType );
+			}
+		}
+		$offset = intval( $offset );
+		$row = $dbr->selectRow( 'job', '*', array_merge( $conditions, array( "job_id >= $offset" ) ) , __METHOD__,
+			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ) 
+		);
 
 		// Refetching without offset is needed as some of job IDs could have had delayed commits
 		// and have lower IDs than jobs already executed, blame concurrency :)
 		//
 		if ( $row === false ) {
 			if ( $offset != 0 ) {
-				$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
+				$row = $dbr->selectRow( 'job', '*', $conditions, __METHOD__,
 					array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ) );
 			}
 
