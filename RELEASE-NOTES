@@ -273,6 +273,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   list=users&usprop=groups
 * Addition of APIQuerySiteInfoGeneralInfo hook to add extra information to
   the general site info results
+* (bug 16288) API: consider making closure status of wikis more clear
+  with meta=siteinfo
 
 === Languages updated in 1.18 ===
 
