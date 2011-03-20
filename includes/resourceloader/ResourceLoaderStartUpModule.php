@@ -118,7 +118,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$deps = $module->getDependencies();
 				$group = $module->getGroup();
 				$version = wfTimestamp( TS_ISO_8601_BASIC, 
-					round( $module->getModifiedTime( $context ), -2 ) );
+					$module->getModifiedTime( $context ) );
 				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
 			// Automatically register module
