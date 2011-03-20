@@ -258,11 +258,9 @@ class ApiQueryUsers extends ApiQueryBase {
 		}
 
 		$builtGroups = array();
-		$i = 0;
-		foreach( array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) ) as $g ) {
+		foreach( array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) ) as $i => $group ) {
 			$builtGroups[$i] = array( 'implicit' => '' );
-			ApiResult::setContent( $builtGroups[$i], $g );
-			$i++;
+			ApiResult::setContent( $builtGroups[$i], $group );
 		}
 		return $builtGroups;
 	}
