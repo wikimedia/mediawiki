@@ -215,7 +215,7 @@ class RepoGroup {
 	 * Find an instance of the file with this key, created at the specified time
 	 * Returns false if the file does not exist.
 	 *
-	 * @param $hash String SHA-1
+	 * @param $hash String base 36 SHA-1 hash
 	 * @param $options Option array, same as findFile()
 	 * @return File object or false if it is not found
 	 */
@@ -237,7 +237,7 @@ class RepoGroup {
 	/**
 	 * Find all instances of files with this key
 	 *
-	 * @param $hash String SHA-1
+	 * @param $hash String base 36 SHA-1 hash
 	 * @return Array of File objects
 	 */
 	function findBySha1( $hash ) {
