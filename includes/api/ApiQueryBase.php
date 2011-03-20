@@ -251,11 +251,19 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return ResultWrapper
 	 */
 	protected function select( $method, $extraQuery = array() ) {
+		$tables = $this->tables;
+		$fields = $this->fields;
+		$where = $this->where;
+		$options = $this->options;
+		$join_conds = $this->join_conds;
+
 		// Merge $this->tables with $extraQuery['tables'], $this->fields with $extraQuery['fields'], etc.
 		foreach ( array( 'tables', 'fields', 'where', 'options', 'join_conds' ) as $var ) {
-			$$var = array_merge( $this->{$var}, isset( $extraQuery[$var] ) ? (array)$extraQuery[$var] : array() );
+			if ( isset( $extraQuery[$var] ) ) {
+				$$var = array_merge( $$var, (array)$extraQuery[$var] );
+			}
 		}
-		
+
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
 
