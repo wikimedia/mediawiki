@@ -4652,6 +4652,18 @@ $wgJobClasses = array(
 $wgExcludeFromThumbnailPurge = array();
 
 /**
+
+ * Jobs that must be explicitly requested, i.e. aren't run by job runners unless special flags are set.
+ * 
+ * These can be:
+ * - Very long-running jobs.
+ * - Jobs that you would never want to run as part of a page rendering request.
+ * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
+ *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
+ */
+$wgJobTypesExcludedFromDefaultQueue = array();
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
