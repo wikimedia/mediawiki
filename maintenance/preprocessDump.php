@@ -66,7 +66,8 @@ class PreprocessDump extends Maintenance {
 	}
 
 	static function disableInterwikis( $prefix, &$data ) {
-		# Title::newFromText will check on ach namespaced article if it's an interwiki.
+		# Title::newFromText will check on each namespaced article if it's an interwiki.
+		# We always answer that it is not.
 
 		return false;
 	}
