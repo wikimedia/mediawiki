@@ -1157,7 +1157,7 @@ class User {
 				$this->mBlockedby = $this->mBlock->mByName;
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
-			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editusertalk' );
+			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editownusertalk' );
 			if ( $this->isLoggedIn() && $wgUser->getID() == $this->getID() ) {
 				$this->spreadBlock();
 			}

@@ -18,7 +18,7 @@ class Block {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 				$mEnableAutoblock, $mHideName,
 				$mByName, $mAngryAutoblock;
-	private
+	protected
 		$mFromMaster,
 		$mRangeStart,
 		$mRangeEnd,
@@ -27,7 +27,7 @@ class Block {
 		$mAllowUsertalk,
 		$mCreateAccount;
 
-	/// TYPE constants
+	# TYPE constants
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
 	const TYPE_RANGE = 3;
@@ -240,8 +240,8 @@ class Block {
 	 * @param $end String Hexadecimal IP represenation, or null to use $start = $end
 	 * @return String
 	 */
-	public static function getRangeCond( $start, $end = null ){
-		if( $end === null ){
+	public static function getRangeCond( $start, $end = null ) {
+		if ( $end === null ) {
 			$end = $start;
 		}
 		# Per bug 14634, we want to include relevant active rangeblocks; for
@@ -273,9 +273,9 @@ class Block {
 	 * @param  $hex String Hexadecimal IP representation
 	 * @return String
 	 */
-	protected static function getIpFragment( $hex ){
+	protected static function getIpFragment( $hex ) {
 		global $wgBlockCIDRLimit;
-		if( substr( $hex, 0, 3 ) == 'v6-' ){
+		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
 			return 'v6-' . substr( substr( $hex, 3 ), 0,  floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
 		} else {
 			return substr( $hex, 0,  floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
@@ -766,8 +766,8 @@ class Block {
 	 * Get the IP address at the start of the range in Hex form
 	 * @return String IP in Hex form
 	 */
-	public function getRangeStart(){
-		switch( $this->type ){
+	public function getRangeStart() {
+		switch( $this->type ) {
 			case self::TYPE_USER:
 				return null;
 			case self::TYPE_IP:
@@ -782,8 +782,8 @@ class Block {
 	 * Get the IP address at the start of the range in Hex form
 	 * @return String IP in Hex form
 	 */
-	public function getRangeEnd(){
-		switch( $this->type ){
+	public function getRangeEnd() {
+		switch( $this->type ) {
 			case self::TYPE_USER:
 				return null;
 			case self::TYPE_IP:
@@ -832,9 +832,9 @@ class Block {
 	 * @param $x Bool
 	 * @return  Bool
 	 */
-	public function isHardblock( $x = null ){
+	public function isHardblock( $x = null ) {
 		$y = $this->mAnonOnly;
-		if( $x !== null){
+		if ( $x !== null ) {
 			$this->mAnonOnly = !$x;
 		}
 		return !$y;
@@ -846,8 +846,8 @@ class Block {
 	 * @param $x Bool
 	 * @return Bool
 	 */
-	public function prevents( $action, $x = null ){
-		switch( $action ){
+	public function prevents( $action, $x = null ) {
+		switch( $action ) {
 			case 'edit':
 				# TODO Not actually quite this simple (bug 13611 etc)
 				return true;
@@ -858,9 +858,9 @@ class Block {
 			case 'sendemail':
 				return wfSetVar( $this->mBlockEmail, $x );
 
-			case 'editusertalk':
+			case 'editownusertalk':
 				$y = $this->mAllowUsertalk;
-				if( $x !== null){
+				if ( $x !== null ) {
 					$this->mAllowUsertalk = !$x;
 				}
 				return !$y;
@@ -1013,21 +1013,21 @@ class Block {
 	 * @param $type Block::TYPE_ constant the type of block as described above
 	 * @return Block|null (null if the target is not blocked)
 	 */
-	public static function newFromTargetAndType( $target, $type ){
-		if( $target instanceof User ){
-			if( $type == Block::TYPE_IP ){
+	public static function newFromTargetAndType( $target, $type ) {
+		if ( $target instanceof User ) {
+			if ( $type == Block::TYPE_IP ) {
 				return Block::newFromDB( $target->getName(), 0 );
-			} elseif( $type == Block::TYPE_USER ) {
+			} elseif ( $type == Block::TYPE_USER ) {
 				return Block::newFromDB( '', $target->getId() );
 			} else {
 				# Should be unreachable;
 				return null;
 			}
 
-		} elseif( $type == Block::TYPE_RANGE ){
+		} elseif ( $type == Block::TYPE_RANGE ) {
 			return Block::newFromDB( $target, 0 );
 
-		} elseif( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
+		} elseif ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
 			return Block::newFromID( $target );
 
 		} else {
@@ -1035,7 +1035,7 @@ class Block {
 		}
 	}
 
-	public static function newFromTarget( $target ){
+	public static function newFromTarget( $target ) {
 		list( $target, $type ) = self::parseTarget( $target );
 		return self::newFromTargetAndType( $target, $type );
 	}
@@ -1046,17 +1046,17 @@ class Block {
 	 * User::__toString() which in turn gives User::getName().
 	 * @return array( User|String, Block::TYPE_ constant )
 	 */
-	public static function parseTarget( $target ){
+	public static function parseTarget( $target ) {
 		$target = trim( $target );
 
 		$userObj = User::newFromName( $target );
-		if( $userObj instanceof User ){
+		if ( $userObj instanceof User ) {
 			# Note that since numbers are valid usernames, a $target of "12345" will be
 			# considered a User.  If you want to pass a block ID, prepend a hash "#12345",
 			# since hash characters are not valid in usernames or titles generally.
 			return array( $userObj, Block::TYPE_USER );
 
-		} elseif( IP::isValid( $target ) ){
+		} elseif ( IP::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn
 			# off validation checking (which would exclude IP addresses)
 			return array(
@@ -1064,11 +1064,11 @@ class Block {
 				Block::TYPE_IP
 			);
 
-		} elseif( IP::isValidBlock( $target ) ){
+		} elseif ( IP::isValidBlock( $target ) ) {
 			# Can't create a User from an IP range
-			return array( Block::normaliseRange( $target ), Block::TYPE_RANGE );
+			return array( IP::sanitizeRange( $target ), Block::TYPE_RANGE );
 
-		} elseif( preg_match( '/^#\d+$/', $target ) ){
+		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
 			# Autoblock reference in the form "#12345"
 			return array( substr( $target, 1 ), Block::TYPE_AUTO );
 
@@ -1085,23 +1085,23 @@ class Block {
 	 * @return array( User|String, Block::TYPE_ constant )
 	 * FIXME: this should be an integral part of the Block member variables
 	 */
-	public function getTargetAndType(){
+	public function getTargetAndType() {
 		list( $target, $type ) = self::parseTarget( $this->mAddress );
 
 		# Check whether it's an autoblock
-		if( $this->mAuto ){
+		if ( $this->mAuto ) {
 			$type = self::TYPE_AUTO;
 		}
 
 		return array( $target, $type );
 	}
 
-	public function getType(){
+	public function getType() {
 		list( /*...*/, $type ) = $this->getTargetAndType();
 		return $type;
 	}
 
-	public function getTarget(){
+	public function getTarget() {
 		list( $target, /*...*/ ) = $this->getTargetAndType();
 		return $target;
 	}
