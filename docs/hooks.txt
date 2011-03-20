@@ -354,6 +354,11 @@ associated RecentChange object. In the hook, just add your callback to the
 $tokenFunctions array and return true (returning false makes no sense)
 $tokenFunctions: array(action => callback)
 
+'APIQuerySiteInfoGeneralInfo': use this hook to add extra information to
+the sites general information.
+$module: the current ApiQuerySiteInfo module
+$resutls: array of results, add things here
+
 'APIQueryUsersTokens': use this hook to add custom token to list=users.
 Every token has an action, which will be used in the ustoken parameter
 and in the output (actiontoken="..."), and a callback function which

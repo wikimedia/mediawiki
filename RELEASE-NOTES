@@ -271,6 +271,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27343) Add parseddescription to list=filearchive
 * (bug 27469) label implicit groups in list=allusers&auprop=groups/
   list=users&usprop=groups
+* Addition of APIQuerySiteInfoGeneralInfo hook to add extra information to
+  the general site info results
 
 === Languages updated in 1.18 ===
 
