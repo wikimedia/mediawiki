@@ -148,12 +148,15 @@ class BackupReader {
 				$revrate = '-';
 			}
 			# Logs dumps don't have page tallies
-			if ( $this->pageCount )
+			if ( $this->pageCount ) {
 				$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
-			else
+			} else {
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
+			}
 		}
 		wfWaitForSlaves( 5 );
+		// XXX: Don't let deferred jobs array get absurdly large (bug 24375)
+		wfDoUpdates( 'commit' );
 	}
 
 	function progress( $string ) {
