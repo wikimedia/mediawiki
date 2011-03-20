@@ -245,18 +245,26 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	/**
-	* Gets all the groups that a user is automatically a member of
+	* Gets all the groups that a user is automatically a member of (implicit groups)
 	* @param $user User
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {
-		$groups = array( '*' );
+		$groups = array();
+		$groups[] = '*';
 
 		if ( !$user->isAnon() ) {
 			$groups[] = 'user';
 		}
 
-		return array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
+		$builtGroups = array();
+		$i = 0;
+		foreach( array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) ) as $g ) {
+			$builtGroups[$i] = array( 'implicit' => '' );
+			ApiResult::setContent( $builtGroups[$i], $g );
+			$i++;
+		}
+		return $builtGroups;
 	}
 
 	public function getCacheMode( $params ) {
