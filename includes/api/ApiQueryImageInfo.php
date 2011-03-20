@@ -475,22 +475,32 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return Array
 	 */
 	public static function getPropertyNames() {
+		return array_keys( self::getProperties() );
+	}
+
+	/**
+	 * Returns array key value pairs of
+	 *
+	 * @static
+	 * @return array
+	 */
+	private static function getProperties() {
 		return array(
-			'timestamp',
-			'user',
-			'userid',
-			'comment',
-			'parsedcomment',
-			'url',
-			'size',
-			'dimensions', // For backwards compatibility with Allimages
-			'sha1',
-			'mime',
-			'thumbmime',
-			'mediatype',
-			'metadata',
-			'archivename',
-			'bitdepth',
+			'timestamp' =>      ' timestamp     - Adds timestamp for the uploaded version',
+			'user' =>           ' user          - Adds the user who uploaded the image version',
+			'userid' =>         ' userid        - Add the user ID that uploaded the image version',
+			'comment' =>        ' comment       - Comment on the version',
+			'parsedcomment' =>  ' parsedcomment - Parse the comment on the version',
+			'url' =>            ' url           - Gives URL to the image and the description page',
+			'size' =>           ' size          - Adds the size of the image in bytes and the height, width and page count (if applicable)',
+			'dimensions' =>     ' dimensions    - Alias for size', // For backwards compatibility with Allimages
+			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
+			'mime' =>           ' mime          - Adds MIME type of the image',
+			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
+			'mediatype' =>      ' mediatype     - Adds the media type of the image',
+			'metadata' =>       ' metadata      - Lists EXIF metadata for the version of the image',
+			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
+			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 		);
 	}
 
@@ -501,24 +511,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	public static function getPropertyDescriptions() {
-		return array(
-				'What image information to get:',
-				' timestamp     - Adds timestamp for the uploaded version',
-				' user          - Adds the user who uploaded the image version',
-				' userid        - Add the user ID that uploaded the image version',
-				' comment       - Comment on the version',
-				' parsedcomment - Parse the comment on the version',
-				' url           - Gives URL to the image and the description page',
-				' size          - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-				' dimensions    - Alias for size',
-				' sha1          - Adds SHA-1 hash for the image',
-				' mime          - Adds MIME type of the image',
-				' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
-				' mediatype     - Adds the media type of the image',
-				' metadata      - Lists EXIF metadata for the version of the image',
-				' archivename   - Adds the file name of the archive version for non-latest versions',
-				' bitdepth      - Adds the bit depth of the version',
-			);
+		return array_merge(
+			array( 'What image information to get:' ),
+			array_values( self::getProperties() )
+		);
 	}
 
 	/**
