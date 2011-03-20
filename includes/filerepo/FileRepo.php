@@ -185,7 +185,7 @@ abstract class FileRepo {
 
 	/**
 	 * Create a new File object from the local repository
-	 * @param $sha1 Mixed: SHA-1 key
+	 * @param $sha1 Mixed: base 36 SHA-1 hash
 	 * @param $time Mixed: time at which the image was uploaded.
 	 *              If this is specified, the returned object will be an
 	 *              of the repository's old file class instead of a current
@@ -211,7 +211,7 @@ abstract class FileRepo {
 	 * Returns false if the file does not exist. Repositories not supporting
 	 * version control should return false if the time is specified.
 	 *
-	 * @param $sha1 String
+	 * @param $sha1 String base 36 SHA-1 hash
 	 * @param $options Option array, same as findFile().
 	 */
 	function findFileFromKey( $sha1, $options = array() ) {
