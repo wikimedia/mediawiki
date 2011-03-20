@@ -1400,6 +1400,11 @@ $out: OutputPage object
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
+'ResourceLoaderGetStartupModules': Run once the startup module is being generated. This allows you
+to add modules to the startup module. This hook should be used sparingly since any module added here
+will be loaded on all pages. This hook is useful if you want to make code available to module loader 
+scripts. 
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output
