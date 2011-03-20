@@ -218,7 +218,7 @@ class SpecialBlock extends SpecialPage {
 				$fields['HideUser']['default'] = $block->mHideName;
 			}
 			if( isset( $fields['DisableUTEdit'] ) ){
-				$fields['DisableUTEdit']['default'] = $block->prevents( 'editusertalk' );
+				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
 			}
 			$fields['Reason']['default'] = $block->mReason;
 			$fields['AlreadyBlocked']['default'] = true;
@@ -547,7 +547,7 @@ class SpecialBlock extends SpecialPage {
 			$data['HideUser']
 		);
 		
-		$block->prevents( 'editusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
+		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
 
 		if( !wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
