@@ -166,10 +166,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'lang' => $context->getLanguage(),
 				'skin' => $context->getSkin(),
 				'debug' => $context->getDebug() ? 'true' : 'false',
-				'version' => wfTimestamp( TS_ISO_8601_BASIC, round( max(
+				'version' => wfTimestamp( TS_ISO_8601_BASIC, max(
 					$context->getResourceLoader()->getModule( 'jquery' )->getModifiedTime( $context ),
 					$context->getResourceLoader()->getModule( 'mediawiki' )->getModifiedTime( $context )
-				), -2 ) )
+				) )
 			);
 			// Ensure uniform query order
 			ksort( $query );
