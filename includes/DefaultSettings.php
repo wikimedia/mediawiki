@@ -4646,6 +4646,12 @@ $wgJobClasses = array(
 );
 
 /**
+ * Extensions of "thumbnails" that are very expensive to regenerate and should be 
+ * excluded from normal action=purge thumbnail removal. 
+ */
+$wgExcludeFromThumbnailPurge = array();
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
