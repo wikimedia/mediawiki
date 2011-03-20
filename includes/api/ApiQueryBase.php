@@ -246,14 +246,21 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Execute a SELECT query based on the values in the internal arrays
 	 * @param $method string Function the query should be attributed to.
 	 *  You should usually use __METHOD__ here
+	 * @param $extraQuery array Query data to add but not store in the object
+	 *  Format is array( 'tables' => ..., 'fields' => ..., 'where' => ..., 'options' => ..., 'join_conds' => ... )
 	 * @return ResultWrapper
 	 */
-	protected function select( $method ) {
+	protected function select( $method, $extraQuery = array() ) {
+		// Merge $this->tables with $extraQuery['tables'], $this->fields with $extraQuery['fields'], etc.
+		foreach ( array( 'tables', 'fields', 'where', 'options', 'join_conds' ) as $var ) {
+			$$var = array_merge( $this->{$var}, isset( $extraQuery[$var] ) ? (array)$extraQuery[$var] : array() );
+		}
+		
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
 
 		$this->profileDBIn();
-		$res = $db->select( $this->tables, $this->fields, $this->where, $method, $this->options, $this->join_conds );
+		$res = $db->select( $tables, $fields, $where, $method, $options, $join_conds );
 		$this->profileDBOut();
 
 		return $res;

@@ -99,7 +99,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
-		$this->addWhereFld( 'cl_type', $params['type'] );
+		$queryTypes = $params['type'];
+		$contWhere = false;
 
 		// Scanning large datasets for rare categories sucks, and I already told
 		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
@@ -129,20 +130,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 						'by the previous query', '_badcontinue'
 					);
 				}
-				$escType = $this->getDB()->addQuotes( $cont[0] );
+				
+				// Remove the types to skip from $queryTypes
+				$contTypeIndex = array_search( $cont[0], $queryTypes );
+				$queryTypes = array_slice( $queryTypes, $contTypeIndex );
+				
+				// Add a WHERE clause for sortkey and from
 				$from = intval( $cont[1] );
 				$escSortkey = $this->getDB()->addQuotes( $cont[2] );
 				$op = $dir == 'newer' ? '>' : '<';
-				$this->addWhere( "cl_type $op $escType OR " .
-					"(cl_type = $escType AND " .
-					"(cl_sortkey $op $escSortkey OR " .
+				// $contWhere is used further down
+				$contWhere = "cl_sortkey $op $escSortkey OR " .
 					"(cl_sortkey = $escSortkey AND " .
-					"cl_from $op= $from)))"
-				);
+					"cl_from $op= $from)";
 				
 			} else {
-				// The below produces ORDER BY cl_type, cl_sortkey, cl_from, possibly with DESC added to each of them
-				$this->addWhereRange( 'cl_type', $dir, null, null );
+				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
 					$dir,
 					$params['startsortkey'],
@@ -157,9 +160,29 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
+		// Run a separate SELECT query for each value of cl_type.
+		// This is needed because cl_type is an enum, and MySQL has
+		// inconsistencies between ORDER BY cl_type and
+		// WHERE cl_type >= 'foo' making proper paging impossible
+		// and unindexed.
+		$rows = array();
+		$first = true;
+		foreach ( $queryTypes as $type ) {
+			$extraConds = array( 'cl_type' => $type );
+			if ( $first && $contWhere ) {
+				// Continuation condition. Only added to the
+				// first query, otherwise we'll skip things
+				$extraConds[] = $contWhere;
+			}
+			$res = $this->select( __METHOD__, array( 'where' => $extraConds ) );
+			$rows = array_merge( $rows, iterator_to_array( $res ) );
+			if ( count( $rows ) >= $limit + 1 ) {
+				break;
+			}
+			$first = false;
+		}
 		$count = 0;
-		$res = $this->select( __METHOD__ );
-		foreach ( $res as $row ) {
+		foreach ( $rows as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
