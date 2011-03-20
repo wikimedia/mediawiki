@@ -3,6 +3,20 @@
  */
 ( function( $ ) {
 $.fn.textSelection = function( command, options ) {
+
+/**
+ * Helper function to get an IE TextRange object for an element
+ */
+function rangeForElementIE( e ) {
+	if ( e.nodeName.toLowerCase() == 'input' ) {
+		return e.createTextRange();
+	} else {
+		var sel = document.body.createTextRange();
+		sel.moveToElementText( e );
+		return sel;
+	}
+}
+
 var fn = {
 /**
  * Get the contents of the textarea
@@ -152,15 +166,11 @@ encapsulateSelection: function( options ) {
 			// Create range containing text in the selection
 			var periRange = document.selection.createRange().duplicate();
 			// Create range containing text before the selection
-			var preRange = document.body.createTextRange();
-			// Select all the text
-			preRange.moveToElementText(e);
+			var preRange = rangeForElementIE( e );
 			// Move the end where we need it
 			preRange.setEndPoint("EndToStart", periRange);
 			// Create range containing text after the selection
-			var postRange = document.body.createTextRange();
-			// Select all the text
-			postRange.moveToElementText(e);
+			var postRange = rangeForElementIE( e );
 			// Move the start where we need it
 			postRange.setEndPoint("StartToEnd", periRange);
 			// Load the text values we need to compare
@@ -240,8 +250,7 @@ setSelection: function( options ) {
 				this.selectionEnd = options.end;
 			}
 		} else if ( document.body.createTextRange ) {
-			var selection = document.body.createTextRange();
-			selection.moveToElementText( this );
+			var selection = rangeForElementIE( this );
 			var length = this.value.length;
 			// IE doesn't count \n when computing the offset, so we won't either
 			var newLines = this.value.match( /\n/g );
