@@ -44,6 +44,8 @@ class CliInstaller extends Installer {
 	 * @param $option Array
 	 */
 	function __construct( $siteName, $admin = null, array $option = array() ) {
+		global $wgContLang;
+
 		parent::__construct();
 
 		foreach ( $this->optionMap as $opt => $global ) {
@@ -54,7 +56,7 @@ class CliInstaller extends Installer {
 		}
 
 		if ( isset( $option['lang'] ) ) {
-			global $wgLang, $wgContLang, $wgLanguageCode;
+			global $wgLang, $wgLanguageCode;
 			$this->setVar( '_UserLang', $option['lang'] );
 			$wgContLang = Language::factory( $option['lang'] );
 			$wgLang = Language::factory( $option['lang'] );
@@ -62,6 +64,12 @@ class CliInstaller extends Installer {
 		}
 
 		$this->setVar( 'wgSitename', $siteName );
+
+		$metaNS = $wgContLang->ucfirst( str_replace( ' ', '_', $siteName ) );
+		if ( $metaNS == 'MediaWiki' ) {
+			$metaNS = 'Project';
+		}
+		$this->setVar( 'wgMetaNamespace', $metaNS );
 
 		if ( $admin ) {
 			$this->setVar( '_AdminName', $admin );
