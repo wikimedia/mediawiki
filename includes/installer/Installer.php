@@ -317,9 +317,6 @@ abstract class Installer {
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
 
-		// Set our custom <doclink> hook.
-		$wgHooks['ParserFirstCallInit'][] = array( $this, 'registerDocLink' );
-
 		$this->settings = $this->internalDefaults;
 
 		foreach ( $this->defaultVarNames as $var ) {
@@ -1142,33 +1139,11 @@ abstract class Installer {
 	}
 
 	/**
-	 * Register tag hook below.
-	 *
-	 * @todo Move this to WebInstaller with the two things below?
-	 *
-	 * @param $parser Parser
-	 */
-	public function registerDocLink( Parser &$parser ) {
-		$parser->setHook( 'doclink', array( $this, 'docLink' ) );
-		return true;
-	}
-
-	/**
 	 * ParserOptions are constructed before we determined the language, so fix it
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );
 		$this->parserOptions->setUserLang( $lang->getCode() );
-	}
-
-	/**
-	 * Extension tag hook for a documentation link.
-	 */
-	public function docLink( $linkText, $attribs, $parser ) {
-		$url = $this->getDocUrl( $attribs['href'] );
-		return '<a href="' . htmlspecialchars( $url ) . '">' .
-			htmlspecialchars( $linkText ) .
-			'</a>';
 	}
 
 	/**

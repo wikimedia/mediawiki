@@ -115,9 +115,10 @@ class WebInstaller extends Installer {
 		$this->output = new WebInstallerOutput( $this );
 		$this->request = $request;
 
-		// Add parser hook for WebInstaller_Complete
+		// Add parser hooks
 		global $wgParser;
 		$wgParser->setHook( 'downloadlink', array( $this, 'downloadLinkHook' ) );
+		$wgParser->setHook( 'doclink', array( $this, 'docLink' ) );
 	}
 
 	/**
@@ -993,6 +994,16 @@ class WebInstaller extends Installer {
 		return $url;
 	}
 
+	/**
+	 * Extension tag hook for a documentation link.
+	 */
+	public function docLink( $linkText, $attribs, $parser ) {
+		$url = $this->getDocUrl( $attribs['href'] );
+		return '<a href="' . htmlspecialchars( $url ) . '">' .
+			htmlspecialchars( $linkText ) .
+			'</a>';
+	}
+	
 	/**
 	 * Helper for "Download LocalSettings" link on WebInstall_Complete
 	 * @return String Html for download link
