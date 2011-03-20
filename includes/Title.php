@@ -892,21 +892,29 @@ class Title {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				}
 			} else {
-				$url = false;
-
 				global $wgActionPaths;
-				if( !empty( $wgActionPaths ) ) {
-					$url = Title::resolveActionPath( $dbkey, $query );
+				$url = false;
+				$matches = array();
+				if ( !empty( $wgActionPaths ) &&
+					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) )
+				{
+					$action = urldecode( $matches[2] );
+					if ( isset( $wgActionPaths[$action] ) ) {
+						$query = $matches[1];
+						if ( isset( $matches[4] ) ) {
+							$query .= $matches[4];
+						}
+						$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
+						if ( $query != '' ) {
+							$url = wfAppendQuery( $url, $query );
+						}
+					}
 				}
-
 				if ( $url === false ) {
 					if ( $query == '-' ) {
 						$query = '';
 					}
-					#$url = "{$wgScript}?title={$dbkey}&{$query}";
-					# forge a nice URL (ex: /wiki/Special:Foo?q=1&r=2 )
-					$baseurl = str_replace( '$1', $dbkey, $wgArticlePath );
-					$url = wfAppendQuery( $baseurl, $query );
+					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
 
@@ -917,38 +925,6 @@ class Title {
 			}
 		}
 		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query ) );
-		return $url;
-	}
-
-	/**
-	 * Helper for getLocalUrl() to handles $wgActionPaths
-	 *
-	 * @param $dbkey string Title in database key format
-	 * @param $query string request parameters in CGI format (p=1&q=2&..)
-	 * @return Url resolved or boolean false
-	 */
-	private static function resolveActionPath( $dbkey, $query ) {
-		$url = '';
-
-		# query parameters are easier to handle using an array:
-		$queryArray = wfCGIToArray( $query );
-
-		global $wgActionPaths;
-		if( !array_key_exists( 'action', $queryArray ) ) {
-			// Makes the default action 'view' and points to $wgArticlePath
-			// FIXME: this should be handled in Setup or Wiki!
-			global $wgArticlePath;
-			$url = str_replace( '$1', $dbkey, $wgArticlePath );
-		} elseif( isset( $wgActionPaths[$queryArray['action']] ) ) {
-			$url = str_replace( '$1', $dbkey, $wgActionPaths[$queryArray['action']] );
-		} else {
-			# No path found
-			return false;
-		}
-
-		# No need to append the action since we have embed it in the path
-		unset( $queryArray['action'] );
-		$url = wfAppendQuery( $url, wfArrayToCGI( $queryArray ) );
 		return $url;
 	}
 
