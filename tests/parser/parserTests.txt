@@ -538,7 +538,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Help:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="/wiki/Help:FAQ?action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -971,7 +971,7 @@ External links: wiki links within external link (Bug 3695)
 !! input
 [http://example.com [[wikilink]] embedded in ext link]
 !! result
-<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a><a rel="nofollow" class="external text" href="http://example.com"> embedded in ext link</a>
+<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/wiki/Wikilink?action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a><a rel="nofollow" class="external text" href="http://example.com"> embedded in ext link</a>
 </p>
 !! end
 
@@ -1138,7 +1138,7 @@ External link containing double-single-quotes with no space separating the url f
 !! input
 [http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm''La muerte de Casagemas'' (1901) en el sitio de [[Museo Picasso (París)|Museo Picasso]].]
 !! result
-<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de <a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.</a>
+<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de <a href="/wiki/Museo_Picasso_(Par%C3%ADs)?action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.</a>
 </p>
 !! end
 
@@ -1147,7 +1147,7 @@ URL-encoding in URL functions (single parameter)
 !! input
 {{localurl:Some page|amp=&}}
 !! result
-<p>/index.php?title=Some_page&amp;amp=&amp;
+<p>/wiki/Some_page?amp=&amp;
 </p>
 !! end
 
@@ -1156,7 +1156,7 @@ URL-encoding in URL functions (multiple parameters)
 !! input
 {{localurl:Some page|q=?&amp=&}}
 !! result
-<p>/index.php?title=Some_page&amp;q=?&amp;amp=&amp;
+<p>/wiki/Some_page?q=?&amp;amp=&amp;
 </p>
 !! end
 
@@ -1461,7 +1461,7 @@ Broken link
 !! input
 [[Zigzagzogzagzig]]
 !! result
-<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig</a>
+<p><a href="/wiki/Zigzagzogzagzig?action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig</a>
 </p>
 !! end
 
@@ -1470,7 +1470,7 @@ Broken link with fragment
 !! input
 [[Zigzagzogzagzig#zug]]
 !! result
-<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig#zug</a>
+<p><a href="/wiki/Zigzagzogzagzig?action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig#zug</a>
 </p>
 !! end
 
@@ -1542,7 +1542,7 @@ Link to namespaces
 !! input
 [[Talk:Parser testing]], [[Meta:Disclaimers]]
 !! result
-<p><a href="/index.php?title=Talk:Parser_testing&amp;action=edit&amp;redlink=1" class="new" title="Talk:Parser testing (page does not exist)">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=edit&amp;redlink=1" class="new" title="Meta:Disclaimers (page does not exist)">Meta:Disclaimers</a>
+<p><a href="/wiki/Talk:Parser_testing?action=edit&amp;redlink=1" class="new" title="Talk:Parser testing (page does not exist)">Talk:Parser testing</a>, <a href="/wiki/Meta:Disclaimers?action=edit&amp;redlink=1" class="new" title="Meta:Disclaimers (page does not exist)">Meta:Disclaimers</a>
 </p>
 !! end
 
@@ -1551,7 +1551,7 @@ Piped link to namespace
 !! input
 [[Meta:Disclaimers|The disclaimers]]
 !! result
-<p><a href="/index.php?title=Meta:Disclaimers&amp;action=edit&amp;redlink=1" class="new" title="Meta:Disclaimers (page does not exist)">The disclaimers</a>
+<p><a href="/wiki/Meta:Disclaimers?action=edit&amp;redlink=1" class="new" title="Meta:Disclaimers (page does not exist)">The disclaimers</a>
 </p>
 !! end
 
@@ -1569,7 +1569,7 @@ Link containing % (not as a hex sequence)
 !! input
 [[7% Solution]]
 !! result
-<p><a href="/index.php?title=7%25_Solution&amp;action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
+<p><a href="/wiki/7%25_Solution?action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
 </p>
 !! end
 
@@ -1578,7 +1578,7 @@ Link containing % as a single hex sequence interpreted to char
 !! input
 [[7%25 Solution]]
 !! result
-<p><a href="/index.php?title=7%25_Solution&amp;action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
+<p><a href="/wiki/7%25_Solution?action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
 </p>
 !!end
 
@@ -1615,7 +1615,7 @@ Link containing double-single-quotes '' (bug 4598)
 !! input
 [[Lista d''e paise d''o munno]]
 !! result
-<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
+<p><a href="/wiki/Lista_d%27%27e_paise_d%27%27o_munno?action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
 </p>
 !! end
 
@@ -1624,7 +1624,7 @@ Link containing double-single-quotes '' in text (bug 4598 sanity check)
 !! input
 Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!
+<p>Some <a href="/wiki/Link?action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!
 </p>
 !! end
 
@@ -1633,7 +1633,7 @@ Link containing double-single-quotes '' in text embedded in italics (bug 4598 sa
 !! input
 ''Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p><i>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!</i>
+<p><i>Some <a href="/wiki/Link?action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!</i>
 </p>
 !! end
 
@@ -1648,10 +1648,10 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 
 [[''Pentecoste''|''Pentecoste'']]
 !! result
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
+<p><a href="/wiki/Special:Upload?wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
+</p><p><a href="/wiki/%27%27Pentecoste%27%27?action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
+</p><p><a href="/wiki/%27%27Pentecoste%27%27?action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
+</p><p><a href="/wiki/%27%27Pentecoste%27%27?action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! end
 
@@ -1671,7 +1671,7 @@ Plain link to URL
 # ----
 # I'm changing it to match the current output--it arguably makes more
 # sense in the light of the test above. Old expected result was:
-#<p>Piped link to URL: <a href="/index.php?title=Http://www.example.com&amp;action=edit" class="new">an example URL</a>
+#<p>Piped link to URL: <a href="/wiki/Http://www.example.com?action=edit" class="new">an example URL</a>
 #</p>
 # But I think this test is bordering on "garbage in, garbage out" anyway.
 # -- wtm
@@ -2378,7 +2378,7 @@ Magic links: internal link to RFC (bug 479)
 !! input
 [[RFC 123]]
 !! result
-<p><a href="/index.php?title=RFC_123&amp;action=edit&amp;redlink=1" class="new" title="RFC 123 (page does not exist)">RFC 123</a>
+<p><a href="/wiki/RFC_123?action=edit&amp;redlink=1" class="new" title="RFC 123 (page does not exist)">RFC 123</a>
 </p>
 !! end
 
@@ -2418,7 +2418,7 @@ Nonexistent template
 !! input
 {{thistemplatedoesnotexist}}
 !! result
-<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=edit&amp;redlink=1" class="new" title="Template:Thistemplatedoesnotexist (page does not exist)">Template:Thistemplatedoesnotexist</a>
+<p><a href="/wiki/Template:Thistemplatedoesnotexist?action=edit&amp;redlink=1" class="new" title="Template:Thistemplatedoesnotexist (page does not exist)">Template:Thistemplatedoesnotexist</a>
 </p>
 !! end
 
@@ -2600,7 +2600,7 @@ Template with thumb image (with link in description)
 {{paramtest|
   param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! result
-This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div></div></div>
+This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Special:Upload?wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="/wiki/No_link?action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/wiki/No_link?action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div></div></div>
 
 !! end
 
@@ -2892,8 +2892,8 @@ Bug 6563: Edit link generation for section shown by <includeonly>
 !! input
 {{includeonly section}}
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline" id="Includeonly_section">Includeonly section</span></h2>
-<h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline" id="Section_T-1">Section T-1</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Template:Includeonly_section?action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline" id="Includeonly_section">Includeonly section</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Template:Includeonly_section?action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline" id="Section_T-1">Section T-1</span></h2>
 
 !! end
 
@@ -2919,7 +2919,7 @@ Bug 6563: Edit link generation for section suppressed by <includeonly>
 </includeonly>
 ==Section 1==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
 
 !! end
 
@@ -3541,7 +3541,7 @@ Add test with existing image page
 !! input
 [[:Image:test]]
 !! result
-<p><a href="/index.php?title=File:Test&amp;action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">Image:test</a>
+<p><a href="/wiki/File:Test?action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">Image:test</a>
 </p>
 !! end
 
@@ -3550,7 +3550,7 @@ bug 18784  Link to non-existent image page with caption should use caption as li
 !! input
 [[:Image:test|caption]]
 !! result
-<p><a href="/index.php?title=File:Test&amp;action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">caption</a>
+<p><a href="/wiki/File:Test?action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">caption</a>
 </p>
 !! end
 
@@ -3698,7 +3698,7 @@ Image caption containing another image
 !! input
 [[Image:Foobar.jpg|thumb|This is a caption with another [[Image:icon.png|image]] inside it!]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is a caption with another <a href="/index.php?title=Special:Upload&amp;wpDestFile=Icon.png" class="new" title="File:Icon.png">image</a> inside it!</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is a caption with another <a href="/wiki/Special:Upload?wpDestFile=Icon.png" class="new" title="File:Icon.png">image</a> inside it!</div></div></div>
 
 !! end
 
@@ -3785,7 +3785,7 @@ Disabled subpages
 !! input
 [[/subpage]]
 !! result
-<p><a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a>
+<p><a href="/wiki//subpage?action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a>
 </p>
 !! end
 
@@ -3796,7 +3796,7 @@ subpage title=[[Page]]
 !! input
 {{/Subpage}}
 !! result
-<p><a href="/index.php?title=Page/Subpage&amp;action=edit&amp;redlink=1" class="new" title="Page/Subpage (page does not exist)">Page/Subpage</a>
+<p><a href="/wiki/Page/Subpage?action=edit&amp;redlink=1" class="new" title="Page/Subpage (page does not exist)">Page/Subpage</a>
 </p>
 !! end
 
@@ -3866,13 +3866,13 @@ More
 ===Smaller headline===
 Blah blah
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline" id="Headline_1"> Headline 1 </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline" id="Headline_1"> Headline 1 </span></h2>
 <p>Some text
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline" id="Headline_2">Headline 2</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline" id="Headline_2">Headline 2</span></h2>
 <p>More
 </p>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</span> <span class="mw-headline" id="Smaller_headline">Smaller headline</span></h3>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</span> <span class="mw-headline" id="Smaller_headline">Smaller headline</span></h3>
 <p>Blah blah
 </p>
 !! end
@@ -3911,14 +3911,14 @@ Some text
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline" id="Headline_1"> Headline 1 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span> <span class="mw-headline" id="Subheadline_1"> Subheadline 1 </span></h3>
-<h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline" id="Skipping_a_level"> Skipping a level </span></h5>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline" id="Skipping_a_level_2"> Skipping a level </span></h6>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline" id="Headline_2"> Headline 2 </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline" id="Headline_1"> Headline 1 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span> <span class="mw-headline" id="Subheadline_1"> Subheadline 1 </span></h3>
+<h5><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline" id="Skipping_a_level"> Skipping a level </span></h5>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline" id="Skipping_a_level_2"> Skipping a level </span></h6>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline" id="Headline_2"> Headline 2 </span></h2>
 <p>Some text
 </p>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a>]</span> <span class="mw-headline" id="Another_headline">Another headline</span></h3>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=6" title="Edit section: Another headline">edit</a>]</span> <span class="mw-headline" id="Another_headline">Another headline</span></h3>
 
 !! end
 
@@ -3966,16 +3966,16 @@ Handling of sections up to level 6 and beyond
 </li>
 </ul>
 </td></tr></table>
-<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span> <span class="mw-headline" id="Level_1_Heading"> Level 1 Heading</span></h1>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span> <span class="mw-headline" id="Level_2_Heading"> Level 2 Heading</span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span> <span class="mw-headline" id="Level_3_Heading"> Level 3 Heading</span></h3>
-<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Level 4 Heading">edit</a>]</span> <span class="mw-headline" id="Level_4_Heading"> Level 4 Heading</span></h4>
-<h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Level 5 Heading">edit</a>]</span> <span class="mw-headline" id="Level_5_Heading"> Level 5 Heading</span></h5>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Level 6 Heading">edit</a>]</span> <span class="mw-headline" id="Level_6_Heading"> Level 6 Heading</span></h6>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Edit section: = Level 7 Heading=">edit</a>]</span> <span class="mw-headline" id=".3D_Level_7_Heading.3D">= Level 7 Heading=</span></h6>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Edit section: == Level 8 Heading==">edit</a>]</span> <span class="mw-headline" id=".3D.3D_Level_8_Heading.3D.3D">== Level 8 Heading==</span></h6>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Edit section: === Level 9 Heading===">edit</a>]</span> <span class="mw-headline" id=".3D.3D.3D_Level_9_Heading.3D.3D.3D">=== Level 9 Heading===</span></h6>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Edit section: ==== Level 10 Heading====">edit</a>]</span> <span class="mw-headline" id=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D">==== Level 10 Heading====</span></h6>
+<h1><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span> <span class="mw-headline" id="Level_1_Heading"> Level 1 Heading</span></h1>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span> <span class="mw-headline" id="Level_2_Heading"> Level 2 Heading</span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span> <span class="mw-headline" id="Level_3_Heading"> Level 3 Heading</span></h3>
+<h4><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: Level 4 Heading">edit</a>]</span> <span class="mw-headline" id="Level_4_Heading"> Level 4 Heading</span></h4>
+<h5><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: Level 5 Heading">edit</a>]</span> <span class="mw-headline" id="Level_5_Heading"> Level 5 Heading</span></h5>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=6" title="Edit section: Level 6 Heading">edit</a>]</span> <span class="mw-headline" id="Level_6_Heading"> Level 6 Heading</span></h6>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=7" title="Edit section: = Level 7 Heading=">edit</a>]</span> <span class="mw-headline" id=".3D_Level_7_Heading.3D">= Level 7 Heading=</span></h6>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=8" title="Edit section: == Level 8 Heading==">edit</a>]</span> <span class="mw-headline" id=".3D.3D_Level_8_Heading.3D.3D">== Level 8 Heading==</span></h6>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=9" title="Edit section: === Level 9 Heading===">edit</a>]</span> <span class="mw-headline" id=".3D.3D.3D_Level_9_Heading.3D.3D.3D">=== Level 9 Heading===</span></h6>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=10" title="Edit section: ==== Level 10 Heading====">edit</a>]</span> <span class="mw-headline" id=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D">==== Level 10 Heading====</span></h6>
 
 !! end
 
@@ -4008,12 +4008,12 @@ TOC regression (bug 9764)
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
-<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline" id="title_1.2"> title 1.2 </span></h3>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline" id="title_2.1"> title 2.1 </span></h3>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
+<h4><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline" id="title_1.2"> title 1.2 </span></h3>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline" id="title_2.1"> title 2.1 </span></h3>
 
 !! end
 
@@ -4044,12 +4044,12 @@ wgMaxTocLevel=3
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
-<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline" id="title_1.2"> title 1.2 </span></h3>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline" id="title_2.1"> title 2.1 </span></h3>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
+<h4><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline" id="title_1.2"> title 1.2 </span></h3>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline" id="title_2.1"> title 2.1 </span></h3>
 
 !! end
 
@@ -4074,11 +4074,11 @@ wgMaxTocLevel=3
 <li class="toclevel-1 tocsection-5"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a></li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1">Section 1.1</span></h3>
-<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span></h4>
-<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Section 1.1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1.1">Section 1.1.1.1</span></h4>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Section 2">edit</a>]</span> <span class="mw-headline" id="Section_2">Section 2</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Section 1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1">Section 1.1</span></h3>
+<h4><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span></h4>
+<h4><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: Section 1.1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1.1">Section 1.1.1.1</span></h4>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: Section 2">edit</a>]</span> <span class="mw-headline" id="Section_2">Section 2</span></h2>
 
 !! end
 
@@ -4089,8 +4089,8 @@ Resolving duplicate section names
 == Foo bar ==
 == Foo bar ==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar"> Foo bar </span></h2>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar_2"> Foo bar </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar"> Foo bar </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar_2"> Foo bar </span></h2>
 
 !! end
 
@@ -4100,8 +4100,8 @@ Resolving duplicate section names with differing case (bug 10721)
 == Foo bar ==
 == Foo Bar ==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar"> Foo bar </span></h2>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a>]</span> <span class="mw-headline" id="Foo_Bar_2"> Foo Bar </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline" id="Foo_bar"> Foo bar </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a>]</span> <span class="mw-headline" id="Foo_Bar_2"> Foo Bar </span></h2>
 
 !! end
 
@@ -4120,10 +4120,10 @@ __NOTOC__
 {{sections}}
 ==Section 4==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</span> <span class="mw-headline" id="Section_0">Section 0</span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h3>
-<h2><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a>]</span> <span class="mw-headline" id="Section_2">Section 2</span></h2>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</span> <span class="mw-headline" id="Section_4">Section 4</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</span> <span class="mw-headline" id="Section_0">Section 0</span></h2>
+<h3><span class="editsection">[<a href="/wiki/Template:Sections?action=edit&amp;section=T-1" title="Template:Sections">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h3>
+<h2><span class="editsection">[<a href="/wiki/Template:Sections?action=edit&amp;section=T-2" title="Template:Sections">edit</a>]</span> <span class="mw-headline" id="Section_2">Section 2</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</span> <span class="mw-headline" id="Section_4">Section 4</span></h2>
 
 !! end
 
@@ -4144,7 +4144,7 @@ Link inside a section heading
 !! input
 ==Section with a [[Main Page|link]] in it==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a>]</span> <span class="mw-headline" id="Section_with_a_link_in_it">Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a>]</span> <span class="mw-headline" id="Section_with_a_link_in_it">Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</span></h2>
 
 !! end
 
@@ -4166,9 +4166,9 @@ __TOC__
 <li class="toclevel-1 tocsection-3"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
 
 !! end
 
@@ -4190,10 +4190,10 @@ The line above must have a trailing space!
 --> <!-- -->
 But just in case it doesn't...
 !! result
-<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D">=</span></h1>
+<h1><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D">=</span></h1>
 <p>The line above must have a trailing space!
 </p>
-<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D_2">=</span></h1>
+<h1><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: =">edit</a>]</span> <span class="mw-headline" id=".3D_2">=</span></h1>
 <p>But just in case it doesn't...
 </p>
 !! end
@@ -4229,19 +4229,19 @@ section 5
 <li class="toclevel-1 tocsection-5"><a href="#text_.22_text"><span class="tocnumber">5</span> <span class="toctext">text " text</span></a></li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: text > text">edit</a>]</span> <span class="mw-headline" id="text_.3E_text"> text &gt; text </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: text > text">edit</a>]</span> <span class="mw-headline" id="text_.3E_text"> text &gt; text </span></h2>
 <p>section 1
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: text &lt; text">edit</a>]</span> <span class="mw-headline" id="text_.3C_text"> text &lt; text </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: text &lt; text">edit</a>]</span> <span class="mw-headline" id="text_.3C_text"> text &lt; text </span></h2>
 <p>section 2
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text &amp; text">edit</a>]</span> <span class="mw-headline" id="text_.26_text"> text &amp; text </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: text &amp; text">edit</a>]</span> <span class="mw-headline" id="text_.26_text"> text &amp; text </span></h2>
 <p>section 3
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text ' text">edit</a>]</span> <span class="mw-headline" id="text_.27_text"> text ' text </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: text ' text">edit</a>]</span> <span class="mw-headline" id="text_.27_text"> text ' text </span></h2>
 <p>section 4
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: text &quot; text">edit</a>]</span> <span class="mw-headline" id="text_.22_text"> text " text </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: text &quot; text">edit</a>]</span> <span class="mw-headline" id="text_.22_text"> text " text </span></h2>
 <p>section 5
 </p>
 !! end
@@ -4428,7 +4428,7 @@ Media link to nonexistent file (bug 1702)
 !! input
 [[Media:No such.jpg]]
 !! result
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="No such.jpg">Media:No such.jpg</a>
+<p><a href="/wiki/Special:Upload?wpDestFile=No_such.jpg" class="new" title="No such.jpg">Media:No such.jpg</a>
 </p>
 !! end
 
@@ -4437,7 +4437,7 @@ Image link to nonexistent file (bug 1850 - good)
 !! input
 [[Image:No such.jpg]]
 !! result
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="File:No such.jpg">File:No such.jpg</a>
+<p><a href="/wiki/Special:Upload?wpDestFile=No_such.jpg" class="new" title="File:No such.jpg">File:No such.jpg</a>
 </p>
 !! end
 
@@ -4446,7 +4446,7 @@ Image link to nonexistent file (bug 1850 - good)
 !! input
 [[:Image:No such.jpg]]
 !! result
-<p><a href="/index.php?title=File:No_such.jpg&amp;action=edit&amp;redlink=1" class="new" title="File:No such.jpg (page does not exist)">Image:No such.jpg</a>
+<p><a href="/wiki/File:No_such.jpg?action=edit&amp;redlink=1" class="new" title="File:No such.jpg (page does not exist)">Image:No such.jpg</a>
 </p>
 !! end
 
@@ -5451,7 +5451,7 @@ Fuzz testing: Parser14
 == onmouseover= ==
 http://__TOC__
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</span> <span class="mw-headline" id="onmouseover.3D"> onmouseover= </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</span> <span class="mw-headline" id="onmouseover.3D"> onmouseover= </span></h2>
 http://<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
@@ -5466,7 +5466,7 @@ Fuzz testing: Parser14-table
 ==a==
 {| STYLE=__TOC__
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a>]</span> <span class="mw-headline" id="a">a</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: a">edit</a>]</span> <span class="mw-headline" id="a">a</span></h2>
 <table style="&#95;_TOC&#95;_">
 <tr><td></td></tr>
 </table>
@@ -5770,7 +5770,7 @@ Transclusion of nonexistent MediaWiki message
 !! input
 {{MediaWiki:Mainpagexxx}}
 !!result
-<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=edit&amp;redlink=1" class="new" title="MediaWiki:Mainpagexxx (page does not exist)">MediaWiki:Mainpagexxx</a>
+<p><a href="/wiki/MediaWiki:Mainpagexxx?action=edit&amp;redlink=1" class="new" title="MediaWiki:Mainpagexxx (page does not exist)">MediaWiki:Mainpagexxx</a>
 </p>
 !! end
 
@@ -6688,7 +6688,7 @@ Say the magic word
 </li><li> Talk
 </li><li> 
 </li><li> 
-</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a>
+</li><li> <a href="/wiki/Template:Dynamic?action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a>
 </li></ul>
 
 !! end
@@ -6921,7 +6921,7 @@ Double RFC with a wiki link
 !! input
 RFC [[RFC 1234]]
 !! result
-<p>RFC <a href="/index.php?title=RFC_1234&amp;action=edit&amp;redlink=1" class="new" title="RFC 1234 (page does not exist)">RFC 1234</a>
+<p>RFC <a href="/wiki/RFC_1234?action=edit&amp;redlink=1" class="new" title="RFC 1234 (page does not exist)">RFC 1234</a>
 </p>
 !! end
 
@@ -7055,7 +7055,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../|L2]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1/L2 (page does not exist)">L2</a>
+<p><a href="/wiki/Subpage_test/L1/L2?action=edit&amp;redlink=1" class="new" title="Subpage test/L1/L2 (page does not exist)">L2</a>
 </p>
 !! end
 
@@ -7067,7 +7067,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1/L2 (page does not exist)">Subpage test/L1/L2</a>
+<p><a href="/wiki/Subpage_test/L1/L2?action=edit&amp;redlink=1" class="new" title="Subpage test/L1/L2 (page does not exist)">Subpage test/L1/L2</a>
 </p>
 !! end
 
@@ -7082,8 +7082,8 @@ subpage title=[[Subpage test/L1/L2/L3]]
 
 [[../../|L1]]l
 !! result
-<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1</a>2
-</p><p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1l</a>
+<p><a href="/wiki/Subpage_test/L1?action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1</a>2
+</p><p><a href="/wiki/Subpage_test/L1?action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">L1l</a>
 </p>
 !! end
 
@@ -7105,7 +7105,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../../////]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1//// (page does not exist)">///</a>
+<p><a href="/wiki/Subpage_test/L1////?action=edit&amp;redlink=1" class="new" title="Subpage test/L1//// (page does not exist)">///</a>
 </p>
 !! end
 
@@ -7146,7 +7146,7 @@ RAW magic word
 !! input
 {{RAW:QUERTY}}
 !! result
-<p><a href="/index.php?title=Template:QUERTY&amp;action=edit&amp;redlink=1" class="new" title="Template:QUERTY (page does not exist)">Template:QUERTY</a>
+<p><a href="/wiki/Template:QUERTY?action=edit&amp;redlink=1" class="new" title="Template:QUERTY (page does not exist)">Template:QUERTY</a>
 </p>
 !! end
 
@@ -7183,7 +7183,7 @@ Inclusion of !userCanEdit() content
 !! input
 {{MediaWiki:Fake}}
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline" id="header">header</span></h2>
+<h2><span class="editsection">[<a href="/wiki/MediaWiki:Fake?action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline" id="header">header</span></h2>
 
 !! end
 
@@ -7214,12 +7214,12 @@ Out-of-order TOC heading levels
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline" id="2">2</span></h2>
-<h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline" id="6">6</span></h6>
-<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline" id="3">3</span></h3>
-<h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a>]</span> <span class="mw-headline" id="1">1</span></h1>
-<h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a>]</span> <span class="mw-headline" id="5">5</span></h5>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a>]</span> <span class="mw-headline" id="2_2">2</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline" id="2">2</span></h2>
+<h6><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline" id="6">6</span></h6>
+<h3><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline" id="3">3</span></h3>
+<h1><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=4" title="Edit section: 1">edit</a>]</span> <span class="mw-headline" id="1">1</span></h1>
+<h5><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=5" title="Edit section: 5">edit</a>]</span> <span class="mw-headline" id="5">5</span></h5>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=6" title="Edit section: 2">edit</a>]</span> <span class="mw-headline" id="2_2">2</span></h2>
 
 !! end
 
@@ -7517,7 +7517,7 @@ language=sr variant=sr-ec
 !! input
 == -{Naslov}- ==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
 
 !! end
 
@@ -7760,7 +7760,7 @@ Morwen/13: Unclosed link followed by heading
 !! result
 <p>[[link
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline" id="heading">heading</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline" id="heading">heading</span></h2>
 
 !! end
 
@@ -7784,7 +7784,7 @@ HHP2.2: Heuristics for headings in preprocessor parenthetical structures
 !! result
 <p>{{foo|
 </p>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline" id="heading">heading</span></h2>
+<h2><span class="editsection">[<a href="/wiki/Parser_test?action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline" id="heading">heading</span></h2>
 
 !! end
 
@@ -8058,7 +8058,7 @@ wgUseDynamicDates=1
 !! input
 [[2009-03-24]]
 !! result
-<p><span class="mw-formatted-date" title="2009-03-24"><a href="/index.php?title=2009&amp;action=edit&amp;redlink=1" class="new" title="2009 (page does not exist)">2009</a>-<a href="/index.php?title=March_24&amp;action=edit&amp;redlink=1" class="new" title="March 24 (page does not exist)">03-24</a></span>
+<p><span class="mw-formatted-date" title="2009-03-24"><a href="/wiki/2009?action=edit&amp;redlink=1" class="new" title="2009 (page does not exist)">2009</a>-<a href="/wiki/March_24?action=edit&amp;redlink=1" class="new" title="March 24 (page does not exist)">03-24</a></span>
 </p>
 !!end
 
@@ -8087,7 +8087,7 @@ wgUseDynamicDates=false
 !! input
 [[2009-03-24]]
 !! result
-<p><a href="/index.php?title=2009-03-24&amp;action=edit&amp;redlink=1" class="new" title="2009-03-24 (page does not exist)">2009-03-24</a>
+<p><a href="/wiki/2009-03-24?action=edit&amp;redlink=1" class="new" title="2009-03-24 (page does not exist)">2009-03-24</a>
 </p>
 !! end
 
@@ -8107,7 +8107,7 @@ wgUseDynamicDates=true
 !! input
 [[January 15]]
 !! result
-<p><span class="mw-formatted-date" title="01-15"><a href="/index.php?title=January_15&amp;action=edit&amp;redlink=1" class="new" title="January 15 (page does not exist)">January 15</a></span>
+<p><span class="mw-formatted-date" title="01-15"><a href="/wiki/January_15?action=edit&amp;redlink=1" class="new" title="January 15 (page does not exist)">January 15</a></span>
 </p>
 !! end
 
@@ -8201,7 +8201,7 @@ title=[[Subpage test]]
 !! input
 Poked at a [[/subpage]] here...
 !! result
-Poked at a <a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> here...
+Poked at a <a href="/wiki//subpage?action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> here...
 !!end
 
 !! test
@@ -8245,7 +8245,7 @@ comment
 !!input
 [[ABC%33D% ++]] [[ABC%33D% ++|+%20]]
 !! result
-<a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
+<a href="/wiki/ABC3D%25_%2B%2B?action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/wiki/ABC3D%25_%2B%2B?action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
 !! end
 
 !! test
@@ -8346,7 +8346,7 @@ this is not the the title
 !! result
 Screen
 <p>this is not the the title
-<a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
+<a href="/wiki/Template:DISPLAYTITLE:screen?action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
 !! end
 
@@ -8442,10 +8442,10 @@ percent-encoding and + signs in internal links (Bug 26410)
 [[%]] [[+]] [[image:%+abc%39|foo|[[bar]]]]
 [[%33%45]] [[%33%45+]]
 !! result
-<p><a href="/index.php?title=User:%2B%25&amp;action=edit&amp;redlink=1" class="new" title="User:+% (page does not exist)">User:+%</a> <a href="/index.php?title=Page%2Btitle%25&amp;action=edit&amp;redlink=1" class="new" title="Page+title% (page does not exist)">Page+title%</a>
-<a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%20</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+ </a> <a href="/index.php?title=%25%2Br&amp;action=edit&amp;redlink=1" class="new" title="%+r (page does not exist)">%+r</a>
-<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9">bar</a>
-<a href="/index.php?title=3E&amp;action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/index.php?title=3E%2B&amp;action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
+<p><a href="/wiki/User:%2B%25?action=edit&amp;redlink=1" class="new" title="User:+% (page does not exist)">User:+%</a> <a href="/wiki/Page%2Btitle%25?action=edit&amp;redlink=1" class="new" title="Page+title% (page does not exist)">Page+title%</a>
+<a href="/wiki/%25%2B?action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+</a> <a href="/wiki/%25%2B?action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%20</a> <a href="/wiki/%25%2B?action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+ </a> <a href="/wiki/%25%2Br?action=edit&amp;redlink=1" class="new" title="%+r (page does not exist)">%+r</a>
+<a href="/wiki/%25?action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/wiki/%2B?action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <a href="/wiki/Special:Upload?wpDestFile=%25%2Babc9" class="new" title="File:%+abc9">bar</a>
+<a href="/wiki/3E?action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/wiki/3E%2B?action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
 </p>
 !! end
 
@@ -8455,8 +8455,8 @@ Special characters in embedded file links (bug 27679)
 [[File:Contains & ampersand.jpg]]
 [[File:Does not exist.jpg|Title with & ampersand]]
 !! result
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg">File:Contains &amp; ampersand.jpg</a>
-<a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
+<p><a href="/wiki/Special:Upload?wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg">File:Contains &amp; ampersand.jpg</a>
+<a href="/wiki/Special:Upload?wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
 </p>
 !! end
 

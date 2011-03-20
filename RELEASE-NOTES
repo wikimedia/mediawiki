@@ -118,6 +118,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27924) PhpHttpRequest doesn't return response body if HTTP != 200
 * Added hook BitmapHandlerTransform to allow extension to transform a file 
   without overriding the entire handler.
+* Generates nicer URL whenever possible.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
