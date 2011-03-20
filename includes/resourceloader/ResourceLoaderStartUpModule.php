@@ -178,7 +178,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'lang' => $context->getLanguage(),
 				'skin' => $context->getSkin(),
 				'debug' => $context->getDebug() ? 'true' : 'false',
-				'version' => wfTimestamp( TS_ISO_8601_BASIC, round( $version, -2 ) )
+				'version' => wfTimestamp( TS_ISO_8601_BASIC, $version )
 			);
 			// Ensure uniform query order
 			ksort( $query );
