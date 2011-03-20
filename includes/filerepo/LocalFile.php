@@ -659,7 +659,7 @@ class LocalFile extends File {
 	 * Delete cached transformed files
 	 */
 	function purgeThumbnails() {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgExcludeFromThumbnailPurge;
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
@@ -667,6 +667,12 @@ class LocalFile extends File {
 		$urls = array();
 
 		foreach ( $files as $file ) {
+			// Only remove files not in the $wgExcludeFromThumbnailPurge configuration variable
+			$ext = pathinfo( "$dir/$file", PATHINFO_EXTENSION );
+			if ( in_array( $ext, $wgExcludeFromThumbnailPurge ) ) {
+				continue;
+			}
+			
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
