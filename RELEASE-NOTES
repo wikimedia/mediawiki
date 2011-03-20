@@ -269,6 +269,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28104) Namespace for local pages in interwiki backlinks (iwbacklinks)
   is missing
 * (bug 27343) Add parseddescription to list=filearchive
+* (bug 27469) label implicit groups in list=allusers&auprop=groups/
+  list=users&usprop=groups
 
 === Languages updated in 1.18 ===
 
