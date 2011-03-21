@@ -224,8 +224,8 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
 		$rows = $conn->numRows( $conn->query( $SQL ) );
+		$safedb = $conn->addIdentifierQuotes( $dbName );
 		if( !$rows ) {
-			$safedb = $conn->addIdentifierQuotes( $dbName );
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
 		} else {
 			$conn->query( "ALTER DATABASE $safedb OWNER TO $safeuser", __METHOD__ );
