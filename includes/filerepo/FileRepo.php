@@ -108,6 +108,7 @@ abstract class FileRepo {
 		if ( !is_array( $options ) ) {
 			// MW 1.15 compat
 			$time = $options;
+			$options = array();
 		} else {
 			$time = isset( $options['time'] ) ? $options['time'] : false;
 		}
@@ -218,6 +219,7 @@ abstract class FileRepo {
 		if ( !is_array( $options ) ) {
 			# MW 1.15 compat
 			$time = $options;
+			$options = array();
 		} else {
 			$time = isset( $options['time'] ) ? $options['time'] : false;
 		}
