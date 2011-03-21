@@ -109,7 +109,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
-					'template1' );
+					'postgres' );
 			} else {
 				$db = new DatabasePostgres(
 					$this->getVar( 'wgDBserver' ),
