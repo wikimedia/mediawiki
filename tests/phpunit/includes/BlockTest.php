@@ -35,7 +35,7 @@ class BlockTest extends MediaWikiTestCase {
 	
 	function testInitializerFunctionsReturnCorrectBlock() {
 		
-		$this->assertTrue( $this->block->equals( Block::newFromDB('UTBlockee') ), "newFromDB() returns the same block as the one that was made");
+		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
 		
 		$this->assertTrue( $this->block->equals( Block::newFromID( 1 ) ), "newFromID() returns the same block as the one that was made");
 		

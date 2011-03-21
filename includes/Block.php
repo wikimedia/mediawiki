@@ -711,7 +711,7 @@ class Block {
 
 		# It's okay to autoblock. Go ahead and create/insert the block.
 
-		$ipblock = Block::newFromDB( $autoblockIP );
+		$ipblock = Block::newFromTarget( $autoblockIP );
 		if ( $ipblock ) {
 			# If the user is already blocked. Then check if the autoblock would
 			# exceed the user block. If it would exceed, then do nothing, else

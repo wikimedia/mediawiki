@@ -1119,16 +1119,16 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $table String: table name
 	 * @param $vars String: the selected variables
 	 * @param $conds Array: a condition map, terms are ANDed together.
-	 *   Items with numeric keys are taken to be literal conditions
-	 * Takes an array of selected variables, and a condition map, which is ANDed
-	 * e.g: selectRow( "page", array( "page_id" ), array( "page_namespace" =>
-	 * NS_MAIN, "page_title" => "Astronomy" ) )   would return an object where
-	 * $obj- >page_id is the ID of the Astronomy article
+	 *     Items with numeric keys are taken to be literal conditions
+	 *     Takes an array of selected variables, and a condition map, which is ANDed
+	 *     e.g: selectRow( "page", array( "page_id" ), array( "page_namespace" =>
+	 *     NS_MAIN, "page_title" => "Astronomy" ) )   would return an object where
+	 *     $obj- >page_id is the ID of the Astronomy article
 	 * @param $fname String: Calling function name
 	 * @param $options Array
 	 * @param $join_conds Array
 	 *
-	 * @todo migrate documentation to phpdocumentor format
+	 * @return ResultWrapper|Bool
 	 */
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow', $options = array(), $join_conds = array() ) {
 		$options['LIMIT'] = 1;
@@ -3174,7 +3174,7 @@ class ResultWrapper implements Iterator {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @return MySQL row object
+	 * @return object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
@@ -3185,7 +3185,7 @@ class ResultWrapper implements Iterator {
 	 * Fetch the next row from the given result object, in associative array
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 *
-	 * @return MySQL row object
+	 * @return Array
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
