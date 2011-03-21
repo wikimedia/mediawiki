@@ -3087,7 +3087,8 @@ class Title {
 			}
 		}
 
-		$pageid = $this->getArticleID();
+		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
+		$pageid = $this->getArticleID( GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
 		if ( $nt->exists() ) {
 			$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
@@ -3098,6 +3099,8 @@ class Title {
 		}
 
 		if ( is_array( $err ) ) {
+			# FIXME: What about the File we have already moved?
+			$dbw->rollback();
 			return $err;
 		}
 		$redirid = $this->getArticleID();
@@ -3158,6 +3161,8 @@ class Title {
 		$u = new SearchUpdate( $redirid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
+		$dbw->commit();
+		
 		# Update site_stats
 		if ( $this->isContentPage() && !$nt->isContentPage() ) {
 			# No longer a content page

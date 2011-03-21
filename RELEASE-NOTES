@@ -500,6 +500,8 @@ files are used instead.
 * Fix XML well-formedness on a few pages when $wgHtml5 is true (the default)
 * (bug 28069) MediaWiki fails streaming files when mod_deflate and ob_gzhandler
   are also set.
+* (bug 26223) Concurrently moving an article to different titles leaks a 
+  redirect revision with no page.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
