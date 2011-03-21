@@ -35,6 +35,11 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function getConnectForm() {
+		// If this is our first time here, switch the default user presented in the form
+		if ( ! $this->getVar('_switchedInstallUser') ) {
+			$this->setVar('_InstallUser', 'postgres');
+			$this->setVar('_switchedInstallUser', true);
+		}
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
