@@ -276,6 +276,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   the general site info results
 * (bug 16288) API: consider making closure status of wikis more clear
   with meta=siteinfo
+* (bug 27589) list=allimages&aiprop=archivename is useless
 
 === Languages updated in 1.18 ===
 
