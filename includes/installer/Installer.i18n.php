@@ -3365,6 +3365,11 @@ Il ne doit pas contenir d'espaces.
 
 Si vous utilisez un hébergement web partagé, votre hébergeur vous fournira un nom spécifique de base de données à utiliser, ou bien vous permet de créer des bases de données via un panneau de contrôle.",
 	'config-db-name-oracle' => 'Schéma de base de données :',
+	'config-db-account-oracle-warn' => "Il existe trois scénarios pris en charge pour l’installation d'Oracle comme backend de base : 
+
+Si vous souhaitez créer un compte de base de données dans le cadre de la procédure d’installation, veuillez fournir un compte avec le rôle de SYSDBA comme compte de base de données pour l’installation et spécifiez les informations d’identification souhaitées pour le compte d'accès au web, sinon vous pouvez créer le compte d’accès web manuellement et fournir uniquement ce compte (si elle a exigé des autorisations nécessaires pour créer les objets de schéma) ou fournir deux comptes différents, l’un avec les privilèges de créer et une restreinte pour l’accès web. 
+
+Un script pour créer un compte avec des privilèges requis peut être trouvé dans le répertoire « entretien/oracle/ » de cette installation. N’oubliez pas que le fait de l’utilisation d’un compte limité désactive toutes les fonctionnalités d’entretien avec le compte par défaut.",
 	'config-db-install-account' => "Compte d'utilisateur pour l'installation",
 	'config-db-username' => 'Nom d’utilisateur de la base de données :',
 	'config-db-password' => 'Mot de passe de la base de données :',
@@ -10116,9 +10121,16 @@ O nome não deve conter espaços.
 
 Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder fornecer-lhe o nome de uma base de dados que possa usar, ou permite-lhe criar bases de dados através de um painel de controle.',
 	'config-db-name-oracle' => "Esquema ''(schema)'' da base de dados:",
+	'config-db-account-oracle-warn' => "Há três cenários suportados na instalação do servidor de base de dados Oracle: 
+
+Se pretende criar a conta de acesso pela internet na base de dados durante o processo de instalação, forneça como conta para a instalação uma conta com o papel de SYSDBA na base de dados e especifique as credenciais desejadas para a conta de acesso pela internet. Se não pretende criar a conta de acesso pela internet durante a instalação, pode criá-la manualmente e fornecer só essa conta para a instalação (se ela tiver as permissões necessárias para criar os objectos do esquema ''(schema)''). A terceira alternativa é fornecer duas contas diferentes; uma com privilégios de criação e outra com privilégios limitados para o acesso pela internet.
+
+Existe um script para criação de uma conta com os privilégios necessários no directório \"maintenance/oracle/\" desta instalação. Mantenha em mente que usar uma conta com privilégios limitados impossibilita todas as operações de manutenção com a conta padrão.",
 	'config-db-install-account' => 'Conta do utilizador para a instalação',
 	'config-db-username' => 'Nome do utilizador da base de dados:',
 	'config-db-password' => 'Palavra-chave do utilizador da base de dados:',
+	'config-db-password-empty' => 'Introduza a palavra-chave do novo utilizador da base de dados: $1.
+Embora seja possível criar utilizadores sem palavra-chave, fazê-lo não é seguro.',
 	'config-db-install-username' => 'Introduza o nome de utilizador que será usado para aceder à base de dados durante o processo de instalação. Este utilizador não é o do MediaWiki; é o utilizador da base de dados.',
 	'config-db-install-password' => 'Introduza a palavra-chave do utilizador que será usado para aceder à base de dados durante o processo de instalação. Esta palavra-chave não é a do utilizador do MediaWiki; é a palavra-chave do utilizador da base de dados.',
 	'config-db-install-help' => 'Introduza o nome de utilizador e a palavra-chave que serão usados para aceder à base de dados durante o processo de instalação.',
@@ -10191,6 +10203,8 @@ Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e hífens (-) dos c
 Verifique o servidor, o nome do utilizador e a palavra-chave abaixo e tente novamente.',
 	'config-invalid-schema' => "O esquema ''(schema)'' do MediaWiki, \"\$1\", é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.",
+	'config-db-sys-create-oracle' => 'O instalador só permite criar uma conta nova usando uma conta SYSDBA.',
+	'config-db-sys-user-exists-oracle' => 'A conta "$1" já existe. A conta SYSDBA só pode criar uma conta nova!',
 	'config-postgres-old' => 'É necessário o PostgreSQL $1 ou posterior; tem a versão $2.',
 	'config-sqlite-name-help' => 'Escolha o nome que identificará a sua wiki.
 Não use espaços ou hífens.
@@ -10272,6 +10286,8 @@ Todos os nomes das páginas neste espaço nominal começam com um determinado pr
 Tradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como "#" ou ":".',
 	'config-ns-invalid' => 'O espaço nominal especificado "<nowiki>$1</nowiki>" é inválido.
 Introduza um espaço nominal de projecto diferente.',
+	'config-ns-conflict' => 'O espaço nominal que especificou, "<nowiki>$1</nowiki>", cria um conflito com um dos espaços nominais padrão do MediaWiki.
+Especifique um espaço nominal do projecto diferente.',
 	'config-admin-box' => 'Conta de administrador',
 	'config-admin-name' => 'O seu nome:',
 	'config-admin-password' => 'Palavra-chave:',
@@ -10318,6 +10334,7 @@ Após a instalação, estarão disponíveis mais configurações de privilégios
 	'config-license-none' => 'Sem rodapé com a licença',
 	'config-license-cc-by-sa' => 'Atribuição - Partilha nos Mesmos Termos, da Creative Commons',
 	'config-license-cc-by-nc-sa' => 'Atribuição - Uso Não-Comercial - Partilha nos Mesmos Termos, da Creative Commons',
+	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ou posterior',
 	'config-license-pd' => 'Domínio Público',
@@ -10384,6 +10401,11 @@ Sites de tamanho médio ou grande são altamente encorajados a activar esta func
 Deve-se colocar um por linha e indicar a porta a utilizar. Por exemplo:
  127.0.0.1:11211
  192.168.1.25:1234',
+	'config-memcache-needservers' => 'Seleccionou o Memcached como tipo de chache, mas não especificou nenhum servidor.',
+	'config-memcache-badip' => 'Introduziu um endereço IP inválido para o Memcached: $1.',
+	'config-memcache-noport' => 'Não especificou a porta a usar para o servidor Memcached: $1.
+Se não sabe qual é a porta, a predefinida é a 11211.',
+	'config-memcache-badport' => 'Os números das portas do Memcached devem estar entre $1 e $2.',
 	'config-extensions' => 'Extensões',
 	'config-extensions-help' => 'Foi detectada a existência das extensões listadas acima, no seu directório <code>./extensions</code>.
 

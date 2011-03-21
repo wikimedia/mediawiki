@@ -3106,6 +3106,10 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:Watchlist/raw|Liestenfor
 'tags-edit'               => 'beoarbaidje',
 'tags-hitcount'           => '$1 {{PLURAL:$1|Annerenge|Annerengen}}',
 
+# Special:ComparePages
+'comparepages'     => 'Sieden ferglieke',
+'compare-selector' => 'Siedeversione ferglieke',
+
 # Database error messages
 'dberr-header'      => 'Dit Wiki häd n Problem',
 'dberr-problems'    => 'Äntskeeldenge. Disse Siede häd apstuuns techniske Meelasje.',

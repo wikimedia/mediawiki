@@ -2417,7 +2417,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'             => 'Spațiu de nume:',
-'invert'                => 'Inversează selecţia',
+'invert'                => 'Inversează selecția',
 'namespace_association' => 'Spații de nume asociate',
 'blanknamespace'        => 'Articole',
 

@@ -2489,6 +2489,9 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
+'autoblockid'                     => 'Autoblok #$1',
+'block'                           => 'Zablokovat uživatele/IP adresu',
+'unblock'                         => 'Odblokovat uživatele/IP adresu',
 'blockip'                         => 'Zablokovat uživatele',
 'blockip-title'                   => 'Blokovat uživatele',
 'blockip-legend'                  => 'Zablokovat uživatele',
@@ -2507,6 +2510,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 ** Zastrašování nebo vyhrožování
 ** Zneužívání více účtů
 ** Nevhodné uživatelské jméno',
+'ipb-hardblock'                   => 'Zabránit přihlášeným uživatelům editovat z této IP adresy',
 'ipbcreateaccount'                => 'Nedovolit registraci nových uživatelů',
 'ipbemailban'                     => 'Bránit uživateli v posílání e-mailů',
 'ipbenableautoblock'              => 'Automaticky blokovat IP adresy používané tímto uživatelem',
@@ -2517,6 +2521,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbotherreason'                  => 'Jiný/další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
+'ipb-disableusertalk'             => 'Zabránit tomuto uživateli editovat vlastní uživatelskou diskusi po dobu zablokování',
 'ipb-change-block'                => 'Znovu zablokovat uživatele s tímto nastavením',
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
@@ -2585,6 +2590,7 @@ Zde je pro přehled zobrazen výpis z knihy zablokování:',
 'ipb-needreblock'                 => '== Již zablokován(a) ==
 $1 je již zablokován(a). Chcete změnit nastavení bloku?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}',
+'unblock-hideuser'                => 'Tohoto uživatele nemůžete odblokovat, protože jeho uživatelské jméno bylo skryto.',
 'ipb_cant_unblock'                => 'Chyba: Blokování s ID $1 nebylo nalezeno. Uživatel již možná byl odblokován.',
 'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 není blokována přímo a tak ji nelze odblokovat. Je částí zablokovaného rozsahu $2, který může být odblokován.',
 'ip_range_invalid'                => 'Neplatný IP rozsah.',
