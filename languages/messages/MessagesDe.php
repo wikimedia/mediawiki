@@ -970,11 +970,12 @@ Um die Seite anzulegen, trage deinen Text in die untenstehende Box ein (siehe di
 Bist du fälschlicherweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
-<span class="plainlinks">in den zugehörigen [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
+Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>,
+ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
+oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten]</span>.',
 'noarticletext-nopermission'       => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst ihren Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
-oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
+Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
+oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ existiert nicht.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.

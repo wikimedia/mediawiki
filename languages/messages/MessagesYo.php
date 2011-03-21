@@ -101,6 +101,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Oge fọ́ntì ààlà àtúnṣe:',
 'editfont-default'   => 'Ti agbétàkùn',
+'editfont-monospace' => 'Fọ́ntì oníààyè kan',
 'editfont-sansserif' => 'Fọnti san-sẹrif',
 'editfont-serif'     => 'Fọnti sẹrif',
 
@@ -174,6 +175,7 @@ $messages = array(
 'index-category'                 => 'Àwọn ojúewé títọ́kasí',
 'noindex-category'               => 'Àwọn ojúewé àìjẹ́ títọ́kasí',
 
+'mainpagetext'      => "'''MediaWiki ti jẹ́ gbígbékọ́sínú láyọrísírere.'''",
 'mainpagedocfooter' => "Ẹ ṣàbẹ̀wò sí [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.
 
 == Láti bẹ̀rẹ̀ ==
@@ -233,6 +235,7 @@ $messages = array(
 'printableversion'  => 'Àtẹ̀jáde tóṣeétẹ̀síìwé',
 'permalink'         => 'Ìjápọ̀ tíkòníyípadà',
 'print'             => 'Ìtẹ̀síìwé',
+'view'              => 'Ìwòran',
 'edit'              => 'Àtúnṣe',
 'create'            => 'Ṣèdá',
 'editthispage'      => "S'àtúnṣe ojúewé yi",
@@ -240,6 +243,7 @@ $messages = array(
 'delete'            => 'Ìparẹ́',
 'deletethispage'    => 'Pa ojúewé yi rẹ́',
 'undelete_short'    => 'Ìdápadà ìparẹ́ {{PLURAL:$1|àtúnṣe kan|àwọn àtúnṣe $1}}',
+'viewdeleted_short' => 'Ìwòran {{PLURAL:$1|àtúnṣe ajẹ́píparẹ́ kan|àwọn àtúnṣe ajẹ́píparẹ́ $1}}',
 'protect'           => 'Àbò',
 'protect_change'    => 'yípadà',
 'protectthispage'   => 'Dá àbò bo ojúewé yìí',
@@ -322,6 +326,8 @@ $1',
 'toc'                     => 'Àwọn àkóónú',
 'showtoc'                 => 'fihàn',
 'hidetoc'                 => 'bòmọ́lẹ̀',
+'collapsible-collapse'    => 'Kálura',
+'collapsible-expand'      => 'Fẹ̀hàn',
 'thisisdeleted'           => 'Ìfihàn tàbí ìmúpadà $1?',
 'viewdeleted'             => 'Ẹ wo $1?',
 'restorelink'             => '{{PLURAL:$1|àtúnṣe ajẹ́píparẹ́ kan|àwọn àtúnṣe ajẹ́píparẹ́ $1}}',
@@ -374,6 +380,7 @@ Tí kì bá ṣe bẹ́ẹ̀, ó lè jẹ́ pé ẹ ti rí àsìṣe nínú atò
 'readonly_lag'         => 'Ibùdó dátà ti jẹ́ títìpa fúnrararẹ̀ kí àwọn ẹ̀rọ awọ̀fà ẹrú ibùdó dátà le baà yára bíi ti àwọn ẹ̀rọ awọ̀fà ọ̀gà.',
 'internalerror'        => 'Àsìṣe inú',
 'internalerror_info'   => 'Àsìṣe inú: $1',
+'fileappenderrorread'  => '"$1" kò ṣe é kà lásìkò ìlẹ̀mọ́.',
 'fileappenderror'      => 'Kò le so "$1" pọ̀ mọ́ "$2".',
 'filecopyerror'        => 'Àwòkọ faili "$1" sí "$2" kò ṣe é ṣe.',
 'filerenameerror'      => 'Àtúnsọlórúkọ fáìlì "$1" sí "$2" kò ṣe é ṣe.',
@@ -430,6 +437,7 @@ A ti ṣ'èdá àpamọ́ yín.
 'yourpassword'               => 'Ọ̀rọ̀ìpamọ́:',
 'yourpasswordagain'          => 'Kọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
 'remembermypassword'         => "Ṣè'rántí ìwọlé mi lórí kọ̀mpútà yìí (fún ó pẹ́ jù {{PLURAL:$1|ọjọ́|ọjọ́}} $1)",
+'securelogin-stick-https'    => 'Ìwàní sísopọ̀ mọ́ HTTPS lẹ́yín ìwọlé',
 'yourdomainname'             => 'Domain yín:',
 'externaldberror'            => 'Bóyá àsìṣe ìfidájú ibùdó dátà ló ṣẹlẹ̀ tàbí ẹ kò jẹ́ gbígbà ní ààyè láti sọ àpamọ́ òde yín di ọ̀tun.',
 'login'                      => 'Ìwọlé',
@@ -513,7 +521,11 @@ E-mail kankan kò ní jẹ́ fífiránṣẹ́ fún ìkankan nínú àwọn ìn�
 'usernamehasherror'          => 'Orúkọ oníṣe yín kò gbọdọ̀ ní àmílẹ́tà hash',
 'login-throttled'            => 'Ẹ ti gbìyànjú bó ṣe yẹ lọ láti wọlé.
 Ẹ jọ̀wọ́ ẹ dúró ná kí ẹ tó gbìyànjú lẹ́ẹ̀kan síi.',
+'login-abort-generic'        => 'Ìwọlé yín kò yọrísírere - ó ti jẹ́ kíkáwọ́dà',
 'loginlanguagelabel'         => 'Èdè: $1',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Àsìṣe àìmọ̀ nínú ìgbéṣe mail() ti PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Ìdíye okun ọ̀rọ̀ìpamọ́: $1',
@@ -655,6 +667,10 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 '''Kò tíì jẹ́ mímúpamọ́!'''",
 'userjspreview'                    => "''''Ẹ mọ́ gbàgbé pé àdánwò/àkọ́yẹ̀wò JavaScript oníṣe yín nìyí.'''
 '''Kò tíì jẹ́ mímúpamọ́!'''",
+'sitecsspreview'                   => "'''Ẹ rántí pé àkọ́yẹ̀wò CSS nìyí.'''
+'''Kò tíì jẹ́ mímúpamọ!'''",
+'sitejspreview'                    => "'''Ẹ rántí pé àkọ́yẹ̀wò àmìọ̀rọ̀ JavaScript nìyí.'''
+'''Kò tíì jẹ́ mímúpamọ!'''",
 'userinvalidcssjstitle'            => "'''Ìkìlọ̀:''' Kò sí awọ-ìbojú \"\$1\".
 Ẹ rántí pé àwọn ojúewé àkànṣe .css àti .js únlo àkọlé onílẹ́tà kékeré, f.a. {{ns:user}}:Foo/vector.css yàtò sí {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Sísọdọ̀tun)',
@@ -770,7 +786,7 @@ Kò ṣe àlàyé kankan.',
 Ẹ gbìyànjú láti [[Special:Search|wá inú wiki náà]] fún àwọn ojúewé tóbáramu.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(àríwí ti jẹ́ yíyọkúrò)',
+'rev-deleted-comment'         => '(ìyọkúrò àkótán àtúnṣe)',
 'rev-deleted-user'            => '(orúkọ oníṣe ti jẹ́ yíyọkúrò)',
 'rev-deleted-event'           => '(àkọọ́lẹ̀ ti jẹ́ yíyọkúrò)',
 'rev-deleted-user-contribs'   => '[orúkọ oníṣe tàbí àdírẹ́sì IP jẹ́ yíyọkúrò - àtúnṣe jẹ́ bíbòmọ́lẹ̀ kúrò nínú àwọn àfikún]',
@@ -1130,6 +1146,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'right-override-export-depth' => 'Ìkójáde àwọn ojúewé lámùúpọ̀ mọ́ àwọn ojúewé jíjápọ̀ títí dé ìbú 5',
 'right-sendemail'             => 'Fi e-mail ránṣẹ́ sí àwọn oníṣe míràn',
 'right-revisionmove'          => 'Ìyípò àwọn àtúnyẹ̀wò',
+'right-disableaccount'        => 'Ìdálẹ́kun àwọn àkópamọ́',
 
 # User rights log
 'rightslog'     => 'Àwọn ẹ̀tọ́ oníṣe',
@@ -1262,16 +1279,23 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'upload-options'        => 'Àwọn àṣàyàn ìrùsókè',
 'watchthisupload'       => "M'ójútó fáilì yìí",
 'upload-success-subj'   => 'Ìjásírere ìrùsókè',
+'upload-success-msg'    => 'Ìrùsókè yín láti [$2] ti jásírere. Ó ṣeéwò níbí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'   => 'Ìṣòro ìrùsókè',
 'upload-failure-msg'    => 'Ìṣòro kan wà pẹ̀lú fọ́ọ̀mù ìrùsókè yín [$2]:
 
 $1',
 'upload-warning-subj'   => 'Ìkìlọ̀ ìrùsókè',
+'upload-warning-msg'    => 'Ìṣòro kan wà pẹ̀lú ìrùsókè yín láti [$2]. Ẹ le padà sí orí [[Special:Upload/stash/$1|fọ́ọ́mù ìrùsókè]] láti ṣàtúnṣe ìṣòro náà.',
 
+'upload-proto-error'        => 'Prótókólù àìtọ́',
 'upload-file-error'         => 'Àsiṣe ínú',
+'upload-misc-error'         => 'Àsìṣe àìmọ̀ ìrùsókè',
 'upload-too-many-redirects' => 'URL náà ní àwọn àtúnjúwe pípọ̀jùlọ',
 'upload-unknown-size'       => 'Iye ìtóbi kòsí',
 'upload-http-error'         => 'Àṣìṣe HTTP ti ṣẹlẹ̀: $1',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'Àtúnraṣe àtòjọ àwọn fáìlì',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ìdínà igbàwọlé',
@@ -1290,6 +1314,7 @@ $1',
 'license'            => 'Ìwé àṣẹ:',
 'license-header'     => 'Ìwé àṣẹ',
 'nolicense'          => 'Ìkankan kò jẹ́ yíyàn',
+'license-nopreview'  => '(Àkọ́yẹ̀wò kò sí)',
 'upload_source_file' => '(fáìlì lórí kọ̀mpútà yín)',
 
 # Special:ListFiles
@@ -1325,6 +1350,7 @@ $1',
 Àkòjọ ìṣàlẹ̀ yìí ṣàfihàn {{PLURAL:$1|ojúewé àkọ́kọ́|ojúewé $1 àkọ́kọ́}} tó jápọ̀ mọ́ fáìlì yìí nìkan.
 [[Special:WhatLinksHere/$2|Àkójọ kíkúnrẹ́rẹ́]] wà nígbèéwọ́.',
 'nolinkstoimage'            => 'Kò sí ojúewé tó jápọ̀ mọ́ fáìlì yìí.',
+'morelinkstoimage'          => 'Ìwòrán [[Special:WhatLinksHere/$1|àwọn ìjápọ̀ míhìn]] sí fáìlì yìí.',
 'sharedupload'              => 'Fáìlì yìí jẹ́ ìrùsókè láti $1 à ṣì le pin pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
 'filepage-nofile'           => 'Kò sí fáìlì pẹ̀lú orúkọ yìí.',
 'filepage-nofile-link'      => 'Kò sí fáìlì pẹ̀lú orúkọ yìí, sùgbọ́n ẹ le [$1 rùúsókè].',

@@ -285,7 +285,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti so MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]",
 
-'about'         => 'Informasion',
+'about'         => 'Informaxion',
 'article'       => 'Voxe',
 'newwindow'     => '(se verze in te na finestra nova)',
 'cancel'        => 'Lassa star',
@@ -394,7 +394,7 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Atuałità',
 'currentevents-url'    => 'Project:Atuałità',
-'disclaimers'          => 'Avertense',
+'disclaimers'          => 'Avertenxe',
 'disclaimerpage'       => 'Project:Avertense xenerali',
 'edithelp'             => 'Guida',
 'edithelppage'         => 'Help:Modifega',

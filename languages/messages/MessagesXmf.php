@@ -11,6 +11,7 @@
  * @author Andrijko Z.
  * @author Dato deutschland
  * @author Dawid Deutschland
+ * @author Kilavagora
  * @author Lika2672
  * @author Machirkholi
  * @author Malafaya
@@ -27,9 +28,14 @@ $messages = array(
 'tog-justify'         => 'გაასწორი პარაგრაფეფ',
 'tog-hideminor'       => 'დოჩული ჭიჭე რედაქტირება ბოლო თირაფეფს',
 'tog-showtoolbar'     => 'რედაქტირაფაშ ინსტრუმენტეფიშ ძირაფა (ჯავასკრიპტ)',
+'tog-showhiddencats'  => 'ქაძირი ფულირი კატეგორიეფი',
 
 'underline-always' => 'ირო',
 'underline-never'  => 'შურო',
+
+# Font style option in Special:Preferences
+'editfont-sansserif' => 'შრიფტი სანს-სერიფი',
+'editfont-serif'     => 'შრიფტი სერიფი',
 
 # Dates
 'sunday'        => 'ჟაშხა',
@@ -84,15 +90,16 @@ $messages = array(
 'dec'           => 'ქირ.',
 
 # Categories related messages
-'pagecategories'         => '{{ანდობური:$1|კატეგორია|კატეგორიეფ}}',
-'category_header'        => 'სტატიეფ "$1"  კატეგორიას',
-'subcategories'          => 'გიმენკატეგორიეფ',
-'category-media-header'  => 'მედია კატეგორიას "$1"',
-'category-empty'         => "''თენა კატეგორიას ვარენა ხასილეფ დო მედია''",
-'hidden-categories'      => '{{ბრელოფეფ:$1|ტყობინაფილ კატეგორია|ტყობინაფილ კატეგორიეფ}}',
-'category-subcat-count'  => '{{PLURAL:$2|თე კატეგორია იკათუანს ხვალე ათე გიმენკატეგორიას.|თე კატეგორიას მოჩამილი რე $1 გიმენკატეგორია $2-შე.}}',
-'category-article-count' => "{{ანდობურ:$2|ათე კატეგორია იკათუანს ხვალე გეყ'ვენჯ ხასილას.|გეყ'ვენჯ {{ანდობურ:$1|ხასილა რე|$1 ხასილეფ რე}} თე კატეგორიას, გვალო $2–შე.}}",
-'listingcontinuesabbrev' => 'გინძარ.',
+'pagecategories'           => '{{ანდობური:$1|კატეგორია|კატეგორიეფ}}',
+'category_header'          => 'სტატიეფ "$1"  კატეგორიას',
+'subcategories'            => 'გიმენკატეგორიეფ',
+'category-media-header'    => 'მედია კატეგორიას "$1"',
+'category-empty'           => "''თენა კატეგორიას ვარენა ხასილეფ დო მედია''",
+'hidden-categories'        => '{{ბრელოფეფ:$1|ტყობინაფილ კატეგორია|ტყობინაფილ კატეგორიეფ}}',
+'hidden-category-category' => 'ფულირი კატეგორიეფი',
+'category-subcat-count'    => '{{PLURAL:$2|თე კატეგორია იკათუანს ხვალე ათე გიმენკატეგორიას.|თე კატეგორიას მოჩამილი რე $1 გიმენკატეგორია $2-შე.}}',
+'category-article-count'   => "{{ანდობურ:$2|ათე კატეგორია იკათუანს ხვალე გეყ'ვენჯ ხასილას.|გეყ'ვენჯ {{ანდობურ:$1|ხასილა რე|$1 ხასილეფ რე}} თე კატეგორიას, გვალო $2–შე.}}",
+'listingcontinuesabbrev'   => 'გინძარ.',
 
 'about'         => '-შენი',
 'article'       => 'სტატია',

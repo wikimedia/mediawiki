@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jose77
+ * @author Odisha1
  * @author Psubhashish
  * @author Sambiwiki
  * @author Shijualex
@@ -52,6 +53,13 @@ $namespaceNames = array(
 
 $messages = array(
 # Dates
+'sunday'        => 'ରବିବାର',
+'monday'        => 'ସୋମବାର',
+'tuesday'       => 'ମଙ୍ଗଳବାର',
+'wednesday'     => 'ବୁଧବାର',
+'thursday'      => 'ଗୁରୁବାର',
+'friday'        => 'ଶୁକ୍ରବାର',
+'saturday'      => 'ଶନିବାର',
 'january'       => 'ଜାନୁଆରି',
 'february'      => 'ଫେବୁଆରି',
 'march'         => 'ମାର୍ଚ',
@@ -77,14 +85,14 @@ $messages = array(
 'november-gen'  => 'ନଭେଁବର',
 'december-gen'  => 'ଡିସେଁବର',
 'jan'           => 'ଜାନୁଆରି',
-'feb'           => 'ଫେବ୍ରୁଆରି',
+'feb'           => 'ଫେବୃଆରି',
 'mar'           => 'ମାର୍ଚ',
 'apr'           => 'ଅପ୍ରେଲ',
 'may'           => 'ମଇ',
 'jun'           => 'ଜୁନ',
 'jul'           => 'ଜୁଲାଇ',
 'aug'           => 'ଅଗଷ୍ଟ',
-'sep'           => 'ସେପ୍ଟେଁବର',
+'sep'           => 'ସେପଟେଁବର',
 'oct'           => 'ଅକଟୋବର',
 'nov'           => 'ନଭେଁବର',
 'dec'           => 'ଡିସେଁବର',
@@ -114,7 +122,7 @@ $messages = array(
 'create'           => 'ତିଆରିକର',
 'delete'           => 'ଲିଭେଇବେ',
 'protect'          => 'କିଳିବେ',
-'protect_change'   => 'ବଦଳାଁତୁ',
+'protect_change'   => 'ବଦଳାଇବା',
 'newpage'          => 'ନୂଆ ଫରଦ',
 'talkpagelinktext' => 'କଥାଭାଷା',
 'personaltools'    => 'ନିଜର ଟୁଲ',
@@ -170,10 +178,10 @@ $messages = array(
 # General errors
 'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଲେଖିଥିବା "$1" $2 ଶବଦଟି ପାଇଲା ନାହିଁ । .
 
-ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଲିଭାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
+ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
 
 ଯଦି ସେମିତି ହୋଇନଥାଏ ତେବେ ଆପଣ ଏହି ସଫଟଉଏରରେ କିଛି ଅସୁବିଧା ଖୋଜି ପାଇଛଁତି ।
-ଦୟାକରି କେହି ଜଣେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏଇ ଇଉ.ଆର.ଏଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅଁତୁ ।',
+କେହି ଜଣେ ଟିକେ [[Special:ListUsers/sysop|ପରିଛା]] ଙ୍କୁ ଏହି ଇଉଆରେଲ (url) ସହ ଚିଠିଟିଏ ପଠାଇ ଦିଅଁତୁ ।',
 'viewsource'      => 'ଉତ୍ସ ଦେଖ',
 
 # Login and logout pages
@@ -221,11 +229,11 @@ $messages = array(
 'histlast'         => 'ନଗଦ',
 
 # Revision deletion
-'rev-delundel'   => 'ଦେଖାଅ/ଲୁଚାଅ',
-'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଁତୁ',
+'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
+'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଇବା',
 
 # Merge log
-'revertmerge' => 'ମିଶାଅ ନାହିଁ',
+'revertmerge' => 'ମିଶାଇବା ନାହିଁ',
 
 # Diffs
 'difference'              => '(ରିଭିଜନ ଭିତରେ ଥିବା ତଫାତ)',
@@ -331,7 +339,7 @@ $messages = array(
 # Special:AllPages
 'allpages'       => 'ସବୁ ଫରଦ',
 'alphaindexline' => '$1 ରୁ $2',
-'allpagessubmit' => 'ଯାଅ',
+'allpagessubmit' => 'ଯିବା',
 
 # Special:LinkSearch
 'linksearch-ok' => 'ସନ୍ଧାନ',
@@ -348,7 +356,7 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'କାମଟି ପୁରା ହେଲା',
-'deletedarticle' => '"[[$1]]" ଟି ଲିଭିଗଲା',
+'deletedarticle' => '"[[$1]]" ଟି ଉଡ଼ିଗଲା',
 'dellogpage'     => 'ଲିଭାଇବା ଲଗ',
 
 # Rollback
@@ -372,7 +380,7 @@ $messages = array(
 'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
 
 # Undelete
-'undeletelink'           => 'ଦେଖ/ଆଉଥରେ ଫେରାଇଆଣ',
+'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବା',
 'undelete-search-submit' => 'ସନ୍ଧାନ',
 
 # Namespace form on various pages
@@ -399,8 +407,8 @@ $messages = array(
 # Block/unblock
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
-'unblocklink'        => 'ଛାଡ଼',
-'change-blocklink'   => 'ଓଗାଳିବାକୁ ବଦଳାଅ',
+'unblocklink'        => 'ଛାଡ଼ିବା',
+'change-blocklink'   => 'ଓଗଳାକୁ ବଦଳାଇବା',
 'contribslink'       => 'ଅବଦାନ',
 'blocklogpage'       => 'ଲଗଟିକୁ ଅଟକାଇଦିଅ',
 
@@ -449,7 +457,7 @@ $messages = array(
 'tooltip-t-specialpages'         => 'ନିଆରା ଫରଦ ତାଲିକା',
 'tooltip-t-print'                => 'ଏହି ଫରଦର ଛପାହୋଇପାରିବା ଭର୍ସନ',
 'tooltip-t-permalink'            => 'ସଁଶୋଧିତ ଏହି ଫରଦଟିର ସ୍ଥାୟି ଲିଁକ',
-'tooltip-ca-nstab-main'          => 'ସୂଚି ଫରଦଟି ଦେଖଁତୁ',
+'tooltip-ca-nstab-main'          => 'ସୂଚି ଫରଦଟି ଦେଖିବା',
 'tooltip-ca-nstab-user'          => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
 'tooltip-ca-nstab-special'       => 'ଏଇଟି ଗୋଟିଏ ବିଶେଷ ଫରଦ, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-ca-nstab-image'         => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',

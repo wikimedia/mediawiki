@@ -259,23 +259,47 @@ Tui changes ancor ne ha esset conservat!",
 'template-protected'     => '(gardat)',
 'template-semiprotected' => '(medie-gardat)',
 
+# History pages
+'currentrev'          => 'Ultim revision',
+'revisionasof'        => 'Revision de $1',
+'revision-info'       => 'Revision de $1 e il ha fabricat de $2',
+'previousrevision'    => '← Revision antiqui',
+'nextrevision'        => 'Revision sequent →',
+'currentrevisionlink' => 'Ultim revision',
+'cur'                 => 'hod',
+'next'                => 'prox',
+'page_first'          => 'prim',
+'page_last'           => 'ultim',
+'histfirst'           => 'Plu antiqui',
+'histlast'            => 'Plu recent',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 in $2',
+
 # Diffs
-'lineno' => 'Linea $1:',
+'history-title' => 'Revision del historie de "$1"',
+'lineno'        => 'Linea $1:',
+'editundo'      => 'anullar',
 
 # Search results
+'prevn'          => '{{PLURAL:$1|$1}} anteriori',
+'nextn'          => 'proxim {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'Vider ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Auxilie',
+'searchhelp-url' => 'Help:Contenete',
+'powersearch'    => 'Serchar avansat',
 
 # Quickbar
 'qbsettings' => 'Personalisation del barre de utensiles',
 
 # Preferences page
-'preferences'    => 'Preferenties',
-'mypreferences'  => 'Mi preferenties',
-'prefsnologin'   => 'Vu ne ha intrat',
-'changepassword' => 'Modificar passa-parol',
-'saveprefs'      => 'Conservar preferenties',
-'youremail'      => 'Vor ret-adresse:',
+'preferences'       => 'Preferenties',
+'mypreferences'     => 'Mi preferenties',
+'prefsnologin'      => 'Vu ne ha intrat',
+'changepassword'    => 'Modificar passa-parol',
+'skin-preview'      => 'Prevision',
+'saveprefs'         => 'Conservar',
+'searchresultshead' => 'Serchar',
+'youremail'         => 'Vor ret-adresse:',
 
 # Groups
 'group-user'  => 'Usatores',
@@ -283,34 +307,45 @@ Tui changes ancor ne ha esset conservat!",
 
 'group-user-member' => 'Usator',
 
-'grouppage-user'  => '{{ns:project}}:Usatores',
-'grouppage-sysop' => '{{ns:project}}:Administratores',
+'grouppage-user'       => '{{ns:project}}:Usatores',
+'grouppage-sysop'      => '{{ns:project}}:Administratores',
+'grouppage-bureaucrat' => '{{ns:project}}:Burócrates',
+'grouppage-suppress'   => '{{ns:project}}:Vigilatores',
+
+# User rights log
+'rightslog'  => 'Diarium de jures de usator',
+'rightsnone' => '(null)',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|change|changes}}',
-'recentchanges'     => 'Recent modificationes',
+'recentchanges'     => 'Nov changes',
 'recentchangestext' => 'Seque sur ti-ci págine li ultim modificationes al wiki.',
 'rclistfrom'        => 'Monstrar li nov modificationes desde $1.',
-'rcshowhideminor'   => '$1 modificationes minori',
+'rcshowhideminor'   => '$ redactiones minori',
+'rcshowhidebots'    => '$1 machines',
+'rcshowhideliu'     => '$1 usatores registrat',
+'rcshowhideanons'   => '$1 usatores anonim',
 'rcshowhidemine'    => '$1 mi redactiones',
 'rclinks'           => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br />$3.',
 'diff'              => 'dif',
 'hist'              => 'hist',
-'hide'              => 'Celar',
+'hide'              => 'Ocultar',
 'show'              => 'Monstrar',
 'minoreditletter'   => 'm',
 'newpageletter'     => 'N',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Relatet modificationes',
+'recentchangeslinked'         => 'Changes referet',
 'recentchangeslinked-feed'    => 'Relatet modificationes',
-'recentchangeslinked-toolbox' => 'Relatet modificationes',
+'recentchangeslinked-toolbox' => 'Changes referet',
 
 # Upload
-'upload'    => 'Cargar file',
-'uploadbtn' => 'Cargar file',
-'filedesc'  => 'Descrition',
-'savefile'  => 'Conservar file',
+'upload'        => 'Cargar file',
+'uploadbtn'     => 'Cargar file',
+'uploadlogpage' => 'Diarium de cargament',
+'filedesc'      => 'Descrition',
+'savefile'      => 'Conservar file',
+'uploadedimage' => 'cargat "[[$1]]"',
 
 # Special:ListFiles
 'listfiles' => 'Liste de images',

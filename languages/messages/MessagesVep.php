@@ -117,8 +117,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
 'tog-oldsig'                  => 'Olijan allekirjutesen ezikacund:',
 'tog-fancysig'                => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
-'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
-'tog-externaldiff'            => 'Kävutada irdprogramm versijoiden rindatades (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
+'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [http://www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
+'tog-externaldiff'            => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [http://www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
 'tog-showjumplinks'           => 'Ližata "hüpähtada..."-abukosketused',
 'tog-uselivepreview'          => 'Kävutada hered ezikacund (JavaScript) (Eksperimentaline)',
 'tog-forceeditsummary'        => 'Varutada, kunz toižetusen ümbrikirjutandan pöud ei ole täuttud',
@@ -276,6 +276,7 @@ $messages = array(
 'printableversion'  => 'Versii painmižen täht',
 'permalink'         => 'Kaikenaigaine kosketuz',
 'print'             => 'Painda',
+'view'              => 'Nähta',
 'edit'              => 'Redaktiruida',
 'create'            => 'Säta',
 'editthispage'      => "Redaktiruida nece lehtpol'",
@@ -321,6 +322,7 @@ Serverad oma üläkormatud.
 Varastagat pordon aigad i lat'kät pörttas lehtpolele.
 
 $1",
+'pool-errorunknown' => 'Tundmatoi petuz',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Informacii saitas {{SITENAME}}',
@@ -365,6 +367,8 @@ Kacu [[Special:Version|informacii kävutadud versijoiš]].',
 'toc'                     => 'Südäimišt',
 'showtoc'                 => 'ozutada',
 'hidetoc'                 => 'peitta',
+'collapsible-collapse'    => 'Peita',
+'collapsible-expand'      => 'Levitada',
 'thisisdeleted'           => 'Kacta vai udištada $1?',
 'viewdeleted'             => 'Kacta $1?',
 'restorelink'             => '{{PLURAL:$1|čutud redakcii|$1 čutud redakcijad}}',
@@ -492,6 +496,7 @@ Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
 'gotaccount'              => "Ku teil om jo registracii, '''$1'''.",
 'gotaccountlink'          => 'Kirjutagatoiš sistemha',
 'createaccountmail'       => 'e-počtaiči',
+'createaccountreason'     => 'Sü:',
 'badretype'               => 'Teil kirjutadud peitsanad ei kožugoi toine toižhe.',
 'userexists'              => 'Kirjutadud kävutajan nimi om jo rezerviruidud.
 Olgat hüväd, valikat toine kävutajan nimi.',
@@ -537,7 +542,15 @@ Wiki-likutimen počtfunkcijad ei olgoi kävutamas.',
 'usernamehasherror'       => 'Kävutajan nimes ei voi olda mugošt znamad.',
 'login-throttled'         => 'Tö olet tehnu äjahkon naprindoid kirjutadas sistemha.
 Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
+'login-abort-generic'     => 'Teiden naprind tulda sistemha om satusetoi - Azotadud',
 'loginlanguagelabel'      => 'Kel’: $1',
+
+# JavaScript password checks
+'password-strength-bad'        => 'HOND',
+'password-strength-mediocre'   => 'tändoine',
+'password-strength-acceptable' => 'hüväčuine',
+'password-strength-good'       => 'hüvä',
+'password-retype'              => 'Kirjutagat peitsana udes:',
 
 # Password reset dialog
 'resetpass'                 => 'Vajehtada peitsana',
@@ -766,7 +779,7 @@ Sidä voiži čuta wikispäi vai nimitada udes.
 Naprigat [[Special:Search|ectä wikišpäi]] sättujid lehtpolid.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(komment om čutud poiš)',
+'rev-deleted-comment'         => '(kommentan ümbrikirjutand om čutud poiš)',
 'rev-deleted-user'            => '(avtoran nimi om čutud poiš)',
 'rev-deleted-event'           => '(kirjutez om čutud poiš)',
 'rev-deleted-text-permission' => "Nece lehtpolen versii om '''čutud'''.

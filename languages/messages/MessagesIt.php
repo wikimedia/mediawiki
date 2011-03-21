@@ -2417,6 +2417,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'unblocked'                       => "L'utente [[User:$1|$1]] è stato sbloccato",
 'unblocked-range'                 => '$1 è stato sbloccato',
 'unblocked-id'                    => 'Il blocco $1 è stato rimosso',
+'blocklist'                       => 'Utenti e indirizzi IP bloccati',
 'ipblocklist'                     => 'Utenti e indirizzi IP bloccati',
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'blocklist-userblocks'            => 'Nascondi i blocchi degli account',
