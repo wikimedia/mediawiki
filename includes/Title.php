@@ -3091,13 +3091,16 @@ class Title {
 			}
 		}
 
-		$pageid = $this->getArticleID();
+		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
+		$pageid = $this->getArticleID( GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
 		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
 		// Do the actual move
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
+			# FIXME: What about the File we have already moved?
+			$dbw->rollback();
 			return $err;
 		}
 
@@ -3166,6 +3169,8 @@ class Title {
 		$u = new SearchUpdate( $redirid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
+		$dbw->commit();
+		
 		# Update site_stats
 		if ( $this->isContentPage() && !$nt->isContentPage() ) {
 			# No longer a content page
@@ -3320,7 +3325,7 @@ class Title {
 			$redirectSuppressed = false;
 		} else {
 			// Get rid of old new page entries in Special:NewPages and RC.
-			// Needs to be before $this->resetArticleUD( 0 ).
+			// Needs to be before $this->resetArticleID( 0 ).
 			$dbw->delete( 'recentchanges', array(
 					'rc_timestamp' => $dbw->timestamp( $this->getEarliestRevTime() ),
 					'rc_namespace' => $oldns,
