@@ -1171,6 +1171,17 @@ class Block {
 	}
 
 	/**
+	 * Get the target and target type for this particular Block.  Note that for autoblocks,
+	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
+	 * in this situation.
+	 * @return array( User|String, Block::TYPE_ constant )
+	 * FIXME: this should be an integral part of the Block member variables
+	 */
+	public function getTargetAndType() {
+		return array( $this->getTarget(), $this->getType() );
+	}
+
+	/**
 	 * Get the target for this particular Block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
