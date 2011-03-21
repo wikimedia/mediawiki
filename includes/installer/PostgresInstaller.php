@@ -327,9 +327,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->db->begin( __METHOD__ );
-
 
 		if( !$this->db->schemaExists( $schema ) ) {
 			$status->error( 'config-install-pg-schema-not-exist' );
