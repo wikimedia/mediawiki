@@ -15,17 +15,31 @@
  * FIXME: this whole class is a cesspit, needs a complete rewrite
  */
 class Block {
-	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
-				$mEnableAutoblock, $mHideName,
-				$mByName, $mAngryAutoblock;
+	/* public*/ var $mUser, $mReason, $mTimestamp, $mAuto, $mExpiry,
+				$mHideName,
+				$mAngryAutoblock;
 	protected
+		$mAddress,
+		$mId,
+		$mBy,
+		$mByName,
 		$mFromMaster,
 		$mRangeStart,
 		$mRangeEnd,
 		$mAnonOnly,
+		$mEnableAutoblock,
 		$mBlockEmail,
 		$mAllowUsertalk,
 		$mCreateAccount;
+
+	/// @var User|String
+	protected $target;
+
+	/// @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
+	protected $type;
+
+	/// @var User
+	protected $blocker;
 
 	# TYPE constants
 	const TYPE_USER = 1;
@@ -34,10 +48,19 @@ class Block {
 	const TYPE_AUTO = 4;
 	const TYPE_ID = 5;
 
+	/**
+	 * Constructor
+	 * FIXME: Don't know what the best format to have for this constructor is, but fourteen
+	 * optional parameters certainly isn't it.
+	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
 		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byName = false )
 	{
+		if( $timestamp === 0 ){
+			$timestamp = wfTimestampNow();
+		}
+
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
 		$address = IP::sanitizeIP( $address );
@@ -139,99 +162,128 @@ class Block {
 	 * @param $user int The user ID, or zero for anonymous users
 	 * @param $killExpired bool Whether to delete expired rows while loading
 	 * @return Boolean: the user is blocked from editing
-	 *
+	 * @deprecated since 1.18
 	 */
 	public function load( $address = '', $user = 0, $killExpired = true ) {
-		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
+		wfDeprecated( __METHOD__ );
+		if( $user ){
+			$username = User::whoIs( $user );
+			$block = self::newFromTarget( $username, $address );
+		} else {
+			$block = self::newFromTarget( null, $address );
+		}
 
-		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
-
-		if ( 0 == $user && $address === '' ) {
-			# Invalid user specification, not blocked
-			$this->clear();
-
+		if( $block instanceof Block ){
+			# This is mildly evil, but hey, it's B/C :D
+			foreach( $block as $variable => $value ){
+				$this->$variable = $value;
+			}
+			return true;
+		} else {
 			return false;
 		}
+	}
 
-		# Try user block
-		if ( $user ) {
-			$res = $db->resultObject( $db->select(
-				'ipblocks',
-				'*',
-				array( 'ipb_user' => $user ),
-				__METHOD__
-			) );
+	/**
+	 * Load a block from the database which affects the already-set $this->target:
+	 *     1) A block directly on the given user or IP
+	 *     2) A rangeblock encompasing the given IP (smallest first)
+	 *     3) An autoblock on the given IP
+	 * @param $vagueTarget User|String also search for blocks affecting this target.  Doesn't
+	 *     make any sense to use TYPE_AUTO / TYPE_ID here
+	 * @return Bool whether a relevant block was found
+	 */
+	protected function newLoad( $vagueTarget = null ) {
+		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
 
-			if ( $this->loadFromResult( $res, $killExpired ) ) {
-				return true;
+		if( $this->type !== null ){
+			$conds = array(
+				'ipb_address' => array( (string)$this->target ),
+			);
+		} else {
+			$conds = array( 'ipb_address' => array() );
+		}
+
+		if( $vagueTarget !== null ){
+			list( $target, $type ) = self::parseTarget( $vagueTarget );
+			switch( $type ) {
+				case self::TYPE_USER:
+					# Slightly wierd, but who are we to argue?
+					$conds['ipb_address'][] = (string)$target;
+					break;
+
+				case self::TYPE_IP:
+					$conds['ipb_address'][] = (string)$target;
+					$conds[] = self::getRangeCond( IP::toHex( $target ) );
+					$conds = $db->makeList( $conds, LIST_OR );
+					break;
+
+				case self::TYPE_RANGE:
+					list( $start, $end ) = IP::parseRange( $target );
+					$conds['ipb_address'][] = (string)$target;
+					$conds[] = self::getRangeCond( $start, $end );
+					$conds = $db->makeList( $conds, LIST_OR );
+					break;
+
+				default:
+					throw new MWException( "Tried to load block with invalid type" );
 			}
 		}
 
-		# Try IP block
-		# TODO: improve performance by merging this query with the autoblock one
-		# Slightly tricky while handling killExpired as well
-		if ( $address !== '' ) {
-			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 0 );
-			$res = $db->resultObject( $db->select(
-				'ipblocks',
-				'*',
-				$conds,
-				__METHOD__
-			) );
+		$res = $db->select( 'ipblocks', '*', $conds, __METHOD__ );
 
-			if ( $this->loadFromResult( $res, $killExpired ) ) {
-				if ( $user && $this->mAnonOnly ) {
-					# Block is marked anon-only
-					# Whitelist this IP address against autoblocks and range blocks
-					# (but not account creation blocks -- bug 13611)
-					if ( !$this->mCreateAccount ) {
-						$this->clear();
-					}
+		# This result could contain a block on the user, a block on the IP, and a russian-doll
+		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
+		$bestRow = null;
 
-					return false;
-				} else {
-					return true;
-				}
+		# Lower will be better
+		$bestBlockScore = 100;
+
+		# This is begging for $this = $bestBlock, but that's not allowed in PHP :(
+		$bestBlockPreventsEdit = null;
+
+		foreach( $res as $row ){
+			$block = Block::newFromRow( $row );
+
+			# Don't use expired blocks
+			if( $block->deleteIfExpired() ){
+				continue;
 			}
-		}
 
-		# Try range block
-		if ( $this->loadRange( $address, $killExpired, $user ) ) {
-			if ( $user && $this->mAnonOnly ) {
-				# Respect account creation blocks on logged-in users -- bug 13611
-				if ( !$this->mCreateAccount ) {
-					$this->clear();
-				}
+			# Don't use anon only blocks on users
+			if( $this->type == self::TYPE_USER && !$block->isHardblock() ){
+				continue;
+			}
 
-				return false;
+			if( $block->getType() == self::TYPE_RANGE ){
+				# This is the number of bits that are allowed to vary in the block, give
+				# or take some floating point errors
+				$end = wfBaseconvert( $block->getRangeEnd(), 16, 10 );
+				$start = wfBaseconvert( $block->getRangeStart(), 16, 10 );
+				$size = log( $end - $start + 1, 2 );
+
+				# This has the nice property that a /32 block is ranked equally with a
+				# single-IP block, which is exactly what it is...
+				$score = self::TYPE_RANGE  - 1 + ( $size / 128 );
+				
 			} else {
-				return true;
+				$score = $block->getType();
+			}
+
+			if( $score < $bestBlockScore ){
+				$bestBlockScore = $score;
+				$bestRow = $row;
+				$bestBlockPreventsEdit = $block->prevents( 'edit' );
 			}
 		}
 
-		# Try autoblock
-		if ( $address ) {
-			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 1 );
-
-			if ( $user ) {
-				$conds['ipb_anon_only'] = 0;
-			}
-
-			$res = $db->resultObject( $db->select(
-				'ipblocks',
-				'*',
-				$conds,
-				__METHOD__
-			) );
-
-			if ( $this->loadFromResult( $res, $killExpired ) ) {
-				return true;
-			}
+		if( $bestRow !== null ){
+			$this->initFromRow( $bestRow );
+			$this->prevents( 'edit', $bestBlockPreventsEdit );
+			return true;
+		} else {
+			return false;
 		}
-
-		# Give up
-		$this->clear();
-		return false;
 	}
 
 	/**
@@ -367,11 +419,13 @@ class Block {
 	 * @param $row ResultWrapper: a row from the ipblocks table
 	 */
 	protected function initFromRow( $row ) {
-		$this->mAddress = $row->ipb_address;
+		list( $this->target, $this->type ) = self::parseTarget( $row->ipb_address );
+
+		$this->setTarget( $row->ipb_address );
+		$this->setBlocker( User::newFromId( $row->ipb_by ) );
+
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
-		$this->mUser = $row->ipb_user;
-		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
 		$this->mAnonOnly = $row->ipb_anon_only;
 		$this->mCreateAccount = $row->ipb_create_account;
@@ -381,15 +435,19 @@ class Block {
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
 		$this->mExpiry = $row->ipb_expiry;
-
-		if ( isset( $row->user_name ) ) {
-			$this->mByName = $row->user_name;
-		} else {
-			$this->mByName = $row->ipb_by_text;
-		}
-
 		$this->mRangeStart = $row->ipb_range_start;
 		$this->mRangeEnd = $row->ipb_range_end;
+	}
+
+	/**
+	 * Create a new Block object from a database row
+	 * @param  $row ResultWrapper row from the ipblocks table
+	 * @return Block
+	 */
+	public static function newFromRow( $row ){
+		$block = new Block;
+		$block->initFromRow( $row );
+		return $block;
 	}
 
 	/**
@@ -813,6 +871,14 @@ class Block {
 	}
 
 	/**
+	 * Get the block ID
+	 * @return int
+	 */
+	public function getId() {
+		return $this->mId;
+	}
+
+	/**
 	 * Get/set the SELECT ... FOR UPDATE flag
 	 * @deprecated since 1.18
 	 */
@@ -840,6 +906,10 @@ class Block {
 		return !$y;
 	}
 
+	public function isAutoblocking( $x = null ) {
+		return wfSetVar( $this->mEnableAutoblock, $x );
+	}
+
 	/**
 	 * Get/set whether the Block prevents a given action
 	 * @param $action String
@@ -849,7 +919,7 @@ class Block {
 	public function prevents( $action, $x = null ) {
 		switch( $action ) {
 			case 'edit':
-				# TODO Not actually quite this simple (bug 13611 etc)
+				# For now... <evil laugh>
 				return true;
 
 			case 'createaccount':
@@ -1000,44 +1070,45 @@ class Block {
 
 	/**
 	 * Given a target and the target's type, get an existing Block object if possible.
-	 * Note that passing an IP address will get an applicable rangeblock if the IP is
-	 * not individually blocked but falls within that range
-	 * TODO: check that that fallback handles nested rangeblocks nicely (should return
-	 *     smallest one)
-	 * @param $target String|User|Int a block target, which may be one of several types:
+	 * @param $specificTarget String|User|Int a block target, which may be one of several types:
 	 *     * A user to block, in which case $target will be a User
 	 *     * An IP to block, in which case $target will be a User generated by using
 	 *       User::newFromName( $ip, false ) to turn off name validation
 	 *     * An IP range, in which case $target will be a String "123.123.123.123/18" etc
-	 *     * The ID of an existing block, in which case $target will be an Int
-	 * @param $type Block::TYPE_ constant the type of block as described above
-	 * @return Block|null (null if the target is not blocked)
+	 *     * The ID of an existing block, in the format "#12345" (since pure numbers are valid
+	 *       usernames
+	 *     Calling this with a user, IP address or range will not select autoblocks, and will
+	 *     only select a block where the targets match exactly (so looking for blocks on
+	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
+	 * @param $vagueTarget String|User|Int as above, but we will search for *any* block which
+	 *     affects that target (so for an IP address, get ranges containing that IP; and also
+	 *     get any relevant autoblocks)
+	 * @param $fromMaster Bool whether to use the DB_MASTER database
+	 * @return Block|null (null if no relevant block could be found).  The target and type
+	 *     of the returned Block will refer to the actual block which was found, which might
+	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
-	public static function newFromTargetAndType( $target, $type ) {
-		if ( $target instanceof User ) {
-			if ( $type == Block::TYPE_IP ) {
-				return Block::newFromDB( $target->getName(), 0 );
-			} elseif ( $type == Block::TYPE_USER ) {
-				return Block::newFromDB( '', $target->getId() );
-			} else {
-				# Should be unreachable;
-				return null;
-			}
-
-		} elseif ( $type == Block::TYPE_RANGE ) {
-			return Block::newFromDB( $target, 0 );
-
-		} elseif ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
+	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
+		list( $target, $type ) = self::parseTarget( $specificTarget );
+		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
 			return Block::newFromID( $target );
 
+		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
+			$block = new Block();
+			$block->fromMaster( $fromMaster );
+
+			if( $type !== null ){
+				$block->setTarget( $target );
+			}
+
+			if( $block->newLoad( $vagueTarget ) ){
+				return $block;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
-	}
-
-	public static function newFromTarget( $target ) {
-		list( $target, $type ) = self::parseTarget( $target );
-		return self::newFromTargetAndType( $target, $type );
 	}
 
 	/**
@@ -1048,6 +1119,17 @@ class Block {
 	 */
 	public static function parseTarget( $target ) {
 		$target = trim( $target );
+
+		# We may have been through this before
+		if( $target instanceof User ){
+			if( IP::isValid( $target->getName() ) ){
+				return self::TYPE_IP;
+			} else {
+				return self::TYPE_USER;
+			}
+		} elseif( $target === null ){
+			return array( null, null );
+		}
 
 		$userObj = User::newFromName( $target );
 		if ( $userObj instanceof User ) {
@@ -1079,30 +1161,61 @@ class Block {
 	}
 
 	/**
-	 * Get the target and target type for this particular Block.  Note that for autoblocks,
+	 * Get the type of target for this particular block
+	 * @return Block::TYPE_ constant, will never be TYPE_ID
+	 */
+	public function getType() {
+		return $this->mAuto
+			? self::TYPE_AUTO
+			: $this->type;
+	}
+
+	/**
+	 * Get the target for this particular Block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return array( User|String, Block::TYPE_ constant )
-	 * FIXME: this should be an integral part of the Block member variables
+	 * @return User|String
 	 */
-	public function getTargetAndType() {
-		list( $target, $type ) = self::parseTarget( $this->mAddress );
-
-		# Check whether it's an autoblock
-		if ( $this->mAuto ) {
-			$type = self::TYPE_AUTO;
-		}
-
-		return array( $target, $type );
-	}
-
-	public function getType() {
-		list( /*...*/, $type ) = $this->getTargetAndType();
-		return $type;
-	}
-
 	public function getTarget() {
-		list( $target, /*...*/ ) = $this->getTargetAndType();
-		return $target;
+		return $this->target;
+	}
+
+	/**
+	 * Set the target for this block, and update $this->type accordingly
+	 * @param $target Mixed
+	 */
+	public function setTarget( $target ){
+		list( $this->target, $this->type ) = self::parseTarget( $target );
+
+		$this->mAddress = (string)$this->target;
+		if( $this->type == self::TYPE_USER ){
+			if( $this->target instanceof User ){
+				# Cheat
+				$this->mUser = $this->target->getID();
+			} else {
+				$this->mUser = User::idFromName( $this->target );
+			}
+		} else {
+			$this->mUser = 0;
+		}
+	}
+
+	/**
+	 * Get the user who implemented this block
+	 * @return User
+	 */
+	public function getBlocker(){
+		return $this->blocker;
+	}
+
+	/**
+	 * Set the user who implemented (or will implement) this block
+	 * @param $user User
+	 */
+	public function setBlocker( User $user ){
+		$this->blocker = $user;
+
+		$this->mBy = $user->getID();
+		$this->mByName = $user->getName();
 	}
 }

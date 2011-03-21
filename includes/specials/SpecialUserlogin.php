@@ -304,7 +304,7 @@ class LoginForm extends SpecialPage {
 			$wgOut->permissionRequired( 'createaccount' );
 			return false;
 		} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
-			$this->userBlockedMessage();
+			$this->userBlockedMessage( $wgUser->isBlockedFromCreateAccount() );
 			return false;
 		}
 
@@ -918,9 +918,15 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
-	/** */
-	function userBlockedMessage() {
-		global $wgOut, $wgUser;
+	/**
+	 * Output a message that informs the user that they cannot create an account because
+	 * there is a block on them or their IP which prevents account creation.  Note that
+	 * User::isBlockedFromCreateAccount(), which gets this block, ignores the 'hardblock'
+	 * setting on blocks (bug 13611).
+	 * @param $block Block the block causing this error
+	 */
+	function userBlockedMessage( Block $block ) {
+		global $wgOut;
 
 		# Let's be nice about this, it's likely that this feature will be used
 		# for blocking large numbers of innocent people, e.g. range blocks on
@@ -932,14 +938,18 @@ class LoginForm extends SpecialPage {
 
 		$wgOut->setPageTitle( wfMsg( 'cantcreateaccounttitle' ) );
 
-		$ip = wfGetIP();
-		$blocker = User::whoIs( $wgUser->mBlock->mBy );
-		$block_reason = $wgUser->mBlock->mReason;
-
+		$block_reason = $block->mReason;
 		if ( strval( $block_reason ) === '' ) {
 			$block_reason = wfMsg( 'blockednoreason' );
 		}
-		$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
+
+		$wgOut->addWikiMsg(
+			'cantcreateaccount-text',
+			$block->getTarget(),
+			$block_reason,
+			$block->getBlocker()->getName()
+		);
+		
 		$wgOut->returnToMain( false );
 	}
 
@@ -963,7 +973,7 @@ class LoginForm extends SpecialPage {
 				$wgOut->readOnlyPage();
 				return;
 			} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
-				$this->userBlockedMessage();
+				$this->userBlockedMessage( $wgUser->isBlockedFromCreateAccount() );
 				return;
 			} elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
 				$wgOut->showPermissionsErrorPage( $permErrors, 'createaccount' );

@@ -49,7 +49,7 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $wgRequest );
-		$this->block = Block::newFromTargetAndType( $this->target, $this->type );
+		$this->block = Block::newFromTarget( $this->target );
 
 		# bug 15810: blocked admins should have limited access here.  This won't allow sysops
 		# to remove autoblocks on themselves, but they should have ipblock-exempt anyway
@@ -168,7 +168,7 @@ class SpecialUnblock extends SpecialPage {
 		# unblock the whole range.
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
 		if( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
-			 $range = $block->mAddress;
+			 $range = $block->getTarget();
 			 return array( array( 'ipb_blocked_as_range', $target, $range ) );
 		}
 
@@ -185,7 +185,12 @@ class SpecialUnblock extends SpecialPage {
 
 		# Unset _deleted fields as needed
 		if( $block->mHideName ) {
-			RevisionDeleteUser::unsuppressUserName( $block->mAddress, $block->mUser );
+			# Something is deeply FUBAR if this is not a User object, but who knows?
+			$id = $block->getTarget() instanceof User
+				? $block->getTarget()->getID()
+				: User::idFromName( $block->getTarget() );
+
+			RevisionDeleteUser::unsuppressUserName( $block->getTarget(), $id );
 		}
 
 		# Make log entry

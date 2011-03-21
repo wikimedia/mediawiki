@@ -53,12 +53,12 @@ class ApiBlockTest extends ApiTestSetup {
 			'user' => 'UTBlockee',
 			'reason' => 'Some reason',
 			'token' => $pageinfo['blocktoken'] ), $data );
-		
-		$block = Block::newFromDB('UTBlockee');
+
+		$block = Block::newFromTarget('UTBlockee');
 		
 		$this->assertTrue( !is_null( $block ), 'Block is valid' );
 
-		$this->assertEquals( 'UTBlockee', $block->mAddress );
+		$this->assertEquals( 'UTBlockee', (string)$block->getTarget() );
 		$this->assertEquals( 'Some reason', $block->mReason );
 		$this->assertEquals( 'infinity', $block->mExpiry );
 		
