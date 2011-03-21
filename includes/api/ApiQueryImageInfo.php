@@ -471,15 +471,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * Returns all possible parameters to iiprop
+	 *
+	 * @param array $filter List of properties to filter out
+	 *
 	 * @static
 	 * @return Array
 	 */
-	public static function getPropertyNames() {
-		return array_keys( self::getProperties() );
+	public static function getPropertyNames( $filter = array() ) {
+		return array_diff( array_keys( self::getProperties() ), $filter );
 	}
 
 	/**
-	 * Returns array key value pairs of
+	 * Returns array key value pairs of properties and their descriptions
 	 *
 	 * @static
 	 * @return array
@@ -506,14 +509,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * Returns the descriptions for the properties provided by getPropertyNames()
+	 * 
+	 * @param array $filter List of properties to filter out
 	 *
 	 * @static
 	 * @return array
 	 */
-	public static function getPropertyDescriptions() {
+	public static function getPropertyDescriptions( $filter = array() ) {
 		return array_merge(
 			array( 'What image information to get:' ),
-			array_values( self::getProperties() )
+			array_values( array_diff_key( self::getProperties(), array_flip( $filter ) ) )
 		);
 	}
 

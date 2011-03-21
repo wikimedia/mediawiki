@@ -203,7 +203,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'sha1' => null,
 			'sha1base36' => null,
 			'prop' => array(
-				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames(),
+				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames( $this->propertyFilter ),
 				ApiBase::PARAM_DFLT => 'timestamp|url',
 				ApiBase::PARAM_ISMULTI => true
 			),
@@ -222,10 +222,12 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'limit' => 'How many images in total to return',
 			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
-			'prop' => ApiQueryImageInfo::getPropertyDescriptions(),
+			'prop' => ApiQueryImageInfo::getPropertyDescriptions( $this->propertyFilter ),
 			'mime' => 'What MIME type to search for. e.g. image/jpeg. Disabled in Miser Mode',
 		);
 	}
+
+	private $propertyFilter = array( 'archivename' );
 
 	public function getDescription() {
 		return 'Enumerate all images sequentially';
