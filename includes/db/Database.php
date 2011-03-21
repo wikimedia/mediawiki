@@ -518,7 +518,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$this->mTablePrefix = $tablePrefix;
 		}
 
-		if ( $server ) {
+		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
 	}
