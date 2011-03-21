@@ -82,7 +82,7 @@ class ApiUnblock extends ApiBase {
 			$this->dieUsageMsg( $retval[0] );
 		}
 
-		$res['id'] = $block->mId;
+		$res['id'] = $block->getId();
 		$res['user'] = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
 		$res['reason'] = $params['reason'];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );

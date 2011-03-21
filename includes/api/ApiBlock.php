@@ -98,11 +98,11 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg( $retval );
 		}
 
-		list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
+		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
 		$res['user'] = $params['user'];
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
-		$block = Block::newFromTargetAndType( $target, $type );
+		$block = Block::newFromTarget( $target );
 		if( $block instanceof Block ){
 			$res['expiry'] = $block->mExpiry == wfGetDB( DB_SLAVE )->getInfinity()
 				? 'infinite'

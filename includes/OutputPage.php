@@ -1910,7 +1910,7 @@ class OutputPage {
 
 		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 
-		$blockid = $wgUser->mBlock->mId;
+		$blockid = $wgUser->mBlock->getId();
 
 		$blockExpiry = $wgLang->formatExpiry( $wgUser->mBlock->mExpiry );
 
@@ -1922,7 +1922,7 @@ class OutputPage {
 
 		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
 		 * This could be a username, an IP range, or a single IP. */
-		$intended = $wgUser->mBlock->mAddress;
+		$intended = $wgUser->mBlock->getTarget();
 
 		$this->addWikiMsg(
 			$msg, $link, $reason, $ip, $name, $blockid, $blockExpiry,

@@ -201,16 +201,16 @@ class SpecialBlock extends SpecialPage {
 	protected function maybeAlterFormDefaults( &$fields ){
 		$fields['Target']['default'] = (string)$this->target;
 
-		$block = Block::newFromTargetAndType( $this->target, $this->type );
+		$block = Block::newFromTarget( $this->target );
 
 		if( $block instanceof Block && !$block->mAuto # The block exists and isn't an autoblock
 			&& ( $this->type != Block::TYPE_RANGE # The block isn't a rangeblock
-			  || $block->mAddress == $this->target ) # or if it is, the range is what we're about to block
+			  || $block->getTarget() == $this->target ) # or if it is, the range is what we're about to block
 			)
 		{
 			$fields['HardBlock']['default'] = $block->isHardblock();
 			$fields['CreateAccount']['default'] = $block->prevents( 'createaccount' );
-			$fields['AutoBlock']['default'] = $block->mEnableAutoblock;
+			$fields['AutoBlock']['default'] = $block->isAutoblocking();
 			if( isset( $fields['DisableEmail'] ) ){
 				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
 			}
@@ -531,24 +531,18 @@ class SpecialBlock extends SpecialPage {
 			}
 		}
 
-		# Create block object.  Note that for a user block, ipb_address is only for display purposes
-		# FIXME: Why do we need to pass fourteen optional parameters to do this!?!
-		$block = new Block(
-			$target,                                    # IP address or User name
-			$userId,                                    # User id
-			$wgUser->getId(),                           # Blocker id
-			$data['Reason'][0],                         # Reason string
-			wfTimestampNow(),                           # Block Timestamp
-			0,                                          # Is this an autoblock (no)
-			self::parseExpiryInput( $data['Expiry'] ), # Expiry time
-			!$data['HardBlock'],                        # Block anon only
-			$data['CreateAccount'],
-			$data['AutoBlock'],
-			$data['HideUser']
-		);
-		
+		# Create block object.
+		$block = new Block();
+		$block->setTarget( $target );
+		$block->setBlocker( $wgUser );
+		$block->mReason = $data['Reason'][0];
+		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
+		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
+		$block->isHardblock( $data['HardBlock'] );
+		$block->isAutoblocking( $data['AutoBlock'] );
+		$block->mHideName = $data['HideUser'];
 
 		if( !wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
 			return array( 'hookaborted' );
@@ -566,7 +560,7 @@ class SpecialBlock extends SpecialPage {
 
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
-				$currentBlock = Block::newFromTargetAndType( $target, $type );
+				$currentBlock = Block::newFromTarget( $target );
 
 				if( $block->equals( $currentBlock ) ) {
 					return array( 'ipb_already_blocked' );
@@ -611,7 +605,7 @@ class SpecialBlock extends SpecialPage {
 
 		# Block constructor sanitizes certain block options on insert
 		$data['BlockEmail'] = $block->prevents( 'sendemail' );
-		$data['AutoBlock'] = $block->mEnableAutoblock;
+		$data['AutoBlock'] = $block->isAutoblocking();
 
 		# Prepare log parameters
 		$logParams = array();
@@ -641,8 +635,8 @@ class SpecialBlock extends SpecialPage {
 	public static function getSuggestedDurations( $lang = null ){
 		$a = array();
 		$msg = $lang === null
-			? wfMessage( 'ipboptions' )->inContentLanguage()
-			: wfMessage( 'ipboptions' )->inLanguage( $lang );
+			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
+			: wfMessage( 'ipboptions' )->inLanguage( $lang )->text();
 
 		if( $msg == '-' ){
 			return array();

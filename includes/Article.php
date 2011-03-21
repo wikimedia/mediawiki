@@ -1115,8 +1115,7 @@ class Article {
 		if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 			# Don't index user and user talk pages for blocked users (bug 11443)
 			if ( !$this->mTitle->isSubpage() ) {
-				$block = new Block();
-				if ( $block->load( $this->mTitle->getText() ) ) {
+				if ( Block::newFromTarget( null, $this->mTitle->getText() ) instanceof Block ) {
 					return array(
 						'index'  => 'noindex',
 						'follow' => 'nofollow'

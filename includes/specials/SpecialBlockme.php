@@ -48,10 +48,12 @@ class SpecialBlockme extends UnlistedSpecialPage {
 		if ( !$user->isLoggedIn() ) {
 			$user->addToDatabase();
 		}
-		$id = $user->getId();
-		$reason = wfMsg( 'proxyblockreason' );
 
-		$block = new Block( $ip, 0, $id, $reason, wfTimestampNow() );
+		$block = new Block();
+		$block->setTarget( $ip );
+		$block->setBlocker( $user );
+		$block->mReason = wfMsg( 'proxyblockreason' );
+
 		$block->insert();
 
 		$wgOut->addWikiMsg( 'proxyblocksuccess' );
