@@ -158,7 +158,9 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 * @return string HTML <a> attribute
 	 */
-	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
+	public function link(
+		$target, $text = null, $customAttribs = array(), $query = array(), $options = array()
+	) {
 		wfProfileIn( __METHOD__ );
 		if ( !$target instanceof Title ) {
 			wfProfileOut( __METHOD__ );
@@ -219,7 +221,10 @@ class Linker {
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
 	 */
-	public function linkKnown( $target, $text = null, $customAttribs = array(), $query = array(), $options = array( 'known', 'noclasses' ) ) {
+	public function linkKnown(
+		$target, $text = null, $customAttribs = array(),
+		$query = array(), $options = array( 'known', 'noclasses' ) )
+	{
 		return $this->link( $target, $text, $customAttribs, $query, $options );
 	}
 
@@ -452,7 +457,9 @@ class Linker {
 	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
-	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
+	function makeImageLink2( Title $title, $file, $frameParams = array(),
+		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
+	{
 		$res = null;
 		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$this, &$title,
 			&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
@@ -598,7 +605,9 @@ class Linker {
 	 * @param $framed Boolean
 	 * @param $manualthumb String
 	 */
-	function makeThumbLinkObj( Title $title, $file, $label = '', $alt, $align = 'right', $params = array(), $framed = false , $manualthumb = "" ) {
+	function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
+		$align = 'right', $params = array(), $framed = false , $manualthumb = "" )
+	{
 		$frameParams = array(
 			'alt' => $alt,
 			'caption' => $label,
@@ -622,7 +631,9 @@ class Linker {
 	 * @param string $query
 	 * @return mixed
 	 */
-	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "" ) {
+	function makeThumbLink2( Title $title, $file, $frameParams = array(),
+		$handlerParams = array(), $time = false, $query = "" )
+	{
 		global $wgStylePath;
 		$exists = $file && $file->exists();
 
@@ -843,7 +854,8 @@ class Linker {
 			$text = htmlspecialchars( $text );
 		}
 		$link = '';
-		$success = wfRunHooks( 'LinkerMakeExternalLink', array( &$url, &$text, &$link, &$attribs, $linktype ) );
+		$success = wfRunHooks( 'LinkerMakeExternalLink',
+			array( &$url, &$text, &$link, &$attribs, $linktype ) );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}\n", true );
 			return $link;
@@ -879,7 +891,9 @@ class Linker {
 	 * @param $edits Integer: user edit count (optional, for performance)
 	 * @return String: HTML fragment
 	 */
-	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null ) {
+	public function userToolLinks(
+		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
+	) {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !$flags & self::TOOL_LINKS_NOBLOCK;
@@ -1806,7 +1820,9 @@ class Linker {
 	 * @param $prefix String: Optional prefix
 	 * @param $aprops String: extra attributes to the a-element
 	 */
-	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = '' ) {
+	function makeKnownLink(
+		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = ''
+	) {
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
@@ -1909,7 +1925,9 @@ class Linker {
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
-	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+	function makeKnownLinkObj(
+		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''
+	) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
@@ -2019,8 +2037,9 @@ class Linker {
 	 * @param $time String: timestamp of the file, set as false for current
 	 * @return String
 	 */
-	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
-	  $thumb = false, $manualthumb = '', $valign = '', $time = false ) {
+	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(),
+		$framed = false, $thumb = false, $manualthumb = '', $valign = '', $time = false )
+	{
 		$frameParams = array( 'alt' => $alt, 'caption' => $label );
 		if ( $align ) {
 			$frameParams['align'] = $align;
