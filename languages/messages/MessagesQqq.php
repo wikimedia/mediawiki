@@ -3033,12 +3033,12 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'skinname-modern'      => '{{optional}}',
 
 # Math options
-'mw_math_png'    => 'In user preferences.',
-'mw_math_simple' => 'In [[Special:Preferences|user preferences]].',
-'mw_math_html'   => 'In user preferences.',
-'mw_math_source' => 'In user preferences (math)',
-'mw_math_modern' => 'In user preferences (math)',
-'mw_math_mathml' => 'In user preferences.',
+'mw_math_png'    => 'In user preferences. All mw_math_* messages MUST be different, things will break otherwise!',
+'mw_math_simple' => 'In [[Special:Preferences|user preferences]]. All mw_math_* messages MUST be different, things will break otherwise!',
+'mw_math_html'   => 'In user preferences. All mw_math_* messages MUST be different, things will break otherwise!',
+'mw_math_source' => 'In user preferences (math). All mw_math_* messages MUST be different, things will break otherwise!',
+'mw_math_modern' => 'In user preferences (math). All mw_math_* messages MUST be different, things will break otherwise!',
+'mw_math_mathml' => 'In user preferences. All mw_math_* messages MUST be different, things will break otherwise!',
 
 # Math errors
 'math_syntax_error' => '{{Identical|Syntax error}}',
