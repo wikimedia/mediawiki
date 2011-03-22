@@ -39,8 +39,8 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class FindHooks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Find hooks that are undocumented, missing, or just plain wrong";
-		$this->addOption( 'online', 'Check against mediawiki.org hook documentation' );
+		$this->mDescription = 'Find hooks that are undocumented, missing, or just plain wrong';
+		$this->addOption( 'online', 'Check against MediaWiki.org hook documentation' );
 	}
 
 	public function getDbType() {
@@ -91,11 +91,13 @@ class FindHooks extends Maintenance {
 		$this->printArray( 'Unclear hook calls', $bad );
 
 		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 )
+		{
 			$this->output( "Looks good!\n" );
+		}
 	}
 
 	/**
-	 * Get the hook documentation, either locally or from mediawiki.org
+	 * Get the hook documentation, either locally or from MediaWiki.org
 	 * @return array of documented hooks
 	 */
 	private function getHooksFromDoc( $doc ) {
@@ -139,7 +141,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
 		$m = array();
-		preg_match_all( '/wfRunHooks\(\s*([\'"])(.*?)\1/', $content, $m );
+		preg_match_all( '/(wfRunHooks|Hooks\:\:run)\(\s*([\'"])(.*?)\1/', $content, $m );
 		return $m[2];
 	}
 
@@ -201,15 +203,19 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Nicely output the array
-	 * @param $msg A message to show before the value
-	 * @param $arr An array
-	 * @param $sort Boolean : wheter to sort the array (Default: true)
+	 * @param $msg String: a message to show before the value
+	 * @param $arr Array: an array
+	 * @param $sort Boolean: whether to sort the array (Default: true)
 	 */
 	private function printArray( $msg, $arr, $sort = true ) {
-		if ( $sort ) asort( $arr );
-		foreach ( $arr as $v ) $this->output( "$msg: $v\n" );
+		if ( $sort ) {
+			asort( $arr );
+		}
+		foreach ( $arr as $v ) {
+			$this->output( "$msg: $v\n" );
+		}
 	}
 }
 
-$maintClass = "FindHooks";
+$maintClass = 'FindHooks';
 require_once( RUN_MAINTENANCE_IF_MAIN );
