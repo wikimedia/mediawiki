@@ -277,6 +277,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 16288) API: consider making closure status of wikis more clear
   with meta=siteinfo
 * (bug 27589) list=allimages&aiprop=archivename is useless
+* (bug 27586) Remove duplication of props in ApiQueryStashImageInfo
+  by using ApiQueryImageInfo
 
 === Languages updated in 1.18 ===
 
