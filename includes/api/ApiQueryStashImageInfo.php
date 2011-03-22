@@ -61,22 +61,10 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		}
 	}
 
-	/**
-	 * Returns all valid parameters to siiprop
-	 */
-	public static function getPropertyNames() {
-		return array(
-			'timestamp',
-			'url',
-			'size',
-			'dimensions', // For backwards compatibility with Allimages
-			'sha1',
-			'mime',
-			'thumbmime',
-			'metadata',
-			'bitdepth',
-		);
-	}
+	private $propertyFilter = array(
+		'user', 'userid', 'comment', 'parsedcomment',
+		'mediatype', 'archivename',
+	);
 
 	public function getAllowedParams() {
 		return array(
@@ -88,7 +76,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'timestamp|url',
-				ApiBase::PARAM_TYPE => self::getPropertyNames()
+				ApiBase::PARAM_TYPE => self::getPropertyNames( $this->propertyFilter )
 			),
 			'urlwidth' => array(
 				ApiBase::PARAM_TYPE => 'integer',
@@ -112,18 +100,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'prop' => array(
-				'What image information to get:',
-				' timestamp    - Adds timestamp for the uploaded version',
-				' url          - Gives URL to the image and the description page',
-				' size         - Adds the size of the image in bytes and the height, width and page count (if applicable)',
-				' dimensions   - Alias for size',
-				' sha1         - Adds sha1 hash for the image',
-				' mime         - Adds MIME of the image',
-				' thumbmime    - Adds MIME of the image thumbnail (requires url)',
-				' metadata     - Lists EXIF metadata for the version of the image',
-				' bitdepth     - Adds the bit depth of the version',
-			),
+			'prop' => self::getPropertyDescriptions( $this->propertyFilter ),
 			'sessionkey' => 'Session key that identifies a previous upload that was stashed temporarily.',
 			'urlwidth' => "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
 			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
