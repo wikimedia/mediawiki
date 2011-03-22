@@ -105,13 +105,7 @@ abstract class FileRepo {
 	 *                     be found.
 	 */
 	function findFile( $title, $options = array() ) {
-		if ( !is_array( $options ) ) {
-			// MW 1.15 compat
-			$time = $options;
-			$options = array();
-		} else {
-			$time = isset( $options['time'] ) ? $options['time'] : false;
-		}
+		$time = isset( $options['time'] ) ? $options['time'] : false;
 		if ( !($title instanceof Title) ) {
 			$title = Title::makeTitleSafe( NS_FILE, $title );
 			if ( !is_object( $title ) ) {
@@ -216,13 +210,7 @@ abstract class FileRepo {
 	 * @param $options Option array, same as findFile().
 	 */
 	function findFileFromKey( $sha1, $options = array() ) {
-		if ( !is_array( $options ) ) {
-			# MW 1.15 compat
-			$time = $options;
-			$options = array();
-		} else {
-			$time = isset( $options['time'] ) ? $options['time'] : false;
-		}
+		$time = isset( $options['time'] ) ? $options['time'] : false;
 
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFileFromKey( $sha1 );
