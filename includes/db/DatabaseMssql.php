@@ -17,13 +17,6 @@ class DatabaseMssql extends DatabaseBase {
 	var $mLastResult = NULL;
 	var $mAffectedRows = NULL;
 
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0 )
-	{
-		$this->mFlags = $flags;
-		$this->open( $server, $user, $password, $dbName );
-	}
-
 	function cascadingDeletes() {
 		return true;
 	}

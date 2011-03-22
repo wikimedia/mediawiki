@@ -182,7 +182,7 @@ class DatabaseOracle extends DatabaseBase {
 	{
 		$tablePrefix = $tablePrefix == 'get from global' ? $tablePrefix : strtoupper( $tablePrefix );
 		parent::__construct( $server, $user, $password, $dbName, $flags, $tablePrefix );
-		wfRunHooks( 'DatabaseOraclePostInit', array( &$this ) );
+		wfRunHooks( 'DatabaseOraclePostInit', array( $this ) );
 	}
 
 	function getType() {
