@@ -42,7 +42,7 @@ class Cookie {
 		if ( isset( $attr['path'] ) ) {
 			$this->path = $attr['path'];
 		} else {
-			$this->path = "/";
+			$this->path = '/';
 		}
 
 		if ( isset( $attr['domain'] ) ) {
@@ -50,7 +50,7 @@ class Cookie {
 				$this->domain = $attr['domain'];
 			}
 		} else {
-			throw new MWException( "You must specify a domain." );
+			throw new MWException( 'You must specify a domain.' );
 		}
 	}
 
@@ -68,7 +68,7 @@ class Cookie {
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null ) {
 		// Don't allow a trailing dot
-		if ( substr( $domain, -1 ) == "." ) {
+		if ( substr( $domain, -1 ) == '.' ) {
 			return false;
 		}
 
@@ -96,20 +96,20 @@ class Cookie {
 				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
 				return false;
 			}
-			if ( ( count( $dc ) == 2 || ( count( $dc ) == 3 && $dc[0] == "" ) )
+			if ( ( count( $dc ) == 2 || ( count( $dc ) == 3 && $dc[0] == '' ) )
 				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain ) ) {
 				return false;
 			}
 		}
 
 		if ( $originDomain != null ) {
-			if ( substr( $domain, 0, 1 ) != "." && $domain != $originDomain ) {
+			if ( substr( $domain, 0, 1 ) != '.' && $domain != $originDomain ) {
 				return false;
 			}
 
-			if ( substr( $domain, 0, 1 ) == "."
+			if ( substr( $domain, 0, 1 ) == '.'
 				&& substr_compare( $originDomain, $domain, -strlen( $domain ),
-								   strlen( $domain ), TRUE ) != 0 ) {
+								   strlen( $domain ), true ) != 0 ) {
 				return false;
 			}
 		}
@@ -125,12 +125,12 @@ class Cookie {
 	 * @return String
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
-		$ret = "";
+		$ret = '';
 
 		if ( $this->canServeDomain( $domain )
 				&& $this->canServePath( $path )
 				&& $this->isUnExpired() ) {
-			$ret = $this->name . "=" . $this->value;
+			$ret = $this->name . '=' . $this->value;
 		}
 
 		return $ret;
@@ -139,9 +139,9 @@ class Cookie {
 	protected function canServeDomain( $domain ) {
 		if ( $domain == $this->domain
 			|| ( strlen( $domain ) > strlen( $this->domain )
-				 && substr( $this->domain, 0, 1 ) == "."
+				 && substr( $this->domain, 0, 1 ) == '.'
 				 && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
-									strlen( $this->domain ), TRUE ) == 0 ) ) {
+									strlen( $this->domain ), true ) == 0 ) ) {
 			return true;
 		}
 
@@ -199,7 +199,7 @@ class CookieJar {
 			}
 		}
 
-		return implode( "; ", $cookies );
+		return implode( '; ', $cookies );
 	}
 
 	/**
@@ -209,20 +209,20 @@ class CookieJar {
 	 * @param $domain String: cookie's domain
 	 */
 	public function parseCookieResponseHeader ( $cookie, $domain ) {
-		$len = strlen( "Set-Cookie:" );
+		$len = strlen( 'Set-Cookie:' );
 
-		if ( substr_compare( "Set-Cookie:", $cookie, 0, $len, TRUE ) === 0 ) {
+		if ( substr_compare( 'Set-Cookie:', $cookie, 0, $len, true ) === 0 ) {
 			$cookie = substr( $cookie, $len );
 		}
 
-		$bit = array_map( 'trim', explode( ";", $cookie ) );
+		$bit = array_map( 'trim', explode( ';', $cookie ) );
 
 		if ( count( $bit ) >= 1 ) {
-			list( $name, $value ) = explode( "=", array_shift( $bit ), 2 );
+			list( $name, $value ) = explode( '=', array_shift( $bit ), 2 );
 			$attr = array();
 
 			foreach ( $bit as $piece ) {
-				$parts = explode( "=", $piece );
+				$parts = explode( '=', $piece );
 				if ( count( $parts ) > 1 ) {
 					$attr[strtolower( $parts[0] )] = $parts[1];
 				} else {
