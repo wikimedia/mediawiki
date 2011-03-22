@@ -7150,6 +7150,9 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-ns-site-name' => 'Et sällve wi däm Wiki singe Name: $1',
 	'config-ns-other' => 'Andere (jiff aan wälshe)',
 	'config-ns-other-default' => 'MingWiki',
+	'config-project-namespace-help' => "Noh dämm Vörbeld vun de Wikipeedija, donn vill Wikis dänne ier Sigge övver et Wiki un sing Rääjelle vun dä Sigge mem Enhald vum Wiki tränne, un en enem extra Appachtemang för et „'''Projäk'''“ afflääje.
+Sigge en däm Appachtemang fange all med enem beshtemmpte Vörsaz aan, däm Name vum Appachtemang, un dä moß De heh faßlääje.
+Dä Name kann beshtemmpte Zeiche nit enthallde, wi „#“ un „:“ un et es Tradizjuhn, dat hä vum Name vum Wiki her kütt.",
 	'config-ns-invalid' => 'Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ es nit jöltesch.
 Nemm ene andere Name för däm Wiki sing eije Appachtemang.',
 	'config-ns-conflict' => 'Dat aanjejovve Appachtemang „<nowiki>$1</nowiki>“ kütt ald als Standatt-Appachtemang em MediaWiki vör.
@@ -7225,6 +7228,15 @@ Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
 	'config-email-usertalk' => '<i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
 	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
 	'config-email-watchlist' => 'Nohreeschte övver Änderonge aan Sigg op de Opaßleßte zohlohße.',
+	'config-email-watchlist-help' => 'Lohß Metmaacher Nohreeshte övver de Sigge op dänne iehr Oppaßleß krijje, wann se et en iehre Enschtellonge ußjewählt han.',
+	'config-email-auth' => 'Donn de Övverprööfung för Zohjangsberääschtejunge övver de <i lang="en">e-mail</i> zohlohße.',
+	'config-email-auth-help' => 'Wann dat aanjeschald es, möße Metmaacher, di iehr Adräß för de <i lang="en">e-mail</i> neu aanjävve  udder ändere, di Addräß övver ene Lengk beschtäätejje, dä de met de <i lang="en">e-mail</i> jescheck krijje.
+Bloß aan esu beschtääteschte Adräße deiht et Wiki <i lang="en">e-mails</i> schecke, Di künne vun annder Metmaachere kumme, udder vum Wiki sellver, wann en Sigg en däm Metmaacher sing Oppaßleß verändert woode es.
+Mer \'\'\'schlonn vör, dat aanzeschallde\'\'\' för öffentlesch Wikis, weil sönß zoh leisch Driß mem Wiki singe <i lang="en">e-mail</i> jemaat wääde künnt.',
+	'config-email-sender' => 'De Adräß för de Antwoote op <i lang="en">e-mails</i>:',
+	'config-email-sender-help' => 'Jiff de Adräß för de <i lang="en">e-mail</i> en, woh Antwoote ob em Wiki singe <i lang="en">e-mails</i> hen jonn sulle.
+Dat es och de Adräß, woh de <i lang="en">e-mails</i> met Fählermäldonge hen jon.
+Vill ẞööver de <i lang="en">e-mail</i> welle winnischßdens ene jöltijje Domain en dä Adräß han.',
 	'config-upload-settings' => 'Belder un Datteie huh laade',
 	'config-upload-enable' => 'Belder un Datteie huh laade zohlohße',
 	'config-upload-help' => 'Dattei huh ze laade künnt e Risiko för dem ẞööver singe Sescherheit sin.
@@ -7236,12 +7248,31 @@ Donoh donn heh di Saach zohlohße.',
 	'config-upload-deleted-help' => 'Söhk e Verzeijschneß uß för de fottjeschmeße Datteije vum Wiki dren afzelääje.
 Et bäß es, wam_mer vum <i lang="en">world wide web</i> doh nit drahn kumme kann.',
 	'config-logo' => 'Dem Logo sing <i lang="en">URL</i>:',
+	'config-logo-help' => 'De Schtandart_Bedeen_Bovverfläsch vum MediaWiki hät e Logo bovve en der Eck met 135x160 Pixele.
+Donn e zopaß Logo huh laade, un donn däm sing URL heh endraare.
+
+Wells De kei Logo han, draach heh nix en.',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
-	'config-cc-again' => 'Nch ens ußsöhke&nbsp;…',
+	'config-cc-error' => 'Et Ußsöhke övver de <i lang="en">Creative Commons</i> iehr Projramm zum Lizänzbeshtemme hät nix jebraat.
+Donn de Lizänz sellver beshtemme.',
+	'config-cc-again' => 'Noch ens ußsöhke&nbsp;…',
 	'config-advanced-settings' => 'Fottjeschredde Enshtellunge',
 	'config-cache-options' => 'Enshtällunge för et Faßhallde vun Objäkte em Zweschsheisher:',
 	'config-cache-help' => 'Objäkte em Zwescheshpeisher faßhallde, dat heiß öff jebruchte Daate en der <i lang="en">cache</i> donn, bruche mer, öm MediaWiki flöcker ze maache, 
 Meddlere un jruuße Wiki-ẞaits sullte dat onbedengk ußnoze, un och bei klein Wikis weed mer et jood merke.',
+	'config-cache-none' => 'Keine Zweschshpeijsher (Et jeid_em Wiki nix verloore, ußer velleish Jeschwendeshkeid, wann vill loßß es)',
+	'config-cache-accel' => 'Ene Objäk<i lang="en">cache</i> vum PHP (<i lang="en">APC</i>, <i lang="en">eAccelerator</i>, <i lang="en">XCache</i>, udder <i lang="en">WinCache</i>)',
+	'config-cache-memcached' => 'Donn der <code lang="en">memcached</code> ẞööver nämme (Määt extra Enshtellunge un Opsäze nüüdesch)',
+	'config-memcached-servers' => 'De <code lang="en">memcached</code> ßöövere:',
+	'config-memcached-help' => 'Do Leß met de <i lang="en">IP</i>-Addräße för der <code lang="en">memcached</code> ẞööver ze bruche.
+Se sullte ein pro Reih opjeschrevve wääde, un en Pooz (<i lang="en">port</i>) Nommer han, För e Beishpell esu:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Do häss der <code lang="en">memcached</code> als Dinge Zoot vun Zwescheshpeijscher aanjejovve, ävver nit eine ẞööver doför.',
+	'config-memcache-badip' => 'Do häss en onjöltijje <i lang="en">IP</i>-Addräß för der <code lang="en">memcached</code> ẞööver aanjejovve: $1.',
+	'config-memcache-noport' => 'Do has kein Pooz (<code lang="en">port</code>) Nommer aanjejovve för mem <code lang="en">memcached</code> ẞööver ze bruche: $1.
+Wann De di Nommer nit weiß, der Shtandatt es 11211.',
+	'config-memcache-badport' => 'Dem <code lang="en">memcached</code> ẞööver singe Pooz (<code lang="en">port</code>) Nommere sullte zwesche $1 un $2 sin.',
 	'config-extensions' => 'Projramm-Zosätz (<i lang="en">extensions</i>)',
 	'config-extensions-help' => 'Di bovve opjeleß Zohsazprojramme för et MediaWiki sin em Verzeischneß <code lang="en">./extensions</code> ald ze fenge.
 

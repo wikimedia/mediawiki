@@ -1684,7 +1684,7 @@ $1",
 'uploadwarning'               => 'Упозорење при слању',
 'uploadwarning-text'          => 'Измените опис датотеке и покушајте поново.',
 'savefile'                    => 'Сачувај датотеку',
-'uploadedimage'               => '{{GENDER:|је послао|је послала|посла}} „[[$1]]“',
+'uploadedimage'               => '{{GENDER:|је послао|је послала|је послао}} „[[$1]]“',
 'overwroteimage'              => '{{GENDER:|је послао|је послала|посла}} ново издање „[[$1]]“',
 'uploaddisabled'              => 'Слање је онемогућено.',
 'copyuploaddisabled'          => 'Отпремање путем URL адресе је онемогућено.',
@@ -2163,8 +2163,8 @@ $1',
 'watchlist-options'    => 'Опције списка надгледања',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Надгледање...',
-'unwatching' => 'Прекидање надгледања...',
+'watching'   => 'Надгледање…',
+'unwatching' => 'Прекидање надгледања…',
 
 'enotif_mailer'                => '{{SITENAME}} пошта обавештења',
 'enotif_reset'                 => 'Означи све странице као посећене',
@@ -2506,7 +2506,7 @@ $1',
 'blocklogtext'                    => 'Ово је историја блокирања корисника.
 Аутоматски забрањене IP адресе нису исписане овде.
 Погледајте [[Special:IPBlockList|забрањене IP адресе]] за списак тренутних блокова.',
-'unblocklogentry'                 => '{{GENDER:|је деблокирао|је деблокирала|деблокира}} „$1“',
+'unblocklogentry'                 => '{{GENDER:|је деблокирао|је деблокирала|је деблокирао}} „$1“',
 'block-log-flags-anononly'        => 'само анонимни корисници',
 'block-log-flags-nocreate'        => 'забрањено прављење налога',
 'block-log-flags-noautoblock'     => 'искључено аутоматско блокирање',

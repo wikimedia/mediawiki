@@ -11,7 +11,7 @@
  * @author Jureits
  * @author Reedy
  */
- 
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Medeja',
 	NS_SPECIAL          => 'Seviškuo',
@@ -94,6 +94,7 @@ $messages = array(
 'category_header'          => 'Puslopys kategorejā "$1"',
 'subcategories'            => 'Zamkategorejis',
 'category-media-header'    => 'Faili kategorejā "$1"',
+'category-empty'           => "''Itūšaļt ita kategoreja natur sevī puslopys ci daudzapleicis failus.''",
 'hidden-categories'        => '{{PLURAL:$1|Nūglobuota kategoreja|Nūglobuotys kategorejis}}',
 'hidden-category-category' => 'Nūglobuotuos kategorejis',
 'category-subcat-count'    => '{{PLURAL:$2|Itymā kategorejā ir vīn dūtuo zamkategoreja.|{{PLURAL:$1|Paruodeita $1 zamkategoreja|Paruodeitys $1 zamkategorejis}} nu $2.}}',

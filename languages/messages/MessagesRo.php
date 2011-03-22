@@ -2405,14 +2405,14 @@ Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ș
 'undelete-no-results'          => 'Nicio pagină potrivită nu a fost găsită în arhiva paginilor șterse.',
 'undelete-filename-mismatch'   => 'Nu poate fi restaurată revizia fișierului din data $1: nume nepotrivit',
 'undelete-bad-store-key'       => 'Nu poate fi restaurată revizia fișierului din data $1: fișierul lipsea înainte de ștergere.',
-'undelete-cleanup-error'       => 'Eroare la ștergerea arhivei nefolosite "$1".',
+'undelete-cleanup-error'       => 'Eroare la ștergerea arhivei nefolosite „$1”.',
 'undelete-missing-filearchive' => 'Nu poate fi restaurată arhiva fișierul cu ID-ul $1 pentru că nu există în baza de date.
-S-ar putea ca ea să fie deja restaurată.',
+S-ar putea ca ea să fi fost deja restaurată.',
 'undelete-error-short'         => 'Eroare la restaurarea fișierului: $1',
 'undelete-error-long'          => 'S-au găsit erori la ștergerea fișierului:
 
 $1',
-'undelete-show-file-confirm'   => 'Sunteți sigur că doriți să vizualizați o versiune ștearsă a fișierului "<nowiki>$1</nowiki>" din $2 ora $3?',
+'undelete-show-file-confirm'   => 'Sunteți sigur că doriți să vizualizați o versiune ștearsă a fișierului „<nowiki>$1</nowiki>” din $2, ora $3?',
 'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
@@ -2576,13 +2576,15 @@ Face parte din area de blocare $2, care nu poate fi deblocată.',
 'blockme'                         => 'Blochează-mă',
 'proxyblocker'                    => 'Blocaj de proxy',
 'proxyblocker-disabled'           => 'Această funcție este dezactivată.',
-'proxyblockreason'                => 'Adresa ta IP a fost blocată pentru că este un proxy deschis. Te rog, contactează provider-ul tău de servicii Internet sau tehnicieni IT și informează-i asupra acestei probleme serioase de securitate.',
+'proxyblockreason'                => 'Adresa dumneavoastră IP a fost blocată pentru că este un proxy deschis.
+Vă rugăm să vă contactați furnizorul de servicii Internet sau tehnicienii IT și să-i informați asupra acestei probleme serioase de securitate.',
 'proxyblocksuccess'               => 'Realizat.',
 'sorbsreason'                     => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
-'sorbs_create_account_reason'     => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS. Nu vă puteți crea un cont',
-'cant-block-while-blocked'        => 'Nu poți bloca alți utilizatori cât timp și tu ești blocat.',
+'sorbs_create_account_reason'     => 'Adresa dumneavoastră IP este listată ca un proxy deschis în lista neagră DNS.
+Nu vă puteți crea un cont',
+'cant-block-while-blocked'        => 'Nu puteți bloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',
 'cant-see-hidden-user'            => 'Utilizatorul pe care încercați să îl blocați este deja blocat și ascuns. Atata timp cât nu aveți drept de hideuser, nu puteți vedea sau modifica blocarea acestuia.',
-'ipbblocked'                      => 'Nu puteți bloca sau debloca alți utilizatori în timp ce sînteți dumneavoastră înșivă blocat.',
+'ipbblocked'                      => 'Nu puteți bloca sau debloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',
 'ipbnounblockself'                => 'Nu aveți permisiunea de a vă debloca singur',
 
 # Developer tools
@@ -2623,7 +2625,7 @@ Rețineți că pagina '''nu va fi mutată''' dacă există deja o pagină cu nou
 o redirecționare și în plus nu are nici o istorie de modificare.
 Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin mutarea alteia.
 
-'''ATENŢIE!'''
+'''ATENȚIE!'''
 Aceasta poate fi o schimbare drastică și neașteptată pentru o pagină populară;
 vă rugăm, să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
 'movepagetext-noredirectfixer' => "Completând formularul de mai jos veți redenumi o pagină, mutând tot istoricul la noul nume.
@@ -2683,15 +2685,15 @@ Te rugăm să le unifici manual.'''",
 'movereason'                   => 'Motiv:',
 'revertmove'                   => 'revenire',
 'delete_and_move'              => 'Șterge și redenumește',
-'delete_and_move_text'         => '==Ştergere necesară==
+'delete_and_move_text'         => '==Ștergere necesară==
 
-Articolul de destinație "[[:$1]]" există deja. Doriți să îl ștergeți pentru a face loc mutării?',
+Pagina destinație „[[:$1]]” există deja. Doriți să o ștergeți pentru a face loc redenumirii?',
 'delete_and_move_confirm'      => 'Da, șterge pagina.',
-'delete_and_move_reason'       => 'Şters pentru a face loc mutării',
+'delete_and_move_reason'       => 'Șters pentru a face loc redenumirii',
 'selfmove'                     => 'Titlurile sursei și ale destinației sunt aceleași; nu puteți muta o pagină peste ea însăși.',
-'immobile-source-namespace'    => 'Nu se pot muta paginile din spațiul de nume "$1"',
-'immobile-target-namespace'    => 'Nu se pot muta paginile în spațiul de nume "$1"',
-'immobile-target-namespace-iw' => 'Legătura interwiki nu este o țintă validă pentru mutare.',
+'immobile-source-namespace'    => 'Nu se pot redenumi paginile din spațiul de nume „$1”',
+'immobile-target-namespace'    => 'Nu se pot redenumi paginile în spațiul de nume „$1”',
+'immobile-target-namespace-iw' => 'Legătura interwiki nu este o țintă validă pentru redenumire.',
 'immobile-source-page'         => 'Această pagină nu poate fi mutată.',
 'immobile-target-page'         => 'Nu poate fi mutat la destinația cu acest titlu.',
 'imagenocrossnamespace'        => 'Fișierul nu poate fi mutat la un spațiu de nume care nu este destinat fișierelor',
@@ -2705,7 +2707,7 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 'semiprotectedpagemovewarning' => "'''Observație: această pagină a fost protejată, putând fi redenumiră doar de către utilizatorii înregistrați.'''
 Ultima intrare în jurnal este afișată mai jos pentru referință:",
 'move-over-sharedrepo'         => '== Fișierul există ==
-[[:$1]] există deja într-un depozit împărțit. Mutând un fișier la acest titlu va suprapune fișierul împărțit și îl va face inaccesibil.',
+[[:$1]] există deja într-un depozit partajat. Redenumirea fișierului la acest titlu va suprascrie fișierul partajat și îl va face inaccesibil.',
 'file-exists-sharedrepo'       => 'Numele ales al fișierului este deja în utilizare într-un depozit împărțit.
 Alegeți un alt nume.',
 
