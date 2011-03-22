@@ -245,11 +245,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		return 'ibm_db2';
 	}
 
-	######################################
-	# Setup
-	######################################
-
-
 	/**
 	 *
 	 * @param $server String: hostname of database server
