@@ -26,8 +26,8 @@ class DatabaseSqlite extends DatabaseBase {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false, $flags = 0 ) {
 		$this->mName = $dbName;
 		parent::__construct( $server, $user, $password, $dbName, $flags );
-		// parent doesn't open when $server is false, but we can work with $dbName
-		if( !$server && $dbName ) {
+		// parent doesn't open when $user is false, but we can work with $dbName
+		if( !$user && $dbName ) {
 			global $wgSharedDB;
 			if( $this->open( $server, $user, $password, $dbName ) && $wgSharedDB ) {
 				$this->attachDatabase( $wgSharedDB );
