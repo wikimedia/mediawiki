@@ -938,12 +938,21 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mConds[] = 'user_id = log_user';
 		$index = array();
 		$options = array();
-		# Add log_search table if there are conditions on it
-		if( array_key_exists('ls_field',$this->mConds) ) {
+		# Add log_search table if there are conditions on it.
+		# This filters the results to only include log rows that have
+		# log_search records with the specified ls_field and ls_value values.
+		if( array_key_exists( 'ls_field', $this->mConds ) ) {
 			$tables[] = 'log_search';
 			$index['log_search'] = 'ls_field_val';
 			$index['logging'] = 'PRIMARY';
-			$options[] = 'DISTINCT';
+			if ( !$this->hasEqualsClause( 'ls_field' )
+				|| !$this->hasEqualsClause( 'ls_value' ) )
+			{
+				# Since (ls_field,ls_value,ls_logid) is unique, if the condition is
+				# to match a specific (ls_field,ls_value) tuple, then there will be
+				# no duplicate log rows. Otherwise, we need to remove the duplicates.
+				$options[] = 'DISTINCT';
+			}
 		# Avoid usage of the wrong index by limiting
 		# the choices of available indexes. This mainly
 		# avoids site-breaking filesorts.
@@ -967,7 +976,7 @@ class LogPager extends ReverseChronologicalPager {
 			'conds'      => $this->mConds,
 			'options'    => $options,
 			'join_conds' => array(
-				'user' => array( 'INNER JOIN', 'user_id=log_user' ),
+				'user' 		 => array( 'INNER JOIN', 'user_id=log_user' ),
 				'log_search' => array( 'INNER JOIN', 'ls_log_id=log_id' )
 			)
 		);
@@ -975,6 +984,14 @@ class LogPager extends ReverseChronologicalPager {
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
 			$info['join_conds'], $info['options'], $this->mTagFilter );
 		return $info;
+	}
+
+	// Checks if $this->mConds has $field matched to a *single* value
+	protected function hasEqualsClause( $field ) {
+		return (
+			array_key_exists( $field, $this->mConds ) &&
+			( !is_array( $this->mConds[$field] ) || count( $this->mConds[$field] ) == 1 )
+		);
 	}
 
 	function getIndexField() {
