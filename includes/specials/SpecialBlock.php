@@ -557,7 +557,7 @@ class SpecialBlock extends SpecialPage {
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
 			if( !$data['AlreadyBlocked'] ) {
-				return array( array( 'ipb_already_blocked', $data['Target'] ) );
+				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
@@ -565,7 +565,7 @@ class SpecialBlock extends SpecialPage {
 				$currentBlock = Block::newFromTarget( $target );
 
 				if( $block->equals( $currentBlock ) ) {
-					return array( 'ipb_already_blocked' );
+					return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 				}
 
 				# If the name was hidden and the blocking user cannot hide
