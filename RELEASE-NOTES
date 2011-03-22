@@ -62,8 +62,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   becomes "check to block logged-in users too".  The default settings remain the same.
 * Most of the field names on the Special:Block form have been changed, which will
   probably break screen-scraping bots.
-* The 'trackback' right is no longer granted to sysops by default. $wgUseTrackbacks
-  is already false by default
+* (bug 26866) The 'trackback' right is no longer granted to sysops by default.
+  $wgUseTrackbacks is already false by default
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
