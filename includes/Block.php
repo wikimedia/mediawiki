@@ -1098,6 +1098,10 @@ class Block {
 		if( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ){
 			return Block::newFromID( $target );
 
+		} elseif( $target === null && $vagueTarget === null ){
+			# We're not going to find anything useful here
+			return null;
+
 		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
 			$block = new Block();
 			$block->fromMaster( $fromMaster );
