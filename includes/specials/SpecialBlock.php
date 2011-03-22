@@ -502,6 +502,10 @@ class SpecialBlock extends SpecialPage {
 			return array( 'ipb_expiry_invalid' );
 		}
 
+		if( !isset( $data['DisableEmail'] ) ){
+			$data['DisableEmail'] = false;
+		}
+
 		# If the user has done the form 'properly', they won't even have been given the
 		# option to suppress-block unless they have the 'hideuser' permission
 		if( !isset( $data['HideUser'] ) ){
