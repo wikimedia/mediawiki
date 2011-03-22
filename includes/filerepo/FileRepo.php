@@ -193,12 +193,13 @@ abstract class FileRepo {
 		if ( $time ) {
 			if ( $this->oldFileFactoryKey ) {
 				return call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
-			} else {
-				return false;
 			}
 		} else {
-			return call_user_func( $this->fileFactoryKey, $sha1, $this );
+			if ( $this->fileFactoryKey ) {
+				return call_user_func( $this->fileFactoryKey, $sha1, $this );
+			}
 		}
+		return false;
 	}
 
 	/**

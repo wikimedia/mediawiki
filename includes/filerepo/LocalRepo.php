@@ -14,7 +14,9 @@
  */
 class LocalRepo extends FSRepo {
 	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
+	var $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
 	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+	var $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
 	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
 	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
