@@ -3341,7 +3341,6 @@ $wgGroupPermissions['sysop']['autopatrol']       = true;
 $wgGroupPermissions['sysop']['protect']          = true;
 $wgGroupPermissions['sysop']['proxyunbannable']  = true;
 $wgGroupPermissions['sysop']['rollback']         = true;
-$wgGroupPermissions['sysop']['trackback']        = true;
 $wgGroupPermissions['sysop']['upload']           = true;
 $wgGroupPermissions['sysop']['reupload']         = true;
 $wgGroupPermissions['sysop']['reupload-shared']  = true;
@@ -3358,6 +3357,7 @@ $wgGroupPermissions['sysop']['movefile']         = true;
 $wgGroupPermissions['sysop']['unblockself']      = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
+#$wgGroupPermissions['sysop']['trackback']        = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
@@ -3975,6 +3975,8 @@ $wgDisableCounters = false;
 /**
  * Support blog-style "trackbacks" for articles.  See
  * http://www.sixapart.com/pronet/docs/trackback_spec for details.
+ *
+ * If enabling this, you also need to grant the 'trackback' right to a group
  */
 $wgUseTrackbacks = false;
 
