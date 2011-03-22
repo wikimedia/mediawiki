@@ -362,11 +362,10 @@ class VectorTemplate extends BaseTemplate {
 				break;
 				case 'VIEWS':
 ?>
-<div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
+<div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) { echo ' emptyPortlet'; } ?>">
 	<h5><?php $this->msg('views') ?></h5>
 	<ul<?php $this->html('userlangattributes') ?>>
-		<?php
-		foreach ( $this->data['view_urls'] as $link ): ?>
+		<?php foreach ( $this->data['view_urls'] as $link ): ?>
 			<li<?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php
 				// $link['text'] can be undefined - bug 27764
 				if ( array_key_exists( 'text', $link ) ) {
