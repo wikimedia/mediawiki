@@ -19,52 +19,46 @@
  */
 
 class MWFunction {
-	
+
 	protected static function cleanCallback( $callback ) {
-		
 		if( is_string( $callback ) ) {
 			if ( strpos( $callback, '::' ) !== false ) {
-				//PHP 5.1 cannot use call_user_func( 'Class::Method' )
-				//It can only handle only call_user_func( array( 'Class', 'Method' ) )
+				// PHP 5.1 cannot use call_user_func( 'Class::Method' )
+				// It can only handle only call_user_func( array( 'Class', 'Method' ) )
 				$callback = explode( '::', $callback, 2);
 			}
 		}
-		
+
 		if( count( $callback ) == 2 && $callback[0] == 'self' || $callback[0] == 'parent' ) {
-			
 			throw new MWException( 'MWFunction cannot call self::method() or parent::method()' );
-			
 		}
-		
+
 		// Run autoloader (workaround for call_user_func_array bug: http://bugs.php.net/bug.php?id=51329)
 		is_callable( $callback );
-		
+
 		return $callback;
 	}
-	
+
 	public static function call( $callback ) {
 		$callback = self::cleanCallback( $callback );
-		
+
 		$args = func_get_args();
-		
+
 		return call_user_func_array( 'call_user_func', $args );
-		
 	}
-	
+
 	public static function callArray( $callback, $argsarams ) {
-	
 		$callback = self::cleanCallback( $callback );
 		return call_user_func_array( $callback, $argsarams );
-		
 	}
-	
+
 	public static function newObj( $class, $args = array() ) {
 		if( !count( $args ) ) {
 			return new $class;
 		}
 
-		$ref = new ReflectionClass($class);
-		return $ref->newInstanceArgs($args);
+		$ref = new ReflectionClass( $class );
+		return $ref->newInstanceArgs( $args );
 	}
 
 }
