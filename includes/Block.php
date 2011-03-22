@@ -487,7 +487,8 @@ class Block {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
-	 * @return Boolean: whether or not the insertion was successful.
+	 * @return mixed: false on failure, assoc array on success:
+	 *	('id' => block ID, 'autoId' => autoblock ID or false)
 	 */
 	public function insert( $dbw = null ) {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
@@ -528,10 +529,12 @@ class Block {
 		);
 		$affected = $dbw->affectedRows();
 
-		if ( $affected )
-			$this->doRetroactiveAutoblock();
+		if ( $affected ) {
+			$auto_ipd_id = $this->doRetroactiveAutoblock();
+			return array( 'id' => $ipb_id, 'autoId' => $auto_ipd_id );
+		}
 
-		return (bool)$affected;
+		return false;
 	}
 
 	/**
@@ -604,7 +607,7 @@ class Block {
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
 	 * blocked by this Block.
 	 *
-	 * @return Boolean: whether or not a retroactive autoblock was made.
+	 * @return mixed: block ID if a retroactive autoblock was made, false if not.
 	 */
 	protected function doRetroactiveAutoblock() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -635,11 +638,12 @@ class Block {
 			} else {
 				foreach ( $res as $row ) {
 					if ( $row->rc_ip ) {
-						$this->doAutoblock( $row->rc_ip );
+						return $this->doAutoblock( $row->rc_ip );
 					}
 				}
 			}
 		}
+		return false;
 	}
 
 	/**
@@ -689,18 +693,18 @@ class Block {
 	 * Autoblocks the given IP, referring to this Block.
 	 *
 	 * @param $autoblockIP String: the IP to autoblock.
-	 * @param $justInserted Boolean: the main block was just inserted
-	 * @return Boolean: whether or not an autoblock was inserted.
+	 * @param $justInserted Boolean: the main block was just inserted.
+	 * @return mixed: block ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP, $justInserted = false ) {
 		# If autoblocks are disabled, go away.
 		if ( !$this->mEnableAutoblock ) {
-			return;
+			return false;
 		}
 
 		# Check for presence on the autoblock whitelist
 		if ( Block::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
-			return;
+			return false;
 		}
 
 		# # Allow hooks to cancel the autoblock.
@@ -719,7 +723,7 @@ class Block {
 			if ( $this->mExpiry &&
 				( $this->mExpiry < Block::getAutoblockExpiry( $ipblock->mTimestamp ) )
 			) {
-				return;
+				return false;
 			}
 
 			# Just update the timestamp
@@ -727,7 +731,7 @@ class Block {
 				$ipblock->updateTimestamp();
 			}
 
-			return;
+			return false;
 		} else {
 			$ipblock = new Block;
 		}
@@ -755,7 +759,8 @@ class Block {
 		}
 
 		# Insert it
-		return $ipblock->insert();
+		$status = $ipblock->insert();
+		return $status ? $status['id'] : false;
 	}
 
 	/**

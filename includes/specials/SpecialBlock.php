@@ -553,15 +553,13 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Try to insert block. Is there a conflicting block?
-		if( !$block->insert() ) {
-
+		$status = $block->insert();
+		if( !$status ) {
 			# Show form unless the user is already aware of this...
 			if( !$data['AlreadyBlocked'] ) {
 				return array( array( 'ipb_already_blocked', $data['Target'] ) );
-
 			# Otherwise, try to update the block...
 			} else {
-
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
 				$currentBlock = Block::newFromTarget( $target );
@@ -577,7 +575,7 @@ class SpecialBlock extends SpecialPage {
 				}
 
 				$currentBlock->delete();
-				$block->insert();
+				$status = $block->insert();
 				$logaction = 'reblock';
 
 				# Unset _deleted fields if requested
@@ -590,7 +588,6 @@ class SpecialBlock extends SpecialPage {
 					$data['HideUser'] = true;
 				}
 			}
-
 		} else {
 			$logaction = 'block';
 		}
@@ -619,12 +616,18 @@ class SpecialBlock extends SpecialPage {
 		# Make log entry, if the name is hidden, put it in the oversight log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
 		$log = new LogPage( $log_type );
-		$log->addEntry(
+		$log_id = $log->addEntry(
 			$logaction,
 			Title::makeTitle( NS_USER, $target ),
 			$data['Reason'][0],
 			$logParams
 		);
+		# Relate log ID to block IDs (bug 25763)
+		$blockIds = array( $status['id'] ); // main block
+		if ( $status['autoId'] ) {
+			$blockIds[] = $status['autoId']; // automatic block
+		}
+		$log->addRelations( 'ipb_id', $blockIds, $log_id );
 
 		# Report to the user
 		return true;
