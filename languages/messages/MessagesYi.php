@@ -656,6 +656,7 @@ $2',
 'usernamehasherror'          => 'באַניצער נאמען טאָר נישט אַנטהאַלטן קיין לייטער סימבאל',
 'login-throttled'            => 'איר האט געפרוווט צופֿיל מאל אריינלאגירן.
 זייט אזוי גוט און וואַרט איידער איר פרוווט נאכאמאל.',
+'login-abort-generic'        => 'אײַער ארײַנלאגירונג איז נישט געווען דערפֿאלגרייך—אָפגעשטעלט',
 'loginlanguagelabel'         => 'שפראך: $1',
 'suspicious-userlogout'      => ' אײַער בקשה אַרויסלאָגירן זיך איז אפגעלייגט געווארן ווייַל אייגנטלעך איז זי געשיקט דורך אַ צעבראכענעם בלעטערער אָדער א פראקסי מיט א זאפאס.',
 
@@ -943,7 +944,7 @@ $2',
 פרובירט [[Special:Search|צו זיכן אין וויקי]] נאך רעלאווענטע נייע בלעטער.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(אנמערקונג אראפגענומען)',
+'rev-deleted-comment'         => '(קורץ־ווארט אראָפגענומען)',
 'rev-deleted-user'            => '(באנוצער נאמען אראפגענומען)',
 'rev-deleted-event'           => '(לאגירן אקציע אראפגענומען)',
 'rev-deleted-user-contribs'   => '[באַניצער נאָמען אָדער IP אַדרעס אראפגענומען - רעדאַקטירונג פֿאַרבאָרגן פֿון בייַשטייַערונגען]',
@@ -1102,6 +1103,7 @@ $1",
 'searchmenu-legend'                => 'זוכן ברירות',
 'searchmenu-exists'                => "'''ס'איז פֿאַראַן א בלאַט מיטן נאמען \"[[:\$1]]\" אין דער וויקי'''",
 'searchmenu-new'                   => "'''באַשאַפֿן דעם בלאַט \"[[:\$1]]\" אויף דער וויקי'''",
+'searchmenu-new-nocreate'          => '"$1" איז אַן אומגילטיקער בלאַט נאָמען אָדער איר קענט אים נישט שאַפֿן.',
 'searchhelp-url'                   => 'Help:אינהאַלט',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|בלעטערן בלעטער מיט דעם פרעפֿיקס]]',
 'searchprofile-articles'           => 'אינהאלט בלעטער',
@@ -1479,6 +1481,7 @@ $1",
 'badfilename'                 => 'טעקע נאמען איז געטוישט צו "$1".',
 'filetype-missing'            => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
 'empty-file'                  => 'די טעקע וואָס איר האט אײַנגעגעבן איז ליידיג.',
+'file-too-large'              => 'די טעקע וואָס איר האט אײַנגעגעבן איז צו גרויס.',
 'filename-tooshort'           => 'דער טעקענאמען איז צו קורץ',
 'illegal-filename'            => 'דער טעקע־נאָמען איז נישט ערלויבט',
 'unknown-error'               => 'אַן אומבאַקאַנט טעות איז פֿארגעקומען.',
@@ -2990,16 +2993,18 @@ $5
 'filepath-submit' => 'גיין',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'זוכן דופליקאַטע טעקעס',
-'fileduplicatesearch-legend'   => 'זוכן א דופליקאַט',
-'fileduplicatesearch-filename' => 'טעקע:',
-'fileduplicatesearch-submit'   => 'זוכן',
+'fileduplicatesearch'           => 'זוכן דופליקאַטע טעקעס',
+'fileduplicatesearch-legend'    => 'זוכן א דופליקאַט',
+'fileduplicatesearch-filename'  => 'טעקע:',
+'fileduplicatesearch-submit'    => 'זוכן',
+'fileduplicatesearch-noresults' => 'קיין טעקע מיטן נאמען "$1" נישט געטראפֿן.',
 
 # Special:SpecialPages
 'specialpages'                   => 'ספּעציעלע זײַטן',
 'specialpages-note'              => '----
-* נארמאַלע ספעציעלע בלעטער.
-* <strong class="mw-specialpagerestricted">באַגרענעצטע ספעציעלע בלעטער.</strong>',
+* נארמאַלע באַזונדערע בלעטער.
+* <strong class="mw-specialpagerestricted">באַגרענעצטע באַזונדערע בלעטער.</strong>
+* <span class="mw-specialpagecached">באַזונדערע בלעטער פֿון זאַפאַס.</span>',
 'specialpages-group-maintenance' => 'אויפֿהאַלטונג באַריכטן',
 'specialpages-group-other'       => 'אַנדערע ספעציעלע בלעטער',
 'specialpages-group-login'       => 'ארײַנלאגירן / אײַנשרײַבן',
@@ -3018,6 +3023,7 @@ $5
 'intentionallyblankpage' => 'דער בלאַט איז ליידיג בכוונה',
 
 # Special:Tags
+'tag-filter'        => '[[Special:Tags|מאַרקירונג]] פֿילטער:',
 'tag-filter-submit' => 'פֿילטער',
 'tags-title'        => 'טאַגן',
 'tags-tag'          => 'טאַג נאָמען',
@@ -3025,8 +3031,9 @@ $5
 'tags-hitcount'     => ' {{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 
 # Special:ComparePages
-'comparepages'   => 'פאַרגלייַכן בלעטער',
-'compare-submit' => 'פֿאַרגלייַכן',
+'comparepages'     => 'פאַרגלייַכן בלעטער',
+'compare-selector' => 'פאַרגלייַכן בלאַט רעוויזיעס',
+'compare-submit'   => 'פֿאַרגלייַכן',
 
 # Database error messages
 'dberr-header'   => 'די וויקי האט א פראבלעם',

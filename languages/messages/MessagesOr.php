@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jayantanth
  * @author Jose77
  * @author Odisha1
  * @author Psubhashish
@@ -63,7 +64,7 @@ $messages = array(
 'january'       => 'ଜାନୁଆରି',
 'february'      => 'ଫେବୁଆରି',
 'march'         => 'ମାର୍ଚ',
-'april'         => 'ଅପ୍ରେଲ',
+'april'         => 'ଏପ୍ରିଲ',
 'may_long'      => 'ମେ',
 'june'          => 'ଜୁନ',
 'july'          => 'ଜୁଲାଇ',
@@ -118,7 +119,7 @@ $messages = array(
 'history_short'    => 'ଇତିହାସ',
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
 'permalink'        => 'ସବୁଦିନିଆ ଲିଁକ',
-'edit'             => 'ଏଡ଼ିଟ',
+'edit'             => 'ବଦଳାଁତୁ',
 'create'           => 'ତିଆରିକର',
 'delete'           => 'ଲିଭେଇବେ',
 'protect'          => 'କିଳିବେ',
@@ -146,6 +147,7 @@ $messages = array(
 'edithelppage'         => 'Help:ବଦଳା',
 'mainpage'             => 'ମୂଳ ଫରଦ',
 'mainpage-description' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'portal'               => 'କମୁନିଟି ପୋଟାଲ',
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
@@ -185,6 +187,7 @@ $messages = array(
 'viewsource'      => 'ଉତ୍ସ ଦେଖ',
 
 # Login and logout pages
+'login'                   => 'ଲଗଇନ',
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'userlogout'              => 'ଲଗ ଆଉଟ',
 
@@ -201,9 +204,12 @@ $messages = array(
 'headline_tip'    => '୨କ ଆକାରର ମୂଳଧାଡ଼ି',
 'math_sample'     => 'ଏଠି ଫରମୁଲା ପୁରାଅ',
 'math_tip'        => 'ଗାଣିତିକ ସୁତର (ଲାଟେକ୍ସ)',
+'nowiki_sample'   => 'ଫରମାଟ ହୋଇ ନଥିବା ଲେଖା ଏଠାରେ ପୁରାଅ',
+'nowiki_tip'      => 'ଉଇକି ଫରମାଟିଁଗକୁ ଛାଡିଦିଅ',
 'image_tip'       => 'ଏମବେଡ ହୋଇ ଥିବା ଫାଇଲ',
 'media_tip'       => 'ଫାଇଲର ଲିଁକ',
 'sig_tip'         => 'ଲେଖାର ବେଳ ସହ ଆପଣଁକ ହସ୍ତାକ୍ଷର',
+'hr_tip'          => 'ସାମାଁତରାଳ ରେଖା (ବେଳେବେଳେ ବ୍ୟ୍ଅବହାର କର)',
 
 # Edit pages
 'summary'                => 'ସାରକଥା:',
@@ -212,8 +218,11 @@ $messages = array(
 'watchthis'              => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
 'savearticle'            => 'ସାଇତି ରଖ',
 'preview'                => 'ଦେଖଣା',
-'showpreview'            => 'ପ୍ରିଭିଉ ଦେଖାଅ',
+'showpreview'            => 'ଦେଖଣା',
 'showdiff'               => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
+'anoneditwarning'        => "'''ଜାଣିରଖଁତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାଁତି ।
+ଏହି ଫରଦର '''ଇତିହାସ''' ଫରଦରେ ଆପଣଁକ ଆଇପି ଠିକଣାତି ସାଇତା ହୋଇଯିବ ।",
+'newarticle'             => '(ନୁଆ)',
 'editing'                => '$1 କୁ ବଦଳାଉଛି',
 'editingsection'         => '$1 (ଭାଗ)କୁ ଏଡ଼ିଟ କରିବେ',
 'template-protected'     => '(କିଳାଯାଇଥିବା)',
@@ -315,6 +324,9 @@ $messages = array(
 'imagelinks'        => 'ଫାଇଲର ଲିଁକସବୁ',
 'sharedupload'      => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
 
+# Random page
+'randompage' => 'ଯାହିତାହି ଫରଦଟିଏ',
+
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
 'nmembers'             => '$1 {{PLURAL:$1|member|ସଭ୍ୟ}}',
@@ -328,6 +340,7 @@ $messages = array(
 'mostlinkedtemplates'  => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଟେଁପଲେଟ',
 'mostcategories'       => 'ବେଶିବିଭାଗ ଥିବା ଫରଦ',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
+'prefixindex'          => 'ପ୍ରିଫିକ୍ସ ସହ ଥିବା ସବୁ ଫରଦ',
 'move'                 => 'ଘୁଁଚାଅ',
 
 # Book sources
@@ -343,6 +356,9 @@ $messages = array(
 
 # Special:LinkSearch
 'linksearch-ok' => 'ସନ୍ଧାନ',
+
+# E-mail user
+'emailuser' => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
 
 # Watchlist
 'watchlist'   => 'ଦେଖାତାଲିକା',
@@ -401,6 +417,7 @@ $messages = array(
 'whatlinkshere-page'      => 'ଫରଦ',
 'isimage'                 => 'ଚିତ୍ର ଲିଁକ',
 'whatlinkshere-links'     => '← ଲିଁକ',
+'whatlinkshere-hidetrans' => '$1 ରେଫେରେଁସ ସହ ଭିତରେ ପୁରାଇବା',
 'whatlinkshere-hidelinks' => '$1 ଟି ଲିଁକ',
 'whatlinkshere-filters'   => 'ଛାଣିବା',
 
@@ -414,6 +431,7 @@ $messages = array(
 
 # Move page
 'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
+'revertmove'  => 'ପଛକୁ ଫେରାଇନିଅ',
 
 # Export
 'export' => 'ଫରଦସବୁ ରପ୍ତାନି କର',
@@ -461,8 +479,11 @@ $messages = array(
 'tooltip-ca-nstab-user'          => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
 'tooltip-ca-nstab-special'       => 'ଏଇଟି ଗୋଟିଏ ବିଶେଷ ଫରଦ, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
 'tooltip-ca-nstab-image'         => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
+'tooltip-ca-nstab-category'      => 'ବିଭାଗ ଫରଦଟିକୁ ଖୋଲ',
 'tooltip-minoredit'              => 'ଏହାକୁ ଛୋଟ ବଦଳ ଭାବେ ଗଣ',
 'tooltip-save'                   => 'ବଦଳଗୁଡ଼ିକ ସାଇତିରଖ',
+'tooltip-preview'                => 'ଆପଣନ୍କ ବଦଳ ଦେଖିନିଅନ୍ତୁ, ସାଇତିବା ଆଗରୁ ଏହା ବ୍ୟ୍ଅବହାର କରନ୍ତୁ!',
+'tooltip-diff'                   => 'ଏହି ଲେଖାରେ ଆପଣ କରିଥିବା ବଦଳଗୁଡିକୁ ଦେଖନ୍ତୁ ।',
 
 # Browsing diffs
 'previousdiff' => '← ପୁରୁଣା ବଦଳ',
@@ -482,7 +503,8 @@ $messages = array(
 ପ୍ରଥମ ଲିକ ପରର ସବୁ ଲିକକୁ ସ୍ଵତଁତ୍ର ବୋଲି ଧରାଯିବ । ମାନେ, ସେଇସବୁ ଫରଦରେ ଯେଉଁଠି ଫାଇଲଟି ଧାଡି ଭିତରେ ରହିଥିବ ।',
 
 # Metadata
-'metadata' => 'ମେଟାଡାଟା',
+'metadata'        => 'ମେଟାଡାଟା',
+'metadata-expand' => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଅ',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'ସବୁ',

@@ -595,8 +595,8 @@ $2، $1',
 
 # Recent changes linked
 'recentchangeslinked'         => 'واری دأچیـه‌ن‌ئون',
-'recentchangeslinked-feed'    => 'واری دچیه‌ن‌ئون',
-'recentchangeslinked-toolbox' => 'واری دچیه‌ن‌ئون',
+'recentchangeslinked-feed'    => 'واری دچی‌یه‌ئون',
+'recentchangeslinked-toolbox' => 'واری دچی‌یه‌ئون',
 'recentchangeslinked-page'    => 'صفحه ایسم:',
 
 # Upload
@@ -732,7 +732,7 @@ $2، $1',
 'sp-contributions-submit'   => 'چـأرخـه‌تـو',
 
 # What links here
-'whatlinkshere'       => 'کـه‌جـه‌ لـیـنـک هـه‌دائـه‌ ایـجـه ره؟',
+'whatlinkshere'       => 'لینک‌ئون ِاینتا صفحه',
 'whatlinkshere-title' => 'وألـگ‌ئونی که "$1" ره لـیـنک هه‌دانه',
 'whatlinkshere-page'  => 'صفحه:',
 'linkshere'           => "ولـگ‌ئـونی کـه لـیـنـک هـه‌دائـه‌نـه '''[[:$1]]''' ره:",
@@ -800,7 +800,7 @@ $2، $1',
 'tooltip-feed-atom'              => 'Atom خوراک این صفحه وسّه',
 'tooltip-t-emailuser'            => 'ای کـارور ره اتـا ئـه‌لـه‌کـتـه‌رونـیـکـی‌نـومـه راهـی هـه‌کـارده‌ن',
 'tooltip-t-upload'               => 'بـاربـیـه‌شـتـه‌ن فـایـل‌ئون',
-'tooltip-t-specialpages'         => 'هأمـه شـا ولـگ‌ئون ره لـیـسـت',
+'tooltip-t-specialpages'         => 'همه شا صفحه‌ئون ِلیسـت',
 'tooltip-t-print'                => 'پِرینت هـاکاردن صفحه دگاردسته',
 'tooltip-t-permalink'            => 'موندستنی لینک این صفحه ره اینتا محتوا وسّه',
 'tooltip-ca-nstab-main'          => 'بدی‌ین ِصفحه',
@@ -877,6 +877,6 @@ $5
 'autosumm-replace' => "صفحه ره اینتا جه عوض هاکرد: '$1'",
 
 # Special:SpecialPages
-'specialpages' => 'شـا ولـگ‌ئون',
+'specialpages' => 'شا صفحه‌ئون',
 
 );
