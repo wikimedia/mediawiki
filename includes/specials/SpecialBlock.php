@@ -623,10 +623,7 @@ class SpecialBlock extends SpecialPage {
 			$logParams
 		);
 		# Relate log ID to block IDs (bug 25763)
-		$blockIds = array( $status['id'] ); // main block
-		if ( $status['autoId'] ) {
-			$blockIds[] = $status['autoId']; // automatic block
-		}
+		$blockIds = array_merge( array( $status['id'] ), $status['autoIds']  );
 		$log->addRelations( 'ipb_id', $blockIds, $log_id );
 
 		# Report to the user

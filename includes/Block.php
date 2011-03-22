@@ -488,13 +488,14 @@ class Block {
 	 * block (same name and options) already in the database.
 	 *
 	 * @return mixed: false on failure, assoc array on success:
-	 *	('id' => block ID, 'autoId' => autoblock ID or false)
+	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert( $dbw = null ) {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 
-		if ( $dbw === null )
+		if ( $dbw === null ) {
 			$dbw = wfGetDB( DB_MASTER );
+		}
 
 		$this->validateBlockParams();
 		$this->initialiseRange();
@@ -530,8 +531,8 @@ class Block {
 		$affected = $dbw->affectedRows();
 
 		if ( $affected ) {
-			$auto_ipd_id = $this->doRetroactiveAutoblock();
-			return array( 'id' => $ipb_id, 'autoId' => $auto_ipd_id );
+			$auto_ipd_ids = $this->doRetroactiveAutoblock();
+			return array( 'id' => $ipb_id, 'autoIds' => $auto_ipd_ids );
 		}
 
 		return false;
@@ -607,9 +608,11 @@ class Block {
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
 	 * blocked by this Block.
 	 *
-	 * @return mixed: block ID if a retroactive autoblock was made, false if not.
+	 * @return Array: block IDs of retroactive autoblocks made
 	 */
 	protected function doRetroactiveAutoblock() {
+		$blockIds = array();
+
 		$dbr = wfGetDB( DB_SLAVE );
 		# If autoblock is enabled, autoblock the LAST IP used
 		# - stolen shamelessly from CheckUser_body.php
@@ -622,7 +625,8 @@ class Block {
 
 			if ( $this->mAngryAutoblock ) {
 				// Block any IP used in the last 7 days. Up to five IPs.
-				$conds[] = 'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - ( 7 * 86400 ) ) );
+				$conds[] = 'rc_timestamp < ' .
+					$dbr->addQuotes( $dbr->timestamp( time() - ( 7 * 86400 ) ) );
 				$options['LIMIT'] = 5;
 			} else {
 				// Just the last IP used.
@@ -638,12 +642,13 @@ class Block {
 			} else {
 				foreach ( $res as $row ) {
 					if ( $row->rc_ip ) {
-						return $this->doAutoblock( $row->rc_ip );
+						$id = $this->doAutoblock( $row->rc_ip );
+						if ( $id ) $blockIds[] = $id;
 					}
 				}
 			}
 		}
-		return false;
+		return $blockIds;
 	}
 
 	/**
