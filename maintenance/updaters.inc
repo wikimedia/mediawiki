@@ -1520,6 +1520,8 @@ function do_postgres_updates() {
 	else {
 		$search_path = $conf['search_path'];
 	}
+
+	$safeuser = $wgDatabase->quote_ident($wgDBuser);
 	if( strpos( $search_path, $wgDBmwschema ) === false ) {
 		wfOut( "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n" );
 		$search_path = "$wgDBmwschema, $search_path";
@@ -1530,7 +1532,7 @@ function do_postgres_updates() {
 	}
 	$search_path = str_replace( ', ,', ',', $search_path);
 	if( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
-		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $search_path" );
+		$wgDatabase->doQuery( "ALTER USER $safeuser SET search_path = $search_path" );
 		$wgDatabase->doQuery( "SET search_path = $search_path" );
 	}
 	else {
@@ -1546,7 +1548,7 @@ function do_postgres_updates() {
 		$value = $goodconf[$key];
 		if( !array_key_exists( $key, $conf ) or $conf[$key] !== $value ) {
 			wfOut( "Setting $key to '$value' for user \"$wgDBuser\"\n" );
-			$wgDatabase->doQuery( "ALTER USER $wgDBuser SET $key = '$value'" );
+			$wgDatabase->doQuery( "ALTER USER $safeuser SET $key = '$value'" );
 			$wgDatabase->doQuery( "SET $key = '$value'" );
 		}
 		else {
