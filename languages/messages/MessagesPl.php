@@ -33,6 +33,7 @@
  * @author ToSter
  * @author Wpedzich
  * @author Ymar
+ * @author Žekřil71pl
  * @author לערי ריינהארט
  */
 
@@ -2415,8 +2416,8 @@ $1',
 'contribsub2'         => 'Dla użytkownika $1 ($2)',
 'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop'               => ' (jako ostatnia)',
-'month'               => 'Przed miesiącem (włącznie)',
-'year'                => 'Przed rokiem (włącznie)',
+'month'               => 'Do miesiąca (włącznie)',
+'year'                => 'Do roku (włącznie)',
 
 'sp-contributions-newbies'             => 'Pokaż wyłącznie wkład nowych użytkowników',
 'sp-contributions-newbies-sub'         => 'Dla nowych użytkowników',

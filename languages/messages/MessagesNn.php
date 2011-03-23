@@ -2475,6 +2475,16 @@ $1 er alt blokkert. Vil du endre innstillingane?',
 Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
 
 <b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.",
+'movepagetext-noredirectfixer' => "Ved å bruke skjemaet under kan du få omdøypt ei side og flytt heile historikken til det nye namnet. 
+Den gamle tittelen vil omdirigere til den nye tittelen. 
+Pass på å sjekke for doble eller dårlege omdirigeringar. 
+Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+
+Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen, om ho då ikkje er ei omdirigeringsside utan endringshistorikk. Dette vil seie at du kan flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, og at du ikkje kan skriva over ei side som finst.
+
+<b>ÅTVARING!</b>
+Dette kan vera ei drastisk og uventa endring for ei populær side;
+ver sikker på at du skjøner konsekvensane av dette før du fortset.",
 'movepagetalktext'             => "Den tilhøyrande diskusjonssida, om ho finst, vil automatisk bli flytt med sida '''med mindre:'''
 *Du flytter sida til eit anna namnerom, eller
 *Du fjernar merkinga i boksen nedanfor.

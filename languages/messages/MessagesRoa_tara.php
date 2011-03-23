@@ -222,6 +222,7 @@ $messages = array(
 'delete'            => 'Scangìlle',
 'deletethispage'    => 'Scangille sta pàgene',
 'undelete_short'    => "Annulle {{PLURAL:$1|'nu camgiamende|$1 cangiaminde}}",
+'viewdeleted_short' => "Vide {{PLURAL:$1|'nu cangiamende scangellate|$1 cangiaminde scangellate}}",
 'protect'           => 'Prutette',
 'protect_change'    => 'cange',
 'protectthispage'   => 'Prutigge sta pàgene',
@@ -822,7 +823,7 @@ Pò essere ca ha state scangellete da Uicchi o ha state renomenate..
 Pruève a [[Special:Search|cercò sus a Uicchi]] 'mbrà le vosce cchiù rilevande.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(commende scangillete)',
+'rev-deleted-comment'         => "(cangiamnde d'u riepileghe scangellate)",
 'rev-deleted-user'            => '(nome utende scangillete)',
 'rev-deleted-event'           => "(azione de l'archivie scangillete)",
 'rev-deleted-user-contribs'   => '[nome utende o indirizze IP luate - cangiamende scunnute da le condrebbute]',
@@ -1526,6 +1527,9 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'upload-unknown-size'       => 'Dimenziona scanusciute',
 'upload-http-error'         => "S'a verificate 'n'errore HTTP: $1",
 
+# Special:UploadStash
+'uploadstash-refresh' => "Aggiorne l'elenghe de le file",
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesse negate',
 'img-auth-nopathinfo'   => "No se iacchie PATH_INFO.
@@ -1707,13 +1711,14 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'Nvece avessere appondà a 'a temateca appropriate.<br />
 'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage|Pàggene de disambiguazione]]",
 
-'doubleredirects'            => 'Ridirezionaminde a doppie',
-'doubleredirectstext'        => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
+'doubleredirects'                   => 'Ridirezionaminde a doppie',
+'doubleredirectstext'               => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
 Ogne righe condene 'nu collegamende a 'u prime e a 'u seconde ridirezionamende pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'a pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.
 Le situaziune de <del>ingrocie</del> onne state resolte.",
-'double-redirect-fixed-move' => "[[$1]] ha state spustate.
+'double-redirect-fixed-move'        => "[[$1]] ha state spustate.
 Mò s'avène redirette a [[$2]].",
-'double-redirect-fixer'      => 'Correttore de redirezionaminde',
+'double-redirect-fixed-maintenance' => 'Aggiuste le doppie redirezionaminde da [[$1]] a [[$2]].',
+'double-redirect-fixer'             => 'Correttore de redirezionaminde',
 
 'brokenredirects'        => 'Redirezionamninde scuasciete',
 'brokenredirectstext'    => "Le ridirezionaminde ca seguene appondene a pàggene ca non g'esistene:",
@@ -2178,9 +2183,10 @@ $1",
 'undelete-show-file-submit'    => 'Sine',
 
 # Namespace form on various pages
-'namespace'      => 'Namespace:',
-'invert'         => "Selezione 'a smerse",
-'blanknamespace' => '(Prengepàle)',
+'namespace'             => 'Namespace:',
+'invert'                => "Selezione 'a smerse",
+'namespace_association' => 'Namespace associate',
+'blanknamespace'        => '(Prengepàle)',
 
 # Contributions
 'contributions'       => "Condrebbute de l'utende",
@@ -2230,6 +2236,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'whatlinkshere-filters'    => 'Filtre',
 
 # Block/unblock
+'autoblockid'                     => 'Autoblocche #$1',
 'blockip'                         => "Blocche l'utende",
 'blockip-title'                   => "Bluecche l'utende",
 'blockip-legend'                  => "Bluecche l'utende",
@@ -2272,9 +2279,14 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'unblockiptext'                   => "Ause 'a maschera aqquà sotte pe repristinà l'accesse in scritture a le indirizze IP o a le cunde utinde ca apprime avèrene state bloccate.",
 'ipusubmit'                       => 'Live stu blocche',
 'unblocked'                       => '[[User:$1|$1]] ha state sblocchete',
+'unblocked-range'                 => '$1 ha state sbloccate',
 'unblocked-id'                    => 'Blocche $1 ha state luvete',
+'blocklist'                       => "'Ndirizze IP e nome utinde bloccate",
 'ipblocklist'                     => "'Ndirizze IP e nome utinde blocchete",
 'ipblocklist-legend'              => "Iacchije 'n'utende blocchete",
+'blocklist-target'                => 'Destinazione',
+'blocklist-expiry'                => 'Scade',
+'blocklist-reason'                => 'Mutive',
 'ipblocklist-submit'              => 'Cirche',
 'ipblocklist-localblock'          => 'Blocche locale',
 'ipblocklist-otherblocks'         => 'Otre {{PLURAL:$1|blocche|blocche}}',
@@ -2718,21 +2730,23 @@ $1",
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
 # Media information
-'mediawarning'         => "'''Attenziò''': Stu file pò condenè codece viziuse.
+'mediawarning'           => "'''Attenziò''': Stu file pò condenè codece viziuse.
 Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
-'imagemaxsize'         => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
-'thumbsize'            => "Dimenziona d'a miniature:",
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
-'file-info'            => "dimenzione d'u fail: $1, tipe de MIME: $2",
-'file-info-size'       => "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
-'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",
-'svg-long-desc'        => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
-'show-big-image'       => 'Risoluzione chiena chiena',
-'file-info-gif-looped' => 'infinite',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
-'file-info-png-looped' => 'infinite',
-'file-info-png-repeat' => 'eseguite $1 {{PLURAL:$1|vote|vote}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'imagemaxsize'           => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
+'thumbsize'              => "Dimenziona d'a miniature:",
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
+'file-info'              => "dimenzione d'u fail: $1, tipe de MIME: $2",
+'file-info-size'         => "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
+'file-nohires'           => "<small>Manghe 'a risoluzione ierta.</small>",
+'svg-long-desc'          => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
+'show-big-image'         => 'Risoluzione chiena chiena',
+'show-big-image-preview' => '<small>Dimenziune de sta andeprime: $1.</small>',
+'show-big-image-size'    => '$1 x $2 pixel',
+'file-info-gif-looped'   => 'infinite',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frame}}',
+'file-info-png-looped'   => 'infinite',
+'file-info-png-repeat'   => 'eseguite $1 {{PLURAL:$1|vote|vote}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|frame|frame}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallerie de le fail nuève',
@@ -2888,6 +2902,7 @@ Otre avènene scunnute pe defolt.
 'exif-gpsareainformation'          => "Nome de l'area d'u GPS",
 'exif-gpsdatestamp'                => "Date d'u GPS",
 'exif-gpsdifferential'             => "Correzzione differenziale d'u GPS",
+'exif-objectname'                  => 'Titele curte',
 
 # EXIF attributes
 'exif-compression-1' => 'No combresse',
@@ -3226,20 +3241,22 @@ Le immaggine sonde mostrate jndr'à resoluziona megghie, otre tipe de file rechi
 Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Cirche pe le file duplichete',
-'fileduplicatesearch-summary'  => "Cirche pe file duplichete sus a base d'u valore hash.",
-'fileduplicatesearch-legend'   => "Cirche pe 'nu duplichete",
-'fileduplicatesearch-filename' => "Nome d'u faile:",
-'fileduplicatesearch-submit'   => 'Cirche',
-'fileduplicatesearch-info'     => "$1 × $2 pixel<br />Dimenzione d'u file: $3<br />Tipe de MIME: $4",
-'fileduplicatesearch-result-1' => '\'U file "$1" non ge tène \'na duplicazione uguale uguale.',
-'fileduplicatesearch-result-n' => '\'U file "$1" tène {{PLURAL:$2|1 duplicazione|$2 duplicaziune}} uguale uguale.',
+'fileduplicatesearch'           => 'Cirche pe le file duplichete',
+'fileduplicatesearch-summary'   => "Cirche pe file duplichete sus a base d'u valore hash.",
+'fileduplicatesearch-legend'    => "Cirche pe 'nu duplichete",
+'fileduplicatesearch-filename'  => "Nome d'u faile:",
+'fileduplicatesearch-submit'    => 'Cirche',
+'fileduplicatesearch-info'      => "$1 × $2 pixel<br />Dimenzione d'u file: $3<br />Tipe de MIME: $4",
+'fileduplicatesearch-result-1'  => '\'U file "$1" non ge tène \'na duplicazione uguale uguale.',
+'fileduplicatesearch-result-n'  => '\'U file "$1" tène {{PLURAL:$2|1 duplicazione|$2 duplicaziune}} uguale uguale.',
+'fileduplicatesearch-noresults' => 'Nisciune file chiamate "$1" ha state acchiate.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàggene speciele',
-'specialpages-note'              => '----
+'specialpages-note'              => '!----
 * Pàggene speciale normale.
-* <strong class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</strong>',
+* <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>
+* <span class="mw-specialpagecached">Pàggene speciale in memorie cache.</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
 'specialpages-group-login'       => 'Tràse / Reggistrete',
