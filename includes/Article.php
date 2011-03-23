@@ -3052,19 +3052,16 @@ class Article {
 		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		$error = '';
-		if ( wfRunHooks( 'ArticleDelete', array( &$this, &$wgUser, &$reason, &$error ) ) ) {
-			if ( $this->doDeleteArticle( $reason, $suppress, $id ) ) {
-				$deleted = $this->mTitle->getPrefixedText();
+		if ( $this->doDeleteArticle( $reason, $suppress, $id, &$error ) ) {
+			$deleted = $this->mTitle->getPrefixedText();
 
-				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-				$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
-				$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
+			$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
 
-				$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
-				$wgOut->returnToMain( false );
-				wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$wgUser, $reason, $id ) );
-			}
+			$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
+			$wgOut->returnToMain( false );
 		} else {
 			if ( $error == '' ) {
 				$wgOut->showFatalError(
@@ -3102,11 +3099,14 @@ class Article {
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @return boolean true if successful
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true ) {
+	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, $error='' ) {
 		global $wgDeferredUpdateList, $wgUseTrackbacks;
 
 		wfDebug( __METHOD__ . "\n" );
 
+		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$wgUser, &$reason, &$error ) ) ) {
+			return false;
+		}
 		$dbw = wfGetDB( DB_MASTER );
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
@@ -3232,6 +3232,7 @@ class Article {
 			$dbw->commit();
 		}
 
+		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$wgUser, $reason, $id ) );
 		return true;
 	}
 
