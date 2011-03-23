@@ -794,31 +794,39 @@ class Linker {
 	 *
 	 * @param $title Title object.
 	 * @param $text String: pre-sanitized HTML
-	 * @param $time string: time image was created
+	 * @param $time string: MW timestamp of file creation time
+	 * @return String: HTML
+	 */
+	public function makeMediaLinkObj( $title, $text = '', $time = false ) {
+		$img = wfFindFile( $title, array( 'time' => $time ) );
+		return $this->makeMediaLinkFile( $title, $img, $text );
+	}
+
+	/**
+	 * Create a direct link to a given uploaded file.
+	 * This will make a broken link if $file is false.
+	 *
+	 * @param $title Title object.
+	 * @param $file mixed File object or false
+	 * @param $text String: pre-sanitized HTML
 	 * @return String: HTML
 	 *
 	 * @todo Handle invalid or missing images better.
 	 */
-	public function makeMediaLinkObj( $title, $text = '', $time = false ) {
-		if ( is_null( $title ) ) {
-			# # # HOTFIX. Instead of breaking, return empty string.
-			return $text;
+	public function makeMediaLinkFile( Title $title, $file, $text = '' ) {
+		if ( $file && $file->exists() ) {
+			$url = $file->getURL();
+			$class = 'internal';
 		} else {
-			$img  = wfFindFile( $title, array( 'time' => $time ) );
-			if ( $img ) {
-				$url  = $img->getURL();
-				$class = 'internal';
-			} else {
-				$url = $this->getUploadUrl( $title );
-				$class = 'new';
-			}
-			$alt = htmlspecialchars( $title->getText(),  ENT_QUOTES );
-			if ( $text == '' ) {
-				$text = $alt;
-			}
-			$u = htmlspecialchars( $url );
-			return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$text}</a>";
+			$url = $this->getUploadUrl( $title );
+			$class = 'new';
 		}
+		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
+		if ( $text == '' ) {
+			$text = $alt;
+		}
+		$u = htmlspecialchars( $url );
+		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$text}</a>";
 	}
 
 	/**
