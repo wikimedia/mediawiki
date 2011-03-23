@@ -247,7 +247,7 @@ class ImageGallery
 		}
 
 		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
-		$i = 0;
+		# Output each image...
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
@@ -257,8 +257,20 @@ class ImageGallery
 				$time = $sha1 = $descQuery = false;
 				wfRunHooks( 'BeforeGalleryFindFile',
 					array( &$this, &$nt, &$time, &$descQuery, &$sha1 ) );
-				# Fetch and register the file (file title may be different via hooks)
-				list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
+				# Get the file...
+				if ( $this->mParser instanceof Parser ) {
+					# Fetch and register the file (file title may be different via hooks)
+					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
+				} else {
+					if ( $time === '0' ) {
+						$img = false; // broken thumbnail forced by hook
+					} elseif ( $sha1 ) { // get by (sha1,timestamp)
+						$img = RepoGroup::singleton()->findFileFromKey(
+							$sha1, array( 'time' => $time ) );
+					} else { // get by (name,timestamp)
+						$img = wfFindFile( $nt, array( 'time' => $time ) );
+					}
+				}
 			} else {
 				$img = false;
 			}
@@ -353,7 +365,6 @@ class ImageGallery
 						. $textlink . $text . $nb
 					. "\n\t\t\t</div>"
 				. "\n\t\t</div></li>";
-			++$i;
 		}
 		$s .= "\n</ul>";
 
