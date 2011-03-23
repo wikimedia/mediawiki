@@ -562,10 +562,9 @@ class Block {
 	 * Autoblocks the given IP, referring to this Block.
 	 *
 	 * @param $autoblockIP String: the IP to autoblock.
-	 * @param $justInserted Boolean: the main block was just inserted.
 	 * @return mixed: block ID if an autoblock was inserted, false if not.
 	 */
-	public function doAutoblock( $autoblockIP, $justInserted = false ) {
+	public function doAutoblock( $autoblockIP ) {
 		# If autoblocks are disabled, go away.
 		if ( !$this->isAutoblocking() ) {
 			return false;
@@ -589,45 +588,44 @@ class Block {
 			# If the user is already blocked. Then check if the autoblock would
 			# exceed the user block. If it would exceed, then do nothing, else
 			# prolong block time
-			if ( $this->mExpiry &&
-				( $this->mExpiry < Block::getAutoblockExpiry( $ipblock->mTimestamp ) )
+			if ( $this->mExpiry > Block::getAutoblockExpiry( $ipblock->mTimestamp )
 			) {
-				return false;
-			}
-
-			# Just update the timestamp
-			if ( !$justInserted ) {
+				# If the block is an autoblock, reset its timestamp to now and its expiry
+				# to an $wgAutoblockExpiry in the future; otherwise do nothing
 				$ipblock->updateTimestamp();
 			}
-
 			return false;
-		} else {
-			$ipblock = new Block;
+
 		}
 
 		# Make a new block object with the desired properties
+		$autoblock = new Block;
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
-		$ipblock->setTarget( $autoblockIP );
-		$ipblock->setBlocker( $this->getBlocker() );
-		$ipblock->mReason = wfMsgForContent( 'autoblocker', $this->getTarget(), $this->mReason );
-		$ipblock->mTimestamp = wfTimestampNow();
-		$ipblock->mAuto = 1;
-		$ipblock->mCreateAccount = $this->mCreateAccount;
+		$autoblock->setTarget( $autoblockIP );
+		$autoblock->setBlocker( $this->getBlocker() );
+		$autoblock->mReason = wfMsgForContent( 'autoblocker', $this->getTarget(), $this->mReason );
+		$autoblock->mTimestamp = wfTimestampNow();
+		$autoblock->mAuto = 1;
+		$autoblock->prevents( 'createaccount', $this->prevents( 'createaccount' ) );
 		# Continue suppressing the name if needed
-		$ipblock->mHideName = $this->mHideName;
-		$ipblock->mDisableUsertalk = $this->mDisableUsertalk;
+		$autoblock->mHideName = $this->mHideName;
+		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
-		# If the user is already blocked with an expiry date, we don't
-		# want to pile on top of that!
-		if ( $this->mExpiry ) {
-			$ipblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( $this->mTimestamp ) );
+		$dbr = wfGetDB( DB_READ );
+		if ( $this->mTimestamp == $dbr->getInfinity() ) {
+			# Original block was indefinite, start an autoblock now
+			$autoblock->mExpiry = Block::getAutoblockExpiry( wfTimestampNow() );
 		} else {
-			$ipblock->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
+			# If the user is already blocked with an expiry date, we don't
+			# want to pile on top of that.
+			$autoblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( wfTimestampNow() ) );
 		}
 
 		# Insert it
-		$status = $ipblock->insert();
-		return $status ? $status['id'] : false;
+		$status = $autoblock->insert();
+		return $status
+			? $status['id']
+			: false;
 	}
 
 	/**
