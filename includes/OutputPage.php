@@ -1904,7 +1904,7 @@ class OutputPage {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
-		$name = User::whoIs( $wgUser->blockedBy() );
+		$name = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
 		if( $reason == '' ) {
 			$reason = wfMsg( 'blockednoreason' );
