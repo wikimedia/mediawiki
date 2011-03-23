@@ -580,6 +580,11 @@ ol:lang(bn) li {
 	list-style-type: bengali;
 }
 
+ol:lang(or) li {
+	list-style-type: -moz-oriya;
+	list-style-type: oriya;
+}
+
 /* tooltip styles */
 .mw-help-field-hint {
 	display: none;
