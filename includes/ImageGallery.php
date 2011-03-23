@@ -14,7 +14,6 @@ class ImageGallery
 	var $mImages, $mShowBytes, $mShowFilename;
 	var $mCaption = false;
 	var $mSkin = false;
-	var $mRevisionId = 0;
 
 	/**
 	 * Hide blacklisted images?
@@ -253,12 +252,16 @@ class ImageGallery
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
 
-			# Give extensions a chance to select the file revision for us
-			$time = $descQuery = false;
-			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time, &$descQuery ) );
-
 			if ( $nt->getNamespace() == NS_FILE ) {
-				$img = wfFindFile( $nt, array( 'time' => $time ) );
+				# Give extensions a chance to select the file revision for us
+				$time = $sha1 = $descQuery = false;
+				wfRunHooks( 'BeforeGalleryFindFile',
+					array( &$this, &$nt, &$time, &$descQuery, &$sha1 ) );
+				# Get the file and register it
+				$img = $this->mParser->fetchFile( $nt, $time, $sha1 );
+				if ( $img ) {
+					$nt = $img->getTitle(); // file title may be different (via hooks)
+				}
 			} else {
 				$img = false;
 			}

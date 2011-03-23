@@ -553,7 +553,9 @@ rendered inline in wiki pages or galleries in category pages.
 'BeforeGalleryFindFile': before an image is fetched for a gallery
 &$gallery,: the gallery object
 &$nt: the image title
-&$time: image timestamp
+&$time: image timestamp (used to specify the file)
+&$descQuery: query string to add to thumbnail URL
+&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
 
 'BeforeInitialize': before anything is initialized in performRequestForTitle()
 &$title: Title being used for request
@@ -578,6 +580,8 @@ $mediaWiki: Mediawiki object
 &$nt: the image title
 &$skip: skip this image and link it?
 &$time: the image timestamp
+&$descQuery: query string to add to thumbnail URL
+&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
 
 'BeforeParserrenderImageGallery': before an image gallery is rendered by Parser
 &$parser: Parser object

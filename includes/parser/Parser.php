@@ -1862,11 +1862,11 @@ class Parser {
 							$holders->merge( $this->replaceInternalLinks2( $text ) );
 						}
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text, $holders ) ) . $trail;
+						$s .= $prefix . $this->armorLinks(
+							$this->makeImage( $nt, $text, $holders ) ) . $trail;
 					} else {
 						$s .= $prefix . $trail;
 					}
-					$this->mOutput->addImage( $nt->getDBkey() );
 					wfProfileOut( __METHOD__."-image" );
 					continue;
 
@@ -1910,16 +1910,22 @@ class Parser {
 			if ( $ns == NS_MEDIA ) {
 				wfProfileIn( __METHOD__."-media" );
 				# Give extensions a chance to select the file revision for us
-				$skip = $time = false;
-				wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
+				$skip = $time = $sha1 = $descQuery = false;
+				wfRunHooks( 'BeforeParserMakeImageLinkObj',
+					array( &$this, &$nt, &$skip, &$time, &$descQuery, &$sha1 ) );
 				if ( $skip ) {
+					$this->mOutput->addImage( $nt->getDBkey() ); // register
 					$link = $sk->link( $nt );
 				} else {
-					$link = $sk->makeMediaLinkObj( $nt, $text, $time );
+					# Fetch and register the file
+					$file = $this->fetchFile( $nt, $time, $sha1 );
+					if ( $file ) {
+						$nt = $file->getTitle(); // file title may be different (via hooks)
+					}
+					$link = $sk->makeMediaLinkFile( $nt, $file, $text );
 				}
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
-				$this->mOutput->addImage( $nt->getDBkey() );
 				wfProfileOut( __METHOD__."-media" );
 				continue;
 			}
@@ -3340,14 +3346,16 @@ class Parser {
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
-			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( $parser, &$title, &$skip, &$id ) );
+			wfRunHooks( 'BeforeParserFetchTemplateAndtitle',
+				array( $parser, &$title, &$skip, &$id ) );
 
 			if ( $skip ) {
 				$text = false;
 				$deps[] = array(
-					'title' => $title,
-					'page_id' => $title->getArticleID(),
-					'rev_id' => null );
+					'title' 	=> $title,
+					'page_id' 	=> $title->getArticleID(),
+					'rev_id' 	=> null
+				);
 				break;
 			}
 			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
@@ -3359,9 +3367,9 @@ class Parser {
 			}
 
 			$deps[] = array(
-				'title' => $title,
-				'page_id' => $title->getArticleID(),
-				'rev_id' => $rev_id );
+				'title' 	=> $title,
+				'page_id' 	=> $title->getArticleID(),
+				'rev_id' 	=> $rev_id );
 
 			if ( $rev ) {
 				$text = $rev->getText();
@@ -3387,6 +3395,23 @@ class Parser {
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps );
+	}
+
+	/**
+	 * Fetch a file and register a reference to it.
+	 * @TODO: register and track file version info too
+	 */
+	function fetchFile( $title, $time = false, $sha1 = false ) {
+		if ( $sha1 ) { // get by (sha1,timestamp)
+			$file = RepoGroup::singleton()->findFileFromKey( $sha1, array( 'time' => $time ) );
+			if ( $file ) {
+				$title = $file->getTitle(); // file title may not match $title
+			}
+		} else { // get by (name,timestamp)
+			$file = wfFindFile( $title, array( 'time' => $time ) );
+		}
+		$this->mOutput->addImage( $title->getDBkey() );
+		return $file;
 	}
 
 	/**
@@ -4506,7 +4531,6 @@ class Parser {
 		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
 		$ig->useSkin( $this->mOptions->getSkin( $this->mTitle ) );
-		$ig->mRevisionId = $this->mRevisionId;
 
 		if ( isset( $params['showfilename'] ) ) {
 			$ig->setShowFilename( true );
@@ -4560,11 +4584,6 @@ class Parser {
 			$html = $this->recursiveTagParse( trim( $label ) );
 
 			$ig->add( $nt, $html );
-
-			# Only add real images (bug #5586)
-			if ( $nt->getNamespace() == NS_FILE ) {
-				$this->mOutput->addImage( $nt->getDBkey() );
-			}
 		}
 		return $ig->toHTML();
 	}
@@ -4615,6 +4634,7 @@ class Parser {
 	 * @param $title Title
 	 * @param $options String
 	 * @param $holders LinkHolderArray
+	 * @return string HTML
 	 */
 	function makeImage( $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
@@ -4646,15 +4666,18 @@ class Parser {
 		$sk = $this->mOptions->getSkin( $this->mTitle );
 
 		# Give extensions a chance to select the file revision for us
-		$skip = $time = $descQuery = false;
-		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$title, &$skip, &$time, &$descQuery ) );
-
+		$skip = $time = $sha1 = $descQuery = false;
+		wfRunHooks( 'BeforeParserMakeImageLinkObj',
+			array( &$this, &$title, &$skip, &$time, &$descQuery, &$sha1 ) );
 		if ( $skip ) {
+			$this->mOutput->addImage( $title->getDBkey() ); // register
 			return $sk->link( $title );
 		}
-
-		# Get the file
-		$file = wfFindFile( $title, array( 'time' => $time ) );
+		# Fetch and register the file
+		$file = $this->fetchFile( $title, $time, $sha1 );
+		if ( $file ) {
+			$title = $file->getTitle(); // file title may be different (via hooks)
+		}
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
 
@@ -4809,7 +4832,8 @@ class Parser {
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
 
 		# Linker does the rest
-		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'], $time, $descQuery, $this->mOptions->getThumbSize() );
+		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'],
+			$time, $descQuery, $this->mOptions->getThumbSize() );
 
 		# Give the handler a chance to modify the parser object
 		if ( $handler ) {
