@@ -265,7 +265,7 @@ class ParserOutput extends CacheTime {
 	 * @param $sha string base 36 SHA-1 of file
 	 * @return void
 	 */
-	function addImage( $name, $timestamp, $sha1 ) {
+	function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
 		$this->mImageTimeKeys[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
 	}
