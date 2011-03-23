@@ -123,6 +123,7 @@ class OutputPage {
 	var $mInlineMsg = array();
 
 	var $mTemplateIds = array();
+	var $mImageTimeKeys = array();
 
 	# What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
 	# @see ResourceLoaderModule::$origin
@@ -1308,13 +1309,18 @@ class OutputPage {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
-		// Versioning...
-		foreach ( (array)$parserOutput->mTemplateIds as $ns => $dbks ) {
+
+		// Template versioning...
+		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
 			if ( isset( $this->mTemplateIds[$ns] ) ) {
 				$this->mTemplateIds[$ns] = $dbks + $this->mTemplateIds[$ns];
 			} else {
 				$this->mTemplateIds[$ns] = $dbks;
 			}
+		}
+		// File versioning...
+		foreach ( (array)$parserOutput->getImageTimeKeys() as $dbk => $data ) {
+			$this->mImageTimeKeys[$dbk] = $data;
 		}
 
 		// Hooks registered in the object

@@ -257,11 +257,8 @@ class ImageGallery
 				$time = $sha1 = $descQuery = false;
 				wfRunHooks( 'BeforeGalleryFindFile',
 					array( &$this, &$nt, &$time, &$descQuery, &$sha1 ) );
-				# Get the file and register it
-				$img = $this->mParser->fetchFile( $nt, $time, $sha1 );
-				if ( $img ) {
-					$nt = $img->getTitle(); // file title may be different (via hooks)
-				}
+				# Fetch and register the file (file title may be different via hooks)
+				list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
 			} else {
 				$img = false;
 			}
