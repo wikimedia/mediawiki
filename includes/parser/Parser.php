@@ -3361,7 +3361,10 @@ class Parser {
 				);
 				break;
 			}
-			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
+			# Get the revision
+			$rev = $id
+				? Revision::newFromId( $id )
+				: Revision::newFromTitle( $title );
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {
@@ -3373,6 +3376,13 @@ class Parser {
 				'title' 	=> $title,
 				'page_id' 	=> $title->getArticleID(),
 				'rev_id' 	=> $rev_id );
+			if ( $rev && !$title->equals( $rev->getTitle() ) ) {
+				# We fetched a rev from a different title; register it too...
+				$deps[] = array(
+					'title' 	=> $rev->getTitle(),
+					'page_id' 	=> $rev->getPage(),
+					'rev_id' 	=> $rev_id );
+			}
 
 			if ( $rev ) {
 				$text = $rev->getText();
@@ -3417,24 +3427,26 @@ class Parser {
 	 * @param Title $title
 	 * @param string $time MW timestamp
 	 * @param string $sha1 base 36 SHA-1
-	 * @return Array ( File or false, Title )
+	 * @return Array ( File or false, Title of file )
 	 */
 	function fetchFileAndTitle( $title, $time = false, $sha1 = false ) {
 		if ( $time === '0' ) {
 			$file = false; // broken thumbnail forced by hook
 		} elseif ( $sha1 ) { // get by (sha1,timestamp)
 			$file = RepoGroup::singleton()->findFileFromKey( $sha1, array( 'time' => $time ) );
-			if ( $file ) {
-				$title = $file->getTitle(); // file title may not match $title
-			}
 		} else { // get by (name,timestamp)
 			$file = wfFindFile( $title, array( 'time' => $time ) );
 		}
-		# Register the file as a dependancy
 		$time = $file ? $file->getTimestamp() : null;
 		$sha1 = $file ? $file->getSha1() : null;
+		# Register the file as a dependency...
 		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
-
+		if ( $file && !$title->equals( $file->getTitle() ) ) {
+			# We fetched a rev from a different title; register it too...
+			$this->mOutput->addImage( $file->getTitle()->getDBkey(), $time, $sha1 );
+			# Update fetched file title 
+			$title = $file->getTitle();
+		}
 		return array( $file, $title );	
 	}
 
