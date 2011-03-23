@@ -109,6 +109,7 @@ class ParserOutput extends CacheTime {
 		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
 		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
 		$mImages = array(),           # DB keys of the images used, in the array key only
+		$mImageTimeKeys = array(),	  # DB keys of the images used mapped to sha1 and MW timestamp
 		$mExternalLinks = array(),    # External link URLs, in the key only
 		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
 		$mNewSection = false,         # Show a new section link?
@@ -174,7 +175,9 @@ class ParserOutput extends CacheTime {
 	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
 	function &getLinks()                 { return $this->mLinks; }
 	function &getTemplates()             { return $this->mTemplates; }
+	function &getTemplateIds()           { return $this->mTemplateIds; }
 	function &getImages()                { return $this->mImages; }
+	function &getImageTimeKeys()         { return $this->mImageTimeKeys; }
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getHeadItems()              { return $this->mHeadItems; }
@@ -256,14 +259,21 @@ class ParserOutput extends CacheTime {
 		$this->mLinks[$ns][$dbk] = $id;
 	}
 
-	function addImage( $name ) {
+	/**
+	 * @param $name string Title dbKey
+	 * @param $timestamp string MW timestamp of file creation
+	 * @param $sha string base 36 SHA-1 of file
+	 * @return void
+	 */
+	function addImage( $name, $timestamp, $sha1 ) {
 		$this->mImages[$name] = 1;
+		$this->mImageTimeKeys[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
 	}
 
 	/**
 	 * @param $title Title
-	 * @param  $page_id
-	 * @param  $rev_id
+	 * @param $page_id
+	 * @param $rev_id
 	 * @return void
 	 */
 	function addTemplate( $title, $page_id, $rev_id ) {

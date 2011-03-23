@@ -53,7 +53,7 @@ class Parser {
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.4';
+	const VERSION = '1.6.5';
 
 	/**
 	 * Update this version number when the output of serialiseHalfParsedText()
@@ -1869,7 +1869,6 @@ class Parser {
 					}
 					wfProfileOut( __METHOD__."-image" );
 					continue;
-
 				}
 
 				if ( $ns == NS_CATEGORY ) {
@@ -1914,14 +1913,11 @@ class Parser {
 				wfRunHooks( 'BeforeParserMakeImageLinkObj',
 					array( &$this, &$nt, &$skip, &$time, &$descQuery, &$sha1 ) );
 				if ( $skip ) {
-					$this->mOutput->addImage( $nt->getDBkey() ); // register
+					$this->mOutput->addImage( $nt->getDBkey(), null, null ); // register
 					$link = $sk->link( $nt );
 				} else {
-					# Fetch and register the file
-					$file = $this->fetchFile( $nt, $time, $sha1 );
-					if ( $file ) {
-						$nt = $file->getTitle(); // file title may be different (via hooks)
-					}
+					# Fetch and register the file (file title may be different via hooks)
+					list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
 					$link = $sk->makeMediaLinkFile( $nt, $file, $text );
 				}
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
@@ -3314,6 +3310,8 @@ class Parser {
 
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
+	 * @param Title $title
+	 * @return Array ( string or false, Title )
 	 */
 	function fetchTemplateAndTitle( $title ) {
 		$templateCb = $this->mOptions->getTemplateCallback(); # Defaults to Parser::statelessFetchTemplate()
@@ -3328,6 +3326,11 @@ class Parser {
 		return array( $text, $finalTitle );
 	}
 
+	/**
+	 * Fetch the unparsed text of a template and register a reference to it.
+	 * @param Title $title
+	 * @return mixed string or false
+	 */
 	function fetchTemplate( $title ) {
 		$rv = $this->fetchTemplateAndTitle( $title );
 		return $rv[0];
@@ -3398,11 +3401,28 @@ class Parser {
 	}
 
 	/**
-	 * Fetch a file and register a reference to it.
-	 * @TODO: register and track file version info too
+	 * Fetch a file and its title and register a reference to it.
+	 * @param Title $title
+	 * @param string $time MW timestamp
+	 * @param string $sha1 base 36 SHA-1
+	 * @return mixed File or false
 	 */
 	function fetchFile( $title, $time = false, $sha1 = false ) {
-		if ( $sha1 ) { // get by (sha1,timestamp)
+		$res = $this->fetchFileAndTitle( $title, $time, $sha1 );
+		return $res[0];
+	}
+
+	/**
+	 * Fetch a file and its title and register a reference to it.
+	 * @param Title $title
+	 * @param string $time MW timestamp
+	 * @param string $sha1 base 36 SHA-1
+	 * @return Array ( File or false, Title )
+	 */
+	function fetchFileAndTitle( $title, $time = false, $sha1 = false ) {
+		if ( $time === '0' ) {
+			$file = false; // broken thumbnail forced by hook
+		} elseif ( $sha1 ) { // get by (sha1,timestamp)
 			$file = RepoGroup::singleton()->findFileFromKey( $sha1, array( 'time' => $time ) );
 			if ( $file ) {
 				$title = $file->getTitle(); // file title may not match $title
@@ -3410,8 +3430,12 @@ class Parser {
 		} else { // get by (name,timestamp)
 			$file = wfFindFile( $title, array( 'time' => $time ) );
 		}
-		$this->mOutput->addImage( $title->getDBkey() );
-		return $file;
+		# Register the file as a dependancy
+		$time = $file ? $file->getTimestamp() : null;
+		$sha1 = $file ? $file->getSha1() : null;
+		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
+
+		return array( $file, $title );	
 	}
 
 	/**
@@ -4670,14 +4694,11 @@ class Parser {
 		wfRunHooks( 'BeforeParserMakeImageLinkObj',
 			array( &$this, &$title, &$skip, &$time, &$descQuery, &$sha1 ) );
 		if ( $skip ) {
-			$this->mOutput->addImage( $title->getDBkey() ); // register
+			$this->mOutput->addImage( $title->getDBkey(), null, null ); // register
 			return $sk->link( $title );
 		}
-		# Fetch and register the file
-		$file = $this->fetchFile( $title, $time, $sha1 );
-		if ( $file ) {
-			$title = $file->getTitle(); // file title may be different (via hooks)
-		}
+		# Fetch and register the file (file title may be different via hooks)
+		list( $file, $title ) = $this->fetchFileAndTitle( $title, $time, $sha1 );
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
 
