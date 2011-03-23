@@ -23,12 +23,13 @@
  */
 abstract class Installer {
 
+	// This is the absolute minimum PHP version we can support
+	const MINIMUM_PHP_VERSION = '5.2.3';
+
 	/**
-	 * TODO: make protected?
-	 *
 	 * @var array
 	 */
-	public $settings;
+	protected $settings;
 
 	/**
 	 * Cached DB installer instances, access using getDBInstaller().
@@ -104,7 +105,7 @@ abstract class Installer {
 		'envCheckLibicu'
 	);
 
-		/**
+	/**
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
@@ -242,6 +243,10 @@ abstract class Installer {
 			'url' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-by-nc-sa.png',
 		),
+		'cc-0' => array(
+			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
+			'icon' => '{$wgStylePath}/common/images/cc-0.png',
+		),
 		'pd' => array(
 			'url' => 'http://creativecommons.org/licenses/publicdomain/',
 			'icon' => '{$wgStylePath}/common/images/public-domain.png',
@@ -312,9 +317,6 @@ abstract class Installer {
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
 
-		// Set our custom <doclink> hook.
-		$wgHooks['ParserFirstCallInit'][] = array( $this, 'registerDocLink' );
-
 		$this->settings = $this->internalDefaults;
 
 		foreach ( $this->defaultVarNames as $var ) {
@@ -365,14 +367,21 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function doEnvironmentChecks() {
-		$this->showMessage( 'config-env-php', phpversion() );
+		$phpVersion = phpversion();
+		if( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
+			$this->showMessage( 'config-env-php', $phpVersion );
+			$good = true;
+		} else {
+			$this->showMessage( 'config-env-php-toolow', $phpVersion, self::MINIMUM_PHP_VERSION );
+			$good = false;
+		}
 
-		$good = true;
-
-		foreach ( $this->envChecks as $check ) {
-			$status = $this->$check();
-			if ( $status === false ) {
-				$good = false;
+		if( $good ) {
+			foreach ( $this->envChecks as $check ) {
+				$status = $this->$check();
+				if ( $status === false ) {
+					$good = false;
+				}
 			}
 		}
 
@@ -432,7 +441,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings.php exists. If it does, return its variables, 
+	 * Determine if LocalSettings.php exists. If it does, return its variables,
 	 * merged with those from AdminSettings.php, as an array.
 	 *
 	 * @return Array
@@ -553,23 +562,28 @@ abstract class Installer {
 	public function restoreLinkPopups() {
 		global $wgExternalLinkTarget;
 		$this->parserOptions->setExternalLinkTarget( $wgExternalLinkTarget );
-	}	
+	}
 
 	/**
-	 * TODO: document
-	 *
-	 * @param $installer DatabaseInstaller
-	 *
-	 * @return Status
+	 * Install step which adds a row to the site_stats table with appropriate
+	 * initial values.
 	 */
-	public function installTables( DatabaseInstaller &$installer ) {
-		$status = $installer->createTables();
-
-		if( $status->isOK() ) {
-			LBFactory::enableBackend();
+	public function populateSiteStats( DatabaseInstaller $installer ) {
+		$status = $installer->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
 		}
-		
-		return $status;
+		$status->value->insert( 'site_stats', array(
+			'ss_row_id' => 1,
+			'ss_total_views' => 0,
+			'ss_total_edits' => 0,
+			'ss_good_articles' => 0,
+			'ss_total_pages' => 0,
+			'ss_users' => 0,
+			'ss_admins' => 0,
+			'ss_images' => 0 ),
+			__METHOD__, 'IGNORE' );
+		return Status::newGood();
 	}
 
 	/**
@@ -590,7 +604,6 @@ abstract class Installer {
 		global $wgLang;
 
 		$compiledDBs = array();
-		$goodNames = array();
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
@@ -599,9 +612,7 @@ abstract class Installer {
 
 			if ( $db->isCompiled() ) {
 				$compiledDBs[] = $name;
-				$goodNames[] = $readableName;
 			}
-
 			$allNames[] = $readableName;
 		}
 
@@ -652,7 +663,7 @@ abstract class Installer {
 		$test = new PhpRefCallBugTester;
 		$test->execute();
 		if ( !$test->ok ) {
-			$this->showMessage( 'config-using531' );
+			$this->showMessage( 'config-using531', phpversion() );
 			return false;
 		}
 	}
@@ -726,7 +737,7 @@ abstract class Installer {
 			return false;
 		}
 		wfSuppressWarnings();
-		$regexd = preg_replace( '/[\x{0400}-\x{04FF}]/u', '', '-АБВГД-' );
+		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		wfRestoreWarnings();
 		if ( $regexd != '--' ) {
 			$this->showMessage( 'config-pcre-no-utf8' );
@@ -802,6 +813,7 @@ abstract class Installer {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
 		$convert = self::locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
 
+		$this->setVar( 'wgImageMagickConvertCommand', '' );
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
 			$this->showMessage( 'config-imagemagick', $convert );
@@ -1111,7 +1123,7 @@ abstract class Installer {
 					break;
 				}
 
-				$text = Http::get( $url . $file );
+				$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
@@ -1127,33 +1139,11 @@ abstract class Installer {
 	}
 
 	/**
-	 * Register tag hook below.
-	 *
-	 * @todo Move this to WebInstaller with the two things below?
-	 *
-	 * @param $parser Parser
-	 */
-	public function registerDocLink( Parser &$parser ) {
-		$parser->setHook( 'doclink', array( $this, 'docLink' ) );
-		return true;
-	}
-
-	/**
 	 * ParserOptions are constructed before we determined the language, so fix it
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );
 		$this->parserOptions->setUserLang( $lang->getCode() );
-	}
-
-	/**
-	 * Extension tag hook for a documentation link.
-	 */
-	public function docLink( $linkText, $attribs, $parser ) {
-		$url = $this->getDocUrl( $attribs['href'] );
-		return '<a href="' . htmlspecialchars( $url ) . '">' .
-			htmlspecialchars( $linkText ) .
-			'</a>';
 	}
 
 	/**
@@ -1193,12 +1183,33 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function includeExtensions() {
+		global $IP;
 		$exts = $this->getVar( '_Extensions' );
-		$path = $this->getVar( 'IP' ) . '/extensions';
+		$IP = $this->getVar( 'IP' );
+		$path = $IP . '/extensions';
+
+		/**
+		 * We need to include DefaultSettings before including extensions to avoid
+		 * warnings about unset variables. However, the only thing we really
+		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
+		 * if the extension has hidden hook registration in $wgExtensionFunctions,
+		 * but we're not opening that can of worms
+		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
+		 */
+		global $wgHooks, $wgAutoloadClasses;
+		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
-			require( "$path/$e/$e.php" );
+			require_once( "$path/$e/$e.php" );
 		}
+
+		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
+			$wgHooks['LoadExtensionSchemaUpdates'] : array();
+
+		// Unset everyone else's hooks. Lord knows what someone might be doing
+		// in ParserFirstCallInit (see bug 27171)
+		unset( $wgHooks );
+		$wgHooks = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
 
 		return Status::newGood();
 	}
@@ -1215,11 +1226,12 @@ abstract class Installer {
 	 * @param $installer DatabaseInstaller so we can make callbacks
 	 * @return array
 	 */
-	protected function getInstallSteps( DatabaseInstaller &$installer ) {
+	protected function getInstallSteps( DatabaseInstaller $installer ) {
 		$coreInstallSteps = array(
 			array( 'name' => 'database',   'callback' => array( $installer, 'setupDatabase' ) ),
-			array( 'name' => 'tables',     'callback' => array( $this, 'installTables' ) ),
+			array( 'name' => 'tables',     'callback' => array( $installer, 'createTables' ) ),
 			array( 'name' => 'interwiki',  'callback' => array( $installer, 'populateInterwikiTable' ) ),
+			array( 'name' => 'stats',      'callback' => array( $this, 'populateSiteStats' ) ),
 			array( 'name' => 'secretkey',  'callback' => array( $this, 'generateSecretKey' ) ),
 			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),
 			array( 'name' => 'sysop',      'callback' => array( $this, 'createSysop' ) ),
@@ -1251,6 +1263,10 @@ abstract class Installer {
 			array_unshift( $this->installSteps,
 				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
 			);
+			$this->installSteps[] = array(
+				'name' => 'extension-tables',
+				'callback' => array( $installer, 'createExtensionTables' )
+			);
 		}
 		return $this->installSteps;
 	}
@@ -1258,8 +1274,8 @@ abstract class Installer {
 	/**
 	 * Actually perform the installation.
 	 *
-	 * @param $startCB A callback array for the beginning of each step
-	 * @param $endCB A callback array for the end of each step
+	 * @param $startCB Array A callback array for the beginning of each step
+	 * @param $endCB Array A callback array for the end of each step
 	 *
 	 * @return Array of Status objects
 	 */
@@ -1273,10 +1289,10 @@ abstract class Installer {
 			call_user_func_array( $startCB, array( $name ) );
 
 			// Perform the callback step
-			$status = call_user_func_array( $stepObj['callback'], array( &$installer ) );
+			$status = call_user_func( $stepObj['callback'], $installer );
 
 			// Output and save the results
-			call_user_func_array( $endCB, array( $name, $status ) );
+			call_user_func( $endCB, $name, $status );
 			$installResults[$name] = $status;
 
 			// If we've hit some sort of fatal, we need to bail.
@@ -1378,6 +1394,10 @@ abstract class Installer {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
 			$user->saveSettings();
+
+			// Update user count
+			$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssUpdate->doUpdate();
 		}
 		$status = Status::newGood();
 
@@ -1414,7 +1434,7 @@ abstract class Installer {
 	 *
 	 * @return Status
 	 */
-	protected function createMainpage( DatabaseInstaller &$installer ) {
+	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
 		try {
 			$article = new Article( Title::newMainPage() );
@@ -1423,7 +1443,7 @@ abstract class Installer {
 								'',
 								EDIT_NEW,
 								false,
-								User::newFromName( 'MediaWiki Default' ) );
+								User::newFromName( 'MediaWiki default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );

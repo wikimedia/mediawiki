@@ -11,7 +11,7 @@ require_once( dirname(__FILE__) . '/../../maintenance/Maintenance.php' );
 /*
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -24,7 +24,17 @@ abstract class DatabaseUpdater {
 	 */
 	protected $updates = array();
 
+	/**
+	 * List of extension-provided database updates
+	 * @var array
+	 */
 	protected $extensionUpdates = array();
+
+	/**
+	 * Used to hold schema files during installation process
+	 * @var array
+	 */
+	protected $newExtensions = array();
 
 	/**
 	 * Handle to the database subclass
@@ -45,12 +55,8 @@ abstract class DatabaseUpdater {
 	 * @param $db DatabaseBase object to perform updates on
 	 * @param $shared bool Whether to perform updates on shared tables
 	 * @param $maintenance Maintenance Maintenance object which created us
-	 *
-	 * @todo FIXME: Make $wgDatabase go away.
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
-		global $wgDatabase;
-		$wgDatabase = $db;
 		$this->db = $db;
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->shared = $shared;
@@ -81,6 +87,14 @@ abstract class DatabaseUpdater {
 		$wgExtModifiedFields = array(); // table, index, dir
 	}
 
+	/**
+	 * @static
+	 * @throws MWException
+	 * @param DatabaseBase $db
+	 * @param bool $shared
+	 * @param null $maintenance
+	 * @return DatabaseUpdater
+	 */
 	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
 		if( in_array( $type, Installer::getDBTypes() ) ) {
@@ -94,7 +108,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
-	 * @return DatabasBase object
+	 * @return DatabaseBase
 	 */
 	public function getDB() {
 		return $this->db;
@@ -140,6 +154,23 @@ abstract class DatabaseUpdater {
 	 */
 	public function addExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'addTable', $tableName, $sqlPath, true );
+	}
+
+	/**
+	 * Add a brand new extension to MediaWiki. Used during the initial install
+	 * @param $ext String Name of extension
+	 * @param $sqlPath String Full path to the schema file
+	 */
+	public function addNewExtension( $ext, $sqlPath ) {
+		$this->newExtensions[ strtolower( $ext ) ] = $sqlPath;
+	}
+
+	/**
+	 * Get the list of extensions that registered a schema with our DB type
+	 * @return array
+	 */
+	public function getNewExtensions() {
+		return $this->newExtensions;
 	}
 
 	/**
@@ -456,6 +487,21 @@ abstract class DatabaseUpdater {
 			);
 		}
 		$this->output( "...ss_active_users user count set...\n" );
+	}
+
+	protected function doLogUsertextPopulation() {
+		if ( $this->updateRowExists( 'populate log_usertext' ) ) {
+			$this->output( "...log_user_text field already populated.\n" );
+			return;
+		}
+
+		$this->output(
+			"Populating log_user_text field, printing progress markers. For large\n" .
+			"databases, you may want to hit Ctrl-C and do this manually with\n" .
+			"maintenance/populateLogUsertext.php.\n" );
+		$task = new PopulateLogUsertext();
+		$task->execute();
+		$this->output( "Done populating log_user_text field.\n" );
 	}
 
 	protected function doLogSearchPopulation() {

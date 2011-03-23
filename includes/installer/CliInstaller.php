@@ -29,9 +29,11 @@ class CliInstaller extends Installer {
 		'dbuser' => 'wgDBuser',
 		'dbpass' => 'wgDBpassword',
 		'dbschema' => 'wgDBmwschema',
-		'dbts2schema' => 'wgDBts2schema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'scriptpath' => 'wgScriptPath',
+		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
+									* in LocalSettingsGenerator, we
+									* should be fine. */
 	);
 
 	/**
@@ -42,6 +44,8 @@ class CliInstaller extends Installer {
 	 * @param $option Array
 	 */
 	function __construct( $siteName, $admin = null, array $option = array() ) {
+		global $wgContLang;
+
 		parent::__construct();
 
 		foreach ( $this->optionMap as $opt => $global ) {
@@ -52,7 +56,7 @@ class CliInstaller extends Installer {
 		}
 
 		if ( isset( $option['lang'] ) ) {
-			global $wgLang, $wgContLang, $wgLanguageCode;
+			global $wgLang, $wgLanguageCode;
 			$this->setVar( '_UserLang', $option['lang'] );
 			$wgContLang = Language::factory( $option['lang'] );
 			$wgLang = Language::factory( $option['lang'] );
@@ -60,6 +64,12 @@ class CliInstaller extends Installer {
 		}
 
 		$this->setVar( 'wgSitename', $siteName );
+
+		$metaNS = $wgContLang->ucfirst( str_replace( ' ', '_', $siteName ) );
+		if ( $metaNS == 'MediaWiki' ) {
+			$metaNS = 'Project';
+		}
+		$this->setVar( 'wgMetaNamespace', $metaNS );
 
 		if ( $admin ) {
 			$this->setVar( '_AdminName', $admin );
@@ -81,6 +91,15 @@ class CliInstaller extends Installer {
 	 * Main entry point.
 	 */
 	public function execute() {
+		global $cliUpgrade;
+
+		$vars = $this->getExistingLocalSettings();
+		if( $vars && ( !isset( $cliUpgrade ) || $cliUpgrade !== "yes" )  ) {
+			$this->showStatusMessage(
+				Status::newFatal( "config-localsettings-cli-upgrade" )
+			);
+		}
+
 		$this->performInstallation(
 			array( $this, 'startStage' ),
 			array( $this, 'endStage' )
@@ -103,32 +122,39 @@ class CliInstaller extends Installer {
 	}
 
 	public function endStage( $step, $status ) {
-		$warnings = $status->getWarningsArray();
-
-		if ( !$status->isOk() ) {
-			$this->showStatusMessage( $status );
-			echo "\n";
-			exit;
-		} elseif ( count( $warnings ) !== 0 ) {
-			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
-				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
-					wfMsg( 'word-separator' ) );
-			}
-		}
-
+		$this->showStatusMessage( $status );
 		$this->showMessage( wfMsg( 'config-install-step-done' ) . "\n" );
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
 		$params = func_get_args();
 		array_shift( $params );
+
 		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
+		/* parseinline has the nasty side-effect of putting encoded
+		 * angle brackets, around the message.
+		 */
+		$text = preg_replace( '/(^&lt;|&gt;$)/', '', $text );
+
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
 		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
 		flush();
 	}
 
 	public function showStatusMessage( Status $status ) {
-		$this->showMessage( $status->getWikiText() );
+		$warnings = array_merge( $status->getWarningsArray(),
+			$status->getErrorsArray() );
+
+		if ( count( $warnings ) !== 0 ) {
+			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
+				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
+					wfMsg( 'word-separator' ) );
+			}
+		}
+
+		if ( !$status->isOk() ) {
+			echo "\n";
+			exit;
+		}
 	}
 }

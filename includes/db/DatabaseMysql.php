@@ -531,6 +531,11 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( $query, $fname );
 	}
 
+	protected function getDefaultSchemaVars() {
+		$vars = parent::getDefaultSchemaVars();
+		$vars['wgDBTableOptions'] = $GLOBALS['wgDBTableOptions'];
+		return $vars;
+	}
 }
 
 /**

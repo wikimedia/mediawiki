@@ -55,6 +55,14 @@ abstract class LBFactory {
 	}
 
 	/**
+	 * Set the instance to be the given object
+	 */
+	static function setInstance( $instance ) {
+		self::destroyInstance();
+		self::$instance = $instance;
+	}
+
+	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 */
 	abstract function __construct( $conf );

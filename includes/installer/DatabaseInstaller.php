@@ -13,13 +13,13 @@
  * @since 1.17
  */
 abstract class DatabaseInstaller {
-	
+
 	/**
 	 * The Installer object.
 	 *
 	 * TODO: naming this parent is confusing, 'installer' would be clearer.
 	 *
-	 * @var Installer
+	 * @var WebInstaller
 	 */
 	public $parent;
 
@@ -28,7 +28,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * @var DatabaseBase
 	 */
-	public $db;
+	public $db = null;
 
 	/**
 	 * Internal variables for installation.
@@ -95,15 +95,15 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Connect to the database using the administrative user/password currently
-	 * defined in the session. On success, return the connection, on failure,
-	 *
-	 * This may be called multiple times, so the result should be cached.
+	 * Open a connection to the database using the administrative user/password
+	 * currently defined in the session, without any caching. Returns a status
+	 * object. On success, the status object will contain a Database object in
+	 * its value member.
 	 *
 	 * @return Status
 	 */
-	public abstract function getConnection();
-	
+	public abstract function openConnection();
+
 	/**
 	 * Create the database and return a Status object indicating success or
 	 * failure.
@@ -111,6 +111,29 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public abstract function setupDatabase();
+
+	/**
+	 * Connect to the database using the administrative user/password currently
+	 * defined in the session. Returns a status object. On success, the status
+	 * object will contain a Database object in its value member.
+	 *
+	 * This will return a cached connection if one is available.
+	 *
+	 * @return Status
+	 */
+	public function getConnection() {
+		if ( $this->db ) {
+			return Status::newGood( $this->db );
+		}
+		$status = $this->openConnection();
+		if ( $status->isOK() ) {
+			$this->db = $status->value;
+			// Enable autocommit
+			$this->db->clearFlag( DBO_TRX );
+			$this->db->commit();
+		}
+		return $status;
+	}
 
 	/**
 	 * Create database tables from scratch.
@@ -126,11 +149,13 @@ abstract class DatabaseInstaller {
 
 		if( $this->db->tableExists( 'user' ) ) {
 			$status->warning( 'config-install-tables-exist' );
+			$this->enableLB();
 			return $status;
 		}
 
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->db->begin( __METHOD__ );
+
 		$error = $this->db->sourceFile( $this->db->getSchema() );
 		if( $error !== true ) {
 			$this->db->reportQueryError( $error, 0, '', __METHOD__ );
@@ -138,6 +163,44 @@ abstract class DatabaseInstaller {
 			$status->fatal( 'config-install-tables-failed', $error );
 		} else {
 			$this->db->commit( __METHOD__ );
+		}
+		// Resume normal operations
+		if( $status->isOk() ) {
+			$this->enableLB();
+		}
+		return $status;
+	}
+
+	/**
+	 * Create the tables for each extension the user enabled
+	 * @return Status
+	 */
+	public function createExtensionTables() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$updater = DatabaseUpdater::newForDB( $this->db );
+		$extensionUpdates = $updater->getNewExtensions();
+
+		// No extensions need tables (or haven't updated to new installer support)
+		if( !count( $extensionUpdates ) ) {
+			return $status;
+		}
+
+		$ourExtensions = array_map( 'strtolower', $this->getVar( '_Extensions' ) );
+
+		foreach( $ourExtensions as $ext ) {
+			if( isset( $extensionUpdates[$ext] ) ) {
+				$this->db->begin( __METHOD__ );
+				$error = $this->db->sourceFile( $extensionUpdates[$ext] );
+				if( $error !== true ) {
+					$this->db->rollback( __METHOD__ );
+					$status->warning( 'config-install-tables-failed', $error );
+				} else {
+					$this->db->commit( __METHOD__ );
+				}
+			}
 		}
 		return $status;
 	}
@@ -148,15 +211,52 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public abstract function getLocalSettings();
-	
+
+	/**
+	 * Override this to provide DBMS-specific schema variables, to be
+	 * substituted into tables.sql and other schema files.
+	 */
+	public function getSchemaVars() {
+		return array();
+	}
+
+	/**
+	 * Set appropriate schema variables in the current database connection.
+	 *
+	 * This should be called after any request data has been imported, but before
+	 * any write operations to the database.
+	 */
+	public function setupSchemaVars() {
+		$status = $this->getConnection();
+		if ( $status->isOK() ) {
+			$status->value->setSchemaVars( $this->getSchemaVars() );
+		} else {
+			throw new MWException( __METHOD__.': unexpected DB connection error' );
+		}
+	}
+
+	/**
+	 * Set up LBFactory so that wfGetDB() etc. works.
+	 * We set up a special LBFactory instance which returns the current
+	 * installer connection.
+	 */
+	public function enableLB() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			throw new MWException( __METHOD__.': unexpected DB connection error' );
+		}
+		LBFactory::setInstance( new LBFactory_Single( array(
+			'connection' => $status->value ) ) );
+	}
+
 	/**
 	 * Perform database upgrades
 	 *
 	 * @return Boolean
 	 */
 	public function doUpgrade() {
-		# Maintenance scripts like wfGetDB()
-		LBFactory::enableBackend();
+		$this->setupSchemaVars();
+		$this->enableLB();
 
 		$ret = true;
 		ob_start( array( $this, 'outputHandler' ) );
@@ -171,21 +271,21 @@ abstract class DatabaseInstaller {
 		ob_end_flush();
 		return $ret;
 	}
-	
+
 	/**
 	 * Allow DB installers a chance to make last-minute changes before installation
 	 * occurs. This happens before setupDatabase() or createTables() is called, but
 	 * long after the constructor. Helpful for things like modifying setup steps :)
 	 */
 	public function preInstall() {
-	
+
 	}
 
 	/**
 	 * Allow DB installers a chance to make checks before upgrade.
 	 */
 	public function preUpgrade() {
-	
+
 	}
 
 	/**
@@ -193,16 +293,6 @@ abstract class DatabaseInstaller {
 	 */
 	public function getGlobalNames() {
 		return $this->globalNames;
-	}
-
-	/**
-	 * Return any table options to be applied to all tables that don't
-	 * override them.
-	 *
-	 * @return Array
-	 */
-	public function getTableOptions() {
-		return array();
 	}
 
 	/**
@@ -232,7 +322,7 @@ abstract class DatabaseInstaller {
 	public function getReadableName() {
 		return wfMsg( 'config-type-' . $this->getName() );
 	}
-	
+
 	/**
 	 * Get a name=>value map of MW configuration globals that overrides.
 	 * DefaultSettings.php
@@ -276,7 +366,7 @@ abstract class DatabaseInstaller {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 		if ( !isset( $attribs ) ) {
-		    $attribs = array();
+			$attribs = array();
 		}
 		return $this->parent->getTextBox( array(
 			'var' => $var,
@@ -284,7 +374,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		) );
 	}
 
@@ -296,7 +386,7 @@ abstract class DatabaseInstaller {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 		if ( !isset( $attribs ) ) {
-		    $attribs = array();
+			$attribs = array();
 		}
 		return $this->parent->getPasswordBox( array(
 			'var' => $var,
@@ -304,7 +394,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		) );
 	}
 
@@ -320,7 +410,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		));
 	}
 
@@ -376,6 +466,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard install-user fieldset.
+	 *
+	 * @return String
 	 */
 	public function getInstallUserBox() {
 		return
@@ -398,6 +490,8 @@ abstract class DatabaseInstaller {
 	 * Get a standard web-user fieldset
 	 * @param $noCreateMsg String: Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox.
+	 *
+	 * @return String
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$s = Html::openElement( 'fieldset' ) .
@@ -428,17 +522,23 @@ abstract class DatabaseInstaller {
 		$this->setVarsFromRequest(
 			array( 'wgDBuser', 'wgDBpassword', '_SameAccount', '_CreateDBAccount' )
 		);
-		
+
 		if ( $this->getVar( '_SameAccount' ) ) {
 			$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );
 			$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
 		}
-		
+
+		if( $this->getVar( '_CreateDBAccount' ) && strval( $this->getVar( 'wgDBpassword' ) ) == '' ) {
+			return Status::newFatal( 'config-db-password-empty', $this->getVar( 'wgDBuser' ) );
+		}
+
 		return Status::newGood();
 	}
 
 	/**
 	 * Common function for databases that don't understand the MySQLish syntax of interwiki.sql.
+	 *
+	 * @return Status
 	 */
 	public function populateInterwikiTable() {
 		$status = $this->getConnection();
@@ -452,11 +552,13 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 		global $IP;
+		wfSuppressWarnings();
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+		wfRestoreWarnings();
 		$interwikis = array();
 		if ( !$rows ) {
-			return Status::newFatal( 'config-install-interwiki-sql' );
+			return Status::newFatal( 'config-install-interwiki-list' );
 		}
 		foreach( $rows as $row ) {
 			$row = preg_replace( '/^\s*([^#]*?)\s*(#.*)?$/', '\\1', $row ); // strip comments - whee
