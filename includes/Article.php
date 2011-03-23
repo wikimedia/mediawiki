@@ -3052,7 +3052,7 @@ class Article {
 		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		$error = '';
-		if ( $this->doDeleteArticle( $reason, $suppress, $id, &$error ) ) {
+		if ( $this->doDeleteArticle( $reason, $suppress, $id, $error ) ) {
 			$deleted = $this->mTitle->getPrefixedText();
 
 			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
@@ -3099,7 +3099,7 @@ class Article {
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @return boolean true if successful
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, $error='' ) {
+	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error='' ) {
 		global $wgDeferredUpdateList, $wgUseTrackbacks;
 
 		wfDebug( __METHOD__ . "\n" );

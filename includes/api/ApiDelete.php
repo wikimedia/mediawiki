@@ -147,7 +147,7 @@ class ApiDelete extends ApiBase {
 
 		$error = '';
 		// Luckily, Article.php provides a reusable delete function that does the hard work for us
-		if ( $article->doDeleteArticle( $reason, false, 0, true, &$error ) ) {
+		if ( $article->doDeleteArticle( $reason, false, 0, true, $error ) ) {
 			return array();
 		} else {
 			return array( array( 'cannotdelete', $article->mTitle->getPrefixedText() ) );
