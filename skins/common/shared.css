@@ -585,6 +585,58 @@ ol:lang(or) li {
 	list-style-type: oriya;
 }
 
+ol:lang(hy) li {
+	list-style-type: armenian;
+}
+
+ol:lang(ka) li {
+	list-style-type: georgian;
+}
+
+ol:lang(he) li {
+	list-style-type: hebrew;
+}
+
+ol:lang(gu) li {
+	list-style-type: -moz-gujarati;
+	list-style-type: gujarati;
+}
+
+ol:lang(kn) li {
+	list-style-type: -moz-kannada;
+	list-style-type: kannada;
+}
+
+ol:lang(km) li {
+	list-style-type: -moz-khmer;
+	list-style-type: khmer;
+}
+
+ol:lang(lo) li {
+	list-style-type: -moz-lao;
+	list-style-type: lao;
+}
+
+ol:lang(ml) li {
+	list-style-type: -moz-malayalam;
+	list-style-type: malayalam;
+}
+
+ol:lang(ya) li {
+	list-style-type: -moz-tamil;
+	list-style-type: tamil;
+}
+
+ol:lang(te) li {
+	list-style-type: -moz-telugu;
+	list-style-type: telugu;
+}
+
+ol:lang(th) li {
+	list-style-type: -moz-thai;
+	list-style-type: thai;
+}
+
 /* tooltip styles */
 .mw-help-field-hint {
 	display: none;
