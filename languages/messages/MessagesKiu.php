@@ -15,7 +15,7 @@ $fallback = 'tr';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bınê girey de xete bıonce:',
-'tog-highlightbroken'         => 'Girêunê thalu {a href="" class="new"}nia{/a} (alternatif: nia{a
+'tog-highlightbroken'         => 'Gireunê thalu {a href="" class="new"}nia{/a} (alternatif: nia{a
 href="" class="internal"}?{/a}) bıasne.',
 'tog-justify'                 => 'Paragrafu ayar ke',
 'tog-hideminor'               => 'Vurnaisunê senıku pela vurnaisunê peyênu de wedare',

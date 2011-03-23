@@ -7124,11 +7124,16 @@ Döh dörve bloß <i lang="en" title="American Standard Code for Information Int
 Gebruik geen spaties of koppeltekens.
 Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.
 ',
+	'config-sqlite-mkdir-error' => 'Ene Fähler es opjetrodde beim Aanlääje vum Daate_Verzeishneß „$1“.
+Don dä Plaz för et Shpeishere prööfe un Repareere, dann versöhg et norr_ens.',
+	'config-sqlite-dir-unwritable' => 'Mer künne nit en dat Verzeishneß „$1“ schrieeve
+Donn dohvun de Zohjreffs_Rääschde esu verändere, dat der Webßööver doh dren schrieeve kann, un dann versöhg et norr_ens.',
 	'config-sqlite-connection-error' => '$1.
 
 Donn onge dat Verzeishnes un der Name vun der Daatebangk prööfe un repareere, un dann versöhg_et norr-ens.',
 	'config-sqlite-readonly' => 'En di Dattei <code lang="en">$1</code> künne mer nit schrieve.',
 	'config-sqlite-cant-create-db' => 'Mer kunnte di Dattei <code lang="en">$1</code> för de Daatebangk nit aanlääje.',
+	'config-regenerate' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> neu opsäze →',
 	'config-show-table-status' => 'Et Kommando <code lang="en">SHOW TABLE STATUS</code> aan de Daatebangk es donävve jejange!',
 	'config-unknown-collation' => "'''Opjepaß:''' De Daatabangk deiht en onbikannte Reijefollsch bruche, för Booshtaabe un Zeishe ze verjliishe un ze zotteere.",
 	'config-db-web-create' => 'Donn dä Zohjang aanlääje, wann dä noch nit doh es.',
@@ -11528,6 +11533,7 @@ Isaalang-alang ang pagbabago nito na kinakamay.",
 	'config-install-subscribe-fail' => 'Hindi nagawang sumipi mula sa mediawiki-announce',
 	'config-install-mainpage' => 'Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman',
 	'config-install-extension-tables' => 'Nililikha ang mga talahanayan para sa pinagaganang mga dugtong',
+	'config-install-mainpage-failed' => 'Hindi maisingit ang pangunahing pahina: $1',
 	'config-install-done' => "'''Maligayang bati!'''
 Matagumpay mong nailuklok ang MediaWiki.
 
@@ -11543,6 +11549,8 @@ $3
 '''Paunawa''': Kapag hindi mo ito ginawa ngayon, ang nagawang talaksang ito ng pagkakaayos ay hindi mo na makukuha mamaya kapag lumabas ka mula sa pagluluklok na hindi ikinakarga itong paibaba.
 
 Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa wiki mo]'''.",
+	'config-download-localsettings' => 'Ikargang paibaba ang LocalSettings.php',
+	'config-help' => 'saklolo',
 );
 
 /** Ukrainian (Українська)
