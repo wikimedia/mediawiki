@@ -1,751 +1,1659 @@
 <?php
 /**
- * Unicode normalization routines
- *
- * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup UtfNormal
- */
+* Unicode normalization routines
+*
+* Copyright (C) 2006 Ludovic ARNAUD <ludovic.arnaud@gmail.com>
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License along
+* with this program; if not, write to the Free Software Foundation, Inc.,
+* 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+* http://www.gnu.org/copyleft/gpl.html
+*
+* @author	Ludovic ARNAUD <ludovic.arnaud@gmail.com>
+* @license	http://www.gnu.org/licenses/gpl.txt
+* @package	UtfNormal
+*/
+
+require_once ('UtfNormalDefines.php');
+
+if( function_exists( 'utf8_normalize' ) ) {
+
+////////////////////////////////////////////////////////////////////////////////
+//              Wrapper for the utfnormal extension, ICU wrapper              //
+////////////////////////////////////////////////////////////////////////////////
 
 /**
- * @defgroup UtfNormal UtfNormal
- */
-
-require_once dirname(__FILE__).'/UtfNormalUtil.php';
-
-/**
- * For using the ICU wrapper
- */
-define( 'UNORM_NONE', 1 );
-define( 'UNORM_NFD',  2 );
-define( 'UNORM_NFKD', 3 );
-define( 'UNORM_NFC',  4 );
-define( 'UNORM_DEFAULT', UNORM_NFC );
-define( 'UNORM_NFKC', 5 );
-define( 'UNORM_FCD',  6 );
-
-define( 'NORMALIZE_ICU', function_exists( 'utf8_normalize' ) );
-define( 'NORMALIZE_INTL', function_exists( 'normalizer_normalize' ) );
-
-/**
- * Unicode normalization routines for working with UTF-8 strings.
- * Currently assumes that input strings are valid UTF-8!
- *
- * Not as fast as I'd like, but should be usable for most purposes.
- * UtfNormal::toNFC() will bail early if given ASCII text or text
- * it can quickly deterimine is already normalized.
- *
- * All functions can be called static.
- *
- * See description of forms at http://www.unicode.org/reports/tr15/
- *
- * @ingroup UtfNormal
- */
+* UtfNormal class for the utfnormal extension
+*
+* @ignore
+*/
 class UtfNormal {
-	static $utfCombiningClass = null;
-	static $utfCanonicalComp = null;
-	static $utfCanonicalDecomp = null;
+	function cleanUp( $str ) {
+		/**
+		* The string below is the list of all autorized characters, sorted by
+		* frequency in latin text
+		*/
+		$pos = strspn(
+			$str,
+			"\x20\x65\x69\x61\x73\x6E\x74\x72\x6F\x6C\x75\x64\x5D\x5B\x63\x6D\x70\x27\x0A\x67\x7C\x68\x76\x2E\x66\x62\x2C\x3A\x3D\x2D\x71\x31\x30\x43\x32\x2A\x79\x78\x29\x28\x4C\x39\x41\x53\x2F\x50\x22\x45\x6A\x4D\x49\x6B\x33\x3E\x35\x54\x3C\x44\x34\x7D\x42\x7B\x38\x46\x77\x52\x36\x37\x55\x47\x4E\x3B\x4A\x7A\x56\x23\x48\x4F\x57\x5F\x26\x21\x4B\x3F\x58\x51\x25\x59\x5C\x09\x5A\x2B\x7E\x5E\x24\x40\x60\x7F\x0D"
+		);
 
-	# Load compatibility decompositions on demand if they are needed.
-	static $utfCompatibilityDecomp = null;
+		if( !isset( $str[$pos] ) ) {
+			/**
+			* ASCII strings with no special chars return immediately
+			*/
+			return $str;
+		}
 
-	static $utfCheckNFC;
+		/**
+		* Check if there is potentially a 0xFFFE or 0xFFFF char (UTF sequence
+		* 0xEFBFBE or 0xEFBFBF) and replace them
+		*
+		* Note: we start searching at position $pos
+		*/
+		if( is_int( strpos( $str, "\xEF\xBF", $pos ) ) ) {
+			$str = str_replace(
+				array( "\xEF\xBF\xBE", "\xEF\xBF\xBF" ),
+				array( UTF8_REPLACEMENT, UTF8_REPLACEMENT ),
+				$str
+			);
+		}
+
+		/**
+		* Replace any byte in the range 0x00..0x1F, except for \r, \n and \t
+		*
+		* We replace those characters with a 0xFF byte, which is illegal in
+		* UTF-8 and will in turn be replaced with a Unicode replacement char
+		*/
+		$str = strtr(
+			$str,
+			"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x0B\x0C\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F",
+			"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
+		);
+
+		/**
+		* As per the original implementation, "the UnicodeString constructor fails
+		* if the string ends with a head byte". Therefore, if the string ends with
+		* a leading byte we replace it with 0xFF, which is illegal too and will be
+		* replaced with a Unicode replacement character
+		*/
+		if( substr( $str, -1 ) >= "\xC0" ) {
+			$str[strlen($str) - 1] = "\xFF";
+		}
+
+		return utf8_normalize( $str, UNORM_NFC );
+	}
+
+	function toNFC( $str ) {
+		return utf8_normalize( $str, UNORM_NFC );
+	}
+
+	function toNFKC( $str ) {
+		return utf8_normalize( $str, UNORM_NFKC );
+	}
+
+	function toNFD( $str ) {
+		return utf8_normalize( $str, UNORM_NFD );
+	}
+
+	function toNFKD( $str ) {
+		return utf8_normalize( $str, UNORM_NFKD );
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//                           End of the ICU wrapper                           //
+////////////////////////////////////////////////////////////////////////////////
+
+
+} else {
+
+
+////////////////////////////////////////////////////////////////////////////////
+//        This block will NOT be loaded if the utfnormal extension is         //
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+* Unset global variables
+*/
+unset( $GLOBALS['utfJamoIndex'], $GLOBALS['utfJamoType'], $GLOBALS['utfCheckNFC'], $GLOBALS['utfCombiningClass'], $GLOBALS['utfCanonicalComp'], $GLOBALS['utfCanonicalDecomp'], $GLOBALS['utfCheckNFKC'], $GLOBALS['utfCompatibilityDecomp'] );
+
+/**
+* NFC_QC and NFKC_QC values
+*/
+define( 'UNICODE_QC_MAYBE', 0 );
+define( 'UNICODE_QC_NO', 1 );
+
+/**
+* Contains all the ASCII characters appearing in UTF-8, sorted by frequency
+*/
+define( 'UTF8_ASCII_RANGE', "\x20\x65\x69\x61\x73\x6E\x74\x72\x6F\x6C\x75\x64\x5D\x5B\x63\x6D\x70\x27\x0A\x67\x7C\x68\x76\x2E\x66\x62\x2C\x3A\x3D\x2D\x71\x31\x30\x43\x32\x2A\x79\x78\x29\x28\x4C\x39\x41\x53\x2F\x50\x22\x45\x6A\x4D\x49\x6B\x33\x3E\x35\x54\x3C\x44\x34\x7D\x42\x7B\x38\x46\x77\x52\x36\x37\x55\x47\x4E\x3B\x4A\x7A\x56\x23\x48\x4F\x57\x5F\x26\x21\x4B\x3F\x58\x51\x25\x59\x5C\x09\x5A\x2B\x7E\x5E\x24\x40\x60\x7F\x00\x01\x02\x03\x04\x05\x06\x07\x08\x0B\x0C\x0D\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F" );
+
+/**
+* Contains all the tail bytes that can appear in the composition of a UTF-8 char
+*/
+define( 'UTF8_TRAILING_BYTES', "\xA9\xA0\xA8\x80\xAA\x99\xA7\xBB\xAB\x89\x94\x82\xB4\xA2\xAE\x83\xB0\xB9\xB8\x93\xAF\xBC\xB3\x81\xA4\xB2\x9C\xA1\xB5\xBE\xBD\xBA\x98\xAD\xB1\x84\x95\xA6\xB6\x88\x8D\x90\xB7\xBF\x92\x85\xA5\x97\x8C\x86\xA3\x8E\x9F\x8F\x87\x91\x9D\xAC\x9E\x8B\x96\x9B\x8A\x9A" );
+
+/**
+* Unicode normalization routines
+*
+* A copy of reports of bugs related to this class can be sent to the author directly
+*
+* @package UtfNormal
+*/
+class UtfNormal {
+	/**
+	* Validate, cleanup and normalize a string
+	*
+	* The ultimate convenience function! Clean up invalid UTF-8 sequences,
+	* and convert to Normal Form C, canonical composition.
+	*
+	* @param	string	$str	The dirty string
+	* @return	string			The same string, all shiny and cleaned-up
+	*/
+	function cleanup( $str ) {
+		/**
+		* The string below is the list of all autorized characters, sorted by
+		* frequency in latin text
+		*/
+		$pos = strspn( $str, "\x20\x65\x69\x61\x73\x6E\x74\x72\x6F\x6C\x75\x64\x5D\x5B\x63\x6D\x70\x27\x0A\x67\x7C\x68\x76\x2E\x66\x62\x2C\x3A\x3D\x2D\x71\x31\x30\x43\x32\x2A\x79\x78\x29\x28\x4C\x39\x41\x53\x2F\x50\x22\x45\x6A\x4D\x49\x6B\x33\x3E\x35\x54\x3C\x44\x34\x7D\x42\x7B\x38\x46\x77\x52\x36\x37\x55\x47\x4E\x3B\x4A\x7A\x56\x23\x48\x4F\x57\x5F\x26\x21\x4B\x3F\x58\x51\x25\x59\x5C\x09\x5A\x2B\x7E\x5E\x24\x40\x60\x7F\x0D" );
+		$len = strlen( $str );
+
+		if( $pos == $len ) {
+			/**
+			* ASCII strings with no special chars return immediately
+			*/
+			return $str;
+		}
+
+		/**
+		* Note: we do not check for $GLOBALS['utfCanonicalDecomp']. It is assumed
+		* they are always loaded together
+		*/
+		if( !isset( $GLOBALS['utfCheckNFC'] ) ) {
+			include( 'UtfNormalData.inc' );
+		}
+
+		/**
+		* Replace any byte in the range 0x00..0x1F, except for \r, \n and \t
+		*
+		* We replace those characters with a 0xFF byte, which is illegal in
+		* UTF-8 and will in turn be replaced with a UTF replacement char
+		*/
+		return UtfNormal::recompose(
+			strtr(
+				$str,
+				"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x0B\x0C\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F",
+				"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF"
+			),
+			$pos, $len, $GLOBALS['utfCheckNFC'], $GLOBALS['utfCanonicalDecomp']
+		);
+	}
 
 	/**
-	 * The ultimate convenience function! Clean up invalid UTF-8 sequences,
-	 * and convert to normal form C, canonical composition.
-	 *
-	 * Fast return for pure ASCII strings; some lesser optimizations for
-	 * strings containing only known-good characters. Not as fast as toNFC().
-	 *
-	 * @param $string String: a UTF-8 string
-	 * @return string a clean, shiny, normalized UTF-8 string
-	 */
-	static function cleanUp( $string ) {
-		if( NORMALIZE_ICU || NORMALIZE_INTL ) {
-			# We exclude a few chars that ICU would not.
-			$string = preg_replace(
-				'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
-				UTF8_REPLACEMENT,
-				$string );
-			$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
-			$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+	* Validate and normalize a UTF string to NFC
+	*
+	* @param	string	$str	Unchecked UTF string
+	* @return	string			The string, validated and in normal form
+	*/
+	function toNFC( $str ) {
+		$pos = strspn( $str, UTF8_ASCII_RANGE );
+		$len = strlen( $str );
 
-			# UnicodeString constructor fails if the string ends with a
-			# head byte. Add a junk char at the end, we'll strip it off.
-			if ( NORMALIZE_ICU ) return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
-			if ( NORMALIZE_INTL ) return normalizer_normalize( $string, Normalizer::FORM_C );
-		} elseif( UtfNormal::quickIsNFCVerify( $string ) ) {
-			# Side effect -- $string has had UTF-8 errors cleaned up.
-			return $string;
+		if( $pos == $len ) {
+			/**
+			* ASCII strings return immediately
+			*/
+			return $str;
+		}
+
+		if( !isset( $GLOBALS['utfCheckNFC'] ) ) {
+			include( 'UtfNormalData.inc' );
+		}
+
+		return UtfNormal::recompose( $str, $pos, $len, $GLOBALS['utfCheckNFC'], $GLOBALS['utfCanonicalDecomp'] );
+	}
+
+	/**
+	* Validate and normalize a UTF string to NFKC
+	*
+	* @param	string	$str	Unchecked UTF string
+	* @return	string			The string, validated and in normal form
+	*/
+	function toNFKC( $str ) {
+		$pos = strspn( $str, UTF8_ASCII_RANGE );
+		$len = strlen( $str );
+
+		if( $pos == $len ) {
+			/**
+			* ASCII strings return immediately
+			*/
+			return $str;
+		}
+
+		if( !isset( $GLOBALS['utfCheckNFKC'] ) ) {
+			include( 'UtfNormalDataK.inc' );
+		}
+		if( !isset( $GLOBALS['utfCanonicalComp'] ) ) {
+			include( 'UtfNormalData.inc' );
+		}
+
+		return UtfNormal::recompose( $str, $pos, $len, $GLOBALS['utfCheckNFKC'], $GLOBALS['utfCompatibilityDecomp'] );
+	}
+
+	/**
+	* Validate and normalize a UTF string to NFD
+	*
+	* @param	string	$str	Unchecked UTF string
+	* @return	string			The string, validated and in normal form
+	*/
+	function toNFD( $str ) {
+		$pos = strspn( $str, UTF8_ASCII_RANGE );
+		$len = strlen( $str );
+
+		if( $pos == $len ) {
+			/**
+			* ASCII strings return immediately
+			*/
+			return $str;
+		}
+
+		if( !isset( $GLOBALS['utfCanonicalDecomp'] ) ) {
+			include( 'UtfNormalData.inc' );
+		}
+
+		return UtfNormal::decompose( $str, $pos, $len, $GLOBALS['utfCanonicalDecomp'] );
+	}
+
+	/**
+	* Validate and normalize a UTF string to NFKD
+	*
+	* @param	string	$str	Unchecked UTF string
+	* @return	string			The string, validated and in normal form
+	*/
+	function toNFKD( $str ) {
+		$pos = strspn( $str, UTF8_ASCII_RANGE );
+		$len = strlen( $str );
+
+		if( $pos == $len ) {
+			/**
+			* ASCII strings return immediately
+			*/
+			return $str;
+		}
+
+		if( !isset( $GLOBALS['utfCompatibilityDecomp'] ) ) {
+			include( 'UtfNormalDataK.inc' );
+		}
+
+		return UtfNormal::decompose( $str, $pos, $len, $GLOBALS['utfCompatibilityDecomp'] );
+	}
+
+
+	////////////////////////////////////////////////////////////////////////////
+	//                           Internal functions                           //
+	////////////////////////////////////////////////////////////////////////////
+
+	/**
+	* Recompose a UTF string
+	*
+	* @param	string	$str		Unchecked UTF string
+	* @param	integer	$pos		Position of the first UTF char (in bytes)
+	* @param	integer	$len		Length of the string (in bytes)
+	* @param	array	$qc			Quick-check array, passed by reference but never modified
+	* @param	array	$decomp_map	Decomposition mapping, passed by reference but never modified
+	* @return	string				The string, validated and recomposed
+	*
+	* @access	private
+	*/
+	function recompose( $str, $pos, $len, &$qc, &$decomp_map ) {
+		global $utfCombiningClass, $utfCanonicalComp, $utfJamoType, $utfJamoIndex;
+
+		/**
+		* Buffer the last ASCII char before the UTF-8 stuff if applicable
+		*/
+		$tmp = '';
+		$i = $tmp_pos = $last_cc = 0;
+
+		if( $pos ) {
+			$buffer = array(++$i => $str[$pos - 1] );
 		} else {
-			return UtfNormal::NFC( $string );
-		}
-	}
-
-	/**
-	 * Convert a UTF-8 string to normal form C, canonical composition.
-	 * Fast return for pure ASCII strings; some lesser optimizations for
-	 * strings containing only known-good characters.
-	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
-	 * @return string a UTF-8 string in normal form C
-	 */
-	static function toNFC( $string ) {
-		if( NORMALIZE_INTL )
-			return normalizer_normalize( $string, Normalizer::FORM_C );
-		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFC );
-		elseif( UtfNormal::quickIsNFC( $string ) )
-			return $string;
-		else
-			return UtfNormal::NFC( $string );
-	}
-
-	/**
-	 * Convert a UTF-8 string to normal form D, canonical decomposition.
-	 * Fast return for pure ASCII strings.
-	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
-	 * @return string a UTF-8 string in normal form D
-	 */
-	static function toNFD( $string ) {
-		if( NORMALIZE_INTL )
-			return normalizer_normalize( $string, Normalizer::FORM_D );
-		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
-			return UtfNormal::NFD( $string );
-		else
-			return $string;
-	}
-
-	/**
-	 * Convert a UTF-8 string to normal form KC, compatibility composition.
-	 * This may cause irreversible information loss, use judiciously.
-	 * Fast return for pure ASCII strings.
-	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
-	 * @return string a UTF-8 string in normal form KC
-	 */
-	static function toNFKC( $string ) {
-		if( NORMALIZE_INTL )
-			return normalizer_normalize( $string, Normalizer::FORM_KC );
-		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFKC );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
-			return UtfNormal::NFKC( $string );
-		else
-			return $string;
-	}
-
-	/**
-	 * Convert a UTF-8 string to normal form KD, compatibility decomposition.
-	 * This may cause irreversible information loss, use judiciously.
-	 * Fast return for pure ASCII strings.
-	 *
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
-	 * @return string a UTF-8 string in normal form KD
-	 */
-	static function toNFKD( $string ) {
-		if( NORMALIZE_INTL )
-			return normalizer_normalize( $string, Normalizer::FORM_KD );
-		elseif( NORMALIZE_ICU )
-			return utf8_normalize( $string, UNORM_NFKD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
-			return UtfNormal::NFKD( $string );
-		else
-			return $string;
-	}
-
-	/**
-	 * Load the basic composition data if necessary
-	 * @private
-	 */
-	static function loadData() {
-		if( !isset( self::$utfCombiningClass ) ) {
-			require_once( dirname(__FILE__) . '/UtfNormalData.inc' );
-		}
-	}
-
-	/**
-	 * Returns true if the string is _definitely_ in NFC.
-	 * Returns false if not or uncertain.
-	 * @param $string String: a valid UTF-8 string. Input is not validated.
-	 * @return bool
-	 */
-	static function quickIsNFC( $string ) {
-		# ASCII is always valid NFC!
-		# If it's pure ASCII, let it through.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
-
-		UtfNormal::loadData();
-		$len = strlen( $string );
-		for( $i = 0; $i < $len; $i++ ) {
-			$c = $string{$i};
-			$n = ord( $c );
-			if( $n < 0x80 ) {
-				continue;
-			} elseif( $n >= 0xf0 ) {
-				$c = substr( $string, $i, 4 );
-				$i += 3;
-			} elseif( $n >= 0xe0 ) {
-				$c = substr( $string, $i, 3 );
-				$i += 2;
-			} elseif( $n >= 0xc0 ) {
-				$c = substr( $string, $i, 2 );
-				$i++;
-			}
-			if( isset( self::$utfCheckNFC[$c] ) ) {
-				# If it's NO or MAYBE, bail and do the slow check.
-				return false;
-			}
-			if( isset( self::$utfCombiningClass[$c] ) ) {
-				# Combining character? We might have to do sorting, at least.
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * Returns true if the string is _definitely_ in NFC.
-	 * Returns false if not or uncertain.
-	 * @param $string String: a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
-	 */
-	static function quickIsNFCVerify( &$string ) {
-		# Screen out some characters that eg won't be allowed in XML
-		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $string );
-
-		# ASCII is always valid NFC!
-		# If we're only ever given plain ASCII, we can avoid the overhead
-		# of initializing the decomposition tables by skipping out early.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
-
-		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
-		if( !isset( $checkit ) ) {
-			# Load/build some scary lookup tables...
-			UtfNormal::loadData();
-
-			$utfCheckOrCombining = array_merge( self::$utfCheckNFC, self::$utfCombiningClass );
-
-			# Head bytes for sequences which we should do further validity checks
-			$checkit = array_flip( array_map( 'chr',
-					array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
-						   0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
-						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
-
-			# Each UTF-8 head byte is followed by a certain
-			# number of tail bytes.
-			$tailBytes = array();
-			for( $n = 0; $n < 256; $n++ ) {
-				if( $n < 0xc0 ) {
-					$remaining = 0;
-				} elseif( $n < 0xe0 ) {
-					$remaining = 1;
-				} elseif( $n < 0xf0 ) {
-					$remaining = 2;
-				} elseif( $n < 0xf8 ) {
-					$remaining = 3;
-				} elseif( $n < 0xfc ) {
-					$remaining = 4;
-				} elseif( $n < 0xfe ) {
-					$remaining = 5;
-				} else {
-					$remaining = 0;
-				}
-				$tailBytes[chr($n)] = $remaining;
-			}
+			$buffer = array();
 		}
 
-		# Chop the text into pure-ASCII and non-ASCII areas;
-		# large ASCII parts can be handled much more quickly.
-		# Don't chop up Unicode areas for punctuation, though,
-		# that wastes energy.
-		$matches = array();
-		preg_match_all(
-			'/([\x00-\x7f]+|[\x80-\xff][\x00-\x40\x5b-\x5f\x7b-\xff]*)/',
-			$string, $matches );
+		/**
+		* UTF char length array
+		*
+		* This array is used to determine the length of a UTF character. Be $c the
+		* result of ($str[$pos] & "\xF0") --where $str is the string we're operating
+		* on and $pos the position of the cursor--, if $utf_len_mask[$c] does not
+		* exist, the byte is an ASCII char. Otherwise, if $utf_len_mask[$c] is greater
+		* than 0, we have a the leading byte of a multibyte character whose length is
+		* $utf_len_mask[$c] and if it is equal to 0, the byte is a trailing byte.
+		*/
+		$utf_len_mask = array(
+			/**
+			* Leading bytes masks
+			*/
+			"\xC0" => 2, "\xD0" => 2, "\xE0" => 3, "\xF0" => 4,
 
-		$looksNormal = true;
-		$base = 0;
-		$replace = array();
-		foreach( $matches[1] as $str ) {
-			$chunk = strlen( $str );
+			/**
+			* Trailing bytes masks
+			*/
+			"\x80" => 0, "\x90" => 0, "\xA0" => 0, "\xB0" => 0
+		);
 
-			if( $str{0} < "\x80" ) {
-				# ASCII chunk: guaranteed to be valid UTF-8
-				# and in normal form C, so skip over it.
-				$base += $chunk;
-				continue;
-			}
+		$extra_check = array(
+			"\xED"=>1, "\xEF"=>1, "\xC0"=>1, "\xC1"=>1, "\xE0"=>1, "\xF0"=>1,
+			"\xF4"=>1, "\xF5"=>1, "\xF6"=>1, "\xF7"=>1, "\xF8"=>1, "\xF9"=>1,
+			"\xFA"=>1, "\xFB"=>1, "\xFC"=>1, "\xFD"=>1, "\xFE"=>1, "\xFF"=>1
+		);
 
-			# We'll have to examine the chunk byte by byte to ensure
-			# that it consists of valid UTF-8 sequences, and to see
-			# if any of them might not be normalized.
-			#
-			# Since PHP is not the fastest language on earth, some of
-			# this code is a little ugly with inner loop optimizations.
+		$utf_validation_mask = array(
+			2	=>	"\xE0\xC0",
+			3	=>	"\xF0\xC0\xC0",
+			4	=>	"\xF8\xC0\xC0\xC0"
+		);
 
-			$head = '';
-			$len = $chunk + 1; # Counting down is faster. I'm *so* sorry.
+		$utf_validation_check = array(
+			2	=>	"\xC0\x80",
+			3	=>	"\xE0\x80\x80",
+			4	=>	"\xF0\x80\x80\x80"
+		);
 
-			for( $i = -1; --$len; ) {
-				$remaining = $tailBytes[$c = $str{++$i}];
-				if( $remaining ) {
-					# UTF-8 head byte!
-					$sequence = $head = $c;
-					do {
-						# Look for the defined number of tail bytes...
-						if( --$len && ( $c = $str{++$i} ) >= "\x80" && $c < "\xc0" ) {
-							# Legal tail bytes are nice.
-							$sequence .= $c;
+		////////////////////////////////////////////////////////////////////////
+		//                             Main loop                              //
+		////////////////////////////////////////////////////////////////////////
+
+		do {
+			////////////////////////////////////////////////////////////////////
+			//         STEP 0: Capture the current char and buffer it         //
+			////////////////////////////////////////////////////////////////////
+
+			$c = $str[$pos];
+			$c_mask = $c & "\xF0";
+
+			if( isset( $utf_len_mask[$c_mask] ) ) {
+				/**
+				* Byte at $pos is either a leading byte or a missplaced trailing byte
+				*/
+				if( $utf_len = $utf_len_mask[$c_mask] ) {
+					/**
+					* Capture the char
+					*/
+					$buffer[++$i & 7] = $utf_char = substr( $str, $pos, $utf_len );
+
+					/**
+					* Let's find out if a thorough check is needed
+					*/
+					if( isset( $qc[$utf_char] ) ) {
+						/**
+						* If the UTF char is in the qc array then it may not be in normal
+						* form. We do nothing here, the actual processing is below this
+						* "if" block
+						*/
+					} elseif( isset( $utfCombiningClass[$utf_char] ) ) {
+						if( $utfCombiningClass[$utf_char] < $last_cc ) {
+							/**
+							* A combining character that is NOT canonically ordered
+							*/
 						} else {
-							if( 0 == $len ) {
-								# Premature end of string!
-								# Drop a replacement character into output to
-								# represent the invalid UTF-8 sequence.
-								$replace[] = array( UTF8_REPLACEMENT,
-													$base + $i + 1 - strlen( $sequence ),
-													strlen( $sequence ) );
-								break 2;
+							/**
+							* A combining character that IS canonically ordered, skip
+							* to the next char
+							*/
+							$last_cc = $utfCombiningClass[$utf_char];
+
+							$pos += $utf_len;
+							continue;
+						}
+					} else {
+						/**
+						* At this point, $utf_char holds a UTF char that we know
+						* is not a NF[K]C_QC and is not a combining character. It can
+						* be a singleton, a canonical composite, a replacement char or
+						* an even an ill-formed bunch of bytes. Let's find out
+						*/
+						$last_cc = 0;
+
+						/**
+						* Check that we have the correct number of trailing bytes
+						*/
+						if( ( $utf_char & $utf_validation_mask[$utf_len] ) != $utf_validation_check[$utf_len] ) {
+							/**
+							* Current char isn't well-formed or legal: either one or
+							* several trailing bytes are missing, or the Unicode char
+							* has been encoded in a five- or six- byte sequence
+							*/
+							if( $utf_char[0] >= "\xF8" ) {
+								if( $utf_char[0] < "\xF8" ) {
+									$trailing_bytes = 3;
+								} elseif( $utf_char[0] < "\xFC" ) {
+									$trailing_bytes = 4;
+								}
+								if( $utf_char[0] > "\xFD" ) {
+									$trailing_bytes = 0;
+								} else {
+									$trailing_bytes = 5;
+								}
 							} else {
-								# Illegal tail byte; abandon the sequence.
-								$replace[] = array( UTF8_REPLACEMENT,
-													$base + $i - strlen( $sequence ),
-													strlen( $sequence ) );
-								# Back up and reprocess this byte; it may itself
-								# be a legal ASCII or UTF-8 sequence head.
-								--$i;
-								++$len;
-								continue 2;
+								$trailing_bytes = $utf_len - 1;
+							}
+
+							$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+							$pos += strspn( $str, UTF8_TRAILING_BYTES, ++$pos, $trailing_bytes );
+							$tmp_pos = $pos;
+
+							continue;
+						}
+
+						if( isset( $extra_check[$c] ) ) {
+							switch( $c ) {
+								/**
+								* Note: 0xED is quite common in Korean
+								*/
+								case "\xED":
+									if( $utf_char >= "\xED\xA0\x80" ) {
+										/**
+										* Surrogates (0xD800..0xDFFF) are not allowed in UTF-8
+										* (UTF sequence 0xEDA080..0xEDBFBF)
+										*/
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += $utf_len;
+										$tmp_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								/**
+								* Note: 0xEF is quite common in Japanese
+								*/
+								case "\xEF":
+									if( $utf_char == "\xEF\xBF\xBE" || $utf_char == "\xEF\xBF\xBF" ) {
+										/**
+										* 0xFFFE and 0xFFFF are explicitly disallowed
+										* (UTF sequence 0xEFBFBE..0xEFBFBF)
+										*/
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += $utf_len;
+										$tmp_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xC0":
+								case "\xC1":
+									if( $utf_char <= "\xC1\xBF" ) {
+										/**
+										* Overlong sequence: Unicode char 0x00..0x7F encoded as a
+										* double-byte UTF char
+										*/
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += $utf_len;
+										$tmp_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xE0":
+									if( $utf_char <= "\xE0\x9F\xBF" ) {
+										/**
+										* Unicode char 0x0000..0x07FF encoded in 3 bytes
+										*/
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += $utf_len;
+										$tmp_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xF0":
+									if( $utf_char <= "\xF0\x8F\xBF\xBF" ) {
+										/**
+										* Unicode char 0x0000..0xFFFF encoded in 4 bytes
+										*/
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += $utf_len;
+										$tmp_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								default:
+									/**
+									* Five- and six- byte sequences do not need being checked for here anymore
+									*/
+									if( $utf_char > UTF8_MAX ) {
+										/**
+										* Out of the Unicode range
+										*/
+										if( $utf_char[0] < "\xF8" ) {
+											$trailing_bytes = 3;
+										} elseif( $utf_char[0] < "\xFC" ) {
+											$trailing_bytes = 4;
+										} elseif( $utf_char[0] > "\xFD" ) {
+											$trailing_bytes = 0;
+										} else {
+											$trailing_bytes = 5;
+										}
+
+										$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . UTF8_REPLACEMENT;
+										$pos += strspn( $str, UTF8_TRAILING_BYTES, ++$pos, $trailing_bytes );
+										$tmp_pos = $pos;
+										continue 2;
+									}
 							}
 						}
-					} while( --$remaining );
 
-					if( isset( $checkit[$head] ) ) {
-						# Do some more detailed validity checks, for
-						# invalid characters and illegal sequences.
-						if( $head == "\xed" ) {
-							# 0xed is relatively frequent in Korean, which
-							# abuts the surrogate area, so we're doing
-							# this check separately to speed things up.
-
-							if( $sequence >= UTF8_SURROGATE_FIRST ) {
-								# Surrogates are legal only in UTF-16 code.
-								# They are totally forbidden here in UTF-8
-								# utopia.
-								$replace[] = array( UTF8_REPLACEMENT,
-								             $base + $i + 1 - strlen( $sequence ),
-								             strlen( $sequence ) );
-								$head = '';
-								continue;
-							}
-						} else {
-							# Slower, but rarer checks...
-							$n = ord( $head );
-							if(
-								# "Overlong sequences" are those that are syntactically
-								# correct but use more UTF-8 bytes than are necessary to
-								# encode a character. Naïve string comparisons can be
-								# tricked into failing to see a match for an ASCII
-								# character, for instance, which can be a security hole
-								# if blacklist checks are being used.
-							       ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
-								|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-								|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-
-								# U+FFFE and U+FFFF are explicitly forbidden in Unicode.
-								|| ($n == 0xef &&
-									   ($sequence == UTF8_FFFE)
-									|| ($sequence == UTF8_FFFF) )
-
-								# Unicode has been limited to 21 bits; longer
-								# sequences are not allowed.
-								|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
-
-								$replace[] = array( UTF8_REPLACEMENT,
-								                    $base + $i + 1 - strlen( $sequence ),
-								                    strlen( $sequence ) );
-								$head = '';
-								continue;
-							}
-						}
-					}
-
-					if( isset( $utfCheckOrCombining[$sequence] ) ) {
-						# If it's NO or MAYBE, we'll have to rip
-						# the string apart and put it back together.
-						# That's going to be mighty slow.
-						$looksNormal = false;
-					}
-
-					# The sequence is legal!
-					$head = '';
-				} elseif( $c < "\x80" ) {
-					# ASCII byte.
-					$head = '';
-				} elseif( $c < "\xc0" ) {
-					# Illegal tail bytes
-					if( $head == '' ) {
-						# Out of the blue!
-						$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
-					} else {
-						# Don't add if we're continuing a broken sequence;
-						# we already put a replacement character when we looked
-						# at the broken sequence.
-						$replace[] = array( '', $base + $i, 1 );
+						/**
+						* The char is a valid starter, move the cursor and go on
+						*/
+						$pos += $utf_len;
+						continue;
 					}
 				} else {
-					# Miscellaneous freaks.
-					$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
-					$head = '';
-				}
-			}
-			$base += $chunk;
-		}
-		if( count( $replace ) ) {
-			# There were illegal UTF-8 sequences we need to fix up.
-			$out = '';
-			$last = 0;
-			foreach( $replace as $rep ) {
-				list( $replacement, $start, $length ) = $rep;
-				if( $last < $start ) {
-					$out .= substr( $string, $last, $start - $last );
-				}
-				$out .= $replacement;
-				$last = $start + $length;
-			}
-			if( $last < strlen( $string ) ) {
-				$out .= substr( $string, $last );
-			}
-			$string = $out;
-		}
-		return $looksNormal;
-	}
+					/**
+					* A trailing byte came out of nowhere, we will advance the cursor
+					* and treat the this byte and all following trailing bytes as if
+					* each of them was a Unicode replacement char
+					*/
+					$spn = strspn( $str, UTF8_TRAILING_BYTES, $pos );
+					$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . str_repeat( UTF8_REPLACEMENT, $spn );
 
-	# These take a string and run the normalization on them, without
-	# checking for validity or any optimization etc. Input must be
-	# VALID UTF-8!
-	/**
-	 * @param $string string
-	 * @return string
-	 * @private
-	 */
-	static function NFC( $string ) {
-		return UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
-	}
-
-	/**
-	 * @param $string string
-	 * @return string
-	 * @private
-	 */
-	static function NFD( $string ) {
-		UtfNormal::loadData();
-
-		return UtfNormal::fastCombiningSort(
-			UtfNormal::fastDecompose( $string, self::$utfCanonicalDecomp ) );
-	}
-
-	/**
-	 * @param $string string
-	 * @return string
-	 * @private
-	 */
-	static function NFKC( $string ) {
-		return UtfNormal::fastCompose( UtfNormal::NFKD( $string ) );
-	}
-
-	/**
-	 * @param $string string
-	 * @return string
-	 * @private
-	 */
-	static function NFKD( $string ) {
-		if( !isset( self::$utfCompatibilityDecomp ) ) {
-			require_once( 'UtfNormalDataK.inc' );
-		}
-		return self::fastCombiningSort(
-			self::fastDecompose( $string, self::$utfCompatibilityDecomp ) );
-	}
-
-
-	/**
-	 * Perform decomposition of a UTF-8 string into either D or KD form
-	 * (depending on which decomposition map is passed to us).
-	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
-	 * @private
-	 * @param $string String: valid UTF-8 string
-	 * @param $map Array: hash of expanded decomposition map
-	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
-	 */
-	static function fastDecompose( $string, $map ) {
-		UtfNormal::loadData();
-		$len = strlen( $string );
-		$out = '';
-		for( $i = 0; $i < $len; $i++ ) {
-			$c = $string{$i};
-			$n = ord( $c );
-			if( $n < 0x80 ) {
-				# ASCII chars never decompose
-				# THEY ARE IMMORTAL
-				$out .= $c;
-				continue;
-			} elseif( $n >= 0xf0 ) {
-				$c = substr( $string, $i, 4 );
-				$i += 3;
-			} elseif( $n >= 0xe0 ) {
-				$c = substr( $string, $i, 3 );
-				$i += 2;
-			} elseif( $n >= 0xc0 ) {
-				$c = substr( $string, $i, 2 );
-				$i++;
-			}
-			if( isset( $map[$c] ) ) {
-				$out .= $map[$c];
-				continue;
-			} else {
-				if( $c >= UTF8_HANGUL_FIRST && $c <= UTF8_HANGUL_LAST ) {
-					# Decompose a hangul syllable into jamo;
-					# hardcoded for three-byte UTF-8 sequence.
-					# A lookup table would be slightly faster,
-					# but adds a lot of memory & disk needs.
-					#
-					$index = ( (ord( $c{0} ) & 0x0f) << 12
-					         | (ord( $c{1} ) & 0x3f) <<  6
-					         | (ord( $c{2} ) & 0x3f) )
-					       - UNICODE_HANGUL_FIRST;
-					$l = intval( $index / UNICODE_HANGUL_NCOUNT );
-					$v = intval( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
-					$t = $index % UNICODE_HANGUL_TCOUNT;
-					$out .= "\xe1\x84" . chr( 0x80 + $l ) . "\xe1\x85" . chr( 0xa1 + $v );
-					if( $t >= 25 ) {
-						$out .= "\xe1\x87" . chr( 0x80 + $t - 25 );
-					} elseif( $t ) {
-						$out .= "\xe1\x86" . chr( 0xa7 + $t );
-					}
+					$pos += $spn;
+					$tmp_pos = $pos;
 					continue;
 				}
-			}
-			$out .= $c;
-		}
-		return $out;
-	}
 
-	/**
-	 * Sorts combining characters into canonical order. This is the
-	 * final step in creating decomposed normal forms D and KD.
-	 * @private
-	 * @param $string String: a valid, decomposed UTF-8 string. Input is not validated.
-	 * @return string a UTF-8 string with combining characters sorted in canonical order
-	 */
-	static function fastCombiningSort( $string ) {
-		UtfNormal::loadData();
-		$len = strlen( $string );
-		$out = '';
-		$combiners = array();
-		$lastClass = -1;
-		for( $i = 0; $i < $len; $i++ ) {
-			$c = $string{$i};
-			$n = ord( $c );
-			if( $n >= 0x80 ) {
-				if( $n >= 0xf0 ) {
-					$c = substr( $string, $i, 4 );
-					$i += 3;
-				} elseif( $n >= 0xe0 ) {
-					$c = substr( $string, $i, 3 );
-					$i += 2;
-				} elseif( $n >= 0xc0 ) {
-					$c = substr( $string, $i, 2 );
-					$i++;
-				}
-				if( isset( self::$utfCombiningClass[$c] ) ) {
-					$lastClass = self::$utfCombiningClass[$c];
-					if( isset( $combiners[$lastClass] ) ) {
-						$combiners[$lastClass] .= $c;
-					} else {
-						$combiners[$lastClass] = $c;
-					}
-					continue;
-				}
-			}
-			if( $lastClass ) {
-				ksort( $combiners );
-				$out .= implode( '', $combiners );
-				$combiners = array();
-			}
-			$out .= $c;
-			$lastClass = 0;
-		}
-		if( $lastClass ) {
-			ksort( $combiners );
-			$out .= implode( '', $combiners );
-		}
-		return $out;
-	}
 
-	/**
-	 * Produces canonically composed sequences, i.e. normal form C or KC.
-	 *
-	 * @private
-	 * @param $string String: a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
-	 * @return string a UTF-8 string with canonical precomposed characters used where possible
-	 */
-	static function fastCompose( $string ) {
-		UtfNormal::loadData();
-		$len = strlen( $string );
-		$out = '';
-		$lastClass = -1;
-		$lastHangul = 0;
-		$startChar = '';
-		$combining = '';
-		$x1 = ord(substr(UTF8_HANGUL_VBASE,0,1));
-		$x2 = ord(substr(UTF8_HANGUL_TEND,0,1));
-		for( $i = 0; $i < $len; $i++ ) {
-			$c = $string{$i};
-			$n = ord( $c );
-			if( $n < 0x80 ) {
-				# No combining characters here...
-				$out .= $startChar;
-				$out .= $combining;
-				$startChar = $c;
-				$combining = '';
-				$lastClass = 0;
-				continue;
-			} elseif( $n >= 0xf0 ) {
-				$c = substr( $string, $i, 4 );
-				$i += 3;
-			} elseif( $n >= 0xe0 ) {
-				$c = substr( $string, $i, 3 );
-				$i += 2;
-			} elseif( $n >= 0xc0 ) {
-				$c = substr( $string, $i, 2 );
-				$i++;
-			}
-			$pair = $startChar . $c;
-			if( $n > 0x80 ) {
-				if( isset( self::$utfCombiningClass[$c] ) ) {
-					# A combining char; see what we can do with it
-					$class = self::$utfCombiningClass[$c];
-					if( !empty( $startChar ) &&
-						$lastClass < $class &&
-						$class > 0 &&
-						isset( self::$utfCanonicalComp[$pair] ) ) {
-						$startChar = self::$utfCanonicalComp[$pair];
-						$class = 0;
-					} else {
-						$combining .= $c;
-					}
-					$lastClass = $class;
-					$lastHangul = 0;
-					continue;
-				}
-			}
-			# New start char
-			if( $lastClass == 0 ) {
-				if( isset( self::$utfCanonicalComp[$pair] ) ) {
-					$startChar = self::$utfCanonicalComp[$pair];
-					$lastHangul = 0;
-					continue;
-				}
-				if( $n >= $x1 && $n <= $x2 ) {
-					# WARNING: Hangul code is painfully slow.
-					# I apologize for this ugly, ugly code; however
-					# performance is even more teh suck if we call
-					# out to nice clean functions. Lookup tables are
-					# marginally faster, but require a lot of space.
-					#
-					if( $c >= UTF8_HANGUL_VBASE &&
-						$c <= UTF8_HANGUL_VEND &&
-						$startChar >= UTF8_HANGUL_LBASE &&
-						$startChar <= UTF8_HANGUL_LEND ) {
-						#
-						#$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
-						#$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
-						$lIndex = ord( $startChar{2} ) - 0x80;
-						$vIndex = ord( $c{2}         ) - 0xa1;
+				////////////////////////////////////////////////////////////////////
+				//                 STEP 1: Decompose current char                 //
+				////////////////////////////////////////////////////////////////////
 
-						$hangulPoint = UNICODE_HANGUL_FIRST +
-							UNICODE_HANGUL_TCOUNT *
-							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
+				/**
+				* We have found a character that is either:
+				*  - in the NFC_QC/NFKC_QC list
+				*  - a non-starter char that is not canonically ordered
+				*
+				* We are going to capture the shortest UTF sequence that satisfies
+				* these two conditions:
+				*
+				*  1 - If the sequence does not start at the begginning of the string,
+				*      it must begin with a starter, and that starter must not have the
+				*      NF[K]C_QC property equal to "MAYBE"
+				*
+				*  2 - If the sequence does not end at the end of the string, it must end
+				*      with a non-starter and be immediately followed by a starter that
+				*      is not on the QC list
+				*/
+				$utf_seq = array();
+				$last_cc = 0;
+				$lpos = $pos;
+				$pos += $utf_len;
 
-						# Hardcode the limited-range UTF-8 conversion:
-						$startChar = chr( $hangulPoint >> 12 & 0x0f | 0xe0 ) .
-									 chr( $hangulPoint >>  6 & 0x3f | 0x80 ) .
-									 chr( $hangulPoint       & 0x3f | 0x80 );
-						$lastHangul = 0;
-						continue;
-					} elseif( $c >= UTF8_HANGUL_TBASE &&
-							  $c <= UTF8_HANGUL_TEND &&
-							  $startChar >= UTF8_HANGUL_FIRST &&
-							  $startChar <= UTF8_HANGUL_LAST &&
-							  !$lastHangul ) {
-						# $tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
-						$tIndex = ord( $c{2} ) - 0xa7;
-						if( $tIndex < 0 ) $tIndex = ord( $c{2} ) - 0x80 + (0x11c0 - 0x11a7);
+				if( isset( $decomp_map[$utf_char] ) ) {
+					$_pos = 0;
+					$_len = strlen( $decomp_map[$utf_char] );
+					do {
+						$_utf_len =& $utf_len_mask[$decomp_map[$utf_char][$_pos] & "\xF0"];
 
-						# Increment the code point by $tIndex, without
-						# the function overhead of decoding and recoding UTF-8
-						#
-						$tail = ord( $startChar{2} ) + $tIndex;
-						if( $tail > 0xbf ) {
-							$tail -= 0x40;
-							$mid = ord( $startChar{1} ) + 1;
-							if( $mid > 0xbf ) {
-								$startChar{0} = chr( ord( $startChar{0} ) + 1 );
-								$mid -= 0x40;
-							}
-							$startChar{1} = chr( $mid );
+						if( isset( $_utf_len ) ) {
+							$utf_seq[] = substr( $decomp_map[$utf_char], $_pos, $_utf_len );
+							$_pos += $_utf_len;
+						} else {
+							$utf_seq[] = $decomp_map[$utf_char][$_pos];
+							++$_pos;
 						}
-						$startChar{2} = chr( $tail );
+					}
+					while( $_pos < $_len );
+				} else {
+					/**
+					* The char is not decomposable
+					*/
+					$utf_seq = array( $utf_char );
+				}
 
-						# If there's another jamo char after this, *don't* try to merge it.
-						$lastHangul = 1;
-						continue;
+
+				////////////////////////////////////////////////////////////////
+				//                STEP 2: Capture the starter                 //
+				////////////////////////////////////////////////////////////////
+
+				/**
+				* Check out the combining class of the first character of the UTF sequence
+				*/
+				$k = 0;
+				if( isset( $utfCombiningClass[$utf_seq[0]] ) || $qc[$utf_char] == UNICODE_QC_MAYBE ) {
+					/**
+					* Not a starter, inspect previous characters
+					*
+					* The last 8 characters are kept in a buffer so that we don't have
+					* to capture them everytime. This is enough for all real-life strings
+					* but even if it wasn't, we can capture characters in backward mode,
+					* although it is slower than this method.
+					*
+					* In the following loop, $j starts at the previous buffered character
+					* ($i - 1, because current character is at offset $i) and process them
+					* in backward mode until we find a starter.
+					*
+					* $k is the index on each UTF character inside of our UTF sequence.
+					* At this time, $utf_seq contains one or more characters numbered 0 to
+					* n. $k starts at 0 and for each char we prepend we pre-decrement it
+					* and for numbering
+					*/
+					$starter_found = 0;
+					$j_min = max(1, $i - 7 );
+					for( $j = $i - 1; $j >= $j_min && $lpos > $tmp_pos; --$j ) {
+						$utf_char = $buffer[$j & 7];
+						$lpos -= strlen( $utf_char );
+
+						if( isset( $decomp_map[$utf_char] ) ) {
+							/**
+							* The char is a composite, decompose for storage
+							*/
+							$decomp_seq = array();
+							$_pos = 0;
+							$_len = strlen( $decomp_map[$utf_char] );
+							do {
+								$c = $decomp_map[$utf_char][$_pos];
+								$_utf_len =& $utf_len_mask[$c & "\xF0"];
+
+								if( isset( $_utf_len ) ) {
+									$decomp_seq[] = substr( $decomp_map[$utf_char], $_pos, $_utf_len );
+									$_pos += $_utf_len;
+								} else {
+									$decomp_seq[] = $c;
+									++$_pos;
+								}
+							}
+							while( $_pos < $_len );
+
+							/**
+							* Prepend the UTF sequence with our decomposed sequence
+							*/
+							if( isset( $decomp_seq[1] ) ) {
+								/**
+								* The char expanded into several chars
+								*/
+								$decomp_cnt = count( $decomp_seq );
+								foreach( $decomp_seq as $decomp_i => $decomp_char ) {
+									$utf_seq[$k + $decomp_i - $decomp_cnt] = $decomp_char;
+								}
+								$k -= $decomp_cnt;
+							} else {
+								/**
+								* Decomposed to a single char, easier to prepend
+								*/
+								$utf_seq[--$k] = $decomp_seq[0];
+							}
+						} else {
+							$utf_seq[--$k] = $utf_char;
+						}
+
+						if( !isset( $utfCombiningClass[$utf_seq[$k]] ) ) {
+							/**
+							* We have found our starter
+							*/
+							$starter_found = 1;
+							break;
+						}
+					}
+
+					if( !$starter_found && $lpos > $tmp_pos ) {
+						/**
+						* The starter was not found in the buffer, let's rewind some more
+						*/
+						do {
+							/**
+							* $utf_len_mask contains the masks of both leading bytes and
+							* trailing bytes. If $utf_en > 0 then it's a leading byte,
+							* otherwise it's a trailing byte.
+							*/
+							$c = $str[--$lpos];
+							$c_mask = $c & "\xF0";
+
+							if( isset( $utf_len_mask[$c_mask] ) ) {
+								/**
+								* UTF byte
+								*/
+								if( $utf_len = $utf_len_mask[$c_mask] ) {
+									/**
+									* UTF *leading* byte
+									*/
+									$utf_char = substr( $str, $lpos, $utf_len );
+
+									if( isset( $decomp_map[$utf_char] ) ) {
+										/**
+										* Decompose the character
+										*/
+										$decomp_seq = array();
+										$_pos = 0;
+										$_len = strlen( $decomp_map[$utf_char] );
+										do {
+											$c = $decomp_map[$utf_char][$_pos];
+											$_utf_len =& $utf_len_mask[$c & "\xF0"];
+
+											if( isset( $_utf_len ) ) {
+												$decomp_seq[] = substr( $decomp_map[$utf_char], $_pos, $_utf_len );
+												$_pos += $_utf_len;
+											} else {
+												$decomp_seq[] = $c;
+												++$_pos;
+											}
+										}
+										while( $_pos < $_len );
+
+										/**
+										* Prepend the UTF sequence with our decomposed sequence
+										*/
+										if( isset( $decomp_seq[1] ) ) {
+											/**
+											* The char expanded into several chars
+											*/
+											$decomp_cnt = count( $decomp_seq );
+											foreach( $decomp_seq as $decomp_i => $utf_char ) {
+												$utf_seq[$k + $decomp_i - $decomp_cnt] = $utf_char;
+											}
+											$k -= $decomp_cnt;
+										} else {
+											/**
+											* Decomposed to a single char, easier to prepend
+											*/
+											$utf_seq[--$k] = $decomp_seq[0];
+										}
+									} else {
+										$utf_seq[--$k] = $utf_char;
+									}
+								}
+							} else {
+								/**
+								* ASCII char
+								*/
+								$utf_seq[--$k] = $c;
+							}
+						}
+						while( $lpos > $tmp_pos );
+					}
+				}
+
+
+				////////////////////////////////////////////////////////////////
+				//       STEP 3: Capture following combining modifiers        //
+				////////////////////////////////////////////////////////////////
+
+				while( $pos < $len ) {
+					$c_mask = $str[$pos] & "\xF0";
+
+					if( isset( $utf_len_mask[$c_mask] ) ) {
+						if( $utf_len = $utf_len_mask[$c_mask] ) {
+							$utf_char = substr( $str, $pos, $utf_len );
+						} else {
+							/**
+							* A trailing byte came out of nowhere
+							*
+							* Trailing bytes are replaced with Unicode replacement chars,
+							* we will just ignore it for now, break out of the loop
+							* as if it was a starter (replacement chars ARE starters)
+							* and let the next loop replace it
+							*/
+							break;
+						}
+
+						if( isset( $utfCombiningClass[$utf_char] ) || isset( $qc[$utf_char] ) ) {
+							/**
+							* Combining character, add it to the sequence and move the cursor
+							*/
+							if( isset( $decomp_map[$utf_char] ) ) {
+								/**
+								* Decompose the character
+								*/
+								$_pos = 0;
+								$_len = strlen( $decomp_map[$utf_char] );
+								do {
+									$c = $decomp_map[$utf_char][$_pos];
+									$_utf_len =& $utf_len_mask[$c & "\xF0"];
+
+									if( isset( $_utf_len ) ) {
+										$utf_seq[] = substr( $decomp_map[$utf_char], $_pos, $_utf_len );
+										$_pos += $_utf_len;
+									} else {
+										$utf_seq[] = $c;
+										++$_pos;
+									}
+								}
+								while( $_pos < $_len );
+							} else {
+								$utf_seq[] = $utf_char;
+							}
+
+							$pos += $utf_len;
+						} else {
+							/**
+							* Combining class 0 and no QC, break out of the loop
+							*
+							* Note: we do not know if that character is valid. If
+							* it's not, the next iteration will replace it
+							*/
+							break;
+						}
+					} else {
+						/**
+						* ASCII chars are starters
+						*/
+						break;
+					}
+				}
+
+
+				////////////////////////////////////////////////////////////////
+				//                  STEP 4: Sort and combine                  //
+				////////////////////////////////////////////////////////////////
+
+				/**
+				* Here we sort...
+				*/
+				$k_max = $k + count( $utf_seq );
+				if( !$k && $k_max == 1 ) {
+					/**
+					* There is only one char in the UTF sequence, add it then
+					* jump to the next iteration of main loop
+					*
+					* Note: the two commented lines below can be enabled under PHP5
+					* for a very small performance gain in most cases
+					*/
+//					if( substr_compare( $str, $utf_seq[0], $lpos, $pos - $lpos ) ) {
+						$tmp .= substr( $str, $tmp_pos, $lpos - $tmp_pos ) . $utf_seq[0];
+						$tmp_pos = $pos;
+//					}
+
+					continue;
+				}
+
+				/**
+				* ...there we combine
+				*/
+				if( isset( $utfCombiningClass[$utf_seq[$k]] ) ) {
+					$starter = $nf_seq = '';
+				} else {
+					$starter = $utf_seq[$k++];
+					$nf_seq = '';
+				}
+				$utf_sort = array();
+
+				/**
+				* We add an empty char at the end of the UTF char sequence.
+				* It will act as a starter and trigger the sort/combine routine
+				* at the end of the string without altering it
+				*/
+				$utf_seq[] = '';
+
+				do {
+					$utf_char = $utf_seq[$k++];
+
+					if( isset( $utfCombiningClass[$utf_char] ) ) {
+						$utf_sort[$utfCombiningClass[$utf_char]][] = $utf_char;
+					} else {
+						if( empty( $utf_sort ) ) {
+							/**
+							* No combining characters... check for a composite
+							* of the two starters
+							*/
+							if( isset( $utfCanonicalComp[$starter . $utf_char] ) ) {
+								/**
+								* Good ol' composite character
+								*/
+								$starter = $utfCanonicalComp[$starter . $utf_char];
+							} elseif( isset( $utfJamoType[$utf_char] ) ) {
+								/**
+								* Current char is a composable jamo
+								*/
+								if( isset( $utfJamoType[$starter] )
+								 && $utfJamoType[$starter] == UNICODE_JAMO_L
+								 && $utfJamoType[$utf_char] == UNICODE_JAMO_V ) {
+									/**
+									* We have a L jamo followed by a V jamo, we are going
+									* to prefetch the next char to see if it's a T jamo
+									*/
+									if( isset( $utfJamoType[$utf_seq[$k]] ) && $utfJamoType[$utf_seq[$k]] == UNICODE_JAMO_T ) {
+										/**
+										* L+V+T jamos, combine to a LVT Hangul syllable
+										* ($k is incremented)
+										*/
+										$cp = $utfJamoIndex[$starter] + $utfJamoIndex[$utf_char] + $utfJamoIndex[$utf_seq[$k]];
+
+										++$k;
+									} else {
+										/**
+										* L+V jamos, combine to a LV Hangul syllable
+										*/
+										$cp = $utfJamoIndex[$starter] + $utfJamoIndex[$utf_char];
+									}
+
+									$starter = chr( 0xE0 | ( $cp >> 12 ) ) . chr( 0x80 | ( ( $cp >> 6 ) & 0x3F ) ) . chr( 0x80 | ( $cp & 0x3F ) );
+								} else {
+									/**
+									* Non-composable jamo, just add it to the sequence
+									*/
+									$nf_seq .= $starter;
+									$starter = $utf_char;
+								}
+							} else {
+								/**
+								* No composite, just add the first starter to the sequence
+								* then continue with the other one
+								*/
+								$nf_seq .= $starter;
+								$starter = $utf_char;
+							}
+						} else {
+							ksort( $utf_sort );
+
+							/**
+							* For each class of combining characters
+							*/
+							foreach( $utf_sort as $cc => $utf_chars ) {
+								$j = 0;
+
+								do {
+									/**
+									* Look for a composite
+									*/
+									if( isset( $utfCanonicalComp[$starter . $utf_chars[$j]] ) ) {
+										/**
+										* Found a composite, replace the starter
+										*/
+										$starter = $utfCanonicalComp[$starter . $utf_chars[$j]];
+										unset( $utf_sort[$cc][$j] );
+									} else {
+										/**
+										* No composite, all following characters in that
+										* class are blocked
+										*/
+										break;
+									}
+								}
+								while( isset( $utf_sort[$cc][++$j] ) );
+							}
+
+							/**
+							* Add the starter to the normalized sequence, followed by
+							* non-starters in canonical order
+							*/
+							$nf_seq .= $starter;
+							foreach( $utf_sort as $utf_chars ) {
+								if( !empty( $utf_chars ) ) {
+									$nf_seq .= implode( '', $utf_chars );
+								}
+							}
+
+							/**
+							* Reset the array and go on
+							*/
+							$utf_sort = array();
+							$starter = $utf_char;
+						}
+					}
+				}
+				while( $k <= $k_max );
+
+				$tmp .= substr( $str, $tmp_pos, $lpos - $tmp_pos ) . $nf_seq;
+				$tmp_pos = $pos;
+			} else {
+				/**
+				* Only a ASCII char can make the program get here
+				*
+				* First we skip the current byte with ++$pos, then we quickly
+				* skip following ASCII chars with strspn().
+				*
+				* The first two "if"'s here can be removed, with the consequences
+				* of being faster on latin text (lots of ASCII) and slower on
+				* multi-byte text (where the only ASCII chars are spaces and punctuation)
+				*/
+				if( ++$pos != $len ) {
+					if( $str[$pos] < "\x80" ) {
+						$pos += strspn( $str, UTF8_ASCII_RANGE, ++$pos );
+						$buffer[++$i & 7] = $str[$pos - 1];
+					} else {
+						$buffer[++$i & 7] = $c;
 					}
 				}
 			}
-			$out .= $startChar;
-			$out .= $combining;
-			$startChar = $c;
-			$combining = '';
-			$lastClass = 0;
-			$lastHangul = 0;
 		}
-		$out .= $startChar . $combining;
-		return $out;
+		while( $pos < $len );
+
+		/**
+		* Now is time to return the string
+		*/
+		if( $tmp_pos ) {
+			/**
+			* If the $tmp_pos cursor is not at the beggining of the string then at least
+			* one character was not in normal form. Replace $str with the fixed version
+			*/
+			if( $tmp_pos == $len ) {
+				/**
+				* The $tmp_pos cursor is at the end of $str, therefore $tmp holds the
+				* whole $str
+				*/
+				return $tmp;
+			} else {
+				/**
+				* The rightmost chunk of $str has not been appended to $tmp yet
+				*/
+				return $tmp . substr( $str, $tmp_pos );
+			}
+		}
+
+		/**
+		* The string was already in normal form
+		*/
+		return $str;
 	}
 
 	/**
-	 * This is just used for the benchmark, comparing how long it takes to
-	 * interate through a string without really doing anything of substance.
-	 * @param $string string
-	 * @return string
-	 */
-	static function placebo( $string ) {
-		$len = strlen( $string );
-		$out = '';
-		for( $i = 0; $i < $len; $i++ ) {
-			$out .= $string{$i};
+	* Decompose a UTF string
+	*
+	* @param	string	$str		UTF string
+	* @param	integer	$pos		Position of the first UTF char (in bytes)
+	* @param	integer	$len		Length of the string (in bytes)
+	* @param	array	$decomp_map	Decomposition mapping, passed by reference but never modified
+	* @return	string				The string, decomposed and sorted canonically
+	*
+	* @access	private
+	*/
+	function decompose( $str, $pos, $len, &$decomp_map ) {
+		global $utfCombiningClass, $utfCanonicalDecomp;
+
+		/**
+		* UTF char length array
+		*/
+		$utf_len_mask = array(
+			/**
+			* Leading bytes masks
+			*/
+			"\xC0" => 2, "\xD0" => 2, "\xE0" => 3, "\xF0" => 4,
+
+			/**
+			* Trailing bytes masks
+			*/
+			"\x80" => 0, "\x90" => 0, "\xA0" => 0, "\xB0" => 0
+		);
+
+		/**
+		* Some extra checks are triggered on the first byte of a UTF sequence
+		*/
+		$extra_check = array(
+			"\xED"=>1, "\xEF"=>1, "\xC0"=>1, "\xC1"=>1, "\xE0"=>1, "\xF0"=>1,
+			"\xF4"=>1, "\xF5"=>1, "\xF6"=>1, "\xF7"=>1, "\xF8"=>1, "\xF9"=>1,
+			"\xFA"=>1, "\xFB"=>1, "\xFC"=>1, "\xFD"=>1, "\xFE"=>1, "\xFF"=>1
+		);
+
+		/**
+		* These masks are used to check if a UTF sequence is well formed.
+		* Here are the only 3 lengths we acknowledge:
+		*   - 2-byte: 110? ???? 10?? ????
+		*   - 3-byte: 1110 ???? 10?? ???? 10?? ????
+		*   - 4-byte: 1111 0??? 10?? ???? 10?? ???? 10?? ????
+		*
+		* Note that 5- and 6- byte sequences are automatically discarded
+		*/
+		$utf_validation_mask = array(
+			2	=>	"\xE0\xC0",
+			3	=>	"\xF0\xC0\xC0",
+			4	=>	"\xF8\xC0\xC0\xC0"
+		);
+		$utf_validation_check = array(
+			2	=>	"\xC0\x80",
+			3	=>	"\xE0\x80\x80",
+			4	=>	"\xF0\x80\x80\x80"
+		);
+
+		$tmp = '';
+		$starter_pos = $pos;
+		$tmp_pos = $last_cc = $sort = $dump = 0;
+		$utf_sort = array();
+
+
+		////////////////////////////////////////////////////////////////////////
+		//                             Main loop                              //
+		////////////////////////////////////////////////////////////////////////
+
+		do {
+			////////////////////////////////////////////////////////////////////
+			//                STEP 0: Capture the current char                //
+			////////////////////////////////////////////////////////////////////
+
+			$cur_mask = $str[$pos] & "\xF0";
+			if( isset( $utf_len_mask[$cur_mask] ) ) {
+				if( $utf_len = $utf_len_mask[$cur_mask] ) {
+					/**
+					* Multibyte char
+					*/
+					$utf_char = substr( $str, $pos, $utf_len );
+					$pos += $utf_len;
+				} else {
+					/**
+					* A trailing byte came out of nowhere, we will treat it and all
+					* following trailing bytes as if each of them was a Unicode
+					* replacement char and we will advance the cursor
+					*/
+					$spn = strspn( $str, UTF8_TRAILING_BYTES, $pos );
+
+					if( $dump ) {
+						$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+						/**
+						* Dump combiners
+						*/
+						if( !empty( $utf_sort ) ) {
+							if( $sort ) {
+								ksort( $utf_sort );
+							}
+
+							foreach( $utf_sort as $utf_chars ) {
+								$tmp .= implode( '', $utf_chars );
+							}
+						}
+
+						$tmp .= str_repeat( UTF8_REPLACEMENT, $spn );
+						$dump = $sort = 0;
+					} else {
+						$tmp .= substr( $str, $tmp_pos, $pos - $tmp_pos ) . str_repeat( UTF8_REPLACEMENT, $spn );
+					}
+
+					$pos += $spn;
+					$tmp_pos = $starter_pos = $pos;
+
+					$utf_sort = array();
+					$last_cc = 0;
+
+					continue;
+				}
+
+
+				////////////////////////////////////////////////////////////////////
+				//          STEP 1: Decide what to do with current char           //
+				////////////////////////////////////////////////////////////////////
+
+				/**
+				* Now, in that order:
+				*  - check if that character is decomposable
+				*  - check if that character is a non-starter
+				*  - check if that character requires extra checks to be performed
+				*/
+				if( isset( $decomp_map[$utf_char] ) ) {
+					/**
+					* Decompose the char
+					*/
+					$_pos = 0;
+					$_len = strlen( $decomp_map[$utf_char] );
+
+					do {
+						$c = $decomp_map[$utf_char][$_pos];
+						$_utf_len =& $utf_len_mask[$c & "\xF0"];
+
+						if( isset( $_utf_len ) ) {
+							$_utf_char = substr( $decomp_map[$utf_char], $_pos, $_utf_len );
+							$_pos += $_utf_len;
+
+							if( isset( $utfCombiningClass[$_utf_char] ) ) {
+								/**
+								* The character decomposed to a non-starter, buffer it for sorting
+								*/
+								$utf_sort[$utfCombiningClass[$_utf_char]][] = $_utf_char;
+
+								if( $utfCombiningClass[$_utf_char] < $last_cc ) {
+									/**
+									* Not canonically ordered, will require sorting
+									*/
+									$sort = $dump = 1;
+								} else {
+									$dump = 1;
+									$last_cc = $utfCombiningClass[$_utf_char];
+								}
+							} else {
+								/**
+								* This character decomposition contains a starter,
+								* dump the buffer and continue
+								*/
+								if( $dump ) {
+									$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+									/**
+									* Dump combiners
+									*/
+									if( !empty( $utf_sort ) ) {
+										if( $sort ) {
+											ksort( $utf_sort );
+										}
+
+										foreach( $utf_sort as $utf_chars ) {
+											$tmp .= implode( '', $utf_chars );
+										}
+									}
+
+									$tmp .= $_utf_char;
+									$dump = $sort = 0;
+								} else {
+									$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos ) . $_utf_char;
+								}
+
+								$tmp_pos = $starter_pos = $pos;
+								$utf_sort = array();
+								$last_cc = 0;
+							}
+						} else {
+							/**
+							* This character decomposition contains an ASCII char,
+							* which is a starter. Dump the buffer and continue
+							*/
+							++$_pos;
+							if( $dump ) {
+								$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+								/**
+								* Dump combiners
+								*/
+								if( !empty( $utf_sort ) ) {
+									if( $sort ) {
+										ksort( $utf_sort );
+									}
+
+									foreach( $utf_sort as $utf_chars ) {
+										$tmp .= implode( '', $utf_chars );
+									}
+								}
+
+								$tmp .= $c;
+								$dump = $sort = 0;
+							} else {
+								$tmp .= substr( $str, $tmp_pos, $pos - $utf_len - $tmp_pos ) . $c;
+							}
+
+							$tmp_pos = $starter_pos = $pos;
+							$utf_sort = array();
+							$last_cc = 0;
+						}
+					}
+					while( $_pos < $_len );
+				} elseif( isset( $utfCombiningClass[$utf_char] ) ) {
+					/**
+					* Combining character
+					*/
+					if( $utfCombiningClass[$utf_char] < $last_cc ) {
+						/**
+						* Not in canonical order
+						*/
+						$sort = $dump = 1;
+					} else {
+						$last_cc = $utfCombiningClass[$utf_char];
+					}
+
+					$utf_sort[$utfCombiningClass[$utf_char]][] = $utf_char;
+				} else {
+					/**
+					* Non-decomposable starter, check out if it's a Hangul syllable
+					*/
+					if( $utf_char < UTF8_HANGUL_FIRST || $utf_char > UTF8_HANGUL_LAST ) {
+						/**
+						* Nope, regular UTF char, check that we have the correct number of trailing bytes
+						*/
+						if( ( $utf_char & $utf_validation_mask[$utf_len] ) != $utf_validation_check[$utf_len] ) {
+							/**
+							* Current char isn't well-formed or legal: either one or
+							* several trailing bytes are missing, or the Unicode char
+							* has been encoded in a five- or six- byte sequence
+							*/
+							if( $utf_char[0] >= "\xF8" ) {
+								if( $utf_char[0] < "\xF8" ) {
+									$trailing_bytes = 3;
+								} elseif( $utf_char[0] < "\xFC" ) {
+									$trailing_bytes = 4;
+								}
+								if( $utf_char[0] > "\xFD" ) {
+									$trailing_bytes = 0;
+								} else {
+									$trailing_bytes = 5;
+								}
+							} else {
+								$trailing_bytes = $utf_len - 1;
+							}
+
+							/**
+							* Move the cursor back to its original position then advance
+							* it to the position it should be at
+							*/
+							$pos -= $utf_len;
+							$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+							if( !empty( $utf_sort ) ) {
+								ksort( $utf_sort );
+
+								foreach( $utf_sort as $utf_chars ) {
+									$tmp .= implode( '', $utf_chars );
+								}
+								$utf_sort = array();
+							}
+
+							$tmp .= UTF8_REPLACEMENT;
+							$dump = $sort = 0;
+
+							$pos += strspn( $str, UTF8_TRAILING_BYTES, ++$pos, $trailing_bytes );
+							$tmp_pos = $pos;
+							continue;
+						}
+
+						if( isset( $extra_check[$utf_char[0]] ) ) {
+							switch( $utf_char[0] ) {
+								/**
+								* Note: 0xED is quite common in Korean
+								*/
+								case "\xED":
+									if( $utf_char >= "\xED\xA0\x80" ) {
+										/**
+										* Surrogates (0xD800..0xDFFF) are not allowed in UTF-8
+										* (UTF sequence 0xEDA080..0xEDBFBF)
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								/**
+								* Note: 0xEF is quite common in Japanese
+								*/
+								case "\xEF":
+									if( $utf_char == "\xEF\xBF\xBE" || $utf_char == "\xEF\xBF\xBF" ) {
+										/**
+										* 0xFFFE and 0xFFFF are explicitly disallowed
+										* (UTF sequence 0xEFBFBE..0xEFBFBF)
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xC0":
+								case "\xC1":
+									if( $utf_char <= "\xC1\xBF" ) {
+										/**
+										* Overlong sequence: Unicode char 0x00..0x7F encoded as a
+										* double-byte UTF char
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xE0":
+									if( $utf_char <= "\xE0\x9F\xBF" ) {
+										/**
+										* Unicode char 0x0000..0x07FF encoded in 3 bytes
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								case "\xF0":
+									if( $utf_char <= "\xF0\x8F\xBF\xBF" ) {
+										/**
+										* Unicode char 0x0000..0xFFFF encoded in 4 bytes
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+									break;
+
+								default:
+									if( $utf_char > UTF8_MAX ) {
+										/**
+										* Out of the Unicode range
+										*/
+										$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+										if( !empty( $utf_sort ) ) {
+											ksort( $utf_sort );
+
+											foreach( $utf_sort as $utf_chars ) {
+												$tmp .= implode( '', $utf_chars );
+											}
+											$utf_sort = array();
+										}
+
+										$tmp .= UTF8_REPLACEMENT;
+										$dump = $sort = 0;
+
+										$tmp_pos = $starter_pos = $pos;
+										continue 2;
+									}
+							}
+						}
+					} else {
+						/**
+						* Hangul syllable
+						*/
+						$idx = ( ( ( ord( $utf_char[0] ) & 0x0F ) << 12 ) | ( ( ord( $utf_char[1] ) & 0x3F ) << 6 ) | ( ord( $utf_char[2] ) & 0x3F ) ) - UNICODE_HANGUL_SBASE;
+
+						/**
+						* LIndex can only range from 0 to 18, therefore it cannot influence
+						* the first two bytes of the L Jamo, which allows us to hardcode
+						* them (based on LBase).
+						*
+						* The same goes for VIndex, but for TIndex there's a catch: the value
+						* of the third byte could exceed 0xBF and we would have to increment
+						* the second byte
+						*/
+						if( $tIndex = $idx % UNICODE_HANGUL_TCOUNT ) {
+							if( $tIndex < 25 ) {
+								$utf_char = "\xE1\x84\x00\xE1\x85\x00\xE1\x86\x00";
+								$utf_char[8] = chr( 0xA7 + $tIndex );
+							} else {
+								$utf_char = "\xE1\x84\x00\xE1\x85\x00\xE1\x87\x00";
+								$utf_char[8] = chr( 0x67 + $tIndex );
+							}
+						} else {
+							$utf_char = "\xE1\x84\x00\xE1\x85\x00";
+						}
+
+						$utf_char[2] = chr( 0x80 + ( int ) ( $idx / UNICODE_HANGUL_NCOUNT ) );
+						$utf_char[5] = chr( 0xA1 + ( int ) ( ( $idx % UNICODE_HANGUL_NCOUNT ) / UNICODE_HANGUL_TCOUNT ) );
+
+
+						/**
+						* Just like other decompositions, the resulting Jamos must
+						* be dumped to the tmp string
+						*/
+						$dump = 1;
+					}
+
+					/**
+					* Do we need to dump stuff to the tmp string?
+					*/
+					if( $dump ) {
+						$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+						/**
+						* Dump combiners
+						*/
+						if( !empty( $utf_sort ) ) {
+							if( $sort ) {
+								ksort( $utf_sort );
+							}
+
+							foreach( $utf_sort as $utf_chars ) {
+								$tmp .= implode( '', $utf_chars );
+							}
+						}
+
+						$tmp .= $utf_char;
+						$dump = $sort = 0;
+						$tmp_pos = $pos;
+					}
+
+					$last_cc = 0;
+					$utf_sort = array();
+					$starter_pos = $pos;
+				}
+			} else {
+				/**
+				* ASCII char, which happens to be a starter (as any other ASCII char)
+				*/
+				if( $dump ) {
+					$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+					/**
+					* Dump combiners
+					*/
+					if( !empty( $utf_sort ) ) {
+						if( $sort ) {
+							ksort( $utf_sort );
+						}
+
+						foreach( $utf_sort as $utf_chars ) {
+							$tmp .= implode( '', $utf_chars );
+						}
+					}
+
+					$tmp .= $str[$pos];
+					$dump = $sort = 0;
+					$tmp_pos = ++$pos;
+
+					$pos += strspn( $str, UTF8_ASCII_RANGE, $pos );
+				} else {
+					$pos += strspn( $str, UTF8_ASCII_RANGE, ++$pos );
+				}
+
+				$last_cc = 0;
+				$utf_sort = array();
+				$starter_pos = $pos;
+			}
 		}
-		return $out;
+		while( $pos < $len );
+
+		/**
+		* Now is time to return the string
+		*/
+		if( $dump ) {
+			$tmp .= substr( $str, $tmp_pos, $starter_pos - $tmp_pos );
+
+			/**
+			* Dump combiners
+			*/
+			if( !empty( $utf_sort ) ) {
+				if( $sort ) {
+					ksort( $utf_sort );
+				}
+
+				foreach( $utf_sort as $utf_chars ) {
+					$tmp .= implode( '', $utf_chars );
+				}
+			}
+
+			return $tmp;
+
+		} elseif( $tmp_pos ) {
+			/**
+			* If the $tmp_pos cursor was moved then at least one character was not in
+			* normal form. Replace $str with the fixed version
+			*/
+			if( $tmp_pos == $len ) {
+				/**
+				* The $tmp_pos cursor is at the end of $str, therefore $tmp holds
+				* the whole $str
+				*/
+				return $tmp;
+			} else {
+				/**
+				* The rightmost chunk of $str has not been appended to $tmp yet
+				*/
+				return $tmp . substr( $str, $tmp_pos );
+			}
+		}
+
+		/**
+		* The string was already in normal form
+		*/
+		return $str;
 	}
+}
+
 }

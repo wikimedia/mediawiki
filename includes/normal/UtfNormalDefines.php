@@ -12,7 +12,13 @@ define( 'UNICODE_HANGUL_LAST',  0xd7a3 );
 define( 'UNICODE_HANGUL_LBASE', 0x1100 );
 define( 'UNICODE_HANGUL_VBASE', 0x1161 );
 define( 'UNICODE_HANGUL_TBASE', 0x11a7 );
+define( 'UNICODE_HANGUL_SBASE', 0xAC00 );
 
+define( 'UNICODE_JAMO_L', 0 );
+define( 'UNICODE_JAMO_V', 1 );
+define( 'UNICODE_JAMO_T', 2 );
+
+define( 'UNICODE_HANGUL_SCOUNT', 11172 );
 define( 'UNICODE_HANGUL_LCOUNT', 19 );
 define( 'UNICODE_HANGUL_VCOUNT', 21 );
 define( 'UNICODE_HANGUL_TCOUNT', 28 );
@@ -26,7 +32,6 @@ define( 'UNICODE_SURROGATE_FIRST', 0xd800 );
 define( 'UNICODE_SURROGATE_LAST', 0xdfff );
 define( 'UNICODE_MAX', 0x10ffff );
 define( 'UNICODE_REPLACEMENT', 0xfffd );
-
 
 define( 'UTF8_HANGUL_FIRST', "\xea\xb0\x80" /*codepointToUtf8( UNICODE_HANGUL_FIRST )*/ );
 define( 'UTF8_HANGUL_LAST', "\xed\x9e\xa3" /*codepointToUtf8( UNICODE_HANGUL_LAST )*/ );
@@ -57,3 +62,11 @@ define( 'UTF8_FFFF', "\xef\xbf\xbf" /*codepointToUtf8( 0xffff )*/ );
 
 define( 'UTF8_HEAD', false );
 define( 'UTF8_TAIL', true );
+
+define( 'UNORM_NONE', 1 );
+define( 'UNORM_NFD',  2 );
+define( 'UNORM_NFKD', 3 );
+define( 'UNORM_NFC',  4 );
+define( 'UNORM_NFKC', 5 );
+define( 'UNORM_FCD',  6 );
+define( 'UNORM_DEFAULT', UNORM_NFC );
