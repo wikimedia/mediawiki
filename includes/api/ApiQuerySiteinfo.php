@@ -160,7 +160,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['wikiid'] = wfWikiID();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
-		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( &$this, &$data ) );
+		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
