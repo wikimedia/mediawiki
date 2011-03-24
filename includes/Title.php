@@ -3231,8 +3231,8 @@ class Title {
 		if ( $reason ) {
 			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 		}
-		# Truncate for whole multibyte characters. +5 bytes for ellipsis
-		$comment = $wgContLang->truncate( $comment, 250 );
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
