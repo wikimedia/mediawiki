@@ -282,7 +282,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27589) list=allimages&aiprop=archivename is useless
 * (bug 27586) Remove duplication of props in ApiQueryStashImageInfo
   by using ApiQueryImageInfo
-
+* (bug 28226) prop=extlinks&eloffset should be an integer
+  
 === Languages updated in 1.18 ===
 
 MediaWiki supports over 330 languages. Many localisations are updated
