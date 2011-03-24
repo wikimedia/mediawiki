@@ -7119,11 +7119,12 @@ Döh dörve bloß <i lang="en" title="American Standard Code for Information Int
 Donn de Name för dä Rääschner, vun däm Aanwender för dä Zohjref op de Daatebangk, un et Paßwoot prööfe, repareere, un dann versöhg et norr_ens.',
 	'config-invalid-schema' => 'Dat Schema för MediaWiki kann nit „$1“ sin, dä Name wöhr esu nit jöltesch.
 Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), un Ongerstreshe (_) dren vörkumme.',
+	'config-db-sys-create-oracle' => 'Dat Projramm för MediaWiki opzesäze kann bloß <i lang="en">SYSDBA</i> bruche för ene neue Zohjang zor Daatebangk enzereeschte!',
+	'config-db-sys-user-exists-oracle' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk jidd_et ald. <i lang="en">SYSDBA</i> kam_mer bloß bruche, för ene neue Zohjang enzereeschte!',
 	'config-postgres-old' => 'Mer bruche <i lang="en">PostgreSQL</i> $1 udder neuer. Em Momang es <i lang="en">PostgreSQL</i> $2 aam Loufe.',
-	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
-Gebruik geen spaties of koppeltekens.
-Deze naam wordt gebruikt voor het Datendateinamen för <i lang="en">SQLite</i>.
-',
+	'config-sqlite-name-help' => 'Söhk enen Name uß, dä Ding Wiki beschrief.
+Donn kein Bendeschresch un Zweschräum en däm Name bruche.
+Dä Name weed för der Dateiname för de <i lang="en">SQLite</i> Daatebangk jenumme.',
 	'config-sqlite-mkdir-error' => 'Ene Fähler es opjetrodde beim Aanlääje vum Daate_Verzeishneß „$1“.
 Don dä Plaz för et Shpeishere prööfe un Repareere, dann versöhg et norr_ens.',
 	'config-sqlite-dir-unwritable' => 'Mer künne nit en dat Verzeishneß „$1“ schrieeve

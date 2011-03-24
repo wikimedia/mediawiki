@@ -675,6 +675,10 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 '''Non g'à state angore reggistrete ninde!'''",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
+'sitecsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tune.'''
+'''Non g'à state angore reggistrate ninde!'''",
+'sitejspreview'                    => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u codece JavaScript tune.'''
+'''Non g'à state angore reggistrate ninde!'''",
 'userinvalidcssjstitle'            => "'''Attenziò:''' Non ge stè 'nu skin \"\$1\".
 Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/vector.css è diverse da {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Cangiete)',
@@ -2741,6 +2745,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'svg-long-desc'          => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
 'show-big-image'         => 'Risoluzione chiena chiena',
 'show-big-image-preview' => '<small>Dimenziune de sta andeprime: $1.</small>',
+'show-big-image-other'   => '<small>Otre resoluziune: $1.</small>',
 'show-big-image-size'    => '$1 x $2 pixel',
 'file-info-gif-looped'   => 'infinite',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frame}}',
@@ -3097,6 +3102,18 @@ Ce tu *NON* g'è reggistrate 'u cunde utende, segue stu collegamende pe scangell
 
 Stu codece de conferme more 'u \$4.",
 'confirmemail_body_changed' => "Quacchedune, pò essere tu, da l'indirizze IP \$1,
+ha cangiate l'indirizze e-mail d'u cunde utende \"\$2\" cu st'indirizze e-mail sus a {{SITENAME}}.
+
+Pe confermà ca stu cunde ète avveramende 'u tune e pe reattivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u borwser tune:
+
+\$3
+
+Ce tu *NON* g'è reggistrate 'u cunde utende, segue stu collegamende pe scangellà l'indirizze email de conferme:
+
+\$5
+
+Stu codece de conferme scade 'u \$4.",
+'confirmemail_body_set'     => "Quacchedune, pò essere tu, da l'indirizze IP \$1,
 ha cangiate l'indirizze e-mail d'u cunde utende \"\$2\" cu st'indirizze e-mail sus a {{SITENAME}}.
 
 Pe confermà ca stu cunde ète avveramende 'u tune e pe reattivà 'a funzione email de {{SITENAME}}, iapre stu collegamende jndr'à 'u borwser tune:

@@ -14,6 +14,7 @@
  * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Laurap
+ * @author Malafaya
  * @author Memo18
  * @author Mihai
  * @author Minisarm
@@ -1989,7 +1990,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'nbytes'                  => '{{PLURAL:$1|un octet|$1 octeți}}',
 'ncategories'             => '{{PLURAL:$1|o categorie|$1 categorii}}',
 'nlinks'                  => '{{PLURAL:$1|o legătură|$1 legături}}',
-'nmembers'                => '$1 {{PLURAL:$1|un membru|membri}}',
+'nmembers'                => '$1 {{PLURAL:$1|membru|membri}}',
 'nrevisions'              => '{{PLURAL:$1|o revizie|$1 revizii}}',
 'nviews'                  => '{{PLURAL:$1|o accesare|$1 accesări}}',
 'nimagelinks'             => 'Utilizat pe $1 {{PLURAL:$1|pagină|pagini}}',
@@ -3121,7 +3122,7 @@ Altele vor fi ascunse implicit.
 'exif-customrendered'              => 'Prelucrarea imaginii',
 'exif-exposuremode'                => 'Mod de expunere',
 'exif-whitebalance'                => 'Balanța albă',
-'exif-digitalzoomratio'            => 'Raportul zoom-ului digital',
+'exif-digitalzoomratio'            => 'Raportul transfocării digitale',
 'exif-focallengthin35mmfilm'       => 'Distanță focală pentru film de 35 mm',
 'exif-scenecapturetype'            => 'Tipul de surprindere a scenei',
 'exif-gaincontrol'                 => 'Controlul scenei',
