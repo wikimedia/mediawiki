@@ -2393,31 +2393,34 @@ class Language {
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
-		$eLength = $adjustLength ? strlen( $ellipsis ) : 0;
 		# Check if there is no need to truncate
 		if ( $length == 0 ) {
-			return $ellipsis;
+			return $ellipsis; // convention
 		} elseif ( strlen( $string ) <= abs( $length ) ) {
-			return $string;
-		} elseif ( strlen( $ellipsis ) >= abs( $length ) ) {
-			// Not combined with first (length == 0) if statement, since
-			// we want to return the string instead of ellipsis if both
-			// this and the proceeding elseif are true.
-			return $ellipsis;
+			return $string; // no need to truncate
 		}
 		$stringOriginal = $string;
-		if ( $length > 0 ) {
-			$length -= $eLength;
-			$string = substr( $string, 0, $length ); // xyz...
-			$string = $this->removeBadCharLast( $string );
-			$string = $string . $ellipsis;
+		# If ellipsis length is >= $length then we can't apply $adjustLength
+		if ( $adjustLength && strlen( $ellipsis ) >= abs( $length ) ) {
+			$string = $ellipsis; // this can be slightly unexpected
+		# Otherwise, truncate and add ellipsis...
 		} else {
-			$length += $eLength;
-			$string = substr( $string, $length ); // ...xyz
-			$string = $this->removeBadCharFirst( $string );
-			$string = $ellipsis . $string;
+			$eLength = $adjustLength ? strlen( $ellipsis ) : 0;
+			if ( $length > 0 ) {
+				$length -= $eLength;
+				$string = substr( $string, 0, $length ); // xyz...
+				$string = $this->removeBadCharLast( $string );
+				$string = $string . $ellipsis;
+			} else {
+				$length += $eLength;
+				$string = substr( $string, $length ); // ...xyz
+				$string = $this->removeBadCharFirst( $string );
+				$string = $ellipsis . $string;
+			}
 		}
-		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181)
+		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181).
+		# This check is *not* redundant if $adjustLength, due to the single case where
+		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string. 
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
 			return $string;
 		} else {
@@ -2433,17 +2436,19 @@ class Language {
 	 * @return string
 	 */
 	protected function removeBadCharLast( $string ) {
-		$char = ord( $string[strlen( $string ) - 1] );
-		$m = array();
-		if ( $char >= 0xc0 ) {
-			# We got the first byte only of a multibyte char; remove it.
-			$string = substr( $string, 0, -1 );
-		} elseif ( $char >= 0x80 &&
-			  preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-						  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
-		{
-			# We chopped in the middle of a character; remove it
-			$string = $m[1];
+		if ( $string != '' ) {
+			$char = ord( $string[strlen( $string ) - 1] );
+			$m = array();
+			if ( $char >= 0xc0 ) {
+				# We got the first byte only of a multibyte char; remove it.
+				$string = substr( $string, 0, -1 );
+			} elseif ( $char >= 0x80 &&
+				  preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
+							  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
+			{
+				# We chopped in the middle of a character; remove it
+				$string = $m[1];
+			}
 		}
 		return $string;
 	}
@@ -2456,10 +2461,12 @@ class Language {
 	 * @return string
 	 */
 	protected function removeBadCharFirst( $string ) {
-		$char = ord( $string[0] );
-		if ( $char >= 0x80 && $char < 0xc0 ) {
-			# We chopped in the middle of a character; remove the whole thing
-			$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
+		if ( $string != '' ) {
+			$char = ord( $string[0] );
+			if ( $char >= 0x80 && $char < 0xc0 ) {
+				# We chopped in the middle of a character; remove the whole thing
+				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
+			}
 		}
 		return $string;
 	}
@@ -2469,9 +2476,8 @@ class Language {
 	 * appending an optional string (e.g. for ellipses), and return valid HTML
 	 *
 	 * This is only intended for styled/linked text, such as HTML with
-	 * tags like <span> and <a>, were the tags are self-contained (valid HTML)
-	 *
-	 * Note: tries to fix broken HTML with MWTidy
+	 * tags like <span> and <a>, were the tags are self-contained (valid HTML).
+	 * Also, this will not detect things like "display:none" CSS.
 	 *
 	 * Note: since 1.18 you do not need to leave extra room in $length for ellipses.
 	 *
@@ -2485,23 +2491,44 @@ class Language {
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
-		$length -= strlen( $ellipsis );
-		# Check if there is no need to truncate
+		# Check if there is clearly no need to truncate
 		if ( $length <= 0 ) {
-			return $ellipsis; // no text shown, nothing to format
+			return $ellipsis; // no text shown, nothing to format (convention)
 		} elseif ( strlen( $text ) <= $length ) {
-			return $text; // string short enough even *with* HTML
+			return $text; // string short enough even *with* HTML (short-circuit)
 		}
-		$text = MWTidy::tidy( $text ); // fix tags
+
 		$displayLen = 0; // innerHTML legth so far
 		$testingEllipsis = false; // checking if ellipses will make string longer/equal?
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
 		$entityState = 0; // 0-not entity, 1-entity
-		$tag = $ret = '';
+		$tag = $ret = ''; // accumulated tag name, accumulated result string
 		$openTags = array(); // open tag stack
+
 		$textLen = strlen( $text );
-		for ( $pos = 0; $pos < $textLen; ++$pos ) {
+		$neLength = max( 0, $length - strlen( $ellipsis ) ); // non-ellipsis len if truncated
+		for ( $pos = 0; true; ++$pos ) {
+			# Consider truncation once the display length has reached the maximim.
+			# Check that we're not in the middle of a bracket/entity...
+			if ( $displayLen >= $neLength && $bracketState == 0 && $entityState == 0 ) {
+				if ( !$testingEllipsis ) {
+					$testingEllipsis = true;
+					# Save where we are; we will truncate here unless there turn out to
+					# be so few remaining characters that truncation is not necessary.
+					$pOpenTags = $openTags; // save state
+					$pRet = $ret; // save state
+				} elseif ( $displayLen > $length && $displayLen > strlen( $ellipsis ) ) {
+					# String in fact does need truncation, the truncation point was OK.
+					$openTags = $pOpenTags; // reload state
+					$ret = $this->removeBadCharLast( $pRet ); // reload state, multi-byte char fix
+					$ret .= $ellipsis; // add ellipsis
+					break;
+				}
+			}
+			if ( $pos >= $textLen ) break; // extra iteration just for above checks
+
+			# Read the next char...
 			$ch = $text[$pos];
 			$lastCh = $pos ? $text[$pos - 1] : '';
 			$ret .= $ch; // add to result string
@@ -2539,29 +2566,12 @@ class Language {
 						$entityState = 1; // entity found, (e.g. "&#160;")
 					} else {
 						$displayLen++; // this char is displayed
-						// Add on the other display text after this...
-						$skipped = $this->truncate_skip(
-							$ret, $text, "<>&", $pos + 1, $length - $displayLen );
+						// Add the next $max display text chars after this in one swoop...
+						$max = ( $testingEllipsis ? $length : $neLength ) - $displayLen;
+						$skipped = $this->truncate_skip( $ret, $text, "<>&", $pos + 1, $max );
 						$displayLen += $skipped;
 						$pos += $skipped;
 					}
-				}
-			}
-			# Consider truncation once the display length has reached the maximim.
-			# Double-check that we're not in the middle of a bracket/entity...
-			if ( $displayLen >= $length && $bracketState == 0 && $entityState == 0 ) {
-				if ( !$testingEllipsis ) {
-					$testingEllipsis = true;
-					# Save where we are; we will truncate here unless
-					# the ellipsis actually makes the string longer.
-					$pOpenTags = $openTags; // save state
-					$pRet = $ret; // save state
-				} elseif ( $displayLen > ( $length + strlen( $ellipsis ) ) ) {
-					# Ellipsis won't make string longer/equal, the truncation point was OK.
-					$openTags = $pOpenTags; // reload state
-					$ret = $this->removeBadCharLast( $pRet ); // reload state, multi-byte char fix
-					$ret .= $ellipsis; // add ellipsis
-					break;
 				}
 			}
 		}
@@ -2578,7 +2588,12 @@ class Language {
 
 	// truncateHtml() helper function
 	// like strcspn() but adds the skipped chars to $ret
-	private function truncate_skip( &$ret, $text, $search, $start, $len = -1 ) {
+	private function truncate_skip( &$ret, $text, $search, $start, $len = null ) {
+		if ( $len === null ) {
+			$len = -1; // -1 means "no limit" for strcspn
+		} elseif ( $len < 0 ) {
+			$len = 0; // sanity
+		}
 		$skipCount = 0;
 		if ( $start < strlen( $text ) ) {
 			$skipCount = strcspn( $text, $search, $start, $len );
