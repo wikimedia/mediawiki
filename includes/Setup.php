@@ -366,8 +366,20 @@ $wgContLang = new StubContLang;
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
 $wgUser = $wgCommandLineMode ? new User : User::newFromSession();
+
+/**
+ * @var Language
+ */
 $wgLang = new StubUserLang;
+
+/**
+ * @var OutputPage
+ */
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
+
+/**
+ * @var Parser
+ */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 if ( !is_object( $wgAuth ) ) {

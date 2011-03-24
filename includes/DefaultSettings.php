@@ -4618,6 +4618,7 @@ $wgExtensionCredits = array();
 
 /**
  * Authentication plugin.
+ * @var AuthPlugin
  */
 $wgAuth = null;
 
