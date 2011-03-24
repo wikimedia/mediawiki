@@ -2726,8 +2726,8 @@ class Article {
 		// Replace newlines with spaces to prevent uglyness
 		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
 		// Calculate the maximum amount of chars to get
-		// Max content length = max comment length - length of the comment (excl. $1) - '...'
-		$maxLength = 255 - ( strlen( $reason ) - 2 ) - 3;
+		// Max content length = max comment length - length of the comment (excl. $1)
+		$maxLength = 255 - ( strlen( $reason ) - 2 );
 		$contents = $wgContLang->truncate( $contents, $maxLength );
 		// Remove possible unfinished links
 		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );

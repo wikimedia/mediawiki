@@ -2382,27 +2382,32 @@ class Language {
 	 * If $length is negative, the string will be truncated from the beginning
 	 *
 	 * @param $string String to truncate
-	 * @param $length Int: maximum length (excluding ellipses)
+	 * @param $length Int: maximum length (including ellipses)
 	 * @param $ellipsis String to append to the truncated text
+	 * @param $adjustLength Boolean: Subtract length of ellipsis from $length.
+	 *	$adjustLength was introduced in 1.18, before that behaved as if false.
 	 * @return string
 	 */
-	function truncate( $string, $length, $ellipsis = '...' ) {
+	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
+		$eLength = $adjustLength ? strlen( $ellipsis ) : 0;
 		# Check if there is no need to truncate
-		if ( $length == 0 ) {
+		if ( $length == 0 || strlen( $ellipsis ) >= abs( $length ) ) {
 			return $ellipsis;
 		} elseif ( strlen( $string ) <= abs( $length ) ) {
 			return $string;
 		}
 		$stringOriginal = $string;
 		if ( $length > 0 ) {
+			$length -= $eLength;
 			$string = substr( $string, 0, $length ); // xyz...
 			$string = $this->removeBadCharLast( $string );
 			$string = $string . $ellipsis;
 		} else {
+			$length += $eLength;
 			$string = substr( $string, $length ); // ...xyz
 			$string = $this->removeBadCharFirst( $string );
 			$string = $ellipsis . $string;
@@ -2463,8 +2468,10 @@ class Language {
 	 *
 	 * Note: tries to fix broken HTML with MWTidy
 	 *
+	 * Note: since 1.18 you do not need to leave extra room in $length for ellipses.
+	 *
 	 * @param string $text HTML string to truncate
-	 * @param int $length (zero/positive) Maximum length (excluding ellipses)
+	 * @param int $length (zero/positive) Maximum length (including ellipses)
 	 * @param string $ellipsis String to append to the truncated text
 	 * @returns string
 	 */
@@ -2473,6 +2480,7 @@ class Language {
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
+		$length -= strlen( $ellipsis );
 		# Check if there is no need to truncate
 		if ( $length <= 0 ) {
 			return $ellipsis; // no text shown, nothing to format
