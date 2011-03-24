@@ -151,6 +151,8 @@ $messages = array(
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
+'badaccess' => 'ଅନୁମତି ମିଳିବାରେ ଅସୁବିଧା',
+
 'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଅଛି',
 'youhavenewmessages'      => 'ଆପଣଙ୍କର $1 ($2).',
 'newmessageslink'         => 'ନୂଆ ମେସେଜ',
@@ -187,8 +189,11 @@ $messages = array(
 'viewsource'      => 'ଉତ୍ସ ଦେଖ',
 
 # Login and logout pages
+'yourname'                => 'ଇଉଜର ନାଆଁ',
+'yourpassword'            => 'ପାସଉଆଡ଼',
 'login'                   => 'ଲଗଇନ',
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
+'logout'                  => 'ଲଗଆଉଟ',
 'userlogout'              => 'ଲଗ ଆଉଟ',
 
 # Edit page toolbar
@@ -361,10 +366,11 @@ $messages = array(
 'emailuser' => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
 
 # Watchlist
-'watchlist'   => 'ଦେଖାତାଲିକା',
-'mywatchlist' => 'ମୋର ଦେଖାତାଲିକା',
-'watch'       => 'ଦେଖ',
-'unwatch'     => 'ଦେଖନାହିଁ',
+'watchlist'     => 'ଦେଖାତାଲିକା',
+'mywatchlist'   => 'ମୋର ଦେଖାତାଲିକା',
+'watch'         => 'ଦେଖ',
+'watchthispage' => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
+'unwatch'       => 'ଦେଖନାହିଁ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ଦେଖୁଛି...',

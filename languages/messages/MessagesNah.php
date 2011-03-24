@@ -1526,4 +1526,7 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 # HTML forms
 'htmlform-selectorother-other' => 'Occē',
 
+# Special:DisableAccount
+'disableaccount-reason' => 'Tlèka:',
+
 );

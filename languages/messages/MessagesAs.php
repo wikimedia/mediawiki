@@ -139,7 +139,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'লক্ষ্য কৰি থকা সদস্য সমূহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig'                  => 'স্বাক্ষৰৰ খচৰা:',
 'tog-fancysig'                => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্ৰীয় সংযোগ অবিহনে)',
-'tog-externaleditor'          => 'সদায়ে বাহ্যিক সম্পাদক ব্যৱহাৰ কৰিব (কেৱল জনা সকলৰ বাবে, ইয়াৰ বাবে আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব)',
+'tog-externaleditor'          => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-externaldiff'            => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-showjumplinks'           => '"জপিয়াই যাওক" সংযোগ সক্ৰীয় কৰক',
 'tog-uselivepreview'          => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (JavaScript) (পৰীক্ষামূলক)',
@@ -824,6 +824,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'rev-deleted-comment'         => "(সম্পাদন সাৰাংশ আতৰোৱা হ'ল)",
 'rev-deleted-user'            => '(সদস্যনাম আতৰোৱা হৈছে)',
 'rev-deleted-event'           => "(ল'গ একচন আতৰোৱা হ'ল)",
+'rev-deleted-user-contribs'   => "[সদস্যনাম বা আই-পি ঠিকনা আঁতৰোৱা হ'ল - সম্পাদনা বৰঙনিসমূহৰ পৰা আঁৰ কৰা হৈছে]",
 'rev-deleted-text-permission' => "পৃষ্ঠাৰ এই সংশোধনটি '''বাতিল''' কৰা হ'ল ।
 সবিশেষ পাব [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি ল'গত]",
 'rev-delundel'                => 'দেখুৱাওক/নেদেখুৱাব',
@@ -870,27 +871,37 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'revmove-nullmove-title'       => 'শিৰোনামাটি গ্ৰহণযোগ্য নহয় ।',
 
 # History merging
+'mergehistory'                  => 'পৃষ্ঠাৰ ইতিহাসবোৰ মিলাই দিয়ক',
+'mergehistory-box'              => 'দুয়োটা পৃষ্ঠাৰ সংস্কৰণসমূহ মিলাই দিয়ক:',
 'mergehistory-from'             => 'উৎস পৃষ্ঠা',
 'mergehistory-into'             => 'গন্তব্য পৃষ্ঠা',
+'mergehistory-list'             => 'মিলনযোগ্য সম্পাদনা ইতিহাস',
 'mergehistory-go'               => 'একত্ৰীকৰণযোগ্য সম্পাদনাসমূহ দেখোৱাওঁক',
+'mergehistory-submit'           => 'সংস্কৰণসমূহ মিলাই দিয়ক',
+'mergehistory-empty'            => 'কোনো সংস্কৰণ মিলাব নোৱাৰি',
 'mergehistory-no-source'        => '$1 নামৰ কোনো উৎস পৃষ্ঠৰ অস্তিত্ব নাই ।',
 'mergehistory-no-destination'   => '$1 নামৰ কোকো গন্তব্য পৃষ্ঠাৰ অস্তিত্ব নাই ।',
+'mergehistory-invalid-source'   => 'উৎস পৃষ্ঠাৰ অৱশ্যে বৈধ শিৰোনামা থাকিব লাগে ।',
 'mergehistory-autocomment'      => "[[:$1]]ক [[:$2]]ত অন্তৰ্ভুক্ত কৰা হ'ল",
 'mergehistory-comment'          => "[[:$1]]ক [[:$2]]ত অন্তৰ্ভুক্ত কৰা হ'ল: $3",
 'mergehistory-same-destination' => "উৎস আৰু গন্তব্য পৃষ্ঠা একে হ'ব নোৱাৰে",
 'mergehistory-reason'           => 'কাৰণ:',
 
 # Merge log
-'mergelog'    => 'অভিলেখ একত্ৰিকৰণ',
-'revertmerge' => 'একত্ৰিকৰণ বাতিল কৰক',
+'mergelog'           => 'অভিলেখ একত্ৰিকৰণ',
+'pagemerge-logentry' => "[[$1]] [[$2]]-ত মিলোৱা হ'ল (সংশোধনসমূহ $3-লৈ)",
+'revertmerge'        => 'একত্ৰিকৰণ বাতিল কৰক',
 
 # Diffs
-'history-title'           => '"$1" ৰ সাল-সলনিৰ ইতিহাস',
-'difference'              => 'বিভিন্ন সংস্কৰণৰ প্ৰভেদ',
-'difference-multipage'    => '(পৃষ্ঠাসমূহৰ মাজত তফাৎ)',
-'lineno'                  => '$1 নং শাৰীঃ',
-'compareselectedversions' => 'নিৰ্বাচিত কৰা সংকলন সমূহৰ মাজত পাৰ্থক্য চাঁওক ।',
-'editundo'                => 'পূৰ্ববত কৰক',
+'history-title'            => '"$1" ৰ সাল-সলনিৰ ইতিহাস',
+'difference'               => 'বিভিন্ন সংস্কৰণৰ প্ৰভেদ',
+'difference-multipage'     => '(পৃষ্ঠাসমূহৰ মাজত তফাৎ)',
+'lineno'                   => '$1 নং শাৰীঃ',
+'compareselectedversions'  => 'নিৰ্বাচিত কৰা সংকলন সমূহৰ মাজত পাৰ্থক্য চাঁওক ।',
+'showhideselectedversions' => 'নিৰ্বাচিত সংশোধনসমূহ দেখোৱাওঁক/আঁৰ কৰক',
+'editundo'                 => 'পূৰ্ববত কৰক',
+'diff-multi'               => '({{PLURAL:$2|এজন সদস্যৰ|$2জন সদস্যৰ}} দ্বাৰা {{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1-টা মধ্যৱৰ্তী সংশোধন}} দেখোৱা হোৱা নাই)',
+'diff-multi-manyusers'     => '({{PLURAL:$2|এজনতকৈ|$2-জনতকৈ}} অধিক সদস্যৰ দ্বাৰা {{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1-টা মধ্যৱৰ্তী সংশোধন}} দেখোৱা হোৱা নাই)',
 
 # Search results
 'searchresults'                  => 'অনুসন্ধানৰ ফলাফল',
@@ -1690,7 +1701,13 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'math_unknown_function' => 'অজ্ঞাত কাৰ্য্য',
 
 # Patrol log
-'patrol-log-diff' => 'সংশোধন $1',
+'patrol-log-page'      => 'তহলদাৰী সূচী',
+'patrol-log-auto'      => '(স্বয়ংক্ৰিয়)',
+'patrol-log-diff'      => 'সংশোধন $1',
+'log-show-hide-patrol' => 'তহলদাৰী সূচী $1',
+
+# Image deletion
+'filedeleteerror-short' => 'ফাইল বিলোপ কৰাত ক্ৰুটি: $1',
 
 # Browsing diffs
 'previousdiff' => 'প্ৰবীণ সম্পাদনা',
@@ -1703,6 +1720,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'svg-long-desc'        => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
 'show-big-image'       => 'সম্পূৰ্ণ দৃশ্য',
 'show-big-image-size'  => '$1 × $2 পিক্সেল',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ফ্ৰেম|ফ্ৰেম}}',
 'file-info-png-repeat' => "$1 {{PLURAL:$1|বাৰ|বাৰ}} চলোৱা হ'ল",
 
 # Special:NewFiles
@@ -1831,6 +1849,9 @@ You can also [[Special:Watchlist/raw|edit the raw list]].',
 'fileduplicatesearch-legend'    => 'প্ৰতিলিপিৰ বাবে অনুসন্ধান কৰক',
 'fileduplicatesearch-filename'  => 'ফাইলনাম:',
 'fileduplicatesearch-submit'    => 'সন্ধান কৰক',
+'fileduplicatesearch-info'      => '$1 × $2 পিক্সেল<br /> ফাইলৰ মাত্ৰা: $3<br /> MIME প্ৰকাৰ: $4',
+'fileduplicatesearch-result-1'  => '"$1" ফাইলৰ কোনো প্ৰতিলিপি নাই ।',
+'fileduplicatesearch-result-n'  => '"$1" ফাইলৰ {{PLURAL:$2|এটা প্ৰতিলিপি|$2টা প্ৰতিলিপি}} আছে ।',
 'fileduplicatesearch-noresults' => 'কোনো "$1" নামৰ ফাইল সন্ধান পোৱা নগল ।',
 
 # Special:SpecialPages
