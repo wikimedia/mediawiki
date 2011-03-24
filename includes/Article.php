@@ -3047,7 +3047,7 @@ class Article {
 	 * Perform a deletion and output success or failure messages
 	 */
 	public function doDelete( $reason, $suppress = false ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
@@ -3099,8 +3099,9 @@ class Article {
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @return boolean true if successful
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error='' ) {
+	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error = '' ) {
 		global $wgDeferredUpdateList, $wgUseTrackbacks;
+		global $wgUser;
 
 		wfDebug( __METHOD__ . "\n" );
 
