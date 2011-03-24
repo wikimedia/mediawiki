@@ -239,9 +239,8 @@ class ImageGallery
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
-			array(
-				'class' => 'gallery'),
-			$this->mAttribs );
+			array( 'class' => 'gallery' ), $this->mAttribs );
+
 		$s = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
 			$s .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
@@ -253,24 +252,18 @@ class ImageGallery
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
 
+			$descQuery = false;
 			if ( $nt->getNamespace() == NS_FILE ) {
-				# Give extensions a chance to select the file revision for us
-				$time = $sha1 = $descQuery = false;
-				wfRunHooks( 'BeforeGalleryFindFile',
-					array( &$this, &$nt, &$time, &$descQuery, &$sha1 ) );
 				# Get the file...
 				if ( $this->mParser instanceof Parser ) {
+					# Give extensions a chance to select the file revision for us
+					$time = $sha1 = false;
+					wfRunHooks( 'BeforeParserFetchFileAndTitle',
+						array( &$this->mParser, &$nt, &$time, &$sha1, &$descQuery ) );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
 				} else {
-					if ( $time === '0' ) {
-						$img = false; // broken thumbnail forced by hook
-					} elseif ( $sha1 ) { // get by (sha1,timestamp)
-						$img = RepoGroup::singleton()->findFileFromKey(
-							$sha1, array( 'time' => $time ) );
-					} else { // get by (name,timestamp)
-						$img = wfFindFile( $nt, array( 'time' => $time ) );
-					}
+					$img = wfFindFile( $nt );
 				}
 			} else {
 				$img = false;
