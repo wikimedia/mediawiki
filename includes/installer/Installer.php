@@ -304,7 +304,7 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgExtensionMessagesFiles, $wgUser, $wgHooks;
+		global $wgExtensionMessagesFiles, $wgUser;
 
 		// Disable the i18n cache and LoadBalancer
 		Language::getLocalisationCache()->disableBackend();

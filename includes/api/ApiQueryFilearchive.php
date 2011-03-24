@@ -151,7 +151,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_description ) {
 				$file['description'] = $row->fa_description;
 				if ( isset( $prop['parseddescription'] ) ) {
-					global $wgUser;
 					$file['parseddescription'] = $wgUser->getSkin()->formatComment(
 						$row->fa_description, $row->fa_name );
 				}
