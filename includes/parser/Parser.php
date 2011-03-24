@@ -1911,7 +1911,7 @@ class Parser {
 				# Give extensions a chance to select the file revision for us
 				$time = $sha1 = $descQuery = false;
 				wfRunHooks( 'BeforeParserFetchFileAndTitle',
-					array( &$this, &$nt, &$time, &$sha1, &$descQuery ) );
+					array( $this, &$nt, &$time, &$sha1, &$descQuery ) );
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
@@ -4699,7 +4699,7 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$time = $sha1 = $descQuery = false;
 		wfRunHooks( 'BeforeParserFetchFileAndTitle',
-			array( &$this, &$title, &$time, &$sha1, &$descQuery ) );
+			array( $this, &$title, &$time, &$sha1, &$descQuery ) );
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $time, $sha1 );
 

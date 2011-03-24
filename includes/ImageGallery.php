@@ -259,7 +259,7 @@ class ImageGallery
 					# Give extensions a chance to select the file revision for us
 					$time = $sha1 = false;
 					wfRunHooks( 'BeforeParserFetchFileAndTitle',
-						array( &$this->mParser, &$nt, &$time, &$sha1, &$descQuery ) );
+						array( $this->mParser, &$nt, &$time, &$sha1, &$descQuery ) );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
 				} else {
