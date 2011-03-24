@@ -827,7 +827,7 @@ class Block {
 	 */
 	public function getRedactedName() {
 		if ( $this->mAuto ) {
-			return HTML::rawElement(
+			return Html::rawElement(
 				'span',
 				array( 'class' => 'mw-autoblockid' ),
 				wfMessage( 'autoblockid', $this->mId )

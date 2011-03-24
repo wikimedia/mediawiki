@@ -40,7 +40,7 @@ class SpecialBlockList extends SpecialPage {
 	 * @param $par String title fragment
 	 */
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -204,7 +204,6 @@ class BlockListPager extends TablePager {
 	}
 
 	function getFieldNames() {
-		global $wgUser;
 		static $headers = null;
 
 		if ( $headers == array() ) {
@@ -223,7 +222,7 @@ class BlockListPager extends TablePager {
 	}
 
 	function formatValue( $name, $value ) {
-		global $wgOut, $wgLang, $wgUser;
+		global $wgLang, $wgUser;
 
 		static $sk, $msg;
 		if ( empty( $sk ) ) {

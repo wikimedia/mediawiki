@@ -48,7 +48,7 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		global $wgUser, $wgBlockAllowsUTEdit;
+		global $wgUser;
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
