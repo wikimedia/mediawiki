@@ -2395,10 +2395,15 @@ class Language {
 		}
 		$eLength = $adjustLength ? strlen( $ellipsis ) : 0;
 		# Check if there is no need to truncate
-		if ( $length == 0 || strlen( $ellipsis ) >= abs( $length ) ) {
+		if ( $length == 0 ) {
 			return $ellipsis;
 		} elseif ( strlen( $string ) <= abs( $length ) ) {
 			return $string;
+		} elseif ( strlen( $ellipsis ) >= abs( $length ) ) {
+			// Not combined with first (length == 0) if statement, since
+			// we want to return the string instead of ellipsis if both
+			// this and the proceeding elseif are true.
+			return $ellipsis;
 		}
 		$stringOriginal = $string;
 		if ( $length > 0 ) {
