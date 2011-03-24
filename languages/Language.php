@@ -2035,7 +2035,8 @@ class Language {
 	 */
 	function normalize( $s ) {
 		global $wgAllUnicodeFixes;
-		$s = UtfNormal::cleanUp( $s );
+		$u = new UtfNormal;
+		$s = $u->cleanUp( $s );
 		if ( $wgAllUnicodeFixes ) {
 			$s = $this->transformUsingPairFile( 'normalize-ar.ser', $s );
 			$s = $this->transformUsingPairFile( 'normalize-ml.ser', $s );
