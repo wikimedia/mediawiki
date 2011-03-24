@@ -85,7 +85,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['group'] ) ) {
+		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
 			$useIndex = false;
 			// Filter only users that belong to a given group
 			$this->addTables( 'user_groups', 'ug1' );
