@@ -55,7 +55,6 @@ class ApiFileRevert extends ApiBase {
 		$this->params = $this->extractRequestParams();
 		$this->validateParameters();
 
-
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'] );
 

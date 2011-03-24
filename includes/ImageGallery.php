@@ -22,6 +22,7 @@ class ImageGallery
 
 	/**
 	 * Registered parser object for output callbacks
+	 * @var Parser
 	 */
 	var $mParser;
 

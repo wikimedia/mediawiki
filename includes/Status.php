@@ -305,6 +305,7 @@ class Status {
 		}
 		return $result;
 	}
+
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
