@@ -1909,19 +1909,14 @@ class Parser {
 			if ( $ns == NS_MEDIA ) {
 				wfProfileIn( __METHOD__."-media" );
 				# Give extensions a chance to select the file revision for us
-				$skip = $time = $sha1 = $descQuery = false;
-				wfRunHooks( 'BeforeParserMakeImageLinkObj',
-					array( &$this, &$nt, &$skip, &$time, &$descQuery, &$sha1 ) );
-				if ( $skip ) {
-					$this->mOutput->addImage( $nt->getDBkey(), null, null ); // register
-					$link = $sk->link( $nt );
-				} else {
-					# Fetch and register the file (file title may be different via hooks)
-					list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
-					$link = $sk->makeMediaLinkFile( $nt, $file, $text );
-				}
+				$time = $sha1 = $descQuery = false;
+				wfRunHooks( 'BeforeParserFetchFileAndTitle',
+					array( &$this, &$nt, &$time, &$sha1, &$descQuery ) );
+				# Fetch and register the file (file title may be different via hooks)
+				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
-				$s .= $prefix . $this->armorLinks( $link ) . $trail;
+				$s .= $prefix . $this->armorLinks(
+					$sk->makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
 				wfProfileOut( __METHOD__."-media" );
 				continue;
 			}
@@ -4702,15 +4697,12 @@ class Parser {
 		$sk = $this->mOptions->getSkin( $this->mTitle );
 
 		# Give extensions a chance to select the file revision for us
-		$skip = $time = $sha1 = $descQuery = false;
-		wfRunHooks( 'BeforeParserMakeImageLinkObj',
-			array( &$this, &$title, &$skip, &$time, &$descQuery, &$sha1 ) );
-		if ( $skip ) {
-			$this->mOutput->addImage( $title->getDBkey(), null, null ); // register
-			return $sk->link( $title );
-		}
+		$time = $sha1 = $descQuery = false;
+		wfRunHooks( 'BeforeParserFetchFileAndTitle',
+			array( &$this, &$title, &$time, &$sha1, &$descQuery ) );
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $time, $sha1 );
+
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
 

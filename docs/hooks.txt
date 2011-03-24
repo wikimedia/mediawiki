@@ -550,13 +550,6 @@ $name: Image name being checked
 Change $bad and return false to override. If an image is "bad", it is not
 rendered inline in wiki pages or galleries in category pages.
 
-'BeforeGalleryFindFile': before an image is fetched for a gallery
-&$gallery,: the gallery object
-&$nt: the image title
-&$time: image timestamp (used to specify the file)
-&$descQuery: query string to add to thumbnail URL
-&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
-
 'BeforeInitialize': before anything is initialized in performRequestForTitle()
 &$title: Title being used for request
 &$article: The associated Article object
@@ -569,19 +562,18 @@ $mediaWiki: Mediawiki object
 &$out: OutputPage object
 &$skin: Skin object
 
+'BeforeParserFetchFileAndTitle': before an image is rendered by Parser
+&$parser: Parser object
+&$nt: the image title
+&$time: the image timestamp (use '0' to force a broken thumbnail)
+&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
+&$descQuery: query string to add to thumbnail URL
+
 'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
 &$parser: Parser object
 &$title: title of the template
 &$skip: skip this template and link it?
 &$id: the id of the revision being parsed
-
-'BeforeParserMakeImageLinkObj': before an image is rendered by Parser
-&$parser: Parser object
-&$nt: the image title
-&$skip: skip this image and link it?
-&$time: the image timestamp
-&$descQuery: query string to add to thumbnail URL
-&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
 
 'BeforeParserrenderImageGallery': before an image gallery is rendered by Parser
 &$parser: Parser object
