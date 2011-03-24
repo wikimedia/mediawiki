@@ -59,7 +59,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 
-		$whereQuery = $this->prepareUrlQuerySearchString( $db, $query, $protocol );
+		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
 
 		if ( $whereQuery !== null ) {
 			$this->addWhere( $whereQuery );
