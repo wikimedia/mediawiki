@@ -648,7 +648,7 @@ class HTMLForm {
 					$hasLeftColumn = true;
 			} elseif ( is_array( $value ) ) {
 				$section = $this->displaySection( $value, $key );
-				$legend = wfMsg( "{$this->mMessagePrefix}-$key" );
+				$legend = $this->getLegend( $key );
 				if ( isset( $this->mSectionHeaders[$key] ) ) {
 					$section = $this->mSectionHeaders[$key] . $section;
 				} 
@@ -724,6 +724,16 @@ class HTMLForm {
 	 */
 	function filterDataForSubmit( $data ) {
 		return $data;
+	}
+
+	/**
+	 * Get a string to go in the <legend> of a section fieldset.  Override this if you
+	 * want something more complicated
+	 * @param $key String
+	 * @return String
+	 */
+	public function getLegend( $key ) {
+		return wfMsg( "{$this->mMessagePrefix}-$key" );
 	}
 }
 
