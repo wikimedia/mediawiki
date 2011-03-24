@@ -73,7 +73,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}
 
-		$whereQuery = $this->prepareUrlQuerySearchString( $db, $query, $protocol );
+		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
 
 		if ( $whereQuery !== null ) {
 			$this->addWhere( $whereQuery );
