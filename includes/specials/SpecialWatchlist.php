@@ -68,12 +68,28 @@ function wfSpecialWatchlist( $par ) {
 
 	$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
 
-	$sub  = wfMsgExt( 'watchlistfor2', array( 'parseinline', 'replaceafter' ), $wgUser->getName(), WatchlistEditor::buildTools( $wgUser->getSkin() ) );
+	$sub  = wfMsgExt(
+		'watchlistfor2',
+		array( 'parseinline', 'replaceafter' ),
+		$wgUser->getName(),
+		SpecialEditWatchlist::buildTools( $wgUser->getSkin() )
+	);
 	$wgOut->setSubtitle( $sub );
 
-	if( ( $mode = WatchlistEditor::getMode( $wgRequest, $par ) ) !== false ) {
-		$editor = new WatchlistEditor();
-		$editor->execute( $wgUser, $wgOut, $wgRequest, $mode );
+	if( ( $mode = SpecialEditWatchlist::getMode( $wgRequest, $par ) ) !== false ) {
+		# TODO: localise?
+		switch( $mode ){
+			case SpecialEditWatchlist::EDIT_CLEAR:
+				$mode = 'clear';
+				break;
+			case SpecialEditWatchlist::EDIT_RAW:
+				$mode = 'raw';
+				break;
+			default:
+				$mode = null;
+		}
+		$title = SpecialPage::getTitleFor( 'EditWatchlist', $mode );
+		$wgOut->redirect( $title->getLocalUrl() );
 		return;
 	}
 

@@ -150,6 +150,7 @@ class SpecialPage {
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'DisableAccount'            => 'SpecialDisableAccount',
+		'EditWatchlist'             => 'SpecialEditWatchlist',
 
 		# Recent changes and logs
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
