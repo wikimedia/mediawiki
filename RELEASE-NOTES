@@ -32,12 +32,6 @@ PHP if you have not done so prior to upgrading MediaWiki.
   $wgValidSkinNames but now the value. This means for
   $wgValidSkinNames["monobook"] = "MonoBook"; the skin loader will no longer try
   loading SkinMonobook and will instead load SkinMonoBook.
-* The parser now attempts to output markers for editsection tokens and defer the
-  rendering of them so skin and language specific markup does not need to be
-  saved inside the parser cache note that this changes the cache key making all
-  old entries in the parser cache invalid you can set $wgUseEditSectionTokens to
-  false to disable this and keep your old parser cache entries.
-  Note that this feature should reduce parser cache fragmentation when enabled.
 * $wgMaxUploadSize may now be set to an array to specify the upload size limit
   per upload type.
 * $wgAPICacheHelp added in 1.16 is now removed. To disable API help caching, set
@@ -120,6 +114,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27924) PhpHttpRequest doesn't return response body if HTTP != 200
 * Added hook BitmapHandlerTransform to allow extension to transform a file 
   without overriding the entire handler.
+* The parser now attempts to output markers for editsection tokens and defer the
+  rendering of them post-cache to reduce parser cache fragmentation and ensure
+  skin customizability of edit section links.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
