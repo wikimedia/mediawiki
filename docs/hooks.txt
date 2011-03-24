@@ -356,7 +356,7 @@ $tokenFunctions: array(action => callback)
 
 'APIQuerySiteInfoGeneralInfo': use this hook to add extra information to
 the sites general information.
-&$module: the current ApiQuerySiteInfo module
+$module: the current ApiQuerySiteInfo module
 &$results: array of results, add things here
 
 'APIQueryUsersTokens': use this hook to add custom token to list=users.
