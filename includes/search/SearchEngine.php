@@ -630,8 +630,22 @@ class SearchResultTooMany {
  * @ingroup Search
  */
 class SearchResult {
+
+	/**
+	 * @var Revision
+	 */
 	var $mRevision = null;
 	var $mImage = null;
+
+	/**
+	 * @var Title
+	 */
+	var $mTitle;
+
+	/**
+	 * @var String
+	 */
+	var $mText;
 
 	/**
 	 * Return a new SearchResult and initializes it with a title.
