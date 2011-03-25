@@ -16,8 +16,12 @@ class UploadStash {
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-]+\.\w+$/';
 
-	// repository that this uses to store temp files
-	// public because we sometimes need to get a LocalFile within the same repo.
+	/**
+	 * repository that this uses to store temp files
+	 * public because we sometimes need to get a LocalFile within the same repo.
+	 *
+	 * @var LocalRepo
+	 */
 	public $repo;
 
 	// array of initialized objects obtained from session (lazily initialized upon getFile())
@@ -235,7 +239,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * Arguably UnregisteredLocalFile should be handling its own file repo but that class is a bit retarded currently
 	 *
 	 * @param $stash UploadStash: useful for obtaining config, stashing transformed files
-	 * @param $repo FileRepo: repository where we should find the path
+	 * @param $repo FSRepo: repository where we should find the path
 	 * @param $path String: path to file
 	 * @param $key String: key to store the path and any stashed data under
 	 * @param $data String: any other data we want stored with this file

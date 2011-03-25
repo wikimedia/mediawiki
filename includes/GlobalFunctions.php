@@ -3369,7 +3369,7 @@ function wfArrayMap( $function, $input ) {
 
 /**
  * Get a cache object.
- * @param $inputType Cache type, one the the CACHE_* constants.
+ * @param integer $inputType Cache type, one the the CACHE_* constants.
  *
  * @return BagOStuff
  */
