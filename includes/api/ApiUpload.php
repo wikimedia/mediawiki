@@ -83,7 +83,7 @@ class ApiUpload extends ApiBase {
 		$this->verifyUpload();
 
 		// Check permission to upload this file
-		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		$permErrors = $this->mUpload->verifyTitlePermissions( $wgUser );
 		if ( $permErrors !== true ) {
 			// TODO: stash the upload and allow choosing a new name
 			$this->dieUsageMsg( array( 'badaccess-groups' ) );
