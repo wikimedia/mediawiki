@@ -152,7 +152,7 @@ function getSvnRevision( $dir ) {
  * @param $exclude_patterns String: Additionals path regex to exclude
  *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
  */
-function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude_patterns ) {
+function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude, $exclude_patterns ) {
 
 	$template = file_get_contents( $doxygenTemplate );
 
