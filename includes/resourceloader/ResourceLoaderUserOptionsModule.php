@@ -111,16 +111,6 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		return array();
 	}
 
-	/**
-	 * @param  $context ResourceLoaderContext
-	 * @return bool
-	 */
-	public function getFlip( $context ) {
-		global $wgContLang;
-
-		return $wgContLang->getDir() !== $context->getDirection();
-	}
-
 	public function getGroup() {
 		return 'private';
 	}

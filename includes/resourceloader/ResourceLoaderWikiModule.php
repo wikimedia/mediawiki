@@ -131,17 +131,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		return count( $this->getTitleMtimes( $context ) ) == 0;
 	}
-	
-	/**
-	 * @param $context ResourceLoaderContext
-	 * @return bool
-	 */
-	public function getFlip( $context ) {
-		global $wgContLang;
 
-		return $wgContLang->getDir() !== $context->getDirection();
-	}
-	
 	/**
 	 * Get the modification times of all titles that would be loaded for
 	 * a given context.
