@@ -46,7 +46,6 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$db = $this->getDB();
 
 		$query = $params['query'];
 		$protocol = ApiQueryExtLinksUsage::getProtocolPrefix( $params['protocol'] );
