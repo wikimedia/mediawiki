@@ -1196,7 +1196,7 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
 		 */
-		global $wgHooks, $wgAutoloadClasses;
+		global $wgAutoloadClasses;
 		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
@@ -1208,8 +1208,7 @@ abstract class Installer {
 
 		// Unset everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see bug 27171)
-		unset( $wgHooks );
-		$wgHooks = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
+		$GLOBALS['wgHooks'] = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
 
 		return Status::newGood();
 	}
