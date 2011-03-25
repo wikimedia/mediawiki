@@ -1404,7 +1404,7 @@ class Article {
 		if ( !$this->hasViewableContent() ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
-			$wgRequest->response()->header( "HTTP/1.x 404 Not Found" );
+			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
 		}
 
 		$wgOut->addWikiText( $text );
