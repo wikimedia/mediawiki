@@ -82,11 +82,15 @@ class ApiUpload extends ApiBase {
 		// Check if the uploaded file is sane
 		$this->verifyUpload();
 
-		// Check permission to upload this file
-		$permErrors = $this->mUpload->verifyTitlePermissions( $wgUser );
-		if ( $permErrors !== true ) {
-			// TODO: stash the upload and allow choosing a new name
-			$this->dieUsageMsg( array( 'badaccess-groups' ) );
+		// Check if the user has the rights to modify or overwrite the requested title
+		// (This check is irrelevant if stashing is already requested, since the errors
+		//  can always be fixed by changing the title)
+		if ( ! $this->mParams['stash'] ) {
+			$permErrors = $this->mUpload->verifyTitlePermissions( $wgUser );
+			if ( $permErrors !== true ) {
+				// TODO: stash the upload and allow choosing a new name
+				$this->dieUsageMsg( array( 'badaccess-groups' ) );
+			}
 		}
 
 		// Prepare the API result
