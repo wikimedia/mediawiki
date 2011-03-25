@@ -513,4 +513,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$style, $dir, $remoteDir, true
 		);
 	}
+
+	/**
+	 * Get whether CSS for this module should be flipped
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
+	public function getFlip( $context ) {
+		return $context->getDirection() === 'rtl';
+	}
 }
