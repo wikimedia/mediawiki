@@ -4,6 +4,12 @@
  * A wrapper class for the pure-PHP memcached client, exposing a BagOStuff interface.
  */
 class MemcachedPhpBagOStuff extends BagOStuff {
+
+	/**
+	 * @var MemCachedClientforWiki
+	 */
+	protected $client;
+
 	/**
 	 * Constructor.
 	 *
