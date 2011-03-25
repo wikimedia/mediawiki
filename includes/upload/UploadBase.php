@@ -27,7 +27,7 @@ abstract class UploadBase {
 	const EMPTY_FILE = 3;
 	const MIN_LENGTH_PARTNAME = 4;
 	const ILLEGAL_FILENAME = 5;
-	const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyPermissions()
+	const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyTitlePermissions()
 	const FILETYPE_MISSING = 8;
 	const FILETYPE_BADTYPE = 9;
 	const VERIFICATION_ERROR = 10;
@@ -439,6 +439,17 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Alias for verifyTitlePermissions. The function was originally 'verifyPermissions' 
+	 * but that suggests it's checking the user, when it's really checking the title + user combination.
+	 * @param $user User object to verify the permissions against
+	 * @return mixed An array as returned by getUserPermissionsErrors or true
+	 *               in case the user has proper permissions.
+	 */
+	public function verifyPermissions( $user ) {
+		return $this->verifyTitlePermissions( $user );
+	}
+
+	/**
 	 * Check whether the user can edit, upload and create the image. This
 	 * checks only against the current title; if it returns errors, it may
 	 * very well be that another title will not give errors. Therefore
@@ -449,7 +460,7 @@ abstract class UploadBase {
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *               in case the user has proper permissions.
 	 */
-	public function verifyPermissions( $user ) {
+	public function verifyTitlePermissions( $user ) {
 		/**
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
