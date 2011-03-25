@@ -6,7 +6,17 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-	var $lb, $db, $serverInfo;
+
+	/**
+	 * @var LoadBalancer
+	 */
+	var $lb;
+
+	/**
+	 * @var DatabaseBase
+	 */
+	var $db;
+	var $serverInfo;
 	var $lastExpireAll = 0;
 
 	/**
@@ -21,6 +31,9 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
+	/**
+	 * @return DatabaseBase
+	 */
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {
 			# If server connection info was given, use that
