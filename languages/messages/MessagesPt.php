@@ -3522,7 +3522,7 @@ Tente a antevisão normal.',
 'watchlistedit-normal-legend'  => 'Remover páginas da lista de páginas vigiadas',
 'watchlistedit-normal-explain' => 'As suas páginas vigiadas são listadas abaixo.
 Para remover uma página, marque a caixa de selecção correspondente e clique o botão "{{int:Watchlistedit-normal-submit}}".
-Também pode [[Special:Watchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
+Também pode [[Special:EditWatchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit'  => 'Remover páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Foi removida uma página|Foram removidas $1 páginas}} da sua lista de páginas vigiadas:',
 'watchlistedit-raw-title'      => 'Editar a lista de páginas vigiadas em forma de texto',
@@ -3530,7 +3530,7 @@ Também pode [[Special:Watchlist/raw|editar a lista de páginas vigiadas em form
 'watchlistedit-raw-explain'    => 'A lista de páginas vigiadas é apresentada abaixo.
 Pode adicionar novas linhas ou remover linhas para aumentar ou reduzir a lista, desde que mantenha uma única página por linha.
 Quando terminar, clique "{{int:Watchlistedit-raw-submit}}".
-Também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].',
+Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar a lista de páginas vigiadas',
 'watchlistedit-raw-done'       => 'A sua lista de páginas vigiadas foi actualizada.',

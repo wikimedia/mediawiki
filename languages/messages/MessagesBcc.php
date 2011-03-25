@@ -3049,7 +3049,7 @@ $1',
 'watchlistedit-normal-legend'  => 'بزور عناوینء چه لیست چارگ',
 'watchlistedit-normal-explain' => 'عناوین ته شمی لیست چارگ جهلء پیشدارگ بنت.
 په زورتن یک عنوانی، جعبه کش آییء تیک زن، و کلیک کن زوگ عناوینء.
-شما تونیت هنچوش [[Special:Watchlist/raw|لیست هام اصلاح کنیت]].',
+شما تونیت هنچوش [[Special:EditWatchlist/raw|لیست هام اصلاح کنیت]].',
 'watchlistedit-normal-submit'  => 'بزور عناوینء',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 |$1 عنوانی ات}} چه شمی لیست چارگ حذف بوت:',
 'watchlistedit-raw-title'      => 'اصلاح لیست چارگ هام',
@@ -3057,7 +3057,7 @@ $1',
 'watchlistedit-raw-explain'    => 'عناوین ته شمی لیست چارگ جهلء پیش دارگ بنت،و توننت اصلاح بنت گون اضافه و زورگ چه لیست;
 هر عنوانی ته یک خط.
 وهدی که هلت، په روچ کتن لیست چارگ کلیک کن.
-شما هنچو تونیت[[Special:Watchlist/edit|استفاده کنیت چه اصلاحگر استانداردء]].',
+شما هنچو تونیت[[Special:EditWatchlist|استفاده کنیت چه اصلاحگر استانداردء]].',
 'watchlistedit-raw-titles'     => ':عناوین',
 'watchlistedit-raw-submit'     => 'په روچ کن لیست چارگء',
 'watchlistedit-raw-done'       => 'شمی لیست چارگ په روچ بیتگت',

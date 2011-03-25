@@ -2112,14 +2112,14 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'watchlistedit-normal-legend'  => 'Közetüv cedvelinden saife yoq etilüvi',
 'watchlistedit-normal-explain' => 'Közetüv cedveliñizdeki saifeler aşağıda kösterilgen.
 Bir saife közetüv cedvelinden yoq etmek içün onı belgilep "{{int:Watchlistedit-normal-submit}}" dögmesine basıñız.
-Közetüv cedveliñizni [[Special:Watchlist/raw|metin olaraq da]] deñiştirip olasıñız.',
+Közetüv cedveliñizni [[Special:EditWatchlist/raw|metin olaraq da]] deñiştirip olasıñız.',
 'watchlistedit-normal-submit'  => 'Saylanğan saifelerni közetüv cevelinden yoq et',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 saife|$1 saife}} közetüv cedveliñizden yoq etildi:',
 'watchlistedit-raw-title'      => 'Közetüv ceveliñizni deñiştirmektesiñiz',
 'watchlistedit-raw-legend'     => 'Közetüv cedvelini deñiştirilüvi',
 'watchlistedit-raw-explain'    => 'Közetüv cedveliñizdeki saifeler aşağıda kösterilgen. Er satırda bir saife serlevası olmaq üzere, serlevalarnı kirsetip ya da yoq etip cedvelni deñiştirip olasıñız.
 Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
-[[Special:Watchlist/edit|Standart redaktornı da qullanıp olasıñız]].',
+[[Special:EditWatchlist|Standart redaktornı da qullanıp olasıñız]].',
 'watchlistedit-raw-titles'     => 'Saifeler:',
 'watchlistedit-raw-submit'     => 'Közetüv cedvelini yañart',
 'watchlistedit-raw-done'       => 'Közetüv cedveliñiz yañardı.',

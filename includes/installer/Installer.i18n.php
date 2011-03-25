@@ -4467,8 +4467,8 @@ $1
 	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
 שדרגו ל־PHP 5.2.9 או לגרסה חדשה יותר ול־libxml2 2.7.3 או גרסה חדשה יותר ([http://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).
 ההתקנה בוטלה.',
-	'config-using531' => 'PHP $1 אינה תואמת למדיה־ויקי בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
-שדרגו ל־PHP 5.3.0 כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]).
+	'config-using531' => 'אי־אפשר להשתמש במדיה־ויקי עם PHP $1 בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
+שדרגו ל־PHP 5.3.2 או לגרסה גבוהה יותר כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]) או שנמכו ל־PHP 5.3.0 כדי לפתור את הבעיה הזאת.
 ההתקנה בוטלה.',
 	'config-db-type' => 'סוג מסד הנתונים:',
 	'config-db-host' => 'שרת מסד הנתונים:',
@@ -6966,6 +6966,16 @@ Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session
 	'config-welcome' => '=== Ömjevong Prööfe ===
 Mer maache en Aanzal jrundlääje Prövunge, öm erus ze fenge, dat di Ömjevong heh paß, för Mediawiki opzesäze.
 Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
+	'config-copyright' => "=== Urhävverrääsch un Lizänzbedengunge ===
+
+\$1
+
+Dat  Projramm heh es frei, mer kann et wiggerjävve un verdeijle un och verändere ungger dä Bedengunge vun de  GNU <i lang=\"en\">General Public License</i> (Alljemeine öffentlesche Lizänz) wi se vun de <i lang=\"en\">Free Software Foundation</i> (de Shteftung för frei Projramme) veröffentlesch woode es. Dobei kanns De Der de Version 2 vun dä Lizanz ußsöhke, udder jeede Version donoh, wi et Der jefällt.
+
+Dat Projramm weed wigger jejovve met dä Hoffnung, dat et jät nöz, ävver '''ohne Jarrantie''', sujaa ohne de onußjeshproche Jarantie, '''verkoufbaa''' ze sin, udder '''för öhnds_ene beshtemmpte Zweck ze bruche''' ze sin.
+Liß de GNU <i lang=\"en\">General Public License</i> sellver, öm mieh ze erfahre.
+
+Do sullts en <doclink href=Copying>Kopie vun dä GNU <i lang=\"en\">General Public License</i></doclink> zosamme met heh däm Projramm krääje han. Wann dat nit esu es, schrief aan de <i lang=\"en\">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA</i>. udder [http://www.gnu.org/copyleft/gpl.html liß se online övver et Internet].",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki sing Hompäjdsch]
 * [http://www.mediawiki.org/wiki/Help:Contents Handbooch för Aanwender]
 * [http://www.mediawiki.org/wiki/Manual:Contents Handbooch för Administratore un Wiki_Köbesse]
@@ -7100,6 +7110,15 @@ Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
 	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
 	'config-type-sqlite' => '<i lang="en">SQLite</i>',
 	'config-type-oracle' => '<i lang="en">Oracle</i>',
+	'config-support-info' => 'MediaWiki kann met heh dä Daatebangk_Süßteeme:
+
+$1
+
+Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn desch aan di Aanweisonge hallde, di bovve verlengk sen, öm de Öngerstözong doför en Dingem ẞööver-Süßteem müjjelesh ze maache.',
+	'config-support-mysql' => '* $1 es dat vum MediaWiki et eets ongershtöz Daatebangksüßteem ([http://www.php.net/manual/de/mysql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">MySQL</i> dobei, op Deutsch])',
+	'config-support-postgres' => '* $1 es e bikannt Daatebangksüßteem met offe Quälltäxde, un en och en Wahl nävve <i lang="en">MySQL</i> ([http://www.php.net/manual/de/pgsql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">PostgreSQL</i> dobei, op Deutsch])',
+	'config-support-sqlite' => '* $1 es e eijfach Daatebangksüßteem, wat joot ongershtöz weed. ([http://www.php.net/manual/de/pdo.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">SQLite</i> dobei, op Deutsch])',
+	'config-support-oracle' => '* $1 es e jeschäfflesch Daatebangksüßteem för Ferme. ([http://www.php.net/manual/de/oci8.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">OCI8</i> dobei, op Deutsch])',
 	'config-header-mysql' => 'Enshtällunge för <i lang="en">MySQL</i>',
 	'config-header-postgres' => 'Enshtällunge för <i lang="en">PostgreSQL</i>',
 	'config-header-sqlite' => 'Enshtällunge för <i lang="en">SQLite</i>',
@@ -7259,9 +7278,13 @@ Donn e zopaß Logo huh laade, un donn däm sing URL heh endraare.
 
 Wells De kei Logo han, draach heh nix en.',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
+	'config-instantcommons-help' => '<i lang="en">[http://www.mediawiki.org/wiki/InstantCommons InstantCommons]</i> es en Eijeschaff, di et för Wikis müjjelesch määt, Belder, Tondatteie un ander Meedijedatteie enzebenge, di op dä Webßait vun de <i lang="en">[http://commons.wikimedia.org/ Wikimedia Commons]</i> ongerjebraat sin. Öm dat noze ze künne, moß dä ẞööver vum MediaWiki en Verbendung nohm Internet opnämme künne.
+
+Mieh Aanjaabe doh drövver un en Aanleidung, wi mer och ander Wikis, wi de <i lang="en">Wikimedia Commons]</i> doför enreeschte kann, fengk mer em [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbooch].',
 	'config-cc-error' => 'Et Ußsöhke övver de <i lang="en">Creative Commons</i> iehr Projramm zum Lizänzbeshtemme hät nix jebraat.
 Donn de Lizänz sellver beshtemme.',
 	'config-cc-again' => 'Noch ens ußsöhke&nbsp;…',
+	'config-cc-not-chosen' => 'Söhk uß, wat för en Lizänz vun de <i lang="en">Creative Commons</i> De han wells un donn dann op „{{int:proceed}}“ klecke.',
 	'config-advanced-settings' => 'Fottjeschredde Enshtellunge',
 	'config-cache-options' => 'Enshtällunge för et Faßhallde vun Objäkte em Zweschsheisher:',
 	'config-cache-help' => 'Objäkte em Zwescheshpeisher faßhallde, dat heiß öff jebruchte Daate en der <i lang="en">cache</i> donn, bruche mer, öm MediaWiki flöcker ze maache, 

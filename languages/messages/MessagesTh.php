@@ -3234,14 +3234,14 @@ $1',
 'watchlistedit-normal-legend'  => 'ลบชื่อหัวข้อออกจากรายการเฝ้าดู',
 'watchlistedit-normal-explain' => 'หัวข้อที่อยู่ในรายการเฝ้าดูแสดงด้านล่าง 
 ถ้าต้องการลบออก ให้คลิกเลือกที่กล่องด้านข้างแต่ละหัวข้อ และคลิก "{{int:Watchlistedit-normal-submit}}" 
-หรืออาจจะ[[Special:Watchlist/raw|แก้ไขรายการทั้งหมด]]',
+หรืออาจจะ[[Special:EditWatchlist/raw|แก้ไขรายการทั้งหมด]]',
 'watchlistedit-normal-submit'  => 'ลบหัวข้อ',
 'watchlistedit-normal-done'    => '$1 รายการได้ถูกนำออกจากรายการเฝ้าดู:',
 'watchlistedit-raw-title'      => 'แก้ไขรายการเฝ้าดูทั้งหมด',
 'watchlistedit-raw-legend'     => 'แก้ไขรายการเฝ้าดูทั้งหมด',
 'watchlistedit-raw-explain'    => 'หัวข้อในรายการเฝ้าดูแสดงด้านล่าง ซึ่งสามารถเพิ่มหรือนำออกได้ หนึ่งหัวข้อต่อหนึ่งแถว 
 เมื่อแก้ไขเสร็จแล้ว ให้คลิก "{{int:Watchlistedit-raw-submit}}" 
-ซึ่งอาจแก้ไขผ่าน [[Special:Watchlist/edit|โปรแกรมแก้ไขข้อความทั่วไป]]',
+ซึ่งอาจแก้ไขผ่าน [[Special:EditWatchlist|โปรแกรมแก้ไขข้อความทั่วไป]]',
 'watchlistedit-raw-titles'     => 'หัวข้อ:',
 'watchlistedit-raw-submit'     => 'อัปเดตรายการเฝ้าดู',
 'watchlistedit-raw-done'       => 'รายการเฝ้าดูได้ถูกอัปเดต',

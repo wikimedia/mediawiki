@@ -3215,14 +3215,14 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'watchlistedit-normal-legend'  => 'Tynnu tudalennau oddi ar y rhestr wylio',
 'watchlistedit-normal-explain' => 'Rhestrir y teitlau ar eich rhestr wylio isod.
 I dynnu teitl oddi ar y rhestr, ticiwch y blwch ar ei gyfer, yna cliciwch "{{int:Watchlistedit-normal-submit}}".
-Gallwch hefyd ddewis golygu\'r rhestr wylio ar ei [[Special:Watchlist/raw|ffurf syml]].',
+Gallwch hefyd ddewis golygu\'r rhestr wylio ar ei [[Special:EditWatchlist/raw|ffurf syml]].',
 'watchlistedit-normal-submit'  => "Tynnu'r tudalennau",
 'watchlistedit-normal-done'    => 'Tynnwyd {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}} oddi ar eich rhestr wylio:',
 'watchlistedit-raw-title'      => 'Golygu ffeil y rhestr wylio',
 'watchlistedit-raw-legend'     => 'Golygu ffeil y rhestr wylio',
 'watchlistedit-raw-explain'    => 'Rhestrir y teitlau ar eich rhestr wylio isod. Gellir newid y rhestr drwy ychwanegu neu dynnu teitlau; gyda llinell yr un i bob teitl.
 Pan yn barod, pwyswch ar "{{int:Watchlistedit-raw-submit}}".
-Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio\'r rhestr arferol]].',
+Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'watchlistedit-raw-titles'     => 'Teitlau:',
 'watchlistedit-raw-submit'     => "Diweddaru'r rhestr wylio",
 'watchlistedit-raw-done'       => 'Diweddarwyd eich rhestr wylio.',

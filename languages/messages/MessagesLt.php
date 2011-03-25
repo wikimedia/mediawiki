@@ -3261,7 +3261,7 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
 'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše.
 Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „{{int:Watchlistedit-normal-submit}}“.
-Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
+Jūs taip pat galite [[Special:EditWatchlist/raw|redaguoti grynąjį stebimųjų sąrašą]].',
 'watchlistedit-normal-submit'  => 'Šalinti puslapius',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',
 'watchlistedit-raw-title'      => 'Redaguoti grynąjį stebimųjų sąrašą',
@@ -3269,7 +3269,7 @@ Jūs taip pat galite [[Special:Watchlist/raw|redaguoti grynąjį stebimųjų są
 'watchlistedit-raw-explain'    => 'Žemiau rodomi puslapiai jūsų stebimųjų sąraše, ir gali būti pridėti į ar pašalinti iš sąrašo;
 vienas puslapis eilutėje.
 Baigę paspauskite „{{int:Watchlistedit-raw-submit}}“.
-Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]].',
+Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].',
 'watchlistedit-raw-titles'     => 'Puslapiai:',
 'watchlistedit-raw-submit'     => 'Atnaujinti stebimųjų sąrašą',
 'watchlistedit-raw-done'       => 'Jūsų stebimųjų sąrašas buvo atnaujintas.',

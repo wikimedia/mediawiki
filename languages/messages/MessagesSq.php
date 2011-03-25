@@ -3266,14 +3266,14 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta rikrijoni këtë artikul
 'watchlistedit-normal-legend'  => 'Largo titujt nga lista mbikqyrëse',
 'watchlistedit-normal-explain' => 'Titujt në listën mbikëqyrëse janë treguar poshtë.
 Largo titullin duke shënuar kutizën dhe pastaj shtype butonin Largoj titujt.
-Ju gjithashtu mundeni ta redaktoni listën [[Special:Watchlist/raw|këtu]].',
+Ju gjithashtu mundeni ta redaktoni listën [[Special:EditWatchlist/raw|këtu]].',
 'watchlistedit-normal-submit'  => 'Largo Titujt',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titull u larguan|$1 tituj u larguan}} u larguan nga lista mbikëqyrëse e juaj:',
 'watchlistedit-raw-title'      => 'Redakto listën mbikëqyrëse të papërpunuar',
 'watchlistedit-raw-legend'     => 'Redakto listën mbikëqyrëse të papërpunuar',
 'watchlistedit-raw-explain'    => 'Titujt në listën tuaj mbikqyrëse janë të treguar poshtë dhe mund të redaktohen duke i shtuar ose duke i hequr nga lista; një titull pë rresht.
 Kur të mbaroni, klikoni "{{int:Watchlistedit-raw-submit}}".
-Ju gjithashtu mund [[Special:Watchlist/edit|të përdorni redaktuesin standart]].',
+Ju gjithashtu mund [[Special:EditWatchlist|të përdorni redaktuesin standart]].',
 'watchlistedit-raw-titles'     => 'Titujt:',
 'watchlistedit-raw-submit'     => 'Aktualizoje listën',
 'watchlistedit-raw-done'       => 'Lista mbikëqyrëse u aktualizua.',

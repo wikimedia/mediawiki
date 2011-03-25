@@ -3617,7 +3617,7 @@ Don de nomaale Vör-Ansich nemme.',
 'watchlistedit-normal-legend'  => 'Titell uß de Oppassliss eruß lohße',
 'watchlistedit-normal-explain' => 'Dat sin de Endräch in Dinge Oppassliss.
 Om einzel Titelle loss ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
-De kanns Ding Oppassliss och [[Special:Watchlist/raw|en rüh beärbeide]].',
+De kanns Ding Oppassliss och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
 'watchlistedit-normal-submit'  => 'Jangk de Titele met Hökche eruß schmieße',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eine Sigge-Tittel es|<strong>$1</strong> Sigge-Tittele sin|Keine Sigge-Tittel es}} us Dinge Opassliss erus jefloore:',
 'watchlistedit-raw-title'      => 'Rüh Oppassliss beärbeide',
@@ -3627,7 +3627,7 @@ De kanns Ding Oppassliss och [[Special:Watchlist/raw|en rüh beärbeide]].',
 Öm neu Titelle  dobei ze don, schriev neu Reije dobei. Jede Titel moß en en Reih för sijj_allein shtonn.
 Wanns De fädig bes, dann deuß De dä Knopp „{{int:Watchlistedit-raw-submit}}“.
 Natörlech kanns De di Liss och — met Dingem Brauser singe ''<span lang=\"en\">Copy&amp;Paste</span>''-Funkßjohn — komplett kopeere odder ußtuusche.
-De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa met Kässjer un Hökscher beärbeide]].",
+De könnts Ding Oppassliss ävver och [[Special:EditWatchlist|övver e Fomulaa met Kässjer un Hökscher beärbeide]].",
 'watchlistedit-raw-titles'     => 'Endräch:',
 'watchlistedit-raw-submit'     => 'Oppassliss neu fasshallde',
 'watchlistedit-raw-done'       => 'Ding Oppassliss es fassjehallde.',

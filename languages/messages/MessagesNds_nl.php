@@ -3313,7 +3313,7 @@ Kiek de pagina op de normale meniere nao.',
 'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",
 'watchlistedit-normal-explain' => 'Pagina\'s dee op joew volglieste staon, zie-j hieronder.
 Um een pagina van joew volglieste of te haolen mu-j \'t vakjen dernaos anklikken, en klik dan op "{{int:Watchlistedit-normal-submit}}".
-Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].',
+Je kunnen oek [[Special:EditWatchlist/raw|de roewe lieste bewarken]].',
 'watchlistedit-normal-submit'  => "Pagina's derof haolen",
 'watchlistedit-normal-done'    => "Der {{PLURAL:$1|is 1 pagina|bin $1 pagina's}} vort-edaon uut joew volglieste:",
 'watchlistedit-raw-title'      => 'Roewe volglieste bewarken',
@@ -3321,7 +3321,7 @@ Je kunnen oek [[Special:Watchlist/raw|de roewe lieste bewarken]].',
 'watchlistedit-raw-explain'    => "Pagina's dee op joew volglieste staon, zie-j hieronder. Je kunnen de lieste bewarken deur pagina's deruut vort te haolen en derbie te te zetten.
 Eén pagina per regel.
 A-j klaor bin, klik dan op \"{{int:Watchlistedit-raw-submit}}\".
-Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
+Je kunnen oek [[Special:EditWatchlist|'t standardbewarkingsscharm gebruken]].",
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Volglieste biewarken',
 'watchlistedit-raw-done'       => 'Joew volglieste is bie-ewörken.',

@@ -22,6 +22,7 @@
  * @author Mach
  * @author Manco Capac
  * @author Metal Militia
+ * @author Mirzali
  * @author Mskyrider
  * @author Myildirim2007
  * @author Runningfridgesrule
@@ -493,12 +494,12 @@ $messages = array(
 'print'             => 'Bastır',
 'view'              => 'Görüntüle',
 'edit'              => 'Düzenle',
-'create'            => 'oluştur',
-'editthispage'      => 'Sayfayı değiştir',
+'create'            => 'Oluştur',
+'editthispage'      => 'Bu sayfayı değiştir',
 'create-this-page'  => 'Bu sayfayı oluştur',
-'delete'            => 'sil',
-'deletethispage'    => 'Sayfayı sil',
-'undelete_short'    => '{{PLURAL:$1|değişikliği|$1 değişiklikleri}} geri getir',
+'delete'            => 'Sil',
+'deletethispage'    => 'Bu sayfayı sil',
+'undelete_short'    => '$ değişikliği geri getir',
 'viewdeleted_short' => '{{PLURAL:$1|bir silinmiş değişiklik|$1 silinmiş değişiklikleri}} görüntüle.',
 'protect'           => 'Korumaya al',
 'protect_change'    => 'Değiştir',
@@ -2787,7 +2788,7 @@ Geçici dosya kayıp.',
 'import-invalid-interwiki'   => 'Belirtilen vikiden içe aktarım yapılamaz.',
 
 # Import log
-'importlogpage'                    => 'Dosya aktarım kayıtları',
+'importlogpage'                    => 'Aktarım günlüğü',
 'importlogpagetext'                => 'Diğer vikilerden sayfaların değişiklik geçmişiyle idari içe aktarımları.',
 'import-logentry-upload'           => '[[$1]] dosya yüklemesiyle içe aktarıldı',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizyon|revizyon}}',
@@ -3461,14 +3462,14 @@ Normal önizlemeyi deneyin.',
 'watchlistedit-normal-legend'  => 'İzleme listesinden başlıkları kaldır',
 'watchlistedit-normal-explain' => 'İzleme listenizdeki başlıklar aşağıda gösterilmiştir.
 Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin ve "{{int:Watchlistedit-normal-submit}}" düğmesine tıklayın.
-[[Special:Watchlist/raw|Satır listesini]] de düzenleyebilirsiniz.',
+[[Special:EditWatchlist/raw|Satır listesini]] de düzenleyebilirsiniz.',
 'watchlistedit-normal-submit'  => 'Başlıkları kaldır',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 başlık|$1 başlık}} izleme listenizden çıkarıldı:',
 'watchlistedit-raw-title'      => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-legend'     => 'Ham izleme listesini düzenle',
 'watchlistedit-raw-explain'    => 'İzleme listenizdeki başlıklar aşağıda gösterilmektedir. Her satırda bir başlık olmak üzere, başlıkları ekleyerek ya da silerek listeyi düzenleyebilirsiniz.
 Bittiğinde "{{int:Watchlistedit-raw-submit}}"ye tıklayınız.
-Ayrıca [[Special:Watchlist/edit|standart düzenleme sayfasını]] da kullanabilirsiniz.',
+Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabilirsiniz.',
 'watchlistedit-raw-titles'     => 'Başlıklar:',
 'watchlistedit-raw-submit'     => 'İzleme listesini güncelle',
 'watchlistedit-raw-done'       => 'İzleme listeniz güncellendi.',

@@ -2000,7 +2000,7 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 'watchlistedit-normal-title'   => 'Hirahón an pigbabantayan',
 'watchlistedit-normal-legend'  => 'Halion an mga titulo sa pigbabantayan',
 'watchlistedit-normal-explain' => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo.
-Tangarig maghalì nin titulo, markahan an kahon sa gilid kaini, dangan pindotón an Tangkasón an mga Titulo. Pwede mo man na [[Special:Watchlist/raw|hirahón an bàgong lista]].',
+Tangarig maghalì nin titulo, markahan an kahon sa gilid kaini, dangan pindotón an Tangkasón an mga Titulo. Pwede mo man na [[Special:EditWatchlist/raw|hirahón an bàgong lista]].',
 'watchlistedit-normal-submit'  => 'Tangkasón an mga Titulo',
 'watchlistedit-normal-done'    => 'Pigtangkas an {{PLURAL:$1|1 an titulo|$1 mga titulo}} sa saimong pigbabantayan:',
 'watchlistedit-raw-title'      => 'Hirahón an bàgong pigbabantayan',
@@ -2008,7 +2008,7 @@ Tangarig maghalì nin titulo, markahan an kahon sa gilid kaini, dangan pindotón
 'watchlistedit-raw-explain'    => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo, asin pwede ining hirahón sa paagi nin pagdugang sagkod paghalì sa lista;
 sarong titulo kada linya.
 Pag tapos na, lagatikón an Bàgohón an Pigbabantayan.
-Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
+Pwede mo man [[Special:EditWatchlist|gamiton an standard editor]].',
 'watchlistedit-raw-titles'     => 'Mga titulo:',
 'watchlistedit-raw-submit'     => 'Bàgohón an Pigbabantayan',
 'watchlistedit-raw-done'       => 'Binàgo na an saimong pigbabantayan.',

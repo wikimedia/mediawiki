@@ -3001,14 +3001,14 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'watchlistedit-normal-title'   => 'Beooboachtengslieste beoarbaidje',
 'watchlistedit-normal-legend'  => 'Iendraage fon ju Beooboachtengslieste wächhoalje',
 'watchlistedit-normal-explain' => 'Dit sunt do Iendraage fon dien Beooboachtengslieste. Uum Iendraage wächtouhoaljen, markier do litje Kasten ieuwenske do Iendraage un klik ap dät Eende fon ju Siede ap „{{int:Watchlistedit-normal-submit}}“.
-Du koast dien Beooboachtengslieste uk in dät [[Special:Watchlist/raw|Liestenformoat beoarbaidje]].',
+Du koast dien Beooboachtengslieste uk in dät [[Special:EditWatchlist/raw|Liestenformoat beoarbaidje]].',
 'watchlistedit-normal-submit'  => 'Iendraage wächhoalje',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Iendraach wuude|$1 Iendraage wuuden}} fon dien Beooboachtengslieste wächhoald:',
 'watchlistedit-raw-title'      => 'Beooboachtengslieste in Liestenformoat beoarbaidje',
 'watchlistedit-raw-legend'     => 'Beooboachtengslieste in Liestenformoat beoarbaidje',
 'watchlistedit-raw-explain'    => 'Dit sunt do Iendraage fon dien Beooboachtengslieste in dät Liestenformoat. Do Iendraage konnen riegenwiese läsked of bietouföiged wäide.
 	Pro Riege is aan Iendraach ferlööwed. Wan du kloor bäst, klik ap „{{int:Watchlistedit-raw-submit}}“.
-	Du koast uk ju [[Special:Watchlist/edit|Standard-Beoarbaidengssiede]] benutsje.',
+	Du koast uk ju [[Special:EditWatchlist|Standard-Beoarbaidengssiede]] benutsje.',
 'watchlistedit-raw-titles'     => 'Iendraage:',
 'watchlistedit-raw-submit'     => 'Beooboachtengslieste spiekerje',
 'watchlistedit-raw-done'       => 'Dien Beooboachtengslieste wuude spiekerd.',

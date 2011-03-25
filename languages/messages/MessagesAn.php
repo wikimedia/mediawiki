@@ -3100,14 +3100,14 @@ Prebe con a previsualización normal.",
 'watchlistedit-normal-legend'  => "Borrar títols d'a lista de seguimiento",
 'watchlistedit-normal-explain' => "Contino s'amuestran os títols de pachinas d'a suya lista de seguimiento.
 Ta sacar-ne una pachina, marque o quatrón que ye a o canto d'o suyo títol, y punche con o ratet en \"{{int:Watchlistedit-normal-submit}}\".
-Tamién puede [[Special:Watchlist/raw|editar dreitament a lista]].",
+Tamién puede [[Special:EditWatchlist/raw|editar dreitament a lista]].",
 'watchlistedit-normal-submit'  => 'Borrar pachinas',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borrato $1 pachinas}} d'a suya lista de seguimiento:",
 'watchlistedit-raw-title'      => 'Editar a lista de seguimiento en formato texto',
 'watchlistedit-raw-legend'     => 'Editar a lista de seguimiento en formato texto',
 'watchlistedit-raw-explain'    => "Contino s'amuestran os títols d'as pachinas d'a suya lista de seguimiento. Puede editar ista lista adhibiendo u borrando líneas d'a lista; una pachina por linia.
 Quan remate, punche \"{{int:Watchlistedit-raw-submit}}\".
-Tamién puede fer servir o [[Special:Watchlist/edit|editor estándar]].",
+Tamién puede fer servir o [[Special:EditWatchlist|editor estándar]].",
 'watchlistedit-raw-titles'     => 'Pachinas:',
 'watchlistedit-raw-submit'     => 'Esviellar lista de seguimiento',
 'watchlistedit-raw-done'       => "S'ha esviellato a suya lista de seguimiento.",

@@ -3227,7 +3227,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
 'watchlistedit-normal-explain' => 'Siderne på din overvågningsliste er vist nedenfor.
 For at fjerne en side, skal boksen ud for den markeres, og klik på "{{int:Watchlistedit-normal-submit}}".
-Du kan også [[Special:Watchlist/raw|redigere siden direkte]].',
+Du kan også [[Special:EditWatchlist/raw|redigere siden direkte]].',
 'watchlistedit-normal-submit'  => 'Fjern valgte',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
@@ -3235,7 +3235,7 @@ Du kan også [[Special:Watchlist/raw|redigere siden direkte]].',
 'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor, og kan ændres ved at tilføje og fjerne fra listen;
 en side per linie
 Når du er færdig, klik "{{int:Watchlistedit-raw-submit}}".
-Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
+Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
 'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',

@@ -1510,7 +1510,7 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'watchlistedit-noitems'        => 'Umuɣ n uɛessi inek ur yesɛi ḥedd izwal.',
 'watchlistedit-normal-title'   => 'Beddel umuɣ n uɛessi',
 'watchlistedit-normal-legend'  => 'Kkes izwal seg wumuɣ n uɛessi',
-'watchlistedit-normal-explain' => 'Izwal deg wumuɣ n uɛessi ttbanen-d deg ukessar. Akken ad tekkseḍ yiwen wezwel, wekki ɣef tenkult i zdat-s, umbeɛd wekki ɛef "Kkes izwal". Tzemreḍ daɣen [[Special:Watchlist/raw|ad tbeddleḍ umuɣ n uɛessi (raw)]].',
+'watchlistedit-normal-explain' => 'Izwal deg wumuɣ n uɛessi ttbanen-d deg ukessar. Akken ad tekkseḍ yiwen wezwel, wekki ɣef tenkult i zdat-s, umbeɛd wekki ɛef "Kkes izwal". Tzemreḍ daɣen [[Special:EditWatchlist/raw|ad tbeddleḍ umuɣ n uɛessi (raw)]].',
 'watchlistedit-normal-submit'  => 'Kkes izwal',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 wezwel yettwakkes|$1 yizwal ttwakksen}} seg wumuɣ n uɛessi inek:',
 'watchlistedit-raw-title'      => 'Beddel umuɣ n uɛessi (raw)',

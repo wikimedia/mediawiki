@@ -3614,7 +3614,7 @@ Probeer normale voorvertoning.',
 'watchlistedit-normal-legend'  => 'Pagina’s van uw volglijst verwijderen',
 'watchlistedit-normal-explain' => 'Hieronder worden de pagina’s op uw volglijst weergegeven.
 Klik op het vierkantje ernaast en daarna op "{{int:Watchlistedit-normal-submit}}" om een pagina te verwijderen.
-U kunt ook de [[Special:Watchlist/raw|ruwe lijst bewerken]].',
+U kunt ook de [[Special:EditWatchlist/raw|ruwe lijst bewerken]].',
 'watchlistedit-normal-submit'  => "Pagina's verwijderen",
 'watchlistedit-normal-done'    => 'Er {{PLURAL:$1|is 1 pagina|zijn $1 pagina’s}} verwijderd van uw volglijst:',
 'watchlistedit-raw-title'      => 'Ruwe volglijst bewerken',
@@ -3623,7 +3623,7 @@ U kunt ook de [[Special:Watchlist/raw|ruwe lijst bewerken]].',
 U kunt de lijst bewerken door pagina’s te verwijderen en toe te voegen.
 Eén pagina per regel.
 Als u klaar bent, klik dan op "{{int:Watchlistedit-raw-submit}}".
-U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
+U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'watchlistedit-raw-titles'     => 'Pagina’s:',
 'watchlistedit-raw-submit'     => 'Volglijst bijwerken',
 'watchlistedit-raw-done'       => 'Uw volglijst is bijgewerkt.',

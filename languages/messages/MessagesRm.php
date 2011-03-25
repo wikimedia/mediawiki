@@ -2602,14 +2602,14 @@ Emprova cun la prevista normala',
 'watchlistedit-normal-legend'  => "Allontanar da la glista d'observaziun",
 'watchlistedit-normal-explain' => 'Las endataziuns da tia glista d\'observaziun èn mussadas sutvart. 
 Per allontanar ina endataziun, tscherna il quadert dasperas e clicca sin "{{int:Watchlistedit-normal-submit}}".
-Ti pos era modifitgar tia glista d\'observaziun en il [[Special:Watchlist/raw|format da glistas]].',
+Ti pos era modifitgar tia glista d\'observaziun en il [[Special:EditWatchlist/raw|format da glistas]].',
 'watchlistedit-normal-submit'  => 'Allontanar endataziuns',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 endataziun è vegnida|$1 endataziuns èn vegnidas}} allontanadas da la glista d'observaziun:",
 'watchlistedit-raw-title'      => "Modifitgar la glista d'observaziun en il format da la glista",
 'watchlistedit-raw-legend'     => "Modifitgar la glista d'observaziun en il format da la glista",
 'watchlistedit-raw-explain'    => 'Quai èn las endataziuns da tia glista d\'observaziun en il format da glista. Ti pos agiuntar ed allontanar endataziuns da la glista. Fa dentant attenziun che ti pos be inditgar ina endataziun per lingia. 
 Sche ti has terminà tia lavur, clicca sin "{{int:Watchlistedit-raw-submit}}".
-Ti pos era utilisar [[Special:Watchlist/edit|la pagina da standard]].',
+Ti pos era utilisar [[Special:EditWatchlist|la pagina da standard]].',
 'watchlistedit-raw-titles'     => 'Endataziuns:',
 'watchlistedit-raw-submit'     => "Actualisar la glista d'observaziun",
 'watchlistedit-raw-done'       => "Tia glista d'observaziun è vegnida actualisada.",

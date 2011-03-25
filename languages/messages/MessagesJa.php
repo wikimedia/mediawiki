@@ -3618,7 +3618,7 @@ $1',
 'watchlistedit-normal-legend'  => 'ウォッチリストからページ名を除去',
 'watchlistedit-normal-explain' => 'ウォッチリストに入っているページ名が以下に表示されています。
 ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
-また、[[Special:Watchlist/raw|そのままの一覧で編集]]することもできます。',
+また、[[Special:EditWatchlist/raw|そのままの一覧で編集]]することもできます。',
 'watchlistedit-normal-submit'  => 'ページの除去',
 'watchlistedit-normal-done'    => 'ウォッチリストから $1{{PLURAL:$1|件}}を削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをそのまま編集',
@@ -3626,7 +3626,7 @@ $1',
 'watchlistedit-raw-explain'    => 'ウォッチリストに含まれるページ名が以下に表示されており、この一覧から追加や除去できます。
 1行に1ページ名です。
 完了したら、「{{int:Watchlistedit-raw-submit}}」をクリックしてください。
-[[Special:Watchlist/edit|標準の編集ページ]]も利用できます。',
+[[Special:EditWatchlist|標準の編集ページ]]も利用できます。',
 'watchlistedit-raw-titles'     => 'ページ名：',
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
 'watchlistedit-raw-done'       => 'ウォッチリストを更新しました。',

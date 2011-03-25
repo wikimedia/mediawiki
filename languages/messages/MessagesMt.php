@@ -3047,7 +3047,7 @@ Uża previżjoni standard.',
 'watchlistedit-normal-legend'  => 'Neħħi titli mil-lista tal-osservazzjonijiet speċjali',
 'watchlistedit-normal-explain' => "Titli fil-lista ta' osservazzjoni tiegħek huma murija hawn taħt.
 Biex tneħħi titlu, agħżel il-kaxxa ħdejn l-istess titlu, u agħfas \"{{int:Watchlistedit-normal-submit}}\".
-Int tista' wkoll [[Special:Watchlist/raw|timmodifika l-lista f'format testwali]].",
+Int tista' wkoll [[Special:EditWatchlist/raw|timmodifika l-lista f'format testwali]].",
 'watchlistedit-normal-submit'  => 'Neħħi t-titli',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Titlu kien imħassar|$1 titli kienu mħassra}} mil-lista tal-osservazzjonijiet speċjali tiegħek:',
 'watchlistedit-raw-title'      => 'Modifiki osservazzjonijiet speċjali fil-forma testwali',
@@ -3055,7 +3055,7 @@ Int tista' wkoll [[Special:Watchlist/raw|timmodifika l-lista f'format testwali]]
 'watchlistedit-raw-explain'    => "Titli fil-lista tal-osservazzjonijiet speċjali huma murija hawn taħt, u jistgħu jiġu modifikati billi żżid u tneħħi mil-lista;
 titlu f'kull linja.
 Meta tlesti, agħfas fuq \"{{int:Watchlistedit-raw-submit}}\".
-Inti tista' wkoll tuża' l-[[Special:Watchlist/edit|editur bl-interfaċċa standard]].",
+Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standard]].",
 'watchlistedit-raw-titles'     => 'Titli:',
 'watchlistedit-raw-submit'     => 'Aġġorna l-lista',
 'watchlistedit-raw-done'       => "Il-lista ta' osservazzjoni tiegħek ġiet aġġornata.",

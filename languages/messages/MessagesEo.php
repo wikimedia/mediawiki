@@ -3391,13 +3391,13 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'watchlistedit-normal-legend'  => 'Forigi titolojn de atentaro',
 'watchlistedit-normal-explain' => 'Jen titoloj de via atentaro.
 Forigi titolon, marku la skatoleto apude de ĝi, kaj klaku "{{int:Watchlistedit-normal-submit}}".
-Vi ankaŭ povas [[Special:Watchlist/raw|redakti la krudan liston]].',
+Vi ankaŭ povas [[Special:EditWatchlist/raw|redakti la krudan liston]].',
 'watchlistedit-normal-submit'  => 'Forigi Titolojn',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}} de via atentaro:',
 'watchlistedit-raw-title'      => 'Redakti krudan atentaron',
 'watchlistedit-raw-legend'     => 'Redakti krudan atentaron',
 'watchlistedit-raw-explain'    => 'Jen titoloj en via atentaro, kiuj povas esti redaktata de aldono aŭ forigo de la listo: po unu titolo por linio. Kiam finite, klaku "{{int:Watchlistedit-raw-submit}}".
-Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
+Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'watchlistedit-raw-titles'     => 'Titoloj:',
 'watchlistedit-raw-submit'     => 'Ĝisdatigi atentaron',
 'watchlistedit-raw-done'       => 'Via atentaro estas ĝisdatigita.',

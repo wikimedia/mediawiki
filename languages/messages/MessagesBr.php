@@ -3340,13 +3340,13 @@ Klaskit rakwelet er mod boutin.',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
 'watchlistedit-normal-explain' => 'Dindan emañ diskouezet titloù ar pajennoù zo war ho roll evezhiañ.
 Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war "{{int:Watchlistedit-normal-submit}}".
-Gellout a reer [[Special:Watchlist/raw|kemmañ ar roll (mod diginkl) ivez]].',
+Gellout a reer [[Special:EditWatchlist/raw|kemmañ ar roll (mod diginkl) ivez]].',
 'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
 'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
 'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',
 'watchlistedit-raw-legend'     => 'Kemmañ ar roll evezhiañ (mod diginkl)',
 'watchlistedit-raw-explain'    => 'Dindan emañ titloù ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezho en ur ouzhpennañ pe tennañ pajennoù a-ziwar ar roll; un titl dre linenn. Ur wech graet, klikañ war "{{int:Watchlistedit-raw-submit}}".
-Gallout a rit [[Special:Watchlist/edit|implijout an aozer boutin ivez]].',
+Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'watchlistedit-raw-titles'     => 'Titloù :',
 'watchlistedit-raw-submit'     => 'Nevesaat ar roll evezhiañ',
 'watchlistedit-raw-done'       => 'Nevesaet eo bet ho roll evezhiañ.',

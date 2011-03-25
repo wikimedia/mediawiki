@@ -3104,7 +3104,7 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'watchlistedit-normal-title'   => 'Uredi spisak nadgledanja',
 'watchlistedit-normal-legend'  => 'Ukloni naslove sa spiska nadgledanja',
 'watchlistedit-normal-explain' => 'Naslovi na vašem spisku nadgledanja su prikazani ispod. Da biste uklonili naslov, obeležite 
-	kutijicu do njega, i kliknite na Ukloni naslove. Takođe, možete da [[Special:Watchlist/raw|izmenite sirov spisak]],
+	kutijicu do njega, i kliknite na Ukloni naslove. Takođe, možete da [[Special:EditWatchlist/raw|izmenite sirov spisak]],
 	ili [[Special:Watchlist/clear|uklonite sve naslove]].',
 'watchlistedit-normal-submit'  => 'Ukloni naslove',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 članak je uklonjen|$1 članka su uklonjena|$1 članaka je uklonjeno}} sa vašeg spiska nadgledanja:',
@@ -3113,7 +3113,7 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'watchlistedit-raw-explain'    => 'Naslovi sa Vašeg spiska nadgledanja su prikazani ispod i mogu se menjati dodavanjem ili oduzimanjem;
 Pišite jedan naslov po liniji.
 Kada završite, kliknite "{{int:Watchlistedit-raw-submit}}".
-Takođe, možete [[Special:Watchlist/edit|koristiti standardan uređivač spiska]].',
+Takođe, možete [[Special:EditWatchlist|koristiti standardan uređivač spiska]].',
 'watchlistedit-raw-titles'     => 'Naslovi:',
 'watchlistedit-raw-submit'     => 'Osvežite spisak nadgledanja',
 'watchlistedit-raw-done'       => 'Vaš spisak nadgledanja je osvežen.',

@@ -2307,13 +2307,13 @@ Lutfan ta'jid kuned, ki muçaddadan mexohed in maqolaro eçod kuned.",
 'watchlistedit-normal-legend'  => 'Hazfi unvonho az fehristi pajgiriho',
 'watchlistedit-normal-explain' => "Unvonhoi mavçud dar fehristi pajgirihoi şumo dar pojon namoiş doda şudaand.
 Baroi hazfi jak unvon, ça'bai kūcaki kanori onro tik bizanid.
-Şumo metavoned [[Special:Watchlist/raw|fehristi xomi pajgirihoro viroiş kuned]].",
+Şumo metavoned [[Special:EditWatchlist/raw|fehristi xomi pajgirihoro viroiş kuned]].",
 'watchlistedit-normal-submit'  => 'Unvonho hazf şavand',
 'watchlistedit-normal-done'    => '$1 unvon az fehristi pajgirihoi şumo hazf {{PLURAL:$1|şud|şudand}}:',
 'watchlistedit-raw-title'      => 'Viroişi fehristi xomī pajgiriho',
 'watchlistedit-raw-legend'     => 'Viroişi fehristi xomī pajgiriho',
 'watchlistedit-raw-explain'    => 'Unvonhoi mavçud dar fehristi pajgirihoi şumo dar zer nişon doda şudaand, va şumo metavoned mavoridro hazf jo izofa kuned; jak unvon dar har satr bojad qaror bigirad. Dar pojon, tugmai "Ba rūzrasoniji pajgiriho"-ro fişor dihed.
-Tavaççūh kuned, ki şumo metavoned az [[Special:Watchlist/edit|viroişgari standartiji fehristi pajgiriho]] istifoda kuned.',
+Tavaççūh kuned, ki şumo metavoned az [[Special:EditWatchlist|viroişgari standartiji fehristi pajgiriho]] istifoda kuned.',
 'watchlistedit-raw-titles'     => 'Unvonho:',
 'watchlistedit-raw-submit'     => 'Ba rūz rasonidani pajgiriho',
 'watchlistedit-raw-done'       => 'Fehristi pajgirihoi şumo ba rūz şud.',

@@ -3395,14 +3395,14 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'watchlistedit-normal-legend'  => 'Lapok eltávolítása a figyelőlistáról',
 'watchlistedit-normal-explain' => 'A figyelőlistádra felvett lapok címei alább láthatóak.
 Ha el szeretnél távolítani egy címet, pipáld ki a mellette található jelölőnégyzetet, majd kattints „{{int:Watchlistedit-normal-submit}}” gombra.
-Lehetőséged van a [[Special:Watchlist/raw|figyelőlista nyers változatának]] szerkesztésére is.',
+Lehetőséged van a [[Special:EditWatchlist/raw|figyelőlista nyers változatának]] szerkesztésére is.',
 'watchlistedit-normal-submit'  => 'A kijelöltek eltávolítása',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|A következő|A következő $1}} cikket eltávolítottam a figyelőlistádról:',
 'watchlistedit-raw-title'      => 'A nyers figyelőlista szerkesztése',
 'watchlistedit-raw-legend'     => 'A nyers figyelőlista szerkesztése',
 'watchlistedit-raw-explain'    => 'A figyelőlistádra felvett lapok az alábbi listában találhatók. A lista szerkeszthető;
 minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt található
-„{{int:Watchlistedit-raw-submit}}” feliratú gombra. Használhatod a [[Special:Watchlist/edit|hagyományos listaszerkesztőt]] is.',
+„{{int:Watchlistedit-raw-submit}}” feliratú gombra. Használhatod a [[Special:EditWatchlist|hagyományos listaszerkesztőt]] is.',
 'watchlistedit-raw-titles'     => 'A figyelőlistádon található cikkek:',
 'watchlistedit-raw-submit'     => 'Mentés',
 'watchlistedit-raw-done'       => 'A figyelőlistád változtatásait elmentettem.',

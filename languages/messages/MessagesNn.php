@@ -3261,7 +3261,7 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'watchlistedit-normal-legend'  => 'Fjern sider frå overvakingslista',
 'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor.
 For å fjerne ei side, kryss av boksen ved sida av sida du vil fjerne og klikk på «{{int:Watchlistedit-normal-submit}}».
-Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
+Du kan òg [[Special:EditWatchlist/raw|endre overvakingslista i råformat]].',
 'watchlistedit-normal-submit'  => 'Fjern sider',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Éi side|$1 sider}} vart fjerna frå overvakingslista di:',
 'watchlistedit-raw-title'      => 'Endre på overvakingslista i råformat',
@@ -3269,7 +3269,7 @@ Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'watchlistedit-raw-explain'    => 'Sidene på overvakingslista di er viste nedanfor, og lista kan endrast ved å legge til eller fjerne sider frå lista;
 ei side per line.
 Når du er ferdig, klikk «{{int:Watchlistedit-raw-submit}}».
-Du kan òg [[Special:Watchlist/edit|nytte standardverktøyet]].',
+Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Oppdater overvakingslista',
 'watchlistedit-raw-done'       => 'Overvakingslista er oppdatert.',

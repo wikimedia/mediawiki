@@ -3313,7 +3313,7 @@ $1',
 'watchlistedit-normal-legend'  => 'ધ્યાનસૂચિમાંથી આશીર્ષકો કાઢી નાખો',
 'watchlistedit-normal-explain' => 'તમારી ધ્યાનસૂચિના શીર્ષકો અહીં બતાવ્યાં છે.
 કોઇ શીર્ષક હતાવવા માટે , તેની બાજું નું ખાનું અંકિત કરો , અને "{{int:Watchlistedit-normal-submit}}"ના પર ક્લિક કરો.
-તમે [[Special:Watchlist/raw|edit the raw list]]માં  બદલાવ પણ કરી શકો.',
+તમે [[Special:EditWatchlist/raw|edit the raw list]]માં  બદલાવ પણ કરી શકો.',
 'watchlistedit-normal-submit'  => 'શીર્ષકો હટાવો',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 શીર્ષક |$1 શીર્ષકો }} ને તમારી ધ્યાનસૂચિમાંથી હટાવાયા:',
 'watchlistedit-raw-title'      => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
@@ -3321,7 +3321,7 @@ $1',
 'watchlistedit-raw-explain'    => 'તમારી ધ્યાનસૂચિના શીર્ષકો અહીં બતાવ્યાં છે , તેમાં વસ્તુ ઓ ઉમેરીએ અને હટાવીને તેમાં ફેરફાર કરી શકાય છે;
 એક શીર્ષક પ્રતિ લિટી.
 જ્યારે કાર્ય સમાપ્ત થાય ત્યારે, અહીં ક્લિક કરો "{{int:Watchlistedit-raw-submit}}".
-તેમે  [[Special:Watchlist/edit|use the standard editor]] પણ કરી શકો.',
+તેમે  [[Special:EditWatchlist|use the standard editor]] પણ કરી શકો.',
 'watchlistedit-raw-titles'     => 'શિર્ષક:',
 'watchlistedit-raw-submit'     => 'ધ્યાનસૂચિ અધ્યતન બનાવો',
 'watchlistedit-raw-done'       => 'તમારી ધ્યાના સૂચિ અધ્યતન કરાઈ.',

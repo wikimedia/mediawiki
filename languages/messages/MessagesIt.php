@@ -3330,14 +3330,14 @@ Usare l\'anteprima standard.',
 'watchlistedit-normal-legend'  => 'Eliminazione di pagine dagli osservati speciali',
 'watchlistedit-normal-explain' => 'Di seguito sono elencate tutte le pagine osservate.
 Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante "{{int:Watchlistedit-normal-submit}}" in fondo all\'elenco.
-Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]].',
+Si noti che è anche possibile [[Special:EditWatchlist/raw|modificare la lista in formato testuale]].',
 'watchlistedit-normal-submit'  => 'Elimina pagine',
 'watchlistedit-normal-done'    => 'Dalla lista degli osservati speciali {{PLURAL:$1|è stata eliminata una pagina|sono state eliminate $1 pagine}}:',
 'watchlistedit-raw-title'      => 'Modifica degli osservati speciali in forma testuale',
 'watchlistedit-raw-legend'     => 'Modifica testuale osservati speciali',
 'watchlistedit-raw-explain'    => 'Di seguito sono elencate tutte le pagine osservate. Per modificare la lista aggiungere o rimuovere i rispettivi titoli, uno per riga.
 Una volta terminato, fare clic su "{{int:Watchlistedit-raw-submit}}" in fondo all\'elenco.
-Si noti che è anche possibile [[Special:Watchlist/edit|modificare la lista con l\'interfaccia standard]].',
+Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l\'interfaccia standard]].',
 'watchlistedit-raw-titles'     => 'Titoli delle pagine:',
 'watchlistedit-raw-submit'     => 'Aggiorna la lista',
 'watchlistedit-raw-done'       => 'La lista degli osservati speciali è stata aggiornata.',

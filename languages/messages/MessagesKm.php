@@ -3246,7 +3246,7 @@ $1',
 
 ដើម្បីដកចេញនូវចំណងជើងណាមួយ សូមចុច"{{int:Watchlistedit-normal-submit}}"។
 
-អ្នកអាច[[Special:Watchlist/raw|កែប្រែបញ្ជីឆៅ]]ផងដែរ។',
+អ្នកអាច[[Special:EditWatchlist/raw|កែប្រែបញ្ជីឆៅ]]ផងដែរ។',
 'watchlistedit-normal-submit'  => 'ដកចំណងជើងចេញ',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|១ចំណងជើង|$1ចំណងជើង}}ត្រូវបានដកចេញពីបញ្ជីតាមដានរបស់អ្នក៖',
 'watchlistedit-raw-title'      => 'កែប្រែបញ្ជីតាមដានឆៅ',
@@ -3254,7 +3254,7 @@ $1',
 'watchlistedit-raw-explain'    => 'ចំណងជើង​នានា លើ​បញ្ជីតាមដាន​របស់អ្នក ត្រូវបាន​បង្ហាញខាងក្រោម។ អ្នកអាចត្រូវបាន​កែប្រែ ដោយបន្ថែម​ទៅ ឬ ដកចេញ ចំណងជើងទាំងនោះពី​បញ្ជីបាន។
 ក្នុងមួយជួរមានចំណងជើងមួយ។
 ពេលរួចរាល់ សូមចុច "{{int:Watchlistedit-raw-submit}}"។
-អ្នក​អាចផងដែរ [[Special:Watchlist/edit|ប្រើប្រាស់​ឧបករណ៍កែប្រែ​គំរូ]] ។',
+អ្នក​អាចផងដែរ [[Special:EditWatchlist|ប្រើប្រាស់​ឧបករណ៍កែប្រែ​គំរូ]] ។',
 'watchlistedit-raw-titles'     => 'ចំណងជើង៖',
 'watchlistedit-raw-submit'     => 'បន្ទាន់សម័យបញ្ជីតាមដាន',
 'watchlistedit-raw-done'       => 'បញ្ជីតាមដានរបស់អ្នកត្រូវបានធ្វើឱ្យទាន់សម័យហើយ។',

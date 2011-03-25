@@ -3581,14 +3581,14 @@ $1',
 'watchlistedit-normal-legend'  => 'حذف عنوان‌ها از فهرست پی‌گیری‌ها',
 'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست پیگیری شما در زیر نشان داده شده‌اند.
 برای حذف یک عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ «{{int:Watchlistedit-normal-submit}}» را بزنید.
-شما هم‌چنین می‌توانید [[Special:Watchlist/raw|فهرست خام را ویرایش کنید]].',
+شما هم‌چنین می‌توانید [[Special:EditWatchlist/raw|فهرست خام را ویرایش کنید]].',
 'watchlistedit-normal-submit'  => 'حذف عنوان‌ها',
 'watchlistedit-normal-done'    => '$1 عنوان از فهرست پی‌گیری‌های شما حذف {{PLURAL:$1|شد|شدند}}:',
 'watchlistedit-raw-title'      => 'ویرایش فهرست خام پی‌گیری‌ها',
 'watchlistedit-raw-legend'     => 'ویرایش فهرست خام پی‌گیری‌ها',
 'watchlistedit-raw-explain'    => 'عنوان‌های موجود در فهرست پی‌گیری‌های شما در زیر نشان داده شده‌اند، و شما می‌توانید مواردی را حذف یا اضافه کنید؛ هر مورد در یک سطر جداگانه باید قرار بگیرد.
 در پایان، دکمهٔ «{{int:Watchlistedit-raw-submit}}» را بفشارید.
-توجه کنید که شما می‌توانید از [[Special:Watchlist/edit|ویرایشگر استاندارد فهرست پی‌گیری‌ها]] هم استفاده کنید.',
+توجه کنید که شما می‌توانید از [[Special:EditWatchlist|ویرایشگر استاندارد فهرست پی‌گیری‌ها]] هم استفاده کنید.',
 'watchlistedit-raw-titles'     => 'عنوان‌ها:',
 'watchlistedit-raw-submit'     => 'به روز رساندن پی‌گیری‌ها',
 'watchlistedit-raw-done'       => 'فهرست پی‌گیری‌های شما به روز شد.',

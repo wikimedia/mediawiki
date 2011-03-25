@@ -3366,14 +3366,14 @@ Potvrdite namjeru vraćanja ovog članka.",
 'watchlistedit-normal-legend'  => 'Ukloni stranice iz popisa praćenja',
 'watchlistedit-normal-explain' => 'Prikazane su stranice na Vašem popisu praćenja.
 Da uklonite stranicu s popisa praćenja, označite kućicu kraj nje i kliknite gumb "{{int:Watchlistedit-normal-submit}}".
-Možete također [[Special:Watchlist/raw|uređivati ovaj popis u okviru za uređivanje]].',
+Možete također [[Special:EditWatchlist/raw|uređivati ovaj popis u okviru za uređivanje]].',
 'watchlistedit-normal-submit'  => 'Ukloni stranice',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 stranica je uklonjena|$1 stranice su uklonjene|$1 stranica je uklonjeno}} iz Vašeg popisa praćenja:',
 'watchlistedit-raw-title'      => 'Uredi praćene stranice u okviru za uređivanje',
 'watchlistedit-raw-legend'     => 'Uredi praćene stranice',
 'watchlistedit-raw-explain'    => 'Stranice na Vašem popisu praćenja su prikazane ispod, možete uređivati taj popis dodavanjem novih stranica ili brisanjem postojećih; u jednom retku je ime jedne stranice.
 Kad završite s uređivanjem, kliknite na "{{int:Watchlistedit-raw-submit}}".
-Također možete koristiti [[Special:Watchlist/edit|standardni editor]].',
+Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'watchlistedit-raw-titles'     => 'Imena stranica:',
 'watchlistedit-raw-submit'     => 'Snimi promjene',
 'watchlistedit-raw-done'       => 'Vaš popis praćenja je snimljen.',
