@@ -283,6 +283,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27586) Remove duplication of props in ApiQueryStashImageInfo
   by using ApiQueryImageInfo
 * (bug 28226) prop=extlinks&eloffset should be an integer
+* (bug 28070) Fix watchlist RSS for databases that store timestamps in a 
+  real timestamp field.
   
 === Languages updated in 1.18 ===
 
