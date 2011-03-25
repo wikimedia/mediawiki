@@ -1087,6 +1087,10 @@ abstract class ApiBase {
 		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
 		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled.  Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
 		'copyuploaddisabled' => array( 'code' => 'copyuploaddisabled', 'info' => 'Uploads by URL is not enabled.  Make sure $wgAllowCopyUploads is set to true in LocalSettings.php.' ),
+		
+		'filename-tooshort' => array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
+		'illegal-filename' => array( 'code' => 'illegal-filename', 'info' => 'The filename is not allowed' ),
+		'filetype-missing' => array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
 	);
 
 	/**

@@ -82,14 +82,14 @@ class ApiUpload extends ApiBase {
 		// Check if the uploaded file is sane
 		$this->verifyUpload();
 
+
 		// Check if the user has the rights to modify or overwrite the requested title
 		// (This check is irrelevant if stashing is already requested, since the errors
 		//  can always be fixed by changing the title)
 		if ( ! $this->mParams['stash'] ) {
 			$permErrors = $this->mUpload->verifyTitlePermissions( $wgUser );
 			if ( $permErrors !== true ) {
-				// TODO: stash the upload and allow choosing a new name
-				$this->dieUsageMsg( array( 'badaccess-groups' ) );
+				$this->dieRecoverableError( $permErrors[0], 'filename' );
 			}
 		}
 
@@ -145,6 +145,27 @@ class ApiUpload extends ApiBase {
 			throw new MWException( 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage() );
 		}
 		return $sessionKey;
+	}
+	
+	/**
+	 * Throw an error that the user can recover from by providing a better 
+	 * value for $parameter
+	 * 
+	 * @param $error array Error array suitable for passing to dieUsageMsg()
+	 * @param $parameter string Parameter that needs revising
+	 * @param $data array Optional extra data to pass to the user
+	 * @throws UsageException
+	 */
+	function dieRecoverableError( $error, $parameter, $data = array() ) {
+		try {
+			$data['sessionkey'] = $this->performStash();
+		} catch ( MWException $e ) {
+			$data['stashfailed'] = $e->getMessage();
+		}
+		$data['invalidparameter'] = $parameter;
+		
+		$parsed = $this->parseMsg( $error );
+		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $data );
 	}
 
 	/**
@@ -262,28 +283,32 @@ class ApiUpload extends ApiBase {
 
 		// TODO: Move them to ApiBase's message map
 		switch( $verification['status'] ) {
+			// Recoverable errors
+			case UploadBase::MIN_LENGTH_PARTNAME:
+				$this->dieRecoverableError( 'filename-tooshort', 'filename' );
+				break;			
+			case UploadBase::ILLEGAL_FILENAME:
+				$this->dieRecoverableError( 'illegal-filename', 'filename',
+						array( 'filename' => $verification['filtered'] ) );
+				break;
+			case UploadBase::FILETYPE_MISSING:
+				$this->dieRecoverableError( 'filetype-missing', 'filename' );
+				break;
+			
+			// Unrecoverable errors
 			case UploadBase::EMPTY_FILE:
 				$this->dieUsage( 'The file you submitted was empty', 'empty-file' );
 				break;
 			case UploadBase::FILE_TOO_LARGE:
 				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
 				break;
-			case UploadBase::FILETYPE_MISSING:
-				$this->dieUsage( 'The file is missing an extension', 'filetype-missing' );
-				break;
+
 			case UploadBase::FILETYPE_BADTYPE:
 				$this->dieUsage( 'This type of file is banned', 'filetype-banned',
 						0, array(
 							'filetype' => $verification['finalExt'],
 							'allowed' => $wgFileExtensions
 						) );
-				break;
-			case UploadBase::MIN_LENGTH_PARTNAME:
-				$this->dieUsage( 'The filename is too short', 'filename-tooshort' );
-				break;
-			case UploadBase::ILLEGAL_FILENAME:
-				$this->dieUsage( 'The filename is not allowed', 'illegal-filename',
-						0, array( 'filename' => $verification['filtered'] ) );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
