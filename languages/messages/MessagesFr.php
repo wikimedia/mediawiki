@@ -3535,14 +3535,14 @@ Essayez la prévisualisation normale.',
 'watchlistedit-normal-legend'  => 'Retirer des titres de la liste de suivi',
 'watchlistedit-normal-explain' => 'Les titres de votre liste de suivi sont visibles ci-dessous.
 Pour enlever un titre de la liste (et sa page de discussion), cochez la case à côté puis cliquez sur le bouton « {{int:Watchlistedit-normal-submit}} ».
-Vous pouvez aussi [[Special:Watchlist/raw|modifier la liste en mode brut]].',
+Vous pouvez aussi [[Special:EditWatchlist/raw|modifier la liste en mode brut]].',
 'watchlistedit-normal-submit'  => 'Retirer les titres sélectionnés',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Un titre a été enlevé|$1 titres ont été enlevés}} de votre liste de suivi :',
 'watchlistedit-raw-title'      => 'Modifier la liste de suivi en mode brut',
 'watchlistedit-raw-legend'     => 'Modification de la liste de suivi en mode brut',
 'watchlistedit-raw-explain'    => 'Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).
 Lorsque vous avez fini, cliquez sur le bouton « {{int:Watchlistedit-raw-submit}} » en bas.
-Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
+Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
 'watchlistedit-raw-titles'     => 'Titres :',
 'watchlistedit-raw-submit'     => 'Mettre à jour la liste de suivi',
 'watchlistedit-raw-done'       => 'Votre liste de suivi a été mise à jour.',

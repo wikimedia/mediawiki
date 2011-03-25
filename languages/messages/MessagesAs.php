@@ -1812,7 +1812,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'watchlistedit-normal-legend'  => 'লক্ষ্য-তালিকাৰ পৰা শীৰ্ষক আতৰোৱাওক',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
 To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
-You can also [[Special:Watchlist/raw|edit the raw list]].',
+You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'watchlistedit-normal-submit'  => 'শিৰোনামা আঁতৰাৱক',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 শিৰোনামা|$1 শিৰোনামাসমূহ}} আপুনাৰ লক্ষ্যতালিকাৰ পৰা আতৰোৱা হ'ল:",
 'watchlistedit-raw-title'      => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',

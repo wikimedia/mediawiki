@@ -3381,7 +3381,7 @@ $1',
 'watchlistedit-normal-legend'  => 'Уклањање наслова са списка надгледања',
 'watchlistedit-normal-explain' => 'Наслови на вашем списку надгледања су приказани испод.
 Да бисте уклонили наслов, означите кућицу до њега и кликните на „{{int:Watchlistedit-normal-submit}}“.
-Можете и да [[Special:Watchlist/raw|измените сиров списак]].',
+Можете и да [[Special:EditWatchlist/raw|измените сиров списак]].',
 'watchlistedit-normal-submit'  => 'Уклони наслове',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Једна страница је уклоњена|$1 странице су уклоњене|$1 страница је уклоњено}} с вашег списка надгледања:',
 'watchlistedit-raw-title'      => 'Измена сировог списка надгледања',
@@ -3389,7 +3389,7 @@ $1',
 'watchlistedit-raw-explain'    => 'Наслови са списка надгледања су приказани испод и могу се мењати додавањем или уклањањем;
 Уносите један наслов по линији.
 Када завршите, кликните на „{{int:Watchlistedit-raw-submit}}“.
-Можете и да [[Special:Watchlist/edit|користите стандардан уређивач списка]].',
+Можете и да [[Special:EditWatchlist|користите стандардан уређивач списка]].',
 'watchlistedit-raw-titles'     => 'Наслови:',
 'watchlistedit-raw-submit'     => 'Ажурирај списак надгледања',
 'watchlistedit-raw-done'       => 'Ваш списак надгледања је ажуриран.',

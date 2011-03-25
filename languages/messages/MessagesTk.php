@@ -3096,14 +3096,14 @@ Adaty deslapky syny synap görüň.',
 'watchlistedit-normal-legend'  => 'Gözegçilik sanawyndan atlary aýyr',
 'watchlistedit-normal-explain' => 'Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär.
 At aýyrmak üçin gapdalyndaky gutujygy belläp, "{{int:Watchlistedit-normal-submit}}" düwmesine basyň.
-[[Special:Watchlist/raw|Işlenmedik sanawy hem redaktirläp]] bilersiňiz.',
+[[Special:EditWatchlist/raw|Işlenmedik sanawy hem redaktirläp]] bilersiňiz.',
 'watchlistedit-normal-submit'  => 'Atlary aýyr',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sany at|$1 sany at}} gözegçilik sanawyndan aýyryldy:',
 'watchlistedit-raw-title'      => 'Işlenmedik gözegçilik sanawyny redaktirle',
 'watchlistedit-raw-legend'     => 'Işlenmedik gözegçilik sanawyny redaktirle',
 'watchlistedit-raw-explain'    => 'Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär. Her setirde bir at goşmak ýa-da aýyrmak arkaly sanawy üýtgedip bilersiňiz. 
 Bolanyňyzdan soňra "{{int:Watchlistedit-raw-submit}}" düwmesine basyň. 
-Şeýle-de siz  [[Special:Watchlist/edit|adaty usuldan]] hem peýdalanyp bilersiňiz.',
+Şeýle-de siz  [[Special:EditWatchlist|adaty usuldan]] hem peýdalanyp bilersiňiz.',
 'watchlistedit-raw-titles'     => 'Atlar:',
 'watchlistedit-raw-submit'     => 'Gözegçilik sanawyny täzele',
 'watchlistedit-raw-done'       => 'Gözegçilik sanawyňyz täzelendi.',

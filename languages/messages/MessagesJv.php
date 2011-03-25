@@ -2879,14 +2879,14 @@ Cobanen mawa pratayang normal.',
 'watchlistedit-normal-legend'  => 'Busak irah-irahan saka daftar pangawasan',
 'watchlistedit-normal-explain' => 'Irah-irahan utawa judhul ing daftar pangawasan panjenengan kapacak ing ngisor iki.
 Kanggo mbusak sawijining irah-irahan, kliken kothak ing pinggiré, lan banjur kliken "Busak judhul".
-Panjenengan uga bisa [[Special:Watchlist/raw|nyunting daftar mentah]].',
+Panjenengan uga bisa [[Special:EditWatchlist/raw|nyunting daftar mentah]].',
 'watchlistedit-normal-submit'  => 'Busak irah-irahan',
 'watchlistedit-normal-done'    => 'Irah-irahan {{PLURAL:$1|siji|$1}} wis dibusak saka daftar pangawasan panjenengan:',
 'watchlistedit-raw-title'      => 'Sunting daftar mentah',
 'watchlistedit-raw-legend'     => 'Sunting daftar mentah',
 'watchlistedit-raw-explain'    => 'Irah-irahan ing daftar pangawasan panjenengan kapacak ing ngisor iki, lan bisa diowahi mawa nambahaké utawa mbusak daftar; sairah-irahan saban barisé.
 Yèn wis rampung, anyarana kaca daftar pangawasan iki.
-Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenengan]].',
+Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan]].',
 'watchlistedit-raw-titles'     => 'Irah-irahan:',
 'watchlistedit-raw-submit'     => 'Anyarana daftar pangawasan',
 'watchlistedit-raw-done'       => 'Daftar pangawasan panjenengan wis dianyari.',

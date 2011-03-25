@@ -3194,14 +3194,14 @@ $1',
 'watchlistedit-normal-legend'  => 'Кэтэбил тиһигиттэн пууннары сотуу',
 'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ тиһигэ көстөр.
 Биири эмит сотоору гынар буоллаххына кинини бэлиэтээ, онтон "{{int:Watchlistedit-normal-submit}}" тимэҕи баттаа.
-Өссө манна [[Special:Watchlist/raw|тиһиги тиэкис быһыытынан уларытыаххын]] сөп.',
+Өссө манна [[Special:EditWatchlist/raw|тиһиги тиэкис быһыытынан уларытыаххын]] сөп.',
 'watchlistedit-normal-submit'  => 'Пууннары сот',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 сурук|$1 пуун}} эн кэтээн көрүүҥ тиһигиттэн сотулунна:',
 'watchlistedit-raw-title'      => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
 'watchlistedit-raw-legend'     => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
 'watchlistedit-raw-explain'    => 'Манна кэтээн көрөр сирэйдэриҥ көстөллөр. Тиһиги устуруокатын эбэн-көҕүрэтэн уларытыаххын сөп (биирдии устуруокаҕа биирдии аат).
 Уларытан бүтэн баран «{{int:Watchlistedit-raw-submit}}» тимэҕи баттаа.
-Өссө тиһиги  [[Special:Watchlist/edit|уларытыы эрэдээктэрин]] туһанан уларытаххын сөп.',
+Өссө тиһиги  [[Special:EditWatchlist|уларытыы эрэдээктэрин]] туһанан уларытаххын сөп.',
 'watchlistedit-raw-titles'     => 'Пууннар:',
 'watchlistedit-raw-submit'     => 'Испииһэги бигэргэт',
 'watchlistedit-raw-done'       => 'Саҥа испииһэк бигэргэтилиннэ.',

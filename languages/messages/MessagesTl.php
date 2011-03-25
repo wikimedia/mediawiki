@@ -3323,7 +3323,7 @@ maaaring hindi naipapakita sa talaang ito ang mga pagbabagong mas bago pa kaysa 
 'watchlistedit-normal-legend'  => 'Tanggalin ang mga pamagat mula sa binabantayan',
 'watchlistedit-normal-explain' => 'Pinapakita sa ibaba ang mga pamagat na nasa talaan mo ng mga binabantayan.
 Para tanggalin ang isang pamagat, lagyan ng tsek ang kahon katabi nito, at pindutin ang "{{int:Watchlistedit-normal-submit}}".
-Maaari mo ring [[Special:Watchlist/raw|baguhin ang hilaw na talaan]].',
+Maaari mo ring [[Special:EditWatchlist/raw|baguhin ang hilaw na talaan]].',
 'watchlistedit-normal-submit'  => 'Tanggalin ang mga Pamagat',
 'watchlistedit-normal-done'    => 'Tinatanggal mula sa iyong talaan ng mga binabantayan ang {{PLURAL:$1|1 pamagat|$1 mga pamagat}}:',
 'watchlistedit-raw-title'      => 'Baguhin ang hilaw na talaan ng mga binabantayan',
@@ -3331,7 +3331,7 @@ Maaari mo ring [[Special:Watchlist/raw|baguhin ang hilaw na talaan]].',
 'watchlistedit-raw-explain'    => 'Ipinapakita sa ibaba ang mga pamagat na nasa iyong talaan ng mga binabantayan, at maaaring baguhin sa pamamagitan ng pagdaragdag at pagtatanggal mula sa talaan;
 isang pamagat bawat linya.
 Kapag nakatapos na, pindutin ang "{{int:Watchlistedit-raw-submit}}".
-Maaari mo ring [[Special:Watchlist/edit|gamitin ang pangkaraniwang pampatnugot]].',
+Maaari mo ring [[Special:EditWatchlist|gamitin ang pangkaraniwang pampatnugot]].',
 'watchlistedit-raw-titles'     => 'Mga pamagat:',
 'watchlistedit-raw-submit'     => 'Baguhin ang talaan ng mga binabantayan',
 'watchlistedit-raw-done'       => 'Isinapanahon ang iyong talaan ng mga binabantayan.',

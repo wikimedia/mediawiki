@@ -3473,14 +3473,14 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'watchlistedit-normal-legend'  => 'Usuń strony z listy obserwowanych',
 'watchlistedit-normal-explain' => 'Poniżej znajduje się lista obserwowanych przez Ciebie stron.
 Aby usunąć stronę z listy zaznacz znajdujące się obok niej pole i naciśnij „{{int:Watchlistedit-normal-submit}}”.
-Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy obserwowanych]].',
+Możesz także skorzystać z [[Special:EditWatchlist/raw|tekstowego edytora listy obserwowanych]].',
 'watchlistedit-normal-submit'  => 'Usuń zaznaczone z listy',
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-explain'    => 'Poniżej wypisane zostały tytuły stron znajdujących się na Twojej liście obserwowanych. Możesz dodać lub usunąć dowolny tytuł z tej listy – jeden wiersz to jeden tytuł.
 Aby zatwierdzić zmiany kliknij „{{int:Watchlistedit-raw-submit}}”.
-Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowanych stron]].',
+Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanych stron]].',
 'watchlistedit-raw-titles'     => 'Obserwowane strony:',
 'watchlistedit-raw-submit'     => 'Uaktualnij listę',
 'watchlistedit-raw-done'       => 'Lista obserwowanych stron została uaktualniona.',

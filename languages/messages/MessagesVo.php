@@ -2773,13 +2773,13 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'watchlistedit-normal-legend'  => 'Moükön tiädis se galädalised',
 'watchlistedit-normal-explain' => 'Tiäds su galädalised olik palisedons dono.
 Ad moükön tiädi, välolös bugili nilü on e klikolös: "{{int:Watchlistedit-normal-submit}}".
-Kanol i [[Special:Watchlist/raw|redakön lisedafonäti]].',
+Kanol i [[Special:EditWatchlist/raw|redakön lisedafonäti]].',
 'watchlistedit-normal-submit'  => 'Moükön Tiädis',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|tiäd bal pemoükon|tiäds $1 pemoükons}} se galädalised olik:',
 'watchlistedit-raw-title'      => 'Redakön fonäti galädaliseda',
 'watchlistedit-raw-legend'     => 'Redakön fonäti galädaliseda',
 'watchlistedit-raw-explain'    => 'Tiäds galädaliseda olik pajonons dono, e kanons paredakön - paläükön u pamoükön se lised (ai tiäd bal a lien). Pos redakam, klikolös Votükön Galädalisedi.
-Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
+Kanol i [[Special:EditWatchlist|gebön redakametodi kösömik]].',
 'watchlistedit-raw-titles'     => 'Tiäds:',
 'watchlistedit-raw-submit'     => 'Votükön Galädalisedi',
 'watchlistedit-raw-done'       => 'Galädalised olik pevotükon.',

@@ -3417,14 +3417,14 @@ Tente a previsão comum.',
 'watchlistedit-normal-legend'  => 'Remover títulos da lista de páginas vigiadas',
 'watchlistedit-normal-explain' => 'Os títulos das páginas de sua lista de vigiadas são exibidos abaixo.
 Para remover um título, marque a caixa ao lado do mesmo e clique "{{int:Watchlistedit-normal-submit}}".
-Você pode também [[Special:Watchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
+Você pode também [[Special:EditWatchlist/raw|editar a lista de páginas vigiadas em forma de texto]].',
 'watchlistedit-normal-submit'  => 'Remover Títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de páginas vigiadas:',
 'watchlistedit-raw-title'      => 'Edição crua da lista de páginas vigiadas',
 'watchlistedit-raw-legend'     => 'Edição crua da lista de páginas vigiadas',
 'watchlistedit-raw-explain'    => 'A lista de páginas vigiadas é apresentada abaixo. Você pode adicionar novas linhas ou remover linhas para aumentar ou reduzir a lista, desde que mantenha uma única página por linha.
 Quando terminar, clique "{{int:Watchlistedit-raw-submit}}".
-Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencional]].',
+Você também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
 'watchlistedit-raw-submit'     => 'Atualizar a lista de páginas vigiadas',
 'watchlistedit-raw-done'       => 'Sua lista de páginas vigiadas foi atualizada.',

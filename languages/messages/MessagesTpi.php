@@ -824,7 +824,7 @@ Yu inap lukim as tok bilong em',
 'watchlistedit-noitems'        => 'Nogat wanpela samting long lukautbuk bilong yu.',
 'watchlistedit-normal-title'   => 'Senisim lukautbuk',
 'watchlistedit-normal-legend'  => 'Rausim ol samting long lukautbuk',
-'watchlistedit-normal-explain' => 'Ananit yu lukim ol samting long lukautbuk. Long rausim wanpela samting, makim liklik boxis long sait bilong en, na paitim "Rausim ol samting".  Na tu yu inap [[Special:Watchlist/raw|senisim lukautbuk long wanpela bokis]].',
+'watchlistedit-normal-explain' => 'Ananit yu lukim ol samting long lukautbuk. Long rausim wanpela samting, makim liklik boxis long sait bilong en, na paitim "Rausim ol samting".  Na tu yu inap [[Special:EditWatchlist/raw|senisim lukautbuk long wanpela bokis]].',
 'watchlistedit-normal-submit'  => 'Rausim ol samting',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Wanpela|$1}} samting i raus pinis long lukautbuk bilong yu:',
 'watchlistedit-raw-title'      => 'Senisim lukautbuk long wanpela bokis',
@@ -832,7 +832,7 @@ Yu inap lukim as tok bilong em',
 'watchlistedit-raw-explain'    => 'Ananit yu lukim ol samting long lukautbuk bilong yu insait long wanpela bokis.
 	Yu inap putim sampela moa samting igo insait, o rausim sampela ol samting. Putim
 	wanpela samting i go long wanwan lain.  Taim yu pinisim ol senis, paitim "Senisim lukautbuk".
-	Na tu yu inap [[Special:Watchlist/edit|senisim lukautbuk long planti liklik bokis]].',
+	Na tu yu inap [[Special:EditWatchlist|senisim lukautbuk long planti liklik bokis]].',
 'watchlistedit-raw-titles'     => 'Ol samting:',
 'watchlistedit-raw-submit'     => 'Senisim lukautbuk',
 'watchlistedit-raw-done'       => 'Lukautbuk bilong yu i senis pinis.',

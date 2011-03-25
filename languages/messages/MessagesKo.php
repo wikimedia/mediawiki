@@ -3401,14 +3401,14 @@ $1',
 'watchlistedit-normal-legend'  => '목록에서 문서 제거하기',
 'watchlistedit-normal-explain' => "주시문서 목록에 있는 문서의 제목이 아래에 나열되어 있습니다.
 주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선택한 다음 '{{int:Watchlistedit-normal-submit}}'를 클릭해주세요.
-또는 [[Special:Watchlist/raw|목록을 직접 편집]]할 수도 있습니다.",
+또는 [[Special:EditWatchlist/raw|목록을 직접 편집]]할 수도 있습니다.",
 'watchlistedit-normal-submit'  => '항목 삭제',
 'watchlistedit-normal-done'    => '다음 $1 항목을 주시하지 않습니다:',
 'watchlistedit-raw-title'      => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend'     => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
 각 줄마다 하나의 제목을 쓰고, 수정을 마쳤다면 '{{int:Watchlistedit-raw-submit}}'을 누르면 됩니다.
-또는 [[Special:Watchlist/edit|일반적인 편집기]]를 쓸 수도 있습니다.",
+또는 [[Special:EditWatchlist|일반적인 편집기]]를 쓸 수도 있습니다.",
 'watchlistedit-raw-titles'     => '목록:',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',

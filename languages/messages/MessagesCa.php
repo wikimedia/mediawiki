@@ -467,7 +467,7 @@ $1",
 'showtoc'                 => 'desplega',
 'hidetoc'                 => 'amaga',
 'collapsible-collapse'    => 'Tanca',
-'collapsible-expand'      => 'Estèn',
+'collapsible-expand'      => 'Amplia',
 'thisisdeleted'           => 'Voleu mostrar o restaurar $1?',
 'viewdeleted'             => 'Voleu mostrar $1?',
 'restorelink'             => '{{PLURAL:$1|una versió esborrada|$1 versions esborrades}}',
@@ -3308,7 +3308,7 @@ Proveu-ho amb la previsualització normal.',
 'watchlistedit-normal-title'   => 'Edita la llista de seguiment',
 'watchlistedit-normal-legend'  => 'Esborra els títols de la llista de seguiment',
 'watchlistedit-normal-explain' => 'Els títols de les pàgines que estan en la vostra llista de seguiment es mostren a continuació.
-Per a eliminar algun element, marqueu el quadre del seu costat, i feu clic al botó «{{int:Watchlistedit-normal-submit}}». També podeu [[Special:Watchlist/raw|editar-ne la llista en text pla]].',
+Per a eliminar algun element, marqueu el quadre del seu costat, i feu clic al botó «{{int:Watchlistedit-normal-submit}}». També podeu [[Special:EditWatchlist/raw|editar-ne la llista en text pla]].',
 'watchlistedit-normal-submit'  => 'Elimina entrades',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 títol s'ha|$1 títols s'han}} eliminat de la vostra llista de seguiment:",
 'watchlistedit-raw-title'      => 'Edita la llista de seguiment crua',
@@ -3316,7 +3316,7 @@ Per a eliminar algun element, marqueu el quadre del seu costat, i feu clic al bo
 'watchlistedit-raw-explain'    => "Els títols de la vostra llista de seguiment es mostren a continuació, i poden modificar-se afegint-los o suprimint-los de la llista;
 un títol per línia.
 En acabar, feu clic a «{{int:Watchlistedit-raw-submit}}».
-També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
+També podeu [[Special:EditWatchlist|utilitzar l'editor estàndard]].",
 'watchlistedit-raw-titles'     => 'Títols:',
 'watchlistedit-raw-submit'     => 'Actualitza la llista de seguiment',
 'watchlistedit-raw-done'       => "S'ha actualitzat la vostra llista de seguiment.",

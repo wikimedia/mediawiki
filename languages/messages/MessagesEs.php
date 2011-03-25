@@ -3455,7 +3455,7 @@ Intenta la previsualización normal.',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
 'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
 Para eliminar un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
-También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
+También puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].",
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
@@ -3463,7 +3463,7 @@ También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
 'watchlistedit-raw-explain'    => 'Los títulos de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
 un título por línea.
 Cuando acabes, haz clic en "{{int:Watchlistedit-raw-submit}}".
-También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
+También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
 'watchlistedit-raw-done'       => 'Tu lista de seguimiento se ha actualizado.',

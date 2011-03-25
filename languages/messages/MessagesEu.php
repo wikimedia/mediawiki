@@ -3105,7 +3105,7 @@ $1',
 'watchlistedit-normal-legend'  => 'Jarraipen-zerrendatik izenburuak kendu',
 'watchlistedit-normal-explain' => 'Zure jarraipen zerrendako izenburuak azpian daude.
 Titulu bat kentzeko ondoan dagoen kutxa marka ezazu eta "{{int:Watchlistedit-normal-submit}}" gainean klik egin.
-Gainera [[Special:Watchlist/raw|zerrenda gordina aldatu]] dezakezu.',
+Gainera [[Special:EditWatchlist/raw|zerrenda gordina aldatu]] dezakezu.',
 'watchlistedit-normal-submit'  => 'Izenburuak kendu',
 'watchlistedit-normal-done'    => 'Zure jarraipen-zerrendatik {{PLURAL:$1|izenburu bat kendu da|$1 izenburu kendu dira}}.',
 'watchlistedit-raw-title'      => 'Jarraitze zerrenda gordina aldatu',
@@ -3113,7 +3113,7 @@ Gainera [[Special:Watchlist/raw|zerrenda gordina aldatu]] dezakezu.',
 'watchlistedit-raw-explain'    => 'Azpian zure jarraipen zerrendako izenburuak daude, eta aldatuak izan daitezke zerrendatik gehitu edo ezabatzean;
 lerroko izenburu bat.
 Bukatzean, klikatu "{{int:Watchlistedit-raw-submit}}" botoian.
-Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
+Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'watchlistedit-raw-titles'     => 'Izenburuak:',
 'watchlistedit-raw-submit'     => 'Jarraitze-zerrenda eguneratu',
 'watchlistedit-raw-done'       => 'Zure jarraipen zerrenda berritu da.',

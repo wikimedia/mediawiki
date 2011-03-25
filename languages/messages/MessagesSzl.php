@@ -2576,13 +2576,13 @@ Potwjerdź chęć wćepańo nazod tygo artikla.",
 'watchlistedit-normal-legend'  => 'Wyćep zajty s listy artikli na kere dowoš pozůr',
 'watchlistedit-normal-explain' => 'Půńižy moš lista artikli na kere dowoš pozůr.
 Coby wyćepać s ńij jako zajta,zaznač pole při ńij i naćiś knefel "Wyćep zaznačůne pozycyje".
-Možeš tyž skořistać ze [[Special:Watchlist/raw|tekstowygo edytora listy artikli na kere dowoš pozůr]].',
+Možeš tyž skořistać ze [[Special:EditWatchlist/raw|tekstowygo edytora listy artikli na kere dowoš pozůr]].',
 'watchlistedit-normal-submit'  => 'Wyćep s listy',
 'watchlistedit-normal-done'    => 'Z Twoi listy artikli na kere dowoš pozůr {{PLURAL:$1|zostoua wyćepano 1 zajta|zostouy wyćepane $1 zajty|zostouo wyćepanych $1 zajtůw}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy artikli na kere dowoš pozůr',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy artikli na kere dowoš pozůr',
 'watchlistedit-raw-explain'    => 'Půńižy moš lista artikli na kere dowoš pozůr. W koždej lińii znojdowo śe titel jydnygo artikla. Lista možeš sprowjać dodajůnc nowe zajty i wyćepujůnc te kere na ńij sům. Jak skůńčyš, naćiś knefel „Uaktualńij lista zajtůw na kere dowům pozůr”.
-Možeš tyž [[Special:Watchlist/edit|užyć standardowygo edytora]].',
+Možeš tyž [[Special:EditWatchlist|užyć standardowygo edytora]].',
 'watchlistedit-raw-titles'     => 'Title:',
 'watchlistedit-raw-submit'     => 'Uaktualńij lista',
 'watchlistedit-raw-done'       => 'Lista zajtůw na kere dowoš pozůr zostoua uaktualńůna',

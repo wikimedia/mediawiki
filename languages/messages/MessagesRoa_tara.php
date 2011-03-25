@@ -3194,7 +3194,7 @@ Prueve l\'andeprima normele.',
 'watchlistedit-normal-legend'  => "Live le titele da 'a liste de le pàggene condrollete",
 'watchlistedit-normal-explain' => "Le titele sus a 'a liste de le pàggene condrollate avènene fatte vedè aqquà sotte. <br />
 Pe luà 'nu titele, smarche 'a sckatele affianghe a jidde e cazze \"{{int:Watchlistedit-normal-submit}}\".<br />
-Tu puè pure [[Special:Watchlist/raw|cangià 'a liste a mane]].",
+Tu puè pure [[Special:EditWatchlist/raw|cangià 'a liste a mane]].",
 'watchlistedit-normal-submit'  => 'Live le titele',
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 titele ha state|$1 titele onne state}} scangellete da 'a liste de le pàggene condrollete toje:",
 'watchlistedit-raw-title'      => "Cange 'a liste de le pàggene condrollete grezze",
@@ -3202,7 +3202,7 @@ Tu puè pure [[Special:Watchlist/raw|cangià 'a liste a mane]].",
 'watchlistedit-raw-explain'    => "Le titele sus a liste de le pàggene condrollate avènene fatte vedè aqquà sotte e ponne essere cangiate aggiunggenne o luannele da 'a liste; <br />
 'nu titele pe linèe.<br />
 Quanne è spicciate, cazze sus a \"{{int:Watchlistedit-raw-submit}}\".<br />
-Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
+Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 'watchlistedit-raw-titles'     => 'Titele:',
 'watchlistedit-raw-submit'     => "Aggiorne 'a liste de le pàggene condrollete",
 'watchlistedit-raw-done'       => "'A liste de le pàggene condrollete ha state aggiornete.",

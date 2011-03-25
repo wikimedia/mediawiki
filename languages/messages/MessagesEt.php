@@ -3296,7 +3296,7 @@ Proovi tavalist eelvaadet.',
 'watchlistedit-normal-title'   => 'Jälgimisloendi redigeerimine',
 'watchlistedit-normal-legend'  => 'Jälgimisloendist lehtede eemaldamine',
 'watchlistedit-normal-explain' => 'Need lehed on sinu jälgimisloendis.
-Jälgimisloendist lehtekülgede eemaldamiseks tee vastava lehekülje ees olevasse kastikesse linnuke ja klõpsa nuppu "{{int:Watchlistedit-normal-submit}}". Saad ka jälgimisloendi [[Special:Watchlist/raw|algandmeid muuta]].',
+Jälgimisloendist lehtekülgede eemaldamiseks tee vastava lehekülje ees olevasse kastikesse linnuke ja klõpsa nuppu "{{int:Watchlistedit-normal-submit}}". Saad ka jälgimisloendi [[Special:EditWatchlist/raw|algandmeid muuta]].',
 'watchlistedit-normal-submit'  => 'Eemalda valitud lehed',
 'watchlistedit-normal-done'    => 'Jälgimisloendist eemaldati {{PLURAL:$1|üks lehekülg|$1 lehekülge}}:',
 'watchlistedit-raw-title'      => 'Jälgimisloendi algandmed',
@@ -3304,7 +3304,7 @@ Jälgimisloendist lehtekülgede eemaldamiseks tee vastava lehekülje ees olevass
 'watchlistedit-raw-explain'    => 'Sinu jälgimisloendis olevad leheküljed on kuvatud allpool asuvas tekstikastis, kus sa saad neid lisada või eemaldada;
 Iga pealkiri asub ise real.
 Kui sa oled lõpetanud, kliki nuppu "{{int:Watchlistedit-raw-submit}}".
-Sa võid [[Special:Watchlist/edit|kasutada ka harilikku tekstiredaktorit]].',
+Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'watchlistedit-raw-titles'     => 'Pealkirjad:',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Sinu jälgimisloend on uuendatud.',

@@ -3683,14 +3683,14 @@ $1',
 'watchlistedit-normal-legend'  => 'إزالة عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل.
 لإزالة عنوان، اضغط على الصندوق بجواره، واضغط "{{int:Watchlistedit-normal-submit}}".
-يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
+يمكنك أيضا [[Special:EditWatchlist/raw|تعديل القائمة الخام]].',
 'watchlistedit-normal-submit'  => 'أزل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'تعديل قائمة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة الخام',
 'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر.
 عند الانتهاء، اضغط "{{int:Watchlistedit-raw-submit}}".
-يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
+يمكنك أيضا [[Special:EditWatchlist|استخدام المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'حدث قائمة المراقبة',
 'watchlistedit-raw-done'       => 'قائمة مراقبتك تم تحديثها.',

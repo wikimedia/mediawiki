@@ -3366,14 +3366,14 @@ Poskusite normalni predogled.',
 'watchlistedit-normal-legend'  => 'Odstrani strani iz spiska nadzorov',
 'watchlistedit-normal-explain' => 'Strani na vašem spisku nadzorov so prikazane spodaj.
 Da odstranite stran, označite kvadratek poleg nje in kliknite »{{int:Watchlistedit-normal-submit}}«.
-Lahko tudi [[Special:Watchlist/raw|uredite gol spisek]].',
+Lahko tudi [[Special:EditWatchlist/raw|uredite gol spisek]].',
 'watchlistedit-normal-submit'  => 'Odstrani strani',
 'watchlistedit-normal-done'    => 'Iz vašega spiska nadzorov {{PLURAL:$1|je bila odstranjena $1 stran|sta bili odstranjeni $1 strani|so bile odstranjene $1 strani|je bilo odstranjenih $1 strani}}:',
 'watchlistedit-raw-title'      => 'Uredi gol spisek nadzorov',
 'watchlistedit-raw-legend'     => 'Uredi gol spisek nadzorov',
 'watchlistedit-raw-explain'    => 'Strani na vašem spisku nadzorov so prikazane spodaj in jih lahko urejate z dodajanjem in odstranjevanjem s seznama; vsak naslov je v svoji vrstici.
 Ko končate, kliknite »{{int:Watchlistedit-raw-submit}}«.
-Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
+Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'watchlistedit-raw-titles'     => 'Strani:',
 'watchlistedit-raw-submit'     => 'Posodobi spisek nadzorov',
 'watchlistedit-raw-done'       => 'Vaš spisek nadzorov je bil posodobljen.',

@@ -3382,7 +3382,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
 'watchlistedit-normal-explain' => 'Le titulos in tu observatorio es monstrate hic infra.
 Pro eliminar un titulo, marca le quadrato correspondente, e clicca "{{int:Watchlistedit-normal-submit}}".
-Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
+Tu pote etiam [[Special:EditWatchlist/raw|modificar le lista in forma crude]].',
 'watchlistedit-normal-submit'  => 'Eliminar titulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
 'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
@@ -3390,7 +3390,7 @@ Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
 'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio es monstrate hic infra, e pote esser modificate per adder e eliminar entratas del lista;
 un titulo per linea.
 Quando tu ha finite, clicca super "{{int:Watchlistedit-raw-submit}}".
-Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
+Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'watchlistedit-raw-titles'     => 'Titulos:',
 'watchlistedit-raw-submit'     => 'Actualisar observatorio',
 'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',

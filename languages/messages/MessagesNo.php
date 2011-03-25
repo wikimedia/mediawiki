@@ -3339,7 +3339,7 @@ Prøv vanlig forhåndsvisning.',
 'watchlistedit-normal-legend'  => 'Fjern titler fra overvåkninglisten',
 'watchlistedit-normal-explain' => 'Titler på overvåkningslisten din vises nedenfor.
 For å fjerne en tittel, merk av boksen ved siden av den og klikk på «{{int:Watchlistedit-normal-submit}}».
-Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslisten]].',
+Du kan også [[Special:EditWatchlist/raw|redigere den rå overvåkningslisten]].',
 'watchlistedit-normal-submit'  => 'Fjern titler',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Én tittel|$1 titler}} ble fjernet fra overvåkningslisten din:',
 'watchlistedit-raw-title'      => 'Rediger rå overvåkningsliste',
@@ -3347,7 +3347,7 @@ Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslisten]].',
 'watchlistedit-raw-explain'    => 'Titler på overvåkningslisten din vises nedenunder, og kan redigeres ved å legge til eller fjerne fra listen;
 én tittel per linje.
 Når du er ferdig, trykk «{{int:Watchlistedit-raw-submit}}».
-Du kan også [[Special:Watchlist/edit|bruke standardverktøyet]].',
+Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'watchlistedit-raw-titles'     => 'Titler:',
 'watchlistedit-raw-submit'     => 'Oppdater overvåkningsliste',
 'watchlistedit-raw-done'       => 'Overvåkningslisten din er oppdatert.',

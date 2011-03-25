@@ -3175,14 +3175,14 @@ Probeer normaal veurvertuin.',
 'watchlistedit-normal-legend'  => "Pazjena's ewegsjaffe van dien volglies",
 'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind.
 Klik op 't veerkentje d'rnaeve óm 'n pazjena eweg te sjaffe. Klik daonao op '{{int:Watchlistedit-normal-submit}}'.
-De kèns ouch [[Special:Watchlist/raw|de roew lies bewirke]].",
+De kèns ouch [[Special:EditWatchlist/raw|de roew lies bewirke]].",
 'watchlistedit-normal-submit'  => "Pazjena's ewegsjaffe",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} eweggesjaf van dien volglies:",
 'watchlistedit-raw-title'      => 'Roew volglies bewirke',
 'watchlistedit-raw-legend'     => 'Roew volglies bewirke',
 'watchlistedit-raw-explain'    => "Hiejónger sjtaon pazjena's op dien volglies. De kèns de lies bewirke door pazjena's eweg te sjaffe en d'rbie te doon. Ein pazjena per regel.
 Wens te vaerdig bis, klik dan op '{{int:Watchlistedit-raw-submit}}'.
-De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]].",
+De kèns ouch [[Special:EditWatchlist|'t sjtanderd bewirkingssjirm gebroeke]].",
 'watchlistedit-raw-titles'     => "Pazjena's:",
 'watchlistedit-raw-submit'     => 'Volglies biewirke',
 'watchlistedit-raw-done'       => 'Dien volglies is biegewirk.',

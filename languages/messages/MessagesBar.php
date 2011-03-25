@@ -1237,7 +1237,7 @@ Darauf foignde Links auf Seitn in da söiwn Zeun definian Ausnãhmen, in denen e
 'watchlistedit-noitems'        => 'Dei Beobachtungslistn is laar.',
 'watchlistedit-normal-title'   => 'Beobachtungslistn bearbatn',
 'watchlistedit-normal-legend'  => 'Eiträge vo da Beobachtungslistn wegnehma',
-'watchlistedit-normal-explain' => "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im  [[Special:Watchlist/raw|Listenformat beorweiten]].",
+'watchlistedit-normal-explain' => "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im  [[Special:EditWatchlist/raw|Listenformat beorweiten]].",
 'watchlistedit-normal-submit'  => 'Eiträge wegnehma',
 'watchlistedit-raw-titles'     => 'Eiträg:',
 

@@ -3166,14 +3166,14 @@ $1',
 'watchlistedit-normal-legend'  => 'వీక్షణ జాబితా నుండి శీర్షికలను తీసివెయ్యి',
 'watchlistedit-normal-explain' => 'మీ వీక్షణ జాబితాలోని శీర్షికలను ఈ క్రింద చూపించాం.
 ఏదైనా శీర్షికను తీసివేసేందుకు, దాని పక్కనున్న పెట్టెను చెక్ చేసి, "{{int:Watchlistedit-normal-submit}}"ని నొక్కండి.
-మీరు [[Special:Watchlist/raw|ముడి జాబితాను కూడా మార్చవచ్చు]].',
+మీరు [[Special:EditWatchlist/raw|ముడి జాబితాను కూడా మార్చవచ్చు]].',
 'watchlistedit-normal-submit'  => 'శీర్షికలను తీసివెయ్యి',
 'watchlistedit-normal-done'    => 'మీ వీక్షణ జాబితా నుండి {{PLURAL:$1|1 శీర్షికను|$1 శీర్షికలను}} తీసివేసాం:',
 'watchlistedit-raw-title'      => 'ముడి వీక్షణ జాబితాను మార్చు',
 'watchlistedit-raw-legend'     => 'ముడి వీక్షణ జాబితాను మార్చు',
 'watchlistedit-raw-explain'    => 'మీ వీక్షణ జాబితాలోని శీర్షికలను ఈ కింద చూపించాం. ఈ జాబితాలో ఉన్నవాటిని తీసివెయ్యడం గానీ కొత్తవాటిని చేర్చడం గానీ (వరుసకొకటి చొప్పున) చెయ్యవచ్చు.
 పూర్తయ్యాక, "{{int:Watchlistedit-raw-submit}}" అన్న బొత్తాన్ని నొక్కండి.
-మీరు [[Special:Watchlist/edit|మామూలు పాఠ్యకూర్పరిని కూడా వాడవచ్చు]].',
+మీరు [[Special:EditWatchlist|మామూలు పాఠ్యకూర్పరిని కూడా వాడవచ్చు]].',
 'watchlistedit-raw-titles'     => 'శీర్షికలు:',
 'watchlistedit-raw-submit'     => 'వీక్షణ జాబితాను తాజాకరించు',
 'watchlistedit-raw-done'       => 'మీ వీక్షణ జాబితాను తాజాకరించాం.',

@@ -2746,7 +2746,7 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'watchlistedit-normal-legend'  => 'Noņemt lapas (virsrakstus) no uzraugāmo rakstu saraksta',
 'watchlistedit-normal-explain' => 'Tavā uzraugāmo rakstu sarakstā esošās lapas ir redzamas zemāk.
 Lai noņemtu lapu, ieķeksē lodziņā pretī lapai un uzspied Noņemt lapas.
-Var arī izmainīt [[Special:Watchlist/raw|neapstrādātu sarakstu]] (viens liels teksta lauks).',
+Var arī izmainīt [[Special:EditWatchlist/raw|neapstrādātu sarakstu]] (viens liels teksta lauks).',
 'watchlistedit-normal-submit'  => 'Noņemt lapas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 lapa tika noņemta|$1 lapas tika noņemtas}} no uzraugāmo rakstu saraksta:',
 'watchlistedit-raw-title'      => 'Izmainīt uzraugāmo rakstu saraksta kodu',
@@ -2754,7 +2754,7 @@ Var arī izmainīt [[Special:Watchlist/raw|neapstrādātu sarakstu]] (viens liel
 'watchlistedit-raw-explain'    => 'Uzraugāmo rakstu sarakstā esošās lapas ir redzamas zemāk, un šo sarakstu var izmainīt lapas pievienojot vai izdzēšot no saraksta;
 katrai rindai te atbilst viena lapa.
 Tad, kad pabeigts, uzspied Atjaunot sarakstu.
-Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
+Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'watchlistedit-raw-titles'     => 'Lapas:',
 'watchlistedit-raw-submit'     => 'Atjaunot sarakstu',
 'watchlistedit-raw-done'       => 'Tavs uzraugāmo rakstu saraksts tika atjaunots.',

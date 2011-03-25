@@ -2840,7 +2840,7 @@ Osı betti qaýta bastawın naqtı tilegeniñizdi quptañız.",
 'watchlistedit-normal-legend'  => 'Baqılaw tiziminen taqırıp attarın alastaw',
 'watchlistedit-normal-explain' => 'Baqılaw tizimiñizdegi taqırıp attar tömende körsetiledi.
 Taqırıp atın alastaw üşin, büýir közge qusbelgi salıñız, jäne «Taqırıp attarın alasta» degendi nuqıñız.
-Tağı da [[{{#special:Watchlist}}/raw|qam tizimdi öñdeý]] alasız.',
+Tağı da [[Special:EditWatchlist/raw|qam tizimdi öñdeý]] alasız.',
 'watchlistedit-normal-submit'  => 'Taqırıp attarın alasta',
 'watchlistedit-normal-done'    => 'Baqılaw tizimiñizden $1 taqırıp atı alastaldı:',
 'watchlistedit-raw-title'      => 'Qam baqılaw tizimdi öñdew',
@@ -2848,7 +2848,7 @@ Tağı da [[{{#special:Watchlist}}/raw|qam tizimdi öñdeý]] alasız.',
 'watchlistedit-raw-explain'    => 'Baqılaw tizimiñizdegi taqırıp attarı tömende körsetiledi, jäne de tizmge üstep jäne tizmden alastap öñdelwi mümkin;
 jol saýın bir taqırıp atı bolw jön.
 Bitirgennen soñ «Baqılaw tizimdi jañartw» degendi nuqıñız.
-Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] alasız.',
+Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız.',
 'watchlistedit-raw-titles'     => 'Taqırıp attarı:',
 'watchlistedit-raw-submit'     => 'Baqılaw tizimdi jañartw',
 'watchlistedit-raw-done'       => 'Baqılaw tizimiñiz jañartıldı.',

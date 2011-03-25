@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dark Eagle
+ * @author Gleb Borisov
  * @author Jureits
  * @author Reedy
  */
@@ -332,6 +333,7 @@ n = nasvareigs lobuojums.',
 
 # Revision deletion
 'rev-delundel'               => 'ruodeit/nūglobuot',
+'rev-showdeleted'            => 'paruodeit',
 'revdelete-show-file-submit' => 'Nui',
 'revdelete-radio-set'        => 'Nui',
 'revdelete-radio-unset'      => 'Nā',
@@ -439,8 +441,8 @@ n = nasvareigs lobuojums.',
 'rclinks'                        => 'Paruodeit pādejuos $1 izmainis pādejūs $2 dīnu laikā.<br />$3',
 'diff'                           => 'izmainis',
 'hist'                           => 'viesture',
-'hide'                           => 'nūglobuot',
-'show'                           => 'Ruodeit',
+'hide'                           => 'Nūglobuot',
+'show'                           => 'Paruodeit',
 'minoreditletter'                => 'n',
 'newpageletter'                  => 'J',
 'boteditletter'                  => 'b',
@@ -503,9 +505,11 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 
 # Statistics
 'statistics'          => 'Statistika',
-'statistics-articles' => 'Rakstīņi',
+'statistics-articles' => 'Rakstīni',
 'statistics-pages'    => 'Puslopys',
 'statistics-files'    => 'Īsyuteiti faili',
+
+'withoutinterwiki-submit' => 'Paruodeit',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|baits|baiti|baitu}}',
@@ -539,6 +543,9 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 
 # Special:LinkSearch
 'linksearch' => 'Uorejuos saitys',
+
+# Special:ListUsers
+'listusers-submit' => 'Paruodeit',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Jaunūs lītuotuoju registrs',

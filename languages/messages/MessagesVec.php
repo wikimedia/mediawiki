@@ -3146,7 +3146,7 @@ Doparar l\'anteprima standard.',
 'watchlistedit-normal-legend'  => 'Elimina de pagine dai osservati speciali',
 'watchlistedit-normal-explain' => 'De seguito xe elencà tute le pagine tegnùe d\'ocio. 
 Par cavar una o più pagine da la lista, seleziona le casele relative e struca el boton "{{int:Watchlistedit-normal-submit}}". 
-Nota che se pol anca [[Special:Watchlist/raw|modificar la lista in formato testual]].',
+Nota che se pol anca [[Special:EditWatchlist/raw|modificar la lista in formato testual]].',
 'watchlistedit-normal-submit'  => 'Elimina pagine',
 'watchlistedit-normal-done'    => 'Da la lista dei osservati speciali xe stà eliminà {{PLURAL:$1|una pagina|$1 pagine}}:',
 'watchlistedit-raw-title'      => 'Modifica dei osservati speciali in forma testual',
@@ -3154,7 +3154,7 @@ Nota che se pol anca [[Special:Watchlist/raw|modificar la lista in formato testu
 'watchlistedit-raw-explain'    => "De seguito xe elencàe tute le pagine tegnùe d'ocio. 
 Par modificar la lista, zónteghe o càveghe i rispetivi titoli, uno par riga. 
 Na olta che the ghè finìo, struca el boton \"{{int:Watchlistedit-raw-submit}}\" in fondo all'elenco. 
-Nota che te pol anca [[Special:Watchlist/edit|modificar la lista con l'interfacia standard]].",
+Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia standard]].",
 'watchlistedit-raw-titles'     => 'Pagine:',
 'watchlistedit-raw-submit'     => 'Agiorna la lista',
 'watchlistedit-raw-done'       => 'La lista dei osservati speciali la xe stà agiornà.',

@@ -637,13 +637,13 @@ Bevestig dat je de pagina opnieuw wilt aanmaken.",
 'watchlistedit-noitems'        => 'Je volglijst bevat geen pagina’s.',
 'watchlistedit-normal-explain' => 'Hieronder worden de pagina’s op je volglijst weergegeven.
 Klik op het vierkantje ernaast en daarna op "{{int:Watchlistedit-normal-submit}}" om een pagina te verwijderen.
-Je kunt ook de [[Special:Watchlist/raw|ruwe lijst bewerken]].',
+Je kunt ook de [[Special:EditWatchlist/raw|ruwe lijst bewerken]].',
 'watchlistedit-normal-done'    => 'Er {{PLURAL:$1|is 1 pagina|zijn $1 pagina’s}} verwijderd van je volglijst:',
 'watchlistedit-raw-explain'    => 'Hieronder staan pagina’s op je volglijst.
 Je kunt de lijst bewerken door pagina’s te verwijderen en toe te voegen.
 Eén pagina per regel.
 Als je klaar bent, klik dan op "{{int:Watchlistedit-raw-submit}}".
-Je kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
+Je kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'watchlistedit-raw-done'       => 'Jr volglijst is bijgewerkt.',
 
 # Special:Version

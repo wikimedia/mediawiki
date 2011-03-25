@@ -3395,7 +3395,7 @@ Coba dengan pratayang normal.',
 'watchlistedit-normal-legend'  => 'Hapus judul dari daftar pantauan',
 'watchlistedit-normal-explain' => 'Judul pada daftar pantauan Anda ditampilkan di bawah ini.
 Untuk menghapus judul, berikan tanda cek pada kotak di sampingnya, dan klik "{{int:Watchlistedit-normal-submit}}".
-Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
+Anda juga dapat [[Special:EditWatchlist/raw|menyunting daftar mentahnya]].',
 'watchlistedit-normal-submit'  => 'Hapus judul',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|satu|$1}} judul telah dihapus dari daftar pantauan Anda:',
 'watchlistedit-raw-title'      => 'Sunting daftar pantauan mentah',
@@ -3403,7 +3403,7 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'watchlistedit-raw-explain'    => 'Judul pada daftar pantauan Anda ditampilkan di bawah ini, dan dapat disunting dengan menambahkan atau menghapusnya dari daftar;
 satu judul pada setiap barisnya.
 Setelah selesai, klik "{{int:Watchlistedit-raw-submit}}".
-Anda juga dapat [[Special:Watchlist/edit|menggunakan penyunting standar Anda]].',
+Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'watchlistedit-raw-titles'     => 'Judul:',
 'watchlistedit-raw-submit'     => 'Perbarui daftar pantauan',
 'watchlistedit-raw-done'       => 'Daftar pantauan Anda telah diperbarui.',

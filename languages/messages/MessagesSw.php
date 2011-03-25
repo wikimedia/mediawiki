@@ -2762,14 +2762,14 @@ Jaribu hakikisho la kawaida.',
 'watchlistedit-normal-legend'  => 'Kuondoa majina kwenye orodha ya maangalizi',
 'watchlistedit-normal-explain' => 'Majina kwenye orodha ya maangalizi yako yapo chini.
 Ili kuondoa jina, weka alama katika kisanduku chake, na bonyeza "{{int:Watchlistedit-normal-submit}}".
-Unaweza pia [[Special:Watchlist/raw|kuhariri orodha ya ghafi]].',
+Unaweza pia [[Special:EditWatchlist/raw|kuhariri orodha ya ghafi]].',
 'watchlistedit-normal-submit'  => 'Ondoa majina',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Jina 1 iliondolewa|Majina $1 yaliondolewa}} kutoka kwa orodha yako ya maangalizi:',
 'watchlistedit-raw-title'      => 'Kuhariri maangalizi ghafi',
 'watchlistedit-raw-legend'     => 'Kuhariri maangalizi ghafi',
 'watchlistedit-raw-explain'    => 'Majina ya kwenye ukurasa wako wa maangalizi yanaonekana hapo chini, na yanaweza kuharirika kwa kuongezea au hata kuondoa katika orodha; na liwe jina moja kwa mstari.
 Ukimaliza, bonyeza "{{int:Watchlistedit-raw-submit}}".
-Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
+Pia unaweza [[Special:EditWatchlist|kutumia kihariri cha kawaida]].',
 'watchlistedit-raw-titles'     => 'Majina:',
 'watchlistedit-raw-submit'     => 'Sasisha orodha ya maangalizi',
 'watchlistedit-raw-done'       => 'Orodha yako ya maangalizi imesasishwa.',

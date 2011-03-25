@@ -3201,7 +3201,7 @@ Spytaj normalny přehlad.',
 'watchlistedit-noitems'        => 'Twoje wobkedźbowanki su prózdne.',
 'watchlistedit-normal-title'   => 'Wobkedźbowanki wobdźěłać',
 'watchlistedit-normal-legend'  => 'Zapiski z wobkedźbowankow wotstronić',
-'watchlistedit-normal-explain' => 'Tu su zapiski z twojich wobkedźbowankow. Zo by zapisk wušmórnył, markěruj kašćik pódla njeho a klikń na {{int:Watchlistedit-normal-submit}}". Móžeš tež swoje wobkedźbowanki [[Special:Watchlist/raw|w lisćinowym formaće wobdźěłać]].',
+'watchlistedit-normal-explain' => 'Tu su zapiski z twojich wobkedźbowankow. Zo by zapisk wušmórnył, markěruj kašćik pódla njeho a klikń na {{int:Watchlistedit-normal-submit}}". Móžeš tež swoje wobkedźbowanki [[Special:EditWatchlist/raw|w lisćinowym formaće wobdźěłać]].',
 'watchlistedit-normal-submit'  => 'Zapiski wotstronić',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 zapisk bu|$1 zapiskaj buštej|$1 zapiski buchu|$1 zapiskow  buchu}} z twojich wobkedźbowankow {{PLURAL:$1|wotstronjeny|wotstronjenej|wotstronjene|wotstronjene}}:',
 'watchlistedit-raw-title'      => 'Wobkedźbowanki w lisćinowym formaće wobdźěłać',
@@ -3209,7 +3209,7 @@ Spytaj normalny přehlad.',
 'watchlistedit-raw-explain'    => 'Titule mjez twojimi wobkedźbowankach so deleka pokazuja, a dadźa so lisćinje přidać abo z njeje wotstronić;
 jedyn titul na linku.
 Hdyž sy hotowy, klikń na "{{int:Watchlistedit-raw-submit}}".
-Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wužiwać.',
+Móžeš tež [[Special:EditWatchlist|standardnu wobdźěłowansku stronu]] wužiwać.',
 'watchlistedit-raw-titles'     => 'Zapiski:',
 'watchlistedit-raw-submit'     => 'Wobkedźbowanki składować',
 'watchlistedit-raw-done'       => 'Twoje wobkedźbowanki buchu składowane.',

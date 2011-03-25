@@ -3416,14 +3416,14 @@ Probe coa vista previa normal.',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da lista de vixilancia',
 'watchlistedit-normal-explain' => 'Os títulos da súa lista de vixilancia aparecen a continuación.
 Para eliminar un título, escóllao na súa caixa de selección e prema en "{{int:Watchlistedit-normal-submit}}".
-Tamén pode [[Special:Watchlist/raw|editar a lista simple]].',
+Tamén pode [[Special:EditWatchlist/raw|editar a lista simple]].',
 'watchlistedit-normal-submit'  => 'Eliminar os títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}} da súa lista de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar a lista de vixilancia simple',
 'watchlistedit-raw-legend'     => 'Editar a lista de vixilancia simple',
 'watchlistedit-raw-explain'    => 'Os títulos da súa lista de vixilancia aparecen a continuación. Pódense editar engadíndoos ou retirándoos da lista; un título por liña.
 Ao rematar, prema en "{{int:Watchlistedit-raw-submit}}".
-Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
+Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
 'watchlistedit-raw-submit'     => 'Actualizar a lista de vixilancia',
 'watchlistedit-raw-done'       => 'Actualizouse a súa lista de vixilancia.',

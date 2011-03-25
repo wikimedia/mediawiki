@@ -2688,7 +2688,7 @@ Bāndais jāukun pirmādiran.',
 'watchlistedit-normal-legend'  => 'Āupausinais tītelins iz listin stēisan nadirītan',
 'watchlistedit-normal-explain' => 'Zemmais ast listi stēisan pāusan nadirītan prō tin.
 Kai āupausinlai nadirītan pāusan iz listin, ebzentlis laūkan pagār prei tītelin be gnetteis "Āupausinais ebzentlitans".
-Tū mazzi dīgi tērpautun [[Special:Watchlist/raw|nadirītan listis tekstiskan pagaptin]].',
+Tū mazzi dīgi tērpautun [[Special:EditWatchlist/raw|nadirītan listis tekstiskan pagaptin]].',
 'watchlistedit-normal-submit'  => 'Āupausinais tītelins',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 tītels|$1 tītelai}} pastāi āupausintan iz twajjan listin stēisan nadirītan:',
 'watchlistedit-raw-title'      => 'Redigīs listis appun sen tekstas ēnrankin',
@@ -2696,7 +2696,7 @@ Tū mazzi dīgi tērpautun [[Special:Watchlist/raw|nadirītan listis tekstiskan 
 'watchlistedit-raw-explain'    => 'Zemmais ast waidīntan tītelai en twajjan nadirītan listin. Listi mazzi būtwei redigītan preidāntei be āupausintei tītelins;
 aīnan tītelin per rīndan.
 Wanginnantei, gnetteis "Etnāuneis listin".
-Tu mazzi dīgi [[Special:Watchlist/edit|tērpautun stāndardiskan editōran]].',
+Tu mazzi dīgi [[Special:EditWatchlist|tērpautun stāndardiskan editōran]].',
 'watchlistedit-raw-titles'     => 'Nadirītai pāusai',
 'watchlistedit-raw-submit'     => 'Etnāuninais listin stēisan nadirītan',
 'watchlistedit-raw-done'       => 'Twajā nadirītan listi pastāi etnāunintan.',

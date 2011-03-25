@@ -3176,14 +3176,14 @@ Pokušajte normalni pregled.',
 'watchlistedit-normal-legend'  => 'Ukloni naslove iz spiska praćenja',
 'watchlistedit-normal-explain' => 'Naslovi na Vašem spisku praćenja su prikazani ispod.
 Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite "{{int:Watchlistedit-normal-submit}}".
-Također možete [[Special:Watchlist/raw|napredno urediti spisak]].',
+Također možete [[Special:EditWatchlist/raw|napredno urediti spisak]].',
 'watchlistedit-normal-submit'  => 'Ukloni naslove',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 naslov|$1 naslova}} je uklonjeno iz Vašeg spiska praćenja:',
 'watchlistedit-raw-title'      => 'Napredno uređivanje spiska praćenja',
 'watchlistedit-raw-legend'     => 'Napredno uređivanje spiska praćenja',
 'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanjem ili brisanjem sa spiska; jedan naslov u svakom redu.
 Kada završite, kliknite "{{int:Watchlistedit-raw-submit}}".
-Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
+Također možete [[Special:EditWatchlist|koristiti standardni uređivač]].',
 'watchlistedit-raw-titles'     => 'Naslovi:',
 'watchlistedit-raw-submit'     => 'Ažuriraj spisak praćenja',
 'watchlistedit-raw-done'       => 'Vaš spisak praćenja je ažuriran.',

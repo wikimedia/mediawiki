@@ -3462,14 +3462,14 @@ Opravdu si přejete znovu tuto stránku založit?',
 'watchlistedit-normal-legend'  => 'Odstranění položek ze seznamu sledovaných stránek',
 'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže.
 Stránku můžete ze seznamu odstranit tak, že zaškrtnete její políčko a kliknete na tlačítko „{{int:Watchlistedit-normal-submit}}“.
-Také můžete [[Special:Watchlist/raw|editovat seznam v textové podobě]].',
+Také můžete [[Special:EditWatchlist/raw|editovat seznam v textové podobě]].',
 'watchlistedit-normal-submit'  => 'Odstranit položky',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Byla odstraněna 1 položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}} z Vašeho seznamu sledovaných stránek:',
 'watchlistedit-raw-title'      => 'Textový režim editace seznamu',
 'watchlistedit-raw-legend'     => 'Editace textového souboru sledovaných stránek',
 'watchlistedit-raw-explain'    => 'Položky na vašem seznamu sledovaných stránek jsou zobrazeny níže. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka.
 Pro uložení změn stiskněte tlačítko „{{int:Watchlistedit-raw-submit}}“.
-Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve standardním editoru]].',
+Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve standardním editoru]].',
 'watchlistedit-raw-titles'     => 'Položky:',
 'watchlistedit-raw-submit'     => 'Aktualizovat seznam',
 'watchlistedit-raw-done'       => 'Seznam vašich sledovaných stránek byl aktualizován.',
