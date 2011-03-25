@@ -285,6 +285,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28226) prop=extlinks&eloffset should be an integer
 * (bug 28070) Fix watchlist RSS for databases that store timestamps in a 
   real timestamp field.
+* API upload errors may now return the parameter that needs to be changed and
+  a sessionkey to fix the error.
   
 === Languages updated in 1.18 ===
 
