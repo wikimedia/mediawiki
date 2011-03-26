@@ -827,7 +827,7 @@ abstract class Skin extends Linker {
 
 		if ( $wgShowDebug ) {
 			$listInternals = $this->formatDebugHTML( $out->mDebugtext );
-			return "\n<hr />\n<strong>Debug data:</strong><ul style=\"font-family:'Courier New',monospace;\" id=\"mw-debug-html\">" .
+			return "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
 				$listInternals . "</ul>\n";
 		}
 
@@ -874,7 +874,7 @@ abstract class Skin extends Linker {
 			} else {
 				$ret .= str_repeat( "<ul><li>\n", $diff );
 			}
-			$ret .= $display . "\n";
+			$ret .= "<tt>$display</tt>\n";
 
 			$curIdent = $ident;
 		}
