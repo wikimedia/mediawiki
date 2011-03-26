@@ -155,7 +155,7 @@ class SpecialPage {
 		# Recent changes and logs
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Log'                       => 'SpecialLog',
-		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
+		'Watchlist'                 => 'SpecialWatchlist',
 		'Newpages'                  => 'SpecialNewpages',
 		'Recentchanges'             => 'SpecialRecentchanges',
 		'Recentchangeslinked'       => 'SpecialRecentchangeslinked',
