@@ -1534,9 +1534,9 @@ $wgObjectCaches = array(
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'table' => 'objectcache' ),
 	CACHE_DBA => array( 'class' => 'DBABagOStuff' ),
 
-	CACHE_ANYTHING => array( 'factory' => array( 'ObjectCache', 'newAnything' ) ),
-	CACHE_ACCEL => array( 'factory' => array( 'ObjectCache', 'newAccelerator' ) ),
-	CACHE_MEMCACHED => array( 'factory' => array( 'ObjectCache', 'newMemcached' ) ),
+	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
+	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
+	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached' ),
 
 	'eaccelerator' => array( 'class' => 'eAccelBagOStuff' ),
 	'apc' => array( 'class' => 'APCBagOStuff' ),
