@@ -125,7 +125,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$file = array();
 			$file['name'] = $row->fa_name;
-			self::addTitleInfo( $file, Title::makeTitle( NS_FILE, $row->fa_name ) ); 
+			$title = Title::makeTitle( NS_FILE, $row->fa_name );
+			self::addTitleInfo( $file, $title );
 
 			if ( $fld_sha1 ) {
 				$file['sha1'] = wfBaseConvert( LocalRepo::getHashFromKey( $row->fa_storage_key ), 36, 16, 40 );
@@ -152,7 +153,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['description'] = $row->fa_description;
 				if ( isset( $prop['parseddescription'] ) ) {
 					$file['parseddescription'] = $wgUser->getSkin()->formatComment(
-						$row->fa_description, $row->fa_name );
+						$row->fa_description, $title );
 				}
 			}
 			if ( $fld_metadata ) {
