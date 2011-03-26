@@ -21,15 +21,23 @@
  * @ingroup SpecialPage
  */
 
-function wfSpecialListfiles( $par = null ) {
-	global $wgOut;
+class SpecialListFiles extends SpecialPage {
 
-	$pager = new ImageListPager( $par );
+	public function __construct(){
+		parent::__construct( 'Listfiles' );
+	}
 
-	$limit = $pager->getForm();
-	$body = $pager->getBody();
-	$nav = $pager->getNavigationBar();
-	$wgOut->addHTML( "$limit<br />\n$body<br />\n$nav" );
+	public function execute( $par ){
+		global $wgOut;
+		$this->setHeaders();
+
+		$pager = new ImageListPager( $par );
+
+		$limit = $pager->getForm();
+		$body = $pager->getBody();
+		$nav = $pager->getNavigationBar();
+		$wgOut->addHTML( "$limit<br />\n$body<br />\n$nav" );
+	}
 }
 
 /**
