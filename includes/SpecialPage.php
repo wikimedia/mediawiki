@@ -162,7 +162,7 @@ class SpecialPage {
 		'Tags'                      => 'SpecialTags',
 
 		# Media reports and uploads
-		'Listfiles'                 => array( 'SpecialPage', 'Listfiles' ),
+		'Listfiles'                 => 'SpecialListFiles',
 		'Filepath'                  => 'SpecialFilepath',
 		'MIMEsearch'                => 'MIMEsearchPage',
 		'FileDuplicateSearch'       => 'FileDuplicateSearchPage',
