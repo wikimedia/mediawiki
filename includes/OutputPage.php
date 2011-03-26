@@ -5,16 +5,16 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /**
  * This class should be covered by a general architecture document which does
- * not exist as of january 2011.  This is one of the Core class and should
+ * not exist as of January 2011.  This is one of the Core classes and should
  * be read at least once by any new developers.
  *
  * This class is used to prepare the final rendering. A skin is then
  * applied to the output parameters (links, javascript, html, categories ...).
  * 
- * Another class (fixme) handle sending the whole page to the client.
+ * Another class (fixme) handles sending the whole page to the client.
  * 
  * Some comments comes from a pairing session between Zak Greant and Ashar Voultoiz
- * in november 2010.
+ * in November 2010.
  *
  * @todo document
  */
@@ -37,9 +37,9 @@ class OutputPage {
 	var $mBodytext = '';
 
 	/**
-	 * Holds the debug lines that will be outputted as comments in page source if
+	 * Holds the debug lines that will be outputt as comments in page source if
 	 * $wgDebugComments is enabled. See also $wgShowDebug.
-	 * TODO: make a getter method for this
+	 * TODO: make a better method for this
 	 */
 	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
@@ -68,7 +68,7 @@ class OutputPage {
 
 	/**
 	 * mLastModified and mEtag are used for sending cache control.
-	 * The whole caching system should probably be moved in its own class.
+	 * The whole caching system should probably be moved into its own class.
 	 */
 	var $mLastModified = '';
 
@@ -76,8 +76,8 @@ class OutputPage {
 	 * Should be private. No getter but used in sendCacheControl();
 	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
 	 * as a unique identifier for the content. It is later used by the client
-	 * to compare its cache version with the server version. Client sends
-	 * headers If-Match and If-None-Match containing its local cache ETAG value.
+	 * to compare its cached version with the server version. Client sends
+	 * headers If-Match and If-None-Match containing its locally cached ETAG value.
 	 *
 	 * To get more information, you will have to look at HTTP1/1 protocols which
 	 * is properly described in RFC 2616 : http://tools.ietf.org/html/rfc2616
