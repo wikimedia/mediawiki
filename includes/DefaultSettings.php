@@ -5320,7 +5320,9 @@ $wgDisabledActions = array();
 
 /**
  * Disable redirects to special pages and interwiki redirects, which use a 302
- * and have no "redirected from" link.
+ * and have no "redirected from" link. Note this is only for articles with #Redirect
+ * in them. URL's containing a local interwiki prefix (or a non-canonical special
+ * page name) are still hard redirected regardless of this setting.
  */
 $wgDisableHardRedirects = false;
 
