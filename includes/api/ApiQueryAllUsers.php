@@ -216,23 +216,26 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			// Add user's group info
-			if ( $fld_groups && !is_null( $row->ug_group2 ) ) {
-				if ( !isset( $lastUserData['groups'] ) ) {
-					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
-				}
-
-				$lastUserData['groups'][] = $row->ug_group2;
-				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
-			}
-
 			if ( $fld_groups ) {
 				if ( !isset( $lastUserData['groups'] ) ) {
 					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
 				}
+
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['groups'][] = $row->ug_group2;
 				}
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
+			}
+
+			if ( $fld_rights ) {
+				if ( !isset( $lastUserData['rights'] ) ) {
+					$lastUserData['rights'] =  User::getGroupPermissions( User::getImplicitGroups() );
+				}
+				if ( !is_null( $row->ug_group2 ) ) {
+					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
+					                                        User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
+				}
+				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
 			}
 		}
 
