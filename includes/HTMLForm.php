@@ -1264,7 +1264,7 @@ class HTMLCheckField extends HTMLFormField {
 		}
 
 		// GetCheck won't work like we want for checks.
-		if ( $request->getCheck( 'wpEditToken' ) ) {
+		if ( $request->getCheck( 'wpEditToken' ) || $this->mParent->getMethod() != 'post' ) {
 			// XOR has the following truth table, which is what we want
 			// INVERT VALUE | OUTPUT
 			// true   true  | false
