@@ -192,7 +192,8 @@ class MediaWiki {
 			}
 			/* Check for a redirect loop */
 			if( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
-				$output->redirect( $url );
+				// 301 so google et al report the target as the actual url.
+				$output->redirect( $url, 301 );
 			} else {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				$output->setTitle( $title ); // bug 21456
