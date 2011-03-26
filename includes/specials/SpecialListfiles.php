@@ -30,6 +30,7 @@ class SpecialListFiles extends SpecialPage {
 	public function execute( $par ){
 		global $wgOut;
 		$this->setHeaders();
+		$this->outputHeader();
 
 		$pager = new ImageListPager( $par );
 

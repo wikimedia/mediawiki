@@ -27,8 +27,10 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 
 	public function execute( $par ){
-		global $wgOut, $wgLang;
+		global $wgOut;
+
 		$this->setHeaders();
+		$this->outputHeader();
 
 		$pager = new NewFilesPager( $par );
 
