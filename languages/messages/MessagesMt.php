@@ -880,7 +880,7 @@ Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special
 '''Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' pprova. Jekk tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",
 'token_suffix_mismatch'            => "'''Il-modifika tiegħek ma ġietx aċċettata minħabba li klijent tiegħek tertaq l-karratri tal-ortografija fit-token tal-modifika.
 Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.'''",
-'editing'                          => 'Qiegħed jiġi modifikat l-artiklu $1',
+'editing'                          => "Modifika ta' $1",
 'editingsection'                   => "Modifika ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict'                     => "Kunflitt t'editjar: $1",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anton008
  * @author Brest
  * @author Dalibor Bosits
  * @author Demicx
@@ -2470,6 +2471,7 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'unblocked-id'                    => 'Blok $1 je uklonjen',
 'ipblocklist'                     => 'Popis blokiranih IP adresa i suradničkih računa',
 'ipblocklist-legend'              => 'Pronađi blokiranog suradnika',
+'blocklist-target'                => 'Cilj',
 'ipblocklist-submit'              => 'Traži',
 'ipblocklist-localblock'          => 'Lokalno blokiranje',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Ostalo blokiranje|Ostala blokiranja}}',

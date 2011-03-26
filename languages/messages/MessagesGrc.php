@@ -16,6 +16,7 @@
  * @author Omnipaedista
  * @author Reedy
  * @author SPQRobin
+ * @author Trixt
  * @author Yannos
  * @author ZaDiak
  */

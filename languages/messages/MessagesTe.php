@@ -2298,6 +2298,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'blocklist-userblocks'            => 'ఖాతా నిరోధాలను దాచు',
 'blocklist-tempblocks'            => 'తాత్కాలిక నిరోధాలను దాచు',
 'blocklist-timestamp'             => 'కాలముద్ర',
+'blocklist-params'                => 'నిరోధపు పరామితులు',
 'blocklist-reason'                => 'కారణం',
 'ipblocklist-submit'              => 'వెతుకు',
 'ipblocklist-localblock'          => 'స్థానిక నిరోధం',
@@ -2895,6 +2896,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS ప్రదేశం యొక్క పేరు',
 'exif-gpsdatestamp'                => 'GPS తేదీ',
 'exif-gpsdifferential'             => 'GPS తేడా సవరణ',
+'exif-objectname'                  => 'పొట్టి శీర్షిక',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',

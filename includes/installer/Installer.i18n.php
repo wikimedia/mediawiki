@@ -535,7 +535,7 @@ $messages['qqq'] = array(
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
 	'config-information' => '{{Identical|Information}}',
-	'config-localsettings-cli-upgrade' => 'Do not translate the <code>LocalSettings.php</code> and the <code>--upgrade=yes</code> parts.',
+	'config-localsettings-cli-upgrade' => 'Do not translate the <code>LocalSettings.php</code> and the <code>update.php</code> parts.',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
@@ -2163,7 +2163,7 @@ $messages['de'] = array(
 Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.
 Der Parameterwert befindet sich in der Datei LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
-Um die vorhandene Installation aktualisieren zu können, muss die Option <code>--upgrade=yes</code> angegeben werden.',
+Um die vorhandene Installation zu aktualisieren, muss die Datei <code>update.php</code> ausgeführt werden.',
 	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
 	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
 	'config-upgrade-key-missing' => 'Eine MediaWiki-Installation wurde gefunden.
@@ -2295,8 +2295,9 @@ Der Installationsvorgang wurde daher abgebrochen.",
 Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
 	'config-brokenlibxml' => 'Das System nutzt eine Kombination aus PHP- und libxml2-Versionen, die fehleranfällig ist und versteckte Datenfehler bei MediaWiki und anderen Webanwendungen verursachen kann.
 PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder später aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([http://bugs.php.net/bug.php?id=45996 siehe hierzu die Fehlermeldung bei PHP]).',
-	'config-using531' => 'PHP $1 ist nicht mit MediaWiki kompatibel. Grund ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
-PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([http://bugs.php.net/bug.php?id=50394 siehe hierzu die Fehlermeldung bei PHP]).',
+	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
+PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu beheben.
+Die Installation wurde abgebrochen.',
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -3714,7 +3715,7 @@ $messages['gl'] = array(
 Para actualizar esta instalación, introduza o valor de <code>$wgUpgradeKey</code> na caixa.
 Pode atopalo en LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Detectouse un ficheiro LocalSettings.php.
-Para actualizar esta instalación, utilice a opción --upgrade=yes.',
+Para actualizar esta instalación, execute update.php',
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'A clave dada é incorrecta',
 	'config-upgrade-key-missing' => 'Detectouse unha instalación existente de MediaWiki.
@@ -3849,7 +3850,7 @@ Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas
 Actualice o sistema á versión 5.2.9 ou posterior do PHP e á 2.7.3 ou posterior de libxml2 ([http://bugs.php.net/bug.php?id=45996 erro presentado co PHP]).
 Instalación abortada.',
 	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
-Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema ([http://bugs.php.net/bug.php?id=50394 erro presentado co PHP]).
+Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema.
 Instalación abortada.',
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
@@ -3867,6 +3868,11 @@ Non debe conter espazos.
 
 Se está usando un aloxamento web compartido, o seu provedor de hospedaxe daralle un nome específico para a base de datos ou deixaralle crear unha a través do panel de control.',
 	'config-db-name-oracle' => 'Esquema da base de datos:',
+	'config-db-account-oracle-warn' => 'Existen tres escenarios soportados para a instalación de Oracle como fin da base de datos:
+
+Se quere crear unha conta para a base de datos como parte do proceso de instalación, proporcione unha conta co papel SYSDBA e especifique as credenciais desexadas para a conta; senón pode crear a conta manualmente e dar só esa conta (se ten os permisos necesarios para crear os obxectos do esquema) ou fornecer dous contas diferentes, unha con privilexios de creación e outra restrinxida para o acceso á web.
+
+A escritura para crear unha conta cos privilexios necesarios atópase no directorio "maintenance/oracle/" desta instalación. Teña en conta que o emprego de contas restrinxidas desactivará todas as operacións de mantemento da conta predeterminada.',
 	'config-db-install-account' => 'Conta de usuario para a instalación',
 	'config-db-username' => 'Nome de usuario da base de datos:',
 	'config-db-password' => 'Contrasinal da base de datos:',
@@ -4334,7 +4340,7 @@ $messages['he'] = array(
 כדי לשדרג את ההתקנה הזאת, נא להקליד את הערך של <code>$wgUpgradeKey</code> בתיבה להלן.
 אפשר למצוא אותו בקובץ LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'זוהה קובץ LocalSettings.php.
-כדי לשדרג את ההתקנה הזאת, תנו את האופציה <span dir="ltr">--upgrade=yes</span>.',
+כדי לשדרג את ההתקנה הזאת, הריצו את update.php ולא את הקובץ הזה.',
 	'config-localsettings-key' => 'מפתח השדרוג:',
 	'config-localsettings-badkey' => 'המפתח שהקלדתם שגוי',
 	'config-upgrade-key-missing' => 'זוהתה התקנה קיימת של מדיה־ויקי.
@@ -4837,7 +4843,7 @@ $messages['hsb'] = array(
 Zo by tutu instalaciju aktualizował, zapodaj prošu hódnotu za parameter <code>$wgUpgradeKey</code> do slědowaceho pola.
 Namakaš tón parameter w dataji LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Dataja LocalSettings.php bu wotkryta.
-Zo by tutu instalaciju aktualizował, podaj prošu opciju <code>--upgrade=yes</code>.',
+Zo by tutu instalaciju aktualizował, wuwjedźće update.php',
 	'config-localsettings-key' => 'Aktualizaciski kluč:',
 	'config-localsettings-badkey' => 'Kluč, kotryž sy podał, je wopak',
 	'config-upgrade-key-missing' => 'Eksistowaca instalacija MediaWiki je so wotkryła.
@@ -5419,7 +5425,7 @@ $messages['ia'] = array(
 Pro actualisar iste installation, per favor entra le valor de <code>$wgUpgradeKey</code> in le quadro hic infra.
 Iste se trova in LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Un file LocalSettings.php file ha essite detegite.
-Pro actualisar iste installation, per favor da le option --upgrade=yes.',
+Pro actualisar iste installation, per favor executa upgrade.php.',
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-upgrade-key-missing' => 'Un installation existente de MediaWiki ha essite detegite.
@@ -5553,8 +5559,8 @@ Ben que MediaWiki verifica tote le files incargate contra le menacias de securit
 	'config-brokenlibxml' => 'Vostre systema ha un combination de versiones de PHP e libxml2 que es defectuose e pote causar corruption celate de datos in MediaWiki e altere applicationes web.
 Actualisa a PHP 5.2.9 o plus recente e libxml2 2.7.3 o plus recente ([http://bugs.php.net/bug.php?id=45996 problema reportate presso PHP]).
 Installation abortate.',
-	'config-using531' => 'PHP $1 non es compatibile con MediaWiki a causa de un defecto involvente parametros de referentia a <code>__call()</code>.
-Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto ([http://bugs.php.net/bug.php?id=50394 problema reportate presso PHP]).
+	'config-using531' => 'MediaWiki non pote esser usate con PHP $1 a causa de un defecto concernente parametros de referentia a <code>__call()</code>.
+Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto.
 Installation abortate.',
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
@@ -7605,8 +7611,8 @@ $messages['mk'] = array(
 	'config-localsettings-upgrade' => 'Востановена е податотека <code>LocalSettings.php</code>.
 За да ја надградите инсталцијава, внесете ја вредноста на <code>$wgUpgradeKey</code> во полето подолу.
 Тоа е го најдете во LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Востановена е податотеката LocalSettings.php.
-За да ја надградите инсталацијата, задајте ја можноста --upgrade=yes.',
+	'config-localsettings-cli-upgrade' => 'Утврдено е присуството на податотеката „LocalSettings.php“.
+За да ја надградите инсталацијата, пуштете ја „update.php“ наместо горенаведената.',
 	'config-localsettings-key' => 'Надградбен клуч:',
 	'config-localsettings-badkey' => 'Клучот што го наведовте е погрешен',
 	'config-upgrade-key-missing' => 'Востановена е постоечка инсталација на МедијаВики.
@@ -7740,8 +7746,8 @@ $1
 Иако МедијаВики врши безбедносни проверки на сите подигнати податотеки, ве советуваме [http://www.mediawiki.org/wiki/Manual:Security#Upload_security да ја затворите оваа безбедносна дупка] пред да овозможите подигање.",
 	'config-brokenlibxml' => 'Вашиот систем има комбинација од PHP и libxml2 верзии и затоа има грешки и може да предизвика скриено расипување на податоците кај МедијаВики и други мрежни програми.
 Надградете го на PHP 5.2.9 и libxml2 2.7.3 или нивни понови верзии! ПРЕКИНУВАМ ([http://bugs.php.net/bug.php?id=45996 грешката е заведена во PHP]).',
-	'config-using531' => 'PHP $1 е несоодветна за МедијаВики заради грешка кај упатните параметри за <code>__call()</code>.
-За да го решите проблемот, надградете го на PHP 5.3.2 или понова верзија, или пак користете PHP 5.3.0. ПРЕКИНУВАМ ([http://bugs.php.net/bug.php?id=50394 грешката е заведена во PHP])',
+	'config-using531' => 'МедијаВики не може да се користи со PHP $1 поради грешка кај упатните параметри за <code>__call()</code>.
+За да го решите проблемот, надградете го на PHP 5.3.2 или понова верзија, или пак користете го постариот PHP 5.3.0.',
 	'config-db-type' => 'Тип на база:',
 	'config-db-host' => 'Домаќин на базата:',
 	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот илиу IP-адресата.
@@ -8287,7 +8293,7 @@ $messages['nl'] = array(
 Voer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om deze installatie bij te werken.
 De instelling is terug te vinden in LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Het bestand LocalSettings.php is al aanwezig.
-Geef de optie "--upgrade=yes" mee om deze installatie bij te werken.',
+Voer update.php uit om deze installatie bij te werken.',
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
 	'config-upgrade-key-missing' => 'Er is een bestaande installatie van MediaWiki aangetroffen.
@@ -8422,7 +8428,8 @@ Hoewel MediaWiki alle toegevoegde bestanden  controleert op bedreigingen, is het
 	'config-brokenlibxml' => 'Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.
 Upgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger! De installatie wordt afgebroken ([http://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).',
 	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
-Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen. De installatie wordt afgebroken ([http://bugs.php.net/bug.php?id=50394 bij PHP gerapporteerde fout]).',
+Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen.
+De installatie wordt afgebroken.',
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.
@@ -10667,7 +10674,7 @@ $messages['ru'] = array(
 Для обновления этой установки, пожалуйста, введите значение <code>$wgUpgradeKey</code>.
 Его можно найти в файле LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Обнаружен файл LocalSettings.php.
-Для обновления этой установки, пожалуйста, укажите параметр --upgrade=yes',
+Для обновления этой установки, пожалуйста, запустите update.php',
 	'config-localsettings-key' => 'Ключ обновления:',
 	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
 	'config-upgrade-key-missing' => 'Обнаружена существующая установленная копия MediaWiki.
@@ -10800,7 +10807,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 Обновите PHP до версии 5.2.9 или старше и libxml2 до 2.7.3 или старше ([http://bugs.php.net/bug.php?id=45996 сведения об ошибке]). 
 Установка прервана.',
 	'config-using531' => 'PHP $1 не совместим с MediaWiki из-за ошибки с параметрами-ссылками при вызовах <code>__call()</code>.
-Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы ([http://bugs.php.net/bug.php?id=50394 см. баг-трекер PHP]).
+Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы.
 Установка прервана.',
 	'config-db-type' => 'Тип базы данных:',
 	'config-db-host' => 'Хост базы данных:',
@@ -11410,6 +11417,7 @@ Hindi papaganahin ang pagkakagyat ng larawan.',
 Pinigilan ang pag-iinstala.",
 	'config-db-type' => 'Uri ng kalipunan ng datos:',
 	'config-db-host' => 'Tagapagpasinaya ng kalipunan ng datos:',
+	'config-db-host-oracle' => 'TNS ng kalipunan ng dato:',
 	'config-db-wiki-settings' => 'Kilalanin ang wiking ito',
 	'config-db-name' => 'Pangalan ng kalipunan ng dato:',
 	'config-db-install-account' => 'Akawnt ng tagagamit para sa pagluluklok',
