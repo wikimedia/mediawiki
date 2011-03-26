@@ -666,6 +666,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialLog' => 'includes/specials/SpecialLog.php',
 	'SpecialMergeHistory' => 'includes/specials/SpecialMergeHistory.php',
 	'SpecialMostlinkedtemplates' => 'includes/specials/SpecialMostlinkedtemplates.php',
+	'SpecialNewFiles' => 'includes/specials/SpecialNewimages.php',
 	'SpecialPreferences' => 'includes/specials/SpecialPreferences.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
 	'SpecialProtectedpages' => 'includes/specials/SpecialProtectedpages.php',

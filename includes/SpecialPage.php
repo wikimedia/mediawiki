@@ -153,7 +153,7 @@ class SpecialPage {
 		'EditWatchlist'             => 'SpecialEditWatchlist',
 
 		# Recent changes and logs
-		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
+		'Newimages'                 => 'SpecialNewFiles',
 		'Log'                       => 'SpecialLog',
 		'Watchlist'                 => 'SpecialWatchlist',
 		'Newpages'                  => 'SpecialNewpages',
