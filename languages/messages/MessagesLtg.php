@@ -35,6 +35,9 @@ $namespaceNames = array(
 $fallback = 'lv';
 
 $messages = array(
+# User preference toggles
+'tog-showhiddencats' => 'Ruodeit nūglobuotys kategorejis',
+
 'underline-always' => 'Vysod',
 'underline-never'  => 'Nikod',
 
@@ -58,13 +61,13 @@ $messages = array(
 'march'         => 'Pavasara mieness',
 'april'         => 'Sulu mieness',
 'may_long'      => 'Lopu mieness',
-'june'          => 'Juņs / Vosorys mieness',
-'july'          => 'Juļs / Sīna mieness',
-'august'        => 'Augusts / Labeibys mieness',
-'september'     => 'Seņtebrs / Rudiņa mieness',
-'october'       => 'Oktobrs / Leita mieness',
-'november'      => 'Nojabrs / Solnys mieness',
-'december'      => 'Dekabrs / Zīmys mieness',
+'june'          => 'Vosorys mieness',
+'july'          => 'Sīna mieness',
+'august'        => 'Labeibys mieness',
+'september'     => 'Rudiņa mieness',
+'october'       => 'Leita mieness',
+'november'      => 'Solnys mieness',
+'december'      => 'Zīmys mieness',
 'january-gen'   => 'Janvara / Jaunagods mieneša',
 'february-gen'  => 'Febraļa / Svacainis mieneša',
 'march-gen'     => 'Marta / Pavasara mieneša',
@@ -186,6 +189,8 @@ $messages = array(
 'helppage'             => 'Help:Turīņs',
 'mainpage'             => 'Suoku puslopa',
 'mainpage-description' => 'Suoku puslopa',
+'policy-url'           => 'Project:Nūsacejumi',
+'portal'               => 'Dūmu meits',
 'portal-url'           => 'Project:Dūmu meits',
 'privacy'              => 'Privatuma politika',
 'privacypage'          => 'Project:Privatuma politika',
@@ -215,13 +220,15 @@ $messages = array(
 'red-link-title'          => '$1 (itaidys puslopys navā)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Rakstīņs',
-'nstab-user'     => 'Lītuotuoja puslopa',
-'nstab-special'  => 'Specialuo puslopa',
-'nstab-project'  => 'Projekta puslopa',
-'nstab-image'    => 'Fails',
-'nstab-template' => 'Taiss',
-'nstab-category' => 'Kategoreja',
+'nstab-main'      => 'Rakstīņs',
+'nstab-user'      => 'Lītuotuoja puslopa',
+'nstab-media'     => 'Daudzapleicis puslopa',
+'nstab-special'   => 'Specialuo puslopa',
+'nstab-project'   => 'Projekta puslopa',
+'nstab-image'     => 'Fails',
+'nstab-mediawiki' => 'Viestejums',
+'nstab-template'  => 'Taiss',
+'nstab-category'  => 'Kategoreja',
 
 # General errors
 'error'              => 'Klaida',
@@ -556,7 +563,8 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'listgrouprights-addgroup' => 'Dalikt {{PLURAL:$2|grupu|grupys}}: $1',
 
 # E-mail user
-'emailuser' => 'Syuteit e-postu itam lītuotuojam',
+'emailuser'    => 'Syuteit e-postu itam lītuotuojam',
+'emailmessage' => 'Viestejums:',
 
 # Watchlist
 'watchlist'         => 'Muns davēris saroksts',

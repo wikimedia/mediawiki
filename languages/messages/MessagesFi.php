@@ -774,6 +774,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'usernamehasherror'          => 'Käyttäjätunnus ei voi sisältää tiivistemerkkejä.',
 'login-throttled'            => 'Olet tehnyt liian monta kirjautumisyritystä.
 Odota ennen kuin yrität uudelleen.',
+'login-abort-generic'        => 'Kirjautuminen epäonnistui - keskeytetty',
 'loginlanguagelabel'         => 'Kieli: $1',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
@@ -1688,6 +1689,8 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'php-uploaddisabledtext'      => 'PHP:n tiedostojen lähetys ei ole käytössä. Tarkista asetukset kohdasta file_uploads.',
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadvirus'                 => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
+'uploadjava'                  => 'Tämä tiedosto on ZIP-tiedosto, joka sisältää Java .class-tiedoston.
+Java-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat sisältää tietoturvariskejä.',
 'upload-source'               => 'Lähdetiedosto',
 'sourcefilename'              => 'Lähdenimi',
 'sourceurl'                   => 'URL-lähde',
