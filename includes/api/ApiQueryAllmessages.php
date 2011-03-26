@@ -205,7 +205,8 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			),
 			'enableparser' => false,
 			'args' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_ALLOW_DUPLICATES => true,
 			),
 			'filter' => array(),
 			'customised' => array(

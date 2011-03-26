@@ -287,7 +287,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   real timestamp field.
 * API upload errors may now return the parameter that needs to be changed and
   a sessionkey to fix the error.
-  
+* (bug 28249) allow dupes in meta=allmessages&amargs
+
 === Languages updated in 1.18 ===
 
 MediaWiki supports over 330 languages. Many localisations are updated
