@@ -12,7 +12,12 @@
  * @ingroup Media
  */
 class PNGHandler extends BitmapHandler {
-	
+
+	/**
+	 * @param File $image
+	 * @param string $filename
+	 * @return string
+	 */
 	function getMetadata( $image, $filename ) {
 		if ( !isset($image->parsedPNGMetadata) ) {
 			try {
