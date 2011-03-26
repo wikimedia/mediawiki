@@ -26,9 +26,9 @@ class SkinChick extends SkinTemplate {
 
 		$out->addModuleStyles( 'skins.chick' );
 
-		// TODO: Migrate all of these
-		//$out->addStyle( 'chick/IE50Fixes.css', 'screen,handheld', 'lt IE 5.5000' );
-		//$out->addStyle( 'chick/IE55Fixes.css', 'screen,handheld', 'IE 5.5000' );
-		//$out->addStyle( 'chick/IE60Fixes.css', 'screen,handheld', 'IE 6' );
+		// TODO: Migrate all of these to RL
+		$out->addStyle( 'chick/IE50Fixes.css', 'screen,handheld', 'lt IE 5.5000' );
+		$out->addStyle( 'chick/IE55Fixes.css', 'screen,handheld', 'IE 5.5000' );
+		$out->addStyle( 'chick/IE60Fixes.css', 'screen,handheld', 'IE 6' );
 	}
 }
