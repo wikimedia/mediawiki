@@ -745,6 +745,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			}
 		}
 
+		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
 		$this->startForm();
 		$this->addHTML(
 			# User Rights
@@ -775,7 +776,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'emailwrapper' ),
 			) ) .
 			$this->parent->getHelpBox( 'config-enable-email-help' ) .
-			"<div id=\"emailwrapper\">" .
+			"<div id=\"emailwrapper\" style=\"$emailwrapperStyle\">" .
 			$this->parent->getTextBox( array(
 				'var' => 'wgPasswordSender',
 				'label' => 'config-email-sender'
@@ -830,6 +831,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			)
 		);
 
+		$uploadwrapperStyle = $this->getVar( 'wgEnableUploads' ) ? '' : 'display: none';
 		$this->addHTML(
 			# Uploading
 			$this->getFieldSetStart( 'config-upload-settings' ) .
@@ -839,7 +841,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'uploadwrapper' ),
 				'help' => $this->parent->getHelpBox( 'config-upload-help' )
 			) ) .
-			'<div id="uploadwrapper" style="display: none;">' .
+			'<div id="uploadwrapper" style="' . $uploadwrapperStyle . '">' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
