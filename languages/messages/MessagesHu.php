@@ -1068,7 +1068,7 @@ Lehet, hogy törölték a wikiből, vagy átnevezték.
 Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
+'rev-deleted-comment'         => '(szerkesztési összefoglaló eltávolítva)',
 'rev-deleted-user'            => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
 'rev-deleted-user-contribs'   => '[felhasználónév vagy IP-cím eltávolítva – szerkesztés elrejtve a közreműködések közül]',
@@ -2951,21 +2951,24 @@ $1',
 'nextdiff'     => 'Újabb szerkesztés →',
 
 # Media information
-'mediawarning'         => "'''Figyelmeztetés''': Ez a fájltípus kártékony kódot tartalmazhat.
+'mediawarning'           => "'''Figyelmeztetés''': Ez a fájltípus kártékony kódot tartalmazhat.
 A futtatása során kárt tehet a számítógépedben.",
-'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
-'thumbsize'            => 'Bélyegkép mérete:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
-'file-info'            => 'fájlméret: $1, MIME-típus: $2',
-'file-info-size'       => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
-'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',
-'svg-long-desc'        => 'SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3',
-'show-big-image'       => 'A kép nagyfelbontású változata',
-'file-info-gif-looped' => 'ismétlődik',
-'file-info-gif-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
-'file-info-png-looped' => 'ismétlődik',
-'file-info-png-repeat' => 'lejátszva {{PLURAL:$1|egy|$1}} alkalommal',
-'file-info-png-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
+'imagemaxsize'           => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
+'thumbsize'              => 'Bélyegkép mérete:',
+'widthheightpage'        => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
+'file-info'              => 'fájlméret: $1, MIME-típus: $2',
+'file-info-size'         => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
+'file-nohires'           => '<small>Nem érhető el nagyobb felbontású változat.</small>',
+'svg-long-desc'          => 'SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3',
+'show-big-image'         => 'A kép nagyfelbontású változata',
+'show-big-image-preview' => '<small>Az előnézet mérete: $1</small>',
+'show-big-image-other'   => '<small>Más felbontás: $1.</small>',
+'show-big-image-size'    => '$1 × $2 képpont',
+'file-info-gif-looped'   => 'ismétlődik',
+'file-info-gif-frames'   => '{{PLURAL:$1|egy|$1}} képkocka',
+'file-info-png-looped'   => 'ismétlődik',
+'file-info-png-repeat'   => 'lejátszva {{PLURAL:$1|egy|$1}} alkalommal',
+'file-info-png-frames'   => '{{PLURAL:$1|egy|$1}} képkocka',
 
 # Special:NewFiles
 'newimages'             => 'Új fájlok galériája',
@@ -3471,7 +3474,8 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 'specialpages'                   => 'Speciális lapok',
 'specialpages-note'              => '----
 * Mindenki számára elérhető speciális lapok.
-* <strong class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</strong>',
+* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>
+* <span class="mw-specialpagecached">Csak gyorsítótárazott adatokat tartalmazó speciális lapok.</span>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',

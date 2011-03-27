@@ -2754,6 +2754,7 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 
 # Special:NewFiles
 'newimages'             => 'Galerìa ëd figure e son neuv',
+'newimages-text'        => "Sota a-i é na lista d'archivi carià da pòch.",
 'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
 'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
 'newimages-legend'      => 'Filtror',

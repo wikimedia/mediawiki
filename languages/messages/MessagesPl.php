@@ -3009,6 +3009,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 
 # Special:NewFiles
 'newimages'             => 'Najnowsze pliki',
+'newimages-text'        => 'Poniżej znajduje się lista niedawno przesłanych plików.',
 'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują|znajduje}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
 'newimages-summary'     => 'Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.',
 'newimages-legend'      => 'Filtruj',

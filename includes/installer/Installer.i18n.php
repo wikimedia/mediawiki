@@ -1389,7 +1389,7 @@ $messages['bg'] = array(
 За надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.
 Тази информация е налична в LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Беше открит файл LocalSettings.php.
-За надграждане на наличната инсталация, необходимо е да се въведе ключ --upgrade=yes.',
+За надграждане на наличната инсталация, необходимо е да се стартира update.php',
 	'config-localsettings-key' => 'Ключ за надграждане:',
 	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
 	'config-upgrade-key-missing' => 'Беше открита съществуваща инсталация на МедияУики.
@@ -10035,7 +10035,7 @@ $messages['pt'] = array(
 Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
 Encontra este valor no LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro LocalSettings.php.
-Para actualizar esta instalação, use a opção --upgrade=yes, por favor.',
+Para actualizar esta instalação execute o update.php, por favor.',
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
@@ -10169,8 +10169,8 @@ Embora o MediaWiki verifique a existência de ameaças de segurança em todos os
 	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
 Actualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([http://bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
 Instalação interrompida.',
-	'config-using531' => 'O PHP $1 não é compatível com o MediaWiki devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
-Para resolver este problema ([http://bugs.php.net/bug.php?id=50394 incidência reportada no PHP]), actualize para o PHP 5.3.2 ou posterior, ou reverta para o PHP 5.3.0.
+	'config-using531' => 'O MediaWiki não pode ser usado com o PHP $1 devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
+Para resolver este problema, actualize o PHP para a versão 5.3.2 ou posterior, ou reverta-o para a 5.3.0.
 Instalação interrompida.',
 	'config-db-type' => 'Tipo da base de dados:',
 	'config-db-host' => 'Servidor da base de dados:',

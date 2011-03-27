@@ -285,7 +285,7 @@ $messages = array(
 'powersearch'               => 'ଗହିର ଖୋଜା',
 'powersearch-legend'        => 'ଗହିର ଖୋଜା',
 'powersearch-ns'            => 'ନେମସ୍ପେସରେ ଖୋଜ',
-'powersearch-redir'         => 'ପଛକୁ ଫେରାଯାଇଥିବା ଲେଖାଗୁଡ଼ିକର ତାଲିକା',
+'powersearch-redir'         => 'ପଛକୁ ଲେଉଟାଯାଇଥିବା ଲେଖାଗୁଡ଼ିକର ତାଲିକା',
 'powersearch-field'         => 'ଖୋଜ',
 
 # Preferences page
