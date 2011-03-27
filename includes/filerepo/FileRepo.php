@@ -224,7 +224,7 @@ abstract class FileRepo {
 		# Now try an old version of the file
 		if ( $time !== false ) {
 			$img = $this->newFileFromKey( $sha1, $time );
-			if ( $img->exists() ) {
+			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
 				} else if ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
