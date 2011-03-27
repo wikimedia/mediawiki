@@ -290,6 +290,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * API upload errors may now return the parameter that needs to be changed and
   a sessionkey to fix the error.
 * (bug 28249) allow dupes in meta=allmessages&amargs
+* (bug 28263) cannot import xml with the api, when have not "import" user
+  right, but "importupload"
 
 === Languages updated in 1.18 ===
 
