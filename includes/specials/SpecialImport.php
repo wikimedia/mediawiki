@@ -37,6 +37,7 @@ class SpecialImport extends SpecialPage {
 	private $logcomment= false;
 	private $history = true;
 	private $includeTemplates = false;
+	private $pageLinkDepth;
 
 	/**
 	 * Constructor
@@ -144,8 +145,9 @@ class SpecialImport extends SpecialPage {
 
 	private function showForm() {
 		global $wgUser, $wgOut, $wgImportSources, $wgExportMaxLinkDepth;
-		if( !$wgUser->isAllowedAny( 'import', 'importupload' ) )
+		if( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
 			return $wgOut->permissionRequired( 'import' );
+		}
 
 		$action = $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) );
 
@@ -312,6 +314,14 @@ class ImportReporter {
 		}
 	}
 
+	/**
+	 * @param Title $title
+	 * @param Title $origTitle
+	 * @param int $revisionCount
+	 * @param  $successCount
+	 * @param  $pageInfo
+	 * @return void
+	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
 

@@ -42,13 +42,14 @@ class ApiImport extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'import' ) ) {
-			$this->dieUsageMsg( array( 'cantimport' ) );
-		}
+
 		$params = $this->extractRequestParams();
 
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
+			if ( !$wgUser->isAllowed( 'import' ) ) {
+				$this->dieUsageMsg( array( 'cantimport' ) );
+			}
 			if ( !isset( $params['interwikipage'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'interwikipage' ) );
 			}

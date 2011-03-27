@@ -79,6 +79,8 @@ class SpecialUpload extends SpecialPage {
 	public $uploadFormTextTop;
 	public $uploadFormTextAfterSummary;
 
+	public $mWatchthis;
+
 	/**
 	 * Initialize instance variables from request and create an Upload handler
 	 *
