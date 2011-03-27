@@ -129,6 +129,7 @@ tr.mw-htmlform-vertical-label td.mw-label {
 .mw-htmlform-multiselect-flatlist div.mw-htmlform-multiselect-item {
 	display: inline;
 	margin-right: 1em;
+	white-space: nowrap;
 }
 
 input#wpSummary {

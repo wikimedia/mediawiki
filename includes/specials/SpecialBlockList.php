@@ -76,7 +76,7 @@ class SpecialBlockList extends SpecialPage {
 					wfMsg( 'blocklist-tempblocks' ) => 'tempblocks',
 					wfMsg( 'blocklist-addressblocks' ) => 'addressblocks',
 				),
-				'cssclass' => 'mw-htmlform-multiselect-flatlist',
+				'flatlist' => true,
 			),
 		);
 		$form = new HTMLForm( $fields );
