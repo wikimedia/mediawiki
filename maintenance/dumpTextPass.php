@@ -37,6 +37,11 @@ class TextPassDumper extends BackupDumper {
 	var $input = "php://stdin";
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
+	var $lastTime = 0;
+	var $pageCountLast = 0;
+	var $revCountLast = 0;
+	var $prefetchCountLast = 0;
+	var $fetchCountLast = 0;
 
 	var $failures = 0;
 	var $maxFailures = 5;
@@ -50,6 +55,14 @@ class TextPassDumper extends BackupDumper {
 	var $spawnWrite = false;
 	var $spawnRead = false;
 	var $spawnErr = false;
+
+	var $ID = 0;
+
+	function initProgress( $history ) {
+		parent::initProgress();
+		$this->ID = getmypid();
+		$this->lastTime = $this->startTime;
+	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
 		# This shouldn't happen if on console... ;)
@@ -128,23 +141,52 @@ class TextPassDumper extends BackupDumper {
 		}
 
 		if ( $this->reporting ) {
-			$delta = wfTime() - $this->startTime;
 			$now = wfTimestamp( TS_DB );
-			if ( $delta ) {
-				$rate = $this->pageCount / $delta;
-				$revrate = $this->revCount / $delta;
+			$deltaAll = wfTime() - $this->startTime;
+			$deltaPart = wfTime() - $this->lastTime;
+			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
+			$this->revCountPart = $this->revCount - $this->revCountLast;
+
+			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
-				$eta = $this->startTime + $delta / $portion;
+				$eta = $this->startTime + $deltaAll / $portion;
 				$etats = wfTimestamp( TS_DB, intval( $eta ) );
-				$fetchrate = 100.0 * $this->prefetchCount / $this->fetchCount;
+				if ( $this->fetchCount ) {
+					$fetchRate = 100.0 * $this->prefetchCount / $this->fetchCount;
+				}
+				else {
+					$fetchRate = '-';
+				}
+				$pageRate = $this->pageCount / $deltaAll;
+				$revRate = $this->revCount / $deltaAll;
 			} else {
-				$rate = '-';
-				$revrate = '-';
+				$pageRate = '-';
+				$revRate = '-';
 				$etats = '-';
-				$fetchrate = '-';
+				$fetchRate = '-';
 			}
-			$this->progress( sprintf( "%s: %s %d pages (%0.3f/sec), %d revs (%0.3f/sec), %0.1f%% prefetched, ETA %s [max %d]",
-				$now, wfWikiID(), $this->pageCount, $rate, $this->revCount, $revrate, $fetchrate, $etats, $this->maxCount ) );
+			if ( $deltaPart ) {
+				if ( $this->fetchCountLast ) {
+					$fetchRatePart = 100.0 * $this->prefetchCountLast / $this->fetchCountLast;
+				}
+				else {
+					$fetchRatePart = '-';
+				}
+				$pageRatePart = $this->pageCountPart / $deltaPart;
+				$revRatePart = $this->revCountPart / $deltaPart;
+
+			} else {
+				$fetchRatePart = '-';
+				$pageRatePart = '-';
+				$revRatePart = '-';
+			}
+			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% prefetched (all|curr), ETA %s [max %d]",-
+					$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate, $pageRatePart, $this->revCount, $revRate, $revRatePart, $fetchRate, $fetchRatePart, $etats, $this->maxCount ) );
+			$this->lastTime = $now;
+			$this->partCountLast = $this->partCount;
+			$this->revCountLast = $this->revCount;
+			$this->prefetchCountLast = $this->prefetchCount;
+			$this->fetchCountLast = $this->fetchCount;
 		}
 	}
 
@@ -452,7 +494,7 @@ Options:
 			  (Default: 100)
   --server=h  Force reading from MySQL server h
   --output=<type>:<file> Write to a file instead of stdout
-              <type>s: file, gzip, bzip2, 7zip
+  			   <type>s: file, gzip, bzip2, 7zip
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
   --help      Display this help message
