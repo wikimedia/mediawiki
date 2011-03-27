@@ -35,7 +35,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$pager = new NewFilesPager( $par );
 
 		$form = $pager->getForm();
-		$wgOut->addWikiMsg( 'newimages-text' );
 		$form->prepareForm();
 		$form->displayForm( '' );
 		$wgOut->addHTML( $pager->getBody() . $pager->getNavigationBar() );

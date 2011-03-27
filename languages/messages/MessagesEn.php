@@ -3663,7 +3663,6 @@ By executing it, your system may be compromised.",
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',
-'newimages-text'        => 'Below is a list of recently-uploaded files.',
 'imagelisttext'         => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
 'newimages-summary'     => 'This special page shows the last uploaded files.',
 'newimages-legend'      => 'Filter',
