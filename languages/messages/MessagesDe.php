@@ -3080,6 +3080,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 
 # Special:NewFiles
 'newimages'             => 'Neue Dateien',
+'newimages-text'        => 'Untenstehend die Liste der zuletzt hochgeladenen Dateien.',
 'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
 'newimages-legend'      => 'Filter',

@@ -606,7 +606,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccount'                 => 'Ja teniu un compte? $1.',
 'gotaccountlink'             => 'Inicia una sessió',
 'createaccountmail'          => 'per correu electrònic',
-'createaccountreason'        => 'Raó:',
+'createaccountreason'        => 'Motiu:',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',
 'userexists'                 => 'El nom que heu entrat ja és en ús. Escolliu-ne un de diferent.',
 'loginerror'                 => "Error d'inici de sessió",
@@ -1320,7 +1320,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 * Els requadres marcats indiquen que l'usuari és dins del grup.
 * Els requadres sense marcar indiquen que l'usuari no hi pertany.
 * Un asterisc (*) indica que no el podreu treure del grup una vegada l'hàgiu afegit o viceversa.",
-'userrights-reason'            => 'Raó:',
+'userrights-reason'            => 'Motiu:',
 'userrights-no-interwiki'      => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase'        => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin'           => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
@@ -2976,7 +2976,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-focallengthin35mmfilm'       => 'Distància focal per a peŀlícula de 35 mm',
 'exif-scenecapturetype'            => "Tipus de captura d'escena",
 'exif-gaincontrol'                 => "Control d'escena",
-'exif-contrast'                    => 'Taädam',
+'exif-contrast'                    => 'Contrast',
 'exif-saturation'                  => 'Saturació',
 'exif-sharpness'                   => 'Nitidesa',
 'exif-devicesettingdescription'    => 'Descripció dels paràmetres del dispositiu',
@@ -3465,7 +3465,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 # Special:DisableAccount
 'disableaccount'             => "Deshabilita un compte d'usuari/a",
 'disableaccount-user'        => "Nom d'usuari/a :",
-'disableaccount-reason'      => 'Raó:',
+'disableaccount-reason'      => 'Motiu:',
 'disableaccount-confirm'     => "Desactivació d'aquest compte d'usuari.
 L'usuari no podrà entrar al seu compte, recuperar la contrasenya o rebre notificacions per correu electònic.
 Si l'usuari està fent servir el compte actualment serà immediatament desconnectat.

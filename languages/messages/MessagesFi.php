@@ -774,7 +774,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'usernamehasherror'          => 'Käyttäjätunnus ei voi sisältää tiivistemerkkejä.',
 'login-throttled'            => 'Olet tehnyt liian monta kirjautumisyritystä.
 Odota ennen kuin yrität uudelleen.',
-'login-abort-generic'        => 'Kirjautuminen epäonnistui - keskeytetty',
+'login-abort-generic'        => 'Kirjautuminen epäonnistui – keskeytetty',
 'loginlanguagelabel'         => 'Kieli: $1',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
