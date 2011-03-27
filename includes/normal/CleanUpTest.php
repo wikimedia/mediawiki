@@ -38,8 +38,8 @@ if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 
 require_once( 'PHPUnit/Runner/Version.php' );
 if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
-	# PHPUnit 3.5.0 introduced a nice autoloader based on class name
-	require_once( 'PHPUnit/Autoload.php' );
+    # PHPUnit 3.5.0 introduced a nice autoloader based on class name
+    require_once( 'PHPUnit/Autoload.php' );
 } else {
 	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
 	require_once 'PHPUnit/Framework.php';
@@ -105,13 +105,13 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 			$x = sprintf( "%04X", $i );
 			if( $i % 0x1000 == 0 ) echo "U+$x\n";
 			if( $i == 0x0009 ||
-				$i == 0x000a ||
-				$i == 0x000d ||
-				($i > 0x001f && $i < UNICODE_SURROGATE_FIRST) ||
-				($i > UNICODE_SURROGATE_LAST && $i < 0xfffe ) ||
-				($i > 0xffff && $i <= UNICODE_MAX ) ) {
+			    $i == 0x000a ||
+			    $i == 0x000d ||
+			    ($i > 0x001f && $i < UNICODE_SURROGATE_FIRST) ||
+			    ($i > UNICODE_SURROGATE_LAST && $i < 0xfffe ) ||
+			    ($i > 0xffff && $i <= UNICODE_MAX ) ) {
 				if( isset( UtfNormal::$utfCanonicalComp[$char] ) || isset( UtfNormal::$utfCanonicalDecomp[$char] ) ) {
-					$comp = UtfNormal::toNFC( $char );
+				    $comp = UtfNormal::NFC( $char );
 					$this->assertEquals(
 						bin2hex( $comp ),
 						bin2hex( $clean ),
@@ -180,14 +180,14 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 				$clean = UtfNormal::cleanUp( $char );
 				$x = sprintf( "%02X,%02X", $first, $second );
 				if( $first > 0xc1 &&
-					$first < 0xe0 &&
-					$second < 0xc0 ) {
-					$norm = UtfNormal::toNFC( $char );
+				    $first < 0xe0 &&
+				    $second < 0xc0 ) {
+				    $norm = UtfNormal::NFC( $char );
 					$this->assertEquals(
 						bin2hex( $norm ),
 						bin2hex( $clean ),
 						"Pair $x should be intact" );
-					if( $norm != $clean ) return;
+				    if( $norm != $clean ) return;
 				} elseif( $first > 0xfd || $second > 0xbf ) {
 					# fe and ff are not legal head bytes -- expect two replacement chars
 					$norm = $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail;
@@ -242,26 +242,25 @@ class CleanUpTest extends PHPUnit_Framework_TestCase {
 								"Surrogate triplet $x should be rejected" );
 						} else {
 							$this->assertEquals(
-								bin2hex( UtfNormal::toNFC( $char ) ),
+								bin2hex( UtfNormal::NFC( $char ) ),
 								bin2hex( $clean ),
 								"Triplet $x should be intact" );
 						}
 					} elseif( $first > 0xc1 && $first < 0xe0 && $second < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( UtfNormal::toNFC( $head . chr( $first ) . chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
+							bin2hex( UtfNormal::NFC( $head . chr( $first ) . chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
 							bin2hex( $clean ),
 							"Valid 2-byte $x + broken tail" );
 					} elseif( $second > 0xc1 && $second < 0xe0 && $third < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::toNFC( chr( $second ) . chr( $third ) . $tail ) ),
+							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::NFC( chr( $second ) . chr( $third ) . $tail ) ),
 							bin2hex( $clean ),
 							"Broken head + valid 2-byte $x" );
 					} elseif( ( $first > 0xfd || $second > 0xfd ) &&
-						( ( $second > 0xbf && $third > 0xbf ) ||
-						  ( $second < 0xc0 && $third < 0xc0 ) ||
-						  ( $second > 0xfd ) ||
-						( $third > 0xfd ) ) ) 
-					{
+					            ( ( $second > 0xbf && $third > 0xbf ) ||
+					              ( $second < 0xc0 && $third < 0xc0 ) ||
+					              ( $second > 0xfd ) ||
+					              ( $third > 0xfd ) ) ) {
 						# fe and ff are not legal head bytes -- expect three replacement chars
 						$this->assertEquals(
 							bin2hex( $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail ),
