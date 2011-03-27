@@ -259,11 +259,11 @@ class SpecialListUsers extends QueryPage {
 
 	/**
 	 * Format a link to a group description page
-	 *
+	 * Also called by SpecialActiveUsers
 	 * @param $group String: group name
 	 * @return string
 	 */
-	protected static function buildGroupLink( $group ) {
+	public static function buildGroupLink( $group ) {
 		static $cache = array();
 		if( !isset( $cache[$group] ) )
 			$cache[$group] = User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupMember( $group ) ) );
