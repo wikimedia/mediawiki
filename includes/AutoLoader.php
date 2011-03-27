@@ -712,6 +712,7 @@ $wgAutoloadLocalClasses = array(
 	'ParserTestStaticParserHook' => 'maintenance/tests/parser/parserTestsStaticParserHook.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateLogSearch' => 'maintenance/populateLogSearch.php',
+	'PopulateLogUsertext' => 'maintenance/populateLogUsertext.php',
 	'PopulateParentId' => 'maintenance/populateParentId.php',
 	'PopulateRevisionLength' => 'maintenance/populateRevisionLength.php',
 	'RemoteTestRecorder' => 'maintenance/tests/testHelpers.inc',
