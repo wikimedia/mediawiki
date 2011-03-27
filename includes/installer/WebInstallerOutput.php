@@ -40,6 +40,14 @@ class WebInstallerOutput {
 	public $redirectTarget;
 
 	/**
+	 * Does the current page need to allow being used as a frame?
+	 * If not, X-Frame-Options will be output to forbid it.
+	 *
+	 * @var bool
+	 */
+	public $allowFrames = false;
+
+	/**
 	 * Whether to use the limited header (used during CC license callbacks)
 	 * @var bool
 	 */
@@ -116,6 +124,10 @@ class WebInstallerOutput {
 		$this->useShortHeader = $use;
 	}
 
+	public function allowFrames( $allow = true ) {
+		$this->allowFrames = $allow;
+	}
+
 	public function flush() {
 		if ( !$this->headerDone ) {
 			$this->outputHeader();
@@ -163,7 +175,9 @@ class WebInstallerOutput {
 		$dbTypes = $this->parent->getDBTypes();
 
 		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
-		$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
+		if (!$this->allowFrames) {
+			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
+		}
 		if ( $this->redirectTarget ) {
 			$this->parent->request->response()->header( 'Location: '.$this->redirectTarget );
 			return;
