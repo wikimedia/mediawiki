@@ -122,9 +122,8 @@ exit (0);
 
 
 function testLine( $test, $line, &$total, &$success, &$failed, $columns, $exceptions, $verbose ) {
-	# $stripped = $line;
-	# UtfNormal::quickisNFCVerify( $stripped );
-	$stripped = UtfNormal::toNFC( $line );
+	$stripped = $line;
+	UtfNormal::quickisNFCVerify( $stripped );
 
 	$same = ( $line == $stripped );
 	$len = mb_strlen( substr( $stripped, 0, strpos( $stripped, '|' ) ) );
