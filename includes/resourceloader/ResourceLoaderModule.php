@@ -135,7 +135,7 @@ abstract class ResourceLoaderModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Stub, override expected
-		return '';
+		return array();
 	}
 
 	/**
