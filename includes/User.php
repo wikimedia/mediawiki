@@ -1476,8 +1476,8 @@ class User {
 	 * @return Int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	function getId() {
-		if( $this->mId === null and $this->mName !== null
-		and User::isIP( $this->mName ) ) {
+		if( $this->mId === null && $this->mName !== null
+		&& User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
 			return 0;
 		} elseif( $this->mId === null ) {
