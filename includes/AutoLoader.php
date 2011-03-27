@@ -585,7 +585,6 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/specials
 	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
-	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
 	'AllmessagesTablePager' => 'includes/specials/SpecialAllmessages.php',
 	'AncientPagesPage' => 'includes/specials/SpecialAncientpages.php',
 	'BrokenRedirectsPage' => 'includes/specials/SpecialBrokenRedirects.php',
