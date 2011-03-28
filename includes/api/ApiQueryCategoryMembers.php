@@ -160,26 +160,34 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
-		// Run a separate SELECT query for each value of cl_type.
-		// This is needed because cl_type is an enum, and MySQL has
-		// inconsistencies between ORDER BY cl_type and
-		// WHERE cl_type >= 'foo' making proper paging impossible
-		// and unindexed.
-		$rows = array();
-		$first = true;
-		foreach ( $queryTypes as $type ) {
-			$extraConds = array( 'cl_type' => $type );
-			if ( $first && $contWhere ) {
-				// Continuation condition. Only added to the
-				// first query, otherwise we'll skip things
-				$extraConds[] = $contWhere;
+		if ( $params['sort'] == 'sortkey' ) {
+			// Run a separate SELECT query for each value of cl_type.
+			// This is needed because cl_type is an enum, and MySQL has
+			// inconsistencies between ORDER BY cl_type and
+			// WHERE cl_type >= 'foo' making proper paging impossible
+			// and unindexed.
+			$rows = array();
+			$first = true;
+			foreach ( $queryTypes as $type ) {
+				$extraConds = array( 'cl_type' => $type );
+				if ( $first && $contWhere ) {
+					// Continuation condition. Only added to the
+					// first query, otherwise we'll skip things
+					$extraConds[] = $contWhere;
+				}
+				$res = $this->select( __METHOD__, array( 'where' => $extraConds ) );
+				$rows = array_merge( $rows, iterator_to_array( $res ) );
+				if ( count( $rows ) >= $limit + 1 ) {
+					break;
+				}
+				$first = false;
 			}
-			$res = $this->select( __METHOD__, array( 'where' => $extraConds ) );
-			$rows = array_merge( $rows, iterator_to_array( $res ) );
-			if ( count( $rows ) >= $limit + 1 ) {
-				break;
-			}
-			$first = false;
+		} else {
+			// Sorting by timestamp
+			// No need to worry about per-type queries because we
+			// aren't sorting or filtering by type anyway
+			$res = $this->select( __METHOD__ );
+			$rows = iterator_to_array( $res );
 		}
 		$count = 0;
 		foreach ( $rows as $row ) {
@@ -334,7 +342,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				' timestamp     - Adds the timestamp of when the page was included',
 			),
 			'namespace' => 'Only include pages in these namespaces',
-			'type' => 'What type of category members to include',
+			'type' => "What type of category members to include. Ignored when {$p}sort=timestamp is set",
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
 			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
