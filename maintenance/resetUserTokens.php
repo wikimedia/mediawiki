@@ -30,21 +30,16 @@ class ResetUserTokens extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Reset the user_token of all users on the wiki. Note that this may log some of them out.";
 		$this->addOption( 'nowarn', "Hides the 5 seconds warning", false, false );
-		$this->addOption( 'quiet', "Do not print what is happening", false, false );
 	}
 
 	public function execute() {
-		$nowarn = $this->getOption( 'nowarn' );
-		$quiet = $this->getOption( 'quiet' );
 		
-		if ( !$nowarn ) {
-			echo <<<WARN
-The script is about to reset the user_token for ALL USERS in the database.
-This may log some of them out and is not necessary unless you believe your
-user table has been compromised.
-
-Abort with control-c in the next five seconds....
-WARN;
+		if ( !$this->getOption( 'nowarn' ) ) {
+			$this->output( "The script is about to reset the user_token for ALL USERS in the database.\n" );
+			$this->output( "This may log some of them out and is not necessary unless you believe your\n" );
+			$this->output( "user table has been compromised.\n" );
+			$this->output( "\n" );
+			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --nowarn) ... " );
 			wfCountDown( 5 );
 		}
 		
@@ -61,17 +56,13 @@ WARN;
 			
 			$username = $user->getName();
 			
-			if ( !$quiet ) {
-				echo "Resetting user_token for $username: ";
-			}
+			$this->output( "Resetting user_token for $username: " );
 			
 			// Change value
 			$user->setToken();
 			$user->saveSettings();
 			
-			if ( !$quiet ) {
-				echo " OK\n";
-			}
+			$this->output( " OK\n" );
 			
 		}
 		
