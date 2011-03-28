@@ -2772,7 +2772,6 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Nowe dataje',
-'newimages-text'        => 'Deleka je lisćina njedawno nahratych datajow.',
 'imagelisttext'         => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
 'newimages-summary'     => 'Tuta specialna strona naliči aktualnje nahrate wobrazy a druhe dataje.',
 'newimages-legend'      => 'Filter',

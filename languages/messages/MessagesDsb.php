@@ -2798,7 +2798,6 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Nowe dataje',
-'newimages-text'        => 'Dołojce jo lisćina pśed krotkim nagratych datajw.',
 'imagelisttext'         => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
 'newimages-summary'     => 'Toś ten specialny bok pokazujo dataje, kótarež su se ako slědne nagrali.',
 'newimages-legend'      => 'Filter',

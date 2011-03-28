@@ -202,7 +202,7 @@ $messages = array(
 'red-link-title'      => '$1 (ხასილა ვა რე)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ხასილა',
+'nstab-main'     => 'ხასჷლა',
 'nstab-user'     => 'მახვარებუშ ხასილა',
 'nstab-media'    => 'მედიაშ ხასილა',
 'nstab-special'  => 'სპეციალური ხასილა',

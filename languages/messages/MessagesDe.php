@@ -1467,7 +1467,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-help-gender'             => 'Optional: Wird von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist öffentlich.',
 'email'                         => 'E-Mail',
 'prefs-help-realname'           => 'Optional. Damit kann dein bürgerlicher Name deinen Beiträgen zugeordnet werden.',
-'prefs-help-email'              => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn du dein Passwort vergessen hast.',
+'prefs-help-email'              => 'Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern du dein Passwort vergessen hast.',
 'prefs-help-email-others'       => 'Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
 'prefs-help-email-required'     => 'Es wird eine gültige E-Mail-Adresse benötigt.',
 'prefs-info'                    => 'Basisinformationen',
@@ -3080,7 +3080,6 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 
 # Special:NewFiles
 'newimages'             => 'Neue Dateien',
-'newimages-text'        => 'Untenstehend die Liste der zuletzt hochgeladenen Dateien.',
 'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
 'newimages-legend'      => 'Filter',
