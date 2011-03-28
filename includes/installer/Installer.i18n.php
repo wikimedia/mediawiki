@@ -562,8 +562,13 @@ $messages['qqq'] = array(
 	'config-eaccel' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
+	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
 	'config-sqlite-dir-unwritable' => 'webserver refers to a software like Apache or Lighttpd.',
+	'config-can-upgrade' => 'Should we no use an {{int:xxx}} construct for "continue" ?
+
+Parameters:
+* $1 - Version or Revision indicator.',
 	'config-show-table-status' => '{{doc-important|"SHOW TABLE STATUS" is a MySQL command. Do not translate this.}}',
 	'config-ns-generic' => '{{Identical|Project}}',
 	'config-admin-name' => '{{Identical|Your name}}',
@@ -881,8 +886,8 @@ $messages['be-tarask'] = array(
 	'config-localsettings-upgrade' => 'Выяўлены файл <code>LocalSettings.php</code>.
 Каб абнавіць гэтае усталяваньне, калі ласка, увядзіце значэньне <code>$wgUpgradeKey</code> у полі ніжэй.
 Яго можна знайсьці ў LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => 'Быў выяўлены файл LocalSettings.php.
-Каб зьмяніць гэтае ўсталяваньне, калі ласка, зьмяніце наладу --upgrade=yes.',
+	'config-localsettings-cli-upgrade' => 'Быў знойдзены файл LocalSettings.php.
+Каб зьмяніць гэтае ўсталяваньне, калі ласка, запусьціце update.php',
 	'config-localsettings-key' => 'Ключ паляпшэньня:',
 	'config-localsettings-badkey' => 'Пададзены Вамі ключ зьяўляецца няслушным',
 	'config-upgrade-key-missing' => 'Выяўленае існуючае ўсталяваньне MediaWiki.
@@ -1016,8 +1021,8 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-brokenlibxml' => 'У Вашай сыстэме ўсталяваныя PHP і libxml2 зь несумяшчальнымі вэрсіямі, што можа прывесьці да пашкоджаньня зьвестак MediaWiki і іншых ўэб-дастасаваньняў.
 Абнавіце PHP да вэрсіі 5.2.9 ці болей позьняй, а libxml2 да 2.7.3 ці болей позьняй ([http://bugs.php.net/bug.php?id=45996 паведамленьне пра памылку на сайце PHP]).
 Усталяваньне перарванае.',
-	'config-using531' => 'PHP $1 не сумяшчальная з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
-Абнавіце PHP да 5.3.2 ці болей позьняй, ці адкаціце да 5.3.0 ([http://bugs.php.net/bug.php?id=50394 паведамленьне пра памылку на сайце PHP]).
+	'config-using531' => 'PHP $1 не сумяшчальнае з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
+Абнавіце PHP да вэрсіі 5.3.2 ці болей позьняй, ці адкаціце да вэрсіі 5.3.0 каб гэта выправіць.
 Усталяваньне перарванае.',
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-host' => 'Хост базы зьвестак:',
@@ -6924,7 +6929,7 @@ De Projramme vum Wiki künne op der neußte Shtand jebraat wääde:
 Donn doför dä Wäät vum <code lang="en">$wgUpgradeKey</code> en dat heh Feld enjävve.
 Do fenggs_et en dä Dattei <code lang="en">LocalSettings.php</code> om ẞööver.',
 	'config-localsettings-cli-upgrade' => 'En Dattei <code lang="en">LocalSettings.php</code> es jefonge woode.
-Jiff der Parrameeter <code lang="en">--upgrade=yes</code> aan, öm et Projramm op ene neue Schtand ze bränge.',
+Öm et Wiki_Projramm op ene neue Shtand ze bränge, donn <code lang="en">update.php</code> oproofe.',
 	'config-localsettings-key' => 'Der Schlößel för et Projramm op ene neue Schtand ze bränge:',
 	'config-localsettings-badkey' => 'Dinge Schlößel paß nit.',
 	'config-upgrade-key-missing' => 'Mer han jefonge, dat MediaWiki ald enschtalleed es.
@@ -6953,25 +6958,25 @@ Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session
 	'config-back' => '← Retuur',
 	'config-continue' => 'Wigger →',
 	'config-page-language' => 'Shprooch',
-	'config-page-welcome' => 'Wellkumme bei MediaWiki!',
-	'config-page-dbconnect' => 'Donn en Verbindung met dä Daatebangk maache',
-	'config-page-upgrade' => 'En Inshtallzjuhn op der neuste Shtand bränge, di ald doh es',
+	'config-page-welcome' => 'Wellkumme beim MediaWiki!',
+	'config-page-dbconnect' => 'Met dä Daatebangk Verbenge',
+	'config-page-upgrade' => 'En Inshtallzjuhn op der neuste Shtand bränge',
 	'config-page-dbsettings' => 'Parrameeter för de Daatebangk',
 	'config-page-name' => 'Name',
 	'config-page-options' => 'Ennställunge',
 	'config-page-install' => 'Opsäzze',
 	'config-page-complete' => 'Jedonn!',
-	'config-page-restart' => 'Dat Opsäze norr_ens aanfange',
+	'config-page-restart' => 'Et Opsäze norr_ens neu aanfange',
 	'config-page-readme' => 'Donn mesch lässe! (<i lang="en">read me</i>)',
-	'config-page-releasenotes' => 'Henwiiß för de Ußjaav',
+	'config-page-releasenotes' => 'Henwies för heh di Version vum Projramm (<i lang="en">Release notes</i>)',
 	'config-page-copying' => 'Ben aam Kopeere',
 	'config-page-upgradedoc' => 'Ben op der neuste Stand aam bränge',
 	'config-page-existingwiki' => 'Mer han ald e Wiki!',
 	'config-help-restart' => 'Wells De all Ding enjejovve Sachee fottjeschmesse han, un dä janze Vörjang vun fürre aan neu aanfange?',
 	'config-restart' => 'Joh, neu aanfange!',
 	'config-welcome' => '=== Ömjevong Prööfe ===
-Mer maache en Aanzal jrundlääje Prövunge, öm erus ze fenge, dat di Ömjevong heh paß, för Mediawiki opzesäze.
-Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
+Mer maache en Aanzal jrundlääje Prövunge, öm erus ze fenge, ov di Ömjevong heh paß, för Mediawiki opzesäze.
+Wann de Hölp bem Opsäze bruchs, donn wigger ssare, wat erus kohm, wat heh shteiht.',
 	'config-copyright' => "=== Urhävverrääsch un Lizänzbedengunge ===
 
 \$1
@@ -6981,11 +6986,11 @@ Dat  Projramm heh es frei, mer kann et wiggerjävve un verdeijle un och verände
 Dat Projramm weed wigger jejovve met dä Hoffnung, dat et jät nöz, ävver '''ohne Jarrantie''', sujaa ohne de onußjeshproche Jarantie, '''verkoufbaa''' ze sin, udder '''för öhnds_ene beshtemmpte Zweck ze bruche''' ze sin.
 Liß de GNU <i lang=\"en\">General Public License</i> sellver, öm mieh ze erfahre.
 
-Do sullts en <doclink href=Copying>Kopie vun dä GNU <i lang=\"en\">General Public License</i></doclink> zosamme met heh däm Projramm krääje han. Wann dat nit esu es, schrief aan de <i lang=\"en\">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA</i>. udder [http://www.gnu.org/copyleft/gpl.html liß se online övver et Internet].",
+Do sullts en <doclink href=Copying>Kopie vun dä alljemene öffentlesche Lizänz vun dä GNU</doclink> (<i lang=\"en\">GNU General Public License</i>) zosamme met heh däm Projramm krääje han. Wann dat nit esu es, schrief aan de <i lang=\"en\">Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA</i>. udder [http://www.gnu.org/copyleft/gpl.html liß se online övver et Internet].",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki sing Hompäjdsch]
 * [http://www.mediawiki.org/wiki/Help:Contents Handbooch för Aanwender]
 * [http://www.mediawiki.org/wiki/Manual:Contents Handbooch för Administratore un Wiki_Köbesse]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Öff jeshtallte Froore + Antwoote]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Öff jeshtallte Froore met Antwoote]
 ----
 * <doclink href=Readme>Liß Mesch! (<i lang="en">Read me</i>)</doclink>
 * <doclink href=ReleaseNotes><i lang="en">Release notes</i> Övver heh di Projrammversion</doclink>
@@ -7000,7 +7005,7 @@ Do kanns MediaWiki nit opsäze.',
 Ävver MediaWiki bruch PHP $2 udder hühter.',
 	'config-unicode-using-utf8' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer däm <i lang="en">Brion Vibber</i> sing Projramm <code lang="en">utf8_normalize.so</code> nämme.',
 	'config-unicode-using-intl' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] nämme.',
-	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge. Dröm nämme mer dat eijfache, ävver ärsh lahme, PHP-Prjrammshtöck doför.
+	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge. Dröm nämme mer dat eijfache, ävver ärsh lahme, <i lang="en">PHP</i>-Projrammshtöck doför.
 För jruuße Wikis met vill Metmaachere doht Üsch die Sigg övver et [http://www.mediawiki.org/wiki/Unicode_normalization_considerations <i lang="en">Unicode</i>-Nommaliseere] (es op Änglesch) aanloore.',
 	'config-unicode-update-warning' => "'''Opjepaß:''' Dat Projramm för der <i lang=\"en\">Unicode</i> zo normaliseere boud em Momang op en  ählter Version vun dä Bibliothek vum [http://site.icu-project.org/ ICU-Projäk] op.
 Doht di [http://www.mediawiki.org/wiki/Unicode_normalization_considerations op der neuste Shtand bränge], wann auf dat Wiki em Äänz <i lang=\"en\">Unicode</i> bruche sull.",
@@ -7049,7 +7054,7 @@ Et Enreeschte kunnt doh draan kappott jon!",
 	'config-wincache' => 'Dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.',
 	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
-	'config-diff3-bad' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
+	'config-diff3-bad' => 'Mer han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
 	'config-imagemagick' => 'Mer han <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
 	'config-gd' => 'Mer han de ennjeboute GD-Jrafik-Projramm-Biblijotheek jefonge.
@@ -7062,8 +7067,8 @@ Et Enreeschte es domet heh aam Engk.",
 	'config-brokenlibxml' => 'Op Dingem Rääschner loufe Versione vun PHP un <code lang="en">libxml2</code> zosamme, di ävver nit zosamme paßße, un de Daate em MediaWiki un ander Web_Aanwändunge [http://bugs.php.net/bug.php?id=45996 bug kapott maache].
 Jangk op PHP 5.2.9 udder dohnoh un op <code lang="en">libxml2</code> 2.7.3 udder dohnoh.
 Heh jeihd et nit wigger.',
-	'config-using531' => 'MediaWiki läuf nit met PHP $1 zosamme wääje enem [http://bugs.php.net/bug.php?id=50394 Fähler] em Zosammehang met Parrameetere för <code>__call()</code>.
-Jangk op PHP Version 5.3.2 ov dohnoh, udder op 5.3.0 udder dovöör, öm dat Problem ze ömjonn.
+	'config-using531' => 'MediaWiki läuf nit met PHP $1 zosamme wääje enem [http://bugs.php.net/bug.php?id=50394 Fähler em Zosammehang met Parrameetere för <code lang="en">__call()</code>].
+Jangk op de Version 5.3.2 vum <i lang="en">PHP</i> ov dohnoh, udder op de Version 5.3.0 udder dovöör, öm dat Problem ze ömjonn.
 Heh jeiht et nit wigger.',
 	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
@@ -7073,6 +7078,8 @@ Wann De ob enem Meetẞööver beß, weet Der Dinge Provaider odder däm sing Do
 
 Wann De ob enem ẞööver onger <i lang="en">Windows</i> am enshtalleere bes un en <i lang="en">MySQL</i>-Daatebangk häs, künnd_et sin, dat „<code lang="en">localhost</code>“ nit douch för der Name vum ẞööver. Wann dad-esu es, versöhg et ens met „<code lang="en">127.0.0.1</code>“ als <i lang="en">IP</i>-Addräß vum eije Rääschner.',
 	'config-db-host-oracle' => 'Dä Daatebangk ier <i lang="en" title="Transparent Network Substrate">TNS</i>:',
+	'config-db-host-oracle-help' => 'Donn ene jöltije [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm „<i lang="en">Local Connect</i>“-Name] aanjävve. De Dattei „<code lang="en">tnsnames.ora</code>“ moß för heh dat Projamm seschbaa un ze Lässe sin.<br />Wann heh de Projamm_Biblijoteeke für de Aanwänderprojramme för de Version 10g udder neuer enjesaz wääde, kam_mer och et [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm „<i lang="en">Easy Connect</i>“] jenumme wääde för der Name ze verjävve.',
+	'config-db-wiki-settings' => 'De Daate vum Wiki',
 	'config-db-name' => 'Dä Name vun dä Daatebangk:',
 	'config-db-name-help' => 'Jiff ene Name aan, dä för Ding Wiki passe deiht.
 Doh sullte kei Zweschrereum un kein Stresche dren sin.
@@ -7109,26 +7116,26 @@ Jewöhnlesch bliev dat Feld heh ävver läddesch.',
 	'config-db-schema' => 'Et Schema en de Datebangk för MediaWiki:',
 	'config-db-schema-help' => 'För jewöhnlesch es dat Schema en Odenong.
 Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
-	'config-sqlite-dir' => '<i lang="en">SQLite</i> sing Daateverzeishnes:',
+	'config-sqlite-dir' => 'Dem <i lang="en">SQLite</i> sing Daateverzeishnes:',
 	'config-oracle-def-ts' => 'Tabälleroum för der Shtandattjebruch:',
 	'config-oracle-temp-ts' => 'Tabälleroum för der Jebruch zweschedorsh:',
 	'config-type-mysql' => '<i lang="en">MySQL</i>',
 	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
 	'config-type-sqlite' => '<i lang="en">SQLite</i>',
 	'config-type-oracle' => '<i lang="en">Oracle</i>',
-	'config-support-info' => 'MediaWiki kann met heh dä Daatebangk_Süßteeme:
+	'config-support-info' => 'MediaWiki kann met heh dä Daatebangk_Süßteeme zosamme jonn:
 
 $1
 
-Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn desch aan di Aanweisonge hallde, di bovve verlengk sen, öm de Öngerstözong doför en Dingem ẞööver-Süßteem müjjelesh ze maache.',
+Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn desch aan di Aanleidonge hallde, di bovve verlengk sen, öm et op Dingem ẞööver singem Süßteem müjjelesh ze maache, se aan et Loufe ze krijje.',
 	'config-support-mysql' => '* $1 es dat vum MediaWiki et eets ongershtöz Daatebangksüßteem ([http://www.php.net/manual/de/mysql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">MySQL</i> dobei, op Deutsch])',
 	'config-support-postgres' => '* $1 es e bikannt Daatebangksüßteem met offe Quälltäxde, un en och en Wahl nävve <i lang="en">MySQL</i> ([http://www.php.net/manual/de/pgsql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">PostgreSQL</i> dobei, op Deutsch])',
 	'config-support-sqlite' => '* $1 es e eijfach Daatebangksüßteem, wat joot ongershtöz weed. ([http://www.php.net/manual/de/pdo.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">SQLite</i> dobei, op Deutsch])',
 	'config-support-oracle' => '* $1 es e jeschäfflesch Daatebangksüßteem för Ferme. ([http://www.php.net/manual/de/oci8.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">OCI8</i> dobei, op Deutsch])',
-	'config-header-mysql' => 'Enshtällunge för <i lang="en">MySQL</i>',
-	'config-header-postgres' => 'Enshtällunge för <i lang="en">PostgreSQL</i>',
-	'config-header-sqlite' => 'Enshtällunge för <i lang="en">SQLite</i>',
-	'config-header-oracle' => 'Enshtällunge för <i lang="en">Oracle</i>',
+	'config-header-mysql' => 'De Enshtällunge för de <i lang="en">MySQL</i> Daatebangk',
+	'config-header-postgres' => 'De Enshtällunge för de <i lang="en">PostgreSQL</i> Daatebangk',
+	'config-header-sqlite' => 'De Enshtällunge för de <i lang="en">SQLite</i> Daatebangk',
+	'config-header-oracle' => 'De Enshtällunge för de <i lang="en">Oracle</i> Daatebangk',
 	'config-invalid-db-type' => 'Dat es en onjöltijje Zoot Daatebangk.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-missing-db-host' => 'Do moß jät enjävve för dä Name vun däm Rääschner met dä Daatebangk.',
@@ -7150,6 +7157,21 @@ Döh dörve bloß <i lang="en" title="American Standard Code for Information Int
 	'config-sqlite-name-help' => 'Söhk enen Name uß, dä Ding Wiki beschrief.
 Donn kein Bendeschresch un Zweschräum en däm Name bruche.
 Dä Name weed för der Dateiname för de <i lang="en">SQLite</i> Daatebangk jenumme.',
+	'config-sqlite-parent-unwritable-group' => 'Mer kunnte dat Verzeischneß för de Daate, <code lang="en"><nowiki>$1</nowiki></code>, nit enreeschte, weil dat Projramm fö dä Web_ẞööver en dat Verzeischneß doh drövver, <code><nowiki>$2</nowiki></code>, nix erin donn darref.
+
+Mer han dä Name vun däm Zohjang op et Süßteem eruß jefonge, onger dämm dat Web_ẞööver_Projramm läuf. Jez moß De bloß doför sorrje, dat dä en dat Verzeischneß  <code><nowiki>$3</nowiki></code> schrieve kann, öm heh wigger maache ze künne.
+Ob enem Süßteem met <i lang="en">Unix</i>- oder <i lang="en">Linux</i> jeiht dat esu:
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Mer kunnte dat Verzeischneß för de Daate, <code lang="en"><nowiki>$1</nowiki></code>, nit enreeschte, weil dat Projramm fö dä Web_ẞööver en dat Verzeischneß doh drövver, <code><nowiki>$2</nowiki></code>, nix erin donn darref.
+
+Mer han dä Name vun däm Zohjang op et Süßteem nit eruß fenge künne, onger dämm dat Web_ẞööver_Projramm läuf. Jez moß De bloß doför sorrje, dat dä en dat Verzeischneß  <code><nowiki>$3</nowiki></code> schrieve kann, öm heh wigger maache ze künne. Wann De dä Name och nit weiß, maach, dat jeeder_ein doh schrieve kann.
+Ob enem Süßteem met <i lang="en">Unix</i>- oder <i lang="en">Linux</i> jeiht dat esu:
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Ene Fähler es opjetrodde beim Aanlääje vum Daate_Verzeishneß „$1“.
 Don dä Plaz för et Shpeishere prööfe un Repareere, dann versöhg et norr_ens.',
 	'config-sqlite-dir-unwritable' => 'Mer künne nit en dat Verzeishneß „$1“ schrieeve
@@ -7159,10 +7181,27 @@ Donn dohvun de Zohjreffs_Rääschde esu verändere, dat der Webßööver doh dre
 Donn onge dat Verzeishnes un der Name vun der Daatebangk prööfe un repareere, un dann versöhg_et norr-ens.',
 	'config-sqlite-readonly' => 'En di Dattei <code lang="en">$1</code> künne mer nit schrieve.',
 	'config-sqlite-cant-create-db' => 'Mer kunnte di Dattei <code lang="en">$1</code> för de Daatebangk nit aanlääje.',
+	'config-sqlite-fts3-downgrade' => 'Dat PHP heh hät kein Ongershtözong för FTS3, dröm donn mer de Daatebangktabälle eronger shtoofe.',
+	'config-can-upgrade' => 'Et sinn-er ald Daatebangktabelle vum MediaWiki en dä Daatebangk.
+Öm di op der Shtand vum MediaWiki $1 ze bränge, donn jäz op „{{int:config-continue}}“ klecke.',
+	'config-upgrade-done' => "Alles es jäz om neue Shtand.
+
+Mer kann dat Wiki jäz [\$1 bruche].
+
+Wann De Ding Dattei <code lang=\"en\">LocalSettings.php</code> neu schrieve wells, donn onge op dä Knopp klicke.
+Dat dom_mer ävver '''nit vörschlonn'''em Jääjedeil, ußer, wann et Probleme mem Wiki jitt.",
+	'config-upgrade-done-no-regenerate' => 'Alles es jäz om neue Shtand.
+
+Mer kann dat Wiki jäz [$1 bruche].',
 	'config-regenerate' => 'Donn de Dattei <code lang="en">LocalSettings.php</code> neu opsäze →',
 	'config-show-table-status' => 'Et Kommando <code lang="en">SHOW TABLE STATUS</code> aan de Daatebangk es donävve jejange!',
 	'config-unknown-collation' => "'''Opjepaß:''' De Daatabangk deiht en onbikannte Reijefollsch bruche, för Booshtaabe un Zeishe ze verjliishe un ze zotteere.",
+	'config-db-web-account' => 'Dä Zohjang zor Daatebangk fö et Wiki',
+	'config-db-web-help' => 'Donn ene Name un e Paßwoot för der Zohjang zor Daatebangk för et Wiki em nomaale Bedrief aanjävve.',
+	'config-db-web-account-same' => 'Donn dersällve Zohjang nämme, wi heh beim Opsäze.',
 	'config-db-web-create' => 'Donn dä Zohjang aanlääje, wann dä noch nit doh es.',
+	'config-db-web-no-create-privs' => 'Dä Zohjang för et Opsäze es nit berääschtesch, ene ander Zohjan enzereeschte.
+Dä aanjejovve Zohjang för der Nomaalbedrief moß dröm schunn enjersht sen!',
 	'config-mysql-engine' => 'De Zoot udder et Fommaat vun de Tabälle:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',

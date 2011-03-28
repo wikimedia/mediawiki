@@ -2433,6 +2433,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'unblocked-id'                    => 'Esto $1 on poistettu',
 'ipblocklist'                     => 'Estetyt IP-osoitteet ja käyttäjätunnukset',
 'ipblocklist-legend'              => 'Haku',
+'blocklist-timestamp'             => 'Päiväys',
 'blocklist-reason'                => 'Syy',
 'ipblocklist-submit'              => 'Hae',
 'ipblocklist-localblock'          => 'Paikallinen esto',
@@ -3393,7 +3394,8 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'specialpages'                   => 'Toimintosivut',
 'specialpages-note'              => '----
 * Normaalit toimintosivut.
-* <strong class="mw-specialpagerestricted">Rajoitetut toimintosivut.</strong>',
+* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>
+* <span class="mw-specialpagecached">Välimuistia käyttävät toimintosivut.</span>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',

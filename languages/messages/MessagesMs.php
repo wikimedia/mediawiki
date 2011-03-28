@@ -1195,7 +1195,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-rendering'               => 'Penampilan',
 'saveprefs'                     => 'Simpan',
 'resetprefs'                    => 'Set semula',
-'restoreprefs'                  => 'Pulihkan semua tetapan tersedia',
+'restoreprefs'                  => 'Pulihkan semua tetapan sediakala',
 'prefs-editing'                 => 'Menyunting',
 'prefs-edit-boxsize'            => 'Saiz kotak sunting.',
 'rows'                          => 'Baris:',
@@ -1240,7 +1240,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-custom-css'              => 'CSS tempahan',
 'prefs-custom-js'               => 'JS tempahan',
 'prefs-common-css-js'           => 'CSS/JavaScript kongsi untuk semua rupa:',
-'prefs-reset-intro'             => 'Anda boleh menggunakan laman ini untuk set semula keutamaan anda kepada tetapan sediakala tapak ini.
+'prefs-reset-intro'             => 'Anda boleh menggunakan laman ini untuk menetapkan semula keutamaan anda kepada tetapan sediakala (sewaktu anda mulai menjadi ahli) tapak ini.
 Tindakan ini tidak boleh dibatalkan.',
 'prefs-emailconfirm-label'      => 'Pengesahan e-mail:',
 'prefs-textboxsize'             => 'Saiz tetingkap penyuntingan',

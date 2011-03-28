@@ -666,6 +666,8 @@ Foar Information foulget n aktuellen Iendraach uut dät Benutser-Logbouk:',
 '''Beoachtje:''' Ätter dät Spiekerjen moast du dien Browser kweede, ju näie Version tou leeden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'sitecsspreview'                   => '"Beoachtje, dät du bloot ne Foarskau fon dit CSS bekiekest."
 "Der wuud noch nit spiekerd!"',
+'sitejspreview'                    => "'''Beoachtje, dät du bloot n Foarbekiek fon dit JavaScript bekiekest.'''
+'''Dät is noch nit spiekerd!'''",
 'userinvalidcssjstitle'            => "'''Woarskauenge:''' Deer existiert neen Skin \"\$1\". Betoank jädden, dät benutserspezifiske .css- un .js-Sieden män n Littek-Bouksteeuwe anfange mouten, also t.B. ''{{ns:user}}:Mustermann/vector.css'', nit ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Annerd)',
 'note'                             => "'''Waiwiesenge:'''",
@@ -681,6 +683,7 @@ Skuul dät Problem bestounden blieuwe, [[Special:UserLogout|mäldje die ou]] un 
 '''Fersäik et fonnäien, wan du unner ju foulgjende Textfoarskau noch moal ap „Siede spiekerje“ klikst. Skuul dät Problem bestounden blieuwe, [[Special:UserLogout|mäld die ou]] un deerätter wier an.'''",
 'token_suffix_mismatch'            => "'''Dien Beoarbaidenge wuude touräächwiesd, deer dien Browser Teekene in dät Beoarbaidje-Token ferstummeld häd.
 Ne Spiekerenge kon dän Siedeninhoold fernäile. Dit geböärt bietiede truch ju Benutsenge fon n anonymen Proxy-Tjoonst, die der failerhaft oarbaidet.'''",
+'edit_form_incomplete'             => "'''Die Inhoold fon dät Beoarbaidengsformular häd dän Server nit fulboodich beloanged. Pröif dien Beoarbaidengen ap Fulständegaid un fersäik dät noch insen.",
 'editing'                          => 'Beoarbaidjen fon $1',
 'editingsection'                   => 'Beoarbaidje fon $1 (Apsats)',
 'editingcomment'                   => 'Beoarbaidjen fon $1 (Näi Stuk)',
@@ -961,6 +964,7 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'showhideselectedversions' => 'Uutwäälde Versione wiese/fersteete',
 'editundo'                 => 'tounichte moakje',
 'diff-multi'               => ' ({{PLURAL:$1|Ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} fon {{PLURAL:$2|n Benutser|$2 Benutsere}} {{PLURAL:$1|wäd|wäide}} nit wiesd)',
+'diff-multi-manyusers'     => ' ({{PLURAL:$1|Ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} fon moor as {{PLURAL:$2|Benutser|$2 Benutsere}} nit wiesd)',
 
 # Search results
 'searchresults'                    => 'Säikresultoate',
@@ -996,6 +1000,7 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'searchprofile-everything-tooltip' => 'Gansen Inhoold truchsäike (inklusive Diskussionssieden)',
 'searchprofile-advanced-tooltip'   => 'Säik in wiedere Noomensruume',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 Woud|$2 Woude}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 Siede|$1 Sieden}} ({{PLURAL:$2|1 Unnerkategorie|$2 Unnerkategorien}}, {{PLURAL:$3|1 Doatäi|$3 Doatäie}})',
 'search-result-score'              => 'Relevanz: $1 %',
 'search-redirect'                  => '(Wiederlaitenge $1)',
 'search-section'                   => '(Apsnit $1)',
@@ -1070,6 +1075,7 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'contextlines'                  => 'Teekene pro Träffer:',
 'contextchars'                  => 'Teekene pro Riege:',
 'stub-threshold'                => '<a href="#" class="stub">Kuute Artikkele</a> markierje bi (in Byte):',
+'stub-threshold-disabled'       => 'Deaktivierd',
 'recentchangesdays'             => 'Antaal fon Deege, do ju Lieste fon „Lääste Annerengen“ standoardmäitich uumfoatje skäl:',
 'recentchangesdays-max'         => '(Maximoal $1 {{PLURAL:$1|Dai|Deege}})',
 'recentchangescount'            => 'Antaal fon do standoardmäitich anwiesde Beoarbaidengen:',
@@ -1129,6 +1135,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'email'                         => 'E-Mail',
 'prefs-help-realname'           => 'Optional. Foar dät anärkaanende Naamen fon dien Noome in Touhoopehong mäd dien Biedraagen.',
 'prefs-help-email'              => 'Ju Angoawe fon ne E-Mail-Adresse is optionoal, moaket oawers je Touseendenge muugelk fon n Ärsats-Paaswoud, wan du dien Paaswoud ferjeeten hääst.',
+'prefs-help-email-others'       => 'Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme, sunner dät du dien Identität eepenpenlääse hougest.',
 'prefs-help-email-required'     => 'N gultige Email-Adrässe is nöödich.',
 'prefs-info'                    => 'Basisinformatione',
 'prefs-i18n'                    => 'Internationalisierenge',
@@ -1141,7 +1148,13 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'prefs-advancedsearchoptions'   => 'Uutwiedede Optione',
 'prefs-advancedwatchlist'       => 'Uutwiedede Optione',
 'prefs-displayrc'               => 'Anwies-Optione',
+'prefs-displaysearchoptions'    => 'Anwies-Optione',
+'prefs-displaywatchlist'        => 'Anwies-Optione',
 'prefs-diffs'                   => 'Versionsfergliek',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Gultige E-Mail-Adrässe',
+'email-address-validity-invalid' => 'Ne gultige E-Mail-Adrässe is nöödich.',
 
 # User rights
 'userrights'                   => 'Benutsergjuchteferwaltenge',
@@ -1225,6 +1238,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-hideuser'              => 'Speer un ferbiergje n Benutsernoome',
 'right-ipblock-exempt'        => 'Uutnoame fon IP-Speeren, Autoblocks un Rangespeeren',
 'right-proxyunbannable'       => 'Uutnoame fon automatiske Proxyspeeren',
+'right-unblockself'           => 'Sik sälwen äntspeere',
 'right-protect'               => 'Siedenskutsstatus annerje',
 'right-editprotected'         => 'Skutsede Sieden beoarbaidje (sunner Kaskadenskuts)',
 'right-editinterface'         => 'Benutserinterface beoarbaidje',
@@ -1248,6 +1262,8 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-reset-passwords'       => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
+'right-revisionmove'          => 'Versione ferschuuwe.',
+'right-disableaccount'        => 'Benutserkonto deaktivierje.',
 
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
@@ -1290,6 +1306,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'action-userrights'           => 'Benutsergjuchte tou annerjen',
 'action-userrights-interwiki' => 'do Gjuchte fon Benutsere in uur Wikis annerje',
 'action-siteadmin'            => 'ju Doatenboank tou speeren of fräitoureeken',
+'action-revisionmove'         => 'Versione ferschuuwe.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Annerenge|Annerengen}}',
@@ -1346,6 +1363,9 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'upload_directory_missing'    => 'Dät Upload-Ferteeknis ($1) failt un kuud truch dän Webserver uk nit moaked wäide.',
 'upload_directory_read_only'  => 'Die Webserver häd neen Skrieuwgjuchte foar dät Upload-Ferteeknis ($1).',
 'uploaderror'                 => 'Failer bie dät Hoochleeden',
+'upload-recreate-warning'     => "'''Woarschauenge: ne Doatäi fon dissen Noome wuud al läsked of ferschäuwen.'''
+
+Der foulget n Uutsuch uut dät Läsk- un Ferschuuwengs-Logbouk fon disse Doatäi.",
 'uploadtext'                  => "Bruuk dit Formular uum näie Doatäie hoochtouleeden.
 
 Gung tou ju [[Special:FileList|Lieste fon hoochleedene Doatäie]], uum foarhoundene Doatäie tou säiken un antouwiesen. Sjuch uk dät [[Special:Log/upload|Doatäi-]] un [[Special:Log/delete|Läsk-Logbouk]].
@@ -1390,6 +1410,17 @@ Beoachtje, dät, juust as bie normoale Sieden-Inhoolde, uur Benutsere dien Doat�
 'filetype-banned-type'        => "'''„.$1“''' {{PLURAL:$4|is n nit ferlööwed Doatäiformoat|sunt nit ferlööwed Doatäiformoate}}.
 Ferlööwed {{PLURAL:$3|is|sunt}} $2.",
 'filetype-missing'            => 'Ju hoochtouleedende Doatäi häd neen Fergratterenge (t. B. „.jpg“).',
+'empty-file'                  => 'Ju uurdraine Doatäi is loos',
+'file-too-large'              => 'Ju uurdraine Doatäi is tou groot',
+'filename-tooshort'           => 'Die Doatäinoome is tou kuut',
+'filetype-banned'             => 'Disse Doatäi-Eendenge is speerd.',
+'verification-error'          => 'Disse Doatäi häd ju Doatäiwröige nit truchsteen.',
+'hookaborted'                 => 'Die Fersäik, ju Annerenge truchtoufieren, is apgruund fon n Extension-Hook failsloain.',
+'illegal-filename'            => 'Die Doatäinoome is nit ferlööwed',
+'overwrite'                   => 'Dät Uurskrieuwen fon ne existierdende Doatäi is nit toulät.',
+'unknown-error'               => 'N uunbekoanden Failer is aptreeden.',
+'tmp-create-error'            => 'Tiedwiese Doatäie konnen nit moaked wäide',
+'tmp-write-error'             => 'Failer bie dät Skrieuwen fon ju tiedwiese Doatäi',
 'large-file'                  => 'Jädden neen Bielde uur $1 hoochleede; disse Doatäi is $2 groot.',
 'largefileserver'             => 'Disse Doatäi is tou groot, deer die Server so konfigurierd is, dät Doatäien bloot bit tou ne bestimde Grööte apzeptierd wäide.',
 'emptyfile'                   => 'Ju hoochleedene Doatäi is loos. Die Gruund kon n Typfailer in dän Doatäinoome weese. Kontrollierje jädden, of du ju Doatäi wuddelk hoochleede wolt.',
@@ -1421,10 +1452,14 @@ Wan du ju Doatäi daach hoochleede moatest, gung dan tourääch un leed dien Doa
 'uploadedimage'               => '"[[$1]]" hoochleeden',
 'overwroteimage'              => 'häd ne näie Version fon „[[$1]]“ hoochleeden',
 'uploaddisabled'              => 'Äntskeeldigenge, dät Hoochleeden is apstuuns deaktivierd.',
+'copyuploaddisabled'          => 'Dät Hoochleeden fon URLs is deaktivierd',
+'uploadfromurl-queued'        => 'Dien Hoochleedenge fint sik nu in je Täiweslange.',
 'uploaddisabledtext'          => 'Dät Hoochleeden fon Doatäie is nit muugelk.',
 'php-uploaddisabledtext'      => 'PHP-Doatäi-Uploads wuuden deaktivierd. Wröich ju file_uploads-Ienstaalenge.',
 'uploadscripted'              => 'Disse Doatäi änthaalt HTML- of Scriptcode, ju bie Fersjoon fon aan Webbrowser apfierd wäide kuude.',
 'uploadvirus'                 => 'Disse Doatäi änthaalt n Virus! Details: $1',
+'uploadjava'                  => 'Dit is ne ZIP-Doatäi, ju der ne CLASS-Doatäi fon Java änthaalt.
+Dät Hoochleeden fon Java-Doatäie is nit toulät, deer do dät Uumgungen fon Sicherhaidsienskränkengen muugelk moakje kuuden.',
 'upload-source'               => 'Wälledoatäi',
 'sourcefilename'              => 'Wälledoatäi:',
 'sourceurl'                   => 'Wälle-URL:',
@@ -1441,6 +1476,11 @@ Tou Dien Information foulget dät Läsk-Logbouk mäd ju Begründenge foar ju foa
 'filename-bad-prefix'         => "Die Doatäinoome begint mäd '''„$1“'''. Dit is in algemeenen die fon ne Digitoalkamera foarroate Doatäinoome un deeruum nit gjucht uurtjuugend.
 Reek ju Doatäi n Noome, die dän Inhoold beeter beskrift.",
 'upload-success-subj'         => 'Mäd Ärfoulch hoochleeden',
+'upload-success-msg'          => 'Dät Hoochleeden fon [$2] is glukked. Ju stoant hier tou Ferföigenge: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => 'Hoochleedefailer',
+'upload-failure-msg'          => 'Dät roat n Problem mäd dien hoochleedene Doatäi fon [$2]:
+
+$1',
 
 'upload-proto-error'        => 'Falsk Protokol',
 'upload-proto-error-text'   => 'Ju URL mout mäd <code>http://</code> of <code>ftp://</code> ounfange.',

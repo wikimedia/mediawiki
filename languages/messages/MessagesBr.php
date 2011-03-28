@@ -2896,7 +2896,6 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 
 # Special:NewFiles
 'newimages'             => 'Roll ar restroù nevez',
-'newimages-text'        => 'Dindan, ur roll eus ar restroù nevez enporzhiet.',
 'imagelisttext'         => "Setu aze ur roll '''$1''' {{PLURAL:$1|file|files}} rummet $2.",
 'newimages-summary'     => 'Diskouez a ra ar bajenn dibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
 'newimages-legend'      => 'Sil',
