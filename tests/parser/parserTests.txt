@@ -6835,6 +6835,41 @@ some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
 !! end
 
 !! test
+Gallery (with namespace-less filenames)
+!! input
+<gallery>
+File:Nonexistant.jpg
+Nonexistant.jpg
+image:foobar.jpg
+foobar.jpg
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div style="height: 150px;">Nonexistant.jpg</div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:66px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!! test
 HTML Hex character encoding (spells the word "JavaScript")
 !! input
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
