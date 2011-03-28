@@ -30,7 +30,6 @@ abstract class FileRepo {
 	 * Override these in the base class
 	 */
 	var $fileFactory = false, $oldFileFactory = false;
-	var $fileFactoryKey = false, $oldFileFactoryKey = false;
 
 	function __construct( $info ) {
 		// Required settings
@@ -176,63 +175,6 @@ abstract class FileRepo {
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Create a new File object from the local repository
-	 * @param $sha1 Mixed: base 36 SHA-1 hash
-	 * @param $time Mixed: time at which the image was uploaded.
-	 *              If this is specified, the returned object will be an
-	 *              of the repository's old file class instead of a current
-	 *              file. Repositories not supporting version control should
-	 *              return false if this parameter is set.
-	 *
-	 * @return File
-	 */
-	function newFileFromKey( $sha1, $time = false ) {
-		if ( $time ) {
-			if ( $this->oldFileFactoryKey ) {
-				return call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
-			}
-		} else {
-			if ( $this->fileFactoryKey ) {
-				return call_user_func( $this->fileFactoryKey, $sha1, $this );
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Find an instance of the file with this key, created at the specified time
-	 * Returns false if the file does not exist. Repositories not supporting
-	 * version control should return false if the time is specified.
-	 *
-	 * @param $sha1 String base 36 SHA-1 hash
-	 * @param $options Option array, same as findFile().
-	 */
-	function findFileFromKey( $sha1, $options = array() ) {
-		$time = isset( $options['time'] ) ? $options['time'] : false;
-
-		# First try the current version of the file to see if it precedes the timestamp
-		$img = $this->newFileFromKey( $sha1 );
-		if ( !$img ) {
-			return false;
-		}
-		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
-			return $img;
-		}
-		# Now try an old version of the file
-		if ( $time !== false ) {
-			$img = $this->newFileFromKey( $sha1, $time );
-			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted(File::DELETED_FILE) ) {
-					return $img;
-				} else if ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
-					return $img;
-				}
-			}
-		}
-		return false;
 	}
 
 	/**
