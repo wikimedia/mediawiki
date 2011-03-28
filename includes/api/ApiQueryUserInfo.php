@@ -55,7 +55,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
-		global $wgUser, $wgRequest;
+		global $wgUser, $wgRequest, $wgHiddenPrefs;
 		$result = $this->getResult();
 		$vals = array();
 		$vals['id'] = intval( $wgUser->getId() );
@@ -115,7 +115,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
-		if ( isset( $this->prop['realname'] ) ) {
+		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $wgHiddenPrefs ) ) {
 			$vals['realname'] = $wgUser->getRealName();
 		}
 
