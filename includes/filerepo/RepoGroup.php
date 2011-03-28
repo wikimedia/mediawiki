@@ -212,6 +212,29 @@ class RepoGroup {
 	}
 
 	/**
+	 * Find an instance of the file with this key, created at the specified time
+	 * Returns false if the file does not exist.
+	 *
+	 * @param $hash String base 36 SHA-1 hash
+	 * @param $options Option array, same as findFile()
+	 * @return File object or false if it is not found
+	 */
+	function findFileFromKey( $hash, $options = array() ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$file = $this->localRepo->findFileFromKey( $hash, $options );
+		if ( !$file ) {
+			foreach ( $this->foreignRepos as $repo ) {
+				$file = $repo->findFileFromKey( $hash, $options );
+				if ( $file ) break;
+			}
+		}
+		return $file;
+	}
+
+	/**
 	 * Find all instances of files with this key
 	 *
 	 * @param $hash String base 36 SHA-1 hash
