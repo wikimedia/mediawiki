@@ -466,13 +466,13 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 			$installer->preUpgrade();
 			$this->addHTML(
 				'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
-				'<script>jQuery( "#config-spinner" )[0].style.display = "block";</script>' .
+				'<script>jQuery( "#config-spinner" ).show();</script>' .
 				'<textarea id="config-update-log" name="UpdateLog" rows="10" readonly="readonly">'
 			);
 			$this->parent->output->flush();
 			$result = $installer->doUpgrade();
 			$this->addHTML( '</textarea>
-<script>jQuery( "#config-spinner" )[0].style.display = "none";</script>' );
+<script>jQuery( "#config-spinner" ).hide()</script>' );
 			$this->parent->output->flush();
 			if ( $result ) {
 				// If they're going to possibly regenerate LocalSettings, we
