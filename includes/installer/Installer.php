@@ -607,13 +607,10 @@ abstract class Installer {
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
-			$db = $this->getDBInstaller( $name );
-			$readableName = wfMsg( 'config-type-' . $name );
-
-			if ( $db->isCompiled() ) {
+			if ( $this->getDBInstaller( $name )->isCompiled() ) {
 				$compiledDBs[] = $name;
 			}
-			$allNames[] = $readableName;
+			$allNames[] = wfMsg( 'config-type-' . $name );;
 		}
 
 		$this->setVar( '_CompiledDBs', $compiledDBs );
