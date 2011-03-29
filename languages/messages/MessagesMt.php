@@ -300,8 +300,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
 'tog-oldsig'                  => 'Dehra proviżorja tal-firma attwali:',
 'tog-fancysig'                => 'Interpreta l-firma bħala test tal-wiki (mingħajr ħolqa awtomatika)',
-'tog-externaleditor'          => 'Uża awtomatikament modifikatur għat-testi estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
-'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal esperti biss, għandhek bżonn preferenzi speċjali fuq il-komputer tiegħek)',
+'tog-externaleditor'          => 'Uża awtomatikament editur estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
+'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
 'tog-showjumplinks'           => 'Attiva l-ħoloq aċċessibbli "aqbeż għal"',
 'tog-uselivepreview'          => "Attiva l-funzjoni ''Live preview'' (bżonn tal-JavaScript; sperimentali)",
 'tog-forceeditsummary'        => 'Nebbaħni meta ndaħħal taqsira tal-modifika vojta',
@@ -1277,7 +1277,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-help-gender'             => 'Opzjonali: użat biex jagħmel l-indikazzjoni tas-sess mis-softwer. Din l-informazzjoni tkun pubblika.',
 'email'                         => 'Posta elettronika',
 'prefs-help-realname'           => 'L-isem propju mhuwiex obbligatorju; jekk tagħżel li tipprovdih, dan jintuża biss biex jagħtik attribuzzjoni għax-xogħol tiegħek.',
-'prefs-help-email'              => "L-indirizz tal-posta elettronika huwa kamp opzjonali, però dan jagħti aċċess lil oħrajn sabiex jagħmlu kuntatt miegħek minn ġol-paġna tal-utent jew mill-paġna ta' diskussjoni tal-utent mingħajr ma jkollok bżonn li turi l-identità tiegħek.",
+'prefs-help-email'              => 'L-indirizz tal-posta elettronika huwa kamp opzjonali, però huwa obbligatarju sabiex tissettja mill-ġdid il-password, jekk tinsa l-password.',
 'prefs-help-email-required'     => 'Hemm bżonn l-indirizz tal-posta elettronika.',
 'prefs-info'                    => 'Informazzjoni bażika',
 'prefs-i18n'                    => 'Internazzjonalizzazzjoni',
@@ -1504,8 +1504,8 @@ Ara l-[[Special:NewFiles|gallerija ta' fajls ġodda]] għal ħarsa viżiva.",
 'filetype-badmime'            => "Mhux permess li fajls jiġu ''uploaded'' ta' tip MIME \"\$1\".",
 'filetype-unwanted-type'      => "'''\".\$1\"''' huwa tip ta' fajl mhux rikjest.
 {{PLURAL:\$3|Tip ta' fajl preferut huwa|Tipi ta' fajl preferuti huma}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' mhux tip ta' fajl permess.
-{{PLURAL:\$3|Tip ta' fajl permess huwa|Tipi ta' fajl permessi huma}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' {{PLURAL:\$4|mhuwiex tip ta' fajl permess|mhumiex tipi ta' fajls permessi}}.
+It-{{PLURAL:\$3|tip ta' fajl permess huwa|tipi ta' fajls permessi huma}} \$2.",
 'filetype-missing'            => 'Il-Fajl m\'għandux estenżjoni (bħal ".jpg").',
 'large-file'                  => 'Huwa suġġerit li l-fajls ma jkunux akbar minn $1;
 dan il-fajl huwa $2 kbir.',
@@ -1569,7 +1569,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- ħalli din il-linja eżattament kif inhi -->',
 'upload-success-subj'         => "Mtella' b'suċċess",
-'upload-success-msg'          => 'Il-fajl tiegħek huwa disponibbli hawnhekk: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'It-tlugħ tal-fajl minn [$2] irnexxa. Il-fajl tiegħek huwa disponibbli hawnhekk: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem fit-tlugħ tal-fajl',
 
 'upload-proto-error'      => 'Protocol ħażin',
@@ -1739,7 +1739,7 @@ Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn 
 'nbytes'                  => '{{PLURAL:$1|byte|$1  bytes}}',
 'ncategories'             => '{{PLURAL:$1|kategorija|$1  kategoriji}}',
 'nlinks'                  => '{{PLURAL:$1|link|$1 links}}',
-'nmembers'                => '{{PLURAL:$1|membru|$1 membri}}',
+'nmembers'                => '$1 {{PLURAL:$1|membru|membri}}',
 'nrevisions'              => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}',
 'nviews'                  => '{{PLURAL:$1|visita|$1 visiti}}',
 'specialpage-empty'       => 'Dan ir-rapport ma fih l-ebda riżultat.',
@@ -3125,8 +3125,9 @@ Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
 # Special:SpecialPages
 'specialpages'                   => 'Paġni speċjali',
 'specialpages-note'              => '----
-* Paġni normali speċjali.
-* <strong class="mw-specialpagerestricted">Paġni speċjali limitati.</strong>',
+* Paġni speċjali normali.
+* <span class="mw-specialpagerestricted">Paġni speċjali riservati għal kategoriji partikulari ta\' utenti.</span>
+* <span class="mw-specialpagecached">Paġni speċjali disponibbli f\'verżjoni cache.</span>',
 'specialpages-group-maintenance' => 'Rapporti tal-manteniment',
 'specialpages-group-other'       => 'Paġni speċjali oħrajn',
 'specialpages-group-login'       => 'Idħol / irreġistra',

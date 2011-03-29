@@ -194,8 +194,12 @@ $messages = array(
 'yourpassword'            => 'ପାସଉଆଡ଼',
 'login'                   => 'ଲଗଇନ',
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
+'loginprompt'             => "{{SITENAME}}ରେ ଲଗ ଇନ କରିବାପାଇଁ ଆପଣଙ୍କୁ '''କୁକି''' ସଚଳ କରିବାକୁ ପଡ଼ିବ ।",
+'userlogin'               => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'logout'                  => 'ଲଗଆଉଟ',
 'userlogout'              => 'ଲଗ ଆଉଟ',
+'nologin'                 => 'ଖାତାଟିଏ ନାହିଁ? $1।',
+'nologinlink'             => 'ନୁଆ ଖାତାଟିଏ ଖୋଲିବା',
 
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',

@@ -214,7 +214,7 @@ $messages = array(
 'mypage'        => 'Mənim səhifəm',
 'mytalk'        => 'Danışıqlarım',
 'anontalk'      => 'Bu IP-yə aid müzakirə',
-'navigation'    => 'Rəhbər',
+'navigation'    => 'Naviqasiya',
 'and'           => '&#32;və',
 
 # Cologne Blue skin
@@ -738,7 +738,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'searchmenu-new'            => "'''Bu vikidə \"[[:\$1]]\" səhifəsini yarat!'''",
 'searchhelp-url'            => 'Help:Mündəricət',
 'searchprofile-images'      => 'Multimedia',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 söz|$2 sözlər}})',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 söz|$2 söz}})',
 'search-redirect'           => '(yönləndirmə $1)',
 'search-section'            => '(bölmə $1)',
 'search-suggest'            => 'Bəlkə, bunu nəzərdə tuturdunuz: $1',
@@ -1013,6 +1013,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'filehist-current'          => 'indiki',
 'filehist-datetime'         => 'Tarix/Vaxt',
 'filehist-thumb'            => 'Kiçik şəkil',
+'filehist-thumbtext'        => '$1 tarixindəki versiyanın kiçildilmiş görüntüsü',
 'filehist-user'             => 'İstifadəçi',
 'filehist-dimensions'       => 'Ölçülər',
 'filehist-comment'          => 'Şərh',
@@ -1526,7 +1527,7 @@ Zəhmət olmasa başqa ad seçin.',
 'tooltip-pt-preferences'          => 'Mənim nizamlamalarım',
 'tooltip-pt-watchlist'            => 'İzləməyə götürdüyüm səhifələr',
 'tooltip-pt-mycontris'            => 'Etdiyim dəyişikliklərin siyahısı',
-'tooltip-pt-login'                => 'Daxil olmanız tövsiyə olunur, amma tələb olunmur.',
+'tooltip-pt-login'                => 'Daxil olmanız tövsiyə olunur, amma bu məcburi tələb deyil.',
 'tooltip-pt-anonlogin'            => 'Daxil olmanız tövsiyə olunur, amma tələb olunmur.',
 'tooltip-pt-logout'               => 'Sistemdən çıx',
 'tooltip-ca-talk'                 => 'Məqalə həqqində müzakirə edib, nəzərivi bildir',
@@ -1639,11 +1640,11 @@ $1',
 'bydate'       => 'tarixe görə',
 
 # Bad image list
-'bad_image_list' => 'Formatı bu şəkildə olmalıdır:
+'bad_image_list' => 'Format bu şəkildə olmalıdır:
 
 Yalnız siyahı bəndləri (* işarəsi ilə başlayan sətirlər) nəzərə alınır.
-Sətirdəki ilk keçid əlavə olunması qadağan olunmuş şəkilə keçid olmalıdır.
-Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şəklin əlavə oluna biləcəyi məqalələr. Məsələn, fayl məqalədə sətrin içində görünə bilər.',
+Sətirdəki ilk keçid, əlavə olunması qadağan olunmuş şəkilə keçid olmalıdır.
+Həmin sətirdəki növbəti keçidlər istisna hesab olunur. Məsələn, fayl məqalədə sətrin içində görünə bilər.',
 
 # Metadata
 'metadata'          => 'Metaməlumatlar',
