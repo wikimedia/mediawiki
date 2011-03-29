@@ -1228,8 +1228,7 @@ abstract class Installer {
 			array( 'name' => 'tables',     'callback' => array( $installer, 'createTables' ) ),
 			array( 'name' => 'interwiki',  'callback' => array( $installer, 'populateInterwikiTable' ) ),
 			array( 'name' => 'stats',      'callback' => array( $this, 'populateSiteStats' ) ),
-			array( 'name' => 'secretkey',  'callback' => array( $this, 'generateSecretKey' ) ),
-			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),
+			array( 'name' => 'keys',       'callback' => array( $this, 'generateKeys' ) ),
 			array( 'name' => 'sysop',      'callback' => array( $this, 'createSysop' ) ),
 			array( 'name' => 'mainpage',   'callback' => array( $this, 'createMainpage' ) ),
 		);
@@ -1309,56 +1308,52 @@ abstract class Installer {
 	 *
 	 * @return Status
 	 */
-	public function generateSecretKey() {
-		return $this->generateSecret( 'wgSecretKey' );
+	public function generateKeys() {
+		$keys = array( 'wgSecretKey' => 64 );
+		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
+			$keys['wgUpgradeKey'] = 16;
+		}
+		return $this->doGenerateKeys( $keys );
 	}
 
 	/**
-	 * Generate a secret value for a variable using either
-	 * /dev/urandom or mt_rand() Produce a warning in the later case.
+	 * Generate a secret value for variables using either
+	 * /dev/urandom or mt_rand(). Produce a warning in the later case.
 	 *
+	 * @param $keys Array
 	 * @return Status
 	 */
-	protected function generateSecret( $secretName, $length = 64 ) {
-		if ( wfIsWindows() ) {
-			$file = null;
-		} else {
-			wfSuppressWarnings();
-			$file = fopen( "/dev/urandom", "r" );
-			wfRestoreWarnings();
-		}
-
+	protected function doGenerateKeys( $keys ) {
 		$status = Status::newGood();
 
-		if ( $file ) {
-			$secretKey = bin2hex( fread( $file, $length / 2 ) );
-			fclose( $file );
-		} else {
-			$secretKey = '';
+		wfSuppressWarnings();
+		$file = fopen( "/dev/urandom", "r" );
+		wfRestoreWarnings();
 
-			for ( $i = 0; $i < $length / 8; $i++ ) {
-				$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
+		foreach ( $keys as $name => $length ) {
+			if ( $file ) {
+					$secretKey = bin2hex( fread( $file, $length / 2 ) );
+			} else {
+				$secretKey = '';
+
+				for ( $i = 0; $i < $length / 8; $i++ ) {
+					$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
+				}
 			}
 
-			$status->warning( 'config-insecure-secret', '$' . $secretName );
+			$this->setVar( $name, $secretKey );
 		}
 
-		$this->setVar( $secretName, $secretKey );
+		if ( $file ) {
+			fclose( $file );
+		} else {
+			$names = array_keys ( $keys );
+			$names = preg_replace( '/^(.*)$/', '\$$1', $names );
+			global $wgLang;
+			$status->warning( 'config-insecure-keys', $wgLang->listToText( $names ), count( $names ) );
+		}
 
 		return $status;
-	}
-
-	/**
-	 * Generate a default $wgUpgradeKey. Will warn if we had to use
-	 * mt_rand() instead of /dev/urandom
-	 *
-	 * @return Status
-	 */
-	public function generateUpgradeKey() {
-		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
-			return $this->generateSecret( 'wgUpgradeKey', 16 );
-		}
-		return Status::newGood();
 	}
 
 	/**

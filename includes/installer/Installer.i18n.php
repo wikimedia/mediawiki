@@ -490,10 +490,8 @@ Skipping creation.",
 	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
 Skipping default list.",
 	'config-install-stats'            => 'Initializing statistics',
-	'config-install-secretkey'        => 'Generating secret key',
-	'config-insecure-secret'          => "'''Warning:''' Unable to create a secure <code>$1</code>.
-Consider changing it manually.",
-	'config-install-upgradekey'        => 'Generating default upgrade key',
+	'config-install-keys'             => 'Generating secret keys',
+	'config-insecure-keys'            => "'''Warning:''' {{PLURAL:$2|A secure key|Secure keys}} $1 generated during installation are not completely safe. Consider changing {{PLURAL:$2|it|them}} manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
 	'config-install-subscribe-fail'   => 'Unable to subscribe to mediawiki-announce',
 	'config-install-mainpage'         => 'Creating main page with default content',
