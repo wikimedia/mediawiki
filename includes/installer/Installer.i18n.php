@@ -580,7 +580,8 @@ Parameters:
 * {{msg-mw|config-profile-private}}',
 	'config-upload-help' => 'The word "mode" here refers to the access rights given to various user groups when attempting to create and store files and/or subdiretories in the said directory on the server. It also refers to the <code>mode</code> command used to maipulate said right mask under Unix, Linux, and similar operating systems. A less operating-system-centric translation is fine.',
 	'config-logo-help' => '{{doc-important|For languages with right-to-left script, translate "top left corner" as "top right corner".}}',
-	'config-cc-not-chosen' => 'Should we use "int:key" here (and to which key)?',
+	'config-cc-not-chosen' => 'Do not translate the <code>"proceed".</code> part.
+This message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to klick "proceed" so as to return to the MediaWiki installer page.',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
 	'config-install-pg-schema-failed' => 'Parameters:
@@ -811,7 +812,7 @@ Maak seker dat die gebruiker "$1" na skema "$2" mag skryf.',
 	'config-install-pg-commit' => 'Wysigings word gestoor',
 	'config-pg-no-plpgsql' => 'U moet die taal PL/pgSQL in die database $1 installeer',
 	'config-install-user' => 'Besig om die databasisgebruiker te skep',
-	'config-install-user-failed' => 'Die toekenning van regte aan gebruiker "$1" het gefaal: $2',
+	'config-install-user-grant-failed' => 'Die toekenning van regte aan gebruiker "$1" het gefaal: $2',
 	'config-install-tables' => 'Skep tabelle',
 	'config-install-tables-exist' => "'''Waarskuwing''': Dit lyk of MediaWiki se tabelle reeds bestaan. 
 Die skep van tabelle word oorgeslaan.",
@@ -820,9 +821,7 @@ Die skep van tabelle word oorgeslaan.",
 	'config-install-interwiki-list' => 'Kon nie die lêer <code>interwiki.list</code> vind nie.',
 	'config-install-interwiki-exists' => "'''Waarskuwing''': Die interwiki-tabel bevat reeds inskrywings.
 Die standaardlys word oorgeslaan.",
-	'config-install-secretkey' => 'Genereer geheime sleutel',
-	'config-insecure-secret' => "Waarskuwing: dit was nie moontlik om 'n <code>$1</code> te skep nie.
-Oorweeg om dit handmatig te wysig.",
+	'config-install-keys' => 'Genereer geheime sleutel',
 	'config-install-sysop' => "Skep 'n gebruiker vir die administrateur",
 	'config-install-mainpage' => 'Skep die hoofblad met standaard inhoud',
 	'config-install-mainpage-failed' => 'Kon nie die hoofblad laai nie: $1',
@@ -915,9 +914,9 @@ $1',
 	'config-page-welcome' => 'Вітаем у MediaWiki!',
 	'config-page-dbconnect' => 'Падключэньне да базы зьвестак',
 	'config-page-upgrade' => 'Абнавіць існуючую ўстаноўку',
-	'config-page-dbsettings' => 'Устаноўкі базы зьвестак',
+	'config-page-dbsettings' => 'Налады базы зьвестак',
 	'config-page-name' => 'Назва',
-	'config-page-options' => 'Устаноўкі',
+	'config-page-options' => 'Налады',
 	'config-page-install' => 'Усталяваць',
 	'config-page-complete' => 'Зроблена!',
 	'config-page-restart' => 'Пачаць усталяваньне зноў',
@@ -995,7 +994,7 @@ MediaWiki патрэбныя функцыі з гэтага модулю, там
 MediaWiki для працы патрабуюцца функцыі рэгулярных выразаў у стылі Perl.',
 	'config-pcre-no-utf8' => "'''Крытычная памылка''': модуль PCRE для PHP скампіляваны без падтрымкі PCRE_UTF8.
 MediaWiki патрабуе падтрымкі UTF-8 для слушнай працы.",
-	'config-memory-raised' => 'Устаноўка PHP <code>memory_limit</code> роўная $1, падвышаная да $2.',
+	'config-memory-raised' => 'Абмежаваньне на даступную для PHP памяць <code>memory_limit</code> было падвышанае з $1 да $2.',
 	'config-memory-bad' => "'''Папярэджаньне:''' памер PHP <code>memory_limit</code> складае $1.
 Верагодна, гэта вельмі мала.
 Усталяваньне можа быць няўдалым!",
@@ -1101,10 +1100,10 @@ $1
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL])',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
 	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
-	'config-header-mysql' => 'Устаноўкі MySQL',
-	'config-header-postgres' => 'Устаноўкі PostgreSQL',
-	'config-header-sqlite' => 'Устаноўкі SQLite',
-	'config-header-oracle' => 'Устаноўкі Oracle',
+	'config-header-mysql' => 'Налады MySQL',
+	'config-header-postgres' => 'Налады PostgreSQL',
+	'config-header-sqlite' => 'Налады SQLite',
+	'config-header-oracle' => 'Налады Oracle',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
 	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
@@ -1262,7 +1261,7 @@ chmod a+w $3</pre>',
 Калі Вы жадаеце выкарыстоўваць тэкст з Вікіпэдыі, і жадаеце каб Вікіпэдыя магла прынімаць тэкст скапіяваны з Вашай вікі, Вам неабходна выбраць ліцэнзію '''Creative Commons Attribution Share Alike'''.
 
 Раней Вікіпэдыя выкарыстоўвала ліцэнзію GNU Free Documentation. Яна ўсё яшчэ дзейнічае, але яна ўтрымлівае некаторыя моманты, якія ўскладняюць паўторнае выкарыстоўваньне і інтэрпрэтацыю матэрыялаў.",
-	'config-email-settings' => 'Устаноўкі электроннай пошты',
+	'config-email-settings' => 'Налады электроннай пошты',
 	'config-enable-email' => 'Дазволіць выходзячыя электронныя лісты',
 	'config-enable-email-help' => 'Калі Вы жадаеце, каб працавала электронная пошта, неабходна сканфігураваць PHP [http://www.php.net/manual/en/mail.configuration.php адпаведным чынам].
 Калі Вы не жадаеце выкарыстоўваць магчымасьці электроннай пошты, Вы можаце яе адключыць.',
@@ -1305,7 +1304,7 @@ chmod a+w $3</pre>',
 	'config-cc-again' => 'Выберыце яшчэ раз…',
 	'config-cc-not-chosen' => 'Выберыце, якую ліцэнзію Creative Commons Вы жадаеце выкарыстоўваць і націсьніце «працягваць».',
 	'config-advanced-settings' => 'Дадатковыя налады',
-	'config-cache-options' => 'Устаноўкі кэшаваньня аб’ектаў:',
+	'config-cache-options' => 'Налады кэшаваньня аб’ектаў:',
 	'config-cache-help' => 'Кэшаваньне аб’ектаў павялічвае хуткасьць працы MediaWiki праз кэшаваньне зьвестак, якія часта выкарыстоўваюцца.
 Вельмі рэкамэндуем уключыць гэта для сярэдніх і буйных сайтаў, таксама будзе карысна для дробных сайтаў.',
 	'config-cache-none' => 'Без кэшаваньня (ніякія магчымасьці не страчваюцца, але хуткасьць працы буйных сайтаў можа зьнізіцца)',
@@ -1332,7 +1331,7 @@ chmod a+w $3</pre>',
 	'config-install-step-done' => 'зроблена',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
-	'config-install-database' => 'Устаноўка базы зьвестак',
+	'config-install-database' => 'Налада базы зьвестак',
 	'config-install-pg-schema-not-exist' => 'Схема PostgreSQL не існуе',
 	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
@@ -1353,10 +1352,7 @@ chmod a+w $3</pre>',
 	'config-install-interwiki-exists' => "'''Папярэджаньне''': выглядае, што табліца інтэрвікі ўжо запоўненая.
 Сьпіс па змоўчваньні прапушчаны.",
 	'config-install-stats' => 'Ініцыялізацыі статыстыкі',
-	'config-install-secretkey' => 'Стварэньне сакрэтнага ключа',
-	'config-insecure-secret' => "'''Папярэджаньне:''' немагчыма стварыць <code>$1</code> бясьпекі.
-Верагодна трэба зьмяніць яго ўручную.",
-	'config-install-upgradekey' => 'Стварэньне ключа абнаўленьня па змоўчваньні',
+	'config-install-keys' => 'Стварэньне сакрэтнага ключа',
 	'config-install-sysop' => 'Стварэньне рахунку адміністратара',
 	'config-install-subscribe-fail' => 'Немагчыма падпісацца на «mediawiki-announce»',
 	'config-install-mainpage' => 'Стварэньне галоўнай старонкі са зьместам па змоўчваньні',
@@ -1777,10 +1773,7 @@ $1
 	'config-install-interwiki-exists' => "'''Предупреждение''': Таблицата с междууикита изглежда вече съдържа данни.
 Пропускане на списъка по подразбиране.",
 	'config-install-stats' => 'Инициализиране на статистиките',
-	'config-install-secretkey' => 'Генериране на таен ключ',
-	'config-insecure-secret' => "'''Предупреждение:''' Беше невъзможно да се създаде таен <code>$1</code>.
-Препоръчително е да бъде променен ръчно.",
-	'config-install-upgradekey' => 'Създаване на ключ за надграждане по подразбиране',
+	'config-install-keys' => 'Генериране на таен ключ',
 	'config-install-sysop' => 'Създаване на администраторска сметка',
 	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce',
 	'config-install-mainpage' => 'Създаване на Началната страница със съдържание по подразбиране',
@@ -2046,7 +2039,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
 	'config-install-stats' => 'O sevel ar stadegoù',
-	'config-install-secretkey' => "Genel an alc'hwez kuzh",
+	'config-install-keys' => "Genel an alc'hwez kuzh",
 	'config-install-sysop' => 'Krouidigezh kont ar merour',
 	'config-install-subscribe-fail' => "Ne c'haller ket koumanantiñ da mediawiki-announce",
 	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
@@ -2377,7 +2370,7 @@ $1
 
 Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt es oben einen Link zur Anleitung mit Informationen, wie dieses aktiviert werden kann.',
 	'config-support-mysql' => '* $1 ist das von MediaWiki primär unterstützte Datenbanksystem ([http://www.php.net/manual/en/mysql.installation.php Anleitung zur Kompilierung von PHP mit MySQL-Unterstützung (en)])',
-	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung])',
+	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung]). Es gibt allerdings einige kleinere Implementierungsfehler, so dass von der Nutzung in einer Produktivumgebung abgeraten wird.',
 	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/de/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung], verwendet PHP Data Objects (PDO))',
 	'config-support-oracle' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/oci8.installation.php Anleitung zur Kompilierung von PHP mit OCI8-Unterstützung (en)])',
 	'config-header-mysql' => 'MySQL-Einstellungen',
@@ -2498,7 +2491,7 @@ Bitte einen abweichenden Benutzernamen angeben.',
 	'config-admin-password-same' => 'Das Passwort darf nicht mit dem Benutzernamen übereinstimmen.',
 	'config-admin-password-mismatch' => 'Die beiden Passwörter stimmen nicht überein.',
 	'config-admin-email' => 'E-Mail-Adresse:',
-	'config-admin-email-help' => 'Bitte hier eine E-Mail-Adresse angeben, die den E-Mail-Empfang von anderen Benutzern des Wikis, das Zurücksetzen des Passwortes sowie Benachrichtigungen zu Änderungen an beobachteten Seiten ermöglicht.',
+	'config-admin-email-help' => 'Bitte hier eine E-Mail-Adresse angeben, die den E-Mail-Empfang von anderen Benutzern des Wikis, das Zurücksetzen des Passwortes sowie Benachrichtigungen zu Änderungen an beobachteten Seiten ermöglicht. Diese Feld kann leer gelassen werden.',
 	'config-admin-error-user' => 'Es ist beim Erstellen des Administrators mit dem Namen „<nowiki>$1</nowiki>“ ein interner Fehler aufgetreten.',
 	'config-admin-error-password' => 'Es ist beim Setzen des Passworts für den Administrator „<nowiki>$1</nowiki>“ ein interner Fehler aufgetreten: <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Es wurde eine ungültige E-Mail-Adresse angegeben',
@@ -2631,10 +2624,7 @@ Die Erstellung wurde übersprungen.",
 	'config-install-interwiki-exists' => "'''Warnung:'''  Es wurden Interwikitabellen mit Daten gefunden.
 Die Standardliste wird übersprungen.",
 	'config-install-stats' => 'Initialisierung der Statistiken',
-	'config-install-secretkey' => 'Erstellung des Geheimschlüssels',
-	'config-insecure-secret' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>$1</code> ist gescheitert.
-Dies muss manuell nachgeholt werden.",
-	'config-install-upgradekey' => 'Standardaktualisierungsschlüssel wird generiert',
+	'config-install-keys' => 'Erstellung der Geheimschlüssel',
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-subscribe-fail' => 'Abonnierung von „mediawiki-announce“ ist gescheitert',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
@@ -2983,10 +2973,7 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-interwiki-list' => 'No se pudo encontrar el archivo <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Advertencia''': La tabla de interwikis parece ya contener entradas.
 Se omitirá la lista predeterminada.",
-	'config-install-secretkey' => 'Generación de clave secreta',
-	'config-insecure-secret' => "'''Aviso:''' No se pudo generar la clave <code>$1</code> de forma segura.
-Considera modificarla manualmente.",
-	'config-install-upgradekey' => 'Generando clave para realizar actualizaciones',
+	'config-install-keys' => 'Generación de clave secreta',
 	'config-install-sysop' => 'Creando cuenta de usuario del administrador',
 );
 
@@ -3214,8 +3201,8 @@ $messages['fr'] = array(
 	'config-localsettings-upgrade' => 'Un fichier <code>LocalSettings.php</code> a été détecté.
 Pour mettre à jour cette installation, veuillez saisir la valeur de <code>$wgUpgradeKey</code> dans le champ ci-dessous.
 Vous la trouverez dans LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => "Un fichier LocalSettings.php a été détecté. 
-Pour mettre à niveau cette installation, s'il vous plaît utiliser --upgrade=yes.",
+	'config-localsettings-cli-upgrade' => 'Un fichier LocalSettings.php a été détecté. 
+Pour mettre à niveau cette installation, veuillez exécuter update.php',
 	'config-localsettings-key' => 'Clé de mise à jour :',
 	'config-localsettings-badkey' => 'La clé que vous avez fournie est incorrecte',
 	'config-upgrade-key-missing' => 'Une installation existante de MediaWiki a été détectée.
@@ -3350,8 +3337,8 @@ Bien que MediaWiki vérifie tous les fichiers téléchargés, il est fortement r
 	'config-brokenlibxml' => 'Votre système utilise une combinaison de versions de PHP et libxml2 qui est boguée et peut engendrer des corruptions cachées de données dans MediaWiki et d’autres applications web.
 Veuillez mettre à jour votre système vers PHP 5.2.9 ou plus récent et libxml2 2.7.3 ou plus récent ([http://bugs.php.net/bug.php?id=45996 bogue déposé auprès de PHP]).
 Installation interrompue.',
-	'config-using531' => 'PHP $1 n’est pas compatible avec MediaWiki à cause d’un bogue affectant les paramètres de référence de <code>__call()</code>.
-Veuillez mettre à jour votre système vers PHP 5.3.2 ou plus récent ou revenir à PHP 5.3.0 pour résoudre ce problème ([http://bugs.php.net/bug.php?id=50394 bogue déposé auprès de PHP]).
+	'config-using531' => 'MediaWiki ne peut pas être utilisé avec PHP $1 à cause d’un bogue affectant les paramètres passés par référence à <code>__call()</code>.
+Veuillez mettre à jour votre système vers PHP 5.3.2 ou plus récent ou revenir à PHP 5.3.0 pour résoudre ce problème.
 Installation interrompue.',
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
@@ -3545,7 +3532,7 @@ Indiquez un nom d'utilisateur différent.",
 	'config-admin-password-same' => "Le mot de passe doit être différent du nom d'utilisateur.",
 	'config-admin-password-mismatch' => 'Les deux mots de passe que vous avez saisis ne correspondent pas.',
 	'config-admin-email' => 'Adresse de courriel :',
-	'config-admin-email-help' => "Entrez une adresse de courriel ici pour vous permettre de recevoir des courriels d'autres utilisateurs du wiki, réinitialiser votre mot de passe, et être informé des modifications apportées aux pages de votre liste de suivi.",
+	'config-admin-email-help' => "Entrez une adresse de courriel ici pour vous permettre de recevoir des courriels d'autres utilisateurs du wiki, réinitialiser votre mot de passe, et être informé des modifications apportées aux pages de votre liste de suivi. Vous pouvez laisser ce champ vide.",
 	'config-admin-error-user' => "Erreur interne lors de la création d'un administrateur avec le nom « <nowiki>$1</nowiki> ».",
 	'config-admin-error-password' => "Erreur interne lors de l'inscription d'un mot de passe pour l'administrateur « <nowiki>$1</nowiki> » : <pre>$2</pre>",
 	'config-admin-error-bademail' => 'Vous avez entré une adresse de courriel invalide',
@@ -3682,10 +3669,7 @@ Création omise.",
 	'config-install-interwiki-exists' => "'''Attention:''' La table des interwikis semble déjà contenir des entrées. 
 La liste par défaut ne sera pas inscrite.",
 	'config-install-stats' => 'Initialisation des statistiques',
-	'config-install-secretkey' => 'Génération de la clé secrète',
-	'config-insecure-secret' => "'''Attention:''' Impossible de créer un <code>$1</code> sécurisé. 
-Envisagez de le changer manuellement.",
-	'config-install-upgradekey' => 'Génération de la clé de mise à jour par défaut',
+	'config-install-keys' => 'Génération de la clé secrète',
 	'config-install-sysop' => 'Création du compte administrateur',
 	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
@@ -4187,10 +4171,7 @@ Saltando a creación.",
 	'config-install-interwiki-exists' => "'''Atención:''' Semella que a táboa de interwiki xa contén entradas.
 Saltando a lista por defecto.",
 	'config-install-stats' => 'Iniciando as estatísticas',
-	'config-install-secretkey' => 'Xerando a clave secreta',
-	'config-insecure-secret' => "'''Atención:''' Non se puido crear a clave secreta <code>$1</code>.
-Considere cambiala manualmente.",
-	'config-install-upgradekey' => 'Xerando a clave de actualización por defecto',
+	'config-install-keys' => 'Xerando a clave secreta',
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
 	'config-install-subscribe-fail' => 'Non se puido subscribir á lista mediawiki-announce',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
@@ -4671,7 +4652,7 @@ chmod a+w $3</pre></div>',
 	'config-admin-password-same' => 'הססמה לא יכולה להיות זהה לשם המשתמש.',
 	'config-admin-password-mismatch' => 'שתי הססמאות שהוזנו אינן מתאימות.',
 	'config-admin-email' => 'כתובת הדוא״ל:',
-	'config-admin-email-help' => 'הקלידו כתובת דוא״ל שתאפשר לכם לקבל מכתבים ממשתמשים אחרים בוויקי, לאתחל את הססמה, ולקבל הודעות על שינויים בדפים ברשימת המעקב שלכם.',
+	'config-admin-email-help' => 'הקלידו כתובת דוא״ל שתאפשר לכם לקבל מכתבים ממשתמשים אחרים בוויקי, לאתחל את הססמה, ולקבל הודעות על שינויים בדפים ברשימת המעקב שלכם. אפשר להשאיר את השדה הזה ריק.',
 	'config-admin-error-user' => 'שגיאה פנימית ביצירת מפעיל בשם "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'שגיאה פנימית בהגדרת ססמה עבור המפעיל "<nowiki>$1</nowiki>"&rlm;: <pre>$2</pre>',
 	'config-admin-error-bademail' => 'הכנסתם כתובת דוא״ל לא תקינה.',
@@ -4807,10 +4788,7 @@ chmod a+w $3</pre></div>',
 	'config-install-interwiki-exists' => "'''אזהרה:''': נראה שבטבלת הבינוויקי כבר יש רשומות.
 מדלג על הרשומה ההתחלתית.",
 	'config-install-stats' => 'אתחול סטטיסטיקות',
-	'config-install-secretkey' => 'יצירת מפתח סודי',
-	'config-insecure-secret' => "'''אזהרה:''' אי־אפשר ליצור <code>$1</code> מאובטח.
-יש לשקול לשנותו ידנית.",
-	'config-install-upgradekey' => 'יצירת מפתח שדרוג התחלתי',
+	'config-install-keys' => 'יצירת מפתח סודי',
 	'config-install-sysop' => 'יצירת חשבון מפעיל',
 	'config-install-subscribe-fail' => 'הרישום ל־mediawiki-announce לא הצליח',
 	'config-install-mainpage' => 'יצירת דף ראשי עם תוכן לפי בררת מחדל.',
@@ -5141,10 +5119,7 @@ Wutworjenje so přeskakuje.",
 	'config-install-interwiki-exists' => "'''Warnowanje''': Zda so, zo tabela interwikjow hižo zapiski wobsahuje.
 Standardna lisćina sp přeskakuje.",
 	'config-install-stats' => 'Statistika so inicializuje',
-	'config-install-secretkey' => 'Tworjenje tajneho kluča',
-	'config-insecure-secret' => "'''Warnowanje:'''Wěsty kluč <code>$1</code> njeda so wutworić.
-Móžeš to manuelnje činić.",
-	'config-install-upgradekey' => 'Standardny aktualizacsiki kluč so wutworja',
+	'config-install-keys' => 'Tworjenje tajneho kluča',
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 	'config-install-subscribe-fail' => 'Abonowanje "mediawiki-announce" njemóžno',
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
@@ -5403,7 +5378,7 @@ Létrehozás kihagyása.",
 	'config-install-tables-failed' => "'''Hiba''': a tábla létrehozása nem sikerült a következő miatt: $1",
 	'config-install-interwiki' => 'Alapértelmezett nyelvközihivatkozás-tábla feltöltése',
 	'config-install-interwiki-list' => 'Az <code>interwiki.list</code> fájl nem található.',
-	'config-install-secretkey' => 'Titkos kulcs generálása',
+	'config-install-keys' => 'Titkos kulcs generálása',
 	'config-install-sysop' => 'Az adminisztrátor felhasználói fiókjának létrehozása',
 	'config-install-done' => "'''Gratulálunk!'''
 Sikeresen telepítetted a MediaWikit.
@@ -5760,7 +5735,7 @@ Specifica un altere nomine de usator.',
 	'config-admin-password-same' => 'Le contrasigno non pote esser le mesme que le nomine de usator.',
 	'config-admin-password-mismatch' => 'Le duo contrasignos que tu scribeva non es identic.',
 	'config-admin-email' => 'Adresse de e-mail:',
-	'config-admin-email-help' => 'Entra un adresse de e-mail hic pro permitter le reception de e-mail ab altere usatores del wiki, pro poter reinitialisar tu contrasigno, e pro reciper notification de cambios a paginas in tu observatorio.',
+	'config-admin-email-help' => 'Entra un adresse de e-mail hic pro permitter le reception de e-mail ab altere usatores del wiki, pro poter reinitialisar tu contrasigno, e pro reciper notification de cambios a paginas in tu observatorio. Iste campo pote esser lassate vacue.',
 	'config-admin-error-user' => 'Error interne durante le creation de un administrator con le nomine "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Error interne durante le definition de un contrasigno pro le administrator "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Tu ha entrate un adresse de e-mail invalide',
@@ -5897,10 +5872,7 @@ Le creation es saltate.",
 	'config-install-interwiki-exists' => "'''Aviso''': Le tabella interwiki pare jam haber entratas.
 Le lista predefinite es saltate.",
 	'config-install-stats' => 'Initialisation del statisticas',
-	'config-install-secretkey' => 'Genera clave secrete',
-	'config-insecure-secret' => "'''Aviso:''' Impossibile crear le clave secrete <code>$1</code>.
-Considera cambiar lo manualmente.",
-	'config-install-upgradekey' => 'Generation del clave de actualisation predefinite',
+	'config-install-keys' => 'Genera clave secrete',
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
 	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
@@ -6375,10 +6347,7 @@ Melompati pembuatan.",
 	'config-install-interwiki-list' => 'Tidak dapat menemukan berkas <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Peringatan''': Tabel antarwiki tampaknya sudah memiliki entri.
 Mengabaikan daftar bawaan.",
-	'config-install-secretkey' => 'Menciptakan kunci rahasia',
-	'config-insecure-secret' => "'''Peringatan:''' Gagal membuat <code>$1</code> aman.
-Pertimbangkan untuk mengubahnya secara manual.",
-	'config-install-upgradekey' => 'Membuat kunci pemutakhiran bawaan',
+	'config-install-keys' => 'Menciptakan kunci rahasia',
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 	'config-install-subscribe-fail' => 'Tidak dapat berlangganan mediawiki-announce',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
@@ -6868,10 +6837,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-interwiki-list' => 'ファイル<code>interwiki.list</code>を見つけることができませんでした。',
 	'config-install-interwiki-exists' => "'''警告'''：ウィキ間テーブルはすでに登録されているようです。
 既定のテーブルを無視します。",
-	'config-install-secretkey' => '秘密鍵を生成する',
-	'config-insecure-secret' => "'''警告：'''安全な<code>$1</code>を作成できません。
-手動でこれを変更することを考えてください。",
-	'config-install-upgradekey' => '既定の更新キーを生成',
+	'config-install-keys' => '秘密鍵を生成する',
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 	'config-install-mainpage' => '既定の接続でメインページを作成',
 	'config-install-mainpage-failed' => 'メインページを挿入できませんでした:$1',
@@ -6963,7 +6929,7 @@ Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session
 	'config-page-name' => 'Name',
 	'config-page-options' => 'Ennställunge',
 	'config-page-install' => 'Opsäzze',
-	'config-page-complete' => 'Jedonn!',
+	'config-page-complete' => 'Fäädesch!',
 	'config-page-restart' => 'Et Opsäze norr_ens neu aanfange',
 	'config-page-readme' => 'Donn mesch lässe! (<i lang="en">read me</i>)',
 	'config-page-releasenotes' => 'Henwies för heh di Version vum Projramm (<i lang="en">Release notes</i>)',
@@ -7084,6 +7050,13 @@ Doh sullte kei Zweschrereum un kein Stresche dren sin.
 
 Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider Der extra ene beshtemmpte Name för de Daatebangk jejovve hät, uffr dat de dä drom froore moß udder dat De de Daatebangke övver e Fommulaa selver enreeschte moß.',
 	'config-db-name-oracle' => 'Schema för de Daatebangk:',
+	'config-db-account-oracle-warn' => 'Mer han drei Aate, wi mer <i lang="en">Oracle</i> als Daatebangk aanbenge künne.
+
+Wann De ene neue Zohjang op de Daatenbangk met Naame un Paßwoot mem Projramm för et Opsäze aanlääje wells, dann jif ene Zohjang met däm Rääsch „<i lang="en">SYSDBA</i>“ aan, dä et alld jitt, un jif däm di Daate aan för dä neue Zohjang aanzelääje.
+Do kanns och dä neue Zohjang vun Hand aanlääje un heh beim Opsäze nur dää aanjävve — wann dä dat Rääsch hät, en de Daatebangk Schema_Objäkte aanzelääje.
+Udder De jiß zwei ongerscheidlijje Zohjäng op de Daatenbangk aan, woh eine vun dat Rääsch zom Aanlääje hät un dä andere moß dat nit un es för der nomaale Bedrief zohshtändesch.
+
+En Skrep, wat ene Zohjang op de Daatenbangk aanlääsch met all dä nüüdejje Rääschde, fengks De em Verzeishneß <code lang="en">maintenance/oracle/</code> vun Dingem MediaWiki. Donn draan dengke, dat ene Zohjang met beschrängkte Rääschde all di Müjjeleschkeite för et Waade un Repareere nit hät, di de jewöhnlejje Zoot Zohjang met sesh brängk.',
 	'config-db-install-account' => 'Der Zohjang för en Enreeschte',
 	'config-db-username' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk:',
 	'config-db-password' => 'Et Paßwoot vun däm Aanwender för dä Zohjref op de Daatebangk:',
@@ -7109,12 +7082,30 @@ Jewöhnlesch bliev dat Feld heh ävver läddesch.',
 	'config-charset-mysql5-binary' => 'MySQL (4.1 udder 5.0) binär',
 	'config-charset-mysql5' => 'MySQL (4.1 udder 5.0) UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 röckwääts kompatibel UTF-8',
+	'config-charset-help' => "''' Opjepaß:'''
+Wann De et '''röckwääts kompatibel UTF-8 Fommaat''' nemmps, met dem <i lang=\"en\">MySQL</i> singe Version4.1 udder hüüter, dann künnt dat all di Zeishe kappott maache, die nit em <i lang=\"en\" title=\"American Standard Code for Information Interchange\">ASCII</i> sen, un domet all ding Sesherungskopieje kapott maache, wat mer nieh mieh retuur krijje kann.
+
+Beim Shpeishere em '''binäre Fomaat''' deiht MediaWiki de Täxte, di em UTF-8 Fommaat kumme, en dä Daatebangk en binär kodeerte Daatefälder faßhallde.
+Dat es flöcker un spaasaamer wi et UTF-8 Fommaat vum <i lang=\"en\">MySQL</i> un määd et müjjelesch, all un jeedes <i lang=\"en\">Unicode</i>-Zeishe met faßzehallde.
+
+Beim Shpeishere em '''UTF-8 Fomaat''' deiht et <i lang=\"en\">MySQL</i> der Zeishesaz un de Kodeerung vun dä Daate känne, un kann se akeraat aanzeije un ömwandelle,
+allerdengs künne kein Zeishe ußerhalv vum [http://de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke jrundlääje Knubbel för vill Shprooche (<i lang=\"en\">Basic Multilingual Plane — BMP</i>)] afjeshpeishert wääde.",
 	'config-mysql-old' => 'Mer bruche <i lang="en">MySQL</i> $1 udder neuer. Em Momang es <i lang="en">MySQL</i> $2 aam Loufe.',
 	'config-db-port' => 'De Pooz-Nommer (<i lang="en">port</i>) för de Daatebangk:',
 	'config-db-schema' => 'Et Schema en de Datebangk för MediaWiki:',
 	'config-db-schema-help' => 'För jewöhnlesch es dat Schema en Odenong.
 Donn bloß jät draan ändere, wann De sescher weiß, dat dat nüüdesch es.',
 	'config-sqlite-dir' => 'Dem <i lang="en">SQLite</i> sing Daateverzeishnes:',
+	'config-sqlite-dir-help' => '<i lang="en">SQLite</i> hät all sing Daate zosamme en en einzel Dattei.
+
+En dat Verzeishneß, wat De aanjiß, moß dat Web_ẞööver_Projramm beim Opsäze eren schriive dörrve.
+
+Dat Verzeishneß sullt \'\'\'nit\'\'\' övver et Web zohjänglesch sin, dröm dom_mer et nit dohen, woh de <i lang="en">PHP</i>-Datteije sin.
+
+Mer donn beim Opsäze zwa uß Vöörssh en <code lang="en">.htaccess</code> Dattei dobei, ävver wann di nit werrek, künnte Lück vun ußerhallef aan Ding Daatebangk_Dattei eraan kumme.
+Doh shtonn Saache dren, wi de Addräße för de Metmaacher ier <i lang="en">e-mail</i> un de verschlößelte Paßwööter un de vershtoche un de fottjeschmeße Sigge un ander Saache ussem Wiki, di mer nit öffentlesch maache darref.
+
+Donn Ding Daatebangk et beß janz woh anders hen, noh <code lang="en">/var/lib/mediawiki/\'\'wikiname\'\'</code> för e Beishpell.',
 	'config-oracle-def-ts' => 'Tabälleroum för der Shtandattjebruch:',
 	'config-oracle-temp-ts' => 'Tabälleroum för der Jebruch zweschedorsh:',
 	'config-type-mysql' => '<i lang="en">MySQL</i>',
@@ -7210,6 +7201,11 @@ MyISAM-Daatebangke han em Schnett mieh Fähler un jon flöcker kappott, wi InnoD
 	'config-mysql-charset' => 'Dä Daatebangk iere Zeishesaz:',
 	'config-mysql-binary' => 'binär',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "Beim Shpeishere em '''binäre Fomaat''' deiht MediaWiki de Täxte, di em UTF-8 Fommaat kumme, en dä Daatebangk en binär kodeerte Daatefälder faßhallde.
+Dat es flöcker un spaasaamer wi et UTF-8 Fommaat vum <i lang=\"en\">MySQL</i> un määd et müjjelesch, all un jeedes <i lang=\"en\">Unicode</i>-Zeishe met faßzehallde.
+
+Beim Shpeishere em '''UTF-8 Fomaat''' deiht et <i lang=\"en\">MySQL</i> der Zeishesaz un de Kodeerung vun dä Daate känne, un kann se akeraat aanzeije un ömwandelle,
+allerdengs künne kein Zeishe ußerhalv vum [http://de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke jrundlääje Knubbel för vill Shprooche (<i lang=\"en\">Basic Multilingual Plane — BMP</i>)] afjeshpeishert wääde.",
 	'config-site-name' => 'Däm Wiki singe Name:',
 	'config-site-name-help' => 'Dä douch em Tittel vun de Brauserfinstere un aan ätlije andere Shtälle op.',
 	'config-site-name-blank' => 'Donn ene Name för di Sait aanjävve.',
@@ -7238,7 +7234,8 @@ Jiv ene joode Name en!',
 	'config-admin-password-same' => 'Dat Paßwoot un dä Name dörve nit ejaal sin!',
 	'config-admin-password-mismatch' => 'Di Paßwööter sin ongerscheidlesh!',
 	'config-admin-email' => 'Addräß för de <i lang="en">e-mail</i>:',
-	'config-admin-email-help' => 'Jiv heh di Adräß för de <i lang="en">e-mail</i> aan, woh De <i lang="en">e-mail</i> vun ander Metmaacher uss_em Wiki hen krijje wells, di et Der müjjelesh määt, Ding Paßwoot automatetsch truusche ze lohße, un woh Nohreeshte övver veränderte Sigge op Dinge Oppaßleß hen jescheck wääde sulle.',
+	'config-admin-email-help' => 'Jiv heh di Adräß för de <i lang="en">e-mail</i> aan, woh De <i lang="en">e-mail</i> vun ander Metmaacher uss_em Wiki hen krijje wells, di et Der müjjelesh määt, Ding Paßwoot automatetsch truusche ze lohße, un woh Nohreeshte övver veränderte Sigge op Dinge Oppaßleß hen jescheck wääde sulle.
+De kanns dat Fäld ävver och läddesch lohße.',
 	'config-admin-error-user' => 'Beim Enreeshte vum Zohjang för dä Wiki_Köbes „<nowiki>$1</nowiki>“ es ene Fähler em Wiki opjetrodde.',
 	'config-admin-error-password' => 'Beim Paßwoot-Säze för dä Wiki_Köbes „<nowiki>$1</nowiki>“ es ene Fähler em Wiki opjetrodde.: <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Do häs_en onjöltijje Addräß för de <i lang="en">e-mail</i> aanjejovve.',
@@ -7277,16 +7274,14 @@ Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, w
 	'config-license-gfdl-old' => 'De <i lang="en">GNU</i>-Lizänz för frei Dokemäntazjuhne Version 1.2',
 	'config-license-gfdl-current' => 'De <i lang="en">GNU</i>-Lizänz för frei Dokemäntazjuhne, Version 1.3 udder en späädere',
 	'config-license-pd' => 'Allmende (jemeinfrei, <i lang="en">public domain</i>)',
-	'config-license-cc-choose' => '<i lang="en">Creative Commons</i> Lizänz sellver ußjesöhk',
+	'config-license-cc-choose' => 'En <i lang="en">Creative Commons</i> Lizänz, sellver ußjesöhk:',
 	'config-license-help' => "Ättlijje öffentleje Wikis donn iehr Beidrääsh onger en [http://freedomdefined.org/Definition frei Lizänz] shtelle.
-Dat hellef, e Jeföhl vun Jemeinsamkeid opzeboue un op lange Seesh emmer wider Beidrääsch ze krijje.
+Dat hellef, e Jeföhl vun Jemeinsamkeid opzeboue, un op lange Seesh emmer wider Beidrääsch ze krijje.
 Dat es nit onbedengk nüüdesh för e Jeschäffs- udder Privaat_Wiki.
 
-Wä Stöcke uß de Wikipedia bruche well, un han well, dat de Wikipedia uss_em eije Wiki övvernämme kann, sullt mer „'''<i lang=\"en\">Creative Commons</i>, dem Schriever singe Name moß jenannt wääde, un Wiggerjävve zoh dersellve Bedengunge es zohjelohße'''“ ußwähle.
+Wä Stöcke uß de Wikipedia bruche well, un han well, dat de Wikipedia uss_em eije Wiki jät övvernämme kann, sullt mer „'''<i lang=\"en\">Creative Commons</i>, dem Schriever singe Name moß jenannt wääde, un Wiggerjävve zoh dersellve Bedengunge es zohjelohße'''“ ußwähle.
 
-De su jenannte '''<i lang=\"en\">GNU Free Documentation License</i>''' (de freije Lizänz för Dokemäntazjuhne vun dä GNU) sen de ahle Lizänzbedenonge vun de Wikipedia. Se es emmer noch in Odenong un jöltesch, ävver se hädd e paa Eijeschaffte, die et Wiggerjävve, widder Verwände un Ußlääje schwieeresch maache.
-
-",
+De su jenannte '''<i lang=\"en\">GNU Free Documentation License</i>''' (de freije Lizänz för Dokemäntazjuhne vun dä GNU) sen de ahle Lizänzbedenonge vun de Wikipedia. Se es emmer noch in Odenong un jöltesch, ävver se hädd e paa Eijeschaffte, die et Wiggerjävve, et widder Verwände un et Ußlääje schwieeresch maache.",
 	'config-email-settings' => 'Enschtellunge för de <i lang="en">e-mail</i>',
 	'config-enable-email' => 'De <i lang="en">e-mail</i> noh druße zohlohße',
 	'config-enable-email-help' => 'Sulle <i lang="en">e-mails</i> zohjelohße sin, moß mer, domet et noher flupp, de [http://www.php.net/manual/en/mail.configuration.php Enschtellunge em PHP för de <i lang="en">e-mails</i>] zopaß jemaat han.
@@ -7294,28 +7289,28 @@ Wann kein <i lang="en">e-mails</i> nüüdesch sin, kam_mer se heh afschallde.',
 	'config-email-user' => '<i lang="en">e-mails</i> zwesche de Metmaacher zohlohße',
 	'config-email-user-help' => 'Määt et müjjelesch, dat sesch de Metmaacher jääjesiggesch <i lang="en">e-mails</i> schecke künne, wann se dat en iehre eije Enschtellunge och enjeschalldt han.',
 	'config-email-usertalk' => '<i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
-	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt',
-	'config-email-watchlist' => 'Nohreeschte övver Änderonge aan Sigg op de Opaßleßte zohlohße.',
+	'config-email-usertalk-help' => 'Maach et müjjelesch, dat Metmaaacher en iere Enstellunge <i lang="en">e-mails</i> mem Bescheid zohlohße, dat einem sing Klaafsigg verändert woodt.',
+	'config-email-watchlist' => 'Nohreeschte övver Änderonge aan Sigg op de Opaßleßte zohlohße',
 	'config-email-watchlist-help' => 'Lohß Metmaacher Nohreeshte övver de Sigge op dänne iehr Oppaßleß krijje, wann se et en iehre Enschtellonge ußjewählt han.',
-	'config-email-auth' => 'Donn de Övverprööfung för Zohjangsberääschtejunge övver de <i lang="en">e-mail</i> zohlohße.',
-	'config-email-auth-help' => 'Wann dat aanjeschald es, möße Metmaacher, di iehr Adräß för de <i lang="en">e-mail</i> neu aanjävve  udder ändere, di Addräß övver ene Lengk beschtäätejje, dä de met de <i lang="en">e-mail</i> jescheck krijje.
-Bloß aan esu beschtääteschte Adräße deiht et Wiki <i lang="en">e-mails</i> schecke, Di künne vun annder Metmaachere kumme, udder vum Wiki sellver, wann en Sigg en däm Metmaacher sing Oppaßleß verändert woode es.
+	'config-email-auth' => 'Donn de Övverprööfung för Zohjangsberääschtejunge övver de <i lang="en">e-mail</i> zohlohße',
+	'config-email-auth-help' => 'Wann dat aanjeschald es, möße Metmaacher, di iehr Adräß för de <i lang="en">e-mail</i> neu aanjävve udder ändere, di Addräß övver ene Lengk beschtäätejje, dä se met de <i lang="en">e-mail</i> jescheck krijje.
+Bloß aan esu beschtääteschte Adräße deiht et Wiki <i lang="en">e-mails</i> schecke, Di künne vun annder Metmaachere kumme, udder vum Wiki sellver, wann en Sigg en däm Metmaacher singe Oppaßleß verändert woode es.
 Mer \'\'\'schlonn vör, dat aanzeschallde\'\'\' för öffentlesch Wikis, weil sönß zoh leisch Driß mem Wiki singe <i lang="en">e-mail</i> jemaat wääde künnt.',
 	'config-email-sender' => 'De Adräß för de Antwoote op <i lang="en">e-mails</i>:',
 	'config-email-sender-help' => 'Jiff de Adräß för de <i lang="en">e-mail</i> en, woh Antwoote ob em Wiki singe <i lang="en">e-mails</i> hen jonn sulle.
 Dat es och de Adräß, woh de <i lang="en">e-mails</i> met Fählermäldonge hen jon.
-Vill ẞööver de <i lang="en">e-mail</i> welle winnischßdens ene jöltijje Domain en dä Adräß han.',
+Vill ẞöövere för de <i lang="en">e-mail</i> welle winnischßdens ene jöltijje Domain en dä Adräß han.',
 	'config-upload-settings' => 'Belder un Datteie huh laade',
 	'config-upload-enable' => 'Belder un Datteie huh laade zohlohße',
-	'config-upload-help' => 'Dattei huh ze laade künnt e Risiko för dem ẞööver singe Sescherheit sin.
-Mieh doh drövver lässe kam_mer em [http://www.mediawiki.org/wiki/Manual:Security Kapitel övver de Sescherheit] em Handbooch.
+	'config-upload-help' => 'Datteije huh ze laade künnt e Risiko för dem ẞööver singe Sescherheit sin.
+Mieh doh drövver kam_mer em [http://www.mediawiki.org/wiki/Manual:Security Kapitel övver de Sescherheit] em Handbooch lässe.
 
 Öm et Huhlaade zohzelohße donn de Rääschde för der Zohjreff op dat Ongerverzeischneß <code lang="en">images</code> em MediaWiki singem Houpverzeischneß esu enshtälle, dat et Webßööverprojramm doh Datteije un Verzeischneße eren schrieve kann.
 Donoh donn heh di Saach zohlohße.',
 	'config-upload-deleted' => 'Dat Verzeishneß för fottjeschmeße Datteije:',
 	'config-upload-deleted-help' => 'Söhk e Verzeijschneß uß för de fottjeschmeße Datteije vum Wiki dren afzelääje.
 Et bäß es, wam_mer vum <i lang="en">world wide web</i> doh nit drahn kumme kann.',
-	'config-logo' => 'Dem Logo sing <i lang="en">URL</i>:',
+	'config-logo' => 'Dem Wiki singem Logo sing <i lang="en">URL</i>:',
 	'config-logo-help' => 'De Schtandart_Bedeen_Bovverfläsch vum MediaWiki hät e Logo bovve en der Eck met 135x160 Pixele.
 Donn e zopaß Logo huh laade, un donn däm sing URL heh endraare.
 
@@ -7323,21 +7318,21 @@ Wells De kei Logo han, draach heh nix en.',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
 	'config-instantcommons-help' => '<i lang="en">[http://www.mediawiki.org/wiki/InstantCommons InstantCommons]</i> es en Eijeschaff, di et för Wikis müjjelesch määt, Belder, Tondatteie un ander Meedijedatteie enzebenge, di op dä Webßait vun de <i lang="en">[http://commons.wikimedia.org/ Wikimedia Commons]</i> ongerjebraat sin. Öm dat noze ze künne, moß dä ẞööver vum MediaWiki en Verbendung nohm Internet opnämme künne.
 
-Mieh Aanjaabe doh drövver un en Aanleidung, wi mer och ander Wikis, wi de <i lang="en">Wikimedia Commons]</i> doför enreeschte kann, fengk mer em [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbooch].',
+Mieh Aanjaabe doh drövver un en Aanleidung, wi mer och ander Wikis ußer de <i lang="en">Wikimedia Commons</i> doför enreeschte kann, fengk mer em [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbooch].',
 	'config-cc-error' => 'Et Ußsöhke övver de <i lang="en">Creative Commons</i> iehr Projramm zum Lizänzbeshtemme hät nix jebraat.
 Donn de Lizänz sellver beshtemme.',
-	'config-cc-again' => 'Noch ens ußsöhke&nbsp;…',
-	'config-cc-not-chosen' => 'Söhk uß, wat för en Lizänz vun de <i lang="en">Creative Commons</i> De han wells un donn dann op „{{int:proceed}}“ klecke.',
+	'config-cc-again' => 'Noch ens neu ußsöhke&nbsp;…',
+	'config-cc-not-chosen' => 'Söhk uß, wat för en Lizänz vun de <i lang="en">Creative Commons</i> De han wells, un donn dann op „<i lang="en">proceed</i>“ klecke.',
 	'config-advanced-settings' => 'Fottjeschredde Enshtellunge',
 	'config-cache-options' => 'Enshtällunge för et Faßhallde vun Objäkte em Zweschsheisher:',
 	'config-cache-help' => 'Objäkte em Zwescheshpeisher faßhallde, dat heiß öff jebruchte Daate en der <i lang="en">cache</i> donn, bruche mer, öm MediaWiki flöcker ze maache, 
 Meddlere un jruuße Wiki-ẞaits sullte dat onbedengk ußnoze, un och bei klein Wikis weed mer et jood merke.',
-	'config-cache-none' => 'Keine Zweschshpeijsher (Et jeid_em Wiki nix verloore, ußer velleish Jeschwendeshkeid, wann vill loßß es)',
+	'config-cache-none' => 'Keine Zweschshpeijsher (Et jeid_em Wiki nix verloore, ußer velleish Schnälleshkeid wann vill loss es)',
 	'config-cache-accel' => 'Ene Objäk<i lang="en">cache</i> vum PHP (<i lang="en">APC</i>, <i lang="en">eAccelerator</i>, <i lang="en">XCache</i>, udder <i lang="en">WinCache</i>)',
 	'config-cache-memcached' => 'Donn der <code lang="en">memcached</code> ẞööver nämme (Määt extra Enshtellunge un Opsäze nüüdesch)',
 	'config-memcached-servers' => 'De <code lang="en">memcached</code> ßöövere:',
-	'config-memcached-help' => 'Do Leß met de <i lang="en">IP</i>-Addräße för der <code lang="en">memcached</code> ẞööver ze bruche.
-Se sullte ein pro Reih opjeschrevve wääde, un en Pooz (<i lang="en">port</i>) Nommer han, För e Beishpell esu:
+	'config-memcached-help' => 'Donn de Leß aanhjävve, met de <i lang="en">IP</i>-Addräße för der <code lang="en">memcached</code> ẞööver ze bruche.
+Se sullte ein pro Reih opjeschrevve sin, un en Pooz (<i lang="en">port</i>) ier Nommer han, För e Beishpell, esu:
  127.0.0.1:11211
  192.168.1.25:1234',
 	'config-memcache-needservers' => 'Do häss der <code lang="en">memcached</code> als Dinge Zoot vun Zwescheshpeijscher aanjejovve, ävver nit eine ẞööver doför.',
@@ -7352,8 +7347,8 @@ Do kann se heh un jez aanschallde, ävver se künnte noch zohsäzlesch Enshtellu
 	'config-install-alreadydone' => "'''Opjepaß:'''
 Et sühd esu uß, wi wann De MediaWiki ald enshtalleet hätß, un wöhrs aam Versöhke, dat norr_ens ze donn.
 Jang wigger op de näähßte Sigg.",
-	'config-install-begin' => 'Wann De „{{int:config-continue}}“ klecks, jeiht de Enshtallazjuhn vum MediaWiki loßß.
-Wann De noch Änderonge maache wlls, dann kleck „Retuur“.',
+	'config-install-begin' => 'Wann De op „{{int:config-continue}}“ klecks, jeiht de Enshtallazjuhn vum MediaWiki loßß.
+Wann De noch Änderonge maache wells, dann kleck op „{{int:config-back}}“.',
 	'config-install-step-done' => 'jedonn',
 	'config-install-step-failed' => 'donävve jejange',
 	'config-install-extensions' => 'Zohsazprojramme enjeschloße',
@@ -7378,10 +7373,7 @@ Doh dom_mer nix aanlääje.",
 	'config-install-interwiki-exists' => "'''Opjepaß''': En der Engewiki-Tabäll schingk alt jät dren ze shtonn.
 Doh dom_mer nix dobei.",
 	'config-install-stats' => 'De Shtatestek-Zahle wääde op Aanfang jeshtallt.',
-	'config-install-secretkey' => 'Ene jeheime Schlößel weeed opjebout.',
-	'config-insecure-secret' => "'''Opjepaß:''' Mer kunnte keine jeheime <code lang=\"en\">\$1</code> ußknuuve.
-Dat künnts De ävver vun Hand nohholle..",
-	'config-install-upgradekey' => 'Der shtandattmääßejje Schlößel för et Projramm op ene neue Schtand ze bränge weed opjebout.',
+	'config-install-keys' => 'Ene jeheime Schlößel weeed opjebout.',
 	'config-install-sysop' => 'Dä Zohjang för der Wiki-Köbes weed aanjelaat.',
 	'config-install-subscribe-fail' => 'Mer künne de <i lang="en">e-mail</i>-Leß <code lang="en">mediawiki-announce</code> nit abonneere.',
 	'config-install-mainpage' => 'Ben de Houpsigg med enem shtandatmääßeje Enhald aam aanlääje',
@@ -7584,7 +7576,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-interwiki' => 'Standard Interwiki-Tabell gëtt ausgefëllt',
 	'config-install-interwiki-list' => 'De Fichier <code>interwiki.list</code> gouf net fonnt.',
 	'config-install-stats' => 'Initialisatioun vun de Statistiken',
-	'config-install-secretkey' => 'Generéiere vum Geheimschlëssel',
+	'config-install-keys' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 );
 
@@ -7634,7 +7626,7 @@ $messages['mg'] = array(
 	'config-install-user' => "Famoronana mpapiasan'ny banky angona",
 	'config-install-tables' => 'Famoronana tabilao',
 	'config-install-stats' => 'Fanombohana ny statistika',
-	'config-install-secretkey' => 'Fanamboarana lakile miafina$',
+	'config-install-keys' => 'Fanamboarana lakile miafina$',
 	'config-help' => 'fanoroana',
 );
 
@@ -7861,7 +7853,7 @@ $1
 
 Ако системот што сакате да го користите не е наведен подолу, тогаш проследете ја горенаведената врска со инструкции за да овозможите поддршка за тој систем.',
 	'config-support-mysql' => '* $1 е главната цел на МедијаВики и најдобро се поддржува ([http://www.php.net/manual/en/mysql.installation.php како се составува PHP со поддршка за MySQL])',
-	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива за MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL])',
+	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL]). Може сè уште да има некои грешки. па затоа не се препорачува за употреба во производна средина.',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
 	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
 	'config-header-mysql' => 'Нагодувања на MySQL',
@@ -7980,7 +7972,7 @@ chmod a+w $3</pre>',
 	'config-admin-password-same' => 'Лозинката не може да биде иста со корисничкото име.',
 	'config-admin-password-mismatch' => 'Лозинките што ги внесовте не се совпаѓаат.',
 	'config-admin-email' => 'Е-поштенска адреса:',
-	'config-admin-email-help' => 'Тука внесете е-поштанска адреса за да можете да добивате е-пошта оддруги корисници на викито, да ја менувате лозинката, и да бидете известувани за промени во страниците на вашиот список на набљудувања.',
+	'config-admin-email-help' => 'Тука внесете е-поштенска адреса за да можете да добивате е-пошта од други корисници на викито, да ја менувате лозинката, и да бидете известувани за промени во страниците на вашиот список на набљудувања. Можете и да го оставите празно.',
 	'config-admin-error-user' => 'Се појави внатрешна грешка при создавањето на администраторот со име „<nowiki>$1</nowiki>“.',
 	'config-admin-error-password' => 'Се појави внатрешна грешка при задавање на лозинката за администраторот „<nowiki>$1</nowiki>“: <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Внесовте неважечка е-поштенска адреса',
@@ -8117,10 +8109,8 @@ chmod a+w $3</pre>',
 	'config-install-interwiki-exists' => "'''Предупредување''': Табелата со интервикија веќе содржи ставки.
 Го прескокнувам основно-зададениот список.",
 	'config-install-stats' => 'Ги подготвувам статистиките',
-	'config-install-secretkey' => 'Создавам таен клуч',
-	'config-insecure-secret' => "'''Предупредување:''' Не можам да создадам безбеден <code>$1</code>.
-Ви препорачуваме да го смените рачно.",
-	'config-install-upgradekey' => 'Создавам стандарден клуч за надградување',
+	'config-install-keys' => 'Создавам таен клуч',
+	'config-insecure-keys' => "'''Предупредување:''' {{PLURAL:$2|Безбедносниот клуч $1 создаден во текот на инсталацијата не е сосем безбеден|Безбедносните клучеви $1 создадени во текот на инсталацијата не се сосем безбедни}}. Ви препорачуваме да {{PLURAL:$2|го|ги}} смените рачно.",
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
 	'config-install-subscribe-fail' => 'Не можам да ве претплатам на објавите на МедијаВики',
 	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
@@ -8805,10 +8795,7 @@ Het aanmaken wordt overgeslagen.",
 	'config-install-interwiki-exists' => "'''Waarschuwing''': de interwikitabel heeft al inhoud. 
 De standaardlijst wordt overgeslagen.",
 	'config-install-stats' => 'Statistieken initialiseren',
-	'config-install-secretkey' => 'Geheime sleutel aanmaken',
-	'config-insecure-secret' => 'Waarschuwing: het was niet mogelijk een veilige <code>$1</code> aan te maken.
-Overweeg deze handmatig te wijzigen.',
-	'config-install-upgradekey' => 'De standaard upgradesleutel wordt aangemaakt',
+	'config-install-keys' => 'Geheime sleutel aanmaken',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
@@ -9608,10 +9595,7 @@ Pomijam tworzenie tabel.",
 	'config-install-interwiki-list' => 'Nie można odnaleźć pliku <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy. 
 Tworzenie domyślnej listy pominięto.",
-	'config-install-secretkey' => 'Generowanie tajnego klucza',
-	'config-insecure-secret' => "'''Uwaga''' – nie można utworzyć bezpiecznego <code>$1</code>.
-Rozważ ręczne jego ustawienie.",
-	'config-install-upgradekey' => 'Generowanie domyślne klucza aktualizacji',
+	'config-install-keys' => 'Generowanie tajnego klucza',
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
@@ -10027,9 +10011,7 @@ Sauté la creassion.",
 	'config-install-interwiki-list' => "As peul pa trovesse l'archivi <code>interwiki.list</code>.",
 	'config-install-interwiki-exists' => "'''Avis''': La tàula interwiki a smija ch'a l'abia già dj'element.
 Për stàndard, la lista a sarà sautà.",
-	'config-install-secretkey' => 'Generassion ëd la ciav segreta',
-	'config-insecure-secret' => "'''Avis:''' As peul pa creesse na <code>$1</code>. sigura.
-Ch'a consìdera ëd cangela a man.",
+	'config-install-keys' => 'Generassion ëd la ciav segreta',
 	'config-install-sysop' => "Creassion dël cont ëd l'utent aministrator",
 	'config-install-done' => "'''Congratulassion!'''
 A l'ha instalà për da bin mediaWiki.
@@ -10405,7 +10387,7 @@ Introduza um nome de utilizador diferente.',
 	'config-admin-password-same' => 'A palavra-chave tem de ser diferente do nome de utilizador.',
 	'config-admin-password-mismatch' => 'As duas palavras-chave que introduziu não coincidem.',
 	'config-admin-email' => 'Correio electrónico:',
-	'config-admin-email-help' => 'Introduza aqui um correio electrónico que lhe permita receber mensagens de outros utilizadores da wiki, reiniciar a sua palavra-chave e receber notificações de alterações às suas páginas vigiadas.',
+	'config-admin-email-help' => 'Introduza aqui um correio electrónico que lhe permita receber mensagens de outros utilizadores da wiki, reiniciar a sua palavra-chave e receber notificações de alterações às suas páginas vigiadas. Pode deixar o campo vazio.',
 	'config-admin-error-user' => 'Ocorreu um erro interno ao criar um administrador com o nome "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Ocorreu um erro interno ao definir uma palavra-chave para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-admin-error-bademail' => 'Introduziu um correio electrónico inválido',
@@ -10542,10 +10524,7 @@ A criação das tabelas será saltada.",
 	'config-install-interwiki-exists' => "'''Aviso''': A tabela de interwikis parece já conter entradas.
 O preenchimento padrão desta tabela será saltado.",
 	'config-install-stats' => 'A inicializar as estatísticas',
-	'config-install-secretkey' => 'A gerar a chave secreta',
-	'config-insecure-secret' => "'''Aviso:''' Não foi possível criar a chave secreta <code>$1</code>.
-Considere alterá-la manualmente.",
-	'config-install-upgradekey' => 'A gerar a chave padrão de actualização',
+	'config-install-keys' => 'A gerar a chave secreta',
 	'config-install-sysop' => 'A criar a conta de administrador',
 	'config-install-subscribe-fail' => 'Não foi possível subscrever a lista mediawiki-announce',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
@@ -11177,10 +11156,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-interwiki-exists' => "'''Предупреждение''': в интервики-таблице, кажется, уже есть записи.
 Создание стандартного списка, пропущено.",
 	'config-install-stats' => 'Статистика инициализации',
-	'config-install-secretkey' => 'Создание секретного ключа',
-	'config-insecure-secret' => "'''Внимание:''' Не получилось создать безопасный секретный ключ (<code>$1</code>).
-По возможности, смените его вручную.",
-	'config-install-upgradekey' => 'Создание ключа обновления по умолчанию',
+	'config-install-keys' => 'Создание секретного ключа',
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-subscribe-fail' => 'Не удаётся подписаться на mediawiki-announce',
 	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
@@ -11594,10 +11570,7 @@ Nilalaktawan ang paglikha.",
 	'config-install-interwiki-exists' => "'''Babala''': Tila may mga laman na ang talahanayan ng interwiki.
 Nilalaktawan ang likas na nakatakdang talaan.",
 	'config-install-stats' => 'Sinisimulan ang estadistika',
-	'config-install-secretkey' => 'Ginagawa ang lihim na susi',
-	'config-insecure-secret' => "'''Babala:''' Hindi nalikha ang ligtas na <code>$1</code>.
-Isaalang-alang ang pagbabago nito na kinakamay.",
-	'config-install-upgradekey' => 'Binubuo ang likas na nakatakdang susi ng pagsasapanahon',
+	'config-install-keys' => 'Ginagawa ang lihim na susi',
 	'config-install-sysop' => 'Nililikha ang akawnt ng tagagamit na tagapangasiwa',
 	'config-install-subscribe-fail' => 'Hindi nagawang sumipi mula sa mediawiki-announce',
 	'config-install-mainpage' => 'Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman',
@@ -12078,9 +12051,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-install-interwiki-list' => '找不到文件<code>interwiki.list</code>。',
 	'config-install-interwiki-exists' => "'''警告'''：跨wiki数据表似乎已有内容，跳过默认列表。",
 	'config-install-stats' => '初始化统计',
-	'config-install-secretkey' => '正在生成密钥',
-	'config-insecure-secret' => "'''警告：'''无法创建密钥<code>$1</code>，请尝试手动创建。",
-	'config-install-upgradekey' => '正在生成默认升级密钥',
+	'config-install-keys' => '正在生成密钥',
 	'config-install-sysop' => '正在创建管理员用户帐号',
 	'config-install-subscribe-fail' => '无法订阅mediawiki-announce',
 	'config-install-mainpage' => '正在创建显示默认内容的首页',
