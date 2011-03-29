@@ -1312,7 +1312,7 @@ abstract class Installer {
 	 *
 	 * @return Status
 	 */
-	protected function generateSecretKey() {
+	public function generateSecretKey() {
 		return $this->generateSecret( 'wgSecretKey' );
 	}
 

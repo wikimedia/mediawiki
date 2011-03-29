@@ -475,6 +475,12 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 <script>jQuery( "#config-spinner" )[0].style.display = "none";</script>' );
 			$this->parent->output->flush();
 			if ( $result ) {
+				// If they're going to possibly regenerate LocalSettings, we
+				// need to create the upgrade/secret keys. Bug 26481
+				if( !$this->getVar( '_ExistingDBSettings' ) ) {
+					$this->parent->generateSecretKey();
+					$this->parent->generateUpgradeKey();
+				}
 				$this->setVar( '_UpgradeDone', true );
 				$this->showDoneMessage();
 				return 'output';
