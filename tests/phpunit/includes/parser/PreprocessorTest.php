@@ -64,6 +64,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{{Foo|bar|baz}}}", "<root><tplarg><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name index=\"2\" /><value>baz</value></part></tplarg></root>" ),
 			array( "{<!-- -->{Foo}}", "<root>{<comment>&lt;!-- --&gt;</comment>{Foo}}</root>" ),
 			array( "{{{{Foobar}}}}", "<root>{<tplarg><title>Foobar</title></tplarg>}</root>" ),  
+			array( "{{{ {{Foo}} }}}", "<root><tplarg><title> <template><title>Foo</title></template> </title></tplarg></root>" ),
+			array( "{{ {{{Foo}}} }}", "<root><template><title> <tplarg><title>Foo</title></tplarg> </title></template></root>" ),
 			array( "{{{{{Foo}}}}}", "<root><template><title><tplarg><title>Foo</title></tplarg></title></template></root>" ),
 			array( "{{{{{Foo}} }}}", "<root><tplarg><title><template><title>Foo</title></template> </title></tplarg></root>" ),
 			array( "{{{{{{Foo}}}}}}", "<root><tplarg><title><tplarg><title>Foo</title></tplarg></title></tplarg></root>" ),
