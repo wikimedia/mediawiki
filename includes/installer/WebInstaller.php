@@ -177,6 +177,7 @@ class WebInstaller extends Installer {
 		if ( $this->request->getVal( 'SubmitCC' ) ) {
 			$page = $this->getPageByName( 'Options' );
 			$this->output->useShortHeader();
+			$this->output->allowFrames();
 			$page->submitCC();
 			return $this->finish();
 		}
@@ -184,6 +185,7 @@ class WebInstaller extends Installer {
 		if ( $this->request->getVal( 'ShowCC' ) ) {
 			$page = $this->getPageByName( 'Options' );
 			$this->output->useShortHeader();
+			$this->output->allowFrames();
 			$this->output->addHTML( $page->getCCDoneBox() );
 			return $this->finish();
 		}
@@ -323,7 +325,13 @@ class WebInstaller extends Installer {
 	public function getFingerprint() {
 		// Get the base URL of the installation
 		$url = $this->request->getFullRequestURL();
+		if ( preg_match( '!^(.*\?)!', $url, $m) ) {
+			// Trim query string
+			$url = $m[1];
+		}
 		if ( preg_match( '!^(.*)/[^/]*/[^/]*$!', $url, $m ) ) {
+			// This... seems to try to get the base path from
+			// the /mw-config/index.php. Kinda scary though?
 			$url = $m[1];
 		}
 		return md5( serialize( array(

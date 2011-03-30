@@ -31,9 +31,6 @@ class CliInstaller extends Installer {
 		'dbschema' => 'wgDBmwschema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'scriptpath' => 'wgScriptPath',
-		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
-									* in LocalSettingsGenerator, we
-									* should be fine. */
 	);
 
 	/**
@@ -91,10 +88,8 @@ class CliInstaller extends Installer {
 	 * Main entry point.
 	 */
 	public function execute() {
-		global $cliUpgrade;
-
 		$vars = $this->getExistingLocalSettings();
-		if( $vars && ( !isset( $cliUpgrade ) || $cliUpgrade !== "yes" )  ) {
+		if( $vars ) {
 			$this->showStatusMessage(
 				Status::newFatal( "config-localsettings-cli-upgrade" )
 			);

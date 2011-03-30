@@ -475,6 +475,11 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 <script>jQuery( "#config-spinner" )[0].style.display = "none";</script>' );
 			$this->parent->output->flush();
 			if ( $result ) {
+				// If they're going to possibly regenerate LocalSettings, we
+				// need to create the upgrade/secret keys. Bug 26481
+				if( !$this->getVar( '_ExistingDBSettings' ) ) {
+					$this->parent->generateKeys();
+				}
 				$this->setVar( '_UpgradeDone', true );
 				$this->showDoneMessage();
 				return 'output';
@@ -745,6 +750,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			}
 		}
 
+		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
 		$this->startForm();
 		$this->addHTML(
 			# User Rights
@@ -775,7 +781,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'emailwrapper' ),
 			) ) .
 			$this->parent->getHelpBox( 'config-enable-email-help' ) .
-			"<div id=\"emailwrapper\">" .
+			"<div id=\"emailwrapper\" style=\"$emailwrapperStyle\">" .
 			$this->parent->getTextBox( array(
 				'var' => 'wgPasswordSender',
 				'label' => 'config-email-sender'
@@ -830,6 +836,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			)
 		);
 
+		$uploadwrapperStyle = $this->getVar( 'wgEnableUploads' ) ? '' : 'display: none';
 		$this->addHTML(
 			# Uploading
 			$this->getFieldSetStart( 'config-upload-settings' ) .
@@ -839,7 +846,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'uploadwrapper' ),
 				'help' => $this->parent->getHelpBox( 'config-upload-help' )
 			) ) .
-			'<div id="uploadwrapper" style="display: none;">' .
+			'<div id="uploadwrapper" style="' . $uploadwrapperStyle . '">' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
@@ -927,9 +934,10 @@ class WebInstaller_Options extends WebInstallerPage {
 		} else {
 			$iframeAttribs['src'] = $this->getCCPartnerUrl();
 		}
+		$wrapperStyle = ($this->getVar('_LicenseCode') == 'cc-choose') ? '' : 'display: none';
 
 		return
-			"<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"display: none;\">\n" .
+			"<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
 			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
 			"</div>\n";
 	}

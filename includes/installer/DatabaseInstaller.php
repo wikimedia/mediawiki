@@ -494,13 +494,14 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
+		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';
 		$s = Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
 			$this->getCheckBox(
 				'_SameAccount', 'config-db-web-account-same',
 				array( 'class' => 'hideShowRadio', 'rel' => 'dbOtherAccount' )
 			) .
-			Html::openElement( 'div', array( 'id' => 'dbOtherAccount', 'style' => 'display: none;' ) ) .
+			Html::openElement( 'div', array( 'id' => 'dbOtherAccount', 'style' => $wrapperStyle ) ) .
 			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
 			$this->parent->getHelpBox( 'config-db-web-help' );
