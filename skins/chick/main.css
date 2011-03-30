@@ -323,10 +323,6 @@ img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
-.hiddenStructure {
-	display: none;
-}
-
 /*
 ** classes for special content elements like town boxes
 ** intended to be referenced directly from the wiki src
