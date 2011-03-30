@@ -1086,7 +1086,7 @@ class Language {
 	private static function tsToIranian( $ts ) {
 		$gy = substr( $ts, 0, 4 ) -1600;
 		$gm = substr( $ts, 4, 2 ) -1;
-		$gd = substr( $ts, 6, 2 ) -1;
+		$gd = (int)substr( $ts, 6, 2 ) -1;
 
 		# Days passed from the beginning (including leap years)
 		$gDayNo = 365 * $gy
@@ -2503,8 +2503,9 @@ class Language {
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
 		$entityState = 0; // 0-not entity, 1-entity
-		$tag = $ret = ''; // accumulated tag name, accumulated result string
+		$tag = $ret = $pRet = ''; // accumulated tag name, accumulated result string
 		$openTags = array(); // open tag stack
+		$pOpenTags = array();
 
 		$textLen = strlen( $text );
 		$neLength = max( 0, $length - strlen( $ellipsis ) ); // non-ellipsis len if truncated
