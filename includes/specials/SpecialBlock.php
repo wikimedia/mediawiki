@@ -221,7 +221,7 @@ class SpecialBlock extends SpecialPage {
 				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
 			}
 			$fields['Reason']['default'] = $block->mReason;
-			$fields['AlreadyBlocked']['default'] = true;
+			$fields['AlreadyBlocked']['default'] = htmlspecialchars( $block->getTarget() );
 
 			if( $block->mExpiry == 'infinity' ) {
 				$fields['Expiry']['default'] = 'indefinite';
@@ -486,11 +486,23 @@ class SpecialBlock extends SpecialPage {
 			$user = $target;
 			$target = $user->getName();
 			$userId = $user->getId();
+
+			# Give admins a heads-up before they go and block themselves.  Much messier
+			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
+			# permission anyway, although the code does allow for it
+			if( $target == $wgUser->getName()
+				&& $data['AlreadyBlocked'] != htmlspecialchars( $wgUser->getName() )  )
+			{
+				return array( 'ipb-blockingself' );
+			}
+
 		} elseif( $type == Block::TYPE_RANGE ){
 			$userId = 0;
+
 		} elseif( $type == Block::TYPE_IP ){
 			$target = $target->getName();
 			$userId = 0;
+
 		} else {
 			# This should have been caught in the form field validation
 			return array( 'badipaddress' );
@@ -556,7 +568,7 @@ class SpecialBlock extends SpecialPage {
 		$status = $block->insert();
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
-			if( !$data['AlreadyBlocked'] ) {
+			if( $data['AlreadyBlocked'] != htmlspecialchars( $block->getTarget() ) ) {
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {
