@@ -102,10 +102,14 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$shared = $this->hasOption( 'doshared' );
-		$purge = !$this->hasOption( 'nopurge' );
+
+		$updates = array('core','extensions');
+		if( !$this->hasOption('nopurge') ) {
+			$updates[] = 'purge';
+		}
 
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
-		$updater->doUpdates( $purge );
+		$updater->doUpdates( $updates );
 
 		foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
 			$child = $this->runChild( $maint );
