@@ -2073,6 +2073,7 @@ $wgMessageStructure = array(
 		'badipaddress',
 		'blockipsuccesssub',
 		'blockipsuccesstext',
+		'ipb-blockingself',
 		'ipb-edit-dropdown',
 		'ipb-unblock-addr',
 		'ipb-unblock',
