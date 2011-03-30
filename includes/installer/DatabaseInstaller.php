@@ -202,6 +202,10 @@ abstract class DatabaseInstaller {
 				}
 			}
 		}
+
+		// Now run updates to create tables for old extensions
+		$updater->doUpdates( array( 'extensions' ) );
+
 		return $status;
 	}
 

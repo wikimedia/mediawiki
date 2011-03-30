@@ -189,21 +189,29 @@ abstract class DatabaseUpdater {
 	/**
 	 * Do all the updates
 	 *
+	 * @param $what Array: what updates to perform
 	 * @param $purge Boolean: whether to clear the objectcache table after updates
 	 */
-	public function doUpdates( $purge = true ) {
+	public function doUpdates( $what = array( 'core', 'extensions', 'purge' ) ) {
 		global $wgVersion;
 
-		$this->runUpdates( $this->getCoreUpdateList(), false );
-		$this->runUpdates( $this->getOldGlobalUpdates(), false );
-		$this->runUpdates( $this->getExtensionUpdates(), true );
+		$what = array_flip( $what );
+		if ( isset( $what['core'] ) ) {
+			$this->runUpdates( $this->getCoreUpdateList(), false );
+		}
+		if ( isset( $what['extensions'] ) ) {
+			$this->runUpdates( $this->getOldGlobalUpdates(), false );
+			$this->runUpdates( $this->getExtensionUpdates(), true );
+		}
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
-		if( $purge ) {
+		if( isset( $what['purge'] ) ) {
 			$this->purgeCache();
 		}
-		$this->checkStats();
+		if ( isset( $what['core'] ) ) {
+			$this->checkStats();
+		}
 	}
 
 	/**
