@@ -36,6 +36,7 @@
  * @author Mzm5zbC3
  * @author Ohgi
  * @author Penn Station
+ * @author Reedy
  * @author Suisui
  * @author Vigorous action
  * @author W.CC
@@ -3753,7 +3754,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'specialpages'                   => '特別ページ',
 'specialpages-note'              => '----
 * 通常の特別ページ。
-* <span class="mw-specialpagerestricted">制限されている特別ページ。</strong>
+* <span class="mw-specialpagerestricted">制限されている特別ページ。</span>
 * <span class="mw-specialpagecached">キャッシュのみの特別ページ。</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other'       => 'その他の特別ページ',

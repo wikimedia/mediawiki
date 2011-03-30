@@ -512,6 +512,9 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'filedelete-legend' => 'Iztreit failu',
 'filedelete-submit' => 'Iztreit',
 
+# Random page
+'randompage' => 'Navieškys rakstīņs',
+
 # Statistics
 'statistics'          => 'Statistika',
 'statistics-articles' => 'Rakstīni',

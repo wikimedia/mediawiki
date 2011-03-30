@@ -2419,6 +2419,7 @@ specific que ha essite vandalisate).',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
 Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+'ipb-blockingself'                => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
@@ -3330,11 +3331,12 @@ $1',
 'trackbackdeleteok' => 'Le retroligamine ha essite delite con successo.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Attention:''' Iste pagina esseva delite post que tu comenciava a modificar lo!",
-'confirmrecreate'     => "Le usator [[User:$1|$1]] ([[User talk:$1|discussion]]) ha delite iste pagina post que tu comenciava a modificar lo, dante le motivo:
+'deletedwhileediting'      => "'''Attention:''' Iste pagina esseva delite post que tu comenciava a modificar lo!",
+'confirmrecreate'          => "Le usator [[User:$1|$1]] ([[User talk:$1|discussion]]) ha delite iste pagina post que tu comenciava a modificar lo, dante le motivo:
 : ''$2''
 Per favor confirma que tu realmente vole recrear iste pagina.",
-'recreate'            => 'Recrear',
+'confirmrecreate-noreason' => 'Le usator [[User:$1|$1]] ([[User talk:$1|discussion]]) ha delite iste pagina post que tu comenciava a modificar lo. Per favor confirma que tu realmente vole recrear iste pagina.',
+'recreate'                 => 'Recrear',
 
 # action=purge
 'confirm_purge_button' => 'OK',

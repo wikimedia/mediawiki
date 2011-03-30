@@ -1484,9 +1484,9 @@ Tindakan ini tidak boleh dibatalkan.',
 
 # Upload
 'upload'                      => 'Muat naik fail',
-'uploadbtn'                   => 'Muat naik',
+'uploadbtn'                   => 'Muat naik fail',
 'reuploaddesc'                => 'Kembali ke borang muat naik',
-'upload-tryagain'             => 'Serah keterangan fail yang telah diubah',
+'upload-tryagain'             => 'Serahkan keterangan fail yang telah diubah',
 'uploadnologin'               => 'Belum log masuk',
 'uploadnologintext'           => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu untuk memuat naik fail.',
