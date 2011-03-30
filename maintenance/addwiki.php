@@ -93,7 +93,7 @@ class AddWiki extends Maintenance {
 		# Initialise external storage
 		if ( is_array( $wgDefaultExternalStore ) ) {
 			$stores = $wgDefaultExternalStore;
-		} elseif ( $stores ) {
+		} elseif ( $wgDefaultExternalStore ) {
 			$stores = array( $wgDefaultExternalStore );
 		} else {
 			$stores = array();
