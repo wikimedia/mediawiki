@@ -490,7 +490,7 @@ class SpecialBlock extends SpecialPage {
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
 			# permission anyway, although the code does allow for it
-			if( $target == $wgUser->getName()
+			if( $target === $wgUser->getName()
 				&& $data['AlreadyBlocked'] != htmlspecialchars( $wgUser->getName() )  )
 			{
 				return array( 'ipb-blockingself' );
