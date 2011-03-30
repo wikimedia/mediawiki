@@ -429,12 +429,14 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$grouplist = '';
-		if( count( $list ) > 0 ) {
-			$grouplist = wfMsgHtml( 'userrights-groupsmember' );
+		$count = count( $list );
+		if( $count > 0 ) {
+			$grouplist = wfMsgHtml( 'userrights-groupsmember', $count);
 			$grouplist = '<p>' . $grouplist  . ' ' . $wgLang->listToText( $list ) . "</p>\n";
 		}
-		if( count( $autolist ) > 0 ) {
-			$autogrouplistintro = wfMsgHtml( 'userrights-groupsmember-auto' );
+		$count = count( $autolist );
+		if( $count > 0 ) {
+			$autogrouplistintro = wfMsgHtml( 'userrights-groupsmember-auto', $count);
 			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $wgLang->listToText( $autolist ) . "</p>\n";
 		}
 		$wgOut->addHTML(
