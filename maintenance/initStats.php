@@ -63,7 +63,7 @@ class InitStats extends Maintenance {
 
 		if ( $this->hasOption( 'active' ) ) {
 			$this->output( "Counting active users..." );
-			$active = SiteStatsUpdate::cacheUpdate();
+			$active = SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
 			$this->output( "{$active}\n" );
 		}
 
