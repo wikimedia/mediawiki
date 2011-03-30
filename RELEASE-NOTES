@@ -58,6 +58,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
   probably break screen-scraping bots.
 * (bug 26866) The 'trackback' right is no longer granted to sysops by default.
   $wgUseTrackbacks is already false by default
+* (bug 17009) the hiddenStructure CSS class, a highly hackish way of at least *appearing*
+  to hide article elements, has been removed.  Use the ParserFunctions extension to
+  actually remove unwanted elements from the output.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the

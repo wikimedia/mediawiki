@@ -450,9 +450,6 @@ div.tleft {
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
-.hiddenStructure {
-	display: none;
-}
 
 /*
 ** classes for special content elements like town boxes
@@ -881,9 +878,6 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	border-collapse: inherit;
 	border: 0;
 	padding: 0;
-}
-#p-cactions .hiddenStructure {
-	display: none;
 }
 #p-cactions li a {
 	text-transform: lowercase;
