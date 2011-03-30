@@ -205,7 +205,7 @@ class languages {
 	 *
 	 * @param $code The language code.
 	 *
-	 * @return The messages in this language.
+	 * @return string The messages in this language.
 	 */
 	public function getMessages( $code ) {
 		$this->loadMessages( $code );

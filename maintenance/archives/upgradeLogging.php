@@ -24,6 +24,10 @@
 require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 class UpdateLogging {
+
+	/**
+	 * @var DatabaseBase
+	 */
 	var $dbw;
 	var $batchSize = 1000;
 	var $minTs = false;

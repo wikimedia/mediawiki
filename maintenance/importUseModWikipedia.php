@@ -377,7 +377,6 @@ EOT
 	}
 
 	function revisionCallback( $params ) {
-		$origTitle = $params['title'];
 		$title = $params['rctitle'];
 		$editTime = $params['timestamp'];
 

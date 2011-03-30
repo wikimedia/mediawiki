@@ -92,8 +92,12 @@ abstract class Maintenance {
 	// Have we already loaded our user input?
 	protected $mInputLoaded = false;
 
-	// Batch size. If a script supports this, they should set
-	// a default with setBatchSize()
+	/**
+	 * Batch size. If a script supports this, they should set
+	 * a default with setBatchSize()
+	 *
+	 * @var int
+	 */
 	protected $mBatchSize = null;
 
 	// Generic options added by addDefaultParams()
@@ -1072,7 +1076,7 @@ abstract class Maintenance {
 	 * Perform a search index update with locking
 	 * @param $maxLockTime Integer: the maximum time to keep the search index locked.
 	 * @param $callback callback String: the function that will update the function.
-	 * @param $dbw Database object
+	 * @param $dbw DatabaseBase object
 	 * @param $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
