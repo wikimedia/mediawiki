@@ -76,8 +76,8 @@ $messages = array(
 'january-gen'   => 'ଜାନୁଆରି',
 'february-gen'  => 'ଫେବ୍ରୁଆରି',
 'march-gen'     => 'ମାର୍ଚ',
-'april-gen'     => 'ଅପ୍ରେଲ',
-'may-gen'       => 'ମଇ',
+'april-gen'     => 'ଏପ୍ରିଲ',
+'may-gen'       => 'ମେ',
 'june-gen'      => 'ଜୁନ',
 'july-gen'      => 'ଜୁଲାଇ',
 'august-gen'    => 'ଅଗଷ୍ଟ',
@@ -88,8 +88,8 @@ $messages = array(
 'jan'           => 'ଜାନୁଆରି',
 'feb'           => 'ଫେବୃଆରି',
 'mar'           => 'ମାର୍ଚ',
-'apr'           => 'ଅପ୍ରେଲ',
-'may'           => 'ମଇ',
+'apr'           => 'ଏପ୍ରିଲ',
+'may'           => 'ମେ',
 'jun'           => 'ଜୁନ',
 'jul'           => 'ଜୁଲାଇ',
 'aug'           => 'ଅଗଷ୍ଟ',
@@ -101,14 +101,14 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Category|ବିଭାଗ}}',
 'category_header'        => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'subcategories'          => 'ଉପଶ୍ରେଣୀଗୁଡ଼ିକ',
+'subcategories'          => 'ସାନ ବିଭାଗସବୁ',
 'hidden-categories'      => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ବିଭାଗ}}',
 'listingcontinuesabbrev' => 'ଆହୁରି ଅଛି..',
 
-'newwindow'  => 'ନୂଆ ଊଇଁଡୋରେ ଖୋଲ',
+'newwindow'  => 'ନୂଆ ଉଇଁଡୋରେ ଖୋଲିବ',
 'cancel'     => 'ନାକଚ କରିଦିଅ',
-'mytalk'     => 'ମୋ କଥା',
-'navigation' => 'ଦିଗବାରେଣି (ନାଭିଗେସନ)',
+'mytalk'     => 'ମୋ ଆଲୋଚନା',
+'navigation' => 'ଦିଗବାରେଣି',
 
 'tagline'          => '{{SITENAME}} ରୁ',
 'help'             => 'ସାହାଜ୍ୟ',
@@ -119,7 +119,7 @@ $messages = array(
 'history_short'    => 'ଇତିହାସ',
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
 'permalink'        => 'ସବୁଦିନିଆ ଲିଁକ',
-'edit'             => 'ବଦଳାଁତୁ',
+'edit'             => 'ବଦଳାଇବେ',
 'create'           => 'ତିଆରିକର',
 'delete'           => 'ଲିଭେଇବେ',
 'protect'          => 'କିଳିବେ',
@@ -134,7 +134,7 @@ $messages = array(
 'redirectedfrom'   => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
 'lastmodifiedat'   => 'ଏହି ଫରଦଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
 'jumpto'           => 'ଡେଇଁବା',
-'jumptonavigation' => 'ନାଭିଗେସନକୁ',
+'jumptonavigation' => 'ଦିଗବାରେଣିକୁ',
 'jumptosearch'     => 'ଖୋଜିବା',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -145,9 +145,9 @@ $messages = array(
 'disclaimers'          => 'ଆମେ ଦାୟୀ ନୋହୁଁ',
 'disclaimerpage'       => 'Project:ଆମେ ଦାୟୀ ନୋହୁଁ',
 'edithelp'             => 'ଲେଖା ସାହାଜ୍ୟ',
-'edithelppage'         => 'Help:ବଦଳା',
+'edithelppage'         => 'Help:ବଦଳାଇବା',
 'mainpage'             => 'ମୂଳ ଫରଦ',
-'mainpage-description' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'mainpage-description' => 'ମୂଳ ଫରଦ',
 'portal'               => 'କମୁନିଟି ପୋଟାଲ',
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
@@ -158,9 +158,9 @@ $messages = array(
 'youhavenewmessages'      => 'ଆପଣଙ୍କର $1 ($2).',
 'newmessageslink'         => 'ନୂଆ ମେସେଜ',
 'youhavenewmessagesmulti' => '$1 ତାରିଖରେ ନୂଆ ଚିଠିଟିଏ ଆସିଛି',
-'editsection'             => 'ଏଡ଼ିଟ',
-'editold'                 => 'ବଦଳାଁତୁ',
-'editlink'                => 'ଏଡିଟ',
+'editsection'             => 'ବଦଳାଇବା',
+'editold'                 => 'ବଦଳାଇବା',
+'editlink'                => 'ବଦଳାଇବା',
 'viewsourcelink'          => 'ଉତ୍ସ ଦେଖ',
 'editsectionhint'         => '$1 ଭାଗଟିକୁ ବଦଳାଇବା',
 'toc'                     => 'ଭିତର ଚିଜ',
@@ -204,8 +204,8 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
 'bold_tip'        => 'ବୋଲ୍ଡ ଲେଖା',
-'italic_sample'   => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
-'italic_tip'      => 'ଡାହାଣକୁ ଢଳିଥିବା ଲେଖା',
+'italic_sample'   => 'ତେରେଛା ଲେଖା',
+'italic_tip'      => 'ତେରେଛା ଲେଖା',
 'link_sample'     => 'ଲିଁକ ଟାଇଟଲ',
 'link_tip'        => 'ଭିତର ଲିଁକ',
 'extlink_sample'  => 'http://www.example.com ଲିଁକ ଟାଇଟଲ',
@@ -227,7 +227,7 @@ $messages = array(
 'minoredit'              => 'ଏହା ଖୁବ ଛୋଟ ବଦଳଟିଏ',
 'watchthis'              => 'ଏହି ଫରଦଟିକୁ ଦେଖ',
 'savearticle'            => 'ସାଇତି ରଖ',
-'preview'                => 'ଦେଖଣା',
+'preview'                => 'ସାଇତିବା ଆଗରୁ ଦେଖଣା',
 'showpreview'            => 'ଦେଖଣା',
 'showdiff'               => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
 'anoneditwarning'        => "'''ଜାଣିରଖଁତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାଁତି ।
@@ -238,7 +238,7 @@ $messages = array(
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|ଫରଦ={{FULLPAGENAMEE}}}} ରେ ଯୋଡ଼ାଯାଇଥିବା ବାକି ଫରଦସବୁକୁ ଖୋଜି ପାରନ୍ତି],
 କିମ୍ବା [{{fullurl:{{FULLPAGENAME}}|action=edit}} ଏହି ଫରଦଟିକୁ ବଦଳାଇ ପାରନ୍ତି]</span> ।',
 'editing'                => '$1 କୁ ବଦଳାଉଛି',
-'editingsection'         => '$1 (ଭାଗ)କୁ ଏଡ଼ିଟ କରିବେ',
+'editingsection'         => '$1 (ଭାଗ)କୁ ବଦଳାଇବେ',
 'template-protected'     => '(କିଳାଯାଇଥିବା)',
 'template-semiprotected' => '(ଅଧା କିଳାଯାଇଥିବା)',
 
@@ -279,7 +279,7 @@ $messages = array(
 'search-redirect'           => '($1 କୁ ଆଗକୁ ବଢେଇନିଅ )',
 'search-section'            => '(ଭାଗ $1)',
 'search-suggest'            => 'ଆପଣ $1 ଭାବି ଖୋଜିଥିଲେ କି',
-'search-interwiki-caption'  => 'ଭଉଣୀ ପ୍ରକଳ୍ପ',
+'search-interwiki-caption'  => 'ସାଙ୍ଗରେ ଚାଲିଥିବା ବାକି ପ୍ରକଳ୍ପସବୁ',
 'search-interwiki-default'  => '$1 ଫଳାଫଳ:',
 'search-interwiki-more'     => '(ଅଧିକ)',
 'search-mwsuggest-enabled'  => 'ପରାମର୍ଶ ସହ',
@@ -294,7 +294,7 @@ $messages = array(
 
 # Preferences page
 'mypreferences'     => 'ମୋ ପସଁଦସବୁ',
-'searchresultshead' => 'ସନ୍ଧାନ',
+'searchresultshead' => 'ଖୋଜିବା',
 
 # Groups
 'group-sysop' => 'ପରିଛାଗଣ',
@@ -329,7 +329,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked'          => 'ଏଇମାତ୍ର ବଦଳାଯାଇଥିବା ଫରଦର ଲିଁକ',
 'recentchangeslinked-feed'     => 'ଯୋଡ଼ାଥିବା ବଦଳ',
-'recentchangeslinked-toolbox'  => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+'recentchangeslinked-toolbox'  => 'ଯୋଡ଼ାଥିବା ବଦଳ',
 'recentchangeslinked-title'    => '"$1" ସାଁଗରେ ଜୋଡ଼ାଥିବା ବଦଳ',
 'recentchangeslinked-noresult' => 'ଯୋଡ଼ାଯାଇଥିବା ଫରଦ ସବୁରେ ଏଇ ସମୟ ଭିତରେ କିଛି ବଦଳାଯାଇନାହିଁ ।',
 'recentchangeslinked-summary'  => "ଏଇଟି ଅଳ୍ପସମୟ ଆଗରୁ ନିର୍ଦିଷ୍ଟ ଫରଦରୁ ଲିଂକ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦିଷ୍ଟ ବିଭାଗର) ଫରଦସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ଫରଦ ସବୁ '''ବୋଲଡ'''।",
@@ -347,7 +347,7 @@ $messages = array(
 'filehist-current'    => 'ଏବେକାର',
 'filehist-datetime'   => 'ତାରିଖ/ବେଳ',
 'filehist-thumb'      => 'ନଖ ଦେଖଣା',
-'filehist-thumbtext'  => 'Thumbnail for version as of $1 ପରିକା ସଁକଳନର ନଖଦେଖଣା',
+'filehist-thumbtext'  => '$1 ପରିକା ସଁକଳନର ନଖଦେଖଣା',
 'filehist-user'       => 'ଇଉଜର',
 'filehist-dimensions' => 'ଆକାର',
 'filehist-comment'    => 'ମତାମତ',
@@ -371,13 +371,13 @@ $messages = array(
 'mostlinkedtemplates'  => 'ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଟେଁପଲେଟ',
 'mostcategories'       => 'ବେଶିବିଭାଗ ଥିବା ଫରଦ',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
-'prefixindex'          => 'ପ୍ରିଫିକ୍ସ ସହ ଥିବା ସବୁ ଫରଦ',
+'prefixindex'          => 'ଆଗରୁ କିଛି ଯୋଡ଼ା ସହ ଥିବା ସବୁ ଫରଦସବୁ',
 'move'                 => 'ଘୁଁଚାଅ',
 'pager-newer-n'        => '{{PLURAL:$1|ନୂଆ 1|ନୂଆ $1}}',
 'pager-older-n'        => '{{PLURAL:$1|ପୁରୁଣା 1|ପୁରୁଣା $1}}',
 
 # Book sources
-'booksources' => 'ବହି ସ୍ରୋତ',
+'booksources' => 'ବହିର ମୁଳ ସ୍ରୋତ',
 
 # Special:Log
 'log' => 'ଲଗ',
@@ -388,7 +388,7 @@ $messages = array(
 'allpagessubmit' => 'ଯିବା',
 
 # Special:LinkSearch
-'linksearch-ok' => 'ସନ୍ଧାନ',
+'linksearch-ok' => 'ଖୋଜିବା',
 
 # E-mail user
 'emailuser' => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
@@ -431,7 +431,7 @@ $messages = array(
 
 # Undelete
 'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବା',
-'undelete-search-submit' => 'ସନ୍ଧାନ',
+'undelete-search-submit' => 'ଖୋଜିବା',
 
 # Namespace form on various pages
 'namespace'      => 'ନେମସ୍ପେସ',
@@ -439,7 +439,7 @@ $messages = array(
 'blanknamespace' => '(ମୂଳ)',
 
 # Contributions
-'contributions' => 'ବ୍ଯବହରକାରୀନ୍କ ଅନୁଦାନ',
+'contributions' => 'ଇଉଜରଙ୍କ ଦାନ',
 'mycontris'     => 'ମୋ ଅବଦାନ',
 'month'         => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
 'year'          => 'ବରସରୁ (ଓ ତା ଆଗରୁ)',
@@ -455,10 +455,10 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 କୁ ଲେଉଟାଣି',
 'whatlinkshere-hidetrans'  => '$1 ରେଫେରେଁସ ସହ ଭିତରେ ପୁରାଇବା',
 'whatlinkshere-hidelinks'  => '$1 ଟି ଲିଁକ',
-'whatlinkshere-filters'    => 'ଛାଣିବା',
+'whatlinkshere-filters'    => 'ଫିଲଟରସବୁ',
 
 # Block/unblock
-'ipblocklist-submit' => 'ସନ୍ଧାନ',
+'ipblocklist-submit' => 'ଖୋଜିବା',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
 'unblocklink'        => 'ଛାଡ଼ିବା',
 'change-blocklink'   => 'ଓଗଳାକୁ ବଦଳାଇବା',
@@ -518,7 +518,7 @@ $messages = array(
 'tooltip-ca-nstab-image'          => 'ଫାଇଲ ଫରଦଗୁଡ଼ିକ ଦେଖଁତୁ',
 'tooltip-ca-nstab-category'       => 'ବିଭାଗ ଫରଦଟିକୁ ଖୋଲ',
 'tooltip-minoredit'               => 'ଏହାକୁ ଛୋଟ ବଦଳ ଭାବେ ଗଣ',
-'tooltip-save'                    => 'ବଦଳଗୁଡ଼ିକ ସାଇତିରଖ',
+'tooltip-save'                    => 'ବଦଳଗୁଡ଼ିକ ସାଇତିବେ',
 'tooltip-preview'                 => 'ଆପଣନ୍କ ବଦଳ ଦେଖିନିଅନ୍ତୁ, ସାଇତିବା ଆଗରୁ ଏହା ବ୍ୟ୍ଅବହାର କରନ୍ତୁ!',
 'tooltip-diff'                    => 'ଏହି ଲେଖାରେ ଆପଣ କରିଥିବା ବଦଳଗୁଡିକୁ ଦେଖନ୍ତୁ ।',
 'tooltip-compareselectedversions' => 'ଏହି ଫରଦର ଦୁଇଟି ବଛାଯାଇଥିବା ସଁକଳନକୁ ତଉଲିବା',
@@ -534,7 +534,7 @@ $messages = array(
 'show-big-image' => 'ପୁରା ବଡ଼ ଆକାରରେ',
 
 # Special:NewFiles
-'ilsubmit' => 'ସନ୍ଧାନ',
+'ilsubmit' => 'ଖୋଜିବା',
 
 # Bad image list
 'bad_image_list' => 'ଗଢ଼ଣଟି ଏମିତି ହେବ:
@@ -546,8 +546,8 @@ $messages = array(
 # Metadata
 'metadata'          => 'ମେଟାଡାଟା',
 'metadata-help'     => 'ଏହି ଫରଦଟିରେ ଗୁଡ଼ାଏ ଅଧିକ କଥା ଅଛି, ବୋଧହୁଏ ଡିଜିଟାଲ କାମେରା କିମ୍ବା ସ୍କାନରରେ ନିଆଯାଇଛି । ଯଦି ଫାଇଲଟି ତାର ମୂଳ ଭାଗଠୁ ବଦଳାଜାଇଥାଏ ତେବେ କିଛି ଅଁଶ ଠିକ ଭାବେ ଦେଖାଯାଇ ନପାରେ ।',
-'metadata-expand'   => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଅ',
-'metadata-collapse' => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଇବା',
+'metadata-expand'   => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଇବେ',
+'metadata-collapse' => 'ଆହୁରି ଖୋଲିକରି ଦେଖାଇବେ',
 
 # External editor support
 'edit-externally-help' => '(ଆହୁରି ବି [http://www.mediawiki.org/wiki/Manual:External_editors ସଜାଡିବା ନିର୍ଦେଶ] ଦେଖନ୍ତୁ)',
@@ -557,7 +557,7 @@ $messages = array(
 'monthsall'     => 'ସବୁ',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'ସନ୍ଧାନ',
+'fileduplicatesearch-submit' => 'ଖୋଜିବା',
 
 # Special:SpecialPages
 'specialpages' => 'ନିଆରା ଫରଦ',

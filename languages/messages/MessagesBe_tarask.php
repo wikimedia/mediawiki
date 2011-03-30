@@ -1371,9 +1371,9 @@ $1",
 'prefs-advancedrendering'       => 'Дадатковыя налады',
 'prefs-advancedsearchoptions'   => 'Дадатковыя налады',
 'prefs-advancedwatchlist'       => 'Дадатковыя налады',
-'prefs-displayrc'               => 'Налады адлюстраваньня',
-'prefs-displaysearchoptions'    => 'Налады адлюстраваньня',
-'prefs-displaywatchlist'        => 'Налады адлюстраваньня',
+'prefs-displayrc'               => 'Налады паказу',
+'prefs-displaysearchoptions'    => 'Налады паказу',
+'prefs-displaywatchlist'        => 'Налады паказу',
 'prefs-diffs'                   => 'Розьніцы вэрсіяў',
 
 # User preference: e-mail validation using jQuery
