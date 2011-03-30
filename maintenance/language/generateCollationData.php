@@ -193,7 +193,7 @@ class GenerateCollationData extends Maintenance {
 		// portion equal to the first character, then remove the second 
 		// character. This avoids having characters like U+A732 (double A)
 		// polluting the basic latin sort area.
-		$prevWeights = array();
+
 		foreach ( $this->groups as $weight => $group ) {
 			if ( preg_match( '/(\.[0-9A-F]*)\./', $weight, $m ) ) {
 				if ( isset( $this->groups[$m[1]] ) ) {

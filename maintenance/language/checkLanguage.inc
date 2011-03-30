@@ -118,7 +118,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get the checks that can easily be treated by non-speakers of the language.
-	 * @return A list of the easy checks.
+	 * @return Array A list of the easy checks.
 	 */
 	protected function easyChecks() {
 		return array(

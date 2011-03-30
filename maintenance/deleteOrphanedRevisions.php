@@ -75,7 +75,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	 * Do this inside a transaction
 	 *
 	 * @param $id Array of revision id values
-	 * @param $dbw Database class (needs to be a master)
+	 * @param $dbw DatabaseBase class (needs to be a master)
 	 */
 	private function deleteRevs( $id, &$dbw ) {
 		if ( !is_array( $id ) )

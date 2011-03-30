@@ -88,7 +88,6 @@ TEXT;
 		}
 
 		$count = 0;
-		$row = false;
 		$batchConds = array();
 		do {
 			$this->output( 'Processing next ' . self::BATCH_SIZE . ' rows... ');
