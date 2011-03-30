@@ -248,7 +248,7 @@ class TextPassDumper extends BackupDumper {
 				} elseif ( $tag == 'page' ) {
 					$state = 'page';
 				}
-			} elseif ( $type == XMLReader::SIGNIFICANT_WHITESPACE || $type = XMLReader::TEXT ) {
+			} elseif ( $type == XMLReader::SIGNIFICANT_WHITESPACE || $type == XMLReader::TEXT ) {
 				if ( $lastName == 'id' ) {
 					if ( $state == 'revision' ) {
 						$this->thisRev .= $reader->value;
