@@ -2,7 +2,7 @@
 
 require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 
-class BenchmarkPurge extends Benchmarker {
+class BenchmarkDeleteTruncate extends Benchmarker {
 
 	public function __construct() {
 		parent::__construct();
@@ -74,5 +74,5 @@ class BenchmarkPurge extends Benchmarker {
 	}
 }
 
-$maintClass = "BenchmarkPurge";
+$maintClass = "BenchmarkDeleteTruncate";
 require_once( RUN_MAINTENANCE_IF_MAIN );
