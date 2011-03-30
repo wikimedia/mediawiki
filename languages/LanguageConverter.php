@@ -288,7 +288,7 @@ class LanguageConverter {
 		if ( !$this->mHeaderVariant ) {
 			// process fallback languages now
 			$fallback_languages = array_unique( $fallbackLanguages );
-			foreach ( $fallbackLanguages as $language ) {
+			foreach ( $fallback_languages as $language ) {
 				$this->mHeaderVariant = $this->validateVariant( $language );
 				if ( $this->mHeaderVariant ) {
 					break;
