@@ -622,8 +622,11 @@ class FSRepo extends FileRepo {
 				continue;
 			}
 			$dir = opendir( $path );
-			while ( false !== ( $name = readdir( $dir ) ) ) {
-				call_user_func( $callback, $path . '/' . $name );
+			if ($dir) {
+				while ( false !== ( $name = readdir( $dir ) ) ) {
+					call_user_func( $callback, $path . '/' . $name );
+				}
+				closedir( $dir );
 			}
 		}
 	}
