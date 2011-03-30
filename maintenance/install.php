@@ -70,7 +70,7 @@ class CommandLineInstaller extends Maintenance {
 			$installer->showStatusMessage( $status );
 			return;
 		}
-		if( !$this->getVar( 'env-checks' ) ) {
+		if( !$this->hasOption( 'env-checks' ) ) {
 			$installer->execute();
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
 		}
