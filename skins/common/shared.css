@@ -379,6 +379,14 @@ table.collapsed tr.collapsable {
 .TablePager {
 	min-width: 80%;
 	border-collapse: collapse;
+	margin: 0 auto;
+}
+.TablePager_nav {
+	margin: 0 auto;
+}
+.TablePager_nav td {
+	padding: 3px;
+	text-align: center;
 }
 .TablePager_nav a {
 	text-decoration: none;

@@ -815,7 +815,7 @@ abstract class TablePager extends IndexPager {
 		$tableClass = htmlspecialchars( $this->getTableClass() );
 		$sortClass = htmlspecialchars( $this->getSortHeaderClass() );
 
-		$s = "<table border='1' class=\"$tableClass\"><thead><tr>\n";
+		$s = "<table style='border:1;' class=\"$tableClass\"><thead><tr>\n";
 		$fields = $this->getFieldNames();
 
 		# Make table header
@@ -982,10 +982,10 @@ abstract class TablePager extends IndexPager {
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 
 		$navClass = htmlspecialchars( $this->getNavClass() );
-		$s = "<table class=\"$navClass\" align=\"center\" cellpadding=\"3\"><tr>\n";
-		$cellAttrs = 'valign="top" align="center" width="' . 100 / count( $links ) . '%"';
+		$s = "<table class=\"$navClass\"><tr>\n";
+		$width = 100 / count( $links ) . '%';
 		foreach ( $labels as $type => $label ) {
-			$s .= "<td $cellAttrs>{$links[$type]}</td>\n";
+			$s .= "<td style='width:$width;'>{$links[$type]}</td>\n";
 		}
 		$s .= "</tr></table>\n";
 		return $s;
