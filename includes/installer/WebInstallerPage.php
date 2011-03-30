@@ -114,6 +114,27 @@ abstract class WebInstallerPage {
 	protected function getFieldsetEnd() {
 		return "</fieldset>\n";
 	}
+
+	/**
+	 * Opens a textarea used to display the progress of a long operation
+	 */
+	protected function startLiveBox() {
+		$this->addHTML(
+			'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
+			'<script>jQuery( "#config-spinner" ).show();</script>' .
+			'<textarea id="config-live-log" name="LiveLog" rows="10" cols="30" readonly="readonly">'
+		);
+		$this->parent->output->flush();
+	}
+
+	/**
+	 * Opposite to startLiveBox()
+	 */
+	protected function endLiveBox() {
+		$this->addHTML( '</textarea>
+<script>jQuery( "#config-spinner" ).hide()</script>' );
+		$this->parent->output->flush();
+	}
 }
 
 class WebInstaller_Language extends WebInstallerPage {
@@ -464,16 +485,11 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 
 		if ( $this->parent->request->wasPosted() ) {
 			$installer->preUpgrade();
-			$this->addHTML(
-				'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
-				'<script>jQuery( "#config-spinner" ).show();</script>' .
-				'<textarea id="config-update-log" name="UpdateLog" rows="10" readonly="readonly">'
-			);
-			$this->parent->output->flush();
+
+			$this->startLiveBox();
 			$result = $installer->doUpgrade();
-			$this->addHTML( '</textarea>
-<script>jQuery( "#config-spinner" ).hide()</script>' );
-			$this->parent->output->flush();
+			$this->endLiveBox();
+
 			if ( $result ) {
 				// If they're going to possibly regenerate LocalSettings, we
 				// need to create the upgrade/secret keys. Bug 26481
@@ -1081,9 +1097,15 @@ class WebInstaller_Install extends WebInstallerPage {
 
 	public function startStage( $step ) {
 		$this->addHTML( "<li>" . wfMsgHtml( "config-install-$step" ) . wfMsg( 'ellipsis') );
+		if ( $step == 'extension-tables' ) {
+			$this->startLiveBox();
+		}
 	}
 
 	public function endStage( $step, $status ) {
+		if ( $step == 'extension-tables' ) {
+			$this->endLiveBox();
+		}
 		$msg = $status->isOk() ? 'config-install-step-done' : 'config-install-step-failed';
 		$html = wfMsgHtml( 'word-separator' ) . wfMsgHtml( $msg );
 		if ( !$status->isOk() ) {
