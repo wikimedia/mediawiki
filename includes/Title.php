@@ -1541,8 +1541,14 @@ class Title {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		// Edit blocks should not affect reading. Account creation blocks handled at userlogin.
-		if ( $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this ) ) {
+		if ( in_array( $action, array( 'read', 'createaccount', 'unblock' ) ) ){
+			// Edit blocks should not affect reading.
+			// Account creation blocks handled at userlogin.
+			// Unblocking handled in SpecialUnblock
+		} elseif( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ){
+			// Don't block the user from editing their own talk page unless they've been
+			// explicitly blocked from that too.
+		} elseif( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
 			$block = $user->mBlock;
 
 			// This is from OutputPage::blockedPage
