@@ -632,7 +632,7 @@ class RecompressTracked {
 		foreach ( $res as $row ) {
 			$text = Revision::getRevisionText( $row );
 			if ( $text === false ) {
-				$this->critical( "Error: cannot load revision text for old_id=$textId" );
+				$this->critical( "Error: cannot load revision text for old_id={$row->old_id}" );
 				continue;
 			}
 
