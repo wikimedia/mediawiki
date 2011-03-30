@@ -37,9 +37,9 @@ class OutputPage {
 	var $mBodytext = '';
 
 	/**
-	 * Holds the debug lines that will be outputt as comments in page source if
+	 * Holds the debug lines that will be output as comments in page source if
 	 * $wgDebugComments is enabled. See also $wgShowDebug.
-	 * TODO: make a better method for this
+	 * TODO: make a getter method for this
 	 */
 	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
