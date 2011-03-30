@@ -3045,6 +3045,7 @@ $wgMessageStructure = array(
 	'deleteconflict' => array(
 		'deletedwhileediting',
 		'confirmrecreate',
+		'confirmrecreate-noreason',
 		'recreate',
 	),
 	'unit-pixel' => array(
