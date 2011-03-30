@@ -1356,7 +1356,9 @@ HTML
 
 			// It is better to not parse the comment at all than to have templates expanded in the middle
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
-			$key = $comment ? 'confirmrecreate' : 'confirmrecreate-noreason';
+			$key = $comment === ''
+				? 'confirmrecreate-noreason'
+				: 'confirmrecreate';
 			$wgOut->addHTML(
 				'<div class="mw-confirm-recreate">' .
 				wfMsgExt( $key, 'parseinline', $username, "<nowiki>$comment</nowiki>" ) .
