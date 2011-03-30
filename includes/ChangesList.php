@@ -1130,6 +1130,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->insertComment( $r, $rcObj );
 		$this->insertRollback( $r, $rcObj );
 		# Tags
+		$classes = explode( ' ', $classes );
 		$this->insertTags( $r, $rcObj, $classes );
 		# Show how many people are watching this if enabled
 		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
