@@ -83,8 +83,8 @@ class OracleUpdater extends DatabaseUpdater {
 	/**
 	 * Overload: after this action field info table has to be rebuilt
 	 */
-	public function doUpdates( $purge = true ) {
-		parent::doUpdates();
+	public function doUpdates( $what = array( 'core', 'extensions', 'purge' ) ) {
+		parent::doUpdates( $what );
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
 	}
