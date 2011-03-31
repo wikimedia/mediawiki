@@ -2391,8 +2391,8 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 
 # Block/unblock
 'autoblockid'                     => 'Outomatiese blokkade #$1',
-'block'                           => 'Blokkeer gebruiker of IP-adres',
-'unblock'                         => 'Deblokkeer gebruiker of IP-adres',
+'block'                           => 'Blok gebruiker',
+'unblock'                         => 'Deblokkeer gebruiker',
 'blockip'                         => 'Blokkeer gebruiker',
 'blockip-title'                   => 'Blokkeer gebruiker',
 'blockip-legend'                  => 'Blokkeer gebruiker of IP-adres',
@@ -2437,6 +2437,7 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'unblocked'                       => 'Blokkade van [[User:$1|$1]] is opgehef',
 'unblocked-range'                 => '$1 is gedeblokkeer',
 'unblocked-id'                    => 'Blokkade $1 is opgehef',
+'blocklist'                       => 'Geblokkeerde gebruikers',
 'ipblocklist'                     => 'Geblokkeerde IP-adresse en gebruikers',
 'ipblocklist-legend'              => "Soek 'n geblokkeerde gebruiker",
 'blocklist-reason'                => 'Rede',

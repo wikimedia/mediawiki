@@ -1469,7 +1469,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'userrights-editusergroup'       => 'Metmaacher en Jruppe donn un uß Jruppe nämme',
 'saveusergroups'                 => 'Metmaacherjruppe avspeichere',
 'userrights-groupsmember'        => 'Dä Metmaacher es en {{PLURAL:$1|dä Jropp:|dä Jroppe:|keine Jropp.}}',
-'userrights-groupsmember-auto'   => 'Dä Metmaacher es automattesch en dä {{PLURAL:$1|dä Jropp:|dä Jroppe:|keine Jropp.}}',
+'userrights-groupsmember-auto'   => 'Dä Metmaacher es automattesch en {{PLURAL:$1|dä Jropp:|dä Jroppe:|keine Jropp.}}',
 'userrights-groups-help'         => 'Do kanns de Jruppe för dä Metmaacher hee ändere, ävver opjepaß:
 * E Käßje met Höksche bedüg, dat dä Metmaacher en dä Jrupp es.
 * E Käßje ohne Höksche bedüg, dat dä Metmaacher nit en dä Jrupp es.
@@ -2614,6 +2614,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
 Luur op [[Special:IPBlockList|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells,
 un och wann De se ändere wells.',
+'ipb-blockingself'                => 'Do bes om Wääsch, Desh sellver ze sperre. Wells De dat?',
 'ipb-edit-dropdown'               => 'De Jründ för et Sperre beärrbejde',
 'ipb-unblock-addr'                => '„$1“ widder zohlohße',
 'ipb-unblock'                     => 'En IP-Addräß ov ene Metmaacher widder zohlohße',
@@ -3545,13 +3546,14 @@ $1',
 'trackbackdeleteok' => 'Trackback es fottjeschmesse.',
 
 # Delete conflict
-'deletedwhileediting' => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.
+'deletedwhileediting'      => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.
 Em <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Logboch vum Sigge-Fottschmieße]</span> künnt der Jrund shtonn.
 Wann De de Sigg avspeichere deis, weed se widder aanjelaat.',
-'confirmrecreate'     => 'Dä Metmaacher [[User:$1|$1]] ([[User talk:$1|Klaaf]]) hät die Sigg fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
+'confirmrecreate'          => 'Dä Metmaacher [[User:$1|$1]] ([[User talk:$1|Klaaf]]) hät die Sigg fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
 : „<i>$2</i>“
 Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
-'recreate'            => 'Widder neu aanlääje',
+'confirmrecreate-noreason' => '{{GENDER:$1|Dä|Et|Dä Metmaacher|De|Dat}} [[User:$1|$1]] ([[User talk:$1|Klaaf]]) hät heh di Sigg fottjeschmeße, nohdämm Do aanjefange häs, draan ze ändere. Bes esu jood un donn beshtääteje, dat De di Sigg widder neu aanjelaat han wells.',
+'recreate'                 => 'Widder neu aanlääje',
 
 'unit-pixel' => 'px',
 

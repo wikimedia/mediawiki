@@ -2573,6 +2573,7 @@ $1',
 'blockipsuccesstext'              => 'המשתמש [[Special:Contributions/$1|$1]] נחסם.
 
 ראו את [[Special:IPBlockList|רשימת המשתמשים החסומים]] כדי לצפות בחסימות.',
+'ipb-blockingself'                => 'אתם עומדים לחסום את עצמכם! האם אתם באמת רוצים לעשות את זה?',
 'ipb-edit-dropdown'               => 'עריכת סיבות החסימה',
 'ipb-unblock-addr'                => 'הסרת חסימה של $1',
 'ipb-unblock'                     => 'הסרת חסימה של שם משתמש או כתובת IP',
@@ -2585,6 +2586,10 @@ $1',
 'unblocked-id'                    => 'חסימה מספר $1 שוחררה.',
 'ipblocklist'                     => 'רשימת כתובות IP ומשתמשים חסומים',
 'ipblocklist-legend'              => 'מציאת משתמש חסום',
+'blocklist-timestamp'             => 'זמן',
+'blocklist-expiry'                => 'פקיעה',
+'blocklist-params'                => 'הגדרות חסימה',
+'blocklist-reason'                => 'סיבה',
 'ipblocklist-submit'              => 'חיפוש',
 'ipblocklist-localblock'          => 'חסימה מקומית',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|חסימה אחרת|חסימות אחרות}}',
@@ -3066,6 +3071,7 @@ $1',
 'file-nohires'         => '<small>אין גרסת רזולוציה גבוהה יותר.</small>',
 'svg-long-desc'        => 'קובץ SVG, הגודל המקורי: $1 × $2 פיקסלים, גודל הקובץ: $3',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
+'show-big-image-size'  => '$1 × $2 פיקסלים',
 'file-info-gif-looped' => 'בלולאה',
 'file-info-gif-frames' => '{{PLURAL:$1|תמונה אחת|$1 תמונות}}',
 'file-info-png-looped' => 'בלולאה',
@@ -3453,11 +3459,12 @@ $1',
 'trackbackdeleteok' => 'הטרקבק נמחק בהצלחה.',
 
 # Delete conflict
-'deletedwhileediting' => "'''אזהרה''': דף זה נמחק לאחר שהתחלתם לערוך!",
-'confirmrecreate'     => "הדף נמחק על ידי המשתמש [[User:$1|$1]] ([[User talk:$1|שיחה]]) לאחר שהתחלתם לערוך אותו, מסיבה זו:
+'deletedwhileediting'      => "'''אזהרה''': דף זה נמחק לאחר שהתחלתם לערוך!",
+'confirmrecreate'          => "הדף נמחק על ידי המשתמש [[User:$1|$1]] ([[User talk:$1|שיחה]]) לאחר שהתחלתם לערוך אותו, מסיבה זו:
 :'''$2'''
 אנא אשרו שאתם אכן רוצים ליצור מחדש את הדף.",
-'recreate'            => 'יצירה מחדש',
+'confirmrecreate-noreason' => 'המשתמש [[User:$1|$1]] ([[User talk:$1|שיחה]]) מחק את הדף הזה אחרי שהתחלתם לערוך אותו. נא לאשר שאתם באמת רוצים ליצור את הדף מחדש.',
+'recreate'                 => 'יצירה מחדש',
 
 # action=purge
 'confirm_purge_button' => 'אישור',

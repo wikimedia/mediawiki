@@ -2418,6 +2418,7 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'blockipsuccesssub'               => 'Blokkering utført',
 'blockipsuccesstext'              => '­«[[Special:Contributions/$1|$1]]» har blitt blokkert.<br />
 Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
+'ipb-blockingself'                => 'Du er i ferd med å blokkere deg selv! Er du sikker på at du vil gjøre det?',
 'ipb-edit-dropdown'               => 'Rediger blokkeringsgrunner',
 'ipb-unblock-addr'                => 'Avblokker $1',
 'ipb-unblock'                     => 'Avblokker et brukernavn eller en IP-adresse',
@@ -3303,9 +3304,10 @@ $1',
 'trackbackdeleteok' => 'Tilbakesporingen ble slettet.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Advarsel:''' Denne siden har blitt slettet etter at du begynte å redigere den!",
-'confirmrecreate'     => '«[[User:$1|$1]]» ([[User talk:$1|diskusjon]]) slettet siden etter at du begynte å redigere den, med begrunnelsen «$2». Vennligst bekreft at du vil gjenopprette siden.',
-'recreate'            => 'Gjenopprett',
+'deletedwhileediting'      => "'''Advarsel:''' Denne siden har blitt slettet etter at du begynte å redigere den!",
+'confirmrecreate'          => '«[[User:$1|$1]]» ([[User talk:$1|diskusjon]]) slettet siden etter at du begynte å redigere den, med begrunnelsen «$2». Vennligst bekreft at du vil gjenopprette siden.',
+'confirmrecreate-noreason' => 'Brukeren [[User:$1|$1]] ([[User talk:$1|diskusjon]]) slettet denne siden etter at du begynte å redigere. Bekreft at du virkelig ønsker å gjenopprette denne siden.',
+'recreate'                 => 'Gjenopprett',
 
 # action=purge
 'confirm_purge_button' => 'OK',

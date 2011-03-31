@@ -2369,6 +2369,7 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'blockipsuccesssub'               => 'Matagumpay ang pagharang/paghadlang',
 'blockipsuccesstext'              => 'Hinadlangan ang  [[Special:Contributions/$1|$1]].<br />
 Tingnan ang [[Special:IPBlockList|talaan ng mga hinadlangang IP]] upang makita ang mga paghadlang.',
+'ipb-blockingself'                => 'Hahadlangan mo na ang sarili mo!  Nakatitiyak ka bang nais mong gawin iyan?',
 'ipb-edit-dropdown'               => 'Baguhin ang mga dahilan sa pagharang',
 'ipb-unblock-addr'                => 'Tanggalin ang pagkaharang ng $1',
 'ipb-unblock'                     => 'Tanggalin ang pagkaharang ng isang bansag o IP address',
@@ -3268,11 +3269,12 @@ $1",
 'trackbackdeleteok' => "Tagumpay na nabura ang ''trackback''.",
 
 # Delete conflict
-'deletedwhileediting' => 'Babala: Binura ang pahinang ito pagkaraan mong simulan ang pagbago!',
-'confirmrecreate'     => "Binura ni [[User:$1|$1]] ([[User talk:$1|usapan]]) ang pahinang ito pagkaraan mong magumpisang magbago na may dahilang:
+'deletedwhileediting'      => 'Babala: Binura ang pahinang ito pagkaraan mong simulan ang pagbago!',
+'confirmrecreate'          => "Binura ni [[User:$1|$1]] ([[User talk:$1|usapan]]) ang pahinang ito pagkaraan mong magumpisang magbago na may dahilang:
 : ''$2''
 Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
-'recreate'            => 'Likhain muli',
+'confirmrecreate-noreason' => 'Binura ng tagagamit na si [[User:$1|$1]] ([[User talk:$1|talk]]) ang pahinang ito pagkaraang simulan mo ang pagbago.  Mangyaring tiyakan na nais mo talagang muling likhain ang pahinang ito.',
+'recreate'                 => 'Likhain muli',
 
 'unit-pixel' => 'px',
 
