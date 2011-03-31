@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Diupwijk
  * @author Krun
  * @author Quackor
  * @author S.Örvarr.S
@@ -227,6 +228,16 @@ $messages = array(
 'qbspecialpages' => 'Serstakar síður',
 'faq'            => 'OSS',
 'faqpage'        => 'Project:OSS',
+
+# Vector skin
+'vector-action-delete'    => 'Strika',
+'vector-action-move'      => 'Flyt',
+'vector-action-protect'   => 'Friða',
+'vector-action-unprotect' => 'Strika friðing',
+'vector-view-create'      => 'Stovna',
+'vector-view-edit'        => 'Rætta',
+'vector-view-history'     => 'Søga',
+'vector-view-viewsource'  => 'Vís keldu',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -773,6 +784,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Navnarúm:',
+'linksearch-ok' => 'Leita',
 
 # Special:ListUsers
 'listusersfrom'      => 'Vís brúkarar ið byrja við:',

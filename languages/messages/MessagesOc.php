@@ -1628,7 +1628,7 @@ Se volètz totjorn importar aquel fichièr, mercé de tornar en arrièr e d'util
 'fileexists-shared-forbidden' => "Un fichièr amb lo meteis nom existís ja dins la banca de donadas comuna.
 S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Aqueste fichièr es un doble {{PLURAL:$1|del fichièr seguent|dels fichièrs seguents}} :',
-'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
+'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[:$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
 'successfulupload'            => 'Importacion capitada',
 'uploadwarning'               => 'Atencion !',
 'uploadwarning-text'          => 'Modificatz la descripcion del fichièr e ensajatz tornarmai.',

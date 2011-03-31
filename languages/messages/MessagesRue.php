@@ -8,6 +8,7 @@
  * @file
  *
  * @author Gazeb
+ * @author Gleb Borisov
  * @author Reedy
  * @author Tkalyn
  */
@@ -757,7 +758,7 @@ $3 зазначів тоту причіну: ''$2''",
 Спробуйте [[Special:Search|найти во вікі]] подобны сторінкы.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(коментарь вымазаный)',
+'rev-deleted-comment'         => '(згорнутя едітованя вымазане)',
 'rev-deleted-user'            => '(мено автора стерто)',
 'rev-deleted-event'           => '(лоґ одстраненый)',
 'rev-deleted-user-contribs'   => '[мено хоснователя або IP адреса одстранене – едітованя є в приспевках сховане]',
@@ -1238,7 +1239,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
 'recentchanges'                     => 'Послїднї зміны',
 'recentchanges-legend'              => 'Можности послїднїх змін',
-'recentchangestext'                 => 'Слїдуйте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}  тій сторінцї.',
+'recentchangestext'                 => 'Слїдуйте послїднї зміны на {{grammar:genitive|{{SITENAME}}}}  на тій сторінцї.',
 'recentchanges-feed-description'    => 'На тотїм каналу слїдуєте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}.',
 'recentchanges-label-legend'        => 'Леґенда: $1.',
 'recentchanges-legend-newpage'      => '$1 — нова сторінка',
@@ -1347,7 +1348,7 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Файл з тов назвов уж екзістує в здїлянім усховіщу. Кідь і наперек тому хочете ваш файл начітати, вернийте ся і звольте іншу назву. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Тот файл є дуплікат {{PLURAL:$1|файлу|такых файлів}}:',
-'file-deleted-duplicate'      => 'Ідентічный файл ку тому ([[$1]]) быв уж скоре змазаный. Передтым як файл знову награєте, бы сьте мали перевірити записы о попереднёму змазаню.',
+'file-deleted-duplicate'      => 'Ідентічный файл ку тому ([[:$1]]) быв уж скоре змазаный. Передтым як файл знову награєте, бы сьте мали перевірити записы о попереднёму змазаню.',
 'successfulupload'            => 'Начітаня было успішне',
 'uploadwarning'               => 'Увага про начітаня',
 'uploadwarning-text'          => 'Просиме, зміньте опис файлу ниже і спробуйте то знову.',
@@ -1729,7 +1730,7 @@ $1",
 'listgrouprights-group'                => 'Ґрупа',
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права хоснователїв',
-'listgrouprights-members'              => '(списok членїв)',
+'listgrouprights-members'              => '(списoк членїв)',
 'listgrouprights-addgroup'             => 'Придаваня хоснователїв до {{PLURAL:$2|ґрупы|ґруп}} $1',
 'listgrouprights-removegroup'          => 'Одобераня хоснователїв до {{PLURAL:$2|ґрупы|ґруп}} $1',
 'listgrouprights-addgroup-all'         => 'може додавати до вшыткых ґруп',

@@ -69,6 +69,9 @@ $messages = array(
 'tog-shownumberswatching'     => "S'àfihàn iye àwọn oníṣe tí wọn tẹjú mọ́ọ",
 'tog-oldsig'                  => 'Ìgbéwò ìtọwọ́bọ̀wé tó wà:',
 'tog-fancysig'                => 'Ṣe ìtọwọ́bọ̀wé bíi ìkọ wiki (láìní ìjápọ̀ fúnrararẹ̀)',
+'tog-externaleditor'          => 'Lo aláàtúnṣe ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Lo awoìyàtò ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [http://www.mediawiki.org/wiki/Manual:External_editors Ìfọ̀rọ̀tónilétí mìhínhìn.])',
+'tog-showjumplinks'           => 'Ìgbàláyè "fò lọ sí" àwọn ìjápọ̀ ìṣeégbà',
 'tog-uselivepreview'          => 'Ìlo àkọ́kọ́yẹ̀wò lẹ́ṣẹ̀kẹṣẹ̀ (JavaScript pọndandan) (aládànhánwò)',
 'tog-forceeditsummary'        => 'Kìlọ̀ fún mi tí àkótán àtúnṣe bá jẹ́ òfo',
 'tog-watchlisthideown'        => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe mi nínú ìmójútó',
@@ -76,6 +79,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kéékèké nínú ìmójútó',
 'tog-watchlisthideliu'        => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe àwọn oníṣe tó ti wọlé nínú ìmójútó',
 'tog-watchlisthideanons'      => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe àwọn oníṣe aláìlórúkọ nínú ìmójútó',
+'tog-watchlisthidepatrolled'  => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe olùṣọ́ lọ́wọ́ ìmójútó',
 'tog-ccmeonemails'            => 'Ìfiránṣẹ́ sími àwọn àwòkọ àwọn e-mail tí mo firánṣẹ́ sí àwọn oníṣe míràn',
 'tog-diffonly'                => 'Kò gbọdọ̀ ṣàfihàn àkóónú ojúewé lábẹ́ àwọn ìyàtọ̀',
 'tog-showhiddencats'          => "Ṣ'àfihàn àwọn ẹ̀ka pípamọ́",
@@ -87,6 +91,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Oge fọ́ntì ààlà àtúnṣe:',
 'editfont-default'   => 'Ti agbétàkùn',
+'editfont-monospace' => 'Fọ́ntì oníààyè kan',
 'editfont-sansserif' => 'Fọnti san-sẹrif',
 'editfont-serif'     => 'Fọnti sẹrif',
 
@@ -160,6 +165,7 @@ $messages = array(
 'index-category'                 => 'Àwọn ojúewé títọ́kasí',
 'noindex-category'               => 'Àwọn ojúewé àìjẹ́ títọ́kasí',
 
+'mainpagetext'      => "'''MediaWiki ti jẹ́ gbígbékọ́sínú láyọrísírere.'''",
 'mainpagedocfooter' => "Ẹ ṣàbẹ̀wò sí [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.
 
 == Láti bẹ̀rẹ̀ ==
@@ -370,6 +376,7 @@ Tí kì bá ṣe bẹ́ẹ̀, ó lè jẹ́ pé ẹ ti rí àsìṣe nínú atò
 'readonly_lag'         => 'Ibùdó dátà ti jẹ́ títìpa fúnrararẹ̀ kí àwọn ẹ̀rọ awọ̀fà ẹrú ibùdó dátà le baà yára bíi ti àwọn ẹ̀rọ awọ̀fà ọ̀gà.',
 'internalerror'        => 'Àsìṣe inú',
 'internalerror_info'   => 'Àsìṣe inú: $1',
+'fileappenderrorread'  => '"$1" kò ṣe é kà lásìkò ìlẹ̀mọ́.',
 'fileappenderror'      => 'Kò le so "$1" pọ̀ mọ́ "$2".',
 'filecopyerror'        => 'Àwòkọ faili "$1" sí "$2" kò ṣe é ṣe.',
 'filerenameerror'      => 'Àtúnsọlórúkọ fáìlì "$1" sí "$2" kò ṣe é ṣe.',
@@ -756,7 +763,7 @@ Kò ṣe àlàyé kankan.',
 Ẹ gbìyànjú láti [[Special:Search|wá inú wiki náà]] fún àwọn ojúewé tóbáramu.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(àríwí ti jẹ́ yíyọkúrò)',
+'rev-deleted-comment'         => '(ìyọkúrò àkótán àtúnṣe)',
 'rev-deleted-user'            => '(orúkọ oníṣe ti jẹ́ yíyọkúrò)',
 'rev-deleted-event'           => '(àkọọ́lẹ̀ ti jẹ́ yíyọkúrò)',
 'rev-deleted-user-contribs'   => '[orúkọ oníṣe tàbí àdírẹ́sì IP jẹ́ yíyọkúrò - àtúnṣe jẹ́ bíbòmọ́lẹ̀ kúrò nínú àwọn àfikún]',
@@ -1228,7 +1235,9 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'upload-options'        => 'Àwọn àṣàyàn ìrùsókè',
 'watchthisupload'       => "M'ójútó fáilì yìí",
 
+'upload-proto-error'        => 'Prótókólù àìtọ́',
 'upload-file-error'         => 'Àsiṣe ínú',
+'upload-misc-error'         => 'Àsìṣe àìmọ̀ ìrùsókè',
 'upload-too-many-redirects' => 'URL náà ní àwọn àtúnjúwe pípọ̀jùlọ',
 'upload-unknown-size'       => 'Iye ìtóbi kòsí',
 'upload-http-error'         => 'Àṣìṣe HTTP ti ṣẹlẹ̀: $1',
@@ -1236,13 +1245,16 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 # img_auth script messages
 'img-auth-accessdenied' => 'Ìdínà igbàwọlé',
 'img-auth-nofile'       => 'Fáìlì "$1" kò sí.',
+'img-auth-noread'       => 'Oníṣe kò ní ààyè láti wo "$1".',
 
 # HTTP errors
 'http-invalid-url'      => 'URL àìtọ́: $1',
+'http-request-error'    => 'Ìtọrọ HTTP kùnà nítorí àsìṣe àìmọ̀.',
 'http-read-error'       => 'Àṣìṣe kíkà HTTP.',
 'http-timed-out'        => 'Àsìkò ìtọrọ HTTP ti tán.',
 'http-curl-error'       => 'Àsìṣe ìmúwá URL: $1',
 'http-host-unreachable' => 'Kò le dé ibi URL.',
+'http-bad-status'       => 'Ìṣòro kan ṣẹlẹ̀ nìgbà ìtọrọ HTTP: $1, $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Kò le jámọ́ URL',
@@ -1250,6 +1262,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'license'            => 'Ìwé àṣẹ:',
 'license-header'     => 'Ìwé àṣẹ',
 'nolicense'          => 'Ìkankan kò jẹ́ yíyàn',
+'license-nopreview'  => '(Àkọ́yẹ̀wò kò sí)',
 'upload_source_file' => '(fáìlì lórí kọ̀mpútà yín)',
 
 # Special:ListFiles
@@ -1285,6 +1298,7 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 Àkòjọ ìṣàlẹ̀ yìí ṣàfihàn {{PLURAL:$1|ojúewé àkọ́kọ́|ojúewé $1 àkọ́kọ́}} tó jápọ̀ mọ́ fáìlì yìí nìkan.
 [[Special:WhatLinksHere/$2|Àkójọ kíkúnrẹ́rẹ́]] wà nígbèéwọ́.',
 'nolinkstoimage'            => 'Kò sí ojúewé tó jápọ̀ mọ́ fáìlì yìí.',
+'morelinkstoimage'          => 'Ìwòrán [[Special:WhatLinksHere/$1|àwọn ìjápọ̀ míhìn]] sí fáìlì yìí.',
 'sharedupload'              => 'Fáìlì yìí jẹ́ ìrùsókè láti $1 à ṣì le pin pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
 'filepage-nofile'           => 'Kò sí fáìlì pẹ̀lú orúkọ yìí.',
 'filepage-nofile-link'      => 'Kò sí fáìlì pẹ̀lú orúkọ yìí, sùgbọ́n ẹ le [$1 rùúsókè].',
@@ -1676,6 +1690,9 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'undelete-search-box'        => 'Ṣàwárí àwọn ojúewé píparẹ́',
 'undelete-search-prefix'     => 'Ìfihàn ojúewé tó bẹ̀rẹ̀ pẹ̀lú:',
 'undelete-search-submit'     => 'Ṣàwárí',
+'undelete-error-long'        => 'Àwọn àsìṣe ṣẹlẹ̀ nígbà ìdápadà fáìlì náà:
+
+$1',
 'undelete-show-file-confirm' => 'Ṣé ẹ ní ìdálójú pé ẹ fẹ́ wo àtúnyẹ̀wó píparẹ́ fáìlì "<nowiki>$1</nowiki>" látọjọ́ $2 ní ago $3?',
 'undelete-show-file-submit'  => 'Bẹ́ẹ̀ni',
 
@@ -1831,6 +1848,8 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'movedto'                   => 'tiyípò sí',
 'movetalk'                  => 'Yípò ojúewé ọ̀rọ̀ rẹ̀',
 'move-subpages'             => 'Yípò àwọn ọmọ ojúewé (títí dé $1)',
+'movepage-page-moved'       => 'Ojúewé $1 ti jẹ́ yíyípò sí $2.',
+'movepage-page-unmoved'     => 'Ojúewé $1 kò ṣe é yípò sí $2.',
 '1movedto2'                 => '[[$1]] ti yípò sí [[$2]]',
 '1movedto2_redir'           => 'yípò [[$1]] sí [[$2]] lórí àtúnjúwe',
 'move-redirect-suppressed'  => 'àtúnjúwe tijẹ́ dídílọ́nà',
@@ -1882,7 +1901,9 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'import-upload-filename'     => 'Orúkọ faili:',
 'import-comment'             => 'Àríwí:',
 'import-revision-count'      => '{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1',
+'importnopages'              => 'Kò sí àwọn ojúewé kankan láti kówọlé.',
 'importbadinterwiki'         => 'Ìjápọ̀ interwiki búburú',
+'importsuccess'              => 'Ìkówọlé ti parí!',
 'import-upload'              => 'Ìrùsókè àwọn dátà XML',
 
 # Import log
@@ -1966,6 +1987,7 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'infosubtitle' => 'Ìfitọ́nilétí fún ojúewé',
 'numedits'     => 'Íyé áwon àtúnṣe (ojúewé): $1',
 'numtalkedits' => 'Íyé áwon àtúnṣe (ojúewé ìfọ̀rọ̀wérọ̀): $1',
+'numwatchers'  => 'Iye àwọn aláàbójúwò: $1',
 
 # Math errors
 'math_unknown_error'    => 'àsiṣe àwámárìdí',
@@ -2038,11 +2060,15 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'exif-exposuretime-format' => '$1 ìṣẹ́j/kejì ($2)',
 'exif-fnumber'             => 'Nọ́mbà F',
 'exif-filesource'          => 'Orísun fáìlì',
+'exif-gpsdatestamp'        => 'Ọjọ́ọdún GPS',
 
 'exif-orientation-1' => 'Déédé',
 
+'exif-componentsconfiguration-0' => 'kòsí',
+
 'exif-subjectdistance-value' => 'mítà $1',
 
+'exif-meteringmode-0'   => 'Àìmọ̀',
 'exif-meteringmode-1'   => 'Ìpínláàrin',
 'exif-meteringmode-255' => 'Òmíràn',
 
@@ -2111,6 +2137,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'livepreview-ready'   => 'Úngbéyọ... Ti ṣetán!',
 
 # Watchlist editor
+'watchlistedit-noitems'       => 'Ìmójútó yín kò ní àwọn àkọlé kankan.',
 'watchlistedit-normal-title'  => 'Àtúnṣe ìmójútó',
 'watchlistedit-normal-legend' => 'Ìyọkúrò àwọn àkọlé láti inú ìmójútó',
 'watchlistedit-normal-submit' => 'Ìyọkúrò àwọn àkọlé',

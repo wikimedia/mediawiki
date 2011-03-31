@@ -916,7 +916,7 @@ Es possibile que illo esseva delite del wiki, o renominate.
 Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commento removite)',
+'rev-deleted-comment'         => '(summario del modification removite)',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
 'rev-deleted-user-contribs'   => '[nomine de usator o adresse IP removite - modification celate ab contributiones]',
@@ -1521,7 +1521,7 @@ Si tu vole ancora incargar iste file, per favor retorna e usa un nove nomine. [[
 'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le deposito de files commun.
 Si tu vole totevia incargar iste file, per favor retorna e usa un nove nomine. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
-'file-deleted-duplicate'      => 'Un file identic a iste file ([[$1]]) esseva ja delite anteriormente. Tu deberea verificar le registro de deletiones concernente iste file ante de re-incargar lo.',
+'file-deleted-duplicate'      => 'Un file identic a iste file ([[:$1]]) esseva ja delite anteriormente. Tu deberea verificar le registro de deletiones concernente iste file ante de re-incargar lo.',
 'successfulupload'            => 'Incargamento succedite',
 'uploadwarning'               => 'Advertimento de incargamento',
 'uploadwarning-text'          => 'Per favor modifica le description del file ci infra e reproba.',
@@ -1649,7 +1649,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'filehist-nothumb'          => 'Nulle miniatura',
 'filehist-user'             => 'Usator',
 'filehist-dimensions'       => 'Dimensiones',
-'filehist-filesize'         => 'Grandor del file',
+'filehist-filesize'         => 'Dimension del file',
 'filehist-comment'          => 'Commento',
 'filehist-missing'          => 'File mancante',
 'imagelinks'                => 'Ligamines verso iste file',
@@ -1894,7 +1894,7 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".<br />
 Protocollos supportate: <tt>$1</tt>',
 'linksearch-line'  => '$1 ligate ab $2',
-'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine del hospite.',
+'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Monstrar usatores a partir de:',
@@ -2782,7 +2782,7 @@ $1',
 'mediawarning'         => "'''Attention''': Iste typo de file pote continer codice maligne.
 Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
-'thumbsize'            => 'Grandor del miniaturas:',
+'thumbsize'            => 'Dimension del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => '(grandor del file: $1, typo MIME: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandor del file: $3, typo MIME: $4)',

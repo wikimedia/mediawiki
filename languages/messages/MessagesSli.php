@@ -1241,7 +1241,7 @@ Bitte priefe '''<tt>[[:$1]]</tt>''', wenn du dir ne secher biest, ob du se ände
 'file-thumbnail-no'          => "Dar Dateinoame beginnt miet '''<tt>$1</tt>'''. Dies deutet uff a Bild verringerter Griße ''(thumbnail)'' hin.
 Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade dieses under damm Originalnoama huch.",
 'file-exists-duplicate'      => 'Diese Datei ies a Duplikat dar fulgenda {{PLURAL:$1|Datei|$1 Dateien}}:',
-'file-deleted-duplicate'     => 'Anne identische Datei dieser Datei ([[$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
+'file-deleted-duplicate'     => 'Anne identische Datei dieser Datei ([[:$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
 'successfulupload'           => 'Erfolgreich huchgeloada',
 'uploadwarning'              => 'Warnung',
 'savefile'                   => 'Datei speichern',

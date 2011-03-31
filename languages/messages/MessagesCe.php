@@ -182,7 +182,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].',
 
-'about'         => 'Цунах лаьцна',
+'about'         => 'Цуьнах лаьцна',
 'article'       => 'Яззам',
 'newwindow'     => '(керлачу корехь)',
 'cancel'        => 'Цаоьшу',
@@ -194,7 +194,7 @@ $messages = array(
 'and'           => '&#32;а',
 
 # Cologne Blue skin
-'qbfind'         => 'Лахар',
+'qbfind'         => 'Лаха',
 'qbbrowse'       => 'Хьажар',
 'qbedit'         => 'Нисйé',
 'qbpageoptions'  => 'Агlо нисйар',
@@ -235,7 +235,7 @@ $messages = array(
 'returnto'          => 'Юхагlо оцу агlоне $1.',
 'tagline'           => 'Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}',
 'help'              => 'Нисвохаам',
-'search'            => 'Лахар',
+'search'            => 'Лаха',
 'searchbutton'      => 'Лаха',
 'go'                => 'Дехьа вала',
 'searcharticle'     => 'Дехьа вала',
@@ -284,7 +284,7 @@ $messages = array(
 'protectedpage'     => 'Гlароллийца йолу агlо',
 'jumpto'            => 'Дехьавала оцу:',
 'jumptonavigation'  => 'шавигар',
-'jumptosearch'      => 'лахар',
+'jumptosearch'      => 'лаха',
 'view-pool-error'   => 'Бехк цабиллар доьха, хlинц гlулкхдириг йоьттина йу.
 Каьчна дуккха дехарш хlокху агlонтlе хьажарца.
 Дехар до, собардеш а йуха хьажа хlокху агlонтlе жим тlаьхьо.
@@ -293,7 +293,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} лаьцна',
-'aboutpage'            => 'Project:Цунах лаьцна',
+'aboutpage'            => 'Project:Цуьнах лаьцна',
 'copyright'            => 'Чулацам лело мега догlуш хиларца оцу $1.',
 'copyrightpage'        => '{{ns:project}}:Куьг де бакъо',
 'currentevents'        => 'Хlинцлера хилларш',
@@ -406,6 +406,7 @@ $1',
 'createaccount'           => 'Дlавазве керла декъашхо',
 'gotaccount'              => "Дlавазвелла вуй хьо? '''$1'''.",
 'gotaccountlink'          => 'Вовзийта хьой',
+'createaccountmail'       => 'хааман зlене хула',
 'loginerror'              => 'Гlалат ду декъашхо вовзарехь',
 'loginsuccesstitle'       => 'Хьо вовзар хаз чакхдели',
 'loginsuccess'            => 'Хlинца ахьа болх бó оцу цlарца $1.',
@@ -429,25 +430,25 @@ $1',
 'resetpass-submit-cancel'   => 'Цаоьшу',
 
 # Edit page toolbar
-'bold_sample'     => 'Жим хатl дерстинадар',
-'bold_tip'        => 'Жим хатl дерстинадар',
-'italic_sample'   => 'Раз дерзор',
-'italic_tip'      => 'Раз дерзор',
-'link_sample'     => 'Хьажориган корта',
-'link_tip'        => 'Чоьхьара хьажориг',
+'bold_sample'     => 'Дерстино до йоза',
+'bold_tip'        => 'Дерстино до йоза',
+'italic_sample'   => 'Курсеттан до йоза',
+'italic_tip'      => 'Курсеттан до йоза',
+'link_sample'     => 'Хьажориган коьрта могlа',
+'link_tip'        => 'Чоьхьа хьажориг',
 'extlink_sample'  => 'http://www.example.com хьажориг корта',
-'extlink_tip'     => 'Арахьара хьажориг (йиц ма йе хlотталушерг http:// )',
+'extlink_tip'     => 'Арахьа хьажориг (йиц ма йе хlотталушерг http://)',
 'headline_sample' => 'Йозан корта',
 'headline_tip'    => 'Корта 2-гlа локхаллийца',
 'math_sample'     => 'Каьчдинарг чудила кхузе',
 'math_tip'        => 'Матlематlекхиа каьчйар (барам LaTeX)',
 'nowiki_sample'   => 'Чудиллийша кхузе барамхlоттонза йоза.',
-'nowiki_tip'      => 'Тергалцабар вики-барам',
+'nowiki_tip'      => 'Тергал ца бо вики-бáрамхlоттор',
 'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Чохь йолу хlум',
 'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Хьажориг оцу медиа-хlуман',
-'sig_tip'         => 'Хьан куьгтаlор а хlоттийна хан',
+'sig_tip'         => 'Хьан куьгтаlор аъ хlоттина хан',
 'hr_tip'          => 'Ана сиз (сих сиха ма леладайша)',
 
 # Edit pages
@@ -548,7 +549,7 @@ $1',
 'history-feed-item-nocomment' => '$1 оцу $2',
 
 # Revision deletion
-'rev-delundel'               => 'гайта/къайлайаккха',
+'rev-delundel'               => 'гайта/къайла',
 'rev-showdeleted'            => 'гайта',
 'revdelete-show-file-submit' => 'Хlаъ',
 'revdelete-radio-same'       => '(ма хийца)',
@@ -576,7 +577,7 @@ $1',
 
 # Search results
 'searchresults'                    => 'Лахарна хилам',
-'searchresults-title'              => 'Лахар «$1»',
+'searchresults-title'              => 'Лаха «$1»',
 'searchresulttext'                 => 'Хlокху кхолламан агlонаш чохь лахарх лаьцна кхетош хаам, хьажа. [[{{MediaWiki:Helppage}}|нисвохааман дакъанчу]].',
 'searchsubtitle'                   => 'Дехарца йолу «[[:$1]]» ([[Special:Prefixindex/$1|агlонаш, дlайуьлалуш йу хlо цlарца]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|тlетовжуш йу хlо цlарна]])',
 'searchsubtitleinvalid'            => 'Кху дехарца «$1»',
@@ -620,7 +621,7 @@ $1',
 'powersearch-legend'               => 'Шуьро лахар',
 'powersearch-ns'                   => 'Цlераши анахь лахар:',
 'powersearch-redir'                => 'Схьагайта дlасахьажийнарш',
-'powersearch-field'                => 'Лахар',
+'powersearch-field'                => 'Лаха',
 'powersearch-toggleall'            => 'Массо',
 'powersearch-togglenone'           => 'Хlумма цаоьшу',
 
@@ -638,7 +639,7 @@ $1',
 'prefs-rendering'     => 'Арахьара хатl',
 'saveprefs'           => 'lалашдан',
 'prefs-editing'       => 'Редаккхар',
-'searchresultshead'   => 'Лахар',
+'searchresultshead'   => 'Лаха',
 'timezonelegend'      => 'Сахьатан аса:',
 'prefs-searchoptions' => 'Лахарна гlирс нисба',
 'prefs-files'         => 'Хlумнаш',
@@ -670,7 +671,7 @@ $1',
 
 'group-user-member'       => 'декъашхо',
 'group-bot-member'        => 'шаболххо',
-'group-sysop-member'      => 'адаманкуьйгалхо',
+'group-sysop-member'      => 'адманкуьйгалхо',
 'group-bureaucrat-member' => 'даржахо',
 'group-suppress-member'   => 'левисорхо',
 
@@ -759,7 +760,7 @@ PICT # тайп тайпан
 'listfiles_name'        => 'Хlуман цlе',
 'listfiles_user'        => 'Декъашхо',
 'listfiles_size'        => 'Барам',
-'listfiles_description' => 'Цунах лаьцна',
+'listfiles_description' => 'Цуьнах лаьцна',
 
 # File description page
 'file-anchor-link'                  => ' Хlум',
@@ -907,7 +908,7 @@ PICT # тайп тайпан
 'sp-deletedcontributions-contribs' => 'къинхьегам',
 
 # Special:LinkSearch
-'linksearch'      => 'Арахьара хьажоригаш',
+'linksearch'      => 'Арахьа хьажориг',
 'linksearch-ok'   => 'Лаха',
 'linksearch-line' => '$2 — хьажориг кху $1',
 

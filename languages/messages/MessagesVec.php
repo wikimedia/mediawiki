@@ -281,7 +281,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti so MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunsi MediaWiki]",
 
-'about'         => 'Informasion',
+'about'         => 'Informaxion',
 'article'       => 'Voxe',
 'newwindow'     => '(se verze in te na finestra nova)',
 'cancel'        => 'Lassa star',
@@ -397,7 +397,7 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Atuałità',
 'currentevents-url'    => 'Project:Atuałità',
-'disclaimers'          => 'Avertense',
+'disclaimers'          => 'Avertenxe',
 'disclaimerpage'       => 'Project:Avertense xenerali',
 'edithelp'             => 'Guida',
 'edithelppage'         => 'Help:Modifega',
@@ -1478,7 +1478,7 @@ Se te vol cargar istesso el to file, par piaser torna indrio e cànbia el nome d
 'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe.
 Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
-'file-deleted-duplicate'      => "Un file preciso identico de sto file ([[$1]]) el xe stà zà scancelà in precedensa. Te dovaressi darghe n'ociada a la cronologia scancelà prima de cargarlo de novo.",
+'file-deleted-duplicate'      => "Un file preciso identico de sto file ([[:$1]]) el xe stà zà scancelà in precedensa. Te dovaressi darghe n'ociada a la cronologia scancelà prima de cargarlo de novo.",
 'successfulupload'            => 'Caricamento conpletà',
 'uploadwarning'               => 'Avixo de caricamento',
 'uploadwarning-text'          => 'Par piaser, cànbia la descrission del file qua de soto e próa da novo.',

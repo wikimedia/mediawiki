@@ -684,7 +684,7 @@ Sababu aliyetambua ni ''$2''
 * Aliyezuiwa: $7
 
 Unaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungumza uzuio.
-Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
+Huwezi kutumia kipengele cha 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
 [[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'autoblockedtext'                  => 'Anwani yako ya IP imezuiwa na mashine kwa sababu ilikuwa ikitumiwa na mtumiaji mwingine, ambaye amezuiliwa na $1.
@@ -875,7 +875,7 @@ Labda umeshafutwa, au umebadilishwa jina.
 Jaribu [[Special:Search|kutafuta kurasa mpya zinazohusika kwenye wiki]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(maelezo yalifutwa)',
+'rev-deleted-comment'         => '(muhtasari wa kuhariri ulifutwa)',
 'rev-deleted-user'            => '(jina la mtumiaji lilifutwa)',
 'rev-deleted-event'           => '(ingizo lilifutwa)',
 'rev-deleted-user-contribs'   => '[jina la mtumiaji au anwani wa IP umetolewa - sahihisho lilifichwa kutoka kwa orodha ya michango]',
@@ -912,7 +912,7 @@ Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja
 'revdelete-hide-text'         => 'Ficha maandishi ya pitio',
 'revdelete-hide-image'        => 'Ficha yaliyomo kwenye faili',
 'revdelete-hide-name'         => 'Ficha tendo na shabaha',
-'revdelete-hide-comment'      => 'Ficha muhtasari wa sahihisho',
+'revdelete-hide-comment'      => 'Ficha muhtasari wa kuhariri',
 'revdelete-hide-user'         => 'Ficha jina la mhariri/anwani ya IP ya mhariri',
 'revdelete-hide-restricted'   => 'Wakabidhi (vilevile wengine) wasiweze kuona data',
 'revdelete-radio-same'        => '(isibadilishwe)',
@@ -978,7 +978,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 # Merge log
 'mergelog'           => 'Kumbukumbu za kuunganisha',
 'pagemerge-logentry' => 'aliunganisha [[$1]] ndani wa [[$2]] (mapitio hadi $3)',
-'revertmerge'        => 'Rejesha muungano',
+'revertmerge'        => 'Toa muungano',
 'mergelogpagetext'   => 'Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za kurasa mbili.',
 
 # Diffs
@@ -1420,7 +1420,7 @@ Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[Fil
 Kama bado unataka kupakia faili lako, tafadhali rudi na utumie jina jipya.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Faili hili ni nakala ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
-'file-deleted-duplicate'      => 'Faili linalofanana na faili hili ([[$1]]) limeshafutwa hapo awali.
+'file-deleted-duplicate'      => 'Faili linalofanana na faili hili ([[:$1]]) limeshafutwa hapo awali.
 Tazama kumbukumbu za kufuta faili lile kabla hujaendelea kulipakia upya.',
 'successfulupload'            => 'Upakiaji ulifaulu',
 'uploadwarning'               => 'Ilani kuhusu kupakia',
