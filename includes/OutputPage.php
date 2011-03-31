@@ -2347,7 +2347,7 @@ class OutputPage {
 
 		if (
 			$this->getTitle()->getNamespace() != NS_SPECIAL &&
-			!in_array( $action, array( 'edit', 'submit' ) ) &&
+			in_array( $action, array( 'view', 'purge' ) ) &&
 			$wgUser->getOption( 'editondblclick' )
 		)
 		{
