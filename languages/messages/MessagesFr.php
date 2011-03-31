@@ -366,7 +366,7 @@ $messages = array(
 'tog-previewontop'            => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Afficher la prévisualisation lors de la première modification',
 'tog-nocache'                 => 'Désactiver le cache des pages par le navigateur',
-'tog-enotifwatchlistpages'    => 'M’avertir par courrier électronique lorsqu’une page de ma liste de suivi est modifiée',
+'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse de courriel dans les courriels de notification',
@@ -1095,7 +1095,7 @@ Elle a peut-être été effacée ou renommée.
 Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commentaire enlevé)',
+'rev-deleted-comment'         => "(résumé d'édition enlevé)",
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
 'rev-deleted-user-contribs'   => '[nom d’utilisateur ou adresse IP supprimée - modification cachée sur les contributions]',
@@ -2047,7 +2047,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
 'log'                  => 'Journaux d’opérations',
-'all-logs-page'        => 'Toutes les opérations publiques',
+'all-logs-page'        => 'Tous les journaux publics',
 'alllogstext'          => 'Affichage combiné de tous les journaux disponibles sur {{SITENAME}}.<br />
 Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur ou une page affectée (les deux derniers étant sensibles à la casse).',
 'logempty'             => 'Aucune opération correspondante dans les journaux.',
@@ -2495,7 +2495,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipbotherreason'                  => 'Motif différent ou supplémentaire :',
 'ipbhidename'                     => 'Masquer le nom d’utilisateur des modifications et des listes',
 'ipbwatchuser'                    => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
-'ipballowusertalk'                => 'Permet à cet utilisateur de modifier sa propre page de discussion durant sa période de blocage',
+'ipballowusertalk'                => 'Permettre à cet utilisateur de modifier sa propre page de discussion durant sa période de blocage',
 'ipb-change-block'                => 'Bloquer à nouveau cet utilisateur avec ces paramètres',
 'badipaddress'                    => 'Adresse IP incorrecte',
 'blockipsuccesssub'               => 'Blocage réussi',
@@ -2655,7 +2655,7 @@ Veuillez en choisir un autre.',
 '1movedto2'                    => 'a déplacé [[$1]] vers [[$2]]',
 '1movedto2_redir'              => 'a déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
 'move-redirect-suppressed'     => 'redirection supprimée',
-'movelogpage'                  => 'Historique des renommages',
+'movelogpage'                  => 'Journal des renommages',
 'movelogpagetext'              => 'Voici la liste de toutes les pages renommées ou déplacées.',
 'movesubpage'                  => 'Sous-page{{PLURAL:$1||s}}',
 'movesubpagetext'              => 'Cette page a $1 {{PLURAL:$1|sous-page affichée|sous-pages affichées}} ci-dessous.',
@@ -2956,7 +2956,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme relues.',
 
 # Patrol log
-'patrol-log-page'      => 'Historique des relectures',
+'patrol-log-page'      => 'Journal des relectures',
 'patrol-log-header'    => 'Voici l’historique des versions relues.',
 'patrol-log-line'      => 'a marqué la $1 de $2 comme relue $3',
 'patrol-log-auto'      => '(automatique)',
@@ -3439,9 +3439,9 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 
 # Size units
 'size-bytes'     => '$1 o',
-'size-kilobytes' => '$1 Kio',
-'size-megabytes' => '$1 Mio',
-'size-gigabytes' => '$1 Gio',
+'size-kilobytes' => '$1 Ko',
+'size-megabytes' => '$1 Mo',
+'size-gigabytes' => '$1 Go',
 
 # Live preview
 'livepreview-loading' => 'Chargement…',

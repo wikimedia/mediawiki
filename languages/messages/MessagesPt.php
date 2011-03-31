@@ -324,7 +324,7 @@ $messages = array(
 'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-showjumplinks'           => 'Possibilitar links de acessibilidade "{{int:jumpto}}"',
-'tog-uselivepreview'          => 'Usar a antevisão em tempo real (requer JavaScript; é experimental)',
+'tog-uselivepreview'          => 'Usar a antevisão ao vivo (requer JavaScript; é experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um resumo vazio',
 'tog-watchlisthideown'        => 'Esconder as minhas edições ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidebots'       => 'Esconder edições de robôs ao listar mudanças às páginas vigiadas',
@@ -1075,7 +1075,7 @@ Pode ter sido eliminada da wiki ou o nome sido alterado.
 Tente [[Special:Search|pesquisar na wiki]] novas páginas relevantes.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentário removido)',
+'rev-deleted-comment'         => '(resumo da edição suprimido)',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-user-contribs'   => '[nome de utilizador ou IP removido - edição ocultada das contribuições]',
@@ -1222,7 +1222,7 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'difference'               => '(Diferença entre edições)',
 'difference-multipage'     => '(Diferenças entre páginas)',
 'lineno'                   => 'Linha $1:',
-'compareselectedversions'  => 'Compare as versões seleccionadas',
+'compareselectedversions'  => 'Comparar as versões seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo'                 => 'desfazer',
 'diff-multi'               => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
@@ -1738,7 +1738,7 @@ Para sua conveniência, é apresentado de seguida o registo de eliminação do f
 'filename-bad-prefix'         => "O nome do ficheiro que está a enviar começa por '''\"\$1\"''', um nome pouco explicativo, normalmente originado de forma automática por câmaras digitais. Escolha um nome de ficheiro mais explicativo, por favor.",
 'filename-prefix-blacklist'   => ' #<!-- deixe esta linha exactamente como está --> <pre>
 # A sintaxe é a seguinte:
-#   * Tudo a partir do caractere "#" até ao fim da linha é um comentário
+#   * Tudo a partir do carácter "#" até ao fim da linha é um comentário
 #   * Todas as linhas não vazias são um prefixo para nomes de ficheiros típicos atribuídos automaticamente por câmaras digitais
 CIMG # Casio
 DSC_ # Nikon
@@ -1810,7 +1810,7 @@ Verifique se o endereço está correcto e o site disponível, por favor.',
 'license'            => 'Licença:',
 'license-header'     => 'Licenciamento',
 'nolicense'          => 'Nenhuma seleccionada',
-'license-nopreview'  => '(Antevisão não disponível)',
+'license-nopreview'  => '(Antevisão indisponível)',
 'upload_source_url'  => ' (uma URL válida, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
@@ -2544,7 +2544,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'block-log-flags-noautoblock'     => 'bloqueio automático desactivado',
 'block-log-flags-noemail'         => 'correio electrónico bloqueado',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
-'block-log-flags-angry-autoblock' => 'autobloqueio melhorado activado',
+'block-log-flags-angry-autoblock' => 'activado o bloqueio automático melhorado',
 'block-log-flags-hiddenname'      => 'nome de utilizador ocultado',
 'range_block_disabled'            => 'A funcionalidade de administrador para o bloqueio de gamas de IPs está desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',

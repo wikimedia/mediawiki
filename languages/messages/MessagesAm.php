@@ -477,6 +477,7 @@ $2",
 'resetpass_forbidden'       => 'በ{{SITENAME}} የመግቢያ ቃል መቀየር አይቻልም።',
 'resetpass-no-info'         => 'ይህንን ገጽ በቀጥታ ለማግኘት አስቀድሞ መግባት ያስፈልጋል።',
 'resetpass-submit-loggedin' => 'ቃልዎ ይቀየር',
+'resetpass-submit-cancel'   => 'ይቅር',
 'resetpass-wrong-oldpass'   => 'ጊዜያዊው ወይም ያሁኑኑ መግቢያ ቃል አይስማማም።
 ምናልባት መግቢያ ቃልዎን መቀይሩ ተከናወነ፣ ወይም አዲስ ጊዜያዊ መግቢያ ቃልን ጠየቁ።',
 'resetpass-temp-password'   => 'ኅላፊ (ጊዜያዊ) መግቢያ ቃል፦',

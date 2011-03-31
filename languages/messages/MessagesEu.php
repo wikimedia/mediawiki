@@ -284,20 +284,21 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-addsection' => 'Mintzagaia gehitu',
-'vector-action-delete'     => 'Ezabatu',
-'vector-action-move'       => 'Mugitu',
-'vector-action-protect'    => 'Babestu',
-'vector-action-undelete'   => 'Berreskuratu',
-'vector-action-unprotect'  => 'Babesgabetu',
-'vector-view-create'       => 'Sortu',
-'vector-view-edit'         => 'Aldatu',
-'vector-view-history'      => 'Historia ikusi',
-'vector-view-view'         => 'Irakurri',
-'vector-view-viewsource'   => 'Kodea ikusia',
-'actions'                  => 'Ekintzak',
-'namespaces'               => 'Izen-tarteak',
-'variants'                 => 'Aldaerak',
+'vector-action-addsection'       => 'Mintzagaia gehitu',
+'vector-action-delete'           => 'Ezabatu',
+'vector-action-move'             => 'Mugitu',
+'vector-action-protect'          => 'Babestu',
+'vector-action-undelete'         => 'Berreskuratu',
+'vector-action-unprotect'        => 'Babesgabetu',
+'vector-simplesearch-preference' => 'Baimendu bilaketa gomendio hobetuak (Vector itxurarekin bakarrik)',
+'vector-view-create'             => 'Sortu',
+'vector-view-edit'               => 'Aldatu',
+'vector-view-history'            => 'Historia ikusi',
+'vector-view-view'               => 'Irakurri',
+'vector-view-viewsource'         => 'Kodea ikusia',
+'actions'                        => 'Ekintzak',
+'namespaces'                     => 'Izen-tarteak',
+'variants'                       => 'Aldaerak',
 
 'errorpagetitle'    => 'Errorea',
 'returnto'          => '$1(e)ra itzuli.',
@@ -358,6 +359,7 @@ Erabiltzaile gehiegi ari da orrialde hau ikusi nahiean.
 Mesedez itxaron ezazu unetxo bat orrialde honetara berriz sartzen saiatu baino lehen.
 
 $1',
+'pool-queuefull'    => 'Prozesuen zerrenda beteta dago',
 'pool-errorunknown' => 'Errore ezezaguna',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -415,7 +417,7 @@ $1',
 'red-link-title'          => '$1 (orria ez da existitzen)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikulua',
+'nstab-main'      => 'Orrialdea',
 'nstab-user'      => 'Erabiltzaile orrialdea',
 'nstab-media'     => 'Media orrialdea',
 'nstab-special'   => 'Orri berezia',
@@ -523,6 +525,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'yourpassword'               => 'Pasahitza:',
 'yourpasswordagain'          => 'Pasahitza berriz',
 'remembermypassword'         => 'Nire saioa ordenagailu honetan gogoratu ({{PLURAL:$1|egun baterako|$1 egunetarako }} gehienez)',
+'securelogin-stick-https'    => 'Mantendu konektatua HTTPSra sartu ondoren',
 'yourdomainname'             => 'Zure domeinua',
 'externaldberror'            => 'Kanpoko datu-base autentifikazio errorea gertatu da edo ez duzu zure kanpo kontua eguneratzeko baimenik.',
 'login'                      => 'Saioa hasi',
@@ -560,6 +563,7 @@ Egiaztatu ondo idatzi duzun, edo [[Special:UserLogin/signup|kontu berria sor eza
 'wrongpasswordempty'         => 'Pasahitza hutsik dago. Saiatu berriz.',
 'passwordtooshort'           => 'Pasahitzek {{PLURAL:$1|karaktere 1|$1 karaktere}} gutxienez eduki behar dituzte.',
 'password-name-match'        => 'Zure pasahitza ezin da zure erabiltzaile-izen bera izan.',
+'password-login-forbidden'   => 'Erabiltzaile izen eta pasahitz hau erabiltzea debekaturik dago.',
 'mailmypassword'             => 'Pasahitza berria e-postaz bidali',
 'passwordremindertitle'      => 'Pasahitzaren gogorarazpena {{SITENAME}}(e)tik',
 'passwordremindertext'       => 'Norbaitek (ziurrenik zuk, $1 IP helbidetik) pasahitz berri bat
@@ -601,6 +605,9 @@ Kontu honen sorrera akats bat dela uste baduzu mezu honi ez diozu zertan jaramon
 Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHPren mail() funtzioan arazo ezezagun bat egon da.',
 
 # Password reset dialog
 'resetpass'                 => 'Pasahitza aldatu',
@@ -726,6 +733,10 @@ Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
 '''Oraindik gorde gabe dago!'''",
 'userjspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
+'sitecsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
+'''Oraindik gorde gabe dago!'''",
+'sitejspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala'''
+'''Oraindik ez da gorde!'''",
 'userinvalidcssjstitle'            => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/vector.css, eta ez {{ns:user}}:Adibide/Vector.css.",
 'updated'                          => '(Eguneratua)',
 'note'                             => "'''Oharra:'''",
@@ -861,7 +872,7 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'history-feed-empty'          => 'Eskatutako orrialdea ez da existitzen. Baliteke wikitik ezabatu edo izenez aldatu izana. Saiatu [[Special:Search|wikian zerikusia duten orrialdeak bilatzen]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(iruzkina ezabatu da)',
+'rev-deleted-comment'         => '(aldaketa laburpena ezabatu da)',
 'rev-deleted-user'            => '(erabiltzailea ezabatu da)',
 'rev-deleted-event'           => '(log ekintza ezabatu da)',
 'rev-deleted-user-contribs'   => '[lankide izena edo Ip helbidea ezabatua - aldatu ezkutapena ekarpenetatik]',
@@ -919,7 +930,7 @@ Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{
 'revdelete-hide-restricted'   => 'Mugapen hauek administratzaileei zein besteei aplikatu',
 'revdelete-radio-same'        => '(ez aldatu)',
 'revdelete-radio-set'         => 'Bai',
-'revdelete-radio-unset'       => 'No',
+'revdelete-radio-unset'       => 'Ez',
 'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
 'revdelete-unsuppress'        => 'Berrezarritako aldaketen mugak kendu',
 'revdelete-log'               => 'Arrazoia:',
@@ -1053,10 +1064,10 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'search-interwiki-more'            => '(gehiago)',
 'search-mwsuggest-enabled'         => 'iradokizunekin',
 'search-mwsuggest-disabled'        => 'ez dago gomendiorik',
-'search-relatedarticle'            => 'Harremanetan',
+'search-relatedarticle'            => 'Erlazionatua',
 'mwsuggest-disable'                => 'AJAX gomendioak ezgaitu',
 'searcheverything-enable'          => 'Bilatu izen-tarte guztietan',
-'searchrelated'                    => 'harremana',
+'searchrelated'                    => 'erlazionatua',
 'searchall'                        => 'guztia',
 'showingresults'                   => "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasita.",
 'showingresultsnum'                => "Hasieran #'''$2''' duten {{PLURAL:$3|emaitza '''1'''|'''$3''' emaitza}} erakusten dira jarraian.",
@@ -1215,7 +1226,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 
 # Groups
 'group'               => 'Taldea:',
-'group-user'          => 'Lankideak',
+'group-user'          => 'Erabiltzaileak',
 'group-autoconfirmed' => 'Lankide autokonfirmatuak',
 'group-bot'           => 'Bot-ak',
 'group-sysop'         => 'Administratzaileak',
@@ -1414,7 +1425,7 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'fileuploadsummary'           => 'Laburpena:',
 'filereuploadsummary'         => 'Fitxategi aldaketak:',
 'filestatus'                  => 'Copyright egoera:',
-'filesource'                  => 'Iturria:',
+'filesource'                  => 'Jatorria:',
 'uploadedfiles'               => 'Igotako fitxategiak',
 'ignorewarning'               => 'Oharra ezikusi eta fitxategia gorde.',
 'ignorewarnings'              => 'Edozein ohar ezikusi.',
@@ -1622,7 +1633,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'mimesearch'         => 'MIME bilaketa',
 'mimesearch-summary' => 'Orrialde honek fitxategiak bere MIME motaren arabera iragaztea ahalbidetzen du. Iragazkia: eduki-mota/azpi-mota, adib. <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME mota:',
-'download'           => 'deskargatu',
+'download'           => 'jaitsi',
 
 # Unwatched pages
 'unwatchedpages' => 'Jarraitu gabeko orrialdeak',
@@ -3187,7 +3198,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'tags-display-header'     => 'Aldaketa zerrenden itxura',
 'tags-description-header' => 'Esanahiaren deskribapen osoa',
 'tags-hitcount-header'    => 'Etiketatutako aldaketak',
-'tags-edit'               => 'edit',
+'tags-edit'               => 'aldatu',
 'tags-hitcount'           => '$1 {{PLURAL:$1|aldaketa|aldaketa}}',
 
 # Special:ComparePages

@@ -517,7 +517,7 @@ Nomen usoris alium selige.',
 'nocookieslogin'             => "{{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conare denuo.",
 'noname'                     => 'Nominem usoris ratum non designavisti.',
 'loginsuccesstitle'          => 'Conventum prospere apertum est',
-'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris ut \"\$1\".'''",
+'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris nomine \"\$1\".'''",
 'nosuchuser'                 => 'Usor "$1" non est.
 Confirma orthographiam (cave litteras maiusculas minusculasque), aut [[Special:UserLogin/signup|novam rationem crea]].',
 'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.

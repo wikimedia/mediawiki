@@ -1045,7 +1045,7 @@ Kemungkinan telah dihapus dari wiki, atau diberi nama baru.
 Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang relevan.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentar dihapus)',
+'rev-deleted-comment'         => '(ringkasan suntingan dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
 'rev-deleted-event'           => '(isi dihapus)',
 'rev-deleted-user-contribs'   => '[nama pengguna atau alamat IP dihapus - suntingan disembunyikan pada daftar kontribusi]',

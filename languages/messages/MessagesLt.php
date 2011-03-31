@@ -658,6 +658,9 @@ Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
+
 # Password reset dialog
 'resetpass'                 => 'Keisti slaptažodį',
 'resetpass_announce'        => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
@@ -3379,5 +3382,9 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # SQLite database support
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'Naudotojo vardas:',
+'disableaccount-reason' => 'Priežastis:',
 
 );

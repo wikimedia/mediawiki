@@ -153,6 +153,9 @@ $messages = array(
 'faq'            => 'SSS',
 'faqpage'        => 'Project:SSS',
 
+# Vector skin
+'vector-view-edit' => 'Diiştir',
+
 'errorpagetitle'    => 'Yannış',
 'returnto'          => '$1 dön.',
 'tagline'           => '{{SITENAME}} saydından',

@@ -883,7 +883,7 @@ alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span
 'noarticletext-nopermission'       => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
-'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
+'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, skontrolujte, či naozaj chcete vytvoriť/upravovať túto stránku.',
 'userpage-userdoesnotexist-view'   => 'Používateľský účet „$1“ nie je registrovaný.',
 'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
@@ -1040,7 +1040,7 @@ Možno bola zmazaná z wiki alebo premenovaná.
 Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentár odstránený)',
+'rev-deleted-comment'         => '(zhrnutie úprav odstránené)',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
 'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
 'rev-deleted-user-contribs'   => '[používateľské meno alebo IP adresa odstránená - úprava skrytá pred prispievateľmi]',
@@ -2310,7 +2310,7 @@ Kliknutie na '''''Reset''''' vyčistí pole s komentárom a všetky zaškrtávac
 Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené revízie sa objavia v histórii stránky.',
 'undeleterevdel'               => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.',
 'undeletehistorynoadmin'       => 'Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.',
-'undelete-revision'            => '$3 zmazal revíziu $1 ($4, $5):',
+'undelete-revision'            => 'Zmazaná revízia $1 ($4, $5) od $3:',
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undelete-nodiff'              => 'Nebola nájdená žiadna predošlá revízia.',
 'undeletebtn'                  => 'Obnoviť!',

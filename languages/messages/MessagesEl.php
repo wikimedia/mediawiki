@@ -1456,7 +1456,7 @@ $1",
 'group-autoconfirmed-member' => 'Αυτοεπιβεβαιωμένος χρήστης',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Διαχειριστής',
-'group-bureaucrat-member'    => 'Γραφειοκράτης',
+'group-bureaucrat-member'    => 'γραφειοκράτης',
 'group-suppress-member'      => 'Παρατηρητής',
 
 'grouppage-user'          => '{{ns:project}}:Χρήστες',

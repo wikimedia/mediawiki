@@ -40,6 +40,7 @@
  * @author Tobulos1
  * @author Where next Columbus
  * @author Where next Columbus?
+ * @author WikiPhoenix
  * @author לערי ריינהארט
  */
 
@@ -1062,7 +1063,7 @@ Den kan ha tagits bort från wikin eller bytt namn.
 Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kommentar borttagen)',
+'rev-deleted-comment'         => '(redigeringssammanfattning togs bort)',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
 'rev-deleted-user-contribs'   => '[användarnamn eller IP-adress har tagits bort - redigeringen visas ej bland bidragen]',
@@ -2390,10 +2391,10 @@ $1',
 'sp-contributions-newbies'             => 'Visa endast bidrag från nya konton',
 'sp-contributions-newbies-sub'         => 'Från nya konton',
 'sp-contributions-newbies-title'       => 'Bidrag från nya konton',
-'sp-contributions-blocklog'            => 'Blockeringslogg',
+'sp-contributions-blocklog'            => 'blockeringslogg',
 'sp-contributions-deleted'             => 'raderade användarbidrag',
 'sp-contributions-uploads'             => 'uppladdningar',
-'sp-contributions-logs'                => 'Loggar',
+'sp-contributions-logs'                => 'loggar',
 'sp-contributions-talk'                => 'diskussion',
 'sp-contributions-userrights'          => 'hantering av användarrättigheter',
 'sp-contributions-blocked-notice'      => 'Användaren är blockerad.

@@ -1055,7 +1055,7 @@ Lehet, hogy törölték a wikiből, vagy átnevezték.
 Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
+'rev-deleted-comment'         => '(szerkesztési összefoglaló eltávolítva)',
 'rev-deleted-user'            => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
 'rev-deleted-user-contribs'   => '[felhasználónév vagy IP-cím eltávolítva – szerkesztés elrejtve a közreműködések közül]',
@@ -1341,7 +1341,7 @@ Itt van egy véletlenszerűen generált érték, amit használhatsz: $1',
 'prefs-searchoptions'           => 'A keresés beállításai',
 'prefs-namespaces'              => 'Névterek',
 'defaultns'                     => 'Egyébként a következő névterekben keressen:',
-'default'                       => 'alapértelmezés',
+'default'                       => 'alapértelmezett',
 'prefs-files'                   => 'Fájlok',
 'prefs-custom-css'              => 'saját CSS',
 'prefs-custom-js'               => 'saját JS',
@@ -2398,7 +2398,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'whatlinkshere-title'      => 'A(z) „$1” lapra hivatkozó lapok',
 'whatlinkshere-page'       => 'Lap:',
 'linkshere'                => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
-'nolinkshere'              => '[[:$1]]: erre a lapra semmi nem hivatkozik.',
+'nolinkshere'              => '[[:$1]]: erre a lapra egyetlen más lap sem hivatkozik.',
 'nolinkshere-ns'           => "A kiválasztott névtérben egyetlen oldal sem hivatkozik a(z) '''[[:$1]]''' lapra.",
 'isredirect'               => 'átirányítás',
 'istemplate'               => 'beillesztve',
@@ -2475,7 +2475,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'noautoblockblock'                => 'az automatikus blokkolás letiltott',
 'createaccountblock'              => 'új felhasználó létrehozása blokkolva',
 'emailblock'                      => 'e-mail cím blokkolva',
-'blocklist-nousertalk'            => 'nem szerkeszthetik a vitalapjukat',
+'blocklist-nousertalk'            => 'nem szerkesztheti a vitalapját',
 'ipblocklist-empty'               => 'A blokkoltak listája üres.',
 'ipblocklist-no-results'          => 'A kért IP-cím vagy felhasználónév nem blokkolt.',
 'blocklink'                       => 'blokkolás',
@@ -2559,6 +2559,16 @@ A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak ne
 Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, és nem tudsz egy már létező lapot véletlenül felülírni.
 
 '''FIGYELEM!'''
+Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
+győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
+'movepagetext-noredirectfixer' => "↓ Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.
+A régi cím az új címre való átirányítás lesz.
+Ellenőrizd a [[Special:DoubleRedirects|dupla]] és a [[Special:BrokenRedirects|hibás átirányításoknál]], hogy a linkek továbbra is oda mutatnak, ahová mutatniuk kell.
+
+A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres, vagy átirányítás, aminek nincs laptörténete.
+Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, de nem tudsz egy már létező lapot véletlenül felülírni.
+
+'''Figyelem!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;
 győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
 'movepagetalktext'             => "A laphoz tartozó vitalap automatikusan átneveződik, '''kivéve, ha:'''

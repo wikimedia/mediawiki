@@ -10,6 +10,7 @@
  * @author Niklas Laxström
  * @author Pikne
  * @author Sulev Iva (Võrok)
+ * @author Trixt
  * @author Võrok
  */
 

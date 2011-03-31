@@ -400,11 +400,11 @@ $messages = array(
 'category-empty'                 => "''Denne kategorien inneheld for tida ingen sider eller mediefiler.''",
 'hidden-categories'              => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
 'hidden-category-category'       => 'Gøymde kategoriar',
-'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har berre den følgjande underkategorien.|Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2.}}',
+'category-subcat-count'          => 'Kategorien har {{PLURAL:$2|berre den følgjande underkategorien|{{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2}}.',
 'category-subcat-count-limited'  => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
-'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande sida.|Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-article-count'         => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande sida|dei følgjande {{PLURAL:$1|side|$1 sidene}}, av totalt $2}}.',
 'category-article-count-limited' => 'Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
-'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande fila.|Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
+'category-file-count'            => 'Kategorien inneheld {{PLURAL:$2|berre den følgjande fila|dei følgjande {{PLURAL:$1|fil|$1 filene}}, av totalt $2}}.',
 'category-file-count-limited'    => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
 'listingcontinuesabbrev'         => 'vidare',
 'index-category'                 => 'Indekserte sider',
@@ -476,7 +476,7 @@ $messages = array(
 'edit'              => 'Endre',
 'create'            => 'Opprett',
 'editthispage'      => 'Endre sida',
-'create-this-page'  => 'Opprett denne sida',
+'create-this-page'  => 'Opprett sida',
 'delete'            => 'Slett',
 'deletethispage'    => 'Slett denne sida',
 'undelete_short'    => 'Attopprett {{PLURAL:$1|éin versjon|$1 versjonar}}',
@@ -517,6 +517,8 @@ For mange brukarar prøver å sjå denne sida.
 Vent ei lita stund, før du prøver å sjå på sida.
 
 $1',
+'pool-timeout'      => 'Tidsavbrot under venting på låsing.',
+'pool-queuefull'    => 'Køen er full.',
 'pool-errorunknown' => 'Ukjend feil',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -661,15 +663,16 @@ Grunnen som er gjeven er: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Du er no utlogga.'''
 
-Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn.
-Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
+Du kan no halde fram å bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn.
+Ver merksam på at nokre sider framleis kan visast fram som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
-Brukarkontoen din er vorten oppretta.
-Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
+Brukarkontoen din er oppretta.
+Hugs at du kan endre på [[Special:Preferences|innstillingane]] dine.',
 'yourname'                   => 'Brukarnamn:',
 'yourpassword'               => 'Passord:',
 'yourpasswordagain'          => 'Skriv opp att passordet',
 'remembermypassword'         => 'Hugs innlogginga mi på denne datamaskinen (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',
+'securelogin-stick-https'    => 'Fortset HTTPS-tilkopling etter innlogging.',
 'yourdomainname'             => 'Domenet ditt',
 'externaldberror'            => 'Det var anten ein ekstern databasefeil i tilgjengekontrollen, eller du har ikkje løyve til å oppdatere den eksterne kontoen din.',
 'login'                      => 'Logg inn',
@@ -707,6 +710,7 @@ Brukarnamn skil mellom stor og liten bokstav. Sjekk at du har skrive brukarnamet
 'wrongpasswordempty'         => 'Du oppgav ikkje noko passord. Ver venleg og prøv igjen.',
 'passwordtooshort'           => 'Passord må innehalda minst {{PLURAL:$1|eitt teikn|$1 teikn}}.',
 'password-name-match'        => 'Passordet ditt lyt vera noko anna enn brukarnamnet ditt.',
+'password-login-forbidden'   => 'Bruk av dette brukarnamnet og passordet er vorte forbode.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
 'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Eit mellombels passord for «$2» er oppretta, og er sett til «$3». Om det var det du ville, må du logge inn
@@ -737,7 +741,10 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'usernamehasherror'          => 'Brukarnamn kan ikkje innehalda nummerteikn.',
 'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
-'suspicious-userlogout'      => 'Forespurnaden din om å logge ut vart nekta fordi han såg ut til å være sendt av ein øydelagt nettlesar eller mellomtenar.',
+'suspicious-userlogout'      => 'Førespurnaden din om å logge ut vart nekta fordi han såg ut til å vere sendt av ein øydelagt nettlesar eller mellomtenar.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 
 # Password reset dialog
 'resetpass'                 => 'Endra passord',
@@ -860,6 +867,10 @@ Det siste elementet i blokkeringsloggen er oppgjeve nedanfor:',
 'userjsyoucanpreview'              => "''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste den nye CSS- eller JavaScript-koden din før du lagrar.",
 'usercsspreview'                   => "'''Hugs at dette berre er ei førehandsvising av din eigen CSS og at han ikkje er lagra enno!'''",
 'userjspreview'                    => "'''Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!'''",
+'sitecsspreview'                   => "'''Hugs at du berre førehandsviser dette stilarket. '''
+'''Det er ikkje lagra enno!'''",
+'sitejspreview'                    => "'''Hugs at du berre førehandsviser denne JavaScript-koden.'''
+'''Han er ikkje lagra enno!'''",
 'userinvalidcssjstitle'            => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/vector.css, og ikkje {{ns:user}}:Døme/Vector.css.",
 'updated'                          => '(Oppdatert)',
 'note'                             => "'''Merk:'''",
@@ -928,7 +939,7 @@ Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn 
 
 Du bør tenkje over om det er høveleg å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
-'moveddeleted-notice'              => 'Denne sida har blitt sletta. Sletteloggen og flytteloggen er vist nedanfor for referanse.',
+'moveddeleted-notice'              => 'Denne sida er vorten sletta. Sletteloggen og flytteloggen er vist nedanfor for referanse.',
 'log-fulllog'                      => 'Sjå full loggføring',
 'edit-hook-aborted'                => 'Endring avbroten av ein funksjon, utan forklaring.',
 'edit-gone-missing'                => 'Kunne ikkje oppdatere sida.
@@ -1509,7 +1520,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|Éin brukar|$1 brukarar}} overvakar]',
 'rc_categories'                     => 'Avgrens til kategoriar (skilde med «|»)',
 'rc_categories_any'                 => 'Alle',
-'newsectionsummary'                 => '/* $1 */ ny seksjon',
+'newsectionsummary'                 => '/* $1 */ ny bolk',
 'rc-enhanced-expand'                => 'Vis detaljar (krev JavaScript)',
 'rc-enhanced-hide'                  => 'Skjul detaljar',
 
@@ -1619,7 +1630,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'upload-description'          => 'Filskildring',
 'upload-options'              => 'Val for opplasting',
 'watchthisupload'             => 'Overvak denne fila',
-'filewasdeleted'              => 'Ei fil med dette namnet har tidlegare vore lasta opp og sletta. Du bør sjekke $1 før du prøvar å laste henne opp att.',
+'filewasdeleted'              => 'Ei fil med same namnet er tidlegare vorte lasta opp og sletta. Du bør sjekke $1 før du prøver å laste henne opp att.',
 'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''
 
 Du bør tenkje over om det er lurt å halde fram med å laste opp denne fila.
@@ -2144,7 +2155,7 @@ Tilbakemeldingar og anna hjelp:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Samandraget for endringa var: «''$1''».",
-'revertpage'        => 'Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|ordskifte]]) til tidlegare versjon endra av [[User:$1|$1]]',
+'revertpage'        => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til tidlegare versjon endra av [[User:$1|$1]]',
 'revertpage-nouser' => 'Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]',
 'rollback-success'  => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 
@@ -2180,7 +2191,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-expiring'            => 'endar $1 (UTC)',
 'protect-expiry-indefinite'   => 'ubestemt',
 'protect-cascade'             => 'Vern alle sidene som er inkludert på denne sida (djupvern)',
-'protect-cantedit'            => 'Du kan ikkje endre på nivået på vernet av denne sida, fordi du ikkje har tilgang til å endre henne.',
+'protect-cantedit'            => 'Du kan ikkje endre vernenivået på sida fordi du ikkje har tilgang til å endre henne.',
 'protect-othertime'           => 'Anna tid:',
 'protect-othertime-op'        => 'anna tid',
 'protect-existing-expiry'     => 'Gjeldande utløpstid: $3 $2',
@@ -2329,8 +2340,8 @@ $1',
 'ipbanononly'                     => 'Blokker berre anonyme brukarar',
 'ipbcreateaccount'                => 'Hindre kontooppretting',
 'ipbemailban'                     => 'Hindre sending av e-post til andre brukarar',
-'ipbenableautoblock'              => 'Blokker den førre IP-adressa som vart brukt av denne brukaren automatisk, og alle andre IP-adresser brukaren prøvar å endre sider med i framtida',
-'ipbsubmit'                       => 'Blokker denne brukaren',
+'ipbenableautoblock'              => 'Blokker den førre IP-adressa som vart brukt av denne brukaren automatisk, og alle andre IP-adresser brukaren prøver å endre sider med i framtida',
+'ipbsubmit'                       => 'Blokker brukaren',
 'ipbother'                        => 'Anna tid',
 'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite',
 'ipbotheroption'                  => 'anna tid',
@@ -2340,9 +2351,9 @@ $1',
 'ipballowusertalk'                => 'La brukaren endre si eiga diskusjonsside under blokkeringa',
 'ipb-change-block'                => 'Blokker brukaren på nytt med desse innstillingane',
 'badipaddress'                    => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
-'blockipsuccesssub'               => 'Blokkering utført',
+'blockipsuccesssub'               => 'Blokkeringa er utførd',
 'blockipsuccesstext'              => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
-Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
+Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringane.',
 'ipb-edit-dropdown'               => 'Endre grunnane for blokkering',
 'ipb-unblock-addr'                => 'Opphev blokkeringa av $1',
 'ipb-unblock'                     => 'Opphev blokkeringa av eit brukarnamn eller ei IP-adresse',
@@ -2443,6 +2454,16 @@ $1 er alt blokkert. Vil du endre innstillingane?',
 Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
 
 <b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.",
+'movepagetext-noredirectfixer' => "Ved å bruke skjemaet under kan du få omdøypt ei side og flytt heile historikken til det nye namnet. 
+Den gamle tittelen vil omdirigere til den nye tittelen. 
+Pass på å sjekke for doble eller dårlege omdirigeringar. 
+Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+
+Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen, om ho då ikkje er ei omdirigeringsside utan endringshistorikk. Dette vil seie at du kan flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, og at du ikkje kan skriva over ei side som finst.
+
+<b>ÅTVARING!</b>
+Dette kan vera ei drastisk og uventa endring for ei populær side;
+ver sikker på at du skjøner konsekvensane av dette før du fortset.",
 'movepagetalktext'             => "Den tilhøyrande diskusjonssida, om ho finst, vil automatisk bli flytt med sida '''med mindre:'''
 *Du flytter sida til eit anna namnerom, eller
 *Du fjernar merkinga i boksen nedanfor.
@@ -2828,7 +2849,7 @@ Alle andre lenkjer på same line vert sett på som unnatak, med andre ord sider 
 
 # Metadata
 'metadata'          => 'Utvida informasjon',
-'metadata-help'     => 'Denne fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne.
+'metadata-help'     => 'Fila inneheld tilleggsopplysningar, mest sannsynleg frå digitalkameraet eller skannaren som vart brukt til å lage eller digitalisere henne.
 Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
 'metadata-expand'   => 'Vis utvida opplysningar',
 'metadata-collapse' => 'Gøym utvida opplysningar',

@@ -739,6 +739,27 @@ Ebifa ku kugyibwawo kw'olupapula luno bye bino:",
 'moveddeleted-notice'              => "Olupapula luno lwagyibwawo.<br />
 Ebiri mu lukalala olw'ebifa ku kulugyawo n'okulujjulula bibino okukutangaaza ku nsonga eno:",
 'log-fulllog'                      => "Ndaga olukalala olw'ebifuddeyo mu bujjuvu",
+'edit-hook-aborted'                => "Omulimu gwo gutegude emmanduso n'egukomya.<br />
+Tewali kunnyonyola okusingawo.",
+'edit-gone-missing'                => 'Olupapula tekisobose okulutuukanisa.<br />
+Kirabika lwagyibwawo.',
+'edit-conflict'                    => 'Ebikyusidwamu bireesewo okusobagana.',
+'edit-no-change'                   => "Sisitemu ekubaze nga atalina ky'agikozeko, olw'okubanga ebiri ku lupapula obirese nga bwe wabisanze.",
+'edit-already-exists'              => "Olupapula lw'ogeza okukolawo weruli, lwakolebwawo dda.<br />
+Tekisobose kuddamu n'ate oulukolawo.",
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => "'''Kulabula:''' Olupapula luno luliko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi.<br />
+<br />
+Terukkirizibwa kubaako {{PLURAL:$2|kiragiro ky'ekibekebera ngoberera y'amateeka g'empandika ekisukka|biragiro by'ekikebera mpandika y'amateeka g'empandika ebisukka}} mu $2. Kakano ebiragiro ebyo luliko {{PLURAL:$1|kimu|$1}}.",
+'expensive-parserfunction-category'       => "Empapula eziriko ebiragiro eby'ekikebera engoberera y'amateeka g'empandika ebizito ebiyitiridde obungi",
+'post-expand-template-inclusion-warning'  => "'''Kulabula:''' Entiba ez'okunonebwa ziyitiridde obungi.<br />
+Ezimu zijjakulebwayo.",
+'post-expand-template-inclusion-category' => "Empapula eziriko entiba eziyitiridde obunene olw'ebinone bye zikozesa",
+'post-expand-template-argument-warning'   => "'''Kulabula''' Olupapula luno luliko agumenti ey'omu lutiba nga amakulu gaamu bwe<br />
+gawandikibwa mu bujjuvu ekivaamu kiyitirira obunene. Muyinz'okubaamu n'endala ez'engeri eno.<br />
+Agumenti ezo sistemu tezikozesezza.",
+'post-expand-template-argument-category'  => "Empapula eziriko agumenti ez'omu ntiba sisitemu z'etakozesezza",
 
 # History pages
 'viewpagelogs'           => "Kebera likooda ez'olupapula luno",
@@ -779,12 +800,25 @@ oba ku gano agali ku lupapula luno.<br />
 'searchsubtitle'            => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|empapula zonna ezikuggusa ku "$1"]])',
 'searchsubtitleinvalid'     => "Onoonyezza '''$1'''",
+'toomanymatches'            => "Ebikwataganya by'onoonyezesazza biyitiridde obungi. Ky'onoonyezesa kikyusemu",
+'titlematches'              => 'Empapula ezirina emitwe egyefaananyiriza guno',
 'notitlematches'            => 'Tewali mpapula zirina mutwe guno',
+'textmatches'               => "Empapula eziriko ebigambo by'onoonyezesezza",
 'notextmatches'             => 'Tewali mpapula ziriko bigambo bino',
 'prevn'                     => '{{PLURAL:$1|$1}} ezikulembedde zino',
 'nextn'                     => '{{PLURAL:$1|$1}} eziddako',
+'prevn-title'               => '{{PLURAL:$1|Ekizuulidwa $1 ekikulembera|Ebizuulidwa $1 ebikulembera}}',
+'nextn-title'               => '{{PLURAL:$1|Ekizuulidwa $1 ekiddako|Ebizuulidwa $1 ebiddako}}',
+'shown-title'               => 'Ndaga {{PLURAL:$1|ekizuulidwa|ebizuulidwa}} $1 ku buli lupapula',
 'viewprevnext'              => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'         => 'Kyusamu ennoonya',
+'searchmenu-exists'         => "'''Olupapula \"[[:\$1]]\" gyeruli ku wiki eno.'''",
+'searchmenu-new'            => "'''Oba oyagala, olupapula \"[[:\$1]]\" gwe osobola okulukolawo ku wiki eno.'''",
 'searchhelp-url'            => 'Help:Endagiriro',
+'searchmenu-prefix'         => '[[Special:PrefixIndex/$1|Kebera mu mpapula eziriko akatandikwa kano]]',
+'searchprofile-articles'    => "Empapula ez'ensonga",
+'searchprofile-project'     => "Empapula eziriko obuyambi n'eza Kawefube",
+'searchprofile-images'      => "Mediya ey'ekintabuli - Bifaananyi, Vidiyo n'ebiWulirizibwa",
 'search-result-size'        => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
 'search-redirect'           => "(olupapula '$1' lukuggusiza wano)",
 'search-section'            => '(ekitundu ekya $1)',
@@ -803,19 +837,43 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'powersearch-field'         => 'Nnoonyeza',
 
 # Preferences page
-'preferences'       => 'Enteekateeka yange',
-'mypreferences'     => 'Enteekateeka yange',
-'skin-preview'      => 'Kulozzako',
-'prefs-personal'    => 'Ebikufaako',
-'saveprefs'         => 'Bino bikaze',
-'resetprefs'        => 'Gyawo enkyukakyuka ze sinnakaza',
-'searchresultshead' => 'Noonya',
-'savedprefs'        => 'Enteekateeka yo ekazidwa.',
-'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',
-'username'          => "Ery'obwa memba:",
-'yourlanguage'      => 'Lulimi lwo:',
-'yournick'          => 'Empaako yo (ssi ya tteeka):',
-'prefs-help-email'  => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.
+'preferences'               => 'Enteekateeka yange',
+'mypreferences'             => 'Enteekateeka yange',
+'skin-preview'              => 'Kulozzako',
+'prefs-personal'            => 'Ebikufaako',
+'prefs-resetpass'           => 'Kyusa ekigambo ekikuumi',
+'prefs-email'               => 'Enteekateeka eza E-mail',
+'prefs-rendering'           => 'Endabika',
+'saveprefs'                 => 'Bino bikaze',
+'resetprefs'                => 'Gyawo enkyukakyuka ze sinnakaza',
+'restoreprefs'              => 'Zawo enteekateeka zi nansangwawo',
+'prefs-editing'             => 'Kukyusa',
+'searchresultshead'         => 'Noonya',
+'savedprefs'                => 'Enteekateeka yo ekazidwa.',
+'timezonelegend'            => 'Ssaawa za mu:',
+'localtime'                 => "Ssaawa za w'oli:",
+'timezoneuseserverdefault'  => 'Kozesa ssaawa sistemu ze yerondera',
+'timezoneuseoffset'         => 'Ndala (tegeka enjawulo mu budde)',
+'timezoneoffset'            => 'Njawulo mu budde¹:',
+'servertime'                => 'Ssaawa ya sisitemu:',
+'guesstimezone'             => 'Kalambulanetti etegeke obudde',
+'timezoneregion-africa'     => 'Afirika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antakitika',
+'timezoneregion-arctic'     => 'Akitiki',
+'timezoneregion-asia'       => 'Ezya',
+'timezoneregion-atlantic'   => 'Liyanja Atalantika',
+'timezoneregion-australia'  => 'Awusitureliya',
+'timezoneregion-europe'     => 'Bulaaya',
+'timezoneregion-indian'     => 'Liyanja ya Buyindi',
+'timezoneregion-pacific'    => 'Liyanja Kirimulaala',
+'allowemail'                => 'Kkiriza bamemba abalala okukusindikira e-mail',
+'prefs-searchoptions'       => 'Enteekateeka ezifuga okunoonya',
+'prefs-namespaces'          => 'Makuŋaanyizo',
+'username'                  => "Ery'obwa memba:",
+'yourlanguage'              => 'Lulimi lwo:',
+'yournick'                  => 'Empaako yo (ssi ya tteeka):',
+'prefs-help-email'          => "Okuwayo E-mail yo ssi kya tteeka, naye yetaagisibwa bw'obanga werabide ekigambo kyo ekikuumi - basobole okukusindikira ekipya.
 
 Osobola okusalawo okuba nga ab'etaaga okukutuukirira bayitira ku nfo yo ey'obwa memba oba olupapula lwo olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 
@@ -893,6 +951,9 @@ Osobola okusalawo okuba nga ab'etaaga okukutuukirira bayitira ku nfo yo ey'obwa 
 'nolinkstoimage'            => 'Tewali mpapula ziriko nyunzi ezigguka ku fayiro eno.',
 'sharedupload'              => "Fayiro eno, ey'omu $1, y'emu esobola okuba nga empapula ez'omu pulojekiti endala zigikozesa",
 'uploadnewversion-linktext' => 'Teekayo oluwandika lwa fayiro eno olupya',
+
+# File deletion
+'filedelete-comment' => 'Ekigyisizzawo fayiro:',
 
 # Random page
 'randompage' => 'Nondera olupapula muwawa',

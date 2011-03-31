@@ -13,6 +13,7 @@
  * @author Dnik
  * @author Ex13
  * @author Excaliboor
+ * @author Herr Mlinka
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
@@ -335,8 +336,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
 'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Običan potpis kao wikitekst (bez automatske poveznice)',
-'tog-externaleditor'          => 'Uvijek rabi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu)',
-'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu',
+'tog-externaleditor'          => 'Uvijek koristi vanjski program za uređivanje (samo za napredne, potrebne su posebne postavke na računalu. [http://www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
+'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu (samo za napredne, potrebne su posebne postavke na računalu. [http://www.mediawiki.org/wiki/Manual:External_editors Dodatne informacije.])',
 'tog-showjumplinks'           => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview'          => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary'        => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
@@ -1372,6 +1373,10 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'prefs-displaysearchoptions'    => 'Opcije prikaza',
 'prefs-displaywatchlist'        => 'Opcije prikaza',
 'prefs-diffs'                   => 'razl',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'E-mail adresa se pokazuje ispravnom',
+'email-address-validity-invalid' => 'Unesite valjanu e-mail adresu',
 
 # User rights
 'userrights'                   => 'Upravljanje suradničkim pravima',
@@ -2524,10 +2529,10 @@ Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi n
 Budite sigurni da ste provjerili [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nevaljana preusmjeravanja]]. 
 Vi ste odgovorni za to da poveznice i dalje povezuju tamo gdje treba.
 
-Imajte na umu da će stranica'''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
-To znači da možete preimenovati stranicu natrag do mjesta gdje je preimenovan iz ako pogriješite, i ne možete prepisati postojeću stranicu. 
+Imajte na umu da stranica '''neće''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
+To znači da stranicu možete preimenovati u prethodno ime ukoliko ste pogriješili te ne možete pisati preko postojeće stranice. 
 
- '''Upozorenje!''' 
+'''Upozorenje!''' 
 Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice; 
 budite sigurni da razumijete posljedice ove akcije prije nastavka.",
 'movepagetalktext'             => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
@@ -2825,7 +2830,7 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'math_unknown_function' => 'nepoznata funkcija',
 'math_lexing_error'     => 'rječnička pogreška (lexing error)',
 'math_syntax_error'     => 'sintaksna pogreška',
-'math_image_error'      => 'Konverzija u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
+'math_image_error'      => 'Pretvorba u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
 'math_bad_tmpdir'       => 'Ne mogu otvoriti ili pisati u privremeni direktorij za matematiku',
 'math_bad_output'       => 'Ne mogu otvoriti ili pisati u odredišni direktorij za matematiku',
 'math_notexvc'          => 'Nedostaje izvršna datoteka texvc-a; pogledajte math/README za postavke.',
@@ -3243,6 +3248,20 @@ za poništavanje potvrde adrese e-pošte:
 $5
 
 Valjanost ovog potvrdnog koda istječe $4.',
+'confirmemail_body_set'     => 'Netko, najvjerojatnije vi, s IP adrese $1,
+otvorio je suradnički račun pod imenom "$2" s ovom e-mail adresom na {{SITENAME}}.
+
+Kako biste potvrdili da je ovaj suradnički račun uistinu vaš i uključili 
+e-mail naredbe na {{SITENAME}}, otvorite u vašem pregledniku sljedeću poveznicu:
+
+$3
+
+Ako ovaj suradnički račun *ne* pripada vama, slijedite ovaj link 
+kako biste poništili potvrdu e-mail adrese:
+
+$5
+
+Valjanost ovog potvrdnog koda istječe u $4',
 'confirmemail_invalidated'  => 'Potvrda E-mail adrese je otkazana',
 'invalidateemail'           => 'Poništi potvrđivanje elektroničke pošte',
 

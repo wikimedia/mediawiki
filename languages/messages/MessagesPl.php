@@ -32,6 +32,7 @@
  * @author ToSter
  * @author Wpedzich
  * @author Ymar
+ * @author Žekřil71pl
  * @author לערי ריינהארט
  */
 
@@ -492,8 +493,8 @@ $1',
 'policy-url'           => 'Project:Zasady',
 'portal'               => 'Portal społeczności',
 'portal-url'           => 'Project:Portal społeczności',
-'privacy'              => 'Zasady ochrony prywatności',
-'privacypage'          => 'Project:Zasady ochrony prywatności',
+'privacy'              => 'Zasady zachowania poufności',
+'privacypage'          => 'Project:Zasady zachowania poufności',
 
 'badaccess'        => 'Niewłaściwe uprawnienia',
 'badaccess-group0' => 'Nie masz uprawnień wymaganych do wykonania tej operacji.',
@@ -1012,7 +1013,7 @@ Mogła zostać usunięta lub jej nazwa została zmieniona.
 Spróbuj [[Special:Search|poszukać]] tej strony.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentarz usunięty)',
+'rev-deleted-comment'         => '(usunięto opis zmian)',
 'rev-deleted-user'            => '(nazwa użytkownika usunięta)',
 'rev-deleted-event'           => '(wpis usunięty)',
 'rev-deleted-user-contribs'   => '[nazwa użytkownika lub adres IP usunięte – edycja ukryta we wkładzie]',
@@ -2348,8 +2349,8 @@ $1',
 'contribsub2'         => 'Dla użytkownika $1 ($2)',
 'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
 'uctop'               => ' (jako ostatnia)',
-'month'               => 'Przed miesiącem (włącznie)',
-'year'                => 'Przed rokiem (włącznie)',
+'month'               => 'Do miesiąca (włącznie)',
+'year'                => 'Do roku (włącznie)',
 
 'sp-contributions-newbies'             => 'Pokaż wyłącznie wkład nowych użytkowników',
 'sp-contributions-newbies-sub'         => 'Dla nowych użytkowników',

@@ -771,7 +771,7 @@ Odota ennen kuin yrität uudelleen.',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
 # E-mail sending
-'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-toiminnossa',
+'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
 
 # Password reset dialog
 'resetpass'                 => 'Muuta salasana',
@@ -1030,7 +1030,7 @@ Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kommentti poistettu)',
+'rev-deleted-comment'         => '(muokkausyhteenveto poistettu)',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
 'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-user-contribs'   => '[käyttäjänimi tai IP-osoite poistettu – muokkaus piilotettu muokkauksista]',
@@ -1173,7 +1173,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'compareselectedversions'  => 'Vertaile valittuja versioita',
 'showhideselectedversions' => 'Näytä tai piilota valitut versiot',
 'editundo'                 => 'kumoa',
-'diff-multi'               => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|$2 eri käyttäjää}}}}.)',
+'diff-multi'               => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka on {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 'diff-multi-manyusers'     => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
 
 # Search results
@@ -1472,7 +1472,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
-'right-disableaccount'        => 'Tilien poistaminen käytöstä',
+'right-disableaccount'        => 'Poistaa tunnuksia käytöstä',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -3428,15 +3428,15 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 
 # Special:DisableAccount
 'disableaccount'             => 'Käyttäjätunnuksen poistaminen käytöstä',
-'disableaccount-user'        => 'Käyttäjätunnus:',
+'disableaccount-user'        => 'Käyttäjätunnus',
 'disableaccount-reason'      => 'Syy',
 'disableaccount-confirm'     => "Poista tämä käyttäjätili.
 Käyttäjä ei pysty kirjautumaan sisään, pyytämään uutta salasanaa tai vastaanottamaan sähköposti-ilmoituksia. 
 Jos käyttäjä on kirjautuneena sisään jonnekin, käyttäjä kirjataan ulos välittömästi.
 ''Huomaa, että tilin käytöstä poistamisen peruminen ei ole mahdollista ilman MediaWiki-alustaan käsiksi pääsevän järjestelmänvalvojan toimia.''",
 'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tilin.',
-'disableaccount-nosuchuser'  => 'Käyttäjää “$1” ei ole olemassa.',
-'disableaccount-success'     => "Käyttäjätili ''$1'' on poistettu käytöstä pysyvästi.",
-'disableaccount-logentry'    => 'poisti ikuisesti käytöstä käyttäjätilin [[$1]]',
+'disableaccount-nosuchuser'  => 'Käyttäjätunnusta ”$1” ei ole olemassa.',
+'disableaccount-success'     => "Käyttäjätunnus ''$1'' on poistettu käytöstä pysyvästi.",
+'disableaccount-logentry'    => 'poisti pysyvästi käytöstä käyttäjätunnuksen [[$1]]',
 
 );

@@ -287,7 +287,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.',
 'category-article-count'         => 'An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vu(n) $2 am Ganzen.}}',
 'category-article-count-limited' => 'Dës {{PLURAL:$1|Säit ass|$1 Säite sinn}} an dëser Kategorie.',
-'category-file-count'            => 'An dëser Kategorie {{PLURAL:$2|ass just dëse Fichier.|{{PLURAL:$1|ass just dëse Fichier|si(nn) $1 Fichieren}}, vu(n) $2 am Ganzen.}}',
+'category-file-count'            => '{{PLURAL:$2|Just dëse Fichier ass an dëser Kategorie.|{{PLURAL:$1|Just dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie, vu(n) $2 am Ganzen.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Dëse Fichier ass|Dës $1 Fichiere sinn}} an dëser Kategorie.',
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 'index-category'                 => 'Indexéiert Säiten',
@@ -914,7 +914,7 @@ Vläicht gouf se geläscht oder geréckelt.
 [[Special:Search|Sich op]] {{SITENAME}} no passenden neie Säiten.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(Bemierkung geläscht)',
+'rev-deleted-comment'         => '(Resumé vun der Ännerung ewechgeholl)',
 'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-deleted-user-contribs'   => '[Benotzernumm oder IP-Adress ewechgeholl - Ännerung an der Lescht vun de Kontributioune verstoppt]',
@@ -1064,7 +1064,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'compareselectedversions'  => 'Ausgewielte Versioune vergläichen',
 'showhideselectedversions' => 'Erausgesichte Versioune weisen/verstoppen',
 'editundo'                 => 'zréck',
-'diff-multi'               => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem|$2}} Benotzer {{PLURAL:$1|¨gëtt|ginn}} net gewisen)',
+'diff-multi'               => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)',
 'diff-multi-manyusers'     => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)',
 
 # Search results
@@ -2946,6 +2946,9 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint",
 'exif-orientation-7' => '90° an der Richtung vun den Zäre vun der Auer gedréint a vertikal ëmgedréint',
 'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint",
+
+'exif-planarconfiguration-1' => 'Graffe Format',
+'exif-planarconfiguration-2' => 'Planare Format',
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 

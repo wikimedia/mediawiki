@@ -1128,7 +1128,7 @@ $3による理由は以下の通りです：''$2''",
 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
 
 # Revision deletion
-'rev-deleted-comment'         => '（要約は除去されています）',
+'rev-deleted-comment'         => '(要約は除去されています)',
 'rev-deleted-user'            => '（利用者名は除去されています）',
 'rev-deleted-event'           => '（記録は除去されています）',
 'rev-deleted-user-contribs'   => '[利用者名またはIPアドレスは除去されました - その編集は投稿の中から隠されています]',
@@ -1174,7 +1174,7 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-text'              => "'''削除された版や記録はページの履歴や記録に表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
 追加の制限がかけられない限り、{{SITENAME}}の他の管理者もこれと同じインターフェースを使って隠された内容にアクセスしたり、復元したりできます。",
 'revdelete-confirm'           => 'この操作を意図して行っていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に沿って行っていることを確認してください。',
-'revdelete-suppress-text'     => "隠蔽は、'''以下の場合に限って'''使用すべきです：
+'revdelete-suppress-text'     => "秘匿は、'''以下の場合に限って'''使用すべきです：
 * 名誉毀損の恐れのある記述
 * 非公開個人情報
 *: ''自宅の住所や電話番号、社会保障番号など''",
@@ -1184,7 +1184,7 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-hide-name'         => '操作および対象を隠す',
 'revdelete-hide-comment'      => '編集の要約を隠す',
 'revdelete-hide-user'         => '投稿者の利用者名またはIPを隠す',
-'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠蔽する',
+'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-radio-same'        => '（変更なし）',
 'revdelete-radio-set'         => 'はい',
 'revdelete-radio-unset'       => 'いいえ',
@@ -1208,7 +1208,7 @@ $1",
 'revdelete-content'           => '本文',
 'revdelete-summary'           => '編集内容の要約',
 'revdelete-uname'             => '利用者名',
-'revdelete-restricted'        => '管理者に対する制限を適用しました',
+'revdelete-restricted'        => '管理者に対する制限を適用',
 'revdelete-unrestricted'      => '管理者に対する制限を除去しました',
 'revdelete-hid'               => '$1を隠しました',
 'revdelete-unhid'             => '$1の版指定削除を解除しました',
@@ -2010,7 +2010,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 
 'doubleredirects'            => '二重転送',
 'doubleredirectstext'        => 'これは他のリダイレクトページへのリダイレクトの一覧です。
-各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。。
+各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。
 <del>打ち消し線</del>のはいった項目は既に修正されています。',
 'double-redirect-fixed-move' => '[[$1]]が移動されています。
 [[$2]]に転送されます。',
@@ -2227,7 +2227,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 # Watchlist
 'watchlist'            => 'ウォッチリスト',
 'mywatchlist'          => 'ウォッチリスト',
-'watchlistfor2'        => '利用者:$1$2',
+'watchlistfor2'        => '利用者: $1 $2',
 'nowatchlist'          => 'ウォッチリストに項目がありません。',
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示または編集するには、$1してください。',
 'watchnologin'         => 'ログインしていません',
@@ -2541,7 +2541,7 @@ $1',
 ** ページへ無意味な/意味不明な内容の挿入
 ** 威圧的な態度/嫌がらせ
 ** 複数アカウントの不正利用
-** 許可されていない利用者名',
+** 不適切な利用者名',
 'ipbanononly'                     => '匿名利用者のみブロック',
 'ipbcreateaccount'                => 'アカウント作成を禁止する',
 'ipbemailban'                     => 'メール送信を防止',
@@ -2556,7 +2556,7 @@ $1',
 'ipballowusertalk'                => 'この利用者に対して、ブロック中の自身のトークページ編集を許可',
 'ipb-change-block'                => 'これらの設定で、利用者を再びブロック',
 'badipaddress'                    => '不正なIPアドレス',
-'blockipsuccesssub'               => 'ブロックに成功しました',
+'blockipsuccesssub'               => 'ブロックしました',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
 [[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',
@@ -2598,9 +2598,9 @@ $1のブロックの理由は「$2」です。',
 'blocklog-showlog'                => 'この利用者は以前にブロックされたことがあります。
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog'        => 'この利用者は以前にブロックされ、隠されたことがあります。
-参考のため、隠蔽記録を以下に示します：',
+参考のため、秘匿記録を以下に示します：',
 'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの詳細$3',
-'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの内容は$3です',
+'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの詳細$3',
 'blocklogtext'                    => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
 現時点で有効なブロックは[[Special:IPBlockList|ブロックの一覧]]をご覧ください。',
@@ -2611,10 +2611,10 @@ $1のブロックの理由は「$2」です。',
 'block-log-flags-noemail'         => 'メール送信のブロック',
 'block-log-flags-nousertalk'      => '自身のトークページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
-'block-log-flags-hiddenname'      => '利用者名を隠す',
+'block-log-flags-hiddenname'      => '利用者名の秘匿',
 'range_block_disabled'            => '範囲ブロックを作成する管理者機能は無効化されています。',
 'ipb_expiry_invalid'              => '有効期限が不正です。',
-'ipb_expiry_temp'                 => '利用者名秘匿のブロックは、無期限ブロックなります。',
+'ipb_expiry_temp'                 => '利用者名秘匿のブロックは、無期限ブロックになります。',
 'ipb_hide_invalid'                => 'このアカウントを秘匿できません。編集回数が非常に多いためだと思われます。',
 'ipb_already_blocked'             => '「$1」は既にブロックされています',
 'ipb-needreblock'                 => '== すでにブロックされています ==
@@ -2916,7 +2916,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-save'                    => '変更を保存',
 'tooltip-preview'                 => '変更をプレビューで確認できます。保存前に使用してください！',
 'tooltip-diff'                    => '文章に加えた変更を表示します',
-'tooltip-compareselectedversions' => '選択された二つのこのページの版間の差分を表示します',
+'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
 'tooltip-watch'                   => 'このページをウォッチリストへ追加します',
 'tooltip-recreate'                => '削除されていても、ページを再作成',
 'tooltip-upload'                  => 'アップロードを開始',
@@ -3103,7 +3103,7 @@ Variants for Chinese language
 # Metadata
 'metadata'          => 'メタデータ',
 'metadata-help'     => 'このファイルは、追加情報を含んでいます（おそらく、デジタルカメラやスキャナーが作成あるいはデジタル化し追加したもの）。
-このファイルが元の状態から変更されている場合、いくつかの項目は、完全には修正されたファイルに反映していないかもしれません。',
+このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルへ完全に反映されていないかもしれません。',
 'metadata-expand'   => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
 'metadata-fields'   => 'ここのメッセージにあるEXIFメタデータフィールドは、メタデータ表が折りたたまれている状態のときに画像ページに読み込まれます。
@@ -3497,7 +3497,7 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',
 'imgmultipagenext' => '次ページ&rarr;',
-'imgmultigo'       => '表示！',
+'imgmultigo'       => '表示',
 'imgmultigoto'     => '$1へ行く',
 
 # Table pager
@@ -3545,7 +3545,7 @@ $1',
 ページ名を除去するには、横にあるボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」をクリックしてください。
 また、[[Special:Watchlist/raw|そのままの一覧で編集]]することもできます。',
 'watchlistedit-normal-submit'  => 'ページの除去',
-'watchlistedit-normal-done'    => 'ウォッチリストから$1のページ名を除去しました：',
+'watchlistedit-normal-done'    => 'ウォッチリストから $1{{PLURAL:$1|件}}を削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをそのまま編集',
 'watchlistedit-raw-explain'    => 'ウォッチリストに含まれるページ名が以下に表示されており、この一覧から追加や除去できます。

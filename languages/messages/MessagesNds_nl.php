@@ -324,8 +324,8 @@ $messages = array(
 'tog-shownumberswatching'     => "'t Antal gebrukers bekieken dee disse pagina volg",
 'tog-oldsig'                  => 'Bestaonde haandtekening naokieken:',
 'tog-fancysig'                => 'Ondertekening zien as wikitekse (zonder autematische verwiezing)',
-'tog-externaleditor'          => 'Gebruuk standard een externe teksbewarker',
-'tog-externaldiff'            => 'Gebruuk standard een extern vergeliekingspregramma',
+'tog-externaleditor'          => 'Standard een externe teksbewarker gebruken (allinnig veur gevorderden - veur disse functie bin speciale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer infermasie]).',
+'tog-externaldiff'            => 'Standard een extern vergeliekingspregramma gebruken (allinnig veur gevorderden - veur disse functie bin speciale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer infermasie]).',
 'tog-showjumplinks'           => '"Gao naor"-verwiezingen toelaoten',
 'tog-uselivepreview'          => 'Gebruuk "rechstreeks naokieken" (mu-j JavaScript veur hemmen - experimenteel)',
 'tog-forceeditsummary'        => 'Geef een melding bie een lege samenvatting',
@@ -524,11 +524,14 @@ $messages = array(
 'jumpto'            => 'Gao naor:',
 'jumptonavigation'  => 'navigasie',
 'jumptosearch'      => 'zeuk',
-'view-pool-error'   => 'De servers bin op hejen overbelas.
-Te veul volk prebeert disse pagina te bekieken.
+'view-pool-error'   => 'De servers bin noen overbelas.
+Te veule meensen preberen disse pagina te bekieken.
 Wach even veurda-j opniej toegang preberen te kriegen tot disse pagina.
 
 $1',
+'pool-timeout'      => "Wachtied tiejens 't wachen op vergrendeling",
+'pool-queuefull'    => 'De wachrie van de poel is vol',
+'pool-errorunknown' => 'Onbekende fout',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Over {{SITENAME}}',
@@ -692,11 +695,12 @@ Vergeet neet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te ste
 'yourpassword'               => 'Wachwoord',
 'yourpasswordagain'          => 'Opniej invoeren',
 'remembermypassword'         => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
+'securelogin-stick-https'    => 'Verbunnen blieven via HTTPS naoda-j an-emeld bin',
 'yourdomainname'             => 'Joew domein',
 'externaldberror'            => 'Der gung iets fout bie de externe authenticering, of je maggen je gebrukersprefiel neet bewarken.',
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden',
-'loginprompt'                => 'Je mutten cookies an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
+'loginprompt'                => 'Je mutten scheumbestanen (cookies) an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
 'userlogin'                  => 'Anmelden / inschrieven',
 'userloginnocreate'          => 'Anmelden',
 'logout'                     => 'Ofmelden',
@@ -715,10 +719,10 @@ Kies een aandere naam.',
 'loginerror'                 => 'Anmeldingsfout',
 'createaccounterror'         => 'Kon de gebrukersnaam neet anmaken: $1',
 'nocookiesnew'               => 'De gebrukersnaam is an-emaak, mar je bin neet an-emeld.
-{{SITENAME}} gebruuk cookies um gebrukers an te melden.
-Je hemmen cookies uut-eschakeld.
-Schakel cookies weer in, en meld daornao an mit de nieje gegevens.',
-'nocookieslogin'             => "'t Anmelden is mislok umdat de webkieker gien cookies an hef staon. Prebeer 't accepteren van cookies an te zetten en daornao opniej an te melden.",
+{{SITENAME}} gebruuk scheumbestanen (cookies) um gebrukers an te melden.
+Je hemmen disse scheumbestanen uut-ezet.
+Zet ze an, en meld daornao an mit de nieje gegevens.',
+'nocookieslogin'             => "'t Anmelden is mislok umdat de webkieker gien scheumbestanen (cookies) an hef staon. Prebeer 't accepteren van scheumbestanen an te zetten en daornao opniej an te melden.",
 'noname'                     => 'Je mutten een gebrukersnaam opgeven.',
 'loginsuccesstitle'          => 'Succesvol an-emeld',
 'loginsuccess'               => 'Je bin noen an-emeld bie {{SITENAME}} as "$1".',
@@ -882,7 +886,7 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 Hieronder ku-j wat schrieven en naokieken of opslaon (meer infermasie vie-j op de [[{{MediaWiki:Helppage}}|hulppagina]])
 A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
 'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee nog gien gebrukersnaam hef, of 't neet gebruuk. We gebruken daorumme 't IP-adres um hum of heur te herkennen, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:UserLogin/signup|een gebrukersnaam anmaken]] of [[Special:UserLogin|anmelden]].''",
-'noarticletext'                    => 'Der steet op hejen gien tekse op disse pagina.
+'noarticletext'                    => 'Der steet noen gien tekse op disse pagina.
 Je kunnen [[Special:Search/{{PAGENAME}}|de titel opzeuken]] in aandere pagina\'s,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zeuken in de logboeken],
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
@@ -2816,7 +2820,7 @@ Meestentieds kump dit deur een uutgaonde verwiezing dee op de zwarte lieste stee
 'markedaspatrolled'                   => 'Emarkeerd as econtreleerd',
 'markedaspatrolledtext'               => 'De ekeuzen versie van [[:$1]] is emarkeerd as econtreleerd.',
 'rcpatroldisabled'                    => 'De controlemeugelijkheid op leste wiezigingen is uut-eschakeld.',
-'rcpatroldisabledtext'                => 'De meugelijkheid um de leste wiezigingen as econtreleerd te markeren is op hejen uut-eschakeld.',
+'rcpatroldisabledtext'                => 'De meugelijkheid um de leste wiezigingen as econtreleerd te markeren is noen uut-eschakeld.',
 'markedaspatrollederror'              => 'De bewarking kon neet of-evink wönnen.',
 'markedaspatrollederrortext'          => "Je mutten een wieziging sillecteren um 't as nao-ekeken te markeren.",
 'markedaspatrollederror-noautopatrol' => 'Je maggen joew eigen bewarkingen neet as econtreleerd markeren.',
@@ -3401,7 +3405,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Disse wiki hef een prebleem',
-'dberr-problems'    => 'Onze verontschuldigingen. Disse webstee hef op hejen wat technische preblemen.',
+'dberr-problems'    => "'t Spiet ons, mar disse webstee hef op 't mement wat technische preblemen.",
 'dberr-again'       => "Wach een paor menuten en prebeer 't daornao opniej.",
 'dberr-info'        => '(Kan gien verbiending maken mit de databankeserver: $1)',
 'dberr-usegoogle'   => 'Meschien ku-j ondertussen zeuken via Google.',

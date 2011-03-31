@@ -50,6 +50,7 @@
  * @author Wikifan
  * @author Ziko
  * @author לערי ריינהארט
+ * @author ✓
  */
 
 $capitalizeAllNouns = true;
@@ -946,11 +947,12 @@ Um die Seite anzulegen, trage deinen Text in die untenstehende Box ein (siehe di
 Bist du fälschlicherweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
-<span class="plainlinks">in den zugehörigen [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
+Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>,
+ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
+oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten]</span>.',
 'noarticletext-nopermission'       => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
-oder in den zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].</span>',
+Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
+oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ existiert nicht.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
@@ -1104,7 +1106,7 @@ Grund der Sperre: ''$2''",
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuche]] {{SITENAME}} nach passenden neuen Seiten.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(Bearbeitungskommentar entfernt)',
+'rev-deleted-comment'         => '(Zusammenfassung entfernt)',
 'rev-deleted-user'            => '(Benutzername entfernt)',
 'rev-deleted-event'           => '(Logbuchaktion entfernt)',
 'rev-deleted-user-contribs'   => '[Benutzername oder IP-Adresse entfernt – Bearbeitung aus Beiträgen versteckt]',
@@ -1403,7 +1405,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-textboxsize'             => 'Größe des Bearbeitungsfensters',
 'youremail'                     => 'E-Mail-Adresse:',
 'username'                      => 'Benutzername:',
-'uid'                           => 'Benutzer-ID:',
+'uid'                           => 'Benutzerkennung:',
 'prefs-memberingroups'          => 'Mitglied der {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}:',
 'prefs-memberingroups-type'     => '$2',
 'prefs-registration'            => 'Anmeldezeitpunkt:',
@@ -1688,7 +1690,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'empty-file'                  => 'Die übertragene Datei ist leer',
 'file-too-large'              => 'Die übertragene Datei ist zu groß',
 'filename-tooshort'           => 'Der Dateiname ist zu kurz',
-'filetype-banned'             => 'Dieser Dateityp ist gesperrt',
+'filetype-banned'             => 'Diese Dateiendung ist gesperrt.',
 'verification-error'          => 'Diese Datei hat die Dateiprüfung nicht bestanden.',
 'hookaborted'                 => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
 'illegal-filename'            => 'Der Dateiname ist nicht erlaubt',
@@ -2561,7 +2563,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'Diese Funktion ist deaktiviert.',
 'proxyblockreason'                => 'Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.',
-'proxyblocksuccess'               => 'Fertig.',
+'proxyblocksuccess'               => 'Erledigt.',
 'sorbsreason'                     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
 'sorbs_create_account_reason'     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
 'cant-block-while-blocked'        => 'Du kannst keine anderen Benutzer sperren, während du selbst gesperrt bist.',
@@ -2926,11 +2928,11 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG darstellen',
-'mw_math_simple' => 'Einfaches TeX als HTML darstellen, sonst PNG',
-'mw_math_html'   => 'Wenn möglich als HTML darstellen, sonst PNG',
+'mw_math_simple' => 'Einfaches TeX als HTML darstellen, ansonsten als PNG',
+'mw_math_html'   => 'Sofern möglich als HTML darstellen, ansonsten als PNG',
 'mw_math_source' => 'Als TeX belassen (für Textbrowser)',
-'mw_math_modern' => 'Empfehlenswert für moderne Browser',
-'mw_math_mathml' => 'MathML (experimentell)',
+'mw_math_modern' => 'Für moderne Browser empfohlene Darstellungsmethode',
+'mw_math_mathml' => 'Sofern möglich als MathML darstellen (experimentell)',
 
 # Math errors
 'math_failure'          => 'Parser-Fehler',
@@ -3219,7 +3221,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 'exif-focalplaneresolutionunit-2' => 'Zoll',
 
-'exif-sensingmethod-1' => 'Undefiniert',
+'exif-sensingmethod-1' => 'Nicht angegeben',
 'exif-sensingmethod-2' => 'Ein-Chip-Farbsensor',
 'exif-sensingmethod-3' => 'Zwei-Chip-Farbsensor',
 'exif-sensingmethod-4' => 'Drei-Chip-Farbsensor',
