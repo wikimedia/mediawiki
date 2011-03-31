@@ -2629,9 +2629,9 @@ class User {
 	 * Add a user to the database, return the user object
 	 *
 	 * @param $name String Username to add
-	 * @param $params Array of Strings Non-default parameters to save to the database:
-	 *   - password             The user's password. Password logins will be disabled if this is omitted.
-	 *   - newpassword          A temporary password mailed to the user
+	 * @param $params Array of Strings Non-default parameters to save to the database as user_* fields:
+	 *   - password             The user's password hash. Password logins will be disabled if this is omitted.
+	 *   - newpassword          Hash for a temporary password that has been mailed to the user
 	 *   - email                The user's email address
 	 *   - email_authenticated  The email authentication timestamp
 	 *   - real_name            The user's real name
