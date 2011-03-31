@@ -431,12 +431,12 @@ class UserrightsPage extends SpecialPage {
 		$grouplist = '';
 		$count = count( $list );
 		if( $count > 0 ) {
-			$grouplist = wfMsgHtml( 'userrights-groupsmember', $count);
+			$grouplist = wfMessage( 'userrights-groupsmember', $count)->parse();
 			$grouplist = '<p>' . $grouplist  . ' ' . $wgLang->listToText( $list ) . "</p>\n";
 		}
 		$count = count( $autolist );
 		if( $count > 0 ) {
-			$autogrouplistintro = wfMsgHtml( 'userrights-groupsmember-auto', $count);
+			$autogrouplistintro = wfMessage( 'userrights-groupsmember-auto', $count)->parse();
 			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $wgLang->listToText( $autolist ) . "</p>\n";
 		}
 		$wgOut->addHTML(
