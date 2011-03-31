@@ -190,7 +190,6 @@ abstract class DatabaseUpdater {
 	 * Do all the updates
 	 *
 	 * @param $what Array: what updates to perform
-	 * @param $purge Boolean: whether to clear the objectcache table after updates
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge' ) ) {
 		global $wgVersion;
