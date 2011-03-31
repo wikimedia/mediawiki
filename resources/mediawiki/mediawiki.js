@@ -226,6 +226,83 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	function User() {
 		this.options = new Map();
+
+		/* Public Methods */
+
+		/*
+		 * Generates a random user session ID (32 alpha-numeric characters).
+		 * 
+		 * This information would potentially be stored in a cookie to identify a user during a
+		 * session or series of sessions. It's uniqueness should not be depended on.
+		 * 
+		 * @return string random set of 32 alpha-numeric characters
+		 */
+		function generateId() {
+			var id = '';
+			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+			for ( var i = 0, r; i < 32; i++ ) {
+				r = Math.floor( Math.random() * seed.length );
+				id += seed.substring( r, r + 1 );
+			}
+			return id;
+		}
+
+		/*
+		 * Gets the current user's name.
+		 * 
+		 * @return mixed user name string or null if users is anonymous
+		 */
+		this.name = function() {
+			return mediaWiki.config.get( 'wgUserName' );
+		};
+
+		/*
+		 * Gets a random session ID automatically generated and kept in a cookie.
+		 * 
+		 * This ID is ephemeral for everyone, staying in their browser only until they close
+		 * their browser.
+		 * 
+		 * Do not use this method before the first call to mediaWiki.loader.go(), it depends on
+		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
+		 * won't be loaded until the first call to go().
+		 * 
+		 * @return string user name or random session ID
+		 */
+		this.sessionId = function () {
+			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
+			if ( typeof sessionId == 'undefined' || sessionId == null ) {
+				sessionId = generateId();
+				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
+			}
+			return sessionId;
+		};
+
+		/*
+		 * Gets the current user's name or a random ID automatically generated and kept in a cookie.
+		 * 
+		 * This ID is persistent for anonymous users, staying in their browser up to 1 year. The
+		 * expiration time is reset each time the ID is queried, so in most cases this ID will
+		 * persist until the browser's cookies are cleared or the user doesn't visit for 1 year.
+		 * 
+		 * Do not use this method before the first call to mediaWiki.loader.go(), it depends on
+		 * jquery.cookie, which is added to the first pay-load just after mediaWiki is defined, but
+		 * won't be loaded until the first call to go().
+		 * 
+		 * @return string user name or random session ID
+		 */
+		this.id = function() {
+			var name = that.name();
+			if ( name ) {
+				return name;
+			}
+			var id = $.cookie( 'mediaWiki.user.id' );
+			if ( typeof id == 'undefined' || id == null ) {
+				id = generateId();
+			}
+			// Set cookie if not set, or renew it if already set
+			$.cookie( 'mediaWiki.user.id', id, { 'expires': 365, 'path': '/' } );
+			return id;
+		};
 	}
 
 	/* Public Members */
@@ -1021,6 +1098,9 @@ if ( typeof startUp === 'function' ) {
 	startUp();
 	delete startUp;
 }
+
+// Add jQuery Cookie to initial payload (used in mediaWiki.user)
+mediaWiki.loader.load( 'jquery.cookie' );
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;

@@ -333,6 +333,10 @@ h1, h2 {
 	border-bottom: solid 1px #003366;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	overflow: hidden;
+}
+
 #preftoc {
 	width: 100%;
 	margin: 0 0 0 0;
@@ -487,8 +491,6 @@ div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
 	margin-bottom: .5em;
-	border-style: solid;
-	border-color: white;
 	width: auto;
 }
 div.thumbinner {
@@ -522,13 +524,12 @@ div.magnify a, div.magnify img {
 div.tright {
 	clear: right;
 	float: right;
-	border-width: .5em 0 .8em 1.4em;
+	margin: .5em 0 .8em 1.4em;
 }
 div.tleft {
 	float: left;
 	clear: left;
-	margin-right: .5em;
-	border-width: .5em 1.4em .8em 0;
+	margin: .5em 1.4em .8em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;

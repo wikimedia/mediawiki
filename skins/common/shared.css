@@ -9,6 +9,10 @@
 .mw-plusminus-neg { color: #8b0000; } /* dark red */
 .mw-plusminus-null { color: #aaa; } /* gray */
 
+/* Links to redirects appear italicized on [[Special:AllPages]],
+   and in category listings */
+.allpagesredirect, .redirect-in-category { font-style: italic; }
+
 /* Comment and username portions of RC entries */
 span.comment {
 	font-style: italic;
