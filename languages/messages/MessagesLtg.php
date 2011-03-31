@@ -460,6 +460,8 @@ n = nasvareigs lobuojums.',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Sasītuos puormejis',
+'recentchangeslinked-feed'    => 'Sasītuos puormejis',
+'recentchangeslinked-toolbox' => 'Sasītuos puormejis',
 'recentchangeslinked-title'   => 'Izmainis, kas saisteitys ar "$1"',
 'recentchangeslinked-summary' => "Ite ir naseņ izdareituos izmainis lopuos, iz kurom ir saitis nu paruodeituos lopys (voi paruodeitajā kategorejā īlyktuos lopys).
 Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''rasnys'''.",

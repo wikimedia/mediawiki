@@ -2267,8 +2267,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 
 # Block/unblock
 'autoblockid'                     => '#$1 awtomatisce blokować',
-'block'                           => 'Wužiwarja / IP-adresu blokować',
-'unblock'                         => 'Blokowanje wužiwarja / IP-adresy zběhnyć',
+'block'                           => 'Wužiwarja blokować',
+'unblock'                         => 'Blokowanje wužiwarja zběhnyć',
 'blockip'                         => 'Wužiwarja zablokować',
 'blockip-title'                   => 'Wužiwarja blokować',
 'blockip-legend'                  => 'Wužiwarja blokować',
@@ -2303,6 +2303,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blockipsuccesssub'               => 'Zablokowanje wuspěšne',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu zablokowany.
 <br />Hlej [[Special:IPBlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
+'ipb-blockingself'                => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-edit-dropdown'               => 'přičiny zablokowanjow wobdźěłać',
 'ipb-unblock-addr'                => 'zablokowanje wužiwarja „$1“ zběhnyć',
 'ipb-unblock'                     => 'zablokowanje wužiwarja abo IP-adresy zběhnyć',
@@ -2314,8 +2315,8 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'unblocked'                       => 'Blokowanje wužiwarja [[User:$1|$1]] bu zběhnjene',
 'unblocked-range'                 => 'Blokowanje za $1 je so zběhnyło',
 'unblocked-id'                    => 'Blokowanje ID $1 bu zběhnjene.',
-'blocklist'                       => 'Zablokowane IP-adresy a wužiwarske mjena',
-'ipblocklist'                     => 'Zablokowane IP-adresy a wužiwarske mjena',
+'blocklist'                       => 'Zablokowani wužiwarjo',
+'ipblocklist'                     => 'Zablokowani wužiwarjo',
 'ipblocklist-legend'              => 'Pytanje za zablokowanym wužiwarjom',
 'blocklist-userblocks'            => 'Kontowe blokowanja schować',
 'blocklist-tempblocks'            => 'Nachwilne blokowanja schować',
@@ -3146,11 +3147,12 @@ $1',
 'trackbackdeleteok' => 'Trackback bu wuspěšnje wušmórnjeny.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Kedźbu''': Tuta strona bu wušmórnjena, po tym zo sy započał ju wobdźěłać!",
-'confirmrecreate'     => "Wužiwar [[User:$1|$1]] ([[User talk:$1|diskusija]]) je stronu wušmórnył, po tym zo sy započał ju wobdźěłać. Přičina:
+'deletedwhileediting'      => "'''Kedźbu''': Tuta strona bu wušmórnjena, po tym zo sy započał ju wobdźěłać!",
+'confirmrecreate'          => "Wužiwar [[User:$1|$1]] ([[User talk:$1|diskusija]]) je stronu wušmórnył, po tym zo sy započał ju wobdźěłać. Přičina:
 : ''$2''
 Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
-'recreate'            => 'Znowa wutworić',
+'confirmrecreate-noreason' => 'Wužiwar [[User:$1|$1]] ([[User talk:$1|diskusija]]) je tutu stronu zhašał, po tym zo sće wobdźěłanje započał. Prošu wobkruć, zo woprawdźe chceš tutu stronu znowa wutworić.',
+'recreate'                 => 'Znowa wutworić',
 
 # action=purge
 'confirm_purge_button' => 'W porjadku',

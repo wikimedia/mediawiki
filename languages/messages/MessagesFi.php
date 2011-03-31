@@ -1690,7 +1690,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadvirus'                 => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
 'uploadjava'                  => 'Tämä tiedosto on ZIP-tiedosto, joka sisältää Java .class-tiedoston.
-Java-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat sisältää tietoturvariskejä.',
+Java-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat aiheuttaa tietoturvariskejä.',
 'upload-source'               => 'Lähdetiedosto',
 'sourcefilename'              => 'Lähdenimi',
 'sourceurl'                   => 'URL-lähde',

@@ -2434,6 +2434,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
 Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
+'ipb-blockingself'                => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',
 'ipb-unblock-addr'                => 'Deblokiraj $1',
 'ipb-unblock'                     => 'Odblokirajte uporabniško ime ali IP-naslov',
@@ -3310,11 +3311,12 @@ $1',
 'trackbackdeleteok' => 'Sledilnik je uspešno izbrisan.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Opozorilo''': Med vašim urejanjem je bila stran izbrisana!",
-'confirmrecreate'     => "Medtem ko ste stran urejali, jo je uporabnik [[User:$1|$1]] ([[User talk:$1|pogovor]]) izbrisal z razlogom:
+'deletedwhileediting'      => "'''Opozorilo''': Med vašim urejanjem je bila stran izbrisana!",
+'confirmrecreate'          => "Medtem ko ste stran urejali, jo je uporabnik [[User:$1|$1]] ([[User talk:$1|pogovor]]) izbrisal z razlogom:
 :''$2''
 Prosimo, potrdite, da jo resnično želite znova ustvariti.",
-'recreate'            => 'Ponovno ustvari',
+'confirmrecreate-noreason' => 'Uporabnik [[User:$1|$1]] ([[User talk:$1|pogovor]]) je izbrisal to stran po začetku vašega urejanja. Potrdite, da jo resnično želite znova ustvariti.',
+'recreate'                 => 'Ponovno ustvari',
 
 'unit-pixel' => ' točk',
 

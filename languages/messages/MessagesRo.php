@@ -496,7 +496,7 @@ pe titlul secțiunii (JavaScript)',
 'create-this-page'  => 'Creați această pagină',
 'delete'            => 'Ștergere',
 'deletethispage'    => 'Șterge pagina',
-'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei editări|a $1 editări}}',
+'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei modificări|a $1 modificări}}',
 'viewdeleted_short' => 'Vedeți {{PLURAL:$1|o modificare ștearsă|$1 (de) modificări șterse}}',
 'protect'           => 'Protejare',
 'protect_change'    => 'schimbă protecția',
@@ -899,12 +899,13 @@ Parola pentru acest nou cont poate fi schimbată după autentificare din ''[[Spe
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulți utilizatori.
 Dacă sunteți un astfel de utilizator și credeți că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:UserLogin/signup|vă creați un cont]] sau să [[Special:UserLogin|vă autentificați]] pentru a evita confuzii cu alți utilizatori anonimi în viitor.''",
-'noarticletext'                    => 'În acest moment nu este niciun text în această pagină.
+'noarticletext'                    => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
-'noarticletext-nopermission'       => 'Nu este niciun text în această pagină.
-Puteți [[Special:Search/{{PAGENAME}}|căuta titlul paginii]] în alte pagini,
-sau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} să căutați în jurnale]</span>.',
+puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale] 
+sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
+'noarticletext-nopermission'       => 'Actualmente, această pagină este lipsită de conținut.
+Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
+sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificați dacă doriți să creați/modificați această pagină.',
 'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
@@ -2081,7 +2082,7 @@ Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sa
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Următor',
 'allpagessubmit'    => 'Trimite',
-'allpagesprefix'    => 'Afișează paginile cu prefix:',
+'allpagesprefix'    => 'Se afișează paginile cu prefixul:',
 'allpagesbadtitle'  => 'Titlul paginii este nevalid sau conține un prefix inter-wiki. Este posibil să conțină unul sau mai multe caractere care nu pot fi folosite în titluri.',
 'allpages-bad-ns'   => '{{SITENAME}} nu are spațiul de nume „$1”.',
 
@@ -2508,6 +2509,7 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'blockipsuccesssub'               => 'Utilizatorul a fost blocat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
 Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
+'ipb-blockingself'                => 'Sunteți pe cale să vă autoblocați! Sunteți sigur că doriți să continuați?',
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
 'ipb-unblock-addr'                => 'Deblochează utilizatorul $1',
 'ipb-unblock'                     => 'Deblocați un nume de utilizator sau o adresă IP',
@@ -3396,11 +3398,12 @@ $1',
 'trackbackdeleteok' => 'Urmăritorul a fost șters cu succes.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Atenție''': Această pagină a fost ștearsă după ce ați început s-o modificați!",
-'confirmrecreate'     => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuție]]) a șters acest articol după ce ați început să contribuiți la el din motivul:
+'deletedwhileediting'      => "'''Atenție''': Această pagină a fost ștearsă după ce ați început s-o modificați!",
+'confirmrecreate'          => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuție]]) a șters acest articol după ce ați început să contribuiți la el din motivul:
 : ''$2''
 Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest articol.",
-'recreate'            => 'Recreează',
+'confirmrecreate-noreason' => 'Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuție]]) a șters această pagină după ce dumneavoastră ați început să o modificați. Vă rugăm să confirmați faptul că într-adevăr doriți să recreați această pagină.',
+'recreate'                 => 'Recreează',
 
 # action=purge
 'confirm_purge_button' => 'OK',
