@@ -502,6 +502,8 @@ files are used instead.
   are also set.
 * (bug 26223) Concurrently moving an article to different titles leaks a 
   redirect revision with no page.
+* (bug 15641) Fixed permissions checks in Special:Import which allowed users without
+  the 'import' permission to import pages from configured import sources.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
