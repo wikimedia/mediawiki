@@ -71,9 +71,16 @@ class SpecialImport extends SpecialPage {
 		# FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
-			$this->getTitle()->getUserPermissionsErrors( 'import', $wgUser, true, array( 'ns-specialprotected' ) ),
-			$this->getTitle()->getUserPermissionsErrors( 'importupload', $wgUser, true, array( 'ns-specialprotected' ) )
+			$this->getTitle()->getUserPermissionsErrors(
+				'import', $wgUser, true,
+				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
+			),
+			$this->getTitle()->getUserPermissionsErrors(
+				'importupload', $wgUser, true,
+				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
+			)
 		);
+
 		if( $errors ){
 			$wgOut->showPermissionsErrorPage( $errors );
 			return;
@@ -107,6 +114,9 @@ class SpecialImport extends SpecialPage {
 				return $wgOut->permissionRequired( 'importupload' );
 			}
 		} elseif ( $sourceName == "interwiki" ) {
+			if( !$wgUser->isAllowed( 'import' ) ){
+				return $wgOut->permissionRequired( 'import' );
+			}
 			$this->interwiki = $wgRequest->getVal( 'interwiki' );
 			if ( !in_array( $this->interwiki, $wgImportSources ) ) {
 				$source = Status::newFatal( "import-invalid-interwiki" );
