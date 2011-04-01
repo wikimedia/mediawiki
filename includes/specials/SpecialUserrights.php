@@ -537,7 +537,7 @@ class UserrightsPage extends SpecialPage {
 		foreach( $columns as $name => $column ) {
 			if( $column === array() )
 				continue;
-			$ret .= Xml::rawElement( 'th', null, wfMessage( 'userrights-' . $name . '-col', count( $column ) )->parse() );
+			$ret .= Xml::element( 'th', null, wfMessage( 'userrights-' . $name . '-col', count( $column ) )->text() );
 		}
 		$ret.= "</tr>\n<tr>\n";
 		foreach( $columns as $column ) {
