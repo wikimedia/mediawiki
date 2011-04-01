@@ -2385,7 +2385,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'ipusubmit'                       => 'Poista esto',
 'unblocked'                       => 'Käyttäjän [[User:$1|$1]] esto on poistettu',
 'unblocked-id'                    => 'Esto $1 on poistettu',
-'ipblocklist'                     => 'Estetyt IP-osoitteet ja käyttäjätunnukset',
+'ipblocklist'                     => 'Estetyt käyttäjät',
 'ipblocklist-legend'              => 'Haku',
 'ipblocklist-username'            => 'Käyttäjätunnus tai IP-osoite',
 'ipblocklist-sh-userblocks'       => '$1 käyttäjätunnusten estot',
@@ -2993,6 +2993,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-gpsareainformation'          => 'GPS-alueen nimi',
 'exif-gpsdatestamp'                => 'GPS-päivämäärä',
 'exif-gpsdifferential'             => 'GPS-differentiaalikorjaus',
+'exif-objectname'                  => 'Lyhyt otsikko',
 
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',

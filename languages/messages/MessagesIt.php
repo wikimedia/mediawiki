@@ -2356,7 +2356,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipusubmit'                       => 'Rimuovi questo blocco',
 'unblocked'                       => "L'utente [[User:$1|$1]] è stato sbloccato",
 'unblocked-id'                    => 'Il blocco $1 è stato rimosso',
-'ipblocklist'                     => 'Utenti e indirizzi IP bloccati',
+'ipblocklist'                     => 'Utenti bloccati',
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'ipblocklist-username'            => 'Nome utente o indirizzo IP:',
 'ipblocklist-sh-userblocks'       => '$1 i blocchi degli utenti registrati',
@@ -2963,6 +2963,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsareainformation'          => 'Nome della zona GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
+'exif-objectname'                  => 'Titolo breve',
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',

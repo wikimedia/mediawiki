@@ -3318,6 +3318,7 @@ $1',
 'exif-gpsareainformation'          => 'اسم مساحة GPS',
 'exif-gpsdatestamp'                => 'تاريخ GPS',
 'exif-gpsdifferential'             => 'تصحيح GPS التفاضلي',
+'exif-objectname'                  => 'عنوان قصير',
 
 # EXIF attributes
 'exif-compression-1' => 'غير مضغوط',

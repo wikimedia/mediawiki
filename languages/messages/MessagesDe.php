@@ -2506,7 +2506,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipusubmit'                       => 'Freigeben',
 'unblocked'                       => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-id'                    => 'Sperr-ID $1 wurde freigegeben',
-'ipblocklist'                     => 'Gesperrte IP-Adressen und Benutzernamen',
+'ipblocklist'                     => 'Gesperrte Benutzer',
 'ipblocklist-legend'              => 'Suche nach einem gesperrten Benutzer',
 'ipblocklist-username'            => 'Benutzername oder IP-Adresse:',
 'ipblocklist-sh-userblocks'       => 'Benutzersperren $1',
@@ -3148,6 +3148,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsareainformation'          => 'Name des GPS-Gebietes',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
+'exif-objectname'                  => 'Kurztitel',
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',

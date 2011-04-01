@@ -2713,6 +2713,7 @@ $1',
 'exif-gpsareainformation'       => 'נאמען פון GPS געגענט',
 'exif-gpsdatestamp'             => 'דאטום GPS',
 'exif-gpsdifferential'          => 'דיפראנציאלע קאקרעקציע GPS',
+'exif-objectname'               => 'קורצער טיטל',
 
 # EXIF attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',

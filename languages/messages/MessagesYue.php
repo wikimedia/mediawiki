@@ -2917,6 +2917,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 地區名',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
+'exif-objectname'                  => '短標題',
 
 # EXIF attributes
 'exif-compression-1' => '未壓過',

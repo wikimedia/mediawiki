@@ -2828,6 +2828,7 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-gpsareainformation'          => 'Name vum GPS-Biet',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
+'exif-objectname'                  => 'Churztitel',
 
 # EXIF attributes
 'exif-compression-1' => 'Uukomprimiert',

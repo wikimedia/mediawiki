@@ -2906,6 +2906,7 @@ $1',
 'exif-gpsareainformation'          => 'ชื่อของพื้นที่จีพีเอส',
 'exif-gpsdatestamp'                => 'วันที่จีพีเอส',
 'exif-gpsdifferential'             => 'การปรับแค่ข้อแตกต่างจีพีเอส',
+'exif-objectname'                  => 'ชื่อเรื่องสั้น',
 
 # EXIF attributes
 'exif-compression-1' => 'ไม่ได้บีบอัด',

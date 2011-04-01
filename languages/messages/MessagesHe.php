@@ -3154,6 +3154,7 @@ $1',
 'exif-gpsareainformation'          => 'שם אזור ה־GPS',
 'exif-gpsdatestamp'                => 'תאריך ה־GPS',
 'exif-gpsdifferential'             => 'תיקון דיפרנציאלי של ה־GPS',
+'exif-objectname'                  => 'כותרת קצרה',
 
 # EXIF attributes
 'exif-compression-1' => 'לא דחוס',

@@ -2532,7 +2532,7 @@ $1',
 'ipusubmit'                       => 'Избриши го ова блокирање',
 'unblocked'                       => '[[User:$1|$1]] беше деблокиран',
 'unblocked-id'                    => 'Блокирањето $1 беше отстрането',
-'ipblocklist'                     => 'Блокирани IP-адреси и кориснички имиња',
+'ipblocklist'                     => 'Блокирани корисници',
 'ipblocklist-legend'              => 'Најди блокиран корисник',
 'ipblocklist-username'            => 'Корисничко име или IP-адреса:',
 'ipblocklist-sh-userblocks'       => '$1 блокирани кориснички сметки',
@@ -3239,6 +3239,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'Назив на GPS-подрачје',
 'exif-gpsdatestamp'                => 'GPS-датум',
 'exif-gpsdifferential'             => 'Диференцијална исправка на GPS',
+'exif-objectname'                  => 'Краток наслов',
 
 # EXIF attributes
 'exif-compression-1' => 'Ненабиена',

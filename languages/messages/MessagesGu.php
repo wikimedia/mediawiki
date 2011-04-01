@@ -2970,6 +2970,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-gpsareainformation'          => 'GPS ક્ષેત્રનું નામ',
 'exif-gpsdatestamp'                => 'GPS તારીખ',
 'exif-gpsdifferential'             => 'GPS ફેરફારનો સુધારો',
+'exif-objectname'                  => 'લઘુ શીર્ષક',
 
 # EXIF attributes
 'exif-compression-1' => 'અસંકોચિત',

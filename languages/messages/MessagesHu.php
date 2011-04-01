@@ -737,6 +737,7 @@ Ellenőrizd, hogy helyesen írtad-e be.',
 'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld meg újra.',
 'passwordtooshort'           => 'A jelszónak legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
 'password-name-match'        => 'A jelszavadnak különböznie kell a szerkesztőnevedtől.',
+'password-login-forbidden'   => 'Ezen felhasználónév és jelszó használata tiltott.',
 'mailmypassword'             => 'Új jelszó küldése e-mailben',
 'passwordremindertitle'      => 'Ideiglenes jelszó a(z) {{SITENAME}} wikire',
 'passwordremindertext'       => 'Valaki (vélhetően te, a(z) $1 IP-címről) új jelszót kért a(z)
@@ -2459,7 +2460,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipusubmit'                       => 'Blokk eltávolítása',
 'unblocked'                       => '[[User:$1|$1]] blokkolása feloldva',
 'unblocked-id'                    => '$1 blokkolása feloldásra került',
-'ipblocklist'                     => 'Blokkolt IP-címek és felhasználónevek listája',
+'ipblocklist'                     => 'Blokkolt felhasználók',
 'ipblocklist-legend'              => 'Blokkolt felhasználó keresése',
 'ipblocklist-username'            => 'Felhasználónév vagy IP-cím:',
 'ipblocklist-sh-userblocks'       => 'felhasználói fiókok blokkjainak $1',
@@ -3090,6 +3091,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsareainformation'          => 'GPS terület neve',
 'exif-gpsdatestamp'                => 'GPS dátum',
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
+'exif-objectname'                  => 'Rövid cím',
 
 # EXIF attributes
 'exif-compression-1' => 'Nem tömörített',
@@ -3293,6 +3295,21 @@ e-mail cím megerősíthetőségének visszavonásához:
 $5
 
 A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
+'confirmemail_body_set'     => 'Valaki, valószínűleg te, ezt az email címet adta meg
+„$2” nevű {{SITENAME}}-fiókjához a következő IP-címről: $1.
+
+Ha meg szeretnéd erősíteni, hogy a fiók valóban hozzád tartozik,
+így aktiválva a(z) {{SITENAME}} e-mailes funkcióit, nyisd meg az
+alábbi linket a böngésződben:
+
+$3
+
+Ha a fiók *nem* hozzád tartozik, kövesd az alábbi linket a
+megerősítés visszavonásához:
+
+$5
+
+Ez a megerősítő e-mail $4-ig érvényes.',
 'confirmemail_invalidated'  => 'E-mail-cím megerősíthetősége visszavonva',
 'invalidateemail'           => 'E-mail-cím megerősíthetőségének visszavonása',
 

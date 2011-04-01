@@ -3088,6 +3088,7 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-gpsareainformation'          => 'GPS alan adı',
 'exif-gpsdatestamp'                => 'GPS zamanı',
 'exif-gpsdifferential'             => 'GPS differential correction',
+'exif-objectname'                  => 'Kısa başlık',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',

@@ -2380,7 +2380,7 @@ Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blok
 'ipusubmit'                       => 'Odstrani blokado',
 'unblocked'                       => '[[User:$1|$1]] je bil odblokiran',
 'unblocked-id'                    => 'Blokada $1 je odstranjena',
-'ipblocklist'                     => 'Seznam blokiranih IP-naslovov in uporabniških imen',
+'ipblocklist'                     => 'Blokirani uporabniki',
 'ipblocklist-legend'              => 'Najdi blokiranega uporabnika',
 'ipblocklist-username'            => 'Uporabniško ime ali IP-naslov:',
 'ipblocklist-sh-userblocks'       => '$1 blokade računov',
@@ -2998,6 +2998,7 @@ Druga bodo po privzetem skrita.
 'exif-gpsareainformation'          => 'Ime GPS-območja',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Diferencialni popravek GPS',
+'exif-objectname'                  => 'Kratek naslov',
 
 # EXIF attributes
 'exif-compression-1' => 'Nestisnjeno',

@@ -1737,7 +1737,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipusubmit'                    => 'Hanc obstructionem removere',
 'unblocked'                    => '[[User:$1|$1]] deobstructus est',
 'unblocked-id'                 => 'Obstructio numeri $1 abrogata est',
-'ipblocklist'                  => 'Usores locique IP obstructi',
+'ipblocklist'                  => 'Usores obstructi',
 'ipblocklist-legend'           => 'Usorem obstructum quaerere',
 'ipblocklist-username'         => 'Nomen usoris vel locus IP:',
 'ipblocklist-sh-userblocks'    => '$1 obstructiones rationum',

@@ -2318,7 +2318,7 @@ Tingnan ang [[Special:IPBlockList|talaan ng mga hinadlangang IP]] upang makita a
 'ipusubmit'                       => 'Tanggalin ang paghadlang na ito',
 'unblocked'                       => 'Natanggal sa pagkaharang ang tagagamit na [[User:$1|$1]]',
 'unblocked-id'                    => 'Tinanggal na ang pagharang/paghadlang na $1',
-'ipblocklist'                     => 'Tala ng mga hinarang na mga IP address at bansag',
+'ipblocklist'                     => 'Hinahadlangang mga tagagamit',
 'ipblocklist-legend'              => 'Hanapin ang isang hinarang na tagagamit',
 'ipblocklist-username'            => 'Bansag o IP address:',
 'ipblocklist-sh-userblocks'       => '$1 mga paghadlang o pagharang sa kuwenta/akawnt',
@@ -2962,6 +2962,7 @@ Nakatakdang itago ang iba pa.
 'exif-gpsareainformation'          => 'Pangalan ng lugar ng GPS',
 'exif-gpsdatestamp'                => 'Petsa ng GPS',
 'exif-gpsdifferential'             => 'Pagtatama sa pakakaiba ng GPS',
+'exif-objectname'                  => 'Maiksing pamagat',
 
 # EXIF attributes
 'exif-compression-1' => 'Walang kompresyon',

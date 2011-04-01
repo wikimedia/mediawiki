@@ -2876,6 +2876,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsareainformation'          => 'Mě wobcerka GPS',
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
+'exif-objectname'                  => 'Krotki titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',

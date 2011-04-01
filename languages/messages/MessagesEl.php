@@ -3120,6 +3120,7 @@ $1',
 'exif-gpsareainformation'          => 'Όνομα περιοχής GPS',
 'exif-gpsdatestamp'                => 'Ημερομηνία GPS',
 'exif-gpsdifferential'             => 'Διαφορική διόρθωση GPS',
+'exif-objectname'                  => 'Συνοπτικός τίτλος',
 
 # EXIF attributes
 'exif-compression-1' => 'Έχει αποσυμπιεστεί.',

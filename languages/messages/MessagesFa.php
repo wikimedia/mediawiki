@@ -3215,6 +3215,7 @@ $1',
 'exif-gpsareainformation'          => 'نام ناحیهٔ جی‌پی‌اس',
 'exif-gpsdatestamp'                => 'تاریخ جی‌پی‌اس',
 'exif-gpsdifferential'             => 'تصحیح جزئی جی‌پی‌اس',
+'exif-objectname'                  => 'عنوان کوتاه',
 
 # EXIF attributes
 'exif-compression-1' => 'غیرفشرده',

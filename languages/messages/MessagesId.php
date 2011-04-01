@@ -3055,6 +3055,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpsareainformation'          => 'Nama wilayah GPS',
 'exif-gpsdatestamp'                => 'Tanggal GPS',
 'exif-gpsdifferential'             => 'Koreksi diferensial GPS',
+'exif-objectname'                  => 'Judul singkat',
 
 # EXIF attributes
 'exif-compression-1' => 'Tak terkompresi',

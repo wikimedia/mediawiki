@@ -2365,7 +2365,7 @@ a un adresse IP blocate previemente.',
 'ipusubmit'                       => 'Cancellar iste blocada',
 'unblocked'                       => '[[User:$1|$1]] ha essite disblocate',
 'unblocked-id'                    => 'Le blocada $1 ha essite eliminate',
-'ipblocklist'                     => 'Adresses IP e nomines de usator blocate',
+'ipblocklist'                     => 'Usatores blocate',
 'ipblocklist-legend'              => 'Cercar un usator blocate',
 'ipblocklist-username'            => 'Nomine de usator o adresse IP:',
 'ipblocklist-sh-userblocks'       => '$1 blocadas de contos',
@@ -3016,6 +3016,7 @@ Le alteres essera initialmente celate.
 'exif-gpsareainformation'          => 'Nomine de area GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correction differential GPS',
+'exif-objectname'                  => 'Titulo curte',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimite',

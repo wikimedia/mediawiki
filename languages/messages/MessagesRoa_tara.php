@@ -2869,6 +2869,7 @@ Otre avènene scunnute pe defolt.
 'exif-gpsareainformation'          => "Nome de l'area d'u GPS",
 'exif-gpsdatestamp'                => "Date d'u GPS",
 'exif-gpsdifferential'             => "Correzzione differenziale d'u GPS",
+'exif-objectname'                  => 'Titele curte',
 
 # EXIF attributes
 'exif-compression-1' => 'No combresse',

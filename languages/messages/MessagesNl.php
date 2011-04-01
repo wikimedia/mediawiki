@@ -2575,7 +2575,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'ipusubmit'                       => 'Blokkade opheffen',
 'unblocked'                       => 'Blokkade van [[User:$1|$1]] is opgeheven',
 'unblocked-id'                    => 'Blokkade $1 is opgeheven',
-'ipblocklist'                     => 'Geblokkeerde IP-adressen en gebruikers',
+'ipblocklist'                     => 'Geblokkeerde gebruikers',
 'ipblocklist-legend'              => 'Een geblokkeerde gebruiker zoeken',
 'ipblocklist-username'            => 'Gebruikersnaam of IP-adres:',
 'ipblocklist-sh-userblocks'       => 'gebruikersblokkades $1',
@@ -3235,6 +3235,7 @@ Andere velden worden verborgen.
 'exif-gpsareainformation'          => 'Naam GPS-gebied',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differentiele GPS-correctie',
+'exif-objectname'                  => 'Korte naam',
 
 # EXIF attributes
 'exif-compression-1' => 'Ongecomprimeerd',

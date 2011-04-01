@@ -2250,7 +2250,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'ipusubmit'                       => 'Tute blokěrowanje skónčić',
 'unblocked'                       => 'Blokowanje wužiwarja [[User:$1|$1]] bu zběhnjene',
 'unblocked-id'                    => 'Blokowanje ID $1 bu zběhnjene.',
-'ipblocklist'                     => 'Zablokowane IP-adresy a wužiwarske mjena',
+'ipblocklist'                     => 'Zablokowani wužiwarjo',
 'ipblocklist-legend'              => 'Pytanje za zablokowanym wužiwarjom',
 'ipblocklist-username'            => 'Wužiwarske mjeno abo IP-adresa:',
 'ipblocklist-sh-userblocks'       => '$1 kontowe zablokowanja',
@@ -2849,6 +2849,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsareainformation'          => 'Mjeno wobwoda GPS',
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
+'exif-objectname'                  => 'Krótki titul',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',

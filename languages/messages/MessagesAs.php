@@ -1723,6 +1723,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'exif-datetime'         => 'ফাইল সলনিৰ তাৰিখ আৰু সময়',
 'exif-imagedescription' => 'চিত্ৰ শিৰোনামা',
 'exif-artist'           => 'স্ৰষ্টা',
+'exif-objectname'       => 'চমু শীৰ্ষক',
 
 'exif-orientation-1' => 'সাধাৰণ',
 

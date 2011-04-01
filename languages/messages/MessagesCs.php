@@ -2473,7 +2473,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipusubmit'                       => 'Odblokovat',
 'unblocked'                       => '{{GENDER:$1|||Uživatel}} [[User:$1|$1]] {{GENDER:$1|byl odblokován|byla odblokována|byl odblokován}}',
 'unblocked-id'                    => 'Blok $1 byl zrušen',
-'ipblocklist'                     => 'Blokované IP adresy a uživatelská jména',
+'ipblocklist'                     => 'Zablokovaní uživatelé',
 'ipblocklist-legend'              => 'Hledat zablokovaného uživatele',
 'ipblocklist-username'            => 'Jméno nebo IP adresa:',
 'ipblocklist-sh-userblocks'       => '$1 zablokované účty',
@@ -3096,6 +3096,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpsareainformation'          => 'Označení GPS oblasti',
 'exif-gpsdatestamp'                => 'Datum podle GPS',
 'exif-gpsdifferential'             => 'Diferenciální korekce GPS',
+'exif-objectname'                  => 'Krátký název',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekomprimovaný',

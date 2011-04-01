@@ -3003,6 +3003,7 @@ Andre vil skjules som standard.
 'exif-gpsareainformation'          => 'Navn på GPS-område',
 'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'Differentiell GPS-korreksjon',
+'exif-objectname'                  => 'Kort tittel',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
@@ -3420,7 +3421,7 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'tag-filter'              => 'Filter for [[Special:Tags|tagger]]:',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Tagger',
-'tags-intro'              => 'Denne siden lister opp taggene programvaren kan merke endrineg med, og hva de betyr.',
+'tags-intro'              => 'Denne siden lister opp taggene programvaren kan merke en endring med, og hva de betyr.',
 'tags-tag'                => 'Taggnavn',
 'tags-display-header'     => 'Utseende på endringslister',
 'tags-description-header' => 'Fullstendig betydning',

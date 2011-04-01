@@ -2309,7 +2309,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipusubmit'                       => 'Des Spär ophiewen',
 'unblocked'                       => "D'Spär fir de [[User:$1|Benotzer $1]] gouf opgehuewen",
 'unblocked-id'                    => "D'Spär $1 gouf opgehuewen",
-'ipblocklist'                     => 'Lëscht vu gespaarten IP-Adressen a Benotzernimm',
+'ipblocklist'                     => 'Gespaarte Benotzer',
 'ipblocklist-legend'              => 'No engem gespaarte Benotzer sichen',
 'ipblocklist-username'            => 'Benotzernumm oder IP-Adress:',
 'ipblocklist-sh-userblocks'       => 'Benotzerspäre $1',
@@ -2932,6 +2932,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
+'exif-objectname'                  => 'Kuerzen Titel',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',

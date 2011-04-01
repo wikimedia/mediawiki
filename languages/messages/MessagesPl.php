@@ -2441,7 +2441,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipusubmit'                       => 'Odblokuj',
 'unblocked'                       => '[[User:$1|$1]] {{GENDER:$1|został odblokowany|została odblokowana|został odblokowany}}.',
 'unblocked-id'                    => 'Blokada $1 została zdjęta',
-'ipblocklist'                     => 'Lista zablokowanych adresów IP i użytkowników',
+'ipblocklist'                     => 'Zablokowani użytkownicy',
 'ipblocklist-legend'              => 'Znajdź zablokowanego użytkownika',
 'ipblocklist-username'            => 'Nazwa użytkownika lub adres IP',
 'ipblocklist-sh-userblocks'       => '$1 blokady kont',
@@ -3093,6 +3093,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsareainformation'          => 'Nazwa przestrzeni GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Korekcja różnicy GPS',
+'exif-objectname'                  => 'Krótki tytuł',
 
 # EXIF attributes
 'exif-compression-1' => 'nieskompresowany',

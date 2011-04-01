@@ -3112,6 +3112,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsareainformation'          => 'Tên khu vực theo GPS',
 'exif-gpsdatestamp'                => 'Ngày theo GPS',
 'exif-gpsdifferential'             => 'Sửa vi sai GPS',
+'exif-objectname'                  => 'Tên ngắn',
 
 # EXIF attributes
 'exif-compression-1' => 'Không nén',

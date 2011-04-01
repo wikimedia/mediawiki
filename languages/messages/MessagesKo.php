@@ -2430,7 +2430,7 @@ $1',
 'ipusubmit'                       => '차단 해제',
 'unblocked'                       => '[[User:$1|$1]] 사용자 차단 해제됨',
 'unblocked-id'                    => '차단 $1 해제됨',
-'ipblocklist'                     => '차단 중인 IP 주소와 계정 이름',
+'ipblocklist'                     => '현재 차단된 IP 주소/사용자 이름',
 'ipblocklist-legend'              => '차단 중인 사용자 찾기',
 'ipblocklist-username'            => '계정 이름/IP 주소:',
 'ipblocklist-sh-userblocks'       => '계정 차단을 $1',
@@ -3064,6 +3064,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 구역 이름',
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',
+'exif-objectname'                  => '짧은 제목',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3291,9 +3292,9 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''주의''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.",
-'confirmrecreate'     => '[[User:$1|$1]]([[User talk:$1|토론]]) 사용자가 당신의 편집 도중 문서를 지웠습니다. 삭제 이유는 다음과 같습니다:
+'confirmrecreate'     => '[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신의 편집 도중 문서를 삭제했습니다. 삭제 이유는 다음과 같습니다:
 : $2
-문서를 다시 되살릴 필요가 있는지를 확인해주세요.',
+문서를 다시 생성해야 하는지 확인해주세요.',
 'recreate'            => '새로 만들기',
 
 # action=purge

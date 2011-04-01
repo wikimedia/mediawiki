@@ -2328,7 +2328,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipusubmit'                       => 'Desbloca aquesta adreça',
 'unblocked'                       => "S'ha desbloquejat l'{{GENDER:$1|usuari|usuària}} [[User:$1|$1]]",
 'unblocked-id'                    => "S'ha eliminat el bloqueig de $1",
-'ipblocklist'                     => "Llista d'adreces IP i noms d'usuaris blocats",
+'ipblocklist'                     => 'Usuaris blocats',
 'ipblocklist-legend'              => 'Cerca un usuari blocat',
 'ipblocklist-username'            => "Nom d'usuari o adreça IP:",
 'ipblocklist-sh-userblocks'       => '$1 bloquejos de comptes',
@@ -2944,6 +2944,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsareainformation'          => "Nom de l'àrea GPS",
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correcció diferencial GPS',
+'exif-objectname'                  => 'Títol abreujat',
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',

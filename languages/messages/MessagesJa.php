@@ -3235,6 +3235,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPSエリア名',
 'exif-gpsdatestamp'                => 'GPS測位日時',
 'exif-gpsdifferential'             => 'ディファレンシャル補正',
+'exif-objectname'                  => '短いタイトル',
 
 # EXIF attributes
 'exif-compression-1' => '非圧縮',

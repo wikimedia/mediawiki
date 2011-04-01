@@ -2835,6 +2835,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS оройуонун аата',
 'exif-gpsdatestamp'                => 'GPS ыйа-күнэ',
 'exif-gpsdifferential'             => 'GPS көннөрүүтүн дифференциала',
+'exif-objectname'                  => 'Кылгас аата',
 
 # EXIF attributes
 'exif-compression-1' => 'Хам тутуллубатах',

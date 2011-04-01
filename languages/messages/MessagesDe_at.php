@@ -10,6 +10,7 @@
  * @author Laximilian scoken
  * @author Mucalexx
  * @author Revolus
+ * @author Wdwd
  * @author ✓
  */
 
@@ -18,7 +19,7 @@ $fallback = 'de';
 $messages = array(
 # Dates
 'january'      => 'Jänner',
-'february'     => 'Feber',
+'february'     => 'Februar',
 'december'     => 'Dezember',
 'january-gen'  => 'Jänners',
 'february-gen' => 'Febers',

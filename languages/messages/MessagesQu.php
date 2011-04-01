@@ -2966,6 +2966,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpsareainformation'          => 'GPS suyu suti',
 'exif-gpsdatestamp'                => "GPS p'unchaw",
 'exif-gpsdifferential'             => 'GPS karuncha allinchay',
+'exif-objectname'                  => 'Uchuy suti',
 
 # EXIF attributes
 'exif-compression-1' => "Mana mat'isqa",

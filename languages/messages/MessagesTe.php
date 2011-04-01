@@ -2862,6 +2862,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS ప్రదేశం యొక్క పేరు',
 'exif-gpsdatestamp'                => 'GPS తేదీ',
 'exif-gpsdifferential'             => 'GPS తేడా సవరణ',
+'exif-objectname'                  => 'పొట్టి శీర్షిక',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',

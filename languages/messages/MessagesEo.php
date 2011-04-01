@@ -3064,6 +3064,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsareainformation'          => 'Nomo de GPS areo',
 'exif-gpsdatestamp'                => 'GPS dato',
 'exif-gpsdifferential'             => 'GPS diferenca korektado',
+'exif-objectname'                  => 'Mallonga titolo',
 
 # EXIF attributes
 'exif-compression-1' => 'Nedensigita',

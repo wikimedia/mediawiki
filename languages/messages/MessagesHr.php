@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anton008
  * @author Brest
  * @author Dalibor Bosits
  * @author Demicx
@@ -2426,7 +2427,7 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'ipusubmit'                       => 'Ukloni ovaj blok',
 'unblocked'                       => '[[User:$1|$1]] je deblokiran',
 'unblocked-id'                    => 'Blok $1 je uklonjen',
-'ipblocklist'                     => 'Popis blokiranih IP adresa i suradničkih računa',
+'ipblocklist'                     => 'Blokirani suradnici',
 'ipblocklist-legend'              => 'Pronađi blokiranog suradnika',
 'ipblocklist-username'            => 'Ime suradnika ili IP adresa:',
 'ipblocklist-sh-userblocks'       => '$1 blokirane račune',
@@ -3042,6 +3043,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-gpsareainformation'          => 'Ime GPS područja',
 'exif-gpsdatestamp'                => 'GPS datum',
 'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
+'exif-objectname'                  => 'Kratki naslov',
 
 # EXIF attributes
 'exif-compression-1' => 'Nesažeto',

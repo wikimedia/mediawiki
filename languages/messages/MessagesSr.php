@@ -18,7 +18,7 @@ $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзиј�
 
 $messages = array(
 # Vector skin
-'vector-view-viewsource' => 'Погледај код',
+'vector-view-viewsource' => 'Изворник',
 
 # Special:LinkSearch
 'linksearch'       => 'Претрага интернет веза',

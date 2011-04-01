@@ -2968,6 +2968,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS区域名称',
 'exif-gpsdatestamp'                => 'GPS日期',
 'exif-gpsdifferential'             => 'GPS差动修正',
+'exif-objectname'                  => '简称',
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',

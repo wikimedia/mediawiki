@@ -2849,6 +2849,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS विभागका नाम',
 'exif-gpsdatestamp'                => 'GPS दिनांक',
 'exif-gpsdifferential'             => 'GPS डिफरन्शियर करेक्शन',
+'exif-objectname'                  => 'लघु शीर्षक',
 
 # EXIF attributes
 'exif-compression-1' => 'अनकॉम्प्रेस्स्ड',

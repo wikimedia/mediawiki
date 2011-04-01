@@ -2938,6 +2938,7 @@ Të tjerat do të fshihen.
 'exif-gpsareainformation'          => 'Emri i zonës GPS',
 'exif-gpsdatestamp'                => 'E dhënë GPS',
 'exif-gpsdifferential'             => 'Korrigjim diferencial i GPS',
+'exif-objectname'                  => 'Titull i shkurtër',
 
 # EXIF attributes
 'exif-compression-1' => 'E pangjeshur',

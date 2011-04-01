@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alexsh
+ * @author Andrew971218
  * @author Bencmq
  * @author FireJackey
  * @author Frankou
@@ -2973,6 +2974,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 區域名稱',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
+'exif-objectname'                  => '簡稱',
 
 # EXIF attributes
 'exif-compression-1' => '未壓縮',

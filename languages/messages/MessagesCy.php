@@ -2879,6 +2879,7 @@ Ymateb yr amledd gofodol',
 'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 'exif-gpsdifferential'             => 'cywiriad differol y GPS',
+'exif-objectname'                  => 'Teitl byr',
 
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',

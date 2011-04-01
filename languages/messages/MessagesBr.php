@@ -2342,7 +2342,7 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'ipusubmit'                       => 'Paouez gant ar stankadenn-mañ',
 'unblocked'                       => 'Distanket eo bet [[User:$1|$1]]',
 'unblocked-id'                    => 'Distanket eo bet $1',
-'ipblocklist'                     => "Roll ar chomlec'hioù IP hag anvioù kont stanket",
+'ipblocklist'                     => 'Implijerien stanket',
 'ipblocklist-legend'              => 'Kavout un implijer stanket',
 'ipblocklist-username'            => "Anv implijer pe chomlec'h IP :",
 'ipblocklist-sh-userblocks'       => "$1 stankadennoù ar c'hontoù",
@@ -2970,6 +2970,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsareainformation'          => 'Anv an takad GPS',
 'exif-gpsdatestamp'                => 'Deiziad GPS',
 'exif-gpsdifferential'             => "Reizhadenn diforc'hadus GPS",
+'exif-objectname'                  => 'Titl berr',
 
 # EXIF attributes
 'exif-compression-1' => 'Hep gwaskañ',
