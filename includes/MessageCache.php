@@ -604,7 +604,7 @@ class MessageCache {
 		$message = false;
 
 		$this->load( $code );
-		if (isset( $this->mCache[$code][$title] ) ) {
+		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
 			$type = substr( $entry, 0, 1 );
 			if ( $type == ' ' ) {
@@ -618,6 +618,7 @@ class MessageCache {
 				return $message;
 			}
 
+			global $wgAdaptiveMessageCache
 			/* If message cache is in normal mode, it is guaranteed
 			 * (except bugs) that there is always entry (or placeholder)
 			 * in the cache if message exists. Thus we can do minor
