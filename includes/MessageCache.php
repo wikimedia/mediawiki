@@ -618,7 +618,7 @@ class MessageCache {
 				return $message;
 			}
 
-			global $wgAdaptiveMessageCache
+			global $wgAdaptiveMessageCache;
 			/* If message cache is in normal mode, it is guaranteed
 			 * (except bugs) that there is always entry (or placeholder)
 			 * in the cache if message exists. Thus we can do minor
