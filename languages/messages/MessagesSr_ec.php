@@ -521,6 +521,7 @@ $messages = array(
 
 $1',
 'pool-timeout'      => 'Истек времена чека на кључ',
+'pool-queuefull'    => 'Скуп процеса је пун',
 'pool-errorunknown' => 'Непозната грешка',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -905,9 +906,11 @@ $2',
 Због тога морамо да користимо бројчану ИП адресу како бисмо идентификовали њега или њу.
 Такву адресу може делити више корисника.
 Ако сте анонимни корисник и мислите да су вам упућене небитне примедбе, молимо вас да [[Special:UserLogin/signup|направите налог]] или [[Special:UserLogin|се пријавите]] да бисте избегли будућу забуну са осталим анонимним корисницима.',
-'noarticletext'                    => 'Тренутно не постоји чланак под тим именом.
-Можете [[Special:Search/{{PAGENAME}}|тражити ову страницу]] у другим чланцима,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне историје записа], или је [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити]</span>.',
+'noarticletext'                    => 'Страница под тим именом не постоји.
+Можете [[Special:Search/{{PAGENAME}}|потражити ову страницу]] у другим чланцима,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити страницу]</span>.',
+'noarticletext-nopermission'       => 'Страница под тим именом не постоји.
+Можете [[Special:Search/{{PAGENAME}}|потражити ову страницу]] у другим чланцима или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје]</span>.',
 'userpage-userdoesnotexist'        => 'Налог "$1" није регистрован. Проверите да ли желите да правите/уређујете ову страницу.',
 'userpage-userdoesnotexist-view'   => 'Кориснички налог "$1" није регистрован.',
 'blocked-notice-logextract'        => 'Овај корисник је тренутно блокиран.
@@ -2270,7 +2273,7 @@ $UNWATCHURL
 Погледајте [[Special:ProtectedPages|правила о заштити страница]] за више информација.',
 'protectedarticle'            => '{{GENDER:|је заштитио|је заштитила|је заштитио}} „[[$1]]“',
 'modifiedarticleprotection'   => '{{GENDER:|је променио|је променила|промени}} ниво заштите за „[[$1]]“',
-'unprotectedarticle'          => '{{GENDER:|је скинуо|је скинула|скину}} заштиту са „[[$1]]“',
+'unprotectedarticle'          => '{{GENDER:|је скинуо|је скинула|је скинуо}} заштиту са „[[$1]]“',
 'movedarticleprotection'      => '{{GENDER:|је преместио|је преместила|премести}} поставке заштите са „[[$2]]“ на „[[$1]]“',
 'protect-title'               => 'Ниво заштите за „$1“',
 'prot_1movedto2'              => '{{GENDER:|је преместио|је преместила|премести}} [[$1]] у [[$2]]',

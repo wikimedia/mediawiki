@@ -2525,8 +2525,8 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 
 # Block/unblock
 'autoblockid'                     => 'Bloqueio automático nº$1',
-'block'                           => 'Bloquear utilizador ou endereço IP',
-'unblock'                         => 'Desbloquear utilizador ou endereço IP',
+'block'                           => 'Bloquear utilizador',
+'unblock'                         => 'Desbloquear utilizador',
 'blockip'                         => 'Bloquear utilizador',
 'blockip-title'                   => 'Bloquear utilizador',
 'blockip-legend'                  => 'Bloquear utilizador',
@@ -2573,8 +2573,8 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-range'                 => 'A gama $1 foi desbloqueada',
 'unblocked-id'                    => 'O bloqueio de $1 foi removido com sucesso',
-'blocklist'                       => 'Endereços IP e utilizadores bloqueados',
-'ipblocklist'                     => 'Utilizadores e endereços IP bloqueados',
+'blocklist'                       => 'Utilizadores bloqueados',
+'ipblocklist'                     => 'Utilizadores bloqueados',
 'ipblocklist-legend'              => 'Procurar um utilizador bloqueado',
 'blocklist-userblocks'            => 'Esconder bloqueios de contas',
 'blocklist-tempblocks'            => 'Esconder bloqueios temporários',

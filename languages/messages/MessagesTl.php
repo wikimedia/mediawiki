@@ -2332,8 +2332,8 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa ibaba para sa pa
 
 # Block/unblock
 'autoblockid'                     => 'Kusang harangin ang #$1',
-'block'                           => 'Harangin ang tagagamit/tirahan ng IP',
-'unblock'                         => 'Huwag harangin ang tagagamit/tirahan ng IP',
+'block'                           => 'Harangin ang tagagamit',
+'unblock'                         => 'Huwag harangin ang tagagamit',
 'blockip'                         => 'Harangin/hadlangan ang tagagamit',
 'blockip-title'                   => 'Harangin ang tagagamit',
 'blockip-legend'                  => 'Iharang ang tagagamit',
@@ -2381,8 +2381,8 @@ Tingnan ang [[Special:IPBlockList|talaan ng mga hinadlangang IP]] upang makita a
 'unblocked'                       => 'Natanggal sa pagkaharang ang tagagamit na [[User:$1|$1]]',
 'unblocked-range'                 => 'Hindi na hinaharang ang $1',
 'unblocked-id'                    => 'Tinanggal na ang pagharang/paghadlang na $1',
-'blocklist'                       => 'Hinahadlangang mga tirahan ng IP at mga pangalan ng tagagamit',
-'ipblocklist'                     => 'Tala ng mga hinarang na mga IP address at bansag',
+'blocklist'                       => 'Hinahadlangang mga tagagamit',
+'ipblocklist'                     => 'Hinahadlangang mga tagagamit',
 'ipblocklist-legend'              => 'Hanapin ang isang hinarang na tagagamit',
 'blocklist-userblocks'            => 'Itago ang mga paghahadlang ng akawnt',
 'blocklist-tempblocks'            => 'Pansamantalang ikubli ang mga pagharang',

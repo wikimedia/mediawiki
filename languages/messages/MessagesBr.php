@@ -2357,8 +2357,8 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 
 # Block/unblock
 'autoblockid'                     => 'Emstankañ #$1',
-'block'                           => "Stankañ un implijer pe ur chomlec'h IP",
-'unblock'                         => "Distankañ un implijer pe ur chomlec'h IP",
+'block'                           => 'Stankañ an implijer',
+'unblock'                         => 'Distankañ an implijer',
 'blockip'                         => "Stankañ ur chomlec'h IP",
 'blockip-title'                   => 'Stankañ an implijer',
 'blockip-legend'                  => 'Stankañ an implijer',
@@ -2397,6 +2397,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 
 Stanket eo bet [[Special:Contributions/$1|$1]].<br />
 Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]] evit gwiriañ ar stankadennoù.',
+'ipb-blockingself'                => "Emaoc'h war-nes stankañ ac'hanoc'h hoc'h-unan ! Ha sur oc'h eo se a fell deoc'h ober ?",
 'ipb-edit-dropdown'               => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'                => 'Distankañ $1',
 'ipb-unblock'                     => "Distankañ un implijer pe ur chomlec'h IP",
@@ -2408,8 +2409,8 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'unblocked'                       => 'Distanket eo bet [[User:$1|$1]]',
 'unblocked-range'                 => 'Distanket eo bet $1',
 'unblocked-id'                    => 'Distanket eo bet $1',
-'blocklist'                       => "Roll ar chomlec'hioù IP hag anvioù kont stanket",
-'ipblocklist'                     => "Roll ar chomlec'hioù IP hag anvioù kont stanket",
+'blocklist'                       => 'Implijerien stanket',
+'ipblocklist'                     => 'Implijerien stanket',
 'ipblocklist-legend'              => 'Kavout un implijer stanket',
 'blocklist-userblocks'            => 'Kuzhat ar stankadennoù kont',
 'blocklist-tempblocks'            => 'Kuzhat ar stankadennoù berrbad',
@@ -3280,11 +3281,12 @@ $1',
 'trackbackdeleteok' => 'Diverket mat eo bet al liamm war-gil.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Diwallit''' : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",
-'confirmrecreate'     => "Diverket eo bet ar pennad-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ :
+'deletedwhileediting'      => "'''Diwallit''' : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",
+'confirmrecreate'          => "Diverket eo bet ar pennad-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ :
 : ''$2''
 Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
-'recreate'            => 'Adkrouiñ',
+'confirmrecreate-noreason' => "Diverket eo bet ar pennad-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ. Kadarnait e fell deoc'h adkrouiñ ar pennad-mañ e gwirionez.",
+'recreate'                 => 'Adkrouiñ',
 
 # action=purge
 'confirm_purge_button' => 'Mat eo',

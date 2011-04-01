@@ -2337,8 +2337,8 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 
 # Block/unblock
 'autoblockid'                     => 'Autoblocatge #$1',
-'block'                           => 'Bloca usuari/adreça IP',
-'unblock'                         => 'Desbloca usuari/adreça IP',
+'block'                           => "Blocatge d'usuaris",
+'unblock'                         => "Desblocatge d'usuaris",
 'blockip'                         => "Bloqueig d'usuaris",
 'blockip-title'                   => "Bloquejar l'usuari",
 'blockip-legend'                  => "Bloca l'usuari",
@@ -2377,6 +2377,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'blockipsuccesssub'               => "S'ha blocat amb èxit",
 'blockipsuccesstext'              => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
 <br />Vegeu la [[Special:IPBlockList|llista d'IP blocades]] per revisar els bloquejos.",
+'ipb-blockingself'                => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-edit-dropdown'               => 'Edita les raons per a blocar',
 'ipb-unblock-addr'                => 'Desbloca $1',
 'ipb-unblock'                     => 'Desbloca un usuari o una adreça IP',
@@ -2389,8 +2390,8 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'unblocked'                       => "S'ha desbloquejat l'{{GENDER:$1|usuari|usuària}} [[User:$1|$1]]",
 'unblocked-range'                 => '$1 ha estat desblocat',
 'unblocked-id'                    => "S'ha eliminat el bloqueig de $1",
-'blocklist'                       => 'Adreces IP i usuaris blocats',
-'ipblocklist'                     => "Llista d'adreces IP i noms d'usuaris blocats",
+'blocklist'                       => 'Usuaris blocats',
+'ipblocklist'                     => 'Usuaris blocats',
 'ipblocklist-legend'              => 'Cerca un usuari blocat',
 'blocklist-userblocks'            => 'Amaga bloquejos de compte',
 'blocklist-tempblocks'            => 'Amaga bloquejos temporals',
@@ -3255,11 +3256,12 @@ $1",
 'trackbackdeleteok' => "La referència s'ha eliminat amb èxit.",
 
 # Delete conflict
-'deletedwhileediting' => "'''Avís''': S'ha eliminat aquesta pàgina després que haguéssiu començat a modificar-la!",
-'confirmrecreate'     => "L'usuari [[User:$1|$1]] ([[User talk:$1|discussió]]) va eliminar aquesta pàgina que havíeu creat donant-ne el següent motiu:
+'deletedwhileediting'      => "'''Avís''': S'ha eliminat aquesta pàgina després que haguéssiu començat a modificar-la!",
+'confirmrecreate'          => "L'usuari [[User:$1|$1]] ([[User talk:$1|discussió]]) va eliminar aquesta pàgina que havíeu creat donant-ne el següent motiu:
 : ''$2''
 Confirmeu que realment voleu tornar-la a crear.",
-'recreate'            => 'Torna a crear',
+'confirmrecreate-noreason' => "L'{{GENDER:$1|usuari|usuària}} [[User:$1|$1]] ([[User talk:$1|discussió]]) va esborrar aquesta pàgina després que la comencéssiu a modificar. Si us plau, confirmeu que realment voleu tornar-la a crear.",
+'recreate'                 => 'Torna a crear',
 
 # action=purge
 'confirm_purge_button' => 'OK',

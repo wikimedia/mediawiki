@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bulatbulat
  * @author Don Alessandro
  * @author Haqmar
  * @author Himiq Dzyu
@@ -401,6 +402,7 @@ $messages = array(
 'delete'            => 'Бетерү',
 'deletethispage'    => 'Бу битне бетерү',
 'undelete_short'    => '$1 {{PLURAL:$1|үзгәртмәне}} торгызу',
+'viewdeleted_short' => '{{PLURAL:$1|1 бетерелгән үзгәртүне|$1 бетерелгән үзгәртүне}} карау',
 'protect'           => 'Яклау',
 'protect_change'    => 'үзгәртү',
 'protectthispage'   => 'Бу битне яклау',
@@ -818,6 +820,10 @@ $2',
 'userjsyoucanpreview'              => "'''Ярдәм:''' \"{{int:showpreview}}\" төймәсенә басып, яңа JS-файлны тикшереп була.",
 'usercsspreview'                   => "'''Бу бары тик CSS-файлны алдан карау гына, ул әле сакланмаган!'''",
 'userjspreview'                    => "'''Бу бары тик JavaScript файлын алдан карау гына, ул әле сакланмаган!'''",
+'sitecsspreview'                   => "'''онытмагыз, бу бары тик CSS-файлны алдан карау гына.'''
+'''Ул әле сакланмаган!'''",
+'sitejspreview'                    => "'''Бу бары тик JavaScript файлын алдан карау гына.'''
+'''Ул әле сакланмаган!'''",
 'userinvalidcssjstitle'            => "'''Игътибар:''' \"\$1\" бизәү темасы табылмады. Кулланучының .css һәм .js битләре исемнәре бары тик кечкенә (юл) хәрефләрдән генә торырга тиеш икәнен онытмагыз. Мисалга: {{ns:user}}:Foo/vector.css, ә {{ns:user}}:Foo/Vector.css түгел!",
 'updated'                          => '(Яңартылды)',
 'note'                             => "'''Искәрмә:'''",
@@ -1014,6 +1020,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-restricted'        => 'чикләүләр идарәчеләргә дә кулланыла',
 'revdelete-hid'               => ' $1 яшерелгән',
 'revdelete-unhid'             => '$1 ачылган',
+'revdelete-otherreason'       => 'Башка/өстәмә сәбәп:',
 'revdelete-reasonotherlist'   => 'Башка сәбәп',
 'revdelete-edit-reasonlist'   => 'Сәбәпләр исемлеген үзгәртү',
 'revdelete-offender'          => 'Әлеге юрамалы битнең авторы:',
@@ -1022,10 +1029,11 @@ $3 күрсәткән сәбәп: ''$2''",
 'suppressionlog' => 'Яшерү көндәлеге',
 
 # Revision move
-'revmove-reasonfield'    => 'Сәбәп:',
-'revmove-titlefield'     => 'Төп бит:',
-'revmove-badparam-title' => 'Яраксыз параметрлар',
-'revmove-nullmove-title' => 'Яраксыз исем',
+'revisionmoveselectedversions' => 'Сайланган юрамаларны күчерү',
+'revmove-reasonfield'          => 'Сәбәп:',
+'revmove-titlefield'           => 'Төп бит:',
+'revmove-badparam-title'       => 'Яраксыз параметрлар',
+'revmove-nullmove-title'       => 'Яраксыз исем',
 
 # History merging
 'mergehistory'        => 'Үзгәртүләр тарихын берләштерү',
@@ -1298,6 +1306,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'recentchanges-feed-description'    => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
 'recentchanges-label-newpage'       => 'Бу үзгәртү белән яңа бит төзелде',
 'recentchanges-label-minor'         => 'Бу кече үзгәртү',
+'recentchanges-label-bot'           => 'Бу үзгәртү бот белән эшләнгән иде',
 'rcnote'                            => 'Аста $4 $5 вакытынна соңгы {{PLURAL:$2|1|$2}} көн эчендә булган соңгы {{PLURAL:$1|1|$1}} үзгәртмә күрсәтелә:',
 'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom'                        => '$1 башлап яңа үзгәртүләрне күрсәт',
@@ -2436,5 +2445,9 @@ $1',
 'htmlform-submit'              => 'Җибәрү',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'Кулланучы исеме:',
+'disableaccount-reason' => 'Сәбәп:',
 
 );

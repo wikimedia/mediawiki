@@ -1463,8 +1463,14 @@ Parameters:
 See http://meta.wikimedia.org/w/index.php?title=Special%3ALog&type=rights for a usage of local databases: username@barwiki',
 'userrights-nologin'             => "Error displayed on [[Special:UserRights]] when you aren't logged in. If you are logged in, but don't have the correct permission, you see {{msg|userrights-notallowed|pl=yes}}.",
 'userrights-notallowed'          => "Error displayed on [[Special:UserRights]] when you don't have the permission.",
-'userrights-changeable-col'      => 'Used in [[Special:UserRights]].',
-'userrights-unchangeable-col'    => 'Used in [[Special:UserRights]].',
+'userrights-changeable-col'      => 'Used when editing user groups in [[Special:Userrights]]. The messsage is the head of a column of group assignements.
+
+Parameters:
+* $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language can do without.',
+'userrights-unchangeable-col'    => 'Used when editing user groups in [[Special:Userrights]]. The messsage is the head of a column of group assignements.
+
+Parameters:
+* $1 - optional, for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.',
 'userrights-irreversible-marker' => '{{optional}}',
 
 # Groups
@@ -2692,8 +2698,14 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'unblocked-range'             => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
 * $1 - the range that was unblocked.',
 'ipblocklist'                 => 'Title of [[Special:Ipblocklist]].',
-'blocklist-target'            => 'The table header for the column containing the block targets',
-'blocklist-reason'            => '{{Identical|Reason}}',
+'blocklist-timestamp'         => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].',
+'blocklist-target'            => 'The table header for the column containing the block targets in the table on the page [[Special:BlockList]].',
+'blocklist-expiry'            => 'This is a column header in the table on the page [[Special:BlockList]].',
+'blocklist-by'                => 'This is a column header in the table on the page [[Special:BlockList]].',
+'blocklist-params'            => 'This is a column header in the table on the page [[Special:BlockList]].',
+'blocklist-reason'            => 'This is a column header in the table on the page [[Special:BlockList]].
+
+{{Identical|Reason}}',
 'ipblocklist-submit'          => '{{Identical|Search}}',
 'ipblocklist-localblock'      => '[[File:Special IPBlockList new.png|thumb|Example]]
 Used on [[Special:IPBlockList]] as header when global blocks exists too.',
@@ -2719,6 +2731,7 @@ Usage:
 'noautoblockblock'            => '{{Identical|Autoblock disabled}}',
 'emailblock'                  => '{{Identical|E-mail blocked}}',
 'blocklist-nousertalk'        => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
+'ipblocklist-empty'           => 'Shown on page [[Special:Blocklist]], if no blocks are to be shown.',
 'blocklink'                   => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
 'change-blocklink'            => 'Used to name the link on Special:Log',
 'contribslink'                => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
