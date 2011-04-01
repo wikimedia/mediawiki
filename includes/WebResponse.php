@@ -33,7 +33,7 @@ class WebResponse {
 		if ( $expire == 0 ) {
 			$expire = time() + $wgCookieExpiration;
 		}
-		$httpOnlySafe = wfHttpOnlySafe();
+		$httpOnlySafe = wfHttpOnlySafe() && $wgCookieHttpOnly;
 		wfDebugLog( 'cookie',
 			'setcookie: "' . implode( '", "',
 				array(
@@ -43,25 +43,14 @@ class WebResponse {
 					$wgCookiePath,
 					$wgCookieDomain,
 					$wgCookieSecure,
-					$httpOnlySafe && $wgCookieHttpOnly ) ) . '"' );
-		if( $httpOnlySafe && isset( $wgCookieHttpOnly ) ) {
-			setcookie( $wgCookiePrefix . $name,
-				$value,
-				$expire,
-				$wgCookiePath,
-				$wgCookieDomain,
-				$wgCookieSecure,
-				$wgCookieHttpOnly );
-		} else {
-			// setcookie() fails on PHP 5.1 if you give it future-compat paramters.
-			// stab stab!
-			setcookie( $wgCookiePrefix . $name,
-				$value,
-				$expire,
-				$wgCookiePath,
-				$wgCookieDomain,
-				$wgCookieSecure );
-		}
+					$httpOnlySafe ) ) . '"' );
+		setcookie( $wgCookiePrefix . $name,
+			$value,
+			$expire,
+			$wgCookiePath,
+			$wgCookieDomain,
+			$wgCookieSecure,
+			$httpOnlySafe );
 	}
 }
 
