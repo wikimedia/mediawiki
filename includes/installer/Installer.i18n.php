@@ -397,8 +397,9 @@ It is not generally necessary for a private or corporate wiki.
 
 If you want to be able to use text from Wikipedia, and you want Wikipedia to be able to accept text copied from your wiki, you should choose '''Creative Commons Attribution Share Alike'''.
 
-The GNU Free Documentation License was the old license Wikipedia was under.
-It is still a valid license, however, this license has some features which make reuse and interpretation difficult.",
+Wikipedia previously used the GNU Free Documentation License.
+The GFDL is a valid license, but it is difficult to understand.
+It is also difficult to reuse content licensed under the GFDL.",
 	'config-email-settings'           => 'E-mail settings',
 	'config-enable-email'             => 'Enable outbound e-mail',
 	'config-enable-email-help'        => "If you want e-mail to work, [http://www.php.net/manual/en/mail.configuration.php PHP's mail settings] need to be configured correctly.
