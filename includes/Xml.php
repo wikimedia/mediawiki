@@ -583,8 +583,8 @@ class Xml {
 			$s = $value ? 'true' : 'false';
 		} elseif ( is_null( $value ) ) {
 			$s = 'null';
-		} elseif ( is_int( $value ) ) {
-			$s = $value;
+		} elseif ( is_int( $value ) || is_float( $value ) ) {
+			$s = strval($value);
 		} elseif ( is_array( $value ) && // Make sure it's not associative.
 					array_keys($value) === range( 0, count($value) - 1 ) ||
 					count($value) == 0

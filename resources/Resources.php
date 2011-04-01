@@ -330,6 +330,14 @@ return array(
 		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.placeholder' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
+	'mediawiki.util.jpegmeta' => array(
+		'scripts' => 'resources/mediawiki.util/mediawiki.util.jpegmeta.js',
+	),
+	'mediawiki.action.history' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
+		'dependencies' => 'mediawiki.legacy.history',
+		'group' => 'mediawiki.action.history',
+	),
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 	),
@@ -426,8 +434,11 @@ return array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.diff' => array(
-		'scripts' => 'skins/common/diff.js',
-		'styles' => 'skins/common/diff.css',
+		'scripts' => 'common/diff.js',
+		'styles' => 'common/diff.css',
+		'group' => 'mediawiki.action.history',
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.edit' => array(
@@ -439,7 +450,10 @@ return array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.history' => array(
-		'scripts' => 'skins/common/history.js',
+		'scripts' => 'common/history.js',
+		'group' => 'mediawiki.action.history',
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.htmlform' => array(

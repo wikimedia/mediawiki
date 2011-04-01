@@ -197,6 +197,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 			}
 		}
+		// Make sure the remote base path is a complete valid url
+		$this->remoteBasePath = wfExpandUrl( $this->remoteBasePath );
 	}
 
 	/**
