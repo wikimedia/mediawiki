@@ -608,8 +608,6 @@ class MessageCache {
 			if ( $type == ' ' ) {
 				return substr( $entry, 1 );
 			}
-		}
-			}
 		} else {
 			// XXX: This is not cached in process cache, should it?
 			$message = false;
