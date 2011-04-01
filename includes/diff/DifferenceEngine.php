@@ -150,6 +150,8 @@ class DifferenceEngine {
 			URL=$url2
 CONTROL;
 			echo( $control );
+
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -620,16 +622,20 @@ CONTROL;
 		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
 		if ( !$this->loadRevisionData() ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( $this->mOldRev && !$this->mOldRev->userCan( Revision::DELETED_TEXT ) ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( $this->mNewRev && !$this->mNewRev->userCan( Revision::DELETED_TEXT ) ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		// Short-circuit
 		if ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
 		{
+			wfProfileOut( __METHOD__ );
 			return '';
 		}
 		// Cacheable?
@@ -757,6 +763,7 @@ CONTROL;
 			wfProfileOut( __METHOD__ . "-shellexec" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
+			wfProfileOut( __METHOD__ );
 			return $difftext;
 		}
 
@@ -765,7 +772,9 @@ CONTROL;
 		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
-		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
+		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
+		wfProfileOut( __METHOD__ );
+		return $difftext;
 		$this->debug();
 	}
 

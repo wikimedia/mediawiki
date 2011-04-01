@@ -41,7 +41,7 @@ class LanguageEo extends Language {
 		if ( strcasecmp( $in, 'x' ) == 0 && strcasecmp( $out, 'utf-8' ) == 0 ) {
 			return preg_replace_callback (
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
-				array( $this, 'strrtuxCallback' ), $string	);
+				array( $this, 'strrtxuCallback' ), $string	);
 		} else if ( strcasecmp( $in, 'UTF-8' ) == 0 && strcasecmp( $out, 'x' ) == 0 ) {
 			# Double Xs only if they follow cxapelutaj literoj.
 			return preg_replace_callback(

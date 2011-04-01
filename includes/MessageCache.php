@@ -376,6 +376,10 @@ class MessageCache {
 		global $wgMaxMsgCacheEntrySize;
 		wfProfileIn( __METHOD__ );
 
+		if ( $this->mDisable ) {
+			wfProfileOut( __METHOD__ );
+			return;
+		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
 

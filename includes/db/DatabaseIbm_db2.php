@@ -367,6 +367,7 @@ ERROR;
 				"Server: $server, Database: $dbName, User: $user, Password: "
 				. substr( $password, 0, 3 ) . "...\n" );
 			$this->installPrint( $this->lastError() . "\n" );
+
 			wfProfileOut( __METHOD__ );
 			return null;
 		}

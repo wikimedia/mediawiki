@@ -325,10 +325,6 @@ div.searchdidyoumean em {
 	font-weight: bold;
 }
 
-table#mw-search-top-table {
-	background-color: transparent;
-}
-
 
 /*
  * Advanced PowerSearch box
@@ -480,11 +476,7 @@ td#mw-emailuser-sender, td#mw-emailuser-recipient {
 }
 
 /* Special:Allpages styling */
-table.allpageslist {
-	background-color: transparent;
-}
 table.mw-allpages-table-form, table.mw-allpages-table-chunk {
-	background-color: transparent;
 	width: 100%;
 }
 td.mw-allpages-alphaindexline {
@@ -503,7 +495,6 @@ table.mw-allpages-table-form tr {
 table#mw-prefixindex-list-table,
 table#mw-prefixindex-nav-table {
 	width: 98%;
-	background-color: transparent;
 }
 td#mw-prefixindex-nav-form {
 	font-size: smaller;

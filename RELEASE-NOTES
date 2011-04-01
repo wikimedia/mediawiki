@@ -504,6 +504,12 @@ files are used instead.
   redirect revision with no page.
 * (bug 15641) Fixed permissions checks in Special:Import which allowed users without
   the 'import' permission to import pages from configured import sources.
+* (bug 26449) Keep underlines from headings outside of tables and thumbs by
+  adding overflow:hidden to h1,h2,h3,h4,h5,h6 (also fixes editsection bunching).
+* (bug 26708) Remove background-color:white from tables in Monobook and Vector.
+* (bug 26781) {{PAGENAME}} and related parser functions escape their output better.
+* (bug 26716) Provide link to instructions for external editor related preferences
+  and add a comment to the ini control file explaining what is going on.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
@@ -633,9 +639,9 @@ changes to languages because of Bugzilla reports.
 * Rusyn (rue) (new)
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
-  (TaraÅ¡kievica).
-* (bug 23283) Native name for Old English -> Ã†nglisc.
-* (bug 23364) Native name for Azerbaijani -> AzÉ™rbaycanca.
+  (Taraškievica).
+* (bug 23283) Native name for Old English -> Ænglisc.
+* (bug 23364) Native name for Azerbaijani -> Az?rbaycanca.
 * (bug 24593) Native name for Sorani now uses only Arabic script.
 * (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto.
 * (bug 24917) Polish as fallback for Kashubia.

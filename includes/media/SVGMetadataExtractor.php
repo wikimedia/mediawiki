@@ -48,7 +48,7 @@ class SVGReader {
 	 */
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
-		$this->reader->open( $source );
+		$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
 		$this->metadata['height'] = self::DEFAULT_HEIGHT;

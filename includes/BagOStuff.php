@@ -727,6 +727,7 @@ class DBABagOStuff extends BagOStuff {
 
 		$handle = $this->getReader();
 		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -757,6 +758,7 @@ class DBABagOStuff extends BagOStuff {
 
 		$handle = $this->getWriter();
 		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -773,6 +775,7 @@ class DBABagOStuff extends BagOStuff {
 
 		$handle = $this->getWriter();
 		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -791,6 +794,7 @@ class DBABagOStuff extends BagOStuff {
 		$handle = $this->getWriter();
 
 		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
