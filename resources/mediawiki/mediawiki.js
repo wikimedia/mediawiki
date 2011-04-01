@@ -720,7 +720,7 @@ window.mediaWiki = new ( function( $ ) {
 			} catch ( e ) {
 				// This needs to NOT use mw.log because these errors are common in production mode
 				// and not in debug mode, such as when a symbol that should be global isn't exported
-				if ( console && typeof console.log === 'function' ) {
+				if ( window.console && typeof window.console.log === 'function' ) {
 					console.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
 					console.log( e );
 				}
