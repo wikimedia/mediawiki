@@ -360,9 +360,9 @@ class ResourceLoader {
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
 		if ( $context->getOnly() === 'styles' ) {
-			header( 'Content-Type: text/css' );
+			header( 'Content-Type: text/css; charset=utf-8' );
 		} else {
-			header( 'Content-Type: text/javascript' );
+			header( 'Content-Type: text/javascript; charset=utf-8' );
 		}
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
 		if ( $context->getDebug() ) {
