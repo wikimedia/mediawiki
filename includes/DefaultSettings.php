@@ -2148,28 +2148,49 @@ $wgLocalTZoffset = null;
 /** The default Content-Type header. */
 $wgMimeType = 'text/html';
 
-/** The content type used in script tags. */
+/**
+ * The content type used in script tags.  This is mostly going to be ignored if
+ * $wgHtml5 is true, at least for actual HTML output, since HTML5 doesn't
+ * require a MIME type for JavaScript or CSS (those are the default script and
+ * style languages).
+ */
 $wgJsMimeType = 'text/javascript';
 
-/** The HTML document type. */
+/**
+ * The HTML document type.  Ignored if $wgHtml5 is true, since <!DOCTYPE html>
+ * doesn't actually have a doctype part to put this variable's contents in.
+ */
 $wgDocType = '-//W3C//DTD XHTML 1.0 Transitional//EN';
 
-/** The URL of the document type declaration. */
+/**
+ * The URL of the document type declaration.  Ignored if $wgHtml5 is true,
+ * since HTML5 has no DTD, and <!DOCTYPE html> doesn't actually have a DTD part
+ * to put this variable's contents in.
+ */
 $wgDTD = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 
-/** The default xmlns attribute. */
+/**
+ * The default xmlns attribute.  Ignored if $wgHtml5 is true (or it's supposed
+ * to be), since we don't currently support XHTML5, and in HTML5 (i.e., served
+ * as text/html) the attribute has no effect, so why bother?
+ */
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 
 /**
  * Should we output an HTML5 doctype?  If false, use XHTML 1.0 Transitional
  * instead, and disable HTML5 features.  This may eventually be removed and set
- * to always true.
+ * to always true.  If it's true, a number of other settings will be irrelevant
+ * and have no effect.
  */
 $wgHtml5 = true;
 
 /**
  * Defines the value of the version attribute in the &lt;html&gt; tag, if any.
- * Will be initialized later if not set explicitly.
+ * This is ignored if $wgHtml5 is false.  If $wgAllowRdfaAttributes and
+ * $wgHtml5 are both true, and this evaluates to boolean false (like if it's
+ * left at the default null value), it will be auto-initialized to the correct
+ * value for RDFa+HTML5.  As such, you should have no reason to ever actually
+ * set this to anything.
  */
 $wgHtml5Version = null;
 
@@ -2209,6 +2230,9 @@ $wgWellFormedXml = true;
  * $wgXhtmlNamespaces['svg'] = 'http://www.w3.org/2000/svg';
  * Normally we wouldn't have to define this in the root <html>
  * element, but IE needs it there in some circumstances.
+ *
+ * This is ignored if $wgHtml5 is true, for the same reason as
+ * $wgXhtmlDefaultNamespace.
  */
 $wgXhtmlNamespaces = array();
 
