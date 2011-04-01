@@ -30,9 +30,13 @@ class MagicWord {
 	/**#@+
 	 * @private
 	 */
-	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
-	var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	var $mModified, $mFound;
+	var $mId, $mSynonyms, $mCaseSensitive;
+	var $mRegex = '';
+	var $mRegexStart = '';
+	var $mBaseRegex = '';
+	var $mVariableRegex = '';
+	var $mModified = false;
+	var $mFound = false;
 
 	static public $mVariableIDsInitialised = false;
 	static public $mVariableIDs = array(
@@ -182,11 +186,6 @@ class MagicWord {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->mRegex = '';
-		$this->mRegexStart = '';
-		$this->mVariableRegex = '';
-		$this->mVariableStartToEndRegex = '';
-		$this->mModified = false;
 	}
 
 	/**
