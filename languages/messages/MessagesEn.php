@@ -3056,11 +3056,13 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbwatchuser'                    => "Watch this user's user and talk pages",
 'ipb-disableusertalk'             => 'Prevent this user from editing their own talk page while blocked',
 'ipb-change-block'                => 'Re-block the user with these settings',
+'ipb-confirm'                     => 'Confirm block',
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
 See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipb-blockingself'                => 'You are about to block yourself!  Are you sure you want to do that?',
+'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled.  This will suppress the user\'s name in all lists and log entries.  Are you sure you want to do that?',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
@@ -3126,13 +3128,10 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
 'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
 'ipb_already_blocked'             => '"$1" is already blocked',
-'ipb-needreblock'                 => '== Already blocked ==
-$1 is already blocked.
-Do you want to change the settings?',
+'ipb-needreblock'                 => '$1 is already blocked. Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
 'unblock-hideuser'                => 'You cannot unblock this user, as their username has been hidden.',
-'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
-It may have been unblocked already.',
+'ipb_cant_unblock'                => 'Error: Block ID $1 not found. It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP address $1 is not blocked directly and cannot be unblocked.
 It is, however, blocked as part of the range $2, which can be unblocked.',
 'ip_range_invalid'                => 'Invalid IP range.',

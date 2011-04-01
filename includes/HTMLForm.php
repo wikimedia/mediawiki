@@ -522,7 +522,7 @@ class HTMLForm {
 	 * @param $errors Array of message keys/values
 	 * @return String HTML, a <ul> list of errors
 	 */
-	static function formatErrors( $errors ) {
+	public static function formatErrors( $errors ) {
 		$errorstr = '';
 
 		foreach ( $errors as $error ) {

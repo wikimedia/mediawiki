@@ -40,8 +40,17 @@ class SpecialBlock extends SpecialPage {
 	/// @var Block::TYPE_ constant
 	protected $type;
 
+	/// @var  User|String the previous block target
+	protected $previousTarget;
+
+	/// @var Bool whether the previous submission of the form asked for HideUser
+	protected $requestedHideUser;
+
 	/// @var Bool
 	protected $alreadyBlocked;
+	
+	/// @var Array
+	protected $preErrors = array();
 
 	public function __construct() {
 		parent::__construct( 'Block', 'block' );
@@ -71,6 +80,9 @@ class SpecialBlock extends SpecialPage {
 			$wgUser->getSkin()->setRelevantUser( $this->target );
 		}
 
+		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $wgRequest->getVal( 'wpPreviousTarget' ) );
+		$this->requestedHideUser = $wgRequest->getBool( 'wpHideUser' );
+
 		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target );
 		if ( $status !== true ) {
@@ -81,7 +93,7 @@ class SpecialBlock extends SpecialPage {
 		$wgOut->addModules( 'mediawiki.special', 'mediawiki.special.block' );
 
 		$fields = self::getFormFields();
-		$this->alreadyBlocked = $this->maybeAlterFormDefaults( $fields );
+		$this->maybeAlterFormDefaults( $fields );
 
 		$form = new HTMLForm( $fields );
 		$form->setTitle( $this->getTitle() );
@@ -94,6 +106,7 @@ class SpecialBlock extends SpecialPage {
 		$form->setSubmitText( $t );
 
 		$this->doPreText( $form );
+		$this->doHeadertext( $form );
 		$this->doPostText( $form );
 
 		if( $form->show() ){
@@ -183,9 +196,18 @@ class SpecialBlock extends SpecialPage {
 			'default' => false,
 		);
 
-		$a['AlreadyBlocked'] = array(
+		# This is basically a copy of the Target field, but the user can't change it, so we
+		# can see if the warnings we maybe showed to the user before still apply
+		$a['PreviousTarget'] = array(
 			'type' => 'hidden',
 			'default' => false,
+		);
+
+		# We'll turn this into a checkbox if we need to
+		$a['Confirm'] = array(
+			'type' => 'hidden',
+			'default' => '',
+			'label-message' => 'ipb-confirm',
 		);
 
 		return $a;
@@ -199,7 +221,13 @@ class SpecialBlock extends SpecialPage {
 	 *     already blocked)
 	 */
 	protected function maybeAlterFormDefaults( &$fields ){
+		global $wgRequest, $wgUser;
+
+		# This will be overwritten by request data
 		$fields['Target']['default'] = (string)$this->target;
+
+		# This won't be
+		$fields['PreviousTarget']['default'] = (string)$this->target;
 
 		$block = Block::newFromTarget( $this->target );
 
@@ -221,7 +249,17 @@ class SpecialBlock extends SpecialPage {
 				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
 			}
 			$fields['Reason']['default'] = $block->mReason;
-			$fields['AlreadyBlocked']['default'] = htmlspecialchars( $block->getTarget() );
+
+			if( $wgRequest->wasPosted() ){
+				# Ok, so we got a POST submission asking us to reblock a user.  So show the
+				# confirm checkbox; the user will only see it if they haven't previously
+				$fields['Confirm']['type'] = 'check';
+			} else {
+				# We got a target, but it wasn't a POST request, so the user must have gone
+				# to a link like [[Special:Block/User]].  We don't need to show the checkbox
+				# as long as they go ahead and block *that* user
+				$fields['Confirm']['default'] = 1;
+			}
 
 			if( $block->mExpiry == 'infinity' ) {
 				$fields['Expiry']['default'] = 'indefinite';
@@ -229,9 +267,23 @@ class SpecialBlock extends SpecialPage {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
 			}
 
-			return true;
+			$this->alreadyBlocked = true;
+			$this->preErrors[] = array( 'ipb-needreblock', (string)$block->getTarget() );
 		}
-		return false;
+
+		# We always need confirmation to do HideUser
+		if( $this->requestedHideUser ){
+			$fields['Confirm']['type'] = 'check';
+			unset( $fields['Confirm']['default'] );
+			$this->preErrors[] = 'ipb-confirmhideuser';
+		}
+
+		# Or if the user is trying to block themselves
+		if( (string)$this->target === $wgUser->getName() ){
+			$fields['Confirm']['type'] = 'check';
+			unset( $fields['Confirm']['default'] );
+			$this->preErrors[] = 'ipb-blockingself';
+		}
 	}
 
 	/**
@@ -265,17 +317,25 @@ class SpecialBlock extends SpecialPage {
 				$form->addPreText( $s );
 			}
 		}
+	}
 
-		# Username/IP is blocked already locally
-		if( $this->alreadyBlocked ) {
-			$form->addPreText( Html::rawElement(
-				'div',
-				array( 'class' => 'mw-ipb-needreblock', ),
-				wfMsgExt(
-					'ipb-needreblock',
-					array( 'parseinline' ),
-					$this->target
-			) ) );
+	/**
+	 * Add header text inside the form, just underneath where the errors would go
+	 * @param $form HTMLForm
+	 * @return void
+	 */
+	protected function doHeaderText( HTMLForm &$form ){
+		global $wgRequest;
+		# Don't need to do anything if the form has been posted
+		if( !$wgRequest->wasPosted() && $this->preErrors ){
+			$s = HTMLForm::formatErrors( $this->preErrors );
+			if( $s ){
+				$form->addHeaderText( Html::rawElement(
+					'div',
+					array( 'class' => 'error' ),
+					$s
+				) );
+			}
 		}
 	}
 
@@ -481,6 +541,10 @@ class SpecialBlock extends SpecialPage {
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
 
+		# This might have been a hidden field or a checkbox, so interesting data
+		# can come from it
+		$data['Confirm'] = !in_array( $data['Confirm'], array( '', '0', null, false ), true );
+
 		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
 		if( $type == Block::TYPE_USER ){
 			$user = $target;
@@ -490,8 +554,7 @@ class SpecialBlock extends SpecialPage {
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
 			# permission anyway, although the code does allow for it
-			if( $target === $wgUser->getName()
-				&& $data['AlreadyBlocked'] != htmlspecialchars( $wgUser->getName() )  )
+			if( $target === $wgUser->getName() && ( $data['PreviousTarget'] != $data['Target'] || !$data['Confirm'] ) )
 			{
 				return array( 'ipb-blockingself' );
 			}
@@ -544,6 +607,9 @@ class SpecialBlock extends SpecialPage {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
 				return array( 'ipb_hide_invalid' );
+
+			} elseif( !$data['Confirm'] ){
+				return array( 'ipb-confirmhideuser' );
 			}
 		}
 
@@ -568,7 +634,7 @@ class SpecialBlock extends SpecialPage {
 		$status = $block->insert();
 		if( !$status ) {
 			# Show form unless the user is already aware of this...
-			if( $data['AlreadyBlocked'] != htmlspecialchars( $block->getTarget() ) ) {
+			if( ( $data['PreviousTarget'] != htmlspecialchars( $block->getTarget() ) ) || !$data['Confirm'] ) {
 				return array( array( 'ipb_already_blocked', $block->getTarget() ) );
 			# Otherwise, try to update the block...
 			} else {
