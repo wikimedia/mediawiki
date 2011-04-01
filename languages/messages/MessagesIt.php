@@ -2369,8 +2369,8 @@ $1',
 
 # Block/unblock
 'autoblockid'                     => 'Autoblocco #$1',
-'block'                           => 'Blocca utente/indirizzo IP',
-'unblock'                         => 'Sblocca utente/indirizzo IP',
+'block'                           => 'Blocca utente',
+'unblock'                         => 'Sblocca utente',
 'blockip'                         => 'Blocco utente',
 'blockip-title'                   => 'Blocca utente',
 'blockip-legend'                  => "Blocca l'utente",
@@ -2406,6 +2406,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
 Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
+'ipb-blockingself'                => 'Stai per bloccare te stesso! Sei sicuro di volerlo fare?',
 'ipb-edit-dropdown'               => 'Modifica i motivi per il blocco',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => 'Sblocca un utente o un indirizzo IP',
@@ -2417,8 +2418,8 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'unblocked'                       => "L'utente [[User:$1|$1]] è stato sbloccato",
 'unblocked-range'                 => '$1 è stato sbloccato',
 'unblocked-id'                    => 'Il blocco $1 è stato rimosso',
-'blocklist'                       => 'Utenti e indirizzi IP bloccati',
-'ipblocklist'                     => 'Utenti e indirizzi IP bloccati',
+'blocklist'                       => 'Utenti bloccati',
+'ipblocklist'                     => 'Utenti bloccati',
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'blocklist-userblocks'            => 'Nascondi i blocchi degli account',
 'blocklist-tempblocks'            => 'Nascondi i blocchi temporanei',
@@ -3274,10 +3275,12 @@ $1',
 'trackbackdeleteok' => 'Informazioni di trackback eliminate correttamente.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Attenzione''': questa pagina è stata cancellata dopo che hai cominciato a modificarla!",
-'confirmrecreate'     => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
+'deletedwhileediting'      => "'''Attenzione''': questa pagina è stata cancellata dopo che hai cominciato a modificarla!",
+'confirmrecreate'          => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
 Per favore, conferma che desideri veramente ricreare questa pagina.",
-'recreate'            => 'Ricrea',
+'confirmrecreate-noreason' => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla.
+Per favore, conferma che desideri veramente ricreare questa pagina.",
+'recreate'                 => 'Ricrea',
 
 # action=purge
 'confirm_purge_button' => 'Conferma',

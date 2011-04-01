@@ -3497,7 +3497,7 @@ Normale spesialsider.
 'tag-filter'              => 'Filter for [[Special:Tags|tagger]]:',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Tagger',
-'tags-intro'              => 'Denne siden lister opp taggene programvaren kan merke endrineg med, og hva de betyr.',
+'tags-intro'              => 'Denne siden lister opp taggene programvaren kan merke en endring med, og hva de betyr.',
 'tags-tag'                => 'Taggnavn',
 'tags-display-header'     => 'Utseende på endringslister',
 'tags-description-header' => 'Fullstendig betydning',

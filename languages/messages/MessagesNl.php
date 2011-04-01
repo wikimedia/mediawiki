@@ -2596,8 +2596,8 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 
 # Block/unblock
 'autoblockid'                     => 'Automatische blokkade #$1',
-'block'                           => 'Gebruiker of IP-adres blokkeren',
-'unblock'                         => 'Gebruiker of IP-adres deblokkeren',
+'block'                           => 'Gebruiker blokkeren',
+'unblock'                         => 'Gebruiker deblokkeren',
 'blockip'                         => 'Gebruiker blokkeren',
 'blockip-title'                   => 'Gebruiker blokkeren',
 'blockip-legend'                  => 'Een gebruiker of IP-adres blokkeren',
@@ -2645,8 +2645,8 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'unblocked'                       => 'Blokkade van [[User:$1|$1]] is opgeheven',
 'unblocked-range'                 => '$1 is gedeblokkeerd',
 'unblocked-id'                    => 'Blokkade $1 is opgeheven',
-'blocklist'                       => 'Geblokkeerde IP-adressen en gebruikers',
-'ipblocklist'                     => 'Geblokkeerde IP-adressen en gebruikers',
+'blocklist'                       => 'Geblokkeerde gebruikers',
+'ipblocklist'                     => 'Geblokkeerde gebruikers',
 'ipblocklist-legend'              => 'Een geblokkeerde gebruiker zoeken',
 'blocklist-userblocks'            => 'Geblokkeerde gebruikers verbergen',
 'blocklist-tempblocks'            => 'Tijdelijke blokkades verbergen',

@@ -4806,6 +4806,7 @@ chmod a+w $3</pre></div>',
 מדלג על הרשומה ההתחלתית.",
 	'config-install-stats' => 'אתחול סטטיסטיקות',
 	'config-install-keys' => 'יצירת מפתחות סודיים',
+	'config-insecure-keys' => "'''אזהרה''': {{PLURAL:$2|מפתח|מפתחות}} אבטחה ($1) {{PLURAL:$2|שנוצר|שנוצרו}} במהלך ההתקנה {{PLURAL:$2|אינו בטוח|אינם בטוחים}} מספיק. מומלץ לשקול לשנות {{PLURAL:$2|אותו|אותם}} ידנית.",
 	'config-install-sysop' => 'יצירת חשבון מפעיל',
 	'config-install-subscribe-fail' => 'הרישום ל־mediawiki-announce לא הצליח',
 	'config-install-mainpage' => 'יצירת דף ראשי עם תוכן לפי בררת מחדל.',
@@ -5156,8 +5157,17 @@ $messages['hu'] = array(
 	'config-information' => 'Információ',
 	'config-localsettings-upgrade' => 'Már létezik a <code>LocalSettings.php</code> fájl.
 A telepített szoftver frissítéséhez írd be az alábbi mezőbe a <code>$wgUpgradeKey</code> beállítás értékét, melyet a LocalSettings.php nevű fájlban találhatsz meg.',
+	'config-localsettings-cli-upgrade' => 'A LocalSettings.php fájl megtalálható.
+A telepített rendszer frissítéséhez futtasd az update.php-t.',
 	'config-localsettings-key' => 'Frissítési kulcs:',
 	'config-localsettings-badkey' => 'A megadott kulcs érvénytelen.',
+	'config-upgrade-key-missing' => 'A telepítő a MediaWiki meglévő példányát észlelte.
+A telepített rendszer frissítéséhez helyezd el az alábbi sort a LocalSettings.php végére:
+
+$1',
+	'config-localsettings-incomplete' => 'A meglévő LocalSettings.php hiányosnak tűnik.
+A(z) $1 változó értéke nincs beállítva.
+Módosítsd a LocalSettings.php fájlt úgy, hogy ez a változó be legyen állítva, majd kattints a „Folytatás” gombra.',
 	'config-localsettings-connection-error' => 'Nem sikerült csatlakozni az adatbázishoz a LocalSettings.php-ben vagy az AdminSettings.php-ben megadott adatokkal. Ellenőrizd a beállításokat, majd próbáld újra.
 
 $1',
@@ -5224,6 +5234,12 @@ azonban a MediaWikinek PHP $2, vagy újabb szükséges.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP alapú implementáció lesz használva.
 Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz további információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
 	'config-no-db' => 'Nem sikerült egyetlen használható adatbázismeghajtót sem találni.',
+	'config-no-db-help' => 'Telepítened kell egy adatbázis-meghajtót a PHP-hez.
+A következő adatbázistípusok támogatottak: $1.
+
+Ha megosztott tárhelyszolgáltatást használsz, kérd meg a szolgáltatódat, hogy telepítsen egy megfelelő adatbázis-meghajtót.
+Ha a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysql</code> használatával.
+Ha a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz a php5-mysql modulra is.',
 	'config-no-fts3' => "'''Figyelmeztetés''': Az SQLite [http://sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
 	'config-register-globals' => "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''
 '''Tiltsd le, ha van rá lehetőséged.'''
@@ -5240,11 +5256,15 @@ A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
 	'config-ze1' => "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] aktív!'''
 Ez a beállítás borzalmas hibákat okoz a MediaWiki futása során.
 A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
+	'config-safe-mode' => "'''Figyelmeztetés:''' A PHP [http://www.php.net/features.safe-mode safe mode]-ja be van kapcsolva.
+Problémákat okozhat, különösen a fájlfeltöltéseknél és a <code>math</code>-támogatás használatánál.",
 	'config-xml-bad' => 'A PHP XML-modulja hiányzik.
 Egyes MediaWiki-funkciók, melyek ezt a modult igénylik, nem fognak működni ilyen beállítások mellett.
 Ha Madrake-et futtatsz, telepítsd a php-xml csomagot.',
 	'config-pcre' => 'Úgy tűnik, hogy a PCRE támogató modul hiányzik.
 A MediaWikinek Perl-kompatibilis reguláriskifejezés-függvényekre van szüksége a működéshez.',
+	'config-pcre-no-utf8' => "'''Kritikus hiba''': Úgy tűnik, hogy a PHP PRCE modulja PRCE_UTF8 támogatás nélkül lett fordítva.
+A MediaWikinek UTF-8-támogatásra van szüksége a helyes működéshez.",
 	'config-memory-raised' => 'A PHP <code>memory_limit</code> beállításának értéke: $1. Meg lett növelve a következő értékre: $2.',
 	'config-memory-bad' => "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.
 Ez az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
@@ -5265,6 +5285,12 @@ A bélyegképek készítése le lesz tiltva.',
 Telepítés megszakítva.",
 	'config-uploads-not-safe' => "'''Figyelmeztetés:''' a feltöltésekhez használt alapértelmezett könyvtárban (<code>$1</code>) tetszőleges külső szkript futtatható.
 Habár a MediaWiki ellenőrzi a feltöltött fájlokat az efféle biztonsági veszélyek megtalálása érdekében, a feltöltés engedélyezése előtt erősen ajánlott a [http://www.mediawiki.org/wiki/Manual:Security#Upload_security a sérülékenység megszüntetése].",
+	'config-brokenlibxml' => 'A rendszereden a PHP és libxml2 verziók olyan kombinációja található meg, ami hibásan működik, és észrevehetetlen adatkárosodást okoz a MediaWikiben és más webalkalmazásokban.
+Frissíts a PHP 5.2.9-es vagy újabb, valamint a libxml2 2.7.3 vgy újabb verziójára ([http://bugs.php.net/bug.php?id=45996 A hiba bejelentése a PHP-nél]).
+Telepítés megszakítva.',
+	'config-using531' => 'A MediaWiki nem használható a PHP $1-es verziójával, mert hiba van a <code>__call()</code> függvénynek átadott referenciaparaméterekkel.
+A probléma kiküszöböléséhez frissíts a PHP 5.3.2-es verziójára, vagy használd a korábbi, 5.3.0-ásat.
+Telepítés megszakítva.',
 	'config-db-type' => 'Adatbázis típusa:',
 	'config-db-host' => 'Adatbázis hosztneve:',
 	'config-db-host-help' => 'Ha az adatbázisszerver másik szerveren található, add meg a hosztnevét vagy az IP-címét.
@@ -5283,6 +5309,8 @@ Ha megosztott webtárhelyet használsz, a szolgáltatód vagy egy konkrét adatb
 	'config-db-install-account' => 'A telepítéshez használt felhasználói fiók adatai',
 	'config-db-username' => 'Felhasználónév:',
 	'config-db-password' => 'Jelszó:',
+	'config-db-password-empty' => 'Írd be az új adatbázis-felhasználó jelszavát: $1
+Van lehetőség jelszó nélküli felhasználók létrehozására, azonban ez nem ajánlott.',
 	'config-db-install-username' => 'Írd be az adatbázisrendszerhez való csatlakozáshoz használt felhasználónevet.
 Ez nem a MediaWiki fiók felhasználóneve; ez az adatbázisrendszeren használt felhasználóneved.',
 	'config-db-install-password' => 'Írd be az adatbázisrendszerhez való csatlakozáshoz használt jelszót.
@@ -5313,6 +5341,15 @@ nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_p
 	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
 Csak akkor módosíts rajtuk, ha tudod, hogy szükséges.',
 	'config-sqlite-dir' => 'SQLite-adatkönyvtár:',
+	'config-sqlite-dir-help' => "Az SQLite minden adatot egyetlen fájlban tárol.
+
+A megadott könyvtárban írási jogosultsággal kell rendelkeznie a webszervernek.
+
+'''Nem''' szabad elérhetőnek lennie weben keresztül, ezért nem rakjuk oda, ahol a PHP-fájljaid vannak.
+
+A telepítő készít egy <code>.htaccess</code> fájlt az adatbázis mellé, azonban ha valamilyen okból nem sikerül, akkor akárki hozzáférhet a teljes adatbázisodhoz. Ez a felhasználók adatai (e-mail címek, jelszók hashei) mellett a törölt változatokat és más, korlátozott hozzáférésű információkat is tartalmaz.
+
+Fontold meg az adatbázis más helyre történő elhelyezését, például a <code>/var/lib/mediawiki/tewikid</code> könyvtárba.",
 	'config-oracle-def-ts' => 'Alapértelmezett táblatér:',
 	'config-oracle-temp-ts' => 'Ideiglenes táblatér:',
 	'config-support-info' => 'A MediaWiki a következő adatbázisrendszereket támogatja:
@@ -5329,7 +5366,8 @@ Ha az alábbi listán nem találod azt a rendszert, melyet használni szeretnél
 	'config-header-sqlite' => 'SQLite-beállítások',
 	'config-header-oracle' => 'Oracle-beállítások',
 	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
-	'config-missing-db-name' => 'Meg kell adnod az „adatbázis nevét”',
+	'config-missing-db-name' => 'Meg kell adnod az „Adatbázisnév” értékét',
+	'config-missing-db-host' => 'Meg kell adnod az „Adatbázis hosztneve” értékét',
 	'config-missing-db-server-oracle' => 'Meg kell adnod az „Adatbázis TNS” értékét',
 	'config-invalid-db-server-oracle' => 'Érvénytelen adatbázis TNS: „$1”
 Csak ASCII betűk (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.',
@@ -5345,6 +5383,19 @@ Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható
 	'config-db-sys-create-oracle' => 'A telepítő csak a SYSDBA fiókkal tud új felhasználói fiókot létrehozni.',
 	'config-db-sys-user-exists-oracle' => 'Már létezik „$1” nevű felhasználói fiók. A SYSDBA csak új fiók létrehozására használható!',
 	'config-postgres-old' => 'A PostgreSQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.',
+	'config-sqlite-name-help' => 'Válassz egy nevet a wiki azonosítására.
+Ne tartalmazzon szóközt vagy kötőjelet.
+Ez lesz az SQLite-adatfájl neve.',
+	'config-sqlite-parent-unwritable-group' => 'Nem hozható létre a(z) <code><nowiki>$1</nowiki></code> adatkönyvtár, mert a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>) nem írhat a webszerver.
+
+A telepítő megállapította, hogy mely felhasználó futtatja a webszervert.
+A folytatáshoz tedd írhatóvá a(z) <code><nowiki>$3</nowiki></code> könyvtárat.
+Unix/Linux rendszeren tedd a következőt:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
 	'config-sqlite-parent-unwritable-nogroup' => 'Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).
 
 A telepítő nem tudta megállapíteni, hogy melyik felhasználói fiókon fut a webszerver.
@@ -5362,6 +5413,19 @@ Módosítsd a jogosultságokat úgy, hogy a webszerver tudjon oda írni, majd pr
 
 Ellenőrizd az adatkönyvtárat és az adatbázisnevet, majd próbáld újra.',
 	'config-sqlite-readonly' => 'A következő fájl nem írható: <code>$1</code>.',
+	'config-sqlite-cant-create-db' => 'Nem sikerült létrehozni a következő adatbázisfájlt: <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'A PHP nem rendelkezik FTS3-támogatással, táblák visszaminősítése',
+	'config-can-upgrade' => "Ebben az adatábizban MediaWiki-táblák találhatóak.
+A MediaWiki $1 verzióra történő frissítéséhez kattints a '''Folytatás''' gombra.",
+	'config-upgrade-done' => "A frissítés befejeződött.
+
+Most már '''[$1 beléphetsz a wikibe]'''.
+
+Ha újra szeretnéd generálni a <code>LocalSettings.php</code> fájlt, kattints az alábbi gombra.
+Ez '''nem ajánlott''', csak akkor, ha problémák vannak a wikivel.",
+	'config-upgrade-done-no-regenerate' => "A frissítés befejeződött.
+
+Most már '''[$1 beléphetsz a wikibe]'''.",
 	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
 	'config-show-table-status' => 'A SHOW TABLE STATUS lekérdezés nem sikerült!',
 	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
@@ -5369,6 +5433,8 @@ Ellenőrizd az adatkönyvtárat és az adatbázisnevet, majd próbáld újra.',
 	'config-db-web-help' => 'Add meg azt a felhasználónevet és jelszót, amit a webszerver a wiki általános működése során használ a csatlakozáshoz.',
 	'config-db-web-account-same' => 'Ezen fiók használata a telepítéshez is',
 	'config-db-web-create' => 'Fiók létrehozása, ha még nem létezik.',
+	'config-db-web-no-create-privs' => 'A telepítéshez megadott fiók nem rendelkezik megfelelő jogosultságokkal új felhasználó létrehozásához.
+Az itt megadott fióknak léteznie kell.',
 	'config-mysql-engine' => 'Tárolómotor:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -5393,6 +5459,10 @@ Ez sokkal hatékonyabb a MySQL UTF-8-as módjánál, és lehetővé teszi a telj
 	'config-project-namespace-help' => "A Wikipédia példáját követve számos wiki elkülöníti egy '''projekt névtérbe''' az irányelveit a tartalommal rendelkező lapoktól
 Az ebben a névtérben található lapok nevei egy előtaggal kezdődnek, amit itt adhatsz meg.
 Általában az előtag a wiki nevéből származik, de nem tartalmazhat írásjeleket, például „#”-t vagy „:”-t.",
+	'config-ns-invalid' => 'A megadott névtér („<nowiki>$1</nowiki>”) érvénytelen.
+Válassz másik projektnévteret!',
+	'config-ns-conflict' => 'A megadott névtér („<nowiki>$1</nowiki>”) ütközik az egyik alapértelmezett MediaWiki-névtérrel.
+Válassz másik projektnévteret!',
 	'config-admin-box' => 'Adminisztrátori fiók',
 	'config-admin-name' => 'Név:',
 	'config-admin-password' => 'Jelszó:',
@@ -5407,6 +5477,10 @@ Adj meg egy másik felhasználónevet.',
 	'config-admin-password-mismatch' => 'A megadott jelszavak nem egyeznek.',
 	'config-admin-email' => 'E-mail cím:',
 	'config-admin-email-help' => 'Add meg az e-mail címedet, hogy más felhasználók küldhessenek e-maileket a wikin keresztül, új jelszót tudj kérni, és értesülhess a figyelőlistádon lévő lapokon történt változásokról. Üresen is hagyhatod ezt a mezőt.',
+	'config-admin-error-user' => 'Belső hiba történt a(z) „<nowiki>$1</nowiki>” nevű adminisztrátor létrehozásakor.',
+	'config-admin-error-password' => 'Belső hiba történt a(z) „<nowiki>$1</nowiki>” nevű adminisztrátor jelszavának beállításakor: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Érvénytelen e-mail címet adtál meg.',
+	'config-subscribe' => 'Feliratkozás a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce kiadási bejelentések levelezőlistájára].',
 	'config-subscribe-help' => 'Ez egy alacsony forgalmú levelezőlista, ahol a kiadásokkal kapcsolatos bejelentések jelennek meg, a fontos biztonsági javításokkal együtt.
 Ajánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki.',
 	'config-almost-done' => 'Már majdnem kész!
@@ -5450,19 +5524,47 @@ Még ma is érvényes, azonban van néhány tulajdonsága, amely nehezíti az ú
 	'config-enable-email' => 'Kimenő e-mailek engedélyezése',
 	'config-enable-email-help' => 'E-mailek küldéséhez [http://www.php.net/manual/en/mail.configuration.php a PHP mail beállításait] megfelelően meg kell adni.
 Ha nem akarsz semmilyen e-mailes funkciót használni, itt tilthatod le őket.',
+	'config-email-user' => 'A felhasználók küldhetnek egymásnak e-maileket',
+	'config-email-user-help' => 'Bármelyik felhasználó küldhet másiknak e-mail üzenetet, amennyiben engedélyezték a lehetőséget a beállításaiknál.',
+	'config-email-usertalk' => 'Vitalapi értesítések engedélyezése',
+	'config-email-usertalk-help' => 'A felhasználók értesítéseket kapnak a vitalapjuk változásairól, amennyiben engedélyezték ezt a lehetőséget a beállításaiknál.',
+	'config-email-watchlist' => 'Figyelőlistai értesítések engedélyezése',
+	'config-email-watchlist-help' => 'A felhasználók értesítéseket kapnak a figyelt lapjaik változásairól, amennyiben engedélyezték ezt a lehetőséget a beállításaiknál.',
+	'config-email-auth' => 'E-mailes hitelesítés engedélyezése',
+	'config-email-auth-help' => "Ha a beállítás engedélyezve van, a felhasználóknak meg kell erősíteniük az e-mail címüket egy kiküldött link segítségével, amikor megadják vagy módosítják azt.
+Csak a megerősített e-mail címmel rendelkezők kaphatnak e-maileket más felhasználóktól vagy értesítéseket.
+A beállítás engedélyezése '''ajánlott''' publikus wikiknél, mivel így megakadályozható az e-mailes funkciókkal való visszaélés.",
 	'config-email-sender' => 'Válaszcím:',
+	'config-email-sender-help' => 'Add meg a kimenő e-mail-üzenetek válaszcímét.
+Ide lesznek küldve a visszapattant üzenetek is.
+Számos levelezőszerver számára a cím domainrészének érvényesnek kell lennie.',
 	'config-upload-settings' => 'Képek és fájlok feltöltése',
 	'config-upload-enable' => 'Fájlfeltöltés engedélyezése',
+	'config-upload-help' => 'A fájlfeltöltés lehetséges biztonsági kockázatoknak teszi ki a szerveredet.
+További információért olvasd el a [http://www.mediawiki.org/wiki/Manual:Security biztonságról szóló szakaszt] a kézikönyvben.
+
+A fájlfeltöltés engedélyezéséhez változtasd meg a MediaWiki gyökérkönyvtárában található <code>images</code> alkönyvtár jogosultságát úgy, hogy a szerver írhasson oda, majd engedélyezd itt a beállítást.',
 	'config-upload-deleted' => 'Törölt fájlok könyvtára:',
+	'config-upload-deleted-help' => 'Válaszd ki azt a könyvtárat, ahol a törölt fájlok lesznek archiválva.
+Normális esetben ennek nem szabad elérhetőnek lennie az internetről.',
 	'config-logo' => 'A logó URL-címe:',
+	'config-logo-help' => 'A MediaWiki alapértelmezett felülete helyet ad egy 135×160 pixeles logónak a bal felső sarokban.
+Töltsd fel a képet a megfelelő méretben, majd írd be az URL-címét ide.
+
+Ha nem szeretnél logót használni, hagyd üresen ezt a mezőt.',
 	'config-instantcommons' => 'Instant Commons engedélyezése',
 	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
 A használatához a MediaWikinek internethozzáférésre van szüksége. 
 
 A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.',
+	'config-cc-error' => 'A Creative Commons-licencválasztó nem tért vissza eredménnyel.
+Add meg kézzel a licencet.',
 	'config-cc-again' => 'Válassz újra…',
+	'config-cc-not-chosen' => 'Válaszd ki a kívánt Creative Commons licencet, majd kattints a „Folytatás gombra”!',
 	'config-advanced-settings' => 'Haladó beállítások',
 	'config-cache-options' => 'Objektum-gyorsítótárazás beállításai:',
+	'config-cache-help' => 'Az objektumgyorsítótárazás célja, hogy felgyorsítsa a MediaWiki működését a gyakran használt adatok gyorsítótárazásával.
+Közepes vagy nagyobb oldalak esetén erősen ajánlott a használata, de kisebb oldalak esetén is hasznos lehet.',
 	'config-cache-none' => 'Nincs gyorsítótárazás (minden funkció működik, de nagyobb wiki esetében lassabb működést eredményezhet)',
 	'config-cache-accel' => 'PHP-objektumok gyorsítótárazása (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached' => 'Memcached használata (további telepítés és konfigurálás szükséges)',
@@ -5471,18 +5573,42 @@ A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediaw
 Vesszővel kell elválasztani őket, és meg kell adni a portot is. Például:
  127.0.0.1:11211
  192.168.1.25:11211',
+	'config-memcache-needservers' => 'Memcachedet választottad gyorsítótárnak, de nem adtál meg egyetlen szervert sem.',
+	'config-memcache-badip' => 'Érvénytelen IP-címet adtál meg a Memcachednek: $1.',
+	'config-memcache-noport' => 'Nem adtál meg portot a Memcached-szervernek: $1.
+Ha nem ismered a portszámot, használd az alapértelmezettet: 11211.',
+	'config-memcache-badport' => 'A Memcached a(z) $1 és $2 közötti portokat szokta használni.',
 	'config-extensions' => 'Kiterjesztések',
+	'config-extensions-help' => 'A fent felsorolt kiterjesztések találhatóak meg az <code>./extensions</code> könyvtárban.
+
+Lehetséges, hogy további beállításra lesz szükség hozzájuk, de már most engedélyezheted őket.',
+	'config-install-alreadydone' => "'''Figyelmeztetés:''' Úgy tűnik, hogy a MediaWiki telepítve van, és te ismét megpróbálod telepíteni.
+Folytasd a következő oldalon.",
+	'config-install-begin' => 'A „{{int:config-continue}}” gomb megnyomása elindítja a MediaWiki telepítését.
+Ha szeretnél módosítani a beállításokon, kattints a vissza gombra.',
 	'config-install-step-done' => 'kész',
 	'config-install-step-failed' => 'sikertelen',
 	'config-install-extensions' => 'Kiterjesztések beillesztése',
 	'config-install-database' => 'Adatbázis felállítása',
+	'config-install-pg-schema-not-exist' => 'A PostgreSQL-adatbázis nem létezik.',
+	'config-install-pg-schema-failed' => 'A táblák létrehozása nem sikerült.
+Ellenőrizd, hogy „$1” felhasználó írhat-e a következő adatbázisba: „$2”.',
+	'config-install-pg-commit' => 'Változtatások közzététele',
+	'config-install-pg-plpgsql' => 'PL/pgSQL nyelv meglétének ellenőrzése',
+	'config-pg-no-plpgsql' => 'Telepítened kell a PL/pgSQL nyelvet a következő adatbázishoz: $1',
+	'config-pg-no-create-privs' => 'A telepítéshez megadott felhasználói fiók nem rendelkezik új fiók létrehozásához szükséges jogosultságokkal.',
 	'config-install-user' => 'Adatbázis-felhasználó létrehozása',
+	'config-install-user-alreadyexists' => 'Már létezik „$1” nevű felhasználó',
+	'config-install-user-create-failed' => 'Nem sikerült a(z) „$1” nevű felhasználó létrehozása: $2',
+	'config-install-user-grant-failed' => 'Nem sikerült jogosultságokkal felruházni a(z) „$1” nevű felhasználót: $2',
 	'config-install-tables' => 'Táblák létrehozása',
 	'config-install-tables-exist' => "'''Figyelmeztetés''': úgy tűnik, hogy a MediaWiki táblái már léteznek.
 Létrehozás kihagyása.",
 	'config-install-tables-failed' => "'''Hiba''': a tábla létrehozása nem sikerült a következő miatt: $1",
 	'config-install-interwiki' => 'Alapértelmezett nyelvközihivatkozás-tábla feltöltése',
 	'config-install-interwiki-list' => 'Az <code>interwiki.list</code> fájl nem található.',
+	'config-install-interwiki-exists' => "'''Figyelmeztetés''': Úgy tűnik, hogy az interwiki táblában már vannak bejegyzések.
+Alapértelmezett lista kihagyása.",
 	'config-install-stats' => 'Statisztika inicializálása',
 	'config-install-keys' => 'Titkos kulcsok generálása',
 	'config-insecure-keys' => "'''Figyelmeztetés:''' A telepítés során generált $1 {{PLURAL:$2|biztonsági kulcs|biztonsági kulcsok}} nem teljesen $1 {{PLURAL:$2|biztonságos|biztonságosak}}. Érdemes {{PLURAL:$2||őket}} manuálisan megváltoztatni.",
@@ -7627,6 +7753,9 @@ Benotzt keng Espacen a Bindestrécher.
 E gëtt fir den Numm vum SQLite Date-Fichier benotzt.',
 	'config-sqlite-readonly' => 'An de Fichier <code>$1</code> Kann net geschriwwe ginn.',
 	'config-sqlite-cant-create-db' => 'Den Datebank-Fichier <code>$1</code> konnt net ugeluecht ginn.',
+	'config-upgrade-done-no-regenerate' => "D'Aktualisatioun ass ofgeschloss.
+
+Dir kënnt elo [$1 ufänken Är Wiki ze benotzen]",
 	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
 	'config-db-web-account-same' => 'Dee selwechte Kont wéi bei der Installatioun benotzen',
 	'config-db-web-create' => 'De Kont uleeë wann et e net scho gëtt',
