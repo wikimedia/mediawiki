@@ -204,7 +204,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'import' ) ) {
+		if ( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
 			return false;
 		}
 
