@@ -819,7 +819,7 @@ abstract class Installer {
 			$this->showMessage( 'config-gd' );
 			return true;
 		} else {
-			$this->showMessage( 'no-scaling' );
+			$this->showMessage( 'config-no-scaling' );
 		}
 	}
 
