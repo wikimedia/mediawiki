@@ -35,12 +35,3 @@ function dbsource( $fname, $db = false ) {
 		exit( 1 );
 	}
 }
-
-/**
- * @deprecated Use DatabaseBase::patchPath(). Will probably be removed in 1.18
- */
-function archive( $name ) {
-	wfDeprecated( __METHOD__ );
-	$dbr = wfGetDB( DB_SLAVE );
-	return $dbr->patchPath( $name );
-}
