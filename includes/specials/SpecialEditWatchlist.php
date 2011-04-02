@@ -31,7 +31,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param $mode int
 	 */
 	public function execute( $mode ) {
-		global $wgUser, $wgLang, $wgOut, $wgRequest;
+		global $wgUser, $wgOut, $wgRequest;
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
