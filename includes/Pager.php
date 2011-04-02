@@ -899,7 +899,13 @@ abstract class TablePager extends IndexPager {
 	 * @return Associative array
 	 */
 	function getRowAttrs( $row ) {
-		return array( 'class' => $this->getRowClass( $row ) );
+		$class = $this->getRowClass( $row );
+		if ( $class === '' ) {
+			// Return an empty array to avoid clutter in HTML like class=""
+			return array();
+		} else {
+			return array( 'class' => $this->getRowClass( $row ) );
+		}
 	}
 
 	/**

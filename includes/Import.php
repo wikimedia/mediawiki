@@ -662,7 +662,7 @@ class WikiImporter {
 			return false;
 		}
 
-		return array( $origTitle, $title );
+		return array( $title, $origTitle );
 	}
 }
 

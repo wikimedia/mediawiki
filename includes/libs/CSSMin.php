@@ -126,6 +126,17 @@ class CSSMin {
 				$offset = $match[0][1] + strlen( $match[0][0] );
 				continue;
 			}
+			// URLs with absolute paths like /w/index.php need to be expanded
+			// to absolute URLs but otherwise left alone
+			if ( $match['file'][0] !== '' && $match['file'][0][0] === '/' ) {
+				// Replace the file path with an expanded URL
+				$source = substr_replace( $source, wfExpandUrl( $match['file'][0] ),
+					$match['file'][1], strlen( $match['file'][0] )
+				);
+				// Move the offset to the end of the match, leaving it alone
+				$offset = $match[0][1] + strlen( $match[0][0] );
+				continue;
+			}
 			// Shortcuts
 			$embed = $match['embed'][0];
 			$pre = $match['pre'][0];
