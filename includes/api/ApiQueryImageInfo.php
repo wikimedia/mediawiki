@@ -357,9 +357,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$vals['thumbheight'] = intval( $file->getHeight() );
 					}
 
-					if ( isset( $prop['thumbmime'] ) ) {
-						$thumbFile = UnregisteredLocalFile::newFromPath( $mto->getPath(), false );
-						$vals['thumbmime'] = $thumbFile->getMimeType();
+					if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
+						list( $ext, $mime ) = $file->getHandler()->getThumbType( 
+							substr( $mto->getPath(), strrpos( $mto->getPath(), '.' ) + 1 ), 
+							$file->getMimeType(), $thumbParams );
+						$vals['thumbmime'] = $mime;
 					}
 				} else if ( $mto && $mto->isError() ) {
 					$vals['thumberror'] = $mto->toText();
