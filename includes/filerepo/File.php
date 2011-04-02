@@ -452,9 +452,8 @@ abstract class File {
 	 * It would be unsafe to include private images, making public thumbnails inadvertently
 	 *
 	 * @return boolean Whether file exists in the repository and is includable.
-	 * @public
 	 */
-	function isVisible() {
+	public function isVisible() {
 		return $this->exists();
 	}
 

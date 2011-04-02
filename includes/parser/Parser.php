@@ -154,10 +154,8 @@ class Parser {
 
 	/**
 	 * Constructor
-	 *
-	 * @public
 	 */
-	function __construct( $conf = array() ) {
+	public function __construct( $conf = array() ) {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
