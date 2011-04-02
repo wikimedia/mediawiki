@@ -1202,7 +1202,8 @@ class Preferences {
 			$prefill = array_fill_keys( array_values( $tzRegions ), array() );
 			$opt = array_merge( $opt, $prefill );
 
-			$now = date_create( 'now' );
+			global $wgLocaltimezone;
+			$now = date_create( 'now', $wgLocaltimezone );
 
 			foreach ( $tzs as $tz ) {
 				$z = explode( '/', $tz, 2 );
