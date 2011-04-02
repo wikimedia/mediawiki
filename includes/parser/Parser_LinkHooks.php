@@ -9,8 +9,7 @@
  * Parser with LinkHooks experiment
  * @ingroup Parser
  */
-class Parser_LinkHooks extends Parser
-{
+class Parser_LinkHooks extends Parser {
 	/**
 	 * Update this version number when the ParserOutput format
 	 * changes in an incompatible way, so the parser cache
@@ -38,10 +37,8 @@ class Parser_LinkHooks extends Parser
 
 	/**
 	 * Constructor
-	 *
-	 * @public
 	 */
-	function __construct( $conf = array() ) {
+	public function __construct( $conf = array() ) {
 		parent::__construct( $conf );
 		$this->mLinkHooks = array();
 	}
@@ -82,8 +79,6 @@ class Parser_LinkHooks extends Parser
 	 * True) (Treat as link) Parse the link according to normal link rules
 	 * False) (Bad link) Just output the raw wikitext (You may modify the text first)
 	 *
-	 * @public
-	 *
 	 * @param $ns Integer or String: the Namespace ID or regex pattern if SLH_PATTERN is set
 	 * @param $callback Mixed: the callback function (and object) to use
 	 * @param $flags Integer: a combination of the following flags:
@@ -91,7 +86,7 @@ class Parser_LinkHooks extends Parser
 	 *
 	 * @return The old callback function for this name, if any
 	 */
-	function setLinkHook( $ns, $callback, $flags = 0 ) {
+	public function setLinkHook( $ns, $callback, $flags = 0 ) {
 		if( $flags & SLH_PATTERN && !is_string($ns) )
 			throw new MWException( __METHOD__.'() expecting a regex string pattern.' );
 		elseif( $flags | ~SLH_PATTERN && !is_int($ns) )
