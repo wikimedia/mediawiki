@@ -859,8 +859,9 @@ class LocalFile extends File {
 	/**
 	 * Record a file upload in the upload log and the image table
 	 */
-	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null )
-	{
+	function recordUpload2(
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
+	) {
 		if ( is_null( $user ) ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -873,10 +874,14 @@ class LocalFile extends File {
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
 		}
 
+		if ( $timestamp === false ) {
+			$timestamp = $dbw->timestamp();
+		}
+
 		$props['description'] = $comment;
 		$props['user'] = $user->getId();
 		$props['user_text'] = $user->getName();
-		$props['timestamp'] = wfTimestamp( TS_MW );
+		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
 		$this->setProps( $props );
 
 		# Delete thumbnails
@@ -892,10 +897,6 @@ class LocalFile extends File {
 		}
 
 		$reupload = false;
-
-		if ( $timestamp === false ) {
-			$timestamp = $dbw->timestamp();
-		}
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
