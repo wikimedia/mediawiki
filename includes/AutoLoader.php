@@ -438,7 +438,6 @@ $wgAutoloadLocalClasses = array(
 	'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
 	'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
 	'FSRepo' => 'includes/filerepo/FSRepo.php',
-	'Image' => 'includes/filerepo/Image.php',
 	'LocalFile' => 'includes/filerepo/LocalFile.php',
 	'LocalFileDeleteBatch' => 'includes/filerepo/LocalFile.php',
 	'LocalFileMoveBatch' => 'includes/filerepo/LocalFile.php',
