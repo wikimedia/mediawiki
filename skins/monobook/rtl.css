@@ -228,7 +228,7 @@ table.filehistory th {
 }
 
 /* Special:AllPages styling */
-td.mw-allpages-nav, p.mw-allpages-nav, td.mw-allpages-alphaindexline {
+.mw-allpages-nav, td.mw-allpages-alphaindexline {
 	text-align: left;
 }
 

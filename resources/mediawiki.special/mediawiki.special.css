@@ -23,7 +23,7 @@ table.mw-allpages-table-form, table.mw-allpages-table-chunk {
 td.mw-allpages-alphaindexline {
 	text-align: right;
 }
-td.mw-allpages-nav, p.mw-allpages-nav {
+.mw-allpages-nav {
 	text-align: right;
 	font-size: smaller;
 	margin-bottom: 1em;
