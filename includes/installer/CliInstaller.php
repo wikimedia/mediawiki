@@ -112,13 +112,12 @@ class CliInstaller extends Installer {
 	}
 
 	public function startStage( $step ) {
-		$this->showMessage( wfMsg( "config-install-$step" ) .
-			wfMsg( 'ellipsis' ) . wfMsg( 'word-separator' ) );
+		$this->showMessage( "config-install-$step" );
 	}
 
 	public function endStage( $step, $status ) {
 		$this->showStatusMessage( $status );
-		$this->showMessage( wfMsg( 'config-install-step-done' ) . "\n" );
+		$this->showMessage( 'config-install-step-done' );
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
@@ -126,10 +125,6 @@ class CliInstaller extends Installer {
 		array_shift( $params );
 
 		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
-		/* parseinline has the nasty side-effect of putting encoded
-		 * angle brackets, around the message.
-		 */
-		$text = preg_replace( '/(^&lt;|&gt;$)/', '', $text );
 
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
 		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
@@ -141,9 +136,8 @@ class CliInstaller extends Installer {
 			$status->getErrorsArray() );
 
 		if ( count( $warnings ) !== 0 ) {
-			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
-				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
-					wfMsg( 'word-separator' ) );
+			foreach ( $warnings as $w ) {
+				call_user_func_array( array( $this, 'showMessage' ), $w );
 			}
 		}
 
