@@ -38,13 +38,13 @@
  */
 
 # Initialise common code
-$preIP = dirname( __FILE__ );
-require_once( "$preIP/includes/WebStart.php" );
+require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+
+wfProfileIn( 'index.php' );
+wfProfileIn( 'index.php-setup' );
 
 # Initialize MediaWiki base class
 $mediaWiki = new MediaWiki();
-
-wfProfileIn( 'main-misc-setup' );
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
@@ -53,21 +53,21 @@ if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
 
 # Set title from request parameters
 $wgTitle = $mediaWiki->checkInitialQueries( $wgRequest );
-
-wfProfileOut( 'main-misc-setup' );
-
 $action = $wgRequest->getVal( 'action', 'view' );
+
+wfProfileOut( 'index.php-setup' );
 
 # Send Ajax requests to the Ajax dispatcher.
 if( $wgUseAjax && $action == 'ajax' ) {
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
+	wfProfileOut( 'index.php' );
 	$mediaWiki->restInPeace();
 	exit;
 }
 
 if( $wgUseFileCache && $wgTitle !== null ) {
-	wfProfileIn( 'main-try-filecache' );
+	wfProfileIn( 'index.php-filecache' );
 	// Raw pages should handle cache control on their own,
 	// even when using file cache. This reduces hits from clients.
 	if( $action != 'raw' && HTMLFileCache::useFileCache() ) {
@@ -83,13 +83,14 @@ if( $wgUseFileCache && $wgTitle !== null ) {
 			$wgArticle->viewUpdates();
 			# Tell $wgOut that output is taken care of
 			$wgOut->disable();
-			wfProfileOut( 'main-try-filecache' );
+			wfProfileOut( 'index.php-filecache' );
 			$mediaWiki->finalCleanup( $wgOut );
+			wfProfileOut( 'index.php' );
 			$mediaWiki->restInPeace();
 			exit;
 		}
 	}
-	wfProfileOut( 'main-try-filecache' );
+	wfProfileOut( 'index.php-filecache' );
 }
 
 # Setting global variables in mediaWiki
@@ -103,4 +104,7 @@ $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
 $mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup( $wgOut );
+
+wfProfileOut( 'index.php' );
+
 $mediaWiki->restInPeace();
