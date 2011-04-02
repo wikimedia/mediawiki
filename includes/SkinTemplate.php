@@ -154,7 +154,6 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
 
-		$this->setMembers();
 		$tpl = $this->setupTemplate( $this->template, 'skins' );
 		wfProfileOut( __METHOD__ . '-init' );
 

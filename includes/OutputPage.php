@@ -286,11 +286,24 @@ class OutputPage {
 	 *                 "rel" attribute will be automatically added
 	 */
 	function addMetadataLink( $linkarr ) {
+		$linkarr['rel'] = $this->getMetadataAttribute();
+		$this->addLink( $linkarr );
+	}
+
+	/**
+	 * Get the value of the "rel" attribute for metadata links
+	 *
+	 * @return String
+	 */
+	private function getMetadataAttribute() {
 		# note: buggy CC software only reads first "meta" link
 		static $haveMeta = false;
-		$linkarr['rel'] = $haveMeta ? 'alternate meta' : 'meta';
-		$this->addLink( $linkarr );
-		$haveMeta = true;
+		if ( $haveMeta ) {
+			return 'alternate meta';
+		} else {
+			$haveMeta = true;
+			return 'meta';
+		}
 	}
 
 	/**
@@ -1757,105 +1770,62 @@ class OutputPage {
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgUseAjax, $wgAjaxWatch;
-		global $wgEnableMWSuggest, $wgUniversalEditButton;
 
 		if( $this->mDoNothing ) {
 			return;
 		}
+
 		wfProfileIn( __METHOD__ );
+
+		$response = $wgRequest->response();
+
 		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
 			$this->mRedirect = wfExpandUrl( $this->mRedirect );
 			if( $this->mRedirectCode == '301' || $this->mRedirectCode == '303' ) {
 				if( !$wgDebugRedirects ) {
 					$message = self::getStatusMessage( $this->mRedirectCode );
-					$wgRequest->response()->header( "HTTP/1.1 {$this->mRedirectCode} $message" );
+					$response->header( "HTTP/1.1 {$this->mRedirectCode} $message" );
 				}
 				$this->mLastModified = wfTimestamp( TS_RFC2822 );
 			}
 			$this->sendCacheControl();
 
-			$wgRequest->response()->header( "Content-Type: text/html; charset=utf-8" );
+			$response->header( "Content-Type: text/html; charset=utf-8" );
 			if( $wgDebugRedirects ) {
 				$url = htmlspecialchars( $this->mRedirect );
 				print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
 				print "<p>Location: <a href=\"$url\">$url</a></p>\n";
 				print "</body>\n</html>\n";
 			} else {
-				$wgRequest->response()->header( 'Location: ' . $this->mRedirect );
+				$response->header( 'Location: ' . $this->mRedirect );
 			}
 			wfProfileOut( __METHOD__ );
 			return;
 		} elseif ( $this->mStatusCode ) {
 			$message = self::getStatusMessage( $this->mStatusCode );
 			if ( $message ) {
-				$wgRequest->response()->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
+				$response->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
 			}
 		}
-
-		// Add base resources
-		$this->addModules( 'mediawiki.util' );
-		global $wgIncludeLegacyJavaScript;
-		if( $wgIncludeLegacyJavaScript ){
-			$this->addModules( 'mediawiki.legacy.wikibits' );
-		}
-
-		// Add various resources if required
-		if ( $wgUseAjax ) {
-			$this->addModules( 'mediawiki.legacy.ajax' );
-
-			wfRunHooks( 'AjaxAddScript', array( &$this ) );
-
-			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
-				$this->addModules( 'mediawiki.action.watch.ajax' );
-			}
-
-			if ( $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.legacy.mwsuggest' );
-			}
-		}
-
-		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
-			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
-		}
-
-		if( $wgUniversalEditButton ) {
-			if( $this->isArticleRelated() && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
-				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
-				// Original UniversalEditButton
-				$msg = wfMsg( 'edit' );
-				$this->addLink( array(
-					'rel' => 'alternate',
-					'type' => 'application/x-wiki',
-					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
-				) );
-				// Alternate edit link
-				$this->addLink( array(
-					'rel' => 'edit',
-					'title' => $msg,
-					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
-				) );
-			}
-		}
-
 
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
-		$wgRequest->response()->header( 'Content-language: ' . $wgLanguageCode );
+		$response->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
+		$response->header( 'Content-language: ' . $wgLanguageCode );
 
 		// Prevent framing, if requested
 		$frameOptions = $this->getFrameOptions();
 		if ( $frameOptions ) {
-			$wgRequest->response()->header( "X-Frame-Options: $frameOptions" );
+			$response->header( "X-Frame-Options: $frameOptions" );
 		}
 
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );
 		} else {
+			$this->addDefaultModules();
+
 			$sk = $wgUser->getSkin( $this->getTitle() );
 
 			// Hook that allows last minute changes to the output page, e.g.
@@ -2315,18 +2285,10 @@ class OutputPage {
 			$ret .= "$openHead\n";
 		}
 
-		if ( $wgHtml5 ) {
-			# More succinct than <meta http-equiv=Content-Type>, has the
-			# same effect
-			$ret .= Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) ) . "\n";
-		} else {
-			$this->addMeta( 'http:Content-Type', "$wgMimeType; charset=$wgOutputEncoding" );
-		}
-
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
 		$ret .= implode( "\n", array(
-			$this->getHeadLinks( $sk ),
+			$this->getHeadLinks( $sk, true ),
 			$this->buildCssLinks( $sk ),
 			$this->getHeadItems()
 		) );
@@ -2371,6 +2333,39 @@ class OutputPage {
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
 
 		return $ret;
+	}
+
+	/**
+	 * Add the default ResourceLoader modules to this object
+	 */
+	private function addDefaultModules() {
+		global $wgUser, $wgIncludeLegacyJavaScript,
+			$wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
+
+		// Add base resources
+		$this->addModules( 'mediawiki.util' );
+		if( $wgIncludeLegacyJavaScript ){
+			$this->addModules( 'mediawiki.legacy.wikibits' );
+		}
+
+		// Add various resources if required
+		if ( $wgUseAjax ) {
+			$this->addModules( 'mediawiki.legacy.ajax' );
+
+			wfRunHooks( 'AjaxAddScript', array( &$this ) );
+
+			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
+				$this->addModules( 'mediawiki.action.watch.ajax' );
+			}
+
+			if ( $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
+				$this->addModules( 'mediawiki.legacy.mwsuggest' );
+			}
+		}
+
+		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
+			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
+		}
 	}
 
 	/**
@@ -2651,28 +2646,48 @@ class OutputPage {
 	}
 
 	/**
-	 * Add default \<meta\> tags
+	 * @return string HTML tag links to be put in the header.
 	 */
-	protected function addDefaultMeta() {
-		global $wgVersion, $wgHtml5;
+	public function getHeadLinks( Skin $sk, $addContentType = false ) {
+		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
+			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType, $wgOutputEncoding,
+			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
+			$wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf,
+			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
+			$wgRightsPage, $wgRightsUrl;
 
-		static $called = false;
-		if ( $called ) {
-			# Don't run this twice
-			return;
-		}
-		$called = true;
+		$tags = array();
 
-		if ( !$wgHtml5 ) {
-			$this->addMeta( 'http:Content-Style-Type', 'text/css' ); // bug 15835
+		if ( $addContentType ) {
+			if ( $wgHtml5 ) {
+				# More succinct than <meta http-equiv=Content-Type>, has the
+				# same effect
+				$tags[] = Html::element( 'meta', array( 'charset' => $wgOutputEncoding ) );
+			} else {
+				$tags[] = Html::element( 'meta', array(
+					'http-equiv' => 'Content-Type',
+					'content' => "$wgMimeType; charset=$wgOutputEncoding"
+				) );
+				$tags[] = Html::element( 'meta', array(  // bug 15835
+					'http-equiv' => 'Content-Style-Type',
+					'content' => 'text/css'
+				) );
+			}
 		}
-		$this->addMeta( 'generator', "MediaWiki $wgVersion" );
+
+		$tags[] = Html::element( 'meta', array(
+			'name' => 'generator',
+			'content' => "MediaWiki $wgVersion",
+		) );
 
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
 		if( $p !== 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
-			$this->addMeta( 'robots', $p );
+			$tags[] = Html::element( 'meta', array(
+				'name' => 'robots',
+				'content' => $p,
+			) );
 		}
 
 		if ( count( $this->mKeywords ) > 0 ) {
@@ -2680,27 +2695,15 @@ class OutputPage {
 				"/<.*?" . ">/" => '',
 				"/_/" => ' '
 			);
-			$this->addMeta(
-				'keywords',
-				preg_replace(
+			$tags[] = Html::element( 'meta', array(
+				'name' => 'keywords',
+				'content' =>  preg_replace(
 					array_keys( $strip ),
 					array_values( $strip ),
 					implode( ',', $this->mKeywords )
 				)
-			);
+			) );
 		}
-	}
-
-	/**
-	 * @return string HTML tag links to be put in the header.
-	 */
-	public function getHeadLinks( Skin $sk ) {
-		global $wgFeed;
-
-		// Ideally this should happen earlier, somewhere. :P
-		$this->addDefaultMeta();
-
-		$tags = array();
 
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
@@ -2716,11 +2719,137 @@ class OutputPage {
 				)
 			);
 		}
+
 		foreach ( $this->mLinktags as $tag ) {
 			$tags[] = Html::element( 'link', $tag );
 		}
 
-		if( $wgFeed ) {
+		# Universal edit button
+		if ( $wgUniversalEditButton ) {
+			if ( $this->isArticleRelated() && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
+				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
+				// Original UniversalEditButton
+				$msg = wfMsg( 'edit' );
+				$tags[] = Html::element( 'link', array(
+					'rel' => 'alternate',
+					'type' => 'application/x-wiki',
+					'title' => $msg,
+					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+				) );
+				// Alternate edit link
+				$tags[] = Html::element( 'link', array(
+					'rel' => 'edit',
+					'title' => $msg,
+					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
+				) );
+			}
+		}
+
+		# Generally the order of the favicon and apple-touch-icon links
+		# should not matter, but Konqueror (3.5.9 at least) incorrectly
+		# uses whichever one appears later in the HTML source. Make sure
+		# apple-touch-icon is specified first to avoid this.
+		if ( $wgAppleTouchIcon !== false ) {
+			$tags[] = Html::element( 'link', array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
+		}
+
+		if ( $wgFavicon !== false ) {
+			$tags[] = Html::element( 'link', array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
+		}
+
+		# OpenSearch description link
+		$tags[] = Html::element( 'link', array(
+			'rel' => 'search',
+			'type' => 'application/opensearchdescription+xml',
+			'href' => wfScript( 'opensearch_desc' ),
+			'title' => wfMsgForContent( 'opensearch-desc' ),
+		) );
+
+		if ( $wgEnableAPI ) {
+			# Real Simple Discovery link, provides auto-discovery information
+			# for the MediaWiki API (and potentially additional custom API
+			# support such as WordPress or Twitter-compatible APIs for a
+			# blogging extension, etc)
+			$tags[] = Html::element( 'link', array(
+				'rel' => 'EditURI',
+				'type' => 'application/rsd+xml',
+				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ) ),
+			) );
+		}
+
+		# Metadata links
+		# - Creative Commons
+		#   See http://wiki.creativecommons.org/Extend_Metadata.
+		# - Dublin Core
+		#   Use hreflang to specify canonical and alternate links
+		#   See http://www.google.com/support/webmasters/bin/answer.py?answer=189077
+		if ( $this->isArticleRelated() ) {
+			# note: buggy CC software only reads first "meta" link
+			if ( $wgEnableCreativeCommonsRdf ) {
+				$tags[] = Html::element( 'link', array(
+					'rel' => $this->getMetadataAttribute(),
+					'title' => 'Creative Commons',
+					'type' => 'application/rdf+xml',
+					'href' => $this->getTitle()->getLocalURL( 'action=creativecommons' ) )
+				);
+			}
+
+			if ( $wgEnableDublinCoreRdf ) {
+				$tags[] = Html::element( 'link', array(
+					'rel' => $this->getMetadataAttribute(),
+					'title' => 'Dublin Core',
+					'type' => 'application/rdf+xml',
+					'href' => $this->getTitle()->getLocalURL( 'action=dublincore' ) )
+				);
+			}
+		}
+
+		# Language variants
+		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks
+			&& $wgContLang->hasVariants() ) {
+
+			$urlvar = $wgContLang->getURLVariant();
+
+			if ( !$urlvar ) {
+				$variants = $wgContLang->getVariants();
+				foreach ( $variants as $_v ) {
+					$tags[] = Html::element( 'link', array(
+						'rel' => 'alternate',
+						'hreflang' => $_v,
+						'href' => $this->getTitle()->getLocalURL( '', $_v ) )
+					);
+				}
+			} else {
+				$tags[] = Html::element( 'link', array(
+					'rel' => 'canonical',
+					'href' => $this->getTitle()->getFullURL() )
+				);
+			}
+		}
+
+		# Copyright
+		$copyright = '';
+		if ( $wgRightsPage ) {
+			$copy = Title::newFromText( $wgRightsPage );
+
+			if ( $copy ) {
+				$copyright = $copy->getLocalURL();
+			}
+		}
+
+		if ( !$copyright && $wgRightsUrl ) {
+			$copyright = $wgRightsUrl;
+		}
+
+		if ( $copyright ) {
+			$tags[] = Html::element( 'link', array(
+				'rel' => 'copyright',
+				'href' => $copyright )
+			);
+		}
+
+		# Feeds
+		if ( $wgFeed ) {
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title (accessed through $wgTitle since
 				# there's no other way).  In principle, this could lead to issues
@@ -2743,7 +2872,6 @@ class OutputPage {
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
 
-			global $wgOverrideSiteFeed, $wgSitename, $wgAdvertisedFeedTypes;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 
 			if ( $wgOverrideSiteFeed ) {

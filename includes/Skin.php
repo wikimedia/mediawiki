@@ -183,47 +183,11 @@ abstract class Skin extends Linker {
 	}
 
 	function initPage( OutputPage $out ) {
-		global $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI;
-
 		wfProfileIn( __METHOD__ );
 
-		# Generally the order of the favicon and apple-touch-icon links
-		# should not matter, but Konqueror (3.5.9 at least) incorrectly
-		# uses whichever one appears later in the HTML source. Make sure
-		# apple-touch-icon is specified first to avoid this.
-		if ( false !== $wgAppleTouchIcon ) {
-			$out->addLink( array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
-		}
-
-		if ( false !== $wgFavicon ) {
-			$out->addLink( array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
-		}
-
-		# OpenSearch description link
-		$out->addLink( array(
-			'rel' => 'search',
-			'type' => 'application/opensearchdescription+xml',
-			'href' => wfScript( 'opensearch_desc' ),
-			'title' => wfMsgForContent( 'opensearch-desc' ),
-		) );
-
-		if ( $wgEnableAPI ) {
-			# Real Simple Discovery link, provides auto-discovery information
-			# for the MediaWiki API (and potentially additional custom API
-			# support such as WordPress or Twitter-compatible APIs for a
-			# blogging extension, etc)
-			$out->addLink( array(
-				'rel' => 'EditURI',
-				'type' => 'application/rsd+xml',
-				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ) ),
-			) );
-		}
-
-		$this->addMetadataLinks( $out );
-
 		$this->mRevisionId = $out->mRevisionId;
-
 		$this->preloadExistence();
+		$this->setMembers();
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -249,88 +213,6 @@ abstract class Skin extends Linker {
 		$lb = new LinkBatch( $titles );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
-	}
-
-	/**
-	 * Adds metadata links below to the HTML output.
-	 * <ol>
-	 *  <li>Creative Commons
-	 *   <br />See http://wiki.creativecommons.org/Extend_Metadata.
-	 *  </li>
-	 *  <li>Dublin Core</li>
-	 *  <li>Use hreflang to specify canonical and alternate links
-	 *   <br />See http://www.google.com/support/webmasters/bin/answer.py?answer=189077
-	 *  </li>
-	 *  <li>Copyright</li>
-	 * <ol>
-	 * 
-	 * @param $out Object: instance of OutputPage
-	 */
-	function addMetadataLinks( OutputPage $out ) {
-		global $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
-		global $wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang;
-		global $wgRightsPage, $wgRightsUrl;
-
-		if ( $out->isArticleRelated() ) {
-			# note: buggy CC software only reads first "meta" link
-			if ( $wgEnableCreativeCommonsRdf ) {
-				$out->addMetadataLink( array(
-					'title' => 'Creative Commons',
-					'type' => 'application/rdf+xml',
-					'href' => $this->mTitle->getLocalURL( 'action=creativecommons' ) )
-				);
-			}
-
-			if ( $wgEnableDublinCoreRdf ) {
-				$out->addMetadataLink( array(
-					'title' => 'Dublin Core',
-					'type' => 'application/rdf+xml',
-					'href' => $this->mTitle->getLocalURL( 'action=dublincore' ) )
-				);
-			}
-		}
-
-		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks
-			&& $wgContLang->hasVariants() ) {
-
-			$urlvar = $wgContLang->getURLVariant();
-
-			if ( !$urlvar ) {
-				$variants = $wgContLang->getVariants();
-				foreach ( $variants as $_v ) {
-					$out->addLink( array(
-						'rel' => 'alternate',
-						'hreflang' => $_v,
-						'href' => $this->mTitle->getLocalURL( '', $_v ) )
-					);
-				}
-			} else {
-				$out->addLink( array(
-					'rel' => 'canonical',
-					'href' => $this->mTitle->getFullURL() )
-				);
-			}
-		}
-		
-		$copyright = '';
-		if ( $wgRightsPage ) {
-			$copy = Title::newFromText( $wgRightsPage );
-
-			if ( $copy ) {
-				$copyright = $copy->getLocalURL();
-			}
-		}
-
-		if ( !$copyright && $wgRightsUrl ) {
-			$copyright = $wgRightsUrl;
-		}
-
-		if ( $copyright ) {
-			$out->addLink( array(
-				'rel' => 'copyright',
-				'href' => $copyright )
-			);
-		}
 	}
 
 	/**
@@ -437,7 +319,6 @@ abstract class Skin extends Linker {
 		global $wgDebugComments;
 		wfProfileIn( __METHOD__ );
 
-		$this->setMembers();
 		$this->initPage( $out );
 
 		// See self::afterContentHook() for documentation
