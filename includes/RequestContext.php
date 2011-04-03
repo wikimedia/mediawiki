@@ -10,7 +10,7 @@
 class RequestContext {
 	private $request; /// WebRequest object
 	private $title;   /// Title object
-	private $out;     /// OutputPage object
+	private $output;  /// OutputPage object
 	private $user;    /// User object
 	private $lang;    /// Language object
 	private $skin;    /// Skin object
@@ -57,6 +57,15 @@ class RequestContext {
 			$this->title = $wgTitle;
 		}
 		return $this->title;
+	}
+
+	/**
+	 * Set the OutputPage object
+	 *
+	 * @param $u OutputPage
+	 */
+	public function setOutput( OutputPage $u ) {
+		$this->output = $u;
 	}
 
 	/**
@@ -160,8 +169,8 @@ class RequestContext {
 	 * @return Message object
 	 */
 	public function msg() {
-		$args = function_get_args();
-		return call_user_func_array( 'wfMessage', $args )->inLanguage( $this->getLang() )->outputPage( $this->getOut() );
+		$args = func_get_args();
+		return call_user_func_array( 'wfMessage', $args )->inLanguage( $this->getLang() );
 	}
 
 	/** Static methods **/
@@ -178,6 +187,5 @@ class RequestContext {
 		}
 		return $instance;
 	}
-
 }
 
