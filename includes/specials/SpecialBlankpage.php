@@ -32,8 +32,7 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 		parent::__construct( 'Blankpage' );
 	}
 	public function execute( $par ) {
-		global $wgOut;
 		$this->setHeaders();
-		$wgOut->addWikiMsg('intentionallyblankpage');
+		$this->getOutput()>addWikiMsg('intentionallyblankpage');
 	}
 }
