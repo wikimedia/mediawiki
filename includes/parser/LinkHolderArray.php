@@ -254,7 +254,6 @@ class LinkHolderArray {
 		global $wgContLang;
 
 		$colours = array();
-		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
@@ -288,7 +287,7 @@ class LinkHolderArray {
 				} elseif ( $ns == NS_SPECIAL ) {
 					$colours[$pdbk] = 'new';
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
-					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
+					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
 					$linkcolour_ids[$id] = $pdbk;
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
@@ -325,7 +324,7 @@ class LinkHolderArray {
 				# FIXME: convoluted data flow
 				# The redirect status and length is passed to getLinkColour via the LinkCache
 				# Use formal parameters instead
-				$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
+				$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
 				//add id to the extension todolist
 				$linkcolour_ids[$s->page_id] = $pdbk;
 			}
@@ -370,7 +369,7 @@ class LinkHolderArray {
 					}
 					$type = array( 'known', 'noclasses' );
 				}
-				$replacePairs[$searchkey] = $sk->link( $title, $displayText,
+				$replacePairs[$searchkey] = Linker::link( $title, $displayText,
 						$attribs, $query, $type );
 			}
 		}
@@ -398,11 +397,10 @@ class LinkHolderArray {
 
 		wfProfileIn( __METHOD__ );
 		# Make interwiki link HTML
-		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$output = $this->parent->getOutput();
 		$replacePairs = array();
 		foreach( $this->interwikis as $key => $link ) {
-			$replacePairs[$key] = $sk->link( $link['title'], $link['text'] );
+			$replacePairs[$key] = Linker::link( $link['title'], $link['text'] );
 			$output->addInterwikiLink( $link['title'] );
 		}
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
@@ -423,7 +421,6 @@ class LinkHolderArray {
 		$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
 		$linkCache = LinkCache::singleton();
-		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$threshold = $this->parent->getOptions()->getStubThreshold();
 		$titlesToBeConverted = '';
 		$titlesAttrs = array();
@@ -528,7 +525,7 @@ class LinkHolderArray {
 						# FIXME: convoluted data flow
 						# The redirect status and length is passed to getLinkColour via the LinkCache
 						# Use formal parameters instead
-						$colours[$varPdbk] = $sk->getLinkColour( $variantTitle, $threshold );
+						$colours[$varPdbk] = Linker::getLinkColour( $variantTitle, $threshold );
 						$linkcolour_ids[$s->page_id] = $pdbk;
 					}
 				}

@@ -13,7 +13,6 @@ class ImageGallery
 {
 	var $mImages, $mShowBytes, $mShowFilename;
 	var $mCaption = false;
-	var $mSkin = false;
 
 	/**
 	 * Hide blacklisted images?
@@ -127,24 +126,10 @@ class ImageGallery
 	 * Instruct the class to use a specific skin for rendering
 	 *
 	 * @param $skin Skin object
+	 * @deprecated Not used anymore
 	 */
 	function useSkin( $skin ) {
-		$this->mSkin = $skin;
-	}
-
-	/**
-	 * Return the skin that should be used
-	 *
-	 * @return Skin object
-	 */
-	function getSkin() {
-		if( !$this->mSkin ) {
-			global $wgUser;
-			$skin = $wgUser->getSkin();
-		} else {
-			$skin = $this->mSkin;
-		}
-		return $skin;
+		/* no op */
 	}
 
 	/**
@@ -230,8 +215,6 @@ class ImageGallery
 	function toHTML() {
 		global $wgLang;
 
-		$sk = $this->getSkin();
-
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ""; 
@@ -276,7 +259,7 @@ class ImageGallery
 			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">' .
-					$sk->link(
+					Linker::link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
 						array(),
@@ -321,7 +304,7 @@ class ImageGallery
 
 			//TODO
 			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
-			// $ul = $sk->link( $linkTarget, $ut );
+			// $ul = Linker::link( $linkTarget, $ut );
 
 			if( $this->mShowBytes ) {
 				if( $img ) {
@@ -336,7 +319,7 @@ class ImageGallery
 			}
 
 			$textlink = $this->mShowFilename ?
-				$sk->link(
+				Linker::link(
 					$nt,
 					htmlspecialchars( $wgLang->truncate( $nt->getText(), $this->mCaptionLength ) ),
 					array(),

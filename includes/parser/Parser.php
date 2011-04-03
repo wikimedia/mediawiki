@@ -4549,7 +4549,6 @@ class Parser {
 		$ig->setParser( $this );
 		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
-		$ig->useSkin( $this->mOptions->getSkin( $this->mTitle ) );
 
 		if ( isset( $params['showfilename'] ) ) {
 			$ig->setShowFilename( true );
