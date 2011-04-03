@@ -1,19 +1,19 @@
 <?php
 /**
  * Group all the pieces relevant to the context of a request into one instance
- * 
+ *
  * @author IAlex
  * @author Daniel Friesen
  * @file
  */
 
 class RequestContext {
-	private $request; /// WebRequest object
-	private $title;   /// Title object
-	private $output;  /// OutputPage object
-	private $user;    /// User object
-	private $lang;    /// Language object
-	private $skin;    /// Skin object
+	private $mRequest; // / WebRequest object
+	private $mTitle;   // / Title object
+	private $mOutput;  // / OutputPage object
+	private $mUser;    // / User object
+	private $mLang;    // / Language object
+	private $mSkin;    // / Skin object
 
 	/**
 	 * Set the WebRequest object
@@ -21,7 +21,7 @@ class RequestContext {
 	 * @param $r WebRequest object
 	 */
 	public function setRequest( WebRequest $r ) {
-		$this->request = $r;
+		$this->mRequest = $r;
 	}
 
 	/**
@@ -30,11 +30,11 @@ class RequestContext {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( !isset($this->request) ) {
+		if ( !isset( $this->mRequest ) ) {
 			global $wgRequest; # fallback to $wg till we can improve this
-			$this->request = $wgRequest;
+			$this->mRequest = $wgRequest;
 		}
-		return $this->request;
+		return $this->mRequest;
 	}
 
 	/**
@@ -43,7 +43,7 @@ class RequestContext {
 	 * @param $t Title object
 	 */
 	public function setTitle( Title $t ) {
-		$this->title = $t;
+		$this->mTitle = $t;
 	}
 
 	/**
@@ -52,11 +52,11 @@ class RequestContext {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if ( !isset($this->title) ) {
+		if ( !isset( $this->mTitle ) ) {
 			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
+			$this->mTitle = $wgTitle;
 		}
-		return $this->title;
+		return $this->mTitle;
 	}
 
 	/**
@@ -64,8 +64,8 @@ class RequestContext {
 	 *
 	 * @param $u OutputPage
 	 */
-	public function setOutput( OutputPage $u ) {
-		$this->output = $u;
+	public function setOutput( OutputPage $o ) {
+		$this->mOutput = $o;
 	}
 
 	/**
@@ -74,11 +74,11 @@ class RequestContext {
 	 * @return OutputPage object
 	 */
 	public function getOutput() {
-		if ( !isset($this->output) ) {
-			$this->output = new OutputPage;
-			$this->output->setContext( $this );
+		if ( !isset( $this->mOutput ) ) {
+			$this->mOutput = new OutputPage;
+			$this->mOutput->setContext( $this );
 		}
-		return $this->output;
+		return $this->mOutput;
 	}
 
 	/**
@@ -87,7 +87,7 @@ class RequestContext {
 	 * @param $u User
 	 */
 	public function setUser( User $u ) {
-		$this->user = $u;
+		$this->mUser = $u;
 	}
 
 	/**
@@ -96,11 +96,13 @@ class RequestContext {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( !isset($this->user) ) {
+		if ( !isset( $this->mUser ) ) {
 			global $wgCommandLineMode;
-			$this->user = $wgCommandLineMode ? new User : User::newFromSession( $this->getRequest() );
+			$this->mUser = $wgCommandLineMode
+				? new User
+				: User::newFromSession( $this->getRequest() );
 		}
-		return $this->user;
+		return $this->mUser;
 	}
 
 	/**
@@ -109,28 +111,31 @@ class RequestContext {
 	 * @return Language
 	 */
 	public function getLang() {
-		if ( !isset($this->lang) ) {
+		if ( !isset( $this->mLang ) ) {
 			global $wgLanguageCode, $wgContLang;
-			$code = $this->getRequest()->getVal( 'uselang', $this->getUser()->getOption( 'language' ) );
+			$code = $this->getRequest()->getVal(
+				'uselang',
+				$this->getUser()->getOption( 'language' )
+			);
 			// BCP 47 - letter case MUST NOT carry meaning
 			$code = strtolower( $code );
 
 			# Validate $code
-			if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
+			if ( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
 				wfDebug( "Invalid user language code\n" );
 				$code = $wgLanguageCode;
 			}
 
 			wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$code ) );
 
-			if( $code === $wgLanguageCode ) {
-				$this->lang = $wgContLang;
+			if ( $code === $wgLanguageCode ) {
+				$this->mLang = $wgContLang;
 			} else {
 				$obj = Language::factory( $code );
-				$this->lang = $obj;
+				$this->mLang = $obj;
 			}
 		}
-		return $this->lang;
+		return $this->mLang;
 	}
 
 	/**
@@ -139,11 +144,11 @@ class RequestContext {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		if ( !isset($this->skin) ) {
+		if ( !isset( $this->mSkin ) ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
-			
+
 			global $wgHiddenPrefs;
-			if( !in_array( 'skin', $wgHiddenPrefs ) ) {
+			if ( !in_array( 'skin', $wgHiddenPrefs ) ) {
 				# get the user skin
 				$userSkin = $this->getUser()->getOption( 'skin' );
 				$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
@@ -153,11 +158,11 @@ class RequestContext {
 				$userSkin = $wgDefaultSkin;
 			}
 
-			$this->skin = Skin::newFromKey( $userSkin );
-			$this->skin->setContext( $this );
+			$this->mSkin = Skin::newFromKey( $userSkin );
+			$this->mSkin->setContext( $this );
 			wfProfileOut( __METHOD__ . '-createskin' );
 		}
-		return $this->skin;
+		return $this->mSkin;
 	}
 
 	/** Helpful methods **/
@@ -182,10 +187,31 @@ class RequestContext {
 	 */
 	public static function getMain() {
 		static $instance = null;
-		if ( !isset($instance) ) {
+		if ( !isset( $instance ) ) {
 			$instance = new self;
 		}
 		return $instance;
+	}
+
+	/**
+	 * Make these C#-style accessors, so you can do $context->user->getName() which is
+	 * internally mapped to $context->__get('user')->getName() which is mapped to
+	 * $context->getUser()->getName()
+	 */
+	public function __get( $name ) {
+		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
+			$fname = 'get' . ucfirst( $name );
+			return $this->$fname();
+		}
+		trigger_error( "Undefined property {$name}", E_NOTICE );
+	}
+
+	public function __set( $name, $value ) {
+		if ( in_array( $name, array( 'request', 'title', 'output', 'user', 'lang', 'skin' ) ) ) {
+			$fname = 'set' . ucfirst( $name );
+			return $this->$fname( $value );
+		}
+		trigger_error( "Undefined property {$name}", E_NOTICE );
 	}
 }
 
