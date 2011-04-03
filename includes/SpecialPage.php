@@ -523,8 +523,7 @@ class SpecialPage {
 	 * @param $context        RequestContext
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
 	 */
-	static function executePath( &$title, RequestContext $context, $including = false ) {
-		global $wgOut, $wgTitle, $wgRequest;
+	public static function executePath( &$title, RequestContext &$context, $including = false ) {
 		wfProfileIn( __METHOD__ );
 
 		# FIXME: redirects broken due to this call
@@ -538,10 +537,10 @@ class SpecialPage {
 		$page = SpecialPage::getPageByAlias( $name );
 		# Nonexistent?
 		if ( !$page ) {
-			$wgOut->setArticleRelated( false );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->setStatusCode( 404 );
-			$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
+			$context->output->setArticleRelated( false );
+			$context->output->setRobotPolicy( 'noindex,nofollow' );
+			$context->output->setStatusCode( 404 );
+			$context->output->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -555,13 +554,13 @@ class SpecialPage {
 			$query = $page->getRedirectQuery();
 			if ( $redirect instanceof Title ) {
 				$url = $redirect->getFullUrl( $query );
-				$wgOut->redirect( $url );
+				$context->output->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $redirect;
 			} elseif( $redirect === true ) {
 				global $wgScript;
 				$url = $wgScript . '?' . wfArrayToCGI( $query );
-				$wgOut->redirect( $url );
+				$context->output->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $redirect;
 			}
@@ -572,13 +571,13 @@ class SpecialPage {
 		# the request. Such POST requests are possible for old extensions that
 		# generate self-links without being aware that their default name has
 		# changed.
-		if ( !$including && $name != $page->getLocalName() && !$wgRequest->wasPosted() ) {
+		if ( !$including && $name != $page->getLocalName() && !$context->request->wasPosted() ) {
 			$query = $_GET;
 			unset( $query['title'] );
 			$query = wfArrayToCGI( $query );
 			$title = $page->getTitle( $par );
 			$url = $title->getFullUrl( $query );
-			$wgOut->redirect( $url );
+			$context->output->redirect( $url );
 			wfProfileOut( __METHOD__ );
 			return $redirect;
 		}
@@ -587,7 +586,7 @@ class SpecialPage {
 			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( !$including ) {
-			$wgTitle = $page->getTitle();
+			$context->title = $page->getTitle();
 		}
 		$page->including( $including );
 
@@ -608,7 +607,7 @@ class SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	static function capturePath( &$title ) {
-		global $wgOut, $wgTitle, $wgUser;
+		global $wgOut, $wgTitle;
 
 		// preload the skin - Sometimes the SpecialPage loads it at a bad point in time making a includable special page override the skin title
 		// This hack is ok for now. The plan is for
@@ -962,12 +961,11 @@ class SpecialPage {
 	 * @return String
 	 */
 	function getRedirectQuery() {
-		global $wgRequest;
 		$params = array();
 
 		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( $wgRequest->getVal( $arg, null ) !== null ){
-				$params[$arg] = $wgRequest->getVal( $arg );
+			if( $this->getContext()->request->getVal( $arg, null ) !== null ){
+				$params[$arg] = $this->getContext()->request->getVal( $arg );
 			}
 		}
 
