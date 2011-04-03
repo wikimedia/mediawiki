@@ -1580,7 +1580,7 @@ class Article {
 	 * Builds trackback links for article display if $wgUseTrackbacks is set to true
 	 */
 	public function addTrackbacks() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$tbs = $dbr->select( 'trackbacks',
@@ -1598,9 +1598,9 @@ class Article {
 		foreach ( $tbs as $o ) {
 			$rmvtxt = "";
 
-			if ( $wgUser->isAllowed( 'trackback' ) ) {
+			if ( $wgOut->getUser()->isAllowed( 'trackback' ) ) {
 				$delurl = $this->mTitle->getFullURL( "action=deletetrackback&tbid=" .
-					$o->tb_id . "&token=" . urlencode( $wgUser->editToken() ) );
+					$o->tb_id . "&token=" . urlencode( $wgOut->getUser()->editToken() ) );
 				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
 			}
 
@@ -1620,15 +1620,15 @@ class Article {
 	 * Removes trackback record for current article from trackbacks table
 	 */
 	public function deletetrackback() {
-		global $wgUser, $wgRequest, $wgOut;
+		global $wgRequest, $wgOut;
 
-		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
+		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
 			$wgOut->addWikiMsg( 'sessionfailure' );
 
 			return;
 		}
 
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgOut->getUser() );
 
 		if ( count( $permission_errors ) ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
@@ -1658,9 +1658,9 @@ class Article {
 	 * Handle action=purge
 	 */
 	public function purge() {
-		global $wgUser, $wgRequest, $wgOut;
+		global $wgRequest, $wgOut;
 
-		if ( $wgUser->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
+		if ( $wgOut->getUser()->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
 			//FIXME: shouldn't this be in doPurge()?
 			if ( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 				$this->doPurge();
@@ -2273,14 +2273,14 @@ class Article {
 	 * Mark this particular edit/page as patrolled
 	 */
 	public function markpatrolled() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = (int) $wgRequest->getVal( 'rcid' );
 
-		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
+		if ( !$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
 			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
 			return;
 		}
@@ -2333,9 +2333,9 @@ class Article {
 	 * User-interface handler for the "watch" action
 	 */
 	public function watch() {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
-		if ( $wgUser->isAnon() ) {
+		if ( $wgOut->getUser()->isAnon() ) {
 			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
@@ -2380,9 +2380,9 @@ class Article {
 	 * User interface handler for the "unwatch" action.
 	 */
 	public function unwatch() {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
-		if ( $wgUser->isAnon() ) {
+		if ( $wgOut->getUser()->isAnon() ) {
 			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
@@ -2742,10 +2742,10 @@ class Article {
 	 * UI entry point for page deletion
 	 */
 	public function delete() {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		$confirm = $wgRequest->wasPosted() &&
-				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
+				$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 
 		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
 		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
@@ -2760,7 +2760,7 @@ class Article {
 		}
 
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgOut->getUser()->isAllowed( 'suppressrevision' );
 
 		# This code desperately needs to be totally rewritten
 
@@ -2772,7 +2772,7 @@ class Article {
 		}
 
 		# Check permissions
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgOut->getUser() );
 
 		if ( count( $permission_errors ) > 0 ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
@@ -2818,7 +2818,7 @@ class Article {
 		if ( $confirm ) {
 			$this->doDelete( $reason, $suppress );
 
-			if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
+			if ( $wgRequest->getCheck( 'wpWatch' ) && $wgOut->getUser()->isLoggedIn() ) {
 				$this->doWatch();
 			} elseif ( $this->mTitle->userIsWatching() ) {
 				$this->doUnwatch();
@@ -2837,7 +2837,7 @@ class Article {
 		if ( $hasHistory && !$confirm ) {
 			global $wgLang;
 
-			$skin = $wgUser->getSkin();
+			$skin = $wgOut->getSkin();
 			$revisions = $this->estimateRevisionCount();
 			//FIXME: lego
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
@@ -2944,18 +2944,18 @@ class Article {
 	 * @param $reason String: prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		wfDebug( "Article::confirmDelete\n" );
 
-		$deleteBackLink = $wgUser->getSkin()->linkKnown( $this->mTitle );
+		$deleteBackLink = $wgOut->getSkin()->linkKnown( $this->mTitle );
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
-		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
+		if ( $wgOut->getUser()->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
@@ -2966,7 +2966,7 @@ class Article {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
+		$checkWatch = $wgOut->getUser()->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
@@ -2999,7 +2999,7 @@ class Article {
 			</tr>";
 
 		# Disallow watching if user is not logged in
-		if ( $wgUser->isLoggedIn() ) {
+		if ( $wgOut->getUser()->isLoggedIn() ) {
 			$form .= "
 			<tr>
 				<td></td>
@@ -3021,11 +3021,11 @@ class Article {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			Html::hidden( 'wpEditToken', $wgOut->getUser()->editToken() ) .
 			Xml::closeElement( 'form' );
 
-			if ( $wgUser->isAllowed( 'editinterface' ) ) {
-				$skin = $wgUser->getSkin();
+			if ( $wgOut->getUser()->isAllowed( 'editinterface' ) ) {
+				$skin = $wgOut->getSkin();
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = $skin->link(
 					$title,

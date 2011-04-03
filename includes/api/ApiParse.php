@@ -252,6 +252,7 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
 			$out = new OutputPage;
+			$out->setUser( $wgUser );
 			$out->addParserOutputNoText( $p_result );
 			$userSkin = $wgUser->getSkin();
 
