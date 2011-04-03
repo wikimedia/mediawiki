@@ -39,18 +39,17 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
-		global $wgUser;
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  (int)$wgUser->getOption( 'rcdays' ) );
-		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
+		$opts->add( 'days',  (int)$this->getUser()->getOption( 'rcdays' ) );
+		$opts->add( 'limit', (int)$this->getUser()->getOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor',     $wgUser->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hideminor',     $this->getUser()->getBoolOption( 'hideminor' ) );
 		$opts->add( 'hidebots',      true  );
 		$opts->add( 'hideanons',     false );
 		$opts->add( 'hideliu',       false );
-		$opts->add( 'hidepatrolled', $wgUser->getBoolOption( 'hidepatrolled' ) );
+		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself',    false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
@@ -212,11 +211,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return String or false
 	 */
 	public function checkLastModified( $feedFormat ) {
-		global $wgOut, $wgUser;
 		$dbr = wfGetDB( DB_SLAVE );
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
-		if( $feedFormat || !$wgUser->useRCPatrol() ) {
-			if( $lastmod && $wgOut->checkLastModified( $lastmod ) ) {
+		if( $feedFormat || !$this->getUser()->useRCPatrol() ) {
+			if( $lastmod && $this->getOutput()->checkLastModified( $lastmod ) ) {
 				# Client cache fresh and headers sent, nothing more to do.
 				return false;
 			}
@@ -231,8 +229,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return array
 	 */
 	public function buildMainQueryConds( FormOptions $opts ) {
-		global $wgUser;
-
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 
@@ -264,7 +260,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
 
 
-		$hidePatrol = $wgUser->useRCPatrol() && $opts['hidepatrolled'];
+		$hidePatrol = $this->getUser()->useRCPatrol() && $opts['hidepatrolled'];
 		$hideLoggedInUsers = $opts['hideliu'] && !$forcebot;
 		$hideAnonymousUsers = $opts['hideanons'] && !$forcebot;
 
@@ -276,10 +272,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		if( $hideAnonymousUsers ) $conds[] = 'rc_user != 0';
 
 		if( $opts['hidemyself'] ) {
-			if( $wgUser->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $wgUser->getId() );
+			if( $this->getUser()->getId() ) {
+				$conds[] = 'rc_user != ' . $dbr->addQuotes( $this->getUser()->getId() );
 			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $wgUser->getName() );
+				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $this->getUser()->getName() );
 			}
 		}
 
@@ -315,13 +311,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return database result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
-		global $wgUser;
-
 		$tables = array( 'recentchanges' );
 		$join_conds = array();
 		$query_options = array( 'USE INDEX' => array('recentchanges' => 'rc_timestamp') );
 
-		$uid = $wgUser->getId();
+		$uid = $this->getUser()->getId();
 		$dbr = wfGetDB( DB_SLAVE );
 		$limit = $opts['limit'];
 		$namespace = $opts['namespace'];
@@ -334,7 +328,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$join_conds['watchlist'] = array('LEFT JOIN',
 				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
 		}
-		if ($wgUser->isAllowed("rollback")) {
+		if ($this->getUser()->isAllowed("rollback")) {
 			$tables[] = 'page';
 			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
 		}
@@ -397,7 +391,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $opts FormOptions
 	 */
 	public function webOutput( $rows, $opts ) {
-		global $wgOut, $wgUser, $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
+		global $wgOut, $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 		global $wgAllowCategorizedRecentChanges;
 
 		$limit = $opts['limit'];
@@ -414,13 +408,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$this->filterByCategories( $rows, $opts );
 		}
 
-		$showWatcherCount = $wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' );
+		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$counter = 1;
-		$list = ChangesList::newFromUser( $wgUser );
+		$list = ChangesList::newFromUser( $this->getUser() );
 
 		$s = $list->beginRecentChangesList();
 		foreach( $rows as $obj ) {
@@ -664,14 +658,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $active Boolean: whether to show the link in bold
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
-		global $wgUser;
-		$sk = $wgUser->getSkin();
 		$params = $override + $options;
 		if ( $active ) {
-			return $sk->link( $this->getTitle(), '<strong>' . htmlspecialchars( $title ) . '</strong>',
+			return $this->getSkin()->link( $this->getTitle(), '<strong>' . htmlspecialchars( $title ) . '</strong>',
 							  array(), $params, array( 'known' ) );
 		} else {
-			return $sk->link( $this->getTitle(), htmlspecialchars( $title ), array() , $params, array( 'known' ) );
+			return $this->getSkin()->link( $this->getTitle(), htmlspecialchars( $title ), array() , $params, array( 'known' ) );
 		}
 	}
 
@@ -682,7 +674,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $nondefaults Array
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
-		global $wgLang, $wgUser, $wgRCLinkLimits, $wgRCLinkDays;
+		global $wgLang, $wgRCLinkLimits, $wgRCLinkDays;
 
 		$options = $nondefaults + $defaults;
 
@@ -740,7 +732,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
 		$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
 		$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
-		if( $wgUser->useRCPatrol() )
+		if( $this->getUser()->useRCPatrol() )
 			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 		$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
 		$hl = $wgLang->pipeList( $links );

@@ -621,6 +621,14 @@ class SpecialPage {
 	static function capturePath( &$title ) {
 		global $wgOut, $wgTitle, $wgUser;
 
+		// preload the skin - Sometimes the SpecialPage loads it at a bad point in time making a includable special page override the skin title
+		// This hack is ok for now. The plan is for
+		// - Skin to stop storing it's own title
+		// - includable special pages to stop using $wgTitle and $wgOut
+		// - and OutputPage to store it's own skin object instead of askin $wgUser
+		// Once just about any of those are implemented preloading will not be necessarily
+		$wgOut->getSkin();
+
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		$wgOut = new OutputPage;
@@ -862,18 +870,21 @@ class SpecialPage {
 	 * Output an error message telling the user what access level they have to have
 	 */
 	function displayRestrictionError() {
-		global $wgOut;
-		$wgOut->permissionRequired( $this->mRestriction );
+		$this->getOutput()->permissionRequired( $this->mRestriction );
 	}
 
 	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
-		global $wgOut;
-		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotPolicy( "noindex,nofollow" );
-		$wgOut->setPageTitle( $this->getDescription() );
+		if ( $this->including() ) {
+			// Don't set these headers when special page is being included into an article
+			return;
+		}
+		$out = $this->getOutput();
+		$out->setArticleRelated( false );
+		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setPageTitle( $this->getDescription() );
 	}
 
 	/**
@@ -909,7 +920,7 @@ class SpecialPage {
 	 * @param $summaryMessageKey String: message key of the summary
 	 */
 	function outputHeader( $summaryMessageKey = '' ) {
-		global $wgOut, $wgContLang;
+		global $wgContLang;
 
 		if( $summaryMessageKey == '' ) {
 			$msg = $wgContLang->lc( $this->name() ) . '-summary';
@@ -917,7 +928,7 @@ class SpecialPage {
 			$msg = $summaryMessageKey;
 		}
 		if ( !wfMessage( $msg )->isBlank() and ! $this->including() ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
+			$this->getOutput()->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
 
 	}
@@ -1041,6 +1052,16 @@ class SpecialPage {
 	 */
 	public function getSkin() {
 		return $this->getOutput()->getSkin();
+	}
+
+	/**
+	 * Shortcut to call OutputPage::allowClickjacking(); which also takes
+	 * transclusion into account.
+	 */
+	public function allowClickjacking() {
+		if ( !$this->including() ) {
+			$this->getOutput()->allowClickjacking();
+		}
 	}
 
 	/**

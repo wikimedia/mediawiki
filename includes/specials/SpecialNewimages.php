@@ -27,17 +27,20 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 
 	public function execute( $par ){
-		global $wgOut;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
 		$pager = new NewFilesPager( $par );
 
-		$form = $pager->getForm();
-		$form->prepareForm();
-		$form->displayForm( '' );
-		$wgOut->addHTML( $pager->getBody() . $pager->getNavigationBar() );
+		if ( !$this->including() ) {
+			$form = $pager->getForm();
+			$form->prepareForm();
+			$form->displayForm( '' );
+		}
+		$this->getOutput()->addHTML( $pager->getBody() );
+		if ( !$this->including() ) {
+			$this->getOutput()->addHTML( $pager->getNavigationBar() );
+		}
 	}
 }
 
