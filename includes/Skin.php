@@ -252,6 +252,14 @@ abstract class Skin {
 		return $this->getContext()->getTitle();
 	}
 
+	/** Get the user
+	 *
+	 * @return User
+	 */
+	public function getUser() {
+		return $this->getContext()->getUser();
+	}
+
 	/**
 	 * Set the "relevant" title
 	 * @see self::getRelevantTitle()
@@ -1363,7 +1371,7 @@ abstract class Skin {
 		$ntl = '';
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$userTitle = $this->mUser->getUserPage();
+			$userTitle = $this->getUser()->getUserPage();
 			$userTalkTitle = $userTitle->getTalkPage();
 
 			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
