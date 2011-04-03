@@ -365,17 +365,17 @@ $wgContLang = new StubContLang;
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
-$wgUser = new StubRequestContext( 'wgUser', 'getUser' );
+$wgUser = $wgCommandLineMode ? new User : User::newFromSession();
 
 /**
  * @var Language
  */
-$wgLang = new StubRequestContext( 'wgLang', 'getLang' );
+$wgLang = new StubUserLang;
 
 /**
  * @var OutputPage
  */
-$wgOut = new StubRequestContext( 'wgOut', 'getOutput' );
+$wgOut = new OutputPage;
 
 /**
  * @var Parser

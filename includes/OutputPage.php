@@ -765,7 +765,7 @@ class OutputPage {
 	 *
 	 * @return RequestContext
 	 */
-	public function getContext() {
+	private function getContext() {
 		if ( !isset($this->mContext) ) {
 			wfDebug( __METHOD__ . " called and \$mContext is null. Using RequestContext::getMain(); for sanity\n" );
 			$this->mContext = RequestContext::getMain();
