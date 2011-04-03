@@ -495,12 +495,8 @@ abstract class DatabaseBase implements DatabaseType {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$flags = 0, $tablePrefix = 'get from global'
 	) {
-		global $wgOut, $wgDBprefix, $wgCommandLineMode;
+		global $wgDBprefix, $wgCommandLineMode;
 
-		# Can't get a reference if it hasn't been set yet
-		if ( !isset( $wgOut ) ) {
-			$wgOut = null;
-		}
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
