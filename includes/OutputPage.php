@@ -552,7 +552,7 @@ class OutputPage {
 	 * @return Boolean: true iff cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgRequest;
+		global $wgCachePages, $wgCacheEpoch;
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
@@ -619,7 +619,7 @@ class OutputPage {
 		# Give a 304 response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
 		ini_set( 'zlib.output_compression', 0 );
-		$wgRequest->response()->header( "HTTP/1.1 304 Not Modified" );
+		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
 		$this->disable();
 
@@ -771,6 +771,16 @@ class OutputPage {
 			$this->mContext = RequestContext::getMain();
 		}
 		return $this->mContext;
+	}
+
+	/**
+	 * Get the WebRequest being used for this instance
+	 *
+	 * @return WebRequest
+	 * @since 1.18
+	 */
+	public function getRequest() {
+		return $this->getContext()->getRequest();
 	}
 
 	/**
@@ -1546,9 +1556,9 @@ class OutputPage {
 	 * @return Boolean
 	 */
 	function uncacheableBecauseRequestVars() {
-		global $wgRequest;
-		return $wgRequest->getText( 'useskin', false ) === false
-			&& $wgRequest->getText( 'uselang', false ) === false;
+		$request = $this->getRequest();
+		return $request->getText( 'useskin', false ) === false
+			&& $request->getText( 'uselang', false ) === false;
 	}
 
 	/**
@@ -1558,8 +1568,7 @@ class OutputPage {
 	 * @return Boolean
 	 */
 	function haveCacheVaryCookies() {
-		global $wgRequest;
-		$cookieHeader = $wgRequest->getHeader( 'cookie' );
+		$cookieHeader = $this->getRequest()->getHeader( 'cookie' );
 		if ( $cookieHeader === false ) {
 			return false;
 		}
@@ -1632,8 +1641,8 @@ class OutputPage {
 	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
 	 */
 	function addAcceptLanguage() {
-		global $wgRequest, $wgContLang;
-		if( !$wgRequest->getCheck( 'variant' ) && $wgContLang->hasVariants() ) {
+		global $wgContLang;
+		if( !$this->getRequest()->getCheck( 'variant' ) && $wgContLang->hasVariants() ) {
 			$variants = $wgContLang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
@@ -1696,9 +1705,9 @@ class OutputPage {
 	 * Send cache control HTTP headers
 	 */
 	public function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest, $wgUseXVO;
+		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgUseXVO;
 
-		$response = $wgRequest->response();
+		$response = $this->getRequest()->response();
 		if ( $wgUseETag && $this->mETag ) {
 			$response->header( "ETag: $this->mETag" );
 		}
@@ -1824,7 +1833,7 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
-		global $wgOutputEncoding, $wgRequest;
+		global $wgOutputEncoding;
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
 
 		if( $this->mDoNothing ) {
@@ -1833,7 +1842,7 @@ class OutputPage {
 
 		wfProfileIn( __METHOD__ );
 
-		$response = $wgRequest->response();
+		$response = $this->getRequest()->response();
 
 		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
@@ -1924,7 +1933,7 @@ class OutputPage {
 	 * @return nothing
 	 */
 	function blockedPage( $return = true ) {
-		global $wgContLang, $wgLang;
+		global $wgContLang;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
@@ -1935,7 +1944,7 @@ class OutputPage {
 		if( $reason == '' ) {
 			$reason = wfMsg( 'blockednoreason' );
 		}
-		$blockTimestamp = $wgLang->timeanddate(
+		$blockTimestamp = $this->getContext()->getLang()->timeanddate(
 			wfTimestamp( TS_MW, $this->getUser()->mBlock->mTimestamp ), true
 		);
 		$ip = wfGetIP();
@@ -1944,7 +1953,7 @@ class OutputPage {
 
 		$blockid = $this->getUser()->mBlock->getId();
 
-		$blockExpiry = $wgLang->formatExpiry( $this->getUser()->mBlock->mExpiry );
+		$blockExpiry = $this->getContext()->getLang()->formatExpiry( $this->getUser()->mBlock->mExpiry );
 
 		if ( $this->getUser()->mBlock->mAuto ) {
 			$msg = 'autoblockedtext';
@@ -2034,8 +2043,6 @@ class OutputPage {
 	 * @param $permission String: key required
 	 */
 	public function permissionRequired( $permission ) {
-		global $wgLang;
-
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
@@ -2047,7 +2054,7 @@ class OutputPage {
 		if( $groups ) {
 			$this->addWikiMsg(
 				'badaccess-groups',
-				$wgLang->commaList( $groups ),
+				$this->getContext()->getLang()->commaList( $groups ),
 				count( $groups )
 			);
 		} else {
@@ -2279,14 +2286,12 @@ class OutputPage {
 	 * @param $returntoquery String: query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
-		global $wgRequest;
-
 		if ( $returnto == null ) {
-			$returnto = $wgRequest->getText( 'returnto' );
+			$returnto = $this->getRequest()->getText( 'returnto' );
 		}
 
 		if ( $returntoquery == null ) {
-			$returntoquery = $wgRequest->getText( 'returntoquery' );
+			$returntoquery = $this->getRequest()->getText( 'returntoquery' );
 		}
 
 		if ( $returnto === '' ) {
@@ -2313,7 +2318,6 @@ class OutputPage {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgOutputEncoding, $wgMimeType;
 		global $wgUseTrackbacks, $wgHtml5;
-		global $wgRequest, $wgLang;
 
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
@@ -2353,7 +2357,7 @@ class OutputPage {
 		$bodyAttrs = array();
 
 		# Crazy edit-on-double-click stuff
-		$action = $wgRequest->getVal( 'action', 'view' );
+		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		if (
 			$this->getTitle()->getNamespace() != NS_SPECIAL &&
@@ -2368,7 +2372,7 @@ class OutputPage {
 		$dir = wfUILang()->getDir();
 		$bodyAttrs['class'] = "mediawiki $dir";
 
-		if ( $wgLang->capitalizeAllNouns() ) {
+		if ( $this->getContext()->getLang()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}
@@ -2437,13 +2441,13 @@ class OutputPage {
 	 * @return string html <script> and <style> tags
 	 */
 	protected function makeResourceLoaderLink( Skin $skin, $modules, $only, $useESI = false ) {
-		global $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
-			$wgResourceLoaderInlinePrivateModules, $wgRequest;
+		global $wgLoadScript, $wgResourceLoaderUseESI,
+			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$baseQuery = array(
-			'lang' => $wgLang->getCode(),
+			'lang' => $this->getContext()->getLang()->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'skin' => $skin->getSkinName(),
 			'only' => $only,
@@ -2452,7 +2456,7 @@ class OutputPage {
 		if ( $this->isPrintable() ) {
 			$baseQuery['printable'] = 1;
 		}
-		if ( $wgRequest->getBool( 'handheld' ) ) {
+		if ( $this->getRequest()->getBool( 'handheld' ) ) {
 			$baseQuery['handheld'] = 1;
 		}
 
@@ -2589,7 +2593,7 @@ class OutputPage {
 	 * @return String: HTML fragment
 	 */
 	function getHeadScripts( Skin $sk ) {
-		global $wgRequest, $wgUseSiteJs, $wgAllowUserJs;
+		global $wgUseSiteJs, $wgAllowUserJs;
 
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
@@ -2626,10 +2630,10 @@ class OutputPage {
 
 		// Add user JS if enabled
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
-			$action = $wgRequest->getVal( 'action', 'view' );
+			$action = $this->getRequest()->getVal( 'action', 'view' );
 			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
-				$scripts .= Html::inlineScript( "\n" . $wgRequest->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
 				# FIXME: this means that User:Me/Common.js doesn't load when previewing
 				# User:Me/Vector.js, and vice versa (bug26283)
@@ -2650,7 +2654,7 @@ class OutputPage {
 	 * have to be purged on configuration changes.
 	 */
 	protected function getJSVars() {
-		global $wgRequest, $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
+		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -2671,7 +2675,7 @@ class OutputPage {
 			'wgCurRevisionId' => $title->getLatestRevID(),
 			'wgArticleId' => $title->getArticleId(),
 			'wgIsArticle' => $this->isArticle(),
-			'wgAction' => $wgRequest->getText( 'action', 'view' ),
+			'wgAction' => $this->getRequest()->getText( 'action', 'view' ),
 			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
 			'wgUserGroups' => $this->getUser()->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
@@ -3094,7 +3098,7 @@ class OutputPage {
 	 * @return String: modified value of the "media" attribute
 	 */
 	public static function transformCssMedia( $media ) {
-		global $wgRequest, $wgHandheldForIPhone;
+		global $wgHandheldForIPhone;
 
 		// Switch in on-screen display for media testing
 		$switches = array(
@@ -3102,7 +3106,7 @@ class OutputPage {
 			'handheld' => 'handheld',
 		);
 		foreach( $switches as $switch => $targetMedia ) {
-			if( $wgRequest->getBool( $switch ) ) {
+			if( $this->getRequest()->getBool( $switch ) ) {
 				if( $media == $targetMedia ) {
 					$media = '';
 				} elseif( $media == 'screen' ) {
@@ -3153,13 +3157,13 @@ class OutputPage {
 	 * @param $lag Integer: slave lag
 	 */
 	public function showLagWarning( $lag ) {
-		global $wgSlaveLagWarning, $wgSlaveLagCritical, $wgLang;
+		global $wgSlaveLagWarning, $wgSlaveLagCritical;
 		if( $lag >= $wgSlaveLagWarning ) {
 			$message = $lag < $wgSlaveLagCritical
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
-			$this->wrapWikiMsg( "$wrap\n", array( $message, $wgLang->formatNum( $lag ) ) );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getContext()->getLang()->formatNum( $lag ) ) );
 		}
 	}
 

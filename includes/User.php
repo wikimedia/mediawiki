@@ -2295,46 +2295,13 @@ class User {
 	}
 
 	/**
-	 * Get the current skin, loading it if required, and setting a title
-	 * @param $t Title: the title to use in the skin
+	 * Get the current skin, loading it if required
 	 * @return Skin The current skin
 	 * @todo: FIXME : need to check the old failback system [AV]
+	 * @deprecated Use ->getSkin() in the most relevant outputting context you have
 	 */
-	function getSkin( $t = null ) {
-		if( !$this->mSkin ) {
-			global $wgOut;
-			$this->mSkin = $this->createSkinObject();
-			$this->mSkin->setTitle( $wgOut->getTitle() );
-		}
-		if ( $t && ( !$this->mSkin->getTitle() || !$t->equals( $this->mSkin->getTitle() ) ) ) {
-			$skin = $this->createSkinObject();
-			$skin->setTitle( $t );
-			return $skin;
-		} else {
-			return $this->mSkin;
-		}
-	}
-
-	// Creates a Skin object, for getSkin()
-	private function createSkinObject() {
-		wfProfileIn( __METHOD__ );
-
-		global $wgHiddenPrefs;
-		if( !in_array( 'skin', $wgHiddenPrefs ) ) {
-			global $wgRequest;
-			# get the user skin
-			$userSkin = $this->getOption( 'skin' );
-			$userSkin = $wgRequest->getVal( 'useskin', $userSkin );
-		} else {
-			# if we're not allowing users to override, then use the default
-			global $wgDefaultSkin;
-			$userSkin = $wgDefaultSkin;
-		}
-
-		$skin = Skin::newFromKey( $userSkin );
-		wfProfileOut( __METHOD__ );
-
-		return $skin;
+	function getSkin() {
+		return RequestContext::getMain()->getSkin();
 	}
 
 	/**
