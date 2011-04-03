@@ -779,6 +779,7 @@ class OutputPage {
 	 * Set the User object to use
 	 *
 	 * @param $u User object
+	 * @since 1.18
 	 */
 	public function setUser( $u ) {
 		$this->mUser = $u;
@@ -788,6 +789,7 @@ class OutputPage {
 	 * Get the User object used in this instance
 	 *
 	 * @return User
+	 * @since 1.18
 	 */
 	public function getUser() {
 		if ( !isset($this->mUser) ) {
@@ -802,6 +804,7 @@ class OutputPage {
 	 * Get the Skin object used to render this instance
 	 *
 	 * @return Skin
+	 * @since 1.18
 	 */
 	public function getSkin() {
 		// For now we'll just proxy to the user. In the future a saner location for

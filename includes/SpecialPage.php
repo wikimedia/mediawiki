@@ -1006,6 +1006,7 @@ class SpecialPage {
 	 * Get the WebRequest being used for this instance
 	 *
 	 * @return WebRequest
+	 * @since 1.18
 	 */
 	public function getRequest() {
 		if ( !isset($this->mRequest) ) {
@@ -1020,6 +1021,7 @@ class SpecialPage {
 	 * Get the OutputPage being used for this instance
 	 *
 	 * @return OutputPage
+	 * @since 1.18
 	 */
 	public function getOutput() {
 		if ( !isset($this->mOutput) ) {
@@ -1034,6 +1036,7 @@ class SpecialPage {
 	 * Shortcut to get the skin being used for this instance
 	 *
 	 * @return User
+	 * @since 1.18
 	 */
 	public function getUser() {
 		return $this->getOutput()->getUser();
@@ -1043,6 +1046,7 @@ class SpecialPage {
 	 * Shortcut to get the skin being used for this instance
 	 *
 	 * @return Skin
+	 * @since 1.18
 	 */
 	public function getSkin() {
 		return $this->getOutput()->getSkin();
