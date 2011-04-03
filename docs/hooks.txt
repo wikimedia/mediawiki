@@ -803,7 +803,7 @@ $editToken: The user's edit token.
 
 'FetchChangesList': When fetching the ChangesList derivative for
 a particular user
-&$user: User the list is being fetched for
+$user: User the list is being fetched for
 &$skin: Skin object to be used with the list
 &$list: List object (defaults to NULL, change it to an object
 	instance and return false override the list derivative used)
