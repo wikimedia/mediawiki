@@ -203,8 +203,6 @@ class Hooks {
 			} elseif ( isset( $object ) ) {
 				$func = get_class( $object ) . '::' . $method;
 				$callback = array( $object, $method );
-			} elseif ( false !== ( $pos = strpos( $func, '::' ) ) ) {
-				$callback = array( substr( $func, 0, $pos ), substr( $func, $pos + 2 ) );
 			} else {
 				$callback = $func;
 			}
