@@ -798,8 +798,10 @@ class MessageCache {
 	}
 
 	public static function logMessages() {
+		wfProfileIn( __METHOD__ );
 		global $wgAdaptiveMessageCache;
 		if ( !$wgAdaptiveMessageCache || !self::$instance instanceof MessageCache ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -832,13 +834,16 @@ class MessageCache {
 		}
 
 		$cache->set( $cachekey, $data );
+		wfProfileOut( __METHOD__ );
 	}
 
 	public function getMostUsedMessages() {
+		wfProfileIn( __METHOD__ );
 		$cachekey = wfMemcKey( 'message-profiling' );
 		$cache = wfGetCache( CACHE_DB );
 		$data = $cache->get( $cachekey );
 		if ( !$data ) {
+			wfProfileOut( __METHOD__ );
 			return array();
 		}
 
@@ -861,6 +866,7 @@ class MessageCache {
 			}
 		}
 
+		wfProfileOut( __METHOD__ );
 		return array_keys( $list );
 	}
 
