@@ -90,6 +90,16 @@ class ParserOptions {
 	function getUser()                          { return $this->mUser; }
 	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
 
+	/** 	 
+	 * @param $title Title 	 
+	 * @return Skin 	 
+	 * @deprecated Use Linker::* instead 	 
+	 */ 	 
+	function getSkin( $title = null ) { 	 
+		wfDeprecated( __METHOD__ );
+		return new DummyLinker;
+	}
+
 	function getDateFormat() {
 		$this->optionUsed('dateformat');
 		if ( !isset( $this->mDateFormat ) ) {
