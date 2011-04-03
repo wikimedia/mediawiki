@@ -64,7 +64,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$out->allowClickjacking();
+		$this->allowClickjacking();
 
 		# GET values
 		$from = $request->getVal( 'from', null );
@@ -73,12 +73,17 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$namespaces = $wgContLang->getNamespaces();
 
-		$out->setPagetitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
-			wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
-			wfMsg( 'allarticles' )
-		);
-		$out->addModuleStyles( 'mediawiki.special' );
+		if( !$this->including() ) {
+			$out->setPagetitle(
+				( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
+				wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
+				wfMsg( 'allarticles' )
+			);
+			// Note: The following will not end up in the parser output cache as
+			// a result even if we wanted to load it on pages including the
+			// special page it would be unstable.
+			$out->addModuleStyles( 'mediawiki.special' );
+		}
 
 		if( isset($par) ) {
 			$this->showChunk( $namespace, $par, $to );
