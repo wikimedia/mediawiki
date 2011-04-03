@@ -752,12 +752,34 @@ class OutputPage {
 	}
 
 	/**
+	 * Set the RequestContext used in this instance
+	 *
+	 * @param RequestContext $context
+	 */
+	public function setContext( RequestContext $context ) {
+		$this->mContext = $context;
+	}
+
+	/**
+	 * Get the RequestContext used in this instance
+	 *
+	 * @return RequestContext
+	 */
+	public function getContext() {
+		if ( !isset($this->mContext) ) {
+			wfDebug( __METHOD__ . " called and \$mContext is null. Using RequestContext::getMain(); for sanity\n" );
+			$this->mContext = RequestContext::getMain();
+		}
+		return $this->mContext;
+	}
+
+	/**
 	 * Set the Title object to use
 	 *
 	 * @param $t Title object
 	 */
 	public function setTitle( $t ) {
-		$this->mTitle = $t;
+		$this->getContext()->setTitle($t);
 	}
 
 	/**
@@ -766,23 +788,7 @@ class OutputPage {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if ( $this->mTitle instanceof Title ) {
-			return $this->mTitle;
-		} else {
-			wfDebug( __METHOD__ . " called and \$mTitle is null. Return \$wgTitle for sanity\n" );
-			global $wgTitle;
-			return $wgTitle;
-		}
-	}
-
-	/**
-	 * Set the User object to use
-	 *
-	 * @param $u User object
-	 * @since 1.18
-	 */
-	public function setUser( $u ) {
-		$this->mUser = $u;
+		return $this->getContext()->getTitle();
 	}
 
 	/**
@@ -792,12 +798,7 @@ class OutputPage {
 	 * @since 1.18
 	 */
 	public function getUser() {
-		if ( !isset($this->mUser) ) {
-			wfDebug( __METHOD__ . " called and \$mUser is null. Return \$wgUser for sanity\n" );
-			global $wgUser;
-			return $wgUser;
-		}
-		return $this->mUser;
+		return $this->getContext()->getUser();
 	}
 
 	/**
@@ -807,9 +808,7 @@ class OutputPage {
 	 * @since 1.18
 	 */
 	public function getSkin() {
-		// For now we'll just proxy to the user. In the future a saner location for
-		// organizing what skin to use may be chosen
-		return $this->getUser()->getSkin();
+		return $this->getContext()->getSkin();
 	}
 
 	/**
@@ -2628,7 +2627,7 @@ class OutputPage {
 		// Add user JS if enabled
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
 			$action = $wgRequest->getVal( 'action', 'view' );
-			if( $this->mTitle && $this->mTitle->isJsSubpage() && $sk->userCanPreview( $action ) ) {
+			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$scripts .= Html::inlineScript( "\n" . $wgRequest->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {

@@ -131,39 +131,44 @@ class StubContLang extends StubObject {
 }
 
 /**
- * Stub object for the user language. It depends of the user preferences and
- * "uselang" parameter that can be passed to index.php. This object have to be
- * in $wgLang global.
+ * Stub object for the $wg globals replaced by RequestContext
  */
-class StubUserLang extends StubObject {
-
-	function __construct() {
-		parent::__construct( 'wgLang' );
+class StubRequestContext extends StubObject {
+	
+	private $method = null;
+	
+	function __construct( $global, $method ) {
+		parent::__construct( $global, 'RequestContext' );
+		$this->method = $method;
 	}
-
+	
 	function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}
+	
+	function __get( $name ) {
+		// __get doesn't seam to play nice with _unstub
+		return RequestContext::getMain()->{$this->method}()->{$name};
+	}
+
+	function __set( $name, $val ) {
+		// __set doesn't seam to play nice with _unstub
+		RequestContext::getMain()->{$this->method}()->{$name} = $val;
+	}
+
+	function __isset( $name ) {
+		// __isset doesn't seam to play nice with _unstub
+		return isset( RequestContext::getMain()->{$this->method}()->{$name} );
+	}
+
+	function __unset( $name ) {
+		// __unset doesn't seam to play nice with _unstub
+		unset( RequestContext::getMain()->{$this->method}()->{$name} );
+	}
 
 	function _newObject() {
-		global $wgLanguageCode, $wgRequest, $wgUser, $wgContLang;
-		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
-		// BCP 47 - letter case MUST NOT carry meaning
-		$code = strtolower( $code );
-
-		# Validate $code
-		if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
-			wfDebug( "Invalid user language code\n" );
-			$code = $wgLanguageCode;
-		}
-
-		wfRunHooks( 'UserGetLanguageObject', array( $wgUser, &$code ) );
-
-		if( $code === $wgLanguageCode ) {
-			return $wgContLang;
-		} else {
-			$obj = Language::factory( $code );
-			return $obj;
-		}
+		return RequestContext::getMain()->{$this->method}();
 	}
+	
 }
+

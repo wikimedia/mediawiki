@@ -74,20 +74,10 @@ class SpecialPage {
 	 */
 	var $mAddedRedirectParams = array();
 	/**
-	 * Current request
-	 * @var WebRequest 
+	 * Current request context
+	 * @var RequestContext
 	 */
-	protected $mRequest;
-	/**
-	 * Current output page
-	 * @var OutputPage
-	 */
-	protected $mOutput;
-	/**
-	 * Full title including $par
-	 * @var Title
-	 */
-	protected $mFullTitle;
+	protected $mContext;
 		
 	/**
 	 * List of special pages, followed by parameters.
@@ -556,7 +546,7 @@ class SpecialPage {
 		}
 		
 		# Page exists, set the context
-		$page->setContext( $wgRequest, $wgOut );
+		$page->setContext( $wgOut->getContext() );
 
 		# Check for redirect
 		if ( !$including ) {
@@ -629,9 +619,10 @@ class SpecialPage {
 
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
-		$wgOut = new OutputPage;
-		$wgOut->setTitle( $title );
-		$wgOut->setUser( $wgUser ); # for now, there may be a better idea in the future
+		
+		$context = new RequestContext;
+		$context->setTitle( $title );
+		$wgOut = $context->getOutput();
 
 		$ret = SpecialPage::executePath( $title, true );
 		if ( $ret === true ) {
@@ -888,11 +879,9 @@ class SpecialPage {
 	 * This may be overridden by subclasses.
 	 */
 	function execute( $par ) {
-		global $wgUser;
-
 		$this->setHeaders();
 
-		if ( $this->userCanExecute( $wgUser ) ) {
+		if ( $this->userCanExecute( $this->getUser() ) ) {
 			$func = $this->mFunction;
 			// only load file if the function does not exist
 			if(!is_callable($func) and $this->mFile) {
@@ -993,13 +982,26 @@ class SpecialPage {
 	/**
 	 * Sets the context this SpecialPage is executed in
 	 * 
-	 * @param $request WebRequest
-	 * @param $output OutputPage
+	 * @param $context RequestContext
+	 * @since 1.18
 	 */
-	protected function setContext( $request, $output ) {
-		$this->mRequest = $request;
-		$this->mOutput = $output;
-		$this->mFullTitle = $output->getTitle();
+	protected function setContext( $context ) {
+		$this->mContext = $context;
+	}
+
+	/**
+	 * Gets the context this SpecialPage is executed in
+	 * 
+	 * @return RequestContext
+	 * @since 1.18
+	 */
+	public function getContext() {
+		if ( $this->mContext instanceof RequestContext ) {
+			return $this->mContext;
+		} else {
+			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
+			return RequestContext::getMain();
+		}
 	}
 
 	/**
@@ -1009,12 +1011,7 @@ class SpecialPage {
 	 * @since 1.18
 	 */
 	public function getRequest() {
-		if ( !isset($this->mRequest) ) {
-			wfDebug( __METHOD__ . " called and \$mRequest is null. Return \$wgRequest for sanity\n" );
-			global $wgRequest;
-			return $wgRequest;
-		}
-		return $this->mRequest;
+		return $this->getContext()->getRequest();
 	}
 
 	/**
@@ -1024,12 +1021,7 @@ class SpecialPage {
 	 * @since 1.18
 	 */
 	public function getOutput() {
-		if ( !isset($this->mOutput) ) {
-			wfDebug( __METHOD__ . " called and \$mOutput is null. Return \$wgOut for sanity\n" );
-			global $wgOut;
-			return $wgOut;
-		}
-		return $this->mOutput;
+		return $this->getContext()->getOutput();
 	}
 
 	/**
@@ -1039,7 +1031,7 @@ class SpecialPage {
 	 * @since 1.18
 	 */
 	public function getUser() {
-		return $this->getOutput()->getUser();
+		return $this->getContext()->getUser();
 	}
 
 	/**
@@ -1049,7 +1041,17 @@ class SpecialPage {
 	 * @since 1.18
 	 */
 	public function getSkin() {
-		return $this->getOutput()->getSkin();
+		return $this->getContext()->getSkin();
+	}
+
+	/**
+	 * Return the full title, including $par
+	 *
+	 * @return Title
+	 * @since 1.18
+	 */
+	public function getFullTitle() {
+		return $this->getContext()->getTitle();
 	}
 
 	/**
@@ -1059,7 +1061,7 @@ class SpecialPage {
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
-		return call_user_func_array( 'wfMessage', func_get_args() )->title( $this->mFullTitle );
+		return call_user_func_array( 'wfMessage', func_get_args() )->title( $this->getFullTitle() );
 	}
 }
 
