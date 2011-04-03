@@ -610,23 +610,12 @@ class MessageCache {
 			if ( $type == ' ' ) {
 				return substr( $entry, 1 );
 			}
-		} else {
-			// XXX: This is not cached in process cache, should it?
-			$message = false;
-			wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
-			if ( $message !== false ) {
-				return $message;
-			}
+		}
 
-			global $wgAdaptiveMessageCache;
-			/* If message cache is in normal mode, it is guaranteed
-			 * (except bugs) that there is always entry (or placeholder)
-			 * in the cache if message exists. Thus we can do minor
-			 * performance improvement and return false early.
-			 */
-			if ( !$wgAdaptiveMessageCache ) {
-				return false;
-			}
+		# Call message hooks, in case they are defined
+		wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
+		if ( $message !== false ) {
+			return $message;
 		}
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
