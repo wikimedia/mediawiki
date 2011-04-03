@@ -73,7 +73,6 @@ class MediaWiki {
 	public function performRequestForTitle( &$article, &$user ) {
 		wfProfileIn( __METHOD__ );
 
-		$this->context->output->setTitle( $this->context->title );
 		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
 			$this->context->output->setPrintable();
 		}
@@ -184,7 +183,6 @@ class MediaWiki {
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $this->context->title ) || ( ( $this->context->title->getDBkey() == '' ) && ( $this->context->title->getInterwiki() == '' ) ) ) {
 			$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
-			$this->context->output->setTitle( $this->context->title ); // bug 21456
 			// Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 
@@ -204,7 +202,6 @@ class MediaWiki {
 				$this->context->output->redirect( $url, 301 );
 			} else {
 				$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
-				$this->context->output->setTitle( $this->context->title ); // bug 21456
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
@@ -377,7 +374,6 @@ class MediaWiki {
 						$rarticle->setRedirectedFrom( $this->context->title );
 						$article = $rarticle;
 						$this->context->title = $target;
-						$this->context->output->setTitle( $this->context->title );
 					}
 				}
 			} else {
