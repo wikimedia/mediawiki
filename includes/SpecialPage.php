@@ -519,10 +519,11 @@ class SpecialPage {
 	 * Returns a title object if the page is redirected, false if there was no such special
 	 * page, and true if it was successful.
 	 *
-	 * @param $title          a title object
-	 * @param $including      output is being captured for use in {{special:whatever}}
+	 * @param $title          Title object
+	 * @param $context        RequestContext
+	 * @param $including      Bool output is being captured for use in {{special:whatever}}
 	 */
-	static function executePath( &$title, $including = false ) {
+	static function executePath( &$title, RequestContext $context, $including = false ) {
 		global $wgOut, $wgTitle, $wgRequest;
 		wfProfileIn( __METHOD__ );
 
@@ -546,7 +547,7 @@ class SpecialPage {
 		}
 		
 		# Page exists, set the context
-		$page->setContext( $wgOut->getContext() );
+		$page->setContext( $context );
 
 		# Check for redirect
 		if ( !$including ) {
@@ -624,7 +625,7 @@ class SpecialPage {
 		$context->setTitle( $title );
 		$wgOut = $context->getOutput();
 
-		$ret = SpecialPage::executePath( $title, true );
+		$ret = SpecialPage::executePath( $title, $context, true );
 		if ( $ret === true ) {
 			$ret = $wgOut->getHTML();
 		}

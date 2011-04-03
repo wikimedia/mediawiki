@@ -66,7 +66,7 @@ if ( !is_null( $maxLag ) ) {
 $mediaWiki = new MediaWiki( $wgRequest, $wgOut );
 
 # Set title from request parameters
-$wgTitle = $mediaWiki->checkInitialQueries();
+$wgTitle = $mediaWiki->getTitle();
 $action = $wgRequest->getVal( 'action', 'view' );
 
 wfProfileOut( 'index.php-setup' );
@@ -116,7 +116,7 @@ $mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
 $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
-$mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgUser );
+$mediaWiki->performRequestForTitle( $wgArticle, $wgUser );
 $mediaWiki->finalCleanup();
 
 wfProfileOut( 'index.php' );
