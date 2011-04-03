@@ -15,7 +15,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @ingroup Skins
  */
-abstract class Skin extends Linker {
+abstract class Skin {
 	/**#@+
 	 * @private
 	 */
@@ -30,11 +30,6 @@ abstract class Skin extends Linker {
 	var $mTitle = null;
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
-
-	/** Constructor, call parent constructor */
-	function __construct() {
-		parent::__construct();
-	}
 
 	/**
 	 * Fetch the set of available skins.
@@ -1551,5 +1546,77 @@ abstract class Skin extends Linker {
 		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
 		wfProfileOut( __METHOD__ );
 		return $siteNotice;
-}
+	}
+
+	/**
+	 * Create a section edit link.  This supersedes editSectionLink() and
+	 * editSectionLinkForOther().
+	 *
+	 * @param $nt      Title  The title being linked to (may not be the same as
+	 *   $wgTitle, if the section is included from a template)
+	 * @param $section string The designation of the section being pointed to,
+	 *   to be included in the link, like "&section=$section"
+	 * @param $tooltip string The tooltip to use for the link: will be escaped
+	 *   and wrapped in the 'editsectionhint' message
+	 * @param $lang    string Language code
+	 * @return         string HTML to use for edit link
+	 */
+	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
+		// HTML generated here should probably have userlangattributes
+		// added to it for LTR text on RTL pages
+		$attribs = array();
+		if ( !is_null( $tooltip ) ) {
+			# Bug 25462: undo double-escaping.
+			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
+			$attribs['title'] = wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang );
+		}
+		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
+			$attribs,
+			array( 'action' => 'edit', 'section' => $section ),
+			array( 'noclasses', 'known' )
+		);
+
+		# Run the old hook.  This takes up half of the function . . . hopefully
+		# we can rid of it someday.
+		$attribs = '';
+		if ( $tooltip ) {
+			$attribs = htmlspecialchars( wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang ) );
+			$attribs = " title=\"$attribs\"";
+		}
+		$result = null;
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result, $lang ) );
+		if ( !is_null( $result ) ) {
+			# For reverse compatibility, add the brackets *after* the hook is
+			# run, and even add them to hook-provided text.  (This is the main
+			# reason that the EditSectionLink hook is deprecated in favor of
+			# DoEditSectionLink: it can't change the brackets or the span.)
+			$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $result );
+			return "<span class=\"editsection\">$result</span>";
+		}
+
+		# Add the brackets and the span, and *then* run the nice new hook, with
+		# clean and non-redundant arguments.
+		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $link );
+		$result = "<span class=\"editsection\">$result</span>";
+
+		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
+		return $result;
+	}
+
+	/**
+	 * Use PHP's magic __call handler to intercept legacy calls to the linker
+	 * for backwards compatibility.
+	 *
+	 * @param $fname String Name of called method
+	 * @param $args Array Arguments to the method
+	 */
+	function __call( $fname, $args ) {
+		if ( method_exists( 'Linker', $fname ) ) {
+			return call_user_func_array( array( 'Linker', $fname ), $args );
+		} else {
+			$className = get_class( $this );
+			throw new MWException( "Call to undefined method $className::$fName" );
+		}
+	}
+
 }

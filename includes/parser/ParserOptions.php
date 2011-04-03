@@ -94,6 +94,7 @@ class ParserOptions {
 	/**
 	 * @param $title Title
 	 * @return Skin
+	 * @deprecated Use Linker::* instead
 	 */
 	function getSkin( $title = null ) {
 		if ( !isset( $this->mSkin ) ) {
