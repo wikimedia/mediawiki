@@ -3061,26 +3061,6 @@ function wfGetNull() {
 }
 
 /**
- * Displays a maxlag error
- *
- * @param $host String: server that lags the most
- * @param $lag Integer: maxlag (actual)
- * @param $maxLag Integer: maxlag (requested)
- */
-function wfMaxlagError( $host, $lag, $maxLag ) {
-	global $wgShowHostnames;
-	header( 'HTTP/1.1 503 Service Unavailable' );
-	header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-	header( 'X-Database-Lag: ' . intval( $lag ) );
-	header( 'Content-Type: text/plain' );
-	if( $wgShowHostnames ) {
-		echo "Waiting for $host: $lag seconds lagged\n";
-	} else {
-		echo "Waiting for a database server: $lag seconds lagged\n";
-	}
-}
-
-/**
  * Throws a warning that $function is deprecated
  * @param $function String
  * @return null
