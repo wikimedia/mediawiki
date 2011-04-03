@@ -58,6 +58,7 @@ $wgAutoloadLocalClasses = array(
 	'DjVuImage' => 'includes/DjVuImage.php',
 	'DoubleReplacer' => 'includes/StringUtils.php',
 	'DublinCoreRdf' => 'includes/Metadata.php',
+	'DummyLinker' => 'includes/Linker.php',
 	'Dump7ZipOutput' => 'includes/Export.php',
 	'DumpBZip2Output' => 'includes/Export.php',
 	'DumpFileOutput' => 'includes/Export.php',
