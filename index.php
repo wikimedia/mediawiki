@@ -47,8 +47,12 @@ wfProfileIn( 'index.php-setup' );
 $mediaWiki = new MediaWiki();
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
-if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
-	exit;
+if ( !is_null( $maxLag ) ) {
+	list( $host, $lag ) = wfGetLB()->getMaxLag();
+	if ( $lag > $maxLag ) {
+		wfMaxlagError( $host, $lag, $maxLag );
+		exit;
+	}
 }
 
 # Set title from request parameters
@@ -58,7 +62,7 @@ $action = $wgRequest->getVal( 'action', 'view' );
 wfProfileOut( 'index.php-setup' );
 
 # Send Ajax requests to the Ajax dispatcher.
-if( $wgUseAjax && $action == 'ajax' ) {
+if ( $wgUseAjax && $action == 'ajax' ) {
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
 	wfProfileOut( 'index.php' );
@@ -66,16 +70,16 @@ if( $wgUseAjax && $action == 'ajax' ) {
 	exit;
 }
 
-if( $wgUseFileCache && $wgTitle !== null ) {
+if ( $wgUseFileCache && $wgTitle !== null ) {
 	wfProfileIn( 'index.php-filecache' );
 	// Raw pages should handle cache control on their own,
 	// even when using file cache. This reduces hits from clients.
-	if( $action != 'raw' && HTMLFileCache::useFileCache() ) {
+	if ( $action != 'raw' && HTMLFileCache::useFileCache() ) {
 		/* Try low-level file cache hit */
 		$cache = new HTMLFileCache( $wgTitle, $action );
-		if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+		if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 			/* Check incoming headers to see if client has this cached */
-			if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+			if ( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
 				$cache->loadFromFileCache();
 			}
 			# Do any stats increment/watchlist stuff
