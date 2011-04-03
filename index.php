@@ -44,7 +44,7 @@ wfProfileIn( 'index.php' );
 wfProfileIn( 'index.php-setup' );
 
 # Initialize MediaWiki base class
-$mediaWiki = new MediaWiki();
+$mediaWiki = new MediaWiki( $wgRequest, $wgOut );
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if ( !is_null( $maxLag ) ) {
@@ -56,7 +56,7 @@ if ( !is_null( $maxLag ) ) {
 }
 
 # Set title from request parameters
-$wgTitle = $mediaWiki->checkInitialQueries( $wgRequest );
+$wgTitle = $mediaWiki->checkInitialQueries();
 $action = $wgRequest->getVal( 'action', 'view' );
 
 wfProfileOut( 'index.php-setup' );
@@ -88,7 +88,7 @@ if ( $wgUseFileCache && $wgTitle !== null ) {
 			# Tell $wgOut that output is taken care of
 			$wgOut->disable();
 			wfProfileOut( 'index.php-filecache' );
-			$mediaWiki->finalCleanup( $wgOut );
+			$mediaWiki->finalCleanup();
 			wfProfileOut( 'index.php' );
 			$mediaWiki->restInPeace();
 			exit;
@@ -106,8 +106,8 @@ $mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
 $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
-$mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
-$mediaWiki->finalCleanup( $wgOut );
+$mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgUser );
+$mediaWiki->finalCleanup();
 
 wfProfileOut( 'index.php' );
 
