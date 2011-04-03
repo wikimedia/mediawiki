@@ -146,24 +146,6 @@ class StubUserLang extends StubObject {
 	}
 
 	function _newObject() {
-		global $wgLanguageCode, $wgRequest, $wgUser, $wgContLang;
-		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
-		// BCP 47 - letter case MUST NOT carry meaning
-		$code = strtolower( $code );
-
-		# Validate $code
-		if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
-			wfDebug( "Invalid user language code\n" );
-			$code = $wgLanguageCode;
-		}
-
-		wfRunHooks( 'UserGetLanguageObject', array( $wgUser, &$code ) );
-
-		if( $code === $wgLanguageCode ) {
-			return $wgContLang;
-		} else {
-			$obj = Language::factory( $code );
-			return $obj;
-		}
+		return RequestContext::getMain()->lang;
 	}
 }
