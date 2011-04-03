@@ -996,6 +996,53 @@ class SpecialPage {
 		$this->mOutput = $output;
 		$this->mFullTitle = $output->getTitle();
 	}
+
+	/**
+	 * Get the WebRequest being used for this instance
+	 *
+	 * @return WebRequest
+	 */
+	public function getRequest() {
+		if ( !isset($this->mRequest) ) {
+			wfDebug( __METHOD__ . " called and \$mRequest is null. Return \$wgRequest for sanity\n" );
+			global $wgRequest;
+			return $wgRequest;
+		}
+		return $this->mRequest;
+	}
+
+	/**
+	 * Get the OutputPage being used for this instance
+	 *
+	 * @return OutputPage
+	 */
+	public function getOutput() {
+		if ( !isset($this->mOutput) ) {
+			wfDebug( __METHOD__ . " called and \$mOutput is null. Return \$wgOut for sanity\n" );
+			global $wgOut;
+			return $wgOut;
+		}
+		return $this->mOutput;
+	}
+
+	/**
+	 * Shortcut to get the skin being used for this instance
+	 *
+	 * @return User
+	 */
+	public function getUser() {
+		return $this->getOutput()->getUser();
+	}
+
+	/**
+	 * Shortcut to get the skin being used for this instance
+	 *
+	 * @return Skin
+	 */
+	public function getSkin() {
+		return $this->getOutput()->getSkin();
+	}
+
 	/**
 	 * Wrapper around wfMessage that sets the current context. Currently this
 	 * is only the title.
