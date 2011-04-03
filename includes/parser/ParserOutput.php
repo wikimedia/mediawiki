@@ -151,7 +151,7 @@ class ParserOutput extends CacheTime {
 	 * @private
 	 */
 	function replaceEditSectionLinksCallback( $m ) {
-		global $wgUser, $wgLang;
+		global $wgOut, $wgLang;
 		$args = array(
 			htmlspecialchars_decode($m[1]),
 			htmlspecialchars_decode($m[2]),
@@ -162,7 +162,7 @@ class ParserOutput extends CacheTime {
 			throw new MWException("Bad parser output text.");
 		}
 		$args[] = $wgLang->getCode();
-		$skin = $wgUser->getSkin();
+		$skin = $wgOut->getSkin();
 		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
