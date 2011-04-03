@@ -619,12 +619,13 @@ class SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	static function capturePath( &$title ) {
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgUser;
 
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		$wgOut = new OutputPage;
 		$wgOut->setTitle( $title );
+		$wgOut->setUser( $wgUser ); # for now, there may be a better idea in the future
 
 		$ret = SpecialPage::executePath( $title, true );
 		if ( $ret === true ) {
