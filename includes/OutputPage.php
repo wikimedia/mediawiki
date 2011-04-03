@@ -1266,6 +1266,24 @@ class OutputPage {
 	}
 
 	/**
+	 * Get the templates used on this page
+	 *
+	 * @return Array (namespace => dbKey => revId)
+	 */
+	public function getTemplateIds() {
+		return $this->mTemplateIds;
+	}
+
+	/**
+	 * Get the files used on this page
+	 *
+	 * @return Array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
+	 */
+	public function getImageTimeKeys() {
+		return $this->mImageTimeKeys;
+	}
+
+	/**
 	 * Convert wikitext to HTML and add it to the buffer
 	 * Default assumes that the current page title will be used.
 	 *
