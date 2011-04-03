@@ -3098,7 +3098,7 @@ class OutputPage {
 	 * @return String: modified value of the "media" attribute
 	 */
 	public static function transformCssMedia( $media ) {
-		global $wgHandheldForIPhone;
+		global $wgRequest, $wgHandheldForIPhone;
 
 		// Switch in on-screen display for media testing
 		$switches = array(
@@ -3106,7 +3106,7 @@ class OutputPage {
 			'handheld' => 'handheld',
 		);
 		foreach( $switches as $switch => $targetMedia ) {
-			if( $this->getRequest()->getBool( $switch ) ) {
+			if( $wgRequest->getBool( $switch ) ) {
 				if( $media == $targetMedia ) {
 					$media = '';
 				} elseif( $media == 'screen' ) {
