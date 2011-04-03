@@ -1615,7 +1615,7 @@ abstract class Skin {
 			return call_user_func_array( array( 'Linker', $fname ), $args );
 		} else {
 			$className = get_class( $this );
-			throw new MWException( "Call to undefined method $className::$fName" );
+			throw new MWException( "Call to undefined method $className::$fname" );
 		}
 	}
 
