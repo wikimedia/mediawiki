@@ -49,32 +49,33 @@ class SpecialAllmessages extends SpecialPage {
 	 * @param $par Mixed: parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgRequest;
+		$request = $this->getRequest();
+		$out = $this->getOutput();
 
 		$this->setHeaders();
 
 		global $wgUseDatabaseMessages;
 		if( !$wgUseDatabaseMessages ) {
-			$wgOut->addWikiMsg( 'allmessagesnotsupportedDB' );
+			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
 			return;
 		} else {
 			$this->outputHeader( 'allmessagestext' );
 		}
 
-		$wgOut->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( 'mediawiki.special' );
 
-		$this->filter = $wgRequest->getVal( 'filter', 'all' );
-		$this->prefix = $wgRequest->getVal( 'prefix', '' );
+		$this->filter = $request->getVal( 'filter', 'all' );
+		$this->prefix = $request->getVal( 'prefix', '' );
 
 		$this->table = new AllmessagesTablePager(
 			$this,
 			array(),
-			wfGetLangObj( $wgRequest->getVal( 'lang', $par ) )
+			wfGetLangObj( $request->getVal( 'lang', $par ) )
 		);
 
 		$this->langCode = $this->table->lang->getCode();
 
-		$wgOut->addHTML( $this->buildForm() .
+		$out->addHTML( $this->buildForm() .
 			$this->table->getNavigationBar() .
 			$this->table->getLimitForm() .
 			$this->table->getBody() .
