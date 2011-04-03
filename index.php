@@ -37,23 +37,33 @@
  * @file
  */
 
-# Initialise common code
+# Initialise common code.  This gives us access to GlobalFunctions, the AutoLoader, and
+# the globals $wgRequest, $wgOut, $wgUser, $wgLang and $wgContLang, amongst others; it
+# does *not* load $wgTitle or $wgArticle
 require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 
 wfProfileIn( 'index.php' );
 wfProfileIn( 'index.php-setup' );
 
-# Initialize MediaWiki base class
-$mediaWiki = new MediaWiki( $wgRequest, $wgOut );
-
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if ( !is_null( $maxLag ) ) {
 	list( $host, $lag ) = wfGetLB()->getMaxLag();
 	if ( $lag > $maxLag ) {
-		wfMaxlagError( $host, $lag, $maxLag );
+		header( 'HTTP/1.1 503 Service Unavailable' );
+		header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+		header( 'X-Database-Lag: ' . intval( $lag ) );
+		header( 'Content-Type: text/plain' );
+		if( $wgShowHostnames ) {
+			echo "Waiting for $host: $lag seconds lagged\n";
+		} else {
+			echo "Waiting for a database server: $lag seconds lagged\n";
+		}
 		exit;
 	}
 }
+
+# Initialize MediaWiki base class
+$mediaWiki = new MediaWiki( $wgRequest, $wgOut );
 
 # Set title from request parameters
 $wgTitle = $mediaWiki->checkInitialQueries();
