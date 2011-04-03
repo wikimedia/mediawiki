@@ -23,11 +23,6 @@ abstract class Skin {
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard';
-	/**
-	 * todo Fixme: should be protected :-\
-	 * @var Title
-	 */
-	var $mTitle = null;
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
@@ -191,18 +186,18 @@ abstract class Skin {
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
 	function preloadExistence() {
-		global $wgUser;
-
+		$user = $this->getContext()->getUser();
+		
 		// User/talk link
-		$titles = array( $wgUser->getUserPage(), $wgUser->getTalkPage() );
+		$titles = array( $user->getUserPage(), $user->getTalkPage() );
 
 		// Other tab link
-		if ( $this->mTitle->getNamespace() == NS_SPECIAL ) {
+		if ( $this->getTitle()->getNamespace() == NS_SPECIAL ) {
 			// nothing
-		} elseif ( $this->mTitle->isTalkPage() ) {
-			$titles[] = $this->mTitle->getSubjectPage();
+		} elseif ( $this->getTitle()->isTalkPage() ) {
+			$titles[] = $this->getTitle()->getSubjectPage();
 		} else {
-			$titles[] = $this->mTitle->getTalkPage();
+			$titles[] = $this->getTitle()->getTalkPage();
 		}
 
 		$lb = new LinkBatch( $titles );
@@ -214,9 +209,7 @@ abstract class Skin {
 	 * Set some local variables
 	 */
 	protected function setMembers() {
-		global $wgUser;
-		$this->mUser = $wgUser;
-		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
+		$this->userpage = $this->getContext()->getUser()->getUserPage()->getPrefixedText();
 		$this->usercss = false;
 	}
 
@@ -226,15 +219,29 @@ abstract class Skin {
 	 * @return Boolean
 	 */
 	public function isRevisionCurrent() {
-		return $this->mRevisionId == 0 || $this->mRevisionId == $this->mTitle->getLatestRevID();
+		return $this->mRevisionId == 0 || $this->mRevisionId == $this->getTitle()->getLatestRevID();
 	}
 
 	/**
-	 * Set the title
-	 * @param $t Title object to use
+	 * Set the RequestContext used in this instance
+	 *
+	 * @param RequestContext $context
 	 */
-	public function setTitle( $t ) {
-		$this->mTitle = $t;
+	public function setContext( RequestContext $context ) {
+		$this->mContext = $context;
+	}
+
+	/**
+	 * Get the RequestContext used in this instance
+	 *
+	 * @return RequestContext
+	 */
+	public function getContext() {
+		if ( !isset($this->mContext) ) {
+			wfDebug( __METHOD__ . " called and \$mContext is null. Using RequestContext::getMain(); for sanity\n" );
+			$this->mContext = RequestContext::getMain();
+		}
+		return $this->mContext;
 	}
 
 	/** Get the title
@@ -242,7 +249,7 @@ abstract class Skin {
 	 * @return Title
 	 */
 	public function getTitle() {
-		return $this->mTitle;
+		return $this->getContext()->getTitle();
 	}
 
 	/**
@@ -266,7 +273,7 @@ abstract class Skin {
 		if ( isset($this->mRelevantTitle) ) {
 			return $this->mRelevantTitle;
 		}
-		return $this->mTitle;
+		return $this->getTitle();
 	}
 
 	/**
@@ -363,23 +370,21 @@ abstract class Skin {
 	 * @return bool
 	 */
 	public function userCanPreview( $action ) {
-		global $wgRequest, $wgUser;
-
 		if ( $action != 'submit' ) {
 			return false;
 		}
-		if ( !$wgRequest->wasPosted() ) {
+		if ( !$this->getContext()->getRequest()->wasPosted() ) {
 			return false;
 		}
-		if ( !$this->mTitle->userCanEditCssSubpage() ) {
+		if ( !$this->getTitle()->userCanEditCssSubpage() ) {
 			return false;
 		}
-		if ( !$this->mTitle->userCanEditJsSubpage() ) {
+		if ( !$this->getTitle()->userCanEditJsSubpage() ) {
 			return false;
 		}
 
-		return $wgUser->matchEditToken(
-			$wgRequest->getVal( 'wpEditToken' ) );
+		return $this->getContext()->getUser()->matchEditToken(
+			$this->getContext()->getRequest()->getVal( 'wpEditToken' ) );
 	}
 
 	/**
@@ -428,7 +433,6 @@ abstract class Skin {
 	 * @private
 	 */
 	function setupUserCss( OutputPage $out ) {
-		global $wgRequest, $wgUser;
 		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
 
 		wfProfileIn( __METHOD__ );
@@ -442,16 +446,16 @@ abstract class Skin {
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
 			$out->addModuleStyles( array( 'site', 'noscript' ) );
-			if( $wgUser->isLoggedIn() ){
+			if( $this->getContext()->getUser()->isLoggedIn() ){
 				$out->addModuleStyles( 'user.groups' );
 			}
 		}
 
 		// Per-user custom styles
 		if ( $wgAllowUserCss ) {
-			if ( $this->mTitle->isCssSubpage() && $this->userCanPreview( $wgRequest->getVal( 'action' ) ) ) {
+			if ( $this->getTitle()->isCssSubpage() && $this->userCanPreview( $this->getContext()->getRequest()->getVal( 'action' ) ) ) {
 				// @FIXME: properly escape the cdata!
-				$out->addInlineStyle( $wgRequest->getText( 'wpTextbox1' ) );
+				$out->addInlineStyle( $this->getContext()->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
 				$out->addModuleStyles( 'user' );
 			}
@@ -533,13 +537,7 @@ abstract class Skin {
 	 * The format without an explicit $out argument is deprecated
 	 */
 	function getCategoryLinks( OutputPage $out=null ) {
-		global $wgUseCategoryBrowser, $wgContLang, $wgUser;
-
-		if ( is_null( $out ) ) {
-			// Backwards compatibility for when there was no $out arg
-			global $wgOut;
-			$out = $wgOut;
-		}
+		global $wgUseCategoryBrowser, $wgContLang;
 
 		if ( count( $out->mCategoryLinks ) == 0 ) {
 			return '';
@@ -569,9 +567,9 @@ abstract class Skin {
 
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
-			if ( $wgUser->getBoolOption( 'showhiddencats' ) ) {
+			if ( $this->getContext()->getUser()->getBoolOption( 'showhiddencats' ) ) {
 				$class = 'mw-hidden-cats-user-shown';
-			} elseif ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+			} elseif ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
 				$class = 'mw-hidden-cats-ns-shown';
 			} else {
 				$class = 'mw-hidden-cats-hidden';
@@ -589,7 +587,7 @@ abstract class Skin {
 			$s .= '<br /><hr />';
 
 			# get a big array of the parents tree
-			$parenttree = $this->mTitle->getParentCategoryTree();
+			$parenttree = $this->getTitle()->getParentCategoryTree();
 			# Skin object passed by reference cause it can not be
 			# accessed under the method subfunction drawCategoryBrowser
 			$tempout = explode( "\n", $this->drawCategoryBrowser( $parenttree, $this ) );
@@ -634,22 +632,15 @@ abstract class Skin {
 	 * the ->getCategories( $out ) form with whatout OutputPage is on hand
 	 */
 	function getCategories( OutputPage $out=null ) {
-		if ( is_null( $out ) ) {
-			// Backwards compatibility for when there was no $out arg
-			global $wgOut;
-			$out = $wgOut;
-		}
 
 		$catlinks = $this->getCategoryLinks( $out );
 
 		$classes = 'catlinks';
 
-		global $wgUser;
-
 		// Check what we're showing
 		$allCats = $out->getCategoryLinks();
-		$showHidden = $wgUser->getBoolOption( 'showhiddencats' ) ||
-						$this->mTitle->getNamespace() == NS_CATEGORY;
+		$showHidden = $this->getContext()->getUser()->getBoolOption( 'showhiddencats' ) ||
+						$this->getTitle()->getNamespace() == NS_CATEGORY;
 
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
 			$classes .= ' catlinks-allhidden';
@@ -774,21 +765,19 @@ abstract class Skin {
 
 	/** @return string Retrievied from HTML text */
 	function printSource() {
-		$url = htmlspecialchars( $this->mTitle->getFullURL() );
+		$url = htmlspecialchars( $this->getTitle()->getFullURL() );
 		return wfMsg( 'retrievedfrom', '<a href="' . $url . '">' . $url . '</a>' );
 	}
 
 	function getUndeleteLink() {
-		global $wgUser, $wgLang, $wgRequest;
+		$action = $this->getContext()->getRequest()->getVal( 'action', 'view' );
 
-		$action = $wgRequest->getVal( 'action', 'view' );
-
-		if ( $wgUser->isAllowed( 'deletedhistory' ) &&
-			( $this->mTitle->getArticleId() == 0 || $action == 'history' ) ) {
-			$n = $this->mTitle->isDeleted();
+		if ( $this->getContext()->getUser()->isAllowed( 'deletedhistory' ) &&
+			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
+			$n = $this->getTitle()->isDeleted();
 
 			if ( $n ) {
-				if ( $wgUser->isAllowed( 'undelete' ) ) {
+				if ( $this->getContext()->getUser()->isAllowed( 'undelete' ) ) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';
@@ -797,8 +786,8 @@ abstract class Skin {
 				return wfMsg(
 					$msg,
 					$this->link(
-						SpecialPage::getTitleFor( 'Undelete', $this->mTitle->getPrefixedDBkey() ),
-						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ),
+						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $this->getContext()->getLang()->formatNum( $n ) ),
 						array(),
 						array(),
 						array( 'known', 'noclasses' )
@@ -814,12 +803,7 @@ abstract class Skin {
 	 * The format without an explicit $out argument is deprecated
 	 */
 	function subPageSubtitle( OutputPage $out=null ) {
-		if ( is_null( $out ) ) {
-			// Backwards compatibility for when there was no $out arg
-			global $wgOut;
-			$out = $wgOut;
-		}
-
+		$out = $this->getContext()->getOutput();
 		$subpages = '';
 
 		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ) ) ) {
@@ -827,7 +811,7 @@ abstract class Skin {
 		}
 
 		if ( $out->isArticle() && MWNamespace::hasSubpages( $out->getTitle()->getNamespace() ) ) {
-			$ptext = $this->mTitle->getPrefixedText();
+			$ptext = $this->getTitle()->getPrefixedText();
 			if ( preg_match( '/\//', $ptext ) ) {
 				$links = explode( '/', $ptext );
 				array_pop( $links );
@@ -888,10 +872,10 @@ abstract class Skin {
 	}
 
 	function getCopyright( $type = 'detect' ) {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 
 		if ( $type == 'detect' ) {
-			$diff = $wgRequest->getVal( 'diff' );
+			$diff = $this->getContext()->getRequest()->getVal( 'diff' );
 
 			if ( is_null( $diff ) && !$this->isRevisionCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
 				$type = 'history';
@@ -923,7 +907,7 @@ abstract class Skin {
 		// Allow for site and per-namespace customization of copyright notice.
 		$forContent = true;
 
-		wfRunHooks( 'SkinCopyrightFooter', array( $this->mTitle, $type, &$msg, &$link, &$forContent ) );
+		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
 
 		if ( $forContent ) {
 			$out .= wfMsgForContent( $msg, $link );
@@ -980,17 +964,15 @@ abstract class Skin {
 	 * @return String
 	 */
 	protected function lastModified( $article ) {
-		global $wgLang;
-
 		if ( !$this->isRevisionCurrent() ) {
-			$timestamp = Revision::getTimestampFromId( $this->mTitle, $this->mRevisionId );
+			$timestamp = Revision::getTimestampFromId( $this->getTitle(), $this->mRevisionId );
 		} else {
 			$timestamp = $article->getTimestamp();
 		}
 
 		if ( $timestamp ) {
-			$d = $wgLang->date( $timestamp, true );
-			$t = $wgLang->time( $timestamp, true );
+			$d = $this->getContext()->getLang()->date( $timestamp, true );
+			$t = $this->getContext()->getLang()->time( $timestamp, true );
 			$s = ' ' . wfMsg( 'lastmodifiedat', $d, $t );
 		} else {
 			$s = '';
@@ -1116,9 +1098,8 @@ abstract class Skin {
 	}
 
 	function showEmailUser( $id ) {
-		global $wgUser;
 		$targetUser = User::newFromId( $id );
-		return $wgUser->canSendEmail() && # the sending user must have a confirmed email address
+		return $this->getContext()->getUser()->canSendEmail() && # the sending user must have a confirmed email address
 			$targetUser->canReceiveEmail(); # the target user must have a confirmed email address and allow emails from users
 	}
 
@@ -1238,10 +1219,9 @@ abstract class Skin {
 	 */
 	function buildSidebar() {
 		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
-		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
-		$key = wfMemcKey( 'sidebar', $wgLang->getCode() );
+		$key = wfMemcKey( 'sidebar', $this->getContext()->getLang()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
 			$cachedsidebar = $parserMemc->get( $key );
@@ -1301,7 +1281,7 @@ abstract class Skin {
 				$line = trim( $line, '* ' );
 
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
-					$line = MessageCache::singleton()->transform( $line, false, null, $this->mTitle );
+					$line = MessageCache::singleton()->transform( $line, false, null, $this->getTitle() );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					$link = wfMsgForContent( $line[0] );
 
@@ -1346,7 +1326,7 @@ abstract class Skin {
 					$options = new ParserOptions();
 					$options->setEditSection( false );
 					$options->setInterfaceMessage( true );
-					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $this->mTitle, $options )->getText();
+					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $this->getTitle(), $options )->getText();
 				} else {
 					continue;
 				}
@@ -1375,18 +1355,11 @@ abstract class Skin {
 	/**
 	 * Gets new talk page messages for the current user.
 	 * @return MediaWiki message or if no new talk page messages, nothing
-	 * The format without an explicit $out argument is deprecated
 	 */
-	function getNewtalks( OutputPage $out=null ) {
-		global $wgUser;
+	function getNewtalks() {
+		$out = $this->getContext()->getOutput();
 
-		if ( is_null( $out ) ) {
-			// Backwards compatibility for when there was no $out arg
-			global $wgOut;
-			$out = $wgOut;
-		}
-
-		$newtalks = $wgUser->getNewMessageLinks();
+		$newtalks = $this->getContext()->getUser()->getNewMessageLinks();
 		$ntl = '';
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
@@ -1444,7 +1417,7 @@ abstract class Skin {
 	 * @return String: HTML fragment
 	 */
 	private function getCachedNotice( $name ) {
-		global $wgOut, $wgRenderHashAppend, $parserMemc;
+		global $wgRenderHashAppend, $parserMemc;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1481,14 +1454,9 @@ abstract class Skin {
 		}
 
 		if ( $needParse ) {
-			if( is_object( $wgOut ) ) {
-				$parsed = $wgOut->parse( $notice );
-				$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
-				$notice = $parsed;
-			} else {
-				wfDebug( 'Skin::getCachedNotice called for ' . $name . ' with no $wgOut available' . "\n" );
-				$notice = '';
-			}
+			$parsed = $this->getContext()->getOutput()->parse( $notice );
+			$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
+			$notice = $parsed;
 		}
 
 		$notice = '<div id="localNotice">' .$notice . '</div>';
@@ -1504,7 +1472,7 @@ abstract class Skin {
 	function getNamespaceNotice() {
 		wfProfileIn( __METHOD__ );
 
-		$key = 'namespacenotice-' . $this->mTitle->getNsText();
+		$key = 'namespacenotice-' . $this->getTitle()->getNsText();
 		$namespaceNotice = $this->getCachedNotice( $key );
 		if ( $namespaceNotice && substr( $namespaceNotice, 0, 7 ) != '<p>&lt;' ) {
 			$namespaceNotice = '<div id="namespacebanner">' . $namespaceNotice . '</div>';
@@ -1522,13 +1490,11 @@ abstract class Skin {
 	 * @return String: HTML fragment
 	 */
 	function getSiteNotice() {
-		global $wgUser;
-
 		wfProfileIn( __METHOD__ );
 		$siteNotice = '';
 
 		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
-			if ( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
+			if ( is_object( $this->getContext()->getUser() ) && $this->getContext()->getUser()->isLoggedIn() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );

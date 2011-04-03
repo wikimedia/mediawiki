@@ -158,8 +158,8 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ . '-init' );
 
 		wfProfileIn( __METHOD__ . '-stuff' );
-		$this->thispage = $this->mTitle->getPrefixedDBkey();
-		$this->thisurl = $this->mTitle->getPrefixedURL();
+		$this->thispage = $this->getTitle()->getPrefixedDBkey();
+		$this->thisurl = $this->getTitle()->getPrefixedURL();
 		$query = array();
 		if ( !$wgRequest->wasPosted() ) {
 			$query = $wgRequest->getValues();
@@ -169,7 +169,7 @@ class SkinTemplate extends Skin {
 		}
 		$this->thisquery = wfUrlencode( wfArrayToCGI( $query ) );
 		$this->loggedin = $wgUser->isLoggedIn();
-		$this->iscontent = ( $this->mTitle->getNamespace() != NS_SPECIAL );
+		$this->iscontent = ( $this->getTitle()->getNamespace() != NS_SPECIAL );
 		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
 		$this->username = $wgUser->getName();
 
@@ -181,7 +181,7 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-		$this->titletxt = $this->mTitle->getPrefixedText();
+		$this->titletxt = $this->getTitle()->getPrefixedText();
 		wfProfileOut( __METHOD__ . '-stuff' );
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
@@ -230,19 +230,19 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
-		$tpl->set( 'pageclass', $this->getPageClasses( $this->mTitle ) );
+		$tpl->set( 'pageclass', $this->getPageClasses( $this->getTitle() ) );
 		$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 
-		$nsname = MWNamespace::exists( $this->mTitle->getNamespace() ) ?
-					MWNamespace::getCanonicalName( $this->mTitle->getNamespace() ) :
-					$this->mTitle->getNsText();
+		$nsname = MWNamespace::exists( $this->getTitle()->getNamespace() ) ?
+					MWNamespace::getCanonicalName( $this->getTitle()->getNamespace() ) :
+					$this->getTitle()->getNsText();
 
 		$tpl->set( 'nscanonical', $nsname );
-		$tpl->set( 'nsnumber', $this->mTitle->getNamespace() );
-		$tpl->set( 'titleprefixeddbkey', $this->mTitle->getPrefixedDBKey() );
-		$tpl->set( 'titletext', $this->mTitle->getText() );
-		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
-		$tpl->set( 'currevisionid', $this->mTitle->getLatestRevID() );
+		$tpl->set( 'nsnumber', $this->getTitle()->getNamespace() );
+		$tpl->set( 'titleprefixeddbkey', $this->getTitle()->getPrefixedDBKey() );
+		$tpl->set( 'titletext', $this->getTitle()->getText() );
+		$tpl->set( 'articleid', $this->getTitle()->getArticleId() );
+		$tpl->set( 'currevisionid', $this->getTitle()->getLatestRevID() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -284,12 +284,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'printable', $out->isPrintable() );
 		$tpl->set( 'handheld', $wgRequest->getBool( 'handheld' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
-		$tpl->set( 'notspecialpage', $this->mTitle->getNamespace() != NS_SPECIAL );
+		$tpl->set( 'notspecialpage', $this->getTitle()->getNamespace() != NS_SPECIAL );
 		/* XXX currently unused, might get useful later
-		$tpl->set( 'editable', ( $this->mTitle->getNamespace() != NS_SPECIAL ) );
-		$tpl->set( 'exists', $this->mTitle->getArticleID() != 0 );
-		$tpl->set( 'watch', $this->mTitle->userIsWatching() ? 'unwatch' : 'watch' );
-		$tpl->set( 'protect', count( $this->mTitle->isProtected() ) ? 'unprotect' : 'protect' );
+		$tpl->set( 'editable', ( $this->getTitle()->getNamespace() != NS_SPECIAL ) );
+		$tpl->set( 'exists', $this->getTitle()->getArticleID() != 0 );
+		$tpl->set( 'watch', $this->getTitle()->userIsWatching() ? 'unwatch' : 'watch' );
+		$tpl->set( 'protect', count( $this->getTitle()->isProtected() ) ? 'unprotect' : 'protect' );
 		$tpl->set( 'helppage', wfMsg( 'helppage' ) );
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
@@ -328,7 +328,7 @@ class SkinTemplate extends Skin {
 
 			// The content of SpecialPages should be presented in the
 			// user's language. Content of regular pages should not be touched.
-			if( $this->mTitle->isSpecialPage() ) {
+			if( $this->getTitle()->isSpecialPage() ) {
 				$tpl->set( 'specialpageattributes', $attrs );
 			}
 		}
@@ -342,9 +342,9 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
 		if ( $out->isArticle() && ( !isset( $oldid ) || isset( $diff ) ) &&
-			$this->mTitle->exists() )
+			$this->getTitle()->exists() )
 		{
-			$article = new Article( $this->mTitle, 0 );
+			$article = new Article( $this->getTitle(), 0 );
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $article->getCount() );
 				if ( $viewcount ) {
@@ -360,7 +360,7 @@ class SkinTemplate extends Skin {
 				$dbr = wfGetDB( DB_SLAVE );
 				$res = $dbr->select( 'watchlist',
 					array( 'COUNT(*) AS n' ),
-					array( 'wl_title' => $dbr->strencode( $this->mTitle->getDBkey() ), 'wl_namespace' => $this->mTitle->getNamespace() ),
+					array( 'wl_title' => $dbr->strencode( $this->getTitle()->getDBkey() ), 'wl_namespace' => $this->getTitle()->getNamespace() ),
 					__METHOD__
 				);
 				$x = $dbr->fetchObject( $res );
@@ -796,7 +796,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 		
 		$title = $this->getRelevantTitle(); // Display tabs for the relevant title rather than always the title itself
-		$onPage = $title->equals($this->mTitle);
+		$onPage = $title->equals($this->getTitle());
 		
 		$content_navigation = array(
 			'namespaces' => array(),
@@ -935,7 +935,7 @@ class SkinTemplate extends Skin {
 				if ( $title->quickUserCan( 'move' ) ) {
 					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 					$content_navigation['actions']['move'] = array(
-						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
+						'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-move", 'move' )->text(),
 						'href' => $moveTitle->getLocalURL()
 					);
@@ -958,7 +958,7 @@ class SkinTemplate extends Skin {
 						// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
 						$msgKey = $wgUser->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
 						$content_navigation['actions']['undelete'] = array(
-							'class' => $this->mTitle->isSpecial( 'Undelete' ) ? 'selected' : false,
+							'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
 								->params( $wgLang->formatNum( $n ) )->text(),
 							'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
@@ -1157,7 +1157,7 @@ class SkinTemplate extends Skin {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
-					'href' => $this->mTitle->getLocalURL( $wgRequest->appendQueryValue( 'printable', 'yes', true ) )
+					'href' => $this->getTitle()->getLocalURL( $wgRequest->appendQueryValue( 'printable', 'yes', true ) )
 				);
 			}
 
@@ -1174,12 +1174,12 @@ class SkinTemplate extends Skin {
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$revid, &$revid ) );
 		}
 
-		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
+		if( $this->getTitle()->getNamespace() != NS_SPECIAL ) {
 			$wlhTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage );
 			$nav_urls['whatlinkshere'] = array(
 				'href' => $wlhTitle->getLocalUrl()
 			);
-			if( $this->mTitle->getArticleId() ) {
+			if( $this->getTitle()->getArticleId() ) {
 				$rclTitle = SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage );
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => $rclTitle->getLocalUrl()
@@ -1249,7 +1249,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function getNameSpaceKey() {
-		return $this->mTitle->getNamespaceKey();
+		return $this->getTitle()->getNamespaceKey();
 	}
 
 	/**
@@ -1263,7 +1263,7 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getVal( 'action', 'view' );
 
 		if( $allowUserJs && $this->loggedin ) {
-			if( $this->mTitle->isJsSubpage() and $this->userCanPreview( $action ) ) {
+			if( $this->getTitle()->isJsSubpage() and $this->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText( 'wpTextbox1' ) . ' /*]]>*/';
 			} else {

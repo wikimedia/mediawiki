@@ -130,9 +130,25 @@ class RequestContext {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		// For now we'll just proxy to the user. In the future a saner location for
-		// organizing what skin to use may be chosen
-		return $this->getUser()->getSkin();
+		if ( !isset($this->skin) ) {
+			wfProfileIn( __METHOD__ . '-createskin' );
+			
+			global $wgHiddenPrefs;
+			if( !in_array( 'skin', $wgHiddenPrefs ) ) {
+				# get the user skin
+				$userSkin = $this->getUser()->getOption( 'skin' );
+				$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
+			} else {
+				# if we're not allowing users to override, then use the default
+				global $wgDefaultSkin;
+				$userSkin = $wgDefaultSkin;
+			}
+
+			$this->skin = Skin::newFromKey( $userSkin );
+			$this->skin->setContext( $this );
+			wfProfileOut( __METHOD__ . '-createskin' );
+		}
+		return $this->skin;
 	}
 
 	/** Helpful methods **/
