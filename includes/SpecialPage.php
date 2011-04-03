@@ -547,12 +547,10 @@ class SpecialPage {
 		$page = SpecialPage::getPageByAlias( $name );
 		# Nonexistent?
 		if ( !$page ) {
-			if ( !$including ) {
-				$wgOut->setArticleRelated( false );
-				$wgOut->setRobotPolicy( 'noindex,nofollow' );
-				$wgOut->setStatusCode( 404 );
-				$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
-			}
+			$wgOut->setArticleRelated( false );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->setStatusCode( 404 );
+			$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -877,10 +875,6 @@ class SpecialPage {
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
-		if ( $this->including() ) {
-			// Don't set these headers when special page is being included into an article
-			return;
-		}
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( "noindex,nofollow" );
@@ -1052,16 +1046,6 @@ class SpecialPage {
 	 */
 	public function getSkin() {
 		return $this->getOutput()->getSkin();
-	}
-
-	/**
-	 * Shortcut to call OutputPage::allowClickjacking(); which also takes
-	 * transclusion into account.
-	 */
-	public function allowClickjacking() {
-		if ( !$this->including() ) {
-			$this->getOutput()->allowClickjacking();
-		}
 	}
 
 	/**
