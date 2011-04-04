@@ -142,7 +142,7 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public function verifyUpload() {
 		if ( $this->mAsync ) {
-			return array( 'status' => self::OK );
+			return array( 'status' => UploadBase::OK );
 		}
 		return parent::verifyUpload();
 	}

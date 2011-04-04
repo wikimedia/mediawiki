@@ -40,7 +40,7 @@ class UploadFromFile extends UploadBase {
 			if ( $this->mUpload->isIniSizeOverflow() ) {
 				global $wgMaxUploadSize;
 				return array( 
-					'status' => self::FILE_TOO_LARGE,
+					'status' => UploadBase::FILE_TOO_LARGE,
 					'max' => min( 
 						$wgMaxUploadSize, 
 						wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ), 
