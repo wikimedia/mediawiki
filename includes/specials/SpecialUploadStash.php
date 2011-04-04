@@ -56,7 +56,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return Boolean: success
 	 */
 	public function execute( $subPage ) {
-		global $wgOut, $wgUser;
+		global $wgUser;
 
 		if ( !$this->userCanExecute( $wgUser ) ) {
 			$this->displayRestrictionError();

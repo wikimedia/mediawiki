@@ -57,7 +57,6 @@ class SpecialImport extends SpecialPage {
 		$this->outputHeader();
 		
 		if ( wfReadOnly() ) {
-			global $wgOut;
 			$wgOut->readOnlyPage();
 			return;
 		}
