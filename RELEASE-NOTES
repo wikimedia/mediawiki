@@ -217,6 +217,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27893) Edit-on-doubleclick now applies only on view and purge actions;
   no longer triggers unexpectedly on delete, history etc.
 * (bug 28417) Fix PHP notice when importing revision without a listed id
+* (bug 28394) Set forgotten parameters types in ApiUnblock
+* (bug 28395) Set forgotten parameters types in ApiParse
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
