@@ -85,6 +85,9 @@ li span.deleted, span.history-deleted {
 	color: #888;
 	font-style: italic;
 }
+li span.deleted a, span.history-deleted a {
+	color: #888;
+}
 
 /**
  * Patrol stuff
