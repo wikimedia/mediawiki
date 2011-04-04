@@ -260,17 +260,21 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Register a file dependency for this output
 	 * @param $name string Title dbKey
-	 * @param $timestamp string MW timestamp of file creation
-	 * @param $sha string base 36 SHA-1 of file
+	 * @param $timestamp string MW timestamp of file creation (or false if non-existing)
+	 * @param $sha string base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
-		$this->mImageTimeKeys[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
+		if ( $timestamp !== null && $sha1 !== null ) {
+			$this->mImageTimeKeys[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
+		}
 	}
 
 	/**
+	 * Register a template dependency for this output
 	 * @param $title Title
 	 * @param $page_id
 	 * @param $rev_id
