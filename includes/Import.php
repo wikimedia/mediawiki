@@ -546,18 +546,27 @@ class WikiImporter {
 	private function processRevision( $pageInfo, $revisionInfo ) {
 		$revision = new WikiRevision;
 
-		$revision->setID( $revisionInfo['id'] );
-		$revision->setText( $revisionInfo['text'] );
+		if( isset( $revisionInfo['id'] ) ) {
+			$revision->setID( $revisionInfo['id'] );
+		}
+		if ( isset( $revisionInfo['text'] ) ) {
+			$revision->setText( $revisionInfo['text'] );
+		}
 		$revision->setTitle( $pageInfo['_title'] );
-		$revision->setTimestamp( $revisionInfo['timestamp'] );
+
+		if ( isset( $revisionInfo['timestamp'] ) ) {
+			$revision->setTimestamp( $revisionInfo['timestamp'] );
+		} else {
+			$revision->setTimestamp( wfTimestampNow() );
+		}
 
 		if ( isset( $revisionInfo['comment'] ) ) {
 			$revision->setComment( $revisionInfo['comment'] );
 		}
 
-		if ( isset( $revisionInfo['minor'] ) )
+		if ( isset( $revisionInfo['minor'] ) ) {
 			$revision->setMinor( true );
-
+		}
 		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
 		}
