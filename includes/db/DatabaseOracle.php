@@ -793,13 +793,8 @@ class DatabaseOracle extends DatabaseBase {
 
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
-		$fieldInfoData = $this->fieldInfo( $table, $field);
-		if ( $fieldInfoData->type == 'varchar' ) {
-			$size = $row->size - 4;
-		} else {
-			$size = $row->size;
-		}
-		return $size;
+		$fieldInfoData = $this->fieldInfo( $table, $field );
+		return $fieldInfoData->maxLength();
 	}
 
 	function limitResult( $sql, $limit, $offset = false ) {
