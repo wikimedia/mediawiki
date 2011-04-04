@@ -1,0 +1,162 @@
+#!/usr/bin/hphpi -f 
+<?php
+
+require( dirname( __FILE__ ) . '/../Maintenance.php' );
+
+class MakeHipHop extends Maintenance {
+
+	function execute() {
+		$startTime = time();
+
+		$sourceDir = realpath( dirname( __FILE__ ) );
+		$IP = realpath( "$sourceDir/../.." );
+		$buildDir = "$sourceDir/build";
+		$outDir = "$buildDir/hiphop-output";
+		$persistentDir = "$buildDir/persistent" ;
+
+		if ( !is_dir( $buildDir ) ) {
+			mkdir( $buildDir, 0777, true );
+		}
+		if ( !is_dir( $persistentDir ) ) {
+			mkdir( $persistentDir, 0777, true );
+		}
+
+		# With the CentOS RPMs, you just get g++44, no g++, so we have to 
+		# use the environment
+		if ( isset( $_ENV['CXX'] ) ) {
+			$cxx = $_ENV['CXX'];
+		} else {
+			$cxx = 'g++';
+		}
+
+		# Create a function that provides the HipHop compiler version, and 
+		# doesn't exist when MediaWiki is invoked in interpreter mode.
+		$version = trim( `hphp --version` );
+		file_put_contents(
+			"$buildDir/HipHopCompilerVersion.php",
+			"<" . "?php\n" .
+			"function wfHipHopCompilerVersion() {\n" .
+			"return " . var_export( $version, true ) . ";\n" .
+			"}\n"
+		);
+
+		# Generate the C++
+		passthru(
+			'hphp' .
+			' --target=cpp' .
+			' --format=file' .
+			' --input-dir=' . wfEscapeShellArg( $IP ) .
+			' --input-list=' . wfEscapeShellArg( "$sourceDir/file-list.small" ) .
+			' --inputs=' . wfEscapeShellArg( "$buildDir/HipHopCompilerVersion.php" ) .
+			' --config=' . wfEscapeShellArg( "$sourceDir/compiler.conf" ) .
+			' --parse-on-demand=false' .
+			' --program=mediawiki-hphp' .
+			' --output-dir=' . wfEscapeShellArg( $outDir ) .
+			' --log=3' );
+
+		# Copy the generated C++ files into the source directory for cmake
+		$iter = new RecursiveIteratorIterator( 
+			new RecursiveDirectoryIterator( $outDir ),
+			RecursiveIteratorIterator::SELF_FIRST );
+		$sourceFiles = array();
+		$regenerateMakefile = false;
+		$numFiles = 0;
+		$numFilesChanged = 0;
+		foreach ( $iter as $sourcePath => $file ) {
+			$name = substr( $sourcePath, strlen( $outDir ) + 1 );
+			$sourceFiles[$name] = true;
+			$destPath = "$persistentDir/$name";
+			if ( $file->isDir() ) {
+				if ( !is_dir( $destPath ) ) {
+					mkdir( $destPath );
+				}
+				continue;
+			}
+
+			$numFiles++;
+			# Remove any files that weren't touched, these may have been removed
+			# from file-list, we should not compile them
+			if ( $file->getMTime() < $startTime ) {
+				if ( file_exists( $destPath ) ) {
+					unlink( $destPath );
+					# Files removed, regenerate the makefile
+					$regenerateMakefile = true;
+				}
+				unlink( $sourcePath );
+				$numFilesChanged++;
+				continue;
+			}
+
+			if ( file_exists( $destPath ) ) {
+				$sourceHash = md5( file_get_contents( $sourcePath ) );
+				$destHash = md5( file_get_contents( $destPath ) );
+				if ( $sourceHash == $destHash ) {
+					continue;
+				}
+			} else {
+				# New files added, regenerate the makefile
+				$regenerateMakefile = true;
+			}
+			$numFilesChanged++;
+			copy( $sourcePath, $destPath );
+		}
+
+		echo "MediaWiki: $numFilesChanged files changed out of $numFiles\n";
+
+		if ( !file_exists( "$persistentDir/CMakeLists.txt" ) ) {
+			# Run cmake for the first time
+			$regenerateMakefile = true;
+		}
+
+		# Do our own version of $HPHP_HOME/bin/run.sh, which isn't so broken.
+		# HipHop's RELEASE mode seems to be stuck always on, so symbols get 
+		# stripped. Also we will try keeping the generated .o files instead of 
+		# throwing away hours of CPU time every time you make a typo.
+
+		chdir( $persistentDir );
+
+		if ( $regenerateMakefile ) {
+			copy( $_ENV['HPHP_HOME'] . '/bin/CMakeLists.base.txt', 
+				"$persistentDir/CMakeLists.txt" );
+
+			if ( file_exists( "$persistentDir/CMakeCache.txt" ) ) {
+				unlink( "$persistentDir/CMakeCache.txt" );
+			}
+
+			$cmd = 'cmake' .
+				' -D CMAKE_BUILD_TYPE:string=Debug' .
+				' -D PROGRAM_NAME:string=mediawiki-hphp';
+			
+			if ( file_exists( '/usr/bin/ccache' ) ) {
+				$cmd .= ' -D CMAKE_CXX_COMPILER:string=ccache' .
+					' -D CMAKE_CXX_COMPILER_ARG1:string=' . wfEscapeShellArg( $cxx );
+			}
+
+			$cmd .= ' .';
+			echo "$cmd\n";
+			passthru( $cmd );
+		}
+
+		# Run make. This is the slow step.
+		passthru( 'make' );
+
+		$elapsed = time() - $startTime;
+
+		echo "Completed in ";
+		if ( $elapsed >= 3600 ) {
+			$hours = floor( $elapsed / 3600 );
+			echo $hours . 'h ';
+			$elapsed -= $hours * 3600;
+		}
+		if ( $elapsed >= 60 ) {
+			$minutes = floor( $elapsed / 60 );
+			echo $minutes . 'm ';
+			$elapsed -= $minutes * 60;
+		}
+		echo $elapsed . "s\n";
+		echo "The MediaWiki executable is at build/persistent/mediawiki-hphp\n";
+	}
+}
+
+$maintClass = 'MakeHipHop';
+require_once( RUN_MAINTENANCE_IF_MAIN );

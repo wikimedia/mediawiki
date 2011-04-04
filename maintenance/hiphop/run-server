@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sourceDir=`dirname "$0"`
+
+"$sourceDir"/build/persistent/mediawiki-hphp \
+	--config="$sourceDir/server.conf" \
+	--mode=server \
+	--port=8080
+
+
