@@ -114,15 +114,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				$this->addJoinConds( array( 'user_groups' => array( 'LEFT JOIN', 'ug_user=u1.user_id' ) ) );
 				$this->addFields( 'ug_group' );
 			}
-			if ( isset( $this->prop['blockinfo'] ) ) {
-				$this->addTables( 'ipblocks' );
-				$this->addTables( 'user', 'u2' );
-				$u2 = $this->getAliasedName( 'user', 'u2' );
-				$this->addJoinConds( array(
-					'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
-					$u2 => array( 'LEFT JOIN', 'ipb_by=u2.user_id' ) ) );
-				$this->addFields( array( 'ipb_reason', 'u2.user_name AS blocker_name', 'ipb_expiry' ) );
-			}
+
+			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
@@ -144,8 +137,20 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$data[$name]['groups'][] = $row->ug_group;
 				}
 
-				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
-					$data[$name]['blockedby'] = $row->blocker_name;
+				if ( isset( $this->prop['rights'] ) && !is_null( $row->ug_group ) ) {
+					if ( !isset( $data[$name]['rights'] ) ) {
+						$data[$name]['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
+					}
+
+					$data[$name]['rights'] = array_unique( array_merge( $data[$name]['rights'],
+						User::getGroupPermissions( array( $row->ug_group ) ) ) );
+					$result->setIndexedTagName( $data[$name]['rights'], 'r' );
+				}
+				if ( $row->ipb_deleted ) {
+					$data[$name]['hidden'] = '';
+				}
+				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+					$data[$name]['blockedby'] = $row->ipb_by_text;
 					$data[$name]['blockreason'] = $row->ipb_reason;
 					$data[$name]['blockexpiry'] = $row->ipb_expiry;
 				}
@@ -239,7 +244,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
 		} else {
-			return 'public';
+			return 'anon-public-user-private';
 		}
 	}
 

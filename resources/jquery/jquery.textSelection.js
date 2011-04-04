@@ -386,7 +386,7 @@ scrollToCaretPosition: function( options ) {
 			break;
 	}
 	var context = $(this).data( 'wikiEditor-context' );
-	var hasIframe = context !== undefined && context.$iframe !== undefined;
+	var hasIframe = typeof context !== 'undefined' && context && typeof context.$iframe !== 'undefined';
 	
 	// IE selection restore voodoo
 	var needSave = false;

@@ -65,3 +65,79 @@ body  button.ui-button::-moz-focus-inner {
 	border: 0; 
 }
 
+/* Green buttons */
+
+body button.ui-button.ui-button-green {
+	color: white;
+	border-color: #97af7e !important;
+	/* @embed */
+	background: #85c940 url(images/button-off-green.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-green:hover {
+	border-color: #778e61;
+	/* @embed */
+	background: #77ad40 url(images/button-over-green.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-green:active,
+body button.ui-button.ui-button-green:focus {
+	border-color: #61b000;
+	/* @embed */
+	background: #54a800 url(images/button-down-green.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-green.disabled {
+	color: #7f7f7f;
+	border-color: #b8d29f;
+	/* @embed */
+	background: #c9cfc3 url(images/button-disabled-green.png) repeat-x scroll 50% 100% !important;	
+}
+
+/* Blue buttons */
+
+body button.ui-button.ui-button-blue {
+	color: white;
+	border-color: #407ec9 !important;
+	/* @embed */
+	background: #407ec9 url(images/button-off-blue.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-blue:hover {
+	border-color: #245289;
+	/* @embed */
+	background: #4071ad url(images/button-over-blue.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-blue:active,
+body button.ui-button.ui-button-blue:focus {
+	border-color: #003980;
+	/* @embed */
+	background: #004daa url(images/button-down-blue.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-blue.disabled {
+	border-color: #9eafc6;
+	/* @embed */
+	background: #c3c8cf url(images/button-disabled-blue.png) repeat-x scroll 50% 100% !important;	
+}
+
+/* Red buttons */
+
+body button.ui-button.ui-button-red {
+	color: white;
+	border-color: #af977e !important;
+	/* @embed */
+	background: #c9404c url(images/button-off-red.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-red:hover {
+	border-color: #8e7761;
+	/* @embed */
+	background: #ad404a url(images/button-over-red.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-red:active,
+body button.ui-button.ui-button-red:focus {
+	border-color: #b06100;
+	/* @embed */
+	background: #aa000f url(images/button-down-red.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.ui-button-red.disabled {
+	color: #7f7f7f;
+	border-color: #c3acae;
+	/* @embed */
+	background: #cfc3c4 url(images/button-disabled-red.png) repeat-x scroll 50% 100% !important;	
+}

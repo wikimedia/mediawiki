@@ -2,7 +2,7 @@ define mw_prefix='{$wgDBprefix}';
 
 ALTER TABLE &mw_prefix.archive MODIFY ar_user DEFAULT 0 NOT NULL;
 ALTER TABLE &mw_prefix.archive MODIFY ar_deleted CHAR(1);
-CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_namespace, ar_title, ar_rev_id);
+CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_rev_id);
 
 ALTER TABLE &mw_prefix.page MODIFY page_is_redirect default '0';
 ALTER TABLE &mw_prefix.page MODIFY page_is_new default '0';

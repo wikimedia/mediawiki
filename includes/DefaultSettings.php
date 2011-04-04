@@ -665,6 +665,9 @@ $wgSVGConverter = 'ImageMagick';
 $wgSVGConverterPath = '';
 /** Don't scale a SVG larger than this */
 $wgSVGMaxSize = 2048;
+/** Don't read SVG metadata beyond this point.
+ * Default is 1024*256 bytes */
+$wgSVGMetadataCutoff = 262144; 
 
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
@@ -2436,6 +2439,12 @@ $wgResourceLoaderUseESI = false;
  */
 $wgResourceLoaderMinifyJSVerticalSpace = false;
 
+/**
+ * Whether to include the mediawiki.legacy JS library (old wikibits.js), and its
+ * dependencies
+ */
+$wgIncludeLegacyJavaScript = true;
+
 /** @} */ # End of resource loader settings }
 
 
@@ -3346,9 +3355,9 @@ $wgGroupsRemoveFromSelf = array();
  * You probably shouldn't change this.
  * Translated through restriction-* messages.
  * Title::getRestrictionTypes() will remove restrictions that are not 
- * applicable to a specific title (upload currently)
+ * applicable to a specific title (create and upload)
  */
-$wgRestrictionTypes = array( 'edit', 'move', 'upload' );
+$wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' );
 
 /**
  * Rights which can be required for each protection level (via action=protect)

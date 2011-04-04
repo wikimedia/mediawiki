@@ -227,7 +227,8 @@ class ImageGallery
 
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + 50 );
-			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;";
+			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ""; 
+			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(

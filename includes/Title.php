@@ -4190,16 +4190,37 @@ class Title {
 	 * @return array applicable restriction types
 	 */
 	public function getRestrictionTypes() {
-		global $wgRestrictionTypes;
+		$types = self::getFilteredRestrictionTypes( $this->exists() );
 		
-		$types = $this->exists() ? $wgRestrictionTypes : array( 'create' );
-
 		if ( $this->getNamespace() != NS_FILE ) {
+			# Remove the upload restriction for non-file titles
 			$types = array_diff( $types, array( 'upload' ) );
 		}
 		
 		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
 		
+		wfDebug( __METHOD__ . ': applicable restriction types for ' . 
+			$this->getPrefixedText() . ' are ' . implode( ',', $types ) );
+
+		return $types;
+	}
+	/**
+	 * Get a filtered list of all restriction types supported by this wiki. 
+	 * @param bool $exists True to get all restriction types that apply to 
+	 * titles that do exist, False for all restriction types that apply to
+	 * titles that do not exist
+	 * @return array
+	 */
+	public static function getFilteredRestrictionTypes( $exists = true ) {
+		global $wgRestrictionTypes;
+		$types = $wgRestrictionTypes;
+		if ( $exists ) {
+			# Remove the create restriction for existing titles
+			$types = array_diff( $types, array( 'create' ) );			
+		} else {
+			# Only the create and upload restrictions apply to non-existing titles
+			$types = array_intersect( $types, array( 'create', 'upload' ) );
+		}
 		return $types;
 	}
 

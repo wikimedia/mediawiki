@@ -66,7 +66,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$this->addTables( 'filearchive' );
 
-		$this->addFields( 'fa_name' );
+		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
 		$this->addFieldsIf( 'fa_storage_key', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
 
@@ -92,27 +92,22 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, null );
-		if ( isset( $params['prefix'] ) )
+		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
-
-		if ( isset( $params['minsize'] ) ) {
-			$this->addWhere( 'fa_size>=' . intval( $params['minsize'] ) );
+		}
+		
+		if ( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			// Filter out revisions that the user is not allowed to see. There
+			// is no way to indicate that we have skipped stuff because the
+			// continuation parameter is fa_name
+			
+			// Note that this field is unindexed. This should however not be
+			// a big problem as files with fa_deleted are rare
+			$this->addWhereFld( 'fa_deleted', 0 );
 		}
 
-		if ( isset( $params['maxsize'] ) ) {
-			$this->addWhere( 'fa_size<=' . intval( $params['maxsize'] ) );
-		}
-
-		$sha1 = false;
-		if ( isset( $params['sha1'] ) ) {
-			$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
-		} elseif ( isset( $params['sha1base36'] ) ) {
-			$sha1 = $params['sha1base36'];
-		}
-		if ( $sha1 ) {
-			$this->addWhere( 'fa_storage_key=' . $db->addQuotes( $sha1 ) );
-		}
-
+		
+			
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption( 'ORDER BY', 'fa_name' .
@@ -162,7 +157,22 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_mime ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
+			
+			if ( $row->fa_deleted & File::DELETED_FILE ) {
+				$file['filehidden'] = '';
+			}
+			if ( $row->fa_deleted & File::DELETED_COMMENT ) {
+				$file['commenthidden'] = '';
+			}
+			if ( $row->fa_deleted & File::DELETED_USER ) {
+				$file['userhidden'] = '';
+			}
+			if ( $row->fa_deleted & File::DELETED_RESTRICTED ) {
+				// This file is deleted for normal admins
+				$file['suppressed'] = '';
+			}
 
+			
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->fa_name ) );
@@ -177,12 +187,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		return array (
 			'from' => null,
 			'prefix' => null,
-			'minsize' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'maxsize' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -197,8 +201,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'descending'
 				)
 			),
-			'sha1' => null,
-			'sha1base36' => null,
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
@@ -222,11 +224,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'from' => 'The image title to start enumerating from',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
-			'minsize' => 'Limit to images with at least this many bytes',
-			'maxsize' => 'Limit to images with at most this many bytes',
 			'limit' => 'How many total images to return',
-			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
-			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => array(
 				'What image information to get:',
 				' sha1         - Adds sha1 hash for the image',

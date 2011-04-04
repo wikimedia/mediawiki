@@ -131,7 +131,7 @@ CREATE TABLE &mw_prefix.archive (
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY (ar_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
-CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_namespace, ar_title, ar_rev_id);
+CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_rev_id);
 
 CREATE TABLE &mw_prefix.pagelinks (
   pl_from       NUMBER   NOT NULL,

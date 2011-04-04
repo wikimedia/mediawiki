@@ -95,15 +95,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		} else {
 			$sqlLimit = $limit + 1;
 		}
-		if ( $fld_blockinfo ) {
-			$this->addTables( 'ipblocks' );
-			$this->addTables( 'user', 'u2' );
-			$u2 = $this->getAliasedName( 'user', 'u2' );
-			$this->addJoinConds( array(
-				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=u1.user_id' ),
-				$u2 => array( 'LEFT JOIN', 'ipb_by=u2.user_id' ) ) );
-			$this->addFields( array( 'ipb_reason', 'u2.user_name AS blocker_name' ) );
-		}
+		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
 
 		$this->addOption( 'LIMIT', $sqlLimit );
 
@@ -168,6 +160,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['blockedby'] = $row->blocker_name;
 					$lastUserData['blockreason'] = $row->ipb_reason;
 				}
+				if ( $row->ipb_deleted ) {
+					$lastUserData['hidden'] = '';
+				}
 				if ( $fld_editcount ) {
 					$lastUserData['editcount'] = intval( $row->user_editcount );
 				}
@@ -205,7 +200,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		return 'public';
+		return 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {

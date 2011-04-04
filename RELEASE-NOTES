@@ -31,6 +31,8 @@ MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and
 javascript attached to the page. They are served from the new entry point load.php
 If the page is served with the &debug=true parameter, the non-minified javascript
 files are used instead.
+* (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
+  look at when finding metadata to prevent excessive resource usage.
 
 === Configuration changes in 1.17 ===
 * DatabaseFunctions.php that was needed for compatibility with pre-1.3
@@ -511,6 +513,8 @@ files are used instead.
 * (bug 26716) Provide link to instructions for external editor related preferences
   and add a comment to the ini control file explaining what is going on.
 * (bug 27560) Search queries no longer fail in walloon language
+* (bug 27700) The upload protection can now also be set for files that do not
+  exist.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
@@ -523,6 +527,11 @@ files are used instead.
 * (bug 27715) imageinfo didn't respect revdelete
 * (bug 27479) API error when using both prop=pageprops and
   prop=info&inprop=displaytitle
+* (bug 27862) Useremail module didn't properly return success on success.
+* (bug 27590) prop=imageinfo now allows querying the media type
+* (bug 27587) list=filearchive now outputs full title info
+* (bug 27018) Added action=filerevert to revert files to an old version
+* (bug 27897) list=allusers and list=users list hidden users
 
 * (bug 22738) Allow filtering by action type on query=logevent.
 * (bug 22764) uselang parameter for action=parse.
@@ -640,6 +649,8 @@ changes to languages because of Bugzilla reports.
 * Minangkabau (min) (new)
 * Dutch (informal) (nl-informal) (new)
 * Rusyn (rue) (new)
+* Link trail added for sl and sh
+* (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br)
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica).

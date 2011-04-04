@@ -81,7 +81,7 @@ $dateFormats = array(
 );
 
 $separatorTransformTable = array( ',' => ' ', '.' => ',' );
-$linkTrail = '/^([áâãàéêçíóôõúüa-z]+)(.*)$/sDu'; # Bug 21168
+$linkTrail = '/^([áâãàéêẽçíòóôõq̃úüűũa-z]+)(.*)$/sDu'; # Bug 21168, 27633
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Redireccionamentos_duplos', 'Redirecionamentos_duplos' ),

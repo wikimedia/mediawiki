@@ -107,7 +107,11 @@ class PrefixSearch {
 		foreach( $keys as $pageKey => $page ) {
 			if( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
 				wfSuppressWarnings();
-				$srchres[] = SpecialPage::getTitleFor( $page )->getPrefixedText();
+				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
+				// localizes its input leading to searches for e.g. Special:All
+				// returning Spezial:MediaWiki-Systemnachrichten and returning
+				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'
+				$srchres[] = Title::makeTitleSafe( NS_SPECIAL, $page )->getPrefixedText();
 				wfRestoreWarnings();
 			}
 

@@ -747,6 +747,7 @@ table.mw_metadata td {
 
 /* Galleries */
 /* These display attributes look nonsensical, but are needed to support IE and FF2 */
+/* Don't forget to update commonPrint.css */
 li.gallerybox {
 	vertical-align: top;
 	background-color: #f9f9f9;
@@ -763,7 +764,6 @@ ul.gallery, li.gallerybox {
 ul.gallery {
 	margin: 2px;
 	padding: 2px;
-	background-color: white;
 	display: block;
 }
 
