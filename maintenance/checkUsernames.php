@@ -45,7 +45,7 @@ class CheckUsernames extends Maintenance {
 		foreach ( $res as $row ) {
 			if ( ! User::isValidUserName( $row->user_name ) ) {
 				$this->error( sprintf( "%s: %6d: '%s'\n", wfWikiID(), $row->user_id, $row->user_name ) );
-				wfDebugLog( 'checkUsernames', $$row->user_name );
+				wfDebugLog( 'checkUsernames', $row->user_name );
 			}
 		}
 	}
