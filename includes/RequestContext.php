@@ -66,8 +66,7 @@ class RequestContext {
 	 */
 	public function getOutput() {
 		if ( !isset( $this->mOutput ) ) {
-			$this->mOutput = new OutputPage;
-			$this->mOutput->setContext( $this );
+			$this->mOutput = new OutputPage( $this );
 		}
 		return $this->mOutput;
 	}

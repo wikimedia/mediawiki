@@ -609,14 +609,6 @@ class SpecialPage {
 	static function capturePath( &$title ) {
 		global $wgOut, $wgTitle;
 
-		// preload the skin - Sometimes the SpecialPage loads it at a bad point in time making a includable special page override the skin title
-		// This hack is ok for now. The plan is for
-		// - Skin to stop storing it's own title
-		// - includable special pages to stop using $wgTitle and $wgOut
-		// - and OutputPage to store it's own skin object instead of askin $wgUser
-		// Once just about any of those are implemented preloading will not be necessarily
-		$wgOut->getSkin();
-
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		
