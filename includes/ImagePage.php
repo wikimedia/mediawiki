@@ -535,8 +535,6 @@ EOT
 	 * @param int $height
 	 */
 	private function makeSizeLink( $params, $width, $height ) {
-		global $wgLang;
-		
 		$params['width'] = $width;
 		$params['height'] = $height;
 		$thumbnail = $this->displayImg->transform( $params );

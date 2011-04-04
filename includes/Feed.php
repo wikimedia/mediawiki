@@ -101,7 +101,7 @@ class FeedItem {
 	 */
 	public function setUniqueId($uniqueId, $RSSisPermalink = false) {
 		$this->UniqueId = $uniqueId;
-		$this->RSSIsPermalink = $isPermalink;
+		$this->RSSIsPermalink = $RSSisPermalink;
 	}
 
 	/**
