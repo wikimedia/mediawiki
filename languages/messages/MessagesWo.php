@@ -984,7 +984,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-rc'                      => 'Coppite yu mujj',
 'prefs-watchlist'               => 'Limu toppte',
 'prefs-watchlist-days'          => 'Limu bes yi nga koy ba ci sa limu toppte :',
-'prefs-watchlist-days-max'      => '(Du weesu 7 fan)',
+'prefs-watchlist-days-max'      => 'Du weesu 7 fan',
 'prefs-watchlist-edits'         => 'Limu coppite yi ngay wone ci limu toppte gees yaatal gi:',
 'prefs-misc'                    => 'Yeneeni tànneef',
 'prefs-resetpass'               => 'Soppi baatujàll',
@@ -1941,8 +1941,7 @@ Xoolal [[Special:IPBlockList|limu IP yees téye]] ngir gis ñees téye ñépp.',
 'ipb_expiry_temp'                 => 'Danki jëfandikukat yi nëbbu dañu wara doon yuy jeex.',
 'ipb_hide_invalid'                => 'Maneesul a far mii sàq; dafa mel ne ay coppiteem dañoo bari lool.',
 'ipb_already_blocked'             => 'Jëfandikukat bi « $1 » dañ ko téye ba noppi',
-'ipb-needreblock'                 => '== Téyees ba noppi ==
-$1 dañu koo téye ba noppi.
+'ipb-needreblock'                 => '$1 dañu koo téye ba noppi.
 Dangaa bëgg a soppi anam yi?',
 'ipb_cant_unblock'                => 'Njuumte: téyeg $1 gisuwul. Xéj-na dañ kaa téyedi ba noppi.',
 'ipb_blocked_as_range'            => 'Njuumte: màkkaan mi $1 téyewuñ ko moom kase, kon doo ko man téyedi. Ci mbooloom $2 la bokk, faww nga téyedi mbooloo mépp.',

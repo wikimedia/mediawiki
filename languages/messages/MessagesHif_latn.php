@@ -1063,9 +1063,9 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-rc'                      => 'Nawaa badlao',
 'prefs-watchlist'               => 'Dhyan suchi',
 'prefs-watchlist-days'          => 'Dhyan suchi me ketna roj dekhawa jaae:',
-'prefs-watchlist-days-max'      => '(jaada se jaada 7 din)',
+'prefs-watchlist-days-max'      => 'Jaada se jaada 7 din',
 'prefs-watchlist-edits'         => 'Barraa dhyan suchi me jaada se jaada ketna badlao dekhawa jaae:',
-'prefs-watchlist-edits-max'     => '(jaada se jaada: 1000)',
+'prefs-watchlist-edits-max'     => 'Jaada se jaada: 1000',
 'prefs-watchlist-token'         => 'Dhyan suchi ke nisani:',
 'prefs-misc'                    => 'Futkar',
 'prefs-resetpass'               => 'Password badlo',
@@ -2292,8 +2292,7 @@ Abhi ke rukawat ke dekhe ke khatir meharbani kar ke [[Special:IPBlockList|IP blo
 'ipb_expiry_temp'                 => 'Lukawa gais username ke rukawat ke permanent hoe ke chaahi.',
 'ipb_hide_invalid'                => 'Ii account ke dabae nai sakaa hai; saait bahut jaada badlao hoi.',
 'ipb_already_blocked'             => '"$1" ke pahile rok dewa gais hai',
-'ipb-needreblock'                 => '== Pahile se rok dewa gais hai ==
-$1 ke rok dewa gais hai.
+'ipb-needreblock'                 => '$1 ke rok dewa gais hai.
 Ka aapp ii settings ke badle mangtaa hai?',
 'ipb-otherblocks-header'          => 'Duusra {{PLURAL:$1|block|blocks}}',
 'ipb_cant_unblock'                => 'Error: Roke waala ID $1 nai milaa.

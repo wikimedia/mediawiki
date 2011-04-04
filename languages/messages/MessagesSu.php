@@ -1146,6 +1146,9 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-timeoffset'              => 'Format waktu',
 'prefs-diffs'                   => 'Béda',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'Asupkeun alamat ratron nu bener',
+
 # User rights
 'userrights'                  => 'Manajemén hak pamaké',
 'userrights-lookup-user'      => 'Atur gorombolan pamaké',

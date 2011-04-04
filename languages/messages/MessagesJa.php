@@ -1414,7 +1414,7 @@ $1",
 'prefs-watchlist-days'          => 'ウォッチリストに表示する日数：',
 'prefs-watchlist-days-max'      => '（最大7日間）',
 'prefs-watchlist-edits'         => '拡張ウォッチリストに表示する件数：',
-'prefs-watchlist-edits-max'     => '（最大数：1000）',
+'prefs-watchlist-edits-max'     => '最大数：1000',
 'prefs-watchlist-token'         => 'ウォッチリストのトークン：',
 'prefs-misc'                    => 'その他',
 'prefs-resetpass'               => 'パスワードの変更',
@@ -2689,8 +2689,7 @@ $1のブロックの理由は「$2」です。',
 'ipb_expiry_temp'                 => '利用者名秘匿のブロックは、無期限ブロックになります。',
 'ipb_hide_invalid'                => 'このアカウントを秘匿できません。編集回数が非常に多いためだと思われます。',
 'ipb_already_blocked'             => '「$1」は既にブロックされています',
-'ipb-needreblock'                 => '== すでにブロックされています ==
-$1は、すでにブロックされています。
+'ipb-needreblock'                 => '$1は、すでにブロックされています。
 設定を変更しますか？',
 'ipb-otherblocks-header'          => 'その他の{{PLURAL:$1|ブロック}}',
 'unblock-hideuser'                => '利用者名が隠されているため、この利用者のブロックを解除できません。',

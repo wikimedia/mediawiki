@@ -1929,8 +1929,7 @@ Qua il log da bloccaziun sco infurmaziun:',
 'ipb_expiry_invalid'              => 'La durada da la bloccada inditgada è nunvalaivla.',
 'ipb_expiry_temp'                 => "Bloccadas cun zuppentar il num d'utilisader sont esser permanentas.",
 'ipb_already_blocked'             => '"$1" è gia bloccà',
-'ipb-needreblock'                 => '== Gia bloccà ==
-$1 è gia bloccà.
+'ipb-needreblock'                 => '$1 è gia bloccà.
 Vuls ti midar las opziuns da la bloccada?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Autra bloccada|Autras bloccadas}}',
 'ipb_cant_unblock'                => "Errur: La bloccada cun lÎD $1 n'è betg vegnida chattada.

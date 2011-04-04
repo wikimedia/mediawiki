@@ -1164,9 +1164,9 @@ Pokušajte sa prefiksom '''sve:''' da pretražite ceo sadržaj (uključujući st
 'prefs-rc'                      => 'Skorašnje izmene',
 'prefs-watchlist'               => 'Spisak nadgledanja',
 'prefs-watchlist-days'          => 'Broj dana koji treba da se vidi na spisku nadgledanja:',
-'prefs-watchlist-days-max'      => '(maksimum 7 dana)',
+'prefs-watchlist-days-max'      => 'Maksimum 7 dana',
 'prefs-watchlist-edits'         => 'Broj izmena koji treba da se vidi na proširenom spisku nadgledanja:',
-'prefs-watchlist-edits-max'     => '(maksimalan broj: 1000)',
+'prefs-watchlist-edits-max'     => 'Maksimalan broj: 1000',
 'prefs-watchlist-token'         => 'Pečat spiska nadgledanja:',
 'prefs-misc'                    => 'Razno',
 'prefs-resetpass'               => 'Promeni lozinku',
@@ -2293,8 +2293,7 @@ Pogledajte [[Special:IPBlockList|zabranjene IP adrese]] za spisak trenutnih blok
 'ipb_expiry_temp'                 => 'Sakriveni blokovi korisničkih imena moraju biti stalni.',
 'ipb_hide_invalid'                => 'Nije bilo moguće sakriti ovaj nalog; Mora da ima previše izmena.',
 'ipb_already_blocked'             => '"$1" je već blokiran',
-'ipb-needreblock'                 => '== Već blokiran ==
-$1 je već blokiran. Da li želite da promenite podešavanja?',
+'ipb-needreblock'                 => '$1 je već blokiran. Da li želite da promenite podešavanja?',
 'ipb-otherblocks-header'          => 'Drugi {{PLURAL:$1|blok|blokovi}}',
 'ipb_cant_unblock'                => 'Greška: ID bloka $1 nije nađen.
 Moguće je da je već deblokiran.',

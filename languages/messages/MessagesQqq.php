@@ -537,7 +537,7 @@ HTML markup cannot be used.
 'nstab-main'      => 'The name for the tab of the main namespace. Example: [[Example]]
 
 {{Identical|Page}}',
-'nstab-user'      => 'The name for the tab of the user namespace. Example: [[User:Example]]
+'nstab-user'      => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
 
 {{Identical|User page}}',
 'nstab-special'   => 'The name for the tab of the special namespace. Example: [[Special:Version]]',
@@ -2699,7 +2699,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 * $1 - the range that was unblocked.',
 'ipblocklist'                 => 'Title of [[Special:Ipblocklist]].',
 'blocklist-timestamp'         => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].',
-'blocklist-target'            => 'The table header for the column containing the block targets in the table on the page [[Special:BlockList]].',
+'blocklist-target'            => 'The table header for the column containing the block targets, that is user names or IP-addresses linked to their respective user pages, in the table on the page [[Special:BlockList]].',
 'blocklist-expiry'            => 'This is a column header in the table on the page [[Special:BlockList]].',
 'blocklist-by'                => 'This is a column header in the table on the page [[Special:BlockList]].',
 'blocklist-params'            => 'This is a column header in the table on the page [[Special:BlockList]].',

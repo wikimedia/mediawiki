@@ -2430,11 +2430,13 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'ipbwatchuser'                    => 'Nadzoruj uporabnikovo uporabniško in pogovorno stran',
 'ipb-disableusertalk'             => 'Med blokado prepreči temu uporabniku urejati lastno pogovorno stran',
 'ipb-change-block'                => 'Ponovno blokiraj uporabnika s temi nastavitvami',
+'ipb-confirm'                     => 'Potrdi blokado',
 'badipaddress'                    => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
 Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
 'ipb-blockingself'                => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
+'ipb-confirmhideuser'             => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',
 'ipb-unblock-addr'                => 'Deblokiraj $1',
 'ipb-unblock'                     => 'Odblokirajte uporabniško ime ali IP-naslov',
@@ -2497,8 +2499,7 @@ Dnevnik skrivanja je na voljo spodaj:',
 'ipb_expiry_temp'                 => 'Blokade skritih uporabniških imen morajo biti trajne.',
 'ipb_hide_invalid'                => 'Ne morem skriti tega računa; morda ima preveč urejanj.',
 'ipb_already_blocked'             => '"$1" je že blokiran',
-'ipb-needreblock'                 => '== Uporeabnik je že blokiran ==
-$1 je že blokiran.
+'ipb-needreblock'                 => '$1 je že blokiran.
 Ali želite spremeniti nastavitve blokade?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Druga blokada|Drugi blokadi|Druge blokade}}',
 'unblock-hideuser'                => 'Ne morete odblokirati tega uporabnika, ker je njegovo uporabniško ime skrito.',

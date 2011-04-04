@@ -553,6 +553,8 @@ $messages = array(
 'compareselectedversions'  => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'editundo'                 => 'ܠܐ ܥܒܘܕ',
+'diff-multi'               => '({{PLURAL:$1|ܚܕܐ ܬܢܝܬܐ ܡܨܥܝܬܐ|$1 ܬܢܝܬ̈ܐ ܡܨܥܝܬ̈ܐ}} ܒܝܕ {{PLURAL:$2|ܚܕ ܡܦܠܚܢܐ ܠܐ ܓܠܝܚܬܐ|$2 ܡܦܠܚܢ̈ܐ ܠܐ ܓܠܝܚܬ̈ܐ}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|One ܚܕܐ ܬܢܝܬܐ ܡܨܥܝܬܐ|$1 ܬܢܝܬ̈ܐ ܡܨܥܝܬ̈ܐ}} ܒܝܕ ܝܬܝܪ ܡܢ $2 {{PLURAL:$2|ܚܕ ܡܦܠܚܢܐ ܠܐ ܓܠܝܚܬܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܓܠܝܚܬ̈ܐ}})',
 
 # Search results
 'searchresults'                  => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ',
@@ -566,6 +568,8 @@ $messages = array(
 'notextmatches'                  => 'ܠܝܬ ܟܬܒܬܐ ܐܘܝܢܬܐ',
 'prevn'                          => '{{PLURAL:$1|$1}} ܩܕܝܡܐ',
 'nextn'                          => '{{PLURAL:$1|$1}} ܐܚܪܢܐ',
+'prevn-title'                    => '$1 {{PLURAL:$1|ܦܠܛܐ ܩܕܝܡܐ|ܦܠܛ̈ܐ ܩܕ̈ܝܡܐ}}',
+'nextn-title'                    => '$1 {{PLURAL:$1|ܦܠܛܐ ܐܚܪܢܐ|ܦܠܛ̈ܐ ܐܚܪ̈ܢܐ}}',
 'shown-title'                    => 'ܚܘܝ $1 {{PLURAL:$1|ܦܠܛܐ|ܦܠܛ̈ܐ}} ܠܟܠ ܦܐܬܐ',
 'viewprevnext'                   => 'ܚܘܝ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'              => 'ܓܒܝܬ̈ܐ ܕܒܘܨܝܐ',
@@ -1255,8 +1259,7 @@ $1',
 'block-log-flags-anononly'   => 'ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ ܒܠܚܘܕ',
 'block-log-flags-hiddenname' => 'ܫܡܐ ܕܡܦܠܚܢܐ ܛܘܫܝܐ',
 'ipb_already_blocked'        => '"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ',
-'ipb-needreblock'            => '==ܡܚܪܡܐ ܡܢ ܟܕܘ==
-"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ
+'ipb-needreblock'            => '"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ
 Do you want to change the settings?',
 'blockme'                    => 'ܚܪܘܡ ܠܝ',
 'proxyblocksuccess'          => 'ܒܪܐ',

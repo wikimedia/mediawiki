@@ -2492,8 +2492,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipb_expiry_temp'                 => 'Peidetud kasutajanime blokeeringud peavad olema alalised.',
 'ipb_hide_invalid'                => 'Selle konto varjamine ei õnnestunud. Sellelt võib olla tehtud liiga palju redigeerimisi.',
 'ipb_already_blocked'             => '"$1" on juba blokeeritud.',
-'ipb-needreblock'                 => '==Juba blokeeritud==
-$1 on juba blokeeritud.
+'ipb-needreblock'                 => '$1 on juba blokeeritud.
 Kas soovid muuta blokeeringu sätteid?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Teine blokeering|Teised blokeeringud}}',
 'ipb_cant_unblock'                => 'Tõrge: Blokeerimis-ID $1 pole leitav.

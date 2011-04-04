@@ -1324,7 +1324,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-rc'                      => 'Son değişiklikler',
 'prefs-watchlist'               => 'İzleme listesi',
 'prefs-watchlist-days'          => 'İzleme listesinde görüntülenecek gün sayısı:',
-'prefs-watchlist-days-max'      => '(en fazla 7 gün)',
+'prefs-watchlist-days-max'      => 'En fazla 7 gün',
 'prefs-watchlist-edits'         => 'Genişletilmiş izleme listesinde gösterilecek değişiklik sayısı:',
 'prefs-watchlist-edits-max'     => '(en fazla sayı: 1000)',
 'prefs-watchlist-token'         => 'İzleme listesi nişanı:',
@@ -2561,8 +2561,7 @@ Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'ipb_expiry_temp'                 => 'Gizli kullanıcı adı engellemeleri kalıcı olmalı.',
 'ipb_hide_invalid'                => 'Kullanıcı hesabı gizlenemiyor; çok fazla değişikliği olabilir.',
 'ipb_already_blocked'             => '"$1" zaten engellenmiş',
-'ipb-needreblock'                 => '== Zaten engellenmiş ==
-$1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
+'ipb-needreblock'                 => '$1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
 'ipb-otherblocks-header'          => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',
 'ipb_cant_unblock'                => 'Hata: Engelleme IDsi $1 bulunamadı.
 Engelleme kaldırılmış olabilir.',

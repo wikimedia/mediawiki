@@ -1055,7 +1055,7 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'prefs-rc'                      => 'Bekoandreekenge fon "Lääste Annerengen"',
 'prefs-watchlist'               => 'Beooboachtengslieste',
 'prefs-watchlist-days'          => 'Antaal fon Deege, do ju Beooboachtengslieste standoardmäitich uumfoatje skäl:',
-'prefs-watchlist-days-max'      => '(Maximoal 7 Deege)',
+'prefs-watchlist-days-max'      => 'Maximoal 7 Deege',
 'prefs-watchlist-edits'         => 'Maximoale Antaal fon Iendraage in ju fergratterde Beooboachtengslieste:',
 'prefs-watchlist-edits-max'     => '(Maximoale Antaal: 1000)',
 'prefs-watchlist-token'         => 'Beooboachtengslieste-Token:',
@@ -2232,8 +2232,7 @@ Sjuch ju [[Special:IPBlockList|Lieste fon de speerde IP-Adrässe un Benutsernoom
 'ipb_expiry_temp'                 => 'Ferstatte Benutsernoomen-Speeren skällen permanent weese.',
 'ipb_hide_invalid'                => 'Dit Konto kon nit unnerdrukt wäide, deer dät toufuul Beoarbaidengen apwiest.',
 'ipb_already_blocked'             => '„$1“ wuude al speerd.',
-'ipb-needreblock'                 => '== Speere is al deer ==
-„$1“ is al speerd. Moatest du do Speerparametere annerje?',
+'ipb-needreblock'                 => '„$1“ is al speerd. Moatest du do Speerparametere annerje?',
 'ipb-otherblocks-header'          => 'Uur {{PLURAL:$1|Speere|Speeren}}',
 'ipb_cant_unblock'                => 'Failer: Speer-ID $1 nit fuunen. Ju Speere wuude al aphieuwed.',
 'ipb_blocked_as_range'            => 'Failer: Ju IP-Adresse $1 wuude as Deel fon ju Beräksspeere $2 indirekt speerd. Ne Äntspeerenge fon $1 alleene is nit muugelk.',

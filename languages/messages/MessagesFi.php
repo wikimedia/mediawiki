@@ -16,6 +16,7 @@
  * @author Mobe
  * @author Nedergard
  * @author Nike
+ * @author Ochs
  * @author Olli
  * @author Silvonen
  * @author Str4nd
@@ -910,10 +911,10 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-*'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
-*'''IE:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''
+*'''Mozilla, Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
 *'''Konqueror''': napsauta päivitä tai paina ''F5''
-*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'').",
+*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'')
+*'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''.",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -1209,7 +1210,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'compareselectedversions'  => 'Vertaile valittuja versioita',
 'showhideselectedversions' => 'Näytä tai piilota valitut versiot',
 'editundo'                 => 'kumoa',
-'diff-multi'               => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka on {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
+'diff-multi'               => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka ovat {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 'diff-multi-manyusers'     => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
 
 # Search results
@@ -1304,9 +1305,9 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-rc'                      => 'Tuoreet muutokset',
 'prefs-watchlist'               => 'Tarkkailulista',
 'prefs-watchlist-days'          => 'Tarkkailulistan ajanjakso',
-'prefs-watchlist-days-max'      => '(enintään 7 päivää)',
+'prefs-watchlist-days-max'      => 'Enintään 7 päivää',
 'prefs-watchlist-edits'         => 'Tarkkailulistalla näytettävien muokkausten määrä',
-'prefs-watchlist-edits-max'     => '(enintään 1000)',
+'prefs-watchlist-edits-max'     => 'Enintään 1000',
 'prefs-watchlist-token'         => 'Tarkkailulistan avain',
 'prefs-misc'                    => 'Muut',
 'prefs-resetpass'               => 'Muuta salasana',
@@ -1326,7 +1327,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'stub-threshold'                => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',
 'stub-threshold-disabled'       => 'Ei käytössä',
 'recentchangesdays'             => 'Näytettävien päivien määrä tuoreissa muutoksissa',
-'recentchangesdays-max'         => '(enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'recentchangesdays-max'         => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'recentchangescount'            => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
 'prefs-help-watchlist-token'    => 'Tämän kentän täyttäminen salaisella avaimella tuottaa RSS-syötteen tarkkailulistastasi.
@@ -2339,9 +2340,10 @@ $1',
 'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
-'namespace'      => 'Nimiavaruus',
-'invert'         => 'Käännä nimiavaruusvalinta päinvastaiseksi',
-'blanknamespace' => '(sivut)',
+'namespace'             => 'Nimiavaruus',
+'invert'                => 'Käänteinen valinta',
+'namespace_association' => 'Liitetty nimiavaruus',
+'blanknamespace'        => '(sivut)',
 
 # Contributions
 'contributions'       => 'Käyttäjän muokkaukset',
@@ -2390,7 +2392,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'whatlinkshere-filters'    => 'Suotimet',
 
 # Block/unblock
-'block'                           => 'Estä käyttäjä tai IP-osoite',
+'block'                           => 'Estä käyttäjä',
 'blockip'                         => 'Aseta muokkausesto',
 'blockip-title'                   => 'Estä käyttäjä',
 'blockip-legend'                  => 'Estä käyttäjä',
@@ -2407,6 +2409,7 @@ Alla on viimeisin estolokin tapahtuma:',
 ** Häiriköinti
 ** Useamman käyttäjätunnuksen väärinkäyttö
 ** Sopimaton käyttäjätunnus',
+'ipb-hardblock'                   => 'Estä sisäänkirjautuneita käyttäjiä muokkaamasta tästä IP-osoitteesta',
 'ipbcreateaccount'                => 'Estä tunnusten luonti',
 'ipbemailban'                     => 'Estä käyttäjää lähettämästä sähköpostia',
 'ipbenableautoblock'              => 'Estä viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.',
@@ -2417,11 +2420,14 @@ Alla on viimeisin estolokin tapahtuma:',
 'ipbotherreason'                  => 'Muu syy tai tarkennus',
 'ipbhidename'                     => 'Piilota tunnus muokkauksista ja listauksista',
 'ipbwatchuser'                    => 'Tarkkaile tämän käyttäjän käyttäjä- ja keskustelusivua',
+'ipb-disableusertalk'             => 'Estä käyttäjää muokkaamasta omaa keskustelusivuaan eston aikana',
 'ipb-change-block'                => 'Estä uudelleen näillä asetuksilla',
+'ipb-confirm'                     => 'Vahvista esto',
 'badipaddress'                    => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'               => 'Esto onnistui',
 'blockipsuccesstext'              => 'Käyttäjä tai IP-osoite [[Special:Contributions/$1|$1]] on estetty.<br />
 Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
+'ipb-blockingself'                => 'Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?',
 'ipb-edit-dropdown'               => 'Muokkaa estosyitä',
 'ipb-unblock-addr'                => 'Poista käyttäjän $1 esto',
 'ipb-unblock'                     => 'Poista käyttäjän tai IP-osoitteen muokkausesto',
@@ -2435,11 +2441,14 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'blocklist'                       => 'Estetyt käyttäjät',
 'ipblocklist'                     => 'Estetyt käyttäjät',
 'ipblocklist-legend'              => 'Haku',
+'blocklist-userblocks'            => 'Piilota tunnusten estot',
 'blocklist-tempblocks'            => 'Piilota väliaikaiset estot',
 'blocklist-addressblocks'         => 'Piilota yksittäiset IP-estot',
 'blocklist-timestamp'             => 'Päiväys',
 'blocklist-target'                => 'Kohde',
 'blocklist-expiry'                => 'Vanhenee',
+'blocklist-by'                    => 'Estänyt ylläpitäjä',
+'blocklist-params'                => 'Estoasetukset',
 'blocklist-reason'                => 'Syy',
 'ipblocklist-submit'              => 'Hae',
 'ipblocklist-localblock'          => 'Paikallinen esto',
@@ -2479,8 +2488,7 @@ Alla on ote häivytyslokista.',
 'ipb_expiry_temp'                 => 'Piilotettujen käyttäjätunnusten estojen tulee olla pysyviä.',
 'ipb_hide_invalid'                => 'Tämän tunnuksen piilottaminen ei onnistu. Sillä saattaa olla liikaa muokkauksia.',
 'ipb_already_blocked'             => '”$1” on jo estetty.',
-'ipb-needreblock'                 => '== Estetty jo ==
-$1 on jo estetty. Haluatko muuttaa eston asetuksia?',
+'ipb-needreblock'                 => '$1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Muu esto|Muut estot}}',
 'ipb_cant_unblock'                => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
 'ipb_blocked_as_range'            => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
@@ -2863,7 +2871,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'filedeleteerror-long'            => 'Tiedoston poistaminen epäonnistui:
 
 $1',
-'filedelete-missing'              => 'Tiedosto $1 ei voitu poistaa, koska sitä ei ole olemassa.',
+'filedelete-missing'              => 'Tiedostoa $1 ei voi poistaa, koska sitä ei ole olemassa.',
 'filedelete-old-unregistered'     => 'Tiedoston version $1 ei ole tietokannassa.',
 'filedelete-current-unregistered' => 'Tiedosto $1 ei ole tietokannassa.',
 'filedelete-archive-read-only'    => 'Arkistohakemistoon ”$1” kirjoittaminen epäonnistui.',
@@ -3264,11 +3272,13 @@ $1',
 'trackbackdeleteok' => 'Trackback poistettiin.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Varoitus''': Tämä sivu on poistettu sen jälkeen, kun aloitit sen muokkaamisen!",
-'confirmrecreate'     => "Käyttäjä '''[[User:$1|$1]]''' ([[User talk:$1|keskustelu]]) on poistanut sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
+'deletedwhileediting'      => "'''Varoitus''': Tämä sivu on poistettu sen jälkeen, kun aloitit sen muokkaamisen!",
+'confirmrecreate'          => "Käyttäjä '''[[User:$1|$1]]''' ([[User talk:$1|keskustelu]]) on poistanut sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
 : ''$2''
 Varmista, että haluat luoda sivun uudelleen.",
-'recreate'            => 'Luo uudelleen',
+'confirmrecreate-noreason' => "Käyttäjä '''[[User:$1|$1]]''' ([[User talk:$1|keskustelu]]) on poistanut tämän sivun sen jälkeen, kun aloit muokata sitä. 
+Varmista, että haluat luoda sivun uudelleen.",
+'recreate'                 => 'Luo uudelleen',
 
 'unit-pixel' => ' px',
 

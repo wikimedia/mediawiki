@@ -1640,8 +1640,7 @@ Siehe de [[Special:IPBlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] 
 'range_block_disabled'        => 'De Meeglichkeit, ganze Atressräume zu sperra, ies ne aktiviert.',
 'ipb_expiry_invalid'          => 'De eingegebene Dauer ies ungiltig.',
 'ipb_expiry_temp'             => 'Versteckte Nutzernoamas-Sperra sulla permanent sei.',
-'ipb-needreblock'             => '== Sperre vurhanda ==
-„$1“ ies bereits gesperrt. Mechtest du de Sperrparameter ändern?',
+'ipb-needreblock'             => '„$1“ ies bereits gesperrt. Mechtest du de Sperrparameter ändern?',
 'ipb-otherblocks-header'      => 'Andere {{PLURAL:$1|Sperre|Sperra}}',
 'ipb_cant_unblock'            => 'Fahler: Sperr-ID $1 ne gefunda. De Sperre wurde bereits uffgehuba.',
 'ipb_blocked_as_range'        => 'Fahler: De IP-Atresse $1 wurde ols Teel dar Bereichssperre $2 indirekt gesperrt. Anne Entsperrung vu $1 alleene ies ne meeglich.',

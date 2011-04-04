@@ -2194,8 +2194,7 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'ipb_expiry_temp'                 => 'Kılitbiyayışê karberê nımıtey gani ebedi bo.',
 'ipb_hide_invalid'                => 'hesabê karberi pinani nêbeno; belka semedê zaf vurnayişi ra yo.',
 'ipb_already_blocked'             => '"$1" zaten blok biya',
-'ipb-needreblock'                 => '==Zaten blok biya ==
-"$1" zaten blok biya
+'ipb-needreblock'                 => '"$1" zaten blok biya
 Ti wazene ayaran bivurne?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Kılitkerdışo bin|Kılitkerdışê bini}}',
 'ipb_cant_unblock'                => 'xeta: IDyê ver-grewtışi $1 nêesa/asa.

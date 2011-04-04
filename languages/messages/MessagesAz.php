@@ -1444,8 +1444,7 @@ Hal-hazırkı [[Special:IPBlockList|qadağaların və bloklamaların siyahısı]
 'block-log-flags-noautoblock' => 'avtobloklama qeyri-mümkündür',
 'ipb_expiry_invalid'          => 'Bitmə vaxtı səhvdir',
 'ipb_already_blocked'         => '"$1" artıq bloklanıb',
-'ipb-needreblock'             => '== Artıq bloklanıb ==
-$1 artıq bloklanıb.
+'ipb-needreblock'             => '$1 artıq bloklanıb.
 Bloklama şərtlərini dəyişmək istəyirsiniz?',
 'proxyblocker'                => 'Proksi bloklayıcı',
 

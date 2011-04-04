@@ -707,7 +707,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'prefs-rc'                    => 'Ṫ-Ṫeĝdilaṫ l-leĥĥra',
 'prefs-watchlist'             => 'qaimat lmoraqaba',
 'prefs-watchlist-days'        => 'adad kiyam alaard f qaimat lmoraqaba:',
-'prefs-watchlist-days-max'    => '(maximmum 7 yam)',
+'prefs-watchlist-days-max'    => 'Maximmum 7 yam',
 'prefs-watchlist-edits-max'   => 'maximmum:1000',
 'prefs-watchlist-token'       => 'miftah qaimat lmoraqaba',
 'prefs-misc'                  => 'motafarriqat',

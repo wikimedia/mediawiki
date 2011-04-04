@@ -1199,7 +1199,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-rc'                      => 'Ndryshime së fundmi',
 'prefs-watchlist'               => 'Lista mbikqyrëse',
 'prefs-watchlist-days'          => 'Numri i ditëve të treguara tek lista mbikqyrëse:',
-'prefs-watchlist-days-max'      => '(maksimum 7 ditë)',
+'prefs-watchlist-days-max'      => 'Maksimum 7 ditë',
 'prefs-watchlist-edits'         => 'Numri i redaktimeve të treguara tek lista mbikqyrëse e zgjeruar:',
 'prefs-watchlist-edits-max'     => '(numri maksimal: 1000)',
 'prefs-watchlist-token'         => 'Lista mbikqyrëse shenjë:',
@@ -2415,8 +2415,7 @@ Regjistri i bllokimeve është poshtë për referncë:',
 'ipb_expiry_temp'                 => 'Bllokimet e përdoruesve të fshehur duhet të jenë të përhershme.',
 'ipb_hide_invalid'                => 'Nuk mund ta prishni këtë llogari; mund të ketë shumë redaktime.',
 'ipb_already_blocked'             => '"$1" është i bllokuar',
-'ipb-needreblock'                 => "== I bllokuar ==
-$1 është i bllokuar.
+'ipb-needreblock'                 => "$1 është i bllokuar.
 Dëshironi t'i ndryshoni parametrat?",
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Bllokim tjetër|Bllokime të tjera}}',
 'ipb_cant_unblock'                => 'Gabim: Bllokimi ID $1 nuk u gjet.
