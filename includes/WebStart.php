@@ -8,6 +8,20 @@
  * @file
  */
 
+/**
+ * Detect compiled mode by looking for a function that only exists if compiled 
+ * in. Note that we can't use function_exists(), because it is terribly broken 
+ * under HipHop due to the "volatile" feature.
+ */
+function wfDetectCompiledMode() {
+	try {
+		$r = new ReflectionFunction( 'wfHipHopCompilerVersion' );
+	} catch ( ReflectionException $e ) {
+		$r = false;
+	}
+	return $r !== false;
+}
+
 # Protect against register_globals
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
@@ -67,40 +81,51 @@ if ( $IP === false ) {
 	$IP = realpath( '.' );
 }
 
-
-# Start profiler
-if( file_exists("$IP/StartProfiler.php") ) {
-	require_once( "$IP/StartProfiler.php" );
-} else {
-	require_once( "$IP/includes/ProfilerStub.php" );
+if ( wfDetectCompiledMode() ) {
+	define( 'MW_COMPILED', 1 );
 }
+
+if ( !defined( 'MW_COMPILED' ) ) {
+	# Get MWInit class
+	require_once( "$IP/includes/Init.php" );
+
+	# Start profiler
+	# FIXME: rewrite wfProfileIn/wfProfileOut so that they can work in compiled mode
+	if ( file_exists( "$IP/StartProfiler.php" ) ) {
+		require_once( "$IP/StartProfiler.php" );
+	} else {
+		require_once( "$IP/includes/ProfilerStub.php" );
+	}
+
+	# Load up some global defines.
+	require_once( "$IP/includes/Defines.php" );
+
+	# Check for PHP 5
+	if ( !function_exists( 'version_compare' ) 
+		|| version_compare( phpversion(), '5.0.0' ) < 0
+	) {
+		define( 'MW_PHP4', '1' );
+		require( "$IP/includes/DefaultSettings.php" );
+		require( "$IP/includes/templates/PHP4.php" );
+		exit;
+	}
+
+	# Start the autoloader, so that extensions can derive classes from core files
+	require_once( "$IP/includes/AutoLoader.php" );
+}
+
 wfProfileIn( 'WebStart.php-conf' );
 
-# Load up some global defines.
-require_once( "$IP/includes/Defines.php" );
-
-# Check for PHP 5
-if ( !function_exists( 'version_compare' ) 
-	|| version_compare( phpversion(), '5.0.0' ) < 0
-) {
-	define( 'MW_PHP4', '1' );
-	require( "$IP/includes/DefaultSettings.php" );
-	require( "$IP/includes/templates/PHP4.php" );
-	exit;
-}
-
-# Start the autoloader, so that extensions can derive classes from core files
-require_once( "$IP/includes/AutoLoader.php" );
 # Load default settings
-require_once( "$IP/includes/DefaultSettings.php" );
+require_once( MWInit::compiledPath( "includes/DefaultSettings.php" ) );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	MWFunction::call( MW_CONFIG_CALLBACK );
-	
 } else {
-	if ( !defined('MW_CONFIG_FILE') )
-		define('MW_CONFIG_FILE', "$IP/LocalSettings.php");
+	if ( !defined( 'MW_CONFIG_FILE' ) ) {
+		define('MW_CONFIG_FILE', MWInit::interpretedPath( 'LocalSettings.php' ) );
+	}
 	
 	# LocalSettings.php is the per site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
@@ -115,7 +140,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 }
 
 if ( $wgEnableSelenium ) {
-	require_once( "$IP/includes/SeleniumWebSettings.php" );
+	require_once( MWInit::compiledPath( "includes/SeleniumWebSettings.php" ) );
 }
 
 wfProfileOut( 'WebStart.php-conf' );
@@ -126,12 +151,14 @@ wfProfileIn( 'WebStart.php-ob_start' );
 # that would cause us to potentially mix gzip and non-gzip output, creating a
 # big mess.
 if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ob_get_level() == 0 ) {
-	require_once( "$IP/includes/OutputHandler.php" );
+	if ( !defined( 'MW_COMPILED' ) ) {
+		require_once( "$IP/includes/OutputHandler.php" );
+	}
 	ob_start( 'wfOutputHandler' );
 }
 wfProfileOut( 'WebStart.php-ob_start' );
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
-	require_once( "$IP/includes/Setup.php" );
+	require_once( MWInit::compiledPath( "includes/Setup.php" ) );
 }
 

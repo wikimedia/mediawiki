@@ -8,7 +8,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-require_once dirname( __FILE__ ) . '/normal/UtfNormalUtil.php';
+if ( !defined( 'MW_COMPILED' ) ) {
+	require_once( dirname( __FILE__ ) . '/normal/UtfNormalUtil.php' );
+}
 
 // Hide compatibility functions from Doxygen
 /// @cond
@@ -329,7 +331,7 @@ function wfErrorLog( $text, $file ) {
 		$exists = file_exists( $file );
 		$size = $exists ? filesize( $file ) : false;
 		if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
-			error_log( $text, 3, $file );
+			file_put_contents( $file, $text, FILE_APPEND );
 		}
 		wfRestoreWarnings();
 	}
@@ -495,7 +497,7 @@ function wfMessage( $key /*...*/) {
  */
 function wfMessageFallback( /*...*/ ) {
 	$args = func_get_args();
-	return call_user_func_array( array( 'Message', 'newFallbackSequence' ), $args );
+	return MWFunction::callArray( 'Message::newFallbackSequence', $args );
 }
 
 /**
@@ -1994,6 +1996,13 @@ function wfIsWindows() {
 }
 
 /**
+ * Check if we are running under HipHop
+ */
+function wfIsHipHop() {
+	return function_exists( 'hphp_thread_set_warmup_enabled' );
+}
+
+/**
  * Swap two variables
  */
 function swap( &$x, &$y ) {
@@ -2781,7 +2790,17 @@ function wfSetupSession( $sessionId = false ) {
 	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain,
 			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
 	if( $wgSessionsInMemcached ) {
-		require_once( 'MemcachedSessions.php' );
+		if ( !defined( 'MW_COMPILED' ) ) {
+			require_once( 'MemcachedSessions.php' );
+		}
+		session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 
+			'memsess_write', 'memsess_destroy', 'memsess_gc' );
+
+		// It's necessary to register a shutdown function to call session_write_close(), 
+		// because by the time the request shutdown function for the session module is 
+		// called, $wgMemc has already been destroyed. Shutdown functions registered
+		// this way are called before object destruction.
+		register_shutdown_function( 'memsess_write_close' );
 	} elseif( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
 		# Only set this if $wgSessionHandler isn't null and session.save_handler
 		# hasn't already been set to the desired value (that causes errors)

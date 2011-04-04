@@ -408,9 +408,6 @@ class WebInstaller extends Installer {
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
-		// Totally lame way to force autoload of WebInstallerPage.php
-		class_exists( 'WebInstallerPage' );
-
 		$pageClass = 'WebInstaller_' . $pageName;
 
 		return new $pageClass( $this );

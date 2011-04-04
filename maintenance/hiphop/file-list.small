@@ -158,6 +158,7 @@ includes/filerepo/NullRepo.php
 includes/filerepo/OldLocalFile.php
 includes/filerepo/RepoGroup.php
 includes/filerepo/UnregisteredLocalFile.php
+includes/installer/Installer.php
 includes/job/DoubleRedirectJob.php
 includes/job/EmaillingJob.php
 includes/job/EnotifNotifyJob.php
@@ -280,6 +281,8 @@ profileinfo.php
 redirect.php
 resources/Resources.php
 serialized/serialize.php
+skins/MonoBook.deps.php
+skins/MonoBook.php
 skins/Vector.deps.php
 skins/Vector.php
 thumb.php

@@ -53,17 +53,35 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
+// Detect compiled mode
+try {
+	$r = new ReflectionFunction( 'wfHipHopCompilerVersion' );
+} catch ( ReflectionException $e ) {
+	$r = false;
+}
+
+if ( $r ) {
+	define( 'MW_COMPILED', 1 );
+}
+
+# Get the MWInit class
+if ( !defined( 'MW_COMPILED' ) ) {
+	require_once( "$IP/includes/Init.php" );
+}
+
 # Setup the profiler
 global $IP;
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
+if ( !defined( 'MW_COMPILED' ) && file_exists( "$IP/StartProfiler.php" ) ) {
 	require_once( "$IP/StartProfiler.php" );
 } else {
-	require_once( "$IP/includes/ProfilerStub.php" );
+	require_once( MWInit::compiledPath( 'includes/ProfilerStub.php' ) );
 }
 
 // Some other requires
-require_once( "$IP/includes/AutoLoader.php" );
-require_once( "$IP/includes/Defines.php" );
+if ( !defined( 'MW_COMPILED' ) ) {
+	require_once( "$IP/includes/AutoLoader.php" );
+	require_once( "$IP/includes/Defines.php" );
+}
 require_once( "$IP/includes/DefaultSettings.php" );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
@@ -77,10 +95,10 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	global $cluster;
 	$wgWikiFarm = true;
 	$cluster = 'pmtpa';
-	require_once( "$IP/includes/SiteConfiguration.php" );
-	require( "$IP/wmf-config/wgConf.php" );
+	require_once( MWInit::compiledPath( 'includes/SiteConfiguration.php' ) );
+	require( MWInit::interpretedPath( 'wmf-config/wgConf.php' ) );
 	$maintenance->loadWikimediaSettings();
-	require( $IP . '/wmf-config/CommonSettings.php' );
+	require( MWInit::interpretedPath( '/wmf-config/CommonSettings.php' ) );
 } else {
 	require_once( $maintenance->loadSettings() );
 }
@@ -88,12 +106,12 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 		is_readable( "$IP/AdminSettings.php" ) )
 {
-	require( "$IP/AdminSettings.php" );
+	require( MWInit::interpretedPath( 'AdminSettings.php' ) );
 }
 $maintenance->finalSetup();
 // Some last includes
-require_once( "$IP/includes/Setup.php" );
-require_once( "$IP/maintenance/install-utils.inc" );
+require_once( MWInit::compiledPath( 'includes/Setup.php' ) );
+require_once( MWInit::compiledPath( 'maintenance/install-utils.inc' ) );
 
 // Much much faster startup than creating a title object
 $wgTitle = null;

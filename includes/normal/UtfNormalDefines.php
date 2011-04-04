@@ -1,6 +1,10 @@
 <?php
 /**
- * Some constant definitions for the unicode normalization module
+ * Some constant definitions for the unicode normalization module.
+ *
+ * Note: these constants must all be resolvable at compile time by HipHop, 
+ * since this file will not be executed during request startup for a compiled
+ * MediaWiki.
  *
  * @file
  * @ingroup UtfNormal

@@ -5,15 +5,6 @@
  */
 
 /**
- * @todo:  determine if it is really necessary to load this.  Appears to be left over from pre-autoloader versions, and
- *   is only really needed to provide access to constant UTF8_REPLACEMENT, which actually resides in UtfNormalDefines.php
- *   and is loaded by UtfNormalUtil.php, which is loaded by UtfNormal.php.
- */
-if ( !class_exists( 'UtfNormal' ) ) {
-	require_once( dirname( __FILE__ ) . '/normal/UtfNormal.php' );
-}
-
-/**
  * @deprecated This used to be a define, but was moved to
  * Title::GAID_FOR_UPDATE in 1.17. This will probably be removed in 1.18
  */
