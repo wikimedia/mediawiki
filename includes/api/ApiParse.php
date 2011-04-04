@@ -483,9 +483,13 @@ class ApiParse extends ApiBase {
 			'text' => null,
 			'summary' => null,
 			'page' => null,
-			'pageid' => null,
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+			),
 			'redirects' => false,
-			'oldid' => null,
+			'oldid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+			),
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|images|externallinks|sections|revid|displaytitle',
 				ApiBase::PARAM_ISMULTI => true,

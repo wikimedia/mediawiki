@@ -98,7 +98,9 @@ class ApiUnblock extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'id' => null,
+			'id' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+			),
 			'user' => null,
 			'token' => null,
 			'gettoken' => false,
