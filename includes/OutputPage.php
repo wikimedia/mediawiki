@@ -1281,6 +1281,7 @@ class OutputPage {
 	 * Get the templates used on this page
 	 *
 	 * @return Array (namespace => dbKey => revId)
+	 * @since 1.18
 	 */
 	public function getTemplateIds() {
 		return $this->mTemplateIds;
@@ -1290,6 +1291,7 @@ class OutputPage {
 	 * Get the files used on this page
 	 *
 	 * @return Array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
+	 * @since 1.18
 	 */
 	public function getImageTimeKeys() {
 		return $this->mImageTimeKeys;

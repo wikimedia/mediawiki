@@ -1903,7 +1903,7 @@ class Parser {
 				# Give extensions a chance to select the file revision for us
 				$time = $sha1 = $descQuery = false;
 				wfRunHooks( 'BeforeParserFetchFileAndTitle',
-					array( $this, &$nt, &$time, &$sha1, &$descQuery ) );
+					array( $this, $nt, &$time, &$sha1, &$descQuery ) );
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
@@ -3336,7 +3336,7 @@ class Parser {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
 			wfRunHooks( 'BeforeParserFetchTemplateAndtitle',
-				array( $parser, &$title, &$skip, &$id ) );
+				array( $parser, $title, &$skip, &$id ) );
 
 			if ( $skip ) {
 				$text = false;
@@ -3423,8 +3423,8 @@ class Parser {
 		} else { // get by (name,timestamp)
 			$file = wfFindFile( $title, array( 'time' => $time ) );
 		}
-		$time = $file ? $file->getTimestamp() : null;
-		$sha1 = $file ? $file->getSha1() : null;
+		$time = $file ? $file->getTimestamp() : false;
+		$sha1 = $file ? $file->getSha1() : false;
 		# Register the file as a dependency...
 		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
 		if ( $file && !$title->equals( $file->getTitle() ) ) {
@@ -4685,7 +4685,7 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$time = $sha1 = $descQuery = false;
 		wfRunHooks( 'BeforeParserFetchFileAndTitle',
-			array( $this, &$title, &$time, &$sha1, &$descQuery ) );
+			array( $this, $title, &$time, &$sha1, &$descQuery ) );
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $time, $sha1 );
 
