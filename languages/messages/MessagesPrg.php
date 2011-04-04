@@ -1943,8 +1943,7 @@ Jaīs en [[Special:IPBlockList|IP blōkisenin listin]] ki widālai wissans tēnt
 'ipb_expiry_temp'                 => 'Kliptas tērpautajas pabilīsnas blōkisenis turri būtwei ainatīngi.',
 'ipb_hide_invalid'                => 'Ni mazīngi kliptintun šisse tērpautajas rekkenan, drūwiminai tāns ast segīwuns per tūlin redigīsenins.',
 'ipb_already_blocked'             => '"$1" ast jāu blōkitan',
-'ipb-needreblock'                 => '== Jāu blōkitan ==
-$1 ast jāu blōkitan. Kwāitu kitawīdintun blōkisenes ensadīnsenins?',
+'ipb-needreblock'                 => '$1 ast jāu blōkitan. Kwāitu kitawīdintun blōkisenes ensadīnsenins?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Kits blōkisenis|Kitāi blōkisenei}}',
 'ipb_cant_unblock'                => 'Blānda: Blōkisenes ID $1 ni pastāi aupaltan. Mazīngi tāns pastāi ankstāis izklaūtan.',
 'ipb_blocked_as_range'            => 'Blānda: IP adressi $1 ni ast blōkitan entikriskai be ni mazzi būtwei etblōkitan.

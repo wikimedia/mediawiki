@@ -996,7 +996,7 @@ Zur da Aufheewung vo da Sperrn schau unter da [[Special:IPBlockList|Listen vo ol
 'ipusubmit'                => 'Freigem',
 'unblocked'                => '[[User:$1|$1]] is freigem worn',
 'unblocked-id'             => 'Sperr-ID $1 is fraigeem worn',
-'ipblocklist'              => 'Gspeade IP-Adressn und Benutzanãmen',
+'ipblocklist'              => 'Gsperrde Benutzer',
 'ipblocklist-legend'       => 'Suach noch am gsperrden Benytzer',
 'createaccountblock'       => 'Erstellung vo Benutzakonten gsperrt',
 'emailblock'               => 'E-Post vaschicka gspead',

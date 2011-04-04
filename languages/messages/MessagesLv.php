@@ -2045,8 +2045,7 @@ Te apakšā var apskatīties bloķēšanas reģistru:',
 'block-log-flags-hiddenname'  => 'lietotājvārds slēpts',
 'ipb_expiry_invalid'          => 'Nederīgs beigu termiņš',
 'ipb_already_blocked'         => '"$1" jau ir bloķēts',
-'ipb-needreblock'             => '== Jau bloķēts ==
-$1 jau ir bloķēts.
+'ipb-needreblock'             => '$1 jau ir bloķēts.
 Vai tu gribi izmainīt bloka uzstādījumus?',
 'ipb_cant_unblock'            => 'Kļūda: Bloka ID $1 nav atrasts.
 Tas, iespējams, jau ir atbloķēts.',

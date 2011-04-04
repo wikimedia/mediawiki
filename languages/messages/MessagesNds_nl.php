@@ -1310,9 +1310,9 @@ Klik op "Weerumme" en geef een aandere pagina dan "$1" op.',
 'prefs-rc'                      => 'Leste wiezigingen',
 'prefs-watchlist'               => 'Volglieste',
 'prefs-watchlist-days'          => 'Antal dagen weergeven:',
-'prefs-watchlist-days-max'      => '(maximaal 7 dagen)',
+'prefs-watchlist-days-max'      => 'Maximaal 7 dagen',
 'prefs-watchlist-edits'         => 'Antal wiezigingen in de uut-ebreien volglieste:',
-'prefs-watchlist-edits-max'     => '(maximale antal: 1.000)',
+'prefs-watchlist-edits-max'     => 'Maximale antal: 1.000',
 'prefs-watchlist-token'         => 'Volgliestesleutel',
 'prefs-misc'                    => 'Overig',
 'prefs-resetpass'               => 'Wachwoord wiezigen',
@@ -2494,8 +2494,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipb_expiry_temp'                 => 'Blokkeringen veur verbörgen gebrukers mutten permenent ween.',
 'ipb_hide_invalid'                => 'Kan disse gebruker neet verbargen; werschienlijk hef e al te veule bewarkingen emaak.',
 'ipb_already_blocked'             => '"$1" is al eblokkeerd',
-'ipb-needreblock'                 => '== Disse gebruker is al eblokkeerd ==
-$1 is al eblokkeerd.
+'ipb-needreblock'                 => '$1 is al eblokkeerd.
 Wi-j de instellingen wiezigen?',
 'ipb-otherblocks-header'          => 'Aandere {{PLURAL:$1|blokkering|blokkeringen}}',
 'ipb_cant_unblock'                => "Foutmelding: blokkade ID $1 neet evunnen, 't is meschien al edeblokkeerd.",

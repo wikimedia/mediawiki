@@ -1851,8 +1851,7 @@ $1',
 'block-log-flags-noemail'     => 'e-mail jẹ́ dídílọ́nà',
 'block-log-flags-hiddenname'  => 'orúkọ oníṣe jẹ́ bíbòmọ́lẹ̀',
 'ipb_already_blocked'         => '"$1" jẹ́ dídèlọ́nà tẹ́lẹ̀',
-'ipb-needreblock'             => '== Dídèlọ́nà tẹ́lẹ̀ ==
-"$1" jẹ́ dídèlọ́nà tẹ́lẹ̀
+'ipb-needreblock'             => '"$1" jẹ́ dídèlọ́nà tẹ́lẹ̀
 Ṣé ẹ fẹ́ yí àwọn ìtò yí padà?',
 'ipb-otherblocks-header'      => '{{PLURAL:$1|Ìdínà|Àwọn ìdínà}} mìíràn',
 'blockme'                     => 'Dínà mi',

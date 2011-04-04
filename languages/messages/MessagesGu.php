@@ -2459,8 +2459,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'ipb_expiry_temp'                 => 'સંતાડેલા સભ્યનામ પ્રતિબંધનો કાયમી જ હોવા જોઇએ.',
 'ipb_hide_invalid'                => 'આ પાનાને છુપાવવો સંભવ નથી તેમાં ઘણા બધાં ફેરફારો છે',
 'ipb_already_blocked'             => ' "$1" પહેલેથી પ્રતિબંધિત છે',
-'ipb-needreblock'                 => '== પહેલેથી પ્રતિબંધિત  ==
-$1 પહેલેથી પ્રતિબંધિત છે.
+'ipb-needreblock'                 => '$1 પહેલેથી પ્રતિબંધિત છે.
 તમારે આ સેટીંગ બદલવી છે?',
 'ipb-otherblocks-header'          => 'અન્ય {{PLURAL:$1|પ્રતિબંધન|પ્રતિબંધનો}}',
 'ipb_cant_unblock'                => 'તૃટિ પ્રતિબંધિત ID $1 ન મળ્યો.

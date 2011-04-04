@@ -833,9 +833,9 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'prefs-rc'                  => 'Ńydowno pomjyńane',
 'prefs-watchlist'           => 'Pozůrlista',
 'prefs-watchlist-days'      => 'Ličba dńi widočnych na liśće artikli, na kere dowoš pozůr:',
-'prefs-watchlist-days-max'  => '(maksimum 7 dńi)',
+'prefs-watchlist-days-max'  => 'Maksimum 7 dńi',
 'prefs-watchlist-edits'     => 'Ličba půmjyńań pokazywanych we rozšyřůnyj liśće artiklůw, na kere dowoš pozůr:',
-'prefs-watchlist-edits-max' => '(maksymalno liczba: 1000)',
+'prefs-watchlist-edits-max' => 'Maksymalno liczba: 1000',
 'prefs-misc'                => 'Roztůmajte',
 'prefs-resetpass'           => 'Zmjyń hasło',
 'saveprefs'                 => 'Naškryflej',
@@ -1822,8 +1822,7 @@ Coby přejřeć lista uobecńy aktywnych zawarć, přyńdź na zajta [[Special:I
 'ipb_expiry_invalid'              => 'Felerny čas wygaśńjyńćo zawarća.',
 'ipb_expiry_temp'                 => 'Schrůńůne mjano użytkowńika noleży zawrzić trwale.',
 'ipb_already_blocked'             => '"$1" je już zawarty uod sprowjyń',
-'ipb-needreblock'                 => '== Istńejůnce zawarće ==
-$1 je już zawarty uod sprowjyń. Chcesz půmjyńić sztalowańa zawarćo?',
+'ipb-needreblock'                 => '$1 je już zawarty uod sprowjyń. Chcesz půmjyńić sztalowańa zawarćo?',
 'ipb_cant_unblock'                => 'Feler: Zawarće uo ID $1 ńy zostouo znejdźone. Moguo uone zostać oudymkńynte wčeśnij.',
 'ipb_blocked_as_range'            => 'Feler: Adres IP $1 ńy zostou zawarty bezpośredńo i ńy može zostać uodymkńjynty.
 Noležy uůn do zawartygo zakresu adresůw $2. Uodymknůńć možno ino couki zakres.',

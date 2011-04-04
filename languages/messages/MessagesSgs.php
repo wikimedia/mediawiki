@@ -1509,8 +1509,7 @@ onkstiau ožbluokoutam IP adresō a nauduotuojō.',
 'block-log-flags-noemail'     => 'e-pašts bluokouts īr',
 'ipb_expiry_invalid'          => 'Galiuojėma čiesos nelaistėns.',
 'ipb_already_blocked'         => '„$1“ jau ožblokouts',
-'ipb-needreblock'             => '== Jau ožblokouts ==
-$1 jau īr ožblokouts. A nuorėt pakeistė nustatīmus?',
+'ipb-needreblock'             => '$1 jau īr ožblokouts. A nuorėt pakeistė nustatīmus?',
 'proxyblocksuccess'           => 'Padarīt.',
 
 # Developer tools

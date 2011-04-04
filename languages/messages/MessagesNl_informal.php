@@ -485,8 +485,7 @@ Mogelijk heb je een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undelete-show-file-confirm' => 'Weet je zeker dat je een verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wil bekijken?',
 
 # Block/unblock
-'ipb-needreblock'             => '== Deze gebruiker is al geblokkeerd ==
-$1 is al geblokkeerd.
+'ipb-needreblock'             => '$1 is al geblokkeerd.
 Wil je de instellingen wijzigen?',
 'proxyblockreason'            => 'Dit is een automatische preventieve blokkade, omdat je gebruik maakt van een open proxyserver.
 Neem contact op met je Internet-provider of je helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',

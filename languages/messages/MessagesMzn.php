@@ -641,6 +641,7 @@ $2، $1',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|بایت|بایت}}',
+'specialpage-empty' => 'این صفحه دله هچّی دَنی‌یه',
 'unusedcategories'  => 'کـار نـأزو رج‌ئون',
 'unusedimages'      => 'کـار نأزو فایل‌ئون',
 'popularpages'      => 'خاسگار هدار صفحه‌ئون',
@@ -684,8 +685,8 @@ $2، $1',
 'emailpage'       => 'ئـی-مه‌یـل ای کـارور وه‌سه',
 
 # Watchlist
-'watchlist'            => 'مـه ده‌مـبـالـه‌ئون ره لـیـسـت',
-'mywatchlist'          => 'مـه ده‌مـبـال‌هـه‌کـاردن لـیـسـت',
+'watchlist'            => 'مه دمبال‌هاکرده‌‌ئون ِلیست',
+'mywatchlist'          => 'مه دمبال‌هاکرده‌‌ئون ِلیست',
 'watchnologin'         => 'سیستم ره دله نی ئه موئین',
 'watch'                => 'ده‌مـبال هـاکه‌ردن',
 'watchthispage'        => 'این صفحه ره دِمبال هاکارد‌ن',

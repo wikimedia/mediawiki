@@ -1266,13 +1266,15 @@ chmod a+w $3</pre>',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ці болей позьняя',
 	'config-license-pd' => 'Грамадзкі набытак',
 	'config-license-cc-choose' => 'Выберыце іншую ліцэнзію Creative Commons',
-	'config-license-help' => "Шматлікія адкрытыя вікі разьмяшчаюць унёскі на ўмовах ліцэнзіі [http://freedomdefined.org/Definition вольнай ліцэнзіі].
-Гэта дазваляе ствараць сэнс супольнай уласнасьці і садзейнічае доўгатэрміновым унёскам.
-Гэта не неабходна для прыватных і карпаратыўных вікі.
+	'config-license-help' => "Шматлікія адкрытыя вікі публікуюць увесь унёсак у праект на ўмовах [http://freedomdefined.org/Definition вольнай ліцэнзіі].
+Гэта дазваляе ствараць эфэкт супольнай уласнасьці і садзейнічае доўгатэрміноваму ўнёску.
+Для прыватных і карпаратыўных вікі гэта не зьяўляецца неабходнасьцю.
 
-Калі Вы жадаеце выкарыстоўваць тэкст з Вікіпэдыі, і жадаеце каб Вікіпэдыя магла прынімаць тэкст скапіяваны з Вашай вікі, Вам неабходна выбраць ліцэнзію '''Creative Commons Attribution Share Alike'''.
+Калі Вы жадаеце выкарыстоўваць тэкст зь Вікіпэдыі, і жадаеце, каб Вікіпэдыя магла прымаць тэксты, скапіяваныя з Вашай вікі, Вам неабходна выбраць ліцэнзію '''Creative Commons Attribution Share Alike'''.
 
-Раней Вікіпэдыя выкарыстоўвала ліцэнзію GNU Free Documentation. Яна ўсё яшчэ дзейнічае, але яна ўтрымлівае некаторыя моманты, якія ўскладняюць паўторнае выкарыстоўваньне і інтэрпрэтацыю матэрыялаў.",
+Раней Вікіпэдыя выкарыстоўвала ліцэнзію GNU Free Documentation.
+Яна ўсё яшчэ дзейнічае, але яна ўтрымлівае некаторыя моманты,
+якія ўскладняюць паўторнае выкарыстоўваньне і інтэрпрэтацыю матэрыялаў.",
 	'config-email-settings' => 'Налады электроннай пошты',
 	'config-enable-email' => 'Дазволіць выходзячыя электронныя лісты',
 	'config-enable-email-help' => 'Калі Вы жадаеце, каб працавала электронная пошта, неабходна сканфігураваць PHP [http://www.php.net/manual/en/mail.configuration.php адпаведным чынам].
@@ -2545,10 +2547,11 @@ Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Inst
 Dies trägt dazu bei ein Gefühl von Gemeinschaft zu schaffen und ermutigt zu längerfristiger Mitarbeit.
 Dahingegen ist im Allgemeinen eine freie Lizenz auf geschlossenen Wikis nicht notwendig.
 
-Sofern man Texte aus der Wikipedia verwenden möchte und umgekehrt, sollte die Creative Commons-Lizens „Namensnennung, Weitergabe unter gleichen Bedingungen“ gewählt werden.
+Sofern man Texte aus der Wikipedia verwenden möchte und umgekehrt, sollte die Creative Commons-Lizenz „Namensnennung, Weitergabe unter gleichen Bedingungen“ gewählt werden.
 
-Die GNU-Lizenz für freie Dokumentation ist die ehemalige Lizenz der Wikipedia.
-Sie ist noch immer gültig, beinhaltet aber einige Bedingungen, welche die Wiederverwendung und deren Interpretation erschweren.',
+Die Wikipedia nutzte vormals die GNU-Lizenz für freie Dokumentation (GFDL).
+Die GFDL ist eine gültige Lizenz, die allerdings schwer zu verstehen ist.
+Es ist zudem schwierig gemäß dieser Lizenz lizenzierte Inhalten wiederzuverwenden.',
 	'config-email-settings' => 'E-Mail-Einstellungen',
 	'config-enable-email' => 'Ausgehende E-Mails ermöglichen',
 	'config-enable-email-help' => 'Sofern die E-Mail-Funktionen genutzt werden sollen, müssen die entsprechenden [http://www.php.net/manual/en/mail.configuration.php PHP-E-Mail-Einstellungen] richtig konfiguriert werden.
@@ -5512,14 +5515,15 @@ Telepítés után jóval összetettebb jogosultságrendszer állítható össze,
 	'config-license-gfdl-current' => 'GNU Szabad Dokumentációs Licenc 1.3 vagy újabb',
 	'config-license-pd' => 'Közkincs',
 	'config-license-cc-choose' => 'Creative Commons-licenc választása',
-	'config-license-help' => "A legtöbb wiki [http://freedomdefined.org/Definition szabad licenc] alatt teszi közzé a szerkesztéseit.
-Ez erősíti a közösségi tulajdon érzését, és elősegíti a hosszú távú közreműködést.
-Általában szükségtelen magán- vagy vállalati wiki esetén.
+	'config-license-help' => "A legtöbb wiki valamilyen [http://freedomdefined.org/Definition szabad licenc] alatt teszi közzé a szerkesztéseit.
+Ez erősíti a közösségi tulajdon érzését, és elősegíti a hosszú távú közreműködők megjelenését.
+Általában nem szükséges magán- vagy vállalati wiki esetén.
 
 Ha a Wikipédiáról szeretnél szövegeket másolni, és a Wikipédián felhasználhassák a wikidben található szöveget, akkor a '''Creative Commons Nevezd meg! - Így add tovább!''' lehetőséget válaszd.
 
-A GNU Szabad Dokumentációs Licenc a Wikipédia korábbi licence.
-Még ma is érvényes, azonban van néhány tulajdonsága, amely nehezíti az újrafelhasználást és az értelmezését.",
+A Wikipédia korábban a GNU Szabad Dokumentációs Licencet használta.
+Ez a licenc még ma is használható, azonban nem könnyű megérteni,
+továbbá a GFDL alatt közzétett tartalom újrafelhasználása nehézkes.",
 	'config-email-settings' => 'E-mail beállítások',
 	'config-enable-email' => 'Kimenő e-mailek engedélyezése',
 	'config-enable-email-help' => 'E-mailek küldéséhez [http://www.php.net/manual/en/mail.configuration.php a PHP mail beállításait] megfelelően meg kell adni.
@@ -6022,8 +6026,9 @@ Isto non es generalmente necessari pro un wiki private o de interprisa.
 
 Si tu vole poter usar texto de Wikipedia, e si tu vole que Wikipedia pote acceptar texto copiate de tu wiki, tu debe seliger '''Creative Commons Attribution Share Alike'''.
 
-Le Licentia GNU pro Documentation Libere esseva le ancian licentia de publication de Wikipedia.
-Iste licentia continua a esser valide, ma illo ha alcun characteristicas que rende le re-uso e interpretation difficile.",
+Wikipedia usava anteriormente le Licentia GNU pro Documentation Libere (GFDL).
+Iste es un licentia valide, ma es difficile a comprender.
+Il es anque difficile reusar le contento licentiate sub GFDL.",
 	'config-email-settings' => 'Configuration de e-mail',
 	'config-enable-email' => 'Activar le e-mail sortiente',
 	'config-enable-email-help' => 'Si tu vole que e-mail functiona, [http://www.php.net/manual/en/mail.configuration.php le optiones de e-mail de PHP] debe esser configurate correctemente.
@@ -7523,9 +7528,9 @@ Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, w
 Dat hellef, e Jeföhl vun Jemeinsamkeid opzeboue, un op lange Seesh emmer wider Beidrääsch ze krijje.
 Dat es nit onbedengk nüüdesh för e Jeschäffs- udder Privaat_Wiki.
 
-Wä Stöcke uß de Wikipedia bruche well, un han well, dat de Wikipedia uss_em eije Wiki jät övvernämme kann, sullt mer „'''<i lang=\"en\">Creative Commons</i>, dem Schriever singe Name moß jenannt wääde, un Wiggerjävve zoh dersellve Bedengunge es zohjelohße'''“ ußwähle.
+Wä Stöcke uß de Wikipedia bruche well, un han well, dat de Wikipedia uss_em eije Wiki jät övvernämme kann, sullt „'''<i lang=\"en\">Creative Commons</i>, dem Schriever singe Name moß jenannt wääde, un Wiggerjävve zoh dersellve Bedengunge es zohjelohße'''“ ußwähle.
 
-De su jenannte '''<i lang=\"en\">GNU Free Documentation License</i>''' (de freije Lizänz för Dokemäntazjuhne vun dä GNU) sen de ahle Lizänzbedenonge vun de Wikipedia. Se es emmer noch in Odenong un jöltesch, ävver se hädd e paa Eijeschaffte, die et Wiggerjävve, et widder Verwände un et Ußlääje schwieeresch maache.",
+De su jenannte '''<i lang=\"en\">GNU Free Documentation License</i>''' (de freije Lizänz för Dokemäntazjuhne vun dä GNU) sen de ahle Lizänzbedenonge vun de Wikipedia. Se es emmer noch in Odenong un jöltesch, ävver se es schwer ze vershtonn un et Wiggerjävve un widder Verwände es manshmool schwieeresch domet.",
 	'config-email-settings' => 'Enschtellunge för de <i lang="en">e-mail</i>',
 	'config-enable-email' => 'De <i lang="en">e-mail</i> noh druße zohlohße',
 	'config-enable-email-help' => 'Sulle <i lang="en">e-mails</i> zohjelohße sin, moß mer, domet et noher flupp, de [http://www.php.net/manual/en/mail.configuration.php Enschtellunge em PHP för de <i lang="en">e-mails</i>] zopaß jemaat han.
@@ -8262,10 +8267,11 @@ chmod a+w $3</pre>',
 Со ова се создава атмосфера на општа сопственост и поттикнува долгорочно учество.
 Ова не е неопходно за викија на поединечни физички или правни лица.
 
-Ако сакате да користите текст од Википедија, и сакате Википедија да прифаќа текст прекопиран од вашето вики, тогаш треба да ја одберете лиценцата '''Creative Commons НаведиИзвор СподелиПодИстиУслови'''.
+Ако сакате да користите текст од Википедија, и сакате Википедија да прифаќа текст прекопиран од вашето вики, тогаш треба да ја одберете лиценцата '''Криејтив комонс НаведиИзвор СподелиПодИстиУслови'''.
 
-ГНУ-овата лиценца за слободна документација е старата лиценца на Википедија.
-Оваа лиценца сè уште важи, но има некои особености што значително го отежнуваат толкувањето на искористувањето на содржините вон Викимедија.",
+ГНУ-овата лиценца за слободна документација (ГЛСД) е старата лиценца на Википедија.
+Оваа лиценца сè уште важи, но е тешка за разбирање.
+Исто така треба да се има на ум дека пренамената на содржините под ГЛСД не е лесна.",
 	'config-email-settings' => 'Нагодувања за е-пошта',
 	'config-enable-email' => 'Овозможи излезна е-пошта',
 	'config-enable-email-help' => 'Ако сакате да работи е-поштата, [http://www.php.net/manual/en/mail.configuration.php поштенските нагодувања на PHP] треба да се правилно наместени.
@@ -8948,8 +8954,9 @@ Dit is over het algemeen niet nodig is voor een particuliere of zakelijke wiki.
 
 Als u teksten uit Wikipedia wilt kunnen gebruiken en u wilt het mogelijk maken teksten uit uw wiki naar Wikipedia te kopiëren, kies dan de licentie '''Creative Commons Naamsvermelding-Gelijk delen'''.
 
-De GNU Free Documentation License was de oude licentie voor inhoud uit Wikipedia.
-Dit is nog steeds een geldige licentie, maar deze licentie heeft een aantal eigenschappen die hergebruik en interpretatie lastig kunnen maken.",
+De GNU Free Documentation License is de oude licentie voor inhoud uit Wikipedia.
+Dit is nog steeds een geldige licentie, maar deze licentie is lastig te begrijpen.
+Het is ook lastig inhoud te hergebruiken onder de GFDL.",
 	'config-email-settings' => 'E-mailinstellingen',
 	'config-enable-email' => 'Uitgaande e-mail inschakelen',
 	'config-enable-email-help' => "Als u wilt dat e-mailen mogelijk is, dan moeten [http://www.php.net/manual/en/mail.configuration.php PHP's e-mailinstellingen] correct zijn.
@@ -10680,8 +10687,9 @@ Tal não é geralmente necessário nas wikis privadas ou corporativas.
 
 Se pretende que seja possível usar textos da Wikipédia na sua wiki e que seja possível a Wikipédia aceitar textos copiados da sua wiki, deve escolher a licença Atribuição - Partilha nos Mesmos Termos, da Creative Commons.
 
-A licença GNU Free Documentation License era a anterior licença da Wikipédia.
-Embora ainda seja uma licença válida, ela tem certas características que tornam o reuso e a interpretação difíceis.',
+A anterior licença da Wikipédia era a licença GNU Free Documentation License.
+A GFDL é uma licença válida, mas de difícil compreensão.
+Também é difícil reutilizar conteúdos licenciados com a GFDL.',
 	'config-email-settings' => 'Definições do correio electrónico',
 	'config-enable-email' => 'Activar mensagens electrónicas de saída',
 	'config-enable-email-help' => 'Se quer que o correio electrónico funcione, as [http://www.php.net/manual/en/mail.configuration.php definições de correio electrónico do PHP] têm de estar configuradas correctamente.

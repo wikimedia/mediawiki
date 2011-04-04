@@ -870,7 +870,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 Voutra adrèce IP serat encartâ dens l’historico de ceta pâge.",
 'anonpreviewwarning'               => "''Vos éte pas branchiê. Sôvar encarterat voutra adrèce IP dens l’historico des changements de la pâge.''",
 'missingsummary'                   => "'''Rapèl :''' vos éd p’oncor balyê lo rèsumâ de voutron changement.
-Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat sôvâ sen novél avèrtissement.",
+Se vos tornâd clicar dessus « {{int:savearticle}} », voutron changement serat sôvâ sen novél avèrtissement.",
 'missingcommenttext'               => 'Volyéd fâre voutron comentèro ce-desot.',
 'missingcommentheader'             => "'''Rapèl :''' vos éd p’oncor balyê de sujèt ou ben de titro a ceti comentèro.
 Se vos tornâd clicar dessus « {{int:savearticle}} », voutron changement serat sôvâ sen titro.",
@@ -1106,7 +1106,7 @@ El at pôt-étre étâ suprimâ ou ben renomâ.
 Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâges novèles que vont avouéc.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentèro suprimâ)',
+'rev-deleted-comment'         => '(rèsumâ de changement enlevâ)',
 'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
 'rev-deleted-user-contribs'   => '[nom d’utilisator ou ben adrèce IP suprimâ - changement cachiê sur les contribucions]',
@@ -1371,7 +1371,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-watchlist-days'          => 'Nombro de jorns a fâre vêre dens la lista de survelyence :',
 'prefs-watchlist-days-max'      => '7 jorns u més',
 'prefs-watchlist-edits'         => 'Nombro de changements a fâre vêre dens la lista de survelyence ètendua :',
-'prefs-watchlist-edits-max'     => '(nombro lo ples grant : 1000)',
+'prefs-watchlist-edits-max'     => 'Nombro lo ples grant : 1000',
 'prefs-watchlist-token'         => 'Jeton por la lista de survelyence :',
 'prefs-misc'                    => 'Prèferences de totes sôrtes',
 'prefs-resetpass'               => 'Changiér lo mot de pâssa',
@@ -1735,7 +1735,7 @@ Volyéd controlar que vos voléd franc tèlèchargiér cél fichiér.',
 Volyéd controlar '''<tt>[[:$1]]</tt>'''.
 Éte-vos de sûr de lo volêr changiér ? [[$1|thumb]]",
 'filepageexists'              => "La pâge de dèscripcion por cél fichiér at ja étâ fêta ique '''<tt>[[:$1]]</tt>''', mas nion fichiér de cél nom ègziste ora.
-Lo rèsumâ que vos voléd ècrire remplacierat pas cél tèxto.
+Lo rèsumâ que vos voléd buchiér aparêtrat pas sur la pâge de dèscripcion.
 Por cen fâre vos devréd changiér la pâge a la man.
 [[$1|thumb]]",
 'fileexists-extension'        => "Un fichiér avouéc un nom d’ense ègziste ja : [[$2|thumb]]
@@ -2350,7 +2350,7 @@ lo dèrriér contributor est lo solèt ôtor de ceta pâge.',
 quârqu’un d’ôtro at ja changiê ou ben rèvocâ la pâge.
 
 Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User talk:$3|Discutar]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'       => "Lo rèsumâ du changement ére : « ''$1'' ».",
+'editcomment'       => "Lo rèsumâ de changement ére : « ''$1'' ».",
 'revertpage'        => 'Rèvocacion des changements a [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]]) de vers la dèrriére vèrsion a [[User:$1|$1]]',
 'revertpage-nouser' => 'Rèvocacion des changements per (nom d’utilisator suprimâ) a la dèrriére vèrsion per [[User:$1|$1]]',
 'rollback-success'  => 'Rèvocacion des changements fêts per $1 ;
@@ -2576,7 +2576,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipusubmit'                       => 'Enlevar ceti blocâjo',
 'unblocked'                       => '[[User:$1|$1]] at étâ dèblocâ',
 'unblocked-id'                    => 'Lo blocâjo $1 at étâ enlevâ',
-'ipblocklist'                     => 'Adrèces IP et utilisators blocâs',
+'ipblocklist'                     => 'Utilisators blocâs',
 'ipblocklist-legend'              => 'Chèrchiér un utilisator blocâ',
 'ipblocklist-submit'              => 'Rechèrchiér',
 'ipblocklist-localblock'          => 'Blocâjo local',
@@ -2619,8 +2619,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb_expiry_temp'                 => 'Los blocâjos de noms d’utilisator cachiês dêvont étre sen fin.',
 'ipb_hide_invalid'                => 'Empossiblo de suprimar ceti compto ; semble avêr trop de changements.',
 'ipb_already_blocked'             => '« $1 » est ja blocâ',
-'ipb-needreblock'                 => '== Ja blocâ ==
-$1 est ja blocâ.
+'ipb-needreblock'                 => '$1 est ja blocâ.
 Voléd-vos changiér los paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
 'ipb_cant_unblock'                => 'Èrror : numerô de blocâjo $1 pas trovâ.
@@ -3665,7 +3664,8 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'specialpages'                   => 'Pâges spèciâles',
 'specialpages-note'              => '----
 * Pâges spèciâles normales.
-* <strong class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</strong>',
+* <span class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</span>
+* <span class="mw-specialpagecached">Pâges spèciâles solament en cache.</span>',
 'specialpages-group-maintenance' => 'Rapôrts de mantegnence',
 'specialpages-group-other'       => 'Ôtres pâges spèciâles',
 'specialpages-group-login'       => 'Branchement / encartâjo',

@@ -978,7 +978,7 @@ Dit was moontlik geskrap of geskuif.
 [[Special:Search|Deursoek die wiki]] vir relevante bladsye.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(opsomming geskrap)',
+'rev-deleted-comment'         => '(opmerking verwyder)',
 'rev-deleted-user'            => '(gebruikersnaam geskrap)',
 'rev-deleted-event'           => '(stawingsaksie verwyder)',
 'rev-deleted-user-contribs'   => '[gebruikersnaam of IP-adres is verwyder - wysiging versteek in bydraes]',
@@ -1687,6 +1687,9 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-too-many-redirects' => 'Die URL bevat te veel aansture',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
+
+# ZipDirectoryReader
+'zip-wrong-format' => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
 
 # Special:UploadStash
 'uploadstash'          => 'Verborge oplaaie',
@@ -2422,10 +2425,12 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbhidename'                     => 'Verberg gebruiker van wysigings en lyste',
 'ipbwatchuser'                    => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
 'ipb-change-block'                => 'Herblokkeer die gebruiker met hierdie instellings',
+'ipb-confirm'                     => 'Bevestig blokkade',
 'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'               => 'Blokkering het geslaag',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
 Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
+'ipb-blockingself'                => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
 'ipb-edit-dropdown'               => 'Werk lys van redes by',
 'ipb-unblock-addr'                => 'Deblokkeer $1',
 'ipb-unblock'                     => "Deblokkeer 'n gebruiker of IP-adres",
@@ -2440,6 +2445,11 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'blocklist'                       => 'Geblokkeerde gebruikers',
 'ipblocklist'                     => 'Geblokkeerde IP-adresse en gebruikers',
 'ipblocklist-legend'              => "Soek 'n geblokkeerde gebruiker",
+'blocklist-timestamp'             => 'Tydstip',
+'blocklist-target'                => 'Doel',
+'blocklist-expiry'                => 'Verval',
+'blocklist-by'                    => 'Geblokkeer deur',
+'blocklist-params'                => 'Blokkadeparameters',
 'blocklist-reason'                => 'Rede',
 'ipblocklist-submit'              => 'Soek',
 'ipblocklist-localblock'          => 'Lokale blokkade',
@@ -2480,10 +2490,10 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
 'ipb_expiry_temp'                 => 'Blokkades vir versteekte gebruikers moet permanent wees.',
 'ipb_hide_invalid'                => 'Dit is nie moontlik om hierdie gebruiker te verberg nie; miskien het hy al te veel wysigings gemaak.',
 'ipb_already_blocked'             => '"$1" is reeds geblok',
-'ipb-needreblock'                 => '== Hierdie gebruiker is reeds geblokkeer ==
-$1 is al geblokkeer.
+'ipb-needreblock'                 => '$1 is al geblokkeer.
 Wil u die instellings wysig?',
 'ipb-otherblocks-header'          => 'Ander {{PLURAL:$1|blokkade|blokkades}}',
+'unblock-hideuser'                => 'U kan nie die gebruiker deblokkeer nie, omdat die gebruikersnaam versteek is.',
 'ipb_cant_unblock'                => 'Fout: Blokkade-ID $1 kan nie gevind word nie.
 Die blokkade is moontlik reeds opgehef.',
 'ipb_blocked_as_range'            => "Fout: die IP-adres $1 is nie direk geblokkeer nie en die blokkade kan nie opgehef word nie.
@@ -3283,10 +3293,12 @@ $1',
 'trackbackdeleteok' => 'Die verwysende bladsy is suksesvol verwyder.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Let op''': die bladsy is verwyder terwyl u besig was om dit te wysig!",
-'confirmrecreate'     => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
+'deletedwhileediting'      => "'''Let op''': die bladsy is verwyder terwyl u besig was om dit te wysig!",
+'confirmrecreate'          => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
 Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
-'recreate'            => 'Herskep',
+'confirmrecreate-noreason' => 'Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreking]]) het die bladsy geskrap nadat u dit begin wysig het.
+Bevestig dat u die bladsy wil herskep.',
+'recreate'                 => 'Herskep',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -3420,7 +3432,8 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'specialpages'                   => 'Spesiale bladsye',
 'specialpages-note'              => '----
 * Normale spesiale bladsye.
-* <strong class="mw-specialpagerestricted">Beperkte spesiale bladsye.</strong>',
+* <strong class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</strong>
+* <strong class="mw-specialpagerestricted">Spesiale bladsye met slegs gegewens uit die kas.</strong>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',

@@ -2333,8 +2333,7 @@ coj che sio ij blocagi ativ al dì d'ancheuj.",
 'ipb_expiry_temp'                 => "Ij blòch ëd j'utent stërmà a deuvo esse përmanent.",
 'ipb_hide_invalid'                => 'Ampossìbil scanselé sto cont-sì; a peul avèj tròpe modìfiche.',
 'ipb_already_blocked'             => '"$1" a l\'é già blocà',
-'ipb-needreblock'                 => "== Già blocà ==
-$1 a l'é già blocà.
+'ipb-needreblock'                 => "$1 a l'é già blocà.
 It veule cambié le ampostassion?",
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Àutr|Àutri}} blocagi',
 'unblock-hideuser'                => "It peule pa sloché st'utent, da già che sò nòm a l'é stàit stërmà.",
