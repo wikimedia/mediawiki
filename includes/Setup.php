@@ -365,7 +365,7 @@ $wgContLang = new StubContLang;
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
-$wgUser = $wgCommandLineMode ? new User : User::newFromSession();
+$wgUser = RequestContext::getMain()->user; # BackCompat
 
 /**
  * @var Language
@@ -375,7 +375,7 @@ $wgLang = new StubUserLang;
 /**
  * @var OutputPage
  */
-$wgOut = new OutputPage;
+$wgOut = RequestContext::getMain()->output; # BackCompat
 
 /**
  * @var Parser
