@@ -1554,8 +1554,9 @@ abstract class Skin {
 	 * @param $args Array Arguments to the method
 	 */
 	function __call( $fname, $args ) {
-		if ( method_exists( 'Linker', $fname ) ) {
-			return call_user_func_array( array( 'Linker', $fname ), $args );
+		$realFunction = array( 'Linker', $fname );
+		if ( is_callable( $realFunction ) ) {
+			return call_user_func_array( $realFunction, $args );
 		} else {
 			$className = get_class( $this );
 			throw new MWException( "Call to undefined method $className::$fname" );
