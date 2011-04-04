@@ -744,7 +744,7 @@ class Preferences {
 			'label-message' => 'tog-forceeditsummary',
 		);
 
-				
+
 		$defaultPreferences['uselivepreview'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -932,7 +932,7 @@ class Preferences {
 				'section' => 'searchoptions/displaysearchoptions',
 			);
 		}
-		
+
 		global $wgVectorUseSimpleSearch;
 		if ( $wgVectorUseSimpleSearch ) {
 			$defaultPreferences['vector-simplesearch'] = array(
@@ -1229,7 +1229,7 @@ class Preferences {
 		}
 		return $opt;
 	}
-	
+
 	static function filterIntval( $value, $alldata ){
 		return intval( $value );
 	}
