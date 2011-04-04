@@ -101,7 +101,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames',
-		'dateFormats', 'defaultUserOptionOverrides', 'magicWords', 'imageFiles',
+		'dateFormats', 'defaultUserOptionOverrides', 'imageFiles',
 		'preloadedMessages',
 	);
 
@@ -122,6 +122,11 @@ class LocalisationCache {
 	 * key is removed after the first merge.
 	 */
 	static public $optionalMergeKeys = array( 'bookstoreList' );
+	
+	/**
+	 * Keys for items that are formatted like $magicWords
+	 */
+	static public $magicWordKeys = array( 'magicWords' );
 
 	/**
 	 * Keys for items where the subitems are stored in the backend separately.
@@ -187,7 +192,8 @@ class LocalisationCache {
 				self::$mergeableMapKeys,
 				self::$mergeableListKeys,
 				self::$mergeableAliasListKeys,
-				self::$optionalMergeKeys
+				self::$optionalMergeKeys,
+				self::$magicWordKeys
 			) );
 		}
 		return isset( $this->mergeableKeys[$key] );
@@ -435,6 +441,8 @@ class LocalisationCache {
 					if ( isset( $value['inherit'] ) ) {
 						unset( $value['inherit'] );
 					}
+				} elseif ( in_array( $key, self::$magicWordKeys ) ) {
+					$this->mergeMagicWords( $value, $fallbackValue );
 				}
 			}
 		} else {
