@@ -932,7 +932,7 @@ EOF;
 				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
 				db2_exec( $this->mConn, $overhead, $this->mStmtOptions );
 
-				$this->execute( $stmt, $row );
+				$res2 = $this->execute( $stmt, $row );
 
 				if ( !$res2 ) {
 					$this->installPrint( 'Last error:' );
