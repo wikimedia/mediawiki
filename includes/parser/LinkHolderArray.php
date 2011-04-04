@@ -348,7 +348,7 @@ class LinkHolderArray {
 						continue;
 					}
 					$linkBatch->addObj( $variantTitle );
-					$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
+					$variantMap[$variantTitle->getPrefixedDBkey()][] = $titlesAttrs[$i]['key'];
 				}
 			}
 		}

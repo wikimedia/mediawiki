@@ -1091,7 +1091,7 @@ class LogViewer {
 	public function show() {
 		global $wgOut;
 		# Set title and add header
-		$this->list->showHeader( $pager->getType() );
+		$this->list->showHeader( $this->pager->getType() );
 		# Show form options
 		$this->list->showOptions( $this->pager->getType(), $this->pager->getUser(), $this->pager->getPage(),
 			$this->pager->getPattern(), $this->pager->getYear(), $this->pager->getMonth() );
