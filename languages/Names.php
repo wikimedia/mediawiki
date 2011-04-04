@@ -5,7 +5,7 @@
   *
   * @ingroup Language
   */
-/* private */ $wgLanguageNames = array(
+/* private */ $coreLanguageNames = array(
 	'aa' => 'Qafár af',	# Afar
 	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
 	'ace' => 'Acèh',	# Aceh

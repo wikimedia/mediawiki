@@ -138,24 +138,28 @@ abstract class Skin {
 		$className = "Skin{$skinName}";
 
 		# Grab the skin class and initialise it.
-		if ( !class_exists( $className ) ) {
-			// Preload base classes to work around APC/PHP5 bug
-			$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
+		if ( !MWInit::classExists( $className ) ) {
 
-			if ( file_exists( $deps ) ) {
-				include_once( $deps );
+			if ( !defined( 'MW_COMPILED' ) ) {
+				// Preload base classes to work around APC/PHP5 bug
+				$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
+				if ( file_exists( $deps ) ) {
+					include_once( $deps );
+				}
+				require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 			}
-			require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 
 			# Check if we got if not failback to default skin
-			if ( !class_exists( $className ) ) {
+			if ( !MWInit::classExists( $className ) ) {
 				# DO NOT die if the class isn't found. This breaks maintenance
 				# scripts and can cause a user account to be unrecoverable
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 				$className = 'SkinVector';
-				require_once( "{$wgStyleDirectory}/Vector.php" );
+				if ( !defined( 'MW_COMPILED' ) ) {
+					require_once( "{$wgStyleDirectory}/Vector.php" );
+				}
 			}
 		}
 		$skin = new $className;

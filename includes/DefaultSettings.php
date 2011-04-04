@@ -28,7 +28,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 # Create a site configuration object. Not used for much in a default install
 if ( !defined( 'MW_PHP4' ) ) {
-	require_once( "$IP/includes/SiteConfiguration.php" );
+	if ( !defined( 'MW_COMPILED' ) ) {
+		require_once( "$IP/includes/SiteConfiguration.php" );
+	}
 	$wgConf = new SiteConfiguration;
 }
 /** @endcond */

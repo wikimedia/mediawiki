@@ -25,7 +25,7 @@
  * @ingroup UtfNormal
  */
 
-require_once dirname(__FILE__).'/UtfNormalDefines.php';
+require_once( MWInit::compiledPath( 'includes/normal/UtfNormalDefines.php' ) );
 
 /**
  * Return UTF-8 sequence for a given Unicode code point.

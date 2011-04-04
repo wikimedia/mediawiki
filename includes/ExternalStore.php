@@ -67,7 +67,7 @@ class ExternalStore {
 
 		$class = 'ExternalStore' . ucfirst( $proto );
 		/* Any custom modules should be added to $wgAutoLoadClasses for on-demand loading */
-		if( !class_exists( $class ) ) {
+		if( !MWInit::classExists( $class ) ) {
 			return false;
 		}
 

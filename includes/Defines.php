@@ -1,6 +1,11 @@
 <?php
 /**
- * A few constants that might be needed during LocalSettings.php
+ * A few constants that might be needed during LocalSettings.php.
+ *
+ * Note: these constants must all be resolvable at compile time by HipHop, 
+ * since this file will not be executed during request startup for a compiled
+ * MediaWiki.
+ *
  * @file
  */
 

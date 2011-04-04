@@ -218,6 +218,35 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
+/**
+ * Definitions of the NS_ constants are in Defines.php
+ * @private
+ */
+$wgCanonicalNamespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_TALK             => 'Talk',
+	NS_USER             => 'User',
+	NS_USER_TALK        => 'User_talk',
+	NS_PROJECT          => 'Project',
+	NS_PROJECT_TALK     => 'Project_talk',
+	NS_FILE             => 'File',
+	NS_FILE_TALK        => 'File_talk',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Template_talk',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Help_talk',
+	NS_CATEGORY         => 'Category',
+	NS_CATEGORY_TALK    => 'Category_talk',
+);
+
+/// @todo UGLY UGLY
+if( is_array( $wgExtraNamespaces ) ) {
+	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
+}
+
 # These are now the same, always
 # To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
@@ -274,22 +303,24 @@ if ( $wgNewUserLog ) {
 	$wgLogActions['newusers/autocreate'] = 'newuserlog-autocreate-entry';
 }
 
-if ( !class_exists( 'AutoLoader' ) ) {
-	require_once( "$IP/includes/AutoLoader.php" );
+if ( !defined( 'MW_COMPILED' ) ) {
+	if ( !MWInit::classExists( 'AutoLoader' ) ) {
+		require_once( "$IP/includes/AutoLoader.php" );
+	}
+
+	wfProfileIn( $fname . '-exception' );
+	require_once( "$IP/includes/Exception.php" );
+	wfInstallExceptionHandler();
+	wfProfileOut( $fname . '-exception' );
+
+	wfProfileIn( $fname . '-includes' );
+	require_once( "$IP/includes/GlobalFunctions.php" );
+	require_once( "$IP/includes/Hooks.php" );
+	require_once( "$IP/includes/Namespace.php" );
+	require_once( "$IP/includes/ProxyTools.php" );
+	require_once( "$IP/includes/ImageFunctions.php" );
+	wfProfileOut( $fname . '-includes' );
 }
-
-wfProfileIn( $fname . '-exception' );
-require_once( "$IP/includes/Exception.php" );
-wfInstallExceptionHandler();
-wfProfileOut( $fname . '-exception' );
-
-wfProfileIn( $fname . '-includes' );
-require_once( "$IP/includes/GlobalFunctions.php" );
-require_once( "$IP/includes/Hooks.php" );
-require_once( "$IP/includes/Namespace.php" );
-require_once( "$IP/includes/ProxyTools.php" );
-require_once( "$IP/includes/ImageFunctions.php" );
-wfProfileOut( $fname . '-includes' );
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low

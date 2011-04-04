@@ -117,14 +117,6 @@ unknown/unknown application/octet-stream application/x-empty [UNKNOWN]
 END_STRING
 );
 
-// Note: because this file is possibly included by a function,
-// we need to access the global scope explicitely!
-global $wgLoadFileinfoExtension;
-
-if ( $wgLoadFileinfoExtension ) {
-	wfDl( 'fileinfo' );
-}
-
 /**
  * Implements functions related to mime types such as detection and mapping to
  * file extension.
@@ -160,6 +152,10 @@ class MimeMagic {
 	 */
 	private static $instance;
 
+	/** True if the fileinfo extension has been loaded
+	 */
+	private static $extensionLoaded = false;
+
 	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
 	*
 	* This constructor parses the mime.types and mime.info files and build internal mappings.
@@ -169,12 +165,17 @@ class MimeMagic {
 		*   --- load mime.types ---
 		*/
 
-		global $wgMimeTypeFile, $IP;
+		global $wgMimeTypeFile, $IP, $wgLoadFileinfoExtension;
 
 		$types = MM_WELL_KNOWN_MIME_TYPES;
 
 		if ( $wgMimeTypeFile == 'includes/mime.types' ) {
 			$wgMimeTypeFile = "$IP/$wgMimeTypeFile";
+		}
+
+		if ( $wgLoadFileinfoExtension && !self::$extensionLoaded ) {
+			self::$extensionLoaded = true;
+			wfDl( 'fileinfo' );
 		}
 
 		if ( $wgMimeTypeFile ) {

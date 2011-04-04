@@ -174,12 +174,14 @@ class Language {
 			$class = 'Language';
 		} else {
 			$class = 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-			// Preload base classes to work around APC/PHP5 bug
-			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
-				include_once( "$IP/languages/classes/$class.deps.php" );
-			}
-			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-				include_once( "$IP/languages/classes/$class.php" );
+			if ( !defined( 'MW_COMPILED' ) ) {
+				// Preload base classes to work around APC/PHP5 bug
+				if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
+					include_once( "$IP/languages/classes/$class.deps.php" );
+				}
+				if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
+					include_once( "$IP/languages/classes/$class.php" );
+				}
 			}
 		}
 
@@ -187,7 +189,7 @@ class Language {
 			throw new MWException( "Language fallback loop detected when creating class $class\n" );
 		}
 
-		if ( !class_exists( $class ) ) {
+		if ( !MWInit::classExists( $class ) ) {
 			$fallback = Language::getFallbackFor( $code );
 			++$recursionLevel;
 			$lang = Language::newFromCode( $fallback );
@@ -540,8 +542,14 @@ class Language {
 	 * If $customisedOnly is true, only returns codes with a messages file
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
-		global $wgLanguageNames, $wgExtraLanguageNames;
-		$allNames = $wgExtraLanguageNames + $wgLanguageNames;
+		global $wgExtraLanguageNames;
+		static $coreLanguageNames;
+
+		if ( $coreLanguageNames === null ) {
+			include( MWInit::compiledPath( 'languages/Names.php' ) );
+		}
+
+		$allNames = $wgExtraLanguageNames + $coreLanguageNames;
 		if ( !$customisedOnly ) {
 			return $allNames;
 		}

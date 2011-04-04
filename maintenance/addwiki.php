@@ -57,7 +57,7 @@ class AddWiki extends Maintenance {
 		$languageNames = Language::getLanguageNames();
 
 		if ( !isset( $languageNames[$lang] ) ) {
-			$this->error( "Language $lang not found in \$wgLanguageNames", true );
+			$this->error( "Language $lang not found in Names.php", true );
 		}
 		$name = $languageNames[$lang];
 

@@ -139,7 +139,7 @@ abstract class Maintenance {
 		if( count( $bt ) !== 2 ) {
 			return false;
 		}
-		return ( $bt[1]['function'] == 'require_once' || $bt[1]['function'] == 'require' ) &&
+		return in_array( $bt[1]['function'], array( 'require_once', 'require', 'include' ) ) &&
 			$bt[0]['class'] == 'Maintenance' &&
 			$bt[0]['function'] == 'shouldExecute';
 	}
@@ -430,11 +430,11 @@ abstract class Maintenance {
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
 		// Make sure the class is loaded first
-		if ( !class_exists( $maintClass ) ) {
+		if ( !MWInit::classExists( $maintClass ) ) {
 			if ( $classFile ) {
 				require_once( $classFile );
 			}
-			if ( !class_exists( $maintClass ) ) {
+			if ( !MWInit::classExists( $maintClass ) ) {
 				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
@@ -456,7 +456,7 @@ abstract class Maintenance {
 		}
 
 		# Make sure we can handle script parameters
-		if ( !ini_get( 'register_argc_argv' ) ) {
+		if ( !function_exists( 'hphp_thread_set_warmup_enabled' ) && !ini_get( 'register_argc_argv' ) ) {
 			$this->error( 'Cannot get command line arguments, register_argc_argv is set to false', true );
 		}
 
