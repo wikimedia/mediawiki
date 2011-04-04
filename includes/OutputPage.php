@@ -190,11 +190,7 @@ class OutputPage {
 	/// should be private. To include the variable {{REVISIONID}}
 	var $mRevisionId = null;
 
-	/// Stores a Title object (of the current page).
-	protected $mTitle = null;
-
-	/// Stores a User object (the one the page is being rendered for)
-	protected $mUser = null;
+	private $mContext;
 
 	/**
 	 * An array of stylesheet filenames (relative from skins path), with options
@@ -217,6 +213,19 @@ class OutputPage {
 		'Accept-Encoding' => array( 'list-contains=gzip' ),
 		'Cookie' => null
 	);
+
+	/**
+	 * Constructor for OutputPage. This should not be called directly.
+	 * Instead a new RequestContext should be created and it will implicitly create
+	 * a OutputPage tied to that context.
+	 */
+	function __construct( RequestContext $context=null ) {
+		if ( !isset($context) ) {
+			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
+			wfDeprecated( __METHOD__ );
+		}
+		$this->mContext = $context;
+	}
 
 	/**
 	 * Redirect to $url rather than displaying the normal page
@@ -749,15 +758,6 @@ class OutputPage {
 	 */
 	public function getPageTitle() {
 		return $this->mPagetitle;
-	}
-
-	/**
-	 * Set the RequestContext used in this instance
-	 *
-	 * @param RequestContext $context
-	 */
-	public function setContext( RequestContext $context ) {
-		$this->mContext = $context;
 	}
 
 	/**
