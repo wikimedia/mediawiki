@@ -2376,15 +2376,6 @@ class OutputPage {
 		$resourceLoader = $this->getResourceLoader();
 		foreach ( (array) $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
-			# Check that we're allowed to include this module on this page
-			if ( ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS )
-					&& $only == ResourceLoaderModule::TYPE_SCRIPTS )
-				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
-					&& $only == ResourceLoaderModule::TYPE_STYLES )
-				)
-			{
-				continue;
-			}
 
 			$group = $module->getGroup();
 			if ( !isset( $groups[$group] ) ) {
@@ -2728,8 +2719,8 @@ class OutputPage {
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
 		foreach ( array( 'site', 'private', 'user' ) as $group ) {
-			$ret .= $this->makeResourceLoaderLink( $sk, $styles[$group],
-					ResourceLoaderModule::TYPE_STYLES
+			$ret .= $this->makeResourceLoaderLink(
+				$sk, array_merge( $styles['site'], $styles['user'] ), 'styles'
 			);
 		}
 		return $ret;
