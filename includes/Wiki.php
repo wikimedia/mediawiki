@@ -56,10 +56,8 @@ class MediaWiki {
 		return wfSetVar( $this->context->output, $x );
 	}
 
-	public function __construct( WebRequest &$request, /*OutputPage*/ &$output ){
-		$this->context = new RequestContext();
-		$this->context->setRequest( $request );
-		$this->context->setOutput( $output );
+	public function __construct( RequestContext $context ){
+		$this->context = $context;
 		$this->context->setTitle( $this->parseTitle() );
 	}
 
@@ -68,9 +66,8 @@ class MediaWiki {
 	 * Performs the request too
 	 *
 	 * @param $article Article
-	 * @param $user User
 	 */
-	public function performRequestForTitle( &$article, &$user ) {
+	public function performRequestForTitle( &$article ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->context->request->getVal( 'printable' ) === 'yes' ) {
@@ -81,7 +78,7 @@ class MediaWiki {
 			&$this->context->title,
 			&$article,
 			&$this->context->output,
-			&$user,
+			&$this->context->user,
 			$this->context->request,
 			$this
 		) );
@@ -104,7 +101,7 @@ class MediaWiki {
 			$new_article = $this->initializeArticle();
 			if ( is_object( $new_article ) ) {
 				$article = $new_article;
-				$this->performAction( $article, $user );
+				$this->performAction( $article );
 			} elseif ( is_string( $new_article ) ) {
 				$this->context->output->redirect( $new_article );
 			} else {
@@ -454,14 +451,13 @@ class MediaWiki {
 	 * Perform one of the "standard" actions
 	 *
 	 * @param $article Article
-	 * @param $user User
 	 */
-	private function performAction( &$article, &$user ) {
+	private function performAction( &$article ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction', array(
 				$this->context->output, $article, $this->context->title,
-				$user, $this->context->request, $this ) ) )
+				$this->context->user, $this->context->request, $this ) ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return;
@@ -523,16 +519,16 @@ class MediaWiki {
 				}
 				/* Continue... */
 			case 'edit':
-				if ( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
+				if ( wfRunHooks( 'CustomEditor', array( $article, $this->context->user ) ) ) {
 					$internal = $this->context->request->getVal( 'internaledit' );
 					$external = $this->context->request->getVal( 'externaledit' );
 					$section = $this->context->request->getVal( 'section' );
 					$oldid = $this->context->request->getVal( 'oldid' );
 					if ( !$this->getVal( 'UseExternalEditor' ) || $action == 'submit' || $internal ||
-					   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
+					   $section || $oldid || ( !$this->context->user->getOption( 'externaleditor' ) && !$external ) ) {
 						$editor = new EditPage( $article );
 						$editor->submit();
-					} elseif ( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
+					} elseif ( $this->getVal( 'UseExternalEditor' ) && ( $external || $this->context->user->getOption( 'externaleditor' ) ) ) {
 						$mode = $this->context->request->getVal( 'mode' );
 						$extedit = new ExternalEdit( $article, $mode );
 						$extedit->edit();

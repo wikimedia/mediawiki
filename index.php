@@ -63,7 +63,8 @@ if ( !is_null( $maxLag ) ) {
 }
 
 # Initialize MediaWiki base class
-$mediaWiki = new MediaWiki( $wgRequest, $wgOut );
+$context = RequestContext::getMain();
+$mediaWiki = new MediaWiki( $context );
 
 # Set title from request parameters
 $wgTitle = $mediaWiki->getTitle();
@@ -89,14 +90,14 @@ if ( $wgUseFileCache && $wgTitle !== null ) {
 		$cache = new HTMLFileCache( $wgTitle, $action );
 		if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 			/* Check incoming headers to see if client has this cached */
-			if ( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+			if ( !$context->output->checkLastModified( $cache->fileCacheTime() ) ) {
 				$cache->loadFromFileCache();
 			}
 			# Do any stats increment/watchlist stuff
 			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
 			$wgArticle->viewUpdates();
-			# Tell $wgOut that output is taken care of
-			$wgOut->disable();
+			# Tell OutputPage that output is taken care of
+			$context->output->disable();
 			wfProfileOut( 'index.php-filecache' );
 			$mediaWiki->finalCleanup();
 			wfProfileOut( 'index.php' );
@@ -116,7 +117,7 @@ $mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
 $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
-$mediaWiki->performRequestForTitle( $wgArticle, $wgUser );
+$mediaWiki->performRequestForTitle( $wgArticle );
 $mediaWiki->finalCleanup();
 
 wfProfileOut( 'index.php' );
