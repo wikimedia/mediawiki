@@ -16,6 +16,11 @@ class RCCacheEntry extends RecentChange {
 	var $curlink , $difflink, $lastlink, $usertalklink, $versionlink;
 	var $userlink, $timestamp, $watched;
 
+	/**
+	 * @static
+	 * @param $rc RecentChange
+	 * @return RCCacheEntry
+	 */
 	static function newFromParent( $rc ) {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
@@ -28,6 +33,10 @@ class RCCacheEntry extends RecentChange {
  * Base class for all changes lists
  */
 class ChangesList {
+
+	/**
+	 * @var Skin
+	 */
 	public $skin;
 	protected $watchlist = false;
 	
@@ -83,7 +92,7 @@ class ChangesList {
 
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
-	 * @param $flags Associative array of 'flag' => Bool
+	 * @param $flags Array Associative array of 'flag' => Bool
 	 * @param $nothing String to use for empty space
 	 * @return String
 	 */
@@ -196,6 +205,11 @@ class ChangesList {
 		}
 	}
 
+	/**
+	 * @param $s
+	 * @param $rc RecentChange
+	 * @return void
+	 */
 	public function insertMove( &$s, $rc ) {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
@@ -253,6 +267,12 @@ class ChangesList {
 		) . ')';
 	}
 
+	/**
+	 * @param $s
+	 * @param $rc RecentChange
+	 * @param $unpatrolled
+	 * @return void
+	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
 		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
@@ -293,6 +313,13 @@ class ChangesList {
 		$s .= ') . . ';
 	}
 
+	/**
+	 * @param $s
+	 * @param $rc RecentChange
+	 * @param $unpatrolled
+	 * @param $watched
+	 * @return void
+	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
 		global $wgContLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
@@ -334,23 +361,34 @@ class ChangesList {
 		$s .= " $articlelink";
 	}
 
+	/**
+	 * @param $s
+	 * @param $rc RecentChange
+	 * @return void
+	 */
 	public function insertTimestamp( &$s, $rc ) {
 		global $wgLang;
 		$s .= $this->message['semicolon-separator'] . 
 			$wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
-	/** Insert links to user page, user talk page and eventually a blocking link */
+	/** Insert links to user page, user talk page and eventually a blocking link
+	 *
+	 * @param $rc RecentChange
+	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
-		   $s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
+			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-		  $s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
-		  $s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		}
 	}
 
-	/** insert a formatted action */
+	/** insert a formatted action
+	 *
+	 * @param $rc RecentChange
+	 */
 	public function insertAction( &$s, &$rc ) {
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			if( $this->isDeleted( $rc, LogPage::DELETED_ACTION ) ) {
@@ -362,7 +400,10 @@ class ChangesList {
 		}
 	}
 
-	/** insert a formatted comment */
+	/** insert a formatted comment
+	 *
+	 * @param $rc RecentChange
+	 */
 	public function insertComment( &$s, &$rc ) {
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			if( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
@@ -432,7 +473,11 @@ class ChangesList {
 		}
 	}
 	
-	/** Inserts a rollback link */
+	/** Inserts a rollback link
+	 *
+	 * @param $s
+	 * @param $rc RecentChange
+	 */
 	public function insertRollback( &$s, &$rc ) {
 		global $wgUser;
 		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
@@ -453,6 +498,12 @@ class ChangesList {
 		}
 	}
 
+	/**
+	 * @param $s
+	 * @param $rc RecentChange
+	 * @param $classes
+	 * @return
+	 */
 	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty($rc->mAttribs['ts_tags']) )
 			return;
@@ -474,6 +525,8 @@ class ChangesList {
 class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
+	 *
+	 * @param $rc RecentChange
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgLang, $wgRCShowChangedSize, $wgUser;
@@ -584,6 +637,8 @@ class EnhancedChangesList extends ChangesList {
 	}
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
+	 *
+	 * @param $baseRC RecentChange
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
 		global $wgLang, $wgUser;
@@ -1053,6 +1108,8 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC ungrouped line.
+	 *
+	 * @param $rcObj RecentChange
 	 * @return String: a HTML formated line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
