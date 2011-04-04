@@ -31,7 +31,7 @@ class MakeHipHop extends Maintenance {
 
 		# Create a function that provides the HipHop compiler version, and 
 		# doesn't exist when MediaWiki is invoked in interpreter mode.
-		$version = trim( `hphp --version` );
+		$version = str_replace( PHP_EOL, ' ', trim( `hphp --version` ) );
 		file_put_contents(
 			"$buildDir/HipHopCompilerVersion.php",
 			"<" . "?php\n" .
@@ -48,7 +48,7 @@ class MakeHipHop extends Maintenance {
 			' --input-dir=' . wfEscapeShellArg( $IP ) .
 			' --input-list=' . wfEscapeShellArg( "$sourceDir/file-list.small" ) .
 			' --inputs=' . wfEscapeShellArg( "$buildDir/HipHopCompilerVersion.php" ) .
-			' --config=' . wfEscapeShellArg( "$sourceDir/compiler.conf" ) .
+			' -c ' . wfEscapeShellArg( "$sourceDir/compiler.conf" ) .
 			' --parse-on-demand=false' .
 			' --program=mediawiki-hphp' .
 			' --output-dir=' . wfEscapeShellArg( $outDir ) .
@@ -137,8 +137,23 @@ class MakeHipHop extends Maintenance {
 			passthru( $cmd );
 		}
 
+		# Determine appropriate make concurrency
+		# Compilation can take a lot of memory, let's assume that that is limiting.
+		$mem = false;
+		foreach ( file( '/proc/meminfo' ) as $line ) {
+			if ( preg_match( '/^MemTotal:\s+(\d+)\s+kB/', $line, $m ) ) {
+				$mem = intval( $m[1] );
+				break;
+			}
+		}
+		if ( $mem ) {
+			$procs = floor( $mem / 1000000 );
+		} else {
+			$procs = 1;
+		}
+		
 		# Run make. This is the slow step.
-		passthru( 'make' );
+		passthru( 'make -j' . wfEscapeShellArg( $procs ) );
 
 		$elapsed = time() - $startTime;
 
