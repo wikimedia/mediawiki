@@ -137,8 +137,9 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
-			if ( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 )
+			if ( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 ){
 				$wgContLang->findVariantLink( $title, $ret );
+			}
 		}
 		// For non-special titles, check for implicit titles
 		if ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) {
@@ -150,6 +151,10 @@ class MediaWiki {
 				$rev = Revision::newFromId( $oldid );
 				$ret = $rev ? $rev->getTitle() : $ret;
 			}
+		}
+
+		if( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ){
+			$ret = new BadTitle;
 		}
 		return $ret;
 	}
@@ -178,8 +183,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $this->context->title ) || ( ( $this->context->title->getDBkey() == '' ) && ( $this->context->title->getInterwiki() == '' ) ) ) {
-			$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
+		if ( $this->context->title instanceof BadTitle ) {
 			// Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 
@@ -193,12 +197,12 @@ class MediaWiki {
 				unset( $query['title'] );
 				$url = $this->context->title->getFullURL( $query );
 			}
-			/* Check for a redirect loop */
+			// Check for a redirect loop
 			if ( !preg_match( '/^' . preg_quote( $this->getVal( 'Server' ), '/' ) . '/', $url ) && $this->context->title->isLocal() ) {
 				// 301 so google et al report the target as the actual url.
 				$this->context->output->redirect( $url, 301 );
 			} else {
-				$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
+				$this->context->title = new BadTitle;
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
@@ -244,14 +248,14 @@ class MediaWiki {
 			}
 		// Special pages
 		} else if ( NS_SPECIAL == $this->context->title->getNamespace() ) {
-			/* actions that need to be made when we have a special pages */
+			// actions that need to be made when we have a special pages
 			SpecialPage::executePath( $this->context->title, $this->context );
 		} else {
-			/* No match to special cases */
+			// No match to special cases
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		/* Did match a special case */
+		// Did match a special case
 		wfProfileOut( __METHOD__ );
 		return true;
 	}
@@ -514,10 +518,10 @@ class MediaWiki {
 				break;
 			case 'submit':
 				if ( session_id() == '' ) {
-					/* Send a cookie so anons get talk message notifications */
+					// Send a cookie so anons get talk message notifications
 					wfSetupSession();
 				}
-				/* Continue... */
+				// Continue...
 			case 'edit':
 				if ( wfRunHooks( 'CustomEditor', array( $article, $this->context->user ) ) ) {
 					$internal = $this->context->request->getVal( 'internaledit' );

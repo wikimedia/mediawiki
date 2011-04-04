@@ -382,7 +382,6 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'AllMessages' ),
 	'Allpages'                  => array( 'AllPages' ),
 	'Ancientpages'              => array( 'AncientPages' ),
-	'Badtitle'                  => array( 'Badtitle' ),
 	'Blankpage'                 => array( 'BlankPage' ),
 	'Block'                     => array( 'Block', 'BlockIP', 'BlockUser' ),
 	'Blockme'                   => array( 'BlockMe' ),

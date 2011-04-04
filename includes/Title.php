@@ -4215,3 +4215,37 @@ class Title {
 		return $unprefixed;
 	}
 }
+
+/**
+ * A BadTitle is generated in MediaWiki::parseTitle() if the title is invalid; the
+ * software uses this to display an error page.  Internally it's basically a Title
+ * for an empty special page
+ */
+class BadTitle extends Title {
+	public function __construct(){
+		$this->mTextform = '';
+		$this->mUrlform = '';
+		$this->mDbkeyform = '';
+		$this->mNamespace = NS_SPECIAL; // Stops talk page link, etc, being shown
+	}
+
+	public function exists(){
+		return false;
+	}
+
+	public function getPrefixedText(){
+		return '';
+	}
+
+	public function getText(){
+		return '';
+	}
+
+	public function getPrefixedURL(){
+		return '';
+	}
+
+	public function getPrefixedDBKey(){
+		return '';
+	}
+}
