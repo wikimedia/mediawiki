@@ -30,30 +30,27 @@
  */
 class SpecialListGroupRights extends SpecialPage {
 
-	var $skin;
-
 	/**
 	 * Constructor
 	 */
 	function __construct() {
-		global $wgUser;
 		parent::__construct( 'Listgrouprights' );
-		$this->skin = $wgUser->getSkin();
 	}
 
 	/**
 	 * Show the special page
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgImplicitGroups;
+		global $wgImplicitGroups;
 		global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups, $wgRemoveGroups;
 		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+		$out = $this->getOutput();
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( 'mediawiki.special' );
 
-		$wgOut->addHTML(
+		$out->addHTML(
 			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
 				'<tr>' .
 					Xml::element( 'th', null, wfMsg( 'listgrouprights-group' ) ) .
@@ -91,7 +88,7 @@ class SpecialListGroupRights extends SpecialPage {
 				// Do not make a link for the generic * group
 				$grouppage = htmlspecialchars( $groupnameLocalized );
 			} else {
-				$grouppage = $this->skin->link(
+				$grouppage = Linker::link(
 					Title::newFromText( $grouppageLocalized ),
 					htmlspecialchars( $groupnameLocalized )
 				);
@@ -99,7 +96,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 			if ( $group === 'user' ) {
 				// Link to Special:listusers for implicit group 'user'
-				$grouplink = '<br />' . $this->skin->link(
+				$grouplink = '<br />' . Linker::link(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					wfMsgHtml( 'listgrouprights-members' ),
 					array(),
@@ -107,7 +104,7 @@ class SpecialListGroupRights extends SpecialPage {
 					array( 'known', 'noclasses' )
 				);
 			} elseif ( !in_array( $group, $wgImplicitGroups ) ) {
-				$grouplink = '<br />' . $this->skin->link(
+				$grouplink = '<br />' . Linker::link(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					wfMsgHtml( 'listgrouprights-members' ),
 					array(),
@@ -126,7 +123,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] ) ? $wgGroupsRemoveFromSelf[$group] : array();
 
 			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
-			$wgOut->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
+			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
 				"
 				<td>$grouppage$grouplink</td>
 					<td>" .
@@ -135,10 +132,10 @@ class SpecialListGroupRights extends SpecialPage {
 				'
 			) );
 		}
-		$wgOut->addHTML(
+		$out->addHTML(
 			Xml::closeElement( 'table' ) . "\n<br /><hr />\n"
 		);
-		$wgOut->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
+		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
 	}
 
 	/**
