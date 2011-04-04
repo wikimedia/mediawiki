@@ -33,11 +33,11 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut;
+		$out = $this->getOutput();
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->allowClickjacking();
-		$wgOut->addModuleStyles( 'mediawiki.special' );
+		$out->allowClickjacking();
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		$groups = $this->getPageGroups();
 
@@ -88,9 +88,9 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function outputPageList( $groups ) {
-		global $wgUser, $wgOut, $wgMiserMode;
+		global $wgMiserMode;
+		$out = $this->getOutput();
 
-		$sk = $wgUser->getSkin();
 		$includesRestrictedPages = false;
 		$includesCachedPages = false;
 
@@ -99,8 +99,8 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$total = count( $sortedPages );
 			$count = 0;
 
-			$wgOut->wrapWikiMsg( "<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n", "specialpages-group-$group" );
-			$wgOut->addHTML(
+			$out->wrapWikiMsg( "<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n", "specialpages-group-$group" );
+			$out->addHTML(
 				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) ."\n" .
 				Html::openElement( 'tr' ) . "\n" .
 				Html::openElement( 'td', array( 'style' => 'width:30%;vertical-align:top' ) ) . "\n" .
@@ -119,20 +119,20 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
-				$link = $sk->linkKnown( $title , htmlspecialchars( $desc ) );
-				$wgOut->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
+				$link = Linker::linkKnown( $title , htmlspecialchars( $desc ) );
+				$out->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
 
 				# Split up the larger groups
 				$count++;
 				if( $total > 3 && $count == $middle ) {
-					$wgOut->addHTML(
+					$out->addHTML(
 						Html::closeElement( 'ul' ) . Html::closeElement( 'td' ) .
 						Html::element( 'td', array( 'style' => 'width:10%' ), '' ) .
 						Html::openElement( 'td', array( 'style' => 'width:30%' ) ) . Html::openElement( 'ul' ) . "\n"
 					);
 				}
 			}
-			$wgOut->addHTML(
+			$out->addHTML(
 				Html::closeElement( 'ul' ) . Html::closeElement( 'td' ) .
 				Html::element( 'td', array( 'style' => 'width:30%' ), '' ) .
 				Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n"
@@ -140,7 +140,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		}
 
 		if ( $includesRestrictedPages || $includesCachedPages ) {
-			$wgOut->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
+			$out->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
 		}
 	}
 }
