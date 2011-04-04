@@ -33,8 +33,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	/* Protected Members */
 	
-	// In-object cache for modified time
-	protected $modifiedTime = array();
+	// In-object cache for title mtimes
+	protected $titleMtimes = array();
 	
 	/* Abstract Protected Methods */
 	
@@ -113,29 +113,59 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$hash = $context->getHash();
-		if ( isset( $this->modifiedTime[$hash] ) ) {
-			return $this->modifiedTime[$hash];
+		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
+		$mtimes = $this->getTitleMtimes( $context );
+		if ( count( $mtimes ) ) {
+			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
 		}
+		return $modifiedTime;
+	}
+	
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		return count( $this->getTitleMtimes( $context ) ) == 0;
+	}
+	
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
+	public function getFlip( $context ) {
+		global $wgContLang;
 
+		return $wgContLang->getDir() !== $context->getDirection();
+	}
+	
+	/**
+	 * Get the modification times of all titles that would be loaded for
+	 * a given context.
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return array( prefixed DB key => UNIX timestamp ), nonexistent titles are dropped
+	 */
+	protected function getTitleMtimes( ResourceLoaderContext $context ) {
+		$hash = $context->getHash();
+		if ( isset( $this->titleMtimes[$hash] ) ) {
+			return $this->titleMtimes[$hash];
+		}
+		
+		$this->titleMtimes[$hash] = array();
 		$batch = new LinkBatch;
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
 			$batch->addObj( Title::newFromText( $titleText ) );
 		}
-
-		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
+		
 		if ( !$batch->isEmpty() ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$latest = $dbr->selectField( 'page', 'MAX(page_touched)',
+			$res = $dbr->select( 'page',
+				array( 'page_namespace', 'page_title', 'page_touched' ),
 				$batch->constructSet( 'page', $dbr ),
-				__METHOD__ );
-
-			if ( $latest ) {
-				$modifiedTime = wfTimestamp( TS_UNIX, $latest );
+				__METHOD__
+			);
+			foreach ( $res as $row ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$this->titleMtimes[$hash][$title->getPrefixedDBkey()] =
+					wfTimestamp( TS_UNIX, $row->page_touched );
 			}
 		}
-
-		$this->modifiedTime[$hash] = $modifiedTime;
-		return $modifiedTime;
+		return $this->titleMtimes[$hash];
 	}
 }
