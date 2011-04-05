@@ -80,7 +80,6 @@ class RebuildFileCache extends Maintenance {
 					continue; // broken title?
 				}
 				$wgOut = $context->output; // set display title
-				$wgUser->getSkin( $wgTitle ); // set skin title
 				$wgArticle = new Article( $wgTitle );
 				// If the article is cacheable, then load it
 				if ( $wgArticle->isFileCacheable() ) {
