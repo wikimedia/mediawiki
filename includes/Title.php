@@ -2672,7 +2672,7 @@ class Title {
 		}
 		$fragment = strstr( $dbkey, '#' );
 		if ( false !== $fragment ) {
-			$this->setFragment( preg_replace( '/^#_*/', '#', $fragment ) );
+			$this->setFragment( $fragment );
 			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
 			# remove whitespace again: prevents "Foo_bar_#"
 			# becoming "Foo_bar_"
