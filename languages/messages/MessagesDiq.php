@@ -140,13 +140,13 @@ $messages = array(
 'category-article-count-limited' => '{{PLURAL:$1|Pela cêrêne|$1 Pelê cêrêni}} na kategoriye derê.',
 'category-file-count'            => '{{PLURAL:$2|Na kategoriye de tenya dosya cêrêne esta.|Teberê $2 ra pêro, {{PLURAL:$1|dosya cêrêne|$1 dosyê cêrêni}} na kategoriye derê.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Dosya cêrêne|$1 Dosyê cêrêni}} na kategoriye derê.',
-'listingcontinuesabbrev'         => '↓ dewam',
+'listingcontinuesabbrev'         => 'dewam',
 'index-category'                 => 'Pelê endeksıni',
 'noindex-category'               => 'Pelê ke endeksıni niyê',
 
 'linkprefix'        => "'''MediaWiki niya ro.'''",
-'mainpagetext'      => "↓ '''MediaWiki vıst ra ser, vıraziya.'''",
-'mainpagedocfooter' => '↓ Seba gurenayış u eyarkerdışê Wiki-Softwarey [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
+'mainpagetext'      => "'''MediaWiki vıst ra ser, vıraziya.'''",
+'mainpagedocfooter' => 'Seba gurenayış u eyarkerdışê Wiki-Softwarey [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 
 == Yardımê Sıftekerdışi ==
 
@@ -154,9 +154,9 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-dayışê postey]',
 
-'about'         => '↓ Heqa',
-'article'       => '↓ Pela tedeesteyan',
-'newwindow'     => '↓ (zerrey pençereyê dê newey de beno a)',
+'about'         => 'Heqa',
+'article'       => 'Pela tedeesteyan',
+'newwindow'     => '(zerrey pençereyê dê newey de beno a)',
 'cancel'        => 'Texelnayış',
 'moredotdotdot' => 'Vêşêri...',
 'mypage'        => 'Pela mı',
@@ -627,7 +627,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'userjsyoucanpreview'              => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'usercsspreview'                   => "'''şıma tena verqaydê dosyayê CSS vineni.''' '''Dosyayê Karberi CSS hema qayd nebiyo!'''",
 'userjspreview'                    => "'''şıma tena test keni ya ziverqayn seyr keni - karberê JavaScript'i hema qayd nebiyo.'''",
-'userinvalidcssjstitle'            => "↓ '''Teme:''' Mewzuyê \"\$1\" çıniyo.
+'userinvalidcssjstitle'            => "'''Teme:''' Mewzuyê \"\$1\" çıniyo.
 Dosyanê be namey .css u .js'i de herfa werdiye bıgurêne, mesela herında {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 'updated'                          => '(Rocaniye biyo)',
 'note'                             => "'''Not:'''",
@@ -1587,13 +1587,13 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # Statistics
 'statistics'                   => 'İstatistiki',
-'statistics-header-pages'      => '↓ İstatistikê pele',
+'statistics-header-pages'      => 'İstatistikê pele',
 'statistics-header-edits'      => 'Îstatistiksê vurnayîşî',
 'statistics-header-views'      => 'Îstatistiksê vînayîşî',
 'statistics-header-users'      => 'Îstatistiksê karberî',
 'statistics-header-hooks'      => 'Îstatistiksê binî',
 'statistics-articles'          => 'Pelanê tedesteyî',
-'statistics-pages'             => '↓ Peli',
+'statistics-pages'             => 'Peli',
 'statistics-pages-desc'        => 'Pelanê hemî ke wîkî de estê, pelanê mineqeşeyî, redireksiyon ucb... dehil o.',
 'statistics-files'             => 'Dosyayê bar biye',
 'statistics-edits'             => 'Amarê vurnayîşî ke wextê {{SITENAME}} ronayîşî ra',
@@ -1601,7 +1601,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-views-total'       => 'Yekunî bivîne',
 'statistics-views-peredit'     => 'Ser her vurnayîşî de vînayîşî',
 'statistics-users'             => 'Qeyd biye [[Special:ListUsers|karberî]]',
-'statistics-users-active'      => '↓ Karberê aktifi',
+'statistics-users-active'      => 'Karberê aktifi',
 'statistics-users-active-desc' => '{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.',
 'statistics-mostpopular'       => 'Pelayanê ke tewr zafî vînî biye',
 

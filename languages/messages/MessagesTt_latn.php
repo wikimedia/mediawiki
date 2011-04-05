@@ -1750,7 +1750,7 @@ $1',
 'ipbexpiry'                  => 'Betä:',
 'ipbreason'                  => 'Säbäp:',
 'ipbreasonotherlist'         => 'Başqa säbäp',
-'ipbreason-dropdown'         => '↓ * Qısunıñ ğädättäge säbäpläre
+'ipbreason-dropdown'         => '* Qısunıñ ğädättäge säbäpläre
 ** Yalğan mäğlümat kertü
 ** Bitlärneñ eçtälegen sörtü
 ** Tışqı saytlarğa spam-sıltamalar

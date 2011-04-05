@@ -1261,7 +1261,7 @@ Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www
 'tooltip-t-whatlinkshere'         => "Nyiga wano okulaba empapula ez'oku wiki zonna eziriko enyunzi ezikuggusa ku luno",
 'tooltip-t-recentchangeslinked'   => "Enkyukakyuka mpya ku mpapula z'osobola okuggukako okuva ku luno",
 'tooltip-feed-rss'                => "Nyiga wano okulaba omukutu gw'amawulire agafa ku lupapula luno ogw'ekika kya RSS",
-'tooltip-feed-atom'               => "↓ Nyiga wano okulaba omukutu gw'amawulire agafa ku lupapula luno ogw'ekika kya Atom",
+'tooltip-feed-atom'               => "Nyiga wano okulaba omukutu gw'amawulire agafa ku lupapula luno ogw'ekika kya Atom",
 'tooltip-t-contributions'         => "Nyiga wano ob'oyagala okumanya memba ono by'akozeyo ku wiki eno",
 'tooltip-t-emailuser'             => "Nyiga wano ob'oyagala memba ono okumusindikira e-mail",
 'tooltip-t-upload'                => "Nyiga wano ob'oyagala okuteekayo fayiro ku wiki eno",

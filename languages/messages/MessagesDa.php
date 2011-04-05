@@ -1551,7 +1551,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'filename-tooshort'           => 'Filnavnet er for kort.',
 'filetype-banned'             => 'Denne type fil er ikke tilladt',
 'verification-error'          => 'Denne fil bestod ikke fil verifikationen.',
-'hookaborted'                 => '↓ Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.',
+'hookaborted'                 => 'Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.',
 'illegal-filename'            => 'Filnavnet er ikke tilladt.',
 'overwrite'                   => 'Overskrivning af en eksisterende fil er ikke tilladt.',
 'unknown-error'               => 'En ukendt fejl opstod.',

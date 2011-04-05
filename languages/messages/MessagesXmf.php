@@ -365,7 +365,7 @@ $messages = array(
 # Search results
 'searchresults'             => 'გორუაშ მოღალირობეფ',
 'searchresults-title'       => '"$1"–იშ გორუაშ მოღალირობეფ',
-'searchresulttext'          => '↓ {{SITENAME}}–იშ ოგორალო უმოს იმფორმაციოაშო  ქოძირით  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'          => '{{SITENAME}}–იშ ოგორალო უმოს იმფორმაციოაშო  ქოძირით  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'თქვა დოგორით \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ირი ხასილა, დოჭყაფილი "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ირი ხასილა, გინორცხილ "$1"-შა]])',
 'searchsubtitleinvalid'     => "თქვა გორუნდით '''$1'''",
 'notitlematches'            => 'ვა უხუჯანს ნამუთინი ხასილაშ ჯოხო',
@@ -446,8 +446,8 @@ $messages = array(
 # Upload
 'upload'        => 'ფაილიშ ეშახარგუა',
 'uploadbtn'     => 'ფაილიშ გეთება',
-'uploadlogpage' => '↓ ეხარგუაშ ორეგისტრირებელ ჟურნალ',
-'uploadedimage' => '↓ ეხარგელი რე "[[$1]]"',
+'uploadlogpage' => 'ეხარგუაშ ორეგისტრირებელ ჟურნალ',
+'uploadedimage' => 'ეხარგელი რე "[[$1]]"',
 
 # Special:ListFiles
 'listfiles'      => 'სურათეფიშ ერკებულ',
@@ -774,7 +774,7 @@ $messages = array(
 # Media information
 'file-info-size' => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
 'file-nohires'   => '<small> უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.</small>',
-'svg-long-desc'  => '↓ SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
+'svg-long-desc'  => 'SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
 'show-big-image' => 'რსული გიშაგორანჯალა',
 
 # Special:NewFiles

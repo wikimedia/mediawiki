@@ -515,7 +515,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 'yourdiff'                         => 'Diferencias',
 'copyrightwarning'                 => "Si puede ser, observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detalyos en $1). Si no queres que la gente endereche tus tekstos escritos sin piadad i los esparta libberamente, alora no los metas aquí. También nos estás asegurando ansí que escribites este teksto tu mismo i sos el dueño de los derechos de autor, o lo copiates desde el dominio público u otra fuente libbero.'''¡QUE N0 USES TEKSTOS ESCRITOS CON COPYRIGHT SIN PERMISSIÓN!'''<br />",
 'templatesused'                    => '{{PLURAL:$1|El xabblón usado|Los xabblones usados}} en esta hoja:',
-'templatesusedpreview'             => '↓ {{PLURAL:$1|El xabblón usado|Los xabblones usados}} en esta vista:',
+'templatesusedpreview'             => '{{PLURAL:$1|El xabblón usado|Los xabblones usados}} en esta vista:',
 'template-protected'               => '(guardada)',
 'template-semiprotected'           => '(media guardada)',
 'hiddencategories'                 => 'Esta hoja es un miembro de {{PLURAL:$1|1 kateggoría escondida|$1 kateggorías escondidas}}:',
@@ -747,7 +747,7 @@ Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'
 'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
 # Special:LinkSearch
-'linksearch' => '↓ Linkes eksternos',
+'linksearch' => 'Linkes eksternos',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Registro de creación de usuarios',

@@ -444,7 +444,7 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 
 Des Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten  „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.',
 'newarticle'                       => '(Naich)',
-'newarticletext'                   => "↓ Du bist am Link zua ner Saiten gfóigt, dé néd vurhånden is.
+'newarticletext'                   => "Du bist am Link zua ner Saiten gfóigt, dé néd vurhånden is.
 Das d' dé Saiten åléng kååst, trog dain Text a dé untensteehate Boxen ai (schau unter da [[{{MediaWiki:Helppage}}|Hüifssaiten]] fyr merer Informaziónen).
 Bist du föischlicherwais dodan, dånn druck dé '''Zruck'''-Schoitflächen vo daim Browser.",
 'anontalkpagetext'                 => "---- ''De Seiten werd dodazua hergnumma, am ned-ågmöiderten Benutzer Nochrichten z' hinterlossen.
@@ -939,7 +939,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere'            => 'Links auf de Saiten',
 'whatlinkshere-title'      => 'Seitn, de nåch „$1“ valinkn',
 'whatlinkshere-page'       => 'Seitn:',
-'linkshere'                => "↓ Dé foiganden Saiten valinken auf '''„[[:$1]]“''':",
+'linkshere'                => "Dé foiganden Saiten valinken auf '''„[[:$1]]“''':",
 'isredirect'               => 'Weiterleitungsseitn',
 'istemplate'               => 'Voalãngeibindung',
 'isimage'                  => 'Datailink',
@@ -948,13 +948,13 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere-links'      => '← Vaweise',
 'whatlinkshere-hideredirs' => 'Weidaleitungen $1',
 'whatlinkshere-hidetrans'  => 'Voalãngeibindungen $1',
-'whatlinkshere-hidelinks'  => '↓ Links $1',
-'whatlinkshere-hideimages' => '↓ Datailinks $1',
+'whatlinkshere-hidelinks'  => 'Links $1',
+'whatlinkshere-hideimages' => 'Datailinks $1',
 'whatlinkshere-filters'    => 'Füita',
 
 # Block/unblock
 'blockip'                  => 'IP-Adress/Benytzer sperrn',
-'blockip-title'            => '↓ Benytzer sperrn',
+'blockip-title'            => 'Benytzer sperrn',
 'blockip-legend'           => 'IP-Adresse/Benutzer sperrn',
 'blockiptext'              => "Mid dem Formular sperrst a IP-Adress oder an Benytzernåmen, das vo durten aus koane Endarungen mer vurgnumma wern kennan.
 Des soid nur dafoing, um an Vandalismus z' vahindern und in Yweraistimmung mid d' [[{{MediaWiki:Policy-url}}|Richtlinien]].
@@ -1201,7 +1201,7 @@ Darauf foignde Links auf Seitn in da söiwn Zeun definian Ausnãhmen, in denen e
 
 # External editor support
 'edit-externally'      => 'De Datei mid am exteanen Programm beåawatn',
-'edit-externally-help' => '↓ (Schau unter [http://www.mediawiki.org/wiki/Manual:External_editors Installaziónsåwaisungen] fyr waiderne Informaziónen)',
+'edit-externally-help' => '(Schau unter [http://www.mediawiki.org/wiki/Manual:External_editors Installaziónsåwaisungen] fyr waiderne Informaziónen)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ålle',

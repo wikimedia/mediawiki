@@ -964,8 +964,8 @@ Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}
 'rev-deleted-text-unhide'     => "Ova revizija stranice je '''obrisana'''.
 Detalji vezani za ovo brisanje bi se mogli nalaziti [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].
 Pošto ste administrator, takođe možete [$1 pogledati ovu reviziju], ukoliko želite.",
-'rev-deleted-text-view'       => "Ova revizija stranice je '''obrisana'''.
-Pošto ste administrator, možete je videti. Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
+'rev-deleted-text-view'       => "Izmena ove stranice je '''obrisana'''.
+Pošto ste administrator, možete je videti. Detalje možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
 'rev-deleted-no-diff'         => "Ne možete videti ovu razliku izmena zato što je jedna od revizija '''obrisana'''.
 Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
 'rev-suppressed-no-diff'      => "Ne možete da vidite ovaj dif zato što je jedna od revizija '''obrisana'''.",
@@ -1314,7 +1314,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'right-reupload'              => 'Presnimavanje postojećeg fajla',
 'right-reupload-own'          => 'Presnimavanje sopstvenog postojećeg fajla',
 'right-reupload-shared'       => 'lokalno prepisivanje fajlova na deljenom skladištu medija',
-'right-upload_by_url'         => 'Slanje datoteka preko URL adrese',
+'right-upload_by_url'         => 'slanje datoteka preko URL adrese',
 'right-purge'                 => 'čišćenje keša stranice bez potvrde',
 'right-autoconfirmed'         => 'menjanje poluzaštićenih stranica',
 'right-bot'                   => 'korisnik je zapravo automatski proces (bot)',
@@ -1323,12 +1323,12 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'right-writeapi'              => 'pisanje API-ja',
 'right-delete'                => 'brisanje stranica',
 'right-bigdelete'             => 'brisanje stranica sa velikom istorijom',
-'right-deleterevision'        => 'brisanje i vraćanje posebnih verzija stranica',
+'right-deleterevision'        => 'brisanje i vraćanje određenih izmena stranica',
 'right-deletedhistory'        => 'gledanje obrisanih verzija stranica bez teksta koji je vezan za njih',
 'right-browsearchive'         => 'Pretraživanje obrisanih stranica',
 'right-undelete'              => 'Vraćanje obrisane stranice',
-'right-suppressrevision'      => 'pregledanje i vraćanje verzija sakrivenih za administratore',
-'right-suppressionlog'        => 'Pregled lične istorije',
+'right-suppressrevision'      => 'pregledanje i vraćanje izmena koje su sakrivene od strane administratora',
+'right-suppressionlog'        => 'pregledanje lične istorije',
 'right-block'                 => 'zabrana menjenja strana drugim saradnicima',
 'right-blockemail'            => 'zabrana slanja imejla saradnicima',
 'right-hideuser'              => 'zabrana korisničkog imena skrivanjem od javnosti',
@@ -1340,7 +1340,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'right-editusercssjs'         => 'menjanje tuđih CSS i JS fajlova',
 'right-editusercss'           => 'menjanje tuđih CSS fajlova',
 'right-edituserjs'            => 'menjanje tuđih JS fajlova',
-'right-rollback'              => 'brzo vraćanje izmena poslednjeg korisnika koji je menjao konkretnu stranicu',
+'right-rollback'              => 'brzo vraćanje izmena poslednjeg korisnika koji je menjao određenu stranicu',
 'right-markbotedits'          => 'označavanje vraćenih strana kao izmena koje je napravio bot',
 'right-noratelimit'           => 'ne biti pogođen limitima',
 'right-import'                => 'uvoženje strana s drugih vikija',

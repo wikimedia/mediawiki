@@ -2801,6 +2801,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 iwwerpréift déi korrekt Installatioun vu LaTeX an dvipng (oder dvips + gs + convert)",
 'math_bad_tmpdir'       => 'Den temporäre Repertire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
 'math_bad_output'       => 'Den Zilrepertoire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
+'math_notexvc'          => 'Den texvc Programm feelt: Liest w.e.g. math/README fir en anzestellen.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Als kontrolléiert markéieren',

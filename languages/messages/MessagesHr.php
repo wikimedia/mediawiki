@@ -941,7 +941,7 @@ Molimo pokušajte ponovno. Ako i dalje ne bude uspijevalo, pokušajte se [[Speci
 'token_suffix_mismatch'            => "'''Vaše uređivanje je odbačeno jer je Vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.'''
 Stoga je uređivanje odbačeno da se spriječi uništavanje teksta stranice.
 To se ponekad događa kad rabite neispravan web-baziran anonimni posrednik (proxy).",
-'edit_form_incomplete'             => "'''Neki dijelovi obrasca uređivanja nisu dostupni do servera; dva puta provjerite da li su izmjene netaknute i pokušajte ponovno'''",
+'edit_form_incomplete'             => "'''Neki dijelovi obrasca za uređivanja nisu dostigli do poslužitelja; provjerite jesu li izmjene netaknute i pokušajte ponovno.'''",
 'editing'                          => 'Uređujete $1',
 'editingsection'                   => 'Uređujete $1 (odlomak)',
 'editingcomment'                   => 'Uređujete $1 (novi odlomak)',
@@ -1394,7 +1394,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'email'                         => 'Adresa elektroničke pošte *',
 'prefs-help-realname'           => 'Pravo ime nije obvezno. Ako ga navedete, bit će korišteno za pravnu atribuciju Vaših doprinosa.',
 'prefs-help-email'              => 'E-mail adresa nije obvezna, ali je potrebna za obnovu lozinke u slučaju da ju zaboravite.',
-'prefs-help-email-others'       => 'Također možete odabrati da vas ostali kontaktiraju preko vaše korisničke ili stranice za razgovor bez javnog otkrivanja vašeg identiteta.',
+'prefs-help-email-others'       => 'Također možete odabrati da vas ostali kontaktiraju preko vaše suradničke ili stranice za razgovor bez javnog otkrivanja vašeg identiteta.',
 'prefs-help-email-required'     => 'Potrebno je navesti adresu e-pošte (e-mail).',
 'prefs-info'                    => 'Osnovni podaci',
 'prefs-i18n'                    => 'Internacionalizacija',
@@ -1705,8 +1705,8 @@ Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod
 'php-uploaddisabledtext'      => 'Postavljanja datoteka su onemogućena u PHP-u. Molimo provjerite postavke za postavljanje datoteka.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptu, što može dovesti do grešaka u web pregledniku.',
 'uploadvirus'                 => 'Datoteka sadrži virus! Podrobnije: $1',
-'uploadjava'                  => 'Datoteka je ZIP koja sadrži Java . class datotoeku. 
-Prenošenje Java datoteka nije dopušteno, jer mogu izazvati zaobilazak sigurnosnih ograničenja.',
+'uploadjava'                  => 'Datoteka je ZIP koja sadrži Java .class datotoeku. 
+Postavljanje Java datoteka nije dopušteno, jer mogu izazvati zaobilazak sigurnosnih ograničenja.',
 'upload-source'               => 'Izvorna datoteka',
 'sourcefilename'              => 'Ime datoteke na Vašem računalu:',
 'sourceurl'                   => 'URL izvora:',
@@ -2482,7 +2482,7 @@ vandalizirane).',
 'blockipsuccesstext'              => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
 Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'ipb-blockingself'                => 'Blokirat ćete se! Jeste li sigurni da to želite?',
-'ipb-confirmhideuser'             => ' Vi ćete upravo blokirati korisnika koji ima mogućnost "sakrivanje korisnika" omogućenu. To će zabraniti korisničko ime na svim popisima i unosima u zapisniku. Jeste li sigurni da želite to učiniti?',
+'ipb-confirmhideuser'             => 'Upravo ćete blokirati suradnika koji ima mogućnost "sakrij suradnika" omogućenu. To će sakriti suradničko ime na svim popisima i evidencijama. Jeste li sigurni da želite to učiniti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
 'ipb-unblock-addr'                => 'Odblokiraj $1',
 'ipb-unblock'                     => 'Odblokiraj suradničko ime ili IP adresu',
