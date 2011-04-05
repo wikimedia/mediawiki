@@ -38,7 +38,7 @@ class MathRenderer {
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
 			# New lines are replaced with spaces, which avoids confusing our parser (bugs 23190, 22818)
-			return ('<span class="tex">$ ' . str_replace( "\n", " ", htmlspecialchars( $this->tex ) ) . ' $</span>');
+			return ('<span class="tex" dir="ltr">$ ' . str_replace( "\n", " ", htmlspecialchars( $this->tex ) ) . ' $</span>');
 		}
 		if( $this->tex == '' ) {
 			return; # bug 8372
@@ -288,7 +288,9 @@ class MathRenderer {
 		} else {
 			return Xml::tags( 'span',
 				$this->_attribs( 'span',
-					array( 'class' => 'texhtml' ) ),
+					array( 'class' => 'texhtml',
+						'dir' => 'ltr'
+					) ),
 				$this->html );
 		}
 	}
