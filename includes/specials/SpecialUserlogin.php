@@ -639,6 +639,14 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
+		$abortError = '';
+		if( !wfRunHooks( 'AbortAutoAccount', array( $user, &$abortError ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug( "LoginForm::attemptAutoCreate: a hook blocked creation: $abortError\n" );
+			$this->mAbortLoginErrorMsg = $abortError;
+			return self::ABORTED;
+		}
+
 		wfDebug( __METHOD__ . ": creating account\n" );
 		$this->initUser( $user, true );
 		return self::SUCCESS;

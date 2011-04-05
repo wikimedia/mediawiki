@@ -120,6 +120,12 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * The parser now attempts to output markers for editsection tokens and defer the
   rendering of them post-cache to reduce parser cache fragmentation and ensure
   skin customizability of edit section links.
+* (bug 24755) AuthPlugin auto-creation of local accounts can now be aborted by
+  other extensions by handling the 'AbortAutoAccount' hook, similar to the
+  'AbortNewAccount' triggered by explicit account creations. (They are separate
+  to avoid loops and confusion; auth plugins like CentralAuth need to handle
+  AbortNewAccount separately.
+
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
