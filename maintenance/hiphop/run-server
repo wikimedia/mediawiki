@@ -1,9 +1,11 @@
 #!/bin/bash
 
 sourceDir=`dirname "$0"`
+sourceRoot=`readlink -f "$sourceDir/../.."`
 
 "$sourceDir"/build/persistent/mediawiki-hphp \
 	-c "$sourceDir/server.conf" \
+	-v Server.SourceRoot="$sourceRoot" \
 	--mode=server \
 	--port=8080
 
