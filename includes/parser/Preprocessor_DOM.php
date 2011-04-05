@@ -1420,14 +1420,14 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
  * @ingroup Parser
  */
 class PPNode_DOM implements PPNode {
-	var $node;
+	var $node, $xpath;
 
 	function __construct( $node, $xpath = false ) {
 		$this->node = $node;
 	}
 
-	function __get( $name ) {
-		if ( $name == 'xpath' ) {
+	function getXPath() {
+		if ( $this->xpath === null ) {
 			$this->xpath = new DOMXPath( $this->node->ownerDocument );
 		}
 		return $this->xpath;
@@ -1458,7 +1458,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	function getChildrenOfType( $type ) {
-		return new self( $this->xpath->query( $type, $this->node ) );
+		return new self( $this->getXPath()->query( $type, $this->node ) );
 	}
 
 	function getLength() {
@@ -1489,8 +1489,9 @@ class PPNode_DOM implements PPNode {
 	 *    value         PPNode value
 	 */
 	function splitArg() {
-		$names = $this->xpath->query( 'name', $this->node );
-		$values = $this->xpath->query( 'value', $this->node );
+		$xpath = $this->getXPath();
+		$names = $xpath->query( 'name', $this->node );
+		$values = $xpath->query( 'value', $this->node );
 		if ( !$names->length || !$values->length ) {
 			throw new MWException( 'Invalid brace node passed to ' . __METHOD__ );
 		}
@@ -1507,10 +1508,11 @@ class PPNode_DOM implements PPNode {
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 */
 	function splitExt() {
-		$names = $this->xpath->query( 'name', $this->node );
-		$attrs = $this->xpath->query( 'attr', $this->node );
-		$inners = $this->xpath->query( 'inner', $this->node );
-		$closes = $this->xpath->query( 'close', $this->node );
+		$xpath = $this->getXPath();
+		$names = $xpath->query( 'name', $this->node );
+		$attrs = $xpath->query( 'attr', $this->node );
+		$inners = $xpath->query( 'inner', $this->node );
+		$closes = $xpath->query( 'close', $this->node );
 		if ( !$names->length || !$attrs->length ) {
 			throw new MWException( 'Invalid ext node passed to ' . __METHOD__ );
 		}
@@ -1530,7 +1532,7 @@ class PPNode_DOM implements PPNode {
 	 * Split a <h> node
 	 */
 	function splitHeading() {
-		if ( !$this->nodeName == 'h' ) {
+		if ( $this->getName() !== 'h' ) {
 			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
 		}
 		return array(
