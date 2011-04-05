@@ -8248,7 +8248,8 @@ title=[[Main Page]]
 !!input
 [[#section]]
 !! result
-<a href="#section">#section</a>
+<p><a href="#section">#section</a>
+</p>
 !! end
 
 !! test
@@ -8260,6 +8261,24 @@ title=[[Main Page]]
 [[#section]]
 !! result
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
+!! end
+
+!! test
+Anchor starting with underscore
+!!input
+[[#_ref|One]]
+!! result
+<p><a href="#_ref">One</a>
+</p>
+!! end
+
+!! test
+Id starting with underscore
+!!input
+<div id="_ref"></div>
+!! result
+<div id="_ref"></div>
+
 !! end
 
 !! test
