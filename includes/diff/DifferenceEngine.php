@@ -844,7 +844,7 @@ CONTROL;
 			$limit = 100;
 			// We use ($limit + 1) so we can detect if there are > 100 authors
 			// in a given revision range. In that case, diff-multi-manyusers is used.
-			$numUsers = $this->mTitle->countAuthorsBetween( $oldid, $newid, $limit + 1 );
+			$numUsers = $this->mTitle->countAuthorsBetween( $oldid, $newid, $limit );
 			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
 		}
 		return ''; // nothing

@@ -3638,21 +3638,30 @@ class Title {
 	 * @return Revision|Null if page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$pageId = $this->getArticleId( $flags );
-		if ( !$pageId ) {
-			return null;
+		if ( $pageId ) {
+			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+			$row = $db->selectRow( 'revision', '*',
+				array( 'rev_page' => $pageId ),
+				__METHOD__,
+				array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )
+			);
+			if ( $row ) {
+				return new Revision( $row );
+			}
 		}
-		$row = $db->selectRow( 'revision', '*',
-			array( 'rev_page' => $pageId ),
-			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )
-		);
-		if ( !$row ) {
-			return null;
-		} else {
-			return new Revision( $row );
-		}
+		return null;
+	}
+
+	/**
+	 * Get the oldest revision timestamp of this page
+	 *
+	 * @param $flags Int Title::GAID_FOR_UPDATE
+	 * @return String: MW timestamp
+	 */
+	public function getEarliestRevTime( $flags = 0 ) {
+		$rev = $this->getFirstRevision( $flags );	
+		return $rev ? $rev->getTimestamp() : null;
 	}
 
 	/**
@@ -3666,37 +3675,31 @@ class Title {
 	}
 
 	/**
-	 * Get the oldest revision timestamp of this page
-	 *
-	 * @return String: MW timestamp
-	 */
-	public function getEarliestRevTime() {
-		$dbr = wfGetDB( DB_SLAVE );
-		if ( $this->exists() ) {
-			$min = $dbr->selectField( 'revision',
-				'MIN(rev_timestamp)',
-				array( 'rev_page' => $this->getArticleId() ),
-				__METHOD__ );
-			return wfTimestampOrNull( TS_MW, $min );
-		}
-		return null;
-	}
-
-	/**
-	 * Get the number of revisions between the given revision IDs.
+	 * Get the number of revisions between the given revision.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $old Int Revision ID.
-	 * @param $new Int Revision ID.
-	 * @return Int Number of revisions between these IDs.
+	 * @param $old int|Revision Old revision or rev ID (first before range)
+	 * @param $new int|Revision New revision or rev ID (first after range)
+	 * @return Int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween( $old, $new ) {
+		if ( !( $old instanceof Revision ) ) {
+			$old = Revision::newFromTitle( $this, (int)$old );
+		}
+		if ( !( $new instanceof Revision ) ) {
+			$new = Revision::newFromTitle( $this, (int)$new );
+		}
+		if ( !$old || !$new ) {
+			return 0; // nothing to compare
+		}
 		$dbr = wfGetDB( DB_SLAVE );
-		return (int)$dbr->selectField( 'revision', 'count(*)', array(
-				'rev_page' => intval( $this->getArticleId() ),
-				'rev_id > ' . intval( $old ),
-				'rev_id < ' . intval( $new )
-			), __METHOD__
+		return (int)$dbr->selectField( 'revision', 'count(*)',
+			array(
+				'rev_page' => $this->getArticleId(),
+				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
+			),
+			__METHOD__
 		);
 	}
 
@@ -3704,23 +3707,31 @@ class Title {
 	 * Get the number of authors between the given revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
-	 * @param $fromRevId Int Revision ID (first before range)
-	 * @param $toRevId Int Revision ID (first after range)
+	 * @param $old int|Revision Old revision or rev ID (first before range)
+	 * @param $new int|Revision New revision or rev ID (first after range)
 	 * @param $limit Int Maximum number of authors
-	 * @param $flags Int Title::GAID_FOR_UPDATE
-	 * @return Int
+	 * @return Int Number of revision authors between these revisions.
 	 */
-	public function countAuthorsBetween( $fromRevId, $toRevId, $limit, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		$res = $db->select( 'revision', 'DISTINCT rev_user_text',
+	public function countAuthorsBetween( $old, $new, $limit ) {
+		if ( !( $old instanceof Revision ) ) {
+			$old = Revision::newFromTitle( $this, (int)$old );
+		}
+		if ( !( $new instanceof Revision ) ) {
+			$new = Revision::newFromTitle( $this, (int)$new );
+		}
+		if ( !$old || !$new ) {
+			return 0; // nothing to compare
+		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
 			array(
 				'rev_page' => $this->getArticleID(),
-				'rev_id > ' . (int)$fromRevId,
-				'rev_id < ' . (int)$toRevId
+				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			), __METHOD__,
-			array( 'LIMIT' => $limit )
+			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
 		);
-		return (int)$db->numRows( $res );
+		return (int)$dbr->numRows( $res );
 	}
 
 	/**
