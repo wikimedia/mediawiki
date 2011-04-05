@@ -290,9 +290,14 @@ class UserMailer {
 			return $string;
 		}
 		$out = "=?$charset?Q?";
-		$out .= preg_replace( "/([$replace])/e", 'sprintf("=%02X",ord("$1"))', $string );
+		$out .= preg_replace_callback( "/([$replace])/", 
+			array( __CLASS__, 'quotedPrintableCallback' ), $string );
 		$out .= '?=';
 		return $out;
+	}
+
+	protected static function quotedPrintableCallback( $matches ) {
+		return sprintf( "=%02X", ord( $matches[1] ) );
 	}
 }
 
