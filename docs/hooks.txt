@@ -234,6 +234,10 @@ MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
 
+'AbortAutoAccount': Return false to cancel automated local account creation, where normally authentication against an external auth plugin would be creating a local account.
+$user: the User object about to be created (read-only, incomplete)
+$message: out parameter: error message to be displayed to user
+
 'AbortAutoblock': Return false to cancel an autoblock.
 $autoblockip: The IP going to be autoblocked.
 $block: The block from which the autoblock is coming.
@@ -256,7 +260,7 @@ $user: user who is doing the move
 $err: error message
 $reason: the reason for the move (added in 1.13)
 
-'AbortNewAccount': Return false to cancel account creation.
+'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
 
