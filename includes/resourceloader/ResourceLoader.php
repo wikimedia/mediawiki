@@ -29,6 +29,7 @@
 class ResourceLoader {
 
 	/* Protected Static Members */
+	protected static $filterCacheVersion = 2;
 
 	/** Array: List of module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
@@ -108,7 +109,7 @@ class ResourceLoader {
 	 * Runs JavaScript or CSS data through a filter, caching the filtered result for future calls.
 	 * 
 	 * Available filters are:
-	 *  - minify-js \see JavaScriptDistiller::stripWhiteSpace
+	 *  - minify-js \see JavaScriptMinifier::minify
 	 *  - minify-css \see CSSMin::minify
 	 * 
 	 * If $data is empty, only contains whitespace or the filter was unknown, 
@@ -119,8 +120,7 @@ class ResourceLoader {
 	 * @return String: Filtered data, or a comment containing an error message
 	 */
 	protected function filter( $filter, $data ) {
-		global $wgResourceLoaderMinifyJSVerticalSpace;
-
+		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform 
@@ -146,8 +146,9 @@ class ResourceLoader {
 		try {
 			switch ( $filter ) {
 				case 'minify-js':
-					$result = JavaScriptDistiller::stripWhiteSpace(
-						$data, $wgResourceLoaderMinifyJSVerticalSpace
+					$result = JavaScriptMinifier::minify( $data,
+						$wgResourceLoaderMinifierStatementsOnOwnLine,
+						$wgResourceLoaderMinifierMaxLineLength
 					);
 					break;
 				case 'minify-css':
@@ -462,7 +463,9 @@ class ResourceLoader {
 				// Scripts
 				$scripts = '';
 				if ( $context->shouldIncludeScripts() ) {
-					$scripts .= $module->getScript( $context ) . "\n";
+					// bug 27054: Append semicolon to prevent weird bugs
+					// caused by files not terminating their statements right
+					$scripts .= $module->getScript( $context ) . ";\n";
 				}
 
 				// Styles

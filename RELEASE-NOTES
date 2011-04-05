@@ -515,8 +515,10 @@ files are used instead.
 * (bug 27560) Search queries no longer fail in walloon language
 * (bug 27700) The upload protection can now also be set for files that do not
   exist.
+* (bug 28034) uploading file to local wiki when file exists on shared repository
+  (commons) gives spurious info in the warning message
+* Usernames get lost when selecting different sorts on Special:listfiles
 
-=== API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
 * BREAKING CHANGE: patrol token is no longer the same as edit token
 * BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead of integers
@@ -651,8 +653,8 @@ changes to languages because of Bugzilla reports.
 * (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br)
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
-  (Taraškievica).
-* (bug 23283) Native name for Old English -> Ænglisc.
+  (TaraÅ¡kievica).
+* (bug 23283) Native name for Old English -> Ã†nglisc.
 * (bug 23364) Native name for Azerbaijani -> Az?rbaycanca.
 * (bug 24593) Native name for Sorani now uses only Arabic script.
 * (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto.
