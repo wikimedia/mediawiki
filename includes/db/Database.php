@@ -2987,7 +2987,7 @@ EOT;
 	}
 
 	function fileCachedPage() {
-		global $wgTitle, $title, $wgLang, $wgOut;
+		global $wgTitle, $wgLang, $wgOut;
 
 		if ( $wgOut->isDisabled() ) {
 			return; // Done already?
@@ -3001,8 +3001,6 @@ EOT;
 
 		if ( $wgTitle ) {
 			$t =& $wgTitle;
-		} elseif ( $title ) {
-			$t = Title::newFromURL( $title );
 		} else {
 			$t = Title::newFromText( $mainpage );
 		}
