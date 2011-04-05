@@ -193,12 +193,13 @@ abstract class FileRepo {
 		if ( $time ) {
 			if ( $this->oldFileFactoryKey ) {
 				return call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
-			} else {
-				return false;
 			}
 		} else {
-			return call_user_func( $this->fileFactoryKey, $sha1, $this );
+			if ( $this->fileFactoryKey ) {
+				return call_user_func( $this->fileFactoryKey, $sha1, $this );
+			}
 		}
+		return false;
 	}
 
 	/**
@@ -228,7 +229,7 @@ abstract class FileRepo {
 		# Now try an old version of the file
 		if ( $time !== false ) {
 			$img = $this->newFileFromKey( $sha1, $time );
-			if ( $img->exists() ) {
+			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
 				} else if ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {

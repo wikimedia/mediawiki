@@ -606,8 +606,12 @@ window.mediaWiki = new ( function( $ ) {
 					}
 				}
 			} catch ( e ) {
-				mediaWiki.log( 'Exception thrown by ' + module + ': ' + e.message );
-				mediaWiki.log( e );
+				// This needs to NOT use mw.log because these errors are common in production mode
+				// and not in debug mode, such as when a symbol that should be global isn't exported
+				if ( window.console && typeof window.console.log === 'function' ) {
+					console.log( _fn + 'Exception thrown by ' + module + ': ' + e.message );
+					console.log( e );
+				}
 				registry[module].state = 'error';
 				// Run error callbacks of jobs affected by this condition
 				for ( var j = 0; j < jobs.length; j++ ) {

@@ -124,8 +124,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'wl_user' => $userId,
 			'rc_deleted' => 0,
 		) );
+		
+		$db = $this->getDB();
 
-		$this->addWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addWhereRange( 'rc_timestamp', $params['dir'], 
+			$db->timestamp( $params['start'] ), 
+			$db->timestamp( $params['end'] ) );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'rc_this_oldid=page_latest', !$params['allrev'] );
 
@@ -171,7 +175,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
 		}
 
-		$db = $this->getDB();
+		
 
 		// This is an index optimization for mysql, as done in the Special:Watchlist page
 		$this->addWhereIf( "rc_timestamp > ''", !isset( $params['start'] ) && !isset( $params['end'] ) && $db->getType() == 'mysql' );
