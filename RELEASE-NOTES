@@ -312,6 +312,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28249) allow dupes in meta=allmessages&amargs
 * (bug 28263) cannot import xml with the api, when have not "import" user
   right, but "importupload"
+* (bug 28365) Added description for uiprop=preferencestoken in meta=userinfo
 
 === Languages updated in 1.18 ===
 
