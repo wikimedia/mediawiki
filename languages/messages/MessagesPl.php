@@ -2492,11 +2492,13 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbwatchuser'                    => 'Obserwuj stronę osobistą i stronę dyskusji tego użytkownika',
 'ipb-disableusertalk'             => 'Zablokuj możliwość edytowania przez tego użytkownika własnej strony dyskusji w czasie trwania blokady.',
 'ipb-change-block'                => 'Zmień ustawienia blokady',
+'ipb-confirm'                     => 'Potwierdzam blokadę',
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
 'blockipsuccesstext'              => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
 Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
 'ipb-blockingself'                => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
+'ipb-confirmhideuser'             => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown'               => 'Edytuj listę przyczyn blokady',
 'ipb-unblock-addr'                => 'Odblokuj $1',
 'ipb-unblock'                     => 'Odblokuj użytkownika lub adres IP',

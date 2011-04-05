@@ -2114,7 +2114,7 @@ $1',
 'enotif_lastvisited'           => 'તમારા છેલ્લા ફેરફાર પછી થયેલા ફેરફાર $1 જુઓ',
 'enotif_lastdiff'              => 'આ ફેરફાર જોવા $1 જુઓ',
 'enotif_anon_editor'           => 'અજ્ઞાત સભ્ય $1',
-'enotif_body'                  => '↓ પ્રિય $WATCHINGUSERNAME,
+'enotif_body'                  => 'પ્રિય $WATCHINGUSERNAME,
 
 
  {{SITENAME}}નું પાનું  $PAGETITLE $PAGEEDITDATE ના દિવસે by $PAGEEDITOR દ્વારા $CHANGEDORCREATED છે , તાજા પુનરાવર્તન માટે $PAGETITLE_URL જુઓ.

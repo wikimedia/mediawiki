@@ -4093,13 +4093,14 @@ Hai dispoñibles configuracións de dereitos de usuario máis complexas despois 
 	'config-license-pd' => 'Dominio público',
 	'config-license-cc-choose' => 'Seleccione unha licenza Creative Commons personalizada',
 	'config-license-help' => "Moitos wikis públicos liberan todas as súas contribucións baixo unha [http://freedomdefined.org/Definition/Gl licenza libre].
-Isto axuda a crear un sentido de propiedade na comunidade e anima a seguir contribuíndo durante moito tempo.
+Isto axuda a crear un sentido de propiedade comunitaria e anima a seguir contribuíndo durante moito tempo.
 Xeralmente, non é necesario nos wikis privados ou de empresas.
 
 Se quere poder empregar textos da Wikipedia, así como que a Wikipedia poida aceptar textos copiados do seu wiki, escolla a licenza '''Creative Commons recoñecemento compartir igual'''.
 
 A licenza de documentación libre de GNU era a licenza anterior da Wikipedia.
-Malia aínda ser unha licenza válida, esta ten algunhas características que poden facer o reuso e a interpretación difíciles.",
+Malia aínda ser unha licenza válida, é difícil de entender.
+Tamén é difícil reusar contidos baixo esta licenza.",
 	'config-email-settings' => 'Configuración do correo electrónico',
 	'config-enable-email' => 'Activar os correos electrónicos de saída',
 	'config-enable-email-help' => 'Se quere que o correo electrónico funcione, cómpre configurar os [http://www.php.net/manual/en/mail.configuration.php parámetros PHP] correctamente.
@@ -4192,6 +4193,7 @@ Saltando a creación.",
 Saltando a lista por defecto.",
 	'config-install-stats' => 'Iniciando as estatísticas',
 	'config-install-keys' => 'Xerando a clave secreta',
+	'config-insecure-keys' => "'''Atención:''' {{PLURAL:$2|A clave de seguridade|As claves de seguridade}} ($1) {{PLURAL:$2|xerada|xeradas}} durante a instalación non {{PLURAL:$2|é|son}} completamente {{PLURAL:$2|segura|seguras}}. Considere a posibilidade de {{PLURAL:$2|cambiala|cambialas}} manualmente.",
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
 	'config-install-subscribe-fail' => 'Non se puido subscribir á lista mediawiki-announce',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',

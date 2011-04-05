@@ -2527,8 +2527,8 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 
 # Block/unblock
 'autoblockid'                     => 'Blocage automatique #$1',
-'block'                           => 'Bloquer un utilisateur ou une adresse IP',
-'unblock'                         => 'Débloquer un utilisateur ou une adresse IP',
+'block'                           => 'Bloquer l’utilisateur',
+'unblock'                         => 'Débloquer l’utilisateur',
 'blockip'                         => 'Bloquer l’utilisateur',
 'blockip-title'                   => 'Bloquer l’utilisateur',
 'blockip-legend'                  => 'Bloquer l’utilisateur',
@@ -2560,11 +2560,13 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipbwatchuser'                    => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
 'ipb-disableusertalk'             => 'Empêche cet utilisateur de modifier sa propre page de discussion pendant la durée de son blocage',
 'ipb-change-block'                => 'Bloquer à nouveau cet utilisateur avec ces paramètres',
+'ipb-confirm'                     => 'Confirmer le blocage',
 'badipaddress'                    => 'Adresse IP incorrecte',
 'blockipsuccesssub'               => 'Blocage réussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
 Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
 'ipb-blockingself'                => 'Vous êtes sur le point de vous bloquer vous-même !  Étes-vous certain de que vouloir faire cela ?',
+'ipb-confirmhideuser'             => 'Vous êtes sur le point de bloquer un utilisateur avec « cacher l’utilisateur » activé. Cela supprime le nom de l’utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?',
 'ipb-edit-dropdown'               => 'Modifier les motifs de blocage par défaut',
 'ipb-unblock-addr'                => 'Débloquer $1',
 'ipb-unblock'                     => 'Débloquer un compte utilisateur ou une adresse IP',
@@ -2576,7 +2578,7 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-range'                 => '$1 a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
-'blocklist'                       => 'Adresses IP et utilisateurs bloqués',
+'blocklist'                       => 'Utilisateurs bloqués',
 'ipblocklist'                     => 'Utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'blocklist-userblocks'            => 'Masquer les blocages de comptes',

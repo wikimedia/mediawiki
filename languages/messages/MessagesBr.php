@@ -2312,7 +2312,7 @@ $1',
 # Contributions
 'contributions'       => 'Degasadennoù an implijer',
 'contributions-title' => 'Degasadennoù an implijer evit $1',
-'mycontris'           => 'Ma degasadennnoù',
+'mycontris'           => 'Ma degasadennoù',
 'contribsub2'         => 'Evit $1 ($2)',
 'nocontribs'          => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
 'uctop'               => ' (diwezhañ)',
@@ -2390,6 +2390,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbwatchuser'                    => 'Evezhiañ pajennoù implijer ha kaozeal an implijer-mañ',
 'ipb-disableusertalk'             => 'Mirout ouzh an implijer-mañ da implijout e bajenn gaozeal dezhañ e-unan e-keit hag emañ stanket',
 'ipb-change-block'                => 'Adstankañ an implijer-mañ gant an hevelep arventennoù',
+'ipb-confirm'                     => 'Kadarnaat ar stankadenn',
 'badipaddress'                    => "Kamm eo ar chomlec'h IP.",
 'blockipsuccesssub'               => 'Stankadenn deuet da benn vat',
 'blockipsuccesstext'              => 'Stanket eo bet chomlec\'h IP "$1".
@@ -2398,6 +2399,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 Stanket eo bet [[Special:Contributions/$1|$1]].<br />
 Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]] evit gwiriañ ar stankadennoù.',
 'ipb-blockingself'                => "Emaoc'h war-nes stankañ ac'hanoc'h hoc'h-unan ! Ha sur oc'h eo se a fell deoc'h ober ?",
+'ipb-confirmhideuser'             => 'Emaoc\'h war-nes stankañ un implijer ha gweredekaet hoc\'h eus "kuzhat an implijer". Diverkañ a ra an dra-se anv an implijer en holl rolloù ha monedoù ar marilh.',
 'ipb-edit-dropdown'               => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'                => 'Distankañ $1',
 'ipb-unblock'                     => "Distankañ un implijer pe ur chomlec'h IP",
@@ -3236,7 +3238,7 @@ evit nullañ kadarnaat ar chomlec'h postel :
 \$5
 
 Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
-'confirmemail_body_changed' => "↓ Unan bennak, c'hwi sur a-walc'h, gant ar chomlec'h IP \$1,
+'confirmemail_body_changed' => "Unan bennak, c'hwi sur a-walc'h, gant ar chomlec'h IP \$1,
 en deus cheñchet chomlec'h postel ar gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
 
 A-benn kadarnaat eo deoc'h ar gont-se hag adgweredekaat

@@ -531,13 +531,13 @@ $2',
 'php-mail-error-unknown' => 'mail() PHP-функциятыгар туох эрэ алҕас тахсыбыт',
 
 # JavaScript password checks
-'password-strength'            => '↓ Киирии тыл туругун тургутуу: $1',
-'password-strength-bad'        => '↓ МӨЛТӨХ',
-'password-strength-mediocre'   => '↓ орто',
-'password-strength-acceptable' => '↓ барсар',
-'password-strength-good'       => '↓ үчүгэй',
-'password-retype'              => '↓ Киирии тылгын хатылаа',
-'password-retype-mismatch'     => '↓ Киирии тыллар сөп түбэспэттэр',
+'password-strength'            => 'Киирии тыл туругун тургутуу: $1',
+'password-strength-bad'        => 'МӨЛТӨХ',
+'password-strength-mediocre'   => 'орто',
+'password-strength-acceptable' => 'барсар',
+'password-strength-good'       => 'үчүгэй',
+'password-retype'              => 'Киирии тылгын хатылаа',
+'password-retype-mismatch'     => 'Киирии тыллар сөп түбэспэттэр',
 
 # Password reset dialog
 'resetpass'                 => 'Киирии тылы уларытыы',

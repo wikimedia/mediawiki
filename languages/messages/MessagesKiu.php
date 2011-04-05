@@ -138,24 +138,24 @@ href="" class="internal"}?{/a}) bıasne.',
 'category-article-count-limited' => '{{PLURAL:$1|Ana pele kategoriya peyêne dera|Ani $1 peli kategoriya peyêne derê}}.',
 'category-file-count'            => '{{PLURAL:$2|Na kategoriye de teyna ana dosya esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana dosya esta|ani $1 dosyey estê.}}}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Ana dosya kategoriya peyêne dera|Ani $1 dosyey kategoriya peyêne derê}}.',
-'listingcontinuesabbrev'         => '↓ dewam',
+'listingcontinuesabbrev'         => 'dewam',
 'index-category'                 => 'Pelê endeksıni',
 'noindex-category'               => 'Pelê bêendeksıni',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "↓ '''MediaWiki fist ra ser, vıraziya.'''",
-'mainpagedocfooter' => "↓ Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
+'mainpagetext'      => "'''MediaWiki fist ra ser, vıraziya.'''",
+'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 
 == Gamê verêni ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ayarunê vıraştene]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]",
 
-'about'         => '↓ Heqa',
-'article'       => '↓ Pela tedeesteyu',
-'newwindow'     => '↓ (zerrê pençerê dê newey de beno ra)',
+'about'         => 'Heqa',
+'article'       => 'Pela tedeesteyu',
+'newwindow'     => '(zerrê pençerê dê newey de beno ra)',
 'cancel'        => 'Texelnaene',
-'moredotdotdot' => '↓ Zêde...',
+'moredotdotdot' => 'Zêde...',
 'mypage'        => 'Pela mı',
 'mytalk'        => 'Pela mına hurênaişi',
 'anontalk'      => "Pela hurênaisê ni ''IP''y",
@@ -299,7 +299,7 @@ $1',
 'toc'                     => 'Tede estey',
 'showtoc'                 => 'bıasne',
 'hidetoc'                 => 'bınımne',
-'collapsible-collapse'    => '↓ Kılmever ke',
+'collapsible-collapse'    => 'Kılmever ke',
 'collapsible-expand'      => 'Verınd ke',
 'thisisdeleted'           => '$1i bıasne ya ki peyser biya?',
 'viewdeleted'             => '$1i bıasne?',
@@ -443,7 +443,7 @@ Vurnaena [[Special:Preferences|melumatanê {{SITENAME}}]] ho vira mekerê.',
 'gotaccount'              => "Hesabê sıma ke esto? '''$1'''.",
 'gotaccountlink'          => 'Cıkuye',
 'createaccountmail'       => 'e-poste sera',
-'createaccountreason'     => '↓ Sebeb:',
+'createaccountreason'     => 'Sebeb:',
 'badretype'               => 'Parola sıma nêvêrena.',
 'userexists'              => 'No namê karberi guretiyo.
 Kerem ke, namêna weçine.',
@@ -557,7 +557,7 @@ ya ki [{{fullurl:{{FULLPAGENAME}}|action=edit}} na pele bıvurnê]</span>.',
 'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" qeyd nêbiyo.
 Kerem ke, tı ke wazena na pele vırazê/bıvurnê, qontrol ke.',
 'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
-'userinvalidcssjstitle'            => "↓ '''Teme:''' Mewzuyê \"\$1\" çino.
+'userinvalidcssjstitle'            => "'''Teme:''' Mewzuyê \"\$1\" çino.
 Dosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 'updated'                          => '(Bi rozane)',
 'note'                             => "'''Not:'''",
