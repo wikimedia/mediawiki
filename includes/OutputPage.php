@@ -221,7 +221,6 @@ class OutputPage {
 	 */
 	function __construct( RequestContext $context = null ) {
 		if ( !isset($context) ) {
-var_dump('foo');
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
 			wfDeprecated( __METHOD__ );
 		}
