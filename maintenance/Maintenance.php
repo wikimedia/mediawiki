@@ -70,6 +70,9 @@ abstract class Maintenance {
 	// This is the desired params
 	protected $mParams = array();
 
+	// Array of mapping short parameters to long ones
+	protected $mShortParamsMap = array();
+
 	// Array of desired args
 	protected $mArgList = array();
 
@@ -157,9 +160,13 @@ abstract class Maintenance {
 	 * @param $description String: the description of the param to show on --help
 	 * @param $required Boolean: is the param required?
 	 * @param $withArg Boolean: is an argument required with this option?
+	 * @param $shortName String: character to use as short name
 	 */
-	protected function addOption( $name, $description, $required = false, $withArg = false ) {
-		$this->mParams[$name] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg );
+	protected function addOption( $name, $description, $required = false, $withArg = false, $shortName = false ) {
+		$this->mParams[$name] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg, 'shortName' => $shortName );
+		if ( $shortName !== false ) {
+			$this->mShortParamsMap[$shortName] = $name;
+		}
 	}
 
 	/**
@@ -391,8 +398,8 @@ abstract class Maintenance {
 
 		# Generic (non script dependant) options:
 
-		$this->addOption( 'help', 'Display this help message' );
-		$this->addOption( 'quiet', 'Whether to supress non-error output' );
+		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
+		$this->addOption( 'quiet', 'Whether to supress non-error output', false, false, 'q' );
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
@@ -607,6 +614,9 @@ abstract class Maintenance {
 				# Short options
 				for ( $p = 1; $p < strlen( $arg ); $p++ ) {
 					$option = $arg { $p } ;
+					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
+						$option = $this->mShortParamsMap[$option];
+					}
 					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
@@ -719,6 +729,9 @@ abstract class Maintenance {
 		// Generic parameters
 		$this->output( "Generic maintenance parameters:\n" );
 		foreach ( $this->mGenericParameters as $par => $info ) {
+			if ( $info['shortName'] !== false ) {
+				$par .= " (-{$info['shortName']})";
+			}
 			$this->output(
 				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
 						"\n$tab$tab" ) . "\n"
@@ -731,6 +744,9 @@ abstract class Maintenance {
 			$this->output( "Script dependant parameters:\n" );
 			// Parameters description
 			foreach ( $scriptDependantParams as $par => $info ) {
+				if ( $info['shortName'] !== false ) {
+					$par .= " (-{$info['shortName']})";
+				}
 				$this->output(
 					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
 							"\n$tab$tab" ) . "\n"
@@ -753,6 +769,9 @@ abstract class Maintenance {
 			$this->output( "Script specific parameters:\n" );
 			// Parameters description
 			foreach ( $scriptSpecificParams as $par => $info ) {
+				if ( $info['shortName'] !== false ) {
+					$par .= " (-{$info['shortName']})";
+				}
 				$this->output(
 					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
 							"\n$tab$tab" ) . "\n"
