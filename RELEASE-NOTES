@@ -169,6 +169,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 26449) Keep underlines from headings outside of tables and thumbs by
   adding overflow:hidden to h1,h2,h3,h4,h5,h6 (also fixes editsection bunching).
 * (bug 26708) Remove background-color:white from tables in Monobook and Vector.
+* (bug 28422) Remove color:black from tables in Monobook and Vector. And add it
+  to table.wikitable instead.
 * (bug 26781) {{PAGENAME}} and related parser functions escape their output
   better.
 * (bug 26716) Provide link to instructions for external editor related
