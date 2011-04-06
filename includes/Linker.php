@@ -1459,11 +1459,8 @@ class Linker {
 	 * as a two-element array
 	 */
 	static function splitTrail( $trail ) {
-		static $regex = false;
-		if ( $regex === false ) {
-			global $wgContLang;
-			$regex = $wgContLang->linkTrail();
-		}
+		global $wgContLang;
+		$regex = $wgContLang->linkTrail();
 		$inside = '';
 		if ( $trail !== '' ) {
 			$m = array();
