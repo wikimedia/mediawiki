@@ -179,7 +179,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contribucions esborrades' ),
 );
 
-$linkTrail = '/^([a-zàèéíòóúç·ïü\']+)(.*)$/sDu';
+$linkTrail = "/^((?:[a-zàèéíòóúç·ïü]|'(?!'))+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles

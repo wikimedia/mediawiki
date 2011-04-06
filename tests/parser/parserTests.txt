@@ -1761,6 +1761,60 @@ Non-breaking spaces in title
 </p>
 !!end
 
+!! test
+Internal link with ca linktrail, surrounded by bold apostrophes (bug 27473 primary issue)
+!! options
+language=ca
+!! input
+'''[[Main Page]]'''
+!! result
+<p><b><a href="/wiki/Main_Page">Main Page</a></b>
+</p>
+!! end
+
+!! test
+Internal link with ca linktrail, surrounded by italic apostrophes (bug 27473 primary issue)
+!! options
+language=ca
+!! input
+''[[Main Page]]''
+!! result
+<p><i><a href="/wiki/Main_Page">Main Page</a></i>
+</p>
+!! end
+
+!! test
+Internal link with en linktrail: no apostrophes (bug 27473)
+!! options
+language=en
+!! input
+[[Something]]'nice
+!! result
+<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (page does not exist)">Something</a>'nice
+</p>
+!! end
+
+!! test
+Internal link with ca linktrail with apostrophes (bug 27473)
+!! options
+language=ca
+!! input
+[[Something]]'nice
+!! result
+<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (encara no existeix)">Something'nice</a>
+</p>
+!! end
+
+!! test
+Internal link with kaa linktrail with apostrophes (bug 27473)
+!! options
+language=kaa
+!! input
+[[Something]]'nice
+!! result
+<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmag'an)">Something'nice</a>
+</p>
+!! end
 
 ###
 ### Interwiki links (see maintenance/interwiki.sql)
