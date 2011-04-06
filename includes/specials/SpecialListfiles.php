@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-class SpecialListFiles extends SpecialPage {
+class SpecialListFiles extends IncludableSpecialPage {
 
 	public function __construct(){
 		parent::__construct( 'Listfiles' );
@@ -32,12 +32,17 @@ class SpecialListFiles extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$pager = new ImageListPager( $par );
+		$pager = new ImageListPager( $par, $this->including() );
 
-		$limit = $pager->getForm();
-		$body = $pager->getBody();
-		$nav = $pager->getNavigationBar();
-		$wgOut->addHTML( "$limit<br />\n$body<br />\n$nav" );
+		if ( $this->including() ) {
+			$html = $pager->getBody();
+		} else {
+			$limit = $pager->getForm();
+			$body = $pager->getBody();
+			$nav = $pager->getNavigationBar();
+			$html = "$limit<br />\n$body<br />\n$nav";
+		}
+		$wgOut->addHTML( $html );
 	}
 }
 
@@ -48,16 +53,15 @@ class ImageListPager extends TablePager {
 	var $mFieldNames = null;
 	var $mQueryConds = array();
 	var $mUserName = null;
+	var $mIncluding = false;
 
-	function __construct( $par = null ) {
+	function __construct( $par = null, $including = false ) {
 		global $wgRequest, $wgMiserMode;
-		if ( $wgRequest->getText( 'sort', 'img_date' ) == 'img_date' ) {
-			$this->mDefaultDirection = true;
-		} else {
-			$this->mDefaultDirection = false;
-		}
 
-		$userName = $wgRequest->getText( 'user', $par );
+		$this->mIncluding = $including;
+
+		
+		$userName = $including ? $par : $wgRequest->getText( 'user', $par );
 		if ( $userName ) {
 			$nt = Title::newFromText( $userName, NS_USER );
 			if ( !is_null( $nt ) ) {
@@ -66,14 +70,24 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		$search = $wgRequest->getText( 'ilsearch' );
-		if ( $search != '' && !$wgMiserMode ) {
-			$nt = Title::newFromURL( $search );
-			if ( $nt ) {
-				$dbr = wfGetDB( DB_SLAVE );
-				$this->mQueryConds[] = 'LOWER(img_name)' . $dbr->buildLike( $dbr->anyString(),
-					strtolower( $nt->getDBkey() ), $dbr->anyString() );
+		if ( !$including ) {
+			if ( $wgRequest->getText( 'sort', 'img_date' ) == 'img_date' ) {
+				$this->mDefaultDirection = true;
+			} else {
+				$this->mDefaultDirection = false;
 			}
+
+			$search = $wgRequest->getText( 'ilsearch' );
+			if ( $search != '' && !$wgMiserMode ) {
+				$nt = Title::newFromURL( $search );
+				if ( $nt ) {
+					$dbr = wfGetDB( DB_SLAVE );
+					$this->mQueryConds[] = 'LOWER(img_name)' . $dbr->buildLike( $dbr->anyString(),
+						strtolower( $nt->getDBkey() ), $dbr->anyString() );
+				}
+			}
+		} else {
+			$this->mDefaultDirection = true;
 		}
 
 		parent::__construct();
@@ -101,6 +115,9 @@ class ImageListPager extends TablePager {
 	}
 
 	function isFieldSortable( $field ) {
+		if ( $this->mIncluding ) {
+			return false;
+		}
 		static $sortable = array( 'img_timestamp', 'img_name' );
 		if ( $field == 'img_size' ) {
 			# No index for both img_size and img_user_text
