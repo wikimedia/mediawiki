@@ -125,6 +125,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   'AbortNewAccount' triggered by explicit account creations. (They are separate
   to avoid loops and confusion; auth plugins like CentralAuth need to handle
   AbortNewAccount separately.
+* Special:ListFiles is now transcludable.
 
 
 === Bug fixes in 1.18 ===
