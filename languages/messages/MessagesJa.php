@@ -2588,8 +2588,8 @@ $1',
 
 # Block/unblock
 'autoblockid'                     => '自動ブロック #$1',
-'block'                           => '利用者/IPアドレスをブロック',
-'unblock'                         => '利用者/IPアドレスのブロックを解除',
+'block'                           => '利用者をブロック',
+'unblock'                         => '利用者のブロックを解除',
 'blockip'                         => '利用者をブロック',
 'blockip-title'                   => '利用者のブロック',
 'blockip-legend'                  => '利用者をブロック',
@@ -2621,10 +2621,13 @@ $1',
 'ipbwatchuser'                    => 'この利用者の利用者ページとトークページをウォッチする',
 'ipb-disableusertalk'             => 'この利用者がブロック中に自身のトークページを編集することを不許可',
 'ipb-change-block'                => 'これらの設定で、利用者を再びブロック',
+'ipb-confirm'                     => 'ブロックの確認',
 'badipaddress'                    => '不正なIPアドレス',
 'blockipsuccesssub'               => 'ブロックしました',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
 [[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
+'ipb-blockingself'                => '自分自身をブロックしようとしています。本当に実行しますか。',
+'ipb-confirmhideuser'             => '利用者名の秘匿を有効にしてブロックしようとしています。実行すると、すべてのリストやログにおいて利用者名が非表示になります。本当にこれでよろしいですか。',
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',
 'ipb-unblock-addr'                => '$1のブロックを解除',
 'ipb-unblock'                     => '利用者またはIPアドレスのブロックを解除する',
@@ -2636,8 +2639,8 @@ $1',
 'unblocked'                       => '[[User:$1|$1]]のブロックを解除しました',
 'unblocked-range'                 => '$1のブロックは解除されています',
 'unblocked-id'                    => 'ブロック$1は除去されました',
-'blocklist'                       => 'ブロック中のIPアドレスや利用者',
-'ipblocklist'                     => 'ブロック中のIPアドレスや利用者',
+'blocklist'                       => 'ブロック中の利用者',
+'ipblocklist'                     => 'ブロック中の利用者',
 'ipblocklist-legend'              => 'ブロック中の利用者を検索',
 'blocklist-userblocks'            => 'アカウントのブロックを非表示',
 'blocklist-tempblocks'            => '有期ブロックを非表示',
@@ -3554,11 +3557,12 @@ $1',
 'trackbackdeleteok' => 'トラックバックは正常に削除されました。',
 
 # Delete conflict
-'deletedwhileediting' => "'''警告：'''このページが、編集開始後に削除されました！",
-'confirmrecreate'     => "[[User:$1|$1]]（[[User talk:$1|トーク]]）が、このページの編集開始後に、このページを、次の理由で削除しました。
+'deletedwhileediting'      => "'''警告：'''このページが、編集開始後に削除されました！",
+'confirmrecreate'          => "[[User:$1|$1]]（[[User talk:$1|トーク]]）が、このページの編集開始後に、このページを、次の理由で削除しました。
 : ''$2''
 本当にこのままこのページを再作成して良いか確認してください。",
-'recreate'            => '再作成する',
+'confirmrecreate-noreason' => 'あなたの編集を開始した後、このページを[[User:$1|$1]] ([[User talk:$1|トーク]])が削除しました。本当にこのページを再作成していいのかご確認ください。',
+'recreate'                 => '再作成する',
 
 # action=purge
 'confirm_purge_button' => 'はい',

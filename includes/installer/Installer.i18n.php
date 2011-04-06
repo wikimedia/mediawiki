@@ -11323,8 +11323,8 @@ chmod a+w $3</pre>',
 
 Если вы хотите использовать тексты из Википедии или хотите, что в Википедию можно было копировать тексты из вашей вики, вам следует выбрать '''Creative Commons Attribution Share Alike'''. 
 
-GNU Free Documentation License раньше была основной лицензией Википедии.
-Она все ещё используется, однако, она имеет некоторые особенности, осложняющие повторное использование и интерпретацию её материалов.",
+Википедия ранее использовала лицензию GNU Free Documentation License.
+GFDL может быть использована, но она сложна для понимания, осложняет повторное использование материалов.",
 	'config-email-settings' => 'Настройки электронной почты',
 	'config-enable-email' => 'Включить исходящие e-mail',
 	'config-enable-email-help' => 'Если вы хотите, чтобы электронная почта работала, необходимо выполнить [http://www.php.net/manual/en/mail.configuration.php соответствующие настройки PHP].
@@ -11760,6 +11760,7 @@ Tumukoy ng ibang pangalan ng tagagamit.',
 	'config-admin-email' => 'Tirahan ng e-liham:',
 	'config-admin-error-user' => 'Panloob na kamalian kapag nililikha ang isang tagapangasiwa na may pangalang "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Panloob na kamalian kapag nagtatakda ng isang hudyat na para sa tagapangasiwang "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Nagpasok ka ng isang hindi katanggap-tanggap na tirahan ng e-liham.',
 	'config-subscribe' => 'Tumanggap mula sa [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce talaan ng mga pinadadalhan ng mga nilalabas na mga pabatid].',
 	'config-almost-done' => 'Halos tapos ka na!
 Maaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ngayon.',

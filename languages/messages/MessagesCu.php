@@ -226,6 +226,7 @@ $messages = array(
 'portal'               => 'обьщє́ниꙗ съвѣ́тъ',
 'portal-url'           => 'Project:Обьщє́ниꙗ съвѣ́тъ',
 
+'youhavenewmessages'  => '$1 тєбѣ напьсанꙑ сѫтъ ($2)',
 'newmessageslink'     => 'но́ви напь́саниꙗ',
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
