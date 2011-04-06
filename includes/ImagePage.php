@@ -1079,16 +1079,16 @@ class ImageHistoryList {
 
 		// Uploading user
 		$row .= '<td>';
-		if ( $local ) {
-			// Hide deleted usernames
-			if ( $file->isDeleted( File::DELETED_USER ) ) {
-				$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
-			} else {
-				$row .= $this->skin->userLink( $user, $usertext ) . ' <span style="white-space: nowrap;">' .
-					$this->skin->userToolLinks( $user, $usertext ) . '</span>';
-			}
+		// Hide deleted usernames
+		if ( $file->isDeleted( File::DELETED_USER ) ) {
+			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$row .= htmlspecialchars( $usertext );
+			if ( $local ) {
+				$row .= $this->skin->userLink( $user, $usertext ) . ' <span style="white-space: nowrap;">' .
+				$this->skin->userToolLinks( $user, $usertext ) . '</span>';
+			} else {
+				$row .= htmlspecialchars( $usertext );
+			}
 		}
 		$row .= '</td><td>';
 
