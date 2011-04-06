@@ -54,8 +54,10 @@ table.diff col.diff-content {
 }
 table.diff td div {
 	/* Force-wrap very long lines such as URLs or page-widening char strings.
-	   CSS 3 draft..., but Gecko doesn't support it yet:
-	   https://bugzilla.mozilla.org/show_bug.cgi?id=99457 */
+	   CSS 3 only (In Gecko 1.9.1 / Firefox 3.5):
+	   https://bugzilla.mozilla.org/show_bug.cgi?id=99457
+	   https://developer.mozilla.org/web-tech/2008/08/20/word-wrap-break-word/
+	   https://developer.mozilla.org/En/CSS/Word-wrap */
 	word-wrap: break-word;
 
 	/* As fallback, scrollbars will be added for very wide cells
