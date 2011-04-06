@@ -352,6 +352,7 @@ $1',
 'site-atom-feed'          => '$1 অ্যাটম ফিড',
 'page-rss-feed'           => '"$1" আর এস এস ফিড',
 'page-atom-feed'          => '"$1" অ্যাটম ফিড',
+'feed-atom'               => 'অ্যাটম',
 'red-link-title'          => '$1 (পাতা নেই)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

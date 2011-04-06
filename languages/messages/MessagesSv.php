@@ -10,6 +10,7 @@
  * @author Ainali
  * @author Boivie
  * @author Dafer45
+ * @author EPO
  * @author Fluff
  * @author GameOn
  * @author Grillo
@@ -1268,7 +1269,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'shown-title'                      => 'Visa $1 {{PLURAL:$1|resultat|resultat}} per sida',
 'viewprevnext'                     => 'Visa ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Sökalternativ',
-'searchmenu-exists'                => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki'''",
+'searchmenu-exists'                => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.'''",
 'searchmenu-new'                   => "'''Skapa sidan \"[[:\$1]]\" på denna wiki!'''",
 'searchmenu-new-nocreate'          => '"$1" är ett ogiltigt namn eller kan inte skapas av dig.',
 'searchhelp-url'                   => 'Help:Innehåll',
