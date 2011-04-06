@@ -230,6 +230,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28395) Set forgotten parameters types in ApiParse
 * (bug 28430) Make html and TeX output of <math> always be left-to-right.
 * (bug 28306) Fix exposure of suppressed usernames in ForeignDBRepo
+* (bug 28372) Fix bogus link to suppressed file versions in ForeignDBRepo
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

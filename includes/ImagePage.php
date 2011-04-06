@@ -1045,20 +1045,24 @@ class ImageHistoryList {
 			# Don't link to unviewable files
 			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
 		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
-			$this->preventClickjacking();
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			# Make a link to review the image
-			$url = $this->skin->link(
-				$revdel,
-				$wgLang->timeAndDate( $timestamp, true ),
-				array(),
-				array(
-					'target' => $this->title->getPrefixedText(),
-					'file' => $img,
-					'token' => $wgUser->editToken( $img )
-				),
-				array( 'known', 'noclasses' )
-			);
+			if ( $local ) {
+				$this->preventClickjacking();
+				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+				# Make a link to review the image
+				$url = $this->skin->link(
+					$revdel,
+					$wgLang->timeAndDate( $timestamp, true ),
+					array(),
+					array(
+						'target' => $this->title->getPrefixedText(),
+						'file' => $img,
+						'token' => $wgUser->editToken( $img )
+					),
+					array( 'known', 'noclasses' )
+				);
+			} else {
+				$url = $wgLang->timeAndDate( $timestamp, true );
+			}
 			$row .= '<span class="history-deleted">' . $url . '</span>';
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
