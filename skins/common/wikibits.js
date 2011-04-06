@@ -740,17 +740,16 @@ window.ts_initTransformTable = function() {
 		for ( var digit in ts_number_transform_table ) {
 			// Escape regex metacharacters
 			digits.push(
-				digit.replace( /[\\\\$\*\+\?\.\(\)\|\{\}\[\]\-]/,
-					function( s ) { return '\\' + s; } )
+				digit.replace( /([{}()|.?*+^$\[\]\\-])/g, "\\$1" )
 			);
 			if ( digit.length > maxDigitLength ) {
 				maxDigitLength = digit.length;
 			}
 		}
 		if ( maxDigitLength > 1 ) {
-			var digitClass = '[' + digits.join( '', digits ) + ']';
+			var digitClass = '(' + digits.join( '|' ) + ')';
 		} else {
-			var digitClass = '(' + digits.join( '|', digits ) + ')';
+			var digitClass = '[' + digits.join( '' ) + ']';
 		}
 	}
 
@@ -760,7 +759,7 @@ window.ts_initTransformTable = function() {
 		"^(" +
 			"[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
 			"|" +
-			"[-+\u2212]?" + digitClass + "+%?" + // Generic localised
+			"[-+\u2212]?" + digitClass + "+[\s\xa0]*%?" + // Generic localised
 		")$", "i"
 	);
 };
