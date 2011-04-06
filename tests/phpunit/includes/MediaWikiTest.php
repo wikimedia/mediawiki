@@ -10,7 +10,8 @@ class MediaWikiTest extends MediaWikiTestCase {
 	protected $object;
 
 	protected function setUp() {
-		$this->object = new MediaWiki;
+		$context = new RequestContext;
+		$this->object = new MediaWiki( $context );
 	}
 
 	protected function tearDown() {
