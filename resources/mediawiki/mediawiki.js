@@ -1026,9 +1026,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Allow calling with an external script or single dependency as a string
 			if ( typeof modules === 'string' ) {
 				// Support adding arbitrary external scripts
-				if ( modules.substr( 0, 7 ) == 'http://'
-					|| modules.substr( 0, 8 ) == 'https://' )
-				{
+				if ( modules.substr( 0, 7 ) == 'http://' || modules.substr( 0, 8 ) == 'https://' ) {
 					if ( type === 'text/css' ) {
 						$( 'head' )
 							.append( $( '<link rel="stylesheet" type="text/css" />' )

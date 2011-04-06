@@ -299,6 +299,7 @@ table.wikitable {
 	background: #f9f9f9;
 	border: 1px #aaa solid;
 	border-collapse: collapse;
+	color: black;
 }
 .wikitable th, .wikitable td {
 	border: 1px #aaa solid;
