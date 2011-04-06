@@ -297,10 +297,9 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$langObj = Language::factory( $lang );
 		$GLOBALS['wgContLang'] = $langObj;
-
 		$context = new RequestContext();
 		$GLOBALS['wgLang'] = $context->lang;
-		$GLOBALS['wgContLang'] = $context->lang;
+
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
 		$GLOBALS['wgOut'] = new $context->output;
 
