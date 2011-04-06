@@ -8302,8 +8302,7 @@ title=[[Main Page]]
 !!input
 [[#section]]
 !! result
-<p><a href="#section">#section</a>
-</p>
+<a href="#section">#section</a>
 !! end
 
 !! test
