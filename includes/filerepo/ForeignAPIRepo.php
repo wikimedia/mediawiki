@@ -231,7 +231,8 @@ class ForeignAPIRepo extends FileRepo {
 		global $wgMemc;
 
 		if ( !$this->canCacheThumbs() ) {
-			return $this->getThumbUrl( $name, $width, $height, null, $params );
+			$result = null; // can't pass "null" by reference, but it's ok as default value
+			return $this->getThumbUrl( $name, $width, $height, $result, $params );
 		}
 		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
 		$sizekey = "$width:$height:$params";
