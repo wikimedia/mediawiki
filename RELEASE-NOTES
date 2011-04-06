@@ -232,6 +232,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28306) Fix exposure of suppressed usernames in ForeignDBRepo
 * (bug 28372) Fix bogus link to suppressed file versions in ForeignDBRepo
 * (bug 27473) Fix regression: bold, italic no longer interfere with linktrail for ca, kaa
+* (bug 28444) Fix regression: edit-on-doubleclick retains revision id again
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
