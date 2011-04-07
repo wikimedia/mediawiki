@@ -54,15 +54,6 @@ class RandomImageGenerator {
 		if ( !isset( $this->dictionaryFile ) ) {
 			throw new Exception( "RandomImageGenerator: dictionary file not found or not specified properly" );
 		}
-
-		// figure out how to write images
-		if ( class_exists( 'Imagick' ) ) {
-			$this->imageWriteMethod = 'writeImageWithApi';
-		} elseif ( $wgUseImageMagick && $wgImageMagickConvertCommand && is_executable( $wgImageMagickConvertCommand ) ) {
-			$this->imageWriteMethod = 'writeImageWithCommandLine';
-		} else {
-			throw new Exception( "RandomImageGenerator: could not find a suitable method to write images" );
-		}
 	}
 
 	/**
@@ -75,10 +66,30 @@ class RandomImageGenerator {
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
+		$imageWriteMethod = $this->getImageWriteMethod( $format );
 		foreach( $filenames as $filename ) {
-			$this->{$this->imageWriteMethod}( $this->getImageSpec(), $format, $filename );
+			$this->{$imageWriteMethod}( $this->getImageSpec(), $format, $filename );
 		}
 		return $filenames;
+	}
+
+
+	/**
+	 * Figure out how we write images. This is a factor of both format and the local system
+	 * @param $format (a typical extension like 'svg', 'jpg', etc.)
+	 */
+	function getImageWriteMethod( $format ) {
+		if ( $format === 'svg' ) { 
+			return 'writeSvg';
+		} else {
+			// figure out how to write images
+			if ( class_exists( 'Imagick' ) ) {
+				return 'writeImageWithApi';
+			} elseif ( $wgUseImageMagick && $wgImageMagickConvertCommand && is_executable( $wgImageMagickConvertCommand ) ) {
+				return 'writeImageWithCommandLine';
+			} 
+		}
+		throw new Exception( "RandomImageGenerator: could not find a suitable method to write images in '$format' format" );
 	}
 
 	/**
@@ -137,6 +148,7 @@ class RandomImageGenerator {
 			$draw['circle'] = array(
 				'originX' => $originX,
 				'originY' => $originY,
+				'radius' => $radius,
 				'perimeterX' => $perimeterX,
 				'perimeterY' => $perimeterY
 			);
@@ -149,6 +161,37 @@ class RandomImageGenerator {
 		return $spec;
 	}
 
+
+	/**
+	 * Based on image specification, write a very simple SVG file to disk.
+	 * Ignores the background spec because transparency is cool. :)
+	 * @param $spec: spec describing background and circles to draw
+	 * @param $format: file format to write (which is obviously always svg here)
+	 * @param $filename: filename to write to
+	 */
+	public function writeSvg( $spec, $format, $filename ) { 
+		$svg = new SimpleXmlElement( '<svg/>' );
+		$svg->addAttribute( 'xmlns', 'http://www.w3.org/2000/svg' );
+   		$svg->addAttribute( 'version', '1.1' );
+ 		$svg->addAttribute( 'width', $spec['width'] );
+ 		$svg->addAttribute( 'height', $spec['height'] );
+		$g = $svg->addChild( 'g' );
+		foreach ( $spec['draws'] as $drawSpec ) {
+			$circle = $g->addChild( 'circle' );
+			$circle->addAttribute( 'fill', $drawSpec['fill'] );		
+			$circleSpec = $drawSpec['circle'];
+			$circle->addAttribute( 'cx', $circleSpec['originX'] );		
+			$circle->addAttribute( 'cy', $circleSpec['originY'] );		
+			$circle->addAttribute( 'r', $circleSpec['radius'] );		
+		};
+		if ( ! $fh = fopen( $filename, 'w' ) ) {
+			throw new Exception( "couldn't open $filename for writing" );
+		}
+		fwrite( $fh, $svg->asXML() );
+		if ( !fclose($fh) ) {
+			throw new Exception( "couldn't close $filename" );
+		}
+	}
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
@@ -209,7 +252,7 @@ class RandomImageGenerator {
 	}
 
 	/**
-	 * Generate a string of random colors for ImageMagick, like "rgb(12, 37, 98)"
+	 * Generate a string of random colors for ImageMagick or SVG, like "rgb(12, 37, 98)"
 	 *
 	 * @return {String}
 	 */
