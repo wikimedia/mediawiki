@@ -159,6 +159,15 @@ abstract class ResourceLoaderModule {
 		// Stub, override expected
 		return null;
 	}
+	
+	/**
+	 * Where on the HTML page should this module's JS be loaded?
+	 * 'top': in the <head>
+	 * 'bottom': at the bottom of the <body>
+	 */
+	public function getPosition() {
+		return 'bottom';
+	}
 
 	/**
 	 * Get the loader JS for this module, if set.
