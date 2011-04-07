@@ -9130,9 +9130,11 @@ $messages['no'] = array(
 	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
 	'config-title' => 'Installasjon av MediaWiki $1',
 	'config-information' => 'Informasjon',
-	'config-localsettings-upgrade' => "'''Advarsel''': En <code>LocalSettings.php</code>-fil har blitt oppdaget.
-Programvaren kan oppgraderes.
-Flytt <code>LocalSettings.php</code> til et trygt sted og kjør installasjonsprogrammet på nytt.",
+	'config-localsettings-upgrade' => 'En <code>LocalSettings.php</code>-fil har blitt oppdaget.
+For å oppgradere denne installasjonen, skriv inn verdien av <code>$wgUpgradeKey</code> i boksen nedenfor.
+Du finner denne i LocalSettings.php.',
+	'config-localsettings-key' => 'Oppgraderingsnøkkel:',
+	'config-localsettings-badkey' => 'Nøkkelen du oppga er feil.',
 	'config-session-error' => 'Feil under oppstart av økt: $1',
 	'config-session-expired' => 'Dine øktdata ser ut til å ha utløpt.
 Økter er konfigurert for en levetid på $1.
@@ -9160,6 +9162,7 @@ Sjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en 
 	'config-page-releasenotes' => 'Utgivelsesnotat',
 	'config-page-copying' => 'Kopiering',
 	'config-page-upgradedoc' => 'Oppgradering',
+	'config-page-existingwiki' => 'Eksisterende wiki',
 	'config-help-restart' => 'Ønsker du å fjerne alle lagrede data som du har skrevet inn og starte installasjonsprosessen på nytt?',
 	'config-restart' => 'Ja, start på nytt',
 	'config-welcome' => '=== Miljøsjekker ===
@@ -9178,12 +9181,19 @@ Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki hjem]
 * [http://www.mediawiki.org/wiki/Help:Contents Brukerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorguide]
-* [http://www.mediawiki.org/wiki/Manual:FAQ OSS]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ OSS]
+----
+* <doclink href=Readme>Les meg</doclink>
+* <doclink href=ReleaseNotes>Utgivelsesnotater</doclink>
+* <doclink href=Copying>Kopiering</doclink>
+* <doclink href=UpgradeDoc>Oppgradering</doclink>',
 	'config-env-good' => 'Miljøet har blitt sjekket.
 Du kan installere MediaWiki.',
 	'config-env-bad' => 'Miljøet har blitt sjekket.
 Du kan installere MediaWiki.',
 	'config-env-php' => 'PHP $1 er innstallert.',
+	'config-env-php-toolow' => 'PHP $1 er installert.
+MediaWiki krever imidlertid PHP $2 eller høyere.',
 	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
 	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
 	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen.
@@ -9320,9 +9330,9 @@ Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg i
 	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
 	'config-invalid-db-name' => 'Ugyldig databasenavn «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
 	'config-invalid-db-prefix' => 'Ugyldig databaseprefiks «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
 	'config-connection-error' => '$1.
 
 Sjekk verten, brukernavnet og passordet nedenfor og prøv igjen.',
@@ -9502,6 +9512,7 @@ For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man 
 	'config-install-database' => 'Setter opp database',
 	'config-install-user' => 'Oppretter databasebruker',
 	'config-install-tables' => 'Oppretter tabeller',
+	'config-help' => 'hjelp',
 );
 
 /** Polish (Polski)
@@ -11324,7 +11335,7 @@ chmod a+w $3</pre>',
 Если вы хотите использовать тексты из Википедии или хотите, что в Википедию можно было копировать тексты из вашей вики, вам следует выбрать '''Creative Commons Attribution Share Alike'''. 
 
 Википедия ранее использовала лицензию GNU Free Documentation License.
-GFDL может быть использована, но она сложна для понимания, осложняет повторное использование материалов.",
+GFDL может быть использована, но она сложна для понимания и осложняет повторное использование материалов.",
 	'config-email-settings' => 'Настройки электронной почты',
 	'config-enable-email' => 'Включить исходящие e-mail',
 	'config-enable-email-help' => 'Если вы хотите, чтобы электронная почта работала, необходимо выполнить [http://www.php.net/manual/en/mail.configuration.php соответствующие настройки PHP].

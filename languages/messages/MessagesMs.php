@@ -1076,7 +1076,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergehistory-autocomment'         => 'Menggabungkan [[:$1]] dengan [[:$2]]',
 'mergehistory-comment'             => 'Menggabungkan [[:$1]] dengan [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Laman sasaran tidak boleh sama dengan laman sumber',
-'mergehistory-reason'              => 'Alasan:',
+'mergehistory-reason'              => 'Sebab:',
 
 # Merge log
 'mergelog'           => 'Log penggabungan',
@@ -3427,7 +3427,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 # Special:DisableAccount
 'disableaccount'             => 'Lumpuhkan akaun pengguna',
 'disableaccount-user'        => 'Nama pengguna:',
-'disableaccount-reason'      => 'Alasan:',
+'disableaccount-reason'      => 'Sebab:',
 'disableaccount-confirm'     => "Lumpuhkan akaun pengguna ini.
 Pengguna ini tidak akan dapat log masuk, set semula kata laluannya, atau menerima makluman e-mel.
 Jika pengguna ini sedang log masuk di mana-mana, dia akan log keluar serta-merta.

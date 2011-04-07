@@ -2040,7 +2040,7 @@ $1',
 # Special:Log
 'specialloguserlabel'  => 'Корисник:',
 'speciallogtitlelabel' => 'Наслов:',
-'log'                  => 'Извештаји',
+'log'                  => 'Протоколи',
 'all-logs-page'        => 'Све јавне историје',
 'alllogstext'          => 'Комбиновани приказ свих доступних историја за {{SITENAME}}.
 Можете сузити преглед одабиром типа историје, корисничког имена или тражене странице.',
@@ -2432,7 +2432,7 @@ $1',
 'sp-contributions-blocklog'            => 'историја блокирања',
 'sp-contributions-deleted'             => 'обрисани прилози',
 'sp-contributions-uploads'             => 'слања',
-'sp-contributions-logs'                => 'извештаји',
+'sp-contributions-logs'                => 'историје',
 'sp-contributions-talk'                => 'разговор',
 'sp-contributions-userrights'          => 'подешавање корисничких права',
 'sp-contributions-blocked-notice'      => 'Овај корисник је тренутно блокиран.

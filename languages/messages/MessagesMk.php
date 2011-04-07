@@ -483,7 +483,7 @@ $messages = array(
 'vector-view-edit'               => 'Уреди',
 'vector-view-history'            => 'Види историја',
 'vector-view-view'               => 'Читај',
-'vector-view-viewsource'         => 'Види код',
+'vector-view-viewsource'         => 'Извор',
 'actions'                        => 'Дејства',
 'namespaces'                     => 'Именски простори',
 'variants'                       => 'Варијанти',
@@ -687,7 +687,7 @@ $1',
 'wrong_wfQuery_params' => 'Грешни параметри до wfQuery()<br />
 Функција: $1<br />
 Барање: $2',
-'viewsource'           => 'Преглед на кодот',
+'viewsource'           => 'Преглед',
 'viewsourcefor'        => 'за $1',
 'actionthrottled'      => 'Дејството е успорено',
 'actionthrottledtext'  => 'Како анти-спам мерка, ограничени сте од вршење на ова дејство премногу пати во краток временски период, а го преминавте ограничувањето.
