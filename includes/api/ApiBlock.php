@@ -90,6 +90,7 @@ class ApiBlock extends ApiBase {
 			'DisableUTEdit' => $params['allowusertalk'],
 			'AlreadyBlocked' => $params['reblock'],
 			'Watch' => $params['watchuser'],
+			'Confirm' => true,
 		);
 
 		$retval = SpecialBlock::processForm( $data );

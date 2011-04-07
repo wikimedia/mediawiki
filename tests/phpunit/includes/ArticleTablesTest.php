@@ -18,7 +18,10 @@ class ArticleTablesTest extends MediaWikiTestCase {
 		$wgContLang = new StubContLang;
 		$wgLang = new StubUserLang;
 	}
-	
+
+	/**
+ 	 * @group Broken
+	 */
 	function testbug14404() {
 		global $wgUser, $wgContLang, $wgLanguageCode, $wgLang;
 		

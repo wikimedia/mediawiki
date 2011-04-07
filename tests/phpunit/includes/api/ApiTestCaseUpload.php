@@ -18,10 +18,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		$wgEnableAPI = true;
 		wfSetupSession();
 
-		ini_set( 'log_errors', 1 );
-		ini_set( 'error_reporting', 1 );
-		ini_set( 'display_errors', 1 );
-
 		$this->clearFakeUploads();
 	}
 
@@ -51,7 +47,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			$article->doDeleteArticle( "removing for test" );
 
 			// see if it now doesn't exist; reload
-			$title = Title::newFromText( $fileName, NS_FILE );
+			$title = Title::newFromText( $title->getText(), NS_FILE );
 		}
 		return ! ( $title && $title instanceof Title && $title->exists() );
 	}

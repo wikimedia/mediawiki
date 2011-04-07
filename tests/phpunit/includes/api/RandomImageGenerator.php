@@ -34,7 +34,7 @@ class RandomImageGenerator {
 	private $circlesToDraw = 5;
 	private $imageWriteMethod;
 
-	public function __construct( $options ) {
+	public function __construct( $options = array() ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxHeight', 'circlesToDraw' ) as $property ) {
 			if ( isset( $options[$property] ) ) {
