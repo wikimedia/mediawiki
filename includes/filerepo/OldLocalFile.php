@@ -212,4 +212,71 @@ class OldLocalFile extends LocalFile {
 		$this->load();
 		return Revision::userCanBitfield( $this->deleted, $field );
 	}
+	
+	/**
+	 * Upload a file directly into archive. Generally for Special:Import.
+	 * 
+	 * @param $srcPath string File system path of the source file
+	 * @param $archiveName string Full archive name of the file, in the form 
+	 * 	$timestamp!$filename, where $filename must match $this->getName()
+	 */
+	function uploadOld( $srcPath, $archiveName, $comment, $user ) {
+		$this->lock();
+		$status = $this->publish( $srcPath, $flags, $archiveName );
+		
+		if ( $status->isGood() ) {
+			if ( !$this->recordOldUpload( $srcPath, $archiveName, $comment, $user ) ) {
+				$status->fatal( 'filenotfound', $srcPath );
+			}
+		}
+		
+		$this->unlock();
+		
+		return $status;
+	}
+	
+	/**
+	 * Record a file upload in the oldimage table, without adding log entries.
+	 * 
+	 * @param $srcPath string File system path to the source file
+	 * @param $archiveName string The archive name of the file
+	 * @param $comment string Upload comment
+	 * @param $user User User who did this upload
+	 * @return bool
+	 */
+	function recordOldUpload( $srcPath, $archiveName, $comment, $user ) {
+		$dbw = $this->repo->getMasterDB();
+		$dbw->begin();
+
+		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
+		$props = self::getPropsFromPath( $dstPath );
+		if ( !$props['fileExists'] ) {
+			return false;
+		}
+
+		$dbw->insert( 'oldimage',
+			array(
+				'oi_name'         => $this->getName(),
+				'oi_archive_name' => $archiveName,
+				'oi_size'         => $props['size'],
+				'oi_width'        => intval( $props['width'] ),
+				'oi_height'       => intval( $props['height'] ),
+				'oi_bits'         => $props['bits'],
+				'oi_timestamp'    => $props['timestamp'],
+				'oi_description'  => $comment,
+				'oi_user'         => $user->getId(),
+				'oi_user_text'    => $user->getName(),
+				'oi_metadata'     => $props['metadata'],
+				'oi_media_type'   => $props['media_type'],
+				'oi_major_mime'   => $props['major_mime'],
+				'oi_minor_mime'   => $props['minor_mime'],
+				'oi_sha1'         => $props['sha1'],
+			), __METHOD__
+		);
+
+		$dbw->commit();
+
+		return true;
+	}
+	
 }
