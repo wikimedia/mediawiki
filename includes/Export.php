@@ -35,6 +35,8 @@ class WikiExporter {
 	var $author_list = "" ;
 
 	var $dumpUploads = false;
+	var $multiPart = false;
+	var $files = array();
 
 	const FULL = 1;
 	const CURRENT = 2;
@@ -86,12 +88,23 @@ class WikiExporter {
 
 	public function openStream() {
 		$output = $this->writer->openStream();
-		$this->sink->writeOpenStream( $output );
+		
+		if ( $this->multiPart ) {
+			$this->openMultipart();
+			$this->sink->write( $output );
+		} else {
+			$this->sink->writeOpenStream( $output );
+		}
 	}
 
 	public function closeStream() {
 		$output = $this->writer->closeStream();
-		$this->sink->writeCloseStream( $output );
+		if ( $this->multiPart ) {
+			$this->sink->write( $output );
+			$this->closeMultipart();
+		} else {
+			$this->sink->writeCloseStream( $output );
+		}
 	}
 
 	/**
@@ -314,6 +327,7 @@ class WikiExporter {
 					$output = '';
 					if ( $this->dumpUploads ) {
 						$output .= $this->writer->writeUploads( $last );
+						$this->attachUploads( $last );
 					}
 					$output .= $this->writer->closePage();
 					$this->sink->writeClosePage( $output );
@@ -329,6 +343,7 @@ class WikiExporter {
 			$output = '';
 			if ( $this->dumpUploads ) {
 				$output .= $this->writer->writeUploads( $last );
+				$this->attachUploads( $last );
 			}
 			$output .= $this->author_list;
 			$output .= $this->writer->closePage();
@@ -341,6 +356,38 @@ class WikiExporter {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
 		}
+	}
+	
+	protected function attachUploads( $row ) {
+		$title = Title::newFromRow( $row );
+		$file = wfLocalFile( $title );
+		$this->files[] = $file;
+		$this->files = array_merge( $this->files, $file->getHistory() );
+	}
+	
+	protected function openMultipart() {
+		# Multipart boundary purposely invalid XML
+		$this->boundary = '<' . dechex( mt_rand() ) . dechex( mt_rand() ) . '<';
+		$this->sink->writeOpenStream( 
+			"Content-Type: multipart/related; boundary={$this->boundary};" .
+				" type=text/xml\n\n" . 
+			"--{$this->boundary}\nContent-Type: text/xml\n\n"
+		);
+	}
+	
+	protected function closeMultipart() {
+		$output = '';
+		
+		foreach ( $this->files as $file ) {
+			$output .= "\n--{$this->boundary}\n" . 
+				'Content-Type: ' . $file->getMimeType() . "\n" .
+				'Content-ID: ' . $file->getRel() . "\n" . 
+				'Content-Length: ' . $file->getSize() . "\n" .
+				'X-Sha1Base36: ' . $file->getSha1() . "\n\n";
+			$this->sink->write( $output );
+			$this->sink->write( file_get_contents( $file->getPath() ) );  
+		}
+		$this->sink->writeCloseStream( "\n--{$this->boundary}\n" );
 	}
 }
 
