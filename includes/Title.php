@@ -1563,12 +1563,12 @@ class Title {
 			$blockExpiry = $user->mBlock->mExpiry;
 			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
 			if ( $blockExpiry == 'infinity' ) {
-				$blockExpiry = wfMessage( 'infiniteblock' );
+				$blockExpiry = wfMessage( 'infiniteblock' )->text();
 			} else {
 				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
 			}
 
-			$intended = $user->mBlock->getTarget();
+			$intended = strval( $user->mBlock->getTarget() );
 
 			$errors[] = array( ( $block->mAuto ? 'autoblockedtext' : 'blockedtext' ), $link, $reason, $ip, $name,
 				$blockid, $blockExpiry, $intended, $blockTimestamp );

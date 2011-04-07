@@ -14,7 +14,7 @@ class ApiQueryTest extends ApiTestSetup {
 
 	function testTitlesGetNormalized() {
 
-		global $wgSitename;
+		global $wgMetaNamespace;
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
@@ -27,7 +27,7 @@ class ApiQueryTest extends ApiTestSetup {
 		$this->assertEquals(
 			array(
 				'from' => 'Project:articleA',
-				'to' => $wgSitename . ':ArticleA'
+				'to' => $wgMetaNamespace . ':ArticleA'
 			),
 			$data[0]['query']['normalized'][0]
 		);

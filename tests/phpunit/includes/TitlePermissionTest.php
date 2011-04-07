@@ -625,7 +625,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$this->user->mBlock->mTimestamp = 0;
 		$this->assertEquals( array( array( 'autoblockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', 0, 'infinite', '127.0.8.1',
+			'Useruser', null, 'infinite', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ) ),
 			$this->title->getUserPermissionsErrors( 'move-target',
 			$this->user ) );
@@ -639,7 +639,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$this->user->mBlock = new Block( '127.0.8.1', 2, 1, 'no reason given', $now, 0, 10 );
 		$this->assertEquals( array( array( 'blockedtext',
 			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', 0, '23:00, 31 December 1969', '127.0.8.1',
+			'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ) ),
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 

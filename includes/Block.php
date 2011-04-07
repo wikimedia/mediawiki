@@ -444,6 +444,7 @@ class Block {
 		if( !$db ){
 			$db = wfGetDB( DB_SLAVE );
 		}
+		$this->mExpiry = $db->encodeExpiry( $this->mExpiry );
 
 		$a = array(
 			'ipb_address'          => (string)$this->target,
@@ -456,7 +457,7 @@ class Block {
 			'ipb_anon_only'        => !$this->isHardblock(),
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
 			'ipb_enable_autoblock' => $this->isAutoblocking(),
-			'ipb_expiry'           => $db->encodeExpiry( $this->mExpiry ),
+			'ipb_expiry'           => $this->mExpiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
