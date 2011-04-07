@@ -231,7 +231,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$status = $req->execute();
 		if ( ! $status->isOK() ) {
 			$errors = $status->getWikiTextArray( $status->getErrorsArray() );
-			throw new MWException( "Fetching thumbnail failed: " . join( ", ", $errors ) );
+			throw new MWException( "Fetching thumbnail failed: " . print_r( $errors, 1 ) );
 		}
 		$contentType = $req->getResponseHeader( "content-type" );
 		if ( ! $contentType ) {
