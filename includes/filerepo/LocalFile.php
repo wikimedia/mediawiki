@@ -1045,16 +1045,22 @@ class LocalFile extends File {
 	 *
 	 * @param $srcPath String: local filesystem path to the source image
 	 * @param $flags Integer: a bitwise combination of:
-	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
-	 *         rather than copy
+	 *     File::DELETE_SOURCE	Delete the source file, i.e. move rather than copy
+	 * @param $dstArchiveName string File name if the file is to be published 
+	 *     into the archive
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publish( $srcPath, $flags = 0 ) {
+	function publish( $srcPath, $flags = 0, $dstArchiveName = null ) {
 		$this->lock();
 
-		$dstRel = $this->getRel();
-		$archiveName = gmdate( 'YmdHis' ) . '!' . $this->getName();
+		if ( $dstArchiveName ) {
+			$dstRel = 'archive/' . $this->getHashPath() . $dstArchiveName;
+		} else {
+			$dstRel = $this->getRel();
+		}
+			
+		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
 		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags );
