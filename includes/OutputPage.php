@@ -2643,7 +2643,7 @@ class OutputPage {
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts( true, 'bottom' ), ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
-		// Only load modules that have marked themselves for loading at the top
+		// Only load modules that have marked themselves for loading at the bottom
 		$modules = $this->getModules( true, 'bottom' );
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
