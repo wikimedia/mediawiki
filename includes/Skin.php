@@ -738,7 +738,10 @@ abstract class Skin {
 	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
 	function bottomScripts( $out ) {
-		$bottomScriptText = "\n" . $out->getHeadScripts( $this );
+		// TODO and the suckage continues. This function is really just a wrapper around
+		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
+		// up at some point
+		$bottomScriptText = $out->getBottomScripts( $this );
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 
 		return $bottomScriptText;

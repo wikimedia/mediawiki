@@ -537,6 +537,7 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
+		'position' => 'top',
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'common/edit.js',
