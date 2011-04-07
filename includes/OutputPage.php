@@ -2217,6 +2217,43 @@ class OutputPage {
 	}
 
 	/**
+	 * Turn off regular page output and return an error reponse
+	 * for when rate limiting has triggered.
+	 */
+	public function rateLimited() {
+		$this->setPageTitle( wfMsg( 'actionthrottled' ) );
+		$this->setRobotPolicy( 'noindex,follow' );
+		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
+		$this->mRedirect = '';
+		$this->clearHTML();
+		$this->setStatusCode( 503 );
+		$this->addWikiMsg( 'actionthrottledtext' );
+
+		$this->returnToMain( null, $this->getTitle() );
+	}
+
+	/**
+	 * Show a warning about slave lag
+	 *
+	 * If the lag is higher than $wgSlaveLagCritical seconds,
+	 * then the warning is a bit more obvious. If the lag is
+	 * lower than $wgSlaveLagWarning, then no warning is shown.
+	 *
+	 * @param $lag Integer: slave lag
+	 */
+	public function showLagWarning( $lag ) {
+		global $wgSlaveLagWarning, $wgSlaveLagCritical;
+		if( $lag >= $wgSlaveLagWarning ) {
+			$message = $lag < $wgSlaveLagCritical
+				? 'lag-warn-normal'
+				: 'lag-warn-high';
+			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getContext()->getLang()->formatNum( $lag ) ) );
+		}
+	}
+
+	/**
 	 * Adds JS-based password security checker
 	 * @param $passwordId String ID of input box containing password
 	 * @param $retypeId String ID of input box containing retyped password
@@ -3168,43 +3205,6 @@ class OutputPage {
 		}
 
 		return $media;
-	}
-
-	/**
-	 * Turn off regular page output and return an error reponse
-	 * for when rate limiting has triggered.
-	 */
-	public function rateLimited() {
-		$this->setPageTitle( wfMsg( 'actionthrottled' ) );
-		$this->setRobotPolicy( 'noindex,follow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-		$this->clearHTML();
-		$this->setStatusCode( 503 );
-		$this->addWikiMsg( 'actionthrottledtext' );
-
-		$this->returnToMain( null, $this->getTitle() );
-	}
-
-	/**
-	 * Show a warning about slave lag
-	 *
-	 * If the lag is higher than $wgSlaveLagCritical seconds,
-	 * then the warning is a bit more obvious. If the lag is
-	 * lower than $wgSlaveLagWarning, then no warning is shown.
-	 *
-	 * @param $lag Integer: slave lag
-	 */
-	public function showLagWarning( $lag ) {
-		global $wgSlaveLagWarning, $wgSlaveLagCritical;
-		if( $lag >= $wgSlaveLagWarning ) {
-			$message = $lag < $wgSlaveLagCritical
-				? 'lag-warn-normal'
-				: 'lag-warn-high';
-			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
-			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getContext()->getLang()->formatNum( $lag ) ) );
-		}
 	}
 
 	/**
