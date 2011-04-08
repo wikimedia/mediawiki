@@ -153,6 +153,7 @@ class MakeHipHop extends Maintenance {
 		}
 		if ( $mem ) {
 			$procs = floor( $mem / 1000000 );
+			$procs = $procs >= 1 ? $procs : 1; // No less than 1
 		} else {
 			$procs = 1;
 		}
