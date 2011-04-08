@@ -113,7 +113,11 @@ class Parser {
 	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mDTopen;
+	/**
+	 * @var OutputPage
+	 */
+	var $mOutput;
+	var $mAutonumber, $mDTopen;
 
 	/**
 	 * @var StripState
