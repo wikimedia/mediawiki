@@ -66,8 +66,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @param $suffix String: suffix to append to renamed articles
 	 */
 	private function checkAll( $fix, $suffix = '' ) {
-		global $wgContLang, $wgNamespaceAliases, $wgCanonicalNamespaceNames;
-		global $wgCapitalLinks;
+		global $wgContLang, $wgNamespaceAliases, $wgCapitalLinks;
 
 		$spaces = array();
 
@@ -79,7 +78,7 @@ class NamespaceConflictChecker extends Maintenance {
 		}
 
 		// Now pull in all canonical and alias namespaces...
-		foreach ( $wgCanonicalNamespaceNames as $ns => $name ) {
+		foreach ( MWNamespace::getCanonicalNamespaces() as $ns => $name ) {
 			// This includes $wgExtraNamespaces
 			if ( $name !== '' ) {
 				$spaces[$name] = $ns;
