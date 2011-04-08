@@ -2841,7 +2841,7 @@ $1',
 'import-interwiki-namespace' => 'העתקה למרחב השם:',
 'import-upload-filename'     => 'שם הקובץ:',
 'import-comment'             => 'הערה:',
-'importtext'                 => 'נא לייצא את הקובץ מאתר המקור תוך שימוש ב[[Special:Export|כלי הייצוא]].
+'importtext'                 => 'נא לייצא את הקובץ מאתר המקור באמצעות ב[[Special:Export|כלי הייצוא]].
 שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.',
 'importstart'                => 'מייבא דפים…',
 'import-revision-count'      => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}}',

@@ -2894,8 +2894,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'import-interwiki-namespace' => '目的の名前空間：',
 'import-upload-filename'     => 'ファイルの名前：',
 'import-comment'             => 'コメント：',
-'importtext'                 => '書き出し元となるウィキから[[Special:Export|書き出し用機能]]を使ってファイルを書き出してください。
-それをコンピューターに保存した後、ここにアップロードしてください。',
+'importtext'                 => '元のウィキで[[Special:Export|書き出し機能]]を使ってファイルに書き出してください。
+それをコンピューターに保存した後、こちらへアップロードしてください。',
 'importstart'                => 'ページを取り込んでいます・・・',
 'import-revision-count'      => '$1版',
 'importnopages'              => '取り込むページがありません。',

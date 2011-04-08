@@ -2523,11 +2523,13 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'ipb-disableusertalk'             => 'Zabránit tomuto uživateli editovat vlastní uživatelskou diskusi po dobu zablokování',
 'ipb-change-block'                => 'Znovu zablokovat uživatele s tímto nastavením',
+'ipb-confirm'                     => 'Potvrdit zablokování',
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
 Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself'                => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
+'ipb-confirmhideuser'             => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'                => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                     => 'Odblokovat uživatele nebo IP adresu',
@@ -2776,7 +2778,8 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'import-interwiki-namespace' => 'Cílový jmenný prostor:',
 'import-upload-filename'     => 'Jméno souboru:',
 'import-comment'             => 'Zdůvodnění:',
-'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje [[Special:Export|{{ns:special}}:Export]], uložte jej na svůj disk a nahrajte ho sem.',
+'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí [[Special:Export|exportního nástroje]].
+Uložte jej na svůj disk a nahrajte ho sem.',
 'importstart'                => 'Stránky se importují…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'importnopages'              => 'Není co importovat.',

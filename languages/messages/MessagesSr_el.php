@@ -1074,7 +1074,7 @@ $1",
 'lineno'                   => 'Linija $1:',
 'compareselectedversions'  => 'Uporedi označene verzije',
 'showhideselectedversions' => 'Prikaži/sakrij odabrane revizije',
-'editundo'                 => 'vrati',
+'editundo'                 => 'poništi',
 'diff-multi'               => '({{PLURAL:$1|Jedna revizija nije prikazana|$1 revizije nisu prikazane|$1 revizija nije prikazano}}.)',
 
 # Search results
