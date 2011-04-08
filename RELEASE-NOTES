@@ -226,8 +226,6 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27893) Edit-on-doubleclick now applies only on view and purge actions;
   no longer triggers unexpectedly on delete, history etc.
 * (bug 28417) Fix PHP notice when importing revision without a listed id
-* (bug 28394) Set forgotten parameters types in ApiUnblock
-* (bug 28395) Set forgotten parameters types in ApiParse
 * (bug 28430) Make html and TeX output of <math> always be left-to-right.
 * (bug 28306) Fix exposure of suppressed usernames in ForeignDBRepo
 * (bug 28372) Fix bogus link to suppressed file versions in ForeignDBRepo
@@ -321,6 +319,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28263) cannot import xml with the api, when have not "import" user
   right, but "importupload"
 * (bug 28365) Added description for uiprop=preferencestoken in meta=userinfo
+* (bug 28394) Set forgotten parameters types in ApiUnblock
+* (bug 28395) Set forgotten parameters types in ApiParse
 
 === Languages updated in 1.18 ===
 
