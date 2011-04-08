@@ -54,6 +54,11 @@ class MakeHipHop extends Maintenance {
 			' --output-dir=' . wfEscapeShellArg( $outDir ) .
 			' --log=3' );
 
+		# Sanity check, quickly make sure we've got an output directory
+		if( !is_dir( $outDir ) ) {
+			$this->error( "No output directory", true );
+		}
+
 		# Copy the generated C++ files into the source directory for cmake
 		$iter = new RecursiveIteratorIterator( 
 			new RecursiveDirectoryIterator( $outDir ),
