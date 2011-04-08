@@ -2703,7 +2703,7 @@ Vsi uvozi med wikiji so zabeleženi v [[Special:Log/import|dnevniku uvozov]].',
 'import-interwiki-namespace' => 'Prenesi strani v imenski prostor:',
 'import-upload-filename'     => 'Ime datoteke:',
 'import-comment'             => 'Komentar:',
-'importtext'                 => 'Prosimo, izvozite datoteko iz izvornega wikija s pomočjo [[Special:Export|orodja za izvoz]].
+'importtext'                 => 'Prosimo, izvozite datoteko z izvornega wikija s pomočjo [[Special:Export|orodja za izvoz]].
 Shranite jo na vaš računalnik in naložite tukaj.',
 'importstart'                => 'Uvažam strani ...',
 'import-revision-count'      => '$1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij|redakcij}}',

@@ -499,7 +499,7 @@ $messages = array(
 'create-this-page'  => 'Bu sayfayı oluştur',
 'delete'            => 'Sil',
 'deletethispage'    => 'Bu sayfayı sil',
-'undelete_short'    => '$ değişikliği geri getir',
+'undelete_short'    => '$1 değişikliği geri getir',
 'viewdeleted_short' => '{{PLURAL:$1|bir silinmiş değişiklik|$1 silinmiş değişiklikleri}} görüntüle.',
 'protect'           => 'Korumaya al',
 'protect_change'    => 'Değiştir',
@@ -1326,7 +1326,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-watchlist-days'          => 'İzleme listesinde görüntülenecek gün sayısı:',
 'prefs-watchlist-days-max'      => 'En fazla 7 gün',
 'prefs-watchlist-edits'         => 'Genişletilmiş izleme listesinde gösterilecek değişiklik sayısı:',
-'prefs-watchlist-edits-max'     => '(en fazla sayı: 1000)',
+'prefs-watchlist-edits-max'     => 'En fazla sayı: 1000',
 'prefs-watchlist-token'         => 'İzleme listesi nişanı:',
 'prefs-misc'                    => 'Diğer ayarlar',
 'prefs-resetpass'               => 'Parolayı değiştir',
@@ -2475,6 +2475,8 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'whatlinkshere-filters'    => 'Süzgeçler',
 
 # Block/unblock
+'block'                           => 'Kullanıcıyı engelle',
+'unblock'                         => 'Kullanıcının engelini kaldır',
 'blockip'                         => 'Kullanıcıyı engelle',
 'blockip-title'                   => 'Kullanıcıyı engelle',
 'blockip-legend'                  => 'Kullanıcıyı engelle',
@@ -2491,6 +2493,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 ** Tehditvari davranış/Taciz
 ** Birden fazla hesabı kötüye kullanmak
 ** Kabul edilemez kullanıcı adı',
+'ipb-hardblock'                   => 'Bu IP adresindeki oturum açmış kullanıcıların değişiklik yapmasını önle',
 'ipbcreateaccount'                => 'Hesap oluşturulmasına engel ol',
 'ipbemailban'                     => 'Kullanıcının e-posta göndermesine engel ol',
 'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
@@ -2501,11 +2504,15 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipbotherreason'                  => 'Başka/ek sebepler:',
 'ipbhidename'                     => 'Kullanıcı adını katkılarda ve listelerde gizle',
 'ipbwatchuser'                    => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
+'ipb-disableusertalk'             => 'Bu kullanıcının engelliyken kendi mesaj sayfasında değişiklik yapmasını önle',
 'ipb-change-block'                => 'Bu ayarlarla kullanıcıyı yeniden engelle',
+'ipb-confirm'                     => 'Engeli onayla',
 'badipaddress'                    => 'Geçersiz IP adresi',
 'blockipsuccesssub'               => 'IP adresi engelleme işlemi başarılı oldu',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] engellendi.
 <br />Engellemeleri gözden geçirmek için [[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
+'ipb-blockingself'                => 'Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?',
+'ipb-confirmhideuser'             => '"Kullanıcıyı gizle" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?',
 'ipb-edit-dropdown'               => 'Engelleme nedenleri düzenle',
 'ipb-unblock-addr'                => '$1 için engellemeyi kaldır',
 'ipb-unblock'                     => 'Engellemeyi kaldır',
@@ -2515,13 +2522,18 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'unblockiptext'                   => 'Daha önceden engellenmiş bir IP adresine ya da kullanıcı adına yazma erişimini geri vermek için aşağıdaki formu kullanın.',
 'ipusubmit'                       => 'Bu engellemeyi kaldır',
 'unblocked'                       => '[[User:$1|$1]] - engelleme kaldırıldı',
+'unblocked-range'                 => '$1 engeli kaldırıldı',
 'unblocked-id'                    => '$1 engeli çıkarıldı',
+'blocklist'                       => 'Engellenmiş kullanıcılar',
 'ipblocklist'                     => 'Engellenmiş kullanıcılar',
 'ipblocklist-legend'              => 'Engellenen kullanıcı ara',
 'blocklist-userblocks'            => 'Hesap engellemelerini gizle',
 'blocklist-tempblocks'            => 'Geçici engellemeleri gizle',
 'blocklist-addressblocks'         => 'Tek IP engellemelerini gizle',
+'blocklist-target'                => 'Hedef',
 'blocklist-expiry'                => 'Bitiş tarihi',
+'blocklist-by'                    => 'Engeli koyan hizmetli',
+'blocklist-params'                => 'Engel parametreleri',
 'blocklist-reason'                => 'Gerekçe',
 'ipblocklist-submit'              => 'Ara',
 'ipblocklist-localblock'          => 'Yerel engelleme',
@@ -2563,6 +2575,7 @@ Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'ipb_already_blocked'             => '"$1" zaten engellenmiş',
 'ipb-needreblock'                 => '$1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
 'ipb-otherblocks-header'          => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',
+'unblock-hideuser'                => 'Kullanıcı adı gizlenmiş olduğu için bu kullanıcının engelini kaldıramazsınız.',
 'ipb_cant_unblock'                => 'Hata: Engelleme IDsi $1 bulunamadı.
 Engelleme kaldırılmış olabilir.',
 'ipb_blocked_as_range'            => 'Hata: $1 IP adresi doğrudan engellenmemiş ve engelleme kaldırılamaz.
@@ -2757,7 +2770,7 @@ Bütün vikilerarası içe aktarım eylemleri [[Special:Log/import|içe aktarım
 'import-interwiki-namespace' => 'Hedef ad alanı:',
 'import-upload-filename'     => 'Dosya adı:',
 'import-comment'             => 'Yorum:',
-'importtext'                 => 'Lütfen dosyayı viki kaynağından [[Special:Export|dışa aktarım uygulamasıyla]] dışa aktarın.
+'importtext'                 => 'Lütfen dosyayı [[Special:Export|dışa aktarım yardımcı yazılımıyla]] kaynak vikiden dışa aktarın.
 Bilgisayarınıza kaydedin ve buraya yükleyin.',
 'importstart'                => 'Sayfalar aktarmaktadır...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revizyon|revizyon}}',
@@ -3403,11 +3416,12 @@ $1',
 'trackbackdeleteok' => 'Geri izleme başarıyla silindi.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Uyarı''': Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!",
-'confirmrecreate'     => "Bu sayfayı [[User:$1|$1]] ([[User talk:$1|mesaj]]) kullanıcısı siz sayfada değişiklik yaparken silmiştir, nedeni:
+'deletedwhileediting'      => "'''Uyarı''': Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!",
+'confirmrecreate'          => "Bu sayfayı [[User:$1|$1]] ([[User talk:$1|mesaj]]) kullanıcısı siz sayfada değişiklik yaparken silmiştir, nedeni:
 : ''$2''
 Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
-'recreate'            => 'Canlandır',
+'confirmrecreate-noreason' => '[[User:$1|$1]] ([[User talk:$1|mesaj]]) adlı kullanıcı, siz değişiklik yapmaya başladıktan sonra bu sayfayı sildi. Lütfen bu sayfayı gerçekten yeniden oluşturmak istediğinizi onaylayın.',
+'recreate'                 => 'Canlandır',
 
 'unit-pixel' => 'px',
 
@@ -3536,9 +3550,9 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Özel sayfalar',
-'specialpages-note'              => '----
-* Normal özel sayfalar.
-* <strong class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</strong>',
+'specialpages-note'              => '* Normal özel sayfalar.
+* <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>
+* <span class="mw-specialpagecached">Yalnızca önbelleğe alınan özel sayfalar.</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',

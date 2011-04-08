@@ -2425,7 +2425,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contribuțiile utilizatorului',
-'contributions-title' => 'Contribuțiile utilizatorului pentru $1',
+'contributions-title' => 'Contribuțiile utilizatorului $1',
 'mycontris'           => 'Contribuții',
 'contribsub2'         => 'Pentru $1 ($2)',
 'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
@@ -2721,7 +2721,7 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 Alegeți un alt nume.',
 
 # Export
-'export'            => 'Exportă pagini',
+'export'            => 'Exportare de pagini',
 'exporttext'        => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML.
 Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
 
@@ -2779,8 +2779,8 @@ Vă rugăm să vizitați [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-namespace' => 'Transferă către spațiul de nume:',
 'import-upload-filename'     => 'Nume fișier:',
 'import-comment'             => 'Comentariu:',
-'importtext'                 => 'Te rog exportă fișierul din sursa wiki folosind [[Special:Export|utilitarul de exportare]].
-Salvează-l pe discul tău și trimite-l aici.',
+'importtext'                 => 'Vă rugăm să exportați fișierul din wikiul sursă folosind [[Special:Export|utilitarul de exportare]].
+Salvați-l pe calculatorul dumneavoastră și încărcați-l aici.',
 'importstart'                => 'Se importă paginile...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versiune|versiuni}}',
 'importnopages'              => 'Nu există pagini de importat.',

@@ -2739,7 +2739,8 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'import-interwiki-namespace' => 'Odredišni imenski prostor:',
 'import-upload-filename'     => 'Ime datoteke:',
 'import-comment'             => 'Komentar:',
-'importtext'                 => 'Molim da izvezete ovu datoteku iz izvorišnog wikija koristeći pomagalo Special:Export, snimite je na svoj disk i postavite je ovdje.',
+'importtext'                 => 'Molimo izvezite datoteku iz izvorišnog wikija koristeći [[Special:Export|izvozno pomagalo]]. 
+Snimite je na svoje računalo i postavite je ovdje.',
 'importstart'                => 'Uvozim stranice...',
 'import-revision-count'      => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'importnopages'              => 'Nema stranica za uvoz.',

@@ -2992,6 +2992,16 @@ $5
 'iranian-calendar-m11' => 'ڕێبەندان',
 'iranian-calendar-m12' => 'ڕەشەمە',
 
+# Hijri month names
+'hijri-calendar-m1'  => 'موحەڕەم',
+'hijri-calendar-m2'  => 'سەفەر',
+'hijri-calendar-m7'  => 'ڕەجەب',
+'hijri-calendar-m8'  => 'شەعبان',
+'hijri-calendar-m9'  => 'ڕەمەزان',
+'hijri-calendar-m10' => 'شەووال',
+'hijri-calendar-m11' => 'زولقەعدە',
+'hijri-calendar-m12' => 'زولحەججە',
+
 # Core parser functions
 'unknown_extension_tag' => 'تاگی درێژکراوەی نەناسراو "$1"',
 

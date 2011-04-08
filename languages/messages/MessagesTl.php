@@ -2634,7 +2634,8 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'import-interwiki-namespace' => 'Kapupuntahang espasyo ng pangalan:',
 'import-upload-filename'     => 'Pangalan ng talaksan:',
 'import-comment'             => 'Komento:',
-'importtext'                 => 'Pakiluwas/pakikuha ang talaksan mula sa pinagmulang wiki na ginagamit ang [[Special:Export|kasangkapang pangluwas]].  Sagipin mo ito sa iyong kompyuter at ikarga rito.',
+'importtext'                 => 'Pakiluwas ang talaksan magmula sa pinagmulang wiki na ginagamit ang [[Special:Export|kasangkapang pangluwas]].  
+Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'importstart'                => 'Inaangkat na ang mga pahina...',
 'import-revision-count'      => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'importnopages'              => 'Walang mga pahinang maangkat.',
