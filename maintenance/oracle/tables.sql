@@ -610,8 +610,8 @@ ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY 
 --);
 --CREATE UNIQUE INDEX &mw_prefix.profiling_u01 ON &mw_prefix.profiling (pf_name, pf_server);
 
-CREATE INDEX si_title_idx ON &mw_prefix.searchindex(si_title) INDEXTYPE IS ctxsys.context;
-CREATE INDEX si_text_idx ON &mw_prefix.searchindex(si_text) INDEXTYPE IS ctxsys.context;
+CREATE INDEX &mw_prefix.si_title_idx ON &mw_prefix.searchindex(si_title) INDEXTYPE IS ctxsys.context;
+CREATE INDEX &mw_prefix.si_text_idx ON &mw_prefix.searchindex(si_text) INDEXTYPE IS ctxsys.context;
 
 CREATE TABLE &mw_prefix.l10n_cache (
   lc_lang varchar2(32) NOT NULL,
