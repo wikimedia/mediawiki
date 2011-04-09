@@ -653,8 +653,6 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 'extlink_tip'     => 'Kanpo lotura (gogoratu http:// aurrizkia)',
 'headline_sample' => 'Goiburuko testua',
 'headline_tip'    => '2. mailako goiburukoa',
-'math_sample'     => 'Formula hemen idatzi',
-'math_tip'        => 'Formula matematikoa (LaTeX)',
 'nowiki_sample'   => 'Formatu gabeko testua hemen idatzi',
 'nowiki_tip'      => 'Ez egin jaramonik wiki formatuari',
 'image_sample'    => 'Adibidea.jpg',
@@ -1128,7 +1126,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'changepassword'                => 'Pasahitza aldatu',
 'prefs-skin'                    => 'Itxura',
 'skin-preview'                  => 'Aurrebista',
-'prefs-math'                    => 'Formulak',
 'datedefault'                   => 'Hobespenik ez',
 'prefs-datetime'                => 'Data eta ordua',
 'prefs-personal'                => 'Erabiltzaile profila',
@@ -2603,25 +2600,6 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'skinname-cologneblue' => 'Cologne Blue',
 'skinname-simple'      => 'Arrunta',
 'skinname-modern'      => 'Modernoa',
-
-# Math options
-'mw_math_png'    => 'Beti PNG irudiak sortu',
-'mw_math_simple' => 'Oso sinplea bada HTML, eta bestela PNG',
-'mw_math_html'   => 'Posible bada HTML, eta bestela PNG',
-'mw_math_source' => 'TeX bezala utzi (testu bidezko nabigatzaileentzako)',
-'mw_math_modern' => 'Nabigatzaile berrientzako gomendatuta',
-'mw_math_mathml' => 'MathML posible bada (proba fasean)',
-
-# Math errors
-'math_failure'          => 'Interpretazio errorea',
-'math_unknown_error'    => 'errore ezezaguna',
-'math_unknown_function' => 'funtzio ezezaguna',
-'math_lexing_error'     => 'errore lexikoa',
-'math_syntax_error'     => 'sintaxi errorea',
-'math_image_error'      => 'PNG bilakatze errorea; egiaztatu latex eta dvipng (edo dvips + gs + convert) ongi instalatuta dauden begiratu',
-'math_bad_tmpdir'       => 'Ezin da math direktorio tenporala sortu edo bertan idatzi',
-'math_bad_output'       => 'Ezin da math direktorioa sortu edo bertan idatzi',
-'math_notexvc'          => 'texvc exekutagarria falta da; mesedez, ikus math/README konfiguratzeko.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Patruilatu bezala markatu',

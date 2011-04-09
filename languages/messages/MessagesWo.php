@@ -564,8 +564,6 @@ Xèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen
 'extlink_tip'     => 'Lëkkalekaay yu biti (bul fattee jiital http://)',
 'headline_sample' => 'Ron-koj',
 'headline_tip'    => 'Ron-koj 2 tolluwaay',
-'math_sample'     => 'Duggalal sa mbind fii',
-'math_tip'        => 'Mbindu xayma (LaTeX)',
 'nowiki_sample'   => 'Dugalal fii mbind mi ñu joxul melokaan',
 'nowiki_tip'      => 'Jéllaleel mbindinu wiki',
 'image_sample'    => 'Misaal.jpg',
@@ -977,7 +975,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'changepassword'                => 'Coppiteg baatujàll bi',
 'prefs-skin'                    => 'Melokaan',
 'skin-preview'                  => 'Wonendil',
-'prefs-math'                    => 'Xayma',
 'datedefault'                   => 'Benn tànneef',
 'prefs-datetime'                => 'Taariix ak waxtu',
 'prefs-personal'                => 'Xibaar yu la ñeel',
@@ -2161,16 +2158,6 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 'spamprotectiontitle' => 'Seggukaay lank-spam',
 'spam_reverting'      => 'Loppantib sumb mu mujj mu amul lëkkalekaay buy jëme $1',
 'spam_blanking'       => 'Setal nañ wecc sumb yi amoon lëkkalekaay buy jëme $1',
-
-# Math options
-'mw_math_html' => 'HTML su manee ne, lu ko moy PNG',
-
-# Math errors
-'math_failure'          => 'Njuumte ci xayma',
-'math_unknown_error'    => 'Njuumte li xamuñ ko',
-'math_unknown_function' => 'Solo si xamuñ ko',
-'math_lexing_error'     => 'Njuumteg mbindin',
-'math_syntax_error'     => 'njuumtey mbindin',
 
 # Browsing diffs
 'previousdiff' => '← Coppite yi gën a yàgg',

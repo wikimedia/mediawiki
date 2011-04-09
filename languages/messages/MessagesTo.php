@@ -332,7 +332,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'extlink_tip'     => 'Fehokotaki ki tuʻa (manatuʻi ko e fakapipikimuʻa — http://)',
 'headline_sample' => 'Mataʻitohi tuʻumuʻa',
 'headline_tip'    => 'Tuʻumuʻa fakatuʻunga hono 2',
-'math_tip'        => "Kupuʻilea fakamatematika ''(LaTex)''",
 'nowiki_sample'   => 'Hulumaki ʻa e ʻū mataʻitohi taʻengaohi ʻi heni',
 'nowiki_tip'      => "taʻetokaʻi ngaohi ''wiki''",
 'sig_tip'         => 'Ko e fakamoʻoniʻi ʻaʻau mo hono taimi',
@@ -460,7 +459,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'changepassword'        => 'Liliu hoʻo leatapu',
 'prefs-skin'            => 'Kili',
 'skin-preview'          => 'Vakai pē',
-'prefs-math'            => 'Matematika',
 'datedefault'           => 'ʻIkai ha faʻiteliha',
 'prefs-datetime'        => 'ʻAho mo e taimi',
 'prefs-personal'        => 'Fōtunga fakatafaʻaki',
@@ -1039,19 +1037,6 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 
 # Info page
 'infosubtitle' => 'Fakamatala ki he peesi',
-
-# Math options
-'mw_math_png'    => 'Fai PNG taimi kotoa',
-'mw_math_simple' => 'Fai HTML kapau faingofua ʻaupito, pe toe PNG',
-'mw_math_html'   => 'Fai HTML kapau malava, pe toe PNG',
-'mw_math_source' => "Fakatoe ʻi he ''TeX'' maʻa e ngaahi palausa tohi pē",
-'mw_math_modern' => 'ʻOku fakahinohino maʻa e palausa fakaonopooni.',
-'mw_math_mathml' => 'Fai MathML kapau malava (fakatotolo)',
-
-# Math errors
-'math_unknown_error'    => 'hala taʻeʻiloa',
-'math_unknown_function' => 'lakanga taʻeʻiloa',
-'math_bad_output'       => 'ʻOku ʻikai lava ʻo tohi pe fakatupu ʻa e takafi maʻa e fua matematika',
 
 # Patrolling
 'rcpatroldisabled' => 'ʻOku fakataʻeʻaʻongaʻi ʻa e leʻo ʻo e ngaahi toki liliu',

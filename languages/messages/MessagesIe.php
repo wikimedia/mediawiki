@@ -228,7 +228,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'link_tip'     => 'Catenun intern',
 'extlink_tip'  => 'Catenun extern (memorar prefixe http://)',
 'headline_tip' => 'Division de nivelle 2',
-'math_tip'     => 'Formul mathematical (LaTeX)',
 'nowiki_tip'   => 'Ignorar formate wiki',
 'image_tip'    => 'File fixat',
 'media_tip'    => 'Catenun in file de multimedia',

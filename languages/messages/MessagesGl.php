@@ -751,8 +751,6 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'extlink_tip'     => 'Ligazón externa (lembre o prefixo http://)',
 'headline_sample' => 'Texto de cabeceira',
 'headline_tip'    => 'Cabeceira de nivel 2',
-'math_sample'     => 'Insira unha fórmula aquí',
-'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Insira aquí un texto sen formato',
 'nowiki_tip'      => 'Ignorar o formato wiki',
 'image_sample'    => 'Exemplo.jpg',
@@ -1258,7 +1256,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'changepassword'                => 'Cambiar o meu contrasinal',
 'prefs-skin'                    => 'Aparencia',
 'skin-preview'                  => 'Vista previa',
-'prefs-math'                    => 'Fórmulas matemáticas',
 'datedefault'                   => 'Ningunha preferencia',
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Información do usuario',
@@ -2897,25 +2894,6 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'skinname-chick'       => 'Parrulo',
 'skinname-simple'      => 'Sinxela',
 'skinname-modern'      => 'Moderna',
-
-# Math options
-'mw_math_png'    => 'Orixinar sempre unha imaxe PNG',
-'mw_math_simple' => 'HTML se é moi simple, en caso contrario PNG',
-'mw_math_html'   => 'Se é posible HTML, se non PNG',
-'mw_math_source' => 'Deixalo como TeX (para navegadores de texto)',
-'mw_math_modern' => 'Recomendado para as versións recentes dos navegadores',
-'mw_math_mathml' => 'MathML se é posible (experimental)',
-
-# Math errors
-'math_failure'          => 'Fallou a conversión do código',
-'math_unknown_error'    => 'erro descoñecido',
-'math_unknown_function' => 'función descoñecida',
-'math_lexing_error'     => 'erro de léxico',
-'math_syntax_error'     => 'erro de sintaxe',
-'math_image_error'      => 'Fallou a conversión a PNG; comprobe que latex, dvips, gs e convert están ben instalados (ou dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Non se puido crear ou escribir no directorio temporal de fórmulas',
-'math_bad_output'       => 'Non se puido crear ou escribir no directorio de saída de fórmulas',
-'math_notexvc'          => 'Falta o executable texvc. Por favor consulte math/README para configurar.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como revisada',

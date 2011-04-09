@@ -438,8 +438,6 @@ Am feuch thu ris a-rithist?',
 'extlink_tip'     => 'Ceangal dhan taobh a-muigh (cuimhnich an ro-leasachan http://)',
 'headline_sample' => 'Teacsa ceann-loidhne',
 'headline_tip'    => 'Ceann-loidhne ìre 2',
-'math_sample'     => 'Cuir a-steach foirmle an-seo',
-'math_tip'        => 'Foirmle matamataig (LaTeX)',
 'nowiki_sample'   => 'Cuir a-steach teacsa gun fhòrmatadh an-seo',
 'nowiki_tip'      => 'Leig seachad fòrmatadh uici',
 'image_sample'    => 'Eisimpleir.jpg',
@@ -1024,9 +1022,6 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 # Info page
 'infosubtitle' => 'Fiosrachadh mun duilleag',
 'numwatchers'  => "Àireamh de dhaoine a tha a' cumail sùil air: $1",
-
-# Math errors
-'math_unknown_error' => 'mearachd neo-aithnichte',
 
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',

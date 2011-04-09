@@ -509,8 +509,6 @@ Kerem ke, oncia bıcerrebne.',
 'extlink_tip'     => 'Girê teberi (verbendê http:// ho vira mekerê)',
 'headline_sample' => 'Nustê serrêze',
 'headline_tip'    => 'Serrêza sewiya 2ine',
-'math_sample'     => 'İta formuli cıke',
-'math_tip'        => 'Formulê matematiki (formatê LaTeXi de)',
 'nowiki_sample'   => 'Formatê nustê huyo serbeti ita bınuse',
 'nowiki_tip'      => 'Ehemêt formatê wikiy mede',
 'image_tip'       => 'Dosya arêkerdiye',
@@ -755,7 +753,6 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'changepassword'            => 'Parola bıvurne',
 'prefs-skin'                => 'Çerme',
 'skin-preview'              => 'Verqayt',
-'prefs-math'                => 'Mat',
 'datedefault'               => 'Tercihi çinê',
 'prefs-datetime'            => 'Tarix u zeman',
 'prefs-personal'            => 'Dosya karberi',
@@ -1313,19 +1310,6 @@ Têser-kerdena jü sebebi rê xulasa de imkan dano cı.',
 
 # Stylesheets
 'common.css' => '/* CSSo ke itaro, serba çermu pêroine gurenino */',
-
-# Math errors
-'math_failure'          => 'Analiz de xeta',
-'math_unknown_error'    => 'xeta nêzanaiye',
-'math_unknown_function' => 'fonksiyono nêzanae',
-'math_lexing_error'     => 'xeta grameri',
-'math_syntax_error'     => 'xeta cumla',
-'math_image_error'      => "Werênaisê ''PNG''y de xeta biye;
-enstale-kerdena ''latex'', ''dvips'', ''gs'', u ''convert''i qontrol ke",
-'math_bad_tmpdir'       => "Sıma nêşikinê indeksê ''math temp''i de bınusê ya ki bıafernê",
-'math_bad_output'       => 'Sıma nêşikinê indeksê formulunê matematiki de bınusê ya ki bıafernê',
-'math_notexvc'          => "''Texvc''o gurênae çino;
-Serba areze-kerdene qaytê ''math/README''y ke.",
 
 # Browsing diffs
 'previousdiff' => '← Vurnaiso khanêr',

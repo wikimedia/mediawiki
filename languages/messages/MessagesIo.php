@@ -495,8 +495,6 @@ Voluntez enirar altrafoye pos recevar ol.',
 'extlink_tip'     => 'Extera ligilo (memorez adjuntar la prefixo "http://")',
 'headline_sample' => 'Texto dil titulo',
 'headline_tip'    => 'Titulo di duesma nivelo',
-'math_sample'     => 'Insertez formulo hike',
-'math_tip'        => 'Formulo matematika (LaTeX)',
 'nowiki_sample'   => 'Insertar senformizita texto hike',
 'nowiki_tip'      => 'Ignorez formatigo wikial',
 'image_sample'    => 'Exemplo.jpg',
@@ -717,7 +715,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'changepassword'                => 'Chanjar pasovorto',
 'prefs-skin'                    => 'Pelo',
 'skin-preview'                  => 'Pre-videz',
-'prefs-math'                    => 'Quale montrar la formuli',
 'datedefault'                   => 'Sen prefero',
 'prefs-datetime'                => 'Dato e tempo',
 'prefs-personal'                => 'Personala informo',
@@ -1429,11 +1426,6 @@ Vu darfos adjuntar kauso en la rezumo.',
 'numedits'    => 'Quanto di redakti (pagino): $1',
 'numwatchers' => 'Quanto di vizitanti: $1',
 'numauthors'  => 'Quanto di aparta autori (pagino): $1',
-
-# Math errors
-'math_unknown_error' => 'nekonocata eroro',
-'math_bad_tmpdir'    => 'Onu ne povas skribar o krear la tempala matematikala arkivaro',
-'math_bad_output'    => 'Onu ne povas skribar o krear la arkivaro por la matematiko',
 
 # Patrol log
 'patrol-log-auto' => '(automata)',

@@ -493,8 +493,6 @@ $2",
 'extlink_tip'     => "የውጭ መያያዣ ለመፍጠር (በ'http://' የሚቀደም)",
 'headline_sample' => 'ንዑስ ክፍል',
 'headline_tip'    => 'የንዑስ-ክፍል አርዕስት ለመፍጠር',
-'math_sample'     => 'የሒሳብ ቀመር በዚህ ይግባ',
-'math_tip'        => 'የሒሳብ ቀመር (LaTeX) ለመጨመር',
 'nowiki_sample'   => 'በዚህ ውስጥ የሚከተት ሁሉ የዊኪ-ሥርአተ ቋንቋን ቸል ይላል',
 'nowiki_tip'      => 'የዊኪ-ሥርአተ ቋንቋን ቸል ለማድረግ',
 'image_tip'       => 'የስዕል መያያዣ ለመፍጠር',
@@ -796,7 +794,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'changepassword'            => 'መግቢያ ቃልዎን ለመቀየር',
 'prefs-skin'                => 'የድህረ-ገጽ መልክ',
 'skin-preview'              => 'ቅድመ-ዕይታ',
-'prefs-math'                => 'የሂሳብ መልክ',
 'datedefault'               => 'ግድ የለኝም',
 'prefs-datetime'            => 'ዘመንና ሰዓት',
 'prefs-personal'            => 'ያባል ዶሴ',
@@ -1892,21 +1889,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'numwatchers'    => 'የሚከታተሉት ተጠቃሚዎች ቁጥር፦ $1',
 'numauthors'     => 'የተለዩ አቅራቢዎች ቁጥር (ገጽ)፦ $1',
 'numtalkauthors' => 'የተለዩ አቅራቢዎች ቁጥር (የውይይት ገጽ)፦ $1',
-
-# Math options
-'mw_math_png'    => 'ሁልጊዜ እንደ PNG',
-'mw_math_simple' => 'HTML ቀላል ከሆነ አለዚያ PNG',
-'mw_math_html'   => 'HTML ከተቻለ አለዚያ PNG',
-'mw_math_modern' => 'ለዘመናዊ ብራውዘር የተሻለ',
-'mw_math_mathml' => 'MathML ከተቻለ (የሙከራ)',
-
-# Math errors
-'math_failure'          => 'ዘርዛሪው ተሳነው',
-'math_unknown_error'    => 'የማይታወቅ ስኅተት',
-'math_unknown_function' => 'የማይታወቅ ተግባር',
-'math_lexing_error'     => 'የlexing ስህተት',
-'math_syntax_error'     => 'የሰዋሰው ስህተት',
-'math_bad_output'       => 'ወደ math ውጤት ዶሴ መጻፍ ወይም መፍጠር አይቻልም',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'የተሳለፈ ሆኖ ማመልከት',

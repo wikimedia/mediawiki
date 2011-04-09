@@ -492,8 +492,6 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'extlink_tip'     => 'Lînka derve (http:// di destpêkê de ji bîr neke)',
 'headline_sample' => 'Nivîsara sernameyê',
 'headline_tip'    => 'Sername asta 2',
-'math_sample'     => 'Kurteristê matêmatîk li vir binivisîne',
-'math_tip'        => 'Kurteristê matêmatîk (LaTeX)',
 'nowiki_sample'   => 'Nivîs ku nebe formatkirin',
 'nowiki_tip'      => 'Guh nede formatkirina wiki',
 'image_sample'    => 'Mînak.jpg',
@@ -766,7 +764,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'changepassword'            => 'Şîfre biguherîne',
 'prefs-skin'                => 'Pêste',
 'skin-preview'              => 'Pêşdîtin',
-'prefs-math'                => 'TeX',
 'datedefault'               => 'Tercih tune ne',
 'prefs-datetime'            => 'Dem û rêkewt',
 'prefs-personal'            => 'Agahiyên bikarhênerê/î',
@@ -1720,18 +1717,6 @@ if (wgUserLanguage == "ku-arab")
 'numedits'     => 'Hejmara guherandinan (rûpel): $1',
 'numtalkedits' => 'Hejmara guherandinan (guftûgo): $1',
 'numwatchers'  => 'Hejmara kesên dişopînin: $1',
-
-# Math options
-'mw_math_png'    => 'Her caran wek PNG nîşanbide',
-'mw_math_simple' => 'HTML eger asan be, wekî din PNG',
-'mw_math_html'   => 'HTML eger bibe, wekî din PNG',
-'mw_math_source' => "Wek TeX bêle (ji browser'ên gotaran ra)",
-'mw_math_modern' => "Baştir e ji browser'ên nuhtir",
-'mw_math_mathml' => 'MathML eger bibe (ceribandin)',
-
-# Math errors
-'math_unknown_error' => 'şaşbûnekî nezanîn',
-'math_image_error'   => 'Wêşandana PNG nemeşî',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Wek serrastkirî nîşanbide',

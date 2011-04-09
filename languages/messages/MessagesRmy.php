@@ -270,7 +270,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'preferences'    => 'Kamimata',
 'changepassword' => 'Paruv o nakhavipnasko lav',
 'prefs-skin'     => 'Dikhimos',
-'prefs-math'     => 'Matematika',
 'datedefault'    => 'Ni ekh kamipen',
 'prefs-datetime' => 'Dives thai chaso',
 'prefs-rc'       => 'Neve paruvimata',
@@ -520,13 +519,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'lastmodifiedatby' => 'Kadaya patrin sas paruvdi agoreste $2, $1 katar $3.',
 'others'           => 'aver',
 'siteusers'        => 'Jeno/e kai {{SITENAME}} $1',
-
-# Math errors
-'math_unknown_error'    => 'bijangli dosh',
-'math_unknown_function' => 'bijangli funkciya',
-'math_syntax_error'     => 'sintaksaki dosh',
-'math_bad_output'       => 'Nashti te kerel pes vai te lekhavel po matematikano direktoro kai del pes avri.',
-'math_notexvc'          => 'Nai o kerditori (eksekutabilo) texvc; dikh math/README te labyares les.',
 
 # Image deletion
 'deletedrevision' => 'Khoslo o purano paruvipen $1',

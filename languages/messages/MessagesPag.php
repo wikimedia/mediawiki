@@ -365,9 +365,6 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 # Attribution
 'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.',
 
-# Math errors
-'math_unknown_error' => 'aga-antan error',
-
 # Special:NewFiles
 'ilsubmit' => 'Anapen',
 

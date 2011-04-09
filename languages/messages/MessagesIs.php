@@ -709,8 +709,6 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'extlink_tip'     => 'Ytri tengill (munið að setja http:// á undan)',
 'headline_sample' => 'Fyrirsagnartexti',
 'headline_tip'    => 'Annars stigs fyrirsögn',
-'math_sample'     => 'Sláið inn formúlu hér',
-'math_tip'        => 'Stærðfræðiformúla (LaTeX)',
 'nowiki_sample'   => 'Innsetjið ósniðinn texta hér',
 'nowiki_tip'      => 'Hunsa wiki-snið',
 'image_sample'    => 'Sýnishorn.jpg',
@@ -1037,7 +1035,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'changepassword'            => 'Breyta lykilorði',
 'prefs-skin'                => 'Þema',
 'skin-preview'              => 'Forskoða',
-'prefs-math'                => 'Stærðfræðiformúlur',
 'datedefault'               => 'Sjálfgefið',
 'prefs-datetime'            => 'Tímasnið og tímabelti',
 'prefs-personal'            => 'Notandaupplýsingar',
@@ -2130,21 +2127,6 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'skinname-chick'       => 'Gella',
 'skinname-simple'      => 'Einfalt',
 'skinname-modern'      => 'Nútímalegt',
-
-# Math options
-'mw_math_png'    => 'Alltaf birta PNG mynd',
-'mw_math_simple' => 'HTML fyrir einfaldar jöfnur annars PNG',
-'mw_math_html'   => 'HTML ef hægt er, annars PNG',
-'mw_math_source' => 'Sýna TeX jöfnu (fyrir textavafra)',
-'mw_math_modern' => 'Mælt með fyrir nýja vafra',
-'mw_math_mathml' => 'MathML ef mögulegt (tilraun)',
-
-# Math errors
-'math_failure'          => 'Þáttun mistókst',
-'math_unknown_error'    => 'óþekkt villa',
-'math_unknown_function' => 'óþekkt virkni',
-'math_lexing_error'     => 'lestrarvilla',
-'math_syntax_error'     => 'málfræðivilla',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merkja sem yfirfarið',

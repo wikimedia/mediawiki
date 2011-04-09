@@ -541,8 +541,6 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 'extlink_tip'     => 'Ārējā saite (neaizmirsti sākumā pierakstīt "http://")',
 'headline_sample' => 'Virsraksta teksts',
 'headline_tip'    => '2. līmeņa virsraksts',
-'math_sample'     => 'Šeit ievieto formulu',
-'math_tip'        => 'Matemātikas formula (LaTeX)',
 'nowiki_sample'   => 'Šeit raksti neformatētu tekstu',
 'nowiki_tip'      => 'Ignorēt wiki formatējumu',
 'image_sample'    => 'Piemers.jpg',
@@ -959,7 +957,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'changepassword'                => 'Mainīt paroli',
 'prefs-skin'                    => 'Apdare',
 'skin-preview'                  => 'Priekšskats',
-'prefs-math'                    => 'Formulas',
 'datedefault'                   => 'Vienalga',
 'prefs-datetime'                => 'Datums un laiks',
 'prefs-personal'                => 'Lietotāja dati',
@@ -2336,23 +2333,6 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'numwatchers'    => 'Uzraudzītāju skaits: $1',
 'numauthors'     => 'Atsevišķu autoru skaits (lapai): $1',
 'numtalkauthors' => 'Atsevišķu autoru skaits (diskusiju lapai): $1',
-
-# Math options
-'mw_math_png'    => 'Vienmēr attēlot PNG',
-'mw_math_simple' => 'HTML, ja ļoti vienkārši, vai arī PNG',
-'mw_math_html'   => 'HTML, ja iespējams, vai arī PNG',
-'mw_math_source' => 'Saglabāt kā TeX (teksta pārlūkiem)',
-'mw_math_modern' => 'Moderniem pārlūkiem ieteiktais variants',
-'mw_math_mathml' => 'MathML, ja iespējams (eksperimentāla iespēja)',
-
-# Math errors
-'math_failure'          => 'Pārsēšanas kļūda',
-'math_unknown_error'    => 'nezināma kļūda',
-'math_unknown_function' => 'nezināma funkcija',
-'math_lexing_error'     => 'leksikas kļūda',
-'math_syntax_error'     => 'sintakses kļūda',
-'math_image_error'      => 'Kļūda konvertējot uz PNG formātu;
-pārbaudi vai ir korekti uzinstalēti latex, dvips, gs, un convert',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Atzīmēt kā pārbaudītu',

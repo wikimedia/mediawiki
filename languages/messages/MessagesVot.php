@@ -182,8 +182,6 @@ Kui tšüsümüssessä ebõõ rootšittu tšültši, võib õlla õlõttõ löü
 'extlink_tip'     => 'Eräpooliin linkki (mäleht http:// prefiksi)',
 'headline_sample' => 'Zagolofkka-teksti',
 'headline_tip'    => 'Zagolofkka',
-'math_sample'     => 'Lissä formula tänne',
-'math_tip'        => 'Matematillin formula (LaTeX)',
 'nowiki_sample'   => 'Lissä formattimatoo teksti tänne',
 'nowiki_tip'      => 'Ignoriiroit viki formatti',
 'image_tip'       => 'Kuva',

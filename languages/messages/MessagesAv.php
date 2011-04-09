@@ -125,9 +125,6 @@ $messages = array(
 'movearticle'      => 'Гьумералъул цIар хисизе',
 'movepagebtn'      => 'Гьумералъул цlар хисизе',
 
-# Math errors
-'math_unknown_error' => 'Лъалареб гъалатl',
-
 # Special:SpecialPages
 'specialpages' => 'Хассал гьумерал',
 

@@ -436,8 +436,6 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 'extlink_tip'     => 'Útvortis slóð (minst til http:// forskoytið)',
 'headline_sample' => 'Yvirskriftartekstur',
 'headline_tip'    => 'Annars stigs yvirskrift',
-'math_sample'     => 'Set formil her',
-'math_tip'        => 'Støddfrøðiligur formil (LaTeX)',
 'nowiki_tip'      => 'Ignorera wiki-forsniðan',
 'image_sample'    => 'Dømi.jpg',
 'image_tip'       => 'Innset mynd',
@@ -553,7 +551,6 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'changepassword'        => 'Broyt loyniorð',
 'prefs-skin'            => 'Hamur',
 'skin-preview'          => 'Forskoðan',
-'prefs-math'            => 'Støddfrøðiligir formlar',
 'prefs-datetime'        => 'Dato og tíð',
 'prefs-personal'        => 'Brúkaradáta',
 'prefs-rc'              => 'Nýkomnar broytingar og stubbaskoðan',
@@ -1064,14 +1061,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'skinname-standard'    => 'Standardur',
 'skinname-nostalgia'   => 'Nostalgiskur',
 'skinname-cologneblue' => 'Cologne-bláur',
-
-# Math options
-'mw_math_png'    => 'Vís altíð sum PNG',
-'mw_math_simple' => 'HTML um sera einfalt annars PNG',
-'mw_math_html'   => 'HTML um møguligt annars PNG',
-'mw_math_source' => 'Lat verða sum TeX (til tekstkagara)',
-'mw_math_modern' => 'Tilmælt nýtíðarkagara',
-'mw_math_mathml' => 'MathML um møguligt (roynd)',
 
 # Patrolling
 'rcpatroldisabled'     => 'Ansanin eftir nýkomnum broytingum er óvirkin',

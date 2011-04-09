@@ -721,8 +721,6 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'extlink_tip'     => 'Zunanja povezava (ne pozabite na predpono http://)',
 'headline_sample' => 'Besedilo naslovne vrstice',
 'headline_tip'    => 'Naslovna vrstica druge ravni',
-'math_sample'     => 'Tu vnesite enačbo',
-'math_tip'        => 'Matematična enačba (LaTeX)',
 'nowiki_sample'   => 'Tu vnesite neoblikovano besedilo',
 'nowiki_tip'      => 'Prezri wikioblikovanje',
 'image_sample'    => 'Zgled.jpg',
@@ -1217,7 +1215,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'changepassword'                => 'Zamenjava gesla',
 'prefs-skin'                    => 'Koža',
 'skin-preview'                  => 'Predogled',
-'prefs-math'                    => 'Prikaz matematičnega besedila',
 'datedefault'                   => 'Kakor koli',
 'prefs-datetime'                => 'Datum in čas',
 'prefs-personal'                => 'Podatki o uporabniku',
@@ -2841,26 +2838,6 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'numwatchers'    => 'Število oseb, ki spremljajo stran: $1',
 'numauthors'     => 'Število različnih avtorjev (stran): $1',
 'numtalkauthors' => 'Število različnih avtorjev (pogovorna stran): $1',
-
-# Math options
-'mw_math_png'    => 'Vedno prikaži PNG',
-'mw_math_simple' => 'Kadar je dovolj preprosto, uporabi HTML, sicer pa PNG',
-'mw_math_html'   => 'Kadar je mogoče, uporabi HTML, sicer pa PNG',
-'mw_math_source' => 'Pusti v TeX-ovi obliki (za besedilne brskalnike)',
-'mw_math_modern' => 'Priporočeno za sodobne brskalnike',
-'mw_math_mathml' => 'Če je le mogoče, uporabi MathML (preizkusno)',
-
-# Math errors
-'math_failure'          => 'Ni mi uspelo razčleniti',
-'math_unknown_error'    => 'neznana napaka',
-'math_unknown_function' => 'neznana funkcija',
-'math_lexing_error'     => 'slovarska napaka',
-'math_syntax_error'     => 'skladenjska napaka',
-'math_image_error'      => 'Pretvarjanje v PNG ni uspelo; preverite, ali sta latex in dvips (ali dvips + gs + convert) pravilno nameščena.',
-'math_bad_tmpdir'       => 'Začasne mape za math ne morem ustvariti ali pisati vanjo.',
-'math_bad_output'       => 'Izhodne mape za math ne morem ustvariti ali pisati vanjo.',
-'math_notexvc'          => 'Manjka izvedbena datoteka texvc;
-za njeno namestitev si poglejte math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označite kot nadzorovano',

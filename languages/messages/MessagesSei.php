@@ -408,8 +408,6 @@ confirmom account zo coccebj de'me.",
 'extlink_tip'     => 'Link extern (¡hajbazxo http:// ö!)',
 'headline_sample' => 'Text corridor',
 'headline_tip'    => 'Text corridor 2',
-'math_sample'     => 'Heformula cuerte damir',
-'math_tip'        => 'Formula mathematatl (LaTeX)',
 'nowiki_sample'   => 'Neformattám cuerte damir',
 'nowiki_tip'      => 'Neformatöxde wiki',
 'image_sample'    => 'Cuáxiit.jpg',
@@ -611,7 +609,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'changepassword'      => "Reset'quimx canj",
 'prefs-skin'          => 'Zuláugaum',
 'skin-preview'        => 'Cuáxiit',
-'prefs-math'          => 'HTML-cuat',
 'datedefault'         => 'Diiquáatlaac',
 'prefs-datetime'      => 'Datum ö xepe',
 'prefs-personal'      => 'Caitom profile',
@@ -1041,12 +1038,6 @@ iitom e-iitomde diijömde caitóm.',
 
 # Info page
 'infosubtitle' => 'Informacionde páhina',
-
-# Math errors
-'math_unknown_error'    => 'römj ác',
-'math_unknown_function' => 'functión ác',
-'math_lexing_error'     => 'römjde lexám',
-'math_syntax_error'     => 'römjde syntáx',
 
 # Media information
 'widthheightpage' => '$1×$2, $3 páhinám',

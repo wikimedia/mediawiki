@@ -747,8 +747,6 @@ Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 'extlink_tip'     => 'Rohy ivelany (tadidio ny tovana http://)',
 'headline_sample' => 'Lohateny anankiray',
 'headline_tip'    => 'Lohatena ambaratonga faha 2',
-'math_sample'     => 'Atsofohy eto ny raikipohy',
-'math_tip'        => 'Raikipohy matematika (LaTeX)',
 'nowiki_sample'   => 'Apetraho eto ny lahatsoratra tsy manaraka format',
 'nowiki_tip'      => 'Aza ampiasaina ny formatage wiki',
 'image_sample'    => 'ohatra.jpg',
@@ -1225,7 +1223,6 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'changepassword'                => 'Hanova tenimiafina',
 'prefs-skin'                    => 'Endrika',
 'skin-preview'                  => 'Tsipalotra',
-'prefs-math'                    => 'Math',
 'datedefault'                   => 'Tsy misy safidy',
 'prefs-datetime'                => 'Daty sy ora',
 'prefs-personal'                => 'Mombamomba anao',
@@ -2713,27 +2710,6 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'numwatchers'    => "Isan'ny mpikambana manaraka ity pejy ity : $1",
 'numauthors'     => "Isan'ny mpanova samihafa : $1",
 'numtalkauthors' => "Isan'ny mpiresaka (fa tsy ny resaka) (pejin-dresaka): $1",
-
-# Math options
-'mw_math_png'    => 'Anamboary sary PNG foana',
-'mw_math_simple' => 'Raha tena tsotra be dia HTML ampiasaina moa raha tsy izany dia PNG',
-'mw_math_html'   => 'HTML raha mety na raha tsy izany dia PNG',
-'mw_math_source' => "
-Avelao ho TeX (ho an'ny navigateurs textes)",
-'mw_math_modern' => "
-Amporisihina ho an'ny navigateur moderna",
-'mw_math_mathml' => 'MathML raha mety (andrana ihany)',
-
-# Math errors
-'math_failure'          => 'Tsy nety ny fanodinana ny raikipohy',
-'math_unknown_error'    => 'tsy fahatomombanana tsy hay antony',
-'math_unknown_function' => 'fonction tsy fantatra',
-'math_lexing_error'     => 'fahadisoana ara-teny',
-'math_syntax_error'     => 'Misy diso ny raikipohy',
-'math_image_error'      => 'Tsy voavadika ho PNG; hamarino fa mety voapetraka tsara ny rindrankajy latex, dvips, gs ary convert',
-'math_bad_tmpdir'       => "Tsy afaka namorona na nanoratra répertoire vonjimaika ho an'ny matematika",
-'math_bad_output'       => "Tsy afaka namorona na nanoratra tao amin'ny répertoire hampiasain'ny asa matematika",
-'math_notexvc'          => 'Tsy hita ny rindrankajy texvc; azafady jereo math/README hanamboarana azy.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marihana ho voamarina',

@@ -559,8 +559,6 @@ Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a r
 'extlink_tip'     => 'Nasc seachtrach (cuimhnigh an réimír http://)',
 'headline_sample' => 'Cló ceannlíne',
 'headline_tip'    => 'Ceannlíne Leibhéil 2',
-'math_sample'     => 'Cuir foirmle isteach anseo',
-'math_tip'        => 'Foirmle mhatamataice (LaTeX)',
 'nowiki_sample'   => 'Cuir téacs neamhfhormáidithe anseo',
 'nowiki_tip'      => 'Cuir vicífhormáidiú ar ceal',
 'image_sample'    => 'Sámpla.jpg',
@@ -803,7 +801,6 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'changepassword'            => "Athraigh d'fhocal faire",
 'prefs-skin'                => 'Craiceann',
 'skin-preview'              => 'Réamhamharc',
-'prefs-math'                => 'Matamaitice',
 'datedefault'               => 'Is cuma liom',
 'prefs-datetime'            => 'Dáta agus am',
 'prefs-personal'            => 'Sonraí úsáideora',
@@ -1751,25 +1748,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'skinname-simple'      => 'Simplí',
 'skinname-modern'      => 'Nua-aimseartha',
 'skinname-vector'      => 'Veicteoir',
-
-# Math options
-'mw_math_png'    => 'Déan PNG-íomhá gach uair',
-'mw_math_simple' => 'Déan HTML má tá sin an-easca, nó PNG ar mhodh eile',
-'mw_math_html'   => 'Déan HTML más féidir, nó PNG ar mhodh eile',
-'mw_math_source' => 'Fág mar cló TeX (do teacsleitheoirí)',
-'mw_math_modern' => 'Inmholta do bhrabhsálaithe nua',
-'mw_math_mathml' => 'MathML más féidir (turgnamhach)',
-
-# Math errors
-'math_failure'          => 'Theip ó anailís na foirmle',
-'math_unknown_error'    => 'earráid anaithnid',
-'math_unknown_function' => 'foirmle anaithnid',
-'math_lexing_error'     => 'Theip ó anailís an fhoclóra',
-'math_syntax_error'     => 'earráid comhréire',
-'math_image_error'      => 'Theip ó aistriú an PNG; tástáil má tá na ríomh-oidis latex, dvips, gs, agus convert i suite go maith.',
-'math_bad_tmpdir'       => 'Ní féidir scríobh chuig an fillteán mata sealadach, nó é a chruthú',
-'math_bad_output'       => 'Ní féidir scríobh chuig an fillteán mata aschomhaid, nó é a chruthú',
-'math_notexvc'          => 'Níl an ríomhchlár texvc ann; féach ar mata/EOLAIS chun é a sainathrú.',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Comharthaigh mar patrólta.',

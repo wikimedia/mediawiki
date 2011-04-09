@@ -781,8 +781,6 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'extlink_tip'     => 'Link zewnętrzny (pamiętaj o przedrostku http:// )',
 'headline_sample' => 'Tekst nagłówka',
 'headline_tip'    => 'Nagłówek 2. poziomu',
-'math_sample'     => 'Tutaj wprowadź wzór',
-'math_tip'        => 'Wzór matematyczny (LaTeX)',
 'nowiki_sample'   => 'Tutaj wstaw niesformatowany tekst',
 'nowiki_tip'      => 'Zignoruj formatowanie wiki',
 'image_sample'    => 'Przykład.jpg',
@@ -1287,7 +1285,6 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'changepassword'                => 'Zmiana hasła',
 'prefs-skin'                    => 'Skórka',
 'skin-preview'                  => 'podgląd',
-'prefs-math'                    => 'Wzory',
 'datedefault'                   => 'Domyślny',
 'prefs-datetime'                => 'Data i czas',
 'prefs-personal'                => 'Dane użytkownika',
@@ -2934,26 +2931,6 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'skinname-simple'      => 'Prosta',
 'skinname-modern'      => 'Nowoczesna',
 'skinname-vector'      => 'Wektor',
-
-# Math options
-'mw_math_png'    => 'Zawsze generuj grafikę PNG',
-'mw_math_simple' => 'HTML dla prostych, dla pozostałych grafika PNG',
-'mw_math_html'   => 'Spróbuj HTML, a jeśli zawiedzie użyj grafiki PNG',
-'mw_math_source' => 'Pozostaw w TeXu (dla przeglądarek tekstowych)',
-'mw_math_modern' => 'HTML – zalecane dla nowych przeglądarek',
-'mw_math_mathml' => 'MathML jeśli dostępny (eksperymentalne)',
-
-# Math errors
-'math_failure'          => 'Parser nie mógł rozpoznać',
-'math_unknown_error'    => 'nieznany błąd',
-'math_unknown_function' => 'nieznana funkcja',
-'math_lexing_error'     => 'błędna nazwa',
-'math_syntax_error'     => 'błąd składni',
-'math_image_error'      => 'Konwersja z lub do formatu PNG nie powiodła się. Sprawdź, czy poprawnie zainstalowane są latex i dvipng (lub dvips, gs i convert)',
-'math_bad_tmpdir'       => 'Nie można utworzyć lub zapisywać w tymczasowym katalogu dla wzorów matematycznych',
-'math_bad_output'       => 'Nie można utworzyć lub zapisywać w wyjściowym katalogu dla wzorów matematycznych',
-'math_notexvc'          => 'Brak programu texvc.
-Zapoznaj się z math/README w celu konfiguracji.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'oznacz edycję jako „sprawdzoną”',

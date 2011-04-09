@@ -434,8 +434,6 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'extlink_tip'     => 'Difoûtrinne hårdêye (en rovyîz nén di mete «http://» pa dvant)',
 'headline_sample' => 'Tecse di tite',
 'headline_tip'    => 'Tite di 2inme livea',
-'math_sample'     => "Tapez l' formule matematike chal",
-'math_tip'        => 'Formule matematike (LaTeX)',
 'nowiki_sample'   => "Tapez l' tecse nén wiki chal",
 'nowiki_tip'      => 'Èn nén analijhî des côdes wiki, eyet purade les håyner sins fôrmater',
 'image_sample'    => 'Egzimpe.jpg',
@@ -647,7 +645,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'changepassword'        => "Candjî l' sicret",
 'prefs-skin'            => 'Pea',
 'skin-preview'          => 'vey divant',
-'prefs-math'            => 'Formules matematikes',
 'datedefault'           => 'Nole preferince',
 'prefs-datetime'        => 'Cogne del date',
 'prefs-personal'        => 'Dinêyes da vosse',
@@ -1390,23 +1387,6 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'numwatchers'    => 'Nombe di shuveus: $1',
 'numauthors'     => "Nombe d' oteurs diferins (årtike): $1",
 'numtalkauthors' => "Nombe d' oteurs diferins (pådje di copene): $1",
-
-# Math options
-'mw_math_png'    => 'Håyner tofer come ene imådje PNG',
-'mw_math_simple' => "Håyner en HTML si c' est foirt simpe, ôtmint e PNG",
-'mw_math_html'   => "Håyner en HTML si c' est possibe, ôtmint e PNG",
-'mw_math_source' => 'El leyî e TeX (po les betchteus e môde tecse)',
-'mw_math_modern' => 'Ricmandé po les betchteus modienes',
-'mw_math_mathml' => "Eployî MathML si c' est possibe (esperimintå)",
-
-# Math errors
-'math_unknown_error'    => 'aroke nén cnoxhowe',
-'math_unknown_function' => 'fonccion nén cnoxhowe',
-'math_syntax_error'     => 'aroke di sintacse',
-'math_image_error'      => 'Li cviersaedje e PNG a fwait berwete; verifyîz ki les programes latex, dvips, gs eyet convert ont stî astalés comifåt',
-'math_bad_tmpdir'       => "Dji n' sai nén scrire ou ahiver l' ridant timporaire po les formules matematikes",
-'math_bad_output'       => "Dji n' sai nén scrire ou ahiver l' ridant po les fitchîs di rexhowe des formules matematikes",
-'math_notexvc'          => 'I manke li fitchî enondåve texvc; lijhoz math/README po-z apontyî.',
 
 # Image deletion
 'deletedrevision' => 'Viye modêye $1 disfacêye',

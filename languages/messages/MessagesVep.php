@@ -583,8 +583,6 @@ Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'extlink_tip'     => 'Irdkosketuz (muštkat prefiksas http://)',
 'headline_sample' => 'Pälkirjutesen tekst',
 'headline_tip'    => 'Toižen pindan pälkirjutez',
-'math_sample'     => 'Pangat formul nakhu',
-'math_tip'        => 'Matematine formul (LaTeX-formatas)',
 'nowiki_sample'   => 'Pangat formatiruimatoman tekstan nakhu',
 'nowiki_tip'      => 'Ignoriruida wiki-formatiruind',
 'image_sample'    => 'Ozutez.jpg',
@@ -974,7 +972,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'changepassword'                => 'Peitsanan toižetuz',
 'prefs-skin'                    => 'Irdnägu',
 'skin-preview'                  => 'Ezikaclend',
-'prefs-math'                    => 'Matematik',
 'datedefault'                   => 'Augotižjärgendused',
 'prefs-datetime'                => 'Dat da aig',
 'prefs-personal'                => "Kävutajan profil'",
@@ -2299,27 +2296,6 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'skinname-chick'       => 'Cipuine',
 'skinname-simple'      => 'Koveritoi',
 'skinname-modern'      => "Nügüd'aigaine",
-
-# Math options
-'mw_math_png'    => 'Kaiken generiruida PNG',
-'mw_math_simple' => 'Ozutada HTML koveritomil statjoil, ika ozutada PNG',
-'mw_math_html'   => 'Ozutada, ku voib, HTML, ika ozutada PNG',
-'mw_math_source' => 'Jätkat nece TeX-formas (tekstkaclimiden täht)',
-'mw_math_modern' => "Kut rekomeduidas nügüd'aigaižiden kaclimiden täht",
-'mw_math_mathml' => 'MathML, ku sab (eksperimentaližikš)',
-
-# Math errors
-'math_failure'          => 'Ei voi palastada',
-'math_unknown_error'    => 'tundmatoi petuz',
-'math_unknown_function' => 'tundmatoi funkcii',
-'math_lexing_error'     => 'leksine petuz',
-'math_syntax_error'     => 'sintaksine petuz',
-'math_image_error'      => 'PNG-ks kändmižes ozaižihe petuz;
-kodvgat, oiged-ik oma järgetud: latex, dvips, gs da convert.',
-'math_bad_tmpdir'       => 'Ei voi säta pordaigaline matematine katalog vai ei voi kirjutada sinnä',
-'math_bad_output'       => 'Ei voi säta matematine lähtmižkatalog vai ei voi kirjutada sinnä',
-'math_notexvc'          => 'En voi löuta texvc-töfailad;
-kc. math/README järgendamižen täht.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Znamoita kut patruliruidud',

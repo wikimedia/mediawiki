@@ -820,8 +820,6 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'extlink_tip'     => 'Uutgaonde verwiezing',
 'headline_sample' => 'Deelonderwarp',
 'headline_tip'    => 'Deelonderwarp',
-'math_sample'     => 'a^2 + b^2 = c^2',
-'math_tip'        => 'Wiskundige formule (in LaTeX)',
 'nowiki_sample'   => 'Tekse zonder wiki-opmaak.',
 'nowiki_tip'      => 'Gien wiki-opmaak toepassen',
 'image_sample'    => 'Veurbeeld.jpg',
@@ -1305,7 +1303,6 @@ Klik op "Weerumme" en geef een aandere pagina dan "$1" op.',
 'changepassword'                => 'Wachwoord wiezigen',
 'prefs-skin'                    => '{{SITENAME}}-uterlijk',
 'skin-preview'                  => 'bekieken',
-'prefs-math'                    => 'Wiskundige formules',
 'datedefault'                   => 'Gien veurkeur',
 'prefs-datetime'                => 'Daotum en tied',
 'prefs-personal'                => 'Gebrukersgegevens',
@@ -2825,25 +2822,6 @@ Meestentieds kump dit deur een uutgaonde verwiezing dee op de zwarte lieste stee
 'skinname-chick'       => 'Deftig',
 'skinname-simple'      => 'Eenvoudig',
 'skinname-modern'      => 'Medern',
-
-# Math options
-'mw_math_png'    => 'Altied as PNG weergeven',
-'mw_math_simple' => 'HTML veur eenvoudige formules, aanders PNG',
-'mw_math_html'   => "HTML as 't meugelijk is, aanders PNG",
-'mw_math_source' => 'Laot TeX-broncode staon (veur teksblaojeraars)',
-'mw_math_modern' => 'Anbeveulen methode veur niejere webkiekers',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Wiskundige formule neet begriepelijk',
-'math_unknown_error'    => 'Onbekende fout in formule',
-'math_unknown_function' => 'Onbekende functie in formule',
-'math_lexing_error'     => 'Lexicografische fout in formule',
-'math_syntax_error'     => 'Syntactische fout in formule',
-'math_image_error'      => "'t Overzetten naor PNG is mislok.",
-'math_bad_tmpdir'       => 'De map veur tiejelijke bestanen veur wiskundige formules besteet neet of is kan neet an-emaak wönnen.',
-'math_bad_output'       => 'De map veur wiskundebestanen besteet neet of is neet an te maken.',
-'math_notexvc'          => "Kan 't pregramma texvc neet vienen; configureer volgens de beschrieving in math/README.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markeer as econtreleerd',

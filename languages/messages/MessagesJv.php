@@ -553,8 +553,6 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 'extlink_tip'     => 'Pranala njaba (aja lali wiwitan http:// )',
 'headline_sample' => 'Tèks judhul',
 'headline_tip'    => 'Subbagian tingkat 1',
-'math_sample'     => 'Lebokna rumus ing kéné',
-'math_tip'        => 'Rumus matematika (LaTeX)',
 'nowiki_sample'   => 'Tèks iki ora bakal diformat',
 'nowiki_tip'      => 'Aja nganggo format wiki',
 'image_sample'    => 'Conto.jpg',
@@ -987,7 +985,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'changepassword'                => 'Ganti tembung sandi',
 'prefs-skin'                    => 'Kulit',
 'skin-preview'                  => 'Pratilik',
-'prefs-math'                    => 'Matématika',
 'datedefault'                   => 'Ora ana préferènsi',
 'prefs-datetime'                => 'Tanggal lan wektu',
 'prefs-personal'                => 'Profil panganggo',
@@ -2404,26 +2401,6 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 'numwatchers'    => 'Cacahé sing ngawasi: $1',
 'numauthors'     => 'Cacahé pangarang sing béda-béda (artikel): $1',
 'numtalkauthors' => 'Cacahé pangarang sing béda-béda (kaca dhiskusi): $1',
-
-# Math options
-'mw_math_png'    => 'Mesthi nggawé PNG',
-'mw_math_simple' => 'HTML yèn prasaja banget utawa yèn ora PNG',
-'mw_math_html'   => 'HTML yèn bisa utawa PNG',
-'mw_math_source' => 'Dijarna waé minangka TeX (kanggo panjlajah wèb tèks)',
-'mw_math_modern' => 'Disaranaké kanggo panjlajah wèb modèrn',
-'mw_math_mathml' => 'MathML yèn bisa (pracoban)',
-
-# Math errors
-'math_failure'          => 'Gagal nglakoni parse',
-'math_unknown_error'    => 'Kaluputan sing ora dimangertèni',
-'math_unknown_function' => 'fungsi sing ora dimangertèni',
-'math_lexing_error'     => "kaluputan ''lexing''",
-'math_syntax_error'     => "''syntax error'' (kaluputan sintaksis)",
-'math_image_error'      => 'Konversi PNG gagal; priksa apa latex, dvips, gs, lan convert wis diinstalasi sing bener',
-'math_bad_tmpdir'       => 'Ora bisa nulis utawa nggawé dirèktori sauntara math',
-'math_bad_output'       => 'Ora bisa nulis utawa nggawé dirèktori paweton math',
-'math_notexvc'          => 'Executable texvc ilang;
-mangga delengen math/README kanggo cara konfigurasi.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tandhanana wis dipatroli',

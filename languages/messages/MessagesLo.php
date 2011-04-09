@@ -399,8 +399,6 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com ຫົວຂໍ້ລິ້ງຄ໌',
 'headline_sample' => 'ສຳຄັນ',
 'headline_tip'    => 'ຫົວຂໍ້ລະດັບ 2',
-'math_sample'     => 'ໃສ່ສູດຢູ່ນີ້',
-'math_tip'        => 'ສູດຄະນິດສາດ (LaTeX)',
 'image_tip'       => 'ໄຟລ໌ຕິດຄັດ',
 'media_tip'       => 'ລິ້ງຄ໌ຫາໄຟລ໌',
 
@@ -511,7 +509,6 @@ $messages = array(
 'changepassword'        => 'ປ່ຽນລະຫັດຜ່ານ',
 'prefs-skin'            => 'ລວດລາຍ',
 'skin-preview'          => 'ລອງເບິ່ງ',
-'prefs-math'            => 'ຄະນິດສາດ',
 'datedefault'           => 'ແນວໃດກໍ່ໄດ້',
 'prefs-datetime'        => 'ວັນ ແລະ ເວລາ',
 'prefs-personal'        => 'ຂໍ້ມູນຫຼັກຜູ້ໃຊ້',
@@ -906,9 +903,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Info page
 'numedits' => 'ຈຳນວນດັດແກ້ (ໜ້າ): $1',
-
-# Math errors
-'math_syntax_error' => 'ຜິດຫຼັກໄວຍະກອນ',
 
 # Browsing diffs
 'previousdiff' => 'ສ່ວນຕ່າງກ່ອນ',

@@ -771,8 +771,6 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'extlink_tip'     => 'Collegamento esterno (ricorda il prefisso http:// )',
 'headline_sample' => 'Intestazione',
 'headline_tip'    => 'Intestazione di 2° livello',
-'math_sample'     => 'Inserire qui la formula',
-'math_tip'        => 'Formula matematica (LaTeX)',
 'nowiki_sample'   => 'Inserire qui il testo non formattato',
 'nowiki_tip'      => 'Ignora la formattazione wiki',
 'image_sample'    => 'Esempio.jpg',
@@ -1243,7 +1241,6 @@ $1",
 'changepassword'                => 'Cambia password',
 'prefs-skin'                    => 'Aspetto grafico (skin)',
 'skin-preview'                  => 'Anteprima',
-'prefs-math'                    => 'Formule matematiche',
 'datedefault'                   => 'Nessuna preferenza',
 'prefs-datetime'                => 'Data e ora',
 'prefs-personal'                => 'Profilo utente',
@@ -2811,25 +2808,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'numwatchers'    => 'Numero di osservatori: $1',
 'numauthors'     => 'Numero di autori distinti (pagina): $1',
 'numtalkauthors' => 'Numero di autori distinti (pagina di discussione): $1',
-
-# Math options
-'mw_math_png'    => 'Mostra sempre in PNG',
-'mw_math_simple' => 'HTML se molto semplice, altrimenti PNG',
-'mw_math_html'   => 'HTML se possibile, altrimenti PNG',
-'mw_math_source' => 'Lascia in formato TeX (per browser testuali)',
-'mw_math_modern' => 'Formato consigliato per i browser moderni',
-'mw_math_mathml' => 'Usa MathML se possibile (sperimentale)',
-
-# Math errors
-'math_failure'          => 'Errore del parser',
-'math_unknown_error'    => 'errore sconosciuto',
-'math_unknown_function' => 'funzione sconosciuta',
-'math_lexing_error'     => 'errore lessicale',
-'math_syntax_error'     => 'errore di sintassi',
-'math_image_error'      => 'Conversione in PNG non riuscita; verificare che siano correttamente installati i seguenti programmi: latex e dvipng (o dvips, gs e convert).',
-'math_bad_tmpdir'       => 'Impossibile scrivere o creare la directory temporanea per math',
-'math_bad_output'       => 'Impossibile scrivere o creare la directory di output per math',
-'math_notexvc'          => 'Eseguibile texvc mancante; per favore consultare math/README per la configurazione.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Segna la modifica come verificata',

@@ -408,7 +408,6 @@ Meeglicherweise host du dei Poaßwurt bereits erfolgreich geändert oder a neues
 'extlink_tip'     => 'Externe Verknipfung (http:// beoachta)',
 'headline_sample' => 'Ieberschreft (Ebene 2)',
 'headline_tip'    => 'Ebene 2 Ieberschreft',
-'math_sample'     => 'Formel hier eifiega',
 'nowiki_sample'   => 'unformatierta Text hier eifiega',
 'nowiki_tip'      => 'unformatierter Text (nowiki)',
 'image_tip'       => 'Verknipfung miet Datei',
@@ -1898,24 +1897,6 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'numwatchers'    => 'Oazoahl dar Beobachter: $1',
 'numauthors'     => 'Oazoahl dar Autoren: $1',
 'numtalkauthors' => 'Oazoahl dar Dischkurteelnahmer: $1',
-
-# Math options
-'mw_math_png'    => 'Emmer ols PNG darstalla',
-'mw_math_simple' => 'Einfaches TeX ols HTML darstella, sunst PNG',
-'mw_math_html'   => 'Wenn meeglich ols HTML darstella, sunst PNG',
-'mw_math_source' => 'Ols TeX belassen (fier Textbrowser)',
-'mw_math_modern' => 'Empfehlenswert fier moderne Browser',
-
-# Math errors
-'math_failure'          => 'Parser-Fahler',
-'math_unknown_error'    => 'Unbekennter Fahler',
-'math_unknown_function' => 'Unbekennte Funksjonn',
-'math_lexing_error'     => '„Lexing“-Fahler',
-'math_syntax_error'     => 'Syntaxfahler',
-'math_image_error'      => 'de PNG-Konvertierung schlug fehl',
-'math_bad_tmpdir'       => 'Doas temporäre Verzeichnis fier mathematische Formeln koan ne oagelagt oder beschrieba waan.',
-'math_bad_output'       => 'Doas Zielverzeichnis fier mathematische Formeln koan ne oagelegt oder beschrieba waan.',
-'math_notexvc'          => 'Doas texvc-Programm wurde ne gefunda. Bitte math/README beachten.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ols kontrolliert markiern',

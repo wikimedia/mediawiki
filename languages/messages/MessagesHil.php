@@ -559,8 +559,6 @@ Mahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay k
 'extlink_tip'     => 'Sa guha nga Tabid (tandaan http:// prefiks)',
 'headline_sample' => 'Teksto sang pangunang-dinalang',
 'headline_tip'    => 'Lebel 2 pangunang-dinalan',
-'math_sample'     => 'Ibutang ang pormula diri',
-'math_tip'        => 'Math pormula (LaTeX)',
 'nowiki_sample'   => 'Ibutang ang di-sulundan nga teksto diri',
 'nowiki_tip'      => 'Pabay-an ang wiki sulundanon',
 'image_tip'       => 'Gintapik nga file',

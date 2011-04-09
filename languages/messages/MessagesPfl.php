@@ -206,8 +206,6 @@ S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid 
 'extlink_tip'     => 'Externer Link (uff http:// Acht gewwe)',
 'headline_sample' => 'Abschnitts-Iwwerschrift',
 'headline_tip'    => 'Iwwerschrift Ewene 2',
-'math_sample'     => 'Do Formel aigewwe',
-'math_tip'        => 'Mathematische Formel (LaTeX)',
 'nowiki_sample'   => 'Gebb do en Text ai, wu nit formatiert wird',
 'nowiki_tip'      => 'Wiki-Formatierunge ignoriere',
 'image_tip'       => 'Bildverwais',

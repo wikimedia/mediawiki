@@ -503,8 +503,6 @@ Mazzingi tū assei ka tēr kitawīdinuns swajjan kliptaswīrdan anga assei madl�
 'extlink_tip'     => 'Izwinandas autengīnsenis (paminnais ezze prefiksan http:// )',
 'headline_sample' => 'Sirzdatītelas teksts',
 'headline_tip'    => 'Āntras līgmenes sirzdatītelis',
-'math_sample'     => 'Enpeisāis matemātiskan izbilīsenin stwi',
-'math_tip'        => 'Matemātiskas izbilīsenis (LaTeX)',
 'nowiki_sample'   => 'Stwi enpeisāis nifōrmatitan tekstan',
 'nowiki_tip'      => 'Ignōris wiki fōrmatisnan',
 'image_tip'       => 'Grafīki anga kits endīts en pāusu zūrbrukis',
@@ -892,7 +890,6 @@ Paminnais, kāi tenēisan indeksai mazzi ni būtwei aktuālin.',
 'changepassword'              => 'Kitawīdinais kliptaswīrdan',
 'prefs-skin'                  => 'Prusna',
 'skin-preview'                => 'Pirmādira',
-'prefs-math'                  => 'Matemātiki',
 'datedefault'                 => 'Auprestaminan',
 'prefs-datetime'              => 'Dātan be kerdā',
 'prefs-personal'              => 'Tērpautajas dātan',
@@ -2240,27 +2237,6 @@ Sta ast drūwiminai dīlintan pra autengīnsenin prēi izwinandan pāusan iz kī
 'numwatchers'    => 'Nadirīntin gīrbis: $1',
 'numauthors'     => 'Autōran gīrbis (pāusan): $1',
 'numtalkauthors' => 'Autōran gīrbis (diskusiōnis pāusan): $1',
-
-# Math options
-'mw_math_png'    => 'Wisaddan teīkeis PNG grāfikin',
-'mw_math_simple' => 'HTML ik spārtai prastan, ik ni - PNG',
-'mw_math_html'   => 'HTML ik mazīngi, ik ni - PNG',
-'mw_math_source' => 'Palaīdeis en TeX-as fōrmatu (per tekstas lasātlins)',
-'mw_math_modern' => 'HTML - radītan per nāunans lasātlins',
-'mw_math_mathml' => 'MathML ik mazīngi (eksperimentālai)',
-
-# Math errors
-'math_failure'          => 'Parsers ni mazēi skaitātun',
-'math_unknown_error'    => 'niwaīsta blānda',
-'math_unknown_function' => 'niwaīsta funkciōni',
-'math_lexing_error'     => 'laksisis blānda',
-'math_syntax_error'     => 'sīntaksis blānda',
-'math_image_error'      => 'Maināsna en PNG ni izpalla.
-Izbāndais, anga latex, dvips, gs be convert ast instalītan tikrōmiskai',
-'math_bad_tmpdir'       => 'Ni mazīngi teīktun anga enpeisātun en kīsmingiskasmu matemātiskan fōlderin',
-'math_bad_output'       => 'Ni mazīngi teīktun anga enpeisātun en izēiseniskasmu matemātiskan fōlderin',
-'math_notexvc'          => 'Ni ast texvc prōgraman.
-Wīdais math/README kāi kōnfigurilai.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Pazentlis kāigi "izbandātan"',

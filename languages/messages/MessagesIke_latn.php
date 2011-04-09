@@ -328,10 +328,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Attribution
 'anonymous' => 'ilisarnanngitittuq qatannguti nakit {{SITENAME}}',
 
-# Math errors
-'math_unknown_error'    => 'tusaumajaunngituq tammanaqtuq',
-'math_unknown_function' => 'tusaumajaunngituq iliurniq',
-
 # Image deletion
 'deletedrevision' => 'nipaq utuqaq titiraqtaugiarngarut $1',
 

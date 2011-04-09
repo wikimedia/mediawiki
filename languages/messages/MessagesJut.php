@@ -364,8 +364,6 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'extlink_tip'     => 'Utsende henvesnenge (husk http:// førgøret)',
 'headline_sample' => 'Skrevselenger til åverskreft',
 'headline_tip'    => 'Skå 2 åverskreft',
-'math_sample'     => 'Endsæt åpstælsel her (LaTeX)',
-'math_tip'        => 'Matematisk åpstælsel (LaTeX)',
 'nowiki_sample'   => 'Endsæt skrevselenger her søm ekke skal redigær påke wikiskrevselenger',
 'nowiki_tip'      => 'Ekke wikiskrevselenger utse',
 'image_tip'       => 'Endlejret billet',

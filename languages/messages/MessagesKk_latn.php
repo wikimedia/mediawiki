@@ -814,8 +814,6 @@ Kirwiñizdi bitirw üşin, jaña qupïya söziñizdi mında engizwiñiz jön:',
 'extlink_tip'     => 'Şettik silteme (aldınan http:// engizwin umıtpañız)',
 'headline_sample' => 'Bas jol mätini',
 'headline_tip'    => '2-şi deñgeýli bas jol',
-'math_sample'     => 'Örnekti mında engiziñiz',
-'math_tip'        => 'Matematïka örnegi (LaTeX)',
 'nowiki_sample'   => 'Pişimdelinbegen mätindi mında engiziñiz',
 'nowiki_tip'      => 'Wïkï pişimin elemew',
 'image_tip'       => 'Endirilgen faýl',
@@ -1165,7 +1163,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'changepassword'            => 'Qupïya sözdi özgertw',
 'prefs-skin'                => 'Mänerler',
 'skin-preview'              => 'Qarap şığw',
-'prefs-math'                => 'Örnekter',
 'datedefault'               => 'Eş qalawsız',
 'prefs-datetime'            => 'Waqıt',
 'prefs-personal'            => 'Jeke derekteri',
@@ -2364,27 +2361,6 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 'skinname-chick'       => 'Balapan (chick)',
 'skinname-simple'      => 'Kädimgi (simple)',
 'skinname-modern'      => 'Zamanawï (modern)',
-
-# Math options
-'mw_math_png'    => 'Ärqaşan PNG pişinimen körsetkiz',
-'mw_math_simple' => 'Eger öte qarapaýım bolsa — HTML, äýtpese PNG',
-'mw_math_html'   => 'Eger ıqtïmal bolsa — HTML, äýtpese PNG',
-'mw_math_source' => 'Bunı TeX pişiminde qaldır (mätindik şolğıştarğa)',
-'mw_math_modern' => 'Osı zamanğı şolğıştarına usınıladı',
-'mw_math_mathml' => 'Eger ıqtïmal bolsa — MathML (sınaqtama)',
-
-# Math errors
-'math_failure'          => 'Qurılımın taldatwı sätsiz bitti',
-'math_unknown_error'    => 'belgisiz qate',
-'math_unknown_function' => 'belgisiz jete',
-'math_lexing_error'     => 'söz keniniñ qatesi',
-'math_syntax_error'     => 'söýlem jüýesiniñ qatesi',
-'math_image_error'      => 'PNG awdarısı sätsiz bitti;
-latex, dvips, gs jäne convert bağdarlamalarınıñ durıs ornatwın tekserip şığıñız',
-'math_bad_tmpdir'       => 'math degen waqıtşa qaltasına jazılmadı, ne qalta qurılmadı',
-'math_bad_output'       => 'math degen beris qaltasına jazılmadı, ne qalta qurılmadı',
-'math_notexvc'          => 'texvc atqarılmalısı tabılmadı;
-baptaw üşin math/README qujatın qarañız.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Zertteldi dep belgilew',

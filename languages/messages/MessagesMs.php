@@ -683,8 +683,6 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'extlink_tip'     => 'Pautan luar (ingat awalan http://)',
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tajuk peringkat 2',
-'math_sample'     => 'Masukkan rumus di sini',
-'math_tip'        => 'Rumus matematik (LaTeX)',
 'nowiki_sample'   => 'Masukkan teks tak berformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_sample'    => 'Contoh.jpg',
@@ -1178,7 +1176,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'changepassword'                => 'Tukar kata laluan',
 'prefs-skin'                    => 'Rupa',
 'skin-preview'                  => 'Pratonton',
-'prefs-math'                    => 'Matematik',
 'datedefault'                   => 'Tiada keutamaan',
 'prefs-datetime'                => 'Tarikh dan waktu',
 'prefs-personal'                => 'Profil',
@@ -2746,25 +2743,6 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'skinname-standard' => 'Klasik',
 'skinname-simple'   => 'Ringkas',
 'skinname-modern'   => 'Moden',
-
-# Math options
-'mw_math_png'    => 'Sentiasa lakar PNG',
-'mw_math_simple' => 'HTML jika ringkas, sebaliknya PNG',
-'mw_math_html'   => 'HTML jika boleh, sebaliknya PNG',
-'mw_math_source' => 'Biarkan sebagai TeX (untuk pelayar teks)',
-'mw_math_modern' => 'Dicadangkan untuk pelayar moden',
-'mw_math_mathml' => 'MathML jika boleh (sedang dalam uji kaji)',
-
-# Math errors
-'math_failure'          => 'Gagal menghurai',
-'math_unknown_error'    => 'ralat yang tidak dikenali',
-'math_unknown_function' => 'fungsi yang tidak dikenali',
-'math_lexing_error'     => "ralat ''lexing''",
-'math_syntax_error'     => 'ralat sintaks',
-'math_image_error'      => 'Penukaran PNG gagal; periksa sama ada latex dan dvipng (atau dvips + gs + convert) telah dipasang dengan betul',
-'math_bad_tmpdir'       => 'Direktori temp matematik tidak boleh ditulis atau dicipta',
-'math_bad_output'       => 'Direktori output matematik tidak boleh ditulis atau dicipta',
-'math_notexvc'          => 'Atur cara texvc hilang; sila lihat fail math/README untuk maklumat konfigurasi.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tanda ronda',

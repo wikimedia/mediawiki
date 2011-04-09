@@ -210,7 +210,6 @@ $messages = array(
 'link_tip'      => 'Joaju hyepyguávandi',
 'extlink_tip'   => 'Joaju okapeguávandi (recuerde añadir el prefijo http://)',
 'headline_tip'  => 'Teraete mokõiha',
-'math_tip'      => 'Matemátika kuaareko (LaTeX)',
 'nowiki_tip'    => "Viki jehaireko ñembo'yke",
 'image_tip'     => "Ta'ãnga moĩngepyréva",
 'media_tip'     => "Joaju jehai'aty multimediaguándi",

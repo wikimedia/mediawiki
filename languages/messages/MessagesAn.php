@@ -630,8 +630,6 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'extlink_tip'     => 'Vinclo externo  (recuerde o prefixo http://)',
 'headline_sample' => 'Texto de subtítol',
 'headline_tip'    => 'Soztítol de livel 2',
-'math_sample'     => 'Escriba aquí a formula',
-'math_tip'        => 'Formula matematica (LaTeX)',
 'nowiki_sample'   => 'Escriba aquí texto sin formateyar',
 'nowiki_tip'      => 'Ignorar o formato wiki',
 'image_sample'    => 'Exemplo.jpg',
@@ -1105,7 +1103,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'changepassword'                => 'Cambiar a contrasenya',
 'prefs-skin'                    => 'Aparencia',
 'skin-preview'                  => 'Fer una prebatina',
-'prefs-math'                    => 'Esprisions matematicas',
 'datedefault'                   => 'Sin de preferencias',
 'prefs-datetime'                => 'Calendata y hora',
 'prefs-personal'                => 'Datos presonals',
@@ -2612,26 +2609,6 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
 'skinname-myskin'      => 'A mía aparenzia (MySkin)',
 'skinname-simple'      => 'Simpla (Simple)',
-
-# Math options
-'mw_math_png'    => 'Producir siempre PNG',
-'mw_math_simple' => "HTML si ye muit simple, si no'n ye, PNG",
-'mw_math_html'   => "HTML si ye posible, si no'n ye, PNG",
-'mw_math_source' => 'Deixar como TeX (ta navegadores en formato texto)',
-'mw_math_modern' => 'Recomendato ta navegadors modernos',
-'mw_math_mathml' => 'MathML si ye posible (esperimental)',
-
-# Math errors
-'math_failure'          => 'Error en o codigo',
-'math_unknown_error'    => 'error esconoxita',
-'math_unknown_function' => 'función esconoxita',
-'math_lexing_error'     => 'error de lexico',
-'math_syntax_error'     => 'error de sintaxi',
-'math_image_error'      => 'A conversión enta PNG ha tenito errors;
-comprebe si latex, dvips, gs y convert son bien instalatos.',
-'math_bad_tmpdir'       => "No s'ha puesto escribir u creyar o directorio temporal d'esprisions matematicas",
-'math_bad_output'       => "No s'ha puesto escribir u creyar o directorio de salida d'esprisions matematicas",
-'math_notexvc'          => "No s'ha trobato o fichero executable ''texvc''. Por favor, leiga <em>math/README</em> ta confegurar-lo correctament.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Sinyalar como ya controlato',

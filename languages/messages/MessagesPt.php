@@ -834,8 +834,6 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Secção de nível 2',
-'math_sample'     => 'Inserir fórmula aqui',
-'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formatação wiki',
 'image_sample'    => 'Exemplo.jpg',
@@ -1353,7 +1351,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'changepassword'                => 'Alterar palavra-chave',
 'prefs-skin'                    => 'Tema',
 'skin-preview'                  => 'Antever tema',
-'prefs-math'                    => 'Matemática',
 'datedefault'                   => 'Sem preferência',
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Perfil de utilizador',
@@ -3000,26 +2997,6 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'skinname-simple'      => 'Simples',
 'skinname-modern'      => 'Moderno',
 'skinname-vector'      => 'Vector',
-
-# Math options
-'mw_math_png'    => 'Gerar sempre como PNG',
-'mw_math_simple' => 'HTML caso seja simples, caso contrário, PNG',
-'mw_math_html'   => 'HTML se possível, caso contrário, PNG',
-'mw_math_source' => 'Deixar como TeX (para browsers de texto)',
-'mw_math_modern' => 'Recomendado para browsers modernos',
-'mw_math_mathml' => 'MathML se possível (experimental)',
-
-# Math errors
-'math_failure'          => 'Falhou ao verificar gramática',
-'math_unknown_error'    => 'Erro desconhecido',
-'math_unknown_function' => 'Função desconhecida',
-'math_lexing_error'     => 'Erro léxico',
-'math_syntax_error'     => 'Erro de sintaxe',
-'math_image_error'      => 'Falha na conversão para PNG;
-verifique que o latex, dvips, gs e convert foram correctamente instalados',
-'math_bad_tmpdir'       => "Não foi possível criar o directório temporário ''math'' ou, se já existe, escrever nele",
-'math_bad_output'       => "Não foi possível criar o directório de resultados ''math'' ou, se já existe, escrever nele",
-'math_notexvc'          => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como patrulhada',

@@ -281,8 +281,6 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'extlink_tip'     => 'Uorejuo saite (naaizmierst suokumā dalikt "http://")',
 'headline_sample' => 'Viersroksta teksts',
 'headline_tip'    => '2 leidzīņa viersroksts',
-'math_sample'     => 'Formulu īrokst ite',
-'math_tip'        => 'Matematiska formula (LaTeX)',
 'nowiki_sample'   => 'Ite rokst naformatietu tekstu',
 'nowiki_tip'      => 'Najimt vārā wiki formatiejumu',
 'image_sample'    => 'Paraugs.jpg',

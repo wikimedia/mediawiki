@@ -472,8 +472,6 @@ Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password k
 'extlink_tip'     => 'Suglung a palwal (tandanan me ing http:// prefix)',
 'headline_sample' => 'Letra ning pamagat (headline text)',
 'headline_tip'    => 'Pamagat a level 2',
-'math_sample'     => 'Isingit me ing formula keni',
-'math_tip'        => 'Formulang pang-matematika (LaTeX)',
 'nowiki_sample'   => 'Keti mu isingit ing sulat a e makaayus (non-formatted text)',
 'nowiki_tip'      => 'E papansinan ing pamanayus a pang-wiki (wiki formatting)',
 'image_tip'       => 'Simpan a makalangkap (Embedded file)',
@@ -1969,27 +1967,6 @@ Mapaliaring ing sangkan metung yang suglung king karinan king kilual (link to an
 'numwatchers'    => 'Bilang da reng talabante: $1',
 'numauthors'     => 'Taganang bilang da reng talasulat (bulung): $1',
 'numtalkauthors' => 'Taganang bilang da reng talasulat (bulung pamisabi-sabi): $1',
-
-# Math options
-'mw_math_png'    => 'Pane yang pakit king ayus/format a PNG',
-'mw_math_simple' => 'HTML nung simpli yang tagana, at nung ali, PNG',
-'mw_math_html'   => 'HTML nung maliari, at nung ali, PNG',
-'mw_math_source' => 'Paburen yang TeX (para kareng text browser)',
-'mw_math_modern' => 'Rerekomenda de kareng makabayung browser',
-'mw_math_mathml' => 'MathML nung maliari (susubukan da pamu [experimental])',
-
-# Math errors
-'math_failure'          => 'E melaus ing pamag-parse',
-'math_unknown_error'    => 'e makikilalang pamagkamali',
-'math_unknown_function' => 'e makikilalang gamit (unknown function)',
-'math_lexing_error'     => 'pamagkamali king lexing',
-'math_syntax_error'     => 'pamagkamali king pamituki-tuki (syntax error)',
-'math_image_error'      => 'E melaus ing pamanalis king PNG;
-siguraduan mu ing ustung pamag-install king latex, dvips, gs, at kaibat iyalis (i-convert) me',
-'math_bad_tmpdir'       => 'E makasulat king o makapaglalang piyakitan (directory) a math temp',
-'math_bad_output'       => 'E makasulat king o makapaglalang piyakitan (directory) a math output',
-'math_notexvc'          => 'Mawawala ya ing texvc executable;
-pakilawe me ing math/README ba meng i-configure.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tatakan yang babanten (patrolled)',

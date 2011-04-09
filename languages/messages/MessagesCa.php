@@ -707,8 +707,6 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'extlink_tip'     => 'Enllaç extern (recordeu el prefix http://)',
 'headline_sample' => "Text per a l'encapçalament",
 'headline_tip'    => 'Encapçalat de secció de 2n nivell',
-'math_sample'     => 'Inseriu una fórmula ací',
-'math_tip'        => 'Fórmula matemàtica (LaTeX)',
 'nowiki_sample'   => 'Inseriu ací text sense format',
 'nowiki_tip'      => 'Ignora el format wiki',
 'image_sample'    => 'Exemple.jpg',
@@ -1198,7 +1196,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'changepassword'                => 'Canvia la contrasenya',
 'prefs-skin'                    => 'Aparença',
 'skin-preview'                  => 'prova',
-'prefs-math'                    => 'Com es mostren les fórmules',
 'datedefault'                   => 'Cap preferència',
 'prefs-datetime'                => 'Data i hora',
 'prefs-personal'                => "Perfil d'usuari",
@@ -2787,25 +2784,6 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'skinname-standard'    => 'Clàssic',
 'skinname-nostalgia'   => 'Nostàlgia',
 'skinname-cologneblue' => 'Colònia blava',
-
-# Math options
-'mw_math_png'    => 'Produeix sempre PNG',
-'mw_math_simple' => 'HTML si és molt simple, si no PNG',
-'mw_math_html'   => 'HTML si és possible, si no PNG',
-'mw_math_source' => 'Deixa com a TeX (per a navegadors de text)',
-'mw_math_modern' => 'Recomanat per a navegadors moderns',
-'mw_math_mathml' => 'MathML si és possible (experimental)',
-
-# Math errors
-'math_failure'          => "No s'ha pogut entendre",
-'math_unknown_error'    => 'error desconegut',
-'math_unknown_function' => 'funció desconeguda',
-'math_lexing_error'     => 'error de lèxic',
-'math_syntax_error'     => 'error de sintaxi',
-'math_image_error'      => 'Hi ha hagut una errada en la conversió a PNG. Verifiqueu la instaŀlació de latex i dvipng (o dvips, gs i convert).',
-'math_bad_tmpdir'       => 'No ha estat possible crear el directori temporal de math o escriure-hi dins.',
-'math_bad_output'       => "No ha estat possible crear el directori d'eixida de math o escriure-hi dins.",
-'math_notexvc'          => "No s'ha trobat el fitxer executable ''texvc''; si us plau, vegeu math/README per a configurar-lo.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marca com a supervisat',

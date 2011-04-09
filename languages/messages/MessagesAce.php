@@ -470,8 +470,6 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'extlink_tip'     => 'Hubông luwa (bèk tuwoë bôh http:// bak away)',
 'headline_sample' => 'Naseukah nan',
 'headline_tip'    => 'Aneuk beunagi tingkat 1',
-'math_sample'     => 'Pasoë rumuh nyoë pat',
-'math_tip'        => 'Rumuh matematik (LaTeX)',
 'nowiki_sample'   => 'Bèk format naseukah nyoë',
 'nowiki_tip'      => 'Bèk seutot beuntuk wiki',
 'image_tip'       => 'Pasoë beureukah',

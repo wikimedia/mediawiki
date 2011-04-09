@@ -496,8 +496,6 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'extlink_tip'     => 'Ligam de föra (regordess el prefiss http:// )',
 'headline_sample' => "Intestazión de l'articul",
 'headline_tip'    => 'Intestazión de 2° nivel',
-'math_sample'     => 'Met dent una furmula chì',
-'math_tip'        => 'Furmula matematega (LaTeX)',
 'nowiki_sample'   => 'Met dent chì el test minga furmataa',
 'nowiki_tip'      => 'Ignora la furmatazión wiki',
 'image_tip'       => 'File inglubaa in del test',
@@ -649,7 +647,6 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'prefs-edits'              => 'Quantità de mudifegh faa:',
 'changepassword'           => "Mudifega la paròla d'urdin",
 'prefs-skin'               => "Aspett de l'interfacia",
-'prefs-math'               => 'Matem',
 'datedefault'              => 'Nissüna preferenza',
 'prefs-datetime'           => 'Data e urari',
 'prefs-personal'           => 'Carateristich dal dupradur',
@@ -1305,14 +1302,6 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 
 # Attribution
 'siteuser' => '{{SITENAME}} ütent $1',
-
-# Math options
-'mw_math_png'    => 'Trasfurmá sempər in PNG',
-'mw_math_simple' => 'HTML se mia cumplicaa altrimeent PNG',
-'mw_math_html'   => 'HTML se l è pussíbil altrimeent PNG',
-'mw_math_source' => 'Lassá in furmaa TeX (pər i prugráma də navigazziún dumá in furmaa da testu)',
-'mw_math_modern' => 'Racumandaa pər i bigatt püssè reçeent',
-'mw_math_mathml' => 'MathML se l è pussíbil (sperimentaal)',
 
 # Image deletion
 'deletedrevision' => 'Scancelada la revision vegia de $1.',

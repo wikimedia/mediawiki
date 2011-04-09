@@ -529,8 +529,6 @@ $2',
 'extlink_tip'     => 'ಬಾಹ್ಯ ಸಂಪರ್ಕ (http:// ಇಂದ ಶುರು ಮಾಡಿ)',
 'headline_sample' => 'ಶಿರೋಲೇಖ',
 'headline_tip'    => '೨ನೇ ಮಟ್ಟದ ತಲೆಬರಹ',
-'math_sample'     => 'ಇಲ್ಲಿ ಸೂತ್ರವನ್ನು ಅಳವಡಿಸಿ',
-'math_tip'        => 'ಗಣಿತ ಸೂತ್ರ (LaTeX)',
 'nowiki_sample'   => 'ಈ ಜಾಗದಲ್ಲಿ ಬರೆಯಲ್ಪಟ್ಟದ್ದು ವಿಕೀಕರಣ ಆಗುವುದಿಲ್ಲ',
 'nowiki_tip'      => 'ವಿಕಿ ರಚನಕ್ರಮವನ್ನು ಅಲಕ್ಷಿಸು',
 'image_tip'       => 'ಅಳವಡಿಸಲ್ಪಟ್ಟ ಫೈಲು',
@@ -858,7 +856,6 @@ $2',
 'changepassword'              => 'ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ',
 'prefs-skin'                  => 'ಚರ್ಮ',
 'skin-preview'                => 'ಮುನ್ನೋಟ',
-'prefs-math'                  => 'ಗಣಿತ',
 'datedefault'                 => 'ಯಾವುದೇ ಪ್ರಾಶಸ್ತ್ಯ ಇಲ್ಲ',
 'prefs-datetime'              => 'ದಿನ ಮತ್ತು ಸಮಯ',
 'prefs-personal'              => 'ಬಳಕೆದಾರರ ಬಗ್ಗೆ',
@@ -1791,16 +1788,6 @@ $2',
 'numedits'     => 'ಸಂಪಾದನೆಗಳ ಸಂಖ್ಯೆ (ಪುಟ): $1',
 'numtalkedits' => 'ಸಂಪಾದನೆಗಳ ಸಂಖ್ಯೆ (ಚರ್ಚೆ ಪುಟ): $1',
 'numwatchers'  => 'ವೀಕ್ಷಿಸುತ್ತಿರುವವರ ಸಂಖ್ಯೆ: $1',
-
-# Math options
-'mw_math_png'    => 'ಯಾವಾಗಲೂ PNG ಪ್ರಕಾರ ತೋರಿಸು',
-'mw_math_simple' => 'ಸರಳವಾಗಿದ್ದಲ್ಲಿ HTML ಇಲ್ಲದಿದ್ದಲ್ಲಿ PNG',
-'mw_math_html'   => 'ಸಾಧ್ಯವಾದಲ್ಲಿ HTML ಇಲ್ಲದಿದ್ದರೆ PNG',
-
-# Math errors
-'math_unknown_error' => 'ತಿಳಿದಿಲ್ಲದ ದೋಷ',
-'math_image_error'   => 'PNGಗೆ ಬದಲಾವಣೆ ವಿಫಲವಾಯಿತು;
-latex, dvips, gs, ಸರಿಯಾಗಿ ಸ್ಥಾಪಿತವಾಗಿದೆಯೆ ಎಂದು ಖಾತ್ರಿ ಮಾಡಿ ಬದಲಾಯಿಸಿ',
 
 # Patrol log
 'patrol-log-diff' => 'ಆವೃತ್ತಿ $1',

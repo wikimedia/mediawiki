@@ -316,7 +316,6 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 # Preferences page
 'mypreferences'  => 'जिगु प्राथमिकता',
 'changepassword' => 'पासवर्द हिलादिसँ',
-'prefs-math'     => 'गणित',
 'prefs-datetime' => 'दिं व ई',
 'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
 'prefs-rc'       => 'न्हुगु हिलेज्या',

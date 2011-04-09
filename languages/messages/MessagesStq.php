@@ -556,8 +556,6 @@ Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiede
 'extlink_tip'     => 'Externen Link (http:// beoachtje)',
 'headline_sample' => 'Ieuwene 2 Uurskrift',
 'headline_tip'    => 'Ieuwene 2 Uurskrift',
-'math_sample'     => 'Formel hier ienföigje',
-'math_tip'        => 'Mathematiske Formel (LaTeX)',
 'nowiki_sample'   => 'Uunformattierden Text hier ienföigje',
 'nowiki_tip'      => 'Uunformattierden Text',
 'image_sample'    => 'Biespil.jpg',
@@ -1043,7 +1041,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'changepassword'                => 'Paaswoud annerje',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Foarskau',
-'prefs-math'                    => 'TeX',
 'datedefault'                   => 'Neen Preferenz',
 'prefs-datetime'                => 'Doatum un Tied',
 'prefs-personal'                => 'Benutserdoaten',
@@ -2614,25 +2611,6 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'numwatchers'    => 'Antaal fon do Beooboachtere: $1',
 'numauthors'     => 'Antaal fon do Artikkelautore: $1',
 'numtalkauthors' => 'Antaal fon do Diskutante: $1',
-
-# Math options
-'mw_math_png'    => 'Altied as PNG deerstaale',
-'mw_math_simple' => 'Eenfache TeX as HTML deerstaale, uurs PNG',
-'mw_math_html'   => 'Wan muugelk as HTML deerstaale, uurs PNG',
-'mw_math_source' => 'As TeX beläite (foar Textbrowsere)',
-'mw_math_modern' => 'Antouräiden foar moderne Browsere',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Parser-Failer',
-'math_unknown_error'    => 'Uunbekoande Failer',
-'math_unknown_function' => 'Uunbekoande Funktion',
-'math_lexing_error'     => "'Lexing'-Failer",
-'math_syntax_error'     => 'Syntaxfailer',
-'math_image_error'      => 'ju PNG-Konvertierenge sluuch fail; korrekte Installation fon LaTeX un dvipng wröigje (of dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Kon dät Temporärferteeknis foar mathematiske Formeln nit anlääse of beskrieuwe.',
-'math_bad_output'       => 'Kon dät Sielferteeknis foar mathematiske Formeln nit anlääse of beskrieuwe.',
-'math_notexvc'          => 'Dät texvc-Program kon nit fuunen wäide. Beoachte jädden math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'As pröiwed markierje',

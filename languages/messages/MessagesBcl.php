@@ -528,8 +528,6 @@ Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong s
 'extlink_tip'     => 'Panluwas na takod (giromdomon an http:// na prefiho)',
 'headline_sample' => 'Tekstong pamayohan',
 'headline_tip'    => 'Tangga ika-2 na pamayohan',
-'math_sample'     => 'Isaliôt an pormula digdi',
-'math_tip'        => 'Pórmulang matemátika (LaTeX)',
 'nowiki_sample'   => "Isaliot digdi an tekstong dai na-''format''",
 'nowiki_tip'      => "Dai pagindiendehon pag-''format'' kan wiki",
 'image_sample'    => 'Halimbawa.jpg',
@@ -798,7 +796,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'changepassword'            => 'Ribayan an sekretong panlaog',
 'prefs-skin'                => "''Skin''",
 'skin-preview'              => 'Tânawon',
-'prefs-math'                => 'Mat',
 'datedefault'               => 'Mayong kabôtan',
 'prefs-datetime'            => 'Petsa asin oras',
 'prefs-personal'            => 'Pambisto nin parágamit',
@@ -1768,25 +1765,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'skinname-standard' => 'Klasiko',
 'skinname-simple'   => 'Simple',
 'skinname-modern'   => 'Bago',
-
-# Math options
-'mw_math_png'    => 'Itaô pirmi an PNG',
-'mw_math_simple' => 'HTML kun simple sana o PNG kun bakô',
-'mw_math_html'   => 'HTML kun posible o PNG kun bakô',
-'mw_math_source' => "Pabayaan na bilang TeX (para sa mga ''browser'' na teksto)",
-'mw_math_modern' => "Pigrerekomendár para sa mga modernong ''browser''",
-'mw_math_mathml' => 'MathML kun posible (experimental)',
-
-# Math errors
-'math_failure'          => 'Nagprakaso an pagatíd-atíd',
-'math_unknown_error'    => 'dai aram an salâ',
-'math_unknown_function' => 'Dai aram an gamit',
-'math_lexing_error'     => 'may salâ sa analisador léxico',
-'math_syntax_error'     => 'may salâ sa analisador nin sintaksis',
-'math_image_error'      => 'Nagprakaso an konbersyon kan PNG; sosogon tabî an pagkaag nin latex, dvips, gs, asin ikonbertir',
-'math_bad_tmpdir'       => 'Dai masuratan o magibo an direktoryo nin mat temp',
-'math_bad_output'       => 'Dai masuratan o magibo an direktoryo kan salida nin math',
-'math_notexvc'          => 'May nawawarang texvc na ehekutable; hilingón tabî an mat/README para makonpigurar.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markahán na pigpapatrulya',

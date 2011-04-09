@@ -296,7 +296,6 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'extlink_tip'     => 'Gōa-pō· ê liân-kiat (ē-kì-tit thâu-chêng ài ke http://)',
 'headline_sample' => 'Thâu-tiâu bûn-jī',
 'headline_tip'    => 'Tē-2-chân (level 2) ê phiau-tê',
-'math_sample'     => 'Chia siá hong-thêng-sek',
 'nowiki_sample'   => 'Chia siá bô keh-sek ê bûn-jī',
 'image_sample'    => 'Iann-siong-e-le.jpg',
 'image_tip'       => 'Giap tī lāi-bīn ê iáⁿ-siōng',
@@ -405,7 +404,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'changepassword'        => 'Oāⁿ bi̍t-bé',
 'prefs-skin'            => 'Phôe',
 'skin-preview'          => 'Chhì khoàⁿ',
-'prefs-math'            => 'Sò·-ha̍k ê rendering',
 'datedefault'           => 'Chhìn-chhái',
 'prefs-datetime'        => 'Ji̍t-kî kap sî-kan',
 'prefs-personal'        => 'Iōng-chiá chu-liāu',
@@ -790,14 +788,6 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'siteuser'      => '{{SITENAME}} iōng-chiá $1',
 'othercontribs' => 'Kin-kù $1 ê kòng-hiàn.',
 'siteusers'     => '{{SITENAME}} iōng-chiá $1',
-
-# Math options
-'mw_math_png'    => 'Tiāⁿ-tio̍h iōng PNG render',
-'mw_math_simple' => 'Tân-sûn ê chêng-hêng iōng HTML; kî-thaⁿ iōng PNG',
-'mw_math_html'   => 'Chīn-liōng iōng HTML; kî-thaⁿ iōng PNG',
-'mw_math_source' => 'Î-chhî TeX ê keh-sek (khah ha̍h bûn-jī-sek ê liû-lám-khì)',
-'mw_math_modern' => 'Kiàn-gī hiān-tāi liû-lám-khì kéng che',
-'mw_math_mathml' => 'Chīn-liōng iōng MathML (chhì-giām-sèng--ê)',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Phiau-sī sûn--kòe',

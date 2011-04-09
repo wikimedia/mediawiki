@@ -605,14 +605,6 @@ Daut woat aun eenem Link lidje, woona no eene externe Sied wiest.',
 'numauthors'     => 'Zohl von Autore (Sied): $1',
 'numtalkauthors' => 'Zohl von Autore (Diskussioonssied): $1',
 
-# Math options
-'mw_math_png'    => 'Emma aus PNG wiese',
-'mw_math_simple' => 'HTML es zimlich eenfach, sonst PNG',
-'mw_math_html'   => 'Wan meajlich aus HTML wiese, sonst PNG',
-'mw_math_source' => 'Aus TeX lote (fe Tatjstbrowser)',
-'mw_math_modern' => 'Goot fe moderne Browser',
-'mw_math_mathml' => 'MathML wan meajlich (experimental)',
-
 # Patrolling
 'markaspatrolleddiff'   => 'Aus kontrolliet markere',
 'markaspatrolledtext'   => 'Dise Sied aus kontrolliet markere',

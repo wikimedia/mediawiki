@@ -401,7 +401,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'link_tip'        => 'ਅੰਦਰੂਨੀ ਲਿੰਕ',
 'extlink_sample'  => 'http://www.example.com ਲਿੰਕ ਟਾਈਟਲ',
 'headline_sample' => 'ਹੈੱਡਲਾਈਨ ਟੈਕਸਟ',
-'math_tip'        => 'ਗਣਿਤ ਫਾਰਮੂਲਾ (LaTeX)',
 'image_tip'       => 'ਇੰਬੈੱਡ ਚਿੱਤਰ',
 'media_tip'       => 'ਮੀਡਿਆ ਫਾਇਲ ਲਿੰਕ',
 'sig_tip'         => 'ਟਾਈਮ-ਸਟੈਂਪ ਨਾਲ ਤੁਹਾਡੇ ਦਸਤਖਤ',
@@ -544,7 +543,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'changepassword'              => 'ਪਾਸਵਰਡ ਬਦਲੋ',
 'prefs-skin'                  => 'ਸਕਿਨ',
 'skin-preview'                => 'ਝਲਕ',
-'prefs-math'                  => 'ਗਣਿਤ',
 'datedefault'                 => 'ਕੋਈ ਪਸੰਦ ਨਹੀਂ',
 'prefs-datetime'              => 'ਮਿਤੀ ਅਤੇ ਸਮਾਂ',
 'prefs-personal'              => 'ਯੂਜ਼ਰ ਪਰੋਫਾਇਲ',
@@ -1041,13 +1039,6 @@ to upload files.',
 'skinname-myskin'   => 'ਮੇਰੀਸਕਿਨ',
 'skinname-chick'    => 'ਚੀਚਕ',
 'skinname-simple'   => 'ਸੈਂਪਲ',
-
-# Math errors
-'math_failure'          => 'ਪਾਰਸ ਕਰਨ ਲਈ ਫੇਲ੍ਹ',
-'math_unknown_error'    => 'ਅਣਜਾਣ ਗਲਤੀ',
-'math_unknown_function' => 'ਅਣਜਾਣ ਫੰਕਸ਼ਨ',
-'math_lexing_error'     => 'lexing ਗਲਤੀ',
-'math_syntax_error'     => 'ਸੰਟੈਕਸ ਗਲਤੀ',
 
 # Patrol log
 'patrol-log-auto' => '(ਆਟੋਮੈਟਿਕ)',

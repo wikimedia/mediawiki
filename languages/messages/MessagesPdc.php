@@ -279,7 +279,6 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'extlink_tip'     => 'Gewebbgleecher (acht uff http://)',
 'headline_sample' => 'Iwwerschrift',
 'headline_tip'    => 'Iwwerschrift Level 2',
-'math_sample'     => 'Formula hier eigewwe',
 'image_sample'    => 'Beeschpiel.jpg',
 'media_sample'    => 'Beeschpiel.ogg',
 'media_tip'       => 'Gleecher fer Feil',

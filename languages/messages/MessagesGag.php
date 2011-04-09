@@ -377,8 +377,6 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'extlink_tip'     => 'Dış baalantı (Unutmayın adresin önüne http:// koymaa)',
 'headline_sample' => 'Başlık teksti',
 'headline_tip'    => '2. düzey başlık',
-'math_sample'     => 'Matematik-formulanı-koyun',
-'math_tip'        => 'Matematik formula (LaTeX formatında)',
 'nowiki_sample'   => 'Serbest format yazınızı buraya yazınız',
 'nowiki_tip'      => 'Wiki formatlamasını ignor et',
 'image_tip'       => 'Pätret eklemää',

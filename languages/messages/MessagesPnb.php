@@ -340,8 +340,6 @@ $messages = array(
 'extlink_tip'     => 'بیرونی جوڑ (remember http:// prefix)',
 'headline_sample' => 'شہ سرخی',
 'headline_tip'    => 'دوسرے درجے دی سرخی',
-'math_sample'     => 'ایتھے فارمولا لاؤ',
-'math_tip'        => 'ریاضی دا فارمولا (LaTeX)',
 'nowiki_sample'   => 'فارمیٹ نہ ہوئی لکھائی ایتھے پاؤ',
 'nowiki_tip'      => 'وکی فارمیٹ رھندیو۔',
 'image_tip'       => 'وچ مورت لگاؤ',
@@ -522,7 +520,6 @@ $messages = array(
 'prefsnologin'              => 'لاگ ان نئیں او',
 'changepassword'            => 'کنجی بدلو',
 'prefs-skin'                => 'کھل',
-'prefs-math'                => 'حساب کتاب',
 'prefs-datetime'            => 'تاریخ تے ویلہ',
 'prefs-personal'            => 'ورتن آلے دا پروفائل',
 'prefs-rc'                  => 'نویاں تبدیلیاں',
@@ -1173,10 +1170,6 @@ $messages = array(
 'infosubtitle' => 'صفحے آسطے معلومات',
 'numedits'     => 'لکھائی دی گنتی (صفحہ): $1',
 'numwatchers'  => 'ویکھنے آلیاں دی گنتی: $1',
-
-# Math errors
-'math_unknown_error'    => 'انجان مسئلہ',
-'math_unknown_function' => 'انجان کم',
 
 # Browsing diffs
 'previousdiff' => '← پرانی لکھائی',

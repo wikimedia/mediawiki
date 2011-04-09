@@ -686,8 +686,6 @@ Please log in again after you receive it.
 'extlink_tip'     => "બાહ્ય કડી (શરૂઆતામાં '''http://''' ઉમેરવાનું ભુલશો નહી)",
 'headline_sample' => 'મથાળાનાં મોટા અક્ષર',
 'headline_tip'    => 'બીજા ક્રમનું મથાળું',
-'math_sample'     => 'સૂત્ર અહીં દાખલ કરો',
-'math_tip'        => 'ગણિતિક સૂત્ર (LaTeX)',
 'nowiki_sample'   => 'ફોર્મેટ કર્યા વગરનું લખાણ અહીં ઉમેરો',
 'nowiki_tip'      => 'વિકિ ફોર્મેટીંગને અવગણો',
 'image_tip'       => 'અંદર વણાયેલી (Embedded) ફાઇલ',
@@ -1202,7 +1200,6 @@ $1",
 'changepassword'                => 'ગુપ્તસંજ્ઞા બદલો',
 'prefs-skin'                    => 'ફલક',
 'skin-preview'                  => 'ફેરફાર બતાવો',
-'prefs-math'                    => 'ગણિત',
 'datedefault'                   => 'મારી પસંદ',
 'prefs-datetime'                => 'તારીખ અને સમય',
 'prefs-personal'                => 'સભ્ય ઓળખ',
@@ -2802,25 +2799,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'numwatchers'    => 'નીરીક્ષકોની સંખ્યા : $1',
 'numauthors'     => 'લેખકોની સંખ્યા (પાનું): $1',
 'numtalkauthors' => 'લેખકોની સંખ્યા (ચર્ચા પાનું): $1',
-
-# Math options
-'mw_math_png'    => 'PNGને હમેંશા પરત કરો',
-'mw_math_simple' => 'જો સરળ હોય તો  HTML અન્યથા PNG',
-'mw_math_html'   => 'જો સરળ હોય તો  HTML અન્યથા PNG',
-'mw_math_source' => 'આને શબ્દ રહેવા દો (ટેક્સ્ટ બ્રાઉઝર)',
-'mw_math_modern' => 'અત્યાધુનિક બ્રાઉઝરો માટે ભલામણ યોગ્ય',
-'mw_math_mathml' => ' MathML શક્ય હોય તો  (પ્રયોગાત્મક)',
-
-# Math errors
-'math_failure'          => 'પદચ્છેદ અસફળ',
-'math_unknown_error'    => 'અજ્ઞાત ત્રુટિ',
-'math_unknown_function' => 'અજ્ઞાત ફંક્શન',
-'math_lexing_error'     => 'લેખન ક્ર્મ / વિધી ત્રુટિ',
-'math_syntax_error'     => 'સૂત્ર લેખન ત્રુટિ',
-'math_image_error'      => 'PNG રૂપાંતરણ નિષ્ફળ;  latex અને dvipng (or dvips + gs + convert) બરાબર ચડાવાયું છે કે કેમ તે ચકાસો',
-'math_bad_tmpdir'       => 'હંગામી ગણિત ડીરેક્ટરી લખી કે રચી નહીં શકાય.',
-'math_bad_output'       => 'ઉત્તરીય ગણિત ડીરેક્ટરી લખી કે રચી નહીં શકાય.',
-'math_notexvc'          => 'ચલાવી શકાય તેવી texvc ગાયબ ; આને ચડાવવા math/README  જુઓ.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'નિરીક્ષીત અંકિત કરો',

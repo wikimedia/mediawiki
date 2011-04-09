@@ -638,8 +638,6 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'extlink_tip'     => 'Cyswllt allanol (cofiwch y rhagddodiad http:// )',
 'headline_sample' => 'Testun pennawd',
 'headline_tip'    => 'Pennawd lefel 2',
-'math_sample'     => 'Gosodwch fformwla yma',
-'math_tip'        => 'Fformwla mathemategol (LaTeX)',
 'nowiki_sample'   => 'Rhowch destun di-fformatedig yma',
 'nowiki_tip'      => "Anwybyddu'r gystrawen wici",
 'image_sample'    => 'Enghraifft.jpg',
@@ -1130,7 +1128,6 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'changepassword'                => 'Newid y cyfrinair',
 'prefs-skin'                    => 'Gwedd',
 'skin-preview'                  => 'Rhagolwg',
-'prefs-math'                    => 'Mathemateg',
 'datedefault'                   => 'Dim dewisiad',
 'prefs-datetime'                => 'Dyddiad ac amser',
 'prefs-personal'                => 'Data defnyddiwr',
@@ -2705,25 +2702,6 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'skinname-standard'    => 'Safonol',
 'skinname-nostalgia'   => 'Hiraeth',
 'skinname-cologneblue' => 'Glas Cwlen',
-
-# Math options
-'mw_math_png'    => 'Arddangos symbolau mathemateg fel delwedd PNG bob amser',
-'mw_math_simple' => 'HTML os yn syml iawn, PNG fel arall',
-'mw_math_html'   => 'HTML os yn bosib, PNG fel arall',
-'mw_math_source' => 'Gadewch fel côd TeX (ar gyfer porwyr testun)',
-'mw_math_modern' => 'Argymelledig ar gyfer porwyr modern',
-'mw_math_mathml' => 'MathML os yn bosib (arbrofol)',
-
-# Math errors
-'math_failure'          => 'Wedi methu dosrannu',
-'math_unknown_error'    => 'gwall anhysbys',
-'math_unknown_function' => 'ffwythiant anhysbys',
-'math_lexing_error'     => 'gwall lecsio',
-'math_syntax_error'     => 'gwall cystrawen',
-'math_image_error'      => "Trosiad PNG wedi methu; gwiriwch fod latex a dvips (neu dvips + gs + convert) wedi'u gosod yn gywir cyn trosi.",
-'math_bad_tmpdir'       => 'Yn methu creu cyfeiriadur mathemateg dros dro, nac ysgrifennu iddo',
-'math_bad_output'       => 'Yn methu creu cyfeiriadur allbwn mathemateg nac ysgrifennu iddo',
-'math_notexvc'          => 'Rhaglen texvc yn eisiau; gwelwch math/README er mwyn ei chyflunio.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcio ei bod wedi derbyn ymweliad patrôl',

@@ -410,8 +410,6 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'extlink_tip'     => 'Externer Link (http:// beochten)',
 'headline_sample' => 'Ywerschrift auf da zwoaten Ewane',
 'headline_tip'    => 'Ewane-2-Ywerschrift',
-'math_sample'     => 'Formel dodan aifyng',
-'math_tip'        => 'Mathematische Formel (LaTeX)',
 'nowiki_sample'   => 'Den ned-formatirden Text dodan aifyng',
 'nowiki_tip'      => 'Ned-formatirder Text',
 'image_tip'       => 'Datailink',
@@ -1147,9 +1145,6 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.',
 'othercontribs'    => 'Basiert auf da Arbat vo $1',
 'creditspage'      => 'Seitninformationa',
-
-# Math errors
-'math_unknown_function' => 'Unbekannte Funktion',
 
 # Patrolling
 'markedaspatrollederrortext' => 'Sie miaßn a Seitnänderung auswähln.',

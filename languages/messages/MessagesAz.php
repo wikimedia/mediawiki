@@ -541,8 +541,6 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'extlink_tip'     => 'Xarici səhifə (http:// ekini unutma)',
 'headline_sample' => 'Başlıq metni',
 'headline_tip'    => '2. səviyyə başlıq',
-'math_sample'     => 'Riyazi formulu bura yazın',
-'math_tip'        => 'Riyazi formul (LaTeX formatı)',
 'nowiki_sample'   => 'Formatlaşdırılmamış mətni bura daxil edin',
 'nowiki_tip'      => 'Viki formatını sayma',
 'image_sample'    => 'Misal.jpg',
@@ -771,7 +769,6 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'changepassword'               => 'Parolu dəyiş',
 'prefs-skin'                   => 'Üzlük',
 'skin-preview'                 => 'Sınaq göstərişi',
-'prefs-math'                   => 'Riyaziyyat',
 'datedefault'                  => 'Tərcih yox',
 'prefs-datetime'               => 'Tarix və vaxt',
 'prefs-personal'               => 'İstifadəçi profili',
@@ -1596,19 +1593,6 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam qoruma süzgəci',
-
-# Math options
-'mw_math_png'    => 'Həmişə PNG formatında göstər',
-'mw_math_simple' => 'Sadə formullarda HTML, digərlərində PNG',
-'mw_math_html'   => 'Mümkünsə HTML, digər hallarda PNG',
-'mw_math_source' => 'TeX kimi saxla (mətn brouzerləri üçün)',
-'mw_math_modern' => 'Müasir brouzerlər üçün məsləhətdir',
-'mw_math_mathml' => 'Mümkünsə MathML (sınaq)',
-
-# Math errors
-'math_unknown_error'    => 'bilinməyən xəta',
-'math_unknown_function' => 'bilinməyən funksiya',
-'math_syntax_error'     => 'sintaksis xətası',
 
 # Patrol log
 'patrol-log-auto' => '(avtomatik)',

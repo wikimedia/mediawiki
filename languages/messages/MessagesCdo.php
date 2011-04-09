@@ -372,7 +372,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'prefs-edits'        => 'Siŭ-gāi ché̤ṳ-só:',
 'changepassword'     => 'Gāi-biéng mĭk-mā',
 'prefs-skin'         => 'Puòi-hŭ',
-'prefs-math'         => 'Só-hŏk',
 'datedefault'        => 'Mò̤ siék-diâng',
 'prefs-datetime'     => 'Nĭk-gĭ gâe̤ng sì-găng',
 'prefs-personal'     => 'Ê̤ṳng-hô cṳ̆-lâiu',
@@ -805,10 +804,6 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 # Attribution
 'anonymous'        => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
 'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.',
-
-# Math errors
-'math_unknown_error'    => 'muôi báik gì dâng',
-'math_unknown_function' => 'muôi báik hàng-só',
 
 # Image deletion
 'deletedrevision' => 'Ī-gĭng chēng lâi gì bēng-buōng $1.',

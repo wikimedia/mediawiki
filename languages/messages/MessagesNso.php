@@ -382,8 +382,6 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'extlink_tip'     => 'Hlomaganyo ya ka ntle (gopola go thoma ka http://)',
 'headline_sample' => 'Tlhaka ya hlogotaba',
 'headline_tip'    => 'Hlogotaba ya boemo ba 2',
-'math_sample'     => "Lokela ''formula'' mo",
-'math_tip'        => 'Formula ya dipalo (LaTeX)',
 'nowiki_sample'   => "Tsenya ditlhaka tša go sebe le ''format'' mo",
 'nowiki_tip'      => "Hlokomologa tselangwalo (''formatting'') ya  wiki",
 'image_sample'    => 'Mohlala.jpg',
@@ -1100,10 +1098,6 @@ Ka kgopelo, kgetha leina le lengwe.',
 # Info page
 'numedits'    => 'Palo ya diphetogo (letlakala): $1',
 'numwatchers' => 'Palo ya batlhapedi: $1',
-
-# Math errors
-'math_unknown_error' => 'Phošo ya gose tsebege',
-'math_syntax_error'  => 'phošo ya popafoko',
 
 # Image deletion
 'filedeleteerror-short' => 'Phošo go phumuleng faele: $1',

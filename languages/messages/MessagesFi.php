@@ -820,8 +820,6 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'extlink_tip'     => 'Ulkoinen linkki (muista http:// edessä)',
 'headline_sample' => 'Otsikkoteksti',
 'headline_tip'    => 'Otsikko',
-'math_sample'     => 'Lisää kaava tähän',
-'math_tip'        => 'Matemaattinen kaava (LaTeX)',
 'nowiki_sample'   => 'Lisää muotoilematon teksti tähän',
 'nowiki_tip'      => 'Tekstiä, jota wiki ei muotoile',
 'image_sample'    => 'Esimerkki.jpg',
@@ -1298,7 +1296,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'changepassword'                => 'Salasanan vaihto',
 'prefs-skin'                    => 'Ulkoasu',
 'skin-preview'                  => 'esikatselu',
-'prefs-math'                    => 'Matematiikka',
 'datedefault'                   => 'Ei valintaa',
 'prefs-datetime'                => 'Aika ja päiväys',
 'prefs-personal'                => 'Käyttäjätiedot',
@@ -2826,25 +2823,6 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Yksinkertainen',
 'skinname-modern'      => 'Moderni',
-
-# Math options
-'mw_math_png'    => 'Näytä aina PNG:nä',
-'mw_math_simple' => 'Näytä HTML:nä, jos yksinkertainen, muuten PNG:nä',
-'mw_math_html'   => 'Näytä HTML:nä, jos mahdollista, muuten PNG:nä',
-'mw_math_source' => 'Näytä TeX-muodossa (tekstiselaimille)',
-'mw_math_modern' => 'Suositus nykyselaimille',
-'mw_math_mathml' => 'Näytä MathML:nä jos mahdollista (kokeellinen)',
-
-# Math errors
-'math_failure'          => 'Jäsentäminen epäonnistui',
-'math_unknown_error'    => 'Tuntematon virhe',
-'math_unknown_function' => 'Tuntematon funktio',
-'math_lexing_error'     => 'Tulkintavirhe',
-'math_syntax_error'     => 'Jäsennysvirhe',
-'math_image_error'      => 'Muuntaminen PNG-tiedostomuotoon epäonnistui; tarkista, että latex ja dvipng (tai dvips, gs ja convert) on asennettu oikein.',
-'math_bad_tmpdir'       => 'Matematiikan kirjoittaminen väliaikaishakemistoon tai tiedostonluonti ei onnistu',
-'math_bad_output'       => 'Matematiikan tulostehakemistoon kirjoittaminen tai tiedostonluonti ei onnistu',
-'math_notexvc'          => 'Texvc-sovellus puuttuu, lue math/READMEstä asennustietoja',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merkitse tarkastetuksi',

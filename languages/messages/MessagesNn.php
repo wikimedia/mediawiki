@@ -791,8 +791,6 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'extlink_tip'     => 'Ekstern lenkje (hugs http:// prefiks)',
 'headline_sample' => 'Overskriftstekst',
 'headline_tip'    => '2. nivå-overskrift',
-'math_sample'     => 'Skriv formel her',
-'math_tip'        => 'Matematisk formel (LaTeX)',
 'nowiki_sample'   => 'Skriv uformatert tekst her',
 'nowiki_tip'      => 'Sjå bort frå wikiformatering',
 'image_sample'    => 'Døme.jpg',
@@ -1267,7 +1265,6 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'changepassword'                => 'Skift passord',
 'prefs-skin'                    => 'Drakt',
 'skin-preview'                  => 'førehandsvis',
-'prefs-math'                    => 'Matematiske formlar',
 'datedefault'                   => 'Standard',
 'prefs-datetime'                => 'Dato og klokkeslett',
 'prefs-personal'                => 'Brukaropplysningar',
@@ -2781,25 +2778,6 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Enkel',
 'skinname-modern'      => 'Moderne',
-
-# Math options
-'mw_math_png'    => 'Vis alltid som PNG',
-'mw_math_simple' => 'HTML om svært enkel, elles PNG',
-'mw_math_html'   => 'HTML om mogleg, elles PNG',
-'mw_math_source' => 'Behald som TeX (for tekst-nettlesarar)',
-'mw_math_modern' => 'Tilrådd for moderne nettlesarar',
-'mw_math_mathml' => 'MathML dersom mogleg (eksperimentell)',
-
-# Math errors
-'math_failure'          => 'Klarte ikkje å tolke formelen',
-'math_unknown_error'    => 'ukjend feil',
-'math_unknown_function' => 'ukjend funksjon',
-'math_lexing_error'     => 'lexerfeil',
-'math_syntax_error'     => 'syntaksfeil',
-'math_image_error'      => 'PNG-konverteringa var mislukka; sjekk at latex og dvipng (eller dvips + gs + convert) er rett installerte',
-'math_bad_tmpdir'       => 'Kan ikkje skrive til eller laga mellombels mattemappe',
-'math_bad_output'       => 'Kan ikkje skrive til eller laga mattemappe',
-'math_notexvc'          => 'Manglar texvc-program; sjå math/README for konfigurasjon.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk som patruljert',

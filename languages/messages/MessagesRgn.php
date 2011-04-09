@@ -283,8 +283,6 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'extlink_tip'     => 'Culegamént esteran (arcordat d\'scrivar dadnénz "http://")',
 'headline_sample' => 'Intestaziòn',
 'headline_tip'    => "Intestaziòn d'e' sgond livèl",
-'math_sample'     => 'Mèt aquè dentar una formula',
-'math_tip'        => 'Formula metemètica (LaTeX)',
 'nowiki_sample'   => 'Mèt dentar i tu scrètt sìnza furmataziòn',
 'nowiki_tip'      => 'Làsa perdar la furmataziòn wiki',
 'image_tip'       => "Figura ch'la sta insèn a e' scrètt",

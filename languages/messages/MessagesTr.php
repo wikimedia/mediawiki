@@ -828,8 +828,6 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'extlink_tip'     => 'Dış bağlantı (Adresin önüne http:// koymayı unutmayın)',
 'headline_sample' => 'Başlık yazısı',
 'headline_tip'    => '2. seviye başlık',
-'math_sample'     => 'Matematiksel-ifadeyi-girin',
-'math_tip'        => 'Matematik formülü (LaTeX formatında)',
 'nowiki_sample'   => 'Serbest format yazınızı buraya yazınız',
 'nowiki_tip'      => 'wiki formatlamasını devre dışı bırak',
 'image_sample'    => 'Örnek.jpg',
@@ -1317,7 +1315,6 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'changepassword'                => 'Parolayı değiştir',
 'prefs-skin'                    => 'Görünüm',
 'skin-preview'                  => 'Önizleme',
-'prefs-math'                    => 'Matematiksel simgeler',
 'datedefault'                   => 'Tercih yok',
 'prefs-datetime'                => 'Tarih ve saat',
 'prefs-personal'                => 'Kullanıcı bilgileri',
@@ -2921,26 +2918,6 @@ Geçici dosya kayıp.',
 'skinname-chick'     => 'Şık',
 'skinname-simple'    => 'Basit',
 'skinname-modern'    => 'Modern',
-
-# Math options
-'mw_math_png'    => 'Daima PNG resim formatına çevir',
-'mw_math_simple' => 'Çok basitse HTML, değilse PNG',
-'mw_math_html'   => 'Mümkünse HTML, değilse PNG',
-'mw_math_source' => 'Değiştirmeden TeX olarak bırak  (metin tabanlı tarayıcılar için)',
-'mw_math_modern' => 'Modern tarayıcılar için tavsiye edilen',
-'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
-
-# Math errors
-'math_failure'          => 'Ayrıştırılamadı',
-'math_unknown_error'    => 'bilinmeyen hata',
-'math_unknown_function' => 'bilinmeyen fonksiyon',
-'math_lexing_error'     => 'lexing hatası',
-'math_syntax_error'     => 'sözdizim hatası',
-'math_image_error'      => 'PNG çevirisi başarısız; latex, dvips ve gs programlarının doğru yüklendiğine emin olun ve çeviri işlemini başlatın.',
-'math_bad_tmpdir'       => 'Math geçici dizinine yazılamıyor ya da oluşturulamıyor',
-'math_bad_output'       => 'Math çıktı dizinine yazılamıyor ya da oluşturulamıyor',
-'math_notexvc'          => "texvc çalıştırılabiliri kayıp;
-ayarlamak için math/README'ye bakın.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Kontrol edilmiş olarak işaretle',

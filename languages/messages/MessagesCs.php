@@ -871,8 +871,6 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'extlink_tip'     => 'Externí odkaz (nezapomeňte na předponu http://)',
 'headline_sample' => 'Text nadpisu',
 'headline_tip'    => 'Nadpis druhé úrovně',
-'math_sample'     => 'Vložit sem vzorec',
-'math_tip'        => 'Matematický vzorec (LaTeX)',
 'nowiki_sample'   => 'Sem vložte neformátovaný text',
 'nowiki_tip'      => 'Ignorovat formátování wiki',
 'image_sample'    => 'Příklad.jpg',
@@ -1356,7 +1354,6 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'changepassword'                => 'Změna hesla',
 'prefs-skin'                    => 'Vzhled',
 'skin-preview'                  => 'Náhled',
-'prefs-math'                    => 'Matematika',
 'datedefault'                   => 'Implicitní',
 'prefs-datetime'                => 'Datum a čas',
 'prefs-personal'                => 'Údaje o uživateli',
@@ -2947,25 +2944,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderní',
 'skinname-vector'      => 'Vektor',
-
-# Math options
-'mw_math_png'    => 'Vždy jako PNG',
-'mw_math_simple' => 'Jednoduché jako HTML, jinak PNG',
-'mw_math_html'   => 'HTML pokud je to možné, jinak PNG',
-'mw_math_source' => 'Ponechat jako TeX (pro textové prohlížeče)',
-'mw_math_modern' => 'Doporučené nastavení pro moderní prohlížeče',
-'mw_math_mathml' => 'MathML, pokud je podporováno (experimentální)',
-
-# Math errors
-'math_failure'          => 'Nelze pochopit',
-'math_unknown_error'    => 'neznámá chyba',
-'math_unknown_function' => 'neznámá funkce',
-'math_lexing_error'     => 'chyba při lexingu',
-'math_syntax_error'     => 'syntaktická chyba',
-'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu a dvipng (nebo dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Nelze zapsat nebo vytvořit dočasný adresář pro matematiku',
-'math_bad_output'       => 'Nelze zapsat nebo vytvořit adresář pro výstup matematiky',
-'math_notexvc'          => 'Chybí spustitelný texvc; podívejte se prosím do math/README na konfiguraci.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označit jako prověřené',

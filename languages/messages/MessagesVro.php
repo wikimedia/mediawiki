@@ -523,8 +523,6 @@ Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ 
 'extlink_tip'     => 'Välislink (unõhtagu-i ette pandaq http://)',
 'headline_sample' => 'Päälkiri',
 'headline_tip'    => 'Tõõsõ tasõmõ päälkiri',
-'math_sample'     => 'Kirodaq vallõm siiäq',
-'math_tip'        => 'Matõmaatigatekst (LaTeX)',
 'nowiki_sample'   => 'Kirodaq kujondamalda tekst',
 'nowiki_tip'      => 'Tunnistagu-i viki kujondust',
 'image_sample'    => 'Näüdüs.jpg',
@@ -819,7 +817,6 @@ otsisõna iin edejakku ''all:''. Ütest kimmäst nimeruumist otsmisõs pruugiq e
 'changepassword'            => 'Muudaq salasõnna',
 'prefs-skin'                => 'Vällänägemine',
 'skin-preview'              => 'Kaeminõ',
-'prefs-math'                => 'Valõmidõ näütämine',
 'datedefault'               => 'Ütskõik',
 'prefs-datetime'            => 'Kuupäiv ja kelläaig',
 'prefs-personal'            => 'Pruukjateedüs',
@@ -1833,24 +1830,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'skinname-standard'    => 'Array',
 'skinname-cologneblue' => 'Array',
 'skinname-myskin'      => 'Array',
-
-# Math options
-'mw_math_png'    => 'Kõgõ PNG',
-'mw_math_simple' => 'Ku väega lihtsä, sis HTML, muido PNG',
-'mw_math_html'   => 'Ku saa, sis HTML, muido PNG',
-'mw_math_source' => 'Alalõ hoitaq TeX (tekstikaejin)',
-'mw_math_modern' => 'Vahtsõmbilõ võrgokaejilõ soovitõt',
-
-# Math errors
-'math_failure'          => 'Arvosaamalda süntaks',
-'math_unknown_error'    => 'Tundmalda viga',
-'math_unknown_function' => 'Tundmalda tallitus',
-'math_lexing_error'     => 'Vällälugõmisviga',
-'math_syntax_error'     => 'Süntaksiviga',
-'math_image_error'      => 'PNG-muutus lää-s kõrda; kaeq üle, et latex, dvips, gs ja convert ommaq õigõhe paika säedüq',
-'math_bad_tmpdir'       => 'Matõmaatigateksti kirotaminõ aotlistõ kausta vai taa kausta luuminõ ei lääq kõrdaq',
-'math_bad_output'       => 'Matõmaatigateksti kirotaminõ välläandmiskausta vai sääntse kausta luuminõ ei lääq kõrda',
-'math_notexvc'          => 'Olõ-i texvc-tüüriista; loeq tuu paikasäädmise kotsilõ math/README-st.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Märgiq ülekaetus',

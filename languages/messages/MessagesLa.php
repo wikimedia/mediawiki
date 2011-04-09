@@ -572,8 +572,6 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'extlink_tip'     => 'Nexus externus (memento praefixi http://)',
 'headline_sample' => 'Textus capituli',
 'headline_tip'    => 'Linea capitalis scalae 2',
-'math_sample'     => 'Hic inscribe formulam',
-'math_tip'        => 'Formula mathematica (LaTeX)',
 'nowiki_sample'   => 'Adde textum (sine indiciis)',
 'nowiki_tip'      => 'Indicia neglige',
 'image_sample'    => 'Exemplum.jpg',
@@ -875,7 +873,6 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'changepassword'            => 'Tesseram mutare',
 'prefs-skin'                => 'Aspectum',
 'skin-preview'              => 'Praevisum',
-'prefs-math'                => 'Interpretatio artis mathematicae',
 'datedefault'               => 'Nullum praeferentiae',
 'prefs-datetime'            => 'Dies et tempus',
 'prefs-personal'            => 'Minutiae rationis',
@@ -1984,21 +1981,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Skin names
 'skinname-standard'    => 'Norma',
 'skinname-cologneblue' => 'Caerulus Colonia',
-
-# Math options
-'mw_math_png'    => 'Semper vertere PNG',
-'mw_math_simple' => 'HTML si admodum simplex, alioqui PNG',
-'mw_math_html'   => 'HTML si fieri potest, alioqui PNG',
-'mw_math_source' => 'Stet ut TeX (pro navigatri texti)',
-'mw_math_modern' => 'Commendatum pro navigatri recentes',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Excutare non potest',
-'math_unknown_error'    => 'error ignotus',
-'math_unknown_function' => 'functio ignota',
-'math_lexing_error'     => 'erratum lexicale',
-'math_syntax_error'     => 'erratum syntaxis',
 
 # Patrolling
 'markaspatrolleddiff' => 'Indicare hanc paginam qua circumita',

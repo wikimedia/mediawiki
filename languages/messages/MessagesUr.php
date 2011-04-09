@@ -544,8 +544,6 @@ Warning: Page may not contain recent updates.',
 'extlink_tip'     => 'بیرونی ربط (یاد رکھئے http:// prefix)',
 'headline_sample' => 'شہ سرخی',
 'headline_tip'    => 'شہ سرخی درجہ دوم',
-'math_sample'     => 'صیغہ یہاں درج کیجئے',
-'math_tip'        => '(ریاضیاتی صیغہ LaTeX)',
 'nowiki_sample'   => 'غیرشکلبندشدہ متن یہاں درج کریں',
 'nowiki_tip'      => 'ویکی شکلبندی نظرانداز کریں',
 'image_tip'       => 'پیوستہ ملف',
@@ -822,7 +820,6 @@ $1",
 'changepassword'                => 'کلمۂ شناخت تبدیل کریں',
 'prefs-skin'                    => 'جِلد',
 'skin-preview'                  => 'پیش منظر',
-'prefs-math'                    => 'ریاضی',
 'datedefault'                   => 'کوئی ترجیحات نہیں',
 'prefs-datetime'                => 'تاریخ و وقت',
 'prefs-personal'                => 'نمایۂ صارف',
@@ -1312,14 +1309,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Attribution
 'anonymous' => '{{SITENAME}} گمنام صارف',
 'others'    => 'دیگر',
-
-# Math errors
-'math_failure'          => 'تجزیہ میں ناکام',
-'math_unknown_error'    => 'نامعلوم غلطی',
-'math_unknown_function' => 'نامعلوم فعل',
-'math_syntax_error'     => 'نحوی غلطی',
-'math_image_error'      => 'PNG; کی تحویل ناکام
-latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد دوبارہ تحویل کی کوشش کیجئے.',
 
 # Image deletion
 'deletedrevision' => 'حذف شدہ پرانی ترمیم $1۔',

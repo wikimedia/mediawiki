@@ -554,8 +554,6 @@ Oyinz'okuba nga wamaze okutegeka ekya ddala ekipya oba nga wakasabayo eky'ekisee
 'extlink_tip'     => "Nyiga ku kano ob'oyagala okuteekawo enyunzi egguka ku kifo ekitali ku wiki eno. (genderera ne kutabulako ennukuta ezikulembedde, http:// )",
 'headline_sample' => 'Mutwe omukulu',
 'headline_tip'    => "Nyiga ku kano okuwandika omutwe ogw'eddaala ery'okubiri",
-'math_sample'     => 'Wandika wano fomula yo',
-'math_tip'        => "Bw'onyiga wano, ofuna w'osobolera okuwandika fomula ey'okubala. Okugiwandika, olina okukozesa empandika ey'enkola ya LaTeX.",
 'nowiki_sample'   => 'Byowandika wano tebijjakufuulafuulibwa enkola ya wiki',
 'nowiki_tip'      => "Nyiga ku kano ob'oyagala okufuna w'owandikira ebintu ebitafuulibwafuulibwa enkola ya wiki",
 'image_tip'       => "Bw'onyiga ku kano, we wakomye okuwandika wajjawo enyunzi eteekawo ekifaananyi",

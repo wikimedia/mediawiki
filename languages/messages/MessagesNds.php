@@ -713,8 +713,6 @@ Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Pas
 'extlink_tip'     => 'Externen Link (http:// is wichtig)',
 'headline_sample' => 'Evene 2 Överschrift',
 'headline_tip'    => 'Evene 2 Överschrift',
-'math_sample'     => 'Formel hier infögen',
-'math_tip'        => 'Mathematsche Formel (LaTeX)',
 'nowiki_sample'   => 'Unformateerten Text hier infögen',
 'nowiki_tip'      => 'Unformateerten Text',
 'image_sample'    => 'Bispeel.jpg',
@@ -1139,7 +1137,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'changepassword'                => 'Passwoort ännern',
 'prefs-skin'                    => 'Utsehn vun de Steed',
 'skin-preview'                  => 'Vörschau',
-'prefs-math'                    => 'TeX',
 'datedefault'                   => 'Standard',
 'prefs-datetime'                => 'Datum un Tiet',
 'prefs-personal'                => 'Brukerdaten',
@@ -2526,25 +2523,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'skinname-nostalgia'   => 'Nostalgie',
 'skinname-cologneblue' => 'Kölsch Blau',
 'skinname-chick'       => 'Küken',
-
-# Math options
-'mw_math_png'    => 'Jümmer as PNG dorstellen',
-'mw_math_simple' => 'Eenfach TeX as HTML dorstellen, sünst PNG',
-'mw_math_html'   => 'Wenn mööglich as HTML dorstellen, sünst PNG',
-'mw_math_source' => 'As TeX laten (för Textbrowser)',
-'mw_math_modern' => 'Anratenswert för moderne Browser',
-'mw_math_mathml' => 'MathML (experimentell)',
-
-# Math errors
-'math_failure'          => 'Parser-Fehler',
-'math_unknown_error'    => 'Unbekannten Fehler',
-'math_unknown_function' => 'Unbekannte Funktschoon',
-'math_lexing_error'     => "'Lexing'-Fehler",
-'math_syntax_error'     => 'Syntaxfehler',
-'math_image_error'      => 'dat Konverteren na PNG harr keen Spood.',
-'math_bad_tmpdir'       => 'Kann dat Temporärverteken för mathematsche Formeln nich anleggen oder beschrieven.',
-'math_bad_output'       => 'Kann dat Teelverteken för mathematsche Formeln nich anleggen oder beschrieven.',
-'math_notexvc'          => 'Dat texvc-Programm kann nich funnen warrn. Kiek ok math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'As nakeken marken',
