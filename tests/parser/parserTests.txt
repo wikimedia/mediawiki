@@ -3154,16 +3154,6 @@ pst
 !!end
 
 !! test
-pre-save transform: comment containing math
-!! options
-pst
-!! input
-<!-- <math>data</math> -->
-!!result
-<!-- <math>data</math> -->
-!!end
-
-!! test
 pre-save transform: <noinclude> in subst (bug 3298)
 !! options
 pst
@@ -3659,27 +3649,6 @@ BUG 1887: A mailto link with a thumbnail
 [[Image:foobar.jpg|thumb|Please mailto:nobody@example.com]]
 !! result
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Please <a rel="nofollow" class="external free" href="mailto:nobody@example.com">mailto:nobody@example.com</a></div></div></div>
-
-!! end
-
-!! test
-BUG 1887: A <math> with a thumbnail- we don't render math in the parsertests by default,
-so math is not stripped and turns up as escaped &lt;math&gt; tags.
-!! input
-[[Image:foobar.jpg|thumb|<math>2+2</math>]]
-!! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>&lt;math&gt;2+2&lt;/math&gt;</div></div></div>
-
-!! end
-
-!! test
-BUG 1887, part 2: A <math> with a thumbnail- math enabled
-!! options
-math
-!! input
-[[Image:foobar.jpg|thumb|<math>2+2</math>]]
-!! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><span class="texhtml" dir="ltr">2 + 2</span></div></div></div>
 
 !! end
 
@@ -4796,15 +4765,6 @@ Bug 3244: HTML attribute safety (extension; unsafe)
 !! result
 <div style="/* insecure input */"></div>
 
-!! end
-
-!! test
-Math section safety when disabled
-!! input
-<math><script>alert(document.cookies);</script></math>
-!! result
-<p>&lt;math&gt;&lt;script&gt;alert(document.cookies);&lt;/script&gt;&lt;/math&gt;
-</p>
 !! end
 
 # More MSIE fun discovered by Tom Gilder

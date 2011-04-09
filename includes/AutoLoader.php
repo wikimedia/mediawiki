@@ -159,7 +159,6 @@ $wgAutoloadLocalClasses = array(
 	'MagicWordArray' => 'includes/MagicWord.php',
 	'MagicWord' => 'includes/MagicWord.php',
 	'MailAddress' => 'includes/UserMailer.php',
-	'MathRenderer' => 'includes/Math.php',
 	'MediaWiki_I18N' => 'includes/SkinTemplate.php',
 	'MediaWiki' => 'includes/Wiki.php',
 	'Message' => 'includes/Message.php',

@@ -61,6 +61,10 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 17009) the hiddenStructure CSS class, a highly hackish way of at least *appearing*
   to hide article elements, has been removed.  Use the ParserFunctions extension to
   actually remove unwanted elements from the output.
+* (bug 14202) $wgUseTeX has been superseded by the Math extension. To re-enable
+  math conversion after upgrading, obtain the Math extension from SVN or from
+  http://www.mediawiki.org/wiki/Extension:Math and add to LocalSettings.php:
+  require_once "$IP/extensions/Math/Math.php";
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the

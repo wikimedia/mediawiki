@@ -45,7 +45,6 @@ class Preferences {
 		self::profilePreferences( $user, $defaultPreferences );
 		self::skinPreferences( $user, $defaultPreferences );
 		self::filesPreferences( $user, $defaultPreferences );
-		self::mathPreferences( $user, $defaultPreferences );
 		self::datetimePreferences( $user, $defaultPreferences );
 		self::renderingPreferences( $user, $defaultPreferences );
 		self::editingPreferences( $user, $defaultPreferences );
@@ -491,19 +490,6 @@ class Preferences {
 				'options' => $settings,
 				'section' => 'rendering/skin',
 				'label-message' => 'qbsettings',
-			);
-		}
-	}
-
-	static function mathPreferences( $user, &$defaultPreferences ) {
-		## Math #####################################
-		global $wgUseTeX, $wgLang;
-		if ( $wgUseTeX ) {
-			$defaultPreferences['math'] = array(
-				'type' => 'radio',
-				'options' => array_flip( array_map( 'wfMsgHtml', $wgLang->getMathNames() ) ),
-				'label' => '&#160;',
-				'section' => 'rendering/math',
 			);
 		}
 	}

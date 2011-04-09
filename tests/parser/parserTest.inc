@@ -631,8 +631,6 @@ class ParserTest {
 			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
 			'wgUseImageResize' => false,
-			'wgUseTeX' => isset( $opts['math'] ),
-			'wgMathDirectory' => $this->uploadDir . '/math',
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
 			'wgUseTidy' => false,

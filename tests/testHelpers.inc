@@ -600,16 +600,6 @@ class TestFileIterator implements Iterator {
 						continue;
 					}
 
-					global $wgUseTeX;
-
-					if ( preg_match( '/\\bmath\\b/i', $data['options'] ) && !$wgUseTeX ) {
-						# don't run math tests if $wgUseTeX is set to false in LocalSettings
-						$data = array();
-						$section = null;
-
-						continue;
-					}
-
 					$this->test = array(
 						'test' => ParserTest::chomp( $data['test'] ),
 						'input' => ParserTest::chomp( $data['input'] ),
