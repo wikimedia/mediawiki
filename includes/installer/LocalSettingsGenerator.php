@@ -277,10 +277,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## this, if it's not already uncommented:
 {$hashedUploads}\$wgHashedUploadDirectory = false;
 
-## If you have the appropriate support software installed
-## you can enable inline LaTeX equations:
-\$wgUseTeX           = false;
-
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
 ## be publically accessible from the web.

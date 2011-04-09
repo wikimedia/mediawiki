@@ -16,15 +16,12 @@ class CoreTagHooks {
 	 * @return void
 	 */
 	static function register( $parser ) {
-		global $wgRawHtml, $wgUseTeX;
+		global $wgRawHtml;
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
-		}
-		if ( $wgUseTeX ) {
-			$parser->setHook( 'math', array( __CLASS__, 'math' ) );
 		}
 	}
 
@@ -50,18 +47,6 @@ class CoreTagHooks {
 	static function nowiki( $content, $attributes, $parser ) {
 		$content = strtr( $content, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
 		return array( Xml::escapeTagsOnly( $content ), 'markerType' => 'nowiki' );
-	}
-
-	/**
-	 * @static
-	 * @param  $content
-	 * @param  $attributes
-	 * @param $parser Parser
-	 * @return
-	 */
-	static function math( $content, $attributes, $parser ) {
-		global $wgContLang;
-		return $wgContLang->armourMath( MathRenderer::renderMath( $content, $attributes, $parser->getOptions() ) );
 	}
 
 	/**

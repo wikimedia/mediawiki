@@ -37,7 +37,7 @@
  * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
  *
  * settings:
- *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+ *  $wgUseDynamicDates*, $wgInterwikiMagic*,
  *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
  *  $wgLocaltimezone, $wgAllowSpecialInclusion*,
  *  $wgMaxArticleSize*
