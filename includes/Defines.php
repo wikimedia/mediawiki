@@ -96,17 +96,6 @@ $wgFeedClasses = array(
 );
 
 /**@{
- * Maths constants
- */
-define( 'MW_MATH_PNG',    0 );
-define( 'MW_MATH_SIMPLE', 1 );
-define( 'MW_MATH_HTML',   2 );
-define( 'MW_MATH_SOURCE', 3 );
-define( 'MW_MATH_MODERN', 4 );
-define( 'MW_MATH_MATHML', 5 );
-/**@}*/
-
-/**@{
  * Cache type
  */
 define( 'CACHE_ANYTHING', -1 );  // Use anything, as long as it works

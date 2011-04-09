@@ -495,10 +495,6 @@ class Language {
 		);
 	}
 
-	function getMathNames() {
-		return self::$dataCache->getItem( $this->mCode, 'mathNames' );
-	}
-
 	function getDatePreferences() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
 	}

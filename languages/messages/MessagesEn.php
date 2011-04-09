@@ -122,18 +122,6 @@ $namespaceGenderAliases = array(
 $namespaceGenderAliases = array();
 
 /**
- * Deprecated, use the message array
- */
-$mathNames = array(
-	MW_MATH_PNG => 'mw_math_png',
-	MW_MATH_SIMPLE => 'mw_math_simple',
-	MW_MATH_HTML => 'mw_math_html',
-	MW_MATH_SOURCE => 'mw_math_source',
-	MW_MATH_MODERN => 'mw_math_modern',
-	MW_MATH_MATHML => 'mw_math_mathml'
-);
-
-/**
  * A list of date format preference keys which can be selected in user
  * preferences. New preference keys can be added, provided they are supported
  * by the language class's timeanddate(). Only the 5 keys listed below are

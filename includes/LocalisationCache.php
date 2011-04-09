@@ -81,7 +81,7 @@ class LocalisationCache {
 	 * All item keys
 	 */
 	static public $allKeys = array(
-		'fallback', 'namespaceNames', 'mathNames', 'bookstoreList',
+		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
@@ -94,7 +94,7 @@ class LocalisationCache {
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
 	 */
-	static public $mergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames',
+	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
 		'dateFormats', 'defaultUserOptionOverrides', 'imageFiles',
 		'preloadedMessages',
 	);
