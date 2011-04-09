@@ -488,8 +488,6 @@ Pro praxere, cando dda retzis identìfica·ti torra.',
 'extlink_tip'     => 'Acàpiu a foras (ammenta su prefissu http://)',
 'headline_sample' => 'Testu de su tìtulu',
 'headline_tip'    => 'Tìtulu de su de duos livellu',
-'math_sample'     => 'Inserta sa fòrmula inoghe',
-'math_tip'        => 'Fòrmula matemàtica (LaTeX)',
 'nowiki_sample'   => 'Inserta su testu non-formatadu inoghe',
 'nowiki_tip'      => 'Ignora sa formatatzione wiki',
 'image_sample'    => 'Esèmpiu.jpg',
@@ -710,7 +708,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'changepassword'              => 'Càmbia password',
 'prefs-skin'                  => 'Bisura',
 'skin-preview'                => 'Antiprima',
-'prefs-math'                  => 'Fòrmulas matemàticas',
 'prefs-datetime'              => 'Data e ora',
 'prefs-personal'              => 'Datos personales',
 'prefs-rc'                    => 'Ùrtimas mudàntzias',
@@ -1436,9 +1433,6 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 'infosubtitle' => 'Informatziones pro sa pàgina',
 'numedits'     => 'Nùmeru de acontzos (pàgina): $1',
 'numtalkedits' => 'Nùmeru de acontzos (pàgina de cuntierra): $1',
-
-# Math errors
-'math_unknown_error' => 'faddina disconnota',
 
 # Browsing diffs
 'previousdiff' => '← Acontzu in antis',

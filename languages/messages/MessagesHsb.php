@@ -653,8 +653,6 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'extlink_tip'     => 'Zwonkowny wotkaz (pomysli sej na prefiks http://)',
 'headline_sample' => 'Nadpismo',
 'headline_tip'    => 'Nadpismo runiny 2',
-'math_sample'     => 'Zasuń tu formulu',
-'math_tip'        => 'Matematiska formula (LaTeX)',
 'nowiki_sample'   => 'Zasuń tu njeformatowany tekst',
 'nowiki_tip'      => 'Wiki-syntaksu ignorować',
 'image_sample'    => 'Přikład.jpg',
@@ -1129,7 +1127,6 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'changepassword'                => 'Hesło změnić',
 'prefs-skin'                    => 'Šat',
 'skin-preview'                  => 'Přehlad',
-'prefs-math'                    => 'Math',
 'datedefault'                   => 'Žane nastajenje',
 'prefs-datetime'                => 'Datum a čas',
 'prefs-personal'                => 'Wužiwarske daty',
@@ -2696,25 +2693,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'skinname-chick'       => 'Ćipka',
 'skinname-simple'      => 'Jednory',
 'skinname-modern'      => 'Moderny',
-
-# Math options
-'mw_math_png'    => 'Přeco jako PNG zwobraznić',
-'mw_math_simple' => 'HTML jeli jara jednory, hewak PNG',
-'mw_math_html'   => 'HTML jeli móžno, hewak PNG',
-'mw_math_source' => 'Jako TeX wostajić (za tekstowe wobhladowaki)',
-'mw_math_modern' => 'Za moderne wobhladowaki doporučene',
-'mw_math_mathml' => 'MathML jeli móžno (eksperimentalnje)',
-
-# Math errors
-'math_failure'          => 'Analyza njeje so poradźiła',
-'math_unknown_error'    => 'njeznaty zmylk',
-'math_unknown_function' => 'njeznata funkcija',
-'math_lexing_error'     => 'leksikalny zmylk',
-'math_syntax_error'     => 'syntaktiski zmylk',
-'math_image_error'      => 'Konwertowanje do PNG zwrěšćiło; kontroluj prawu instalaciju latex a dvipng (abo dvips + gs + konwertuj)',
-'math_bad_tmpdir'       => 'Njemóžno do nachwilneho matematiskeho zapisa pisać abo jón wutworić',
-'math_bad_output'       => 'Njemóžno do matematiskeho zapisa za wudaće pisać abo jón wutworić',
-'math_notexvc'          => 'Wuwjedźomny texvc pobrachuje; prošu hlej math/README za konfiguraciju.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Změnu jako přepruwowanu woznamjenić',

@@ -612,8 +612,6 @@ $messages = array(
 'extlink_tip'     => 'Ушо ёнксонь сюлмавкс / налтке (мельсэ кирдить http:// путовксонть)',
 'headline_sample' => 'Конякссонть текстэсь',
 'headline_tip'    => 'Омбоце эскельксэнь конякс',
-'math_sample'     => 'Совавтомс тезэнь хвормула',
-'math_tip'        => 'Математикань хвормула (LaTeX)',
 'nowiki_sample'   => 'Совавтомс хворматтомо текст тезэнь',
 'nowiki_tip'      => 'Wiki -нь поладомантень-витнемантень мель апак яво',
 'image_sample'    => 'Саемга.jpg',
@@ -871,7 +869,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'changepassword'            => 'Салавань валонь полавтома',
 'prefs-skin'                => 'Неемань ладсема',
 'skin-preview'              => 'Васнянь неевтезэ',
-'prefs-math'                => 'Математика',
 'datedefault'               => 'Икелькс вешема арась',
 'prefs-datetime'            => 'Чи ды шка',
 'prefs-personal'            => 'Теицядо',
@@ -1760,20 +1757,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'skinname-myskin'    => 'ЭсьМелемКоряс',
 'skinname-simple'    => 'Шожда',
 'skinname-modern'    => 'НееньШкань',
-
-# Math options
-'mw_math_simple' => 'HTML зярдо вельть шожда, лиякс PNG',
-'mw_math_html'   => 'HTML, те тееви, теик, лиякс PNG',
-'mw_math_source' => 'Кадык TeX хорматсо (текст вальмас)',
-'mw_math_modern' => 'Арьсезь неень шкань содый машинань вальмас',
-'mw_math_mathml' => 'MathML косо ули кода (варчамонь)',
-
-# Math errors
-'math_failure'          => 'А ловнови',
-'math_unknown_error'    => 'апак содань ильведькс',
-'math_unknown_function' => 'апак содань функция',
-'math_lexing_error'     => 'лексиконь манявкс',
-'math_syntax_error'     => 'синтаксонь ильведевкс',
 
 # Patrolling
 'markaspatrolleddiff' => 'Тешкстамс ванстнемань ютазекс',

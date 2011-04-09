@@ -461,8 +461,6 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'extlink_tip'     => 'Ėšuorėnė nūruoda (nepamėrškėt http:// priraša)',
 'headline_sample' => 'Skīrė pavadėnėms',
 'headline_tip'    => 'Ontra līgė skīrė pavadėnėms',
-'math_sample'     => 'Iveskėt fuormolė',
-'math_tip'        => 'Matematinė fuormolė (LaTeX fuormato)',
 'nowiki_sample'   => 'Iterpkėt nefuormouta teksta čė',
 'nowiki_tip'      => 'Ėgnoroutė wiki fuormata',
 'image_sample'    => 'Pavīzdīs.jpg',
@@ -735,7 +733,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'changepassword'            => 'Pakeistė slaptažuodė',
 'prefs-skin'                => 'Ėšruoda',
 'skin-preview'              => 'Parveiza',
-'prefs-math'                => 'Matematėka',
 'datedefault'               => 'Juokė pasėrėnkėma',
 'prefs-datetime'            => 'Data ė čiesos',
 'prefs-personal'            => 'Nauduotuojė pruopilis',
@@ -1676,19 +1673,6 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'numedits'     => 'Pakeitimu skaitlius (straipsnis): $1',
 'numtalkedits' => 'Pakeitėmu skaitlius (aptarėma poslapis): $1',
 'numwatchers'  => 'Keravuojantiu skaitlius: $1',
-
-# Math options
-'mw_math_png'    => 'Vėsumet fuormuotė PNG',
-'mw_math_simple' => 'HTML paprastās atvejās, kėtēp - PNG',
-'mw_math_html'   => 'HTML kumet imanuoma, kėtēp - PNG',
-'mw_math_source' => 'Paliktė TeX fuormata (tekstinems naršīklems)',
-'mw_math_modern' => 'Rekomendounama muodernioms naršīklems',
-'mw_math_mathml' => 'MathML jēgo imanuoma (ekspermentinis)',
-
-# Math errors
-'math_failure'          => 'Nepavīka apdoruotė',
-'math_unknown_error'    => 'nežinuoma klaida',
-'math_unknown_function' => 'nežinuoma funkcėjė',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Žīmietė, kū patikrėnta',

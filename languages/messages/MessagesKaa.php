@@ -629,8 +629,6 @@ Kiriw protsessin juwmaqlaw ushın jan'a parolin'izdi usı jerge kiritin':",
 'extlink_tip'     => "Sırtqı siltew (http:// prefiksin kiritin')",
 'headline_sample' => 'Atama teksti',
 'headline_tip'    => "2-shi da'rejeli atama",
-'math_sample'     => "Usı jerge formulanı jazın'",
-'math_tip'        => 'Matematik formula (LaTeX)',
 'nowiki_sample'   => "Formatlanbag'an tekstti usı jerge qoyın'",
 'nowiki_tip'      => 'Wiki formatlawın esapqa almaw',
 'image_tip'       => "Jaylastırılg'an fayl",
@@ -914,7 +912,6 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'changepassword'            => "Paroldi o'zgertiw",
 'prefs-skin'                => "Sırtqı ko'rinis",
 'skin-preview'              => 'Korip al',
-'prefs-math'                => 'Formulalar',
 'datedefault'               => 'Hesh sazlawlarsız',
 'prefs-datetime'            => "Sa'ne ha'm waqıt",
 'prefs-personal'            => 'Paydalanıwshı profaylı',
@@ -1828,12 +1825,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'numedits'     => "O'zgerisler sanı (bet): $1",
 'numtalkedits' => "O'zgerisler sanı (diskussiya beti): $1",
 'numwatchers'  => 'Baqlawshılar sanı: $1',
-
-# Math errors
-'math_unknown_error'    => "belgisiz qa'telik",
-'math_unknown_function' => 'belgisiz funktsiya',
-'math_lexing_error'     => "leksikalıq qa'telik",
-'math_syntax_error'     => "sintaksikalıq qa'telik",
 
 # Patrol log
 'patrol-log-auto' => '(avtomatlasqan)',

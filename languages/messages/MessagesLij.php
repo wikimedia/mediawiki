@@ -416,8 +416,6 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'extlink_tip'     => 'Collegamento esterno (inclûdde o prefisso http:// )',
 'headline_sample' => 'Tittolo',
 'headline_tip'    => 'Tittolo de 2° livello',
-'math_sample'     => 'Inserî a formûla chì',
-'math_tip'        => 'Fórmûla matemattica (LaTeX)',
 'nowiki_sample'   => 'Inserî chì o testo sensa formattassion',
 'nowiki_tip'      => 'Ignorâ a formattassion wiki',
 'image_sample'    => 'Exempio.jpg',

@@ -344,7 +344,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 'extlink_tip'     => 'Wiki olggobeal liŋka (muite http:// ovddas)',
 'headline_sample' => 'Bájilčálateaksta',
 'headline_tip'    => 'Bajilčála',
-'math_sample'     => 'Lasit dasa formula',
 'nowiki_sample'   => 'Lasit rievdatkeahtes teavstta dasa',
 'nowiki_tip'      => 'Teaksta, man wiki ii rievdda',
 'image_sample'    => 'Ovdamearka.jpg',
@@ -497,7 +496,6 @@ $1 {{int:pipe-separator}} $2',
 'changepassword'        => 'Suollemassáni molson',
 'prefs-skin'            => 'Olggosoaidnu',
 'skin-preview'          => 'ovdalgihtii geahččan...',
-'prefs-math'            => 'Matematihkká',
 'datedefault'           => 'Eai válljemat',
 'prefs-datetime'        => 'Áigi ja beaivemearri',
 'prefs-personal'        => 'Geavaheaddjidieđut',
@@ -1143,13 +1141,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'numedits'     => 'Siiddu rievdadusaid mearri: $1',
 'numtalkedits' => 'Ságastallansiiddu rievdadusaid mearri: $1',
 'numwatchers'  => 'Čuovvujeddjiid mearri: $1',
-
-# Math options
-'mw_math_png' => 'Čájet álo PNG:n',
-
-# Math errors
-'math_unknown_error'    => 'Dovdameahtun feaila',
-'math_unknown_function' => 'Dovdameahtun funkšuvdna',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merke dárkistuvvon',

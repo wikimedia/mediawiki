@@ -830,8 +830,6 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'extlink_tip'     => 'Ekstera ligo (memoru http:// prefikson)',
 'headline_sample' => 'Titola teksto',
 'headline_tip'    => 'Titololinio je dua nivelo',
-'math_sample'     => 'Enmeti formulon ĉi tien',
-'math_tip'        => 'Matematika formulo (LaTeX)',
 'nowiki_sample'   => 'Enigi ne formatitan tekston ĉi tien',
 'nowiki_tip'      => 'Ignori vikiformatadon',
 'image_sample'    => 'Ekzemplo.jpg',
@@ -1326,7 +1324,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'changepassword'                => 'Ŝanĝi pasvorton',
 'prefs-skin'                    => 'Etoso',
 'skin-preview'                  => 'Antaŭrigardo',
-'prefs-math'                    => 'Matematikaĵoj',
 'datedefault'                   => 'Nenia prefero',
 'prefs-datetime'                => 'Dato kaj horo',
 'prefs-personal'                => 'Uzanta profilo',
@@ -2881,25 +2878,6 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'skinname-cologneblue' => 'Kolonja Bluo',
 'skinname-monobook'    => 'Librejo',
 'skinname-chick'       => 'Kokido',
-
-# Math options
-'mw_math_png'    => 'Ĉiam krei PNG-bildon',
-'mw_math_simple' => 'HTMLigu se simple, aŭ PNG',
-'mw_math_html'   => 'HTMLigu se eble, aŭ PNG',
-'mw_math_source' => 'Lasu TeX-fonton (por tekstfoliumiloj)',
-'mw_math_modern' => 'Rekomendita por modernaj foliumiloj',
-'mw_math_mathml' => 'MathML seeble (provizora)',
-
-# Math errors
-'math_failure'          => 'malsukcesis analizi formulon',
-'math_unknown_error'    => 'nekonata eraro',
-'math_unknown_function' => 'nekonata funkcio',
-'math_lexing_error'     => 'leksika analizo malsukcesis',
-'math_syntax_error'     => 'sintakseraro',
-'math_image_error'      => 'Konverto al PNG malsukcesis; kontrolu ĉu estas ĝuste instalitaj latex kaj dvipng (aŭ dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Ne povas skribi al aŭ krei matematikian labor-dosierujon.',
-'math_bad_output'       => 'Ne povas enskribi aŭ krei matematikan eligan dosierujon',
-'math_notexvc'          => 'Programo texvc ne ekzistas; bonvolu vidi math/README por konfiguri.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marki kiel patrolitan',

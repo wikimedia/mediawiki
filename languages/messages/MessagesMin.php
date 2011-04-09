@@ -223,8 +223,6 @@ Sila laporkan ka [[Special:ListUsers/sysop|Pengurus]], dengan manandokan alamat 
 'extlink_tip'     => 'Pranala lua (ingek awalannyo http://)',
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tingkek 2 tajuk',
-'math_sample'     => 'Masuakkan rumus di siko',
-'math_tip'        => 'Rumus matematika (LaTeX)',
 'nowiki_sample'   => 'Masuakkan disiko teks yang indak diformat',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_tip'       => 'Cantumkan berkas',

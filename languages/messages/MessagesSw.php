@@ -653,8 +653,6 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'extlink_tip'     => 'Kiungo cha nje (kumbuka kuanza na http:// )',
 'headline_sample' => 'Matini ya kichwa cha habari',
 'headline_tip'    => 'Kichwa cha habari, saizi 2',
-'math_sample'     => 'Ingiza formula hapa',
-'math_tip'        => 'Formula ya kihesabu (LaTeX)',
 'nowiki_sample'   => 'Weka matini bila fomati hapa',
 'nowiki_tip'      => 'Puuza fomati ya Wiki',
 'image_tip'       => 'Faili lililotiwa',
@@ -1101,7 +1099,6 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'changepassword'                => 'Badilisha neno la siri',
 'prefs-skin'                    => 'Umbo',
 'skin-preview'                  => 'Hakiki',
-'prefs-math'                    => 'Hisabati',
 'datedefault'                   => 'Chaguo-msingi',
 'prefs-datetime'                => 'Tarehe na saa',
 'prefs-personal'                => 'Kuhusu mtumiaji',
@@ -2456,9 +2453,6 @@ Tafadhali jaribu tena.',
 'numwatchers'    => 'Idadi ya wanaofuatilia ukurasa: $1',
 'numauthors'     => 'Idadi ya waandishi tofauti (ukurasa): $1',
 'numtalkauthors' => 'Idadi ya waandishi tofauti (ukurasa wa majadiliano): $1',
-
-# Math errors
-'math_unknown_error' => 'hitilafu isiyojulikana',
 
 # Patrol log
 'patrol-log-auto' => '(kwa kujiendesha)',

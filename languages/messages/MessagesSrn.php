@@ -534,8 +534,6 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'extlink_tip'     => 'Miti go na dorosey (no fergiti fu poti http:// fosi)',
 'headline_sample' => 'Pisi ede nen',
 'headline_tip'    => 'Pisi ede nen',
-'math_sample'     => 'Poti formula dyaso',
-'math_tip'        => 'Formula fu teri (LaTeX)',
 'nowiki_sample'   => 'Skrifi sondro wiki skrifi-fasi dyaso',
 'nowiki_tip'      => 'Skotu a wiki skrifi-fasi',
 'image_tip'       => 'Media file',
@@ -677,7 +675,6 @@ A kan ben trowe efu dribi.
 'changepassword'            => 'Kenki yu waktiwortu',
 'prefs-skin'                => 'Buba',
 'skin-preview'              => 'Si-na-fesi',
-'prefs-math'                => 'Fomula',
 'datedefault'               => 'No wana',
 'prefs-datetime'            => 'Datum nanga ten',
 'prefs-personal'            => 'Masyinmasi',
@@ -1183,10 +1180,6 @@ Yu ka luku a source.',
 # Attribution
 'siteuser'  => '{{SITENAME}}-masyin $1',
 'siteusers' => '{{SITENAME}}-masyin $1',
-
-# Math errors
-'math_lexing_error' => 'leksikografi fowtu',
-'math_syntax_error' => 'sintaki fowtu',
 
 # Browsing diffs
 'previousdiff' => '← A psa kenki',

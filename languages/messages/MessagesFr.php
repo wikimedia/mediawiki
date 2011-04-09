@@ -874,8 +874,6 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'extlink_tip'     => 'Lien externe (n’oubliez pas le préfixe http://)',
 'headline_sample' => 'Texte de sous-titre',
 'headline_tip'    => 'Sous-titre niveau 2',
-'math_sample'     => 'Entrez votre formule ici',
-'math_tip'        => 'Formule mathématique (LaTeX)',
 'nowiki_sample'   => 'Entrez le texte non formaté ici',
 'nowiki_tip'      => 'Ignorer la syntaxe wiki',
 'image_sample'    => 'Exemple.jpg',
@@ -1364,7 +1362,6 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'changepassword'                => 'Changer de mot de passe',
 'prefs-skin'                    => 'Habillage',
 'skin-preview'                  => 'Prévisualiser',
-'prefs-math'                    => 'Rendu des maths',
 'datedefault'                   => 'Aucune préférence',
 'prefs-datetime'                => 'Date et heure',
 'prefs-personal'                => 'Informations personnelles',
@@ -2998,25 +2995,6 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderne',
 'skinname-vector'      => 'Vector',
-
-# Math options
-'mw_math_png'    => 'Toujours produire une image PNG',
-'mw_math_simple' => 'HTML si très simple, autrement PNG',
-'mw_math_html'   => 'HTML si possible, autrement PNG',
-'mw_math_source' => 'Laisser le code TeX original',
-'mw_math_modern' => 'Pour les navigateurs modernes',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Erreur math',
-'math_unknown_error'    => 'erreur indéterminée',
-'math_unknown_function' => 'fonction inconnue',
-'math_lexing_error'     => 'erreur lexicale',
-'math_syntax_error'     => 'erreur de syntaxe',
-'math_image_error'      => 'La conversion en PNG a échoué ; vérifiez l’installation de latex et dvipng (ou dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Impossible de créer ou d’écrire dans le répertoire math temporaire',
-'math_bad_output'       => 'Impossible de créer ou d’écrire dans le répertoire math de sortie',
-'math_notexvc'          => 'L’exécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marquer comme relue',

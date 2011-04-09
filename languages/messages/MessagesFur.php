@@ -482,8 +482,6 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'extlink_tip'     => 'Leam esterni (visiti dal prefìs http://)',
 'headline_sample' => 'Test dal titul',
 'headline_tip'    => 'Titul di nivel 2',
-'math_sample'     => 'Inserìs la formule culì',
-'math_tip'        => 'Formule matematiche (LaTeX)',
 'nowiki_sample'   => 'Inserìs test no formatât culì',
 'nowiki_tip'      => 'Ignore la formatazion wiki',
 'image_sample'    => 'Esempli.jpg',
@@ -700,7 +698,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'changepassword'              => 'Gambie peraule clâf',
 'prefs-skin'                  => 'Mascare',
 'skin-preview'                => 'Anteprime',
-'prefs-math'                  => 'Matematiche',
 'datedefault'                 => 'Nissune preference',
 'prefs-datetime'              => 'Date e ore',
 'prefs-personal'              => 'Dâts utents',
@@ -1465,14 +1462,6 @@ Sielç par plasê un altri non.',
 'skinname-standard'  => 'Classiche',
 'skinname-nostalgia' => 'Nostalgjie',
 'skinname-modern'    => 'Moderne',
-
-# Math options
-'mw_math_png'    => 'Torne simpri PNG',
-'mw_math_simple' => 'HTML se une vore sempliç, se no PNG',
-'mw_math_html'   => 'HTML se pussibil se no PNG',
-'mw_math_source' => 'Lassile come TeX (par sgarfadôrs testuâi)',
-'mw_math_modern' => 'Racomandât pai sgarfadôrs testuâi',
-'mw_math_mathml' => 'MathML se pussibil (sperimentâl)',
 
 # Patrol log
 'patrol-log-auto' => '(in automatic)',

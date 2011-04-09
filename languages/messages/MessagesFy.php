@@ -620,8 +620,6 @@ Mûglik hawwe Jo Jo wachtwurd al feroare of in nij tydlik wachtwurd oanfrege.',
 'extlink_tip'     => 'Eksterne link (ferjit http:// net)',
 'headline_sample' => 'Koptekst',
 'headline_tip'    => 'Underkopke',
-'math_sample'     => 'Foechje hjir in formule yn',
-'math_tip'        => 'Wiskundige formule (LaTeX)',
 'nowiki_sample'   => 'Foechje hjir platte tekst yn',
 'nowiki_tip'      => 'Negearje it wiki formaat',
 'image_tip'       => 'Mediatriem',
@@ -1011,7 +1009,6 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'changepassword'            => 'Wachtwurd feroarje',
 'prefs-skin'                => 'Side-oansjen',
 'skin-preview'              => 'Proefbyld',
-'prefs-math'                => 'Formules',
 'datedefault'               => 'Gjin foarkar',
 'prefs-datetime'            => 'Datum en tiid',
 'prefs-personal'            => 'Persoanlike gegevens',
@@ -2181,26 +2178,6 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 # Skin names
 'skinname-standard'  => 'Standert',
 'skinname-nostalgia' => 'Nostalgy',
-
-# Math options
-'mw_math_png'    => 'Altiten as PNG ôfbyldzje',
-'mw_math_simple' => 'HTML foar ienfâldiche formules, oars PNG',
-'mw_math_html'   => 'HTML as mooglik, oars PNG',
-'mw_math_source' => 'Lit de TeX ferzje stean (foar tekstblêders)',
-'mw_math_modern' => 'Oanbefelle foar resinte blêders',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Untsjutbere formule',
-'math_unknown_error'    => 'Unbekinde fout',
-'math_unknown_function' => 'Unbekinde funksje',
-'math_lexing_error'     => 'Unbekind wurd',
-'math_syntax_error'     => 'Sinboufout',
-'math_image_error'      => 'PNG-omsetting is mislearre.
-Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
-'math_bad_tmpdir'       => 'De tydlike formulepad kin net skreaun of makke wêze.',
-'math_bad_output'       => 'De formulepad kin net skreaun of makke wêze.',
-'math_notexvc'          => 'It programma texvc net fûn; sjoch math/README te ynstallearjen.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markearje as kontroleare',

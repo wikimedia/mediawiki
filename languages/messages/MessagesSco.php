@@ -487,8 +487,6 @@ Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'extlink_tip'     => 'Airtin tae an outby steid (mynd the http:// prefix)',
 'headline_sample' => 'Heidline text',
 'headline_tip'    => 'Level 2 heidline',
-'math_sample'     => 'Pit yer formula here',
-'math_tip'        => 'Mathematical formula (LaTeX)',
 'nowiki_sample'   => 'Insert non-formattit text here',
 'nowiki_tip'      => 'Ignore wiki formattin',
 'image_sample'    => 'Exemplar.jpg',
@@ -738,7 +736,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'changepassword'            => 'Chynge password',
 'prefs-skin'                => 'Huil',
 'skin-preview'              => 'First Leuk',
-'prefs-math'                => 'Renderin math',
 'datedefault'               => 'Nae preference',
 'prefs-datetime'            => 'Date an time',
 'prefs-personal'            => 'Uiser data',
@@ -1304,14 +1301,6 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'numwatchers'    => 'Nummer o watchers: $1',
 'numauthors'     => 'Nummer o distinct authors (airticle): $1',
 'numtalkauthors' => 'Nummer o distinct authors (collogue page): $1',
-
-# Math options
-'mw_math_png'    => 'Aye render PNG',
-'mw_math_simple' => "HTML gin it's gey simple else PNG",
-'mw_math_html'   => 'HTML gin the possibility else PNG',
-'mw_math_source' => 'Leave it as TeX (for text brousers)',
-'mw_math_modern' => 'Recommendit for modren brousers',
-'mw_math_mathml' => 'MathML gin the possibility (experimental)',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merk as patrolled',

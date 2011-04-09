@@ -824,8 +824,6 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Seção de nível 2',
-'math_sample'     => 'Inserir fórmula aqui',
-'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
 'nowiki_tip'      => 'Ignorar formato wiki',
 'image_sample'    => 'Exemplo.jpg',
@@ -1327,7 +1325,6 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'changepassword'                => 'Alterar senha',
 'prefs-skin'                    => 'Tema',
 'skin-preview'                  => 'Pré-visualização',
-'prefs-math'                    => 'Matemática',
 'datedefault'                   => 'Sem preferência',
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Perfil de usuário',
@@ -2900,26 +2897,6 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'skinname-chick'       => 'Chique',
 'skinname-simple'      => 'Simples',
 'skinname-modern'      => 'Moderno',
-
-# Math options
-'mw_math_png'    => 'Gerar sempre como PNG',
-'mw_math_simple' => 'HTML caso seja simples, caso contrário, PNG',
-'mw_math_html'   => 'HTML se possível, caso contrário, PNG',
-'mw_math_source' => 'Deixar como TeX (para navegadores de texto)',
-'mw_math_modern' => 'Recomendado para navegadores modernos',
-'mw_math_mathml' => 'MathML se possível (experimental)',
-
-# Math errors
-'math_failure'          => 'Falhou ao verificar gramática',
-'math_unknown_error'    => 'Erro desconhecido',
-'math_unknown_function' => 'Função desconhecida',
-'math_lexing_error'     => 'Erro léxico',
-'math_syntax_error'     => 'Erro de sintaxe',
-'math_image_error'      => 'Falha na conversão para PNG;
-verifique se o latex, dvips, gs e convert estão corretamente instalados',
-'math_bad_tmpdir'       => 'Ocorreram problemas na criação ou escrita no diretório temporário math',
-'math_bad_output'       => 'Ocorreram problemas na criação ou escrita no diretório de resultados math',
-'math_notexvc'          => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como verificado',

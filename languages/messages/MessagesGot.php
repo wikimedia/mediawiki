@@ -192,8 +192,6 @@ $messages = array(
 'extlink_tip'     => 'Uta táikjabandi (maúdjan http://)',
 'headline_sample' => 'Háubidawaúrda',
 'headline_tip'    => 'Háuhs háubidaboka 2',
-'math_sample'     => 'Lagjan formula her',
-'math_tip'        => 'Maþemateikaleiks formula (LaTeX)',
 'media_tip'       => 'Táikjabandjis feilanis',
 'hr_tip'          => 'Ráihtsbáurd (brukjan miþ niufarussus)',
 

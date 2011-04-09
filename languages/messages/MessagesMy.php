@@ -453,8 +453,6 @@ $messages = array(
 'extlink_tip'     => 'ပြင်ပလင့်များ (http:// ကို ရှေ့ဆုံးမှ ထည့်ရေးရန် မမေ့ပါနှင့်)',
 'headline_sample' => 'ခေါင်းကြီးစာသား',
 'headline_tip'    => 'အဆင့် ၂ ခေါင်းစီး',
-'math_sample'     => 'ဤနေရာတွင် သင်္ချာပုံသေနည်း သုံးရန်',
-'math_tip'        => 'သင်္ချာပုံသေနည်း (LaTeX)',
 'nowiki_sample'   => 'ဖောမတ်မလုပ်ထားသော စာများကို ဤနေရာတွင် ထည့်ရန်',
 'nowiki_tip'      => 'ဝီကီပုံစံ ဖော်မတ်များကို လျစ်လျူရှုရန်',
 'image_tip'       => 'Embedded ထည့်ထားသော ဖိုင်',
@@ -719,7 +717,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'changepassword'                => 'စကားဝှက် ပြောင်းရန်',
 'prefs-skin'                    => 'အသွင်အပြင်',
 'skin-preview'                  => 'နမူနာ',
-'prefs-math'                    => 'သင်္ချာ',
 'datedefault'                   => 'မရွေးချယ်',
 'prefs-datetime'                => 'နေ့စွဲနှင့် အချိန်',
 'prefs-personal'                => 'အသုံးပြုသူ ပရိုဖိုင်',
@@ -1659,17 +1656,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'numwatchers'    => 'စောင့်ကြည့်သူ အရေအတွက် - $1',
 'numauthors'     => 'အဝေးရောက် စာရေးသူ အရေအတွက် - $1',
 'numtalkauthors' => 'အဝေးရောက် စာရေးသူ အရေအတွက် (ဆွေးနွေးချက်စာမျက်နှာ) - $1',
-
-# Math options
-'mw_math_png'    => 'PNG ဖိုင်အဖြစ် အမြဲပုံဖော်ရန်',
-'mw_math_simple' => 'လွန်စွာရိုးရှင်းပါက HTML အဖြစ် သို့မဟုတ်ပါက PNG အဖြစ်',
-'mw_math_html'   => 'ဖြစ်နိုင်လျှင် HTML သို့မဟုတ်ပါက PNG အဖြစ်',
-'mw_math_source' => 'TeX အဖြစ်ထားခဲ့ပါ (စာသားသာပြသည့် ဘရောက်ဇာများအတွက်)',
-'mw_math_modern' => 'ခေတ်ပေါ်ဘရောက်ဇာများအတွက် အကြံပြုသည်',
-
-# Math errors
-'math_unknown_error'    => 'အမည်မသိ အမှား',
-'math_unknown_function' => 'အမည်မသိ ဖန်ရှင်',
 
 # Patrol log
 'patrol-log-diff' => 'မူ $1',

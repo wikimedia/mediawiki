@@ -845,8 +845,6 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'extlink_tip'     => 'Lim de defôr (oubliâd pas lo prèfixo http://)',
 'headline_sample' => 'Tèxto de sot-titro',
 'headline_tip'    => 'Sot-titro nivél 2',
-'math_sample'     => 'Buchiéd voutra formula ique',
-'math_tip'        => 'Formula matèmatica (LaTeX)',
 'nowiki_sample'   => 'Buchiéd lo tèxto pas formatâ ique',
 'nowiki_tip'      => 'Ignorar lo formatâjo vouiqui',
 'image_sample'    => 'Ègzemplo.jpg',
@@ -1362,7 +1360,6 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'changepassword'                => 'Changement du mot de pâssa',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',
-'prefs-math'                    => 'Rendu de les formules matèmatiques',
 'datedefault'                   => 'Gins de prèference',
 'prefs-datetime'                => 'Dâta et hora',
 'prefs-personal'                => 'Enformacions a sè',
@@ -3000,26 +2997,6 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 'skinname-simple'      => 'Simplo',
 'skinname-modern'      => 'Modèrno',
 'skinname-vector'      => 'Vèctor',
-
-# Math options
-'mw_math_png'    => 'Tojorn fâre una émâge PNG',
-'mw_math_simple' => 'HTML se prod simplo, ôtrament PNG',
-'mw_math_html'   => 'HTML se possiblo, ôtrament PNG',
-'mw_math_source' => 'Lèssiér lo code TeX originâl',
-'mw_math_modern' => 'Por los navigators modèrnos',
-'mw_math_mathml' => 'MathML se possiblo (èxpèrimentâl)',
-
-# Math errors
-'math_failure'          => 'Èrror d’analise sintaxica',
-'math_unknown_error'    => 'èrror encognua',
-'math_unknown_function' => 'fonccion encognua',
-'math_lexing_error'     => 'èrror lèxicâla',
-'math_syntax_error'     => 'èrror de sintaxa',
-'math_image_error'      => 'La convèrsion en PNG at pas reussia ; controlâd l’enstalacion de LaTeX et dvipng (ou ben dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Empossiblo d’ècrire dens ou ben de fâre lo rèpèrtouèro math temporèro',
-'math_bad_output'       => 'Empossiblo d’ècrire dens ou ben de fâre lo rèpèrtouèro math de sortia',
-'math_notexvc'          => 'L’ègzécutâblo « texvc » est entrovâblo.
-Volyéd liére « math/README » por lo configurar.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar coment survelyê',

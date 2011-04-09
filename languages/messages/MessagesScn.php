@@ -629,8 +629,6 @@ Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na n
 'extlink_tip'     => 'Culligamentu sternu (nutari lu prifissu http:// )',
 'headline_sample' => 'Ntistazzioni',
 'headline_tip'    => 'Suttantistazzioni',
-'math_sample'     => 'Nzirisci ccà na fòrmula',
-'math_tip'        => 'Fòrmula matimàtica (LaTeX)',
 'nowiki_sample'   => 'Nzirisci ccà lu testu nun furmattatu',
 'nowiki_tip'      => 'Gnora la furmattazzioni wiki',
 'image_sample'    => 'Asempiu.jpg',
@@ -1050,7 +1048,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'changepassword'                => 'Cancia la password',
 'prefs-skin'                    => 'Aspettu',
 'skin-preview'                  => 'Antiprima',
-'prefs-math'                    => 'Fòrmuli',
 'datedefault'                   => 'Nudda prifirenza',
 'prefs-datetime'                => 'Data e ura',
 'prefs-personal'                => 'Prufilu utenti',
@@ -2435,25 +2432,6 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Sìmprici',
 'skinname-modern'      => 'Mudernu',
-
-# Math options
-'mw_math_png'    => "Ammustra sempri 'n PNG",
-'mw_math_simple' => 'HTML siddu veru sìmplici, oppuru PNG',
-'mw_math_html'   => 'HTML siddu pussìbbili, oppuru PNG',
-'mw_math_source' => 'Lassa comu TeX (pi browser tistuali)',
-'mw_math_modern' => 'Raccumannatu pi li browser muderni',
-'mw_math_mathml' => 'MathML siddu pussìbbili (spirimintali)',
-
-# Math errors
-'math_failure'          => "S'hà virificatu un erruri ntô parsing",
-'math_unknown_error'    => 'erruri scanusciutu',
-'math_unknown_function' => 'funzioni scanusciuta',
-'math_lexing_error'     => 'erruri lissicali',
-'math_syntax_error'     => 'erruri di sintassi',
-'math_image_error'      => "Cunvirsioni 'n PNG fallita; virificati la curretta nstallazzioni dî siquenti prugrammi: latex, dvips, gs e convert.",
-'math_bad_tmpdir'       => 'Mpussìbbili scrìviri o criari la directory timpurània pi math',
-'math_bad_output'       => 'Mpussìbbili scrìviri o criari la directory di output pi math',
-'math_notexvc'          => 'Esiquìbbili texvc mancanti; pi favuri cunzurtari math/README pi la cunfigurazzioni.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Segna lu canciamentu comu virificatu',

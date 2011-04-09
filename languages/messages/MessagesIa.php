@@ -679,8 +679,6 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'extlink_tip'     => 'Ligamine externe (non oblida le prefixo http://)',
 'headline_sample' => 'Texto del titulo',
 'headline_tip'    => 'Titulo de nivello 2',
-'math_sample'     => 'Inserer formula hic',
-'math_tip'        => 'Formula mathematic (LaTeX)',
 'nowiki_sample'   => 'Inserer texto non formatate hic',
 'nowiki_tip'      => 'Ignorar formatation wiki',
 'image_sample'    => 'Exemplo.jpg',
@@ -1193,7 +1191,6 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'changepassword'                => 'Cambiar contrasigno',
 'prefs-skin'                    => 'Apparentia',
 'skin-preview'                  => 'Previsualisation',
-'prefs-math'                    => 'Mathematica',
 'datedefault'                   => 'Nulle preferentia',
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Profilo del usator',
@@ -2862,27 +2859,6 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'skinname-chick'       => 'Chique',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderne',
-
-# Math options
-'mw_math_png'    => 'Sempre producer PNG',
-'mw_math_simple' => 'HTML si multo simple, alteremente PNG',
-'mw_math_html'   => 'HTML si possibile, alteremente PNG',
-'mw_math_source' => 'Lassa lo como TeX (pro navigatores in modo texto)',
-'mw_math_modern' => 'Recommendate pro navigatores moderne',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Error durante le analyse del syntaxe',
-'math_unknown_error'    => 'error incognite',
-'math_unknown_function' => 'function incognite',
-'math_lexing_error'     => 'error lexic',
-'math_syntax_error'     => 'error de syntaxe',
-'math_image_error'      => 'Le conversion in PNG ha fallite;
-verifica le installation del programmas \'\'latex" e "dvipng" (o "dvips" + "gs" + \'\'convert\'\').',
-'math_bad_tmpdir'       => 'Non pote scriber in o crear le directorio temporari "math".',
-'math_bad_output'       => 'Non pote scriber in o crear le directorio de output "math".',
-'math_notexvc'          => "Le executabile ''texvc'' manca;
-per favor vide math/README pro configurar lo.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como patruliate',

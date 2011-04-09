@@ -556,8 +556,6 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'extlink_tip'     => 'Daşarky çykgyt (Adresiň öňüne http:// ýazmagy unutmaň)',
 'headline_sample' => 'Adyň teksti',
 'headline_tip'    => '2-nji derejeli at',
-'math_sample'     => 'Matematiki formulany şu ýere ýazyň',
-'math_tip'        => 'Matematiki formula (LaTeX formatynda)',
 'nowiki_sample'   => 'Formatirlenmedik teksti şu ýere salyň',
 'nowiki_tip'      => 'Wiki formatirlemesini hasap etme',
 'image_tip'       => 'Salnan faýl',
@@ -1061,7 +1059,6 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'changepassword'                => 'Paroly üýtget',
 'prefs-skin'                    => 'Bezeg',
 'skin-preview'                  => 'Deslapky syn',
-'prefs-math'                    => 'Matematiki formulalar',
 'datedefault'                   => 'Gaýybana',
 'prefs-datetime'                => 'Sene we wagt',
 'prefs-personal'                => 'Ulanyjy maglumatlary',
@@ -2596,27 +2593,6 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 'numwatchers'    => 'Gözegçilikde saklaýanlaryň sany: $1',
 'numauthors'     => 'Dürli awtorlaryň sany (sahypa): $1',
 'numtalkauthors' => 'Dürli awtorlaryň sany (çekişme sahypasy): $1',
-
-# Math options
-'mw_math_png'    => 'Hemişe PNG öwür',
-'mw_math_simple' => 'Örän aňsat bolsa HTML, ýogsam PNG',
-'mw_math_html'   => 'Mümkin bolsa HTML, ýogsam PNG',
-'mw_math_source' => 'TeX-ligine galdyr (tekst brauzerleri üçin)',
-'mw_math_modern' => 'Häzirkizaman brauzerlere maslahat berilýär',
-'mw_math_mathml' => 'Mümkin bolsa MathML (eksperimental)',
-
-# Math errors
-'math_failure'          => 'Derňäp bolmady',
-'math_unknown_error'    => 'näbelli säwlik',
-'math_unknown_function' => 'näbelli funksiýa',
-'math_lexing_error'     => 'leksiki säwlik',
-'math_syntax_error'     => 'sintaktik säwlik',
-'math_image_error'      => 'PNG öwürmeklik şowsuz boldy;
-latex, dvips, gs we convert gurluşlarynyň dogrulygyny barlaň',
-'math_bad_tmpdir'       => 'Matematikanyň wagtlaýyn katalogyny ýazyp ýa-da döredip bolanok',
-'math_bad_output'       => 'Matematika çykyş katalogyny ýazyp ýa-da döredip bolanok',
-'math_notexvc'          => 'texvc ýerine ýetirilýän faýl tapylmady;
-konfigurirlemek üçin math/README serediň.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Patrullyk edilen diýip belle',

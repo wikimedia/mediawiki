@@ -384,8 +384,6 @@ Myr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chr
 'extlink_tip'     => 'Kiangley mooie (cooiney roie-ockle http://)',
 'headline_sample' => 'Teks y chione-linney',
 'headline_tip'    => 'Kione-linney corrym 2',
-'math_sample'     => 'Cur formley stiagh ayns shoh',
-'math_tip'        => 'Formley maddaghtoil (LaTeX)',
 'nowiki_sample'   => 'Cur stiagh teks gyn cummey ayns shoh',
 'nowiki_tip'      => 'Ny chur tastey da cummey wikiagh',
 'image_tip'       => 'Coadan jingit',
@@ -1235,12 +1233,6 @@ T'eh lhiggey da oyr y chur 'sy ghiare-choontey.",
 
 # Info page
 'infosubtitle' => 'Oayllys da duillag',
-
-# Math options
-'mw_math_png' => 'Jean PNG dagh ooilley hraa',
-
-# Math errors
-'math_syntax_error' => 'Co-ordrail marranagh',
 
 # Patrol log
 'patrol-log-auto' => '(seyr-obbragh)',

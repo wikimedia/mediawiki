@@ -253,8 +253,6 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'extlink_tip'     => 'Ehkstäärne lïenghke (måjhtajidh http:// prefihkse)',
 'headline_sample' => 'Rubriike tjaalege',
 'headline_tip'    => 'Daltese 2 rubriike',
-'math_sample'     => 'Bïejedh fårmele daesnie',
-'math_tip'        => 'Ryökneme fårmele (LaTeX)',
 'nowiki_sample'   => 'Bïejedh ijje-hammode tjaalege daesnie',
 'nowiki_tip'      => 'Rievdde wikïhammode',
 'image_tip'       => 'Lååtje guvvie',
@@ -767,9 +765,6 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'infosubtitle' => 'Bïevnesh ihke bielie',
 'numedits'     => 'Låhkoe värrhtoedimmieh (bielie): $1',
 'numtalkedits' => 'Låhkoe värrhtoedimmieh (dïjvaldidh bielie): $1',
-
-# Math errors
-'math_unknown_error' => 'ammes båajhtede',
 
 # Patrol log
 'patrol-log-auto' => '(jïjtsistie)',

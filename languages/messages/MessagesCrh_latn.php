@@ -608,8 +608,6 @@ Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat par
 'extlink_tip'     => 'Tış bağlantı (Adres ögüne http:// qoymağa unutmañız)',
 'headline_sample' => 'Serleva yazısı',
 'headline_tip'    => '2-nci seviye serleva',
-'math_sample'     => 'Bu yerge formulanı kirsetiñiz',
-'math_tip'        => 'Riyaziy (matematik) formula (LaTeX formatında)',
 'nowiki_sample'   => 'Serbest format metiniñizni mında yazıñız.',
 'nowiki_tip'      => 'viki format etüvini ignor et',
 'image_sample'    => 'Resim.jpg',
@@ -917,7 +915,6 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'changepassword'                => 'Parol deñiştir',
 'prefs-skin'                    => 'Resimleme',
 'skin-preview'                  => 'Baqıp çıquv',
-'prefs-math'                    => 'Riyaziy (matematik) işaretler',
 'datedefault'                   => 'Standart',
 'prefs-datetime'                => 'Tarih ve saat',
 'prefs-personal'                => 'Qullanıcı malümatı',
@@ -1865,21 +1862,6 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'skinname-myskin'      => 'Öz resimleme',
 'skinname-chick'       => 'Çipçe',
 'skinname-simple'      => 'Adiy',
-
-# Math options
-'mw_math_png'    => 'Daima PNG resim formatına çevir',
-'mw_math_simple' => 'Pek basit olsa HTML, yoqsa PNG',
-'mw_math_html'   => 'Mümkün olsa HTML, yoqsa PNG',
-'mw_math_source' => 'Deñiştirmeden TeX olaraq taşla  (metin temelli brauzerler içün)',
-'mw_math_modern' => 'Zemaneviy brauzerler içün tevsiye etilgen',
-'mw_math_mathml' => 'Mümkün olsa MathML (daa deñeme alında)',
-
-# Math errors
-'math_failure'          => 'Ayırıştırılamadı',
-'math_unknown_error'    => 'bilinmegen hata',
-'math_unknown_function' => 'belgisiz funktsiya',
-'math_lexing_error'     => 'leksik hata',
-'math_syntax_error'     => 'sintaksis hatası',
 
 # Patrol log
 'patrol-log-page'      => 'Teşkerüv jurnalı',

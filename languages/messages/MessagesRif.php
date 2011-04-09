@@ -215,8 +215,6 @@ zzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged man
 'extlink_tip'     => 'Tazdayt n baṛṛa (qa tettud http:// prefix)',
 'headline_sample' => 'Aḍris n ixf-isem',
 'headline_tip'    => 'Aswir 2 n ixf-isem',
-'math_sample'     => 'Egg ijj n formula da',
-'math_tip'        => 'Mathematical formula (LaTeX)',
 'nowiki_sample'   => 'Sideff da tirra bla taseddast(formatting) n wiki',
 'nowiki_tip'      => 'Ur tawi x taseddast(formatting) n wiki',
 'image_tip'       => 'Afaylu war-itmesebḍi',

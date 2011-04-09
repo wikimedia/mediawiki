@@ -544,8 +544,6 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'extlink_tip'     => 'Cullegamentu esthernu (nota lu prefissu http:// )',
 'headline_sample' => 'Intisthazioni',
 'headline_tip'    => 'Sottu-intisthazioni',
-'math_sample'     => 'Insirì la fòimmura inogghi',
-'math_tip'        => 'Fòimmura matemàtigga (LaTeX)',
 'nowiki_sample'   => 'Insirì lu testhu nò fuimmaddaddu inogghi',
 'nowiki_tip'      => 'Ignora la fuimmaddazioni wiki',
 'image_sample'    => 'Esempiu.jpg',
@@ -851,7 +849,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'changepassword'            => "Ciamba paràura d'órdhini",
 'prefs-skin'                => 'Aipettu gràficu',
 'skin-preview'              => 'antiprimma',
-'prefs-math'                => 'Fòimmuri matemàtigghi',
 'datedefault'               => 'Nisciuna prifirènzia',
 'prefs-datetime'            => 'Data e ora',
 'prefs-personal'            => 'Profiru utenti',
@@ -1828,25 +1825,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'numwatchers'    => "Nùmaru d'osseivvadori: $1",
 'numauthors'     => "Nùmaru d'autori disthinti (pàgina): $1",
 'numtalkauthors' => "Nùmaru d'autori disthinti (pàgina di dischussioni): $1",
-
-# Math options
-'mw_math_png'    => 'Musthra sempri in PNG',
-'mw_math_simple' => 'HTML si umbè sémprizi, sinnò PNG',
-'mw_math_html'   => 'HTML si pussìbiri, sinnò PNG',
-'mw_math_source' => 'Lassa in fuimmaddu TeX (pa nabiggadori testhuari)',
-'mw_math_modern' => 'Fuimmaddu cunsigliaddu pa li nabiggadori muderni',
-'mw_math_mathml' => 'Usa MathML si pussìbiri (ippirimintari)',
-
-# Math errors
-'math_failure'          => "Errori i'l'anàrisi sintàttigga",
-'math_unknown_error'    => 'errori ischunisciddu',
-'math_unknown_function' => 'funzioni ischuniscidda',
-'math_lexing_error'     => 'errori di lingàggiu',
-'math_syntax_error'     => 'errori di sintassi',
-'math_image_error'      => 'Cunvirthimentu in PNG nò ridisciddu; verifiggà chi siani isthalladdi currentementi i sighenti prugrammi: latex, dvips, gs, e convert.',
-'math_bad_tmpdir'       => "Impussìbiri ischribì o crià la carthella timpurània pa ''math''",
-'math_bad_output'       => "Impussìbiri ischribì o crià la carthella d'iscidda pa ''math''",
-'math_notexvc'          => "Fattìbiri ''texvc'' mancanti; pa piazeri cunsulthà ''math/README'' pa la cunfigurazioni.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Signa la mudìffiga cumenti verifiggadda',

@@ -565,8 +565,6 @@ Eventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pl
 'extlink_tip'     => 'Link extern (betg emblidar il prefix http:// )',
 'headline_sample' => 'Titel',
 'headline_tip'    => 'Titel da segund livel',
-'math_sample'     => 'Scriva qua tia furmla',
-'math_tip'        => 'Furmla matematica (LaTeX)',
 'nowiki_sample'   => 'Scriva qua text che na duai betg vegnir formatà',
 'nowiki_tip'      => 'Ignorar las formataziuns vichi',
 'image_sample'    => 'Exempel.jpg',
@@ -985,7 +983,6 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'changepassword'              => 'Midar pled-clav',
 'prefs-skin'                  => 'Skin',
 'skin-preview'                => 'Prevista',
-'prefs-math'                  => 'TeX',
 'datedefault'                 => 'Nagina preferenza',
 'prefs-datetime'              => 'Data e temp',
 'prefs-personal'              => "Profil da l'utilisader",
@@ -2224,26 +2221,6 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 'numwatchers'    => 'dumber dals observaturs: $1',
 'numauthors'     => 'Dumber dals auturs da quest artitgel: $1',
 'numtalkauthors' => 'dumber dals participants da la discussiun: $1',
-
-# Math options
-'mw_math_png'    => 'Adina mussar sco PNG',
-'mw_math_simple' => 'HTML sche fitg simpel, uschiglio PNG',
-'mw_math_html'   => 'HTML sche pussibel ed uschigio PNG',
-'mw_math_source' => 'Schar en furma da TeX (per browsers da text)',
-'mw_math_modern' => 'Recumandà per browsers moderns',
-'mw_math_mathml' => 'MathML sche pussibel (experimental)',
-
-# Math errors
-'math_failure'          => 'Errur dal parser',
-'math_unknown_error'    => 'errur nunenconuschenta',
-'math_unknown_function' => 'funcziun nunenconuschenta',
-'math_lexing_error'     => 'Errur lexicala',
-'math_syntax_error'     => 'Sbagl da la sintaxta',
-'math_image_error'      => "La conversiun da PNG n'è betg reussida; 
-controllescha l'installaziun correcta da latext, dvips, gs e convertescha lura",
-'math_bad_tmpdir'       => "Betg pussaivel da scriver u crear l'ordinatur temporar math",
-'math_bad_output'       => "Betg pussaivel da scriver u crear l'ordinatur da destinaziun math",
-'math_notexvc'          => "Il program texvc n'è betg vegnì chattà. Legia math/README per al configurar.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar sco controllà',

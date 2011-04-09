@@ -468,8 +468,6 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'extlink_tip'     => 'Lyan ĥariji (ĝqel ĝla http:// préfiks)',
 'headline_sample' => 'Neṣ de l-ĝonwan.',
 'headline_tip'    => 'Ĝonwan mosṫawa 2',
-'math_sample'     => 'Kṫeb ĝalaqa de l-mat hnaya',
-'math_tip'        => 'Ĝalaqa de l-mat (LaTeX)',
 'nowiki_sample'   => 'N-Neṣ li ma mformatéċ keṫbo hna',
 'nowiki_tip'      => 'Ĝti n-neĥĥal le l-formataj',
 'image_sample'    => 'Example.jpg',
@@ -700,7 +698,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'changepassword'              => 'tbdl lmot de passe',
 'prefs-skin'                  => 'frssada',
 'skin-preview'                => 'L-Prévizualizasyon',
-'prefs-math'                  => 'mat',
 'datedefault'                 => 'la tafdil',
 'prefs-datetime'              => 'tarikh o ssaa',
 'prefs-personal'              => 'milf lmostakhdim',
@@ -1681,16 +1678,6 @@ Imken lek ṫċof l-ĝin dyalha.',
 'numedits'     => 'adad taadilat (sfha) : $1',
 'numtalkedits' => 'adad taadilat (sfht niqach): $1',
 'numwatchers'  => 'adad lmmoraqibin: $1',
-
-# Math options
-'mw_math_png' => 'dima biyn bhal  PNG',
-
-# Math errors
-'math_failure'          => 'khata flmat',
-'math_unknown_error'    => 'khat mjhol',
-'math_unknown_function' => 'wadifa mjhola',
-'math_lexing_error'     => 'khata fsigha',
-'math_syntax_error'     => 'khata fsiyagha',
 
 # Patrolling
 'markaspatrolleddiff' => 'marki kamorajaaa',

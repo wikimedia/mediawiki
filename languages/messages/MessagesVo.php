@@ -596,8 +596,6 @@ Ba ya evotükol benosekiko letavödi olik, u ya ebegol benosekiko letavödi nela
 'extlink_tip'     => 'Yüm plödik (memolös foyümoti: http://)',
 'headline_sample' => 'Tiädavödem',
 'headline_tip'    => 'Tiäd nivoda 2id',
-'math_sample'     => 'Pladolös malatami isio',
-'math_tip'        => 'Malatam matematik (LaTeX)',
 'nowiki_sample'   => 'Pladolös isio vödemi no pefomätöli',
 'nowiki_tip'      => 'Nedemön vükifomätami',
 'image_tip'       => 'Magod penüpladöl',
@@ -999,7 +997,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'changepassword'            => 'Votükön letavödi',
 'prefs-skin'                => 'Fomät',
 'skin-preview'              => 'Büologed',
-'prefs-math'                => 'Logot formülas',
 'datedefault'               => 'Buükam nonik',
 'prefs-datetime'            => 'Dät e Tim',
 'prefs-personal'            => 'Gebananüns',
@@ -2335,27 +2332,6 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 'numwatchers'    => 'Num galädanas: $1',
 'numauthors'     => 'Num lautanas distik (pad): $1',
 'numtalkauthors' => 'Num lautanas distik (bespikapad): $1',
-
-# Math options
-'mw_math_png'    => 'Ai el PNG',
-'mw_math_simple' => 'El HTML if go balugik, voto eli PNG',
-'mw_math_html'   => 'El HTML if mögos, voto eli PNG',
-'mw_math_source' => 'Dakipolöd oni as TeX (pro bevüresodatävöms fomätü vödem)',
-'mw_math_modern' => 'Pakomandöl pro bevüresodatävöms nulädik',
-'mw_math_mathml' => 'El MathML if mögos (nog sperimänt)',
-
-# Math errors
-'math_failure'          => 'Diletam fomüla no eplöpon',
-'math_unknown_error'    => 'pök nesevädik',
-'math_unknown_function' => 'dun nesevädik',
-'math_lexing_error'     => 'vödidiletam no eplöpon',
-'math_syntax_error'     => 'süntagapöl',
-'math_image_error'      => 'Feajafam ela PNG no eplöpon;
-vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
-'math_bad_tmpdir'       => 'No mögos ad penön ini / jafön ragiviär(i) matematik nelaidüpik.',
-'math_bad_output'       => 'No mögos ad penön ini / jafön ragiviär(i) matematik labü seks',
-'math_notexvc'          => 'Program-texvc ledunovik no petuvon;
-logolös eli math/README ad givulön parametemi.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Zepön',

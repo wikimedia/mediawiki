@@ -808,8 +808,6 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'extlink_tip'     => 'Externý odkaz (nezabudnite na predponu http://)',
 'headline_sample' => 'Text nadpisu',
 'headline_tip'    => 'Text nadpisu úrovne 2',
-'math_sample'     => 'Sem vložte vzorec',
-'math_tip'        => 'Matematický vzorec (LaTeX)',
 'nowiki_sample'   => 'Sem vložte neformátovaný text',
 'nowiki_tip'      => 'Ignoruj wiki formátovanie',
 'image_sample'    => 'Príklad.jpg',
@@ -1308,7 +1306,6 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'changepassword'                => 'Zmeniť heslo',
 'prefs-skin'                    => 'Vzhľad',
 'skin-preview'                  => 'Náhľad',
-'prefs-math'                    => 'Vykreslenie matematiky',
 'datedefault'                   => 'štandardný',
 'prefs-datetime'                => 'Dátum a čas',
 'prefs-personal'                => 'Profil',
@@ -2936,25 +2933,6 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'skinname-chick'       => 'Kuriatko',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderný',
-
-# Math options
-'mw_math_png'    => 'Vždy vykresľovať PNG',
-'mw_math_simple' => 'Na jednoduché použiť HTML, inak PNG',
-'mw_math_html'   => 'Ak sa dá, použiť HTML, inak PNG',
-'mw_math_source' => 'Ponechať TeX (pre textové prehliadače)',
-'mw_math_modern' => 'Odporúčané pre moderné prehliadače',
-'mw_math_mathml' => 'MathML (experimentálne)',
-
-# Math errors
-'math_failure'          => 'Syntaktická analýza (parsing) neúspešná',
-'math_unknown_error'    => 'neznáma chyba',
-'math_unknown_function' => 'neznáma funkcia',
-'math_lexing_error'     => 'lexikálna chyba',
-'math_syntax_error'     => 'syntaktická chyba',
-'math_image_error'      => 'PNG konverzia neúspešná; skontrolujte správnosť inštalácie programov: latex a dvipng (alebo dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Nemožno zapisovať alebo vytvoriť dočasný matematický adresár',
-'math_bad_output'       => 'Nemožno zapisovať alebo vytvoriť výstupný matematický adresár',
-'math_notexvc'          => 'Chýbajúci program texvc; konfigurácia je popísaná v math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Označiť ako stráženú',

@@ -753,8 +753,6 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'extlink_tip'     => 'Ekstern lenke (husk prefikset http://)',
 'headline_sample' => 'Overskriftstekst',
 'headline_tip'    => 'Overskrift, nivå 2',
-'math_sample'     => 'Sett inn formel her',
-'math_tip'        => 'Matematisk formel (LaTeX)',
 'nowiki_sample'   => 'Sett inn uformatert tekst her',
 'nowiki_tip'      => 'Ignorer wikiformatering',
 'image_sample'    => 'Eksempel.jpg',
@@ -1242,7 +1240,6 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'changepassword'                => 'Endre passord',
 'prefs-skin'                    => 'Utseende',
 'skin-preview'                  => 'Forhåndsvisning',
-'prefs-math'                    => 'Matteformler',
 'datedefault'                   => 'Ingen foretrukket',
 'prefs-datetime'                => 'Dato og tid',
 'prefs-personal'                => 'Brukerdata',
@@ -2845,26 +2842,6 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'skinname-myskin'      => 'Eget utseende',
 'skinname-simple'      => 'Enkel',
 'skinname-modern'      => 'Moderne',
-
-# Math options
-'mw_math_png'    => 'Vis alltid som PNG',
-'mw_math_simple' => 'HTML hvis veldig enkel, ellers PNG',
-'mw_math_html'   => 'HTML hvis mulig, ellers PNG',
-'mw_math_source' => 'Behold som TeX (for tekst-nettlesere)',
-'mw_math_modern' => 'Anbefalt for moderne nettlesere',
-'mw_math_mathml' => 'MathML hvis mulig',
-
-# Math errors
-'math_failure'          => 'Feil i matematikken',
-'math_unknown_error'    => 'ukjent feil',
-'math_unknown_function' => 'ukjent funksjon',
-'math_lexing_error'     => 'lexerfeil',
-'math_syntax_error'     => 'syntaksfeil',
-'math_image_error'      => 'PNG-konversjon mislyktes; sjekk at latex og dvipng (eller dvips + gs + convert) er korrekt installert',
-'math_bad_tmpdir'       => 'Kan ikke skrive til eller opprette midlertidig mappe',
-'math_bad_output'       => 'Kan ikke skrive til eller opprette resultatmappe',
-'math_notexvc'          => 'Mangler kjørbar texvc;
-se math/README for oppsett.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Godkjenn endringen',

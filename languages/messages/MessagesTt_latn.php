@@ -606,8 +606,6 @@ Sez sersüzegezne üzgärtkän yäisä yaña waqıtlı sersüz soratqan bulırğ
 'extlink_tip'     => 'Tışqı sıltama (http:// alquşımçası turında onıtmağız)',
 'headline_sample' => 'Başisem',
 'headline_tip'    => '2 nçe däräcäle isem',
-'math_sample'     => 'Formulanı monda östägez',
-'math_tip'        => 'Matematik formula (LaTeX formatı)',
 'nowiki_sample'   => 'Formatlanmağan tekstnı monda östägez',
 'nowiki_tip'      => 'Wiki-formatlawnı isäpkä almaw',
 'image_sample'    => 'Misal.jpg',
@@ -1003,7 +1001,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'changepassword'                => 'Sersüzne üzgärtü',
 'prefs-skin'                    => 'Küreneş',
 'skin-preview'                  => 'Aldan qaraw',
-'prefs-math'                    => 'Formulalar',
 'datedefault'                   => 'Baştağı köylänmälär',
 'prefs-datetime'                => 'Data häm waqıt',
 'prefs-personal'                => 'Şäxsi mäğlümatlar',
@@ -1973,21 +1970,6 @@ Zinhar başqa isem saylağız.',
 'skinname-simple'      => 'Ğädi',
 'skinname-modern'      => 'Zamana',
 'skinname-vector'      => 'Sızımlı',
-
-# Math options
-'mw_math_png'    => 'Härwaqıt PNG belän bäyläw',
-'mw_math_simple' => 'Ğädi oçraqlarda HTML, yäisä PNG qullanılsın',
-'mw_math_html'   => 'Mömkin bulsa HTML, yäisä PNG qullanılsın',
-'mw_math_source' => 'TeX bilgeläneşendä qaldırılsın (tekstlı brauzerlar öçen)',
-'mw_math_modern' => 'Bügenge brauzerlar öçen qullanılsın',
-'mw_math_mathml' => 'Mömkin bulsa MathML qullanılsın (eksperimental)',
-
-# Math errors
-'math_failure'          => 'Uqıy almadım',
-'math_unknown_error'    => 'belenmägän xata',
-'math_unknown_function' => 'bilgesez funksiä',
-'math_lexing_error'     => 'leksik xata',
-'math_syntax_error'     => 'sintaksik xata',
 
 # Patrolling
 'markaspatrolledtext'   => 'Bu mäqäläne tikşerelgän dip tamğalaw',

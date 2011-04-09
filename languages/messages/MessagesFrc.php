@@ -397,8 +397,6 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'extlink_tip'     => 'Lien extérieur (Oubliez pas de mettre http:// avant.)',
 'headline_sample' => 'Sujet',
 'headline_tip'    => 'Sujet niveau 2',
-'math_sample'     => 'Mettez la formule ici',
-'math_tip'        => "Formule d'arithmitique (LaTeX)",
 'nowiki_sample'   => 'Mettez du texte non-préparé ici',
 'nowiki_tip'      => 'Ignorez le code wiki',
 'image_sample'    => 'Exemple.jpg',

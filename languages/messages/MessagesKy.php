@@ -374,9 +374,6 @@ $messages = array(
 # Attribution
 'others' => 'башкалар',
 
-# Math errors
-'math_unknown_error' => 'белгисиз ката',
-
 # Browsing diffs
 'nextdiff' => 'Жаңы түзөтүү →',
 

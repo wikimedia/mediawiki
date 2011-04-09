@@ -736,8 +736,6 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'extlink_tip'     => 'Eksterne skakel (onthou http:// vooraan)',
 'headline_sample' => 'Opskrif',
 'headline_tip'    => 'Vlak 2-opskrif',
-'math_sample'     => 'Plaas formule hier',
-'math_tip'        => 'Wiskundige formule (LaTeX)',
 'nowiki_sample'   => 'Plaas ongeformatteerde teks hier',
 'nowiki_tip'      => 'Ignoreer wiki-formattering',
 'image_sample'    => 'Voorbeeld.jpg',
@@ -1232,7 +1230,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'changepassword'                => 'Verander wagwoord',
 'prefs-skin'                    => 'Omslag',
 'skin-preview'                  => 'Voorskou',
-'prefs-math'                    => 'Wiskunde',
 'datedefault'                   => 'Geen voorkeur',
 'prefs-datetime'                => 'Datum en tyd',
 'prefs-personal'                => 'Gebruikersdata',
@@ -2835,27 +2832,6 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'skinname-standard'    => 'Standaard',
 'skinname-nostalgia'   => 'Nostalgie',
 'skinname-cologneblue' => 'Keulen blou',
-
-# Math options
-'mw_math_png'    => 'Gebruik altyd PNG.',
-'mw_math_simple' => 'Gebruik HTML indien dit eenvoudig is, andersins PNG.',
-'mw_math_html'   => 'Gebruik HTML wanneer moontlik, andersins PNG.',
-'mw_math_source' => 'Los as TeX (vir teksblaaiers).',
-'mw_math_modern' => 'Moderne blaaiers.',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Kon nie verbeeld nie',
-'math_unknown_error'    => 'onbekende fout',
-'math_unknown_function' => 'onbekende funksie',
-'math_lexing_error'     => 'leksikale fout',
-'math_syntax_error'     => 'sintaksfout',
-'math_image_error'      => 'PNG-omskakeling het gefaal.
-Kontroleer of LaTeX en dvipng (of dvips + gs + convert) korrek geïnstalleer is.',
-'math_bad_tmpdir'       => 'Die gids vir tydelike lêers vir wiskundige formules bestaan nie of kan nie geskep word nie',
-'math_bad_output'       => 'Die gids vir lêers met wiskundige formules bestaan nie of kan nie geskep word nie',
-'math_notexvc'          => 'Kan nie die texvc program vind nie;
-stel asseblief op volgens die beskrywing in math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merk as gekontroleerd',

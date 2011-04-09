@@ -822,8 +822,6 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
-'math_sample'     => 'Ide írd a képletet',
-'math_tip'        => 'Matematikai képlet (LaTeX)',
 'nowiki_sample'   => 'Ide írd a formázatlan szöveget',
 'nowiki_tip'      => 'Wiki formázás kikapcsolása',
 'image_sample'    => 'Pelda.jpg',
@@ -1316,7 +1314,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'changepassword'                => 'Jelszócsere',
 'prefs-skin'                    => 'Felület',
 'skin-preview'                  => 'előnézet',
-'prefs-math'                    => 'Képletek',
 'datedefault'                   => 'Nincs beállítás',
 'prefs-datetime'                => 'Dátum és idő',
 'prefs-personal'                => 'Felhasználói adatok',
@@ -2896,25 +2893,6 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Egyszerű',
 'skinname-modern'      => 'Modern',
-
-# Math options
-'mw_math_png'    => 'Mindig készítsen PNG-t',
-'mw_math_simple' => 'HTML, ha nagyon egyszerű, egyébként PNG',
-'mw_math_html'   => 'HTML, ha lehetséges, egyébként PNG',
-'mw_math_source' => 'Hagyja TeX formában (szöveges böngészőknek)',
-'mw_math_modern' => 'Modern böngészőknek ajánlott beállítás',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Értelmezés sikertelen',
-'math_unknown_error'    => 'ismeretlen hiba',
-'math_unknown_function' => 'ismeretlen függvény',
-'math_lexing_error'     => 'lexikai hiba',
-'math_syntax_error'     => 'formai hiba',
-'math_image_error'      => 'PNG-vé alakítás sikertelen; ellenőrizd, hogy a latex és dvipng (vagy dvips + gs + convert) helyesen van-e telepítve',
-'math_bad_tmpdir'       => 'Nem írható vagy nem hozható létre a matematikai ideiglenes könyvtár',
-'math_bad_output'       => 'Nem lehet létrehozni vagy írni a matematikai függvények kimeneti könyvtárába',
-'math_notexvc'          => 'HIányzó texvc végrehajtható fájl; a beállítást lásd a math/README fájlban.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ellenőrzöttnek jelölöd',

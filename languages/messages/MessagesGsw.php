@@ -644,8 +644,6 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'extlink_tip'     => 'Externer Link (http:// beachte)',
 'headline_sample' => 'Abschnitts-Überschrift',
 'headline_tip'    => 'Überschrift Äbeni 2',
-'math_sample'     => 'Formel do yfüge',
-'math_tip'        => 'Mathematisch Formel (LaTeX)',
 'nowiki_sample'   => 'Doo nit-formatierte Text yygee',
 'nowiki_tip'      => 'Wiki-Formatierige ignoriere',
 'image_sample'    => 'Byschpil.jpg',
@@ -1136,7 +1134,6 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'changepassword'                => 'Passwort ändere',
 'prefs-skin'                    => 'Benutzeroberflechi',
 'skin-preview'                  => 'Vorschou',
-'prefs-math'                    => 'TeX',
 'datedefault'                   => 'kei Aagab',
 'prefs-datetime'                => 'Datum un Zyt',
 'prefs-personal'                => 'Benutzerdate',
@@ -2672,25 +2669,6 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'numwatchers'    => 'Die Syte wird vo $1 Lüt beobachtet',
 'numauthors'     => 'Aazaal vo Autore: $1',
 'numtalkauthors' => 'Aazaal vo Diskussionsteilnäämer: $1',
-
-# Math options
-'mw_math_png'    => 'Immer als PNG aazeige',
-'mw_math_simple' => 'Eifachs TeX als HTML aazeige, süsch als PNG',
-'mw_math_html'   => 'Falls müglech als HTML aazeige, süsch als PNG',
-'mw_math_source' => 'Als TeX la sy (für Tekschtbrowser)',
-'mw_math_modern' => 'Empfolnigi Ystellig für modärni Browser',
-'mw_math_mathml' => 'MathML (experimentäll)',
-
-# Math errors
-'math_failure'          => 'Parser-Fähler',
-'math_unknown_error'    => 'Nit bekannte Fähler',
-'math_unknown_function' => 'Nit bekannti Funktion',
-'math_lexing_error'     => "'Lexing'-Fähler",
-'math_syntax_error'     => 'Syntaxfähler',
-'math_image_error'      => 'D PNG-Konvertierig het nit funktioniert; prief di korrekt Installation vu LaTeX un dvipng (oder dvips + gs + convert)',
-'math_bad_tmpdir'       => 'S temporär Verzeichnis fir mathematischi Formle cha nit aagleit oder bschribe wäre.',
-'math_bad_output'       => 'S Ziilverzeichnis fir mathematischi Formle cha nit aagleit oder bschribe wäre.',
-'math_notexvc'          => 'S texvc-Programm isch nit gfunde wore. Bitte acht gee uf math/README.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Als patrulyrt markyre',

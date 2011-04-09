@@ -613,8 +613,6 @@ $1',
 'extlink_tip'     => 'বাহিৰৰ সংযোগ (http:// নিশ্বয় ব্যৱহাৰ কৰিব)',
 'headline_sample' => 'শিৰোণামা পাঠ্য',
 'headline_tip'    => 'দ্বিতীয় স্তৰৰ শিৰোণামা',
-'math_sample'     => 'ইয়াত গণিতীয় সুত্ৰ সুমুৱাওক',
-'math_tip'        => 'গণিতীয় সুত্ৰ (LaTeX)',
 'nowiki_sample'   => 'নসজোৱা পাঠ্য ইয়াত অন্তৰ্ভুক্ত কৰক',
 'nowiki_tip'      => 'ৱিকি-সম্মত সাজ-সজ্জা অৱজ্ঞা কৰক',
 'image_tip'       => 'এম্বেডেড ফাইল',
@@ -980,7 +978,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'changepassword'              => 'গুপ্তশব্দ সলনী কৰক',
 'prefs-skin'                  => 'আৱৰন',
 'skin-preview'                => 'খচৰা',
-'prefs-math'                  => 'গণিত',
 'datedefault'                 => 'বিশেষ পচন্দ নাই',
 'prefs-datetime'              => 'তাৰিখ আৰু সময়',
 'prefs-personal'              => 'সদস্যৰ বিৱৰণ',
@@ -1694,11 +1691,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'numwatchers'    => 'দৃষ্টিত ৰাখিছে: $1-জনে',
 'numauthors'     => 'আছুতীয়া স্ৰষ্টা (পৃষ্ঠা): $1-জন',
 'numtalkauthors' => 'আছুতীয়া স্ৰষ্টা (কথাবতৰা): $1-জন',
-
-# Math errors
-'math_failure'          => 'পাৰ্চ কৰিব অসমৰ্থ',
-'math_unknown_error'    => 'অপৰিচিত সমস্যা',
-'math_unknown_function' => 'অজ্ঞাত কাৰ্য্য',
 
 # Patrol log
 'patrol-log-page'      => 'তহলদাৰী সূচী',

@@ -536,8 +536,6 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 'extlink_tip'     => 'Äkstärnen link (http:// beåchte)',
 'headline_sample' => 'Schuchte 2 ouerschraft',
 'headline_tip'    => 'Schuchte 2 ouerschraft',
-'math_sample'     => 'Formel heer önjfäige',
-'math_tip'        => 'Matemaatisch formel (LaTex)',
 'nowiki_sample'   => 'Ünformatiirden täkst heer önjfäige',
 'nowiki_tip'      => 'Ünformatiirden täkst',
 'image_tip'       => 'Dååtäilink',

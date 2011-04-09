@@ -471,8 +471,6 @@ Mumkin ast, ki şumo allakaj guzarvoƶaatonro bo muvaffaqijat taƣjir doda boşe
 'extlink_tip'     => 'Pajvandi beruna (peşvandi http:// faromūş nakuned)',
 'headline_sample' => 'Matni unvon',
 'headline_tip'    => 'Unvoni sathi 2',
-'math_sample'     => 'Ilova kardani formula dar inço',
-'math_tip'        => 'Formulai rijozī (LaTeX)',
 'nowiki_sample'   => 'Inço matni qolabbandi-naşudaro doxil kuned',
 'nowiki_tip'      => 'Rad kardani qolabbandiji viki',
 'image_tip'       => 'Tasviri doxili matn',
@@ -771,7 +769,6 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'changepassword'            => 'Ivaz namudani kalimai ubur',
 'prefs-skin'                => 'Pūst',
 'skin-preview'              => 'Peşnamoiş',
-'prefs-math'                => 'Rijozijot',
 'datedefault'               => 'Be tarçih',
 'prefs-datetime'            => 'Sana va vaqt',
 'prefs-personal'            => 'Dodahoi korbar',
@@ -1846,25 +1843,6 @@ Ehtimolan in az sababi dar bar giriftani pajvandi beruna ba somonai xoriçiji ba
 'numwatchers'    => 'Şumorai pajgirikunandagon: $1',
 'numauthors'     => "Te'dodi muallifoni muxtalif (maqola): $1",
 'numtalkauthors' => "Te'dodi muallifoni muxtalif (sahifai bahs): $1",
-
-# Math options
-'mw_math_png'    => 'Hameşa PNG kaşida şavad',
-'mw_math_simple' => 'Agar xele sodda HTML vagarna PNG',
-'mw_math_html'   => 'Az rūi imkon HTML vagarna PNG',
-'mw_math_source' => 'Hamcun TeX boqī bimon (baroi mururgarhoi matnī)',
-'mw_math_modern' => 'Tavseh şuda baroi mururgarhoi zamonavī',
-'mw_math_mathml' => 'Istifoda az MathML dar surati imkon (ozmoişī)',
-
-# Math errors
-'math_failure'          => 'Şikast dar taçzeh',
-'math_unknown_error'    => 'xatoi noşinos',
-'math_unknown_function' => "amali noma'lum",
-'math_lexing_error'     => 'xatoi lexing',
-'math_syntax_error'     => 'xatoi nahvī',
-'math_image_error'      => 'Tabdil ba PNG şikast xūr; nasbi durusti latex, dvips, gs, va tabdilotro barrasī kuned',
-'math_bad_tmpdir'       => 'Imkoni eçod jo navistani ittiloot dar pūşai muvaqqatiji rijozī (temp) vuçud nadorad',
-'math_bad_output'       => 'Imkoni eçod jo navistani ittiloot dar pūşai xuruçiji rijozī (output) vuçud nadorad',
-'math_notexvc'          => 'Barnomai icroiji texvc mavçud nest; baroi ittilooti beştar ba math/README nigared.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ba unvoni barrasişuda alomat bizan',

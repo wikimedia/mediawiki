@@ -459,8 +459,6 @@ $1',
 'extlink_tip'     => 'Тулаш каçи (http:// префикс çинчен ан манăр)',
 'headline_sample' => 'Пуçелĕк',
 'headline_tip'    => 'Иккĕмĕш шайри ят',
-'math_sample'     => 'Формулăна кунта кĕртĕр',
-'math_tip'        => 'Математика формули (LaTeX форматпа)',
 'nowiki_sample'   => 'Кунта фотматламан текста кĕртĕр.',
 'nowiki_tip'      => 'Вики-ĕрешлевне пăхмалла мар',
 'image_tip'       => 'Кĕртсе лартнă ӳкерчĕк',
@@ -1118,15 +1116,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'numtalkedits'   => 'Улшăнусен шучĕ (сӳтсе явмалли страница): $1',
 'numwatchers'    => 'Сăнакансен шучĕ: $1',
 'numtalkauthors' => 'Тĕрлĕ авторсен шучĕ (çӳтсе явмалли страница): $1',
-
-# Math options
-'mw_math_png'    => 'Яланах PNG хатĕрлемелле',
-'mw_math_simple' => 'Ахаль чухне HTML, урăхла чухне PNG',
-'mw_math_html'   => 'май пулсан HTML, май çук пулсан — PNG',
-'mw_math_modern' => 'Хальхи браузерсемпе усă курмашкăн сĕннĕ пек',
-
-# Math errors
-'math_syntax_error' => 'синтаксис йăнăшĕ',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Тĕрĕсленĕ тесе палăрт',

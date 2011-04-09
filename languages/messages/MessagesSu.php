@@ -630,8 +630,6 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 'extlink_tip'     => 'Tumbu kaluar (inget awalan http://)',
 'headline_sample' => 'Téks judul',
 'headline_tip'    => 'Judul tingkat 2',
-'math_sample'     => 'Asupkeun rumus di dieu',
-'math_tip'        => 'Rumus matematis (LaTeX)',
 'nowiki_sample'   => 'Asupkeun téks nu teu diformat di dieu',
 'nowiki_tip'      => 'Format wiki tong diwaro',
 'image_sample'    => 'Conto.jpg',
@@ -1068,7 +1066,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'changepassword'                => 'Robah sandi',
 'prefs-skin'                    => 'Kulit',
 'skin-preview'                  => 'Pramidang',
-'prefs-math'                    => 'Maté',
 'datedefault'                   => 'Tanpa préferénsi',
 'prefs-datetime'                => 'Titimangsa jeung wanci',
 'prefs-personal'                => 'Data pamaké',
@@ -2285,24 +2282,6 @@ Sigana mah ieu téh alatan tumbu ka loka luar.',
 'numwatchers'    => 'Jumlah nu ngawaskeun: $1',
 'numauthors'     => 'Jumlah pangarang nu béda (artikel): $1',
 'numtalkauthors' => 'Jumlah pangarang nu béda (kaca sawala): $1',
-
-# Math options
-'mw_math_png'    => 'Jieun wae PNG',
-'mw_math_simple' => 'Mun basajan HTML, mun henteu PNG',
-'mw_math_html'   => 'Mun bisa HTML, mun henteu PNG',
-'mw_math_source' => 'Antep salaku TeX (pikeun panyungsi tulisan)',
-'mw_math_modern' => 'Dianjurkeun pikeun panyungsi modérn',
-'mw_math_mathml' => 'Mun bisa MathML (uji coba)',
-
-# Math errors
-'math_failure'          => "Peta ''parse'' gagal",
-'math_unknown_error'    => 'Kasalahan teu kanyahoan',
-'math_unknown_function' => 'fungsi teu kanyahoan',
-'math_lexing_error'     => 'kasalahan lexing',
-'math_syntax_error'     => 'Kasalahan rumpaka',
-'math_image_error'      => 'Konversi PNG gagal; pastikeun yén latex, dvips, gs, jeung convert geus bener nginstalna',
-'math_bad_tmpdir'       => 'Henteu bisa nulis atawa nyieun direktori samentara math',
-'math_bad_output'       => 'Henteu bisa nulisikeun atawa nyieun direktori keluaran math',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tandaan salaku geus diriksa',

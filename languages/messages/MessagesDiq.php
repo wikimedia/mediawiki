@@ -532,8 +532,6 @@ Bıne vındere u newe ra dest pê bıkere.',
 'extlink_tip'     => 'Çımeyo tewer (http:// prefix)',
 'headline_sample' => 'nuşteyo headline',
 'headline_tip'    => 'Ket 2 headline',
-'math_sample'     => 'Formula itiya ra bınus',
-'math_tip'        => 'Formulayo Matematik (LaTeX)',
 'nowiki_sample'   => 'Non-format nuşte itiya ra bıerz',
 'nowiki_tip'      => 'Formatê wiki iptal bık',
 'image_sample'    => 'resım bıerze cı',
@@ -1011,7 +1009,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'changepassword'                => 'parola bivurne',
 'prefs-skin'                    => 'Çerme',
 'skin-preview'                  => 'Verqayt',
-'prefs-math'                    => 'Math',
 'datedefault'                   => 'Tercih çino',
 'prefs-datetime'                => 'Wext u Tarix',
 'prefs-personal'                => 'Pela karberi',
@@ -2520,27 +2517,6 @@ Tı eşkeno yew sebeb bınus.',
 'numwatchers'    => 'amarê temaşakerdoxi: $1',
 'numauthors'     => 'amarê nuştoxê ferqıni (pel): $1',
 'numtalkauthors' => 'Teneyê karberi ke ferkliyê (pela minaqeşe): $1',
-
-# Math options
-'mw_math_png'    => 'Herzeman PNG render bike',
-'mw_math_simple' => 'Eka HTML zaf basit o ya zi PNG',
-'mw_math_html'   => 'Eka HTM mumkin ya zi PNG',
-'mw_math_source' => 'Bi TeX biman (qe nuşte browseroği)',
-'mw_math_modern' => 'Semed browseroğê moderni tafsiye biyê',
-'mw_math_mathml' => 'Eka mumkin, MathML (deneme)',
-
-# Math errors
-'math_failure'          => 'Parse de ğeleti biyo',
-'math_unknown_error'    => 'ğeleti nizanyeno',
-'math_unknown_function' => 'fonksiyon nizanyeno',
-'math_lexing_error'     => 'ğeleto lexing',
-'math_syntax_error'     => 'ğeleto sintaks',
-'math_image_error'      => 'Conversiyonê PNG de ğeleti esta;
-qe ronayişê raşti ye latex, dvips, gs kontrol bike u convert bike',
-'math_bad_tmpdir'       => 'Nieşkeno binusi ya zi direktorê mathi virazi',
-'math_bad_output'       => 'Nieşkeno binusi ya zi direktorê mathi ye outputi virazi',
-'math_notexvc'          => "xebetnayekarê texvc'i vindbiyo
-qey 'eyar kerdışi bıewnê math/README'yi.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Nişan bike ke devriye biyo',

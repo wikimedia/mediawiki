@@ -854,11 +854,6 @@ $NEWPAGE
 'spamprotectiontext' => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站連結所產生的問題。',
 'spam_reverting'     => '復原到不包含連結至$1的最近版本',
 
-# Math options
-'mw_math_png'    => '永遠使用PNG圖片',
-'mw_math_simple' => '如果是簡單的公式使用HTML，否則使用PNG圖片',
-'mw_math_html'   => '如果可以用HTML，否則用PNG圖片',
-
 # Patrolling
 'markedaspatrolledtext' => '選定的版本已被標記為已檢查.',
 

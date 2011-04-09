@@ -219,7 +219,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Preferences page
 'preferences'       => 'Preferenze',
 'mypreferences'     => 'Preferenze',
-'prefs-math'        => 'Matematica',
 'prefs-rc'          => 'Ultimi cambiamenti',
 'prefs-watchlist'   => 'Articuli seguitati',
 'columns'           => 'Culonne:',
@@ -462,9 +461,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Attribution
 'anonymous' => 'Utilizatore(/i) anonimu(/i) di {{SITENAME}}',
 'others'    => 'altri',
-
-# Math errors
-'math_syntax_error' => 'errore di sintassa',
 
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',

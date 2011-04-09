@@ -434,8 +434,6 @@ Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Sp
 'extlink_tip'     => 'Ūtanƿeard hlenċe (ȝemune http:// foredǣl)',
 'headline_sample' => 'Hēafodlīnan traht',
 'headline_tip'    => 'Emnet 2 hēafodlīn',
-'math_sample'     => 'Ƿiċunge hēr ēacian',
-'math_tip'        => 'Rīmcræftisc ƿiċung (LaTeX)',
 'nowiki_sample'   => 'Unȝeƿorhtne traht hēr stellan',
 'nowiki_tip'      => 'Ƿiki ȝeƿeorc forȝietan',
 'image_sample'    => 'Bisen.jpg',
@@ -610,7 +608,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'prefsnologin'       => 'Ne inȝemelded',
 'prefs-skin'         => 'Scynn',
 'skin-preview'       => 'Forescēaƿian',
-'prefs-math'         => 'Rīmcræft',
 'prefs-datetime'     => 'Tælmearc and tīd',
 'prefs-rc'           => 'Nīƿe hƿearfas',
 'prefs-watchlist'    => 'Ƿæccȝetalu',
@@ -1148,9 +1145,6 @@ Bidde cēos ōðerne naman.',
 'numedits'     => 'Hū mæniȝ ādihtas (sīde): $1',
 'numtalkedits' => 'Hū mæniȝ ādihtas (ȝespreċsīde): $1',
 'numwatchers'  => 'Hū mæniȝ ƿæcceras: $1',
-
-# Math errors
-'math_unknown_error' => 'uncūþ ƿōh',
 
 # Patrol log
 'patrol-log-auto' => '(selffremmende)',

@@ -442,8 +442,6 @@ Ni mòżesz miec ju wicy.',
 'extlink_tip'     => 'Bùtnowi lënk (pamiãtôj ò http:// prefiks)',
 'headline_sample' => 'Tekst nagłówka',
 'headline_tip'    => 'Nagłówk 2 lédżi',
-'math_sample'     => 'Wstôwi tuwò fòrmùłã',
-'math_tip'        => 'Matematicznô fòrmùła (LaTeX)',
 'nowiki_sample'   => 'Wstôw tuwò niesfòrmatowóny tekst',
 'nowiki_tip'      => 'Ignorëjë wiki-fòrmatowanié',
 'image_sample'    => 'Przëmiôr.jpg',
@@ -624,7 +622,6 @@ Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów 
 'changepassword'            => 'Zmiana parolë',
 'prefs-skin'                => 'Wëzdrzatk',
 'skin-preview'              => 'Pòdzérk',
-'prefs-math'                => 'Matematika',
 'datedefault'               => 'Felëje preferencëji',
 'prefs-datetime'            => 'Datum ë czas',
 'prefs-personal'            => 'Pòdôwczi brëkòwnika',
@@ -1217,17 +1214,6 @@ Zezwôlô na dodanié przëczënë zjinaczi w òpisënkù.',
 
 # Spam protection
 'spamprotectiontitle' => 'Anti-spamòwi filter',
-
-# Math options
-'mw_math_png'    => 'Wiedno wëskrzëniwôj jakno PNG',
-'mw_math_simple' => 'Jeżlë prosti wëskrzëniwôj jakno HTML, w jinëm przëtrôfkù jakno PNG',
-'mw_math_html'   => 'HTML czej mòżlewé a w jinëm przëtrôfkù PNG',
-'mw_math_source' => 'Òstawi jakno TeX (dlô tekstowich przezérników)',
-'mw_math_modern' => 'Zalécóné dlô nowoczasnëch przezérników',
-'mw_math_mathml' => 'Wëskrzëniwôj jakno MathML jeżlë mòżlëwé (eksperimentalné)',
-
-# Math errors
-'math_failure' => 'Parser nie rozmiôł rozpòznac',
 
 # Browsing diffs
 'previousdiff' => '← Pòprzédnô edicëjô',

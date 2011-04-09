@@ -421,8 +421,6 @@ Saankan a makaaramid pay.',
 'extlink_tip'     => 'Akinruar a panilpo (laglagipen ti http:// a prefix)',
 'headline_sample' => 'Texto ti headline',
 'headline_tip'    => 'Level 2 a paulo',
-'math_sample'     => 'Isulbong ti formula ditoy',
-'math_tip'        => 'Matematikal a formula (LaTeX)',
 'nowiki_sample'   => 'Mangisuldong iti saan a naformat a texto ditoy',
 'nowiki_tip'      => 'Di ikankano ti wiki formatting',
 'image_tip'       => 'Naibinggas a file',
@@ -666,7 +664,6 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'changepassword'            => 'Baliwan ti password',
 'prefs-skin'                => 'Kudil',
 'skin-preview'              => 'I-preview',
-'prefs-math'                => 'Math',
 'datedefault'               => 'Awanan preferencia',
 'prefs-datetime'            => 'Petsa ken oras',
 'prefs-personal'            => 'Profile ti agar-aramat',
@@ -1453,19 +1450,6 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 'numedits'     => 'Bilang ti panangbaliw (panid): $1',
 'numtalkedits' => 'Bilang ti edits (panid ti diskusion): $1',
 'numwatchers'  => 'Bilang dagiti agbambantay: $1',
-
-# Math options
-'mw_math_png'    => 'Kanayon a pagbalinen a PNG',
-'mw_math_source' => 'Ibati lattan a kas TeX (para kadagiti text browsers)',
-
-# Math errors
-'math_failure'          => 'Napaay nga ag-parse',
-'math_unknown_error'    => 'di ammo a biddut',
-'math_unknown_function' => 'di ammo a function',
-'math_lexing_error'     => 'lexing error',
-'math_syntax_error'     => 'biddut iti syntax',
-'math_image_error'      => 'Napaay ti PNG conversion;
-itsek ti husto a panangikapet iti latex, dvips, gs, samo i-convert',
 
 # Patrolling
 'markaspatrolleddiff'    => 'Markaan a kas napatruliaan',

@@ -618,7 +618,6 @@ $messages = array(
 'changepassword'              => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'prefs-skin'                  => 'ܓܠܕܐ',
 'skin-preview'                => 'ܚܝܪܐ ܩܕܡܝܐ',
-'prefs-math'                  => 'ܡܬܡܐܛܝܩܘܬܐ',
 'datedefault'                 => 'ܠܐ ܓܒܝܬܐ',
 'prefs-datetime'              => 'ܣܝܩܘܡܐ ܘܙܒܢܐ',
 'prefs-personal'              => 'ܦܘܓܪܦܐ ܕܡܦܠܚܢܐ',
@@ -1340,9 +1339,6 @@ Do you want to change the settings?',
 'numwatchers'    => 'ܡܢܝܢܐ ܕܪ̈ܗܝܐ: $1',
 'numauthors'     => 'ܡܢܝܢܐ ܕܡܫܚܠܦܢ̈ܐ (ܦܐܬܐ): $1',
 'numtalkauthors' => 'ܡܢܝܢܐ ܕܡܫܚܠܦܢ̈ܐ (ܦܐܬܐ ܕܕܘܪܫܐ): $1',
-
-# Math errors
-'math_unknown_error' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # Patrol log
 'patrol-log-auto' => '(ܝܬܐܝܬ)',

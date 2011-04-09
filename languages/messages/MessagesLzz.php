@@ -245,8 +245,6 @@ Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.'
 'extlink_tip'     => 'Galeni kʼontʼaktʼi (Adresiş dudis http:// ukʼatit)',
 'headline_sample' => 'Dudicoxoşi nçʼara',
 'headline_tip'    => '2. derece dudicoxo',
-'math_sample'     => 'Matematʼikuri-ifade-doçʼarit',
-'math_tip'        => 'Matʼematʼikuri formuli (LaTeX)',
 'nowiki_sample'   => 'Oxoşkveri formatʼi nçʼara-tkvani ak doçʼarit.',
 'nowiki_tip'      => 'vikʼiş formatʼi ipʼtʼali qʼvi.',
 'image_tip'       => 'Doxveri dosya',

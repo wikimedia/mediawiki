@@ -662,8 +662,6 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'extlink_tip'     => 'Colegamento foresto (tiente in mente el prefiso http:// )',
 'headline_sample' => 'Intestassion',
 'headline_tip'    => 'Intestassion de 2° livèl',
-'math_sample'     => 'Inserire qua ła formuła',
-'math_tip'        => 'Formula matematega (LaTeX)',
 'nowiki_sample'   => 'Inserire qua el testo no formatà',
 'nowiki_tip'      => 'Ignora ła formatasion wiki',
 'image_sample'    => 'Esenpio.jpg',
@@ -1146,7 +1144,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'changepassword'                => 'Cànbia ła password',
 'prefs-skin'                    => 'Aspeto grafico',
 'skin-preview'                  => 'Anteprima',
-'prefs-math'                    => 'Formułe matematiche',
 'datedefault'                   => 'Nissuna preferensa',
 'prefs-datetime'                => 'Data e ora',
 'prefs-personal'                => 'Profiło utente',
@@ -2648,25 +2645,6 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'numwatchers'    => 'Nùmaro de osservadori: $1',
 'numauthors'     => 'Nùmaro de autori distinti (pagina): $1',
 'numtalkauthors' => 'Nùmaro de autori distinti (pàxena de discussion): $1',
-
-# Math options
-'mw_math_png'    => 'Mostra senpre in PNG',
-'mw_math_simple' => "HTML se'l xe senplice assè, altrimenti PNG",
-'mw_math_html'   => 'HTML se se pol, altrimenti PNG',
-'mw_math_source' => 'Lassa in formato TeX (par browser testuali)',
-'mw_math_modern' => 'Racomandà par i browser pì novi',
-'mw_math_mathml' => 'Usa MathML se se pol (sperimental)',
-
-# Math errors
-'math_failure'          => 'Eror del parser',
-'math_unknown_error'    => 'eror sconossiùo',
-'math_unknown_function' => 'funzion sconossiùa',
-'math_lexing_error'     => 'eror lessicale',
-'math_syntax_error'     => 'eror de sintassi',
-'math_image_error'      => 'Conversion in PNG fałía',
-'math_bad_tmpdir'       => 'Inpossibile scrìvar o crear la directory tenporanea par math',
-'math_bad_output'       => 'Inpossibile scrìvar o crear la directory de output par math',
-'math_notexvc'          => 'Eseguibile texvc mancante; par piaser consulta math/README par la configurazion.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Segna la modifica come verificà',

@@ -805,8 +805,6 @@ $2',
 'extlink_tip'     => 'តំណភ្ជាប់​ខាងក្រៅ (កុំភ្លេច​ដាក់ http:// នៅពីមុខ)',
 'headline_sample' => 'ចំណងជើងរងនៃអត្ថបទ',
 'headline_tip'    => 'ចំណងជើងរង​កម្រិត​២',
-'math_sample'     => 'បញ្ចូលរូបមន្ត​នៅទីនេះ',
-'math_tip'        => 'រូបមន្ត​គណិតវិទ្យា (LaTeX)',
 'nowiki_sample'   => 'បញ្ចូល​អត្ថបទគ្មានទម្រង់​នៅទីនេះ',
 'nowiki_tip'      => 'មិនគិត​ទម្រង់​នៃ​វិគី',
 'image_sample'    => 'ឧទាហរណ៍.jpg',
@@ -1311,7 +1309,6 @@ $1",
 'changepassword'                => 'ប្តូរពាក្យសំងាត់',
 'prefs-skin'                    => 'សំបក',
 'skin-preview'                  => 'មើលជាមុន',
-'prefs-math'                    => 'គណិត',
 'datedefault'                   => 'គ្មានចំណូលចិត្ត',
 'prefs-datetime'                => 'កាលបរិច្ឆេទនិងល្វែងម៉ោង',
 'prefs-personal'                => 'ប្រវត្តិរូប',
@@ -2859,28 +2856,6 @@ $1',
 'skinname-simple'      => 'សាមញ្ញ',
 'skinname-modern'      => 'ទំនើប',
 'skinname-vector'      => 'វ៉ិចទ័រ​​',
-
-# Math options
-'mw_math_png'    => 'ជានិច្ចការជាPNG',
-'mw_math_simple' => 'ជា HTML បើសាមញ្ញបំផុត ឬ ផ្ទុយទៅវិញ ជា PNG',
-'mw_math_html'   => 'ជា HTML បើអាចទៅរួច ឬ ផ្ទុយទៅវិញ ជា PNG',
-'mw_math_source' => 'ទុកឱ្យនៅជា TeX (ចំពោះឧបករណ៍រាវរកអត្ថបទ)',
-'mw_math_modern' => 'បានផ្តល់អនុសាសន៍ចំពោះកម្មវិធីរាវរកទំនើបៗ',
-'mw_math_mathml' => 'MathML បើអាចទៅរួច (ពិសោធ)',
-
-# Math errors
-'math_failure'          => 'បរាជ័យ​ក្នុង​ការ​ញែក​ចេញ​',
-'math_unknown_error'    => 'កំហុសមិនស្គាល់',
-'math_unknown_function' => 'អនុគមន៍​មិន​ស្គាល់',
-'math_lexing_error'     => 'បញ្ហាក្នុងការអានតួអក្សរ',
-'math_syntax_error'     => 'កំហុសពាក្យសម្ព័ន្ធ',
-'math_image_error'      => 'ការបម្លែងជា PNG បានបរាជ័យ។
-សូមពិនិត្យមើលតើ latex និង dvips (ឬ dvips + gs + convert), បានដំឡើងត្រឹមត្រូវឬអត់',
-'math_bad_tmpdir'       => 'មិនអាចសរសេរទៅ ឬ បង្កើតថតឯកសារគណិតបណ្តោះអាសន្ន',
-'math_bad_output'       => 'មិនអាច សរសេរទៅ ឬ បង្កើត ថតឯកសារ គណិត ទិន្នផល',
-'math_notexvc'          => 'បាត់កម្មវិធី texvc។
-
-សូមមើលក្នុង math/README ដើម្បីធ្វើការកំណត់លំអិត។',
 
 # Patrolling
 'markaspatrolleddiff'    => 'ចំណាំថាបានល្បាត',

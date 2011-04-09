@@ -281,7 +281,6 @@ $messages = array(
 # Edit page toolbar
 'link_sample'    => 'Link taitel',
 'extlink_sample' => 'http://www.example.com link taitel',
-'math_tip'       => 'Matematik formula (LaTeX)',
 'media_tip'      => 'Link bilong fail',
 
 # Edit pages
@@ -386,7 +385,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'changepassword'            => 'Senis paswot',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'pes mi senisim, pastaim long raitim',
-'prefs-math'                => 'Matematiks',
 'datedefault'               => 'Nogat laik',
 'prefs-rc'                  => 'Nupela senis',
 'prefs-watchlist'           => 'Lukautbuk',

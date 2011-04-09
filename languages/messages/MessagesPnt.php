@@ -442,8 +442,6 @@ $messages = array(
 'extlink_tip'     => 'Εξωτερικόν σύνδεσμον (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
 'headline_tip'    => 'Δεύτερον τίτλος (επίπεδον 2)',
-'math_sample'     => 'Αδά εισάγετε την φόρμουλαν',
-'math_tip'        => 'Μαθεματικόν φόρμουλα (LaTeX)',
 'nowiki_sample'   => 'Αδακά πα να εισάγετε το μη μορφοποιημένον κείμενον.',
 'nowiki_tip'      => "Ξάι 'κ να τερείται η μορφοποίηση Wiki.",
 'image_tip'       => 'Ενσωματωμένον εικόνα',
@@ -642,7 +640,6 @@ $messages = array(
 'changepassword'            => 'Άλλαξον σημάδιν',
 'prefs-skin'                => 'Όψην',
 'skin-preview'              => 'Πρώτον τέρεμαν',
-'prefs-math'                => 'Απόδοσην μαθηματικίων',
 'prefs-datetime'            => 'Ημερομηνίαν και ώραν',
 'prefs-rc'                  => 'Υστερνά αλλαγάς',
 'prefs-watchlist'           => 'Κατάλογον ωριαγματί',
@@ -1286,11 +1283,6 @@ $messages = array(
 
 # Spam protection
 'spamprotectiontitle' => 'Φίλτρον προστασίας ασό σπαμ',
-
-# Math errors
-'math_unknown_function' => 'άγνωρος συνάρτησην',
-'math_lexing_error'     => 'σφάλμαν λεξικής ανάλυσης',
-'math_syntax_error'     => 'σφάλμαν σύνταξης',
 
 # Patrol log
 'patrol-log-auto' => '(αυτόματον)',

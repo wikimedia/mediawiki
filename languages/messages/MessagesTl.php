@@ -679,8 +679,6 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'extlink_tip'     => 'Panlabas na kawing (tandaan ang unlaping http://)',
 'headline_sample' => 'Paulong teksto',
 'headline_tip'    => 'Paulong antas 2',
-'math_sample'     => 'Isingit ang pormula dito',
-'math_tip'        => 'Pormulang pangmatematika (LaTeX)',
 'nowiki_sample'   => 'Isingit ang hindi nakapormat na teksto dito',
 'nowiki_tip'      => 'Balewalain ang pormat na pangwiki',
 'image_sample'    => 'Halimbawa.jpg',
@@ -1189,7 +1187,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'changepassword'                => 'Baguhin ang hudyat',
 'prefs-skin'                    => 'Pabalat',
 'skin-preview'                  => 'Unang tingin',
-'prefs-math'                    => 'Matematika',
 'datedefault'                   => 'Walang kagustuhan',
 'prefs-datetime'                => 'Petsa at oras',
 'prefs-personal'                => 'Sanligang pangkatangian ng tagagamit',
@@ -2802,26 +2799,6 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'skinname-chick'       => "\"Pambabae\" (''Chick'')",
 'skinname-simple'      => 'Payak',
 'skinname-modern'      => 'Makabago (Moderno)',
-
-# Math options
-'mw_math_png'    => 'Palaging ilarawan sa anyong PNG',
-'mw_math_simple' => 'HTML kung napakapayak o kaya PNG kung iba',
-'mw_math_html'   => 'HTML kung maaari o kaya PNG kapag iba',
-'mw_math_source' => "Iwanan bilang TeX (para sa mga panghanap na pangteksto o ''text browser'')",
-'mw_math_modern' => 'Irekomenda para sa makabagong mga panghanap',
-'mw_math_mathml' => 'MathML kung maaari (sinusubok pa)',
-
-# Math errors
-'math_failure'          => 'Nabigo sa pagbanghay',
-'math_unknown_error'    => 'hindi nalalamang kamalian',
-'math_unknown_function' => 'hindi nalalamang tungkulin',
-'math_lexing_error'     => 'kamalian sa pagbabatas',
-'math_syntax_error'     => 'kamalian sa palaugnayan',
-'math_image_error'      => 'Nabigo ang pagpapalit upang maging PNG; suriin kung tama ang pagtatalaga ng latex at dvipng (o dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Hindi maisulat sa o makalikha ng pansamantalang direktoryong pangmatematika',
-'math_bad_output'       => 'Hindi maisulat sa o makalikha ng direktoryo ng produktong pangmatematika',
-'math_notexvc'          => 'Nawawala ang maisasakatuparang texvc;
-pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tatakan bilang napatrolya na',

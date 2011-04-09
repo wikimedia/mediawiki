@@ -799,8 +799,6 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'extlink_tip'     => 'Ligam extèrne (doblidetz pas lo prefixe http://)',
 'headline_sample' => 'Tèxte de sostítol',
 'headline_tip'    => 'Sostítol nivèl 2',
-'math_sample'     => 'Picatz vòstra formula aicí',
-'math_tip'        => 'Formula matematica (LaTeX)',
 'nowiki_sample'   => 'Picatz lo tèxte pas formatat aicí',
 'nowiki_tip'      => 'Ignorar la sintaxi wiki',
 'image_sample'    => 'Exemple.jpg',
@@ -1263,7 +1261,6 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'changepassword'                => 'Modificacion del senhal',
 'prefs-skin'                    => 'Aparéncia',
 'skin-preview'                  => 'Previsualizar',
-'prefs-math'                    => 'Rendut de las matas',
 'datedefault'                   => 'Cap de preferéncia',
 'prefs-datetime'                => 'Data e ora',
 'prefs-personal'                => 'Entresenhas personalas',
@@ -2801,25 +2798,6 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'skinname-chick'       => 'Poleton',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Modèrne',
-
-# Math options
-'mw_math_png'    => 'Totjorn produire un imatge PNG',
-'mw_math_simple' => 'HTML se plan simpla, si que non PNG',
-'mw_math_html'   => 'HTML se possible, si que non PNG',
-'mw_math_source' => "Daissar lo còde TeX d'origina",
-'mw_math_modern' => 'Pels navigadors modèrnes',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'Error matas',
-'math_unknown_error'    => 'error indeterminada',
-'math_unknown_function' => 'foncion desconeguda',
-'math_lexing_error'     => 'error lexicala',
-'math_syntax_error'     => 'error de sintaxi',
-'math_image_error'      => 'La conversion en PNG a pas capitat ; verificatz l’installacion de Latex, dvips, gs e convert',
-'math_bad_tmpdir'       => 'Impossible de crear o d’escriure dins lo repertòri math temporari',
-'math_bad_output'       => 'Impossible de crear o d’escriure dins lo repertòri math de sortida',
-'math_notexvc'          => 'L’executable « texvc » es introbable. Legissètz math/README per lo configurar.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar coma essent pas un vandalisme',

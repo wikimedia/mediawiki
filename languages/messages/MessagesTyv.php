@@ -314,7 +314,6 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com холбаадың ады',
 'extlink_tip'     => 'Даштыкы холбаа ("http://" чүве сактып алыр)',
 'headline_sample' => 'Кол сөс сөзүглел',
-'math_sample'     => 'Формуланы мынаар киирери',
 'nowiki_sample'   => 'Форматтаваан сөзүглелини бээр салыры',
 'nowiki_tip'      => 'Вики форматтаарын херекке албас',
 'image_sample'    => 'Чижек.jpg',
@@ -832,9 +831,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'skinname-monobook'    => 'Моно-Ном',
 'skinname-myskin'      => 'MySkin',
 'skinname-chick'       => 'Chick',
-
-# Math errors
-'math_unknown_error' => 'билбес алдаг',
 
 # Image deletion
 'filedelete-missing' => '"$1" деп файл чок, ынчангаш ол ап калдынмас.',

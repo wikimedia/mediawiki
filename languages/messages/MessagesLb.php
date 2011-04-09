@@ -694,8 +694,6 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'extlink_tip'     => 'Externe Link (Vergiesst net den http:// Prefix)',
 'headline_sample' => 'Titel Text',
 'headline_tip'    => 'Iwwerschrëft vum Niveau 2',
-'math_sample'     => 'Formel hei asetzen',
-'math_tip'        => 'Mathematesch Formel (LaTeX)',
 'nowiki_sample'   => 'Net-formatéierten Text hei androen',
 'nowiki_tip'      => 'Wiki-Format ignoréieren',
 'image_sample'    => 'Beispill.jpg',
@@ -1186,7 +1184,6 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'changepassword'                => 'Passwuert änneren',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Kucken',
-'prefs-math'                    => 'Math/TeX',
 'datedefault'                   => 'Egal (Standard)',
 'prefs-datetime'                => 'Datum an Auerzäit',
 'prefs-personal'                => 'Benotzerprofil',
@@ -2782,26 +2779,6 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Einfach',
 'skinname-modern'      => 'Modern',
-
-# Math options
-'mw_math_png'    => 'Ëmmer als PNG duerstellen',
-'mw_math_simple' => 'Einfachen TeX als HTML duerstellen, soss PNG',
-'mw_math_html'   => 'Wa méiglech als HTML duerstellen, soss PNG',
-'mw_math_source' => 'Als TeX loossen (fir Textbrowser)',
-'mw_math_modern' => 'Recommandéiert fir modern Browser',
-'mw_math_mathml' => 'MathML wa méiglech (experimentell)',
-
-# Math errors
-'math_failure'          => 'Parser-Feeler',
-'math_unknown_error'    => 'Onbekannte Feeler',
-'math_unknown_function' => 'Onbekannte Funktioun',
-'math_lexing_error'     => "'Lexing'-Feeler",
-'math_syntax_error'     => 'Syntaxfeeler',
-'math_image_error'      => "D'PNG-Konvertéierung huet net fonctionnéiert;
-iwwerpréift déi korrekt Installatioun vu LaTeX an dvipng (oder dvips + gs + convert)",
-'math_bad_tmpdir'       => 'Den temporäre Repertire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
-'math_bad_output'       => 'Den Zilrepertoire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
-'math_notexvc'          => 'Den texvc Programm feelt: Liest w.e.g. math/README fir en anzestellen.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Als kontrolléiert markéieren',

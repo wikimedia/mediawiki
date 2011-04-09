@@ -148,7 +148,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # Edit page toolbar
 'italic_sample' => 'Amazwi ama-italiki',
 'italic_tip'    => 'Amazwi ama-italiki',
-'math_sample'   => 'Faka izibalo lapha',
 'hr_tip'        => 'Umugqa uhleliwe  (use sparingly)',
 
 # Edit pages
@@ -188,7 +187,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'mypreferences'     => 'Amakhethelo ami',
 'prefsnologin'      => 'Awungenile',
 'changepassword'    => 'Guqula izwi elingenangozi',
-'prefs-math'        => 'Izibalo',
 'saveprefs'         => 'Saveprefs',
 'searchresultshead' => 'Sesha',
 'timezonelegend'    => 'Isifunda sasikhathi',

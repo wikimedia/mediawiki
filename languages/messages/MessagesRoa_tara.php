@@ -568,8 +568,6 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'extlink_tip'     => "Collegamende de fore a Uicchipedie (arrecuerdete 'u prefisse http://)",
 'headline_sample' => "Teste d'a Testete",
 'headline_tip'    => 'Levèlle 2 tèstete',
-'math_sample'     => "Mitte 'a formule aqquà",
-'math_tip'        => 'Formula matemateche (LaTeX)',
 'nowiki_sample'   => "Mitte 'u teste non formattate aqquà",
 'nowiki_tip'      => "No scè penzanne 'a formattazione de Uicchi",
 'image_sample'    => 'Esembie.jpg',
@@ -1083,7 +1081,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'changepassword'                => "Cange 'a password",
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Andeprime',
-'prefs-math'                    => 'Math',
 'datedefault'                   => 'Nisciuna preferenze',
 'prefs-datetime'                => 'Date e ore',
 'prefs-personal'                => "Profile de l'utende",
@@ -2682,27 +2679,6 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'numwatchers'    => 'Numere de visitature: $1',
 'numauthors'     => 'Numere de autore distinde (vôsce): $1',
 'numtalkauthors' => "Numere de autore distinde (pàgene de le 'ngazzaminde): $1",
-
-# Math options
-'mw_math_png'    => "Fà sembre 'u render de le PNG",
-'mw_math_simple' => 'HTML ce jè avveramende facile oppure PNG',
-'mw_math_html'   => 'HTML ce jè possibbile oppure PNG',
-'mw_math_source' => "Lassele cumme a 'nu TeX (pe le browser de teste)",
-'mw_math_modern' => 'Raccomandate pe le browser cchiù nuève',
-'mw_math_mathml' => 'MathML ce possibbile (sperimendele)',
-
-# Math errors
-'math_failure'          => 'Analisi fallite',
-'math_unknown_error'    => 'errore scanusciute',
-'math_unknown_function' => 'funziona scanusciute',
-'math_lexing_error'     => 'errore de lessiche',
-'math_syntax_error'     => 'errore de sintassi',
-'math_image_error'      => "'A conversione d'u PNG ha fallite;
-condrolle ce l'installazione de latex e dvips (o dvipg + gs + convertitore) jè corrette",
-'math_bad_tmpdir'       => "Non ge puè scrivere o ccrejà 'na cartelle temboranea de math",
-'math_bad_output'       => "Non ge puè scrivere o ccrejà 'na cartelle de destinazzione de math",
-'math_notexvc'          => 'texvc eseguibbele perdute;
-pe piacere vide math/README pe configurà.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Signe cumme condrollate',

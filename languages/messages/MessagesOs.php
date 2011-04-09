@@ -357,8 +357,6 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com æрвитæны текст',
 'extlink_tip'     => 'Æддаг æрвитæн (префикс http:// ма рох кæн)',
 'headline_sample' => 'Ам сæргонды текст уæд',
-'math_sample'     => 'Ныффысс формулæ',
-'math_tip'        => 'Математикон формулæ (формат LaTeX)',
 'media_tip'       => 'Файлмæ æрвитæн',
 
 # Edit pages
@@ -862,10 +860,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'skinname-monobook'    => 'Моно-чиныг',
 'skinname-myskin'      => 'Мæхи',
 'skinname-chick'       => 'Карк',
-
-# Math errors
-'math_unknown_function' => 'нæзонгæ функци',
-'math_syntax_error'     => 'синтаксисы рæдыд',
 
 # Browsing diffs
 'previousdiff' => '← Раздæры ивддзинад',

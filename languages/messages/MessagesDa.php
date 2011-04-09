@@ -701,8 +701,6 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'extlink_tip'     => 'Ekstern henvisning (husk http:// præfiks)',
 'headline_sample' => 'Tekst til overskrift',
 'headline_tip'    => 'Type 2 overskrift',
-'math_sample'     => 'Indsæt formel her (LaTeX)',
-'math_tip'        => 'Matematisk formel (LaTeX)',
 'nowiki_sample'   => 'Indsæt tekst her som ikke skal wikiformateres',
 'nowiki_tip'      => 'Ignorer wikiformatering',
 'image_sample'    => 'Eksempel.jpg',
@@ -1197,7 +1195,6 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'changepassword'                => 'Skift adgangskode',
 'prefs-skin'                    => 'Udseende',
 'skin-preview'                  => 'Forhåndsvisning',
-'prefs-math'                    => 'Matematiske formler',
 'datedefault'                   => 'Ingen præference',
 'prefs-datetime'                => 'Dato og klokkeslæt',
 'prefs-personal'                => 'Brugerdata',
@@ -2732,25 +2729,6 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Enkelt',
 'skinname-modern'      => 'Moderne',
-
-# Math options
-'mw_math_png'    => 'Vis altid som PNG',
-'mw_math_simple' => 'HTML hvis meget simpel ellers PNG',
-'mw_math_html'   => 'HTML hvis muligt ellers PNG',
-'mw_math_source' => 'Lad være som TeX (for tekstbrowsere)',
-'mw_math_modern' => 'Anbefalet til moderne browsere',
-'mw_math_mathml' => 'MathML hvis muligt',
-
-# Math errors
-'math_failure'          => 'Fejl i matematikken',
-'math_unknown_error'    => 'ukendt fejl',
-'math_unknown_function' => 'ukendt funktion',
-'math_lexing_error'     => 'lexerfejl',
-'math_syntax_error'     => 'syntaksfejl',
-'math_image_error'      => 'PNG-konvertering mislykkedes; undersøg om latex og dvipng (eller dvips + gs + convert) er installeret korrekt',
-'math_bad_tmpdir'       => 'Kan ikke skrive til eller oprette temp-mappe til math',
-'math_bad_output'       => 'Kan ikke skrive til eller oprette uddata-mappe til math',
-'math_notexvc'          => 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markér som patruljeret',

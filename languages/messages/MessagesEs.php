@@ -857,8 +857,6 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'extlink_tip'     => 'Enlace externo (recuerda añadir el prefijo http://)',
 'headline_sample' => 'Texto de titular',
 'headline_tip'    => 'Titular de nivel 2',
-'math_sample'     => 'Escribir la fórmula aquí',
-'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Insertar aquí texto sin formato',
 'nowiki_tip'      => 'Ignorar el formato wiki',
 'image_sample'    => 'Ejemplo.jpg',
@@ -1361,7 +1359,6 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'changepassword'                => 'Cambiar contraseña',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Previsualizar',
-'prefs-math'                    => 'Fórmulas',
 'datedefault'                   => 'Sin preferencia',
 'prefs-datetime'                => 'Fecha y hora',
 'prefs-personal'                => 'Perfil de usuario',
@@ -2948,25 +2945,6 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Moderna',
 'skinname-vector'      => 'Vector',
-
-# Math options
-'mw_math_png'    => 'Renderizar siempre PNG',
-'mw_math_simple' => 'HTML si es muy simple, si no, PNG',
-'mw_math_html'   => 'HTML si es posible, si no, PNG',
-'mw_math_source' => 'Dejar como TeX (para navegadores de texto)',
-'mw_math_modern' => 'Recomendado para navegadores modernos',
-'mw_math_mathml' => 'MathML',
-
-# Math errors
-'math_failure'          => 'No se pudo entender',
-'math_unknown_error'    => 'error desconocido',
-'math_unknown_function' => 'función desconocida',
-'math_lexing_error'     => 'error léxico',
-'math_syntax_error'     => 'error de sintaxis',
-'math_image_error'      => 'La conversión a PNG ha fallado; comprueba que latex, dvips, gs, y convert estén instalados correctamente',
-'math_bad_tmpdir'       => 'No se puede escribir o crear el directorio temporal de <em>math</em>',
-'math_bad_output'       => 'No se puede escribir o crear el directorio de salida de <em>math</em>',
-'math_notexvc'          => 'Falta el ejecutable de <strong>texvc</strong>. Por favor, lea <em>math/README</em> para configurarlo.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como revisado',

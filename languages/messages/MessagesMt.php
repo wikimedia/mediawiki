@@ -767,8 +767,6 @@ Jista' jkun li int diġà biddilt il-password, jew għamilt rikjesta għal passw
 'extlink_tip'     => 'Link estern (ftakar il-prefiss http://)',
 'headline_sample' => "Kliem ta' l-ewwel vers",
 'headline_tip'    => "L-ewwel vers ta' livell 2",
-'math_sample'     => 'Daħħal formula hawnhekk',
-'math_tip'        => 'Formula matematika (LaTeX)',
 'nowiki_sample'   => 'Daħħal test mhux formatjat hawnhekk',
 'nowiki_tip'      => 'Tagħtix każ il-formatjar tal-wiki',
 'image_sample'    => 'Eżempju.jpg',
@@ -1198,7 +1196,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'changepassword'                => 'Ibdel il-password',
 'prefs-skin'                    => 'Aspett grafiku (skin)',
 'skin-preview'                  => 'dehra proviżorja',
-'prefs-math'                    => 'Formuli matematiċi',
 'datedefault'                   => 'L-ebda preferenza',
 'prefs-datetime'                => 'Data u ħin',
 'prefs-personal'                => 'Profil tal-utent',
@@ -2566,25 +2563,6 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Simple',
 'skinname-modern'      => 'Modern',
-
-# Math options
-'mw_math_png'    => "Uri dejjem f'PNG",
-'mw_math_simple' => 'HTML jekk sempliċi ħafna, inkella PNG',
-'mw_math_html'   => 'HTML jekk possibli inkella PNG',
-'mw_math_source' => "Ħallija bħala TeX (għal browsers ta' test)",
-'mw_math_modern' => 'Format rakkomandat għall-browsers moderni',
-'mw_math_mathml' => 'MathML jekk possibli (esperimentali)',
-
-# Math errors
-'math_failure'          => "Problema fil-''parser''",
-'math_unknown_error'    => 'Problema mhux magħrufa',
-'math_unknown_function' => 'funżjoni mhux magħrufa',
-'math_lexing_error'     => 'żball lessikali',
-'math_syntax_error'     => 'żball fis-sintassi',
-'math_image_error'      => "Konverżjoni għal PNG bla suċċess; verifika li huma installati tajjeb il-programmi segwenti: ''latex, dvips, gs, u convert''",
-'math_bad_tmpdir'       => "Impossibli tikteb jew toħloq direttorju temporanju għal ''math''",
-'math_bad_output'       => "Impossibli tikteb jew toħloq direttorju tal-''output'' tal-''math''",
-'math_notexvc'          => "Esekuzzjoni ''texvc'' nieqes; jekk jogħġbok konsultà ''math/README'' għal konfigurazzjoni.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marka l-modifiki bħalha verifikati',
