@@ -1209,8 +1209,6 @@ You may have already successfully changed your password or requested a new tempo
 'extlink_tip'     => 'External link (remember http:// prefix)',
 'headline_sample' => 'Headline text',
 'headline_tip'    => 'Level 2 headline',
-'math_sample'     => 'Insert formula here',
-'math_tip'        => 'Mathematical formula (LaTeX)',
 'nowiki_sample'   => 'Insert non-formatted text here',
 'nowiki_tip'      => 'Ignore wiki formatting',
 'image_sample'    => 'Example.jpg', # only translate this message to other languages if you have to change it
@@ -1762,7 +1760,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'changepassword'                => 'Change password',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Preview',
-'prefs-math'                    => 'Math',
 'datedefault'                   => 'No preference',
 'prefs-datetime'                => 'Date and time',
 'prefs-personal'                => 'User profile',
@@ -3584,25 +3581,6 @@ This is probably caused by a link to a blacklisted external site.',
 'skinname-simple'      => 'Simple', # only translate this message to other languages if you have to change it
 'skinname-modern'      => 'Modern', # only translate this message to other languages if you have to change it
 'skinname-vector'      => 'Vector', # only translate this message to other languages if you have to change it
-
-# Math options
-'mw_math_png'    => 'Always render PNG',
-'mw_math_simple' => 'HTML if very simple or else PNG',
-'mw_math_html'   => 'HTML if possible or else PNG',
-'mw_math_source' => 'Leave it as TeX (for text browsers)',
-'mw_math_modern' => 'Recommended for modern browsers',
-'mw_math_mathml' => 'MathML if possible (experimental)',
-
-# Math errors
-'math_failure'          => 'Failed to parse',
-'math_unknown_error'    => 'unknown error',
-'math_unknown_function' => 'unknown function',
-'math_lexing_error'     => 'lexing error',
-'math_syntax_error'     => 'syntax error',
-'math_image_error'      => 'PNG conversion failed; check for correct installation of latex and dvipng (or dvips + gs + convert)',
-'math_bad_tmpdir'       => 'Cannot write to or create math temp directory',
-'math_bad_output'       => 'Cannot write to or create math output directory',
-'math_notexvc'          => 'Missing texvc executable; please see math/README to configure.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
