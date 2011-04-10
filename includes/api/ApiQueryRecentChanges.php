@@ -158,8 +158,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
 					|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
 					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
-			)
-			{
+			) {
 				$this->dieUsageMsg( array( 'show' ) );
 			}
 
@@ -213,6 +212,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_deleted'
 		) );
 
+		$showRedirects = false;
 		/* Determine what properties we need to display. */
 		if ( !is_null( $params['prop'] ) ) {
 			$prop = array_flip( $params['prop'] );
@@ -241,17 +241,22 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( 'rc_log_type', $this->fld_loginfo );
 			$this->addFieldsIf( 'rc_log_action', $this->fld_loginfo );
 			$this->addFieldsIf( 'rc_params', $this->fld_loginfo );
-			if ( $this->fld_redirect || isset( $show['redirect'] ) || isset( $show['!redirect'] ) ) {
-				$this->addTables( 'page' );
-				$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
-				$this->addFields( 'page_is_redirect' );
-			}
+			$showRedirects = $this->fld_redirect || isset( $show['redirect'] ) || isset( $show['!redirect'] );
 		}
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rc_id=ts_rc_id' ) ) ) );
 			$this->addFields( 'ts_tags' );
+		}
+
+		if ( $params['toponly'] || $showRedirects ) {
+			$this->addTables( 'page' );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
+
+			if ( $params['toponly'] ) {
+				$this->addWhere( 'rc_this_oldid = page_latest' );
+			}
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
@@ -577,7 +582,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'new',
 					'log'
 				)
-			)
+			),
+			'toponly' => false,
 		);
 	}
 
@@ -614,6 +620,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'type' => 'Which types of changes to show',
 			'limit' => 'How many total changes to return',
 			'tag' => 'Only list changes tagged with this tag',
+			'toponly' => 'Only list changes which are the latest revision'
 		);
 	}
 
