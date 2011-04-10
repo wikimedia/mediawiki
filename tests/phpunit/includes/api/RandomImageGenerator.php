@@ -35,7 +35,6 @@ class RandomImageGenerator {
 	private $imageWriteMethod;
 
 	public function __construct( $options = array() ) {
-		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxHeight', 'circlesToDraw' ) as $property ) {
 			if ( isset( $options[$property] ) ) {
 				$this->$property = $options[$property];
@@ -79,6 +78,7 @@ class RandomImageGenerator {
 	 * @param $format (a typical extension like 'svg', 'jpg', etc.)
 	 */
 	function getImageWriteMethod( $format ) {
+		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		if ( $format === 'svg' ) { 
 			return 'writeSvg';
 		} else {
