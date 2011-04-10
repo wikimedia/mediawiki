@@ -576,6 +576,8 @@ class DatabaseSqlite extends DatabaseBase {
 			$s = preg_replace( '/\bauto_increment\b/i', 'AUTOINCREMENT', $s );
 			// No explicit options
 			$s = preg_replace( '/\)[^);]*(;?)\s*$/', ')\1', $s );
+			// AUTOINCREMENT should immedidately follow PRIMARY KEY
+			$s = preg_replace( '/primary key (.*?) autoincrement/i', 'PRIMARY KEY AUTOINCREMENT $1', $s );
 		} elseif ( preg_match( '/^\s*CREATE (\s*(?:UNIQUE|FULLTEXT)\s+)?INDEX/i', $s ) ) {
 			// No truncated indexes
 			$s = preg_replace( '/\(\d+\)/', '', $s );

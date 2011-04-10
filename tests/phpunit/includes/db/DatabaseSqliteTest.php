@@ -57,6 +57,13 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			'Table name changed'
 			);
 
+		$this->assertEquals( "CREATE TABLE foo ( foobar INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL );",
+			$this->replaceVars("CREATE TABLE foo ( foobar INT PRIMARY KEY NOT NULL AUTO_INCREMENT );" )
+			);
+		$this->assertEquals( "CREATE TABLE foo ( foobar INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL );",
+			$this->replaceVars("CREATE TABLE foo ( foobar INT PRIMARY KEY AUTO_INCREMENT NOT NULL );" )
+			);
+
 		$this->assertEquals( "CREATE TABLE enums( enum1 TEXT, myenum TEXT)",
 			$this->replaceVars( "CREATE TABLE enums( enum1 ENUM('A', 'B'), myenum ENUM ('X', 'Y'))" )
 			);
