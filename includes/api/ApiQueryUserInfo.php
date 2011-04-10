@@ -127,6 +127,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 
+		if ( isset( $this->prop['registrationdate'] ) ) {
+			$regDate = $wgUser->getRegistration();
+			if ( $regDate !== false ) {
+				$vals['registrationdate'] = wfTimestamp( TS_ISO_8601, $regDate );
+			}
+		}
+
 		if ( isset( $this->prop['acceptlang'] ) ) {
 			$langs = $wgRequest->getAcceptLang();
 			$acceptLang = array();
@@ -193,6 +200,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'email',
 					'realname',
 					'acceptlang',
+					'registrationdate'
 				)
 			)
 		);
@@ -214,6 +222,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  realname         - Adds the user\'s real name',
 				'  email            - Adds the user\'s email address and email authentication date',
 				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
+				'  registrationdate - Adds the user\'s registration date',
 			)
 		);
 	}

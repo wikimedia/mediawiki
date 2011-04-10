@@ -328,6 +328,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28368) add hint for multipart/form-data to api information of
   action=import&xml=
 * (bug 28391) action=feedwatchlist&allrev should be a bool
+* (bug 28364) add registration date to meta=userinfo
 
 === Languages updated in 1.18 ===
 
