@@ -3,8 +3,6 @@
 /**
  *  * Abstract class to support upload tests
  */
-require_once( 'ApiTestUser.php' );
-require_once( 'ApiTestCase.php' );
 
 abstract class ApiTestCaseUpload extends ApiTestCase {
 	/**
