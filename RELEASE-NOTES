@@ -325,6 +325,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28365) Added description for uiprop=preferencestoken in meta=userinfo
 * (bug 28394) Set forgotten parameters types in ApiUnblock
 * (bug 28395) Set forgotten parameters types in ApiParse
+* (bug 28368) add hint for multipart/form-data to api information of
+  action=import&xml=
+* (bug 28391) action=feedwatchlist&allrev should be a bool
 
 === Languages updated in 1.18 ===
 

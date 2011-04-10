@@ -171,7 +171,7 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 72,
 			),
-			'allrev' => null,
+			'allrev' => false,
 			'wlowner' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
@@ -200,7 +200,7 @@ class ApiFeedWatchlist extends ApiBase {
 	protected function getExamples() {
 		return array(
 			'api.php?action=feedwatchlist',
-			'api.php?action=feedwatchlist&allrev=allrev&linktodiffs=&hours=6'
+			'api.php?action=feedwatchlist&allrev=&linktodiffs=&hours=6'
 		);
 	}
 
