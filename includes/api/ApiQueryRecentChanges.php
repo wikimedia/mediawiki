@@ -620,7 +620,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'type' => 'Which types of changes to show',
 			'limit' => 'How many total changes to return',
 			'tag' => 'Only list changes tagged with this tag',
-			'toponly' => 'Only list changes which are the latest revision'
+			'toponly' => 'Only list changes which are the latest revision',
 		);
 	}
 
