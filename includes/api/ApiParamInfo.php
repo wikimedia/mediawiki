@@ -121,6 +121,26 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $paramDesc[$n] ) ) {
 				$a['description'] = implode( "\n", (array)$paramDesc[$n] );
 			}
+
+			//handle shorthand
+			if( !is_array( $p ) ) {
+				$p = array(
+					ApiBase::PARAM_DFLT => $p,
+				);
+			}
+
+			//handle missing type
+			if ( !isset( $p[ApiBase::PARAM_TYPE] ) ) {
+				$dflt = $p[ApiBase::PARAM_DFLT];
+				if ( is_bool( $dflt ) ) {
+					$p[ApiBase::PARAM_TYPE] = 'bool';
+				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
+					$p[ApiBase::PARAM_TYPE] = 'string';
+				} elseif ( is_int( $dflt ) ) {
+					$p[ApiBase::PARAM_TYPE] = 'integer';
+				}
+			}
+
 			if ( isset( $p[ApiBase::PARAM_DEPRECATED] ) && $p[ApiBase::PARAM_DEPRECATED] ) {
 				$a['deprecated'] = '';
 			}
@@ -128,23 +148,17 @@ class ApiParamInfo extends ApiBase {
 				$a['required'] = '';
 			}
 
-			if ( !is_array( $p ) ) {
-				if ( is_bool( $p ) ) {
-					$a['type'] = 'bool';
-					$a['default'] = ( $p ? 'true' : 'false' );
-				} elseif ( is_string( $p ) || is_null( $p ) ) {
-					$a['type'] = 'string';
-					$a['default'] = strval( $p );
-				} elseif ( is_int( $p ) ) {
-					$a['type'] = 'integer';
-					$a['default'] = intval( $p );
-				}
-				$retval['parameters'][] = $a;
-				continue;
-			}
-
 			if ( isset( $p[ApiBase::PARAM_DFLT] ) ) {
-				$a['default'] = $p[ApiBase::PARAM_DFLT];
+				$type = $p[ApiBase::PARAM_TYPE];
+				if( $type === 'bool' ) {
+					$a['default'] = ( $p[ApiBase::PARAM_DFLT] ? 'true' : 'false' );
+				} elseif( $type === 'string' ) {
+					$a['default'] = strval( $p[ApiBase::PARAM_DFLT] );
+				} elseif( $type === 'integer' ) {
+					$a['default'] = intval( $p[ApiBase::PARAM_DFLT] );
+				} else {
+					$a['default'] = $p[ApiBase::PARAM_DFLT];
+				}
 			}
 			if ( isset( $p[ApiBase::PARAM_ISMULTI] ) && $p[ApiBase::PARAM_ISMULTI] ) {
 				$a['multi'] = '';

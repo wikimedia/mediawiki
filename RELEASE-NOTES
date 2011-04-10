@@ -329,6 +329,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   action=import&xml=
 * (bug 28391) action=feedwatchlist&allrev should be a bool
 * (bug 28364) add registration date to meta=userinfo
+* (bug 28254) action=paraminfo: Extract type from PARAM_DFLT if
+  PARAM_TYPE is not set
 
 === Languages updated in 1.18 ===
 
