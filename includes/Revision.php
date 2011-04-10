@@ -607,6 +607,7 @@ class Revision {
 	 * @return String
 	 */
 	public function revText() {
+		wfDeprecated();
 		return $this->getText( self::FOR_THIS_USER );
 	}
 
