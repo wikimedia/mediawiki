@@ -758,7 +758,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	/**
 	 * Get the Database object in use
 	 *
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	public function getDatabase() {
 		return $this->mDb;

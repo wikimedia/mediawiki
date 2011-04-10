@@ -333,6 +333,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   PARAM_TYPE is not set
 * (bug 27712) add parent_id to list=deletedrevs
 * (bug 28455) Add 'toponly' to recentchanges API module
+* (bug 26873) API: Add 'toponly' filter in usercontribs module
 
 === Languages updated in 1.18 ===
 
