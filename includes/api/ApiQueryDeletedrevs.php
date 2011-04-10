@@ -50,6 +50,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
+		$fld_parentid = isset( $prop['parentid'] );
 		$fld_revid = isset( $prop['revid'] );
 		$fld_user = isset( $prop['user'] );
 		$fld_userid = isset( $prop['userid'] );
@@ -82,6 +83,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addTables( 'archive' );
 		$this->addWhere( 'ar_deleted = 0' );
 		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp' ) );
+
+		if ( $fld_parentid ) {
+			$this->addFields( 'ar_parent_id' );
+		}
 		if ( $fld_revid ) {
 			$this->addFields( 'ar_rev_id' );
 		}
@@ -203,6 +208,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_revid ) {
 				$rev['revid'] = intval( $row->ar_rev_id );
 			}
+			if ( $fld_parentid ) {
+				$rev['parentid'] = intval( $row->ar_parent_id );
+			}
 			if ( $fld_user ) {
 				$rev['user'] = $row->ar_user_text;
 			}
@@ -297,6 +305,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => 'user|comment',
 				ApiBase::PARAM_TYPE => array(
 					'revid',
+					'parentid',
 					'user',
 					'userid',
 					'comment',
@@ -322,6 +331,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'prop' => array(
 				'Which properties to get',
 				' revid          - Adds the revision ID of the deleted revision',
+				' parentid       - Adds the revision ID of the previous revision to the page',
 				' user           - Adds the user who made the revision',
 				' userid         - Adds the user ID whom made the revision',
 				' comment        - Adds the comment of the revision',

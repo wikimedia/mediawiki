@@ -331,6 +331,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28364) add registration date to meta=userinfo
 * (bug 28254) action=paraminfo: Extract type from PARAM_DFLT if
   PARAM_TYPE is not set
+* (bug 27712) add parent_id to list=deletedrevs
 
 === Languages updated in 1.18 ===
 
