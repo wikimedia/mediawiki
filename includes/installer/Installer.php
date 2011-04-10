@@ -610,7 +610,7 @@ abstract class Installer {
 			if ( $this->getDBInstaller( $name )->isCompiled() ) {
 				$compiledDBs[] = $name;
 			}
-			$allNames[] = wfMsg( 'config-type-' . $name );;
+			$allNames[] = wfMsg( 'config-type-' . $name );
 		}
 
 		$this->setVar( '_CompiledDBs', $compiledDBs );
@@ -1194,6 +1194,8 @@ abstract class Installer {
 		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
 		 */
 		global $wgAutoloadClasses;
+		$wgAutoloadClasses = array();
+		
 		require( "$IP/includes/DefaultSettings.php" );
 
 		foreach( $exts as $e ) {
