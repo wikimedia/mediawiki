@@ -17,7 +17,6 @@ class Article {
 	/**@{{
 	 * @private
 	 */
-	var $mComment = '';               // !<
 	var $mContent;                    // !<
 	var $mContentLoaded = false;      // !<
 	var $mCounter = -1;               // !< Not loaded
@@ -26,20 +25,18 @@ class Article {
 	var $mGoodAdjustment = 0;         // !<
 	var $mIsRedirect = false;         // !<
 	var $mLatest = false;             // !<
-	var $mMinorEdit;                  // !<
 	var $mOldId;                      // !<
 	var $mPreparedEdit = false;       // !< Title object if set
 	var $mRedirectedFrom = null;      // !< Title object if set
 	var $mRedirectTarget = null;      // !< Title object if set
 	var $mRedirectUrl = false;        // !<
 	var $mRevIdFetched = 0;           // !<
-	var $mRevision = null;            // !< Revision object if set
+	var $mLastRevision = null;		  // !< Latest revision if set
+	var $mRevision = null;            // !< Loaded revision object if set
 	var $mTimestamp = '';             // !<
 	var $mTitle;                      // !< Title object
 	var $mTotalAdjustment = 0;        // !<
 	var $mTouched = '19700101000000'; // !<
-	var $mUser = -1;                  // !< Not loaded
-	var $mUserText = '';              // !< username from Revision if set
 	var $mParserOptions;              // !< ParserOptions object
 	var $mParserOutput;               // !< ParserCache object if set
 	/**@}}*/
@@ -223,11 +220,11 @@ class Article {
 		$this->mDataLoaded    = false;
 		$this->mContentLoaded = false;
 
-		$this->mUser = $this->mCounter = -1; # Not loaded
+		$this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = null; # Title object if set
 		$this->mRedirectTarget = null; # Title object if set
-		$this->mUserText =
-		$this->mTimestamp = $this->mComment = '';
+		$this->mLastRevision = null; # Latest revision
+		$this->mTimestamp = '';
 		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
@@ -691,8 +688,8 @@ class Article {
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
 	protected function loadLastEdit() {
-		if ( -1 != $this->mUser ) {
-			return;
+		if ( $this->mLastRevision !== null ) {
+			return; // already loaded
 		}
 
 		# New or non-existent articles have no user information
@@ -702,7 +699,7 @@ class Article {
 		}
 
 		$revision = Revision::loadFromPageId( wfGetDB( DB_MASTER ), $id );
-		if ( !is_null( $revision ) ) {
+		if ( $revision ) {
 			$this->setLastEdit( $revision );
 		}
 	}
@@ -712,11 +709,7 @@ class Article {
 	 */
 	protected function setLastEdit( Revision $revision ) {
 		$this->mLastRevision = $revision;
-		$this->mUser = $revision->getUser();
-		$this->mUserText = $revision->getUserText();
 		$this->mTimestamp = $revision->getTimestamp();
-		$this->mComment = $revision->getComment();
-		$this->mMinorEdit = $revision->isMinor();
 	}
 
 	/**
@@ -727,32 +720,55 @@ class Article {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
-
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
 	/**
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
 	 * @return int user ID for the user that made the last article revision
 	 */
-	public function getUser() {
+	public function getUser( $audience = Revision::FOR_PUBLIC ) {
 		$this->loadLastEdit();
-		return $this->mUser;
+		if ( $this->mLastRevision ) {
+			return $this->mLastRevision->getUser( $audience );
+		} else {
+			return -1;
+		}
 	}
 
 	/**
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
 	 * @return string username of the user that made the last article revision
 	 */
-	public function getUserText() {
+	public function getUserText( $audience = Revision::FOR_PUBLIC ) {
 		$this->loadLastEdit();
-		return $this->mUserText;
+		if ( $this->mLastRevision ) {
+			return $this->mLastRevision->getUserText( $audience );
+		} else {
+			return '';
+		}
 	}
 
 	/**
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
 	 * @return string Comment stored for the last article revision
 	 */
-	public function getComment() {
+	public function getComment( $audience = Revision::FOR_PUBLIC ) {
 		$this->loadLastEdit();
-		return $this->mComment;
+		if ( $this->mLastRevision ) {
+			return $this->mLastRevision->getComment( $audience );
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -762,7 +778,11 @@ class Article {
 	 */
 	public function getMinorEdit() {
 		$this->loadLastEdit();
-		return $this->mMinorEdit;
+		if ( $this->mLastRevision ) {
+			return $this->mLastRevision->isMinor();
+		} else {
+			return false;
+		}
 	}
 
 	/**
