@@ -254,9 +254,9 @@ class SearchOracle extends SearchEngine {
 		//     ALTER SESSION SET CURRENT_SCHEMA = ...
 		// was used.
 		$dbw->query( "CALL ctx_ddl.sync_index(" . 
-			$dbw->addQuotes( $dbw->getDBname() . '.'.$wgDBprefix.'si_text_idx' ) . ")" );
+			$dbw->addQuotes( $dbw->getDBname() . '.' . trim( $dbw->tableName( 'si_text_idx' ),  '"' ) ) . ")" );
 		$dbw->query( "CALL ctx_ddl.sync_index(" . 
-			$dbw->addQuotes( $dbw->getDBname() . '.'.$wgDBprefix.'si_title_idx' ) . ")" );
+			$dbw->addQuotes( $dbw->getDBname() . '.' . trim( $dbw->tableName( 'si_title_idx' ),  '"' ) ) . ")" );
 	}
 
 	/**
