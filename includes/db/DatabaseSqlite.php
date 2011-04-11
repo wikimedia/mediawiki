@@ -130,19 +130,20 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns version of currently supported SQLite fulltext search module or false if none present.
 	 * @return String
 	 */
-	function getFulltextSearchModule() {
+	static function getFulltextSearchModule() {
 		static $cachedResult = null;
 		if ( $cachedResult !== null ) {
 			return $cachedResult;
 		}
 		$cachedResult = false;
 		$table = 'dummy_search_test';
-		$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
+		
+		$db = new DatabaseSqliteStandalone( ':memory:' );
 
-		if ( $this->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
-			$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
+		if ( $db->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
 			$cachedResult = 'FTS3';
 		}
+		$db->close();
 		return $cachedResult;
 	}
 
@@ -460,7 +461,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return string User-friendly database information
 	 */
 	public function getServerInfo() {
-		return wfMsg( $this->getFulltextSearchModule() ? 'sqlite-has-fts' : 'sqlite-no-fts', $this->getServerVersion() );
+		return wfMsg( self::getFulltextSearchModule() ? 'sqlite-has-fts' : 'sqlite-no-fts', $this->getServerVersion() );
 	}
 
 	/**

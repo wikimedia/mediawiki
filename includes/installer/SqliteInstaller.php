@@ -170,7 +170,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	public function setupSearchIndex( &$status ) {
 		global $IP;
 
-		$module = $this->db->getFulltextSearchModule();
+		$module = DatabaseSqlite::getFulltextSearchModule();
 		$fts3tTable = $this->db->checkForEnabledSearch();
 		if ( $fts3tTable &&  !$module ) {
 			$status->warning( 'config-sqlite-fts3-downgrade' );

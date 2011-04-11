@@ -50,11 +50,11 @@ class RebuildTextIndex extends Maintenance {
 
 		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'sqlite' ) {
-			if ( !$this->db->getFulltextSearchModule() ) {
-				$this->error( "Your version of SQLite module for PHP doesn't support full-text search (FTS3).\n" );
+			if ( !DatabaseSqlite::getFulltextSearchModule() ) {
+				$this->error( "Your version of SQLite module for PHP doesn't support full-text search (FTS3).\n", true );
 			}
 			if ( !$this->db->checkForEnabledSearch() ) {
-				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n" );
+				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n", true );
 			}
 		}
 
