@@ -345,14 +345,21 @@ class LinksUpdate {
 				$where = false;
 			}
 		}
+
+		// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
+		$lb = wfGetLBFactory()->newMainLB();
+		$dbw = $lb->getConnection( DB_MASTER );
+
 		if ( $where ) {
-			$this->mDb->delete( $table, $where, __METHOD__ );
+			$dbw->delete( $table, $where, __METHOD__ );
 		}
 		if ( count( $insertions ) ) {
-			$this->mDb->insert( $table, $insertions, __METHOD__, 'IGNORE' );
+			$dbw->insert( $table, $insertions, __METHOD__, 'IGNORE' );
 		}
-	}
 
+		$lb->commitMasterChanges();
+		$lb->closeAll();
+	}
 
 	/**
 	 * Get an array of pagelinks insertions for passing to the DB
