@@ -44,7 +44,16 @@
  */
 class RecentChange {
 	var $mAttribs = array(), $mExtra = array();
-	var $mTitle = false, $mMovedToTitle = false;
+
+	/**
+	 * @var Title
+	 */
+	var $mTitle = false;
+
+	/**
+	 * @var Title
+	 */
+	var $mMovedToTitle = false;
 	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
 
 	# Factory methods
@@ -328,10 +337,27 @@ class RecentChange {
 		return $dbw->affectedRows();
 	}
 
-	# Makes an entry in the database corresponding to an edit
+	/**
+	 * Makes an entry in the database corresponding to an edit
+	 *
+	 * @static
+	 * @param $timestamp
+	 * @param $title Title
+	 * @param $minor
+	 * @param $user User
+	 * @param $comment
+	 * @param $oldId
+	 * @param $lastTimestamp
+	 * @param $bot
+	 * @param $ip string
+	 * @param $oldSize int
+	 * @param $newSize int
+	 * @param $newId int
+	 * @param $patrol int
+	 * @return RecentChange
+	 */
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
-		$lastTimestamp, $bot, $ip='', $oldSize=0, $newSize=0, $newId=0, $patrol=0 )
-	{
+		$lastTimestamp, $bot, $ip='', $oldSize=0, $newSize=0, $newId=0, $patrol=0 ) {
 		if( !$ip ) {
 			$ip = wfGetIP();
 			if( !$ip ) $ip = '';
@@ -380,10 +406,22 @@ class RecentChange {
 	 * Makes an entry in the database corresponding to page creation
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 * @todo Document parameters and return
+	 *
+	 * @static
+	 * @param $timestamp
+	 * @param $title Title
+	 * @param $minor
+	 * @param $user User
+	 * @param $comment
+	 * @param $bot
+	 * @param $ip string
+	 * @param $size int
+	 * @param $newId int
+	 * @param $patrol int
+	 * @return RecentChange
 	 */
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
-		$ip='', $size=0, $newId=0, $patrol=0 )
-	{
+		$ip='', $size=0, $newId=0, $patrol=0 ) {
 		if( !$ip ) {
 			$ip = wfGetIP();
 			if( !$ip ) $ip = '';
@@ -429,8 +467,20 @@ class RecentChange {
 	}
 
 	# Makes an entry in the database corresponding to a rename
-	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
-	{
+
+	/**
+	 * @static
+	 * @param $timestamp
+	 * @param $oldTitle Title
+	 * @param $newTitle Title
+	 * @param $user User
+	 * @param $comment
+	 * @param $ip string
+	 * @param $overRedir bool
+	 * @return void
+	 */
+	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='',
+		$overRedir = false ) {
 		global $wgRequest;
 		if( !$ip ) {
 			$ip = wfGetIP();
@@ -496,13 +546,29 @@ class RecentChange {
 		return true;
 	}
 
+	/**
+	 * @static
+	 * @param $timestamp
+	 * @param $title Title
+	 * @param $user User
+	 * @param $actionComment
+	 * @param $ip string
+	 * @param $type
+	 * @param $action
+	 * @param $target Title
+	 * @param $logComment
+	 * @param $params
+	 * @param $newId int
+	 * @return RecentChange
+	 */
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip='',
-		$type, $action, $target, $logComment, $params, $newId=0 )
-	{
+		$type, $action, $target, $logComment, $params, $newId=0 ) {
 		global $wgRequest;
 		if( !$ip ) {
 			$ip = wfGetIP();
-			if( !$ip ) $ip = '';
+			if( !$ip ) {
+				$ip = '';
+			}
 		}
 
 		$rc = new RecentChange;
