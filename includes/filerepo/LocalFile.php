@@ -1508,8 +1508,12 @@ class LocalFileDeleteBatch {
 	}
 
 	function doDBDeletes() {
-		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
+
+		// https://bugzilla.wikimedia.org/show_bug.cgi?id=13921
+		// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
+		$lb = wfGetLBFactory()->newMainLB();
+		$dbw = $lb->getConnection( DB_MASTER );
 
 		if ( count( $oldRels ) ) {
 			$dbw->delete( 'oldimage',
@@ -1522,6 +1526,9 @@ class LocalFileDeleteBatch {
 		if ( $deleteCurrent ) {
 			$dbw->delete( 'image', array( 'img_name' => $this->file->getName() ), __METHOD__ );
 		}
+
+		$lb->commitMasterChanges();
+		$lb->closeAll();
 	}
 
 	/**
