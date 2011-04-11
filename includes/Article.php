@@ -4420,11 +4420,7 @@ class Article {
 	 */
 	public function updateCategoryCounts( $added, $deleted ) {
 		$ns = $this->mTitle->getNamespace();
-
-		// https://bugzilla.wikimedia.org/show_bug.cgi?id=13921
-		// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
-		$lb = wfGetLBFactory()->newMainLB();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		# First make sure the rows exist.  If one of the "deleted" ones didn't
 		# exist, we might legitimately not create it, but it's simpler to just
@@ -4476,9 +4472,6 @@ class Article {
 				__METHOD__
 			);
 		}
-
-		$lb->commitMasterChanges();
-		$lb->closeAll();
 	}
 
 	/**
