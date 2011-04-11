@@ -2358,8 +2358,7 @@ class OutputPage {
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgOutputEncoding, $wgMimeType;
-		global $wgUseTrackbacks, $wgHtml5;
+		global $wgUseTrackbacks;
 
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );

@@ -60,7 +60,7 @@ class RefreshLinks extends Maintenance {
 	 */
 	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false,
 						$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
-		global $wgUser, $wgParser, $wgUseTidy;
+		global $wgParser, $wgUseTidy;
 
 		$reportingInterval = 100;
 		$dbr = wfGetDB( DB_SLAVE );
