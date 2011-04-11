@@ -24,13 +24,11 @@ class LanguageKaa extends Language {
 	 *
 	 */
 	function ucfirst ( $string ) {
-		if ( $string[0] == 'i' ) {
-			$string = 'İ' . substr( $string, 1 );
+		if ( substr( $string, 0, 1 ) === 'i' ) {
+			return 'İ' . substr( $string, 1 );
 		} else {
-			$string = parent::ucfirst( $string );
+			return parent::ucfirst( $string );
 		}
-		return $string;
-
 	}
 
 	/*
@@ -38,12 +36,11 @@ class LanguageKaa extends Language {
 	 *
 	 */
 	function lcfirst ( $string ) {
-		if ( $string[0] == 'I' ) {
-			$string = 'ı' . substr( $string, 1 );
+		if ( substr( $string, 0, 1 ) === 'I' ) {
+			return 'ı' . substr( $string, 1 );
 		} else {
-			$string = parent::lcfirst( $string );
+			return parent::lcfirst( $string );
 		}
-		return $string;
 	}
 
 	/**

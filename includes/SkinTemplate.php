@@ -1461,15 +1461,16 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';
 		}
-		if ( !empty( $this->data['nav_urls']['permalink']['href'] ) ) {
+		if( $this->data['nav_urls']['permalink'] ) {
 			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];
-			$toolbox['permalink']['id'] = 't-permalink';
-		} elseif ( $this->data['nav_urls']['permalink']['href'] === '' ) {
-			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];
-			unset( $toolbox['permalink']['href'] );
-			$toolbox['ispermalink']['tooltiponly'] = true;
-			$toolbox['ispermalink']['id'] = 't-ispermalink';
-			$toolbox['ispermalink']['msg'] = 'permalink';
+			if( $toolbox['permalink']['href'] === '' ) {
+				unset( $toolbox['permalink']['href'] );
+				$toolbox['ispermalink']['tooltiponly'] = true;
+				$toolbox['ispermalink']['id'] = 't-ispermalink';
+				$toolbox['ispermalink']['msg'] = 'permalink';
+			} else {
+				$toolbox['permalink']['id'] = 't-permalink';
+			}
 		}
 		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
 		wfProfileOut( __METHOD__ );
