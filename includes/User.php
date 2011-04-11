@@ -1729,18 +1729,12 @@ class User {
 		if( $this->mId ) {
 			$this->mTouched = self::newTouchedTimestamp();
 
-			// https://bugzilla.wikimedia.org/show_bug.cgi?id=20468
-			// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
-			$lb = wfGetLBFactory()->newMainLB();
-			$dbw = $lb->getConnection( DB_MASTER );
-
+			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'user',
 				array( 'user_touched' => $dbw->timestamp( $this->mTouched ) ),
 				array( 'user_id' => $this->mId ),
 				__METHOD__ );
 
-			$lb->commitMasterChanges();
-			$lb->closeAll();
 			$this->clearSharedCache();
 		}
 	}
