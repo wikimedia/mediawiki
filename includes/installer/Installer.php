@@ -625,8 +625,7 @@ abstract class Installer {
 		// Check for FTS3 full-text search module
 		$sqlite = $this->getDBInstaller( 'sqlite' );
 		if ( $sqlite->isCompiled() ) {
-			$db = new DatabaseSqliteStandalone( ':memory:' );
-			if( $db->getFulltextSearchModule() != 'FTS3' ) {
+			if( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
 				$this->showMessage( 'config-no-fts3' );
 			}
 		}
