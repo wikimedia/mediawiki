@@ -697,16 +697,12 @@ CONTROL;
 		global $wgExternalDiffEngine;
 		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff.so' );
-			wfSuppressWarnings();
 			wfDl( 'php_wikidiff' );
-			wfRestoreWarnings();
 			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
 		}
 		else if ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
-			wfSuppressWarnings();
 			wfDl( 'wikidiff2' );
-			wfRestoreWarnings();
 			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
 		}
 	}
