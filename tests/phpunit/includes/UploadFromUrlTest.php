@@ -17,10 +17,6 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$wgAllowAsyncCopyUploads = true;
 		wfSetupSession();
 
-		ini_set( 'log_errors', 1 );
-		ini_set( 'error_reporting', 1 );
-		ini_set( 'display_errors', 1 );
-
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}

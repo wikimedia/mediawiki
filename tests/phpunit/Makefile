@@ -47,16 +47,16 @@ coverage:
 parser:
 	${PU} --group Parser
 noparser:
-	${PU} --exclude-group Parser,Broken
+	${PU} --exclude-group Parser,Broken,Stub
 
 safe:
-	${PU} --exclude-group Broken,Destructive
+	${PU} --exclude-group Broken,Destructive,Stub
 
 databaseless:
-	${PU} --exclude-group Broken,Destructive,Database
+	${PU} --exclude-group Broken,Destructive,Database,Stub
 
 database:
-	${PU} --exclude-group Broken,Destructive --group Database
+	${PU} --exclude-group Broken,Destructive,Stub --group Database
 
 list-groups:
 	${PU} --list-groups
