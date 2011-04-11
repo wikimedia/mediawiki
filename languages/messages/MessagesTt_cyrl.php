@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bulatbulat
  * @author Don Alessandro
  * @author Haqmar
  * @author Himiq Dzyu
@@ -16,6 +17,7 @@
  * @author Rinatus
  * @author Timming
  * @author Yildiz
+ * @author Zahidulla
  * @author Ерней
  * @author Ильнар
  * @author Рашат Якупов
@@ -908,6 +910,10 @@ $3 күрсәткән сәбәп: ''$2''",
 'rev-suppressed-unhide-diff'  => "Битнең кайсыдыр юрамасы '''яшерелгән'''.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Яшерүләр көндәлегендә] тулырак мәгълүмат табып була.
 Сез идарәче булу сәбәпле, [$1 яшерелгән юраманы карый аласыз]",
+'rev-deleted-diff-view'       => "Бу юрамалар чагыштыруының бер юрамасы '''бетерелгән'''.
+Сез идарәче буларак чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бетерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
+'rev-suppressed-diff-view'    => "Бу юрамалар чагыштыруының бер юрамасы '''яшерелгән'''.
+Сез идарәче буларак чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} яшерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
 'rev-delundel'                => 'күрсәтү/яшерү',
 'rev-showdeleted'             => 'күрсәтү',
 'revisiondelete'              => 'Битнең юрамасын бетерү / кайтару',
@@ -934,6 +940,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-restricted'        => 'чикләүләр идарәчеләргә дә кулланыла',
 'revdelete-hid'               => ' $1 яшерелгән',
 'revdelete-unhid'             => '$1 ачылган',
+'revdelete-otherreason'       => 'Башка/өстәмә сәбәп:',
 'revdelete-reasonotherlist'   => 'Башка сәбәп',
 'revdelete-edit-reasonlist'   => 'Сәбәпләр исемлеген үзгәртү',
 'revdelete-offender'          => 'Әлеге юрамалы битнең авторы:',
@@ -1210,6 +1217,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'recentchanges-legend-minor'        => '$1 — кече үзгәртү',
 'recentchanges-label-minor'         => 'Бу кече үзгәртү',
 'recentchanges-legend-bot'          => '$1 — ботның үзгәртүе',
+'recentchanges-label-bot'           => 'Бу үзгәртү бот белән эшләнгән иде',
 'rcnote'                            => 'Аста $4 $5 вакытынна соңгы {{PLURAL:$2|1|$2}} көн эчендә булган соңгы {{PLURAL:$1|1|$1}} үзгәртмә күрсәтелә:',
 'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom'                        => '$1 башлап яңа үзгәртүләрне күрсәт',
@@ -1785,7 +1793,7 @@ $1',
 'ipbexpiry'                  => 'Бетә:',
 'ipbreason'                  => 'Сәбәп:',
 'ipbreasonotherlist'         => 'Башка сәбәп',
-'ipbreason-dropdown'         => '↓ * Кысуның гадәттәге сәбәпләре
+'ipbreason-dropdown'         => '* Кысуның гадәттәге сәбәпләре
 ** Ялган мәгълүмат кертү
 ** Битләрнең эчтәлеген сөртү
 ** Тышкы сайтларга спам-сылтамалар
@@ -1804,7 +1812,7 @@ $1',
 'ipb-unblock'                => 'Кулланучы яки IP адресы тыюдан азат итү',
 'unblockip'                  => 'Кулланучыны тыюдан азат итү',
 'ipusubmit'                  => 'Бу тыюны туктату',
-'ipblocklist'                => 'Тыелган IP адреслары һәм кулланучы исемнәре',
+'ipblocklist'                => 'Тыелган кулланучылар',
 'ipblocklist-username'       => 'кулланучы исеме яки IP адресы:',
 'ipblocklist-submit'         => 'Эзләү',
 'infiniteblock'              => 'билгеле бер вакытсыз',

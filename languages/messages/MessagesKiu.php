@@ -139,24 +139,24 @@ href="" class="internal"}?{/a}) bıasne.',
 'category-article-count-limited' => '{{PLURAL:$1|Ana pele kategoriya peyêne dera|Ani $1 peli kategoriya peyêne derê}}.',
 'category-file-count'            => '{{PLURAL:$2|Na kategoriye de teyna ana dosya esta.|Na kategoriye de $2 ra pêro pia, {{PLURAL:$1|ana dosya esta|ani $1 dosyey estê.}}}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Ana dosya kategoriya peyêne dera|Ani $1 dosyey kategoriya peyêne derê}}.',
-'listingcontinuesabbrev'         => '↓ dewam',
+'listingcontinuesabbrev'         => 'dewam',
 'index-category'                 => 'Pelê endeksıni',
 'noindex-category'               => 'Pelê bêendeksıni',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "↓ '''MediaWiki fist ra ser, vıraziya.'''",
-'mainpagedocfooter' => "↓ Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
+'mainpagetext'      => "'''MediaWiki fist ra ser, vıraziya.'''",
+'mainpagedocfooter' => "Serba melumatê gurenaena ''wiki software''i [http://meta.wikimedia.org/wiki/Help:Contents İdarê karberi] de mıracaet ke.
 
 == Gamê verêni ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ayarunê vıraştene]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki de ÇZP]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki ra lista serbest-daena postey]",
 
-'about'         => '↓ Heqa',
-'article'       => '↓ Pela tedeesteyu',
-'newwindow'     => '↓ (zerrê pençerê dê newey de beno ra)',
+'about'         => 'Heqa',
+'article'       => 'Pela tedeesteyu',
+'newwindow'     => '(zerrê pençerê dê newey de beno ra)',
 'cancel'        => 'Texelnaene',
-'moredotdotdot' => '↓ Zêde...',
+'moredotdotdot' => 'Zêde...',
 'mypage'        => 'Pela mı',
 'mytalk'        => 'Pela mına hurênaişi',
 'anontalk'      => "Pela hurênaisê ni ''IP''y",

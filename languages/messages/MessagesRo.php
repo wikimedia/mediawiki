@@ -506,7 +506,7 @@ pe titlul secțiunii (JavaScript)',
 'create-this-page'  => 'Creați această pagină',
 'delete'            => 'Ștergere',
 'deletethispage'    => 'Șterge pagina',
-'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei editări|a $1 editări}}',
+'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei modificări|a $1 modificări}}',
 'protect'           => 'Protejare',
 'protect_change'    => 'schimbă protecția',
 'protectthispage'   => 'Protejați această pagină',
@@ -883,12 +883,13 @@ Parola pentru acest nou cont poate fi schimbată după autentificare din ''[[Spe
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulți utilizatori.
 Dacă sunteți un astfel de utilizator și credeți că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:UserLogin/signup|vă creați un cont]] sau să [[Special:UserLogin|vă autentificați]] pentru a evita confuzii cu alți utilizatori anonimi în viitor.''",
-'noarticletext'                    => 'În acest moment nu este niciun text în această pagină.
+'noarticletext'                    => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
-'noarticletext-nopermission'       => 'Nu este niciun text în această pagină.
-Puteți [[Special:Search/{{PAGENAME}}|căuta titlul paginii]] în alte pagini,
-sau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} să căutați în jurnale]</span>.',
+puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale] 
+sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
+'noarticletext-nopermission'       => 'Actualmente, această pagină este lipsită de conținut.
+Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
+sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
 'userpage-userdoesnotexist'        => 'Contul de utilizator "$1" nu este înregistrat. Verificați dacă doriți să creați/modificați această pagină.',
 'userpage-userdoesnotexist-view'   => 'Contul de utilizator "$1" nu este înregistrat.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
@@ -1276,9 +1277,9 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-rc'                      => 'Schimbări recente',
 'prefs-watchlist'               => 'Listă de urmărire',
 'prefs-watchlist-days'          => 'Numărul de zile care apar în lista paginilor urmărite:',
-'prefs-watchlist-days-max'      => '(maxim 7 zile)',
+'prefs-watchlist-days-max'      => 'Maxim 7 zile',
 'prefs-watchlist-edits'         => 'Numărul de editări care apar în lista extinsă a paginilor urmărite:',
-'prefs-watchlist-edits-max'     => '(număr maxim: 1000)',
+'prefs-watchlist-edits-max'     => 'Număr maxim: 1000',
 'prefs-watchlist-token'         => 'Jeton pentru lista de pagini urmărite:',
 'prefs-misc'                    => 'Parametri diverși',
 'prefs-resetpass'               => 'Modifică parola',
@@ -1537,7 +1538,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-label-unpatrolled'   => 'Această modificare nu a fost patrulată încă',
 'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $5, $4.",
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
-'rclistfrom'                        => 'Arată modificările începând de la $1',
+'rclistfrom'                        => 'Arată modificările începând cu $1',
 'rcshowhideminor'                   => '$1 modificările minore',
 'rcshowhidebots'                    => '$1 roboții',
 'rcshowhideliu'                     => '$1 utilizatorii autentificați',
@@ -1984,7 +1985,7 @@ Puteți limita vizualizarea selectând tipul jurnalului, numele de utilizator sa
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Următor',
 'allpagessubmit'    => 'Trimite',
-'allpagesprefix'    => 'Afișează paginile cu prefix:',
+'allpagesprefix'    => 'Se afișează paginile cu prefixul:',
 'allpagesbadtitle'  => 'Titlul paginii este nevalid sau conține un prefix inter-wiki. Este posibil să conțină unul sau mai multe caractere care nu pot fi folosite în titluri.',
 'allpages-bad-ns'   => '{{SITENAME}} nu are spațiul de nume „$1”.',
 
@@ -2317,7 +2318,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contribuțiile utilizatorului',
-'contributions-title' => 'Contribuțiile utilizatorului pentru $1',
+'contributions-title' => 'Contribuțiile utilizatorului $1',
 'mycontris'           => 'Contribuții',
 'contribsub2'         => 'Pentru $1 ($2)',
 'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
@@ -2406,7 +2407,7 @@ Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a rev
 'ipusubmit'                       => 'Elimină blocarea',
 'unblocked'                       => '[[User:$1|$1]] a fost deblocat',
 'unblocked-id'                    => 'Blocarea $1 a fost eliminată',
-'ipblocklist'                     => 'Lista adreselor IP și a conturilor blocate',
+'ipblocklist'                     => 'Utilizatori blocați',
 'ipblocklist-legend'              => 'Găsire utilizator blocat',
 'ipblocklist-username'            => 'Nume de utilizator sau adresă IP:',
 'ipblocklist-sh-userblocks'       => '$1 blocări de conturi',
@@ -2585,7 +2586,7 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 Alegeți un alt nume.',
 
 # Export
-'export'            => 'Exportă pagini',
+'export'            => 'Exportare de pagini',
 'exporttext'        => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML.
 Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
 
@@ -2643,8 +2644,8 @@ Vă rugăm să vizitați [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-namespace' => 'Transferă către spațiul de nume:',
 'import-upload-filename'     => 'Nume fișier:',
 'import-comment'             => 'Comentariu:',
-'importtext'                 => 'Te rog exportă fișierul din sursa wiki folosind [[Special:Export|utilitarul de exportare]].
-Salvează-l pe discul tău și trimite-l aici.',
+'importtext'                 => 'Vă rugăm să exportați fișierul din wikiul sursă folosind [[Special:Export|utilitarul de exportare]].
+Salvați-l pe calculatorul dumneavoastră și încărcați-l aici.',
 'importstart'                => 'Se importă paginile...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versiune|versiuni}}',
 'importnopages'              => 'Nu există pagini de importat.',

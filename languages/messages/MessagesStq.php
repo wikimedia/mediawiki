@@ -585,27 +585,22 @@ Du koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] k
 Du koast ju „E-Mail an dissen Benutser“-Funktion nit nutsje, soloange neen gultige E-Mail-Adresse in dien [[Special:Preferences|Benutserkonto-Ienstaalengen]] iendrain is, of disse Funktion foar die speerd wuude.
 Dien aktuelle IP-Adresse is $3, und ju Speer-ID is $5.
 Föich alle Informatione fon älke Anfroage bietou, ju du stoalst.',
-'autoblockedtext'                  => 'Dien IP-Adresse wuude automatisk speerd, deer ju fon n uur Benutser nutsed wuude, die truch $1 speerd wuude.
-As Gruund wuude ounroat:
+'autoblockedtext'                  => 'Dien IP-Adrässe wuud automatisk speerd,deer ju fon n uur Benutser benutsed wuude, die der fon $1 speerd wuude.
+As Gruund wuud anroat:
 
-:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logboukiendraach]</span>)
+:”$2"
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>N Leesetougriep is fääre muugelk,</b>
-bloot ju Beoarbaidenge un dät Moakjen fon Sieden in {{SITENAME}} wuude speerd.
-Skuul disse Ättergjucht anwiesd wäide, ofwäil bloot leesend tougriepen wuude, bäst du n (rooden) Link ap ne noch nit existente Siede foulged.</p>
+* Begin fon ju Speere: $8
+* Eende fon ju Speere: $6
+* Speere beträft: $7
+
 
 Du koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] kontaktierje, uum uur ju Speere tou diskutierjen.
 
-<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
-\'\'\'Reek jädden foulgjene Doate in älke Anfroage oun:\'\'\'
-*Speerenden Administrator: $1
-*Speergruund: $2
-*Begin fon ju Speere: $8
-*Speer-Eende: $6
-*IP-Adrässe: $3
-*Speere beträft: $7
-*Speer-ID: #$5
-</div>',
+Du koast ju „E-Mail an dissen Benutser“-Funktion nit nutsje, soloange neen gultige E-Mail-Adresse in dien [[Special:Preferences|Benutserkonto-Ienstaalengen]] iendrain is, of disse Funktion foar die speerd wuude.
+
+Dien aktuelle IP-Adresse is $3, und ju Speer-ID is $5.
+Föich alle Informatione fon älke Anfroage bietou, ju du stoalst.',
 'blockednoreason'                  => 'neen Begründenge ounroat',
 'blockedoriginalsource'            => "Die Wältext fon '''$1''' wäd hier anwiesd:",
 'blockededitsource'                => "Die Wältext '''fon dien Annerengen''' an '''$1''':",
@@ -1012,9 +1007,9 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'prefs-rc'                      => 'Bekoandreekenge fon "Lääste Annerengen"',
 'prefs-watchlist'               => 'Beooboachtengslieste',
 'prefs-watchlist-days'          => 'Antaal fon Deege, do ju Beooboachtengslieste standoardmäitich uumfoatje skäl:',
-'prefs-watchlist-days-max'      => '(Maximoal 7 Deege)',
+'prefs-watchlist-days-max'      => 'Maximoal 7 Deege',
 'prefs-watchlist-edits'         => 'Maximoale Antaal fon Iendraage in ju fergratterde Beooboachtengslieste:',
-'prefs-watchlist-edits-max'     => '(Maximoale Antaal: 1000)',
+'prefs-watchlist-edits-max'     => 'Maximoale Antaal: 1000',
 'prefs-watchlist-token'         => 'Beooboachtengslieste-Token:',
 'prefs-misc'                    => 'Ferskeedene Ienstaalengen',
 'prefs-resetpass'               => 'Paaswoud annerje',
@@ -2122,7 +2117,7 @@ Reek dän Gruund foar ju Speere oun.',
 'ipusubmit'                       => 'Disse Speerenge wächhoalje',
 'unblocked'                       => '[[User:$1|$1]] wuude fräiroat',
 'unblocked-id'                    => 'Speer-ID $1 wuude fräiroat',
-'ipblocklist'                     => 'Speerde IP-Adrässen un Benutsernoomen',
+'ipblocklist'                     => 'Speerde Benutsere',
 'ipblocklist-legend'              => 'Säik ätter n speerden Benutser',
 'ipblocklist-username'            => 'Benutsernoome of IP-Adrässe:',
 'ipblocklist-sh-userblocks'       => '$1 Benutserspeeren',

@@ -237,6 +237,7 @@ $messages = array(
 'portal'               => 'обьщє́ниꙗ съвѣ́тъ',
 'portal-url'           => 'Project:Обьщє́ниꙗ съвѣ́тъ',
 
+'youhavenewmessages'  => '$1 тєбѣ напьсанꙑ сѫтъ ($2)',
 'newmessageslink'     => 'но́ви напь́саниꙗ',
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
@@ -412,7 +413,7 @@ $messages = array(
 'rcshowhideminor'             => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'              => '$1 аѵтома́тъ',
 'rcshowhideliu'               => '$1 по́льꙃєватєлъ · ѩжє съꙁижьдє сѥ мѣ́сто · мѣ́нꙑ',
-'rcshowhideanons'             => '$1 анонѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
+'rcshowhideanons'             => '$1 анѡнѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
 'rcshowhidemine'              => '$1 моꙗ́ мѣ́нꙑ',
 'rclinks'                     => '$1 послѣдьн҄ь  мѣнъ · ѩжє $2 послѣдьни дьни створѥнꙑ сѫтъ · каꙁаниѥ<br />$3',
 'diff'                        => 'ра҃ꙁн',

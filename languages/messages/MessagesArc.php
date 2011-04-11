@@ -544,6 +544,8 @@ $messages = array(
 'notextmatches'                  => 'ܠܝܬ ܟܬܒܬܐ ܐܘܝܢܬܐ',
 'prevn'                          => '{{PLURAL:$1|$1}} ܩܕܝܡܐ',
 'nextn'                          => '{{PLURAL:$1|$1}} ܐܚܪܢܐ',
+'prevn-title'                    => '$1 {{PLURAL:$1|ܦܠܛܐ ܩܕܝܡܐ|ܦܠܛ̈ܐ ܩܕ̈ܝܡܐ}}',
+'nextn-title'                    => '$1 {{PLURAL:$1|ܦܠܛܐ ܐܚܪܢܐ|ܦܠܛ̈ܐ ܐܚܪ̈ܢܐ}}',
 'shown-title'                    => 'ܚܘܝ $1 {{PLURAL:$1|ܦܠܛܐ|ܦܠܛ̈ܐ}} ܠܟܠ ܦܐܬܐ',
 'viewprevnext'                   => 'ܚܘܝ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'              => 'ܓܒܝܬ̈ܐ ܕܒܘܨܝܐ',
@@ -922,7 +924,7 @@ $messages = array(
 'deadendpages'            => 'ܦܐܬܬ̈ܐ ܥܡ ܚܪܬܐ ܡܝܬܬܐ',
 'protectedpages'          => 'ܦܐܬܬ̈ܐ ܢܛܝܪ̈ܬܐ',
 'protectedtitles'         => 'ܟܘܢܝ̈ܐ ܢܛܝܪ̈ܐ',
-'protectedtitlestext'     => '↓ ܟܘܢܝ̈ܐ ܗܠܝܢ ܢܛܝܪ̈ܐ ܐܢܘܢ ܠܘܩܒܠ ܒܪܝܐ',
+'protectedtitlestext'     => 'ܟܘܢܝ̈ܐ ܗܠܝܢ ܢܛܝܪ̈ܐ ܐܢܘܢ ܠܘܩܒܠ ܒܪܝܐ',
 'listusers'               => 'ܡܟܬܒܘܬܐ ܕܗܕ̈ܡܐ',
 'listusers-editsonly'     => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܥܡ ܫܘܚܠܦ̈ܐ ܒܠܚܘܕ',
 'listusers-creationsort'  => 'ܛܟܣ ܐܝܟ ܣܝܩܘܡܐ ܕܒܪܝܐ',
@@ -1125,7 +1127,7 @@ $messages = array(
 'undelete-revision'         => 'ܫܦ ܬܢܝܬܐ ܕ $1 (ܒܣܝܩܘܡ $4, ܒ $5) ܒܝܕ $3:',
 'undelete-nodiff'           => 'ܠܝܬ ܬܢܝܬܐ ܥܬܝܩܬܐ.',
 'undeletebtn'               => 'ܐܦܢܝ',
-'undeletelink'              => '↓ ܚܙܝ/ܐܦܢܝ',
+'undeletelink'              => 'ܚܙܝ/ܐܦܢܝ',
 'undeleteviewlink'          => 'ܚܙܝ',
 'undeleteinvert'            => 'ܐܗܦܟ ܠܓܘܒܝܐ',
 'undeletecomment'           => 'ܥܠܬܐ:',
@@ -1180,7 +1182,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 ܨܘܝܒ̈ܐ',
 'whatlinkshere-hidelinks'  => '$1 ܐܣܘܪ̈ܐ',
 'whatlinkshere-hideimages' => '$1 ܐܣܘܪܐ ܕܨܘܪܬܐ',
-'whatlinkshere-filters'    => '↓ ܡܨܦܝܢܝܬ̈ܐ',
+'whatlinkshere-filters'    => 'ܡܨܦܝܢܝܬ̈ܐ',
 
 # Block/unblock
 'blockip'                    => 'ܚܪܘܡ ܡܦܠܚܢܐ',
@@ -1268,7 +1270,7 @@ Do you want to change the settings?',
 # Namespace 8 related
 'allmessages'               => 'ܐܓܪ̈ܬܐ ܕܛܟܣܐ',
 'allmessagesname'           => 'ܫܡܐ',
-'allmessages-filter-legend' => '↓ ܡܨܦܝܢܝܬܐ',
+'allmessages-filter-legend' => 'ܡܨܦܝܢܝܬܐ',
 'allmessages-filter-all'    => 'ܟܠ',
 'allmessages-prefix'        => 'ܡܨܦܝܢܝܬܐ ܐܝܟ ܫܘܪܝܐ',
 'allmessages-language'      => 'ܠܫܢܐ:',
@@ -1340,7 +1342,7 @@ $1',
 
 # Special:NewFiles
 'newimages'        => 'ܒܝܬ ܓܠܚܐ ܕܠܦܦ̈ܐ ܚܕܬ̈ܐ',
-'newimages-legend' => '↓ ܡܨܦܝܢܝܬܐ',
+'newimages-legend' => 'ܡܨܦܝܢܝܬܐ',
 'newimages-label'  => 'ܫܡܐ ܕܠܦܦܐ (ܐܘ ܡܢܬܐ ܡܢܗ)',
 'showhidebots'     => '($1 ܒܘܬ̈ܐ)',
 'noimages'         => 'ܠܝܬ ܡܕܡ ܠܚܙܝܐ.',
@@ -1497,7 +1499,7 @@ $1',
 'blankpage' => 'ܦܐܬܐ ܣܦܝܩܬܐ',
 
 # Special:Tags
-'tag-filter-submit' => '↓ ܡܨܦܝܢܝܬܐ',
+'tag-filter-submit' => 'ܡܨܦܝܢܝܬܐ',
 'tags-edit'         => 'ܫܚܠܦ',
 'tags-hitcount'     => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 

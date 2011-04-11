@@ -90,7 +90,7 @@ $messages = array(
 'dec'           => 'ქირ.',
 
 # Categories related messages
-'pagecategories'           => '{{ანდობური:$1|კატეგორია|კატეგორიეფ}}',
+'pagecategories'           => '{{PLURAL:$1|კატეგორია|კატეგორიეფი}}',
 'category_header'          => 'სტატიეფ "$1"  კატეგორიას',
 'subcategories'            => 'გიმენკატეგორიეფ',
 'category-media-header'    => 'მედია კატეგორიას "$1"',
@@ -98,7 +98,7 @@ $messages = array(
 'hidden-categories'        => '{{ბრელოფეფ:$1|ტყობინაფილ კატეგორია|ტყობინაფილ კატეგორიეფ}}',
 'hidden-category-category' => 'ფულირი კატეგორიეფი',
 'category-subcat-count'    => '{{PLURAL:$2|თე კატეგორია იკათუანს ხვალე ათე გიმენკატეგორიას.|თე კატეგორიას მოჩამილი რე $1 გიმენკატეგორია $2-შე.}}',
-'category-article-count'   => "{{ანდობურ:$2|ათე კატეგორია იკათუანს ხვალე გეყ'ვენჯ ხასილას.|გეყ'ვენჯ {{ანდობურ:$1|ხასილა რე|$1 ხასილეფ რე}} თე კატეგორიას, გვალო $2–შე.}}",
+'category-article-count'   => '{{PLURAL:$2|ათე კატეგორია იკათუანს ხვალე გეჸვენჯ ხასილას.|გეჸვენჯ {{PLURAL:$1|ხასილა რე|$1 ხასილეფ რე}} თე კატეგორიას, გვალო $2–შე.}}',
 'listingcontinuesabbrev'   => 'გინძარ.',
 
 'about'         => '-შენი',
@@ -314,12 +314,12 @@ $messages = array(
 თქვა ხოლო პიჯალას დუთმოდვანთ, ნამდა თე ტექსტი თქვან ნაჭარა რე, ვარა გინოღალირ რე ოირკოჩე დომენშე დო ვარა თიშ მანგურ დუდიშულ წყუშე. 
 '''ვა მიშეღათ ოავტორე ნებეფით თხილერ ნახანდი ავტორიშ ქოყ’იაშ უმშო!'''\"",
 'templatesused'                    => 'თე ხასილას გიმორინაფილ {{PLURAL:$1|თარგ|თარგეფ}}:',
-'templatesusedpreview'             => '{{ანდობურ:$1|თარგი|თარგეფ}} ნამუთ ოწმახ ძირაფაშ ხასილას რე გიმორინაფილ',
+'templatesusedpreview'             => '{{PLURAL:$1|თარგი|თარგეფ}} ნამუთ თე გჷწოთოლორაფას რე გიმორინაფილი',
 'template-protected'               => '(თხილერი)',
 'template-semiprotected'           => '(გვერდო თხილერ)',
-'hiddencategories'                 => 'თე ხასილა ოკათუ {{ანდობურ:$1|1 ტყობინაფილ კატეგორიას|$1 ტყობინაფილ კატეგორიეფს}}:',
+'hiddencategories'                 => 'თე ხასილა ოკათუ {{PLURAL:$1|1 ტყობინაფილ კატეგორიას|$1 ტყობინაფილ კატეგორიეფს}}:',
 'nocreatetext'                     => 'თე ხასილას ვა შილებე ახალ ხასილაშ გექიმინუა დორცხუაფილ ვარიაშ გეშა. თქვა შეგილებუნა კინორთა დო გექიმინელ ხასილაშ რედაქტირაფა, ვარა [[სპეციალურ:Userlogin|მიშულა დო ანგარიშიშ დორცხუაფა]]',
-'permissionserrorstext-withaction' => 'თქვა ვა გიღუნა $2–იშ ღოლამაშ ალობა თე გეყ’ვენჯი {{ანდობურ:$1|სამანჯელით|სამანჯელეფით}}:',
+'permissionserrorstext-withaction' => 'თქვა ვა გიღუნა $2–იშ ღოლამაშ ალობა თე გეჸვენჯი {{PLURAL:$1|სამანჯელით|სამანჯელეფით}}:',
 'recreate-moveddeleted-warn'       => "'''გართხილება: თქვა კინე ახალშო დუთმარცხუანთ ხასილას, ნამუქუთ ორდო ილასუნ'''
 
 რთხინთ, დეფირქათ, მისაღეფ რე დო ვარ თე ხასილაშ რედაქტირაფაშ გოგინძორაფა.
@@ -368,7 +368,7 @@ $messages = array(
 # Search results
 'searchresults'             => 'გორუაშ მოღალირობეფ',
 'searchresults-title'       => '"$1"–იშ გორუაშ მოღალირობეფ',
-'searchresulttext'          => '↓ {{SITENAME}}–იშ ოგორალო უმოს იმფორმაციოაშო  ქოძირით  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'          => '{{SITENAME}}–იშ ოგორალო უმოს იმფორმაციოაშო  ქოძირით  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'თქვა დოგორით \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ირი ხასილა, დოჭყაფილი "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ირი ხასილა, გინორცხილ "$1"-შა]])',
 'searchsubtitleinvalid'     => "თქვა გორუნდით '''$1'''",
 'notitlematches'            => 'ვა უხუჯანს ნამუთინი ხასილაშ ჯოხო',
@@ -377,7 +377,7 @@ $messages = array(
 'nextn'                     => 'უკულიან {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'ქოძირ  ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'            => 'Help:მოხვარა',
-'search-result-size'        => '$1 ({{ანდობურ:$2|1 ზიტყვა|$2 ზიტყვეფ}})',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 ზიტყვა|$2 ზიტყვეფ}})',
 'search-redirect'           => '(გინოწურაფა $1)',
 'search-section'            => '(სექცია $1)',
 'search-suggest'            => 'ათენას ხო ვა გორუნდით: $1',
@@ -412,7 +412,7 @@ $messages = array(
 'action-edit' => 'თე ხასილაშ რედაქტირაფა',
 
 # Recent changes
-'nchanges'                       => '$1 {{ანდობურ:$1|თირაფა|თირაფეფ}}',
+'nchanges'                       => '$1 {{PLURAL:$1|თირაფა|თირაფეფ}}',
 'recentchanges'                  => 'ასერდენ თირაფეფ',
 'recentchanges-legend'           => 'ასერდენ თირაფეფიშ ოფციეფ',
 'recentchanges-feed-description' => "ვიკიშ უახალაშ თირაფეფიშა თოლყ'უჯიშ მეყ'უნაფა თე არხის",
@@ -449,8 +449,8 @@ $messages = array(
 # Upload
 'upload'        => 'ფაილიშ ეშახარგუა',
 'uploadbtn'     => 'ფაილიშ გეთება',
-'uploadlogpage' => '↓ ეხარგუაშ ორეგისტრირებელ ჟურნალ',
-'uploadedimage' => '↓ ეხარგელი რე "[[$1]]"',
+'uploadlogpage' => 'ეხარგუაშ ორეგისტრირებელ ჟურნალ',
+'uploadedimage' => 'ეხარგელი რე "[[$1]]"',
 
 # Special:ListFiles
 'listfiles'      => 'სურათეფიშ ერკებულ',
@@ -486,7 +486,7 @@ $messages = array(
 'withoutinterwiki' => 'ხასილეფ ნინაშ რსხილეფიშ გარეშე',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{ანდობური:$1|ბაიტ|ბაიტეფ}}',
+'nbytes'                  => '$1 {{PLURAL:$1|ბაიტ|ბაიტეფ}}',
 'nlinks'                  => '$1 რსხილ',
 'nmembers'                => '$1 {{PLURAL:$1|მაკათურ|მაკათურეფ}}',
 'uncategorizedpages'      => 'უკატეგორიე ხასილეფ',
@@ -554,7 +554,7 @@ $messages = array(
 'watch'             => 'გაკონტროლი',
 'watchthispage'     => 'თე ხასილაშ კონტროლ',
 'unwatch'           => 'კონტროლიშ გოუქვაფა',
-'watchlist-details' => '{{ანდობურ:$1|$1 ხასილა|$1 ხასილეფ}} რე თქვან კონტროლიშ ერკებულს, სხუნუაშ ხასილეფიშ მეუკოროცხუო.',
+'watchlist-details' => '{{PLURAL:$1|$1 ხასილა|$1 ხასილეფ}} რე თქვან კონტროლიშ ერკებულს, სხუნუაშ ხასილეფიშ მეუკოროცხუო.',
 'wlshowlast'        => 'ეკონია $1 საათიშ $2 დღაშ $3 ძირაფა',
 'watchlist-options' => 'კონტროლიშ ერკებულიშ ოფციეფ',
 
@@ -653,7 +653,7 @@ $messages = array(
 'blockip'                  => 'მახვარებუშ ბლოკირაფა',
 'ipboptions'               => '2 საათი:2 hours,1 დღა:1 day,3 დღა:3 days,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,უხურგე ვადათ:infinite',
 'ipbotheroption'           => 'შხვა',
-'ipblocklist'              => 'ბლოკირ IP მიოწურაფუ დო მახვარებუშ ჯოხო',
+'ipblocklist'              => 'ბლოკირელ მახვარებუეფჷ',
 'ipblocklist-submit'       => 'გორუა',
 'blocklink'                => 'ბლოკირაფა',
 'unblocklink'              => 'ბლოკიშ მონწყუმა',

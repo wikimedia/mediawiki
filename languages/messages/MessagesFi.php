@@ -16,7 +16,9 @@
  * @author Mobe
  * @author Nedergard
  * @author Nike
+ * @author Ochs
  * @author Olli
+ * @author Pxos
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
@@ -890,10 +892,10 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-*'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
-*'''IE:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''
+*'''Mozilla, Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
 *'''Konqueror''': napsauta päivitä tai paina ''F5''
-*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'').",
+*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'')
+*'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''.",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -942,7 +944,7 @@ Alla on viimeisin lokitapahtuma:",
 'templatesusedpreview'             => 'Esikatselussa mukana {{PLURAL:$1|oleva malline|olevat mallineet}}:',
 'templatesusedsection'             => 'Tässä osiossa mukana {{PLURAL:$1|oleva malline|olevat mallineet}}:',
 'template-protected'               => '(suojattu)',
-'template-semiprotected'           => '(suojattu anonyymeiltä ja uusilta käyttäjiltä)',
+'template-semiprotected'           => '(suojattu kirjautumattomilta ja uusilta käyttäjiltä)',
 'hiddencategories'                 => 'Tämä sivu kuuluu {{PLURAL:$1|seuraavaan piilotettuun luokkaan|seuraaviin piilotettuihin luokkiin}}:',
 'edittools'                        => '<!-- Tässä oleva teksti näytetään muokkauskentän alla. -->',
 'nocreatetitle'                    => 'Sivujen luominen on rajoitettu',
@@ -951,7 +953,7 @@ Alla on viimeisin lokitapahtuma:",
 'sectioneditnotsupported-title'    => 'Osiomuokkaaminen ei ole tuettu.',
 'sectioneditnotsupported-text'     => 'Osiomuokkaaminen ei ole tuettu tällä sivulla.',
 'permissionserrors'                => 'Puutteelliset oikeudet',
-'permissionserrorstext'            => 'Sinulla ei ole oikeuksia suorittaa toimintoa {{PLURAL:$1|seuraavasta|seuraavista}} syistä johtuen:',
+'permissionserrorstext'            => 'Sinulla ei ole oikeutta suorittaa toimintoa {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
 'permissionserrorstext-withaction' => 'Sinulla ei ole lupaa {{lcfirst:$2}} {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
 'recreate-moveddeleted-warn'       => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
 
@@ -982,7 +984,7 @@ Nämä muuttujat on jätetty käsittelemättä.',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
-'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
+'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriitaisten muutosten vuoksi. Kumoa muutokset käsin.',
 'undo-norev'   => 'Muokkausta ei voitu perua, koska sitä ei ole olemassa tai se on poistettu.',
 'undo-summary' => 'Kumottu muokkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 
@@ -1256,9 +1258,9 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-rc'                      => 'Tuoreet muutokset',
 'prefs-watchlist'               => 'Tarkkailulista',
 'prefs-watchlist-days'          => 'Tarkkailulistan ajanjakso',
-'prefs-watchlist-days-max'      => '(enintään 7 päivää)',
+'prefs-watchlist-days-max'      => 'Enintään 7 päivää',
 'prefs-watchlist-edits'         => 'Tarkkailulistalla näytettävien muokkausten määrä',
-'prefs-watchlist-edits-max'     => '(enintään 1000)',
+'prefs-watchlist-edits-max'     => 'Enintään 1000',
 'prefs-watchlist-token'         => 'Tarkkailulistan avain',
 'prefs-misc'                    => 'Muut',
 'prefs-resetpass'               => 'Muuta salasana',
@@ -1277,7 +1279,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'contextchars'                  => 'Sisällön merkkien määrä riviä kohden',
 'stub-threshold'                => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',
 'recentchangesdays'             => 'Näytettävien päivien määrä tuoreissa muutoksissa',
-'recentchangesdays-max'         => '(enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'recentchangesdays-max'         => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'recentchangescount'            => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
 'prefs-help-watchlist-token'    => 'Tämän kentän täyttäminen salaisella avaimella tuottaa RSS-syötteen tarkkailulistastasi.
@@ -2241,7 +2243,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Nimiavaruus',
-'invert'         => 'Käännä nimiavaruusvalinta päinvastaiseksi',
+'invert'         => 'Käänteinen valinta',
 'blanknamespace' => '(sivut)',
 
 # Contributions
@@ -2287,7 +2289,7 @@ $1',
 'whatlinkshere-filters'    => 'Suotimet',
 
 # Block/unblock
-'blockip'                         => 'Aseta muokkausesto',
+'blockip'                         => 'Estä käyttäjä',
 'blockip-title'                   => 'Estä käyttäjä',
 'blockip-legend'                  => 'Estä käyttäjä',
 'blockiptext'                     => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen [[{{MediaWiki:Policy-url}}|pitää olla syy]], esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vapaamuotoisen vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”2014-08-29”.',
@@ -2332,7 +2334,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'ipusubmit'                       => 'Poista esto',
 'unblocked'                       => 'Käyttäjän [[User:$1|$1]] esto on poistettu',
 'unblocked-id'                    => 'Esto $1 on poistettu',
-'ipblocklist'                     => 'Estetyt IP-osoitteet ja käyttäjätunnukset',
+'ipblocklist'                     => 'Estetyt käyttäjät',
 'ipblocklist-legend'              => 'Haku',
 'ipblocklist-username'            => 'Käyttäjätunnus tai IP-osoite',
 'ipblocklist-sh-userblocks'       => '$1 käyttäjätunnusten estot',
@@ -2552,7 +2554,8 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
 'import-upload-filename'     => 'Tiedostonimi:',
 'import-comment'             => 'Syy',
-'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vienti]]-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
+'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vientityökalua]].
+Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'importstart'                => 'Tuodaan sivuja...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versiota}}',
 'importnopages'              => 'Ei tuotavia sivuja.',
@@ -2736,7 +2739,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 
 # Patrol log
 'patrol-log-page'      => 'Muutostentarkastusloki',
-'patrol-log-header'    => 'Tämä on loki tarkistetuista muutoksista.',
+'patrol-log-header'    => 'Tämä on loki tarkastetuista muutoksista.',
 'patrol-log-line'      => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
 'patrol-log-auto'      => '(automaattinen)',
 'patrol-log-diff'      => 'versio $1',
@@ -2748,7 +2751,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'filedeleteerror-long'            => 'Tiedoston poistaminen epäonnistui:
 
 $1',
-'filedelete-missing'              => 'Tiedosto $1 ei voitu poistaa, koska sitä ei ole olemassa.',
+'filedelete-missing'              => 'Tiedostoa $1 ei voi poistaa, koska sitä ei ole olemassa.',
 'filedelete-old-unregistered'     => 'Tiedoston version $1 ei ole tietokannassa.',
 'filedelete-current-unregistered' => 'Tiedosto $1 ei ole tietokannassa.',
 'filedelete-archive-read-only'    => 'Arkistohakemistoon ”$1” kirjoittaminen epäonnistui.',

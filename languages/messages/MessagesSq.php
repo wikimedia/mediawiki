@@ -1148,7 +1148,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-rc'                      => 'Ndryshime së fundmi',
 'prefs-watchlist'               => 'Lista mbikqyrëse',
 'prefs-watchlist-days'          => 'Numri i ditëve të treguara tek lista mbikqyrëse:',
-'prefs-watchlist-days-max'      => '(maksimum 7 ditë)',
+'prefs-watchlist-days-max'      => 'Maksimum 7 ditë',
 'prefs-watchlist-edits'         => 'Numri i redaktimeve të treguara tek lista mbikqyrëse e zgjeruar:',
 'prefs-watchlist-edits-max'     => '(numri maksimal: 1000)',
 'prefs-watchlist-token'         => 'Lista mbikqyrëse shenjë:',
