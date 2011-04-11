@@ -168,6 +168,7 @@ $wgAutoloadLocalClasses = array(
 	'MWException' => 'includes/Exception.php',
 	'MWFunction' => 'includes/MWFunction.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
+	'MWInit' => 'includes/Init.php',
 	'MWNamespace' => 'includes/Namespace.php',
 	'OldChangesList' => 'includes/ChangesList.php',
 	'OutputPage' => 'includes/OutputPage.php',
