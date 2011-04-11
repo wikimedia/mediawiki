@@ -211,8 +211,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
 'tog-oldsig'                  => 'Forhåndsvisning af nuværende signatur',
 'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
-'tog-externaleditor'          => 'Brug ekstern editor automatisk',
-'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk',
+'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
+'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-showjumplinks'           => 'Vis tilgængeligheds-henvisninger',
 'tog-uselivepreview'          => 'Brug automatisk forhåndsvisning (JavaScript) (eksperimentel)',
 'tog-forceeditsummary'        => 'Advar mig hvis jeg ikke udfylder beskrivelsesfeltet',
@@ -1167,9 +1167,9 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-rc'                      => 'Seneste ændringer',
 'prefs-watchlist'               => 'Overvågningsliste',
 'prefs-watchlist-days'          => 'Antal dage, som overvågningslisten standardmæssigt skal omfatte:',
-'prefs-watchlist-days-max'      => '(maks. 7 dage)',
+'prefs-watchlist-days-max'      => 'Maks. 7 dage',
 'prefs-watchlist-edits'         => 'Antal redigeringer der vises i udvidet overvågningsliste:',
-'prefs-watchlist-edits-max'     => '(maks. 1000)',
+'prefs-watchlist-edits-max'     => 'Maks. 1000',
 'prefs-watchlist-token'         => 'Overvågningslistenøgle:',
 'prefs-misc'                    => 'Forskelligt',
 'prefs-resetpass'               => 'Skift adgangskode',
@@ -1513,7 +1513,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'filename-tooshort'           => 'Filnavnet er for kort.',
 'filetype-banned'             => 'Denne type fil er ikke tilladt',
 'verification-error'          => 'Denne fil bestod ikke fil verifikationen.',
-'hookaborted'                 => '↓ Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.',
+'hookaborted'                 => 'Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.',
 'illegal-filename'            => 'Filnavnet er ikke tilladt.',
 'overwrite'                   => 'Overskrivning af en eksisterende fil er ikke tilladt.',
 'unknown-error'               => 'En ukendt fejl opstod.',
@@ -2311,7 +2311,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'ipusubmit'                       => 'Ophæv blokeringen',
 'unblocked'                       => '[[User:$1|$1]] blev frigivet',
 'unblocked-id'                    => 'Blokering $1 er blevet fjernet',
-'ipblocklist'                     => 'Blokerede IP-adresser og brugernavne',
+'ipblocklist'                     => 'Blokerede brugere',
 'ipblocklist-legend'              => 'Find en blokeret bruger',
 'ipblocklist-username'            => 'Brugernavn eller IP-adresse:',
 'ipblocklist-sh-userblocks'       => '$1 blokeringer af kontoer',
@@ -3083,7 +3083,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'confirmemail_oncreate'     => 'En bekræftelseskode er sendt til din e-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af e-mail-funktionerne indenfor Wikien.',
 'confirmemail_sendfailed'   => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
 
-Rückmeldung des Mailservers: $1',
+Svarbesked fra mailserveren: $1',
 'confirmemail_invalid'      => 'Ugyldig bekræftelseskode. Kodens gyldighed er muligvis udløbet.',
 'confirmemail_needlogin'    => 'Du skal $1 for at bekræfte e-mail-adressen.',
 'confirmemail_success'      => 'E-mail-adressen er nu bekræftet. Du kan nu logge på.',
@@ -3113,6 +3113,20 @@ Hvis denne konto *ikke* tilhører dig, bedes du åbne følgende link, for at afb
 $5
 
 Denne bekræftelseskode udløber $4',
+'confirmemail_body_set'     => 'En person, sandsynligvis dig, har fra IP-adressen $1,
+angivet denne e-mail-adresse til kontoen "$2" på {{SITENAME}}.
+
+For at bekræfte, at denne konto virkelig tilhører dig og genaktivere
+e-mail-funktioner på {{SITENAME}}, åbn dette link i din browser:
+
+$3
+
+Hvis kontoen ikke *ikke* tilhører dig, så følg dette link
+for at annullere e-mail-adressens bekræftelse:
+
+$5
+
+Denne bekræftelseskode vil udløbe den $4.',
 'confirmemail_invalidated'  => 'E-mail-bekræftelse afvist',
 'invalidateemail'           => 'Cancel e-mail confirmation',
 

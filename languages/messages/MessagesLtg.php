@@ -11,7 +11,7 @@
  * @author Gleb Borisov
  * @author Jureits
  */
- 
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Medeja',
 	NS_SPECIAL          => 'Seviškuo',
@@ -404,8 +404,12 @@ n = nasvareigs lobuojums.',
 # Preferences page
 'preferences'      => 'Īstatejumi',
 'mypreferences'    => 'Muni īstatejumi',
+'datedefault'      => 'Piec nūklusiejuma',
+'prefs-datetime'   => 'Data i laiks',
 'saveprefs'        => 'Izglobuot',
+'timezonelegend'   => 'Laika zona:',
 'prefs-namespaces' => 'Vuordu pluoti',
+'username'         => 'Slāgvuords:',
 'uid'              => 'Lītuotuoja ID:',
 'yourlanguage'     => 'Volūda:',
 'yourgender'       => 'Kuorta:',
@@ -417,6 +421,7 @@ n = nasvareigs lobuojums.',
 # Groups
 'group'       => 'Grupa:',
 'group-user'  => 'Lītuotuoji',
+'group-bot'   => 'Boti',
 'group-sysop' => 'Administratori',
 
 'group-user-member'  => 'lītuotuojs',

@@ -633,6 +633,7 @@ $2، $1',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|بایت|بایت}}',
+'specialpage-empty' => 'این صفحه دله هچّی دَنی‌یه',
 'unusedcategories'  => 'کـار نـأزو رج‌ئون',
 'unusedimages'      => 'کـار نأزو فایل‌ئون',
 'popularpages'      => 'خاسگار هدار صفحه‌ئون',
@@ -676,8 +677,8 @@ $2، $1',
 'emailpage'       => 'ئـی-مه‌یـل ای کـارور وه‌سه',
 
 # Watchlist
-'watchlist'            => 'مـه ده‌مـبـالـه‌ئون ره لـیـسـت',
-'mywatchlist'          => 'مـه ده‌مـبـال‌هـه‌کـاردن لـیـسـت',
+'watchlist'            => 'مه دمبال‌هاکرده‌‌ئون ِلیست',
+'mywatchlist'          => 'مه دمبال‌هاکرده‌‌ئون ِلیست',
 'watchnologin'         => 'سیستم ره دله نی ئه موئین',
 'watch'                => 'ده‌مـبال هـاکه‌ردن',
 'watchthispage'        => 'این صفحه ره دِمبال هاکارد‌ن',
@@ -694,7 +695,11 @@ $2، $1',
 'unwatching' => 'ده‌مـبـال نـه‌کـارده‌ن...',
 
 'enotif_newpagetext' => 'این صفحه نوبساته هسته',
-'created'            => 'وا بایه',
+'created'            => 'بساته بیّه',
+'enotif_subject'     => 'صفحه‌ی «$PAGETITLE» {{SITENAME}} به‌دست $PAGEEDITOR $CHANGEDORCREATED‌هسته.',
+'enotif_lastvisited' => 'بدی‌ین همه‌ی تغییرات از آخرین باری که سر بزونی وسّه $1 ره هارشین.',
+'enotif_lastdiff'    => 'هارشائن این تغییر وسّه $1 ره بزنین.',
+'enotif_anon_editor' => 'نشناسی‌یه کارور $1',
 
 # Delete
 'deletepage'     => 'صفحه پاک هاکردن',
@@ -724,7 +729,7 @@ $2، $1',
 # Contributions
 'contributions'       => 'کارور کایه‌رئون',
 'contributions-title' => 'کارور کایه‌رئون $1 وه‌سه',
-'mycontris'           => 'مـه کـایـه‌رئون',
+'mycontris'           => 'مه کایری‌ئون',
 'contribsub2'         => '$1 ($2) وه‌سه',
 'uctop'               => '(سه‌ر)',
 

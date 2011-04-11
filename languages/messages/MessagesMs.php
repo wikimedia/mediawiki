@@ -319,9 +319,9 @@ $messages = array(
 'faqpage'        => 'Project:Soalan Lazim',
 
 # Vector skin
-'vector-action-addsection'       => 'Tambah topik',
+'vector-action-addsection'       => 'Buka topik',
 'vector-action-delete'           => 'Hapuskan',
-'vector-action-move'             => 'Pindah',
+'vector-action-move'             => 'Pindahkan',
 'vector-action-protect'          => 'Lindungi',
 'vector-action-undelete'         => 'Batal hapus',
 'vector-action-unprotect'        => 'Nyahlindung',
@@ -1039,7 +1039,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergehistory-autocomment'         => 'Menggabungkan [[:$1]] dengan [[:$2]]',
 'mergehistory-comment'             => 'Menggabungkan [[:$1]] dengan [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Laman sasaran tidak boleh sama dengan laman sumber',
-'mergehistory-reason'              => 'Alasan:',
+'mergehistory-reason'              => 'Sebab:',
 
 # Merge log
 'mergelog'           => 'Log penggabungan',
@@ -1111,7 +1111,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'showingresultsheader'             => "{{PLURAL:$5|Keputusan '''$1''' daripada '''$3'''|Keputusan '''$1 - $2''' daripada '''$3'''}} untuk '''$4'''",
 'nonefound'                        => "'''Catatan''': Hanya sesetengah ruang nama dicari mengikut tetapan tersedia.
 Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbincangan, templat, dan lain-lain), atau gunakan ruang nama yang dikehendaki sebagai awalan.",
-'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan tersebut.',
+'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan.',
 'powersearch'                      => 'Cari',
 'powersearch-legend'               => 'Carian maju',
 'powersearch-ns'                   => 'Cari dalam ruang nama:',
@@ -1149,7 +1149,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-watchlist-days'          => 'Had bilangan hari dalam senarai pantau:',
 'prefs-watchlist-days-max'      => '(had 7 hari)',
 'prefs-watchlist-edits'         => 'Had maksimum perubahan untuk ditunjukkan dalam senarai pantau penuh:',
-'prefs-watchlist-edits-max'     => '(had: 1000)',
+'prefs-watchlist-edits-max'     => 'Had: 1000',
 'prefs-watchlist-token'         => 'Token senarai pantau:',
 'prefs-misc'                    => 'Pelbagai',
 'prefs-resetpass'               => 'Tukar kata laluan',
@@ -1806,7 +1806,7 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'newpages'                => 'Laman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Laman lapuk',
-'move'                    => 'Alih',
+'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan laman ini',
 'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman.
 Sila ambil perhatian bahawa mungkin terdapat tapak web lain yang memaut ke fail ini menggunakan URL langsung, dan masih disenaraikan di sini walapun berada dalam kegunaan aktif.',
@@ -2136,7 +2136,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Sunting',
-'restriction-move'   => 'Pindah',
+'restriction-move'   => 'Pindahkan',
 'restriction-create' => 'Cipta',
 'restriction-upload' => 'Muat naik',
 
@@ -2340,7 +2340,7 @@ Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatku
 'ipb_expiry_invalid'              => 'Waktu tamat tidak sah.',
 'ipb_expiry_temp'                 => 'Sekatan nama pengguna terselindung sepatutnya kekal.',
 'ipb_hide_invalid'                => 'Tidak dapat menahan akaun ini; ia mungkin mempunyai terlalu banyak suntingan.',
-'ipb_already_blocked'             => '"$1" telah pun disekat',
+'ipb_already_blocked'             => '"$1" sudah disekat',
 'ipb-needreblock'                 => '== Telah pun disekat ==
 $1 telah pun disekat Adakah anda mahu menukar tetapan sekatan pengguna ini?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Sekatan|Sekatan-sekatan}} lain',
@@ -2489,9 +2489,9 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 '''Catatan:''' Ciri eksport sejarah penuh laman melalui borang ini telah dimatikan atas sebab-sebab prestasi.",
 'export-submit'     => 'Eksport',
 'export-addcattext' => 'Tambah laman daripada kategori:',
-'export-addcat'     => 'Tambah',
+'export-addcat'     => 'Tambahkan',
 'export-addnstext'  => 'Tambah laman dari ruang nama:',
-'export-addns'      => 'Tambah',
+'export-addns'      => 'Tambahkan',
 'export-download'   => 'Simpan sebagai fail',
 'export-templates'  => 'Sertakan templat',
 'export-pagelinks'  => 'Sertakan laman-laman yang dipaut sedalam:',
@@ -3159,7 +3159,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'table_pager_limit'        => 'Papar $1 item setiap muka',
 'table_pager_limit_label'  => 'Bilangan item setiap laman:',
 'table_pager_limit_submit' => 'Pergi',
-'table_pager_empty'        => 'Tiada keputusan',
+'table_pager_empty'        => 'Tiada hasil',
 
 # Auto-summaries
 'autosumm-blank'   => 'Mengosongkan laman',
@@ -3353,7 +3353,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 # Special:DisableAccount
 'disableaccount'             => 'Lumpuhkan akaun pengguna',
 'disableaccount-user'        => 'Nama pengguna:',
-'disableaccount-reason'      => 'Alasan:',
+'disableaccount-reason'      => 'Sebab:',
 'disableaccount-confirm'     => "Lumpuhkan akaun pengguna ini.
 Pengguna ini tidak akan dapat log masuk, set semula kata laluannya, atau menerima makluman e-mel.
 Jika pengguna ini sedang log masuk di mana-mana, dia akan log keluar serta-merta.

@@ -328,6 +328,7 @@ Ny jean jarrood dty [[Special:Preferences|{{SITENAME}} hosheeaghtyn]] y arraghey
 'gotaccount'                 => "Vel coontys ayd hannah? '''$1'''.",
 'gotaccountlink'             => 'Log stiagh',
 'createaccountmail'          => 'er post-L',
+'createaccountreason'        => 'Fa:',
 'loginerror'                 => 'Marranys log stiagh',
 'createaccounterror'         => 'Cha dod shin croo coontys: $1',
 'loginsuccesstitle'          => "T'ou loggalt stiagh",
@@ -487,6 +488,7 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 'rev-deleted-user'     => '(ennym yn ymmydeyr scughit)',
 'rev-delundel'         => 'taishbyney/follaghey',
 'revdelete-hide-image' => 'Cummal y choadan y ollaghey',
+'revdelete-log'        => 'Fa:',
 'revdel-restore'       => 'ceaghley leayrid',
 'pagehist'             => 'Shennaghys y duillag',
 'deletedhist'          => 'Shennaghys scryssit',
@@ -501,6 +503,7 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 'mergehistory-submit'      => 'Aavriwnyssyn y chochiangley',
 'mergehistory-autocomment' => 'Ta [[:$1]] cochianglit stiagh ayns [[:$2]]',
 'mergehistory-comment'     => 'Ta [[:$1]] cochianglit stiagh ayns [[:$2]]: $3',
+'mergehistory-reason'      => 'Fa:',
 
 # Merge log
 'revertmerge' => 'Jee-vestey',
@@ -586,7 +589,7 @@ My t'ou uss son ronsaghey dagh cooid (as shen goaill stiagh duillagyn resooney, 
 'timezoneregion-indian'     => 'Y Keayn Injinagh',
 'timezoneregion-pacific'    => 'Y Keayn Sheealtagh',
 'prefs-searchoptions'       => 'Ronsaghey',
-'default'                   => 'loght',
+'default'                   => 'roie-chiartagh',
 'prefs-files'               => 'Coadanyn',
 'youremail'                 => 'Post-L:',
 'username'                  => "Dt'ennym ymmydeyr:",
@@ -732,7 +735,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'uploadnewversion-linktext' => "Laad neese lhieggan noa jeh'n choadan shoh",
 
 # File reversion
-'filerevert-comment' => 'Cohaggloo:',
+'filerevert-comment' => 'Fa:',
 
 # File deletion
 'filedelete'                  => 'Scryss $1',
@@ -943,7 +946,7 @@ Aaveaghey as cooney s\'odjey:
 'exblank'               => "va'n duillag follym",
 'delete-confirm'        => 'Scryss "$1"',
 'delete-legend'         => 'Scryss',
-'historywarning'        => 'Raaue: Ta shennaghys ec y duillag ta shiu er-chee scryssey magh:',
+'historywarning'        => 'Raaue: Ta shennaghys ec y duillag ta shiu er-chee scryssey magh, as mysh $1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}} er:',
 'confirmdeletetext'     => 'Ta shiu er-çhee scryssey magh duillag myrane lesh y shennaghys eck.<br />
 Feeraghey dy vel eh y çhalee ayd eh y yannoo, dy vel ny scanshyn toiggit ayd, as dy vel oo jannoo eh ayns coardailys rish [[{{MediaWiki:Policy-url}}|y pholasee]].',
 'actioncomplete'        => 'Obbraghey creaghnit',
@@ -1005,7 +1008,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'undeletebtn'            => 'Cur er ash',
 'undeletelink'           => 'jeeagh/cur er ash',
 'undeletereset'          => 'Aahoiaghey',
-'undeletecomment'        => 'Cohaggloo:',
+'undeletecomment'        => 'Fa:',
 'undeletedarticle'       => '"[[$1]]" aahoiaghit',
 'undelete-search-box'    => 'Duillagyn scrysst y ronsaghey',
 'undelete-search-submit' => 'Ronsaghey',
@@ -1076,7 +1079,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'ipbotheroption'           => 'elley',
 'ipbotherreason'           => 'Fa elley/tooilley:',
 'badipaddress'             => 'Enmys IP gyn vree',
-'ipblocklist'              => 'Rolley enmyssyn IP as enmyn ymmydeyr fo ghlass',
+'ipblocklist'              => 'Ymmydeyryn fo ghlass',
 'ipblocklist-username'     => 'Ennym ymmydeyr ny enmys IP:',
 'ipblocklist-submit'       => 'Ronsaghey',
 'blocklistline'            => '$1, $3 er ny g(h)lassey magh ec $2 ($4)',
@@ -1391,5 +1394,8 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 
 # Special:Tags
 'tags-edit' => 'reaghey',
+
+# Special:DisableAccount
+'disableaccount-reason' => 'Fa:',
 
 );

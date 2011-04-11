@@ -1431,9 +1431,9 @@ $1",
 'prefs-rc'                      => 'تغییرات اخیر',
 'prefs-watchlist'               => 'فهرست پی‌گیری‌ها',
 'prefs-watchlist-days'          => 'تعداد روزهایی که باید در فهرست پی‌گیری‌ها نمایش داده شود:',
-'prefs-watchlist-days-max'      => '(حداکثر ۷ روز)',
+'prefs-watchlist-days-max'      => 'حداکثر ۷ روز',
 'prefs-watchlist-edits'         => 'تعداد ویرایشهای نشان‌داده در فهرست پی‌گیری‌های گسترش‌یافته:',
-'prefs-watchlist-edits-max'     => '(حداکثر تعداد: ۱۰۰۰)',
+'prefs-watchlist-edits-max'     => 'حداکثر تعداد: ۱۰۰۰',
 'prefs-watchlist-token'         => 'نشانهٔ فهرست پی‌گیری:',
 'prefs-misc'                    => 'تنظیمات متفرقه',
 'prefs-resetpass'               => 'تغییر گذرواژه',
@@ -1999,7 +1999,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'unwatchedpages' => 'صفحه‌های پی‌گیری‌نشده',
 
 # List redirects
-'listredirects' => 'فهرست صفحه‌های تغییرمسیر',
+'listredirects' => 'فهرست صفحه‌های تغییر مسیر',
 
 # Unused templates
 'unusedtemplates'     => 'الگوهای استفاده‌نشده',
@@ -2012,7 +2012,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'randompage-nopages' => 'هیچ صفحه‌ای در این {{PLURAL:$2|فضای نام|فضاهای نام}} موجود نیست: $1',
 
 # Random redirect
-'randomredirect'         => 'تغییرمسیر تصادفی',
+'randomredirect'         => 'تغییر مسیر تصادفی',
 'randomredirect-nopages' => 'هیج صفحهٔ تغییر مسیری در فضای نام «$1» موجود نیست.',
 
 # Statistics
@@ -2479,7 +2479,8 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete'               => 'نشد احیا کرد. ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
-'undeletedpage'                => " '''$1 احیا شد.'''
+'undeletedpage'                => "'''$1 احیا شد'''
+
 برای دیدن سیاههٔ حذفها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
@@ -2596,7 +2597,7 @@ $1',
 'ipusubmit'                       => 'باز کردن دسترسی',
 'unblocked'                       => 'دسترسی [[User:$1|$1]] دوباره برقرار شد.',
 'unblocked-id'                    => 'قطع دسترسی شماره $1 خاتمه یافت',
-'ipblocklist'                     => 'نشانی‌های آی‌پی و نام‌های کاربری بسته‌شده',
+'ipblocklist'                     => 'کاربران بسته‌شده',
 'ipblocklist-legend'              => 'جستجوی کاربر بسته شده',
 'ipblocklist-username'            => 'نام کاربری یا نشانی آی‌پی',
 'ipblocklist-sh-userblocks'       => '$1 قطع دسترسی کاربر',
@@ -2842,7 +2843,8 @@ $1',
 'import-interwiki-namespace' => 'فضای نام مقصد:',
 'import-upload-filename'     => 'نام پرونده:',
 'import-comment'             => 'توضیح:',
-'importtext'                 => 'لطفاً پرونده را از منبع ویکی با کمک [[Special:Export|ابزار برون‌بری]] دریافت کنید، روی دستگاه‌تان ذخیره کنید و اینجا بارگذاری نمایید.',
+'importtext'                 => 'لطفاً پرونده را از ویکی منبع با کمک [[Special:Export|ابزار برون‌بری]] دریافت کنید.
+روی دستگاه‌تان ذخیره کنید و اینجا بارگذاری نمایید.',
 'importstart'                => 'در حال درون‌ریزی صفحه‌ها...',
 'import-revision-count'      => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
 'importnopages'              => 'صفحه‌ای برای درون‌ریزی نیست.',

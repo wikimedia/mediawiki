@@ -528,7 +528,7 @@ HTML markup cannot be used.
 'nstab-main'      => 'The name for the tab of the main namespace. Example: [[Example]]
 
 {{Identical|Page}}',
-'nstab-user'      => 'The name for the tab of the user namespace. Example: [[User:Example]]
+'nstab-user'      => 'The name for the tab of the user namespace. Example: [[User:Example]]. It is possible to use <nowiki>{{GENDER:{{BASEPAGENAME}}|male form|female form}}</nowiki> if needed.
 
 {{Identical|User page}}',
 'nstab-special'   => 'The name for the tab of the special namespace. Example: [[Special:Version]]',
