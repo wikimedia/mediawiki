@@ -320,7 +320,7 @@ $messages = array(
 'faqpage'        => 'Project:Soalan Lazim',
 
 # Vector skin
-'vector-action-addsection'       => 'Tambah topik',
+'vector-action-addsection'       => 'Buka topik',
 'vector-action-delete'           => 'Hapuskan',
 'vector-action-move'             => 'Pindahkan',
 'vector-action-protect'          => 'Lindungi',
@@ -351,7 +351,7 @@ $messages = array(
 'printableversion'  => 'Versi boleh cetak',
 'permalink'         => 'Pautan kekal',
 'print'             => 'Cetak',
-'view'              => 'Papar',
+'view'              => 'Paparkan',
 'edit'              => 'Sunting',
 'create'            => 'Cipta',
 'editthispage'      => 'Sunting laman ini',
@@ -1147,7 +1147,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'showingresultsheader'             => "{{PLURAL:$5|Keputusan '''$1''' daripada '''$3'''|Keputusan '''$1 - $2''' daripada '''$3'''}} untuk '''$4'''",
 'nonefound'                        => "'''Catatan''': Hanya sesetengah ruang nama dicari mengikut tetapan tersedia.
 Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbincangan, templat, dan lain-lain), atau gunakan ruang nama yang dikehendaki sebagai awalan.",
-'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan tersebut.',
+'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan.',
 'powersearch'                      => 'Cari',
 'powersearch-legend'               => 'Carian maju',
 'powersearch-ns'                   => 'Cari dalam ruang nama:',
@@ -3210,7 +3210,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'table_pager_limit'        => 'Papar $1 item setiap muka',
 'table_pager_limit_label'  => 'Bilangan item setiap laman:',
 'table_pager_limit_submit' => 'Pergi',
-'table_pager_empty'        => 'Tiada keputusan',
+'table_pager_empty'        => 'Tiada hasil',
 
 # Auto-summaries
 'autosumm-blank'   => 'Mengosongkan laman',

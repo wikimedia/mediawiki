@@ -1886,9 +1886,13 @@ Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 	'config-unicode-using-utf8' => "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
 	'config-unicode-using-intl' => "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
+	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
 	'config-ze1' => "'''Fazi diremed : [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mod] zo gweredekaet !'''
 An dibarzh-mañ zo kaoz da zrein euzhus gant MediaWiki.
 Ne c'hallit ket staliañ nag implijout MediaWiki keit ha m'eo gweredekaet an dibarzh-mañ.",
+	'config-xml-bad' => "Mankout a ra modulenn XML PHP.
+Ezhomm en deus MediaWiki eus arc'hwelioù zo eus ar vodulenn-se ha ne'z aio ket en-dro gant ar c'hefluniadur zo.
+M'emaoc'h gant Mandrake, stailhit pakad php-xml.",
 	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
 	'config-memory-bad' => "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.
 Re izel eo moarvat.
@@ -2053,6 +2057,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-pg-plpgsql' => 'O wiriañ ar yezh PL/pgSQL',
 	'config-pg-no-plpgsql' => "Ret eo deoc'h staliañ ar yezh PL/pgSQL en diaz roadennoù $1",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
+	'config-install-user-alreadyexists' => 'An implijer "$1" zo anezhañ dija',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",

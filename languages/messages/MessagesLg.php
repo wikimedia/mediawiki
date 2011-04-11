@@ -1151,7 +1151,7 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'blockip'                  => 'Gaana memba okuwandika',
 'ipboptions'               => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 'blockipsuccesssub'        => 'Memba agaaniddwa okuwandika',
-'ipblocklist'              => "Endagiriro n'amanya ag'abagaanidwa",
+'ipblocklist'              => 'Abagaanidwa',
 'blocklink'                => 'Ono agaanibwe okuwandika',
 'unblocklink'              => 'kkiriza memba okuwandika',
 'change-blocklink'         => 'kyusa okugaanibwa',

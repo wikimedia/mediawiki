@@ -2687,7 +2687,8 @@ Alle transwiki-laaie word opgeteken in die [[Special:Log/import|invoer-logboek]]
 'import-interwiki-namespace' => 'Doelnaamruimte:',
 'import-upload-filename'     => 'Lêernaam:',
 'import-comment'             => 'Opmerking:',
-'importtext'                 => 'Gebruik asseblief die [[Special:Export|eksport-funksie]] van die wiki waar die inligting vandaan kom, stoor die afvoer op u rekenaar, en laai dan hier op.',
+'importtext'                 => 'Gebruik die [[Special:Export|eksport-funksie]] van die wiki waar die inligting vandaan kom.
+Stoor die afvoer op u eie rekenaar, en laai dit hier op.',
 'importstart'                => 'Importeer bladsye...',
 'import-revision-count'      => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'importnopages'              => 'Geen bladsye om te importeer nie.',

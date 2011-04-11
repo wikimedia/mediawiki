@@ -2009,12 +2009,13 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 Devriant pletout pouentar vers una pâge que vat avouéc.<br />
 Una pâge est trètâ coment una pâge d’homonimia s’encllut (tot drêt ou ben rècursivament) yon des modèlos listâs dessus [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'            => 'Redirèccions dobles',
-'doubleredirectstext'        => 'Vê-que la lista de les pâges que redirijont vers des pâges que sont lor-mémes des pâges de redirèccion.
+'doubleredirects'                   => 'Redirèccions dobles',
+'doubleredirectstext'               => 'Vê-que la lista de les pâges que redirijont vers des pâges que sont lor-mémes des pâges de redirèccion.
 Châque entrâ contint des lims de vers la premiére et la seconda redirèccion, et pués la premiére legne de tèxto de la seconda pâge, cen que balye habituèlament la « veré » pâge ciba, de vers laquinta la premiére redirèccion devrêt redirigiér.
 Les entrâs <del>barrâs</del> ont étâ solucionâs.',
-'double-redirect-fixed-move' => 'Cela redirèccion, que la ciba [[$1]] at étâ renomâ, mène ora vers [[$2]].',
-'double-redirect-fixer'      => 'Corrèctor de redirèccion',
+'double-redirect-fixed-move'        => 'Cela redirèccion, que la ciba [[$1]] at étâ renomâ, mène ora vers [[$2]].',
+'double-redirect-fixed-maintenance' => 'Correge la redirèccion dobla de [[$1]] vers [[$2]].',
+'double-redirect-fixer'             => 'Corrèctor de redirèccion',
 
 'brokenredirects'        => 'Redirèccions câsses',
 'brokenredirectstext'    => 'Cetes redirèccions mènont vers des pâges pas ègzistentes :',
@@ -2478,9 +2479,10 @@ $1',
 'undelete-show-file-submit'    => 'Ouè',
 
 # Namespace form on various pages
-'namespace'      => 'Èspâço de noms :',
-'invert'         => 'Envèrsar lo chouèx',
-'blanknamespace' => '(Principâl)',
+'namespace'             => 'Èspâço de noms :',
+'invert'                => 'Envèrsar lo chouèx',
+'namespace_association' => 'Èspâço de noms associyê',
+'blanknamespace'        => '(Principâl)',
 
 # Contributions
 'contributions'       => 'Contribucions a l’utilisator',
@@ -2530,6 +2532,9 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
+'autoblockid'                     => 'Blocâjo ôtomatico #$1',
+'block'                           => 'Blocar l’utilisator',
+'unblock'                         => 'Dèblocar l’utilisator',
 'blockip'                         => 'Blocar l’utilisator',
 'blockip-title'                   => 'Blocar l’utilisator',
 'blockip-legend'                  => 'Blocar l’utilisator',
@@ -2559,6 +2564,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipbhidename'                     => 'Cachiér lo nom d’utilisator des changements et de les listes',
 'ipbwatchuser'                    => 'Siuvre les pâges utilisator et de discussion a ceti utilisator',
 'ipb-change-block'                => 'Tornar blocar ceti utilisator avouéc celos paramètres',
+'ipb-confirm'                     => 'Confirmar lo blocâjo',
 'badipaddress'                    => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'               => 'Blocâjo reussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] at étâ blocâ.<br />
@@ -2568,13 +2574,24 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb-unblock'                     => 'Dèblocar un compto utilisator ou ben una adrèce IP',
 'ipb-blocklist'                   => 'Vêde los blocâjos ègzistents',
 'ipb-blocklist-contribs'          => 'Contribucions por $1',
-'unblockip'                       => 'Dèblocar un utilisator ou ben una adrèce IP',
+'unblockip'                       => 'Dèblocar l’utilisator',
 'unblockiptext'                   => 'Utilisâd lo formulèro ce-desot por rètablir l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’utilisator.',
 'ipusubmit'                       => 'Enlevar ceti blocâjo',
 'unblocked'                       => '[[User:$1|$1]] at étâ dèblocâ',
+'unblocked-range'                 => '$1 at étâ dèblocâ',
 'unblocked-id'                    => 'Lo blocâjo $1 at étâ enlevâ',
+'blocklist'                       => 'Utilisators blocâs',
 'ipblocklist'                     => 'Utilisators blocâs',
 'ipblocklist-legend'              => 'Chèrchiér un utilisator blocâ',
+'blocklist-userblocks'            => 'Cachiér los blocâjos de comptos',
+'blocklist-tempblocks'            => 'Cachiér los blocâjos temporèros',
+'blocklist-addressblocks'         => 'Cachiér los blocâjos d’adrèces IP solètes',
+'blocklist-timestamp'             => 'Dâta et hora',
+'blocklist-target'                => 'Ciba',
+'blocklist-expiry'                => 'Dâta d’èxpiracion',
+'blocklist-by'                    => 'Administrator qu’at fêt lo blocâjo',
+'blocklist-params'                => 'Paramètres de blocâjo',
+'blocklist-reason'                => 'Rêson',
 'ipblocklist-submit'              => 'Rechèrchiér',
 'ipblocklist-localblock'          => 'Blocâjo local',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
@@ -2820,7 +2837,7 @@ Totes les accions d’importacion entèrvouiqui sont consignês dens lo [[Specia
 'import-upload-filename'     => 'Nom du fichiér :',
 'import-comment'             => 'Comentèro :',
 'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent son [[Special:Export|outil d’èxportacion]].
-Sôvâd-lo sur voutron disco dur et pués tèlèchargiéd-lo ique.',
+Sôvâd-lo sur voutron ordenator et pués tèlèchargiéd-lo ique.',
 'importstart'                => 'Importacion de les pâges...',
 'import-revision-count'      => '$1 vèrsion{{PLURAL:$1||s}}',
 'importnopages'              => 'Gins de pâge a importar.',
@@ -3033,21 +3050,24 @@ $1',
 'nextdiff'     => 'Changement aprés →',
 
 # Media information
-'mediawarning'         => "'''Atencion :''' ceti tipo de fichiér pôt contegnir de code mâlvelyent.
+'mediawarning'           => "'''Atencion :''' ceti tipo de fichiér pôt contegnir de code mâlvelyent.
 Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
-'imagemaxsize'         => "Format lo ples grant de les émâges :<br />''(por les pâges de dèscripcion d’émâges)''",
-'thumbsize'            => 'Talye de la figura :',
-'widthheightpage'      => '$1 × $2, $3 pâge{{PLURAL:$3||s}}',
-'file-info'            => 'Talye du fichiér : $1, tipo MIME : $2',
-'file-info-size'       => '$1 × $2 pixèls, talye du fichiér : $3, tipo MIME : $4',
-'file-nohires'         => '<small>Gins de rèsolucion ples hôta disponibla.</small>',
-'svg-long-desc'        => 'Fichiér SVG, rèsolucion de $1 × $2 pixèls, talye : $3',
-'show-big-image'       => 'Émâge en rèsolucion ples hôta',
-'file-info-gif-looped' => 'en boclla',
-'file-info-gif-frames' => '$1 émâge{{PLURAL:$1||s}}',
-'file-info-png-looped' => 'en boclla',
-'file-info-png-repeat' => 'jouyê $1 côp{{PLURAL:$1||s}}',
-'file-info-png-frames' => '$1 émâge{{PLURAL:$1||s}}',
+'imagemaxsize'           => "Format lo ples grant de les émâges :<br />''(por les pâges de dèscripcion d’émâges)''",
+'thumbsize'              => 'Talye de la figura :',
+'widthheightpage'        => '$1 × $2, $3 pâge{{PLURAL:$3||s}}',
+'file-info'              => 'Talye du fichiér : $1, tipo MIME : $2',
+'file-info-size'         => '$1 × $2 pixèls, talye du fichiér : $3, tipo MIME : $4',
+'file-nohires'           => '<small>Gins de rèsolucion ples hôta disponibla.</small>',
+'svg-long-desc'          => 'Fichiér SVG, rèsolucion de $1 × $2 pixèls, talye : $3',
+'show-big-image'         => 'Émâge en rèsolucion ples hôta',
+'show-big-image-preview' => '<small>Talye de ceti apèrçu : $1.</small>',
+'show-big-image-other'   => '<small>Ôtres rèsolucions : $1.</small>',
+'show-big-image-size'    => '$1 × $2 pixèls',
+'file-info-gif-looped'   => 'en boclla',
+'file-info-gif-frames'   => '$1 émâge{{PLURAL:$1||s}}',
+'file-info-png-looped'   => 'en boclla',
+'file-info-png-repeat'   => 'jouyê $1 côp{{PLURAL:$1||s}}',
+'file-info-png-frames'   => '$1 émâge{{PLURAL:$1||s}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des novéls fichiérs',
@@ -3203,6 +3223,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsareainformation'          => 'Nom de la zona GPS',
 'exif-gpsdatestamp'                => 'Dâta GPS',
 'exif-gpsdifferential'             => 'Corrèccion difèrencièla GPS',
+'exif-objectname'                  => 'Titro côrt',
 
 # EXIF attributes
 'exif-compression-1' => 'Pas comprèssâ',
@@ -3628,14 +3649,15 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Rechèrche des fichiérs en doblo',
-'fileduplicatesearch-summary'  => 'Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.',
-'fileduplicatesearch-legend'   => 'Rechèrche d’un doblo',
-'fileduplicatesearch-filename' => 'Nom du fichiér :',
-'fileduplicatesearch-submit'   => 'Rechèrchiér',
-'fileduplicatesearch-info'     => '$1 × $2 pixèls<br />Talye du fichiér : $3<br />Tipo MIME : $4',
-'fileduplicatesearch-result-1' => 'Lo fichiér « $1 » at gins de doblo pariér.',
-'fileduplicatesearch-result-n' => 'Lo fichiér « $1 » at $2 {{PLURAL:$2|doblo pariér|doblos pariérs}}.',
+'fileduplicatesearch'           => 'Rechèrche des fichiérs en doblo',
+'fileduplicatesearch-summary'   => 'Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.',
+'fileduplicatesearch-legend'    => 'Rechèrche d’un doblo',
+'fileduplicatesearch-filename'  => 'Nom du fichiér :',
+'fileduplicatesearch-submit'    => 'Rechèrchiér',
+'fileduplicatesearch-info'      => '$1 × $2 pixèls<br />Talye du fichiér : $3<br />Tipo MIME : $4',
+'fileduplicatesearch-result-1'  => 'Lo fichiér « $1 » at gins de doblo pariér.',
+'fileduplicatesearch-result-n'  => 'Lo fichiér « $1 » at $2 {{PLURAL:$2|doblo pariér|doblos pariérs}}.',
+'fileduplicatesearch-noresults' => 'Nion fichiér apelâ « $1 » at étâ trovâ.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pâges spèciâles',

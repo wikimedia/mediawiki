@@ -2884,7 +2884,7 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'import-interwiki-namespace' => 'Dun de Sigge emporteere en dat Appachtemeng:',
 'import-upload-filename'     => 'Dä Name fun dä Datei:',
 'import-comment'             => 'Jrond:',
-'importtext'                 => 'Dun de Daate met däm „[[Special:Export|Export]]“ vun do vun enem Wiki Exporteere, dobei dun et - etwa bei Dir om Rechner - avspeichere, un dann heh huhlade.',
+'importtext'                 => 'Dun de Daate met däm „[[Special:Export|Export]]“ vun doh vun enem Wiki Exporteere un - etwa bei Dir om Rechner - avspeichere, un dann heh wider huhlade.',
 'importstart'                => 'Ben Sigge am emporteere …',
 'import-revision-count'      => '({{PLURAL:$1|ein Version|$1 Versione|kein Version}})',
 'importnopages'              => 'Kein Sigg för ze Emporteere jefunge.',

@@ -1469,7 +1469,7 @@ $1",
 'prefs-watchlist-days'          => 'تعداد روزهایی که باید در فهرست پی‌گیری‌ها نمایش داده شود:',
 'prefs-watchlist-days-max'      => 'حداکثر ۷ روز',
 'prefs-watchlist-edits'         => 'تعداد ویرایشهای نشان‌داده در فهرست پی‌گیری‌های گسترش‌یافته:',
-'prefs-watchlist-edits-max'     => 'حداکثر تعداد: 1000',
+'prefs-watchlist-edits-max'     => 'حداکثر تعداد: ۱۰۰۰',
 'prefs-watchlist-token'         => 'نشانهٔ فهرست پی‌گیری:',
 'prefs-misc'                    => 'تنظیمات متفرقه',
 'prefs-resetpass'               => 'تغییر گذرواژه',
@@ -2056,7 +2056,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'unwatchedpages' => 'صفحه‌های پی‌گیری‌نشده',
 
 # List redirects
-'listredirects' => 'فهرست صفحه‌های تغییرمسیر',
+'listredirects' => 'فهرست صفحه‌های تغییر مسیر',
 
 # Unused templates
 'unusedtemplates'     => 'الگوهای استفاده‌نشده',
@@ -2069,7 +2069,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'randompage-nopages' => 'هیچ صفحه‌ای در این {{PLURAL:$2|فضای نام|فضاهای نام}} موجود نیست: $1',
 
 # Random redirect
-'randomredirect'         => 'تغییرمسیر تصادفی',
+'randomredirect'         => 'تغییر مسیر تصادفی',
 'randomredirect-nopages' => 'هیج صفحهٔ تغییر مسیری در فضای نام «$1» موجود نیست.',
 
 # Statistics
@@ -2538,7 +2538,8 @@ $NEWPAGE
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete'               => 'نشد احیا کرد. ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
-'undeletedpage'                => " '''$1 احیا شد.'''
+'undeletedpage'                => "'''$1 احیا شد'''
+
 برای دیدن سیاههٔ حذفها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
@@ -2649,7 +2650,7 @@ $1',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] بسته شد.<br />
 برای بررسی بسته‌شدن‌ها [[Special:IPBlockList|فهرست نشانی‌های آی‌پی بسته‌شده]] را ببینید.',
 'ipb-blockingself'                => 'شما در حال بستن خودتان هستید!  آیا مطمئن هستید که می‌خواهید چنین کاری انجام دهید؟',
-'ipb-confirmhideuser'             => 'شما در حال بستن یک کاربر با «پنهان‌سازی کاربر» فعال شده هستید.  این نام کاربر را از همهٔ فهرست‌ها و سیاهه‌ها مخفی می‌کند.  آیا شما مطمئن هستید که می‌خواهید آن را انجام دهید؟',
+'ipb-confirmhideuser'             => 'شما در حال بستن یک کاربر با «پنهان‌سازی کاربر» فعال شده هستید. این کار نام کاربر را از همهٔ فهرست‌ها و سیاهه‌ها مخفی می‌کند. آیا مطمئن هستید که می‌خواهید آن را انجام دهید؟',
 'ipb-edit-dropdown'               => 'دلایل قطع دسترسی',
 'ipb-unblock-addr'                => 'بازکردن $1',
 'ipb-unblock'                     => 'باز کردن نام کاربری یا نشانی آی‌پی',
@@ -2913,7 +2914,8 @@ $1',
 'import-interwiki-namespace' => 'فضای نام مقصد:',
 'import-upload-filename'     => 'نام پرونده:',
 'import-comment'             => 'توضیح:',
-'importtext'                 => 'لطفاً پرونده را از منبع ویکی با کمک [[Special:Export|ابزار برون‌بری]] دریافت کنید، روی دستگاه‌تان ذخیره کنید و اینجا بارگذاری نمایید.',
+'importtext'                 => 'لطفاً پرونده را از ویکی منبع با کمک [[Special:Export|ابزار برون‌بری]] دریافت کنید.
+روی دستگاه‌تان ذخیره کنید و اینجا بارگذاری نمایید.',
 'importstart'                => 'در حال درون‌ریزی صفحه‌ها...',
 'import-revision-count'      => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
 'importnopages'              => 'صفحه‌ای برای درون‌ریزی نیست.',
