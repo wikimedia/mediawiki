@@ -12,10 +12,11 @@
  * @return string
  */
 function wfGetForwardedFor() {
-	if( function_exists( 'apache_request_headers' ) ) {
+	$apacheHeaders = function_exists( 'apache_request_headers' ) ? apache_request_headers() : null;
+	if( is_array( $apacheHeaders ) ) {
 		// More reliable than $_SERVER due to case and -/_ folding
 		$set = array ();
-		foreach ( apache_request_headers() as $tempName => $tempValue ) {
+		foreach ( $apacheHeaders as $tempName => $tempValue ) {
 			$set[ strtoupper( $tempName ) ] = $tempValue;
 		}
 		$index = strtoupper ( 'X-Forwarded-For' );
