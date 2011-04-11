@@ -1836,7 +1836,7 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 'img-auth-accessdenied' => 'Accès refusé',
 'img-auth-nopathinfo'   => 'PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
-Il fonctionne peut-être en CGI et ne supporte pas img_atuh.
+Il fonctionne peut-être en CGI et ne supporte pas img_auth.
 Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
 'img-auth-badtitle'     => 'Impossible de construire un titre valide à partir de « $1 ».',

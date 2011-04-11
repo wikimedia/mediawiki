@@ -18,6 +18,7 @@
  * @author Nike
  * @author Ochs
  * @author Olli
+ * @author Pxos
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
@@ -733,7 +734,7 @@ Käyttäjätunnuksesi on luotu.
 'createaccounterror'         => 'Tunnuksen luonti ei onnistunut: $1',
 'nocookiesnew'               => 'Käyttäjä luotiin, mutta et ole kirjautunut sisään. {{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeistä. Kytke ne päälle, ja sitten kirjaudu sisään juuri luomallasi käyttäjänimellä ja salasanalla.',
 'nocookieslogin'             => '{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.',
-'nocookiesfornew'            => 'Käyttäjätiliä ei luotu, koska sen lähdettä ei kyetty varmistamaan. Varmista, että selaimessasi on käytössä evästeet, päivitä tämä sivu ja yritä uudelleen.',
+'nocookiesfornew'            => 'Käyttäjätunnusta ei luotu, koska sen lähdettä ei kyetty varmistamaan. Varmista, että selaimessasi on käytössä evästeet, päivitä tämä sivu ja yritä uudelleen.',
 'noname'                     => 'Et ole määritellyt kelvollista käyttäjänimeä.',
 'loginsuccesstitle'          => 'Sisäänkirjautuminen onnistui',
 'loginsuccess'               => "'''Olet kirjautunut käyttäjänä $1.'''",
@@ -965,7 +966,7 @@ Alla on viimeisin lokitapahtuma:",
 'templatesusedpreview'             => 'Esikatselussa mukana {{PLURAL:$1|oleva malline|olevat mallineet}}:',
 'templatesusedsection'             => 'Tässä osiossa mukana {{PLURAL:$1|oleva malline|olevat mallineet}}:',
 'template-protected'               => '(suojattu)',
-'template-semiprotected'           => '(suojattu anonyymeiltä ja uusilta käyttäjiltä)',
+'template-semiprotected'           => '(suojattu kirjautumattomilta ja uusilta käyttäjiltä)',
 'hiddencategories'                 => 'Tämä sivu kuuluu {{PLURAL:$1|seuraavaan piilotettuun luokkaan|seuraaviin piilotettuihin luokkiin}}:',
 'edittools'                        => '<!-- Tässä oleva teksti näytetään muokkauskentän alla. -->',
 'nocreatetitle'                    => 'Sivujen luominen on rajoitettu',
@@ -974,7 +975,7 @@ Alla on viimeisin lokitapahtuma:",
 'sectioneditnotsupported-title'    => 'Osiomuokkaaminen ei ole tuettu.',
 'sectioneditnotsupported-text'     => 'Osiomuokkaaminen ei ole tuettu tällä sivulla.',
 'permissionserrors'                => 'Puutteelliset oikeudet',
-'permissionserrorstext'            => 'Sinulla ei ole oikeuksia suorittaa toimintoa {{PLURAL:$1|seuraavasta|seuraavista}} syistä johtuen:',
+'permissionserrorstext'            => 'Sinulla ei ole oikeutta suorittaa toimintoa {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
 'permissionserrorstext-withaction' => 'Sinulla ei ole lupaa {{lcfirst:$2}} {{PLURAL:$1|seuraavasta syystä|seuraavista syistä}} johtuen:',
 'recreate-moveddeleted-warn'       => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
 
@@ -1005,7 +1006,7 @@ Nämä muuttujat on jätetty käsittelemättä.',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
-'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
+'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriitaisten muutosten vuoksi. Kumoa muutokset käsin.',
 'undo-norev'   => 'Muokkausta ei voitu perua, koska sitä ei ole olemassa tai se on poistettu.',
 'undo-summary' => 'Kumottu muokkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 
@@ -1398,7 +1399,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'prefs-diffs'                   => 'Erot',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'Antamasi sähköpostiosoite vaikuttaa kelvolliselta',
+'email-address-validity-valid'   => 'Sähköpostiosoite vaikuttaa kelvolliselta',
 'email-address-validity-invalid' => 'Virheellinen sähköpostiosoite',
 
 # User rights
@@ -1721,9 +1722,12 @@ $1',
 'upload-unknown-size'       => 'Tuntematon koko',
 'upload-http-error'         => 'HTTP-virhe: $1',
 
+# ZipDirectoryReader
+'zip-wrong-format' => 'Määritetty tiedosto ei ole ZIP-tiedosto.',
+
 # Special:UploadStash
-'uploadstash-summary'  => 'Tämä sivu antaa pääsyn tiedostoihin, jotka on tallennettu tai joiden tallennus on käynnissä, mutta joita ei ole vielä julkaistu tässä wikissä. Vain tiedostot tallentanut käyttäjä voi tarkastella näitä tiedostoja.',
-'uploadstash-badtoken' => 'Toiminnon suoritus epäonnistui. Tähän voi olla syynä muokkausvaltuuksien vanhentuminen. Ole hyvä ja yritä uudelleen.',
+'uploadstash-summary'  => 'Tämä sivu tarjoaa pääsyn tiedostoihin, jotka on tallennettu tai joiden tallennus on käynnissä, mutta joita ei ole vielä julkaistu tässä wikissä. Vain tiedostot tallentanut käyttäjä voi tarkastella näitä tiedostoja.',
+'uploadstash-badtoken' => 'Toiminnon suoritus epäonnistui. Tähän voi olla syynä muokkausvaltuuksien vanhentuminen. Yritä uudelleen.',
 'uploadstash-refresh'  => 'Päivitä tiedostoluettelo',
 
 # img_auth script messages
@@ -1923,7 +1927,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'nmembers'                => '$1 {{PLURAL:$1|jäsen|jäsentä}}',
 'nrevisions'              => '$1 {{PLURAL:$1|muutos|muutosta}}',
 'nviews'                  => '$1 {{PLURAL:$1|lataus|latausta}}',
-'nimagelinks'             => 'käytössä $1 {{PLURAL:$1|sivulla}}',
+'nimagelinks'             => 'Käytössä $1 {{PLURAL:$1|sivulla}}',
 'ntransclusions'          => 'käytössä $1 {{PLURAL:$1|sivulla}}',
 'specialpage-empty'       => 'Tämä sivu on tyhjä.',
 'lonelypages'             => 'Yksinäiset sivut',
@@ -2390,6 +2394,7 @@ Alla on viimeisin estolokin tapahtuma:',
 
 # Block/unblock
 'block'                           => 'Estä käyttäjä',
+'unblock'                         => 'Poista käyttäjän esto',
 'blockip'                         => 'Estä käyttäjä',
 'blockip-title'                   => 'Estä käyttäjä',
 'blockip-legend'                  => 'Estä käyttäjä',
@@ -2487,6 +2492,7 @@ Alla on ote häivytyslokista.',
 'ipb_already_blocked'             => '”$1” on jo estetty.',
 'ipb-needreblock'                 => '$1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Muu esto|Muut estot}}',
+'unblock-hideuser'                => 'Et voi poistaa estoa tältä käyttäjältä, kun käyttäjänimi on piilotettuna.',
 'ipb_cant_unblock'                => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
 'ipb_blocked_as_range'            => 'IP-osoite $1 on estetty välillisesti ja sen estoa ei voi poistaa. Se on estetty osana verkkoaluetta $2, jonka eston voi poistaa',
 'ip_range_invalid'                => 'Virheellinen IP-alue.',
@@ -2669,7 +2675,8 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
 'import-upload-filename'     => 'Tiedostonimi:',
 'import-comment'             => 'Syy',
-'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vienti]]-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
+'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vientityökalua]].
+Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'importstart'                => 'Tuodaan sivuja...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versiota}}',
 'importnopages'              => 'Ei tuotavia sivuja.',
@@ -2837,7 +2844,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 
 # Patrol log
 'patrol-log-page'      => 'Muutostentarkastusloki',
-'patrol-log-header'    => 'Tämä on loki tarkistetuista muutoksista.',
+'patrol-log-header'    => 'Tämä on loki tarkastetuista muutoksista.',
 'patrol-log-line'      => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
 'patrol-log-auto'      => '(automaattinen)',
 'patrol-log-diff'      => 'versio $1',
@@ -3468,11 +3475,11 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'disableaccount'             => 'Käyttäjätunnuksen poistaminen käytöstä',
 'disableaccount-user'        => 'Käyttäjätunnus',
 'disableaccount-reason'      => 'Syy',
-'disableaccount-confirm'     => "Poista tämä käyttäjätili.
+'disableaccount-confirm'     => "Poista käytöstä tämä käyttäjätunnus.
 Käyttäjä ei pysty kirjautumaan sisään, pyytämään uutta salasanaa tai vastaanottamaan sähköposti-ilmoituksia. 
-Jos käyttäjä on kirjautuneena sisään jonnekin, käyttäjä kirjataan ulos välittömästi.
-''Huomaa, että tilin käytöstä poistamisen peruminen ei ole mahdollista ilman MediaWiki-alustaan käsiksi pääsevän järjestelmänvalvojan toimia.''",
-'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tilin.',
+Jos käyttäjä on tällä hetkellä sisäänkirjautuneena, käyttäjä kirjataan ulos välittömästi.
+''Huomaa, että tunnuksen käytöstä poistamisen peruminen ei ole mahdollista ilman järjestelmänvalvojan toimia.''",
+'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tunnuksen.',
 'disableaccount-nosuchuser'  => 'Käyttäjätunnusta ”$1” ei ole olemassa.',
 'disableaccount-success'     => "Käyttäjätunnus ''$1'' on poistettu käytöstä pysyvästi.",
 'disableaccount-logentry'    => 'poisti pysyvästi käytöstä käyttäjätunnuksen [[$1]]',

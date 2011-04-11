@@ -1644,6 +1644,10 @@ E kann net op d'Sécherheet nogekuckt ginn.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zougang refuséiert',
+'img-auth-nopathinfo'   => 'PATH_INFO feelt.
+Äre Server ass net agestallt fir déi Informatioun weiderzeginn.
+Et kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.
+Kuckt http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
 'img-auth-badtitle'     => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
 'img-auth-nologinnWL'   => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
