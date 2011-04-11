@@ -239,6 +239,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   exceeded;"
 * (bug 20468) User::invalidateCache throws 1205: Lock wait timeout exceeded
 * (bug 27639) Transaction timeout when trying to OldLocalFile::upgradeRow()
+* (bug 13921) deadlocks mass-deleting media files in categories
 
  === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
