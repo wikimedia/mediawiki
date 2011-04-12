@@ -157,17 +157,23 @@ class WikiExporter {
 	# Generates the distinct list of authors of an article
 	# Not called by default (depends on $this->list_authors)
 	# Can be set by Special:Export when not exporting whole history
-	protected function do_list_authors( $page , $revision , $cond ) {
+	protected function do_list_authors( $cond ) {
 		wfProfileIn( __METHOD__ );
 		$this->author_list = "<contributors>";
 		// rev_deleted
-		$nothidden = '(' . $this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ') = 0';
 
-		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision}
-		WHERE page_id=rev_page AND $nothidden AND " . $cond ;
-		$result = $this->db->query( $sql, __METHOD__ );
-		$resultset = $this->db->resultObject( $result );
-		foreach ( $resultset as $row ) {
+		$res = $this->db->select(
+			array( 'page', 'revision' ),
+			array( 'DISTINCT rev_user_text', 'rev_user' ),
+			array(
+				$this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0',
+				$cond,
+				'page_id = rev_id',
+			),
+			__METHOD__
+		);
+
+		foreach ( $res as $row ) {
 			$this->author_list .= "<contributor>" .
 				"<username>" .
 				htmlentities( $row->rev_user_text )  .
@@ -240,8 +246,7 @@ class WikiExporter {
 			} elseif ( $this->history & WikiExporter::CURRENT ) {
 				# Latest revision dumps...
 				if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
-					list( $page, $revision ) = $this->db->tableNamesN( 'page', 'revision' );
-					$this->do_list_authors( $page, $revision, $cond );
+					$this->do_list_authors( $cond );
 				}
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' );
 			} elseif ( $this->history & WikiExporter::STABLE ) {
