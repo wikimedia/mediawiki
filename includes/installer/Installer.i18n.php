@@ -228,6 +228,7 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
+	'config-type-ibm_db2'             => 'IBM DB2',
 	'config-support-info'             => 'MediaWiki supports the following database systems:
 
 $1
@@ -237,10 +238,12 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-support-postgres'         => '* $1 is a popular open source database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). There may be some minor outstanding bugs, and it is not recommended for use in a production environment.',
 	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-support-oracle'           => '* $1 is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-support-ibm_db2'          => '* $1 is a commercial enterprise database.',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
 	'config-header-oracle'            => 'Oracle settings',
+	'config-header-ibm_db2'           => 'IBM DB2 settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
 	'config-missing-db-host'          => 'You must enter a value for "Database host"',
@@ -325,6 +328,9 @@ MyISAM databases tend to get corrupted more often than InnoDB databases.",
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+
+	'config-ibm_db2-low-db-pagesize'  => 'There must be a tableblespace with at least 32k of pagesize.',
+
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',

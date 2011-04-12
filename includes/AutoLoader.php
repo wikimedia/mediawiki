@@ -486,6 +486,8 @@ $wgAutoloadLocalClasses = array(
 	'SqliteUpdater' => 'includes/installer/SqliteUpdater.php',
 	'OracleInstaller' => 'includes/installer/OracleInstaller.php',
 	'OracleUpdater' => 'includes/installer/OracleUpdater.php',
+	'Ibm_db2Installer' => 'includes/installer/Ibm_db2Installer.php',
+	'Ibm_db2Updater' => 'includes/installer/Ibm_db2Updater.php',
 
 	# includes/job
 	'DoubleRedirectJob' => 'includes/job/DoubleRedirectJob.php',
