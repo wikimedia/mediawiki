@@ -788,10 +788,10 @@ class WebRequest {
 			&& preg_match( '/\.[a-z]{1,4}$/i', $_SERVER['QUERY_STRING'] ) )
 		{
 			// Bug 28235
-			// Block only Internet Explorer 6, and requests with missing UA 
+			// Block only Internet Explorer, and requests with missing UA 
 			// headers that could be IE users behind a privacy proxy.
 			if ( !isset( $_SERVER['HTTP_USER_AGENT'] ) 
-				|| preg_match( '/; *MSIE 6/', $_SERVER['HTTP_USER_AGENT'] ) )
+				|| preg_match( '/; *MSIE/', $_SERVER['HTTP_USER_AGENT'] ) )
 			{
 				return true;
 			}
