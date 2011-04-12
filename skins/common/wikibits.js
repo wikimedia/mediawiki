@@ -551,14 +551,7 @@ window.sortables_init = function() {
 };
 
 window.ts_makeSortable = function( table ) {
-	var firstRow;
-	if ( table.rows && table.rows.length > 0 ) {
-		if ( table.tHead && table.tHead.rows.length > 0 ) {
-			firstRow = table.tHead.rows[table.tHead.rows.length-1];
-		} else {
-			firstRow = table.rows[0];
-		}
-	}
+	var firstRow = table.rows[0];
 	if ( !firstRow ) {
 		return;
 	}
