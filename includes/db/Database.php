@@ -1566,7 +1566,11 @@ abstract class DatabaseBase implements DatabaseType {
 			$database = ( !$quoted || $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
 			$prefix = '';
 		}
-		$table = ( !$quoted || $this->isQuotedIdentifier( $table ) ? $table : $this->addIdentifierQuotes( "{$prefix}{$table}" ) );
+		
+		$table = "{$prefix}{$table}";
+		if ( $quoted && !$this->isQuotedIdentifier( $table ) ) {
+			$table = $this->addIdentifierQuotes( "{$table}" );
+		}
 
 		# Merge our database and table into our final table name.
 		$tableName = ( isset( $database ) ? "{$database}.{$table}" : "{$table}" );
@@ -2316,6 +2320,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Note that unlike most database abstraction functions, this function does not
 	 * automatically append database prefix, because it works at a lower
 	 * abstraction level.
+	 * The table names passed to this function shall not be quoted (this 
+	 * function calls addIdentifierQuotes when needed).
 	 *
 	 * @param $oldName String: name of table whose structure should be copied
 	 * @param $newName String: name of table to be created
