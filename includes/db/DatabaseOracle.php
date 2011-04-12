@@ -179,7 +179,8 @@ class DatabaseOracle extends DatabaseBase {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$flags = 0, $tablePrefix = 'get from global' )
 	{
-		$tablePrefix = $tablePrefix == 'get from global' ? $tablePrefix : strtoupper( $tablePrefix );
+		global $wgDBprefix;
+		$tablePrefix = $tablePrefix == 'get from global' ? strtoupper( $wgDBprefix ) : strtoupper( $tablePrefix );
 		parent::__construct( $server, $user, $password, $dbName, $flags, $tablePrefix );
 		wfRunHooks( 'DatabaseOraclePostInit', array( $this ) );
 	}
