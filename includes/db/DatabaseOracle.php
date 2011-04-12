@@ -783,16 +783,19 @@ class DatabaseOracle extends DatabaseBase {
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
 		global $wgDBprefix;
+		$this->setFlag( DBO_DDLMODE );
 		
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
 
-		$newName = trim( strtoupper( $newName ), '"');
-		$oldName = trim( strtoupper( $oldName ), '"');
+		$newName = strtoupper( $newName );
+		$oldName = strtoupper( $oldName );
 
-		$tabName = substr( $newName, strlen( $wgDBprefix ) );
-		$oldPrefix = substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) );
+		$tabName = $this->addIdentifierQuotes( substr( $newName, strlen( $wgDBprefix ) ) );
+		$oldPrefix = $this->addIdentifierQuotes( substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) ) );
+		$newPrefix = $this->addIdentifierQuotes( $wgDBprefix );
 
-		return $this->doQuery( 'BEGIN DUPLICATE_TABLE(\'' . $tabName . '\', \'' . $oldPrefix . '\', \'' . strtoupper( $wgDBprefix ) . '\', ' . $temporary . '); END;' );
+		$this->clearFlag( DBO_DDLMODE );
+		return $this->doQuery( "BEGIN DUPLICATE_TABLE( $tabName, $oldPrefix, $newPrefix, $temporary ); END;" );
 	}
 
 	function listTables( $prefix = null, $fname = 'DatabaseOracle::listTables' ) {
@@ -1075,6 +1078,12 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function addIdentifierQuotes( $s ) {
+		return parent::addIdentifierQuotes( $s );
+		
+		/* Does this old code make any sense?
+		 * We could always use quoted identifier.
+		 * See http://download.oracle.com/docs/cd/B19306_01/server.102/b14200/sql_elements008.htm
+		 */
 		if ( !$this->mFlags & DBO_DDLMODE ) {
 			$s = '"' . str_replace( '"', '""', $s ) . '"';
 		}

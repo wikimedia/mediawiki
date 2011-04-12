@@ -92,14 +92,14 @@ class CloneDatabase {
 			# fix back and forth so tableName() works right.
 			
 			self::changePrefix( $this->oldTablePrefix );
-			$oldTableName = $this->db->tableName( $tbl );
+			$oldTableName = $this->db->tableName( $tbl, false );
 			
 			self::changePrefix( $this->newTablePrefix );
-			$newTableName = $this->db->tableName( $tbl );
+			$newTableName = $this->db->tableName( $tbl, false );
 			
 			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres' ) ) ) {
 				$this->db->dropTable( $tbl, __METHOD__ );
-				wfDebug( __METHOD__." dropping {$this->newTablePrefix}{$oldTableName}\n", true);
+				wfDebug( __METHOD__." dropping {$newTableName}\n", true);
 				//Dropping the oldTable because the prefix was changed
 			}
 

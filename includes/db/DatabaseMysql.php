@@ -516,16 +516,18 @@ class DatabaseMysql extends DatabaseBase {
 			# Note that we don't bother changing around the prefixes here be-
 			# cause we know we're using MySQL anyway.
 
-			$res = $this->query( "SHOW CREATE TABLE $oldName" );
+			$res = $this->query( 'SHOW CREATE TABLE ' . $this->addIdentifierQuotes( $oldName ) );
 			$row = $this->fetchRow( $res );
 			$oldQuery = $row[1];
 			$query = preg_replace( '/CREATE TABLE `(.*?)`/',
-				"CREATE $tmp TABLE `$newName`", $oldQuery );
+				"CREATE $tmp TABLE " . $this->addIdentifierQuotes( $newName ), $oldQuery );
 			if ($oldQuery === $query) {
 				# Couldn't do replacement
 				throw new MWException( "could not create temporary table $newName" );
 			}
 		} else {
+			$newName = $this->addIdentifierQuotes( $newName );
+			$oldName = $this->addIdentifierQuotes( $oldName );
 			$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
 		}
 		$this->query( $query, $fname );

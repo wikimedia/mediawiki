@@ -748,6 +748,8 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabasePostgres::duplicateTableStructure' ) {
+		$newName = $this->addIdentifierQuotes( $newName );
+		$oldName = $this->addIdentifierQuotes( $oldName );
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
