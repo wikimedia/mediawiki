@@ -889,15 +889,8 @@ class Block {
 	 * Purge expired blocks from the ipblocks table
 	 */
 	public static function purgeExpired() {
-		// https://bugzilla.wikimedia.org/show_bug.cgi?id=28485
-		// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
-		$lb = wfGetLBFactory()->newMainLB();
-		$dbw = $lb->getConnection( DB_MASTER );
-
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'ipblocks', array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
-
-		$lb->commitMasterChanges();
-		$lb->closeAll();
 	}
 
 	/**
