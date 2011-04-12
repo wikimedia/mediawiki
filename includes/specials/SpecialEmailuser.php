@@ -29,11 +29,11 @@
 class SpecialEmailUser extends UnlistedSpecialPage {
 	protected $mTarget;
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Emailuser' );
 	}
 
-	protected function getFormFields(){
+	protected function getFormFields() {
 		global $wgUser;
 		return array(
 			'From' => array(
@@ -119,12 +119,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 		// Got a valid target user name? Else ask for one.
 		$ret = self::getTarget( $this->mTarget );
-		if( ! $ret instanceof User ){
+		if( !$ret instanceof User ) {
 			if( $this->mTarget != '' ) {
-				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' ) ;
-				$wgOut->addHtml ( '<p class="error">' . wfMessage( $ret )->parse() . '</p>' );
+				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
+				$wgOut->addHTML( '<p class="error">' . wfMessage( $ret )->parse() . '</p>' );
 			}
-			$wgOut->addHtml (self::userForm( $this->mTarget ) );
+			$wgOut->addHTML( self::userForm( $this->mTarget ) );
 			return false;
 		}
 
@@ -138,15 +138,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$form->setWrapperLegend( wfMsgExt( 'email-legend', 'parsemag' ) );
 		$form->loadData();
 
-		if( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ){
+		if( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ) {
 			return false;
 		}
 
-		$wgOut->setPagetitle( wfMsg( 'emailpage' ) );
+		$wgOut->setPageTitle( wfMsg( 'emailpage' ) );
 		$result = $form->show();
 
-		if( $result === true || ( $result instanceof Status && $result->isGood() ) ){
-			$wgOut->setPagetitle( wfMsg( 'emailsent' ) );
+		if( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
+			$wgOut->setPageTitle( wfMsg( 'emailsent' ) );
 			$wgOut->addWikiMsg( 'emailsenttext' );
 			$wgOut->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
@@ -168,10 +168,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if( !$nu instanceof User || !$nu->getId() ) {
 			wfDebug( "Target is invalid user.\n" );
 			return 'notarget';
-		} else if ( !$nu->isEmailConfirmed() ) {
+		} elseif ( !$nu->isEmailConfirmed() ) {
 			wfDebug( "User has no valid email.\n" );
 			return 'noemail';
-		} else if ( !$nu->canReceiveEmail() ) {
+		} elseif ( !$nu->canReceiveEmail() ) {
 			wfDebug( "User does not allow user emails.\n" );
 			return 'nowikiemail';
 		}
@@ -188,7 +188,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	public static function getPermissionsError( $user, $editToken ) {
 		global $wgEnableEmail, $wgEnableUserEmail;
-		if( !$wgEnableEmail || !$wgEnableUserEmail ){
+		if( !$wgEnableEmail || !$wgEnableUserEmail ) {
 			return 'usermaildisabled';
 		}
 
@@ -196,7 +196,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'badaccess';
 		}
 
-		if( !$user->isEmailConfirmed() ){
+		if( !$user->isEmailConfirmed() ) {
 			return 'mailnologin';
 		}
 
@@ -219,19 +219,19 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		return null;
 	}
-	
+
 	/**
 	 * Form to ask for target user name.
-	 * @author purodha
-	 * @param $name string User name submitted.
-	 * @return string form asking for user name.
+	 *
+	 * @param $name String: user name submitted.
+	 * @return String: form asking for user name.
 	 */
 	static function userForm( $name ) {
-		$string =	Xml::openElement( 'form', array( 'method' => 'get', 'action' => '', 'id' => 'askusername' ) ) .
+		$string = Xml::openElement( 'form', array( 'method' => 'get', 'action' => '', 'id' => 'askusername' ) ) .
 				Xml::openElement( 'fieldset' ) .
 		 		Html::rawElement( 'legend', null, wfMessage( 'emailtarget' )->parse() ) .
-				Xml::inputLabel( wfMessage('emailusername')->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
-				Xml::submitButton( wfMessage('emailusernamesubmit')->text() ) .
+				Xml::inputLabel( wfMessage( 'emailusername' )->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
+				Xml::submitButton( wfMessage( 'emailusernamesubmit' )->text() ) .
 				Xml::closeElement( 'fieldset' ) .
 				Xml::closeElement( 'form' ) . "\n";
 		return $string;
@@ -249,7 +249,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		global $wgUser, $wgUserEmailUseReplyTo;
 
 		$target = self::getTarget( $data['Target'] );
-		if( !$target instanceof User ){
+		if( !$target instanceof User ) {
 			return wfMsgExt( $target . 'text', 'parse' );
 		}
 		$to = new MailAddress( $target );
