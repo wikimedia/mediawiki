@@ -1,8 +1,8 @@
 = MediaWiki release notes =
 
-== MediaWiki 1.16.2 ==
+== MediaWiki 1.16.3 ==
 
-2011-02-01
+2011-04-12
 
 This is a security and maintenance release of the MediaWiki 1.16 branch.
 
@@ -45,9 +45,12 @@ you have the DBA extension for PHP installed, this will improve performance
 further.
 
 == Changes since 1.16.2 ==
-* (bug 15641) Fixed permissions checks in Special:Import which allowed users 
+* (bug 28449) Fixed permissions checks in Special:Import which allowed users 
   without the 'import' permission to import pages from the configured import 
   sources.
+* (bug 28235) Fixed XSS affecting IE 6 and earlier clients only, due to those 
+  browsers looking for a file extension in the query string of the URL, and 
+  ignoring the Content-Type header if one is found.
 
 == Changes since 1.16.1 ==
 
