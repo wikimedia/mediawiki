@@ -160,12 +160,8 @@ class OldLocalFile extends LocalFile {
 			return;
 		}
 
+		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
-
-		// https://bugzilla.wikimedia.org/show_bug.cgi?id=27639
-		// Create and use a new loadBalancer object, to prevent "1205: Lock wait timeout exceeded;"
-		$lb = wfGetLBFactory()->newMainLB();
-		$dbw = $lb->getConnection( DB_MASTER );
 
 		wfDebug(__METHOD__.': upgrading '.$this->archive_name." to the current schema\n");
 		$dbw->update( 'oldimage',
@@ -183,9 +179,6 @@ class OldLocalFile extends LocalFile {
 				'oi_archive_name' => $this->archive_name ),
 			__METHOD__
 		);
-
-		$lb->commitMasterChanges();
-		$lb->closeAll();
 		wfProfileOut( __METHOD__ );
 	}
 
