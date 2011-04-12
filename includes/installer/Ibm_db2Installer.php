@@ -247,4 +247,3 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		parent::__construct($parent);
 	}
 }
-?>
