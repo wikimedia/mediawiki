@@ -270,6 +270,7 @@ class LinkHolderArray {
 		# Generate query
 		$query = false;
 		$current = null;
+		$queries = array();
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $entry ) {
 				$title = $entry['title'];
@@ -294,25 +295,28 @@ class LinkHolderArray {
 					$colours[$pdbk] = 'new';
 				} else {
 					# Not in the link cache, add it to the query
-					if ( !isset( $current ) ) {
-						$current = $ns;
-						$query =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len, page_latest";
-						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
-					} elseif ( $current != $ns ) {
-						$current = $ns;
-						$query .= ")) OR (page_namespace=$ns AND page_title IN(";
-					} else {
-						$query .= ', ';
-					}
-
-					$query .= $dbr->addQuotes( $title->getDBkey() );
+					$queries[$ns][] = $title->getDBkey();
 				}
 			}
 		}
-		if ( $query ) {
-			$query .= '))';
+		if ( $queries ) {
+			$where = array();
+			foreach( $queries as $ns => $pages ){
+				$where[] = $dbr->makeList(
+					array(
+						'page_namespace' => $ns,
+						'page_title' => $pages,
+					),
+					LIST_AND
+				);
+			}
 
-			$res = $dbr->query( $query, __METHOD__ );
+			$res = $dbr->select(
+				'page',
+				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				$dbr->makeList( $where, LIST_OR ),
+				__METHOD__
+			);
 
 			# Fetch data and form into an associative array
 			# non-existent = broken

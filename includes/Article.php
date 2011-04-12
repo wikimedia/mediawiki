@@ -799,46 +799,47 @@ class Article {
 	}
 
 	/**
-	 * FIXME: this does what?
-	 * @param $limit Integer: default 0.
-	 * @param $offset Integer: default 0.
-	 * @return UserArrayFromResult object with User objects of article contributors for requested range
+	 * Get a list of users who have edited this article, not including the user who made
+	 * the most recent revision, which you can get from $article->getUser() if you want it
+	 * @return UserArray
 	 */
-	public function getContributors( $limit = 0, $offset = 0 ) {
+	public function getContributors() {
 		# FIXME: this is expensive; cache this info somewhere.
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
 
-		$pageId = $this->getId();
+		$tables = array( 'revision', 'user' );
 
+		$fields = array(
+			"$userTable.*",
+			'rev_user_text AS user_name',
+			'MAX(rev_timestamp) AS timestamp',
+		);
+
+		$conds = array( 'rev_page' => $this->getId() );
+
+		// The user who made the top revision gets credited as "this page was last edited by
+		// John, based on contributions by Tom, Dick and Harry", so don't include them twice.
 		$user = $this->getUser();
-
 		if ( $user ) {
-			$excludeCond = "AND rev_user != $user";
+			$conds[] = "rev_user != $user";
 		} else {
-			$userText = $dbr->addQuotes( $this->getUserText() );
-			$excludeCond = "AND rev_user_text != $userText";
+			$conds[] = "rev_user_text != {$dbr->addQuotes( $this->getUserText() )}";
 		}
 
-		$deletedBit = $dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ); // username hidden?
+		$conds[] = "{$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER )} = 0"; // username hidden?
 
-		$sql = "SELECT {$userTable}.*, rev_user_text as user_name, MAX(rev_timestamp) as timestamp
-			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
-			WHERE rev_page = $pageId
-			$excludeCond
-			AND $deletedBit = 0
-			GROUP BY rev_user, rev_user_text
-			ORDER BY timestamp DESC";
+		$jconds = array(
+			'user' => array( 'LEFT JOIN', 'rev_user = user_id' ),
+		);
 
-		if ( $limit > 0 ) {
-			$sql = $dbr->limitResult( $sql, $limit, $offset );
-		}
-
-		$sql .= ' ' . $this->getSelectOptions();
-		$res = $dbr->query( $sql, __METHOD__ );
-
+		$options = array(
+			'GROUP BY' => array( 'rev_user', 'rev_user_text' ),
+			'ORDER BY' => 'timestamp DESC',
+		);
+		
+		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $jconds );
 		return new UserArrayFromResult( $res );
 	}
 
@@ -3618,10 +3619,11 @@ class Article {
 
 				$dbw = wfGetDB( DB_MASTER );
 				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
-				$recentchanges = $dbw->tableName( 'recentchanges' );
-				$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
-
-				$dbw->query( $sql );
+				$dbw->delete(
+					'recentchanges',
+					array( "rc_timestamp < '$cutoff'" ),
+					__METHOD__
+				);
 			}
 		}
 
