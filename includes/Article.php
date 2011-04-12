@@ -401,25 +401,33 @@ class Article {
 	}
 
 	/**
+	 * Return the list of revision fields that should be selected to create
+	 * a new page.
+	 */
+	public static function selectFields() {
+		return array(
+			'page_id',
+			'page_namespace',
+			'page_title',
+			'page_restrictions',
+			'page_counter',
+			'page_is_redirect',
+			'page_is_new',
+			'page_random',
+			'page_touched',
+			'page_latest',
+			'page_len',
+		);
+	}
+
+	/**
 	 * Fetch a page record with the given conditions
 	 * @param $dbr Database object
 	 * @param $conditions Array
 	 * @return mixed Database result resource, or false on failure
 	 */
 	protected function pageData( $dbr, $conditions ) {
-		$fields = array(
-				'page_id',
-				'page_namespace',
-				'page_title',
-				'page_restrictions',
-				'page_counter',
-				'page_is_redirect',
-				'page_is_new',
-				'page_random',
-				'page_touched',
-				'page_latest',
-				'page_len',
-		);
+		$fields = self::selectFields();
 
 		wfRunHooks( 'ArticlePageDataBefore', array( &$this, &$fields ) );
 
@@ -438,7 +446,7 @@ class Article {
 	 * @param $title Title object
 	 * @return mixed Database result resource, or false on failure
 	 */
-	public function pageDataFromTitle( $dbr, $title ) {
+	protected function pageDataFromTitle( $dbr, $title ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title'     => $title->getDBkey() ) );
