@@ -89,19 +89,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$wgOut->addModuleStyles( 'mediawiki.special' );
-
 		$this->mTarget = is_null( $par )
 			? $wgRequest->getVal( 'wpTarget', $wgRequest->getVal( 'target', '' ) )
 			: $par;
-
-		$ret = self::getTarget( $this->mTarget );
-		if( $ret instanceof User ){
-			$this->mTargetObj = $ret;
-		} else {
-			$wgOut->showErrorPage( "{$ret}title", "{$ret}text" );
-			return false;
-		}
-
+		// error out if sending user cannot do this
 		$error = self::getPermissionsError( $wgUser, $wgRequest->getVal( 'wpEditToken' ) );
 		switch ( $error ) {
 			case null:
@@ -126,6 +117,18 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$wgOut->showErrorPage( $title, $msg, $params );
 				return;
 		}
+		// Got a valid target user name? Else ask for one.
+		$ret = self::getTarget( $this->mTarget );
+		if( ! $ret instanceof User ){
+			if( $this->mTarget != '' ) {
+				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' ) ;
+				$wgOut->addHtml ( '<p class="error">' . wfMessage( $ret )->parse() . '</p>' );
+			}
+			$wgOut->addHtml (self::userForm( $this->mTarget ) );
+			return false;
+		}
+
+		$this->mTargetObj = $ret;
 
 		$form = new HTMLForm( $this->getFormFields() );
 		$form->addPreText( wfMsgExt( 'emailpagetext', 'parseinline' ) );
@@ -215,6 +218,23 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * Form to ask for target user name.
+	 * @author purodha
+	 * @param $name string User name submitted.
+	 * @return string form asking for user name.
+	 */
+	static function userForm( $name ) {
+		$string =	Xml::openElement( 'form', array( 'method' => 'get', 'action' => '', 'id' => 'askusername' ) ) .
+				Xml::openElement( 'fieldset' ) .
+		 		Html::rawElement( 'legend', null, wfMessage( 'emailtarget' )->parse() ) .
+				Xml::inputLabel( wfMessage('emailusername')->text(), 'target', 'emailusertarget', 30, $name ) . ' ' .
+				Xml::submitButton( wfMessage('emailusernamesubmit')->text() ) .
+				Xml::closeElement( 'fieldset' ) .
+				Xml::closeElement( 'form' ) . "\n";
+		return $string;
 	}
 
 	/**

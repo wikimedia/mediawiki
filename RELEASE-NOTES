@@ -130,6 +130,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   to avoid loops and confusion; auth plugins like CentralAuth need to handle
   AbortNewAccount separately.
 * Special:ListFiles is now transcludable.
+* (bug 13879) Special:Emailuser asks for suitable target user if called without.
 
 
 === Bug fixes in 1.18 ===
