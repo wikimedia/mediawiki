@@ -79,7 +79,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		elseif ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBmwschema'] ) ) {
 			$status->fatal( 'config-invalid-schema', $newValues['wgDBmwschema'] );
 		}
-                if ( !strlen( $newValues['wgDBport'] ) ) {
+		if ( !strlen( $newValues['wgDBport'] ) ) {
 			$status->fatal( 'config-invalid-port' );
 		}
 		elseif ( !preg_match( '/^[0-9_]*$/', $newValues['wgDBport'] ) ) {
@@ -94,8 +94,8 @@ class Ibm_db2Installer extends DatabaseInstaller {
 			return $status;
 		}
 
-                global $wgDBport;
-                $wgDBport = $newValues['wgDBport'];
+		global $wgDBport;
+		$wgDBport = $newValues['wgDBport'];
 
 		// Try to connect
 		$status->merge( $this->getConnection() );
@@ -107,7 +107,6 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		$this->parent->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
 
 		return $status;
-        
 	}
 
 	/**

@@ -466,11 +466,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
 		if( $ret == false ) {
-			//TODO: Remove commented-out debug code once done debugging
-			//echo '<pre>ERROR</pre>';
-			//echo '<pre>' . $sql . '</pre>';
 			$error = db2_stmt_errormsg();
-			//echo '<pre>' . $error . '</pre>';
+			
 			$this->installPrint( "<pre>$sql</pre>" );
 			$this->installPrint( $error );
 			throw new DBUnexpectedError( $this, 'SQL error: '
@@ -495,10 +492,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	public function tableExists( $table ) {
 		$schema = $this->mSchema;
-		/*$sql = <<< EOF
-SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST
-WHERE ST.NAME = '$table' AND ST.CREATOR = '$schema'
-EOF;*/
+		
 		$sql = "SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST WHERE ST.NAME = '" . 
 			strtoupper( $table ) .
 			"' AND ST.CREATOR = '" .
@@ -558,7 +552,7 @@ EOF;*/
 					. htmlspecialchars( $this->lastError() ) );
 			}
 			return $row;
-                }
+		}
 		return false;
 	}
 
@@ -977,11 +971,14 @@ EOF;*/
 	 */
 	private function removeNullPrimaryKeys( $table, $args ) {
 		$schema = $this->mSchema;
+		
 		// find out the primary keys
-		/*$keyres = db2_primary_keys( $this->mConn, null, strtoupper( $schema ),
-			strtoupper( $table )
-		);*/
-		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '" . strtoupper( $table ) . "' AND TBCREATOR = '" . strtoupper( $schema ) . "' AND KEYSEQ > 0" );
+		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '" 
+		  . strtoupper( $table ) 
+		  . "' AND TBCREATOR = '" 
+		  . strtoupper( $schema ) 
+		  . "' AND KEYSEQ > 0" );
+		
 		$keys = array();
 		for (
 			$row = $this->fetchRow( $keyres );
@@ -1123,12 +1120,8 @@ EOF;*/
 				$this->query( $sql, $fname );
 			}
 
-			$this->insert($table, $row);
 			# Now insert the row
-			/*$sql = "INSERT INTO $table ( "
-				. $this->makeList( array_keys( $row ), LIST_NAMES )
-				.' ) VALUES ( ' . $this->makeList( $row, LIST_COMMA ) . ' )';
-			$this->query( $sql, $fname );*/
+			$this->insert($table, $row);
 		}
 	}
 
@@ -1507,7 +1500,7 @@ SQL;
 		$sql = <<<SQL
 DELETE FROM $delTable
 WHERE $delVar IN (
-  SELECT $joinVar FROM $joinTable
+	SELECT $joinVar FROM $joinTable
 
 SQL;
 		if ( $conds != '*' ) {
@@ -1576,7 +1569,7 @@ SQL;
 	 */
 	public function prepare( $sql, $func = 'DB2::prepare' ) {
 		$stmt = db2_prepare( $this->mConn, $sql, $this->mStmtOptions );
-                return $stmt;
+		return $stmt;
 	}
 
 	/**
