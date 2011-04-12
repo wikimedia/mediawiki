@@ -25,6 +25,7 @@
  * @author G0rn
  * @author Gazeb
  * @author Grigol
+ * @author Haffman
  * @author HalanTul
  * @author Huuchin
  * @author Illusion
@@ -2152,6 +2153,7 @@ $1',
 'noemailtext'          => 'Этот участник не указал действительный адрес электронной почты.',
 'nowikiemailtitle'     => 'Нет разрешения отправлять письма',
 'nowikiemailtext'      => 'Этот участник указал, что не желает получать письма от других участников.',
+'emailusernamesubmit'  => 'Отправить',
 'email-legend'         => 'Отправить письмо другому участнику {{grammar:genitive|{{SITENAME}}}}',
 'emailfrom'            => 'От кого:',
 'emailto'              => 'Кому:',

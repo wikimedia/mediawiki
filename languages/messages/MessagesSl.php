@@ -1696,22 +1696,23 @@ Ni mogoče ustrezno preveriti njene varnosti.',
 'uploadstash-refresh'  => 'Osveži seznam datotek',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Dostop zavrnjen',
-'img-auth-nopathinfo'   => 'Manjka PATH_INFO.
+'img-auth-accessdenied'     => 'Dostop zavrnjen',
+'img-auth-nopathinfo'       => 'Manjka PATH_INFO.
 Vaš strežnik ne poda te informacije.
 Morda temelji na CGI in ne more podpirati img_auth.
 Oglejte si http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
-'img-auth-badtitle'     => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
-'img-auth-nologinnWL'   => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
-'img-auth-nofile'       => 'Datoteka »$1« ne obstaja.',
-'img-auth-isdir'        => 'Poskušate dostopati do mape »$1«.
+'img-auth-notindir'         => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
+'img-auth-badtitle'         => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
+'img-auth-nologinnWL'       => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
+'img-auth-nofile'           => 'Datoteka »$1« ne obstaja.',
+'img-auth-isdir'            => 'Poskušate dostopati do mape »$1«.
 Dovoljeno je samo dostopanje do datotek.',
-'img-auth-streaming'    => 'Pretakanje »$1«.',
-'img-auth-public'       => 'Funkcija img_auth.php je izvoz datotek iz zasebnega wikija.
+'img-auth-streaming'        => 'Pretakanje »$1«.',
+'img-auth-public'           => 'Funkcija img_auth.php je izvoz datotek iz zasebnega wikija.
 Ta wiki je konfiguriran kot javni wiki.
 Za optimalno varnost je img_auth.php onemogočen.',
-'img-auth-noread'       => 'Uporabnik nima dostopa za branje »$1«.',
+'img-auth-noread'           => 'Uporabnik nima dostopa za branje »$1«.',
+'img-auth-bad-query-string' => 'URL ima neveljavni niz poizvedbe.',
 
 # HTTP errors
 'http-invalid-url'      => 'Napačen URL: $1',
@@ -2076,6 +2077,10 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'noemailtext'          => 'Uporabnik ni navedel veljavnega e-poštnega naslova.',
 'nowikiemailtitle'     => 'E-pošta ni dovoljena',
 'nowikiemailtext'      => 'Ta uporabnik se je odločil, da ne bo prejmal e-pošte od drugih uporabnikov.',
+'emailnotarget'        => 'Neobstoječe ali neveljavno uporabniško ime prejemnika.',
+'emailtarget'          => 'Vnesite uporabniško ime prejemnika',
+'emailusername'        => 'Uporabniško ime:',
+'emailusernamesubmit'  => 'Potrdi',
 'email-legend'         => 'Pošlji e-pošto drugemu uporabniku {{GRAMMAR:akuzativ|{{SITENAME}}}}',
 'emailfrom'            => 'Od:',
 'emailto'              => 'Za:',

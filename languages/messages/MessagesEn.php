@@ -2245,22 +2245,22 @@ It cannot be properly checked for security.',
 'uploadstash-refresh'  => 'Refresh the list of files',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Access denied',
-'img-auth-nopathinfo'   => 'Missing PATH_INFO.
+'img-auth-accessdenied'     => 'Access denied',
+'img-auth-nopathinfo'       => 'Missing PATH_INFO.
 Your server is not set up to pass this information.
 It may be CGI-based and cannot support img_auth.
 See http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Requested path is not in the configured upload directory.',
-'img-auth-badtitle'     => 'Unable to construct a valid title from "$1".',
-'img-auth-nologinnWL'   => 'You are not logged in and "$1" is not in the whitelist.',
-'img-auth-nofile'       => 'File "$1" does not exist.',
-'img-auth-isdir'        => 'You are trying to access a directory "$1".
+'img-auth-notindir'         => 'Requested path is not in the configured upload directory.',
+'img-auth-badtitle'         => 'Unable to construct a valid title from "$1".',
+'img-auth-nologinnWL'       => 'You are not logged in and "$1" is not in the whitelist.',
+'img-auth-nofile'           => 'File "$1" does not exist.',
+'img-auth-isdir'            => 'You are trying to access a directory "$1".
 Only file access is allowed.',
-'img-auth-streaming'    => 'Streaming "$1".',
-'img-auth-public'       => 'The function of img_auth.php is to output files from a private wiki.
+'img-auth-streaming'        => 'Streaming "$1".',
+'img-auth-public'           => 'The function of img_auth.php is to output files from a private wiki.
 This wiki is configured as a public wiki.
 For optimal security, img_auth.php is disabled.',
-'img-auth-noread'       => 'User does not have access to read "$1".',
+'img-auth-noread'           => 'User does not have access to read "$1".',
 'img-auth-bad-query-string' => 'The URL has an invalid query string.',
 
 # HTTP errors

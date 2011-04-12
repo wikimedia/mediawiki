@@ -2121,19 +2121,21 @@ $1",
 'month'               => "Dende'l mes (y anteriores):",
 'year'                => "Dende l'añu (y anteriores):",
 
-'sp-contributions-newbies'        => 'Amosar namái les contribuciones de cuentes nueves',
-'sp-contributions-newbies-sub'    => 'Namái les cuentes nueves',
-'sp-contributions-newbies-title'  => "Contribuciones d'usuariu pa cuentes nueves",
-'sp-contributions-blocklog'       => 'Rexistru de bloqueos',
-'sp-contributions-deleted'        => "Contribuciones d'usuariu desaniciaes",
-'sp-contributions-logs'           => 'rexistros',
-'sp-contributions-talk'           => 'alderique',
-'sp-contributions-userrights'     => "xestión de permisos d'usuariu",
-'sp-contributions-blocked-notice' => "Esti usuariu anguaño ta bloquiáu.
+'sp-contributions-newbies'             => 'Amosar namái les contribuciones de cuentes nueves',
+'sp-contributions-newbies-sub'         => 'Namái les cuentes nueves',
+'sp-contributions-newbies-title'       => "Contribuciones d'usuariu pa cuentes nueves",
+'sp-contributions-blocklog'            => 'Rexistru de bloqueos',
+'sp-contributions-deleted'             => "Contribuciones d'usuariu desaniciaes",
+'sp-contributions-logs'                => 'rexistros',
+'sp-contributions-talk'                => 'alderique',
+'sp-contributions-userrights'          => "xestión de permisos d'usuariu",
+'sp-contributions-blocked-notice'      => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
-'sp-contributions-search'         => 'Buscar contribuciones',
-'sp-contributions-username'       => "Direición IP o nome d'usuariu:",
-'sp-contributions-submit'         => 'Buscar',
+'sp-contributions-blocked-notice-anon' => "Esta IP anguaño ta bloquiada.
+La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
+'sp-contributions-search'              => 'Buscar contribuciones',
+'sp-contributions-username'            => "Direición IP o nome d'usuariu:",
+'sp-contributions-submit'              => 'Buscar',
 
 # What links here
 'whatlinkshere'            => "Lo qu'enllaza equí",
@@ -2235,6 +2237,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:IPBlockList|llista d'I
 'ipb_expiry_temp'                 => "Los bloqueos de nome d'usuariu escondíos han ser permanentes.",
 'ipb_already_blocked'             => '"$1" yá ta bloqueáu',
 'ipb-needreblock'                 => '$1 yá ta bloquiáu. ¿Quies camudar los parámetros?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}',
 'ipb_cant_unblock'                => "Error: Nun s'atopó'l bloquéu númberu $1. Seique yá fuera desbloquiáu.",
 'ipb_blocked_as_range'            => 'Error: La IP $1 nun ta bloquiada direutamente, polo que nun pue ser desloquiada. Sicasí, foi bloquiada como parte del intervalu $2, que pue ser desbloquiáu.',
 'ip_range_invalid'                => 'Rangu IP non válidu.',
@@ -2282,6 +2285,17 @@ Si prefieres nun lo facer, asegúrate de que nun dexes [[Special:DoubleRedirects
 Tu yes el responsable de facer que los enllaces queden apuntando aonde se supón qu'han apuntar.
 
 Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que tea vacia o seya una redireición que nun tenga historial.
+Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y que nun pues sobreescribir una páxina yá esistente.
+
+¡AVISU!'''
+Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
+por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes de siguir.",
+'movepagetext-noredirectfixer' => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
+El nome vieyu va convertise nuna redireición al nuevu.
+Asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
+Tu yes el responsable de facer que los enllaces queden apuntando au se supón qu'han apuntar.
+
+Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que tea balera o seya una redireición que nun tenga historial.
 Esto significa que pues volver a renomar una páxina col nome orixinal si t'enquivoques, y que nun pues sobreescribir una páxina yá esistente.
 
 ¡AVISU!'''
@@ -2337,10 +2351,15 @@ La páxina de destín "[[:$1]]" yá esiste. ¿Quies esborrala pa dexar sitiu pal
 'immobile-source-page'         => 'Esta páxina nun ye treslladable.',
 'immobile-target-page'         => 'Nun se pue treslladar a esi títulu de destín.',
 'imagenocrossnamespace'        => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
+'nonfile-cannot-move-to-file'  => 'Nun se pue treslladar más que ficheros al espaciu de nomes de ficheros',
 'imagetypemismatch'            => 'La estensión nueva del archivu nun concueya cola so mena',
 'imageinvalidfilename'         => 'El nome del archivu oxetivu nun ye válidu',
 'fix-double-redirects'         => 'Actualizar cualesquier redireición que señale al títulu orixinal',
 'move-leave-redirect'          => 'Dexar una redireición detrás',
+'protectedpagemovewarning'     => "'''Avisu: Esta páxina ta candada pa que sólo los alministradores puedan treslladala.'''
+La cabera entrada del rexistru s'ufre darréu pa referencia:",
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta páxina ta candada pa que namái los usuarios rexistraos puedan treslladala.
+La cabera entrada del rexistru s'ufre darréu pa referencia:",
 
 # Export
 'export'            => 'Esportar páxines',
@@ -2900,32 +2919,33 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'watchlistall2'    => 'too',
 'namespacesall'    => 'toos',
 'monthsall'        => 'toos',
+'limitall'         => 'toos',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar direición de corréu',
-'confirmemail_noemail'     => "Nun tienes una direición de corréu válida nes tos [[Special:Preferences|preferencies d'usuariu]].",
-'confirmemail_text'        => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les
+'confirmemail'              => 'Confirmar direición de corréu',
+'confirmemail_noemail'      => "Nun tienes una direición de corréu válida nes tos [[Special:Preferences|preferencies d'usuariu]].",
+'confirmemail_text'         => "{{SITENAME}} requier que valides la to direición de corréu enantes d'usar les
 funcionalidaes de mensaxes. Da-y al botón que tienes equí embaxo pa unviar un avisu de
 confirmación a la to direición. Esti avisu va incluyir un enllaz con un códigu; carga
 l'enllaz nel to navegador pa confirmar la to direición de corréu electrónicu.",
-'confirmemail_pending'     => "Yá s'unvió un códigu de confirmación a la to direición de corréu; si creasti hai poco la to cuenta, pues esperar dellos minutos a que-y de tiempu a llegar enantes de pidir otru códigu nuevu.",
-'confirmemail_send'        => 'Unviar códigu de confirmación',
-'confirmemail_sent'        => 'Corréu de confirmación unviáu.',
-'confirmemail_oncreate'    => "Unvióse un códigu de confirmación a la to direición de corréu.
+'confirmemail_pending'      => "Yá s'unvió un códigu de confirmación a la to direición de corréu; si creasti hai poco la to cuenta, pues esperar dellos minutos a que-y de tiempu a llegar enantes de pidir otru códigu nuevu.",
+'confirmemail_send'         => 'Unviar códigu de confirmación',
+'confirmemail_sent'         => 'Corréu de confirmación unviáu.',
+'confirmemail_oncreate'     => "Unvióse un códigu de confirmación a la to direición de corréu.
 Esti códigu nun se necesita pa identificase, pero tendrás que lu conseñar enantes
 d'activar cualesquier funcionalidá de la wiki que tea rellacionada col corréu.",
-'confirmemail_sendfailed'  => '{{SITENAME}} nun pudo unviar el to corréu de confirmación.
+'confirmemail_sendfailed'   => '{{SITENAME}} nun pudo unviar el to corréu de confirmación.
 Por favor comprueba que nun punxeras carauteres non válidos na to direición de corréu.
 
 El sirvidor de corréu devolvió: $1',
-'confirmemail_invalid'     => 'Códigu de confirmación non válidu. El códigu seique tenga caducao.',
-'confirmemail_needlogin'   => 'Tienes que $1 pa confirmar el to corréu.',
-'confirmemail_success'     => 'El to corréu quedó confimáu.
+'confirmemail_invalid'      => 'Códigu de confirmación non válidu. El códigu seique tenga caducao.',
+'confirmemail_needlogin'    => 'Tienes que $1 pa confirmar el to corréu.',
+'confirmemail_success'      => 'El to corréu quedó confimáu.
 Agora yá pues [[Special:UserLogin|coneutate]] y esfrutar de la wiki.',
-'confirmemail_loggedin'    => 'Quedó confirmada la to direición de corréu.',
-'confirmemail_error'       => 'Hebo un problema al guardar la to confirmación.',
-'confirmemail_subject'     => 'Confirmación de la direición de corréu de {{SITENAME}}',
-'confirmemail_body'        => 'Daquién, seique tu dende la IP $1, rexistró la cuenta "$2" con
+'confirmemail_loggedin'     => 'Quedó confirmada la to direición de corréu.',
+'confirmemail_error'        => 'Hebo un problema al guardar la to confirmación.',
+'confirmemail_subject'      => 'Confirmación de la direición de corréu de {{SITENAME}}',
+'confirmemail_body'         => 'Daquién, seique tu dende la IP $1, rexistró la cuenta "$2" con
 esta direición de corréu en {{SITENAME}}.
 
 Pa confirmar qu\'esta cuenta ye tuya daveres y asina activar les funcionalidaes
@@ -2939,8 +2959,22 @@ la confirmación de la direición de corréu electrónicu:
 $5
 
 Esti códigu de confirmación caduca\'l $4.',
-'confirmemail_invalidated' => 'Confirmación de direición de corréu electrónicu cancelada',
-'invalidateemail'          => 'Cancelar confirmación de corréu electrónicu',
+'confirmemail_body_changed' => 'Daquién, seique tu dende la IP $1, camudó les señes de corréu de
+la cuenta "$2" a esta direición de corréu en {{SITENAME}}.
+
+Pa confirmar qu\'esta cuenta ye tuya daveres y reactivar les funciones
+de corréu en {{SITENAME}}, abri esti enllaz nel to navegador:
+
+$3
+
+Si la cuenta *nun* ye de to, calca nesti enllaz pa encaboxar
+la confirmación de les señes de corréu electrónicu:
+
+$5
+
+Esti códigu de confirmación caduca\'l $4.',
+'confirmemail_invalidated'  => 'Confirmación de direición de corréu electrónicu cancelada',
+'invalidateemail'           => 'Cancelar confirmación de corréu electrónicu',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
@@ -3045,6 +3079,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-hook-subscribedby'        => 'Suscritu por',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Llicencia',
+'version-poweredby-others'         => 'otros',
 'version-software'                 => 'Software instaláu',
 'version-software-product'         => 'Productu',
 'version-software-version'         => 'Versión',

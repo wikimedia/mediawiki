@@ -2320,30 +2320,39 @@ See also {{msg|listgrouprights-addgroup}}.',
 * $2 is the number of group names in $1.',
 
 # E-mail user
-'emailuser'        => 'Link in the sidebar',
-'emailpagetext'    => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
+'emailuser'           => 'Link in the sidebar',
+'emailpagetext'       => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
 Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
-'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
-'noemailtitle'     => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
-'noemailtext'      => 'The text of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
-'email-legend'     => 'Title of the box in [[Special:EmailUser]]',
-'emailfrom'        => 'Field in [[Special:EmailUser]].
+'usermaildisabled'    => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
+'noemailtitle'        => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
+'noemailtext'         => 'The text of the message that appears in [[Special:EmailUser]] after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user because he has not specified or not confirmed an e-mail address.',
+'nowikiemailtext'     => 'This is an error message used in [[Special:Emailuser]] when called with a target user not consenting to be an e-mail recipient.',
+'emailnotarget'       => 'This is an error message that may be used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.',
+'emailtarget'         => 'This is an input group label being used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.',
+'emailusername'       => 'This is a prompt being used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.
+
+{{Identical|Username}}',
+'emailusernamesubmit' => '{{Identical|Submit}}
+
+This is a button text used in [[Special:Emailuser]] when called without a (valid) target user for the e-mail.',
+'email-legend'        => 'Title of the box in [[Special:EmailUser]]',
+'emailfrom'           => 'Field in [[Special:EmailUser]].
 {{Identical|From}}',
-'emailto'          => 'Field in [[Special:EmailUser]].
+'emailto'             => 'Field in [[Special:EmailUser]].
 {{Identical|To}}',
-'emailsubject'     => 'Field in [[Special:EmailUser]].
+'emailsubject'        => 'Field in [[Special:EmailUser]].
 
 {{Identical|Subject}}',
-'emailmessage'     => 'Field in [[Special:EmailUser]].
+'emailmessage'        => 'Field in [[Special:EmailUser]].
 
 {{Identical|Message}}',
-'emailsend'        => 'Button name in [[Special:EmailUser]].
+'emailsend'           => 'Button name in [[Special:EmailUser]].
 
 {{Identical|Send}}',
-'emailccme'        => 'Used at [[Special:Preferences]] > E-mail',
-'emailccsubject'   => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
-'emailuserfooter'  => 'This message is appended to every email sent through the "Email user" function.
+'emailccme'           => 'Used at [[Special:Preferences]] > E-mail',
+'emailccsubject'      => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
+'emailuserfooter'     => 'This message is appended to every email sent through the "Email user" function.
 
 * $1: username of the sender
 * $2: username of the recipient',

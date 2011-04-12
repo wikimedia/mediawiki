@@ -496,7 +496,7 @@ $messages = array(
 'searchbutton'      => 'Пребарај',
 'go'                => 'Оди',
 'searcharticle'     => 'Оди',
-'history'           => 'Историја на страница',
+'history'           => 'историја',
 'history_short'     => 'Историја',
 'updatedmarker'     => 'ажурирано од мојата последна посета',
 'info_short'        => 'Информации',
@@ -1101,8 +1101,8 @@ $2',
 'historyempty'           => '(празно)',
 
 # Revision feed
-'history-feed-title'          => 'Историја на ревидирање',
-'history-feed-description'    => 'Историја на ревидирање за оваа страница на викито',
+'history-feed-title'          => 'Историја на измените',
+'history-feed-description'    => 'Историја на измените на оваа страница на викито',
 'history-feed-item-nocomment' => '$1 на $2',
 'history-feed-empty'          => 'Бараната страница не постои.
 Може била избришана од викито или преименувана.
@@ -1183,7 +1183,7 @@ $1",
 'revdel-restore'              => 'Промена на видливост',
 'revdel-restore-deleted'      => 'избришани ревизии',
 'revdel-restore-visible'      => 'видливи ревизии',
-'pagehist'                    => 'Историја на страница',
+'pagehist'                    => 'Историја на страницата',
 'deletedhist'                 => 'Историја на бришења',
 'revdelete-content'           => 'содржина',
 'revdelete-summary'           => 'опис на уредување',
@@ -1840,22 +1840,23 @@ $1',
 'uploadstash-refresh'  => 'ПРевчитај го списокот на податотеки',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Оневозможен пристап',
-'img-auth-nopathinfo'   => 'Недостасува PATH_INFO.
+'img-auth-accessdenied'     => 'Оневозможен пристап',
+'img-auth-nopathinfo'       => 'Недостасува PATH_INFO.
 Вашиот опслужувач не е нагоден за да ја проследи оваа информација.
 Можеби се заснова на CGI, и така не подржува img_auth.
 Видете http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Бараниот пат не води кон зададената папка за подигање.',
-'img-auth-badtitle'     => 'Не може да се конструира важечки наслов од „$1“.',
-'img-auth-nologinnWL'   => 'Не сте најавени и „$1“ не е на списокот на допуштени.',
-'img-auth-nofile'       => 'Податотеката „$1“ не постои.',
-'img-auth-isdir'        => 'Се обидувате да пристапите до именикот „$1“.
+'img-auth-notindir'         => 'Бараниот пат не води кон зададената папка за подигање.',
+'img-auth-badtitle'         => 'Не може да се конструира важечки наслов од „$1“.',
+'img-auth-nologinnWL'       => 'Не сте најавени и „$1“ не е на списокот на допуштени.',
+'img-auth-nofile'           => 'Податотеката „$1“ не постои.',
+'img-auth-isdir'            => 'Се обидувате да пристапите до именикот „$1“.
 Допуштен е само податотечен пристап.',
-'img-auth-streaming'    => 'Емитување „$1“.',
-'img-auth-public'       => 'Функцијата на img_auth.php служи за излез на податотеки од приватни викија.
+'img-auth-streaming'        => 'Емитување „$1“.',
+'img-auth-public'           => 'Функцијата на img_auth.php служи за излез на податотеки од приватни викија.
 Ова вики е нагодено како јавно вики.
 Од причини на оптимална сигурност, img_auth.php е оневозможен.',
-'img-auth-noread'       => 'Корисникот нема пристап за читање на „$1“.',
+'img-auth-noread'           => 'Корисникот нема пристап за читање на „$1“.',
+'img-auth-bad-query-string' => 'URL-адресата има неважечка низа за барање.',
 
 # HTTP errors
 'http-invalid-url'      => 'Неважечка URL: $1',

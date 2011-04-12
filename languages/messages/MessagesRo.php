@@ -1775,22 +1775,23 @@ Nu poate fi verificat în mod corespunzător în vederea securității.',
 'uploadstash-refresh'  => 'Reîmprospătează lista de fișiere',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acces interzis',
-'img-auth-nopathinfo'   => 'PATH_INFO lipsește.
+'img-auth-accessdenied'     => 'Acces interzis',
+'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
 Vedeți http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
-'img-auth-badtitle'     => 'Nu s-a putut construi un titlu valid din "$1".',
-'img-auth-nologinnWL'   => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
-'img-auth-nofile'       => 'Fișierul "$1" nu există.',
-'img-auth-isdir'        => 'Încercați să accesați directorul "$1".
+'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
+'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
+'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
+'img-auth-nofile'           => 'Fișierul "$1" nu există.',
+'img-auth-isdir'            => 'Încercați să accesați directorul "$1".
 Numai accesul la fișiere este permis.',
-'img-auth-streaming'    => 'Derularea continuă a "$1".',
-'img-auth-public'       => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
+'img-auth-streaming'        => 'Derularea continuă a "$1".',
+'img-auth-public'           => 'Funcția img_auth.php este pentru a exporta fișiere de pe un wiki privat.
 Acest wiki este configurat ca unul public.
 Pentru securitate optimă, img_auth.php este dezactivat.',
-'img-auth-noread'       => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-noread'           => 'Acest utilizator nu are acces să citească "$1".',
+'img-auth-bad-query-string' => 'Adresa URL are un șir de interogare invalid.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalid: $1',

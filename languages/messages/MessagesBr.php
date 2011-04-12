@@ -2043,6 +2043,8 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'noemailtext'          => "N'en deus ket an implijer-mañ resisaet chomlec'h postel reizh ebet.",
 'nowikiemailtitle'     => 'Berzet kas posteloù',
 'nowikiemailtext'      => 'Dibabet ez eus bet gant an implijerien-mañ chom hep resev posteloù a-berzh implijerien all.',
+'emailusername'        => 'Anv implijer :',
+'emailusernamesubmit'  => 'Kas',
 'email-legend'         => "Kas ur postel d'un implijer all eus {{SITENAME}}",
 'emailfrom'            => 'Kaser :',
 'emailto'              => 'Resever :',
