@@ -2044,28 +2044,11 @@ class OutputPage {
 
 	/**
 	 * Display an error page noting that a given permission bit is required.
-	 *
+	 * @deprecated since 1.18, just throw the exception directly
 	 * @param $permission String: key required
 	 */
 	public function permissionRequired( $permission ) {
-		$this->setPageTitle( wfMsg( 'badaccess' ) );
-		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->mBodytext = '';
-
-		$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
-			User::getGroupsWithPermission( $permission ) );
-		if( $groups ) {
-			$this->addWikiMsg(
-				'badaccess-groups',
-				$this->getContext()->getLang()->commaList( $groups ),
-				count( $groups )
-			);
-		} else {
-			$this->addWikiMsg( 'badaccess-group0' );
-		}
-		$this->returnToMain();
+		throw new PermissionsError( $permission );
 	}
 
 	/**
@@ -2073,8 +2056,7 @@ class OutputPage {
 	 */
 	public function loginToUse() {
 		if( $this->getUser()->isLoggedIn() ) {
-			$this->permissionRequired( 'read' );
-			return;
+			throw new PermissionsError( 'read' );
 		}
 
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
