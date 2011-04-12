@@ -776,9 +776,26 @@ class WebRequest {
 	 * but only by prefixing it with the script name and maybe some other stuff,
 	 * the extension is not mangled. So this should be a reasonably portable
 	 * way to perform this security check.
+	 *
+	 * Also checks for anything that looks like a file extension at the end of
+	 * QUERY_STRING, since IE 6 and earlier will use this to get the file type
+	 * if there was no dot before the question mark (bug 28235).
 	 */
 	public function isPathInfoBad() {
 		global $wgScriptExtension;
+
+		if ( isset( $_SERVER['QUERY_STRING'] ) 
+			&& preg_match( '/\.[a-z]{1,4}$/i', $_SERVER['QUERY_STRING'] ) )
+		{
+			// Bug 28235
+			// Block only Internet Explorer 6, and requests with missing UA 
+			// headers that could be IE users behind a privacy proxy.
+			if ( !isset( $_SERVER['HTTP_USER_AGENT'] ) 
+				|| preg_match( '/; *MSIE 6/', $_SERVER['HTTP_USER_AGENT'] ) )
+			{
+				return true;
+			}
+		}
 
 		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
 			return false;

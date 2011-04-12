@@ -1,0 +1,6 @@
+# Protect against bug 28235
+<IfModule rewrite_module>
+	RewriteEngine On
+	RewriteCond %{QUERY_STRING} \.[a-z]{1,4}$ [nocase]
+	RewriteRule . - [forbidden]
+</IfModule>
