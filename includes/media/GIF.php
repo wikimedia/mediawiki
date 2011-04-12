@@ -39,8 +39,8 @@ class GIFHandler extends BitmapHandler {
 	 */
 	function getImageArea( $image, $width, $height ) {
 		$ser = $image->getMetadata();
-		if ($ser) {
-			$metadata = unserialize($ser);
+		if ( $ser ) {
+			$metadata = unserialize( $ser );
 			return $width * $height * $metadata['frameCount'];
 		} else {
 			return $width * $height;
@@ -53,7 +53,7 @@ class GIFHandler extends BitmapHandler {
 	 */
 	function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
-		if ($ser) {
+		if ( $ser ) {
 			$metadata = unserialize($ser);
 			if( $metadata['frameCount'] > 1 ) {
 				return true;

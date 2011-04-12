@@ -33,6 +33,12 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ImageBuilder extends Maintenance {
+
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $dbw;
+
 	function __construct() {
 		parent::__construct();
 
