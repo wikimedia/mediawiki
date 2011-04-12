@@ -55,8 +55,7 @@ $starttime = microtime( true );
 //
 if ( $wgRequest->isPathInfoBad() ) {
 	wfHttpError( 403, 'Forbidden',
-		'Invalid file extension found in PATH_INFO. ' .
-		'The API must be accessed through the primary script entry point.' );
+		'Invalid file extension found in PATH_INFO or QUERY_STRING.' );
 	return;
 }
 

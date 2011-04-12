@@ -132,7 +132,7 @@ class RawPage {
 			#
 			# Just return a 403 Forbidden and get it over with.
 			wfHttpError( 403, 'Forbidden',
-				'Invalid file extension found in PATH_INFO. ' .
+				'Invalid file extension found in PATH_INFO or QUERY_STRING. ' .
 				'Raw pages must be accessed through the primary script entry point.' );
 			return;
 		}

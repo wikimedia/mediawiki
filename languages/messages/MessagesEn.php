@@ -2261,6 +2261,7 @@ Only file access is allowed.',
 This wiki is configured as a public wiki.
 For optimal security, img_auth.php is disabled.',
 'img-auth-noread'       => 'User does not have access to read "$1".',
+'img-auth-bad-query-string' => 'The URL has an invalid query string.',
 
 # HTTP errors
 'http-invalid-url'      => 'Invalid URL: $1',

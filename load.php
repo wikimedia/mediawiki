@@ -37,11 +37,8 @@ wfProfileIn( 'load.php' );
 //
 if ( $wgRequest->isPathInfoBad() ) {
 	wfHttpError( 403, 'Forbidden',
-		'Invalid file extension found in PATH_INFO. ' .
-		'The resource loader must be accessed through the primary script entry point.' );
+		'Invalid file extension found in PATH_INFO or QUERY_STRING.' );
 	return;
-	// FIXME: Doesn't this execute the rest of the request anyway?
-	// Was taken from api.php so I guess it's maybe OK but it doesn't look good.
 }
 
 // Respond to resource loading request
