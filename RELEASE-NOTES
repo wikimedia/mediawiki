@@ -45,12 +45,15 @@ you have the DBA extension for PHP installed, this will improve performance
 further.
 
 == Changes since 1.16.2 ==
+
 * (bug 28449) Fixed permissions checks in Special:Import which allowed users 
   without the 'import' permission to import pages from the configured import 
   sources.
 * (bug 28235) Fixed XSS affecting IE 6 and earlier clients only, due to those 
   browsers looking for a file extension in the query string of the URL, and 
   ignoring the Content-Type header if one is found.
+* (bug 28450) Fixed a CSS validation issue involving escaped comments, which
+  led to XSS for Internet Explorer clients and privacy loss for other clients.
 
 == Changes since 1.16.1 ==
 
