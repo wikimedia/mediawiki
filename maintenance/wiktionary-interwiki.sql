@@ -159,7 +159,6 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('tl','http://tl.wiktionary.org/wiki/$1',1),
 ('tn','http://tn.wiktionary.org/wiki/$1',1),
 ('to','http://to.wiktionary.org/wiki/$1',1),
-('tokipona','http://tokipona.wiktionary.org/wiki/$1',1),
 ('tpi','http://tpi.wiktionary.org/wiki/$1',1),
 ('tr','http://tr.wiktionary.org/wiki/$1',1),
 ('ts','http://ts.wiktionary.org/wiki/$1',1),
