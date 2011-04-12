@@ -457,6 +457,7 @@ class Article {
 	 *
 	 * @param $dbr Database
 	 * @param $id Integer
+	 * @return mixed Database result resource, or false on failure
 	 */
 	protected function pageDataFromId( $dbr, $id ) {
 		return $this->pageData( $dbr, array( 'page_id' => $id ) );
