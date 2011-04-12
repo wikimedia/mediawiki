@@ -18,16 +18,27 @@ class SqlBagOStuff extends BagOStuff {
 	var $db;
 	var $serverInfo;
 	var $lastExpireAll = 0;
+	var $purgePeriod = 100;
 
 	/**
 	 * Constructor. Parameters are:
 	 *   - server:   A server info structure in the format required by each 
 	 *               element in $wgDBServers.
+	 *
+	 *   - purgePeriod: The average number of object cache requests in between 
+	 *                  garbage collection operations, where expired entries 
+	 *                  are removed from the database. Or in other words, the 
+	 *                  reciprocal of the probability of purging on any given 
+	 *                  request. If this is set to zero, purging will never be 
+	 *                  done.
 	 */
 	public function __construct( $params ) {
 		if ( isset( $params['server'] ) ) {
 			$this->serverInfo = $params['server'];
 			$this->serverInfo['load'] = 1;
+		}
+		if ( isset( $params['purgePeriod'] ) ) {
+			$this->purgePeriod = intval( $params['purgePeriod'] );
 		}
 	}
 
@@ -213,14 +224,19 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	protected function garbageCollect() {
-		/* Ignore 99% of requests */
-		if ( !mt_rand( 0, 100 ) ) {
-			$now = time();
-			/* Avoid repeating the delete within a few seconds */
-			if ( $now > ( $this->lastExpireAll + 1 ) ) {
-				$this->lastExpireAll = $now;
-				$this->expireAll();
-			}
+		if ( !$this->purgePeriod ) {
+			// Disabled
+			return;
+		}
+		// Only purge on one in every $this->purgePeriod requests.
+		if ( $this->purgePeriod !== 1 && mt_rand( 0, $this->purgePeriod - 1 ) ) {
+			return;
+		}
+		$now = time();
+		// Avoid repeating the delete within a few seconds
+		if ( $now > ( $this->lastExpireAll + 1 ) ) {
+			$this->lastExpireAll = $now;
+			$this->expireAll();
 		}
 	}
 
