@@ -329,6 +329,10 @@ class DatabaseMysql extends DatabaseBase {
 		return "`" . $this->strencode( $s ) . "`";
 	}
 
+	public function isQuotedIdentifier( $name ) {
+		return $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+	}
+
 	function ping() {
 		$ping = mysql_ping( $this->mConn );
 		if ( $ping ) {

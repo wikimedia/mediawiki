@@ -648,46 +648,7 @@ class DatabaseOracle extends DatabaseBase {
 				break;
 		}
 
-		/*
-			The rest of procedure is equal to generic Databse class
-			except for the quoting style
-		*/
-		if ( $name[0] == '"' && substr( $name, - 1, 1 ) == '"' ) {
-			return $name;
-		}
-		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			return $name;
-		}
-		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
-		if ( isset( $dbDetails[1] ) ) {
-			@list( $table, $database ) = $dbDetails;
-		} else {
-			@list( $table ) = $dbDetails;
-		}
-
-		$prefix = $this->mTablePrefix;
-
-		if ( isset( $database ) ) {
-			$table = ( $table[0] == '`' ? $table : "`{$table}`" );
-		}
-
-		if ( !isset( $database ) && isset( $wgSharedDB ) && $table[0] != '"'
-			&& isset( $wgSharedTables )
-			&& is_array( $wgSharedTables )
-			&& in_array( $table, $wgSharedTables )
-		) {
-			$database = $wgSharedDB;
-			$prefix   = isset( $wgSharedPrefix ) ? $wgSharedPrefix : $prefix;
-		}
-
-		if ( isset( $database ) ) {
-			$database = ( $database[0] == '"' ? $database : "\"{$database}\"" );
-		}
-		$table = ( $table[0] == '"') ? $table : "\"{$prefix}{$table}\"" ;
-
-		$tableName = ( isset( $database ) ? "{$database}.{$table}" : "{$table}" );
-
-		return strtoupper( $tableName );
+		return parent::tableName( strtoupper( $name ) );
 	}
 
 	/**

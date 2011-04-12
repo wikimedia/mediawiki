@@ -452,14 +452,14 @@ class DatabaseMssql extends DatabaseBase {
 					$sql .= ',';
 				}
 				if ( is_string( $value ) ) {
-					$sql .= $this->addIdentifierQuotes( $value );
+					$sql .= $this->addQuotes( $value );
 				} elseif ( is_null( $value ) ) {
 					$sql .= 'null';
 				} elseif ( is_array( $value ) || is_object( $value ) ) {
 					if ( is_object( $value ) && strtolower( get_class( $value ) ) == 'blob' ) {
-						$sql .= $this->addIdentifierQuotes( $value->fetch() );
+						$sql .= $this->addQuotes( $value );
 					}  else {
-						$sql .= $this->addIdentifierQuotes( serialize( $value ) );
+						$sql .= $this->addQuotes( serialize( $value ) );
 					}
 				} else {
 					$sql .= $value;
@@ -987,6 +987,15 @@ class DatabaseMssql extends DatabaseBase {
 		} else {
 			return parent::addQuotes( $s );
 		}
+	}
+
+	public function addIdentifierQuotes( $s ) {
+		// http://msdn.microsoft.com/en-us/library/aa223962.aspx
+		return '[' . $s . ']';
+	}
+
+	public function isQuotedIdentifier( $name ) {
+		return $name[0] == '[' && substr( $name, -1, 1 ) == ']';
 	}
 
 	function selectDB( $db ) {
