@@ -266,7 +266,7 @@ class MediaWiki {
 	 * @param $title Title
 	 * @return Article object
 	 */
-	public static function articleFromTitle( &$title ) {
+	public static function articleFromTitle( &$title, RequestContext &$context ) {
 		if ( NS_MEDIA == $title->getNamespace() ) {
 			// FIXME: where should this go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
@@ -280,12 +280,14 @@ class MediaWiki {
 
 		switch( $title->getNamespace() ) {
 			case NS_FILE:
-				return new ImagePage( $title );
+				$page = new ImagePage( $title );
 			case NS_CATEGORY:
-				return new CategoryPage( $title );
+				$page = new CategoryPage( $title );
 			default:
-				return new Article( $title );
+				$page = new Article( $title );
 		}
+		$page->setContext( $context );
+		return $page;
 	}
 
 	/**
@@ -332,7 +334,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$action = $this->context->request->getVal( 'action', 'view' );
-		$article = self::articleFromTitle( $this->context->title );
+		$article = self::articleFromTitle( $this->context->title, $this->context );
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $this->context->title->getNamespace() == NS_MEDIAWIKI ) {
@@ -369,7 +371,7 @@ class MediaWiki {
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article
-					$rarticle = self::articleFromTitle( $target );
+					$rarticle = self::articleFromTitle( $target, $this->context );
 					$rarticle->loadPageData();
 					if ( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $this->context->title );
@@ -467,9 +469,16 @@ class MediaWiki {
 			return;
 		}
 
-		$action = $this->getAction();
+		$act = $this->getAction();
 
-		switch( $action ) {
+		$action = Action::factory( $this->getAction(), $article );
+		if( $action instanceof Action ){
+			$action->execute();
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		switch( $act ) {
 			case 'view':
 				$this->context->output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				$article->view();
@@ -492,7 +501,7 @@ class MediaWiki {
 			case 'render':
 			case 'deletetrackback':
 			case 'purge':
-				$article->$action();
+				$article->$act();
 				break;
 			case 'print':
 				$article->view();
@@ -513,9 +522,6 @@ class MediaWiki {
 					$rdf->show();
 				}
 				break;
-			case 'credits':
-				Credits::showPage( $article );
-				break;
 			case 'submit':
 				if ( session_id() == '' ) {
 					// Send a cookie so anons get talk message notifications
@@ -528,7 +534,7 @@ class MediaWiki {
 					$external = $this->context->request->getVal( 'externaledit' );
 					$section = $this->context->request->getVal( 'section' );
 					$oldid = $this->context->request->getVal( 'oldid' );
-					if ( !$this->getVal( 'UseExternalEditor' ) || $action == 'submit' || $internal ||
+					if ( !$this->getVal( 'UseExternalEditor' ) || $act == 'submit' || $internal ||
 					   $section || $oldid || ( !$this->context->user->getOption( 'externaleditor' ) && !$external ) ) {
 						$editor = new EditPage( $article );
 						$editor->submit();
@@ -557,7 +563,7 @@ class MediaWiki {
 				$special->execute( '' );
 				break;
 			default:
-				if ( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
+				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
 					$this->context->output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
