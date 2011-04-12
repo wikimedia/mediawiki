@@ -632,8 +632,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $retval;
 	}
 
-	function tableName( $name ) {
-		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
+	function tableName( $name, $quoted ) {
 		/*
 		Replace reserved words with better ones
 		Using uppercase because that's the only way Oracle can handle
@@ -648,7 +647,7 @@ class DatabaseOracle extends DatabaseBase {
 				break;
 		}
 
-		return parent::tableName( strtoupper( $name ) );
+		return parent::tableName( strtoupper( $name ), $quoted );
 	}
 
 	/**

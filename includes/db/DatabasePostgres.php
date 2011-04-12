@@ -611,7 +611,7 @@ class DatabasePostgres extends DatabaseBase {
 		return $res;
 	}
 
-	function tableName( $name ) {
+	function tableName( $name, $quoted = true ) {
 		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
@@ -619,7 +619,7 @@ class DatabasePostgres extends DatabaseBase {
 			case 'text':
 				return 'pagecontent';
 			default:
-				return $name;
+				return parent::tableName( $name, $quoted );
 		}
 	}
 
