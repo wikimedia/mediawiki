@@ -1304,6 +1304,7 @@ $wgMessageStructure = array(
 		'img-auth-streaming',
 		'img-auth-public',
 		'img-auth-noread',
+		'img-auth-bad-query-string',
 	),
 
 	'http-errors' => array(
