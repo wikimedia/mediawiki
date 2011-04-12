@@ -67,4 +67,3 @@ class Ibm_db2Updater extends DatabaseUpdater {
 		);
 	}
 }
-?>
