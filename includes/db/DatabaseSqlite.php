@@ -257,7 +257,7 @@ class DatabaseSqlite extends DatabaseBase {
 	function tableName( $name ) {
 		// table names starting with sqlite_ are reserved
 		if ( strpos( $name, 'sqlite_' ) === 0 ) return $name;
-		return str_replace( '`', '', parent::tableName( $name ) );
+		return str_replace( '"', '', parent::tableName( $name ) );
 	}
 
 	/**

@@ -1521,7 +1521,7 @@ abstract class DatabaseBase implements DatabaseType {
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
 		# to query a database table with a dot in the name.
-		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) {
+		if ( $this->isQuotedIdentifier( $name ) ) {
 			return $name;
 		}
 
@@ -1550,14 +1550,14 @@ abstract class DatabaseBase implements DatabaseType {
 		# A database name has been specified in input. Quote the table name
 		# because we don't want any prefixes added.
 		if ( isset( $database ) ) {
-			$table = ( $table[0] == '`' ? $table : "`{$table}`" );
+			$table = ( $this->isQuotedIdentifier( $table ) ? $table : $this->addIdentifierQuotes( $table ) );
 		}
 
 		# Note that we use the long format because php will complain in in_array if
 		# the input is not an array, and will complain in is_array if it is not set.
 		if ( !isset( $database ) # Don't use shared database if pre selected.
 		 && isset( $wgSharedDB ) # We have a shared database
-		 && $table[0] != '`' # Paranoia check to prevent shared tables listing '`table`'
+		 && !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
 		 && isset( $wgSharedTables )
 		 && is_array( $wgSharedTables )
 		 && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
@@ -1567,9 +1567,9 @@ abstract class DatabaseBase implements DatabaseType {
 
 		# Quote the $database and $table and apply the prefix if not quoted.
 		if ( isset( $database ) ) {
-			$database = ( $database[0] == '`' ? $database : "`{$database}`" );
+			$database = ( $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
 		}
-		$table = ( $table[0] == '`' ? $table : "`{$prefix}{$table}`" );
+		$table = ( $this->isQuotedIdentifier( $table ) ? $table : $this->addIdentifierQuotes( "{$prefix}{$table}" ) );
 
 		# Merge our database and table into our final table name.
 		$tableName = ( isset( $database ) ? "{$database}.{$table}" : "{$table}" );
@@ -1744,6 +1744,15 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
+	}
+
+	/**
+	 * Returns if the given identifier looks quoted or not according to 
+	 * the database convention for quoting identifiers .
+	 * @return boolean
+	 */
+	public function isQuotedIdentifier( $name ) {
+		return $name[0] == '"' && substr( $name, -1, 1 ) == '"';
 	}
 
 	/**
