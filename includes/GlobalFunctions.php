@@ -851,13 +851,20 @@ function wfErrorExit() {
 }
 
 /**
- * Print a simple message and die, returning nonzero to the shell if any.
- * Plain die() fails to return nonzero to the shell if you pass a string.
+ * Print an error message and die, returning nonzero to the shell if any.  Plain die()
+ * fails to return nonzero to the shell if you pass a string.  Entry points may customise
+ * this function to return a prettier error message, but implementations must not assume
+ * access to any of the usual MediaWiki infrastructure (AutoLoader, localisation, database,
+ * etc).  This should not be called directly once $wgFullyInitialised is set; instead,
+ * throw an exception and let Exception.php handle whether or not it's possible to show
+ * a prettier error.
  * @param $msg String
  */
-function wfDie( $msg = '' ) {
-	echo $msg;
-	die( 1 );
+if( !function_exists( 'wfDie' ) ){
+	function wfDie( $msg = '' ) {
+		echo $msg;
+		die( 1 );
+	}
 }
 
 /**
