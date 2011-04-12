@@ -143,6 +143,7 @@ $messages = array(
 'hidden-category-category'       => 'Æмбæхст категоритæ',
 'category-subcat-count'          => '{{PLURAL:$2|Ацы категорийы мидæг æрмæст иу дæлкатегори и.|{{PLURAL:$1|$1 дæлкатегори æвдыст у|$1 дæлкатегорийы æвдыст сты}}, æдæппæт $2.}}',
 'category-subcat-count-limited'  => 'Ацы категорийы мидæг ис {{PLURAL:$1|$1 дæлкатегори|$1 дæлкатегорийы}}.',
+'category-article-count'         => '{{PLURAL:$2|Ацы категорийы æрмæст иу фарс и.|Ацы категорийы $2 фарсæй {{PLURAL:$1|æвдыст у $1.|æвдыст сты $1 фарсы.}}}}',
 'category-article-count-limited' => 'Ацы категорийы мидæг {{PLURAL:$1|$1 фарс|$1 фарсы}} ис.',
 'category-file-count-limited'    => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'         => '(дарддæрдзу)',
@@ -571,6 +572,7 @@ $3',
 'uploaderror'         => 'Файл сæвæрыны рæдыд',
 'filename'            => 'Файлы ном',
 'minlength1'          => 'Файлы номы хъуамæ æппынкъаддæр иу дамгъæ уа.',
+'badfilename'         => 'Нывы ном ивд æрцыдис. Ныр хуины «$1».',
 'savefile'            => 'Бавæр æй',
 'uploadvirus'         => 'Файлы разынд вирус! Кæс $1',
 'watchthisupload'     => 'Ацы файлмæ дæ цæст æрдар',
@@ -722,6 +724,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Protect
 'protectedarticle'       => '«[[$1]]» — фарс æхгæд æрцыд',
+'prot_1movedto2'         => '[[$1]] хаст æрцыд [[$2]], зæгъгæ, ахæм фарсмæ',
 'protectcomment'         => 'Аххос:',
 'protectexpiry'          => 'Кæдмæ æхгæд у:',
 'protect-level-sysop'    => 'Æрмæст админтæ',
@@ -768,6 +771,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ipbreason'              => 'Аххос:',
 'ipbreasonotherlist'     => 'Æндæр аххос',
 'ipbotherreason'         => 'Æндæр кæнæ уæлæмхасæн аххос:',
+'blockipsuccesstext'     => '[[Special:Contributions/$1|$1]] хъодыгонд æрцыд.<br />
+Кæс [[Special:Ipblocklist|хъодыгонд IP-адристы номхыгъд]].',
 'ipb-blocklist'          => 'Актуалон хъоды равдис',
 'ipb-blocklist-contribs' => '$1, зæгъгæ, уыцы архайæджы бавæрд',
 'ipblocklist'            => 'Хъодыгонд IP-адристæ æмæ архайджыты нæмттæ',
@@ -794,7 +799,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'movereason'               => 'Аххос:',
 
 # Namespace 8 related
-'allmessages' => 'Æппæт техникон фыстытæ',
+'allmessages'     => 'Æппæт техникон фыстытæ',
+'allmessagesname' => 'Ном',
 
 # Thumbnails
 'thumbnail-more' => 'Фестырдæр кæн',
@@ -905,6 +911,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'table_pager_prev'  => 'Раздæры фарс',
 'table_pager_first' => 'Фыццаг фарс',
 'table_pager_last'  => 'Фæстаг фарс',
+
+# Auto-summaries
+'autosumm-new' => 'Ног фарс, йæ код райдайы афтæ: «$1»',
 
 # Size units
 'size-bytes'     => '$1 байт(ы)',

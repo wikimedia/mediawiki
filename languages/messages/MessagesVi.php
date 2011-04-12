@@ -1762,22 +1762,23 @@ Không thể kiểm tra nó về bảo mật.',
 'uploadstash-refresh'  => 'Làm mới danh sách tập tin',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Không cho phép truy cập',
-'img-auth-nopathinfo'   => 'Thiếu PATH_INFO.
+'img-auth-accessdenied'     => 'Không cho phép truy cập',
+'img-auth-nopathinfo'       => 'Thiếu PATH_INFO.
 Máy chủ của bạn không được thiết lập để truyền thông tin này.
 Có thể do nó dựa trên CGI và không hỗ trợ img_auth.
 Xem http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
-'img-auth-badtitle'     => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
-'img-auth-nologinnWL'   => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
-'img-auth-nofile'       => 'Không tồn tại tập tin “$1”.',
-'img-auth-isdir'        => 'Bạn đang cố truy cập vào thư mục “$1”.
+'img-auth-notindir'         => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
+'img-auth-badtitle'         => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
+'img-auth-nologinnWL'       => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
+'img-auth-nofile'           => 'Không tồn tại tập tin “$1”.',
+'img-auth-isdir'            => 'Bạn đang cố truy cập vào thư mục “$1”.
 Chỉ cho phép truy cập tập tin mà thôi.',
-'img-auth-streaming'    => 'Đang truyền “$1”.',
-'img-auth-public'       => 'Chức năng của img_auth.php là xuất tập tin từ wiki cá nhân.
+'img-auth-streaming'        => 'Đang truyền “$1”.',
+'img-auth-public'           => 'Chức năng của img_auth.php là xuất tập tin từ wiki cá nhân.
 Wiki này được cấu hình là wiki công cộng.
 Vì lý do bảo mật, img_auth.php đã bị tắt.',
-'img-auth-noread'       => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
+'img-auth-noread'           => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
+'img-auth-bad-query-string' => 'URL có một chuỗi truy vấn không hợp lệ.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL không hợp lệ: $1',
@@ -2135,6 +2136,10 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'noemailtext'          => 'Người này không cung cấp một địa chỉ thư hợp lệ.',
 'nowikiemailtitle'     => 'Không cho phép thư điện tử',
 'nowikiemailtext'      => 'Thành viên này quyết định không nhận thư từ các thành viên khác.',
+'emailnotarget'        => 'Người nhận không tồn tại hoặc tên hiệu không hợp lệ.',
+'emailtarget'          => 'Nhập tên hiệu của người nhận',
+'emailusername'        => 'Tên người dùng:',
+'emailusernamesubmit'  => 'Gửi',
 'email-legend'         => 'Gửi thư điện tử đến thành viên {{SITENAME}} khác',
 'emailfrom'            => 'Người gửi:',
 'emailto'              => 'Người nhận:',

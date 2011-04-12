@@ -1790,22 +1790,23 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 'uploadstash-refresh'  => 'Osvježi spisak datoteka',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pristup onemogućen',
-'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
+'img-auth-accessdenied'     => 'Pristup onemogućen',
+'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije postavljen da daje ovu informaciju.
 On je zasnovan na CGI i ne može podržavati img_auth.
 Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
-'img-auth-badtitle'     => 'Ne mogu napraviti valjani naslov iz "$1".',
-'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
-'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
-'img-auth-isdir'        => 'Pokušavate pristupiti direktorijumu "$1".
+'img-auth-notindir'         => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
+'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
+'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
+'img-auth-nofile'           => 'Datoteka "$1" ne postoji.',
+'img-auth-isdir'            => 'Pokušavate pristupiti direktorijumu "$1".
 Dozvoljen je samo pristup datotekama.',
-'img-auth-streaming'    => 'Tok "$1".',
-'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka sa privatnih wikija.
+'img-auth-streaming'        => 'Tok "$1".',
+'img-auth-public'           => 'Funkcija img_auth.php služi za izlaz datoteka sa privatnih wikija.
 Ova wiki je postavljena kao javna wiki.
 Za optimalnu sigurnost, img_auth.php je onemogućena.',
-'img-auth-noread'       => 'Korisnik nema pristup za čitanje "$1".',
+'img-auth-noread'           => 'Korisnik nema pristup za čitanje "$1".',
+'img-auth-bad-query-string' => 'URL ima nevaljan izraz upita.',
 
 # HTTP errors
 'http-invalid-url'      => 'Nevaljan URL: $1',
@@ -2172,6 +2173,10 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 'noemailtext'          => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte.',
 'nowikiemailtitle'     => 'E-mail nije dopušten',
 'nowikiemailtext'      => 'Ovaj korisnik je odabrao da ne prima e-mail poštu od drugih korisnika.',
+'emailnotarget'        => 'Neodgovarajuće ili nevaljano korisničko ime za primanje e-maillova.',
+'emailtarget'          => 'Unesite korisnika za primanje e-mailova',
+'emailusername'        => 'Korisničko ime:',
+'emailusernamesubmit'  => 'Pošalji',
 'email-legend'         => 'Slanje e-maila drugom {{SITENAME}} korisniku',
 'emailfrom'            => 'Od:',
 'emailto'              => 'Za:',

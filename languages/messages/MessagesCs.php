@@ -1817,22 +1817,23 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 'uploadstash-refresh'  => 'Aktualizovat seznam souborů',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Přístup odepřen',
-'img-auth-nopathinfo'   => 'Chybí PATH_INFO.
+'img-auth-accessdenied'     => 'Přístup odepřen',
+'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
 Váš server není nastaven tak, aby poskytoval tuto informaci.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
 Vizte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
-'img-auth-badtitle'     => 'Z „$1“ nelze vytvořit platný název stránky.',
-'img-auth-nologinnWL'   => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
-'img-auth-nofile'       => 'Soubor „$1“ neexistuje.',
-'img-auth-isdir'        => 'Pokoušíte se zobrazit adresář „$1“.
+'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
+'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
+'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
+'img-auth-nofile'           => 'Soubor „$1“ neexistuje.',
+'img-auth-isdir'            => 'Pokoušíte se zobrazit adresář „$1“.
 Dovolen je pouze přístup k souborům.',
-'img-auth-streaming'    => 'Přenáší se „$1“.',
-'img-auth-public'       => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
+'img-auth-streaming'        => 'Přenáší se „$1“.',
+'img-auth-public'           => 'Pomocí img_auth.php se poskytují soubory na soukromých wiki.
 Tato wiki je nastavena jako veřejná.
 Z bezpečnostních důvodů je img_auth.php vypnuto.',
-'img-auth-noread'       => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-noread'           => 'Uživatel nemá oprávnění ke čtení „$1“.',
+'img-auth-bad-query-string' => 'URL obsahuje neplatný dotaz.',
 
 # HTTP errors
 'http-invalid-url'      => 'Neplatné URL: $1',
