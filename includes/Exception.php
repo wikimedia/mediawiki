@@ -236,32 +236,44 @@ class MWException extends Exception {
 			header( 'Pragma: nocache' );
 		}
 
-		$title = Html::element( 'title', null, $this->getPageTitle() );
+		$head = Html::element( 'title', null, $this->getPageTitle() ) . "\n";
+		$head .= Html::inlineStyle( <<<ENDL
+	body {
+		color: #000;
+		background-color: #fff;
+		font-family: sans-serif;
+		padding: 2em;
+		text-align: center;
+	}
+	p, img, h1 {
+		text-align: left;
+		margin: 0.5em 0;
+	}
+	h1 {
+		font-size: 120%;
+	}
+ENDL
+		);
 
-		$left = 'left';
-		$right = 'right';
 		$dir = 'ltr';
 		$code = 'en';
 
 		if ( $wgLang instanceof Language ) {
-			$left = $wgLang->alignStart();
-			$right = $wgLang->alignEnd();
 			$dir = $wgLang->getDir();
 			$code = $wgLang->getCode();
 		}
 
 		$header = Html::element( 'img', array(
 			'src' => $wgLogo,
-			'style' => "float: $left; margin-$right: 1em;",
 			'alt' => '' ), $this->getPageTitle() );
 
 		$attribs = array( 'dir' => $dir, 'lang' => $code );
 
 		return
 			Html::htmlHeader( $attribs ) .
-			Html::rawElement( 'head', null, $title ) . "\n". 
+			Html::rawElement( 'head', null, $head ) . "\n".
 			Html::openElement( 'body' ) . "\n" .
-			Html::rawElement( 'h1', null, $header ) . "\n";
+			$header . "\n";
 	}
 
 	/**
@@ -338,6 +350,7 @@ function wfReportException( Exception $e ) {
 
 	if ( $e instanceof MWException ) {
 		try {
+			// Try and show the exception prettily, with the normal skin infrastructure
 			$e->report();
 		} catch ( Exception $e2 ) {
 			// Exception occurred from within exception handler
@@ -359,7 +372,7 @@ function wfReportException( Exception $e ) {
 			if ( $cmdLine ) {
 				wfPrintError( $message );
 			} else {
-				echo nl2br( htmlspecialchars( $message ) ) . "\n";
+				wfDie( htmlspecialchars( $message ) ) . "\n";
 			}
 		}
 	} else {
@@ -373,7 +386,7 @@ function wfReportException( Exception $e ) {
 		if ( $cmdLine ) {
 			wfPrintError( $message );
 		} else {
-			echo nl2br( htmlspecialchars( $message ) ) . "\n";
+			wfDie( htmlspecialchars( $message ) ) . "\n";
 		}
 	}
 }

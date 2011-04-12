@@ -2955,7 +2955,7 @@ class DBConnectionError extends DBError {
 
 		$this->error = Html::element( 'span', array( 'dir' => 'ltr' ), $this->error );
 
-		$noconnect = "<p><strong>$sorry</strong><br />$again</p><p><small>$info</small></p>";
+		$noconnect = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 		$text = str_replace( '$1', $this->error, $noconnect );
 
 		if ( $wgShowDBErrorBacktrace ) {

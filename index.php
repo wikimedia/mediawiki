@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This is the main web entry point for MediaWiki.
  *
@@ -37,6 +36,31 @@
  * @file
  */
 
+// Bail on old versions of PHP.  Pretty much every other file in the codebase
+// has structures (try/catch, foo()->bar(), etc etc) which throw parse errors in PHP 4.
+// Setup.php and ObjectCache.php have structures invalid in PHP 5.0 and 5.1, respectively.
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.0' ) < 0 ) {
+	$phpversion = htmlspecialchars( phpversion() );
+	$errorMsg = <<<ENDL
+		<p>
+			MediaWiki requires PHP 5.2.3 or higher. You are running PHP $phpversion.
+		</p>
+		<p>
+			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
+			PHP versions less than 5.3.0 are no longer supported by the PHP Group and will not receive
+			security or bugfix updates.
+		</p>
+		<p>
+			If for some reason you are unable to upgrade your PHP version, you will need to
+			<a href="http://www.mediawiki.org/wiki/Download">download</a> an older version
+			of MediaWiki from our website.  See our
+			<a href="http://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
+			for details of which versions are compatible with prior versions of PHP.
+		</p>
+ENDL;
+	wfDie( $errorMsg );
+}
+
 # Initialise common code.  This gives us access to GlobalFunctions, the AutoLoader, and
 # the globals $wgRequest, $wgOut, $wgUser, $wgLang and $wgContLang, amongst others; it
 # does *not* load $wgTitle or $wgArticle
@@ -47,7 +71,8 @@ wfProfileIn( 'index.php-setup' );
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if ( !is_null( $maxLag ) ) {
-	list( $host, $lag ) = wfGetLB()->getMaxLag();
+	$lb = wfGetLB(); // foo()->bar() is not supported in PHP4
+	list( $host, $lag ) = $lb->getMaxLag();
 	if ( $lag > $maxLag ) {
 		header( 'HTTP/1.1 503 Service Unavailable' );
 		header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
@@ -123,3 +148,58 @@ $mediaWiki->finalCleanup();
 wfProfileOut( 'index.php' );
 
 $mediaWiki->restInPeace();
+
+/**
+ * Display something vaguely comprehensible in the event of a totally unrecoverable error.
+ * Does not assume access to *anything*; no globals, no autloader, no database, no localisation.
+ * Safe for PHP4 (and putting this here means that WebStart.php and GlobalSettings.php
+ * no longer need to be).
+ *
+ * Calling this function kills execution immediately.
+ *
+ * @param $errorMsg String fully-escaped HTML
+ */
+function wfDie( $errorMsg ){
+	// Use the version set in DefaultSettings if possible, but don't rely on it
+	global $wgVersion, $wgLogo;
+	$version = isset( $wgVersion ) && $wgVersion
+		? htmlspecialchars( $wgVersion )
+		: '';
+	$logo = isset( $wgLogo ) && $wgLogo
+		? $wgLogo
+		: 'http://upload.wikimedia.org/wikipedia/commons/1/1c/MediaWiki_logo.png';
+
+	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
+
+	?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' lang='en'>
+	<head>
+		<title>MediaWiki <?php echo $version; ?></title>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+		<style type='text/css' media='screen'>
+			body {
+				color: #000;
+				background-color: #fff;
+				font-family: sans-serif;
+				padding: 2em;
+				text-align: center;
+			}
+			p, img, h1 {
+				text-align: left;
+				margin: 0.5em 0;
+			}
+			h1 {
+				font-size: 120%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="<?php echo $logo; ?>" alt='The MediaWiki logo' />
+		<h1>MediaWiki <?php echo $version; ?> internal error</h1>
+		<div class='error'> <?php echo $errorMsg; ?> </div>
+	</body>
+</html>
+	<?php
+	die( 1 );
+}

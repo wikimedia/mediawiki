@@ -100,16 +100,6 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	# Load up some global defines.
 	require_once( "$IP/includes/Defines.php" );
 
-	# Check for PHP 5
-	if ( !function_exists( 'version_compare' ) 
-		|| version_compare( phpversion(), '5.0.0' ) < 0
-	) {
-		define( 'MW_PHP4', '1' );
-		require( "$IP/includes/DefaultSettings.php" );
-		require( "$IP/includes/templates/PHP4.php" );
-		exit;
-	}
-
 	# Start the autoloader, so that extensions can derive classes from core files
 	require_once( "$IP/includes/AutoLoader.php" );
 }
@@ -126,13 +116,31 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
 		define('MW_CONFIG_FILE', MWInit::interpretedPath( 'LocalSettings.php' ) );
 	}
-	
+
 	# LocalSettings.php is the per site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory
 	if( !file_exists( MW_CONFIG_FILE ) ) {
-		require_once( "$IP/includes/templates/NoLocalSettings.php" );
-		die();
+		$script = $_SERVER['SCRIPT_NAME'];
+		$path = htmlspecialchars( str_replace( '//', '/', pathinfo( $script, PATHINFO_DIRNAME ) ) );
+		$ext = htmlspecialchars( pathinfo( $script, PATHINFO_EXTENSION ) );
+
+		# Check to see if the installer is running
+		if ( !function_exists( 'session_name' ) ) {
+			$installerStarted = false;
+		} else {
+			session_name( 'mw_installer_session' );
+			$oldReporting = error_reporting( E_ALL & ~E_NOTICE );
+			$success = session_start();
+			error_reporting( $oldReporting );
+			$installerStarted = ( $success && isset( $_SESSION['installData'] ) );
+		}
+
+		$please = $installerStarted
+			? "Please <a href=\"$path/mw-config/index.$ext\"> complete the installation</a> and download LocalSettings.php."
+			: "Please <a href=\"$path/mw-config/index.$ext\"> set up the wiki</a> first.";
+
+		wfDie( "<p>LocalSettings.php not found.</p><p>$please</p>" );
 	}
 
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
