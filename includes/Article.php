@@ -17,6 +17,8 @@ class Article {
 	/**@{{
 	 * @private
 	 */
+	protected $mContext;              // !< RequestContext
+
 	var $mContent;                    // !<
 	var $mContentLoaded = false;      // !<
 	var $mCounter = -1;               // !< Not loaded
@@ -4529,6 +4531,31 @@ class Article {
 		}
 
 		return $this->getOutputFromWikitext( $text, $useParserCache );
+	}
+
+	/**
+	 * Sets the context this Article is executed in
+	 *
+	 * @param $context RequestContext
+	 * @since 1.18
+	 */
+	public function setContext( $context ) {
+		$this->mContext = $context;
+	}
+
+	/**
+	 * Gets the context this Article is executed in
+	 *
+	 * @return RequestContext
+	 * @since 1.18
+	 */
+	public function getContext() {
+		if ( $this->mContext instanceof RequestContext ) {
+			return $this->mContext;
+		} else {
+			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
+			return RequestContext::getMain();
+		}
 	}
 
 }
