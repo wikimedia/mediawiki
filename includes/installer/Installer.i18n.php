@@ -329,7 +329,7 @@ This is more efficient than MySQL's UTF-8 mode, and allows you to use the full r
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 
-	'config-ibm_db2-low-db-pagesize'  => 'There must be a tableblespace with at least 32k of pagesize.',
+	'config-ibm_db2-low-db-pagesize'  => 'There must be a tablespace with at least 32k of pagesize.',
 
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
