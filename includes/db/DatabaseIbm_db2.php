@@ -144,7 +144,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public $mStmtOptions = array();
 
 	/** Default schema */
-	const USE_GLOBAL = 'mediawiki';
+	const USE_GLOBAL = 'get from global';
 
 	/** Option that applies to nothing */
 	const NONE_OPTION = 0x00;
@@ -268,6 +268,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		}
 
 		// configure the connection and statement objects
+		/*
+		$this->setDB2Option( 'cursor', 'DB2_SCROLLABLE',
+			self::CONN_OPTION | self::STMT_OPTION );
+		*/
 		$this->setDB2Option( 'db2_attr_case', 'DB2_CASE_LOWER',
 			self::CONN_OPTION | self::STMT_OPTION );
 		$this->setDB2Option( 'deferred_prepare', 'DB2_DEFERRED_PREPARE_ON',
@@ -321,27 +325,17 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @return a fresh connection
 	 */
 	public function open( $server, $user, $password, $dbName ) {
-		// Load the port number
-		global $wgDBport;
 		wfProfileIn( __METHOD__ );
 
-		// Load IBM DB2 driver if missing
+		# Load IBM DB2 driver if missing
 		wfDl( 'ibm_db2' );
 
-		// Test for IBM DB2 support, to avoid suppressed fatal error
+		# Test for IBM DB2 support, to avoid suppressed fatal error
 		if ( !function_exists( 'db2_connect' ) ) {
-			$error = <<<ERROR
-DB2 functions missing, have you enabled the ibm_db2 extension for PHP?
-
-ERROR;
-			$this->installPrint( $error );
-			$this->reportConnectionError( $error );
+			throw new DBConnectionError( $this, "DB2 functions missing, have you enabled the ibm_db2 extension for PHP?" );
 		}
 
-		if ( strlen( $user ) < 1 ) {
-			wfProfileOut( __METHOD__ );
-			return null;
-		}
+		global $wgDBport;
 
 		// Close existing connection
 		$this->close();
@@ -354,23 +348,25 @@ ERROR;
 
 		$this->openUncataloged( $dbName, $user, $password, $server, $port );
 
-		// Apply connection config
-		db2_set_option( $this->mConn, $this->mConnOptions, 1 );
-		// Some MediaWiki code is still transaction-less (?).
-		// The strategy is to keep AutoCommit on for that code
-		//  but switch it off whenever a transaction is begun.
-		db2_autocommit( $this->mConn, DB2_AUTOCOMMIT_ON );
-
 		if ( !$this->mConn ) {
 			$this->installPrint( "DB connection error\n" );
 			$this->installPrint(
 				"Server: $server, Database: $dbName, User: $user, Password: "
 				. substr( $password, 0, 3 ) . "...\n" );
 			$this->installPrint( $this->lastError() . "\n" );
-
 			wfProfileOut( __METHOD__ );
-			return null;
+			wfDebug( "DB connection error\n" );
+			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
+			wfDebug( $this->lastError() . "\n" );
+			throw new DBConnectionError( $this, $this->lastError() );
 		}
+
+		// Apply connection config
+		db2_set_option( $this->mConn, $this->mConnOptions, 1 );
+		// Some MediaWiki code is still transaction-less (?).
+		// The strategy is to keep AutoCommit on for that code
+		//  but switch it off whenever a transaction is begun.
+		db2_autocommit( $this->mConn, DB2_AUTOCOMMIT_ON );
 
 		$this->mOpened = true;
 		$this->applySchema();
@@ -391,16 +387,8 @@ ERROR;
 	 */
 	protected function openUncataloged( $dbName, $user, $password, $server, $port )
 	{
-		$str = "DRIVER={IBM DB2 ODBC DRIVER};";
-		$str .= "DATABASE=$dbName;";
-		$str .= "HOSTNAME=$server;";
-		// port was formerly validated to not be 0
-		$str .= "PORT=$port;";
-		$str .= "PROTOCOL=TCPIP;";
-		$str .= "UID=$user;";
-		$str .= "PWD=$password;";
-
-		@$this->mConn = db2_pconnect( $str, $user, $password );
+		$dsn = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=$dbName;CHARSET=UTF-8;HOSTNAME=$server;PORT=$port;PROTOCOL=TCPIP;UID=$user;PWD=$password;";
+		@$this->mConn = db2_pconnect($dsn, "", "", array());
 	}
 
 	/**
@@ -470,10 +458,19 @@ ERROR;
 	/*private*/
 	public function doQuery( $sql ) {
 		$this->applySchema();
-
+		
+		// Needed to handle any UTF-8 encoding issues in the raw sql
+		// Note that we fully support prepared statements for DB2
+		// prepare() and execute() should be used instead of doQuery() whenever possible
+		$sql = utf8_decode($sql);
+		
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
 		if( $ret == false ) {
+			//TODO: Remove commented-out debug code once done debugging
+			//echo '<pre>ERROR</pre>';
+			//echo '<pre>' . $sql . '</pre>';
 			$error = db2_stmt_errormsg();
+			//echo '<pre>' . $error . '</pre>';
 			$this->installPrint( "<pre>$sql</pre>" );
 			$this->installPrint( $error );
 			throw new DBUnexpectedError( $this, 'SQL error: '
@@ -498,10 +495,14 @@ ERROR;
 	 */
 	public function tableExists( $table ) {
 		$schema = $this->mSchema;
-		$sql = <<< EOF
+		/*$sql = <<< EOF
 SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST
 WHERE ST.NAME = '$table' AND ST.CREATOR = '$schema'
-EOF;
+EOF;*/
+		$sql = "SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST WHERE ST.NAME = '" . 
+			strtoupper( $table ) .
+			"' AND ST.CREATOR = '" .
+			strtoupper( $schema ) . "'";
 		$res = $this->query( $sql );
 		if ( !$res ) {
 			return false;
@@ -550,12 +551,15 @@ EOF;
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		@$row = db2_fetch_array( $res );
-		if ( $this->lastErrno() ) {
-			throw new DBUnexpectedError( $this, 'Error in fetchRow(): '
-				. htmlspecialchars( $this->lastError() ) );
-		}
-		return $row;
+		if ( db2_num_rows( $res ) > 0) {
+			@$row = db2_fetch_array( $res );
+			if ( $this->lastErrno() ) {
+				throw new DBUnexpectedError( $this, 'Error in fetchRow(): '
+					. htmlspecialchars( $this->lastError() ) );
+			}
+			return $row;
+                }
+		return false;
 	}
 
 	/**
@@ -898,9 +902,9 @@ EOF;
 		} else {
 			$sql .= '( ?' . str_repeat( ',?', $key_count-1 ) . ' )';
 		}
-		//$this->installPrint( "Preparing the following SQL:" );
-		//$this->installPrint( "$sql" );
-		//$this->installPrint( print_r( $args, true ));
+		$this->installPrint( "Preparing the following SQL:" );
+		$this->installPrint( "$sql" );
+		$this->installPrint( print_r( $args, true ));
 		$stmt = $this->prepare( $sql );
 
 		// start a transaction/enter transaction mode
@@ -974,17 +978,18 @@ EOF;
 	private function removeNullPrimaryKeys( $table, $args ) {
 		$schema = $this->mSchema;
 		// find out the primary keys
-		$keyres = db2_primary_keys( $this->mConn, null, strtoupper( $schema ),
+		/*$keyres = db2_primary_keys( $this->mConn, null, strtoupper( $schema ),
 			strtoupper( $table )
-		);
+		);*/
+		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '" . strtoupper( $table ) . "' AND TBCREATOR = '" . strtoupper( $schema ) . "' AND KEYSEQ > 0" );
 		$keys = array();
 		for (
-			$row = $this->fetchObject( $keyres );
+			$row = $this->fetchRow( $keyres );
 			$row != null;
-			$row = $this->fetchObject( $keyres )
+			$row = $this->fetchRow( $keyres )
 		)
 		{
-			$keys[] = strtolower( $row->column_name );
+			$keys[] = strtolower( $row[0] );
 		}
 		// remove primary keys
 		foreach ( $args as $ai => $row ) {
@@ -1118,11 +1123,12 @@ EOF;
 				$this->query( $sql, $fname );
 			}
 
+			$this->insert($table, $row);
 			# Now insert the row
-			$sql = "INSERT INTO $table ( "
+			/*$sql = "INSERT INTO $table ( "
 				. $this->makeList( array_keys( $row ), LIST_NAMES )
 				.' ) VALUES ( ' . $this->makeList( $row, LIST_COMMA ) . ' )';
-			$this->query( $sql, $fname );
+			$this->query( $sql, $fname );*/
 		}
 	}
 
@@ -1136,6 +1142,7 @@ EOF;
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+		
 		if ( $this->mNumRows ) {
 			return $this->mNumRows;
 		} else {
@@ -1569,7 +1576,7 @@ SQL;
 	 */
 	public function prepare( $sql, $func = 'DB2::prepare' ) {
 		$stmt = db2_prepare( $this->mConn, $sql, $this->mStmtOptions );
-		return $stmt;
+                return $stmt;
 	}
 
 	/**

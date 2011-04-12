@@ -73,6 +73,7 @@ abstract class Installer {
 		'postgres',
 		'oracle',
 		'sqlite',
+		'ibm_db2',
 	);
 
 	/**
