@@ -824,189 +824,283 @@ class Parser {
 
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
-		$td_history = array(); # Is currently a td tag open?
-		$last_tag_history = array(); # Save history of last lag activated (td, th or caption)
-		$tr_history = array(); # Is currently a tr tag open?
-		$tr_attributes = array(); # history of tr attributes
-		$has_opened_tr = array(); # Did this table open a <tr> element?
-		$indent_level = 0; # indent level of the table
+		$output =& $out;
 
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line === '' ) { # empty line, go to next line
+			if ( $line == '') { //empty line, go to next line
 				$out .= $outLine."\n";
 				continue;
 			}
-
-			$first_character = $line[0];
+			$first_chars = $line[0];
+			if ( strlen($line) > 1) {
+				$first_chars .= in_array($line[1], array('}', '+', '-')) ? $line[1] : '';
+			}
 			$matches = array();
 
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $line , $matches ) ) {
-				# First check if we are starting a new table
-				$indent_level = strlen( $matches[1] );
+				$tables[] = array();
+				$table =& $this->last($tables);
+				$table[0] = array(); //first row
+				$current_row =& $table[0];
+
+				$table['indent'] = strlen( $matches[1] );
 
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
 				$attributes = Sanitizer::fixTagAttributes( $attributes , 'table' );
 
-				$outLine = str_repeat( '<dl><dd>' , $indent_level ) . "<table{$attributes}>";
-				array_push( $td_history , false );
-				array_push( $last_tag_history , '' );
-				array_push( $tr_history , false );
-				array_push( $tr_attributes , '' );
-				array_push( $has_opened_tr , false );
-			} elseif ( count( $td_history ) == 0 ) {
-				# Don't do any of the following
+				if ( $attributes !== '' ) {
+					$table['attributes'] = $attributes;
+				}
+			} else if ( !isset($tables[0]) ) {
+				// we're outside the table
+
 				$out .= $outLine."\n";
-				continue;
-			} elseif ( substr( $line , 0 , 2 ) === '|}' ) {
-				# We are ending a table
-				$line = '</table>' . substr( $line , 2 );
-				$last_tag = array_pop( $last_tag_history );
+			} else if ( $first_chars === '|}' ) {
+				// trim the |} code from the line
+				$line = substr ( $line , 2 );
 
-				if ( !array_pop( $has_opened_tr ) ) {
-					$line = "<tr><td></td></tr>{$line}";
+				// Shorthand for last row
+				$last_row =& $this->last($table);
+
+				// a thead at the end becomes a tfoot, unless there is only one row
+				// Do this before deleting empty last lines to allow headers at the bottom of tables
+				if ( isset($last_row['type'] ) && $last_row['type'] == 'thead' && isset($table[1])) {
+					$last_row['type'] = 'tfoot';
+					for($i = 0; isset($last_row[$i]); $i++ ) {
+						$last_row[$i]['type'] = 'td';
+					}
 				}
 
-				if ( array_pop( $tr_history ) ) {
-					$line = "</tr>{$line}";
+				// Delete empty last lines
+				if ( empty($last_row) ) {
+					$last_row = NULL;
+				}
+				$o = $this->printTableHtml( array_pop($tables) ) . $line;
+
+				if ( count($tables) > 0 ) {
+					$table =& $this->last($tables);
+					$current_row =& $this->last($table);
+					$current_element =& $this->last($current_row);
+
+					$output =& $current_element['content'];
+				} else {
+					$output =& $out;
 				}
 
-				if ( array_pop( $td_history ) ) {
-					$line = "</{$last_tag}>{$line}";
-				}
-				array_pop( $tr_attributes );
-				$outLine = $line . str_repeat( '</dd></dl>' , $indent_level );
-			} elseif ( substr( $line , 0 , 2 ) === '|-' ) {
-				# Now we have a table row
-				$line = preg_replace( '#^\|-+#', '', $line );
+				$output .= $o;
 
-				# Whats after the tag is now only attributes
+			} else if ( $first_chars === '|-' ) {
+				// start a new row element
+				// but only when we haven't started one already
+				if( count($current_row) != 0 ) {
+					$table[] = array();
+					$current_row =& $this->last($table);
+				}
+				// Get the attributes, there's nothing else useful in $line now
+				$line = substr ( $line , 2 );
 				$attributes = $this->mStripState->unstripBoth( $line );
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'tr' );
-				array_pop( $tr_attributes );
-				array_push( $tr_attributes, $attributes );
+				if( $attributes !== '') {
+					$current_row['attributes'] = $attributes;
+				}
+				
+			} else if ( $first_chars  === '|+' ) {
+				// a table caption
+				$line = substr ( $line , 2 );
+				
+				$c = $this->getCellAttr($line , 'caption');
+				$table['caption'] = array();
+				$table['caption']['content'] = $c[0];
+				if(isset($c[1])) $table['caption']['attributes'] = $c[1];
+				unset($c);
 
-				$line = '';
-				$last_tag = array_pop( $last_tag_history );
-				array_pop( $has_opened_tr );
-				array_push( $has_opened_tr , true );
+				$output =& $table['caption'];
+			} else if ( $first_chars === '|' || $first_chars === '!' || $first_chars === '!+' ) {
+				// Which kind of cells are we dealing with
+				$this_tag = 'td';
+				$line = substr ( $line , 1 );
 
-				if ( array_pop( $tr_history ) ) {
-					$line = '</tr>';
+				if ( $first_chars === '!'  || $first_chars === '!+' ) {
+					$line = str_replace ( '!!' , '||' , $line );
+					$this_tag = 'th';
 				}
 
-				if ( array_pop( $td_history ) ) {
-					$line = "</{$last_tag}>{$line}";
-				}
-
-				$outLine = $line;
-				array_push( $tr_history , false );
-				array_push( $td_history , false );
-				array_push( $last_tag_history , '' );
-			} elseif ( $first_character === '|' || $first_character === '!' || substr( $line , 0 , 2 )  === '|+' ) {
-				# This might be cell elements, td, th or captions
-				if ( substr( $line , 0 , 2 ) === '|+' ) {
-					$first_character = '+';
-					$line = substr( $line , 1 );
-				}
-
-				$line = substr( $line , 1 );
-
-				if ( $first_character === '!' ) {
-					$line = str_replace( '!!' , '||' , $line );
-				}
-
-				# Split up multiple cells on the same line.
-				# FIXME : This can result in improper nesting of tags processed
-				# by earlier parser steps, but should avoid splitting up eg
-				# attribute values containing literal "||".
+				// Split up multiple cells on the same line.
 				$cells = StringUtils::explodeMarkup( '||' , $line );
+				$line = ''; // save memory
 
-				$outLine = '';
-
-				# Loop through each table cell
-				foreach ( $cells as $cell ) {
-					$previous = '';
-					if ( $first_character !== '+' ) {
-						$tr_after = array_pop( $tr_attributes );
-						if ( !array_pop( $tr_history ) ) {
-							$previous = "<tr{$tr_after}>\n";
-						}
-						array_push( $tr_history , true );
-						array_push( $tr_attributes , '' );
-						array_pop( $has_opened_tr );
-						array_push( $has_opened_tr , true );
-					}
-
-					$last_tag = array_pop( $last_tag_history );
-
-					if ( array_pop( $td_history ) ) {
-						$previous = "</{$last_tag}>\n{$previous}";
-					}
-
-					if ( $first_character === '|' ) {
-						$last_tag = 'td';
-					} elseif ( $first_character === '!' ) {
-						$last_tag = 'th';
-					} elseif ( $first_character === '+' ) {
-						$last_tag = 'caption';
-					} else {
-						$last_tag = '';
-					}
-
-					array_push( $last_tag_history , $last_tag );
-
-					# A cell could contain both parameters and data
-					$cell_data = explode( '|' , $cell , 2 );
-
-					# Bug 553: Note that a '|' inside an invalid link should not
-					# be mistaken as delimiting cell parameters
-					if ( strpos( $cell_data[0], '[[' ) !== false ) {
-						$cell = "{$previous}<{$last_tag}>{$cell}";
-					} elseif ( count( $cell_data ) == 1 ) {
-						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
-					} else {
-						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
-						$attributes = Sanitizer::fixTagAttributes( $attributes , $last_tag );
-						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
-					}
-
-					$outLine .= $cell;
-					array_push( $td_history , true );
+				// decide whether thead to tbody
+				if ( !array_key_exists('type', $current_row) ) {
+					$current_row['type'] = ( $first_chars === '!' ) ? 'thead' : 'tbody' ;
+				} else if( $first_chars === '|' ) {
+					$current_row['type'] = 'tbody';
 				}
+
+				// Loop through each table cell
+				foreach ( $cells as $cell ) {
+					// a new cell
+					$current_row[] = array();
+					$current_element =& $this->last($current_row);
+
+					$current_element['type'] = $this_tag;
+
+					$c = $this->getCellAttr($cell , $this_tag);
+					$current_element['content'] = $c[0];
+					if(isset($c[1])) $current_element['attributes'] = $c[1];
+					unset($c);
+				}
+				$output =& $current_element['content'];
+				
+			} else {
+				$output .= $outLine."\n";
 			}
-			$out .= $outLine . "\n";
 		}
-
-		# Closing open td, tr && table
-		while ( count( $td_history ) > 0 ) {
-			if ( array_pop( $td_history ) ) {
-				$out .= "</td>\n";
-			}
-			if ( array_pop( $tr_history ) ) {
-				$out .= "</tr>\n";
-			}
-			if ( !array_pop( $has_opened_tr ) ) {
-				$out .= "<tr><td></td></tr>\n" ;
-			}
-
-			$out .= "</table>\n";
-		}
-
+		
 		# Remove trailing line-ending (b/c)
 		if ( substr( $out, -1 ) === "\n" ) {
 			$out = substr( $out, 0, -1 );
 		}
-
-		# special case: don't return empty table
-		if ( $out === "<table>\n<tr><td></td></tr>\n</table>" ) {
-			$out = '';
+		
+		#Close any unclosed tables
+		if (isset($tables) && count($tables) > 0 ) {
+			for ($i = 0; $i < count($tables); $i++) {
+				$out .= $this->printTableHtml( array_pop($tables) );
+			}
 		}
-
+			
 		wfProfileOut( __METHOD__ );
 
 		return $out;
+	}
+
+
+	/**
+	 * Helper function for doTableStuff() separating the contents of cells from
+	 * attributes. Particularly useful as there's a possible bug and this action 
+	 * is repeated twice.
+	 *
+	 * @private
+	 */
+	function getCellAttr ($cell , $tag_name) {
+		$content = null;
+		$attributes = null;
+
+		$cell = trim ( $cell );
+
+		// A cell could contain both parameters and data
+		$cell_data = explode ( '|' , $cell , 2 );
+
+		// Bug 553: Note that a '|' inside an invalid link should not
+		// be mistaken as delimiting cell parameters
+		if ( strpos( $cell_data[0], '[[' ) !== false ) {
+			$content = trim ( $cell );
+		}
+		else if ( count ( $cell_data ) == 1 ) {
+			$content = trim ( $cell_data[0] );
+		}
+		else {
+			$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
+			$attributes = Sanitizer::fixTagAttributes( $attributes , $tag_name );
+
+			$content = trim ( $cell_data[1] );
+		}
+		return array($content, $attributes);
+	}
+
+
+	/**
+	 * Helper function for doTableStuff(). This converts the structured array into html.
+	 *
+	 * @private
+	 */
+	function printTableHtml (&$t) {
+		$r = "\n";
+		$r .= str_repeat( '<dl><dd>' , $t['indent'] );
+		$r .= '<table';
+		$r .= isset($t['attributes']) ? $t['attributes'] : '';
+		$r .= '>';
+		unset($t['attributes']);
+
+		if ( isset($t['caption']) ) {
+			$r .= "\n<caption";
+			$r .= isset($t['caption']['attributes']) ? $t['caption']['attributes'] : '';
+			$r .= '>';
+			$r .= $t['caption']['content'];
+			$r .= '</caption>';
+		}
+		$last_section = '';
+		$empty = true;
+		$simple = true;
+		
+		//If we only have tbodies, mark table as simple
+		for($i = 0; isset($t[$i]); $i++ ) {
+		    if ( !count( $t[$i]) ) continue;
+		    if ( !$last_section ) {
+		        $last_section = $t[$i]['type'];
+		    } else if ($last_section != $t[$i]['type']) {
+		        $simple = false;
+		        break;
+		    }
+		}
+		$last_section = '';
+		for($i = 0; isset($t[$i]); $i++ ) {
+			// Check for empty tables
+			if ( count( $t[$i]) ) {
+				$empty = false;
+			} else {
+			    continue;
+			}
+			if( $t[$i]['type'] != $last_section && !$simple ) {
+				$r .= "\n<" . $t[$i]['type'] . '>';
+			}
+
+			$r .= "\n<tr";
+			$r .= isset($t[$i]['attributes']) ? $t[$i]['attributes'] : '';
+			$r .= '>';
+			for($j = 0; isset($t[$i][$j]); $j++ ) {
+				$r .= "\n<" . $t[$i][$j]['type'];
+				$r .= isset($t[$i][$j]['attributes']) ? $t[$i][$j]['attributes'] : '';
+				$r .= '>';
+
+				$r .= $t[$i][$j]['content'];
+
+				$r .= '</' . $t[$i][$j]['type'] . '>';
+				unset($t[$i][$j]);
+			}
+			$r .= "\n</tr>";
+
+			if( ( !isset($t[$i+1]) && !$simple )|| ( isset($t[$i+1]) && ($t[$i]['type'] != $t[$i+1]['type'])) ) {
+				$r .= '</' . $t[$i]['type'] . '>';
+			}
+			$last_section = $t[$i]['type'];
+			unset($t[$i]);
+		}
+		if ( $empty ) {
+			if ( isset($t['caption']) ) {
+				$r .= "\n<tr><td></td></tr>";
+			} else {
+				return '';
+			}
+		}
+		$r .= "\n</table>";
+		$r .= str_repeat( '</dd></dl>' , $t['indent'] );
+
+		return $r;
+	}
+
+	/**
+	 * like end() but only works on the numeric array index and php's internal pointers
+	 * returns a reference to the last element of an array much like "\$arr[-1]" in perl
+	 * ignores associative elements and will create a 0 key will a NULL value if there were
+	 * no numric elements and an array itself if not previously defined.
+	 *
+	 * @private
+	 */
+	function &last (&$arr) {
+		for($i = count($arr); (!isset($arr[$i]) && $i > 0); $i--) {  }
+		return $arr[$i];
 	}
 
 	/**
@@ -2239,7 +2333,7 @@ class Parser {
 					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix.'-pre|<\\/li|<\\/ul|<\\/ol|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
-					# TODO bug 5718: paragraph closed
+					# TODO bug 5718: paragraph closed
 					$output .= $this->closeParagraph();
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;

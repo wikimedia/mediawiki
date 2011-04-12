@@ -369,7 +369,7 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp'
+				'kbd', 'samp', 'thead', 'tbody', 'tfoot'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
