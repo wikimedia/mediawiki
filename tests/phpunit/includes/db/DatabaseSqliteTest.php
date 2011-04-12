@@ -88,13 +88,13 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
-		$this->assertEquals( 'CREATE TABLE bar(foo, barfoo)',
+		$this->assertEquals( 'CREATE TABLE "bar"(foo, barfoo)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'bar' ) ),
 			'Normal table duplication'
 		);
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
-		$this->assertEquals( 'CREATE TABLE baz(foo, barfoo)',
+		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
 			$db->selectField( 'sqlite_temp_master', 'sql', array( 'name' => 'baz' ) ),
 			'Creation of temporary duplicate'
 		);
@@ -109,16 +109,16 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( $db->getFulltextSearchModule() != 'FTS3' ) {
 			$this->markTestSkipped( 'FTS3 not supported, cannot create virtual tables' );
 		}
-		$db->query( 'CREATE VIRTUAL TABLE foo USING FTS3(foobar)' );
+		$db->query( 'CREATE VIRTUAL TABLE "foo" USING FTS3(foobar)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
-		$this->assertEquals( 'CREATE VIRTUAL TABLE bar USING FTS3(foobar)',
+		$this->assertEquals( 'CREATE VIRTUAL TABLE "bar" USING FTS3(foobar)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'bar' ) ),
 			'Duplication of virtual tables'
 		);
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
-		$this->assertEquals( 'CREATE VIRTUAL TABLE baz USING FTS3(foobar)',
+		$this->assertEquals( 'CREATE VIRTUAL TABLE "baz" USING FTS3(foobar)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'baz' ) ),
 			"Can't create temporary virtual tables, should fall back to non-temporary duplication"
 		);
