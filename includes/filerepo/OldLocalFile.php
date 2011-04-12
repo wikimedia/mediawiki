@@ -227,12 +227,14 @@ class OldLocalFile extends LocalFile {
 	 * @param $archiveName string Full archive name of the file, in the form 
 	 * 	$timestamp!$filename, where $filename must match $this->getName()
 	 */
-	function uploadOld( $srcPath, $archiveName, $comment, $user ) {
+	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user, $flags = 0 ) {
 		$this->lock();
-		$status = $this->publish( $srcPath, $flags, $archiveName );
+		$status = $this->publish( $srcPath, 
+			$flags & File::DELETE_SOURCE ? FileRepo::DELETE_SOURCE : 0, 
+			$archiveName );
 		
 		if ( $status->isGood() ) {
-			if ( !$this->recordOldUpload( $srcPath, $archiveName, $comment, $user ) ) {
+			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
 		}
@@ -251,7 +253,7 @@ class OldLocalFile extends LocalFile {
 	 * @param $user User User who did this upload
 	 * @return bool
 	 */
-	function recordOldUpload( $srcPath, $archiveName, $comment, $user ) {
+	function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$dbw = $this->repo->getMasterDB();
 		$dbw->begin();
 
@@ -269,7 +271,7 @@ class OldLocalFile extends LocalFile {
 				'oi_width'        => intval( $props['width'] ),
 				'oi_height'       => intval( $props['height'] ),
 				'oi_bits'         => $props['bits'],
-				'oi_timestamp'    => $props['timestamp'],
+				'oi_timestamp'    => $dbw->timestamp( $timestamp ),
 				'oi_description'  => $comment,
 				'oi_user'         => $user->getId(),
 				'oi_user_text'    => $user->getName(),
