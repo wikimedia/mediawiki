@@ -259,11 +259,11 @@ class UsersPager extends AlphabeticPager {
 
 	/**
 	 * Format a link to a group description page
-	 * Also called by SpecialActiveUsers
+	 *
 	 * @param $group String: group name
 	 * @return string
 	 */
-	public static function buildGroupLink( $group ) {
+	protected static function buildGroupLink( $group ) {
 		static $cache = array();
 		if( !isset( $cache[$group] ) )
 			$cache[$group] = User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupMember( $group ) ) );
