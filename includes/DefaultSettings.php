@@ -1862,7 +1862,6 @@ $wgDummyLanguageCodes = array(
 	'nb',
 	'qqq',
 	'simple',
-	'tp',
 );
 
 /** @deprecated Since MediaWiki 1.5, this must always be set to UTF-8. */
