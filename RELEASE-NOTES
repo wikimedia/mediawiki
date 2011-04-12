@@ -345,7 +345,7 @@ MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* Liv added (Livonian) (new)
+* Liv (Livonian) (new)
 * Tokipona: 'tp' language code no longer supported; 'tokipona' is still
   valid, however.
 * (bug 17160) Gender specific display text for User namespace
