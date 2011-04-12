@@ -35,6 +35,7 @@ class WikiExporter {
 	var $author_list = "" ;
 
 	var $dumpUploads = false;
+	var $dumpUploadFileContents = false;
 
 	const FULL = 1;
 	const CURRENT = 2;
@@ -318,7 +319,7 @@ class WikiExporter {
 				if ( isset( $last ) ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
-						$output .= $this->writer->writeUploads( $last );
+						$output .= $this->writer->writeUploads( $last, $this->dumpUploadFileContents );
 					}
 					$output .= $this->writer->closePage();
 					$this->sink->writeClosePage( $output );
@@ -333,7 +334,7 @@ class WikiExporter {
 		if ( isset( $last ) ) {
 			$output = '';
 			if ( $this->dumpUploads ) {
-				$output .= $this->writer->writeUploads( $last );
+				$output .= $this->writer->writeUploads( $last, $this->dumpUploadFileContents );
 			}
 			$output .= $this->author_list;
 			$output .= $this->writer->closePage();
@@ -600,29 +601,48 @@ class XmlDumpWriter {
 	/**
 	 * Warning! This data is potentially inconsistent. :(
 	 */
-	function writeUploads( $row ) {
+	function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_IMAGE ) {
 			$img = wfFindFile( $row->page_title );
 			if ( $img ) {
 				$out = '';
 				foreach ( array_reverse( $img->getHistory() ) as $ver ) {
-					$out .= $this->writeUpload( $ver );
+					$out .= $this->writeUpload( $ver, $dumpContents );
 				}
-				$out .= $this->writeUpload( $img );
+				$out .= $this->writeUpload( $img, $dumpContents );
 				return $out;
 			}
 		}
 		return '';
 	}
 
-	function writeUpload( $file ) {
+	function writeUpload( $file, $dumpContents = false ) {
+		if ( $file->isOld() ) {
+			$archiveName = "      " . 
+				Xml::element( 'archivename', null, $file->getArchiveName() ) . "\n";
+		} else {
+			$archiveName = '';
+		}
+		if ( $dumpContents ) {
+			# Dump file as base64
+			# Uses only XML-safe characters, so does not need escaping
+			$contents = '      <contents encoding="base64">' . 
+				chunk_split( base64_encode( file_get_contents( $file->getPath() ) ) ) .
+				"      </contents>\n";
+		} else {
+			$contents = '';
+		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
 			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
 			"      " . Xml::elementClean( 'comment', null, $file->getDescription() ) . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
+			$archiveName . 
 			"      " . Xml::element( 'src', null, $file->getFullUrl() ) . "\n" .
 			"      " . Xml::element( 'size', null, $file->getSize() ) . "\n" .
+			"      " . Xml::element( 'sha1base36', null, $file->getSha1() ) . "\n" .
+			"      " . Xml::element( 'rel', null, $file->getRel() ) . "\n" .
+			$contents .
 			"    </upload>\n";
 	}
 
