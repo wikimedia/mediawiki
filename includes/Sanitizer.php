@@ -722,28 +722,34 @@ class Sanitizer {
 
 	/**
 	 * Pick apart some CSS and check it for forbidden or unsafe structures.
-	 * Returns a sanitized string, or false if it was just too evil.
+	 * Returns a sanitized string. This sanitized string will have
+	 * character references and escape sequences decoded, and comments
+	 * stripped. If the input is just too evil, only a comment complaining
+	 * about evilness will be returned.
 	 *
 	 * Currently URL references, 'expression', 'tps' are forbidden.
 	 *
+	 * NOTE: Despite the fact that character references are decoded, the
+	 * returned string may contain character references given certain
+	 * clever input strings. These character references must
+	 * be escaped before the return value is embedded in HTML.
+	 * 
 	 * @param $value String
-	 * @return Mixed
+	 * @return String
 	 */
 	static function checkCss( $value ) {
+		// Decode character references like &#123;
 		$value = Sanitizer::decodeCharReferences( $value );
-
-		// Remove any comments; IE gets token splitting wrong
-		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
-
-		// Remove anything after a comment-start token, to guard against
-		// incorrect client implementations.
-		$commentPos = strpos( $value, '/*' );
-		if ( $commentPos !== false ) {
-			$value = substr( $value, 0, $commentPos );
-		}
 
 		// Decode escape sequences and line continuation
 		// See the grammar in the CSS 2 spec, appendix D.
+		// This has to be done AFTER decoding character references.
+		// This means it isn't possible for this function to return
+		// unsanitized escape sequences. It is possible to manufacture
+		// input that contains character references that decode to
+		// escape sequences that decode to character references, but
+		// it's OK for the return value to contain character references
+		// because the caller is supposed to escape those anyway.
 		static $decodeRegex;
 		if ( !$decodeRegex ) {
 			$space = '[\\x20\\t\\r\\n\\f]';
@@ -759,6 +765,21 @@ class Sanitizer {
 		}
 		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
+		
+		// Remove any comments; IE gets token splitting wrong
+		// This must be done AFTER decoding character references and
+		// escape sequences, because those steps can introduce comments
+		// This step cannot introduce character references or escape
+		// sequences, because it replaces comments with spaces rather
+		// than removing them completely.
+		$value = StringUtils::delimiterReplace( '/*', '*/', ' ', $value );
+
+		// Remove anything after a comment-start token, to guard against
+		// incorrect client implementations.
+		$commentPos = strpos( $value, '/*' );
+		if ( $commentPos !== false ) {
+			$value = substr( $value, 0, $commentPos );
+		}
 
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\016-\037\177]/', $value ) ) {
