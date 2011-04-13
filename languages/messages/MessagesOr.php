@@ -101,7 +101,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Category|ବିଭାଗ}}',
 'category_header'        => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'subcategories'          => 'ସାନ ବିଭାଗସବୁ',
+'subcategories'          => 'ସାନ ଶ୍ରେଣୀସବୁ',
 'hidden-categories'      => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ବିଭାଗ}}',
 'listingcontinuesabbrev' => 'ଆହୁରି ଅଛି..',
 
@@ -120,7 +120,7 @@ $messages = array(
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
 'permalink'        => 'ସବୁଦିନିଆ ଲିଁକ',
 'edit'             => 'ବଦଳାଇବେ',
-'create'           => 'ତିଆରିକର',
+'create'           => 'ତିଆରି କରିବେ',
 'delete'           => 'ଲିଭେଇବେ',
 'protect'          => 'କିଳିବେ',
 'protect_change'   => 'ବଦଳାଇବା',

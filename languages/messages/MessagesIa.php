@@ -1669,22 +1669,23 @@ Un verification correcte de su securitate es impossibile.',
 'uploadstash-refresh'  => 'Refrescar le lista de files',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accesso refusate',
-'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+'img-auth-accessdenied'     => 'Accesso refusate',
+'img-auth-nopathinfo'       => 'PATH_INFO mancante.
 Le servitor non ha essite configurate pro passar iste information.
 Illo pote esser basate super CGI e non pote supportar img_auth.
 Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization .',
-'img-auth-notindir'     => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
-'img-auth-badtitle'     => 'Impossibile construer un titulo valide ex "$1".',
-'img-auth-nologinnWL'   => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
-'img-auth-nofile'       => 'File "$1" non existe.',
-'img-auth-isdir'        => 'Tu tenta acceder a un directorio "$1".
+'img-auth-notindir'         => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
+'img-auth-badtitle'         => 'Impossibile construer un titulo valide ex "$1".',
+'img-auth-nologinnWL'       => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
+'img-auth-nofile'           => 'File "$1" non existe.',
+'img-auth-isdir'            => 'Tu tenta acceder a un directorio "$1".
 Solmente le accesso a files es permittite.',
-'img-auth-streaming'    => 'Fluxo de "$1" comenciate.',
-'img-auth-public'       => 'Le function de img_auth.php es de reproducer files ex un wiki private.
+'img-auth-streaming'        => 'Fluxo de "$1" comenciate.',
+'img-auth-public'           => 'Le function de img_auth.php es de reproducer files ex un wiki private.
 Iste wiki es configurate como un wiki public.
 Pro securitate optimal, img_auth.php es disactivate.',
-'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
+'img-auth-noread'           => 'Le usator non ha accesso pro leger "$1".',
+'img-auth-bad-query-string' => 'Le URL include un consulta con formato invalide.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL invalide: $1',
@@ -2052,6 +2053,10 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'noemailtext'          => 'Iste usator non ha specificate un adresse de e-mail valide.',
 'nowikiemailtitle'     => 'E-mail non permittite',
 'nowikiemailtext'      => 'Iste usator ha optate pro non reciper e-mail de altere usatores.',
+'emailnotarget'        => 'Nomine de usator inexistente o invalide pro le destinatario.',
+'emailtarget'          => 'Entra le nomine de usator del destinatario.',
+'emailusername'        => 'Nomine de usator:',
+'emailusernamesubmit'  => 'Submitter',
 'email-legend'         => 'Inviar e-mail a un altere usator de {{SITENAME}}',
 'emailfrom'            => 'Expeditor:',
 'emailto'              => 'Destinatario:',

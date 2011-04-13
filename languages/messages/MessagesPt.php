@@ -1832,22 +1832,23 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acesso negado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Acesso negado',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
 Consulte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
-'img-auth-badtitle'     => 'Não é possível construir um título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
-'img-auth-nofile'       => 'O ficheiro "$1" não existe.',
-'img-auth-isdir'        => 'Está tentando aceder ao directório "$1".
+'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
+'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
+'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
+'img-auth-nofile'           => 'O ficheiro "$1" não existe.',
+'img-auth-isdir'            => 'Está tentando aceder ao directório "$1".
 Só é permitido o acesso a ficheiros.',
-'img-auth-streaming'    => "A fazer o ''streaming'' de \"\$1\".",
-'img-auth-public'       => 'A função do img_auth.php é produzir ficheiros a partir de uma wiki privada.
+'img-auth-streaming'        => "A fazer o ''streaming'' de \"\$1\".",
+'img-auth-public'           => 'A função do img_auth.php é produzir ficheiros a partir de uma wiki privada.
 Esta wiki está configurada como uma wiki pública.
 Para optimizar a segurança, o img_auth.php está impossibilitado de executar.',
-'img-auth-noread'       => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
+'img-auth-noread'           => 'O utilizador não tem acesso de leitura ao ficheiro "$1".',
+'img-auth-bad-query-string' => 'A URL tem um texto de consulta inválido.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
@@ -2207,6 +2208,10 @@ O endereço de correio que introduziu nas suas [[Special:Preferences|preferênci
 'noemailtext'          => 'Este utilizador não especificou um endereço de correio electrónico válido.',
 'nowikiemailtitle'     => 'Correio electrónico não é permitido',
 'nowikiemailtext'      => 'Este utilizador optou por não receber correio electrónico de outros utilizadores.',
+'emailnotarget'        => 'O nome do destinatário não existe ou é inválido.',
+'emailtarget'          => 'Introduza o nome de utilizador do destinatário.',
+'emailusername'        => 'Utilizador:',
+'emailusernamesubmit'  => 'Enviar',
 'email-legend'         => 'Enviar correio electrónico para outro utilizador da {{SITENAME}}',
 'emailfrom'            => 'De:',
 'emailto'              => 'Para:',
