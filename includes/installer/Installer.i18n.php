@@ -1109,6 +1109,7 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki падтрымлівае наступныя сыстэмы базаў зьвестак:
 
 $1
@@ -1118,10 +1119,12 @@ $1
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL]). Яна можа ўтрымліваць дробныя памылкі, і не рэкамэндуецца выкарыстоўваць яе для працуючых праектаў.',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
 	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
+	'config-support-ibm_db2' => '* $1 — база зьвестак камэрцыйнага прадпрыемства.',
 	'config-header-mysql' => 'Налады MySQL',
 	'config-header-postgres' => 'Налады PostgreSQL',
 	'config-header-sqlite' => 'Налады SQLite',
 	'config-header-oracle' => 'Налады Oracle',
+	'config-header-ibm_db2' => 'Налады IBM DB2',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
 	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
@@ -1206,6 +1209,7 @@ chmod a+w $3</pre>',
 Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
 
 У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
+	'config-ibm_db2-low-db-pagesize' => 'Павінна быць таблічная вобласьць з памерам старонкі ня меней 32кб.',
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -1844,7 +1848,7 @@ $messages['br'] = array(
 Evit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er voest dindan.
 E gavout a rit e LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Dinoet ez eus bet ur restr LocalSettings.php.
-Evit lakaat ar staliadur-mañ a-live, implijit --upgrade=yes, mar plij.',
+Evit lakaat ar staliadur-mañ a-live, implijit update.php e plas',
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
 	'config-upgrade-key-missing' => 'Kavet ez eus bet ur staliadur kent eus MediaWiki.
@@ -1858,6 +1862,10 @@ Kemmit LocalSettings.php evit ma vo termenet an argemmenn-se, ha klikit war « K
 
 $1",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
+	'config-session-expired' => "Kloz eo an dalc'h evit doare.
+Kefluniet eo an dalc'hoù evit padout $1.
+Kreskiñ ar pad-mañ a c'hallit dre e arventenniñ <code>session.gc_maxlifetime</code> e php.ini.
+Adgrogit gant ar staliadur.",
 	'config-no-session' => "Kolle teo bet roadennoù ho talc'h !
 Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</code> en ur c'havlec'h a zere.",
 	'config-your-language' => 'Ho yezh :',
@@ -1886,10 +1894,24 @@ Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</cod
 	'config-welcome' => "=== Gwiriadennoù a denn d'an endro ===
 Rekis eo un nebeud gwiriadennoù diazez da welet hag azas eo an endro evit gallout staliañ MediaWiki.
 Dleout a rafec'h merkañ disoc'hoù ar gwiriadennoù-se m'hoc'h eus ezhomm skoazell e-pad ar staliadenn.",
-	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Degemer]
-* [http://www.mediawiki.org/wiki/Help:Contents Pajenn-stur an implijer]
-* [http://www.mediawiki.org/wiki/Manual:Contents Pajenn-stur ar merour]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAG]',
+	'config-copyright' => "=== Gwiriañ aozer ha Termenoù implijout ===
+
+$1
+
+Ur meziant frank eo ar programm-mañ; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre implijout, pe (evel mar karit) diouzh ne vern pe stumm nevesoc'h.
+
+Ingalet eo ar programm gant ar spi e vo talvoudus met n'eus '''tamm gwarant ebet'''; hep zoken gwarant empleg ar '''varc'hadusted''' pe an '''azaster ouzh ur pal bennak'''. Gwelet ar GNU Aotre Implijout Foran Hollek evit muioc'h a ditouroù.
+
+Sañset oc'h bezañ resevet <doclink href=Copying>un eilskrid eus ar GNU Aotre implijout Foran Hollek</doclink> a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+	'config-sidebar' => "* [http://www.mediawiki.org MediaWiki degemer]
+* [http://www.mediawiki.org/wiki/Help:Contents Sturlevr an implijerien]
+* [http://www.mediawiki.org/wiki/Manual:Contents Sturlevr ar verourien]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAG]
+----
+* <doclink href=Readme>Lennit-me</doclink>
+* <doclink href=ReleaseNotes>Notennoù embann</doclink>
+* <doclink href=Copying>Oc'h eilañ</doclink>
+* <doclink href=UpgradeDoc>O hizivaat</doclink>",
 	'config-env-good' => 'Gwiriet eo bet an endro.
 Gallout a rit staliañ MediaWiki.',
 	'config-env-bad' => "Gwiriet eo bet an endro.
@@ -1899,6 +1921,8 @@ Ne c'hallit ket staliañ MediaWiki.",
 Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 	'config-unicode-using-utf8' => "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
 	'config-unicode-using-intl' => "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
+	'config-unicode-pure-php-warning' => "'''Diwallit''' : N'haller ket kaout an [http://pecl.php.net/intl intl PECL astenn] evit merañ reoladur Unicode, a zistro d'ar stumm gorrek emplementet e-PHP.
+Ma lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
 	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
 	'config-ze1' => "'''Fazi diremed : [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mod] zo gweredekaet !'''
@@ -1916,6 +1940,8 @@ Marteze e c'hwito ar staliadenn !",
 	'config-eaccel' => 'Staliet eo [http://eaccelerator.sourceforge.net/ eAccelerator]',
 	'config-wincache' => 'Staliet eo [http://www.iis.net/download/WinCacheForPhp WinCache]',
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
+	'config-imagemagick' => "ImageMagick kavet : <code>$1</code>.
+Gweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet ganeoc'h ar pellgargañ restroù.",
 	'config-no-uri' => "'''Fazi :''' N'eus ket tu da anavezout URI ar skript red.
 Staliadur nullet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
@@ -1923,10 +1949,16 @@ Staliadur nullet.",
 	'config-db-host-oracle' => 'TNS an diaz roadennoù :',
 	'config-db-wiki-settings' => 'Anavezout ar wiki-mañ',
 	'config-db-name' => 'Anv an diaz roadennoù :',
+	'config-db-name-help' => "Dibabit un anv evit ho wiki.
+Na lakait ket a esaouennoù ennañ.
+
+Ma ri gant un herberc'hiañ kenrannet e vo pourchaset deoc'h un anv diaz roadennoù dibar da vezañ graet gantañ gant ho herberc'hier pe e lezo ac'hanoc'h da grouiñ diazoù roadennoù dre ur banell gontrolliñ.",
 	'config-db-name-oracle' => 'Brastres diaz roadennoù :',
 	'config-db-install-account' => 'Kont implijer evit ar staliadur',
 	'config-db-username' => 'Anv implijer an diaz roadennoù :',
 	'config-db-password' => 'Ger-tremen an diaz roadennoù :',
+	'config-db-password-empty' => "Lakait ur ger-tremen evit kont nevez an diaz roadennoù : $1.
+Ha pa vefe posupl da grouiñ kontoù hep ger-tremen, n'eo ket erbedet evit abegoù surentez.",
 	'config-db-install-username' => "Ebarzhit an anv implijer a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.
 N'eo ket anv implijer ar gont MediaWiki, an anv implijer evit ho tiaz roadennoù eo.",
 	'config-db-install-password' => "Ebarzhit ar ger-tremen a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.
@@ -2058,6 +2090,7 @@ Niverus eo ar servijerioù postel a c'houlenn da nebeutañ un [http://fr.wikiped
 	'config-memcached-servers' => 'Servijerioù Memcached :',
 	'config-memcached-help' => "Roll ar chomlec'hioù IP da implijout evit Memcached.
 Ret eo dispartiañ anezho gant virgulennoù ha diferañ ar porzh da implijout (da skouer : 127.0.0.1:11211, 192.168.1.25:11211).",
+	'config-memcache-badip' => "Ur chomlec'h IP direizh hoc'h eus lakaet evit Memcached : $1.",
 	'config-extensions' => 'Astennoù',
 	'config-install-alreadydone' => "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh. 
 Kit d'ar bajenn war-lerc'h, mar plij.",
@@ -2065,6 +2098,7 @@ Kit d'ar bajenn war-lerc'h, mar plij.",
 	'config-install-step-failed' => "c'hwitet",
 	'config-install-extensions' => 'En ur gontañ an astennoù',
 	'config-install-database' => 'Krouiñ an diaz roadennoù',
+	'config-install-pg-schema-not-exist' => "N'eus ket eus chema PostgreSQL.",
 	'config-install-pg-schema-failed' => "C'hwitet eo krouidigezh an taolennoù.
 Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-pg-commit' => "O wiriekaat ar c'hemmoù",
@@ -2072,6 +2106,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-pg-no-plpgsql' => "Ret eo deoc'h staliañ ar yezh PL/pgSQL en diaz roadennoù $1",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-user-alreadyexists' => 'An implijer "$1" zo anezhañ dija',
+	'config-install-user-create-failed' => 'Fazi e-ser krouiñ an implijer "$1" : $2',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-tables-failed' => "'''Fazi :''' c'hwitet eo krouidigezh an daolenn gant ar fazi-mañ : $1",
 	'config-install-interwiki-list' => "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
@@ -2080,6 +2115,7 @@ Gwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
 	'config-install-sysop' => 'Krouidigezh kont ar merour',
 	'config-install-subscribe-fail' => "Ne c'haller ket koumanantiñ da mediawiki-announce",
 	'config-install-mainpage' => "O krouiñ ar bajenn bennañ gant un endalc'had dre ziouer",
+	'config-install-extension-tables' => 'O krouiñ taolennoù evit an astennoù gweredekaet',
 	'config-install-mainpage-failed' => "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	'config-download-localsettings' => 'Pellgargañ LocalSettings.php',
 	'config-help' => 'skoazell',
@@ -3451,19 +3487,22 @@ Envisagez de placer la base de données ailleurs, par exemple dans <code>/var/li
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => "MediaWiki supporte ces systèmes de bases de données : 
 
 $1 
 
 Si vous ne voyez pas le système de base de données que vous essayez d'utiliser ci-dessous, alors suivez les instructions ci-dessus (voir liens) pour activer le support.",
 	'config-support-mysql' => '* $1 est le premier choix pour MediaWiki et est mieux pris en charge ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
-	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])",
+	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). Il peut contenir quelques bogues mineurs et n'est pas recommandé dans un environnement de production.",
 	'config-support-sqlite' => '* $1 est un système de base de données léger qui est bien supporté. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], utilise PDO)',
 	'config-support-oracle' => '* $1 est un système commercial de gestion de base de données d’entreprise. ([Http://www.php.net/manual/en/oci8.installation.php Comment compiler PHP avec le support OCI8])',
+	'config-support-ibm_db2' => "* $1 est une base de données d'entreprise commerciale.",
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
 	'config-header-oracle' => 'Paramètres d’Oracle',
+	'config-header-ibm_db2' => 'paramètres de IBM DB2',
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
 	'config-missing-db-host' => "Vous devez entrer une valeur pour « l'hôte de la base de données »",
@@ -3547,6 +3586,7 @@ Le compte que vous spécifiez ici doit déjà exister.",
 
 En ''mode binaire'', MediaWiki stocke le texte UTF-8 dans des champs binaires de la base de données. C'est plus efficace que le ''mode UTF-8'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode. 
 En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pourra présenter et convertir les données de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
+	'config-ibm_db2-low-db-pagesize' => "Il doit y avoir un espace de table avec un ''pagesize'' d'au moins 32 ko.",
 	'config-site-name' => 'Nom du wiki :',
 	'config-site-name-help' => 'Il apparaîtra dans la barre de titre du navigateur et en divers autres endroits.',
 	'config-site-name-blank' => 'Entrez un nom de site.',
@@ -3620,7 +3660,7 @@ Ce n'est généralement pas nécessaire pour un wiki privé ou d'entreprise.
 Si vous souhaitez utiliser des textes de Wikipédia, et souhaitez que Wikipédia réutilise des textes de votre wiki, vous devriez choisir la [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence ''Creative Commons Attribution Share Alike''] (CC-by-sa).
 
 Wikipédia a déjà été publié selon les termes de la [http://fr.wikipedia.org/wiki/Licence_de_documentation_libre_GNU ''GNU Free Documentation License''] (GFDL). 
-C'est encore une licence valide, mais elle possède des caractéristiques qui rendent difficiles la réutilisation et l'interprétation des textes.",
+C'est une licence valide, mais elle est difficile à comprendre. De plus, elle possède des caractéristiques qui rendent difficiles la réutilisation.",
 	'config-email-settings' => 'Paramètres de courriel',
 	'config-enable-email' => 'Activer les courriels sortants',
 	'config-enable-email-help' => 'Si vous souhaitez utiliser le courriel, vous devez [http://www.php.net/manual/en/mail.configuration.php configurer des paramètres PHP] (texte en anglais). 
@@ -3713,6 +3753,7 @@ Création omise.",
 La liste par défaut ne sera pas inscrite.",
 	'config-install-stats' => 'Initialisation des statistiques',
 	'config-install-keys' => 'Génération de la clé secrète',
+	'config-insecure-keys' => "'''Avertissement''' : {{PLURAL:$2|Une clé de sécurité générée ($1) pendant l'installation n'est pas complètement sécuritaire. Envisagez de la modifier manuellement.|Des clés de sécurité générées ($1) pendant l'installation ne sont pas complètement sécuritaires. Envisagez de les modifier manuellement.}}",
 	'config-install-sysop' => 'Création du compte administrateur',
 	'config-install-subscribe-fail' => "Impossible de s'abonner à mediawiki-announce",
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
@@ -5882,6 +5923,7 @@ Considera poner le base de datos in un loco completemente differente, per exempl
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki supporta le sequente systemas de base de datos:
 
 $1
@@ -5891,10 +5933,12 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-support-postgres' => '* $1 es un systema de base de datos popular e open source, alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP con supporto de PostgreSQL]). Es possibile que resta alcun minor defectos non resolvite, dunque illo non es recommendate pro uso in un ambiente de production.',
 	'config-support-sqlite' => '* $1 es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])',
+	'config-support-ibm_db2' => '* $1 es un systema commercial de base de datos pro interprisas.',
 	'config-header-mysql' => 'Configuration de MySQL',
 	'config-header-postgres' => 'Configuration de PostgreSQL',
 	'config-header-sqlite' => 'Configuration de SQLite',
 	'config-header-oracle' => 'Configuration de Oracle',
+	'config-header-ibm_db2' => 'Configurationes pro IBM DB2',
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
 	'config-missing-db-host' => 'Tu debe entrar un valor pro "Host del base de datos"',
@@ -5979,6 +6023,7 @@ Le bases de datos MyISAM tende a esser corrumpite plus frequentemente que le bas
 Isto es plus efficiente que le modo UTF-8 de MySQL, e permitte usar le rango complete de characteres Unicode.
 
 In '''modo UTF-8''', MySQL cognoscera le codification de characteres usate pro tu dats, e pote presentar e converter lo appropriatemente, ma illo non permittera immagazinar characteres supra le [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Basic].",
+	'config-ibm_db2-low-db-pagesize' => 'Es necessari disponer de un "tablespace" (spatio de tabella) con un "pagesize" (dimension de pagina) de al minus 32k.',
 	'config-site-name' => 'Nomine del wiki:',
 	'config-site-name-help' => 'Isto apparera in le barra de titulo del navigator e in varie altere locos.',
 	'config-site-name-blank' => 'Entra un nomine de sito.',
@@ -8125,6 +8170,7 @@ $1
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'МедијаВики ги поддржува следниве системи на бази на податоци:
 
 $1
@@ -8134,10 +8180,12 @@ $1
 	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL]). Може сè уште да има некои грешки. па затоа не се препорачува за употреба во производна средина.',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
 	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
+	'config-support-ibm_db2' => '* $1 is комерцијална база на податоциза фирми.',
 	'config-header-mysql' => 'Нагодувања на MySQL',
 	'config-header-postgres' => 'Нагодувања на PostgreSQL',
 	'config-header-sqlite' => 'Нагодувања на SQLite',
 	'config-header-oracle' => 'Нагодувања на Oracle',
+	'config-header-ibm_db2' => 'Нагодувања на IBM DB2',
 	'config-invalid-db-type' => 'Неважечки тип на база',
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
 	'config-missing-db-host' => 'Мора да внесете вредност за „Домаќин на базата на податоци“',
@@ -8222,6 +8270,7 @@ chmod a+w $3</pre>',
 Ова е поефикасно отколку  TF-8 режимот на MySQL, и ви овозможува да ја користите целата палета на уникодни знаци.
 
 Во '''UTF-8 режим''', MySQL ќе знае на кој збир знаци припаѓаат вашите податоци, и може соодветно да ги претстави и претвори, но нема да ви дозволи да складиратезнаци над [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основната повеќејазична рамнина].",
+	'config-ibm_db2-low-db-pagesize' => 'Мора да има табеларен простор со големина на страница од барем 32 к .',
 	'config-site-name' => 'Име на викито:',
 	'config-site-name-help' => 'Ова ќе се појавува во заглавната лента на прелистувачот и на разни други места.',
 	'config-site-name-blank' => 'Внесете име на мрежното место.',
@@ -11195,6 +11244,7 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki поддерживает следующие СУБД: 
 
 $1 
@@ -11204,10 +11254,12 @@ $1
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL]). Могут встречаться небольшие неисправленные ошибки, не рекомендуется для использования в рабочей системе.',
 	'config-support-sqlite' => '* $1 — это легковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-support-oracle' => '* $1 — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/en/oci8.installation.php Как собрать PHP с поддержкой OCI8])',
+	'config-support-ibm_db2' => '$1 — коммерческая база данных масштаба предприятия.',
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',
 	'config-header-oracle' => 'Настройки Oracle',
+	'config-header-ibm_db2' => 'Настройки IBM DB2',
 	'config-invalid-db-type' => 'Неверный тип базы данных',
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
 	'config-missing-db-host' => 'Необходимо ввести значение параметра «Сервер базы данных»',
@@ -11291,6 +11343,7 @@ chmod a+w $3</pre>',
 Это более эффективно, чем ''UTF-8 режим'' MySQL, и позволяет использовать полный набор символов Unicode. 
 
 В '''режиме UTF-8''' MySQL будет знать в какой кодировке находятся Ваши данные и может отображать и преобразовывать их соответствующим образом, но это не позволит вам хранить символы выше [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базовой Многоязыковой Плоскости].",
+	'config-ibm_db2-low-db-pagesize' => 'Требуется пространство таблиц с размером страниц не менее 32&#160;килобайт.',
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
@@ -11762,6 +11815,9 @@ Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9), mga salangguh
 	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
 Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
+	'config-sqlite-connection-error' => '$1.
+
+Surrin ang direktoryo ng dato at pangalan ng kalipunan ng datong nasa ibaba at subukan uli.',
 	'config-sqlite-readonly' => 'Ang talaksang <code>$1</code> ay hindi maisusulat.',
 	'config-sqlite-cant-create-db' => 'Hindi malikha ang talaksang <code>$1</code> ng kalipunan ng dato.',
 	'config-sqlite-fts3-downgrade' => 'Nawawala ang suportang FTS3 ng PHP, ibinababa ang uri ng mga talahanayan',

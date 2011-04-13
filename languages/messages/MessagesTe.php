@@ -1946,6 +1946,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'noemailtext'          => 'ఈ వాడుకరి సరైన ఈ-మెయిలు చిరునామాని ఇవ్వలేదు.',
 'nowikiemailtitle'     => 'ఈ-మెయిళ్ళను అనుమతించరు',
 'nowikiemailtext'      => 'ఇతర వాడుకరుల నుండి ఈ-మెయిళ్ళను అందుకోడానికి ఈ వాడుకరి సుముఖంగా లేరు.',
+'emailusername'        => 'వాడుకరిపేరు:',
+'emailusernamesubmit'  => 'దాఖలుచెయ్యి',
 'email-legend'         => 'మరో {{SITENAME}} వాడుకరికి వేగు పంపించండి',
 'emailfrom'            => 'ఎవరు:',
 'emailto'              => 'ఎవరికి:',
@@ -2246,7 +2248,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'whatlinkshere-filters'    => 'వడపోతలు',
 
 # Block/unblock
-'blockip'                         => 'సభ్యుని నిరోధించు',
+'block'                           => 'వాడుకరి నిరోధం',
+'blockip'                         => 'వాడుకరి నిరోధం',
 'blockip-title'                   => 'వాడుకరిని నిరోధించు',
 'blockip-legend'                  => 'వాడుకరి నిరోధం',
 'blockiptext'                     => 'ఏదైనా ప్రత్యేక ఐపీ చిరునామానో లేదా వాడుకరిపేరునో రచనలు చెయ్యకుండా నిరోధించాలంటే కింది ఫారాన్ని వాడండి.
@@ -2290,6 +2293,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'ipusubmit'                       => 'ఈ నిరోధాన్ని తొలగించు',
 'unblocked'                       => '[[User:$1|$1]]పై నిరోధం తొలగించబడింది',
 'unblocked-id'                    => '$1 అనే నిరోధాన్ని తొలగించాం',
+'blocklist'                       => 'నిరోధిత వాడుకరులు',
 'ipblocklist'                     => 'నిరోధించబడిన ఐ.పీ. చిరునామాలు మరియు వాడుకరుల పేర్లు',
 'ipblocklist-legend'              => 'నిరోధించబడిన సభ్యుని వెతకండి',
 'blocklist-userblocks'            => 'ఖాతా నిరోధాలను దాచు',

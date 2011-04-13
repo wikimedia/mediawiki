@@ -1642,22 +1642,23 @@ Hindi ito maaaring suriin ng tama para sa kaligtasan.',
 'uploadstash-refresh'  => 'Sariwain ang talaan ng mga talaksan',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Hindi pinayagan ang pagpunta',
-'img-auth-nopathinfo'   => 'Nawawalang PATH_INFO.
+'img-auth-accessdenied'     => 'Hindi pinayagan ang pagpunta',
+'img-auth-nopathinfo'       => 'Nawawalang PATH_INFO.
 Ang tagapaghain mo ay hindi nakatakdang na maipasa ang kabatirang ito.
 Maaaring pang-CGI ito at hindi makatangkilik ng img_auth.
 Tingnan ang http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
-'img-auth-badtitle'     => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
-'img-auth-nologinnWL'   => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',
-'img-auth-nofile'       => 'Hindi umiiral ang talaksang "$1".',
-'img-auth-isdir'        => 'Sinusubok mong puntahan ang direktoryong "$1".
+'img-auth-notindir'         => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
+'img-auth-badtitle'         => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
+'img-auth-nologinnWL'       => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',
+'img-auth-nofile'           => 'Hindi umiiral ang talaksang "$1".',
+'img-auth-isdir'            => 'Sinusubok mong puntahan ang direktoryong "$1".
 Tanging ang pagpunta lang sa talaksan ang pinapayagan.',
-'img-auth-streaming'    => 'Pinapaagos ang "$1".',
-'img-auth-public'       => 'Ang tungkulin ng img_auth.php ay maglabas ng mga talaksan mula sa isang pribadong wiki.
+'img-auth-streaming'        => 'Pinapaagos ang "$1".',
+'img-auth-public'           => 'Ang tungkulin ng img_auth.php ay maglabas ng mga talaksan mula sa isang pribadong wiki.
 Isinaayos ang wiking ito bilang isang pampublikong wiki.
 Para sa pinakamatatag na kaligtasan, hindi pinagana ang img_auth.php.',
-'img-auth-noread'       => 'Hindi makakapunta ang tagagamit para mabasa ang "$1".',
+'img-auth-noread'           => 'Hindi makakapunta ang tagagamit para mabasa ang "$1".',
+'img-auth-bad-query-string' => 'Ang URL ay may isang hindi katanggap-tanggap na sinulid ng tanong.',
 
 # HTTP errors
 'http-invalid-url'      => 'Hindi tanggap na URL: $1',
@@ -2019,6 +2020,10 @@ Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan
 'noemailtext'          => 'Ang tagagamit na ito ay hindi tumukoy ng isang tanggap na adres ng e-liham.',
 'nowikiemailtitle'     => 'Walang pinapahintulutang e-liham',
 'nowikiemailtext'      => 'Pinili ng tagagamit na ito na huwag makatanggap ng e-liham mula sa ibang mga tagagamit.',
+'emailnotarget'        => 'Hindi umiiral o hindi katanggap-tanggap na pangalan ng tagagamit para sa tagatanggap.',
+'emailtarget'          => 'Ipasok ang pangalan ng tagagamit ng tagatanggap',
+'emailusername'        => 'Pangalan ng tagagamit:',
+'emailusernamesubmit'  => 'Ipasa',
 'email-legend'         => 'Magpadala ng e-liham patungo sa isa pang tagagamit ng {{SITENAME}}',
 'emailfrom'            => 'Mula kay:',
 'emailto'              => 'Para kay:',

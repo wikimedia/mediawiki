@@ -782,6 +782,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unblocklink'            => 'хъоды айс',
 'contribslink'           => 'бавæрд',
 'blocklogpage'           => 'Хъодыты лог',
+'blocklogentry'          => 'бахъоды кодта [[$1]] $2 æмгъуыдмæ $3',
 
 # Developer tools
 'lockdbsuccesssub'    => 'Бæрæггæнæнты базæ æхгæд у',

@@ -1846,20 +1846,21 @@ Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 'uploadstash-refresh'  => 'De Leß met de Dateie op ene neue Shtand bränge',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Keine Zohjang',
-'img-auth-nopathinfo'   => 'De <code lang="en">PATH_INFO</code> fäählt.
+'img-auth-accessdenied'     => 'Keine Zohjang',
+'img-auth-nopathinfo'       => 'De <code lang="en">PATH_INFO</code> fäählt.
 Dä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.
 Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor onger http://www.mediawiki.org/wiki/Manual:Image_Authorization noh, wat domet es.',
-'img-auth-notindir'     => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
-'img-auth-badtitle'     => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
-'img-auth-nologinnWL'   => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
-'img-auth-nofile'       => 'En Dattei „$1“ jidd_et nit.',
-'img-auth-isdir'        => 'Do wells op et Verzeishneß „$1“ zohjriife, ävver mer darref bloß op Datteie zohjriife.',
-'img-auth-streaming'    => 'Mer sin „$1“ aam schecke.',
-'img-auth-public'       => 'Dat Projramm <code lang="en">img_auth.php</code> jitt Dateie ene ennem privaate Wiki uß.
+'img-auth-notindir'         => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
+'img-auth-badtitle'         => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
+'img-auth-nologinnWL'       => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
+'img-auth-nofile'           => 'En Dattei „$1“ jidd_et nit.',
+'img-auth-isdir'            => 'Do wells op et Verzeishneß „$1“ zohjriife, ävver mer darref bloß op Datteie zohjriife.',
+'img-auth-streaming'        => 'Mer sin „$1“ aam schecke.',
+'img-auth-public'           => 'Dat Projramm <code lang="en">img_auth.php</code> jitt Dateie ene ennem privaate Wiki uß.
 Dat Wiki heh es ävver öffentlesch.
 Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
-'img-auth-noread'       => 'Dä Metmaacher hät keine Zohjang, öm „$1“ ze lässe.',
+'img-auth-noread'           => 'Dä Metmaacher hät keine Zohjang, öm „$1“ ze lässe.',
+'img-auth-bad-query-string' => 'En däm <i lang="en">URL</i> es en onjöltije Aanjab henger em Froorezeishe dren.',
 
 # HTTP errors
 'http-invalid-url'      => 'Dat es en onjöltije URL: $1',

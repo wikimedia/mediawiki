@@ -128,7 +128,7 @@ $messages = array(
 'tog-editsection'             => 'Inserìs un leam [cambie] pe editazion veloç di une sezion',
 'tog-editsectiononrightclick' => 'Modifiche une sezion fracant cul tast diestri<br /> sui titui des sezions (JavaScript)',
 'tog-showtoc'                 => 'Mostre la tabele dai contignûts pes pagjinis cun plui di 3 sezions',
-'tog-rememberpassword'        => 'Visiti tes prossimis sessions (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Visiti di me su chest sgarfadôr (par un massim di $1 {{PLURAL:$1|zornade|zornadis}})',
 'tog-watchdefault'            => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
 'tog-minordefault'            => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop'            => 'Mostre anteprime parsore dal spazi pe modifiche',
@@ -528,7 +528,9 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 'loginreqlink'                     => 'jentrâ',
 'loginreqpagetext'                 => 'Tu scugnis $1 par viodi lis altris pagjinis.',
 'accmailtitle'                     => 'Password mandade.',
-'accmailtext'                      => 'La password par "$1" e je stade mandade a $2.',
+'accmailtext'                      => "Une password gjenerade a câs par [[User talk:$1|$1]] e je stade mandade a $2.
+
+La password par cheste identitât e pues jessi cambiade su la pagjine ''[[Special:ChangePassword|cambie password]]'' daspò de jentrade.",
 'newarticle'                       => '(Gnûf)',
 'newarticletext'                   => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'anontalkpagetext'                 => "----''Cheste e je la pagjine di discussion di un utent anonim, che nol à ancjemò creât une identitât, o che no la vûl doprâ. Par identificâlu/e a doprin alore la so direzion IP. Lis direzions IP a podin però jessi condividudis di plui utents. Se tu sês un utent anonim e tu crodis che ti vedin fat coments che no si riferissin a ti, par plasê [[Special:UserLogin|cree une gnove identitâ o jentre]] cun chê che tu âs za cussì tu evitarâs in futûr di jessi confondût un altris utents anonims.''",
@@ -626,7 +628,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'lineno'                  => 'Rie $1:',
 'compareselectedversions' => 'Confronte versions selezionadis',
 'editundo'                => 'anule',
-'diff-multi'              => '({{PLURAL:$1|Une version intermedie no mostrade|$1 versions intermediis no mostradis}}.)',
+'diff-multi'              => '({{PLURAL:$1|Une revision intermedie|$1 revisions intermediis}} di {{PLURAL:$2|un utent no mostrade|$2 utents no mostradis}})',
 
 # Search results
 'searchresults'                  => 'Risultâts de ricercje',
@@ -873,7 +875,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'uploaddisabledtext'    => 'Lis cjamadis a son disativâts su cheste wiki.',
 'sourcefilename'        => 'Non dal file origjinâl:',
 'destfilename'          => 'Non dal file di destinazion:',
-'watchthisupload'       => 'Ten di voli',
+'watchthisupload'       => 'Ten di voli chest file',
 'upload-success-subj'   => 'Cjamât sù cun sucès',
 
 'upload-unknown-size' => 'Dimension no cognossude',
@@ -913,7 +915,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'shared-repo-from'          => 'di $1',
 
 # File reversion
-'filerevert-comment' => 'Coment:',
+'filerevert-comment' => 'Reson:',
 
 # File deletion
 'filedelete'                  => 'Elimine $1',
@@ -1215,7 +1217,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'undeletebtn'               => 'Ripristine',
 'undeletelink'              => 'viôt/ripristine',
 'undeleteinvert'            => 'Invertìs selezion',
-'undeletecomment'           => 'Coment:',
+'undeletecomment'           => 'Reson:',
 'undeletedarticle'          => 'al à recuperât "[[$1]]"',
 'undelete-search-prefix'    => 'Mostre lis pagjinis che a scomencin cun:',
 'undelete-search-submit'    => 'Cîr',
@@ -1276,7 +1278,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'ipbsubmit'                => 'Bloche chest utent',
 'ipboptions'               => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite',
 'badipaddress'             => 'La direzion IP no je valide',
-'ipblocklist'              => 'Utents e direzions IP blocadis',
+'ipblocklist'              => 'Utents blocâts',
 'ipblocklist-submit'       => 'Cîr',
 'blocklink'                => 'bloche',
 'unblocklink'              => 'disbloche',
@@ -1585,7 +1587,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Auto-summaries
 'autosumm-blank' => 'Pagjine disvuedade fûr par fûr',
-'autosumm-new'   => 'Gnove pagjine: $1',
+'autosumm-new'   => 'Creade la pagjine cun "$1"',
 
 # Live preview
 'livepreview-loading' => 'Daûr a cjamâ…',
