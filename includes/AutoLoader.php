@@ -14,7 +14,6 @@ global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = array(
 	# Includes
-	'Action' => 'includes/Action.php',
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
 	'AlphabeticPager' => 'includes/Pager.php',
@@ -52,6 +51,7 @@ $wgAutoloadLocalClasses = array(
 	'ConfEditorToken' => 'includes/ConfEditor.php',
 	'ConstantDependency' => 'includes/CacheDependency.php',
 	'CreativeCommonsRdf' => 'includes/Metadata.php',
+	'Credits' => 'includes/Credits.php',
 	'CSSJanus' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'DependencyWrapper' => 'includes/CacheDependency.php',
@@ -273,12 +273,6 @@ $wgAutoloadLocalClasses = array(
 	'XmlTypeCheck' => 'includes/XmlTypeCheck.php',
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
-
-	# includes/actions
-	'CreditsAction' => 'includes/actions/CreditsAction.php',
-	'DeleteAction' => 'includes/actions/DeleteAction.php',
-	'UnwatchAction' => 'includes/actions/WatchAction.php',
-	'WatchAction' => 'includes/actions/WatchAction.php',
 
 	# includes/api
 	'ApiBase' => 'includes/api/ApiBase.php',

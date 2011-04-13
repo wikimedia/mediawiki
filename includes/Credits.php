@@ -19,35 +19,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- * @ingroup Actions
  * @author <evan@wikitravel.org>
  */
 
-class CreditsAction extends FormlessAction {
-
-	public function getName(){
-		return 'credits';
-	}
-
-	public function getRestriction(){
-		return null;
-	}
-
+class Credits {
 	/**
 	 * This is largely cadged from PageHistory::history
+	 * @param $article Article object
 	 */
-	public function onView() {
+	public static function showPage( Article $article ) {
+		global $wgOut;
+
 		wfProfileIn( __METHOD__ );
 
-		if ( $this->page->getID() == 0 ) {
+		$wgOut->setPageTitle( $article->mTitle->getPrefixedText() );
+		$wgOut->setSubtitle( wfMsg( 'creditspage' ) );
+		$wgOut->setArticleFlag( false );
+		$wgOut->setArticleRelated( true );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+
+		if ( $article->mTitle->getArticleID() == 0 ) {
 			$s = wfMsg( 'nocredits' );
 		} else {
-			$s = $this->getCredits( -1 );
+			$s = self::getCredits( $article, -1 );
 		}
 
-		wfProfileOut( __METHOD__ );
+		$wgOut->addHTML( $s );
 
-		return $s;
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -57,14 +56,14 @@ class CreditsAction extends FormlessAction {
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
-	protected function getCredits( $cnt, $showIfMax = true ) {
+	public static function getCredits( Article $article, $cnt, $showIfMax = true ) {
 		wfProfileIn( __METHOD__ );
 		$s = '';
 
 		if ( isset( $cnt ) && $cnt != 0 ) {
-			$s = self::getAuthor( $this->page );
+			$s = self::getAuthor( $article );
 			if ( $cnt > 1 || $cnt < 0 ) {
-				$s .= ' ' . $this->getContributors( $cnt - 1, $showIfMax );
+				$s .= ' ' . self::getContributors( $article, $cnt - 1, $showIfMax );
 			}
 		}
 
@@ -99,16 +98,16 @@ class CreditsAction extends FormlessAction {
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
-	protected function getContributors( $cnt, $showIfMax ) {
+	protected static function getContributors( Article $article, $cnt, $showIfMax ) {
 		global $wgLang, $wgHiddenPrefs;
 
-		$contributors = $this->page->getContributors();
+		$contributors = $article->getContributors();
 
 		$others_link = false;
 
 		# Hmm... too many to fit!
 		if ( $cnt > 0 && $contributors->count() > $cnt ) {
-			$others_link = $this->othersLink();
+			$others_link = self::othersLink( $article );
 			if ( !$showIfMax )
 				return wfMsgExt( 'othercontribs', 'parsemag', $others_link, $contributors->count() );
 		}
@@ -193,11 +192,12 @@ class CreditsAction extends FormlessAction {
 			$real = false;
 		}
 
-		$page = $user->isAnon()
-			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
-			: $user->getUserPage();
+		$skin = $wgUser->getSkin();
+		$page = $user->isAnon() ?
+			SpecialPage::getTitleFor( 'Contributions', $user->getName() ) :
+			$user->getUserPage();
 
-		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
+		return $skin->link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
 
 	/**
@@ -224,10 +224,11 @@ class CreditsAction extends FormlessAction {
 	 * @param $article Article object
 	 * @return String: html
 	 */
-	protected function othersLink() {
+	protected static function othersLink( Article $article ) {
 		global $wgUser;
-		return Linker::link(
-			$this->getTitle(),
+		$skin = $wgUser->getSkin();
+		return $skin->link(
+			$article->getTitle(),
 			wfMsgHtml( 'others' ),
 			array(),
 			array( 'action' => 'credits' ),

@@ -125,9 +125,9 @@ class FileDeleteForm {
 				if( $article->doDeleteArticle( $reason, $suppress, $id, false ) ) {
 					global $wgRequest;
 					if( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-						Action::factory( 'watch', $article )->execute();
+						$article->doWatch();
 					} elseif( $title->userIsWatching() ) {
-						Action::factory( 'unwatch', $article )->execute();
+						$article->doUnwatch();
 					}
 					$status = $file->delete( $reason, $suppress );
 					if( $status->ok ) {
