@@ -453,6 +453,8 @@ foreach ( $wgExtensionFunctions as $func ) {
 	wfProfileOut( $profName );
 }
 
+require_once( MWInit::compiledPath( 'includes/normal/UtfNormalDefines.php' ) );
+
 // For compatibility
 wfRunHooks( 'LogPageValidTypes', array( &$wgLogTypes ) );
 wfRunHooks( 'LogPageLogName', array( &$wgLogNames ) );
