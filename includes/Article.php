@@ -571,31 +571,14 @@ class Article {
 
 	/**
 	 * Read/write accessor to select FOR UPDATE
+	 * @FIXME: remove, does nothing
 	 *
 	 * @param $x Mixed: FIXME
 	 * @return mixed value of $x, or value stored in Article::mForUpdate
 	 */
 	public function forUpdate( $x = null ) {
+		wfDeprecated();
 		return wfSetVar( $this->mForUpdate, $x );
-	}
-
-	/**
-	 * Get options for all SELECT statements
-	 *
-	 * @param $options Array: an optional options array which'll be appended to
-	 *                       the default
-	 * @return Array: options
-	 */
-	protected function getSelectOptions( $options = '' ) {
-		if ( $this->mForUpdate ) {
-			if ( is_array( $options ) ) {
-				$options[] = 'FOR UPDATE';
-			} else {
-				$options = 'FOR UPDATE';
-			}
-		}
-
-		return $options;
 	}
 
 	/**
@@ -638,8 +621,7 @@ class Article {
 				$this->mCounter = $dbr->selectField( 'page',
 					'page_counter',
 					array( 'page_id' => $id ),
-					__METHOD__,
-					$this->getSelectOptions()
+					__METHOD__
 				);
 			}
 		}
@@ -2939,10 +2921,11 @@ class Article {
 					'page_namespace' => $this->mTitle->getNamespace(),
 					'page_title' => $this->mTitle->getDBkey(),
 					'rev_page = page_id'
-				), __METHOD__, $this->getSelectOptions( array(
+				), __METHOD__,
+				array(
 					'ORDER BY' => 'rev_timestamp DESC',
 					'LIMIT' => $num
-				) )
+				)
 			);
 
 			if ( !$res ) {
@@ -4127,8 +4110,7 @@ class Article {
 				'watchlist',
 				'COUNT(*)',
 				$wl_clause,
-				__METHOD__,
-				$this->getSelectOptions() );
+				__METHOD__ );
 
 			$pageInfo = $this->pageCountInfo( $page );
 			$talkInfo = $this->pageCountInfo( $page->getTalkPage() );
@@ -4172,15 +4154,13 @@ class Article {
 			'revision',
 			'COUNT(rev_page)',
 			$rev_clause,
-			__METHOD__,
-			$this->getSelectOptions()
+			__METHOD__
 		);
 		$authors = $dbr->selectField(
 			'revision',
 			'COUNT(DISTINCT rev_user_text)',
 			$rev_clause,
-			__METHOD__,
-			$this->getSelectOptions()
+			__METHOD__
 		);
 
 		return array( 'edits' => $edits, 'authors' => $authors );
