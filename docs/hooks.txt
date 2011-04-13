@@ -264,17 +264,6 @@ $reason: the reason for the move (added in 1.13)
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
 
-'ActionBeforeFormDisplay': Modify the form shown for an action (added 1.18)
-$action: String
-$form: HTMLForm
-$page: Article
-
-'ActionModifyFormFields': Modify the descriptor array which will be used to create an
-action form
-$action: String
-$fields: Array
-$page: Article
-
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
@@ -394,6 +383,12 @@ required.
 the database
 $article: the article (object) being loaded from the database
 $content: the content (string) of the article
+
+'ArticleConfirmDelete': before writing the confirmation form for article
+	deletion
+$article: the article (object) being deleted
+$output: the OutputPage object ($wgOut)
+&$reason: the reason (string) the article is being deleted
 
 'ArticleContentOnDiff': before showing the article content below a diff.
 Use this to change the content in this area or how it is loaded.

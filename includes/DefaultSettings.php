@@ -27,10 +27,12 @@ if( !defined( 'MEDIAWIKI' ) ) {
 }
 
 # Create a site configuration object. Not used for much in a default install
-if ( !defined( 'MW_COMPILED' ) ) {
-	require_once( "$IP/includes/SiteConfiguration.php" );
+if ( !defined( 'MW_PHP4' ) ) {
+	if ( !defined( 'MW_COMPILED' ) ) {
+		require_once( "$IP/includes/SiteConfiguration.php" );
+	}
+	$wgConf = new SiteConfiguration;
 }
-$wgConf = new SiteConfiguration;
 /** @endcond */
 
 /** MediaWiki version number */
@@ -5022,38 +5024,6 @@ $wgMaxRedirectLinksRetrieved = 500;
 /** @} */ # end special pages }
 
 /*************************************************************************//**
- * @name   Actions
- * @{
- */
-
-/**
- * Array of allowed values for the title=foo&action=<action> parameter. Syntax is:
- *     'foo' => 'ClassName'    Load the specified class which subclasses Action
- *     'foo' => true           Load the class FooAction which subclasses Action
- *     'foo' => false          The action is disabled; show an error message
- * Unsetting core actions will probably cause things to complain loudly.
- */
-$wgActions = array(
-	'credits' => true,
-	'delete' => true,
-	'unwatch' => true,
-	'watch' => true,
-);
-
-/**
- * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
- * @deprecated since 1.18; just set $wgActions['action'] = false instead
- */
-$wgDisabledActions = array();
-
-/**
- * Allow the "info" action, very inefficient at the moment
- */
-$wgAllowPageInfo = false;
-
-/** @} */ # end actions }
-
-/*************************************************************************//**
  * @name   Robot (search engine crawler) policy
  * See also $wgNoFollowLinks.
  * @{
@@ -5318,8 +5288,16 @@ $wgUpdateRowsPerQuery = 100;
  * @{
  */
 
+/** Allow the "info" action, very inefficient at the moment */
+$wgAllowPageInfo = false;
+
 /** Name of the external diff engine to use */
 $wgExternalDiffEngine = false;
+
+/**
+ * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
+ */
+$wgDisabledActions = array();
 
 /**
  * Disable redirects to special pages and interwiki redirects, which use a 302

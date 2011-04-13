@@ -645,9 +645,9 @@ abstract class ApiBase {
 
 		$articleObj = new Article( $titleObj );
 		if ( $value ) {
-			Action::factory( 'watch', $articleObj )->execute();
+			$articleObj->doWatch();
 		} else {
-			Action::factory( 'unwatch', $articleObj )->execute();
+			$articleObj->doUnwatch();
 		}
 	}
 

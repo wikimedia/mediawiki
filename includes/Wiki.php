@@ -471,16 +471,9 @@ class MediaWiki {
 			return;
 		}
 
-		$act = $this->getAction();
+		$action = $this->getAction();
 
-		$action = Action::factory( $this->getAction(), $article );
-		if( $action instanceof Action ){
-			$action->show();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		switch( $act ) {
+		switch( $action ) {
 			case 'view':
 				$this->context->output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				$article->view();
@@ -491,6 +484,9 @@ class MediaWiki {
 				$raw->view();
 				wfProfileOut( __METHOD__ . '-raw' );
 				break;
+			case 'watch':
+			case 'unwatch':
+			case 'delete':
 			case 'revert':
 			case 'rollback':
 			case 'protect':
@@ -500,7 +496,7 @@ class MediaWiki {
 			case 'render':
 			case 'deletetrackback':
 			case 'purge':
-				$article->$act();
+				$article->$action();
 				break;
 			case 'print':
 				$article->view();
@@ -521,6 +517,9 @@ class MediaWiki {
 					$rdf->show();
 				}
 				break;
+			case 'credits':
+				Credits::showPage( $article );
+				break;
 			case 'submit':
 				if ( session_id() == '' ) {
 					// Send a cookie so anons get talk message notifications
@@ -533,7 +532,7 @@ class MediaWiki {
 					$external = $this->context->request->getVal( 'externaledit' );
 					$section = $this->context->request->getVal( 'section' );
 					$oldid = $this->context->request->getVal( 'oldid' );
-					if ( !$this->getVal( 'UseExternalEditor' ) || $act == 'submit' || $internal ||
+					if ( !$this->getVal( 'UseExternalEditor' ) || $action == 'submit' || $internal ||
 					   $section || $oldid || ( !$this->context->user->getOption( 'externaleditor' ) && !$external ) ) {
 						$editor = new EditPage( $article );
 						$editor->submit();
@@ -562,7 +561,7 @@ class MediaWiki {
 				$special->execute( '' );
 				break;
 			default:
-				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
+				if ( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
 					$this->context->output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}

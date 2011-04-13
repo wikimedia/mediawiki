@@ -2345,10 +2345,27 @@ class Article {
 
 	/**
 	 * User-interface handler for the "watch" action
-	 * @deprecated since 1.18
 	 */
 	public function watch() {
-		Action::factory( 'watch', $this )->show();
+		global $wgOut;
+
+		if ( $wgOut->getUser()->isAnon() ) {
+			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
+			return;
+		}
+
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+
+		if ( $this->doWatch() ) {
+			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->addWikiMsg( 'addedwatchtext', $this->mTitle->getPrefixedText() );
+		}
+
+		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
 	/**
@@ -2357,27 +2374,64 @@ class Article {
 	 * This is safe to be called multiple times
 	 *
 	 * @return bool true on successful watch operation
-	 * @deprecated since 1.18
 	 */
 	public function doWatch() {
-		return Action::factory( 'watch', $this )->execute();
+		global $wgUser;
+
+		if ( $wgUser->isAnon() ) {
+			return false;
+		}
+
+		if ( wfRunHooks( 'WatchArticle', array( &$wgUser, &$this ) ) ) {
+			$wgUser->addWatch( $this->mTitle );
+			return wfRunHooks( 'WatchArticleComplete', array( &$wgUser, &$this ) );
+		}
+
+		return false;
 	}
 
 	/**
 	 * User interface handler for the "unwatch" action.
-	 * @deprecated since 1.18
 	 */
 	public function unwatch() {
-		Action::factory( 'unwatch', $this )->show();
+		global $wgOut;
+
+		if ( $wgOut->getUser()->isAnon() ) {
+			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
+			return;
+		}
+
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+
+		if ( $this->doUnwatch() ) {
+			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->addWikiMsg( 'removedwatchtext', $this->mTitle->getPrefixedText() );
+		}
+
+		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
 	/**
 	 * Stop watching a page
 	 * @return bool true on successful unwatch
-	 * @deprecated since 1.18
 	 */
 	public function doUnwatch() {
-		return Action::factory( 'unwatch', $this )->execute();
+		global $wgUser;
+
+		if ( $wgUser->isAnon() ) {
+			return false;
+		}
+
+		if ( wfRunHooks( 'UnwatchArticle', array( &$wgUser, &$this ) ) ) {
+			$wgUser->removeWatch( $this->mTitle );
+			return wfRunHooks( 'UnwatchArticleComplete', array( &$wgUser, &$this ) );
+		}
+
+		return false;
 	}
 
 	/**
@@ -2609,28 +2663,229 @@ class Article {
 	 * @param &$hasHistory Boolean: whether the page has a history
 	 * @return mixed String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
-	 * @deprecated since 1.18
 	 */
 	public function generateReason( &$hasHistory ) {
-		return DeleteAction::getAutoReason( $this );
+		global $wgContLang;
+
+		$dbw = wfGetDB( DB_MASTER );
+		// Get the last revision
+		$rev = Revision::newFromTitle( $this->mTitle );
+
+		if ( is_null( $rev ) ) {
+			return false;
+		}
+
+		// Get the article's contents
+		$contents = $rev->getText();
+		$blank = false;
+
+		// If the page is blank, use the text from the previous revision,
+		// which can only be blank if there's a move/import/protect dummy revision involved
+		if ( $contents == '' ) {
+			$prev = $rev->getPrevious();
+
+			if ( $prev )	{
+				$contents = $prev->getText();
+				$blank = true;
+			}
+		}
+
+		// Find out if there was only one contributor
+		// Only scan the last 20 revisions
+		$res = $dbw->select( 'revision', 'rev_user_text',
+			array( 'rev_page' => $this->getID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
+			__METHOD__,
+			array( 'LIMIT' => 20 )
+		);
+
+		if ( $res === false ) {
+			// This page has no revisions, which is very weird
+			return false;
+		}
+
+		$hasHistory = ( $res->numRows() > 1 );
+		$row = $dbw->fetchObject( $res );
+
+		if ( $row ) { // $row is false if the only contributor is hidden
+			$onlyAuthor = $row->rev_user_text;
+			// Try to find a second contributor
+			foreach ( $res as $row ) {
+				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+					$onlyAuthor = false;
+					break;
+				}
+			}
+		} else {
+			$onlyAuthor = false;
+		}
+
+		// Generate the summary with a '$1' placeholder
+		if ( $blank ) {
+			// The current revision is blank and the one before is also
+			// blank. It's just not our lucky day
+			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+		} else {
+			if ( $onlyAuthor ) {
+				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+			} else {
+				$reason = wfMsgForContent( 'excontent', '$1' );
+			}
+		}
+
+		if ( $reason == '-' ) {
+			// Allow these UI messages to be blanked out cleanly
+			return '';
+		}
+
+		// Replace newlines with spaces to prevent uglyness
+		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
+		// Calculate the maximum amount of chars to get
+		// Max content length = max comment length - length of the comment (excl. $1)
+		$maxLength = 255 - ( strlen( $reason ) - 2 );
+		$contents = $wgContLang->truncate( $contents, $maxLength );
+		// Remove possible unfinished links
+		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
+		// Now replace the '$1' placeholder
+		$reason = str_replace( '$1', $contents, $reason );
+
+		return $reason;
 	}
 
 
 	/*
 	 * UI entry point for page deletion
-	 * @deprecated since 1.18
 	 */
 	public function delete() {
-		return Action::factory( 'delete', $this )->show();
+		global $wgOut, $wgRequest;
+
+		$confirm = $wgRequest->wasPosted() &&
+				$wgOut->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
+
+		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
+		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
+
+		$reason = $this->DeleteReasonList;
+
+		if ( $reason != 'other' && $this->DeleteReason != '' ) {
+			// Entry from drop down menu + additional comment
+			$reason .= wfMsgForContent( 'colon-separator' ) . $this->DeleteReason;
+		} elseif ( $reason == 'other' ) {
+			$reason = $this->DeleteReason;
+		}
+
+		# Flag to hide all contents of the archived revisions
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgOut->getUser()->isAllowed( 'suppressrevision' );
+
+		# This code desperately needs to be totally rewritten
+
+		# Read-only check...
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+
+			return;
+		}
+
+		# Check permissions
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgOut->getUser() );
+
+		if ( count( $permission_errors ) > 0 ) {
+			$wgOut->showPermissionsErrorPage( $permission_errors );
+
+			return;
+		}
+
+		$wgOut->setPagetitle( wfMsg( 'delete-confirm', $this->mTitle->getPrefixedText() ) );
+
+		# Better double-check that it hasn't been deleted yet!
+		$dbw = wfGetDB( DB_MASTER );
+		$conds = $this->mTitle->pageCond();
+		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
+		if ( $latest === false ) {
+			$wgOut->showFatalError(
+				Html::rawElement(
+					'div',
+					array( 'class' => 'error mw-error-cannotdelete' ),
+					wfMsgExt( 'cannotdelete', array( 'parse' ), $this->mTitle->getPrefixedText() )
+				)
+			);
+			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+			LogEventsList::showLogExtract(
+				$wgOut,
+				'delete',
+				$this->mTitle->getPrefixedText()
+			);
+
+			return;
+		}
+
+		# Hack for big sites
+		$bigHistory = $this->isBigDeletion();
+		if ( $bigHistory && !$this->mTitle->userCan( 'bigdelete' ) ) {
+			global $wgLang, $wgDeleteRevisionsLimit;
+
+			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
+				array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
+
+			return;
+		}
+
+		if ( $confirm ) {
+			$this->doDelete( $reason, $suppress );
+
+			if ( $wgRequest->getCheck( 'wpWatch' ) && $wgOut->getUser()->isLoggedIn() ) {
+				$this->doWatch();
+			} elseif ( $this->mTitle->userIsWatching() ) {
+				$this->doUnwatch();
+			}
+
+			return;
+		}
+
+		// Generate deletion reason
+		$hasHistory = false;
+		if ( !$reason ) {
+			$reason = $this->generateReason( $hasHistory );
+		}
+
+		// If the page has a history, insert a warning
+		if ( $hasHistory && !$confirm ) {
+			global $wgLang;
+
+			$skin = $wgOut->getSkin();
+			$revisions = $this->estimateRevisionCount();
+			//FIXME: lego
+			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
+				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
+				wfMsgHtml( 'word-separator' ) . $skin->link( $this->mTitle,
+					wfMsgHtml( 'history' ),
+					array( 'rel' => 'archives' ),
+					array( 'action' => 'history' ) ) .
+				'</strong>'
+			);
+
+			if ( $bigHistory ) {
+				global $wgDeleteRevisionsLimit;
+				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
+					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
+			}
+		}
+
+		return $this->confirmDelete( $reason );
 	}
 
 	/**
 	 * @return bool whether or not the page surpasses $wgDeleteRevisionsLimit revisions
-	 * @deprecated since 1.18
 	 */
 	public function isBigDeletion() {
 		global $wgDeleteRevisionsLimit;
-		return $wgDeleteRevisionsLimit && $this->estimateRevisionCount() > $wgDeleteRevisionsLimit;
+
+		if ( $wgDeleteRevisionsLimit ) {
+			$revCount = $this->estimateRevisionCount();
+
+			return $revCount > $wgDeleteRevisionsLimit;
+		}
+
+		return false;
 	}
 
 	/**
@@ -2699,19 +2954,150 @@ class Article {
 	}
 
 	/**
+	 * Output deletion confirmation dialog
+	 * FIXME: Move to another file?
+	 * @param $reason String: prefilled reason
+	 */
+	public function confirmDelete( $reason ) {
+		global $wgOut;
+
+		wfDebug( "Article::confirmDelete\n" );
+
+		$deleteBackLink = $wgOut->getSkin()->linkKnown( $this->mTitle );
+		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->addWikiMsg( 'confirmdeletetext' );
+
+		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
+
+		if ( $wgOut->getUser()->isAllowed( 'suppressrevision' ) ) {
+			$suppress = "<tr id=\"wpDeleteSuppressRow\">
+					<td></td>
+					<td class='mw-input'><strong>" .
+						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
+							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
+					"</strong></td>
+				</tr>";
+		} else {
+			$suppress = '';
+		}
+		$checkWatch = $wgOut->getUser()->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
+
+		$form = Xml::openElement( 'form', array( 'method' => 'post',
+			'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
+			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
+			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
+			"<tr id=\"wpDeleteReasonListRow\">
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
+				"</td>
+				<td class='mw-input'>" .
+					Xml::listDropDown( 'wpDeleteReasonList',
+						wfMsgForContent( 'deletereason-dropdown' ),
+						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
+				"</td>
+			</tr>
+			<tr id=\"wpDeleteReasonRow\">
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
+				"</td>
+				<td class='mw-input'>" .
+				Html::input( 'wpReason', $reason, 'text', array(
+					'size' => '60',
+					'maxlength' => '255',
+					'tabindex' => '2',
+					'id' => 'wpReason',
+					'autofocus'
+				) ) .
+				"</td>
+			</tr>";
+
+		# Disallow watching if user is not logged in
+		if ( $wgOut->getUser()->isLoggedIn() ) {
+			$form .= "
+			<tr>
+				<td></td>
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'watchthis' ),
+						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
+				"</td>
+			</tr>";
+		}
+
+		$form .= "
+			$suppress
+			<tr>
+				<td></td>
+				<td class='mw-submit'>" .
+					Xml::submitButton( wfMsg( 'deletepage' ),
+						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Html::hidden( 'wpEditToken', $wgOut->getUser()->editToken() ) .
+			Xml::closeElement( 'form' );
+
+			if ( $wgOut->getUser()->isAllowed( 'editinterface' ) ) {
+				$skin = $wgOut->getSkin();
+				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
+				$link = $skin->link(
+					$title,
+					wfMsgHtml( 'delete-edit-reasonlist' ),
+					array(),
+					array( 'action' => 'edit' )
+				);
+				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
+			}
+
+		$wgOut->addHTML( $form );
+		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+		LogEventsList::showLogExtract( $wgOut, 'delete',
+			$this->mTitle->getPrefixedText()
+		);
+	}
+
+	/**
 	 * Perform a deletion and output success or failure messages
-	 * @deprecated since 1.18
 	 */
 	public function doDelete( $reason, $suppress = false ) {
-		return DeleteAction::doDeleteArticle(
-			$this,
-			$this->getContext(),
-			array(
-				'Suppress' => $suppress !== false,
-				'Reason' => $reason,
-			),
-			true
-		);
+		global $wgOut;
+
+		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
+
+		$error = '';
+		if ( $this->doDeleteArticle( $reason, $suppress, $id, $error ) ) {
+			$deleted = $this->mTitle->getPrefixedText();
+
+			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+
+			$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
+
+			$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
+			$wgOut->returnToMain( false );
+		} else {
+			if ( $error == '' ) {
+				$wgOut->showFatalError(
+					Html::rawElement(
+						'div',
+						array( 'class' => 'error mw-error-cannotdelete' ),
+						wfMsgExt( 'cannotdelete', array( 'parse' ), $this->mTitle->getPrefixedText() )
+					)
+				);
+
+				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+
+				LogEventsList::showLogExtract(
+					$wgOut,
+					'delete',
+					$this->mTitle->getPrefixedText()
+				);
+			} else {
+				$wgOut->showFatalError( $error );
+			}
+		}
 	}
 
 	/**
@@ -2727,19 +3113,143 @@ class Article {
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @return boolean true if successful
-	 *
-	 * @deprecated since 1.18
 	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error = '' ) {
-		return DeleteAction::doDeleteArticle(
-			$this,
-			$this->getContext(),
+		global $wgDeferredUpdateList, $wgUseTrackbacks;
+		global $wgUser;
+
+		wfDebug( __METHOD__ . "\n" );
+
+		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$wgUser, &$reason, &$error ) ) ) {
+			return false;
+		}
+		$dbw = wfGetDB( DB_MASTER );
+		$t = $this->mTitle->getDBkey();
+		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
+
+		if ( $t === '' || $id == 0 ) {
+			return false;
+		}
+
+		$u = new SiteStatsUpdate( 0, 1, - (int)$this->isCountable( $this->getRawText() ), -1 );
+		array_push( $wgDeferredUpdateList, $u );
+
+		// Bitfields to further suppress the content
+		if ( $suppress ) {
+			$bitfield = 0;
+			// This should be 15...
+			$bitfield |= Revision::DELETED_TEXT;
+			$bitfield |= Revision::DELETED_COMMENT;
+			$bitfield |= Revision::DELETED_USER;
+			$bitfield |= Revision::DELETED_RESTRICTED;
+		} else {
+			$bitfield = 'rev_deleted';
+		}
+
+		$dbw->begin();
+		// For now, shunt the revision data into the archive table.
+		// Text is *not* removed from the text table; bulk storage
+		// is left intact to avoid breaking block-compression or
+		// immutable storage schemes.
+		//
+		// For backwards compatibility, note that some older archive
+		// table entries will have ar_text and ar_flags fields still.
+		//
+		// In the future, we may keep revisions and mark them with
+		// the rev_deleted field, which is reserved for this purpose.
+		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),
 			array(
-				'Suppress' => $suppress !== false,
-				'Reason' => $reason,
-			),
-			$commit
+				'ar_namespace'  => 'page_namespace',
+				'ar_title'      => 'page_title',
+				'ar_comment'    => 'rev_comment',
+				'ar_user'       => 'rev_user',
+				'ar_user_text'  => 'rev_user_text',
+				'ar_timestamp'  => 'rev_timestamp',
+				'ar_minor_edit' => 'rev_minor_edit',
+				'ar_rev_id'     => 'rev_id',
+				'ar_text_id'    => 'rev_text_id',
+				'ar_text'       => '\'\'', // Be explicit to appease
+				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
+				'ar_len'        => 'rev_len',
+				'ar_page_id'    => 'page_id',
+				'ar_deleted'    => $bitfield
+			), array(
+				'page_id' => $id,
+				'page_id = rev_page'
+			), __METHOD__
 		);
+
+		# Delete restrictions for it
+		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
+
+		# Now that it's safely backed up, delete it
+		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
+		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
+
+		if ( !$ok ) {
+			$dbw->rollback();
+			return false;
+		}
+
+		# Fix category table counts
+		$cats = array();
+		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
+
+		foreach ( $res as $row ) {
+			$cats [] = $row->cl_to;
+		}
+
+		$this->updateCategoryCounts( array(), $cats );
+
+		# If using cascading deletes, we can skip some explicit deletes
+		if ( !$dbw->cascadingDeletes() ) {
+			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+
+			if ( $wgUseTrackbacks )
+				$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
+
+			# Delete outgoing links
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
+			$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
+			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
+			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
+			$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
+			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
+			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
+		}
+
+		# If using cleanup triggers, we can skip some manual deletes
+		if ( !$dbw->cleanupTriggers() ) {
+			# Clean up recentchanges entries...
+			$dbw->delete( 'recentchanges',
+				array( 'rc_type != ' . RC_LOG,
+					'rc_namespace' => $this->mTitle->getNamespace(),
+					'rc_title' => $this->mTitle->getDBkey() ),
+				__METHOD__ );
+			$dbw->delete( 'recentchanges',
+				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+				__METHOD__ );
+		}
+
+		# Clear caches
+		Article::onArticleDelete( $this->mTitle );
+
+		# Clear the cached article id so the interface doesn't act like we exist
+		$this->mTitle->resetArticleID( 0 );
+
+		# Log the deletion, if the page was suppressed, log it at Oversight instead
+		$logtype = $suppress ? 'suppress' : 'delete';
+		$log = new LogPage( $logtype );
+
+		# Make sure logging got through
+		$log->addEntry( 'delete', $this->mTitle, $reason, array() );
+
+		if ( $commit ) {
+			$dbw->commit();
+		}
+
+		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$wgUser, $reason, $id ) );
+		return true;
 	}
 
 	/**
