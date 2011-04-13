@@ -904,9 +904,14 @@ class LoginForm extends SpecialPage {
 		global $wgUser;
 		# Run any hooks; display injected HTML
 		$injected_html = '';
+		$welcome_creation_msg = 'welcomecreation';
+		
 		wfRunHooks( 'UserLoginComplete', array( &$wgUser, &$injected_html ) );
-
-		$this->displaySuccessfulLogin( 'welcomecreation', $injected_html );
+		
+		//let any extensions change what message is shown
+		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
+		
+		$this->displaySuccessfulLogin( $welcome_creation_msg, $injected_html );
 	}
 
 	/**
@@ -916,7 +921,10 @@ class LoginForm extends SpecialPage {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
-		$wgOut->addWikiMsg( $msgname, $wgUser->getName() );
+		if( $msgname ){
+			$wgOut->addWikiMsg( $msgname, $wgUser->getName() );
+		}
+		
 		$wgOut->addHTML( $injected_html );
 
 		if ( !empty( $this->mReturnTo ) ) {
