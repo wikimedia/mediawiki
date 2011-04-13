@@ -1030,7 +1030,7 @@ class Parser {
 			$return .= isset( $table['caption']['attributes'] ) ? $table['caption']['attributes'] : '';
 			$return .= '>';
 			$return .= $table['caption']['content'];
-			$return .= '</caption>';
+			$return .= "\n</caption>";
 		}
 		$lastSection = '';
 		$empty = true;

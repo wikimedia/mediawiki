@@ -1237,7 +1237,8 @@ A table with nothing but a caption
 |}
 !! result
 <table>
-<caption>caption</caption>
+<caption>caption
+</caption>
 <tr><td></td></tr>
 </table>
 
@@ -1290,7 +1291,8 @@ Multiplication table
 |}
 !! result
 <table border="1" cellpadding="2">
-<caption>Multiplication table</caption>
+<caption>Multiplication table
+</caption>
 <thead>
 <tr>
 <th>&#215;</th>
@@ -1434,7 +1436,8 @@ A table with a caption with unclosed italic
 |}
 !! result
 <table>
-<caption><i>caption</i></caption>
+<caption><i>caption</i>
+</caption>
 <tr>
 <td>Cell</td>
 </tr>
