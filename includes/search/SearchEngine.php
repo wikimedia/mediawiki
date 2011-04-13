@@ -129,19 +129,23 @@ class SearchEngine {
 			return $titleResult;
 		}
 
+		$context = new RequestContext;
+
 		foreach ( $allSearchTerms as $term ) {
 
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
-			if ( is_null( $title ) )
+			if ( is_null( $title ) ){
 				return null;
+			}
 
 			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() || $title->exists() ) {
 				return $title;
 			}
 
 			# See if it still otherwise has content is some sane sense
-			$article = MediaWiki::articleFromTitle( $title );
+			$context->setTitle( $title );
+			$article = MediaWiki::articleFromTitle( $title, $context );
 			if ( $article->hasViewableContent() ) {
 				return $title;
 			}
