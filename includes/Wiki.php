@@ -281,8 +281,10 @@ class MediaWiki {
 		switch( $title->getNamespace() ) {
 			case NS_FILE:
 				$page = new ImagePage( $title );
+				break;
 			case NS_CATEGORY:
 				$page = new CategoryPage( $title );
+				break;
 			default:
 				$page = new Article( $title );
 		}
