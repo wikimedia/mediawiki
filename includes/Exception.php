@@ -324,13 +324,35 @@ class ErrorPageError extends MWException {
 		$this->title = $title;
 		$this->msg = $msg;
 		$this->params = $params;
-		parent::__construct( wfMsg( $msg ) );
+
+		if( $msg instanceof Message ){
+			parent::__construct( $msg );
+		} else {
+			parent::__construct( wfMsg( $msg ) );
+		}
 	}
 
 	function report() {
 		global $wgOut;
 
-		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
+		if ( $wgOut->getTitle() ) {
+			$wgOut->debug( 'Original title: ' . $wgOut->getTitle()->getPrefixedText() . "\n" );
+		}
+		$wgOut->setPageTitle( wfMsg( $this->title ) );
+		$wgOut->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->setArticleRelated( false );
+		$wgOut->enableClientCache( false );
+		$wgOut->mRedirect = '';
+		$wgOut->clearHTML();
+
+		if( $this->msg instanceof Message ){
+			$wgOut->addHTML( $this->msg->parse() );
+		} else {
+			$wgOut->addWikiMsgArray( $this->msg, $this->params );
+		}
+
+		$wgOut->returnToMain();
 		$wgOut->output();
 	}
 }
