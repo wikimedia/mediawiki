@@ -95,8 +95,7 @@ class SpecialBlock extends SpecialPage {
 		$fields = self::getFormFields();
 		$this->maybeAlterFormDefaults( $fields );
 
-		$form = new HTMLForm( $fields );
-		$form->setTitle( $this->getTitle() );
+		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setWrapperLegend( wfMsg( 'blockip-legend' ) );
 		$form->setSubmitCallback( array( __CLASS__, 'processForm' ) );
 

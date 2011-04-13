@@ -101,6 +101,8 @@ class HTMLForm {
 	protected $mSubmitName;
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
+
+	protected $mContext; // <! RequestContext
 	protected $mTitle;
 	protected $mMethod = 'post';
 
@@ -113,10 +115,22 @@ class HTMLForm {
 	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param $descriptor Array of Field constructs, as described above
+	 * @param $context RequestContext available since 1.18, will become compulsory in 1.19.
+	 *     Obviates the need to call $form->setTitle()
 	 * @param $messagePrefix String a prefix to go in front of default messages
 	 */
-	public function __construct( $descriptor, $messagePrefix = '' ) {
-		$this->mMessagePrefix = $messagePrefix;
+	public function __construct( $descriptor, /*RequestContext*/ $context = null, $messagePrefix = '' ) {
+		if( $context instanceof RequestContext ){
+			$this->mContext = $context;
+			$this->mTitle = false; // We don't need them to set a title
+			$this->mMessagePrefix = $messagePrefix;
+		} else {
+			// B/C since 1.18
+			if( is_string( $context ) && $messagePrefix === '' ){
+				// it's actually $messagePrefix
+				$this->mMessagePrefix = $context;
+			}
+		}
 
 		// Expand out into a tree.
 		$loadedDescriptor = array();
@@ -174,6 +188,8 @@ class HTMLForm {
 		} elseif ( isset( $descriptor['type'] ) ) {
 			$class = self::$typeMappings[$descriptor['type']];
 			$descriptor['class'] = $class;
+		} else {
+			$class = null;
 		}
 
 		if ( !$class ) {
@@ -192,7 +208,7 @@ class HTMLForm {
 	 */
 	function prepareForm() {
 		# Check if we have the info we need
-		if ( ! $this->mTitle ) {
+		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
 
@@ -205,11 +221,10 @@ class HTMLForm {
 	 * @return Status|boolean
 	 */
 	function tryAuthorizedSubmit() {
-		global $wgUser, $wgRequest;
-		$editToken = $wgRequest->getVal( 'wpEditToken' );
+		$editToken = $this->getRequest()->getVal( 'wpEditToken' );
 
 		$result = false;
-		if ( $this->getMethod() != 'post' || $wgUser->matchEditToken( $editToken ) ) {
+		if ( $this->getMethod() != 'post' || $this->getUser()->matchEditToken( $editToken ) ) {
 			$result = $this->trySubmit();
 		}
 		return $result;
@@ -356,11 +371,9 @@ class HTMLForm {
 	 * @param $submitResult Mixed output from HTMLForm::trySubmit()
 	 */
 	function displayForm( $submitResult ) {
-		global $wgOut;
-
 		# For good measure (it is the default)
-		$wgOut->preventClickjacking();
-		$wgOut->addModules( 'mediawiki.htmlform' );
+		$this->getOutput()->preventClickjacking();
+		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 
 		$html = ''
 			. $this->getErrors( $submitResult )
@@ -373,7 +386,7 @@ class HTMLForm {
 
 		$html = $this->wrapForm( $html );
 
-		$wgOut->addHTML( ''
+		$this->getOutput()->addHTML( ''
 			. $this->mPre
 			. $html
 			. $this->mPost
@@ -414,11 +427,9 @@ class HTMLForm {
 	 * @return String HTML.
 	 */
 	function getHiddenFields() {
-		global $wgUser;
-
 		$html = '';
 		if( $this->getMethod() == 'post' ){
-			$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
+			$html .= Html::hidden( 'wpEditToken', $this->getUser()->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -447,8 +458,7 @@ class HTMLForm {
 		}
 
 		if ( isset( $this->mSubmitTooltip ) ) {
-			global $wgUser;
-			$attribs += $wgUser->getSkin()->tooltipAndAccessKeyAttribs( $this->mSubmitTooltip );
+			$attribs += Linker::tooltipAndAccessKeyAttribs( $this->mSubmitTooltip );
 		}
 
 		$attribs['class'] = 'mw-htmlform-submit';
@@ -500,11 +510,10 @@ class HTMLForm {
 	 */
 	function getErrors( $errors ) {
 		if ( $errors instanceof Status ) {
-			global $wgOut;
 			if ( $errors->isOK() ) {
 				$errorstr = '';
 			} else {
-				$errorstr = $wgOut->parse( $errors->getWikiText() );
+				$errorstr = $this->getOutput()->parse( $errors->getWikiText() );
 			}
 		} elseif ( is_array( $errors ) ) {
 			$errorstr = $this->formatErrors( $errors );
@@ -535,7 +544,7 @@ class HTMLForm {
 
 			$errorstr .= Html::rawElement(
 				'li',
-				null,
+				array(),
 				wfMsgExt( $msg, array( 'parseinline' ), $error )
 			);
 		}
@@ -613,7 +622,27 @@ class HTMLForm {
 	 * @return Title
 	 */
 	function getTitle() {
-		return $this->mTitle;
+		return $this->mTitle === false
+			? $this->getContext()->title
+			: $this->mTitle;
+	}
+
+	public function getContext(){
+		return $this->mContext instanceof RequestContext
+			? $this->mContext
+			: RequestContext::getMain();
+	}
+
+	public function getOutput(){
+		return $this->getContext()->output;
+	}
+
+	public function getRequest(){
+		return $this->getContext()->request;
+	}
+
+	public function getUser(){
+		return $this->getContext()->user;
 	}
 
 	/**
@@ -683,8 +712,6 @@ class HTMLForm {
 	 * Construct the form fields from the Descriptor array
 	 */
 	function loadData() {
-		global $wgRequest;
-
 		$fieldData = array();
 
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
@@ -693,7 +720,7 @@ class HTMLForm {
 			} elseif ( !empty( $field->mParams['disabled'] ) ) {
 				$fieldData[$fieldname] = $field->getDefault();
 			} else {
-				$fieldData[$fieldname] = $field->loadDataFromRequest( $wgRequest );
+				$fieldData[$fieldname] = $field->loadDataFromRequest( $this->getRequest() );
 			}
 		}
 
@@ -886,7 +913,6 @@ abstract class HTMLFormField {
 	 */
 	function getTableRow( $value ) {
 		# Check for invalid data.
-		global $wgRequest;
 
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
@@ -898,7 +924,7 @@ abstract class HTMLFormField {
 			$verticalLabel = true;
 		}
 
-		if ( $errors === true || ( !$wgRequest->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
+		if ( $errors === true || ( !$this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
 			$errors = '';
 			$errorClass = '';
 		} else {
@@ -995,10 +1021,7 @@ abstract class HTMLFormField {
 		if ( empty( $this->mParams['tooltip'] ) ) {
 			return array();
 		}
-
-		global $wgUser;
-
-		return $wgUser->getSkin()->tooltipAndAccessKeyAttribs( $this->mParams['tooltip'] );
+		return Linker::tooltipAndAccessKeyAttribs( $this->mParams['tooltip'] );
 	}
 
 	/**
@@ -1301,7 +1324,7 @@ class HTMLSelectField extends HTMLFormField {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
 		# If one of the options' 'name' is int(0), it is automatically selected.
-		# because PHP sucks and things int(0) == 'some string'.
+		# because PHP sucks and thinks int(0) == 'some string'.
 		# Working around this by forcing all of them to strings.
 		foreach( $this->mParams['options'] as $key => &$opt ){
 			if( is_int( $opt ) ){
@@ -1575,7 +1598,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			} else {
 				# groupless reason list
 				$optgroup = false;
-				$parts = array_map( 'trim', explode( '|', $opt, 2 ) );
+				$parts = array_map( 'trim', explode( '|', $option, 2 ) );
 				if( count( $parts ) === 1 ){
 					$parts[1] = $parts[0];
 				}
