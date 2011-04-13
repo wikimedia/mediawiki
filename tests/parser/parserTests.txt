@@ -1416,11 +1416,12 @@ Heading inside table (affected by r85922)
 |}
 !! result
 <table>
-
 <tr valign="top">
 <td>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Heading">edit</a>]</span> <span class="mw-headline" id="Heading"> Heading </span></h3>
-</td></tr></table>
+</td>
+</tr>
+</table>
 
 !! end
 
