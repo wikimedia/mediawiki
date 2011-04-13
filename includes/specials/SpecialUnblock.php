@@ -61,8 +61,7 @@ class SpecialUnblock extends SpecialPage {
 		$wgOut->setPageTitle( wfMsg( 'unblockip' ) );
 		$wgOut->addModules( 'mediawiki.special' );
 
-		$form = new HTMLForm( $this->getFields() );
-		$form->setTitle( $this->getTitle() );
+		$form = new HTMLForm( $this->getFields(), $this->getContext() );
 		$form->setWrapperLegend( wfMsg( 'unblockip' ) );
 		$form->setSubmitCallback( array( __CLASS__, 'processUnblock' ) );
 		$form->setSubmitText( wfMsg( 'ipusubmit' ) );

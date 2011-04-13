@@ -78,7 +78,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$wgOut->addWikiMsg( 'prefs-reset-intro' );
 
-		$htmlForm = new HTMLForm( array(), 'prefs-restore' );
+		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
 
 		$htmlForm->setSubmitText( wfMsg( 'restoreprefs' ) );
 		$htmlForm->setTitle( $this->getTitle( 'reset' ) );

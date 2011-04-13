@@ -79,8 +79,7 @@ class SpecialBlockList extends SpecialPage {
 				'flatlist' => true,
 			),
 		);
-		$form = new HTMLForm( $fields );
-		$form->setTitle( $this->getTitle() );
+		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegend( wfMsg( 'ipblocklist-legend' ) );
 		$form->setSubmitText( wfMsg( 'ipblocklist-submit' ) );
