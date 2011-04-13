@@ -839,7 +839,7 @@ class Parser {
 			}
 			$matches = array();
 
-			if ( preg_match( '/^(:*)\{\|(.*)$/', $line , $matches ) ) {
+			if ( preg_match( '/^(:*)\s*\{\|(.*)$/', $line , $matches ) ) {
 				$tables[] = array();
 				$table =& $this->last( $tables );
 				$table[0] = array(); // first row
