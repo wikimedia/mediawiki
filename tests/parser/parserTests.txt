@@ -1422,7 +1422,27 @@ Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitec
 
 !! end
 
+!! test
+Indented Tables, bug 20078
+!! input
+: {| 
+| 1 || 2
+|- 
+| 3 || 4
+|}
+!! result
+<dl><dd><table>
+<tr>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+</tr>
+</table></dd></dl>
 
+!! end
 ###
 ### Internal links
 ###
