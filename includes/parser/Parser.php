@@ -829,7 +829,7 @@ class Parser {
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line == '') { //empty line, go to next line
+			if ( $line === '') { //empty line, go to next line
 				$out .= $outLine."\n";
 				continue;
 			}
@@ -869,7 +869,7 @@ class Parser {
 				if ( isset($last_row['type'] ) && $last_row['type'] == 'thead' && isset($table[1])) {
 					$last_row['type'] = 'tfoot';
 					for($i = 0; isset($last_row[$i]); $i++ ) {
-						$last_row[$i]['type'] = 'td';
+						$last_row[$i]['type'] = 'th';
 					}
 				}
 
