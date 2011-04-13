@@ -1933,53 +1933,10 @@ class OutputPage {
 
 	/**
 	 * Produce a "user is blocked" page.
-	 *
-	 * @param $return Boolean: whether to have a "return to $wgTitle" message or not.
-	 * @return nothing
+	 * @deprecated since 1.18
 	 */
-	function blockedPage( $return = true ) {
-		global $wgContLang;
-
-		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-
-		$name = $this->getUser()->blockedBy();
-		$reason = $this->getUser()->blockedFor();
-		if( $reason == '' ) {
-			$reason = wfMsg( 'blockednoreason' );
-		}
-		$blockTimestamp = $this->getContext()->getLang()->timeanddate(
-			wfTimestamp( TS_MW, $this->getUser()->mBlock->mTimestamp ), true
-		);
-		$ip = wfGetIP();
-
-		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
-
-		$blockid = $this->getUser()->mBlock->getId();
-
-		$blockExpiry = $this->getContext()->getLang()->formatExpiry( $this->getUser()->mBlock->mExpiry );
-
-		if ( $this->getUser()->mBlock->mAuto ) {
-			$msg = 'autoblockedtext';
-		} else {
-			$msg = 'blockedtext';
-		}
-
-		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
-		 * This could be a username, an IP range, or a single IP. */
-		$intended = $this->getUser()->mBlock->getTarget();
-
-		$this->addWikiMsg(
-			$msg, $link, $reason, $ip, $name, $blockid, $blockExpiry,
-			$intended, $blockTimestamp
-		);
-
-		# Don't auto-return to special pages
-		if( $return ) {
-			$return = $this->getTitle()->getNamespace() > -1 ? $this->getTitle() : null;
-			$this->returnToMain( null, $return );
-		}
+	function blockedPage() {
+		throw new UserBlockedError( $this->getUser()->mBlock );
 	}
 
 	/**
@@ -2163,9 +2120,7 @@ class OutputPage {
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
 			// Wiki is read only
-			$this->setPageTitle( wfMsg( 'readonly' ) );
-			$reason = wfReadOnlyReason();
-			$this->wrapWikiMsg( "<div class='mw-readonly-error'>\n$1\n</div>", array( 'readonlytext', $reason ) );
+			throw new ReadOnlyError;
 		}
 
 		// Show source, if supplied
