@@ -5481,10 +5481,13 @@ Fuzz testing: Parser14-table
 !! input
 ==a==
 {| STYLE=__TOC__
+|foo
 !! result
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a>]</span> <span class="mw-headline" id="a">a</span></h2>
 <table style="&#95;_TOC&#95;_">
-<tr><td></td></tr>
+<tr>
+<td>foo</td>
+</tr>
 </table>
 
 !! end
@@ -5531,12 +5534,10 @@ Fuzz testing: Parser22
 http://===r:::https://b
 
 {|
+
 !!result
 <p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
 </p>
-<table>
-<tr><td></td></tr>
-</table>
 
 !! end
 
