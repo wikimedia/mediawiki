@@ -1153,9 +1153,9 @@ class EditPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			if ( $this->watchthis ) {
-				$this->mArticle->doWatch();
+				Action::factory( 'watch', $this->mArticle )->execute();
 			} else {
-				$this->mArticle->doUnwatch();
+				Action::factory( 'watch', $this->mArticle )->execute();
 			}
 			$dbw->commit();
 		}

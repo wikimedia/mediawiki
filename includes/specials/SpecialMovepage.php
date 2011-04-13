@@ -359,8 +359,11 @@ class MovePageForm extends UnlistedSpecialPage {
 			$article = new Article( $nt );
 
 			# Disallow deletions of big articles
-			$bigHistory = $article->isBigDeletion();
-			if( $bigHistory && !$nt->userCan( 'bigdelete' ) ) {
+			global $wgDeleteRevisionsLimit;
+			if ( $wgDeleteRevisionsLimit
+					&& $this->estimateRevisionCount() > $wgDeleteRevisionsLimit
+					&& !$nt->userCan( 'bigdelete' ) )
+			{
 				global $wgDeleteRevisionsLimit;
 				$this->showForm( array('delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 				return;
@@ -373,7 +376,10 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 
 			// This may output an error message and exit
-			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
+			Action::factory( 'delete', $article )->execute(
+				array( 'Reason' => wfMsgForContent( 'delete_and_move_reason' ) ),
+				false // Do not capture exceptions
+			);
 		}
 
 		# don't allow moving to pages with # in

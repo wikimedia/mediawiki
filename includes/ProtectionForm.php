@@ -317,9 +317,9 @@ class ProtectionForm {
 		}
 
 		if( $wgRequest->getCheck( 'mwProtectWatch' ) && $wgUser->isLoggedIn() ) {
-			$this->mArticle->doWatch();
+			Action::factory( 'watch', $this->mArticle )->execute();
 		} elseif( $this->mTitle->userIsWatching() ) {
-			$this->mArticle->doUnwatch();
+			Action::factory( 'unwatch', $this->mArticle )->execute();
 		}
 		return $ok;
 	}

@@ -998,8 +998,9 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: could not submit form',
 'badarticleerror'      => 'This action cannot be performed on this page.',
-'cannotdelete'         => 'The page or file "$1" could not be deleted.
-It may have already been deleted by someone else.',
+'cannotdelete'         => 'The page or file "$1" could not be deleted.  It may have already been deleted by someone else.  The deletion log is provided below for convenience.
+
+$2',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
@@ -2783,7 +2784,7 @@ Feedback and further assistance:
 'delete-confirm'         => 'Delete "$1"',
 'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
 'delete-legend'          => 'Delete',
-'historywarning'         => "'''Warning:''' The page you are about to delete has a history with approximately $1 {{PLURAL:$1|revision|revisions}}:",
+'historywarning'         => "'''Warning:''' The page you are about to delete has a $2 with approximately $1 {{PLURAL:$1|revision|revisions}}:",
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'         => 'Action complete',
