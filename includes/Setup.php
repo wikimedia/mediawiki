@@ -270,6 +270,14 @@ if ( !$wgEnotifMinorEdits ) {
 	$wgHiddenPrefs[] = 'enotifminoredits';
 }
 
+# $wgDisabledActions is deprecated as of 1.18
+foreach( $wgDisabledActions as $action ){
+	$wgActions[$action] = false;
+}
+if( !$wgAllowPageInfo ){
+	$wgActions['info'] = false;
+}
+
 if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
 	if ( $wgMimeType == 'application/xhtml+xml' ) {

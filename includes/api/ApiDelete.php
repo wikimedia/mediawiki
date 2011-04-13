@@ -123,11 +123,6 @@ class ApiDelete extends ApiBase {
 	 * @return Title::getUserPermissionsErrors()-like array
 	 */
 	public static function delete( &$article, $token, &$reason = null ) {
-		global $wgUser;
-		if ( $article->isBigDeletion() && !$wgUser->isAllowed( 'bigdelete' ) ) {
-			global $wgDeleteRevisionsLimit;
-			return array( array( 'delete-toobig', $wgDeleteRevisionsLimit ) );
-		}
 		$title = $article->getTitle();
 		$errors = self::getPermissionsError( $title, $token );
 		if ( count( $errors ) ) {
@@ -136,21 +131,28 @@ class ApiDelete extends ApiBase {
 
 		// Auto-generate a summary, if necessary
 		if ( is_null( $reason ) ) {
-			// Need to pass a throwaway variable because generateReason expects
-			// a reference
-			$hasHistory = false;
-			$reason = $article->generateReason( $hasHistory );
+			$reason = DeleteAction::getAutoReason( $article );
 			if ( $reason === false ) {
 				return array( array( 'cannotdelete' ) );
 			}
 		}
 
-		$error = '';
-		// Luckily, Article.php provides a reusable delete function that does the hard work for us
-		if ( $article->doDeleteArticle( $reason, false, 0, true, $error ) ) {
-			return array();
-		} else {
-			return array( array( 'cannotdelete', $article->mTitle->getPrefixedText() ) );
+		$action = Action::factory( 'delete', $article );
+		$data = array(
+			'Reason' => $reason,
+			'Suppress' => false, // The thought of people doing this through the API is scary...
+		);
+
+		try {
+			$action->execute( $data, false );
+		}
+		catch ( ErrorPageError $e ){
+			if( $e->msg == 'delete-toobig' ){
+				global $wgDeleteRevisionsLimit;
+				return array( array( 'delete-toobig', $wgDeleteRevisionsLimit ) );
+			} else {
+				array( array( 'cannotdelete', $article->mTitle->getPrefixedText() ) );
+			}
 		}
 	}
 
