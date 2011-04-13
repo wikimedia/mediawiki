@@ -829,21 +829,21 @@ class Parser {
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line === '') { //empty line, go to next line
-				$out .= $outLine."\n";
+			if ( $line === '' ) { // empty line, go to next line
+				$out .= $outLine . "\n";
 				continue;
 			}
-			$first_chars = $line[0];
-			if ( strlen($line) > 1) {
-				$first_chars .= in_array($line[1], array('}', '+', '-')) ? $line[1] : '';
+			$firstChars = $line[0];
+			if ( strlen( $line ) > 1 ) {
+				$firstChars .= in_array( $line[1], array( '}', '+', '-' ) ) ? $line[1] : '';
 			}
 			$matches = array();
 
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $line , $matches ) ) {
 				$tables[] = array();
-				$table =& $this->last($tables);
-				$table[0] = array(); //first row
-				$current_row =& $table[0];
+				$table =& $this->last( $tables );
+				$table[0] = array(); // first row
+				$currentRow =& $table[0];
 
 				$table['indent'] = strlen( $matches[1] );
 
@@ -853,79 +853,79 @@ class Parser {
 				if ( $attributes !== '' ) {
 					$table['attributes'] = $attributes;
 				}
-			} else if ( !isset($tables[0]) ) {
+			} else if ( !isset( $tables[0] ) ) {
 				// we're outside the table
 
-				$out .= $outLine."\n";
-			} else if ( $first_chars === '|}' ) {
+				$out .= $outLine . "\n";
+			} else if ( $firstChars === '|}' ) {
 				// trim the |} code from the line
 				$line = substr ( $line , 2 );
 
 				// Shorthand for last row
-				$last_row =& $this->last($table);
+				$lastRow =& $this->last( $table );
 
 				// a thead at the end becomes a tfoot, unless there is only one row
 				// Do this before deleting empty last lines to allow headers at the bottom of tables
-				if ( isset($last_row['type'] ) && $last_row['type'] == 'thead' && isset($table[1])) {
-					$last_row['type'] = 'tfoot';
-					for($i = 0; isset($last_row[$i]); $i++ ) {
-						$last_row[$i]['type'] = 'th';
+				if ( isset( $lastRow['type'] ) && $lastRow['type'] == 'thead' && isset( $table[1] ) ) {
+					$lastRow['type'] = 'tfoot';
+					for ( $i = 0; isset( $lastRow[$i] ); $i++ ) {
+						$lastRow[$i]['type'] = 'th';
 					}
 				}
 
 				// Delete empty last lines
-				if ( empty($last_row) ) {
-					$last_row = NULL;
+				if ( empty( $lastRow ) ) {
+					$lastRow = NULL;
 				}
-				$curtable = array_pop($tables);
-				$o = $this->printTableHtml( $curtable ) . $line;
+				$curtable = array_pop( $tables );
+				$o = $this->generateTableHTML( $curtable ) . $line;
 
-				if ( count($tables) > 0 ) {
-					$table =& $this->last($tables);
-					$current_row =& $this->last($table);
-					$current_element =& $this->last($current_row);
+				if ( count( $tables ) > 0 ) {
+					$table =& $this->last( $tables );
+					$currentRow =& $this->last( $table );
+					$currentElement =& $this->last( $currentRow );
 
-					$output =& $current_element['content'];
+					$output =& $currentElement['content'];
 				} else {
 					$output =& $out;
 				}
 
 				$output .= $o;
 
-			} else if ( $first_chars === '|-' ) {
+			} else if ( $firstChars === '|-' ) {
 				// start a new row element
 				// but only when we haven't started one already
-				if( count($current_row) != 0 ) {
+				if ( count( $currentRow ) != 0 ) {
 					$table[] = array();
-					$current_row =& $this->last($table);
+					$currentRow =& $this->last( $table );
 				}
 				// Get the attributes, there's nothing else useful in $line now
 				$line = substr ( $line , 2 );
 				$attributes = $this->mStripState->unstripBoth( $line );
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'tr' );
-				if( $attributes !== '') {
-					$current_row['attributes'] = $attributes;
+				if ( $attributes !== '' ) {
+					$currentRow['attributes'] = $attributes;
 				}
 
-			} else if ( $first_chars  === '|+' ) {
+			} else if ( $firstChars  === '|+' ) {
 				// a table caption
 				$line = substr ( $line , 2 );
 
-				$c = $this->getCellAttr($line , 'caption');
+				$c = $this->getCellAttr( $line , 'caption' );
 				$table['caption'] = array();
 				$table['caption']['content'] = $c[0];
-				if(isset($c[1])) $table['caption']['attributes'] = $c[1];
-				unset($c);
+				if ( isset( $c[1] ) ) $table['caption']['attributes'] = $c[1];
+				unset( $c );
 
 				$output =& $table['caption'];
-			} else if ( $first_chars === '|' || $first_chars === '!' || $first_chars === '!+' ) {
+			} else if ( $firstChars === '|' || $firstChars === '!' || $firstChars === '!+' ) {
 				// Which kind of cells are we dealing with
-				$this_tag = 'td';
+				$currentTag = 'td';
 				$line = substr ( $line , 1 );
 
-				if ( $first_chars === '!'  || $first_chars === '!+' ) {
+				if ( $firstChars === '!'  || $firstChars === '!+' ) {
 					$line = str_replace ( '!!' , '||' , $line );
-					$this_tag = 'th';
+					$currentTag = 'th';
 				}
 
 				// Split up multiple cells on the same line.
@@ -933,29 +933,29 @@ class Parser {
 				$line = ''; // save memory
 
 				// decide whether thead to tbody
-				if ( !array_key_exists('type', $current_row) ) {
-					$current_row['type'] = ( $first_chars === '!' ) ? 'thead' : 'tbody' ;
-				} else if( $first_chars === '|' ) {
-					$current_row['type'] = 'tbody';
+				if ( !array_key_exists( 'type', $currentRow ) ) {
+					$currentRow['type'] = ( $firstChars === '!' ) ? 'thead' : 'tbody' ;
+				} else if ( $firstChars === '|' ) {
+					$currentRow['type'] = 'tbody';
 				}
 
 				// Loop through each table cell
 				foreach ( $cells as $cell ) {
 					// a new cell
-					$current_row[] = array();
-					$current_element =& $this->last($current_row);
+					$currentRow[] = array();
+					$currentElement =& $this->last( $currentRow );
 
-					$current_element['type'] = $this_tag;
+					$currentElement['type'] = $currentTag;
 
-					$c = $this->getCellAttr($cell , $this_tag);
-					$current_element['content'] = $c[0];
-					if(isset($c[1])) $current_element['attributes'] = $c[1];
-					unset($c);
+					$c = $this->getCellAttr( $cell , $currentTag );
+					$currentElement['content'] = $c[0];
+					if ( isset( $c[1] ) ) $currentElement['attributes'] = $c[1];
+					unset( $c );
 				}
-				$output =& $current_element['content'];
+				$output =& $currentElement['content'];
 
 			} else {
-				$output .= $outLine."\n";
+				$output .= $outLine . "\n";
 			}
 		}
 
@@ -964,11 +964,11 @@ class Parser {
 			$out = substr( $out, 0, -1 );
 		}
 
-		#Close any unclosed tables
-		if (isset($tables) && count($tables) > 0 ) {
-			for ($i = 0; $i < count($tables); $i++) {
-				$curtable = array_pop($tables);
-				$out .= $this->printTableHtml( $curtable );
+		# Close any unclosed tables
+		if ( isset( $tables ) && count( $tables ) > 0 ) {
+			for ( $i = 0; $i < count( $tables ); $i++ ) {
+				$curtable = array_pop( $tables );
+				$out .= $this->generateTableHTML( $curtable );
 			}
 		}
 
@@ -985,30 +985,30 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function getCellAttr ($cell , $tag_name) {
+	function getCellAttr ( $cell, $tagName ) {
 		$content = null;
 		$attributes = null;
 
 		$cell = trim ( $cell );
 
 		// A cell could contain both parameters and data
-		$cell_data = explode ( '|' , $cell , 2 );
+		$cellData = explode ( '|' , $cell , 2 );
 
 		// Bug 553: Note that a '|' inside an invalid link should not
 		// be mistaken as delimiting cell parameters
-		if ( strpos( $cell_data[0], '[[' ) !== false ) {
+		if ( strpos( $cellData[0], '[[' ) !== false ) {
 			$content = trim ( $cell );
 		}
-		else if ( count ( $cell_data ) == 1 ) {
-			$content = trim ( $cell_data[0] );
+		else if ( count ( $cellData ) == 1 ) {
+			$content = trim ( $cellData[0] );
 		}
 		else {
-			$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
-			$attributes = Sanitizer::fixTagAttributes( $attributes , $tag_name );
+			$attributes = $this->mStripState->unstripBoth( $cellData[0] );
+			$attributes = Sanitizer::fixTagAttributes( $attributes , $tagName );
 
-			$content = trim ( $cell_data[1] );
+			$content = trim ( $cellData[1] );
 		}
-		return array($content, $attributes);
+		return array( $content, $attributes );
 	}
 
 
@@ -1017,79 +1017,79 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function printTableHtml (&$t) {
-		$r = "\n";
-		$r .= str_repeat( '<dl><dd>' , $t['indent'] );
-		$r .= '<table';
-		$r .= isset($t['attributes']) ? $t['attributes'] : '';
-		$r .= '>';
-		unset($t['attributes']);
+	function generateTableHTML ( &$table ) {
+		$return = "\n";
+		$return .= str_repeat( '<dl><dd>' , $table['indent'] );
+		$return .= '<table';
+		$return .= isset( $table['attributes'] ) ? $table['attributes'] : '';
+		$return .= '>';
+		unset( $table['attributes'] );
 
-		if ( isset($t['caption']) ) {
-			$r .= "\n<caption";
-			$r .= isset($t['caption']['attributes']) ? $t['caption']['attributes'] : '';
-			$r .= '>';
-			$r .= $t['caption']['content'];
-			$r .= '</caption>';
+		if ( isset( $table['caption'] ) ) {
+			$return .= "\n<caption";
+			$return .= isset( $table['caption']['attributes'] ) ? $table['caption']['attributes'] : '';
+			$return .= '>';
+			$return .= $table['caption']['content'];
+			$return .= '</caption>';
 		}
-		$last_section = '';
+		$lastSection = '';
 		$empty = true;
 		$simple = true;
 
-		//If we only have tbodies, mark table as simple
-		for($i = 0; isset($t[$i]); $i++ ) {
-		    if ( !count( $t[$i]) ) continue;
-		    if ( !$last_section ) {
-		        $last_section = $t[$i]['type'];
-		    } else if ($last_section != $t[$i]['type']) {
-		        $simple = false;
-		        break;
-		    }
+		// If we only have tbodies, mark table as simple
+		for ( $i = 0; isset( $table[$i] ); $i++ ) {
+			if ( !count( $table[$i] ) ) continue;
+			if ( !$lastSection ) {
+				$lastSection = $table[$i]['type'];
+			} else if ( $lastSection != $table[$i]['type'] ) {
+				$simple = false;
+				break;
+			}
 		}
-		$last_section = '';
-		for($i = 0; isset($t[$i]); $i++ ) {
+		$lastSection = '';
+		for ( $i = 0; isset( $table[$i] ); $i++ ) {
 			// Check for empty tables
-			if ( count( $t[$i]) ) {
+			if ( count( $table[$i] ) ) {
 				$empty = false;
 			} else {
-			    continue;
+				continue;
 			}
-			if( $t[$i]['type'] != $last_section && !$simple ) {
-				$r .= "\n<" . $t[$i]['type'] . '>';
+			if ( $table[$i]['type'] != $lastSection && !$simple ) {
+				$return .= "\n<" . $table[$i]['type'] . '>';
 			}
 
-			$r .= "\n<tr";
-			$r .= isset($t[$i]['attributes']) ? $t[$i]['attributes'] : '';
-			$r .= '>';
-			for($j = 0; isset($t[$i][$j]); $j++ ) {
-				$r .= "\n<" . $t[$i][$j]['type'];
-				$r .= isset($t[$i][$j]['attributes']) ? $t[$i][$j]['attributes'] : '';
-				$r .= '>';
+			$return .= "\n<tr";
+			$return .= isset( $table[$i]['attributes'] ) ? $table[$i]['attributes'] : '';
+			$return .= '>';
+			for ( $j = 0; isset( $table[$i][$j] ); $j++ ) {
+				$return .= "\n<" . $table[$i][$j]['type'];
+				$return .= isset( $table[$i][$j]['attributes'] ) ? $table[$i][$j]['attributes'] : '';
+				$return .= '>';
 
-				$r .= $t[$i][$j]['content'];
+				$return .= $table[$i][$j]['content'];
 
-				$r .= '</' . $t[$i][$j]['type'] . '>';
-				unset($t[$i][$j]);
+				$return .= '</' . $table[$i][$j]['type'] . '>';
+				unset( $table[$i][$j] );
 			}
-			$r .= "\n</tr>";
+			$return .= "\n</tr>";
 
-			if( ( !isset($t[$i+1]) && !$simple )|| ( isset($t[$i+1]) && ($t[$i]['type'] != $t[$i+1]['type'])) ) {
-				$r .= '</' . $t[$i]['type'] . '>';
+			if ( ( !isset( $table[$i + 1] ) && !$simple ) || ( isset( $table[$i + 1] ) && ( $table[$i]['type'] != $table[$i + 1]['type'] ) ) ) {
+				$return .= '</' . $table[$i]['type'] . '>';
 			}
-			$last_section = $t[$i]['type'];
-			unset($t[$i]);
+			$lastSection = $table[$i]['type'];
+			unset( $table[$i] );
 		}
 		if ( $empty ) {
-			if ( isset($t['caption']) ) {
-				$r .= "\n<tr><td></td></tr>";
+			if ( isset( $table['caption'] ) ) {
+				$return .= "\n<tr><td></td></tr>";
 			} else {
 				return '';
 			}
 		}
-		$r .= "\n</table>";
-		$r .= str_repeat( '</dd></dl>' , $t['indent'] );
+		$return .= "\n</table>";
+		$return .= str_repeat( '</dd></dl>' , $table['indent'] );
 
-		return $r;
+		return $return;
 	}
 
 	/**
@@ -1100,8 +1100,8 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function &last (&$arr) {
-		for($i = count($arr); (!isset($arr[$i]) && $i > 0); $i--) {  }
+	function &last ( &$arr ) {
+		for ( $i = count( $arr ); ( !isset( $arr[$i] ) && $i > 0 ); $i-- ) {  }
 		return $arr[$i];
 	}
 
