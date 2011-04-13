@@ -1461,6 +1461,24 @@ A table with unclosed italic in a cell
 !! end
 
 !! test
+A table with unclosed italic in a th
+!! input
+{|
+|-
+! ''Cell
+|| Value
+|}
+!! result
+<table>
+<tr>
+<th><i>Cell</i></th>
+<td>Value</td>
+</tr>
+</table>
+
+!! end
+
+!! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
 !! input
 {|
