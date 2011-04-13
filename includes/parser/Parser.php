@@ -1067,6 +1067,8 @@ class Parser {
 				$return .= '>';
 
 				$return .= $table[$i][$j]['content'];
+				if ( $table[$i][$j]['content'] != '' )
+					$return .= "\n";
 
 				$return .= '</' . $table[$i][$j]['type'] . '>';
 				unset( $table[$i][$j] );
