@@ -371,6 +371,56 @@ class PermissionsError extends ErrorPageError {
 }
 
 /**
+ * Show an error when the wiki is locked/read-only and the user tries to do
+ * something that requires write access
+ */
+class ReadOnlyError extends ErrorPageError {
+	public function __construct(){
+		parent::__construct(
+			'readonly',
+			'readonlytext',
+			wfReadOnlyReason()
+		);
+	}
+}
+
+/**
+ * Show an error when the user tries to do something whilst blocked
+ */
+class UserBlockedError extends ErrorPageError {
+	public function __construct( Block $block ){
+		global $wgLang;
+
+		$blockerUserpage = $block->getBlocker()->getUserPage();
+		$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerUserpage->getText()}]]";
+
+		$reason = $block->mReason;
+		if( $reason == '' ) {
+			$reason = wfMsg( 'blockednoreason' );
+		}
+
+		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
+		 * This could be a username, an IP range, or a single IP. */
+		$intended = $block->getTarget();
+
+		parent::__construct(
+			'blockedtitle',
+			$block->mAuto ? 'autoblocketext' : 'blockedtext',
+			array(
+				$link,
+				$reason,
+				wfGetIP(),
+				$block->getBlocker()->getName(),
+				$block->getId(),
+				$wgLang->formatExpiry( $block->mExpiry ),
+				$intended,
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $block->mTimestamp ), true )
+			)
+		);
+	}
+}
+
+/**
  * Install an exception handler for MediaWiki exception types.
  */
 function wfInstallExceptionHandler() {
