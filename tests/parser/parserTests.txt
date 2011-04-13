@@ -1426,6 +1426,38 @@ Heading inside table (affected by r85922)
 !! end
 
 !! test
+A table with a caption with unclosed italic
+!! input 
+{|
+|+ ''caption
+|  Cell
+|}
+!! result
+<table>
+<caption><i>caption</i></caption>
+<tr>
+<td>Cell</td>
+</tr>
+</table>
+
+!! end
+
+!! test
+A table with unclosed italic in a cell
+!! input 
+{|
+| ''Cell
+|}
+!! result
+<table>
+<tr>
+<td><i>Cell</i></td>
+</tr>
+</table>
+
+!! end
+
+!! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
 !! input
 {|
