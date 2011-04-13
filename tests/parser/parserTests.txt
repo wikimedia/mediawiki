@@ -1406,6 +1406,23 @@ Invalid attributes in table cell (bug 1830)
 
 !! end
 
+!! test
+Heading inside table (affected by r85922)
+!! input
+{|
+|- valign="top"
+|
+=== Heading ===
+|}
+!! result
+<table>
+
+<tr valign="top">
+<td>
+<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Heading">edit</a>]</span> <span class="mw-headline" id="Heading"> Heading </span></h3>
+</td></tr></table>
+
+!! end
 
 !! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
@@ -5578,6 +5595,7 @@ http://===r:::https://b
 # </td>
 # </tr>
 # </table>
+# Known to produce bad XML for now
 !! test
 Fuzz testing: Parser24
 !! options
@@ -5593,9 +5611,10 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 |
 !! result
 <p>{{{|
-<u class="&#124;">}}}} &gt;
-<br style="onmouseover=&#39;alert(document.cookie);&#39;" />
-</p><p>MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+</p><p><u class="&#124;">}}}} &gt;
+</p><p><br style="onmouseover=&#39;alert(document.cookie);&#39;" />
+</p><p><br />
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </p>
 <table>
 <tr>
