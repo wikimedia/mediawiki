@@ -877,7 +877,8 @@ class Parser {
 				if ( empty($last_row) ) {
 					$last_row = NULL;
 				}
-				$o = $this->printTableHtml( array_pop($tables) ) . $line;
+				$curtable = array_pop($tables);
+				$o = $this->printTableHtml( $curtable ) . $line;
 
 				if ( count($tables) > 0 ) {
 					$table =& $this->last($tables);
@@ -905,11 +906,11 @@ class Parser {
 				if( $attributes !== '') {
 					$current_row['attributes'] = $attributes;
 				}
-				
+
 			} else if ( $first_chars  === '|+' ) {
 				// a table caption
 				$line = substr ( $line , 2 );
-				
+
 				$c = $this->getCellAttr($line , 'caption');
 				$table['caption'] = array();
 				$table['caption']['content'] = $c[0];
@@ -952,24 +953,25 @@ class Parser {
 					unset($c);
 				}
 				$output =& $current_element['content'];
-				
+
 			} else {
 				$output .= $outLine."\n";
 			}
 		}
-		
+
 		# Remove trailing line-ending (b/c)
 		if ( substr( $out, -1 ) === "\n" ) {
 			$out = substr( $out, 0, -1 );
 		}
-		
+
 		#Close any unclosed tables
 		if (isset($tables) && count($tables) > 0 ) {
 			for ($i = 0; $i < count($tables); $i++) {
-				$out .= $this->printTableHtml( array_pop($tables) );
+				$curtable = array_pop($tables);
+				$out .= $this->printTableHtml( $curtable );
 			}
 		}
-			
+
 		wfProfileOut( __METHOD__ );
 
 		return $out;
@@ -1033,7 +1035,7 @@ class Parser {
 		$last_section = '';
 		$empty = true;
 		$simple = true;
-		
+
 		//If we only have tbodies, mark table as simple
 		for($i = 0; isset($t[$i]); $i++ ) {
 		    if ( !count( $t[$i]) ) continue;
@@ -3531,7 +3533,7 @@ class Parser {
 			# Update fetched file title 
 			$title = $file->getTitle();
 		}
-		return array( $file, $title );	
+		return array( $file, $title );
 	}
 
 	/**
