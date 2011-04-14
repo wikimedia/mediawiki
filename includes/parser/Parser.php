@@ -829,8 +829,13 @@ class Parser {
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line === '' ) { // empty line, go to next line
-				$out .= $outLine . "\n";
+			# empty line, go to next line,
+			# but only append \n if outside of table
+			if ( $line === '' ) { 
+				$out .= $outLine;
+				if ( !isset( $tables[0] ) ) {
+					$out .= "\n";
+				}
 				continue;
 			}
 			$firstChars = $line[0];
@@ -877,8 +882,14 @@ class Parser {
 				if ( empty( $lastRow ) ) {
 					$lastRow = NULL;
 				}
+				$o = '';
 				$curtable = array_pop( $tables );
-				$o = $this->generateTableHTML( $curtable ) . $line;
+				
+				#Add a line-ending before the table, but only if there isn't one already
+				if ( substr( $out, -1 ) !== "\n" ) {
+					$o .= "\n";
+				}
+				$o .= $this->generateTableHTML( $curtable ) . $line . "\n";
 
 				if ( count( $tables ) > 0 ) {
 					$table =& $this->last( $tables );
@@ -968,7 +979,12 @@ class Parser {
 		if ( isset( $tables ) && count( $tables ) > 0 ) {
 			for ( $i = 0; $i < count( $tables ); $i++ ) {
 				$curtable = array_pop( $tables );
-				$out .= $this->generateTableHTML( $curtable );
+				$curtable = $this->generateTableHTML( $curtable );
+				#Add a line-ending before the table, but only if there isn't one already
+				if ( substr( $out, -1 ) !== "\n"  && $curtable !== "" ) {
+					$out .= "\n";
+				}
+				$out .= $curtable;
 			}
 		}
 
@@ -1018,7 +1034,7 @@ class Parser {
 	 * @private
 	 */
 	function generateTableHTML ( &$table ) {
-		$return = "\n";
+		$return = "";
 		$return .= str_repeat( '<dl><dd>' , $table['indent'] );
 		$return .= '<table';
 		$return .= isset( $table['attributes'] ) ? $table['attributes'] : '';
