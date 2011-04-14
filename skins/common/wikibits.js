@@ -981,7 +981,7 @@ window.runOnloadHook = function() {
 	updateTooltipAccessKeys( null );
 	setupCheckboxShiftClick();
 
-	jQuery( document ).ready( sortables_init );
+	//jQuery( document ).ready( sortables_init );
 
 	// Run any added-on functions
 	for ( var i = 0; i < onloadFuncts.length; i++ ) {
