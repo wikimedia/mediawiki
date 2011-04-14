@@ -403,7 +403,7 @@ return array(
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
-		'dependencies' => 'mediawiki.legacy.history',
+		'dependencies' => 'jquery.ui.button',
 		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.edit' => array(
@@ -544,13 +544,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
 		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.history' => array(
-		'scripts' => 'common/history.js',
-		'group' => 'mediawiki.action.history',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.ui.button' ),
 	),
 	'mediawiki.legacy.IEFixes' => array(
 		'scripts' => 'common/IEFixes.js',
