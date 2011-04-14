@@ -67,6 +67,7 @@ TEXT;
 
 		if ( $force ) {
 			$options['ORDER BY'] = 'cl_from, cl_to';
+			$collationConds = array();
 		} else {
 			$collationConds = array( 0 => 
 				'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ) );
