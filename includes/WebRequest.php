@@ -734,6 +734,7 @@ class WebRequest {
 	 * @param $name String: case-insensitive header name
 	 */
 	public function getHeader( $name ) {
+		$this->initHeaders();
 		$name = strtoupper( $name );
 		if ( isset( $this->headers[$name] ) ) {
 			return $this->headers[$name];
