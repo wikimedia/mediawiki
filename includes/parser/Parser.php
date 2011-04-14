@@ -966,7 +966,7 @@ class Parser {
 				$output =& $currentElement['content'];
 
 			} else {
-				$output .= "\n$outLine\n";
+				$output .= "\n$outLine";
 			}
 		}
 
