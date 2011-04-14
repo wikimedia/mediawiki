@@ -1563,6 +1563,46 @@ Indented Tables, bug 20078
 </table></dd></dl>
 
 !! end
+
+!! test
+Arbitrary whitespace should not be prepended
+!! input
+{| 
+| 1 || 2
+
+|- 
+
+
+| 3 || 4
+|-
+
+| 6 || 8
+|}
+!! result
+<table>
+<tr>
+<td>1
+</td>
+<td>2
+</td>
+</tr>
+<tr>
+<td>3
+</td>
+<td>4
+</td>
+</tr>
+<tr>
+<td>6
+</td>
+<td>8
+</td>
+</tr>
+</table>
+
+!! end
+
+
 ###
 ### Internal links
 ###
@@ -5693,7 +5733,6 @@ http://===r:::https://b
 !!result
 <p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
 </p>
-
 !! end
 
 # Known to produce bad XML for now
@@ -5731,8 +5770,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <p>{{{|
 </p><p><u class="&#124;">}}}} &gt;
 </p><p><br style="onmouseover=&#39;alert(document.cookie);&#39;" />
-</p><p><br />
-MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+</p><p>MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </p>
 <table>
 <tr>
@@ -7918,7 +7956,8 @@ y
 </td>
 <td>4
 </td>
-</tr></table>
+</tr>
+</table>
 <p>y
 </p>
 !! end
