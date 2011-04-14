@@ -80,13 +80,7 @@ class SpecialPage {
 	protected $mContext;
 		
 	/**
-	 * List of special pages, followed by parameters.
-	 * If the only parameter is a string, that is the page name.
-	 * Otherwise, it is an array. The format is one of:
-	 ** array( 'SpecialPage', name, right )
-	 ** array( 'IncludableSpecialPage', name, right, listed? )
-	 ** array( 'UnlistedSpecialPage', name, right )
-	 ** array( 'SpecialRedirectToSpecial', name, page to redirect to, special page param, ... )
+	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
 	static public $mList = array(
 		# Maintenance Reports
@@ -123,7 +117,7 @@ class SpecialPage {
 
 		# Login/create account
 		'Userlogin'                 => 'LoginForm',
-		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
+		'CreateAccount'             => 'SpecialCreateAccount',
 
 		# Users and rights
 		'Block'                     => 'SpecialBlock',
@@ -135,8 +129,8 @@ class SpecialPage {
 		'Contributions'             => 'SpecialContributions',
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Listusers'                 => 'SpecialListUsers' ,
-		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
-		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
+		'Listadmins'                => 'SpecialListAdmins',
+		'Listbots'                  => 'SpecialListBots',
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'DisableAccount'            => 'SpecialDisableAccount',
@@ -414,6 +408,8 @@ class SpecialPage {
 				$className = $rec;
 				self::$mList[$name] = new $className;
 			} elseif ( is_array( $rec ) ) {
+				// @deprecated officially since 1.18, unofficially since forever
+				wfDebug( "Array syntax for \$wgSpecialPages is deprecated, define a subclass of SpecialPage instead." );
 				$className = array_shift( $rec );
 				self::$mList[$name] = MWFunction::newObj( $className, $rec );
 			}
@@ -752,13 +748,14 @@ class SpecialPage {
 	 *
 	 * @param $fName String Name of called method
 	 * @param $a Array Arguments to the method
-	 * @deprecated Call isn't deprecated, but SpecialPage::SpecialPage() is
+	 * @deprecated since 1.17, call parent::__construct()
 	 */
 	public function __call( $fName, $a ) {
 		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
 		if( strtolower( $fName ) == 'specialpage' ) {
-			// Debug messages now, warnings in 1.19 or 1.20?
-			wfDebug( "Deprecated SpecialPage::SpecialPage() called, use __construct();\n" );
+			// Deprecated messages now, remove in 1.19 or 1.20?
+			wfDeprecated( __METHOD__ );
+
 			$name = isset( $a[0] ) ? $a[0] : '';
 			$restriction = isset( $a[1] ) ? $a[1] : '';
 			$listed = isset( $a[2] ) ? $a[2] : true;
@@ -1082,7 +1079,7 @@ class IncludableSpecialPage extends SpecialPage
  * Shortcut to construct a special page alias.
  * @ingroup SpecialPage
  */
-class SpecialRedirectToSpecial extends UnlistedSpecialPage {
+abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	var $redirName, $redirSubpage;
 
 	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
@@ -1102,6 +1099,33 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	}
 }
 
+/**
+ * ListAdmins --> ListUsers/admin
+ */
+class SpecialListAdmins extends SpecialRedirectToSpecial {
+	function __construct(){
+		parent::__construct( 'ListAdmins', 'ListUsers', 'sysop' );
+	}
+}
+
+/**
+ * ListBots --> ListUsers/admin
+ */
+class SpecialListBots extends SpecialRedirectToSpecial {
+	function __construct(){
+		parent::__construct( 'ListAdmins', 'ListUsers', 'bot' );
+	}
+}
+
+/**
+ * CreateAccount --> UserLogin/signup
+ * FIXME: this (and the rest of the login frontend) needs to die a horrible painful death
+ */
+class SpecialCreateAccount extends SpecialRedirectToSpecial {
+	function __construct(){
+		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) );
+	}
+}
 /**
  * SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
  * are used to get user independant links pointing to the user page, talk
