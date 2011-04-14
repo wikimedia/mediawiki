@@ -785,7 +785,7 @@ class WebRequest {
 		global $wgScriptExtension;
 
 		if ( isset( $_SERVER['QUERY_STRING'] ) 
-			&& preg_match( '/\.[a-z]{1,4}$/i', $_SERVER['QUERY_STRING'] ) )
+			&& preg_match( '/\.[a-z0-9]{1,4}(#|\?|$)/i', $_SERVER['QUERY_STRING'] ) )
 		{
 			// Bug 28235
 			// Block only Internet Explorer, and requests with missing UA 

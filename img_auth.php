@@ -40,7 +40,7 @@ if ( $wgImgAuthPublicTest
 
 // Check for bug 28235: QUERY_STRING overriding the correct extension
 if ( isset( $_SERVER['QUERY_STRING'] )
-	&& preg_match( '/\.[a-z]{1,4}$/i', $_SERVER['QUERY_STRING'] ) )
+	&& preg_match( '/\.[a-z0-9]{1,4}(#|\?|$)/i', $_SERVER['QUERY_STRING'] ) )
 {
 	wfForbidden( 'img-auth-accessdenied', 'img-auth-bad-query-string' );
 }	
