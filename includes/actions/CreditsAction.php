@@ -25,11 +25,11 @@
 
 class CreditsAction extends FormlessAction {
 
-	public function getName(){
+	public function getName() {
 		return 'credits';
 	}
 
-	public function getRestriction(){
+	public function getRestriction() {
 		return null;
 	}
 
@@ -57,7 +57,7 @@ class CreditsAction extends FormlessAction {
 	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
-	protected function getCredits( $cnt, $showIfMax = true ) {
+	public function getCredits( $cnt, $showIfMax = true ) {
 		wfProfileIn( __METHOD__ );
 		$s = '';
 

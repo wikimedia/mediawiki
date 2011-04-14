@@ -22,23 +22,23 @@
 
 class WatchAction extends FormlessAction {
 
-	public function getName(){
+	public function getName() {
 		return 'watch';
 	}
 
-	public function getRestriction(){
+	public function getRestriction() {
 		return 'read';
 	}
 
-	public function requiresUnblock(){
+	public function requiresUnblock() {
 		return false;
 	}
 
-	protected function getDescription(){
+	protected function getDescription() {
 		return wfMsg( 'addedwatch' );
 	}
 
-	protected function checkCanExecute( User $user ){
+	protected function checkCanExecute( User $user ) {
 		if ( $user->isAnon() ) {
 			throw new ErrorPageError( 'watchnologin', 'watchnologintext' );
 		}
@@ -62,11 +62,11 @@ class WatchAction extends FormlessAction {
 
 class UnwatchAction extends WatchAction {
 
-	public function getName(){
+	public function getName() {
 		return 'unwatch';
 	}
 
-	protected function getDescription(){
+	protected function getDescription() {
 		return wfMsg( 'removedwatch' );
 	}
 

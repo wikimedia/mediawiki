@@ -43,19 +43,19 @@ abstract class Action {
 	 * @param $action String
 	 * @return bool|null|string
 	 */
-	private final static function getClass( $action ){
+	private final static function getClass( $action ) {
 		global $wgActions;
 		$action = strtolower( $action );
 
-		if( !isset( $wgActions[$action] ) ){
+		if ( !isset( $wgActions[$action] ) ) {
 			return null;
 		}
 
-		if( $wgActions[$action] === false ){
+		if ( $wgActions[$action] === false ) {
 			return false;
 		}
 
-		elseif( $wgActions[$action] === true ){
+		elseif ( $wgActions[$action] === true ) {
 			return ucfirst( $action ) . 'Action';
 		}
 
@@ -71,9 +71,9 @@ abstract class Action {
 	 * @return Action|false|null false if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	public final static function factory( $action, Article $page ){
+	public final static function factory( $action, Article $page ) {
 		$class = self::getClass( $action );
-		if( $class ){
+		if ( $class ) {
 			$obj = new $class( $page );
 			return $obj;
 		}
@@ -94,8 +94,8 @@ abstract class Action {
 	 * Get the RequestContext in use here
 	 * @return RequestContext
 	 */
-	protected final function getContext(){
-		if( $this->context instanceof RequestContext ){
+	protected final function getContext() {
+		if ( $this->context instanceof RequestContext ) {
 			return $this->context;
 		}
 		return $this->page->getContext();
@@ -138,10 +138,19 @@ abstract class Action {
 	}
 
 	/**
+	 * Shortcut to get the user Language being used for this instance
+	 *
+	 * @return Skin
+	 */
+	protected final function getLang() {
+		return $this->getContext()->lang;
+	}
+
+	/**
 	 * Shortcut to get the Title object from the page
 	 * @return Title
 	 */
-	protected final function getTitle(){
+	protected final function getTitle() {
 		return $this->page->getTitle();
 	}
 
@@ -150,7 +159,7 @@ abstract class Action {
 	 * these things in the real world
 	 * @param Article $page
 	 */
-	protected function __construct( Article $page ){
+	protected function __construct( Article $page ) {
 		$this->page = $page;
 	}
 
@@ -175,15 +184,15 @@ abstract class Action {
 	 * @throws ErrorPageError
 	 */
 	protected function checkCanExecute( User $user ) {
-		if( $this->requiresWrite() && wfReadOnly() ){
+		if ( $this->requiresWrite() && wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
 
-		if( $this->getRestriction() !== null && !$user->isAllowed( $this->getRestriction() ) ){
+		if ( $this->getRestriction() !== null && !$user->isAllowed( $this->getRestriction() ) ) {
 			throw new PermissionsError( $this->getRestriction() );
 		}
 
-		if( $this->requiresUnblock() && $user->isBlocked() ){
+		if ( $this->requiresUnblock() && $user->isBlocked() ) {
 			$block = $user->mBlock;
 			throw new UserBlockedError( $block );
 		}
@@ -193,7 +202,7 @@ abstract class Action {
 	 * Whether this action requires the wiki not to be locked
 	 * @return Bool
 	 */
-	public function requiresWrite(){
+	public function requiresWrite() {
 		return true;
 	}
 
@@ -201,7 +210,7 @@ abstract class Action {
 	 * Whether this action can still be executed by a blocked user
 	 * @return Bool
 	 */
-	public function requiresUnblock(){
+	public function requiresUnblock() {
 		return true;
 	}
 
@@ -219,10 +228,6 @@ abstract class Action {
 
 	/**
 	 * Returns the name that goes in the \<h1\> page title
-	 *
-	 * Derived classes can override this, but usually it is easier to keep the
-	 * default behaviour. Messages can be added at run-time, see
-	 * MessageCache.php.
 	 *
 	 * @return String
 	 */
@@ -259,20 +264,20 @@ abstract class FormAction extends Action {
 	 * Add pre- or post-text to the form
 	 * @return String HTML which will be sent to $form->addPreText()
 	 */
-	protected function preText(){ return ''; }
-	protected function postText(){ return ''; }
+	protected function preText() { return ''; }
+	protected function postText() { return ''; }
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
-	 * @param &$form HTMLForm
+	 * @param $form HTMLForm
 	 */
-	protected function alterForm( HTMLForm &$form ){}
+	protected function alterForm( HTMLForm $form ) {}
 
 	/**
 	 * Get the HTMLForm to control behaviour
 	 * @return HTMLForm|null
 	 */
-	protected function getForm(){
+	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
@@ -315,14 +320,14 @@ abstract class FormAction extends Action {
 	 * display something new or redirect to somewhere.  Some actions have more exotic
 	 * behaviour, but that's what subclassing is for :D
 	 */
-	public function show(){
+	public function show() {
 		$this->setHeaders();
 
 		// This will throw exceptions if there's a problem
 		$this->checkCanExecute( $this->getUser() );
 
 		$form = $this->getForm();
-		if( $form->show() ){
+		if ( $form->show() ) {
 			$this->onSuccess();
 		}
 	}
@@ -334,7 +339,7 @@ abstract class FormAction extends Action {
 	 * @param bool $captureErrors
 	 * @return bool
 	 */
-	public function execute( array $data = null, $captureErrors = true ){
+	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
 			$this->context = clone $this->page->getContext();
@@ -343,17 +348,17 @@ abstract class FormAction extends Action {
 			$this->checkCanExecute( $this->getUser() );
 
 			$fields = array();
-			foreach( $this->fields as $key => $params ){
-				if( isset( $data[$key] ) ){
+			foreach ( $this->fields as $key => $params ) {
+				if ( isset( $data[$key] ) ) {
 					$fields[$key] = $data[$key];
-				} elseif( isset( $params['default'] ) ) {
+				} elseif ( isset( $params['default'] ) ) {
 					$fields[$key] = $params['default'];
 				} else {
 					$fields[$key] = null;
 				}
 			}
 			$status = $this->onSubmit( $fields );
-			if( $status === true ){
+			if ( $status === true ) {
 				// This might do permanent stuff
 				$this->onSuccess();
 				return true;
@@ -361,8 +366,8 @@ abstract class FormAction extends Action {
 				return false;
 			}
 		}
-		catch ( ErrorPageError $e ){
-			if( $captureErrors ){
+		catch ( ErrorPageError $e ) {
+			if ( $captureErrors ) {
 				return false;
 			} else {
 				throw $e;
@@ -388,19 +393,19 @@ abstract class FormlessAction extends Action {
 	/**
 	 * We don't want an HTMLForm
 	 */
-	protected function getFormFields(){
+	protected function getFormFields() {
 		return false;
 	}
 
-	public function onSubmit( $data ){
+	public function onSubmit( $data ) {
 		return false;
 	}
 
-	public function onSuccess(){
+	public function onSuccess() {
 		return false;
 	}
 
-	public function show(){
+	public function show() {
 		$this->setHeaders();
 
 		// This will throw exceptions if there's a problem
@@ -416,11 +421,11 @@ abstract class FormlessAction extends Action {
 	 * @param $captureErrors Bool whether to catch exceptions and just return false
 	 * @return Bool whether execution was successful
 	 */
-	public function execute( array $data = null, $captureErrors = true){
+	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
 			$this->context = clone $this->page->getContext();
-			if( is_array( $data ) ){
+			if ( is_array( $data ) ) {
 				$this->context->setRequest( new FauxRequest( $data, false ) );
 			}
 
@@ -430,8 +435,8 @@ abstract class FormlessAction extends Action {
 			$this->onView();
 			return true;
 		}
-		catch ( ErrorPageError $e ){
-			if( $captureErrors ){
+		catch ( ErrorPageError $e ) {
+			if ( $captureErrors ) {
 				return false;
 			} else {
 				throw $e;
