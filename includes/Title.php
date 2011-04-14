@@ -2569,8 +2569,6 @@ class Title {
 		global $wgContLang, $wgLocalInterwiki;
 
 		# Initialisation
-		$rxTc = self::getTitleInvalidRegex();
-
 		$this->mInterwiki = $this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
 
@@ -2680,6 +2678,7 @@ class Title {
 		}
 
 		# Reject illegal characters.
+		$rxTc = self::getTitleInvalidRegex();
 		if ( preg_match( $rxTc, $dbkey ) ) {
 			return false;
 		}
