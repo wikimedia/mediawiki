@@ -1404,6 +1404,68 @@ Table with thead & tfoot
 </table>
 
 !! end
+
+!! test
+Table with list inside
+!! input
+{|
+|style="width: 5em; text-align: center"| gives
+|style="border: 1px dashed #2F6FAB; padding: 0.5em; margin: 0.5em"|
+# Some
+# list
+# Lorem
+# ipsum
+# dolor
+|}
+!! result
+<table>
+<tr>
+<td style="width: 5em; text-align: center">gives
+</td>
+<td style="border: 1px dashed #2F6FAB; padding: 0.5em; margin: 0.5em">
+<ol><li> Some
+</li><li> list
+</li><li> Lorem
+</li><li> ipsum
+</li><li> dolor
+</li></ol>
+</td>
+</tr>
+</table>
+
+!! end
+!! test
+Simple paragraph
+!! input
+This is a simple paragraph.
+!! result
+<p>This is a simple paragraph.
+</p>
+!! end
+
+!! test
+Table with multiline contents
+!! input
+{|
+| Alice
+Bob
+dfdfg
+dfg
+|}
+!! result
+<table>
+<tr>
+<td>Alice
+<p>Bob
+dfdfg
+dfg
+</p>
+</td>
+</tr>
+</table>
+
+!! end
+
 !! test
 Multiplication table
 !! input
@@ -5902,9 +5964,9 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 |
 !! result
 <p>{{{|
-</p><p><u class="&#124;">}}}} &gt;
-</p><p><br style="onmouseover=&#39;alert(document.cookie);&#39;" />
-</p><p>MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+<u class="&#124;">}}}} &gt;
+<br style="onmouseover=&#39;alert(document.cookie);&#39;" />
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </p>
 <table>
 <tr>
