@@ -1655,16 +1655,17 @@ $1',
 'uploadstash-refresh'  => '更新文件清单',
 
 # img_auth script messages
-'img-auth-accessdenied' => '拒绝访问',
-'img-auth-nopathinfo'   => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
-'img-auth-notindir'     => '在已设置的上传目录中找不到请求的路径。',
-'img-auth-badtitle'     => '无法为“$1”创建合法的标题。',
-'img-auth-nologinnWL'   => '您尚未登录，且“$1”不在白名单上。',
-'img-auth-nofile'       => '文件“$1”不存在。',
-'img-auth-isdir'        => '您正试图访问目录“$1”。您只能访问文件。',
-'img-auth-streaming'    => '流式化“$1”中。',
-'img-auth-public'       => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
-'img-auth-noread'       => '用户无权读取“$1”。',
+'img-auth-accessdenied'     => '拒绝访问',
+'img-auth-nopathinfo'       => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
+'img-auth-notindir'         => '在已设置的上传目录中找不到请求的路径。',
+'img-auth-badtitle'         => '无法为“$1”创建合法的标题。',
+'img-auth-nologinnWL'       => '您尚未登录，且“$1”不在白名单上。',
+'img-auth-nofile'           => '文件“$1”不存在。',
+'img-auth-isdir'            => '您正试图访问目录“$1”。您只能访问文件。',
+'img-auth-streaming'        => '流式化“$1”中。',
+'img-auth-public'           => 'img_auth.php的功能是从私有wiki输出文件。但本wiki已被设置为公共wiki。出于安全考虑，img_auth.php已被停用。',
+'img-auth-noread'           => '用户无权读取“$1”。',
+'img-auth-bad-query-string' => 'URL 有一个无效的查询字符串。',
 
 # HTTP errors
 'http-invalid-url'      => '无效URL：$1',
@@ -2029,6 +2030,10 @@ Template:消除歧義',
 'noemailtext'          => '该用户还没有指定一个有效的电子邮件地址。',
 'nowikiemailtitle'     => '不容许电子邮件',
 'nowikiemailtext'      => '这位用户选择不接收其他用户的电子邮件。',
+'emailnotarget'        => '收件人不存在或无效的用户名。',
+'emailtarget'          => '输入收件人的用户名',
+'emailusername'        => '用户名：',
+'emailusernamesubmit'  => '提交',
 'email-legend'         => '发一封电子邮件至另一位{{SITENAME}}用户',
 'emailfrom'            => '发件人：',
 'emailto'              => '收件人：',
@@ -3255,11 +3260,12 @@ $1',
 'trackbackdeleteok' => '该引用已被成功删除。',
 
 # Delete conflict
-'deletedwhileediting' => "'''警告'''：此页在您开始编辑之后已经被删除！",
-'confirmrecreate'     => "在您开始编辑这个页面后，用户[[User:$1|$1]] （[[User talk:$1|讨论]]）以下列原因删除了这个页面：
+'deletedwhileediting'      => "'''警告'''：此页在您开始编辑之后已经被删除！",
+'confirmrecreate'          => "在您开始编辑这个页面后，用户[[User:$1|$1]] （[[User talk:$1|讨论]]）以下列原因删除了这个页面：
 : ''$2''
 请确认在您重新创建页面前三思。",
-'recreate'            => '重建',
+'confirmrecreate-noreason' => '用户 [[User:$1|$1]]（[[User talk:$1|talk]]） 在您开始编辑之后删除此页面。请确认您确实要重新创建此页面。',
+'recreate'                 => '重建',
 
 # action=purge
 'confirm_purge_button' => '确定',

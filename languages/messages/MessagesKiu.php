@@ -369,6 +369,7 @@ Kerem kerê, nae be namê ''URL''i jü [[Special:ListUsers/sysop|karber]]i ra va
 'readonly_lag'         => "Panga daeyu otomatikman qapan biye ''slave-database-servers''i ra be hata ''master''i",
 'internalerror'        => 'Xeta zerrey',
 'internalerror_info'   => 'Xeta zerrey: $1',
+'fileappenderrorread'  => 'İlawe ke bi "$1" nêşikiya bıwaniyo.',
 'fileappenderror'      => 'Dosya "$1"ine dosya "$2"ine ser nêbena.',
 'filecopyerror'        => 'Dosya "$1"i kopya nêbiye be dosya "$2".',
 'filerenameerror'      => 'Namê dosya "$1"i nêvuriya be dosya "$2".',
@@ -416,71 +417,74 @@ Sebebê ho ''$2'' dero.",
 'virus-unknownscanner' => "''antivirus''o nêzanıte:",
 
 # Login and logout pages
-'logouttext'              => "'''Sıma nıka cı ra veciyê.'''
+'logouttext'               => "'''Sıma nıka cı ra veciyê.'''
 
 Sıma şikinê dızdêni {{SITENAME}} de dewam kerê, ya jê eyni karberi ya ki jê jüyê de bini [[Special:UserLogin|oncia cıkuyê]].
 Beno ke taê peli sıma hona cıkote asnenê, hata ke sıma ''browser cache''ê ho kerd pak.",
-'welcomecreation'         => '== Xêr amê, $1! ==
+'welcomecreation'          => '== Xêr amê, $1! ==
 Hesabê sıma vıraciya.
 Vurnaena [[Special:Preferences|melumatanê {{SITENAME}}]] ho vira mekerê.',
-'yourname'                => 'Namê karberi:',
-'yourpassword'            => 'Parola:',
-'yourpasswordagain'       => 'Parola tekrar ke:',
-'remembermypassword'      => 'Cıkotena mı na komputeri de bia ho viri ($1 {{PLURAL:$1|roze|rozu}} ra seba zu zêdêrêni)',
-'yourdomainname'          => 'Bandıra sıma:',
-'externaldberror'         => 'Cıfeteliyaisê naskerdene de ya xeta esta ya ki tebera vırastena hesabê sıma rê destur çino.',
-'login'                   => 'Cıkuye',
-'nav-login-createaccount' => 'Cıkuye / hesab vıraze',
-'loginprompt'             => "Cıkotena {{SITENAME}} rê gunê ''cookies'' akerdey bê.",
-'userlogin'               => 'Cıkuye / hesab vıraze',
-'userloginnocreate'       => 'Cıkuye',
-'logout'                  => 'Veciye',
-'userlogout'              => 'Veciye',
-'notloggedin'             => 'Cı nêkota',
-'nologin'                 => "Hesabê sıma çino? '''$1'''.",
-'nologinlink'             => 'Jü hesab rake',
-'createaccount'           => 'Hesab vıraze',
-'gotaccount'              => "Hesabê sıma ke esto? '''$1'''.",
-'gotaccountlink'          => 'Cıkuye',
-'createaccountmail'       => 'e-poste sera',
-'createaccountreason'     => 'Sebeb:',
-'badretype'               => 'Parola sıma nêvêrena.',
-'userexists'              => 'No namê karberi guretiyo.
+'yourname'                 => 'Namê karberi:',
+'yourpassword'             => 'Parola:',
+'yourpasswordagain'        => 'Parola tekrar ke:',
+'remembermypassword'       => 'Cıkotena mı na komputeri de bia ho viri ($1 {{PLURAL:$1|roze|rozu}} ra seba zu zêdêrêni)',
+'securelogin-stick-https'  => 'Cıkotene ra dıme HTTPS rê giredae bımane',
+'yourdomainname'           => 'Bandıra sıma:',
+'externaldberror'          => 'Cıfeteliyaisê naskerdene de ya xeta esta ya ki tebera vırastena hesabê sıma rê destur çino.',
+'login'                    => 'Cıkuye',
+'nav-login-createaccount'  => 'Cıkuye / hesab vıraze',
+'loginprompt'              => "Cıkotena {{SITENAME}} rê gunê ''cookies'' akerdey bê.",
+'userlogin'                => 'Cıkuye / hesab vıraze',
+'userloginnocreate'        => 'Cıkuye',
+'logout'                   => 'Veciye',
+'userlogout'               => 'Veciye',
+'notloggedin'              => 'Cı nêkota',
+'nologin'                  => "Hesabê sıma çino? '''$1'''.",
+'nologinlink'              => 'Jü hesab rake',
+'createaccount'            => 'Hesab vıraze',
+'gotaccount'               => "Hesabê sıma ke esto? '''$1'''.",
+'gotaccountlink'           => 'Cıkuye',
+'createaccountmail'        => 'e-poste sera',
+'createaccountreason'      => 'Sebeb:',
+'badretype'                => 'Parola sıma nêvêrena.',
+'userexists'               => 'No namê karberi guretiyo.
 Kerem ke, namêna weçine.',
-'loginerror'              => 'Xeta cıkotene',
-'createaccounterror'      => 'Hesab nêvırajino: $1',
-'nocookiesnew'            => 'Hesabê karberi vıraziya, hama sıma nêşikiyay cı kuyê.
+'loginerror'               => 'Xeta cıkotene',
+'createaccounterror'       => 'Hesab nêvırajino: $1',
+'nocookiesnew'             => 'Hesabê karberi vıraziya, hama sıma nêşikiyay cı kuyê.
 Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê.
 Sıma çerezi qapan kerdi.
 Ravêri ine rakerê, dıma be name u parola sımawa newiye cı kuyê.',
-'nocookieslogin'          => 'Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê.
+'nocookieslogin'           => 'Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê.
 Sıma çerezi qapan kerdi.
 Ravêri ine rakerê u reyna bıcerrebnê.',
-'noname'                  => 'Ebe namê do vêrdoği ra cınêkota.',
-'loginsuccesstitle'       => 'Cıkotene biye ra',
-'loginsuccess'            => "'''Sıta {{SITENAME}} de ebe namê karberi \"\$1\" kota cı.'''",
-'nosuchuser'              => 'Ebe namê "$1"i jü karber çino.
+'noname'                   => 'Ebe namê do vêrdoği ra cınêkota.',
+'loginsuccesstitle'        => 'Cıkotene biye ra',
+'loginsuccess'             => "'''Sıta {{SITENAME}} de ebe namê karberi \"\$1\" kota cı.'''",
+'nosuchuser'               => 'Ebe namê "$1"i jü karber çino.
 Nustena namunê karberu de herfa pil u qıze rê diqet kerê.
 Nustena ho qonrol kerê, ya ki [[Special:UserLogin/signup|jü hesabo newe rakerê]].',
-'nosuchusershort'         => 'Karberê do ebe namê "<nowiki>$1</nowiki>" çino.
+'nosuchusershort'          => 'Karberê do ebe namê "<nowiki>$1</nowiki>" çino.
 Nustena cı qontrol ke.',
-'nouserspecified'         => 'Gunê namê jü karberi bıdekernê.',
-'wrongpassword'           => 'Parola ğelete kota cı.
+'nouserspecified'          => 'Gunê namê jü karberi bıdekernê.',
+'login-userblocked'        => 'No karber engel biyo. Cıkotene rê mısade cı nêdino.',
+'wrongpassword'            => 'Parola ğelete kota cı.
 Kerem ke, oncia bıcerrebne.',
-'wrongpasswordempty'      => 'Parola thale kota cı.
+'wrongpasswordempty'       => 'Parola thale kota cı.
 Kerem ke, oncia bıcerrebne.',
-'passwordtooshort'        => 'Paroley tewr senık ebe {{PLURAL:$1|1 karakter|$1 karakteru}} gunê derg bê.',
-'password-name-match'     => 'Parola sıma namê sımaê karberi ra gunê ferqın bo.',
-'mailmypassword'          => 'E-mail sera parola newiye bırusne',
-'passwordremindertitle'   => 'Serba {{SITENAME}} parola newiya vêrdoğe',
-'noemail'                 => 'Adresa de e-posteya ke ebe namê karberi "$1" beqeyda, çina.',
-'mailerror'               => 'Xeta rusnaena e-postey: $1',
-'emailconfirmlink'        => 'Adresa e-postê ho tesdiq ke',
-'accountcreated'          => 'Hesab vırajiya',
-'accountcreatedtext'      => 'Serba $1i hesabê karberi vırajiya.',
-'createaccount-title'     => 'Serba {{SITENAME}}i vırajiyaene hesabê karberi',
-'usernamehasherror'       => 'Namê karberi de karakteri gunê têwerte ra mebê',
-'loginlanguagelabel'      => 'Zon: $1',
+'passwordtooshort'         => 'Paroley tewr senık ebe {{PLURAL:$1|1 karakter|$1 karakteru}} gunê derg bê.',
+'password-name-match'      => 'Parola sıma namê sımaê karberi ra gunê ferqın bo.',
+'password-login-forbidden' => 'Namê nê karberi u gurenaena parola qedeğen biya.',
+'mailmypassword'           => 'E-mail sera parola newiye bırusne',
+'passwordremindertitle'    => 'Serba {{SITENAME}} parola newiya vêrdoğe',
+'noemail'                  => 'Adresa de e-posteya ke ebe namê karberi "$1" beqeyda, çina.',
+'mailerror'                => 'Xeta rusnaena e-postey: $1',
+'emailconfirmlink'         => 'Adresa e-postê ho tesdiq ke',
+'accountcreated'           => 'Hesab vırajiya',
+'accountcreatedtext'       => 'Serba $1i hesabê karberi vırajiya.',
+'createaccount-title'      => 'Serba {{SITENAME}}i vırajiyaene hesabê karberi',
+'usernamehasherror'        => 'Namê karberi de karakteri gunê têwerte ra mebê',
+'loginlanguagelabel'       => 'Zon: $1',
 
 # JavaScript password checks
 'password-strength-good' => 'rınd',

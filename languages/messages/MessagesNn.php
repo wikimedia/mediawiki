@@ -3362,10 +3362,10 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 
 # Database error messages
 'dberr-header'      => 'Denne wikien har eit problem',
-'dberr-problems'    => 'Denne nettstaden har tekniske problem.',
-'dberr-again'       => 'Prøv og venta nokre minutt og last inn sida på nytt.',
+'dberr-problems'    => 'Nettstaden har tekniske problem.',
+'dberr-again'       => 'Venta nokre minutt og last sida inn på nytt.',
 'dberr-info'        => '(Kan ikkje kontakta databasetenaren: $1)',
-'dberr-usegoogle'   => 'Du kan prøva å søkja gjennom Google i mellomtida.',
+'dberr-usegoogle'   => 'Du kan søkja gjennom Google i mellomtida.',
 'dberr-outofdate'   => 'Merk at versjonane deira av innhaldet vårt kan vera forelda.',
 'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
 

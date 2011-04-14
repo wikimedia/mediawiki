@@ -910,10 +910,10 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
-*'''Mozilla, Firefox ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
-*'''Konqueror''': napsauta päivitä tai paina ''F5''
-*'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'')
-*'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa päivitä tai paina ''Ctrl-F5''.",
+'''Mozilla, Firefox ja Safari:''' napsauta Vaihto-näppäin pohjassa Päivitä tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macintoshilla);
+'''Konqueror''': napsauta Päivitä tai paina ''F5'';
+'''Opera:''' tyhjennä välimuisti: ''Tools→Preferences'';
+'''Internet Explorer:''' napsauta ''Ctrl''-näppäin pohjassa Päivitä tai paina ''Ctrl-F5''.",
 'usercssyoucanpreview'             => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview'              => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
@@ -2101,6 +2101,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'noemailtext'          => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
 'nowikiemailtitle'     => 'Sähköpostin lähettäminen ei sallittu',
 'nowikiemailtext'      => 'Tämä käyttäjä ei halua sähköpostia muilta käyttäjiltä.',
+'emailusername'        => 'Käyttäjätunnus:',
 'email-legend'         => 'Sähköpostin lähetys {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjälle',
 'emailfrom'            => 'Lähettäjä',
 'emailto'              => 'Vastaanottaja',
@@ -2866,21 +2867,23 @@ $1',
 'nextdiff'     => 'Uudempi muutos →',
 
 # Media information
-'mediawarning'         => "'''Varoitus''': Tämä tiedostomuoto saattaa sisältää vahingollista koodia.
+'mediawarning'           => "'''Varoitus''': Tämä tiedostomuoto saattaa sisältää vahingollista koodia.
 Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
-'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla',
-'thumbsize'            => 'Pikkukuvien koko',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
-'file-info'            => '$1, MIME-tyyppi: $2',
-'file-info-size'       => '$1×$2 px, $3, MIME-tyyppi: $4',
-'file-nohires'         => '<small>Tarkempaa kuvaa ei ole saatavilla.</small>',
-'svg-long-desc'        => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
-'show-big-image'       => 'Korkeatarkkuuksinen versio',
-'file-info-gif-looped' => 'toistuva',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
-'file-info-png-looped' => 'toistuva',
-'file-info-png-repeat' => 'toistettu $1 {{PLURAL:$1|kertaa|kertaa}}',
-'file-info-png-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
+'imagemaxsize'           => 'Kuvien enimmäiskoko kuvaussivuilla',
+'thumbsize'              => 'Pikkukuvien koko',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
+'file-info'              => '$1, MIME-tyyppi: $2',
+'file-info-size'         => '$1×$2 px, $3, MIME-tyyppi: $4',
+'file-nohires'           => '<small>Tarkempaa kuvaa ei ole saatavilla.</small>',
+'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
+'show-big-image'         => 'Korkeatarkkuuksinen versio',
+'show-big-image-preview' => '<small>Tämän esikatselun koko: $1.</small>',
+'show-big-image-size'    => '$1 × $2 pikseliä',
+'file-info-gif-looped'   => 'toistuva',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
+'file-info-png-looped'   => 'toistuva',
+'file-info-png-repeat'   => 'toistettu $1 {{PLURAL:$1|kertaa|kertaa}}',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
 
 # Special:NewFiles
 'newimages'             => 'Uudet tiedostot',
