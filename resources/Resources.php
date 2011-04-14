@@ -550,7 +550,7 @@ return array(
 		'group' => 'mediawiki.action.history',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => "{$GLOBALS['IP']}/skins",
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.ui.button' ),
 	),
 	'mediawiki.legacy.IEFixes' => array(
 		'scripts' => 'common/IEFixes.js',
