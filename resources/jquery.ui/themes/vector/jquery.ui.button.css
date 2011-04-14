@@ -29,7 +29,7 @@ input.ui-button { padding: .4em 1em; }
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 
-body button.ui-button {
+body .ui-button {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	padding: 0.2em 0.6em 0.15em !important;
@@ -43,18 +43,18 @@ body button.ui-button {
 	width: auto;
 	overflow: visible;
 }
-body button.ui-button:hover {
+body .ui-button:hover {
 	border-color: #6e7273;
 	/* @embed */
 	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button:active,
-body button.ui-button:focus {
+body .ui-button:active,
+body .ui-button:focus {
 	border-color: #707271;
 	/* @embed */
 	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.disabled {
+body .ui-button.disabled {
 	color: #7f7f7f;
 	border-color: #cccccc;
 	/* @embed */
@@ -67,24 +67,24 @@ body  button.ui-button::-moz-focus-inner {
 
 /* Green buttons */
 
-body button.ui-button.ui-button-green {
+body .ui-button.ui-button-green {
 	color: white;
 	border-color: #97af7e !important;
 	/* @embed */
 	background: #85c940 url(images/button-off-green.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-green:hover {
+body .ui-button.ui-button-green:hover {
 	border-color: #778e61;
 	/* @embed */
 	background: #77ad40 url(images/button-over-green.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-green:active,
-body button.ui-button.ui-button-green:focus {
+body .ui-button.ui-button-green:active,
+body .ui-button.ui-button-green:focus {
 	border-color: #61b000;
 	/* @embed */
 	background: #54a800 url(images/button-down-green.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-green.disabled {
+body .ui-button.ui-button-green.disabled {
 	color: #7f7f7f;
 	border-color: #b8d29f;
 	/* @embed */
@@ -93,24 +93,24 @@ body button.ui-button.ui-button-green.disabled {
 
 /* Blue buttons */
 
-body button.ui-button.ui-button-blue {
+body .ui-button.ui-button-blue {
 	color: white;
 	border-color: #407ec9 !important;
 	/* @embed */
 	background: #407ec9 url(images/button-off-blue.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-blue:hover {
+body .ui-button.ui-button-blue:hover {
 	border-color: #245289;
 	/* @embed */
 	background: #4071ad url(images/button-over-blue.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-blue:active,
-body button.ui-button.ui-button-blue:focus {
+body .ui-button.ui-button-blue:active,
+body .ui-button.ui-button-blue:focus {
 	border-color: #003980;
 	/* @embed */
 	background: #004daa url(images/button-down-blue.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-blue.disabled {
+body .ui-button.ui-button-blue.disabled {
 	border-color: #9eafc6;
 	/* @embed */
 	background: #c3c8cf url(images/button-disabled-blue.png) repeat-x scroll 50% 100% !important;	
@@ -118,24 +118,24 @@ body button.ui-button.ui-button-blue.disabled {
 
 /* Red buttons */
 
-body button.ui-button.ui-button-red {
+body .ui-button.ui-button-red {
 	color: white;
 	border-color: #af977e !important;
 	/* @embed */
 	background: #c9404c url(images/button-off-red.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-red:hover {
+body .ui-button.ui-button-red:hover {
 	border-color: #8e7761;
 	/* @embed */
 	background: #ad404a url(images/button-over-red.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-red:active,
-body button.ui-button.ui-button-red:focus {
+body .ui-button.ui-button-red:active,
+body .ui-button.ui-button-red:focus {
 	border-color: #b06100;
 	/* @embed */
 	background: #aa000f url(images/button-down-red.png) repeat-x scroll 50% 100% !important;
 }
-body button.ui-button.ui-button-red.disabled {
+body .ui-button.ui-button-red.disabled {
 	color: #7f7f7f;
 	border-color: #c3acae;
 	/* @embed */

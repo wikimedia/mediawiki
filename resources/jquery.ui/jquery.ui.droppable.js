@@ -1,9 +1,9 @@
 /*
- * jQuery UI Droppable 1.8.2
+ * jQuery UI Droppable 1.8.11
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Droppables
  *
@@ -13,7 +13,7 @@
  *	jquery.ui.mouse.js
  *	jquery.ui.draggable.js
  */
-(function($) {
+(function( $, undefined ) {
 
 $.widget("ui.droppable", {
 	widgetEventPrefix: "drop",
@@ -147,7 +147,7 @@ $.widget("ui.droppable", {
 });
 
 $.extend($.ui.droppable, {
-	version: "1.8.2"
+	version: "1.8.11"
 });
 
 $.ui.intersect = function(draggable, droppable, toleranceMode) {
@@ -161,8 +161,8 @@ $.ui.intersect = function(draggable, droppable, toleranceMode) {
 
 	switch (toleranceMode) {
 		case 'fit':
-			return (l < x1 && x2 < r
-				&& t < y1 && y2 < b);
+			return (l <= x1 && x2 <= r
+				&& t <= y1 && y2 <= b);
 			break;
 		case 'intersect':
 			return (l < x1 + (draggable.helperProportions.width / 2) // Right Half
@@ -212,10 +212,10 @@ $.ui.ddmanager = {
 			for (var j=0; j < list.length; j++) { if(list[j] == m[i].element[0]) { m[i].proportions.height = 0; continue droppablesLoop; } }; //Filter out elements in the current dragged item
 			m[i].visible = m[i].element.css("display") != "none"; if(!m[i].visible) continue; 									//If the element is not visible, continue
 
+			if(type == "mousedown") m[i]._activate.call(m[i], event); //Activate the droppable if used directly from draggables
+
 			m[i].offset = m[i].element.offset();
 			m[i].proportions = { width: m[i].element[0].offsetWidth, height: m[i].element[0].offsetHeight };
-
-			if(type == "mousedown") m[i]._activate.call(m[i], event); //Activate the droppable if used directly from draggables
 
 		}
 
