@@ -1271,6 +1271,140 @@ Simple table
 !! end
 
 !! test
+Table with thead
+!! input
+{| 
+! Number !! Another number
+|-
+| 1 || 2
+|- 
+| 3 || 4
+|}
+!! result
+<table>
+<thead>
+<tr>
+<th>Number
+</th>
+<th>Another number
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1
+</td>
+<td>2
+</td>
+</tr>
+<tr>
+<td>3
+</td>
+<td>4
+</td>
+</tr></tbody>
+</table>
+
+!! end
+!! test
+Table with multiple thead
+!! input
+{| 
+! Number !! Another number
+|-
+| 1 || 2
+|- 
+! Some other number !! Another number
+|-
+| 3 || 4
+|}
+!! result
+<table>
+<thead>
+<tr>
+<th>Number
+</th>
+<th>Another number
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1
+</td>
+<td>2
+</td>
+</tr></tbody>
+<thead>
+<tr>
+<th>Some other number
+</th>
+<th>Another number
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>3
+</td>
+<td>4
+</td>
+</tr></tbody>
+</table>
+
+!! end
+!! test
+Table with thead & tfoot
+!! input
+{| 
+! Number !! Another number
+|-
+| 1 || 2
+|- 
+! Some other number !! Another number
+|-
+| 3 || 4
+|-
+! Total: 4 !! Total: 6
+|}
+!! result
+<table>
+<thead>
+<tr>
+<th>Number
+</th>
+<th>Another number
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1
+</td>
+<td>2
+</td>
+</tr></tbody>
+<thead>
+<tr>
+<th>Some other number
+</th>
+<th>Another number
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>3
+</td>
+<td>4
+</td>
+</tr></tbody>
+<tfoot>
+<tr>
+<th>Total: 4
+</th>
+<th>Total: 6
+</th>
+</tr></tfoot>
+</table>
+
+!! end
+!! test
 Multiplication table
 !! input
 {| border="1" cellpadding="2"
@@ -7777,7 +7911,7 @@ language=sr variant=sr-ec
 !! input
 == -{Naslov}- ==
 !! result
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уредите одељак „Naslov“">уреди</a>]</span> <span class="mw-headline" id="-.7BNaslov.7D-"> Naslov </span></h2>
 
 !! end
 
