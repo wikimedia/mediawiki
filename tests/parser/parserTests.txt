@@ -1465,13 +1465,25 @@ Table with broken up list inside
 </table>
 
 !! end
+
 !! test
-Simple paragraph
+Indented table wrapped in html tags (Related to Bug 26362)
 !! input
-This is a simple paragraph.
+<div>
+:{|
+|-
+| test
+|}</div>
+
 !! result
-<p>This is a simple paragraph.
-</p>
+<div>
+<dl><dd><table>
+<tr>
+<td>test
+</td>
+</tr>
+</table></dd></dl></div>
+
 !! end
 
 !! test
