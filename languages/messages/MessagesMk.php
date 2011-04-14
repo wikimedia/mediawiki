@@ -357,7 +357,7 @@ $messages = array(
 'tog-diffonly'                => 'Не ја покажувај содржината на страницата под разликите',
 'tog-showhiddencats'          => 'Прикажи скриени категории',
 'tog-noconvertlink'           => 'Оневозможи претворање на наслов на врска',
-'tog-norollbackdiff'          => 'Изостави разлика по употребата на враќање',
+'tog-norollbackdiff'          => 'Изостави ја разликата по извршено враќање',
 
 'underline-always'  => 'Секогаш',
 'underline-never'   => 'Никогаш',
