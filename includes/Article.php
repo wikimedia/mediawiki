@@ -1672,32 +1672,7 @@ class Article {
 	 * Handle action=purge
 	 */
 	public function purge() {
-		global $wgRequest, $wgOut;
-
-		if ( $wgOut->getUser()->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
-			//FIXME: shouldn't this be in doPurge()?
-			if ( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
-				$this->doPurge();
-				$this->view();
-			}
-		} else {
-			$formParams = array(
-				'method' => 'post',
-				'action' =>  $wgRequest->getRequestURL(),
-			);
-
-			$wgOut->addWikiMsg( 'confirm-purge-top' );
-
-			$form  = Html::openElement( 'form', $formParams );
-			$form .= Xml::submitButton( wfMsg( 'confirm_purge_button' ) );
-			$form .= Html::closeElement( 'form' );
-
-			$wgOut->addHTML( $form );
-			$wgOut->addWikiMsg( 'confirm-purge-bottom' );
-
-			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		}
+		return Action::factory( 'purge', $this )->show();
 	}
 
 	/**
@@ -1705,6 +1680,10 @@ class Article {
 	 */
 	public function doPurge() {
 		global $wgUseSquid;
+
+		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ){
+			return false;
+		}
 
 		// Invalidate the cache
 		$this->mTitle->invalidateCache();
@@ -2345,27 +2324,10 @@ class Article {
 
 	/**
 	 * User-interface handler for the "watch" action
+	 * @deprecated since 1.18
 	 */
 	public function watch() {
-		global $wgOut;
-
-		if ( $wgOut->getUser()->isAnon() ) {
-			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
-			return;
-		}
-
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-
-		if ( $this->doWatch() ) {
-			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addWikiMsg( 'addedwatchtext', $this->mTitle->getPrefixedText() );
-		}
-
-		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+		Action::factory( 'watch', $this )->show();
 	}
 
 	/**
@@ -2374,64 +2336,27 @@ class Article {
 	 * This is safe to be called multiple times
 	 *
 	 * @return bool true on successful watch operation
+	 * @deprecated since 1.18
 	 */
 	public function doWatch() {
-		global $wgUser;
-
-		if ( $wgUser->isAnon() ) {
-			return false;
-		}
-
-		if ( wfRunHooks( 'WatchArticle', array( &$wgUser, &$this ) ) ) {
-			$wgUser->addWatch( $this->mTitle );
-			return wfRunHooks( 'WatchArticleComplete', array( &$wgUser, &$this ) );
-		}
-
-		return false;
+		return Action::factory( 'watch', $this )->execute();
 	}
 
 	/**
 	 * User interface handler for the "unwatch" action.
+	 * @deprecated since 1.18
 	 */
 	public function unwatch() {
-		global $wgOut;
-
-		if ( $wgOut->getUser()->isAnon() ) {
-			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
-			return;
-		}
-
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-
-		if ( $this->doUnwatch() ) {
-			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addWikiMsg( 'removedwatchtext', $this->mTitle->getPrefixedText() );
-		}
-
-		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+		Action::factory( 'unwatch', $this )->show();
 	}
 
 	/**
 	 * Stop watching a page
 	 * @return bool true on successful unwatch
+	 * @deprecated since 1.18
 	 */
 	public function doUnwatch() {
-		global $wgUser;
-
-		if ( $wgUser->isAnon() ) {
-			return false;
-		}
-
-		if ( wfRunHooks( 'UnwatchArticle', array( &$wgUser, &$this ) ) ) {
-			$wgUser->removeWatch( $this->mTitle );
-			return wfRunHooks( 'UnwatchArticleComplete', array( &$wgUser, &$this ) );
-		}
-
-		return false;
+		return Action::factory( 'unwatch', $this )->execute();
 	}
 
 	/**
