@@ -577,7 +577,7 @@ class Article {
 	 * @return mixed value of $x, or value stored in Article::mForUpdate
 	 */
 	public function forUpdate( $x = null ) {
-		wfDeprecated();
+		wfDeprecated( __METHOD__ );
 		return wfSetVar( $this->mForUpdate, $x );
 	}
 
