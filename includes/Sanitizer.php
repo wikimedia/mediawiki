@@ -45,6 +45,7 @@ class Sanitizer {
 	/**
 	 * List of all named character entities defined in HTML 4.01
 	 * http://www.w3.org/TR/html4/sgml/entities.html
+	 * As well as &apos; which is only defined starting in XHTML1.
 	 * @private
 	 */
 	static $htmlEntities = array(
@@ -63,6 +64,7 @@ class Sanitizer {
 		'amp'      => 38,
 		'and'      => 8743,
 		'ang'      => 8736,
+		'apos'     => 39,
 		'Aring'    => 197,
 		'aring'    => 229,
 		'asymp'    => 8776,
