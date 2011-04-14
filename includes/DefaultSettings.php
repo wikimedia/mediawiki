@@ -188,6 +188,7 @@ $wgLocalStylePath   = false;
 /**
  * The URL path of the extensions directory.
  * Defaults to "{$wgScriptPath}/extensions".
+ * @since 1.16
  */
 $wgExtensionAssetsPath = false;
 
