@@ -25,19 +25,19 @@
 
 class PurgeAction extends FormAction {
 
-	public function getName(){
+	public function getName() {
 		return 'purge';
 	}
 
-	public function getRestriction(){
+	public function getRestriction() {
 		return null;
 	}
 
-	public function requiresUnblock(){
+	public function requiresUnblock() {
 		return false;
 	}
 
-	public function getDescription(){
+	public function getDescription() {
 		return '';
 	}
 
@@ -45,11 +45,11 @@ class PurgeAction extends FormAction {
 	 * Just get an empty form with a single submit button
 	 * @return array
 	 */
-	protected function getFormFields(){
+	protected function getFormFields() {
 		return array();
 	}
 
-	public function onSubmit( $data ){
+	public function onSubmit( $data ) {
 		$this->page->doPurge();
 		return true;
 	}
@@ -58,36 +58,36 @@ class PurgeAction extends FormAction {
 	 * purge is slightly wierd because it can be either formed or formless depending
 	 * on user permissions
 	 */
-	public function show(){
+	public function show() {
 		$this->setHeaders();
 
 		// This will throw exceptions if there's a problem
 		$this->checkCanExecute( $this->getUser() );
 
-		if( $this->getUser()->isAllowed( 'purge' ) ){
+		if ( $this->getUser()->isAllowed( 'purge' ) ) {
 			$this->onSubmit( array() );
 			$this->onSuccess();
 		} else {
 			$form = $this->getForm();
-			if( $form->show() ){
+			if ( $form->show() ) {
 				$this->onSuccess();
 			}
 		}
 	}
 
-	protected function alterForm( HTMLForm $form ){
+	protected function alterForm( HTMLForm $form ) {
 		$form->setSubmitText( wfMsg( 'confirm_purge_button' ) );
 	}
 
-	protected function preText(){
+	protected function preText() {
 		return wfMessage( 'confirm-purge-top' )->parse();
 	}
 
-	protected function postText(){
+	protected function postText() {
 		return wfMessage( 'confirm-purge-bottom' )->parse();
 	}
 
-	public function onSuccess(){
+	public function onSuccess() {
 		$this->getOutput()->redirect( $this->getTitle() );
 	}
 }

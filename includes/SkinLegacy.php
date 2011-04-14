@@ -210,7 +210,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		if ( $wgMaxCredits != 0 ) {
-			$s .= ' ' . Credits::getCredits( $article, $wgMaxCredits, $wgShowCreditsIfMax );
+			$s .= ' ' . Action::factory( 'credits', $article )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax );
 		} else {
 			$s .= $this->data['lastmod'];
 		}
