@@ -762,7 +762,6 @@ class Linker {
 				return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 			}
 		} else {
-			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 	}
