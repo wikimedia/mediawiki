@@ -272,25 +272,42 @@ class UsersPager extends AlphabeticPager {
 }
 
 /**
- * constructor
- * $par string (optional) A group to list users from
+ * @ingroup SpecialPage
  */
-function wfSpecialListusers( $par = null ) {
-	global $wgOut;
+class SpecialListUsers extends SpecialPage {
 
-	$up = new UsersPager($par);
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		parent::__construct( 'Listusers' );
+	}
 
-	# getBody() first to check, if empty
-	$usersbody = $up->getBody();
-	$s = Xml::openElement( 'div', array('class' => 'mw-spcontent') );
-	$s .= $up->getPageHeader();
-	if( $usersbody ) {
-		$s .=	$up->getNavigationBar();
-		$s .=	'<ul>' . $usersbody . '</ul>';
-		$s .=	$up->getNavigationBar() ;
-	} else {
-		$s .=	'<p>' . wfMsgHTML('listusers-noresult') . '</p>';
-	};
-	$s .= Xml::closeElement( 'div' );
-	$wgOut->addHTML( $s );
+	/**
+	 * Show the special page
+	 *
+	 * @param $par string (optional) A group to list users from
+	 */
+	public function execute( $par ) {
+		global $wgOut;
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$up = new UsersPager( $par );
+
+		# getBody() first to check, if empty
+		$usersbody = $up->getBody();
+
+		$s = $up->getPageHeader();
+		if( $usersbody ) {
+			$s .= $up->getNavigationBar();
+			$s .= Html::rawElement( 'ul', array(), $usersbody );
+			$s .= $up->getNavigationBar();
+		} else {
+			$s .= wfMessage( 'listusers-noresult' )->parseBlock();
+		}
+
+		$wgOut->addHTML( $s );
+	}
 }
