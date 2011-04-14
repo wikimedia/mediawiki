@@ -49,12 +49,13 @@ class ApiFileRevert extends ApiBase {
 	public function execute() {
 		global $wgUser;
 
-		// First check permission to upload/revert
-		$this->checkPermissions( $wgUser );
-
 		$this->params = $this->extractRequestParams();
+		// Extract the file and archiveName from the request parameters
 		$this->validateParameters();
 
+		// Check whether we're allowed to revert this file
+		$this->checkPermissions( $wgUser );
+		
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'] );
 
@@ -77,15 +78,16 @@ class ApiFileRevert extends ApiBase {
 	 * @param $user User The user to check.
 	 */
 	protected function checkPermissions( $user ) {
-		$permission = $user->isAllowedAll( 'edit', 'upload' );
+		$permissionErrors = array_merge(
+			$this->file->getTitle()->getUserPermissionsErrors( 'edit' , $user ),
+			$this->file->getTitle()->getUserPermissionsErrors( 'upload' , $user )
+		);
 
-		if ( $permission !== true ) {
-			if ( !$user->isLoggedIn() ) {
-				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
-			} else {
-				$this->dieUsageMsg( array( 'badaccess-groups' ) );
-			}
+		if ( $permissionErrors ) {
+			$this->dieUsageMsg( $permissionErrors[0] );
 		}
+		
+		
 	}
 
 	/**
