@@ -567,11 +567,6 @@ div.gallerytext {
 	background-repeat: no-repeat;
 }
 
-/* Sort arrows added by SortableTables */
-a.sortheader {
-	margin: 0 0.3em;
-}
-
 /* Localised ordered list numbering for some languages */
 ol:lang(bcc) li,
 ol:lang(bqi) li,
@@ -651,4 +646,18 @@ ol:lang(or) li {
 	bottom: -2px;
 	right: 10px;
 	background-position: 0% 100%;
+}
+/* Table Sorting */
+th.headerSort { 
+	background-image: url(images/sort_both.gif);     
+	cursor: pointer;
+	background-repeat: no-repeat; 
+	background-position: center right; 
+	padding-right: 21px;
+}
+th.headerSortUp { 
+	background-image: url(images/sort_up.gif); 
+}
+th.headerSortDown { 
+	background-image: url(images/sort_down.gif); 
 }

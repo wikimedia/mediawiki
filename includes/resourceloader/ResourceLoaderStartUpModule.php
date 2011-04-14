@@ -54,6 +54,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		);
 		$mainPage = Title::newMainPage();
 		
+		#$localDateFormats = $wgContLang->getDateFormats();
+		#$localPreferedFormat = $localDateFormats[$wgContLang->getDefaultDateFormat().' date'];
+		
+		$monthNames = array('');
+		$monthNamesShort = array('');
+		for ($i=1; $i < 13; $i++) { 
+			$monthNames[]=$wgContLang->getMonthName($i);
+			$monthNamesShort[]=$wgContLang->getMonthAbbreviation($i);
+		}
+		
+		#$localPreferedFormat = $localDateFormats['dmy date'];
 		// Build list of variables
 		$vars = array(
 			'wgLoadScript' => $wgLoadScript,
@@ -73,6 +84,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgVersion' => $wgVersion,
 			'wgEnableAPI' => $wgEnableAPI,
 			'wgEnableWriteAPI' => $wgEnableWriteAPI,
+			'wgDefaultDateFormat' => $wgContLang->getDefaultDateFormat(),
+			'wgMonthNames' => $monthNames,
+			'wgMonthNamesShort' => $monthNamesShort,
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,

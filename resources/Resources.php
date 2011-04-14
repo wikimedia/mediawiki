@@ -129,6 +129,9 @@ return array(
 	'jquery.tabIndex' => array(
 		'scripts' => 'resources/jquery/jquery.tabIndex.js',
 	),
+	'jquery.tablesorter' => array(
+		'scripts' => 'resources/jquery/jquery.tablesorter.js'
+	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
 	),
@@ -395,6 +398,7 @@ return array(
 			'jquery.messageBox',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
+			'jquery.tablesorter',
 		),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
