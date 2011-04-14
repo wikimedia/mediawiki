@@ -27,16 +27,16 @@ class Undelete extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Undelete a page";
-		$this->addOption( 'u', 'The user to perform the undeletion', false, true );
-		$this->addOption( 'r', 'The reason to undelete', false, true );
+		$this->addOption( 'user', 'The user to perform the undeletion', false, true, 'u' );
+		$this->addOption( 'reason', 'The reason to undelete', false, true, 'r' );
 		$this->addArg( 'pagename', 'Page to undelete' );
 	}
 
 	public function execute() {
 		global $wgUser;
 
-		$user = $this->getOption( 'u', 'Command line script' );
-		$reason = $this->getOption( 'r', '' );
+		$user = $this->getOption( 'user', 'Command line script' );
+		$reason = $this->getOption( 'reason', '' );
 		$pageName = $this->getArg();
 
 		$title = Title::newFromText( $pageName );
