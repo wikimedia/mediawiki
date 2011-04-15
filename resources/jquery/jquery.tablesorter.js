@@ -92,7 +92,8 @@
 			/* parsers utils */
 
 			function buildParserCache( table, $headers ) {
-				var rows = table.tBodies[0].rows;
+				var rows = table.tBodies[0].rows,
+					sortType;
 
 				if ( rows[0] ) {
 
@@ -101,11 +102,14 @@
 						l = cells.length;
 
 					for ( var i = 0; i < l; i++ ) {
+						p = false;
+						sortType = $headers.eq(i).data('sort-type');
+						if ( typeof sortVal != 'undefined' ) {
+							p = getParserById( sortVal );
+						}
 
-						if ( $headers.eq(i).is( '[class*="sort-"]' ) ) {
-							p = getParserById($headers.eq(i).attr('class').replace(/.*?sort-(.*?) .*/, '$1'));
-						} else {
-							p = detectParserForColumn( table, rows, -1, i );
+						if (p === false) {
+								p = detectParserForColumn( table, rows, -1, i );
 						}
 						// if ( table.config.debug ) {
 						//     console.log( "column:" + i + " parser:" + p.id + "\n" );
@@ -125,7 +129,7 @@
 					rowIndex++;
 					if ( rows[rowIndex] ) {
 						node = getNodeFromRowAndCellIndex( rows, rowIndex, cellIndex );
-						nodeValue = trimAndGetNodeText( table.config, node );
+						nodeValue = trimAndGetNodeText( node );
 						// if ( table.config.debug ) {
 						//     console.log( 'Checking if value was empty on row:' + rowIndex );
 						// }
@@ -146,8 +150,8 @@
 				return rows[rowIndex].cells[cellIndex];
 			}
 
-			function trimAndGetNodeText( config, node ) {
-				return $.trim( getElementText( config, node ) );
+			function trimAndGetNodeText( node ) {
+				return $.trim( getElementText( node ) );
 			}
 
 			function getParserById( name ) {
@@ -192,7 +196,7 @@
 					cache.row.push(c);
 
 					for ( var j = 0; j < totalCells; ++j ) {
-						cols.push( parsers[j].format( getElementText( table.config, c[0].cells[j] ), table, c[0].cells[j] ) );
+						cols.push( parsers[j].format( getElementText( c[0].cells[j] ), table, c[0].cells[j] ) );
 					}
 
 					cols.push( cache.normalized.length ); // add position for rowCache
@@ -206,8 +210,14 @@
 				return cache;
 			}
 
-			function getElementText( config, node ) {
-				return $( node ).text();
+			function getElementText( node ) {
+				var n = $( node );
+				var sortValue = n.data('sort-value');
+				if ( typeof sortValue != 'undefined' ) {
+					return sortValue;
+				} else {
+					return n.text();
+				}
 			}
 
 			function appendToTable( table, cache ) {
@@ -253,7 +263,7 @@
 					this.column = realCellIndex;
 
 					var colspan = this.colspan;
-					colspan = colspan ? parseInt( colspan ) : 1;
+					colspan = colspan ? parseInt( colspan, 10 ) : 1;
 					realCellIndex += colspan;
 
 					//this.column = header_index[this.parentNode.rowIndex + "-" + this.cellIndex];
@@ -384,18 +394,6 @@
 					h[list[i][0]].addClass( css[list[i][1]] );
 				}
 			}
-
-			// function updateHeaderSortCount( table, sortList ) {
-			// 	var c = table.config,
-			// 		l = sortList.length;
-			// 	for ( var i = 0; i < l; i++ ) {
-			// 		var s = sortList[i],
-			// 			o = c.headerList[s[0]];
-			// 		o.count = s[1];
-			// 		o.count++;
-			// 	}
-			// }
-			/* sorting methods */
 
 			function multisort( table, sortList, cache ) {
 				// if ( table.config.debug ) {
@@ -699,7 +697,7 @@
 					//     var pos = [( cell.parentNode.rowIndex - 1 ), cell.cellIndex];
 					//     // update cache
 					//     cache.normalized[pos[0]][pos[1]] = config.parsers[pos[1]].format( 
-					//     getElementText( config, cell ), cell );
+					//     getElementText( cell ), cell );
 					// } ).bind( "sorton", function ( e, list ) {
 					//     $( this ).trigger( "sortStart" );
 					//     config.sortList = list;
@@ -750,7 +748,7 @@
 				return ( isNaN(i)) ? 0 : i;
 			};
 			this.formatInt = function (s) {
-				var i = parseInt(s);
+				var i = parseInt( s, 10 );
 				return ( isNaN(i)) ? 0 : i;
 			};
 			this.clearTableBody = function ( table ) {
@@ -897,13 +895,13 @@
 			s = s.split('/');
 
 			//Pad Month and Day
-			if ( s[0].length == 1 ) s[0] = "0" + s[0];
-			if ( s[1].length == 1 ) s[1] = "0" + s[1];
+			if ( s[0] && s[0].length == 1 ) s[0] = "0" + s[0];
+			if ( s[1] && s[1].length == 1 ) s[1] = "0" + s[1];
 
 			if ( !s[2] ) {
 				//Fix yearless dates
 				s[2] = 2000;
-			} else if ( ( y = parseInt( s[2] ) ) < 100 ) {
+			} else if ( ( y = parseInt( s[2], 10) ) < 100 ) {
 				//Guestimate years without centuries
 				if ( y < 30 ) {
 					s[2] = 2000 + y;
@@ -920,7 +918,7 @@
 				s.push( s.shift() );
 				s.push(d);
 			}
-			return parseInt( s.join('') );
+			return parseInt( s.join(''), 10 );
 		},
 		type: "numeric"
 	} );
