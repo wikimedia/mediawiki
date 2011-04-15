@@ -3198,18 +3198,6 @@ $wgSecureLogin        = false;
  */
 
 /**
- * Allow sysops to ban logged-in users
- * @deprecated since 1.18
- */
-$wgSysopUserBans        = true;
-
-/**
- * Allow sysops to ban IP ranges
- * @deprecated since 1.18; set $wgBlockCIDRLimit to array( 'IPv4' => 32, 'IPv6 => 128 ) instead.
- */
-$wgSysopRangeBans       = true;
-
-/**
  * Number of seconds before autoblock entries expire. Default 86400 = 1 day.
  */
 $wgAutoblockExpiry      = 86400;
