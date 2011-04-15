@@ -3,6 +3,10 @@
 abstract class Collation {
 	static $instance;
 
+	/**
+	 * @static
+	 * @return Collation
+	 */
 	static function singleton() {
 		if ( !self::$instance ) {
 			global $wgCategoryCollation;
@@ -11,6 +15,12 @@ abstract class Collation {
 		return self::$instance;
 	}
 
+	/**
+	 * @static
+	 * @throws MWException
+	 * @param $collationName string
+	 * @return Collation
+	 */
 	static function factory( $collationName ) {
 		switch( $collationName ) {
 			case 'uppercase':
@@ -259,13 +269,13 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts 
 	 * less than or equal to the target value.
 	 *
-	 * @param $valueCallback A function to call to get the value with 
+	 * @param $valueCallback array A function to call to get the value with
 	 *     a given array index.
-	 * @param $valueCount The number of items accessible via $valueCallback, 
+	 * @param $valueCount int The number of items accessible via $valueCallback,
 	 *     indexed from 0 to $valueCount - 1
-	 * @param $comparisonCallback A callback to compare two values, returning 
+	 * @param $comparisonCallback array A callback to compare two values, returning
 	 *     -1, 0 or 1 in the style of strcmp().
-	 * @param $target The target value to find.
+	 * @param $target string The target value to find.
 	 *
 	 * @return The item index of the lower bound, or false if the target value
 	 *     sorts before all items.
