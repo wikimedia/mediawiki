@@ -583,6 +583,10 @@ $title: title of the template
 &$parser: Parser object
 &$ig: ImageGallery object
 
+'BeforeWelcomeCreation': before the welcomecreation message is displayed to a newly created user 
+&$welcome_creation_msg: MediaWiki message name to display on the welcome screen to a newly created user account
+&$injected_html: Any HTML to inject after the "logged in" message of a newly created user account 
+
 'BitmapHandlerTransform': before a file is transformed, gives extension the 
 possibility to transform it themselves
 $handler: BitmapHandler 
