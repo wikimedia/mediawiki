@@ -1833,22 +1833,23 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 'uploadstash-refresh'  => 'Actualiser la liste des fichiers',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accès refusé',
-'img-auth-nopathinfo'   => 'PATH_INFO manquant.
+'img-auth-accessdenied'     => 'Accès refusé',
+'img-auth-nopathinfo'       => 'PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
 Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
-'img-auth-badtitle'     => 'Impossible de construire un titre valide à partir de « $1 ».',
-'img-auth-nologinnWL'   => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
-'img-auth-nofile'       => 'Le fichier « $1 » n’existe pas.',
-'img-auth-isdir'        => 'Vous essayez d’accéder au répertoire « $1 ».
+'img-auth-notindir'         => 'Le chemin demandé n’est pas le répertoire de téléversement configuré.',
+'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
+'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
+'img-auth-nofile'           => 'Le fichier « $1 » n’existe pas.',
+'img-auth-isdir'            => 'Vous essayez d’accéder au répertoire « $1 ».
 Seul l’accès aux fichiers est permis.',
-'img-auth-streaming'    => 'Lecture en continu de « $1 ».',
-'img-auth-public'       => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
+'img-auth-streaming'        => 'Lecture en continu de « $1 ».',
+'img-auth-public'           => 'La fonction de img_auth.php est d’afficher des fichiers d’un wiki privé.
 Ce wiki est configuré comme un wiki public.
 Pour une sécurité optimale, img_auth.php est désactivé.',
-'img-auth-noread'       => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
+'img-auth-noread'           => 'L’utilisateur n’a pas le droit en lecture sur « $1 ».',
+'img-auth-bad-query-string' => "L'URL a une chaîne de requête invalide.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecte : $1',
@@ -2210,6 +2211,10 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'noemailtext'          => 'Cet utilisateur n’a pas spécifié une adresse de courriel valide.',
 'nowikiemailtitle'     => 'Pas de courriel autorisé',
 'nowikiemailtext'      => 'Cet utilisateur a choisi de ne pas recevoir de courriel de la part d’autre utilisateurs.',
+'emailnotarget'        => "Nom d'utilisateur du destinataire inexistant ou invalide.",
+'emailtarget'          => "Entrez le nom d'utilisateur du destinataire",
+'emailusername'        => "Nom de l'utilisateur :",
+'emailusernamesubmit'  => 'Soumettre',
 'email-legend'         => 'Envoyer un courriel à un autre utilisateur de {{SITENAME}}',
 'emailfrom'            => 'Expéditeur :',
 'emailto'              => 'Destinataire :',

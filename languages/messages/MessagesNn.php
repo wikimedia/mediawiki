@@ -2668,7 +2668,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-ca-move'                 => 'Flytt denne sida',
 'tooltip-ca-watch'                => 'Legg denne sida til i overvakingslista di',
 'tooltip-ca-unwatch'              => 'Fjern denne sida frå overvakingslista di',
-'tooltip-search'                  => 'Søk gjennom denne wikien',
+'tooltip-search'                  => 'Søk gjennom {{SITENAME}}',
 'tooltip-search-go'               => 'Gå til ei side med dette namnet om ho finst',
 'tooltip-search-fulltext'         => 'Søk etter sider som inneheld denne teksten',
 'tooltip-p-logo'                  => 'Hovudside',

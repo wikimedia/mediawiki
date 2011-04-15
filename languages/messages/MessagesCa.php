@@ -2501,7 +2501,7 @@ Assegureu-vos de verificar els redireccionaments [[Special:DoubleRedirects|doble
 
 Sigueu responsable de fer que els enllaços continuen apuntant cap a on se suposa que han d'anar. 
 
-Tingueu en compte que la página '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la página és buida o no n'hi ha un historial de redireccionaments. 
+Tingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou proposat, tret del cas que la pàgina és buida o no n'hi ha un historial de redireccionaments. 
 
 Això significa que si reanomeneu per equivocació una pàgina amb el seu nom anterior no ho podreu fer, ja que no es pot sobreescriure una pàgina existent.
  
@@ -2541,7 +2541,7 @@ Incorporeu-les manualment, si us plau.",
 'movepage-page-moved'          => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'        => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'           => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
-'1movedto2'                    => 'a reanomenat [[$1]] com a [[$2]]',
+'1movedto2'                    => 'ha reanomenat [[$1]] com a [[$2]]',
 '1movedto2_redir'              => 'ha reanomenat [[$1]] com a [[$2]] sobre una redirecció',
 'move-redirect-suppressed'     => 'redirecció suprimida',
 'movelogpage'                  => 'Registre de reanomenaments',
@@ -3390,8 +3390,8 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 'external_image_whitelist' => " #Deixeu aquesta línia exactament igual com està<pre>
 #Poseu fragments d'expressions regulars (regexps) (només la part entre els //) a sota
 #Aquests fragments es correspondran amb les URL d'imatges externes
-#Se'n mostraran com a imatges si coincideixen, i sinò es mostraran com a enllaços
-#Les línies que començen amb un # es tracten com a comentaris
+#Se'n mostraran com a imatges si coincideixen, i sinó es mostraran com a enllaços
+#Les línies que comencen amb un # es tracten com a comentaris
 #S'hi distingeixen majúscules i minúscules
 
 #Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",

@@ -1666,22 +1666,23 @@ N'hall ket bezañ gwiriet ervat evit ar surentez.",
 'uploadstash-refresh'  => 'Freskaat roll ar restroù',
 
 # img_auth script messages
-'img-auth-accessdenied' => "Moned nac'het",
-'img-auth-nopathinfo'   => "Mankout a ra ar PATH_INFO.
+'img-auth-accessdenied'     => "Moned nac'het",
+'img-auth-nopathinfo'       => "Mankout a ra ar PATH_INFO.
 N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
 Marteze eo diazezet war CGI-based ha n'hall ket skorañ img_auth.
 Gwelet http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
-'img-auth-badtitle'     => 'Dibosupl krouiñ un titl reizh adalek "$1".',
-'img-auth-nologinnWL'   => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
-'img-auth-nofile'       => 'n\'eus ket eus ar restr "$1".',
-'img-auth-isdir'        => "Klakset hoc'h eus monet d'ar c'havlec'h \"\$1\".
+'img-auth-notindir'         => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
+'img-auth-badtitle'         => 'Dibosupl krouiñ un titl reizh adalek "$1".',
+'img-auth-nologinnWL'       => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
+'img-auth-nofile'           => 'n\'eus ket eus ar restr "$1".',
+'img-auth-isdir'            => "Klakset hoc'h eus monet d'ar c'havlec'h \"\$1\".
 N'haller monet nemet d'ar restroù.",
-'img-auth-streaming'    => 'O lenn en ur dremen "$1"',
-'img-auth-public'       => "Talvezout a ra an arc'hwel img_auth.php da ezvont restroù adalek ur wiki prevez.
+'img-auth-streaming'        => 'O lenn en ur dremen "$1"',
+'img-auth-public'           => "Talvezout a ra an arc'hwel img_auth.php da ezvont restroù adalek ur wiki prevez.
 Kefluniet eo bet ar wiki-mañ evel ur wiki foran.
 Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
-'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
+'img-auth-noread'           => 'N\'eo ket aotreet an implijer da lenn "$1"',
+'img-auth-bad-query-string' => 'Un neudennad goulenn direizh zo gant an URL.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL direizh : $1',

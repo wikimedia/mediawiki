@@ -3365,7 +3365,7 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
 'watchlistedit-noitems'        => 'Ваш сьпіс назіраньня пусты.',
-'watchlistedit-normal-title'   => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-normal-title'   => 'Рэдагаваньне сьпісу назіраньня',
 'watchlistedit-normal-legend'  => 'Выдаленьне старонак са сьпісу назіраньня',
 'watchlistedit-normal-explain' => 'Ніжэй паданыя старонкі з Вашага сьпісу назіраньня.
 Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «{{int:Watchlistedit-normal-submit}}».
