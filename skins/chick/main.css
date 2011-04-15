@@ -237,7 +237,7 @@ in the bottom-right corner of the content area */
 	margin-right: auto;
 }
 /* small for tables and similar */
-.small, .small * { font-size: 94%; }
+.small { font-size: 94%; }
 table.small { font-size: 100% }
 
 /*

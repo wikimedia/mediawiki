@@ -214,7 +214,7 @@ fieldset.operaprefsection {
 }
 
 /* small for tables and similar */
-.small, .small * {
+.small {
 	font-size: 94%;
 }
 table.small {
