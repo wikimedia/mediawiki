@@ -133,7 +133,6 @@ class SpecialPage {
 		'Listbots'                  => 'SpecialListBots',
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
-		'DisableAccount'            => 'SpecialDisableAccount',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
 
 		# Recent changes and logs
