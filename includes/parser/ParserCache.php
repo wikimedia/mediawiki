@@ -31,7 +31,7 @@ class ParserCache {
 	 *
 	 * @param $memCached Object
 	 */
-	function __construct( $memCached ) {
+	protected function __construct( $memCached ) {
 		if ( !$memCached ) {
 			throw new MWException( "Tried to create a ParserCache with an invalid memcached" );
 		}
@@ -40,7 +40,7 @@ class ParserCache {
 
 	/**
 	 * @param $article Article
-	 * @param  $hash
+	 * @param $hash string
 	 * @return mixed|string
 	 */
 	protected function getParserOutputKey( $article, $hash ) {
@@ -84,6 +84,9 @@ class ParserCache {
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
+	 * @param $article Article
+	 * @param $popts ParserOptions
+	 * @return ParserOutput|false
 	 */
 	public function getDirty( $article, $popts ) {
 		$value = $this->get( $article, $popts, true );
@@ -131,6 +134,7 @@ class ParserCache {
 	/**
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
+	 * @return ParserOutput|false
 	 */
 	public function get( $article, $popts, $useOutdated = false ) {
 		global $wgCacheEpoch;
@@ -203,7 +207,8 @@ class ParserCache {
 
 			$optionsKey->setContainsOldMagic( $parserOutput->containsOldMagic() );
 
-			$parserOutputKey = $this->getParserOutputKey( $article, $popts->optionsHash( $optionsKey->mUsedOptions ) );
+			$parserOutputKey = $this->getParserOutputKey( $article,
+				$popts->optionsHash( $optionsKey->mUsedOptions ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->mTimestamp = $article->getTimestamp();
