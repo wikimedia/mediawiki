@@ -1922,22 +1922,23 @@ $1',
 'uploadstash-refresh'  => 'تازه کردن فهرست پرونده‌ها',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'منع دسترسی',
-'img-auth-nopathinfo'   => 'PATH_INFO موجود نیست.
+'img-auth-accessdenied'     => 'منع دسترسی',
+'img-auth-nopathinfo'       => 'PATH_INFO موجود نیست.
 کارساز شما برای رد کردن این مقدار تنظیم نشده‌است.
 ممکن است کارساز مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
-'img-auth-notindir'     => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم نشده‌است.',
-'img-auth-badtitle'     => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
-'img-auth-nologinnWL'   => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',
-'img-auth-nofile'       => 'پرونده «$1» وجود ندارد.',
-'img-auth-isdir'        => 'شما می‌خواهید به شاخهٔ «$1» دسترسی پیدا کنید.
+'img-auth-notindir'         => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم نشده‌است.',
+'img-auth-badtitle'         => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
+'img-auth-nologinnWL'       => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',
+'img-auth-nofile'           => 'پرونده «$1» وجود ندارد.',
+'img-auth-isdir'            => 'شما می‌خواهید به شاخهٔ «$1» دسترسی پیدا کنید.
 تنها دسترسی به پرونده مجاز است.',
-'img-auth-streaming'    => 'در حال جاری ساختن «$1».',
-'img-auth-public'       => 'عملکرد img_auth.php برونداد پرونده‌ها از یک ویکی خصوصی است.
+'img-auth-streaming'        => 'در حال جاری ساختن «$1».',
+'img-auth-public'           => 'عملکرد img_auth.php برونداد پرونده‌ها از یک ویکی خصوصی است.
 این ویکی به عنوان یک ویکی عمومی تنظیم شده‌است.
 برای امنیت بهینه، img_auth.php غیر فعال است.',
-'img-auth-noread'       => 'کاربر دسترسی خواندن «$1» را ندارد.',
+'img-auth-noread'           => 'کاربر دسترسی خواندن «$1» را ندارد.',
+'img-auth-bad-query-string' => 'آدرس اینترنتی شامل یک رشتهٔ نامعتبر درخواست است.',
 
 # HTTP errors
 'http-invalid-url'      => 'نشانی نامعتبر: $1',
@@ -2300,6 +2301,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 یا تصمیم گرفته از کاربران دیگر پست الکترونیکی دریافت نکند.',
 'nowikiemailtitle'     => 'اجازهٔ ارسال نامهٔ الکترونیکی داده نشده‌است',
 'nowikiemailtext'      => 'این کاربر انتخاب کرده که از دیگر کاربران نامهٔ الکترونیکی دریافت نکند.',
+'emailnotarget'        => 'نام کاربری غیر موجود یا نامعتبر برای گیرنده.',
+'emailtarget'          => 'نام کاربری دریافت‌کننده را وارد کنید',
+'emailusername'        => 'نام کاربری:',
+'emailusernamesubmit'  => 'ارسال',
 'email-legend'         => 'ارسال نامه الکترونیکی به یک کاربر دیگر {{SITENAME}}',
 'emailfrom'            => 'از:',
 'emailto'              => 'به:',

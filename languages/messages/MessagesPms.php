@@ -1543,22 +1543,23 @@ A peul pa esse controlà da bin pël la sicurëssa.",
 'uploadstash-refresh'  => "Agiorné la lista dj'archivi",
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acess negà',
-'img-auth-nopathinfo'   => "PATH_INFO mancant.
+'img-auth-accessdenied'     => 'Acess negà',
+'img-auth-nopathinfo'       => "PATH_INFO mancant.
 Sò servent a l'é nen ampostà për passé costa anformassion.
 Peul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.
 Ch'a bèica http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
-'img-auth-badtitle'     => 'As peul pa fesse un tìtol bon për "$1".',
-'img-auth-nologinnWL'   => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',
-'img-auth-nofile'       => 'L\'archivi "$1" a esist pa.',
-'img-auth-isdir'        => 'A l\'é an camin ch\'a preuve a intré ant un dossié "$1".
+'img-auth-notindir'         => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
+'img-auth-badtitle'         => 'As peul pa fesse un tìtol bon për "$1".',
+'img-auth-nologinnWL'       => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',
+'img-auth-nofile'           => 'L\'archivi "$1" a esist pa.',
+'img-auth-isdir'            => 'A l\'é an camin ch\'a preuve a intré ant un dossié "$1".
 As peul mach avèj acess a j\'archivi.',
-'img-auth-streaming'    => 'Letura an continuà ëd "$1".',
-'img-auth-public'       => "La funsion d'img_auth.php a l'é dë smone dj'archivi da na wiki privà.
+'img-auth-streaming'        => 'Letura an continuà ëd "$1".',
+'img-auth-public'           => "La funsion d'img_auth.php a l'é dë smone dj'archivi da na wiki privà.
 Sta wiki-sì a l'é configurà com na wiki pùblica.
 Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
-'img-auth-noread'       => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',
+'img-auth-noread'           => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',
+'img-auth-bad-query-string' => "L'anliura a l'é na stringa ëd query pa bon-a.",
 
 # HTTP errors
 'http-invalid-url'      => "Adrëssa dl'aragnà pa bon-a: $1.",
@@ -1918,6 +1919,10 @@ L'adrëssa e-mail ch'it l'has butà an [[Special:Preferences|Ij sò gust]] a sar
 'noemailtext'          => "Cost Utent-sì a l'ha pa spessificà n'adrëssa e-mail vàlida.",
 'nowikiemailtitle'     => 'Gnun-e e-mail',
 'nowikiemailtext'      => "Stutent-sì a l'ha sërnù ëd pa arseive e-mail da dj'àutri utent.",
+'emailnotarget'        => 'Nòm utent pa esistent o pa bon për ël ricevent.',
+'emailtarget'          => 'Anseriss ël nòm utent dël ricevent',
+'emailusername'        => 'Nòm utent:',
+'emailusernamesubmit'  => 'Spediss',
 'email-legend'         => "Manda n'e-mail a n'àutr utent ëd {{SITENAME}}",
 'emailfrom'            => 'Da:',
 'emailto'              => 'A:',
@@ -2265,10 +2270,13 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipbwatchuser'                    => "Ten d'euj le pàgine utent e ëd discussion dë st'utent-sì",
 'ipb-disableusertalk'             => "Proibiss a st'utent ëd modifiché soa pàgina ëd discussion quand a l'é blocà",
 'ipb-change-block'                => "Torna bloché l'utent con ste ampostassion-sì",
+'ipb-confirm'                     => 'Conferma blòch',
 'badipaddress'                    => "L'adrëssa IP che a l'ha dane a l'é nen giusta.",
 'blockipsuccesssub'               => 'Blocagi fait',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] a l'é stàit blocà.<br />
 Varda [[Special:IPBlockList|lista dj'IP blocà]] Për rivëdde ij blòch.",
+'ipb-blockingself'                => 'I të stas për bloché ti midem!  Ses-to sigur ëd vorèj fé lòn-lì?',
+'ipb-confirmhideuser'             => 'I të stas për bloché n\'utent con "stërma utent" abilità. Sòn-sì a gaverà ël nòm ëd l\'utent da dute le liste e le righe ëd registr. Ses-to sigur ëd vorèj fé lòn-lì?',
 'ipb-edit-dropdown'               => 'Motiv dël blòch',
 'ipb-unblock-addr'                => 'Dësbloché $1',
 'ipb-unblock'                     => "Dësbloché n'utent ò n'adrëssa IP",
@@ -2532,7 +2540,8 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'import-interwiki-namespace' => 'Spassi nominal ëd destinassion:',
 'import-upload-filename'     => 'Nòm dël file:',
 'import-comment'             => 'Oget:',
-'importtext'                 => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki esterna ën dovrand l'utiss  Special:Export, che as lo salva ansima a sò disch e peui che a lo caria ambelessì.",
+'importtext'                 => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki ën dovrand l'[[Special:Export|utiss d'esportassion]]. 
+Che as lo salva ansima a sò calcolador e peui che a lo caria ambelessì.",
 'importstart'                => 'I soma antramentr che amportoma le pàgine...',
 'import-revision-count'      => '{{PLURAL:$1|Na|$1}} revision',
 'importnopages'              => 'Pa gnun-a pàgina da amporté',
@@ -3130,11 +3139,12 @@ $1',
 'trackbackdeleteok' => "J'anformassion për fé traciament a son staite gavà via.",
 
 # Delete conflict
-'deletedwhileediting' => "'''Avertensa''': sta pàgina-sì a l'é staita scancelà quand che chiel (chila) a l'avìa già anandiasse a modifichela!",
-'confirmrecreate'     => "L'utent [[User:$1|$1]] ([[User talk:$1|talk]]) a l'ha scancelà st'articol-sì quand che chiel (chila) a l'avia già anandiasse a modifichelo, dand coma motiv ëd la scancelament:
+'deletedwhileediting'      => "'''Avertensa''': sta pàgina-sì a l'é staita scancelà quand che chiel (chila) a l'avìa già anandiasse a modifichela!",
+'confirmrecreate'          => "L'utent [[User:$1|$1]] ([[User talk:$1|talk]]) a l'ha scancelà st'articol-sì quand che chiel (chila) a l'avia già anandiasse a modifichelo, dand coma motiv ëd la scancelament:
 ''$2''
 Për piasì, che an conferma che da bon a veul torna creélo.",
-'recreate'            => "Créa n'àutra vira",
+'confirmrecreate-noreason' => "L'utent [[User:$1|$1]] ([[User talk:$1|talk]]) a l'ha scanselà sta pàgina d'apress ch'it l'has ancaminà a modifiché.  Për piasì confirma ch'it veule pròpi torna creé sta pàgina.",
+'recreate'                 => "Créa n'àutra vira",
 
 # action=purge
 'confirm_purge_button' => 'Va bin',

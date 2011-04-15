@@ -710,7 +710,7 @@ Tài khoản của bạn đã mở.
 Hãy chọn một tên khác.',
 'loginerror'                 => 'Lỗi đăng nhập',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
-'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
+'nocookiesnew'               => 'Bạn đã tạo tài khoản thành công, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy bật cookie lên, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
 'nocookiesfornew'            => 'Không thể mở tài khoản vì không thể xác nhận nguồn yêu cầu nó.
 Hãy chắc chắn bạn đã bật lên cookie, làm mới trang này, và thử lại.',
@@ -730,9 +730,9 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'password-login-forbidden'   => 'Tên đăng nhập và mật khẩu này đã bị cấm không được sử dụng.',
 'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
-'passwordremindertext'       => 'Người nào đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi cho bạn mật khẩu mới của {{SITENAME}} ($4). Mật khẩu tạm cho thành viên “$2” đã được khởi tạo là “$3”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn sẽ cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
+'passwordremindertext'       => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi mật khẩu mới của {{SITENAME}} ($4). Chúng tôi đã tạo một mật khẩu tạm “$3” cho thành viên “$2”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
 
-Nếu bạn không phải là người yêu cầu gửi mật khẩu, hoặc nếu bạn đã nhớ ra mật khẩu gốc của mình và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
+Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ ra mật khẩu cũ của mình và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
 'noemail'                    => 'Thành viên “$1” không đăng ký thư điện tử.',
 'noemailcreate'              => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
@@ -1661,9 +1661,9 @@ Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2
 'emptyfile'                   => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'fileexists'                  => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
 [[$1|thumb]]",
-'filepageexists'              => "Trang miêu tả tập tin này đã tồn tại ở '''<tt>[[:\$1]]</tt>''', nhưng chưa có tập tin với tên này.
+'filepageexists'              => "Trang miêu tả của tập tin này đã được tạo tại '''<tt>[[:\$1]]</tt>''', nhưng hiện không có tập tin nào có tên như vậy.
 Những gì bạn ghi trong ô \"Tóm tắt tập tin\" sẽ không hiện ra ở trang miêu tả.
-Để làm nó hiển thị, bạn sẽ cần phải sửa đổi trang đó bằng tay.
+Để khiến nó hiển thị, bạn cần phải sửa đổi trang đó bằng tay.
 [[\$1|thumb]]",
 'fileexists-extension'        => "Hiện có một tập tin trùng tên: [[$2|thumb]]
 * Tên tập tin đang tải lên: '''<tt>[[:$1]]</tt>'''

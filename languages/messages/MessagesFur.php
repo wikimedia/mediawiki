@@ -899,7 +899,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'file-anchor-link'          => 'Figure',
 'filehist'                  => 'Storic dal file',
 'filehist-help'             => 'Frache suntune date/ore par viodi il file cemût che al jere in chel moment.',
-'filehist-current'          => 'corint',
+'filehist-current'          => 'atuâl',
 'filehist-datetime'         => 'Date/Ore',
 'filehist-thumb'            => 'Miniature',
 'filehist-thumbtext'        => 'Miniature de version dai $1',
@@ -1348,7 +1348,8 @@ Sielç par plasê un altri non.',
 'allmessagesname'           => 'Non',
 'allmessagesdefault'        => 'Test predeterminât',
 'allmessagescurrent'        => 'Test curint',
-'allmessagestext'           => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki:',
+'allmessagestext'           => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki.
+Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se tu vuelis contribuî ae traduzion gjeneriche di MediaWiki.',
 'allmessages-language'      => 'Lenghe:',
 'allmessages-filter-submit' => 'Va',
 

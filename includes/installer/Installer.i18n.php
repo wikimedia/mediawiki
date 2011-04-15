@@ -1209,7 +1209,7 @@ chmod a+w $3</pre>',
 Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
 
 У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
-	'config-ibm_db2-low-db-pagesize' => 'Павінна быць таблічная вобласьць з памерам старонкі ня меней 32кб.',
+	'config-ibm_db2-low-db-pagesize' => "Вашая база зьвестак DB2 мае таблічную прасторну зь недастатковым памерам старонкі. Памер старонкі мусіць быць ня менш за '''32K'''.",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -1580,6 +1580,7 @@ $1
 Това включва сурови данни за потребителите (адреси за е-поща, хеширани пароли), както и изтрити версии на страници и друга чувствителна и с ограничен достъп информация от и за уикито.
 
 Базата от данни е препоръчително да се разположи на друго място, например в <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
 
 $1
@@ -1589,10 +1590,12 @@ $1
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL]). Възможно е все още да има грешки, затова не се препоръчва да се използва в общодостъпна среда.',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
 	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
+	'config-support-ibm_db2' => '* $1 е комерсиална фирмена база от данни.',
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
+	'config-header-ibm_db2' => 'Настройки за IBM DB2',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
 	'config-missing-db-host' => 'Необходимо е да се въведе стойност за "Хост на базата от данни"',
@@ -2539,7 +2542,7 @@ Dies ist effizienter als der UTF-8-Modus von MySQL und ermöglicht so die Verwen
 
 Im '''UTF-8-Modus''' wird MySQL den Zeichensatz der Daten erkennen und sie richtig anzeigen und konvertieren,
 allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke ''Basic Multilingual Plane'' (BMP)] gespeichert werden.",
-	'config-ibm_db2-low-db-pagesize' => 'Es muss ein Tabellenraum mit einer Seitengröße von mindestens 32000 vorhanden sein.',
+	'config-ibm_db2-low-db-pagesize' => "Die DB2-Datenbank verfügt über einen Standardtabellenraum mit einer unzureichenden Seitengröße. Die Seitengröße muss '''32 000'' oder größer sein.",
 	'config-site-name' => 'Name des Wikis:',
 	'config-site-name-help' => 'Er wird in der Titelleiste des Browsers, wie auch verschiedenen anderen Stellen, genutzt.',
 	'config-site-name-blank' => 'Sitenamen angeben.',
@@ -3586,7 +3589,7 @@ Le compte que vous spécifiez ici doit déjà exister.",
 
 En ''mode binaire'', MediaWiki stocke le texte UTF-8 dans des champs binaires de la base de données. C'est plus efficace que le ''mode UTF-8'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode. 
 En ''mode UTF-8'', MySQL connaîtra le jeu de caractères de vos données et pourra présenter et convertir les données de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
-	'config-ibm_db2-low-db-pagesize' => "Il doit y avoir un espace de table avec un ''pagesize'' d'au moins 32 ko.",
+	'config-ibm_db2-low-db-pagesize' => "Votre base de données DB2 a un espace de stockage par défaut avec un pagesize insuffisant. Le pagesize doit être au minimum '''32K'''.",
 	'config-site-name' => 'Nom du wiki :',
 	'config-site-name-help' => 'Il apparaîtra dans la barre de titre du navigateur et en divers autres endroits.',
 	'config-site-name-blank' => 'Entrez un nom de site.',
@@ -6027,7 +6030,7 @@ Le bases de datos MyISAM tende a esser corrumpite plus frequentemente que le bas
 Isto es plus efficiente que le modo UTF-8 de MySQL, e permitte usar le rango complete de characteres Unicode.
 
 In '''modo UTF-8''', MySQL cognoscera le codification de characteres usate pro tu dats, e pote presentar e converter lo appropriatemente, ma illo non permittera immagazinar characteres supra le [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Basic].",
-	'config-ibm_db2-low-db-pagesize' => 'Es necessari disponer de un "tablespace" (spatio de tabella) con un "pagesize" (dimension de pagina) de al minus 32k.',
+	'config-ibm_db2-low-db-pagesize' => 'Tu base de datos DB2 ha un "tablespace" (spatio de tabella) predefinite con un "pagesize" (dimension de pagina) insufficiente. Le "pagesize" debe esser \'\'\'32K\'\'\' o plus.',
 	'config-site-name' => 'Nomine del wiki:',
 	'config-site-name-help' => 'Isto apparera in le barra de titulo del navigator e in varie altere locos.',
 	'config-site-name-blank' => 'Entra un nomine de sito.',
@@ -8274,7 +8277,7 @@ chmod a+w $3</pre>',
 Ова е поефикасно отколку  TF-8 режимот на MySQL, и ви овозможува да ја користите целата палета на уникодни знаци.
 
 Во '''UTF-8 режим''', MySQL ќе знае на кој збир знаци припаѓаат вашите податоци, и може соодветно да ги претстави и претвори, но нема да ви дозволи да складиратезнаци над [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основната повеќејазична рамнина].",
-	'config-ibm_db2-low-db-pagesize' => 'Мора да има табеларен простор со големина на страница од барем 32 к .',
+	'config-ibm_db2-low-db-pagesize' => "Вашата база на податоци DB2 има основно-зададен табеларен простор со недоволна големина на страниците. Таа треба да изнесува барем '''32 килобајти'''.",
 	'config-site-name' => 'Име на викито:',
 	'config-site-name-help' => 'Ова ќе се појавува во заглавната лента на прелистувачот и на разни други места.',
 	'config-site-name-blank' => 'Внесете име на мрежното место.',
@@ -11028,6 +11031,7 @@ $messages['ro'] = array(
  * @author DCamer
  * @author Eleferen
  * @author Krinkle
+ * @author Lockal
  * @author MaxSem
  * @author Yuriy Apostol
  * @author Александр Сигачёв
@@ -11347,7 +11351,7 @@ chmod a+w $3</pre>',
 Это более эффективно, чем ''UTF-8 режим'' MySQL, и позволяет использовать полный набор символов Unicode. 
 
 В '''режиме UTF-8''' MySQL будет знать в какой кодировке находятся Ваши данные и может отображать и преобразовывать их соответствующим образом, но это не позволит вам хранить символы выше [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базовой Многоязыковой Плоскости].",
-	'config-ibm_db2-low-db-pagesize' => 'Требуется пространство таблиц с размером страниц не менее 32&#160;килобайт.',
+	'config-ibm_db2-low-db-pagesize' => "В вашей базе данных DB2 по умолчанию задано табличное пространство с недостаточным размером страницы. Размер страницы должен быть не менее '''32K'''.",
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
@@ -11405,7 +11409,7 @@ chmod a+w $3</pre>',
 Более сложные схемы разграничения прав можно настроить после установки, см. [http://www.mediawiki.org/wiki/Manual:User_rights соответствующее руководство].",
 	'config-license' => 'Авторские права и лицензии:',
 	'config-license-none' => 'Не указывать лицензию в колонтитуле внизу страницы',
-	'config-license-cc-by-sa' => 'Creative Commons атрибуция — с сохранением условий',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
 	'config-license-cc-0' => 'Creative Commons Zero',
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
