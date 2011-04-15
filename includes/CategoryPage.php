@@ -365,10 +365,10 @@ class CategoryViewer {
 			$count = 0;
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				if ( !$row->cl_collation ) {
+				if ( $row->cl_collation === '' ) {
 					// Hack to make sure that while updating from 1.16 schema
 					// and db is inconsistent, that the sky doesn't fall.
-					// See r83544. Could perhaps be removed in a couple versions (?)
+					// See r83544. Could perhaps be removed in a couple decades...
 					$humanSortkey = $row->cl_sortkey;
 				} else {
 					$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
