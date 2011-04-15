@@ -79,7 +79,7 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
-		if( NORMALIZE_ICU || NORMALIZE_INTL ) {
+		if( NORMALIZE_ICU ) {
 			# We exclude a few chars that ICU would not.
 			$string = preg_replace(
 				'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
@@ -90,8 +90,24 @@ class UtfNormal {
 
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
-			if ( NORMALIZE_ICU ) return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
-			if ( NORMALIZE_INTL ) return normalizer_normalize( $string, Normalizer::FORM_C );
+			return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
+		} elseif( NORMALIZE_INTL ) {
+			$norm = normalizer_normalize( $string, Normalizer::FORM_C );
+			if( $norm === null || $norm === false ) {
+				# normalizer_normalize will either return false or null
+				# (depending on which doc you read) if invalid utf8 string.
+				# quickIsNFCVerify cleans up invalid sequences.
+
+				if( UtfNormal::quickIsNFCVerify( $string ) ) {
+					# if that's true, the string is actually already normal.
+					return $string;
+				} else {
+					# Now we are valid but non-normal
+					return normalizer_normalize( $string, Normalizer::FORM_C );
+				}
+			} else {
+				return $norm;
+			}
 		} elseif( UtfNormal::quickIsNFCVerify( $string ) ) {
 			# Side effect -- $string has had UTF-8 errors cleaned up.
 			return $string;
