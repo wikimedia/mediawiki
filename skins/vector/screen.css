@@ -1018,7 +1018,7 @@ span.subpages {
 	margin-right: auto;
 }
 /* Small for tables and similar */
-.small, .small * {
+.small {
 	font-size: 94%;
 }
 table.small {
