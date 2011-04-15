@@ -388,7 +388,6 @@ $wgOptionalMessages = array(
 	'prefs-memberingroups-type',
 	'shared-repo-name-wikimediacommons',
 	'usermessage-template',
-	'revisionmove-backlink',
 	'filepage.css',
 	'nocookiesforlogin',
 );

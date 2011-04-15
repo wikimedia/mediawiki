@@ -1579,27 +1579,6 @@ Please check the logs.',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
 See the [[Special:BlockList|IP block list]] for the list of currently operational bans and blocks.',
 
-# Revision move
-'moverevlogentry'              => 'moved {{PLURAL:$3|one revision|$3 revisions}} from $1 to $2',
-'revisionmove'                 => 'Move revisions from "$1"',
-'revisionmove-backlink'        => '← $1', # only translate this message to other languages if you have to change it
-'revmove-explain'              => 'The following revisions will be moved from $1 to the specified target page. If the target does not exist, it is created. Otherwise, these revisions will be merged into the page history.',
-'revmove-legend'               => 'Set target page and summary',
-'revmove-submit'               => 'Move revisions to selected page',
-'revisionmoveselectedversions' => 'Move selected revisions',
-'revmove-reasonfield'          => 'Reason:',
-'revmove-titlefield'           => 'Target page:',
-'revmove-badparam-title'       => 'Bad parameters',
-'revmove-badparam'             => 'Your request contains illegal or insufficient parameters.
-Go back to the previous page and try again.',
-'revmove-norevisions-title'    => 'Invalid target revision',
-'revmove-norevisions'          => 'You have not specified one or more target revisions to perform this function or the specified revision does not exist.',
-'revmove-nullmove-title'       => 'Bad title',
-'revmove-nullmove'             => 'The target page cannot be the same as the source page.
-Go back to the previous page and choose a different name from "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the existing page [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the newly created page [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Merge page histories',
 'mergehistory-header'              => 'This page lets you merge revisions of the history of one source page into a newer page.
@@ -1968,7 +1947,6 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'right-reset-passwords'       => "Reset other users' passwords",
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
-'right-revisionmove'          => 'Move revisions',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -2011,7 +1989,6 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'action-userrights'           => 'edit all user rights',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
-'action-revisionmove'         => 'move revisions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',

@@ -556,11 +556,6 @@ class MediaWiki {
 				$special = SpecialPage::getPage( 'Revisiondelete' );
 				$special->execute( '' );
 				break;
-			case 'revisionmove':
-				// For revision move submission from history page
-				$special = SpecialPage::getPage( 'RevisionMove' );
-				$special->execute( '' );
-				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
 					$this->context->output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
