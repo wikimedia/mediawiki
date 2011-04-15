@@ -1149,7 +1149,6 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-sendemail',
 		'right-revisionmove',
-		'right-disableaccount',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -3301,17 +3300,6 @@ $wgMessageStructure = array(
 		'sqlite-has-fts',
 		'sqlite-no-fts',
 	),
-	'disableaccount' => array(
-		'disableaccount',
-		'disableaccount-user',
-		'disableaccount-reason',
-		'disableaccount-confirm',
-		'disableaccount-mustconfirm',
-		'disableaccount-confirm',
-		'disableaccount-nosuchuser',
-		'disableaccount-success',
-		'disableaccount-logentry',
-	),
 );
 
 /** Comments for each block */
@@ -3526,5 +3514,4 @@ Variants for Chinese language",
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
 	'sqlite'                => 'SQLite database support',
-	'disableaccount'        => 'Special:DisableAccount',
 );
