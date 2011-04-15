@@ -1006,10 +1006,6 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mType == 'signup' ) {
-			global $wgLivePasswordStrengthChecks;
-			if ( $wgLivePasswordStrengthChecks ) {
-				$wgOut->addPasswordSecurity( 'wpPassword2', 'wpRetype' );
-			}
 			$template = new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';

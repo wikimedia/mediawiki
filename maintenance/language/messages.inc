@@ -491,15 +491,6 @@ $wgMessageStructure = array(
 		'php-mail-error',
 		'php-mail-error-unknown',
 	),
-	'passwordstrength' => array(
-		'password-strength',
-		'password-strength-bad',
-		'password-strength-mediocre',
-		'password-strength-acceptable',
-		'password-strength-good',
-		'password-retype',	
-		'password-retype-mismatch',
-	),
 	'resetpass' => array(
 		'resetpass',
 		'resetpass_announce',

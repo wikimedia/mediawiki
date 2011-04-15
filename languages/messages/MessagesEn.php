@@ -1156,15 +1156,6 @@ Please wait before trying again.',
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
 
-# JavaScript password checks
-'password-strength'            => 'Estimated password strength: $1',
-'password-strength-bad'        => 'BAD',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'good',
-'password-retype'              => 'Retype password here',
-'password-retype-mismatch'     => 'Passwords do not match',
-
 # Password reset dialog
 'resetpass'                 => 'Change password',
 'resetpass_announce'        => 'You logged in with a temporary e-mailed code.
