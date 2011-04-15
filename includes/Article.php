@@ -4262,20 +4262,27 @@ class Article {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return mixed ParserOptions object or boolean false
+	 * @return ParserOptions object
 	 */
 	public function getParserOptions() {
 		global $wgUser;
-
 		if ( !$this->mParserOptions ) {
-			$this->mParserOptions = new ParserOptions( $wgUser );
-			$this->mParserOptions->setTidy( true );
-			$this->mParserOptions->enableLimitReport();
+			$this->mParserOptions = $this->makeParserOptions( $wgUser );
 		}
-
-		// Clone to allow modifications of the return value without affecting
-		// the cache
+		// Clone to allow modifications of the return value without affecting cache
 		return clone $this->mParserOptions;
+	}
+
+	/**
+	* Get parser options suitable for rendering the primary article wikitext
+	* @param User $user
+	* @return ParserOptions
+	*/
+	public function makeParserOptions( User $user ) {
+		$options = ParserOptions::newFromUser( $user );
+		$options->enableLimitReport(); // show inclusion/loop reports
+		$options->setTidy( true ); // fix bad HTML
+		return $options;
 	}
 
 	/**
