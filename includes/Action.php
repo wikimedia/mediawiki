@@ -285,7 +285,14 @@ abstract class FormAction extends Action {
 
 		$form = new HTMLForm( $this->fields, $this->getContext() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->addHiddenField( 'action', $this->getName() );
+
+		// Retain query parameters (uselang etc)
+		$form->addHiddenField( 'action', $this->getName() ); // Might not be the same as the query string
+		$params = array_diff_key(
+			$this->getRequest()->getQueryValues(),
+			array( 'action' => null, 'title' => null )
+		);
+		$form->addHiddenField( 'redirectparams', wfArrayToCGI( $params ) );
 
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );
