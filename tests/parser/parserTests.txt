@@ -1271,6 +1271,32 @@ Simple table
 !! end
 
 !! test
+Table inside unclosed table w/o cells
+!! input
+{|
+{| 
+| foo bar
+|}
+
+!! result
+<table>
+<tr>
+<td>
+<table>
+<tr>
+<td>foo bar
+</td>
+</tr>
+</table>
+<p><br />
+</p>
+</td>
+</tr>
+</table>
+
+!! end
+
+!! test
 Table with thead
 !! input
 {| 

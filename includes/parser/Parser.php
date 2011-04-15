@@ -846,7 +846,6 @@ class Parser {
 				$table =& $this->last( $tables );
 				$table[0] = array(); // first row
 				$currentRow =& $table[0];
-
 				$table['indent'] = strlen( $matches[1] );
 
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
@@ -881,7 +880,7 @@ class Parser {
 				}
 				$o = '';
 				$curtable = array_pop( $tables );
-				
+
 				#Add a line-ending before the table, but only if there isn't one already
 				if ( substr( $out, -1 ) !== "\n" ) {
 					$o .= "\n";
@@ -1052,6 +1051,7 @@ class Parser {
 		// If we only have tbodies, mark table as simple
 		for ( $i = 0; isset( $table[$i] ); $i++ ) {
 			if ( !count( $table[$i] ) ) continue;
+			if ( !isset( $table[$i]['type'] ) ) $table[$i]['type'] = 'tbody';
 			if ( !$lastSection ) {
 				$lastSection = $table[$i]['type'];
 			} else if ( $lastSection != $table[$i]['type'] ) {
@@ -1075,6 +1075,7 @@ class Parser {
 			$return .= isset( $table[$i]['attributes'] ) ? $table[$i]['attributes'] : '';
 			$return .= '>';
 			for ( $j = 0; isset( $table[$i][$j] ); $j++ ) {
+				if ( !isset( $table[$i][$j]['type'] ) ) $table[$i][$j]['type'] = 'td';
 				$return .= "\n<" . $table[$i][$j]['type'];
 				$return .= isset( $table[$i][$j]['attributes'] ) ? $table[$i][$j]['attributes'] : '';
 				$return .= '>';
