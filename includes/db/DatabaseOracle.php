@@ -463,7 +463,7 @@ class DatabaseOracle extends DatabaseBase {
 	private function fieldBindStatement ( $table, $col, &$val, $includeCol = false ) {
 		$col_info = $this->fieldInfoMulti( $table, $col );
 		$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
-		
+
 		$bind = '';
 		if ( is_numeric( $col ) ) {
 			$bind = $val;
@@ -633,7 +633,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $retval;
 	}
 
-	function tableName( $name, $quoted ) {
+	function tableName( $name, $quoted = true ) {
 		/*
 		Replace reserved words with better ones
 		Using uppercase because that's the only way Oracle can handle
@@ -877,7 +877,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
 	function tableExists( $table ) {
-		$table = trim($this->tableName($table), '"');
+		$table = $this->removeIdentifierQuotes($table);
 		$SQL = "SELECT 1 FROM user_tables WHERE table_name='$table'";
 		$res = $this->doQuery( $SQL );
 		if ( $res ) {
@@ -905,7 +905,7 @@ class DatabaseOracle extends DatabaseBase {
 			$table = array_map( array( &$this, 'tableName' ), $table );
 			$tableWhere = 'IN (';
 			foreach( $table as &$singleTable ) {
-				$singleTable = strtoupper( trim( $singleTable, '"' ) );
+				$singleTable = $this->removeIdentifierQuotes($singleTable);
 				if ( isset( $this->mFieldInfoCache["$singleTable.$field"] ) ) {
 					return $this->mFieldInfoCache["$singleTable.$field"];
 				}
@@ -913,7 +913,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 			$tableWhere = rtrim( $tableWhere, ',' ) . ')';
 		} else {
-			$table = strtoupper( trim( $this->tableName( $table ), '"' ) );
+			$table = $this->removeIdentifierQuotes($table);
 			if ( isset( $this->mFieldInfoCache["$table.$field"] ) ) {
 				return $this->mFieldInfoCache["$table.$field"];
 			}
@@ -1078,16 +1078,18 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function addIdentifierQuotes( $s ) {
-		return parent::addIdentifierQuotes( $s );
-		
-		/* Does this old code make any sense?
-		 * We could always use quoted identifier.
-		 * See http://download.oracle.com/docs/cd/B19306_01/server.102/b14200/sql_elements008.htm
-		 */
-		if ( !$this->mFlags & DBO_DDLMODE ) {
-			$s = '"' . str_replace( '"', '""', $s ) . '"';
+		if ( !$this->getFlag( DBO_DDLMODE ) ) {
+			$s = '/*Q*/' . $s;
 		}
 		return $s;
+	}
+
+	public function removeIdentifierQuotes( $s ) {
+		return strpos($s, '/*Q*/') === FALSE ? $s : substr($s, 5); ;
+	}
+
+	public function isQuotedIdentifier( $s ) {
+		return strpos($s, '/*Q*/') !== FALSE;
 	}
 
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
