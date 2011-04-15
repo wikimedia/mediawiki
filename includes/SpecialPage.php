@@ -194,7 +194,6 @@ class SpecialPage {
 		'Myuploads'                 => 'SpecialMyuploads',
 		'PermanentLink'             => 'SpecialPermanentLink',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
-		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
 	);

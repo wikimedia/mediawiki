@@ -4834,7 +4834,6 @@ $wgLogActions = array(
 	'upload/revert'     => 'uploadedimage',
 	'move/move'         => '1movedto2',
 	'move/move_redir'   => '1movedto2_redir',
-	'move/move_rev'     => 'moverevlogentry',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
 	'merge/merge'       => 'pagemerge-logentry',
