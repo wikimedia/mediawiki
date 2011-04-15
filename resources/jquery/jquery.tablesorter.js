@@ -104,8 +104,8 @@
 					for ( var i = 0; i < l; i++ ) {
 						p = false;
 						sortType = $headers.eq(i).data('sort-type');
-						if ( typeof sortVal != 'undefined' ) {
-							p = getParserById( sortVal );
+						if ( typeof sortType != 'undefined' ) {
+							p = getParserById( sortType );
 						}
 
 						if (p === false) {
