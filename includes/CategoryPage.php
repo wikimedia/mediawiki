@@ -347,7 +347,8 @@ class CategoryViewer {
 				array( 'page', 'categorylinks', 'category' ),
 				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
-					'cat_subcats', 'cat_pages', 'cat_files', 'cl_sortkey_prefix' ),
+					'cat_subcats', 'cat_pages', 'cat_files',
+					'cl_sortkey_prefix', 'cl_collation' ),
 				array_merge( array( 'cl_to' => $this->title->getDBkey() ),  $extraConds ),
 				__METHOD__,
 				array(
@@ -364,7 +365,14 @@ class CategoryViewer {
 			$count = 0;
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+				if ( !$row->cl_collation ) {
+					// Hack to make sure that while updating from 1.16 schema
+					// and db is inconsistent, that the sky doesn't fall.
+					// See r83544. Could perhaps be removed in a couple versions (?)
+					$humanSortkey = $row->cl_sortkey;
+				} else {
+					$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+				}
 
 				if ( ++$count > $this->limit ) {
 					# We've reached the one extra which shows that there
