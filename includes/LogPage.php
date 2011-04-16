@@ -318,6 +318,14 @@ class LogPage {
 		return $rv;
 	}
 
+	/**
+	 * TODO document
+	 * @param  $type String
+	 * @param  $skin Skin
+	 * @param  $title Title
+	 * @param  $params Array
+	 * @return String
+	 */
 	protected static function getTitleLink( $type, $skin, $title, &$params ) {
 		global $wgLang, $wgContLang, $wgUserrightsInterwikiDelimiter;
 		if( !$skin ) {
@@ -325,7 +333,7 @@ class LogPage {
 		}
 		switch( $type ) {
 			case 'move':
-				$titleLink = $skin->link(
+				$titleLink = Linker::link(
 					$title,
 					htmlspecialchars( $title->getPrefixedText() ),
 					array(),
@@ -336,7 +344,7 @@ class LogPage {
 					# Workaround for broken database
 					$params[0] = htmlspecialchars( $params[0] );
 				} else {
-					$params[0] = $skin->link(
+					$params[0] = Linker::link(
 						$targetTitle,
 						htmlspecialchars( $params[0] )
 					);
@@ -349,8 +357,8 @@ class LogPage {
 					// TODO: Store the user identifier in the parameters
 					// to make this faster for future log entries
 					$id = User::idFromName( $title->getText() );
-					$titleLink = $skin->userLink( $id, $title->getText() )
-						. $skin->userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
+					$titleLink = Linker::userLink( $id, $title->getText() )
+						. Linker::userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
 				}
 				break;
 			case 'rights':
@@ -363,16 +371,16 @@ class LogPage {
 						break;
 					}
 				}
-				$titleLink = $skin->link( Title::makeTitle( NS_USER, $text ) );
+				$titleLink = Linker::link( Title::makeTitle( NS_USER, $text ) );
 				break;
 			case 'merge':
-				$titleLink = $skin->link(
+				$titleLink = Linker::link(
 					$title,
 					$title->getPrefixedText(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
-				$params[0] = $skin->link(
+				$params[0] = Linker::link(
 					Title::newFromText( $params[0] ),
 					htmlspecialchars( $params[0] )
 				);
@@ -380,15 +388,15 @@ class LogPage {
 				break;
 			default:
 				if( $title->getNamespace() == NS_SPECIAL ) {
-					list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+					list( $name, $par ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '(' . $skin->link( $title, LogPage::logName( $par ) ) . ')';
+						$titleLink = '(' . Linker::link( $title, LogPage::logName( $par ) ) . ')';
 					} else {
-						$titleLink = $skin->link( $title );
+						$titleLink = Linker::link( $title );
 					}
 				} else {
-					$titleLink = $skin->link( $title );
+					$titleLink = Linker::link( $title );
 				}
 		}
 		return $titleLink;
