@@ -24,7 +24,7 @@ class ProfilerStub extends Profiler {
 	 * Begin profiling of a function
 	 * @param $fn string
 	 */
-	public function profileIn( $fn = '' ) {
+	public function profileIn( $fn ) {
 		global $wgDBname;
 		if( $this->haveProctitle ){
 			$this->hackWhere[] = $fn;
@@ -36,7 +36,7 @@ class ProfilerStub extends Profiler {
 	 * Stop profiling of a function
 	 * @param $fn string
 	 */
-	public function profileOut( $fn = '' ) {
+	public function profileOut( $fn ) {
 		global $wgDBname;
 		if( !$this->haveProctitle ) {
 			return;
