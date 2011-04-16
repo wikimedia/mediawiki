@@ -474,6 +474,11 @@ abstract class Skin {
 	 */
 	abstract function setupSkinUserCss( OutputPage $out );
 
+	/**
+	 * TODO: document
+	 * @param $title Title
+	 * @return String
+	 */
 	function getPageClasses( $title ) {
 		$numeric = 'ns-' . $title->getNamespace();
 
@@ -542,7 +547,7 @@ abstract class Skin {
 
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
-				$this->link( Title::newFromText( wfMsgForContent( 'pagecategorieslink' ) ), $msg )
+				Linker::link( Title::newFromText( wfMsgForContent( 'pagecategorieslink' ) ), $msg )
 				. $colon . $t . '</div>';
 		}
 
@@ -585,10 +590,9 @@ abstract class Skin {
 	/**
 	 * Render the array as a serie of links.
 	 * @param $tree Array: categories tree returned by Title::getParentCategoryTree
-	 * @param &skin Object: skin passed by reference
 	 * @return String separated by &gt;, terminate with "\n"
 	 */
-	function drawCategoryBrowser( $tree, &$skin ) {
+	function drawCategoryBrowser( $tree ) {
 		$return = '';
 
 		foreach ( $tree as $element => $parent ) {
@@ -597,12 +601,12 @@ abstract class Skin {
 				$return .= "\n";
 			} else {
 				# grab the others elements
-				$return .= $this->drawCategoryBrowser( $parent, $skin ) . ' &gt; ';
+				$return .= $this->drawCategoryBrowser( $parent ) . ' &gt; ';
 			}
 
 			# add our current element to the list
 			$eltitle = Title::newFromText( $element );
-			$return .=  $skin->link( $eltitle, $eltitle->getText() );
+			$return .=  Linker::link( $eltitle, $eltitle->getText() );
 		}
 
 		return $return;
@@ -769,7 +773,7 @@ abstract class Skin {
 
 				return wfMsg(
 					$msg,
-					$this->link(
+					Linker::link(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
 						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $this->getContext()->getLang()->formatNum( $n ) ),
 						array(),
@@ -878,9 +882,9 @@ abstract class Skin {
 
 		if ( $wgRightsPage ) {
 			$title = Title::newFromText( $wgRightsPage );
-			$link = $this->linkKnown( $title, $wgRightsText );
+			$link = Linker::linkKnown( $title, $wgRightsText );
 		} elseif ( $wgRightsUrl ) {
-			$link = $this->makeExternalLink( $wgRightsUrl, $wgRightsText );
+			$link = Linker::makeExternalLink( $wgRightsUrl, $wgRightsText );
 		} elseif ( $wgRightsText ) {
 			$link = $wgRightsText;
 		} else {
@@ -1014,7 +1018,7 @@ abstract class Skin {
 	 * @return string
 	 */
 	function mainPageLink() {
-		$s = $this->link(
+		$s = Linker::link(
 			Title::newMainPage(),
 			wfMsg( 'mainpage' ),
 			array(),
@@ -1036,7 +1040,7 @@ abstract class Skin {
 			// but we make the link target be the one site-wide page.
 			$title = Title::newFromText( wfMsgForContent( $page ) );
 
-			return $this->linkKnown(
+			return Linker::linkKnown(
 				$title,
 				wfMsgExt( $desc, array( 'parsemag', 'escapenoentities' ) )
 			);
