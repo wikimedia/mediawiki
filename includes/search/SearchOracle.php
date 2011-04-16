@@ -238,7 +238,6 @@ class SearchOracle extends SearchEngine {
 	 * @param $text String
 	 */
 	function update($id, $title, $text) {
-		global $wgDBprefix;
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->replace('searchindex',
 			array('si_page'),

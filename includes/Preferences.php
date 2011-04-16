@@ -934,9 +934,6 @@ class Preferences {
 			'section' => 'searchoptions/advancedsearchoptions',
 		);
 
-		// Searchable namespaces back-compat with old format
-		$searchableNamespaces = SearchEngine::searchableNamespaces();
-
 		$nsOptions = array();
 
 		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {

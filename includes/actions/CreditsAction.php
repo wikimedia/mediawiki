@@ -186,7 +186,7 @@ class CreditsAction extends FormlessAction {
 	 * @return String: html
 	 */
 	protected static function link( User $user ) {
-		global $wgUser, $wgHiddenPrefs;
+		global $wgHiddenPrefs;
 		if ( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() ) {
 			$real = $user->getRealName();
 		} else {
@@ -225,7 +225,6 @@ class CreditsAction extends FormlessAction {
 	 * @return String: html
 	 */
 	protected function othersLink() {
-		global $wgUser;
 		return Linker::link(
 			$this->getTitle(),
 			wfMsgHtml( 'others' ),
