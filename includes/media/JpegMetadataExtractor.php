@@ -56,14 +56,22 @@ class JpegMetadataExtractor {
 				// First see if valid utf-8,
 				// if not try to convert it to windows-1252.
 				$com = $oldCom = trim( self::jpegExtractMarker( $fh ) );
-
 				UtfNormal::quickIsNFCVerify( $com );
 				// turns $com to valid utf-8.
 				// thus if no change, its utf-8, otherwise its something else.
 				if ( $com !== $oldCom ) {
-					$oldCom = iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
+					wfSuppressWarnings();
+					$com = $oldCom = iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
+					wfRestoreWarnings();
 				}
-				$segments["COM"][] = $oldCom;
+				// Try it again, if its still not a valid string, then probably
+				// binary junk or some really weird encoding, so don't extract.
+				UtfNormal::quickIsNFCVerify( $com );
+				if ( $com === $oldCom ) {
+					$segments["COM"][] = $oldCom;
+				} else {
+					wfDebug( __METHOD__ . ' Ignoring JPEG comment as is garbage.' );
+				}
 
 			} elseif ( $buffer === "\xE1" && $showXMP ) {
 				// APP1 section (Exif, XMP, and XMP extended)
