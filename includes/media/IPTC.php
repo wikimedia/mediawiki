@@ -401,7 +401,6 @@ class IPTC {
 	* @param $charset String: The charset
 	*/
 	private static function convIPTC ( $data, $charset ) {
-		global $wgLang;
 		if ( is_array( $data ) ) {
 			foreach ($data as &$val) {
 				$val = self::convIPTCHelper( $val, $charset );

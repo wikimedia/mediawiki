@@ -114,7 +114,7 @@ class BitmapMetadataHandler {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 		$meta = new self();
 		$meta->getExif( $filename );
-		$seg = Array();
+
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
 			$meta->addMetadata( Array( 'JPEGFileComment' => $seg['COM'] ), 'native' );

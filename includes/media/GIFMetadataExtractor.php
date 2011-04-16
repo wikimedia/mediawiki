@@ -114,8 +114,6 @@ class GIFMetadataExtractor {
 					}
 				} elseif ($extension_code == 0xFE) {
 					// Comment block(s).
-					$data = '';
-
 					$data = self::readBlock( $fh );
 					if ( $data === "" ) {
 						throw new Exception( 'Read error, zero-length comment block' );
