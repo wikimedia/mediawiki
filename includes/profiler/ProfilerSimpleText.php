@@ -4,7 +4,9 @@
  * @ingroup Profiler
  */
 
-require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
+if ( !class_exists( 'ProfilerSimple' ) ) {
+	require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
+}
 
 /**
  * The least sophisticated profiler output class possible, view your source! :)

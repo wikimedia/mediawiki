@@ -185,10 +185,6 @@ $wgAutoloadLocalClasses = array(
 	'PoolCounterWork' => 'includes/PoolCounter.php',
 	'Preferences' => 'includes/Preferences.php',
 	'PrefixSearch' => 'includes/PrefixSearch.php',
-	'Profiler' => 'includes/Profiler.php',
-	'ProfilerSimple' => 'includes/ProfilerSimple.php',
-	'ProfilerSimpleText' => 'includes/ProfilerSimpleText.php',
-	'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
 	'ProtectionForm' => 'includes/ProtectionForm.php',
 	'QueryPage' => 'includes/QueryPage.php',
 	'QuickTemplate' => 'includes/SkinTemplate.php',
@@ -598,6 +594,13 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'StripState' => 'includes/parser/StripState.php',
 	'MWTidy' => 'includes/parser/Tidy.php',
+
+	# includes/profiler
+	'Profiler' => 'includes/Profiler.php',
+	'ProfilerSimple' => 'includes/ProfilerSimple.php',
+	'ProfilerSimpleText' => 'includes/ProfilerSimpleText.php',
+	'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
+	'ProfilerStub' => 'includes/ProfilerStub.php',
 
 	# includes/search
 	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',

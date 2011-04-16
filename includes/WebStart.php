@@ -94,7 +94,7 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	if ( file_exists( "$IP/StartProfiler.php" ) ) {
 		require_once( "$IP/StartProfiler.php" );
 	} else {
-		require_once( "$IP/includes/ProfilerStub.php" );
+		require_once( "$IP/includes/profiler/ProfilerStub.php" );
 	}
 
 	# Load up some global defines.

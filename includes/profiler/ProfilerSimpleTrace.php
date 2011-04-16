@@ -5,7 +5,7 @@
  */
 
 if ( !class_exists( 'ProfilerSimple' ) ) {
-	require_once(dirname(__FILE__).'/ProfilerSimple.php');
+	require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
 }
 
 /**

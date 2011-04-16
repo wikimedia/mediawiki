@@ -30,13 +30,10 @@ function wfProfileOut( $functionname = 'missing' ) {
 
 /**
  * Returns a profiling output to be stored in debug file
- *
- * @param $start Float
- * @param $elapsed Float: time elapsed since the beginning of the request
  */
-function wfGetProfilingOutput( $start, $elapsed ) {
+function wfGetProfilingOutput() {
 	global $wgProfiler;
-	return $wgProfiler->getOutput( $start, $elapsed );
+	return $wgProfiler->getOutput();
 }
 
 /**
@@ -79,7 +76,7 @@ class Profiler {
 	 *
 	 * @param $functionname String
 	 */
-	function profileIn( $functionname ) {
+	public function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry, $wgProfiling;
 		if( !$wgProfiling ) return;
 		if( $wgDebugFunctionEntry ){
@@ -94,7 +91,7 @@ class Profiler {
 	 *
 	 * @param $functionname String
 	 */
-	function profileOut($functionname) {
+	public function profileOut($functionname) {
 		global $wgDebugFunctionEntry, $wgProfiling;
 		if( !$wgProfiling ) return;
 		$memory = memory_get_usage();
@@ -130,7 +127,7 @@ class Profiler {
 	/**
 	 * called by wfProfileClose()
 	 */
-	function close() {
+	public function close() {
 		global $wgProfiling;
 
 		# Avoid infinite loop
@@ -154,7 +151,7 @@ class Profiler {
 	/**
 	 * Called by wfGetProfilingOutput()
 	 */
-	function getOutput() {
+	public function getOutput() {
 		global $wgDebugFunctionEntry, $wgProfileCallTree;
 		$wgDebugFunctionEntry = false;
 
