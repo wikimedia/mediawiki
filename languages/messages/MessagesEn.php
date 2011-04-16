@@ -4043,8 +4043,8 @@ $8', # only translate this message to other languages if you have to change it
 'exif-gpslongitude-w' => 'West longitude',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|meters|meter}} above sea level',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|meters|meter}} below sea level',
+'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|meter|meters}} above sea level',
+'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|meter|meters}} below sea level',
 
 'exif-gpsstatus-a' => 'Measurement in progress',
 'exif-gpsstatus-v' => 'Measurement interoperability',
