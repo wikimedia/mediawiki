@@ -2912,7 +2912,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-xyresolution-i' => '$1 pont për pòles (dpi)',
 'exif-xyresolution-c' => '$1 pont për centim (dpc)',
 
-'exif-colorspace-ffff.h' => 'Nen calibrà',
+'exif-colorspace-65535' => 'Nen calibrà',
 
 'exif-componentsconfiguration-0' => 'a esist pa',
 

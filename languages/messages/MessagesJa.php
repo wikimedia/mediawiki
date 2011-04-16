@@ -3315,7 +3315,7 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',
 
-'exif-colorspace-ffff.h' => 'その他',
+'exif-colorspace-65535' => 'その他',
 
 'exif-componentsconfiguration-0' => 'なし',
 

@@ -3242,7 +3242,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-planarconfiguration-1' => 'Balyês ategnentes',
 'exif-planarconfiguration-2' => 'Balyês sèparâs',
 
-'exif-colorspace-ffff.h' => 'Pas calibrâ',
+'exif-colorspace-65535' => 'Pas calibrâ',
 
 'exif-componentsconfiguration-0' => 'Ègziste pas',
 'exif-componentsconfiguration-5' => 'V',

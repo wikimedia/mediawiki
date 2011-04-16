@@ -2652,7 +2652,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-xyresolution-i' => '$1 punti pi puseri (dpi)',
 'exif-xyresolution-c' => '$1 punti pi cintìmitru (dpc)',
 
-'exif-colorspace-ffff.h' => 'Nun calibbratu',
+'exif-colorspace-65535' => 'Nun calibbratu',
 
 'exif-componentsconfiguration-0' => 'assenti',
 

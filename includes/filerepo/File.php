@@ -304,6 +304,26 @@ abstract class File {
 	public function getMetadata() { return false; }
 
 	/**
+	* get versioned metadata
+	*
+	* @param $metadata Mixed Array or String of (serialized) metadata
+	* @param $version integer version number.
+	* @return Array containing metadata, or what was passed to it on fail (unserializing if not array)
+	*/
+	public function convertMetadataVersion($metadata, $version) {
+		$handler = $this->getHandler();
+		if (!is_array($metadata)) {
+			//just to make the return type consistant
+			$metadata = unserialize( $metadata ); 
+		}
+		if ( $handler ) {
+			return $handler->convertMetadataVersion($metadata, $version);
+		} else {
+			return $metadata;
+		}
+	}
+
+	/**
 	 * Return the bit depth of the file
 	 * Overridden by LocalFile
 	 * STUB

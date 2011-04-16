@@ -121,7 +121,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$gotOne = true;
 
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $img, $prop, $result, $finalThumbParams ) );
+						self::getInfo( $img, $prop, $result,
+							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
 							// See the 'the user is screwed' comment above
@@ -150,7 +151,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						break;
 					}
 					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $oldie, $prop, $result, $finalThumbParams ) );
+						self::getInfo( $oldie, $prop, $result,
+							$finalThumbParams, $params['metadataversion'] ) );
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_IMAGE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
@@ -265,9 +267,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param $prop Array of properties to get (in the keys)
 	 * @param $result ApiResult object
 	 * @param $thumbParams Array containing 'width' and 'height' items, or null
+	 * @param $version Version of image metadata (for things like jpeg which have different versions).
 	 * @return Array: result array
 	 */
-	static function getInfo( $file, $prop, $result, $thumbParams = null ) {
+	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {
 		$vals = array();
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
@@ -376,8 +379,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
-			$metadata = $file->getMetadata();
-			$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
+			$metadata = unserialize( $file->getMetadata() );
+			if ( $version !== 'latest' ) {
+				$metadata = $file->convertMetadataVersion( $metadata, $version );
+			}
+			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
 		}
 
 		if ( $mime ) {
@@ -463,6 +469,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_DFLT => -1
 			),
+			'metadataversion' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => '1',
+			),
 			'urlparam' => array(
 				ApiBase::PARAM_DFLT => '',
 				ApiBase::PARAM_TYPE => 'string',
@@ -540,6 +550,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'limit' => 'How many image revisions to return',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
+			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.", 
+						"Defaults to '1' for backwards compatibility" ),
 			'continue' => 'If the query response includes a continue value, use it here to get another page of results'
 		);
 	}

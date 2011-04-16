@@ -877,6 +877,14 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
 
+'GetMetadataVersion': modify the image metadata version currently in use. This is
+	used when requesting image metadata from a ForiegnApiRepo. Media handlers
+	that need to have versioned metadata should add an element to the end of
+	the version array of the form 'handler_name=version'. Most media handlers
+	won't need to do this unless they broke backwards compatibility with a
+	previous version of the media handler metadata output. 
+&$version: Array of version strings
+
 'GetPreferences': modify user preferences
 $user: User whose preferences are being modified.
 &$preferences: Preferences description array, to be fed to an HTMLForm object
@@ -1997,6 +2005,15 @@ $obj: The XmlDumpWriter object.
 &$out: The text being output.
 $row: The database row for the revision.
 $text: The revision text.
+
+'XMPGetInfo': Called when obtaining the list of XMP tags to extract. Can be used to add
+	additional tags to extract.
+&$items: Array containing information on which items to extract. See XMPInfo for details on the format.
+
+'XMPGetResults': Called just before returning the results array of parsing xmp data. Can be
+	used to post-process the results.
+&$data: Array of metadata sections (such as $data['xmp-general']) each section is an array of
+	metadata tags returned (each tag is either a value, or an array of values).
 
 More hooks might be available but undocumented, you can execute
 ./maintenance/findhooks.php to find hidden one.
