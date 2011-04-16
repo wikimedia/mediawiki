@@ -1548,7 +1548,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
 'recentchanges-legend'              => 'Opțiuni schimbări recente',
-'recentchangestext'                 => 'Schimbări recente ... (Log)',
+'recentchanges-summary'             => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description'    => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-newpage'       => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor'         => 'Aceasta este o modificare minoră',
@@ -3003,7 +3003,13 @@ Altele vor fi ascunse implicit.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lățime',
@@ -3018,7 +3024,6 @@ Altele vor fi ascunse implicit.
 'exif-ycbcrpositioning'            => 'Poziționarea Y și C',
 'exif-xresolution'                 => 'Rezoluție orizontală',
 'exif-yresolution'                 => 'Rezoluție verticală',
-'exif-resolutionunit'              => 'Unitate de rezoluție pentru X și Y',
 'exif-stripoffsets'                => 'Locația datelor imaginii',
 'exif-rowsperstrip'                => 'Numărul de linii per bandă',
 'exif-stripbytecounts'             => 'Biți corespunzători benzii comprimate',

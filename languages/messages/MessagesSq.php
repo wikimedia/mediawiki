@@ -1423,7 +1423,7 @@ Kjo informatë është publike.',
 'nchanges'                          => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'recentchanges'                     => 'Ndryshime së fundmi',
 'recentchanges-legend'              => 'Zgjedhjet e ndryshimeve momentale',
-'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
+'recentchanges-summary'             => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
 'recentchanges-label-newpage'       => 'Ky redaktim krijoi një faqe të re',
 'recentchanges-label-minor'         => 'Ky është një editim i vogël',
@@ -2804,7 +2804,13 @@ Të tjerat do të fshihen.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Gjerësia',
@@ -2819,7 +2825,6 @@ Të tjerat do të fshihen.
 'exif-ycbcrpositioning'            => 'Pozicioni Y dhe C',
 'exif-xresolution'                 => 'Rezolucioni horizontal',
 'exif-yresolution'                 => 'Rezolucioni vertikal',
-'exif-resolutionunit'              => 'Madhësia e njësisë se X dhe Y',
 'exif-stripoffsets'                => 'Vendi i figurave',
 'exif-rowsperstrip'                => 'Numri i rreshtave për shirit',
 'exif-stripbytecounts'             => 'Bajt për shirit të ngjeshur',

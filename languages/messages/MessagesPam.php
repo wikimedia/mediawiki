@@ -972,7 +972,7 @@ Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
 'nchanges'                          => '$1 {{PLURAL:$1|miyalilan|miyalilan}}',
 'recentchanges'                     => 'Bayung mengayalili',
 'recentchanges-legend'              => 'Pipamilinan kareng bayung mengayalili',
-'recentchangestext'                 => 'Talukyan mo reng tawling diling mengayalilan king bulung a ini.',
+'recentchanges-summary'             => 'Talukyan mo reng tawling diling mengayalilan king bulung a ini.',
 'recentchanges-feed-description'    => 'Talukian mo reng bayung diling mengayalili king wiki king feed a ini.',
 'rcnote'                            => "King lalam {{PLURAL:$1|is '''1''' change|ding tauling '''$1''' pamagbayu}} aniang tauling {{PLURAL:$2|day|'''$2''' aldo}}, aniang $5, $4.",
 'rcnotefrom'                        => 'Atilu king lalam deng miyalilan manibat anyang <b>$2</b> (angga king <b>$1</b> makalto).',
@@ -2040,7 +2040,13 @@ Detang aliwa tambing (by default) lang makasalikut.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',

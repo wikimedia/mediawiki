@@ -1052,7 +1052,7 @@ $1',
 'nchanges'                          => '$1 {{PLURAL:$1|тағйир|тағйирот}}',
 'recentchanges'                     => 'Тағйироти охирин',
 'recentchanges-legend'              => 'Ихтиёроти тағйироти охирин',
-'recentchangestext'                 => 'Назорати тағйиротҳои навтарин дар Википедиа дар ҳамин саҳифа аст.',
+'recentchanges-summary'             => 'Назорати тағйиротҳои навтарин дар Википедиа дар ҳамин саҳифа аст.',
 'recentchanges-feed-description'    => 'Радёбии охирин тағйироти ин вики дар ин хурд.',
 'rcnote'                            => "Дар поён  {{PLURAL:$1|'''1''' тағйире аст|'''$1''' тағйирот мебошанд}}, ки дар давоми {{PLURAL:$2|рӯҳ|'''$2''' рӯзҳои}} охир, сар карда аз $5, $4.",
 'rcnotefrom'                        => 'Дар зер тағйиротҳои охирин аз <b>$2</b> (то <b>$1</b> нишон дода шудааст).',
@@ -2121,7 +2121,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Васеъӣ',
@@ -2136,7 +2142,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Мавқеияти Y ва C',
 'exif-xresolution'                 => 'Таҳлилпазирии уфуқӣ',
 'exif-yresolution'                 => 'Таҳлилпазирии амудӣ',
-'exif-resolutionunit'              => 'Воҳиди тафкикпазирии X ва Y',
 'exif-stripoffsets'                => 'Ҷойгоҳи додаҳои акс',
 'exif-rowsperstrip'                => 'Теъдоди радифҳо дар ҳар навор',
 'exif-stripbytecounts'             => 'Байт дар ҳар навори фишурда',

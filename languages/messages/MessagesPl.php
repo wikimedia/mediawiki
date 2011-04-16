@@ -1520,7 +1520,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'nchanges'                          => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
 'recentchanges'                     => 'Ostatnie zmiany',
 'recentchanges-legend'              => 'Opcje ostatnich zmian',
-'recentchangestext'                 => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
+'recentchanges-summary'             => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
 'recentchanges-feed-description'    => 'Obserwuj najświeższe zmiany w tej wiki.',
 'recentchanges-label-newpage'       => 'W tej edycji utworzono nową stronę',
 'recentchanges-label-minor'         => 'To jest drobna zmiana',
@@ -3000,7 +3000,13 @@ Pozostałe pola zostaną domyślnie ukryte.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szerokość',
@@ -3015,7 +3021,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-ycbcrpositioning'            => 'Rozmieszczenie Y i C',
 'exif-xresolution'                 => 'Rozdzielczość w poziomie',
 'exif-yresolution'                 => 'Rozdzielczość w pionie',
-'exif-resolutionunit'              => 'Jednostka rozdzielczości X i Y',
 'exif-stripoffsets'                => 'Przesunięcie pasów obrazu',
 'exif-rowsperstrip'                => 'Liczba wierszy na pas obrazu',
 'exif-stripbytecounts'             => 'Liczba bajtów na pas obrazu',
@@ -3261,6 +3266,11 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsspeed-k' => 'kilometrów na godzinę',
 'exif-gpsspeed-m' => 'mil na godzinę',
 'exif-gpsspeed-n' => 'węzłów',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrów',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil morskich',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'kierunek geograficzny',

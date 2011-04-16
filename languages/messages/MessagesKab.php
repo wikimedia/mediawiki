@@ -708,7 +708,7 @@ i yesɛan akk awalen i banen-d).",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Abeddel|Ibeddlen}}',
 'recentchanges'                     => 'Ibeddlen imaynuten',
-'recentchangestext'                 => 'Ḍfer ibeddilen imaynuten n {{SITENAME}}.',
+'recentchanges-summary'             => 'Ḍfer ibeddilen imaynuten n {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Ḍfer ibeddilen imaynuten n wiki-yagi deg usuddem-agi.',
 'rcnote'                            => "Deg ukessar {{PLURAL:$1|yella '''yiwen''' ubeddel aneggaru|llan '''$1''' n yibeddlen ineggura}} deg {{PLURAL:$2|wass aneggaru|'''$2''' wussan ineggura}}, deg uzemz $3.",
 'rcnotefrom'                        => "Deg ukessar llan ibeddlen seg wasmi '''$2''' (ar '''$1''').",

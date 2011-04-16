@@ -1068,7 +1068,7 @@ Si vis id dare, opera tua tibi ascribentur.',
 'nchanges'                          => '$1 {{PLURAL:$1|mutatio|mutationes}}',
 'recentchanges'                     => 'Nuper mutata',
 'recentchanges-legend'              => 'Indicis paginarum nuper mutatarum praeferentiae',
-'recentchangestext'                 => 'Inspice mutationes recentes huic vici in hac pagina.',
+'recentchanges-summary'             => 'Inspice mutationes recentes huic vici in hac pagina.',
 'recentchanges-feed-description'    => 'Nuper mutata Viciae hoc in fluxu observare.',
 'recentchanges-label-newpage'       => 'Haec recensio paginam novam creavit',
 'recentchanges-label-minor'         => 'Haec est recensio minor',
@@ -2041,7 +2041,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-ycbcrpositioning'            => 'situatio Y et C',
 'exif-xresolution'                 => 'Resolutio horizontalis',
 'exif-yresolution'                 => 'Resolutio verticalis',
-'exif-resolutionunit'              => 'Unitum resolutionis X et Y',
 'exif-jpeginterchangeformatlength' => 'Chiliocteti datorum JPEG',
 'exif-whitepoint'                  => 'Chromaticitas puncti albi',
 'exif-primarychromaticities'       => 'Chromaticitates primariae',
@@ -2206,6 +2205,11 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-gpsspeed-k' => 'Chiliometra per horam',
 'exif-gpsspeed-m' => 'Milia per horam',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometra',
+'exif-gpsdestdistance-m' => 'Milia',
+'exif-gpsdestdistance-n' => 'Milia nautica',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Directio vera',

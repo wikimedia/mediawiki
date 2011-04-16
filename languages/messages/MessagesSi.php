@@ -1478,7 +1478,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'nchanges'                          => '$1 {{PLURAL:$1|වෙනස්වීම|වෙනස්වීම්}}',
 'recentchanges'                     => '‍නව වෙනස්කිරීම්',
 'recentchanges-legend'              => '‍නව වෙනස්වීම් සැකසුම් තෝරාගැනීම',
-'recentchangestext'                 => 'මෙම පිටුවේ විකියට සිදුකල ඉතා මෑත වෙනස්වීම් පසුහඹන්න.',
+'recentchanges-summary'             => 'මෙම පිටුවේ විකියට සිදුකල ඉතා මෑත වෙනස්වීම් පසුහඹන්න.',
 'recentchanges-feed-description'    => 'මෙම පෝෂකයෙහි විකියට බොහෝ මෑතදී සිදුකල වෙනස්වීම් හෙළිකරන්න.',
 'recentchanges-label-newpage'       => 'මෙම සංස්කරණය නව පිටුවක් නිර්මාණය කරන ලදී',
 'recentchanges-label-minor'         => 'මෙය සුළු සංස්කරණයකි',
@@ -2973,7 +2973,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'පළල',
@@ -2988,7 +2994,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Y හා C පිහිටුම්',
 'exif-xresolution'                 => 'තිරස් විභේදනය',
 'exif-yresolution'                 => 'සිරස් විභේදනය',
-'exif-resolutionunit'              => 'X හා Y විභේදනයන්හි ඒකක',
 'exif-stripoffsets'                => 'රූප දත්ත පරිස්ථානය',
 'exif-rowsperstrip'                => 'එක් තීරයකට පේළි ගණන',
 'exif-stripbytecounts'             => 'එක් සම්පීඩිත පේළියකට බයිට් ගණන',
@@ -3116,7 +3121,8 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-1'     => 'sRGB',
+'exif-colorspace-65535' => 'FFFF.H',
 
 'exif-componentsconfiguration-0' => 'නොපවතියි',
 'exif-componentsconfiguration-1' => 'Y',

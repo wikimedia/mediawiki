@@ -1547,7 +1547,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'nchanges'                          => '$1 {{PLURAL:$1|perubahan|perubahan}}',
 'recentchanges'                     => 'Perubahan terbaru',
 'recentchanges-legend'              => 'Opsi perubahan terbaru',
-'recentchangestext'                 => "Temukan perubahan terbaru dalam wiki di halaman ini. Keterangan: (beda) = perubahan, (versi) = sejarah revisi, '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, (± ''bita'') = jumlah penambahan/pengurangan isi, → = suntingan bagian, ← = ringkasan otomatis.
+'recentchanges-summary'             => "Temukan perubahan terbaru dalam wiki di halaman ini. Keterangan: (beda) = perubahan, (versi) = sejarah revisi, '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, (± ''bita'') = jumlah penambahan/pengurangan isi, → = suntingan bagian, ← = ringkasan otomatis.
 ----",
 'recentchanges-feed-description'    => 'Temukan perubahan terbaru dalam wiki di umpan ini.',
 'recentchanges-label-newpage'       => 'Suntingan ini membuat halaman baru',
@@ -2933,7 +2933,13 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lebar',
@@ -2948,7 +2954,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-ycbcrpositioning'            => 'Penempatan Y dan C',
 'exif-xresolution'                 => 'Resolusi horizontal',
 'exif-yresolution'                 => 'Resolusi vertikal',
-'exif-resolutionunit'              => 'Satuan resolusi X dan Y',
 'exif-stripoffsets'                => 'Lokasi data gambar',
 'exif-rowsperstrip'                => 'Jumlah baris per strip',
 'exif-stripbytecounts'             => 'Bita per strip kompresi',
@@ -3189,6 +3194,11 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpsspeed-k' => 'Kilometer per jam',
 'exif-gpsspeed-m' => 'Mil per jam',
 'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil laut',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah sejati',

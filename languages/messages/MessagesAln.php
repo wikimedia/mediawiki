@@ -1198,7 +1198,7 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'nchanges'                       => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'recentchanges'                  => 'Ndryshimet e fundit',
 'recentchanges-legend'           => 'Opcionet e ndryshimeve të reja',
-'recentchangestext'              => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
+'recentchanges-summary'          => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description' => 'Përcjelli ndryshimet mâ të reja të këtij wiki në këtë feed.',
 'recentchanges-label-newpage'    => 'Ky redaktim krijoi një faqe të re',
 'rcnote'                         => "Mâ poshtë {{PLURAL:$1|âsht '''1''' ndryshim|janë '''$1''' ndryshimet e fundit}} në {{PLURAL:$2|ditën|'''$2''' ditët}} e fundit, prej $5, $4.",
@@ -1612,7 +1612,13 @@ Tjerat kanë me mbetë të mshefuna.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Ndryshoni kët figurë/skedë me një mjet të jashtëm',

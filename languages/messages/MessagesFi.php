@@ -1529,7 +1529,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'nchanges'                          => '$1 {{PLURAL:$1|muutos|muutosta}}',
 'recentchanges'                     => 'Tuoreet muutokset',
 'recentchanges-legend'              => 'Tuoreiden muutosten asetukset',
-'recentchangestext'                 => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
+'recentchanges-summary'             => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
 'recentchanges-feed-description'    => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
 'recentchanges-label-newpage'       => 'Tämä muutos loi uuden sivun',
 'recentchanges-label-minor'         => 'Tämä on pieni muutos',
@@ -2889,7 +2889,13 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leveys',
@@ -2904,7 +2910,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-ycbcrpositioning'            => 'Y:n ja C:n asemointi',
 'exif-xresolution'                 => 'Kuvan resoluutio leveyssuunnassa',
 'exif-yresolution'                 => 'Kuvan resoluutio korkeussuunnassa',
-'exif-resolutionunit'              => 'Resoluution yksikkö X- ja Y-suunnassa',
 'exif-stripoffsets'                => 'Kuvatiedon sijainti',
 'exif-rowsperstrip'                => 'Kaistan rivien lukumäärä',
 'exif-stripbytecounts'             => 'Tavua pakatussa kaistassa',

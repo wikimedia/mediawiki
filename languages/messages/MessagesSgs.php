@@ -852,7 +852,7 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'nchanges'                          => '$1 {{PLURAL:$1|pakeitėms|pakeitėmā|pakeitėmu}}',
 'recentchanges'                     => 'Vielībė̅jė pakeitėmā',
 'recentchanges-legend'              => 'Vielībuju pakeitėmu pasėrinkėmā',
-'recentchangestext'                 => 'Tamė poslapī īr patīs vielībė̅ jė paketėmā tom pruojėktė.',
+'recentchanges-summary'             => 'Tamė poslapī īr patīs vielībė̅ jė paketėmā tom pruojėktė.',
 'recentchanges-feed-description'    => 'Keravuokėt patius vielībiausius pakeitėmus pruojektō tamė šaltėnī.',
 'rcnote'                            => "Žemiau īr '''$1''' {{PLURAL:$1|paskotinis pakeitims|paskotinē pakeitimā|paskotiniu pakeitimu}} par $2 {{PLURAL:$2|paskotinė̅jė dėina|paskotėniasės '''$2''' dėinas|paskotėniuju '''$2''' dėinū}} skaitlioujant nū $4, $5.",
 'rcnotefrom'                        => 'Žemiau īr pakeitėma pradedant nū <b>$2</b> (ruodom lėgė <b>$1</b> pakeitėmu).',
@@ -1733,7 +1733,13 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'             => 'Platoms',

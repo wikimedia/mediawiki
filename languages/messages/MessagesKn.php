@@ -990,7 +990,7 @@ $2',
 'nchanges'                          => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',
 'recentchanges'                     => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು',
 'recentchanges-legend'              => 'ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಆಯ್ಕೆಗಳು',
-'recentchangestext'                 => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
+'recentchanges-summary'             => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'recentchanges-feed-description'    => 'ವಿಕಿಯಲ್ಲಿ ಆಗುವ ಹೊಸ ಬದಲಾವಣೆಗಳ ಮೇಲೆ ನಿಗ ಇಡಲು ಉಪಯೋಗವಾಗುವ ಫೀಡು.',
 'recentchanges-label-minor'         => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
 'rcnote'                            => "$5, $4 ವರೆಗೆ ಹಿಂದಿನ {{PLURAL:$2|ದಿನದಲ್ಲಿ|'''$2''' ದಿನಗಳಲ್ಲಿ}} ಮಾಡಲಾಗಿರುವ {{PLURAL:$1|'''೧''' ಬದಲಾವಣೆ|'''$1''' ಬದಲಾವಣೆಗಳು}} ಕೆಳಗಿವೆ.",
@@ -1830,7 +1830,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                => 'ಅಗಲ',

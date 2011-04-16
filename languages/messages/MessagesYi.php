@@ -1380,7 +1380,7 @@ $1",
 'nchanges'                          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 'recentchanges'                     => 'לעצטע ענדערונגען',
 'recentchanges-legend'              => 'ברירות פאר לעצטע ענדערונגען',
-'recentchangestext'                 => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
+'recentchanges-summary'             => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
 'recentchanges-feed-description'    => 'גייט נאך די לעצטע ענדערונגען צו דער וויקי אין דעם בלאט.',
 'recentchanges-label-newpage'       => 'די רעדאַקטירונג האט באשאפֿן א נײַעם בלאַט',
 'recentchanges-label-minor'         => 'דאָס איז אַ מינערדיקע רעדאַקטירונג',
@@ -2634,7 +2634,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'               => 'ברייט',

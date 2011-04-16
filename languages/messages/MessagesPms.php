@@ -1302,7 +1302,7 @@ Costa anformassion a sarà pùblica.",
 'nchanges'                          => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
 'recentchanges'                     => 'Ùltime modìfiche',
 'recentchanges-legend'              => "Opsion dj'ùltime modìfiche",
-'recentchangestext'                 => 'An costa pàgina as ten cont dle modìfiche pì recente a la wiki.',
+'recentchanges-summary'             => 'An costa pàgina as ten cont dle modìfiche pì recente a la wiki.',
 'recentchanges-feed-description'    => 'Trassé le modìfiche dla wiki pì davzin-e ant ël temp an cost fluss.',
 'recentchanges-label-newpage'       => "Sta modìfica-sì a l'ha creà na neuva pàgina",
 'recentchanges-label-minor'         => "Costa a l'é na modìfica cita",
@@ -2738,7 +2738,13 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghëssa',
@@ -2753,7 +2759,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-ycbcrpositioning'            => 'Posissionament Y e C',
 'exif-xresolution'                 => 'Risolussion orizontal',
 'exif-yresolution'                 => 'Risolussion vertical',
-'exif-resolutionunit'              => "Unità d'amzura për le coordinà X e Y",
 'exif-stripoffsets'                => 'Posission dij dat dla figura',
 'exif-rowsperstrip'                => 'Nùmer ëd righe për banda',
 'exif-stripbytecounts'             => 'Bytes për banda compressa',

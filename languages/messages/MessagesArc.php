@@ -749,7 +749,7 @@ $messages = array(
 'nchanges'                    => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 'recentchanges'               => 'ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'recentchanges-legend'        => 'ܓܒܝܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
-'recentchangestext'           => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
+'recentchanges-summary'       => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
 'recentchanges-label-newpage' => 'ܫܘܚܠܦܐ ܗܢܐ ܒܪܐ ܦܐܬܐ ܚܕܬܐ',
 'recentchanges-label-minor'   => 'ܗܢܐ ܗܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'recentchanges-label-bot'     => 'ܒܘܬ (bot) ܥܒܕ ܗܢܐ ܫܘܚܠܦܐ',
@@ -1362,7 +1362,6 @@ $1',
 'exif-imagelength'         => 'ܐܘܪܟܐ',
 'exif-xresolution'         => 'ܢܩܕܘܬܐ ܐܘܦܩܝܬܐ',
 'exif-yresolution'         => 'ܢܩܕܘܬܐ ܥܡܘܕܝܬܐ',
-'exif-resolutionunit'      => 'ܚܕܝܘܬܐ ܕ X ܘ Y ܕܢܩܕܘܬܐ',
 'exif-imagedescription'    => 'ܟܘܢܝܐ ܕܨܘܪܬܐ',
 'exif-artist'              => 'ܣܝܘܡܐ',
 'exif-exposuretime-format' => '$1 ܪܦܦܐ ($2)',
@@ -1411,6 +1410,9 @@ $1',
 'exif-gpsspeed-k' => 'ܟܝܠܘܡܬܪ ܒܫܥܬܐ',
 'exif-gpsspeed-m' => 'ܡܝܠܐ ܒܫܥܬܐ',
 'exif-gpsspeed-n' => 'ܩܛܪ̈ܐ',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-m' => 'ܡܝܠ̈ܐ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ܨܘܒܐ ܬܪܝܨܐ',

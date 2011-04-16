@@ -1693,7 +1693,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',
 'recentchanges'                     => 'تغییرات اخیر',
 'recentchanges-legend'              => 'گزینه‌های تغییرات اخیر',
-'recentchangestext'                 => 'آخرین تغییرات ویکی را در این صفحه پی‌گیری کنید.',
+'recentchanges-summary'             => 'آخرین تغییرات ویکی را در این صفحه پی‌گیری کنید.',
 'recentchanges-feed-description'    => 'ردیابی آخرین تغییرات این ویکی در این خورد.',
 'recentchanges-label-newpage'       => 'این ویرایش یک صفحهٔ جدید ایجاد کرده‌است',
 'recentchanges-label-minor'         => 'این ویرایش جزئی است',
@@ -3124,7 +3124,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'عرض',
@@ -3139,7 +3145,6 @@ $1',
 'exif-ycbcrpositioning'            => 'موقعیت Y و C',
 'exif-xresolution'                 => 'تفکیک‌پذیری افقی',
 'exif-yresolution'                 => 'تفکیک‌پذیری عمودی',
-'exif-resolutionunit'              => 'واحد تفکیک‌پذیری X و Y',
 'exif-stripoffsets'                => 'جایگاه داده‌های تصویر',
 'exif-rowsperstrip'                => 'تعداد ردیف‌ها در هر نوار',
 'exif-stripbytecounts'             => 'بایت در هر نوار فشرده',
@@ -3161,8 +3166,8 @@ $1',
 'exif-colorspace'                  => 'فضای رنگی',
 'exif-componentsconfiguration'     => 'معنی هر یک از مؤلفه‌ها',
 'exif-compressedbitsperpixel'      => 'حالت فشرده‌سازی تصویر',
-'exif-pixelydimension'             => 'عرض تصویر معتبر',
-'exif-pixelxdimension'             => 'طول تصویر معتبر',
+'exif-pixelydimension'             => 'عرض تصویر',
+'exif-pixelxdimension'             => 'طول تصویر',
 'exif-usercomment'                 => 'توضیحات کاربر',
 'exif-relatedsoundfile'            => 'پروندهٔ صوتی مربوط',
 'exif-datetimeoriginal'            => 'تاریخ و زمان تولید داده‌ها',
@@ -3178,7 +3183,7 @@ $1',
 'exif-isospeedratings'             => 'درجه‌بندی سرعت ایزو',
 'exif-shutterspeedvalue'           => 'سرعت شاتر',
 'exif-aperturevalue'               => 'اندازهٔ دیافراگم',
-'exif-brightnessvalue'             => 'روشنی',
+'exif-brightnessvalue'             => 'روشنایی آپکس',
 'exif-exposurebiasvalue'           => 'خطای نوردهی',
 'exif-maxaperturevalue'            => 'حداکثر گشادگی زمین',
 'exif-subjectdistance'             => 'فاصلهٔ سوژه',
@@ -3384,6 +3389,11 @@ $1',
 'exif-gpsspeed-k' => 'کیلومتر بر ساعت',
 'exif-gpsspeed-m' => 'مایل بر ساعت',
 'exif-gpsspeed-n' => 'گره',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'کیلومتر',
+'exif-gpsdestdistance-m' => 'مایل',
+'exif-gpsdestdistance-n' => 'مایل دریایی',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

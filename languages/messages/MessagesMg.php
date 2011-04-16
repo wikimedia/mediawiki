@@ -1447,7 +1447,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'nchanges'                          => '{{PLURAL:$1|fanovana|fanovana}} $1',
 'recentchanges'                     => 'Fanovana farany',
 'recentchanges-legend'              => 'Safidy ny fanovàna farany',
-'recentchangestext'                 => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
+'recentchanges-summary'             => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
 'recentchanges-feed-description'    => "Arao ny fanovàna farany amin'ity wiki ity anaty topa",
 'recentchanges-label-newpage'       => 'Namorona pejy vaovao io fanovana io',
 'recentchanges-label-minor'         => 'Kely fotsiny ity fanovana ity',
@@ -2764,7 +2764,13 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                => 'Halalaka',

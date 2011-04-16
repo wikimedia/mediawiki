@@ -1176,7 +1176,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
 'recentchanges'                     => 'Pēdējās izmaiņas',
 'recentchanges-legend'              => 'Pēdējo izmaiņu iespējas',
-'recentchangestext'                 => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
+'recentchanges-summary'             => 'Šajā lapā ir šitajā viki izdarītās pēdējās izmaiņas.',
 'recentchanges-feed-description'    => 'Sekojiet līdzi jaunākajām izmaiņām vikijā izmantojot šo barotni.',
 'recentchanges-label-newpage'       => 'Šī ir jaunizveidota lapa',
 'recentchanges-label-minor'         => 'Šī ir maznozīmīga izmaiņa',
@@ -2387,7 +2387,13 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'platums',
@@ -2399,7 +2405,6 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-planarconfiguration'         => 'Datu izkārtojums',
 'exif-xresolution'                 => 'Horizontālā izšķirtspēja',
 'exif-yresolution'                 => 'Vertikālā izšķirtspēja',
-'exif-resolutionunit'              => 'X un Y izšķirtspējas mērvienība',
 'exif-jpeginterchangeformatlength' => 'JPEG datu baiti',
 'exif-datetime'                    => 'Attēla pēdējās izmainīšanas datums un laiks',
 'exif-imagedescription'            => 'Attēla nosaukums',

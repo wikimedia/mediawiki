@@ -208,17 +208,17 @@ $messages = array(
 'savedprefs'        => 'le do zmaselnei pu vreji',
 
 # Recent changes
-'recentchanges'     => 'puzi nunstika',
-'recentchangestext' => 'liste loi nu puzi galfi la .uikis.',
-'rcshowhidebots'    => '$1 lo zmiku',
-'rcshowhideliu'     => '$1 lo samyzva',
-'diff'              => 'te frica',
-'hist'              => 'galfi plivei',
-'hide'              => 'Toljarco',
-'show'              => 'Jarco',
-'minoreditletter'   => 'm',
-'newpageletter'     => 'n',
-'boteditletter'     => 'z',
+'recentchanges'         => 'puzi nunstika',
+'recentchanges-summary' => 'liste loi nu puzi galfi la .uikis.',
+'rcshowhidebots'        => '$1 lo zmiku',
+'rcshowhideliu'         => '$1 lo samyzva',
+'diff'                  => 'te frica',
+'hist'                  => 'galfi plivei',
+'hide'                  => 'Toljarco',
+'show'                  => 'Jarco',
+'minoreditletter'       => 'm',
+'newpageletter'         => 'n',
+'boteditletter'         => 'z',
 
 # Recent changes linked
 'recentchangeslinked' => "srana nunga'i",

@@ -597,7 +597,7 @@ $messages = array(
 'nchanges'                        => '$1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
 'recentchanges'                   => 'Пытартыш тӧрлатымаш-влак',
 'recentchanges-legend'            => 'Пытартыш тӧрлатымаш-влакын келыштарымашышт',
-'recentchangestext'               => 'Тиде лаштыкыште пытартыш тӧрлатымашым шекланаш.',
+'recentchanges-summary'           => 'Тиде лаштыкыште пытартыш тӧрлатымашым шекланаш.',
 'recentchanges-feed-description'  => 'Тиде кылыште пытартыш тӧрлатымашым шекланаш.',
 'recentchanges-label-newpage'     => 'Тиде тӧрлатымаш дене у лаштыкым ыштеныт',
 'recentchanges-label-minor'       => 'Тиде изирак тӧрлатымаш',
@@ -1037,7 +1037,13 @@ $messages = array(
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Файлым ӧрдыж программыште тӧрлаташ',

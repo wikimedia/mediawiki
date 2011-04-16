@@ -1417,7 +1417,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
 'recentchanges-legend'              => 'Optioune vun de rezenten Ännerungen',
-'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
+'recentchanges-summary'             => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Dës Ännerung huet eng nei Säit ugeluecht',
 'recentchanges-label-minor'         => 'Dëst ass eng kleng Ännerung',
@@ -2842,7 +2842,13 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breet',
@@ -2857,7 +2863,6 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-ycbcrpositioning'            => 'Y an C Positionéierung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
-'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
 'exif-stripoffsets'                => 'Plaz wou de Fichier vum Bild gespäichert ass',
 'exif-rowsperstrip'                => 'Zuel vun den Zeile pro Strëpp',
 'exif-stripbytecounts'             => 'Byte pro kompriméiert Strëpp',
@@ -2879,8 +2884,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
 'exif-compressedbitsperpixel'      => 'Kompriméiert Bite pro Pixel',
-'exif-pixelydimension'             => 'Gültëg Bildbreet',
-'exif-pixelxdimension'             => 'Gültëg Bildhéicht',
+'exif-pixelydimension'             => 'Breet vum Bild',
+'exif-pixelxdimension'             => 'Héicht vum Bild',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-relatedsoundfile'            => 'Tounfichier deen dozou gehéiert',
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
@@ -2894,9 +2899,9 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-exposureprogram'             => 'Beliichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spectral Sensitivitéit',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlechkeet (ISO)',
-'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
-'exif-aperturevalue'               => 'Blendewäert',
-'exif-brightnessvalue'             => 'Hellegkeetswäert',
+'exif-shutterspeedvalue'           => 'APEX Beliichtungszäit',
+'exif-aperturevalue'               => 'APEX Blendewäert',
+'exif-brightnessvalue'             => 'APEX Hellegkeet',
 'exif-exposurebiasvalue'           => 'Beliichtungsvirgab',
 'exif-maxaperturevalue'            => 'Gréisste Blend',
 'exif-subjectdistance'             => 'Distanz zum Sujet',
@@ -2958,7 +2963,13 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
+'exif-keywords'                    => 'Stéchwierder',
 'exif-objectname'                  => 'Kuerzen Titel',
+'exif-source'                      => 'Quell',
+'exif-languagecode'                => 'Sprooch',
+'exif-iimcategory'                 => 'Kategorie',
+'exif-cameraownername'             => 'Besëtzer vun der Kamera',
+'exif-nickname'                    => 'Informellen Numm vum Bild',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
@@ -3040,6 +3051,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-sensingmethod-7' => 'Dräilineare Sensor',
 'exif-sensingmethod-8' => 'Sequentielle lineare Farwsensor',
 
+'exif-filesource-3' => 'Digital Kamera',
+
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
 'exif-customrendered-0' => 'Standard',
@@ -3099,9 +3112,25 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsspeed-m' => 'Meile pro Stonn',
 'exif-gpsspeed-n' => 'Kniet',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Meilen',
+'exif-gpsdestdistance-n' => 'Nautesch Meilen',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',
 'exif-gpsdirection-m' => 'Magnéitesch Richtung',
+
+'exif-dc-date'   => 'Datum(en)',
+'exif-dc-rights' => 'Rechter',
+
+'exif-iimcategory-hth' => 'Gesondheet',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-wea' => 'Wieder',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Niddreg ($1)',
+'exif-urgency-high'   => 'Héich ($1)',
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',

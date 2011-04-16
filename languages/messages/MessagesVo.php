@@ -1208,7 +1208,7 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'nchanges'                          => '{{PLURAL:$1|votükam|votükams}} $1',
 'recentchanges'                     => 'Votükams nulik',
 'recentchanges-legend'              => 'Votükams nulik: paramets',
-'recentchangestext'                 => 'Su pad at binons votükams nulikün in vüki at.',
+'recentchanges-summary'             => 'Su pad at binons votükams nulikün in vüki at.',
 'recentchanges-feed-description'    => 'Getön votükamis nulikün in vük at me nünakanad at.',
 'recentchanges-label-newpage'       => 'Redakam at päjafon pad nulik',
 'recentchanges-label-minor'         => 'Atos binon redakam pülik',
@@ -2395,7 +2395,13 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Vidot',
@@ -2409,7 +2415,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-ycbcrpositioning'            => 'staned Y e C',
 'exif-xresolution'                 => 'Distidafäg horitätik',
 'exif-yresolution'                 => 'Distidafäg penditik',
-'exif-resolutionunit'              => 'Stabäd distidafäga X e Y',
 'exif-stripoffsets'                => 'Topam magodanünodas',
 'exif-rowsperstrip'                => 'Num kedetas a strip',
 'exif-stripbytecounts'             => 'Jöläts a strip pekobopedöl',

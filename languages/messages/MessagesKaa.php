@@ -1092,7 +1092,7 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'nchanges'                          => "{{PLURAL:$1|1 o'zgeris|$1 o'zgeris}}",
 'recentchanges'                     => "Aqırg'ı o'zgerisler",
 'recentchanges-legend'              => "Aqırg'ı o'zgerisler sazlawları",
-'recentchangestext'                 => "Bul bette usı wikidegi ha'zirgi o'zgerisler baqlanadı.",
+'recentchanges-summary'             => "Bul bette usı wikidegi ha'zirgi o'zgerisler baqlanadı.",
 'recentchanges-feed-description'    => "Wikidin' usı ag'ımındag'ı en' aqırg'ı o'zgerislerin baqlaw.",
 'recentchanges-label-newpage'       => "Bul o'zgeris arqalı taza bet jaratıldı",
 'recentchanges-label-minor'         => "Bul kishi o'zgeris",
@@ -1879,7 +1879,13 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'       => 'Yeni:',

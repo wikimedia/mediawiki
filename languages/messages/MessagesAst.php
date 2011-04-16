@@ -356,7 +356,7 @@ $1",
 'nstab-media'     => "Páxina d'archivu multimedia",
 'nstab-special'   => 'Páxina especial',
 'nstab-project'   => 'Páxina de proyeutu',
-'nstab-image'     => 'Archivu',
+'nstab-image'     => 'Ficheru',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Plantía',
 'nstab-help'      => 'Aida',
@@ -590,7 +590,7 @@ Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
 'minoredit'                        => 'Esta ye una edición menor',
 'watchthis'                        => 'Vixilar esta páxina',
 'savearticle'                      => 'Grabar páxina',
-'preview'                          => 'Previsualizar',
+'preview'                          => 'Entever',
 'showpreview'                      => 'Amosar previsualización',
 'showlivepreview'                  => 'Vista rápida',
 'showdiff'                         => 'Amosar cambeos',
@@ -1045,7 +1045,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefsnologintext'              => 'Necesites tar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
 'changepassword'                => 'Camudar clave',
 'prefs-skin'                    => 'Apariencia',
-'skin-preview'                  => 'Previsualizar',
+'skin-preview'                  => 'Entever',
 'datedefault'                   => 'Ensin preferencia',
 'prefs-datetime'                => 'Fecha y hora',
 'prefs-personal'                => 'Datos personales',
@@ -1308,7 +1308,7 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'nchanges'                          => '{{PLURAL:$1|un cambéu|$1 cambeos}}',
 'recentchanges'                     => 'Cambeos recientes',
 'recentchanges-legend'              => 'Opciones de cambeos recientes',
-'recentchangestext'                 => 'Sigui los cambeos más recientes na wiki nesta páxina.',
+'recentchanges-summary'             => 'Sigui los cambeos más recientes na wiki nesta páxina.',
 'recentchanges-feed-description'    => 'Sigue nesti canal los cambeos más recientes de la wiki.',
 'recentchanges-label-newpage'       => 'Esta edición creó una páxina nueva',
 'recentchanges-label-minor'         => 'Esta ye una edición menor',
@@ -1534,11 +1534,11 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'listfiles_count'       => 'Versiones',
 
 # File description page
-'file-anchor-link'          => 'Archivu',
+'file-anchor-link'          => 'Ficheru',
 'filehist'                  => 'Historial del archivu',
 'filehist-help'             => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
 'filehist-deleteall'        => 'esborrar too',
-'filehist-deleteone'        => 'esborrar',
+'filehist-deleteone'        => 'desaniciar',
 'filehist-revert'           => 'revertir',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Fecha/Hora',
@@ -1660,7 +1660,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'brokenredirects'        => 'Redireiciones rotes',
 'brokenredirectstext'    => 'Les siguientes redireiciones enllacien a páxines non esistentes:',
 'brokenredirects-edit'   => 'editar',
-'brokenredirects-delete' => 'esborrar',
+'brokenredirects-delete' => 'desaniciar',
 
 'withoutinterwiki'         => 'Páxines ensin interwikis',
 'withoutinterwiki-summary' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
@@ -1989,7 +1989,8 @@ La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]{{in
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Paez qu\'hai un problema cola to sesión; por precaución
+'sessionfailure-title' => 'Fallu de sesión',
+'sessionfailure'       => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
 navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 
@@ -2007,6 +2008,7 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protectexpiry'               => 'Caduca:',
 'protect_expiry_invalid'      => 'Caducidá non válida.',
 'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
+'protect-unchain-permissions' => 'Desbloquiar les demás opciones de protección',
 'protect-text'                => "Equí pues ver y camudar el nivel de proteición de la páxina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
 ye la configuración actual de la páxina '''$1''':",
@@ -2078,7 +2080,7 @@ revisión fuera restaurada o eliminada del archivu.",
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'amosar/restaurar',
 'undeleteviewlink'             => 'ver',
-'undeletereset'                => 'Llimpiar',
+'undeletereset'                => 'Reaniciar',
 'undeleteinvert'               => 'Invertir seleición',
 'undeletecomment'              => 'Motivu:',
 'undeletedarticle'             => 'restauró "[[$1]]"',
@@ -2125,6 +2127,7 @@ $1",
 'sp-contributions-newbies-title'       => "Contribuciones d'usuariu pa cuentes nueves",
 'sp-contributions-blocklog'            => 'Rexistru de bloqueos',
 'sp-contributions-deleted'             => "Contribuciones d'usuariu desaniciaes",
+'sp-contributions-uploads'             => 'xubes',
 'sp-contributions-logs'                => 'rexistros',
 'sp-contributions-talk'                => 'alderique',
 'sp-contributions-userrights'          => "xestión de permisos d'usuariu",
@@ -2134,6 +2137,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-search'              => 'Buscar contribuciones',
 'sp-contributions-username'            => "Direición IP o nome d'usuariu:",
+'sp-contributions-toponly'             => 'Amosar namái les ediciones que son les caberes revisiones',
 'sp-contributions-submit'              => 'Buscar',
 
 # What links here
@@ -2218,6 +2222,10 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'contribslink'                    => 'contribuciones',
 'autoblocker'                     => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[User:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
 'blocklogpage'                    => 'Rexistru de bloqueos',
+'blocklog-showlog'                => "Esti usuariu recibió un bloquéu previamente.
+El rexistru de bloqueos s'ufre darréu pa referencia:",
+'blocklog-showsuppresslog'        => "Esti usuariu recibió un bloquéu y s'anubrió previamente.
+El rexistru de desanicios s'ufre darréu pa referencia:",
 'blocklogentry'                   => 'bloquió [[$1]] con una caducidá de $2 $3',
 'reblock-logentry'                => 'camudó los parámetros de bloquéu de [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                    => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
@@ -2234,12 +2242,14 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:IPBlockList|llista d'I
 'range_block_disabled'            => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
 'ipb_expiry_invalid'              => 'Tiempu incorrectu.',
 'ipb_expiry_temp'                 => "Los bloqueos de nome d'usuariu escondíos han ser permanentes.",
+'ipb_hide_invalid'                => 'Nun se pue desaniciar esta cuenta; seique tenga demasiaes ediciones.',
 'ipb_already_blocked'             => '"$1" yá ta bloqueáu',
 'ipb-needreblock'                 => '$1 yá ta bloquiáu. ¿Quies camudar los parámetros?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}',
 'ipb_cant_unblock'                => "Error: Nun s'atopó'l bloquéu númberu $1. Seique yá fuera desbloquiáu.",
 'ipb_blocked_as_range'            => 'Error: La IP $1 nun ta bloquiada direutamente, polo que nun pue ser desloquiada. Sicasí, foi bloquiada como parte del intervalu $2, que pue ser desbloquiáu.',
 'ip_range_invalid'                => 'Rangu IP non válidu.',
+'ip_range_toolarge'               => 'Nun se permiten bloqueos mayores de /$1.',
 'blockme'                         => 'Blóquiame',
 'proxyblocker'                    => 'Bloquiador de proxys',
 'proxyblocker-disabled'           => 'Esta función ta deshabilitada.',
@@ -2425,8 +2435,8 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'import-interwiki-namespace' => 'Espaciu de nomes de destín:',
 'import-upload-filename'     => 'Nome del ficheru:',
 'import-comment'             => 'Comentariu:',
-'importtext'                 => "Por favor, esporta l'archivu dende la wiki d'orixe usando la [[Special:Export|utilidá d'esportación]].
-Guárdalu nel to ordenador y xúbilu equí.",
+'importtext'                 => "Por favor, esporta'l ficheru dende la wiki d'orixe usando la [[Special:Export|ferramienta d'esportación]].
+Guárdalu nel ordenador y xúbilu equí.",
 'importstart'                => 'Importando les páxines...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'importnopages'              => 'Nun hai páxines pa importar.',
@@ -2642,7 +2652,13 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchor',
@@ -2657,7 +2673,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-ycbcrpositioning'            => 'Allugamientu Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
-'exif-resolutionunit'              => 'Unidá de resolución X y Y',
 'exif-stripoffsets'                => 'Allugamientu de los datos de la imaxe',
 'exif-rowsperstrip'                => 'Númberu de files per banda',
 'exif-stripbytecounts'             => 'Bytes per banda comprimida',
@@ -2967,6 +2982,20 @@ la confirmación de les señes de corréu electrónicu:
 $5
 
 Esti códigu de confirmación caduca\'l $4.',
+'confirmemail_body_set'     => 'Daquién, seique tu dende la IP $1, camudó les señes de corréu de
+la cuenta "$2" a esta direición de corréu en {{SITENAME}}.
+
+Pa confirmar qu\'esta cuenta ye tuya daveres y reactivar les funciones
+de corréu en {{SITENAME}}, abri esti enllaz nel to navegador:
+
+$3
+
+Si la cuenta *nun* ye de to, calca nesti enllaz pa encaboxar
+la confirmación de les señes de corréu electrónicu:
+
+$5
+
+Esti códigu de confirmación caduca\'l $4.',
 'confirmemail_invalidated'  => 'Confirmación de direición de corréu electrónicu cancelada',
 'invalidateemail'           => 'Cancelar confirmación de corréu electrónicu',
 
@@ -3008,6 +3037,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'table_pager_first'        => 'Primer páxina',
 'table_pager_last'         => 'Postrer páxina',
 'table_pager_limit'        => 'Amosar $1 elementos per páxina',
+'table_pager_limit_label'  => 'Elementos por páxina:',
 'table_pager_limit_submit' => 'Dir',
 'table_pager_empty'        => 'Nun hai resultaos',
 
@@ -3073,6 +3103,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-hook-subscribedby'        => 'Suscritu por',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Llicencia',
+'version-poweredby-credits'        => "Esta wiki funciona con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'otros',
 'version-software'                 => 'Software instaláu',
 'version-software-product'         => 'Productu',
@@ -3080,7 +3111,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 
 # Special:FilePath
 'filepath'         => "Ruta d'archivu",
-'filepath-page'    => 'Archivu:',
+'filepath-page'    => 'Ficheru:',
 'filepath-submit'  => 'Dir',
 'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
 
@@ -3129,12 +3160,17 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 #Pon tolos fragmentos regex enantes d'esta llinia. Dexa esta llinia exautamente como ta</pre>",
 
 # Special:Tags
-'tag-filter'           => "Filtru d'[[Special:Tags|etiquetes]]:",
-'tag-filter-submit'    => 'Filtrar',
-'tags-title'           => 'Etiquetes',
-'tags-hitcount-header' => 'Cambeos etiquetaos',
-'tags-edit'            => 'editar',
-'tags-hitcount'        => '$1 {{PLURAL:$1|cambéu|cambeos}}',
+'tags'                    => 'Etiquetes válides pa cambeos',
+'tag-filter'              => "Filtru d'[[Special:Tags|etiquetes]]:",
+'tag-filter-submit'       => 'Filtrar',
+'tags-title'              => 'Etiquetes',
+'tags-intro'              => "Esta páxina llista les etiquetes coles que'l software pue marcar una edición, y el so significáu.",
+'tags-tag'                => "Nome d'etiqueta",
+'tags-display-header'     => 'Aspeutu nes llistes de cambios',
+'tags-description-header' => 'Descripción completa del significáu',
+'tags-hitcount-header'    => 'Cambeos etiquetaos',
+'tags-edit'               => 'editar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambéu|cambeos}}',
 
 # Special:ComparePages
 'comparepages'     => 'Comparar páxines',
@@ -3146,9 +3182,13 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 'compare-submit'   => 'Comparar',
 
 # Database error messages
-'dberr-header'   => 'Esta wiki tien un problema',
-'dberr-problems' => '¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.',
-'dberr-info'     => '(Nun se pue contautar cola base de datos del sirvidor: $1)',
+'dberr-header'      => 'Esta wiki tien un problema',
+'dberr-problems'    => '¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.',
+'dberr-again'       => 'Tenta esperar dellos minutos y recargar.',
+'dberr-info'        => '(Nun se pue contautar cola base de datos del sirvidor: $1)',
+'dberr-usegoogle'   => 'Pues probar a guetar con Google mentanto.',
+'dberr-outofdate'   => 'Atalanta que los sos índices del nuesu conteníu seique nun tean actualizaos.',
+'dberr-cachederror' => 'Esta ye una copia na caché de la páxina que se pidiera, y pue que nun tea actualizada.',
 
 # HTML forms
 'htmlform-required'            => 'Se requier esti valor',

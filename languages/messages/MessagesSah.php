@@ -1301,7 +1301,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'nchanges'                          => '$1 {{PLURAL:$1|уларытыы|уларытыылар}}',
 'recentchanges'                     => 'Кэнники уларытыылар',
 'recentchanges-legend'              => 'Кэлиҥҥи уларытыылар хайдах көстөллөрүн туруоруу',
-'recentchangestext'                 => 'Манна хаһан оҥоһуллубуттарынан сааһыланан {{SITENAME}} кэнники уларыытыылара көстөллөр.',
+'recentchanges-summary'             => 'Манна хаһан оҥоһуллубуттарынан сааһыланан {{SITENAME}} кэнники уларыытыылара көстөллөр.',
 'recentchanges-feed-description'    => 'Бу ботуокка биики бүтэһик уларыйыыларын кэтииргэ.',
 'recentchanges-label-newpage'       => 'Бу уларытыы түмүгэр саҥа сирэй айыллыбыт.',
 'recentchanges-label-minor'         => 'Бу улахан суолтата суох уларытыы',
@@ -2735,7 +2735,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Кэтитэ',
@@ -2750,7 +2756,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y уонна C ханан тураллара',
 'exif-xresolution'                 => 'Сытыары разрешениета',
 'exif-yresolution'                 => 'Туруору разрешениета',
-'exif-resolutionunit'              => 'Разрешениены тугунан кээмэйдиэххэ',
 'exif-stripoffsets'                => 'Ойуу дааннайдара ханна баар буолара',
 'exif-rowsperstrip'                => 'Биир блокка төһө строка баар буолара',
 'exif-stripbytecounts'             => 'Хам тутуллубут блок кээмэйэ',
@@ -2992,6 +2997,11 @@ $1',
 'exif-gpsspeed-k' => 'км/чаас',
 'exif-gpsspeed-m' => 'Миляны чааска',
 'exif-gpsspeed-n' => 'Узел',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километр',
+'exif-gpsdestdistance-m' => 'Миилэ',
+'exif-gpsdestdistance-n' => 'Байҕал миилэтэ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Дьиҥнээх',

@@ -1108,16 +1108,20 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'metadata-expand'   => 'विस्तारितानि विवरणानि दर्शयतु',
 'metadata-collapse' => 'विस्तारितानि विवरणानि लोपयतु',
 'metadata-fields'   => 'अस्मिन् तालिकायां दर्शिता सूचना संचिकायाः अधस्तात् मेटाडाटा इत्यस्मिन् सदा दर्शिता भविष्यति।
-
 अवशिष्टा सूचना सदा निगूढा भविष्यति।
-
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'बाह्यां प्रणालीं उपयोज्य इमां संचिकां संपादयतु।',

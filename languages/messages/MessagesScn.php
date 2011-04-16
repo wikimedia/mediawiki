@@ -1287,7 +1287,7 @@ L'operazioni nun pò èssiri annullata.",
 'nchanges'                          => '$1 {{PLURAL:$1|canciamentu|canciamenti}}',
 'recentchanges'                     => 'Ùrtimi canciamenti',
 'recentchanges-legend'              => 'Opzioni ùrtimi canciamenti',
-'recentchangestext'                 => 'Chista pàggina prisenta li canci cchiù ricenti ê cuntinuti dô situ.',
+'recentchanges-summary'             => 'Chista pàggina prisenta li canci cchiù ricenti ê cuntinuti dô situ.',
 'recentchanges-feed-description'    => 'Stu feed riporta li canciamenti cchiù ricenti a li cuntinuti dû situ.',
 'recentchanges-label-newpage'       => 'This edit havi creatu na nova pàggina',
 'recentchanges-label-minor'         => 'Chista è nu canciamentu nnicu',
@@ -2503,7 +2503,13 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghizza',
@@ -2518,7 +2524,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-ycbcrpositioning'            => 'Pusizziunamentu cumpunenti Y e C',
 'exif-xresolution'                 => 'Risuluzzioni urizzuntali',
 'exif-yresolution'                 => 'Risuluzzioni virticali',
-'exif-resolutionunit'              => 'Unitati di misura risuluzzioni X e Y',
 'exif-stripoffsets'                => 'Pusizzioni dî dati mmàggini',
 'exif-rowsperstrip'                => 'Nùmmiru righi pi striscia',
 'exif-stripbytecounts'             => 'Nùmmiru di byte pi striscia cumpressa',

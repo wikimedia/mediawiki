@@ -1428,7 +1428,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'nchanges'                          => '$1 {{PLURAL:$1|ændring|ændringer}}',
 'recentchanges'                     => 'Seneste ændringer',
 'recentchanges-legend'              => 'Indstillinger for seneste ændringer',
-'recentchangestext'                 => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
+'recentchanges-summary'             => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
 'recentchanges-feed-description'    => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Denne redigering oprettede en ny side',
 'recentchanges-label-minor'         => 'Dette er en mindre ændring',
@@ -2816,7 +2816,13 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredde',
@@ -2831,7 +2837,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-ycbcrpositioning'            => 'Y og C positionering',
 'exif-xresolution'                 => 'Horisontal opløsning',
 'exif-yresolution'                 => 'Vertikal opløsning',
-'exif-resolutionunit'              => 'Måleenhed for opløsning',
 'exif-stripoffsets'                => 'Bileddata-forskydning',
 'exif-rowsperstrip'                => 'Antal linjer pr. stribe',
 'exif-stripbytecounts'             => 'Bytes pr. komprimeret stribe',
@@ -3072,6 +3077,11 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knob',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Sømil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',

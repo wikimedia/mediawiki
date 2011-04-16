@@ -9,6 +9,7 @@
  *
  * @author Amikeco
  * @author Andrijko Z.
+ * @author Namik
  */
 
 $messages = array(
@@ -58,11 +59,18 @@ $messages = array(
 'nov'           => 'ЦӀе',
 'dec'           => 'Фaн',
 
-'about' => 'Хакъиндай',
+'about'      => 'Хакъиндай',
+'mytalk'     => 'Зин ихтилатрин чар',
+'navigation' => 'Къекъуьн',
 
 # Cologne Blue skin
 'qbfind' => 'Жугъун',
 'qbedit' => 'Дегишарун',
+
+# Vector skin
+'vector-action-delete' => 'Къакъудун',
+'vector-view-create'   => 'Туькlуьрун',
+'vector-view-edit'     => 'Дегишарун',
 
 'errorpagetitle'   => 'ГъалатI',
 'returnto'         => 'Хкун $1.',
@@ -73,6 +81,7 @@ $messages = array(
 'history'          => 'Хъувун тарих',
 'history_short'    => 'Тарих',
 'edit'             => 'Дегишарун',
+'create'           => 'Туькlуьрун',
 'delete'           => 'Къакъудун',
 'deletethispage'   => 'Къакъудун и хъувун',
 'protect'          => 'Xуьн',
@@ -83,6 +92,7 @@ $messages = array(
 'talk'             => 'Рахун',
 'toolbox'          => 'Aлаткъаб',
 'jumpto'           => 'Къудгъунун:',
+'jumptonavigation' => 'къекъуьн',
 'jumptosearch'     => 'ахтармишун',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -93,8 +103,10 @@ $messages = array(
 'mainpage'     => 'Асул хъувун',
 
 'youhavenewmessages' => 'Вунз ава $1 ($2).',
+'newmessageslink'    => 'цlийи хъагъаз',
 'editsection'        => 'дегишарун',
 'editold'            => 'дегишарун',
+'editlink'           => 'Дигишарун',
 'editsectionhint'    => 'Дегишарун пай: $1',
 'showtoc'            => 'къаларун',
 'hidetoc'            => 'чуьнуьхун',
@@ -105,12 +117,17 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Хъувун',
+'nstab-user'      => 'Ишлемишчидин чар',
 'nstab-special'   => 'КьетIен хъувун',
 'nstab-image'     => 'Шикил',
 'nstab-mediawiki' => 'Меслят',
 
 # General errors
 'viewsource' => 'Къаларун булах',
+
+# Login and logout pages
+'userlogin'  => 'Чарчел фин / цlийи чар туькlуьрун',
+'userlogout' => 'Экъечlун',
 
 # Edit pages
 'minoredit'      => 'И гъвечIи дегишарун',
@@ -121,27 +138,31 @@ $messages = array(
 'editingsection' => 'Дегишарун $1 (пай)',
 
 # History pages
-'last'       => 'эхиримжи',
-'page_first' => 'сифте',
-'page_last'  => 'эхиримжи',
+'last'                   => 'эхиримжи',
+'page_first'             => 'сифте',
+'page_last'              => 'эхиримжи',
+'history-fieldset-title' => 'Чарчин тарих',
 
 # Diffs
 'lineno' => 'ЦIар $1:',
 
 # Search results
-'viewprevnext' => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
-'powersearch'  => 'Ахтармишун',
+'viewprevnext'             => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
+'search-interwiki-caption' => 'Мукьва проект',
+'powersearch'              => 'Ахтармишун',
 
 # Preferences page
 'yourrealname' => 'Xалис тIвар:',
 
 # Recent changes
+'rcshowhidemine'  => '$1 зин дигишунар',
 'diff'            => 'тафават',
 'hist'            => 'тарих',
 'hide'            => 'Чуьнуьхун',
 'show'            => 'Къаларун',
 'minoreditletter' => 'г',
 'newpageletter'   => 'ЦI',
+'boteditletter'   => 'б',
 
 # Upload
 'upload' => 'Парвиниз шикил',
@@ -163,7 +184,11 @@ $messages = array(
 'movethispage' => 'Юзун и хъувун',
 
 # Book sources
-'booksources' => 'Ктаб булах',
+'booksources'    => 'Ктаб булах',
+'booksources-go' => 'Фин',
+
+# Special:Log
+'log' => 'Ктабар',
 
 # Special:AllPages
 'allpages'       => 'Вири хъувун',
@@ -176,6 +201,8 @@ $messages = array(
 
 # Delete
 'deletepage'            => 'Къакъудун хъувун',
+'dellogpage'            => 'Чар къакъудун',
+'deletecomment'         => 'Кар',
 'deletereasonotherlist' => 'Маса фагьум',
 
 # Rollback
@@ -188,12 +215,20 @@ $messages = array(
 'blanknamespace' => '(Асул)',
 
 # Contributions
-'uctop' => '(кIукI)',
+'contributions' => 'За авунай кIвалах',
+'mycontris'     => 'За авунай кlвалах',
+'uctop'         => '(кIукI)',
 
-'sp-contributions-talk' => 'Рахун',
+'sp-contributions-blocklog' => 'чинрин хара',
+'sp-contributions-talk'     => 'Рахун',
+
+# What links here
+'whatlinkshere-page' => 'Ишлемишчи',
 
 # Block/unblock
-'blocklink' => 'тIаб',
+'blockip'      => 'Ишлемишзавайдан хара',
+'blocklink'    => 'тIаб',
+'blocklogpage' => 'Чинрин хара',
 
 # Move page
 'movearticle' => 'Юзун хъувун:',
@@ -202,16 +237,24 @@ $messages = array(
 'movereason'  => 'Фагьум:',
 
 # Tooltip help for the actions
-'tooltip-ca-protect' => 'Xуьн и хъувун',
-'tooltip-ca-delete'  => 'Къакъудун и хъувун',
-'tooltip-ca-move'    => 'Юзун и хъувун',
-'tooltip-search'     => 'Ахтармишун {{SITENAME}}',
-'tooltip-t-upload'   => 'Парвиниз шикил',
+'tooltip-pt-userpage' => 'Куьне ишлемишзавай чар',
+'tooltip-pt-logout'   => 'Экъечlун',
+'tooltip-ca-protect'  => 'Xуьн и хъувун',
+'tooltip-ca-delete'   => 'Къакъудун и хъувун',
+'tooltip-ca-move'     => 'Юзун и хъувун',
+'tooltip-search'      => 'Ахтармишун {{SITENAME}}',
+'tooltip-t-upload'    => 'Парвиниз шикил',
+
+# Browsing diffs
+'previousdiff' => 'Иски дегишунар',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',
 'namespacesall' => 'вири',
 'monthsall'     => 'вири',
+
+# Watchlist editing tools
+'watchlisttools-raw' => 'Клигзавай цlарцlин дегишунар',
 
 # Special:SpecialPages
 'specialpages' => 'КьетIен хъувун',

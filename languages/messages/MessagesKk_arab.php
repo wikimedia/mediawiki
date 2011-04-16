@@ -1360,7 +1360,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 # Recent changes
 'nchanges'                          => '$1 وزگەرىس',
 'recentchanges'                     => 'جۋىقتاعى وزگەرىستەر',
-'recentchangestext'                 => 'بۇل بەتتە وسى ۋىيكىيدەگى بولعان جۋىقتاعى وزگەرىستەر بايقالادى.',
+'recentchanges-summary'             => 'بۇل بەتتە وسى ۋىيكىيدەگى بولعان جۋىقتاعى وزگەرىستەر بايقالادى.',
 'recentchanges-feed-description'    => 'بۇل ارنامەنەن ۋىيكىيدەگى ەڭ سوڭعى وزگەرىستەر قاداعالانادى.',
 'rcnote'                            => "$3 كەزىنە دەيىن — تومەندە سوڭعى {{PLURAL:$2|كۇندەگى|'''$2''' كۇندەگى}}, سوڭعى '''$1''' وزگەرىس كورسەتىلەدى.",
 'rcnotefrom'                        => "'''$2''' كەزىنەن بەرى — تومەندە '''$1''' جەتكەنشە دەيىن وزگەرىستەر كورسەتىلەدى.",
@@ -2481,7 +2481,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ەنى',
@@ -2496,7 +2502,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y قۇراشى جانە C قۇراشى مەكەندەۋى',
 'exif-xresolution'                 => 'دەرەلەي اجىراتىلىمدىعى',
 'exif-yresolution'                 => 'تىرەلەي اجىراتىلىمدىعى',
-'exif-resolutionunit'              => 'X جانە Y بويىنشا اجىراتىلىمدىق بىرلىگى',
 'exif-stripoffsets'                => 'سۋرەت دەرەرەكتەرىنىڭ جايعاسۋى',
 'exif-rowsperstrip'                => 'بەلدىك سايىن جول سانى',
 'exif-stripbytecounts'             => 'قىسىمدالعان بەلدىك سايىن بايت سانى',

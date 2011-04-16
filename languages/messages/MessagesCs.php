@@ -1587,7 +1587,7 @@ Tuto operaci nelze vrátit zpět.',
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změny|změn}}',
 'recentchanges'                     => 'Poslední změny',
 'recentchanges-legend'              => 'Možnosti posledních změn',
-'recentchangestext'                 => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
+'recentchanges-summary'             => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
 'recentchanges-feed-description'    => 'Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.',
 'recentchanges-label-newpage'       => 'Touto editací byla založena nová stránka',
 'recentchanges-label-minor'         => 'Toto je malá editace',
@@ -3004,7 +3004,13 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šířka',
@@ -3019,7 +3025,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-ycbcrpositioning'            => 'Umístění Y a C',
 'exif-xresolution'                 => 'Rozlišení obrázku na šířku',
 'exif-yresolution'                 => 'Rozlišení obrázku na výšku',
-'exif-resolutionunit'              => 'Jednotky rozlišení',
 'exif-stripoffsets'                => 'Umístění dat obrázku',
 'exif-rowsperstrip'                => 'Počet řádků na pás',
 'exif-stripbytecounts'             => 'Počet bajtů na komprimovaný pás',
@@ -3262,6 +3267,11 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'kt',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometry',
+'exif-gpsdestdistance-m' => 'Míle',
+'exif-gpsdestdistance-n' => 'Námořní míle',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravý kurs',

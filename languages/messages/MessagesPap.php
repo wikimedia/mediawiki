@@ -229,15 +229,15 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 'badsig'         => 'Firma inválido; kontrolá e HTML uzá.',
 
 # Recent changes
-'recentchanges'     => 'Kambionan resien',
-'recentchangestext' => 'Sigui e kambionan mas resien na {{SITENAME}} riba e página aki.',
-'rclistfrom'        => 'Mustra kambionan nobo kuminsando for di $1',
-'rcshowhideminor'   => '$1 kambionan menor',
-'rcshowhidebots'    => '$1 botnan',
-'rcshowhideanons'   => '$1 uzadónan anonimo',
-'rclinks'           => 'Mustra último $1 kambionan den último $2 dianan<br />$3',
-'hide'              => 'Skonde',
-'show'              => 'Mustra',
+'recentchanges'         => 'Kambionan resien',
+'recentchanges-summary' => 'Sigui e kambionan mas resien na {{SITENAME}} riba e página aki.',
+'rclistfrom'            => 'Mustra kambionan nobo kuminsando for di $1',
+'rcshowhideminor'       => '$1 kambionan menor',
+'rcshowhidebots'        => '$1 botnan',
+'rcshowhideanons'       => '$1 uzadónan anonimo',
+'rclinks'               => 'Mustra último $1 kambionan den último $2 dianan<br />$3',
+'hide'                  => 'Skonde',
+'show'                  => 'Mustra',
 
 # File description page
 'file-anchor-link' => 'Imagen',

@@ -1612,7 +1612,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'nchanges'                          => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 'recentchanges'                     => 'Letzte Änderungen',
 'recentchanges-legend'              => 'Anzeigeoptionen',
-'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
+'recentchanges-summary'             => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Neue Seite',
 'recentchanges-label-minor'         => 'Kleine Änderung',
@@ -3064,7 +3064,13 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breite',
@@ -3079,7 +3085,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-ycbcrpositioning'            => 'Y und C Positionierung',
 'exif-xresolution'                 => 'Horizontale Auflösung',
 'exif-yresolution'                 => 'Vertikale Auflösung',
-'exif-resolutionunit'              => 'Maßeinheit der Auflösung',
 'exif-stripoffsets'                => 'Bilddaten-Versatz',
 'exif-rowsperstrip'                => 'Anzahl Zeilen pro Streifen',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifen',
@@ -3101,8 +3106,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-colorspace'                  => 'Farbraum',
 'exif-componentsconfiguration'     => 'Bedeutung einzelner Komponenten',
 'exif-compressedbitsperpixel'      => 'Komprimierte Bits pro Pixel',
-'exif-pixelydimension'             => 'Gültige Bildbreite',
-'exif-pixelxdimension'             => 'Gültige Bildhöhe',
+'exif-pixelydimension'             => 'Bildbreite',
+'exif-pixelxdimension'             => 'Bildhöhe',
 'exif-usercomment'                 => 'Benutzerkommentare',
 'exif-relatedsoundfile'            => 'Zugehörige Tondatei',
 'exif-datetimeoriginal'            => 'Erfassungszeitpunkt',
@@ -3180,10 +3185,27 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsareainformation'          => 'Name des GPS-Gebietes',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
+'exif-keywords'                    => 'Stichwörter',
 'exif-objectname'                  => 'Kurztitel',
+'exif-source'                      => 'Quelle',
+'exif-languagecode'                => 'Sprache',
+'exif-iimcategory'                 => 'Kategorie',
+'exif-datetimeexpires'             => 'Nicht verwenden nach',
+'exif-datetimereleased'            => 'Veröffentlicht am',
+'exif-lens'                        => 'Verwendetes Objektiv',
+'exif-serialnumber'                => 'Seriennummer der Kamera',
+'exif-cameraownername'             => 'Kamerabesitzer',
+'exif-copyrighted'                 => 'Urheberrechtsstatus',
+'exif-copyrightowner'              => 'Urheberrechtsinhaber',
+'exif-usageterms'                  => 'Nutzungsbedingungen',
+'exif-originalimageheight'         => 'Bildhöhe vor dem Zuschneiden',
+'exif-originalimagewidth'          => 'Bildbreite vor dem Zuschneiden',
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',
+
+'exif-copyrighted-true'  => 'Geschützt',
+'exif-copyrighted-false' => 'Gemeinfrei',
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
@@ -3198,6 +3220,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
+
+'exif-colorspace-65535' => 'Nicht kalibriert',
 
 'exif-componentsconfiguration-0' => 'Existiert nicht',
 
@@ -3310,6 +3334,10 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpslongitude-e' => 'östl. Länge',
 'exif-gpslongitude-w' => 'westl. Länge',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} über dem Meeresspiegel',
+'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} unter dem Meeresspiegel',
+
 'exif-gpsstatus-a' => 'Messung läuft',
 'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
@@ -3321,9 +3349,45 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knoten',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Meilen',
+'exif-gpsdestdistance-n' => 'Nautische Meilen',
+
+'exif-gpsdop-excellent' => 'Ausgezeichnet ($1)',
+'exif-gpsdop-good'      => 'Gut ($1)',
+'exif-gpsdop-moderate'  => 'Mittel ($1)',
+'exif-gpsdop-poor'      => 'Schwach ($1)',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächliche Richtung',
 'exif-gpsdirection-m' => 'Magnetische Richtung',
+
+'exif-ycbcrpositioning-1' => 'Zentriert',
+
+'exif-dc-rights' => 'Rechte',
+
+'exif-isospeedratings-overflow' => 'Größer als 65535',
+
+'exif-iimcategory-ace' => 'Kunst, Kultur und Unterhaltung',
+'exif-iimcategory-clj' => 'Kriminalität und Recht',
+'exif-iimcategory-dis' => 'Katastrophen und Unfälle',
+'exif-iimcategory-fin' => 'Wirtschaft und Geschäfte',
+'exif-iimcategory-edu' => 'Bildung',
+'exif-iimcategory-evn' => 'Umwelt',
+'exif-iimcategory-hth' => 'Gesundheit',
+'exif-iimcategory-lab' => 'Arbeit',
+'exif-iimcategory-lif' => 'Lifestyle und Freizeit',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religion und Glaube',
+'exif-iimcategory-sci' => 'Wissenschaft und Technologie',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krieg, Konflikte und Unruhen',
+'exif-iimcategory-wea' => 'Wetter',
+
+'exif-urgency-low'   => 'Niedrig ($1)',
+'exif-urgency-high'  => 'Hoch ($1)',
+'exif-urgency-other' => 'Benutzerdefinierte Priorität ($1)',
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',
