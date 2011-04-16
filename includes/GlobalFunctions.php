@@ -492,7 +492,7 @@ function wfMessage( $key /*...*/) {
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
  * Varargs: message keys
- * @return \type{Message}
+ * @return Message
  * @since 1.18
  */
 function wfMessageFallback( /*...*/ ) {
