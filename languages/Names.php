@@ -16,6 +16,7 @@
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
 	'ang' => 'Ænglisc',	# Old English (Bug 23283)
+	'anp' => 'अङ्गिका',	# Angika
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'arn' => 'Mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
@@ -45,6 +46,7 @@
 	'bpy' => 'ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী',	# Bishnupriya Manipuri
 	'bqi' => 'بختياري',	# Bakthiari
 	'br' => 'Brezhoneg',	# Breton
+	'brh' => 'Bráhuí',	# Brahui
 	'bs' => 'Bosanski',		# Bosnian
 	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Bugis
 	'bxr' => 'Буряад',	# Buryat (Russia)
@@ -76,6 +78,7 @@
 	'de-formal' => "\xE2\x80\xAADeutsch (Sie-Form)\xE2\x80\xAC",		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
+	'dtp' => 'Dusun Bundu-liwan', # Central Dusun
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
 	'ee' => 'Eʋegbe',	# Éwé
@@ -144,6 +147,7 @@
 	'it' => 'Italiano',		# Italian
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language - do no localise, see ike/ikt - falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
+	'jam' => 'Patios',	# Jamaican Creole English
 	'jbo' => 'Lojban',		# Lojban
 	'jut' => 'Jysk',	# Jutish / Jutlandic
 	'jv' => 'Basa Jawa',	# Javanese
@@ -153,6 +157,7 @@
 	'kbd' => 'Къэбэрдеибзэ / Qabardjajəbza',	# Kabardian (multiple scripts - defaults to Cyrillic)
 	'kbd-cyrl' => 'къэбэрдеибзэ',	# Kabardian (Cyrillic)
 	'kg' => 'Kongo',	# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
+	'khw' => 'کھوار',	# Khowar
 	'ki' => 'Gĩkũyũ',	# Gikuyu
 	'kiu' => 'Kırmancki',	# Kirmanjki
 	'kj' => 'Kwanyama',	# Kwanyama
