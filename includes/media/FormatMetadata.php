@@ -127,7 +127,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -138,7 +138,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -149,7 +149,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -160,7 +160,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -173,7 +173,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -188,7 +188,7 @@ class FormatMetadata {
 							$val = self::msg( 'XYResolution', 'c', self::formatNum( $val ) );
 							break;
 						default:
-							$val = $val;
+							/* If not recognized, display as is. */
 							break;
 					}
 					break;
@@ -204,7 +204,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -215,7 +215,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -254,7 +254,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -269,7 +269,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -282,7 +282,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -315,7 +315,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -326,7 +326,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -337,7 +337,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -348,7 +348,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -359,7 +359,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -370,7 +370,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -381,7 +381,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -392,7 +392,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -403,7 +403,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -414,7 +414,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -425,7 +425,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -436,7 +436,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -447,7 +447,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -460,7 +460,7 @@ class FormatMetadata {
 						$val = self::msg( 'GPSLatitude', $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -472,7 +472,7 @@ class FormatMetadata {
 						$val = self::msg( 'GPSLongitude', $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -491,7 +491,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -502,7 +502,7 @@ class FormatMetadata {
 						$val = self::msg( $tag, $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -516,7 +516,7 @@ class FormatMetadata {
 						$val = self::msg( 'GPSDirection', $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -536,7 +536,7 @@ class FormatMetadata {
 						$val = self::msg( 'GPSSpeed', $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
@@ -547,7 +547,7 @@ class FormatMetadata {
 						$val = self::msg( 'GPSDestDistance', $val );
 						break;
 					default:
-						$val = $val;
+						/* If not recognized, display as is. */
 						break;
 					}
 					break;
