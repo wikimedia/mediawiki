@@ -418,7 +418,9 @@ class IPTC {
 	*/
 	private static function convIPTCHelper ( $data, $charset ) {
 		if ( $charset ) {
+			wfSuppressWarnings();
 			$data = iconv($charset, "UTF-8//IGNORE", $data);
+			wfRestoreWarnings();
 			if ($data === false) {
 				$data = "";
 				wfDebugLog('iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8");

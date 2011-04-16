@@ -435,13 +435,17 @@ class Exif {
 			// This could possibly check to see if iconv is really installed
 			// or if we're using the compatibility wrapper in globalFunctions.php
 			if ($charset) {
+				wfSuppressWarnings();
 				$val = iconv($charset, 'UTF-8//IGNORE', $val);
+				wfRestoreWarnings();
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
 				UtfNormal::quickIsNFCVerify( $valCopy ); //validates $valCopy.
 				if ( $valCopy !== $val ) {
+					wfSuppressWarnings();
 					$val = iconv('Windows-1252', 'UTF-8//IGNORE', $val);
+					wfRestoreWarnings();
 				}
 			}
 			

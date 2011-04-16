@@ -260,7 +260,9 @@ class XMPReader {
 			}
 			if ( $this->charset !== 'UTF-8' ) {
 				//don't convert if already utf-8
+				wfSuppressWarnings();
 				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
+				wfRestoreWarnings();
 			}
 
 			$ok = xml_parse( $this->xmlParser, $content, $allOfIt );
