@@ -1859,7 +1859,8 @@ class Language {
 			return $s;
 		}
 
-		$isutf8 = ( $s == iconv("UTF-8","UTF-8//IGNORE", $s));
+		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 		if ( $isutf8 ) {
 			return $s;
 		}
