@@ -50,15 +50,25 @@ jQuery( function( $ ) {
 	};
 	
 	var fixCompare = function () {
-		var $histForm = $( '#mw-history-compare' ),
-			$diffList = $( '#pagehistory' ),
-			buttonText = $histForm.find( 'input.historysubmit' ).remove().first().val(),
-			$compareLink = $( '<a></a>', {
+		var $diffList = $( '#pagehistory' ),
+		 $histForm = $( '#mw-history-compare' ),
+		 $buttons = $histForm.find( 'input.historysubmit' );
+
+		// There's only one rev, nothing to do here
+		if ( !$buttons.length ) {
+			return false;
+		}
+
+		var buttonText = $buttons.remove().first().val(),
+		  $compareLink = $( '<a></a>', {
 				'class': 'compare-link',
 				'text': buttonText
 			}).button();
-		$histForm.prepend( $compareLink )
-							.append( $compareLink.clone() );
+		$histForm.prepend( $compareLink );
+		if ( $buttons.length == 2 ) {
+			$histForm.append( $compareLink.clone() );
+		}
+
 		function updateCompare() {
 			var $radio = $histForm.find( 'input[type=radio]:checked' );
 			var genLink = mw.config.get( 'wgScript' )
