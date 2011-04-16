@@ -223,9 +223,6 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 15641) blocked administrators are now prevented from deleting or protecting
   their own talk page; and all blocked users are more comprehensively prevented
   from performing other actions
-* (bug 15641) Fixed positioning of permissions checks in Special:Import which
-  allowed users without the 'import' permission to import pages if they directly
-  submitted the form.
 * (bug 27893) Edit-on-doubleclick now applies only on view and purge actions;
   no longer triggers unexpectedly on delete, history etc.
 * (bug 28417) Fix PHP notice when importing revision without a listed id
