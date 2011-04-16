@@ -4,10 +4,6 @@
  * @file
  * @ingroup Profiler
  */
-if ( !class_exists( 'Profiler' ) ) {
-	require_once( dirname( __FILE__ ) . '/Profiler.php' );
-}
-
 class ProfilerStub extends Profiler {
 
 	/**
@@ -59,7 +55,3 @@ class ProfilerStub extends Profiler {
 	public function getOutput() {}
 	public function close() {}
 }
-
-/** backward compatibility */
-$wgProfiling = false;
-$wgProfiler = new ProfilerStub();

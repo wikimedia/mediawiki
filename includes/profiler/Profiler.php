@@ -7,16 +7,21 @@
  * This file is only included if profiling is enabled
  */
 
-/** backward compatibility */
-$wgProfiling = true;
+/**
+ * Default profiling configuration. Permitted keys are:
+ *   class   : Name of Profiler or subclass to use for profiling
+ *   visible : Whether to output the profile info [ProfilerSimpleText only]
+ */
+$wgProfiler = array(
+	'class' => 'ProfilerStub',
+);
 
 /**
  * Begin profiling of a function
  * @param $functionname String: name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
-	global $wgProfiler;
-	$wgProfiler->profileIn( $functionname );
+	Profiler::instance()->profileIn( $functionname );
 }
 
 /**
@@ -24,24 +29,21 @@ function wfProfileIn( $functionname ) {
  * @param $functionname String: name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
-	global $wgProfiler;
-	$wgProfiler->profileOut( $functionname );
+	Profiler::instance()->profileOut( $functionname );
 }
 
 /**
  * Returns a profiling output to be stored in debug file
  */
 function wfGetProfilingOutput() {
-	global $wgProfiler;
-	return $wgProfiler->getOutput();
+	Profiler::instance()->getOutput();
 }
 
 /**
  * Close opened profiling sections
  */
 function wfProfileClose() {
-	global $wgProfiler;
-	$wgProfiler->close();
+	Profiler::instance()->close();
 }
 
 if (!function_exists('memory_get_usage')) {
@@ -59,6 +61,7 @@ class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
 	var $mTemplated = false;
+	private static $__instance = null;
 
 	function __construct() {
 		// Push an entry for the pre-profile setup time onto the stack
@@ -72,13 +75,32 @@ class Profiler {
 	}
 
 	/**
+	 * Singleton
+	 * @return Profiler
+	 */
+	public static function instance() {
+		if( is_null( self::$__instance ) ) {
+			global $wgProfiler;
+			if( is_array( $wgProfiler ) ) {
+				$class = $wgProfiler['class'];
+				self::$__instance = new $class( $wgProfiler );
+			} elseif( $wgProfiler instanceof Profiler ) {
+				self::$__instance = $wgProfiler; // back-compat
+			} else {
+				throw new MWException( '$wgProfiler set to bogus value' );
+			}
+			
+		}
+		return self::$__instance;
+	}
+
+	/**
 	 * Called by wfProfieIn()
 	 *
 	 * @param $functionname String
 	 */
 	public function profileIn( $functionname ) {
-		global $wgDebugFunctionEntry, $wgProfiling;
-		if( !$wgProfiling ) return;
+		global $wgDebugFunctionEntry;
 		if( $wgDebugFunctionEntry ){
 			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering ' . $functionname . "\n" );
 		}
@@ -92,8 +114,7 @@ class Profiler {
 	 * @param $functionname String
 	 */
 	public function profileOut($functionname) {
-		global $wgDebugFunctionEntry, $wgProfiling;
-		if( !$wgProfiling ) return;
+		global $wgDebugFunctionEntry;
 		$memory = memory_get_usage();
 		$time = $this->getTime();
 
@@ -128,12 +149,6 @@ class Profiler {
 	 * called by wfProfileClose()
 	 */
 	public function close() {
-		global $wgProfiling;
-
-		# Avoid infinite loop
-		if( !$wgProfiling )
-			return;
-
 		while( count( $this->mWorkStack ) ){
 			$this->profileOut( 'close' );
 		}

@@ -4,24 +4,26 @@
  * @ingroup Profiler
  */
 
-if ( !class_exists( 'ProfilerSimple' ) ) {
-	require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
-}
-
 /**
  * The least sophisticated profiler output class possible, view your source! :)
  *
- * Put the following 3 lines in StartProfiler.php:
+ * Put the following 2 lines in StartProfiler.php:
  *
- * require_once( dirname( __FILE__ ) . '/includes/ProfilerSimpleText.php' );
- * $wgProfiler = new ProfilerSimpleText;
- * $wgProfiler->visible=true;
+ * $wgProfiler['class'] = 'ProfilerSimpleText';
+ * $wgProfiler['visible'] = true;
  *
  * @ingroup Profiler
  */
 class ProfilerSimpleText extends ProfilerSimple {
 	public $visible=false; /* Show as <PRE> or <!-- ? */
 	static private $out;
+
+	public function __construct( $profileConfig ) {
+		if( isset( $profileConfig['visible'] ) && $profileConfig['visible'] ) {
+			$this->visible = true;
+		}
+		parent::__construct();
+	}
 
 	function getFunctionReport() {
 		if($this->mTemplated) {
