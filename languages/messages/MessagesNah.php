@@ -428,12 +428,6 @@ Occeppa xicalaqui niman ticmatīz.',
 'createaccount-title'     => 'Cuentah ītlachīhualiz ic {{SITENAME}}',
 'loginlanguagelabel'      => 'Tlahtōlli: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'AHCUALLI',
-'password-strength-mediocre'   => 'achi cualli',
-'password-strength-acceptable' => 'Tlaceliāni',
-'password-strength-good'       => 'cualli',
-
 # Password reset dialog
 'resetpass'                 => 'Ticpatlāz motlahtōlichtacāyo',
 'resetpass_header'          => 'Xicpatlāz motlahtōlichtacāyo',
@@ -1528,8 +1522,5 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Occē',
-
-# Special:DisableAccount
-'disableaccount-reason' => 'Tlèka:',
 
 );

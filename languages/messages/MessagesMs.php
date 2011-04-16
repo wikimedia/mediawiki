@@ -645,15 +645,6 @@ Sila tunggu sebentar dan cuba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Anggaran kekebalan kata laluan: $1',
-'password-strength-bad'        => 'LEMAH',
-'password-strength-mediocre'   => 'sederhana',
-'password-strength-acceptable' => 'memuaskan',
-'password-strength-good'       => 'baik',
-'password-retype'              => 'Ulangi kata laluan',
-'password-retype-mismatch'     => 'Kata laluan tidak sama',
-
 # Password reset dialog
 'resetpass'                 => 'Tukar kata laluan',
 'resetpass_announce'        => 'Anda sedang log masuk dengan kata laluan sementara. Untuk log masuk dengan sempurna, sila tetapkan kata laluan baru di sini:',
@@ -1032,25 +1023,6 @@ Mohon semak log.',
 'suppressionlogtext' => 'Yang berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
 Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
 
-# Revision move
-'moverevlogentry'              => 'memindahkan $3 {{PLURAL:$3|semakan|semakan}} dari $1 ke $2',
-'revisionmove'                 => 'Pindah semakan dari "$1"',
-'revmove-explain'              => 'Semakan-semakan berikut akan dipindahkan dari $1 ke laman sasaran yang telah ditentukan. Jika laman sasaran tersebut tidak wujud, laman baru akan dicipta. Sebaliknya, semakan-semakan ini akan digabungkan ke dalam sejarah laman tersebut.',
-'revmove-legend'               => 'Tetapkan laman sasaran dan ringkasan',
-'revmove-submit'               => 'Pindah semakan ke laman yang dipilih',
-'revisionmoveselectedversions' => 'Pindah semakan-semakan yang dipilih',
-'revmove-reasonfield'          => 'Sebab:',
-'revmove-titlefield'           => 'Laman sasaran:',
-'revmove-badparam-title'       => 'Parameter buruk',
-'revmove-badparam'             => 'Permintaan anda mengandungi parameter tidak sah atau tidak lengkap. Sila kembali ke laman sebelumnya dan cuba lagi.',
-'revmove-norevisions-title'    => 'Tiada semakan sasaran',
-'revmove-norevisions'          => 'Anda tidak menentukan mana-mana semakan atau semakan yang telah ditentukan tidak wujud.',
-'revmove-nullmove-title'       => 'Tajuk tidak sah',
-'revmove-nullmove'             => 'Laman sasaran tidak boleh sama dengan laman sumber.
-Kembali ke laman sebelumnya dan pilih nama yang berbeza daripada "$1".',
-'revmove-success-existing'     => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman wujud [[$3]].',
-'revmove-success-created'      => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman baru [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
 'mergehistory-header'              => "Anda boleh menggabungkan semua semakan dalam sejarah bagi sesebuah laman sumber ke dalam laman lain.
@@ -1389,8 +1361,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
 'right-override-export-depth' => 'Eksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Kirim e-mel kepada pengguna-pengguna lain',
-'right-revisionmove'          => 'Memindahkan semakan',
-'right-disableaccount'        => 'Matikan akaun',
 
 # User rights log
 'rightslog'      => 'Log hak pengguna',
@@ -1433,7 +1403,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'action-userrights'           => 'mengubah semua hak pengguna',
 'action-userrights-interwiki' => 'mengubah hak pengguna dari wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci pangkalan data wiki ini',
-'action-revisionmove'         => 'memindahkan semakan',
 
 # Recent changes
 'nchanges'                          => '$1 perubahan',
@@ -2853,7 +2822,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-stripbytecounts'             => 'Bait sejalur termampat',
 'exif-jpeginterchangeformat'       => 'Ofset ke SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Jumlah bait bagi data JPEG',
-'exif-transferfunction'            => 'Fungsi pindah',
 'exif-whitepoint'                  => 'Kekromatan takat putih',
 'exif-primarychromaticities'       => 'Kekromatan warna primer',
 'exif-ycbcrcoefficients'           => 'Pekali matriks penukaran ruang warna',
@@ -2872,7 +2840,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-compressedbitsperpixel'      => 'Mod pemampatan imej',
 'exif-pixelydimension'             => 'Lebar imej',
 'exif-pixelxdimension'             => 'Tinggi imej',
-'exif-makernote'                   => 'Catatan pengilang',
 'exif-usercomment'                 => 'Komen pengguna',
 'exif-relatedsoundfile'            => 'Fail audio berkaitan',
 'exif-datetimeoriginal'            => 'Tarikh dan waktu penjanaan data',
@@ -2886,7 +2853,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-exposureprogram'             => 'Atur cara pendedahan',
 'exif-spectralsensitivity'         => 'Kepekaan spektrum',
 'exif-isospeedratings'             => 'Penilaian kelajuan ISO',
-'exif-oecf'                        => 'Faktor penukaran optoelektronik',
 'exif-shutterspeedvalue'           => 'Kelajuan pengatup',
 'exif-aperturevalue'               => 'Bukaan',
 'exif-brightnessvalue'             => 'Kecerahan',
@@ -2899,7 +2865,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-focallength'                 => 'Panjang fokus kanta',
 'exif-subjectarea'                 => 'Luas subjek',
 'exif-flashenergy'                 => 'Tenaga denyar',
-'exif-spatialfrequencyresponse'    => 'Sambutan frekuensi ruang',
 'exif-focalplanexresolution'       => 'Leraian X satah fokus',
 'exif-focalplaneyresolution'       => 'Leraian Y satah fokus',
 'exif-focalplaneresolutionunit'    => 'Unit leraian satah fokus',
@@ -2908,7 +2873,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-sensingmethod'               => 'Kaedah penderiaan',
 'exif-filesource'                  => 'Sumber fail',
 'exif-scenetype'                   => 'Jenis latar',
-'exif-cfapattern'                  => 'Corak CFA',
 'exif-customrendered'              => 'Pemprosesan imej tempahan',
 'exif-exposuremode'                => 'Mod pendedahan',
 'exif-whitebalance'                => 'Imbangan warna putih',
@@ -3401,18 +3365,5 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan sokongan carian teks penuh',
 'sqlite-no-fts'  => '$1 tanpa sokongan carian teks penuh',
-
-# Special:DisableAccount
-'disableaccount'             => 'Lumpuhkan akaun pengguna',
-'disableaccount-user'        => 'Nama pengguna:',
-'disableaccount-reason'      => 'Sebab:',
-'disableaccount-confirm'     => "Lumpuhkan akaun pengguna ini.
-Pengguna ini tidak akan dapat log masuk, set semula kata laluannya, atau menerima makluman e-mel.
-Jika pengguna ini sedang log masuk di mana-mana, dia akan log keluar serta-merta.
-''Sila maklum bahasa tindakan melumpuhkan sesuatu akaun tidak boleh diundurkan tanpa bantuan pentadbir sistem.''",
-'disableaccount-mustconfirm' => 'Anda perlu mengesahkan bahawa anda ingin melumpuhkan akaun ini.',
-'disableaccount-nosuchuser'  => 'Akaun pengguna "$1" tidak wujud.',
-'disableaccount-success'     => 'Akaun pengguna "$1" telah dilumpuhkan selama-lamanya.',
-'disableaccount-logentry'    => 'lumpuhkan selama-lamanya akaun pengguna [[$1]]',
 
 );

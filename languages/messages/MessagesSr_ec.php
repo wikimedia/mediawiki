@@ -782,15 +782,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Снага лозинке: $1',
-'password-strength-bad'        => 'лоша',
-'password-strength-mediocre'   => 'осредња',
-'password-strength-acceptable' => 'прихватљива',
-'password-strength-good'       => 'добра',
-'password-retype'              => 'Потврдите лозинку',
-'password-retype-mismatch'     => 'Лозинке се не поклапају',
-
 # Password reset dialog
 'resetpass'                 => 'Промена лозинке',
 'resetpass_announce'        => 'Пријављени сте с привременом лозинком.
@@ -1188,26 +1179,6 @@ $1",
 'suppressionlog'     => 'Извештај сакривања',
 'suppressionlogtext' => 'Испод се налази списак блокова и обрисаних страница који су сакривени од администратора. Погледај [[Special:IPBlockList|списак блокираних ИП адреса]] за списак тренутно важећих банова и блокова.',
 
-# Revision move
-'moverevlogentry'              => '{{GENDER:|је преместио|је преместила|премести}} {{PLURAL:$3|измену|$3 измене|$3 измена}} из $1 у $2',
-'revisionmove'                 => 'Премештање измена из „$1“',
-'revmove-explain'              => 'Следеће измене ће бити премештене из $1 у наведену одредишну страницу, заједно с историјом измена. Ако одредиште не постоји, оно ће бити створено.',
-'revmove-legend'               => 'Постави циљну страницу и сажетак',
-'revmove-submit'               => 'Премести измене на изабрану страницу',
-'revisionmoveselectedversions' => 'Премести изабране измене',
-'revmove-reasonfield'          => 'Разлог:',
-'revmove-titlefield'           => 'Циљна страница:',
-'revmove-badparam-title'       => 'Лоши параметри',
-'revmove-badparam'             => 'Ваш захтев садржи недовољно параметара.
-Вратите се на претходну страницу и покушајте поново.',
-'revmove-norevisions-title'    => 'Нема тражене измене',
-'revmove-norevisions'          => 'Нисте навели једну или више одредишних измена за извршавање ове функције, или она не постоји.',
-'revmove-nullmove-title'       => 'Лош наслов',
-'revmove-nullmove'             => 'Изворна и одредишна страница су исте.
-Вратите се на претходну страницу и изаберите име које се разликује од „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Једна измена из [[$2]] је премештена|$1 измене из [[$2]] су премештене|$1 измена из [[$2]] је премештено}} на постојећу страницу [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Једна измена из [[$2]] је премештена|$1 измене из [[$2]] су премештене|$1 измена из [[$2]] је премештено}} на нову страницу [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Споји историје страница',
 'mergehistory-header'              => 'Ова страница омогућава спајање верзија једне странице у другу. Уверите се претходно да ће ова измена одржати континуитет историје странице.',
@@ -1548,8 +1519,6 @@ $1",
 'right-reset-passwords'       => 'поништавање туђих лозинки',
 'right-override-export-depth' => 'извожење страница заједно с повезаним до дубине петог нивоа',
 'right-sendemail'             => 'слање е-порука другим корисницима',
-'right-revisionmove'          => 'Премештање измена',
-'right-disableaccount'        => 'Онемогућавање налога',
 
 # User rights log
 'rightslog'      => 'Историја корисничких права',
@@ -1592,7 +1561,6 @@ $1",
 'action-userrights'           => 'измени сва корисничка права',
 'action-userrights-interwiki' => 'измени права корисника са других Викија',
 'action-siteadmin'            => 'закључавање или откључавање базе података',
-'action-revisionmove'         => 'премести измене',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|измена|измене|измена}}',
@@ -3057,7 +3025,6 @@ $1',
 'exif-stripbytecounts'             => 'Величина компресованог блока',
 'exif-jpeginterchangeformat'       => 'Удаљеност ЈПЕГ прегледа од почетка фајла',
 'exif-jpeginterchangeformatlength' => 'Бајтови JPEG података',
-'exif-transferfunction'            => 'Функција преобликовања колор простора',
 'exif-whitepoint'                  => 'Хромацитет беле тачке',
 'exif-primarychromaticities'       => 'Хромацитет примарних боја',
 'exif-ycbcrcoefficients'           => 'Матрични коефицијенти трансформације колор простора',
@@ -3076,7 +3043,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'Мод компресије слике',
 'exif-pixelydimension'             => 'Пуна висина слике',
 'exif-pixelxdimension'             => 'Пуна ширина слике',
-'exif-makernote'                   => 'Напомене произвођача',
 'exif-usercomment'                 => 'Кориснички коментар',
 'exif-relatedsoundfile'            => 'Повезани звучни запис',
 'exif-datetimeoriginal'            => 'Датум и време сликања',
@@ -3090,7 +3056,6 @@ $1',
 'exif-exposureprogram'             => 'Програм експозиције',
 'exif-spectralsensitivity'         => 'Спектрална осетљивост',
 'exif-isospeedratings'             => 'ИСО вредност',
-'exif-oecf'                        => 'Оптоелектронски фактор конверзије',
 'exif-shutterspeedvalue'           => 'Брзина затварача',
 'exif-aperturevalue'               => 'Отвор бленде',
 'exif-brightnessvalue'             => 'Светлост',
@@ -3103,7 +3068,6 @@ $1',
 'exif-focallength'                 => 'Жаришна даљина сочива',
 'exif-subjectarea'                 => 'Положај и површина објекта снимка',
 'exif-flashenergy'                 => 'Енергија блица',
-'exif-spatialfrequencyresponse'    => 'Просторна фреквенцијска карактеристика',
 'exif-focalplanexresolution'       => 'Водоравна резолуција фокусне равни',
 'exif-focalplaneyresolution'       => 'Хоризонатлна резолуција фокусне равни',
 'exif-focalplaneresolutionunit'    => 'Јединица резолуције фокусне равни',
@@ -3112,7 +3076,6 @@ $1',
 'exif-sensingmethod'               => 'Тип сензора',
 'exif-filesource'                  => 'Изворна датотека',
 'exif-scenetype'                   => 'Тип сцене',
-'exif-cfapattern'                  => 'CFA шаблон',
 'exif-customrendered'              => 'Прилагођена обрада слика',
 'exif-exposuremode'                => 'Режим експозиције',
 'exif-whitebalance'                => 'Баланс беле боје',
@@ -3598,18 +3561,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 с подршком претраге пуног текста',
 'sqlite-no-fts'  => '$1 без подршке претраге пуног текста',
-
-# Special:DisableAccount
-'disableaccount'             => 'Онемогући кориснички налог',
-'disableaccount-user'        => 'Корисничко име:',
-'disableaccount-reason'      => 'Разлог:',
-'disableaccount-confirm'     => "Онемогући овај кориснички налог.
-Овај члан неће моћи да се пријави, поништи лозинку и прима обавештења преко е-поште.
-Ако је корисник тренутно пријављен, одмах ће бити одјављен.
-''Онемогућавање налога није могуће без посредовања системског администратора.''",
-'disableaccount-mustconfirm' => 'Морате потврдити да желите да онемогућите овај налог.',
-'disableaccount-nosuchuser'  => 'Кориснички налог „$1“ не постоји.',
-'disableaccount-success'     => 'Кориснички налог „$1“ је трајно онемогућен.',
-'disableaccount-logentry'    => '{{GENDER:|је трајно онемогућио|је трајно онемогућила|трајно онемогући}} налог [[$1]]',
 
 );

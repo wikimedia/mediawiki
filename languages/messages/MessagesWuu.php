@@ -472,9 +472,6 @@ $2',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '侬登出个要求已经拨回头脱，因为渠可能是由已损坏个浏览器或者缓存代理传送个。',
 
-# JavaScript password checks
-'password-retype' => '再拍一遍密码',
-
 # Password reset dialog
 'resetpass'                 => '更改密码',
 'resetpass_announce'        => '侬是通过一只临时发送到e-mail里向个代码登录的。要完成登录，侬必须垃此地设定一只新密码：',
@@ -834,26 +831,6 @@ $1",
 'suppressionlog'     => '阻止日志',
 'suppressionlogtext' => '下头是只删除搭仔封锁列表，包括对管理员隐藏个内容。
 参看[[Special:IPBlockList|IP封锁名单]]来了解目前有效个禁止搭仔封锁之名单。',
-
-# Revision move
-'moverevlogentry'              => '从$1移动仔{{PLURAL:$3|一次修订版本|$3次修订版本}}到$2',
-'revisionmove'                 => '从"$1" 移动修订版本',
-'revmove-explain'              => '下头个修订版本将会由$1移动至所指定个目标页面。假使目标弗存在个闲话，渠就会得建立。弗然，箇星修订版本就会得合并到页面历史里向。',
-'revmove-legend'               => '设置目标页面以及摘要',
-'revmove-submit'               => '拿修订移动到选定页面高头',
-'revisionmoveselectedversions' => '移动选定个修改',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '目标页面：',
-'revmove-badparam-title'       => '参数弗好',
-'revmove-badparam'             => '侬个请求含有弗合法或者弗充分个参数。
-请回转先前只页面再试。',
-'revmove-norevisions-title'    => '无效目标修订版本',
-'revmove-norevisions'          => '侬还弗曾指定一只或者多只目标修订版本去完成箇只功能或者指定修订版本弗存在。',
-'revmove-nullmove-title'       => '箇只标题弗来三',
-'revmove-nullmove'             => '目标页面弗可以搭来源页面相同。
-请回转先前个页面再输入搭 "$1" 两样个名字。',
-'revmove-success-existing'     => '[[$2]]里向个{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至现在只页面[[$3]]。',
-'revmove-success-created'      => '[[$2]]里向个{{PLURAL:$1|一次修订版本|$1次修订版本}}已经移动至新建页面[[$3]]。',
 
 # History merging
 'mergehistory'                     => '合并页面历史',

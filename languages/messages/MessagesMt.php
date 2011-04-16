@@ -1078,9 +1078,6 @@ $1",
 'suppressionlogtext' => "Il-lista ta' tħassir u blokjar tinsab hawn taħt din tinkludi kontenut li huwa moħbi mill-amministraturi.
 Ara [[Special:IPBlockList|IP lista ta' blokjar]] għal lista ta' ċaħdiet u blokjar kurrenti.",
 
-# Revision move
-'revmove-nullmove-title' => 'Titlu ħażin',
-
 # History merging
 'mergehistory'                     => 'Waħħad l-istorji tal-paġni',
 'mergehistory-header'              => "Din il-paġna tħallik twaħħad reviżjonijiet li jappartjenu lil kronoloġija ta' paġna (magħrufa bħala paġna t'oriġini) mal-kronoloġija ta' paġna aktar riċenti.
@@ -2665,7 +2662,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-stripbytecounts'             => 'Bytes għal kull strixxa kompressa',
 'exif-jpeginterchangeformat'       => 'Pożizzjoni byte SOI JPEG',
 'exif-jpeginterchangeformatlength' => "Numru ta' bytes ta' data JPEG",
-'exif-transferfunction'            => "Funżjoni ta' transferiment",
 'exif-whitepoint'                  => 'Kromatiku tal-punt abjad',
 'exif-primarychromaticities'       => 'Kromitiku tal-kuluri primarji',
 'exif-ycbcrcoefficients'           => 'Koeffiċjent matriċi tat-trasformazzjoni spazji tal-kuluri',
@@ -2684,7 +2680,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-compressedbitsperpixel'      => 'Għamla tal-kompressjoni tal-istampa',
 'exif-pixelydimension'             => "Wisa' valida tal-istampa",
 'exif-pixelxdimension'             => 'Għoli validu tal-istampa',
-'exif-makernote'                   => 'Noti dwar il-maniffatur',
 'exif-usercomment'                 => 'Noti tal-utent',
 'exif-relatedsoundfile'            => 'Fajl relatat mal-ismiegħ',
 'exif-datetimeoriginal'            => 'Data u ħin tal-ħolqien tad-data',
@@ -2698,7 +2693,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-exposureprogram'             => 'Programm tal-wirja',
 'exif-spectralsensitivity'         => 'Sensitività spettrali',
 'exif-isospeedratings'             => 'Sensibilità ISO',
-'exif-oecf'                        => "Fattur ta' konverżjoni optoelettronika",
 'exif-shutterspeedvalue'           => "Ħin ta' wirja",
 'exif-aperturevalue'               => 'Ftuħ',
 'exif-brightnessvalue'             => 'Ċarezza',
@@ -2711,7 +2705,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-focallength'                 => 'Distanza fokali objettiva',
 'exif-subjectarea'                 => 'Spazju tas-suġġett',
 'exif-flashenergy'                 => 'Saħħa tal-flash',
-'exif-spatialfrequencyresponse'    => 'Risposta fi frekwenza spazjali',
 'exif-focalplanexresolution'       => 'Riżoluzzjoni X fuq il-witja fokali',
 'exif-focalplaneyresolution'       => 'Riżoluzzjoni Y fuq il-witja fokali',
 'exif-focalplaneresolutionunit'    => "Unita ta' qisien tar-riżoluzzjoni fuq il-witja fokali",
@@ -2720,7 +2713,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-sensingmethod'               => 'Metodu ta tħaffif',
 'exif-filesource'                  => 'Oriġini tal-fajl',
 'exif-scenetype'                   => 'Tip tax-xena',
-'exif-cfapattern'                  => 'Dispożizzjoni tal-filtru tal-kulur',
 'exif-customrendered'              => 'Proċessar tal-istampi personalizzati',
 'exif-exposuremode'                => "Stat ta' wirja",
 'exif-whitebalance'                => 'Bilanċ l-abjad',

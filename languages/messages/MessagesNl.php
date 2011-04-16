@@ -841,15 +841,6 @@ Wacht even voordat u het opnieuw probeert.',
 # E-mail sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Geschatte wachtwoordsterkte: $1',
-'password-strength-bad'        => 'LAAG',
-'password-strength-mediocre'   => 'middelmatig',
-'password-strength-acceptable' => 'aanvaardbaar',
-'password-strength-good'       => 'goed',
-'password-retype'              => 'Geef uw wachtwoord opnieuw in',
-'password-retype-mismatch'     => 'De wachtwoorden komen niet overeen',
-
 # Password reset dialog
 'resetpass'                 => 'Wachtwoord wijzigen',
 'resetpass_announce'        => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.
@@ -1252,28 +1243,6 @@ Controleer de logboeken.',
 'suppressionlogtext' => 'De onderstaande lijst bevat de verwijderingen en blokkades die voor beheerders verborgen zijn.
 In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te bekijken.',
 
-# Revision move
-'moverevlogentry'              => 'heeft $3 {{PLURAL:$3|versie|versies}} verplaatst van $1 naar $2',
-'revisionmove'                 => 'Versies van "$1" verplaatsen',
-'revmove-explain'              => 'De volgende versies worden verplaatst van $1 naar de aangegeven doelpagina.
-Als de doelpagina niet bestaat, wordt deze aangemaakt.
-Als deze wel bestaat, worden de versies ingevoegd in de paginageschiedenis.',
-'revmove-legend'               => 'Voer doelpagina en samenvatting in',
-'revmove-submit'               => 'Versies naar de aangegeven pagina verplaatsen',
-'revisionmoveselectedversions' => 'Geselecteerde versies verplaatsen',
-'revmove-reasonfield'          => 'Reden:',
-'revmove-titlefield'           => 'Doelpagina:',
-'revmove-badparam-title'       => 'Onjuiste parameters',
-'revmove-badparam'             => 'Uw verzoek bevat ongeldige of onvoldoende parameters.
-Klik "Terug" en probeer het opnieuw.',
-'revmove-norevisions-title'    => 'De te verplaatsen versie is ongeldig',
-'revmove-norevisions'          => 'U hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.',
-'revmove-nullmove-title'       => 'Ongeldige paginanaam',
-'revmove-nullmove'             => 'De bronpagina en doelpagina zijn hetzelfde.
-Klik "Terug" en geef een andere pagina dan "$1" op.',
-'revmove-success-existing'     => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de bestaande pagina [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de nieuwe pagina [[$3]].',
-
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
 'mergehistory-header'              => 'Via deze pagina kunt u versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
@@ -1619,8 +1588,6 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
-'right-revisionmove'          => 'Versies verplaatsen',
-'right-disableaccount'        => 'Gebruikers uitschakelen',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1663,7 +1630,6 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
 'action-siteadmin'            => 'de database af te sluiten of open te stellen',
-'action-revisionmove'         => 'versies verplaatsen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
@@ -3207,7 +3173,6 @@ Andere velden worden verborgen.
 'exif-stripbytecounts'             => 'Bytes per gecomprimeerde strip',
 'exif-jpeginterchangeformat'       => 'Afstand tot JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes JPEG-gegevens',
-'exif-transferfunction'            => 'Transferfunctie',
 'exif-whitepoint'                  => 'Witpuntchromaticiteit',
 'exif-primarychromaticities'       => 'Chromaciteit van primaire kleuren',
 'exif-ycbcrcoefficients'           => 'Transformatiematrixcoëfficiënten voor de kleurruimte',
@@ -3226,7 +3191,6 @@ Andere velden worden verborgen.
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
 'exif-pixelydimension'             => 'Bruikbare afbeeldingsbreedte',
 'exif-pixelxdimension'             => 'Bruikbare afbeeldingshoogte',
-'exif-makernote'                   => 'Opmerkingen fabrikant',
 'exif-usercomment'                 => 'Opmerkingen',
 'exif-relatedsoundfile'            => 'Bijbehorend audiobestand',
 'exif-datetimeoriginal'            => 'Tijdstip gegevensaanmaak',
@@ -3240,7 +3204,6 @@ Andere velden worden verborgen.
 'exif-exposureprogram'             => 'Belichtingsprogramma',
 'exif-spectralsensitivity'         => 'Spectrale gevoeligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
-'exif-oecf'                        => 'Opto-elektronische conversiefactor',
 'exif-shutterspeedvalue'           => 'Sluitersnelheid',
 'exif-aperturevalue'               => 'Diafragma',
 'exif-brightnessvalue'             => 'Helderheid',
@@ -3253,7 +3216,6 @@ Andere velden worden verborgen.
 'exif-focallength'                 => 'Brandpuntsafstand',
 'exif-subjectarea'                 => 'Objectruimte',
 'exif-flashenergy'                 => 'Flitssterkte',
-'exif-spatialfrequencyresponse'    => 'Ruimtelijke frequentiereactie',
 'exif-focalplanexresolution'       => 'Brandpuntsvlak-X-resolutie',
 'exif-focalplaneyresolution'       => 'Brandpuntsvlak-Y-resolutie',
 'exif-focalplaneresolutionunit'    => 'Eenheid CCD-resolutie',
@@ -3262,7 +3224,6 @@ Andere velden worden verborgen.
 'exif-sensingmethod'               => 'Meetmethode',
 'exif-filesource'                  => 'Bestandsbron',
 'exif-scenetype'                   => 'Scènetype',
-'exif-cfapattern'                  => 'CFA-patroon',
 'exif-customrendered'              => 'Aangepaste beeldverwerking',
 'exif-exposuremode'                => 'Belichtingsinstelling',
 'exif-whitebalance'                => 'Witbalans',
@@ -3771,18 +3732,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
-
-# Special:DisableAccount
-'disableaccount'             => 'Een gebruiker uitschakelen',
-'disableaccount-user'        => 'Gebruikersnaam:',
-'disableaccount-reason'      => 'Reden:',
-'disableaccount-confirm'     => "Deze gebruiker uitschakelen.
-De gebruiker kan niet langer aanmelden, het wachtwoord opnieuw instellen of e-mails ontvangen.
-Als de gebruiker op dit moment is aangemeld, wordt deze per direct afgemeld.
-''Het uitschakelen van een gebruiker is niet terug te draaien zonder hulp van een systeembeheerder.''",
-'disableaccount-mustconfirm' => 'U moet bevestigen dat u deze gebruiker wilt uitschakelen.',
-'disableaccount-nosuchuser'  => 'De gebruiker "$1" bestaat niet.',
-'disableaccount-success'     => 'De gebruiker "$1" is permanent uitgeschakeld.',
-'disableaccount-logentry'    => 'heeft de gebruiker [[$1]] permanent uitgeschakeld',
 
 );

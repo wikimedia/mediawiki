@@ -512,9 +512,6 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 
-# JavaScript password checks
-'password-retype' => 'Parolu təkrar yazın',
-
 # Password reset dialog
 'resetpass'                 => 'Parolu dəyiş',
 'resetpass_text'            => '<!-- Şərhinizi bura daxil edin -->',
@@ -1739,9 +1736,5 @@ Həmin sətirdəki növbəti keçidlər istisna hesab olunur. Məsələn, fayl m
 # HTML forms
 'htmlform-reset'               => 'Dəyişiklikləri geri qaytar',
 'htmlform-selectorother-other' => 'Digər',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'İstifadəçi adı:',
-'disableaccount-reason' => 'Səbəb:',
 
 );

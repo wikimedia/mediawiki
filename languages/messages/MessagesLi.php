@@ -641,15 +641,6 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 # E-mail sending
 'php-mail-error-unknown' => "Dao haet ziech 'n ónbekénde fout veurgedaon in de mail()-functie van PHP",
 
-# JavaScript password checks
-'password-strength'            => 'Gesjatdje wachwaordjstèrkdje: $1',
-'password-strength-bad'        => 'LIEËG',
-'password-strength-mediocre'   => 'middelig',
-'password-strength-acceptable' => 'aannömber',
-'password-strength-good'       => 'good',
-'password-retype'              => 'Typ wachwaordj óppernuuj',
-'password-retype-mismatch'     => 'De wachwäörd kómme neet euverein',
-
 # Password reset dialog
 'resetpass'                 => 'Wachwaord obbenuuts insjtèlle',
 'resetpass_announce'        => "Doe bös aangemeld mèt 'ne tiejdelikke code dae per e-mail is toegezönje. Veur 'n nuuj wachwaord in om 't aanmelje te voltooie:",
@@ -1019,28 +1010,6 @@ Controleer de logbeuk.",
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
 In de [[Special:IPBlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
 
-# Revision move
-'moverevlogentry'              => 'verplaatsdje $3 {{PLURAL:$3|versie|versies}} ven $1 nao $2',
-'revisionmove'                 => 'Verplaats versies ven "$1"',
-'revmove-explain'              => 'De volgende versies waere verplaats van $1 nao de aangeweze doelpaasj.
-Es de doelpagina neet besteit, wört dees aangemaak.
-Es dees waal besteit, waere de versies ingevoog in de paginagesjiedenis.',
-'revmove-legend'               => 'Veur doelpaasj en saamvatting in',
-'revmove-submit'               => 'Verplaats versies nao de aangegaeve paasj',
-'revisionmoveselectedversions' => 'Versjuuf geselecteerde versies',
-'revmove-reasonfield'          => 'Raeje:',
-'revmove-titlefield'           => 'Doelpagina:',
-'revmove-badparam-title'       => 'Ónzjuuste paramaeters',
-'revmove-badparam'             => 'Die verzeuk bevat ongeljige of onvoldoonde paramaeters.
-Klik "Trök" en probeer t opnuuj.',
-'revmove-norevisions-title'    => 'Ongeldige doelverzie',
-'revmove-norevisions'          => 'De hes gein versies aangegaeve om dees handeling op oet te veuren of de aangegaeve versie besteit nit.',
-'revmove-nullmove-title'       => 'Óngeldige paginatitel',
-'revmove-nullmove'             => 'De bronpagina en doelpagina zeen tzelfde.
-Klik "Trök" en gaef n anger pagina dan "$1" op.',
-'revmove-success-existing'     => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao de aldao [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao [[$3]].",
-
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
 'mergehistory-header'              => "Deze pagina laot uch toe om versies van de gesjiedenis van 'n brónpagina nao 'n nuujere pagina same te voege.
@@ -1381,8 +1350,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-reset-passwords'       => 'Wachtwoorde van andere gebroekers opnieuw instelle',
 'right-override-export-depth' => "Export paazjes midin geslinkdje paazjes mit 'n deepdje ven 5",
 'right-sendemail'             => 'Versjik e-mail aan anger gebroekers',
-'right-revisionmove'          => 'Versjuuf versies',
-'right-disableaccount'        => 'Gebroekers oetsjakele',
 
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',
@@ -1425,7 +1392,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'action-userrights'           => 'alle gebroekersrechte te bewerke',
 'action-userrights-interwiki' => "gebroekersrechte van gebroekers van anger wiki's te bewerke",
 'action-siteadmin'            => 'de database aaf te sloete of aope te stelle',
-'action-revisionmove'         => 'versjuuf versie',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',
@@ -2780,7 +2746,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-stripbytecounts'             => 'Bytes per gecomprimeerde strip',
 'exif-jpeginterchangeformat'       => 'Aafstandj towt JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes JPEG-gegaeves',
-'exif-transferfunction'            => 'Transferfunctie',
 'exif-whitepoint'                  => 'Witpuntchromaticiteit',
 'exif-primarychromaticities'       => 'Chromaticities of primaries',
 'exif-ycbcrcoefficients'           => 'Transformatiematrixcoëfficiënte veur de kleurruumde',
@@ -2799,7 +2764,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-compressedbitsperpixel'      => 'Cómpressiemeneer bie dit plaetje',
 'exif-pixelydimension'             => 'Broekbare aafbeildingsbreidte',
 'exif-pixelxdimension'             => 'Valind image height',
-'exif-makernote'                   => 'Opmerkinge maker',
 'exif-usercomment'                 => 'Opmerkinge',
 'exif-relatedsoundfile'            => 'Biebeheurendj audiobestandj',
 'exif-datetimeoriginal'            => 'Datum en momint van verwèkking',
@@ -2813,7 +2777,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-exposureprogram'             => 'Beleechtingsprogramma',
 'exif-spectralsensitivity'         => 'Spectrale geveuligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
-'exif-oecf'                        => 'Opto-elektronische conversiefactor',
 'exif-shutterspeedvalue'           => 'Sloetersnelheid',
 'exif-aperturevalue'               => 'Eupening',
 'exif-brightnessvalue'             => 'Heljerheid',
@@ -2826,7 +2789,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-focallength'                 => 'Brandjpuntjsaafstandj',
 'exif-subjectarea'                 => 'Objekruumde',
 'exif-flashenergy'                 => 'Flitssterkdje',
-'exif-spatialfrequencyresponse'    => 'Ruumdelike frequentiereactie',
 'exif-focalplanexresolution'       => 'Brandjpuntjsvlak-X-resolutie',
 'exif-focalplaneyresolution'       => 'Brandjpuntjsvlak-Y-resolutie',
 'exif-focalplaneresolutionunit'    => 'Einheid CCD-resolutie',
@@ -2835,7 +2797,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-sensingmethod'               => 'Opvangmethode',
 'exif-filesource'                  => 'Bestandjsbron',
 'exif-scenetype'                   => 'Saort scene',
-'exif-cfapattern'                  => 'CFA-patroen',
 'exif-customrendered'              => 'Aangepasdje beildverwerking',
 'exif-exposuremode'                => 'Beleechtingsinstelling',
 'exif-whitebalance'                => 'Witbalans',
@@ -3300,18 +3261,5 @@ Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => 'Zeuk versie $1 mit óngersteuning veur "full-text"',
 'sqlite-no-fts'  => 'Zeuk versie $1 zónger óngersteuning veur "fulltext"',
-
-# Special:DisableAccount
-'disableaccount'             => "'ne Gebroeker oetsjakele",
-'disableaccount-user'        => 'Gebroekersnaam:',
-'disableaccount-reason'      => 'Raej:',
-'disableaccount-confirm'     => "Deze gebroeker oetsjakele.
-De gebroeker kin neet langer aanmelde, 't wachwaord obbenuuts insjtelle of e-mails óntvange.
-Es de gebroeker op dit memènt is aangemeld, weurt heer metein aafgemeld.
-'''t Oetsjakele van 'ne gebroeker is neet trök te drejje zonger hölp van 'ne systeembeheerder''",
-'disableaccount-mustconfirm' => 'Doe mós bevestige dats doe deze gebroeker wils oetsjakele.',
-'disableaccount-nosuchuser'  => 'De gebroeker "$1" besjteit neet.',
-'disableaccount-success'     => 'De gebroeker "$1" is permanent oetgesjakeld.',
-'disableaccount-logentry'    => 'haet de gebroeker [[$1]] permanent oetgesjakeld',
 
 );

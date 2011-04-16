@@ -885,8 +885,4 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
 
-# Special:DisableAccount
-'disableaccount-user'   => 'Slāgvuords:',
-'disableaccount-reason' => 'Īmesle:',
-
 );

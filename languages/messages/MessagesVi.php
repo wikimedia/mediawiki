@@ -763,15 +763,6 @@ Xin hãy đợi chốc lát rồi thử lại.',
 # E-mail sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Độ mạnh ước lượng của mật khẩu: $1',
-'password-strength-bad'        => 'DỞ',
-'password-strength-mediocre'   => 'xoàng',
-'password-strength-acceptable' => 'được',
-'password-strength-good'       => 'tốt',
-'password-retype'              => 'Gõ lại mật khẩu tại đây',
-'password-retype-mismatch'     => 'Mật khẩu không khớp',
-
 # Password reset dialog
 'resetpass'                 => 'Đổi mật khẩu',
 'resetpass_announce'        => 'Bạn đã đăng nhập bằng mật khẩu tạm gởi qua e-mail. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
@@ -1150,24 +1141,6 @@ Xin hãy kiểm tra nhật trình.',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy.
 Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
-# Revision move
-'moverevlogentry'              => 'di chuyển {{PLURAL:$3|phiên bản|$3 phiên bản}} từ $1 đến $2',
-'revisionmove'                 => 'Di chuyển phiên bản từ “$1”',
-'revmove-explain'              => 'Các phiên bản sau sẽ được di chuyển từ $1 đến trang mục tiêu được chọn. Nếu trang mục tiêu tồn tại, các phiên bản này sẽ được hợp nhất vào lịch sử của trang mục từ; không thì trang mục tiêu sẽ được tạo ra.',
-'revmove-legend'               => 'Đặt trang mục tiêu và tóm lược',
-'revmove-submit'               => 'Di chuyển các phiên bản đến trang lựa chọn',
-'revisionmoveselectedversions' => 'Di chuyển các phiên bản được chọn',
-'revmove-reasonfield'          => 'Lý do:',
-'revmove-titlefield'           => 'Trang mục tiêu:',
-'revmove-badparam-title'       => 'Tham số hỏng',
-'revmove-badparam'             => 'Yêu cầu của bạn không đủ tham số hoặc có tham số không hợp lệ. Xin hãy bấm “Lùi” và thử lại.',
-'revmove-norevisions-title'    => 'Phiên bản mục tiêu không hợp lệ',
-'revmove-norevisions'          => 'Chưa chọn ít nhất một phiên bản mục tiêu để thực hiện tác vụ này, hoặc phiên bản được chọn không tồn tại.',
-'revmove-nullmove-title'       => 'Tựa trang sai',
-'revmove-nullmove'             => 'Không thể di chuyển phiên bản từ một trang đến cùng trang. Xin hãy bấm “Lùi” và đổi “$1” thành tên trang khác.',
-'revmove-success-existing'     => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đến trang tồn tại [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đên trang mới [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
 'mergehistory-header'              => 'Trang này cho phép trộn các sửa đổi trong lịch sử của một trang nguồn vào một trang mới hơn.
@@ -1506,8 +1479,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
-'right-revisionmove'          => 'Di chuyển phiên bản',
-'right-disableaccount'        => 'Vô hiệu hóa tài khoản',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
@@ -1550,7 +1521,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-userrights'           => 'sửa đổi mọi quyền người dùng',
 'action-userrights-interwiki' => 'sửa đổi quyền của người dùng tại wiki khác',
 'action-siteadmin'            => 'khóa hoặc mở khóa cơ sở dữ liệu',
-'action-revisionmove'         => 'di chuyển phiên bản',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
@@ -3066,7 +3036,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-stripbytecounts'             => 'Số byte trên mỗi mảnh nén',
 'exif-jpeginterchangeformat'       => 'Vị trí SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Kích cỡ (byte) của JPEG',
-'exif-transferfunction'            => 'Hàm chuyển đổi',
 'exif-whitepoint'                  => 'Sắc độ điểm trắng',
 'exif-primarychromaticities'       => 'Sắc độ của màu cơ bản',
 'exif-ycbcrcoefficients'           => 'Hệ số ma trận biến đổi không gian màu',
@@ -3085,7 +3054,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-compressedbitsperpixel'      => 'Độ nén (bit/điểm)',
 'exif-pixelydimension'             => 'Chiều ngang hợp lệ',
 'exif-pixelxdimension'             => 'Chiều cao hợp lệ',
-'exif-makernote'                   => 'Ghi chú của nhà sản xuất',
 'exif-usercomment'                 => 'Lời bình của tác giả',
 'exif-relatedsoundfile'            => 'Tập tin âm thanh liên quan',
 'exif-datetimeoriginal'            => 'Ngày giờ sinh dữ liệu',
@@ -3100,7 +3068,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-exposureprogram'             => 'Chương trình phơi sáng',
 'exif-spectralsensitivity'         => 'Độ nhạy quang phổ',
 'exif-isospeedratings'             => 'Điểm tốc độ ISO',
-'exif-oecf'                        => 'Yếu tố chuyển đổi quang điện',
 'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp',
 'exif-aperturevalue'               => 'Độ mở ống kính',
 'exif-brightnessvalue'             => 'Độ sáng',
@@ -3114,7 +3081,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Diện tích vật thể',
 'exif-flashenergy'                 => 'Nguồn đèn chớp',
-'exif-spatialfrequencyresponse'    => 'Phản ứng tần số không gian',
 'exif-focalplanexresolution'       => 'Phân giải X trên mặt phẳng tiêu',
 'exif-focalplaneyresolution'       => 'Phân giải Y trên mặt phẳng tiêu',
 'exif-focalplaneresolutionunit'    => 'Đơn vị phân giải trên mặt phẳng tiêu',
@@ -3123,7 +3089,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-sensingmethod'               => 'Phương pháp đo',
 'exif-filesource'                  => 'Nguồn tập tin',
 'exif-scenetype'                   => 'Loại cảnh',
-'exif-cfapattern'                  => 'Mẫu CFA',
 'exif-customrendered'              => 'Sửa hình thủ công',
 'exif-exposuremode'                => 'Chế độ phơi sáng',
 'exif-whitebalance'                => 'Độ sáng trắng',
@@ -3666,18 +3631,5 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
-
-# Special:DisableAccount
-'disableaccount'             => 'Vô hiệu hóa tài khoản người dùng',
-'disableaccount-user'        => 'Tên người dùng:',
-'disableaccount-reason'      => 'Lý do:',
-'disableaccount-confirm'     => "Vô hiệu hóa tài khoản của người dùng này.
-Người dùng sẽ không thể đăng nhập, mặc định lại mật khẩu, hoặc nhận thông báo qua thư điện tử.
-Nếu người dùng đã dăng nhập vào bất cứ wiki nào trong hệ thống, nó sẽ bị đăng xuất ngay.
-''Lưu ý rằng chỉ có người quản trị hệ thống can thiệp có thể lùi lại việc vô hiệu hóa tài khoản.''",
-'disableaccount-mustconfirm' => 'Bạn phải xác nhận rằng bạn muốn vô hiệu hóa tài khoản này.',
-'disableaccount-nosuchuser'  => 'Tài khoản người dùng “$1” không tồn tại.',
-'disableaccount-success'     => 'Tài khoản người dùng “$1” đã bị vô hiệu hóa vĩnh viễn.',
-'disableaccount-logentry'    => 'đã vô hiệu hóa vĩnh viễn tài khoản của người dùng [[$1]]',
 
 );

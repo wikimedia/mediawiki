@@ -677,15 +677,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 
-# JavaScript password checks
-'password-strength'            => '預估密碼強度： $1',
-'password-strength-bad'        => '差',
-'password-strength-mediocre'   => '一般',
-'password-strength-acceptable' => '可接受',
-'password-strength-good'       => '好',
-'password-retype'              => '再次輸入密碼',
-'password-retype-mismatch'     => '密碼不匹配',
-
 # Password reset dialog
 'resetpass'                 => '更改密碼',
 'resetpass_announce'        => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
@@ -1059,26 +1050,6 @@ $1",
 'suppressionlogtext' => '以下是刪除以及由操作員牽涉到內容封鎖的清單。
 參看[[Special:IPBlockList|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
 
-# Revision move
-'moverevlogentry'              => '移動了$1的{{PLURAL:$3|一次修訂版本|$3次修訂版本}}至$2',
-'revisionmove'                 => '由 "$1" 移動修訂版本',
-'revmove-explain'              => '以下的修訂版本將會由$1移動至所指定的目標頁面。如果目標不存在的話，它就將會建立。否則，這些的修訂版本就將會合併到頁面歷史中。',
-'revmove-legend'               => '設定目標頁面以及摘要',
-'revmove-submit'               => '移動修訂版本到所選定的頁面上',
-'revisionmoveselectedversions' => '移動已選取的修訂版本',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '目標頁面：',
-'revmove-badparam-title'       => '壞的參數',
-'revmove-badparam'             => '您的請求含有不合法的者不足的參數。
-請返回先前的頁面再試。',
-'revmove-norevisions-title'    => '無效的目標修訂版本',
-'revmove-norevisions'          => '您尚未指定一個或者多個目標修訂版本去做這項功能或者所指定的修訂版本不存在。',
-'revmove-nullmove-title'       => '壞的標題',
-'revmove-nullmove'             => '目標頁面不可以跟來源頁面相同。
-請返回先前的頁面再輸入跟 "$1" 不相同的名字。',
-'revmove-success-existing'     => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至現有的頁面[[$3]]。',
-'revmove-success-created'      => '由[[$2]]中的{{PLURAL:$1|一次修訂版本|$1次修訂版本}}已經移動至新建的頁面[[$3]]。',
-
 # History merging
 'mergehistory'                     => '合併頁面歷史',
 'mergehistory-header'              => '這一頁可以講您合併一個來源頁面的歷史到另一個新頁面中。
@@ -1415,8 +1386,6 @@ $1",
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
-'right-revisionmove'          => '移動修訂版本',
-'right-disableaccount'        => '禁用帳號',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1459,7 +1428,6 @@ $1",
 'action-userrights'           => '編輯所有的權限',
 'action-userrights-interwiki' => '編輯在其它wiki上用戶的權限',
 'action-siteadmin'            => '鎖定和解除鎖定資料庫',
-'action-revisionmove'         => '移動修訂',
 
 # Recent changes
 'nchanges'                          => '$1次更改',
@@ -2904,7 +2872,6 @@ Variants for Chinese language
 'exif-stripbytecounts'             => '每壓縮帶位元組數',
 'exif-jpeginterchangeformat'       => 'JPEG SOI 偏移',
 'exif-jpeginterchangeformatlength' => 'JPEG 數據位元組',
-'exif-transferfunction'            => '轉移功能',
 'exif-whitepoint'                  => '白點色度',
 'exif-primarychromaticities'       => '主要色度',
 'exif-ycbcrcoefficients'           => '顏色空間轉換矩陣系數',
@@ -2923,7 +2890,6 @@ Variants for Chinese language
 'exif-compressedbitsperpixel'      => '圖片壓縮模式',
 'exif-pixelydimension'             => '有效圖片寬度',
 'exif-pixelxdimension'             => '有效圖片高度',
-'exif-makernote'                   => '製造商註釋',
 'exif-usercomment'                 => '用戶註釋',
 'exif-relatedsoundfile'            => '相關的音頻檔案',
 'exif-datetimeoriginal'            => '數據產生時間',
@@ -2937,7 +2903,6 @@ Variants for Chinese language
 'exif-exposureprogram'             => '曝光模式',
 'exif-spectralsensitivity'         => '感光',
 'exif-isospeedratings'             => 'ISO 速率',
-'exif-oecf'                        => '光電轉換因子',
 'exif-shutterspeedvalue'           => '快門速度',
 'exif-aperturevalue'               => '光圈',
 'exif-brightnessvalue'             => '亮度',
@@ -2950,7 +2915,6 @@ Variants for Chinese language
 'exif-focallength'                 => '焦距',
 'exif-subjectarea'                 => '主體區域',
 'exif-flashenergy'                 => '閃光燈強度',
-'exif-spatialfrequencyresponse'    => '空間頻率附應',
 'exif-focalplanexresolution'       => 'X軸焦平面分辨率',
 'exif-focalplaneyresolution'       => 'Y軸焦平面分辨率',
 'exif-focalplaneresolutionunit'    => '焦平面分辨率單位',
@@ -2959,7 +2923,6 @@ Variants for Chinese language
 'exif-sensingmethod'               => '感光模式',
 'exif-filesource'                  => '檔案源',
 'exif-scenetype'                   => '場景類型',
-'exif-cfapattern'                  => 'CFA 模式',
 'exif-customrendered'              => '自訂圖片處理',
 'exif-exposuremode'                => '曝光模式',
 'exif-whitebalance'                => '白平衡',
@@ -3443,17 +3406,5 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # SQLite database support
 'sqlite-has-fts' => '帶全文搜尋的版本$1',
 'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
-
-# Special:DisableAccount
-'disableaccount'             => '禁用用戶賬戶',
-'disableaccount-user'        => '用戶名：',
-'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "禁用此使用者帳號。
-該使用者將無法登入、重設其密碼或收到電子郵件通知。如果用戶目前仍保持登入，其帳號將會被強制登出。
-''留意若無系統管理員的干預，被禁用的帳號不可重新啟用。''",
-'disableaccount-mustconfirm' => '請確認您的確要禁用此賬戶。',
-'disableaccount-nosuchuser'  => '用戶賬戶「$1」不存在。',
-'disableaccount-success'     => '用戶賬戶「$1」已被永久禁用。',
-'disableaccount-logentry'    => '永久禁用用戶賬戶[[$1]]',
 
 );

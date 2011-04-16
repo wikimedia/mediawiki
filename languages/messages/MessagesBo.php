@@ -305,13 +305,6 @@ $messages = array(
 'mailmypassword'          => 'གློག་འཕྲིན་ལམ་ཡིག་གསར་བ།',
 'loginlanguagelabel'      => 'སྐད་རིགས། $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'སྙོམས་པ།',
-'password-strength-acceptable' => 'ངོས་ལེན་རུང་བ།',
-'password-strength-good'       => 'བཙན་པ།',
-'password-retype'              => 'འདིར་ལམ་ཡིག་སྐྱར་གཏགས་བྱོས།',
-'password-retype-mismatch'     => 'ལམ་ཡིག་མ་མཐུན་པ།',
-
 # Password reset dialog
 'resetpass'                 => 'ལམ་ཡིག་བརྗེ་བ།',
 'resetpass_announce'        => 'ཁྱེད་ཀྱིས་ང་ཚོས་བཏང་བའི་གནས་སྐབས་ལམ་ཡིག་ལ་བརྟེན་ནས་ནང་འཛུལ་བྱས་འདུག ནང་འཛུལ་ཆ་ཚང་བ་བྱེད་པར་འདིར་ངེས་པར་དུ་ལམ་ཡིག་གསར་བ་འཇུག་དགོས།',

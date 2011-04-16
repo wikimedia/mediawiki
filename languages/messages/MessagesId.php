@@ -784,15 +784,6 @@ Silakan menunggu sebelum mencoba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Kesalahan yang tidak dikenal dalam fungsi mail() PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Kekuatan sandi: $1',
-'password-strength-bad'        => 'BURUK',
-'password-strength-mediocre'   => 'sedang',
-'password-strength-acceptable' => 'cukup',
-'password-strength-good'       => 'baik',
-'password-retype'              => 'Ulangi kata sandi di sini',
-'password-retype-mismatch'     => 'Sandi tidak cocok',
-
 # Password reset dialog
 'resetpass'                 => 'Ganti kata sandi',
 'resetpass_announce'        => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surel. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',
@@ -1171,24 +1162,6 @@ Silakan periksa catatan log.',
 'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan pemblokiran, termasuk konten yang disembunyikan dari para opsis.
 Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|satu revisi |$3 revisi}} pindah dari $1 ke $2',
-'revisionmove'                 => 'Revisi pindah dari "$1"',
-'revmove-explain'              => 'Revisi berikut akan dipindahkan dari $1 ke halaman tujuan yang ditetapkane. Jika tujuan tidak ada, akan dibuatkan. Sebaliknya, revisi ini akan di gabungkan dalam sejarah halaman.',
-'revmove-legend'               => 'Tetapkan halaman tujuan dan ringkasan',
-'revmove-submit'               => 'Pindahkan revisi ke halaman yang dipilih',
-'revisionmoveselectedversions' => 'Pindahkan revisi yang dipilih',
-'revmove-reasonfield'          => 'Alasan:',
-'revmove-titlefield'           => 'Halaman tujuan:',
-'revmove-badparam-title'       => 'Parameter Buruk',
-'revmove-badparam'             => 'Permintaan Anda mengandung parameter yang tidak sah atau kurang. Silahkan tekan "kembali" dan coba lagi.',
-'revmove-norevisions-title'    => 'Revisi target tak sah',
-'revmove-norevisions'          => 'Anda belum menetapkan satu atau lebih revisi tujuan untuk menjalankan fungsi atau revisi yang diberikan tidak ada.',
-'revmove-nullmove-title'       => 'Judul tidak sah',
-'revmove-nullmove'             => 'Halaman sumber dan tujuan sama. Silahkan tekan "kembali" dan masukan nama halaman yang berbeda dari "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman yang ada [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman baru yang dibuat [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
 'mergehistory-header'              => 'Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.
@@ -1527,8 +1500,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
-'right-revisionmove'          => 'Pindah revisi',
-'right-disableaccount'        => 'Menonaktifkan akun',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1571,7 +1542,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'action-userrights'           => 'menyunting semua hak pengguna',
 'action-userrights-interwiki' => 'menyunting hak akses dari pengguna di wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci basis data',
-'action-revisionmove'         => 'pindah revisi',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|perubahan|perubahan}}',
@@ -2984,7 +2954,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-stripbytecounts'             => 'Bita per strip kompresi',
 'exif-jpeginterchangeformat'       => 'Ofset ke JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bita data JPEG',
-'exif-transferfunction'            => 'Fungsi transfer',
 'exif-whitepoint'                  => 'Kromatisitas titik putih',
 'exif-primarychromaticities'       => 'Kromatisitas warna primer',
 'exif-ycbcrcoefficients'           => 'Koefisien matriks transformasi ruang warna',
@@ -3003,7 +2972,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-compressedbitsperpixel'      => 'Mode kompresi gambar',
 'exif-pixelydimension'             => 'Lebar gambar yang sah',
 'exif-pixelxdimension'             => 'Tinggi gambar yang sah',
-'exif-makernote'                   => 'Catatan produsen',
 'exif-usercomment'                 => 'Komentar pengguna',
 'exif-relatedsoundfile'            => 'Berkas audio yang berhubungan',
 'exif-datetimeoriginal'            => 'Tanggal dan waktu pembuatan data',
@@ -3017,7 +2985,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-exposureprogram'             => 'Program pajanan',
 'exif-spectralsensitivity'         => 'Sensitivitas spektral',
 'exif-isospeedratings'             => 'Rating kecepatan ISO',
-'exif-oecf'                        => 'Faktor konversi optoelektronik',
 'exif-shutterspeedvalue'           => 'Kecepatan rana',
 'exif-aperturevalue'               => 'Bukaan',
 'exif-brightnessvalue'             => 'Kecerahan',
@@ -3030,7 +2997,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-focallength'                 => 'Jarak fokus lensa',
 'exif-subjectarea'                 => 'Wilayah subjek',
 'exif-flashenergy'                 => 'Energi kilas',
-'exif-spatialfrequencyresponse'    => 'Respons frekuensi spasial',
 'exif-focalplanexresolution'       => 'Resolusi bidang fokus X',
 'exif-focalplaneyresolution'       => 'Resolusi bidang fokus Y',
 'exif-focalplaneresolutionunit'    => 'Unit resolusi bidang fokus',
@@ -3039,7 +3005,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-sensingmethod'               => 'Metode penginderaan',
 'exif-filesource'                  => 'Sumber berkas',
 'exif-scenetype'                   => 'Tipe pemandangan',
-'exif-cfapattern'                  => 'Pola CFA',
 'exif-customrendered'              => 'Proses buatan gambar',
 'exif-exposuremode'                => 'Mode pajanan',
 'exif-whitebalance'                => 'Keseimbangan putih',
@@ -3564,18 +3529,5 @@ Keterangan tampilan:
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
-
-# Special:DisableAccount
-'disableaccount'             => 'Penonaktifan akun pengguna',
-'disableaccount-user'        => 'Nama pengguna:',
-'disableaccount-reason'      => 'Alasan:',
-'disableaccount-confirm'     => "Nonaktifkan akun pengguna ini.
-Pengguna tidak akan dapat masuk, menyetel ulang sandi mereka, atau menerima surel pemberitahuan.
-Jika pengguna saat ini sedang masuk di mana saja, mereka akan segera dikeluarkan.
-''Perhatikan bahwa penonaktifan akun tidak dapat dibatalkan tanpa campur tangan administrator sistem.''",
-'disableaccount-mustconfirm' => 'Anda harus mengonfirmasikan bahwa Anda ingin menonaktifkan akun ini.',
-'disableaccount-nosuchuser'  => 'Akun pengguna "$1" tidak ada.',
-'disableaccount-success'     => 'Akun pengguna "$1" telah dinonaktifkan secara permanen.',
-'disableaccount-logentry'    => 'menonaktifkan secara permanen akun pengguna [[$1]]',
 
 );

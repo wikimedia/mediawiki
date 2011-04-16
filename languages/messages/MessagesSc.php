@@ -456,14 +456,6 @@ Pro praxere, cando dda retzis identìfica·ti torra.',
 'createaccount-title'     => 'Creatzione de unu account pro {{SITENAME}}',
 'loginlanguagelabel'      => 'Limba: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'MALA',
-'password-strength-mediocre'   => 'discreta',
-'password-strength-acceptable' => 'atzetàbile',
-'password-strength-good'       => 'bona',
-'password-retype'              => 'Repite sa password:',
-'password-retype-mismatch'     => 'Sas passwords non cointzident',
-
 # Password reset dialog
 'resetpass'                 => 'Càmbia sa password',
 'resetpass_header'          => 'Càmbia sa password de su account',
@@ -625,9 +617,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'revdelete-log-message'      => '$1 pro $2 {{PLURAL:$2|revisione|revisiones}}',
 'logdelete-log-message'      => '$1 pro $2 {{PLURAL:$2|eventu|eventos}}',
 'revdelete-reasonotherlist'  => 'Àteru motivu',
-
-# Revision move
-'revmove-reasonfield' => 'Motivu:',
 
 # History merging
 'mergehistory-from'      => 'Pàgina de orìgine:',
@@ -1494,8 +1483,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-1' => 'Y',
 'exif-componentsconfiguration-2' => 'Cb',

@@ -561,13 +561,6 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 Stebedolös büä osteifülol nogna.',
 'loginlanguagelabel'         => 'Pük: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'BADIK',
-'password-strength-mediocre'   => 'zänedöfik',
-'password-strength-acceptable' => 'zepabik',
-'password-strength-good'       => 'gudik',
-'password-retype'              => 'Klavolös dönu letavödi is',
-
 # Password reset dialog
 'resetpass'                 => 'Votükön letavödi',
 'resetpass_announce'        => 'Enunädol oli me kot nelaidüpik pisedöl ole. Ad finükön nunädami, mutol välön letavödi nulik is:',
@@ -872,11 +865,6 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'suppressionlog'     => 'Lovelogam-jenotalised',
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
-# Revision move
-'moverevlogentry'        => 'petopätükon {{PLURAL:$3|revid bal|revids $3}} de "$1" lü "$2"',
-'revmove-reasonfield'    => 'Kod:',
-'revmove-nullmove-title' => 'Tiäd badik',
-
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
 'mergehistory-header'              => 'Pad at mogükon balami fomamis se jenotem fonätapada ad fomön padi nulik.
@@ -1173,7 +1161,6 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'right-userrights-interwiki' => 'Redakön gebanagitätis gebanas vükas votik',
 'right-siteadmin'            => 'Lökofärmükön e maifükön nünodemi',
 'right-sendemail'            => 'Sedön penedis leäktronik lü gebans votik',
-'right-revisionmove'         => 'Topätükön fomamis',
 
 # User rights log
 'rightslog'      => 'Jenotalised gebanagitätas',
@@ -2428,7 +2415,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-stripbytecounts'             => 'Jöläts a strip pekobopedöl',
 'exif-jpeginterchangeformat'       => 'Topätükön ad JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Jöläts nünodas: JPEG',
-'exif-transferfunction'            => 'Lovepladamasekät',
 'exif-whitepoint'                  => 'Kölöf püna vietik',
 'exif-primarychromaticities'       => 'Kölöf stabakölas',
 'exif-ycbcrcoefficients'           => 'Koäfs votükamataiba kölaspada',
@@ -2446,7 +2432,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-compressedbitsperpixel'      => 'Mod kobopedama magoda',
 'exif-pixelydimension'             => 'Magodavidot lonöföl',
 'exif-pixelxdimension'             => 'Magodageilot lonöföl',
-'exif-makernote'                   => 'Penets fabrikana',
 'exif-usercomment'                 => 'Küpets gebana',
 'exif-relatedsoundfile'            => 'Tonaragiv tefik',
 'exif-datetimeoriginal'            => 'Dät e tim jafama nünodas',
@@ -2472,7 +2457,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-focallength'                 => 'Foukafagot',
 'exif-subjectarea'                 => 'Portät',
 'exif-flashenergy'                 => 'Nämet kämalelita',
-'exif-spatialfrequencyresponse'    => 'Spadasuvöf',
 'exif-focalplanexresolution'       => 'Distidafäg-X foukaplena',
 'exif-focalplaneyresolution'       => 'Distidafäg-Y foukaplena',
 'exif-focalplaneresolutionunit'    => 'Distidafägastabäd foukaplena',
@@ -2481,7 +2465,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-sensingmethod'               => 'Senametod',
 'exif-filesource'                  => 'Fonät ragiva',
 'exif-scenetype'                   => 'Sot süfüla',
-'exif-cfapattern'                  => 'Pated-CFA',
 'exif-customrendered'              => 'Magodibevobam pelönedüköl',
 'exif-exposuremode'                => 'Litükamamod',
 'exif-whitebalance'                => 'Vietaleigavet',
@@ -2849,10 +2832,5 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
 'htmlform-submit'              => 'Sedön',
 'htmlform-reset'               => 'Sädunön votükamis',
 'htmlform-selectorother-other' => 'Votik',
-
-# Special:DisableAccount
-'disableaccount-user'       => 'Gebananem:',
-'disableaccount-reason'     => 'Kod:',
-'disableaccount-nosuchuser' => 'Gebanakal: "$1" no dabinon.',
 
 );

@@ -322,9 +322,6 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 'revdel-restore'            => 'sauya haske',
 'revdelete-reasonotherlist' => 'Wani dalili',
 
-# Revision move
-'revmove-reasonfield' => 'Dalili:',
-
 # History merging
 'mergehistory-reason' => 'Dalili:',
 

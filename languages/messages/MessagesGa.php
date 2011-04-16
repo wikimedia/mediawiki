@@ -534,10 +534,6 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'createaccount-text'         => 'Chruthaigh duine éigin cuntas do do sheoladh ríomhphoist ar {{SITENAME}} ($4) leis an ainm "$2" agus pasfhocal "$3". Ba cheart duit logáil isteach agus do phasfhocal a athrú anois. Is féidir leat neamhaird a thabhairt don teachtaireacht seo má cruthaíodh trí earráid í.',
 'loginlanguagelabel'         => 'Teanga: $1',
 
-# JavaScript password checks
-'password-strength-bad'  => 'DONA',
-'password-strength-good' => 'maith',
-
 # Password reset dialog
 'resetpass'                 => "Athraigh d'fhocal faire",
 'resetpass_announce'        => "Tá tú logáilte isteach le cód sealadach a seoladh chugat i r-phost.
@@ -730,9 +726,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'deletedhist'                 => 'Stair scriosta',
 'revdelete-uname'             => 'ainm úsáideora',
 'revdelete-log-message'       => '$1 le $2 {{PLURAL:$2|leagan|leagain}}',
-
-# Revision move
-'revmove-nullmove-title' => 'Drochtheideal',
 
 # History merging
 'mergehistory-from'   => 'Leathanach fhoinse:',
@@ -1856,7 +1849,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-stripbytecounts'             => 'Bearta sa stráice comhbhrúite',
 'exif-jpeginterchangeformat'       => 'Aischló don SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Bearta sonraí JPEG',
-'exif-transferfunction'            => 'Feidhm aistrithe',
 'exif-whitepoint'                  => 'Crómatacht na bpointí bán',
 'exif-primarychromaticities'       => 'Crómatachta na bpríomhacht',
 'exif-ycbcrcoefficients'           => 'Comhéifeachtaí mhaitrís trasfhoirmithe an dathspáis',
@@ -1875,7 +1867,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-compressedbitsperpixel'      => 'Modh chomhbhrú na n-íomhánna',
 'exif-pixelydimension'             => 'Leithead bailí don íomhá',
 'exif-pixelxdimension'             => 'Airde bailí don íomhá',
-'exif-makernote'                   => 'Nótaí an déantóra',
 'exif-usercomment'                 => 'Nótaí an úsáideora',
 'exif-relatedsoundfile'            => 'comhad gaolmhara fuaime',
 'exif-datetimeoriginal'            => 'Dáta agus am ghiniúint na sonraí',
@@ -1889,7 +1880,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-exposureprogram'             => 'Clár nochta',
 'exif-spectralsensitivity'         => 'Íogaireacht an speictrim',
 'exif-isospeedratings'             => 'Grádú ISO luais',
-'exif-oecf'                        => 'Fachtóir optaileictreonach tiontaithe',
 'exif-shutterspeedvalue'           => 'Luas nochta',
 'exif-aperturevalue'               => 'Cró',
 'exif-brightnessvalue'             => 'Gile',
@@ -1902,7 +1892,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-focallength'                 => 'Fad fócasach an lionsa',
 'exif-subjectarea'                 => 'Achar an ábhair',
 'exif-flashenergy'                 => 'Splancfhuinneamh',
-'exif-spatialfrequencyresponse'    => 'Freagairt minicíochta spáis',
 'exif-focalplanexresolution'       => 'Taifeach an plána fócasaigh X',
 'exif-focalplaneyresolution'       => 'Taifeach an plána fócasaigh Y',
 'exif-focalplaneresolutionunit'    => 'Aonad taifigh an plána fócasaigh',
@@ -1911,7 +1900,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-sensingmethod'               => 'Modh braite',
 'exif-filesource'                  => 'Foinse comhaid',
 'exif-scenetype'                   => 'Cineál radhairc',
-'exif-cfapattern'                  => 'Patrún CFA',
 'exif-customrendered'              => 'Íomháphróiseáil saincheaptha',
 'exif-exposuremode'                => 'Modh nochta',
 'exif-whitebalance'                => 'Bánchothromaíocht',

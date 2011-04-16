@@ -1261,7 +1261,6 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'right-reset-passwords'       => "Reaniciar contraseñes d'otros usuarios",
 'right-override-export-depth' => 'Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5',
 'right-sendemail'             => 'Unviar corréu a otros usuarios',
-'right-disableaccount'        => 'Desactivar cuentes',
 
 # User rights log
 'rightslog'      => "Rexistru de perfil d'usuariu",
@@ -2664,7 +2663,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-stripbytecounts'             => 'Bytes per banda comprimida',
 'exif-jpeginterchangeformat'       => 'Desplazamientu al JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes de datos JPEG',
-'exif-transferfunction'            => 'Función de tresferencia',
 'exif-whitepoint'                  => 'Cromacidá de puntu blancu',
 'exif-primarychromaticities'       => 'Cromacidá de los primarios',
 'exif-ycbcrcoefficients'           => 'Coeficientes de la matriz de tresformación del espaciu de color',
@@ -2683,7 +2681,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-compressedbitsperpixel'      => "Mou de compresión d'imaxe",
 'exif-pixelydimension'             => "Anchor d'imaxe válidu",
 'exif-pixelxdimension'             => "Altor d'imaxe válidu",
-'exif-makernote'                   => 'Notes del fabricante',
 'exif-usercomment'                 => 'Comentarios del usuariu',
 'exif-relatedsoundfile'            => "Archivu d'audiu rellacionáu",
 'exif-datetimeoriginal'            => 'Fecha y hora de la xeneración de datos',
@@ -2697,7 +2694,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-exposureprogram'             => "Programa d'esposición",
 'exif-spectralsensitivity'         => 'Sensitividá espeutral',
 'exif-isospeedratings'             => 'Sensibilidá ISO',
-'exif-oecf'                        => 'Factor de conversión optoelectrónicu',
 'exif-shutterspeedvalue'           => 'Velocidá del obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brillu',
@@ -2710,7 +2706,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-focallength'                 => 'Llonxitú focal de la lente',
 'exif-subjectarea'                 => 'Área del suxetu',
 'exif-flashenergy'                 => 'Enerxía del flax',
-'exif-spatialfrequencyresponse'    => 'Rempuesta de frecuencia espacial',
 'exif-focalplanexresolution'       => 'Resolución X del planu focal',
 'exif-focalplaneyresolution'       => 'Resolución Y del planu focal',
 'exif-focalplaneresolutionunit'    => 'Unidá de resolución del planu focal',
@@ -2719,7 +2714,6 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-sensingmethod'               => 'Métodu de sensor',
 'exif-filesource'                  => 'Orixe del archivu',
 'exif-scenetype'                   => "Triba d'escena",
-'exif-cfapattern'                  => 'patrón CFA',
 'exif-customrendered'              => "Procesamientu d'imaxe personalizáu",
 'exif-exposuremode'                => "Mou d'esposición",
 'exif-whitebalance'                => 'Balance de blancos',
@@ -3161,14 +3155,5 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Unviar',
 'htmlform-reset'               => 'Esfacer cambeos',
 'htmlform-selectorother-other' => 'Otros',
-
-# Special:DisableAccount
-'disableaccount'             => "Desactivar una cuenta d'usuariu",
-'disableaccount-user'        => "Nome d'usuariu:",
-'disableaccount-reason'      => 'Motivu:',
-'disableaccount-mustconfirm' => 'Tienes de confirmar que quies desactivar esta cuenta.',
-'disableaccount-nosuchuser'  => 'La cuenta d\'usuariu "$1" nun esiste.',
-'disableaccount-success'     => 'La cuenta d\'usuariu "$1" se desactivó de mou permanente.',
-'disableaccount-logentry'    => "desactivó de mou permanente la cuenta d'usuariu [[$1]]",
 
 );

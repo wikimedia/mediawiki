@@ -463,10 +463,6 @@ Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê.
 Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
 'loginlanguagelabel'         => 'Ziman: $1',
 
-# JavaScript password checks
-'password-strength-good' => 'rind',
-'password-retype'        => 'Şîfreya xwe careke din binîvîse',
-
 # Password reset dialog
 'resetpass'                 => 'Şîfre biguherîne',
 'resetpass_announce'        => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
@@ -683,11 +679,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-otherreason'       => 'Sedemekî din:',
 'revdelete-reasonotherlist'   => 'Sedemekî din',
 'revdelete-edit-reasonlist'   => 'Sedemên jêbirinê biguherîne',
-
-# Revision move
-'revmove-reasonfield'    => 'Sedem:',
-'revmove-titlefield'     => 'Rûpela armanc:',
-'revmove-nullmove-title' => 'Sernivîsa nebaş',
 
 # History merging
 'mergehistory-from'   => 'Çavkanîya rûpelê:',
@@ -1931,9 +1922,5 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'htmlform-submit'              => 'Bike',
 'htmlform-reset'               => 'Guherandinan vegerîne',
 'htmlform-selectorother-other' => 'Yên din',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Navê bikarhêner:',
-'disableaccount-reason' => 'Sedem:',
 
 );

@@ -660,15 +660,6 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'ข้อผิดพลาดที่ไม่รู้จักในฟังก์ชัน mail() ของ PHP',
 
-# JavaScript password checks
-'password-strength'            => 'ประเมินความมั่นคงของรหัสผ่าน: $1',
-'password-strength-bad'        => 'ต่ำ',
-'password-strength-mediocre'   => 'ค่อนข่างต่ำ',
-'password-strength-acceptable' => 'ยอมรับได้',
-'password-strength-good'       => 'ดี',
-'password-retype'              => 'พิมพ์รหัสผ่านอีกครั้ง',
-'password-retype-mismatch'     => 'รหัสผ่านไม่ตรงกัน',
-
 # Password reset dialog
 'resetpass'                 => 'เปลี่ยนรหัสผ่าน',
 'resetpass_announce'        => 'คุณล็อกอินผ่านรหัสอีเมลชั่วคราว คุณต้องใส่ค่ารหัสผ่านใหม่เพื่อเสร็จสิ้นขั้นตอนการล็อกอิน:',
@@ -1043,26 +1034,6 @@ $1",
 'suppressionlogtext' => 'ด้านล่างนี้คือรายการลบและระงับ รวมไปถึงเนื้อหาที่ถูกซ่อนโดยผู้ดูแลระบบ
 ดู [[Special:IPBlockList|รายการหมายเลขไอพีที่ถูกระงับ]] สำหรับรายการระงับและห้ามใช้ที่ยังมีผลอยู่',
 
-# Revision move
-'moverevlogentry'              => 'ย้าย $3 รุ่นจาก $1 ไปยัง $2',
-'revisionmove'                 => 'ย้ายรุ่นจาก "$1"',
-'revmove-explain'              => 'รุ่นดังต่อไปนี้จะถูกย้ายจาก $1 ไปยังหน้าเป้าหมาย ถ้าหน้าเป้าหมายไม่มี หน้านั้นจะถูกสร้างขึ้น นอกเหนือจากนั้น รุ่นเหล่านี้จะถูกรวมเข้ากับประวัติของหน้า',
-'revmove-legend'               => 'กำหนดหน้าเป้าหมายและคำอธิบายอย่างย่อ',
-'revmove-submit'               => 'ย้ายรุ่นไปยังหน้าที่เลือก',
-'revisionmoveselectedversions' => 'ย้ายรุ่นที่เลือก',
-'revmove-reasonfield'          => 'เหตุผล:',
-'revmove-titlefield'           => 'หน้าเป้าหมาย:',
-'revmove-badparam-title'       => 'พารามิเตอร์ไม่ถูกต้อง',
-'revmove-badparam'             => 'คำขอของคุณมีพารามิเตอร์ที่ไม่ถูกต้องหรือไม่เพียงพอ 
-กลับไปยังหน้าก่อนหน้านี้และลองอีกครั้ง',
-'revmove-norevisions-title'    => 'ไม่มีรุ่นการปรับปรุงที่ต้องการ',
-'revmove-norevisions'          => 'คุณไม่ได้เจาะจงรุ่นเป้าหมายหนึ่งรุ่นหรือมากกว่าที่จะดำเนินการฟังก์ชันนี้หรือไม่มีรุ่นที่เจาะจง',
-'revmove-nullmove-title'       => 'ชื่อหน้าไม่เหมาะสม',
-'revmove-nullmove'             => 'หน้าเป้าหมายไม่สามารถเป็นหน้าเดียวกันกับหน้าต้นฉบับ
-กลับไปยังหน้าที่ผ่านมาและกำหนดชื่อที่แตกต่างจาก "$1"',
-'revmove-success-existing'     => '$1 รุ่นจาก [[$2]] ได้ย้ายไปยังหน้า [[$3]] แล้ว',
-'revmove-success-created'      => '$1 รุ่นจาก [[$2]] ได้ย้ายไปยังหน้า [[$3]] ซึ่งเพิ่งจะถูกสร้างใหม่แล้ว',
-
 # History merging
 'mergehistory'                     => 'ประวัติการรวมหน้า',
 'mergehistory-header'              => 'หน้านี้ไว้ให้คุณใช้รวมรุ่นต่างๆ ในประวัติการแก้ไขของหน้าต้นทาง ไปยังหน้าใหม่.
@@ -1399,8 +1370,6 @@ $1",
 'right-reset-passwords'       => 'ตั้งรหัสผ่านของผู้ใช้อื่นใหม่',
 'right-override-export-depth' => 'ส่งออกหน้า รวมหน้าที่เชื่อมโยงกับหน้านี้สูงสุด 5 ลำดับชั้น',
 'right-sendemail'             => 'ส่งอีเมลไปยังผู้ใช้อื่นๆ',
-'right-revisionmove'          => 'ย้ายรุ่น',
-'right-disableaccount'        => 'ปิดการใช้งานบัญชี',
 
 # User rights log
 'rightslog'      => 'บันทึกการเปลี่ยนสิทธิผู้ใช้',
@@ -1443,7 +1412,6 @@ $1",
 'action-userrights'           => 'แก้ไขสิทธิผู้ใช้ทั้งหมด',
 'action-userrights-interwiki' => 'แก้ไขสิทธิผู้ใช้สำหรับวิกินี้',
 'action-siteadmin'            => 'ล็อกหรือปลดล็อกฐานข้อมูล',
-'action-revisionmove'         => 'ย้ายรุ่น',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|การแก้ไข|การแก้ไข}}',
@@ -2825,7 +2793,6 @@ $1',
 'exif-stripbytecounts'             => 'ไบต์ต่อสตริป',
 'exif-jpeginterchangeformat'       => 'ออฟเซตไปที่ JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'ไบต์ของข้อมูล JPEG',
-'exif-transferfunction'            => 'ฟังก์ชันทรานส์เฟอร์',
 'exif-whitepoint'                  => 'ไวต์พอยต์โครมาติก',
 'exif-primarychromaticities'       => 'โครมาติกของไพรมาริตี',
 'exif-ycbcrcoefficients'           => 'สัมประสิทธิเมทริกซ์การเปลียนแปลงของสเปซสี',
@@ -2844,7 +2811,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'โหมดการบีบอัดภาพ',
 'exif-pixelydimension'             => 'ความกว้างที่นำไปใช้ได้',
 'exif-pixelxdimension'             => 'ความยาวที่นำไปใช้ได้',
-'exif-makernote'                   => 'ข้อมูลเพิ่มจากผู้ผลิตกล้อง',
 'exif-usercomment'                 => 'ความเห็นผู้ใช้',
 'exif-relatedsoundfile'            => 'ไฟล์เสียงที่เกี่ยวข้อง',
 'exif-datetimeoriginal'            => 'วันที่และเวลาที่สร้าง',
@@ -2858,7 +2824,6 @@ $1',
 'exif-exposureprogram'             => 'โปรแกรมเอกซ์โพเชอร์',
 'exif-spectralsensitivity'         => 'ความไวสเปกตรัม',
 'exif-isospeedratings'             => 'อัตราความเร็ว ISO',
-'exif-oecf'                        => 'อัตราเปลี่ยนออปโตอิเล็กทรอนิก',
 'exif-shutterspeedvalue'           => 'ความไวชัตเตอร์',
 'exif-aperturevalue'               => 'รูรับแสง',
 'exif-brightnessvalue'             => 'ความสว่าง',
@@ -2871,7 +2836,6 @@ $1',
 'exif-focallength'                 => 'ระยะโฟกัส',
 'exif-subjectarea'                 => 'จุดวัตถุ',
 'exif-flashenergy'                 => 'พลังงานแฟลช',
-'exif-spatialfrequencyresponse'    => 'การตอบสนองความถี่ของสเปซ',
 'exif-focalplanexresolution'       => 'ความละเอียระนาบโฟกัส X',
 'exif-focalplaneyresolution'       => 'ความละเอียระนาบโฟกัส Y',
 'exif-focalplaneresolutionunit'    => 'หน่วยความละเอียดระนาบโฟกัส',
@@ -2880,7 +2844,6 @@ $1',
 'exif-sensingmethod'               => 'วิถีการวัด',
 'exif-filesource'                  => 'ต้นฉบับไฟล์',
 'exif-scenetype'                   => 'ชนิดซีน',
-'exif-cfapattern'                  => 'รูปแบบ CFA',
 'exif-customrendered'              => 'การประมวณภาพ',
 'exif-exposuremode'                => 'โหมดเอกซ์โพเชอร์',
 'exif-whitebalance'                => 'ไวต์บาลานซ์',
@@ -3362,18 +3325,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => 'รุ่น $1 พร้อมการสนับสนุนการค้นหาข้อความแบบเต็ม',
 'sqlite-no-fts'  => 'รุ่น $1 โดยไม่มีการสนับสนุนการค้นหาข้อความแบบเต็ม',
-
-# Special:DisableAccount
-'disableaccount'             => 'ปิดการใช้งานบัญชีผู้ใช้',
-'disableaccount-user'        => 'ชื่อผู้ใช้:',
-'disableaccount-reason'      => 'เหตุผล:',
-'disableaccount-confirm'     => "ปิดการใช้งานบัญชีผู้ใช้นี้
-ผู้ใช้จะไม่สามารถล็อกอิน ตั้งรหัสผ่านใหม่ หรือได้รับการแจ้งเตือนทางอีเมล
-หากผู้ใช้กำลังล็อกอินอยู่ในขณะนี้ พวกเขาจะถูกล็อกเอาต์ทันที
-''โปรดทราบว่าการปิดการใช้งานบัญชี ไม่สามารถย้อนกลับได้โดยปราศจากการแทรกแซงจากผู้ดูแลระบบ''",
-'disableaccount-mustconfirm' => 'คุณต้องยืนยันว่าคุณต้องการปิดการใช้งานบัญชีนี้',
-'disableaccount-nosuchuser'  => 'ไม่มีบัญชีผู้ใช้ "$1"',
-'disableaccount-success'     => 'บัญชีผู้ใช้ "$1" ถูกปิดการใช้งานอย่างถาวร',
-'disableaccount-logentry'    => 'บัญชีผู้ใช้ [[$1]] ถูกปิดการใช้งานอย่างถาวร',
 
 );

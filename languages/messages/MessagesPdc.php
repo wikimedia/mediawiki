@@ -259,10 +259,6 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
-# JavaScript password checks
-'password-strength-bad'  => 'SCHLECHT',
-'password-strength-good' => 'guud',
-
 # Password reset dialog
 'resetpass'                 => 'Paesswatt ennere',
 'oldpassword'               => 'Aldes Paesswatt:',
@@ -333,9 +329,6 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'revdelete-reasonotherlist'  => 'Annere Grind',
 'revdelete-edit-reasonlist'  => "Grind fer's Lesche ennere",
 'revdelete-offender'         => 'Schreiwer fun daer Version:',
-
-# Revision move
-'revmove-reasonfield' => 'Grund:',
 
 # History merging
 'mergehistory-reason' => 'Grund:',

@@ -687,15 +687,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
 
-# JavaScript password checks
-'password-strength'            => 'Серсүзнең сыйфатын тикшерү: $1',
-'password-strength-bad'        => 'НАЧАР',
-'password-strength-mediocre'   => 'уртача',
-'password-strength-acceptable' => 'канәгатьләнерлек',
-'password-strength-good'       => 'яхшы',
-'password-retype'              => 'Серсүзне яңадан кертегез',
-'password-retype-mismatch'     => 'Серсүзләр туры килми',
-
 # Password reset dialog
 'resetpass'                 => 'Серсүзне үзгәртү',
 'resetpass_announce'        => 'Сез электрон почта аша вакытлыча бирелгән серсүз ярдәмендә кердегез. Системага керүне төгәлләү өчен яңа серсүз төзегез.',
@@ -1030,13 +1021,6 @@ $3 күрсәткән сәбәп: ''$2''",
 
 # Suppression log
 'suppressionlog' => 'Яшерү көндәлеге',
-
-# Revision move
-'revisionmoveselectedversions' => 'Сайланган юрамаларны күчерү',
-'revmove-reasonfield'          => 'Сәбәп:',
-'revmove-titlefield'           => 'Төп бит:',
-'revmove-badparam-title'       => 'Яраксыз параметрлар',
-'revmove-nullmove-title'       => 'Яраксыз исем',
 
 # History merging
 'mergehistory'        => 'Үзгәртүләр тарихын берләштерү',
@@ -2180,7 +2164,6 @@ $1',
 'exif-compressedbitsperpixel'   => 'Кысылудан соң төснең тирәнлеге',
 'exif-pixelydimension'          => 'Рәсемнең тулы биеклеге',
 'exif-pixelxdimension'          => 'Рәсемнең тулы киңлеге',
-'exif-makernote'                => 'Җитештерүче турында өстәмә мәгълүматлар',
 'exif-usercomment'              => 'Өстәмә җавап',
 'exif-relatedsoundfile'         => 'Тавыш файлы җавабы',
 'exif-datetimeoriginal'         => 'Чын вакыты',
@@ -2195,7 +2178,6 @@ $1',
 'exif-exposureprogram'          => 'Экспозиция программасы',
 'exif-spectralsensitivity'      => 'Спектраль сизүчәнлек',
 'exif-isospeedratings'          => 'ISO яктылык сизүчәнлеге',
-'exif-oecf'                     => 'OECF (оптоэлектрик күчерү коэффициенты)',
 'exif-shutterspeedvalue'        => 'Саклау',
 'exif-aperturevalue'            => 'Диафрагма',
 'exif-brightnessvalue'          => 'Яктылык',
@@ -2209,7 +2191,6 @@ $1',
 'exif-focallength-format'       => '$1 мм',
 'exif-subjectarea'              => 'Төшерү җисеменең урнашуы һәм мәйданы',
 'exif-flashenergy'              => 'Яктылык энергиясе',
-'exif-spatialfrequencyresponse' => 'Тирәлек тырышы',
 'exif-focalplanexresolution'    => 'X фокаль яссылык киңәйтелүе',
 'exif-focalplaneyresolution'    => 'Y фокаль яссылык киңәйтелүе',
 'exif-focalplaneresolutionunit' => 'Фокаль яссылык киңәйтелүен исәпләү берәмлеге',
@@ -2218,7 +2199,6 @@ $1',
 'exif-sensingmethod'            => 'Сенсор төре',
 'exif-filesource'               => 'Файлның чыганагы',
 'exif-scenetype'                => 'Тирәлекнең төре',
-'exif-cfapattern'               => 'Төс фильтрының төре',
 'exif-customrendered'           => 'Өстәмә үзгәртү',
 'exif-exposuremode'             => 'Экспозиция сайлау режимы',
 'exif-whitebalance'             => 'Ак төснең балансы',
@@ -2432,9 +2412,5 @@ $1',
 'htmlform-submit'              => 'Җибәрү',
 'htmlform-reset'               => 'Үзгәртүләрне кире кайтару',
 'htmlform-selectorother-other' => 'Башка',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Кулланучы исеме:',
-'disableaccount-reason' => 'Сәбәп:',
 
 );

@@ -457,12 +457,6 @@ Ye shuid log in an chynge yer password nou.
 Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'loginlanguagelabel'         => 'Leid: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'BAUD',
-'password-strength-mediocre'   => 'puir',
-'password-strength-acceptable' => 'dacent',
-'password-strength-good'       => 'gud',
-
 # Password reset dialog
 'resetpass'                 => 'Chynge passwaird',
 'resetpass_announce'        => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
@@ -679,9 +673,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'revdelete-radio-unset'       => 'Nae',
 'pagehist'                    => 'Page history',
 'revdelete-uname'             => 'uisername',
-
-# Revision move
-'revmove-reasonfield' => 'Raeson:',
 
 # History merging
 'mergehistory-from'   => 'Soorce page:',
@@ -1436,8 +1427,5 @@ Please confirm that ye really want tae recreate this airticle.",
 
 # HTML forms
 'htmlform-selectorother-other' => 'Ither',
-
-# Special:DisableAccount
-'disableaccount-user' => 'Uisername:',
 
 );

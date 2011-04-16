@@ -420,15 +420,6 @@ Ussaɣ n isqdacn ḥiln hlli.
 # E-mail sending
 'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
-# JavaScript password checks
-'password-strength'            => 'Aswir n taɣllist n taguri n uzray : $1',
-'password-strength-bad'        => 'afssas (iḍεaf)',
-'password-strength-mediocre'   => 'iεif',
-'password-strength-acceptable' => 'izri (ittuqbal)',
-'password-strength-good'       => 'ifulki',
-'password-retype'              => 'Als i tirra n taguri n uzray:',
-'password-retype-mismatch'     => 'Tiguriwin n uzray ur gant iɣid.',
-
 # Password reset dialog
 'resetpass'                 => 'bddl taguri n uzray',
 'resetpass_announce'        => 'Tkcmt {{GENDER:||e|(e)}} s yat tangalt lli kin ilkmt s tbrat emeil . tangaltad ur tgi abla tin yat twalt. Bac ad tkmlt tqqiyyidank kcm tangalt tamaynut nk ɣid:',
@@ -578,20 +569,6 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'revdelete-unhid'            => 'sbaynd $1',
 'revdelete-log-message'      => '$1 i $2 lqm{{PLURAL:$2||s}}',
 'logdelete-log-message'      => '$1 f $2 amussu{{PLURAL:$2||s}}',
-
-# Revision move
-'revmove-submit'               => 'smmatti tacggart s tasna lli iẓlin',
-'revisionmoveselectedversions' => 'Smmatti timcgarin lli Ittuyẓlaynin',
-'revmove-reasonfield'          => 'Maɣ (asrg) :',
-'revmove-titlefield'           => 'Tasna awttas:',
-'revmove-badparam-title'       => 'Gar iɣwwarn',
-'revmove-badparam'             => 'Asiǧl nk gis iɣwarn (parameters) lli drusni d ur gaddanin. Klikki f  « Amzwaru » d tarm daɣ.',
-'revmove-norevisions-title'    => 'Tamẓṛit tawttast ur gis iffuɣ umya.',
-'revmove-norevisions'          => 'Ur tẓlit mnnaw yat tmcggart niɣd mnnawt iwttasn bac ad skr  imfttun ad niɣt ad ticggar ad ur llant',
-'revmove-nullmove-title'       => 'Gar azwl',
-'revmove-nullmove'             => 'Tisniwin tiɣbula d awttas gan yan. Klkki f « Amzwaru »  tskcmt daɣ assaɣ yaḍn n tasna « $1 ».',
-'revmove-success-existing'     => '{{PLURAL:$1|tacaggart [[$2]] tmmuti |$1 ticggarin [[$2]] mmuttint}} s tasna lli illan [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Tamcggart n [[$2]] mmutti|$1 timcggarin n [[$2]] mmuttint}} s tasna [[$3]] tamaynut llin illan.',
 
 # History merging
 'mergehistory'                     => 'Smun imzruyn n tisniwin.',
@@ -772,9 +749,6 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'group-sysop' => 'Anedbalen n unagraw',
 
 'grouppage-sysop' => '{{ns:project}}: Inedbalen',
-
-# Rights
-'right-revisionmove' => 'Smmati imẓran daɣ',
 
 # User rights log
 'rightslog'  => 'Anɣmas n imbddlnn izrfan n umsqdac',

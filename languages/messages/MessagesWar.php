@@ -415,15 +415,6 @@ Alayon pagutro pagbutang.',
 'accountcreated'          => 'Nahimo an akawant',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
-# JavaScript password checks
-'password-strength'            => 'Banabana nga kabaskog han tigaman-pagsulod: $1',
-'password-strength-bad'        => 'MARAOT',
-'password-strength-mediocre'   => 'maluya',
-'password-strength-acceptable' => 'kakara-karawat',
-'password-strength-good'       => 'maupay',
-'password-retype'              => 'Utroha pagbutang an tigaman-pagsulod dinhi',
-'password-retype-mismatch'     => 'An mga tigaman-pagsulod in diri naangay',
-
 # Password reset dialog
 'resetpass'           => 'Igliwat an tigaman-pagsulod',
 'resetpass_header'    => 'Igliwan an akawnt nga tigaman-pagsulod',
@@ -491,9 +482,6 @@ Aada na ito.',
 'revdelete-radio-unset'       => 'Ayaw',
 'revdelete-uname'             => 'Agnay-hit-nagamit',
 'revdelete-otherreason'       => 'Lain/dugang nga katadungan:',
-
-# Revision move
-'revmove-reasonfield' => 'Katadungan:',
 
 # History merging
 'mergehistory'                  => 'Igtampo an mga kasaysayan han pakli',

@@ -390,14 +390,6 @@ $messages = array(
 'createaccount-title'     => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܒ {{SITENAME}}',
 'loginlanguagelabel'      => 'ܠܫܢܐ: $1',
 
-# JavaScript password checks
-'password-strength'            => 'ܚܝܠܐ ܩܘܪܒܢܝܐ ܕܡܠܬܐ ܕܥܠܠܐ: $1',
-'password-strength-bad'        => 'ܠܐ ܛܒܬܐ',
-'password-strength-mediocre'   => 'ܡܨܥܝܬܐ',
-'password-strength-acceptable' => 'ܡܬܩܒܠܢܬܐ',
-'password-strength-good'       => 'ܛܒܬܐ',
-'password-retype'              => 'ܟܬܘܒ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ ܗܪܟܐ:',
-
 # Password reset dialog
 'resetpass'                 => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'resetpass_header'          => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ ܕܚܘܫܒܢܐ',
@@ -524,11 +516,6 @@ $messages = array(
 'revdelete-reasonotherlist'  => 'ܥܠܬܐ ܐܚܪܬܐ',
 'revdelete-edit-reasonlist'  => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',
 'revdelete-offender'         => 'ܣܝܘܡܐ ܕܬܢܝܬܐ:',
-
-# Revision move
-'revmove-reasonfield'    => 'ܥܠܬܐ:',
-'revmove-titlefield'     => 'ܦܐܬܐ ܕܢܘܦܐ:',
-'revmove-nullmove-title' => 'ܟܘܢܝܐ ܠܐ ܛܒܐ',
 
 # History merging
 'mergehistory'             => 'ܚܒܘܛ ܬܫܥܝܬ̈ܐ ܕܦܐܬܐ',
@@ -732,7 +719,6 @@ $messages = array(
 'right-block'          => 'ܚܪܘܡ ܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ ܡܢ ܫܚܠܦܬܐ',
 'right-mergehistory'   => 'ܚܒܘܛ ܬܫܥܝܬܐ ܕܦܐܬܬ̈ܐ',
 'right-userrights'     => 'ܫܚܠܦ ܟܠ ܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
-'right-revisionmove'   => 'ܫܢܝ ܬܢܝܬ̈ܐ',
 
 # User rights log
 'rightslog'  => 'ܣܓܠܐ ܕܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
@@ -758,7 +744,6 @@ $messages = array(
 'action-block'              => 'ܚܪܡܬܐ ܕܡܦܠܚܢܐ ܗܢܐ ܡܢ ܫܚܠܦܬܐ',
 'action-mergehistory'       => 'ܚܒܛܬܐ ܕܬܫܥܝܬܐ ܕܦܐܬܐ ܗܕܐ',
 'action-userrights'         => 'ܫܚܠܦܬܐ ܕܟܠ ܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
-'action-revisionmove'       => 'ܫܢܝܬܐ ܕܬܢܝܬ̈ܐ',
 
 # Recent changes
 'nchanges'                    => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',

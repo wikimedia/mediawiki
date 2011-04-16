@@ -545,15 +545,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
 
-# JavaScript password checks
-'password-strength'            => 'पासवर्डको अनुमानित बल: $1',
-'password-strength-bad'        => 'नराम्रो',
-'password-strength-mediocre'   => 'साधारण',
-'password-strength-acceptable' => 'स्वीकार्य',
-'password-strength-good'       => 'राम्रो',
-'password-retype'              => 'पासवर्ड फेरी टाईप गर्नुहोस्',
-'password-retype-mismatch'     => 'पासवर्डहरु मिलेनन्',
-
 # Password reset dialog
 'resetpass'                 => 'प्रवेशशव्द परिवर्तन गर्नुहोस्',
 'resetpass_announce'        => 'तपाईंले अस्थायी ई-मेल कोडको आधारमा प्रवेश गर्नु भएकोछ।
@@ -917,14 +908,6 @@ $1",
 # Suppression log
 'suppressionlog' => 'कमगरेको लग',
 
-# Revision move
-'moverevlogentry'         => '$1बाट $2मा {{PLURAL:$3|एउटा संशोधन सारियो|$3 संशोधनहरु सारिए}}',
-'revisionmove'            => '"$1"बाट संशोधनहरु सार्ने',
-'revmove-reasonfield'     => 'कारण:',
-'revmove-titlefield'      => 'लक्षित पृष्ठ',
-'revmove-nullmove-title'  => 'गलत शीर्षक',
-'revmove-success-created' => '{{PLURAL:$1|एउटा संशोधन [[$2]]बाट|$1 संशोधनहरु [[$2]]बाट}} नयाँ बनाइएको पृष्ठ [[$3]]मा सार्ने काम भयो।',
-
 # History merging
 'mergehistory'                     => 'पृष्ठ इतिहासहरु जोड्नुहोस्',
 'mergehistory-box'                 => 'दुई पृष्ठहरुको पुनरावलोकन जोड्नुहोस् :',
@@ -1262,8 +1245,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-reset-passwords'       => 'अरु प्रयोगकर्ताको प्रवेशशव्द पुनर्प्रविष्ठीगर्ने',
 'right-override-export-depth' => 'गहिराइ ५ सम्मको लिंकगरिएका पृष्ठहरु सहित निर्यात गर्ने',
 'right-sendemail'             => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
-'right-revisionmove'          => 'संशोधन सार्ने',
-'right-disableaccount'        => 'खातालाई अक्षम गर्ने',
 
 # User rights log
 'rightslog'      => 'प्रयोगकर्ता अधिकार लग',
@@ -1306,7 +1287,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'action-userrights'           => 'सबै प्रयोगकर्ताका अधिकारहरु सम्पादन गर्ने',
 'action-userrights-interwiki' => 'अरु विकिका प्रयोगकर्ताहरुको प्रयोगकर्ता अधिकारलाई सम्पादन गर्ने',
 'action-siteadmin'            => 'डेटाबेस बन्दगर्ने वा खोल्ने',
-'action-revisionmove'         => 'संशोधन सार्ने',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरु}}',
@@ -2457,7 +2437,6 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-stripoffsets'                => 'चित्र आँकड़ाको अवस्थिति',
 'exif-rowsperstrip'                => 'प्रतिपंक्ति पट्टीहरुको संख्या',
 'exif-jpeginterchangeformatlength' => 'JPEG आँकड़ाको बाइट',
-'exif-transferfunction'            => 'स्थानान्तरण कार्य',
 'exif-whitepoint'                  => 'सेतो बिंदु क्रोम्यासिटी(chromaticity)',
 'exif-datetime'                    => 'फाइल परिवर्तन मिति तथा समय',
 'exif-imagedescription'            => 'चित्र नाम',
@@ -2483,7 +2462,6 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-exposureprogram'             => 'एक्स्पोजर कार्यक्रम',
 'exif-spectralsensitivity'         => 'वर्णक्रमीय संवेदनशीलता',
 'exif-isospeedratings'             => 'आईएसओ गति रेटिंग',
-'exif-oecf'                        => 'Optoelectronic रूपांतरण कारक',
 'exif-shutterspeedvalue'           => 'शटरको गति',
 'exif-aperturevalue'               => 'छिंड़',
 'exif-brightnessvalue'             => 'चमक',
@@ -2493,7 +2471,6 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-lightsource'                 => 'प्रकाश स्रोत',
 'exif-focallength'                 => 'लेंस फोकल लम्बाई',
 'exif-subjectarea'                 => 'विषय क्षेत्र',
-'exif-spatialfrequencyresponse'    => 'स्थानिक आवृत्ति प्रतिक्रिया',
 'exif-focalplanexresolution'       => 'फोकल विमान एक्स संकल्प',
 'exif-focalplaneyresolution'       => 'फोकल प्लेन वाई रिजोलुसन',
 'exif-subjectlocation'             => 'विषयको अवस्थिति',
@@ -2864,14 +2841,5 @@ $1',
 'htmlform-submit'              => 'बुझाउने',
 'htmlform-reset'               => 'परिवर्तनहरू परित्याग गर्नुहोस्',
 'htmlform-selectorother-other' => 'अन्य',
-
-# Special:DisableAccount
-'disableaccount'             => 'प्रयोगकर्ता खाता निस्क्रिय गर्ने',
-'disableaccount-user'        => 'प्रयोगकर्ता-नाम:',
-'disableaccount-reason'      => 'कारण:',
-'disableaccount-mustconfirm' => 'तपाईंले यो सुनिश्चित गर्नुपर्छ कि तपाईं यो खाता निस्क्रिय गर्न चाहनुहुन्छ।',
-'disableaccount-nosuchuser'  => 'यो $1 प्रयोगकर्ता खाता छैन।',
-'disableaccount-success'     => '"$1" प्रयोगकर्ता खाता स्थायी रुपले निस्क्रिय गरिएकोछ।',
-'disableaccount-logentry'    => '[[$1]] प्रयोगकर्ता खाता स्थायी रुपले निस्क्रिय पारियो।',
 
 );

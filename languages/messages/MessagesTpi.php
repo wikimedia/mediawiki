@@ -274,10 +274,6 @@ $messages = array(
 'mailmypassword'      => 'E-mel nupela paswot',
 'loginlanguagelabel'  => 'Tokples: $1',
 
-# JavaScript password checks
-'password-strength-bad'  => 'NOGUT',
-'password-strength-good' => 'gutpela',
-
 # Edit page toolbar
 'link_sample'    => 'Link taitel',
 'extlink_sample' => 'http://www.example.com link taitel',
@@ -337,9 +333,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'revdelete-unhid'            => 'i bin soim $1',
 'revdelete-log-message'      => '$1 long $2 senis',
 'logdelete-log-message'      => '$1 long $2 senis',
-
-# Revision move
-'revmove-nullmove-title' => 'Nem bilong pes i no stret',
 
 # History merging
 'mergehistory-from' => 'As pes:',

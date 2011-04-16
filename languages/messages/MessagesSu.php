@@ -596,15 +596,6 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'login-abort-generic'        => 'Login gagal - Dibolaykeun',
 'loginlanguagelabel'         => 'Basa: $1',
 
-# JavaScript password checks
-'password-strength'            => 'Kakuatan sandi: $1',
-'password-strength-bad'        => 'AWON',
-'password-strength-mediocre'   => "meu'eus",
-'password-strength-acceptable' => 'meueusan',
-'password-strength-good'       => 'alus',
-'password-retype'              => 'Ketik deui sandi anjeun',
-'password-retype-mismatch'     => 'Sandi teu cocog',
-
 # Password reset dialog
 'resetpass'                 => 'Ganti kecap sandi rekening',
 'resetpass_announce'        => 'Anjeun asup log migunakeun sandi samentara. Salajengna, mangga gentos ku sandi anyar di dieu:',
@@ -953,17 +944,6 @@ Anjeun teu diwenangkeun asup.',
 'suppressionlogtext' => 'Katut, nyaéta daptar hapusan sarta dipeungpeuk kaasup eusi anu disumputkeun ti para kuncén.
 Tempo [[Special:IPBlockList|daptar IP anu dipeungpeuk]] pikeun daptar larangan sarta dipeungpeuk ayeuna.',
 
-# Revision move
-'revisionmove'                 => 'Pindahkeun révisi ti "$1"',
-'revmove-submit'               => 'Pindahkan révisi ka kaca nu dipilih',
-'revisionmoveselectedversions' => 'Pindahkeun vérsi nu dipilih',
-'revmove-reasonfield'          => 'Alesan:',
-'revmove-titlefield'           => 'Tujul kaca:',
-'revmove-norevisions-title'    => 'Udagan révisi salah',
-'revmove-nullmove-title'       => 'Judul goréng',
-'revmove-success-existing'     => '{{PLURAL:$1|Hiji révisi karya [[$2]]|$1 révisi karya [[$2]]}} geus dipindahkeun ka kaca [[$3]] nu geus aya.',
-'revmove-success-created'      => '{{PLURAL:$1|Hiji révisi karya [[$2]]|$1 révisi karya [[$2]]}} geus dipindahkeun ka kaca anyar [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',
 'mergehistory-header'              => 'Di dieu anjeun bisa ngagabungkeun révisi tina jujutan hiji kaca ka kaca séjén nu leuwih anyar.
@@ -1269,8 +1249,6 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'right-mergehistory'     => 'Ngagabungkeun jujutan kaca',
 'right-userrights'       => 'Édit kabeh hak pamaké',
 'right-sendemail'        => 'Kirim surélék ka pamaké séjén',
-'right-revisionmove'     => 'Pindahkeun révisi',
-'right-disableaccount'   => 'Tumpurkeun akun',
 
 # User rights log
 'rightslog'      => 'Log hak pamaké',
@@ -1306,7 +1284,6 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'action-mergehistory'         => 'ngagabungkeun jujutan ieu kaca',
 'action-userrights'           => 'Édit hak sakabéh pamaké',
 'action-userrights-interwiki' => 'ngarobah hak pamaké di wiki lianna',
-'action-revisionmove'         => 'pindahkeun révisi',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|parobahan|parobahan}}',
@@ -2429,7 +2406,6 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-stripoffsets'                => 'Perenah data gambar',
 'exif-jpeginterchangeformat'       => 'Ofset ka JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bit data JPEG',
-'exif-transferfunction'            => 'Fungsi transfer',
 'exif-referenceblackwhite'         => 'Pasangan ajen rujukan hideung jeung bodas',
 'exif-datetime'                    => 'Wanci jeung titimangsa parobahan koropak',
 'exif-imagedescription'            => 'Judul gambar',
@@ -2443,7 +2419,6 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-compressedbitsperpixel'      => 'Mode komprési gambar',
 'exif-pixelydimension'             => 'Lébar gambar nu sah',
 'exif-pixelxdimension'             => 'Jangkung gambar nu sah',
-'exif-makernote'                   => 'Catétan produsen',
 'exif-usercomment'                 => 'Koméntar pamaké',
 'exif-datetimeoriginal'            => 'Titimangsa jeung wanci dijieunna data',
 'exif-datetimedigitized'           => 'Titimangsa jeung wanci digitisasi',
@@ -2457,7 +2432,6 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-subjectdistance'             => 'Jarak subjék',
 'exif-lightsource'                 => 'Sumber cahya',
 'exif-focallength'                 => 'Panjang fokus lénsa',
-'exif-spatialfrequencyresponse'    => 'Réspons frékuénsi wawaréhan',
 'exif-focalplanexresolution'       => 'Résolusi X datar fokus',
 'exif-focalplaneyresolution'       => 'Résolusi Y datar fokus',
 'exif-focalplaneresolutionunit'    => 'Unit résolusi datar fokus',
@@ -2789,14 +2763,5 @@ Coba ku sawangan normal.',
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Bolaykeun parobahan',
 'htmlform-selectorother-other' => 'Lianna',
-
-# Special:DisableAccount
-'disableaccount'             => 'Tumpurkeun akun pamaké',
-'disableaccount-user'        => 'Landihan:',
-'disableaccount-reason'      => 'Alesan:',
-'disableaccount-mustconfirm' => 'Anjeun kudu mastikeun bener-bener rék numpurkeun ieu akun.',
-'disableaccount-nosuchuser'  => 'Akun pamaké "$1" teu aya.',
-'disableaccount-success'     => 'Akun pamaké "$1" geus ditumpurkeun salilana.',
-'disableaccount-logentry'    => 'numpurkeun salilana akun pamaké [[$1]]',
 
 );

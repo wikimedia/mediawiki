@@ -527,15 +527,6 @@ Molimo Vas da sačekate prije nego što pokušate ponovo.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Procijenjena snaga lozinke/zaporke: $1',
-'password-strength-bad'        => 'LOŠA',
-'password-strength-mediocre'   => 'osrednja',
-'password-strength-acceptable' => 'prihvatljiva',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Ponovite lozinku/zaporku ovdje',
-'password-retype-mismatch'     => 'Lozinke/zaporke se ne slažu',
-
 # Password reset dialog
 'resetpass'                 => 'Promijeni korisničku šifru',
 'resetpass_announce'        => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
@@ -929,24 +920,6 @@ Molimo provjerite zapise.',
 'suppressionlog'     => 'Registri sakrivanja',
 'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|Premještena jedna revizija|Premještene $3 revizije|Premješteno $3 revizija}} iz $1 na $2',
-'revisionmove'                 => 'Premještanje revizija sa "$1"',
-'revmove-explain'              => 'Slijedeće revizije će biti premještene sa $1 na određenu ciljnu stranicu. Ako ciljna stranica ne postoji, bit će napravljenja. U suprotnom, ove revizije će biti spojene u historiji ciljne stranice.',
-'revmove-legend'               => 'Postavite ciljnu stranicu i sažetak',
-'revmove-submit'               => 'Premjestite revizije na odabranu stranicu',
-'revisionmoveselectedversions' => 'Premjesti označene revizije',
-'revmove-reasonfield'          => 'Razlog:',
-'revmove-titlefield'           => 'Ciljna stranica:',
-'revmove-badparam-title'       => 'Loši parametri',
-'revmove-badparam'             => 'Vaš zahtjev sadrži nevaljane ili nedovoljne parametre. Molimo pritisnite "natrag" i pokušajte ponovo.',
-'revmove-norevisions-title'    => 'Nevaljana ciljna revizija',
-'revmove-norevisions'          => 'Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.',
-'revmove-nullmove-title'       => 'Loš naslov',
-'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} postojeće stranice [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} na novonapravljenu stranicu [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
 'mergehistory-header'              => 'Ova stranica Vam omogućuje spajanje revizija historije neke izvorne stranice u novu stranicu. Zapamtite da će ova promjena ostaviti nepromjenjen sadržaj historije stranice.',
@@ -1289,8 +1262,6 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'right-reset-passwords'       => 'Resetiranje lozinke drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
-'right-revisionmove'          => 'Premještanje izmjena',
-'right-disableaccount'        => 'Onemogućavanje računa',
 
 # User rights log
 'rightslog'      => 'Registar korisničkih prava',
@@ -1333,7 +1304,6 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'action-userrights'           => 'uređivanje svih korisničkih prava',
 'action-userrights-interwiki' => 'uređivanje korisničkih prava na drugim wikijima',
 'action-siteadmin'            => 'zaključavanje i otključavanje baze podataka',
-'action-revisionmove'         => 'premještanje izmjena',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
@@ -2757,7 +2727,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
 'exif-jpeginterchangeformat'       => 'Presijek do JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bita JPEG podataka',
-'exif-transferfunction'            => 'Transferna funkcija',
 'exif-whitepoint'                  => 'Hromiranost bijele tačke',
 'exif-primarychromaticities'       => 'Hromaticitet primarnih boja',
 'exif-ycbcrcoefficients'           => 'Koeficijenti transformacije matrice prostora boja',
@@ -2776,7 +2745,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-compressedbitsperpixel'      => 'Način kompresije slike',
 'exif-pixelydimension'             => 'Određena širina slike',
 'exif-pixelxdimension'             => 'Određena visina slike',
-'exif-makernote'                   => 'Bilješke proizvođača',
 'exif-usercomment'                 => 'Korisnički komentari',
 'exif-relatedsoundfile'            => 'Povezana zvučna datoteka',
 'exif-datetimeoriginal'            => 'Datum i vrijeme generisanja podataka',
@@ -2791,7 +2759,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-exposureprogram'             => 'Program ekspozicije',
 'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
 'exif-isospeedratings'             => 'Rejting ISO brzine',
-'exif-oecf'                        => 'Optoelektronski faktor konvezije',
 'exif-shutterspeedvalue'           => 'Brzina okidača',
 'exif-aperturevalue'               => 'Otvor blende',
 'exif-brightnessvalue'             => 'Osvijetljenost',
@@ -2805,7 +2772,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Površina objekta',
 'exif-flashenergy'                 => 'Energija bljeska',
-'exif-spatialfrequencyresponse'    => 'Prostorna frekvencija odgovora',
 'exif-focalplanexresolution'       => 'Rezolucija fokusne ravni X',
 'exif-focalplaneyresolution'       => 'Rezolucija fokusne ravni Y',
 'exif-focalplaneresolutionunit'    => 'Jedinica rezolucije fokusne ravni',
@@ -2814,7 +2780,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-sensingmethod'               => 'Vrsta senzora',
 'exif-filesource'                  => 'Izvor datoteke',
 'exif-scenetype'                   => 'Vrsta scene',
-'exif-cfapattern'                  => 'CFA šema',
 'exif-customrendered'              => 'Podešeno uređivanje slike',
 'exif-exposuremode'                => 'Vrsta ekspozicije',
 'exif-whitebalance'                => 'Bijeli balans',
@@ -2880,8 +2845,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'ne postoji',
 
@@ -3304,18 +3268,5 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 # SQLite database support
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
-
-# Special:DisableAccount
-'disableaccount'             => 'Onemogućavanje korisničkog računa',
-'disableaccount-user'        => 'Korisničko ime:',
-'disableaccount-reason'      => 'Razlog:',
-'disableaccount-confirm'     => "Onemogući ovaj korisnički račun.
-Korisnik se neće moći prijaviti, staviti novu šifru ili primati obavještenja putem e-maila.
-Ako je korisnik negdje u međuvremenu prijavljen, bit će automatski odmah odjavljen.
-''Zapamtite da se onemogućavanje računa ne može poništiti bez intervencije sistemskog administratora.''",
-'disableaccount-mustconfirm' => 'Morate potvrditi da želite onemogućiti ovaj račun.',
-'disableaccount-nosuchuser'  => 'Korisnički račun "$1" ne postoji.',
-'disableaccount-success'     => 'Korisnički račun "$1" je trajno onemogućen.',
-'disableaccount-logentry'    => 'trajno onesposobljen korisnički račun [[$1]]',
 
 );

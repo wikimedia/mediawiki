@@ -538,15 +538,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'পিএইচপি এর মেইল () কার্যে অজ্ঞাত ভুল',
 
-# JavaScript password checks
-'password-strength'            => 'নির্ণিত শ্বব্দচাবির শক্তি $1',
-'password-strength-bad'        => 'খুব দুর্বল',
-'password-strength-mediocre'   => 'দুর্বল',
-'password-strength-acceptable' => 'গ্রহণযোগ্য',
-'password-strength-good'       => 'ভাল',
-'password-retype'              => 'শব্দচাবিটি (password) আবার লিখুন',
-'password-retype-mismatch'     => 'শব্দচাবি মিলেনি',
-
 # Password reset dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',
 'resetpass_announce'        => 'আপন ই-মেইলকৃত সংকেত দ্বারা লগ-ইন আছেন। লগ-ইন পদ্ধতি সম্পূর্ণ করতে আপনাকে অবশ্যই একটি নতুন শব্দচাবি গ্রহণ করতে হবে:',
@@ -863,12 +854,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 # Suppression log
 'suppressionlog' => 'দমন লগ',
 
-# Revision move
-'revmove-legend'         => 'লক্ষ পাতা এবং সারাংশ সেট করুন',
-'revmove-reasonfield'    => 'কারণ:',
-'revmove-titlefield'     => 'লক্ষ পাতা:',
-'revmove-nullmove-title' => 'শিরোনামটি গ্রহনযোগ্য নয়।',
-
 # History merging
 'mergehistory'                     => 'পাতার ইতিহাসগুলি একত্র করা হোক',
 'mergehistory-header'              => 'এই পাতাটির মাধ্যমে আপনি একটি উৎস পাতার ইতিহাস একটি নতুনতর পাতার সাথে একত্র করতে পারবেন।
@@ -1177,7 +1162,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'right-reset-passwords'       => 'অন্য ব্যবহারকারীদের শব্দচাবি পুনরায় নির্ধারণ করুন',
 'right-override-export-depth' => '৫ম স্তর পর্যন্ত সংযুক্তিসহ একটি পাতা রপ্তানী করুন',
 'right-sendemail'             => 'অন্য ব্যবহারকারীকে ইমেইল পাঠান',
-'right-disableaccount'        => 'অ্যাকাউন্ট নিস্ক্রিয়',
 
 # User rights log
 'rightslog'      => 'ব্যবহারকারীর অধিকার লগ',
@@ -2431,7 +2415,6 @@ $1',
 'exif-stripbytecounts'             => 'প্রতি সংকুচিত স্ট্রিপে বাইটের পরিমাণ',
 'exif-jpeginterchangeformat'       => 'JPEG SOI-তে অফসেট করা হয়েছে',
 'exif-jpeginterchangeformatlength' => 'JPEG উপাত্তের বাইট',
-'exif-transferfunction'            => 'স্থানান্তর ফাংশন',
 'exif-whitepoint'                  => 'শ্বেত বিন্দু বর্ণালীময়তা',
 'exif-primarychromaticities'       => 'মৌলিকত্বের বর্ণালীময়তা',
 'exif-ycbcrcoefficients'           => 'রঙ জগৎ রূপান্তর মেট্রিক্স সহগগুলি',
@@ -2450,7 +2433,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'ছবি সংকোচন মোড',
 'exif-pixelydimension'             => 'ছবির বৈধ প্রস্থ',
 'exif-pixelxdimension'             => 'ছবির বৈধ উচ্চতা',
-'exif-makernote'                   => 'প্রস্তুতকারকের নোট',
 'exif-usercomment'                 => 'ব্যবহারকারীর মন্তব্য',
 'exif-relatedsoundfile'            => 'সংশ্লিষ্ট অডিও ফাইল',
 'exif-datetimeoriginal'            => 'উপাত্ত উৎপাদনের তারিখ ও সময়',
@@ -2464,7 +2446,6 @@ $1',
 'exif-exposureprogram'             => 'আলোকসম্পাত প্রোগ্রাম',
 'exif-spectralsensitivity'         => 'বর্ণালী সংবেদনশীলতা',
 'exif-isospeedratings'             => 'আইএসও দ্রুতি মূল্যায়ন',
-'exif-oecf'                        => 'আলোক-ইলেকট্রনিক রূপান্তর গুণনীয়ক',
 'exif-shutterspeedvalue'           => 'শাটার দ্রুতি',
 'exif-aperturevalue'               => 'উণ্মেষ',
 'exif-brightnessvalue'             => 'উজ্জ্বলতা',
@@ -2477,7 +2458,6 @@ $1',
 'exif-focallength'                 => 'লেন্সের ফোকাস দৈর্ঘ্য',
 'exif-subjectarea'                 => 'বিষয়বস্তুর ক্ষেত্রফল',
 'exif-flashenergy'                 => 'ফ্ল্যাশ শক্তি',
-'exif-spatialfrequencyresponse'    => 'স্থানিক কম্পাংক উত্তর',
 'exif-focalplanexresolution'       => 'X ফোকাস তলের রেজোলিউশন',
 'exif-focalplaneyresolution'       => 'Y ফোকাস তলের রেজোলিউশন',
 'exif-focalplaneresolutionunit'    => 'ফোকাস তল রেজোলিউশন একক',
@@ -2486,7 +2466,6 @@ $1',
 'exif-sensingmethod'               => 'সংবেদন পদ্ধতি',
 'exif-filesource'                  => 'ফাইল সোর্স',
 'exif-scenetype'                   => 'দৃশ্যের ধরন',
-'exif-cfapattern'                  => 'CFA বিন্যাস',
 'exif-customrendered'              => 'পছন্দমাফিক ছবি প্রক্রিয়াকরণ',
 'exif-exposuremode'                => 'আলোকসম্পাত মোড',
 'exif-whitebalance'                => 'সাদা ভারসাম্য',
@@ -2875,10 +2854,5 @@ $1',
 # HTML forms
 'htmlform-submit'              => 'জমা দাও',
 'htmlform-selectorother-other' => 'অন্য',
-
-# Special:DisableAccount
-'disableaccount'        => 'কোন ব্যবহারকারী অ্যাকাউন্ট নিস্ক্রিয়',
-'disableaccount-user'   => 'ব্যবহারকারী নাম:',
-'disableaccount-reason' => 'কারণ:',
 
 );

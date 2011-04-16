@@ -742,15 +742,6 @@ Odczekaj chwilę zanim ponowisz próbę.',
 # E-mail sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Szacowane bezpieczeństwo hasła – $1',
-'password-strength-bad'        => 'ZŁE',
-'password-strength-mediocre'   => 'mierne',
-'password-strength-acceptable' => 'akceptowalne',
-'password-strength-good'       => 'dobre',
-'password-retype'              => 'Powtórz hasło',
-'password-retype-mismatch'     => 'Hasła nie są identyczne',
-
 # Password reset dialog
 'resetpass'                 => 'Zmień hasło',
 'resetpass_announce'        => '{{GENDER:|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e‐mail.
@@ -1141,24 +1132,6 @@ Proszę sprawdzić rejestr operacji.',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
 Zobacz [[Special:IPBlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
-# Revision move
-'moverevlogentry'              => 'przeniósł {{PLURAL:$3|jedną wersję|$3 wersje|$3 wersji}} z $1 do $2',
-'revisionmove'                 => 'Przenieś wersje z „$1“',
-'revmove-explain'              => 'Następujące zmiany zostaną przeniesione z $1 do wybranej strony docelowej. Jeśli cel nie istnieje, zostanie utworzony. W przeciwnym wypadku, wersje zostaną dołączone do historii strony.',
-'revmove-legend'               => 'Ustaw stronę docelową i podsumowanie',
-'revmove-submit'               => 'Przenieś wersje do wybranej strony',
-'revisionmoveselectedversions' => 'Przenieś wybrane wersje',
-'revmove-reasonfield'          => 'Powód',
-'revmove-titlefield'           => 'Strona docelowa',
-'revmove-badparam-title'       => 'Złe parametry',
-'revmove-badparam'             => 'Żądanie zawiera niedozwolone lub niewystarczające parametry. Naciśnij „wstecz“ i spróbuj ponownie.',
-'revmove-norevisions-title'    => 'Nieprawidłowa wersja docelowa',
-'revmove-norevisions'          => 'Nie określono jednej lub kilku wersji, na których ma zostać wykonana funkcja, lub wybrana wersja nie istnieje.',
-'revmove-nullmove-title'       => 'Zły tytuł',
-'revmove-nullmove'             => 'Strona źródłowa i docelowa są takie same. Naciśnij „wstecz“ i wpisz nazwę strony różną od „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji istniejącej strony [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji nowo utworzonej strony [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
 'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z historią innej, nowszej strony.
@@ -1500,8 +1473,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
-'right-revisionmove'          => 'Przenoszenie wersji',
-'right-disableaccount'        => 'Wyłączanie kont',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1544,7 +1515,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-userrights'           => 'edytowania uprawnień wszystkich użytkowników',
 'action-userrights-interwiki' => 'edytowania uprawnień użytkowników na innych witrynach wiki',
 'action-siteadmin'            => 'blokowania i odblokowywania bazy danych',
-'action-revisionmove'         => 'przenieś wersje',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
@@ -3051,7 +3021,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-stripbytecounts'             => 'Liczba bajtów na pas obrazu',
 'exif-jpeginterchangeformat'       => 'Położenie pierwszego bajtu miniaturki obrazu',
 'exif-jpeginterchangeformatlength' => 'Liczba bajtów miniaturki JPEG',
-'exif-transferfunction'            => 'Funkcja przejścia',
 'exif-whitepoint'                  => 'Punkt bieli',
 'exif-primarychromaticities'       => 'Kolory trzech barw głównych',
 'exif-ycbcrcoefficients'           => 'Macierz współczynników transformacji barw z RGB na YCbCr',
@@ -3070,7 +3039,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-compressedbitsperpixel'      => 'Skompresowanych bitów na piksel',
 'exif-pixelydimension'             => 'Prawidłowa szerokość obrazu',
 'exif-pixelxdimension'             => 'Prawidłowa wysokość obrazu',
-'exif-makernote'                   => 'Informacje producenta aparatu',
 'exif-usercomment'                 => 'Komentarz użytkownika',
 'exif-relatedsoundfile'            => 'Powiązany plik audio',
 'exif-datetimeoriginal'            => 'Data i czas utworzenia oryginału',
@@ -3085,7 +3053,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-spectralsensitivity'         => 'Czułość widmowa',
 'exif-isospeedratings'             => 'Szybkość aparatu zgodnie z ISO12232',
-'exif-oecf'                        => 'Funkcja konwersji obrazu na dane zgodnie z ISO14524',
 'exif-shutterspeedvalue'           => 'Szybkość migawki',
 'exif-aperturevalue'               => 'Przysłona obiektywu',
 'exif-brightnessvalue'             => 'Jasność',
@@ -3099,7 +3066,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-focallength-format'          => '$1&nbsp;mm',
 'exif-subjectarea'                 => 'Położenie i obszar głównego motywu obrazu',
 'exif-flashenergy'                 => 'Energia lampy błyskowej',
-'exif-spatialfrequencyresponse'    => 'Odpowiedź częstotliwości przestrzennej zgodnie z ISO12233',
 'exif-focalplanexresolution'       => 'Rozdzielczość w poziomie płaszczyzny odwzorowania obiektywu',
 'exif-focalplaneyresolution'       => 'Rozdzielczość w pionie płaszczyzny odwzorowania obiektywu',
 'exif-focalplaneresolutionunit'    => 'Jednostka rozdzielczości płaszczyzny odwzorowania obiektywu',
@@ -3108,7 +3074,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-sensingmethod'               => 'Metoda pomiaru (rodzaj przetwornika)',
 'exif-filesource'                  => 'Typ źródła pliku',
 'exif-scenetype'                   => 'Rodzaj sceny',
-'exif-cfapattern'                  => 'Wzór CFA',
 'exif-customrendered'              => 'Wstępnie przetworzony (poddany obróbce)',
 'exif-exposuremode'                => 'Tryb ekspozycji',
 'exif-whitebalance'                => 'Balans bieli',
@@ -3650,18 +3615,5 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wyłącz konto użytkownika',
-'disableaccount-user'        => 'Nazwa użytkownika',
-'disableaccount-reason'      => 'Powód',
-'disableaccount-confirm'     => "Wyłącz konto użytkownika.
-Użytkownik nie będzie mógł się zalogować, zresetować hasła oraz otrzymywać powiadomień e‐mailem. 
-Jeśli użytkownik jest obecnie gdziekolwiek zalogowany, zostanie natychmiast wylogowany. 
-''Zwróć uwagę, że cofnięcie tej operacji wymagać będzie interwencji administratora systemu.''",
-'disableaccount-mustconfirm' => 'Musisz potwierdzić, że chcesz wyłączyć to konto.',
-'disableaccount-nosuchuser'  => 'Brak konta użytkownika „$1”.',
-'disableaccount-success'     => 'Konto użytkownika „$1” zostało trwale wyłączone.',
-'disableaccount-logentry'    => 'trwale wyłączył konto użytkownika [[$1]]',
 
 );

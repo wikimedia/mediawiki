@@ -753,15 +753,6 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 
-# JavaScript password checks
-'password-strength'            => 'Utrekna passordstyrke: $1',
-'password-strength-bad'        => 'DÅRLEG',
-'password-strength-mediocre'   => 'medels',
-'password-strength-acceptable' => 'dugande',
-'password-strength-good'       => 'god',
-'password-retype'              => 'Skriv opp att passordet',
-'password-retype-mismatch'     => 'Passorda er ikkje dei same',
-
 # Password reset dialog
 'resetpass'                 => 'Endra passord',
 'resetpass_announce'        => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
@@ -1129,20 +1120,6 @@ Sjekk gjerne loggføringa.',
 'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
 Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
-# Revision move
-'moverevlogentry'              => 'flytta {{PLURAL:$3|éin versjon|$3 versjonar}} frå $1 til $2',
-'revisionmove'                 => 'Flytt versjonar frå «$1»',
-'revmove-explain'              => 'Dei fylgjande versjonane vil verta flytta frå $1 til målsida som er gjeven opp. Om målet ikkje finst vil det verta oppretta.
-Elles vil desse versjonane verta fletta inn i sidehistorikken.',
-'revmove-legend'               => 'Set målsida og samandrag',
-'revmove-submit'               => 'Flytt versjonane til den valde sida',
-'revisionmoveselectedversions' => 'Flytt dei valde versjonane',
-'revmove-reasonfield'          => 'Årsak:',
-'revmove-titlefield'           => 'Målsida:',
-'revmove-badparam-title'       => 'Dårlege parametrar',
-'revmove-norevisions-title'    => 'Ugyldig målversjon',
-'revmove-nullmove-title'       => 'Feil i tittelen',
-
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
 'mergehistory-header'              => 'Denne sida lar deg flette historikken til to sider.
@@ -1474,7 +1451,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
-'right-revisionmove'          => 'Flytta versjonar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1517,7 +1493,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'action-userrights'           => 'endre alle brukarrettar',
 'action-userrights-interwiki' => 'endre brukarrettar for brukarar på andre wikiar',
 'action-siteadmin'            => 'låse eller låse opp databasen',
-'action-revisionmove'         => 'flytta versjonar',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',
@@ -2882,7 +2857,6 @@ Dei andre felta er gøymde som standard.
 'exif-stripbytecounts'             => 'Tal byte per kompimerte stripe',
 'exif-jpeginterchangeformat'       => 'Offset til JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Byte JPEG-data',
-'exif-transferfunction'            => 'Overføringsfunksjon',
 'exif-whitepoint'                  => 'Kvitpunktsreinleik',
 'exif-primarychromaticities'       => 'Reinheita til primærfargane',
 'exif-ycbcrcoefficients'           => 'Koeffisientar for fargeromstransformasjonsmatrise',
@@ -2901,7 +2875,6 @@ Dei andre felta er gøymde som standard.
 'exif-compressedbitsperpixel'      => 'Komprimerte bits pr. pixel',
 'exif-pixelydimension'             => 'Gyldig biletbreidd',
 'exif-pixelxdimension'             => 'Gyldig bilethøgd',
-'exif-makernote'                   => 'Produsentnotat',
 'exif-usercomment'                 => 'Brukarkommentarar',
 'exif-relatedsoundfile'            => 'Tilknytt lydfil',
 'exif-datetimeoriginal'            => 'Dato og tid laga',
@@ -2915,7 +2888,6 @@ Dei andre felta er gøymde som standard.
 'exif-exposureprogram'             => 'Eksponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektralsensitivitet',
 'exif-isospeedratings'             => 'Lyskjensle (ISO)',
-'exif-oecf'                        => 'Optoelektronisk omregningsfaktor',
 'exif-shutterspeedvalue'           => 'Lukkarfart',
 'exif-aperturevalue'               => 'Blendartal',
 'exif-brightnessvalue'             => 'Lysstyrke',
@@ -2928,7 +2900,6 @@ Dei andre felta er gøymde som standard.
 'exif-focallength'                 => 'Linsefokallengd',
 'exif-subjectarea'                 => 'Motivområde',
 'exif-flashenergy'                 => 'Blitsstyrke',
-'exif-spatialfrequencyresponse'    => 'Romleg frekvensrespons',
 'exif-focalplanexresolution'       => 'Oppløysing i fokalplan X',
 'exif-focalplaneyresolution'       => 'Oppløysing i fokalplan Y',
 'exif-focalplaneresolutionunit'    => 'Oppløysingseining for fokalplanet',
@@ -2937,7 +2908,6 @@ Dei andre felta er gøymde som standard.
 'exif-sensingmethod'               => 'Sensor',
 'exif-filesource'                  => 'Filkjelde',
 'exif-scenetype'                   => 'Scenetype',
-'exif-cfapattern'                  => 'CFA-mønster',
 'exif-customrendered'              => 'Tilpassa biletehandsaming',
 'exif-exposuremode'                => 'Eksponeringsmodus',
 'exif-whitebalance'                => 'Kvitbalanse',
@@ -3384,12 +3354,5 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 # SQLite database support
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
-
-# Special:DisableAccount
-'disableaccount-reason'      => '↓Grunngjeving:',
-'disableaccount-mustconfirm' => 'Du lyt stadfesta at du ynskjer å deaktivera denne kontoen.',
-'disableaccount-nosuchuser'  => 'Brukarkontoen «$1» finst ikkje.',
-'disableaccount-success'     => 'Brukarkontoen «$1» er permanent deaktivert.',
-'disableaccount-logentry'    => 'deaktiverte brukarkontoen [[$1]] permanent',
 
 );

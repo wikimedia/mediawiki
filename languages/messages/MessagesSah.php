@@ -530,15 +530,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'mail() PHP-функциятыгар туох эрэ алҕас тахсыбыт',
 
-# JavaScript password checks
-'password-strength'            => 'Киирии тыл туругун тургутуу: $1',
-'password-strength-bad'        => 'МӨЛТӨХ',
-'password-strength-mediocre'   => 'орто',
-'password-strength-acceptable' => 'барсар',
-'password-strength-good'       => 'үчүгэй',
-'password-retype'              => 'Киирии тылгын хатылаа',
-'password-retype-mismatch'     => 'Киирии тыллар сөп түбэспэттэр',
-
 # Password reset dialog
 'resetpass'                 => 'Киирии тылы уларытыы',
 'resetpass_announce'        => 'Бу быстах кэмҥэ туттуллар киирии тылынан киирдиҥ. Түмүккэ саҥа киирии тылла суруй:',
@@ -926,24 +917,6 @@ $1",
 'suppressionlogtext' => 'Аллара соторутааҥҥы сотуулар уонна хааччахтааһыннар тиһиктэрэ бэриллэр (администраатардарга көстүбэт сээкэйдэр эмиэ).
 Билигин баар хааччахтар тиһиктэрин көрөргө [[Special:IPBlockList|IP хааччахтааһынын тиһигэр]] киир.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|$3 барылы|$3 барыллары}} мантан $1 манна $2 көһөрбүт',
-'revisionmove'                 => 'Барыллары мантан «$1» көһөрүү',
-'revmove-explain'              => 'Манна көрдөрүллүбүт барыллар мантан $1 ыйыллыбыт сирэйгэ көһөрүллүөхтэрэ. Ыйыллыбыт сирэй суох буоллаҕына - оҥоһуллуо. Эбэтэр, ити барыллар сирэй уларыйыытын устуоруйатыгар киириэхтэрэ.',
-'revmove-legend'               => 'Сорук-сирэйи ыйыы уонна кинини ойуулааһын',
-'revmove-submit'               => 'Барыллары ыйыллыбыт сирэйгэ көһөрүү',
-'revisionmoveselectedversions' => 'Талыллыбыт барыллары көһөр',
-'revmove-reasonfield'          => 'Төрүөтэ:',
-'revmove-titlefield'           => 'Сорук-сирэй:',
-'revmove-badparam-title'       => 'Алҕастаах туруоруулар',
-'revmove-badparam'             => 'Эн көрдөбүлүҥ сыыһалаах, эбэтэр сорох туруоруулар суох. Бука диэн «Төнүн» тимэҕи баттаан баран хос боруобалаа.',
-'revmove-norevisions-title'    => 'Сатаммат сорук-сирэй',
-'revmove-norevisions'          => 'Маны толорорго биир дуу, хас да дуу сорук-сирэйдэри ыйбатаххын, эбэтэр ыйыллыбыт барыллар суохтар.',
-'revmove-nullmove-title'       => 'Табыллыбат аат',
-'revmove-nullmove'             => 'Саҕалаабыт уонна сорук-сирэй биирдэр. Бука диэн, «Төнүн» тимэҕи баттаа уонна мантан «$1» атын ааты суруй.',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] сирэй биир барыла|[[$2]] сирэй $1 барыла}} баар [[$3]] сирэйгэ көһөрүллүбүт.',
-'revmove-success-created'      => '{{PLURAL:$1|[[$2]] сирэй биир барыла|[[$2]] сирэй $1 барыла}} саҥа [[$3]] сирэйгэ көһөрүллүбүт.',
-
 # History merging
 'mergehistory'                     => 'Силбэһии сирэйин хронологията',
 'mergehistory-header'              => 'Бу сирэй биир ыстатыйа (сирэй) хас да барылын биир саҥа барыл гына оҥорорго аналлаах.
@@ -1281,8 +1254,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'right-reset-passwords'       => 'атын кыттааччылар киирии тылларын уларытыы',
 'right-override-export-depth' => 'сирэйдэри таһаарааһын (экспортааһын), ситимнээх сирэйдэри 5-с таһымҥа дылы холбоон туран',
 'right-sendemail'             => 'Атын кыттааччыларга эл. почтаны ыытарга',
-'right-revisionmove'          => 'Сирэйдэр барылларын көһөрүү',
-'right-disableaccount'        => 'Бэлиэтэниллибит ааты араарыы',
 
 # User rights log
 'rightslog'      => 'Кыттаачы бырааптарын сурунаала',
@@ -1325,7 +1296,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'action-userrights'           => 'кыттар бары бырааптарын уларытыы',
 'action-userrights-interwiki' => 'атын биикигэ кыттыы бырааптарын уларытыы',
 'action-siteadmin'            => 'билэ олоҕун хааччахтааһын уонна хааччахтааһынын устуу',
-'action-revisionmove'         => 'сирэйдэр барылларын көһөрүү',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|уларытыы|уларытыылар}}',
@@ -2786,7 +2756,6 @@ $1',
 'exif-stripbytecounts'             => 'Хам тутуллубут блок кээмэйэ',
 'exif-jpeginterchangeformat'       => 'JPEG SOI аналлаах сиригэр көһүү',
 'exif-jpeginterchangeformatlength' => 'JPEG дааннайдарын кээмэйэ',
-'exif-transferfunction'            => 'Функция преобразования цветового пространства',
 'exif-whitepoint'                  => 'Үрүҥ өҥ цветноһа',
 'exif-primarychromaticities'       => 'Сүрүн өҥнөр цветностара',
 'exif-ycbcrcoefficients'           => 'Өҥ уларыйыытын коэфициеннара',
@@ -2805,7 +2774,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'Ойууну хам тутуу ньымата',
 'exif-pixelydimension'             => 'Ойуу дьиҥ кэтитэ',
 'exif-pixelxdimension'             => 'Ойуу дьиҥ үрдүгэ',
-'exif-makernote'                   => 'Оҥорооччу хос быһаарыыта',
 'exif-usercomment'                 => 'Кыттааччы хос быһаарыыта',
 'exif-relatedsoundfile'            => 'Аудио-билэҕэ сыһыаннаах',
 'exif-datetimeoriginal'            => 'Оҥоһуллубут кэмэ',
@@ -2819,7 +2787,6 @@ $1',
 'exif-exposureprogram'             => 'Экспозиция бырагырааммата',
 'exif-spectralsensitivity'         => 'Спектр чувствительноһа',
 'exif-isospeedratings'             => 'ISO кээмэйэ',
-'exif-oecf'                        => 'OECF (коэффициент оптоэлектрического преобразования)',
 'exif-shutterspeedvalue'           => 'Объективы арыйыы кээмэйэ (Выдержка)',
 'exif-aperturevalue'               => 'Диафрагма',
 'exif-brightnessvalue'             => 'Сырдыга (яркость)',
@@ -2833,7 +2800,6 @@ $1',
 'exif-focallength-format'          => '$1 мм',
 'exif-subjectarea'                 => 'Түһэриллибит объект иэнэ',
 'exif-flashenergy'                 => 'Вспышка күүһэ',
-'exif-spatialfrequencyresponse'    => 'Пространственная частотная характеристика',
 'exif-focalplanexresolution'       => 'Разрешение по X в фокальной плоскости',
 'exif-focalplaneyresolution'       => 'Разрешение по Y в фокальной плоскости',
 'exif-focalplaneresolutionunit'    => 'Единица измерения разрешения в фокальной плоскости',
@@ -2842,7 +2808,6 @@ $1',
 'exif-sensingmethod'               => 'Сенсор тиибэ',
 'exif-filesource'                  => 'Билэ хантан ылыллыбыта',
 'exif-scenetype'                   => 'Сцена көрүҥэ',
-'exif-cfapattern'                  => 'Өҥ фильтрын көрүҥэ (CFA pattern)',
 'exif-customrendered'              => 'Ойууну эбии тупсарыы',
 'exif-exposuremode'                => 'Экспозиция көрүҥэ',
 'exif-whitebalance'                => 'Үрүҥ балансата',
@@ -3328,18 +3293,5 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 # SQLite database support
 'sqlite-has-fts' => '$1 толору тиэкистээх көрдөөһүнү өйүүр',
 'sqlite-no-fts'  => '$1 толору тиэкистээх көрдөөһүнү өйөөбөт',
-
-# Special:DisableAccount
-'disableaccount'             => 'Кытааччы бэлиэтэммит аатын араарыы',
-'disableaccount-user'        => 'Кыттааччы аата:',
-'disableaccount-reason'      => 'Төрүөтэ:',
-'disableaccount-confirm'     => "Кытааччы бу аатын араарыы. 
-Кыттааччы тиһиликкэ киирбэт буолуо, киирии тылын уларытар кыаҕа суох буолуо, электроннай почтатыгар биллэриилэр кэлбэт буолуохтара. 
-Кыттааччы билигин тиһиликкэ киирэн олорор буоллаҕына, тутатына таһаарыллыа. 
-''Болҕой, араарыллыбыт ааты дьаһабыла суох төннөрөр кыах суох.''",
-'disableaccount-mustconfirm' => 'Бу ааты араарабын диэн бигэргэт.',
-'disableaccount-nosuchuser'  => '«$1» ааттаах кыттааччы суох эбит.',
-'disableaccount-success'     => '«$1» кыттааччы аата букатын араарылынна.',
-'disableaccount-logentry'    => '[[$1]] кыттааччы аатын букатын араарбыт',
 
 );

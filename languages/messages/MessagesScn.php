@@ -596,10 +596,6 @@ Aspetta tanticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tò dumanna di discunnissioni fu niàta prichì pari ca veni di nu browser nun funziunanti o nu proxy di caching.',
 
-# JavaScript password checks
-'password-retype'          => "Scrivi la password n'àutra vota",
-'password-retype-mismatch' => 'Li password nun currispunninu',
-
 # Password reset dialog
 'resetpass'                 => "Scrivi n'àutra vota la password",
 'resetpass_announce'        => "Hai effittuatu l'accessu cu na password timpurània ca t'hà statu mannata via email. Pi tirminari l'accessu, hai a nziriri na password nova ccà:",
@@ -926,9 +922,6 @@ Cuntrolla lu log.",
 # Suppression log
 'suppressionlog'     => 'Log dê supprissioni',
 'suppressionlogtext' => "Ccà veni prisintatu n'elencu dê cancillazioni e dê blocchi cchiù ricenti supra cuntinuti ammucciati d'amministraturi. Vidi l'[[Special:IPBlockList|elenco d'IP bloccati]] pi l'elencu dî ban e dî blocchi attivi.",
-
-# Revision move
-'revmove-reasonfield' => 'Mutivu:',
 
 # History merging
 'mergehistory'                     => 'Unioni storie',
@@ -2531,7 +2524,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-stripbytecounts'             => 'Nùmmiru di byte pi striscia cumpressa',
 'exif-jpeginterchangeformat'       => 'Pusizzioni byte SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Nùmmuru di byte di dati JPEG',
-'exif-transferfunction'            => 'Funzioni di trasfirimentu',
 'exif-whitepoint'                  => 'Cuurdinati crumàtichi dû puntu di jancu',
 'exif-primarychromaticities'       => 'Cuurdinati crumàtichi dî culuri primari',
 'exif-ycbcrcoefficients'           => 'Cuefficienti matrici di trasfurmazzioni spazzi dî culuri',
@@ -2550,7 +2542,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-compressedbitsperpixel'      => 'Mudalitati di cumprissioni dâ mmàggini',
 'exif-pixelydimension'             => 'Larghizza effittiva mmàggini',
 'exif-pixelxdimension'             => 'Autizza effittiva mmàggini',
-'exif-makernote'                   => 'Noti dû prudutturi',
 'exif-usercomment'                 => "Noti di l'utenti",
 'exif-relatedsoundfile'            => 'File audiu culligatu',
 'exif-datetimeoriginal'            => 'Data e ura di criazzioni dî dati',
@@ -2564,7 +2555,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-exposureprogram'             => "Prugramma d'espusizzioni",
 'exif-spectralsensitivity'         => 'Sinzibbilitati spittrali',
 'exif-isospeedratings'             => 'Sinzibbilitati ISO',
-'exif-oecf'                        => 'Fatturi di cunvirsioni optoalittrònica',
 'exif-shutterspeedvalue'           => "Tempu d'espusizzioni",
 'exif-aperturevalue'               => 'Apirtura',
 'exif-brightnessvalue'             => 'Luminusitati',
@@ -2577,7 +2567,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-focallength'                 => 'Distanza fucali obbittivu',
 'exif-subjectarea'                 => 'Ària nquatranti lu suggettu',
 'exif-flashenergy'                 => 'Putenza dû flash',
-'exif-spatialfrequencyresponse'    => 'Risposta n friquenza spazziali',
 'exif-focalplanexresolution'       => 'Risuluzzioni X supra lu chianu fucali',
 'exif-focalplaneyresolution'       => 'Risuluzzioni Y supra lu chianu fucali',
 'exif-focalplaneresolutionunit'    => 'Unitati di misura risuluzzioni supra lu chianu fucali',
@@ -2586,7 +2575,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-sensingmethod'               => 'Mètudu di rilivazzioni',
 'exif-filesource'                  => 'Orìggini dû file',
 'exif-scenetype'                   => 'Tipu di nquatratura',
-'exif-cfapattern'                  => 'Dispusizzioni filtru culuri',
 'exif-customrendered'              => 'Elabburazzioni pirsunalizzata',
 'exif-exposuremode'                => "Mudalitati d'espusizzioni",
 'exif-whitebalance'                => 'Valanzamentu dû jancu',

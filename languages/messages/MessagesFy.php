@@ -2239,7 +2239,6 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'exif-artist'                 => 'Auteur',
 'exif-colorspace'             => 'Kleurromte',
 'exif-compressedbitsperpixel' => 'Ofbylding kompresjemetoade',
-'exif-makernote'              => 'Opmerkings fan makker',
 'exif-usercomment'            => 'Opmerkings',
 'exif-relatedsoundfile'       => 'Besibbe audiotriem',
 'exif-exposuretime-format'    => '$1 sek ($2)',

@@ -664,15 +664,6 @@ Vent venligst før du prøver igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 
-# JavaScript password checks
-'password-strength'            => 'Anslået passwordstyrke: $1',
-'password-strength-bad'        => 'DÅRLIG',
-'password-strength-mediocre'   => 'middelmådig',
-'password-strength-acceptable' => 'acceptabel',
-'password-strength-good'       => 'god',
-'password-retype'              => 'Gentag adgangskode her',
-'password-retype-mismatch'     => 'Adgangskoderne er ikke ens',
-
 # Password reset dialog
 'resetpass'                 => 'Skift adgangskode',
 'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
@@ -1051,26 +1042,6 @@ Se venligst loglisterne.',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.Below is a list of deletions and blocks involving content hidden from sysops.
 Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 
-# Revision move
-'moverevlogentry'              => 'flyttede {{PLURAL:$3|en version|$3 versioner}} fra $1 til $2',
-'revisionmove'                 => 'Flyt ændringer fra "$1"',
-'revmove-explain'              => 'Følgende versioner vil blive flyttet fra $1 til den angivne målside. Hvis målsiden ikke findes, vil den blive oprettet. Ellers vil disse versioner blive flettet ind i sidens historik.',
-'revmove-legend'               => 'Sæt målside og opsummering',
-'revmove-submit'               => 'Flyt revisioner til den valgte side',
-'revisionmoveselectedversions' => 'Flyt valgte revisioner',
-'revmove-reasonfield'          => 'Begrundelse:',
-'revmove-titlefield'           => 'Målside:',
-'revmove-badparam-title'       => 'Forkerte parametre',
-'revmove-badparam'             => 'Din forespørgsel indeholder ugyldige eller utilstrækkelige parametre.
-Vend tilbage til forrige side og prøv igen.',
-'revmove-norevisions-title'    => 'Ugyldig målversion',
-'revmove-norevisions'          => 'Du har ikke angivet en eller flere målversioner for at udføre denne funktion eller den angivne version eksisterer ikke.',
-'revmove-nullmove-title'       => 'Forkert titel',
-'revmove-nullmove'             => 'Slutsiden kan ikke være identisk med startsiden.
-Vend tilbage til forrige side og vælg et andet navn fra "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den eksisterende side [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den nyligt oprettede side [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
 'mergehistory-header'              => "Denne sider giver mulighed for at flette historikken fra en kildeside ind i en nyere side.
@@ -1410,8 +1381,6 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
-'right-revisionmove'          => 'Flyt revisioner',
-'right-disableaccount'        => 'Deaktivere konti',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -1454,7 +1423,6 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'action-userrights'           => 'ændre alle brugerrettigheder',
 'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
 'action-siteadmin'            => 'låse eller låse databasen op',
-'action-revisionmove'         => 'flyt versioner',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ændring|ændringer}}',
@@ -2869,7 +2837,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-stripbytecounts'             => 'Bytes pr. komprimeret stribe',
 'exif-jpeginterchangeformat'       => 'Offset til JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Størrelse af JPEG-fil i bytes',
-'exif-transferfunction'            => 'Overførselsfunktion',
 'exif-whitepoint'                  => 'Manuel med måling',
 'exif-primarychromaticities'       => 'Kromaticitet af primærfarver',
 'exif-ycbcrcoefficients'           => 'YCbCr-koefficienter',
@@ -2888,7 +2855,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-compressedbitsperpixel'      => 'Komprimerede bits pr. pixel',
 'exif-pixelydimension'             => 'Gyldig billedbredde',
 'exif-pixelxdimension'             => 'Gyldig billedhøjde',
-'exif-makernote'                   => 'Producentnotits',
 'exif-usercomment'                 => 'Brugerkommentarer',
 'exif-relatedsoundfile'            => 'Tilhørende lydfil',
 'exif-datetimeoriginal'            => 'Optagelsestidspunkt',
@@ -2902,7 +2868,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-exposureprogram'             => 'Belysningsprogram',
 'exif-spectralsensitivity'         => 'Spectral sensitivitet',
 'exif-isospeedratings'             => 'Film- eller sensorfølsomhed (ISO)',
-'exif-oecf'                        => 'Optoelektronisk omregningsfaktor',
 'exif-shutterspeedvalue'           => 'Belysningstidsværdi',
 'exif-aperturevalue'               => 'Blændeværdi',
 'exif-brightnessvalue'             => 'Lyshedsværdi',
@@ -2915,7 +2880,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-focallength'                 => 'Brændvidde',
 'exif-subjectarea'                 => 'Område',
 'exif-flashenergy'                 => 'Blitzstyrke',
-'exif-spatialfrequencyresponse'    => 'Rumligt frekvenssvar',
 'exif-focalplanexresolution'       => 'Fokuseringspunkt X-opløsning',
 'exif-focalplaneyresolution'       => 'Fokuseringspunkt Y-opløsning',
 'exif-focalplaneresolutionunit'    => 'Enhed for fokuseringsopløsning',
@@ -2924,7 +2888,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-sensingmethod'               => 'Målemetode',
 'exif-filesource'                  => 'Filens kilde',
 'exif-scenetype'                   => 'Scenetype',
-'exif-cfapattern'                  => 'CFA-mønster',
 'exif-customrendered'              => 'Brugerdefineret billedbehandling',
 'exif-exposuremode'                => 'Belysningsmodus',
 'exif-whitebalance'                => 'Hvidafstemning',
@@ -3405,18 +3368,5 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
-
-# Special:DisableAccount
-'disableaccount'             => 'Deaktivere en brugerkonto',
-'disableaccount-user'        => 'Brugernavn:',
-'disableaccount-reason'      => 'Begrundelse:',
-'disableaccount-confirm'     => "Deaktiver denne brugerkonto.
-Denne bruger vil ikke være i stand til at logge ind, nulstille sit password eller modtage emailnotifikationer.
-Hvis brugeren er logget ind et sted, vil vedkommende blive logget ud øjeblikkeligt.
-''Bemærk at deaktivering af en konto ikke kan fortrydes uden systemadministrators indgriben.''",
-'disableaccount-mustconfirm' => 'Du skal bekræfte, at du ønsker at deaktivere denne konto.',
-'disableaccount-nosuchuser'  => 'Brugerkontoen "$1" findes ikke.',
-'disableaccount-success'     => 'Brugerkontoen "$1" er blevet permanent deaktiveret.',
-'disableaccount-logentry'    => 'deaktiverede brugerkontoen [[$1]] permanent',
 
 );

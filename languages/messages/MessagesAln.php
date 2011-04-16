@@ -559,15 +559,6 @@ Ju lutemi pritni pak për me provue prap.',
 'loginlanguagelabel'         => 'Gjuha: $1',
 'suspicious-userlogout'      => 'Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy',
 
-# JavaScript password checks
-'password-strength'            => 'Kompleksiteti i fjalëkalimit: $1',
-'password-strength-bad'        => 'DOBËT',
-'password-strength-mediocre'   => 'mediokër',
-'password-strength-acceptable' => 'i pranueshëm',
-'password-strength-good'       => 'mirë',
-'password-retype'              => 'rishtype fjalëkalimin këtu',
-'password-retype-mismatch'     => 'fjalëkalimet nuk përputhen',
-
 # Password reset dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
 'resetpass_announce'        => 'Jeni kyçë me nji kod të përkohshëm të dërguem me email.

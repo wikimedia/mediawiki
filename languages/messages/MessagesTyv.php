@@ -292,10 +292,6 @@ $messages = array(
 'accountcreatedtext'      => '$1 деп ажыглакчының бүрүткел бижиини бүдүрген.',
 'loginlanguagelabel'      => 'Дыл: $1',
 
-# JavaScript password checks
-'password-strength-bad'  => 'БАГАЙ',
-'password-strength-good' => 'эки',
-
 # Password reset dialog
 'resetpass'                 => 'Чажыт сөзү өскертир',
 'resetpass_header'          => 'Чажыт сөстү катап чогаадып кылыры',
@@ -385,9 +381,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'pagehist'                   => 'Арынның төөгүзү',
 'revdelete-otherreason'      => 'Өске/немелде чылдагаан:',
 'revdelete-reasonotherlist'  => 'Өске чылдагаан',
-
-# Revision move
-'revmove-reasonfield' => 'Чылдагаан:',
 
 # History merging
 'mergehistory-reason' => 'Чылдагаан:',
@@ -927,9 +920,5 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 # HTML forms
 'htmlform-submit' => 'Күүcедири',
-
-# Special:DisableAccount
-'disableaccount-user'       => 'Aжыглакчының ады',
-'disableaccount-nosuchuser' => '"$1" деп бүрүткел бижик чок.',
 
 );

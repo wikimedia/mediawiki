@@ -698,15 +698,6 @@ Wag asseblief alvorens u weer probeer.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
 
-# JavaScript password checks
-'password-strength'            => 'Geskatte wagwoordsterkte: $1',
-'password-strength-bad'        => 'SLEG',
-'password-strength-mediocre'   => 'middelmatig',
-'password-strength-acceptable' => 'aanvaarbaar',
-'password-strength-good'       => 'goed',
-'password-retype'              => 'Verskaf die wagwoord weer hier',
-'password-retype-mismatch'     => 'Die wagwoorde kom nie ooreen nie',
-
 # Password reset dialog
 'resetpass'                 => 'Verander wagwoord',
 'resetpass_announce'        => "U het aangeteken met 'n tydelike e-poskode.
@@ -1086,24 +1077,6 @@ Kontroleer asseblief die logboeke.",
 'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs verborge is.
 Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te sien.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|een wysiging|$3 wysigings}} van $1 na $2 verskuif',
-'revisionmove'                 => 'Skuif weergawes van "$1"',
-'revmove-explain'              => 'Die volgende wysigings sal vanaf $1 na die aangewese teikenbladsy geskuif word. As die teiken nie bestaan nie, word dit geskep. Andersins, sal hierdie wysigings met die bladsygeskiedenis versmelt word.',
-'revmove-legend'               => 'Stel teiken-bladsy en opsomming',
-'revmove-submit'               => 'Skuif weergawes na geselekteerde bladsy',
-'revisionmoveselectedversions' => 'Skuif geselekteerde weergawes',
-'revmove-reasonfield'          => 'Rede:',
-'revmove-titlefield'           => 'Na bladsy:',
-'revmove-badparam-title'       => 'Slegte parameters',
-'revmove-badparam'             => 'U versoek bevat onwettige of onvoldoende parameters. Kliek op "terug" en probeer weer.',
-'revmove-norevisions-title'    => 'Ongeldige teiken-weergawe',
-'revmove-norevisions'          => 'U het nie een of meer teiken-weergawes gespesifiseer om die funksie te kan uitvoer nie; of die gespesifiseerde weergawe bestaan nie.',
-'revmove-nullmove-title'       => 'Ongeldige titel',
-'revmove-nullmove'             => 'Die bron- en teiken-bladsye is identies. Kliek op "terug" en verskaf \'n bladsynaam (nie "$1" nie).',
-'revmove-success-existing'     => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die bestaande bladsy [[$3]] geskuif.',
-'revmove-success-created'      => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die nuutgeskepte bladsy [[$3]] verskuif.',
-
 # History merging
 'mergehistory'                     => 'Geskiedenis van bladsy samesmeltings',
 'mergehistory-header'              => "Hierdie bladsy laat u toe om weergawes uit die geskiedenis van 'n bronbladsy na 'n ander nuwer bladsy oor te dra.
@@ -1445,8 +1418,6 @@ Die inligting is vir ander gebruikers sigbaar.',
 'right-reset-passwords'       => 'Herstel ander gebruikers se wagwoorde',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
-'right-revisionmove'          => 'Skuif wysigings',
-'right-disableaccount'        => 'Deaktiveer gebruikers',
 
 # User rights log
 'rightslog'      => 'Gebruikersregtelogboek',
@@ -1489,7 +1460,6 @@ Die inligting is vir ander gebruikers sigbaar.',
 'action-userrights'           => 'Wysig alle gebruikersregte',
 'action-userrights-interwiki' => 'wysig gebruikersregte van gebruikers op ander wikis',
 'action-siteadmin'            => 'sluit of ontsluit die databasis',
-'action-revisionmove'         => 'skuif wysigings',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
@@ -2941,7 +2911,6 @@ Ander velde sal versteek wees.
 'exif-stripbytecounts'             => 'Grepe per gekompakteerde strook',
 'exif-jpeginterchangeformat'       => 'Afstand na JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Grepe van JPEG-gegewens',
-'exif-transferfunction'            => 'Oordragfunksie',
 'exif-whitepoint'                  => 'Witpuntchromasiteit',
 'exif-primarychromaticities'       => 'Chromasiteit van primêre kleure',
 'exif-ycbcrcoefficients'           => 'Transformasiematriks-koëffisiënte vir die kleurruimte',
@@ -2960,7 +2929,6 @@ Ander velde sal versteek wees.
 'exif-compressedbitsperpixel'      => 'Beeldkompressiemetode',
 'exif-pixelydimension'             => 'Bruikbare beeldbreedte',
 'exif-pixelxdimension'             => 'Bruikbare beeldhoogte',
-'exif-makernote'                   => 'Notas van vervaardiger',
 'exif-usercomment'                 => 'Opmerkings',
 'exif-relatedsoundfile'            => 'Verwante klanklêer',
 'exif-datetimeoriginal'            => 'Gegewens opgestel op',
@@ -2974,7 +2942,6 @@ Ander velde sal versteek wees.
 'exif-exposureprogram'             => 'Beligtingsprogram',
 'exif-spectralsensitivity'         => 'Spektrale gevoeligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
-'exif-oecf'                        => 'Opto-elektroniese konversiefaktor',
 'exif-shutterspeedvalue'           => 'Sluitersnelheid',
 'exif-aperturevalue'               => 'Diafragma',
 'exif-brightnessvalue'             => 'Helderheid',
@@ -2987,7 +2954,6 @@ Ander velde sal versteek wees.
 'exif-focallength'                 => 'Brandpuntsafstand',
 'exif-subjectarea'                 => 'Objekruimte',
 'exif-flashenergy'                 => 'Flitssterkte',
-'exif-spatialfrequencyresponse'    => 'Ruimtelike frekwensiereaksie',
 'exif-focalplanexresolution'       => 'Brandpuntsvlak-X-resolusie',
 'exif-focalplaneyresolution'       => 'Brandpuntsvlak-Y-resolusie',
 'exif-focalplaneresolutionunit'    => 'Eenheid CCD-resolusie',
@@ -2996,7 +2962,6 @@ Ander velde sal versteek wees.
 'exif-sensingmethod'               => 'Meetmetode',
 'exif-filesource'                  => 'Lêerbron',
 'exif-scenetype'                   => 'Soort toneel',
-'exif-cfapattern'                  => 'CFA-patroon',
 'exif-customrendered'              => 'Aangepaste beeldverwerking',
 'exif-exposuremode'                => 'Beligtingsinstelling',
 'exif-whitebalance'                => 'Witbalans',
@@ -3484,18 +3449,5 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 # SQLite database support
 'sqlite-has-fts' => 'Weergawe $1 met ondersteuning vir vol-teks soektogte ("full-text search")',
 'sqlite-no-fts'  => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
-
-# Special:DisableAccount
-'disableaccount'             => "Deaktiveer 'n gebruiker",
-'disableaccount-user'        => 'Gebruikernaam:',
-'disableaccount-reason'      => 'Rede:',
-'disableaccount-confirm'     => "Deaktiveer hierdie gebruiker.
-Die gebruiker sal nie langer kan aanmeld, sy wagwoord herstel, of e-pos ontvang nie.
-As die gebruiker tans aangeteken is, sal hy onmiddellik uitgeteken word.
-''Let daarop die aksie nie sonder die hulp van 'n administrateur omgekeer kan word nie.''",
-'disableaccount-mustconfirm' => 'U moet bevestig dat u hierdie gebruiker wil deaktiveer.',
-'disableaccount-nosuchuser'  => 'Die gebruiker "$1" bestaan nie.',
-'disableaccount-success'     => 'Die gebruiker "$1" is permanent gedeaktiveer.',
-'disableaccount-logentry'    => 'het die gebruiker [[$1]] permanent gedeaktiveer',
 
 );

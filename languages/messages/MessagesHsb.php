@@ -615,15 +615,6 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Trochowana hesłowa sylnosć: $1',
-'password-strength-bad'        => 'ŠPATNA',
-'password-strength-mediocre'   => 'SRĚNJA',
-'password-strength-acceptable' => 'akceptabelna',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Hesło wospjetować',
-'password-retype-mismatch'     => 'Hesle so njekryjetej',
-
 # Password reset dialog
 'resetpass'                 => 'Hesło změnić',
 'resetpass_announce'        => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
@@ -986,24 +977,6 @@ Prošu přepruwuj protokole.',
 'suppressionlog'     => 'Protokol potłóčenjow',
 'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow. Hlej [[Special:IPBlockList|Lisćina zablokowanjow IP]] za lisćinu tuchwilnych zablokowanjow.',
 
-# Revision move
-'moverevlogentry'              => 'je {{PLURAL:$3|jednu wersiju|$3 wersiji|$3 wersije|$3 wersijow}} wot $1 do $2 přesunył',
-'revisionmove'                 => 'Wersije wot "$1" přesunyć',
-'revmove-explain'              => 'Slědowace wersije přesunu so wot $1 k podatej cilowej stronje . Jeli cil njeeksistuje, wutwori so. Hewak so tute wersije w stawiznach strony zjednoćeja.',
-'revmove-legend'               => 'Cilowu stronu a zjeće zwěsćić',
-'revmove-submit'               => 'Wersije k wubranej stronje přesunyć',
-'revisionmoveselectedversions' => 'Wubrane wersije přesunyć',
-'revmove-reasonfield'          => 'Přičina:',
-'revmove-titlefield'           => 'Cilowa strona:',
-'revmove-badparam-title'       => 'Wopačne parametry',
-'revmove-badparam'             => 'Twoje naprašowanje wobsahuje njedowolene abo njedosahace parametry. Prošu klikń na "wróći" a spytaj hišće raz.',
-'revmove-norevisions-title'    => 'Njepłaćiwa cilowa wersija',
-'revmove-norevisions'          => 'Njejsy jednu wersiju abo wjace wersijow podał, zo by tutu funkciju wuwjedł, abo podata wersija njeeksistuje.',
-'revmove-nullmove-title'       => 'Njepłaćiwy titul',
-'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do eksistowaceje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do runje wutworjeneje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
-
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
 'mergehistory-header'              => 'Tuta strona ći dowola wersije stawiznow žórłoweje strony na nowej stronje zjednoćić.
@@ -1341,8 +1314,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
-'right-revisionmove'          => 'Wersije přesunyć',
-'right-disableaccount'        => 'Konta znjemóžnić',
 
 # User rights log
 'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
@@ -1385,7 +1356,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'action-userrights'           => 'wšě wužiwarske prawa wobdźěłać',
 'action-userrights-interwiki' => 'Wužiwarske prawa wužiwarjow w druhich wikijach wobdźěłać',
 'action-siteadmin'            => 'Datowu banku zawrěć abo wotewrić',
-'action-revisionmove'         => 'wersije  přesunyć',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
@@ -2799,7 +2769,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-stripbytecounts'             => 'Bajty na komprimowany pas',
 'exif-jpeginterchangeformat'       => 'Offset k JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bajty JPEG datow',
-'exif-transferfunction'            => 'Přenošowanska funkcija',
 'exif-whitepoint'                  => 'Barbowa kwalita běłeho dypka',
 'exif-primarychromaticities'       => 'Barbowa kwalita primarnych barbow',
 'exif-ycbcrcoefficients'           => 'Koeficienty matriksy za transformaciju barbneho ruma',
@@ -2818,7 +2787,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-compressedbitsperpixel'      => 'Modus wobrazoweje kompresije',
 'exif-pixelydimension'             => 'Płaćiwa šěrokosć wobraza',
 'exif-pixelxdimension'             => 'Płaćiwa wysokosć wobraza',
-'exif-makernote'                   => 'Přispomnjenki zhotowjerja',
 'exif-usercomment'                 => 'Přispomjenja wužiwarja',
 'exif-relatedsoundfile'            => 'Zwjazana zynkowa dataja',
 'exif-datetimeoriginal'            => 'Datum a čas wutworjenja datow',
@@ -2832,7 +2800,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-exposureprogram'             => 'Naswětlenski program',
 'exif-spectralsensitivity'         => 'Spektralna cutliwosć',
 'exif-isospeedratings'             => 'Cutliwosć filma abo sensora (ISO)',
-'exif-oecf'                        => 'Optoelektroniski přeličenski faktor (OECF)',
 'exif-shutterspeedvalue'           => 'Naswětlenski čas',
 'exif-aperturevalue'               => 'Zasłona',
 'exif-brightnessvalue'             => 'Swětłosć',
@@ -2845,7 +2812,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-focallength'                 => 'Palnišćowa zdalenosć',
 'exif-subjectarea'                 => 'Wobwod předmjeta',
 'exif-flashenergy'                 => 'Sylnosć błyska',
-'exif-spatialfrequencyresponse'    => 'Cutliwosć rumoweje frekwency',
 'exif-focalplanexresolution'       => 'Wodorune rozeznaće sensora',
 'exif-focalplaneyresolution'       => 'Padorune rozeznaće sensora',
 'exif-focalplaneresolutionunit'    => 'Jednotka rozeznaća sensora',
@@ -2854,7 +2820,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-sensingmethod'               => 'Měrjenska metoda',
 'exif-filesource'                  => 'Žórło dataje',
 'exif-scenetype'                   => 'Typ sceny',
-'exif-cfapattern'                  => 'Muster CFA',
 'exif-customrendered'              => 'Wot wužiwarja definowane předźěłanje wobrazow',
 'exif-exposuremode'                => 'Naswětlenski modus',
 'exif-whitebalance'                => 'Balansa běłeho dypka',
@@ -3335,18 +3300,5 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
 'sqlite-no-fts'  => '$1 połnotekstowe pytanje njepodpěruje',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wužiwarske konto znjemóžnić',
-'disableaccount-user'        => 'Wužiwarske mjeno:',
-'disableaccount-reason'      => 'Přičina:',
-'disableaccount-confirm'     => "Znjemóžń tute wužiwarske konto.
-Wužiwar njemóže so přizjewić, swoje hesło wróćo stajić abo e-mejlowe zdźělenki dóstać.
-Jeli wužiwar je tuchwilu druhdźe přizjewjeny, budźe so hnydom wotzjewjeć.
-''Wobkedźbuj, zo znjemóžnjenje konta njeje rewersibelne bjez zapřimowanja systemoweho administratora.''",
-'disableaccount-mustconfirm' => 'Dyrbiš wobkrućić, zo chceš tute konto znjemóžnić.',
-'disableaccount-nosuchuser'  => 'Wužiwarske konto "$1" njeeksistuje.',
-'disableaccount-success'     => 'Wužiwarske konto "$1" bu na přeco znjemóžnjene.',
-'disableaccount-logentry'    => 'je wužiwarske konto [[$1]] na přeco znjemóžnił',
 
 );

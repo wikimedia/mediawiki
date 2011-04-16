@@ -647,15 +647,6 @@ Please log in again after you receive it.
 # E-mail sending
 'php-mail-error-unknown' => 'PHPની મેલ() કામગીરીમાં અજ્ઞાત ત્રુટિ',
 
-# JavaScript password checks
-'password-strength'            => 'અંદાજીત ગુપ્તસંજ્ઞા ક્ષમતા: $1',
-'password-strength-bad'        => 'ખરાબ',
-'password-strength-mediocre'   => 'મધ્યમ',
-'password-strength-acceptable' => 'સ્વીકાર્ય',
-'password-strength-good'       => 'સારી',
-'password-retype'              => 'ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો',
-'password-retype-mismatch'     => 'ગુપ્તસંજ્ઞાઓ મેળ ખાતી નથી',
-
 # Password reset dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
 'resetpass_announce'        => 'તમે હંગામી ઇમેઇલ કોડ સાથે લોગ ઇન કર્યું.
@@ -1053,26 +1044,6 @@ $1",
 'suppressionlogtext' => 'નીચે પ્રબંધકોથી છુપાયેલ એવા હટાવ અને રોકની યાદિ આપેલી છે.
 હાલમાં સક્રીય એવા  પ્રતિબંધ અને રોકની યાદિ અહીં  [[Special:IPBlockList|IP block list]]  આપેલ છે.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|એક ફેરફાર|$3 ફેરફારો }} $1 થી $2 માં ખસેડ્યાં',
-'revisionmove'                 => '"$1" થી ફેરફાર હટાવો',
-'revmove-explain'              => 'નીચેના ફેરફારોને તમે $1 જણાવેલ લક્ષ્ય પાના પર હટાવાશે. જો લક્ષ્ય અસ્તિત્વ માં ન હોય  તો તેની રચના થશે. અન્યથા, ફેરફારોને પાનાના ઇતિહાસમાં વિલિન કરવામં આવશે.',
-'revmove-legend'               => 'લક્ષ્ય પાનું અને સરાંશ પુન;સંયોજીત કરો.',
-'revmove-submit'               => 'પુનરાવર્તનો પસંદ કરેલા પાના પર હટાવો',
-'revisionmoveselectedversions' => 'પસંદ કરેલા ફેરફારો ખસેડો',
-'revmove-reasonfield'          => 'કારણ:',
-'revmove-titlefield'           => 'લક્ષ્ય પાનું',
-'revmove-badparam-title'       => 'ખરાબ વિકલ્પો',
-'revmove-badparam'             => 'તમારી વિનંતિમાં ગેરકાયદીસર અને અપૂરતા વિકલ્પો છે.
-પાછલા પાના પર ફરી જાવ અને ફરી પ્રયત્ન કરો.',
-'revmove-norevisions-title'    => 'અવૈધ લક્ષ્ય ફેરફાર',
-'revmove-norevisions'          => 'આ ક્રિયા જેના પર કરવાની છે તે એક કે વધુ લક્ષિત ફેરફાર તમે જણાવ્યાં નથી અથવા એવા ફેરફારો અસ્તિત્વમાં નથી.',
-'revmove-nullmove-title'       => 'ખરાબ નામ',
-'revmove-nullmove'             => 'લક્ષ્ય પાનું અને સ્ત્રોત પાનું સમાન ન હોઇ શકે.
-પાછલા પાને ફરી જાવ અને અન્ય "$1" માંથી અન્ય નામ પસંદ કરો.',
-'revmove-success-existing'     => '[[$2]]  માંથી{{PLURAL:$1|ફેરફાર|$1 ફેરફારો }} પાના [[$3]] પર લઈ જવાયા.',
-'revmove-success-created'      => '[[$2]] માંથી {{PLURAL:$1|ફેરફાર|$1 ફેરફારો }} પાના [[$3]] પર ખસેડાયા.',
-
 # History merging
 'mergehistory'                     => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
 'mergehistory-header'              => 'આ પાનું તમને સ્ત્રોત પાનાનો ઈતિહાસ નવા પાનામાં વિલિન કરવા માં મદદ કરે છે.
@@ -1416,8 +1387,6 @@ HTML નાકું ચકાસો',
 'right-reset-passwords'       => 'અન્ય સભ્યોની ગુપ્ત સંજ્ઞાઓ ફરી ગોઠવો',
 'right-override-export-depth' => '૫ સ્તર સુધી જોડાયેલ પાના સહીત પાના નિકાસ કરો',
 'right-sendemail'             => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
-'right-revisionmove'          => 'પુનરાવર્તનો ખસેડો',
-'right-disableaccount'        => 'ખાતું નિષ્ક્રીય બનાવો',
 
 # User rights log
 'rightslog'      => 'સભ્ય હક્ક માહિતિ પત્રક',
@@ -1460,7 +1429,6 @@ HTML નાકું ચકાસો',
 'action-userrights'           => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
 'action-userrights-interwiki' => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
 'action-siteadmin'            => 'માહિતી સંચયને ઉઘાડો અને વાસો.',
-'action-revisionmove'         => 'પુનરાવર્તનો ખસેડો',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
@@ -2903,7 +2871,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-stripbytecounts'             => 'સંકુચિત પટ્ટીમાં બાઈટની સંખ્યા',
 'exif-jpeginterchangeformat'       => 'JPEG SOI નો ફણગો',
 'exif-jpeginterchangeformatlength' => 'JPEG માહિતીની બાઇટ્સ',
-'exif-transferfunction'            => 'સ્થળાંતર કાર્ય',
 'exif-whitepoint'                  => 'ધવલ બિંદુ રંગ તીવ્રતા',
 'exif-primarychromaticities'       => 'મૂળ રંગોની રંગછટા',
 'exif-ycbcrcoefficients'           => 'રંગ અવકાશ પરિવર્તન ગર્ભ અચળાંક',
@@ -2922,7 +2889,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-compressedbitsperpixel'      => 'ચિત્ર સરખામણી મોડ',
 'exif-pixelydimension'             => 'ચિત્ર માટે વૈધ પહોળાઇ',
 'exif-pixelxdimension'             => 'ચિત્રની વૈધ ઊઁચાઈ',
-'exif-makernote'                   => 'ઉત્પાદકની નોંધ',
 'exif-usercomment'                 => 'સભ્યની ટિપ્પણી',
 'exif-relatedsoundfile'            => 'સંબંધિત શ્રાવ્ય ફાઈલો',
 'exif-datetimeoriginal'            => 'નિર્મિતીનો સમય અને તારીખ',
@@ -2936,7 +2902,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-exposureprogram'             => 'પ્રકાશાગમ પ્રોગ્રામ',
 'exif-spectralsensitivity'         => 'રંગપટલ સંવેદના',
 'exif-isospeedratings'             => 'ISO ઝડપ ક્ર્માંક',
-'exif-oecf'                        => 'દ્રસ્ટિ ઇલેક્ટ્રોનીક રૂપાંતરણ અચળાંક',
 'exif-shutterspeedvalue'           => 'દ્વારની ઝડપ',
 'exif-aperturevalue'               => 'છીદ્ર માપ',
 'exif-brightnessvalue'             => 'તેજસ્વીતા',
@@ -2949,7 +2914,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-focallength'                 => 'કાંચનું કેન્દ્રીય લંબાઇ (ફોકલ લેંથ)',
 'exif-subjectarea'                 => 'વિષ્યવસ્તુ  ક્ષેત્ર',
 'exif-flashenergy'                 => 'ઝબકારાની શક્તિ',
-'exif-spatialfrequencyresponse'    => 'અવકાશી કંપન પ્રત્યુત્તર',
 'exif-focalplanexresolution'       => 'કેન્દ્રીત X ફલક નું ઘનત્વ',
 'exif-focalplaneyresolution'       => 'કેન્દ્રીત Y ફલક નું ઘનત્વ',
 'exif-focalplaneresolutionunit'    => 'કેંન્દ્રીત ફલક ઘનત્વનો એકમ',
@@ -2958,7 +2922,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-sensingmethod'               => 'સંવેદનાની રીત',
 'exif-filesource'                  => 'ફાઇલ સ્ત્રોત',
 'exif-scenetype'                   => 'દ્રશ્ય પ્રકાર',
-'exif-cfapattern'                  => 'CFA ભાત',
 'exif-customrendered'              => 'સ્થાનીય ચિત્ર પ્રક્રિયા',
 'exif-exposuremode'                => 'પ્રકાશાગમ પ્રકાર',
 'exif-whitebalance'                => 'ધવલ સમતોલન',
@@ -3443,18 +3406,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 પૂર્ણ શબ્દ શોધ સહીત',
 'sqlite-no-fts'  => '$1 પૂર્ણ શબ્દ  શોધ વિકલ્પ વગર',
-
-# Special:DisableAccount
-'disableaccount'             => 'સભ્યના ખાતા પરપ્રતિબંધ મૂકો',
-'disableaccount-user'        => 'સભ્ય નામ:',
-'disableaccount-reason'      => 'કારણ:',
-'disableaccount-confirm'     => "આ ખાતું નિષ્ક્રિય બનાવો.
-સભ્ય ફરી પ્રવેશ નહીં કરી શકે, તેમની ગુપ્ત સંજ્ઞા પુનઃ ગઠન કરો અથવા ઇ-મેલ સૂચના મેળવો.
-જો ત સભ્યએ આ સમયે ક્યાંયથી પણ પ્રવેશ કર્યો હશે તો તેઓ તાત્કાલીક લોગ આઉટ  થઇ જશે. 
-''યાદ રાખો કે નિષ્ક્રીય કરેલા ખાતાને પ્રબંધક સિવાય કોઇ શક્રીય કરી શકશે નહીં.''",
-'disableaccount-mustconfirm' => 'તમારે પુષ્ટિ કરવી પડશે કે તમે ખાતાને નિષ્ક્રીય કરવા માંગો છો.',
-'disableaccount-nosuchuser'  => 'સભ્ય ખાતું "$1" અસ્તિત્વમાં નથી',
-'disableaccount-success'     => 'સભ્ય ખાતું "$1" કાયમી ધોરણે પ્રતિબંધીત કરાયું',
-'disableaccount-logentry'    => ' સભ્ય ખાતું [[$1]] કાયમી ધોરણે નિષ્ક્રીય બનાવાયું',
 
 );

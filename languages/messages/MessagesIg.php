@@ -478,11 +478,6 @@ Biko meríáríá ya.',
 'usernamehasherror'       => "Áhè ọ'bànifé ènwéghịkị nwé nkárí",
 'loginlanguagelabel'      => 'Asụsụ: $1',
 
-# JavaScript password checks
-'password-strength-bad'  => 'NJO',
-'password-strength-good' => 'Ómá',
-'password-retype'        => 'Detuari mkpurụ okwu ejị a gafẹ',
-
 # Password reset dialog
 'resetpass'                 => 'Gbanwe okwu éjị à gáfe',
 'resetpass_header'          => 'Gbanwe okwúngáfè nke bùwá',
@@ -669,11 +664,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'revdelete-reasonotherlist'  => 'Mgbághàpụtá ozor',
 'revdelete-edit-reasonlist'  => 'Rüwa gbakashia mgbághapụtà',
 'revdelete-offender'         => 'Ọde akwukwo nke orübà:',
-
-# Revision move
-'revmove-reasonfield'    => 'Mgbághapụtà:',
-'revmove-titlefield'     => 'Ihü ȯ chọrí ga:',
-'revmove-nullmove-title' => 'Ishi edemede öjö',
 
 # History merging
 'mergehistory'                => 'Tìkȯtá ákíkó mbu nke ihü ndiá',

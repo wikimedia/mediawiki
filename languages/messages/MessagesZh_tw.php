@@ -464,9 +464,6 @@ $messages = array(
 
 'grouppage-autoconfirmed' => '{{ns:project}}:自動確認使用者',
 
-# Rights
-'right-disableaccount' => '禁用帳號',
-
 # User rights log
 'rightslog'     => '使用者權限日誌',
 'rightslogtext' => '以下記錄了使用者權限的更改記錄。',

@@ -951,15 +951,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 
-# JavaScript password checks
-'password-strength'            => 'قوة كلمة المرور المقدرة: $1',
-'password-strength-bad'        => 'غير صالحة',
-'password-strength-mediocre'   => 'متوسطة',
-'password-strength-acceptable' => 'مقبولة',
-'password-strength-good'       => 'جيدة',
-'password-retype'              => 'أعد كتابة كلمة المرور هنا',
-'password-retype-mismatch'     => 'كلمتا المرور لا تتطابقان',
-
 # Password reset dialog
 'resetpass'                 => 'تغيير كلمة السر',
 'resetpass_announce'        => 'تم تسجيل دخولك بكلمة سر مؤقتة.
@@ -1354,24 +1345,6 @@ $1",
 'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
 انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
-# Revision move
-'moverevlogentry'              => 'نقل {{PLURAL:$3|مراجعة واحدة|مراجعتين|$3 مراجعات|$3 مراجعة}} من $1 إلى $2',
-'revisionmove'                 => 'مزيد من المراجعات من "$1"',
-'revmove-explain'              => 'سوف تنقل المراجعات التالية من $1 إلى الصفحة الهدف المُحدّدة. إذا لم تكن الصفحة الهدف موجودة، فسوف تُنشأ. إذا كانت موجودة فستدمج المراجعات مع تاريخ الصفحة.',
-'revmove-legend'               => 'اضبط الصفحة الهدف والملخص',
-'revmove-submit'               => 'انقل المراجعات إلى الصفحة المُحدّدة',
-'revisionmoveselectedversions' => 'انقل المراجعات المُحدّدة',
-'revmove-reasonfield'          => 'السبب:',
-'revmove-titlefield'           => 'الصفحة الهدف:',
-'revmove-badparam-title'       => 'محدادات سيئة',
-'revmove-badparam'             => 'يحتوي طلبك على محددات غير نظامية أو غير كافية. من فضلك انقر "للخلف" وحاول مرة أخرى.',
-'revmove-norevisions-title'    => 'مراجعة مستهدفة غير صالحة',
-'revmove-norevisions'          => 'لم تحدد مراجعة هدفًا أو أكثر لتنفيذ الدالة أو أن المراجعة المحددة غير موجودة.',
-'revmove-nullmove-title'       => 'عنوان سيء',
-'revmove-nullmove'             => 'الصفحة المصدر والصفحة الهدف متطابقتان. من فضلك انقر "للخلف" وأدخل اسم صفحة غير "$1".',
-'revmove-success-existing'     => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة الموجودة [[$3]]',
-'revmove-success-created'      => 'تم نقل {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من [[$2]] إلى الصفحة المنشأة حديثًا [[$3]]',
-
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
 'mergehistory-header'              => 'هذه الصفحة تسمح لك بدمج نسخ تاريخ صفحة ما إلى صفحة أخرى.
@@ -1714,8 +1687,6 @@ $1",
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
-'right-revisionmove'          => 'نقل المراجعات',
-'right-disableaccount'        => 'تعطيل الحسابات',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات المستخدمين',
@@ -1758,7 +1729,6 @@ $1",
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'action-siteadmin'            => 'غلق أو رفع غلق قاعدة البيانات',
-'action-revisionmove'         => 'نقل المراجعات',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
@@ -3282,7 +3252,6 @@ $1',
 'exif-stripbytecounts'             => 'بايت لكل شريحة مضغوطة',
 'exif-jpeginterchangeformat'       => 'الحد ل JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'بايت من بيانات JPEG',
-'exif-transferfunction'            => 'وظيفة النقل',
 'exif-whitepoint'                  => 'ألوان النقطة البيضاء',
 'exif-primarychromaticities'       => 'ألوان الأساسيات',
 'exif-ycbcrcoefficients'           => 'معاملات مصفوفة تحويل فراغ اللون',
@@ -3301,7 +3270,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'طور ضغط الصورة',
 'exif-pixelydimension'             => 'عرض صورة صحيح',
 'exif-pixelxdimension'             => 'ارتفاع صورة صحيح',
-'exif-makernote'                   => 'ملاحظات المصنع',
 'exif-usercomment'                 => 'تعليقات المستخدم',
 'exif-relatedsoundfile'            => 'ملف صوتي مرتبط',
 'exif-datetimeoriginal'            => 'تاريخ ووقت توليد البيانات',
@@ -3316,7 +3284,6 @@ $1',
 'exif-exposureprogram'             => 'برنامج التعرض',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
-'exif-oecf'                        => 'عامل التحويل الكهروضوئي',
 'exif-shutterspeedvalue'           => 'سرعة الغالق',
 'exif-aperturevalue'               => 'فتحة الغالق',
 'exif-brightnessvalue'             => 'السطوع',
@@ -3330,7 +3297,6 @@ $1',
 'exif-focallength-format'          => '$1 ملم',
 'exif-subjectarea'                 => 'مساحة الجسم',
 'exif-flashenergy'                 => 'طاقة الفلاش',
-'exif-spatialfrequencyresponse'    => 'استجابة التردد الفراغي',
 'exif-focalplanexresolution'       => 'تحليل المستوى البؤري X',
 'exif-focalplaneyresolution'       => 'تحليل المستوى البؤري Y',
 'exif-focalplaneresolutionunit'    => 'وحدة تحليل المستوى البؤري',
@@ -3339,7 +3305,6 @@ $1',
 'exif-sensingmethod'               => 'وسيلة الاستشعار',
 'exif-filesource'                  => 'مصدر الملف',
 'exif-scenetype'                   => 'نوع المشهد',
-'exif-cfapattern'                  => 'نمط CFA',
 'exif-customrendered'              => 'معالجة الصورة حسب الطلب',
 'exif-exposuremode'                => 'طور التعرض',
 'exif-whitebalance'                => 'توازن الأبيض',
@@ -3410,8 +3375,7 @@ $1',
 'exif-xyresolution-i' => '$1 نقطة لكل بوصة',
 'exif-xyresolution-c' => '$1 دي بي سي',
 
-'exif-colorspace-1'      => 'إس آر جي بي',
-'exif-colorspace-ffff.h' => 'إف إف إف إف.إتش',
+'exif-colorspace-1' => 'إس آر جي بي',
 
 'exif-componentsconfiguration-0' => 'غير موجود',
 'exif-componentsconfiguration-1' => 'واي',
@@ -3927,18 +3891,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
-
-# Special:DisableAccount
-'disableaccount'             => 'تعطيل حساب مستخدم',
-'disableaccount-user'        => 'اسم المستخدم :',
-'disableaccount-reason'      => 'السبب :',
-'disableaccount-confirm'     => 'تعطيل حساب المستخدم هذا. 
-المستخدم لن يكون قادرا على تسجيل الدخول، إعادة تعيين كلمة المرور الخاصة به، أو تلقي إعلامات البريد الإلكتروني. 
-إذا تم تسجيل المستخدم حاليا في أي مكان، سيتم تسجيله على الفور. 
-«لاحظ أن تعطيل الحساب لا يمكن عكسه دون تدخل المسؤول عن النظام».',
-'disableaccount-mustconfirm' => 'يجب التأكد من أنك ترغب في تعطيل هذا الحساب.',
-'disableaccount-nosuchuser'  => 'حساب المستخدم "$1" غير موجود.',
-'disableaccount-success'     => 'تم تعطيل حساب المستخدم "$1" بشكل دائم.',
-'disableaccount-logentry'    => 'تعطيل حساب المستخدم [[$1]] بشكل دائم',
 
 );

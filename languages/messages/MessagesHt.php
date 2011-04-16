@@ -621,15 +621,6 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erè nou pa konnen nan fonksyon mail() PHP a.',
 
-# JavaScript password checks
-'password-strength'            => 'Fòs mopas la: $1',
-'password-strength-bad'        => 'MOVE',
-'password-strength-mediocre'   => 'pa bon menm',
-'password-strength-acceptable' => 'akseptab',
-'password-strength-good'       => 'bon',
-'password-retype'              => 'Mete mopas ou an ankò :',
-'password-retype-mismatch'     => 'Mopas yo pa koresponn',
-
 # Password reset dialog
 'resetpass'                 => 'Chanje mopas ou an',
 'resetpass_announce'        => 'Ou konekte ou ak yon mopas ki valab yon moman; mopas sa te voye pa imèl. Pou ou kapab fini anrejistreman an, ou dwe mete yon nouvo mopas la :',

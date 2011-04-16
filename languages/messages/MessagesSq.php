@@ -668,15 +668,6 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 # E-mail sending
 'php-mail-error-unknown' => 'Gabim i panjohur në funksionin e postës PHP ()',
 
-# JavaScript password checks
-'password-strength'            => 'Forca e vlerësuar të fjalëkalimit: $1',
-'password-strength-bad'        => 'KEQ',
-'password-strength-mediocre'   => 'mesatar',
-'password-strength-acceptable' => 'i pranueshëm',
-'password-strength-good'       => 'mirë',
-'password-retype'              => 'Fusni fjalëkalimin përsëri',
-'password-retype-mismatch'     => 'Fjalëkalimi nuk përputhet',
-
 # Password reset dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
 'resetpass_announce'        => 'Ju keni hyrë me një kod të përkohshëm.
@@ -1046,26 +1037,6 @@ Ju lutemi kontrolloni regjistrat.',
 'suppressionlog'     => 'Regjistri i ndalimeve',
 'suppressionlogtext' => 'Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:IPBlockList|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.',
 
-# Revision move
-'moverevlogentry'              => 'lëvizi {{PLURAL:$3|one revision|$3 revisions}} nga $1 tek $2',
-'revisionmove'                 => 'Lëviz versionet nga "$1"',
-'revmove-explain'              => 'Versioni i mëposhtëm do të largohet nga $1 tek faqja e përcaktuar. N.q.s. faqja e përcaktuar nuk ekziston, ajo është krijuar. Përndryshe, këto versione do të bashkohen tek historiku i faqes.',
-'revmove-legend'               => 'Vendosni faqen objektive dhe përmbledhjen',
-'revmove-submit'               => 'Lëviz versionet tek faqja e zgjedhur',
-'revisionmoveselectedversions' => 'Lëviz versionet e zgjedhura',
-'revmove-reasonfield'          => 'Arsyeja:',
-'revmove-titlefield'           => 'Faqja objektive:',
-'revmove-badparam-title'       => 'Parametra të pavlefshëm',
-'revmove-badparam'             => 'Kërkesa juaj përmban parametra të paligjshme ose të pamjaftueshme. 
-Kthehuni mbrapa tek faqja e mëparshme dhe të provoni përsëri.',
-'revmove-norevisions-title'    => 'Version i dëshiruar i pavfleshëm',
-'revmove-norevisions'          => 'Nuk keni dhënë një ose më shumë versione të synuara për të performuar këtë funksion ose versioni i specifikuar nuk ekziston.',
-'revmove-nullmove-title'       => 'Titull i pasaktë',
-'revmove-nullmove'             => 'Faqja objektive nuk mund të jetë njëlloj si burimi i faqes.
-Shkoni prapa tek faqja e mëparshme dhe zgjidhni një emër të ndryshëm nga "$1"',
-'revmove-success-existing'     => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur nga faqja ekzistuese [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur tek faqja e re e krijuar [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Bashko historikët e faqeve',
 'mergehistory-header'              => 'Kjo faqe ju lejon bashkimin e versionet e historikut të një faqeje "burim" në një faqe "mbledhje".
@@ -1405,8 +1376,6 @@ Kjo informatë është publike.',
 'right-reset-passwords'       => 'Rivendos fjalëkalimet e përdoruesit të tjerë',
 'right-override-export-depth' => 'Eksoprto faqet duke përfshirë e lidhura deri në një thellësi prej 5',
 'right-sendemail'             => 'Dërgo e-mail tek përdoruesit e tjerë',
-'right-revisionmove'          => 'Lëviz versionet',
-'right-disableaccount'        => 'Çaktivizo llogaritë',
 
 # User rights log
 'rightslog'      => 'Regjistri i privilegjeve',
@@ -1449,7 +1418,6 @@ Kjo informatë është publike.',
 'action-userrights'           => 'ndrysho të gjitha të drejtat e përdoruesit',
 'action-userrights-interwiki' => 'ndrysho të drejtat e përdoruesve në wiki-t tjera',
 'action-siteadmin'            => 'mbyll ose hap bazën e të dhënave',
-'action-revisionmove'         => 'lëviz versionet',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
@@ -2857,7 +2825,6 @@ Të tjerat do të fshihen.
 'exif-stripbytecounts'             => 'Bajt për shirit të ngjeshur',
 'exif-jpeginterchangeformat'       => 'Çvendos tek JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bajtët të dhënave JPEG',
-'exif-transferfunction'            => 'Funksioni i transferit',
 'exif-whitepoint'                  => 'Pikët e bardha kromatike',
 'exif-primarychromaticities'       => 'Kromatikët e primareve',
 'exif-ycbcrcoefficients'           => 'Koeficentët e transformimit të hapësirave të ngjyrave të matricës',
@@ -2876,7 +2843,6 @@ Të tjerat do të fshihen.
 'exif-compressedbitsperpixel'      => 'Lloji i ngjeshjes së figurës',
 'exif-pixelydimension'             => 'Gjerësia e vlefshme e figurës',
 'exif-pixelxdimension'             => 'Valind image height',
-'exif-makernote'                   => 'Shënimet e prodhuesit',
 'exif-usercomment'                 => 'Vërejtjet e përdoruesit',
 'exif-relatedsoundfile'            => 'Skeda audio shoqëruese',
 'exif-datetimeoriginal'            => 'Data dhe koha e prodhimit të të dhënave',
@@ -2890,7 +2856,6 @@ Të tjerat do të fshihen.
 'exif-exposureprogram'             => 'Zbuloni programin',
 'exif-spectralsensitivity'         => 'Ndjeshmëria spektrale',
 'exif-isospeedratings'             => 'Vlerësimi i shpejtësisë ISO',
-'exif-oecf'                        => 'Faktori i konvertimit optoelektronik',
 'exif-shutterspeedvalue'           => 'Shpejtësia e mbyllësit',
 'exif-aperturevalue'               => 'Apertura',
 'exif-brightnessvalue'             => 'Ndriçimi',
@@ -2903,7 +2868,6 @@ Të tjerat do të fshihen.
 'exif-focallength'                 => 'Gjatësia e vatrës',
 'exif-subjectarea'                 => 'Hapësira e subjektit',
 'exif-flashenergy'                 => 'Energjia e blicit',
-'exif-spatialfrequencyresponse'    => 'Përgjigje e frekuencës hapësinore',
 'exif-focalplanexresolution'       => 'Rezelucioni i planit fokal X',
 'exif-focalplaneyresolution'       => 'Rezelucioni i planit fokal Y',
 'exif-focalplaneresolutionunit'    => 'Rezolucioni i njësisë së planit fokal',
@@ -2912,7 +2876,6 @@ Të tjerat do të fshihen.
 'exif-sensingmethod'               => 'Metoda Sensing',
 'exif-filesource'                  => 'Burimi i skedës',
 'exif-scenetype'                   => 'Lloji Scene',
-'exif-cfapattern'                  => 'Modeli CFA',
 'exif-customrendered'              => 'Përpunim i fotografisë Costum',
 'exif-exposuremode'                => 'Mënyra e ekspozimit',
 'exif-whitebalance'                => 'Balanca e bardhë',
@@ -3394,18 +3357,5 @@ Kjo faqe është duke përjetuar vështirësi teknike.',
 # SQLite database support
 'sqlite-has-fts' => '$1 me mbështetje të kërkimit me teskt të plotë',
 'sqlite-no-fts'  => '$1 pa mbështetje të kërkimit me teskt të plotë',
-
-# Special:DisableAccount
-'disableaccount'             => 'Çaktiviyoni një llogari përdoruesi',
-'disableaccount-user'        => 'Përdoruesi:',
-'disableaccount-reason'      => 'Arsyeja:',
-'disableaccount-confirm'     => "Çaktivizoni këtë llogari të përdorusit.
-Përdoruesi nuk do të mund të identifikohet, të rivendosë fjalëkalimin e tij, ose të marrë njoftime me e-mail.
-Nëse përdoruesi është aktualisht i identifikuar ndokund, ai do të dalë menjëherë.
-''Vini re se çaktivizimi i jë llogarie nuk mund të kthehet pa ndërhyrjen e një administratori të sistemit.''",
-'disableaccount-mustconfirm' => 'Ju duhet të konfirmoni që dëshironi ta çaktivizoni këtë llogari.',
-'disableaccount-nosuchuser'  => 'Llogaria e përdoruesit "$1" nuk ekziston.',
-'disableaccount-success'     => 'Llogaria e përdoruesit "$1" është çaktiviyuar përgjithmonë.',
-'disableaccount-logentry'    => 'u çaktivizua përgjithmonë llogaria e përdoruesit [[$1]]',
 
 );

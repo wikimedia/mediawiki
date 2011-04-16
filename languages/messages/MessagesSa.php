@@ -591,11 +591,6 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
 'loginlanguagelabel'      => 'भाषा : $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'नीचम्',
-'password-strength-acceptable' => 'स्वीकार्यम्',
-'password-strength-good'       => 'उत्तमम्',
-
 # Password reset dialog
 'resetpass_text'            => '<!-- पाठं अत्र लिखतु -->',
 'oldpassword'               => 'पुरातन रहस्यवाक् :',
@@ -700,10 +695,6 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'revdelete-uname'            => 'उपयोक्तृ-नाम',
 'revdelete-otherreason'      => 'अन्य/अधिक कारणम् :',
 'revdelete-reasonotherlist'  => 'अन्य कारणानि',
-
-# Revision move
-'revmove-reasonfield' => 'कारणम्',
-'revmove-titlefield'  => 'लक्ष्य पुटम्',
 
 # History merging
 'mergehistory-reason' => 'कारणम् :',

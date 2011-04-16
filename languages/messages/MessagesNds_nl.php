@@ -782,15 +782,6 @@ Je mutten effen wachen veurda-j 't opniej preberen kunnen.",
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => "Joew verzeuk um of te melden is of-ewezen umdat 't dernaor uutziet dat 't verstuurd is deur een kepotte webkieker of tussenopslagbuffer",
 
-# JavaScript password checks
-'password-strength'            => 'Eschatte wachwoordstarkte: $1',
-'password-strength-bad'        => 'SLICH',
-'password-strength-mediocre'   => 'middelmaotig',
-'password-strength-acceptable' => 'anvaordbaor',
-'password-strength-good'       => 'goed',
-'password-retype'              => 'Tik opniej joew wachwoord',
-'password-retype-mismatch'     => 'De wachtwoorden bin neet liekeleens',
-
 # Password reset dialog
 'resetpass'                 => 'Wachwoord wiezigen',
 'resetpass_announce'        => "Je bin an-emeld mit een veurlopige code dee mit de netpos toe-estuurd wonnen. Um 't anmelden te voltooien, mu-j een niej wachwoord invoeren:",
@@ -1161,28 +1152,6 @@ Kiek de logboeken nao.",
 'suppressionlog'     => 'Verbargingslogboek',
 'suppressionlogtext' => 'De onderstaande lieste bevat de pagina dee vort-edaon bin en blokkeringen dee veur beheerders verbörgen bin. In de [[Special:IPBlockList|IP-blokkeerlieste]] bin de blokkeringen dee noen van toepassing bin te bekieken.',
 
-# Revision move
-'moverevlogentry'              => 'hef $3 {{PLURAL:$3|versie|versies}} verplaos van $1 naor $2',
-'revisionmove'                 => 'Verplaos versies van "$1"',
-'revmove-explain'              => "De volgende versies wönnen verplaos van $1 naor de an-egeven doelpagina.
-As de doelpagina neet besteet, dan wönnen 't an-emaak.
-As 't wel besteet, dan wönnen de versies in-evoegd in de paginageschiedenisse.",
-'revmove-legend'               => 'Voer doelpagina en samenvatting in',
-'revmove-submit'               => 'Versies naor de an-egeven pagina verplaosen',
-'revisionmoveselectedversions' => 'Ekeuzen versies verplaosen',
-'revmove-reasonfield'          => 'Reden:',
-'revmove-titlefield'           => 'Doelpagina:',
-'revmove-badparam-title'       => 'Verkeerde parameters',
-'revmove-badparam'             => 'In joew verzeuk zitten ongeldige of neet genog parameters.
-Klik op "Weerumme" en prebeer \'t opniej.',
-'revmove-norevisions-title'    => 'De te verplaosen versie is ongeldig',
-'revmove-norevisions'          => 'Je hemmen gien versies an-egeven um disse haandeling op uut te voeren of de an-egeven versie besteet neet.',
-'revmove-nullmove-title'       => 'Ongeldige paginanaam',
-'revmove-nullmove'             => 'De bronpagina en doelpagina bin \'tzelfde.
-Klik op "Weerumme" en geef een aandere pagina dan "$1" op.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ene versie van [[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de bestaonde pagina [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Ene versie van[[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de nieje pagina [[$3]].',
-
 # History merging
 'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
 'mergehistory-header'              => 'Via disse pagina ku-j versies uut de geschiedenisse van een bronpagina mit een niejere pagina samenvoegen. Zörg derveur dat disse versies uut de geschiedenisse historisch juus bin.',
@@ -1513,7 +1482,6 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
 'right-sendemail'             => 'Berich versturen naor aandere gebrukers',
-'right-revisionmove'          => 'Versies herneumen',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',
@@ -1556,7 +1524,6 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'action-userrights'           => 'alle gebrukersrechen bewarken',
 'action-userrights-interwiki' => "de rechen van gebrukers op aandere wiki's bewarken",
 'action-siteadmin'            => 'de databanke blokkeren of vriegeven',
-'action-revisionmove'         => 'versies herneumen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
@@ -2925,7 +2892,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-stripbytecounts'             => 'Bytes per ecomprimeren strip',
 'exif-jpeginterchangeformat'       => 'Ofstaand tot JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes van JPEG-gegevens',
-'exif-transferfunction'            => 'Overdrachsfunctie',
 'exif-whitepoint'                  => 'Witpuntchromaticiteit',
 'exif-primarychromaticities'       => 'Chromaciteit van primaire kleuren',
 'exif-ycbcrcoefficients'           => 'Transfermasiematrixcoëfficiënten veur de kleurruumte',
@@ -2944,7 +2910,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
 'exif-pixelydimension'             => 'Bruukbaore ofbeeldingsbreedte',
 'exif-pixelxdimension'             => 'Bruukbaore ofbeeldingsheugte',
-'exif-makernote'                   => 'Opmarkingen van de fabrikaant',
 'exif-usercomment'                 => 'Opmarkingen',
 'exif-relatedsoundfile'            => 'Biebeheurend geluudsbestaand',
 'exif-datetimeoriginal'            => 'Tiedstip van datagenerasie',
@@ -2958,7 +2923,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-exposureprogram'             => 'Belochtingspregramma',
 'exif-spectralsensitivity'         => 'Spectrale geveuligheid',
 'exif-isospeedratings'             => 'ISO-weerde.',
-'exif-oecf'                        => 'Opto-elektronische conversiefactor',
 'exif-shutterspeedvalue'           => 'Slutersnelheid',
 'exif-aperturevalue'               => 'Diafragma',
 'exif-brightnessvalue'             => 'Helderheid',
@@ -2971,7 +2935,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-focallength'                 => 'Braandpuntofstand',
 'exif-subjectarea'                 => 'Objekruumte',
 'exif-flashenergy'                 => 'Flitserstarkte',
-'exif-spatialfrequencyresponse'    => 'Ruumtelijke frequentiereactie',
 'exif-focalplanexresolution'       => 'X-resolutie van CDD',
 'exif-focalplaneyresolution'       => 'Y-resolutie van CCD',
 'exif-focalplaneresolutionunit'    => 'Eenheid CCD-resolusie',
@@ -2980,7 +2943,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-sensingmethod'               => 'Meetmethode',
 'exif-filesource'                  => 'Bestaansnaam op de hardeschieve',
 'exif-scenetype'                   => 'Scènetype',
-'exif-cfapattern'                  => 'CFA-petroon',
 'exif-customrendered'              => 'An-epassen beeldbewarking',
 'exif-exposuremode'                => 'Belochtingsinstelling',
 'exif-whitebalance'                => 'Witbelans',
