@@ -839,8 +839,8 @@ class FormatMetadata {
 			return $vals[0];
 		}
 		elseif ( count( $vals ) === 0 ) {
-			return ""; // paranoia. This should never happen
 			wfDebug( __METHOD__ . ' metadata array with 0 elements!' );
+			return ""; // paranoia. This should never happen
 		}
 		/* Fixme: This should hide some of the list entries if there are
 		* say more than four. Especially if a field is translated into 20
