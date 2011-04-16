@@ -3674,8 +3674,6 @@ Variants for Chinese language
 If the file has been modified from its original state, some details may not fully reflect the modified file.',
 'metadata-expand'           => 'Show extended details',
 'metadata-collapse'         => 'Hide extended details',
-'metadata-langitem'         => '\'\'\'$2:\'\'\' $1',
-'metadata-langitem-default' => '$1',
 'metadata-fields'           => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
 Others will be hidden by default.
 * make
@@ -3691,6 +3689,8 @@ Others will be hidden by default.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem'         => "'''$2:''' $1", # only translate this message to other languages if you have to change it
+'metadata-langitem-default' => '$1', # only translate this message to other languages if you have to change it
 
 # EXIF tags
 'exif-imagewidth'                  => 'Width',
@@ -3807,7 +3807,7 @@ Others will be hidden by default.
 'exif-gpsareainformation'          => 'Name of GPS area',
 'exif-gpsdatestamp'                => 'GPS date',
 'exif-gpsdifferential'             => 'GPS differential correction',
-'exif-coordinate-format'           => '$1° $2′ $3″ $4',
+'exif-coordinate-format'           => '$1° $2′ $3″ $4', # only translate this message to other languages if you have to change it
 'exif-jpegfilecomment'             => 'JPEG file comment',
 'exif-keywords'                    => 'Keywords',
 'exif-worldregioncreated'          => 'World region that the picture was taken in',
@@ -3827,7 +3827,7 @@ Others will be hidden by default.
 'exif-headline'                    => 'Headline',
 'exif-credit'                      => 'Credit/Provider',
 'exif-source'                      => 'Source',
-'exif-editstatus'                  => 'Editorial status of image',       
+'exif-editstatus'                  => 'Editorial status of image',
 'exif-urgency'                     => 'Urgency',
 'exif-fixtureidentifier'           => 'Fixture name',
 'exif-locationdest'                => 'Location depicted',
@@ -3842,6 +3842,7 @@ Others will be hidden by default.
 'exif-datetimeexpires'             => 'Do not use after',
 'exif-datetimereleased'            => 'Released on',
 'exif-originaltransmissionref'     => 'Original transmission location code',
+'exif-identifier'                  => 'Identifier',
 'exif-lens'                        => 'Lens used',
 'exif-serialnumber'                => 'Serial number of camera',
 'exif-cameraownername'             => 'Owner of camera',
@@ -3872,16 +3873,28 @@ Others will be hidden by default.
 'exif-originalimageheight'         => 'Height of image before it was cropped',
 'exif-originalimagewidth'          => 'Width of image before it was cropped',
 
-
 # Make & model, can be wikified in order to link to the camera and model name
 'exif-make-value'             => '$1', # do not translate or duplicate this message to other languages
 'exif-model-value'            => '$1', # do not translate or duplicate this message to other languages
 'exif-software-value'         => '$1', # do not translate or duplicate this message to other languages
-'exif-software-version-value' => '$1 (Version $2)',
+'exif-software-version-value' => '$1 (Version $2)', # do not translate or duplicate this message to other languages
+'exif-contact-value'          => '$1
+
+$2
+<div class="adr">
+$3
+
+$4, $5, $6 $7
+</div>
+$8', # only translate this message to other languages if you have to change it
+'exif-subjectnewscode-value'  => '$2 ($1)', # only translate this message to other languages if you have to change it
 
 # EXIF attributes
 'exif-compression-1' => 'Uncompressed',
 'exif-compression-6' => 'JPEG', # only translate this message to other languages if you have to change it
+
+'exif-copyrighted-true'  => 'Copyrighted',
+'exif-copyrighted-false' => 'Public domain',
 
 'exif-photometricinterpretation-2' => 'RGB', # only translate this message to other languages if you have to change it
 'exif-photometricinterpretation-6' => 'YCbCr', # only translate this message to other languages if you have to change it
@@ -3903,8 +3916,8 @@ Others will be hidden by default.
 'exif-xyresolution-i' => '$1 dpi', # only translate this message to other languages if you have to change it
 'exif-xyresolution-c' => '$1 dpc', # only translate this message to other languages if you have to change it
 
-'exif-colorspace-1'      => 'sRGB', # only translate this message to other languages if you have to change it
-'exif-colorspace-65535' => 'Uncalibrated', # only translate this message to other languages if you have to change it
+'exif-colorspace-1'     => 'sRGB', # only translate this message to other languages if you have to change it
+'exif-colorspace-65535' => 'Uncalibrated',
 
 'exif-componentsconfiguration-0' => 'does not exist',
 'exif-componentsconfiguration-1' => 'Y', # only translate this message to other languages if you have to change it
@@ -4029,7 +4042,7 @@ Others will be hidden by default.
 'exif-gpslongitude-e' => 'East longitude',
 'exif-gpslongitude-w' => 'West longitude',
 
-# Pseudotags used for GPSAltitude
+# Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|meters|meter}} above sea level',
 'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|meters|meter}} below sea level',
 
@@ -4049,10 +4062,6 @@ Others will be hidden by default.
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautical miles',
 
-# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'True direction',
-'exif-gpsdirection-m' => 'Magnetic direction',
-
 'exif-gpsdop-excellent' => 'Excellent ($1)',
 'exif-gpsdop-good'      => 'Good ($1)',
 'exif-gpsdop-moderate'  => 'Moderate ($1)',
@@ -4063,11 +4072,12 @@ Others will be hidden by default.
 'exif-objectcycle-p' => 'Evening only',
 'exif-objectcycle-b' => 'Both morning and evening',
 
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'True direction',
+'exif-gpsdirection-m' => 'Magnetic direction',
+
 'exif-ycbcrpositioning-1' => 'Centered',
 'exif-ycbcrpositioning-2' => 'Co-sited',
-
-'exif-identifier' => 'Identifier',
-# dc stuff
 
 'exif-dc-contributor' => 'Contributors',
 'exif-dc-coverage'    => 'Spatial or temporal scope of media',
@@ -4078,24 +4088,11 @@ Others will be hidden by default.
 'exif-dc-source'      => 'Source media',
 'exif-dc-type'        => 'Type of media',
 
-'exif-copyrighted-true'  => 'Copyrighted',
-'exif-copyrighted-false' => 'Public domain',
-
 'exif-rating-rejected' => 'Rejected',
 
 'exif-isospeedratings-overflow' => 'Greater than 65535',
 
-'exif-maxaperturevalue-value' => '$1 APEX (f/$2)',
-
-'exif-contact-value' => '$1
-
-$2
-<div class="adr">
-$3
-
-$4, $5, $6 $7
-</div>
-$8',
+'exif-maxaperturevalue-value' => '$1 APEX (f/$2)', # only translate this message to other languages if you have to change it
 
 'exif-iimcategory-ace' => 'Arts, culture and enterntainment',
 'exif-iimcategory-clj' => 'Crime and law',
@@ -4115,13 +4112,10 @@ $8',
 'exif-iimcategory-war' => 'War, conflict and unrest',
 'exif-iimcategory-wea' => 'Weather',
 
-'exif-subjectnewscode-value' => '$2 ($1)',
-
 'exif-urgency-normal' => 'Normal ($1)',
 'exif-urgency-low'    => 'Low ($1)',
 'exif-urgency-high'   => 'High ($1)',
 'exif-urgency-other'  => 'User-defined priority ($1)',
-
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
@@ -4538,4 +4532,5 @@ This site is experiencing technical difficulties.',
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
+
 );
