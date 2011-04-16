@@ -618,14 +618,14 @@ div#footer #footer-places li {
 	/* @embed */
 	background-image: url(images/preferences-base.png);
 }
+#preferences fieldset {
+	border: none;
+	border-top: solid 1px #cccccc;
+}
 #preferences fieldset.prefsection {
 	border: none;
 	padding: 0;
 	margin: 1em;
-}
-#preferences fieldset.prefsection fieldset {
-	border: none;
-	border-top: solid 1px #cccccc;
 }
 #preferences legend {
 	color: #666666;
