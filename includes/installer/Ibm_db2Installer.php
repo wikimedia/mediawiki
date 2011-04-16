@@ -214,8 +214,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 				$status->fatal( 'config-connection-error', '' );
 			}
 			else {
-				$nRows = $this->db->numRows( $result );
-				while ( $row = $row = $this->db->fetchRow( $result ) ) {
+				while ( $row = $this->db->fetchRow( $result ) ) {
 					if( $row[0] >= 32768 ) {
 						return $status;
 					}
