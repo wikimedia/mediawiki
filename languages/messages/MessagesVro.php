@@ -949,7 +949,7 @@ Taa tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 'nchanges'                          => '$1 {{PLURAL:$1|muutminõ|muutmiisi}}',
 'recentchanges'                     => 'Viimädseq muutmisõq',
 'recentchanges-legend'              => 'Viimätside muutmiisi säädmine',
-'recentchangestext'                 => 'Kaeq seo lehe päält viimätsit muutmiisi.',
+'recentchanges-summary'             => 'Kaeq seo lehe päält viimätsit muutmiisi.',
 'recentchanges-feed-description'    => 'Kaeq seo lehe pääl {{SITENAME}} viimätsit muutmiisi.',
 'rcnote'                            => 'Tan ommaq {{PLURAL:$1|üts muutus|$1 viimäst muutmist}}, miä ommaq tettüq {{PLURAL:$2|üte viimädse päävä|$2 viimädse päävä}} seen (kuupääväst $5, $4 lugõma naatõn).',
 'rcnotefrom'                        => "Tan ommaq muutmisõq kuupääväst '''$2''' pääle (näüdätäs kooniq '''$1''' muutmist).",
@@ -1891,7 +1891,13 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lakjus',
@@ -1906,7 +1912,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'exif-ycbcrpositioning'            => 'Y ja C paikasäädmine',
 'exif-xresolution'                 => 'Pildi terävüs lajoldõ',
 'exif-yresolution'                 => 'Pildi terävüs pikuldõ',
-'exif-resolutionunit'              => 'Terävusosa X- ja Y-tsihin',
 'exif-stripoffsets'                => 'Pilditeedüse kotus',
 'exif-rowsperstrip'                => 'Riban rivve',
 'exif-stripbytecounts'             => 'Baitõ kokkopakitun riban',

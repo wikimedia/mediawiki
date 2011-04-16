@@ -1408,7 +1408,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'nchanges'                          => '$1 perubahan',
 'recentchanges'                     => 'Perubahan terkini',
 'recentchanges-legend'              => 'Pilihan perubahan terkini',
-'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
+'recentchanges-summary'             => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
 'recentchanges-label-newpage'       => 'Suntingan ini mencipta laman baru',
 'recentchanges-label-minor'         => 'Ini ialah suntingan kecil',
@@ -2801,7 +2801,13 @@ Ruangan lain akan disembunyikan pada sediakala.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lebar',
@@ -2816,7 +2822,6 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-ycbcrpositioning'            => 'Kedudukan Y dan C',
 'exif-xresolution'                 => 'Leraian mengufuk',
 'exif-yresolution'                 => 'Leraian menegak',
-'exif-resolutionunit'              => 'Unit leraian X dan Y',
 'exif-stripoffsets'                => 'Lokasi data imej',
 'exif-rowsperstrip'                => 'Baris sejalur',
 'exif-stripbytecounts'             => 'Bait sejalur termampat',
@@ -3057,6 +3062,11 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-gpsspeed-k' => 'Kilometer sejam',
 'exif-gpsspeed-m' => 'Batu sejam',
 'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Batu',
+'exif-gpsdestdistance-n' => 'Batu nautika',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah benar',

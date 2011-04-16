@@ -1159,7 +1159,7 @@ Ul $1 {{PLURAL:$1|xäreftän}} kübräk bulırğa tieş tügel.',
 'nchanges'                          => '$1 {{PLURAL:$1|üzgärtü|üzgärtü}}',
 'recentchanges'                     => 'Soñğı üzgärtülär',
 'recentchanges-legend'              => 'Soñğı üzgärtülär köyläwläre',
-'recentchangestext'                 => 'Bu bittä {{grammar:genitive|{{SITENAME}}}} proyektınıñ soñğı üzgärtüläre kürsätelä.',
+'recentchanges-summary'             => 'Bu bittä {{grammar:genitive|{{SITENAME}}}} proyektınıñ soñğı üzgärtüläre kürsätelä.',
 'recentchanges-feed-description'    => 'Bu ağımda soñğı üzgärtülärne küzätü.',
 'recentchanges-label-newpage'       => 'Bu üzgärtü belän yaña bit tözelde',
 'recentchanges-label-minor'         => 'Bu keçe üzgärtü',
@@ -2018,7 +2018,13 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'               => 'Kiñlek',

@@ -1417,7 +1417,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|การแก้ไข|การแก้ไข}}',
 'recentchanges'                     => 'ปรับปรุงล่าสุด',
 'recentchanges-legend'              => 'ตัวเลือกปรับปรุงล่าสุด',
-'recentchangestext'                 => 'ในหน้านี้เป็นรายการล่าสุดที่มีการปรับปรุง',
+'recentchanges-summary'             => 'ในหน้านี้เป็นรายการล่าสุดที่มีการปรับปรุง',
 'recentchanges-feed-description'    => 'ฟีดนี้แสดงการเปลี่ยนแปลงล่าสุด',
 'recentchanges-label-newpage'       => 'การแก้ไขนี้เป็นการสร้างหน้าใหม่',
 'recentchanges-label-minor'         => 'เป็นการแก้ไขเล็กน้อย',
@@ -2772,7 +2772,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ความกว้าง',
@@ -2787,7 +2793,6 @@ $1',
 'exif-ycbcrpositioning'            => 'ตำแหน่ง Y และ C',
 'exif-xresolution'                 => 'ความละเอียดแนวนอน',
 'exif-yresolution'                 => 'ความละเอียดแนวตั้ง',
-'exif-resolutionunit'              => 'หน่วยของความละเอียดของ X และ Y',
 'exif-stripoffsets'                => 'ตำแหน่งข้อมูลภาพ',
 'exif-rowsperstrip'                => 'จำนวนแถวต่อสตริป',
 'exif-stripbytecounts'             => 'ไบต์ต่อสตริป',

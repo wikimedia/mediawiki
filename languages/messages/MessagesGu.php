@@ -1434,7 +1434,7 @@ HTML નાકું ચકાસો',
 'nchanges'                          => '$1 {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'recentchanges'                     => 'તાજા ફેરફારો',
 'recentchanges-legend'              => 'હાલમાં થયેલા ફેરફારોના વિકલ્પ',
-'recentchangestext'                 => 'આ પાના દ્વારા વિકિમાં થયેલા તાજા ફેરફારો પર ધ્યાન રાખો.',
+'recentchanges-summary'             => 'આ પાના દ્વારા વિકિમાં થયેલા તાજા ફેરફારો પર ધ્યાન રાખો.',
 'recentchanges-feed-description'    => 'આ ફીડ દ્વારા વિકિમાં થયેલા તાજા ફેરફારો પર ધ્યાન રાખો.',
 'recentchanges-label-newpage'       => 'આ ફેરફાર દ્વારા નવું પાનું નિર્મિત થયું',
 'recentchanges-label-minor'         => 'આ એક નાનો સુધારો છે.',
@@ -2850,7 +2850,13 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'પહોળાઈ',
@@ -2865,7 +2871,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-ycbcrpositioning'            => 'Y અને C સ્થાનાંતરણ',
 'exif-xresolution'                 => 'આડું ઘનત્વ',
 'exif-yresolution'                 => 'ઊભું ઘનત્વ',
-'exif-resolutionunit'              => 'X અને  Y અક્ષના ચિત્ર ઘનત્વનો (રેસોલ્યૂશન) એકમ',
 'exif-stripoffsets'                => 'ચિત્ર સંબંધિત માહિતીનું સ્થાન',
 'exif-rowsperstrip'                => 'દરેક પટ્ટીમાં હરોળની સંખ્યા',
 'exif-stripbytecounts'             => 'સંકુચિત પટ્ટીમાં બાઈટની સંખ્યા',

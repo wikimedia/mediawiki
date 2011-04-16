@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alexsh
+ * @author Andrew971218
  * @author BobChao
  * @author Jidanni
  * @author Mark85296341
@@ -107,6 +108,8 @@ $messages = array(
 'tog-justify'              => '段落對齊',
 'tog-hideminor'            => '近期變動中隱藏細微修改',
 'tog-usenewrc'             => '使用強化的近期變動 (需要JavaScript)',
+'tog-numberheadings'       => '自動編號標題',
+'tog-showtoolbar'          => '顯示編輯工具欄 （需要JavaScript）',
 'tog-watchcreations'       => '將我建立的頁面加進我的監視列表',
 'tog-watchdefault'         => '將我更改的頁面添加到我的監視列表中',
 'tog-minordefault'         => '預設將編輯設定為細微修改',
@@ -333,7 +336,9 @@ $messages = array(
 'usercsspreview'             => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
 'userjspreview'              => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
 'previewnote'                => "'''請記住這只是預覽，內容尚未儲存！'''",
-'session_fail_preview'       => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。'''",
+'session_fail_preview'       => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
+請再試一次。
+如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html'  => "'''很抱歉！部份資料已遺失，我們無法處理您的編輯。''''''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。'''",
 'token_suffix_mismatch'      => "'''由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網路為主的匿名代理服務的時候。'''",
@@ -376,8 +381,9 @@ $messages = array(
 嘗試[[Special:Search|搜尋本站]]獲得相關的新建頁面。',
 
 # Revision deletion
+'rev-deleted-comment'         => '（註釋已除）',
 'rev-deleted-user'            => '(使用者名已移除)',
-'rev-deleted-event'           => '(項目已移除)',
+'rev-deleted-event'           => '（日誌已除）',
 'rev-deleted-text-permission' => '該頁面修訂已經被從公共文件中移除。
 在[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
 'rev-deleted-text-view'       => '該頁面修訂已經被從公共文件中移除。作為此網站的管理員，您可以檢視它；
@@ -394,6 +400,7 @@ $messages = array(
 'revdelete-hide-restricted'   => '將此限制同樣應用於管理員',
 'revdelete-suppress'          => '同時壓制由操作員以及其他使用者的資料',
 'revdelete-unsuppress'        => '在已復原的修訂中移除限制',
+'revdelete-logentry'          => '已更改「[[$1]]」之修訂可見度',
 'revdelete-success'           => '修訂的可見性已經成功設定。',
 'logdelete-success'           => '事件的可見性已經成功設定。',
 
@@ -582,7 +589,7 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => '使用者:',
-'alllogstext'         => '綜合顯示上傳、刪除、保護、封鎖以及站務日誌。',
+'alllogstext'         => '綜合顯示 {{SITENAME}} 的上傳、刪除、保護、查封以及站務日誌。',
 
 # Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',
@@ -665,7 +672,7 @@ $NEWPAGE
 'rollback-success' => '復原由$1的編輯；更改回$2的最後一個版本。',
 
 # Protect
-'protect-title'               => '正在保護"$1"',
+'protect-title'               => '更改「$1」的保護等級',
 'protect-locked-blocked'      => "您不能在被封鎖時更改保護級別。
 以下是'''$1'''現時的保護級別:",
 'protect-locked-access'       => "您的帳號權限不能修改保護級別。
@@ -701,7 +708,7 @@ $NEWPAGE
 'contributions' => '使用者編修記錄',
 'mycontris'     => '我的編修記錄',
 'contribsub2'   => '$1的編修記錄 ($2)',
-'uctop'         => ' (最新修改)',
+'uctop'         => '（最新修改）',
 
 'sp-contributions-newbies'    => '只顯示新建立之使用者的編修記錄',
 'sp-contributions-blocklog'   => '封鎖記錄',
@@ -898,7 +905,6 @@ Variants for Chinese language
 'exif-samplesperpixel'           => '像素數',
 'exif-xresolution'               => '水準解析度',
 'exif-yresolution'               => '垂直解析度',
-'exif-resolutionunit'            => 'X 軸與 Y 軸解析度單位',
 'exif-stripoffsets'              => '圖片數據區',
 'exif-imagedescription'          => '圖片標題',
 'exif-compressedbitsperpixel'    => '圖片壓縮模式',

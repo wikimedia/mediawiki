@@ -1433,7 +1433,7 @@ $1",
 'nchanges'                          => '$1次更改',
 'recentchanges'                     => '近期變動',
 'recentchanges-legend'              => '最近更改選項',
-'recentchangestext'                 => '跟蹤這個wiki上的最新更改。',
+'recentchanges-summary'             => '跟蹤這個wiki上的最新更改。',
 'recentchanges-feed-description'    => '追蹤此訂閱在 wiki 上的最近更改。',
 'recentchanges-label-newpage'       => '這次編輯建立了一個新頁面',
 'recentchanges-label-minor'         => '這是一個小編輯',
@@ -2851,7 +2851,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => '寬度',
@@ -2866,7 +2872,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => '黃色和洋紅配置',
 'exif-xresolution'                 => '水準分辨率',
 'exif-yresolution'                 => '垂直分辨率',
-'exif-resolutionunit'              => 'X 軸與 Y 軸分辨率單位',
 'exif-stripoffsets'                => '圖片數據區',
 'exif-rowsperstrip'                => '每帶行數',
 'exif-stripbytecounts'             => '每壓縮帶位元組數',
@@ -3107,6 +3112,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '公里每小時',
 'exif-gpsspeed-m' => '英里每小時',
 'exif-gpsspeed-n' => '海里每小時（節）',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '公里',
+'exif-gpsdestdistance-m' => '英里',
+'exif-gpsdestdistance-n' => '海里',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',

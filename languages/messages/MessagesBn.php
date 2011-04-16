@@ -1206,7 +1206,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|পরিবর্তন|পরিবর্তনসমূহ}}',
 'recentchanges'                     => 'সাম্প্রতিক পরিবর্তনসমূহ',
 'recentchanges-legend'              => 'সাম্প্রতিক পরিবর্তনের পছন্দসমূহ',
-'recentchangestext'                 => 'এই পাতায় উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।',
+'recentchanges-summary'             => 'এই পাতায় উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।',
 'recentchanges-feed-description'    => 'এই ফিডে উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।',
 'recentchanges-label-newpage'       => 'এই সম্পাদনায় একটি নতুন পাতা তৈরি হয়েছে',
 'recentchanges-label-minor'         => 'এটি একটি অনুল্লেখিত সম্পাদনা',
@@ -2394,7 +2394,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'চওড়া',
@@ -2409,7 +2415,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y ও C অবস্থান',
 'exif-xresolution'                 => 'অনুভূমিক রেজোলিউশন',
 'exif-yresolution'                 => 'উল্লম্ব রেজোলিউশন',
-'exif-resolutionunit'              => 'X ও Y রেজোলিউশনের একক',
 'exif-stripoffsets'                => 'ছবির উপাত্তের অবস্থান',
 'exif-rowsperstrip'                => 'প্রতি স্ট্রিপে সারির সংখ্যা',
 'exif-stripbytecounts'             => 'প্রতি সংকুচিত স্ট্রিপে বাইটের পরিমাণ',

@@ -1373,7 +1373,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|گۆڕانکاری|گۆڕانکاری}}',
 'recentchanges'                     => 'دوایین گۆڕانکارییەکان',
 'recentchanges-legend'              => 'ھەڵبژاردەکانی دوایین گۆڕانکارییەکان',
-'recentchangestext'                 => 'دواکەوتنی دوایین گۆڕانکارییەکان لەسەر ویکی لەم لاپەڕەدا.',
+'recentchanges-summary'             => 'دواکەوتنی دوایین گۆڕانکارییەکان لەسەر ویکی لەم لاپەڕەدا.',
 'recentchanges-feed-description'    => 'دوای دوایین گۆڕانکارییەکانی ئەم ویکیە بکەوە لەم «فید»ەوە.',
 'recentchanges-label-newpage'       => 'ئەم دەستکاریە لاپەڕەیەکی نوێی درووست‌کرد',
 'recentchanges-label-minor'         => 'ئەمە دەستکاریەکی بچووکە',
@@ -2674,7 +2674,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'پانی',

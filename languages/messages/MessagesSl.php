@@ -1452,7 +1452,7 @@ Podatek bo javno prikazan.',
 'nchanges'                          => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 'recentchanges'                     => 'Zadnje spremembe',
 'recentchanges-legend'              => 'Možnosti zadnjih sprememb',
-'recentchangestext'                 => 'Na tej strani lahko spremljajte najnedavnejše spremembe wikija.',
+'recentchanges-summary'             => 'Na tej strani lahko spremljajte najnedavnejše spremembe wikija.',
 'recentchanges-feed-description'    => 'Spremljajte najnovejše spremembe wikija prek tega vira.',
 'recentchanges-label-newpage'       => 'S tem urejanjem je bila ustvarjena nova stran',
 'recentchanges-label-minor'         => 'To je manjše urejanje',
@@ -2904,7 +2904,13 @@ Druga bodo po privzetem skrita.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2919,7 +2925,6 @@ Druga bodo po privzetem skrita.
 'exif-ycbcrpositioning'            => 'Razmestitev Y in C',
 'exif-xresolution'                 => 'Vodoravna ločljivost',
 'exif-yresolution'                 => 'Navpična ločljivost',
-'exif-resolutionunit'              => 'Enota ločljivosti X in Y',
 'exif-stripoffsets'                => 'Mesto podatkov slike',
 'exif-rowsperstrip'                => 'Število vrstic na pas',
 'exif-stripbytecounts'             => 'Zlogov na pas stiskanja',

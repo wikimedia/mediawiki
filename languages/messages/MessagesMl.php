@@ -1560,7 +1560,7 @@ $1",
 'nchanges'                          => '{{PLURAL:$1|ഒരു മാറ്റം|$1 മാറ്റങ്ങൾ}}',
 'recentchanges'                     => 'സമീപകാല മാറ്റങ്ങൾ',
 'recentchanges-legend'              => 'സമീപകാല മാറ്റങ്ങളുടെ ക്രമീകരണം',
-'recentchangestext'                 => '{{SITENAME}} സംരംഭത്തിലെ ഏറ്റവും പുതിയ മാറ്റങ്ങൾ ഇവിടെ കാണാം.',
+'recentchanges-summary'             => '{{SITENAME}} സംരംഭത്തിലെ ഏറ്റവും പുതിയ മാറ്റങ്ങൾ ഇവിടെ കാണാം.',
 'recentchanges-feed-description'    => 'ഈ ഫീഡ് ഉപയോഗിച്ച് വിക്കിയിലെ പുതിയ മാറ്റങ്ങൾ നിരീക്ഷിക്കുക.',
 'recentchanges-label-newpage'       => 'ഒരു പുതിയ താൾ സൃഷ്ടിച്ചിരിക്കുന്നു',
 'recentchanges-label-minor'         => 'ഇതൊരു ചെറിയ തിരുത്തലാണ്',
@@ -2978,7 +2978,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'വീതി',
@@ -2992,7 +2998,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y, C എന്നിവയുടെ സ്ഥാനനിർണ്ണയം',
 'exif-xresolution'                 => 'തിരശ്ചീന റെസലൂഷൻ',
 'exif-yresolution'                 => 'ലംബ റെസലൂഷൻ',
-'exif-resolutionunit'              => 'X, Y എന്നിവയുടെ വ്യതിരിക്തത ഏകകം',
 'exif-stripoffsets'                => 'ചിത്രത്തിന്റെ വിവര സ്ഥാനം',
 'exif-rowsperstrip'                => 'ഓരോ സ്‌ട്രിപ്പിലുമുള്ള വരികളുടെ എണ്ണം',
 'exif-stripbytecounts'             => 'ഓരോ ചുരുക്കപ്പെട്ട ഖണ്ഡത്തിലുമുള്ള ബൈറ്റുകൾ',

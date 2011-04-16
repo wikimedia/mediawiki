@@ -840,7 +840,13 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => "Redigær denne gøret ve'n utsende redigærstøme",

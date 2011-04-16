@@ -923,7 +923,7 @@ On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'nchanges'                          => '$1 {{PLURAL:$1|taƣjir|taƣjirot}}',
 'recentchanges'                     => 'Taƣjiroti oxirin',
 'recentchanges-legend'              => 'Ixtijoroti taƣjiroti oxirin',
-'recentchangestext'                 => 'Nazorati taƣjirothoi navtarin dar Vikipedia dar hamin sahifa ast.',
+'recentchanges-summary'             => 'Nazorati taƣjirothoi navtarin dar Vikipedia dar hamin sahifa ast.',
 'recentchanges-feed-description'    => 'Radjobiji oxirin taƣjiroti in viki dar in xurd.',
 'rcnote'                            => "Dar pojon  {{PLURAL:$1|'''1''' taƣjire ast|'''$1''' taƣjirot meboşand}}, ki dar davomi {{PLURAL:$2|rūh|'''$2''' rūzhoi}} oxir, sar karda az $5, $4.",
 'rcnotefrom'                        => 'Dar zer taƣjirothoi oxirin az <b>$2</b> (to <b>$1</b> nişon doda şudaast).',
@@ -1914,7 +1914,13 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => "Vase'ī",
@@ -1929,7 +1935,6 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 'exif-ycbcrpositioning'            => 'Mavqeijati Y va C',
 'exif-xresolution'                 => 'Tahlilpaziriji ufuqī',
 'exif-yresolution'                 => 'Tahlilpaziriji amudī',
-'exif-resolutionunit'              => 'Vohidi tafkikpaziriji X va Y',
 'exif-stripoffsets'                => 'Çojgohi dodahoi aks',
 'exif-rowsperstrip'                => "Te'dodi radifho dar har navor",
 'exif-stripbytecounts'             => 'Bajt dar har navori fişurda',

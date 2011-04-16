@@ -1117,7 +1117,7 @@ $1',
 'nchanges'                        => '$1 {{PLURAL:$1|بدلون|بدلونونه}}',
 'recentchanges'                   => 'وروستي بدلونونه',
 'recentchanges-legend'            => 'د ورستي بدلونو خوښنې',
-'recentchangestext'               => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
+'recentchanges-summary'           => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description'  => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
 'recentchanges-label-newpage'     => 'دغه سمون يو نوی مخ جوړ کړی',
 'recentchanges-label-minor'       => 'دا يوه وړه سمونه ده',
@@ -2021,7 +2021,13 @@ $UNWATCHURL  نه ليدنه وکړۍ
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'         => 'سوروالی',

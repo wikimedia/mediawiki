@@ -1004,7 +1004,13 @@ Herliim fayl diiştirildi yaratılıştan sora, bir takım parametrlär var nic�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Kompyuterinizdäki uygulamaklarlan faylı düz',

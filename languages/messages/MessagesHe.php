@@ -1607,7 +1607,7 @@ $1",
 'nchanges'                          => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 'recentchanges'                     => 'שינויים אחרונים',
 'recentchanges-legend'              => 'אפשרויות בשינויים האחרונים',
-'recentchangestext'                 => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
+'recentchanges-summary'             => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
 'recentchanges-feed-description'    => 'ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.',
 'recentchanges-label-newpage'       => 'בעריכה זו נוצר דף חדש',
 'recentchanges-label-minor'         => 'זוהי עריכה משנית',
@@ -3071,7 +3071,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'רוחב',
@@ -3086,7 +3092,6 @@ $1',
 'exif-ycbcrpositioning'            => 'מיקום Y ו־C',
 'exif-xresolution'                 => 'רזולוציה אופקית',
 'exif-yresolution'                 => 'רזולוציה אנכית',
-'exif-resolutionunit'              => 'יחידות מידה של רזולוציות X ו־Y',
 'exif-stripoffsets'                => 'מיקום מידע התמונה',
 'exif-rowsperstrip'                => 'מספר השורות לרצועה',
 'exif-stripbytecounts'             => 'בייטים לרצועה דחוסה',
@@ -3124,7 +3129,7 @@ $1',
 'exif-spectralsensitivity'         => 'רגישות הספקטרום',
 'exif-isospeedratings'             => 'דירוג מהירות ה־ISO',
 'exif-shutterspeedvalue'           => 'מהירות צמצם',
-'exif-aperturevalue'               => 'מִפתח',
+'exif-aperturevalue'               => 'מִפתח APEX',
 'exif-brightnessvalue'             => 'בהירות',
 'exif-exposurebiasvalue'           => 'נטיית החשיפה',
 'exif-maxaperturevalue'            => 'גודל המִפתח המרבי',
@@ -3328,6 +3333,11 @@ $1',
 'exif-gpsspeed-k' => 'קילומטרים בשעה',
 'exif-gpsspeed-m' => 'מיילים בשעה',
 'exif-gpsspeed-n' => 'מיילים ימיים בשעה',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'קילומטרים',
+'exif-gpsdestdistance-m' => 'מיילים',
+'exif-gpsdestdistance-n' => 'מיילים ימיים',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'כיוון אמיתי',

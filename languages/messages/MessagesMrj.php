@@ -714,7 +714,13 @@ $messages = array(
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Тӱнӹш программым кычылт, ти файлым тӧрлӓш',

@@ -1583,7 +1583,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges'                     => 'Neuste Änderunge',
 'recentchanges-legend'              => 'Enstellunge',
-'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
+'recentchanges-summary'             => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'recentchanges-feed-description'    => 'Op dämm Abonnomang-Kannal (<i lang="en">Feed</i>) kannze de {{int:recentchanges}} aam Wiki en Laif un en Färve metloore.',
 'recentchanges-label-newpage'       => 'Heh di Sigg es neu dobei jekumme met dä Änderung',
 'recentchanges-label-minor'         => 'Heh dat es en Mini-Änderung',
@@ -3128,7 +3128,13 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breejd',
@@ -3143,7 +3149,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-ycbcrpositioning'            => 'Y un C Posizjioneerung',
 'exif-xresolution'                 => 'Oplösung fun Lenks noh Räähß',
 'exif-yresolution'                 => 'Oplösung fun Bovve noh Onge',
-'exif-resolutionunit'              => 'De Moßeinheit för de Oplösung en X- un Y-Reschtong',
 'exif-stripoffsets'                => 'Der Aanfang fun de Date fun däm Beld en dä Dattei',
 'exif-rowsperstrip'                => 'De Aanzahl Reije en jedem Striefe',
 'exif-stripbytecounts'             => 'De Aanzahl Bytes en jedem kompremierte Striefe',
@@ -3395,6 +3400,11 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsspeed-k' => 'Killomeeter en de Shtondt noh_m GPS',
 'exif-gpsspeed-m' => 'Miehle en de Shtondt noh_m GPS',
 'exif-gpsspeed-n' => 'Knote noh_m GPS',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Killometer',
+'exif-gpsdestdistance-m' => 'Meile',
+'exif-gpsdestdistance-n' => 'Seemeile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Rechtung noh_m GPS',

@@ -1529,7 +1529,7 @@ Disse infermasie is zichbaor veur aandere gebrukers.',
 'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
 'recentchanges'                     => 'Leste wiezigingen',
 'recentchanges-legend'              => 'Opties veur leste wiezigingen',
-'recentchangestext'                 => 'Op disse pagina ku-j de leste wiezigingen van disse wiki bekieken.',
+'recentchanges-summary'             => 'Op disse pagina ku-j de leste wiezigingen van disse wiki bekieken.',
 'recentchanges-feed-description'    => 'Zeuk naor de alderleste wiezingen op disse wiki in disse feed.',
 'recentchanges-label-newpage'       => 'Mit disse bewarking is een nieje pagina an-emaak',
 'recentchanges-label-minor'         => 'Dit is een kleine wieziging',
@@ -2871,7 +2871,13 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Wiejte',
@@ -2886,7 +2892,6 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-ycbcrpositioning'            => 'Y- en C-posisionering',
 'exif-xresolution'                 => 'Horizontale reselusie',
 'exif-yresolution'                 => 'Verticale reselusie',
-'exif-resolutionunit'              => 'Eenheid van de oplossing X en Y',
 'exif-stripoffsets'                => 'Lokasie ofbeeldingsgegevens',
 'exif-rowsperstrip'                => 'Riejen per strip',
 'exif-stripbytecounts'             => 'Bytes per ecomprimeren strip',
@@ -3126,6 +3131,11 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-gpsspeed-k' => 'Kilemeter per uur',
 'exif-gpsspeed-m' => 'Miel per ure',
 'exif-gpsspeed-n' => 'Knopen',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilemeter',
+'exif-gpsdestdistance-m' => 'Miel',
+'exif-gpsdestdistance-n' => 'Zeemielen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Waore richting',

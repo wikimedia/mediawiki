@@ -1157,7 +1157,13 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 'exif-exposureprogram-1' => 'w-ofoss',
 

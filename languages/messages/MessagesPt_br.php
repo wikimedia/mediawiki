@@ -1560,7 +1560,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
-'recentchangestext'                 => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
+'recentchanges-summary'             => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'recentchanges-feed-description'    => 'Acompanhe as Mudanças recentes deste wiki por este feed.',
 'recentchanges-label-newpage'       => 'Esta edição criou uma nova página',
 'recentchanges-label-minor'         => 'Esta é uma edição menor',
@@ -2951,7 +2951,13 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largura',
@@ -2966,7 +2972,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-ycbcrpositioning'            => 'Posicionamento Y e C',
 'exif-xresolution'                 => 'Resolução horizontal',
 'exif-yresolution'                 => 'Resolução vertical',
-'exif-resolutionunit'              => 'Unidade de resolução X e Y',
 'exif-stripoffsets'                => 'Localização de dados da imagem',
 'exif-rowsperstrip'                => 'Número de linhas por tira',
 'exif-stripbytecounts'             => 'Bytes por tira comprimida',
@@ -3207,6 +3212,11 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilômetros',
+'exif-gpsdestdistance-m' => 'Milhas',
+'exif-gpsdestdistance-n' => 'Milhas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direção real',

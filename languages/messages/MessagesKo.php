@@ -1526,7 +1526,7 @@ $1",
 'nchanges'                          => '$1개 바뀜',
 'recentchanges'                     => '최근 바뀜',
 'recentchanges-legend'              => '최근 바뀜 설정',
-'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
+'recentchanges-summary'             => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
 'recentchanges-label-newpage'       => '새로운 문서',
 'recentchanges-label-minor'         => '사소한 편집',
@@ -2952,7 +2952,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => '너비',
@@ -2967,7 +2973,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Y와 C 위치',
 'exif-xresolution'                 => '수평 해상도',
 'exif-yresolution'                 => '수직 해상도',
-'exif-resolutionunit'              => 'X, Y방향 해상도 단위',
 'exif-stripoffsets'                => '이미지 데이터 위치',
 'exif-rowsperstrip'                => '스트립당 줄의 수',
 'exif-stripbytecounts'             => '압축된 스트립당 바이트 수',

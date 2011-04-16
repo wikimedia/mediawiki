@@ -970,7 +970,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'nchanges'                          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'                     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchanges-legend'              => 'የቅርብ ለውጥ አማራጮች፦',
-'recentchangestext'                 => 'በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ።',
+'recentchanges-summary'             => 'በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ።',
 'recentchanges-feed-description'    => 'በዚህ ዊኪ ላይ በቅርብ ግዜ የተለወጠውን በዚሁ feed መከታተል ይችላሉ',
 'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውጥ እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom'                        => "ከ'''$2''' ጀምሮ የተቀየሩት ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
@@ -1956,7 +1956,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'ስፋት',
@@ -1969,7 +1975,6 @@ $1',
 'exif-ycbcrpositioning'            => 'የY ና C አቀማመጥ',
 'exif-xresolution'                 => 'አድማሳዊ ማጉላት',
 'exif-yresolution'                 => 'ቁም ማጉላት',
-'exif-resolutionunit'              => 'የX ና Y ማጉላት መስፈርያ',
 'exif-stripoffsets'                => 'የስዕል መረጃ ሥፍራ',
 'exif-rowsperstrip'                => 'የተርታዎች ቁጥር በየቁራጩ',
 'exif-stripbytecounts'             => 'byte በየተጨመቀ ቁራጩ',

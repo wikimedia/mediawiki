@@ -1552,7 +1552,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'nchanges'                          => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
 'recentchanges'                     => 'Nedavne izmjene',
 'recentchanges-legend'              => 'Postavke nedavnih izmjena',
-'recentchangestext'                 => 'Na ovoj stranici možete pratiti nedavne izmjene.',
+'recentchanges-summary'             => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description'    => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-label-newpage'       => 'Ovom izmjenom se pravi nova stranica',
 'recentchanges-label-minor'         => 'Ovo je mala izmjena',
@@ -3030,7 +3030,13 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -3045,7 +3051,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-ycbcrpositioning'            => 'Pozicioniranje Y i C',
 'exif-xresolution'                 => 'Horizontalna rezolucija',
 'exif-yresolution'                 => 'Vertikalna rezolucija',
-'exif-resolutionunit'              => 'Jedinice X i Y rezolucije',
 'exif-stripoffsets'                => 'Lokacija podataka slike',
 'exif-rowsperstrip'                => 'Broj redaka po liniji',
 'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
@@ -3292,6 +3297,11 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsspeed-k' => 'Kilometara na sat',
 'exif-gpsspeed-m' => 'Milja na sat',
 'exif-gpsspeed-n' => 'Čvorova',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometara',
+'exif-gpsdestdistance-m' => 'Milja',
+'exif-gpsdestdistance-n' => 'Nautičkih milja',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',

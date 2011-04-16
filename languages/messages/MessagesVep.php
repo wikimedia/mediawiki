@@ -1208,7 +1208,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'nchanges'                          => '$1 {{PLURAL:$1|toižetuz|toižetust}}',
 'recentchanges'                     => 'Tantoižed toižetused',
 'recentchanges-legend'              => 'Tantoižiden toižetusiden järgendused',
-'recentchangestext'                 => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
+'recentchanges-summary'             => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
 'recentchanges-feed-description'    => "Kacelta jäl'gmäižid toižetusid wikiš neciš valus.",
 'recentchanges-label-newpage'       => 'Nece redakcii sädi uden lehtpolen',
 'recentchanges-label-minor'         => 'Nece redakcii om penikaine',
@@ -2372,7 +2372,13 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leveduz’',
@@ -2387,7 +2393,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-ycbcrpositioning'            => 'Y:n da C:n sijaduz',
 'exif-xresolution'                 => 'Gorizontaline tarkoiktuz',
 'exif-yresolution'                 => 'Vertikaline tarkoiktuz',
-'exif-resolutionunit'              => 'Tarkoiktusen märičendan ühtnik.',
 'exif-stripoffsets'                => 'Andmusiden sijaduz',
 'exif-rowsperstrip'                => 'Rividen lugu ühtes särmas',
 'exif-stripbytecounts'             => 'Ahtištadud särman suruz',

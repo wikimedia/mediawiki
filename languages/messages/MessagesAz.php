@@ -916,7 +916,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'nchanges'                          => '$1 {{PLURAL:$1|dəyişiklik|dəyişiklik}}',
 'recentchanges'                     => 'Son dəyişikliklər',
 'recentchanges-legend'              => 'Son dəyişiklik seçimləri',
-'recentchangestext'                 => "'''Ən son dəyişiklikləri bu səhifədən izləyin.'''",
+'recentchanges-summary'             => "'''Ən son dəyişiklikləri bu səhifədən izləyin.'''",
 'recentchanges-feed-description'    => 'Vikidəki ən son dəyişiklikləri bu yayım kanalından izləyin.',
 'recentchanges-label-newpage'       => 'Bu dəyişiklik yeni səhifə yaratdı',
 'recentchanges-label-minor'         => 'Bu kiçik redaktədir',

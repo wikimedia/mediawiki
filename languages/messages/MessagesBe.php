@@ -1271,7 +1271,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|мена|менаў}}',
 'recentchanges'                     => 'Нядаўнія змяненні',
 'recentchanges-legend'              => 'Магчымасці паказу',
-'recentchangestext'                 => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
+'recentchanges-summary'             => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
 'recentchanges-label-newpage'       => 'Гэтай праўкай была створана новая старонка',
 'recentchanges-label-minor'         => 'Гэта дробная па значэнні праўка',
@@ -2522,7 +2522,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -2534,7 +2540,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Размяшчэнне Y і C',
 'exif-xresolution'                 => 'Гарызантальнае разрозненне',
 'exif-yresolution'                 => 'Вертыкальнае разрозненне',
-'exif-resolutionunit'              => 'Адзінка вымярэння разрозненняў X і Y',
 'exif-stripoffsets'                => 'Водступ палосаў выявы',
 'exif-rowsperstrip'                => 'Радкоў на паласу',
 'exif-stripbytecounts'             => 'Байтаў на сціснутую паласу',

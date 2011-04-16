@@ -1363,7 +1363,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
 'recentchanges'                     => 'Newidiadau diweddar',
 'recentchanges-legend'              => "Dewisiadau'r newidiadau diweddar",
-'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
+'recentchanges-summary'             => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'recentchanges-label-newpage'       => 'Dechreuwyd tudalen newydd wrth olygu',
 'recentchanges-label-minor'         => 'Mân olygiad',
@@ -1557,22 +1557,23 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'uploadstash-refresh'  => 'Adnewyddu rhestr y ffeiliau',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
-'img-auth-nopathinfo'   => "PATH_INFO yn eisiau.
+'img-auth-accessdenied'     => 'Ni chaniatawyd mynediad',
+'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
 Gweler http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
-'img-auth-badtitle'     => 'Ddim yn gallu gwneud teitl dilys o "$1".',
-'img-auth-nologinnWL'   => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
-'img-auth-nofile'       => 'Nid oes ffeil a\'r enw "$1" ar gael.',
-'img-auth-isdir'        => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
+'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
+'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
+'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
+'img-auth-nofile'           => 'Nid oes ffeil a\'r enw "$1" ar gael.',
+'img-auth-isdir'            => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
 Dim ond ffeiliau y cewch eu cyrchu.',
-'img-auth-streaming'    => 'Wrthi\'n llifo "$1".',
-'img-auth-public'       => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
+'img-auth-streaming'        => 'Wrthi\'n llifo "$1".',
+'img-auth-public'           => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
 Mae'r wici hwn wedi ei osod yn wici gyhoeddus.
 Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
-'img-auth-noread'       => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
+'img-auth-noread'           => 'Nid yw\'r gallu gan y defnyddiwr hwn i gyrchu\'r ffeil "$1" i\'w ddarllen.',
+'img-auth-bad-query-string' => 'Mae llinyn ymholi annilys gan yr URL.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL annilys: $1',
@@ -1934,6 +1935,10 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 'noemailtext'          => "Nid yw'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys.",
 'nowikiemailtitle'     => 'Ni chaniateir e-bostio',
 'nowikiemailtext'      => "Mae'r defnyddiwr hwn wedi dewis peidio derbyn e-byst oddi wrth ddefnyddwyr eraill.",
+'emailnotarget'        => "Nid yw'r enw a roddwyd i'r derbynnydd ymhlith yr enwau defnyddwyr sydd yma.",
+'emailtarget'          => 'Rhowch enw defnyddiwr y derbynnydd',
+'emailusername'        => 'Enw defnyddiwr:',
+'emailusernamesubmit'  => 'Cyflwyner',
 'email-legend'         => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
 'emailfrom'            => 'Oddi wrth:',
 'emailto'              => 'At:',
@@ -2764,7 +2769,13 @@ Cuddir y meysydd eraill trwy ragosodiad.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lled',
@@ -2779,7 +2790,6 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-ycbcrpositioning'            => 'Lleoli Y a C',
 'exif-xresolution'                 => 'Datrysiad llorweddol',
 'exif-yresolution'                 => 'Datrysiad fertigol',
-'exif-resolutionunit'              => 'Datrysiad uned X a Y',
 'exif-stripoffsets'                => "Lleoliad data'r ddelwedd",
 'exif-rowsperstrip'                => 'Nifer y rhesi i bob stribed',
 'exif-stripbytecounts'             => 'Nifer y beitiau i bob stribed cywasgedig',
@@ -3021,6 +3031,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsspeed-m' => 'Milltir yr awr',
 'exif-gpsspeed-n' => 'Notiau',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Cilomedrau',
+'exif-gpsdestdistance-m' => 'Milltiroedd',
+'exif-gpsdestdistance-n' => 'Milltiroedd môr',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',
 'exif-gpsdirection-m' => 'Cyfeiriad magnetig',
@@ -3105,11 +3120,12 @@ $1",
 'trackbackdeleteok' => "Dilewyd y cyswllt 'trackback' yn llwyddiannus.",
 
 # Delete conflict
-'deletedwhileediting' => "'''Rhybudd''': Dilëwyd y dudalen wedi i chi ddechrau ei golygu!",
-'confirmrecreate'     => "Mae'r defnyddiwr [[User:$1|$1]] ([[User talk:$1|Sgwrs]]) wedi dileu'r erthygl hon ers i chi ddechrau golygu. Y rheswm oedd:
+'deletedwhileediting'      => "'''Rhybudd''': Dilëwyd y dudalen wedi i chi ddechrau ei golygu!",
+'confirmrecreate'          => "Mae'r defnyddiwr [[User:$1|$1]] ([[User talk:$1|Sgwrs]]) wedi dileu'r dudalen hon ers i chi ddechrau ei golygu. Y rheswm a roddwyd yw:
 : ''$2''
-Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
-'recreate'            => 'Ail-greu',
+Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
+'confirmrecreate-noreason' => "Dileodd y defnyddiwr [[User:$1|$1]] ([[User talk:$1|sgwrs]]) y dudalen hon wedi i chi ddechrau ei golygu. Cadarnhewch eich bod chi wir am ail-greu'r dudalen hon.",
+'recreate'                 => 'Ail-greu',
 
 # action=purge
 'confirm_purge_button' => 'Iawn',

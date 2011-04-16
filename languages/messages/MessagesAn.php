@@ -1332,7 +1332,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambeo|cambeos}}',
 'recentchanges'                     => 'Zaguers cambeos',
 'recentchanges-legend'              => 'Opcions sobre a pachina de zaguers cambeos',
-'recentchangestext'                 => "Siga os cambeos más recients d'a wiki en ista pachina.",
+'recentchanges-summary'             => "Siga os cambeos más recients d'a wiki en ista pachina.",
 'recentchanges-feed-description'    => "Seguir os cambios más recients d'o wiki en ista fuent de noticias.",
 'recentchanges-label-newpage'       => 'Ista edición ha creyau una nueva pachina',
 'recentchanges-label-minor'         => 'Ista ye una edición menor',
@@ -2661,7 +2661,13 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplaria',
@@ -2676,7 +2682,6 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-ycbcrpositioning'            => 'Posición de Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
-'exif-resolutionunit'              => "Unidatz d'as resolucions en X e Y",
 'exif-stripoffsets'                => "Localización d'os datos d'a imachen",
 'exif-rowsperstrip'                => 'Numero de ringleras por faixa',
 'exif-stripbytecounts'             => 'Bytes por faixa comprimita',

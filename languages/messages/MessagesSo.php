@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Maax
  * @author Mimursal
  * @author Yariiska
  */
@@ -17,6 +18,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Waxka bedel linkiyada jabsan <a href="" class="new">Sidaan oo kale</a> (alternative: sidaan oo kale<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Geesdhig baaragaraafyada',
 'tog-hideminor'               => 'Qari wax ka bedelka yar ee isbedelada dhow',
+'tog-hidepatrolled'           => 'Qari wax bedelkii ugu danbeeyay oo la waardiyeeyay',
 'tog-extendwatchlist'         => "Balaari liiska waardiyeyska si loo arko isbedelada la'xiriira",
 'tog-usenewrc'                => "Isbdelada dhowdhow oo la'horumariyey (JavaScript)",
 'tog-numberheadings'          => 'Cinwaanada u nambareey si automaatik ah',
@@ -38,11 +40,13 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-boosto ii soo dir xataa isbedelada yaryar ee boggaga',
 'tog-enotifrevealaddr'        => 'Cinwaanka e-boostadeyda soo bandhig fariimaha wargelinta',
 'tog-shownumberswatching'     => "I'tus tirada isticmaalayaasha wax waardiyeynaayo",
-'tog-fancysig'                => "Sixiix aanan waxba laga bedelin (linki automaatik la'aan)",
+'tog-oldsig'                  => 'itusi saxiixa jiro',
+'tog-fancysig'                => "u isticmaal saxiixa sida qoraalada wiki  (ayada oo linki auomaatik la'aan)",
 'tog-externaleditor'          => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan (La'iskuogyahay)",
 'tog-uselivepreview'          => 'Isticmaal horfiirinta tooska ah (JavaScript) (Wuxuu ku jiraa tijaabo)',
 'tog-forceeditsummary'        => "I'xasuusi markii uusan qoraalkeyga raacsiisnay faahfaahin gaaban",
 'tog-watchlisthideown'        => 'Maqaalada aan waxka bedelay ka qari liiska waardiyaha',
+'tog-watchlisthidebots'       => 'Ka qari botka labedelay  liiska waardiyaha',
 'tog-watchlisthideminor'      => 'Ka qari waxka bedelada yar liiska waardiyeynta',
 'tog-ccmeonemails'            => 'Ii soo dir koobiga E-boostada aan u diro isticmaalayaasha kale',
 'tog-diffonly'                => 'Kaladuwanaanshaha hoostooda qari qoraalka bogga',
@@ -151,6 +155,7 @@ $messages = array(
 'talkpage'          => 'Wadahadalka boggan',
 'talkpagelinktext'  => 'Wadahadal',
 'specialpage'       => 'Bogaga qaaska ah',
+'personaltools'     => 'Alaabtaada',
 'postcomment'       => 'Aragti ku qor bogga dhamaadkiisa',
 'articlepage'       => 'Fiiri bogga qoraalka',
 'talk'              => 'Wadahadal',
@@ -177,6 +182,8 @@ $messages = array(
 'copyright'            => 'Qoraalka wuxuu ku salaysanyahay $1.',
 'currentevents'        => 'Dhacdooyinka cusub',
 'currentevents-url'    => 'Project:Maxaa cusub',
+'disclaimers'          => "Masuul la'aan",
+'disclaimerpage'       => "Project:Masuul la'aan guud",
 'edithelp'             => 'Caawinaada wax ka bedelka',
 'edithelppage'         => 'Help:Wax ka bedelka',
 'helppage'             => 'Help:Caawinaad',
@@ -184,6 +191,8 @@ $messages = array(
 'mainpage-description' => 'Bogga Hore',
 'portal'               => 'Bortaalka jaaliyada',
 'portal-url'           => 'Project:Bortaalka jaaliyada',
+'privacy'              => 'siyaasada u gaarka ah',
+'privacypage'          => 'Project:siyaasada u gaarka ah',
 
 'badaccess'        => 'Qalad dhinaca idanka',
 'badaccess-group0' => 'Laguuma ogala in aad sameyso waxaad dooneysid.',
@@ -195,11 +204,13 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1 waxaa kuuyaala fariimo cusub',
 'editsection'             => 'Wax ka bedel',
 'editold'                 => 'Wax ka bedel',
+'editsectionhint'         => 'Wax ka bedel qaar: $1',
 'showtoc'                 => "I'tus",
 'hidetoc'                 => 'qari',
 'thisisdeleted'           => 'Fiiri ama dib u sooceli $1?',
 'viewdeleted'             => 'Fiiri $1?',
 'feedlinks'               => 'Quudinta wararka:',
+'site-rss-feed'           => '$1 RSS feed',
 'red-link-title'          => '$1 (wali lama qorin)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -341,14 +352,17 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'rev-delundel' => "i'tus/qari",
 
 # Search results
-'searchresults'         => 'Natiijooyinkii ka soo baxay raadinta',
-'searchsubtitle'        => "Waxaad raadisay '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Waxaad raadisay '''$1'''",
-'prevn'                 => 'Ka horeeya {{PLURAL:$1|$1}}',
-'nextn'                 => 'Ku xiga {{PLURAL:$1|$1}}',
-'viewprevnext'          => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url'        => 'Help:Caawinaad',
-'powersearch'           => 'Raadi',
+'searchresults'             => 'Natiijooyinkii ka soo baxay raadinta',
+'searchsubtitle'            => "Waxaad raadisay '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Waxaad raadisay '''$1'''",
+'prevn'                     => 'Ka horeeya {{PLURAL:$1|$1}}',
+'nextn'                     => 'Ku xiga {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
+'searchhelp-url'            => 'Help:Caawinaad',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 eray|$2 erayo}})',
+'search-mwsuggest-enabled'  => 'iyo soojeedin',
+'search-mwsuggest-disabled' => 'soojeedin malahan',
+'powersearch'               => 'Raadi',
 
 # Preferences page
 'preferences'          => 'Dooqyada',
@@ -390,12 +404,12 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'group' => 'Koox:',
 
 # Recent changes
-'recentchanges'     => 'Isbedelada dhow',
-'recentchangestext' => 'Dabagal isbedelada dhow ee wikiga ee ku dhacay bogaan.',
-'rcshowhideminor'   => '$1 wax ka bedelada yar',
-'rcshowhidemine'    => '$1 wax ka bedelaadeyda',
-'hide'              => 'Qari',
-'show'              => 'Itus',
+'recentchanges'         => 'Isbedelada dhow',
+'recentchanges-summary' => 'Dabagal isbedelada dhow ee wikiga ee ku dhacay bogaan.',
+'rcshowhideminor'       => '$1 wax ka bedelada yar',
+'rcshowhidemine'        => '$1 wax ka bedelaadeyda',
+'hide'                  => 'Qari',
+'show'                  => 'Itus',
 
 # Recent changes linked
 'recentchangeslinked' => "Isbedelada la'xiriira",
@@ -554,6 +568,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 
 # Block/unblock
 'anononlyblock'            => 'anon. oo kaliya',
+'contribslink'             => 'ku darsasho',
 'autoblocker'              => 'Waxaa automaatik u xirista keenay in mudo dhow uu cinwaanka IP:ga isticmaalay "[[User:$1|$1]]". Sababta keentay in loo xiro $1 waa: "\'\'\'$2\'\'\'"',
 'block-log-flags-anononly' => "Isticmaalayaasha aanan la'aqoonsanin oo kaliya",
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
@@ -585,9 +600,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-undelete'        => "Sooceli qoraaladii lagu sameeyay boggaan intii aanan la'tirtirin ka hor",
 'tooltip-ca-move'            => 'Wareeji boggaan',
 'tooltip-search'             => 'Raadi{{SITENAME}}',
+'tooltip-search-go'          => 'Aad bog oo magacaan saxda ah leh hadii oo jiro',
+'tooltip-search-fulltext'    => 'Ka raadi bogyaasha qoraalkaan',
 'tooltip-p-logo'             => 'Bogga Hore',
 'tooltip-n-mainpage'         => 'Soo booqo bogga hore',
 'tooltip-n-portal'           => 'Faahfaahinta mashruuca, waxaad ku caawinkartid, xageed ka helikartaa waxaad u baahantahay',
+'tooltip-n-recentchanges'    => 'tirada Intii ugu danbeysay oo wax lagabedelay wiki',
 'tooltip-n-randompage'       => 'Ku nasiibso bog',
 'tooltip-t-emailuser'        => 'U dir E-boosto isticmaalahaan',
 'tooltip-t-specialpages'     => 'Liiska boggaga qaaska ah oo dhan',

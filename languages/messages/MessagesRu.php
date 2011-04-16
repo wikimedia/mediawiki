@@ -1542,7 +1542,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',
 'recentchanges'                     => 'Свежие правки',
 'recentchanges-legend'              => 'Настройки свежих правок',
-'recentchangestext'                 => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
+'recentchanges-summary'             => 'Ниже в хронологическом порядке перечислены последние изменения на страницах {{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Отслеживать последние изменения в вики в этом потоке.',
 'recentchanges-label-newpage'       => 'Этой правкой была создана новая страница.',
 'recentchanges-label-minor'         => 'Это малозначимое изменение',
@@ -2990,7 +2990,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -3005,7 +3011,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Порядок размещения компонент Y и C',
 'exif-xresolution'                 => 'Горизонтальное разрешение',
 'exif-yresolution'                 => 'Вертикальное разрешение',
-'exif-resolutionunit'              => 'Единица измерения разрешения',
 'exif-stripoffsets'                => 'Положение блока данных',
 'exif-rowsperstrip'                => 'Количество строк в 1 блоке',
 'exif-stripbytecounts'             => 'Размер сжатого блока',
@@ -3252,6 +3257,11 @@ $1',
 'exif-gpsspeed-k' => 'км/час',
 'exif-gpsspeed-m' => 'миль/час',
 'exif-gpsspeed-n' => 'узлов',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километров',
+'exif-gpsdestdistance-m' => 'Миль',
+'exif-gpsdestdistance-n' => 'Морских миль',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинный',

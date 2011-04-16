@@ -1596,7 +1596,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|промена|промени}}',
 'recentchanges'                     => 'Скорешни промени',
 'recentchanges-legend'              => 'Нагодувања за скорешни промени',
-'recentchangestext'                 => 'На оваа страница ги следите скорешните промени на викито.',
+'recentchanges-summary'             => 'На оваа страница ги следите скорешните промени на викито.',
 'recentchanges-feed-description'    => 'Следење на најскорешните промени на викито во овие емитувања.',
 'recentchanges-label-newpage'       => 'Ова уредување создаде нова страница',
 'recentchanges-label-minor'         => 'Ова е ситно уредување',
@@ -3151,7 +3151,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -3166,7 +3172,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Положби на Y и C',
 'exif-xresolution'                 => 'Хоризонтална резолуција',
 'exif-yresolution'                 => 'Вертикална резолуција',
-'exif-resolutionunit'              => 'Единица за резолуција на X и Y',
 'exif-stripoffsets'                => 'Положба на податоците',
 'exif-rowsperstrip'                => 'Број на редови по блок',
 'exif-stripbytecounts'             => 'Бајти по набиен блок',
@@ -3295,7 +3300,8 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 точки на инч',
 'exif-xyresolution-c' => '$1 точки на сантиметар',
 
-'exif-colorspace-1' => 'пЦЗС (sRGB)',
+'exif-colorspace-1'     => 'пЦЗС (sRGB)',
+'exif-colorspace-65535' => 'FFFF.H',
 
 'exif-componentsconfiguration-0' => 'не постои',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3426,6 +3432,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'Километри на час',
 'exif-gpsspeed-m' => 'Милји на час',
 'exif-gpsspeed-n' => 'Јазли',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километри',
+'exif-gpsdestdistance-m' => 'Милји',
+'exif-gpsdestdistance-n' => 'Наутички милји',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Вистински правец',

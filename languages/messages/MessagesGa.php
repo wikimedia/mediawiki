@@ -935,7 +935,7 @@ do chuid dreachtaí a chur i leith tusa.',
 'nchanges'                          => '{{PLURAL:$1|Athrú amháin|$1 athruithe}}',
 'recentchanges'                     => 'Athruithe is déanaí',
 'recentchanges-legend'              => 'Roghanna do na hathruithe is déanaí',
-'recentchangestext'                 => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
+'recentchanges-summary'             => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
 'recentchanges-feed-description'    => 'Rianaigh na n-athruite vicí is déanaí sa fotha seo.',
 'recentchanges-label-bot'           => 'Chomhlíon róbó an t-athrú seo',
 'rcnote'                            => "Is {{PLURAL:$1|é seo a leanas <strong>an t-athrú amháin</strong>|iad seo a leanas na <strong>$1</strong> athruithe is déanaí}} {{PLURAL:$2|ar feadh an lae dheireanaigh|ar feadh na '''$2''' lá deireanacha}}, as $5, $4.",
@@ -1828,7 +1828,13 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leithead',
@@ -1843,7 +1849,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-ycbcrpositioning'            => 'Suí Y agus C',
 'exif-xresolution'                 => 'Taifeach íomhá i dtreo an leithid',
 'exif-yresolution'                 => 'Taifeach íomhá i dtreo an airde',
-'exif-resolutionunit'              => 'Aonad an taifigh X agus Y',
 'exif-stripoffsets'                => 'Suíomh na sonraí íomhá',
 'exif-rowsperstrip'                => 'Líon na rónna sa stráice',
 'exif-stripbytecounts'             => 'Bearta sa stráice comhbhrúite',

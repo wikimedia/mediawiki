@@ -1627,7 +1627,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 {{Identical|Recent changes}}',
 'recentchanges-legend'            => 'Legend of the fieldset of [[Special:RecentChanges]]',
-'recentchangestext'               => 'Text in recent changes',
+'recentchanges-summary'           => 'Text in recent changes',
 'recentchanges-label-newpage'     => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-minor'       => 'Tooltip for {{msg-mw|newpageletter}}',
 'recentchanges-label-bot'         => 'Tooltip for {{msg-mw|boteditletter}}',
@@ -2269,7 +2269,8 @@ See also {{msg|listgrouprights-addgroup}}.',
 * $2 is the number of group names in $1.',
 
 # E-mail user
-'emailuser'           => 'Link in the sidebar',
+'emailuser'           => 'Link in the sidebar and title of [[Special:EmailUser|special page]]',
+'emailpage'           => "Title of special page [[Special:EmailUser]], when it is the destination of the sidebar link {{msg-mw|Emailuser}} on a user's page.",
 'emailpagetext'       => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
 Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
@@ -3170,7 +3171,7 @@ The sentences are for explanation only and are not shown to the user.",
 'metadata-langitem'         => 'This is used for constructing the list of translations when a metadata property is translated into multiple languages.
 
 $1 is the value of the property (in one language), $2 is the language name that this translation is for (or language code if language name cannot be determined), $3 is the language code.',
-'metadata-langitem-default' => 'Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property. ',
+'metadata-langitem-default' => 'Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -3193,7 +3194,6 @@ This is the horizontal resolution in either dots/inch or dots/cm.',
 'exif-yresolution'                 => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 This is the vertical resolution in either dots/inch or dots/cm.',
-'exif-resolutionunit'              => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-stripoffsets'                => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-rowsperstrip'                => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-stripbytecounts'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
@@ -3251,12 +3251,8 @@ The colorspace of the photo. This tells the computer how to make the colours in 
 
 This contains how the information in the picture is stored. This is most commonly Y, Cr, Cb to specify luma, red, blue. RGB is also possible to specify Red, Green, Blue.',
 'exif-compressedbitsperpixel'      => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-pixelydimension'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-{{Identical|Height}}',
-'exif-pixelxdimension'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-{{Identical|Width}}',
+'exif-pixelydimension'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-pixelxdimension'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-usercomment'                 => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 Comments by user. Sometimes used like ImageDescription when the ImageDescription contained non-ascii characters. (Technically ImageDescription is supposed to contain ascii characters. In practise utf-8 is used in ImageDescription, so this field isn't used too much.)",
@@ -3291,8 +3287,6 @@ The exposure time. Number of (or fraction of) seconds the film was exposed to li
 The [http://en.wikipedia.org/wiki/F_number F number] is the relative aperture of the camera.',
 'exif-fnumber-format'              => "{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-{{optional}}
 
 *$1 is a number
 *f is the abbreviation used in English for 'f-number'.",
@@ -3339,8 +3333,6 @@ See this [http://en.wikipedia.org/wiki/Flash_(photography) Wikipedia article] fo
 See this [http://en.wikipedia.org/wiki/Focal_length_(photography) Wikipedia article] for an explanation of the term.',
 'exif-focallength-format'          => "{{optional}}
 Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
-
-{{optional}}
 
 *$1 is a number
 *mm is the abbreviation used in English for the unit of measurement of length 'millimetre'.",
@@ -3449,7 +3441,7 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.",
 'exif-iimsupplementalcategory'     => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
 'exif-datetimeexpires'             => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
 'exif-datetimereleased'            => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
-'exif-originaltransmissionref'     => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf ',
+'exif-originaltransmissionref'     => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-identifier'                  => 'A formal identifier for the image. Often this is a URL.',
 'exif-lens'                        => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-serialnumber'                => 'Serial number of camera. See aux:SerialNumber in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
@@ -3488,8 +3480,7 @@ This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11k
 {{identical|Width}}',
 
 # Make & model, can be wikified in order to link to the camera and model name
-'exif-software-version-value' => 'This is very rarely used, and only with iptc-iim 2:70 property. $1 is the Software name, $2 is its version.',
-'exif-contact-value'          => '{{optional}}
+'exif-contact-value'         => '{{optional}}
 *$1 is email
 *$2 is URL of website
 *$3 is street address.
@@ -3499,7 +3490,7 @@ This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11k
 *$7 is country
 *$8 is telephone number
 Note, not all fields are guaranteed to be present, some may be empty strings.',
-'exif-subjectnewscode-value'  => '{{Optional}}
+'exif-subjectnewscode-value' => '{{Optional}}
 
 *$1 is numeric IPTC subject news code (one of http://cv.iptc.org/newscodes/subjectcode )
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
@@ -3581,6 +3572,8 @@ CCW is an abbreviation for counter-clockwise.',
 
 'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
 'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
+
+'exif-filesource-3' => '{{optional}}',
 
 'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.",
 

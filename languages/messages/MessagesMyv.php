@@ -1797,7 +1797,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'          => 'Келе',

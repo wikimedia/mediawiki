@@ -1421,7 +1421,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'recentchanges'                     => 'Kamakailang pagbabago',
 'recentchanges-legend'              => 'Mga pagpipilian para sa kamakailang mga pagbabago',
-'recentchangestext'                 => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
+'recentchanges-summary'             => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 'recentchanges-feed-description'    => 'Sundan ang pinakahuling mga pagbabago sa wiki sa pamamagitan ng feed na ito.',
 'recentchanges-label-newpage'       => 'Lumikha ng isang bagong pahina ang pagbabagong ito',
 'recentchanges-label-minor'         => 'Isa itong munting pagbabago',
@@ -2865,7 +2865,13 @@ Nakatakdang itago ang iba pa.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',
@@ -2880,7 +2886,6 @@ Nakatakdang itago ang iba pa.
 'exif-ycbcrpositioning'            => 'Pagkakaposisyon ng Y at C',
 'exif-xresolution'                 => 'Pahalang na resolusyon (kalinawan)',
 'exif-yresolution'                 => 'Bertikal (patayo) na resolusyon/kalinawan',
-'exif-resolutionunit'              => 'Yunit ng resolusyong X at Y',
 'exif-stripoffsets'                => 'Lokasyon ng dato ng larawan',
 'exif-rowsperstrip'                => 'Bilang ng pahalang na hanay bawat manipis na piraso',
 'exif-stripbytecounts'             => 'Mga byte ng bawat siniksik na piraso',

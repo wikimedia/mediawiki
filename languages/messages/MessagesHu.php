@@ -1547,7 +1547,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',
 'recentchanges'                     => 'Friss változtatások',
 'recentchanges-legend'              => 'A friss változások beállításai',
-'recentchangestext'                 => 'Ezen a lapon a wikiben történt legutóbbi változásokat lehet nyomonkövetni.',
+'recentchanges-summary'             => 'Ezen a lapon a wikiben történt legutóbbi változásokat lehet nyomonkövetni.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
 'recentchanges-label-newpage'       => 'Ezzel a szerkesztéssel egy új lap jött létre',
 'recentchanges-label-minor'         => 'Ez egy apró szerkesztés',
@@ -2950,7 +2950,13 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szélesség',
@@ -2965,7 +2971,6 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-ycbcrpositioning'            => 'Y és C pozicionálása',
 'exif-xresolution'                 => 'Vízszintes felbontás',
 'exif-yresolution'                 => 'Függőleges felbontás',
-'exif-resolutionunit'              => 'Az X és Y felbontás mértékegysége',
 'exif-stripoffsets'                => 'Képadatok elhelyezése',
 'exif-rowsperstrip'                => 'Egy csíkban levő sorok száma',
 'exif-stripbytecounts'             => 'Bájt/csík',
@@ -3206,6 +3211,11 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsspeed-k' => 'Kilométer óránként',
 'exif-gpsspeed-m' => 'Márföld óránként',
 'exif-gpsspeed-n' => 'Csomó',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'kilométer',
+'exif-gpsdestdistance-m' => 'mérföld',
+'exif-gpsdestdistance-n' => 'tengeri mérföld',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Igazi irány',

@@ -1375,7 +1375,7 @@ $1",
 'nchanges'                          => '{{PLURAL:$1|ఒక మార్పు|$1 మార్పులు}}',
 'recentchanges'                     => 'ఇటీవలి మార్పులు',
 'recentchanges-legend'              => 'ఇటీవలి మార్పుల ఎంపికలు',
-'recentchangestext'                 => 'వికీలో ఇటీవల జరిగిన మార్పులను ఈ పుటలో గమనించవచ్చు.',
+'recentchanges-summary'             => 'వికీలో ఇటీవల జరిగిన మార్పులను ఈ పుటలో గమనించవచ్చు.',
 'recentchanges-feed-description'    => 'ఈ ఫీడు ద్వారా వికీలో జరుగుతున్న మార్పుల గురించి ఎప్పటికప్పుడు సమాచారాన్ని పొందండి.',
 'recentchanges-label-newpage'       => 'ఈ మార్పు కొత్త పేజీని సృష్టించింది',
 'recentchanges-label-minor'         => 'ఇది ఒక చిన్న మార్పు',
@@ -2726,7 +2726,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'వెడల్పు',
@@ -2741,7 +2747,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y మరియు C స్థానాలు',
 'exif-xresolution'                 => 'క్షితిజసమాంతర స్పష్టత',
 'exif-yresolution'                 => 'లంబ స్పష్టత',
-'exif-resolutionunit'              => 'X, Y స్పష్టతల కొలమానం',
 'exif-stripoffsets'                => 'బొమ్మ డేటా ఉన్న స్థలం',
 'exif-rowsperstrip'                => 'ఒక్కో పట్టికి ఉన్న అడ్డువరుసలు',
 'exif-stripbytecounts'             => 'ఒక్కో కుదించిన పట్టీలో ఉన్న బైట్లు',
@@ -2982,6 +2987,11 @@ $1',
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
 'exif-gpsspeed-m' => 'గంటకి మైళ్ళు',
 'exif-gpsspeed-n' => 'ముడులు',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'కిలోమీటర్లు',
+'exif-gpsdestdistance-m' => 'మైళ్ళు',
+'exif-gpsdestdistance-n' => 'నాటికల్ మైళ్ళు',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',

@@ -889,7 +889,7 @@ $2',
 'nchanges'                          => '$1道改動',
 'recentchanges'                     => '最晏嗰改動',
 'recentchanges-legend'              => '箇朝子嗰更改選項',
-'recentchangestext'                 => '跟到箇隻wiki上嗰最新改動。',
+'recentchanges-summary'             => '跟到箇隻wiki上嗰最新改動。',
 'recentchanges-feed-description'    => '跟到箇隻 wiki 上集合嗰最後改動。',
 'rcnote'                            => "下底係到$4 $5，箇'''$2'''日嗰'''$1'''回改動:",
 'rcnotefrom'                        => "底下係自'''$2'''嗰更改（頂多顯示'''$1'''）:",
@@ -1871,7 +1871,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',
@@ -1886,7 +1892,6 @@ $1',
 'exif-ycbcrpositioning'            => '黃色同洋紅配置',
 'exif-xresolution'                 => '橫解析度',
 'exif-yresolution'                 => '直解析度',
-'exif-resolutionunit'              => 'X軸同Y軸嗰解析度單位',
 'exif-stripoffsets'                => '圖像資料位置',
 'exif-rowsperstrip'                => '每帶行數',
 'exif-stripbytecounts'             => '每壓縮帶byte數',

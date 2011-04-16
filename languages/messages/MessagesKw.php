@@ -559,7 +559,7 @@ Gwrewgh assaya dhe rag-gorra agas govyn gen ''all:'' rag whila yn pub le (a-bart
 'nchanges'                       => '$1 {{PLURAL:$1|chanj|chanj}}',
 'recentchanges'                  => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend'           => 'Dewisyansow an chanjyow a-dhiwedhes',
-'recentchangestext'              => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
+'recentchanges-summary'          => "Sewya an chanjyow diwettha eus dhe'n wiki war'n folen-ma.",
 'recentchanges-feed-description' => "Sewya an chanjyow diwettha dhe'n wiki y'n feed-ma.",
 'recentchanges-label-minor'      => 'Hemm yw chanj bian',
 'rclistfrom'                     => 'Disqwedhes chanjyow nowyth ow talleth a-dhia $1.',

@@ -1428,7 +1428,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',
 'recentchanges'                     => 'Kemmoù diwezhañ',
 'recentchanges-legend'              => "Dibarzhioù ar c'hemmoù diwezhañ",
-'recentchangestext'                 => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
+'recentchanges-summary'             => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
 'recentchanges-feed-description'    => "Heuilhit ar c'hemmoù diwezhañ er wiki el lusk-mañ.",
 'recentchanges-label-newpage'       => "Gant ar c'hemm-mañ e vo krouet ur bajenn nevez.",
 'recentchanges-label-minor'         => "Ur c'hemm dister eo hemañ",
@@ -2878,7 +2878,13 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Led',
@@ -2893,7 +2899,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-ycbcrpositioning'            => "Lec'hiadur Y ha C",
 'exif-xresolution'                 => 'Pizhder led ar skeudenn',
 'exif-yresolution'                 => 'Pizhder hed ar skeudenn',
-'exif-resolutionunit'              => 'Unanennoù pizhder X ha Y',
 'exif-stripoffsets'                => "Lec'hiadur roadennoù ar skeudenn",
 'exif-rowsperstrip'                => 'Niver a linennoù dre vandenn',
 'exif-stripbytecounts'             => 'Ment e oktedoù dre vandenn',
@@ -2994,7 +2999,19 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsareainformation'          => 'Anv an takad GPS',
 'exif-gpsdatestamp'                => 'Deiziad GPS',
 'exif-gpsdifferential'             => "Reizhadenn diforc'hadus GPS",
+'exif-keywords'                    => "Gerioù alc'hwez",
+'exif-worldregiondest'             => 'Ranndir diskouezet',
+'exif-countrydest'                 => 'Bro diskouezet',
+'exif-countrycodedest'             => 'Kod evit ar vro diskouezet',
+'exif-provinceorstatedest'         => 'Proviñs pe Stad diskouezet',
+'exif-citydest'                    => 'Kêr diskouezet',
 'exif-objectname'                  => 'Titl berr',
+'exif-source'                      => 'Mammenn',
+'exif-writer'                      => 'Skrivagner',
+'exif-languagecode'                => 'Yezh',
+'exif-iimversion'                  => 'Stumm IIM',
+'exif-iimcategory'                 => 'Rummad',
+'exif-iimsupplementalcategory'     => 'Rummadoù ouzhpenn',
 
 # EXIF attributes
 'exif-compression-1' => 'Hep gwaskañ',
@@ -3135,9 +3152,20 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsspeed-m' => 'Miltir dre eur',
 'exif-gpsspeed-n' => 'Skoulm',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometr',
+'exif-gpsdestdistance-m' => 'Miltir',
+'exif-gpsdestdistance-n' => 'Miltir',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => "Durc'hadur gwir",
 'exif-gpsdirection-m' => 'Norzh magnetek',
+
+'exif-rating-rejected' => 'Distaolet',
+
+'exif-iimcategory-edu' => 'Deskadurezh',
+'exif-iimcategory-evn' => 'Endro',
+'exif-iimcategory-hth' => "Yec'hed",
 
 # External editor support
 'edit-externally'      => 'Kemmañ ar restr-mañ dre un arload diavaez',

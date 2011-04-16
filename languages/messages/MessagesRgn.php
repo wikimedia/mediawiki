@@ -725,7 +725,13 @@ Se parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curesp
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # External editor support
 'edit-externally'      => 'Mudèfica ste file cun un prugrama esteran',

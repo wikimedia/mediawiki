@@ -1123,7 +1123,7 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'nchanges'                          => '$1 {{PLURAL:$1|kitawīdisna|kitawīdisnas}}',
 'recentchanges'                     => 'Panzdaumas kitawīdinsnas',
 'recentchanges-legend'              => 'Panzdauman kitawīdinsnan mazīngiskwas',
-'recentchangestext'                 => 'Šin pāusan waidinna listin stēisan panzdauman kitawīdinsnan en šissei wiki.',
+'recentchanges-summary'             => 'Šin pāusan waidinna listin stēisan panzdauman kitawīdinsnan en šissei wiki.',
 'recentchanges-feed-description'    => 'Nadirēis ukanāunaisins kitawīdisnans en šissei wiki.',
 'recentchanges-label-newpage'       => 'Šis redigīsenis ast teīkuns nāunan pāusan',
 'recentchanges-label-minor'         => 'Sta ast malks redigīsenis',
@@ -2318,7 +2318,13 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plattu',
@@ -2332,7 +2338,6 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-ycbcrpositioning'            => 'Y be C poziciōni',
 'exif-xresolution'                 => 'Uricōntala rezoluciōni',
 'exif-yresolution'                 => 'Wertikāla rezoluciōni',
-'exif-resolutionunit'              => 'X be Y rezōluciōnis aīnibi',
 'exif-stripoffsets'                => 'Bildis dātas deīktan',
 'exif-rowsperstrip'                => 'Rīndas gīrbis per bildes sawīnzlin',
 'exif-stripbytecounts'             => 'Bāitas gīrbis per bildis sawīnzlin',

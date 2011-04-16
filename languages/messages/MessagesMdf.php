@@ -1210,7 +1210,7 @@ $3 макссь туфталсь - ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|полафнема|полафнемат}}',
 'recentchanges'                     => 'Мекольце полафнемат',
 'recentchanges-legend'              => 'Мекольце полафнематнень арафнемасна',
-'recentchangestext'                 => 'Ваномс сяда мекольце Викиса полафнематнень мельге тя лопаса.',
+'recentchanges-summary'             => 'Ваномс сяда мекольце Викиса полафнематнень мельге тя лопаса.',
 'recentchanges-feed-description'    => 'Ваномс сяда мекольце Викиса полафнематнень мельге тя шудемаса.',
 'rcnote'                            => "Ала {{PLURAL:$1|мекольце '''1''' полафнема|мекольце '''$1''' полафнемат}} '''$2''' ётай  {{PLURAL:$2|шис|шис}}, $5, $4ста.",
 'rcnotefrom'                        => "Ала няфтезь полафнематне '''$2'''-ста ('''$1'''-с).",
@@ -2361,7 +2361,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Келец',
@@ -2376,7 +2382,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y ди C арафтомасна',
 'exif-xresolution'                 => 'Горизонталень сидец',
 'exif-yresolution'                 => 'Вертикалень сидец',
-'exif-resolutionunit'              => 'X ди Y сидеснон ункстама тяшксне',
 'exif-stripoffsets'                => 'Архтома информациеть вастоц',
 'exif-rowsperstrip'                => 'Курнятнень луфкссна фкя киксс',
 'exif-stripbytecounts'             => 'Байтт фкя компрезияфтф китьксс',

@@ -742,7 +742,7 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'nchanges'                       => '{{PLURAL:$1|zjinaka|zjinaczi|zjinaków}}',
 'recentchanges'                  => 'Slédné edicëje',
 'recentchanges-legend'           => 'Òptacëje slédnych zjinaków',
-'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
+'recentchanges-summary'          => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'rcnote'                         => "Niżi {{PLURAL:$1|nachôdô sã '''1''' slédnô zjinaka zrobionô|nachôdają sã '''$1''' slédné zjinaczi zrobioné|nachôdô sã '''$1''' slédnych zjinaków zrobionëch}} w {{PLURAL:$2|slédnégò dnia|slédnych '''$2''' dniach}}, rëchùjąc òd $5 dnia $4.",
 'rcnotefrom'                     => "Niżi są zmianë òd '''$2''' (pòkazóné do '''$1''').",
@@ -1245,7 +1245,13 @@ Jinszé pòla bãdą domëslno zataconé.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Editëjë nen lopk brëkùjąc bùtnowi aplikacëji',
