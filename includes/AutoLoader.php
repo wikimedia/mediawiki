@@ -596,11 +596,11 @@ $wgAutoloadLocalClasses = array(
 	'MWTidy' => 'includes/parser/Tidy.php',
 
 	# includes/profiler
-	'Profiler' => 'includes/Profiler.php',
-	'ProfilerSimple' => 'includes/ProfilerSimple.php',
-	'ProfilerSimpleText' => 'includes/ProfilerSimpleText.php',
-	'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
-	'ProfilerStub' => 'includes/ProfilerStub.php',
+	'Profiler' => 'includes/profiler/Profiler.php',
+	'ProfilerSimple' => 'includes/profiler/ProfilerSimple.php',
+	'ProfilerSimpleText' => 'includes/profiler/ProfilerSimpleText.php',
+	'ProfilerSimpleUDP' => 'includes/profiler/ProfilerSimpleUDP.php',
+	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 
 	# includes/search
 	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',
