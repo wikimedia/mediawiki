@@ -5,24 +5,24 @@
 */
 class IPTC {
 
-        /**
-        * This takes the results of iptcparse() and puts it into a
-        * form that can be handled by mediawiki. Generally called from
-        * BitmapMetadataHandler::doApp13.
-        *
-        * @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
-        *
-        * @param String $data app13 block from jpeg containing iptc/iim data
-        * @return Array iptc metadata array
-        */
-        static function parse( $rawData ) {
-                $parsed = iptcparse( $rawData );
-                $data = Array();
-                if (!is_array($parsed)) {
-                        return $data;
-                }
+	/**
+	* This takes the results of iptcparse() and puts it into a
+	* form that can be handled by mediawiki. Generally called from
+	* BitmapMetadataHandler::doApp13.
+	*
+	* @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
+	*
+	* @param String $data app13 block from jpeg containing iptc/iim data
+	* @return Array iptc metadata array
+	*/
+	static function parse( $rawData ) {
+		$parsed = iptcparse( $rawData );
+		$data = Array();
+		if (!is_array($parsed)) {
+				return $data;
+		}
 
-                $c = '';
+		$c = '';
 		//charset info contained in tag 1:90.
 		if (isset($parsed['1#090']) && isset($parsed['1#090'][0])) {
 			$c = self::getCharset($parsed['1#090'][0]);
