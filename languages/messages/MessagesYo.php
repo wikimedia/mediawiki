@@ -531,15 +531,6 @@ E-mail kankan kò ní jẹ́ fífiránṣẹ́ fún ìkankan nínú àwọn ìn�
 # E-mail sending
 'php-mail-error-unknown' => 'Àsìṣe àìmọ̀ nínú ìgbéṣe mail() ti PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Ìdíye okun ọ̀rọ̀ìpamọ́: $1',
-'password-strength-bad'        => 'BÚBURÚ',
-'password-strength-mediocre'   => 'àìkánú',
-'password-strength-acceptable' => 'fífaramọ́',
-'password-strength-good'       => 'dáradára',
-'password-retype'              => 'Ẹ tún tẹ ọ̀rọ̀ìpamọ́ síbí',
-'password-retype-mismatch'     => 'Àwọn ọ̀rọ̀ìpamọ́ kò jọra',
-
 # Password reset dialog
 'resetpass'                 => 'Ìyípadà ọ̀rọ̀ìpamọ́',
 'resetpass_announce'        => 'Ẹ ti wọlé pẹ̀lú àmìọ̀rọ̀ e-mail ìgbàdíẹ̀.
@@ -864,17 +855,6 @@ Gẹ́gẹ́ bíi olùmójútó ẹ ṣì le wo ìyàtọ̀ yìí; ẹ̀kúnrẹ
 # Suppression log
 'suppressionlog' => 'Àkọọ́lẹ̀ ìfisílẹ̀',
 
-# Revision move
-'moverevlogentry'              => 'ṣèyípò {{PLURAL:$3|àtúnyẹ̀wò kan|àtúnyẹ̀wò $3}} láti $1 sí $2',
-'revisionmove'                 => "Ìyípò àwọn àtúnyẹ̀wò láti ''$1''",
-'revmove-submit'               => 'Ìyípò àwọn àtúnyẹ̀wò sí ojúewé ṣíṣàyàn',
-'revisionmoveselectedversions' => 'Ìyípò àwọn àtúnyẹ̀wò ṣíṣàyàn',
-'revmove-reasonfield'          => 'Ìdíẹ̀:',
-'revmove-badparam-title'       => 'Àwọn pàrámítà búrurú',
-'revmove-nullmove-title'       => 'Àkọlé búrurú',
-'revmove-success-existing'     => '{{PLURAL:$1|Àtúnyẹ̀wò kan láti [[$2]]|Àwọn àtúnyẹ̀wò $1 láti [[$2]]}} ti jẹ́ yíyípò sí ojúewé [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Àtúnyẹ̀wò kan láti [[$2]]|Àwọn àtúnyẹ̀wò $1 láti [[$2]]}} ti jẹ́ yíyípò sí ojúewé tuntun [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Ìdàpọ̀ àwọn ìtàn ojúewé',
 'mergehistory-box'                 => 'Ìdàpọ̀ àwọn àtúnyẹ̀wò ti àwọn ojúewé méjì:',
@@ -1146,8 +1126,6 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'right-siteadmin'             => 'Ìtìpa àti ìṣí ibùdó dátà',
 'right-override-export-depth' => 'Ìkójáde àwọn ojúewé lámùúpọ̀ mọ́ àwọn ojúewé jíjápọ̀ títí dé ìbú 5',
 'right-sendemail'             => 'Fi e-mail ránṣẹ́ sí àwọn oníṣe míràn',
-'right-revisionmove'          => 'Ìyípò àwọn àtúnyẹ̀wò',
-'right-disableaccount'        => 'Ìdálẹ́kun àwọn àkópamọ́',
 
 # User rights log
 'rightslog'     => 'Àwọn ẹ̀tọ́ oníṣe',
@@ -1181,7 +1159,6 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 'action-userrights'           => 'àtúnṣe gbogbo àwọn ẹ̀tọ́ oníṣe',
 'action-userrights-interwiki' => 'àtúnṣe àwọn ẹ̀tọ́ oníṣe àwọn oníṣe lórí àwọn wiki míràn',
 'action-siteadmin'            => 'tìpa tàbí ṣí ibùdó dátà',
-'action-revisionmove'         => 'yípò àwọn àtúnyẹ̀wò',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|àtúnṣe|àwọn àtúnṣe}} $1',
@@ -2244,9 +2221,5 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'htmlform-submit'              => 'Fúnsílẹ̀',
 'htmlform-reset'               => 'Ìdápadà àwọn àtúnṣe',
 'htmlform-selectorother-other' => 'Òmíràn',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Orúkọ́ oníṣe:',
-'disableaccount-reason' => 'Ìdíẹ̀:',
 
 );

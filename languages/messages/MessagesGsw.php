@@ -607,15 +607,6 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Gschätzti Passwortsterki: $1',
-'password-strength-bad'        => 'SCHLÄCHT',
-'password-strength-mediocre'   => 'mittelmäßig',
-'password-strength-acceptable' => 'akzeptabel',
-'password-strength-good'       => 'guet',
-'password-retype'              => 'Passwort no mol yygee',
-'password-retype-mismatch'     => 'D Passwerter stimme nit zämme',
-
 # Password reset dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
 'resetpass_announce'        => 'Aamäldig mit em Code, wu per Mail zuegschickt woren isch. Zum d Aamäldig abzschliesse, muesch jetz e nej Passwort wehle.',
@@ -995,24 +986,6 @@ Bitte prief d Logbiecher.',
 'suppressionlog'     => 'Oversight-Logbuech',
 'suppressionlogtext' => 'Des isch s Logbuech vu dr Oversight-Aktione (Änderige vu dr Sichtbarkeit vu Versione, Bearbeitigskommentar, Benutzernäme un Benutzersperrine).',
 
-# Revision move
-'moverevlogentry'              => 'het {{PLURAL:$3|ei Version|$3 Versione}} vu $1 no $2 verschobe',
-'revisionmove'                 => 'Versione verschiebe vu „$1“',
-'revmove-explain'              => 'Die Versione wäre vu $1 uf d Ziilsyte, wu aagee isch, verschobe. Wänn s d Ziilsyte nit git, no wird si aagleit. Sunscht wäre die Versione in dr Versionsgschicht zämmegfiert.',
-'revmove-legend'               => 'Ziilsyte un Zämmefassig feschtlege',
-'revmove-submit'               => 'Versione zue dr uusgwehlte Syte verschiebe',
-'revisionmoveselectedversions' => 'Uusgwehlti Versione verschiebe',
-'revmove-reasonfield'          => 'Grund:',
-'revmove-titlefield'           => 'Ziilsyte:',
-'revmove-badparam-title'       => 'Falschi Parameter',
-'revmove-badparam'             => 'In dyyre Aafrog het s nit erlaubti oder mangelhafti Parameter. Bitte druck uf „zruck“ un versuech s nomol.',
-'revmove-norevisions-title'    => 'Nit giltigi Ziilversion',
-'revmove-norevisions'          => 'Du hesch kei Ziilversion aagee, zum die Aktion durzfiere oder d Version, wu Du aagee hesch, git s nit.',
-'revmove-nullmove-title'       => 'Nit giltige Titel',
-'revmove-nullmove'             => 'Quäll- un Ziilsyte sin idäntisch. Bitte druck uf „zruck“ un gib e andere Sytenname wie „$1“ yy.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zu dr exischtänte Syte [[$3]] verschobe wore.',
-'revmove-success-created'      => '{{PLURAL:$1|Ei Version vu [[$2]] isch|$1 Versione vu [[$2]] sin}} zue dr nej aagleite Syte [[$3]] verschobe wore.',
-
 # History merging
 'mergehistory'                     => 'Versionsgschichte zämmefiere',
 'mergehistory-header'              => 'Mit däre Spezialsyte chasch d Versionsgschicht vun ere Ursprungssyte mit dr Versionsgchicht vun ee Ziilsyte zämefiere.
@@ -1347,8 +1320,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
-'right-revisionmove'          => 'Versione verschiebe',
-'right-disableaccount'        => 'Benutzerkonto deaktiviere',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -1391,7 +1362,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'action-userrights'           => 'Benutzerrächt z ändere',
 'action-userrights-interwiki' => 'd Rächt vu Benutzer in andere Wiki z ändere',
 'action-siteadmin'            => 'd Datebank z sperre oder frejzgee',
-'action-revisionmove'         => 'Versione verschiebe',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderig|Änderige}}',
@@ -2778,7 +2748,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streife',
 'exif-jpeginterchangeformat'       => 'Offset zue JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'JPEG-Date in Bytes',
-'exif-transferfunction'            => 'Ibertragigsfunktion',
 'exif-whitepoint'                  => 'Manuäll mit Mässig',
 'exif-primarychromaticities'       => 'Primäri Farbart',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffiziente',
@@ -2797,7 +2766,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-compressedbitsperpixel'      => 'Komprimierti Bit pro Pixel',
 'exif-pixelydimension'             => 'Giltigi Bildbreiti',
 'exif-pixelxdimension'             => 'Valind image height',
-'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Benutzerkommentar',
 'exif-relatedsoundfile'            => 'Zuegherigi Tondatei',
 'exif-datetimeoriginal'            => 'Erfassigszytpunkt',
@@ -2811,7 +2779,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-exposureprogram'             => 'Beliechtigsprogramm',
 'exif-spectralsensitivity'         => 'Spektrali Empfindligkeit',
 'exif-isospeedratings'             => 'Filmempfindlichkeit (ISO)',
-'exif-oecf'                        => 'Optoelektronische Umrächnigsfaktor',
 'exif-shutterspeedvalue'           => 'Beliechtigszytwärt',
 'exif-aperturevalue'               => 'Bländewärt',
 'exif-brightnessvalue'             => 'Hälligkeitswärt',
@@ -2824,7 +2791,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-focallength'                 => 'Brännwyti',
 'exif-subjectarea'                 => 'Beryych',
 'exif-flashenergy'                 => 'Blitzstärchi',
-'exif-spatialfrequencyresponse'    => 'Spatial-Frequenz',
 'exif-focalplanexresolution'       => 'Sensor-Uflesig horizontal',
 'exif-focalplaneyresolution'       => 'Sensor-Uflesig vertikal',
 'exif-focalplaneresolutionunit'    => 'Einheit vu dr Sensor-Uflesig',
@@ -2833,7 +2799,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-sensingmethod'               => 'Mässmethod',
 'exif-filesource'                  => 'Quäll vu dr Datei',
 'exif-scenetype'                   => 'Szenetyp',
-'exif-cfapattern'                  => 'CFA-Muschter',
 'exif-customrendered'              => 'Benutzerdefinierti Bildverarbeitig',
 'exif-exposuremode'                => 'Beliechtigsmodus',
 'exif-whitebalance'                => 'Wyssabglyych',
@@ -3314,18 +3279,5 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 # SQLite database support
 'sqlite-has-fts' => '$1 mit Unterstitzig vu dr Volltextsuechi',
 'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
-
-# Special:DisableAccount
-'disableaccount'             => 'E Benutzerkonto deaktiviere',
-'disableaccount-user'        => 'Benutzername:',
-'disableaccount-reason'      => 'Grund:',
-'disableaccount-confirm'     => "Des Benutzerkonto deaktiviere.
-Dr Benutzer cha sich derno nimi aamälde, cha s Passwort nimi zrucksetze oder un keini E-Mail-Benochrichtigunge me iberchuu.
-Wänn dr Benutzer grad aagmäldet isch, wird er sofort abgmäldet.
-''Obacht: D Deaktivierig vun eme Benutzerkonto cha nume vun eme Syschtemadministrator ruckgängig gmacht wäre.''",
-'disableaccount-mustconfirm' => 'Du muesch d Deaktivierig vu däm Benutzerkonto no bstetige.',
-'disableaccount-nosuchuser'  => 'Dr Benutzer „$1“ git s nit.',
-'disableaccount-success'     => 'S Benutzerkonto „$1“ isch fir immer deaktiviert wore.',
-'disableaccount-logentry'    => 'het s Benutzerkonto [[$1]] fir immer deaktiviert',
 
 );

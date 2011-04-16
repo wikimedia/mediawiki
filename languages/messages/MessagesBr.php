@@ -667,15 +667,6 @@ Gortozit a-raok klask en-dro.",
 # E-mail sending
 'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
 
-# JavaScript password checks
-'password-strength'            => 'Live surentez ar ger-tremen : $1',
-'password-strength-bad'        => 'FALL',
-'password-strength-mediocre'   => 'dister',
-'password-strength-acceptable' => 'degemeradus',
-'password-strength-good'       => 'mat',
-'password-retype'              => 'Skrivit ho ker-tremen en-dro amañ',
-'password-retype-mismatch'     => 'Ne glot ket ar gerioù-tremen',
-
 # Password reset dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',
 'resetpass_announce'        => "Enskrivet oc’h bet dre ur ger-tremen da c'hortoz kaset deoc'h dre bostel. A-benn bezañ enrollet da vat e rankit spisaat ur ger-tremen nevez amañ :",
@@ -1053,26 +1044,6 @@ N\'oc\'h ket aotreet da vont outi.',
 'suppressionlog'     => 'Marilh diverkañ',
 'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
-# Revision move
-'moverevlogentry'              => "en deus dilec'hiet {{PLURAL:$3|un adweladenn|$3 adweladenn}} eus $1 da $2",
-'revisionmove'                 => 'Dilec\'hiañ adweladennoù eus "$1"',
-'revmove-explain'              => "Dielc'hiet e vo an adweladennoù da-heul eus $1 d'ar bajenn dal resisaet. Ma n'eus ket eus ar bajenn dal e vo krouet. A-hend-all e vo kendeuzet ar c'hemmoù-mañ gant istor ar bajenn.",
-'revmove-legend'               => 'Lakait ar pajenn voned hag an abeg',
-'revmove-submit'               => "Dilec'hiañ an adweladennoù davet ar bajenn diuzet",
-'revisionmoveselectedversions' => "Dilec'hiañ an adweladennoù diuzet",
-'revmove-reasonfield'          => 'Abeg :',
-'revmove-titlefield'           => 'Pajenn dal :',
-'revmove-badparam-title'       => 'Arventennoù fall',
-'revmove-badparam'             => "Direizh pe re zister eo arventennoù ho reked.
-Distroit d'ar bajenn a-raok ha klaskit en-dro.",
-'revmove-norevisions-title'    => "N'eus stumm pal ebet evit an degasadennoù",
-'revmove-norevisions'          => "N'hoc'h eus ket resisaet adweladenn dal pe adweladennoù tal ebet evit seveniñ an arc'hwel-mañ pe neuze n'eus ket eus an adweladenn merket",
-'revmove-nullmove-title'       => 'Titl fall',
-'revmove-nullmove'             => 'N\'hall ket ar bajenn dal bezañ heñvel ouzh ar bajenn gein.
-Distroit d\'ar bajenn a-raok ha dibabit un anv disheñvel diouzh "$1".',
-'revmove-success-existing'     => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn ez eus outi dija [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn [[$3]] bet krouet nevez zo.",
-
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
 'mergehistory-header'              => "Gant ar bajenn-mañ e c'hallit kendeuziñ an adweladennoù c'hoarvezet da istor ur bajenn war-du unan nevez.
@@ -1410,8 +1381,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
-'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
-'right-disableaccount'        => 'Diweredekaat kontoù',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -1454,7 +1423,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
 'action-siteadmin'            => 'Prennañ pe dibrennañ ar bank roadennoù',
-'action-revisionmove'         => "dilec'hiañ an adweladennoù",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',
@@ -2931,7 +2899,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-stripbytecounts'             => 'Ment e oktedoù dre vandenn',
 'exif-jpeginterchangeformat'       => "Lec'hiadur ar SOI JPEG",
 'exif-jpeginterchangeformatlength' => 'Ment ar roadennoù JPEG en eizhbitoù',
-'exif-transferfunction'            => "Arc'hwel treuzkas",
 'exif-whitepoint'                  => 'Kromategezh ar poent gwenn',
 'exif-primarychromaticities'       => 'Kromategezh al livioù orin',
 'exif-ycbcrcoefficients'           => 'Kenefederioù moull treuzfurmiñ an egorenn liv',
@@ -2950,7 +2917,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-compressedbitsperpixel'      => 'Doare gwaskañ ar skeudenn',
 'exif-pixelydimension'             => 'Ledander skeudenn gwiriek',
 'exif-pixelxdimension'             => 'Uhelder skeudenn gwiriek',
-'exif-makernote'                   => 'Notennoù an oberier',
 'exif-usercomment'                 => 'Evezhiadennoù',
 'exif-relatedsoundfile'            => 'Restr son stag',
 'exif-datetimeoriginal'            => 'Deiziad hag eur ar sevel roadoù',
@@ -2964,7 +2930,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-exposureprogram'             => "Programm louc'hañ",
 'exif-spectralsensitivity'         => 'Kizidigezh spektrel',
 'exif-isospeedratings'             => 'Kizidigezh ISO',
-'exif-oecf'                        => 'Faktor amdreiñ elektronek',
 'exif-shutterspeedvalue'           => 'Tizh klozañ',
 'exif-aperturevalue'               => 'Digorder',
 'exif-brightnessvalue'             => 'Sklêrder',
@@ -2977,7 +2942,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-focallength'                 => 'Hirder ar fokalenn',
 'exif-subjectarea'                 => 'Gorread ar sujed',
 'exif-flashenergy'                 => "Nerzh al luc'h",
-'exif-spatialfrequencyresponse'    => 'Frekañs egorel',
 'exif-focalplanexresolution'       => 'Muzuliadur a-led ur fokalenn blaen',
 'exif-focalplaneyresolution'       => 'Muzuliadur a-serzh ur fokalenn blaen',
 'exif-focalplaneresolutionunit'    => 'Unanenn spisder evit ur fokalenn blaen',
@@ -2986,7 +2950,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-sensingmethod'               => 'Hentenn detektiñ',
 'exif-filesource'                  => 'Tarzh ar restr',
 'exif-scenetype'                   => 'Seurt arvest',
-'exif-cfapattern'                  => 'Framm silañ al livioù',
 'exif-customrendered'              => 'Plediñ gant ar skeudennoù personelaet',
 'exif-exposuremode'                => "Mod louc'hañ",
 'exif-whitebalance'                => 'Mentel ar gwennoù',
@@ -3491,18 +3454,5 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 # SQLite database support
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
-
-# Special:DisableAccount
-'disableaccount'             => 'Diweredekaat ur gont implijer',
-'disableaccount-user'        => 'Anv implijer :',
-'disableaccount-reason'      => 'Abeg :',
-'disableaccount-confirm'     => "Diweredekaat kont an implijer-mañ.
-Ne vo ket gouest an implijer da gevreañ na da adderaouekaat e c'her-tremen ken, n'hallo ket resev kemennadennoù dre bostel kennebeut.
-M'emañ kevreet bremañ an implijer un tu bennak e vo digevreet kerkent.
-\"Notit mat n'haller ket distreiñ war diwerekadur ur gont hep emell ur merour eus ar reizhiad.\"",
-'disableaccount-mustconfirm' => "Rankout a rit kadarnaat e fell deoc'h diweredekaat ar gont-mañ.",
-'disableaccount-nosuchuser'  => 'N\'eus ket eus ar gont implijer "$1".',
-'disableaccount-success'     => 'Diweredekaat eo bet ar gont implijer "$1" da vat.',
-'disableaccount-logentry'    => 'en/he deus diweredekaet ar gont implijer [[$1]]',
 
 );

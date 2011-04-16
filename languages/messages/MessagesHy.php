@@ -1005,11 +1005,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-edit-reasonlist'   => 'Խմբագրել ջնջման պատճառների ցանկը',
 'revdelete-offender'          => 'Էջի տարբերակի հեղինակ՝',
 
-# Revision move
-'revmove-reasonfield'    => 'Պատճառ՝',
-'revmove-badparam-title' => 'Վատ պարամետրներ',
-'revmove-nullmove-title' => 'Վատ անվանում',
-
 # Merge log
 'revertmerge' => 'Անջատել',
 

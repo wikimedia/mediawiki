@@ -516,15 +516,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'ХэщӀыкӀыгъуэ зымыӀэ хэукъуэгъуэ PHP-функциэ mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Парол лъэшыгъэм и къэлъытэгъуэр: $1',
-'password-strength-bad'        => 'Ӏэй',
-'password-strength-mediocre'   => 'мыхъумыщӀэ',
-'password-strength-acceptable' => 'екӀущ',
-'password-strength-good'       => 'дэгъуэщ',
-'password-retype'              => 'Паролыр иджыри зэ итхэж',
-'password-retype-mismatch'     => 'Паролхэр зэтехуэкъым',
-
 # Password reset dialog
 'resetpass'                 => 'Пэролым и хъуэжын',
 'resetpass_announce'        => 'Парол щӀэхкӀэ системэм зыкъебгъэцӀыхуа, уи электронэ почтэм къыпхуэкӀуамкӀэ. Системэм зыкъегъэцӀыхуныр нэбгъэсын щхьэкӀэ, парол щӀэ тебгъувэн хуэй.',
@@ -899,10 +890,6 @@ $1",
 'suppressionlog'     => 'ГъэпшкӀугъэхэм я тхылъ',
 'suppressionlogtext' => 'ИщӀагъымкӀэ гъэлъэгъуауэ щыт яужырей ихыгъуэхэмрэ теубыдэгъуэхэмрэ я тхылъ, тхьэмадэхэм ямгъэлъэгъуа хъыбархэр хэтху.
 Еплъ [[Special:IPBlockList|IP-теубыдыгъуэхэм я тхылъ]], екӀуэкӀ теубыдэгъуэхэр лъагъун щхьэкӀэ.',
-
-# Revision move
-'moverevlogentry' => '$1-м хихри {{PLURAL:$3|$3 версиэр|$3 версиэхэр}} $2-м хигъува',
-'revisionmove'    => '«$1»-м къыхэгъкӀа версиэ',
 
 # Merge log
 'revertmerge' => 'Зыхэдзын',

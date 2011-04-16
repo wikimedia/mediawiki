@@ -836,15 +836,6 @@ Veuillez attendre avant d’essayer à nouveau.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 
-# JavaScript password checks
-'password-strength'            => 'Niveau de sécurité du mot de passe : $1',
-'password-strength-bad'        => 'faible',
-'password-strength-mediocre'   => 'médiocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'élevé',
-'password-retype'              => 'Confirmez le mot de passe',
-'password-retype-mismatch'     => 'Les mots de passe ne correspondent pas',
-
 # Password reset dialog
 'resetpass'                 => 'Changer de mot de passe',
 'resetpass_announce'        => 'Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
@@ -1221,24 +1212,6 @@ Vérifiez les journaux.',
 'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
 Voir la [[Special:IPBlockList|liste des adresses IP et utilisateurs bloqués]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
-# Revision move
-'moverevlogentry'              => 'a déplacé {{PLURAL:$3|une révision|$3 révisions}} de $1 à $2',
-'revisionmove'                 => 'Déplacer des révisions depuis « $1 »',
-'revmove-explain'              => 'Les révisions suivantes seront déplacés de $1 vers la page cible spécifiée. Si la cible n’existe pas, elle sera créée, sinon ces révisions seront fusionnées avec l’historique de la page.',
-'revmove-legend'               => 'Entrez la page cible et la raison',
-'revmove-submit'               => 'Déplacer les révisions vers la page sélectionnée',
-'revisionmoveselectedversions' => 'Déplacer les révisions sélectionnées',
-'revmove-reasonfield'          => 'Motif :',
-'revmove-titlefield'           => 'Page cible :',
-'revmove-badparam-title'       => 'Mauvais paramètres',
-'revmove-badparam'             => 'Votre requête contient des paramètres insuffisants ou illégaux. Veuillez cliquer sur « précédent » et essayez à nouveau.',
-'revmove-norevisions-title'    => 'Révision cible invalide',
-'revmove-norevisions'          => 'Vous n’avez pas spécifié un ou plusieurs révisions cibles pour effectuer cette fonctionnalité ou la révision spécifiée n’existe pas.',
-'revmove-nullmove-title'       => 'Mauvais titre',
-'revmove-nullmove'             => 'Les pages source et cible sont identiques. Veuillez cliquer sur « précédent » et entrez un nom de page différent de « $1 ».',
-'revmove-success-existing'     => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page existante [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page [[$3]] nouvellement créée.',
-
 # History merging
 'mergehistory'                     => 'Fusionner les historiques des pages',
 'mergehistory-header'              => 'Cette page vous permet de fusionner des versions de l’historique d’une page d’origine vers une nouvelle page.
@@ -1576,8 +1549,6 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
-'right-revisionmove'          => 'Déplacer des révisions',
-'right-disableaccount'        => 'Désactiver des comptes',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1620,7 +1591,6 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'action-userrights'           => 'modifier tous les droits d’utilisateur',
 'action-userrights-interwiki' => 'modifier les droits des utilisateurs sur d’autres wikis',
 'action-siteadmin'            => 'verrouiller ou déverrouiller la base de données',
-'action-revisionmove'         => 'déplacer des révisions',
 
 # Recent changes
 'nchanges'                          => '$1 modification{{PLURAL:$1||s}}',
@@ -3106,7 +3076,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-stripbytecounts'             => 'Taille en octets par bande',
 'exif-jpeginterchangeformat'       => 'Position du SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Taille en octets des données JPEG',
-'exif-transferfunction'            => 'Fonction de transfert',
 'exif-whitepoint'                  => 'Chromaticité du point blanc',
 'exif-primarychromaticities'       => 'Chromaticité des primaires',
 'exif-ycbcrcoefficients'           => 'Coefficients YCbCr',
@@ -3125,7 +3094,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-compressedbitsperpixel'      => 'Mode de compression de l’image',
 'exif-pixelydimension'             => 'Hauteur d’image valide',
 'exif-pixelxdimension'             => 'Largeur d’image valide',
-'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Commentaires de l’utilisateur',
 'exif-relatedsoundfile'            => 'Fichier audio associé',
 'exif-datetimeoriginal'            => 'Date de la prise originelle',
@@ -3139,7 +3107,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-exposureprogram'             => 'Programme d’exposition',
 'exif-spectralsensitivity'         => 'Sensibilité spectrale',
 'exif-isospeedratings'             => 'Sensibilité ISO',
-'exif-oecf'                        => 'Fonction de conversion opto-électronique',
 'exif-shutterspeedvalue'           => 'Vitesse d’obturation',
 'exif-aperturevalue'               => 'Ouverture',
 'exif-brightnessvalue'             => 'Luminance',
@@ -3152,7 +3119,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-focallength'                 => 'Longueur focale',
 'exif-subjectarea'                 => 'Emplacement du sujet',
 'exif-flashenergy'                 => 'Énergie du flash',
-'exif-spatialfrequencyresponse'    => 'Fréquence spatiale',
 'exif-focalplanexresolution'       => 'Résolution horizontale du plan focal',
 'exif-focalplaneyresolution'       => 'Résolution verticale du plan focal',
 'exif-focalplaneresolutionunit'    => 'Unité de résolution du plan focal',
@@ -3161,7 +3127,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sensingmethod'               => 'Type de capteur',
 'exif-filesource'                  => 'Source du fichier',
 'exif-scenetype'                   => 'Type de scène',
-'exif-cfapattern'                  => 'Motif CFA',
 'exif-customrendered'              => 'Rendu personnalisé',
 'exif-exposuremode'                => 'Mode d’exposition',
 'exif-whitebalance'                => 'Balance des blancs',
@@ -3681,18 +3646,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
-
-# Special:DisableAccount
-'disableaccount'             => 'Désactiver un compte utilisateur',
-'disableaccount-user'        => 'Nom d’utilisateur :',
-'disableaccount-reason'      => 'Motif :',
-'disableaccount-confirm'     => "Désactiver ce compte utilisateur.
-L’utilisateur ne pourra plus s’identifier, ni réinitialiser son mot de passe, ni recevoir des notifications par courrier électronique.
-Si l’utilisateur est actuellement identifié quelque part, il sera immédiatement déconnecté.
-''Notez que la désactivation d’un compte n’est pas réversible sans intervention d’un administrateur système.''",
-'disableaccount-mustconfirm' => 'Vous devez confirmer que vous souhaitez désactiver ce compte.',
-'disableaccount-nosuchuser'  => "Le compte utilisateur « $1 » n'existe pas.",
-'disableaccount-success'     => 'Le compte utilisateur « $1 » a été définitivement désactivé.',
-'disableaccount-logentry'    => 'a désactivé définitivement le compte utilisateur [[$1]]',
 
 );

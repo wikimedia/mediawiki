@@ -632,15 +632,6 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Pówoblicona gronidłowa wjelikosć: $1',
-'password-strength-bad'        => 'ŠPATNA',
-'password-strength-mediocre'   => 'wósrědna',
-'password-strength-acceptable' => 'akceptabelny',
-'password-strength-good'       => 'dobra',
-'password-retype'              => 'Šćitne gronidło wóspjetowaś:',
-'password-retype-mismatch'     => 'Gronidle se njemakatej',
-
 # Password reset dialog
 'resetpass'                 => 'Gronidło změniś',
 'resetpass_announce'        => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',
@@ -1005,24 +996,6 @@ Pšosym pśeglědaj protokole.',
 'suppressionlog'     => 'Protokol pódłocowanjow',
 'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo za administratorow schowane. Glědaj  [[Special:IPBlockList|lisćinu blokěrowanjow IP]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
-# Revision move
-'moverevlogentry'              => 'jo {{PLURAL:$3|jadnu wersiju|$3 wersiji|$3 wersije|$3 wersijow}} wót $1 do $2 pśesunuł',
-'revisionmove'                 => 'Wersije wót "$1" pśesunuś',
-'revmove-explain'              => 'Slědujuce wersije budu se wót $1 do pódanego boka pśesuwaś. Jolic cel njeeksistěrujo, buźo se napóraś. Howac budu se toś te wersije do historije boki zjadnośowaś.',
-'revmove-legend'               => 'Celowy bok a zespominanje nastajiś',
-'revmove-submit'               => 'Wersije k wubranemu bokoju pśesunuś',
-'revisionmoveselectedversions' => 'Wubrane wersije pśesunuś',
-'revmove-reasonfield'          => 'Pśicyna:',
-'revmove-titlefield'           => 'Celowy bok:',
-'revmove-badparam-title'       => 'Wopacne parametry',
-'revmove-badparam'             => 'Twójo napšašowanje wopśimujo njedowólone abo njedosegajuce parametry. Pšosym klikni na "slědk" a wopytaj hyšći raz.',
-'revmove-norevisions-title'    => 'Njepłaśiwa celowa wersija',
-'revmove-norevisions'          => 'Njejsy jadnu celowu wersiju abo wěcej celowych wersijow pódał, aby toś tu funkciju wuwjadł abo pódana wersija njeeksistěrujo.',
-'revmove-nullmove-title'       => 'Njepłaśiwy titel',
-'revmove-nullmove'             => 'Žrědłowy a celowy bok stej identeskejl. Pšosym klikni na "slědk" a zapódaj druge mě boka  ako "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k eksistěrujucemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
-'revmove-success-created'      => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k rowno napóranemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
-
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
 'mergehistory-header'              => 'Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.
@@ -1358,8 +1331,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
-'right-revisionmove'          => 'Wersije pśesunuś',
-'right-disableaccount'        => 'Konta znjemóžniś',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -1402,7 +1373,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'action-userrights'           => 'wše wužywarske pšawa wobźěłaś',
 'action-userrights-interwiki' => 'wužywarske pšawa wužywarjow w drugich wikijach wobźěłaś',
 'action-siteadmin'            => 'datowu banku zastajiś abo wótworiś',
-'action-revisionmove'         => 'wersije pśesunuś',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změnje|změny}}',
@@ -2825,7 +2795,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-stripbytecounts'             => 'Byty na kompriměrowanu rědku',
 'exif-jpeginterchangeformat'       => 'Offset k JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Byty JPEG-dataje',
-'exif-transferfunction'            => 'Funkcija pśestajenja',
 'exif-whitepoint'                  => 'kwalita barwy běłego dypka',
 'exif-primarychromaticities'       => 'Kwalita barwy primarnych barwow.',
 'exif-ycbcrcoefficients'           => 'YCbCr-koeficienty',
@@ -2844,7 +2813,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-compressedbitsperpixel'      => 'Kompriměrowane bity na piksel',
 'exif-pixelydimension'             => 'Dopušćona šyrokosć wobraza',
 'exif-pixelxdimension'             => 'Dopušćona wusokosć wobraza',
-'exif-makernote'                   => 'Noticy zgótowarja',
 'exif-usercomment'                 => 'Komentary wužywarja',
 'exif-relatedsoundfile'            => 'Pśisłušna zukowa dataja',
 'exif-datetimeoriginal'            => 'Datum a cas wutwórjenja datow',
@@ -2858,7 +2826,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-exposureprogram'             => 'Program wobswětlenja',
 'exif-spectralsensitivity'         => 'Spektralna cuśiwosć',
 'exif-isospeedratings'             => 'Cuśiwosć filma abo sensora (ISO)',
-'exif-oecf'                        => 'Optoelektroniski pśelicowański faktor (OECF)',
 'exif-shutterspeedvalue'           => 'Gódnota wobswětleńskego casa',
 'exif-aperturevalue'               => 'Blenda',
 'exif-brightnessvalue'             => 'Swětłosć',
@@ -2871,7 +2838,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-focallength'                 => 'Palna dalokosć',
 'exif-subjectarea'                 => 'wobłuk',
 'exif-flashenergy'                 => 'mócnosć błyska',
-'exif-spatialfrequencyresponse'    => 'Cuśiwosć rumoweje frekwence',
 'exif-focalplanexresolution'       => 'horicontalne optiske wótgranicowanje sensora',
 'exif-focalplaneyresolution'       => 'wertikalne optiske wótgranicowanje sensora',
 'exif-focalplaneresolutionunit'    => 'Jadnotka optiskego wótgranicowanja sensora',
@@ -2880,7 +2846,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-sensingmethod'               => 'wašnja měrjenja',
 'exif-filesource'                  => 'Žrědło dataje',
 'exif-scenetype'                   => 'Typ sceny',
-'exif-cfapattern'                  => 'Muster CFA',
 'exif-customrendered'              => 'Wót wužywarja definěrowane wobźěłanje wobraza',
 'exif-exposuremode'                => 'Modus wobswětlenja',
 'exif-whitebalance'                => 'Balansa běłosći',
@@ -3366,18 +3331,5 @@ Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Wersija $1 z pódpěru za połnotekstowe pytanje',
 'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
-
-# Special:DisableAccount
-'disableaccount'             => 'Wužywarske konto znjemóžniś',
-'disableaccount-user'        => 'Wužywarske mě:',
-'disableaccount-reason'      => 'Pśicyna:',
-'disableaccount-confirm'     => "Znjemóžni toś to wužywarske konto.
-Wužywaŕ njamóžo se pśizjawiś, jogo gronidło slědk stajiś abo e-mailowe powěźeńki dostaś.
-Jolic wužywaŕ jo tuchylu hynźi pśizjawjony, buźo se ned wótzjawiś.
-''Źiwaj na to, až znjemóžnjanje konto njejo rewersibelne bźez zapśimowanja systemowego administratora.''",
-'disableaccount-mustconfirm' => 'Musyš wobkšuśiś, až coš toś to konto znjemóžniś.',
-'disableaccount-nosuchuser'  => 'Wužywaŕ konto "$1" njeeksistěrujo.',
-'disableaccount-success'     => 'Wužywarske konto "$1" jo se na pśecej znjemóžniło.',
-'disableaccount-logentry'    => 'jo wužywarske konto [[$1]] na pśecej znjemóžnił',
 
 );

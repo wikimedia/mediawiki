@@ -1446,7 +1446,6 @@ est raptiti. Les ôtes seront catchîs.
 'exif-copyright'                 => 'Ditinteu des abondroets',
 'exif-exifversion'               => "Modêye d' exif",
 'exif-colorspace'                => 'Espåce di coleurs',
-'exif-makernote'                 => 'Notes do fabricant',
 'exif-usercomment'               => "Comintaires di l' uzeu",
 'exif-datetimeoriginal'          => 'Date ey eure ki les dnêyes ont stî fwaites',
 'exif-datetimedigitized'         => 'Date ey eure do scanaedje',

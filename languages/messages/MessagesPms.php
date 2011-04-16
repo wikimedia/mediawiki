@@ -533,15 +533,6 @@ Për piasì speta prima ëd prové torna.",
 # E-mail sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Fòrsa stimà dla ciav: $1',
-'password-strength-bad'        => 'GRAMA',
-'password-strength-mediocre'   => 'mediòcr',
-'password-strength-acceptable' => 'a peul andé',
-'password-strength-good'       => 'bon-a',
-'password-retype'              => 'Bat torna la ciav ambelessì',
-'password-retype-mismatch'     => 'Le ciav a son pa mideme',
-
 # Password reset dialog
 'resetpass'                 => 'Cambia la ciav',
 'resetpass_announce'        => "A l'é rintrà ant ël sistema con na ciav provisòria mandà via për pòsta eletrònica. Për podèj finì la procedura a l'ha da butesse na ciav neuva ambelessì:",
@@ -923,25 +914,6 @@ It peule pa vëddlo.',
 'suppressionlogtext' => "Sota a-i é na lista djë scancelament e dij blocagi che a rësguardo contnù stërmà a j'aministrator.
 Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
 
-# Revision move
-'moverevlogentry'              => "a l'ha tramudà {{PLURAL:$3|narevision|$3 revision}} da $1 a $2",
-'revisionmove'                 => 'Tramudé dle revision da «$1»',
-'revmove-explain'              => 'Le revision sì-dapress a saran tramudà da $1 a la pàgina final spessificà. Se la pàgina final a esist nen, a sarà creà. Dësnò, coste revision a saran butà ansema a la stòria dla pàgina.',
-'revmove-legend'               => 'Anserì la pàgina oget e ël resumé',
-'revmove-submit'               => 'Tramudé le revision vers la pàgina selessionà',
-'revisionmoveselectedversions' => 'Tramudé le revision selessionà',
-'revmove-reasonfield'          => 'Rason:',
-'revmove-titlefield'           => 'Pàgina bërsaj:',
-'revmove-badparam-title'       => 'Paràmeter nen bon',
-'revmove-badparam'             => "Soa arcesta a conten ëd paràmeter nen bon o ch'a basto pa. Për piasì, ch'a sgnaca «andaré» e ch'a preuva torna.",
-'revmove-norevisions-title'    => 'Revision bërsaj nen vàlida',
-'revmove-norevisions'          => "A l'ha pa spessificà un-a o vàire revision bërsaj për dovré costa fonsionalità opura la revision ëspessificà a esist nen.",
-'revmove-nullmove-title'       => 'Tìtol nen bon',
-'revmove-nullmove'             => "La pàgina bërsaj a peul pa esse la pàgina sorgiss.
-Ch'a torna andré a la pàgina precedenta e ch'a serna un nòm diferent da «$1».",
-'revmove-success-existing'     => "{{PLURAL:$1|Na revision da [[$2]] a l'é stàita|$1 revision da [[$2]] a son ëstàite}} tramudà a la pàgina esistenta [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|Na revision da [[$2]] a l'é stàita|$1 revision da [[$2]] a son ëstàite}} tramudà a la pàgina [[$3]] pen-a creà.",
-
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
 'mergehistory-header'              => "Sta pàgina-sì a lassa fene buté le revision ëd na pàgina ansema a cole 'd n'àutra.
@@ -1283,8 +1255,6 @@ Costa anformassion a sarà pùblica.",
 'right-reset-passwords'       => "Modifiché le ciav d'àutri utent",
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
-'right-revisionmove'          => 'Tramudé le revision',
-'right-disableaccount'        => 'Disabilité dij cont',
 
 # User rights log
 'rightslog'      => "Argistr dij drit ëd j'utent",
@@ -1327,7 +1297,6 @@ Costa anformassion a sarà pùblica.",
 'action-userrights'           => "modifiché tùit ij drit dj'utent",
 'action-userrights-interwiki' => "modifiché ij drit ëd j'utent ansima a d'àutre wiki",
 'action-siteadmin'            => 'bloché o dësbloché la base ëd dàit',
-'action-revisionmove'         => 'tramudé dle revision',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
@@ -2790,7 +2759,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-stripbytecounts'             => 'Bytes për banda compressa',
 'exif-jpeginterchangeformat'       => 'Diferensa posissional anvers al SOI dël JPEG',
 'exif-jpeginterchangeformatlength' => 'Byte ëd dat an formà JPEG',
-'exif-transferfunction'            => 'Funsion ëd trasferiment',
 'exif-whitepoint'                  => 'Pont cromàtich dël bianch',
 'exif-primarychromaticities'       => 'Coordinà cromàtiche dij color primari',
 'exif-ycbcrcoefficients'           => 'Coeficent dla matriss ëd trasformassion dlë spassi color',
@@ -2809,7 +2777,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-compressedbitsperpixel'      => 'Sistema ëd compression dle figure',
 'exif-pixelydimension'             => 'Larghëssa vàlida dla figura',
 'exif-pixelxdimension'             => 'Autëssa vàlida dla figura',
-'exif-makernote'                   => 'Nòte dël fabricant',
 'exif-usercomment'                 => 'Nòte lìbere',
 'exif-relatedsoundfile'            => 'Archivi audio colegà',
 'exif-datetimeoriginal'            => 'Data e ora dla generassion dij dat',
@@ -2823,7 +2790,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-exposureprogram'             => "Programa d'esposission",
 'exif-spectralsensitivity'         => 'Sensibilità dë spetro',
 'exif-isospeedratings'             => 'Sensibilità ISO',
-'exif-oecf'                        => 'Fator ëd conversion optoeletrònica',
 'exif-shutterspeedvalue'           => 'Temp dë scat',
 'exif-aperturevalue'               => 'Diaframa',
 'exif-brightnessvalue'             => 'Luminosità',
@@ -2836,7 +2802,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-focallength'                 => 'Lunghëssa focal dle lent',
 'exif-subjectarea'                 => "Spassi d'anquadratura dël soget",
 'exif-flashenergy'                 => 'Potensa dël flash',
-'exif-spatialfrequencyresponse'    => 'Arspòsta an frequensa spassial',
 'exif-focalplanexresolution'       => 'Resolussion dla coordinà X ant sël pian dla focal',
 'exif-focalplaneyresolution'       => 'Resolussion dla coordinà Y ant sël pian dla focal',
 'exif-focalplaneresolutionunit'    => "Unità d'amzura për ël pian dla focal",
@@ -2845,7 +2810,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-sensingmethod'               => 'Metod ëd campionament',
 'exif-filesource'                  => "Sorgiss dl'archivi",
 'exif-scenetype'                   => "Sòrt d'anquadratura",
-'exif-cfapattern'                  => 'Schema CFA',
 'exif-customrendered'              => 'Process dla figura particolar',
 'exif-exposuremode'                => "Modalità dl'esposission",
 'exif-whitebalance'                => 'Balansa dël bianch',
@@ -3365,18 +3329,5 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
-
-# Special:DisableAccount
-'disableaccount'             => 'Disabìlita un cont utent',
-'disableaccount-user'        => 'Stranòm:',
-'disableaccount-reason'      => 'Rason:',
-'disableaccount-confirm'     => "Disabilité sto cont utent.
-L'utent a podrà pi intré ant ël sistema, amposté torna soa ciav, o arsèive notìfiche për pòsta eletrònica.
-Se l'utent a l'é al moment intrà da chèich part, a sarà sùbit barà fòra.
-''Ch'a nòta che disabiité un cont a l'é pa reversìbil senta l'antërvension ëd n'aministrator ëd sistema.''",
-'disableaccount-mustconfirm' => "A dev confirmé ch'a veul disabilité ës cont.",
-'disableaccount-nosuchuser'  => 'Ël cont utent "$1" a esist pa.',
-'disableaccount-success'     => 'Ël cont utent "$1" a l\'é stàit disabilità përmanentement.',
-'disableaccount-logentry'    => 'disabilità përmanentement ël cont utent [[$1]]',
 
 );

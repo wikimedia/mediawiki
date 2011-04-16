@@ -526,15 +526,6 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 # E-mail sending
 'php-mail-error-unknown' => 'Errur nunenconuschenta en la funcziun mail() da PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Fermezza stimada dal pled-clav: $1',
-'password-strength-bad'        => 'DEBEL',
-'password-strength-mediocre'   => 'mediocher',
-'password-strength-acceptable' => 'acceptabel',
-'password-strength-good'       => 'bun',
-'password-retype'              => 'Repeter qua il pled-clav',
-'password-retype-mismatch'     => 'Ils pleds-clav na correspundan betg',
-
 # Password reset dialog
 'resetpass'                 => 'Midar il pled-clav',
 'resetpass_announce'        => "Ti ès t'annunzià cun in pled-clav temporar che ti has retschavì per e-mail. 
@@ -854,10 +845,6 @@ Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl
 'revdelete-edit-reasonlist'   => 'Modifitgar ils motivs per stizzar',
 'revdelete-offender'          => 'Autur da la versiun:',
 
-# Revision move
-'revisionmoveselectedversions' => 'Spustar las versiuns selecziunadas',
-'revmove-reasonfield'          => 'Motiv:',
-
 # History merging
 'mergehistory'                     => 'Unir la cronologia da paginas',
 'mergehistory-header'              => "Cun questa pagina speziala pos ti integrar versiuns da la cronologia d'ina pagina originala en ina pagina pli nova. 
@@ -1159,8 +1146,6 @@ Questa infurmaziun è publica.',
 'right-siteadmin'            => 'Bloccar u debloccar la banca da datas',
 'right-reset-passwords'      => "Redefinir pleds-clav d'auters utilisaders",
 'right-sendemail'            => 'Trametter e-mails ad auters utilisaders',
-'right-revisionmove'         => 'Spustar versiuns',
-'right-disableaccount'       => 'Deactivar contos',
 
 # User rights log
 'rightslog'      => "Log dals dretgs d'utilisader",
@@ -1203,7 +1188,6 @@ Questa infurmaziun è publica.',
 'action-userrights'           => 'modifitgar ils dretgs dals utilisaders',
 'action-userrights-interwiki' => "modifitgar ils dretgs d'utilisaders sin autras wikis",
 'action-siteadmin'            => 'bloccar u debloccar la banca da datas',
-'action-revisionmove'         => 'spustar versiuns',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|midada|midadas}}',
@@ -2323,7 +2307,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-stripbytecounts'             => 'Bytes per strivla cumprimida',
 'exif-jpeginterchangeformat'       => 'Offset al JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes datas da JPEG',
-'exif-transferfunction'            => 'Funcziun da transfer',
 'exif-datetime'                    => 'Data da modificaziun',
 'exif-imagedescription'            => 'Titel dal maletg',
 'exif-make'                        => "Fabricant da l'apparat",
@@ -2338,7 +2321,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-compressedbitsperpixel'      => 'Modus da cumprimer',
 'exif-pixelydimension'             => 'Ladezza dal maletg valida',
 'exif-pixelxdimension'             => 'Autezza dal maletg valida',
-'exif-makernote'                   => 'Notiza dal fabricant',
 'exif-usercomment'                 => "Commentari da l'utilisader",
 'exif-relatedsoundfile'            => "Datoteca d'audio appartegnenta",
 'exif-datetimeoriginal'            => 'Data e temp da la generaziun',
@@ -2349,7 +2331,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-exposuretime'                => "Temp d'exposiziun",
 'exif-exposuretime-format'         => '$1 secundas ($2)',
 'exif-exposureprogram'             => "Program d'exposiziun",
-'exif-oecf'                        => 'Factur da conversiun optoelectronic',
 'exif-gpsversionid'                => 'Versiun dal tag da GPS',
 'exif-gpslatituderef'              => 'Latituda/Grad da ladezza nord u sid',
 'exif-gpslatitude'                 => 'Latituda/Ladezza geografica',
@@ -2689,18 +2670,5 @@ Questa pagina ha actualmain difficultads tecnicas.',
 # SQLite database support
 'sqlite-has-fts' => '$1 cun sustegn per la retschertga da text integrala',
 'sqlite-no-fts'  => '$1 senza sustegn per la retschertga da text integrala',
-
-# Special:DisableAccount
-'disableaccount'             => "Deactivar in conto d'utilisader",
-'disableaccount-user'        => "Num d'utilisader:",
-'disableaccount-reason'      => 'Motiv:',
-'disableaccount-confirm'     => "Deactivar quest conto d'utilisader.
-Quest utilisader na vegn betg pli pudair s'annunziar, midar il pled-clav u retschaiver e-mails d'avis.
-Sche l'utilisader è actualmain annunzià vegn el immediatamain sortì dal sistem.
-''Resguarda che la reactivaziun d'in conto d'utilisader po be vegnir fatga d'in administratur.''",
-'disableaccount-mustconfirm' => 'Ti stos confermar che ti vuls deactivar quest conto.',
-'disableaccount-nosuchuser'  => 'Il conto d\'utilisader "$1" n\'exista betg.',
-'disableaccount-success'     => 'Il conto d\'utilisader "$1" è vegnì deactivà premanentamain.',
-'disableaccount-logentry'    => "ha deactivà permanentamain il conto d'utilisader [[$1]]",
 
 );

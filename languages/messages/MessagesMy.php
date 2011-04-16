@@ -417,15 +417,6 @@ $messages = array(
 'login-abort-generic'      => 'Login ဝင်ခြင်း မအောင်မြင်ပါ - ထွက်သွားပြီ',
 'loginlanguagelabel'       => 'ဘာသာ: $1',
 
-# JavaScript password checks
-'password-strength'            => 'စကားဝှက်၏ ခန့်မှန်းခြေ လုံခြံုမှု - $1',
-'password-strength-bad'        => 'မကောင်း',
-'password-strength-mediocre'   => 'ဆိုးရွား',
-'password-strength-acceptable' => 'လက်ခံနိုင်',
-'password-strength-good'       => 'ကောင်း၏',
-'password-retype'              => 'ဤနေရာတွင် စကားဝှက်ပြန်ရိုက်ရန်',
-'password-retype-mismatch'     => 'စကားဝှက်နှစ်ခု  မကိုက်ညီပါ',
-
 # Password reset dialog
 'resetpass'                 => 'စကားဝှက်ပြောင်းရန်',
 'resetpass_announce'        => 'သင်သည် ယာယီ စကားဝှက်ဖြင့် ဝင်ရောက်ခြင်းဖြစ်သည်။
@@ -595,16 +586,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-reasonotherlist'  => 'အခြား အကြောင်းပြချက်',
 'revdelete-edit-reasonlist'  => 'ဖျက်ပစ်လိုက်ရသော အကြောင်းရင်းများကို တည်းဖြတ်ရန်',
 'revdelete-offender'         => 'မူရေးသားသူ -',
-
-# Revision move
-'revisionmove'                 => '"$1" မှ တည်းဖြတ်မူများကို ရွှေ့ရန်',
-'revmove-legend'               => 'ရည်ရွယ်ရာစာမျက်နှာနှင့် အကျဉ်းချုပ်ကို သတ်မှတ်ရန်',
-'revmove-submit'               => 'မူများကို ရွေးချယ်ထားသောစာမျက်နှာသို့ ရွှေ့ရန်',
-'revisionmoveselectedversions' => 'ရွေးချယ်ထားသောမူများကို ရွှေ့ရန်',
-'revmove-reasonfield'          => 'အ​ကြောင်း​ပြ​ချက် -',
-'revmove-titlefield'           => 'ရည်ရွယ်ရာစာမျက်နှာ -',
-'revmove-norevisions-title'    => 'တရားမဝင်သော မူအမည်',
-'revmove-nullmove-title'       => 'ညံ့ဖျင်းသော ခေါင်းစဉ်',
 
 # History merging
 'mergehistory'                     => 'စာမျက်နှာရာဇဝင်များကို ပေါင်းရန်',
@@ -882,8 +863,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'right-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
 'right-reset-passwords'      => 'အခြားအသုံးပြုသူများ၏ စကားဝှက်များကို ပြန်သတ်မှတ်ရန်',
 'right-sendemail'            => 'အခြားအသုံးပြုသူများကို အီးမေးပို့ရန်',
-'right-revisionmove'         => 'မူများကို ရွှေ့ရန်',
-'right-disableaccount'       => 'အကောင့်များပိတ်ရန်',
 
 # User rights log
 'rightslog'      => 'အသုံးပြုသူ၏ အခွင့်အရေးများ မှတ်တမ်း',
@@ -919,7 +898,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'action-mergehistory'         => 'ဤစာမျက်နှာ၏ရာဇဝင်ကို ပေါင်းရန်',
 'action-userrights'           => 'အသုံးပြုသူ၏အခွင့်အရေးများအားလုံးကို တည်းဖြတ်ရန်',
 'action-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
-'action-revisionmove'         => 'မူများကို ရွှေ့ရန်',
 
 # Recent changes
 'nchanges'                          => 'ပြောင်းလဲချက် $1 {{PLURAL:$1|ခု|ခု}}',
@@ -1722,7 +1700,6 @@ HTML tags ကို စစ်ဆေးပါ။',
 'exif-copyright'           => 'မူပိုင်ခွင့်ပိုင်ရှင်',
 'exif-pixelydimension'     => 'တရားဝင်ပုံအကျယ်',
 'exif-pixelxdimension'     => 'တရားဝင် ပုံအမြင့်',
-'exif-makernote'           => 'ထုတ်လုပ်သူမှတ်ချက်များ',
 'exif-usercomment'         => 'အသုံးပြုသူ မှတ်ချက်များ',
 'exif-relatedsoundfile'    => 'ဆက်နွယ်သော အသံဖိုင်',
 'exif-datetimeoriginal'    => 'ဒေတာဖန်တီးခဲ့သော နေ့စွဲနှင့် အချိန်',
@@ -1895,14 +1872,5 @@ HTML tags ကို စစ်ဆေးပါ။',
 'htmlform-submit'              => 'ထည့်သွင်းရန်',
 'htmlform-reset'               => 'ပြောင်းလဲထားသည်များ မလုပ်တော့ရန်',
 'htmlform-selectorother-other' => 'အခြား',
-
-# Special:DisableAccount
-'disableaccount'             => 'အသုံးပြုသူအကောင့်တစ်ခုကို ပိတ်လိုက်သည်',
-'disableaccount-user'        => 'အသုံးပြုသူအမည် -',
-'disableaccount-reason'      => 'အကြောင်းပြချက် -',
-'disableaccount-mustconfirm' => 'ဤအကောင့်ကို ပိတ်လိုကြောင်း အတည်ပြုရမည် ဖြစ်သည်။',
-'disableaccount-nosuchuser'  => 'အသုံးပြုသူအကောင့် "$1" မတည်ရှိပါ။',
-'disableaccount-success'     => 'အသုံးပြုသူအကောင့် "$1" ကို ရာသက်ပန် ပိတ်ထားလိုက်သည်။',
-'disableaccount-logentry'    => 'အသုံးပြုသူအကောင့် [[$1]] ကို ရာသက်ပန် ပိတ်ပြီး',
 
 );

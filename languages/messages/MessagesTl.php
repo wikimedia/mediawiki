@@ -640,15 +640,6 @@ Maghintay po muna bago subukan uli.',
 # E-mail sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
 
-# JavaScript password checks
-'password-strength'            => 'Tinatayang lakas ng hudyat: $1',
-'password-strength-bad'        => 'MASAMA',
-'password-strength-mediocre'   => 'pangkaraniwan',
-'password-strength-acceptable' => 'katanggap-tanggap',
-'password-strength-good'       => 'mabuti',
-'password-retype'              => 'Muling makinilyahin ang hudyat dito',
-'password-retype-mismatch'     => 'Hindi nagtutugma ang mga hudyat',
-
 # Password reset dialog
 'resetpass'                 => 'Palitan ang hudyat',
 'resetpass_announce'        => 'Lumagda ka sa pamamagitan ng isang pansamantalang ini-e-liham na kodigo.
@@ -1046,24 +1037,6 @@ Pakitingnan ang mga talaan.',
 'suppressionlogtext' => "Nasa ibaba ang isang tala ng mga pagbura at mga pagharang/paghadlang na kinakasangkutan ng nilalamang nakatago sa mga ''sysop''.
 Tingnan ang [[Special:IPBlockList|talaan ng hinarang na/hinadlangang IP]] para sa isang talaan ng mga pangkasalukuyan at gumaganang mga pinagbawalan at mga pagharang/paghadlang.",
 
-# Revision move
-'moverevlogentry'              => 'inilipat {{PLURAL:$3|isang pagbabago|$3 mga pagbabago}} mula $1 patungo sa $2',
-'revisionmove'                 => 'Ilipat ang mga pagbabago mula sa "$1"',
-'revmove-explain'              => 'Ang sumusuno na mga pagbabago ay ililipat mula sa $1 papunta sa tinukoy na puntiryang pahina.  Kapag hindi umiiral ang puntirya, lilikhain ito.  Kung hindi, ang mga pagbabagong ito ay isasanib sa kasaysayan ng pahina.',
-'revmove-legend'               => 'Itakda ang puntiryang pahina at buod',
-'revmove-submit'               => 'Ilipat ang mga pagbabago papunta sa napiling pahina',
-'revisionmoveselectedversions' => 'Ilipat ang napiling mga pagbabago',
-'revmove-reasonfield'          => 'Dahilan:',
-'revmove-titlefield'           => 'Puntiryang pahina:',
-'revmove-badparam-title'       => 'Masamang mga parametro',
-'revmove-badparam'             => 'Naglalaman ang kahilingan mo ng ilegal o hindi sapat na mga parametro.  Pakipindot ang "bumalik" at subukan uli.',
-'revmove-norevisions-title'    => 'Hindi tanggap na puntiryang pagbabago',
-'revmove-norevisions'          => 'Hindi ka tumukoy ng isa o higit pang puntiryang mga pagbabago upang magampanan ang tungkuling ito o hindi umiiral ang tinukoy na pagbabago.',
-'revmove-nullmove-title'       => 'Masamang pamagat',
-'revmove-nullmove'             => 'Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} inilipat papunta sa umiiral na pahinang [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} nailipat papunta sa bagong-likhang pahinang [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Pagsanibin mga pahina ng kasaysayan',
 'mergehistory-header'              => 'Pinapahintuluan ka ng pahinang ito upang mapagsanib ang mga kasaysayan ng isang pinagmulang pahina patungo sa isang mas bagong pahina.
@@ -1401,8 +1374,6 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'right-reset-passwords'       => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
-'right-revisionmove'          => 'Ilipat ang mga pagbabago',
-'right-disableaccount'        => 'Huwag paganahin ang mga akawnt',
 
 # User rights log
 'rightslog'      => 'Tala ng mga karapatan ng tagagamit',
@@ -1445,7 +1416,6 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'action-userrights'           => 'baguhin ang lahat ng karapatan ng tagagamit',
 'action-userrights-interwiki' => 'baguhin ang mga karapatan ng tagagamit na nasa ibang mga wiki',
 'action-siteadmin'            => 'ikandado o tanggalin ang pagkakakandado ng kalipunan ng dato',
-'action-revisionmove'         => 'ilipat ang mga pagbabago',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
@@ -2916,7 +2886,6 @@ Nakatakdang itago ang iba pa.
 'exif-stripbytecounts'             => 'Mga byte ng bawat siniksik na piraso',
 'exif-jpeginterchangeformat'       => "Bawiin at ibalanse (i-''offset'') patungo sa JPEG SOI",
 'exif-jpeginterchangeformatlength' => 'Mga byte ng datong JPEG',
-'exif-transferfunction'            => 'Tungkuling panglipat',
 'exif-whitepoint'                  => 'Kadalisayan (kromatisidad) ng punto o hangganan ng kaputian',
 'exif-primarychromaticities'       => 'Mga kadalisayan (kromatisidad) ng mga pangunahing kulay (mga primarya)',
 'exif-ycbcrcoefficients'           => 'Mga koepisyente (katuwang na bilang) ng matris na pambago ng espasyo ng kulay',
@@ -2935,7 +2904,6 @@ Nakatakdang itago ang iba pa.
 'exif-compressedbitsperpixel'      => 'Modalidad (paraan) ng pagsisiksik ng larawan',
 'exif-pixelydimension'             => 'Tanggap na lapad ng larawan',
 'exif-pixelxdimension'             => 'Tanggap na taas ng larawan',
-'exif-makernote'                   => 'Mga tala mula sa kumpanyang tagagawa',
 'exif-usercomment'                 => 'Mga kumento ng tagagamit',
 'exif-relatedsoundfile'            => 'Kaugnay na talaksang nadidinig (audio)',
 'exif-datetimeoriginal'            => 'Petsa at oras ng paglikha ng mga dato',
@@ -2949,7 +2917,6 @@ Nakatakdang itago ang iba pa.
 'exif-exposureprogram'             => 'Programa ng paglalantad',
 'exif-spectralsensitivity'         => 'Sensitibidad sa ispektrum',
 'exif-isospeedratings'             => 'Grado ng bilis ng ISO',
-'exif-oecf'                        => 'Paktora ng optoelektronikong pagpapalit',
 'exif-shutterspeedvalue'           => "Bilis ng pansara (''shutter'')",
 'exif-aperturevalue'               => 'Apertura (butas na daanan ng liwanag)',
 'exif-brightnessvalue'             => 'Kaningningan',
@@ -2962,7 +2929,6 @@ Nakatakdang itago ang iba pa.
 'exif-focallength'                 => 'Haba ng lenteng pampokus (pantuon)',
 'exif-subjectarea'                 => 'Saklaw na paksa',
 'exif-flashenergy'                 => "Lakas ng kisap (''flash'')",
-'exif-spatialfrequencyresponse'    => 'Tugon ng kalimitan na pangespasyo',
 'exif-focalplanexresolution'       => 'Resolusyong X ng kalatagan o lapyang pampokus',
 'exif-focalplaneyresolution'       => 'Resolusyong Y ng kalatagan o lapyang pampokus',
 'exif-focalplaneresolutionunit'    => 'Yunit ng resolusyon (kalinawan) ng kalatagan o lapyang pampokus',
@@ -2971,7 +2937,6 @@ Nakatakdang itago ang iba pa.
 'exif-sensingmethod'               => 'Paraang pandama',
 'exif-filesource'                  => 'Pinagmulang talaksan',
 'exif-scenetype'                   => 'Uri ng tagpuan',
-'exif-cfapattern'                  => 'Gawi ng CFA',
 'exif-customrendered'              => 'Pagpoproseso ng pinasadyang larawan',
 'exif-exposuremode'                => 'Modalidad ng paglalantad',
 'exif-whitebalance'                => 'Balanse ng Kaputian',
@@ -3502,18 +3467,5 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 na may suportang paghahanap ng buong teksto',
 'sqlite-no-fts'  => '$1 na walang suporta ng paghahanap ng buong teksto',
-
-# Special:DisableAccount
-'disableaccount'             => 'Huwag paganahin ang akawnt ng tagagamit',
-'disableaccount-user'        => 'Pangalan ng tagagamit:',
-'disableaccount-reason'      => 'Dahilan:',
-'disableaccount-confirm'     => "Huwag paganahin ang akawnt ng tagagamit na ito.
-Ang tagagamit ay hindi na makalalagdang papasok, makapagpapalit ng hudyat, o makatatanggap ng mga pabatid sa e-liham.
-Kung ang tagagamit ay kasalukuyang nakalagdang papasok saan man, kaagad silang ilalagdang palabas.
-''Tandaan na maibabalik lamang sa dati ang hindi pagpapagana ng isang akawnt sa pamamagitan ng tulong ng tagapangasiwa.\"",
-'disableaccount-mustconfirm' => 'Dapat mong tiyakin na nais mong huwag paganahin ang akawnt na ito.',
-'disableaccount-nosuchuser'  => 'Hindi umiiral ang akawnt ng tagagamit na "$1".',
-'disableaccount-success'     => 'Pamalagiang hindi na pinagagana ang akawnt ng tagagamit na "$1".',
-'disableaccount-logentry'    => 'pamalagiang hindi na pinagagana ang akawnt ng tagagamit na [[$1]]',
 
 );

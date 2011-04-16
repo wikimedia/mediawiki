@@ -998,9 +998,6 @@ $1",
 'suppressionlogtext' => 'لە خوارەوە لیستێک لە سڕاوە و بەرگری‌کراوانەی وا ناوەڕۆکیان لە چاو بەڕێوبەران داشاردراوە دەبینیت.
 بۆ دیتنی ئەو بەرگریانەی ئێستا لە کاردایە چاو لە [[Special:IPBlockList|لیستی بەرگری ئای‌پی]] بکە.',
 
-# Revision move
-'revmove-reasonfield' => 'هۆکار:',
-
 # History merging
 'mergehistory'                     => 'یەک‌خستنی مێژووەکانی لاپەڕە',
 'mergehistory-header'              => 'ئەم لاپەڕە دەسەڵاتی ئەوەت پێ‌دەدا پێداچوونەوەکانی مێژووی لاپەڕەیەکی مەبەستت بخەیتە سەر لاپەڕەیەکی نوێ.
@@ -3095,10 +3092,5 @@ $5
 'htmlform-submit'              => 'ناردن',
 'htmlform-reset'               => 'پووچەڵکردنەوەی دەستکارییەکان',
 'htmlform-selectorother-other' => 'دیکە',
-
-# Special:DisableAccount
-'disableaccount-user'     => 'ناوی بەکارهێنەری:',
-'disableaccount-reason'   => 'هۆکار:',
-'disableaccount-logentry' => 'بۆ ھەمیشە ھەژماری بەکارھێنەری [[$1]] لەکارخست',
 
 );

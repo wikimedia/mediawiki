@@ -521,15 +521,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP-ның mail() функцияһында билдәһеҙ хата',
 
-# JavaScript password checks
-'password-strength'            => 'Паролдең ныҡлығы дәрәжәһе: $1',
-'password-strength-bad'        => 'НАСАР',
-'password-strength-mediocre'   => 'уртаса',
-'password-strength-acceptable' => 'ярарлыҡ',
-'password-strength-good'       => 'яҡшы',
-'password-retype'              => 'Паролде ошонда ҡабаттан яҙығыҙ',
-'password-retype-mismatch'     => 'Паролдәр тап килмәй',
-
 # Password reset dialog
 'resetpass'                 => 'Паролде үҙгәртеү',
 'resetpass_announce'        => 'Һеҙ системала электрон почта аша алынған ваҡытлыса пароль менән танылдығыҙ. Системаға кереүҙә тамалау өсөн яңы пароль булдырығыҙ.',
@@ -910,25 +901,6 @@ $1",
 'suppressionlogtext' => 'Түбәндә, хәкимдәрҙән йәшерелгән материалдар булған һуңғы юйыуҙыр һәм блоклауҙар исемлеге килтерелгән.
 Ағымдағы блоклауҙарҙы күрер өсөн [[Special:IPBlockList|IP-блоклауҙар исемлеген]] ҡарағыҙ.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|бер версияны|$3 версияны}} $1 битенән $2 битенә күсергән',
-'revisionmove'                 => 'Версияларҙы «$1» битенән күсереү',
-'revmove-explain'              => 'Түбәндәге версиялар $1 битенән күрһәтелгән биткә күсереләсәк. Әгәр күрһәтелгән бит булмаһа, ул булдырыласаҡ. Юҡһа, был версиялар биттең үҙгәртеү тарихына өҫтәләсәк.',
-'revmove-legend'               => 'Кәрәкле битте һам тасуирламаны билдәләү',
-'revmove-submit'               => 'Версияларҙы һайланған биткә күсерергә',
-'revisionmoveselectedversions' => 'Һайланған версияларҙы күсерергә',
-'revmove-reasonfield'          => 'Сәбәп:',
-'revmove-titlefield'           => 'Кәрәкле бит:',
-'revmove-badparam-title'       => 'Параметрҙар дөрөҫ түгел',
-'revmove-badparam'             => 'Һеҙҙең һорауығыҙ дөрөҫ булмаған параметрҙарҙы үҙ эсенә ала, йәки ҡайһы бер параметрҙар етмәй. Алдағы биткә кире ҡайтығыҙ һәм яңынан ҡабатлап ҡарағыҙ.',
-'revmove-norevisions-title'    => 'Кәрәкле версия дөрөҫ яҙылмаған',
-'revmove-norevisions'          => 'Был эште башҡарыр өсөн һеҙ бер йә бер нисә кәрәкле версияны күрһәтмәгәнһегеҙ, йәки күрһәтелгән версиялар юҡ.',
-'revmove-nullmove-title'       => 'Ярамаған исем',
-'revmove-nullmove'             => 'Кәрәкле бит һәм сығанаҡ бит тап килә.
-Алдағы биткә кире ҡайтығыҙ һәм «$1» бите булмаған башҡа битте һайлағыҙ.',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] битенең $1 версияһы}} [[$3]] битенә күсерелде.',
-'revmove-success-created'      => '{{PLURAL:$1| [[$2]] битенең $1 версияһы}} яңы булдырылған [[$3]] битенә күсерелде.',
-
 # History merging
 'mergehistory'                     => 'Үҙгәртеүҙәр тарихын берләштерергә',
 'mergehistory-header'              => 'Был бит, ике биттең үҙгәртеүҙәр тарихын берләштерергә мөмкинселек бирә.
@@ -1267,8 +1239,6 @@ $1",
 'right-reset-passwords'       => 'Башҡа ҡатнашыусыларҙың паролен яңыртыу',
 'right-override-export-depth' => '5-се тәрәнлеккә тиклем бәйле биттәре менән бергә биттәрҙе сығарыу',
 'right-sendemail'             => 'Башҡа ҡатнашыусыларға электрон почта аша хат ебәреү',
-'right-revisionmove'          => 'Биттәрҙең өлгөләрен күсереү',
-'right-disableaccount'        => 'Иҫәп яҙыуҙарын күрһәтмәҫкә',
 
 # User rights log
 'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',
@@ -1311,7 +1281,6 @@ $1",
 'action-userrights'           => 'Ҡатнашыусының барлыҡ хоҡуҡтарын үҙгәртеү',
 'action-userrights-interwiki' => 'Ҡатнашыусыларҙың башҡа Викиларҙағы хоҡуҡтарын үҙгәртеү',
 'action-siteadmin'            => 'Мәғлүмәттәр базаһын асыу һәм ябыу',
-'action-revisionmove'         => 'Биттәрҙең өлгөләрен күсереү',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
@@ -2734,7 +2703,6 @@ $1',
 'exif-stripbytecounts'             => 'Ҡыҫылған бүлектә байттар һаны',
 'exif-jpeginterchangeformat'       => 'JPEG SOI бүлегенең башланған урыны',
 'exif-jpeginterchangeformatlength' => 'JPEG мәғлүмәте дәүмәле, байттарҙа',
-'exif-transferfunction'            => 'Төҫтәр киңлеген үҙгәртеү функцияһы',
 'exif-whitepoint'                  => 'Аҡ нөктәнең төҫлөлөгө',
 'exif-primarychromaticities'       => 'Төп төҫтәрҙең төҫлөлөгө',
 'exif-ycbcrcoefficients'           => 'Төҫтәр киңлеген үҙгәртеү коэффициенты',
@@ -2753,7 +2721,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'Рәсемде ҡыҫыу ысулы',
 'exif-pixelydimension'             => 'Рәсемдең үҙ киңлеге',
 'exif-pixelxdimension'             => 'Рәсемдең үҙ бейеклеге',
-'exif-makernote'                   => 'Етештереүсе иҫкәрмәһе',
 'exif-usercomment'                 => 'Ҡулланыусы иҫкәрмәһе',
 'exif-relatedsoundfile'            => 'Бәйле аудио файл',
 'exif-datetimeoriginal'            => 'Төп көнө һәм ваҡыты',
@@ -2767,7 +2734,6 @@ $1',
 'exif-exposureprogram'             => 'Экспозиция режимы',
 'exif-spectralsensitivity'         => 'Спектраль һиҙгерлек',
 'exif-isospeedratings'             => 'ISO буйынса яҡтыға һиҙгерлек',
-'exif-oecf'                        => 'Оптоэлектрик үҙгәртеү коэффициенты',
 'exif-shutterspeedvalue'           => 'Затвор тиҙлеге',
 'exif-aperturevalue'               => 'Диафрагма',
 'exif-brightnessvalue'             => 'Баҙыҡлыҡ',
@@ -2780,7 +2746,6 @@ $1',
 'exif-focallength'                 => 'Фокус аралығы',
 'exif-subjectarea'                 => 'Есемдең урынлашыу майҙаны',
 'exif-flashenergy'                 => 'Балҡыш (вспышка) ҡеүәте',
-'exif-spatialfrequencyresponse'    => 'Киңлек йышлығы билдәләмәһе',
 'exif-focalplanexresolution'       => 'Фокус яҫылығының Х күсәре буйынса асыҡлығы',
 'exif-focalplaneyresolution'       => 'Фокус яҫылығының Y күсәре буйынса асыҡлығы',
 'exif-focalplaneresolutionunit'    => 'Фокус яҫылығы асыҡлығының үлсәү берәмеге',
@@ -2789,7 +2754,6 @@ $1',
 'exif-sensingmethod'               => 'Сенсор төрө',
 'exif-filesource'                  => 'Файл сығанағы',
 'exif-scenetype'                   => 'Сәхнә төрө',
-'exif-cfapattern'                  => 'Төҫтәр һайлаү йыйынтығы (CFA) төрө',
 'exif-customrendered'              => 'Рәсемде өҫтәмә эшкәртеү',
 'exif-exposuremode'                => 'Экспозиция төрө',
 'exif-whitebalance'                => 'Аҡ төҫ тигеҙләнеше',
@@ -3276,18 +3240,5 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 # SQLite database support
 'sqlite-has-fts' => '$1, тулы текст буйынса эҙләү мөмкинлеге менән',
 'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
-
-# Special:DisableAccount
-'disableaccount'             => 'Ҡатнашыусының күрһәтелмәгән иҫәп яҙыуҙары',
-'disableaccount-user'        => 'Ҡатнашыусы исеме',
-'disableaccount-reason'      => 'Сәбәп:',
-'disableaccount-confirm'     => "Был ҡатнашыусының иҫәп яҙмаһын һүндереү.
-Ҡатнашыусы танылыу үтә, паролен үҙгәртә һәм электрон почта аша белгертеүҙәр ала алмаясаҡ.
-Әгәр ҡатнашыусы әлеге ваҡытта танылыу үткән булһа, уның сеансы шунда уҡ өҙөләсәк.
-''Иҫәп яҙмаһын һүндереүҙе система хәкимдәре ярҙамы менән генә кире алып була икәнен иҫәпкә алығыҙ.''",
-'disableaccount-mustconfirm' => 'Һеҙ был иҫәп яҙмаһын һүндерергә теләүегеҙҙе раҫларға тейешһегеҙ.',
-'disableaccount-nosuchuser'  => '"$1" иҫәп яҙмаһы юҡ.',
-'disableaccount-success'     => '"$1" иҫәп яҙмаһы һүндерелгән.',
-'disableaccount-logentry'    => '[[$1]] иҫәп яҙмаһын һүндергән',
 
 );

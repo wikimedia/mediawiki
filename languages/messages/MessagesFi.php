@@ -783,15 +783,6 @@ Odota ennen kuin yrität uudelleen.',
 # E-mail sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
 
-# JavaScript password checks
-'password-strength'            => 'Arvioitu salasanan vahvuus: $1',
-'password-strength-bad'        => 'HUONO',
-'password-strength-mediocre'   => 'keskinkertainen',
-'password-strength-acceptable' => 'hyväksyttävä',
-'password-strength-good'       => 'hyvä',
-'password-retype'              => 'Salasana uudelleen',
-'password-retype-mismatch'     => 'Salasanat eivät vastaa toisiaan',
-
 # Password reset dialog
 'resetpass'                 => 'Muuta salasana',
 'resetpass_announce'        => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',
@@ -1154,24 +1145,6 @@ Sinulla ei ole oikeutta siihen.',
 'suppressionlogtext' => 'Alla on lista uusimmista poistoista ja muokkausestoista, jotka sisältävät ylläpitäjiltä piilotettua materiaalia.
 [[Special:IPBlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
-# Revision move
-'moverevlogentry'              => 'siirsi {{PLURAL:$3|yhden version|$3 versiota}} sivulta $1 sivulle $2',
-'revisionmove'                 => 'Siirrä versioita sivulta ”$1”',
-'revmove-explain'              => 'Seuraavat versiot siirretään sivulta $1 kohdesivulle. Jos kohdetta ei ole olemassa, se luodaan. Muussa tapauksessa nämä versiot yhdistetään muutoshistoriaan.',
-'revmove-legend'               => 'Aseta kohdesivu ja yhteenveto',
-'revmove-submit'               => 'Siirrä versiot valitulle sivulle',
-'revisionmoveselectedversions' => 'Siirrä valitut versiot',
-'revmove-reasonfield'          => 'Syy',
-'revmove-titlefield'           => 'Kohdesivu',
-'revmove-badparam-title'       => 'Virheelliset parametrit',
-'revmove-badparam'             => 'Pyyntösi sisältää virheellisiä tai riittämättömiä parametreja. Napauta "takaisin" ja yritä uudelleen.',
-'revmove-norevisions-title'    => 'Virheellinen kohdeversio',
-'revmove-norevisions'          => 'Et määrittänyt yhtä tai useampaa versiota tämän funktion suoritettavaksi, tai määritettyä versiota ei ole olemassa.',
-'revmove-nullmove-title'       => 'Virheellinen otsikko',
-'revmove-nullmove'             => 'Lähde- ja kohdesivu ovat samat. Palaa edelliselle sivulle ja valitse sivunimi, joka on eri kuin "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty olemassa olevalle sivulle [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty juuri luodulle sivulle [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Yhdistä sivuhistoriat',
 'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
@@ -1509,8 +1482,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
-'right-revisionmove'          => 'Siirtää versioita',
-'right-disableaccount'        => 'Poistaa tunnuksia käytöstä',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -1553,7 +1524,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'action-userrights'           => 'muokata kaikkia käyttöoikeuksia',
 'action-userrights-interwiki' => 'muokata muiden wikien käyttäjien käyttöoikeuksia',
 'action-siteadmin'            => 'lukita tai avata tietokantaa',
-'action-revisionmove'         => 'siirtää versioita',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muutos|muutosta}}',
@@ -2940,7 +2910,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-stripbytecounts'             => 'Tavua pakatussa kaistassa',
 'exif-jpeginterchangeformat'       => 'Etäisyys JPEG SOI:hin',
 'exif-jpeginterchangeformatlength' => 'JPEG-tiedon tavujen lukumäärä',
-'exif-transferfunction'            => 'Siirtofunktio',
 'exif-whitepoint'                  => 'Valkoisen pisteen väriarvot',
 'exif-primarychromaticities'       => 'Päävärien väriarvot',
 'exif-ycbcrcoefficients'           => 'Väriavaruuden muuntomatriisin kertoimet',
@@ -2959,7 +2928,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-compressedbitsperpixel'      => 'Kuvan pakkaustapa',
 'exif-pixelydimension'             => 'Käyttökelpoinen kuvan leveys',
 'exif-pixelxdimension'             => 'Käyttökelpoinen kuvan korkeus',
-'exif-makernote'                   => 'Valmistajan merkinnät',
 'exif-usercomment'                 => 'Käyttäjän kommentit',
 'exif-relatedsoundfile'            => 'Liitetty äänitiedosto',
 'exif-datetimeoriginal'            => 'Luontipäivämäärä',
@@ -2973,7 +2941,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-exposureprogram'             => 'Valotusohjelma',
 'exif-spectralsensitivity'         => 'Värikirjoherkkyys',
 'exif-isospeedratings'             => 'Herkkyys (ISO)',
-'exif-oecf'                        => 'Optoelektroninen muuntokerroin',
 'exif-shutterspeedvalue'           => 'Suljinaika',
 'exif-aperturevalue'               => 'Aukko',
 'exif-brightnessvalue'             => 'Kirkkaus',
@@ -2986,7 +2953,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-focallength'                 => 'Linssin polttoväli',
 'exif-subjectarea'                 => 'Kohteen ala',
 'exif-flashenergy'                 => 'Salaman teho',
-'exif-spatialfrequencyresponse'    => 'Tilataajuusvaste',
 'exif-focalplanexresolution'       => 'Tarkennustason X-resoluutio',
 'exif-focalplaneyresolution'       => 'Tarkennustason Y-resoluutio',
 'exif-focalplaneresolutionunit'    => 'Tarkennustason resoluution yksikkö',
@@ -2995,7 +2961,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-sensingmethod'               => 'Mittausmenetelmä',
 'exif-filesource'                  => 'Tiedostolähde',
 'exif-scenetype'                   => 'Kuvatyyppi',
-'exif-cfapattern'                  => 'CFA-kuvio',
 'exif-customrendered'              => 'Muokattu kuvankäsittely',
 'exif-exposuremode'                => 'Valotustapa',
 'exif-whitebalance'                => 'Valkotasapaino',
@@ -3476,18 +3441,5 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 # SQLite database support
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
-
-# Special:DisableAccount
-'disableaccount'             => 'Käyttäjätunnuksen poistaminen käytöstä',
-'disableaccount-user'        => 'Käyttäjätunnus',
-'disableaccount-reason'      => 'Syy',
-'disableaccount-confirm'     => "Poista käytöstä tämä käyttäjätunnus.
-Käyttäjä ei pysty kirjautumaan sisään, pyytämään uutta salasanaa tai vastaanottamaan sähköposti-ilmoituksia. 
-Jos käyttäjä on tällä hetkellä sisäänkirjautuneena, käyttäjä kirjataan ulos välittömästi.
-''Huomaa, että tunnuksen käytöstä poistamisen peruminen ei ole mahdollista ilman järjestelmänvalvojan toimia.''",
-'disableaccount-mustconfirm' => 'Vahvista, että haluat poistaa tämän tunnuksen.',
-'disableaccount-nosuchuser'  => 'Käyttäjätunnusta ”$1” ei ole olemassa.',
-'disableaccount-success'     => "Käyttäjätunnus ''$1'' on poistettu käytöstä pysyvästi.",
-'disableaccount-logentry'    => 'poisti pysyvästi käytöstä käyttäjätunnuksen [[$1]]',
 
 );

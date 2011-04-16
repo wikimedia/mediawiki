@@ -641,10 +641,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdelete-otherreason'      => 'Altra/suplementala motivo:',
 'revdelete-reasonotherlist'  => 'Altra motivo',
 
-# Revision move
-'revmove-reasonfield'    => 'Motivo:',
-'revmove-nullmove-title' => 'Nekorekta titulo',
-
 # History merging
 'mergehistory-reason' => 'Motivo:',
 

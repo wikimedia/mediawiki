@@ -788,15 +788,6 @@ Lütfen tekrar denemeden önce bekleyin.',
 # E-mail sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
 
-# JavaScript password checks
-'password-strength'            => 'Tahmini şifre güçlüğü: $1',
-'password-strength-bad'        => 'KÖTÜ',
-'password-strength-mediocre'   => 'ortalama',
-'password-strength-acceptable' => 'kabul edilebilir',
-'password-strength-good'       => 'iyi',
-'password-retype'              => 'Şifreyi buraya tekrar yazın',
-'password-retype-mismatch'     => 'Şifreler eşleşmiyor',
-
 # Password reset dialog
 'resetpass'                 => 'Parolayı değiştir',
 'resetpass_announce'        => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
@@ -1172,24 +1163,6 @@ Lütfen günlükleri kontrol edin.',
 'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir.
 Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|bir sürüm|$3 sürümleri}} $1 den $2 ye taşındı',
-'revisionmove'                 => 'Sürümleri "$1" dan taşı',
-'revmove-explain'              => 'Takip eden sürümler $1 dan belirtilmiş olan hedef sayfaya taşınacaktır. Eğer hedef sayfa yoksa oluşturulacaktır. Aksi taktirde, bu sürümler sayfanın geçmişine yerleştirilecektir.',
-'revmove-legend'               => 'Hedef sayfa ve özet ayarla',
-'revmove-submit'               => 'Revizyonları seçilen sayfaya taşı',
-'revisionmoveselectedversions' => 'Seçili revizyonları taşı',
-'revmove-reasonfield'          => 'Sebep:',
-'revmove-titlefield'           => 'Hedef sayfa:',
-'revmove-badparam-title'       => 'Kötü parametreler',
-'revmove-badparam'             => 'İsteğiniz uygun olmayan ya da yetersiz değişkenler içermektedir. Lütfen "geri" giderek tekrar deneyiniz.',
-'revmove-norevisions-title'    => 'Geçersiz hedef revizyonu',
-'revmove-norevisions'          => 'Bu işlevi yerine getirmek için bir ya da daha fazla hedef sürümünü belirlemediniz ya da belirtilen sürüm bulunmamaktadır.',
-'revmove-nullmove-title'       => 'Kötü başlık',
-'revmove-nullmove'             => 'Kaynak ve hedef sayfaları aynıdır. Lütfen "geri" gidip "$1" dan başka bir sayfa ismi giriniz.',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] den bir sürüm|$1 sürüm [[$2]] den}} varolan [[$3]] sayfasına taşındı.',
-'revmove-success-created'      => '{{PLURAL:$1|[[$2]] den bir sürüm|$1 sürüm [[$2]] den}} yeni oluşturulan [[$3]] sayfasına taşındı.',
-
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
 'mergehistory-header'              => 'Bu sayfa, bir kaynak sayfanın geçmiş revizyonlarını yeni bir sayfaya birleştirmenize olanak sağlar.
@@ -1528,8 +1501,6 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
-'right-revisionmove'          => 'Revizyonları taşı',
-'right-disableaccount'        => 'Hesapları devre dışı bırak',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -1572,7 +1543,6 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'action-userrights'           => 'tüm kullanıcıların haklarını değiştirmeye',
 'action-userrights-interwiki' => 'diğer vikilerde kullanıcıların, kullanıcı haklarını değiştirmeye',
 'action-siteadmin'            => 'veritabanını kilitleyip açmaya',
-'action-revisionmove'         => 'revizyonları taşıma',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
@@ -3035,7 +3005,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-stripbytecounts'             => 'Bytes per compressed strip',
 'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes of JPEG data',
-'exif-transferfunction'            => 'Transfer işlemi',
 'exif-whitepoint'                  => 'Beyaz nokta kromatiği',
 'exif-primarychromaticities'       => 'Chromaticities of primarities',
 'exif-ycbcrcoefficients'           => 'Renk aralığı dönüştürme matris katsayısı',
@@ -3054,7 +3023,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-compressedbitsperpixel'      => 'Resim sıkıştırma biçimi',
 'exif-pixelydimension'             => 'Geçerli resim genişliği',
 'exif-pixelxdimension'             => 'Geçerli resim yüksekliği',
-'exif-makernote'                   => 'Yapımcı notları',
 'exif-usercomment'                 => 'Kullanıcı yorumu',
 'exif-relatedsoundfile'            => 'İlişkin ses dosyası',
 'exif-datetimeoriginal'            => 'Orjinal yaratma zamanı',
@@ -3069,7 +3037,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-exposureprogram'             => 'Poz programı',
 'exif-spectralsensitivity'         => 'Spektral duyarlılık',
 'exif-isospeedratings'             => 'ISO hız derecesi',
-'exif-oecf'                        => 'Optoelectronic conversion factor',
 'exif-shutterspeedvalue'           => 'Deklanşör hızı',
 'exif-aperturevalue'               => 'Açıklık',
 'exif-brightnessvalue'             => 'Parlaklık',
@@ -3083,7 +3050,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Özne alanı',
 'exif-flashenergy'                 => 'Flaş düzeyi',
-'exif-spatialfrequencyresponse'    => 'Spatial frequency response',
 'exif-focalplanexresolution'       => 'Odaksal düzey X çözünürlüğü',
 'exif-focalplaneyresolution'       => 'Odaksal düzey Y çözünürlüğü',
 'exif-focalplaneresolutionunit'    => 'Odaksal düzey çözünürlük ünitesi',
@@ -3092,7 +3058,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-sensingmethod'               => 'Algılama metodu',
 'exif-filesource'                  => 'Dosya kaynağı',
 'exif-scenetype'                   => 'Sahne tipi',
-'exif-cfapattern'                  => 'CFA deseni',
 'exif-customrendered'              => 'Özel resim işlemi',
 'exif-exposuremode'                => 'Pozlama',
 'exif-whitebalance'                => 'Beyaz denge',
@@ -3163,8 +3128,7 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'Var olmayan',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3603,18 +3567,5 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
-
-# Special:DisableAccount
-'disableaccount'             => 'Bir kullanıcı hesabını devre dışı bırak',
-'disableaccount-user'        => 'Kullanıcı adı:',
-'disableaccount-reason'      => 'Neden:',
-'disableaccount-confirm'     => "Bu kullanıcı hesabını devre dışı bırak.
-Kullanıcı giriş yapamayacak, parolasını sıfırlayamayacak, ya da e-posta bildirimlerini alamayacak.
-Eğer kullanıcı bir yerde giriş yapmış ise, hemen çıkış yapılacak.
-''Bir hesabın devre dışı bırakılmasının sistem yöneticisinin müdahalesi olmadan geri alınamayacağına dikkat edin.''",
-'disableaccount-mustconfirm' => 'Bu hesabı devre dışı bırakmak istediğinizi onaylamalısınız.',
-'disableaccount-nosuchuser'  => '"$1" kullanıcı hesabı mevcut değil.',
-'disableaccount-success'     => '"$1" kullanıcı hesabı kalıcı olarak devre dışı bırakıldı.',
-'disableaccount-logentry'    => ', [[$1]] kullanıcı hesabını kalıcı olarak devre dışı bıraktı',
 
 );

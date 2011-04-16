@@ -509,15 +509,6 @@ Thora deri baad fir se kosis karna.',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 
-# JavaScript password checks
-'password-strength'            => 'Password ke lambai pe anumaan: $1',
-'password-strength-bad'        => 'KHARAAB',
-'password-strength-mediocre'   => 'sadharan',
-'password-strength-acceptable' => 'thik',
-'password-strength-good'       => 'achchhaa',
-'password-retype'              => 'Password ke hian pe fir se type karo',
-'password-retype-mismatch'     => 'Duuno password ek rakam nai hae',
-
 # Password reset dialog
 'resetpass'                 => 'Password ke badlo',
 'resetpass_announce'        => 'Aap ek temporary e-mailed code se login bhaya hai
@@ -908,25 +899,6 @@ Meharbani ka ke logs ke check karo.',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
 Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|Ek badlao|$3 badlao}} ke naam $1 se badal ke $2 kar dewa gais hae',
-'revisionmove'                 => 'Badlao ke "$1" se hatao',
-'revmove-explain'              => 'Niche dewa gais badlao ke $1 se hatae ke batawa gais panna me kar dewa jaai. Agar batawa gais panna nai hae tab iske banawa jaai. Nai to, ii sab badlao ke panna ke itihaas me kar dewa jaai.',
-'revmove-legend'               => 'Manzil ke panna aur sanchhep ke set karo',
-'revmove-submit'               => 'Badlao ke chuna gais panna me karo',
-'revisionmoveselectedversions' => 'Chuna gais version ke naam badlo',
-'revmove-reasonfield'          => 'Kaaran:',
-'revmove-titlefield'           => 'Manzil waala panna:',
-'revmove-badparam-title'       => 'Kharaab parameters',
-'revmove-badparam'             => 'Pahile waala panna me jaae ke fir se kosis karo.',
-'revmove-norevisions-title'    => 'Manzil waala balao kanuuni nai hae',
-'revmove-norevisions'          => 'Ii chij kare ke khatir aap ek nai to jaada balao ke manzil ke naam nai dia hae, nai to dewa gais naam waala badlao nai hae.',
-'revmove-nullmove-title'       => 'Kharaab naam',
-'revmove-nullmove'             => 'Manzil waala panna, pahile waala panna ke rakam nai hoe ke chaahi.
-Pahile waala panna pe jaae ke "$1" me se duusra naam ke chuno.',
-'revmove-success-existing'     => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} abhi ke panna,  [[$3]], me kar dewa gais hae.',
-'revmove-success-created'      => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} nawaa panna,  [[$3]], me kar dewa gais hae.',
-
 # History merging
 'mergehistory'                     => 'Panna ke itihass ke jorro',
 'mergehistory-header'              => 'Ii panna aap ke ek panna ke balao ke itihaas ke duusra panna ke badlao ke itihaas se jorre sake hae.
@@ -1268,8 +1240,6 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
-'right-revisionmove'          => 'Badlao ke naam badlo',
-'right-disableaccount'        => 'Sab account ke band karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1312,7 +1282,6 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'action-userrights'           => 'sab sadasya ke adhikar ke badlo',
 'action-userrights-interwiki' => 'duusra wiki ke sadasya ke adhikar ke badlo',
 'action-siteadmin'            => 'database ke band karo nai to kholo',
-'action-revisionmove'         => 'badlao ke naam badlo',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|badlao|badlao}}',
@@ -2722,7 +2691,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-stripbytecounts'             => 'Ek compressed strip pe ketna byte',
 'exif-jpeginterchangeformat'       => 'JPEG SOI se ketna offset',
 'exif-jpeginterchangeformatlength' => 'Ketna JPEG data, bytes me',
-'exif-transferfunction'            => 'Duusre ke hawaale kare waala function',
 'exif-whitepoint'                  => 'Ujjar point ke quality',
 'exif-primarychromaticities'       => 'Primary rang ke quality',
 'exif-ycbcrcoefficients'           => 'Rang space transformation matrix coefficients',
@@ -2741,7 +2709,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-compressedbitsperpixel'      => 'Chapa ke compression mode',
 'exif-pixelydimension'             => 'Chapa ke thik chaurrai',
 'exif-pixelxdimension'             => 'Chapa ke thik uunchai',
-'exif-makernote'                   => 'Manufacturer se jaankari',
 'exif-usercomment'                 => 'Sadasysa ke bichar',
 'exif-relatedsoundfile'            => 'Saathe waala awaaj waala file',
 'exif-datetimeoriginal'            => 'Data generation ke tarik aur time',
@@ -2755,7 +2722,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-exposureprogram'             => 'Exposure Program',
 'exif-spectralsensitivity'         => 'Ketna achchhaa se ujaala ke pakrre sake hae',
 'exif-isospeedratings'             => 'ISO ke raftaar rating',
-'exif-oecf'                        => 'Optoelectronic conversion factor',
 'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
 'exif-aperturevalue'               => 'Aperture',
 'exif-brightnessvalue'             => 'Chamak',
@@ -2904,10 +2870,5 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
-
-# Special:DisableAccount
-'disableaccount-user'       => 'Sadasya ke naam:',
-'disableaccount-reason'     => 'Kaaran',
-'disableaccount-nosuchuser' => 'Sadasya account "$1" nai hae.',
 
 );

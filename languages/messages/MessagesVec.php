@@ -624,15 +624,6 @@ Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
 
-# JavaScript password checks
-'password-strength'            => 'Stima de la robusteza de la password: $1',
-'password-strength-bad'        => 'TRISTA',
-'password-strength-mediocre'   => 'cussì cussì',
-'password-strength-acceptable' => "pole 'ndar ben",
-'password-strength-good'       => 'bona',
-'password-retype'              => 'Scrivi da novo la password',
-'password-retype-mismatch'     => 'La password no le corisponde',
-
 # Password reset dialog
 'resetpass'                 => 'Cànbia la password',
 'resetpass_announce'        => "L'acesso el xe stà efetuà con un codice tenporaneo, mandà par e-mail. Par conpletar l'acesso bisogna inpostar na password nova:",
@@ -1003,25 +994,6 @@ No ti gà acesso su de ela.',
 'suppressionlog'     => 'Registro dei ocultamenti',
 'suppressionlogtext' => "Qua soto se cata na lista de le ultime scancelazioni e blochi che riguarda contenuti sconti dai aministradori. Varda la [[Special:IPBlockList|lista dei IP blocà]] par védar l'elenco dei blochi atualmente ativi.",
 
-# Revision move
-'moverevlogentry'              => 'gà spostà {{PLURAL:$3|na revision|$3 revision}} da $1 a $2',
-'revisionmove'                 => 'Sposta revision da "$1"',
-'revmove-explain'              => 'Le seguenti revision le vegnarà spostà da $1 a la pagina de destinassion specificà. Se questa no la esiste la vegnarà creà. Se no, se revision le sarà unìe a la cronologia de la pagina.',
-'revmove-legend'               => "Inposta la pagina de destinassion e l'ogeto",
-'revmove-submit'               => 'Sposta revision a la pagina selessionà',
-'revisionmoveselectedversions' => 'Sposta le revision selessionà',
-'revmove-reasonfield'          => 'Motivassion:',
-'revmove-titlefield'           => 'Pagina de destinassion:',
-'revmove-badparam-title'       => 'Parametri mia validi',
-'revmove-badparam'             => 'La to richiesta la contien parametri sbalià o insuficienti. Struca "indrio" e proa da novo.',
-'revmove-norevisions-title'    => 'Revision mia valida',
-'revmove-norevisions'          => 'No te ghè indicà nissuna revision su cui eseguir sta funsion o la revision indicà no la esiste.',
-'revmove-nullmove-title'       => 'Titolo mia valido',
-'revmove-nullmove'             => 'La pagine de partensa e quela de arivo le xe la stessa.
-Torna indrio e metighe un nome pagina difarente da "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revision de [[$2]] le xe stà spostà}} ne la pagina esistente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revisioni de [[$2]] le xe stà spostà}} ne la nova pagina creà [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Union cronologie',
 'mergehistory-header'              => 'Sta pagina la consente de unir le revision che fa parte de la cronologia d na pagina (ciamà pagina de origine) a la cronologia de na pagina piassè recente.
@@ -1352,7 +1324,6 @@ In più te pol anca farte scrìvar da altri tramite la to pagina personale o la 
 'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
 'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
-'right-revisionmove'          => 'Sposta le revision',
 
 # User rights log
 'rightslog'      => 'Diriti de i utenti',
@@ -1395,7 +1366,6 @@ In più te pol anca farte scrìvar da altri tramite la to pagina personale o la 
 'action-userrights'           => 'canbiar tuti i diriti dei utenti',
 'action-userrights-interwiki' => 'canbiar i diriti dei utenti su altre wiki',
 'action-siteadmin'            => 'blocar e desblocar el database',
-'action-revisionmove'         => 'spostar revision',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canbiamento|canbiamenti}}',
@@ -2749,7 +2719,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-stripbytecounts'             => 'Nùmaro de byte par strìssia conpressa',
 'exif-jpeginterchangeformat'       => 'Posizion byte SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Numero de byte de dati JPEG',
-'exif-transferfunction'            => 'Funsion de trasferimento',
 'exif-whitepoint'                  => 'Coordinate cromatiche de el punto de bianco',
 'exif-primarychromaticities'       => 'Coordinate cromatiche de i cołori primari',
 'exif-ycbcrcoefficients'           => 'Coeficienti matriçe de trasformassion spazi de i cołori',
@@ -2768,7 +2737,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-compressedbitsperpixel'      => 'Modalità de compression imagine',
 'exif-pixelydimension'             => 'Largheza efetiva imagine',
 'exif-pixelxdimension'             => 'Alteza efetiva imagine',
-'exif-makernote'                   => 'Note de el produtore',
 'exif-usercomment'                 => "Note de l'utente",
 'exif-relatedsoundfile'            => 'File audio cołegà',
 'exif-datetimeoriginal'            => 'Data e ora de creassion de i dati',
@@ -2782,7 +2750,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-exposureprogram'             => 'Programa de esposission',
 'exif-spectralsensitivity'         => 'Sensibilità spetrałe',
 'exif-isospeedratings'             => 'Sensibiłità ISO',
-'exif-oecf'                        => 'Fator de conversion optoełetronica',
 'exif-shutterspeedvalue'           => 'Tenpo de esposission',
 'exif-aperturevalue'               => 'Apertura',
 'exif-brightnessvalue'             => 'Luminosità',
@@ -2795,7 +2762,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-focallength'                 => 'Distansa focałe obietivo',
 'exif-subjectarea'                 => 'Area inquadrante el sojeto',
 'exif-flashenergy'                 => 'Potenza del flash',
-'exif-spatialfrequencyresponse'    => 'Risposta in frequensa spaziałe',
 'exif-focalplanexresolution'       => 'Risolussion X sul piano focałe',
 'exif-focalplaneyresolution'       => 'Risolussion Y sul piano focałe',
 'exif-focalplaneresolutionunit'    => 'Unità de misura risolussion sul piano focałe',
@@ -2804,7 +2770,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-sensingmethod'               => 'Metodo de riłevassion',
 'exif-filesource'                  => 'Origine del file',
 'exif-scenetype'                   => 'Tipo de inquadratura',
-'exif-cfapattern'                  => 'Disposizion filtro cołor',
 'exif-customrendered'              => 'Elaborassion personałixà',
 'exif-exposuremode'                => 'Modalità de espoxission',
 'exif-whitebalance'                => 'Biłanciamento de el bianco',

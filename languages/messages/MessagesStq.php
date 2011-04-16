@@ -519,15 +519,6 @@ Täif, eer du fon näien fersäkst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Uunbekoanden Failer mäd ju Funktion mail() fon PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Skätsede Paaswoudstäärke: $1',
-'password-strength-bad'        => 'LÄIP',
-'password-strength-mediocre'   => 'middelmäitich',
-'password-strength-acceptable' => 'akzeptoabel',
-'password-strength-good'       => 'goud',
-'password-retype'              => 'Paaswoud wierhoalje:',
-'password-retype-mismatch'     => 'Paaswoude stimme nit uureen',
-
 # Password reset dialog
 'resetpass'                 => 'Paaswoud annerje',
 'resetpass_announce'        => 'Anmäldenge mäd dän uur E-Mail tousoande Code. Uum ju Anmäldenge outousluuten, moast du nu n näi Paaswoud wääle.',
@@ -901,24 +892,6 @@ Wröigje do Logbouke.',
 'suppressionlog'     => 'Uursicht-Logbouk',
 'suppressionlogtext' => 'Dit is dät Logbouk fon do Uursicht-Aktione (Annerengen fon ju Sichtboarhaid fon Versione, Beorbaidengskommentare, Benutsernoomen un Benutserspeeren).',
 
-# Revision move
-'moverevlogentry'              => 'ferskäuw {{PLURAL:$3|een Version|$3 Versione}} fon $1 ätter $2',
-'revisionmove'                 => 'Moor Revisione fon "$1"',
-'revmove-explain'              => 'Do foulgjende Versione wäide fon $1 tou ju anroate Sielsiede ferskäuwen. Fals ju Sielsiede nit bestoant, wäd ju moaked. Uurfals wäide disse Versione in ju Versionsgeskichte touhoopefierd.',
-'revmove-legend'               => 'Sielsiede un Touhoopefpatenge fäästlääse',
-'revmove-submit'               => 'Versione tou ju uutwäälde Siede ferskäuwen',
-'revisionmoveselectedversions' => 'Uutwäälde Versione ferskuuwe',
-'revmove-reasonfield'          => 'Gruund:',
-'revmove-titlefield'           => 'Sielsiede:',
-'revmove-badparam-title'       => 'Falske Parameetere',
-'revmove-badparam'             => 'Dien Anfroage änthaalt nit-ferlööwede of gebräkkelke Parameetere. Klik ap "tourääch" un fersäik dät nochmoal.',
-'revmove-norevisions-title'    => 'Uunjäildige Sielversion',
-'revmove-norevisions'          => 'Du hääst neen Sielversion ounroat, uum disse Aktion truchtoufieren of ju ounroate Version bestoant nit.',
-'revmove-nullmove-title'       => 'Uungultigen Tittel',
-'revmove-nullmove'             => 'Wälle- un Sielsiede sunt identisk. Klik ap "tourääch" un reek n uur Siedennoome as "$1" ien.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ne Version fon [[$2]] wuud|$1 Versione fon [[$2]] wuuden}} tou ju existierende Siede [[$3]] ferskäuwen.',
-'revmove-success-created'      => '{{PLURAL:$1|Ne Version fon [[$2]] wuud|$1 Versione fon [[$2]] wuuden}} tou ju näi anlaide Siede [[$3]] ferskäuwen.',
-
 # History merging
 'mergehistory'                     => 'Versionsgeskichten fereenigje',
 'mergehistory-header'              => 'Mäd disse Spezialsiede koast du ju Versionsgeskichte fon ne Uursproangssiede mäd ju Versionsgeskichte fon ne Sielsiede fereenigje.
@@ -1254,8 +1227,6 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-reset-passwords'       => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
-'right-revisionmove'          => 'Versione ferschuuwe.',
-'right-disableaccount'        => 'Benutserkonto deaktivierje.',
 
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
@@ -1298,7 +1269,6 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'action-userrights'           => 'Benutsergjuchte tou annerjen',
 'action-userrights-interwiki' => 'do Gjuchte fon Benutsere in uur Wikis annerje',
 'action-siteadmin'            => 'ju Doatenboank tou speeren of fräitoureeken',
-'action-revisionmove'         => 'Versione ferschuuwe.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Annerenge|Annerengen}}',
@@ -2722,7 +2692,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-stripbytecounts'             => 'Bytes pro komprimierten Striep',
 'exif-jpeginterchangeformat'       => 'Offset tou JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Gratte fon do JPEG SOI-Doaten in Bytes',
-'exif-transferfunction'            => 'Uurdreegengsfunktion',
 'exif-whitepoint'                  => 'Manuell mäd Meetenge',
 'exif-primarychromaticities'       => 'Chromatizitäte fon primäre Faawen',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffiziente',
@@ -2741,7 +2710,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-compressedbitsperpixel'      => 'Komprimierde Bits pro Pixel',
 'exif-pixelydimension'             => 'Gultige Bieldebratte',
 'exif-pixelxdimension'             => 'Gultige Bieldehöchte',
-'exif-makernote'                   => 'Häärstaalernotiz',
 'exif-usercomment'                 => 'Benutserkommentoare',
 'exif-relatedsoundfile'            => 'Touheerige Toondoatäi',
 'exif-datetimeoriginal'            => 'Ärfoatengstiedpunkt',
@@ -2755,7 +2723,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-exposureprogram'             => 'Beljuchtengsprogram',
 'exif-spectralsensitivity'         => 'Beljoachtengstiedwäid',
 'exif-isospeedratings'             => 'Film- of Sensorämpfiendelkaid (ISO)',
-'exif-oecf'                        => 'Optoelektroniske Uumreekenengsfaktor',
 'exif-shutterspeedvalue'           => 'Beluchtengstiedwäid',
 'exif-aperturevalue'               => 'Bländenwäid',
 'exif-brightnessvalue'             => 'Ljoachtegaidswäid',
@@ -2768,7 +2735,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-focallength'                 => 'Baadenwiete',
 'exif-subjectarea'                 => 'Beräk',
 'exif-flashenergy'                 => 'Blitsstäärke',
-'exif-spatialfrequencyresponse'    => 'Ruumelke Frequenz-Reaktion',
 'exif-focalplanexresolution'       => 'Sensoraplöösenge horizontoal',
 'exif-focalplaneyresolution'       => 'Sensoraplöösenge vertikoal',
 'exif-focalplaneresolutionunit'    => 'Eenhaid fon Sensoraplöösenge',
@@ -2777,7 +2743,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-sensingmethod'               => 'Meetmethode',
 'exif-filesource'                  => 'Wälle fon ju Doatäi',
 'exif-scenetype'                   => 'Scenetyp',
-'exif-cfapattern'                  => 'CFA-Muster',
 'exif-customrendered'              => 'Benutserdefinierde Bieldeferoarbaidenge',
 'exif-exposuremode'                => 'Beljuchtengsmodus',
 'exif-whitebalance'                => 'Wiet-Ougliek',
@@ -3260,18 +3225,5 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mäd Unnerstutsenge foar ju Fultäkstsäike',
 'sqlite-no-fts'  => 'Version $1 sunner Unnerstutsenge foaar ju Fultäkstsäike',
-
-# Special:DisableAccount
-'disableaccount'             => 'N Benutserkonto deaktivierje',
-'disableaccount-user'        => 'Benutsernoome:',
-'disableaccount-reason'      => 'Gruund:',
-'disableaccount-confirm'     => "Deaktivier dit Benutserkonto.
-Die Benutser kon sik dan nit moor anmäldje, dät Paaswoud touräächsätte of E-Mail-Ättergjuchte ämfange.
-As die Benutser apstuuns anmälded is, wäd er fluks oumälded.
-''Beoachtje, dät ju Deaktivierenge fon n Benutserkonto nit moor sunner dät Iengriepen fon n Systemadministrator tourääch troald wäide kon.''",
-'disableaccount-mustconfirm' => 'Ju Deaktivierenge fon dit Benutserkonto mout nu bestäÄtiged wäide.',
-'disableaccount-nosuchuser'  => 'Dät Benutserkonto "$1" is nit deer.',
-'disableaccount-success'     => 'Dät Benutserkonto "$1" wuud duurhaft deaktivierd.',
-'disableaccount-logentry'    => 'deaktivierde dät Benutserkonto [[$1]] duurhaft',
 
 );

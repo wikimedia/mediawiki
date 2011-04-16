@@ -357,12 +357,6 @@ Myr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chr
 'createaccount-title'        => 'Coontys crooit dy {{SITENAME}}',
 'loginlanguagelabel'         => 'Çhengey: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'LOGHTAGH',
-'password-strength-acceptable' => 'lowallagh',
-'password-strength-good'       => 'mie',
-'password-retype'              => "Aascreeu d'ockle arrey:",
-
 # Password reset dialog
 'resetpass'                 => 'Caghlaa fockle yn arrey',
 'resetpass_header'          => 'Caghlaa fockle arrey y choontys',
@@ -503,9 +497,6 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 'revdelete-content'    => 'cummal',
 'revdelete-summary'    => 'giare-choontey yn reaghey',
 'revdelete-uname'      => 'ennym yn ymmydeyr',
-
-# Revision move
-'revmove-reasonfield' => 'Fa:',
 
 # History merging
 'mergehistory'             => 'Shennaghys ny duillagyn y chochiangley',
@@ -1395,8 +1386,5 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 
 # Special:Tags
 'tags-edit' => 'reaghey',
-
-# Special:DisableAccount
-'disableaccount-reason' => 'Fa:',
 
 );

@@ -682,15 +682,6 @@ Prosimo počakajte, preden poskusite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Ocenjena moč gesla: $1',
-'password-strength-bad'        => 'SLABO',
-'password-strength-mediocre'   => 'povprečno',
-'password-strength-acceptable' => 'sprejemljivo',
-'password-strength-good'       => 'dobro',
-'password-retype'              => 'Ponovno vpišite geslo tukaj',
-'password-retype-mismatch'     => 'Gesli se ne ujemata',
-
 # Password reset dialog
 'resetpass'                 => 'Spremeni geslo',
 'resetpass_announce'        => 'Trenutno ste prijavljeni z začasno e-poštno kodo.
@@ -1071,24 +1062,6 @@ Prosimo, preverite dnevnik.',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
 Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
-# Revision move
-'moverevlogentry'              => 'premaknil(-a) $3 {{PLURAL:$3|redakcijo|redakciji|redakcije|redakcij}} z $1 na $2',
-'revisionmove'                 => 'Premakni redakcije z »$1«',
-'revmove-explain'              => 'Naslednje redakcije bodo prestavljene s strani $1 na določeno ciljno stran. Če cilj ne obstaja, bo ustvarjen. V nasprotnem primeru bodo redakcije združene z zgodovino strani.',
-'revmove-legend'               => 'Določite ciljno stran in povzetek',
-'revmove-submit'               => 'Prestavi redakcije na izbrano stran',
-'revisionmoveselectedversions' => 'Prestavi izbrane redakcije',
-'revmove-reasonfield'          => 'Razlog:',
-'revmove-titlefield'           => 'Ciljna stran:',
-'revmove-badparam-title'       => 'Nepravilni parametri',
-'revmove-badparam'             => 'Vaša zahteva vsebuje neveljavne ali pomanjkljive parametre. Prosimo, izberite »nazaj« in poskusite znova.',
-'revmove-norevisions-title'    => 'Neveljavna ciljna redakcija',
-'revmove-norevisions'          => 'Niste določili ene ali več ciljnih redakcij za izvedbo te funkcije ali pa izbrana redakcija ne obstaja.',
-'revmove-nullmove-title'       => 'Nepravilen naslov',
-'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »$1«.',
-'revmove-success-existing'     => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na obstoječo stran [[$3]].',
-'revmove-success-created'      => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na novo ustvarjeno stran [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Združi zgodovine strani',
 'mergehistory-header'              => 'Ta stran omogoča združevanje redakcij zgodovine ene izvorne strani v novejšo stran.
@@ -1432,8 +1405,6 @@ Podatek bo javno prikazan.',
 'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
-'right-revisionmove'          => 'Prestavi redakcije',
-'right-disableaccount'        => 'Onemogočanje računov',
 
 # User rights log
 'rightslog'      => 'Dnevnik uporabniških pravic',
@@ -1476,7 +1447,6 @@ Podatek bo javno prikazan.',
 'action-userrights'           => 'upravljanje vseh uporabnikovih pravic',
 'action-userrights-interwiki' => 'upravljanje uporabniških pravic za uporabnike drugih wikijev',
 'action-siteadmin'            => 'zaklenitev ali odklepanje podatkovne baze',
-'action-revisionmove'         => 'prestavitev redakcije',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
@@ -2955,7 +2925,6 @@ Druga bodo po privzetem skrita.
 'exif-stripbytecounts'             => 'Zlogov na pas stiskanja',
 'exif-jpeginterchangeformat'       => 'Odtis na JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Zlogov JPEG-podatkov',
-'exif-transferfunction'            => 'Funkcija prenosa',
 'exif-whitepoint'                  => 'Kromatičnost bele točke',
 'exif-primarychromaticities'       => 'Kromatičnosti osnovnih barv',
 'exif-ycbcrcoefficients'           => 'Koeficient matrice transformacije barvnega prostora',
@@ -2974,7 +2943,6 @@ Druga bodo po privzetem skrita.
 'exif-compressedbitsperpixel'      => 'Velikost točke po stiskanju (v bitih)',
 'exif-pixelydimension'             => 'Veljavna širina slike',
 'exif-pixelxdimension'             => 'Veljavna višina slike',
-'exif-makernote'                   => 'Opombe proizvajalca',
 'exif-usercomment'                 => 'Uporabniške pripombe',
 'exif-relatedsoundfile'            => 'Pripadajoča zvočna datoteka',
 'exif-datetimeoriginal'            => 'Datum in čas ustvaritve podatkov',
@@ -2988,7 +2956,6 @@ Druga bodo po privzetem skrita.
 'exif-exposureprogram'             => 'Program osvetlitve',
 'exif-spectralsensitivity'         => 'Spektralna občutljivost',
 'exif-isospeedratings'             => 'Občutljivost filma ali tipala (ISO)',
-'exif-oecf'                        => 'Optoelektronski pretvorbeni faktor',
 'exif-shutterspeedvalue'           => 'Hitrost zaklopa',
 'exif-aperturevalue'               => 'Zaslonka',
 'exif-brightnessvalue'             => 'Svetlost',
@@ -3001,7 +2968,6 @@ Druga bodo po privzetem skrita.
 'exif-focallength'                 => 'Goriščna razdalja leč',
 'exif-subjectarea'                 => 'Površina predmeta',
 'exif-flashenergy'                 => 'Energija bliskavice',
-'exif-spatialfrequencyresponse'    => 'Odziv prostorske frekvence',
 'exif-focalplanexresolution'       => 'Ločljivost goriščne ravnine X',
 'exif-focalplaneyresolution'       => 'Ločljivost goriščne ravnine Y',
 'exif-focalplaneresolutionunit'    => 'Enota ločljivosti goriščne ravnine',
@@ -3010,7 +2976,6 @@ Druga bodo po privzetem skrita.
 'exif-sensingmethod'               => 'Zaznavni postopek',
 'exif-filesource'                  => 'Vir datoteke',
 'exif-scenetype'                   => 'Vrsta prizora',
-'exif-cfapattern'                  => 'Matrica filtracije barv',
 'exif-customrendered'              => 'Obdelava slike po meri',
 'exif-exposuremode'                => 'Nastavitev osvetlitve',
 'exif-whitebalance'                => 'Ravnotežje belega',
@@ -3504,18 +3469,5 @@ Ta stran se sooča s tehničnimi težavami.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporo iskanju polnih besedil',
 'sqlite-no-fts'  => '$1 brez podpore iskanju polnih besedil',
-
-# Special:DisableAccount
-'disableaccount'             => 'Onemogoči uporabniški račun',
-'disableaccount-user'        => 'Uporabniško ime:',
-'disableaccount-reason'      => 'Razlog:',
-'disableaccount-confirm'     => "Onemogočite ta uporabniški račun.
-Uporabnik se ne bo mogel prijaviti, ponastaviti svojega gesla ali prejemati e-poštnih obvestil.
-Če je uporabnik trenutno kjer koli prijavljen, bo nemudoma odjavljen.
-''Pomnite, da povrnitev onemogočitve računa ni mogoča brez posredovanja sistemskega upravljavca.''",
-'disableaccount-mustconfirm' => 'Potrditi morate, da želite onemogočiti ta račun.',
-'disableaccount-nosuchuser'  => 'Uporabniški račun »$1« ne obstaja.',
-'disableaccount-success'     => 'Uporabniški račun »$1« je trajno onemogočen.',
-'disableaccount-logentry'    => 'je trajno onemogočil(-a) uporabniški račun [[$1]]',
 
 );

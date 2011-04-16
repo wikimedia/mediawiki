@@ -833,15 +833,6 @@ Počkejte chvíli, než to zkusíte znovu.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Odhad síly hesla: $1',
-'password-strength-bad'        => 'ŠPATNÉ',
-'password-strength-mediocre'   => 'průměrné',
-'password-strength-acceptable' => 'přijatelné',
-'password-strength-good'       => 'dobré',
-'password-retype'              => 'Zde zopakujte heslo',
-'password-retype-mismatch'     => 'Hesla se neshodují',
-
 # Password reset dialog
 'resetpass'                 => 'Změna hesla',
 'resetpass_announce'        => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
@@ -1213,24 +1204,6 @@ Prohlédněte si protokolovací záznamy.',
 'suppressionlog'     => 'Záznam utajení',
 'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
-# Revision move
-'moverevlogentry'              => 'přesunul {{PLURAL:$3|jednu revizi|$3 revize|$3 revizí}} z $1 do $2',
-'revisionmove'                 => 'Přesunout revize z „$1“',
-'revmove-explain'              => 'Následující revize budou přesunuty z $1 do uvedené cílové stránky. Pokud cílová stránka neexistuje, bude vytvořena. Jinak budou tyto revize začleněny do historie stránky.',
-'revmove-legend'               => 'Nastavte cílovou stránku a shrnutí',
-'revmove-submit'               => 'Přesunout revize do vybrané stránky',
-'revisionmoveselectedversions' => 'Přesunout vybrané revize',
-'revmove-reasonfield'          => 'Důvod:',
-'revmove-titlefield'           => 'Cílová stránka:',
-'revmove-badparam-title'       => 'Chybné parametry',
-'revmove-badparam'             => 'Váš požadavek obsahuje neplatné nebo nedostatečné parametry. Stiskněte prosím tlačítko „zpět“ a zkuste to znovu.',
-'revmove-norevisions-title'    => 'Neplatná cílová revize',
-'revmove-norevisions'          => 'Neuvedli jste jednu nebo více cílových revizí nebo uvedená revize neexistuje.',
-'revmove-nullmove-title'       => 'Chybný název',
-'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do existující stránky [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do nově vytvořené stránky [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
 'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
@@ -1567,8 +1540,6 @@ Tuto operaci nelze vrátit zpět.',
 'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
-'right-revisionmove'          => 'Přesouvání verzí',
-'right-disableaccount'        => 'Deaktivování účtů',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -1611,7 +1582,6 @@ Tuto operaci nelze vrátit zpět.',
 'action-userrights'           => 'upravovat práva všech uživatelů',
 'action-userrights-interwiki' => 'upravovat práva uživatelů na jiných wiki',
 'action-siteadmin'            => 'zamykat nebo odemykat databázi',
-'action-revisionmove'         => 'přesouvat verze',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změny|změn}}',
@@ -3055,7 +3025,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-stripbytecounts'             => 'Počet bajtů na komprimovaný pás',
 'exif-jpeginterchangeformat'       => 'Ofset k JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Počet bajtů JPEG dat',
-'exif-transferfunction'            => 'Přenosová funkce',
 'exif-whitepoint'                  => 'Chroma bílého bodu',
 'exif-primarychromaticities'       => 'Chroma primárních barev',
 'exif-ycbcrcoefficients'           => 'Koeficienty matice pro transformaci barevných prostorů',
@@ -3074,7 +3043,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-compressedbitsperpixel'      => 'Komprimační režim',
 'exif-pixelydimension'             => 'Platná šířka obrazu',
 'exif-pixelxdimension'             => 'Platná výška obrazu',
-'exif-makernote'                   => 'Poznámky výrobce',
 'exif-usercomment'                 => 'Uživatelské poznámky',
 'exif-relatedsoundfile'            => 'Související zvukový soubor',
 'exif-datetimeoriginal'            => 'Datum a čas pořízení obrázku',
@@ -3088,7 +3056,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-exposureprogram'             => 'Expoziční program',
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
-'exif-oecf'                        => 'Optoelektronická převodní funkce (OECF)',
 'exif-shutterspeedvalue'           => 'Rychlost závěrky',
 'exif-aperturevalue'               => 'Clona',
 'exif-brightnessvalue'             => 'Světlost',
@@ -3101,7 +3068,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-focallength'                 => 'Ohnisková vzdálenost',
 'exif-subjectarea'                 => 'Umístění předmětu',
 'exif-flashenergy'                 => 'Výkon blesku',
-'exif-spatialfrequencyresponse'    => 'Odezva prostorové frekvence',
 'exif-focalplanexresolution'       => 'X rozlišení ohniskové roviny',
 'exif-focalplaneyresolution'       => 'Y rozlišení ohniskové roviny',
 'exif-focalplaneresolutionunit'    => 'Jednotka rozlišení ohniskové roviny',
@@ -3110,7 +3076,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-sensingmethod'               => 'Senzor',
 'exif-filesource'                  => 'Zdroj souboru',
 'exif-scenetype'                   => 'Druh scény',
-'exif-cfapattern'                  => 'Geometrické uspořádání senzoru',
 'exif-customrendered'              => 'Uživatelské zpracování',
 'exif-exposuremode'                => 'Expoziční režim',
 'exif-whitebalance'                => 'Vyvážení bílé',
@@ -3655,18 +3620,5 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
-
-# Special:DisableAccount
-'disableaccount'             => 'Deaktivace uživatelského účtu',
-'disableaccount-user'        => 'Uživatelské jméno:',
-'disableaccount-reason'      => 'Důvod:',
-'disableaccount-confirm'     => "Deaktivovat tento uživatelský účet.
-Uživatel se nebude moci přihlásit, požádat o nové heslo, ani dostávat e-mailové notifikace.
-Pokud je uživatel kdekoli přihlášen, bude okamžitě odhlášen.
-''Uvědomte si, že deaktivaci účtu nelze vrátit zpět bez pomoci systémového administrátora.''",
-'disableaccount-mustconfirm' => 'Musíte potvrdit, že si přejete deaktivovat tento účet.',
-'disableaccount-nosuchuser'  => 'Uživatelský účet „$1“ neexistuje.',
-'disableaccount-success'     => 'Uživatelský účet „$1“ byl natrvalo deaktivován.',
-'disableaccount-logentry'    => 'natrvalo deaktivoval uživatelský účet [[$1]]',
 
 );

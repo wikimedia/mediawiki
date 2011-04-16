@@ -853,15 +853,6 @@ Bitte warte, bevor du es erneut probierst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Geschätzte Passwortstärke: $1',
-'password-strength-bad'        => 'SCHLECHT',
-'password-strength-mediocre'   => 'mittelmäßig',
-'password-strength-acceptable' => 'akzeptabel',
-'password-strength-good'       => 'gut',
-'password-retype'              => 'Passwort wiederholen',
-'password-retype-mismatch'     => 'Passwörter stimmen nicht überein',
-
 # Password reset dialog
 'resetpass'                 => 'Passwort ändern',
 'resetpass_announce'        => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
@@ -1238,24 +1229,6 @@ Bitte prüfe die Logbücher.',
 'suppressionlogtext' => 'Dies ist das Logbuch der Oversight-Aktionen (Änderungen der Sichtbarkeit von Versionen, Bearbeitungskommentaren, Benutzernamen und Benutzersperren).
 Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für aktuelle Sperren.',
 
-# Revision move
-'moverevlogentry'              => 'verschob {{PLURAL:$3|eine Version|$3 Versionen}} von $1 nach $2',
-'revisionmove'                 => 'Versionen verschieben von „$1“',
-'revmove-explain'              => 'Die folgenden Versionen werden von $1 zur angegebenen Zielseite verschoben. Falls die Zielseite nicht existiert, wird sie erstellt. Anderenfalls werden diese Versionen in der Versionsgeschichte zusammengeführt.',
-'revmove-legend'               => 'Zielseite und Zusammenfassung festlegen',
-'revmove-submit'               => 'Versionen zur ausgewählten Seite verschieben',
-'revisionmoveselectedversions' => 'Ausgewählte Versionen verschieben',
-'revmove-reasonfield'          => 'Grund:',
-'revmove-titlefield'           => 'Zielseite:',
-'revmove-badparam-title'       => 'Falsche Parameter',
-'revmove-badparam'             => 'Deine Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicke auf „zurück“ und versuche es erneut.',
-'revmove-norevisions-title'    => 'Ungültige Zielversion',
-'revmove-norevisions'          => 'Du hast keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
-'revmove-nullmove-title'       => 'Ungültiger Titel',
-'revmove-nullmove'             => 'Quell- und Zielseite sind identisch. Bitte klicke auf „zurück“ und gib einen anderen Seitennamen als „$1“ ein.',
-'revmove-success-existing'     => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur existierenden Seite [[$3]] verschoben.',
-'revmove-success-created'      => '{{PLURAL:$1|Eine Version von [[$2]] wurde|$1 Versionen von [[$2]] wurden}} zur neu angelegten Seite [[$3]] verschoben.',
-
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
 'mergehistory-header'              => 'Mit dieser Spezialseite kannst du die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
@@ -1592,8 +1565,6 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-reset-passwords'       => 'Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
-'right-revisionmove'          => 'Versionen verschieben',
-'right-disableaccount'        => 'Benutzerkonto deaktivieren',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -1636,7 +1607,6 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'action-userrights'           => 'Benutzerrechte zu ändern',
 'action-userrights-interwiki' => 'die Rechte von Benutzern in anderen Wikis zu ändern',
 'action-siteadmin'            => 'die Datenbank zu sperren oder freizugeben',
-'action-revisionmove'         => 'Versionen zu verschieben',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
@@ -3115,7 +3085,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifen',
 'exif-jpeginterchangeformat'       => 'Offset zu JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Größe der JPEG-Daten in Bytes',
-'exif-transferfunction'            => 'Übertragungsfunktion',
 'exif-whitepoint'                  => 'Manuell mit Messung',
 'exif-primarychromaticities'       => 'Primäre Farbart',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
@@ -3134,7 +3103,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-compressedbitsperpixel'      => 'Komprimierte Bits pro Pixel',
 'exif-pixelydimension'             => 'Gültige Bildbreite',
 'exif-pixelxdimension'             => 'Gültige Bildhöhe',
-'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Benutzerkommentare',
 'exif-relatedsoundfile'            => 'Zugehörige Tondatei',
 'exif-datetimeoriginal'            => 'Erfassungszeitpunkt',
@@ -3148,7 +3116,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-exposureprogram'             => 'Belichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spectral Sensitivity',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
-'exif-oecf'                        => 'Optoelektronischer Umrechnungsfaktor',
 'exif-shutterspeedvalue'           => 'Belichtungszeitwert',
 'exif-aperturevalue'               => 'Blendenwert',
 'exif-brightnessvalue'             => 'Helligkeitswert',
@@ -3161,7 +3128,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-focallength'                 => 'Brennweite',
 'exif-subjectarea'                 => 'Bereich',
 'exif-flashenergy'                 => 'Blitzstärke',
-'exif-spatialfrequencyresponse'    => 'Spatial-Frequenz',
 'exif-focalplanexresolution'       => 'Sensorauflösung horizontal',
 'exif-focalplaneyresolution'       => 'Sensorauflösung vertikal',
 'exif-focalplaneresolutionunit'    => 'Einheit der Sensorauflösung',
@@ -3170,7 +3136,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-sensingmethod'               => 'Messmethode',
 'exif-filesource'                  => 'Quelle der Datei',
 'exif-scenetype'                   => 'Szenentyp',
-'exif-cfapattern'                  => 'CFA-Muster',
 'exif-customrendered'              => 'Benutzerdefinierte Bildverarbeitung',
 'exif-exposuremode'                => 'Belichtungsmodus',
 'exif-whitebalance'                => 'Weißabgleich',
@@ -3664,18 +3629,5 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
-
-# Special:DisableAccount
-'disableaccount'             => 'Ein Benutzerkonto deaktivieren',
-'disableaccount-user'        => 'Benutzername:',
-'disableaccount-reason'      => 'Grund:',
-'disableaccount-confirm'     => "Deaktivieren dieses Benutzerkontos.
-Der Benutzer wird nicht mehr in der Lage sein sich anzumelden, das Passwort zurückzusetzen oder E-Mail-Benachrichtigungen zu empfangen.
-Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
-''Es ist zu beachten, das die Deaktivierung eines Benutzerkontos nicht mehr ohne das Eingreifen eines Systemadministrators rückgängig gemacht werden kann.''",
-'disableaccount-mustconfirm' => 'Die Deaktivierung dieses Benutzerkontos muss nun bestätigt werden.',
-'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
-'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
-'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft',
 
 );

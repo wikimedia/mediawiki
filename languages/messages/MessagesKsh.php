@@ -750,15 +750,6 @@ Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööv
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler met dä Funxjohn <code lang="en">mail()</code> vum PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Dat Passwoot $1 (jeschäz)',
-'password-strength-bad'        => 'es <span style="text-transform:uppercase">schlääsch</span>',
-'password-strength-mediocre'   => 'es jet schlapp',
-'password-strength-acceptable' => 'kammer bruche',
-'password-strength-good'       => 'es joot',
-'password-retype'              => 'Noch ens dat Passwood',
-'password-retype-mismatch'     => 'De Paßwööter sin unejaal',
-
 # Password reset dialog
 'resetpass'                 => 'Passwood tuusche udder neu ußjävve',
 'resetpass_announce'        => 'De beß jez enjelogg med ennem Zweschepasswoot, wat De övver e-mail krääje häs. Dat kanns De nit einfar_esu behallde. Alsu donn jetz e neu Passwoot för op Duur aanjevve.',
@@ -1197,26 +1188,6 @@ Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, der oohne noch 
 'suppressionlogtext' => 'Heh noh kütt et Logboch fum Versteiche, woh Versione fun Sigge, Zosammefassunge, Quelle, Metmaachername un Metmaacher-Sperre ze fenge sin, di fun de Oure vun de Öffentleschkeit, un och fun de Wiki-Köbesse verstoche woodte, udder widder zeröck op nommaal jebraat woodte.
 Loor en de [[Special:IPBlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat em Momang wie jesperrt es.',
 
-# Revision move
-'moverevlogentry'              => 'hät {{PLURAL:$3|ein Version|$3 Versione|kein Version}} vun „$1“ noh „$2“ ömjenannt.',
-'revisionmove'                 => 'Versione vun „$1“ ömnänne',
-'revisionmove-backlink'        => '←&nbsp;$1',
-'revmove-explain'              => 'Heh di Versione wääde vun „$1“ noh de aanjejovve Sigg ömjetrocke. Wann di Sigg no_nit doh es, weet se aanjelaat. Söns wääde de Versione zwesche die entzotteet, di ald doh sin.',
-'revmove-legend'               => 'Zielsigg un Jrond aanjävve',
-'revmove-submit'               => 'Lohß jonn!',
-'revisionmoveselectedversions' => 'Ußjesoht Versione ömnänne',
-'revmove-reasonfield'          => 'Jrond:',
-'revmove-titlefield'           => 'Zielsigg:',
-'revmove-badparam-title'       => 'Kapodde Aanjabe',
-'revmove-badparam'             => 'Dat sin zoh winnisch udder verkehte Parrameetere.
-Jang retuur, un donn_et norr_ens probeere.',
-'revmove-norevisions-title'    => 'Enem Ziel sing Version es nit jöltesch',
-'revmove-norevisions'          => 'Do häs kein Version udder Versione ußjesoht, udder di aanjejovve Version udder Versione jidd_et nit.',
-'revmove-nullmove-title'       => 'Dä Tittel es onjöltesch',
-'revmove-nullmove'             => 'Mer kann kein Version vun ein Sigg op desellve Sigg ömträcke. Jangk retuur un söhk en annder Sigg uß, wi „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Ein Version|$1 Versione|Kei Version}} vun dä Sigg „[[$2]]“ {{PLURAL:$1|es|sin|wood}} noh dä Sigg „[[$3]]“ ömjetrocke{{PLURAL:$1|&#32;woode|&#32;woode|}}, di et allerdengs alld joof.',
-'revmove-success-created'      => '{{PLURAL:$1|Ein Version|$1 Versione|Kei Version}} vun dä Sigg „[[$2]]“ {{PLURAL:$1|es|sin|wood}} noh dä neu aanjelaate Sigg „[[$3]]“ ömjetrocke{{PLURAL:$1|&#32;woode.|&#32;woode.|.}}',
-
 # History merging
 'mergehistory'                     => 'Versione fun Sigge zosamme schmiiße',
 'mergehistory-header'              => 'Met hee dä Sündersigge kanns Du de Versione fun en Urshprongssigg met de Versione fun en neuer Zielsigg zosamme läje. Donn drop aade, dat der Zosammehang fun dä Versione am Engk reschtesch es.',
@@ -1565,8 +1536,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
-'right-revisionmove'          => 'Versione ömnänne',
-'right-disableaccount'        => 'Zohjäng för Metmaacher still lääje',
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -1609,7 +1578,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-userrights'           => 'alle Metmaacher ier Rääschte ze ändere',
 'action-userrights-interwiki' => 'dä Metmaacher fun ander Wikis ier Rääschte ze ändere',
 'action-siteadmin'            => 'de Datebank ze sperre udder widder freizejävve',
-'action-revisionmove'         => 'Versione ömzenänne',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
@@ -3181,7 +3149,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-stripbytecounts'             => 'De Aanzahl Bytes en jedem kompremierte Striefe',
 'exif-jpeginterchangeformat'       => 'Bytes Affshtand zom JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes aan JPEG-Date',
-'exif-transferfunction'            => 'Övverdrarongsfungxjohn',
 'exif-whitepoint'                  => 'Fun Hand met Messung',
 'exif-primarychromaticities'       => 'De drei Houpfärve ier Färf-Intensität',
 'exif-ycbcrcoefficients'           => 'YCbCr-Geweeschte',
@@ -3200,7 +3167,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-compressedbitsperpixel'      => 'Aat fun de Kompreßjohn fun däm Beld',
 'exif-pixelydimension'             => 'Pixelle jöltije Beld-Breed',
 'exif-pixelxdimension'             => 'Pixelle jöltije Beld-Hühde',
-'exif-makernote'                   => 'Aanmerkong fum Hersteller',
 'exif-usercomment'                 => 'Aanmerkong fum Aanwender',
 'exif-relatedsoundfile'            => 'De Tondatei, di do bei jehööt',
 'exif-datetimeoriginal'            => 'Zickpunk fun de Opzeischnong fun de Date',
@@ -3214,7 +3180,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-exposureprogram'             => 'Beleeshtungsprojramm',
 'exif-spectralsensitivity'         => 'Emfendleschkeit för et Färvespäktrom',
 'exif-isospeedratings'             => 'Dem Fillem odder Sensor sing Emfindlischkeit (als ISO Wäät)',
-'exif-oecf'                        => 'Dä Leesch-Elletronesche Ömrechnungsfaktor',
 'exif-shutterspeedvalue'           => 'Jeschwendieschkeit fum Verschoß bem Beleeschte',
 'exif-aperturevalue'               => 'De Blend iere Wäät',
 'exif-brightnessvalue'             => 'De Hellishkeit',
@@ -3227,7 +3192,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-focallength'                 => 'De Brennwigde fun de Lenß',
 'exif-subjectarea'                 => 'Em Motiv singe Bereich',
 'exif-flashenergy'                 => 'Dem Bletz sing Ennäjii',
-'exif-spatialfrequencyresponse'    => 'De Kamera ier Winkel-Oplösung fun de Oots-Frequenz',
 'exif-focalplanexresolution'       => 'De Kammera ierem Sensor sing räächs-links-Oplösung',
 'exif-focalplaneyresolution'       => 'De Kammera ierem Sensor sing bovve-unge-Oplösung',
 'exif-focalplaneresolutionunit'    => 'De Oplösung fum Sensor ier Moß-Einheit',
@@ -3236,7 +3200,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-sensingmethod'               => 'De Metood, woh der Kammera ier Sensor met messe deit',
 'exif-filesource'                  => 'Dä Datei ier Quell',
 'exif-scenetype'                   => 'Dä Tüp för de Darstellung udder der Szenopbou',
-'exif-cfapattern'                  => 'CFA-Muster',
 'exif-customrendered'              => 'Däm Maacher sing eije Aat, et Beld ze beärrbeide',
 'exif-exposuremode'                => 'Beleeschtungs-Aat',
 'exif-whitebalance'                => 'Wießaffjleich',
@@ -3788,18 +3751,5 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 (un kann en janze Täxte söhke)',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
-
-# Special:DisableAccount
-'disableaccount'             => 'Enem Metmaacher singe Zohjang stell lääje',
-'disableaccount-user'        => 'Metmaacher Name:',
-'disableaccount-reason'      => 'Woröm?',
-'disableaccount-confirm'     => "Däm Metmaacher singe Zohjang op Duur stell lääje.
-Dä Metmaacher kann dann nit mieh enlogge, sing Paßwoot ändere, udder <i lang=\"en\">e-mail</i> krijje.
-Wann dä Metmaacher ööhnzwoh enjelogg es, flüsh hä tirag_eruß.
-'''Opjepaß:''' ''Ene stell jelaate Zohjang kam_mer der ohne Hölp vun enem Administrator vum ẞööver vum Wiki nit widder aan et Loufe krijje.''",
-'disableaccount-mustconfirm' => 'Do moß bestäätije, dat De däm Metmaacher singe Zohjang op Duur stell lääje wells.',
-'disableaccount-nosuchuser'  => 'Ene Metmaacher „$1“ ham_mer nit.',
-'disableaccount-success'     => 'Däm Metmaacher „$1“ singe Zohjang es op Duur stell jelaat.',
-'disableaccount-logentry'    => 'hät däm Metmaacher [[$1]] singe Zohjang op Duur stell jelaat.',
 
 );

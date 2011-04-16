@@ -580,9 +580,6 @@ $1',
 'accountcreatedtext'      => 'Кхоллина декъашхо дlавазвар $1.',
 'loginlanguagelabel'      => 'Мотт: $1',
 
-# JavaScript password checks
-'password-strength-good' => 'дика',
-
 # Password reset dialog
 'resetpass'                 => 'Ишар хийца',
 'resetpass_text'            => '<!-- Кхузахь язъде хьай йоза -->',
@@ -722,9 +719,6 @@ $1',
 'revdelete-content'          => 'чуьраниг',
 'revdelete-uname'            => 'декъашхон цlе',
 'revdelete-reasonotherlist'  => 'Кхин бахьан',
-
-# Revision move
-'revmove-reasonfield' => 'Бахьан:',
 
 # History merging
 'mergehistory-reason' => 'Бахьан:',
@@ -1446,7 +1440,6 @@ PICT # тайп тайпан
 # EXIF tags
 'exif-datetime'         => 'Хlума хийцина терахь а хан',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
-'exif-cfapattern'       => 'Бос литтар тайт',
 
 'exif-scenetype-1' => 'Сурт даьккхина нис дуьххьал',
 

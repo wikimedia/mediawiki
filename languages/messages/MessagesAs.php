@@ -575,15 +575,6 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'পি-এইছ-পি mail() ফলনত অজ্ঞাত ত্ৰুটি',
 
-# JavaScript password checks
-'password-strength'            => 'গুপ্তশব্দৰ শক্তি অনুমান: $1',
-'password-strength-bad'        => 'অতিকৈ দুৰ্বল',
-'password-strength-mediocre'   => 'দুৰ্বল',
-'password-strength-acceptable' => 'গ্ৰহণযোগ্য',
-'password-strength-good'       => 'শ্ৰেষ্ঠ',
-'password-retype'              => 'গুপ্তশব্দ আকৌ এবাৰ লিখক',
-'password-retype-mismatch'     => 'গুপ্তশব্দকেইটা মিলা নাই',
-
 # Password reset dialog
 'resetpass'                 => 'গুপ্তশব্দ শলনি',
 'resetpass_announce'        => 'আপুনি ই-মেইলত পোৱা অস্থায়ী গুপ্তশব্দৰে প্ৰৱেশ কৰিছে।
@@ -859,14 +850,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'revdelete-reasonotherlist'   => 'অন্য কাৰণ',
 'revdelete-edit-reasonlist'   => 'অপসাৰণৰ কাৰণ সম্পাদনা',
 'revdelete-offender'          => 'সংশোধন লেখক:',
-
-# Revision move
-'revmove-legend'               => 'লক্ষ্য পৃষ্ঠা আৰু সাৰাংশ ধায্য কৰক',
-'revmove-submit'               => 'নিৰ্বাচিত পৃষ্ঠাৰ সংশোধনসমূহ স্থানান্তৰ কৰক',
-'revisionmoveselectedversions' => 'নিৰ্বাচিত সংশোধনসমূহ স্থানান্তৰ কৰক',
-'revmove-reasonfield'          => 'কাৰণ:',
-'revmove-titlefield'           => 'লক্ষ্য পৃষ্ঠা:',
-'revmove-nullmove-title'       => 'শিৰোনামাটি গ্ৰহণযোগ্য নহয় ।',
 
 # History merging
 'mergehistory'                  => 'পৃষ্ঠাৰ ইতিহাসবোৰ মিলাই দিয়ক',
@@ -1898,11 +1881,5 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'htmlform-submit'              => 'দাখিল কৰক',
 'htmlform-reset'               => 'সাল-সলনি পণ্ড কৰক',
 'htmlform-selectorother-other' => 'অন্য',
-
-# Special:DisableAccount
-'disableaccount'            => 'সদস্য একাউন্ট প্ৰতিবন্ধ কৰক',
-'disableaccount-user'       => 'সদস্যনাম:',
-'disableaccount-reason'     => 'কাৰণ:',
-'disableaccount-nosuchuser' => '"$1" নামৰ সদস্য একাউন্টৰ অস্তিত্ব নাই ।',
 
 );

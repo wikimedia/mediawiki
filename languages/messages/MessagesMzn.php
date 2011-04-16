@@ -419,10 +419,6 @@ $2، $1',
 'accountcreated'          => 'کاروری نوم دِرِس بیّه',
 'accountcreatedtext'      => 'کاروری نوم، $1 بساته بیّه.',
 
-# JavaScript password checks
-'password-strength-bad'  => 'بد',
-'password-strength-good' => 'خار',
-
 # Password reset dialog
 'newpassword' => 'نو پسورد:',
 

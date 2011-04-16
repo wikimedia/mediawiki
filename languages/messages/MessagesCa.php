@@ -669,15 +669,6 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Força estimada de la contrasenya: $1',
-'password-strength-bad'        => 'DOLENT',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'acceptable',
-'password-strength-good'       => 'bo',
-'password-retype'              => 'Escriviu una altra vegada la contrasenya aquí',
-'password-retype-mismatch'     => 'Les contrasenyes no coincideixen.',
-
 # Password reset dialog
 'resetpass'                 => 'Canvia la contrasenya',
 'resetpass_announce'        => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
@@ -1056,24 +1047,6 @@ Si us plau, verifica els registres.",
 'suppressionlog'     => 'Registre de supressió',
 'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i bloquejos que impliquen un contingut amagat als administradors. Vegeu la [[Special:IPBlockList|llista de bloquejos]] per a consultar la llista de bandejos i bloquejos actualment en curs.',
 
-# Revision move
-'moverevlogentry'              => "{{PLURAL:$3|s'ha mogut una revisió|s'han mogut $3 revisions}} des de $1 a $2",
-'revisionmove'                 => 'Moure revisions des de «$1»',
-'revmove-explain'              => "Les següents revisions seran traslladades des de $1 a la pàgina de destinació especificada. Si la destinació no existeix, es crearà. En cas contrari, aquestes revisions es fusionaran amb l'historial de la pàgina.",
-'revmove-legend'               => 'Establir pàgina de destinació i resum',
-'revmove-submit'               => 'Moure revisions a la pàgina seleccionada',
-'revisionmoveselectedversions' => 'Moure revisions seleccionades',
-'revmove-reasonfield'          => 'Motiu:',
-'revmove-titlefield'           => 'Pàgina de destinació:',
-'revmove-badparam-title'       => 'paràmetres inadequats',
-'revmove-badparam'             => 'La soŀlicitud conté paràmetres insuficients o erronis. Torneu enrere i intenteu-ho de nou.',
-'revmove-norevisions-title'    => 'Revisió especificada no vàlida',
-'revmove-norevisions'          => 'No heu especificat una o més revisions on aplicar aquesta funció o bé les revisions especificades no existeixen.',
-'revmove-nullmove-title'       => 'Títol inadequat',
-'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «$1».",
-'revmove-success-existing'     => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la pàgina existent [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la nova pàgina [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
 'mergehistory-header'              => "Aquesta pàgina us permet fusionar les revisions de l'historial d'una pàgina origen en una més nova.
@@ -1410,8 +1383,6 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
-'right-revisionmove'          => 'Moure revisions',
-'right-disableaccount'        => 'Desactivar comptes',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1454,7 +1425,6 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights'           => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin'            => 'bloquejar o desbloquejar la base de dades',
-'action-revisionmove'         => 'moure revisions',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -2893,7 +2863,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-stripbytecounts'             => 'Octets per franja comprimida',
 'exif-jpeginterchangeformat'       => 'Ancorament del JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Octets de dades JPEG',
-'exif-transferfunction'            => 'Funció de transferència',
 'exif-whitepoint'                  => 'Cromositat del punt blanc',
 'exif-primarychromaticities'       => 'Coordenada cromàtica del color primari',
 'exif-ycbcrcoefficients'           => "Quoficients de la matriu de transformació de l'espai colorimètric",
@@ -2912,7 +2881,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-compressedbitsperpixel'      => "Mode de compressió d'imatge",
 'exif-pixelydimension'             => 'Amplada de la imatge',
 'exif-pixelxdimension'             => 'Alçada de la imatge',
-'exif-makernote'                   => 'Notes del fabricant',
 'exif-usercomment'                 => "Comentaris de l'usuari",
 'exif-relatedsoundfile'            => "Fitxer d'àudio relacionat",
 'exif-datetimeoriginal'            => 'Dia i hora de generació de les dades',
@@ -2926,7 +2894,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-exposureprogram'             => "Programa d'exposició",
 'exif-spectralsensitivity'         => 'Sensibilitat espectral',
 'exif-isospeedratings'             => 'Sensibilitat ISO',
-'exif-oecf'                        => 'Factor de conversió optoelectrònic',
 'exif-shutterspeedvalue'           => "Temps d'exposició",
 'exif-aperturevalue'               => 'Obertura',
 'exif-brightnessvalue'             => 'Brillantor',
@@ -2939,7 +2906,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-focallength'                 => 'Longitud focal de la lent',
 'exif-subjectarea'                 => 'Enquadre del subjecte',
 'exif-flashenergy'                 => 'Energia del flaix',
-'exif-spatialfrequencyresponse'    => 'Resposta en freqüència espacial',
 'exif-focalplanexresolution'       => 'Resolució X del pla focal',
 'exif-focalplaneyresolution'       => 'Resolució Y del pla focal',
 'exif-focalplaneresolutionunit'    => 'Unitat de resolució del pla focal',
@@ -2948,7 +2914,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-sensingmethod'               => 'Mètode de detecció',
 'exif-filesource'                  => 'Font del fitxer',
 'exif-scenetype'                   => "Tipus d'escena",
-'exif-cfapattern'                  => 'Patró CFA',
 'exif-customrendered'              => "Processament d'imatge personalitzat",
 'exif-exposuremode'                => "Mode d'exposició",
 'exif-whitebalance'                => 'Balanç de blancs',
@@ -3442,18 +3407,5 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
-
-# Special:DisableAccount
-'disableaccount'             => "Deshabilita un compte d'usuari/a",
-'disableaccount-user'        => "Nom d'usuari/a :",
-'disableaccount-reason'      => 'Motiu:',
-'disableaccount-confirm'     => "Desactivació d'aquest compte d'usuari.
-L'usuari no podrà entrar al seu compte, recuperar la contrasenya o rebre notificacions per correu electònic.
-Si l'usuari està fent servir el compte actualment serà immediatament desconnectat.
-''Tingueu en compte que la desactivació d'un compte no és una operació reversible sense la intervenció d'algú amb accés al servidor del sistema.''",
-'disableaccount-mustconfirm' => 'Has de confirmar que vols desactivar aquest compte.',
-'disableaccount-nosuchuser'  => 'El compte d\'usuari/a "$1" no existeix.',
-'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',
-'disableaccount-logentry'    => "ha deshabilitat permanentment el compte de {{GENDER:$1|l'usuari|la usuària}} [[$1]]",
 
 );

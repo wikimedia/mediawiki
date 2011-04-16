@@ -752,15 +752,6 @@ Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
 'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
 
-# JavaScript password checks
-'password-strength'            => 'Parooli tugevuse hinnang: $1',
-'password-strength-bad'        => 'HALB',
-'password-strength-mediocre'   => 'keskpärane',
-'password-strength-acceptable' => 'vastuvõetav',
-'password-strength-good'       => 'hea',
-'password-retype'              => 'Sisesta parool uuesti:',
-'password-retype-mismatch'     => 'Paroolid ei kattu',
-
 # Password reset dialog
 'resetpass'                 => 'Parooli muutmine',
 'resetpass_announce'        => 'Logisid sisse e-posti teel saadud ajutise koodiga.
@@ -1137,26 +1128,6 @@ Palun vaata logisid.',
 'suppressionlogtext' => 'Allpool on nimekiri kustutamistest ja blokeeringutest, millega kaasneb administraatorite eest sisu varjamine.
 Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-aadresside loendist]].',
 
-# Revision move
-'moverevlogentry'              => 'teisaldas lehekülje $1 {{PLURAL:$3|ühe|$3}} redaktsiooni leheküljele $2',
-'revisionmove'                 => 'Redaktsioonide teisaldamine leheküljelt "$1"',
-'revmove-explain'              => 'Järgmised redaktsioonid teisaldatakse leheküljelt $1 määratud sihtleheküljele. Kui sihtlehekülge pole olemas, luuakse see. Muul juhul liidetakse need redaktsioonid lehekülje ajalooga.',
-'revmove-legend'               => 'Sisesta sihtleht ja kokkuvõte',
-'revmove-submit'               => 'Teisalda redaktsioonid valitud leheküljele',
-'revisionmoveselectedversions' => 'Teisalda valitud redaktsioonid',
-'revmove-reasonfield'          => 'Põhjus:',
-'revmove-titlefield'           => 'Sihtlehekülg:',
-'revmove-badparam-title'       => 'Halvad parameetrid',
-'revmove-badparam'             => 'Sinu päring sisaldab lubamatuid või puudulikke parameetreid.
-Mine eelmisele leheküljele tagasi ja proovi uuesti.',
-'revmove-norevisions-title'    => 'Vigane sihtredaktsioon',
-'revmove-norevisions'          => 'Selle toimingu sooritamiseks pole ühtegi sihtredaktsiooni määratud või määratud redaktsiooni pole olemas.',
-'revmove-nullmove-title'       => 'Halb pealkiri',
-'revmove-nullmove'             => 'Lähte- ja sihtlehekülg ei saa olla samad.
-Mine eelmisele leheküljele tagasi ja vali pealkirjast "$1" erinev pealkiri.',
-'revmove-success-existing'     => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud olemasolevale leheküljele [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud vastloodud leheküljele [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
 'mergehistory-header'              => 'Siin leheküljel saad ühe lehekülje ajaloo redaktsioonid uuema leheküljega liita.
@@ -1493,8 +1464,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-reset-passwords'       => 'Määrata teistele kasutajatele paroole',
 'right-override-export-depth' => 'Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
-'right-revisionmove'          => 'Teisaldada redaktsioone',
-'right-disableaccount'        => 'Lukustada kontosid',
 
 # User rights log
 'rightslog'      => 'Kasutaja õiguste logi',
@@ -1537,7 +1506,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'action-userrights'           => 'kõiki kasutajaõigusi muuta',
 'action-userrights-interwiki' => 'teiste vikide kasutajate õigusi muuta',
 'action-siteadmin'            => 'andmebaasi lukustada või avada',
-'action-revisionmove'         => 'redaktsioone teisaldada',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muudatus|muudatust}}',
@@ -2947,7 +2915,6 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-stripbytecounts'             => 'Baitide hulk kokkusurutud riba kohta',
 'exif-jpeginterchangeformat'       => 'Kaugus JPEG SOI-ni',
 'exif-jpeginterchangeformatlength' => 'JPEG-andmete suurus baitides',
-'exif-transferfunction'            => 'Siirdefunktsioon',
 'exif-whitepoint'                  => 'Valge punkti heledus',
 'exif-primarychromaticities'       => 'Põhivärvide värvsus',
 'exif-datetime'                    => 'Faili muutmise kuupäev ja kellaaeg',
@@ -2964,7 +2931,6 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-compressedbitsperpixel'      => 'Pildi pakkimise meetod',
 'exif-pixelydimension'             => 'Kehtiv pildi laius',
 'exif-pixelxdimension'             => 'Kehtiv pildi kõrgus',
-'exif-makernote'                   => 'Tootja märkmed',
 'exif-usercomment'                 => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'            => 'Seotud helifail',
 'exif-datetimeoriginal'            => 'Andmete loomise kuupäev ja kellaaeg',
@@ -3417,18 +3383,5 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-submit'              => 'Saada',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
-
-# Special:DisableAccount
-'disableaccount'             => 'Kasutajakonto lukustamine',
-'disableaccount-user'        => 'Kasutajanimi:',
-'disableaccount-reason'      => 'Põhjus:',
-'disableaccount-confirm'     => "Lukusta see kasutajakonto.
-Edaspidi ei saa kasutaja sisse logida, oma parooli lähtestada ega e-kirjatsi teateid saada.
-Kui kasutaja on praegu kuskile sisse logitud, logitakse ta koheselt välja.
-''Pane tähele, et lukustatud konto uuesti kasutamiseks on tarvis süsteemiadministraatori sekkumist.''",
-'disableaccount-mustconfirm' => 'Pead kinnitama, et soovid seda kontot lukustada.',
-'disableaccount-nosuchuser'  => 'Kasutajakontot "$1" pole.',
-'disableaccount-success'     => 'Kasutajakonto "$1" on jäädavalt lukustatud.',
-'disableaccount-logentry'    => 'lukustas jäädavalt kasutajakonto [[$1]].',
 
 );

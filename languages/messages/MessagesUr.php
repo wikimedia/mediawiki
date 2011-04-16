@@ -510,10 +510,6 @@ Warning: Page may not contain recent updates.',
 دوبارہ کوشش کرنے سے پہلے انتظار فرمائیے.',
 'loginlanguagelabel'         => 'زبان: $1',
 
-# JavaScript password checks
-'password-retype'          => 'کلمۂ شناخت دوبارہ لکھیں',
-'password-retype-mismatch' => 'پارالفاظ ایک دوسرے سے مطابقت نہیں رکھتے',
-
 # Password reset dialog
 'resetpass'                 => 'پارلفظ تبدیل کریں',
 'resetpass_announce'        => 'آپ ایک برقی ارسال کردہ عارضی رمز کے ساتھ داخل ہوئے ہیں.
@@ -726,9 +722,6 @@ $1",
 'revdelete-reasonotherlist'  => 'کوئی اَور وجہ',
 'revdelete-edit-reasonlist'  => 'تحذیفی وجوہات کی تدوین',
 'revdelete-offender'         => 'نظرثانی مصنف:',
-
-# Revision move
-'revmove-reasonfield' => 'وجہ:',
 
 # History merging
 'mergehistory'                     => 'تواریخِ صفحہ کا انضمام',

@@ -529,15 +529,6 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 # E-mail sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 
-# JavaScript password checks
-'password-strength'            => "Lunghezze d'a passuord stimate: $1",
-'password-strength-bad'        => 'SCKEFUSE',
-'password-strength-mediocre'   => 'megghie de ninde',
-'password-strength-acceptable' => 'pò scè',
-'password-strength-good'       => 'bbuène',
-'password-retype'              => "Rescrive 'a passuord aqquà",
-'password-retype-mismatch'     => 'Le passuord no ge sonde uguale',
-
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
 'resetpass_announce'        => "Tu tè colleghete cu 'nu codece mannete pe e-mail temboranee.
@@ -935,26 +926,6 @@ Pe piacere condrolle l'archivije.",
 'suppressionlogtext' => "Sotte stè 'na liste de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
 Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
-# Revision move
-'moverevlogentry'              => "spustate {{PLURAL:$3|'na revisione|$3 revisiune}} da $1 a $2",
-'revisionmove'                 => 'Spuèste revisiune da "$1"',
-'revmove-explain'              => "Le revisiune successive onna essere spustate da $1 a 'a pàgene de destinazione specificate. Ce 'a destinazione non g'esiste, avène ccrejate. A 'u condrarie, ste revisiune avenene scuagghiate jndr'à 'u cunde d'a pàgene.",
-'revmove-legend'               => "'Mboste 'a pàgene de destinazione e 'u riepileghe",
-'revmove-submit'               => "Spuèste le revisiune jndr'à pàgene scacchiate",
-'revisionmoveselectedversions' => 'Spuèste le revisiune scacchiate',
-'revmove-reasonfield'          => 'Mutive:',
-'revmove-titlefield'           => 'Pàgene de destinazione:',
-'revmove-badparam-title'       => 'Parametre sbagliate',
-'revmove-badparam'             => "'A richiesta toje tène parametre non valide o insufficiende.
-Tuèrne rrete a 'a pàgene precedende e pruève arrete.",
-'revmove-norevisions-title'    => 'Revisione de destinazione invalide',
-'revmove-norevisions'          => "Tu non g'è specificate une o cchiù revisiune de destinazione pe fà sta funzione o 'a revisione specificate non g'esiste.",
-'revmove-nullmove-title'       => 'Titele sbagliate',
-'revmove-nullmove'             => "'A pàgene de destinazione non ge pò essere 'a stesse d'à pàgene de origgene.
-Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"\$1\".",
-'revmove-success-existing'     => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene esistende [[$3]].",
-'revmove-success-created'      => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene appene ccrejate [[$3]].",
-
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
 'mergehistory-header'              => "Sta pàgene te face squagghia le revisiune d'a storie de 'na pàgena sorgende jndr'à 'na pàgena nove.
@@ -1296,8 +1267,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
-'right-revisionmove'          => 'Spuèste le revisiune',
-'right-disableaccount'        => 'Disabbilete le cunde utinde',
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -1340,7 +1309,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'action-userrights'           => "cange tutte le deritte de l'utende",
 'action-userrights-interwiki' => "cange le deritte de l'utende de l'utinde de le otre Uicchi",
 'action-siteadmin'            => "blocche o sblocche 'u database",
-'action-revisionmove'         => 'spuèste le revisiune',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
@@ -2788,7 +2756,6 @@ Otre avènene scunnute pe defolt.
 'exif-stripbytecounts'             => 'Byte pe strisce combresse',
 'exif-jpeginterchangeformat'       => 'Distanze da JPEG SOI',
 'exif-jpeginterchangeformatlength' => "Byte d'u date d'u JPEG",
-'exif-transferfunction'            => 'Funzione de trasferimende',
 'exif-whitepoint'                  => "Cromaticetà d'u punde vianghe",
 'exif-primarychromaticities'       => 'Cromaticetà de le primarie',
 'exif-ycbcrcoefficients'           => "Spazie d'u culore pe le coefficiende d'a matrice de trasformazione",
@@ -2807,7 +2774,6 @@ Otre avènene scunnute pe defolt.
 'exif-compressedbitsperpixel'      => "Mode de combressione de l'immaggine",
 'exif-pixelydimension'             => "Larghezze de l'immaggine valide",
 'exif-pixelxdimension'             => "Altezze de l'immaggine valide",
-'exif-makernote'                   => "Note d'u ccreatore",
 'exif-usercomment'                 => "Commende de l'utende",
 'exif-relatedsoundfile'            => 'File audio collegate',
 'exif-datetimeoriginal'            => "Date e ore d'a generazione de le date",
@@ -2821,7 +2787,6 @@ Otre avènene scunnute pe defolt.
 'exif-exposureprogram'             => "Programme d'esposizione",
 'exif-spectralsensitivity'         => 'Senzitività spettrale',
 'exif-isospeedratings'             => 'Senzibbilità ISO',
-'exif-oecf'                        => 'Fattore de conversione optoelettroneche',
 'exif-shutterspeedvalue'           => 'Velocità de esposizione',
 'exif-aperturevalue'               => 'Aperture',
 'exif-brightnessvalue'             => 'Lumenosità',
@@ -2834,7 +2799,6 @@ Otre avènene scunnute pe defolt.
 'exif-focallength'                 => "Distanze focale de l'obbiettive",
 'exif-subjectarea'                 => "Area d'u soggette",
 'exif-flashenergy'                 => "Putenze d'u flash",
-'exif-spatialfrequencyresponse'    => "Resposte jndr'à frequenze spaziale",
 'exif-focalplanexresolution'       => "Resoluzione X sus a 'u piane focale",
 'exif-focalplaneyresolution'       => "Resoluzione Y sus a 'u piane focale",
 'exif-focalplaneresolutionunit'    => "Aunità de resoluzione d'u piane focale",
@@ -2843,7 +2807,6 @@ Otre avènene scunnute pe defolt.
 'exif-sensingmethod'               => 'Metode de rivelazzione',
 'exif-filesource'                  => "Sorgende d'u file",
 'exif-scenetype'                   => 'Tipe de scene',
-'exif-cfapattern'                  => 'Cambione CFA',
 'exif-customrendered'              => "Elabborazzione de l'immaggine personalizzate",
 'exif-exposuremode'                => "Mode d'esposizione",
 'exif-whitebalance'                => "Ualanzamende d'u vianghe",
@@ -3328,18 +3291,5 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
-
-# Special:DisableAccount
-'disableaccount'             => "Disabbilete 'nu cunde utende",
-'disableaccount-user'        => "Nome de l'utende:",
-'disableaccount-reason'      => 'Mutive:',
-'disableaccount-confirm'     => "Disabbilete stu cunde de l'utende. <br />
-St'utende pò non ge pò trasè cchiù, azzerà 'a passuord soje, o ricevere email de notifiche. <br />
-Ce l'utende jè collegate jndr'à stu mumende, allore avène mise fore. <br />
-''Vide bbuene 'a disabbilitazione de 'nu cunde utende non g'è reversibbele senze 'n'indervende de 'n'amministratore d'u sisteme.''",
-'disableaccount-mustconfirm' => 'Tu a confermà ce vuè ccu disabbilete stu cunde utende.',
-'disableaccount-nosuchuser'  => '\'U cunde utende "$1" non g\'esiste.',
-'disableaccount-success'     => '\'U cunde utende "$1" ha state disabbilitate pe sembre.',
-'disableaccount-logentry'    => "disabbilete pe sembre 'u cunde utende [[$1]]",
 
 );

@@ -568,15 +568,6 @@ Yañadan qabatlağançı beraz kötüegez sorala.',
 'loginlanguagelabel'         => 'Tel: $1',
 'suspicious-userlogout'      => 'Sezneñ eşçänlekne beterü sorawığız kire qağıldı, çönki ul yalğış brauzer yäisä keşlawçı proksi aşa cibärelerge mömkin.',
 
-# JavaScript password checks
-'password-strength'            => 'Sersüzneñ sıyfatın tikşerü: $1',
-'password-strength-bad'        => 'NAÇAR',
-'password-strength-mediocre'   => 'urtaça',
-'password-strength-acceptable' => 'qänäğätlänerlek',
-'password-strength-good'       => 'yaxşı',
-'password-retype'              => 'Sersüzne yañadan kertegez',
-'password-retype-mismatch'     => 'Sersüzlär turı kilmi',
-
 # Password reset dialog
 'resetpass'                 => 'Sersüzne üzgärtü',
 'resetpass_announce'        => 'Sez elektron poçta aşa waqıtlıça birelgän sersüz yärdämendä kerdegez. Sistemağa kerüne tögälläw öçen yaña sersüz tözegez.',
@@ -901,12 +892,6 @@ Sez idaräçe bulu säbäple, [$1 yäşerelgän yuramanı qarıy alasız]",
 
 # Suppression log
 'suppressionlog' => 'Yäşerü köndälege',
-
-# Revision move
-'revmove-reasonfield'    => 'Säbäp:',
-'revmove-titlefield'     => 'Töp bit:',
-'revmove-badparam-title' => 'Yaraqsız parametrlar',
-'revmove-nullmove-title' => 'Yaraqsız isem',
 
 # History merging
 'mergehistory'        => 'Üzgärtülär tarixın berläşterü',
@@ -2051,7 +2036,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'exif-compressedbitsperpixel'   => 'Qısıludan soñ tösneñ tiränlege',
 'exif-pixelydimension'          => 'Räsemneñ tulı bieklege',
 'exif-pixelxdimension'          => 'Räsemneñ tulı kiñlege',
-'exif-makernote'                => 'Citeşterüçe turında östämä mäğlümatlar',
 'exif-usercomment'              => 'Östämä cawap',
 'exif-relatedsoundfile'         => 'Tawış faylı cawabı',
 'exif-datetimeoriginal'         => 'Çın waqıtı',
@@ -2066,7 +2050,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'exif-exposureprogram'          => 'Ekspozitsiä programması',
 'exif-spectralsensitivity'      => 'Spektral sizüçänlek',
 'exif-isospeedratings'          => 'ISO yaqtılıq sizüçänlege',
-'exif-oecf'                     => 'OECF (optoelektrik küçerü koeffitsientı)',
 'exif-shutterspeedvalue'        => 'Saqlaw',
 'exif-aperturevalue'            => 'Diafragma',
 'exif-brightnessvalue'          => 'Yaqtılıq',
@@ -2080,7 +2063,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'exif-focallength-format'       => '$1 mm',
 'exif-subjectarea'              => 'Töşerü cisemeneñ urnaşuı häm mäydanı',
 'exif-flashenergy'              => 'Yaqtılıq energiäse',
-'exif-spatialfrequencyresponse' => 'Tirälek tırışı',
 'exif-focalplanexresolution'    => 'X foqäl yassılıq kiñäytelüe',
 'exif-focalplaneyresolution'    => 'Y foqäl yassılıq kiñäytelüe',
 'exif-focalplaneresolutionunit' => 'Foqäl yassılıq kiñäytelüen isäpläw berämlege',
@@ -2089,7 +2071,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'exif-sensingmethod'            => 'Sensor töre',
 'exif-filesource'               => 'Faylnıñ çığanağı',
 'exif-scenetype'                => 'Tirälekneñ töre',
-'exif-cfapattern'               => 'Tös filtrınıñ töre',
 'exif-customrendered'           => 'Östämä üzgärtü',
 'exif-exposuremode'             => 'Ekspozitsiä saylaw rejimı',
 'exif-whitebalance'             => 'Aq tösneñ balansı',

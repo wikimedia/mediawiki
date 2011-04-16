@@ -227,15 +227,6 @@ $messages = array(
 'mailmypassword'          => 'Ыстыны виль пароль',
 'loginlanguagelabel'      => 'Кыв: $1',
 
-# JavaScript password checks
-'password-strength'            => 'Парольытлöн вын: $1',
-'password-strength-bad'        => 'ТУЙТÖМ',
-'password-strength-mediocre'   => 'абужык умöль',
-'password-strength-acceptable' => 'туяна',
-'password-strength-good'       => 'туяна',
-'password-retype'              => 'Гиж парольтö мöдпöв',
-'password-retype-mismatch'     => 'Пароллет озö лöсялö',
-
 # Password reset dialog
 'resetpass'                 => 'Вежны пароль',
 'oldpassword'               => 'Важ пароль',

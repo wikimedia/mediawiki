@@ -438,14 +438,6 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'accountcreated'          => 'lcompt tkriyat',
 'loginlanguagelabel'      => 'Loġa: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'khayba',
-'password-strength-mediocre'   => 'ayyana',
-'password-strength-acceptable' => 'mqbola',
-'password-strength-good'       => 'mzyan',
-'password-retype'              => 'aaawd ktb lmot de passe dyalk',
-'password-retype-mismatch'     => 'les mots de pass machi bhal bhal',
-
 # Password reset dialog
 'resetpass'                 => 'tbdl lmot de passe',
 'resetpass_text'            => '<!-- zid chi nass hna -->',
@@ -601,15 +593,6 @@ Dakċi li beddelṫi mazal ma ṫċejjel !",
 
 # Suppression log
 'suppressionlog' => 'sijil likhfaaa',
-
-# Revision move
-'revmove-submit'               => 'nql lmorajaat lsfha lmohdada',
-'revisionmoveselectedversions' => 'nql lmorajaaat li mhddin',
-'revmove-reasonfield'          => 'S-Sbab:',
-'revmove-titlefield'           => 'sfha lhadaf:',
-'revmove-badparam-title'       => 'regalge machi hwa hadak',
-'revmove-norevisions-title'    => 'morajaa mostahdafa ghayr saliha',
-'revmove-nullmove-title'       => 'aanwan mamzyanch',
 
 # History merging
 'mergehistory'        => 'dmj tawarikh sfha',
@@ -850,7 +833,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'right-reset-passwords'       => 'awd rigli lmot de passe dyal lmostkhdimin lkhrin',
 'right-override-export-depth' => 'tsdir sfahi obinha sfahi lmawsola hta lomq 5',
 'right-sendemail'             => 'sift email lmostkhdimin lkhrin',
-'right-revisionmove'          => 'nql lmorajaat',
 
 # User rights log
 'rightslog'      => 'Ĝamaliyaṫ ḫoqoq l-mosṫeĥdim',
@@ -893,7 +875,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'action-userrights'           => 'taadil kol  salahiyat lmostkhdimin',
 'action-userrights-interwiki' => 'taadil salahiyat lmostkhdimin f lwikiyat lkhrin',
 'action-siteadmin'            => 'sd o7l qaidat lbayant',
-'action-revisionmove'         => 'nql lmorajaat',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ṫeġyira weḫda|$1 dyal ṫ-ṫeġyiraṫ}}',
@@ -1791,7 +1772,6 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-stripbytecounts'             => 'byte lkol chariha mdghota',
 'exif-jpeginterchangeformat'       => 'lhad l JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'bytes dyal JPEG',
-'exif-transferfunction'            => 'wadifat naql',
 'exif-whitepoint'                  => 'alwan noqta lbida',
 'exif-primarychromaticities'       => 'alwan assasia',
 'exif-ycbcrcoefficients'           => 'moamalat masfofa tahwil farigh lon',
@@ -1810,7 +1790,6 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-compressedbitsperpixel'      => 'tor daght sora',
 'exif-pixelydimension'             => 'ard sora sahih',
 'exif-pixelxdimension'             => 'tol sora sahih',
-'exif-makernote'                   => 'molahadat lmasnaa',
 'exif-usercomment'                 => 'taaliqat lmostakhdim',
 'exif-relatedsoundfile'            => 'milf sawti mortabit',
 'exif-datetimeoriginal'            => 'tarikh o wqt tawlid lbayanat',

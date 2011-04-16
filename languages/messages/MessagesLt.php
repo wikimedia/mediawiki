@@ -665,15 +665,6 @@ Palaukite prieš bandant vėl.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 
-# JavaScript password checks
-'password-strength'            => 'Apskaičiuotas slaptažodžio stiprumas: $1',
-'password-strength-bad'        => 'BLOGAS',
-'password-strength-mediocre'   => 'vidutiniškas',
-'password-strength-acceptable' => 'priimtinas',
-'password-strength-good'       => 'geras',
-'password-retype'              => 'Čia pakartokite slaptažodį',
-'password-retype-mismatch'     => 'Slaptažodžiai nesutampa',
-
 # Password reset dialog
 'resetpass'                 => 'Keisti slaptažodį',
 'resetpass_announce'        => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
@@ -1051,26 +1042,6 @@ Prašome patikrinti sąrašus.',
 'suppressionlogtext' => 'Žemiau yra trynimų ir blokavimų sąrašas, įtraukiant turinį, paslėptą nuo administratorių.
 Žiūrėkite [[Special:IPBlockList|IP blokavimų sąrašą]], kad rastumėte dabar veikiančius draudimus ir blokavimus.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|perkelta $3 versija|perkeltos $3 versijos|perkeltos $3 versijų}} iš $1 į $2',
-'revisionmove'                 => 'Daugiau versijų iš „$1“',
-'revmove-explain'              => 'Šie pakeitimai bus perkelti iš $1 į nurodytą paskirties puslapį. Jeigu paskirties puslapio nėra, jis bus sukurtas. Priešingu atveju šie pakeitimai bus sujungti su puslapio istorija.',
-'revmove-legend'               => 'Nurodykite paskirties puslapį ir komentarą',
-'revmove-submit'               => 'Perkelti versijas į pasirinktą puslapį',
-'revisionmoveselectedversions' => 'Perkelti pasirinktas versijas',
-'revmove-reasonfield'          => 'Priežastis:',
-'revmove-titlefield'           => 'Paskirties puslapis:',
-'revmove-badparam-title'       => 'Netinkami parametrai',
-'revmove-badparam'             => 'Jūsų užklausoje yra negalimų parametrų ar jų nepakanka.
-Grįžkite į ankstesnį puslapį ir bandykite dar kartą.',
-'revmove-norevisions-title'    => 'Neleistina paskirties versija',
-'revmove-norevisions'          => 'Nenurodėte nė vienos versijos arba nurodyta versija neegzistuoja.',
-'revmove-nullmove-title'       => 'Blogas pavadinimas',
-'revmove-nullmove'             => 'Puslapis, į kurį perkeliamas keitimas, negali būti tokio paties pavadinimo, kaip šaltinio puslapis.
-Grįžkite į ankstesnį puslapį ir pasirinkite kitą pavadinimą iš "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] keitimas buvo perkeltas|$1 [[$2]] keitimai buvo perkelti}} į egzistuojantį puslapį [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Vienas [[$2]] keitimas buvo|$1 [[$2]] keitimai buvo}} perkelti į naujai sukurtą puslapį [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
 'mergehistory-header'              => "Šis puslapis leidžia jus prijungti vieno pirminio puslapio istorijos versijas į naujesnį puslapį. Įsitikinkite, kad šis pakeitimas palaikys istorinį puslapio tęstinumą.
@@ -1405,7 +1376,6 @@ teisės",
 'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
-'right-revisionmove'          => 'Perkelti versijas',
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',
@@ -1448,7 +1418,6 @@ teisės",
 'action-userrights'           => 'keisti visų naudotojų teises',
 'action-userrights-interwiki' => 'keisti naudotojų teises kitose wiki svetainėse',
 'action-siteadmin'            => 'užrakinti ar atrakinti duomenų bazę',
-'action-revisionmove'         => 'perkelti versijas',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
@@ -2858,7 +2827,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-stripbytecounts'             => 'Baitai suspaustje juostoje',
 'exif-jpeginterchangeformat'       => 'JPEG SOI pozicija',
 'exif-jpeginterchangeformatlength' => 'JPEG duomenų baitai',
-'exif-transferfunction'            => 'Perkėlimo funkcija',
 'exif-whitepoint'                  => 'Balto taško chromatiškumas',
 'exif-primarychromaticities'       => 'Pagrindinių spalvų chromiškumas',
 'exif-ycbcrcoefficients'           => 'Spalvų pristatym matricos matricos koeficientai',
@@ -2877,7 +2845,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-compressedbitsperpixel'      => 'Paveikslėlio suspaudimo režimas',
 'exif-pixelydimension'             => 'Leistinas paveikslėlio plotis',
 'exif-pixelxdimension'             => 'Leistinas paveikslėlio aukštis',
-'exif-makernote'                   => 'Gamintojo pastabos',
 'exif-usercomment'                 => 'Naudotojo komentarai',
 'exif-relatedsoundfile'            => 'Susijusi garso byla',
 'exif-datetimeoriginal'            => 'Duomenų generavimo data ir laikas',
@@ -2891,7 +2858,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-exposureprogram'             => 'Išlaikymo programa',
 'exif-spectralsensitivity'         => 'Spektrinis jautrumas',
 'exif-isospeedratings'             => 'ISO greitis',
-'exif-oecf'                        => 'Optoelektronikos konversijos daugiklis',
 'exif-shutterspeedvalue'           => 'Užrakto greitis',
 'exif-aperturevalue'               => 'Diafragma',
 'exif-brightnessvalue'             => 'Šviesumas',
@@ -2904,7 +2870,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-focallength'                 => 'Židinio nuotolis',
 'exif-subjectarea'                 => 'Objekto zona',
 'exif-flashenergy'                 => 'Blykstės energija',
-'exif-spatialfrequencyresponse'    => 'Erdvės dažnio atsakas',
 'exif-focalplanexresolution'       => 'Židinio projekcijos X raiška',
 'exif-focalplaneyresolution'       => 'Židinio projekcijos Y raiška',
 'exif-focalplaneresolutionunit'    => 'Židinio projekcijos raiškos matavimo vienetai',
@@ -2913,7 +2878,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-sensingmethod'               => 'Jutimo režimas',
 'exif-filesource'                  => 'Failo šaltinis',
 'exif-scenetype'                   => 'Scenos tipas',
-'exif-cfapattern'                  => 'CFA raštas',
 'exif-customrendered'              => 'Pasirinktinis vaizdo apdorojimas',
 'exif-exposuremode'                => 'Išlaikymo režimas',
 'exif-whitebalance'                => 'Baltumo balansas',
@@ -3386,9 +3350,5 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # SQLite database support
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Naudotojo vardas:',
-'disableaccount-reason' => 'Priežastis:',
 
 );

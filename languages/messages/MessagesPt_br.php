@@ -786,15 +786,6 @@ Por favor aguarde antes de tentar novamente.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Nível de segurança da senha: $1',
-'password-strength-bad'        => 'MÁ',
-'password-strength-mediocre'   => 'medíocre',
-'password-strength-acceptable' => 'aceitável',
-'password-strength-good'       => 'boa',
-'password-retype'              => 'Escreva novamente a sua senha aqui',
-'password-retype-mismatch'     => 'Senhas não são iguais',
-
 # Password reset dialog
 'resetpass'                 => 'Alterar senha',
 'resetpass_announce'        => 'Você foi autenticado através de uma senha temporária. Para prosseguir, será necessário definir uma nova senha.',
@@ -1183,24 +1174,6 @@ Por favor, verifique os registos.',
 'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
-# Revision move
-'moverevlogentry'              => 'moveu {{PLURAL:$3|uma revisão|$3 revisões}} de $1 para $2',
-'revisionmove'                 => 'Mover revisões de "$1"',
-'revmove-explain'              => 'As seguintes revisões serão movidas de $1 para a página de destino especificada. Se a página de destino não existir, será criada. Se existir, estas revisões serão fundidas no histórico de revisões da página.',
-'revmove-legend'               => 'Definir a página de destino e o resumo',
-'revmove-submit'               => 'Mover as revisões para a página selecionada',
-'revisionmoveselectedversions' => 'Mover as revisões selecionadas',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Página de destino:',
-'revmove-badparam-title'       => 'Parâmetros incorretos',
-'revmove-badparam'             => 'O seu pedido contém parâmetros ilegais ou insuficientes. Clique "voltar" e tente novamente.',
-'revmove-norevisions-title'    => 'A revisão especificada é inválida',
-'revmove-norevisions'          => 'Você não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.',
-'revmove-nullmove-title'       => 'Título incorreto',
-'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.
@@ -1540,8 +1513,6 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
-'right-revisionmove'          => 'Mover revisões',
-'right-disableaccount'        => 'Desativar contas',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -1584,7 +1555,6 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-userrights'           => 'editar todos os privilégios de usuário',
 'action-userrights-interwiki' => 'editar privilégios de usuários de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear o banco de dados',
-'action-revisionmove'         => 'mover revisões',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -3002,7 +2972,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-stripbytecounts'             => 'Bytes por tira comprimida',
 'exif-jpeginterchangeformat'       => 'Desvio para SOI de JPEG',
 'exif-jpeginterchangeformatlength' => 'Bytes de dados JPEG',
-'exif-transferfunction'            => 'Função de transferência',
 'exif-whitepoint'                  => 'Cromaticidade do ponto branco',
 'exif-primarychromaticities'       => 'Cromaticidades primárias',
 'exif-ycbcrcoefficients'           => 'Coeficientes da matriz de transformação do espaço de cores',
@@ -3021,7 +2990,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-compressedbitsperpixel'      => 'Modo de compressão de imagem',
 'exif-pixelydimension'             => 'Largura de imagem válida',
 'exif-pixelxdimension'             => 'Altura de imagem válida',
-'exif-makernote'                   => 'Anotações do fabricante',
 'exif-usercomment'                 => 'Comentários de usuários',
 'exif-relatedsoundfile'            => 'arquivo áudio relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de geração de dados',
@@ -3035,7 +3003,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-exposureprogram'             => 'Programa de exposição',
 'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
-'exif-oecf'                        => 'Fator de conversão optoeletrônica.',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brilho',
@@ -3048,7 +3015,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-focallength'                 => 'Comprimento de foco da lente',
 'exif-subjectarea'                 => 'Área de sujeito',
 'exif-flashenergy'                 => 'Energia do flash',
-'exif-spatialfrequencyresponse'    => 'Resposta em frequência espacial',
 'exif-focalplanexresolution'       => 'Resolução do plano focal X',
 'exif-focalplaneyresolution'       => 'Resolução do plano focal Y',
 'exif-focalplaneresolutionunit'    => 'Unidade de resolução do plano focal',
@@ -3057,7 +3023,6 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-sensingmethod'               => 'Método de sensação',
 'exif-filesource'                  => 'Fonte do arquivo',
 'exif-scenetype'                   => 'Tipo de cena',
-'exif-cfapattern'                  => 'padrão CFA',
 'exif-customrendered'              => 'Processamento de imagem personalizado',
 'exif-exposuremode'                => 'Modo de exposição',
 'exif-whitebalance'                => 'Balanço do branco',
@@ -3545,18 +3510,5 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
-
-# Special:DisableAccount
-'disableaccount'             => 'Desativar uma conta',
-'disableaccount-user'        => 'Nome de usuário:',
-'disableaccount-reason'      => 'Motivo:',
-'disableaccount-confirm'     => "Desativar esta conta.
-O usuário ficará impossibilitado de se autenticar, de reiniciar a palavra-chave e de receber notificações por e-mail.
-Se neste momento o usuário estiver autenticado em algum lugar, ele sairá de imediato.
-''Note que a desativação de uma conta não pode ser revertida sem intervenção de um administrador.''",
-'disableaccount-mustconfirm' => 'Você deve confirmar que pretende desativar esta conta.',
-'disableaccount-nosuchuser'  => 'A conta de usuário "$1" não existe.',
-'disableaccount-success'     => 'A conta de usuário "$1" foi desativada permanentemente.',
-'disableaccount-logentry'    => 'desativou permanentemente a conta [[$1]]',
 
 );

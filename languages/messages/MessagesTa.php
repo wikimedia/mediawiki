@@ -540,15 +540,6 @@ MySQL returned error "$3: $4".',
 அடுத்தபடியாக முயற்சி செய்வதற்கு முன் சிறிது நேரம் காத்திருக்கவும்.',
 'loginlanguagelabel'         => 'மொழி: $1',
 
-# JavaScript password checks
-'password-strength'            => 'கடவுச்சொல்லின் மதிப்பீடு செய்யப்பட்ட உறுதித்தன்மை: $1',
-'password-strength-bad'        => 'சரிப்பட்டுவராதது',
-'password-strength-mediocre'   => 'நடுத்தரமானது',
-'password-strength-acceptable' => 'ஏற்றுக்கொள்ளக்கூடியது',
-'password-strength-good'       => 'நன்று',
-'password-retype'              => 'கடவுச்சொல்லைத் திரும்ப தட்டச்சிடுக',
-'password-retype-mismatch'     => 'கடவுச்சொல் ஒத்துவரவில்லை',
-
 # Password reset dialog
 'resetpass'                 => 'கடவுச்சொல்லை மாற்றியமை',
 'resetpass_announce'        => 'நீங்கள் தற்காலிக மின்னஞ்சல் குறியீட்டுடன் புகுபதிகை செய்துள்ளீர்கள். புகுபதிகையை நிறைவுச் செய்ய புதியக் கடவுச் சொல்லொன்றை இங்கே தட்டசிடுக:',
@@ -867,19 +858,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'suppressionlogtext' => 'பின்வருவது நிர்வாகிகளிடமிருந்து மறைக்கப்பட்ட நீக்கல்களதும் தடுப்புகளதும் பட்டியலாகும்.
 நடைமுறையிலுள்ள தடுப்புகளைக் காண [[Special:IPBlockList|ஐ.பி. தடைப் பட்டியலைப்]] பார்க்க',
 
-# Revision move
-'revisionmove'                 => '"$1" இருந்து மாற்றங்களை நகர்த்து',
-'revmove-legend'               => 'இலக்குப்பக்கத்தையும் அதன் சுருக்கத்தையும் முடிவுசெய்யுங்கள்.',
-'revmove-submit'               => 'தெரிவு செய்த பக்கத்திற்கு மாற்றங்களை நகர்த்தவும்.',
-'revisionmoveselectedversions' => 'தெரிவு செய்யப்பட்ட மாற்றங்களை நகர்த்தவும்',
-'revmove-reasonfield'          => 'காரணம்:',
-'revmove-titlefield'           => 'இலக்குப்பக்கம்:',
-'revmove-badparam-title'       => 'பழுதுள்ள கொடுபொருட்கள்',
-'revmove-badparam'             => 'உங்கள் வேட்பு தவறான அல்லது போதாத உள்கூறுகளைக் (பராமீட்டர்கள்)  கொண்டுள்ளன. 
-முன்புள்ள பக்கத்துக்கு மீண்டும் போய் முயலவும்',
-'revmove-norevisions-title'    => 'செல்லுபடியற்ற இலக்குத் திருத்தம்',
-'revmove-nullmove-title'       => 'பழுதுள்ள தலைப்பு',
-
 # History merging
 'mergehistory'                     => 'பக்க வரலாறுகளை இணை',
 'mergehistory-header'              => 'இப்பக்கம் மூலப்பக்கத்தின் திருத்த வரலாற்றைப் புதிய பக்கத்துடன் இணைக்கத் துணை செய்கிறது. இப்பக்கத்தின் வரலாற்றுத் தொடர்ச்சி காக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக் கொள்ளவும்.',
@@ -1182,7 +1160,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'right-siteadmin'            => 'தரவுத்தளத்தை பூட்டல் திறத்தல்',
 'right-reset-passwords'      => 'பிற பயனர்களின் கடவுச் சொற்களை மீட்டமைக்கவும்',
 'right-sendemail'            => 'மற்ற பயனர்களுக்கு மின்னஞ்சல் அனுப்பு',
-'right-revisionmove'         => 'திருத்தங்களை நகர்த்தவும்',
 
 # User rights log
 'rightslog'      => 'பயனர் உரிமைகள் பதிகை',
@@ -1216,7 +1193,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'action-unwatchedpages'     => 'கவனிக்கப்படாத பக்கங்களின் பட்டியலைப் பார்க்க',
 'action-mergehistory'       => 'இப்பக்க வரலாற்றை இணைக்கவும்',
 'action-userrights'         => 'எல்லாப் பயனர் உரிமைகளையும் தொகுக்கவும்',
-'action-revisionmove'       => 'திருத்தங்களை நகர்த்தவும்',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ஒரு மாற்றம்|$1 மாற்றங்கள்}}',
@@ -2348,7 +2324,6 @@ $1',
 'exif-rowsperstrip'                => 'ஒரு பட்டையில் உள்ள நிரைகளின் எண்ணிக்கை',
 'exif-stripbytecounts'             => 'சுருக்கப்பட்ட பட்டியில் உள்ள பைட்டுகள்',
 'exif-jpeginterchangeformatlength' => 'JPEG தரவுகளின் பைட் அளவு',
-'exif-transferfunction'            => 'இடமாற்ற செயல்முறை',
 'exif-datetime'                    => 'கோப்பு மாற்ற நாள் நேரம்',
 'exif-imagedescription'            => 'படிம தலைப்பு',
 'exif-make'                        => 'படமி (கமெரா) படைப்பாளர்',
@@ -2363,7 +2338,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'படிம சுறுக்க முறை',
 'exif-pixelydimension'             => 'செல்லுபடியான படிம அகலம்',
 'exif-pixelxdimension'             => 'செல்லுபடியான படிம உயரம்',
-'exif-makernote'                   => 'உற்பத்தியாளர் குறிப்புகள்',
 'exif-usercomment'                 => 'பயனர் கருத்துக்கள்',
 'exif-relatedsoundfile'            => 'தொடர்புள்ள ஒலிக்கோப்பு',
 'exif-datetimeoriginal'            => 'தரவு உருவாக்க நாள் நேரம்',
@@ -2395,7 +2369,6 @@ $1',
 'exif-sensingmethod'               => 'உணர்வு முறை',
 'exif-filesource'                  => 'கோப்பு மூலம்',
 'exif-scenetype'                   => 'காட்சி வகை',
-'exif-cfapattern'                  => 'சி.எஃப்.ஏ. கோலம்',
 'exif-exposuremode'                => 'மறைநீக்க முறை',
 'exif-whitebalance'                => 'வெள்ளைச் சமநிலை',
 'exif-digitalzoomratio'            => 'எண்மருவி பெருப்பித்தல் விகிதம்',

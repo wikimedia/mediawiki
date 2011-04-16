@@ -546,13 +546,6 @@ Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
 'login-abort-generic'      => 'Teiden naprind tulda sistemha om satusetoi - Azotadud',
 'loginlanguagelabel'       => 'Kel’: $1',
 
-# JavaScript password checks
-'password-strength-bad'        => 'HOND',
-'password-strength-mediocre'   => 'tändoine',
-'password-strength-acceptable' => 'hüväčuine',
-'password-strength-good'       => 'hüvä',
-'password-retype'              => 'Kirjutagat peitsana udes:',
-
 # Password reset dialog
 'resetpass'                 => 'Vajehtada peitsana',
 'resetpass_announce'        => "Tö olet kirjutanus sistemha sen pordaigaližen peitsanan abul, kudamb oli oigetud teile e-počtadme.
@@ -2400,7 +2393,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-stripbytecounts'             => 'Ahtištadud särman suruz',
 'exif-jpeginterchangeformat'       => '"Ezikacund"-blokan augotišen sijaduz.',
 'exif-jpeginterchangeformatlength' => 'Baitoiden lugumär JPEG-as',
-'exif-transferfunction'            => 'Mujuavarusen toižetamižen funkcii',
 'exif-whitepoint'                  => 'Vauktan čokkoimen mujumär',
 'exif-primarychromaticities'       => 'Pämujuiden mujumär',
 'exif-ycbcrcoefficients'           => 'Mujumodelin toižetusen koefficientad',
@@ -2419,7 +2411,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-compressedbitsperpixel'      => "Mujun süvuz ahtištusen jäl'ghe",
 'exif-pixelydimension'             => "Kuvan täuz' korktuz",
 'exif-pixelxdimension'             => "Täuz' kuvan korktuz",
-'exif-makernote'                   => 'Tegijan ližaandmused',
 'exif-usercomment'                 => 'Kävutajan homaičendad',
 'exif-relatedsoundfile'            => 'Kulundkommentarijan fail',
 'exif-datetimeoriginal'            => 'Todesine dat da aig',
@@ -2434,7 +2425,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-exposureprogram'             => 'Ekspozicijan programm',
 'exif-spectralsensitivity'         => 'Spektraline mujandmär',
 'exif-isospeedratings'             => 'ISO vauktusenmujandmär',
-'exif-oecf'                        => 'Optoelectronižen konversijan koefficient',
 'exif-shutterspeedvalue'           => 'Avaidamižaig',
 'exif-aperturevalue'               => 'Diafragm',
 'exif-brightnessvalue'             => 'Loštuz',
@@ -2447,7 +2437,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-focallength'                 => 'Linzan fokusedhuz',
 'exif-subjectarea'                 => 'Objektan sijaduz',
 'exif-flashenergy'                 => 'Töngahtusen energii',
-'exif-spatialfrequencyresponse'    => 'Avaruzline paksuzline harakteristik',
 'exif-focalplanexresolution'       => 'Fokalplanan X-tarkoiktuz',
 'exif-focalplaneyresolution'       => "Fokal'planan Y-tarkoiktuz",
 'exif-focalplaneresolutionunit'    => "Fokal'planan tarkoiktusen ühtnik",
@@ -2456,7 +2445,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-sensingmethod'               => 'Sensoran tip',
 'exif-filesource'                  => 'Failan purde',
 'exif-scenetype'                   => 'Scenan tip',
-'exif-cfapattern'                  => "CFA - mujufil'tran tip",
 'exif-customrendered'              => 'Ližaradamine',
 'exif-exposuremode'                => 'Ekspozicijan režiman valičend',
 'exif-whitebalance'                => 'Vauktan balans',
@@ -2885,9 +2873,5 @@ Kävutagat normaline ezikacund.',
 
 # SQLite database support
 'sqlite-no-fts' => " $1 täuz'tekstaižen ecindan tügedamižeta",
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Kävutajannimi:',
-'disableaccount-reason' => 'Sü:',
 
 );

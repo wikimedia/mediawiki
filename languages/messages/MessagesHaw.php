@@ -367,12 +367,6 @@ E ʻoluʻolu, e kūlia hou.',
 'accountcreatedtext'      => 'Ua lilo ‘ia ka mea ho‘ohana no $1.',
 'loginlanguagelabel'      => "Kou 'ōlelo: $1",
 
-# JavaScript password checks
-'password-strength-bad'        => 'ʻIno',
-'password-strength-mediocre'   => 'ʻaʻole maikaʻi loa',
-'password-strength-acceptable' => 'ʻaʻole maikaʻi',
-'password-strength-good'       => 'maikaʻi',
-
 # Password reset dialog
 'newpassword'       => 'ʻŌlelo hūnā hou:',
 'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',

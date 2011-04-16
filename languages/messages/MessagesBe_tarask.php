@@ -742,15 +742,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Узьнікла невядомая памылка ў функцыі PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Устойлівасьць паролю: $1',
-'password-strength-bad'        => 'КЕПСКАЯ',
-'password-strength-mediocre'   => 'пасрэдная',
-'password-strength-acceptable' => 'прымальная',
-'password-strength-good'       => 'добрая',
-'password-retype'              => 'Паўтарыце пароль тут',
-'password-retype-mismatch'     => 'Паролі не супадаюць',
-
 # Password reset dialog
 'resetpass'                 => 'Зьмяніць пароль',
 'resetpass_announce'        => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
@@ -1128,24 +1119,6 @@ $1",
 'suppressionlogtext' => 'Ніжэй знаходзіцца сьпіс выдаленьняў і блякаваньняў, схаваных нават ад адміністратараў.
 Глядзіце [[Special:IPBlockList|сьпіс блякаваньняў IP]], каб паглядзець сьпіс цяперашніх блякаваньняў.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|перанесеная $3 вэрсія|перанесеныя $3 вэрсіі|перанесеныя $3 вэрсіяў}} з $1 у $2',
-'revisionmove'                 => 'Перанос вэрсіяў з «$1»',
-'revmove-explain'              => 'Наступныя вэрсіі будуць перанесеныя з $1 на пададзеную мэтавую старонку. Калі мэтавая старонка не існуе, яна будзе створаная. У адваротным выпадку гэтыя вэрсіі будуць дададзеныя ў гісторыю старонкі.',
-'revmove-legend'               => 'Устанавіць мэтавую старонку і апісаньне',
-'revmove-submit'               => 'Перанесьці вэрсіі ў выбраную старонку',
-'revisionmoveselectedversions' => 'Перанесьці выбраныя вэрсіі',
-'revmove-reasonfield'          => 'Прычына:',
-'revmove-titlefield'           => 'Мэтавая старонка:',
-'revmove-badparam-title'       => 'Няслушныя парамэтры',
-'revmove-badparam'             => 'Ваш запыт утрымлівае няслушныя ці недапушчальныя парамэтры. Калі ласка, націсьніце «Назад» і паспрабуйце зноў.',
-'revmove-norevisions-title'    => 'Ня выбрана мэтавая вэрсія',
-'revmove-norevisions'          => 'Вы не пазначылі адну ці болей мэтавых вэрсіяў для выкананьня гэтай функцыі, альбо пазначаныя вэрсіі не існуюць.',
-'revmove-nullmove-title'       => 'Няслушная назва',
-'revmove-nullmove'             => 'Крынічная і мэтавая вэрсіі супадаюць. Калі ласка, націсьніце «Назад» і ўвядзіце назву, якая адрозьніваецца ад «$1».',
-'revmove-success-existing'     => '$1 {{PLURAL:$1|вэрсія з [[$2]] была перанесеная|вэрсіі з [[$2]] былі перанесеныя|вэрсіяў з [[$2]] былі перанесеныя}} на існуючую старонку [[$3]].',
-'revmove-success-created'      => '$1 {{PLURAL:$1|вэрсія з [[$2]] была перанесеная|вэрсіі з [[$2]] былі перанесеныя|вэрсіяў з [[$2]] былі перанесеныя}} на новую старонку [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Аб’яднаць гісторыі старонак',
 'mergehistory-header'              => "Гэтая старонка дазваляе аб'яднаць гісторыю рэдагаваньняў адной старонкі з гісторыяй іншай, новай старонкі.
@@ -1485,8 +1458,6 @@ $1",
 'right-reset-passwords'       => 'ачыстка пароляў іншых удзельнікаў',
 'right-override-export-depth' => 'экспартаваньне старонак, уключаючы зьвязаныя старонкі з глыбінёй да 5',
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
-'right-revisionmove'          => 'перанос вэрсіяў',
-'right-disableaccount'        => 'забарона рахункаў',
 
 # User rights log
 'rightslog'      => 'Журнал правоў удзельнікаў',
@@ -1529,7 +1500,6 @@ $1",
 'action-userrights'           => 'рэдагаваньне правоў усіх удзельнікаў',
 'action-userrights-interwiki' => 'рэдагаваньне правоў удзельнікаў у іншых вікі',
 'action-siteadmin'            => 'блякаваньне і разблякаваньне базы зьвестак',
-'action-revisionmove'         => 'перанесьці вэрсіі',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
@@ -2980,7 +2950,6 @@ $1',
 'exif-stripbytecounts'             => 'Памер сьціснутага блёку',
 'exif-jpeginterchangeformat'       => 'Разьмяшчэньне пачатку блёку JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Байты JPEG-зьвестак',
-'exif-transferfunction'            => 'Функцыя пераўтварэньня колеравай прасторы',
 'exif-whitepoint'                  => 'Колернасьць белага пункту',
 'exif-primarychromaticities'       => 'Колернасьць асноўных колераў',
 'exif-ycbcrcoefficients'           => 'Каэфіцыенты пераўтварэньня колеравай прасторы',
@@ -2999,7 +2968,6 @@ $1',
 'exif-compressedbitsperpixel'      => 'Глыбіня колеру пасьля сьцісканьня',
 'exif-pixelydimension'             => 'Дапушчальная шырыня выявы',
 'exif-pixelxdimension'             => 'Дапушчальная вышыня выявы',
-'exif-makernote'                   => 'Заўвагі вытворцы',
 'exif-usercomment'                 => 'Камэнтары карыстальніка',
 'exif-relatedsoundfile'            => 'Датычны аўдыё-файл',
 'exif-datetimeoriginal'            => 'Дата і час утварэньня зьвестак',
@@ -3013,7 +2981,6 @@ $1',
 'exif-exposureprogram'             => 'Праграма насьвятленьня',
 'exif-spectralsensitivity'         => 'Спэктральная адчувальнасьць',
 'exif-isospeedratings'             => 'Сьветаадчувальнасьць ISO',
-'exif-oecf'                        => 'Каэфіцыент оптаэлектроннага ператварэньня',
 'exif-shutterspeedvalue'           => 'Вытрымка',
 'exif-aperturevalue'               => 'Дыяфрагма',
 'exif-brightnessvalue'             => 'Яркасьць',
@@ -3027,7 +2994,6 @@ $1',
 'exif-focallength-format'          => '$1 мм',
 'exif-subjectarea'                 => "Плошча аб'екту",
 'exif-flashenergy'                 => 'Энэргія бліску',
-'exif-spatialfrequencyresponse'    => 'Прасторавая частотная характарыстыка',
 'exif-focalplanexresolution'       => 'Разрозьненьне ў фокуснай плоскасьці па восі X',
 'exif-focalplaneyresolution'       => 'Разрозьненьне ў фокуснай плоскасьці па восі Y',
 'exif-focalplaneresolutionunit'    => 'Адзінка разрозьненьня фокуснай плоскасьці',
@@ -3036,7 +3002,6 @@ $1',
 'exif-sensingmethod'               => 'Тып сэнсару',
 'exif-filesource'                  => 'Крыніца файла',
 'exif-scenetype'                   => 'Тып сцэны',
-'exif-cfapattern'                  => 'Тып колеравага фільтру',
 'exif-customrendered'              => 'Дадатковая апрацоўка',
 'exif-exposuremode'                => 'Лад насьвятленьня',
 'exif-whitebalance'                => 'Балянс белага',
@@ -3522,16 +3487,5 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
-
-# Special:DisableAccount
-'disableaccount'             => 'Забараніць рахунак удзельніка',
-'disableaccount-user'        => 'Імя ўдзельніка:',
-'disableaccount-reason'      => 'Прычына:',
-'disableaccount-confirm'     => "Забараніць гэты рахунак удзельніка.
-Удзельнік ня зможа ўвайсьці ў сыстэму, скінуць свой пароль ці атрымліваць абвяшчэньні па электроннай пошце. Калі ўдзельнік у цяперашні момант знаходзіцца ў сыстэме, то ён будзе аўтаматычна выведзены. ''Зьвярніце ўвагу, што забарона рахунку нельга адмяніць без дапамогі сыстэмнага адміністратара.''",
-'disableaccount-mustconfirm' => 'Вы павінны пацьвердзіць, што жадаеце забараніць гэты рахунак.',
-'disableaccount-nosuchuser'  => 'Рахунак удзельніка «$1» не існуе.',
-'disableaccount-success'     => 'Рахунак удзельніка «$1» быў забаронены назаўсёды.',
-'disableaccount-logentry'    => 'назаўсёды забаронены рахунак удзельніка [[$1]]',
 
 );

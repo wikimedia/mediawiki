@@ -528,15 +528,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
 
-# JavaScript password checks
-'password-strength'            => '預之符節強度：$1',
-'password-strength-bad'        => '壞',
-'password-strength-mediocre'   => '中等',
-'password-strength-acceptable' => '可受',
-'password-strength-good'       => '良好',
-'password-retype'              => '在此重鍵符節',
-'password-retype-mismatch'     => '符節不配',
-
 # Password reset dialog
 'resetpass'                 => '變符',
 'resetpass_announce'        => '爾乃過郵之臨符登之。要完登，汝乃需設新符節：',
@@ -859,24 +850,6 @@ $1",
 'suppressionlog'     => '誌廢',
 'suppressionlogtext' => '下乃刪及錮物之列也。
 [[Special:IPBlockList|IP之錮]]有現之閱。',
-
-# Revision move
-'moverevlogentry'              => '遷$1至$2有{{PLURAL:$3|審一|審$3}}',
-'revisionmove'                 => '從「$1」遷審',
-'revmove-explain'              => '下之審將由$1遷至定標也。目無存，則建之。另以併之史中。',
-'revmove-legend'               => '設標頁以之摘',
-'revmove-submit'               => '遷審至定頁上',
-'revisionmoveselectedversions' => '遷已選之審',
-'revmove-reasonfield'          => '由：',
-'revmove-titlefield'           => '標頁：',
-'revmove-badparam-title'       => '壞參數',
-'revmove-badparam'             => '爾之求有無足之參數也。返再試矣。',
-'revmove-norevisions-title'    => '無效之標審',
-'revmove-norevisions'          => '爾未定一或多之審作此或無存也。',
-'revmove-nullmove-title'       => '壞題',
-'revmove-nullmove'             => '標源之題不可同也。返「$1」試他名之。',
-'revmove-success-existing'     => '由[[$2]]中遷現頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
-'revmove-success-created'      => '由[[$2]]中遷新頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
 
 # History merging
 'mergehistory'                     => '併頁之誌',
@@ -1209,8 +1182,6 @@ $1",
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
-'right-revisionmove'          => '遷審',
-'right-disableaccount'        => '停簿',
 
 # User rights log
 'rightslog'  => '職權志',
@@ -2826,18 +2797,5 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # SQLite database support
 'sqlite-has-fts' => '$1 含全文之尋',
 'sqlite-no-fts'  => '$1 不含全文之尋',
-
-# Special:DisableAccount
-'disableaccount'             => '停簿',
-'disableaccount-user'        => '簿名：',
-'disableaccount-reason'      => '因：',
-'disableaccount-confirm'     => "停此簿。
-此簿無登、重設符節，或收知電。
-若用之，乃立去。
-''意停簿無系秩之介無回也。''",
-'disableaccount-mustconfirm' => '爾須確乃認停爾之簿也。',
-'disableaccount-nosuchuser'  => '「$1」之簿無存也。',
-'disableaccount-success'     => '「$1」之簿已久停簿。',
-'disableaccount-logentry'    => '久停之簿[[$1]]',
 
 );

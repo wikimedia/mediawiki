@@ -615,15 +615,6 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 # E-mail sending
 'php-mail-error-unknown' => 'PHPren mail() funtzioan arazo ezezagun bat egon da.',
 
-# JavaScript password checks
-'password-strength'            => 'Pasahitzaren ustezko sendotasuna: $1',
-'password-strength-bad'        => 'KASKARRA',
-'password-strength-mediocre'   => 'erdipurdikoa',
-'password-strength-acceptable' => 'onargarria',
-'password-strength-good'       => 'ona',
-'password-retype'              => 'Berridatzi hemen pasahitza',
-'password-retype-mismatch'     => 'Pasahitzak ez datoz bat',
-
 # Password reset dialog
 'resetpass'                 => 'Pasahitza aldatu',
 'resetpass_announce'        => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',
@@ -994,16 +985,6 @@ Begira itzazu erregistroak.',
 'suppressionlogtext' => 'Azpian administratzaileek ezkutatutako edukia duten ezabaketa eta blokeoen zerrenda dago.
 Ikusi [[Special:IPBlockList|IP blokeoen zerrenda]] orain dauden blokeoak ikusi ahal izateko.',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|Aldaketa bat|$3 aldaketa}} mugitu dira $1(e)tik $2(e)ra',
-'revisionmove'                 => '"$1"(e)tik berrikusketa mugitu da',
-'revmove-legend'               => 'Xede-orrialdea eta laburpena ezarri',
-'revisionmoveselectedversions' => 'Aukeratutako berrikuspenak mugitu',
-'revmove-reasonfield'          => 'Arrazoia:',
-'revmove-titlefield'           => 'Xede-orrialdea:',
-'revmove-badparam-title'       => 'Parametro desegokiak',
-'revmove-nullmove-title'       => 'Izenburu desegokia',
-
 # History merging
 'mergehistory'                     => 'Orrialdeen historiak bateratu',
 'mergehistory-header'              => 'Orri honek iturri baten historiaren berrikuspenak bateratzea ahalbidetzen du, orri berri batean.
@@ -1330,8 +1311,6 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'right-reset-passwords'       => 'Bese erabiltzaile batzuen pasahitzak berritu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
-'right-revisionmove'          => 'Berrikuspenak mugitu',
-'right-disableaccount'        => 'Kontuak ezgaitu',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -1374,7 +1353,6 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'action-userrights'           => 'lankide guztien eskumenak aldatu',
 'action-userrights-interwiki' => 'beste wikietako lankideen lankide-eskumenak aldatu',
 'action-siteadmin'            => 'datubasea babestu edo babesa kendu',
-'action-revisionmove'         => 'berrikuspenak mugitu',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|aldaketa 1|$1 aldaketa}}',
@@ -2707,7 +2685,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-stripbytecounts'             => 'Konprimatutako zerrenda bakoitzeko byte kopurua',
 'exif-jpeginterchangeformat'       => 'JPEG SOIren offseta',
 'exif-jpeginterchangeformatlength' => 'JPEG datuen byteak',
-'exif-transferfunction'            => 'Transferentzia funtzioa',
 'exif-whitepoint'                  => 'Puntu txuriaren kromatizitatea',
 'exif-primarychromaticities'       => 'Primarioen kromatizitateak',
 'exif-ycbcrcoefficients'           => 'Kolore espzioaren aldatze koefiziente matrizeak',
@@ -2726,7 +2703,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-compressedbitsperpixel'      => 'Irudi konpresio mota',
 'exif-pixelydimension'             => 'Baliozko irudi zabalera',
 'exif-pixelxdimension'             => 'Baliozko irudi altuera',
-'exif-makernote'                   => 'Egilearen oharrak',
 'exif-usercomment'                 => 'Erabiltzailearen iruzkinak',
 'exif-relatedsoundfile'            => 'Harremanetan dagoen audio fitxategia',
 'exif-datetimeoriginal'            => 'Datuen sorreraren data eta ordua',
@@ -2741,7 +2717,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-exposureprogram'             => 'Esposizio Programa',
 'exif-spectralsensitivity'         => 'Sentiberatasun espektrala',
 'exif-isospeedratings'             => 'ISO abiadura',
-'exif-oecf'                        => 'Aldatze faktore optoelektronikoa',
 'exif-shutterspeedvalue'           => 'Argazkiaren abiadura',
 'exif-aperturevalue'               => 'Irekiera',
 'exif-brightnessvalue'             => 'Distira',
@@ -2755,7 +2730,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Subjektuaren zonaldea',
 'exif-flashenergy'                 => 'Flasharen indarra',
-'exif-spatialfrequencyresponse'    => 'Frekuentzia espazialarekiko erantzuna',
 'exif-focalplanexresolution'       => 'Plano fokalaren X erresoluzioa',
 'exif-focalplaneyresolution'       => 'Plano fokalaren Y erresoluzioa',
 'exif-focalplaneresolutionunit'    => 'Plano fokalaren erresoluzio unitatea',
@@ -2764,7 +2738,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-sensingmethod'               => 'Sensorearen metodoa',
 'exif-filesource'                  => 'Fitxategiaren jatorria',
 'exif-scenetype'                   => 'Eskena mota',
-'exif-cfapattern'                  => 'CFA patroia',
 'exif-customrendered'              => 'Irudien prozesamendu pertsonalizatua',
 'exif-exposuremode'                => 'Esposaketa mota',
 'exif-whitebalance'                => 'Txurien oreka',
@@ -2834,8 +2807,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'ez da existitzen',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3222,10 +3194,5 @@ Sartu fitxategiaren izena "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
-
-# Special:DisableAccount
-'disableaccount'        => 'Lankide-kontua ezgaitu',
-'disableaccount-user'   => 'Lankide izena:',
-'disableaccount-reason' => 'Arrazoia:',
 
 );

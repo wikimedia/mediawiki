@@ -816,15 +816,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Проценета отпорност на лозинката: $1',
-'password-strength-bad'        => 'ЛОША',
-'password-strength-mediocre'   => 'преодна',
-'password-strength-acceptable' => 'прифатлива',
-'password-strength-good'       => 'добра',
-'password-retype'              => 'Тука повторете ја лозинката',
-'password-retype-mismatch'     => 'Лозинките не се исти',
-
 # Password reset dialog
 'resetpass'                 => 'Промена на лозинка',
 'resetpass_announce'        => 'Најавени сте со привремена лозинка пратена по е-пошта.
@@ -1214,24 +1205,6 @@ $1",
 'suppressionlogtext' => 'Подолу е прикажан списокот  на бришења и блокирања каде има и содржини скриени и за администраторите.<br />
 Погледајте го [[Special:IPBlockList|списокот на блокирани IP-адреси]].',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|преместена една ревизија|преместени $3 ревизии}} од $1 кон $2',
-'revisionmove'                 => 'Премести ревизии од „$1“',
-'revmove-explain'              => 'Следниве ревизии ќе бидат преместени од $1 кон назначената целна страница. Ако целта не постои, тогаш ќе биде создадена. Во друг случај, овие ревизии ќе бидат споени во историјата на страницата.',
-'revmove-legend'               => 'Определете целна страница и опис',
-'revmove-submit'               => 'Премести ревизии кон одбраната страница',
-'revisionmoveselectedversions' => 'Премести одбрани ревизии',
-'revmove-reasonfield'          => 'Причина:',
-'revmove-titlefield'           => 'Целна страница:',
-'revmove-badparam-title'       => 'Лоши параметри',
-'revmove-badparam'             => 'Вашето барање содржи недозволени или недоволни параметри. Одете на „назад“ и обидете се повторно.',
-'revmove-norevisions-title'    => 'Неправилна целна ревизија',
-'revmove-norevisions'          => 'Немате укажано една или повеќе целни ревизии за да може да се изврши оваа функција, или пак назначената ревизија не постои.',
-'revmove-nullmove-title'       => 'Лош наслов',
-'revmove-nullmove'             => 'Изворната и целната страница се истоветни. Одете на „назад“ и внесете поинаков назив за страницата кој не гласи „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Една ревизија од [[$2]] е преместена|$1 ревизии од [[$2]] се преместени}} на постоечката страница [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Една ревизија од [[$2]] е преместена|$1 ревизии од [[$2]] се преместени}} на новосоздадената страница [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Спојување на истории на страница',
 'mergehistory-header'              => 'Оваа страница овозможува спојување на ревизии на изворна страница во нова (друга) страница.
@@ -1576,8 +1549,6 @@ $1",
 'right-reset-passwords'       => 'Менување на лозинки на други корисници',
 'right-override-export-depth' => 'Извезување на страници вклучувајќи поврзани страници со длабочина до 5',
 'right-sendemail'             => 'Испраќање на е-пошта до други корисници',
-'right-revisionmove'          => 'Преместување на ревизии',
-'right-disableaccount'        => 'Оневозможи сметки',
 
 # User rights log
 'rightslog'      => 'Дневник на менувања на кориснички права',
@@ -1620,7 +1591,6 @@ $1",
 'action-userrights'           => 'уредување на сите кориснички права',
 'action-userrights-interwiki' => 'уредување на кориснички права на корисници на други викија',
 'action-siteadmin'            => 'заклучување или отклучување на базата на податоци',
-'action-revisionmove'         => 'премести ревизии',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|промена|промени}}',
@@ -3202,7 +3172,6 @@ Variants for Chinese language
 'exif-stripbytecounts'             => 'Бајти по набиен блок',
 'exif-jpeginterchangeformat'       => 'Почеток на JPEG-преглед',
 'exif-jpeginterchangeformatlength' => 'Бајти JPEG податоци',
-'exif-transferfunction'            => 'Функција за пренос',
 'exif-whitepoint'                  => 'Хроматичност на белата точка',
 'exif-primarychromaticities'       => 'Хроматичност на основните бои',
 'exif-ycbcrcoefficients'           => 'Матрични коефициенти на трансформација на бојниот простор',
@@ -3221,7 +3190,6 @@ Variants for Chinese language
 'exif-compressedbitsperpixel'      => 'Режим на набивање на сликата',
 'exif-pixelydimension'             => 'Важечка ширина на сликата',
 'exif-pixelxdimension'             => 'Важечка висина на сликата',
-'exif-makernote'                   => 'Забелешки на произведувачот',
 'exif-usercomment'                 => 'Коментар на корисникот',
 'exif-relatedsoundfile'            => 'Поврзана аудиоснимка',
 'exif-datetimeoriginal'            => 'Датум и време на сликање',
@@ -3236,7 +3204,6 @@ Variants for Chinese language
 'exif-exposureprogram'             => 'Режим на експозиција',
 'exif-spectralsensitivity'         => 'Спектрална осетливост',
 'exif-isospeedratings'             => 'ISO светлоосетливост',
-'exif-oecf'                        => 'Фактор на оптоелектронско претворање',
 'exif-shutterspeedvalue'           => 'Брзина на затворачот',
 'exif-aperturevalue'               => 'Отвор на блендата',
 'exif-brightnessvalue'             => 'Сила на светлина',
@@ -3250,7 +3217,6 @@ Variants for Chinese language
 'exif-focallength-format'          => '$1 мм',
 'exif-subjectarea'                 => 'Положба и површина на објектот',
 'exif-flashenergy'                 => 'Енергија на блицот',
-'exif-spatialfrequencyresponse'    => 'Просторно-фреквенциски одзив',
 'exif-focalplanexresolution'       => 'Резолуција на фокусната рамнина  X',
 'exif-focalplaneyresolution'       => 'Резолуција на фокусната рамнина Y',
 'exif-focalplaneresolutionunit'    => 'Единица за резолуција на фокусната рамнина',
@@ -3259,7 +3225,6 @@ Variants for Chinese language
 'exif-sensingmethod'               => 'Метод на сензорот',
 'exif-filesource'                  => 'Извор на податотеката',
 'exif-scenetype'                   => 'Тип на сцена',
-'exif-cfapattern'                  => 'Шема на боен филтер',
 'exif-customrendered'              => 'Дополнитела обработка на сликата',
 'exif-exposuremode'                => 'Режим на експозиција',
 'exif-whitebalance'                => 'Рамнотежа на бело',
@@ -3330,8 +3295,7 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 точки на инч',
 'exif-xyresolution-c' => '$1 точки на сантиметар',
 
-'exif-colorspace-1'      => 'пЦЗС (sRGB)',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1' => 'пЦЗС (sRGB)',
 
 'exif-componentsconfiguration-0' => 'не постои',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3837,18 +3801,5 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',
 'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
-
-# Special:DisableAccount
-'disableaccount'             => 'Оневозможи корисничка сметка',
-'disableaccount-user'        => 'Корисничко име:',
-'disableaccount-reason'      => 'Причина:',
-'disableaccount-confirm'     => "Оневозможување на оваа корисничка сметка.
-Корисникот нема да може да се најавува, да става нова лозинка или да прима известувања по е-пошта.
-Ако корисникот е некаде најавен во моментот, тогаш оваа постапка веднаш ќе го одјави.
-''Имајте предвид дека оневозможувањето на сметки не може да се врати без интервенција на системски администратор.''",
-'disableaccount-mustconfirm' => 'Мора да потврдите дека сакате да ја оневозможите сметкава.',
-'disableaccount-nosuchuser'  => 'Корисничката сметка „$1“ не постои.',
-'disableaccount-success'     => 'Корисничката сметка „$1“ е трајно оневозможена.',
-'disableaccount-logentry'    => 'трајно оневозможена корисничката сметка [[$1]].',
 
 );

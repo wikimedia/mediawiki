@@ -770,15 +770,6 @@ Prosím, počkajte predtým, než to skúsite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Odhadovaná sila hesla: $1',
-'password-strength-bad'        => 'VEĽMI SLABÉ',
-'password-strength-mediocre'   => 'slabé',
-'password-strength-acceptable' => 'prijateľné',
-'password-strength-good'       => 'dobré',
-'password-retype'              => 'Sem znova napíšte svoje heslo',
-'password-retype-mismatch'     => 'Heslá sa nezhodujú',
-
 # Password reset dialog
 'resetpass'                 => 'Zmeniť heslo',
 'resetpass_announce'        => 'Prishlásili ste sa pomocou dočasného emailom zaslaného kódu. Pre dokončenie prihlásenia je potrebné tu nastaviť nové heslo:',
@@ -1166,24 +1157,6 @@ Pozrite sa prosím do záznamov.',
 'suppressionlog'     => 'Záznam potlačení',
 'suppressionlogtext' => 'Toto je zoznam zmazaní a blokovaní vrátane obsahu, ktorý je skrytý pred správcami. Zoznam momentálne účinných blokovaní nájdete na [[Special:IPBlockList|Zoznam blokovaní IP]].',
 
-# Revision move
-'moverevlogentry'              => 'presunul {{PLURAL:$3|jednu revíziu|$3 revízie|$3 revízií}} z $1 do $2',
-'revisionmove'                 => 'Presunúť revízie z „$1“',
-'revmove-explain'              => 'Nasledovné revízie budú presnuté z $1 na uvedenú cieľovú stránku. Ak cieľová stránka neexistuje, bude vytvorená. Inak sa tieto revízie začlenia do histórie stránky.',
-'revmove-legend'               => 'Nastaviť cieľovú stránku a zhrnutie',
-'revmove-submit'               => 'Presunúť revízie na vybranú stránku',
-'revisionmoveselectedversions' => 'Presunúť vybrané revízie',
-'revmove-reasonfield'          => 'Dôvod:',
-'revmove-titlefield'           => 'Cieľová stránka:',
-'revmove-badparam-title'       => 'Chybné parametre',
-'revmove-badparam'             => 'Vaša požiadavka obsahuje neplatné alebo nedostatočné parametre. Prosím, stlačte tlačidlo „Späť“ a skúste to znova.',
-'revmove-norevisions-title'    => 'Neplatná cieľová revízia',
-'revmove-norevisions'          => 'Buď ste neuviedli jednu alebo viac cieľových revízií alebo uvedená revízia neexistuje.',
-'revmove-nullmove-title'       => 'Chybný názov',
-'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „$1“.',
-'revmove-success-existing'     => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do existujúcej stránky [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do novo vytvorenej stránky [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Zlúčiť histórie stránok',
 'mergehistory-header'              => 'Táto stránka vám umožňuje zlúčiť histórie revízií zo zdrojovej stránky do novšej stránky.
@@ -1519,8 +1492,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
-'right-revisionmove'          => 'Presunúť revízie',
-'right-disableaccount'        => 'Zakázať účty',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1563,7 +1534,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'action-userrights'           => 'upravovať práva všetkých používateľov',
 'action-userrights-interwiki' => 'upravovať práva používateľov na iných wiki',
 'action-siteadmin'            => 'zamykať alebo odomykať databázu',
-'action-revisionmove'         => 'presunúť revízie',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
@@ -3044,7 +3014,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-stripbytecounts'             => 'Bajtov na komprimovaný prúžok',
 'exif-jpeginterchangeformat'       => 'Offset k JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytov JPEG dát',
-'exif-transferfunction'            => 'Prenosová funkcia',
 'exif-whitepoint'                  => 'Chromaticita bieleho bodu',
 'exif-primarychromaticities'       => 'Chromaticity primárností',
 'exif-ycbcrcoefficients'           => 'Koeficienty transformačnej matice farebného priestoru',
@@ -3063,7 +3032,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-compressedbitsperpixel'      => 'Komprimované bity na pixel',
 'exif-pixelydimension'             => 'Platná šírka obrázka',
 'exif-pixelxdimension'             => 'Platná vyška obrázka',
-'exif-makernote'                   => 'Poznámka výrobcu',
 'exif-usercomment'                 => 'Komentár používateľa',
 'exif-relatedsoundfile'            => 'Súvisiaci zvukový súbor',
 'exif-datetimeoriginal'            => 'Dátum a čas vytvorenia dát',
@@ -3077,7 +3045,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-exposureprogram'             => 'Expozičný program',
 'exif-spectralsensitivity'         => 'Spektrálna citlivosť',
 'exif-isospeedratings'             => 'Rýchlostné ohodnotenie ISO',
-'exif-oecf'                        => 'Optoelektronický konverzný činiteľ',
 'exif-shutterspeedvalue'           => 'Rýchlosť uzávierky',
 'exif-aperturevalue'               => 'Clona',
 'exif-brightnessvalue'             => 'Jas',
@@ -3090,7 +3057,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-focallength'                 => 'Ohnisková vzdialenosť objektívu',
 'exif-subjectarea'                 => 'Oblasť subjektu',
 'exif-flashenergy'                 => 'Energia blesku',
-'exif-spatialfrequencyresponse'    => 'Priestorová frekvenčná odozva',
 'exif-focalplanexresolution'       => 'Horizontálne rozlíšenie ohniskovej roviny',
 'exif-focalplaneyresolution'       => 'Vertikálne rozlíšenie ohniskovej roviny',
 'exif-focalplaneresolutionunit'    => 'Jednotka rozlíšenia v ohniskovej rovine',
@@ -3099,7 +3065,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-sensingmethod'               => 'Snímacia metóda',
 'exif-filesource'                  => 'Zdroj súboru',
 'exif-scenetype'                   => 'Typ scény',
-'exif-cfapattern'                  => 'Vzor CFA',
 'exif-customrendered'              => 'Ručné spracovanie obrazu',
 'exif-exposuremode'                => 'Expozičný režim',
 'exif-whitebalance'                => 'Vyváženie bielej',
@@ -3595,18 +3560,5 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou vyhľadávania v plnom texte',
 'sqlite-no-fts'  => '$1 bez podpory vyhľadávania v plnom texte',
-
-# Special:DisableAccount
-'disableaccount'             => 'Zakázať používateľský účet',
-'disableaccount-user'        => 'Používateľské meno:',
-'disableaccount-reason'      => 'Dôvod:',
-'disableaccount-confirm'     => "Zakázať tento používateľský účet.
-Používateľ sa nebude môcť prihlásiť, zmeniť svoje heslo ani dostávať upozornenia emailom.
-Ak je používateľ momentálne niekde prihlásený, bude okamžite odhlásený.
-''Pamätajte, že zakázanie používateľského účtu je nezvratné bez zásahu správcu.''",
-'disableaccount-mustconfirm' => 'Musíte potvrdiť, že chcete zakázať tento účet.',
-'disableaccount-nosuchuser'  => 'Používateľský účet „$1“ neexistuje.',
-'disableaccount-success'     => 'Používateľský účet „$1“ bol natrvalo zakázaný.',
-'disableaccount-logentry'    => 'natrvalo zakázaný používateľský účet [[$1]]',
 
 );

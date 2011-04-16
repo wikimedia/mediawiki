@@ -664,9 +664,4 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'htmlform-submit'              => 'Kotínda',
 'htmlform-selectorother-other' => 'Mosúsu',
 
-# Special:DisableAccount
-'disableaccount'        => 'Kotendisa kónti ya mosáleli',
-'disableaccount-user'   => 'Nkómbó ya mosáleli :',
-'disableaccount-reason' => 'Ntína :',
-
 );

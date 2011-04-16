@@ -676,15 +676,6 @@ Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
 
-# JavaScript password checks
-'password-strength'            => 'Estemeert Weert, wo good dat Passwoord is: $1',
-'password-strength-bad'        => 'SWACK',
-'password-strength-mediocre'   => 'middel',
-'password-strength-acceptable' => 'geiht',
-'password-strength-good'       => 'good',
-'password-retype'              => 'Passwoord noch wedder ingeven',
-'password-retype-mismatch'     => 'Passwöör sünd nich övereen',
-
 # Password reset dialog
 'resetpass'                 => 'Passwoord ännern',
 'resetpass_announce'        => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',
@@ -2625,7 +2616,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-stripbytecounts'             => 'Bytes je kumprimeert Striepen',
 'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Grött vun de JPEG-Daten in Bytes',
-'exif-transferfunction'            => 'Transferfunkschoon',
 'exif-whitepoint'                  => 'Wittpunkt-Chromatizität',
 'exif-primarychromaticities'       => 'Chromatizität vun de Grundfarven',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
@@ -2644,7 +2634,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-compressedbitsperpixel'      => 'Komprimeerte Bits je Pixel',
 'exif-pixelydimension'             => 'Gellen Bildbreed',
 'exif-pixelxdimension'             => 'Gellen Bildhööchd',
-'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Brukerkommentar',
 'exif-relatedsoundfile'            => 'Tohörige Toondatei',
 'exif-datetimeoriginal'            => 'Tiet vun de Opnahm',
@@ -2658,7 +2647,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-exposureprogram'             => 'Belichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spektralsensitivität',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
-'exif-oecf'                        => 'Optoelektroonsch Ümrekenfaktor',
 'exif-shutterspeedvalue'           => 'Belichttiet',
 'exif-aperturevalue'               => 'Blennweert',
 'exif-brightnessvalue'             => 'Helligkeit',
@@ -2671,7 +2659,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-focallength'                 => 'Brennwied',
 'exif-subjectarea'                 => 'Hauptmotivpositschoon un -grött',
 'exif-flashenergy'                 => 'Blitzstärk',
-'exif-spatialfrequencyresponse'    => 'Ruumfrequenz-Reakschoon',
 'exif-focalplanexresolution'       => 'X-Oplösung Brennpunktflach',
 'exif-focalplaneyresolution'       => 'Y-Oplösung Brennpunktflach',
 'exif-focalplaneresolutionunit'    => 'Eenheit vun de Oplösung Brennpunktflach',
@@ -2680,7 +2667,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-sensingmethod'               => 'Meetmethood',
 'exif-filesource'                  => 'Dateiborn',
 'exif-scenetype'                   => 'Szenentyp',
-'exif-cfapattern'                  => 'CFA-Munster',
 'exif-customrendered'              => 'Anpasst Bildverarbeidung',
 'exif-exposuremode'                => 'Belichtungsmodus',
 'exif-whitebalance'                => 'Wittutgliek',
@@ -3120,13 +3106,5 @@ Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 # SQLite database support
 'sqlite-has-fts' => '$1 mit Stöhn för Vulltext-Söök',
 'sqlite-no-fts'  => '$1 ahn Stöhn för Vulltext-Söök',
-
-# Special:DisableAccount
-'disableaccount'            => 'Brukerkonto deaktiveren',
-'disableaccount-user'       => 'Brukernaam:',
-'disableaccount-reason'     => 'Grund:',
-'disableaccount-nosuchuser' => 'Dat Brukerkonto „$1“ gifft dat nich.',
-'disableaccount-success'    => 'Dat Brukerkonto „$1“ is nu duurhaftig deaktiveert.',
-'disableaccount-logentry'   => 'hett dat Brukerkonto [[$1]] duurhaftig deaktiveert',
 
 );

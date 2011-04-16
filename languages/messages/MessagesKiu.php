@@ -486,9 +486,6 @@ Kerem ke, oncia bıcerrebne.',
 'usernamehasherror'        => 'Namê karberi de karakteri gunê têwerte ra mebê',
 'loginlanguagelabel'       => 'Zon: $1',
 
-# JavaScript password checks
-'password-strength-good' => 'rınd',
-
 # Password reset dialog
 'resetpass'                 => 'Parola bıvurne',
 'resetpass_header'          => 'Parola hesabi bıvurne',
@@ -1448,9 +1445,5 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 # Special:ComparePages
 'compare-page1' => 'Pele 1',
 'compare-page2' => 'Pele 2',
-
-# Special:DisableAccount
-'disableaccount-user'   => 'Namê karberi:',
-'disableaccount-reason' => 'Sebeb:',
 
 );

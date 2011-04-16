@@ -849,15 +849,6 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
 
-# JavaScript password checks
-'password-strength'            => 'パスワードの推定強度：$1',
-'password-strength-bad'        => '悪い',
-'password-strength-mediocre'   => 'あまり良くない',
-'password-strength-acceptable' => '許容範囲',
-'password-strength-good'       => '良い',
-'password-retype'              => 'パスワードを再入力',
-'password-retype-mismatch'     => 'パスワードが一致しません',
-
 # Password reset dialog
 'resetpass'                 => 'パスワードの変更',
 'resetpass_announce'        => '電子メールで送信された仮パスワードでログインしています。
@@ -1257,25 +1248,6 @@ $1",
 'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロック記録です。
 現在操作できるブロックについては[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|$3版}}を$1から$2へ移動しました',
-'revisionmove'                 => '「$1」から版を移動',
-'revmove-explain'              => '以下の版が、$1から指定されたページへ移動されます。これらの版は指定先のページの履歴に統合指定されますが、指定先のページが存在しない場合は、ページは新規作成されます。',
-'revmove-legend'               => 'ページの指定と要約',
-'revmove-submit'               => '選択されたページに版を移動',
-'revisionmoveselectedversions' => '選択された版を移動',
-'revmove-reasonfield'          => '理由：',
-'revmove-titlefield'           => '対象ページ：',
-'revmove-badparam-title'       => '不正な引数',
-'revmove-badparam'             => '不正あるいは不十分な引数が指定されました。ページを戻りもう一度やり直してください。',
-'revmove-norevisions-title'    => '無効な指定版',
-'revmove-norevisions'          => '指定した版が存在しないか、この機能を利用するために1つ以上の版を指定していません。',
-'revmove-nullmove-title'       => '不正なページ名',
-'revmove-nullmove'             => '移動元と移動先のページが同一のものです。
-ページを戻り、「$1」とは違う名前を選択してください。',
-'revmove-success-existing'     => '{{PLURAL:$1|$1版が、[[$2]]から}}既存のページ[[$3]]へ移動されました。',
-'revmove-success-created'      => '{{PLURAL:$1|$1版が、[[$2]]から}}新規作成されたページ[[$3]]へ移動されました。',
-
 # History merging
 'mergehistory'                     => 'ページ履歴の統合',
 'mergehistory-header'              => 'このページは、1つの元ページの履歴を新しいページに統合します。
@@ -1619,8 +1591,6 @@ HTMLタグを見直してください。',
 'right-reset-passwords'       => '他の利用者のパスワードを再設定する',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
-'right-revisionmove'          => '版の移動',
-'right-disableaccount'        => 'アカウントを無効化',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1663,7 +1633,6 @@ HTMLタグを見直してください。',
 'action-userrights'           => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
 'action-siteadmin'            => 'データベースのロックもしくはロック解除',
-'action-revisionmove'         => '版の移動',
 
 # Recent changes
 'nchanges'                          => '$1回の変更',
@@ -3195,7 +3164,6 @@ Variants for Chinese language
 'exif-stripbytecounts'             => '圧縮されたストリップごとのバイト数',
 'exif-jpeginterchangeformat'       => 'JPEGのSOIへのオフセット',
 'exif-jpeginterchangeformatlength' => 'JPEGデータのバイト数',
-'exif-transferfunction'            => '再生階調カーブ特性',
 'exif-whitepoint'                  => '参照白色点の色度座標値',
 'exif-primarychromaticities'       => '原色の色度座標値',
 'exif-ycbcrcoefficients'           => '色変換マトリックス係数',
@@ -3214,7 +3182,6 @@ Variants for Chinese language
 'exif-compressedbitsperpixel'      => '画像圧縮モード',
 'exif-pixelydimension'             => '実効画像幅',
 'exif-pixelxdimension'             => '実効画像高さ',
-'exif-makernote'                   => 'メーカーノート',
 'exif-usercomment'                 => '利用者のコメント',
 'exif-relatedsoundfile'            => '関連音声ファイル',
 'exif-datetimeoriginal'            => '画像データ生成日時',
@@ -3228,7 +3195,6 @@ Variants for Chinese language
 'exif-exposureprogram'             => '露出プログラム',
 'exif-spectralsensitivity'         => 'スペクトル感度',
 'exif-isospeedratings'             => 'ISOスピードレート',
-'exif-oecf'                        => '光電変換関数',
 'exif-shutterspeedvalue'           => 'シャッタースピード',
 'exif-aperturevalue'               => '絞り値',
 'exif-brightnessvalue'             => '明るさ',
@@ -3241,7 +3207,6 @@ Variants for Chinese language
 'exif-focallength'                 => 'レンズの焦点距離',
 'exif-subjectarea'                 => '主要被写体の位置',
 'exif-flashenergy'                 => 'フラッシュ強度',
-'exif-spatialfrequencyresponse'    => '空間周波数応答',
 'exif-focalplanexresolution'       => '水平方向の焦点面解像度',
 'exif-focalplaneyresolution'       => '垂直方向の焦点面解像度',
 'exif-focalplaneresolutionunit'    => '焦点面解像度の単位',
@@ -3250,7 +3215,6 @@ Variants for Chinese language
 'exif-sensingmethod'               => 'センサー方式',
 'exif-filesource'                  => 'ファイルソース',
 'exif-scenetype'                   => 'シーンタイプ',
-'exif-cfapattern'                  => 'CFAパターン',
 'exif-customrendered'              => '画像処理',
 'exif-exposuremode'                => '露出モード',
 'exif-whitebalance'                => 'ホワイトバランス',
@@ -3816,18 +3780,5 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # SQLite database support
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
-
-# Special:DisableAccount
-'disableaccount'             => '利用者アカウントを無効化',
-'disableaccount-user'        => '利用者名：',
-'disableaccount-reason'      => '理由：',
-'disableaccount-confirm'     => "この利用者アカウントを無効化します。
-無効化された利用者は、ログインしたり、パスワードを再設定したり、電子メールの通知を受け取ることができなくなります。
-もしこの利用者がどこかで最近ログインしていた場合、それらはただちにログアウトされます。
-''アカウントの無効化は、システム管理者の助けなければ戻すことができないことに、十分注意してください。''",
-'disableaccount-mustconfirm' => 'このアカウントを本当に無効化するか確認する必要があります。',
-'disableaccount-nosuchuser'  => '利用者アカウント「$1」は存在しません。',
-'disableaccount-success'     => '利用者アカウント「$1」は、永久に無効化されています。',
-'disableaccount-logentry'    => '利用者アカウント[[$1]]を永久に無効化',
 
 );

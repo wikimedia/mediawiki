@@ -733,15 +733,6 @@ Riprovare più tardi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
 
-# JavaScript password checks
-'password-strength'            => 'Robustezza stimata della password: $1',
-'password-strength-bad'        => 'DEBOLE',
-'password-strength-mediocre'   => 'mediocre',
-'password-strength-acceptable' => 'accettabile',
-'password-strength-good'       => 'buono',
-'password-retype'              => 'Ripeti la password',
-'password-retype-mismatch'     => 'Le password non corrispondono',
-
 # Password reset dialog
 'resetpass'                 => 'Cambia la password',
 'resetpass_announce'        => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
@@ -1101,24 +1092,6 @@ $1",
 'suppressionlog'     => 'Log delle soppressioni',
 'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:IPBlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
-# Revision move
-'moverevlogentry'              => '{{PLURAL:$3|spostata una revisione|spostate $3 revisioni}} da $1 a $2',
-'revisionmove'                 => 'Sposta revisione da "$1"',
-'revmove-explain'              => 'Le seguenti revisioni saranno spostate da $1 alla pagina di destinazione specificata. Se la destinazione non esiste, sarà creata. Altrimenti, queste revisioni saranno unite nella cronologia della pagina.',
-'revmove-legend'               => "Imposta la pagina di destinazione e l'oggetto",
-'revmove-submit'               => 'Sposta le revisioni alla pagina selezionata',
-'revisionmoveselectedversions' => 'Sposta le versioni selezionate',
-'revmove-reasonfield'          => 'Motivo:',
-'revmove-titlefield'           => 'Pagina di destinazione:',
-'revmove-badparam-title'       => 'Parametri invalidi',
-'revmove-badparam'             => 'La tua richiesta contiene parametri errati o insufficienti. Premere "indietro" e provare ancora.',
-'revmove-norevisions-title'    => 'Versione non specificata',
-'revmove-norevisions'          => 'Non hai specificato una o più revisioni per eseguire questa funzione o la revisione specificata non esiste.',
-'revmove-nullmove-title'       => 'Titolo invalido',
-'revmove-nullmove'             => 'La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella pagina esistente [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella nuova pagina creata [[$3]].',
-
 # History merging
 'mergehistory'                     => 'Unione cronologie',
 'mergehistory-header'              => 'Questa pagina consente di unire le revisioni appartenenti alla cronologia di una pagina (detta pagina di origine) alla cronologia di una pagina più recente.
@@ -1452,8 +1425,6 @@ L'operazione non può essere annullata.",
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
-'right-revisionmove'          => 'Sposta le revisioni',
-'right-disableaccount'        => 'Disabilitare gli account',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -1496,7 +1467,6 @@ L'operazione non può essere annullata.",
 'action-userrights'           => 'modificare tutti i diritti degli utenti',
 'action-userrights-interwiki' => 'modificare i diritti degli utenti su altre wiki',
 'action-siteadmin'            => 'bloccare e sbloccare il database',
-'action-revisionmove'         => 'sposta le revisioni',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
@@ -2913,7 +2883,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-stripbytecounts'             => 'Numero di byte per striscia compressa',
 'exif-jpeginterchangeformat'       => 'Posizione byte SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Numero di byte di dati JPEG',
-'exif-transferfunction'            => 'Funzione di trasferimento',
 'exif-whitepoint'                  => 'Coordinate cromatiche del punto di bianco',
 'exif-primarychromaticities'       => 'Coordinate cromatiche dei colori primari',
 'exif-ycbcrcoefficients'           => 'Coefficienti matrice di trasformazione spazi dei colori',
@@ -2932,7 +2901,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-compressedbitsperpixel'      => 'Modalità di compressione immagine',
 'exif-pixelydimension'             => 'Larghezza effettiva immagine',
 'exif-pixelxdimension'             => 'Altezza effettiva immagine',
-'exif-makernote'                   => 'Note del produttore',
 'exif-usercomment'                 => "Note dell'utente",
 'exif-relatedsoundfile'            => 'File audio collegato',
 'exif-datetimeoriginal'            => 'Data e ora di creazione dei dati',
@@ -2946,7 +2914,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-exposureprogram'             => 'Programma di esposizione',
 'exif-spectralsensitivity'         => 'Sensibilità spettrale',
 'exif-isospeedratings'             => 'Sensibilità ISO',
-'exif-oecf'                        => 'Fattore di conversione optoelettronica',
 'exif-shutterspeedvalue'           => 'Tempo di esposizione',
 'exif-aperturevalue'               => 'Apertura',
 'exif-brightnessvalue'             => 'Luminosità',
@@ -2959,7 +2926,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-focallength'                 => 'Distanza focale obiettivo',
 'exif-subjectarea'                 => 'Area inquadrante il soggetto',
 'exif-flashenergy'                 => 'Potenza del flash',
-'exif-spatialfrequencyresponse'    => 'Risposta in frequenza spaziale',
 'exif-focalplanexresolution'       => 'Risoluzione X sul piano focale',
 'exif-focalplaneyresolution'       => 'Risoluzione Y sul piano focale',
 'exif-focalplaneresolutionunit'    => 'Unità di misura risoluzione sul piano focale',
@@ -2968,7 +2934,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-sensingmethod'               => 'Metodo di rilevazione',
 'exif-filesource'                  => 'Origine del file',
 'exif-scenetype'                   => 'Tipo di inquadratura',
-'exif-cfapattern'                  => 'Disposizione filtro colore',
 'exif-customrendered'              => 'Elaborazione personalizzata',
 'exif-exposuremode'                => 'Modalità di esposizione',
 'exif-whitebalance'                => 'Bilanciamento del bianco',
@@ -3469,18 +3434,5 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
-
-# Special:DisableAccount
-'disableaccount'             => 'Disabilitare account utente',
-'disableaccount-user'        => 'Nome utente:',
-'disableaccount-reason'      => 'Motivo:',
-'disableaccount-confirm'     => "Disabilitare permanentemente questo account utente.
-L'utente non sarà in grado di accedere, reimpostare la password o ricevere notifiche via e-mail.
-Tutte le attuali connessioni dell'utente, saranno immediatamente terminate.
-''Si noti che la disattivazione di un account non è reversibile senza l'intervento dell'amministratore di sistema''.",
-'disableaccount-mustconfirm' => 'Devi confermare che vuoi disabilitare questo account.',
-'disableaccount-nosuchuser'  => 'L\'account utente "$1" non esiste.',
-'disableaccount-success'     => 'L\'account utente "$1" è stato disabilitato definitivamente.',
-'disableaccount-logentry'    => "ha disabilitato permanentemente l'account utente [[$1]]",
 
 );

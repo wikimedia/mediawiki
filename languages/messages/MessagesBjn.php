@@ -507,15 +507,6 @@ Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 # E-mail sending
 'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
 
-# JavaScript password checks
-'password-strength'            => 'Manangguhi kakuatan katasunduk: $1',
-'password-strength-bad'        => 'BURUK',
-'password-strength-mediocre'   => 'sadang',
-'password-strength-acceptable' => 'kawa-ditarima',
-'password-strength-good'       => 'bengkeng',
-'password-retype'              => 'Katik pulang katasunduk di sia',
-'password-retype-mismatch'     => 'Katasunduk kada pas',
-
 # Password reset dialog
 'resetpass'                 => 'Ubah katasunduk',
 'resetpass_announce'        => 'Pian babuat log awan sabuah kudi samantara nang disurili.
@@ -901,26 +892,6 @@ Muhun pariksa lolog.',
 'suppressionlog'     => 'Log panikinan',
 'suppressionlogtext' => 'Nang di bawah adalah sabuah daptar matan pahahapusan wan Pamblublukiran tamasuk isi tasungkup matan papambakal. Lihati [[Special:IPBlockList|Daptar IP diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blublukir.',
 
-# Revision move
-'moverevlogentry'              => 'Ugahakan {{PLURAL:$3|asa ralatan|$3 raralatan}} matan $1 ka $2',
-'revisionmove'                 => 'Ugahakan raralatan matan "$1"',
-'revmove-explain'              => 'Ralatan taumpat ini akan dipindahakan matan $1 ka tungkaran tujuan nang ditatapakan. Jaka tujuan kadada, akan diulahakan. Amun sabaliknya, ralatan ini akan digabungakan dalam sajarah tungkaran.',
-'revmove-legend'               => 'setel tungkaran tatuju wan kasimpulan',
-'revmove-submit'               => 'Ugahakan raralatan ka tungkaran tapilih',
-'revisionmoveselectedversions' => 'Ugahakan raralatan tapilih',
-'revmove-reasonfield'          => 'Alasan:',
-'revmove-titlefield'           => 'Tungkaran tatuju:',
-'revmove-badparam-title'       => 'Takaran buruk',
-'revmove-badparam'             => 'Parmintaan Pian baisi takaran nang kada rasmi atawa kada cukup.
-Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
-'revmove-norevisions-title'    => 'Ralatan tatuju kada sah',
-'revmove-norevisions'          => 'Pian balum manatapakan asa atawa labih ralatan tujuan gasan manjalanakan kagunaan atawa ralatan nang dibariakan kadada.',
-'revmove-nullmove-title'       => 'Judul buruk',
-'revmove-nullmove'             => 'Tungkaran dituju kada kawa sama lawan tungkangkaran asal mula.
-Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "$1".',
-'revmove-success-existing'     => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang ada [[$3]].',
-'revmove-success-created'      => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang hanyar diulah [[$3]].',
-
 # History merging
 'mergehistory-from'                => 'Tungkaran asal mula:',
 'mergehistory-into'                => 'Tungkaran tatuju:',
@@ -1207,8 +1178,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-siteadmin'            => 'Sunduk wan buka sunduk basis data',
 'right-reset-passwords'      => 'Risit katasunduk pamuruk lain',
 'right-sendemail'            => 'Mangirim suril ka papamuruk lain',
-'right-revisionmove'         => 'Pindahakan raralatan',
-'right-disableaccount'       => 'Kada-kawakan aakun',
 
 # User rights log
 'rightslog'     => 'Log parubahan hak masuk',
@@ -1242,7 +1211,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-unwatchedpages'     => 'tiringi daptar tutungkaran nang kada diitihi',
 'action-userrights'         => 'babak sabarataan hak pamuruk',
 'action-siteadmin'          => 'sunduk atawa bukasunduk basisdata',
-'action-revisionmove'       => 'pindahi raralatan',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|parubahan|parubahan}}',
