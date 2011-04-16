@@ -1222,7 +1222,7 @@ class FormatMetadata {
 	 *
 	 * @return String of html-ish looking wikitext
 	 */
-	public function collapseContactInfo( $vals ) {
+	public static function collapseContactInfo( $vals ) {
 		if( ! ( isset( $vals['CiAdrExtadr'] )
 			|| isset( $vals['CiAdrCity'] )
 			|| isset( $vals['CiAdrCtry'] )
