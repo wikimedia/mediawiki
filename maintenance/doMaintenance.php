@@ -74,7 +74,7 @@ global $IP;
 if ( !defined( 'MW_COMPILED' ) && file_exists( "$IP/StartProfiler.php" ) ) {
 	require_once( "$IP/StartProfiler.php" );
 } else {
-	require_once( MWInit::compiledPath( 'includes/ProfilerStub.php' ) );
+	require_once( MWInit::compiledPath( 'includes/profiler/ProfilerStub.php' ) );
 }
 
 // Some other requires

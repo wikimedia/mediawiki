@@ -4,7 +4,9 @@
  * @ingroup Profiler
  */
 
-require_once(dirname(__FILE__).'/ProfilerSimple.php');
+if ( !class_exists( 'ProfilerSimple' ) ) {
+	require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
+}
 
 /**
  * ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
