@@ -202,7 +202,6 @@ class WikiImporter {
 	public function importUpload( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
-		return false;
 	}
 
 	/**

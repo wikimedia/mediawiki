@@ -1085,7 +1085,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	public function removeIdentifierQuotes( $s ) {
-		return strpos($s, '/*Q*/') === FALSE ? $s : substr($s, 5); ;
+		return strpos($s, '/*Q*/') === FALSE ? $s : substr($s, 5);
 	}
 
 	public function isQuotedIdentifier( $s ) {
