@@ -203,6 +203,11 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type == 'tEXt' ) {
 				$buf = self::read( $fh, $chunk_size );
 
+				// In case there is no \x00 which will make explode fail.
+				if ( strpos( $buf, "\x00" ) === false ) {
+					throw new Exception( __METHOD__ . ": Read error on tEXt chunk" );
+				}
+
 				list( $keyword, $content ) = explode( "\x00", $buf, 2 );
 				if ( $keyword === '' || $content === '' ) {
 					throw new Exception( __METHOD__ . ": Read error on tEXt chunk" );
@@ -230,6 +235,11 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type == 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
 					$buf = self::read( $fh, $chunk_size );
+
+					// In case there is no \x00 which will make explode fail.
+					if ( strpos( $buf, "\x00" ) === false ) {
+						throw new Exception( __METHOD__ . ": Read error on zTXt chunk" );
+					}
 
 					list( $keyword, $postKeyword ) = explode( "\x00", $buf, 2 );
 					if ( $keyword === '' || $postKeyword === '' ) {
