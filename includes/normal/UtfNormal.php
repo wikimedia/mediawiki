@@ -80,18 +80,13 @@ class UtfNormal {
 	 */
 	static function cleanUp( $string ) {
 		if( NORMALIZE_ICU ) {
-			# We exclude a few chars that ICU would not.
-			$string = preg_replace(
-				'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
-				UTF8_REPLACEMENT,
-				$string );
-			$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
-			$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+			$string = self::replaceForNativeNormalize( $string );
 
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
 			return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
 		} elseif( NORMALIZE_INTL ) {
+			$string = self::replaceForNativeNormalize( $string );
 			$norm = normalizer_normalize( $string, Normalizer::FORM_C );
 			if( $norm === null || $norm === false ) {
 				# normalizer_normalize will either return false or null
@@ -763,5 +758,21 @@ class UtfNormal {
 			$out .= $string{$i};
 		}
 		return $out;
+	}
+	/**
+	 * Function to replace some characters that we don't want
+	 * but most of the native normalize functions keep.
+	 *
+	 * @param $string String The string
+	 * @return String String with the character codes replaced.
+	 */
+	private static function replaceForNativeNormalize( $string ) { 
+		$string = preg_replace(
+			'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
+			UTF8_REPLACEMENT,
+			$string );
+		$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
+		$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+		return $string;
 	}
 }
