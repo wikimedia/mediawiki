@@ -670,8 +670,19 @@ class BitmapHandler extends ImageHandler {
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
 
-
+	/**
+	 * Its unclear if anything still uses this
+	 * as jpeg is now in its own subclass.
+	 *
+	 * And really each media handler should use a
+	 * different getMetadata, as the formats aren't
+	 * all that similar and usually have different
+	 * metadata needs.
+	 *
+	 * @deprecated
+	 */
 	function getMetadata( $image, $filename ) {
+		wfDeprected( __METHOD__ );
 		global $wgShowEXIF;
 		if ( $wgShowEXIF && file_exists( $filename ) ) {
 			$exif = new Exif( $filename );

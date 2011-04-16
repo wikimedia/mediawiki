@@ -395,6 +395,13 @@ $wgUseInstantCommons = false;
 $wgShowEXIF = function_exists( 'exif_read_data' );
 
 /**
+ * If to automatically update the img_metadata field
+ * if the metadata field is outdated but compatible with the current version.
+ * Defaults to false.
+ */
+$wgUpdateCompatibleMetadata = false;
+
+/**
  * If you operate multiple wikis, you can define a shared upload path here.
  * Uploads to this wiki will NOT be put there - they will be put into
  * $wgUploadDirectory.
@@ -592,7 +599,7 @@ $wgTrustedMediaFormats = array(
  * Each entry in the array maps a MIME type to a class name
  */
 $wgMediaHandlers = array(
-	'image/jpeg' => 'BitmapHandler',
+	'image/jpeg' => 'JpegHandler',
 	'image/png' => 'PNGHandler',
 	'image/gif' => 'GIFHandler',
 	'image/tiff' => 'TiffHandler',

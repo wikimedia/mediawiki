@@ -13,22 +13,35 @@
  */
 class GIFHandler extends BitmapHandler {
 
+	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
+	
 	function getMetadata( $image, $filename ) {
-		if ( !isset( $image->parsedGIFMetadata ) ) {
-			try {
-				$image->parsedGIFMetadata = GIFMetadataExtractor::getMetadata( $filename );
-			} catch( Exception $e ) {
-				// Broken file?
-				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
-				return '0';
-			}
+		try {
+			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
+		} catch( Exception $e ) {
+			// Broken file?
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			return self::BROKEN_FILE;
 		}
 
-		return serialize( $image->parsedGIFMetadata );
+		return serialize($parsedGIFMetadata);
 	}
 
 	function formatMetadata( $image ) {
-		return false;
+		$meta = $image->getMetadata();
+
+		if ( !$meta ) {
+			return false;
+		}
+		$meta = unserialize( $meta );
+		 if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
+			return false;
+		}
+
+		if ( isset( $meta['metadata']['_MW_GIF_VERSION'] ) ) {
+			unset( $meta['metadata']['_MW_GIF_VERSION'] );
+		}
+		return $this->formatMetadataHelper( $meta['metadata'] );
 	}
 
 	/**
@@ -67,10 +80,26 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
+		if ( $metadata === self::BROKEN_FILE ) {
+			// Do not repetitivly regenerate metadata on broken file.
+			return self::METADATA_GOOD;
+		}
+
 		wfSuppressWarnings();
 		$data = unserialize( $metadata );
 		wfRestoreWarnings();
-		return (boolean) $data;
+
+		if ( !$data || !is_array( $data ) ) {
+			wfDebug(__METHOD__ . ' invalid GIF metadata' );
+			return self::METADATA_BAD;
+		}
+
+		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
+			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION ) {
+			wfDebug(__METHOD__ . ' old but compatible GIF metadata' );
+			return self::METADATA_COMPATIBLE;
+		}
+		return self::METADATA_GOOD;
 	}
 
 	/**

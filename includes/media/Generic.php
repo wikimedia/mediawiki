@@ -13,7 +13,9 @@
  */
 abstract class MediaHandler {
 	const TRANSFORM_LATER = 1;
-
+	const METADATA_GOOD = true;
+	const METADATA_BAD = false;
+	const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
 	/**
 	 * Instance cache
 	 */
@@ -91,15 +93,62 @@ abstract class MediaHandler {
 	function getMetadata( $image, $path ) { return ''; }
 
 	/**
+	* Get metadata version.
+	*
+	* This is not used for validating metadata, this is used for the api when returning
+	* metadata, since api content formats should stay the same over time, and so things
+	* using ForiegnApiRepo can keep backwards compatibility
+	*
+	* All core media handlers share a common version number, and extensions can
+	* use the GetMetadataVersion hook to append to the array (they should append a unique
+	* string so not to get confusing). If there was a media handler named 'foo' with metadata
+	* version 3 it might add to the end of the array the element 'foo=3'. if the core metadata
+	* version is 2, the end version string would look like '2;foo=3'.
+	*
+	* @return string version string
+	*/
+	static function getMetadataVersion () {
+		$version = Array( '2' ); // core metadata version
+		wfRunHooks('GetMetadataVersion', Array(&$version));
+		return implode( ';', $version);
+	 }
+
+	/**
+	* Convert metadata version.
+	*
+	* By default just returns $metadata, but can be used to allow
+	* media handlers to convert between metadata versions.
+	*
+	* @param $metadata Mixed String or Array metadata array (serialized if string)
+	* @param $version Integer target version
+	* @return Array serialized metadata in specified version, or $metadata on fail.
+	*/
+	function convertMetadataVersion( $metadata, $version = 1 ) {
+		if ( !is_array( $metadata ) ) {
+			//unserialize to keep return parameter consistent.
+			wfSuppressWarnings();
+			return unserialize( $metadata );
+			wfRestoreWarnings();
+		}
+		return $metadata;
+	}
+
+	/**
 	 * Get a string describing the type of metadata, for display purposes.
 	 */
 	function getMetadataType( $image ) { return false; }
 
 	/**
 	 * Check if the metadata string is valid for this handler.
-	 * If it returns false, Image will reload the metadata from the file and update the database
+	 * If it returns MediaHandler::METADATA_BAD (or false), Image
+	 * will reload the metadata from the file and update the database.
+	 * MediaHandler::METADATA_GOOD for if the metadata is a-ok,
+	 * MediaHanlder::METADATA_COMPATIBLE if metadata is old but backwards
+	 * compatible (which may or may not trigger a metadata reload).
 	 */
-	function isMetadataValid( $image, $metadata ) { return true; }
+	function isMetadataValid( $image, $metadata ) { 
+		return self::METADATA_GOOD;
+	}
 
 
 	/**
@@ -239,18 +288,98 @@ abstract class MediaHandler {
 		return false;
 	}
 
+	/** sorts the visible/invisible field.
+	 * Split off from ImageHandler::formatMetadata, as used by more than
+	 * one type of handler.
+	 *
+	 * This is used by the media handlers that use the FormatMetadata class
+	 *
+	 * @param $metadataArray Array metadata array
+	 * @return array for use displaying metadata.
+	 */
+	function formatMetadataHelper( $metadataArray ) {
+		 $result = array(
+			'visible' => array(),
+			'collapsed' => array()
+		);
+
+		$formatted = FormatMetadata::getFormattedData( $metadataArray );
+		// Sort fields into visible and collapsed
+		$visibleFields = $this->visibleMetadataFields();
+		foreach ( $formatted as $name => $value ) {
+			$tag = strtolower( $name );
+			self::addMeta( $result,
+				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
+				'exif',
+				$tag,
+				$value
+			);
+		}
+		return $result;
+	}
+
 	/**
-	 * @todo Fixme: document this!
-	 * 'value' thingy goes into a wikitext table; it used to be escaped but
-	 * that was incompatible with previous practice of customized display
+	 * Get a list of metadata items which should be displayed when
+	 * the metadata table is collapsed.
+	 *
+	 * @return array of strings
+	 * @access private
+	 */
+	function visibleMetadataFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMsgForContent( 'metadata-fields' ) );
+		foreach( $lines as $line ) {
+			$matches = array();
+			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+
+	/**
+	 * This is used to generate an array element for each metadata value
+	 * That array is then used to generate the table of metadata values
+	 * on the image page 
+	 *
+	 * @param &$array Array An array containing elements for each type of visibility
+	 * and each of those elements being an array of metadata items. This function adds
+	 * a value to that array.
+	 * @param $visibility String ('visible' or 'collapsed') if this value is hidden
+	 * by default.
+	 * @param $type String type of metadata tag (currently always 'exif')
+	 * @param $id String the name of the metadata tag (like 'artist' for example).
+	 * its name in the table displayed is the message "$type-$id" (Ex exif-artist ).
+	 * @param $value String thingy goes into a wikitext table; it used to be escaped but
+	 * that was incompatible with previous practise of customized display
 	 * with wikitext formatting via messages such as 'exif-model-value'.
 	 * So the escaping is taken back out, but generally this seems a confusing
 	 * interface.
+	 * @param $param String value to pass to the message for the name of the field
+	 * as $1. Currently this parameter doesn't seem to ever be used.
+	 *
+	 * @return Array $array but with the new metadata field added.
+	 *
+	 * Note, everything here is passed through the parser later on (!)
 	 */
 	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
+		$msgName = "$type-$id";
+		if ( wfEmptyMsg( $msgName ) ) {
+			// This is for future compatibility when using instant commons.
+			// So as to not display as ugly a name if a new metadata 
+			// property is defined that we don't know about
+			// (not a major issue since such a property would be collapsed
+			// by default).
+			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
+			$name = wfEscapeWikiText( $id );
+		} else {
+			$name = wfMsg( $msgName, $param );
+		}
 		$array[$visibility][] = array(
 			'id' => "$type-$id",
-			'name' => wfMsg( "$type-$id", $param ),
+			'name' => $name,
 			'value' => $value
 		);
 	}

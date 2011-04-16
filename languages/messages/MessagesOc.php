@@ -3022,7 +3022,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-planarconfiguration-1' => 'Donadas atenentas',
 'exif-planarconfiguration-2' => 'Donadas separadas',
 
-'exif-colorspace-ffff.h' => 'Pas calibrat',
+'exif-colorspace-65535' => 'Pas calibrat',
 
 'exif-componentsconfiguration-0' => 'existís pas',
 'exif-componentsconfiguration-5' => 'V',

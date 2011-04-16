@@ -3225,7 +3225,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-planarconfiguration-1' => 'Données contiguës',
 'exif-planarconfiguration-2' => 'Données séparées',
 
-'exif-colorspace-ffff.h' => 'Non calibré',
+'exif-colorspace-65535' => 'Non calibré',
 
 'exif-componentsconfiguration-0' => 'N’existe pas',
 'exif-componentsconfiguration-5' => 'V',

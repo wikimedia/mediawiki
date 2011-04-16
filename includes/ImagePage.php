@@ -268,7 +268,7 @@ class ImagePage extends Article {
 	 * FIXME: bad interface, see note on MediaHandler::formatMetadata().
 	 *
 	 * @param $metadata Array: the array containing the EXIF data
-	 * @return String
+	 * @return String The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = "<div class=\"mw-imagepage-section-metadata\">";

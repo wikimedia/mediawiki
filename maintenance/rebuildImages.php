@@ -42,6 +42,10 @@ class ImageBuilder extends Maintenance {
 	function __construct() {
 		parent::__construct();
 
+		global $wgUpdateCompatibleMetadata;
+		//make sure to update old, but compatible img_metadata fields.
+		$wgUpdateCompatibleMetadata = true;
+
 		$this->mDescription = 'Script to update image metadata records';
 
 		$this->addOption( 'missing', 'Check for files without associated database record' );

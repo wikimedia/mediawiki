@@ -13,28 +13,41 @@
  */
 class PNGHandler extends BitmapHandler {
 
+	const BROKEN_FILE = '0';
+	
+
 	/**
 	 * @param File $image
 	 * @param string $filename
 	 * @return string
 	 */
 	function getMetadata( $image, $filename ) {
-		if ( !isset($image->parsedPNGMetadata) ) {
-			try {
-				$image->parsedPNGMetadata = PNGMetadataExtractor::getMetadata( $filename );
-			} catch( Exception $e ) {
-				// Broken file?
-				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
-				return '0';
-			}
+		try {
+			$metadata = BitmapMetadataHandler::PNG( $filename );
+		} catch( Exception $e ) {
+			// Broken file?
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			return self::BROKEN_FILE;
 		}
 
-		return serialize($image->parsedPNGMetadata);
-
+		return serialize($metadata);
 	}
 	
 	function formatMetadata( $image ) {
-		return false;
+		$meta = $image->getMetadata();
+
+		if ( !$meta ) {
+			return false;
+		}
+		$meta = unserialize( $meta );
+		if ( !isset( $meta['metadata'] ) || count( $meta['metadata'] ) <= 1 ) {
+			return false;
+		}
+
+		if ( isset( $meta['metadata']['_MW_PNG_VERSION'] ) ) {
+			unset( $meta['metadata']['_MW_PNG_VERSION'] );
+		}
+		return $this->formatMetadataHelper( $meta['metadata'] );
 	}
 
 	/**
@@ -55,10 +68,27 @@ class PNGHandler extends BitmapHandler {
 	}
 	
 	function isMetadataValid( $image, $metadata ) {
+
+		if ( $metadata === self::BROKEN_FILE ) {
+			// Do not repetitivly regenerate metadata on broken file.
+			return self::METADATA_GOOD;
+		}
+
 		wfSuppressWarnings();
 		$data = unserialize( $metadata );
 		wfRestoreWarnings();
-		return (boolean) $data;
+
+		if ( !$data || !is_array( $data ) ) {
+			wfDebug(__METHOD__ . ' invalid png metadata' );
+			return self::METADATA_BAD;
+		}
+
+		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
+			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION ) {
+			wfDebug(__METHOD__ . ' old but compatible png metadata' );
+			return self::METADATA_COMPATIBLE;
+		}
+		return self::METADATA_GOOD;
 	}
 
 	/**

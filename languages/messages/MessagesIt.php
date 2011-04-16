@@ -3035,7 +3035,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-xyresolution-i' => '$1 punti per pollice (dpi)',
 'exif-xyresolution-c' => '$1 punti per centimetro (dpc)',
 
-'exif-colorspace-ffff.h' => 'Non calibrato',
+'exif-colorspace-65535' => 'Non calibrato',
 
 'exif-componentsconfiguration-0' => 'assente',
 
