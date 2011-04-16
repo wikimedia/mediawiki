@@ -150,6 +150,7 @@ class JpegMetadataExtractor {
 
 		// the +12 is the length of an empty item.
 		while ( $offset + 12 <= $appLen ) {
+			$valid = true;
 			if ( substr( $app13, $offset, 4 ) !== '8BIM' ) {
 				// its supposed to be 8BIM
 				// but apparently sometimes isn't esp. in
