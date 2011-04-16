@@ -473,4 +473,11 @@ class DeleteAction extends Action {
 
 		return $reason;
 	}
+
+	public function show() {
+	}
+
+	public function execute(){
+
+	}
 }
