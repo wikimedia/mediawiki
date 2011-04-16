@@ -400,7 +400,7 @@ $wgOptionalMessages = array(
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
 $wgEXIFMessages = array(
-	'exif-imagewidth'
+	'exif-imagewidth',
 	'exif-imagelength',
 	'exif-bitspersample',
 	'exif-compression',
