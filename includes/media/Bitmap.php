@@ -682,7 +682,7 @@ class BitmapHandler extends ImageHandler {
 	 * @deprecated
 	 */
 	function getMetadata( $image, $filename ) {
-		wfDeprected( __METHOD__ );
+		wfDeprecated( __METHOD__ );
 		global $wgShowEXIF;
 		if ( $wgShowEXIF && file_exists( $filename ) ) {
 			$exif = new Exif( $filename );

@@ -125,10 +125,12 @@ abstract class MediaHandler {
 	*/
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
+
 			//unserialize to keep return parameter consistent.
 			wfSuppressWarnings();
-			return unserialize( $metadata );
+			$ret = unserialize( $metadata );
 			wfRestoreWarnings();
+			return $ret;
 		}
 		return $metadata;
 	}

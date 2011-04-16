@@ -53,8 +53,6 @@ class PNGMetadataExtractor {
 			/* Other potentially useful things - Document */
 		);
 
-		$showXMP = function_exists( 'xml_parser_create_ns' );
-
 		$frameCount = 0;
 		$loopCount = 1;
 		$text = array();
@@ -203,8 +201,6 @@ class PNGMetadataExtractor {
 
 			} elseif ( $chunk_type == 'tEXt' ) {
 				$buf = self::read( $fh, $chunk_size );
-				$keyword = '';
-				$content = '';
 
 				list( $keyword, $content ) = explode( "\x00", $buf, 2 );
 				if ( $keyword === '' || $content === '' ) {
@@ -233,8 +229,6 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type == 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
 					$buf = self::read( $fh, $chunk_size );
-					$keyword = '';
-					$postKeyword = '';
 
 					list( $keyword, $postKeyword ) = explode( "\x00", $buf, 2 );
 					if ( $keyword === '' || $postKeyword === '' ) {
