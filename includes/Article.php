@@ -3265,6 +3265,7 @@ class Article {
 			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
 			$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
 			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
+			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ) );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
 		}
 
