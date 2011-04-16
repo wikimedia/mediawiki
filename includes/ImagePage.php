@@ -156,7 +156,7 @@ class ImagePage extends Article {
 		if ( $showmeta ) {
 			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ) . "\n" );
 			$wgOut->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
-			$wgOut->addModules( array( 'mediawiki.legacy.metadata' ) );
+			$wgOut->addModules( array( 'mediawiki.action.view.metadata' ) );
 		}
 		
 		$css = $this->repo->getDescriptionStylesheetUrl();
