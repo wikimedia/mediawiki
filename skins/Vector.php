@@ -106,10 +106,10 @@ class VectorTemplate extends BaseTemplate {
 				}
 				if ( isset($link['tooltiponly']) && $link['tooltiponly'] ) {
 					$nav[$section][$key]['key'] =
-						$this->skin->tooltip( $xmlID );
+						Linker::tooltip( $xmlID );
 				} else {
 					$nav[$section][$key]['key'] =
-						$this->skin->tooltipAndAccesskey( $xmlID );
+						Linker::tooltipAndAccesskey( $xmlID );
 				}
 			}
 		}
@@ -204,7 +204,7 @@ class VectorTemplate extends BaseTemplate {
 		<!-- panel -->
 			<div id="mw-panel" class="noprint">
 				<!-- logo -->
-					<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
+					<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Linker::tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
 				<!-- /logo -->
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
@@ -279,7 +279,7 @@ class VectorTemplate extends BaseTemplate {
 			$msg = $name;
 		}
 		?>
-<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $name ) ?>>
+<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?>>
 	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
 	<div class="body">
 <?php

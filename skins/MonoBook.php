@@ -112,7 +112,7 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 	<div class="portlet" id="p-logo">
 		<?php
-			$logoAttribs = array() + $skin->tooltipAndAccesskeyAttribs('p-logo');
+			$logoAttribs = array() + Linker::tooltipAndAccesskeyAttribs('p-logo');
 			$logoAttribs['style'] = "background-image: url({$this->data['logopath']});";
 			$logoAttribs['href'] = $this->data['nav_urls']['mainpage']['href'];
 			echo Html::element( 'a', $logoAttribs );
@@ -212,12 +212,12 @@ class MonoBookTemplate extends BaseTemplate {
 					$linkAttribs = array( 'href' => $tab['href'] );
 					
 				 	if( isset( $tab["tooltiponly"] ) && $tab["tooltiponly"] ) {
-						$title = $skin->titleAttrib( "ca-$key" );
+						$title = Linker::titleAttrib( "ca-$key" );
 						if ( $title !== false ) {
 							$linkAttribs['title'] = $title;
 						}
 				 	} else {
-						$linkAttribs += $skin->tooltipAndAccesskeyAttribs( "ca-$key" );
+						$linkAttribs += Linker::tooltipAndAccesskeyAttribs( "ca-$key" );
 				 	}
 				 	$linkHtml = Html::element( 'a', $linkAttribs, $tab['text'] );
 				 	
@@ -279,7 +279,7 @@ class MonoBookTemplate extends BaseTemplate {
 	/*************************************************************************************************/
 	function customBox( $bar, $cont ) {
 		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ) );
-		$tooltip = $this->skin->titleAttrib( "p-$bar" );
+		$tooltip = Linker::titleAttrib( "p-$bar" );
 		if ( $tooltip !== false ) {
 			$portletAttribs['title'] = $tooltip;
 		}

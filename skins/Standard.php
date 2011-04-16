@@ -79,7 +79,7 @@ class StandardTemplate extends LegacyTemplate {
 		$s .= "\n<br />" . $wgLang->pipeList( array(
 			$this->getSkin()->mainPageLink(),
 			$this->getSkin()->aboutLink(),
-			$this->getSkin()->specialLink( 'Recentchanges' ),
+			Linker::specialLink( 'Recentchanges' ),
 			$this->searchForm() ) )
 			. '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
@@ -133,8 +133,8 @@ class StandardTemplate extends LegacyTemplate {
 			if ( $barnumber == 1 ) {
 				// only show watchlist link if logged in
 				if( $wgUser->isLoggedIn() ) {
-					$s.= $this->getSkin()->specialLink( 'Watchlist' ) ;
-					$s .= $sep . $this->getSkin()->linkKnown(
+					$s.= Linker::specialLink( 'Watchlist' ) ;
+					$s .= $sep . Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Contributions' ),
 						wfMsg( 'mycontris' ),
 						array(),
@@ -197,10 +197,7 @@ class StandardTemplate extends LegacyTemplate {
 						$link = $nstext . ':' . $link;
 					}
 
-					$s .= $this->getSkin()->link(
-						Title::newFromText( $link ),
-						$text
-					);
+					$s .= Linker::link( Title::newFromText( $link ), $text );
 				} elseif( $this->getSkin()->getTitle()->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
@@ -270,7 +267,7 @@ class StandardTemplate extends LegacyTemplate {
 			$s .= $this->getUploadLink() . $sep;
 		}
 
-		$s .= $this->getSkin()->specialLink( 'Specialpages' );
+		$s .= Linker::specialLink( 'Specialpages' );
 
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {

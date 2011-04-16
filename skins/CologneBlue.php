@@ -111,7 +111,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= $this->bottomLinks();
 		$s .= $wgLang->pipeList( array(
-			"\n<br />" . $this->getSkin()->link(
+			"\n<br />" . Linker::link(
 				Title::newMainPage(),
 				null,
 				array(),
@@ -150,19 +150,19 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s = array(
 			$this->getSkin()->mainPageLink(),
-			$this->getSkin()->linkKnown(
+			Linker::linkKnown(
 				Title::newFromText( wfMsgForContent( 'aboutpage' ) ),
 				wfMsg( 'about' )
 			),
-			$this->getSkin()->linkKnown(
+			Linker::linkKnown(
 				Title::newFromText( wfMsgForContent( 'helppage' ) ),
 				wfMsg( 'help' )
 			),
-			$this->getSkin()->linkKnown(
+			Linker::linkKnown(
 				Title::newFromText( wfMsgForContent( 'faqpage' ) ),
 				wfMsg( 'faq' )
 			),
-			$this->getSkin()->specialLink( 'Specialpages' )
+			Linker::specialLink( 'Specialpages' )
 		);
 
 		/* show links to different language variants */
@@ -173,14 +173,14 @@ class CologneBlueTemplate extends LegacyTemplate {
 			$s[] = $this->extensionTabLinks();
 		}
 		if ( $wgUser->isLoggedIn() ) {
-			$s[] = $this->getSkin()->linkKnown(
+			$s[] = Linker::linkKnown(
 				$lo,
 				wfMsg( 'logout' ),
 				array(),
 				$q
 			);
 		} else {
-			$s[] = $this->getSkin()->linkKnown(
+			$s[] = Linker::linkKnown(
 				$li,
 				wfMsg( 'login' ),
 				array(),
@@ -238,7 +238,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 			$s .= $this->menuHead( 'qbedit' );
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
 
-			$s .= $sep . $this->getSkin()->linkKnown(
+			$s .= $sep . Linker::linkKnown(
 				Title::newFromText( wfMsgForContent( 'edithelppage' ) ),
 				wfMsg( 'edithelp' )
 			);
@@ -289,7 +289,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $wgUser->isLoggedIn() ) {
-			$tl = $this->getSkin()->link(
+			$tl = Linker::link(
 				$wgUser->getTalkPage(),
 				wfMsg( 'mytalk' ),
 				array(),
@@ -300,30 +300,30 @@ class CologneBlueTemplate extends LegacyTemplate {
 				$tl .= ' *';
 			}
 
-			$s .= $this->getSkin()->link(
+			$s .= Linker::link(
 					$wgUser->getUserPage(),
 					wfMsg( 'mypage' ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $tl . $sep . $this->getSkin()->specialLink( 'Watchlist' )
+				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
 					. $sep .
-				$this->getSkin()->link(
+				Linker::link(
 					SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
 					wfMsg( 'mycontris' ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $this->getSkin()->specialLink( 'Preferences' )
-				. $sep . $this->getSkin()->specialLink( 'Userlogout' );
+				) . $sep . Linker::specialLink( 'Preferences' )
+				. $sep . Linker::specialLink( 'Userlogout' );
 		} else {
-			$s .= $this->getSkin()->specialLink( 'Userlogin' );
+			$s .= Linker::specialLink( 'Userlogin' );
 		}
 
 		$s .= $this->menuHead( 'qbspecialpages' )
-			. $this->getSkin()->specialLink( 'Newpages' )
-			. $sep . $this->getSkin()->specialLink( 'Listfiles' )
-			. $sep . $this->getSkin()->specialLink( 'Statistics' );
+			. Linker::specialLink( 'Newpages' )
+			. $sep . Linker::specialLink( 'Listfiles' )
+			. $sep . Linker::specialLink( 'Statistics' );
 		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
 			$s .= $sep . $this->getUploadLink();
 		}
@@ -335,7 +335,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 					. wfMsg( 'sitesupport' ) . '</a>';
 		}
 
-		$s .= $sep . $this->getSkin()->link(
+		$s .= $sep . Linker::link(
 			SpecialPage::getTitleFor( 'Specialpages' ),
 			wfMsg( 'moredotdotdot' ),
 			array(),
