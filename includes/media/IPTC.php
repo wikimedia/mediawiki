@@ -525,10 +525,10 @@ class IPTC {
 			case "\x1b(x":
 				$c = "CSA_Z243.4-1985-2";
 				break;
-			case "\x1b$(B":
-			case "\x1b$B":
-			case "\x1b&@\x1b$B":
-			case "\x1b&@\x1b$(B":
+			case "\x1b\$(B":
+			case "\x1b\$B":
+			case "\x1b&@\x1b\$B":
+			case "\x1b&@\x1b\$(B":
 				$c = "JIS_C6226-1983";
 				break;
 			case "\x1b-A": // iso-8859-1. at least for the high code characters.
