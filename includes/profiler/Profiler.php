@@ -95,6 +95,14 @@ class Profiler {
 	}
 
 	/**
+	 * Set the profiler to a specific profiler instance. Mostly for dumpHTML
+	 * @param $p Profiler object
+	 */
+	public static function setInstance( Profiler $p ) {
+		self::$__instance = $p;
+	}
+
+	/**
 	 * Called by wfProfieIn()
 	 *
 	 * @param $functionname String

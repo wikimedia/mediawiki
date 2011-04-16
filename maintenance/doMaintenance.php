@@ -67,6 +67,7 @@ if ( $r ) {
 # Get the MWInit class
 if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/Init.php" );
+	require_once( "$IP/includes/AutoLoader.php" );
 }
 
 # Stub the profiler
@@ -74,7 +75,6 @@ require_once( MWInit::compiledPath( 'includes/profiler/Profiler.php' ) );
 
 // Some other requires
 if ( !defined( 'MW_COMPILED' ) ) {
-	require_once( "$IP/includes/AutoLoader.php" );
 	require_once( "$IP/includes/Defines.php" );
 }
 require_once( "$IP/includes/DefaultSettings.php" );
