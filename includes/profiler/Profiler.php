@@ -61,6 +61,7 @@ class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
 	var $mTemplated = false;
+	protected $mProfileID = false;
 	private static $__instance = null;
 
 	function __construct() {
@@ -100,6 +101,18 @@ class Profiler {
 	 */
 	public static function setInstance( Profiler $p ) {
 		self::$__instance = $p;
+	}
+
+	public function setProfileID( $id ) {
+		$this->mProfileID = $id;
+	}
+
+	public function getProfileID() {
+		if ( $this->mProfileID === false ) {
+			return wfWikiID();
+		} else {
+			return $this->mProfileID;
+		}
 	}
 
 	/**

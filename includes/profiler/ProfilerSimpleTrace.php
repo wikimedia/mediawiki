@@ -11,7 +11,6 @@
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
 	var $mMinimumTime = 0;
-	var $mProfileID = false;
 	var $trace = "";
 	var $memory = 0;
 
