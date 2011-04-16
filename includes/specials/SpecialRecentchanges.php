@@ -548,7 +548,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	function setTopText( OutputPage $out, FormOptions $opts ){
 		$message = wfMessage( 'recentchangestext' )->inContentLanguage();
-		if ( $message->exists() ) {
+		if ( !$message->isDisabled() ) {
 			$out->addWikiText( $message->plain() );
 		}
 	}
