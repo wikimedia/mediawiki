@@ -1168,6 +1168,7 @@ $wgMessageStructure = array(
 		'recentchanges',
 		'recentchanges-url',
 		'recentchanges-legend',
+		'recentchanges-summary',
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'recentchanges-label-newpage',
