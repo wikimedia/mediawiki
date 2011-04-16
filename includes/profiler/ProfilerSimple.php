@@ -4,10 +4,6 @@
  * @ingroup Profiler
  */
 
-if ( !class_exists( 'Profiler' ) ) {
-	require_once( dirname( __FILE__ ) . '/Profiler.php' );
-}
-
 /**
  * Simple profiler base class.
  * @todo document methods (?)

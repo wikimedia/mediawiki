@@ -803,7 +803,7 @@ abstract class Maintenance {
 	 */
 	public function finalSetup() {
 		global $wgCommandLineMode, $wgShowSQLErrors, $wgServer;
-		global $wgProfiling, $wgDBadminuser, $wgDBadminpassword;
+		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
@@ -848,8 +848,6 @@ abstract class Maintenance {
 		$wgShowSQLErrors = true;
 		@set_time_limit( 0 );
 		$this->adjustMemoryLimit();
-
-		$wgProfiling = false; // only for Profiler.php mode; avoids OOM errors
 	}
 
 	/**

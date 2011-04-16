@@ -65,6 +65,8 @@ PHP if you have not done so prior to upgrading MediaWiki.
   math conversion after upgrading, obtain the Math extension from SVN or from
   http://www.mediawiki.org/wiki/Extension:Math and add to LocalSettings.php:
   require_once "$IP/extensions/Math/Math.php";
+* $wgProfiler is now a configuration array, see StartProfiler.sample for details
+* $wgProfiling has been removed
 
 === New features in 1.18 ===
 * (bug 8130) Query pages should limit to content namespaces, not just main

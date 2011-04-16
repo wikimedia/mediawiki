@@ -89,19 +89,18 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	# Get MWInit class
 	require_once( "$IP/includes/Init.php" );
 
+	# Start the autoloader, so that extensions can derive classes from core files
+	require_once( "$IP/includes/AutoLoader.php" );
+
 	# Start profiler
 	# FIXME: rewrite wfProfileIn/wfProfileOut so that they can work in compiled mode
+	require_once( "$IP/includes/profiler/Profiler.php" );
 	if ( file_exists( "$IP/StartProfiler.php" ) ) {
 		require_once( "$IP/StartProfiler.php" );
-	} else {
-		require_once( "$IP/includes/profiler/ProfilerStub.php" );
 	}
 
 	# Load up some global defines.
 	require_once( "$IP/includes/Defines.php" );
-
-	# Start the autoloader, so that extensions can derive classes from core files
-	require_once( "$IP/includes/AutoLoader.php" );
 }
 
 wfProfileIn( 'WebStart.php-conf' );
