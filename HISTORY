@@ -457,6 +457,7 @@ are used instead.
 * (bug 1379) Installer directory conflicts with some hosts' configuration panel.
 * (bug 12070) After Installation MySQL was blocked
 * Fix XML well-formedness on a few pages when $wgHtml5 is true (the default)
+* (bug 28568) Entries in the iwlinks table are now removed on page deletion
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
