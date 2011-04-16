@@ -1986,7 +1986,8 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'recentchanges'                     => 'Recent changes',
 'recentchanges-url'                 => 'Special:RecentChanges', # do not translate or duplicate this message to other languages
 'recentchanges-legend'              => 'Recent changes options',
-'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
+'recentchanges-summary'             => 'Track the most recent changes to the wiki on this page.',
+'recentchangestext'                 => '-', # do not translate or duplicate this message to other languages
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
 'recentchanges-label-newpage'       => 'This edit created a new page',
 'recentchanges-label-minor'         => 'This is a minor edit',
