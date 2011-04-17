@@ -119,7 +119,7 @@ if ( $wgUseFileCache && $wgTitle !== null ) {
 				$cache->loadFromFileCache();
 			}
 			# Do any stats increment/watchlist stuff
-			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
+			$wgArticle = MediaWiki::articleFromTitle( $wgTitle, $context );
 			$wgArticle->viewUpdates();
 			# Tell OutputPage that output is taken care of
 			$context->output->disable();
