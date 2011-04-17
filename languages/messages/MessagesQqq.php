@@ -724,7 +724,7 @@ Parameters:
 'login-abort-generic'        => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 
 # Password reset dialog
-'resetpass'                 => 'The caption of [[Special:Resetpass]]
+'resetpass'                 => 'The caption of [[Special:ChangePassword]]
 
 {{Identical|Change password}}',
 'resetpass_header'          => 'Header on box on special page [[Special:ChangePassword]].
@@ -733,14 +733,14 @@ Parameters:
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
 'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
-'resetpass_submit'          => 'Submit button on [[Special:Resetpass]]',
+'resetpass_submit'          => 'Submit button on [[Special:ChangePassword]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
 'resetpass-submit-cancel'   => '{{Identical|Cancel}}
 
 Used on [[Special:ResetPass]]',
-'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
+'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
 # Edit page toolbar

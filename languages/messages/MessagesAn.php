@@ -119,7 +119,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Lista_de_botz', 'Lista_de_bots' ),
 	'Popularpages'              => array( 'Pachinas_populars', 'Pachinas_más_populars' ),
 	'Search'                    => array( 'Mirar' ),
-	'Resetpass'                 => array( 'Cambiar_contrasenya' ),
+	'ChangePassword'            => array( 'Cambiar_contrasenya' ),
 );
 
 $messages = array(

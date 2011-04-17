@@ -103,7 +103,7 @@ $specialPageAliases = array(
 	'Mycontributions'           => array( 'МонМезеТеинь' ),
 	'Popularpages'              => array( 'ЛисийСовийМартоЛопат' ),
 	'Search'                    => array( 'Вешнемс' ),
-	'Resetpass'                 => array( 'СовамоВалоньПолавтома' ),
+	'ChangePassword'            => array( 'СовамоВалоньПолавтома' ),
 	'Filepath'                  => array( 'ФайланьКи' ),
 	'Blankpage'                 => array( 'ЧавоЛопа' ),
 );

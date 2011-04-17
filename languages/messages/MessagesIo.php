@@ -101,7 +101,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'AdministrantiListo' ),
 	'Listbots'                  => array( 'RobotoListo' ),
 	'Search'                    => array( 'Serchar' ),
-	'Resetpass'                 => array( 'ChanjarPasovorto', 'Ripasvortizar' ),
+	'ChangePassword'            => array( 'ChanjarPasovorto', 'Ripasvortizar' ),
 	'Blankpage'                 => array( 'BlankaPagini' ),
 	'DeletedContributions'      => array( 'EfacitaKontributaji' ),
 );

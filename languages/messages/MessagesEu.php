@@ -96,7 +96,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'AdministratzaileZerrenda' ),
 	'Listbots'                  => array( 'BotZerrenda' ),
 	'Search'                    => array( 'Bilatu' ),
-	'Resetpass'                 => array( 'PasahitzaAldatu' ),
+	'ChangePassword'            => array( 'PasahitzaAldatu' ),
 	'Blankpage'                 => array( 'OrrialdeZuria' ),
 	'Tags'                      => array( 'Etiketak' ),
 );

@@ -1785,7 +1785,7 @@ class Title {
 
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
-			if ( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'Resetpass' ) ) {
+			if ( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'ChangePassword' ) ) {
 				return true;
 			}
 

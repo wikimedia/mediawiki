@@ -78,7 +78,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'ລາຍຊື່ຜູ້ບໍລິຫານລະບົບ' ),
 	'Listbots'                  => array( 'ລາຍຊື່ບອຕ' ),
 	'Search'                    => array( 'ຊອກຫາ' ),
-	'Resetpass'                 => array( 'ປ່ຽນລະຫັດຜ່ານ' ),
+	'ChangePassword'            => array( 'ປ່ຽນລະຫັດຜ່ານ' ),
 );
 
 $digitTransformTable = array(

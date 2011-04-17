@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Resetpass
+ * Implements Special:ChangePassword
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialResetpass extends SpecialPage {
+class SpecialChangePassword extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'Resetpass' );
+		parent::__construct( 'ChangePassword' );
 	}
 
 	/**
