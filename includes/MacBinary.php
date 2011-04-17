@@ -110,7 +110,7 @@ class MacBinary {
 			return false;
 		}
 
-		if( $head{0} != "\x00" || $head{74} != "\x00" ) {
+		if( $head[0] != "\x00" || $head[74] != "\x00" ) {
 			wfDebug( "$fname: header bytes 0 and 74 not null\n" );
 			return false;
 		}
@@ -127,7 +127,7 @@ class MacBinary {
 			}
 		} else {
 			$crc = sprintf( "%x != %x", $storedCRC, $calculatedCRC );
-			if( $storedCRC == 0 && $head{82} == "\x00" &&
+			if( $storedCRC == 0 && $head[82] == "\x00" &&
 				substr( $head, 101, 24 ) == str_repeat( "\x00", 24 ) ) {
 				wfDebug( "$fname: no CRC, looks like MacBinary I\n" );
 				$this->version = 1;
@@ -142,7 +142,7 @@ class MacBinary {
 			}
 		}
 
-		$nameLength = ord( $head{1} );
+		$nameLength = ord( $head[1] );
 		if( $nameLength < 1 || $nameLength > 63 ) {
 			wfDebug( "$fname: invalid filename size $nameLength\n" );
 			return false;
@@ -220,7 +220,7 @@ class MacBinary {
 		$len = strlen( $data );
 		$crc = $seed;
 		for( $i = 0; $i < $len; $i++ ) {
-			$crc ^= ord( $data{$i} ) << 8;
+			$crc ^= ord( $data[$i] ) << 8;
 			$crc &= 0xFFFF;
 			$crc = ($crc << 8) ^ $MAGIC[$crc >> 8];
 			$crc &= 0xFFFF;
@@ -257,7 +257,7 @@ class MacBinary {
 			$line = sprintf( "%04x:", $at );
 			$printable = '';
 			for( $i = 0; $i < $width && $remaining - $i > 0; $i++ ) {
-				$byte = ord( $data{$at++} );
+				$byte = ord( $data[$at++] );
 				$line .= sprintf( " %02x", $byte );
 				$printable .= ($byte >= 32 && $byte <= 126 )
 					? chr( $byte )

@@ -526,7 +526,7 @@ class WebRequest {
 		if( $hash !== false ) {
 			$base = substr( $base, 0, $hash );
 		}
-		if( $base{0} == '/' ) {
+		if( $base[0] == '/' ) {
 			return $base;
 		} else {
 			// We may get paths with a host prepended; strip it.

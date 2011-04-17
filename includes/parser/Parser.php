@@ -2152,7 +2152,7 @@ class Parser {
 		}
 
 		for ( $i = 0; $i < $shorter; ++$i ) {
-			if ( $st1{$i} != $st2{$i} ) {
+			if ( $st1[$i] != $st2[$i] ) {
 				break;
 			}
 		}
@@ -2450,7 +2450,7 @@ class Parser {
 		$stack = 0;
 		$len = strlen( $str );
 		for( $i = 0; $i < $len; $i++ ) {
-			$c = $str{$i};
+			$c = $str[$i];
 
 			switch( $state ) {
 			# (Using the number is a performance hack for common cases)

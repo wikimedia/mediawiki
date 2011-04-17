@@ -72,26 +72,26 @@ class SpecialBookSources extends SpecialPage {
 		if( strlen( $isbn ) == 13 ) {
 			for( $i = 0; $i < 12; $i++ ) {
 				if($i % 2 == 0) {
-					$sum += $isbn{$i};
+					$sum += $isbn[$i];
 				} else {
-					$sum += 3 * $isbn{$i};
+					$sum += 3 * $isbn[$i];
 				}
 			}
 
 			$check = (10 - ($sum % 10)) % 10;
-			if ($check == $isbn{12}) {
+			if ($check == $isbn[12]) {
 				return true;
 			}
 		} elseif( strlen( $isbn ) == 10 ) {
 			for($i = 0; $i < 9; $i++) {
-				$sum += $isbn{$i} * ($i + 1);
+				$sum += $isbn[$i] * ($i + 1);
 			}
 
 			$check = $sum % 11;
 			if($check == 10) {
 				$check = "X";
 			}
-			if($check == $isbn{9}) {
+			if($check == $isbn[9]) {
 				return true;
 			}
 		}
