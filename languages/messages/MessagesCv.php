@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Chavash
  * @author FLAGELLVM DEI
  * @author PCode
@@ -890,6 +891,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'шучĕ тăрăх йĕркеле',
 'special-categories-sort-abc'   => 'алфавит тăрăх йĕркеле',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Тулашран тунă ӳсĕм',
 
 # Special:ListUsers
 'listusers-submit'   => 'Кăтарт',

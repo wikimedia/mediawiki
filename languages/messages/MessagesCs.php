@@ -2997,7 +2997,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'metadata-help'     => 'Tento soubor obsahuje dodatečné informace, poskytnuté zřejmě digitálním fotoaparátem nebo scannerem, kterým byl pořízen. Pokud byl soubor od té doby změněn, některé údaje mohou být neplatné.',
 'metadata-expand'   => 'Zobrazit podrobnosti',
 'metadata-collapse' => 'Skrýt podrobnosti',
-'metadata-fields'   => 'Pole EXIF uvedená v této zprávě budou na stránce s popisem vypsána vždy. Pro zobrazení ostatních bude třeba kliknout na „zobrazit podrobnosti“.
+'metadata-fields'   => 'Položky metadat obrázků uvedené v této zprávě budou na stránce s popisem vypsána vždy. Pro zobrazení ostatních bude třeba kliknout na „zobrazit podrobnosti“.
 * make
 * model
 * datetimeoriginal
@@ -3046,8 +3046,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-colorspace'                  => 'Barevný prostor',
 'exif-componentsconfiguration'     => 'Význam jednotlivých složek',
 'exif-compressedbitsperpixel'      => 'Komprimační režim',
-'exif-pixelydimension'             => 'Platná šířka obrazu',
-'exif-pixelxdimension'             => 'Platná výška obrazu',
+'exif-pixelydimension'             => 'Šířka obrázku',
+'exif-pixelxdimension'             => 'Výška obrázku',
 'exif-usercomment'                 => 'Uživatelské poznámky',
 'exif-relatedsoundfile'            => 'Související zvukový soubor',
 'exif-datetimeoriginal'            => 'Datum a čas pořízení obrázku',
@@ -3061,9 +3061,9 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-exposureprogram'             => 'Expoziční program',
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
-'exif-shutterspeedvalue'           => 'Rychlost závěrky',
-'exif-aperturevalue'               => 'Clona',
-'exif-brightnessvalue'             => 'Světlost',
+'exif-shutterspeedvalue'           => 'Expoziční čas (APEX)',
+'exif-aperturevalue'               => 'Clona (APEX)',
+'exif-brightnessvalue'             => 'Jas (APEX)',
 'exif-exposurebiasvalue'           => 'Změna expozice',
 'exif-maxaperturevalue'            => 'Nejmenší clona',
 'exif-subjectdistance'             => 'Vzdálenost k předmětu',
@@ -3125,10 +3125,59 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpsareainformation'          => 'Označení GPS oblasti',
 'exif-gpsdatestamp'                => 'Datum podle GPS',
 'exif-gpsdifferential'             => 'Diferenciální korekce GPS',
+'exif-jpegfilecomment'             => 'Poznámky ze souboru JPEG',
+'exif-keywords'                    => 'Klíčová slova',
+'exif-worldregioncreated'          => 'Část světa, ve které byl snímek pořízen',
+'exif-countrycreated'              => 'Země, ve které byl snímek pořízen',
+'exif-countrycodecreated'          => 'Kód země, ve které byl snímek pořízen',
+'exif-provinceorstatecreated'      => 'Provincie nebo stát, kde byl snímek pořízen',
+'exif-citycreated'                 => 'Město, ve kterém byl snímek pořízen',
+'exif-sublocationcreated'          => 'Část města, ve které byl snímek pořízen',
+'exif-worldregiondest'             => 'Zobrazená část světa',
+'exif-countrydest'                 => 'Zobrazená země',
+'exif-countrycodedest'             => 'Kód zobrazené země',
+'exif-provinceorstatedest'         => 'Zobrazená provincie nebo stát',
+'exif-citydest'                    => 'Zobrazené město',
+'exif-sublocationdest'             => 'Zobrazená část města',
 'exif-objectname'                  => 'Krátký název',
+'exif-specialinstructions'         => 'Zvláštní pokyny',
+'exif-headline'                    => 'Nadpis',
+'exif-source'                      => 'Zdroj',
+'exif-locationdest'                => 'Zobrazené místo',
+'exif-locationdestcode'            => 'Kód zobrazeného místa',
+'exif-objectcycle'                 => 'Denní doba, pro kterou je soubor určen',
+'exif-contact'                     => 'Kontaktní údaje',
+'exif-writer'                      => 'Autor popisu',
+'exif-languagecode'                => 'Jazyk',
+'exif-iimversion'                  => 'Verze IIM',
+'exif-iimcategory'                 => 'Kategorie',
+'exif-iimsupplementalcategory'     => 'Doplňkové kategorie',
+'exif-datetimeexpires'             => 'Nepoužívat po',
+'exif-datetimereleased'            => 'K použití od',
+'exif-identifier'                  => 'Identifikátor',
+'exif-lens'                        => 'Použitý objektiv',
+'exif-serialnumber'                => 'Sériové číslo přístroje',
+'exif-cameraownername'             => 'Majitel přístroje',
+'exif-label'                       => 'Štítek',
+'exif-nickname'                    => 'Neformální název obrázku',
+'exif-rating'                      => 'Hodnocení (1–5)',
+'exif-copyrightowner'              => 'Držitel autorských práv',
+'exif-usageterms'                  => 'Podmínky užití',
+'exif-originaldocumentid'          => 'Unikátní ID původního dokumentu',
+'exif-pngfilecomment'              => 'Poznámky ze souboru PNG',
+'exif-disclaimer'                  => 'Vyloučení odpovědnosti',
+'exif-contentwarning'              => 'Upozornění k obsahu',
+'exif-giffilecomment'              => 'Poznámky ze souboru GIF',
+'exif-event'                       => 'Zobrazená událost',
+'exif-organisationinimage'         => 'Zobrazená organizace',
+'exif-personinimage'               => 'Zobrazená osoba',
+'exif-originalimageheight'         => 'Výška obrázku před oříznutím',
+'exif-originalimagewidth'          => 'Šířka obrázku před oříznutím',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekomprimovaný',
+
+'exif-copyrighted-false' => 'Volné dílo',
 
 'exif-unknowndate' => 'neznámé datum',
 
@@ -3143,6 +3192,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 'exif-planarconfiguration-1' => 'chunky',
 'exif-planarconfiguration-2' => 'planar',
+
+'exif-colorspace-65535' => 'Nekalibrováno',
 
 'exif-componentsconfiguration-0' => 'neexistuje',
 
@@ -3257,6 +3308,10 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpslongitude-e' => 'Východní délka',
 'exif-gpslongitude-w' => 'Západní délka',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metr|metry|metrů}} nad mořem',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metr|metry|metrů}} pod úrovní moře',
+
 'exif-gpsstatus-a' => 'Probíhá měření',
 'exif-gpsstatus-v' => 'Měření mimo provoz',
 
@@ -3273,9 +3328,50 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-gpsdestdistance-m' => 'Míle',
 'exif-gpsdestdistance-n' => 'Námořní míle',
 
+'exif-gpsdop-excellent' => 'Výtečná ($1)',
+'exif-gpsdop-good'      => 'Dobrá ($1)',
+'exif-gpsdop-moderate'  => 'Střední ($1)',
+'exif-gpsdop-fair'      => 'Ucházející ($1)',
+'exif-gpsdop-poor'      => 'Špatná ($1)',
+
+'exif-objectcycle-a' => 'Pouze dopoledne',
+'exif-objectcycle-p' => 'Pouze odpoledne',
+'exif-objectcycle-b' => 'Dopoledne i odpoledne',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravý kurs',
 'exif-gpsdirection-m' => 'Magnetický kurs',
+
+'exif-ycbcrpositioning-1' => 'Uprostřed',
+'exif-ycbcrpositioning-2' => 'U sebe',
+
+'exif-dc-contributor' => 'Přispěvatelé',
+'exif-dc-date'        => 'Datum (data)',
+'exif-dc-publisher'   => 'Vydavatel',
+'exif-dc-relation'    => 'Související média',
+'exif-dc-rights'      => 'Práva',
+
+'exif-rating-rejected' => 'Vyřazeno',
+
+'exif-isospeedratings-overflow' => 'Větší než 65535',
+
+'exif-iimcategory-ace' => 'Kultura, umění a zábava',
+'exif-iimcategory-clj' => 'Zločin a právo',
+'exif-iimcategory-dis' => 'Nehody a neštěstí',
+'exif-iimcategory-fin' => 'Ekonomika a obchod',
+'exif-iimcategory-edu' => 'Vzdělávání',
+'exif-iimcategory-evn' => 'Životní prostředí',
+'exif-iimcategory-hth' => 'Zdraví',
+'exif-iimcategory-hum' => 'Lidské záliby',
+'exif-iimcategory-lab' => 'Práce',
+'exif-iimcategory-lif' => 'Volný čas a životní styl',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Víra a náboženství',
+'exif-iimcategory-sci' => 'Věda a technika',
+'exif-iimcategory-soi' => 'Sociální problematika',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Války, konflikty a nepokoje',
+'exif-iimcategory-wea' => 'Počasí',
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',

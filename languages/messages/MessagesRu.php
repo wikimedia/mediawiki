@@ -3112,6 +3112,7 @@ $1',
 'exif-gpsareainformation'          => 'Название области GPS',
 'exif-gpsdatestamp'                => 'Дата',
 'exif-gpsdifferential'             => 'Дифференциальная поправка',
+'exif-keywords'                    => 'Ключевые слова',
 'exif-objectname'                  => 'Краткое название',
 
 # EXIF attributes

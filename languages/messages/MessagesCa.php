@@ -3023,7 +3023,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-preferredattributionname'    => 'Quan re-utilitzis aquest treball, si us plau posa un credit a',
 'exif-pngfilecomment'              => 'Comentari del fitxer PNG',
 'exif-disclaimer'                  => 'Avís general',
-'exif-contentwarning'              => "Contingut d'alerta",
+'exif-contentwarning'              => 'Advertència de contingut',
 'exif-giffilecomment'              => 'Comentari del fitxer GIF',
 'exif-intellectualgenre'           => "Tipus d'article",
 'exif-subjectnewscode'             => 'Codi del subjecte',

@@ -2896,7 +2896,7 @@ Vse nadaljne povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer 
 'metadata-help'     => 'Datoteka vsebuje še druge podatke, ki jih je verjetno dodal za njeno ustvaritev oziroma digitalizacijo uporabljeni fotografski aparat ali optični bralnik. Če je bila datoteka pozneje spremenjena, podatki sprememb morda ne izražajo popolnoma.',
 'metadata-expand'   => 'Razširi seznam',
 'metadata-collapse' => 'Skrči seznam',
-'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov EXIF bodo prikazana le v tem sporočilu našteta polja.
+'metadata-fields'   => 'V skrčeni razpredelnici metapodatkov slike bodo prikazana le v tem sporočilu našteta polja.
 Druga bodo po privzetem skrita.
 * make
 * model
@@ -2946,8 +2946,8 @@ Druga bodo po privzetem skrita.
 'exif-colorspace'                  => 'Barvni prostor',
 'exif-componentsconfiguration'     => 'Pomen posameznih gradnikov',
 'exif-compressedbitsperpixel'      => 'Velikost točke po stiskanju (v bitih)',
-'exif-pixelydimension'             => 'Veljavna širina slike',
-'exif-pixelxdimension'             => 'Veljavna višina slike',
+'exif-pixelydimension'             => 'Širina slike',
+'exif-pixelxdimension'             => 'Višina slike',
 'exif-usercomment'                 => 'Uporabniške pripombe',
 'exif-relatedsoundfile'            => 'Pripadajoča zvočna datoteka',
 'exif-datetimeoriginal'            => 'Datum in čas ustvaritve podatkov',
@@ -2961,9 +2961,9 @@ Druga bodo po privzetem skrita.
 'exif-exposureprogram'             => 'Program osvetlitve',
 'exif-spectralsensitivity'         => 'Spektralna občutljivost',
 'exif-isospeedratings'             => 'Občutljivost filma ali tipala (ISO)',
-'exif-shutterspeedvalue'           => 'Hitrost zaklopa',
-'exif-aperturevalue'               => 'Zaslonka',
-'exif-brightnessvalue'             => 'Svetlost',
+'exif-shutterspeedvalue'           => 'Hitrost zaklopa APEX',
+'exif-aperturevalue'               => 'Zaslonka APEX',
+'exif-brightnessvalue'             => 'Svetlost APEX',
 'exif-exposurebiasvalue'           => 'Popravek osvetlitve',
 'exif-maxaperturevalue'            => 'Največja vrednost zaslonke',
 'exif-subjectdistance'             => 'Oddaljenost predmeta',
@@ -3025,10 +3025,42 @@ Druga bodo po privzetem skrita.
 'exif-gpsareainformation'          => 'Ime GPS-območja',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Diferencialni popravek GPS',
+'exif-jpegfilecomment'             => 'Komentar datoteke JPEG',
+'exif-keywords'                    => 'Ključne besede',
+'exif-countrydest'                 => 'Prikazana država',
+'exif-citydest'                    => 'Prikazano mesto',
 'exif-objectname'                  => 'Kratek naslov',
+'exif-source'                      => 'Vir',
+'exif-contact'                     => 'Kontaktni podatki',
+'exif-writer'                      => 'Pisatelj',
+'exif-languagecode'                => 'Jezik',
+'exif-iimversion'                  => 'Različica IIM',
+'exif-iimcategory'                 => 'Kategorija',
+'exif-iimsupplementalcategory'     => 'Dodatne kategorije',
+'exif-datetimeexpires'             => 'Ne uporabljajte po',
+'exif-datetimereleased'            => 'Sproščeno',
+'exif-identifier'                  => 'Označevalnik',
+'exif-lens'                        => 'Uporabljen objektiv',
+'exif-serialnumber'                => 'Serijska številka fotoaparata',
+'exif-cameraownername'             => 'Lastnik fotoaparata',
+'exif-label'                       => 'Oznaka',
+'exif-datetimemetadata'            => 'Datum zadnje spremembe metapodatkov',
+'exif-nickname'                    => 'Neuradno ime slike',
+'exif-rating'                      => 'Ocena (od 5)',
+'exif-pngfilecomment'              => 'Komentar datoteke PNG',
+'exif-giffilecomment'              => 'Komentar datoteke GIF',
+'exif-scenecode'                   => 'Koda prizora IPTC',
+'exif-event'                       => 'Prikazan dogodek',
+'exif-organisationinimage'         => 'Prikazana organizacija',
+'exif-personinimage'               => 'Prikazana oseba',
+'exif-originalimageheight'         => 'Višina slike, preden je bila obrezana',
+'exif-originalimagewidth'          => 'Širina slike, preden je bila obrezana',
 
 # EXIF attributes
 'exif-compression-1' => 'Nestisnjeno',
+
+'exif-copyrighted-true'  => 'Avtorsko zaščiteno',
+'exif-copyrighted-false' => 'Javna last',
 
 'exif-unknowndate' => 'Neznan datum',
 
@@ -3046,6 +3078,8 @@ Druga bodo po privzetem skrita.
 
 'exif-xyresolution-i' => '$1 dpi ({{plural:$1|točka/palec|točki/palec|točke/palec|točk/palec|točk/palec}})',
 'exif-xyresolution-c' => '$1 dpc ({{plural:$1|točka/centimeter|točki/centimeter|točke/centimeter|točk/centimeter|točk/centimeter}})',
+
+'exif-colorspace-65535' => 'Neumerjeno',
 
 'exif-componentsconfiguration-0' => 'ne obstaja',
 
@@ -3158,6 +3192,10 @@ Druga bodo po privzetem skrita.
 'exif-gpslongitude-e' => 'Vzhodna zemljepisna dolžina',
 'exif-gpslongitude-w' => 'Zahodna zemljepisna dolžina',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|metra|metre|metrov}} nad morsko gladino',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|metra|metre|metrov}} pod morsko gladino',
+
 'exif-gpsstatus-a' => 'Merjenje poteka',
 'exif-gpsstatus-v' => 'Interoperabilnost merjenja',
 
@@ -3169,9 +3207,58 @@ Druga bodo po privzetem skrita.
 'exif-gpsspeed-m' => 'Milje na uro',
 'exif-gpsspeed-n' => 'Vozli',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrov',
+'exif-gpsdestdistance-m' => 'Milj',
+'exif-gpsdestdistance-n' => 'Navtičnih milj',
+
+'exif-gpsdop-excellent' => 'Izvrstno ($1)',
+'exif-gpsdop-good'      => 'Dobro ($1)',
+'exif-gpsdop-moderate'  => 'Zmerno ($1)',
+'exif-gpsdop-fair'      => 'Pošteno ($1)',
+'exif-gpsdop-poor'      => 'Slabo ($1)',
+
+'exif-objectcycle-a' => 'Samo zjutraj',
+'exif-objectcycle-p' => 'Samo popoldne',
+'exif-objectcycle-b' => 'Tako zjutraj kot popoldne',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravi azimut',
 'exif-gpsdirection-m' => 'Magnetni azimut',
+
+'exif-dc-contributor' => 'Sodelavci',
+'exif-dc-date'        => 'Datum(i)',
+'exif-dc-publisher'   => 'Založnik',
+'exif-dc-relation'    => 'Sorodna predstavnost',
+'exif-dc-rights'      => 'Pravice',
+'exif-dc-type'        => 'Vrsta predstavnosti',
+
+'exif-rating-rejected' => 'Zavrnjeno',
+
+'exif-isospeedratings-overflow' => 'Večje od 65535',
+
+'exif-iimcategory-ace' => 'Umetnost, kultura in zabava',
+'exif-iimcategory-clj' => 'Kriminal in pravo',
+'exif-iimcategory-dis' => 'Nesreče in nezgode',
+'exif-iimcategory-fin' => 'Ekonomija in poslovanje',
+'exif-iimcategory-edu' => 'Izobraževanje',
+'exif-iimcategory-evn' => 'Okolje',
+'exif-iimcategory-hth' => 'Zdravje',
+'exif-iimcategory-hum' => 'Zanimanja ljudi',
+'exif-iimcategory-lab' => 'Delo',
+'exif-iimcategory-lif' => 'Življenjski slog in prosti čas',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Vera in prepričanja',
+'exif-iimcategory-sci' => 'Znanost in tehnologija',
+'exif-iimcategory-soi' => 'Družbena vprašanja',
+'exif-iimcategory-spo' => 'Športi',
+'exif-iimcategory-war' => 'Vojne, spori in nemiri',
+'exif-iimcategory-wea' => 'Vreme',
+
+'exif-urgency-normal' => 'Navadno ($1)',
+'exif-urgency-low'    => 'Nizko ($1)',
+'exif-urgency-high'   => 'Visoko ($1)',
+'exif-urgency-other'  => 'Uporabniško določena prednost ($1)',
 
 # External editor support
 'edit-externally'      => 'Uredite datoteko z uporabo zunanjega orodja',

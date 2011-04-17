@@ -2913,7 +2913,7 @@ Omne ligamines posterior in le mesme linea es considerate como exceptiones, i.e.
 Si le file ha essite modificate ab su stato original, es possibile que alcun detalios non reflecte completemente le file modificate.',
 'metadata-expand'   => 'Revelar detalios extense',
 'metadata-collapse' => 'Celar detalios extense',
-'metadata-fields'   => 'Le campos de metadatos EXIF listate in iste message essera includite in le visualisation del pagina de imagine quando le tabula de metadatos es collabite.
+'metadata-fields'   => 'Le campos de metadatos de imagine listate in iste message essera includite in le visualisation del pagina de imagine quando le tabula de metadatos es plicate.
 Le alteres essera initialmente celate.
 * make
 * model
@@ -3092,9 +3092,26 @@ Le alteres essera initialmente celate.
 'exif-originaldocumentid'          => 'ID unic del documento original',
 'exif-licenseurl'                  => 'URL pro licentia de copyright',
 'exif-morepermissionsurl'          => 'Information alternative de licentia',
+'exif-attributionurl'              => 'Si tu re-usa iste obra, per favor insere un ligamine a',
+'exif-preferredattributionname'    => 'Si tu re-usa iste obra, per favor da recognoscentia a',
+'exif-pngfilecomment'              => 'Commento del file PNG',
+'exif-disclaimer'                  => 'Repudiation',
+'exif-contentwarning'              => 'Advertimento de contento',
+'exif-giffilecomment'              => 'Commento del file GIF',
+'exif-intellectualgenre'           => 'Typo de elemento',
+'exif-subjectnewscode'             => 'Codice de subjecto',
+'exif-scenecode'                   => 'Codice de scena IPTC',
+'exif-event'                       => 'Evento representate',
+'exif-organisationinimage'         => 'Organisation representate',
+'exif-personinimage'               => 'Persona representate',
+'exif-originalimageheight'         => 'Altitude del imagine ante taliar',
+'exif-originalimagewidth'          => 'Latitude del imagine ante taliar',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimite',
+
+'exif-copyrighted-true'  => 'Sub copyright',
+'exif-copyrighted-false' => 'Dominio public',
 
 'exif-unknowndate' => 'Data incognite',
 
@@ -3109,6 +3126,8 @@ Le alteres essera initialmente celate.
 
 'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
 'exif-planarconfiguration-2' => 'formato planar',
+
+'exif-colorspace-65535' => 'Non calibrate',
 
 'exif-componentsconfiguration-0' => 'non existe',
 
@@ -3173,6 +3192,8 @@ Le alteres essera initialmente celate.
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor de color linear sequential',
 
+'exif-filesource-3' => 'Camera photographic digital',
+
 'exif-scenetype-1' => 'Un imagine directemente photographiate',
 
 'exif-customrendered-0' => 'Processo normal',
@@ -3221,6 +3242,10 @@ Le alteres essera initialmente celate.
 'exif-gpslongitude-e' => 'Longitude est',
 'exif-gpslongitude-w' => 'Longitude west',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metros}} super le nivello del mar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metros}} sub le nivello del mar',
+
 'exif-gpsstatus-a' => 'Mesura in curso',
 'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
 
@@ -3237,9 +3262,58 @@ Le alteres essera initialmente celate.
 'exif-gpsdestdistance-m' => 'Millias',
 'exif-gpsdestdistance-n' => 'Millias nautic',
 
+'exif-gpsdop-excellent' => 'Excellente ($1)',
+'exif-gpsdop-good'      => 'Bon ($1)',
+'exif-gpsdop-moderate'  => 'Moderate ($1)',
+'exif-gpsdop-fair'      => 'Acceptabile ($1)',
+'exif-gpsdop-poor'      => 'Mal ($1)',
+
+'exif-objectcycle-a' => 'Matino solmente',
+'exif-objectcycle-p' => 'Vespere solmente',
+'exif-objectcycle-b' => 'Matino e vespere',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direction real',
 'exif-gpsdirection-m' => 'Direction magnetic',
+
+'exif-ycbcrpositioning-1' => 'Centrate',
+'exif-ycbcrpositioning-2' => 'Digitalisation bimodal',
+
+'exif-dc-contributor' => 'Contributores',
+'exif-dc-coverage'    => 'Scopo spatial o temporal del objecto',
+'exif-dc-date'        => 'Data(s)',
+'exif-dc-publisher'   => 'Editor',
+'exif-dc-relation'    => 'Objectos connexe',
+'exif-dc-rights'      => 'Derectos',
+'exif-dc-source'      => 'Objecto original',
+'exif-dc-type'        => 'Typo de objecto',
+
+'exif-rating-rejected' => 'Rejectate',
+
+'exif-isospeedratings-overflow' => 'Superior a 65535',
+
+'exif-iimcategory-ace' => 'Arte, cultura e intertenimento',
+'exif-iimcategory-clj' => 'Crimine e lege',
+'exif-iimcategory-dis' => 'Catastrophes e accidentes',
+'exif-iimcategory-fin' => 'Economia e negotios',
+'exif-iimcategory-edu' => 'Education',
+'exif-iimcategory-evn' => 'Ambiente',
+'exif-iimcategory-hth' => 'Sanitate',
+'exif-iimcategory-hum' => 'Interesse human',
+'exif-iimcategory-lab' => 'Labor',
+'exif-iimcategory-lif' => 'Stilo de vita e tempore libere',
+'exif-iimcategory-pol' => 'Politica',
+'exif-iimcategory-rel' => 'Religion e credentia',
+'exif-iimcategory-sci' => 'Scientia e technologia',
+'exif-iimcategory-soi' => 'Questiones social',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Guerra, conflicto e perturbation',
+'exif-iimcategory-wea' => 'Meteo',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Basse ($1)',
+'exif-urgency-high'   => 'Alte ($1)',
+'exif-urgency-other'  => 'Prioritate definite per usator ($1)',
 
 # External editor support
 'edit-externally'      => 'Modificar iste file con un programma externe',
