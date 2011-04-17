@@ -558,7 +558,7 @@ class OldChangesList extends ChangesList {
 			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
 		// Log entries (old format) or log targets, and special pages
 		} elseif( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
-			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $rc->mAttribs['rc_title'] );
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
 			if( $name == 'Log' ) {
 				$this->insertLog( $s, $rc->getTitle(), $subpage );
 			}
@@ -694,7 +694,7 @@ class EnhancedChangesList extends ChangesList {
 			$watched = false;
 		// Log entries (old format) and special pages
 		} elseif( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
-			list( $specialName, $logtype ) = SpecialPage::resolveAliasWithSubpage( $rc->mAttribs['rc_title'] );
+			list( $specialName, $logtype ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
 			if ( $specialName == 'Log' ) {
 				# Log updates, etc
 				$logname = LogPage::logName( $logtype );

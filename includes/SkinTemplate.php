@@ -608,8 +608,7 @@ class SkinTemplate extends Skin {
 			# contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $wgRequest->getText( 'title' ) );
 			if( $origTitle instanceof Title && $origTitle->getNamespace() == NS_SPECIAL ) {
-				list( $spName, $spPar ) =
-					SpecialPage::resolveAliasWithSubpage( $origTitle->getText() );
+				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
 						|| $wgRequest->getText( 'target' ) == $this->username );

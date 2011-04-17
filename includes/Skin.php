@@ -303,6 +303,7 @@ abstract class Skin {
 	 * Special:Contributions mark the user which they are relevant to so that
 	 * things like the toolbox can display the information they usually are only
 	 * able to display on a user's userpage and talkpage.
+	 * @return User
 	 */
 	public function getRelevantUser() {
 		if ( isset($this->mRelevantUser) ) {
@@ -485,7 +486,7 @@ abstract class Skin {
 		if ( $title->getNamespace() == NS_SPECIAL ) {
 			$type = 'ns-special';
 			// bug 23315: provide a class based on the canonical special page name without subpages
-			list( $canonicalName ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+			list( $canonicalName ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 			if ( $canonicalName ) {
 				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
 			} else {
@@ -1128,7 +1129,7 @@ abstract class Skin {
 	}
 
 	static function makeSpecialUrl( $name, $urlaction = '' ) {
-		$title = SpecialPage::getTitleFor( $name );
+		$title = SpecialPage::getSafeTitleFor( $name );
 		return $title->getLocalURL( $urlaction );
 	}
 

@@ -51,7 +51,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	private function getPageGroups() {
 		global $wgSortSpecialPages;
 
-		$pages = SpecialPage::getUsablePages();
+		$pages = SpecialPageFactory::getUsablePages();
 
 		if( !count( $pages ) ) {
 			# Yeah, that was pointless. Thanks for coming.
@@ -62,7 +62,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$groups = array();
 		foreach ( $pages as $page ) {
 			if ( $page->isListed() ) {
-				$group = SpecialPage::getGroup( $page );
+				$group = SpecialPageFactory::getGroup( $page );
 				if( !isset( $groups[$group] ) ) {
 					$groups[$group] = array();
 				}

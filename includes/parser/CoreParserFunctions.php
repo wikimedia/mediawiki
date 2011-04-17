@@ -653,7 +653,7 @@ class CoreParserFunctions {
 	}
 
 	static function special( $parser, $text ) {
-		list( $page, $subpage ) = SpecialPage::resolveAliasWithSubpage( $text );
+		list( $page, $subpage ) = SpecialPageFactory::resolveAlias( $text );
 		if ( $page ) {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
 			return $title;

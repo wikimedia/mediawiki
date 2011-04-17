@@ -226,6 +226,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialMypage' => 'includes/SpecialPage.php',
 	'SpecialMytalk' => 'includes/SpecialPage.php',
 	'SpecialPage' => 'includes/SpecialPage.php',
+	'SpecialPageFactory' => 'includes/SpecialPageFactory.php',
 	'SpecialRedirectToSpecial' => 'includes/SpecialPage.php',
 	'SquidUpdate' => 'includes/SquidUpdate.php',
 	'SquidPurgeClient' => 'includes/SquidPurgeClient.php',

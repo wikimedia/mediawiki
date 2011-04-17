@@ -3252,7 +3252,7 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html'] )
 				{
-					$text = SpecialPage::capturePath( $title );
+					$text = SpecialPageFactory::capturePath( $title );
 					if ( is_string( $text ) ) {
 						$found = true;
 						$isHTML = true;

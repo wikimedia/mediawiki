@@ -2652,8 +2652,7 @@ class OutputPage {
 		$ns = $title->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
 		if ( $ns == NS_SPECIAL ) {
-			$parts = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
-			$canonicalName = $parts[0];
+			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 		} else {
 			$canonicalName = false; # bug 21115
 		}
