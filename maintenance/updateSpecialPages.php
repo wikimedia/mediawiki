@@ -78,7 +78,7 @@ class UpdateSpecialPages extends Maintenance {
 				continue;
 			}
 
-			$specialObj = SpecialPage::getPage( $special );
+			$specialObj = SpecialPageFactory::getPage( $special );
 			if ( !$specialObj ) {
 				$this->output( "No such special page: $special\n" );
 				exit;

@@ -212,7 +212,7 @@ class MediaWiki {
 			&& !count( array_diff( array_keys( $this->context->request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
 			if ( $this->context->title->getNamespace() == NS_SPECIAL ) {
-				list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $this->context->title->getDBkey() );
+				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $this->context->title->getDBkey() );
 				if ( $name ) {
 					$this->context->title = SpecialPage::getTitleFor( $name, $subpage );
 				}
@@ -249,7 +249,7 @@ class MediaWiki {
 		// Special pages
 		} else if ( NS_SPECIAL == $this->context->title->getNamespace() ) {
 			// actions that need to be made when we have a special pages
-			SpecialPage::executePath( $this->context->title, $this->context );
+			SpecialPageFactory::executePath( $this->context->title, $this->context );
 		} else {
 			// No match to special cases
 			wfProfileOut( __METHOD__ );
@@ -553,7 +553,7 @@ class MediaWiki {
 				break;
 			case 'revisiondelete':
 				// For show/hide submission from history page
-				$special = SpecialPage::getPage( 'Revisiondelete' );
+				$special = SpecialPageFactory::getPage( 'Revisiondelete' );
 				$special->execute( '' );
 				break;
 			default:

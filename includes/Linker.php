@@ -376,7 +376,7 @@ class Linker {
 
 	static function normaliseSpecialPage( Title $title ) {
 		if ( $title->getNamespace() == NS_SPECIAL ) {
-			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 			if ( !$name ) {
 				return $title;
 			}

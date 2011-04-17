@@ -432,7 +432,7 @@ class LegacyTemplate extends BaseTemplate {
 	function specialPagesList() {
 		global $wgContLang, $wgServer, $wgRedirectScript;
 
-		$pages = SpecialPage::getUsablePages();
+		$pages = SpecialPageFactory::getUsablePages();
 
 		foreach ( $pages as $name => $page ) {
 			$pages[$name] = $page->getDescription();
