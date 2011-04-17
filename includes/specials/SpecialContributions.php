@@ -450,8 +450,7 @@ class SpecialContributions extends SpecialPage {
 
 	protected function feedTitle() {
 		global $wgLanguageCode, $wgSitename;
-		$page = SpecialPage::getPage( 'Contributions' );
-		$desc = $page->getDescription();
+		$desc = $this->getDescription();
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 

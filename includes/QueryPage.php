@@ -687,8 +687,7 @@ abstract class QueryPage extends SpecialPage {
 
 	function feedTitle() {
 		global $wgLanguageCode, $wgSitename;
-		$page = SpecialPage::getPage( $this->getName() );
-		$desc = $page->getDescription();
+		$desc = $this->getDescription();
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 
@@ -697,8 +696,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedUrl() {
-		$title = SpecialPage::getTitleFor( $this->getName() );
-		return $title->getFullURL();
+		return $this->getTitle()->getFullURL();
 	}
 }
 

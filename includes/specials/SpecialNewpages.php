@@ -400,8 +400,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedTitle() {
 		global $wgLanguageCode, $wgSitename;
-		$page = SpecialPage::getPage( 'Newpages' );
-		$desc = $page->getDescription();
+		$desc = $this->getDescription();
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 
