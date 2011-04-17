@@ -85,12 +85,15 @@ $( document ).ready( function() {
 		
 		var reqData = {
 			'action': 'watch',
+			'format': 'json',
 			'title': $link.data( 'target' )
 		};
 		if ( $link.data( 'action' ) == 'unwatch' ) {
 			reqData['unwatch'] = '';
 		}
-		mw.api(reqData,
+		$.getJSON( mw.config.get( 'wgScriptPath' )
+				+ '/api' + mw.config.get( 'wgScriptExtension' ),
+			reqData,
 			function( data, textStatus, xhr ) {
 				wgAjaxWatch.processResult( data, $link );
 			}
