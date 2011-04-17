@@ -3547,7 +3547,7 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
 'tags-hitcount-header'    => 'Märkta ändringar',
-'tags-edit'               => 'redigering',
+'tags-edit'               => 'redigera',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 
 # Special:ComparePages

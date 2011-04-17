@@ -1272,9 +1272,9 @@ $1",
 'prefs-rc'                      => '최근 바뀜',
 'prefs-watchlist'               => '주시문서 목록',
 'prefs-watchlist-days'          => '주시문서 목록에서 볼 날짜 수:',
-'prefs-watchlist-days-max'      => '(최대 7일)',
+'prefs-watchlist-days-max'      => '최대 7일',
 'prefs-watchlist-edits'         => '주시문서 목록에서 볼 편집 수:',
-'prefs-watchlist-edits-max'     => '(최대 1000개)',
+'prefs-watchlist-edits-max'     => '최대 개수: 1000',
 'prefs-watchlist-token'         => '주시문서 토큰:',
 'prefs-misc'                    => '기타',
 'prefs-resetpass'               => '비밀번호 바꾸기',
@@ -2446,6 +2446,7 @@ $1',
 'ipbwatchuser'                    => '이 사용자 문서와 사용자토론 문서를 주시하기',
 'ipb-disableusertalk'             => '차단된 동안 자신의 사용자토론 문서를 편집하지 못하도록 막기',
 'ipb-change-block'                => '이 설정으로 이 사용자를 다시 차단합니다',
+'ipb-confirm'                     => '차단 확인',
 'badipaddress'                    => '잘못된 IP 주소',
 'blockipsuccesssub'               => '차단 완료',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
@@ -2558,7 +2559,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
 'movepagetext-noredirectfixer' => "이 양식을 이용해 문서의 이름을 바꾸고 문서의 모든 역사를 옮길 것입니다.
 이전의 제목은 새 제목으로 넘겨줄 것입니다.
-[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 잇는지 확인해주십시오.
+[[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주십시오.
 당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
 참고로 새 제목을 가진 문서가 이미 있다면 다음 경우에 해당하지 않으면 이 문서는 옮겨지지 '''않을''' 것입니다.
@@ -2568,7 +2569,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 이는 당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
-방문 수나 이 문서를 향하는 링크가 많은 문서일 경우 심각한 문제를 초래할 수 잇습니다.
+방문 수나 이 문서를 향하는 링크가 많은 문서일 경우 심각한 문제를 초래할 수 있습니다.
 문서를 이동하기 전에 이러한 행동이 초래할 수 있는 결과에 대해 숙지하시기 바랍니다.",
 'movepagetalktext'             => "딸린 토론 문서도 자동으로 이동합니다. 하지만 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우

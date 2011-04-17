@@ -3405,7 +3405,7 @@ This can come from IPTC-iim 2:25 keyword field, or XMP's dc:subject field.",
 'exif-citycreated'                 => 'City that the picture was taken in.  Note this is where it was taken, not what city is depicted in the picture. This is generally only used if different from the city depicted in photo.',
 'exif-sublocationcreated'          => 'Sub-location of the city that the picture was taken in. This might be a street, a part of town, etc.  Note this is where it was taken, not what sub-location is depicted in the picture.',
 'exif-worldregiondest'             => 'World region shown. This generally means the continent, but could have the value of world as well.',
-'exif-countrydest'                 => 'Country shown. See also {{msg-mw|exif-worldregioncreated}}.',
+'exif-countrydest'                 => 'Country shown. See also {{msg-mw|exif-countrycreated}}.',
 'exif-countrycodedest'             => 'ISO Code for country shown',
 'exif-provinceorstatedest'         => 'Province, state, territory, or other secondary political division shown.',
 'exif-citydest'                    => 'City shown',
@@ -3425,7 +3425,7 @@ Who gave us the image. This might be different from the creator of the image. Th
 'exif-source'                      => 'See IPTC-iim standard 2:115 - http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf.
 
 This is who originally owned the image (a person, stock photo agency, etc). This does not refer to the image this image is based on.',
-'exif-editstatus'                  => 'Editorial status of image. This is more intended for use with people making news papers. This denotes weather the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
+'exif-editstatus'                  => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-urgency'                     => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.',
 'exif-fixtureidentifier'           => 'Fixture name. If this image is part of a regular column in a news paper, name of column goes here.',
 'exif-locationdest'                => 'Full printable name of location.',
@@ -3632,9 +3632,9 @@ Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_phot
 'exif-gpsdop-fair'      => '$1 is the actual HDOP/PDOP value (10-20 for fair). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
 'exif-gpsdop-poor'      => '$1 is the actual HDOP/PDOP value (greater than 20 for poor). See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)',
 
-'exif-objectcycle-a' => 'Morning only (a is for AM)',
-'exif-objectcycle-p' => 'Evening only (p is for PM)',
-'exif-objectcycle-b' => 'Both morning and evening (b is for both)',
+'exif-objectcycle-a' => 'Morning only (a is for AM). See also {{msg-mw|Exif-objectcycle}}.',
+'exif-objectcycle-p' => 'Evening only (p is for PM). See also {{msg-mw|Exif-objectcycle}}.',
+'exif-objectcycle-b' => 'Both morning and evening (b is for both). See also {{msg-mw|Exif-objectcycle}}.',
 
 'exif-ycbcrpositioning-1' => 'If the Chrominance samples are centered with respect to the Luminance samples.',
 'exif-ycbcrpositioning-2' => 'If the Chrominance samples are on top of to the Luminance samples.',

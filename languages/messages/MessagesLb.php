@@ -2835,7 +2835,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Wann de Fichier nodréiglech geännert gouf, kann et sinn datt eenzel Detailer net mat dem aktuelle Fichier iwwereneestëmmen.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
-'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewise wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.
+'metadata-fields'   => "D'Bild-Meta-Felder aus dëser Lëscht ginn op Bildbeschreiwungssäite gewise wann d'Metadatentafel zesummegeklappt ass.
+Déi aner sinn am Standard verstoppt.
 * make
 * model
 * datetimeoriginal
@@ -2963,13 +2964,31 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
+'exif-jpegfilecomment'             => 'Bemierkung zum JPEG-Fichier',
 'exif-keywords'                    => 'Stéchwierder',
+'exif-worldregioncreated'          => "Welt-Regioun an där d'Bild gemaach gouf",
+'exif-countrycreated'              => "Land an deem d'Bild gemaach gouf",
+'exif-countrycodecreated'          => "Code fir d'Land an deem d'Bild gemaach gouf",
+'exif-citycreated'                 => "Stad an där d'Bild gemaach gouf",
+'exif-worldregiondest'             => 'Gewise Welt-Regioun',
+'exif-countrydest'                 => 'Gewisent Land',
+'exif-countrycodedest'             => 'Code vum gewisene Land',
 'exif-objectname'                  => 'Kuerzen Titel',
+'exif-headline'                    => 'Iwwerschrëft',
 'exif-source'                      => 'Quell',
+'exif-contact'                     => 'Kontaktinformatioun',
 'exif-languagecode'                => 'Sprooch',
+'exif-iimversion'                  => 'IIM-Versioun',
 'exif-iimcategory'                 => 'Kategorie',
+'exif-datetimeexpires'             => 'Net benotzen nom',
+'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
+'exif-rating'                      => 'Bewäertung (vu 5)',
+'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
+'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
+'exif-organisationinimage'         => 'Organisatioun um Bild',
+'exif-personinimage'               => 'Persoun um Bild',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
@@ -3101,6 +3120,10 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpslongitude-e' => 'ëstlech Längt',
 'exif-gpslongitude-w' => 'westlech Längt',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} iwwer dem Niveau vum Mier',
+'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} ënner dem Niveau vum Mier',
+
 'exif-gpsstatus-a' => 'Miessung am gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
 
@@ -3117,6 +3140,16 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-gpsdestdistance-m' => 'Meilen',
 'exif-gpsdestdistance-n' => 'Nautesch Meilen',
 
+'exif-gpsdop-excellent' => 'Exzellent ($1)',
+'exif-gpsdop-good'      => 'Gutt ($1)',
+'exif-gpsdop-moderate'  => 'Mëttel ($1)',
+'exif-gpsdop-fair'      => 'Ongeféier ($1)',
+'exif-gpsdop-poor'      => 'Schwaach ($1)',
+
+'exif-objectcycle-a' => 'Nëmme moies',
+'exif-objectcycle-p' => 'Nëmmen owes',
+'exif-objectcycle-b' => 'Esouwuel moies wéi owes',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',
 'exif-gpsdirection-m' => 'Magnéitesch Richtung',
@@ -3124,13 +3157,25 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-dc-date'   => 'Datum(en)',
 'exif-dc-rights' => 'Rechter',
 
+'exif-isospeedratings-overflow' => 'Méi grouss wéi 65535',
+
+'exif-iimcategory-clj' => 'Kriminalitéit a Recht',
+'exif-iimcategory-dis' => 'Katastrofen an Akzidenter',
+'exif-iimcategory-fin' => 'Economie a Geschäft',
+'exif-iimcategory-evn' => 'Ëmwelt',
 'exif-iimcategory-hth' => 'Gesondheet',
+'exif-iimcategory-lab' => 'Aarbecht',
 'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Relioun a Glawen',
+'exif-iimcategory-sci' => 'Wëssenschaft an Technologie',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krich, Konflikt an Onrou',
 'exif-iimcategory-wea' => 'Wieder',
 
 'exif-urgency-normal' => 'Normal ($1)',
 'exif-urgency-low'    => 'Niddreg ($1)',
 'exif-urgency-high'   => 'Héich ($1)',
+'exif-urgency-other'  => 'Benotzerdefinéiert Prioritéit ($1)',
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',

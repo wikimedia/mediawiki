@@ -3117,20 +3117,20 @@ $1',
 'metadata-help'     => 'این پرونده حاوی اطلاعات اضافه‌ای است که احتمالاً توسط دوربین دیجیتالی‌ یا پویشگری که در ایجاد یا دیجیتالی‌کردن آن به کار رفته‌است، افزوده شده‌است. اگر پرونده از وضعیت ابتدایی‌اش تغییر داده شده باشد آنگاه ممکن است شرح و تفصیلات موجود اطلاعات عکس را تماماً بازتاب ندهد.',
 'metadata-expand'   => 'نمایش جزئیات تفصیلی',
 'metadata-collapse' => 'نهفتن جزئیات تفصیلی',
-'metadata-fields'   => 'فرادادهٔ EXIF نشان داده شده در این پیغام وقتی جدول فراداده‌های تصویر جمع شده باشد هم نمایش داده می‌شوند. بقیهٔ موارد تنها زمانی نشان داده می‌شوند که جدول یاد شده باز شود.
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+'metadata-fields'   => 'فرادادهٔ تصویر نشان داده شده در این پیغام وقتی جدول فراداده‌های تصویر جمع شده باشد هم نمایش داده می‌شود. بقیهٔ موارد تنها زمانی نشان داده می‌شوند که جدول یاد شده باز شود.
+* ایجاد
+* مدل
+* تاریخ و زمان اصلی
+* زمان نوردهی
+* ضریب اف
+* درجه‌بندی سرعت ایزو
+* فاصلهٔ کانونی عدسی
+* هنرمند
+* حق تکثیر
+* توضیح تصویر
+* عرض جغرافیایی جی‌پی‌اس
+* طول جغرافیایی جی‌پی‌اس
+* ارتفاع جغرافیایی جی‌پی‌اس',
 
 # EXIF tags
 'exif-imagewidth'                  => 'عرض',
@@ -3166,8 +3166,8 @@ $1',
 'exif-colorspace'                  => 'فضای رنگی',
 'exif-componentsconfiguration'     => 'معنی هر یک از مؤلفه‌ها',
 'exif-compressedbitsperpixel'      => 'حالت فشرده‌سازی تصویر',
-'exif-pixelydimension'             => 'عرض تصویر',
-'exif-pixelxdimension'             => 'طول تصویر',
+'exif-pixelydimension'             => 'پهنای تصویر',
+'exif-pixelxdimension'             => 'بلندی تصویر',
 'exif-usercomment'                 => 'توضیحات کاربر',
 'exif-relatedsoundfile'            => 'پروندهٔ صوتی مربوط',
 'exif-datetimeoriginal'            => 'تاریخ و زمان تولید داده‌ها',
@@ -3181,8 +3181,8 @@ $1',
 'exif-exposureprogram'             => 'برنامهٔ نوردهی',
 'exif-spectralsensitivity'         => 'حساسیت طیفی',
 'exif-isospeedratings'             => 'درجه‌بندی سرعت ایزو',
-'exif-shutterspeedvalue'           => 'سرعت شاتر',
-'exif-aperturevalue'               => 'اندازهٔ دیافراگم',
+'exif-shutterspeedvalue'           => 'سرعت آپکس شاتر',
+'exif-aperturevalue'               => 'اندازهٔ آپکس دیافراگم',
 'exif-brightnessvalue'             => 'روشنایی آپکس',
 'exif-exposurebiasvalue'           => 'خطای نوردهی',
 'exif-maxaperturevalue'            => 'حداکثر گشادگی زمین',
@@ -3246,10 +3246,76 @@ $1',
 'exif-gpsareainformation'          => 'نام ناحیهٔ جی‌پی‌اس',
 'exif-gpsdatestamp'                => 'تاریخ جی‌پی‌اس',
 'exif-gpsdifferential'             => 'تصحیح جزئی جی‌پی‌اس',
+'exif-jpegfilecomment'             => 'توضیحات پرونده JPEG',
+'exif-keywords'                    => 'واژه‌های کلیدی',
+'exif-worldregioncreated'          => 'منطقه‌ای از جهان که تصویر در آن گرفته شده',
+'exif-countrycreated'              => 'کشوری که تصویر در آن گرفته شده',
+'exif-countrycodecreated'          => 'کد کشوری که تصویر در آن گرفته شده',
+'exif-provinceorstatecreated'      => 'استان یا ایالتی که تصویر در آن گرفته شده',
+'exif-citycreated'                 => 'شهری که تصویر در آن گرفته شده',
+'exif-sublocationcreated'          => 'بخشی از شهر که تصویر در آن گرفته شده',
+'exif-worldregiondest'             => 'منقطه جهان نمایش داده شده',
+'exif-countrydest'                 => 'کشور نمایش داده شده',
+'exif-countrycodedest'             => 'کد کشور نمایش داده شده',
+'exif-provinceorstatedest'         => 'استان یا ایالت نمایش داده شده',
+'exif-citydest'                    => 'شهر نمایش داده شده',
+'exif-sublocationdest'             => 'بخش شهر نمایش داده شده',
 'exif-objectname'                  => 'عنوان کوتاه',
+'exif-specialinstructions'         => 'دستورالعمل‌های ویژه',
+'exif-headline'                    => 'عنوان',
+'exif-credit'                      => 'صاحب امتیاز/ارائه کننده',
+'exif-source'                      => 'منبع',
+'exif-editstatus'                  => 'وضعیت تحریریه تصویر',
+'exif-urgency'                     => 'فوریت',
+'exif-fixtureidentifier'           => 'نام ستون نشریه',
+'exif-locationdest'                => 'محل به تصویر کشیده شده',
+'exif-locationdestcode'            => 'کد محل به تصویر کشیده شده',
+'exif-objectcycle'                 => 'زمان روز که این رسانه برای آن در نظر گرفته شده',
+'exif-contact'                     => 'اطلاعات تماس',
+'exif-writer'                      => 'نویسنده',
+'exif-languagecode'                => 'زبان',
+'exif-iimversion'                  => 'نسخه IIM',
+'exif-iimcategory'                 => 'رده',
+'exif-iimsupplementalcategory'     => 'رده‌های تکمیلی',
+'exif-datetimeexpires'             => 'استفاده تا تاریخ',
+'exif-datetimereleased'            => 'منتشر شده در',
+'exif-originaltransmissionref'     => 'کد محل انتقال اصلی',
+'exif-identifier'                  => 'شناسه',
+'exif-lens'                        => 'لنز مورد استفاده',
+'exif-serialnumber'                => 'شماره سریال دوربین',
+'exif-cameraownername'             => 'صاحب دوربین',
+'exif-label'                       => 'برچسب',
+'exif-datetimemetadata'            => 'تاریخی که فراداده آخرین بار تغییر یافته',
+'exif-nickname'                    => 'نام غیررسمی تصویر',
+'exif-rating'                      => 'امتیاز (از 5)',
+'exif-rightscertificate'           => 'گواهینامه مدیریت حقوق',
+'exif-copyrighted'                 => 'وضعیت حق تکثیر',
+'exif-copyrightowner'              => 'دارندهٔ حق تکثیر',
+'exif-usageterms'                  => 'شرایط استفاده',
+'exif-webstatement'                => 'نسخه برخط اعلامیه حق تکثیر',
+'exif-originaldocumentid'          => 'شناسه منحصر به فرد سند اصلی',
+'exif-licenseurl'                  => 'نشانی اینترنتی برای مجوز حق تکثیر',
+'exif-morepermissionsurl'          => 'اطلاعات مجوزهای جایگزین',
+'exif-attributionurl'              => 'در زمان استفاده مجدد، لطفاً پیوند دهید به',
+'exif-preferredattributionname'    => 'در زمان استفاده مجدد، لطفاً اعتبار دهید به',
+'exif-pngfilecomment'              => 'توضیحات پرونده PNG',
+'exif-disclaimer'                  => 'تکذیب‌نامه',
+'exif-contentwarning'              => 'هشدار محتوا',
+'exif-giffilecomment'              => 'توضیحات پرونده GIF',
+'exif-intellectualgenre'           => 'نوع مورد',
+'exif-subjectnewscode'             => 'کد موضوع',
+'exif-scenecode'                   => 'IPTC کد صحنه',
+'exif-event'                       => 'رویداد به تصویر کشیده شده',
+'exif-organisationinimage'         => 'سازمان به تصویر کشیده شده',
+'exif-personinimage'               => 'فرد به تصویر کشیده شده',
+'exif-originalimageheight'         => 'بلندی تصویر قبل از برش دادن',
+'exif-originalimagewidth'          => 'پهنای تصویر قبل از برش دادن',
 
 # EXIF attributes
 'exif-compression-1' => 'غیرفشرده',
+
+'exif-copyrighted-true'  => 'دارای حق تکثیر',
+'exif-copyrighted-false' => 'مالکیت عمومی',
 
 'exif-unknowndate' => 'تاریخ نامعلوم',
 
@@ -3267,6 +3333,8 @@ $1',
 
 'exif-xyresolution-i' => '$1 نقطه در اینچ',
 'exif-xyresolution-c' => '$1 نقطه در سانتی‌متر',
+
+'exif-colorspace-65535' => 'تنظیم نشده',
 
 'exif-componentsconfiguration-0' => 'وجود ندارد',
 
@@ -3331,6 +3399,8 @@ $1',
 'exif-sensingmethod-7' => 'حسگر سه‌خطی',
 'exif-sensingmethod-8' => 'حسگر خطی ترتیبی رنگ‌ها',
 
+'exif-filesource-3' => 'دوربین عکاسی دیجیتال',
+
 'exif-scenetype-1' => 'تصویر مستقیماً عکاسی شده',
 
 'exif-customrendered-0' => 'ظهور عادی',
@@ -3379,6 +3449,10 @@ $1',
 'exif-gpslongitude-e' => 'طول جغرافیایی شرقی',
 'exif-gpslongitude-w' => 'طول جغرافیایی غربی',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|متر|متر}} بالاتر از سطح دریا',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|متر|متر}} پایین‌تر از سطح دریا',
+
 'exif-gpsstatus-a' => 'در حال اندازه‌گیری',
 'exif-gpsstatus-v' => 'مقایسه‌پذیری اندازه‌گیری',
 
@@ -3395,9 +3469,58 @@ $1',
 'exif-gpsdestdistance-m' => 'مایل',
 'exif-gpsdestdistance-n' => 'مایل دریایی',
 
+'exif-gpsdop-excellent' => 'عالی ($1)',
+'exif-gpsdop-good'      => 'خوب ($1)',
+'exif-gpsdop-moderate'  => 'متوسط ($1)',
+'exif-gpsdop-fair'      => 'نه چندان خوب ($1)',
+'exif-gpsdop-poor'      => 'ضعیف ($1)',
+
+'exif-objectcycle-a' => 'تنها صبح',
+'exif-objectcycle-p' => 'تنها عصر',
+'exif-objectcycle-b' => 'صبح و عصر',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',
 'exif-gpsdirection-m' => 'جهت مغناطیسی',
+
+'exif-ycbcrpositioning-1' => 'وسط‌چین شده',
+'exif-ycbcrpositioning-2' => 'اشتراکی',
+
+'exif-dc-contributor' => 'مشارکت‌کنندگان',
+'exif-dc-coverage'    => 'محدوده مکانی و یا زمانی رسانه',
+'exif-dc-date'        => 'تاریخ (ها)',
+'exif-dc-publisher'   => 'ناشر',
+'exif-dc-relation'    => 'رسانه‌های مرتبط',
+'exif-dc-rights'      => 'حقوق',
+'exif-dc-source'      => 'رسانه منبع',
+'exif-dc-type'        => 'نوع رسانه',
+
+'exif-rating-rejected' => 'رد شده',
+
+'exif-isospeedratings-overflow' => 'بزرگتر از ۶۵۵۳۵',
+
+'exif-iimcategory-ace' => 'هنر، فرهنگ و سرگرمی',
+'exif-iimcategory-clj' => 'جنایت و قانون',
+'exif-iimcategory-dis' => 'بلایا و حوادث',
+'exif-iimcategory-fin' => 'اقتصاد و تجارت',
+'exif-iimcategory-edu' => 'آموزش',
+'exif-iimcategory-evn' => 'محیط زیست',
+'exif-iimcategory-hth' => 'سلامت',
+'exif-iimcategory-hum' => 'علاقه بشر',
+'exif-iimcategory-lab' => 'کار',
+'exif-iimcategory-lif' => 'شیوه زندگی و اوقات فراغت',
+'exif-iimcategory-pol' => 'سیاست',
+'exif-iimcategory-rel' => 'مذهب و اعتقاد',
+'exif-iimcategory-sci' => 'علم و فناوری',
+'exif-iimcategory-soi' => 'مسائل اجتماعی',
+'exif-iimcategory-spo' => 'ورزش',
+'exif-iimcategory-war' => 'جنگ ، درگیری و ناآرامی',
+'exif-iimcategory-wea' => 'آب و هوا',
+
+'exif-urgency-normal' => 'عادی ($1)',
+'exif-urgency-low'    => 'کم ($1)',
+'exif-urgency-high'   => 'زیاد ($1)',
+'exif-urgency-other'  => 'اولویت تعریف شده توسط کاربر ($1)',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با استفاده از ویرایشگر خارجی',
