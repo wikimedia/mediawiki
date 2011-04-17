@@ -18,7 +18,8 @@ $( document ).ready( function() {
 	var $col = $( '<td colspan="2"></td>' );
 
 	var $link = $( '<a></a>', {
-		'text': showText
+		'text': showText,
+		'href': '#'
 	}).click(function() {
 		if ( $table.is( '.collapsed' ) ) {
 			$( this ).text( hideText );
