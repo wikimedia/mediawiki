@@ -31,10 +31,6 @@ class FormatJson {
 		// 46944. Test encoding an affected character (U+20000) to
 		// avoid this.
 		if ( !function_exists( 'json_encode' ) || $isHtml || strtolower( json_encode( "\xf0\xa0\x80\x80" ) ) != '"\ud840\udc00"' ) {
-			var_dump(function_exists('json_encode'));
-			var_dump($isHtml);
-			var_dump(strtolower(json_encode("\xf0\xa0\x80\x80")));
-			var_dump('\ud840\udc00');
 			$json = new Services_JSON();
 			return $json->encode( $value, $isHtml );
 		} else {
