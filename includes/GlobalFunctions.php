@@ -2714,7 +2714,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
 	// Decode and validate input string
 	$input = strtolower( $input );
 	for( $i = 0; $i < strlen( $input ); $i++ ) {
-		$n = strpos( $digitChars, $input{$i} );
+		$n = strpos( $digitChars, $input[$i] );
 		if( $n === false || $n > $sourceBase ) {
 			return false;
 		}

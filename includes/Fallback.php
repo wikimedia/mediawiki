@@ -76,7 +76,7 @@ class Fallback {
 				// This will cut out most of our slow time on Latin-based text,
 				// and 1/2 to 1/3 on East European and Asian scripts.
 				$bytePos = $splitPos;
-				while ( $bytePos < $byteLen && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0" ) {
+				while ( $bytePos < $byteLen && $str[$bytePos] >= "\x80" && $str[$bytePos] < "\xc0" ) {
 					++$bytePos;
 				}
 				$charPos = mb_strlen( substr( $str, 0, $bytePos ) );
@@ -88,7 +88,7 @@ class Fallback {
 			while( $charPos++ < $splitPos ) {
 				++$bytePos;
 				// Move past any tail bytes
-				while ( $bytePos < $byteLen && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0" ) {
+				while ( $bytePos < $byteLen && $str[$bytePos] >= "\x80" && $str[$bytePos] < "\xc0" ) {
 					++$bytePos;
 				}
 			}
@@ -99,7 +99,7 @@ class Fallback {
 			while( $bytePos > 0 && $charPos-- >= $splitPosX ) {
 				--$bytePos;
 				// Move past any tail bytes
-				while ( $bytePos > 0 && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0" ) {
+				while ( $bytePos > 0 && $str[$bytePos] >= "\x80" && $str[$bytePos] < "\xc0" ) {
 					--$bytePos;
 				}
 			}

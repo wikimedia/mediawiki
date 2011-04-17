@@ -182,8 +182,8 @@ class DateFormatter
 		$bits = array();
 		$key = $this->keys[$this->mSource];
 		for ( $p=0; $p < strlen($key); $p++ ) {
-			if ( $key{$p} != ' ' ) {
-				$bits[$key{$p}] = $matches[$p+1];
+			if ( $key[$p] != ' ' ) {
+				$bits[$key[$p]] = $matches[$p+1];
 			}
 		}
 		
@@ -224,7 +224,7 @@ class DateFormatter
 		}
 
 		for ( $p=0; $p < strlen( $format ); $p++ ) {
-			$char = $format{$p};
+			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month
 					$text .= $bits['d'];
@@ -327,7 +327,7 @@ class DateFormatter
 	 * @todo document
 	 */
 	function makeNormalYear( $iso ) {
-		if ( $iso{0} == '-' ) {
+		if ( $iso[0] == '-' ) {
 			$text = (intval( substr( $iso, 1 ) ) + 1) . ' BC';
 		} else {
 			$text = intval( $iso );

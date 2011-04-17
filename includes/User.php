@@ -821,7 +821,7 @@ class User {
 		$digit = mt_rand( 0, $pwlength - 1 );
 		$np = '';
 		for ( $i = 0; $i < $pwlength; $i++ ) {
-			$np .= $i == $digit ? chr( mt_rand( 48, 57 ) ) : $pwchars{ mt_rand( 0, $l ) };
+			$np .= $i == $digit ? chr( mt_rand( 48, 57 ) ) : $pwchars[ mt_rand( 0, $l ) ];
 		}
 		return $np;
 	}
