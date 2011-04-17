@@ -123,7 +123,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
 			if ( $params['continue'] ) {
-				// type|from|sortkey
 				$cont = explode( '|', $params['continue'], 3 );
 				if ( count( $cont ) != 3 ) {
 					$this->dieUsage( 'Invalid continue param. You should pass the original value returned '.
@@ -136,8 +135,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$queryTypes = array_slice( $queryTypes, $contTypeIndex );
 				
 				// Add a WHERE clause for sortkey and from
-				$from = intval( $cont[1] );
-				$escSortkey = $this->getDB()->addQuotes( $cont[2] );
+				// pack( "H*", $foo ) is used to convert hex back to binary
+				$escSortkey = $this->getDB()->addQuotes( pack( "H*", $cont[1] ) );
+				$from = intval( $cont[2] );
 				$op = $dir == 'newer' ? '>' : '<';
 				// $contWhere is used further down
 				$contWhere = "cl_sortkey $op $escSortkey OR " .
@@ -197,12 +197,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'timestamp' ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 				} else {
-					// Continue format is type|from|sortkey
-					// The order is a bit weird but it's convenient to put the sortkey at the end
-					// because we don't have to worry about pipes in the sortkey that way
-					// (and type and from can't contain pipes anyway)
+					$sortkey = bin2hex( $row->cl_sortkey );
 					$this->setContinueEnumParameter( 'continue',
-						"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
+						"{$row->cl_type}|$sortkey|{$row->cl_from}"
 					);
 				}
 				break;
@@ -226,7 +223,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $fld_sortkey ) {
-					$vals['sortkey'] = $row->cl_sortkey;
+					$vals['sortkey'] = bin2hex( $row->cl_sortkey );
 				}
 				if ( $fld_sortkeyprefix ) {
 					$vals['sortkeyprefix'] = $row->cl_sortkey_prefix;
@@ -243,8 +240,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'timestamp' ) {
 						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
 					} else {
+						$sortkey = bin2hex( $row->cl_sortkey );
 						$this->setContinueEnumParameter( 'continue',
-							"{$row->cl_type}|{$row->cl_from}|{$row->cl_sortkey}"
+							"{$row->cl_type}|$sortkey|{$row->cl_from}"
 						);
 					}
 					break;
@@ -336,7 +334,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				'What pieces of information to include',
 				' ids           - Adds the page ID',
 				' title         - Adds the title and namespace ID of the page',
-				' sortkey       - Adds the sortkey used for sorting in the category (may not be human-readble)',
+				' sortkey       - Adds the sortkey used for sorting in the category (hexadecimal string)',
 				' sortkeyprefix - Adds the sortkey prefix used for sorting in the category (human-readable part of the sortkey)',
 				' type          - Adds the type that the page has been categorised as (page, subcat or file)',
 				' timestamp     - Adds the timestamp of when the page was included',

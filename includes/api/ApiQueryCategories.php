@@ -70,7 +70,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			'cl_to'
 		) );
 
-		$this->addFieldsIf( 'cl_sortkey', isset( $prop['sortkey'] ) );
+		$this->addFieldsIf( array( 'cl_sortkey', 'cl_sortkey_prefix' ), isset( $prop['sortkey'] ) );
 		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
 
 		$this->addTables( 'categorylinks' );
@@ -151,7 +151,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['sortkey'] ) ) {
-					$vals['sortkey'] = $row->cl_sortkey;
+					$vals['sortkey'] = bin2hex( $row->cl_sortkey );
+					$vals['sortkeyprefix'] = $row->cl_sortkey_prefix;
 				}
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
@@ -219,7 +220,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return array(
 			'prop' => array(
 				'Which additional properties to get for each category',
-				' sortkey    - Adds the sortkey for the category',
+				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category',
 				' timestamp  - Adds timestamp of when the category was added',
 				' hidden     - Tags categories that are hidden with __HIDDENCAT__',
 			),
