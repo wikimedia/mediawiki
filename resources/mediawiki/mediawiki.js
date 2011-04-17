@@ -473,17 +473,6 @@ window.mediaWiki = new ( function( $ ) {
 	};
 
 	/**
-	 * Performs an API call
-	 *
-	 * @param data object Call parameters
-	 * @param callback function Function to be called on success, see jQuery.getJSON() for details
-	 */
-	this.api = function( data, callback ) {
-		var url = this.config.get( 'wgScriptPath' ) + '/api' + this.config.get( 'wgScriptExtension' );
-		data.format = 'json';
-		return jQuery.getJSON( url, data, callback );
-	}
-	/**
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 	 */
 	this.loader = new ( function() {
