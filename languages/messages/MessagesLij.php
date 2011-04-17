@@ -119,7 +119,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Bot' ),
 	'Popularpages'              => array( 'Paggine ciû viscitæ' ),
 	'Search'                    => array( 'Riçerca', 'Çerca' ),
-	'Resetpass'                 => array( 'Rimposta paròlla d\'ordine' ),
+	'ChangePassword'            => array( 'Rimposta paròlla d\'ordine' ),
 	'Withoutinterwiki'          => array( 'Sensa Interwiki' ),
 );
 

@@ -100,7 +100,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'Amministhradori' ),
 	'Popularpages'              => array( 'PàginiPiùVisitaddi' ),
 	'Search'                    => array( 'Zircha', 'Ricerca' ),
-	'Resetpass'                 => array( 'RimpusthàParàuraDÓrdhini' ),
+	'ChangePassword'            => array( 'RimpusthàParàuraDÓrdhini' ),
 	'Withoutinterwiki'          => array( 'PàginiChenaInterwiki' ),
 );
 

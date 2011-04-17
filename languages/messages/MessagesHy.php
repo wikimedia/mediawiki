@@ -264,7 +264,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'Ադմիններիցանկը' ),
 	'Popularpages'              => array( 'Հանրաճանաչէջերը' ),
 	'Search'                    => array( 'Որոնել' ),
-	'Resetpass'                 => array( 'Նորգաղտնաբառ' ),
+	'ChangePassword'            => array( 'Նորգաղտնաբառ' ),
 );
 
 $linkTrail = '/^([a-zաբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցւփքօֆև«»]+)(.*)$/sDu';

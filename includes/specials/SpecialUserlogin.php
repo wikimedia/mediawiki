@@ -735,7 +735,7 @@ class LoginForm extends SpecialPage {
 	function resetLoginForm( $error ) {
 		global $wgOut;
 		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
-		$reset = new SpecialResetpass();
+		$reset = new SpecialChangePassword();
 		$reset->execute( null );
 	}
 

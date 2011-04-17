@@ -3245,7 +3245,7 @@ $wgBlockDisablesLogin = false;
  * $wgWhitelistRead = array ( "Main Page", "Wikipedia:Help");
  * </code>
  *
- * Special:Userlogin and Special:Resetpass are always whitelisted.
+ * Special:Userlogin and Special:ChangePassword are always whitelisted.
  *
  * NOTE: This will only work if $wgGroupPermissions['*']['read'] is false --
  * see below. Otherwise, ALL pages are accessible, regardless of this setting.
@@ -4942,7 +4942,7 @@ $wgSpecialPageGroups = array(
 	'Block'                     => 'users',
 	'Unblock'                   => 'users',
 	'Preferences'               => 'users',
-	'Resetpass'                 => 'users',
+	'ChangePassword'            => 'users',
 	'DeletedContributions'      => 'users',
 
 	'Mostlinked'                => 'highuse',

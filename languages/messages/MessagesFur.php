@@ -101,7 +101,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'ListeBots' ),
 	'Popularpages'              => array( 'PagjinisPopolârs' ),
 	'Search'                    => array( 'Ricercje', 'Cîr' ),
-	'Resetpass'                 => array( 'ReimpuestePerauleClâf' ),
+	'ChangePassword'            => array( 'ReimpuestePerauleClâf' ),
 	'Withoutinterwiki'          => array( 'CenceInterwiki' ),
 );
 

@@ -133,7 +133,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'لیستی_بۆتەکان' ),
 	'Popularpages'              => array( 'پەڕە_ناودارەکان' ),
 	'Search'                    => array( 'گەڕان' ),
-	'Resetpass'                 => array( 'تێپەڕوشەگۆڕان،_تێپەڕەوشە_ڕێکخستنەوە' ),
+	'ChangePassword'            => array( 'تێپەڕوشەگۆڕان،_تێپەڕەوشە_ڕێکخستنەوە' ),
 	'Activeusers'               => array( 'بەکارھێنەرە_چالاکەکان' ),
 );
 
