@@ -808,6 +808,7 @@ class BitmapHandler extends ImageHandler {
 		}
 		return 0;
 	}
+
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
 	 * 

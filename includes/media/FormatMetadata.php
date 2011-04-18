@@ -919,6 +919,7 @@ class FormatMetadata {
 			}
 		}
 	}
+
 	/** Helper function for creating lists of translations.
 	 *
 	 * @param $value String value (this is not escaped)
@@ -982,6 +983,7 @@ class FormatMetadata {
 		$item .= "</li>\n";
 		return $item;
 	}
+
 	/**
 	 * Convenience function for getFormattedData()
 	 *
@@ -1165,6 +1167,7 @@ class FormatMetadata {
 		}
 		return $val;
 	}
+
 	/**
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
@@ -1204,6 +1207,7 @@ class FormatMetadata {
 
 		return wfMsg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord );
 	}
+
 	/**
 	 * Format the contact info field into a single value.
 	 *

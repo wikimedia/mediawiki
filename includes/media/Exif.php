@@ -805,6 +805,5 @@ class Exif {
 			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'\n" );
 		}
 	}
-
 }
 
