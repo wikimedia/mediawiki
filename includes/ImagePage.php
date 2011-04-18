@@ -10,13 +10,10 @@ class ImagePage extends Article {
 	/**
 	 * @var File
 	 */
-	/* private */ var $img;
-	/**
-	 * @var File
-	 */
-	/* private */ var $displayImg;
-	/* private */ var $repo;
-	/* private */ var $fileLoaded;
+	private $img;
+	private $displayImg;
+	private $repo;
+	private $fileLoaded;
 
 	var $mExtraDescription = false;
 	var $dupes;

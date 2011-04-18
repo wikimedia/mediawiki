@@ -15,8 +15,8 @@
  */
 class SearchUpdate {
 
-	/* private */ var $mId = 0, $mNamespace, $mTitle, $mText;
-	/* private */ var $mTitleWords;
+	private $mId = 0, $mNamespace, $mTitle, $mText;
+	private $mTitleWords;
 
 	function __construct( $id, $title, $text = false ) {
 		$nt = Title::newFromText( $title );
