@@ -293,12 +293,11 @@ class SiteStatsInit {
 	 * @return Integer
 	 */
 	public function articles() {
-		global $wgContentNamespaces;
 		$this->mArticles = $this->db->selectField(
 			'page',
 			'COUNT(*)',
 			array(
-				'page_namespace' => $wgContentNamespaces,
+				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0,
 				'page_len > 0'
 			),
