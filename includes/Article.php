@@ -3624,11 +3624,12 @@ class Article {
 		}
 
 		$revision = Revision::newFromId( $oldid );
+		$timestamp = $revision->getTimestamp();
 
 		$current = ( $oldid == $this->mLatest );
-		$td = $wgLang->timeanddate( $this->mTimestamp, true );
-		$tddate = $wgLang->date( $this->mTimestamp, true );
-		$tdtime = $wgLang->time( $this->mTimestamp, true );
+		$td = $wgLang->timeanddate( $timestamp, true );
+		$tddate = $wgLang->date( $timestamp, true );
+		$tdtime = $wgLang->time( $timestamp, true );
 		$sk = $wgUser->getSkin();
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
