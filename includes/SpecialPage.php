@@ -697,9 +697,9 @@ abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 
 	function getRedirect( $subpage ) {
 		if ( $this->redirSubpage === false ) {
-			return SpecialPageFactory::getTitleFor( $this->redirName, $subpage );
+			return SpecialPage::getTitleFor( $this->redirName, $subpage );
 		} else {
-			return SpecialPageFactory::getTitleFor( $this->redirName, $this->redirSubpage );
+			return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
 		}
 	}
 }
