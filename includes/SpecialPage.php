@@ -380,20 +380,11 @@ class SpecialPage {
 		}
 	}
 
-	/**#@+
-	  * Accessor
-	  *
-	  * @deprecated
-	  */
 	function getName() { return $this->mName; }
 	function getRestriction() { return $this->mRestriction; }
 	function getFile() { return $this->mFile; }
 	function isListed() { return $this->mListed; }
-	/**#@-*/
 
-	/**#@+
-	  * Accessor and mutator
-	  */
 	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
 	function restrictions( $x = null) {
 		# Use the one below this
@@ -406,7 +397,6 @@ class SpecialPage {
 	function file( $x = null) { return wfSetVar( $this->mFile, $x ); }
 	function includable( $x = null ) { return wfSetVar( $this->mIncludable, $x ); }
 	function including( $x = null ) { return wfSetVar( $this->mIncluding, $x ); }
-	/**#@-*/
 
 	/**
 	 * Get the localised name of the special page
@@ -506,7 +496,7 @@ class SpecialPage {
 		global $wgContLang;
 
 		if( $summaryMessageKey == '' ) {
-			$msg = $wgContLang->lc( $this->name() ) . '-summary';
+			$msg = $wgContLang->lc( $this->getName() ) . '-summary';
 		} else {
 			$msg = $summaryMessageKey;
 		}

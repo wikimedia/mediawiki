@@ -457,7 +457,7 @@ class SpecialPageFactory {
 		$page->including( $including );
 
 		// Execute special page
-		$profName = 'Special:' . $page->name();
+		$profName = 'Special:' . $page->getName();
 		wfProfileIn( $profName );
 		$page->execute( $par );
 		wfProfileOut( $profName );
