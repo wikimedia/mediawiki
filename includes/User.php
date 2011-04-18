@@ -690,7 +690,7 @@ class User {
 	 * @deprecated since 1.18 call Sanitizer::isValidEmail() directly
 	 */
 	public static function isValidEmailAddr( $addr ) {
-		return Sanitizer::isValidEmail( $addr );
+		return Sanitizer::validateEmail( $addr );
 	}
 
 	/**
