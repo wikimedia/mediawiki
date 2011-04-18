@@ -416,19 +416,21 @@ class SpecialPageFactory {
 
 		// Check for redirect
 		if ( !$including ) {
-			$redirect = $page->getRedirect( $par );
-			$query = $page->getRedirectQuery();
-			if ( $redirect instanceof Title ) {
-				$url = $redirect->getFullUrl( $query );
-				$context->output->redirect( $url );
-				wfProfileOut( __METHOD__ );
-				return $redirect;
-			} elseif ( $redirect === true ) {
-				global $wgScript;
-				$url = $wgScript . '?' . wfArrayToCGI( $query );
-				$context->output->redirect( $url );
-				wfProfileOut( __METHOD__ );
-				return $redirect;
+			if( $page instanceof SpecialRedirectToSpecial ){
+				$redirect = $page->getRedirect( $par );
+				$query = $page->getRedirectQuery();
+				if ( $redirect instanceof Title ) {
+					$url = $redirect->getFullUrl( $query );
+					$context->output->redirect( $url );
+					wfProfileOut( __METHOD__ );
+					return $redirect;
+				} elseif ( $redirect === true ) {
+					global $wgScript;
+					$url = $wgScript . '?' . wfArrayToCGI( $query );
+					$context->output->redirect( $url );
+					wfProfileOut( __METHOD__ );
+					return $redirect;
+				}
 			}
 
 			// Redirect to canonical alias for GET commands
@@ -449,7 +451,7 @@ class SpecialPageFactory {
 				$context->title = $page->getTitle();
 			}
 
-		} elseif ( !$page->includable() ) {
+		} elseif ( !$page->isIncludable() ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
