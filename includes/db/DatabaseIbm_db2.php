@@ -778,9 +778,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Handle reserved keyword replacement in table names
 	 *
 	 * @param $name Object
+	 * @param $name Boolean
 	 * @return String
 	 */
-	public function tableName( $name ) {
+	public function tableName( $name, $quoted = true ) {
 		// we want maximum compatibility with MySQL schema
 		return $name;
 	}
