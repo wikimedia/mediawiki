@@ -1277,7 +1277,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|зміна|зміны|змін}}',
 'recentchanges'                     => 'Послїднї зміны',
 'recentchanges-legend'              => 'Можности послїднїх змін',
-'recentchanges-summary'             => 'Слїдуйте послїднї зміны на {{grammar:genitive|{{SITENAME}}}}  на тій сторінцї.',
+'recentchangestext'                 => 'Слїдуйте послїднї зміны на {{grammar:genitive|{{SITENAME}}}}  на тій сторінцї.',
 'recentchanges-feed-description'    => 'На тотїм каналу слїдуєте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}.',
 'recentchanges-label-newpage'       => 'Тым едітованём была створена нова сторінка',
 'recentchanges-label-minor'         => 'Тото є мала зміна',
@@ -2620,13 +2620,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырька',
@@ -2641,6 +2635,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Уміщіня Y і C',
 'exif-xresolution'                 => 'Розлишіня образка на шырку',
 'exif-yresolution'                 => 'Розлишіня образка на вышку',
+'exif-resolutionunit'              => 'Єдиніцї X і Y розлишіня',
 'exif-stripoffsets'                => 'Уміщіня дат образка',
 'exif-rowsperstrip'                => 'Чісло рядків на 1 блок',
 'exif-stripbytecounts'             => 'Чісло байтів на компрімованый блок',

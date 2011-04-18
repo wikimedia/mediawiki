@@ -1505,7 +1505,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
 'recentchanges'                     => 'Апошнія зьмены',
 'recentchanges-legend'              => 'Налады апошніх зьменаў',
-'recentchanges-summary'             => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.',
+'recentchangestext'                 => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.',
 'recentchanges-feed-description'    => 'Сачыць за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} праз гэтую стужку.',
 'recentchanges-label-newpage'       => 'Гэтым рэдагаваньнем была створаная новая старонка',
 'recentchanges-label-minor'         => 'Гэтае рэдагаваньне — дробнае',
@@ -2922,20 +2922,14 @@ $1',
 Калі файл рэдагаваўся пасьля стварэньня, то частка зьвестак можа не адпавядаць зьмененаму файлу.',
 'metadata-expand'   => 'Паказаць падрабязнасьці',
 'metadata-collapse' => 'Схаваць падрабязнасьці',
-'metadata-fields'   => 'Палі мэта-зьвестак выявы з гэтага сьпісу будуць паказаныя на старонцы выявы, калі табліца мэта-зьвестак будзе згорнутая.
+'metadata-fields'   => 'Палі мэтазьвестак EXIF гэтага сьпісу будуць адлюстраваныя на старонцы выявы, астатнія будуць схаваныя.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -2950,6 +2944,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Парадак разьмяшчэньня кампанэнтаў Y і C',
 'exif-xresolution'                 => 'Гарызантальнае разрозьненьне',
 'exif-yresolution'                 => 'Вэртыкальнае разрозьненьне',
+'exif-resolutionunit'              => 'Адзінка вымярэньня разрозьненьняў X і Y',
 'exif-stripoffsets'                => 'Разьмяшчэньне блёку зьвестак',
 'exif-rowsperstrip'                => 'Колькасьць радкоў у блёку',
 'exif-stripbytecounts'             => 'Памер сьціснутага блёку',
@@ -2971,8 +2966,8 @@ $1',
 'exif-colorspace'                  => 'Колеравая прастора',
 'exif-componentsconfiguration'     => 'Канфігурацыя колеравых кампанэнтаў',
 'exif-compressedbitsperpixel'      => 'Глыбіня колеру пасьля сьцісканьня',
-'exif-pixelydimension'             => 'Шырыня выявы',
-'exif-pixelxdimension'             => 'Вышыня выявы',
+'exif-pixelydimension'             => 'Дапушчальная шырыня выявы',
+'exif-pixelxdimension'             => 'Дапушчальная вышыня выявы',
 'exif-usercomment'                 => 'Камэнтары карыстальніка',
 'exif-relatedsoundfile'            => 'Датычны аўдыё-файл',
 'exif-datetimeoriginal'            => 'Дата і час утварэньня зьвестак',
@@ -3191,11 +3186,6 @@ $1',
 'exif-gpsspeed-k' => 'Кілямэтраў за гадзіну',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Кілямэтраў',
-'exif-gpsdestdistance-m' => 'Міляў',
-'exif-gpsdestdistance-n' => 'Марскіх міляў',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Сапраўдны накірунак',

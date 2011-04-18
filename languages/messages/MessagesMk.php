@@ -1596,7 +1596,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|промена|промени}}',
 'recentchanges'                     => 'Скорешни промени',
 'recentchanges-legend'              => 'Нагодувања за скорешни промени',
-'recentchanges-summary'             => 'На оваа страница ги следите скорешните промени на викито.',
+'recentchangestext'                 => 'На оваа страница ги следите скорешните промени на викито.',
 'recentchanges-feed-description'    => 'Следење на најскорешните промени на викито во овие емитувања.',
 'recentchanges-label-newpage'       => 'Ова уредување создаде нова страница',
 'recentchanges-label-minor'         => 'Ова е ситно уредување',
@@ -2330,8 +2330,8 @@ $UNWATCHURL
 'rollback_short'    => 'Врати',
 'rollbacklink'      => 'Врати',
 'rollbackfailed'    => 'Неуспешно враќање',
-'cantrollback'      => 'Уредувањето не може да се врати.
-Последниот уредник е воедно и единствениот автор на страницата.',
+'cantrollback'      => 'Уредувањето не може да се врати;
+последниот уредник е воедно и единствениот автор на страницата.',
 'alreadyrolled'     => 'Не може да се врати последното уредување од [[:$1]] на [[User:$2|$2]] ([[User talk:$2|Разговор]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 некој друг веќе ја уредил или ги вратил промените на страницата.
 
@@ -3143,21 +3143,15 @@ Variants for Chinese language
 'metadata-help'     => 'Оваа податотека содржи дополнителни информации, најверојатно додадени од дигиталниот апарат или скенер користени за нејзино создавање или дигитализација. Ако притоа податотеката претрпела промени, некои детали може да не соодветствуваат во целост по промената на податотеката.',
 'metadata-expand'   => 'Дополнителни податоци',
 'metadata-collapse' => 'Скриј ги дополнителните информации',
-'metadata-fields'   => 'Полињата за метаподатоци прикажани во оваа порака ќе бидат се прикажуваат на страницата за сликата кога табелата со метаподатоци ќе биде затворена.
-Останатите ќе бидат скриени по основно.
+'metadata-fields'   => 'Полињата на метаподатоци EXIF прикажани во оваа порака ќе бидат вклучени на страницата на сликата кога мета табелата ќе биде затворена.
+Останатите ќе бидат сокриени по основно.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -3172,6 +3166,7 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Положби на Y и C',
 'exif-xresolution'                 => 'Хоризонтална резолуција',
 'exif-yresolution'                 => 'Вертикална резолуција',
+'exif-resolutionunit'              => 'Единица за резолуција на X и Y',
 'exif-stripoffsets'                => 'Положба на податоците',
 'exif-rowsperstrip'                => 'Број на редови по блок',
 'exif-stripbytecounts'             => 'Бајти по набиен блок',
@@ -3193,8 +3188,8 @@ Variants for Chinese language
 'exif-colorspace'                  => 'Боен простор',
 'exif-componentsconfiguration'     => 'Значење на секој боен дел',
 'exif-compressedbitsperpixel'      => 'Режим на набивање на сликата',
-'exif-pixelydimension'             => 'Ширина на сликата',
-'exif-pixelxdimension'             => 'Висина на сликата',
+'exif-pixelydimension'             => 'Важечка ширина на сликата',
+'exif-pixelxdimension'             => 'Важечка висина на сликата',
 'exif-usercomment'                 => 'Коментар на корисникот',
 'exif-relatedsoundfile'            => 'Поврзана аудиоснимка',
 'exif-datetimeoriginal'            => 'Датум и време на сликање',
@@ -3209,9 +3204,9 @@ Variants for Chinese language
 'exif-exposureprogram'             => 'Режим на експозиција',
 'exif-spectralsensitivity'         => 'Спектрална осетливост',
 'exif-isospeedratings'             => 'ISO светлоосетливост',
-'exif-shutterspeedvalue'           => 'APEX-брзина на затворачот',
-'exif-aperturevalue'               => 'APEX-oтвор',
-'exif-brightnessvalue'             => 'APEX-светлост',
+'exif-shutterspeedvalue'           => 'Брзина на затворачот',
+'exif-aperturevalue'               => 'Отвор на блендата',
+'exif-brightnessvalue'             => 'Сила на светлина',
 'exif-exposurebiasvalue'           => 'Надоместок на експозицијата',
 'exif-maxaperturevalue'            => 'Макс. отвореност на блендата',
 'exif-subjectdistance'             => 'Оддалеченост до објектот',
@@ -3274,77 +3269,11 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'Назив на GPS-подрачје',
 'exif-gpsdatestamp'                => 'GPS-датум',
 'exif-gpsdifferential'             => 'Диференцијална исправка на GPS',
-'exif-jpegfilecomment'             => 'Забелешка за JPEG-сликата',
-'exif-keywords'                    => 'Клучни зборови',
-'exif-worldregioncreated'          => 'Област од светот кајшто е направена сликата',
-'exif-countrycreated'              => 'Земја кајшто е направена сликата',
-'exif-countrycodecreated'          => 'Код на земјата кајшто е направена сликата',
-'exif-provinceorstatecreated'      => 'Покраина или сој. држава кајшто е направена сликата',
-'exif-citycreated'                 => 'Град кајшто е направена сликата',
-'exif-sublocationcreated'          => 'Дел од градот кајшто е направена сликата',
-'exif-worldregiondest'             => 'Прикажана област од светот',
-'exif-countrydest'                 => 'Прикажана земја',
-'exif-countrycodedest'             => 'Код на прикажаната земја',
-'exif-provinceorstatedest'         => 'Прикажана покраина/сој. држава',
-'exif-citydest'                    => 'Прикажан град',
-'exif-sublocationdest'             => 'Прикажан дел од градот',
 'exif-objectname'                  => 'Краток наслов',
-'exif-specialinstructions'         => 'Посебни упатства',
-'exif-headline'                    => 'Наслов',
-'exif-credit'                      => 'Припишување/Објавувач',
-'exif-source'                      => 'Извор',
-'exif-editstatus'                  => 'Редакциски статус на сликата',
-'exif-urgency'                     => 'Итност',
-'exif-fixtureidentifier'           => 'Назив на рубриката',
-'exif-locationdest'                => 'Прикажано место',
-'exif-locationdestcode'            => 'Код на прикажаното место',
-'exif-objectcycle'                 => 'За кој дел од денот е наменета сликата',
-'exif-contact'                     => 'Контактни податоци',
-'exif-writer'                      => 'Напишал',
-'exif-languagecode'                => 'Јазик',
-'exif-iimversion'                  => 'IIM-верзија',
-'exif-iimcategory'                 => 'Категорија',
-'exif-iimsupplementalcategory'     => 'Дополнителни категории',
-'exif-datetimeexpires'             => 'Да не се користи по',
-'exif-datetimereleased'            => 'Објавена на',
-'exif-originaltransmissionref'     => 'Код на местото кајшто е испратена сликата',
-'exif-identifier'                  => 'Назнака',
-'exif-lens'                        => 'Користен објектив',
-'exif-serialnumber'                => 'Сериски бр. на фотоапаратот',
-'exif-cameraownername'             => 'Сопственик на фотоапаратот',
-'exif-label'                       => 'Ознака',
-'exif-datetimemetadata'            => 'Последна измена на метаподатоците',
-'exif-nickname'                    => 'Неформален назив на сликата',
-'exif-rating'                      => 'Оценка (од 5)',
-'exif-rightscertificate'           => 'Уверение за раководство со права',
-'exif-copyrighted'                 => 'Авторски правен статус',
-'exif-copyrightowner'              => 'Носител на авторските права',
-'exif-usageterms'                  => 'Услови на употреба',
-'exif-webstatement'                => 'Изјава за авторското право',
-'exif-originaldocumentid'          => 'Единствена назнака на изворниот документ',
-'exif-licenseurl'                  => 'URL на лиценцата',
-'exif-morepermissionsurl'          => 'Други лиценцни можности',
-'exif-attributionurl'              => 'Кога ја користите сликава, ставајте врска до',
-'exif-preferredattributionname'    => 'Кога ја користите сликава, наведете го сопственикот',
-'exif-pngfilecomment'              => 'Забелешка за PNG-сликата',
-'exif-disclaimer'                  => 'Одрекување од одговорност',
-'exif-contentwarning'              => 'Предупредување за содржината',
-'exif-giffilecomment'              => 'Забелешка за GIF-сликата',
-'exif-intellectualgenre'           => 'Тип на снимка',
-'exif-subjectnewscode'             => 'Предметен код',
-'exif-scenecode'                   => 'IPTC-код за кадарот',
-'exif-event'                       => 'Прикажан настан',
-'exif-organisationinimage'         => 'Прикажана организација',
-'exif-personinimage'               => 'Прикажана личност',
-'exif-originalimageheight'         => 'Висина на сликата пред кастрењето',
-'exif-originalimagewidth'          => 'Ширина на сликата пред кастрењето',
 
 # EXIF attributes
 'exif-compression-1' => 'Ненабиена',
 'exif-compression-6' => 'JPEG',
-
-'exif-copyrighted-true'  => 'Заштитена',
-'exif-copyrighted-false' => 'Јавна сопственост',
 
 'exif-photometricinterpretation-2' => 'ЦЗС (RGB)',
 'exif-photometricinterpretation-6' => 'YCbCr',
@@ -3366,8 +3295,7 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 точки на инч',
 'exif-xyresolution-c' => '$1 точки на сантиметар',
 
-'exif-colorspace-1'     => 'пЦЗС (sRGB)',
-'exif-colorspace-65535' => 'Неизбаждарена',
+'exif-colorspace-1' => 'пЦЗС (sRGB)',
 
 'exif-componentsconfiguration-0' => 'не постои',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3488,10 +3416,6 @@ Variants for Chinese language
 'exif-gpslongitude-e' => 'источна должина',
 'exif-gpslongitude-w' => 'западна должина',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|метар|метри}} надморска височина',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|метар|метри}} под морското ниво',
-
 'exif-gpsstatus-a' => 'Мерење во тек',
 'exif-gpsstatus-v' => 'Подготвен за пренос',
 
@@ -3503,63 +3427,9 @@ Variants for Chinese language
 'exif-gpsspeed-m' => 'Милји на час',
 'exif-gpsspeed-n' => 'Јазли',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километри',
-'exif-gpsdestdistance-m' => 'Милји',
-'exif-gpsdestdistance-n' => 'Наутички милји',
-
-'exif-gpsdop-excellent' => 'Одлична ($1)',
-'exif-gpsdop-good'      => 'Добра ($1)',
-'exif-gpsdop-moderate'  => 'Умерена ($1)',
-'exif-gpsdop-fair'      => 'Задоволителна ($1)',
-'exif-gpsdop-poor'      => 'Слаба ($1)',
-
-'exif-objectcycle-a' => 'Само наутро',
-'exif-objectcycle-p' => 'Само навечер',
-'exif-objectcycle-b' => 'И наутро и навечер',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Вистински правец',
 'exif-gpsdirection-m' => 'Магнетен правец',
-
-'exif-ycbcrpositioning-1' => 'Средишно',
-'exif-ycbcrpositioning-2' => 'Напоредно',
-
-'exif-dc-contributor' => 'Учесници',
-'exif-dc-coverage'    => 'Просторен или временски опфат на снимката',
-'exif-dc-date'        => 'Датум(и)',
-'exif-dc-publisher'   => 'Издавач',
-'exif-dc-relation'    => 'Поврзани снимки',
-'exif-dc-rights'      => 'Права',
-'exif-dc-source'      => 'Изворна снимка',
-'exif-dc-type'        => 'Тип на снимка',
-
-'exif-rating-rejected' => 'Одбиена',
-
-'exif-isospeedratings-overflow' => 'Над 65535',
-
-'exif-iimcategory-ace' => 'Уметност, култура и забава',
-'exif-iimcategory-clj' => 'Криминал и право',
-'exif-iimcategory-dis' => 'Катастрофи и несреќи',
-'exif-iimcategory-fin' => 'Економија и деловно работење',
-'exif-iimcategory-edu' => 'Образование',
-'exif-iimcategory-evn' => 'Животна околина',
-'exif-iimcategory-hth' => 'Здравство',
-'exif-iimcategory-hum' => 'Лични доживувања',
-'exif-iimcategory-lab' => 'Труд',
-'exif-iimcategory-lif' => 'Животен стил и разонода',
-'exif-iimcategory-pol' => 'Политика',
-'exif-iimcategory-rel' => 'Религија и верувања',
-'exif-iimcategory-sci' => 'Наука и технологија',
-'exif-iimcategory-soi' => 'Социјална проблематика',
-'exif-iimcategory-spo' => 'Спорт',
-'exif-iimcategory-war' => 'Војни, судири и немири',
-'exif-iimcategory-wea' => 'Време',
-
-'exif-urgency-normal' => 'Нормална ($1)',
-'exif-urgency-low'    => 'Мала ($1)',
-'exif-urgency-high'   => 'Голема ($1)',
-'exif-urgency-other'  => 'Кориснички-зададен приоритет ($1)',
 
 # External editor support
 'edit-externally'      => 'Уреди ја податотеката со надворешен програм',

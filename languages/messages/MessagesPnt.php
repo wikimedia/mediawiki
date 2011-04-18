@@ -1326,13 +1326,7 @@ $messages = array(
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -1346,6 +1340,7 @@ $messages = array(
 'exif-ycbcrpositioning'            => 'Ρύθμιζμαν φωτεινότητας και χρωματί',
 'exif-xresolution'                 => 'Οριζόντιον ανάλυση',
 'exif-yresolution'                 => 'Κατακόρυφον ανάλυση',
+'exif-resolutionunit'              => 'Μονάδα μέτρησης ανάλυσης X και Y',
 'exif-stripoffsets'                => 'Τοποθέτηση δογμενίων εικόνας',
 'exif-stripbytecounts'             => 'Bytes ανά συμπιεσμένον λωρίδα',
 'exif-jpeginterchangeformat'       => 'Μετάθεση σε JPEG SOI',

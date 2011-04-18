@@ -1292,7 +1292,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییرات}}',
 'recentchanges'                     => 'نوکین تغییرات',
 'recentchanges-legend'              => 'گزینه ی نوکین تغییرات',
-'recentchanges-summary'             => 'رندگر نوکترین تغییرات ته ویکی تی ای صفحه.',
+'recentchangestext'                 => 'رندگر نوکترین تغییرات ته ویکی تی ای صفحه.',
 'recentchanges-feed-description'    => 'آهرین تغییرات ته وی کی چه ای فید رند گر',
 'rcnote'                            => "جهلء{{PLURAL:$1|هست '''1''' تغییری|هستن آهری '''$1''' تغییرات}} ته آهرین {{PLURAL:$2|روچ|'''$2''' روچان}}, چه$5, $4.",
 'rcnotefrom'                        => "جهلا تغییرات چه '''$2''' (تا  '''$1''' پیش دارگنت). هست",
@@ -2606,13 +2606,7 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'پهنات',
@@ -2627,6 +2621,7 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'جاگاه Y و C',
 'exif-xresolution'                 => 'افقی وضوح',
 'exif-yresolution'                 => 'وضوح عمودی',
+'exif-resolutionunit'              => 'واحد X وY وضوح',
 'exif-stripoffsets'                => 'جاگاه دیتای عکس',
 'exif-rowsperstrip'                => 'تعداد ردیف آن ته هر نوار',
 'exif-stripbytecounts'             => 'بایت ته هر نوار کمپرس بوتگین',
@@ -2889,11 +2884,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'کیلومتر ته ساعت',
 'exif-gpsspeed-m' => 'مایل ته ساعت',
 'exif-gpsspeed-n' => 'گرهنان',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'کیلومتر',
-'exif-gpsdestdistance-m' => 'مایل',
-'exif-gpsdestdistance-n' => 'دریایی مایل',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

@@ -1027,7 +1027,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'nchanges'                          => '$1 {{PLURAL:$1|pomjyńańe|pomjyńańa|pomjyńań}}',
 'recentchanges'                     => 'Ńydowno pomjyńane',
 'recentchanges-legend'              => 'Uopcyje půmjyńanych na uostatku',
-'recentchanges-summary'             => 'Ta zajta předstawjo historyjo uostatńich půmjyńań na tyj wiki',
+'recentchangestext'                 => 'Ta zajta předstawjo historyjo uostatńich půmjyńań na tyj wiki',
 'recentchanges-feed-description'    => 'Dowej pozůr na půmjyńane na uostatku na tyj wiki.',
 'rcnote'                            => "Půńižej {{PLURAL:$1|pokozano uostatńo zmjano dokůnano|pokazano uostatńy '''$1''' zmjany naškryflane|pokozano uostatńich '''$1''' škryflań zrobjůnych}} bez {{PLURAL:$2|uostatńi dźyń|uostatńich '''$2''' dńi}}, začynojůnc uod $5 dńa $4.",
 'rcnotefrom'                        => 'Půńižej pokazano půmjyńańo zrobjůne pů <b>$2</b> (ńy wjyncyj jak <b>$1</b> pozycji).',
@@ -2172,13 +2172,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokość',
@@ -2193,6 +2187,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'exif-ycbcrpositioning'            => 'Rozmješčyńy Y i C',
 'exif-xresolution'                 => 'Rozdźelčość w poźůmje',
 'exif-yresolution'                 => 'Rozdźelčość w pjůńy',
+'exif-resolutionunit'              => 'Jednostka rozdźelčośći X i Y',
 'exif-stripoffsets'                => 'Přesůńjyńće pasůw uobrazu',
 'exif-rowsperstrip'                => 'Ličba wjeršy na pas uobrazu',
 'exif-stripbytecounts'             => 'Ličba bajtůw na pas uobrazu',

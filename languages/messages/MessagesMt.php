@@ -1420,7 +1420,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'nchanges'                          => '{{PLURAL:$1|modifika $1 |$1 modifiki}}',
 'recentchanges'                     => 'Tibdil riċenti',
 'recentchanges-legend'              => 'Opzjonijiet tat-tibdil riċenti',
-'recentchanges-summary'             => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
+'recentchangestext'                 => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
 'recentchanges-feed-description'    => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
 'recentchanges-label-newpage'       => 'Din il-modifika ħolqot paġna ġdida',
 'recentchanges-label-minor'         => 'Din hi modifika minuri',
@@ -2641,13 +2641,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => "Wisa'",
@@ -2662,6 +2656,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-ycbcrpositioning'            => 'Pożizzjonament tal-komponenti Y u C',
 'exif-xresolution'                 => 'Riżoluzzjoni orizzontali',
 'exif-yresolution'                 => 'Riżoluzzjoni vertikali',
+'exif-resolutionunit'              => 'Unita tar-riżoluzzjoni X u Y',
 'exif-stripoffsets'                => 'Post fejn jinsab id-data tal-istampa',
 'exif-rowsperstrip'                => "Numru ta' fillieri għal kull strixxa",
 'exif-stripbytecounts'             => 'Bytes għal kull strixxa kompressa',
@@ -2893,11 +2888,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpsspeed-k' => 'Kilometru fis-siegħa',
 'exif-gpsspeed-m' => 'Mili fis-siegħa',
 'exif-gpsspeed-n' => 'Nodi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometri',
-'exif-gpsdestdistance-m' => 'Mili',
-'exif-gpsdestdistance-n' => 'Mili nawtiċi',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzzjoni vera',

@@ -1463,13 +1463,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-artist'              => 'Autore',
@@ -1489,8 +1483,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'     => 'sRGB',
-'exif-colorspace-65535' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-1' => 'Y',
 'exif-componentsconfiguration-2' => 'Cb',

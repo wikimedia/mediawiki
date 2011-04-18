@@ -1472,7 +1472,7 @@ L'operazione non può essere annullata.",
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
 'recentchanges'                     => 'Ultime modifiche',
 'recentchanges-legend'              => 'Opzioni ultime modifiche',
-'recentchanges-summary'             => 'Questa pagina presenta le modifiche più recenti ai contenuti del sito.',
+'recentchangestext'                 => 'Questa pagina presenta le modifiche più recenti ai contenuti del sito.',
 'recentchanges-feed-description'    => 'Questo feed riporta le modifiche più recenti ai contenuti del sito.',
 'recentchanges-label-newpage'       => 'Questa modifica ha creato una nuova pagina',
 'recentchanges-label-minor'         => 'Questa è una modifica minore',
@@ -2862,13 +2862,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezza',
@@ -2883,6 +2877,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-ycbcrpositioning'            => 'Posizionamento componenti Y e C',
 'exif-xresolution'                 => 'Risoluzione orizzontale',
 'exif-yresolution'                 => 'Risoluzione verticale',
+'exif-resolutionunit'              => 'Unità di misura risoluzione X e Y',
 'exif-stripoffsets'                => 'Posizione dei dati immagine',
 'exif-rowsperstrip'                => 'Numero righe per striscia',
 'exif-stripbytecounts'             => 'Numero di byte per striscia compressa',
@@ -3132,11 +3127,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsspeed-k' => 'Chilometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Chilometri',
-'exif-gpsdestdistance-m' => 'Miglia',
-'exif-gpsdestdistance-n' => 'Miglia nautiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzione reale',

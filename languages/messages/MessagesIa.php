@@ -1425,7 +1425,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'nchanges'                          => '$1 {{PLURAL:$1|modification|modificationes}}',
 'recentchanges'                     => 'Modificationes recente',
 'recentchanges-legend'              => 'Optiones del modificationes recente',
-'recentchanges-summary'             => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
+'recentchangestext'                 => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'recentchanges-feed-description'    => 'Seque le modificationes le plus recente al wiki in iste syndication.',
 'recentchanges-label-newpage'       => 'Iste modification creava un nove pagina',
 'recentchanges-label-minor'         => 'Isto es un modification minor',
@@ -2913,7 +2913,7 @@ Omne ligamines posterior in le mesme linea es considerate como exceptiones, i.e.
 Si le file ha essite modificate ab su stato original, es possibile que alcun detalios non reflecte completemente le file modificate.',
 'metadata-expand'   => 'Revelar detalios extense',
 'metadata-collapse' => 'Celar detalios extense',
-'metadata-fields'   => 'Le campos de metadatos de imagine listate in iste message essera includite in le visualisation del pagina de imagine quando le tabula de metadatos es plicate.
+'metadata-fields'   => 'Le campos de metadatos EXIF listate in iste message essera includite in le visualisation del pagina de imagine quando le tabula de metadatos es collabite.
 Le alteres essera initialmente celate.
 * make
 * model
@@ -2921,13 +2921,7 @@ Le alteres essera initialmente celate.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Latitude',
@@ -2942,6 +2936,7 @@ Le alteres essera initialmente celate.
 'exif-ycbcrpositioning'            => 'Positionamento Y e C',
 'exif-xresolution'                 => 'Resolution horizontal',
 'exif-yresolution'                 => 'Resolution vertical',
+'exif-resolutionunit'              => 'Unitate de resolution X e Y',
 'exif-stripoffsets'                => 'Location del datos del imagine',
 'exif-rowsperstrip'                => 'Numero de lineas per banda',
 'exif-stripbytecounts'             => 'Bytes per banda comprimite',
@@ -2963,8 +2958,8 @@ Le alteres essera initialmente celate.
 'exif-colorspace'                  => 'Spatio de colores',
 'exif-componentsconfiguration'     => 'Significato de cata componente',
 'exif-compressedbitsperpixel'      => 'Modo de compression del imagine',
-'exif-pixelydimension'             => 'Latitude del imagine',
-'exif-pixelxdimension'             => 'Altitude del imagine',
+'exif-pixelydimension'             => 'Latitude valide del imagine',
+'exif-pixelxdimension'             => 'Altitude valide del imagine',
 'exif-usercomment'                 => 'Commentos del usator',
 'exif-relatedsoundfile'            => 'File audio connexe',
 'exif-datetimeoriginal'            => 'Data e hora del generation del datos',
@@ -2978,9 +2973,9 @@ Le alteres essera initialmente celate.
 'exif-exposureprogram'             => 'Programma de exposition',
 'exif-spectralsensitivity'         => 'Sensibilitate spectral',
 'exif-isospeedratings'             => 'Classification de velocitate ISO',
-'exif-shutterspeedvalue'           => 'Velocitate del obturator in unitates APEX',
-'exif-aperturevalue'               => 'Latitude del apertura in unitates APEX',
-'exif-brightnessvalue'             => 'Luminositate in unitates APEX',
+'exif-shutterspeedvalue'           => 'Velocitate del obturator',
+'exif-aperturevalue'               => 'Apertura',
+'exif-brightnessvalue'             => 'Luminositate',
 'exif-exposurebiasvalue'           => 'Correction de exposition',
 'exif-maxaperturevalue'            => 'Apertura maxime pro terra',
 'exif-subjectdistance'             => 'Distantia del subjecto',
@@ -3042,76 +3037,10 @@ Le alteres essera initialmente celate.
 'exif-gpsareainformation'          => 'Nomine de area GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correction differential GPS',
-'exif-jpegfilecomment'             => 'Commento del file JPEG',
-'exif-keywords'                    => 'Parolas-clave',
-'exif-worldregioncreated'          => 'Region del mundo ubi le photo esseva prendite',
-'exif-countrycreated'              => 'Pais ubi le photo esseva prendite',
-'exif-countrycodecreated'          => 'Codice pro le pais ubi le photo esseva prendite',
-'exif-provinceorstatecreated'      => 'Provincia o stato ubi le photo esseva prendite',
-'exif-citycreated'                 => 'Citate ubi le photo esseva prendite',
-'exif-sublocationcreated'          => 'Sublocalitate del citate ubi le photo esseva prendite',
-'exif-worldregiondest'             => 'Region del mundo monstrate',
-'exif-countrydest'                 => 'Pais monstrate',
-'exif-countrycodedest'             => 'Codice pro pais monstrate',
-'exif-provinceorstatedest'         => 'Provincia o stato monstrate',
-'exif-citydest'                    => 'Citate monstrate',
-'exif-sublocationdest'             => 'Sublocalitate del citate monstrate',
 'exif-objectname'                  => 'Titulo curte',
-'exif-specialinstructions'         => 'Instructiones special',
-'exif-headline'                    => 'Titulo',
-'exif-credit'                      => 'Credito/Fornitor',
-'exif-source'                      => 'Origine',
-'exif-editstatus'                  => 'Stato redactorial del imagine',
-'exif-urgency'                     => 'Urgentia',
-'exif-fixtureidentifier'           => 'Nomine del rubrica',
-'exif-locationdest'                => 'Loco representate',
-'exif-locationdestcode'            => 'Codice del loco representate',
-'exif-objectcycle'                 => 'Horas del die a que iste objecto es destinate',
-'exif-contact'                     => 'Informationes de contacto',
-'exif-writer'                      => 'Scriptor',
-'exif-languagecode'                => 'Lingua',
-'exif-iimversion'                  => 'Version de IIM',
-'exif-iimcategory'                 => 'Categoria',
-'exif-iimsupplementalcategory'     => 'Categorias supplementari',
-'exif-datetimeexpires'             => 'Non usar post',
-'exif-datetimereleased'            => 'Data de publication',
-'exif-originaltransmissionref'     => 'Codice de localitate del transmission original',
-'exif-identifier'                  => 'Identificator',
-'exif-lens'                        => 'Objectivo usate',
-'exif-serialnumber'                => 'Numero de serie del camera',
-'exif-cameraownername'             => 'Proprietario del camera',
-'exif-label'                       => 'Etiquetta',
-'exif-datetimemetadata'            => 'Data del ultime modification del metadatos',
-'exif-nickname'                    => 'Nomine informal del imagine',
-'exif-rating'                      => 'Evalutation (1-5)',
-'exif-rightscertificate'           => 'Certificato de gestion de derectos',
-'exif-copyrighted'                 => 'Stato de copyright',
-'exif-copyrightowner'              => 'Titular del copyright',
-'exif-usageterms'                  => 'Conditiones de uso',
-'exif-webstatement'                => 'Declaration in linea de copyright',
-'exif-originaldocumentid'          => 'ID unic del documento original',
-'exif-licenseurl'                  => 'URL pro licentia de copyright',
-'exif-morepermissionsurl'          => 'Information alternative de licentia',
-'exif-attributionurl'              => 'Si tu re-usa iste obra, per favor insere un ligamine a',
-'exif-preferredattributionname'    => 'Si tu re-usa iste obra, per favor da recognoscentia a',
-'exif-pngfilecomment'              => 'Commento del file PNG',
-'exif-disclaimer'                  => 'Repudiation',
-'exif-contentwarning'              => 'Advertimento de contento',
-'exif-giffilecomment'              => 'Commento del file GIF',
-'exif-intellectualgenre'           => 'Typo de elemento',
-'exif-subjectnewscode'             => 'Codice de subjecto',
-'exif-scenecode'                   => 'Codice de scena IPTC',
-'exif-event'                       => 'Evento representate',
-'exif-organisationinimage'         => 'Organisation representate',
-'exif-personinimage'               => 'Persona representate',
-'exif-originalimageheight'         => 'Altitude del imagine ante taliar',
-'exif-originalimagewidth'          => 'Latitude del imagine ante taliar',
 
 # EXIF attributes
 'exif-compression-1' => 'Non comprimite',
-
-'exif-copyrighted-true'  => 'Sub copyright',
-'exif-copyrighted-false' => 'Dominio public',
 
 'exif-unknowndate' => 'Data incognite',
 
@@ -3126,8 +3055,6 @@ Le alteres essera initialmente celate.
 
 'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
 'exif-planarconfiguration-2' => 'formato planar',
-
-'exif-colorspace-65535' => 'Non calibrate',
 
 'exif-componentsconfiguration-0' => 'non existe',
 
@@ -3192,8 +3119,6 @@ Le alteres essera initialmente celate.
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor de color linear sequential',
 
-'exif-filesource-3' => 'Camera photographic digital',
-
 'exif-scenetype-1' => 'Un imagine directemente photographiate',
 
 'exif-customrendered-0' => 'Processo normal',
@@ -3242,10 +3167,6 @@ Le alteres essera initialmente celate.
 'exif-gpslongitude-e' => 'Longitude est',
 'exif-gpslongitude-w' => 'Longitude west',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metros}} super le nivello del mar',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metros}} sub le nivello del mar',
-
 'exif-gpsstatus-a' => 'Mesura in curso',
 'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
 
@@ -3257,63 +3178,9 @@ Le alteres essera initialmente celate.
 'exif-gpsspeed-m' => 'Millias per hora',
 'exif-gpsspeed-n' => 'Nodos',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometros',
-'exif-gpsdestdistance-m' => 'Millias',
-'exif-gpsdestdistance-n' => 'Millias nautic',
-
-'exif-gpsdop-excellent' => 'Excellente ($1)',
-'exif-gpsdop-good'      => 'Bon ($1)',
-'exif-gpsdop-moderate'  => 'Moderate ($1)',
-'exif-gpsdop-fair'      => 'Acceptabile ($1)',
-'exif-gpsdop-poor'      => 'Mal ($1)',
-
-'exif-objectcycle-a' => 'Matino solmente',
-'exif-objectcycle-p' => 'Vespere solmente',
-'exif-objectcycle-b' => 'Matino e vespere',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direction real',
 'exif-gpsdirection-m' => 'Direction magnetic',
-
-'exif-ycbcrpositioning-1' => 'Centrate',
-'exif-ycbcrpositioning-2' => 'Digitalisation bimodal',
-
-'exif-dc-contributor' => 'Contributores',
-'exif-dc-coverage'    => 'Scopo spatial o temporal del objecto',
-'exif-dc-date'        => 'Data(s)',
-'exif-dc-publisher'   => 'Editor',
-'exif-dc-relation'    => 'Objectos connexe',
-'exif-dc-rights'      => 'Derectos',
-'exif-dc-source'      => 'Objecto original',
-'exif-dc-type'        => 'Typo de objecto',
-
-'exif-rating-rejected' => 'Rejectate',
-
-'exif-isospeedratings-overflow' => 'Superior a 65535',
-
-'exif-iimcategory-ace' => 'Arte, cultura e intertenimento',
-'exif-iimcategory-clj' => 'Crimine e lege',
-'exif-iimcategory-dis' => 'Catastrophes e accidentes',
-'exif-iimcategory-fin' => 'Economia e negotios',
-'exif-iimcategory-edu' => 'Education',
-'exif-iimcategory-evn' => 'Ambiente',
-'exif-iimcategory-hth' => 'Sanitate',
-'exif-iimcategory-hum' => 'Interesse human',
-'exif-iimcategory-lab' => 'Labor',
-'exif-iimcategory-lif' => 'Stilo de vita e tempore libere',
-'exif-iimcategory-pol' => 'Politica',
-'exif-iimcategory-rel' => 'Religion e credentia',
-'exif-iimcategory-sci' => 'Scientia e technologia',
-'exif-iimcategory-soi' => 'Questiones social',
-'exif-iimcategory-spo' => 'Sport',
-'exif-iimcategory-war' => 'Guerra, conflicto e perturbation',
-'exif-iimcategory-wea' => 'Meteo',
-
-'exif-urgency-normal' => 'Normal ($1)',
-'exif-urgency-low'    => 'Basse ($1)',
-'exif-urgency-high'   => 'Alte ($1)',
-'exif-urgency-other'  => 'Prioritate definite per usator ($1)',
 
 # External editor support
 'edit-externally'      => 'Modificar iste file con un programma externe',

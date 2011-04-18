@@ -19,7 +19,6 @@
  * @author Flyax
  * @author Geraki
  * @author Glavkos
- * @author Grondin
  * @author Kiriakos
  * @author Lou
  * @author MF-Warburg
@@ -1580,7 +1579,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|αλλαγή|αλλαγές}}',
 'recentchanges'                     => 'Πρόσφατες αλλαγές',
 'recentchanges-legend'              => 'Επιλογές των πρόσφατων αλλαγών',
-'recentchanges-summary'             => 'Παρακολουθείστε σε αυτή τη σελίδα τις πιο πρόσφατες αλλαγές στο Wiki.',
+'recentchangestext'                 => 'Παρακολουθείστε σε αυτή τη σελίδα τις πιο πρόσφατες αλλαγές στο Wiki.',
 'recentchanges-feed-description'    => 'Παρακολουθείστε τις πιο πρόσφατες αλλαγές στο wiki σε αυτή τη ροή δεδομένων.',
 'recentchanges-label-newpage'       => 'Αυτή η επεξεργασία δημιούργησε μια νέα σελίδα',
 'recentchanges-label-minor'         => 'Αυτή είναι μια αλλαγή μικρής κλίμακας',
@@ -2989,13 +2988,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -3010,6 +3003,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Ρύθμιση φωτεινότητας και χρώματος',
 'exif-xresolution'                 => 'Οριζόντια ανάλυση',
 'exif-yresolution'                 => 'Κατακόρυφη ανάλυση',
+'exif-resolutionunit'              => 'Μονάδα μέτρησης ανάλυσης X και Y',
 'exif-stripoffsets'                => 'Τοποθέτηση δεδομένων εικόνας',
 'exif-rowsperstrip'                => 'Αριθμός σειρών ανά λωρίδα',
 'exif-stripbytecounts'             => 'Bytes ανά συμπιεσμένη λωρίδα',
@@ -3250,11 +3244,6 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα/ώρα',
 'exif-gpsspeed-m' => 'Μίλια/ώρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
-'exif-gpsdestdistance-m' => 'Μίλια',
-'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Πραγματική κατεύθυνση',

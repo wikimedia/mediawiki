@@ -796,13 +796,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'         => 'Gamte',

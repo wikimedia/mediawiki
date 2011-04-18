@@ -895,7 +895,7 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerkieng|bewerkiengen}}',
 'recentchanges'                     => 'Juust angepast',
-'recentchanges-summary'             => 'Bekiek wat-a juust veranderd is op deêze wiki.',
+'recentchangestext'                 => 'Bekiek wat-a juust veranderd is op deêze wiki.',
 'recentchanges-feed-description'    => 'Bekiek wat-a juust veranderd is op deêze wiki.',
 'rcnote'                            => "Ieronder {{PLURAL:$1|sti de lèste bewerkieng|staen de lèste '''$1''' bewerkiengen}} in de lèste {{PLURAL:$2|dag|'''$2''' daegen}}, op $3.",
 'rcnotefrom'                        => "Wiezigiengen sins '''$2''' (mie een maximum van '''$1''' wiezigiengen).",

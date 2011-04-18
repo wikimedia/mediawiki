@@ -1226,7 +1226,7 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'nchanges'                          => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
 'recentchanges'                     => 'Owah-owahan',
 'recentchanges-legend'              => 'Pilihan owah-owahan pungkasan',
-'recentchanges-summary'             => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
+'recentchangestext'                 => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
 'recentchanges-feed-description'    => "Urutna owah-owahan anyar ing wiki ing ''feed'' iki.",
 'recentchanges-label-newpage'       => 'Suntingan iki gawé kaca anyar',
 'recentchanges-label-minor'         => 'Iki suntingan sithik',
@@ -2466,14 +2466,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * datetimeoriginal
 * exposuretime
 * fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* isospeedratings',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Jembar',
@@ -2488,6 +2481,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-ycbcrpositioning'            => 'Pandokokan Y lan C',
 'exif-xresolution'                 => 'Résolusi horisontal',
 'exif-yresolution'                 => 'Résolusi vèrtikal',
+'exif-resolutionunit'              => 'Unit résolusi X lan Y',
 'exif-stripoffsets'                => 'Lokasi data gambar',
 'exif-rowsperstrip'                => 'Cacah baris per strip',
 'exif-stripbytecounts'             => 'Bita per strip komprèsi',

@@ -1485,7 +1485,7 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'nchanges'                          => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}',
 'recentchanges'                     => 'Ñaqha hukchasqa',
 'recentchanges-legend'              => 'Ñaqha hukchasqapaq allinkachinakuna',
-'recentchanges-summary'             => "Kay p'anqapiqa aswan qhipaq ñaqha hukchasqakunam.",
+'recentchangestext'                 => "Kay p'anqapiqa aswan qhipaq ñaqha hukchasqakunam.",
 'recentchanges-feed-description'    => 'Kay mikhuchinapi wikipi qhipaq ñaqha hukchasqakunata qatiy.',
 'recentchanges-label-newpage'       => "Kayta llamk'apuptiykim musuq p'anqam tukukurqun",
 'recentchanges-label-minor'         => "Kayqa aslla llamk'apuymi",
@@ -2831,13 +2831,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Suni kay',
@@ -2852,6 +2846,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-ycbcrpositioning'            => 'Y-ta C-tapas churamuy',
 'exif-xresolution'                 => "Siriqpa ch'irkukun",
 'exif-yresolution'                 => "Sayaqpa ch'irkukun",
+'exif-resolutionunit'              => "X, Y ch'irkukup tupun",
 'exif-stripoffsets'                => 'Rikcha willa churamuy',
 'exif-rowsperstrip'                => "Sinrukuna ch'imiman",
 'exif-stripbytecounts'             => "Bytekuna mat'isqa ch'imiman",
@@ -3092,11 +3087,6 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpsspeed-k' => 'Kilumitru uraman',
 'exif-gpsspeed-m' => 'Milla uraman',
 'exif-gpsspeed-n' => 'Muqukuna',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilumitru (waranqa thatki)',
-'exif-gpsdestdistance-m' => 'Milla',
-'exif-gpsdestdistance-n' => "Wamp'una milla",
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Chiqap puririy',

@@ -796,13 +796,7 @@ $2',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'اصلاح ای صفحه با استفاده زه یه ویرایشگر خارجی',

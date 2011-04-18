@@ -1379,7 +1379,7 @@ $1",
 'nchanges'                          => '$1 ცვლილება',
 'recentchanges'                     => 'ბოლო ცვლილებები',
 'recentchanges-legend'              => 'ბოლო ცვლილებების პარამეტრები',
-'recentchanges-summary'             => 'უთვალთვალეთ ვიკიში ბოლო ცვლილებებს ამ გვერდზე.',
+'recentchangestext'                 => 'უთვალთვალეთ ვიკიში ბოლო ცვლილებებს ამ გვერდზე.',
 'recentchanges-feed-description'    => 'ვიკის უახლესი ცვლილებების მეთვალყურეობა ამ არხში.',
 'recentchanges-label-newpage'       => 'ამ რედაქტირებით შეიქმნა ახალი გვერდი',
 'recentchanges-label-minor'         => 'ეს არის მცირე შესწორება',
@@ -2779,13 +2779,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'სიგანე',
@@ -2800,6 +2794,7 @@ $1',
 'exif-ycbcrpositioning'            => 'კომპონენტ Y-სა და C-ს განლაგების წესი',
 'exif-xresolution'                 => 'ჰორიზონტალური გაფართოება',
 'exif-yresolution'                 => 'ვერტიკალური გაფართოება',
+'exif-resolutionunit'              => 'გაფორთოების გაზომვის ერთეული',
 'exif-stripoffsets'                => 'მონაცემთა ბლოკის მდებარეობა',
 'exif-rowsperstrip'                => '1 ბლოკში ხაზთა რაოდენობა',
 'exif-stripbytecounts'             => 'შეკუმშული ბლოკის ზომა',

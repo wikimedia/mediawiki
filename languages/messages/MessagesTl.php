@@ -455,7 +455,7 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 
 # General errors
 'error'                => 'Kamalian',
-'databaseerror'        => 'Kamalian sa kalipunan ng dato',
+'databaseerror'        => 'Kamalian sa kalipunan ng datos',
 'dberrortext'          => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
 Maaaring dahil ito sa depekto sa sopwer (\'\'software\'\').
 Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
@@ -1421,7 +1421,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'recentchanges'                     => 'Kamakailang pagbabago',
 'recentchanges-legend'              => 'Mga pagpipilian para sa kamakailang mga pagbabago',
-'recentchanges-summary'             => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
+'recentchangestext'                 => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 'recentchanges-feed-description'    => 'Sundan ang pinakahuling mga pagbabago sa wiki sa pamamagitan ng feed na ito.',
 'recentchanges-label-newpage'       => 'Lumikha ng isang bagong pahina ang pagbabagong ito',
 'recentchanges-label-minor'         => 'Isa itong munting pagbabago',
@@ -2857,21 +2857,15 @@ Anumang susunod na mga kawing sa pinanggalingang linya ay tinuturing na mga ekse
 Kapag nabago ang talaksan mula sa anyong orihinal nito, may ilang detalyeng hindi ganap na maipapakita ang nabagong talaksan.',
 'metadata-expand'   => 'Ipakita ang karugtong na mga detalye',
 'metadata-collapse' => 'Itago ang karugtong na mga detalye',
-'metadata-fields'   => 'Ang mga hanay ng pook ng metadato ng larawan na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadato.
-Likas na nakatakdang itago ang iba pa.
-* yari
-* modelo
-* orihinal na petsa at oras
-* panahon ng pagkakalantad
-* bilang ng f
-* antas ng bilis ng iso
-* haba ng tuon
-* artista
-* karapatang-ari
-* paglalarawan ng larawan
-* latitud ng gps
-* longhitud ng gps
-* altitud ng gps',
+'metadata-fields'   => 'Ang mga pook ng metadatang EXIF na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadata.
+Nakatakdang itago ang iba pa.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',
@@ -2886,6 +2880,7 @@ Likas na nakatakdang itago ang iba pa.
 'exif-ycbcrpositioning'            => 'Pagkakaposisyon ng Y at C',
 'exif-xresolution'                 => 'Pahalang na resolusyon (kalinawan)',
 'exif-yresolution'                 => 'Bertikal (patayo) na resolusyon/kalinawan',
+'exif-resolutionunit'              => 'Yunit ng resolusyong X at Y',
 'exif-stripoffsets'                => 'Lokasyon ng dato ng larawan',
 'exif-rowsperstrip'                => 'Bilang ng pahalang na hanay bawat manipis na piraso',
 'exif-stripbytecounts'             => 'Mga byte ng bawat siniksik na piraso',
@@ -2907,8 +2902,8 @@ Likas na nakatakdang itago ang iba pa.
 'exif-colorspace'                  => 'Espasyo ng kulay',
 'exif-componentsconfiguration'     => 'Kahulugan ng bawat komponente',
 'exif-compressedbitsperpixel'      => 'Modalidad (paraan) ng pagsisiksik ng larawan',
-'exif-pixelydimension'             => 'Lapad ng larawan',
-'exif-pixelxdimension'             => 'Taas ng larawan',
+'exif-pixelydimension'             => 'Tanggap na lapad ng larawan',
+'exif-pixelxdimension'             => 'Tanggap na taas ng larawan',
 'exif-usercomment'                 => 'Mga kumento ng tagagamit',
 'exif-relatedsoundfile'            => 'Kaugnay na talaksang nadidinig (audio)',
 'exif-datetimeoriginal'            => 'Petsa at oras ng paglikha ng mga dato',
@@ -2922,9 +2917,9 @@ Likas na nakatakdang itago ang iba pa.
 'exif-exposureprogram'             => 'Programa ng paglalantad',
 'exif-spectralsensitivity'         => 'Sensitibidad sa ispektrum',
 'exif-isospeedratings'             => 'Grado ng bilis ng ISO',
-'exif-shutterspeedvalue'           => 'Bilis ng pansara ng APEX',
-'exif-aperturevalue'               => 'Apertura ng APEX',
-'exif-brightnessvalue'             => 'Kaningningan ng APEX',
+'exif-shutterspeedvalue'           => "Bilis ng pansara (''shutter'')",
+'exif-aperturevalue'               => 'Apertura (butas na daanan ng liwanag)',
+'exif-brightnessvalue'             => 'Kaningningan',
 'exif-exposurebiasvalue'           => 'Panig ng kalantaran',
 'exif-maxaperturevalue'            => 'Pinakamataas na aperturang (daanan ng liwanag) panglupa',
 'exif-subjectdistance'             => 'Layo ng paksa',
@@ -2986,76 +2981,10 @@ Likas na nakatakdang itago ang iba pa.
 'exif-gpsareainformation'          => 'Pangalan ng lugar ng GPS',
 'exif-gpsdatestamp'                => 'Petsa ng GPS',
 'exif-gpsdifferential'             => 'Pagtatama sa pakakaiba ng GPS',
-'exif-jpegfilecomment'             => 'Puna sa talaksang JPEG',
-'exif-keywords'                    => 'Mga susing-salita',
-'exif-worldregioncreated'          => 'Rehiyon ng mundo kung saan kinuhanan ang larawan',
-'exif-countrycreated'              => 'Bansa kung saan kinuhanan ang larawan',
-'exif-countrycodecreated'          => 'Kodigo para sa bansa kung saan kinuhanan ang larawan',
-'exif-provinceorstatecreated'      => 'Lalawigan o estado kung saan kinuhanan ang larawan',
-'exif-citycreated'                 => 'Lungsod kung saan kinuhanan ang larawan',
-'exif-sublocationcreated'          => 'Kabahaging kinalalagyan ng lungsod kung saan kinuhanan ang larawan',
-'exif-worldregiondest'             => 'Ipinapakitang rehiyon ng mundo',
-'exif-countrydest'                 => 'Ipinapakitang bansa',
-'exif-countrycodedest'             => 'Kodigo para sa bansng ipinapakita',
-'exif-provinceorstatedest'         => 'Lalawigan o estadong ipinapakita',
-'exif-citydest'                    => 'Lungsod na ipinapakita',
-'exif-sublocationdest'             => 'Kabahaging kinalalagyan ng lungsod na ipinapakita',
 'exif-objectname'                  => 'Maiksing pamagat',
-'exif-specialinstructions'         => 'Natatanging mga tagubilin',
-'exif-headline'                    => 'Ulo ng Balita',
-'exif-credit'                      => 'Pagbanggit/Tagapagbigay',
-'exif-source'                      => 'Pinagmulan',
-'exif-editstatus'                  => 'Katayuan sa pamamatnugot ng larawan',
-'exif-urgency'                     => 'Katindihan ng pangangailangan',
-'exif-fixtureidentifier'           => 'Pangalan ng nakakabit',
-'exif-locationdest'                => 'Kinalalagyang nilalarawan',
-'exif-locationdestcode'            => 'Kodigo ng kinalalagyang nilalarawan',
-'exif-objectcycle'                 => 'Oras ng araw na pinaglalaanan ng midyang iyan',
-'exif-contact'                     => 'Kabatiran sa pakikipag-ugnayan',
-'exif-writer'                      => 'Manunulat',
-'exif-languagecode'                => 'Wika',
-'exif-iimversion'                  => 'Bersyon ng IIM',
-'exif-iimcategory'                 => 'Kategorya',
-'exif-iimsupplementalcategory'     => 'Karagdagang mga kategorya',
-'exif-datetimeexpires'             => 'Huwag gamitin pagkaraan',
-'exif-datetimereleased'            => 'Pinakawalan noong',
-'exif-originaltransmissionref'     => 'Kodigo ng kinalalagyan ng orihinal na paghahatid',
-'exif-identifier'                  => 'Tagapagpakilala',
-'exif-lens'                        => 'Ginamit na lente',
-'exif-serialnumber'                => 'Panunurang bilang ng kamera',
-'exif-cameraownername'             => 'May-ari ng kamera',
-'exif-label'                       => 'Tatak',
-'exif-datetimemetadata'            => 'Petsa kung kailang huling binago ang metadato',
-'exif-nickname'                    => 'Impormal na pangalan ng larawan',
-'exif-rating'                      => 'Antas (mula sa 5)',
-'exif-rightscertificate'           => 'Katibayan ng pamamahala ng mga karapatan',
-'exif-copyrighted'                 => 'Katayuan ng karapatang-ari',
-'exif-copyrightowner'              => 'May-ari ng karapatang-ari',
-'exif-usageterms'                  => 'Mga tuntunin sa paggamit',
-'exif-webstatement'                => 'Pahayag ng karapatang-ari habang nasa linya ng Internet',
-'exif-originaldocumentid'          => 'Natatanging ID ng orihinal na kasulatan',
-'exif-licenseurl'                  => 'URL para sa lisensiya ng karapatang-ari',
-'exif-morepermissionsurl'          => 'Pamalit na kabatiran sa paglilisensiya',
-'exif-attributionurl'              => 'Kapag ginagamit ulit ang akdang ito, mangyaring kumawing sa',
-'exif-preferredattributionname'    => 'Kapag ginagamit ulit ang akdang ito, mangyaring banggitin si',
-'exif-pngfilecomment'              => 'Puna sa talaksang PNG',
-'exif-disclaimer'                  => 'Pagtatatuwa',
-'exif-contentwarning'              => 'Babala sa nilalaman',
-'exif-giffilecomment'              => 'Puna sa talaksang GIF',
-'exif-intellectualgenre'           => 'Uri ng bagay',
-'exif-subjectnewscode'             => 'Kodigo ng paksa',
-'exif-scenecode'                   => 'Kodigo ng tanawin ng IPTC',
-'exif-event'                       => 'Nilalarawang kaganapan',
-'exif-organisationinimage'         => 'Nilalarawang samahan',
-'exif-personinimage'               => 'Nilalarawang tao',
-'exif-originalimageheight'         => 'Taas ng larawan bago ito inani',
-'exif-originalimagewidth'          => 'Lapad ng larawan bago ito inani',
 
 # EXIF attributes
 'exif-compression-1' => 'Walang kompresyon',
-
-'exif-copyrighted-true'  => 'Nakakarapatang-ari',
-'exif-copyrighted-false' => 'Nasasakupan ng madla',
 
 'exif-unknowndate' => 'Hindi alam na araw',
 
@@ -3070,8 +2999,6 @@ Likas na nakatakdang itago ang iba pa.
 
 'exif-planarconfiguration-1' => 'pagkaayos sa malalaking bahagi (chunky)',
 'exif-planarconfiguration-2' => 'planar na pagkaayos',
-
-'exif-colorspace-65535' => 'Hindi nakaakma sa pamantayang sukat',
 
 'exif-componentsconfiguration-0' => 'wala',
 
@@ -3140,8 +3067,6 @@ Likas na nakatakdang itago ang iba pa.
 'exif-sensingmethod-7' => "Pandama (''sensor'') ng mga paligid na may tatlong guhit (''trilinear'')",
 'exif-sensingmethod-8' => 'Linear sensor na sunod-sunod na kulay',
 
-'exif-filesource-3' => 'Dihital na kamerang napapanatili',
-
 'exif-scenetype-1' => 'Isang larawang diretsong kinuha',
 
 'exif-customrendered-0' => 'Karaniwang proseso',
@@ -3190,10 +3115,6 @@ Likas na nakatakdang itago ang iba pa.
 'exif-gpslongitude-e' => 'Silangang longhitud',
 'exif-gpslongitude-w' => 'Kanlurang longhitud',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|mga metro}} na nasa itaas ng antas ng dagat',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|mga metro}} na nasa ilalim ng antas ng dagat',
-
 'exif-gpsstatus-a' => 'Kasalukuyang nagsusukat',
 'exif-gpsstatus-v' => 'Interoperabilidad (pagiging naisasagawa) ng sukat',
 
@@ -3205,63 +3126,9 @@ Likas na nakatakdang itago ang iba pa.
 'exif-gpsspeed-m' => 'Mga milya bawat oras',
 'exif-gpsspeed-n' => "Mga ''knot''",
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Mga kilometro',
-'exif-gpsdestdistance-m' => 'Mga milya',
-'exif-gpsdestdistance-n' => 'Milyang pangdagat',
-
-'exif-gpsdop-excellent' => 'Pinakamahusay ($1)',
-'exif-gpsdop-good'      => 'Mabuti ($1)',
-'exif-gpsdop-moderate'  => 'Katamtaman ($1)',
-'exif-gpsdop-fair'      => 'Patas ($1)',
-'exif-gpsdop-poor'      => 'Hamak ($1)',
-
-'exif-objectcycle-a' => 'Umaga lamang',
-'exif-objectcycle-p' => 'Gabi lamang',
-'exif-objectcycle-b' => 'Kapwa umaga at gabi',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Totoong direksyon',
 'exif-gpsdirection-m' => 'Mabato-balaning (magnetikong) direksyon',
-
-'exif-ycbcrpositioning-1' => 'Nakagitna',
-'exif-ycbcrpositioning-2' => 'May kasamang pook',
-
-'exif-dc-contributor' => 'Mga tagapag-ambag',
-'exif-dc-coverage'    => 'Malawak o panandaliang saklaw ng midya',
-'exif-dc-date'        => '(Mga) petsa',
-'exif-dc-publisher'   => 'Tagapaglathala',
-'exif-dc-relation'    => 'Kaugnay na midya',
-'exif-dc-rights'      => 'Mga karapatan',
-'exif-dc-source'      => 'Midyang pinagmulan',
-'exif-dc-type'        => 'Uri ng midya',
-
-'exif-rating-rejected' => 'Tinanggihan',
-
-'exif-isospeedratings-overflow' => 'Mas mahigit kaysa sa 65535',
-
-'exif-iimcategory-ace' => 'Sining, kalinangan at kaaliwan',
-'exif-iimcategory-clj' => 'Krimen at batas',
-'exif-iimcategory-dis' => 'Mga kalamidad at mga sakuna',
-'exif-iimcategory-fin' => 'Kabuhayan at negosyo',
-'exif-iimcategory-edu' => 'Pag-aaral',
-'exif-iimcategory-evn' => 'Kapaligiran',
-'exif-iimcategory-hth' => 'Kalusugan',
-'exif-iimcategory-hum' => 'Napag-uukulan ng tao',
-'exif-iimcategory-lab' => 'Paggawa',
-'exif-iimcategory-lif' => 'Estilo ng pamumuhay at paglilibang',
-'exif-iimcategory-pol' => 'Politika',
-'exif-iimcategory-rel' => 'Pananampalataya at paniniwala',
-'exif-iimcategory-sci' => 'Agham at teknolohiya',
-'exif-iimcategory-soi' => 'Mga paksang panlipunan',
-'exif-iimcategory-spo' => 'Palakasan',
-'exif-iimcategory-war' => 'Digmaan, hidwaan at ligalig',
-'exif-iimcategory-wea' => 'Panahon',
-
-'exif-urgency-normal' => 'Pangkaraniwan ($1)',
-'exif-urgency-low'    => 'Mababa ( $1 )',
-'exif-urgency-high'   => 'Mataas ($1)',
-'exif-urgency-other'  => 'Pagkakauna-unang tinukoy ng tagagamit ($1)',
 
 # External editor support
 'edit-externally'      => 'Baguhin ang talaksang ito sa pamamagitan ng isang panlabas na aplikasyon',

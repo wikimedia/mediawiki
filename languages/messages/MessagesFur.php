@@ -805,7 +805,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'nchanges'                          => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges'                     => 'Ultins cambiaments',
 'recentchanges-legend'              => 'Opzions dai ultins cambiaments',
-'recentchanges-summary'             => 'Cheste pagjine e mostre i plui recents cambiaments inte {{SITENAME}}.',
+'recentchangestext'                 => 'Cheste pagjine e mostre i plui recents cambiaments inte {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Chest canâl al ripuarte i cambiaments plui recents ai contignûts di cheste wiki.',
 'rcnote'                            => "Ca sot tu cjatis {{PLURAL:$1|l'ultin cambiament|i ultins '''$1''' cambiaments}} al sît {{PLURAL:$2|intes ultimis 24 oris|tes ultimis '''$2''' zornadis}}; i dâts a son inzornâts ai $4 a lis $5.",
 'rcnotefrom'                        => "Ca sot i cambiaments dal '''$2''' (fintremai al '''$1''').",
@@ -1510,13 +1510,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Largjece',

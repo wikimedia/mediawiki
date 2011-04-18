@@ -721,13 +721,7 @@ Annere Metadate sinn standardmäßig versteckelt.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 'exif-gaincontrol-0' => 'Kään',
 

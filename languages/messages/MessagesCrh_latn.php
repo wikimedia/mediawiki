@@ -1044,7 +1044,7 @@ Bundan ğayrı bu vikideki saifeñizden başqa qullanıcılarğa siznen bağlanm
 'nchanges'                          => '$1 {{PLURAL:$1|deñişiklik|deñişiklik}}',
 'recentchanges'                     => 'Soñki deñişiklikler',
 'recentchanges-legend'              => 'Soñki deñişiklikler sazlamaları',
-'recentchanges-summary'             => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
+'recentchangestext'                 => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
 'recentchanges-feed-description'    => 'Bu lenta vastasınen vikide soñki deñişikliklerni közet.',
 'recentchanges-label-newpage'       => 'Bu deñişiklik yañı bir saife yarattı',
 'recentchanges-label-minor'         => 'Bu kiçik bir deñişiklik',
@@ -1917,13 +1917,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-make'                => 'Kamera markası',

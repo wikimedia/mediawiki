@@ -734,7 +734,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|candjmint|candjmints}}',
 'recentchanges'                     => 'Dierins candjmints',
-'recentchanges-summary'             => "Shuvoz chal les dierins candjmints k' i gn a yeu dsu {{SITENAME}}.",
+'recentchangestext'                 => "Shuvoz chal les dierins candjmints k' i gn a yeu dsu {{SITENAME}}.",
 'rcnote'                            => 'Chal pa dzo les <strong>$1</strong> dierins candjmints des dierins <strong>$2</strong> djoûs, å $3.',
 'rcnotefrom'                        => "Chal pa dzo les candjmints dispoy li <b>$2</b> (disk' a <b>$1</b> di mostrés).",
 'rclistfrom'                        => "Mostrer les candjmints k' i gn a yeu a pårti do $1",
@@ -1425,13 +1425,7 @@ est raptiti. Les ôtes seront catchîs.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                => 'Lårdjeur',
@@ -1442,6 +1436,7 @@ est raptiti. Les ôtes seront catchîs.
 'exif-samplesperpixel'           => 'Nombe di compôzants',
 'exif-xresolution'               => "Finté d' coûtchî",
 'exif-yresolution'               => "Finté d' astampé",
+'exif-resolutionunit'            => "Unité pol finté d' coûtchî/astampé",
 'exif-datetime'                  => "Date ey eure ki l' fitchî a stî candjî",
 'exif-imagedescription'          => "Tite di l' imådje",
 'exif-make'                      => 'Måke del camera',

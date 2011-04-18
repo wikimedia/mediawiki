@@ -1286,7 +1286,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
 'recentchanges'                     => 'Һуңғы үҙгәртеүҙәр',
 'recentchanges-legend'              => 'Һуңғы үҙгәртеүҙәр көйләүҙәре',
-'recentchanges-summary'             => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'recentchangestext'                 => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 'recentchanges-feed-description'    => 'Был таҫмалағы һуңғы үҙгәртеүҙәрҙе күҙәтеп барырға',
 'recentchanges-label-newpage'       => 'Был үҙгәртеү яңы бит яһаны',
 'recentchanges-label-minor'         => 'Был әҙ үҙгәреш',
@@ -2682,13 +2682,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Киңлек',
@@ -2703,6 +2697,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Y һәм C өлөштәренең тәртибе',
 'exif-xresolution'                 => 'X күсәре буйынса асыҡлыҡ',
 'exif-yresolution'                 => 'Y күсәре буйынса асыҡлыҡ',
+'exif-resolutionunit'              => 'X һәм Y асыҡлыҡтарын үлсәү берәмеге',
 'exif-stripoffsets'                => 'Рәсем мәғлүмәте урынлашыуы',
 'exif-rowsperstrip'                => 'Бер бүлектә юлдар һаны',
 'exif-stripbytecounts'             => 'Ҡыҫылған бүлектә байттар һаны',

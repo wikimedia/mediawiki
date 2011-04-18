@@ -1198,7 +1198,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nchanges'                          => '{{PLURAL:$1|ஒரு மாற்றம்|$1 மாற்றங்கள்}}',
 'recentchanges'                     => 'அண்மைய மாற்றங்கள்',
 'recentchanges-legend'              => 'அண்மைய மாற்றங்களின் தேர்வுகள்',
-'recentchanges-summary'             => 'இந்த விக்கிக்கு மிக அண்மையில் செய்யப்பட்ட மாற்றங்களை, இந்தப் பக்கத்தில் காணலாம்.',
+'recentchangestext'                 => 'இந்த விக்கிக்கு மிக அண்மையில் செய்யப்பட்ட மாற்றங்களை, இந்தப் பக்கத்தில் காணலாம்.',
 'recentchanges-feed-description'    => 'இவ்வுள்ளீட்டில் இந்த விக்கியில் செய்யப்பட்ட் மிக அண்மைய மாற்றங்கள் கவனிக்கப்படுகின்றன.',
 'recentchanges-label-newpage'       => 'இந்தத் தொகுப்பு ஒரு புதிய பக்கத்தை உருவாக்கியுள்ளது',
 'recentchanges-label-minor'         => 'இது ஒரு சிறு தொகுப்பு',
@@ -2307,13 +2307,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'அகலம்',
@@ -2325,6 +2319,7 @@ $1',
 'exif-planarconfiguration'         => 'தரவு அமைவு',
 'exif-xresolution'                 => 'கிடை நுணுக்கம்',
 'exif-yresolution'                 => 'நிலைக்குத்து நுணுக்கம்',
+'exif-resolutionunit'              => 'X, Y நுணுக்களின் அலகு',
 'exif-stripoffsets'                => 'படிமத் தரவு அமைவிடம்',
 'exif-rowsperstrip'                => 'ஒரு பட்டையில் உள்ள நிரைகளின் எண்ணிக்கை',
 'exif-stripbytecounts'             => 'சுருக்கப்பட்ட பட்டியில் உள்ள பைட்டுகள்',

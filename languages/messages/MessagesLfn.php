@@ -516,7 +516,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|cambia|cambias}}',
 'recentchanges'                  => 'Cambias resente',
-'recentchanges-summary'          => 'Asi la lista de cambias resente en la vici.',
+'recentchangestext'              => 'Asi la lista de cambias resente en la vici.',
 'recentchanges-feed-description' => 'Seque la cambias plu resente a la vici en esta flue.',
 'rcnote'                         => 'Su es {{PLURAL:$1|cambia|cambias}} en la presedente {{PLURAL:$2|dia|dias}}, en $5, $4.',
 'rcnotefrom'                     => "A su es la cambias de '''$2''' (asta '''$1''' es mostrada).",
@@ -943,13 +943,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sec. ($2)',

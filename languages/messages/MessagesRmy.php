@@ -310,7 +310,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 
 # Recent changes
 'recentchanges'                     => 'Neve paruvimata',
-'recentchanges-summary'             => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.',
+'recentchangestext'                 => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.',
 'rcnote'                            => 'Tele si le palutne <strong>$1</strong> paruvimata andar le palutne <strong>$2</strong> divesa.',
 'rcnotefrom'                        => "Tele si le averutnimata katar '''$2''' (inklen '''$1''' averutnimata, shai te paruves o gin alosarindoi aver tele).",
 'rclistfrom'                        => 'Dikh le paruvimata ji kai $1',

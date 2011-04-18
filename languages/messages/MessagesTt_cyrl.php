@@ -1288,7 +1288,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|үзгәртү|үзгәртү}}',
 'recentchanges'                     => 'Соңгы үзгәртүләр',
 'recentchanges-legend'              => 'Соңгы үзгәртүләр көйләүләре',
-'recentchanges-summary'             => 'Бу биттә {{grammar:genitive|{{SITENAME}}}} проектының соңгы үзгәртүләре күрсәтелә.',
+'recentchangestext'                 => 'Бу биттә {{grammar:genitive|{{SITENAME}}}} проектының соңгы үзгәртүләре күрсәтелә.',
 'recentchanges-feed-description'    => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
 'recentchanges-label-newpage'       => 'Бу үзгәртү белән яңа бит төзелде',
 'recentchanges-label-minor'         => 'Бу кече үзгәртү',
@@ -2146,13 +2146,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'               => 'Киңлек',

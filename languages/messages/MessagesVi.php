@@ -1526,7 +1526,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 'recentchanges'                     => 'Thay đổi gần đây',
 'recentchanges-legend'              => 'Tùy chọn thay đổi gần đây',
-'recentchanges-summary'             => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
+'recentchangestext'                 => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
 'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
 'recentchanges-label-newpage'       => 'Bản sửa này tạo ra trang mới',
 'recentchanges-label-minor'         => 'Đây là một sửa đổi nhỏ',
@@ -3015,13 +3015,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Chiều ngang',
@@ -3036,6 +3030,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
 'exif-xresolution'                 => 'Phân giải theo chiều ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
+'exif-resolutionunit'              => 'Đơn vị phân giải X và Y',
 'exif-stripoffsets'                => 'Vị trí dữ liệu hình',
 'exif-rowsperstrip'                => 'Số hàng trên mỗi mảnh',
 'exif-stripbytecounts'             => 'Số byte trên mỗi mảnh nén',
@@ -3281,11 +3276,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsspeed-k' => 'Kilômét một giờ',
 'exif-gpsspeed-m' => 'Dặm một giờ',
 'exif-gpsspeed-n' => 'Hải lý một giờ',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilômét',
-'exif-gpsdestdistance-m' => 'Dặm Anh',
-'exif-gpsdestdistance-n' => 'Hải lý',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',

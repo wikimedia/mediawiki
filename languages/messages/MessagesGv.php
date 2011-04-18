@@ -649,7 +649,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'nchanges'                       => '$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}',
 'recentchanges'                  => "Caghlaaghyn s'noa",
 'recentchanges-legend'           => "Reihyssyn da ny caghlaaghyn s'noa",
-'recentchanges-summary'          => "Shirrey ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
+'recentchangestext'              => "Shirrey ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => 'Lorgey ny caghlaaghyn jeianagh er y wiki ayns y veaghey shoh.',
 'rcnote'                         => "Ny ta heese, she {{PLURAL:$1|ny '''$1''' caghlaa|yn '''$1''' chaghlaa|ny '''$1''' chaghlaa|ny '''$1''' caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny '''$2''' laa|yn '''$2''' laa|ny '''$2''' laa|ny '''$2''' laaghyn}} s'jerree, kiart ec $4, $5.",
 'rcnotefrom'                     => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
@@ -1267,13 +1267,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'       => 'Lheead',
@@ -1281,6 +1275,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 'exif-ycbcrpositioning' => 'Soie Y as C',
 'exif-xresolution'      => 'Cruinnys co-chruinnagh',
 'exif-yresolution'      => 'Cruinnys pontreilagh',
+'exif-resolutionunit'   => 'Unnid chruinnys X as Y',
 'exif-imagedescription' => 'Ennym y chochaslys',
 'exif-make'             => 'Jeantagh y hamraig',
 'exif-artist'           => 'Ughtar',

@@ -1587,7 +1587,7 @@ Esta informação será pública.',
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
 'recentchanges'                     => 'Mudanças recentes',
 'recentchanges-legend'              => 'Opções das mudanças recentes',
-'recentchanges-summary'             => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
+'recentchangestext'                 => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
 'recentchanges-feed-description'    => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 'recentchanges-label-newpage'       => 'Esta edição criou uma página nova',
 'recentchanges-label-minor'         => 'Esta é uma edição menor',
@@ -3052,20 +3052,14 @@ Quaisquer outros links nessa mesma linha são considerados excepções (ou seja,
 Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes adicionais',
-'metadata-fields'   => 'Os campos de metadados de imagens listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados estiver recolhida. Por omissão, outros campos estarão ocultos.
+'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados não estiver no modo "expandida". Por omissão, outros campos estarão ocultos.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largura',
@@ -3080,6 +3074,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-ycbcrpositioning'            => 'Posicionamento Y e C',
 'exif-xresolution'                 => 'Resolução horizontal',
 'exif-yresolution'                 => 'Resolução vertical',
+'exif-resolutionunit'              => 'Unidade de resolução X e Y',
 'exif-stripoffsets'                => 'Localização dos dados da imagem',
 'exif-rowsperstrip'                => 'Número de linhas por tira',
 'exif-stripbytecounts'             => 'Bytes por tira comprimida',
@@ -3320,11 +3315,6 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilómetros',
-'exif-gpsdestdistance-m' => 'Milhas',
-'exif-gpsdestdistance-n' => 'Miles náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',

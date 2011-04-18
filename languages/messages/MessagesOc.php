@@ -1507,7 +1507,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'nchanges'                          => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges'                     => 'Darrièrs cambiaments',
 'recentchanges-legend'              => 'Opcions dels darrièrs cambiaments',
-'recentchanges-summary'             => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
+'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flux.",
 'recentchanges-label-newpage'       => 'Aquesta modificacion a creat una pagina novèla',
 'recentchanges-label-minor'         => 'Aqueste cambiament es menor',
@@ -2875,13 +2875,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largor',
@@ -2896,6 +2890,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-ycbcrpositioning'            => 'Posicionament YCbCr',
 'exif-xresolution'                 => 'Resolucion orizontala',
 'exif-yresolution'                 => 'Resolucion verticala',
+'exif-resolutionunit'              => 'Unitats de resolucion X e Y',
 'exif-stripoffsets'                => 'Emplaçament de las donadas de l’imatge',
 'exif-rowsperstrip'                => 'Nombre de linhas per benda',
 'exif-stripbytecounts'             => 'Talha en octets per benda',
@@ -3140,11 +3135,6 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-gpsspeed-k' => 'Quilomètres per ora',
 'exif-gpsspeed-m' => 'Miles per ora',
 'exif-gpsspeed-n' => 'Noses',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilomètres',
-'exif-gpsdestdistance-m' => 'Milas anglesas',
-'exif-gpsdestdistance-n' => 'Milas nauticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direccion vertadièra',

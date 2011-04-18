@@ -1292,7 +1292,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'nchanges'                          => '$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरु}}',
 'recentchanges'                     => 'नयाँ परिवर्तनहरु',
 'recentchanges-legend'              => 'हालैको परिवर्रन विकल्पहरु',
-'recentchanges-summary'             => 'विकिका भर्खरका परिवर्तनहरुलाई यस पृष्ठमा पहिल्याउने',
+'recentchangestext'                 => 'विकिका भर्खरका परिवर्तनहरुलाई यस पृष्ठमा पहिल्याउने',
 'recentchanges-feed-description'    => 'यो फिडमा रहेको विकीको सवैभन्दा अन्तिम परिवर्तनहरुको जानकारी राख्नुहोस्',
 'recentchanges-label-newpage'       => 'यो सम्पादनले नयाँ पृष्ठ निर्माण गरेको छ',
 'recentchanges-label-minor'         => 'यो साधारण सम्पादन हो',
@@ -2418,13 +2418,7 @@ $1को बन्देजको कारण : "$2" हो',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'चौडाइ',
@@ -2439,6 +2433,7 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-ycbcrpositioning'            => 'Y र C व्यवस्थापन',
 'exif-xresolution'                 => 'क्षैतिज संकल्प(resolution)',
 'exif-yresolution'                 => 'ऊर्ध्वाधर संकल्प(resolution)',
+'exif-resolutionunit'              => 'यूनिट एक्स र वाईको रिजोलुसन',
 'exif-stripoffsets'                => 'चित्र आँकड़ाको अवस्थिति',
 'exif-rowsperstrip'                => 'प्रतिपंक्ति पट्टीहरुको संख्या',
 'exif-jpeginterchangeformatlength' => 'JPEG आँकड़ाको बाइट',

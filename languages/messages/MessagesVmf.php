@@ -942,13 +942,7 @@ Bloos  dsajln, dii mi´m dsajchn * ôôfanga, wärn berigsichdichd. Un dä ärsc
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'  => 'brajdn',

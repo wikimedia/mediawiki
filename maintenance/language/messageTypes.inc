@@ -119,7 +119,6 @@ $wgIgnoredMessages = array(
 	'pubmedurl',
 	'randompage-url',
 	'recentchanges-url',
-	'recentchangestext',
 	'revision-info-current',
 	'revision-nav',
 	'rfcurl',

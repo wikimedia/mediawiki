@@ -1397,7 +1397,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',
 'recentchanges'                     => 'Lètste verangeringe',
 'recentchanges-legend'              => 'Opties veur recènte verangeringe',
-'recentchanges-summary'             => 'op dees pagina kins doe de recènte verangeringe in deze wiki bekieke.',
+'recentchangestext'                 => 'op dees pagina kins doe de recènte verangeringe in deze wiki bekieke.',
 'recentchanges-feed-description'    => 'Volg de meis recente bewerkinge in deze wiki via deze feed.',
 'recentchanges-label-newpage'       => "Mit dees verangering is 'n nuuj pagina aangemaak",
 'recentchanges-label-minor'         => "Dit is 'n klein bewirking",
@@ -2725,13 +2725,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breidte',
@@ -2746,6 +2740,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-ycbcrpositioning'            => 'Y- en C-positionering',
 'exif-xresolution'                 => 'Horizontale resolutie',
 'exif-yresolution'                 => 'Verticale resolutie',
+'exif-resolutionunit'              => 'Einheid X en Y resolutie',
 'exif-stripoffsets'                => 'Locatie aafbeildingsgegaeves',
 'exif-rowsperstrip'                => 'Rie per strip',
 'exif-stripbytecounts'             => 'Bytes per gecomprimeerde strip',

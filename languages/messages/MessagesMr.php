@@ -1306,7 +1306,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'nchanges'                          => '$1 {{PLURAL:$1|बदल|बदल}}',
 'recentchanges'                     => 'अलीकडील बदल',
 'recentchanges-legend'              => 'अलीकडील बदल पर्याय',
-'recentchanges-summary'             => 'विकितील अलीकडील बदल या पानावर दिसतात.',
+'recentchangestext'                 => 'विकितील अलीकडील बदल या पानावर दिसतात.',
 'recentchanges-feed-description'    => 'या रसदीमधील विकीवर झालेले सर्वात अलीकडील बदल पहा.',
 'rcnote'                            => "खाली $4, $5 पर्यंतचे गेल्या {{PLURAL:$2|'''१''' दिवसातील|'''$2''' दिवसांतील}} {{PLURAL:$1|शेवटचा '''1''' बदल|शेवटचे '''$1''' बदल}} दिलेले आहेत.",
 'rcnotefrom'                        => 'खाली <b>$2</b> पासूनचे (<b>$1</b> किंवा कमी) बदल दाखवले आहेत.',
@@ -2383,13 +2383,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'रूंदी',
@@ -2404,6 +2398,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Y आणि C प्रतिस्थापना (पोझीशनींग)',
 'exif-xresolution'                 => 'समांतर रिझोल्यूशन',
 'exif-yresolution'                 => 'उभे रिझोल्यूशन',
+'exif-resolutionunit'              => 'X आणि Y रिझोल्यूशन चे मानक प्रमाण',
 'exif-stripoffsets'                => 'चित्रविदा स्थान',
 'exif-rowsperstrip'                => 'प्रत्येक पट्टीतील ओळींची संख्या',
 'exif-stripbytecounts'             => 'प्रत्येक आकुंचीत पट्टीतील बाईट्सची संख्या',

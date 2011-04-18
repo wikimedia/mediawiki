@@ -1498,7 +1498,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',
 'recentchanges'                     => 'Siste endringar',
 'recentchanges-legend'              => 'Alternativ for siste endringar',
-'recentchanges-summary'             => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
+'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
 'recentchanges-label-newpage'       => 'Denne redigeringa oppretta ei ny side',
 'recentchanges-label-minor'         => 'Dette er ei mindre endring',
@@ -2836,13 +2836,7 @@ Dei andre felta er gøymde som standard.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breidd',
@@ -2857,6 +2851,7 @@ Dei andre felta er gøymde som standard.
 'exif-ycbcrpositioning'            => 'Y- og C-posisjon',
 'exif-xresolution'                 => 'Oppløysing i breidda',
 'exif-yresolution'                 => 'Oppløysing i høgda',
+'exif-resolutionunit'              => 'Eining for X- og Y-oppløysing',
 'exif-stripoffsets'                => 'Plassering for biletdata',
 'exif-rowsperstrip'                => 'Tal rader per stripe',
 'exif-stripbytecounts'             => 'Tal byte per kompimerte stripe',
@@ -3096,11 +3091,6 @@ Dei andre felta er gøymde som standard.
 'exif-gpsspeed-k' => 'Kilometer per time',
 'exif-gpsspeed-m' => 'Engelsk mil per time',
 'exif-gpsspeed-n' => 'Knop',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Miles',
-'exif-gpsdestdistance-n' => 'Nautiske mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',

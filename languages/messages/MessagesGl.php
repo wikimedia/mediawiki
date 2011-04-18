@@ -1490,7 +1490,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchanges-legend'              => 'Opcións dos cambios',
-'recentchanges-summary'             => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
+'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki nesta fonte de novas.',
 'recentchanges-label-newpage'       => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor'         => 'Esta é unha edición pequena',
@@ -2959,13 +2959,7 @@ Os demais agocharanse por omisión.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ancho',
@@ -2980,6 +2974,7 @@ Os demais agocharanse por omisión.
 'exif-ycbcrpositioning'            => 'Posicionamentos Y e C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
+'exif-resolutionunit'              => 'Unidade de resolución X e Y',
 'exif-stripoffsets'                => 'Localización dos datos da imaxe',
 'exif-rowsperstrip'                => 'Número de filas por tira',
 'exif-stripbytecounts'             => 'Bytes por tira comprimida',
@@ -3220,11 +3215,6 @@ Os demais agocharanse por omisión.
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nós',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilómetros',
-'exif-gpsdestdistance-m' => 'Millas',
-'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección verdadeira',

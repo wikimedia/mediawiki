@@ -305,11 +305,11 @@ $messages = array(
 'userrights-user-editname' => 'މެންބަރުނަން ލިޔުއްވާ:',
 
 # Recent changes
-'recentchanges'         => 'ފަހު ބަދަލުތައް',
-'recentchanges-summary' => 'މި ވިކިޕީޑިޔާ އަށް ގެނެވިފައިވާ އެންމެ ފަހުގެ ބަދަލުތައް މި ޞަފްހާ އިން ބައްލަވާ!',
-'diff'                  => 'ފަރަގު',
-'hide'                  => 'ފޮރުވާ',
-'show'                  => 'ދައްކަވާ',
+'recentchanges'     => 'ފަހު ބަދަލުތައް',
+'recentchangestext' => 'މި ވިކިޕީޑިޔާ އަށް ގެނެވިފައިވާ އެންމެ ފަހުގެ ބަދަލުތައް މި ޞަފްހާ އިން ބައްލަވާ!',
+'diff'              => 'ފަރަގު',
+'hide'              => 'ފޮރުވާ',
+'show'              => 'ދައްކަވާ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'ގުޅުންހުރި ބަދަލުތައް',

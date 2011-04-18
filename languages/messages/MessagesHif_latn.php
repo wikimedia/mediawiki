@@ -1287,7 +1287,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'nchanges'                          => '$1 {{PLURAL:$1|badlao|badlao}}',
 'recentchanges'                     => 'Nawaa badlao',
 'recentchanges-legend'              => 'Nawaa badlao options',
-'recentchanges-summary'             => 'Wiki me ii panna ke nawaa badlao pe dhyan rakho.',
+'recentchangestext'                 => 'Wiki me ii panna ke nawaa badlao pe dhyan rakho.',
 'recentchanges-feed-description'    => 'Abhi haali me bhae ii wiki ke feed me ke track karo.',
 'recentchanges-label-newpage'       => 'Ii badlao ek nawaa panna banais hae',
 'recentchanges-label-minor'         => 'Ii ek chhota badlao hae',
@@ -2670,13 +2670,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Chaurrai',
@@ -2691,6 +2685,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-ycbcrpositioning'            => 'Y aur C ke jagha',
 'exif-xresolution'                 => 'Baraabar ke resolution',
 'exif-yresolution'                 => 'Kharraa resolution',
+'exif-resolutionunit'              => 'X aur Y ke unit ke resolution',
 'exif-stripoffsets'                => 'Chapa ke aankrraa ke jagha',
 'exif-rowsperstrip'                => 'Ek strip me etna row hae',
 'exif-stripbytecounts'             => 'Ek compressed strip pe ketna byte',

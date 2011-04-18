@@ -1367,7 +1367,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'nchanges'                          => '$1 {{PLURAL:$1|Änderig|Änderige}}',
 'recentchanges'                     => 'Letschti Änderige',
 'recentchanges-legend'              => 'Optione vu dr Aazeig',
-'recentchanges-summary'             => 'Uff däre Syte chönne Si die letschte Änderige in däm Wiki aaluege.',
+'recentchangestext'                 => 'Uff däre Syte chönne Si die letschte Änderige in däm Wiki aaluege.',
 'recentchanges-feed-description'    => 'Di letschten Änderige vo {{SITENAME}} i däm Feed abonniere.',
 'recentchanges-label-newpage'       => 'Die Bearbeitig het e neji Syte aagleit',
 'recentchanges-label-minor'         => 'Des isch e chleini Änderig',
@@ -2727,13 +2727,7 @@ Anderi Metadate sy standardmäßig versteckt.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breiti',
@@ -2748,6 +2742,7 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-ycbcrpositioning'            => 'Y un C Positionierig',
 'exif-xresolution'                 => 'Horizontali Uflesig',
 'exif-yresolution'                 => 'Vertikali Uflesig',
+'exif-resolutionunit'              => 'Masseinheit vu dr Uflesig',
 'exif-stripoffsets'                => 'Bilddate-Versatz',
 'exif-rowsperstrip'                => 'Aazahl vu dr Zyylete pro Streife',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streife',
@@ -2988,11 +2983,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Chnote',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Myle',
-'exif-gpsdestdistance-n' => 'Seemyle',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächligi Richtig',

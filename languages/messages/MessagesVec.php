@@ -1371,7 +1371,7 @@ In più te pol anca farte scrìvar da altri tramite la to pagina personale o la 
 'nchanges'                          => '$1 {{PLURAL:$1|canbiamento|canbiamenti}}',
 'recentchanges'                     => 'Ultimi canbiamenti',
 'recentchanges-legend'              => 'Prefarense par i ultimi canbiamenti',
-'recentchanges-summary'             => 'Qua se vede i ultimi canbiamenti fati a sto sito.',
+'recentchangestext'                 => 'Qua se vede i ultimi canbiamenti fati a sto sito.',
 'recentchanges-feed-description'    => 'Tien tracia dei ultimi canbiamenti fati a sto sito',
 'recentchanges-label-newpage'       => 'Sta modifica la ga creà na pagina nova',
 'recentchanges-label-minor'         => 'Sto qua el xe un canbiamento picenin',
@@ -2698,13 +2698,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largheza',
@@ -2719,6 +2713,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-ycbcrpositioning'            => 'Posizionamento conponenti Y e C',
 'exif-xresolution'                 => 'Risoluzion orixontałe',
 'exif-yresolution'                 => 'Risoluzion verticałe',
+'exif-resolutionunit'              => 'Unità de mixura risoluzion X e Y',
 'exif-stripoffsets'                => 'Posizion de i dati imagine',
 'exif-rowsperstrip'                => 'Numero righe par striscia',
 'exif-stripbytecounts'             => 'Nùmaro de byte par strìssia conpressa',
@@ -2965,11 +2960,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-gpsspeed-k' => 'Chiłometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Chilometri',
-'exif-gpsdestdistance-m' => 'Mija',
-'exif-gpsdestdistance-n' => 'Mija nàutiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Diression reałe',

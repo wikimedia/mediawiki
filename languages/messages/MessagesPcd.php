@@ -849,13 +849,7 @@ Chés eutes cans is s'ront muchés pèr défeut.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # External editor support
 'edit-externally'      => "Éditer ch'fichié-lo aveuc eune éstérne aplicachon",

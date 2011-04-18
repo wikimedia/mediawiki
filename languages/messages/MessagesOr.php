@@ -133,9 +133,6 @@ $messages = array(
 'anontalk'      => 'ଏହି ଆଇ.ପି. ଠିକଣା ଉପରେ ଆଲୋଚନା',
 'navigation'    => 'ଦିଗବାରେଣି',
 
-# Vector skin
-'vector-view-create' => 'ତିଆରି',
-
 'errorpagetitle'   => 'ଭୁଲ',
 'tagline'          => '{{SITENAME}} ରୁ',
 'help'             => 'ସାହାଜ୍ୟ',
@@ -145,7 +142,6 @@ $messages = array(
 'searcharticle'    => 'ଯିବା',
 'history'          => 'ଫାଇଲ ଇତିହାସ',
 'history_short'    => 'ଇତିହାସ',
-'info_short'       => 'ଖବର',
 'printableversion' => 'ଛପାହୋଇପାରିବା ଫରଦ',
 'permalink'        => 'ସବୁଦିନିଆ ଲିଁକ',
 'print'            => 'ପ୍ରିଣ୍ଟ କରିବା',
@@ -160,7 +156,6 @@ $messages = array(
 'protect_change'   => 'ବଦଳାଇବା',
 'newpage'          => 'ନୂଆ ଫରଦ',
 'talkpagelinktext' => 'କଥାଭାଷା',
-'specialpage'      => 'ବିଶେଷ ଫରଦ',
 'personaltools'    => 'ନିଜର ଟୁଲ',
 'talk'             => 'ଆଲୋଚନା',
 'views'            => 'ଦେଖା',
@@ -213,7 +208,6 @@ $messages = array(
 'nstab-special'  => 'ବିଶେଷ ଫରଦ',
 'nstab-project'  => 'ପ୍ରକଳ୍ପ ଫରଦ',
 'nstab-image'    => 'ଫାଇଲ',
-'nstab-template' => 'ଟେଁପଲେଟ',
 'nstab-category' => 'ବିଭାଗ',
 
 # General errors
@@ -469,7 +463,6 @@ $messages = array(
 
 # Undelete
 'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବା',
-'undeletecomment'        => 'କାରଣ:',
 'undelete-search-submit' => 'ଖୋଜିବା',
 
 # Namespace form on various pages
@@ -502,7 +495,6 @@ $messages = array(
 'whatlinkshere-filters'    => 'ଫିଲଟରସବୁ',
 
 # Block/unblock
-'blocklist-reason'   => 'କାରଣ',
 'ipblocklist-submit' => 'ଖୋଜିବା',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
 'unblocklink'        => 'ଛାଡ଼ିବା',
@@ -601,21 +593,13 @@ $messages = array(
 'edit-externally-help' => '(ଆହୁରି ବି [http://www.mediawiki.org/wiki/Manual:External_editors ସଜାଡିବା ନିର୍ଦେଶ] ଦେଖନ୍ତୁ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ସବୁ',
-'imagelistall'     => 'ସବୁ',
-'watchlistall2'    => 'ସବୁ',
-'namespacesall'    => 'ସବୁ',
-'monthsall'        => 'ସବୁ',
-'limitall'         => 'ସବୁ',
-
-# Special:FilePath
-'filepath-page' => 'ଫାଇଲ:',
+'namespacesall' => 'ସବୁ',
+'monthsall'     => 'ସବୁ',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'ଖୋଜିବା',
 
 # Special:SpecialPages
-'specialpages'             => 'ନିଆରା ଫରଦ',
-'specialpages-group-login' => 'ଲଗିନ / ଖାତା ଖୋଲି',
+'specialpages' => 'ନିଆରା ଫରଦ',
 
 );

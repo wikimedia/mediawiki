@@ -1323,7 +1323,7 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'nchanges'                          => '$1 {{PLURAL:$1|ئۆزگەرتىش|ئۆزگەرتىش}}',
 'recentchanges'                     => 'يېقىنقى ئۆزگەرتىشلەر',
 'recentchanges-legend'              => 'يېقىنقى ئۆزگەرتىش تاللانمىسى',
-'recentchanges-summary'             => 'بۇ wiki نىڭ يېقىنقى ئۆزگىرىشىنى ئىز قوغلا.',
+'recentchangestext'                 => 'بۇ wiki نىڭ يېقىنقى ئۆزگىرىشىنى ئىز قوغلا.',
 'recentchanges-feed-description'    => 'بۇ قانالنىڭ wiki دىكى يېقىنقى ئۆزگىرىشىنى ئىز قوغلا.',
 'recentchanges-label-newpage'       => 'بۇ قېتىملىق تەھىر يېڭى بەتتىن بىرنى قۇرىدۇ',
 'recentchanges-label-minor'         => 'بۇ ئازراقلا تەھرىرلەش',
@@ -2699,13 +2699,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'كەڭلىك',
@@ -2720,6 +2714,7 @@ $1',
 'exif-ycbcrpositioning'            => 'سېرىق ۋە ئاچ قىزىل سەپلىمىسى',
 'exif-xresolution'                 => 'توغرىسىغا پەرق ئېتىش نىسبىتى',
 'exif-yresolution'                 => 'بويىغا پەرق ئېتىش نىسبىتى',
+'exif-resolutionunit'              => 'X ۋە Y ئوقى پەرق ئېتىش نىسبىتى بىرلىكى',
 'exif-stripoffsets'                => 'سۈرەت سانلىق مەلۇمات ئورنى',
 'exif-rowsperstrip'                => 'ھەر بىر تاسماقنىڭ قۇر سانى',
 'exif-stripbytecounts'             => 'ھەر بىر پرىسلانغان تاسماقنىڭ بايت سانى',

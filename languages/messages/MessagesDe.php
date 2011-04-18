@@ -1612,7 +1612,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'nchanges'                          => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
 'recentchanges'                     => 'Letzte Änderungen',
 'recentchanges-legend'              => 'Anzeigeoptionen',
-'recentchanges-summary'             => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
+'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Neue Seite',
 'recentchanges-label-minor'         => 'Kleine Änderung',
@@ -3057,21 +3057,14 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'metadata-help'     => 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
 'metadata-expand'   => 'Erweiterte Details einblenden',
 'metadata-collapse' => 'Erweiterte Details ausblenden',
-'metadata-fields'   => 'Die folgenden Felder der EXIF-Metadaten, die in diesem MediaWiki-Systemtext angegeben sind, werden auf Bildbeschreibungsseiten mit eingeklappter Metadatentabelle angezeigt.
-Weitere werden standardmäßig nicht angezeigt.
+'metadata-fields'   => 'Die folgenden Felder der EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt; weitere standardmäßig „eingeklappte“ Details können angezeigt werden.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breite',
@@ -3086,6 +3079,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-ycbcrpositioning'            => 'Y und C Positionierung',
 'exif-xresolution'                 => 'Horizontale Auflösung',
 'exif-yresolution'                 => 'Vertikale Auflösung',
+'exif-resolutionunit'              => 'Maßeinheit der Auflösung',
 'exif-stripoffsets'                => 'Bilddaten-Versatz',
 'exif-rowsperstrip'                => 'Anzahl Zeilen pro Streifen',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifen',
@@ -3107,8 +3101,8 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-colorspace'                  => 'Farbraum',
 'exif-componentsconfiguration'     => 'Bedeutung einzelner Komponenten',
 'exif-compressedbitsperpixel'      => 'Komprimierte Bits pro Pixel',
-'exif-pixelydimension'             => 'Bildbreite',
-'exif-pixelxdimension'             => 'Bildhöhe',
+'exif-pixelydimension'             => 'Gültige Bildbreite',
+'exif-pixelxdimension'             => 'Gültige Bildhöhe',
 'exif-usercomment'                 => 'Benutzerkommentare',
 'exif-relatedsoundfile'            => 'Zugehörige Tondatei',
 'exif-datetimeoriginal'            => 'Erfassungszeitpunkt',
@@ -3122,9 +3116,9 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-exposureprogram'             => 'Belichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spectral Sensitivity',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
-'exif-shutterspeedvalue'           => 'APEX-Belichtungszeitwert',
-'exif-aperturevalue'               => 'APEX-Blendenwert',
-'exif-brightnessvalue'             => 'APEX-Helligkeitswert',
+'exif-shutterspeedvalue'           => 'Belichtungszeitwert',
+'exif-aperturevalue'               => 'Blendenwert',
+'exif-brightnessvalue'             => 'Helligkeitswert',
 'exif-exposurebiasvalue'           => 'Belichtungsvorgabe',
 'exif-maxaperturevalue'            => 'Größte Blende',
 'exif-subjectdistance'             => 'Entfernung',
@@ -3186,76 +3180,10 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpsareainformation'          => 'Name des GPS-Gebietes',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialkorrektur',
-'exif-jpegfilecomment'             => 'JPEG-Dateikommentar',
-'exif-keywords'                    => 'Stichwörter',
-'exif-worldregioncreated'          => 'Weltregion in der das Foto aufgenommen wurde',
-'exif-countrycreated'              => 'Staat in dem das Foto aufgenommen wurde',
-'exif-countrycodecreated'          => 'Code für den Staat in dem das Foto aufgenommen wurde',
-'exif-provinceorstatecreated'      => 'Provinz oder Gliedstaat in dem das Foto aufgenommen wurde',
-'exif-citycreated'                 => 'Stadt in der das Foto aufgenommen wurde',
-'exif-sublocationcreated'          => 'Bereich der Stadt in der das Foto aufgenommen wurde',
-'exif-worldregiondest'             => 'Gezeigte Weltregionen',
-'exif-countrydest'                 => 'Gezeigter Staat',
-'exif-countrycodedest'             => 'Code für den gezeigten Staat',
-'exif-provinceorstatedest'         => 'Gezeigte Provinz oder angezeigter Gliedstaat',
-'exif-citydest'                    => 'Gezeigte Stadt',
-'exif-sublocationdest'             => 'Bereich der gezeigten Stadt',
 'exif-objectname'                  => 'Kurztitel',
-'exif-specialinstructions'         => 'Besondere Anweisungen',
-'exif-headline'                    => 'Titel',
-'exif-credit'                      => 'Namensnennung/ Veröffentlicher',
-'exif-source'                      => 'Quelle',
-'exif-editstatus'                  => 'Redaktioneller Status des Fotos',
-'exif-urgency'                     => 'Dringlichkeit',
-'exif-fixtureidentifier'           => 'Spaltenname',
-'exif-locationdest'                => 'Dargestellter Standort',
-'exif-locationdestcode'            => 'Code für den dargestellten Standort',
-'exif-objectcycle'                 => 'Veröffentlichungszeitraum während eines Tages für den dieses Medium bestimmt ist',
-'exif-contact'                     => 'Kontaktinformationen',
-'exif-writer'                      => 'Verfasser',
-'exif-languagecode'                => 'Sprache',
-'exif-iimversion'                  => 'IIM-Version',
-'exif-iimcategory'                 => 'Kategorie',
-'exif-iimsupplementalcategory'     => 'Zusätzliche Kategorien',
-'exif-datetimeexpires'             => 'Nicht verwenden nach',
-'exif-datetimereleased'            => 'Veröffentlicht am',
-'exif-originaltransmissionref'     => 'Code des Standorts von dem das Foto übermittelt wurde',
-'exif-identifier'                  => 'Kennung',
-'exif-lens'                        => 'Verwendetes Objektiv',
-'exif-serialnumber'                => 'Seriennummer der Kamera',
-'exif-cameraownername'             => 'Kamerabesitzer',
-'exif-label'                       => 'Bezeichnung',
-'exif-datetimemetadata'            => 'Datum zu dem die Metadaten letztmalig geändert wurden',
-'exif-nickname'                    => 'Gebräuchlicher Name des Fotos',
-'exif-rating'                      => 'Bewertung (aus 5)',
-'exif-rightscertificate'           => 'Rechteverwaltungszertifikat',
-'exif-copyrighted'                 => 'Urheberrechtsstatus',
-'exif-copyrightowner'              => 'Urheberrechtsinhaber',
-'exif-usageterms'                  => 'Nutzungsbedingungen',
-'exif-webstatement'                => 'Online-Urheberrechtsangabe',
-'exif-originaldocumentid'          => 'Eindeutige Kennung des ursprünglichen Dokuments',
-'exif-licenseurl'                  => 'URL der Urheberrechtsangabe (Lizenz)',
-'exif-morepermissionsurl'          => 'Alternative Lizenzinformationen',
-'exif-attributionurl'              => 'Bei Weiterverwendung dieses Werks, bitte verlinken auf:',
-'exif-preferredattributionname'    => 'Bei Weiterverwendung dieses Werks, bitte benennen:',
-'exif-pngfilecomment'              => 'PNG-Dateikommentar',
-'exif-disclaimer'                  => 'Haftungsausschluss',
-'exif-contentwarning'              => 'Inhaltswarnung',
-'exif-giffilecomment'              => 'GIF-Dateikommentar',
-'exif-intellectualgenre'           => 'Art des Mediums',
-'exif-subjectnewscode'             => 'Themencode',
-'exif-scenecode'                   => 'IPTC-Ansichtcode',
-'exif-event'                       => 'Dargestelltes Ereignis',
-'exif-organisationinimage'         => 'Dargestellte Organisation',
-'exif-personinimage'               => 'Dargestellte Person',
-'exif-originalimageheight'         => 'Bildhöhe vor dem Zuschneiden',
-'exif-originalimagewidth'          => 'Bildbreite vor dem Zuschneiden',
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',
-
-'exif-copyrighted-true'  => 'Geschützt',
-'exif-copyrighted-false' => 'Gemeinfrei',
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
@@ -3270,8 +3198,6 @@ Weitere werden standardmäßig nicht angezeigt.
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
-
-'exif-colorspace-65535' => 'Nicht kalibriert',
 
 'exif-componentsconfiguration-0' => 'Existiert nicht',
 
@@ -3336,8 +3262,6 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-sensingmethod-7' => 'Trilinearer Sensor',
 'exif-sensingmethod-8' => 'Farbraum linear sequentieller Sensor',
 
-'exif-filesource-3' => 'Digitale Standbildkamera',
-
 'exif-scenetype-1' => 'Normal',
 
 'exif-customrendered-0' => 'Standard',
@@ -3386,10 +3310,6 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpslongitude-e' => 'östl. Länge',
 'exif-gpslongitude-w' => 'westl. Länge',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} über dem Meeresspiegel',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} unter dem Meeresspiegel',
-
 'exif-gpsstatus-a' => 'Messung läuft',
 'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
@@ -3401,63 +3321,9 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knoten',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Meilen',
-'exif-gpsdestdistance-n' => 'Nautische Meilen',
-
-'exif-gpsdop-excellent' => 'Ausgezeichnet ($1)',
-'exif-gpsdop-good'      => 'Gut ($1)',
-'exif-gpsdop-moderate'  => 'Mittel ($1)',
-'exif-gpsdop-fair'      => 'Genau ($1)',
-'exif-gpsdop-poor'      => 'Schwach ($1)',
-
-'exif-objectcycle-a' => 'Nur morgens',
-'exif-objectcycle-p' => 'Nur abends',
-'exif-objectcycle-b' => 'Sowohl morgens und abends',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächliche Richtung',
 'exif-gpsdirection-m' => 'Magnetische Richtung',
-
-'exif-ycbcrpositioning-1' => 'Zentriert',
-'exif-ycbcrpositioning-2' => 'Benachbart',
-
-'exif-dc-contributor' => 'Beteiligte',
-'exif-dc-coverage'    => 'Örtlicher oder zeitlicher Rahmen des Mediums',
-'exif-dc-date'        => 'Datumsangaben',
-'exif-dc-publisher'   => 'Veröffentlicher',
-'exif-dc-relation'    => 'Ähnliche Medien',
-'exif-dc-rights'      => 'Rechte',
-'exif-dc-source'      => 'Medienherkunft',
-'exif-dc-type'        => 'Medientyp',
-
-'exif-rating-rejected' => 'Abgelehnt',
-
-'exif-isospeedratings-overflow' => 'Größer als 65535',
-
-'exif-iimcategory-ace' => 'Kunst, Kultur und Unterhaltung',
-'exif-iimcategory-clj' => 'Kriminalität und Recht',
-'exif-iimcategory-dis' => 'Katastrophen und Unfälle',
-'exif-iimcategory-fin' => 'Wirtschaft und Geschäfte',
-'exif-iimcategory-edu' => 'Bildung',
-'exif-iimcategory-evn' => 'Umwelt',
-'exif-iimcategory-hth' => 'Gesundheit',
-'exif-iimcategory-hum' => 'Interessensgebiet',
-'exif-iimcategory-lab' => 'Arbeit',
-'exif-iimcategory-lif' => 'Lifestyle und Freizeit',
-'exif-iimcategory-pol' => 'Politik',
-'exif-iimcategory-rel' => 'Religion und Glaube',
-'exif-iimcategory-sci' => 'Wissenschaft und Technologie',
-'exif-iimcategory-soi' => 'Soziale Themen',
-'exif-iimcategory-spo' => 'Sport',
-'exif-iimcategory-war' => 'Krieg, Konflikte und Unruhen',
-'exif-iimcategory-wea' => 'Wetter',
-
-'exif-urgency-normal' => 'Normal ($1)',
-'exif-urgency-low'    => 'Niedrig ($1)',
-'exif-urgency-high'   => 'Hoch ($1)',
-'exif-urgency-other'  => 'Benutzerdefinierte Priorität ($1)',
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',

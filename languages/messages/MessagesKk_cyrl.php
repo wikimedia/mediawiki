@@ -1340,7 +1340,7 @@ $3 келтірілген себебі: ''$2''",
 'nchanges'                          => '$1 өзгеріс',
 'recentchanges'                     => 'Жуықтағы өзгерістер',
 'recentchanges-legend'              => 'Жуықтағы өзгерістер баптаулары',
-'recentchanges-summary'             => 'Бұл бетте осы уикидегі болған жуықтағы өзгерістер байқалады.',
+'recentchangestext'                 => 'Бұл бетте осы уикидегі болған жуықтағы өзгерістер байқалады.',
 'recentchanges-feed-description'    => 'Бұл арнаменен уикидегі ең соңғы өзгерістер қадағаланады.',
 'recentchanges-label-minor'         => 'Бұл шағын өңдеме',
 'rcnote'                            => "$3 кезіне дейін — төменде соңғы {{PLURAL:$2|күндегі|'''$2''' күндегі}}, соңғы '''$1''' өзгеріс көрсетіледі.",
@@ -2465,13 +2465,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ені',
@@ -2486,6 +2480,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Y құрашы және C құрашы мекендеуі',
 'exif-xresolution'                 => 'Дерелей ажыратылымдығы',
 'exif-yresolution'                 => 'Тірелей ажыратылымдығы',
+'exif-resolutionunit'              => 'X және Y бойынша ажыратылымдық бірлігі',
 'exif-stripoffsets'                => 'Сурет дереректерінің жайғасуы',
 'exif-rowsperstrip'                => 'Белдік сайын жол саны',
 'exif-stripbytecounts'             => 'Қысымдалған белдік сайын байт саны',

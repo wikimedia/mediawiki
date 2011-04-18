@@ -953,7 +953,7 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'nchanges'                          => '$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}',
 'recentchanges'                     => 'Ulthimi mudìfigghi',
 'recentchanges-legend'              => 'Opzioni ulthimi mudifigghi',
-'recentchanges-summary'             => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
+'recentchangestext'                 => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'recentchanges-feed-description'    => 'Chisthu feed cunteni li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'rcnote'                            => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|so erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} a lu situ {{PLURAL:$2|i' l'ulthimi 24 ori|i' li '''$2''' dì passaddi}}; i dati so aggiornaddi a li $5 di lu $4.",
 'rcnotefrom'                        => "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da '''$2''' (finz'a '''$1''').",
@@ -1894,13 +1894,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                => 'Larghèzia',

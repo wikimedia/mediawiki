@@ -1289,7 +1289,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'nchanges'                          => '$1 {{PLURAL:$1|parobahan|parobahan}}',
 'recentchanges'                     => 'Anyar robah',
 'recentchanges-legend'              => 'Pilihan parobahan anyar',
-'recentchanges-summary'             => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
+'recentchangestext'                 => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
 'recentchanges-feed-description'    => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
 'recentchanges-label-newpage'       => 'Ieu parobahan bakal ngahasillkeun kaca anyar',
 'recentchanges-label-minor'         => 'Ieu éditan minor',
@@ -2389,13 +2389,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lega',
@@ -2408,6 +2402,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-ycbcrpositioning'            => 'Perenah Y jeung C',
 'exif-xresolution'                 => 'Résolusi horizontal',
 'exif-yresolution'                 => 'Résolusi tangtung',
+'exif-resolutionunit'              => 'Satuan résolusi X jeung Y',
 'exif-stripoffsets'                => 'Perenah data gambar',
 'exif-jpeginterchangeformat'       => 'Ofset ka JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bit data JPEG',

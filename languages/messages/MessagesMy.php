@@ -903,7 +903,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'nchanges'                          => 'ပြောင်းလဲချက် $1 {{PLURAL:$1|ခု|ခု}}',
 'recentchanges'                     => 'လတ်​တ​လောအ​ပြောင်း​အ​လဲ​',
 'recentchanges-legend'              => 'လတ်တလောအပြောင်းအလဲများအတွက် ရွေးချယ်စရာများ',
-'recentchanges-summary'             => 'ဤစာမျက်နှာတွင် ဝီကီ၏ လတ်တလောပြောင်းလဲမှုများကို နောက်ကြောင်းခံလိုက်ရန်',
+'recentchangestext'                 => 'ဤစာမျက်နှာတွင် ဝီကီ၏ လတ်တလောပြောင်းလဲမှုများကို နောက်ကြောင်းခံလိုက်ရန်',
 'recentchanges-feed-description'    => 'ဤ feed ထဲတွင် ဝီကီ၏ လတ်တလောပြောင်းလဲမှုများကို နောက်ကြောင်းခံလိုက်ရန်',
 'recentchanges-label-newpage'       => 'ဤတည်းဖြတ်မှုသည် စာမျက်နှာအသစ်ကို ဖန်တီးခဲ့သည်။',
 'recentchanges-label-minor'         => 'အရေးမကြီးသော ​ပြင်​ဆင်​မှု ​ဖြစ်​သည်​',
@@ -1686,13 +1686,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'          => 'အကျယ်',

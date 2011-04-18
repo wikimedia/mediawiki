@@ -1146,13 +1146,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Ancho',
