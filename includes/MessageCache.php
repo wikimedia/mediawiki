@@ -790,13 +790,13 @@ class MessageCache {
 
 	/**
 	 * @param $text string
-	 * @param $title Title
+	 * @param $string Title|string
 	 * @param $interface bool
 	 * @param $linestart bool
 	 * @param $language
 	 * @return ParserOutput
 	 */
-	public function parse( $text, $title = null, $linestart = true, $interface = false, $language = null  ) {
+	public function parse( $text, $key, $linestart = true, $interface = false, $language = null  ) {
 		if ( $this->mInParser ) {
 			return htmlspecialchars( $text );
 		}
@@ -811,6 +811,9 @@ class MessageCache {
 			$popts->setTargetLanguage( $language );
 		}
 
+		if ( !($key instanceof Title) ) {
+			$title = Title::newFromText( $key, NS_MEDIAWIKI );
+		}
 		$this->mInParser = true;
 		$res = $parser->parse( $text, $title, $popts, $linestart );
 		$this->mInParser = false;
