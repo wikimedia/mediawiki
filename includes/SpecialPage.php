@@ -466,7 +466,7 @@ class SpecialPage {
 	 * Default execute method
 	 * Checks user permissions, calls the function given in mFunction
 	 *
-	 * This may be overridden by subclasses.
+	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 */
 	function execute( $par ) {
 		$this->setHeaders();
