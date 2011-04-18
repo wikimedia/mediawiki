@@ -407,6 +407,23 @@ class ReadOnlyError extends ErrorPageError {
 }
 
 /**
+ * Show an error when the user hits a rate limit
+ */
+class ThrottledError extends ErrorPageError {
+	public function __construct(){
+		parent::__construct(
+			'actionthrottled',
+			'actionthrottledtext'
+		);
+	}
+	public function report(){
+		global $wgOut;
+		$wgOut->setStatusCode( 503 );
+		return parent::report();
+	}
+}
+
+/**
  * Show an error when the user tries to do something whilst blocked
  */
 class UserBlockedError extends ErrorPageError {

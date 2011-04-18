@@ -2158,16 +2158,7 @@ class OutputPage {
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
-		$this->setPageTitle( wfMsg( 'actionthrottled' ) );
-		$this->setRobotPolicy( 'noindex,follow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-		$this->clearHTML();
-		$this->setStatusCode( 503 );
-		$this->addWikiMsg( 'actionthrottledtext' );
-
-		$this->returnToMain( null, $this->getTitle() );
+		throw new ThrottledError;
 	}
 
 	/**
