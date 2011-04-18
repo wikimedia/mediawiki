@@ -1340,7 +1340,13 @@ Ang iban ay pagataguon sang default.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Islan ini nga file gamit ang eksternal nga aplikasyon',

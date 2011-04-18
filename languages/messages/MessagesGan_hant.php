@@ -1871,7 +1871,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',
@@ -1886,7 +1892,6 @@ $1',
 'exif-ycbcrpositioning'            => '黃色同洋紅配置',
 'exif-xresolution'                 => '橫解析度',
 'exif-yresolution'                 => '直解析度',
-'exif-resolutionunit'              => 'X軸同Y軸嗰解析度單位',
 'exif-stripoffsets'                => '圖像資料位置',
 'exif-rowsperstrip'                => '每帶行數',
 'exif-stripbytecounts'             => '每壓縮帶byte數',

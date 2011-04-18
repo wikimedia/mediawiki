@@ -1510,7 +1510,13 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'Largjece',

@@ -1751,7 +1751,13 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'laard',
@@ -1766,7 +1772,6 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-ycbcrpositioning'            => 'lwada dyal Y o C',
 'exif-xresolution'                 => 'ddiqa lofoqia',
 'exif-yresolution'                 => 'diqa raissia',
-'exif-resolutionunit'              => 'wihdat tahlil X o Y',
 'exif-stripoffsets'                => 'mawqiaa bayanat sora',
 'exif-rowsperstrip'                => 'adad sofof lkol chariha',
 'exif-stripbytecounts'             => 'byte lkol chariha mdghota',

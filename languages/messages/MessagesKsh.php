@@ -3128,7 +3128,13 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breejd',
@@ -3143,7 +3149,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-ycbcrpositioning'            => 'Y un C Posizjioneerung',
 'exif-xresolution'                 => 'Oplösung fun Lenks noh Räähß',
 'exif-yresolution'                 => 'Oplösung fun Bovve noh Onge',
-'exif-resolutionunit'              => 'De Moßeinheit för de Oplösung en X- un Y-Reschtong',
 'exif-stripoffsets'                => 'Der Aanfang fun de Date fun däm Beld en dä Dattei',
 'exif-rowsperstrip'                => 'De Aanzahl Reije en jedem Striefe',
 'exif-stripbytecounts'             => 'De Aanzahl Bytes en jedem kompremierte Striefe',
@@ -3165,8 +3170,8 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-colorspace'                  => 'Färveroum',
 'exif-componentsconfiguration'     => 'Bedüggening fun all de enkele Komponente',
 'exif-compressedbitsperpixel'      => 'Aat fun de Kompreßjohn fun däm Beld',
-'exif-pixelydimension'             => 'Pixelle jöltije Beld-Breed',
-'exif-pixelxdimension'             => 'Pixelle jöltije Beld-Hühde',
+'exif-pixelydimension'             => 'De jöltije Beld-Breede en Pixelle',
+'exif-pixelxdimension'             => 'De jöltije Beld-Hühde en Pixelle',
 'exif-usercomment'                 => 'Aanmerkong fum Aanwender',
 'exif-relatedsoundfile'            => 'De Tondatei, di do bei jehööt',
 'exif-datetimeoriginal'            => 'Zickpunk fun de Opzeischnong fun de Date',
@@ -3180,9 +3185,9 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-exposureprogram'             => 'Beleeshtungsprojramm',
 'exif-spectralsensitivity'         => 'Emfendleschkeit för et Färvespäktrom',
 'exif-isospeedratings'             => 'Dem Fillem odder Sensor sing Emfindlischkeit (als ISO Wäät)',
-'exif-shutterspeedvalue'           => 'Jeschwendieschkeit fum Verschoß bem Beleeschte',
-'exif-aperturevalue'               => 'De Blend iere Wäät',
-'exif-brightnessvalue'             => 'De Hellishkeit',
+'exif-shutterspeedvalue'           => 'De Jeschwendeschkeit fum Verschloß bem Beleeschte en APEX Einheite',
+'exif-aperturevalue'               => 'De Blend iere Wäät en APEX Einheite',
+'exif-brightnessvalue'             => 'De Hellishkeit en APEX Einheite',
 'exif-exposurebiasvalue'           => 'Förjejovve Beleeschtung',
 'exif-maxaperturevalue'            => 'De Jrözte Blend ier Öffnong',
 'exif-subjectdistance'             => 'Affshtand nohm Motif',
@@ -3244,11 +3249,23 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsareainformation'          => 'Dä Name fum GPS-Jebeet',
 'exif-gpsdatestamp'                => 'GPS-Dattum',
 'exif-gpsdifferential'             => 'De Differenzjahl-Bereschtijong fum GPS',
+'exif-keywords'                    => 'Schlößelwööter',
 'exif-objectname'                  => 'Tittel en koot',
+'exif-headline'                    => 'Övverschreff',
+'exif-writer'                      => 'Schriiver',
+'exif-languagecode'                => 'Shprooch',
+'exif-iimcategory'                 => 'Saachjrupp udder Zoot',
+'exif-serialnumber'                => 'Däm Knipskaste sing Seerije-Nommer',
+'exif-intellectualgenre'           => 'De Zoot vun Enhallt',
+'exif-originalimageheight'         => 'De Hühde vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
+'exif-originalimagewidth'          => 'De Breede vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 
 # EXIF attributes
 'exif-compression-1' => 'Oohne Kompressjuhn',
 'exif-compression-6' => '<i lang="en">JPEG</i>',
+
+'exif-copyrighted-true'  => 'Häd_en Urhävverrääsch',
+'exif-copyrighted-false' => 'Es en de Allmende (jemeinfrei, <i lang="en">public domain</i>)',
 
 'exif-photometricinterpretation-6' => '<i lang="en">YCbCr</i>',
 
@@ -3335,7 +3352,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-sensingmethod-7' => 'Ene trilinejare sequenzjelle Sensor fö Färve',
 'exif-sensingmethod-8' => 'Ene linejare sequenzjelle Sensor fö Färve',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Ene onbewääschlesche dijitaale Knepskaste (<i lang="en">DSC</i>)',
 
 'exif-scenetype-1' => 'Normal — e tirek fotmafeet Beld',
 
@@ -3395,6 +3412,11 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsspeed-k' => 'Killomeeter en de Shtondt noh_m GPS',
 'exif-gpsspeed-m' => 'Miehle en de Shtondt noh_m GPS',
 'exif-gpsspeed-n' => 'Knote noh_m GPS',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Killometer',
+'exif-gpsdestdistance-m' => 'Meile',
+'exif-gpsdestdistance-n' => 'Seemeile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Rechtung noh_m GPS',

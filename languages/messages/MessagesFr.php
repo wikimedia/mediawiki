@@ -3055,7 +3055,13 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largeur',
@@ -3070,7 +3076,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-ycbcrpositioning'            => 'Positionnement YCbCr',
 'exif-xresolution'                 => 'Résolution horizontale',
 'exif-yresolution'                 => 'Résolution verticale',
-'exif-resolutionunit'              => 'Unité de résolution',
 'exif-stripoffsets'                => 'Emplacement des données de l’image',
 'exif-rowsperstrip'                => 'Nombre de lignes par bande',
 'exif-stripbytecounts'             => 'Taille en octets par bande',
@@ -3316,6 +3321,11 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsspeed-k' => 'Kilomètres à l’heure',
 'exif-gpsspeed-m' => 'Milles à l’heure',
 'exif-gpsspeed-n' => 'Nœud',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomètres',
+'exif-gpsdestdistance-m' => 'Milles',
+'exif-gpsdestdistance-n' => 'Milles marins',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Nord vrai',

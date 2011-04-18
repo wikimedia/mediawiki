@@ -2228,7 +2228,13 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-samplesperpixel'        => 'Oantal komponinten',

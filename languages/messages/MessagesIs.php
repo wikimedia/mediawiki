@@ -2200,7 +2200,13 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'Breidd',

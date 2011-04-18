@@ -1298,7 +1298,13 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Jüdeer dåtäi ma en äkstärn prugram beårbe',

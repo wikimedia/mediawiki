@@ -1267,7 +1267,13 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'       => 'Lheead',
@@ -1275,7 +1281,6 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 'exif-ycbcrpositioning' => 'Soie Y as C',
 'exif-xresolution'      => 'Cruinnys co-chruinnagh',
 'exif-yresolution'      => 'Cruinnys pontreilagh',
-'exif-resolutionunit'   => 'Unnid chruinnys X as Y',
 'exif-imagedescription' => 'Ennym y chochaslys',
 'exif-make'             => 'Jeantagh y hamraig',
 'exif-artist'           => 'Ughtar',

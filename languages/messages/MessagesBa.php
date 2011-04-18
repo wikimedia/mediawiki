@@ -2682,7 +2682,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Киңлек',
@@ -2697,7 +2703,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y һәм C өлөштәренең тәртибе',
 'exif-xresolution'                 => 'X күсәре буйынса асыҡлыҡ',
 'exif-yresolution'                 => 'Y күсәре буйынса асыҡлыҡ',
-'exif-resolutionunit'              => 'X һәм Y асыҡлыҡтарын үлсәү берәмеге',
 'exif-stripoffsets'                => 'Рәсем мәғлүмәте урынлашыуы',
 'exif-rowsperstrip'                => 'Бер бүлектә юлдар һаны',
 'exif-stripbytecounts'             => 'Ҡыҫылған бүлектә байттар һаны',

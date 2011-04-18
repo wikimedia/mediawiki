@@ -1506,22 +1506,23 @@ $1',
 'uploadstash-refresh'  => 'Билэлэр тиһиктэрин саҥардан биэр',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Киирии бобуллубут',
-'img-auth-nopathinfo'   => 'PATH_INFO суох.
+'img-auth-accessdenied'     => 'Киирии бобуллубут',
+'img-auth-nopathinfo'       => 'PATH_INFO суох.
 Эн сиэбэрин маннык сибидиэнньэни ыытар курдук туруоруута суох.
 Баҕар кини CGI олоҕурара буолуо ол иһин img_auth өйөөбөтө буолуо.
 Көр http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Көрдөөбүт суолуҥ эрдэттэн туруоруллубут хачайдыыр паапкаҕа сыһыана суох.',
-'img-auth-badtitle'     => 'Мантан «$1» сөптөөх ааты оҥорор кыах суох.',
-'img-auth-nologinnWL'   => 'Эн тиһиликкэ киирбэтэххин, уонна «$1» үрүҥ (көҥүллэммит) тиһиккэ киирбэт эбит.',
-'img-auth-nofile'       => '«$1» билэ суох.',
-'img-auth-isdir'        => 'Бу паапакаҕа «$1» киирэ сатыыгын.
+'img-auth-notindir'         => 'Көрдөөбүт суолуҥ эрдэттэн туруоруллубут хачайдыыр паапкаҕа сыһыана суох.',
+'img-auth-badtitle'         => 'Мантан «$1» сөптөөх ааты оҥорор кыах суох.',
+'img-auth-nologinnWL'       => 'Эн тиһиликкэ киирбэтэххин, уонна «$1» үрүҥ (көҥүллэммит) тиһиккэ киирбэт эбит.',
+'img-auth-nofile'           => '«$1» билэ суох.',
+'img-auth-isdir'            => 'Бу паапакаҕа «$1» киирэ сатыыгын.
 Билэлэргэ эрэ киирэр көҥүллэммит.',
-'img-auth-streaming'    => 'Ботуогунан биэрии «$1».',
-'img-auth-public'       => 'img_auth.php аналынан билэлэри сабыылаах биикиттэн таһаарыы буолар.
+'img-auth-streaming'        => 'Ботуогунан биэрии «$1».',
+'img-auth-public'           => 'img_auth.php аналынан билэлэри сабыылаах биикиттэн таһаарыы буолар.
 Бу биики аһаҕас.
 Онон img_auth.php араарыллыбыт.',
-'img-auth-noread'       => 'Кыттааччы «$1» ааҕарга көҥүлэ суох.',
+'img-auth-noread'           => 'Кыттааччы «$1» ааҕарга көҥүлэ суох.',
+'img-auth-bad-query-string' => 'URL алҕастаах',
 
 # HTTP errors
 'http-invalid-url'      => 'Алҕастаах URL: $1',
@@ -1880,6 +1881,10 @@ $1',
 'noemailtext'          => 'Бу кыттааччы e-mail аадырыһын эппэтэх.',
 'nowikiemailtitle'     => 'Сурук ыытар кыах суох',
 'nowikiemailtext'      => 'Бу кыттааччы сурук тутуон баҕарбат.',
+'emailnotarget'        => 'Суруйбут кыттааччыҥ суох эбэтэр аата алҕастаах.',
+'emailtarget'          => 'Суруйар киһиҥ аатын киллэр',
+'emailusername'        => 'Кыттааччы:',
+'emailusernamesubmit'  => 'Ыыт',
 'email-legend'         => '{{SITENAME}} атын кыттааччытыгар сурук ыытарга',
 'emailfrom'            => 'Кимтэн:',
 'emailto'              => 'Кимиэхэ:',
@@ -2728,14 +2733,20 @@ $1',
 'metadata-help'     => 'Бу билэҕэ цифровой камералар уонна сканердар эбэр ойуу туһунан информациялара баар. Билэ кэлин уларытыллыбыт буоллаҕына сорох кээмэйдэр билиҥҥи ойууга сөп түбэһиэ суохтарын сөп.',
 'metadata-expand'   => 'Эбии информацияны көрдөр',
 'metadata-collapse' => 'Эбии информацияны көрдөрүмэ',
-'metadata-fields'   => 'Манна баар метадааннайдар ойуу сирэйигэр куруук көстүөхтэрэ, атыттара көстүөхтэрэ суоҕа.
+'metadata-fields'   => 'Манна баар метадааннайдар ойуу кыччатыллыбыт сирэйигэр куруук көстүөхтэрэ, атыттара көрдөрүллүөхтэрэ суоҕа.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Кэтитэ',
@@ -2750,7 +2761,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y уонна C ханан тураллара',
 'exif-xresolution'                 => 'Сытыары разрешениета',
 'exif-yresolution'                 => 'Туруору разрешениета',
-'exif-resolutionunit'              => 'Разрешениены тугунан кээмэйдиэххэ',
 'exif-stripoffsets'                => 'Ойуу дааннайдара ханна баар буолара',
 'exif-rowsperstrip'                => 'Биир блокка төһө строка баар буолара',
 'exif-stripbytecounts'             => 'Хам тутуллубут блок кээмэйэ',
@@ -2772,8 +2782,8 @@ $1',
 'exif-colorspace'                  => 'Өҥ куйаара (пространство, space)',
 'exif-componentsconfiguration'     => 'Хас биирдии компонент суолтата',
 'exif-compressedbitsperpixel'      => 'Ойууну хам тутуу ньымата',
-'exif-pixelydimension'             => 'Ойуу дьиҥ кэтитэ',
-'exif-pixelxdimension'             => 'Ойуу дьиҥ үрдүгэ',
+'exif-pixelydimension'             => 'Ойуу кэтитэ',
+'exif-pixelxdimension'             => 'Ойуу үрдүгэ',
 'exif-usercomment'                 => 'Кыттааччы хос быһаарыыта',
 'exif-relatedsoundfile'            => 'Аудио-билэҕэ сыһыаннаах',
 'exif-datetimeoriginal'            => 'Оҥоһуллубут кэмэ',
@@ -2787,9 +2797,9 @@ $1',
 'exif-exposureprogram'             => 'Экспозиция бырагырааммата',
 'exif-spectralsensitivity'         => 'Спектр чувствительноһа',
 'exif-isospeedratings'             => 'ISO кээмэйэ',
-'exif-shutterspeedvalue'           => 'Объективы арыйыы кээмэйэ (Выдержка)',
-'exif-aperturevalue'               => 'Диафрагма',
-'exif-brightnessvalue'             => 'Сырдыга (яркость)',
+'exif-shutterspeedvalue'           => 'Объективы арыйыы түргэнэ (APEX выдержката)',
+'exif-aperturevalue'               => 'Диафрагма (APEX улахана)',
+'exif-brightnessvalue'             => 'Сырдыга (APEX яркоһа)',
 'exif-exposurebiasvalue'           => 'Экспозиция сыҕарыйыыта (компенсация)',
 'exif-maxaperturevalue'            => 'Диафрагма саамай улахан кээмэйэ (Maximum land aperture)',
 'exif-subjectdistance'             => 'Объект ырааҕа',
@@ -2852,6 +2862,10 @@ $1',
 'exif-gpsareainformation'          => 'GPS оройуонун аата',
 'exif-gpsdatestamp'                => 'GPS ыйа-күнэ',
 'exif-gpsdifferential'             => 'GPS көннөрүүтүн дифференциала',
+'exif-jpegfilecomment'             => 'JPEG билэ быһаарыыта',
+'exif-keywords'                    => 'Күлүүс тыллар',
+'exif-worldregioncreated'          => 'Хаартыска оҥоһуллубут аан дойду муннуга',
+'exif-countrycreated'              => 'Хаартыска оҥоһуллубут дойдута',
 'exif-objectname'                  => 'Кылгас аата',
 
 # EXIF attributes
@@ -2992,6 +3006,11 @@ $1',
 'exif-gpsspeed-k' => 'км/чаас',
 'exif-gpsspeed-m' => 'Миляны чааска',
 'exif-gpsspeed-n' => 'Узел',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километр',
+'exif-gpsdestdistance-m' => 'Миилэ',
+'exif-gpsdestdistance-n' => 'Байҕал миилэтэ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Дьиҥнээх',

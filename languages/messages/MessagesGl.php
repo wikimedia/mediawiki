@@ -2959,7 +2959,13 @@ Os demais agocharanse por omisión.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ancho',
@@ -2974,7 +2980,6 @@ Os demais agocharanse por omisión.
 'exif-ycbcrpositioning'            => 'Posicionamentos Y e C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
-'exif-resolutionunit'              => 'Unidade de resolución X e Y',
 'exif-stripoffsets'                => 'Localización dos datos da imaxe',
 'exif-rowsperstrip'                => 'Número de filas por tira',
 'exif-stripbytecounts'             => 'Bytes por tira comprimida',
@@ -3215,6 +3220,11 @@ Os demais agocharanse por omisión.
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilómetros',
+'exif-gpsdestdistance-m' => 'Millas',
+'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección verdadeira',

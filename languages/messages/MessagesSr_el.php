@@ -1314,7 +1314,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'right-reupload-shared'       => 'lokalno prepisivanje fajlova na deljenom skladištu medija',
 'right-upload_by_url'         => 'slanje datoteka preko URL adrese',
 'right-purge'                 => 'čišćenje keša stranice bez potvrde',
-'right-autoconfirmed'         => 'menjanje poluzaštićenih stranica',
+'right-autoconfirmed'         => 'uređivanje poluzaštićenih stranica',
 'right-bot'                   => 'korisnik je zapravo automatski proces (bot)',
 'right-nominornewtalk'        => 'neposedovanje malih izmena na stranama za razgovor okida prompt za novu poruku',
 'right-apihighlimits'         => 'korišćenje viših limita za upite iz API-ja',
@@ -2703,7 +2703,13 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2718,7 +2724,6 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 'exif-ycbcrpositioning'            => 'Razmeštaj komponenata Y i C',
 'exif-xresolution'                 => 'Horizonatalna rezolucija',
 'exif-yresolution'                 => 'Vertikalna rezolucija',
-'exif-resolutionunit'              => 'Jedinica rezolucije',
 'exif-stripoffsets'                => 'Položaj bloka podataka',
 'exif-rowsperstrip'                => 'Broj redova u bloku',
 'exif-stripbytecounts'             => 'Veličina kompresovanog bloka',
@@ -2961,6 +2966,11 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 'exif-gpsspeed-k' => 'Kilometri na čas',
 'exif-gpsspeed-m' => 'Milje na čas',
 'exif-gpsspeed-n' => 'Čvorovi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometara',
+'exif-gpsdestdistance-m' => 'Milja',
+'exif-gpsdestdistance-n' => 'Nautičkih milja',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravi pravac',

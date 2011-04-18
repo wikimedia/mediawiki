@@ -2698,7 +2698,13 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largheza',
@@ -2713,7 +2719,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-ycbcrpositioning'            => 'Posizionamento conponenti Y e C',
 'exif-xresolution'                 => 'Risoluzion orixontałe',
 'exif-yresolution'                 => 'Risoluzion verticałe',
-'exif-resolutionunit'              => 'Unità de mixura risoluzion X e Y',
 'exif-stripoffsets'                => 'Posizion de i dati imagine',
 'exif-rowsperstrip'                => 'Numero righe par striscia',
 'exif-stripbytecounts'             => 'Nùmaro de byte par strìssia conpressa',
@@ -2960,6 +2965,11 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-gpsspeed-k' => 'Chiłometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Chilometri',
+'exif-gpsdestdistance-m' => 'Mija',
+'exif-gpsdestdistance-n' => 'Mija nàutiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Diression reałe',

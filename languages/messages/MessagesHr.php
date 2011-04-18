@@ -2945,7 +2945,13 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2960,7 +2966,6 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-ycbcrpositioning'            => 'Razmještaj komponenata Y i C',
 'exif-xresolution'                 => 'Vodoravna razlučivost',
 'exif-yresolution'                 => 'Okomita razlučivost',
-'exif-resolutionunit'              => 'Jedinica razlučivosti',
 'exif-stripoffsets'                => 'Položaj bloka podataka',
 'exif-rowsperstrip'                => 'Broj redova u bloku',
 'exif-stripbytecounts'             => 'Veličina komprimiranog bloka',

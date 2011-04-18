@@ -2671,7 +2671,13 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 * isospeedratings
 * datetimeoriginal
 * exposuretime
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bratte',
@@ -2686,7 +2692,6 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-ycbcrpositioning'            => 'Y un C Positionierenge',
 'exif-xresolution'                 => 'Horizontoale Aplöösenge',
 'exif-yresolution'                 => 'Vertikoale Aplöösenge',
-'exif-resolutionunit'              => 'Mäite-Eenhaid fon ju Aplöösenge',
 'exif-stripoffsets'                => 'Bieldedoatenfersät',
 'exif-rowsperstrip'                => 'Antaal Riegen pro Striepe',
 'exif-stripbytecounts'             => 'Bytes pro komprimierten Striep',

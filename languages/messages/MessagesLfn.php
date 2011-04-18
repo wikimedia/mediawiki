@@ -943,7 +943,13 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sec. ($2)',

@@ -2068,7 +2068,13 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchón',

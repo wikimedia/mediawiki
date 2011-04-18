@@ -2706,7 +2706,13 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2721,7 +2727,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-ycbcrpositioning'            => 'Pozicioniranje Y i C',
 'exif-xresolution'                 => 'Horizontalna rezolucija',
 'exif-yresolution'                 => 'Vertikalna rezolucija',
-'exif-resolutionunit'              => 'Jedinice X i Y rezolucije',
 'exif-stripoffsets'                => 'Lokacija podataka slike',
 'exif-rowsperstrip'                => 'Broj redaka po liniji',
 'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
@@ -2845,7 +2850,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-1'     => 'sRGB',
+'exif-colorspace-65535' => 'FFFF.H',
 
 'exif-componentsconfiguration-0' => 'ne postoji',
 

@@ -2997,7 +2997,13 @@ Existen otros campos que se mantendrán ocultos por defecto.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchura',
@@ -3012,7 +3018,6 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-ycbcrpositioning'            => 'Posicionamientos Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
-'exif-resolutionunit'              => 'Unidad de resolución X e Y',
 'exif-stripoffsets'                => 'Localización de datos de imagen',
 'exif-rowsperstrip'                => 'Número de filas por banda',
 'exif-stripbytecounts'             => 'Bytes por banda comprimida',
@@ -3252,6 +3257,11 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsspeed-k' => 'Kilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nudos',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilómetros',
+'exif-gpsdestdistance-m' => 'Millas',
+'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección real',

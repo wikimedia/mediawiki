@@ -2738,7 +2738,13 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghëssa',
@@ -2753,7 +2759,6 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-ycbcrpositioning'            => 'Posissionament Y e C',
 'exif-xresolution'                 => 'Risolussion orizontal',
 'exif-yresolution'                 => 'Risolussion vertical',
-'exif-resolutionunit'              => "Unità d'amzura për le coordinà X e Y",
 'exif-stripoffsets'                => 'Posission dij dat dla figura',
 'exif-rowsperstrip'                => 'Nùmer ëd righe për banda',
 'exif-stripbytecounts'             => 'Bytes për banda compressa',

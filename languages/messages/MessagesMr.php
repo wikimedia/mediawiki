@@ -2383,7 +2383,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'रूंदी',
@@ -2398,7 +2404,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y आणि C प्रतिस्थापना (पोझीशनींग)',
 'exif-xresolution'                 => 'समांतर रिझोल्यूशन',
 'exif-yresolution'                 => 'उभे रिझोल्यूशन',
-'exif-resolutionunit'              => 'X आणि Y रिझोल्यूशन चे मानक प्रमाण',
 'exif-stripoffsets'                => 'चित्रविदा स्थान',
 'exif-rowsperstrip'                => 'प्रत्येक पट्टीतील ओळींची संख्या',
 'exif-stripbytecounts'             => 'प्रत्येक आकुंचीत पट्टीतील बाईट्सची संख्या',

@@ -1487,13 +1487,19 @@ Jikodo nke gị byá àzú na áhìrì nke òfu á bu nke nwéríkí gáfè, dí
 'metadata-collapse' => 'Zonari nkówá di ógólógó',
 'metadata-fields'   => 'Ómárí nso nke nkeji nke EXIF détùrù na ozi nká gí banyé na nlé ihü nhuunuche mgbè ómárí nso mgbe àgàdà gi dátù.
 Nke ozor gí zonari na áká onwe ha.
-* okíké
-* àtụ
-* úbochịógèmbuyá
-* háfùrù na anwü
-* onúf
-* nkówá íjè ISO
-* ógólógó focal',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'          => 'Àsáa',

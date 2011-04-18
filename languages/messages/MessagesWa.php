@@ -1425,7 +1425,13 @@ est raptiti. Les ôtes seront catchîs.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                => 'Lårdjeur',
@@ -1436,7 +1442,6 @@ est raptiti. Les ôtes seront catchîs.
 'exif-samplesperpixel'           => 'Nombe di compôzants',
 'exif-xresolution'               => "Finté d' coûtchî",
 'exif-yresolution'               => "Finté d' astampé",
-'exif-resolutionunit'            => "Unité pol finté d' coûtchî/astampé",
 'exif-datetime'                  => "Date ey eure ki l' fitchî a stî candjî",
 'exif-imagedescription'          => "Tite di l' imådje",
 'exif-make'                      => 'Måke del camera',

@@ -714,14 +714,19 @@ Ukʼaçxe na mulunan kʼontʼaktʼepe istʼisna oqʼopinot kʼabuli ixvenen. Mes
 'metadata-expand'   => 'Detayepe ko3ʼiri',
 'metadata-collapse' => 'Detayepe doşinaxi',
 'metadata-fields'   => 'Am butʼkʼas na ilistʼelinen EXIF metadataş burmepe, resimi ozʼiramuşi butʼkʼapes metadata tʼablo na ğuru oras ixmarinen. Majuranepeti maartani oqʼopinot işinaxasen.
-
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Dosyas, kʼompʼuteris na renan pʼrogramepe kʼala oktirobape doqʼvi.',

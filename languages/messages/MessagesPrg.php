@@ -2318,7 +2318,13 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plattu',
@@ -2332,7 +2338,6 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-ycbcrpositioning'            => 'Y be C poziciōni',
 'exif-xresolution'                 => 'Uricōntala rezoluciōni',
 'exif-yresolution'                 => 'Wertikāla rezoluciōni',
-'exif-resolutionunit'              => 'X be Y rezōluciōnis aīnibi',
 'exif-stripoffsets'                => 'Bildis dātas deīktan',
 'exif-rowsperstrip'                => 'Rīndas gīrbis per bildes sawīnzlin',
 'exif-stripbytecounts'             => 'Bāitas gīrbis per bildis sawīnzlin',

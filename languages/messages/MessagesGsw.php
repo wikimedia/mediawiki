@@ -2727,7 +2727,13 @@ Anderi Metadate sy standardmäßig versteckt.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breiti',
@@ -2742,7 +2748,6 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-ycbcrpositioning'            => 'Y un C Positionierig',
 'exif-xresolution'                 => 'Horizontali Uflesig',
 'exif-yresolution'                 => 'Vertikali Uflesig',
-'exif-resolutionunit'              => 'Masseinheit vu dr Uflesig',
 'exif-stripoffsets'                => 'Bilddate-Versatz',
 'exif-rowsperstrip'                => 'Aazahl vu dr Zyylete pro Streife',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streife',
@@ -2983,6 +2988,11 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Chnote',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Myle',
+'exif-gpsdestdistance-n' => 'Seemyle',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächligi Richtig',

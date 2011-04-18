@@ -2387,7 +2387,13 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'platums',
@@ -2399,7 +2405,6 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-planarconfiguration'         => 'Datu izkārtojums',
 'exif-xresolution'                 => 'Horizontālā izšķirtspēja',
 'exif-yresolution'                 => 'Vertikālā izšķirtspēja',
-'exif-resolutionunit'              => 'X un Y izšķirtspējas mērvienība',
 'exif-jpeginterchangeformatlength' => 'JPEG datu baiti',
 'exif-datetime'                    => 'Attēla pēdējās izmainīšanas datums un laiks',
 'exif-imagedescription'            => 'Attēla nosaukums',

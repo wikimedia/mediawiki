@@ -2522,7 +2522,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -2534,7 +2540,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Размяшчэнне Y і C',
 'exif-xresolution'                 => 'Гарызантальнае разрозненне',
 'exif-yresolution'                 => 'Вертыкальнае разрозненне',
-'exif-resolutionunit'              => 'Адзінка вымярэння разрозненняў X і Y',
 'exif-stripoffsets'                => 'Водступ палосаў выявы',
 'exif-rowsperstrip'                => 'Радкоў на паласу',
 'exif-stripbytecounts'             => 'Байтаў на сціснутую паласу',

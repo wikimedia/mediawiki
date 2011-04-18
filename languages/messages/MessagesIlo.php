@@ -1505,7 +1505,13 @@ ODagiti dadduma ket sigud a nakalemmeng.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Kaakaba',
@@ -1519,7 +1525,6 @@ ODagiti dadduma ket sigud a nakalemmeng.
 'exif-ycbcrpositioning'            => 'Y ken C positioning',
 'exif-xresolution'                 => 'Horizontal resolution',
 'exif-yresolution'                 => 'Vertical resolution',
-'exif-resolutionunit'              => 'Unit ti X ken Y resolution',
 'exif-stripoffsets'                => 'Image data location',
 'exif-stripbytecounts'             => 'Bytes per compressed strip',
 'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',

@@ -2394,7 +2394,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'চওড়া',
@@ -2409,7 +2415,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y ও C অবস্থান',
 'exif-xresolution'                 => 'অনুভূমিক রেজোলিউশন',
 'exif-yresolution'                 => 'উল্লম্ব রেজোলিউশন',
-'exif-resolutionunit'              => 'X ও Y রেজোলিউশনের একক',
 'exif-stripoffsets'                => 'ছবির উপাত্তের অবস্থান',
 'exif-rowsperstrip'                => 'প্রতি স্ট্রিপে সারির সংখ্যা',
 'exif-stripbytecounts'             => 'প্রতি সংকুচিত স্ট্রিপে বাইটের পরিমাণ',

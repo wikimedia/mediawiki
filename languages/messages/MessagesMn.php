@@ -2642,7 +2642,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Өргөн',
@@ -2657,7 +2663,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y and C-н байршил',
 'exif-xresolution'                 => 'Зургийн хөндлөн чанар',
 'exif-yresolution'                 => 'Зургийн босоо чанар',
-'exif-resolutionunit'              => 'X ба Y чанарын нэгж',
 'exif-stripoffsets'                => 'Зургийн мэдээллийн байршил',
 'exif-rowsperstrip'                => 'Зурвас тус бүр дэх мөрийн тоо',
 'exif-stripbytecounts'             => 'Шахагдсан зурвас тус бүр дэх байт',

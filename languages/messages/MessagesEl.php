@@ -19,6 +19,7 @@
  * @author Flyax
  * @author Geraki
  * @author Glavkos
+ * @author Grondin
  * @author Kiriakos
  * @author Lou
  * @author MF-Warburg
@@ -2988,7 +2989,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -3003,7 +3010,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Ρύθμιση φωτεινότητας και χρώματος',
 'exif-xresolution'                 => 'Οριζόντια ανάλυση',
 'exif-yresolution'                 => 'Κατακόρυφη ανάλυση',
-'exif-resolutionunit'              => 'Μονάδα μέτρησης ανάλυσης X και Y',
 'exif-stripoffsets'                => 'Τοποθέτηση δεδομένων εικόνας',
 'exif-rowsperstrip'                => 'Αριθμός σειρών ανά λωρίδα',
 'exif-stripbytecounts'             => 'Bytes ανά συμπιεσμένη λωρίδα',
@@ -3244,6 +3250,11 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα/ώρα',
 'exif-gpsspeed-m' => 'Μίλια/ώρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
+'exif-gpsdestdistance-m' => 'Μίλια',
+'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Πραγματική κατεύθυνση',

@@ -2606,7 +2606,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'پهنات',
@@ -2621,7 +2627,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'جاگاه Y و C',
 'exif-xresolution'                 => 'افقی وضوح',
 'exif-yresolution'                 => 'وضوح عمودی',
-'exif-resolutionunit'              => 'واحد X وY وضوح',
 'exif-stripoffsets'                => 'جاگاه دیتای عکس',
 'exif-rowsperstrip'                => 'تعداد ردیف آن ته هر نوار',
 'exif-stripbytecounts'             => 'بایت ته هر نوار کمپرس بوتگین',
@@ -2884,6 +2889,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'کیلومتر ته ساعت',
 'exif-gpsspeed-m' => 'مایل ته ساعت',
 'exif-gpsspeed-n' => 'گرهنان',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'کیلومتر',
+'exif-gpsdestdistance-m' => 'مایل',
+'exif-gpsdestdistance-n' => 'دریایی مایل',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

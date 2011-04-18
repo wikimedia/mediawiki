@@ -2648,7 +2648,7 @@ manual paginile de discuții, dacă dorești acest lucru.",
 'talkexists'                   => "'''Pagina în sine a fost mutată cu succes, dar pagina de discuții nu a putut fi mutată deoarece o alta deja există la noul titlu.
 Te rugăm să le unifici manual.'''",
 'movedto'                      => 'mutată la',
-'movetalk'                     => 'Mută pagina de discuții asociată',
+'movetalk'                     => 'Redenumește pagina de discuții asociată',
 'move-subpages'                => 'Mută subpaginile (până la $1)',
 'move-talk-subpages'           => 'Mută subpaginile paginii de discuții (până la $1)',
 'movepage-page-exists'         => 'Pagina $1 există deja și nu poate fi rescrisă automat.',
@@ -2995,7 +2995,7 @@ Orice legături ce urmează pe aceeași linie sunt considerate excepții, adică
 Dacă fișierul a fost modificat între timp, este posibil ca unele detalii să nu mai fie valabile.',
 'metadata-expand'   => 'Afișează detalii suplimentare',
 'metadata-collapse' => 'Ascunde detalii suplimentare',
-'metadata-fields'   => 'Datele suplimentare EXIF listate aici vor fi incluse în pagina dedicată imaginii când tabelul cu metadata este restrâns.
+'metadata-fields'   => 'Câmpurile cu metadatele imaginii listate mai jos vor fi incluse în pagina de afișare a imaginii atunci când tabelul cu metadate este restrâns.
 Altele vor fi ascunse implicit.
 * make
 * model
@@ -3003,7 +3003,13 @@ Altele vor fi ascunse implicit.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lățime',
@@ -3018,7 +3024,6 @@ Altele vor fi ascunse implicit.
 'exif-ycbcrpositioning'            => 'Poziționarea Y și C',
 'exif-xresolution'                 => 'Rezoluție orizontală',
 'exif-yresolution'                 => 'Rezoluție verticală',
-'exif-resolutionunit'              => 'Unitate de rezoluție pentru X și Y',
 'exif-stripoffsets'                => 'Locația datelor imaginii',
 'exif-rowsperstrip'                => 'Numărul de linii per bandă',
 'exif-stripbytecounts'             => 'Biți corespunzători benzii comprimate',
@@ -3040,8 +3045,8 @@ Altele vor fi ascunse implicit.
 'exif-colorspace'                  => 'Spațiu de culoare',
 'exif-componentsconfiguration'     => 'Semnificația componentelor',
 'exif-compressedbitsperpixel'      => 'Mod de comprimare a imaginii',
-'exif-pixelydimension'             => 'Lățimea validă a imaginii',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Lățimea imaginii',
+'exif-pixelxdimension'             => 'Înălțimea imaginii',
 'exif-usercomment'                 => 'Comentariile utilizatorilor',
 'exif-relatedsoundfile'            => 'Fișierul audio asemănător',
 'exif-datetimeoriginal'            => 'Data și ora producerii imaginii',
@@ -3055,9 +3060,9 @@ Altele vor fi ascunse implicit.
 'exif-exposureprogram'             => 'Program de expunere',
 'exif-spectralsensitivity'         => 'Sensibilitate spectrală',
 'exif-isospeedratings'             => 'Evaluarea vitezei ISO',
-'exif-shutterspeedvalue'           => 'Viteza de închidere',
-'exif-aperturevalue'               => 'Diafragmă',
-'exif-brightnessvalue'             => 'Luminozitate',
+'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
+'exif-aperturevalue'               => 'Diafragmă în APEX',
+'exif-brightnessvalue'             => 'Luminozitate în APEX',
 'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',

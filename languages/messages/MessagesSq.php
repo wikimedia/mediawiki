@@ -2804,7 +2804,13 @@ Të tjerat do të fshihen.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Gjerësia',
@@ -2819,7 +2825,6 @@ Të tjerat do të fshihen.
 'exif-ycbcrpositioning'            => 'Pozicioni Y dhe C',
 'exif-xresolution'                 => 'Rezolucioni horizontal',
 'exif-yresolution'                 => 'Rezolucioni vertikal',
-'exif-resolutionunit'              => 'Madhësia e njësisë se X dhe Y',
 'exif-stripoffsets'                => 'Vendi i figurave',
 'exif-rowsperstrip'                => 'Numri i rreshtave për shirit',
 'exif-stripbytecounts'             => 'Bajt për shirit të ngjeshur',

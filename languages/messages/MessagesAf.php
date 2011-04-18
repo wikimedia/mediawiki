@@ -2890,7 +2890,13 @@ Ander velde sal versteek wees.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breedte',
@@ -2905,7 +2911,6 @@ Ander velde sal versteek wees.
 'exif-ycbcrpositioning'            => 'Y- en C-posisionering',
 'exif-xresolution'                 => 'Horisontale resolusie',
 'exif-yresolution'                 => 'Vertikale resolusie',
-'exif-resolutionunit'              => 'Eenheid X en Y resolusie',
 'exif-stripoffsets'                => 'Ligging van beeldgegewens',
 'exif-rowsperstrip'                => 'Rye per strook',
 'exif-stripbytecounts'             => 'Grepe per gekompakteerde strook',
@@ -2927,8 +2932,8 @@ Ander velde sal versteek wees.
 'exif-colorspace'                  => 'Kleurruimte',
 'exif-componentsconfiguration'     => 'Betekenis van elke komponent',
 'exif-compressedbitsperpixel'      => 'Beeldkompressiemetode',
-'exif-pixelydimension'             => 'Bruikbare beeldbreedte',
-'exif-pixelxdimension'             => 'Bruikbare beeldhoogte',
+'exif-pixelydimension'             => 'Beeldwydte',
+'exif-pixelxdimension'             => 'Beeldhoogte',
 'exif-usercomment'                 => 'Opmerkings',
 'exif-relatedsoundfile'            => 'Verwante klanklêer',
 'exif-datetimeoriginal'            => 'Gegewens opgestel op',

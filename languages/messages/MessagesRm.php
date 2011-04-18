@@ -2286,7 +2286,13 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ladezza',
@@ -2301,7 +2307,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-ycbcrpositioning'            => 'Posiziunament da Y e C',
 'exif-xresolution'                 => 'Resoluziun orizontala',
 'exif-yresolution'                 => 'Resoluziun verticala',
-'exif-resolutionunit'              => 'Unitad da mesira da la resoluziun',
 'exif-stripoffsets'                => 'Posiziun da las datas da maletg',
 'exif-rowsperstrip'                => 'Dumber lingias per strivla',
 'exif-stripbytecounts'             => 'Bytes per strivla cumprimida',

@@ -2816,7 +2816,13 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredde',
@@ -2831,7 +2837,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-ycbcrpositioning'            => 'Y og C positionering',
 'exif-xresolution'                 => 'Horisontal opløsning',
 'exif-yresolution'                 => 'Vertikal opløsning',
-'exif-resolutionunit'              => 'Måleenhed for opløsning',
 'exif-stripoffsets'                => 'Bileddata-forskydning',
 'exif-rowsperstrip'                => 'Antal linjer pr. stribe',
 'exif-stripbytecounts'             => 'Bytes pr. komprimeret stribe',
@@ -3072,6 +3077,11 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knob',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Sømil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',

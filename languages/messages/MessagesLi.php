@@ -2725,7 +2725,13 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breidte',
@@ -2740,7 +2746,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-ycbcrpositioning'            => 'Y- en C-positionering',
 'exif-xresolution'                 => 'Horizontale resolutie',
 'exif-yresolution'                 => 'Verticale resolutie',
-'exif-resolutionunit'              => 'Einheid X en Y resolutie',
 'exif-stripoffsets'                => 'Locatie aafbeildingsgegaeves',
 'exif-rowsperstrip'                => 'Rie per strip',
 'exif-stripbytecounts'             => 'Bytes per gecomprimeerde strip',

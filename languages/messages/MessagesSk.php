@@ -2993,7 +2993,13 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šírka',
@@ -3008,7 +3014,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-ycbcrpositioning'            => 'Poloha Y a C',
 'exif-xresolution'                 => 'Horizontálne rozlíšenie',
 'exif-yresolution'                 => 'Vertikálne rozlíšenie',
-'exif-resolutionunit'              => 'Jednotky horizontálneho a verikálneho rozlíšenia',
 'exif-stripoffsets'                => 'Umiestnenie obrazových dát',
 'exif-rowsperstrip'                => 'Počet riadkov na pás',
 'exif-stripbytecounts'             => 'Bajtov na komprimovaný prúžok',
@@ -3249,6 +3254,11 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsspeed-k' => 'Kilometrov za hodinu',
 'exif-gpsspeed-m' => 'Míľ za hodinu',
 'exif-gpsspeed-n' => 'Uzlov',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrov',
+'exif-gpsdestdistance-m' => 'Míľ',
+'exif-gpsdestdistance-n' => 'Námorných míľ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Skutočný smer',

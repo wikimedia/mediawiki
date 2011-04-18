@@ -1013,7 +1013,13 @@ Los otros campos se van a guardar por defecto.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-filesource'   => 'Manadéro de archivo',

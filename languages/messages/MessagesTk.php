@@ -2646,7 +2646,13 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'In',
@@ -2661,7 +2667,6 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-ycbcrpositioning'            => 'Y we C ýerleşişi',
 'exif-xresolution'                 => 'Kese ölçeg',
 'exif-yresolution'                 => 'Dik ölçeg',
-'exif-resolutionunit'              => 'X we Y ölçegleriniň birligi',
 'exif-stripoffsets'                => 'Surat maglumatlarynyň ýeri',
 'exif-rowsperstrip'                => 'Zolak başyna hatarlaryň sany',
 'exif-stripbytecounts'             => 'Gysylan setir başyna baýt',

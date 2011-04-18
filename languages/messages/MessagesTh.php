@@ -2772,7 +2772,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ความกว้าง',
@@ -2787,7 +2793,6 @@ $1',
 'exif-ycbcrpositioning'            => 'ตำแหน่ง Y และ C',
 'exif-xresolution'                 => 'ความละเอียดแนวนอน',
 'exif-yresolution'                 => 'ความละเอียดแนวตั้ง',
-'exif-resolutionunit'              => 'หน่วยของความละเอียดของ X และ Y',
 'exif-stripoffsets'                => 'ตำแหน่งข้อมูลภาพ',
 'exif-rowsperstrip'                => 'จำนวนแถวต่อสตริป',
 'exif-stripbytecounts'             => 'ไบต์ต่อสตริป',

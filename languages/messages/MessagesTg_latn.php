@@ -1914,7 +1914,13 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => "Vase'ī",
@@ -1929,7 +1935,6 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 'exif-ycbcrpositioning'            => 'Mavqeijati Y va C',
 'exif-xresolution'                 => 'Tahlilpaziriji ufuqī',
 'exif-yresolution'                 => 'Tahlilpaziriji amudī',
-'exif-resolutionunit'              => 'Vohidi tafkikpaziriji X va Y',
 'exif-stripoffsets'                => 'Çojgohi dodahoi aks',
 'exif-rowsperstrip'                => "Te'dodi radifho dar har navor",
 'exif-stripbytecounts'             => 'Bajt dar har navori fişurda',

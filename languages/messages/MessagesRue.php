@@ -2620,7 +2620,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырька',
@@ -2635,7 +2641,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Уміщіня Y і C',
 'exif-xresolution'                 => 'Розлишіня образка на шырку',
 'exif-yresolution'                 => 'Розлишіня образка на вышку',
-'exif-resolutionunit'              => 'Єдиніцї X і Y розлишіня',
 'exif-stripoffsets'                => 'Уміщіня дат образка',
 'exif-rowsperstrip'                => 'Чісло рядків на 1 блок',
 'exif-stripbytecounts'             => 'Чісло байтів на компрімованый блок',

@@ -2950,7 +2950,13 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szélesség',
@@ -2965,7 +2971,6 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-ycbcrpositioning'            => 'Y és C pozicionálása',
 'exif-xresolution'                 => 'Vízszintes felbontás',
 'exif-yresolution'                 => 'Függőleges felbontás',
-'exif-resolutionunit'              => 'Az X és Y felbontás mértékegysége',
 'exif-stripoffsets'                => 'Képadatok elhelyezése',
 'exif-rowsperstrip'                => 'Egy csíkban levő sorok száma',
 'exif-stripbytecounts'             => 'Bájt/csík',
@@ -2987,8 +2992,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-colorspace'                  => 'Színtér',
 'exif-componentsconfiguration'     => 'Az egyes összetevők jelentése',
 'exif-compressedbitsperpixel'      => 'Képtömörítési mód',
-'exif-pixelydimension'             => 'Érvényes képszélesség',
-'exif-pixelxdimension'             => 'Érvényes képmagasság',
+'exif-pixelydimension'             => 'Képszélesség',
+'exif-pixelxdimension'             => 'Képmagasság',
 'exif-usercomment'                 => 'Felhasználók megjegyzései',
 'exif-relatedsoundfile'            => 'Kapcsolódó hangfájl',
 'exif-datetimeoriginal'            => 'EXIF információ létrehozásának dátuma',
@@ -3002,9 +3007,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-exposureprogram'             => 'Expozíciós program',
 'exif-spectralsensitivity'         => 'Színkép érzékenysége',
 'exif-isospeedratings'             => 'ISO érzékenység minősítése',
-'exif-shutterspeedvalue'           => 'Zársebesség',
-'exif-aperturevalue'               => 'Lencsenyílás',
-'exif-brightnessvalue'             => 'Fényerő',
+'exif-shutterspeedvalue'           => 'APEX zársebesség',
+'exif-aperturevalue'               => 'APEX lencsenyílás',
+'exif-brightnessvalue'             => 'APEX fényerő',
 'exif-exposurebiasvalue'           => 'Expozíciós dőltség',
 'exif-maxaperturevalue'            => 'Legnagyobb földi lencsenyílás',
 'exif-subjectdistance'             => 'Tárgy távolsága',
@@ -3066,7 +3071,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsareainformation'          => 'GPS terület neve',
 'exif-gpsdatestamp'                => 'GPS dátum',
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
+'exif-keywords'                    => 'Kulcsszavak',
 'exif-objectname'                  => 'Rövid cím',
+'exif-source'                      => 'Forrás',
 
 # EXIF attributes
 'exif-compression-1' => 'Nem tömörített',
@@ -3206,6 +3213,11 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsspeed-k' => 'Kilométer óránként',
 'exif-gpsspeed-m' => 'Márföld óránként',
 'exif-gpsspeed-n' => 'Csomó',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'kilométer',
+'exif-gpsdestdistance-m' => 'mérföld',
+'exif-gpsdestdistance-n' => 'tengeri mérföld',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Igazi irány',

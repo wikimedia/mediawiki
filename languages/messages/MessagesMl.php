@@ -2978,7 +2978,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'വീതി',
@@ -2992,7 +2998,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y, C എന്നിവയുടെ സ്ഥാനനിർണ്ണയം',
 'exif-xresolution'                 => 'തിരശ്ചീന റെസലൂഷൻ',
 'exif-yresolution'                 => 'ലംബ റെസലൂഷൻ',
-'exif-resolutionunit'              => 'X, Y എന്നിവയുടെ വ്യതിരിക്തത ഏകകം',
 'exif-stripoffsets'                => 'ചിത്രത്തിന്റെ വിവര സ്ഥാനം',
 'exif-rowsperstrip'                => 'ഓരോ സ്‌ട്രിപ്പിലുമുള്ള വരികളുടെ എണ്ണം',
 'exif-stripbytecounts'             => 'ഓരോ ചുരുക്കപ്പെട്ട ഖണ്ഡത്തിലുമുള്ള ബൈറ്റുകൾ',

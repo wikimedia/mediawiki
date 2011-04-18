@@ -1969,7 +1969,13 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagelength'                 => 'Länge',
@@ -1980,7 +1986,6 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-ycbcrsubsampling'            => 'Subsampling Rate vu Y bis C',
 'exif-xresolution'                 => 'Horizontale Ufflesung',
 'exif-yresolution'                 => 'Vertikale Ufflesung',
-'exif-resolutionunit'              => 'Maßeinheet dar Ufflesung',
 'exif-rowsperstrip'                => 'Oazoahl Zeila pro Streifa',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifa',
 'exif-jpeginterchangeformatlength' => 'Griße dar JPEG-Daten ei Bytes',

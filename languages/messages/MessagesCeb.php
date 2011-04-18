@@ -1250,7 +1250,13 @@ Ang uban default nga nakatago.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Usba kining payl gamit ang eksternal nga aplikasyon',

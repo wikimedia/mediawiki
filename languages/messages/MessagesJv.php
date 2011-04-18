@@ -2466,7 +2466,14 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * datetimeoriginal
 * exposuretime
 * fnumber
-* isospeedratings',
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Jembar',
@@ -2481,7 +2488,6 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-ycbcrpositioning'            => 'Pandokokan Y lan C',
 'exif-xresolution'                 => 'Résolusi horisontal',
 'exif-yresolution'                 => 'Résolusi vèrtikal',
-'exif-resolutionunit'              => 'Unit résolusi X lan Y',
 'exif-stripoffsets'                => 'Lokasi data gambar',
 'exif-rowsperstrip'                => 'Cacah baris per strip',
 'exif-stripbytecounts'             => 'Bita per strip komprèsi',

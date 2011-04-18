@@ -2735,7 +2735,13 @@ Otre avènene scunnute pe defolt.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezze',
@@ -2750,7 +2756,6 @@ Otre avènene scunnute pe defolt.
 'exif-ycbcrpositioning'            => 'posizzionamende de Y e C',
 'exif-xresolution'                 => 'Resoluzione orizzondale',
 'exif-yresolution'                 => 'Resoluzione verticale',
-'exif-resolutionunit'              => 'Resoluzione de aunità de X e Y',
 'exif-stripoffsets'                => "Locazione d'u date immaggine",
 'exif-rowsperstrip'                => 'Numere de righe pe strisce',
 'exif-stripbytecounts'             => 'Byte pe strisce combresse',
@@ -2991,6 +2996,10 @@ Otre avènene scunnute pe defolt.
 'exif-gpsspeed-k' => "Chilometre a l'ore",
 'exif-gpsspeed-m' => 'Miglie pe ore',
 'exif-gpsspeed-n' => 'Knots',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Chilomètre',
+'exif-gpsdestdistance-m' => 'Miglia',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direziona vere',

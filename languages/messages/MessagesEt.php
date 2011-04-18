@@ -2896,7 +2896,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Laius',
@@ -2909,7 +2915,6 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-planarconfiguration'         => 'Andmejärjestus',
 'exif-xresolution'                 => 'Horisontaalne eraldus',
 'exif-yresolution'                 => 'Vertikaalne eraldus',
-'exif-resolutionunit'              => 'X ja Y resolutsiooni ühik',
 'exif-stripoffsets'                => 'Pildi andmete asukoht',
 'exif-rowsperstrip'                => 'Ridade arv riba kohta',
 'exif-stripbytecounts'             => 'Baitide hulk kokkusurutud riba kohta',

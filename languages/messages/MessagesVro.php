@@ -1891,7 +1891,13 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lakjus',
@@ -1906,7 +1912,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'exif-ycbcrpositioning'            => 'Y ja C paikasäädmine',
 'exif-xresolution'                 => 'Pildi terävüs lajoldõ',
 'exif-yresolution'                 => 'Pildi terävüs pikuldõ',
-'exif-resolutionunit'              => 'Terävusosa X- ja Y-tsihin',
 'exif-stripoffsets'                => 'Pilditeedüse kotus',
 'exif-rowsperstrip'                => 'Riban rivve',
 'exif-stripbytecounts'             => 'Baitõ kokkopakitun riban',

@@ -3070,7 +3070,13 @@ Los ôtros champs seront cachiês per dèfôt.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largior',
@@ -3085,7 +3091,6 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-ycbcrpositioning'            => 'Posicionement Y et C',
 'exif-xresolution'                 => 'Rèsolucion plana',
 'exif-yresolution'                 => 'Rèsolucion drêta',
-'exif-resolutionunit'              => 'Unitât de rèsolucion plana et drêta',
 'exif-stripoffsets'                => 'Emplacement de les balyês de l’émâge',
 'exif-rowsperstrip'                => 'Nombro de legnes per benda',
 'exif-stripbytecounts'             => 'Talye en octèts per benda',
@@ -3331,6 +3336,11 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsspeed-k' => 'Kilomètres per hora',
 'exif-gpsspeed-m' => 'Miles per hora',
 'exif-gpsspeed-n' => 'Nuods',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomètres',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Miles marins',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Veré dirèccion',
