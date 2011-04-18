@@ -2498,7 +2498,7 @@ class Title {
 	 * @return String the prefixed text
 	 * @private
 	 */
-	/* private */ function prefix( $name ) {
+	private function prefix( $name ) {
 		$p = '';
 		if ( $this->mInterwiki != '' ) {
 			$p = $this->mInterwiki . ':';

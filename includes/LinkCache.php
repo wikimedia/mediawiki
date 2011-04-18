@@ -7,10 +7,10 @@
 class LinkCache {
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
-	/* private */ var $mClassVer = 4;
+	private $mClassVer = 4;
 
-	/* private */ var $mGoodLinks, $mBadLinks;
-	/* private */ var $mForUpdate;
+	private $mGoodLinks, $mBadLinks;
+	private $mForUpdate;
 
 	/**
 	 * Get an instance of this class
