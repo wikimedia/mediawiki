@@ -135,6 +135,4 @@ class JpegHandler extends BitmapHandler {
 		}
 		return $this->formatMetadataHelper( $exif );
 	}
-
-
 }

@@ -109,16 +109,19 @@ class PNGHandler extends BitmapHandler {
 		$info = array();
 		$info[] = $original;
 		
-		if ($metadata['loopCount'] == 0)
+		if ( $metadata['loopCount'] == 0 ) {
 			$info[] = wfMsgExt( 'file-info-png-looped', 'parseinline' );
-		elseif ($metadata['loopCount'] > 1)
+		} elseif ( $metadata['loopCount'] > 1 ) {
 			$info[] = wfMsgExt( 'file-info-png-repeat', 'parseinline', $metadata['loopCount'] );
+		}
 		
-		if ($metadata['frameCount'] > 0)
+		if ( $metadata['frameCount'] > 0 ) {
 			$info[] = wfMsgExt( 'file-info-png-frames', 'parseinline', $metadata['frameCount'] );
+		}
 		
-		if ($metadata['duration'])
+		if ( $metadata['duration'] ) {
 			$info[] = $wgLang->formatTimePeriod( $metadata['duration'] );
+		}
 		
 		return $wgLang->commaList( $info );
 	}

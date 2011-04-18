@@ -312,12 +312,12 @@ abstract class File {
 	*/
 	public function convertMetadataVersion($metadata, $version) {
 		$handler = $this->getHandler();
-		if (!is_array($metadata)) {
+		if ( !is_array( $metadata ) ) {
 			//just to make the return type consistant
 			$metadata = unserialize( $metadata ); 
 		}
 		if ( $handler ) {
-			return $handler->convertMetadataVersion($metadata, $version);
+			return $handler->convertMetadataVersion( $metadata, $version );
 		} else {
 			return $metadata;
 		}

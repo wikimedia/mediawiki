@@ -6,6 +6,7 @@
 * Based somewhat on GIFMetadataExtrator.
 */
 class JpegMetadataExtractor {
+
 	const MAX_JPEG_SEGMENTS = 200;
 	// the max segment is a sanity check.
 	// A jpeg file should never even remotely have
@@ -27,17 +28,25 @@ class JpegMetadataExtractor {
 
 		$segmentCount = 0;
 
-		$segments = Array( 'XMP_ext' => array(), 'COM' => array() );
+		$segments = array( 'XMP_ext' => array(), 'COM' => array() );
 
-		if ( !$filename ) throw new MWException( "No filename specified for " . __METHOD__ );
-		if ( !file_exists( $filename ) || is_dir( $filename ) ) throw new MWException( "Invalid file $filename passed to " . __METHOD__ );
+		if ( !$filename ) {
+			throw new MWException( "No filename specified for " . __METHOD__ );
+		}
+		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
+			throw new MWException( "Invalid file $filename passed to " . __METHOD__ );
+		}
 
 		$fh = fopen( $filename, "rb" );
 
-		if ( !$fh ) throw new MWException( "Could not open file $filename" );
+		if ( !$fh ) {
+			throw new MWException( "Could not open file $filename" );
+		}
 
 		$buffer = fread( $fh, 2 );
-		if ( $buffer !== "\xFF\xD8" ) throw new MWException( "Not a jpeg, no SOI" );
+		if ( $buffer !== "\xFF\xD8" ) {
+			throw new MWException( "Not a jpeg, no SOI" );
+		}
 		while ( !feof( $fh ) ) {
 			$buffer = fread( $fh, 1 );
 			$segmentCount++;
@@ -136,7 +145,9 @@ class JpegMetadataExtractor {
 	* @return String if the iptc hash is good or not.
 	*/
 	public static function doPSIR ( $app13 ) {
-		if ( !$app13 ) return;
+		if ( !$app13 ) {
+			return;
+		}
 		// First compare hash with real thing
 		// 0x404 contains IPTC, 0x425 has hash
 		// This is used to determine if the iptc is newer than
@@ -171,7 +182,9 @@ class JpegMetadataExtractor {
 
 			$lenName = ord( substr( $app13, $offset, 1 ) ) + 1;
 			// we never use the name so skip it. +1 for length byte
-			if ( $lenName % 2 == 1 ) $lenName++; // pad to even.
+			if ( $lenName % 2 == 1 ) {
+				$lenName++;
+			} // pad to even.
 			$offset += $lenName;
 
 			// now length of data (unsigned long big endian)

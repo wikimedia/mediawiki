@@ -37,6 +37,7 @@ class XMPValidate {
 		}
 
 	}
+
 	/**
 	* function to validate rational properties ( 12/10 )
 	*
@@ -55,6 +56,7 @@ class XMPValidate {
 		}
 
 	}
+
 	/**
 	* function to validate rating properties -1, 0-5
 	*
@@ -93,6 +95,7 @@ class XMPValidate {
 			}
 		}
 	}
+
 	/**
 	* function to validate integers
 	*
@@ -111,6 +114,7 @@ class XMPValidate {
 		}
 
 	}
+
 	/**
 	* function to validate properties with a fixed number of allowed
 	* choices. (closed choice)
@@ -141,6 +145,7 @@ class XMPValidate {
 			$val = null;
 		}
 	}
+
 	/**
 	* function to validate and modify flash structure
 	*
@@ -169,6 +174,7 @@ class XMPValidate {
 				| ( ( $val['RedEyeMode'] === 'True' ) << 6 ) );
 		}
 	}
+
 	/**
 	* function to validate LangCode properties ( en-GB, etc )
 	*
@@ -193,6 +199,7 @@ class XMPValidate {
 		}
 
 	}
+
 	/**
 	* function to validate date properties, and convert to Exif format.
 	*
@@ -263,6 +270,7 @@ class XMPValidate {
 		}
 
 	}
+
 	/** function to validate, and more importantly
 	 * translate the XMP DMS form of gps coords to
 	 * the decimal form we use.
@@ -311,7 +319,5 @@ class XMPValidate {
 			$val = null;
 			return;
 		}
-
 	}
-
 }

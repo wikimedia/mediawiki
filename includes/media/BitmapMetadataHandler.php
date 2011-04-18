@@ -10,16 +10,16 @@ and the various metadata extractors.
 */
 class BitmapMetadataHandler {
 
-	private $metadata = Array();
-	private $metaPriority = Array(
-		20 => Array( 'other' ),
-		40 => Array( 'native' ),
-		60 => Array( 'iptc-good-hash', 'iptc-no-hash' ),
-		70 => Array( 'xmp-deprecated' ),
-		80 => Array( 'xmp-general' ),
-		90 => Array( 'xmp-exif' ),
-		100 => Array( 'iptc-bad-hash' ),
-		120 => Array( 'exif' ),
+	private $metadata = array();
+	private $metaPriority = array(
+		20 => array( 'other' ),
+		40 => array( 'native' ),
+		60 => array( 'iptc-good-hash', 'iptc-no-hash' ),
+		70 => array( 'xmp-deprecated' ),
+		80 => array( 'xmp-general' ),
+		90 => array( 'xmp-exif' ),
+		100 => array( 'iptc-bad-hash' ),
+		120 => array( 'exif' ),
 	);
 	private $iptcType = 'iptc-no-hash';
 
