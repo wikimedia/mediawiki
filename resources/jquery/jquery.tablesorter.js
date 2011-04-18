@@ -83,11 +83,10 @@
 			/* debuging utils */
 			// 
 			// function benchmark( s, d ) {
-			// 	console.log( s + " " + ( new Date().getTime() - d.getTime() ) + "ms" );
+			//     console.log( s + " " + ( new Date().getTime() - d.getTime() ) + "ms" );
 			// }
 			// 
 			// this.benchmark = benchmark;
-			// 
 			// 
 			/* parsers utils */
 
@@ -167,7 +166,6 @@
 			/* utils */
 
 			function buildCache( table ) {
-
 				// if ( table.config.debug ) {
 				//     var cacheTime = new Date();
 				// }
@@ -221,10 +219,9 @@
 			}
 
 			function appendToTable( table, cache ) {
-
 				// if ( table.config.debug ) {
-				//     var appendTime = new Date()
-				// }
+				//      var appendTime = new Date()
+				//  }
 				var c = cache,
 					r = c.row,
 					n = c.normalized,
@@ -245,8 +242,8 @@
 				}
 				tableBody[0].appendChild( fragment );
 				// if ( table.config.debug ) {
-				//     benchmark( "Rebuilt table:", appendTime );
-				// }
+				//      benchmark( "Rebuilt table:", appendTime );
+				//  }
 			}
 
 			function buildHeaders( table ) {
@@ -327,94 +324,74 @@
 				}
 			}
 
-			function multisort( table, sortList, cache ) {
-				// if ( table.config.debug ) {
-				//	var sortTime = new Date();
-				// }
-				var dynamicExp = "var sortWrapper = function(a,b) {",
-					l = sortList.length;
-
-				// TODO: inline functions.
-				for ( var i = 0; i < l; i++ ) {
-
-					var c = sortList[i][0];
-					var order = sortList[i][1];
-					var s = "";
-					if ( table.config.parsers[c].type == "text" ) {
-						if ( order == 0 ) {
-							s = makeSortText( c );
-						} else {
-							s = makeSortTextDesc( c );
-						}
-					} else {
-						if ( order == 0 ) {
-							s = makeSortNumeric( c );
-						} else {
-							s = makeSortNumericDesc( c );
-						}
+			function checkSorting (array1, array2, sortList) {
+				var col, fn, ret;
+				for ( var i = 0, len = sortList.length; i < len; i++ ) {
+					col = sortList[i][0];
+					fn = ( sortList[i][1] ) ? sortTextDesc : sortText;
+					ret = fn.call( this, array1[col], array2[col] );
+					if ( ret !== 0 ) {
+						return ret;
 					}
-					var e = "e" + i;
-
-					dynamicExp += "var " + e + " = " + s; // + "(a[" + c + "],b[" + c + "]); ";
-					dynamicExp += "if(" + e + ") { return " + e + "; } ";
-					dynamicExp += "else { ";
 				}
+				return ret;
+			}
 
-				// if value is the same keep original order
-				var orgOrderCol = cache.normalized[0].length - 1;
-				dynamicExp += "return a[" + orgOrderCol + "]-b[" + orgOrderCol + "];";
-
-				for ( var i = 0; i < l; i++ ) {
-					dynamicExp += "}; ";
+			// Merge sort algorithm
+			// Based on http://en.literateprograms.org/Merge_sort_(JavaScript)
+			function mergeSortHelper(array, begin, beginRight, end, sortList) {
+				for (; begin < beginRight; ++begin) {
+					if (checkSorting( array[begin], array[beginRight], sortList )) {
+						var v = array[begin];
+						array[begin] = array[beginRight];
+						var begin2 = beginRight;
+						while ( begin2 + 1 < end && checkSorting( v, array[begin2 + 1], sortList ) ) {
+							var tmp = array[begin2];
+							array[begin2] = array[begin2 + 1];
+							array[begin2 + 1] = tmp;
+							++begin2;
+						}
+						array[begin2] = v;
+					}
 				}
+			}
 
-				dynamicExp += "return 0; ";
-				dynamicExp += "}; ";
+			function mergeSort(array, begin, end, sortList) {
+				var size = end - begin;
+				if (size < 2) return;
 
-				// if ( table.config.debug ) {
-				//     benchmark( "Evaling expression:" + dynamicExp, new Date() );
-				// }
-				eval( dynamicExp );
-				cache.normalized.sort( sortWrapper );
+				var beginRight = begin + Math.floor(size / 2);
 
-				// if ( table.config.debug ) {
-				//	benchmark( "Sorting in dir " + order + " time:", sortTime );
-				// }
+				mergeSort(array, begin, beginRight, sortList);
+				mergeSort(array, beginRight, end, sortList);
+				mergeSortHelper(array, begin, beginRight, end, sortList);
+			}
+
+			var lastSort = '';
+			
+			function multisort( table, sortList, cache ) {
+				//var sortTime = new Date();
+		    
+				var i = sortList.length;
+				if ( i == 1 && sortList[0][0] === lastSort) {
+					// Special case a simple reverse
+					cache.normalized.reverse();
+				} else {
+					mergeSort(cache.normalized, 0, cache.normalized.length, sortList);
+				}
+				lastSort = ( sortList.length == 1 ) ? sortList[0][0] : '';
+
+				//benchmark( "Sorting in dir " + order + " time:", sortTime );
+		    
 				return cache;
 			}
 
-			function makeSortText(i) {
-				return "((a[" + i + "] < b[" + i + "]) ? -1 : ((a[" + i + "] > b[" + i + "]) ? 1 : 0));";
-			}
-
-			function makeSortTextDesc(i) {
-				return "((b[" + i + "] < a[" + i + "]) ? -1 : ((b[" + i + "] > a[" + i + "]) ? 1 : 0));";
-			}
-
-			function makeSortNumeric(i) {
-				return "a[" + i + "]-b[" + i + "];";
-			}
-
-			function makeSortNumericDesc(i) {
-				return "b[" + i + "]-a[" + i + "];";
-			}
-
 			function sortText( a, b ) {
-				//if ( table.config.sortLocaleCompare ) return a.localeCompare(b);
-				return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+				return ((a < b) ? false : ((a > b) ? true : 0));
 			}
 
 			function sortTextDesc( a, b ) {
-				//if ( table.config.sortLocaleCompare ) return b.localeCompare(a);
-				return ((b < a) ? -1 : ((b > a) ? 1 : 0));
-			}
-
-			function sortNumeric( a, b ) {
-				return a - b;
-			}
-
-			function sortNumericDesc( a, b ) {
-				return b - a;
+				return ((b < a) ? false : ((b > a) ? true : 0));
 			}
 
 			function buildTransformTable() {
@@ -483,9 +460,9 @@
 					var next = cell.parent().nextAll();
 					for ( var i = 0; i < rowSpan - 1; i++ ) {
 						next.eq(0).find( 'td' ).eq( this.cellIndex ).before( cell.clone() );
-					};
+					}
 				});
-			};
+			}
 
 			function buildCollationTable() {
 				ts.collationTable = mw.config.get('tableSorterCollation');
@@ -518,8 +495,7 @@
 					if ( !this.tHead || !this.tBodies ) return;
 					// declare
 					var $this, $document, $headers, cache, config, shiftDown = 0,
-						sortOrder;
-
+						sortOrder, firstTime = true, that = this;
 					// new blank config object
 					this.config = {};
 					// merge and extend.
@@ -540,10 +516,6 @@
 					//performance improvements in some browsers
 					cacheRegexs();
 
-					// try to auto detect column type, and store in tables config
-					this.config.parsers = buildParserCache( this, $headers );
-					// build the cache for the tbody cells
-					cache = buildCache( this );
 					// get the css class names, could be done else where.
 					var sortCSS = [config.cssDesc, config.cssAsc];
 					// apply event handling to headers
@@ -552,13 +524,21 @@
 
 					function (e) {
 						//var clickTime= new Date();
+						if (firstTime) {
+							firstTime = false;
+							explodeRowspans( $this );
+							// try to auto detect column type, and store in tables config
+							that.config.parsers = buildParserCache( that, $headers );
+							// build the cache for the tbody cells
+							cache = buildCache( that );
+						}
 						var totalRows = ( $this[0].tBodies[0] && $this[0].tBodies[0].rows.length ) || 0;
 						if ( !this.sortDisabled && totalRows > 0 ) {
 							// Only call sortStart if sorting is
 							// enabled.
 							//$this.trigger( "sortStart" );
+
 							// store exp, for speed
-							explodeRowspans( $this );
 							var $cell = $( this );
 							// get current column index
 							var i = this.column;
@@ -574,8 +554,7 @@
 								config.sortList.push( [i, this.order] );
 								// multi column sorting
 							} else {
-								// the user has clicked on an all
-								// ready sortet column.
+								// the user has clicked on an already sorted column.
 								if ( isValueInArray( i, config.sortList ) ) {
 									// revers the sorting direction
 									// for all tables.
