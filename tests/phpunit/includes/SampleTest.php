@@ -88,7 +88,7 @@ class TestSample extends MediaWikiTestCase {
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	function testTitleObjectFromObject() {
-		$title = Title::newFromText( new Title( "test" ) );
+		$title = Title::newFromText( Title::newFromText( "test" ) );
 		$this->assertEquals( "Test", $title->isLocal() );
 	}
 }
