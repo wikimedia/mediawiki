@@ -68,6 +68,11 @@ class MessageCache {
 	private static $instance;
 
 	/**
+	 * @var bool
+	 */
+	protected $mInParser = false;
+
+	/**
 	 * Get the signleton instance of this class
 	 *
 	 * @since 1.18
@@ -102,6 +107,8 @@ class MessageCache {
 
 	/**
 	 * ParserOptions is lazy initialised.
+	 *
+	 * @return ParserOptions
 	 */
 	function getParserOptions() {
 		if ( !$this->mParserOptions ) {
@@ -220,6 +227,8 @@ class MessageCache {
 
 	/**
 	 * Set the cache to $cache, if it is valid. Otherwise set the cache to false.
+	 *
+	 * @return bool
 	 */
 	function setCache( $cache, $code ) {
 		if ( isset( $cache['VERSION'] ) && $cache['VERSION'] == MSG_CACHE_VERSION ) {
@@ -728,12 +737,41 @@ class MessageCache {
 		return $message;
 	}
 
+	/**
+	 * @param $message string
+	 * @param $interface bool
+	 * @param $language
+	 * @param $title Title
+	 * @return string
+	 */
 	function transform( $message, $interface = false, $language = null, $title = null ) {
 		// Avoid creating parser if nothing to transform
 		if( strpos( $message, '{{' ) === false ) {
 			return $message;
 		}
 
+		if ( $this->mInParser ) {
+            return $message;
+		}
+
+		$parser = $this->getParser();
+		if ( $parser ) {
+			$popts = $this->getParserOptions();
+			$popts->setInterfaceMessage( $interface );
+			$popts->setTargetLanguage( $language );
+			$popts->setUserLang( $language );
+
+			$this->mInParser = true;
+			$message = $parser->transformMsg( $message, $popts, $title );
+			$this->mInParser = false;
+		}
+		return $message;
+	}
+
+	/**
+	 * @return Parser
+	 */
+	function getParser() {
 		global $wgParser, $wgParserConf;
 		if ( !$this->mParser && isset( $wgParser ) ) {
 			# Do some initialisation so that we don't have to do it twice
@@ -746,16 +784,38 @@ class MessageCache {
 			} else {
 				$this->mParser = clone $wgParser;
 			}
-			#wfDebug( __METHOD__ . ": following contents triggered transform: $message\n" );
 		}
-		if ( $this->mParser ) {
-			$popts = $this->getParserOptions();
-			$popts->setInterfaceMessage( $interface );
+		return $this->mParser;
+	}
+
+	/**
+	 * @param $text string
+	 * @param $title Title
+	 * @param $interface bool
+	 * @param $linestart bool
+	 * @param $language
+	 * @return ParserOutput
+	 */
+	public function parse( $text, $title = null, $linestart = true, $interface = false, $language = null  ) {
+		if ( $this->mInParser ) {
+		   return htmlspecialchars( $text );
+		}
+
+		$parser = $this->getParser();
+		$popts = $this->getParserOptions();
+
+		if ( $interface ) {
+			$popts->setInterfaceMessage( true );
+		}
+		if ( $language !== null ) {
 			$popts->setTargetLanguage( $language );
-			$popts->setUserLang( $language );
-			$message = $this->mParser->transformMsg( $message, $popts, $title );
 		}
-		return $message;
+
+		$this->mInParser = true;
+		$res = $parser->parse( $text, $title, $popts, $linestart );
+		$this->mInParser = false;
+
+		return $res;
 	}
 
 	function disable() {

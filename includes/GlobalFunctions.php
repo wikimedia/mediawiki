@@ -716,10 +716,12 @@ function wfMsgHtml( $key ) {
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
-	global $wgOut;
+	global $wgMessageCache;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReplaceArgs( $wgOut->parse( wfMsgGetKey( $key, true ), /* can't be set to false */ true ), $args );
+	return wfMsgReplaceArgs(
+		$wgMessageCache->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true ),
+		$args );
 }
 
 /**
@@ -741,7 +743,7 @@ function wfMsgWikiHtml( $key ) {
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
-	global $wgOut;
+	global $wgMessageCache;
 
 	$args = func_get_args();
 	array_shift( $args );
@@ -781,9 +783,9 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	if( in_array( 'parse', $options, true ) ) {
-		$string = $wgOut->parse( $string, true, !$forContent, $langCodeObj );
+		$string = $wgMessageCache->parse( $string, null, true, !$forContent, $langCodeObj );
 	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $wgOut->parse( $string, true, !$forContent, $langCodeObj );
+		$string = $wgMessageCache->parse( $string, null, true, !$forContent, $langCodeObj );
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];

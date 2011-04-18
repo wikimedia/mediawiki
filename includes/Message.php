@@ -65,6 +65,8 @@ class Message {
 	/**
 	 * In which language to get this message. Overrides the $interface
 	 * variable.
+	 *
+	 * @var Language
 	 */
 	protected $language = null;
 	
@@ -370,10 +372,18 @@ class Message {
 		return $message === false || $message === '' || $message === '-';
 	}
 
+	/**
+	 * @param $value
+	 * @return array
+	 */
 	public static function rawParam( $value ) {
 		return array( 'raw' => $value );
 	}
-	
+
+	/**
+	 * @param $value
+	 * @return array
+	 */
 	public static function numParam( $value ) {
 		return array( 'num' => $value );
 	}
@@ -419,17 +429,16 @@ class Message {
 	/**
 	 * Wrapper for what ever method we use to parse wikitext.
 	 * @param $string String: Wikitext message contents
-	 * @return Wikitext parsed into HTML
+	 * @return string Wikitext parsed into HTML
 	 */
 	protected function parseText( $string ) {
-		global $wgOut;
-		return $wgOut->parse( $string, /*linestart*/true, $this->interface, $this->language );
+		return MessageCache::singleton()->parse( $string, /*linestart*/true, $this->interface, $this->language );
 	}
 
 	/**
 	 * Wrapper for what ever method we use to {{-transform wikitext.
 	 * @param $string String: Wikitext message contents
-	 * @return Wikitext with {{-constructs replaced with their values.
+	 * @return string Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
 		return MessageCache::singleton()->transform( $string, $this->interface, $this->language, $this->title );
@@ -450,6 +459,8 @@ class Message {
 
 	/**
 	 * Wrapper for what ever method we use to get message contents
+	 *
+	 * @return string
 	 */
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
