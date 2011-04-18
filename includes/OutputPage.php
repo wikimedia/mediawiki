@@ -792,7 +792,7 @@ class OutputPage {
 	 * @param $t Title object
 	 */
 	public function setTitle( $t ) {
-		$this->getContext()->setTitle($t);
+		$this->getContext()->setTitle( $t );
 	}
 
 	/**
