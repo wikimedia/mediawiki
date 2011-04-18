@@ -719,7 +719,7 @@ function wfMsgWikiHtml( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs(
-		MessageCache::singleton()->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true ),
+		MessageCache::singleton()->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true )->getText(),
 		$args );
 }
 
@@ -742,8 +742,6 @@ function wfMsgWikiHtml( $key ) {
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
-	global $wgMessageCache;
-
 	$args = func_get_args();
 	array_shift( $args );
 	array_shift( $args );
@@ -783,9 +781,9 @@ function wfMsgExt( $key, $options ) {
 
 	$messageCache = MessageCache::singleton();
 	if( in_array( 'parse', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
 	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];

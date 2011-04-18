@@ -432,7 +432,7 @@ class Message {
 	 * @return string Wikitext parsed into HTML
 	 */
 	protected function parseText( $string ) {
-		return MessageCache::singleton()->parse( $string, /*linestart*/true, $this->interface, $this->language );
+		return MessageCache::singleton()->parse( $string, null, /*linestart*/true, $this->interface, $this->language )->getText();
 	}
 
 	/**
