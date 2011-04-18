@@ -716,11 +716,10 @@ function wfMsgHtml( $key ) {
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
-	global $wgMessageCache;
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReplaceArgs(
-		$wgMessageCache->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true ),
+		MessageCache::singleton()->parse( wfMsgGetKey( $key, true ), null, /* can't be set to false */ true ),
 		$args );
 }
 
@@ -782,16 +781,17 @@ function wfMsgExt( $key, $options ) {
 		$string = wfMsgReplaceArgs( $string, $args );
 	}
 
+	$messageCache = MessageCache::singleton();
 	if( in_array( 'parse', $options, true ) ) {
-		$string = $wgMessageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
 	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $wgMessageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
-		$string = MessageCache::singleton()->transform( $string,
+		$string = $messageCache->transform( $string,
 				!$forContent, $langCodeObj );
 	}
 
