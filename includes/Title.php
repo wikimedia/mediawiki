@@ -78,9 +78,8 @@ class Title {
 
 	/**
 	 * Constructor
-	 * @private
 	 */
-	/* private */ function __construct() { }
+	protected function __construct() { }
 
 	/**
 	 * Create a new Title from a prefixed DB key

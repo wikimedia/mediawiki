@@ -21,7 +21,7 @@ class TagHookTest extends MediaWikiTestCase {
 		$parser = new Parser( $wgParserConf );
 		
 		$parser->setHook( $tag, array( $this, 'tagCallback' ) );
-		$parserOutput = $parser->parse( "Foo<$tag>Bar</$tag>Baz", new Title( 'Test' ), new ParserOptions );
+		$parserOutput = $parser->parse( "Foo<$tag>Bar</$tag>Baz", Title::newFromText( 'Test' ), new ParserOptions );
 		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getText() );
 		
 		$parser->mPreprocessor = null; # Break the Parser <-> Preprocessor cycle
@@ -36,7 +36,7 @@ class TagHookTest extends MediaWikiTestCase {
 		$parser = new Parser( $wgParserConf );
 		
 		$parser->setHook( $tag, array( $this, 'tagCallback' ) );
-		$parser->parse( "Foo<$tag>Bar</$tag>Baz", new Title( 'Test' ), new ParserOptions );
+		$parser->parse( "Foo<$tag>Bar</$tag>Baz", Title::newFromText( 'Test' ), new ParserOptions );
 		$this->fail('Exception not thrown.');
 	}
 	
@@ -48,7 +48,7 @@ class TagHookTest extends MediaWikiTestCase {
 		$parser = new Parser( $wgParserConf );
 		
 		$parser->setFunctionTagHook( $tag, array( $this, 'functionTagCallback' ), 0 );
-		$parserOutput = $parser->parse( "Foo<$tag>Bar</$tag>Baz", new Title( 'Test' ), new ParserOptions );
+		$parserOutput = $parser->parse( "Foo<$tag>Bar</$tag>Baz", Title::newFromText( 'Test' ), new ParserOptions );
 		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getText() );
 		
 		$parser->mPreprocessor = null; # Break the Parser <-> Preprocessor cycle
@@ -63,7 +63,7 @@ class TagHookTest extends MediaWikiTestCase {
 		$parser = new Parser( $wgParserConf );
 		
 		$parser->setFunctionTagHook( $tag, array( $this, 'functionTagCallback' ), SFH_OBJECT_ARGS );
-		$parser->parse( "Foo<$tag>Bar</$tag>Baz", new Title( 'Test' ), new ParserOptions );
+		$parser->parse( "Foo<$tag>Bar</$tag>Baz", Title::newFromText( 'Test' ), new ParserOptions );
 		$this->fail('Exception not thrown.');
 	}
 	
