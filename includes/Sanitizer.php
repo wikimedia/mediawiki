@@ -1569,4 +1569,54 @@ class Sanitizer {
 	static function cleanUrlCallback( $matches ) {
 		return urlencode( $matches[0] );
 	}
+
+	/**
+	 * Does a string look like an e-mail address?
+	 *
+	 * This validates an email address using an HTML5 specification found at:
+	 * http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+	 * Which as of 2011-01-24 says:
+	 *
+	 *   A valid e-mail address is a string that matches the ABNF production
+	 *   1*( atext / "." ) "@" ldh-str *( "." ldh-str ) where atext is defined
+	 *   in RFC 5322 section 3.2.3, and ldh-str is defined in RFC 1034 section
+	 *   3.5.
+	 *
+	 * This function is an implementation of the specification as requested in
+	 * bug 22449.
+	 *
+	 * Client-side forms will use the same standard validation rules via JS or
+	 * HTML 5 validation; additional restrictions can be enforced server-side
+	 * by extensions via the 'isValidEmailAddr' hook.
+	 *
+	 * Note that this validation doesn't 100% match RFC 2822, but is believed
+	 * to be liberal enough for wide use. Some invalid addresses will still
+	 * pass validation here.
+	 *
+	 * @param $addr String E-mail address
+	 * @return Bool
+	 */
+	public static function validateEmail( $addr ) {
+		$result = null;
+		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
+			return $result;
+		}
+
+		// Please note strings below are enclosed in brackets [], this make the
+		// hyphen "-" a range indicator. Hence it is double backslashed below.
+		// See bug 26948
+		$rfc5322_atext   = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~" ;
+		$rfc1034_ldh_str = "a-z0-9\\-" ;
+
+		$HTML5_email_regexp = "/
+		^                      # start of string
+		[$rfc5322_atext\\.]+    # user part which is liberal :p
+		@                      # 'apostrophe'
+		[$rfc1034_ldh_str]+       # First domain part
+		(\\.[$rfc1034_ldh_str]+)*  # Following part prefixed with a dot
+		$                      # End of string
+		/ix" ; // case Insensitive, eXtended
+
+		return (bool) preg_match( $HTML5_email_regexp, $addr );
+	}
 }
