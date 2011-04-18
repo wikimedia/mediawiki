@@ -67,6 +67,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
   require_once "$IP/extensions/Math/Math.php";
 * $wgProfiler is now a configuration array, see StartProfiler.sample for details
 * $wgProfiling has been removed
+* The spyc library is now no longer included in phase3
 
 === New features in 1.18 ===
 * (bug 8130) Query pages should limit to content namespaces, not just main
@@ -336,6 +337,9 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27712) add parent_id to list=deletedrevs
 * (bug 28455) Add 'toponly' to recentchanges API module
 * (bug 26873) API: Add 'toponly' filter in usercontribs module
+* (bug 28586) YAML: strings that are the same as boolean literals
+* (bug 28591) Update/replace/supplement spyc (YAML parsing library)
+* YAML API output is now 1.2 compliant, using JSON as the formatter
 
 === Languages updated in 1.18 ===
 
