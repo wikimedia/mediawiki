@@ -1777,6 +1777,10 @@ function wfSuppressWarnings( $end = false ) {
 		}
 	} else {
 		if ( !$suppressCount ) {
+			// E_DEPRECATED is undefined in PHP 5.2
+			if( !defined( 'E_DEPRECATED' ) ){
+				define( 'E_DEPRECATED', 8192 );
+			}
 			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE | E_USER_WARNING | E_USER_NOTICE | E_DEPRECATED ) );
 		}
 		++$suppressCount;
