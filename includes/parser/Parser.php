@@ -278,7 +278,7 @@ class Parser {
 	 * Do not call this function recursively.
 	 *
 	 * @param $text String: text we want to parse
-	 * @param $title A title object
+	 * @param $title Title object
 	 * @param $options ParserOptions
 	 * @param $linestart boolean
 	 * @param $clearState boolean
