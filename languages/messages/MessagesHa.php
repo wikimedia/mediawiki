@@ -752,13 +752,7 @@ Idan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cik
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Gyara wannan fayil da wani safuwai daban',

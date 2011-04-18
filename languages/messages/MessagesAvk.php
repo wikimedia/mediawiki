@@ -978,7 +978,7 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|betaks|betaks}}',
 'recentchanges'                     => 'Noeltaf betakseem',
 'recentchanges-legend'              => 'Ikatcuks ke noeltaf betaks',
-'recentchanges-summary'             => 'Moo batu bu va ironokaf betakseem ke {{SITENAME}} suzdal.',
+'recentchangestext'                 => 'Moo batu bu va ironokaf betakseem ke {{SITENAME}} suzdal.',
 'recentchanges-feed-description'    => 'Sledara va tel lonoeltaf betakseem va wiki koo bat rust.',
 'rcnote'                            => "Vleveon {{PLURAL:$1|'''1''' betaks tir|ironokaf '''$1''' betaks tid}} bak ironokaf {{PLURAL:$2|viel|'''$2''' viel}}, wetce $5 ik $4.",
 'rcnotefrom'                        => 'Tir skuyun betakseem mali <strong>$2</strong> (<b>$1</b> cugon).',
@@ -1970,13 +1970,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Mantuca',

@@ -1276,7 +1276,7 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'nchanges'                          => '$1 {{PLURAL:$1|тюрлениу|тюрлениу}}',
 'recentchanges'                     => 'Ахыр тюрлениуле',
 'recentchanges-legend'              => 'Ахыр тюрлениулени джарашдырыулары',
-'recentchanges-summary'             => 'Тюбюнде, Википедияда этилген ахыр тюрлениуле хронология бла тизилиб турадыла.',
+'recentchangestext'                 => 'Тюбюнде, Википедияда этилген ахыр тюрлениуле хронология бла тизилиб турадыла.',
 'recentchanges-feed-description'    => 'Викиде бу лентада тюрлениулени кёзде тут.',
 'recentchanges-label-newpage'       => 'Бу тюрлендириу бла джангы бет къуралгъанды',
 'recentchanges-label-minor'         => 'Бу гитче тюрлениудю',
@@ -2671,13 +2671,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Кенглик',
@@ -2692,6 +2686,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Y бла C джерлешдириую',
 'exif-xresolution'                 => 'Горизонтал резолюциясы',
 'exif-yresolution'                 => 'Вертикал резолюциясы',
+'exif-resolutionunit'              => 'Х бла Y резолюцияны ёлчем бирими',
 'exif-stripoffsets'                => 'Билги блокну туруму',
 'exif-rowsperstrip'                => '1 блокда болгъан тизгинни саны',
 'exif-stripbytecounts'             => 'Къысдырылгъан блокну ёлчеми',
@@ -2814,8 +2809,7 @@ $1',
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'     => 'sRGB',
-'exif-colorspace-65535' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'Джокъду',
 

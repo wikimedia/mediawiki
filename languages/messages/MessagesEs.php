@@ -1589,7 +1589,7 @@ Esto no se puede deshacer.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recientes',
 'recentchanges-legend'              => 'Opciones sobre cambios recientes',
-'recentchanges-summary'             => 'Sigue los cambios más recientes de la wiki en esta página.',
+'recentchangestext'                 => 'Sigue los cambios más recientes de la wiki en esta página.',
 'recentchanges-feed-description'    => 'Seguir los cambios más recientes en el wiki en este feed.',
 'recentchanges-label-newpage'       => 'Esta edición creó una nueva página',
 'recentchanges-label-minor'         => 'Esta es una edición menor',
@@ -2997,13 +2997,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchura',
@@ -3018,6 +3012,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-ycbcrpositioning'            => 'Posicionamientos Y y C',
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
+'exif-resolutionunit'              => 'Unidad de resolución X e Y',
 'exif-stripoffsets'                => 'Localización de datos de imagen',
 'exif-rowsperstrip'                => 'Número de filas por banda',
 'exif-stripbytecounts'             => 'Bytes por banda comprimida',
@@ -3257,11 +3252,6 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsspeed-k' => 'Kilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nudos',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilómetros',
-'exif-gpsdestdistance-m' => 'Millas',
-'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección real',

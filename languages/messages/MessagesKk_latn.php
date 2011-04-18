@@ -1321,7 +1321,7 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 # Recent changes
 'nchanges'                          => '$1 özgeris',
 'recentchanges'                     => 'Jwıqtağı özgerister',
-'recentchanges-summary'             => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
+'recentchangestext'                 => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
 'recentchanges-feed-description'    => 'Bul arnamenen wïkïdegi eñ soñğı özgerister qadağalanadı.',
 'rcnote'                            => "$3 kezine deýin — tömende soñğı {{PLURAL:$2|kündegi|'''$2''' kündegi}}, soñğı '''$1''' özgeris körsetiledi.",
 'rcnotefrom'                        => "'''$2''' kezinen beri — tömende '''$1''' jetkenşe deýin özgerister körsetiledi.",
@@ -2442,13 +2442,7 @@ Basqaları ädepkiden jasırıladı.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Eni',
@@ -2463,6 +2457,7 @@ Basqaları ädepkiden jasırıladı.
 'exif-ycbcrpositioning'            => 'Y quraşı jäne C quraşı mekendewi',
 'exif-xresolution'                 => 'Dereleý ajıratılımdığı',
 'exif-yresolution'                 => 'Tireleý ajıratılımdığı',
+'exif-resolutionunit'              => 'X jäne Y boýınşa ajıratılımdıq birligi',
 'exif-stripoffsets'                => 'Swret dererekteriniñ jaýğaswı',
 'exif-rowsperstrip'                => 'Beldik saýın jol sanı',
 'exif-stripbytecounts'             => 'Qısımdalğan beldik saýın baýt sanı',

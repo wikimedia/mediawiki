@@ -759,7 +759,7 @@ Ngem no kayatmo nga ited, maaramat daytoy kas pammadayaw ken pangpatalged iti ob
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|baliw|balbaliw}}',
 'recentchanges'                     => 'Kaudian a balbaliw',
-'recentchanges-summary'             => 'Bantayan iti daytoy a panid dagiti kauudian a panakabalbaliw ti wiki.',
+'recentchangestext'                 => 'Bantayan iti daytoy a panid dagiti kauudian a panakabalbaliw ti wiki.',
 'recentchanges-feed-description'    => 'Suroten dagiti kakaudian a panamalbaliw iti wiki iti daytoy a feed.',
 'rcnote'                            => "Adda iti baba {{PLURAL:$1|ti '''1''' baliw|dagiti naudi '''$1''' balbaliw}} iti naudi nga {{PLURAL:$2|aldaw|'''$2''' al-aldaw}}, sipud iti $3.",
 'rcnotefrom'                        => "Makita iti baba dagiti panagbalbaliw manipud idi '''$2''' (agingga iti '''$1''' ti naipakita).",
@@ -1505,13 +1505,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Kaakaba',
@@ -1525,6 +1519,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 'exif-ycbcrpositioning'            => 'Y ken C positioning',
 'exif-xresolution'                 => 'Horizontal resolution',
 'exif-yresolution'                 => 'Vertical resolution',
+'exif-resolutionunit'              => 'Unit ti X ken Y resolution',
 'exif-stripoffsets'                => 'Image data location',
 'exif-stripbytecounts'             => 'Bytes per compressed strip',
 'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI',

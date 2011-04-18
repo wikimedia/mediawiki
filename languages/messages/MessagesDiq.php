@@ -1244,7 +1244,7 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'nchanges'                          => '$1 {{PLURAL:$1|vurnayış|vurnayışan}}',
 'recentchanges'                     => 'Vurnayışê peyêni',
 'recentchanges-legend'              => 'Tercihê vurnayışanê peniyan',
-'recentchanges-summary'             => 'eno pele de ser wîkî de vurnayîşî penîyî teqib bike',
+'recentchangestext'                 => 'eno pele de ser wîkî de vurnayîşî penîyî teqib bike',
 'recentchanges-feed-description'    => 'Ena feed dı vurnayişanê tewr peniyan teqip bık.',
 'recentchanges-label-newpage'       => 'Ena edît yew pela newî viraşt',
 'recentchanges-label-minor'         => 'Eno yew edîto qickek o',
@@ -2580,13 +2580,7 @@ Ma aya bini numnen.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Verini',
@@ -2601,6 +2595,7 @@ Ma aya bini numnen.
 'exif-ycbcrpositioning'            => 'pozisyonê Y u C',
 'exif-xresolution'                 => 'Rezulasyanê veriniye',
 'exif-yresolution'                 => 'Rezulasyanê derganiye',
+'exif-resolutionunit'              => 'Rezulasyonê Parçeyê X U Y',
 'exif-stripoffsets'                => 'cayê data yê resim',
 'exif-rowsperstrip'                => 'Yew reze de teneyê dizeyi',
 'exif-stripbytecounts'             => 'Yew compresyon de dizeyi',

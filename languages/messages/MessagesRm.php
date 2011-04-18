@@ -1193,7 +1193,7 @@ Questa infurmaziun è publica.',
 'nchanges'                          => '$1 {{PLURAL:$1|midada|midadas}}',
 'recentchanges'                     => 'Ultimas midadas',
 'recentchanges-legend'              => 'Opziuns per las ultimas midadas',
-'recentchanges-summary'             => "Sin questa pagina pos ti suandar las ultimas midadas sin '''{{SITENAME}}'''.",
+'recentchangestext'                 => "Sin questa pagina pos ti suandar las ultimas midadas sin '''{{SITENAME}}'''.",
 'recentchanges-feed-description'    => 'Suonda las ultimas midadas en la wiki cun quet feed.',
 'recentchanges-label-newpage'       => 'Questa modificaziun ha creà ina nova pagina',
 'recentchanges-label-minor'         => 'Quai è ina pitschna modificaziun',
@@ -2286,13 +2286,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ladezza',
@@ -2307,6 +2301,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-ycbcrpositioning'            => 'Posiziunament da Y e C',
 'exif-xresolution'                 => 'Resoluziun orizontala',
 'exif-yresolution'                 => 'Resoluziun verticala',
+'exif-resolutionunit'              => 'Unitad da mesira da la resoluziun',
 'exif-stripoffsets'                => 'Posiziun da las datas da maletg',
 'exif-rowsperstrip'                => 'Dumber lingias per strivla',
 'exif-stripbytecounts'             => 'Bytes per strivla cumprimida',

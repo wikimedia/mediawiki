@@ -734,7 +734,7 @@ $1',
 'nchanges'                       => '$1 {{PLURAL:$1|сольлһн|сольлһн}}',
 'recentchanges'                  => 'Шидрә сольлһн',
 'recentchanges-legend'           => 'Шидрә сольлһна көгүд',
-'recentchanges-summary'          => 'Эн цагин дараһар бичсн шидрә сольлһн',
+'recentchangestext'              => 'Эн цагин дараһар бичсн шидрә сольлһн',
 'recentchanges-feed-description' => 'Эн зәңгллһд шидрә хүврһд шинҗлх.',
 'recentchanges-label-newpage'    => 'Тер үүләр шин халх бүтәв',
 'recentchanges-label-minor'      => 'Эн баһ чинртә сольлһн',
@@ -1171,13 +1171,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'               => 'Өргн',

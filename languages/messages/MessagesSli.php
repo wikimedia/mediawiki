@@ -943,7 +943,7 @@ Miet andern Nutzern koast du au ieber de Nutzerdischkurseyta Kontakt uffnahma, o
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerong|Änneronga}}',
 'recentchanges'                     => 'Foarchte Verändarunga',
 'recentchanges-legend'              => 'Oazeigeoptiona',
-'recentchanges-summary'             => "Uff dieser Seyte koanst du de letzta Änderunga uff '''{{SITENAME}}''' noachverfolga.",
+'recentchangestext'                 => "Uff dieser Seyte koanst du de letzta Änderunga uff '''{{SITENAME}}''' noachverfolga.",
 'recentchanges-feed-description'    => 'Verfolge miet diesem Feed de letzta Änneronga ei {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Neue Seyte',
 'recentchanges-label-minor'         => 'Klenne Änderung',
@@ -1969,13 +1969,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagelength'                 => 'Länge',
@@ -1986,6 +1980,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'exif-ycbcrsubsampling'            => 'Subsampling Rate vu Y bis C',
 'exif-xresolution'                 => 'Horizontale Ufflesung',
 'exif-yresolution'                 => 'Vertikale Ufflesung',
+'exif-resolutionunit'              => 'Maßeinheet dar Ufflesung',
 'exif-rowsperstrip'                => 'Oazoahl Zeila pro Streifa',
 'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifa',
 'exif-jpeginterchangeformatlength' => 'Griße dar JPEG-Daten ei Bytes',

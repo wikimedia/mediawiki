@@ -1219,13 +1219,7 @@ Trawan o kibri.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Kenki a file disi ini wan dorosey wrokosani.',

@@ -1548,7 +1548,7 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'nchanges'                          => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'recentchanges'                     => 'Son değişiklikler',
 'recentchanges-legend'              => 'Son değişiklikler seçenekleri',
-'recentchanges-summary'             => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
+'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
 'recentchanges-label-newpage'       => 'Bu değişiklik yeni bir sayfa oluşturdu',
 'recentchanges-label-minor'         => 'Bu küçük bir değişiklik',
@@ -2977,19 +2977,14 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'metadata-expand'   => 'Ayrıntıları göster',
 'metadata-collapse' => 'Ayrıntıları gösterme',
 'metadata-fields'   => 'Bu sayfada listelenen EXIF metadata alanları resim görüntü sayfalarında metadata tablosu çöktüğünde kullanılır. Diğerleri varsayılan olarak gizlenecektir.
+
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Genişlik',
@@ -3004,6 +2999,7 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-ycbcrpositioning'            => 'Y ve C yerleştirme',
 'exif-xresolution'                 => 'Yatay çözünürlük',
 'exif-yresolution'                 => 'Dikey çözünürlük',
+'exif-resolutionunit'              => 'X ve Y çözümleme birimi',
 'exif-stripoffsets'                => 'Resim veri konumu',
 'exif-rowsperstrip'                => 'Number of rows per strip',
 'exif-stripbytecounts'             => 'Bytes per compressed strip',
@@ -3132,8 +3128,7 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'     => 'sRGB',
-'exif-colorspace-65535' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'Var olmayan',
 'exif-componentsconfiguration-1' => 'Y',
@@ -3268,11 +3263,6 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-gpsspeed-k' => 'km/s',
 'exif-gpsspeed-m' => 'Mil/saat',
 'exif-gpsspeed-n' => 'Deniz mili',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometre',
-'exif-gpsdestdistance-m' => 'Mil',
-'exif-gpsdestdistance-n' => 'Deniz mili',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gerçek yönü',

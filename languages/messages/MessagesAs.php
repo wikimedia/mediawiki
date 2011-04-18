@@ -1722,13 +1722,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'বহল',

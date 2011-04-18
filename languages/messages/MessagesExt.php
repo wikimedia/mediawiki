@@ -1012,7 +1012,7 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'nchanges'                          => '$1 {{PLURAL:$1|chambu|chambus}}',
 'recentchanges'                     => 'Úrtimus chambus',
 'recentchanges-legend'              => 'Ocionis enos úrtimus chambus',
-'recentchanges-summary'             => 'Sigui los úrtimus chambus d´esti güiqui nesta páhina.',
+'recentchangestext'                 => 'Sigui los úrtimus chambus d´esti güiqui nesta páhina.',
 'recentchanges-feed-description'    => 'Sigui los úrtimus chambus nel güiqui nesti feed.',
 'rcnote'                            => "Embahu se {{PLURAL:$1|muestra '''1''' chambu|muestran los úrtimus '''$1''' chambus}} {{PLURAL:$2|dendi ayel|enus úrtimus '''$2''' dias}}, de $4 a las $5.",
 'rcnotefrom'                        => "Embahu se muestran los chambus hechus dendi el '''$2''' (hata el '''$1''').",
@@ -2068,13 +2068,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchón',

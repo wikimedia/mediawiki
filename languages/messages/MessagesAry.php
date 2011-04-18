@@ -880,7 +880,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'nchanges'                          => '{{PLURAL:$1|ṫeġyira weḫda|$1 dyal ṫ-ṫeġyiraṫ}}',
 'recentchanges'                     => 'Ṫ-Ṫeĝdilaṫ l-leĥĥra',
 'recentchanges-legend'              => 'Opsyon dyal ṫ-ṫeġyiraṫ l-leĥĥra',
-'recentchanges-summary'             => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
+'recentchangestext'                 => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
 'recentchanges-feed-description'    => 'Ṫebbeĝ ṫ-ṫeĝdilaṫ l-leĥĥrin dyal had l-wiki fe waḫed l-flu.',
 'recentchanges-label-newpage'       => "anch' had tadil sfha jdida",
 'recentchanges-label-minor'         => 'Hada ṫeĝdil sġir',
@@ -1751,13 +1751,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'laard',
@@ -1772,6 +1766,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-ycbcrpositioning'            => 'lwada dyal Y o C',
 'exif-xresolution'                 => 'ddiqa lofoqia',
 'exif-yresolution'                 => 'diqa raissia',
+'exif-resolutionunit'              => 'wihdat tahlil X o Y',
 'exif-stripoffsets'                => 'mawqiaa bayanat sora',
 'exif-rowsperstrip'                => 'adad sofof lkol chariha',
 'exif-stripbytecounts'             => 'byte lkol chariha mdghota',

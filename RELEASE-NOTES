@@ -237,8 +237,6 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * UtfNormal::cleanUp on an invalid utf-8 sequence no longer returns false if intl installed.
 * (bug 28561) The css class small will no longer make nested elements even smaller.
 * (bug 13172) Array type exif data (like GPS) was not being extracted from images.
-* (bug 25946) The message on the top of Special:RecentChanges is now displayed
-  in user language instead of content language
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result

@@ -1361,7 +1361,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'nchanges'                          => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 'recentchanges'                     => 'Aktualne změny',
 'recentchanges-legend'              => 'Opcije aktualnych změnow',
-'recentchanges-summary'             => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
+'recentchangestext'                 => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description'    => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
 'recentchanges-label-newpage'       => 'Tuta změna je nowu stronu wutworiła',
 'recentchanges-label-minor'         => 'To je snadna změna',
@@ -2748,13 +2748,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šěrokosć',
@@ -2769,6 +2763,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-ycbcrpositioning'            => 'Zaměstnjenje Y a C',
 'exif-xresolution'                 => 'Wodorune rozeznaće',
 'exif-yresolution'                 => 'Padorune rozeznaće',
+'exif-resolutionunit'              => 'Jednotka rozeznaća X a Y',
 'exif-stripoffsets'                => 'Městno wobrazowych datow',
 'exif-rowsperstrip'                => 'Ličba rjadkow na pas',
 'exif-stripbytecounts'             => 'Bajty na komprimowany pas',
@@ -3009,11 +3004,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mila/h',
 'exif-gpsspeed-n' => 'Suki',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometry',
-'exif-gpsdestdistance-m' => 'Mile',
-'exif-gpsdestdistance-n' => 'Mórske mile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Woprawdźity směr',

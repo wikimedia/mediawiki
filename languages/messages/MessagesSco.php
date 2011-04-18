@@ -793,7 +793,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|chynge|chynges}}',
 'recentchanges'                     => 'Recent chynges',
-'recentchanges-summary'             => 'Follae the maist recent chynges tae the wiki on this page.',
+'recentchangestext'                 => 'Follae the maist recent chynges tae the wiki on this page.',
 'rcnote'                            => "Ablo {{PLURAL:$1|is '''1''' chynge|are the last '''$1''' chynges}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $3.",
 'rcnotefrom'                        => 'Ablo is the chynges syne <b>$2</b> (up tae <b>$1</b> shawn).',
 'rclistfrom'                        => 'Shaw new chynges stertin frae $1',

@@ -1511,7 +1511,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 'recentchanges'                     => 'Viimased muudatused',
 'recentchanges-legend'              => 'Viimaste muudatuste seaded',
-'recentchanges-summary'             => 'Jälgi sellel leheküljel viimaseid muudatusi.',
+'recentchangestext'                 => 'Jälgi sellel leheküljel viimaseid muudatusi.',
 'recentchanges-feed-description'    => 'Jälgi vikisse tehtud viimaseid muudatusi.',
 'recentchanges-label-newpage'       => 'See muudatus lõi uue lehekülje',
 'recentchanges-label-minor'         => 'See on pisiparandus',
@@ -2896,13 +2896,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Laius',
@@ -2915,6 +2909,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-planarconfiguration'         => 'Andmejärjestus',
 'exif-xresolution'                 => 'Horisontaalne eraldus',
 'exif-yresolution'                 => 'Vertikaalne eraldus',
+'exif-resolutionunit'              => 'X ja Y resolutsiooni ühik',
 'exif-stripoffsets'                => 'Pildi andmete asukoht',
 'exif-rowsperstrip'                => 'Ridade arv riba kohta',
 'exif-stripbytecounts'             => 'Baitide hulk kokkusurutud riba kohta',

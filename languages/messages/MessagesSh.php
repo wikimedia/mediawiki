@@ -1309,7 +1309,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'nchanges'                          => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'recentchanges'                     => 'Nedavne izmjene',
 'recentchanges-legend'              => 'Postavke za Nedavne promjene',
-'recentchanges-summary'             => 'Na ovoj stranici možete pratiti nedavne izmjene.',
+'recentchangestext'                 => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description'    => 'Praćenje nedavnih izmjena na ovom wikiju u ovom feedu.',
 'recentchanges-label-newpage'       => 'Ovom izmjenom je stvorena nova stranica',
 'recentchanges-label-minor'         => 'Ovo je manja izmjena',
@@ -2706,13 +2706,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2727,6 +2721,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-ycbcrpositioning'            => 'Pozicioniranje Y i C',
 'exif-xresolution'                 => 'Horizontalna rezolucija',
 'exif-yresolution'                 => 'Vertikalna rezolucija',
+'exif-resolutionunit'              => 'Jedinice X i Y rezolucije',
 'exif-stripoffsets'                => 'Lokacija podataka slike',
 'exif-rowsperstrip'                => 'Broj redaka po liniji',
 'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
@@ -2850,8 +2845,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'     => 'sRGB',
-'exif-colorspace-65535' => 'FFFF.H',
+'exif-colorspace-1' => 'sRGB',
 
 'exif-componentsconfiguration-0' => 'ne postoji',
 

@@ -1312,7 +1312,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'nchanges'                          => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
 'recentchanges'                     => 'Mabadiliko ya karibuni',
 'recentchanges-legend'              => "Machaguo ya 'mabadaliko ya karibuni'",
-'recentchanges-summary'             => 'Orodha ya mabadilisho yaliyofanywa katika {{SITENAME}} siku zilizopita.',
+'recentchangestext'                 => 'Orodha ya mabadilisho yaliyofanywa katika {{SITENAME}} siku zilizopita.',
 'recentchanges-feed-description'    => 'Tumia tawanyiko hili kufuatilia mabadiliko yote ya hivi karibuni katika Wiki.',
 'recentchanges-label-newpage'       => 'Ukurasa mpya ulianzishwa hapo',
 'recentchanges-label-minor'         => 'Hili ni badiliko dogo',
@@ -1852,10 +1852,6 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'noemailtext'          => 'Mtumiaji huyu hajataja anwani sahihi ya barua pepe.',
 'nowikiemailtitle'     => 'Barua pepe haziruhusiwi',
 'nowikiemailtext'      => 'Mtumiaji huyu hajakubali kupokea barua pepe kutoka kwa watumiaji wengine.',
-'emailnotarget'        => 'Jina la mpokeaji uliloweka halipatikani',
-'emailtarget'          => 'Andika jina la mtumiaji la mpokeaji',
-'emailusername'        => 'Jina la mtumiaji:',
-'emailusernamesubmit'  => 'Wasilisha',
 'email-legend'         => 'Tuma barua pepe kwa mtumiaji mwingine wa {{SITENAME}}',
 'emailfrom'            => 'Kutoka kwa:',
 'emailto'              => 'Kwa:',
@@ -2499,13 +2495,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Upana',
@@ -2687,12 +2677,11 @@ Ishara hizi za uthibitisho zitaishia mnamo $4.',
 'scarytranscludetoolong' => '[URL ni ndefu mno]',
 
 # Delete conflict
-'deletedwhileediting'      => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
-'confirmrecreate'          => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
+'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
+'confirmrecreate'     => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
 : ''$2''
 Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
-'confirmrecreate-noreason' => 'Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri. Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.',
-'recreate'                 => 'Anzisha upya',
+'recreate'            => 'Anzisha upya',
 
 # action=purge
 'confirm_purge_button' => 'Sawa',

@@ -1417,7 +1417,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
 'recentchanges-legend'              => 'Optioune vun de rezenten Ännerungen',
-'recentchanges-summary'             => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
+'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Dës Ännerung huet eng nei Säit ugeluecht',
 'recentchanges-label-minor'         => 'Dëst ass eng kleng Ännerung',
@@ -2835,21 +2835,14 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Wann de Fichier nodréiglech geännert gouf, kann et sinn datt eenzel Detailer net mat dem aktuelle Fichier iwwereneestëmmen.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
-'metadata-fields'   => "D'Bild-Meta-Felder aus dëser Lëscht ginn op Bildbeschreiwungssäite gewise wann d'Metadatentafel zesummegeklappt ass.
-Déi aner sinn am Standard verstoppt.
+'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewise wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breet',
@@ -2864,6 +2857,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-ycbcrpositioning'            => 'Y an C Positionéierung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',
+'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
 'exif-stripoffsets'                => 'Plaz wou de Fichier vum Bild gespäichert ass',
 'exif-rowsperstrip'                => 'Zuel vun den Zeile pro Strëpp',
 'exif-stripbytecounts'             => 'Byte pro kompriméiert Strëpp',
@@ -2885,8 +2879,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-colorspace'                  => 'Faarfraum',
 'exif-componentsconfiguration'     => 'Bedeitung vun eenzelne Komponenten',
 'exif-compressedbitsperpixel'      => 'Kompriméiert Bite pro Pixel',
-'exif-pixelydimension'             => 'Breet vum Bild',
-'exif-pixelxdimension'             => 'Héicht vum Bild',
+'exif-pixelydimension'             => 'Gültëg Bildbreet',
+'exif-pixelxdimension'             => 'Gültëg Bildhéicht',
 'exif-usercomment'                 => 'Bemierkunge vum Benotzer',
 'exif-relatedsoundfile'            => 'Tounfichier deen dozou gehéiert',
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
@@ -2900,9 +2894,9 @@ Déi aner sinn am Standard verstoppt.
 'exif-exposureprogram'             => 'Beliichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spectral Sensitivitéit',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlechkeet (ISO)',
-'exif-shutterspeedvalue'           => 'APEX Beliichtungszäit',
-'exif-aperturevalue'               => 'APEX Blendewäert',
-'exif-brightnessvalue'             => 'APEX Hellegkeet',
+'exif-shutterspeedvalue'           => 'Beliichtungszäitwäert',
+'exif-aperturevalue'               => 'Blendewäert',
+'exif-brightnessvalue'             => 'Hellegkeetswäert',
 'exif-exposurebiasvalue'           => 'Beliichtungsvirgab',
 'exif-maxaperturevalue'            => 'Gréisste Blend',
 'exif-subjectdistance'             => 'Distanz zum Sujet',
@@ -2964,31 +2958,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
 'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
-'exif-jpegfilecomment'             => 'Bemierkung zum JPEG-Fichier',
-'exif-keywords'                    => 'Stéchwierder',
-'exif-worldregioncreated'          => "Welt-Regioun an där d'Bild gemaach gouf",
-'exif-countrycreated'              => "Land an deem d'Bild gemaach gouf",
-'exif-countrycodecreated'          => "Code fir d'Land an deem d'Bild gemaach gouf",
-'exif-citycreated'                 => "Stad an där d'Bild gemaach gouf",
-'exif-worldregiondest'             => 'Gewise Welt-Regioun',
-'exif-countrydest'                 => 'Gewisent Land',
-'exif-countrycodedest'             => 'Code vum gewisene Land',
 'exif-objectname'                  => 'Kuerzen Titel',
-'exif-headline'                    => 'Iwwerschrëft',
-'exif-source'                      => 'Quell',
-'exif-contact'                     => 'Kontaktinformatioun',
-'exif-languagecode'                => 'Sprooch',
-'exif-iimversion'                  => 'IIM-Versioun',
-'exif-iimcategory'                 => 'Kategorie',
-'exif-datetimeexpires'             => 'Net benotzen nom',
-'exif-serialnumber'                => 'Seriennummer vun der Kamera',
-'exif-cameraownername'             => 'Besëtzer vun der Kamera',
-'exif-nickname'                    => 'Informellen Numm vum Bild',
-'exif-rating'                      => 'Bewäertung (vu 5)',
-'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
-'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
-'exif-organisationinimage'         => 'Organisatioun um Bild',
-'exif-personinimage'               => 'Persoun um Bild',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
@@ -3070,8 +3040,6 @@ Déi aner sinn am Standard verstoppt.
 'exif-sensingmethod-7' => 'Dräilineare Sensor',
 'exif-sensingmethod-8' => 'Sequentielle lineare Farwsensor',
 
-'exif-filesource-3' => 'Digital Kamera',
-
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
 'exif-customrendered-0' => 'Standard',
@@ -3120,10 +3088,6 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpslongitude-e' => 'ëstlech Längt',
 'exif-gpslongitude-w' => 'westlech Längt',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} iwwer dem Niveau vum Mier',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} ënner dem Niveau vum Mier',
-
 'exif-gpsstatus-a' => 'Miessung am gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
 
@@ -3135,47 +3099,9 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpsspeed-m' => 'Meile pro Stonn',
 'exif-gpsspeed-n' => 'Kniet',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Meilen',
-'exif-gpsdestdistance-n' => 'Nautesch Meilen',
-
-'exif-gpsdop-excellent' => 'Exzellent ($1)',
-'exif-gpsdop-good'      => 'Gutt ($1)',
-'exif-gpsdop-moderate'  => 'Mëttel ($1)',
-'exif-gpsdop-fair'      => 'Ongeféier ($1)',
-'exif-gpsdop-poor'      => 'Schwaach ($1)',
-
-'exif-objectcycle-a' => 'Nëmme moies',
-'exif-objectcycle-p' => 'Nëmmen owes',
-'exif-objectcycle-b' => 'Esouwuel moies wéi owes',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',
 'exif-gpsdirection-m' => 'Magnéitesch Richtung',
-
-'exif-dc-date'   => 'Datum(en)',
-'exif-dc-rights' => 'Rechter',
-
-'exif-isospeedratings-overflow' => 'Méi grouss wéi 65535',
-
-'exif-iimcategory-clj' => 'Kriminalitéit a Recht',
-'exif-iimcategory-dis' => 'Katastrofen an Akzidenter',
-'exif-iimcategory-fin' => 'Economie a Geschäft',
-'exif-iimcategory-evn' => 'Ëmwelt',
-'exif-iimcategory-hth' => 'Gesondheet',
-'exif-iimcategory-lab' => 'Aarbecht',
-'exif-iimcategory-pol' => 'Politik',
-'exif-iimcategory-rel' => 'Relioun a Glawen',
-'exif-iimcategory-sci' => 'Wëssenschaft an Technologie',
-'exif-iimcategory-spo' => 'Sport',
-'exif-iimcategory-war' => 'Krich, Konflikt an Onrou',
-'exif-iimcategory-wea' => 'Wieder',
-
-'exif-urgency-normal' => 'Normal ($1)',
-'exif-urgency-low'    => 'Niddreg ($1)',
-'exif-urgency-high'   => 'Héich ($1)',
-'exif-urgency-other'  => 'Benotzerdefinéiert Prioritéit ($1)',
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',

@@ -1393,13 +1393,7 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Modifye fichye sa a nan aplikasyon pa ou (ki pa nan sistèm an, sou machin ou pa egzanp).',

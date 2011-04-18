@@ -1381,7 +1381,7 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'nchanges'                          => '{{PLURAL:$1|Een Ännern|$1 Ännern}}',
 'recentchanges'                     => 'Toletzt ännert',
 'recentchanges-legend'              => 'Optionen för toletzt ännert',
-'recentchanges-summary'             => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
+'recentchangestext'                 => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
 'recentchanges-feed-description'    => 'Behool mit dissen Feed de ne’esten Ännern op dit Wiki in’t Oog.',
 'rcnote'                            => "Hier sünd de letzten '''$1''' Ännern vun {{PLURAL:$2|den letzten Dag|de letzten '''$2''' Daag}} (Stand $5, $4). ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)",
 'rcnotefrom'                        => 'Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).',
@@ -2595,13 +2595,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breed',
@@ -2616,6 +2610,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-ycbcrpositioning'            => 'Y un C Positionerung',
 'exif-xresolution'                 => 'Oplösen in de Breed',
 'exif-yresolution'                 => 'Oplösen in de Hööchd',
+'exif-resolutionunit'              => 'Eenheit vun de Oplösen',
 'exif-stripoffsets'                => 'Bilddaten-Versatz',
 'exif-rowsperstrip'                => 'Tall Regen je Striepen',
 'exif-stripbytecounts'             => 'Bytes je kumprimeert Striepen',
@@ -2855,11 +2850,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-gpsspeed-k' => 'Kilometers in’e Stünn',
 'exif-gpsspeed-m' => 'Mielen in’e Stünn',
 'exif-gpsspeed-n' => 'Knoten',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometers',
-'exif-gpsdestdistance-m' => 'Mielen',
-'exif-gpsdestdistance-n' => 'Seemielen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Richtung',

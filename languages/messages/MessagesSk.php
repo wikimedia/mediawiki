@@ -1539,7 +1539,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
 'recentchanges'                     => 'Posledné úpravy',
 'recentchanges-legend'              => 'Možnosti posledných zmien',
-'recentchanges-summary'             => 'Pomocou tejto stránky sledujete posledné úpravy wiki.',
+'recentchangestext'                 => 'Pomocou tejto stránky sledujete posledné úpravy wiki.',
 'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto kanálom.',
 'recentchanges-label-newpage'       => 'Táto úprava vytvorila novú stránku.',
 'recentchanges-label-minor'         => 'Toto je drobná úprava',
@@ -2993,13 +2993,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šírka',
@@ -3014,6 +3008,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-ycbcrpositioning'            => 'Poloha Y a C',
 'exif-xresolution'                 => 'Horizontálne rozlíšenie',
 'exif-yresolution'                 => 'Vertikálne rozlíšenie',
+'exif-resolutionunit'              => 'Jednotky horizontálneho a verikálneho rozlíšenia',
 'exif-stripoffsets'                => 'Umiestnenie obrazových dát',
 'exif-rowsperstrip'                => 'Počet riadkov na pás',
 'exif-stripbytecounts'             => 'Bajtov na komprimovaný prúžok',
@@ -3254,11 +3249,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsspeed-k' => 'Kilometrov za hodinu',
 'exif-gpsspeed-m' => 'Míľ za hodinu',
 'exif-gpsspeed-n' => 'Uzlov',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometrov',
-'exif-gpsdestdistance-m' => 'Míľ',
-'exif-gpsdestdistance-n' => 'Námorných míľ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Skutočný smer',

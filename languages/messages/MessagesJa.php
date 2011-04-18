@@ -1638,7 +1638,7 @@ HTMLタグを見直してください。',
 'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
-'recentchanges-summary'             => '最近の更新はこのページから確認できます。',
+'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => 'このフィードでそのウィキへの最近の更新を追跡。',
 'recentchanges-label-newpage'       => 'この編集で新しいページが作成されました',
 'recentchanges-label-minor'         => 'これは細部の編集です',
@@ -3143,13 +3143,7 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '幅',
@@ -3164,6 +3158,7 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'YとCの位置',
 'exif-xresolution'                 => '水平解像度',
 'exif-yresolution'                 => '垂直解像度',
+'exif-resolutionunit'              => 'XとY解像度の単位',
 'exif-stripoffsets'                => '画像データの場所',
 'exif-rowsperstrip'                => 'ストリップごとの行数',
 'exif-stripbytecounts'             => '圧縮されたストリップごとのバイト数',
@@ -3409,11 +3404,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'キロメートル毎時',
 'exif-gpsspeed-m' => 'マイル毎時',
 'exif-gpsspeed-n' => 'ノット',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'キロメートル',
-'exif-gpsdestdistance-m' => 'マイル',
-'exif-gpsdestdistance-n' => '海里',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',

@@ -340,7 +340,7 @@ Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 # Recent changes
 'recentchanges'               => 'Allannguutit kingulliit',
 'recentchanges-legend'        => 'Inissisimaffiit allannguutini kingullerni',
-'recentchanges-summary'       => "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",
+'recentchangestext'           => "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",
 'recentchanges-label-newpage' => 'Tassaavoq qupperneq nutaaq',
 'recentchanges-label-minor'   => 'Tassaavoq allannguut annikitsoq',
 'recentchanges-label-bot'     => 'Bot-ip allannguutaa',

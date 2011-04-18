@@ -1114,7 +1114,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|μεταβολή|μεταβολαί}}',
 'recentchanges'                     => 'Αἱ νέαι μεταβολαί',
 'recentchanges-legend'              => 'Ἐπιλογαὶ προσφάτων μεταβολῶν',
-'recentchanges-summary'             => 'Ἀνιχνεύσειν τὰς πλείω πρόσφατους ἀλλαγὰς οῦ βίκι ἐν τῇδε τῇ δέλτῳ.',
+'recentchangestext'                 => 'Ἀνιχνεύσειν τὰς πλείω πρόσφατους ἀλλαγὰς οῦ βίκι ἐν τῇδε τῇ δέλτῳ.',
 'recentchanges-feed-description'    => 'Παρακολουθεῖν τὰς πλείω προσφάτους ἀλλαγὰς τοῦ βίκι ἐν ταύτῃ περιλήψει.',
 'recentchanges-label-newpage'       => 'Ἥδε ἡ μεταγραφὴ ἐποίησεν νέαν δέλτον τινά',
 'recentchanges-label-minor'         => 'Ἥδε μικρὰ μεταγραφή ἐστιν',
@@ -2221,13 +2221,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -2242,6 +2236,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Τοποθέτησις τῶν Y καὶ C',
 'exif-xresolution'                 => 'Ὁριζόντιος ἀνάλυσις',
 'exif-yresolution'                 => 'Κάθετος ἀνάλυσις',
+'exif-resolutionunit'              => 'Μονὰς τῆς τῶν X καὶ Y ἀναλύσεως',
 'exif-stripoffsets'                => 'Τοποθεσία δεδομένων εἰκόνος',
 'exif-rowsperstrip'                => 'Ἀριθμὸς σειρῶν ἀνὰ λῶρον',
 'exif-stripbytecounts'             => 'Δυφία ἀνὰ συμπεπιεσμένον λῶρον',
@@ -2481,11 +2476,6 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα ἀνὰ ὥρα',
 'exif-gpsspeed-m' => 'Μίλια ἀνὰ ὥρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
-'exif-gpsdestdistance-m' => 'Μίλια',
-'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ἀληθὴς κατεύθυνσις',

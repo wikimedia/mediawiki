@@ -662,13 +662,7 @@ Nan lainnyo akan tasuruak sacaro default.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Suntiang berkas ko dengan aplikasi lua',

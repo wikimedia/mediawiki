@@ -1274,7 +1274,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'nchanges'                          => '$1 {{PLURAL:$1|Annerenge|Annerengen}}',
 'recentchanges'                     => 'Lääste Annerengen',
 'recentchanges-legend'              => 'Anwiesoptione',
-'recentchanges-summary'             => "Ap disse Siede koast du do lääste Annerengen ap '''{{SITENAME}}''' ättergunge.",
+'recentchangestext'                 => "Ap disse Siede koast du do lääste Annerengen ap '''{{SITENAME}}''' ättergunge.",
 'recentchanges-feed-description'    => 'Ferfoulge mäd dissen Feed do lääste Annerengen in {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Näie Siede',
 'recentchanges-label-minor'         => 'Litje Annerenge',
@@ -2671,13 +2671,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 * isospeedratings
 * datetimeoriginal
 * exposuretime
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bratte',
@@ -2692,6 +2686,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-ycbcrpositioning'            => 'Y un C Positionierenge',
 'exif-xresolution'                 => 'Horizontoale Aplöösenge',
 'exif-yresolution'                 => 'Vertikoale Aplöösenge',
+'exif-resolutionunit'              => 'Mäite-Eenhaid fon ju Aplöösenge',
 'exif-stripoffsets'                => 'Bieldedoatenfersät',
 'exif-rowsperstrip'                => 'Antaal Riegen pro Striepe',
 'exif-stripbytecounts'             => 'Bytes pro komprimierten Striep',

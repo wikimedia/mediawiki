@@ -1474,7 +1474,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|endring|endringer}}',
 'recentchanges'                     => 'Siste endringer',
 'recentchanges-legend'              => 'Alternativ for siste endringer',
-'recentchanges-summary'             => 'Vis de siste endringene til denne siden',
+'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne matingen.',
 'recentchanges-label-newpage'       => 'Denne redigeringen opprettet en ny side',
 'recentchanges-label-minor'         => 'Dette er en mindre endring',
@@ -2903,13 +2903,7 @@ Andre vil skjules som standard.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredde',
@@ -2924,6 +2918,7 @@ Andre vil skjules som standard.
 'exif-ycbcrpositioning'            => 'Y- og C-posisjonering',
 'exif-xresolution'                 => 'Horisontal oppløsning',
 'exif-yresolution'                 => 'Vertikal oppløsning',
+'exif-resolutionunit'              => 'Enhet for X- og Y-oppløsning',
 'exif-stripoffsets'                => 'Plassering for bildedata',
 'exif-rowsperstrip'                => 'Antall rader per stripe',
 'exif-stripbytecounts'             => 'Antall byte per kompresserte stripe',
@@ -3166,11 +3161,6 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpsspeed-k' => 'Kilometer per time',
 'exif-gpsspeed-m' => 'Miles per time',
 'exif-gpsspeed-n' => 'Knop',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Miles',
-'exif-gpsdestdistance-n' => 'Nautiske mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sann retning',

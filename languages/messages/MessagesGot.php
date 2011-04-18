@@ -8,7 +8,6 @@
  * @file
  *
  * @author Jocke Pirat
- * @author Node ue
  */
 
 $messages = array(
@@ -30,18 +29,18 @@ $messages = array(
 'thu'           => 'Þei',
 'fri'           => 'Fra',
 'sat'           => 'Þwa',
-'january'       => '𐌰𐍆𐍄𐌿𐌼𐌰 𐌾𐌹𐌿𐌻𐌴𐌹𐍃',
-'february'      => '𐍆𐌰𐌽𐌹𐌼𐌴𐌽𐍉𐌸𐍃',
-'march'         => '𐌺𐌰𐌻𐌳𐌼𐌴𐌽𐍉𐌸𐍃',
-'april'         => '𐌲𐍂𐌰𐍃𐌼𐌴𐌽𐍉𐌸𐍃',
-'may_long'      => '𐌱𐌻𐍉𐌼𐌰𐌼𐌴𐌽𐍉𐌸𐍃',
-'june'          => '𐍅𐌰𐍂𐌼𐌼𐌴𐌽𐍉𐌸𐍃',
-'july'          => '𐌷𐌰𐍅𐌹𐌼𐌴𐌽𐍉𐌸𐍃',
-'august'        => '𐌰𐍃𐌰𐌽𐌼𐌴𐌽𐍉𐌸𐍃',
-'september'     => '𐌰𐌺𐍂𐌰𐌽𐌼𐌴𐌽𐍉𐌸𐍃',
-'october'       => '𐍅𐌴𐌹𐌽𐌼𐌴𐌽𐍉𐌸𐍃',
-'november'      => '𐍆𐍂𐌿𐌼𐌰 𐌾𐌹𐌿𐌻𐌴𐌹𐍃',
-'december'      => '𐌾𐌹𐌿𐌻𐌴𐌹𐍃',
+'january'       => 'Aftuma Jiuleis',
+'february'      => 'Fanimenoþs',
+'march'         => 'Kaldmenoþs',
+'april'         => 'Grasmenoþs',
+'may_long'      => 'Blomamenoþs',
+'june'          => 'Warmmenoþs',
+'july'          => 'Hawimenoþs',
+'august'        => 'Asanmenoþs',
+'september'     => 'Akranmenoþs',
+'october'       => 'Weinmenoþs',
+'november'      => 'Fruma Jiuleis',
+'december'      => 'Jiuleis',
 'january-gen'   => 'Aftumins Jiuleis',
 'february-gen'  => 'Fanimenoþis',
 'march-gen'     => 'Kaldmenoþis',
@@ -80,7 +79,6 @@ $messages = array(
 'moredotdotdot' => 'Máis...',
 'mypage'        => '𐌼𐌴𐌹𐌽 𐍃𐌴𐌹𐌳𐍉',
 'mytalk'        => '𐌼𐌴𐌹𐌽𐌰 𐌼𐌰𐌸𐌻𐌴𐌹',
-'navigation'    => '𐍃𐌴𐌹𐌳𐍉𐌲𐌰𐍅𐌹𐍃𐍃',
 'and'           => '&#32;jah',
 
 # Cologne Blue skin
@@ -88,9 +86,6 @@ $messages = array(
 'qbedit'         => 'Máidjan',
 'qbmyoptions'    => 'Meina seidos',
 'qbspecialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
-
-# Vector skin
-'vector-action-delete' => '𐍄𐌰𐌹𐍂𐌰𐌽',
 
 'errorpagetitle'    => 'Faírina dwalis',
 'returnto'          => 'Gawandjan at $1.',
@@ -102,7 +97,7 @@ $messages = array(
 'searcharticle'     => '𐌰𐍆𐌲𐌰𐌲𐌲𐌰𐌽',
 'history'           => 'Seido Airis',
 'history_short'     => 'Airis',
-'printableversion'  => '𐌳𐍂𐌹𐌿𐍃𐌰𐌽 𐍃𐌴𐌹𐌳𐍉',
+'printableversion'  => 'Driusan seido',
 'permalink'         => 'Áweins táiknjabandi',
 'edit'              => 'Máidjan',
 'editthispage'      => 'Máidja þo seido',
@@ -114,9 +109,9 @@ $messages = array(
 'unprotectthispage' => 'Nibaírga þo siedo',
 'newpage'           => 'Niuja seido',
 'talkpage'          => '𐌼𐌰𐌸𐌻𐌴𐌹𐍃𐌴𐌹𐌳𐍉',
-'talkpagelinktext'  => '𐌼𐌰𐌸𐌻𐌴𐌹𐍃𐌴𐌹𐌳𐍉',
+'talkpagelinktext'  => 'Maþleiseido',
 'specialpage'       => 'Ussindseidos',
-'personaltools'     => '𐍅𐌰𐌹𐍂𐌻𐌴𐌹𐌺𐍃 𐌱𐍂𐌿𐌺𐍅𐌰𐌹𐌷𐍄𐍃',
+'personaltools'     => 'Waírleiks brukwaíhts',
 'talk'              => '𐌲𐌰𐍅𐌰𐌿𐍂𐌳𐌾𐌰',
 'views'             => 'Siuneis',
 'toolbox'           => '𐍄𐌰𐌿𐌹 𐌰𐍂𐌺𐌰',
@@ -128,21 +123,21 @@ $messages = array(
 'jumptosearch'      => 'sokeiþ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '𐍆𐍂𐌰𐌼 {{SITENAME}}',
+'aboutsite'            => 'Ufar {{SITENAME}}',
 'aboutpage'            => 'Project:Ufar',
 'copyrightpage'        => '{{ns:project}}:Manleikawitoþa',
 'currentevents'        => 'Niuja waíhts',
 'currentevents-url'    => 'Project:Nu her',
-'disclaimers'          => '𐌰𐍆𐌰𐌹𐌺𐌰𐌽 𐍅𐌹𐍄𐍉𐌸',
+'disclaimers'          => 'Afaikan witoþ',
 'disclaimerpage'       => 'Project:Afaikan witoþ',
 'edithelp'             => 'Hilpa máidjan',
 'edithelppage'         => 'Help:Máidja',
 'helppage'             => 'Hilpa:Háubidaseido',
-'mainpage'             => '𐌷𐌰𐌿𐌱𐌹𐌳𐌰𐍃𐌴𐌹𐌳𐍉',
+'mainpage'             => 'Háubidaseido',
 'mainpage-description' => 'Haubidaseido',
 'portal'               => '𐌱𐌰𐌿𐍂𐌲𐍃 𐌲𐌰𐍅𐌹',
 'portal-url'           => 'Project:𐌱𐌰𐌿𐍂𐌲𐍃 𐌲𐌰𐍅𐌹',
-'privacy'              => '𐌰𐌽𐌰𐍃𐌹𐌻𐌰 𐍅𐌹𐍄𐍉𐌸',
+'privacy'              => 'Anasila witoþ',
 'privacypage'          => 'Project:Anasila witoþ',
 
 'retrievedfrom'       => 'Niman fram "$1"',
@@ -221,7 +216,7 @@ $messages = array(
 
 # History pages
 'currentrev'          => 'Nu máideins',
-'revisionasof'        => '𐌲𐌰𐌼𐌴𐌻𐌹𐌳𐍉 𐌿𐍃 $1',
+'revisionasof'        => 'Gamelido us $1',
 'revision-info'       => 'Máideins fram $1 bi $2',
 'previousrevision'    => '←Áiris Máideins',
 'nextrevision'        => 'Iftuma máideins→',
@@ -239,17 +234,15 @@ $messages = array(
 
 # Diffs
 'history-title' => 'Árismáideins af "$1"',
-'lineno'        => '𐌱𐍉𐌺𐌰𐍂𐌹𐌲𐌹𐌻𐍉 $1:',
-'editundo'      => '𐌽𐌹𐌿𐍃𐌺𐌰𐍀𐌾𐌰𐌽',
+'lineno'        => 'Bokarigilo $1:',
+'editundo'      => 'niuskapjan',
 
 # Search results
-'prevn'              => 'aftuma {{PLURAL:$1|$1}}',
-'nextn'              => 'iftuma {{PLURAL:$1|$1}}',
-'viewprevnext'       => 'Siuneis ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url'     => 'Hilpa:Háubidaseido',
-'powersearch'        => 'Sokeiþ',
-'powersearch-legend' => '𐍃𐍉𐌺𐌴𐌹𐌸',
-'powersearch-redir'  => '𐍄𐌰𐌻𐌰 𐌰𐍆 𐍄𐌰𐌹𐌺𐌾𐌰𐌽𐍃𐌴𐌹𐌳𐍉𐍃',
+'prevn'          => 'aftuma {{PLURAL:$1|$1}}',
+'nextn'          => 'iftuma {{PLURAL:$1|$1}}',
+'viewprevnext'   => 'Siuneis ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url' => 'Hilpa:Háubidaseido',
+'powersearch'    => 'Sokeiþ',
 
 # Preferences page
 'preferences'       => 'Meinos brukjamaideineis',
@@ -436,8 +429,8 @@ $messages = array(
 'ipblocklist-submit' => 'Sokeiþ',
 'infiniteblock'      => 'ajukduþs',
 'blocklink'          => 'wargjan',
-'unblocklink'        => '𐍅𐌰𐌽𐌳𐌾𐌰𐌽',
-'contribslink'       => '𐌲𐌹𐌱𐍉𐍃',
+'unblocklink'        => 'wandjan',
+'contribslink'       => 'gibos',
 'blocklogpage'       => 'Logboka af afdraúsjan',
 'blocklogentry'      => 'afdraúsiþ [[$1]] fáur $2 $3',
 
@@ -456,22 +449,21 @@ $messages = array(
 'thumbnail-more' => 'Biáuknan',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'            => 'Meina niutandisseido',
-'tooltip-pt-mytalk'              => 'Meina maþleiseido',
-'tooltip-pt-preferences'         => 'Meinos brukjamaideineis',
-'tooltip-pt-mycontris'           => 'Tala af meina gibom',
-'tooltip-pt-logout'              => 'leiþan',
-'tooltip-ca-protect'             => 'Baírga þo seido',
-'tooltip-ca-delete'              => 'Taíran so seido',
-'tooltip-ca-move'                => 'Skiuban so seido',
-'tooltip-search'                 => '𐍃𐍉𐌺𐌴𐌹𐌸 {{SITENAME}}',
-'tooltip-p-logo'                 => 'Háubidaseido',
-'tooltip-n-mainpage'             => '𐍃𐌰𐌹𐍈𐌰𐌽 𐍃𐌰 𐌷𐌰𐌿𐌱𐌹𐌳𐌰𐍃𐌴𐌹𐌳𐍉',
-'tooltip-n-mainpage-description' => '𐍃𐌰𐌹𐍈𐌰𐌽 𐍃𐌰 𐌷𐌰𐌿𐌱𐌹𐌳𐌰𐍃𐌴𐌹𐌳𐍉',
-'tooltip-t-upload'               => '𐌿𐍃𐌷𐌻𐌰𐌸𐌰𐌹𐌸 𐍆𐌴𐌹𐌻𐌰𐌽𐍃',
-'tooltip-t-specialpages'         => 'Findiþ alla ussindseidos',
-'tooltip-ca-nstab-user'          => 'Sáihwan sa niutandisseido',
-'tooltip-save'                   => 'Skreiban þein máideins',
+'tooltip-pt-userpage'    => 'Meina niutandisseido',
+'tooltip-pt-mytalk'      => 'Meina maþleiseido',
+'tooltip-pt-preferences' => 'Meinos brukjamaideineis',
+'tooltip-pt-mycontris'   => 'Tala af meina gibom',
+'tooltip-pt-logout'      => 'leiþan',
+'tooltip-ca-protect'     => 'Baírga þo seido',
+'tooltip-ca-delete'      => 'Taíran so seido',
+'tooltip-ca-move'        => 'Skiuban so seido',
+'tooltip-search'         => 'Sokeiþ {{SITENAME}}',
+'tooltip-p-logo'         => 'Háubidaseido',
+'tooltip-n-mainpage'     => 'Saihwan sa Háubidaseido',
+'tooltip-t-upload'       => 'Ushlaþaiþ Feilans',
+'tooltip-t-specialpages' => 'Findiþ alla ussindseidos',
+'tooltip-ca-nstab-user'  => 'Sáihwan sa niutandisseido',
+'tooltip-save'           => 'Skreiban þein máideins',
 
 # Browsing diffs
 'previousdiff' => '← Aftuma áiris',

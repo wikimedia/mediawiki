@@ -882,7 +882,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabâgo|mga pagbabâgo}}',
 'recentchanges'                     => 'Mga nakakaági pa sanáng pagbabàgó',
-'recentchanges-summary'             => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
+'recentchangestext'                 => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
 'recentchanges-feed-description'    => 'Hanápon an mga pinakahuring pagbabàgo sa wiki sa hungit na ini.',
 'rcnote'                            => "Mahihiling sa babâ an {{PLURAL:$1| '''1''' pagbabàgo|'''$1''' pagbabàgo}} sa huring {{PLURAL:$2|na aldaw|'''$2''' na aldaw}}, sa $3.",
 'rcnotefrom'                        => "Mahihiling sa babâ an mga pagbabàgo poon kan '''$2''' (hasta '''$1''' ipinapahiling).",

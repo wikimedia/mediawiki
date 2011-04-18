@@ -1042,7 +1042,7 @@ $1",
 'nchanges'                       => '$1趟更改',
 'recentchanges'                  => '近段辰光个改动',
 'recentchanges-legend'           => '近段辰光个改动选项',
-'recentchanges-summary'          => '登该个页面浪跟踪最近对维基百科个改动。',
+'recentchangestext'              => '登该个页面浪跟踪最近对维基百科个改动。',
 'recentchanges-feed-description' => '跟踪此订阅垃拉 wiki 高头个最近更改。',
 'rcnote'                         => "下底是垃拉$4 $5，最近'''$2'''日天里向个'''$1'''趟最近更改记录：",
 'rclistfrom'                     => '显示 $1 以来个新改动',
@@ -1552,13 +1552,7 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-artist' => '作者',

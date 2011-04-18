@@ -573,7 +573,7 @@ $1 {{int:pipe-separator}} $2',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|rievdadus|rievdadusa}}',
 'recentchanges'                     => 'Varas rievdadusat',
-'recentchanges-summary'             => 'Dán siiddus sáhtat čuovvut varas rievdadusaid {{GRAMMAR:illative|{{SITENAME}}}}.',
+'recentchangestext'                 => 'Dán siiddus sáhtat čuovvut varas rievdadusaid {{GRAMMAR:illative|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Dán siiddus sáhtat čuovvut varas {{GRAMMAR:illative|{{SITENAME}}}} rievdadusaid.',
 'rcnote'                            => 'Vuollin {{PLURAL:$1|lea okta rievdadus|leat $1 varas rievdadusa}} {{PLURAL:$2|ovtta beaivvi|$2 maŋimus jándora}} áigge gitta $3 rádjái.',
 'rcnotefrom'                        => "Vuolábealde leat rievdadusat '''$2''' rájes. Eanemusta '''$1''' mearkkastaga čájehuvvo.",

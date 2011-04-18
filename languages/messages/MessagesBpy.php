@@ -1575,13 +1575,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'গাথিগি',

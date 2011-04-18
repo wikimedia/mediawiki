@@ -1539,7 +1539,7 @@ $1",
 'nchanges'                          => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
 'recentchanges'                     => 'اخر التعديلات',
 'recentchanges-legend'              => 'اختيارات اخر التعديلات',
-'recentchanges-summary'             => 'تابع آخر التغييرات فى الويكى على الصفحة دى.',
+'recentchangestext'                 => 'تابع آخر التغييرات فى الويكى على الصفحة دى.',
 'recentchanges-feed-description'    => 'تابع اخر التعديلات للويكى ده عن طريق الفييد ده .',
 'recentchanges-label-newpage'       => 'التعديل ده عمل صفحه جديده',
 'recentchanges-label-minor'         => 'ده تعديل صغير',
@@ -2925,13 +2925,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
@@ -2946,6 +2940,7 @@ $1',
 'exif-ycbcrpositioning'            => 'وضع Y و C',
 'exif-xresolution'                 => 'الدقة الأفقية',
 'exif-yresolution'                 => 'الدقة الرأسية',
+'exif-resolutionunit'              => 'وحدة تحليل X و Y',
 'exif-stripoffsets'                => 'موقع بيانات الصورة',
 'exif-rowsperstrip'                => 'عدد الصفوف لكل ستريب',
 'exif-stripbytecounts'             => 'بايت لكل ستريب مضغوط',

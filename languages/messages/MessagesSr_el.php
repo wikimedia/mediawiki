@@ -1402,7 +1402,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'nchanges'                          => '$1 {{PLURAL:$1|izmena|izmene|izmena}}',
 'recentchanges'                     => 'Skorašnje izmene',
 'recentchanges-legend'              => 'Podešavanja skorašnjih izmena',
-'recentchanges-summary'             => 'Ovde pratite najskorije izmene na vikiju.',
+'recentchangestext'                 => 'Ovde pratite najskorije izmene na vikiju.',
 'recentchanges-feed-description'    => 'Pratite skorašnje izmene uz pomoć ovog fida.',
 'recentchanges-label-newpage'       => 'Ovom izmenom je napravljena nova strana.',
 'recentchanges-label-minor'         => 'Ovo je mala izmena',
@@ -2703,13 +2703,7 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2724,6 +2718,7 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 'exif-ycbcrpositioning'            => 'Razmeštaj komponenata Y i C',
 'exif-xresolution'                 => 'Horizonatalna rezolucija',
 'exif-yresolution'                 => 'Vertikalna rezolucija',
+'exif-resolutionunit'              => 'Jedinica rezolucije',
 'exif-stripoffsets'                => 'Položaj bloka podataka',
 'exif-rowsperstrip'                => 'Broj redova u bloku',
 'exif-stripbytecounts'             => 'Veličina kompresovanog bloka',
@@ -2966,11 +2961,6 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 'exif-gpsspeed-k' => 'Kilometri na čas',
 'exif-gpsspeed-m' => 'Milje na čas',
 'exif-gpsspeed-n' => 'Čvorovi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometara',
-'exif-gpsdestdistance-m' => 'Milja',
-'exif-gpsdestdistance-n' => 'Nautičkih milja',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Pravi pravac',

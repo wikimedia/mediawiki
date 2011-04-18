@@ -902,7 +902,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'nchanges'                       => '{{PLURAL:$1|Olukyukakyuka|Nkyukakyuka}} $1',
 'recentchanges'                  => 'Ebyakakyusibwa',
 'recentchanges-legend'           => "Awategekerwa endaga y'ebyakakyusibwa",
-'recentchanges-summary'          => "Goberera enkyukakyuka empya ez'oku lupapula luno",
+'recentchangestext'              => "Goberera enkyukakyuka empya ez'oku lupapula luno",
 'recentchanges-feed-description' => "Kozesa omukutu guno okugoberera enkyukakyuka empya ez'oku wiki",
 'rcnote'                         => "Wano olaba {{PLURAL:$1|olukyukakyuka '''1''' olukoledwawo|enkyukakyuka '''$1''' ezikoledwawo}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}}. Bino byategeerese ku ssaawa $5 nga $4.",
 'rclistfrom'                     => 'Laga enkyukakyuka empya ezikoledwa okuva $1',
@@ -1311,13 +1311,7 @@ Ebirala biyinza butalabika okujjako ng'okiragidde.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # External editor support
 'edit-externally'      => 'Fayiro eno gikolereko mu pulogulamu endala',

@@ -1244,7 +1244,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'nchanges'                          => '$1 {{PLURAL:$1|փոփոխություն|փոփոխություն}}',
 'recentchanges'                     => 'Վերջին փոփոխություններ',
 'recentchanges-legend'              => 'Վերջին փոփոխությունների նախընտրություններ',
-'recentchanges-summary'             => 'Հետևեք վիքիում կատարված վերջին փոփոխություններին այս էջում։',
+'recentchangestext'                 => 'Հետևեք վիքիում կատարված վերջին փոփոխություններին այս էջում։',
 'recentchanges-feed-description'    => 'Հետևեք վիքիում կատարված վերջին փոփոխություններին այս սնուցման մեջ։',
 'recentchanges-label-newpage'       => 'Այս խմբագրմամբ ստեղծվել է նոր էջ',
 'recentchanges-label-minor'         => 'Սա չնչին խմբագրում է',
@@ -2276,13 +2276,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'  => 'Լայնք',

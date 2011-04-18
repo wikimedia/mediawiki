@@ -1517,7 +1517,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|зміна|зміни|змін}}',
 'recentchanges'                     => 'Нові редагування',
 'recentchanges-legend'              => 'Налаштування нових редагувань',
-'recentchanges-summary'             => 'На цій сторінці показані останні зміни на сторінках {{grammar:genitive|{{SITENAME}}}}.',
+'recentchangestext'                 => 'На цій сторінці показані останні зміни на сторінках {{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Відстежувати останні зміни у вікі в цьому потоці.',
 'recentchanges-label-newpage'       => 'Цим редагуванням створена нова сторінка',
 'recentchanges-label-minor'         => 'Це незначна зміна',
@@ -2933,13 +2933,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -2954,6 +2948,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Порядок розміщення компонентів Y та C',
 'exif-xresolution'                 => 'Горизонтальна роздільна здатність',
 'exif-yresolution'                 => 'Вертикальна роздільна здатність',
+'exif-resolutionunit'              => 'Одиниця вимірювання роздільної здатності',
 'exif-stripoffsets'                => 'Положення блоку даних',
 'exif-rowsperstrip'                => 'Кількість рядків в 1 блоці',
 'exif-stripbytecounts'             => 'Розмір стиснутого блоку',
@@ -3200,11 +3195,6 @@ $1',
 'exif-gpsspeed-k' => 'км/год',
 'exif-gpsspeed-m' => 'миль/год',
 'exif-gpsspeed-n' => 'вузлів',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Кілометри',
-'exif-gpsdestdistance-m' => 'Милі',
-'exif-gpsdestdistance-n' => 'Морські милі',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',

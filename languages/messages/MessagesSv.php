@@ -1567,7 +1567,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'nchanges'                          => '$1 {{PLURAL:$1|ändring|ändringar}}',
 'recentchanges'                     => 'Senaste ändringarna',
 'recentchanges-legend'              => 'Alternativ för senaste ändringarna',
-'recentchanges-summary'             => 'Följ de senaste ändringarna i wikin på denna sida.',
+'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'recentchanges-label-newpage'       => 'Denna redigering skapade en ny sida',
 'recentchanges-label-minor'         => 'Detta är en mindre ändring',
@@ -3013,13 +3013,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredd',
@@ -3034,6 +3028,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-ycbcrpositioning'            => 'Positionering av Y och C',
 'exif-xresolution'                 => 'Upplösning i horisontalplan',
 'exif-yresolution'                 => 'Upplösning i vertikalplan',
+'exif-resolutionunit'              => 'Enhet för upplösning av X och Y',
 'exif-stripoffsets'                => 'Offset till bilddata',
 'exif-rowsperstrip'                => 'Antal rader per strip',
 'exif-stripbytecounts'             => 'Byte per komprimerad strip',
@@ -3274,11 +3269,6 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpsspeed-k' => 'Kilometer i timmen',
 'exif-gpsspeed-m' => 'Miles i timmen',
 'exif-gpsspeed-n' => 'Knop',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Mil',
-'exif-gpsdestdistance-n' => 'Nautiska mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sann bäring',
@@ -3547,7 +3537,7 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
 'tags-hitcount-header'    => 'Märkta ändringar',
-'tags-edit'               => 'redigera',
+'tags-edit'               => 'redigering',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 
 # Special:ComparePages

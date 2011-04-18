@@ -1300,13 +1300,7 @@ $1",
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Файлыр гъэтэрэзын, нэгъуэщӀ программэ и сэбэпкӀэ',

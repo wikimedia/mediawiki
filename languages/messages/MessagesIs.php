@@ -1225,7 +1225,7 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 'nchanges'                          => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'recentchanges'                     => 'Nýlegar breytingar',
 'recentchanges-legend'              => 'Stillingar nýlegra breytinga',
-'recentchanges-summary'             => 'Hér geturðu fylgst með nýjustu breytingunum.',
+'recentchangestext'                 => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description'    => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'recentchanges-label-newpage'       => 'Þessi breyting skapaði nýja síðu',
 'recentchanges-label-minor'         => 'Þetta er minniháttar breyting',
@@ -2200,13 +2200,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Breidd',

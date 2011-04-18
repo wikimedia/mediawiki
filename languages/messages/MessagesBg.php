@@ -1479,7 +1479,7 @@ $1",
 'nchanges'                          => '$1 {{PLURAL:$1|промяна|промени}}',
 'recentchanges'                     => 'Последни промени',
 'recentchanges-legend'              => 'Опции на списъка с последни промени',
-'recentchanges-summary'             => "Проследяване на последните промени в {{SITENAME}}.
+'recentchangestext'                 => "Проследяване на последните промени в {{SITENAME}}.
 
 Легенда: '''тек''' = разлика на текущата версия,
 '''ист''' = история на версиите",
@@ -2384,13 +2384,8 @@ $1',
 'blocklist'                       => 'Блокирани потребители',
 'ipblocklist'                     => 'Блокирани потребители',
 'ipblocklist-legend'              => 'Откриване на блокиран потребител',
-'blocklist-userblocks'            => 'Скриване на блокирани потребителски сметки',
-'blocklist-tempblocks'            => 'Скриване на срочните блокирания',
-'blocklist-addressblocks'         => 'Скриване на отделни блокирани IP адреси',
 'blocklist-target'                => 'Цел',
 'blocklist-expiry'                => 'Срок на изтичане:',
-'blocklist-by'                    => 'Блокиращ администратор',
-'blocklist-params'                => 'Параметри на блокирането',
 'blocklist-reason'                => 'Причина',
 'ipblocklist-submit'              => 'Търсене',
 'ipblocklist-localblock'          => 'Локално блокиране',
@@ -2856,13 +2851,7 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -2877,6 +2866,7 @@ $1',
 'exif-ycbcrpositioning'            => 'Y и C позициониране',
 'exif-xresolution'                 => 'Хоризонтална разделителна способност',
 'exif-yresolution'                 => 'Вертикална разделителна способност',
+'exif-resolutionunit'              => 'Единица на резолюцията по X и Y',
 'exif-stripoffsets'                => 'адрес на картината',
 'exif-rowsperstrip'                => 'Брой редове на ивица',
 'exif-stripbytecounts'             => 'Байтове на компресирана ивица',
@@ -2898,8 +2888,8 @@ $1',
 'exif-colorspace'                  => 'Цветово пространство',
 'exif-componentsconfiguration'     => 'Значение на всеки компонент',
 'exif-compressedbitsperpixel'      => 'Режим на компресия на образа',
-'exif-pixelydimension'             => 'Ширина на изображението',
-'exif-pixelxdimension'             => 'Височина на изображението',
+'exif-pixelydimension'             => 'Пълна ширина на изображението',
+'exif-pixelxdimension'             => 'Пълна височина на изображението',
 'exif-usercomment'                 => 'Допълнителни коментари',
 'exif-relatedsoundfile'            => 'Свързан звуков файл',
 'exif-datetimeoriginal'            => 'Дата и час на създаване',
@@ -2977,24 +2967,10 @@ $1',
 'exif-gpsareainformation'          => 'Име на GPS зоната',
 'exif-gpsdatestamp'                => 'GPS дата',
 'exif-gpsdifferential'             => 'Диференциална корекция на GPS',
-'exif-keywords'                    => 'Ключови думи',
 'exif-objectname'                  => 'Кратко заглавие',
-'exif-specialinstructions'         => 'Специални инструкции',
-'exif-contact'                     => 'Информация за контакти',
-'exif-languagecode'                => 'Език',
-'exif-iimcategory'                 => 'Категория',
-'exif-datetimeexpires'             => 'Да не се използва след',
-'exif-identifier'                  => 'Идентификатор',
-'exif-serialnumber'                => 'Сериен номер на фотоапарата',
-'exif-cameraownername'             => 'Собственик на фотоапарата',
-'exif-nickname'                    => 'Неформално име на изображението',
-'exif-rating'                      => 'Рейтинг (от 5)',
-'exif-originaldocumentid'          => 'Уникален номер на оригиналния документ',
 
 # EXIF attributes
 'exif-compression-1' => 'Некомпресиран',
-
-'exif-copyrighted-false' => 'Обществено достояние',
 
 'exif-unknowndate' => 'Неизвестна дата',
 
@@ -3074,7 +3050,7 @@ $1',
 'exif-sensingmethod-7' => 'Трилинеен сензор',
 'exif-sensingmethod-8' => 'Цветови последователен линеен сензор',
 
-'exif-filesource-3' => 'Цифров фотоапарат',
+'exif-filesource-3' => 'цифров фотоапарат',
 
 'exif-scenetype-1' => 'Пряко заснето изображение',
 
@@ -3124,10 +3100,6 @@ $1',
 'exif-gpslongitude-e' => 'източна дължина',
 'exif-gpslongitude-w' => 'западна дължина',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|метър|метра}} над морското равнище',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|метър|метра}} под морското равнище',
-
 'exif-gpsstatus-a' => 'Измерване в ход',
 'exif-gpsstatus-v' => 'Оперативна съвместимост на измерването',
 
@@ -3139,33 +3111,9 @@ $1',
 'exif-gpsspeed-m' => 'мили/час',
 'exif-gpsspeed-n' => 'възли',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километри',
-'exif-gpsdestdistance-m' => 'Мили',
-'exif-gpsdestdistance-n' => 'Морски мили',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинска',
 'exif-gpsdirection-m' => 'магнитна',
-
-'exif-dc-date'   => 'Дата(и)',
-'exif-dc-rights' => 'Права',
-
-'exif-iimcategory-ace' => 'Изкуствa, култура и забавление',
-'exif-iimcategory-dis' => 'Бедствия и аварии',
-'exif-iimcategory-fin' => 'Икономика и бизнес',
-'exif-iimcategory-edu' => 'Образование',
-'exif-iimcategory-evn' => 'Околна среда',
-'exif-iimcategory-hth' => 'Здраве',
-'exif-iimcategory-lab' => 'Труд',
-'exif-iimcategory-lif' => 'Начин на живот и отдих',
-'exif-iimcategory-pol' => 'Политика',
-'exif-iimcategory-rel' => 'Религия и вяра',
-'exif-iimcategory-sci' => 'Наука и технологии',
-'exif-iimcategory-soi' => 'Социални проблеми',
-'exif-iimcategory-spo' => 'Спорт',
-'exif-iimcategory-war' => 'Война, конфликти и безредици',
-'exif-iimcategory-wea' => 'Време',
 
 # External editor support
 'edit-externally'      => 'Редактиране на файла чрез външно приложение',

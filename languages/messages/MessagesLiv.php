@@ -595,13 +595,7 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude',
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Protseššõgid failõ ulīz programmatūraks',

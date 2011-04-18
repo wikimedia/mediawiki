@@ -607,7 +607,7 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'nchanges'                       => '{{PLURAL:$1|mhùthadh|mhùthadh|mhùthadh|mhùthadh|mùthaidhean|mùthadh}}',
 'recentchanges'                  => 'Mùthaidhean ùra',
 'recentchanges-legend'           => 'Roghainnean nam mùthaidhean ùra',
-'recentchanges-summary'          => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
+'recentchangestext'              => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici air an duilleag seo.',
 'recentchanges-feed-description' => 'Cum sùil air na mùthaidhean as ùire a nithear air an uici seo san inbhir seo.',
 'rcnote'                         => 'Tha {{PLURAL:$1|an $1 mhùthadh|an $1 mhùthadh|an $1 mhùthadh|an $1  mhùthadh|na $1 mùthaidhean|na $1 mùthadh}} mu dheireadh anns na $2 {{PLURAL:$2|latha|latha|latha|latha|làithean|latha}} mu dheireadh, mar a bha iad $5, $4.',
 'rcnotefrom'                     => "Gheibhear na mùthaidhean a-mach o '''$2''' (gu ruige '''$1''') gu h-ìosal.",
@@ -1058,13 +1058,7 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength",
 
 # External editor support
 'edit-externally'      => 'Deasaich am faidhle le prògram on taobh a-muigh',
