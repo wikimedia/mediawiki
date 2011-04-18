@@ -93,7 +93,7 @@ class UpdateSpecialPages extends Maintenance {
 				$queryPage = new $class;
 			}
 
-			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->name() ) {
+			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->getName() ) {
 				$this->output( sprintf( '%-30s ',  $special ) );
 				if ( $queryPage->isExpensive() ) {
 					$t1 = explode( ' ', microtime() );

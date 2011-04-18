@@ -277,7 +277,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE, array( $this->name(), __METHOD__, 'vslow' ) );
+		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );
 		if ( !$dbw || !$dbr ) {
 			return false;
 		}
@@ -288,7 +288,7 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		# Clear out any old cached data
-		$dbw->delete( 'querycache', array( 'qc_type' => $this->name() ), $fname );
+		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 		# Do query
 		$res = $this->reallyDoQuery( $limit, false );
 		$num = false;
@@ -308,7 +308,7 @@ abstract class QueryPage extends SpecialPage {
 					$value = 0;
 				}
 
-				$vals[] = array( 'qc_type' => $this->name(),
+				$vals[] = array( 'qc_type' => $this->getName(),
 						'qc_namespace' => $row->namespace,
 						'qc_title' => $row->title,
 						'qc_value' => $value );
@@ -327,8 +327,8 @@ abstract class QueryPage extends SpecialPage {
 			}
 
 			# Update the querycache_info record for the page
-			$dbw->delete( 'querycache_info', array( 'qci_type' => $this->name() ), $fname );
-			$dbw->insert( 'querycache_info', array( 'qci_type' => $this->name(), 'qci_timestamp' => $dbw->timestamp() ), $fname );
+			$dbw->delete( 'querycache_info', array( 'qci_type' => $this->getName() ), $fname );
+			$dbw->insert( 'querycache_info', array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ), $fname );
 
 		}
 		return $num;
@@ -416,7 +416,7 @@ abstract class QueryPage extends SpecialPage {
 				'qc_namespace AS namespace',
 				'qc_title AS title',
 				'qc_value AS value' ),
-				array( 'qc_type' => $this->name() ),
+				array( 'qc_type' => $this->getName() ),
 				__METHOD__, $options
 		);
 		return $dbr->resultObject( $res );
@@ -427,7 +427,7 @@ abstract class QueryPage extends SpecialPage {
 			$dbr = wfGetDB( DB_SLAVE );
 			$fname = get_class( $this ) . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
-				array( 'qci_type' => $this->name() ), $fname );
+				array( 'qci_type' => $this->getName() ), $fname );
 		}
 		return $this->cachedTimestamp;
 	}
@@ -483,7 +483,7 @@ abstract class QueryPage extends SpecialPage {
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
 				global $wgDisableQueryPageUpdate;
-				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->name(), $wgDisableQueryPageUpdate ) ) {
+				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
 					$wgOut->addWikiMsg( 'querypage-no-updates' );
 				}
 
