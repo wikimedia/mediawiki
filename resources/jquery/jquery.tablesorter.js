@@ -83,7 +83,7 @@
 			/* debuging utils */
 			// 
 			// function benchmark( s, d ) {
-			//     alert( s + "," + ( new Date().getTime() - d.getTime() ) + "ms" );
+			// 	console.log( s + " " + ( new Date().getTime() - d.getTime() ) + "ms" );
 			// }
 			// 
 			// this.benchmark = benchmark;
@@ -250,14 +250,24 @@
 			}
 
 			function buildHeaders( table ) {
-
+				var maxSeen = 0;
+				var longest;
 				// if ( table.config.debug ) {
 				//     var time = new Date();
 				// }
 				//var header_index = computeTableHeaderCellIndexes( table );
 				var realCellIndex = 0;
-
-				$tableHeaders = $( table.config.selectorHeaders, table ).each( function ( index ) {
+				$tableHeaders = $( "thead:eq(0) tr", table );
+				if ( $tableHeaders.length > 1 ) {
+					$tableHeaders.each(function() {
+						if (this.cells.length > maxSeen) {
+							maxSeen = this.cells.length;
+							longest = this;
+						}
+					});
+					$tableHeaders = $( longest );
+				}
+				$tableHeaders = $tableHeaders.find('th').each( function ( index ) {
 					//var normalIndex = allCells.index( this );
 					//var realCellIndex = 0;
 					this.column = realCellIndex;
@@ -290,84 +300,6 @@
 
 			}
 
-			// // from:
-			// // http://www.javascripttoolbox.com/lib/table/examples.php
-			// // http://www.javascripttoolbox.com/temp/table_cellindex.html
-			// 
-			// function computeTableHeaderCellIndexes(t) {
-			// 	var matrix = [];
-			// 	var lookup = {};
-			// 	var thead = t.getElementsByTagName( 'THEAD' )[0];
-			// 	var trs = thead.getElementsByTagName( 'TR' );
-			// 
-			// 	for ( var i = 0; i < trs.length; i++ ) {
-			// 		var cells = trs[i].cells;
-			// 		for ( var j = 0; j < cells.length; j++ ) {
-			// 			var c = cells[j];
-			// 
-			// 			var rowIndex = c.parentNode.rowIndex;
-			// 			var cellId = rowIndex + "-" + c.cellIndex;
-			// 			var rowSpan = c.rowSpan || 1;
-			// 			var colSpan = c.colSpan || 1;
-			// 			var firstAvailCol;
-			// 			if ( typeof( matrix[rowIndex] ) == "undefined" ) {
-			// 				matrix[rowIndex] = [];
-			// 			}
-			// 			// Find first available column in the first row
-			// 			for ( var k = 0; k < matrix[rowIndex].length + 1; k++ ) {
-			// 				if ( typeof( matrix[rowIndex][k] ) == "undefined" ) {
-			// 					firstAvailCol = k;
-			// 					break;
-			// 				}
-			// 			}
-			// 			lookup[cellId] = firstAvailCol;
-			// 			for ( var k = rowIndex; k < rowIndex + rowSpan; k++ ) {
-			// 				if ( typeof( matrix[k] ) == "undefined" ) {
-			// 					matrix[k] = [];
-			// 				}
-			// 				var matrixrow = matrix[k];
-			// 				for ( var l = firstAvailCol; l < firstAvailCol + colSpan; l++ ) {
-			// 					matrixrow[l] = "x";
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// 	return lookup;
-			// }
-			// function checkCellColSpan( table, rows, row ) {
-			// 	var arr = [],
-			// 		r = table.tHead.rows,
-			// 		c = r[row].cells;
-			// 
-			// 	for ( var i = 0; i < c.length; i++ ) {
-			// 		var cell = c[i];
-			// 
-			// 		if ( cell.colSpan > 1 ) {
-			// 			arr = arr.concat( checkCellColSpan( table, headerArr, row++ ) );
-			// 		} else {
-			// 			if ( table.tHead.length == 1 || ( cell.rowSpan > 1 || !r[row + 1] ) ) {
-			// 				arr.push( cell );
-			// 			}
-			// 			// headerArr[row] = ( i+row );
-			// 		}
-			// 	}
-			// 	return arr;
-			// }
-			//
-			// function checkHeaderOptions( table, i ) {
-			//  if ( ( table.config.headers[i] ) && ( table.config.headers[i].sorter === false ) ) {
-			//    return true;
-			//  }
-			//  return false;
-			// }
-			// function formatSortingOrder(v) {
-			//     if ( typeof(v) != "Number" ) {
-			//         return ( v.toLowerCase() == "desc" ) ? 1 : 0;
-			//     } else {
-			//         return ( v == 1 ) ? 1 : 0;
-			//     }
-			// }
-
 			function isValueInArray( v, a ) {
 				var l = a.length;
 				for ( var i = 0; i < l; i++ ) {
@@ -397,7 +329,7 @@
 
 			function multisort( table, sortList, cache ) {
 				// if ( table.config.debug ) {
-				//     var sortTime = new Date();
+				//	var sortTime = new Date();
 				// }
 				var dynamicExp = "var sortWrapper = function(a,b) {",
 					l = sortList.length;
@@ -410,15 +342,15 @@
 					var s = "";
 					if ( table.config.parsers[c].type == "text" ) {
 						if ( order == 0 ) {
-							s = makeSortFunction( "text", "asc", c );
+							s = makeSortText( c );
 						} else {
-							s = makeSortFunction( "text", "desc", c );
+							s = makeSortTextDesc( c );
 						}
 					} else {
 						if ( order == 0 ) {
-							s = makeSortFunction( "numeric", "asc", c );
+							s = makeSortNumeric( c );
 						} else {
-							s = makeSortFunction( "numeric", "desc", c );
+							s = makeSortNumericDesc( c );
 						}
 					}
 					var e = "e" + i;
@@ -446,23 +378,9 @@
 				cache.normalized.sort( sortWrapper );
 
 				// if ( table.config.debug ) {
-				//     benchmark( "Sorting on " + sortList.toString() + " and dir " + order + " time:", sortTime );
+				//	benchmark( "Sorting in dir " + order + " time:", sortTime );
 				// }
 				return cache;
-			}
-
-			function makeSortFunction( type, direction, index ) {
-				var a = "a[" + index + "]",
-					b = "b[" + index + "]";
-				if (type == 'text' && direction == 'asc') {
-					return "(" + a + " == " + b + " ? 0 : (" + a + " === null ? Number.POSITIVE_INFINITY : (" + b + " === null ? Number.NEGATIVE_INFINITY : (" + a + " < " + b + ") ? -1 : 1 )));";
-				} else if (type == 'text' && direction == 'desc') {
-					return "(" + a + " == " + b + " ? 0 : (" + a + " === null ? Number.POSITIVE_INFINITY : (" + b + " === null ? Number.NEGATIVE_INFINITY : (" + b + " < " + a + ") ? -1 : 1 )));";
-				} else if (type == 'numeric' && direction == 'asc') {
-					return "(" + a + " === null && " + b + " === null) ? 0 :(" + a + " === null ? Number.POSITIVE_INFINITY : (" + b + " === null ? Number.NEGATIVE_INFINITY : " + a + " - " + b + "));";
-				} else if (type == 'numeric' && direction == 'desc') {
-					return "(" + a + " === null && " + b + " === null) ? 0 :(" + a + " === null ? Number.POSITIVE_INFINITY : (" + b + " === null ? Number.NEGATIVE_INFINITY : " + b + " - " + a + "));";
-				}
 			}
 
 			function makeSortText(i) {
@@ -482,12 +400,12 @@
 			}
 
 			function sortText( a, b ) {
-				if ( table.config.sortLocaleCompare ) return a.localeCompare(b);
+				//if ( table.config.sortLocaleCompare ) return a.localeCompare(b);
 				return ((a < b) ? -1 : ((a > b) ? 1 : 0));
 			}
 
 			function sortTextDesc( a, b ) {
-				if ( table.config.sortLocaleCompare ) return b.localeCompare(a);
+				//if ( table.config.sortLocaleCompare ) return b.localeCompare(a);
 				return ((b < a) ? -1 : ((b > a) ? 1 : 0));
 			}
 
@@ -556,13 +474,27 @@
 
 			}
 
+			function explodeRowspans( $table ) {
+				// Split multi row cells into multiple cells with the same content
+				$table.find( '[rowspan]' ).each(function() {
+					var rowSpan = this.rowSpan;
+					this.rowSpan = 1;
+					var cell = $( this );
+					var next = cell.parent().nextAll();
+					for ( var i = 0; i < rowSpan - 1; i++ ) {
+						next.eq(0).find( 'td' ).eq( this.cellIndex ).before( cell.clone() );
+					};
+				});
+			};
+
 			function buildCollationTable() {
-				if ( typeof tableSorterCollation == "object" ) {
+				ts.collationTable = mw.config.get('tableSorterCollation');
+				if ( typeof ts.collationTable === "object" ) {
 					ts.collationRegex = [];
 
 					//Build array of key names
-					for ( var key in tableSorterCollation ) {
-						if ( tableSorterCollation.hasOwnProperty(key) ) { //to be safe
+					for ( var key in ts.collationTable ) {
+						if ( ts.collationTable.hasOwnProperty(key) ) { //to be safe
 							ts.collationRegex.push(key);
 						}
 					}
@@ -626,6 +558,7 @@
 							// enabled.
 							//$this.trigger( "sortStart" );
 							// store exp, for speed
+							explodeRowspans( $this );
 							var $cell = $( this );
 							// get current column index
 							var i = this.column;
@@ -782,7 +715,7 @@
 		format: function (s) {
 			s = $.trim( s.toLowerCase() );
 			if ( ts.collationRegex ) {
-				var tsc = tableSorterCollation;
+				var tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
 					var r = tsc[match] ? tsc[match] : tsc[match.toUpperCase()];
 					return r.toLowerCase();
@@ -877,7 +810,7 @@
 			return ( ts.dateRegex[0].test(s) || ts.dateRegex[1].test(s) || ts.dateRegex[2].test(s ));
 		},
 		format: function ( s, table ) {
-			s = s.toLowerCase();
+			s = $.trim( s.toLowerCase() );
 
 			for ( i = 1, j = 0; i < 13 && j < 2; i++ ) {
 				s = s.replace( ts.monthNames[j][i], i );
