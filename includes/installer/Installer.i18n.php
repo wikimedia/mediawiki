@@ -1209,7 +1209,7 @@ chmod a+w $3</pre>',
 Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
 
 У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
-	'config-ibm_db2-low-db-pagesize' => "Вашая база зьвестак DB2 мае таблічную прасторну зь недастатковым памерам старонкі. Памер старонкі мусіць быць ня менш за '''32K'''.",
+	'config-ibm_db2-low-db-pagesize' => "Вашая база зьвестак DB2 мае таблічную прасторну зь недастатковым памерам старонкі. Памер старонкі мусіць быць ня менш за '''32к'''.",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -1928,9 +1928,14 @@ Nemet eo rekis PHP $2 pe nevesoc'h evit MediaWiki.",
 Ma lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",
 	'config-no-db' => "Ne c'haller ket kavout ur sturier diaz roadennoù dereat !",
 	'config-no-fts3' => "'''Diwallit ''': Kempunet eo SQLite hep ar [http://sqlite.org/fts3.html vodulenn FTS3]; ne vo ket posupl ober gant an arc'hwelioù klask er staliadur-mañ",
+	'config-register-globals' => "'''Diwallit : Gweredekaet eo dibarzh <code>[http://php.net/register_globals register_globals]</code> PHP.'''
+'''Diweredekait anezhañ ma c'hallit.'''
+Mont a raio MediaWiki en-dro met fazioù surentez a c'hallo c'hoari war ho servijer",
 	'config-ze1' => "'''Fazi diremed : [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mod] zo gweredekaet !'''
 An dibarzh-mañ zo kaoz da zrein euzhus gant MediaWiki.
 Ne c'hallit ket staliañ nag implijout MediaWiki keit ha m'eo gweredekaet an dibarzh-mañ.",
+	'config-safe-mode' => "'''Diwallit :''' Gweredekaet eo [http://www.php.net/features.safe-mode mod surentez] PHP.
+Kudennoù a c'hall sevel abalamour da gement-se, dreist-holl ma pellgargit restroù ha ma skorit <code>math</code>.",
 	'config-xml-bad' => "Mankout a ra modulenn XML PHP.
 Ezhomm en deus MediaWiki eus arc'hwelioù zo eus ar vodulenn-se ha ne'z aio ket en-dro gant ar c'hefluniadur zo.
 M'emaoc'h gant Mandrake, stailhit pakad php-xml.",
@@ -1945,6 +1950,10 @@ Marteze e c'hwito ar staliadenn !",
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
 	'config-imagemagick' => "ImageMagick kavet : <code>$1</code>.
 Gweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet ganeoc'h ar pellgargañ restroù.",
+	'config-gd' => "Kavet eo bet al levraoueg c'hrafek GD enframmet.
+Gweredekaet e vo ar bihanaat skeudennoù ma vez gweredekaet an enporzhiañ restroù.",
+	'config-no-scaling' => "N'eus ket bet gallet kavout al levraoueg GD pe ImageMagick.
+Diweredekaet e vo ar bihanaat skeudennoù.",
 	'config-no-uri' => "'''Fazi :''' N'eus ket tu da anavezout URI ar skript red.
 Staliadur nullet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
@@ -1984,19 +1993,22 @@ N'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roaden
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => "Skoret eo ar reizhiadoù diaz titouroù da-heul gant MediaWiki :
 
 $1
 
 Ma ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti, heuilhit an titouroù a-us (s.o. al liammoù) evit gweredekaat ar skorañ.",
 	'config-support-mysql' => '* $1 eo an dibab kentañ evit MediaWiki hag an hini skoret ar gwellañ ([http://www.php.net/manual/en/mysql.installation.php penaos kempunañ PHP gant skor MySQL])',
-	'config-support-postgres' => "* $1 zo ur reizhiad diaz titouroù brudet ha digor hag a c'hall ober evit MySQL ([http://www.php.net/manual/en/pgsql.installation.php penaos kempunañ PHP gant skor PostgreSQL])",
+	'config-support-postgres' => "* Ur reizhiad diaz titouroù brudet ha digor eo $1. Gallout a ra ober evit MySQL ([http://www.php.net/manual/en/pgsql.installation.php Penaos kempunañ PHP gant skor PostgreSQL]). Gallout a ra bezañ un nebeud drein bihan enni ha n'eo ket erbedet he implijout en un endro produiñ.",
 	'config-support-sqlite' => "* $1 zo ur reizhiad diaz titouroù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
 	'config-support-oracle' => '* $1 zo un diaz titouroù kenwerzhel. ([http://www.php.net/manual/en/oci8.installation.php Penaos kempunañ PHP gant skor OCI8])',
+	'config-support-ibm_db2' => '* Un diaz titouroù evit embregerezhioù kenwerzhel eo $1.',
 	'config-header-mysql' => 'Arventennoù MySQL',
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
+	'config-header-ibm_db2' => 'Arventennoù IBM DB2',
 	'config-invalid-db-type' => 'Direizh eo ar seurt diaz roadennoù',
 	'config-missing-db-name' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv an diaz titouroù"',
 	'config-missing-db-host' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Ostiz an diaz titouroù"',
@@ -2012,7 +2024,12 @@ Ober hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù isli
 Gwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro.',
 	'config-invalid-schema' => 'Chema direizh evit MediaWiki "$1".
 Grit hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9) hag arouezennoù islinennañ (_).',
+	'config-db-sys-create-oracle' => "N'anavez ar stalier nemet ar c'hontoù SYSDBA evit krouiñ kontoù nevez.",
+	'config-db-sys-user-exists-oracle' => 'Bez\' ez eus eus ar gont "$1" c\'hoazh. N\'haller ober gant SYSDBA nemet evit krouiñ kontoù nevez !',
 	'config-postgres-old' => "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
+	'config-sqlite-name-help' => "Dibabit un anv dibar d'ho wiki.
+Arabat ober gant esaouennoù pe barrennigoù-stagañ.
+Implijet e vo evit ar restr roadennoù SQLite.",
 	'config-sqlite-mkdir-error' => 'Ur fazi zo bet e-ser krouiñ ar c\'havlec\'h roadennoù "$1".
 Gwiriañ al lec\'hiadur ha klask en-dro.',
 	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
@@ -2051,7 +2068,7 @@ Diferit un anv implijer all.',
 	'config-admin-password-same' => "Ne c'hall ket ar ger-tremen bezañ heñvel ouzh anv ar gont.",
 	'config-admin-password-mismatch' => "Ne glot ket ar gerioù-tremen hoc'h eus merket an eil gant egile.",
 	'config-admin-email' => "Chomlec'h postel :",
-	'config-admin-email-help' => "Merkit ur chomlec'h postel amañ evit gallout resev posteloù a-berzh implijerien all eus ar wiki, adderaouekaat ho ker-tremen ha bezañ kelaouet eus ar c'hemmoù degaset d'ar pajennoù zo en ho roll evezhiañ.",
+	'config-admin-email-help' => "Merkit ur chomlec'h postel amañ evit gallout resev posteloù a-berzh implijerien all eus ar wiki, adderaouekaat ho ker-tremen ha bezañ kelaouet eus ar c'hemmoù degaset d'ar pajennoù zo en ho roll evezhiañ. Gallout a rit lezel ar vaezienn-mañ goullo.",
 	'config-admin-error-user' => 'Fazi diabarzh en ur grouiñ ur merer gant an anv "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Fazi diabarzh o lakaat ur ger-tremen evit ar merour « <nowiki>$1</nowiki> » : <pre>$2</pre>',
 	'config-admin-error-bademail' => "Ebarzhet hoc'h eus ur chomlec'h postel direizh.",
@@ -2075,7 +2092,10 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-enable-email' => 'Gweredekaat ar posteloù a ya kuit',
 	'config-email-user' => 'Gweredekaat ar posteloù a implijer da implijer',
 	'config-email-user-help' => "Aotren a ra an holl implijerien da gas posteloù an eil d'egile mard eo bet gweredekaet an arc'hwel ganto en ho penndibaboù.",
+	'config-email-usertalk' => 'Gweredekaat kemennadur pajennoù kaozeal an implijerien',
+	'config-email-usertalk-help' => "Talvezout a ra d'an implijerien da resev kemennadennoù ma vez kemmet o fajennoù kaozeal, ma vez gweredekaet en o fenndibaboù.",
 	'config-email-watchlist' => "Gweredekaat ar c'hemenn listenn evezhiañ",
+	'config-email-watchlist-help' => "Talvezout a ra d'an implijerien da resev kemennadennoù diwar-benn ar pajennoù evezhiet ganto, ma vez gweredekaet en o fenndibaboù.",
 	'config-email-auth' => 'Gweredekaat an dilesadur dre bostel',
 	'config-email-sender' => "Chomlec'h postel respont :",
 	'config-email-sender-help' => "Merkit ar chomlec'h postel da vezañ implijet da chomlec'h distreiñ ar posteloù a ya er-maez. 
@@ -4097,7 +4117,7 @@ Isto é máis eficaz ca o modo UTF-8 de MySQL e permítelle usar o rango complet
 
 No '''modo UTF-8''', MySQL saberá o xogo de caracteres dos seus datos e pode presentar e converter os datos de maneira axeitada,
 pero non lle deixará gardar caracteres por riba do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingüe básico].",
-	'config-ibm_db2-low-db-pagesize' => 'Debe haber un espazo de táboa con, polo menos, 32k de tamaño de páxina.',
+	'config-ibm_db2-low-db-pagesize' => "A súa base de datos DB2 ten un espazo de táboa cun tamaño de páxina insuficiente. O tamaño de páxina debe ser '''32k''' ou maior.",
 	'config-site-name' => 'Nome do wiki:',
 	'config-site-name-help' => 'Isto aparecerá na barra de títulos do navegador e noutros lugares.',
 	'config-site-name-blank' => 'Escriba o nome do sitio.',
@@ -7438,6 +7458,7 @@ Donn Ding Daatebangk et beß janz woh anders hen, noh <code lang="en">/var/lib/m
 	'config-type-postgres' => '<i lang="en">PostgreSQL</i>',
 	'config-type-sqlite' => '<i lang="en">SQLite</i>',
 	'config-type-oracle' => '<i lang="en">Oracle</i>',
+	'config-type-ibm_db2' => 'Dä <i lang="en">IBM</i> ier <i lang="en">DB2</i>',
 	'config-support-info' => 'MediaWiki kann met heh dä Daatebangk_Süßteeme zosamme jonn:
 
 $1
@@ -7447,10 +7468,12 @@ Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn
 	'config-support-postgres' => '* <i lang="en">$1</i> es e bikannt Daatebangksüßteem met offe Quälltäxde, un en och en Wahl nävve <i lang="en">MySQL</i> ([http://www.php.net/manual/de/pgsql.installation.php Aanleidung för et Övversäze un Enreeschte von PHP met <i lang="en">PostgreSQL</i> dobei, op Deutsch]) Et sinn_er ävver paa klein Fählershe bekannt, um kunne dat em Momang för et reschtijje Werke nit emfähle.',
 	'config-support-sqlite' => '* <i lang="en">$1</i> es e eijfach Daatebangksüßteem, wat joot ongershtöz weed. ([http://www.php.net/manual/de/pdo.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">SQLite</i> dobei, op Deutsch])',
 	'config-support-oracle' => '* <i lang="en">$1</i> es e jeschäfflesch Daatebangksüßteem för Ferme. ([http://www.php.net/manual/de/oci8.installation.php Aanleidong för et Övversäze un Enreeschte von PHP met <i lang="en">OCI8</i> dobei, op Deutsch])',
+	'config-support-ibm_db2' => '* $1 es en Datebengk för et Jeschäff un fö Ongernehme.',
 	'config-header-mysql' => 'De Enshtällunge för de <i lang="en">MySQL</i> Daatebangk',
 	'config-header-postgres' => 'De Enshtällunge för de <i lang="en">PostgreSQL</i> Daatebangk',
 	'config-header-sqlite' => 'De Enshtällunge för de <i lang="en">SQLite</i> Daatebangk',
 	'config-header-oracle' => 'De Enshtällunge för de <i lang="en">Oracle</i> Daatebangk',
+	'config-header-ibm_db2' => 'De Enshtällunge för de <i lang="en">IBM</i> ier <i lang="en">DB2</i>',
 	'config-invalid-db-type' => 'Dat es en onjöltijje Zoot Daatebangk.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-missing-db-host' => 'Do moß jät enjävve för dä Name vun däm Rääschner met dä Daatebangk.',
@@ -7532,6 +7555,7 @@ Dat es flöcker un spaasaamer wi et UTF-8 Fommaat vum <i lang=\"en\">MySQL</i> u
 
 Beim Shpeishere em '''UTF-8 Fomaat''' deiht et <i lang=\"en\">MySQL</i> der Zeishesaz un de Kodeerung vun dä Daate känne, un kann se akeraat aanzeije un ömwandelle,
 allerdengs künne kein Zeishe ußerhalv vum [http://de.wikipedia.org/wiki/Basic_Multilingual_Plane#Gliederung_in_Ebenen_und_Bl.C3.B6cke jrundlääje Knubbel för vill Shprooche (<i lang=\"en\">Basic Multilingual Plane — BMP</i>)] afjeshpeishert wääde.",
+	'config-ibm_db2-low-db-pagesize' => "De <i lang=\"en\">DB2</i> Daatebangk heh hät ene standattmääßeje Plaz för Tabälle met zoh klein Sigge. Dä Plaz en de Sigge moß '''32K''' udder mieh sin.",
 	'config-site-name' => 'Däm Wiki singe Name:',
 	'config-site-name-help' => 'Dä douch em Tittel vun de Brauserfinstere un aan ätlije andere Shtälle op.',
 	'config-site-name-blank' => 'Donn ene Name för di Sait aanjävve.',
@@ -8966,7 +8990,7 @@ Dit is efficiënter dan de UTF-8-modus van MySQL en stelt u in staat de volledig
 
 In '''UTF-8-modus''' kent MySQL de tekenset van uw gegevens en kan de databaseserver ze juist weergeven en converteren.
 Het is dat niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wiki/Lijst_van_Unicode-subbereiken#Basic_Multilingual_Plane Basic Multilingual Plane]\" te boven gaan.",
-	'config-ibm_db2-low-db-pagesize' => 'Er moet een tablespace zijn met een grootte van tenminste 32k.',
+	'config-ibm_db2-low-db-pagesize' => "Uw DB2-database heeft een standaard tablespace met een onvoldoende grote pagesize. De pagesize moet tenminste '''32K''' zijn.",
 	'config-site-name' => 'Naam van de wiki:',
 	'config-site-name-help' => 'Deze naam verschijnt in de titelbalk van browsers en op andere plaatsen.',
 	'config-site-name-blank' => 'Geef een naam op voor de site.',
@@ -11793,6 +11817,7 @@ Pinigilan ang pag-iinstala.",
 	'config-db-host-oracle' => 'TNS ng kalipunan ng dato:',
 	'config-db-wiki-settings' => 'Kilalanin ang wiking ito',
 	'config-db-name' => 'Pangalan ng kalipunan ng dato:',
+	'config-db-name-oracle' => 'Balangkas ng kalipunan ng dato:',
 	'config-db-install-account' => 'Akawnt ng tagagamit para sa pagluluklok',
 	'config-db-username' => 'Pangalang pangtagagamit ng kalipunan ng dato:',
 	'config-db-password' => 'Hudyat sa kalipunan ng dato:',
@@ -11816,8 +11841,11 @@ Baguhin lamang ito kung alam mong kinakailangan.',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
 	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
 	'config-header-oracle' => 'Mga katakdaan ng Oracle',
+	'config-header-ibm_db2' => 'Mga katakdaan ng DB2 ng IBM',
 	'config-invalid-db-type' => 'Hindi tanggap na uri ng kalipunan ng dato',
-	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "pangalan ng Kalipunan ng Dao"',
+	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "Pangalan ng kalipunan ng dato"',
+	'config-missing-db-host' => 'Dapat kang magpasok ng isang halaga para sa "Tagapagpasinaya ng kalipunan ng dato"',
+	'config-missing-db-server-oracle' => 'Dapat kang magpasok ng isang halaga para sa "TNS ng kalipunan ng dato"',
 	'config-invalid-db-name' => 'Hindi tanggap na pangalan ng kalipunan ng dato na "$1".
 Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
 	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 

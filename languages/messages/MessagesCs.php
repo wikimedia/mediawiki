@@ -3168,6 +3168,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-disclaimer'                  => 'Vyloučení odpovědnosti',
 'exif-contentwarning'              => 'Upozornění k obsahu',
 'exif-giffilecomment'              => 'Poznámky ze souboru GIF',
+'exif-intellectualgenre'           => 'Typ položky',
+'exif-subjectnewscode'             => 'Kód tématu',
 'exif-event'                       => 'Zobrazená událost',
 'exif-organisationinimage'         => 'Zobrazená organizace',
 'exif-personinimage'               => 'Zobrazená osoba',

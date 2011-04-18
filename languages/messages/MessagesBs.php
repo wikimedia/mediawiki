@@ -3023,7 +3023,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.',
 'metadata-expand'   => 'Pokaži sve detalje',
 'metadata-collapse' => 'Sakrij dodatne podatke',
-'metadata-fields'   => "Slijedeći EXIF metapodaci će biti prikazani ispod slike u tablici s metapodacima. Ostali će biti sakriveni (možete ih vidjeti ako kliknete na link ''Pokaži sve detalje'').
+'metadata-fields'   => 'Polja metapodataka slika su prikazani ispod slike će biti uključeni u prikaz stranice slike kada je sakrivena tabela metapodataka. U suprotnom će biti sakrivena po postavkama.
+
 * make
 * model
 * datetimeoriginal
@@ -3036,7 +3037,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude",
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -3072,8 +3073,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-colorspace'                  => 'Prostor boje',
 'exif-componentsconfiguration'     => 'Značenje svake komponente',
 'exif-compressedbitsperpixel'      => 'Način kompresije slike',
-'exif-pixelydimension'             => 'Određena širina slike',
-'exif-pixelxdimension'             => 'Određena visina slike',
+'exif-pixelydimension'             => 'Širina slike',
+'exif-pixelxdimension'             => 'Visina slike',
 'exif-usercomment'                 => 'Korisnički komentari',
 'exif-relatedsoundfile'            => 'Povezana zvučna datoteka',
 'exif-datetimeoriginal'            => 'Datum i vrijeme generisanja podataka',
@@ -3087,9 +3088,9 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-exposureprogram'             => 'Program ekspozicije',
 'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
 'exif-isospeedratings'             => 'Rejting ISO brzine',
-'exif-shutterspeedvalue'           => 'Brzina okidača',
-'exif-aperturevalue'               => 'Otvor blende',
-'exif-brightnessvalue'             => 'Osvijetljenost',
+'exif-shutterspeedvalue'           => 'Brzina APEX okidača',
+'exif-aperturevalue'               => 'APEX otvor',
+'exif-brightnessvalue'             => 'APEX osvijetljenost',
 'exif-exposurebiasvalue'           => 'Kompozicija ekspozicije',
 'exif-maxaperturevalue'            => 'Najveći broj otvora blende',
 'exif-subjectdistance'             => 'Udaljenost objekta',
@@ -3151,10 +3152,39 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsareainformation'          => 'Naziv GPS područja',
 'exif-gpsdatestamp'                => 'GPS datum',
 'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
+'exif-jpegfilecomment'             => 'JPEG komentar datoteke',
+'exif-keywords'                    => 'Ključne riječi',
+'exif-worldregioncreated'          => 'Regija svijeta gdje je slika načinjena',
+'exif-countrycreated'              => 'Država gdje je slika načinjena',
+'exif-countrycodecreated'          => 'Kod države gdje je slika načinjena',
+'exif-provinceorstatecreated'      => 'Provincija ili pokrajina gdje je slika načinjena',
+'exif-citycreated'                 => 'Grad gdje je slika načinjena',
+'exif-sublocationcreated'          => 'Podlokacija grada gdje je slika načinjena',
+'exif-worldregiondest'             => 'Prikazana regija svijeta',
+'exif-countrydest'                 => 'Prikazana država',
+'exif-countrycodedest'             => 'Kod prikazane države',
+'exif-provinceorstatedest'         => 'Prikazana provincija ili pokrajina',
+'exif-citydest'                    => 'Prikazani grad',
+'exif-sublocationdest'             => 'Podlokacija grada koja je prikazana',
 'exif-objectname'                  => 'Kratki naslov',
+'exif-specialinstructions'         => 'Posebne upute',
+'exif-headline'                    => 'Naslov',
+'exif-credit'                      => 'Pripisivanje/Pružalac usluga',
+'exif-source'                      => 'Izvor',
+'exif-editstatus'                  => 'Urednički status slike',
+'exif-urgency'                     => 'Hitnost',
+'exif-fixtureidentifier'           => 'Naziv rubrike',
+'exif-writer'                      => 'Pisac',
+'exif-languagecode'                => 'Jezik',
+'exif-iimcategory'                 => 'Kategorija',
+'exif-identifier'                  => 'Oznaka',
+'exif-lens'                        => 'Korišteni objektiv',
+'exif-label'                       => 'Naslov',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresovano',
+
+'exif-copyrighted-false' => 'Javna domena',
 
 'exif-unknowndate' => 'Nepoznat datum',
 
@@ -3237,7 +3267,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-sensingmethod-7' => 'Trilinearni senzor',
 'exif-sensingmethod-8' => 'Sekvencijalni senzor boje linija',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'Digitalna kamera',
 
 'exif-scenetype-1' => 'Direktno fotografisana slika',
 
@@ -3306,6 +3336,19 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',
 'exif-gpsdirection-m' => 'Magnetski smijer',
+
+'exif-ycbcrpositioning-1' => 'Centrirano',
+
+'exif-dc-date'      => 'Datum(i)',
+'exif-dc-publisher' => 'Izdavač',
+'exif-dc-rights'    => 'Prava',
+
+'exif-rating-rejected' => 'Odbijeno',
+
+'exif-iimcategory-hth' => 'Zdravlje',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-wea' => 'Vrijeme',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu datoteku koristeći vanjski program',

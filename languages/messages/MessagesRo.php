@@ -296,7 +296,7 @@ $linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Subliniază legăturile',
+'tog-underline'               => 'Sublinierea legăturilor:',
 'tog-highlightbroken'         => 'Afișează <a href="" class="new">așa</a> legăturile către paginile inexistente (alternativă: așa<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Aranjează justificat paragrafele',
 'tog-hideminor'               => 'Ascunde modificările minore în schimbări recente',
@@ -1548,7 +1548,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
 'recentchanges-legend'              => 'Opțiuni schimbări recente',
-'recentchangestext'                 => 'Schimbări recente ... (Log)',
+'recentchangestext'                 => 'Urmăriți în această pagină cele mai recente modificări de pe site.',
 'recentchanges-feed-description'    => 'Urmărește cele mai recente schimbări folosind acest flux.',
 'recentchanges-label-newpage'       => 'Această modificare a creat o pagină nouă',
 'recentchanges-label-minor'         => 'Aceasta este o modificare minoră',
@@ -3124,10 +3124,52 @@ Altele vor fi ascunse implicit.
 'exif-gpsareainformation'          => 'Numele domeniului GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Corecția diferențială GPS',
+'exif-jpegfilecomment'             => 'Comentarii la fișierul JPEG',
+'exif-keywords'                    => 'Cuvinte cheie',
 'exif-objectname'                  => 'Titlu scurt',
+'exif-specialinstructions'         => 'Instrucțiuni speciale',
+'exif-headline'                    => 'Titlu detaliat',
+'exif-credit'                      => 'Credit/Furnizor',
+'exif-source'                      => 'Sursă',
+'exif-editstatus'                  => 'Statutul editorial al imaginii',
+'exif-urgency'                     => 'Urgență',
+'exif-contact'                     => 'Informații de contact',
+'exif-languagecode'                => 'Limbă',
+'exif-iimcategory'                 => 'Categorie',
+'exif-iimsupplementalcategory'     => 'Categorii suplimentare',
+'exif-datetimeexpires'             => 'Nu utilizați după data de',
+'exif-identifier'                  => 'Identificator',
+'exif-lens'                        => 'Obiectiv utilizat',
+'exif-serialnumber'                => 'Numărul de serie al aparatului fotografic',
+'exif-cameraownername'             => 'Proprietarul aparatului fotografic',
+'exif-label'                       => 'Etichetă',
+'exif-datetimemetadata'            => 'Data ultimei modificări a metadatelor',
+'exif-nickname'                    => 'Titlul neoficial al imaginii',
+'exif-rating'                      => 'Evaluare (până la 5)',
+'exif-rightscertificate'           => 'Certificat de gestionare a drepturilor',
+'exif-copyrighted'                 => 'Statutul drepturilor de autor',
+'exif-copyrightowner'              => 'Titularul drepturilor de autor',
+'exif-usageterms'                  => 'Termeni de utilizare',
+'exif-webstatement'                => 'Declarația on-line privind drepturilor de autor',
+'exif-originaldocumentid'          => 'ID-ul unic al documentului original',
+'exif-licenseurl'                  => 'Adresa URL pentru licența drepturilor de autor',
+'exif-morepermissionsurl'          => 'Informații alternative despre licențiere',
+'exif-attributionurl'              => 'Când reutilizați această operă, vă rugăm să adăugați o legătură către',
+'exif-preferredattributionname'    => 'Când reutilizați această operă, vă rugăm ca acest nume să fie creditat',
+'exif-pngfilecomment'              => 'Comentarii la fișierul PNG',
+'exif-contentwarning'              => 'Avertisment asupra conținutului',
+'exif-giffilecomment'              => 'Comentarii la fișierul GIF',
+'exif-event'                       => 'Evenimentul înfățișat',
+'exif-organisationinimage'         => 'Organizația înfățișată',
+'exif-personinimage'               => 'Persoana înfățișată',
+'exif-originalimageheight'         => 'Înălțimea imaginii înainte de trunchiere',
+'exif-originalimagewidth'          => 'Lățimea imaginii înainte de trunchiere',
 
 # EXIF attributes
 'exif-compression-1' => 'Necomprimată',
+
+'exif-copyrighted-true'  => 'Sub incidența drepturilor de autor',
+'exif-copyrighted-false' => 'Domeniu public',
 
 'exif-unknowndate' => 'Dată necunoscută',
 
@@ -3142,6 +3184,8 @@ Altele vor fi ascunse implicit.
 
 'exif-planarconfiguration-1' => 'format compact',
 'exif-planarconfiguration-2' => 'format plat',
+
+'exif-colorspace-65535' => 'Necalibrată',
 
 'exif-componentsconfiguration-0' => 'neprecizat',
 
@@ -3254,6 +3298,10 @@ Altele vor fi ascunse implicit.
 'exif-gpslongitude-e' => 'longitudine estică',
 'exif-gpslongitude-w' => 'longitudine vestică',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metru|metri}} deasupra nivelului mării',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metru|metri}} sub nivelului mării',
+
 'exif-gpsstatus-a' => 'Măsurare în curs',
 'exif-gpsstatus-v' => 'Măsurarea interoperabilității',
 
@@ -3265,9 +3313,58 @@ Altele vor fi ascunse implicit.
 'exif-gpsspeed-m' => 'Mile pe oră',
 'exif-gpsspeed-n' => 'Noduri',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometri',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Mile marine',
+
+'exif-gpsdop-excellent' => 'Excelent ($1)',
+'exif-gpsdop-good'      => 'Bun ($1)',
+'exif-gpsdop-moderate'  => 'Moderat ($1)',
+'exif-gpsdop-fair'      => 'Acceptabil ($1)',
+'exif-gpsdop-poor'      => 'Slab ($1)',
+
+'exif-objectcycle-a' => 'Doar dimineața',
+'exif-objectcycle-p' => 'Doar seara',
+'exif-objectcycle-b' => 'Și dimineața și seara',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcția reală',
 'exif-gpsdirection-m' => 'Direcție magnetică',
+
+'exif-ycbcrpositioning-1' => 'Centrat',
+
+'exif-dc-contributor' => 'Contribuitori',
+'exif-dc-date'        => 'Data (datele)',
+'exif-dc-publisher'   => 'Editor',
+'exif-dc-relation'    => 'Conținut multimedia asociat',
+'exif-dc-rights'      => 'Permisiuni',
+'exif-dc-source'      => 'Conținutul multimedia sursă',
+'exif-dc-type'        => 'Tipul conținutului media',
+
+'exif-rating-rejected' => 'Respins',
+
+'exif-isospeedratings-overflow' => 'Mai mare de 65535',
+
+'exif-iimcategory-ace' => 'Artă, cultură și divertisment',
+'exif-iimcategory-clj' => 'Criminalitate și lege',
+'exif-iimcategory-dis' => 'Dezastre și accidente',
+'exif-iimcategory-fin' => 'Economie și afaceri',
+'exif-iimcategory-edu' => 'Educație',
+'exif-iimcategory-evn' => 'Mediu înconjurător',
+'exif-iimcategory-hth' => 'Sănătate',
+'exif-iimcategory-lif' => 'Stil de viață și timp liber',
+'exif-iimcategory-pol' => 'Politică',
+'exif-iimcategory-rel' => 'Religie și credință',
+'exif-iimcategory-sci' => 'Știință și tehnologie',
+'exif-iimcategory-soi' => 'Aspecte sociale',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Războaie, conflicte și tulburări',
+'exif-iimcategory-wea' => 'Vreme',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Scăzut ($1)',
+'exif-urgency-high'   => 'Ridicat ($1)',
 
 # External editor support
 'edit-externally'      => 'Editează acest fișier folosind o aplicație externă.',

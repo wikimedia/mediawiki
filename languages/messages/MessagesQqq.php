@@ -3424,7 +3424,8 @@ This is extracted from XMP\'s photoshop:headline ( http://www.iptc.org/std/photo
 Who gave us the image. This might be different from the creator of the image. This is IPTC-iim property 2:110',
 'exif-source'                      => 'See IPTC-iim standard 2:115 - http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf.
 
-This is who originally owned the image (a person, stock photo agency, etc). This does not refer to the image this image is based on.',
+This is who originally owned the image (a person, stock photo agency, etc). This does not refer to the image this image is based on.
+{{Identical|Source}}',
 'exif-editstatus'                  => 'Editorial status of image. This is more intended for use with people making news papers. This denotes whether the image is on the main page, is part of a correction, etc. See 2:07 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-urgency'                     => 'Urgency. How urgent this image is. 1 is very urgent, 5 is normal, 8 is  very low priority.',
 'exif-fixtureidentifier'           => 'Fixture name. If this image is part of a regular column in a news paper, name of column goes here.',
@@ -3435,9 +3436,11 @@ This is who originally owned the image (a person, stock photo agency, etc). This
 'exif-writer'                      => 'The person who wrote the caption of the image. See Description Writer on page 18 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-languagecode'                => "Language of image/media.
 
-This is taken from IPTC-iim 2:135 and XMP's dc:language.",
+This is taken from IPTC-iim 2:135 and XMP's dc:language.
+{{Identical|Language}}",
 'exif-iimversion'                  => 'IIM version number. Version of information interchange 2:xx records. 4 is current version. 2 is often seen as well. This is the value stored 2:00 field (Note, iptc-iim also stores a model version in 1:00. This version field displays the 2:00 record only)',
-'exif-iimcategory'                 => 'Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.',
+'exif-iimcategory'                 => 'Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.
+{{identical|Category}}',
 'exif-iimsupplementalcategory'     => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
 'exif-datetimeexpires'             => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
 'exif-datetimereleased'            => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',

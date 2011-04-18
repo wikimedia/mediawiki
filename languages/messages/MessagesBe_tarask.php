@@ -3068,7 +3068,7 @@ $1',
 'exif-lens'                        => 'Выкарыстаны аб’ектыў',
 'exif-serialnumber'                => 'Сэрыйны нумар фотакамэры',
 'exif-cameraownername'             => 'Уласьнік фотакамэры',
-'exif-datetimemetadata'            => 'Дата апошняй зьмены мэтазьвестак',
+'exif-datetimemetadata'            => 'Дата апошняй зьмены мэта-зьвестак',
 'exif-usageterms'                  => 'Умовы выкарыстаньня',
 'exif-disclaimer'                  => 'Адмова ад адказнасьці',
 
