@@ -28,51 +28,33 @@
  * @ingroup SpecialPage
  */
 class SpecialPage {
-	/**#@+
-	 * @access private
-	 */
-	/**
-	 * The canonical name of this special page
-	 * Also used for the default <h1> heading, @see getDescription()
-	 */
-	var $mName;
-	/**
-	 * The local name of this special page
-	 */
-	var $mLocalName;
-	/**
-	 * Minimum user level required to access this page, or "" for anyone.
-	 * Also used to categorise the pages in Special:Specialpages
-	 */
-	var $mRestriction;
-	/**
-	 * Listed in Special:Specialpages?
-	 */
-	var $mListed;
-	/**
-	 * Function name called by the default execute()
-	 */
-	var $mFunction;
-	/**
-	 * File which needs to be included before the function above can be called
-	 */
-	var $mFile;
-	/**
-	 * Whether or not this special page is being included from an article
-	 */
-	var $mIncluding;
-	/**
-	 * Whether the special page can be included in an article
-	 */
-	var $mIncludable;
-	/**
-	 * Query parameters that can be passed through redirects
-	 */
-	var $mAllowedRedirectParams = array();
-	/**
-	 * Query parameteres added by redirects
-	 */
-	var $mAddedRedirectParams = array();
+
+	// The canonical name of this special page
+	// Also used for the default <h1> heading, @see getDescription()
+	/*private*/ var $mName;
+
+	// The local name of this special page
+	private $mLocalName;
+
+	// Minimum user level required to access this page, or "" for anyone.
+	// Also used to categorise the pages in Special:Specialpages
+	private $mRestriction;
+
+	// Listed in Special:Specialpages?
+	private $mListed;
+
+	// Function name called by the default execute()
+	private $mFunction;
+
+	// File which needs to be included before the function above can be called
+	private $mFile;
+
+	// Whether or not this special page is being included from an article
+	protected $mIncluding;
+
+	// Whether the special page can be included in an article
+	protected $mIncludable;
+
 	/**
 	 * Current request context
 	 * @var RequestContext
@@ -380,23 +362,85 @@ class SpecialPage {
 		}
 	}
 
-	function getName() { return $this->mName; }
-	function getRestriction() { return $this->mRestriction; }
-	function getFile() { return $this->mFile; }
-	function isListed() { return $this->mListed; }
-
-	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
-	function restrictions( $x = null) {
-		# Use the one below this
-		wfDeprecated( __METHOD__ );
-		return wfSetVar( $this->mRestriction, $x );
+	/**
+	 * Get the name of this Special Page.
+	 * @return String
+	 */
+	function getName() {
+		return $this->mName;
 	}
+
+	/**
+	 * Get the permission that a user must have to execute this page
+	 * @return String
+	 */
+	function getRestriction() {
+		return $this->mRestriction;
+	}
+
+	/**
+	 * Get the file which will be included by SpecialPage::execute() if your extension is
+	 * still stuck in the past and hasn't overridden the execute() method.  No modern code
+	 * should want or need to know this.
+	 * @return String
+	 * @deprecated since 1.18
+	 */
+	function getFile() {
+		return $this->mFile;
+	}
+
+	// FIXME: decide which syntax to use for this, and stick to it
+	/**
+	 * Whether this special page is listed in Special:SpecialPages
+	 * @since r3583 (v1.3)
+	 * @return Bool
+	 */
+	function isListed() {
+		return $this->mListed;
+	}
+	/**
+	 * Set whether this page is listed in Special:Specialpages, at run-time
+	 * @since r3583 (v1.3)
+	 * @return Bool
+	 */
+	function setListed( $listed ) {
+		return wfSetVar( $this->mListed, $listed );
+	}
+	/**
+	 * Get or set whether this special page is listed in Special:SpecialPages
+	 * @since r11308 (v1.6)
+	 * @return Bool
+	 */
+	function listed( $x = null) {
+		return wfSetVar( $this->mListed, $x );
+	}
+
+	/**
+	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
+	 * @return Bool
+	 */
+	public function isIncludable(){
+		return $this->mIncludable;
+	}
+
+	/**
+	 * These mutators are very evil, as the relevant variables should not mutate.  So
+	 * don't use them.
+	 * @deprecated since 1.18
+	 */
+	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
 	function restriction( $x = null) { return wfSetVar( $this->mRestriction, $x ); }
-	function listed( $x = null) { return wfSetVar( $this->mListed, $x ); }
 	function func( $x = null) { return wfSetVar( $this->mFunction, $x ); }
 	function file( $x = null) { return wfSetVar( $this->mFile, $x ); }
 	function includable( $x = null ) { return wfSetVar( $this->mIncludable, $x ); }
-	function including( $x = null ) { return wfSetVar( $this->mIncluding, $x ); }
+
+	/**
+	 * Whether the special page is being evaluated via transclusion
+	 * @return Bool
+	 */
+	function including( $x = null ) {
+		return wfSetVar( $this->mIncluding, $x );
+	}
 
 	/**
 	 * Get the localised name of the special page
@@ -528,49 +572,6 @@ class SpecialPage {
 	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
-
-	/**
-	 * Set whether this page is listed in Special:Specialpages, at run-time
-	 *
-	 * @return Bool
-	 */
-	function setListed( $listed ) {
-		return wfSetVar( $this->mListed, $listed );
-	}
-
-	/**
-	 * If the special page is a redirect, then get the Title object it redirects to.
-	 * False otherwise.
-	 *
-	 * @return Title|false
-	 */
-	function getRedirect( $subpage ) {
-		return false;
-	}
-
-	/**
-	 * Return part of the request string for a special redirect page
-	 * This allows passing, e.g. action=history to Special:Mypage, etc.
-	 *
-	 * @return String
-	 */
-	function getRedirectQuery() {
-		$params = array();
-
-		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( $this->getContext()->request->getVal( $arg, null ) !== null ){
-				$params[$arg] = $this->getContext()->request->getVal( $arg );
-			}
-		}
-
-		foreach( $this->mAddedRedirectParams as $arg => $val ) {
-			$params[$arg] = $val;
-		}
-
-		return count( $params )
-			? $params
-			: false;
-	}
 	
 	/**
 	 * Sets the context this SpecialPage is executed in
@@ -667,6 +668,10 @@ class UnlistedSpecialPage extends SpecialPage
 	function __construct( $name, $restriction = '', $function = false, $file = 'default' ) {
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}
+
+	public function isListed(){
+		return false;
+	}
 }
 
 /**
@@ -678,6 +683,10 @@ class IncludableSpecialPage extends SpecialPage
 	function __construct( $name, $restriction = '', $listed = true, $function = false, $file = 'default' ) {
 		parent::__construct( $name, $restriction, $listed, $function, $file, true );
 	}
+
+	public function isIncludable(){
+		return true;
+	}
 }
 
 /**
@@ -685,6 +694,13 @@ class IncludableSpecialPage extends SpecialPage
  * @ingroup SpecialPage
  */
 abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
+
+	// Query parameters that can be passed through redirects
+	private $mAllowedRedirectParams = array();
+
+	// Query parameteres added by redirects
+	private $mAddedRedirectParams = array();
+
 	var $redirName, $redirSubpage;
 
 	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
@@ -695,12 +711,42 @@ abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 		$this->mAddedRedirectParams = $addedRedirectParams;
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * If the special page is a redirect, then get the Title object it redirects to.
+	 * False otherwise.
+	 *
+	 * @return Title|false
+	 */
+	public function getRedirect( $subpage ) {
 		if ( $this->redirSubpage === false ) {
 			return SpecialPage::getTitleFor( $this->redirName, $subpage );
 		} else {
 			return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
 		}
+	}
+
+	/**
+	 * Return part of the request string for a special redirect page
+	 * This allows passing, e.g. action=history to Special:Mypage, etc.
+	 *
+	 * @return String
+	 */
+	public function getRedirectQuery() {
+		$params = array();
+
+		foreach( $this->mAllowedRedirectParams as $arg ) {
+			if( $this->getContext()->request->getVal( $arg, null ) !== null ){
+				$params[$arg] = $this->getContext()->request->getVal( $arg );
+			}
+		}
+
+		foreach( $this->mAddedRedirectParams as $arg => $val ) {
+			$params[$arg] = $val;
+		}
+
+		return count( $params )
+			? $params
+			: false;
 	}
 }
 
@@ -794,7 +840,7 @@ class SpecialMycontributions extends UnlistedSpecialPage {
 
 	function getRedirect( $subpage ) {
 		global $wgUser;
-		return SpecialPageFactory::getTitleFor( 'Contributions', $wgUser->getName() );
+		return SpecialPage::getTitleFor( 'Contributions', $wgUser->getName() );
 	}
 }
 
@@ -809,7 +855,7 @@ class SpecialMyuploads extends UnlistedSpecialPage {
 
 	function getRedirect( $subpage ) {
 		global $wgUser;
-		return SpecialPageFactory::getTitleFor( 'Listfiles', $wgUser->getName() );
+		return SpecialPage::getTitleFor( 'Listfiles', $wgUser->getName() );
 	}
 }
 
