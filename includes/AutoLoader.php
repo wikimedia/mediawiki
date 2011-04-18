@@ -226,6 +226,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'TitleDependency' => 'includes/CacheDependency.php',
 	'TitleListDependency' => 'includes/CacheDependency.php',
+	'ThrottledError' => 'includes/Exception.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UppercaseCollation' => 'includes/Collation.php',
 	'User' => 'includes/User.php',
