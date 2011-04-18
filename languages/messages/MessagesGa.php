@@ -1828,7 +1828,13 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leithead',
@@ -1843,7 +1849,6 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 'exif-ycbcrpositioning'            => 'Suí Y agus C',
 'exif-xresolution'                 => 'Taifeach íomhá i dtreo an leithid',
 'exif-yresolution'                 => 'Taifeach íomhá i dtreo an airde',
-'exif-resolutionunit'              => 'Aonad an taifigh X agus Y',
 'exif-stripoffsets'                => 'Suíomh na sonraí íomhá',
 'exif-rowsperstrip'                => 'Líon na rónna sa stráice',
 'exif-stripbytecounts'             => 'Bearta sa stráice comhbhrúite',

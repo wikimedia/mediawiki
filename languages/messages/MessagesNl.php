@@ -3144,7 +3144,7 @@ Alle volgende verwijzingen die op dezelfde regel staan, worden behandeld als uit
 Als het bestand aangepast is, komen details mogelijk niet overeen met het gewijzigde bestand.',
 'metadata-expand'   => 'Uitgebreide gegevens bekijken',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',
-'metadata-fields'   => 'De EXIF-metadatavelden in dit bericht worden ook weergegeven op een afbeeldingspagina als de metadatatabel ingeklapt is.
+'metadata-fields'   => 'De afbeeldingsmetadatavelden in dit bericht worden ook weergegeven op een afbeeldingspagina als de metadatatabel ingeklapt is.
 Andere velden worden verborgen.
 * make
 * model
@@ -3152,7 +3152,13 @@ Andere velden worden verborgen.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breedte',
@@ -3167,7 +3173,6 @@ Andere velden worden verborgen.
 'exif-ycbcrpositioning'            => 'Y- en C-positionering',
 'exif-xresolution'                 => 'Horizontale resolutie',
 'exif-yresolution'                 => 'Verticale resolutie',
-'exif-resolutionunit'              => 'Eenheid X en Y resolutie',
 'exif-stripoffsets'                => 'Locatie afbeeldingsgegevens',
 'exif-rowsperstrip'                => 'Rijen per strip',
 'exif-stripbytecounts'             => 'Bytes per gecomprimeerde strip',
@@ -3189,8 +3194,8 @@ Andere velden worden verborgen.
 'exif-colorspace'                  => 'Kleurruimte',
 'exif-componentsconfiguration'     => 'Betekenis van elke component',
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
-'exif-pixelydimension'             => 'Bruikbare afbeeldingsbreedte',
-'exif-pixelxdimension'             => 'Bruikbare afbeeldingshoogte',
+'exif-pixelydimension'             => 'Afbeeldingsbreedte',
+'exif-pixelxdimension'             => 'Afbeeldingshoogte',
 'exif-usercomment'                 => 'Opmerkingen',
 'exif-relatedsoundfile'            => 'Bijbehorend audiobestand',
 'exif-datetimeoriginal'            => 'Tijdstip gegevensaanmaak',
@@ -3204,9 +3209,9 @@ Andere velden worden verborgen.
 'exif-exposureprogram'             => 'Belichtingsprogramma',
 'exif-spectralsensitivity'         => 'Spectrale gevoeligheid',
 'exif-isospeedratings'             => 'ISO/ASA-waarde',
-'exif-shutterspeedvalue'           => 'Sluitersnelheid',
-'exif-aperturevalue'               => 'Diafragma',
-'exif-brightnessvalue'             => 'Helderheid',
+'exif-shutterspeedvalue'           => 'Sluitersnelheid in APEX',
+'exif-aperturevalue'               => 'Diafragma in APEX',
+'exif-brightnessvalue'             => 'Helderheid in APEX',
 'exif-exposurebiasvalue'           => 'Belichtingscompensatie',
 'exif-maxaperturevalue'            => 'Maximale diafragma-opening',
 'exif-subjectdistance'             => 'Afstand tot onderwerp',
@@ -3268,10 +3273,76 @@ Andere velden worden verborgen.
 'exif-gpsareainformation'          => 'Naam GPS-gebied',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differentiele GPS-correctie',
+'exif-jpegfilecomment'             => 'Opmerking bij JPEG-bestand',
+'exif-keywords'                    => 'Trefwoorden',
+'exif-worldregioncreated'          => 'Regio in de wereld waar de afbeelding is gemaakt',
+'exif-countrycreated'              => 'Land waar de afbeelding is gemaakt',
+'exif-countrycodecreated'          => 'Code voor het land waar de afbeelding is gemaakt',
+'exif-provinceorstatecreated'      => 'Provincie of staat waar de afbeelding is gemaakt',
+'exif-citycreated'                 => 'Plaats waar de afbeelding is gemaakt',
+'exif-sublocationcreated'          => 'Wijk van de plaats waar de afbeelding is gemaakt',
+'exif-worldregiondest'             => 'Weergegeven wereldregio',
+'exif-countrydest'                 => 'Weergegeven land',
+'exif-countrycodedest'             => 'Code voor het weergegeven land',
+'exif-provinceorstatedest'         => 'Weergegeven provincie of staat',
+'exif-citydest'                    => 'Weergegeven plaats',
+'exif-sublocationdest'             => 'Weergegeven wijk in plaats',
 'exif-objectname'                  => 'Korte naam',
+'exif-specialinstructions'         => 'Speciale instructies',
+'exif-headline'                    => 'Koptekst',
+'exif-credit'                      => 'Credit/Leverancier',
+'exif-source'                      => 'Bron',
+'exif-editstatus'                  => 'Bewerkingsstatus van de afbeelding',
+'exif-urgency'                     => 'Urgentie',
+'exif-fixtureidentifier'           => 'Armatuurnaam',
+'exif-locationdest'                => 'Weergegeven locatie',
+'exif-locationdestcode'            => 'Code voor de weergegeven locatie',
+'exif-objectcycle'                 => 'Tijd van de dag waar de media voor bedoeld is',
+'exif-contact'                     => 'Contactgegevens',
+'exif-writer'                      => 'Schrijver',
+'exif-languagecode'                => 'Taal',
+'exif-iimversion'                  => 'IIM-versie',
+'exif-iimcategory'                 => 'Categorie',
+'exif-iimsupplementalcategory'     => 'Aanvullende categorieën',
+'exif-datetimeexpires'             => 'Niet te gebruiken na',
+'exif-datetimereleased'            => 'Gepubliceerd op',
+'exif-originaltransmissionref'     => 'Originele taaklocatiecode',
+'exif-identifier'                  => 'Id',
+'exif-lens'                        => 'Gebruikte lens',
+'exif-serialnumber'                => 'Serienummer van de camera',
+'exif-cameraownername'             => 'Eigenaar van camera',
+'exif-label'                       => 'Label',
+'exif-datetimemetadata'            => 'Datum waarop de metadata het laatst zijn bewerkt',
+'exif-nickname'                    => 'Informele naam van de afbeelding',
+'exif-rating'                      => 'Waardering (schaal van 5)',
+'exif-rightscertificate'           => 'Rechtenbeheercertificaat',
+'exif-copyrighted'                 => 'Auteursrechtenstatus',
+'exif-copyrightowner'              => 'Auteursrechtenhouder',
+'exif-usageterms'                  => 'Gebruiksvoorwaarden',
+'exif-webstatement'                => 'Online auteursrechtenverklaring',
+'exif-originaldocumentid'          => 'Uniek ID van het originele document',
+'exif-licenseurl'                  => 'URL voor auteursrechtenlicentie',
+'exif-morepermissionsurl'          => 'Alternatieve licentiegegevens',
+'exif-attributionurl'              => 'Gebruik de volgende verwijzing bij hergebruik van dit werk',
+'exif-preferredattributionname'    => 'Gebruik de volgende credits bij hergebruik van dit werk',
+'exif-pngfilecomment'              => 'Opmerking bij PNG-bestand',
+'exif-disclaimer'                  => 'Voorbehoud',
+'exif-contentwarning'              => 'Waarschuwing over inhoud',
+'exif-giffilecomment'              => 'Opmerking bij GIF-bestand',
+'exif-intellectualgenre'           => 'Itemtype',
+'exif-subjectnewscode'             => 'Onderwerpcode',
+'exif-scenecode'                   => 'IPTC-scènecode',
+'exif-event'                       => 'Afgebeelde gebeurtenis',
+'exif-organisationinimage'         => 'Afgebeelde organisatie',
+'exif-personinimage'               => 'Afgebeelde persoon',
+'exif-originalimageheight'         => 'Hoogte van de afbeelding voor bijsnijden',
+'exif-originalimagewidth'          => 'Breedte van de afbeelding voor bijsnijden',
 
 # EXIF attributes
 'exif-compression-1' => 'Ongecomprimeerd',
+
+'exif-copyrighted-true'  => 'Auteursrechtelijk beschermd',
+'exif-copyrighted-false' => 'Publiek domein',
 
 'exif-unknowndate' => 'Datum onbekend',
 
@@ -3352,6 +3423,8 @@ Andere velden worden verborgen.
 'exif-sensingmethod-7' => 'Drielijnige sensor',
 'exif-sensingmethod-8' => 'Kleurvolgende lijnsensor',
 
+'exif-filesource-3' => 'Digitale fotocamera',
+
 'exif-scenetype-1' => 'Een direct gefotografeerde afbeelding',
 
 'exif-customrendered-0' => 'Normale verwerking',
@@ -3400,6 +3473,10 @@ Andere velden worden verborgen.
 'exif-gpslongitude-e' => 'Oosterlengte',
 'exif-gpslongitude-w' => 'Westerlengte',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} boven de zeespiegel',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} onder de zeespiegel',
+
 'exif-gpsstatus-a' => 'Bezig met meten',
 'exif-gpsstatus-v' => 'Meetinteroperabiliteit',
 
@@ -3411,9 +3488,63 @@ Andere velden worden verborgen.
 'exif-gpsspeed-m' => 'Mijl per uur',
 'exif-gpsspeed-n' => 'Knopen',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometers',
+'exif-gpsdestdistance-m' => 'Mijlen',
+'exif-gpsdestdistance-n' => 'Knopen',
+
+'exif-gpsdop-excellent' => 'Uitstekend ($1)',
+'exif-gpsdop-good'      => 'Goed ($1)',
+'exif-gpsdop-moderate'  => 'Gemiddeld ($1)',
+'exif-gpsdop-fair'      => 'Redelijk ($1)',
+'exif-gpsdop-poor'      => 'Slecht ($1)',
+
+'exif-objectcycle-a' => "Alleen 's ochtends",
+'exif-objectcycle-p' => "Alleen 's avonds",
+'exif-objectcycle-b' => "Zowel 's ochtends als 's avonds",
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Eigenlijke richting',
 'exif-gpsdirection-m' => 'Magnetische richting',
+
+'exif-ycbcrpositioning-1' => 'Gecentreerd',
+'exif-ycbcrpositioning-2' => 'Gecositueerd',
+
+'exif-dc-contributor' => 'Medewerkers',
+'exif-dc-coverage'    => 'Ruimtelijke of temporele scope van media',
+'exif-dc-date'        => 'Datum(s)',
+'exif-dc-publisher'   => 'Uitgever',
+'exif-dc-relation'    => 'Gerelateerde media',
+'exif-dc-rights'      => 'Rechten',
+'exif-dc-source'      => 'Bronmedia',
+'exif-dc-type'        => 'Mediatype',
+
+'exif-rating-rejected' => 'Afgewezen',
+
+'exif-isospeedratings-overflow' => 'Groter dan 65535',
+
+'exif-iimcategory-ace' => 'Kunst, cultuur en vermaak',
+'exif-iimcategory-clj' => 'Misdaad en recht',
+'exif-iimcategory-dis' => 'Rampen en ongevallen',
+'exif-iimcategory-fin' => 'Economie en bedrijfsleven',
+'exif-iimcategory-edu' => 'Onderwijs',
+'exif-iimcategory-evn' => 'Milieu',
+'exif-iimcategory-hth' => 'Gezondheid',
+'exif-iimcategory-hum' => 'Human interest',
+'exif-iimcategory-lab' => 'Arbeid',
+'exif-iimcategory-lif' => 'Lifestyle en vrije tijd',
+'exif-iimcategory-pol' => 'Politiek',
+'exif-iimcategory-rel' => 'Godsdienst en overtuiging',
+'exif-iimcategory-sci' => 'Wetenschap en technologie',
+'exif-iimcategory-soi' => 'Sociale kwesties',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Oorlog, conflict en onrust',
+'exif-iimcategory-wea' => 'Weer',
+
+'exif-urgency-normal' => 'Normaal ($1)',
+'exif-urgency-low'    => 'Laag ($1)',
+'exif-urgency-high'   => 'Hoog ($1)',
+'exif-urgency-other'  => 'Door gebruiker gedefinieerde prioriteit ($1)',
 
 # External editor support
 'edit-externally'      => 'Dit bestand in een extern programma bewerken',

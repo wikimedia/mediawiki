@@ -714,7 +714,8 @@ Gortozit a-raok klask en-dro.",
 'showpreview'                      => 'Rakwelet',
 'showlivepreview'                  => 'Rakwelet prim',
 'showdiff'                         => "Diskouez ar c'hemmoù",
-'anoneditwarning'                  => "'''Diwallit :''' N'oc'h ket kevreet. Ho chomlec'h IP eo a vo enrollet war istor kemmoù ar bajenn-mañ.",
+'anoneditwarning'                  => "'''Diwallit :''' N'oc'h ket kevreet. 
+Ho chomlec'h IP eo a vo enrollet war istor kemmoù ar bajenn-mañ.",
 'anonpreviewwarning'               => "''N'oc'h ket kevreet. Enrollañ a lakao war-wel ho chomlec'h IP e istor kemmoù ar bajenn.''",
 'missingsummary'                   => "'''Taolit evezh:''' N'hoc'h eus ket lakaet tamm testenn diverrañ ebet evit ho kemmoù. Mar klikit war enrollañ en-dro, e vo enrollet ho testenn evel m'emañ hepmuiken.",
 'missingcommenttext'               => "Skrivit hoc'h evezhiadenn a-is.",
@@ -1500,7 +1501,7 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'filedesc'                    => 'Deskrivadur',
 'fileuploadsummary'           => 'Diverrañ :',
 'filereuploadsummary'         => 'Kemmoù er restr :',
-'filestatus'                  => 'Statud ar gwirioù aozer:',
+'filestatus'                  => 'Statud a-fet gwirioù aozer :',
 'filesource'                  => 'Mammenn :',
 'uploadedfiles'               => 'Restroù karget',
 'ignorewarning'               => 'Na ober van ouzh an evezhiadenn hag enrollañ ar restr forzh penaos',
@@ -2868,17 +2869,24 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 
 # Metadata
 'metadata'          => 'Metaroadennoù',
-'metadata-help'     => "Titouroù ouzhpen zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo e-keñver ar skeudenn kemmet.",
+'metadata-help'     => "Titouroù ouzhpenn zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo e-keñver ar skeudenn kemmet.",
 'metadata-expand'   => 'Dispakañ ar munudoù',
 'metadata-collapse' => 'Krennañ ar munudoù',
-'metadata-fields'   => "Ensoc'het e vo ar maeziennoù metastlennoù EXIF rollet er gemennadenn-mañ e pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metaroadennoù. Kuzhet e vo ar re all dre ziouer.
+'metadata-fields'   => "Ensoc'het e vo maeziennoù metaroadennoù ar skeudenn rollet er gemennadenn-mañ war pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metaroadennoù. 
+Kuzhet e vo ar re all dre ziouer.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Led',
@@ -2893,7 +2901,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-ycbcrpositioning'            => "Lec'hiadur Y ha C",
 'exif-xresolution'                 => 'Pizhder led ar skeudenn',
 'exif-yresolution'                 => 'Pizhder hed ar skeudenn',
-'exif-resolutionunit'              => 'Unanennoù pizhder X ha Y',
 'exif-stripoffsets'                => "Lec'hiadur roadennoù ar skeudenn",
 'exif-rowsperstrip'                => 'Niver a linennoù dre vandenn',
 'exif-stripbytecounts'             => 'Ment e oktedoù dre vandenn',
@@ -2915,8 +2922,8 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-colorspace'                  => "Lec'h al livioù",
 'exif-componentsconfiguration'     => 'Talvoudegezh pep parzh',
 'exif-compressedbitsperpixel'      => 'Doare gwaskañ ar skeudenn',
-'exif-pixelydimension'             => 'Ledander skeudenn gwiriek',
-'exif-pixelxdimension'             => 'Uhelder skeudenn gwiriek',
+'exif-pixelydimension'             => 'Ledander ar skeudenn',
+'exif-pixelxdimension'             => 'Sav ar skeudenn',
 'exif-usercomment'                 => 'Evezhiadennoù',
 'exif-relatedsoundfile'            => 'Restr son stag',
 'exif-datetimeoriginal'            => 'Deiziad hag eur ar sevel roadoù',
@@ -2930,9 +2937,9 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-exposureprogram'             => "Programm louc'hañ",
 'exif-spectralsensitivity'         => 'Kizidigezh spektrel',
 'exif-isospeedratings'             => 'Kizidigezh ISO',
-'exif-shutterspeedvalue'           => 'Tizh klozañ',
-'exif-aperturevalue'               => 'Digorder',
-'exif-brightnessvalue'             => 'Sklêrder',
+'exif-shutterspeedvalue'           => "Tizh ar c'hlozer APEX",
+'exif-aperturevalue'               => 'Digorder APEX',
+'exif-brightnessvalue'             => 'Sklêrder APEX',
 'exif-exposurebiasvalue'           => "Reizhadenn louc'hañ",
 'exif-maxaperturevalue'            => 'Maezienn digeriñ vrasañ',
 'exif-subjectdistance'             => 'Hed ar sujed',
@@ -2994,10 +3001,69 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsareainformation'          => 'Anv an takad GPS',
 'exif-gpsdatestamp'                => 'Deiziad GPS',
 'exif-gpsdifferential'             => "Reizhadenn diforc'hadus GPS",
+'exif-jpegfilecomment'             => 'Evezhiadenn digant ar restr JPEG',
+'exif-keywords'                    => "Gerioù alc'hwez",
+'exif-worldregioncreated'          => 'Ranndir ma voe tennet ar skeudenn',
+'exif-countrycreated'              => 'Bro ma voe tennet ar skeudenn',
+'exif-countrycodecreated'          => 'Kod ar vro ma voe tennet ar skeudenn',
+'exif-provinceorstatecreated'      => 'Proviñs pe Stad ma voe tennet ar skeudenn',
+'exif-citycreated'                 => 'Kêr ma voe tennet ar skeudenn',
+'exif-sublocationcreated'          => "Islec'hiadur ar gêr ma voe tennet ar skeudenn",
+'exif-worldregiondest'             => 'Ranndir diskouezet',
+'exif-countrydest'                 => 'Bro diskouezet',
+'exif-countrycodedest'             => 'Kod evit ar vro diskouezet',
+'exif-provinceorstatedest'         => 'Proviñs pe Stad diskouezet',
+'exif-citydest'                    => 'Kêr diskouezet',
+'exif-sublocationdest'             => "Islec'hiadur ar gêr diskouezet",
 'exif-objectname'                  => 'Titl berr',
+'exif-specialinstructions'         => 'Kemennadurioù dibar',
+'exif-headline'                    => 'Titl',
+'exif-source'                      => 'Mammenn',
+'exif-urgency'                     => 'Malluster',
+'exif-locationdest'                => "Lec'h diskouezet",
+'exif-locationdestcode'            => "Kod al lec'h diskouezet",
+'exif-objectcycle'                 => "Mare eus an deiz m'eo bet soñjet ar media-mañ evitañ",
+'exif-contact'                     => 'Titouroù diwar-benn an darempred',
+'exif-writer'                      => 'Skrivagner',
+'exif-languagecode'                => 'Yezh',
+'exif-iimversion'                  => 'Stumm IIM',
+'exif-iimcategory'                 => 'Rummad',
+'exif-iimsupplementalcategory'     => 'Rummadoù ouzhpenn',
+'exif-datetimeexpires'             => 'Arabat implijout goude',
+'exif-datetimereleased'            => "Embannet d'an",
+'exif-originaltransmissionref'     => "Treuzkas orin ar c'hod lec'hiañ",
+'exif-identifier'                  => 'Anaouder',
+'exif-lens'                        => 'Ferenn bet implijet',
+'exif-serialnumber'                => 'Niverenn rummad ar benveg',
+'exif-cameraownername'             => "Perc'henn ar benveg",
+'exif-label'                       => 'Tikedenn',
+'exif-datetimemetadata'            => 'Deiziad ma voe kemmet ar metaroadennoù da ziwezhañ',
+'exif-nickname'                    => 'Anv anfurmel ar skeudenn',
+'exif-rating'                      => 'Priziañ (war 5)',
+'exif-rightscertificate'           => 'Testeni merañ ar gwirioù',
+'exif-copyrighted'                 => 'Statud a-fet gwirioù aozer',
+'exif-copyrightowner'              => "Perc'henn ar gwirioù aozer (copyright)",
+'exif-usageterms'                  => 'Termenoù implijout',
+'exif-webstatement'                => 'Disklêriadur gwrioù-aozer enlinenn',
+'exif-originaldocumentid'          => 'ID nemetañ an teul orin',
+'exif-licenseurl'                  => "Chomlec'h Internet evit an aotre gwirioù-aozer",
+'exif-attributionurl'              => 'Ma adimplijt an oberenn-mañ, lakait ul liamm war-zu',
+'exif-preferredattributionname'    => 'Ma adimplijt an oberenn-mañ, roit kred da',
+'exif-pngfilecomment'              => 'Evezhiadenn digant ar restr PNG',
+'exif-disclaimer'                  => 'Kemenn hollek',
+'exif-contentwarning'              => 'Kemenn-diwall diwar-benn an danvez',
+'exif-giffilecomment'              => 'Evezhiadenn digant ar restr GIF',
+'exif-intellectualgenre'           => 'Seurt elfenn',
+'exif-subjectnewscode'             => 'Kod ar sujed',
+'exif-event'                       => 'Darvoud diskouezet',
+'exif-organisationinimage'         => 'Anv an aozadurioù diskouezet war ar skeudenn',
+'exif-personinimage'               => 'Den diskouezet',
 
 # EXIF attributes
 'exif-compression-1' => 'Hep gwaskañ',
+
+'exif-copyrighted-true'  => 'Pep gwir miret strizh',
+'exif-copyrighted-false' => 'Domani foran',
 
 'exif-unknowndate' => 'Deiziad dianav',
 
@@ -3124,6 +3190,10 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpslongitude-e' => 'Hedred reter',
 'exif-gpslongitude-w' => 'Hedred kornôg',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metr|metr}} a-us da live ar mor',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metr|metr}} a-is da live ar mor',
+
 'exif-gpsstatus-a' => 'O vuzuliañ',
 'exif-gpsstatus-v' => 'etreoberatadusted ar muzul',
 
@@ -3135,9 +3205,57 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsspeed-m' => 'Miltir dre eur',
 'exif-gpsspeed-n' => 'Skoulm',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometr',
+'exif-gpsdestdistance-m' => 'Miltir',
+'exif-gpsdestdistance-n' => 'Miltir',
+
+'exif-gpsdop-excellent' => 'Mat-kenañ ($1)',
+'exif-gpsdop-good'      => 'Mat ($1)',
+'exif-gpsdop-moderate'  => 'Etre ($1)',
+'exif-gpsdop-fair'      => 'Propik ($1)',
+'exif-gpsdop-poor'      => 'Dister ($1)',
+
+'exif-objectcycle-a' => 'Da vintin hepken',
+'exif-objectcycle-p' => 'Diouzh an abardaez hepken',
+'exif-objectcycle-b' => 'Da vintin ha diouzh an abaradez',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => "Durc'hadur gwir",
 'exif-gpsdirection-m' => 'Norzh magnetek',
+
+'exif-ycbcrpositioning-1' => 'Kreizet',
+
+'exif-dc-contributor' => 'Aozerien',
+'exif-dc-date'        => 'Deiziad(où)',
+'exif-dc-publisher'   => 'Embanner',
+'exif-dc-relation'    => 'Media kar',
+'exif-dc-rights'      => 'Gwirioù',
+'exif-dc-source'      => 'Media orin',
+'exif-dc-type'        => 'Seurt media',
+
+'exif-rating-rejected' => 'Distaolet',
+
+'exif-isospeedratings-overflow' => "Brasoc'h eget 65535",
+
+'exif-iimcategory-ace' => 'Arzoù, sevenadur ha diduamantoù',
+'exif-iimcategory-clj' => 'Torfedoù ha lezennoù',
+'exif-iimcategory-dis' => 'Reuzioù ha gwallzarvoudoù',
+'exif-iimcategory-fin' => 'Armerzh hag aferioù',
+'exif-iimcategory-edu' => 'Deskadurezh',
+'exif-iimcategory-evn' => 'Endro',
+'exif-iimcategory-hth' => "Yec'hed",
+'exif-iimcategory-lif' => 'Doare bevañ ha dudiamantoù',
+'exif-iimcategory-pol' => 'Politikerezh',
+'exif-iimcategory-rel' => 'Relijion ha kredennoù',
+'exif-iimcategory-sci' => 'Skiantoù ha teknologiezhoù',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-wea' => 'Amzer',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Izel ($1)',
+'exif-urgency-high'   => 'Uhel ($1)',
+'exif-urgency-other'  => 'Priorelezh termenet gant an aozer ($1)',
 
 # External editor support
 'edit-externally'      => 'Kemmañ ar restr-mañ dre un arload diavaez',

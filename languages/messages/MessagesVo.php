@@ -2395,7 +2395,13 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Vidot',
@@ -2409,7 +2415,6 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-ycbcrpositioning'            => 'staned Y e C',
 'exif-xresolution'                 => 'Distidafäg horitätik',
 'exif-yresolution'                 => 'Distidafäg penditik',
-'exif-resolutionunit'              => 'Stabäd distidafäga X e Y',
 'exif-stripoffsets'                => 'Topam magodanünodas',
 'exif-rowsperstrip'                => 'Num kedetas a strip',
 'exif-stripbytecounts'             => 'Jöläts a strip pekobopedöl',

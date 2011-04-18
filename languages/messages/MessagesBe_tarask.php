@@ -2922,14 +2922,20 @@ $1',
 Калі файл рэдагаваўся пасьля стварэньня, то частка зьвестак можа не адпавядаць зьмененаму файлу.',
 'metadata-expand'   => 'Паказаць падрабязнасьці',
 'metadata-collapse' => 'Схаваць падрабязнасьці',
-'metadata-fields'   => 'Палі мэтазьвестак EXIF гэтага сьпісу будуць адлюстраваныя на старонцы выявы, астатнія будуць схаваныя.
+'metadata-fields'   => 'Палі мэта-зьвестак выявы з гэтага сьпісу будуць паказаныя на старонцы выявы, калі табліца мэта-зьвестак будзе згорнутая.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -2944,7 +2950,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Парадак разьмяшчэньня кампанэнтаў Y і C',
 'exif-xresolution'                 => 'Гарызантальнае разрозьненьне',
 'exif-yresolution'                 => 'Вэртыкальнае разрозьненьне',
-'exif-resolutionunit'              => 'Адзінка вымярэньня разрозьненьняў X і Y',
 'exif-stripoffsets'                => 'Разьмяшчэньне блёку зьвестак',
 'exif-rowsperstrip'                => 'Колькасьць радкоў у блёку',
 'exif-stripbytecounts'             => 'Памер сьціснутага блёку',
@@ -2966,8 +2971,8 @@ $1',
 'exif-colorspace'                  => 'Колеравая прастора',
 'exif-componentsconfiguration'     => 'Канфігурацыя колеравых кампанэнтаў',
 'exif-compressedbitsperpixel'      => 'Глыбіня колеру пасьля сьцісканьня',
-'exif-pixelydimension'             => 'Дапушчальная шырыня выявы',
-'exif-pixelxdimension'             => 'Дапушчальная вышыня выявы',
+'exif-pixelydimension'             => 'Шырыня выявы',
+'exif-pixelxdimension'             => 'Вышыня выявы',
 'exif-usercomment'                 => 'Камэнтары карыстальніка',
 'exif-relatedsoundfile'            => 'Датычны аўдыё-файл',
 'exif-datetimeoriginal'            => 'Дата і час утварэньня зьвестак',
@@ -3046,10 +3051,31 @@ $1',
 'exif-gpsareainformation'          => 'Назва GPS-зоны',
 'exif-gpsdatestamp'                => 'Дата GPS',
 'exif-gpsdifferential'             => 'Дыфэрэнцыяльная папраўка GPS',
+'exif-jpegfilecomment'             => 'Камэнтар да JPEG-файла',
+'exif-keywords'                    => 'Ключавыя словы',
+'exif-worldregioncreated'          => 'Рэгіён сьвету, дзе была зробленая выява',
+'exif-countrycreated'              => 'Краіна, дзе была зробленая выява',
+'exif-countrycodecreated'          => 'Код краіны, дзе была зробленая выява',
+'exif-provinceorstatecreated'      => 'Вобласьць, правінцыя ці штат, дзе была зробленая выява',
+'exif-citycreated'                 => 'Горад, дзе была зробленая выява',
+'exif-sublocationcreated'          => 'Месца ў горадзе, дзе была зробленая выява',
+'exif-worldregiondest'             => 'Паказаны рэгіён сьвету',
+'exif-countrydest'                 => 'Паказаная краіна',
 'exif-objectname'                  => 'Кароткая назва',
+'exif-source'                      => 'Крыніца',
+'exif-languagecode'                => 'Мова',
+'exif-iimcategory'                 => 'Катэгорыя',
+'exif-lens'                        => 'Выкарыстаны аб’ектыў',
+'exif-serialnumber'                => 'Сэрыйны нумар фотакамэры',
+'exif-cameraownername'             => 'Уласьнік фотакамэры',
+'exif-datetimemetadata'            => 'Дата апошняй зьмены мэтазьвестак',
+'exif-usageterms'                  => 'Умовы выкарыстаньня',
+'exif-disclaimer'                  => 'Адмова ад адказнасьці',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясьціснуты',
+
+'exif-copyrighted-false' => 'Грамадзкі набытак',
 
 'exif-unknowndate' => 'Невядомая дата',
 
@@ -3176,6 +3202,10 @@ $1',
 'exif-gpslongitude-e' => 'усходняй даўгаты',
 'exif-gpslongitude-w' => 'заходняй даўгаты',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|мэтар|мэтры|мэтраў}} над узроўнем мора',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|мэтар|мэтры|мэтраў}} ніжэй за ўзровень мора',
+
 'exif-gpsstatus-a' => 'Адбываецца вымярэньне',
 'exif-gpsstatus-v' => 'Ацэнка магчымасьці ўзаемадзеяньня сетак',
 
@@ -3187,9 +3217,34 @@ $1',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Кілямэтраў',
+'exif-gpsdestdistance-m' => 'Міляў',
+'exif-gpsdestdistance-n' => 'Марскіх міляў',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Сапраўдны накірунак',
 'exif-gpsdirection-m' => 'магнітны кірунак',
+
+'exif-dc-date' => 'Дата(ы)',
+
+'exif-isospeedratings-overflow' => 'Больш за 65535',
+
+'exif-iimcategory-ace' => 'Мастацтва, культура і забавы',
+'exif-iimcategory-clj' => 'Крымінал і права',
+'exif-iimcategory-dis' => 'Катастрофы і здарэньні',
+'exif-iimcategory-fin' => 'Эканоміка і бізнэс',
+'exif-iimcategory-edu' => 'Адукацыя',
+'exif-iimcategory-evn' => 'Навакольнае асяродзьдзе',
+'exif-iimcategory-hth' => 'Здароўе',
+'exif-iimcategory-lab' => 'Праца',
+'exif-iimcategory-pol' => 'Палітыка',
+'exif-iimcategory-rel' => 'Рэлігія і вера',
+'exif-iimcategory-sci' => 'Навука і тэхналёгіі',
+'exif-iimcategory-soi' => 'Сацыяльныя праблемы',
+'exif-iimcategory-spo' => 'Спорт',
+'exif-iimcategory-war' => 'Вайна, канфлікты і беспарадкі',
+'exif-iimcategory-wea' => 'Надвор’е',
 
 # External editor support
 'edit-externally'      => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',

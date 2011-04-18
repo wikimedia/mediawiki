@@ -2307,7 +2307,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'அகலம்',
@@ -2319,7 +2325,6 @@ $1',
 'exif-planarconfiguration'         => 'தரவு அமைவு',
 'exif-xresolution'                 => 'கிடை நுணுக்கம்',
 'exif-yresolution'                 => 'நிலைக்குத்து நுணுக்கம்',
-'exif-resolutionunit'              => 'X, Y நுணுக்களின் அலகு',
 'exif-stripoffsets'                => 'படிமத் தரவு அமைவிடம்',
 'exif-rowsperstrip'                => 'ஒரு பட்டையில் உள்ள நிரைகளின் எண்ணிக்கை',
 'exif-stripbytecounts'             => 'சுருக்கப்பட்ட பட்டியில் உள்ள பைட்டுகள்',

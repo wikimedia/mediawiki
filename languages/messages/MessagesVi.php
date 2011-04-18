@@ -3015,7 +3015,13 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Chiều ngang',
@@ -3030,7 +3036,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
 'exif-xresolution'                 => 'Phân giải theo chiều ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
-'exif-resolutionunit'              => 'Đơn vị phân giải X và Y',
 'exif-stripoffsets'                => 'Vị trí dữ liệu hình',
 'exif-rowsperstrip'                => 'Số hàng trên mỗi mảnh',
 'exif-stripbytecounts'             => 'Số byte trên mỗi mảnh nén',
@@ -3276,6 +3281,11 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsspeed-k' => 'Kilômét một giờ',
 'exif-gpsspeed-m' => 'Dặm một giờ',
 'exif-gpsspeed-n' => 'Hải lý một giờ',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilômét',
+'exif-gpsdestdistance-m' => 'Dặm Anh',
+'exif-gpsdestdistance-n' => 'Hải lý',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',

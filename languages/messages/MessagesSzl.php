@@ -2172,7 +2172,13 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokość',
@@ -2187,7 +2193,6 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'exif-ycbcrpositioning'            => 'Rozmješčyńy Y i C',
 'exif-xresolution'                 => 'Rozdźelčość w poźůmje',
 'exif-yresolution'                 => 'Rozdźelčość w pjůńy',
-'exif-resolutionunit'              => 'Jednostka rozdźelčośći X i Y',
 'exif-stripoffsets'                => 'Přesůńjyńće pasůw uobrazu',
 'exif-rowsperstrip'                => 'Ličba wjeršy na pas uobrazu',
 'exif-stripbytecounts'             => 'Ličba bajtůw na pas uobrazu',

@@ -2670,7 +2670,13 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Chaurrai',
@@ -2685,7 +2691,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-ycbcrpositioning'            => 'Y aur C ke jagha',
 'exif-xresolution'                 => 'Baraabar ke resolution',
 'exif-yresolution'                 => 'Kharraa resolution',
-'exif-resolutionunit'              => 'X aur Y ke unit ke resolution',
 'exif-stripoffsets'                => 'Chapa ke aankrraa ke jagha',
 'exif-rowsperstrip'                => 'Ek strip me etna row hae',
 'exif-stripbytecounts'             => 'Ek compressed strip pe ketna byte',

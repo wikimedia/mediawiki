@@ -2973,7 +2973,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'පළල',
@@ -2988,7 +2994,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Y හා C පිහිටුම්',
 'exif-xresolution'                 => 'තිරස් විභේදනය',
 'exif-yresolution'                 => 'සිරස් විභේදනය',
-'exif-resolutionunit'              => 'X හා Y විභේදනයන්හි ඒකක',
 'exif-stripoffsets'                => 'රූප දත්ත පරිස්ථානය',
 'exif-rowsperstrip'                => 'එක් තීරයකට පේළි ගණන',
 'exif-stripbytecounts'             => 'එක් සම්පීඩිත පේළියකට බයිට් ගණන',
@@ -3116,7 +3121,8 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-1'     => 'sRGB',
+'exif-colorspace-65535' => 'FFFF.H',
 
 'exif-componentsconfiguration-0' => 'නොපවතියි',
 'exif-componentsconfiguration-1' => 'Y',

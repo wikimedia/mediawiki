@@ -1362,7 +1362,6 @@ $1',
 'exif-imagelength'         => 'ܐܘܪܟܐ',
 'exif-xresolution'         => 'ܢܩܕܘܬܐ ܐܘܦܩܝܬܐ',
 'exif-yresolution'         => 'ܢܩܕܘܬܐ ܥܡܘܕܝܬܐ',
-'exif-resolutionunit'      => 'ܚܕܝܘܬܐ ܕ X ܘ Y ܕܢܩܕܘܬܐ',
 'exif-imagedescription'    => 'ܟܘܢܝܐ ܕܨܘܪܬܐ',
 'exif-artist'              => 'ܣܝܘܡܐ',
 'exif-exposuretime-format' => '$1 ܪܦܦܐ ($2)',
@@ -1411,6 +1410,9 @@ $1',
 'exif-gpsspeed-k' => 'ܟܝܠܘܡܬܪ ܒܫܥܬܐ',
 'exif-gpsspeed-m' => 'ܡܝܠܐ ܒܫܥܬܐ',
 'exif-gpsspeed-n' => 'ܩܛܪ̈ܐ',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-m' => 'ܡܝܠ̈ܐ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ܨܘܒܐ ܬܪܝܨܐ',

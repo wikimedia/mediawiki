@@ -1284,9 +1284,9 @@ $1",
 'prefs-rc'                      => 'បំលាស់ប្ដូរថ្មីៗ',
 'prefs-watchlist'               => 'បញ្ជីតាមដាន',
 'prefs-watchlist-days'          => 'ចំនួនថ្ងៃត្រូវបង្ហាញក្នុងបញ្ជីតាមដាន៖',
-'prefs-watchlist-days-max'      => '(អតិបរមា ៧ថ្ងៃ)',
+'prefs-watchlist-days-max'      => 'អតិបរមា ៧ថ្ងៃ',
 'prefs-watchlist-edits'         => 'ចំនួនអតិបរមានៃបំលាស់ប្តូរត្រូវបង្ហាញក្នុងបញ្ជីតាមដានដែលបានពង្រីក៖',
-'prefs-watchlist-edits-max'     => '(ចំនួនអតិបរមា៖ ១០០០)',
+'prefs-watchlist-edits-max'     => 'ចំនួនអតិបរមា៖ ១០០០',
 'prefs-misc'                    => 'ផ្សេងៗ',
 'prefs-resetpass'               => 'ប្តូរពាក្យសំងាត់',
 'prefs-email'                   => '
@@ -2682,7 +2682,6 @@ $1',
 'import-upload-filename'     => 'ឈ្មោះ​ឯកសារ​​៖',
 'import-comment'             => 'យោបល់៖',
 'importtext'                 => 'សូមនាំចេញឯកសារនេះពីវិគីប្រភពដោយប្រើប្រាស់[[Special:Export|ឧបករណ៍នាំចេញ]]។
-
 រក្សាវាទុកទៅក្នុងកុំព្យូទ័ររបស់អ្នករួចផ្ទុកវាឡើងនៅទីនេះ។',
 'importstart'                => 'កំពុងនាំចូលទំព័រ...',
 'import-revision-count'      => '$1 {{PLURAL:$1|កំណែ}}',
@@ -2904,7 +2903,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ទទឹង',

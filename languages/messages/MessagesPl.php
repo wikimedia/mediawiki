@@ -2992,7 +2992,7 @@ Następne linki w linii są traktowane jako wyjątki – są to nazwy stron, na 
 Jeśli plik był modyfikowany, dane mogą być częściowo niezgodne z parametrami zmodyfikowanego pliku.',
 'metadata-expand'   => 'Pokaż szczegóły',
 'metadata-collapse' => 'Ukryj szczegóły',
-'metadata-fields'   => 'Wymienione poniżej pola EXIF będą prezentowane na stronie grafiki.
+'metadata-fields'   => 'Wymienione poniżej pola metadanych będą wyświetlane na stronie grafiki po zwinięciu tabeli metadanych.
 Pozostałe pola zostaną domyślnie ukryte.
 * make
 * model
@@ -3000,7 +3000,13 @@ Pozostałe pola zostaną domyślnie ukryte.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szerokość',
@@ -3015,7 +3021,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-ycbcrpositioning'            => 'Rozmieszczenie Y i C',
 'exif-xresolution'                 => 'Rozdzielczość w poziomie',
 'exif-yresolution'                 => 'Rozdzielczość w pionie',
-'exif-resolutionunit'              => 'Jednostka rozdzielczości X i Y',
 'exif-stripoffsets'                => 'Przesunięcie pasów obrazu',
 'exif-rowsperstrip'                => 'Liczba wierszy na pas obrazu',
 'exif-stripbytecounts'             => 'Liczba bajtów na pas obrazu',
@@ -3118,7 +3123,53 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsareainformation'          => 'Nazwa przestrzeni GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Korekcja różnicy GPS',
+'exif-jpegfilecomment'             => 'Komentarz pliku JPEG',
+'exif-keywords'                    => 'Słowa kluczowe',
+'exif-worldregioncreated'          => 'Region świata, w którym zdjęcie zostało wykonane',
+'exif-countrycreated'              => 'Kraj, w którym zdjęcie zostało wykonane',
+'exif-countrycodecreated'          => 'Kod kraju, w którym zdjęcie zostało wykonane',
+'exif-provinceorstatecreated'      => 'Województwo, prowincja lub stan, w którym zdjęcie zostało wykonane',
+'exif-citycreated'                 => 'Miasto, w którym zdjęcie zostało wykonane',
+'exif-sublocationcreated'          => 'Lokalizacja w mieście, w której zdjęcie zostało wykonane',
+'exif-worldregiondest'             => 'Ukazany region świata',
+'exif-countrydest'                 => 'Ukazany kraj',
+'exif-countrycodedest'             => 'Kod ukazanego kraju',
+'exif-provinceorstatedest'         => 'Ukazane województwo, prowincja lub stan',
+'exif-citydest'                    => 'Ukazane miasto',
+'exif-sublocationdest'             => 'Ukazana lokalizacja w mieście',
 'exif-objectname'                  => 'Krótki tytuł',
+'exif-specialinstructions'         => 'Specjalne instrukcje',
+'exif-headline'                    => 'Nagłówek',
+'exif-credit'                      => 'Dostawca',
+'exif-source'                      => 'Źródło',
+'exif-editstatus'                  => 'Stan w procesie edycji obrazu',
+'exif-urgency'                     => 'Pilność',
+'exif-fixtureidentifier'           => 'Tytuł działu',
+'exif-locationdest'                => 'Pełna nazwa prezentowanej lokalizacji',
+'exif-locationdestcode'            => 'Kod prezentowanej lokalizacji',
+'exif-objectcycle'                 => 'Pora dnia, w której wolno mediom prezentować zawartość',
+'exif-contact'                     => 'Kontakt',
+'exif-writer'                      => 'Autor',
+'exif-languagecode'                => 'Język',
+'exif-iimversion'                  => 'Wersja IIM',
+'exif-iimcategory'                 => 'Kategoria',
+'exif-iimsupplementalcategory'     => 'Dodatkowe kategorie',
+'exif-datetimeexpires'             => 'Nie należy używać po',
+'exif-datetimereleased'            => 'Wydany',
+'exif-originaltransmissionref'     => 'Kod lokalizacji pierwotnej transmisji',
+'exif-identifier'                  => 'Identyfikator',
+'exif-lens'                        => 'Użyty obiektyw',
+'exif-serialnumber'                => 'Numer seryjny aparatu',
+'exif-cameraownername'             => 'Właściciel aparatu',
+'exif-label'                       => 'Etykieta',
+'exif-datetimemetadata'            => 'Data ostatniej modyfikacji metadanych',
+'exif-nickname'                    => 'Nieformalna nazwa obrazu',
+'exif-rating'                      => 'Ocena (od 1 do 5)',
+'exif-copyrighted'                 => 'Ochrona prawem autorskim',
+'exif-copyrightowner'              => 'Właściciel praw autorskich',
+'exif-usageterms'                  => 'Warunki wykorzystania',
+'exif-originaldocumentid'          => 'Unikalny identyfikator oryginalnego dokumentu',
+'exif-licenseurl'                  => 'Adres URL licencji',
 
 # EXIF attributes
 'exif-compression-1' => 'nieskompresowany',
@@ -3261,6 +3312,11 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsspeed-k' => 'kilometrów na godzinę',
 'exif-gpsspeed-m' => 'mil na godzinę',
 'exif-gpsspeed-n' => 'węzłów',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrów',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil morskich',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'kierunek geograficzny',

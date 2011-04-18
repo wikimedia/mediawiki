@@ -2779,7 +2779,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'სიგანე',
@@ -2794,7 +2800,6 @@ $1',
 'exif-ycbcrpositioning'            => 'კომპონენტ Y-სა და C-ს განლაგების წესი',
 'exif-xresolution'                 => 'ჰორიზონტალური გაფართოება',
 'exif-yresolution'                 => 'ვერტიკალური გაფართოება',
-'exif-resolutionunit'              => 'გაფორთოების გაზომვის ერთეული',
 'exif-stripoffsets'                => 'მონაცემთა ბლოკის მდებარეობა',
 'exif-rowsperstrip'                => '1 ბლოკში ხაზთა რაოდენობა',
 'exif-stripbytecounts'             => 'შეკუმშული ბლოკის ზომა',

@@ -2121,7 +2121,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Васеъӣ',
@@ -2136,7 +2142,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Мавқеияти Y ва C',
 'exif-xresolution'                 => 'Таҳлилпазирии уфуқӣ',
 'exif-yresolution'                 => 'Таҳлилпазирии амудӣ',
-'exif-resolutionunit'              => 'Воҳиди тафкикпазирии X ва Y',
 'exif-stripoffsets'                => 'Ҷойгоҳи додаҳои акс',
 'exif-rowsperstrip'                => 'Теъдоди радифҳо дар ҳар навор',
 'exif-stripbytecounts'             => 'Байт дар ҳар навори фишурда',

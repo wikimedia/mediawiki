@@ -2221,7 +2221,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -2236,7 +2242,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Τοποθέτησις τῶν Y καὶ C',
 'exif-xresolution'                 => 'Ὁριζόντιος ἀνάλυσις',
 'exif-yresolution'                 => 'Κάθετος ἀνάλυσις',
-'exif-resolutionunit'              => 'Μονὰς τῆς τῶν X καὶ Y ἀναλύσεως',
 'exif-stripoffsets'                => 'Τοποθεσία δεδομένων εἰκόνος',
 'exif-rowsperstrip'                => 'Ἀριθμὸς σειρῶν ἀνὰ λῶρον',
 'exif-stripbytecounts'             => 'Δυφία ἀνὰ συμπεπιεσμένον λῶρον',
@@ -2476,6 +2481,11 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα ἀνὰ ὥρα',
 'exif-gpsspeed-m' => 'Μίλια ἀνὰ ὥρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
+'exif-gpsdestdistance-m' => 'Μίλια',
+'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ἀληθὴς κατεύθυνσις',

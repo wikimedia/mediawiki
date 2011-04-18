@@ -2418,7 +2418,13 @@ $1को बन्देजको कारण : "$2" हो',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'चौडाइ',
@@ -2433,7 +2439,6 @@ $1को बन्देजको कारण : "$2" हो',
 'exif-ycbcrpositioning'            => 'Y र C व्यवस्थापन',
 'exif-xresolution'                 => 'क्षैतिज संकल्प(resolution)',
 'exif-yresolution'                 => 'ऊर्ध्वाधर संकल्प(resolution)',
-'exif-resolutionunit'              => 'यूनिट एक्स र वाईको रिजोलुसन',
 'exif-stripoffsets'                => 'चित्र आँकड़ाको अवस्थिति',
 'exif-rowsperstrip'                => 'प्रतिपंक्ति पट्टीहरुको संख्या',
 'exif-jpeginterchangeformatlength' => 'JPEG आँकड़ाको बाइट',

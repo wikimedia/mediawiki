@@ -2792,7 +2792,13 @@ Variants for Chinese language
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',
@@ -2807,7 +2813,6 @@ Variants for Chinese language
 'exif-ycbcrpositioning'            => 'Y 同 C 位置',
 'exif-xresolution'                 => '橫解像度',
 'exif-yresolution'                 => '直解像度',
-'exif-resolutionunit'              => '橫直解像度單位',
 'exif-stripoffsets'                => '圖像資料位置',
 'exif-rowsperstrip'                => '每帶行數',
 'exif-stripbytecounts'             => '每壓縮帶 bytes 數',
@@ -3049,6 +3054,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '千米/小時',
 'exif-gpsspeed-m' => '英里/小時',
 'exif-gpsspeed-n' => '浬/小時',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '公里',
+'exif-gpsdestdistance-m' => '哩',
+'exif-gpsdestdistance-n' => '浬',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真實方向',

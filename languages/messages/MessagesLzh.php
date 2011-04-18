@@ -2500,7 +2500,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                => '寬',
@@ -2542,6 +2548,11 @@ $1',
 'exif-focalplaneresolutionunit-2' => '吋',
 
 'exif-gaincontrol-0' => '無',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '千米',
+'exif-gpsdestdistance-m' => '哩',
+'exif-gpsdestdistance-n' => '浬',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',

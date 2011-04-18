@@ -1058,7 +1058,13 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # External editor support
 'edit-externally'      => 'Deasaich am faidhle le prògram on taobh a-muigh',

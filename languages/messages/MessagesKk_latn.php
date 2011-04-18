@@ -2442,7 +2442,13 @@ Basqaları ädepkiden jasırıladı.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Eni',
@@ -2457,7 +2463,6 @@ Basqaları ädepkiden jasırıladı.
 'exif-ycbcrpositioning'            => 'Y quraşı jäne C quraşı mekendewi',
 'exif-xresolution'                 => 'Dereleý ajıratılımdığı',
 'exif-yresolution'                 => 'Tireleý ajıratılımdığı',
-'exif-resolutionunit'              => 'X jäne Y boýınşa ajıratılımdıq birligi',
 'exif-stripoffsets'                => 'Swret dererekteriniñ jaýğaswı',
 'exif-rowsperstrip'                => 'Beldik saýın jol sanı',
 'exif-stripbytecounts'             => 'Qısımdalğan beldik saýın baýt sanı',

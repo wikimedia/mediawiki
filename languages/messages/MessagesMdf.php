@@ -2361,7 +2361,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Келец',
@@ -2376,7 +2382,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y ди C арафтомасна',
 'exif-xresolution'                 => 'Горизонталень сидец',
 'exif-yresolution'                 => 'Вертикалень сидец',
-'exif-resolutionunit'              => 'X ди Y сидеснон ункстама тяшксне',
 'exif-stripoffsets'                => 'Архтома информациеть вастоц',
 'exif-rowsperstrip'                => 'Курнятнень луфкссна фкя киксс',
 'exif-stripbytecounts'             => 'Байтт фкя компрезияфтф китьксс',

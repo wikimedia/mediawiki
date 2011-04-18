@@ -1066,7 +1066,13 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-datetime'   => 'Data e öa do cangiamento do papê',

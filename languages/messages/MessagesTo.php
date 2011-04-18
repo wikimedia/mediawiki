@@ -1070,7 +1070,6 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 # EXIF tags
 'exif-xresolution'                 => 'Auiiki fakalava',
 'exif-yresolution'                 => 'Auiiki tuʻutonu',
-'exif-resolutionunit'              => 'ʻUniti auiiki ʻo e X mo e Y',
 'exif-jpeginterchangeformatlength' => 'ʻŪ valu meʻaʻilo JPEG',
 'exif-make'                        => 'Ko e tokotaha faʻu ʻo e meʻafaitā',
 'exif-artist'                      => 'Tokotaha faitā',

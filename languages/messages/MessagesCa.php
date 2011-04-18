@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author BroOk
  * @author Cedric31
  * @author Davidpar
  * @author El libre
@@ -1616,22 +1617,23 @@ No s'hi ha pogut comprovar la seguretat.",
 'uploadstash-refresh'  => 'Actualitza la llista de fitxers',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Accés denegat',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Accés denegat',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 El vostre servidor no està configurat per a tractar aquesta informació.
 Pot estar basat en CGI i no soportar img_auth.
 Vegeu http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
-'img-auth-badtitle'     => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
-'img-auth-nologinnWL'   => 'No has iniciat sessió i "$1" no està a la llista blanca.',
-'img-auth-nofile'       => 'No existeix el fitxer "$1".',
-'img-auth-isdir'        => 'Esteu intentant accedir al directori «$1».
+'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
+'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
+'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',
+'img-auth-nofile'           => 'No existeix el fitxer "$1".',
+'img-auth-isdir'            => 'Esteu intentant accedir al directori «$1».
 Només teniu permès accedir als fitxers.',
-'img-auth-streaming'    => 'Lectura corrent de "$1".',
-'img-auth-public'       => "La funció de img_auth.php és de sortida de fitxers d'un lloc wiki privat.
+'img-auth-streaming'        => 'Lectura corrent de "$1".',
+'img-auth-public'           => "La funció de img_auth.php és de sortida de fitxers d'un lloc wiki privat.
 Aquest wiki està configurat com a wiki públic.
 Per seguretat, img_auth.php està desactivat.",
-'img-auth-noread'       => 'L\'usuari no té accés a la lectura de "$1".',
+'img-auth-noread'           => 'L\'usuari no té accés a la lectura de "$1".',
+'img-auth-bad-query-string' => 'La direcció té una cadena de consulta invàlid.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecta: $1',
@@ -1990,6 +1992,10 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'noemailtext'          => 'Aquest usuari no ha especificat una adreça electrònica vàlida.',
 'nowikiemailtitle'     => 'No es permet el correu electrònic',
 'nowikiemailtext'      => "Aquest usuari ha escollit no rebre missatges electrònics d'altres usuaris.",
+'emailnotarget'        => "Nom d'usuari inexistent o no vàlid per al destinatari.",
+'emailtarget'          => "Introduïu el nom d'usuari del destinatari",
+'emailusername'        => "Nom d'usuari:",
+'emailusernamesubmit'  => 'Enviar',
 'email-legend'         => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
 'emailfrom'            => 'De:',
 'emailto'              => 'Per a:',
@@ -2842,7 +2848,13 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplada',
@@ -2857,7 +2869,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-ycbcrpositioning'            => 'Posició YCbCr',
 'exif-xresolution'                 => 'Resolució horitzontal',
 'exif-yresolution'                 => 'Resolució vertical',
-'exif-resolutionunit'              => 'Unitats de les resolucions X i Y',
 'exif-stripoffsets'                => 'Ubicació de les dades de la imatge',
 'exif-rowsperstrip'                => 'Nombre de fileres per franja',
 'exif-stripbytecounts'             => 'Octets per franja comprimida',
@@ -2894,9 +2905,9 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-exposureprogram'             => "Programa d'exposició",
 'exif-spectralsensitivity'         => 'Sensibilitat espectral',
 'exif-isospeedratings'             => 'Sensibilitat ISO',
-'exif-shutterspeedvalue'           => "Temps d'exposició",
-'exif-aperturevalue'               => 'Obertura',
-'exif-brightnessvalue'             => 'Brillantor',
+'exif-shutterspeedvalue'           => "APEX velocitat d'obturació",
+'exif-aperturevalue'               => 'APEX obertura',
+'exif-brightnessvalue'             => 'APEX brillantor',
 'exif-exposurebiasvalue'           => "Correcció d'exposició",
 'exif-maxaperturevalue'            => "Camp d'obertura màxim",
 'exif-subjectdistance'             => 'Distància del subjecte',
@@ -2958,7 +2969,64 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsareainformation'          => "Nom de l'àrea GPS",
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correcció diferencial GPS',
+'exif-jpegfilecomment'             => 'Comentari del fitxer JPEG',
+'exif-keywords'                    => 'Paraules clau',
+'exif-worldregioncreated'          => 'Regió del món on la foto va ser presa',
+'exif-countrycreated'              => 'País on la foto va ser presa',
+'exif-countrycodecreated'          => 'Codi del país on la foto va ser presa',
+'exif-provinceorstatecreated'      => 'Província o estat on la foto va ser presa',
+'exif-citycreated'                 => 'Ciutat on la foto va ser presa',
+'exif-sublocationcreated'          => 'Sublocalització de la ciutat on la foto va ser presa',
+'exif-worldregiondest'             => 'Regió del món que mostra',
+'exif-countrydest'                 => 'País que mostra',
+'exif-countrycodedest'             => 'Codi del país que mostra',
+'exif-provinceorstatedest'         => 'Província o estat que mostra',
+'exif-citydest'                    => 'Ciutat que mostra',
+'exif-sublocationdest'             => 'Sublocalització de la ciutat que mostra',
 'exif-objectname'                  => 'Títol abreujat',
+'exif-specialinstructions'         => 'Instruccions especials',
+'exif-headline'                    => 'Encapçalament',
+'exif-credit'                      => 'Crèdit / Proveïdor',
+'exif-source'                      => 'Font',
+'exif-editstatus'                  => 'Estat de redacció de la imatge',
+'exif-urgency'                     => 'Urgència',
+'exif-fixtureidentifier'           => "Nom de l'accessori",
+'exif-locationdest'                => 'Ubicació representada',
+'exif-locationdestcode'            => 'Codi de la ubicació que mostra',
+'exif-objectcycle'                 => 'Hora del dia que els mitjans estan destinats a',
+'exif-contact'                     => 'Informació de contacte',
+'exif-writer'                      => 'Escriptor',
+'exif-languagecode'                => 'Idioma',
+'exif-iimversion'                  => 'IIM versió',
+'exif-iimcategory'                 => 'Categoria',
+'exif-iimsupplementalcategory'     => 'Categories suplementàries',
+'exif-datetimeexpires'             => 'No utilitzar després',
+'exif-datetimereleased'            => 'Data de llançament',
+'exif-originaltransmissionref'     => 'Transmissió original del codi de la ubicació',
+'exif-identifier'                  => 'Identificador',
+'exif-lens'                        => 'Objectiu utilitzat',
+'exif-serialnumber'                => 'Número de sèrie de la càmera',
+'exif-cameraownername'             => 'Propietari de la càmera',
+'exif-label'                       => 'Etiqueta',
+'exif-datetimemetadata'            => 'Data que la metadata ha estat modificada per última vegada',
+'exif-nickname'                    => "Nom informal de l'imatge",
+'exif-rating'                      => 'Valoració (sobre 5)',
+'exif-rightscertificate'           => 'Certificat de gestió de drets',
+'exif-copyrighted'                 => "Estat dels drets d'autor",
+'exif-copyrightowner'              => "Propietari dels drets d'autor",
+'exif-usageterms'                  => "Termes d'ús",
+'exif-webstatement'                => "Declaració de drets d'autor en línia",
+'exif-originaldocumentid'          => 'ID únic del document original',
+'exif-licenseurl'                  => "Direcció de llicències de drets d'autor",
+'exif-morepermissionsurl'          => 'Alternativa informació de llicència',
+'exif-attributionurl'              => 'Quan re-utilitzis aquest treball, si us plau posa un enllaç a',
+'exif-preferredattributionname'    => 'Quan re-utilitzis aquest treball, si us plau posa un credit a',
+'exif-pngfilecomment'              => 'Comentari del fitxer PNG',
+'exif-disclaimer'                  => 'Avís general',
+'exif-contentwarning'              => 'Advertència de contingut',
+'exif-giffilecomment'              => 'Comentari del fitxer GIF',
+'exif-intellectualgenre'           => "Tipus d'article",
+'exif-subjectnewscode'             => 'Codi del subjecte',
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',
@@ -3101,6 +3169,11 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsspeed-k' => 'Quilòmetres per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nusos',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilòmetres',
+'exif-gpsdestdistance-m' => 'Milles',
+'exif-gpsdestdistance-n' => 'Milles nàutiques',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcció real',

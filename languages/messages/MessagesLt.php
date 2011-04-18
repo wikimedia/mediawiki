@@ -2806,7 +2806,13 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plotis',
@@ -2821,7 +2827,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-ycbcrpositioning'            => 'Y ir C pozicija',
 'exif-xresolution'                 => 'Horizontali raiška',
 'exif-yresolution'                 => 'Vertikali raiška',
-'exif-resolutionunit'              => 'X ir Y raiškos matavimo vienetai',
 'exif-stripoffsets'                => 'Paveikslėlio duomenų vieta',
 'exif-rowsperstrip'                => 'Eilių skaičius juostoje',
 'exif-stripbytecounts'             => 'Baitai suspaustje juostoje',
@@ -3064,6 +3069,11 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsspeed-k' => 'Kilometrai per valandą',
 'exif-gpsspeed-m' => 'Mylios per valandą',
 'exif-gpsspeed-n' => 'Mazgai',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrai',
+'exif-gpsdestdistance-m' => 'Mylios',
+'exif-gpsdestdistance-n' => 'Jūrmylės',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tikroji kryptis',

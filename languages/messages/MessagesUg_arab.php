@@ -2699,7 +2699,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'كەڭلىك',
@@ -2714,7 +2720,6 @@ $1',
 'exif-ycbcrpositioning'            => 'سېرىق ۋە ئاچ قىزىل سەپلىمىسى',
 'exif-xresolution'                 => 'توغرىسىغا پەرق ئېتىش نىسبىتى',
 'exif-yresolution'                 => 'بويىغا پەرق ئېتىش نىسبىتى',
-'exif-resolutionunit'              => 'X ۋە Y ئوقى پەرق ئېتىش نىسبىتى بىرلىكى',
 'exif-stripoffsets'                => 'سۈرەت سانلىق مەلۇمات ئورنى',
 'exif-rowsperstrip'                => 'ھەر بىر تاسماقنىڭ قۇر سانى',
 'exif-stripbytecounts'             => 'ھەر بىر پرىسلانغان تاسماقنىڭ بايت سانى',

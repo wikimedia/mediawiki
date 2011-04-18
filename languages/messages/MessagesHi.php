@@ -2741,7 +2741,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'चौडाई',
@@ -2756,7 +2762,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y और C का पोज़िशनिंग',
 'exif-xresolution'                 => 'होरिज़ॉंटल रिज़ोल्यूशन',
 'exif-yresolution'                 => 'व्हर्टिकल रिज़ोल्यूशन',
-'exif-resolutionunit'              => 'X और Y रिज़ोल्यूशन का मानक प्रमाण',
 'exif-stripoffsets'                => 'चित्र डाटा स्थान',
 'exif-rowsperstrip'                => 'हर स्ट्रीपमें कतारोंकी संख्या',
 'exif-stripbytecounts'             => 'कॉम्प्रेस्स्ड स्ट्रीपमें बाईट्स',

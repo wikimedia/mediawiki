@@ -2934,7 +2934,13 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larĝeco',
@@ -2949,7 +2955,6 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-ycbcrpositioning'            => 'Y kaj C situado',
 'exif-xresolution'                 => 'Horizontala distingivo',
 'exif-yresolution'                 => 'Vertikala distingivo',
-'exif-resolutionunit'              => 'Unuo de X kaj Y distingivo',
 'exif-stripoffsets'                => 'Loko de bilda datumo',
 'exif-rowsperstrip'                => 'Nombro de vicoj por strio',
 'exif-stripbytecounts'             => 'Bitikoj por densigita strio',
@@ -3190,6 +3195,11 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsspeed-k' => 'Kilometroj por horo',
 'exif-gpsspeed-m' => 'Mejloj por horo',
 'exif-gpsspeed-n' => 'Knotoj',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometroj',
+'exif-gpsdestdistance-m' => 'Mejloj',
+'exif-gpsdestdistance-n' => 'Maraj mejloj',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vera direkto',

@@ -2641,7 +2641,13 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => "Wisa'",
@@ -2656,7 +2662,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-ycbcrpositioning'            => 'Pożizzjonament tal-komponenti Y u C',
 'exif-xresolution'                 => 'Riżoluzzjoni orizzontali',
 'exif-yresolution'                 => 'Riżoluzzjoni vertikali',
-'exif-resolutionunit'              => 'Unita tar-riżoluzzjoni X u Y',
 'exif-stripoffsets'                => 'Post fejn jinsab id-data tal-istampa',
 'exif-rowsperstrip'                => "Numru ta' fillieri għal kull strixxa",
 'exif-stripbytecounts'             => 'Bytes għal kull strixxa kompressa',
@@ -2888,6 +2893,11 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpsspeed-k' => 'Kilometru fis-siegħa',
 'exif-gpsspeed-m' => 'Mili fis-siegħa',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometri',
+'exif-gpsdestdistance-m' => 'Mili',
+'exif-gpsdestdistance-n' => 'Mili nawtiċi',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzzjoni vera',

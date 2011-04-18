@@ -2481,7 +2481,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ەنى',
@@ -2496,7 +2502,6 @@ $1',
 'exif-ycbcrpositioning'            => 'Y قۇراشى جانە C قۇراشى مەكەندەۋى',
 'exif-xresolution'                 => 'دەرەلەي اجىراتىلىمدىعى',
 'exif-yresolution'                 => 'تىرەلەي اجىراتىلىمدىعى',
-'exif-resolutionunit'              => 'X جانە Y بويىنشا اجىراتىلىمدىق بىرلىگى',
 'exif-stripoffsets'                => 'سۋرەت دەرەرەكتەرىنىڭ جايعاسۋى',
 'exif-rowsperstrip'                => 'بەلدىك سايىن جول سانى',
 'exif-stripbytecounts'             => 'قىسىمدالعان بەلدىك سايىن بايت سانى',

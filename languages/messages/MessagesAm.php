@@ -1956,7 +1956,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'ስፋት',
@@ -1969,7 +1975,6 @@ $1',
 'exif-ycbcrpositioning'            => 'የY ና C አቀማመጥ',
 'exif-xresolution'                 => 'አድማሳዊ ማጉላት',
 'exif-yresolution'                 => 'ቁም ማጉላት',
-'exif-resolutionunit'              => 'የX ና Y ማጉላት መስፈርያ',
 'exif-stripoffsets'                => 'የስዕል መረጃ ሥፍራ',
 'exif-rowsperstrip'                => 'የተርታዎች ቁጥር በየቁራጩ',
 'exif-stripbytecounts'             => 'byte በየተጨመቀ ቁራጩ',

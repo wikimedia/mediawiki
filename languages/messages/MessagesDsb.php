@@ -2774,7 +2774,13 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokosć',
@@ -2789,7 +2795,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-ycbcrpositioning'            => 'Pozicijoněrowanje Y a C',
 'exif-xresolution'                 => 'Horicontalne optiske wótgranicowanje',
 'exif-yresolution'                 => 'Wertikalne optiske wótgranicowanje',
-'exif-resolutionunit'              => 'Měra optiskego wótgranicowanja',
 'exif-stripoffsets'                => 'městnosć wobrazowych datow',
 'exif-rowsperstrip'                => 'Licba smužkow na rědku',
 'exif-stripbytecounts'             => 'Byty na kompriměrowanu rědku',
@@ -3032,6 +3037,11 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsspeed-k' => 'Kilometry na góźinu',
 'exif-gpsspeed-m' => 'Mile na góźinu',
 'exif-gpsspeed-n' => 'Suki',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometry',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Mórske mile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wopšawdny směr',

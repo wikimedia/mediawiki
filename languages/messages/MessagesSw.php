@@ -1852,6 +1852,10 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'noemailtext'          => 'Mtumiaji huyu hajataja anwani sahihi ya barua pepe.',
 'nowikiemailtitle'     => 'Barua pepe haziruhusiwi',
 'nowikiemailtext'      => 'Mtumiaji huyu hajakubali kupokea barua pepe kutoka kwa watumiaji wengine.',
+'emailnotarget'        => 'Jina la mpokeaji uliloweka halipatikani',
+'emailtarget'          => 'Andika jina la mtumiaji la mpokeaji',
+'emailusername'        => 'Jina la mtumiaji:',
+'emailusernamesubmit'  => 'Wasilisha',
 'email-legend'         => 'Tuma barua pepe kwa mtumiaji mwingine wa {{SITENAME}}',
 'emailfrom'            => 'Kutoka kwa:',
 'emailto'              => 'Kwa:',
@@ -2495,7 +2499,13 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Upana',
@@ -2677,11 +2687,12 @@ Ishara hizi za uthibitisho zitaishia mnamo $4.',
 'scarytranscludetoolong' => '[URL ni ndefu mno]',
 
 # Delete conflict
-'deletedwhileediting' => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
-'confirmrecreate'     => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
+'deletedwhileediting'      => "'''Ilani''': Ukurasa huu ulifutwa ulipokwisha kuanza huuhariri!",
+'confirmrecreate'          => "Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri, akaandika sababu hii ya kufuta:
 : ''$2''
 Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
-'recreate'            => 'Anzisha upya',
+'confirmrecreate-noreason' => 'Mtumiaji [[User:$1|$1]] ([[User talk:$1|majadiliano]]) aliufuta ukurasa huu wakati umeshaanza kuuhariri. Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.',
+'recreate'                 => 'Anzisha upya',
 
 # action=purge
 'confirm_purge_button' => 'Sawa',

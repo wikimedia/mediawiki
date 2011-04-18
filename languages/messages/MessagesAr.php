@@ -734,7 +734,7 @@ $1',
 'thisisdeleted'           => 'أأعرض أو أسترجع $1؟',
 'viewdeleted'             => 'أأعرض $1؟',
 'restorelink'             => '{{PLURAL:$1|$1 تعديل محذوف|تعديلا واحدا محذوفا|تعديلين محذوفين|$1 تعديلات محذوفة|$1 تعديلا محذوفا|$1 تعديلا محذوفا}}',
-'feedlinks'               => 'تلقيم:',
+'feedlinks'               => 'التغذية:',
 'feed-invalid'            => 'نوع اشتراك التلقيم غير صحيح.',
 'feed-unavailable'        => 'التلقيمات غير متوفرة',
 'site-rss-feed'           => '$1 تلقيم أر إس إس',
@@ -3231,7 +3231,13 @@ $1',
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
@@ -3246,7 +3252,6 @@ $1',
 'exif-ycbcrpositioning'            => 'وضع Y و C',
 'exif-xresolution'                 => 'الدقة الأفقية',
 'exif-yresolution'                 => 'الدقة الرأسية',
-'exif-resolutionunit'              => 'وحدة تحليل X و Y',
 'exif-stripoffsets'                => 'موقع بيانات الصورة',
 'exif-rowsperstrip'                => 'عدد الصفوف لكل شريحة',
 'exif-stripbytecounts'             => 'بايت لكل شريحة مضغوطة',
@@ -3375,7 +3380,8 @@ $1',
 'exif-xyresolution-i' => '$1 نقطة لكل بوصة',
 'exif-xyresolution-c' => '$1 دي بي سي',
 
-'exif-colorspace-1' => 'إس آر جي بي',
+'exif-colorspace-1'     => 'إس آر جي بي',
+'exif-colorspace-65535' => 'إف إف إف إف.إتش',
 
 'exif-componentsconfiguration-0' => 'غير موجود',
 'exif-componentsconfiguration-1' => 'واي',
@@ -3510,6 +3516,11 @@ $1',
 'exif-gpsspeed-k' => 'كيلومتر في الساعة',
 'exif-gpsspeed-m' => 'ميل في الساعة',
 'exif-gpsspeed-n' => 'عقد',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'كيلومتر',
+'exif-gpsdestdistance-m' => 'ميل',
+'exif-gpsdestdistance-n' => 'ميل بحري',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'الاتجاه الحقيقي',

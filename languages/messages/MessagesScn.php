@@ -2503,7 +2503,13 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength",
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghizza',
@@ -2518,7 +2524,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-ycbcrpositioning'            => 'Pusizziunamentu cumpunenti Y e C',
 'exif-xresolution'                 => 'Risuluzzioni urizzuntali',
 'exif-yresolution'                 => 'Risuluzzioni virticali',
-'exif-resolutionunit'              => 'Unitati di misura risuluzzioni X e Y',
 'exif-stripoffsets'                => 'Pusizzioni dî dati mmàggini',
 'exif-rowsperstrip'                => 'Nùmmiru righi pi striscia',
 'exif-stripbytecounts'             => 'Nùmmiru di byte pi striscia cumpressa',

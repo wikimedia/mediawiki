@@ -2580,7 +2580,13 @@ Ma aya bini numnen.
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Verini',
@@ -2595,7 +2601,6 @@ Ma aya bini numnen.
 'exif-ycbcrpositioning'            => 'pozisyonê Y u C',
 'exif-xresolution'                 => 'Rezulasyanê veriniye',
 'exif-yresolution'                 => 'Rezulasyanê derganiye',
-'exif-resolutionunit'              => 'Rezulasyonê Parçeyê X U Y',
 'exif-stripoffsets'                => 'cayê data yê resim',
 'exif-rowsperstrip'                => 'Yew reze de teneyê dizeyi',
 'exif-stripbytecounts'             => 'Yew compresyon de dizeyi',

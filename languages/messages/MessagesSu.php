@@ -2389,7 +2389,13 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength',
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lega',
@@ -2402,7 +2408,6 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-ycbcrpositioning'            => 'Perenah Y jeung C',
 'exif-xresolution'                 => 'Résolusi horizontal',
 'exif-yresolution'                 => 'Résolusi tangtung',
-'exif-resolutionunit'              => 'Satuan résolusi X jeung Y',
 'exif-stripoffsets'                => 'Perenah data gambar',
 'exif-jpeginterchangeformat'       => 'Ofset ka JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bit data JPEG',
