@@ -37,6 +37,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	private $qpMap;
 
+	/**
+	 * Some query pages are useless because they're available elsewhere in the API
+	 */
+	private $uselessQueryPages = array(
+		'MIMEsearch', // aiprop=mime
+		'LinkSearch', // list=exturlusage
+		'FileDuplicateSearch', // prop=duplicatefiles
+	);
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		// We need to do this to make sure $wgQueryPages is set up
@@ -48,7 +57,9 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		global $wgQueryPages;
 		$this->qpMap = array();
 		foreach ( $wgQueryPages as $page ) {
-			$this->qpMap[$page[1]] = $page[0];
+			if( !in_array( $page[1], $this->uselessQueryPages ) ) {
+				$this->qpMap[$page[1]] = $page[0];
+			}
 		}
 	}
 
