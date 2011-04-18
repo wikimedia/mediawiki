@@ -49,9 +49,9 @@ class WithoutInterwikiPage extends PageQueryPage {
 		}
 
 		$prefix = $this->prefix;
-		$t = SpecialPage::getTitleFor( $this->name() );
+		$t = $this->getTitle();
 
-		return 	Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'withoutinterwiki-legend' ) ) .
 			Html::hidden( 'title', $t->getPrefixedText() ) .
