@@ -567,8 +567,6 @@ class FormatMetadata {
 					}
 					break;
 
-	
-
 				// This is not in the Exif standard, just a special
 				// case for our purposes which enables wikis to wikify
 				// the make, model and software name to link to their articles.
@@ -1171,8 +1169,6 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @private
-	 *
 	 * @param $coords Array: degrees, minutes and seconds
 	 * @param $type String: latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
@@ -1345,8 +1341,8 @@ class FormatExif {
 		wfDeprecated(__METHOD__);
 		$this->meta = $meta;
 	}
+
 	function getFormattedData ( ) {
 		return FormatMetadata::getFormattedData( $this->meta );
 	}
-
 }

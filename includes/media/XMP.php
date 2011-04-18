@@ -296,10 +296,9 @@ class XMPReader {
 		// or programs that make such files..
 		$guid = substr( $content, 0, 32 );
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
-			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid )
-		{
+			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid ) {
 			wfDebugLog('XMP', __METHOD__ . " Ignoring XMPExtended block due to wrong guid (guid= '$guid' )");
-			return;
+			return false;
 		}
 		$len  = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
@@ -646,7 +645,6 @@ class XMPReader {
 		}
 	}
 
-
 	/**
 	* Hit an opening element while in MODE_IGNORE
 	*
@@ -664,6 +662,7 @@ class XMPReader {
 			array_unshift( $this->mode, self::MODE_IGNORE );
 		}
 	}
+
 	/**
 	*  Start element in MODE_BAG (unordered array)
 	* this should always be <rdf:Bag>
@@ -679,6 +678,7 @@ class XMPReader {
 		}
 
 	}
+
 	/**
 	* Start element in MODE_SEQ (ordered array)
 	* this should always be <rdf:Seq>
@@ -699,6 +699,7 @@ class XMPReader {
 		}
 
 	}
+
 	/**
 	* Start element in MODE_LANG (language alternative)
 	* this should always be <rdf:Alt>
@@ -721,6 +722,7 @@ class XMPReader {
 		}
 
 	}
+
 	/**
 	* Handle an opening element when in MODE_SIMPLE
 	*
@@ -761,6 +763,7 @@ class XMPReader {
 		}
 
 	}
+
 	/**
 	* Start an element when in MODE_QDESC.
 	* This generally happens when a simple element has an inner
@@ -784,6 +787,7 @@ class XMPReader {
 			array_unshift( $this->curItem, $elm );
 		}
 	}
+
 	/**
 	* Starting an element when in MODE_INITIAL
 	* This usually happens when we hit an element inside
@@ -836,6 +840,7 @@ class XMPReader {
 		// process attributes
 		$this->doAttribs( $attribs );
 	}
+
 	/**
 	* Hit an opening element when in a Struct (MODE_STRUCT)
 	* This is generally for fields of a compound property.
@@ -887,6 +892,7 @@ class XMPReader {
 			array_unshift( $this->curItem, $this->curItem[0] );
 		}
 	}
+
 	/**
 	* opening element in MODE_LI
 	* process elements of arrays.
@@ -937,6 +943,7 @@ class XMPReader {
 		}
 
 	}
+
 	/**
 	* Opening element in MODE_LI_LANG.
 	* process elements of language alternatives
@@ -1055,9 +1062,6 @@ class XMPReader {
 				throw new MWException( 'StartElement in unknown mode: ' . $this->mode[0] );
 				break;
 		}
-
-
-
 	}
 	/**
 	* Process attributes.
@@ -1162,6 +1166,4 @@ class XMPReader {
 			$this->results['xmp-' . $info['map_group']][$finalName] = $val;
 		}
 	}
-
-
 }

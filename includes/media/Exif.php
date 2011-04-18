@@ -584,6 +584,10 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isASCII( $in ) {
 		if ( is_array( $in ) ) {
 			return false;
@@ -602,6 +606,10 @@ class Exif {
 		return true;
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isShort( $in ) {
 		if ( !is_array( $in ) && sprintf('%d', $in) == $in && $in >= 0 && $in <= 65536 ) {
 			$this->debug( $in, __FUNCTION__, true );
@@ -612,6 +620,10 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isLong( $in ) {
 		if ( !is_array( $in ) && sprintf('%d', $in) == $in && $in >= 0 && $in <= 4294967296 ) {
 			$this->debug( $in, __FUNCTION__, true );
@@ -622,6 +634,10 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isRational( $in ) {
 		$m = array();
 		if ( !is_array( $in ) && @preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
@@ -632,24 +648,19 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isUndefined( $in ) {
-
 		$this->debug( $in, __FUNCTION__, true );
 		return true;
-
-		/* Exif::UNDEFINED means string of bytes
-		so this validation does not make sense.
-		comment out for now.
-		if ( !is_array( $in ) && preg_match( '/^\d{4}$/', $in ) ) { // Allow ExifVersion and FlashpixVersion
-			$this->debug( $in, __FUNCTION__, true );
-			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-			return false;
-		}
-		*/
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isSlong( $in ) {
 		if ( $this->isLong( abs( $in ) ) ) {
 			$this->debug( $in, __FUNCTION__, true );
@@ -660,6 +671,10 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @param $in
+	 * @return bool
+	 */
 	private function isSrational( $in ) {
 		$m = array();
 		if ( !is_array( $in ) && preg_match( '/^(-?\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
@@ -756,17 +771,19 @@ class Exif {
 		}
 		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
-		if ( $type === 'array' )
+		if ( $type === 'array' ) {
 			$in = print_r( $in, true );
+		}
 
-		if ( $action === true )
+		if ( $action === true ) {
 			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n");
-		elseif ( $action === false )
+		} elseif ( $action === false ) {
 			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n");
-		elseif ( $action === null )
+		} elseif ( $action === null ) {
 			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n");
-		else
+		} else {
 			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n");
+		}
 	}
 
 	/**
