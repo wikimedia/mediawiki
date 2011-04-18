@@ -45,8 +45,11 @@ if ( isset( $options['d'] ) ) {
 	}
 	if ( $d > 1 ) {
 		$lb = wfGetLB();
-		foreach ( $lb->mServers as $i => $server ) {
-			$lb->mServers[$i]['flags'] |= DBO_DEBUG;
+		$serverCount = $lb->getServerCount(); 
+		for ( $i = 0; $i < $serverCount; $i++ ) {
+			$server = $lb->getServerInfo( $i );
+			$server['flags'] |= DBO_DEBUG;
+			$lb->setServerInfo( $i, $server );
 		}
 	}
 	if ( $d > 2 ) {

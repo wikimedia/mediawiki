@@ -13,13 +13,13 @@
  * @ingroup Database
  */
 class LoadBalancer {
-	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;
-	/* private */ var $mErrorConnection;
-	/* private */ var $mReadIndex, $mAllowLagged;
-	/* private */ var $mWaitForPos, $mWaitTimeout;
-	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
-	/* private */ var $mParentInfo, $mLagTimes;
-	/* private */ var $mLoadMonitorClass, $mLoadMonitor;
+	private $mServers, $mConns, $mLoads, $mGroupLoads;
+	private $mErrorConnection;
+	private $mReadIndex, $mAllowLagged;
+	private $mWaitForPos, $mWaitTimeout;
+	private $mLaggedSlaveMode, $mLastError = 'Unknown error';
+	private $mParentInfo, $mLagTimes;
+	private $mLoadMonitorClass, $mLoadMonitor;
 
 	/**
 	 * @param $params Array with keys:
@@ -91,8 +91,7 @@ class LoadBalancer {
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
 	 */
-	function pickRandom( $weights )
-	{
+	function pickRandom( $weights ) {
 		if ( !is_array( $weights ) || count( $weights ) == 0 ) {
 			return false;
 		}
@@ -737,6 +736,13 @@ class LoadBalancer {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Sets the server info structure for the given index. Entry at index $i is created if it doesn't exist
+	 */
+	function setServerInfo( $i, $serverInfo ) {
+		$this->mServers[i] = $serverInfo;
 	}
 
 	/**
