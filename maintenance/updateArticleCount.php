@@ -27,9 +27,6 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateArticleCount extends Maintenance {
 
-	// Content namespaces
-	private $namespaces;
-
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Count of the number of articles and update the site statistics table";
@@ -37,8 +34,6 @@ class UpdateArticleCount extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgContentNamespaces;
-		$this->namespaces = $wgContentNamespaces;
 		$this->output( "Counting articles..." );
 		$result = $this->count();
 
@@ -58,42 +53,22 @@ class UpdateArticleCount extends Maintenance {
 	}
 
 	/**
-	 * Produce a comma-delimited set of namespaces
-	 * Includes paranoia
-	 *
-	 * @return string
-	 */
-	private function makeNsSet() {
-		foreach ( $this->namespaces as $namespace )
-			$namespaces[] = intval( $namespace );
-		return implode( ', ', $namespaces );
-	}
-
-	/**
-	 * Produce SQL for the query
-	 *
-	 * @param $dbr Database handle
-	 * @return string
-	 */
-	private function makeSql( $dbr ) {
-		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
-		$nsset = $this->makeNsSet();
-		return "SELECT COUNT(DISTINCT page_id) AS pagecount " .
-			"FROM $page, $pagelinks " .
-			"WHERE pl_from=page_id and page_namespace IN ( $nsset ) " .
-			"AND page_is_redirect = 0 AND page_len > 0";
-	}
-
-	/**
 	 * Count the number of valid content pages in the wiki
 	 *
 	 * @return mixed Integer, or false if there's a problem
 	 */
 	private function count() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->query( $this->makeSql( $dbr ), __METHOD__ );
-		$row = $dbr->fetchObject( $res );
-		return $row ? $row->pagecount : false;
+		return wfGetDB( DB_SLAVE )->selectField(
+			array( 'page', 'pagelinks' ),
+			'COUNT(DISTINCT page_id)',
+			array(
+				'pl_from=page_id',
+				'page_namespace' => MWNamespace::getContentNamespaces(),
+				'page_is_redirect' => 0,
+				'page_len > 0',
+			),
+			__METHOD__
+		);
 	}
 }
 
