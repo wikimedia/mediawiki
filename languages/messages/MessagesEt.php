@@ -2419,7 +2419,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipusubmit'                       => 'Eemalda see blokeering',
 'unblocked'                       => 'Kasutaja [[User:$1|$1]] blokeering on eemaldatud',
 'unblocked-id'                    => 'Blokeerimine $1 on lõpetatud',
-'ipblocklist'                     => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
+'ipblocklist'                     => 'Blokeeritud kasutajad',
 'ipblocklist-legend'              => 'Leia blokeeritud kasutaja',
 'ipblocklist-submit'              => 'Otsi',
 'ipblocklist-localblock'          => 'Kohalikud blokeeringud',
@@ -2888,7 +2888,7 @@ Samal real olevaid järgmiseid linke vaadeldakse kui erandeid, see tähendab art
 Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud või täielikult eemaldatud.',
 'metadata-expand'   => 'Näita veel üksikasju',
 'metadata-collapse' => 'Peida laiendatud üksikasjad',
-'metadata-fields'   => 'Siin loetletud EXIF metaandmete välju näidatakse pildi kirjelduslehel vähemdetailse metaandmete vaate korral.
+'metadata-fields'   => 'Siin loetletud pildi metaandmete välju näidatakse pildi kirjelduslehel vähemdetailse metaandmete vaate korral.
 Ülejäänud andmed on vaikimisi peidetud.
 * make
 * model
@@ -2897,6 +2897,12 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 * fnumber
 * isospeedratings
 * focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude
 * artist
 * copyright
 * imagedescription

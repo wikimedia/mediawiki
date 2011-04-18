@@ -215,15 +215,17 @@ $messages = array(
 'red-link-title'          => ' $1 (ଫରଦଟି ନାହିଁ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'ଫରଦ',
-'nstab-user'     => ' ଇଉଜର ଫରଦ',
-'nstab-special'  => 'ବିଶେଷ ଫରଦ',
-'nstab-project'  => 'ପ୍ରକଳ୍ପ ଫରଦ',
-'nstab-image'    => 'ଫାଇଲ',
-'nstab-template' => 'ଟେଁପଲେଟ',
-'nstab-category' => 'ବିଭାଗ',
+'nstab-main'      => 'ଫରଦ',
+'nstab-user'      => ' ଇଉଜର ଫରଦ',
+'nstab-special'   => 'ବିଶେଷ ଫରଦ',
+'nstab-project'   => 'ପ୍ରକଳ୍ପ ଫରଦ',
+'nstab-image'     => 'ଫାଇଲ',
+'nstab-mediawiki' => 'ଖବର',
+'nstab-template'  => 'ଟେଁପଲେଟ',
+'nstab-category'  => 'ବିଭାଗ',
 
 # General errors
+'error'           => 'ଭୁଲ',
 'missing-article' => 'ଡାଟାବେସଟି ଆପଣ ଲେଖିଥିବା "$1" $2 ଶବଦଟି ପାଇଲା ନାହିଁ । .
 
 ଯଦି ଆପଣ ଖୋଜିଥିବା ଫରଦଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
@@ -239,10 +241,19 @@ $messages = array(
 'nav-login-createaccount' => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
 'loginprompt'             => "{{SITENAME}}ରେ ଲଗ ଇନ କରିବାପାଇଁ ଆପଣଙ୍କୁ '''କୁକି''' ସଚଳ କରିବାକୁ ପଡ଼ିବ ।",
 'userlogin'               => 'ଲଗିନ / ଖାତା ଖୋଲିବା',
+'userloginnocreate'       => 'ଲଗଇନ',
 'logout'                  => 'ଲଗଆଉଟ',
 'userlogout'              => 'ଲଗ ଆଉଟ',
 'nologin'                 => 'ଖାତାଟିଏ ନାହିଁ? $1।',
 'nologinlink'             => 'ନୁଆ ଖାତାଟିଏ ଖୋଲିବା',
+'createaccount'           => 'ନୁଆ ଖାତା ଖୋଲିବା',
+'gotaccountlink'          => 'ଲଗଇନ',
+'createaccountreason'     => 'କାରଣ:',
+'loginlanguagelabel'      => 'ଭାଷା: $1',
+
+# Password reset dialog
+'oldpassword' => 'ପୂର୍ବ ପାସଉଆଡ଼:',
+'newpassword' => 'ନୁଆ ପାସଉଆଡ଼:',
 
 # Edit page toolbar
 'bold_sample'     => 'ବୋଲ୍ଡ ଲେଖା',
@@ -290,7 +301,9 @@ $messages = array(
 'revisionasof'           => '$1 ଉପରେ କରାଯାଇଥିବା ବଦଳ',
 'previousrevision'       => 'ପୁରୁଣା ସଁକଳନ',
 'cur'                    => 'ଦାନକର',
+'next'                   => 'ପରେ',
 'last'                   => 'ଆଗ',
+'page_first'             => 'ପ୍ରଥମ',
 'history-fieldset-title' => 'ଇତିହାସ ଖୋଜିବା',
 'histfirst'              => 'ସବୁଠୁ ପୁରୁଣା',
 'histlast'               => 'ନଗଦ',
@@ -453,6 +466,7 @@ $messages = array(
 'actioncomplete' => 'କାମଟି ପୁରା ହେଲା',
 'deletedarticle' => '"[[$1]]" ଟି ଉଡ଼ିଗଲା',
 'dellogpage'     => 'ଲିଭାଇବା ଲଗ',
+'deletecomment'  => 'କାରଣ:',
 
 # Rollback
 'rollbacklink' => 'ପଛକୁ ଫେର',
@@ -519,6 +533,7 @@ $messages = array(
 
 # Move page
 'movelogpage' => 'ଲଗଟିକୁ ଘୁଞ୍ଚାଅ',
+'movereason'  => 'କାରଣ:',
 'revertmove'  => 'ପଛକୁ ଫେରାଇନିଅ',
 
 # Export

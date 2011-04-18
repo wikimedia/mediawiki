@@ -2047,6 +2047,7 @@ Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil
 'noemailtext'          => 'Dene brukeren har ikke oppgitt en gyldig e-postadresse.',
 'nowikiemailtitle'     => 'Ingen e-post tillatt',
 'nowikiemailtext'      => 'Denne brukeren har valgt å ikke motta e-post fra andre brukere.',
+'emailusername'        => 'Brukernavn:',
 'email-legend'         => 'Send en e-post til en annen {{SITENAME}}-bruker',
 'emailfrom'            => 'Fra:',
 'emailto'              => 'Til:',
@@ -2647,7 +2648,8 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'import-interwiki-namespace' => 'Målnavnerom:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]], lagre den på den egen datamaskin, og last den opp hit.',
+'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
+Lagre den på din egen datamaskin og last den opp her.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
 'importnopages'              => 'Ingen sider å importere.',
@@ -2895,7 +2897,7 @@ Alle andre lenker på samme linje anses for å være unntak, altså sider der fi
 Hvis filen har blitt forandret fra utgangspunktet, kan enkelte detaljer være unøyaktige.',
 'metadata-expand'   => 'Vis utvidede detaljer',
 'metadata-collapse' => 'Skjul utvidede detaljer',
-'metadata-fields'   => 'EXIF-metadatafelt listet i denne meldingen inkluderes på bildesiden mens metadatatabellen er slått sammen.
+'metadata-fields'   => 'Bildemetadatafelt listet i denne meldingen inkluderes på bildesiden når metadatatabellen er slått sammen.
 Andre vil skjules som standard.
 * make
 * model
@@ -3024,6 +3026,7 @@ Andre vil skjules som standard.
 'exif-gpsareainformation'          => 'Navn på GPS-område',
 'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'Differentiell GPS-korreksjon',
+'exif-keywords'                    => 'Nøkkelord',
 'exif-objectname'                  => 'Kort tittel',
 
 # EXIF attributes

@@ -1003,7 +1003,7 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-submit'            => 'Aplica a {{PLURAL:$1|la revisió seleccionada|les revisions seleccionades}}',
 'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
 'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
-'revdelete-success'           => "'''La visibilitat d'aquesta revissió s'ha actualitzat correctament .'''",
+'revdelete-success'           => "'''La visibilitat d'aquesta revisió s'ha actualitzat correctament.'''",
 'revdelete-failure'           => "'''La visibilitat de la revisió no ha pogut actualitzar-se:'''
 $1",
 'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",

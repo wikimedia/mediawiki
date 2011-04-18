@@ -175,6 +175,7 @@ $messages = array(
 # Revision deletion
 'rev-delundel'    => 'къалур/кIева',
 'revdelete-log'   => 'Кар',
+'revdel-restore'  => 'къакъудун',
 'revdelete-uname' => 'ишлемишчидин тIар',
 
 # History merging
@@ -199,7 +200,7 @@ $messages = array(
 'powersearch-toggleall'     => 'Вири',
 
 # Preferences page
-'mypreferences'             => 'ТуькIуьрун',
+'mypreferences'             => 'ТуькIуьрунар',
 'prefs-datetime'            => 'Нумра ва вахт',
 'timezoneregion-africa'     => 'Африка',
 'timezoneregion-america'    => 'Америка',
@@ -338,6 +339,7 @@ $messages = array(
 'blockip'      => 'Ишлемишзавайдан хара',
 'ipboptions'   => '2 сят:2 hours,1 югъ:1 day,3 югъ:3 days,1 афте:1 week,2 афте:2 weeks,1 варз:1 month,3 варз:3 months,6 варз:6 months,1 йис:1 year,эхир авачиз:infinite',
 'blocklink'    => 'тIаб',
+'unblocklink'  => 'ахъа хъувун',
 'contribslink' => 'ктунай пай',
 'blocklogpage' => 'Чинрин хара',
 
@@ -346,6 +348,7 @@ $messages = array(
 'move-watch'  => 'Гелкъуьн и хъувун',
 'movepagebtn' => 'Юзун хъувун',
 'movereason'  => 'Фагьум:',
+'revertmove'  => 'хтун',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Куьне ишлемишзавай чар',

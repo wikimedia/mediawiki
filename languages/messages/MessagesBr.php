@@ -1015,7 +1015,7 @@ $1",
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
 'revdelete-content'           => 'danvez',
-'revdelete-summary'           => 'kemmañ an diverrañ',
+'revdelete-summary'           => "diverradenn eus ar c'hemmoù",
 'revdelete-uname'             => 'anv implijer',
 'revdelete-restricted'        => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
 'revdelete-unrestricted'      => 'dilemel ar strishadurioù evit ar verourien',
@@ -3058,6 +3058,8 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-event'                       => 'Darvoud diskouezet',
 'exif-organisationinimage'         => 'Anv an aozadurioù diskouezet war ar skeudenn',
 'exif-personinimage'               => 'Den diskouezet',
+'exif-originalimageheight'         => 'Sav ar skeudenn a-raok na vije bet krennet',
+'exif-originalimagewidth'          => 'Ledander ar skeudenn a-raok na vije bet krennet',
 
 # EXIF attributes
 'exif-compression-1' => 'Hep gwaskañ',
@@ -3250,6 +3252,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-iimcategory-rel' => 'Relijion ha kredennoù',
 'exif-iimcategory-sci' => 'Skiantoù ha teknologiezhoù',
 'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Brezelioù, tabutoù ha turmud',
 'exif-iimcategory-wea' => 'Amzer',
 
 'exif-urgency-normal' => 'Normal ($1)',

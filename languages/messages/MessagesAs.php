@@ -9,6 +9,7 @@
  *
  * @author Chaipau
  * @author Gahori
+ * @author Gitartha.bordoloi
  * @author Jaminianurag
  * @author Priyankoo
  * @author Psneog
@@ -1014,6 +1015,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'defaultns'                   => 'অন্যথা এই নামস্থান সমূহত অনুসন্ধান কৰিব:',
 'default'                     => 'অবিচল',
 'prefs-files'                 => 'ফাইলসমূহ',
+'prefs-custom-js'             => 'স্বনিৰ্ধাৰিত জাভা লিপি',
 'prefs-emailconfirm-label'    => 'ইমেইল নিশ্চিতকৰণ:',
 'youremail'                   => 'আপোনাৰ ই-মেইল *',
 'username'                    => 'সদস্যনাম:',
@@ -1048,6 +1050,10 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'prefs-displaywatchlist'      => 'বিকল্প প্ৰদৰ্শন কৰক',
 'prefs-diffs'                 => 'পাৰ্থক্য',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'ই-মেইল ঠিকনাটো সঠিক',
+'email-address-validity-invalid' => 'সঠিক ই-মেইল ঠিকনা প্ৰদান কৰক',
+
 # User rights
 'userrights'                  => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
 'userrights-lookup-user'      => 'সদস্য গোটবোৰ ব্যৱস্থাপনা কৰক',
@@ -1058,6 +1064,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'saveusergroups'              => 'সদস্য গোট সংৰক্ষিত কৰক',
 'userrights-groupsmember'     => 'এই গোটবোৰৰ সদস্য:',
 'userrights-reason'           => 'কাৰণ:',
+'userrights-no-interwiki'     => 'আপোনাৰ অন্য ৱিকিত ব্যৱহাৰকাৰী অধিকাৰ সম্পাদনা কৰাৰ অনুমতি নাই',
 'userrights-changeable-col'   => 'আপুনি সলনি কৰিব পৰা গোটসমূহ',
 'userrights-unchangeable-col' => 'আপুনি সলনি কৰিব নোৱাৰা গোটসমূহ',
 
@@ -1073,6 +1080,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'group-bot-member'        => 'বট',
 'group-sysop-member'      => 'এডমিনিষ্ট্ৰেটৰ',
 'group-bureaucrat-member' => 'ব্যুৰোক্ৰেট',
+'group-suppress-member'   => 'গোপন পৰ্য্যবেক্ষক',
 
 'grouppage-user'       => '{{ns:project}}:সদস্যসকল',
 'grouppage-bot'        => '{{ns:project}}:বটসমূহ',
@@ -1095,11 +1103,13 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'right-delete'             => 'পৃষ্ঠাসমূহ বিলোপ কৰক',
 'right-bigdelete'          => 'অতিৰিক্ত ইতিহাস থকা পৃষ্ঠাসমূহ বিলোপ কৰক',
 'right-browsearchive'      => 'বিলোপ কৰা পৃষ্ঠা অনুসন্ধান কৰক',
+'right-undelete'           => 'পৃষ্ঠাটো পুনৰুদ্ধাৰ কৰক',
 'right-suppressionlog'     => "ব্যক্তিগত ল'গবোৰ চাওঁক",
 'right-block'              => 'আন সদস্যক সম্পাদনা কৰাৰ পৰা বাৰণ কৰক',
 'right-blockemail'         => 'ই-মেইল পঠোৱাৰ পৰা সদস্যক বাৰণ কৰক',
 'right-hideuser'           => 'ৰাইজৰ পৰা আঁৰ দি সদস্যক ভাৰণ কৰক',
 'right-editprotected'      => 'সুৰক্ষিত পৃষ্ঠা (কেশ্বকেডিঙ সুৰক্ষাৰ অবিহনে) সম্পাদনা কৰক',
+'right-userrights'         => 'সকলো ব্যৱহাৰকাৰী অধিকাৰ সম্পাদনা কৰক',
 
 # User rights log
 'rightslog'      => 'সভ্যৰ অধিকাৰৰ লেখ',
@@ -1184,15 +1194,18 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'badfilename'         => 'ফাইলনাম "$1"-লৈ সলনি কৰা হ\'ল ।',
 'empty-file'          => 'আপুনি দাখিল কৰা ফাইলখন খালী ।',
 'illegal-filename'    => 'ফাইলৰ এই নামটো গ্ৰহনযোগ্য নহয় ।',
+'tmp-create-error'    => 'অস্থায়ী ফাইল তৈয়াৰ কৰিব পৰা নহ’ল |',
 'uploadwarning'       => 'আপলোড সতৰ্কবাণী',
 'savefile'            => 'সংৰক্ষণ',
 'uploadedimage'       => '"[[$1]]" আপলোড কৰা হ’ল',
 'upload-source'       => 'উৎস ফাইল',
 'sourcefilename'      => 'উৎস ফাইল নাম',
 'sourceurl'           => 'উৎস ইউ-আৰ-এল',
+'upload-description'  => 'ফাইলৰ বৰ্ণনা',
 'upload-options'      => "আপল'ড বিকল্পসমূহ",
 'watchthisupload'     => 'এই ফাইল লক্ষ্য কৰক',
 'upload-success-subj' => "আপলোড সফল হ'ল",
+'upload-warning-subj' => 'আপলোড সতৰ্কীকৰণ',
 
 # Special:ListFiles
 'imgfile'               => 'ফাইল',
@@ -1240,10 +1253,19 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'randompage' => 'আকস্মিক পৃষ্ঠা',
 
 # Statistics
-'statistics'              => 'পৰিসংখ্যা',
-'statistics-header-pages' => 'পৃষ্ঠা পৰিসংখ্যা',
-'statistics-header-hooks' => 'অন্য পৰিসংখ্যা',
-'statistics-pages'        => 'পৃষ্ঠাসমূহ',
+'statistics'               => 'পৰিসংখ্যা',
+'statistics-header-pages'  => 'পৃষ্ঠা পৰিসংখ্যা',
+'statistics-header-edits'  => 'পৰিসংখ্যা সম্পাদনা কৰক',
+'statistics-header-views'  => 'পৰিসংখ্যা দেখুৱাওক',
+'statistics-header-users'  => 'ব্যৱহাৰকাৰীৰ পৰিসংখ্যা',
+'statistics-header-hooks'  => 'অন্য পৰিসংখ্যা',
+'statistics-articles'      => 'বিষয়বস্তুৰ পৃষ্ঠা',
+'statistics-pages'         => 'পৃষ্ঠাসমূহ',
+'statistics-pages-desc'    => 'কথা-বতৰা পৃষ্ঠা, পুন:নিৰ্দেশিত পৃষ্ঠা আদি সহ এই ৱিকিৰ সকলো পৃষ্ঠা',
+'statistics-files'         => 'আপলোড কৰা ফাইলসমূহ',
+'statistics-edits-average' => 'প্ৰতি পৃষ্ঠাৰ গড় সম্পাদনা',
+'statistics-views-total'   => 'সৰ্বমুঠ প্ৰদৰ্শন',
+'statistics-users-active'  => 'সক্ৰিয় সদস্য',
 
 'doubleredirects' => 'দ্বি-পূণঃনিৰ্দেশিত',
 
@@ -1264,6 +1286,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'wantedcategories'  => 'কাম্য শ্ৰেণীসমূহ',
 'wantedpages'       => 'কাম্য পৃষ্ঠাসমূহ',
 'wantedfiles'       => 'কাম্য ফাইলসমূহ',
+'mostrevisions'     => 'অধিকবাৰ সম্পাদনা কৰা পৃষ্ঠাসমূহ',
 'prefixindex'       => 'উপসৰ্গ সহ সকলো পৃষ্ঠা',
 'longpages'         => 'দিঘলীয়া পৃষ্ঠাসমূহ',
 'deadendpages'      => 'ডেড এণ্ড পৃষ্ঠাসমূহ',
@@ -1325,6 +1348,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Special:ActiveUsers
 'activeusers'            => 'সক্রিয় ব্যবহাৰকাৰীৰ তালিকা',
+'activeusers-intro'      => 'যোৱা  {{PLURAL:$1|দিন|দিন}}ৰ ভিতৰত অৱদান আগবঢ়োৱা ব্যৱহাৰকাৰীৰ তালিকা',
 'activeusers-count'      => 'যোৱা {{PLURAL:$3|দিনত|$3 দিনত}} সর্বমুঠ {{PLURAL:$1|সম্পাদনাৰ|সম্পাদনাৰ}} সংখ্যা $1',
 'activeusers-from'       => 'ইয়াৰে আৰম্ভ হোৱা ব্যৱহাৰকাৰী সকল দেখুৱাওক:',
 'activeusers-hidebots'   => 'বট নেদেখুৱাব',
@@ -1339,6 +1363,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'newuserlog-autocreate-entry' => 'স্বয়ংক্ৰীয়ভাবে নতুন সদস্যভুক্তি কৰা হল',
 
 # Special:ListGroupRights
+'listgrouprights'                 => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
 'listgrouprights-group'           => 'গোট',
 'listgrouprights-rights'          => 'অধিকাৰসমূহ',
 'listgrouprights-members'         => '(সদস্যবৃন্দ তালিকা)',
@@ -1347,7 +1372,15 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'listgrouprights-removegroup-all' => 'সমস্ত গোট আঁতৰাওক',
 
 # E-mail user
-'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পথাওক',
+'emailuser'        => 'এই সদস্যজনলৈ ই-মেইল পথাওক',
+'usermaildisabled' => 'ব্যৱহাৰকাৰীৰ ই-মেইল নিষ্ক্ৰিয়',
+'emailfrom'        => 'প্ৰেৰক',
+'emailsubject'     => 'বিষয়',
+'emailmessage'     => 'বাৰ্তা',
+'emailsend'        => 'প্ৰেৰণ কৰক',
+'emailccme'        => 'মোৰ বাৰ্তাৰ এটা প্ৰতিলিপি মোলৈ ই-মেইল কৰক',
+'emailsent'        => 'ই-মেইল প্ৰেৰণ কৰা হ’ল',
+'emailsenttext'    => 'আপোনাৰ ই-মেইল বাৰ্তা প্ৰেৰণ কৰা হৈছে',
 
 # Watchlist
 'watchlist'         => 'মই অনুসৰণ কৰা পৃষ্ঠাবিলাকৰ তালিকা',
@@ -1369,6 +1402,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'watching'   => 'চকু দিয়া হৈছে.....',
 'unwatching' => 'আঁতৰোৱা হৈ আছে.....',
 
+'enotif_newpagetext'           => 'এইটো এক নতুন পৃষ্ঠা',
 'enotif_impersonal_salutation' => '{{SITENAME}} সডস্য',
 'enotif_anon_editor'           => 'বেনামী সদস্য $1',
 
@@ -1429,11 +1463,25 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'protect-expiry-options'      => '‌১ ঘণ্টা:1 hour,১ দিন:1 day,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনিৰ্দিস্ট কাল:infinite',
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'সুৰক্ষা-স্তৰ:',
+'minimum-size'                => 'সৰ্বনিম্ন আকাৰ',
+'maximum-size'                => 'সৰ্বোচ্চ আকাৰ',
+
+# Restrictions (nouns)
+'restriction-create' => 'সৃষ্টি কৰক',
+
+# Restriction levels
+'restriction-level-sysop' => 'সম্পূৰ্ণ সুৰক্ষিত',
 
 # Undelete
+'undelete-nodiff'           => 'কোনো পূৰ্ব সংশোধন পোৱা নগ’ল',
 'undeletebtn'               => 'পূণঃসংস্থাপন কৰক',
 'undeletelink'              => 'লক্ষ্য কৰক/ঘূৰাই আনক',
+'undeleteviewlink'          => 'দেখুৱাওক',
+'undeletereset'             => 'পূৰ্বৰ অৱস্থালৈ লৈ যাওক',
+'undeletecomment'           => ' কাৰণ:',
 'undeletedarticle'          => '"[[$1]]"-ক পূৰ্বস্থানলৈ ঘূৰাই অনা হ\'ল',
+'undeletedrevisions'        => '{{PLURAL:$1|১টা সংশোধন|$1টা সংশোধন}} পুনৰোদ্ধাৰ কৰা হৈছে',
+'undelete-search-box'       => 'বিলোপ কৰা পৃষ্ঠা অনুসন্ধান কৰক',
 'undelete-search-submit'    => 'সন্ধান',
 'undelete-show-file-submit' => 'অঁ',
 
@@ -1618,6 +1666,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-ca-viewsource'           => 'এই পৃষ্ঠাটো সংৰক্ষিত কৰা হৈছে, আপুনি ইয়াৰ উত্‍স চাব পাৰে।',
 'tooltip-ca-history'              => 'এই পৃষ্ঠাৰ যোৱা সংস্কৰণসমূহ',
 'tooltip-ca-protect'              => 'এই পৃষ্ঠাটো সুৰক্ষিত কৰক',
+'tooltip-ca-unprotect'            => 'এই পৃষ্ঠা সংৰক্ষণমুক্ত কৰক',
 'tooltip-ca-delete'               => 'এই পৃষ্ঠাটো বিলোপ কৰক',
 'tooltip-ca-move'                 => 'এই পৃষ্ঠাটো স্থানান্তৰিত কৰক',
 'tooltip-ca-watch'                => 'এই পৃষ্ঠাটো আপোনাৰ অনুসৰণ-তালিকাত যোগ কৰক',
@@ -1657,6 +1706,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-diff'                    => 'ইয়াত আপুনি কৰা সালসলনিবোৰ দেখুৱাওক',
 'tooltip-compareselectedversions' => 'এই পৃষ্ঠাত নিৰ্বাচিত কৰা দুটা অৱতৰৰ মাজত পাৰ্থক্য দেখুৱাওক ।',
 'tooltip-watch'                   => 'এই পৃষ্ঠাটো আপোনাৰ অনুসৰণতালিকাভুক্ত কৰক',
+'tooltip-upload'                  => 'আপলোড আৰম্ভ কৰক',
+'tooltip-summary'                 => 'চমু সাৰাংশ লিখক',
 
 # Attribution
 'anonymous'     => '{{SITENAME}}ৰ বেনামী {{PLURAL:$1|সদস্য|সদস্যসকল}}',
@@ -1666,6 +1717,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'others'        => 'অন্যান্য',
 'siteusers'     => '{{SITENAME}} {{PLURAL:$2|সদস্য|সদস্যসমূহ}} $1',
 'anonusers'     => '{{SITENAME}} বেনামী {{PLURAL:$2|সদস্য|সদস্যসকল}} $1',
+'creditspage'   => 'পৃষ্ঠাৰ স্বীকৃতি',
 
 # Info page
 'infosubtitle'   => 'পৃষ্ঠাৰ তথ্য',
@@ -1732,6 +1784,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # EXIF tags
 'exif-imagewidth'       => 'বহল',
+'exif-imagelength'      => 'উচ্চতা',
 'exif-datetime'         => 'ফাইল সলনিৰ তাৰিখ আৰু সময়',
 'exif-imagedescription' => 'চিত্ৰ শিৰোনামা',
 'exif-artist'           => 'স্ৰষ্টা',

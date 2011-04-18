@@ -1490,7 +1490,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchanges-legend'              => 'Opcións dos cambios',
-'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
+'recentchangestext'                 => 'Siga, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki nesta fonte de novas.',
 'recentchanges-label-newpage'       => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor'         => 'Esta é unha edición pequena',
@@ -2951,7 +2951,7 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 'metadata-help'     => 'Este ficheiro contén información adicional, probabelmente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, pode que algúns detalles non se reflictan no ficheiro modificado.',
 'metadata-expand'   => 'Mostrar os detalles',
 'metadata-collapse' => 'Agochar os detalles',
-'metadata-fields'   => 'Os campos de datos meta EXIF listados nesta mensaxe incluiranse ao exhibir a páxina da imaxe cando se reduza a táboa dos datos meta.
+'metadata-fields'   => 'Os campos de metadatos listados nesta mensaxe incluiranse na páxina da imaxe ao contraer a táboa dos metadatos.
 Os demais agocharanse por omisión.
 * make
 * model

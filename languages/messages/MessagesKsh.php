@@ -3250,13 +3250,37 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsdatestamp'                => 'GPS-Dattum',
 'exif-gpsdifferential'             => 'De Differenzjahl-Bereschtijong fum GPS',
 'exif-keywords'                    => 'Schlößelwööter',
+'exif-worldregioncreated'          => 'De Rejoon op de Ääd, woh dat Fotto jeknips wood',
+'exif-countrycreated'              => 'Et Land, woh dat Fotto jeknips wood',
+'exif-countrycodecreated'          => 'Et Köözel för dat Land, woh dat Fotto jeknips wood',
+'exif-provinceorstatecreated'      => 'De Provins, et Bundesland, der Bundsshtaat udder esu, woh dat Fotto jeknips wood',
+'exif-citycreated'                 => 'De Shtadt, woh dat Fotto jeknips wood',
+'exif-sublocationcreated'          => 'Et Veedel, udder de Shtrooß, udder esu, en dä Shtadt, woh dat Fotto jeknips wood',
+'exif-worldregiondest'             => 'De jezeishte Rejoon op de Ääd',
+'exif-countrydest'                 => 'Et jezeishte Land',
+'exif-countrycodedest'             => 'Et Köözel för et jezeishte Land',
+'exif-provinceorstatedest'         => 'De jezeishte Provins, et jezeishte Bundesland, der jezeishte Bundesstaat, un esu wigger',
+'exif-citydest'                    => 'De jezeishte Shtadt',
+'exif-sublocationdest'             => 'Et jezeishte Veedel, udder de jezeishte Shtrooß, udder esu',
 'exif-objectname'                  => 'Tittel en koot',
 'exif-headline'                    => 'Övverschreff',
+'exif-locationdest'                => 'Dä volle Name vum jezeishte Oot udder Plaz',
+'exif-locationdestcode'            => 'Dä Kopod vum jezeishte Oot udder Plaz',
+'exif-objectcycle'                 => 'De Daachszick, för wann dat Denge zom Verdeile jedaach es',
 'exif-writer'                      => 'Schriiver',
 'exif-languagecode'                => 'Shprooch',
 'exif-iimcategory'                 => 'Saachjrupp udder Zoot',
+'exif-datetimeexpires'             => 'Nit mieh verwende noh',
+'exif-datetimereleased'            => 'Öffentlesch jemaat aam',
+'exif-identifier'                  => 'Kännong',
+'exif-lens'                        => 'De jebruchte Lens',
 'exif-serialnumber'                => 'Däm Knipskaste sing Seerije-Nommer',
+'exif-cameraownername'             => 'Däm Knipskaste singe Besetzer',
+'exif-licenseurl'                  => 'En <i lang="en">URL</i> för de Lizänz',
 'exif-intellectualgenre'           => 'De Zoot vun Enhallt',
+'exif-event'                       => 'Der jezeishte Aanlaß',
+'exif-organisationinimage'         => 'De jezeishte Ojanisazjuhn udder Ferma',
+'exif-personinimage'               => 'Der jezeishte Minsch',
 'exif-originalimageheight'         => 'De Hühde vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 'exif-originalimagewidth'          => 'De Breede vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 
@@ -3286,7 +3310,8 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-xyresolution-i' => '{{PLURAL:$1|eine Punk|$1 Punkte|keine Punk}} pro Zoll',
 'exif-xyresolution-c' => '{{PLURAL:$1|eine Punk|$1 Punkte|keine Punk}} pro Zenntimeeter',
 
-'exif-colorspace-1' => '<i lang="en">sRGB</i>',
+'exif-colorspace-1'     => '<i lang="en">sRGB</i>',
+'exif-colorspace-65535' => 'De Färve sin nit kallibreert',
 
 'exif-componentsconfiguration-0' => 'Jidd_et nit',
 
@@ -3402,6 +3427,10 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpslongitude-e' => 'Läng ößlesch noh_m GPS',
 'exif-gpslongitude-w' => 'Läng weßlesch noh_m GPS',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '{{PLURAL:$1|Eine|$1|Keine}} Meter övver em Meer',
+'exif-gpsaltitude-below-sealevel' => '{{PLURAL:$1|Eine|$1|Keine}} Meter onger em Meer',
+
 'exif-gpsstatus-a' => 'De Messung fum GPS es aam Loufe',
 'exif-gpsstatus-v' => 'Engeropperabilität fun Messunge noh_m GPS',
 
@@ -3418,9 +3447,15 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpsdestdistance-m' => 'Meile',
 'exif-gpsdestdistance-n' => 'Seemeile',
 
+'exif-objectcycle-a' => 'Bloß es Murjens',
+'exif-objectcycle-p' => 'Bloß es Oovens',
+'exif-objectcycle-b' => 'Es Murjens un es Oovens',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Rechtung noh_m GPS',
 'exif-gpsdirection-m' => 'Mangneetesche Rechtung noh_m GPS',
+
+'exif-ycbcrpositioning-1' => 'En de Medde',
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',

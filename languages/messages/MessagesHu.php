@@ -1631,8 +1631,8 @@ Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filetype-bad-ie-mime'        => 'A fájlt nem lehet feltölteni, mert az Internet Explorer „$1” típusúnak tekintené, ami tiltott és potenciálisan veszélyes fájltípus.',
 'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus.
 Az ajánlott {{PLURAL:$3|típus|típusok}}: $2.",
-'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus.
-Az engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
+'filetype-banned-type'        => "A következő {{PLURAL:$4|fájltípus nem engedélyezett|fájltípusok nem engedélyezettek}}: '''„.$1”'''
+Engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
 'empty-file'                  => 'Az elküldött fájl üres volt.',
 'file-too-large'              => 'Az elküldött fájl túl nagy volt.',
@@ -2109,6 +2109,8 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'noemailtext'          => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
 'nowikiemailtitle'     => 'Nem küldhető e-mail üzenet',
 'nowikiemailtext'      => 'Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.',
+'emailusername'        => 'Felhasználónév:',
+'emailusernamesubmit'  => 'Küldés',
 'email-legend'         => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
 'emailfrom'            => 'Feladó:',
 'emailto'              => 'Címzett:',
@@ -2369,9 +2371,10 @@ $1',
 'undelete-show-file-submit'    => 'Igen',
 
 # Namespace form on various pages
-'namespace'      => 'Névtér:',
-'invert'         => 'Kijelölés megfordítása',
-'blanknamespace' => '(Fő)',
+'namespace'             => 'Névtér:',
+'invert'                => 'Kijelölés megfordítása',
+'namespace_association' => 'Kapcsolódó névtér',
+'blanknamespace'        => '(Fő)',
 
 # Contributions
 'contributions'       => 'Szerkesztő közreműködései',
@@ -2420,6 +2423,8 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'whatlinkshere-filters'    => 'Elemek szűrése',
 
 # Block/unblock
+'autoblockid'                     => '$1. autoblokk',
+'block'                           => 'Felhasználó blokkolása',
 'blockip'                         => 'Blokkolás',
 'blockip-title'                   => 'Felhasználó blokkolása',
 'blockip-legend'                  => 'Felhasználó blokkolása',
@@ -2449,6 +2454,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipbhidename'                     => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
 'ipb-change-block'                => 'Blokk beállításainak megváltoztatása',
+'ipb-confirm'                     => 'Blokk megerősítése',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
@@ -2463,6 +2469,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipusubmit'                       => 'Blokk eltávolítása',
 'unblocked'                       => '[[User:$1|$1]] blokkolása feloldva',
 'unblocked-id'                    => '$1 blokkolása feloldásra került',
+'blocklist'                       => 'Blokkolt felhasználók',
 'ipblocklist'                     => 'Blokkolt felhasználók',
 'ipblocklist-legend'              => 'Blokkolt felhasználó keresése',
 'ipblocklist-submit'              => 'Keresés',
@@ -3073,10 +3080,38 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
 'exif-keywords'                    => 'Kulcsszavak',
 'exif-objectname'                  => 'Rövid cím',
+'exif-specialinstructions'         => 'Különleges utasítások',
+'exif-headline'                    => 'Fejléc',
 'exif-source'                      => 'Forrás',
+'exif-urgency'                     => 'Sürgősség',
+'exif-locationdest'                => 'Ábrázolt helyszín',
+'exif-writer'                      => 'Író',
+'exif-languagecode'                => 'Nyelv',
+'exif-iimcategory'                 => 'Kategória',
+'exif-datetimereleased'            => 'Megjelenés ideje',
+'exif-identifier'                  => 'Azonosító',
+'exif-serialnumber'                => 'Kamera sorozatszáma',
+'exif-cameraownername'             => 'Kamera tulajdonosa',
+'exif-label'                       => 'Címke',
+'exif-copyrighted'                 => 'Szerzői jogi állapot',
+'exif-copyrightowner'              => 'Szerzői jog tulajdonosa',
+'exif-usageterms'                  => 'Felhasználási feltételek',
+'exif-webstatement'                => 'Online szerzői jogi nyilatkozat',
+'exif-originaldocumentid'          => 'Eredeti dokumentum egyedi azonosítója',
+'exif-licenseurl'                  => 'Szerzői jog engedély URL-címe',
+'exif-morepermissionsurl'          => 'Alternatív licencinformáció',
+'exif-intellectualgenre'           => 'Elemtípus',
+'exif-subjectnewscode'             => 'Tárgykód',
+'exif-event'                       => 'Ábrázolt esemény',
+'exif-personinimage'               => 'Ábrázolt személy',
+'exif-originalimageheight'         => 'Kép magassága a levágás előtt',
+'exif-originalimagewidth'          => 'Kép szélessége a levágás előtt',
 
 # EXIF attributes
 'exif-compression-1' => 'Nem tömörített',
+
+'exif-copyrighted-true'  => 'Szerzői jog által védett',
+'exif-copyrighted-false' => 'Közkincs',
 
 'exif-unknowndate' => 'Ismeretlen dátum',
 
@@ -3091,6 +3126,8 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 'exif-planarconfiguration-1' => 'Egyben',
 'exif-planarconfiguration-2' => 'sík formátum',
+
+'exif-colorspace-65535' => 'Nem kalibrált',
 
 'exif-componentsconfiguration-0' => 'nem létezik',
 
@@ -3219,9 +3256,35 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsdestdistance-m' => 'mérföld',
 'exif-gpsdestdistance-n' => 'tengeri mérföld',
 
+'exif-gpsdop-excellent' => 'Kiváló ($1)',
+'exif-gpsdop-good'      => 'Jó ($1)',
+'exif-gpsdop-moderate'  => 'Mérsékelt ($1)',
+'exif-gpsdop-poor'      => 'Gyenge ($1)',
+
+'exif-objectcycle-a' => 'Csak reggel',
+'exif-objectcycle-p' => 'Csak este',
+'exif-objectcycle-b' => 'Reggel és este',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Igazi irány',
 'exif-gpsdirection-m' => 'Mágneses irány',
+
+'exif-dc-contributor' => 'Közreműködők',
+'exif-dc-relation'    => 'Kapcsolódó média',
+'exif-dc-source'      => 'Forrás-adathordozó',
+'exif-dc-type'        => 'Adathordozó típusa',
+
+'exif-rating-rejected' => 'Elutasítva',
+
+'exif-isospeedratings-overflow' => 'Nagyobb, mint 65535',
+
+'exif-iimcategory-ace' => 'Művészetek, kultúra és szórakoztatás',
+'exif-iimcategory-clj' => 'Bűnözés és törvény',
+'exif-iimcategory-fin' => 'Gazdaság és üzlet',
+'exif-iimcategory-edu' => 'Oktatás',
+'exif-iimcategory-evn' => 'Környezet',
+'exif-iimcategory-hth' => 'Egészség',
+'exif-iimcategory-pol' => 'Politika',
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',

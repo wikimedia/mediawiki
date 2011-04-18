@@ -2036,6 +2036,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'noemailtext'          => 'Questo utente non ha indicato un indirizzo e-mail valido.',
 'nowikiemailtitle'     => 'E-mail non permessa',
 'nowikiemailtext'      => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
+'emailusername'        => 'Nome utente:',
 'email-legend'         => 'Invia un messaggio e-mail a un altro utente di {{SITENAME}}',
 'emailfrom'            => 'Da:',
 'emailto'              => 'A:',
