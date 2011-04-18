@@ -751,7 +751,7 @@ class MessageCache {
 		}
 
 		if ( $this->mInParser ) {
-            return $message;
+			return $message;
 		}
 
 		$parser = $this->getParser();
@@ -798,7 +798,7 @@ class MessageCache {
 	 */
 	public function parse( $text, $title = null, $linestart = true, $interface = false, $language = null  ) {
 		if ( $this->mInParser ) {
-		   return htmlspecialchars( $text );
+			return htmlspecialchars( $text );
 		}
 
 		$parser = $this->getParser();
