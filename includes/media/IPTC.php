@@ -102,7 +102,7 @@ class IPTC {
 					break;
 				case '2#115': /* source */
 					/* "Identifies the original owner of the intellectual content of the
-					 *objectdata. This could be an agency, a member of an agency or	
+					 *objectdata. This could be an agency, a member of an agency or
 					 *an individual." */
 					$data['Source'] = self::convIPTC( $val, $c );
 					break;
@@ -329,9 +329,10 @@ class IPTC {
 	/**
 	* Convert an iptc date and time tags into the exif format
 	*
-	* @todo Potentially this should also capture the timezone offset. 
+	* @todo Potentially this should also capture the timezone offset.
 	* @param Array $date The date tag
 	* @param Array $time The time tag
+	* @param $c
 	* @return String Date in exif format.
 	*/
 	private static function timeHelper( $date, $time, $c ) {
@@ -351,7 +352,7 @@ class IPTC {
 			$dateOnly = true;
 		}
 
-		if ( ! ( preg_match('/\d\d\d\d\d\d[-+]\d\d\d\d/', $time) 
+		if ( ! ( preg_match('/\d\d\d\d\d\d[-+]\d\d\d\d/', $time)
 			&& preg_match('/\d\d\d\d\d\d\d\d/', $date)
 			&& substr($date, 0, 4) !== '0000'
 			&& substr($date, 4, 2) !== '00'
@@ -390,13 +391,14 @@ class IPTC {
 		} else {
 			return $finalTimestamp;
 		}
-
 	}
 
 	/**
 	* Helper function to convert charset for iptc values.
 	* @param $data Mixed String or Array: The iptc string
 	* @param $charset String: The charset
+	 *
+	 * @return string
 	*/
 	private static function convIPTC ( $data, $charset ) {
 		if ( is_array( $data ) ) {
@@ -404,7 +406,7 @@ class IPTC {
 				$val = self::convIPTCHelper( $val, $charset );
 			}
 		} else {
-			$data = self::convIPTCHelper ( $data, $charset );
+			$data = self::convIPTCHelper( $data, $charset );
 		}
 
 		return $data;
@@ -413,6 +415,8 @@ class IPTC {
 	* Helper function of a helper function to convert charset for iptc values.
 	* @param $data Mixed String or Array: The iptc string
 	* @param $charset String: The charset
+	*
+	* @return string
 	*/
 	private static function convIPTCHelper ( $data, $charset ) {
 		if ( $charset ) {
@@ -431,7 +435,7 @@ class IPTC {
 			if ($data === $oldData) {
 				return $data; //if validation didn't change $data
 			} else {
-				return self::convIPTCHelper ( $oldData, 'Windows-1252' );
+				return self::convIPTCHelper( $oldData, 'Windows-1252' );
 			}
 		}
 		return trim( $data );
@@ -439,8 +443,8 @@ class IPTC {
 
 	/**
 	* take the value of 1:90 tag and returns a charset
-	* @param String $tag 1:90 tag. 
-	* @return charset name or "?"
+	* @param String $tag 1:90 tag.
+	* @return string charset name or "?"
 	* Warning, this function does not (and is not intended to) detect
 	* all iso 2022 escape codes. In practise, the code for utf-8 is the
 	* only code that seems to have wide use. It does detect that code.
@@ -510,7 +514,7 @@ class IPTC {
 				$c = "NS_4551-1";
 				break;
 			case "\x1b(f": //iso646-FR
-				$c = "NF_Z_62-010"; 
+				$c = "NF_Z_62-010";
 				break;
 			case "\x1b(g":
 				$c = "PT2"; //iso646-PT2
@@ -563,7 +567,7 @@ class IPTC {
 				$c = 'CSN_369103';
 				break;
 			default:
-				wfDebugLog('iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) ); 
+				wfDebugLog('iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
 				//at this point just give up and refuse to parse iptc?
 				$c = false;
 		}

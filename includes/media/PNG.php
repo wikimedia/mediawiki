@@ -14,7 +14,6 @@
 class PNGHandler extends BitmapHandler {
 
 	const BROKEN_FILE = '0';
-	
 
 	/**
 	 * @param File $image

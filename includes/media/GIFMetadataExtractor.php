@@ -28,6 +28,11 @@ class GIFMetadataExtractor {
 	// blocks, where it's usually between 32-127 bytes each.
 	const MAX_SUBBLOCKS = 262144; // 5mb divided by 20.
 
+	/**
+	 * @throws Exception
+	 * @param $filename string
+	 * @return array
+	 */
 	static function getMetadata( $filename ) {
 		self::$gif_frame_sep = pack( "C", ord("," ) );
 		self::$gif_extension_sep = pack( "C", ord("!" ) );
@@ -219,6 +224,11 @@ class GIFMetadataExtractor {
 		);
 	}
 
+	/**
+	 * @param $fh
+	 * @param $bpp
+	 * @return void
+	 */
 	static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {
 			for( $i=1; $i<=pow( 2, $bpp ); ++$i ) {
@@ -227,6 +237,10 @@ class GIFMetadataExtractor {
 		}
 	}
 
+	/**
+	 * @param $data
+	 * @return int
+	 */
 	static function decodeBPP( $data ) {
 		$buf = unpack( 'C', $data );
 		$buf = $buf[1];
@@ -238,6 +252,10 @@ class GIFMetadataExtractor {
 		return $have_map ? $bpp : 0;
 	}
 
+	/**
+	 * @param $fh
+	 * @return
+	 */
 	static function skipBlock( $fh ) {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );

@@ -119,8 +119,8 @@ class JpegMetadataExtractor {
 		}
 		// shouldn't get here.
 		throw new MWException( "Reached end of jpeg file unexpectedly" );
-
 	}
+
 	/**
 	* Helper function for jpegSegmentSplitter
 	* @param &$fh FileHandle for jpeg file
@@ -223,7 +223,5 @@ class JpegMetadataExtractor {
 		} else { /*$realHash !== $recordedHash */
 			return 'iptc-bad-hash';
 		}
-
 	}
-
 }

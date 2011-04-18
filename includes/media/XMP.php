@@ -106,8 +106,6 @@ class XMPReader {
 			array( $this, 'endElement' ) );
 
 		xml_set_character_data_handler( $this->xmlParser, array( $this, 'char' ) );
-
-
 	}
 
 	/** Destroy the xml parser
@@ -386,6 +384,7 @@ class XMPReader {
 		}
 
 	}
+
 	/** When we hit a closing element in MODE_IGNORE
 	* Check to see if this is the element we started to ignore,
 	* in which case we get out of MODE_IGNORE
@@ -401,6 +400,7 @@ class XMPReader {
 		return;
 
 	}
+
 	/**
 	* Hit a closing element when in MODE_SIMPLE.
 	* This generally means that we finished processing a
@@ -433,6 +433,7 @@ class XMPReader {
 		array_shift( $this->mode );
 
 	}
+
 	/**
 	* Hit a closing element in MODE_STRUCT, MODE_SEQ, MODE_BAG
 	* generally means we've finished processing a nested structure.
@@ -540,6 +541,7 @@ class XMPReader {
 			throw new MWException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
 		}
 	}
+
 	/**
 	* End element while in MODE_QDESC
 	* mostly when ending an element when we have a simple value
@@ -563,6 +565,7 @@ class XMPReader {
 
 
 	}
+
 	/**
 	* Handler for hitting a closing element.
 	*
@@ -1063,6 +1066,7 @@ class XMPReader {
 				break;
 		}
 	}
+
 	/**
 	* Process attributes.
 	* Simple values can be stored as either a tag or attribute
@@ -1115,6 +1119,7 @@ class XMPReader {
 			}
 		}
 	}
+
 	/**
 	* Given an extracted value, save it to results array
 	*
