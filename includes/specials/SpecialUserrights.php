@@ -41,7 +41,7 @@ class UserrightsPage extends SpecialPage {
 		return true;
 	}
 
-	public function userCanExecute( $user ) {
+	public function userCanExecute( User $user ) {
 		return $this->userCanChangeRights( $user, false );
 	}
 
