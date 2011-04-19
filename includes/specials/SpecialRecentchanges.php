@@ -319,31 +319,35 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$limit = $opts['limit'];
 		$namespace = $opts['namespace'];
-		$select = '*';
 		$invert = $opts['invert'];
 
+		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' ); // all rc columns
 		// JOIN on watchlist for users
-		if( $uid ) {
+		if ( $uid ) {
 			$tables[] = 'watchlist';
+			$fields[] = 'wl_user';
+			$fields[] = 'wl_notificationtimestamp';
 			$join_conds['watchlist'] = array('LEFT JOIN',
 				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
 		}
-		if ($this->getUser()->isAllowed("rollback")) {
+		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
+			$fields[] = 'page_latest';
 			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
 		}
 		if ( !$this->including() ) {
 			// Tag stuff.
 			// Doesn't work when transcluding. See bug 23293
-			$fields = array();
-			// Fields are * in this case, so let the function modify an empty array to keep it happy.
 			ChangeTags::modifyDisplayQuery(
 				$tables, $fields, $conds, $join_conds, $query_options, $opts['tagfilter']
 			);
 		}
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) )
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) ) )
+		{
 			return false;
+		}
 
 		// Don't use the new_namespace_time timestamp index if:
 		// (a) "All namespaces" selected
@@ -355,21 +359,21 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			|| $opts['tagfilter'] != ''
 			|| !$dbr->unionSupportsOrderAndLimit() )
 		{
-			$res = $dbr->select( $tables, '*', $conds, __METHOD__,
+			$res = $dbr->select( $tables, $fields, $conds, __METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
 				$query_options,
 				$join_conds );
 		// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
 		} else {
 			// New pages
-			$sqlNew = $dbr->selectSQLText( $tables, $select,
+			$sqlNew = $dbr->selectSQLText( $tables, $fields,
 				array( 'rc_new' => 1 ) + $conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit,
 					'USE INDEX' =>  array('recentchanges' => 'rc_timestamp') ),
 				$join_conds );
 			// Old pages
-			$sqlOld = $dbr->selectSQLText( $tables, '*',
+			$sqlOld = $dbr->selectSQLText( $tables, $fields,
 				array( 'rc_new' => 0 ) + $conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit,
