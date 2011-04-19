@@ -46,13 +46,6 @@ function wfProfileClose() {
 	Profiler::instance()->close();
 }
 
-if (!function_exists('memory_get_usage')) {
-	# Old PHP or --enable-memory-limit not compiled in
-	function memory_get_usage() {
-		return 0;
-	}
-}
-
 /**
  * @ingroup Profiler
  * @todo document
