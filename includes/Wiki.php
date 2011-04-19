@@ -502,9 +502,6 @@ class MediaWiki {
 			case 'deletetrackback':
 				$article->$act();
 				break;
-			case 'print':
-				$article->view();
-				break;
 			case 'dublincore':
 				if ( !$this->getVal( 'EnableDublinCoreRdf' ) ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
