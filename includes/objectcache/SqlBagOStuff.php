@@ -188,7 +188,12 @@ class SqlBagOStuff extends BagOStuff {
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $newValue ) ),
 					'exptime' => $row->exptime
-				), __METHOD__ );
+				), __METHOD__, 'IGNORE' );
+			
+			if ( $db->affectedRows() == 0 ) {
+				// Race condition. See bug 28611
+				$newValue = null;
+			}
 			$db->commit();
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
