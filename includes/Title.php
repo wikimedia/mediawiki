@@ -79,7 +79,7 @@ class Title {
 	/**
 	 * Constructor
 	 */
-	protected function __construct() { }
+	/*protected*/ function __construct() { }
 
 	/**
 	 * Create a new Title from a prefixed DB key
