@@ -345,8 +345,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'dir' => 'In which direction to sort',
 			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
 			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
-			'startsortkey' => "Sortkey to start listing from. Can only be used with {$p}sort=sortkey",
-			'endsortkey' => "Sortkey to end listing at. Can only be used with {$p}sort=sortkey",
+			'startsortkey' => "Sortkey to start listing from. Must be given in binary format. Can only be used with {$p}sort=sortkey",
+			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
