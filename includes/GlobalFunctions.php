@@ -3178,6 +3178,22 @@ function wfWaitForSlaves( $maxLag, $wiki = false ) {
 }
 
 /**
+ * Modern version of wfWaitForSlaves(). Instead of looking at replication lag
+ * and waiting for it to go down, this waits for the slaves to catch up to the
+ * master position. This is much better for lag control than wfWaitForSlaves()
+ */
+function wfWaitForSlaves_masterPos() {
+	$lb = wfGetLB();
+	// bug 27975 - Don't try to wait for slaves if there are none
+	// Prevents permission error when getting master position
+	if ( $lb->getServerCount() > 1 ) {
+		$dbw = $lb->getConnection( DB_MASTER );
+		$pos = $dbw->getMasterPos();
+		$lb->waitForAll( $pos );
+	}
+}
+
+/**
  * Used to be used for outputting text in the installer/updater
  * @deprecated Warnings in 1.19, removal in 1.20
  */
