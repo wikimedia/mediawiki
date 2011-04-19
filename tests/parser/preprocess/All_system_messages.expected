@@ -1,4 +1,4 @@
-<root><template><title>int:allmessagestext</title></template>
+<root><template lineStart="1"><title>int:allmessagestext</title></template>
 
 &lt;table border=1 width=100%&gt;&lt;tr&gt;&lt;td&gt;
 '''Name'''
