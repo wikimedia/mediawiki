@@ -704,11 +704,13 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	public function execute( $par ){
 		$redirect = $this->getRedirect( $par );
 		$query = $this->getRedirectQuery();
+		// Redirect to a page title with possible query parameters
 		if ( $redirect instanceof Title ) {
 			$url = $redirect->getFullUrl( $query );
 			$this->getContext()->output->redirect( $url );
 			wfProfileOut( __METHOD__ );
 			return $redirect;
+		// Redirect to index.php with query parameters
 		} elseif ( $redirect === true ) {
 			global $wgScript;
 			$url = $wgScript . '?' . wfArrayToCGI( $query );
