@@ -4093,7 +4093,7 @@ $8', # only translate this message to other languages if you have to change it
 
 'exif-maxaperturevalue-value' => '$1 APEX (f/$2)', # only translate this message to other languages if you have to change it
 
-'exif-iimcategory-ace' => 'Arts, culture and enterntainment',
+'exif-iimcategory-ace' => 'Arts, culture and entertainment',
 'exif-iimcategory-clj' => 'Crime and law',
 'exif-iimcategory-dis' => 'Disasters and accidents',
 'exif-iimcategory-fin' => 'Economy and business',
