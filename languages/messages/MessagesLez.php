@@ -65,13 +65,19 @@ $messages = array(
 'navigation' => 'Къекъуьн',
 
 # Cologne Blue skin
-'qbfind' => 'Жугъун',
-'qbedit' => 'Дегишарун',
+'qbfind'         => 'Жугъун',
+'qbedit'         => 'Дегишарун',
+'qbmyoptions'    => 'Зи чар',
+'qbspecialpages' => 'Кьетlен хъувун',
 
 # Vector skin
-'vector-action-delete' => 'Къакъудун',
-'vector-view-create'   => 'Туькlуьрун',
-'vector-view-edit'     => 'Дегишарун',
+'vector-action-delete'   => 'Къакъудун',
+'vector-action-move'     => 'Юзун',
+'vector-action-protect'  => 'Хуьн',
+'vector-action-undelete' => 'Къакъудун',
+'vector-view-create'     => 'Туькlуьрун',
+'vector-view-edit'       => 'Дегишарун',
+'vector-view-viewsource' => 'Къалурун булах',
 
 'errorpagetitle'   => 'ГъалатI',
 'returnto'         => 'Хкун $1.',
@@ -129,6 +135,7 @@ $messages = array(
 'nstab-special'   => 'КьетIен хъувун',
 'nstab-image'     => 'Шикил',
 'nstab-mediawiki' => 'Меслят',
+'nstab-template'  => 'Таблиц',
 'nstab-category'  => 'КIваталар',
 
 # General errors
@@ -152,6 +159,7 @@ $messages = array(
 'newpassword' => 'ЦIийи куьлег:',
 
 # Edit page toolbar
+'bold_sample'   => 'Сакlус яцlу кхьин',
 'italic_sample' => 'Къвалахъ алхьанай кхьин',
 'italic_tip'    => 'Къвалахъ алхьанай кхьин',
 
@@ -171,6 +179,7 @@ $messages = array(
 'page_first'             => 'сифте',
 'page_last'              => 'эхиримжи',
 'history-fieldset-title' => 'Чарчин тарих',
+'histlast'               => 'Гежа',
 
 # Revision deletion
 'rev-delundel'    => 'къалур/кIева',
@@ -182,7 +191,8 @@ $messages = array(
 'mergehistory-reason' => 'Кар',
 
 # Diffs
-'lineno' => 'ЦIар $1:',
+'lineno'   => 'ЦIар $1:',
+'editundo' => 'кукlварин',
 
 # Search results
 'searchsubtitleinvalid'     => "Куьне жагъурзавай '''$1'''",
@@ -190,6 +200,7 @@ $messages = array(
 'nextn'                     => 'къведай {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 гаф|$2 гафар}})',
+'search-suggest'            => 'Куьне икl лугьузани: $1',
 'search-interwiki-caption'  => 'Мукьва проект',
 'search-mwsuggest-enabled'  => 'тапшуругъар аваз',
 'search-mwsuggest-disabled' => 'тапшуругъар авач',
@@ -226,6 +237,9 @@ $messages = array(
 # Rights
 'right-edit' => 'Дегишар хъувун',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'дигишарун и чарар',
+
 # Recent changes
 'rcnote'          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
 'rcshowhidemine'  => '$1 зин дигишунар',
@@ -239,7 +253,8 @@ $messages = array(
 'boteditletter'   => 'б',
 
 # Upload
-'upload' => 'Парвиниз шикил',
+'upload'        => 'Парвиниз шикил',
+'uploadedimage' => 'Цун хъувун"[[$1]]"',
 
 # Special:ListFiles
 'listfiles_date' => 'Нумра',
@@ -251,6 +266,7 @@ $messages = array(
 'filehist-deleteall' => 'вири къакъудун',
 'filehist-deleteone' => 'къакъудун',
 'filehist-datetime'  => 'Югъ/Заман',
+'filehist-user'      => 'Ишлемишчи',
 
 # File deletion
 'filedelete-comment' => 'Кар',
@@ -290,6 +306,7 @@ $messages = array(
 'newuserlog-create-entry' => 'ЦIийи ишлемишчидин чин',
 
 # E-mail user
+'emailuser'    => 'Къагъаз масса ишлемишчидиз',
 'emailmessage' => 'Хъагъаз',
 
 # Watchlist
@@ -299,7 +316,8 @@ $messages = array(
 'watchthispage' => 'Гелкъуьн и хъувун',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Килигун...',
+'watching'   => 'Килигун...',
+'unwatching' => 'Амма клигнай',
 
 # Delete
 'deletepage'            => 'Къакъудун хъувун',
@@ -313,6 +331,8 @@ $messages = array(
 
 # Protect
 'protectcomment'    => 'Кар',
+'protectexpiry'     => 'Алатна',
+'protect-expiring'  => 'алатиз $1 (UTC)',
 'restriction-type'  => 'Ихтияр:',
 'restriction-level' => 'Кьадардин кьадар',
 
@@ -352,6 +372,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Куьне ишлемишзавай чар',
+'tooltip-pt-preferences'         => 'Куьн хкягъунар',
 'tooltip-pt-logout'              => 'Экъечlун',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
 'tooltip-ca-delete'              => 'Къакъудун и хъувун',

@@ -106,9 +106,9 @@ $messages = array(
 'tog-showtoolbar'             => 'Taispeáin an barra uirlisí eagair (JavaScript)',
 'tog-editondblclick'          => 'Déghliogáil chun leathanaigh a chur in eagar (JavaScript)',
 'tog-editsection'             => 'Cumasaigh mír-eagarthóireacht le naisc mar seo: [athrú]',
-'tog-editsectiononrightclick' => 'Cumasaigh mír-eagarthóireacht le deaschliceáil<br /> ar ceannteidil (JavaScript)',
+'tog-editsectiononrightclick' => 'Cumasaigh mír-eagarthóireacht le deaschliceáil<br /> ar cheannteidil (JavaScript)',
 'tog-showtoc'                 => "Taispeáin an clár ábhair (d'ailt le níos mó ná 3 ceannteidil)",
-'tog-rememberpassword'        => "Cuimhnigh ar m'fhocal faire ar an ríomhaire seo (ar feadh uastréimhse de $1 {{PLURAL:$1|lá|lá}})",
+'tog-rememberpassword'        => 'Cuimhnigh orm ar an ríomhaire seo (ar feadh uastréimhse de $1 {{PLURAL:$1|lá|lá}})',
 'tog-watchcreations'          => 'Cuir ar mo liosta faire leathanaigh a chruthaím',
 'tog-watchdefault'            => 'Déan faire ar leathanaigh a athraím',
 'tog-watchmoves'              => 'Cuir ar mo liosta faire leathanaigh a athainmnaím',
@@ -116,15 +116,16 @@ $messages = array(
 'tog-minordefault'            => 'Déan mionathruithe de gach aon athrú, mar réamhshocrú',
 'tog-previewontop'            => 'Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de',
 'tog-previewonfirst'          => 'Taispeáin réamhamharc don chéad athrú',
-'tog-nocache'                 => 'Ciorraigh taisce na leathanach',
+'tog-nocache'                 => 'Ná sábháil leathanaigh i dtaisce an bhrabhsálaí',
 'tog-enotifwatchlistpages'    => 'Cuir ríomhphost chugam nuair a athraítear leathanaigh',
 'tog-enotifusertalkpages'     => 'Cuir ríomhphost chugam nuair a athraítear mo leathanach phlé úsáideora',
 'tog-enotifminoredits'        => 'Cuir ríomhphost chugam nuair a dhéantar mionathruithe chomh maith',
 'tog-enotifrevealaddr'        => 'Taispeáin mo sheoladh ríomhphoist i dteachtaireachtaí fógra',
 'tog-shownumberswatching'     => 'Taispeán an méid úsáideoirí atá ag faire',
+'tog-oldsig'                  => 'Réamhamharc ar an síniú atá ann:',
 'tog-fancysig'                => 'Sínithe bunúsacha mar vicítéacs (gan nasc uathoibríoch)',
-'tog-externaleditor'          => 'Bain úsáid as eagarthóir seachtrach, mar réamhshocrú',
-'tog-externaldiff'            => 'Bain úsáid as difríocht sheachtrach, mar réamhshocrú',
+'tog-externaleditor'          => 'Bain úsáid as eagarthóir seachtrach mar réamhshocrú (saineolaithe amháin, tá socrú speisialta de dhíth ort. [http://www.mediawiki.org/wiki/Manual:External_editors Tuilleadh eolais.])',
+'tog-externaldiff'            => 'Bain úsáid as difríocht sheachtrach mar réamhshocrú (saineolaithe amháin, tá socrú speisialta de dhíth ort. [http://www.mediawiki.org/wiki/Manual:External_editors Tuilleadh eolais.])',
 'tog-showjumplinks'           => 'Cumasaigh naisc insroichteachta “léim go dtí”',
 'tog-uselivepreview'          => 'Bain úsáid as réamhamharc beo (JavaScript) (Turgnamhach)',
 'tog-forceeditsummary'        => 'Cuir in iúl dom nuair a chuirim isteach achoimre eagair folamh',
@@ -144,6 +145,8 @@ $messages = array(
 'underline-default' => 'Mar atá réamhshocraithe sa bhrabhsálaí',
 
 # Font style option in Special:Preferences
+'editfont-default'   => 'Réamhshocrú an bhrabhsálaí',
+'editfont-monospace' => 'Cló aonleithid',
 'editfont-sansserif' => 'Cló gan trasmhíreanna',
 'editfont-serif'     => 'Cló le trasmhíreanna',
 
@@ -214,7 +217,9 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Tá ach an comhad a leanas sa chatagóir seo|Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir seo, as $2 san iomlán.}}',
 'category-file-count-limited'    => 'Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir reatha.',
 'listingcontinuesabbrev'         => 'ar lean.',
+'index-category'                 => 'Leathanaigh innéacsaithe',
 
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "'''D'éirigh le suiteáil MediaWiki.'''",
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
@@ -242,12 +247,20 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'faqpage'        => 'Project:Ceisteanna_Coiteanta',
 
 # Vector skin
-'vector-action-delete'  => 'Scrios',
-'vector-action-move'    => 'Athainmnigh',
-'vector-action-protect' => 'Glasáil',
-'vector-view-create'    => 'Cruthaigh',
-'vector-view-edit'      => 'Athraigh an lch seo',
-'vector-view-view'      => 'Léigh',
+'vector-action-addsection' => 'Cuir topaic leis',
+'vector-action-delete'     => 'Scrios',
+'vector-action-move'       => 'Athainmnigh',
+'vector-action-protect'    => 'Glasáil',
+'vector-action-undelete'   => 'Díscrios',
+'vector-action-unprotect'  => 'Díghlasáil',
+'vector-view-create'       => 'Cruthaigh',
+'vector-view-edit'         => 'Athraigh an lch seo',
+'vector-view-history'      => 'Féach ar stair',
+'vector-view-view'         => 'Léigh',
+'vector-view-viewsource'   => 'Féach ar fhoinse',
+'actions'                  => 'Gníomhartha',
+'namespaces'               => 'Ainmspásanna',
+'variants'                 => 'Leaganacha Malartacha',
 
 'errorpagetitle'    => 'Earráid',
 'returnto'          => 'Fill ar ais go $1.',
@@ -264,13 +277,15 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'printableversion'  => 'Eagrán inphriontáilte',
 'permalink'         => 'Nasc buan',
 'print'             => 'Priontáil',
+'view'              => 'Amharc',
 'edit'              => 'Athraigh an lch seo',
 'create'            => 'Cruthaigh',
 'editthispage'      => 'Athraigh an lch seo',
 'create-this-page'  => 'Cruthaigh an lch seo',
 'delete'            => 'Scrios',
 'deletethispage'    => 'Scrios an lch seo',
-'undelete_short'    => 'Díscrios {{PLURAL:$1|athrú amháin|$1 athruithe}}',
+'undelete_short'    => 'Díscrios {{PLURAL:$1|athrú amháin|$1 athrú}}',
+'viewdeleted_short' => 'Féach ar {{PLURAL:$1|athrú scriosta amháin|$1 athrú scriosta}}',
 'protect'           => 'Glasáil',
 'protect_change'    => 'athraigh',
 'protectthispage'   => 'Glasáil an lch seo',
@@ -281,7 +296,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'talkpagelinktext'  => 'Plé',
 'specialpage'       => 'Leathanach Speisialta',
 'personaltools'     => 'Do chuid uirlisí',
-'postcomment'       => 'Alt nua',
+'postcomment'       => 'Mír nua',
 'articlepage'       => 'Féach ar an alt',
 'talk'              => 'Plé',
 'views'             => 'Radhairc',
@@ -303,6 +318,8 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'jumpto'            => 'Léim go:',
 'jumptonavigation'  => 'nascleanúint',
 'jumptosearch'      => 'cuardaigh',
+'pool-timeout'      => 'Thar am ag feitheamh leis an nglas',
+'pool-errorunknown' => 'Earráid anaithnid',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Maidir leis an {{SITENAME}}',
@@ -332,12 +349,15 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'versionrequiredtext' => 'Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Special:Version]]',
 
 'ok'                      => 'Déan',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Aisghabháil ó "$1"',
 'youhavenewmessages'      => 'Tá $1 agat ($2).',
 'newmessageslink'         => 'teachtaireachtaí nua',
 'newmessagesdifflink'     => 'difear ón leasú leathdhéanach',
 'youhavenewmessagesmulti' => 'Tá teachtaireachtaí nua agat ar $1',
 'editsection'             => 'athraigh',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'athraigh',
 'viewsourceold'           => 'féach ar foinse',
 'editlink'                => 'cur in eagar',
@@ -346,6 +366,8 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'toc'                     => 'Clár ábhair',
 'showtoc'                 => 'taispeáin',
 'hidetoc'                 => 'folaigh',
+'collapsible-collapse'    => 'Laghdaigh',
+'collapsible-expand'      => 'Leathnaigh',
 'thisisdeleted'           => 'Breathnaigh nó cuir ar ais $1?',
 'viewdeleted'             => 'Féach ar $1?',
 'restorelink'             => '{{PLURAL:$1|athrú scriosta amháin|$1 athruithe scriosta}}',
@@ -356,6 +378,8 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'site-atom-feed'          => '$1 Fotha Atom',
 'page-rss-feed'           => '"$1" Fotha RSS',
 'page-atom-feed'          => '"$1" Fotha Atom',
+'feed-atom'               => 'Atom',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (níl an leathanach ann)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -409,10 +433,12 @@ De ghnáth, tarlaíonn sé seo nuair a leantar nasc stáire nó difr chuig leath
 
 Murab fhíor é seo, is féidir go bhfuair tú fabht sa bhogearraí. Beimid buíoch duit é a chur in iúl do [[Special:ListUsers/sysop|riarthóir]], chomh maith le URL an suíoimh.',
 'missingarticle-rev'   => '(leagan#: $1)',
-'missingarticle-diff'  => '(Diof: $1, $2)',
+'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'Glasáladh an bunachar sonraí go huathoibríoch, go dtiocfaidh na sclábhfhreastalaithe suas leis an máistirfhreastalaí.',
 'internalerror'        => 'Earráid inmhéanach',
 'internalerror_info'   => 'Earráid inmhéanach: $1',
+'fileappenderrorread'  => 'Níorbh fhéidir "$1" a léamh le linn ceangal.',
+'fileappenderror'      => 'Níorbh fhéidir "$1" a cheangal le "$2".',
 'filecopyerror'        => 'Ní féidir an comhad "$1" a chóipeáil go "$2".',
 'filerenameerror'      => 'Ní féidir an comhad "$1" a athainmnigh mar "$2".',
 'filedeleteerror'      => 'Ní féidir an comhad "$1" a scriosaigh amach.',
@@ -429,6 +455,7 @@ B\'fhéidir gur scrios duine eile é cheana féin.',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
+'perfcachedts'         => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1.',
 'wrong_wfQuery_params' => 'Paraiméadair mhíchearta don wfQuery()<br />
 Feidhm: $1<br />
 Iarratas: $2',
@@ -480,6 +507,7 @@ Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Speci
 'gotaccount'                 => "An bhfuil cuntas agat cheana féin? '''$1'''.",
 'gotaccountlink'             => 'Logáil isteach',
 'createaccountmail'          => 'le ríomhphost',
+'createaccountreason'        => 'Fáth:',
 'badretype'                  => "D'iontráil tú dhá fhocal faire difriúla.",
 'userexists'                 => 'Tá an ainm úsáideora sin in úsáid cheana féin.<br />
 Roghnaigh ainm eile agus bain triail eile as.',
@@ -493,6 +521,7 @@ Cumasaigh iad le do thoil, agus ansin logáil isteach le d'ainm úsáideora agus
 'nocookieslogin'             => 'Úsáideann {{SITENAME}} fianáin chun úsáideoirí a logáil isteach.
 Tá fianáin díchumasaithe agat.
 Cumasaigh iad agus bain triail eile as, le do thoil.',
+'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'Níor thug tú ainm úsáideora bailí.',
 'loginsuccesstitle'          => 'Logáladh isteach thú',
 'loginsuccess'               => "'''Tá tú logáilte isteach anois sa {{SITENAME}} mar \"<nowiki>\$1</nowiki>\".'''",
@@ -501,6 +530,7 @@ Tá ainmneacha úsáideoir cásíogair.
 Cinntigh do litriú, nó [[Special:UserLogin/signup|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.',
 'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "<nowiki>$1</nowiki>". Cinntigh do litriú.',
 'nouserspecified'            => 'Caithfidh ainm úsáideoir a shonrú.',
+'login-userblocked'          => 'Tá an t-úsáideoir seo faoi bhac. Níl cead aige/aici logáil isteach.',
 'wrongpassword'              => "D'iontráil tú focal faire mícheart.<br />
 Bain triail eile as.",
 'wrongpasswordempty'         => 'Níor iontráil tú focal faire. Bain triail eile as.',
@@ -512,6 +542,7 @@ Bain triail eile as.",
 
 Rachaidh d\'fhocail faire sealadach as feidhm i gceann {{PLURAL:$5|lá amháin|$5 lae}}.',
 'noemail'                    => 'Níl aon seoladh ríomhphoist i gcuntas don úsáideoir "$1".',
+'noemailcreate'              => 'Caithfidh tú ríomhphost bailí a thabhairt',
 'passwordsent'               => 'Cuireadh focal nua faire chuig an ríomhsheoladh atá cláraithe do "$1".
 Nuair atá sé agat, logáil isteach arís chun fíordheimhniu a dhéanamh.',
 'eauthentsent'               => 'Cuireadh teachtaireacht ríomhphoist chuig an seoladh
@@ -532,7 +563,11 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'accountcreatedtext'         => 'Cruthaíodh cúntas úsáideora le haghaidh $1.',
 'createaccount-title'        => 'Cuntas cruthú le {{SITENAME}}',
 'createaccount-text'         => 'Chruthaigh duine éigin cuntas do do sheoladh ríomhphoist ar {{SITENAME}} ($4) leis an ainm "$2" agus pasfhocal "$3". Ba cheart duit logáil isteach agus do phasfhocal a athrú anois. Is féidir leat neamhaird a thabhairt don teachtaireacht seo má cruthaíodh trí earráid í.',
+'usernamehasherror'          => 'Ní cheadaítear hais a úsáid in ainm úsáideora',
 'loginlanguagelabel'         => 'Teanga: $1',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Earráid anaithnid i bhfeidhm mail() de chuid PHP',
 
 # Password reset dialog
 'resetpass'                 => "Athraigh d'fhocal faire",
@@ -600,7 +635,7 @@ Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le g
 'blockedoriginalsource'            => "Tá an foinse '''$1''' le feiceáil a leanas:",
 'whitelistedittitle'               => 'Logáil isteach chun athrú a dhéanamh',
 'whitelistedittext'                => 'Ní mór duit $1 chun ailt a athrú.',
-'nosuchsectiontitle'               => 'Níl a leithéad de shliocht tofa ann',
+'nosuchsectiontitle'               => 'Níl a leithéad de mhír ann',
 'loginreqtitle'                    => 'Tá logáil isteach de dhíth ort',
 'loginreqlink'                     => 'logáil isteach',
 'loginreqpagetext'                 => 'Caithfidh tú $1 chun leathanaigh a amharc.',
@@ -615,11 +650,10 @@ Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do bhrabhs�
 'noarticletext'                    => 'Níl aon téacs ar an leathanach seo faoi láthair.
 Is féidir [[Special:Search/{{PAGENAME}}|cuardach a dhéanamh le haghaidh an teidil seo]] i leathanaigh eile, nó <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cuardach a dhéanamh sna logaí gaolmhara],
 nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} an leathanach seo a chur in eagar].</span>',
+'userpage-userdoesnotexist-view'   => 'Níl cuntas úsáideora "$1" cláraithe.',
 'clearyourcache'                   => "'''Tugtar faoi deara:''' Tar éis duit athruithe a shábháil, caithfear gabháil thar thaisce do bhrabhsálaí chun iad a fheiceáil. '''Internet Explorer:''' cliceáil ar an gcnaipe ''Athnuaigh'' nó ''Athlódáil'', agus an eochair ''Ctrl'' á bhrú agat. '''Firefox:''' cliceáil ar ''Athlódáil'', agus an eochair ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''). '''Opera:''' caithfear d'úsáideoirí a dtaiscí a ghlanadh trí ''Uirlisí→Sainroghanna''. Ní mór d'úsáideoirí '''Konqueror''' nó '''Safari''' ach cliceáil ar an gcnaipe ''Athlódáil''.",
-'usercssyoucanpreview'             => "'''Leid:''' Sula sábhálaím tú, úsáid an cnaipe
-'Réamhamharc' chun do CSS nua a tástáil.",
-'userjsyoucanpreview'              => "'''Leid:''' Sula sábhálaím tú, úsáid an cnaipe
-'Réamhamharc' chun do JS nua a tástáil.",
+'usercssyoucanpreview'             => "'''Leid:''' Sula sábhálann tú, úsáid an cnaipe \"{{int:showpreview}}\" chun do CSS nua a thástáil.",
+'userjsyoucanpreview'              => "'''Leid:''' Sula sábhálann tú, úsáid an cnaipe \"{{int:showpreview}}\" chun do JavaScript nua a thástáil.",
 'usercsspreview'                   => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do CSS úsáideora -
 níor sábháladh é go fóill!'''",
 'userjspreview'                    => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
@@ -633,7 +667,7 @@ Cuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gc�
 thuas mar a taispeáinfear é má sábháilfear é.',
 'editing'                          => 'Ag athrú $1',
 'editingsection'                   => 'Ag athrú $1 (mir)',
-'editingcomment'                   => 'Ag athrú $1 (tuairisc nua)',
+'editingcomment'                   => 'Ag athrú $1 (mír nua)',
 'editconflict'                     => 'Coimhlint athraithe: $1',
 'explainconflict'                  => "D'athraigh duine eile an leathanach seo ó thosaigh tú ar a athrú.
 Tá téacs an leathanaigh mar atá sé faoi láthair le feiceáil thuas.
@@ -641,7 +675,7 @@ Tá do chuid athruithe le feiceáil thíos.
 Caithfidh tú do chuid athruithe a chumasc leis an leagan reatha.
 Ní shábhálfar '''ach''' an téacs thuas nuair a bhrúnn tú ar an gcnaipe \"{{int:savearticle}}\".",
 'yourtext'                         => 'Do chuid téacs',
-'storedversion'                    => 'Eagrán sábháilte',
+'storedversion'                    => 'Leagan sábháilte',
 'editingold'                       => "'''Rabhadh: Tá tú ag athrú leagan an leathanaigh seo atá as dáta.
 Má shábhálfar é, caillfear gach athrú a rinneadh i ndiaidh an leagain seo.'''",
 'yourdiff'                         => 'Difríochtaí',
@@ -662,9 +696,9 @@ An fáth ar thug an riarthóir a ghlasáil é: $1",
 'protectedpagewarning'             => "'''Rabhadh: Glasáladh an leathanach seo. Is féidir le riarthóirí amháin é a athrú.'''",
 'templatesused'                    => '{{PLURAL:$1|Teimpléad|Teimpléid}} a úsáidtear ar an leathanach seo:',
 'templatesusedpreview'             => '{{PLURAL:$1|Teimpléad|Teimpléid}} a úsáidtear sa réamhamharc seo:',
-'templatesusedsection'             => 'Teimpléid in úsáid san alt seo:',
-'template-protected'               => '(ghlasáil)',
-'template-semiprotected'           => '(leath-ghlasáil)',
+'templatesusedsection'             => '{{PLURAL:$1|Teimpléad amháin|$1 Teimpléad}} in úsáid sa mhír seo:',
+'template-protected'               => '(glasáilte)',
+'template-semiprotected'           => '(leathghlasáilte)',
 'edittools'                        => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
 'nocreatetext'                     => 'Tá srianadh ar {{SITENAME}} faoin leathanaigh nua a cruthaidh.
 Is féidir leat dul ar ais chun leathanach láithreach a athrú, nó [[Special:UserLogin|log isteach nó cruthaigh cuntas nua]].',

@@ -2065,7 +2065,8 @@ Ovo su trenutna podešavanja za stranicu '''$1''':",
 Ovo su trenutna podešavanja za stranu '''$1''':",
 'protect-locked-access'       => "Vaš nalog nema dozvole za izmenu nivoa zaštite stranice.
 Ovo su trenutna podešavanja za stranicu '''$1''':",
-'protect-cascadeon'           => 'Ova stranica je trenutno zaštićena jer se nalazi na {{PLURAL:$1|stranici, koja je zaštićena|stranice, koje su zaštićene|stranica, koje su zaštićene}} sa opcijom „prenosivo“. Možete izmeniti stepen zaštite ove stranice, ali on neće uticati na prenosivu zaštitu.',
+'protect-cascadeon'           => 'Ova stranica je trenutno zaštićena jer se nalazi na {{PLURAL:$1|stranici koja ima|stranicama koje imaju}} prenosivu zaštitu.
+Možete promeniti stepen zaštite ove stranice, ali on neće uticati na prenosivu zaštitu.',
 'protect-default'             => 'Dozvoli sve korisnike',
 'protect-fallback'            => 'Zahteva "$1" ovlašćenja',
 'protect-level-autoconfirmed' => 'Blokiraj nove i neregistrovane korisnike',

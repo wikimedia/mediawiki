@@ -3277,7 +3277,7 @@ Le alteres essera initialmente celate.
 'exif-gpsdirection-m' => 'Direction magnetic',
 
 'exif-ycbcrpositioning-1' => 'Centrate',
-'exif-ycbcrpositioning-2' => 'Digitalisation bimodal',
+'exif-ycbcrpositioning-2' => 'Co-situate',
 
 'exif-dc-contributor' => 'Contributores',
 'exif-dc-coverage'    => 'Scopo spatial o temporal del objecto',
