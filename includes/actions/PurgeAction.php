@@ -25,6 +25,8 @@
 
 class PurgeAction extends FormAction {
 
+	private $redirectParams;
+
 	public function getName() {
 		return 'purge';
 	}
@@ -65,9 +67,14 @@ class PurgeAction extends FormAction {
 		$this->checkCanExecute( $this->getUser() );
 
 		if ( $this->getUser()->isAllowed( 'purge' ) ) {
+			$this->redirectParams = wfArrayToCGI( array_diff_key(
+				$this->getRequest()->getQueryValues(),
+				array( 'title' => null, 'action' => null )
+			) );
 			$this->onSubmit( array() );
 			$this->onSuccess();
 		} else {
+			$this->redirectParams = $this->getRequest()->getVal( 'redirectparams', '' );
 			$form = $this->getForm();
 			if ( $form->show() ) {
 				$this->onSuccess();
@@ -88,6 +95,6 @@ class PurgeAction extends FormAction {
 	}
 
 	public function onSuccess() {
-		$this->getOutput()->redirect( $this->getTitle()->getFullUrl( $this->getRequest()->getVal( 'redirectparams', '' ) ) );
+		$this->getOutput()->redirect( $this->getTitle()->getFullUrl( $this->redirectParams ) );
 	}
 }
