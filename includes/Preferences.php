@@ -36,9 +36,15 @@ class Preferences {
 			'searchlimit' => array( 'Preferences', 'filterIntval' ),
 	);
 
+	/**
+	 * @throws MWException
+	 * @param $user User
+	 * @return array|null
+	 */
 	static function getPreferences( $user ) {
-		if ( self::$defaultPreferences )
+		if ( self::$defaultPreferences ) {
 			return self::$defaultPreferences;
+		}
 
 		$defaultPreferences = array();
 
@@ -91,7 +97,14 @@ class Preferences {
 		return $defaultPreferences;
 	}
 
-	// Pull option from a user account. Handles stuff like array-type preferences.
+	/**
+	 * Pull option from a user account. Handles stuff like array-type preferences.
+	 *
+	 * @param $name
+	 * @param $info
+	 * @param $user User
+	 * @return array|String
+	 */
 	static function getOptionFromUser( $name, $info, $user ) {
 		$val = $user->getOption( $name );
 
@@ -112,6 +125,11 @@ class Preferences {
 		return $val;
 	}
 
+	/**
+	 * @param $user User
+	 * @param $defaultPreferences
+	 * @return void
+	 */
 	static function profilePreferences( $user, &$defaultPreferences ) {
 		global $wgLang, $wgUser;
 		## User info #####################################
@@ -295,7 +313,7 @@ class Preferences {
 		global $wgMaxSigChars, $wgOut, $wgParser;
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", new Title , $user, new ParserOptions );
+		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", new Title, $user, new ParserOptions );
 		$oldsigHTML = $wgOut->parseInline( $oldsigWikiText );
 		$defaultPreferences['oldsig'] = array(
 			'type' => 'info',
@@ -444,6 +462,11 @@ class Preferences {
 		}
 	}
 
+	/**
+	 * @param $user User
+	 * @param $defaultPreferences
+	 * @return void
+	 */
 	static function skinPreferences( $user, &$defaultPreferences ) {
 		## Skin #####################################
 		global $wgLang, $wgAllowUserCss, $wgAllowUserJs;
@@ -510,6 +533,11 @@ class Preferences {
 		);
 	}
 
+	/**
+	 * @param $user User
+	 * @param $defaultPreferences
+	 * @return void
+	 */
 	static function datetimePreferences( $user, &$defaultPreferences ) {
 		global $wgLang;
 
@@ -794,6 +822,11 @@ class Preferences {
 		}
 	}
 
+	/**
+	 * @param $user User
+	 * @param $defaultPreferences
+	 * @return void
+	 */
 	static function watchlistPreferences( $user, &$defaultPreferences ) {
 		global $wgUseRCPatrol, $wgEnableAPI;
 
@@ -988,7 +1021,7 @@ class Preferences {
 	}
 
 	/**
-	 * @param $user The User object
+	 * @param $user User The User object
 	 * @return Array: text/links to display as key; $skinkey as value
 	 */
 	static function generateSkinOptions( $user ) {
@@ -1130,7 +1163,7 @@ class Preferences {
 	}
 
 	static function validateEmail( $email, $alldata ) {
-		if ( $email && !User::isValidEmailAddr( $email ) ) {
+		if ( $email && !Sanitizer::validateEmail( $email ) ) {
 			return wfMsgExt( 'invalidemailaddress', 'parseinline' );
 		}
 
@@ -1343,6 +1376,10 @@ class Preferences {
 		return Status::newGood();
 	}
 
+	/**
+	 * @param $user User
+	 * @return array
+	 */
 	public static function loadOldSearchNs( $user ) {
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
 		// Back compat with old format
