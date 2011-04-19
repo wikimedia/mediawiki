@@ -32,13 +32,16 @@
  */
 
 $.fn.localize = function( options ) {
-	options = $.extend( { 'prefix': '' }, options );
+	options = $.extend( { 'prefix': '', 'keys': {} }, options );
+	function msg( key ) {
+		return mw.msg( options.prefix + ( key in options.keys ? options.keys[key] : key ) )
+	};
 	return $(this)
 		.find( 'msg,html\\:msg' )
 			.each( function() {
 				var $el = $(this);
 				$el
-					.text( mw.msg( options.prefix + $el.attr( 'key' ) ) )
+					.text( msg( $el.attr( 'key' ) ) )
 					.replaceWith( $el.html() );
 			} )
 			.end()
@@ -46,7 +49,7 @@ $.fn.localize = function( options ) {
 			.each( function() {
 				var $el = $(this);
 				$el
-					.attr( 'title', mw.msg( options.prefix + $el.attr( 'title-msg' ) ) )
+					.attr( 'title', msg( $el.attr( 'title-msg' ) ) )
 					.removeAttr( 'title-msg' );
 			} )
 			.end()
@@ -54,7 +57,7 @@ $.fn.localize = function( options ) {
 			.each( function() {
 				var $el = $(this);
 				$el
-					.attr( 'alt', mw.msg( options.prefix + $el.attr( 'alt-msg' ) ) )
+					.attr( 'alt', msg( $el.attr( 'alt-msg' ) ) )
 					.removeAttr( 'alt-msg' );
 			} )
 			.end();
