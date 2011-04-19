@@ -3640,7 +3640,8 @@ Macro view is close-up photography. See [http://en.wikipedia.org/wiki/Macro_phot
 'exif-objectcycle-b' => 'Both morning and evening (b is for both). See also {{msg-mw|Exif-objectcycle}}.',
 
 'exif-ycbcrpositioning-1' => 'If the Chrominance samples are centered with respect to the Luminance samples.',
-'exif-ycbcrpositioning-2' => 'If the Chrominance samples are on top of to the Luminance samples.',
+'exif-ycbcrpositioning-2' => 'If the Chrominance samples are on top of to the Luminance samples.
+See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html',
 
 'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
 'exif-dc-coverage'    => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',

@@ -3101,8 +3101,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-colorspace'                  => 'Espaço de cores',
 'exif-componentsconfiguration'     => 'Significado de cada componente',
 'exif-compressedbitsperpixel'      => 'Modo de compressão da imagem',
-'exif-pixelydimension'             => 'Largura da imagem válida',
-'exif-pixelxdimension'             => 'Altura da imagem válida',
+'exif-pixelydimension'             => 'Largura válida da imagem',
+'exif-pixelxdimension'             => 'Altura válida da imagem',
 'exif-usercomment'                 => 'Comentários de utilizadores',
 'exif-relatedsoundfile'            => 'Ficheiro áudio relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de geração de dados',
@@ -3118,7 +3118,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
 'exif-aperturevalue'               => 'Abertura',
-'exif-brightnessvalue'             => 'Brilho',
+'exif-brightnessvalue'             => 'Brilho APEX',
 'exif-exposurebiasvalue'           => 'Compensação da exposição',
 'exif-maxaperturevalue'            => 'Abertura máxima',
 'exif-subjectdistance'             => 'Distância do motivo',
@@ -3329,6 +3329,20 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',
 'exif-gpsdirection-m' => 'Direcção magnética',
+
+'exif-isospeedratings-overflow' => 'Superior a 65535',
+
+'exif-iimcategory-ace' => 'Artes, cultura e entretenimento',
+'exif-iimcategory-clj' => 'Lei e crime',
+'exif-iimcategory-dis' => 'Desastres e acidentes',
+'exif-iimcategory-fin' => 'Economia e negócios',
+'exif-iimcategory-edu' => 'Educação',
+'exif-iimcategory-evn' => 'Meio ambiente',
+'exif-iimcategory-hth' => 'Saúde',
+'exif-iimcategory-hum' => 'Interesse humano',
+'exif-iimcategory-lab' => 'Trabalho',
+'exif-iimcategory-lif' => 'Estilo de vida e lazer',
+'exif-iimcategory-pol' => 'Política',
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',

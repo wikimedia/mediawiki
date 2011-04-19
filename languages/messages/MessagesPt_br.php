@@ -1754,22 +1754,23 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'uploadstash-refresh'  => 'Atualizar a lista de arquivos',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acesso negado',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO
+'img-auth-accessdenied'     => 'Acesso negado',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO
 Seu servidor não está configurado para passar essa informação.
 Pode ser baseado em CGI e não suportar img_auth.
 Veja http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'O caminho requerido não está no directório de carregamento configurado.',
-'img-auth-badtitle'     => 'Não é possível criar um título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Você não está logado e "$1" não está na lista branca.',
-'img-auth-nofile'       => 'Arquivo "$1" não existe.',
-'img-auth-isdir'        => 'Você está tentando acessar o diretório "$1".
+'img-auth-notindir'         => 'O caminho requerido não está no directório de carregamento configurado.',
+'img-auth-badtitle'         => 'Não é possível criar um título válido a partir de "$1".',
+'img-auth-nologinnWL'       => 'Você não está logado e "$1" não está na lista branca.',
+'img-auth-nofile'           => 'Arquivo "$1" não existe.',
+'img-auth-isdir'            => 'Você está tentando acessar o diretório "$1".
 Somente acesso ao arquivo é permitido.',
-'img-auth-streaming'    => "Realizando ''streaming'' de \"\$1\".",
-'img-auth-public'       => 'A img_auth.php produz arquivos a partir de uma wiki privada.
+'img-auth-streaming'        => "Realizando ''streaming'' de \"\$1\".",
+'img-auth-public'           => 'A img_auth.php produz arquivos a partir de uma wiki privada.
 Esta wiki está configurada como uma wiki pública.
 Para melhor segurança, o img_auth.php está desativado.',
-'img-auth-noread'       => 'Usuário não tem acesso para ler "$1".',
+'img-auth-noread'           => 'Usuário não tem acesso para ler "$1".',
+'img-auth-bad-query-string' => 'A URL tem um texto de consulta inválido.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL inválida: $1',
@@ -2477,7 +2478,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipusubmit'                       => 'Remover este bloqueio',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'O bloqueio de $1 foi removido com sucesso',
-'ipblocklist'                     => 'Usuários e endereços de IP bloqueados',
+'ipblocklist'                     => 'Usuários bloqueados',
 'ipblocklist-legend'              => 'Procurar por um usuário bloqueado',
 'ipblocklist-submit'              => 'Pesquisar',
 'ipblocklist-localblock'          => 'Bloqueio local',
@@ -2708,7 +2709,8 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'import-interwiki-namespace' => 'Domínio de destino:',
 'import-upload-filename'     => 'Nome do arquivo:',
 'import-comment'             => 'Comentário:',
-'importtext'                 => 'Por favor, exporte o arquivo da fonte wiki utilizando a ferramenta {{ns:special}}:Export, salve o arquivo para o seu disco e importe-o aqui.',
+'importtext'                 => 'Por favor, exporte o arquivo da wiki de origem utilizando a página especial [[Special:Export|exportação de páginas]].
+Salve o arquivo no seu computador e importe-o aqui.',
 'importstart'                => 'Importando páginas...',
 'import-revision-count'      => '{{PLURAL:$1|uma edição|$1 edições}}',
 'importnopages'              => 'Não existem páginas a importar.',
@@ -2944,7 +2946,7 @@ Qualquer ligação posterior na mesma linha são consideradas como exceções, o
 Caso o arquivo tenha sido modificado a partir do seu estado original, alguns detalhes poderão não refletir completamente as mudanças efetuadas.",
 'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
-'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
+'metadata-fields'   => 'Os campos de metadados de imagens listados nesta mensagem serão incluídos na página de descrição da imagem quando a tabela de metadados estiver recolhida. Por omissão, outros campos estarão ocultos.
 * make
 * model
 * datetimeoriginal
@@ -2993,8 +2995,8 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-colorspace'                  => 'Espaço de cor',
 'exif-componentsconfiguration'     => 'Significado de cada componente',
 'exif-compressedbitsperpixel'      => 'Modo de compressão de imagem',
-'exif-pixelydimension'             => 'Largura de imagem válida',
-'exif-pixelxdimension'             => 'Altura de imagem válida',
+'exif-pixelydimension'             => 'Largura da imagem',
+'exif-pixelxdimension'             => 'Altura da imagem',
 'exif-usercomment'                 => 'Comentários de usuários',
 'exif-relatedsoundfile'            => 'arquivo áudio relacionado',
 'exif-datetimeoriginal'            => 'Data e hora de geração de dados',
@@ -3008,8 +3010,8 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-exposureprogram'             => 'Programa de exposição',
 'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
-'exif-shutterspeedvalue'           => 'Velocidade do obturador',
-'exif-aperturevalue'               => 'Abertura',
+'exif-shutterspeedvalue'           => 'Velocidade do obturador (APEX)',
+'exif-aperturevalue'               => 'Abertura APEX',
 'exif-brightnessvalue'             => 'Brilho',
 'exif-exposurebiasvalue'           => 'Polarização de exposição',
 'exif-maxaperturevalue'            => 'Abertura máxima',
