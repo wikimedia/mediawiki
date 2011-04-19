@@ -77,7 +77,7 @@ class IPUnblockForm extends SpecialPage {
 					$block = Block::newFromID( $this->id );
 					$user = User::newFromName( $block->mAddress );
 				} else {
-					$user = User::newFromName( $ip );
+					$user = User::newFromName( $this->ip );
 				}
 				$status = IPBlockForm::checkUnblockSelf( $user );
 				if ( $status !== true ) {
