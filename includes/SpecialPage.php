@@ -485,7 +485,7 @@ class SpecialPage {
 	 * @param $user User: the user to check
 	 * @return Boolean: does the user have permission to view the page?
 	 */
-	public function userCanExecute( $user ) {
+	public function userCanExecute( User $user ) {
 		return $user->isAllowed( $this->mRestriction );
 	}
 
@@ -693,22 +693,32 @@ class IncludableSpecialPage extends SpecialPage
  * Shortcut to construct a special page alias.
  * @ingroup SpecialPage
  */
-abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
+abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 	// Query parameters that can be passed through redirects
-	private $mAllowedRedirectParams = array();
+	protected $mAllowedRedirectParams = array();
 
 	// Query parameteres added by redirects
-	private $mAddedRedirectParams = array();
-
-	var $redirName, $redirSubpage;
-
-	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
-		parent::__construct( $name );
-		$this->redirName = $redirName;
-		$this->redirSubpage = $redirSubpage;
-		$this->mAllowedRedirectParams = $allowedRedirectParams;
-		$this->mAddedRedirectParams = $addedRedirectParams;
+	protected $mAddedRedirectParams = array();
+	
+	public function execute( $par ){
+		$redirect = $this->getRedirect( $par );
+		$query = $this->getRedirectQuery();
+		if ( $redirect instanceof Title ) {
+			$url = $redirect->getFullUrl( $query );
+			$this->getContext()->output->redirect( $url );
+			wfProfileOut( __METHOD__ );
+			return $redirect;
+		} elseif ( $redirect === true ) {
+			global $wgScript;
+			$url = $wgScript . '?' . wfArrayToCGI( $query );
+			$this->getContext()->output->redirect( $url );
+			wfProfileOut( __METHOD__ );
+			return $redirect;
+		} else {
+			$class = __CLASS__;
+			throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
+		}
 	}
 
 	/**
@@ -717,13 +727,7 @@ abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	 *
 	 * @return Title|false
 	 */
-	public function getRedirect( $subpage ) {
-		if ( $this->redirSubpage === false ) {
-			return SpecialPage::getTitleFor( $this->redirName, $subpage );
-		} else {
-			return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
-		}
-	}
+	abstract public function getRedirect( $par );
 
 	/**
 	 * Return part of the request string for a special redirect page
@@ -747,6 +751,27 @@ abstract class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 		return count( $params )
 			? $params
 			: false;
+	}
+}
+
+abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
+
+	var $redirName, $redirSubpage;
+
+	function __construct( $name, $redirName, $redirSubpage = false, $allowedRedirectParams = array(), $addedRedirectParams = array() ) {
+		parent::__construct( $name );
+		$this->redirName = $redirName;
+		$this->redirSubpage = $redirSubpage;
+		$this->mAllowedRedirectParams = $allowedRedirectParams;
+		$this->mAddedRedirectParams = $addedRedirectParams;
+	}
+
+	public function getRedirect( $subpage ) {
+		if ( $this->redirSubpage === false ) {
+			return SpecialPage::getTitleFor( $this->redirName, $subpage );
+		} else {
+			return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
+		}
 	}
 }
 
@@ -789,7 +814,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
  * Shortcut to construct a special page pointing to current user user's page.
  * @ingroup SpecialPage
  */
-class SpecialMypage extends UnlistedSpecialPage {
+class SpecialMypage extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
 		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro',
@@ -810,7 +835,7 @@ class SpecialMypage extends UnlistedSpecialPage {
  * Shortcut to construct a special page pointing to current user talk page.
  * @ingroup SpecialPage
  */
-class SpecialMytalk extends UnlistedSpecialPage {
+class SpecialMytalk extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
 		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro',
@@ -831,7 +856,7 @@ class SpecialMytalk extends UnlistedSpecialPage {
  * Shortcut to construct a special page pointing to current user contributions.
  * @ingroup SpecialPage
  */
-class SpecialMycontributions extends UnlistedSpecialPage {
+class SpecialMycontributions extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct(  'Mycontributions' );
 		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
@@ -847,7 +872,7 @@ class SpecialMycontributions extends UnlistedSpecialPage {
 /**
  * Redirect to Special:Listfiles?user=$wgUser
  */
-class SpecialMyuploads extends UnlistedSpecialPage {
+class SpecialMyuploads extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Myuploads' );
 		$this->mAllowedRedirectParams = array( 'limit' );
@@ -862,7 +887,7 @@ class SpecialMyuploads extends UnlistedSpecialPage {
 /**
  * Redirect from Special:PermanentLink/### to index.php?oldid=###
  */
-class SpecialPermanentLink extends UnlistedSpecialPage {
+class SpecialPermanentLink extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'PermanentLink' );
 		$this->mAllowedRedirectParams = array();
