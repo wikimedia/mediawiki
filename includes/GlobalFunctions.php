@@ -590,8 +590,11 @@ function wfMsgNoDB( $key ) {
 
 /**
  * Get a message from the language file, for the content
+ *
+ * @deprecated in 1.18; use wfMessage()
  */
 function wfMsgNoDBForContent( $key ) {
+	wfDeprecated( __FUNCTION__ );
 	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
@@ -629,6 +632,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  * @param $key String
  */
 function wfMsgWeirdKey( $key ) {
+	wfDeprecated( __FUNCTION__ );
 	$source = wfMsgGetKey( $key, false, true, false );
 	if ( wfEmptyMsg( $key ) ) {
 		return '';
