@@ -446,7 +446,7 @@ class SpecialPageFactory {
 				$url = $title->getFullUrl( $query );
 				$context->output->redirect( $url );
 				wfProfileOut( __METHOD__ );
-				return $redirect;
+				return $title;
 			} else {
 				$context->title = $page->getTitle();
 			}
