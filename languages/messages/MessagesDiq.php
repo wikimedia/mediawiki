@@ -503,7 +503,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'loginlanguagelabel'         => 'Zıwan: $1',
 'suspicious-userlogout'      => 'Waştişê tu ya veciyayişi kebul nibiya cunki ihtimal o ke waştiş yew browser ya zi proksiyê heripiyaye ra ameya.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Parola bıvurne',
 'resetpass_announce'        => 'Şıma pê yew parolayê muweqqet hesab kerd a, qey qedyayişe dekewtış newe yew parola bınuse:',
 'resetpass_text'            => 'Parolayê hesab bıvurn',

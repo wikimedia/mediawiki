@@ -168,7 +168,7 @@ $messages = array(
 'accountcreated'          => 'Катталды',
 'loginlanguagelabel'      => 'Тил: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Эски сырсөз:',
 'newpassword' => 'Жаңы сырсөз:',
 

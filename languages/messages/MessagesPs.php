@@ -610,7 +610,7 @@ $1',
 'usernamehasherror'          => 'کارن-نوم نشي کېدلای چې کرښکې لوښې ولري',
 'loginlanguagelabel'         => 'ژبه: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'پټنوم بدلول',
 'resetpass_header'          => 'د ګڼون پټنوم بدلول',
 'oldpassword'               => 'زوړ پټنوم:',

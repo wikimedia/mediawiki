@@ -773,7 +773,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '비밀번호 바꾸기',
 'resetpass_announce'        => '이메일로 받은 임시 암호로 로그인했습니다. 로그인을 마치려면 새 암호를 입력해 주세요:',
 'resetpass_header'          => '비밀번호 변경',

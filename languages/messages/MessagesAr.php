@@ -951,7 +951,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'تغيير كلمة السر',
 'resetpass_announce'        => 'تم تسجيل دخولك بكلمة سر مؤقتة.
 للدخول بشكل نهائي، يجب عليك ضبط كلمة سر جديدة هنا:',

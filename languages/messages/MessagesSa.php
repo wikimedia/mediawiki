@@ -591,7 +591,7 @@ The following {{PLURAL:$1|file is|$1 files are}} in the current category.',
 'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
 'loginlanguagelabel'      => 'भाषा : $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_text'            => '<!-- पाठं अत्र लिखतु -->',
 'oldpassword'               => 'पुरातन रहस्यवाक् :',
 'newpassword'               => 'नूतन रहस्यवाक् :',

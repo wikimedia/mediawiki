@@ -320,7 +320,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'accountcreatedtext'         => 'Geavaheaddji $1 geavaheaddjidovddaldat ráhkaduvvui.',
 'loginlanguagelabel'         => 'Giella: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Suollemassáni gurren',
 'resetpass_announce'        => 'Čálligohtet sisa e-poasttain sáddejuvvon suollemassánin. Fertet addit ođđa suollemassáni dasa:',
 'resetpass_text'            => '<!-- Lasit dasa teavstta -->',

@@ -753,7 +753,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Endra passord',
 'resetpass_announce'        => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
 'resetpass_text'            => '<!-- Legg til tekst her -->',
@@ -770,6 +770,10 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass-wrong-oldpass'   => 'Feil mellombels eller noverande passord.
 Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels passord.',
 'resetpass-temp-password'   => 'Mellombels passord:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Attendestilling av passord',
+'passwordreset-username' => 'Brukarnamn:',
 
 # Edit page toolbar
 'bold_sample'     => 'Halvfeit skrift',
@@ -2878,8 +2882,8 @@ Dei andre felta er gøymde som standard.
 'exif-colorspace'                  => 'Fargerom',
 'exif-componentsconfiguration'     => 'Komponentanalyse',
 'exif-compressedbitsperpixel'      => 'Komprimerte bits pr. pixel',
-'exif-pixelydimension'             => 'Gyldig biletbreidd',
-'exif-pixelxdimension'             => 'Gyldig bilethøgd',
+'exif-pixelydimension'             => 'Biletbreidd',
+'exif-pixelxdimension'             => 'Bilethøgd',
 'exif-usercomment'                 => 'Brukarkommentarar',
 'exif-relatedsoundfile'            => 'Tilknytt lydfil',
 'exif-datetimeoriginal'            => 'Dato og tid laga',

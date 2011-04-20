@@ -627,7 +627,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => '響 PHP 嘅 mail() 參數度出現咗未知嘅錯誤',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '改密碼',
 'resetpass_announce'        => '你已經用咗一個臨時電郵碼登入。要完成登入，你一定要響呢度定一個新嘅密碼：',
 'resetpass_text'            => '<!-- 響呢度加入文字 -->',

@@ -767,6 +767,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'createaccount'              => 'Créer un compte',
 'gotaccount'                 => "Vous avez déjà un compte ? '''$1'''.",
 'gotaccountlink'             => 'Connectez-vous',
+'userlogin-resetlink'        => 'Vous avez oublié vos détails de connexion ?',
 'createaccountmail'          => 'par courriel',
 'createaccountreason'        => 'Motif :',
 'badretype'                  => 'Les mots de passe que vous avez saisis ne correspondent pas.',
@@ -836,7 +837,7 @@ Veuillez attendre avant d’essayer à nouveau.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Changer de mot de passe',
 'resetpass_announce'        => 'Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
 'resetpass_text'            => '<!-- Ajoutez le texte ici -->',
@@ -853,6 +854,19 @@ Veuillez attendre avant d’essayer à nouveau.',
 'resetpass-wrong-oldpass'   => 'Mot de passe actuel ou temporaire invalide.
 Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mot de passe temporaire.',
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
+
+# Special:PasswordReset
+'passwordreset'              => 'Remise à zéro du mot de passe',
+'passwordreset-text'         => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
+'passwordreset-legend'       => 'Remise à zéro du mot de passe',
+'passwordreset-disabled'     => 'La remise à zéro du mot de passe a été désactivé sur ce wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
+'passwordreset-username'     => 'Nom d’utilisateur :',
+'passwordreset-email'        => 'Adresse de courriel :',
+'passwordreset-emailtitle'   => 'Détails du compte sur {{SITENAME}}',
+'passwordreset-emailelement' => "Nom d'utilisateur :       $1
+Mot de passe temporaire : $2",
+'passwordreset-emailsent'    => 'Un courriel de rappel a été envoyé.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -3214,6 +3228,22 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-nickname'                    => "Nom informel de l'image",
 'exif-rating'                      => 'Note (sur 5)',
 'exif-rightscertificate'           => 'Certificat de gestion des droits',
+'exif-copyrightowner'              => "Propriétaire du droit d'auteur",
+'exif-usageterms'                  => "Conditions d'utilisation",
+'exif-webstatement'                => "Déclaration de droits d'auteur en ligne",
+'exif-originaldocumentid'          => 'Identifiant unique du document original',
+'exif-licenseurl'                  => 'URL de la licence',
+'exif-attributionurl'              => 'Lors de la réutilisation de ce travail, veuillez lier à',
+'exif-preferredattributionname'    => 'Lors de la réutilisation de ce travail, veuillez créditer',
+'exif-pngfilecomment'              => 'Commentaire de fichier PNG',
+'exif-disclaimer'                  => 'Désistement',
+'exif-contentwarning'              => 'Avertissement sur le contenu',
+'exif-giffilecomment'              => 'Commentaire de fichier GIF',
+'exif-intellectualgenre'           => "Type d'élément",
+'exif-scenecode'                   => 'Code de scène IPTC',
+'exif-event'                       => 'Événement représenté',
+'exif-organisationinimage'         => 'Organisation représentée',
+'exif-personinimage'               => 'Personne représentée',
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',
@@ -3367,6 +3397,42 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Nord vrai',
 'exif-gpsdirection-m' => 'Nord magnétique',
+
+'exif-dc-contributor' => 'Contributeurs',
+'exif-dc-coverage'    => 'Portée spatiale ou temporelle du média',
+'exif-dc-date'        => 'Date(s)',
+'exif-dc-publisher'   => 'Éditeur',
+'exif-dc-relation'    => 'Médias connexes',
+'exif-dc-rights'      => 'Droits',
+'exif-dc-source'      => 'Média source',
+'exif-dc-type'        => 'Type de média',
+
+'exif-rating-rejected' => 'Rejeté',
+
+'exif-isospeedratings-overflow' => 'Plus grand que 65535',
+
+'exif-iimcategory-ace' => 'Arts, culture et loisirs',
+'exif-iimcategory-clj' => 'Crime et droit',
+'exif-iimcategory-dis' => 'Catastrophes et accidents',
+'exif-iimcategory-fin' => 'Économie et affaires',
+'exif-iimcategory-edu' => 'Éducation',
+'exif-iimcategory-evn' => 'Environnement',
+'exif-iimcategory-hth' => 'Santé',
+'exif-iimcategory-hum' => 'Intérêt humain',
+'exif-iimcategory-lab' => 'Travail',
+'exif-iimcategory-lif' => 'Mode de vie et de loisirs',
+'exif-iimcategory-pol' => 'Politique',
+'exif-iimcategory-rel' => 'Religion et croyances',
+'exif-iimcategory-sci' => 'Science et technologie',
+'exif-iimcategory-soi' => 'Questions sociales',
+'exif-iimcategory-spo' => 'Sports',
+'exif-iimcategory-war' => 'Guerre, conflit et trouble',
+'exif-iimcategory-wea' => 'Météo',
+
+'exif-urgency-normal' => 'Normale ($1)',
+'exif-urgency-low'    => 'Faible ($1)',
+'exif-urgency-high'   => 'Haute ($1)',
+'exif-urgency-other'  => "Priorité définie par l'utilisateur ($1)",
 
 # External editor support
 'edit-externally'      => 'Modifier ce fichier en utilisant une application externe',

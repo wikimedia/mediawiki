@@ -607,7 +607,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
 'resetpass_announce'        => 'Aamäldig mit em Code, wu per Mail zuegschickt woren isch. Zum d Aamäldig abzschliesse, muesch jetz e nej Passwort wehle.',
 'resetpass_text'            => '<!-- Tue do dr Text ergänze -->',

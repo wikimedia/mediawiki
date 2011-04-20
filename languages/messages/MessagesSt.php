@@ -93,7 +93,7 @@ $messages = array(
 'badretype'          => 'Mapetjo a mabedi o a ngotseng ha a tshwane.',
 'mailmypassword'     => 'Nthomele password ya ka ka email',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Lepetjo la kgale:',
 'newpassword' => 'Lepetjo le letjha:',
 'retypenew'   => 'Ngola lepetjo le letjha hape:',

@@ -109,7 +109,7 @@ $messages = array(
 'accountcreated'             => 'Agawa so account',
 'accountcreatedtext'         => 'Agawa la so user account para $1.',
 
-# Password reset dialog
+# Change password dialog
 'newpassword' => 'Balon password:',
 
 # Edit page toolbar

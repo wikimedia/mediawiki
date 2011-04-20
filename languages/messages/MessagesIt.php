@@ -733,7 +733,7 @@ Riprovare più tardi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cambia la password',
 'resetpass_announce'        => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
 'resetpass_text'            => '<!-- Aggiungere il testo qui -->',
@@ -750,6 +750,10 @@ Riprovare più tardi.',
 'resetpass-wrong-oldpass'   => 'Password temporanea o corrente non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-temp-password'   => 'Password temporanea:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Reimposta password',
+'passwordreset-username' => 'Nome utente:',
 
 # Edit page toolbar
 'bold_sample'     => 'Grassetto',
@@ -2905,8 +2909,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-colorspace'                  => 'Spazio dei colori',
 'exif-componentsconfiguration'     => 'Significato di ciascuna componente',
 'exif-compressedbitsperpixel'      => 'Modalità di compressione immagine',
-'exif-pixelydimension'             => 'Larghezza effettiva immagine',
-'exif-pixelxdimension'             => 'Altezza effettiva immagine',
+'exif-pixelydimension'             => 'Larghezza immagine',
+'exif-pixelxdimension'             => 'Altezza immagine',
 'exif-usercomment'                 => "Note dell'utente",
 'exif-relatedsoundfile'            => 'File audio collegato',
 'exif-datetimeoriginal'            => 'Data e ora di creazione dei dati',
@@ -2921,8 +2925,8 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-spectralsensitivity'         => 'Sensibilità spettrale',
 'exif-isospeedratings'             => 'Sensibilità ISO',
 'exif-shutterspeedvalue'           => 'Tempo di esposizione',
-'exif-aperturevalue'               => 'Apertura',
-'exif-brightnessvalue'             => 'Luminosità',
+'exif-aperturevalue'               => 'Apertura APEX',
+'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => 'Correzione esposizione',
 'exif-maxaperturevalue'            => 'Apertura massima',
 'exif-subjectdistance'             => 'Distanza del soggetto',
@@ -2984,10 +2988,16 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsareainformation'          => 'Nome della zona GPS',
 'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Correzione differenziale GPS',
+'exif-keywords'                    => 'Parole chiave',
 'exif-objectname'                  => 'Titolo breve',
+'exif-languagecode'                => 'Lingua',
+'exif-iimcategory'                 => 'Categoria',
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',
+
+'exif-copyrighted-true'  => 'Protetto da copyright',
+'exif-copyrighted-false' => 'Pubblico dominio',
 
 'exif-unknowndate' => 'Data sconosciuta',
 
@@ -3123,6 +3133,10 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpslongitude-e' => 'Longitudine est',
 'exif-gpslongitude-w' => 'Longitudine ovest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metri}} sul livello del mare',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metri}} sotto il livello del mare',
+
 'exif-gpsstatus-a' => 'Misurazione in corso',
 'exif-gpsstatus-v' => 'Misurazione interoperabile',
 
@@ -3139,9 +3153,34 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsdestdistance-m' => 'Miglia',
 'exif-gpsdestdistance-n' => 'Miglia nautiche',
 
+'exif-gpsdop-excellent' => 'Eccellente ($1)',
+'exif-gpsdop-moderate'  => 'Moderata ($1)',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzione reale',
 'exif-gpsdirection-m' => 'Direzione magnetica',
+
+'exif-isospeedratings-overflow' => 'Maggiore di 65535',
+
+'exif-iimcategory-ace' => 'Arte, cultura e spettacolo',
+'exif-iimcategory-dis' => 'Disastri e incidenti',
+'exif-iimcategory-fin' => 'Economia e affari',
+'exif-iimcategory-edu' => 'Istruzione',
+'exif-iimcategory-evn' => 'Ambiente',
+'exif-iimcategory-hth' => 'Salute',
+'exif-iimcategory-lab' => 'Lavoro',
+'exif-iimcategory-lif' => 'Stile di vita e tempo libero',
+'exif-iimcategory-pol' => 'Politica',
+'exif-iimcategory-rel' => 'Religione e fede',
+'exif-iimcategory-sci' => 'Scienza e tecnologia',
+'exif-iimcategory-soi' => 'Questioni sociali',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Guerra, conflitti e disordini',
+'exif-iimcategory-wea' => 'Meteo',
+
+'exif-urgency-normal' => 'Normale ($1)',
+'exif-urgency-low'    => 'Bassa ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
 
 # External editor support
 'edit-externally'      => 'Modifica questo file usando un programma esterno',

@@ -145,7 +145,7 @@ $messages = array(
 
 'errorpagetitle'   => 'ଭୁଲ',
 'tagline'          => '{{SITENAME}} ରୁ',
-'help'             => 'ସାହାଜ୍ୟ',
+'help'             => 'ସାହାଯ୍ୟ',
 'search'           => 'ଖୋଜିବା',
 'searchbutton'     => 'ଖୋଜିବା',
 'go'               => 'ଯିବା',
@@ -251,7 +251,7 @@ $messages = array(
 'createaccountreason'     => 'କାରଣ:',
 'loginlanguagelabel'      => 'ଭାଷା: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'ପୂର୍ବ ପାସଉଆଡ଼:',
 'newpassword' => 'ନୁଆ ପାସଉଆଡ଼:',
 

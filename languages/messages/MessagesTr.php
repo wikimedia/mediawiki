@@ -788,7 +788,7 @@ Lütfen tekrar denemeden önce bekleyin.',
 # E-mail sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Parolayı değiştir',
 'resetpass_announce'        => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
 Girişi bitirmek için, burada yeni bir parola yazın:',
@@ -807,6 +807,10 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-wrong-oldpass'   => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
 'resetpass-temp-password'   => 'Geçici parola:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Parola sıfırlama',
+'passwordreset-username' => 'Kullanıcı adı:',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -1036,8 +1040,8 @@ $3 tarafından verilen sebep ''$2''",
 'page_first'             => 'ilk',
 'page_last'              => 'son',
 'histlegend'             => "Fark seçimi: karşılaştırmayı istediğiniz 2 sürümün önündeki dairelere tıklayıp, enter'a basın ya da sayfanın en altında bulunan düğmeye basın.<br />
-Tanımlar: (güncel) = güncel sürümle aradaki fark,
-(önceki) = bir önceki sürümle aradaki fark, K = küçük değişiklik.",
+Tanımlar: '''({{int:cur}})''' = güncel sürümle aradaki fark,
+'''({{int:last}})''' = bir önceki sürümle aradaki fark, '''{{int:minoreditletter}}''' = küçük değişiklik.",
 'history-fieldset-title' => 'Geçmişe gözat',
 'history-show-deleted'   => 'Sadece silinenler',
 'histfirst'              => 'En eski',

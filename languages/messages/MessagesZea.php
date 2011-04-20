@@ -450,7 +450,7 @@ Heef asjeblieft een heldig e-mailadres op of lit 't veld leeg.",
 Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'loginlanguagelabel'         => 'Taele: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => "Wachtwoôrd herinstell'n",
 'resetpass_announce'  => "Je bin anemeld mie een tiedelijke code die a je per e-mail is toe-ezon'n. Voer een nieuw wachtwoôrd in om 't anmelden te voltooien:",
 'resetpass_header'    => "Wachtwoôrd herinstell'n",

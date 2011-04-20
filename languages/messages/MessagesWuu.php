@@ -472,7 +472,7 @@ $2',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '侬登出个要求已经拨回头脱，因为渠可能是由已损坏个浏览器或者缓存代理传送个。',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '更改密码',
 'resetpass_announce'        => '侬是通过一只临时发送到e-mail里向个代码登录的。要完成登录，侬必须垃此地设定一只新密码：',
 'resetpass_header'          => '更改密码',

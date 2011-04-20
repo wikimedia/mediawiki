@@ -420,7 +420,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 # E-mail sending
 'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'bddl taguri n uzray',
 'resetpass_announce'        => 'Tkcmt {{GENDER:||e|(e)}} s yat tangalt lli kin ilkmt s tbrat emeil . tangaltad ur tgi abla tin yat twalt. Bac ad tkmlt tqqiyyidank kcm tangalt tamaynut nk ɣid:',
 'resetpass_header'          => 'Sbadl taguri n tangalt n umiḍal (compte)',

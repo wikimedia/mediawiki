@@ -645,7 +645,7 @@ Sila tunggu sebentar dan cuba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Tukar kata laluan',
 'resetpass_announce'        => 'Anda sedang log masuk dengan kata laluan sementara. Untuk log masuk dengan sempurna, sila tetapkan kata laluan baru di sini:',
 'resetpass_text'            => '<!-- Tambah teks di sini -->',

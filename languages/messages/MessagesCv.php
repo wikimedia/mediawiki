@@ -439,7 +439,7 @@ $1',
 'createaccount-title'        => '{{SITENAME}}: хутшăнакана хушасси',
 'loginlanguagelabel'         => 'Чĕлхе: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'               => 'Хутшăнаканăн вăрттăн сăмахне çĕнетесси',
 'resetpass_header'        => 'Пароле пăрахăçла',
 'oldpassword'             => 'Кивě пароль',

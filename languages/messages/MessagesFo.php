@@ -420,7 +420,7 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 'accountcreated'             => 'Konto upprættað',
 'loginlanguagelabel'         => 'Mál: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Gamalt loyniorð:',
 'newpassword' => 'Nýtt loyniorð:',
 'retypenew'   => 'Skriva nýtt loyniorð umaftur:',

@@ -545,7 +545,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'प्रवेशशव्द परिवर्तन गर्नुहोस्',
 'resetpass_announce'        => 'तपाईंले अस्थायी ई-मेल कोडको आधारमा प्रवेश गर्नु भएकोछ।
 प्रवेशकार्य पूरा गर्न नयाँ प्रवेश शव्द यहाँ दिनुहोस्:',

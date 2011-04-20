@@ -412,7 +412,7 @@ Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Sp
 'accountcreated'             => 'Hordcleofan ȝescapen',
 'loginlanguagelabel'         => 'Sprǣċ: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Þafungƿord hƿeorfan',
 'oldpassword'               => 'Eald þafungƿord:',
 'newpassword'               => 'Nīƿu þafungƿord:',

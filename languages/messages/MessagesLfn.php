@@ -328,7 +328,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'emailconfirmlink'        => 'Aproba tu adirije de eposta',
 'loginlanguagelabel'      => 'Lingua: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword'               => 'Sinia secreta vea:',
 'newpassword'               => 'Sinia secreta nova:',
 'retypenew'                 => 'Re-entra tu sinia secreta nova:',

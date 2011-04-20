@@ -786,7 +786,7 @@ Por favor aguarde antes de tentar novamente.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Alterar senha',
 'resetpass_announce'        => 'Você foi autenticado através de uma senha temporária. Para prosseguir, será necessário definir uma nova senha.',
 'resetpass_text'            => '<!-- Adicionar texto aqui -->',
@@ -803,6 +803,10 @@ Por favor aguarde antes de tentar novamente.',
 'resetpass-wrong-oldpass'   => 'Senha temporária ou atual inválida.
 Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
 'resetpass-temp-password'   => 'Senha temporária:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Repor Palavra-chave',
+'passwordreset-username' => 'Nome de usuário:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',

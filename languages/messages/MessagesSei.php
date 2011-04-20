@@ -386,7 +386,7 @@ confirmom account zo coccebj de'me.",
 'accountcreatedtext'         => 'Jönneram $1 mii puo.',
 'loginlanguagelabel'         => 'Itom: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => "Account quimx canj'reset",
 'resetpass_announce'  => "Me caápo code temp e-iitomöx mii. Fini caápo, me reset' hunquimx canj cmaadexepe:",
 'resetpass_header'    => "Reset'quimx canj",

@@ -334,7 +334,7 @@ $messages = array(
 'accountcreated'          => 'Formys yw an acont',
 'loginlanguagelabel'      => 'Yeth: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Chanjya ger-tremena',
 'resetpass_header'          => 'Chanjya ger-tremena an acont',
 'oldpassword'               => 'Ger-tremena coth:',

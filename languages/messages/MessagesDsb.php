@@ -632,7 +632,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Gronidło změniś',
 'resetpass_announce'        => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',
 'resetpass_text'            => '<!-- Dodaj how tekst -->',

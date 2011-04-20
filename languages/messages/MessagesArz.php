@@ -785,7 +785,7 @@ $2',
 من فضلك استنى قبل المحاولة مرة تانيه.',
 'loginlanguagelabel'         => 'اللغة: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'غيّر الباسورد',
 'resetpass_announce'        => 'اتسجل دخولك دلوقتى بالكود اللى اتبعتلك فى الايميل. علشان تخلص عملية الدخول ،لازم تعملك باسورد جديدة هنا:',
 'resetpass_text'            => '<!-- أضف نصا هنا -->',

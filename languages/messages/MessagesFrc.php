@@ -377,7 +377,7 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'accountcreatedtext'         => "Le compte d'useur pour $1 a été créé.",
 'loginlanguagelabel'         => 'Langue: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Rétablir le mot de passe du compte',
 'resetpass_announce'  => "Pour le moment, vous êtes connecté avec un mot de passe qu'a été envoyé par e-mail.  Pour finir de vous connecter, il faut créer un nouveau mot de passe ici:",
 'resetpass_text'      => '<!-- Mettez du texte ici -->',

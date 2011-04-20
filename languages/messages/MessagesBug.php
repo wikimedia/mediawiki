@@ -194,7 +194,7 @@ $messages = array(
 'loginerror'              => 'Éro log attama',
 'mailmypassword'          => 'E-mail adacili baru',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Pasewodo matoa:',
 
 # Edit page toolbar

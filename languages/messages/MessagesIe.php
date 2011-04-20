@@ -217,7 +217,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
 'loginlanguagelabel'         => 'Lingue: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Anteyan passa-parol:',
 'newpassword' => 'Nov passa-parol:',
 'retypenew'   => 'Confirmar nov passa-parol',

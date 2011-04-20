@@ -720,7 +720,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Неизвестна грешка в mail() функцията на PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Промяна на парола',
 'resetpass_announce'        => 'Влязохте с временен код, получен по електронната поща. Сега е нужно да си изберете нова парола:',
 'resetpass_text'            => '<!-- Тук добавете текст -->',
@@ -737,6 +737,9 @@ $2',
 'resetpass-wrong-oldpass'   => 'Невалидна временна или текуща парола.
 Възможно е вече успешно да сте сменили паролата си или да сте поискали нова временна парола.',
 'resetpass-temp-password'   => 'Временна парола:',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Потребителско име:',
 
 # Edit page toolbar
 'bold_sample'     => 'Получер текст',
@@ -2702,7 +2705,7 @@ $1',
 'tooltip-ca-nstab-main'           => 'Преглед на основната страница',
 'tooltip-ca-nstab-user'           => 'Преглед на потребителската страница',
 'tooltip-ca-nstab-media'          => 'Преглед на медийната страница',
-'tooltip-ca-nstab-special'        => 'Това е специална страница, която не може да се редактира.',
+'tooltip-ca-nstab-special'        => 'Това е специална страница, която не може да бъде редактирана.',
 'tooltip-ca-nstab-project'        => 'Преглед на проектната страница',
 'tooltip-ca-nstab-image'          => 'Преглед на страницата на файла',
 'tooltip-ca-nstab-mediawiki'      => 'Преглед на системното съобщение',

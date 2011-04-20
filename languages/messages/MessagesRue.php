@@ -523,7 +523,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Незнама хыба у PHP mail() функції',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Змінити гесло',
 'resetpass_announce'        => 'Приголошуєте ся дочасным геслом, котре было послане електронічнов поштов. Про закончіня приголошіня треба задати нове гесло ту:',
 'resetpass_header'          => 'Зміна гесла',

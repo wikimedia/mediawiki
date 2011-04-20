@@ -713,7 +713,7 @@ Por favor, agarde antes de probar outra vez.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cambiar o contrasinal',
 'resetpass_announce'        => 'Debe rexistrarse co código temporal que recibiu por correo electrónico. Para finalizar o rexistro debe indicar un novo contrasinal aquí:',
 'resetpass_text'            => '<!-- Engadir texto aquí -->',
@@ -730,6 +730,10 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass-wrong-oldpass'   => 'O contrasinal temporal ou actual é incorrecto.
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Eliminar o contrasinal',
+'passwordreset-username' => 'Nome de usuario:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negra',

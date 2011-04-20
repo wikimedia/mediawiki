@@ -71,8 +71,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Näütäq, ku pall'o pruukjit taa lehe perrä kaes",
 'tog-oldsig'                  => 'Parhilladsõ alakirotusõ proomikaehus:',
 'tog-fancysig'                => 'Pruugiq vikiteksti moodulist alakirotust (ilma automaatsõ lingildä)',
-'tog-externaleditor'          => "Pruugiq vaikimiisi välist tekstitoimõndajat (õnnõ as'atundjilõ, nõud suq puutri ümbresäädmist)",
-'tog-externaldiff'            => "Pruugiq vaikimiisi välist võrrõlusprogrammi (õnnõ as'atundjilõ, nõud su puutri ümbresäädmist)",
+'tog-externaleditor'          => "Pruugiq vaikimiisi välist tekstitoimõndajat (õnnõ as'atundjilõ, nõud suq puutri ümbresäädmist, kaeq [http://www.mediawiki.org/wiki/Manual:External_editors More information.])",
+'tog-externaldiff'            => "Pruugiq vaikimiisi välist võrrõlusprogrammi (õnnõ as'atundjilõ, nõud su puutri ümbresäädmist, kaeq [http://www.mediawiki.org/wiki/Manual:External_editors More information.])",
 'tog-showjumplinks'           => 'Panõq lehe algustõ kipõqlingiq',
 'tog-uselivepreview'          => 'Pruugiq kipõkaehust (JavaScript) (proomi)',
 'tog-forceeditsummary'        => 'Annaq teedäq, ku olõ-i kirotõt kokkovõtõt',
@@ -229,6 +229,7 @@ $messages = array(
 'printableversion'  => 'Trükükujo',
 'permalink'         => 'Püsülink',
 'print'             => 'Trüküq vällä',
+'view'              => 'Näütäq',
 'edit'              => 'Toimõndaq',
 'create'            => 'Luuq leht',
 'editthispage'      => 'Toimõndaq seod artiklit',
@@ -268,6 +269,9 @@ $messages = array(
 'jumpto'            => 'Mineq üle:',
 'jumptonavigation'  => 'juhtminõ',
 'jumptosearch'      => 'otsminõ',
+'pool-timeout'      => 'Kinniqpidämise uutmisaig om läbi',
+'pool-queuefull'    => 'Kinniqpandmiisi järekõrd om täüs',
+'pool-errorunknown' => 'Tiidmäldä hädä',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} tutvustus',
@@ -311,6 +315,8 @@ $messages = array(
 'toc'                     => 'Sisukõrd',
 'showtoc'                 => 'näütäq',
 'hidetoc'                 => 'käkiq',
+'collapsible-collapse'    => 'Käkiq ärq',
+'collapsible-expand'      => 'Näütäq',
 'thisisdeleted'           => 'Kaeq vai tiiq tagasi $1?',
 'viewdeleted'             => 'Näüdädäq $1?',
 'restorelink'             => '{{PLURAL:$1|üts kistutõt muutminõ|$1 kustutõdut muutmist}}',
@@ -495,7 +501,7 @@ Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä 
 Oodaq vähä inne ku proovit vahtsõst.",
 'loginlanguagelabel'         => 'Kiil: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Muudaq salasõnna',
 'resetpass_announce'        => 'Sa lätsit sisse e-postiga saadõdu aotlidsõ koodiga. Kõrdapiten sisseminekis tulõ sul siin tetäq hindäle  vahtsõnõ salasõna:',
 'resetpass_text'            => '<!-- Kirodaq siiäq -->',
@@ -508,6 +514,7 @@ Oodaq vähä inne ku proovit vahtsõst.",
 'resetpass_forbidden'       => 'Salasõnno saa-i muutaq.',
 'resetpass-no-info'         => 'Taa lehe pääle päsemises piät olõma nimega sisse lännüq.',
 'resetpass-submit-loggedin' => 'Muudaq salasõnna',
+'resetpass-submit-cancel'   => 'Jätäq katski',
 'resetpass-wrong-oldpass'   => 'Viganõ aotlinõ vai parhillanõ salasõna.
 Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ salasõna.',
 'resetpass-temp-password'   => 'Aotlinõ salasõna:',

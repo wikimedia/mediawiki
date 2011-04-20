@@ -486,7 +486,7 @@ Kerem ke, oncia bıcerrebne.',
 'usernamehasherror'        => 'Namê karberi de karakteri gunê têwerte ra mebê',
 'loginlanguagelabel'       => 'Zon: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Parola bıvurne',
 'resetpass_header'          => 'Parola hesabi bıvurne',
 'oldpassword'               => 'Parola khane:',

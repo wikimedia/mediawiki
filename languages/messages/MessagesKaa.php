@@ -604,7 +604,7 @@ Endi saytqa kirip parolin\'izdi o\'zgertiwin\'iz kerek.
 Eger bul akkaunt nadurıs jaratılg\'an bolsa, bul xabarg\'a itibar bermesen\'izde boladı.',
 'loginlanguagelabel'         => 'Til: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => "Paroldi o'zgertiw",
 'resetpass_announce'        => "E-mailin'izge jiberilgen waqtınshalıq kod penen kirdin'iz.
 Kiriw protsessin juwmaqlaw ushın jan'a parolin'izdi usı jerge kiritin':",

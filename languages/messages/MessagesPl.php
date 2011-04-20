@@ -371,6 +371,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cd.',
 'index-category'                 => 'Strony indeksowane',
 'noindex-category'               => 'Strony nieindeksowane',
+'broken-file-category'           => 'Strony z zerwanymi linkami do plików',
 
 'mainpagetext'      => "'''Instalacja MediaWiki powiodła się.'''",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -666,6 +667,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'createaccount'              => 'Załóż nowe konto',
 'gotaccount'                 => "Masz już konto? '''$1'''.",
 'gotaccountlink'             => 'Zaloguj się',
+'userlogin-resetlink'        => 'Zapomniałeś danych logowania?',
 'createaccountmail'          => 'poprzez e‐mail',
 'createaccountreason'        => 'Powód',
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
@@ -742,7 +744,7 @@ Odczekaj chwilę zanim ponowisz próbę.',
 # E-mail sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Zmień hasło',
 'resetpass_announce'        => '{{GENDER:|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e‐mail.
 Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
@@ -760,6 +762,13 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło.
 Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(‐aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Wyczyść hasło',
+'passwordreset-text'     => 'Wypełnij formularz by otrzymać e-mail z przypomnieniem danych twojego konta.',
+'passwordreset-legend'   => 'Resetuj hasło',
+'passwordreset-disabled' => 'Na tej wiki wyłączono mozliwość resetowania haseł.',
+'passwordreset-username' => 'Nazwa użytkownika:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',

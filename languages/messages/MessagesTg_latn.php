@@ -446,7 +446,7 @@ Agar in hisob iştibohe soxta şudaast, in nomaro nodida bigired.',
 Lutfan peş az on, ki dubora taloş kuned, sabr kuned.',
 'loginlanguagelabel'      => 'Zabon: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_announce'        => 'Şumo bo kodi muvaqatī ba sistem vurud şudaed. Baroi ançom dodani vurudşavī, şumo bojad kalimai uburī çadidro inço vorid kuned:',
 'resetpass_header'          => 'Taƣjiri guzarvoƶai hisob',
 'oldpassword'               => 'Kalimai kūhnai ubur:',

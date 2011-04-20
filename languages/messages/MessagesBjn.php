@@ -507,7 +507,7 @@ Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 # E-mail sending
 'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ubah katasunduk',
 'resetpass_announce'        => 'Pian babuat log awan sabuah kudi samantara nang disurili.
 Hagan manuntungakan babuat log, Pian musti manyetel sabuah katasunduk hanyar di sia:',
@@ -782,7 +782,7 @@ Ini pinanya sudah dihapus matan wiki ini, atawa dingarani lain.
 Cubai [[Special:Search|gagai di wiki ini]] gasan tungkaran hanyar bakarabat.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kumin dibuang)',
+'rev-deleted-comment'         => '(kasimpulan babakan dibuang)',
 'rev-deleted-user'            => '(ngaran pamuruk dibuang)',
 'rev-deleted-event'           => '(log palakuan dibuang)',
 'rev-deleted-user-contribs'   => '[ngaran pamuruk atawa alamat IP dibuang - babakan disungkupakan matan daptar sumbangan]',
@@ -1350,6 +1350,7 @@ $1',
 
 # File deletion
 'filedelete'                  => 'Mahapus $1',
+'filedelete-intro'            => "Pian huwal mahapus barakas '''[[Media:$1|$1]]''' awan barataan halamnya.",
 'filedelete-submit'           => 'Hapus',
 'filedelete-reason-otherlist' => 'Alasan nang lain',
 

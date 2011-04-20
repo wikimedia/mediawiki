@@ -647,7 +647,7 @@ Please log in again after you receive it.
 # E-mail sending
 'php-mail-error-unknown' => 'PHPની મેલ() કામગીરીમાં અજ્ઞાત ત્રુટિ',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
 'resetpass_announce'        => 'તમે હંગામી ઇમેઇલ કોડ સાથે લોગ ઇન કર્યું.
 લોગીંગ પુરૂં કરવા માટે તમારે નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) આપવો પડશે:',

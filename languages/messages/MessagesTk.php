@@ -518,7 +518,7 @@ Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Sessiýa ýapmak boýunça talabyňyz ret edildi, sebäbi ol nädogry brauzer ýa-da keşleýji proksi tarapyndan iberilen ýaly-la.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Paroly üýtget',
 'resetpass_announce'        => 'Size iberilen wagtlaýyn parol bilen sessiýa açdyňyz.
 Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',

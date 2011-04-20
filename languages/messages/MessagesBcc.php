@@ -604,7 +604,7 @@ $2',
 'login-throttled'            => 'شما په کلمه رمز ای حساب باز جهد کتت نوکی. لطفا صبر کنیت و. رندا جهد کنیت.',
 'loginlanguagelabel'         => 'زبان: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'کلمه رمزءَ‌عوض کن',
 'resetpass_announce'        => 'شما گون یک هنوکین کد ایمیل بوتگین وارد بوتءیت.
 په تمام کتن ورود، شما باید یک نوکین کلمه رمز اداں شرکنیت',

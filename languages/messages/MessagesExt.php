@@ -466,7 +466,7 @@ Eberias entral ena tu cuenta i chambal la tu consínia.
 Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'loginlanguagelabel'         => 'Palra: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Escambial la consínia',
 'resetpass_announce'        => 'As entrau ena tu cuenta con una consínia temporal. Pol favol, escrebi una nueva consínia aquí:',
 'resetpass_text'            => '<!-- Aquí s´escrebi el testu -->',

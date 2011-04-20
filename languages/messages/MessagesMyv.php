@@ -581,7 +581,7 @@ $messages = array(
 'accountcreatedtext'         => '$1-нь совицянь таркась теевсь-шкавсь.',
 'loginlanguagelabel'         => 'Кель: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Полавтомс совамо валот',
 'resetpass_header'          => 'Полавтомс совамо валот',
 'oldpassword'               => 'Ташто совамо валот:',

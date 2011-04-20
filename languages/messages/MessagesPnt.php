@@ -414,7 +414,7 @@ $messages = array(
 'createaccount-title'        => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
 'loginlanguagelabel'         => 'Γλώσσαν: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Νέον σημάδιν',
 'resetpass_header'          => "Άλλαξον σημάδ'",
 'oldpassword'               => 'Παλαιόν σημάδιν:',

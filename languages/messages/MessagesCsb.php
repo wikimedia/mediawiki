@@ -415,7 +415,7 @@ Ni mòżesz miec ju wicy.',
 'createaccount-title'        => 'Kònto ùsôdzoné dlô {{SITENAME}}',
 'loginlanguagelabel'         => 'Jãzëk: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Zmieni parolã',
 'oldpassword'               => 'Stôrô parola:',
 'newpassword'               => 'Nowô parola',

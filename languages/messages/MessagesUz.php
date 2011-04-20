@@ -256,7 +256,7 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'loginsuccess'            => "'''{{SITENAME}}ga \"\$1\" foydalanuvchi nomi bilan kirdingiz.'''",
 'wrongpassword'           => 'Kiritgan mahfiy soʻzingiz notoʻgʻri. Iltimos, qaytadan kiritib koʻring.',
 
-# Password reset dialog
+# Change password dialog
 'retypenew' => 'Yangi mahfiy soʻzni qayta tering:',
 
 # Edit page toolbar

@@ -390,7 +390,7 @@ $messages = array(
 'createaccount-title'     => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܒ {{SITENAME}}',
 'loginlanguagelabel'      => 'ܠܫܢܐ: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'resetpass_header'          => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ ܕܚܘܫܒܢܐ',
 'oldpassword'               => 'ܡܠܬܐ ܕܥܠܠܐ ܥܬܝܩܬܐ:',
@@ -399,6 +399,9 @@ $messages = array(
 'resetpass-submit-loggedin' => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'resetpass-submit-cancel'   => 'ܒܛܘܠ',
 'resetpass-temp-password'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ:',
+
+# Special:PasswordReset
+'passwordreset-username' => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 
 # Edit page toolbar
 'bold_sample'     => 'ܟܬܒܬܐ ܥܒܝܬܐ',
@@ -455,7 +458,7 @@ $messages = array(
 ܗܕܐ ܦܐܬܐ ܐܝܬ ܡܢ ܟܕܘ.',
 
 # "Undo" feature
-'undo-summary' => 'ܠܐ ܥܒܘܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
+'undo-summary' => 'ܠܐ ܬܥܒܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܠܐ ܡܬܡܨܝܢܐ',
@@ -539,7 +542,7 @@ $messages = array(
 'lineno'                   => 'ܣܪܛܐ $1:',
 'compareselectedversions'  => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
-'editundo'                 => 'ܠܐ ܥܒܘܕ',
+'editundo'                 => 'ܠܐ ܬܥܒܕ',
 'diff-multi'               => '({{PLURAL:$1|ܚܕܐ ܬܢܝܬܐ ܡܨܥܝܬܐ|$1 ܬܢܝܬ̈ܐ ܡܨܥܝܬ̈ܐ}} ܒܝܕ {{PLURAL:$2|ܚܕ ܡܦܠܚܢܐ ܠܐ ܓܠܝܚܬܐ|$2 ܡܦܠܚܢ̈ܐ ܠܐ ܓܠܝܚܬ̈ܐ}})',
 'diff-multi-manyusers'     => '({{PLURAL:$1|One ܚܕܐ ܬܢܝܬܐ ܡܨܥܝܬܐ|$1 ܬܢܝܬ̈ܐ ܡܨܥܝܬ̈ܐ}} ܒܝܕ ܝܬܝܪ ܡܢ $2 {{PLURAL:$2|ܚܕ ܡܦܠܚܢܐ ܠܐ ܓܠܝܚܬܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܓܠܝܚܬ̈ܐ}})',
 
@@ -1521,7 +1524,7 @@ $1',
 
 # HTML forms
 'htmlform-submit'              => 'ܫܕܪ',
-'htmlform-reset'               => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
+'htmlform-reset'               => 'ܠܐ ܬܥܒܕ ܫܘܚܠܦ̈ܐ',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
 
 );

@@ -670,7 +670,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Canvia la contrasenya',
 'resetpass_announce'        => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
 'resetpass_text'            => '<!-- Afegiu-hi un text -->',

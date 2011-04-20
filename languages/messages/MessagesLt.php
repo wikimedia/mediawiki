@@ -665,7 +665,7 @@ Palaukite prieš bandant vėl.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Keisti slaptažodį',
 'resetpass_announce'        => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
 'resetpass_text'            => '<!-- Įterpkite čia tekstą -->',

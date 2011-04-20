@@ -640,7 +640,7 @@ Per favor attende ante de probar lo novemente.',
 # E-mail sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cambiar contrasigno',
 'resetpass_announce'        => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le accesso, tu debe definir un nove contrasigno hic:',
@@ -658,6 +658,10 @@ Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'resetpass-wrong-oldpass'   => 'Le contrasigno temporari o actual es invalide.
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password'   => 'Contrasigno temporari:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Reinitialisar contrasigno',
+'passwordreset-username' => 'Nomine de usator:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',

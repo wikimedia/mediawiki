@@ -367,7 +367,7 @@ E ʻoluʻolu, e kūlia hou.',
 'accountcreatedtext'      => 'Ua lilo ‘ia ka mea ho‘ohana no $1.',
 'loginlanguagelabel'      => "Kou 'ōlelo: $1",
 
-# Password reset dialog
+# Change password dialog
 'newpassword'       => 'ʻŌlelo hūnā hou:',
 'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
 

@@ -593,7 +593,7 @@ Negearje it berjocht as dizze brûker sûnder jo meiwitten oanmakke is.',
 Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'loginlanguagelabel'         => 'Taal: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Wachtwurd feroarje',
 'resetpass_announce'        => "Jo binne oanmeld mei in tydlike koade dy't jo per e-mail tastjoerd is. Fier in nij wachtwurd yn om it oanmelden ôf te meitsjen.",
 'resetpass_header'          => 'Wachtwurd feroarje',

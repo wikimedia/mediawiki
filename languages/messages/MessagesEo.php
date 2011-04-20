@@ -792,7 +792,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ŝanĝi pasvorton',
 'resetpass_announce'        => 'Vi ensalutis kun provizora retpoŝtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton ĉi tien:',
 'resetpass_text'            => '<!-- Aldonu tekston ĉi tien -->',
@@ -809,6 +809,10 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'resetpass-wrong-oldpass'   => 'Malvalida provizora aŭ nuna pasvorto.
 Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password'   => 'Provizora pasvorto:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Restarigo de pasvorto',
+'passwordreset-username' => 'Salutnomo:',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -2465,7 +2469,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'ipusubmit'                       => 'Forigi ĉi tiun forbaron',
 'unblocked'                       => '[[User:$1|$1]] estas restarigita.',
 'unblocked-id'                    => 'Forbaro $1 estas forigita.',
-'ipblocklist'                     => 'Forbaritaj IP-adresoj kaj salutnomoj',
+'ipblocklist'                     => 'Forbaritaj uzantoj',
 'ipblocklist-legend'              => 'Trovi forbaritan uzanton.',
 'blocklist-target'                => 'Celo',
 'blocklist-reason'                => 'Kialo',
@@ -2710,7 +2714,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-interwiki-namespace' => 'Cela nomspaco:',
 'import-upload-filename'     => 'Dosiernomo:',
 'import-comment'             => 'Komento:',
-'importtext'                 => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
+'importtext'                 => 'Bonvolu eksporti la dosieron el la fonta vikio per la [[Special:ExportSpeciala:Export|eksportilo]]. Konservu ĝin sur via persona komputilo kaj poste alŝutu ĝin tien ĉi.',
 'importstart'                => 'Importante paĝojn...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versioj}}',
 'importnopages'              => 'Neniu paĝo por importi.',
@@ -2926,8 +2930,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonita de la cifereca fotilo aŭ skanilo uzata krei aux skani ĝin. Se la dosiero estis modifita de ties originala stato, iuj detaloj eble ne estas tute estos sama kiel la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
-'metadata-fields'   => 'La jenaj EXIF-metadatumaj kampoj estos inkluzivitaj en bildo-paĝoj kiam la metadatuma tabelo estas disfaldigita. Aliaj estos kaŝita defaŭlte.
-
+'metadata-fields'   => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 
+Aliaj estos kaŝitaj defaŭlte.
 * make
 * model
 * datetimeoriginal
@@ -2976,8 +2980,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-colorspace'                  => 'Kolor-spaco',
 'exif-componentsconfiguration'     => 'Signifo de ĉiu kompono',
 'exif-compressedbitsperpixel'      => 'Reĝimo de bilda densigado',
-'exif-pixelydimension'             => 'Valida larĝeco de bildo',
-'exif-pixelxdimension'             => 'Valida alteco de bildo',
+'exif-pixelydimension'             => 'Larĝeco de bildo',
+'exif-pixelxdimension'             => 'Alteco de bildo',
 'exif-usercomment'                 => 'Komentoj de uzanto',
 'exif-relatedsoundfile'            => 'Rilata son-dosiero',
 'exif-datetimeoriginal'            => 'Dato kaj tempo de datuma generado',
@@ -2991,9 +2995,9 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-exposureprogram'             => 'Ekspona programo',
 'exif-spectralsensitivity'         => 'Spektruma sensemo',
 'exif-isospeedratings'             => 'ISO sentiveco',
-'exif-shutterspeedvalue'           => 'Rapido de obturatoro',
-'exif-aperturevalue'               => 'Aperturo',
-'exif-brightnessvalue'             => 'Heleco',
+'exif-shutterspeedvalue'           => 'APEX-Rapido de obturatoro',
+'exif-aperturevalue'               => 'APEX-Aperturo',
+'exif-brightnessvalue'             => 'APEX-Heleco',
 'exif-exposurebiasvalue'           => 'Ekspona emo',
 'exif-maxaperturevalue'            => 'Maksimuma pejzaĝa diafragmo',
 'exif-subjectdistance'             => 'Distanco de subjekto',

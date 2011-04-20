@@ -795,7 +795,7 @@ Aguarde antes de tentar novamente, por favor.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Alterar palavra-chave',
 'resetpass_announce'        => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.
 Para prosseguir, será necessário definir uma nova palavra-chave.',
@@ -813,6 +813,10 @@ Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass-wrong-oldpass'   => 'Palavra-chave temporária ou actual inválida.
 Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Repor palavra-chave',
+'passwordreset-username' => 'Nome de utilizador:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto a negrito',

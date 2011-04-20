@@ -515,7 +515,7 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'createaccount-title'     => 'Masyin skopu fu {{SITENAME}}',
 'loginlanguagelabel'      => 'Tongo: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'        => 'Kenki yu waktiwortu',
 'resetpass_header' => 'Kenki yu waktiwortu',
 'oldpassword'      => 'Owru waktiwortu:',

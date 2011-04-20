@@ -825,7 +825,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Άγνωστο σφάλμα στη συνάρτηση της PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Αλλαγή κωδικού πρόσβασης',
 'resetpass_announce'        => 'Συνδεθήκατε με ένα προσωρινό κωδικό, σταλμένο με e-mail. Για να ολοκληρώσετε την σύνδεση, πρέπει να στείλετε ένα νέο κωδικό εδώ:',
 'resetpass_text'            => '<!-- Προσθέστε κείμενο εδώ -->',

@@ -473,7 +473,7 @@ Voluntez enirar altrafoye pos recevar ol.',
 'createaccount-title'        => 'Kreo di konto en {{SITENAME}}',
 'loginlanguagelabel'         => 'Linguo: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Chanjar pasovorto',
 'resetpass_header'          => 'Chanjar pasovorto di konto',
 'oldpassword'               => 'Anciena pasovorto:',

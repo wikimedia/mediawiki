@@ -764,7 +764,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'កំហុសមិនស្គាល់នៅក្នុងអនុគមន៍ mail() របស់ PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '​ប្តូរ​ពាក្យសំងាត់​',
 'resetpass_announce'        => 'អ្នកបានកត់ឈ្មោះចូលដោយ​អក្សរកូដអ៊ីមែល​បណ្តោះអាសន្ន​មួយ​។
 

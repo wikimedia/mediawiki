@@ -492,7 +492,7 @@ $2',
 'createaccount-title'        => 'Ποίησις λογισμοῦ διὰ {{SITENAME}}',
 'loginlanguagelabel'         => 'Γλῶσσα: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ἀλλαγὴ συνθήματος',
 'resetpass_header'          => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
 'oldpassword'               => 'Πρότερον σύνθημα:',

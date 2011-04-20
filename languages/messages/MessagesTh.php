@@ -660,7 +660,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'ข้อผิดพลาดที่ไม่รู้จักในฟังก์ชัน mail() ของ PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'เปลี่ยนรหัสผ่าน',
 'resetpass_announce'        => 'คุณล็อกอินผ่านรหัสอีเมลชั่วคราว คุณต้องใส่ค่ารหัสผ่านใหม่เพื่อเสร็จสิ้นขั้นตอนการล็อกอิน:',
 'resetpass_header'          => 'เปลี่ยนรหัสผ่าน',

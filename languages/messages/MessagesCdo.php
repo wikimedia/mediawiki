@@ -250,7 +250,7 @@ Siŭ gáu hâiu, chiāng gái láuk diē siŏh làu.',
 'accountcreatedtext'         => '$1 gì ê̤ṳng-hô dióng-hô̤ ī-gĭng châung-gióng lāu.',
 'loginlanguagelabel'         => 'Ngṳ̄-ngiòng: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Gô mĭk-mā:',
 'newpassword' => 'Sĭng mĭk-mā:',
 'retypenew'   => 'Káuk-nêng sĭng mĭk-mā:',

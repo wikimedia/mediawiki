@@ -229,7 +229,7 @@ $messages = array(
 'mailmypassword'             => 'ސިއްރުބަސް އީމޭލުކުރައްވާ',
 'acct_creation_throttle_hit' => 'މާފު ކުރައްވާ، އެހެނީ ތިޔަބޭފުޅާ ވަނީ ކުރީއްސުރެ $1 މެންބަރުކަން ހޯއްދަވާފައި އެހެންވީމާ އިތުރަށް ލިބިވަޑައެއް ނުގަންނަވާނެ.',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'ކުރީގެ ސިއްރުބަސް:',
 
 # Edit page toolbar

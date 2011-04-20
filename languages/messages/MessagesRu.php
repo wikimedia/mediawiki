@@ -774,7 +774,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Неизвестная ошибка в PHP-функции mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Изменение пароля',
 'resetpass_announce'        => 'Вы представились с помощью временного пароля, полученного по электронной почте. Для завершения входа в систему, вы должны установить новый пароль.',
 'resetpass_text'            => '<!-- Добавьте сюда текст -->',
@@ -791,6 +791,10 @@ $2',
 'resetpass-wrong-oldpass'   => 'Неправильный временный или текущий пароль.
 Возможно, вы уже успешно изменили пароль, или запросили новый временный пароль.',
 'resetpass-temp-password'   => 'Временный пароль:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Сброс пароля',
+'passwordreset-username' => 'Имя участника:',
 
 # Edit page toolbar
 'bold_sample'     => 'Полужирное начертание',
@@ -3174,9 +3178,14 @@ $1',
 'exif-event'                       => 'Изображённое событие',
 'exif-organisationinimage'         => 'Изображённая организация',
 'exif-personinimage'               => 'Изображённый человек',
+'exif-originalimageheight'         => 'Высота изображения до кадрирования',
+'exif-originalimagewidth'          => 'Ширина изображения до кадрирования',
 
 # EXIF attributes
 'exif-compression-1' => 'Несжатый',
+
+'exif-copyrighted-true'  => 'Охраняется авторским правом',
+'exif-copyrighted-false' => 'Общественное достояние',
 
 'exif-unknowndate' => 'Неизвестная дата',
 
@@ -3194,6 +3203,8 @@ $1',
 
 'exif-xyresolution-i' => '$1 точек на дюйм',
 'exif-xyresolution-c' => '$1 точек на сантиметр',
+
+'exif-colorspace-65535' => 'Некалиброванное',
 
 'exif-componentsconfiguration-0' => 'не существует',
 
@@ -3308,6 +3319,10 @@ $1',
 'exif-gpslongitude-e' => 'восточной долготы',
 'exif-gpslongitude-w' => 'западной долготы',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|метр|метра|метров}} над уровнем моря',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|метр|метра|метров}} ниже уровня моря',
+
 'exif-gpsstatus-a' => 'Измерение не закончено',
 'exif-gpsstatus-v' => 'Готов к передаче данных',
 
@@ -3324,9 +3339,58 @@ $1',
 'exif-gpsdestdistance-m' => 'Миль',
 'exif-gpsdestdistance-n' => 'Морских миль',
 
+'exif-gpsdop-excellent' => 'Отличная ($1)',
+'exif-gpsdop-good'      => 'Хорошая ($1)',
+'exif-gpsdop-moderate'  => 'Средняя ($1)',
+'exif-gpsdop-fair'      => 'Ниже среднего ($1)',
+'exif-gpsdop-poor'      => 'Плохая ($1)',
+
+'exif-objectcycle-a' => 'Только утром',
+'exif-objectcycle-p' => 'Только вечером',
+'exif-objectcycle-b' => 'Утром и вечером',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинный',
 'exif-gpsdirection-m' => 'магнитный',
+
+'exif-ycbcrpositioning-1' => 'Центрированный',
+'exif-ycbcrpositioning-2' => 'CO-sited',
+
+'exif-dc-contributor' => 'Соавторы',
+'exif-dc-coverage'    => 'Пространственные или временные рамки медиа',
+'exif-dc-date'        => 'Дата(ы)',
+'exif-dc-publisher'   => 'Издатель',
+'exif-dc-relation'    => 'Связанные медиа',
+'exif-dc-rights'      => 'Права',
+'exif-dc-source'      => 'Исходное медиа',
+'exif-dc-type'        => 'Тип медиа',
+
+'exif-rating-rejected' => 'Отклонено',
+
+'exif-isospeedratings-overflow' => 'Более 65535',
+
+'exif-iimcategory-ace' => 'Искусство, культура и развлечения',
+'exif-iimcategory-clj' => 'Преступность и закон',
+'exif-iimcategory-dis' => 'Катастрофы и аварии',
+'exif-iimcategory-fin' => 'Экономика и бизнес',
+'exif-iimcategory-edu' => 'Образование',
+'exif-iimcategory-evn' => 'Окружающая среда',
+'exif-iimcategory-hth' => 'Здоровье',
+'exif-iimcategory-hum' => 'Примечательные истории',
+'exif-iimcategory-lab' => 'Труд',
+'exif-iimcategory-lif' => 'Образ жизни и досуг',
+'exif-iimcategory-pol' => 'Политика',
+'exif-iimcategory-rel' => 'Религия и вера',
+'exif-iimcategory-sci' => 'Наука и техника',
+'exif-iimcategory-soi' => 'Социальные вопросы',
+'exif-iimcategory-spo' => 'Спорт',
+'exif-iimcategory-war' => 'Войны, конфликты и беспорядки',
+'exif-iimcategory-wea' => 'Погода',
+
+'exif-urgency-normal' => 'Обычная ($1)',
+'exif-urgency-low'    => 'Низкая ($1)',
+'exif-urgency-high'   => 'Высокая ($1)',
+'exif-urgency-other'  => 'Определённый пользователем приоритет ($1)',
 
 # External editor support
 'edit-externally'      => 'Редактировать этот файл, используя внешнюю программу',

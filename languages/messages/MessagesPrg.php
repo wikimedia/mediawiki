@@ -476,7 +476,7 @@ Tu mazzi ignōritun šin waīstin, ik rekkens pastāi teīktan blāndas paggan.'
 Gēideis biskin, pirzdau tu wīrst bandāwuns etkūmps.',
 'loginlanguagelabel'         => 'Bilā: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Kitawīdinais kliptaswīrdan',
 'resetpass_announce'        => 'Tū assei engūbuns(si) sen kīsmingiskan kliptaswīrdan gaūtan pra e-mail. Kāi wangīnlai enēisenes prōcesan, ensadinnais nāunan kliptaswīrdan stwi:',
 'resetpass_header'          => 'Kitawīdinais kliptaswīrdan per swajjan rekkenan',

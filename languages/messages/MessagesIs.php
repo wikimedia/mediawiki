@@ -683,7 +683,7 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 Vinsamlegast reynið aftur síðar.',
 'loginlanguagelabel'         => 'Tungumál: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Breyta lykilorði',
 'resetpass_announce'        => 'Þú skráðir þig inn með tímabundnum netfangskóða.
 Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hér:',

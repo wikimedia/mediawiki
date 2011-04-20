@@ -715,7 +715,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Endre passord',
 'resetpass_announce'        => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
 'resetpass_text'            => '<!-- Legg til tekst her -->',
@@ -732,6 +732,10 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass-wrong-oldpass'   => 'Feil midlertidig eller nåværende passord.
 Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.',
 'resetpass-temp-password'   => 'Midlertidig passord:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Passordresetting',
+'passwordreset-username' => 'Brukernavn:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet tekst',
@@ -2047,7 +2051,9 @@ Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil
 'noemailtext'          => 'Dene brukeren har ikke oppgitt en gyldig e-postadresse.',
 'nowikiemailtitle'     => 'Ingen e-post tillatt',
 'nowikiemailtext'      => 'Denne brukeren har valgt å ikke motta e-post fra andre brukere.',
+'emailtarget'          => 'Skriv inn brukernavnet på mottakeren',
 'emailusername'        => 'Brukernavn:',
+'emailusernamesubmit'  => 'Send',
 'email-legend'         => 'Send en e-post til en annen {{SITENAME}}-bruker',
 'emailfrom'            => 'Fra:',
 'emailto'              => 'Til:',
@@ -2947,8 +2953,8 @@ Andre vil skjules som standard.
 'exif-colorspace'                  => 'Fargerom',
 'exif-componentsconfiguration'     => 'Betydning av hver komponent',
 'exif-compressedbitsperpixel'      => 'Bildekompresjonsmodus',
-'exif-pixelydimension'             => 'Gyldig bildebredde',
-'exif-pixelxdimension'             => 'Gyldig bildehøyde',
+'exif-pixelydimension'             => 'Bildebredde',
+'exif-pixelxdimension'             => 'Bildehøyde',
 'exif-usercomment'                 => 'Brukerkommentarer',
 'exif-relatedsoundfile'            => 'Relatert lydfil',
 'exif-datetimeoriginal'            => 'Dato og tid for datagenerering',
@@ -2962,9 +2968,9 @@ Andre vil skjules som standard.
 'exif-exposureprogram'             => 'Eksponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektralsensitivitet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
-'exif-shutterspeedvalue'           => 'Lukkerhastighet',
-'exif-aperturevalue'               => 'Apertur',
-'exif-brightnessvalue'             => 'Lysstyrke',
+'exif-shutterspeedvalue'           => 'APEX lukkerhastighet',
+'exif-aperturevalue'               => 'APEX blenderåpning',
+'exif-brightnessvalue'             => 'APEX lysstyrke',
 'exif-exposurebiasvalue'           => 'Eksponeringsbias',
 'exif-maxaperturevalue'            => 'Maksimal blender',
 'exif-subjectdistance'             => 'Avstand til subjekt',

@@ -1159,7 +1159,7 @@ Please wait before trying again.',
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
 
-# Change Password dialog
+# Change password dialog
 'resetpass'                 => 'Change password',
 'resetpass_announce'        => 'You logged in with a temporary e-mailed code.
 To finish logging in, you must set a new password here:',
@@ -1199,7 +1199,7 @@ You should log in and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
-'passwordreset-emailtext-user'   => 'User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
+'passwordreset-emailtext-user' => 'User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
 ($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this e-mail address:
 
 $2
@@ -1209,9 +1209,9 @@ You should log in and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
-'passwordreset-emailelement'     => "Username: $1
-Temporary password: $2",
-'passwordreset-emailsent'        => 'A reminder e-mail has been sent.',
+'passwordreset-emailelement'   => 'Username: $1
+Temporary password: $2',
+'passwordreset-emailsent'      => 'A reminder e-mail has been sent.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
@@ -3499,35 +3499,35 @@ You can view its source',
 'tooltip-summary'                 => 'Enter a short summary',
 
 # Stylesheets
-'common.css'        => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
-'standard.css'      => '/* CSS placed here will affect users of the Standard skin */', # only translate this message to other languages if you have to change it
-'nostalgia.css'     => '/* CSS placed here will affect users of the Nostalgia skin */', # only translate this message to other languages if you have to change it
-'cologneblue.css'   => '/* CSS placed here will affect users of the Cologne Blue skin */', # only translate this message to other languages if you have to change it
-'monobook.css'      => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
-'myskin.css'        => '/* CSS placed here will affect users of the MySkin skin */', # only translate this message to other languages if you have to change it
-'chick.css'         => '/* CSS placed here will affect users of the Chick skin */', # only translate this message to other languages if you have to change it
-'simple.css'        => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
-'modern.css'        => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
-'vector.css'        => '/* CSS placed here will affect users of the Vector skin */', # only translate this message to other languages if you have to change it
-'print.css'         => '/* CSS placed here will affect the print output */', # only translate this message to other languages if you have to change it
-'handheld.css'      => '/* CSS placed here will affect handheld devices based on the skin configured in $wgHandheldStyle */', # only translate this message to other languages if you have to change it
-'noscript.css'      => '/* CSS placed here will affect users with JavaScript disabled */', # only translate this message to other languages if you have to change it
+'common.css'              => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
+'standard.css'            => '/* CSS placed here will affect users of the Standard skin */', # only translate this message to other languages if you have to change it
+'nostalgia.css'           => '/* CSS placed here will affect users of the Nostalgia skin */', # only translate this message to other languages if you have to change it
+'cologneblue.css'         => '/* CSS placed here will affect users of the Cologne Blue skin */', # only translate this message to other languages if you have to change it
+'monobook.css'            => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
+'myskin.css'              => '/* CSS placed here will affect users of the MySkin skin */', # only translate this message to other languages if you have to change it
+'chick.css'               => '/* CSS placed here will affect users of the Chick skin */', # only translate this message to other languages if you have to change it
+'simple.css'              => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
+'modern.css'              => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
+'vector.css'              => '/* CSS placed here will affect users of the Vector skin */', # only translate this message to other languages if you have to change it
+'print.css'               => '/* CSS placed here will affect the print output */', # only translate this message to other languages if you have to change it
+'handheld.css'            => '/* CSS placed here will affect handheld devices based on the skin configured in $wgHandheldStyle */', # only translate this message to other languages if you have to change it
+'noscript.css'            => '/* CSS placed here will affect users with JavaScript disabled */', # only translate this message to other languages if you have to change it
 'group-autoconfirmed.css' => '/* CSS placed here will affect autoconfirmed users only */', # only translate this message to other languages if you have to change it
 'group-bot.css'           => '/* CSS placed here will affect bots only */', # only translate this message to other languages if you have to change it
 'group-sysop.css'         => '/* CSS placed here will affect sysops only */', # only translate this message to other languages if you have to change it
 'group-bureaucrat.css'    => '/* CSS placed here will affect bureaucrats only */', # only translate this message to other languages if you have to change it
 
 # Scripts
-'common.js'        => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
-'standard.js'      => '/* Any JavaScript here will be loaded for users using the Standard skin */', # only translate this message to other languages if you have to change it
-'nostalgia.js'     => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */', # only translate this message to other languages if you have to change it
-'cologneblue.js'   => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */', # only translate this message to other languages if you have to change it
-'monobook.js'      => '/* Any JavaScript here will be loaded for users using the MonoBook skin */', # only translate this message to other languages if you have to change it
-'myskin.js'        => '/* Any JavaScript here will be loaded for users using the MySkin skin */', # only translate this message to other languages if you have to change it
-'chick.js'         => '/* Any JavaScript here will be loaded for users using the Chick skin */', # only translate this message to other languages if you have to change it
-'simple.js'        => '/* Any JavaScript here will be loaded for users using the Simple skin */', # only translate this message to other languages if you have to change it
-'modern.js'        => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
-'vector.js'        => '/* Any JavaScript here will be loaded for users using the Vector skin */', # only translate this message to other languages if you have to change it
+'common.js'              => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
+'standard.js'            => '/* Any JavaScript here will be loaded for users using the Standard skin */', # only translate this message to other languages if you have to change it
+'nostalgia.js'           => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */', # only translate this message to other languages if you have to change it
+'cologneblue.js'         => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */', # only translate this message to other languages if you have to change it
+'monobook.js'            => '/* Any JavaScript here will be loaded for users using the MonoBook skin */', # only translate this message to other languages if you have to change it
+'myskin.js'              => '/* Any JavaScript here will be loaded for users using the MySkin skin */', # only translate this message to other languages if you have to change it
+'chick.js'               => '/* Any JavaScript here will be loaded for users using the Chick skin */', # only translate this message to other languages if you have to change it
+'simple.js'              => '/* Any JavaScript here will be loaded for users using the Simple skin */', # only translate this message to other languages if you have to change it
+'modern.js'              => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
+'vector.js'              => '/* Any JavaScript here will be loaded for users using the Vector skin */', # only translate this message to other languages if you have to change it
 'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */', # only translate this message to other languages if you have to change it
 'group-bot.js'           => '/* Any JavaScript here will be loaded for bots only */', # only translate this message to other languages if you have to change it
 'group-sysop.js'         => '/* Any JavaScript here will be loaded for sysops only */', # only translate this message to other languages if you have to change it

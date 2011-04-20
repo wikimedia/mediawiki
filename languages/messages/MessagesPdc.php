@@ -259,7 +259,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Paesswatt ennere',
 'oldpassword'               => 'Aldes Paesswatt:',
 'newpassword'               => 'Neies Paesswatt:',

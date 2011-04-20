@@ -641,7 +641,7 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 # E-mail sending
 'php-mail-error-unknown' => "Dao haet ziech 'n ónbekénde fout veurgedaon in de mail()-functie van PHP",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Wachwaord obbenuuts insjtèlle',
 'resetpass_announce'        => "Doe bös aangemeld mèt 'ne tiejdelikke code dae per e-mail is toegezönje. Veur 'n nuuj wachwaord in om 't aanmelje te voltooie:",
 'resetpass_header'          => 'Wachwaord obbenuuts insjtèlle',

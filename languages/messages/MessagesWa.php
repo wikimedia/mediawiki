@@ -418,7 +418,7 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'accountcreatedtext'         => "Li conte d' uzeu «$1» a stî ahivé.",
 'loginlanguagelabel'         => 'Lingaedje: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Vî scret',
 'newpassword' => 'Noû scret',
 'retypenew'   => "Ritapez l' noû scret",

@@ -624,7 +624,7 @@ Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cànbia la password',
 'resetpass_announce'        => "L'acesso el xe stà efetuà con un codice tenporaneo, mandà par e-mail. Par conpletar l'acesso bisogna inpostar na password nova:",
 'resetpass_text'            => '<!-- Zonta el testo qua -->',

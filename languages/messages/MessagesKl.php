@@ -243,7 +243,7 @@ $messages = array(
 'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
 Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Isissutissatoqaq:',
 'newpassword' => 'Isissutissaq nutaaq:',
 'retypenew'   => 'Isissutissaq nutaaq allaqqiuk',

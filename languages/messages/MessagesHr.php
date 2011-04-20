@@ -791,7 +791,7 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 # E-mail sending
 'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Promijeni lozinku',
 'resetpass_announce'        => 'Prijavljeni ste s privremenom lozinkom. Da završite proces mijenjanja lozinke, upišite ovdje novu lozinku:',
 'resetpass_header'          => 'Promijeni lozinku računa',

@@ -580,7 +580,7 @@ $1',
 'accountcreatedtext'      => 'Кхоллина декъашхо дlавазвар $1.',
 'loginlanguagelabel'      => 'Мотт: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ишар хийца',
 'resetpass_text'            => '<!-- Кхузахь язъде хьай йоза -->',
 'resetpass_header'          => 'Жамlаш дlаязвеллачуьна ишар хийцар',

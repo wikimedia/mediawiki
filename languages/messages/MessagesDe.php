@@ -489,6 +489,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 'index-category'                 => 'Indizierte Seiten',
 'noindex-category'               => 'Nichtindizierte Seiten',
+'broken-file-category'           => 'Seiten mit kaputten Dateilinks',
 
 'mainpagetext'      => "'''MediaWiki wurde erfolgreich installiert.'''",
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -786,6 +787,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'createaccount'              => 'Benutzerkonto anlegen',
 'gotaccount'                 => "Du hast bereits ein Benutzerkonto? '''$1'''.",
 'gotaccountlink'             => 'Anmelden',
+'userlogin-resetlink'        => 'Die Anmeldedaten vergessen?',
 'createaccountmail'          => 'per E-Mail',
 'createaccountreason'        => 'Grund:',
 'badretype'                  => 'Die beiden Passwörter stimmen nicht überein.',
@@ -853,7 +855,7 @@ Bitte warte, bevor du es erneut probierst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Passwort ändern',
 'resetpass_announce'        => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
 'resetpass_text'            => '<!-- Ergänze den Text hier -->',
@@ -870,6 +872,30 @@ Bitte warte, bevor du es erneut probierst.',
 'resetpass-wrong-oldpass'   => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-temp-password'   => 'Temporäres Passwort:',
+
+# Special:PasswordReset
+'passwordreset'                => 'Passwort zurücksetzen',
+'passwordreset-text'           => 'Bitte dieses Formular ausfüllen, um per E-Mail eine Erinnerung zu den Anmeldeinformationen deines Benutzerkontos zu erhalten.',
+'passwordreset-legend'         => 'Passwort zurücksetzen',
+'passwordreset-disabled'       => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
+'passwordreset-username'       => 'Benutzername:',
+'passwordreset-email'          => 'E-Mail-Adresse:',
+'passwordreset-emailtitle'     => 'Benutzerkontoinformationen auf {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+
+$2
+
+{{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab.
+Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht länger ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
+'passwordreset-emailtext-user' => 'Benutzer $1 auf {{SITENAME}} hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+
+$2
+
+{{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab. Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
+'passwordreset-emailelement'   => 'Benutzername: $1
+Temporäres Passwort: $2',
+'passwordreset-emailsent'      => 'Eine Erinnerung wurde per E-Mail versandt.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
@@ -2899,15 +2925,15 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-summary'                 => 'Gib eine kurze Zusammenfassung ein',
 
 # Stylesheets
-'common.css'      => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
-'standard.css'    => '/* Das folgende CSS wird für Benutzer der Klassik-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'nostalgia.css'   => '/* Das folgende CSS wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'cologneblue.css' => '/* Das folgende CSS wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'monobook.css'    => '/* Das folgende CSS wird für Benutzer der Monobook-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'myskin.css'      => '/* Das folgende CSS wird für Benutzer der MySkin-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'chick.css'       => '/* Das folgende CSS wird für Benutzer der Küken-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'simple.css'      => '/* Das folgende CSS wird für Benutzer der Einfach-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'modern.css'      => '/* Das folgende CSS wird für Benutzer der Modern-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
+'common.css'              => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
+'standard.css'            => '/* Das folgende CSS wird für Benutzer der Klassik-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'nostalgia.css'           => '/* Das folgende CSS wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'cologneblue.css'         => '/* Das folgende CSS wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'monobook.css'            => '/* Das folgende CSS wird für Benutzer der Monobook-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'myskin.css'              => '/* Das folgende CSS wird für Benutzer der MySkin-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'chick.css'               => '/* Das folgende CSS wird für Benutzer der Küken-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'simple.css'              => '/* Das folgende CSS wird für Benutzer der Einfach-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'modern.css'              => '/* Das folgende CSS wird für Benutzer der Modern-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
 
 /* Kleinschreibung in Navigationsbereichen verhindern */
 .portlet h5,
@@ -2917,23 +2943,30 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 #preftoc a {
     text-transform: none;
 }',
-'vector.css'      => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'print.css'       => '/* Das folgende CSS wird in der Druckausgabe geladen. */',
-'handheld.css'    => '/* Das folgende CSS wird für Handheld-Geräte, basierend auf der in $wgHandheldStyle konfigurierten Benutzeroberfläche, geladen. */',
-'noscript.css'    => '/* Das folgende CSS wirkt sich für Benutzer aus, die JavaScript deaktiviert haben */',
-'bureaucrat.css'  => '/* Das folgende CSS wird nur für Bürokraten geladen. */',
+'vector.css'              => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'print.css'               => '/* Das folgende CSS wird in der Druckausgabe geladen. */',
+'handheld.css'            => '/* Das folgende CSS wird für Handheld-Geräte, basierend auf der in $wgHandheldStyle konfigurierten Benutzeroberfläche, geladen. */',
+'noscript.css'            => '/* Das folgende CSS wirkt sich für Benutzer aus, die JavaScript deaktiviert haben */',
+'group-autoconfirmed.css' => '/* CSS an dieser Stelle wirkt sich nur auf automatisch bestätigte Benutzer aus */',
+'group-bot.css'           => '/* CSS an dieser Stelle wirkt sich nur auf Bots aus */',
+'group-sysop.css'         => '/* CSS an dieser Stelle wirkt sich nur auf Administratoren aus */',
+'group-bureaucrat.css'    => '/* Das folgende CSS wird nur für Bürokraten geladen. */',
 
 # Scripts
-'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
-'standard.js'    => '/* Das folgende JavaScript wird für Benutzer der Klassik-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'nostalgia.js'   => '/* Das folgende JavaScript wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer der Monobook-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer der MySkin-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'chick.js'       => '/* Das folgende JavaScript wird für Benutzer der Küken-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'simple.js'      => '/* Das folgende JavaScript wird für Benutzer der Einfach-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'modern.js'      => '/* Das folgende JavaScript wird für Benutzer der Modern-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'vector.js'      => '/* Das folgende JavaScript wird für Benutzer der Vector-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'common.js'              => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
+'standard.js'            => '/* Das folgende JavaScript wird für Benutzer der Klassik-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'nostalgia.js'           => '/* Das folgende JavaScript wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'cologneblue.js'         => '/* Das folgende JavaScript wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'monobook.js'            => '/* Das folgende JavaScript wird für Benutzer der Monobook-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'myskin.js'              => '/* Das folgende JavaScript wird für Benutzer der MySkin-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'chick.js'               => '/* Das folgende JavaScript wird für Benutzer der Küken-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'simple.js'              => '/* Das folgende JavaScript wird für Benutzer der Einfach-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'modern.js'              => '/* Das folgende JavaScript wird für Benutzer der Modern-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'vector.js'              => '/* Das folgende JavaScript wird für Benutzer der Vector-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'group-autoconfirmed.js' => '/* Das folgende JavaScript wird nur für automatisch bestätigte Benutzer geladen. */',
+'group-bot.js'           => '/* Das folgende JavaScript wird nur für Bots geladen. */',
+'group-sysop.js'         => '/* Das folgende JavaScript wird nur für Administratoren geladen. */',
+'group-bureaucrat.js'    => '/* Das folgende JavaScript wird nur für Bürokraten geladen. */',
 
 # Metadata
 'nodublincore'      => 'Dublin-Core-RDF-Metadaten sind auf diesem Server deaktiviert.',
@@ -3409,7 +3442,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpsdop-excellent' => 'Ausgezeichnet ($1)',
 'exif-gpsdop-good'      => 'Gut ($1)',
 'exif-gpsdop-moderate'  => 'Mittel ($1)',
-'exif-gpsdop-fair'      => 'Genau ($1)',
+'exif-gpsdop-fair'      => 'Akzeptabel ($1)',
 'exif-gpsdop-poor'      => 'Schwach ($1)',
 
 'exif-objectcycle-a' => 'Nur morgens',

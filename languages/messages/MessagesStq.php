@@ -519,7 +519,7 @@ Täif, eer du fon näien fersäkst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Uunbekoanden Failer mäd ju Funktion mail() fon PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Paaswoud annerje',
 'resetpass_announce'        => 'Anmäldenge mäd dän uur E-Mail tousoande Code. Uum ju Anmäldenge outousluuten, moast du nu n näi Paaswoud wääle.',
 'resetpass_header'          => 'Paaswoud annerje',
@@ -535,6 +535,10 @@ Täif, eer du fon näien fersäkst.',
 'resetpass-wrong-oldpass'   => 'Uungultich tiedelk of aktuell Paaswoud.
 Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiedelk Paaswoud fräiged.',
 'resetpass-temp-password'   => 'Tiedelk Paaswoud:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Paaswoud touräächsätte',
+'passwordreset-username' => 'Benutsernoome:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fatten Text',
@@ -2441,7 +2445,8 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'import-interwiki-namespace' => 'Siel-Noomensruum:',
 'import-upload-filename'     => 'Doatäinoome:',
 'import-comment'             => 'Kommentoar:',
-'importtext'                 => 'Ap disse Spezioalsiede konnen uur ju [[Special:Export|Exportfunktion]] in dän Wälwiki exportierde Sieden in dit Wiki importierd wäide.',
+'importtext'                 => 'Ju Doatäi uur ju Spezioalsiede [[Special:Export|Exportfunktion]] uut dän Wällewiki exportierje.
+Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'importstart'                => 'Sieden importierje …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versione}}',
 'importnopages'              => 'Neen Sieden toun Importierjen anweesend.',

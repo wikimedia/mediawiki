@@ -399,7 +399,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'accountcreatedtext'         => "Utente $1, ti te guägno l'açeiso!",
 'loginlanguagelabel'         => 'Lengoa: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Reverti a pòula segretta',
 'resetpass_header'    => 'Reverti a pòula segretta',
 'retypenew'           => "Ripette a nêuva paròlla d'ordine:",

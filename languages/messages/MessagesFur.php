@@ -463,7 +463,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'createaccount-title'     => 'Creazion di une identitât par {{SITENAME}}',
 'loginlanguagelabel'      => 'Lenghe: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'               => 'Gambie peraule clâf',
 'resetpass_header'        => 'Cambie peraule clâf de identitât',
 'oldpassword'             => 'Vecje peraule clâf',

@@ -488,7 +488,7 @@ Meka 'email' staksa icde vlevefa staava zo staksatar.",
 'createaccount-title'        => 'Pataredura koe {{SITENAME}}',
 'loginlanguagelabel'         => 'Ava : $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Va patabeksa betal !',
 'resetpass_announce'        => "Rin kan ugalorafa 'email' beksa va int pilkomodayal.
 Ta da wan zo pilkomodal, va warzaf remravlem batlize gobazel :",

@@ -516,7 +516,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'ХэщӀыкӀыгъуэ зымыӀэ хэукъуэгъуэ PHP-функциэ mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Пэролым и хъуэжын',
 'resetpass_announce'        => 'Парол щӀэхкӀэ системэм зыкъебгъэцӀыхуа, уи электронэ почтэм къыпхуэкӀуамкӀэ. Системэм зыкъегъэцӀыхуныр нэбгъэсын щхьэкӀэ, парол щӀэ тебгъувэн хуэй.',
 'resetpass_header'          => 'Аккаунтым и парол зэхъуэкӀыгъуэ',

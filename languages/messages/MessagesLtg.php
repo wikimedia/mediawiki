@@ -266,7 +266,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'mailmypassword'          => 'Atsyuteit maņ jaunu paroli',
 'loginlanguagelabel'      => 'Volūda: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_text'          => '<!-- Dalikt tekstu ite -->',
 'resetpass-submit-cancel' => 'Atsaukt',
 

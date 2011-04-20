@@ -596,7 +596,7 @@ Aspetta tanticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tò dumanna di discunnissioni fu niàta prichì pari ca veni di nu browser nun funziunanti o nu proxy di caching.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => "Scrivi n'àutra vota la password",
 'resetpass_announce'        => "Hai effittuatu l'accessu cu na password timpurània ca t'hà statu mannata via email. Pi tirminari l'accessu, hai a nziriri na password nova ccà:",
 'resetpass_text'            => '<!-- Agghiunci lu testu ccà -->',

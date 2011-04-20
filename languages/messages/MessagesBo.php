@@ -305,7 +305,7 @@ $messages = array(
 'mailmypassword'          => 'གློག་འཕྲིན་ལམ་ཡིག་གསར་བ།',
 'loginlanguagelabel'      => 'སྐད་རིགས། $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'ལམ་ཡིག་བརྗེ་བ།',
 'resetpass_announce'        => 'ཁྱེད་ཀྱིས་ང་ཚོས་བཏང་བའི་གནས་སྐབས་ལམ་ཡིག་ལ་བརྟེན་ནས་ནང་འཛུལ་བྱས་འདུག ནང་འཛུལ་ཆ་ཚང་བ་བྱེད་པར་འདིར་ངེས་པར་དུ་ལམ་ཡིག་གསར་བ་འཇུག་དགོས།',
 'oldpassword'               => 'ལམ་ཡིག་རྙིང་བ།',

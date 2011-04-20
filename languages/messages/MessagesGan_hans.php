@@ -469,7 +469,7 @@ $2',
 要系帐户创建不对𠮶话，倷就莫搭个只消息。',
 'loginlanguagelabel'         => '语言: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '设过帐户密码',
 'resetpass_announce'        => '倷系用到临时email𠮶代码登入𠮶。要登正入，倷要到个首设定只新密码:',
 'resetpass_header'          => '设过密码',

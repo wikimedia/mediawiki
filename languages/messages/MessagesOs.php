@@ -342,7 +342,7 @@ $messages = array(
 'emailconfirmlink'        => 'Дæ электронон посты адрис сфидар кæн',
 'loginlanguagelabel'      => 'Æвзаг: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_text'            => '<!-- Бахæсс дæ текст ам -->',
 'oldpassword'               => 'Раздæры пароль:',
 'newpassword'               => 'Новый пароль',

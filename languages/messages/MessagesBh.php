@@ -320,7 +320,7 @@ $1',
 'mailmypassword'          => 'नया गुप्त-शब्द ई-मेल पर भेजीं',
 'passwordremindertitle'   => '{{SITENAME}} खातिर नया अस्थायी गुप्त-शब्द',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'   => 'गुप्त-शब्द बदलीं',
 'oldpassword' => 'पुराना गुप्त-शब्द:',
 'newpassword' => 'नया गुप्त-शब्द:',

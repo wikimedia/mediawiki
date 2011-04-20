@@ -478,7 +478,7 @@ Biko meríáríá ya.',
 'usernamehasherror'       => "Áhè ọ'bànifé ènwéghịkị nwé nkárí",
 'loginlanguagelabel'      => 'Asụsụ: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Gbanwe okwu éjị à gáfe',
 'resetpass_header'          => 'Gbanwe okwúngáfè nke bùwá',
 'oldpassword'               => 'Mkpurụ okwu ejị a gafẹ ochië:',

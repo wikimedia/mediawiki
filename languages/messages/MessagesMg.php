@@ -710,7 +710,7 @@ Andraso kely ary andramo indray.",
 # E-mail sending
 'php-mail-error-unknown' => "Hadisoana tsy fantatra tao amin'ny tao mial() an'i PHP.",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Hanova ny tenimiafina',
 'resetpass_announce'        => "Nihiditra tenimiafina mailaka nalefanay tamin'ny imailaka ianao. Ampidiro ity tenimiafina ity mba hanapitra ny fampidirana.",
 'resetpass_header'          => "Hanova ny tenimiafin'ny kaonty",

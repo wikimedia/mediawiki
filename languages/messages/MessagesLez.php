@@ -91,13 +91,16 @@ $messages = array(
 'history_short'    => 'Тарих',
 'edit'             => 'Дегишарун',
 'create'           => 'Туькlуьрун',
+'editthispage'     => 'дегишунар и чарар',
 'delete'           => 'Къакъудун',
 'deletethispage'   => 'Къакъудун и хъувун',
 'protect'          => 'Xуьн',
+'protect_change'   => 'дегиш',
 'protectthispage'  => 'Xуьн и хъувун',
 'newpage'          => 'ЦIийи хъувун',
+'talkpage'         => 'И чараркай эхтилат',
 'talkpagelinktext' => 'Рахун',
-'personaltools'    => 'Инсан aлат',
+'personaltools'    => 'Инсан aлатl',
 'talk'             => 'Рахун',
 'toolbox'          => 'Aлаткъаб',
 'otherlanguages'   => 'Масса чIаларал',
@@ -154,7 +157,7 @@ $messages = array(
 'mailmypassword'          => 'Э-пучтадин цIийи куьлег',
 'loginlanguagelabel'      => 'ЧIалар: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Иски куьлег:',
 'newpassword' => 'ЦIийи куьлег:',
 
@@ -166,7 +169,7 @@ $messages = array(
 # Edit pages
 'minoredit'      => 'И гъвечIи дегишарун',
 'watchthis'      => 'Гелкъуьн и хъувун',
-'savearticle'    => 'Юзун къувун',
+'savearticle'    => 'Хуьн хъувун',
 'showdiff'       => 'Къаларун дегишарун',
 'loginreqlink'   => 'гьахьун',
 'newarticle'     => '(ЦIийи)',
@@ -182,7 +185,7 @@ $messages = array(
 'histlast'               => 'Гежа',
 
 # Revision deletion
-'rev-delundel'    => 'къалур/кIева',
+'rev-delundel'    => 'къалур/кIевун',
 'revdelete-log'   => 'Кар',
 'revdel-restore'  => 'къакъудун',
 'revdelete-uname' => 'ишлемишчидин тIар',
@@ -202,15 +205,17 @@ $messages = array(
 'search-result-size'        => '$1 ({{PLURAL:$2|1 гаф|$2 гафар}})',
 'search-suggest'            => 'Куьне икl лугьузани: $1',
 'search-interwiki-caption'  => 'Мукьва проект',
+'search-interwiki-more'     => '(хелин)',
 'search-mwsuggest-enabled'  => 'тапшуругъар аваз',
 'search-mwsuggest-disabled' => 'тапшуругъар авач',
 'searchall'                 => 'вири',
 'powersearch'               => 'Ахтармишун',
 'powersearch-legend'        => 'Ахтармишун',
-'powersearch-field'         => 'Идаз джагъурун',
+'powersearch-field'         => 'Идаз жагъурун',
 'powersearch-toggleall'     => 'Вири',
 
 # Preferences page
+'preferences'               => 'Хкягъунар',
 'mypreferences'             => 'ТуькIуьрунар',
 'prefs-datetime'            => 'Нумра ва вахт',
 'timezoneregion-africa'     => 'Африка',
@@ -242,6 +247,8 @@ $messages = array(
 
 # Recent changes
 'rcnote'          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
+'rcshowhideminor' => '$1 бицlи дегишунар',
+'rcshowhidebots'  => '$1 бот',
 'rcshowhidemine'  => '$1 зин дигишунар',
 'rclinks'         => 'Къалурун эхиримжи $1 са сятинлай $2 йикъал $3',
 'diff'            => 'тафават',
@@ -298,6 +305,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'Вири хъувун',
+'alphaindexline' => '$1 -лай $2 -ди',
 'allarticles'    => 'Вири хъувун',
 'allpagesnext'   => 'Къведайди',
 'allpagessubmit' => 'Фин',
@@ -314,6 +322,7 @@ $messages = array(
 'mywatchlist'   => 'Ахтаришунин чар',
 'watch'         => 'Гелкъуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
+'unwatch'       => 'Ишлемиш тийизвай',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Килигун...',
@@ -330,18 +339,21 @@ $messages = array(
 'rollbacklink' => 'авахьун далу',
 
 # Protect
-'protectcomment'    => 'Кар',
-'protectexpiry'     => 'Алатна',
-'protect-expiring'  => 'алатиз $1 (UTC)',
-'restriction-type'  => 'Ихтияр:',
-'restriction-level' => 'Кьадардин кьадар',
+'protectcomment'          => 'Кар',
+'protectexpiry'           => 'Алатна',
+'protect-default'         => ' Эхтияр гуз вири ишлемишчийриз',
+'protect-level-sysop'     => 'Гилан къавха',
+'protect-summary-cascade' => 'къвалагай къвалагай',
+'protect-expiring'        => 'алатиз $1 (UTC)',
+'restriction-type'        => 'Ихтияр:',
+'restriction-level'       => 'Кьадардин кьадар',
 
 # Namespace form on various pages
 'blanknamespace' => '(Асул)',
 
 # Contributions
 'contributions' => 'За авунай кIвалах',
-'mycontris'     => 'За авунай кlвалах',
+'mycontris'     => 'За авунай кIвалах',
 'contribsub2'   => 'Адаз ($1):  ($2)',
 'uctop'         => '(кIукI)',
 'year'          => 'Са йисалай (ва дериндиз):',
@@ -351,9 +363,10 @@ $messages = array(
 'sp-contributions-submit'   => 'Ахтармишун',
 
 # What links here
-'whatlinkshere'      => ' Гьихьтин чарар инна аватIа',
-'whatlinkshere-page' => 'Ишлемишчи',
-'whatlinkshere-next' => '{{PLURAL:$1|next|къведай $1}}',
+'whatlinkshere'            => ' Гьихьтин чарар инна аватIа',
+'whatlinkshere-page'       => 'Ишлемишчи',
+'whatlinkshere-next'       => '{{PLURAL:$1|next|къведай $1}}',
+'whatlinkshere-hideredirs' => '$1 массадал ракъурун',
 
 # Block/unblock
 'blockip'      => 'Ишлемишзавайдан хара',
@@ -370,26 +383,33 @@ $messages = array(
 'movereason'  => 'Фагьум:',
 'revertmove'  => 'хтун',
 
+# Thumbnails
+'thumbnail-more' => 'Эке хъувун',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Куьне ишлемишзавай чар',
 'tooltip-pt-preferences'         => 'Куьн хкягъунар',
-'tooltip-pt-logout'              => 'Экъечlун',
+'tooltip-pt-logout'              => 'ЭкъечIун',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
 'tooltip-ca-delete'              => 'Къакъудун и хъувун',
 'tooltip-ca-move'                => 'Юзун и хъувун',
 'tooltip-search'                 => 'Ахтармишун {{SITENAME}}',
 'tooltip-search-go'              => 'Чарчел фин, дуьз тIар аваз хьайитIа',
-'tooltip-search-fulltext'        => 'Чар джагъурун и кхьинар',
-'tooltip-n-mainpage'             => 'Мугьманвал чIехи чарчел',
+'tooltip-search-fulltext'        => 'Чар жагъурун и кхьинриз',
+'tooltip-n-mainpage'             => 'Мугьманвал чIехи чинал',
 'tooltip-n-mainpage-description' => 'Мугьманваал чIехи чарчел',
 'tooltip-n-recentchanges'        => 'Эхиримжи дигишунрин чарчин цIарар wiki-да',
 'tooltip-feed-rss'               => 'RSS  хуьрек и чарчиз',
 'tooltip-feed-atom'              => 'Atom  хуьрек и чарчиз',
 'tooltip-t-upload'               => 'Парвиниз шикил',
+'tooltip-save'                   => 'Куьн дегишунар хуьн',
 
 # Browsing diffs
 'previousdiff' => 'Иски дегишунар',
 'nextdiff'     => 'ЦIийи дегишунар',
+
+# Media information
+'file-info-size' => '$1 × $2 пикселар, шикилдин кьадар: $3, MIME жуьре: $4',
 
 # Metadata
 'metadata' => 'Метаюгъ',

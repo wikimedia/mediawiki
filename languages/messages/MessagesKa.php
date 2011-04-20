@@ -614,7 +614,7 @@ $1 საათში.',
 # E-mail sending
 'php-mail-error-unknown' => 'ამოუცნობი შეცდომა PHP-ის mail() ფუნქციაში',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'შეცვალეთ პაროლი',
 'resetpass_announce'        => 'თქვენ შემოხვედით დროებით ელ-ფოსტის კოდით. რეგისტრაციის დასრულებისთვის, უნდა შექმნათ ახალი პაროლი აქ:',
 'resetpass_text'            => '<!-- დამატებითი ტექსტი აქ -->',

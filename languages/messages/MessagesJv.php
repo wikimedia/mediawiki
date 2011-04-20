@@ -517,7 +517,7 @@ Tulung nunggu dhisik sadurungé njajal manèh.',
 'loginlanguagelabel'         => 'Basa: $1',
 'suspicious-userlogout'      => 'Panjaluk panjenengan supaya metu ditolak amarga katoné panjlajah internt utawa proksi panyinggah.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ganti tembung sandi',
 'resetpass_announce'        => 'Panjenengan wis mlebu log mawa kodhe sementara sing dikirim mawa e-mail. Menawa kersa nglanjutaké, panjenengan kudu milih tembung sandhi anyar ing kéné:',
 'resetpass_text'            => '<!-- Tambahaké teks ing kéné -->',

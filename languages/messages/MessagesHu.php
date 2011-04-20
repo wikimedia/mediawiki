@@ -784,7 +784,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 # E-mail sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Jelszó módosítása',
 'resetpass_announce'        => 'Az e-mailben elküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell megadnod egy új jelszót:',
 'resetpass_text'            => '<!-- Ide írd a szöveget -->',

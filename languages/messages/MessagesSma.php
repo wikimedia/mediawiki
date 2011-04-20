@@ -237,7 +237,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'accountcreated'          => 'Nuhtjien skaepede',
 'loginlanguagelabel'      => 'Gïele: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Båeries loevesbaakoe:',
 'newpassword' => 'Orre loevesbaakoe:',
 'retypenew'   => 'Odhasit orre loevesbaakoe:',

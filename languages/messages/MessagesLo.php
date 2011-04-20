@@ -382,7 +382,7 @@ $messages = array(
 'accountcreated'             => 'ບັນຊີ ໄດ້ຖືກສ້າງ ແລ້ວ',
 'accountcreatedtext'         => 'ບັນຊີ ຂອງ  $1 ໄດ້ ຖືກສ້າງແລ້ວ.',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword'       => 'ລະຫັດຜ່ານເກົ່າ:',
 'newpassword'       => 'ລະຫັດຜ່ານໃໝ່:',
 'retypenew'         => 'ພິມລະຫັດຜ່ານໃໝ່ອີກ:',

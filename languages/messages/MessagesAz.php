@@ -512,7 +512,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Parolu dəyiş',
 'resetpass_text'            => '<!-- Şərhinizi bura daxil edin -->',
 'resetpass_header'          => 'İstifadəçi parolunu dəyiş',

@@ -677,7 +677,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '更改密碼',
 'resetpass_announce'        => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
 'resetpass_text'            => '<!-- 在此處加入文字 -->',

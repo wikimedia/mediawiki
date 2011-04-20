@@ -615,7 +615,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Hesło změnić',
 'resetpass_announce'        => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
 'resetpass_text'            => '<!-- Tu tekst zasunyć -->',

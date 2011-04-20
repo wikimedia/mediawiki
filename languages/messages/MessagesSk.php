@@ -770,7 +770,7 @@ Prosím, počkajte predtým, než to skúsite znova.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznáma chyba vo funkcii PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Zmeniť heslo',
 'resetpass_announce'        => 'Prishlásili ste sa pomocou dočasného emailom zaslaného kódu. Pre dokončenie prihlásenia je potrebné tu nastaviť nové heslo:',
 'resetpass_text'            => '<!-- Sem pridajte text -->',

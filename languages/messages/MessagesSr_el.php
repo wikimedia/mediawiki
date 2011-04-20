@@ -696,7 +696,7 @@ Molimo vas da sačekate par minuta i pokušate opet.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtev za izlogovanje nije izvršen zato što izgleda da je poslat iz neispravnog brauzera ili preko keširanog proksija.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Promeni lozinku',
 'resetpass_announce'        => 'Prijavili ste se sa temporalnim kodom koji Vam je poslat preko e-pošte.
 Kako biste dovršili prijavljivanje, morate uneti novu lozinku:',
@@ -714,6 +714,10 @@ Kako biste dovršili prijavljivanje, morate uneti novu lozinku:',
 'resetpass-wrong-oldpass'   => 'Neispravna privremena ili aktuelna lozinka.
 Možda ste već uspešno promenili lozinku ili zatražili novu privremenu.',
 'resetpass-temp-password'   => 'Privremena šifra:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Obnavljanje lozinke',
+'passwordreset-username' => 'Korisničko ime:',
 
 # Edit page toolbar
 'bold_sample'     => 'podebljan tekst',

@@ -456,7 +456,7 @@ Pro praxere, cando dda retzis identìfica·ti torra.',
 'createaccount-title'     => 'Creatzione de unu account pro {{SITENAME}}',
 'loginlanguagelabel'      => 'Limba: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Càmbia sa password',
 'resetpass_header'          => 'Càmbia sa password de su account',
 'oldpassword'               => 'Password betza:',

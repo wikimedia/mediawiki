@@ -571,7 +571,7 @@ Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'loginlanguagelabel'         => 'Til: $1',
 'suspicious-userlogout'      => 'Çıqış istegeniñiz red etildi, çünki bozuq bir brauzer ya da keşleyici proksi tarafından yollanğan kibi körüne.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Parolni deñiştir',
 'resetpass_announce'        => 'Muvaqqat kod vastasınen kirdiñiz. Kirişni tamamlamaq içün yañı parolni mında qoyuñız:',
 'resetpass_header'          => 'Esapnıñ parolini deñiştir',

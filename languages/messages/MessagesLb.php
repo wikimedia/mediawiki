@@ -655,7 +655,7 @@ Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Fonctioun',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Passwuert änneren',
 'resetpass_announce'        => 'Dir sidd mat engem temporären , per E-Mail geschéckte Code ageloggt.
 Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
@@ -673,6 +673,10 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'resetpass-wrong-oldpass'   => 'Net valabelt temporäert oder aktuellt Passwuert.
 Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporäert Passwuert:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Passwuert zrécksetzen',
+'passwordreset-username' => 'Benotzernumm:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
@@ -2974,6 +2978,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-countrydest'                 => 'Gewisent Land',
 'exif-countrycodedest'             => 'Code vum gewisene Land',
 'exif-objectname'                  => 'Kuerzen Titel',
+'exif-specialinstructions'         => 'Besonnesch Instruktiounen',
 'exif-headline'                    => 'Iwwerschrëft',
 'exif-source'                      => 'Quell',
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
@@ -2981,11 +2986,13 @@ Déi aner sinn am Standard verstoppt.
 'exif-languagecode'                => 'Sprooch',
 'exif-iimversion'                  => 'IIM-Versioun',
 'exif-iimcategory'                 => 'Kategorie',
+'exif-iimsupplementalcategory'     => 'Zousätzlech Kategorien',
 'exif-datetimeexpires'             => 'Net benotzen nom',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
+'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-pngfilecomment'              => 'Bemierkung zum PNG-Fichier',
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
@@ -3160,6 +3167,7 @@ Déi aner sinn am Standard verstoppt.
 
 'exif-isospeedratings-overflow' => 'Méi grouss wéi 65535',
 
+'exif-iimcategory-ace' => 'Konscht, Kultur an Ënnerhalung',
 'exif-iimcategory-clj' => 'Kriminalitéit a Recht',
 'exif-iimcategory-dis' => 'Katastrofen an Akzidenter',
 'exif-iimcategory-fin' => 'Economie a Geschäft',

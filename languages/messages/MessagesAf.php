@@ -698,7 +698,7 @@ Wag asseblief alvorens u weer probeer.",
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Verander wagwoord',
 'resetpass_announce'        => "U het aangeteken met 'n tydelike e-poskode.
 Om voort te gaan moet u 'n nuwe wagwoord hier kies:",

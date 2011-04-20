@@ -501,7 +501,7 @@ $1 na oras.',
 'accountcreatedtext'         => "Ginibo na an ''account'' para ki $1.",
 'loginlanguagelabel'         => 'Tataramon: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => "Ipwesto giraray an sekretong panlaog kan ''account''",
 'resetpass_announce'        => "Nakalaog ka na may kodang temporaryong ''e''-sinurat. Para matapos an paglaog, kaipuhan mong magpwesto nin bâgong sekretong panlaog digdi:",
 'resetpass_text'            => '<!-- Magdugang nin teksto digdi -->',

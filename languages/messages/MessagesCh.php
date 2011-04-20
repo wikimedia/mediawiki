@@ -377,7 +377,7 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'createaccount-title'        => "Nina'huyong kuenta nu {{SITENAME}}",
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword'      => 'Password bihu:',
 'newpassword'      => 'Password nuebu:',
 'retypenew'        => "Na'tekla nuebu na password:",

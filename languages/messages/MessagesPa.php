@@ -370,7 +370,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'createaccount-title'        => '{{SITENAME}} ਲਈ ਅਕਾਊਂਟ ਬਣਾਉਣਾ',
 'loginlanguagelabel'         => 'ਭਾਸ਼ਾ: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'ਪਾਸਵਰਡ ਬਦਲੋ',
 'resetpass_announce'        => 'ਤੁਸੀਂ ਇੱਕ ਆਰਜ਼ੀ ਈ-ਮੇਲ ਕੀਤੇ ਕੋਡ ਨਾਲ ਲਾਗਇਨ ਕੀਤਾ ਹੈ। ਲਾਗਇਨ ਪੂਰਾ ਕਰਨ ਲਈ, ਤੁਹਾਨੂੰ ਇੱਥੇ ਨਵਾਂ ਪਾਸਵਰਡ ਦੇਣਾ ਪਵੇਗਾ:',
 'resetpass_header'          => 'ਅਕਾਊਂਟ ਪਾਸਵਰਡ ਬਦਲੋ',

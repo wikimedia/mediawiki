@@ -576,7 +576,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'পি-এইছ-পি mail() ফলনত অজ্ঞাত ত্ৰুটি',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'গুপ্তশব্দ শলনি',
 'resetpass_announce'        => 'আপুনি ই-মেইলত পোৱা অস্থায়ী গুপ্তশব্দৰে প্ৰৱেশ কৰিছে।
 প্ৰৱেশ সম্পুৰ্ণ কৰিবলৈ, আপুনি এটা নতুন গুপ্তশব্দ দিব লাগিব:',

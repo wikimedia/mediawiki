@@ -394,7 +394,7 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'accountcreatedtext'         => "'s Benytzerkonto $1 is aigrichtt worn.",
 'loginlanguagelabel'         => 'Sprooch: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Oids Posswort:',
 'newpassword' => 'Naichs Posswort:',
 'retypenew'   => 'Naichs Posswort (nuamoi):',

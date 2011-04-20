@@ -417,7 +417,7 @@ $messages = array(
 'login-abort-generic'      => 'Login ဝင်ခြင်း မအောင်မြင်ပါ - ထွက်သွားပြီ',
 'loginlanguagelabel'       => 'ဘာသာ: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'စကားဝှက်ပြောင်းရန်',
 'resetpass_announce'        => 'သင်သည် ယာယီ စကားဝှက်ဖြင့် ဝင်ရောက်ခြင်းဖြစ်သည်။
 စကားဝှက် အသစ်အား ဤနေရာတွင်ရိုက်ပါ :',

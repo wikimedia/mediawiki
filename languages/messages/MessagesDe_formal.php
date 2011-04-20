@@ -123,7 +123,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, können Sie diese Nachricht 
 'login-throttled'            => 'Sie haben zu oft versucht, sich anzumelden.
 Bitte warten Sie, bevor Sie es erneut probierst.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
 'resetpass_text'          => '<!-- Ergänzen Sie den Text hier -->',
 'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
