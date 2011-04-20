@@ -79,19 +79,30 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
-		if( NORMALIZE_ICU || NORMALIZE_INTL ) {
-			# We exclude a few chars that ICU would not.
-			$string = preg_replace(
-				'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
-				UTF8_REPLACEMENT,
-				$string );
-			$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
-			$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+		if( NORMALIZE_ICU ) {
+			$string = self::replaceForNativeNormalize( $string );
 
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
-			if ( NORMALIZE_ICU ) return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
-			if ( NORMALIZE_INTL ) return normalizer_normalize( $string, Normalizer::FORM_C );
+			return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
+		} elseif( NORMALIZE_INTL ) {
+			$string = self::replaceForNativeNormalize( $string );
+			$norm = normalizer_normalize( $string, Normalizer::FORM_C );
+			if( $norm === null || $norm === false ) {
+				# normalizer_normalize will either return false or null
+				# (depending on which doc you read) if invalid utf8 string.
+				# quickIsNFCVerify cleans up invalid sequences.
+
+				if( UtfNormal::quickIsNFCVerify( $string ) ) {
+					# if that's true, the string is actually already normal.
+					return $string;
+				} else {
+					# Now we are valid but non-normal
+					return normalizer_normalize( $string, Normalizer::FORM_C );
+				}
+			} else {
+				return $norm;
+			}
 		} elseif( UtfNormal::quickIsNFCVerify( $string ) ) {
 			# Side effect -- $string has had UTF-8 errors cleaned up.
 			return $string;
@@ -747,5 +758,21 @@ class UtfNormal {
 			$out .= $string{$i};
 		}
 		return $out;
+	}
+	/**
+	 * Function to replace some characters that we don't want
+	 * but most of the native normalize functions keep.
+	 *
+	 * @param $string String The string
+	 * @return String String with the character codes replaced.
+	 */
+	private static function replaceForNativeNormalize( $string ) { 
+		$string = preg_replace(
+			'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
+			UTF8_REPLACEMENT,
+			$string );
+		$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
+		$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+		return $string;
 	}
 }

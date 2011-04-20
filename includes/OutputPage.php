@@ -2283,7 +2283,9 @@ class OutputPage {
 			$wgUser->getOption( 'editondblclick' )
 		)
 		{
-			$bodyAttrs['ondblclick'] = "document.location = '" . Xml::escapeJsString( $this->getTitle()->getEditURL() ) . "'";
+			$editUrl = $this->getTitle()->getLocalUrl( $sk->editUrlOptions() );
+			$bodyAttrs['ondblclick'] = "document.location = '" .
+				Xml::escapeJsString( $editUrl ) . "'";
 		}
 
 		# Class bloat

@@ -254,8 +254,7 @@ class DjVuImage {
 			$txt = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
-				# Get rid of invalid UTF-8, strip control characters
-				$txt = UtfNormal::cleanUp( $txt );
+				# Strip some control characters
 				$txt = preg_replace( "/[\013\035\037]/", "", $txt );
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
@@ -279,7 +278,8 @@ EOR;
 	}
 
 	function pageTextCallback( $matches ) {
-		return '<PAGE value="' . htmlspecialchars( $matches[1] ) . '" />';
+		# Get rid of invalid UTF-8, strip control characters
+		return '<PAGE value="' . htmlspecialchars( UtfNormal::cleanUp( $matches[1] ) ) . '" />';
 	}
 
 	/**

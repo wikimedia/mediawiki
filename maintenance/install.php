@@ -20,12 +20,18 @@
  * @see wfWaitForSlaves()
  */
 
+if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.2.3' ) < 0 ) ) {
+	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP 5.2.3 or higher. ABORTING.\n" .
+	"Check if you have a newer php executable with a different name, such as php5.\n";
+	die( 1 );
+}
+
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 
 require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 
 class CommandLineInstaller extends Maintenance {
-	public function __construct() {
+	function __construct() {
 		parent::__construct();
 		global $IP;
 
@@ -54,7 +60,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
 
-	public function execute() {
+	function execute() {
 		global $IP, $wgTitle;
 		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care"; // Will not be set if used with --env-checks
 		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
@@ -76,7 +82,7 @@ class CommandLineInstaller extends Maintenance {
 		}
 	}
 
-	protected function validateParamsAndArgs() {
+	function validateParamsAndArgs() {
 		if ( !$this->hasOption( 'env-checks' ) ) {
 			parent::validateParamsAndArgs();
 		}

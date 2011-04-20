@@ -193,6 +193,9 @@ class CategoryViewer {
 	* entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 	* Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 	* else use sortkey...
+	*
+	* @param Title $title
+	* @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
 		global $wgContLang;
@@ -295,7 +298,8 @@ class CategoryViewer {
 				array( 'page', 'categorylinks', 'category' ),
 				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
-					'cat_subcats', 'cat_pages', 'cat_files', 'cl_sortkey_prefix' ),
+					'cat_subcats', 'cat_pages', 'cat_files',
+					'cl_sortkey_prefix', 'cl_collation' ),
 				array( 'cl_to' => $this->title->getDBkey() ) + $extraConds,
 				__METHOD__,
 				array(
@@ -312,22 +316,29 @@ class CategoryViewer {
 			$count = 0;
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				$rawSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+				if ( $row->cl_collation === '' ) {
+					// Hack to make sure that while updating from 1.16 schema
+					// and db is inconsistent, that the sky doesn't fall.
+					// See r83544. Could perhaps be removed in a couple decades...
+					$humanSortkey = $row->cl_sortkey;
+				} else {
+					$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+				}
 
 				if ( ++$count > $this->limit ) {
 					# We've reached the one extra which shows that there
 					# are additional pages to be had. Stop here...
-					$this->nextPage[$type] = $rawSortkey;
+					$this->nextPage[$type] = $humanSortkey;
 					break;
 				}
 
 				if ( $title->getNamespace() == NS_CATEGORY ) {
 					$cat = Category::newFromRow( $row, $title );
-					$this->addSubcategoryObject( $cat, $rawSortkey, $row->page_len );
+					$this->addSubcategoryObject( $cat, $humanSortkey, $row->page_len );
 				} elseif ( $title->getNamespace() == NS_FILE ) {
-					$this->addImage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $rawSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				}
 			}
 		}
