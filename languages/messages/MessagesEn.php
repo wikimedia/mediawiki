@@ -420,6 +420,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'MyUploads' ),
 	'Newimages'                 => array( 'NewFiles', 'NewImages' ),
 	'Newpages'                  => array( 'NewPages' ),
+	'PasswordReset'             => array( 'PasswordReset' ),
 	'PermanentLink'             => array( 'PermanentLink', 'PermaLink' ),
 	'Popularpages'              => array( 'PopularPages' ),
 	'Preferences'               => array( 'Preferences' ),
@@ -1062,6 +1063,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'createaccount'              => 'Create account',
 'gotaccount'                 => 'Already have an account? $1.',
 'gotaccountlink'             => 'Log in',
+'userlogin-resetlink'        => 'Forgotten your login details?',
 'createaccountmail'          => 'By e-mail',
 'createaccountreason'        => 'Reason:',
 'badretype'                  => 'The passwords you entered do not match.',
@@ -1156,7 +1158,7 @@ Please wait before trying again.',
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
 
-# Password reset dialog
+# Change Password dialog
 'resetpass'                 => 'Change password',
 'resetpass_announce'        => 'You logged in with a temporary e-mailed code.
 To finish logging in, you must set a new password here:',
@@ -1175,6 +1177,41 @@ Now logging you in...',
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
+
+# Special:PasswordReset
+'passwordreset'                => 'Reset password',
+'passwordreset-text'           => 'Complete this form to receive an email reminder of your account details.',
+'passwordreset-legend'         => 'Reset password',
+'passwordreset-disabled'       => 'Password resets have been disabled on this wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
+'passwordreset-username'       => 'Username:',
+'passwordreset-email'          => 'Email:',
+'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
+'passwordreset-emailtext-ip'   => '
+Someone (probably you, from IP address $1) requested a reminder of your
+account details for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}
+associated with this email address:
+
+$2
+
+{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.
+You should log in and choose a new password now. If someone else made this
+request, or if you have remembered your original password, and you no longer
+wish to change it, you may ignore this message and continue using your old
+password.',
+'passwordreset-emailtext-user'   => '
+User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
+($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this email address:
+
+$2
+
+{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.
+You should log in and choose a new password now. If someone else made this
+request, or if you have remembered your original password, and you no longer
+wish to change it, you may ignore this message and continue using your old
+password.',
+'passwordreset-emailelement'     => "\tUsername:           $1\n\tTemporary password: $2",
+'passwordreset-emailsent'        => 'A reminder email has been sent.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',

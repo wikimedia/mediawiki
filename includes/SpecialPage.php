@@ -660,6 +660,138 @@ class SpecialPage {
 }
 
 /**
+ * Special page which uses an HTMLForm to handle processing.  This is mostly a
+ * clone of FormAction.  More special pages should be built this way; maybe this could be
+ * a new structure for SpecialPages
+ */
+abstract class FormSpecialPage extends SpecialPage {
+
+	/**
+	 * Get an HTMLForm descriptor array
+	 * @return Array
+	 */
+	protected abstract function getFormFields();
+
+	/**
+	 * Add pre- or post-text to the form
+	 * @return String HTML which will be sent to $form->addPreText()
+	 */
+	protected function preText() { return ''; }
+	protected function postText() { return ''; }
+
+	/**
+	 * Play with the HTMLForm if you need to more substantially
+	 * @param $form HTMLForm
+	 */
+	protected function alterForm( HTMLForm $form ) {}
+
+	/**
+	 * Get the HTMLForm to control behaviour
+	 * @return HTMLForm|null
+	 */
+	protected function getForm() {
+		$this->fields = $this->getFormFields();
+
+		// Give hooks a chance to alter the form, adding extra fields or text etc
+		wfRunHooks( "Special{$this->getName()}ModifyFormFields", array( &$this->fields ) );
+
+		$form = new HTMLForm( $this->fields, $this->getContext() );
+		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
+		$form->setWrapperLegend( wfMessage( strtolower( $this->getName() ) . '-legend' ) );
+		$form->addHeaderText( wfMessage( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
+
+		// Retain query parameters (uselang etc)
+		$params = array_diff_key( $this->getRequest()->getQueryValues(), array( 'title' => null ) );
+		$form->addHiddenField( 'redirectparams', wfArrayToCGI( $params ) );
+
+		$form->addPreText( $this->preText() );
+		$form->addPostText( $this->postText() );
+		$this->alterForm( $form );
+
+		// Give hooks a chance to alter the form, adding extra fields or text etc
+		wfRunHooks( "Special{$this->getName()}BeforeFormDisplay", array( &$form ) );
+
+		return $form;
+	}
+
+	/**
+	 * Process the form on POST submission.
+	 * @param  $data Array
+	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
+	 */
+	public abstract function onSubmit( array $data );
+
+	/**
+	 * Do something exciting on successful processing of the form, most likely to show a
+	 * confirmation message
+	 */
+	public abstract function onSuccess();
+
+	/**
+	 * Basic SpecialPage workflow: get a form, send it to the user; get some data back,
+	 */
+	public function execute( $par ) {
+		$this->setParameter( $par );
+		$this->setHeaders();
+
+		// This will throw exceptions if there's a problem
+		$this->userCanExecute( $this->getUser() );
+
+		$form = $this->getForm();
+		if ( $form->show() ) {
+			$this->onSuccess();
+		}
+	}
+
+	/**
+	 * Maybe do something interesting with the subpage parameter
+	 * @param $par String
+	 */
+	protected function setParameter( $par ){}
+
+	/**
+	 * Checks if the given user (identified by an object) can perform this action.  Can be
+	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
+	 * must throw subclasses of ErrorPageError
+	 *
+	 * @param $user User: the user to check, or null to use the context user
+	 * @throws ErrorPageError
+	 */
+	public function userCanExecute( User $user ) {
+		if ( $this->requiresWrite() && wfReadOnly() ) {
+			throw new ReadOnlyError();
+		}
+
+		if ( $this->getRestriction() !== null && !$user->isAllowed( $this->getRestriction() ) ) {
+			throw new PermissionsError( $this->getRestriction() );
+		}
+
+		if ( $this->requiresUnblock() && $user->isBlocked() ) {
+			$block = $user->mBlock;
+			throw new UserBlockedError( $block );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Whether this action requires the wiki not to be locked
+	 * @return Bool
+	 */
+	public function requiresWrite() {
+		return true;
+	}
+
+	/**
+	 * Whether this action cannot be executed by a blocked user
+	 * @return Bool
+	 */
+	public function requiresUnblock() {
+		return true;
+	}
+}
+
+/**
  * Shortcut to construct a special page which is unlisted by default
  * @ingroup SpecialPage
  */

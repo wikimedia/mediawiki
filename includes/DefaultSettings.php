@@ -3005,6 +3005,17 @@ $wgMinimalPasswordLength = 1;
 $wgLivePasswordStrengthChecks = false;
 
 /**
+ * Whether to allow password resets ("enter some identifying data, and we'll send an email
+ * with a temporary password you can use to get back into the account") identified by
+ * various bits of data.  Setting all of these to false (or the whole variable to false)
+ * has the effect of disabling password resets entirely
+ */
+$wgPasswordResetRoutes = array(
+	'username' => true,
+	'email' => false, // Warning: enabling this will be *very* slow on large wikis
+);
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars		= 255;
