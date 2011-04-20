@@ -2282,19 +2282,30 @@ function wfIniGetBool( $setting ) {
  *
  * @param $extension String A PHP extension. The file suffix (.so or .dll)
  *                          should be omitted
+ * @param $fileName String Name of the library, if not $extension.suffix
  * @return Bool - Whether or not the extension is loaded
  */
-function wfDl( $extension ) {
+function wfDl( $extension, $fileName = null ) {
 	if( extension_loaded( $extension ) ) {
 		return true;
 	}
 
-	$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
+	$canDl = false;
+	$sapi = php_sapi_name();
+	if( version_compare( PHP_VERSION, '5.3.0', '<' ) ||
+		$sapi == 'cli' || $sapi == 'cgi' || $sapi == 'embed' )
+	{
+		$canDl = ( function_exists( 'dl' ) && is_callable( 'dl' )
 		&& wfIniGetBool( 'enable_dl' ) && !wfIniGetBool( 'safe_mode' ) );
+	}
 
 	if( $canDl ) {
+		$fileName = $fileName ? $fileName : $extension;
+		if( wfIsWindows() ) {
+			$fileName = 'php_' . $fileName;
+		}
 		wfSuppressWarnings();
-		dl( $extension . '.' . PHP_SHLIB_SUFFIX );
+		dl( $fileName . '.' . PHP_SHLIB_SUFFIX );
 		wfRestoreWarnings();
 	}
 	return extension_loaded( $extension );
