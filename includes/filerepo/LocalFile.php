@@ -1371,7 +1371,7 @@ class LocalFileDeleteBatch {
 		return array( $oldRels, $deleteCurrent );
 	}
 
-	/*protected*/ function getHashes() {
+	protected function getHashes() {
 		$hashes = array();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
