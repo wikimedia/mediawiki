@@ -129,7 +129,7 @@ class UsersPager extends AlphabeticPager {
 			return '';
 
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
-		$name = $this->getSkin()->link( $userPage, htmlspecialchars( $userPage->getText() ) );
+		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
 		$groups_list = self::getGroups( $row->user_id );
 		if( count( $groups_list ) > 0 ) {
@@ -305,7 +305,7 @@ class SpecialListUsers extends SpecialPage {
 			$s .= Html::rawElement( 'ul', array(), $usersbody );
 			$s .= $up->getNavigationBar();
 		} else {
-			$s .= wfMessage( 'listusers-noresult' )->parseBlock();
+			$s .= wfMessage( 'listusers-noresult' )->parseAsBlock();
 		}
 
 		$wgOut->addHTML( $s );
