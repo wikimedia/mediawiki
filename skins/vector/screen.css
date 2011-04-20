@@ -73,7 +73,6 @@ div#mw-head h5 {
 	#p-personal {
 		position: absolute;
 		top: 0;
-		padding-left: 10em;
 		right: 0.75em;
 	}
 	#p-personal h5 {
@@ -82,7 +81,7 @@ div#mw-head h5 {
 	#p-personal ul {
 		list-style: none;
 		margin: 0;
-		padding: 0;
+		padding-left: 10em; /* Keep from overlapping logo */
 	}
 	/* @noflip */
 	#p-personal li {
