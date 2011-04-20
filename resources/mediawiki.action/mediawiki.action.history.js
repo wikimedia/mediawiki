@@ -83,7 +83,7 @@ jQuery( function( $ ) {
 		$diffList.change( updateCompare );
 	};
 
-	$( '#pagehistory li input[name="diff"], #pagehistory li input[name="oldid"]' ).click( function() { updateDiffRadios(); } );
+	$( '#pagehistory li input[name="diff"], #pagehistory li input[name="oldid"]' ).click( updateDiffRadios );
 	fixCompare();
 	updateDiffRadios();
 });
