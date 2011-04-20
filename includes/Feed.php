@@ -80,15 +80,6 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the last touched timestamp
-	 *
-	 * @return String last-touched timestamp
-	 */
-	public function getLastMod() {
-		return $this->Title->getTouched();
-	}
-
-	/**
 	 * Encode $string so that it can be safely embedded in a XML document
 	 *
 	 * @param $string String: string to encode
