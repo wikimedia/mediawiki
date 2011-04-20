@@ -129,7 +129,7 @@ class FeedItem {
 	 *  any interwiki and namespace prefixes
 	 */
 	public function getDBPrefixedTitle() {
-		return $this->Title->getPrefixedDBKey(),
+		return $this->Title->getPrefixedDBKey();
 	}
 
 	/**
