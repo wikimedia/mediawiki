@@ -517,6 +517,7 @@ $wgAutoloadLocalClasses = array(
 	'IPTC' => 'includes/media/IPTC.php',
 	'JpegHandler' => 'includes/media/Jpeg.php',
 	'JpegMetadataExtractor' => 'includes/media/JpegMetadataExtractor.php',
+	'JpegOrTiffHandler' => 'includes/media/JpegOrTiff.php',
 	'MediaHandler' => 'includes/media/Generic.php',
 	'MediaTransformError' => 'includes/media/MediaTransformOutput.php',
 	'MediaTransformOutput' => 'includes/media/MediaTransformOutput.php',
