@@ -35,40 +35,19 @@ class UpdateArticleCount extends Maintenance {
 
 	public function execute() {
 		$this->output( "Counting articles..." );
-		$result = $this->count();
 
-		if ( $result !== false ) {
-			$this->output( "found {$result}.\n" );
-			if ( $this->hasOption( 'update' ) ) {
-				$this->output( "Updating site statistics table... " );
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->update( 'site_stats', array( 'ss_good_articles' => $result ), array( 'ss_row_id' => 1 ), __METHOD__ );
-				$this->output( "done.\n" );
-			} else {
-				$this->output( "To update the site statistics table, run the script with the --update option.\n" );
-			}
+		$counter = new SiteStatsInit( false );
+		$result = $counter->articles();
+
+		$this->output( "found {$result}.\n" );
+		if ( $this->hasOption( 'update' ) ) {
+			$this->output( "Updating site statistics table... " );
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->update( 'site_stats', array( 'ss_good_articles' => $result ), array( 'ss_row_id' => 1 ), __METHOD__ );
+			$this->output( "done.\n" );
 		} else {
-			$this->output( "failed.\n" );
+			$this->output( "To update the site statistics table, run the script with the --update option.\n" );
 		}
-	}
-
-	/**
-	 * Count the number of valid content pages in the wiki
-	 *
-	 * @return mixed Integer, or false if there's a problem
-	 */
-	private function count() {
-		return wfGetDB( DB_SLAVE )->selectField(
-			array( 'page', 'pagelinks' ),
-			'COUNT(DISTINCT page_id)',
-			array(
-				'pl_from=page_id',
-				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_is_redirect' => 0,
-				'page_len > 0',
-			),
-			__METHOD__
-		);
 	}
 }
 

@@ -293,16 +293,22 @@ class SiteStatsInit {
 	 * @return Integer
 	 */
 	public function articles() {
-		$this->mArticles = $this->db->selectField(
-			'page',
-			'COUNT(*)',
-			array(
-				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_is_redirect' => 0,
-				'page_len > 0'
-			),
-			__METHOD__
+		global $wgUseCommaCount;
+
+		$tables = array( 'page' );
+		$conds = array(
+			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_is_redirect' => 0,
+			'page_len > 0'
 		);
+
+		if ( !$wgUseCommaCount ) {
+			$tables[] = 'pagelinks';
+			$conds[] = 'pl_from=page_id';
+		}
+
+		$this->mArticles = $this->db->selectField( $tables, 'COUNT(DISTINCT page_id)',
+			$conds, __METHOD__ );
 		return $this->mArticles;
 	}
 
