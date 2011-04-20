@@ -409,6 +409,82 @@ window.mediaWiki = new ( function( $ ) {
 			$.cookie( 'mediaWiki.user.id', id, { 'expires': 365, 'path': '/' } );
 			return id;
 		};
+
+		/**
+		 * Gets the user's bucket, placing them in one at random based on set odds if needed.
+		 * 
+		 * @param key String: Name of bucket
+		 * @param options Object: Bucket configuration options
+		 * @param options.buckets Object: List of bucket-name/relative-probability pairs (required,
+		 * must have at least one pair)
+		 * @param options.version Number: Version of bucket test, changing this forces rebucketing
+		 * (optional, default: 0)
+		 * @param options.tracked Boolean: Track the event of bucketing through the API module of
+		 * the ClickTracking extension (optional, default: false)
+		 * @param options.expires Number: Length of time (in days) until the user gets rebucketed
+		 * (optional, default: 30)
+		 * @return String: Bucket name - the randomly chosen key of the options.buckets object
+		 * 
+		 * @example
+		 *     mw.user.bucket( 'test', {
+		 *         'buckets': { 'ignored': 50, 'control': 25, 'test': 25 },
+		 *         'version': 1,
+		 *         'tracked': true,
+		 *         'expires': 7
+		 *     } );
+		 */
+		this.bucket = function( key, options ) {
+			options = $.extend( {
+				'buckets': {},
+				'version': 0,
+				'tracked': false,
+				'expires': 30
+			}, options || {} );
+			var cookie = $.cookie( 'mw.user.bucket-' + key );
+			var bucket = null;
+			var version = 0;
+			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
+			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
+				var parts = cookie.split( ':' );
+				if ( parts.length > 1 && parts[1] == options.version ) {
+					version = Number( parts[0] );
+					bucket = Number( parts[1] );
+				}
+			}
+			if ( bucket === null ) {
+				if ( !$.isPlainObject( options.buckets ) ) {
+					throw 'Invalid buckets error. Object expected for options.buckets .';
+				}
+				version = Number( options.version );
+				// Find range
+				var range = 0;
+				for ( var k in options.buckets ) {
+					range += options.buckets[k];
+				}
+				// Select random value within range
+				var rand = Math.random() * range;
+				// Determine which bucket the value landed in
+				var total = 0;
+				for ( var k in options.buckets ) {
+					bucket = k;
+					total += options.buckets[k];
+					if ( total >= rand ) {
+						break;
+					}
+				}
+				if ( options.tracked ) {
+					mw.loader.using( 'jquery.clickTracking', function() {
+						$.trackAction( 'mw.user.bucket-' + key + '@' + version + ':' + bucket );
+					} );
+				}
+				$.cookie(
+					'mw.userBuckets-' + key,
+					version + ':' + bucket,
+					{ 'path': '/', 'expires': Number( options.expires ) }
+				);
+			}
+			return bucket;
+		};
 	}
 
 	/* Public Members */
