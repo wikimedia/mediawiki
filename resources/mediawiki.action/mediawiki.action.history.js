@@ -20,12 +20,12 @@ jQuery( function( $ ) {
 
 			// this row has a checked radio button
 			if ( $inputs.get(0).checked ) { 
-				oldLi = $this;
+				oldLi = true;
 				$this.addClass( 'selected' );
 				$inputs.eq(0).css( 'visibility', 'visible' );
 				$inputs.eq(1).css( 'visibility', 'hidden' );
 			} else if ( $inputs.get(1).checked ) {
-				diffLi = $this;
+				diffLi = true;
 				$this.addClass( 'selected' );
 				$inputs.eq(0).css( 'visibility', 'hidden' );
 				$inputs.eq(1).css( 'visibility', 'visible' );
@@ -37,8 +37,7 @@ jQuery( function( $ ) {
 					$inputs.eq(1).css( 'visibility', 'hidden' );
 	 			} else if ( diffLi ) {
 					// We're between the selected radios
-					$inputs.eq(0).css( 'visibility', 'visible' );
-					$inputs.eq(1).css( 'visibility', 'visible' );
+					$inputs.css( 'visibility', 'visible' );
 				} else {
 					// We're above the selected radios
 					$inputs.eq(1).css( 'visibility', 'visible' );
