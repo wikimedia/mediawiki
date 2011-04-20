@@ -3157,7 +3157,7 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  * @return null
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
-	$lb = wfGetLB();
+	$lb = wfGetLB( $wiki );
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
