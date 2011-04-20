@@ -133,16 +133,6 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the DB prefixed title
-	 *
-	 * @return String the prefixed title, with underscores and
-	 *  any interwiki and namespace prefixes
-	 */
-	public function getDBPrefixedTitle() {
-		return $this->Title->getPrefixedDBKey(),
-	}
-
-	/**
 	 * Get the URL of this item; already xml-encoded
 	 *
 	 * @return String
