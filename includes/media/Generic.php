@@ -325,7 +325,7 @@ abstract class MediaHandler {
 	 * the metadata table is collapsed.
 	 *
 	 * @return array of strings
-	 * @access private
+	 * @access protected
 	 */
 	function visibleMetadataFields() {
 		$fields = array();

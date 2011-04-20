@@ -11,7 +11,7 @@
  *
  * @ingroup Media
  */
-class TiffHandler extends BitmapHandler {
+class TiffHandler extends JpegOrTiffHandler {
 
 	/**
 	 * Conversion to PNG for inline display can be disabled here...
@@ -34,4 +34,20 @@ class TiffHandler extends BitmapHandler {
 		global $wgTiffThumbnailType;
 		return $wgTiffThumbnailType;
 	}
+
+        function getMetadata( $image, $filename ) {
+                global $wgShowEXIF;
+                if ( $wgShowEXIF && file_exists( $filename ) ) {
+                        $exif = new Exif( $filename );
+                        $data = $exif->getFilteredData();
+                        if ( $data ) {
+                                $data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+                                return serialize( $data );
+                        } else {
+                                return JpegOrTiffHandler::BROKEN_FILE;
+                        }
+                } else {
+                        return '';
+                }
+        }
 }
