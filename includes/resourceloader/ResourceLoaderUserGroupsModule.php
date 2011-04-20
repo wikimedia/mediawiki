@@ -16,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Trevor Parscal
- * @author Roan Kattouw
  */
 
 /**
@@ -38,8 +36,8 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 						continue;
 					}
 					$g = ucfirst( $group );
-					$pages["MediaWiki:$g.js"] = array( 'type' => 'script' );
-					$pages["MediaWiki:$g.css"] = array( 'type' => 'style' );
+					$pages["MediaWiki:Group-$g.js"] = array( 'type' => 'script' );
+					$pages["MediaWiki:Group-$g.css"] = array( 'type' => 'style' );
 				}
 				return $pages;
 			}
