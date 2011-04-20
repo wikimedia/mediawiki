@@ -1180,17 +1180,16 @@ You may have already successfully changed your password or requested a new tempo
 
 # Special:PasswordReset
 'passwordreset'                => 'Reset password',
-'passwordreset-text'           => 'Complete this form to receive an email reminder of your account details.',
+'passwordreset-text'           => 'Complete this form to receive an e-mail reminder of your account details.',
 'passwordreset-legend'         => 'Reset password',
 'passwordreset-disabled'       => 'Password resets have been disabled on this wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username'       => 'Username:',
-'passwordreset-email'          => 'Email:',
+'passwordreset-email'          => 'E-mail address:',
 'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
-'passwordreset-emailtext-ip'   => '
-Someone (probably you, from IP address $1) requested a reminder of your
+'passwordreset-emailtext-ip'   => 'Someone (probably you, from IP address $1) requested a reminder of your
 account details for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}
-associated with this email address:
+associated with this e-mail address:
 
 $2
 
@@ -1199,9 +1198,8 @@ You should log in and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
-'passwordreset-emailtext-user'   => '
-User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
-($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this email address:
+'passwordreset-emailtext-user'   => 'User $1 on {{SITENAME}} requested a reminder of your account details for {{SITENAME}}
+($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this e-mail address:
 
 $2
 
@@ -1210,8 +1208,9 @@ You should log in and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
-'passwordreset-emailelement'     => "\tUsername:           $1\n\tTemporary password: $2",
-'passwordreset-emailsent'        => 'A reminder email has been sent.',
+'passwordreset-emailelement'     => "Username: $1
+Temporary password: $2",
+'passwordreset-emailsent'        => 'A reminder e-mail has been sent.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
