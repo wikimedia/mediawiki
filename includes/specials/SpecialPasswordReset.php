@@ -105,8 +105,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 			&& Sanitizer::validateEmail( $data['Email'] ) )
 		{
 			$method = 'email';
-
-			// FIXME: this is an unindexed query
 			$res = wfGetDB( DB_SLAVE )->select(
 				'user',
 				'*',
