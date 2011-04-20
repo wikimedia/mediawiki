@@ -4810,6 +4810,10 @@ class Parser {
 
 		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );
 
+		if ( !$file ) {
+			$this->addTrackingCategory( 'broken-file-category' );
+		}
+
 		# Process the input parameters
 		$caption = '';
 		$params = array( 'frame' => array(), 'handler' => array(),

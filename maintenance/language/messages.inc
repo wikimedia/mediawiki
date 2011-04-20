@@ -157,6 +157,7 @@ $wgMessageStructure = array(
 		'listingcontinuesabbrev',
 		'index-category',
 		'noindex-category',
+		'broken-file-category',
 	),
 	'mainpage' => array(
 		'linkprefix',

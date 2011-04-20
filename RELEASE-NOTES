@@ -133,6 +133,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * Special:ListFiles is now transcludable.
 * (bug 13879) Special:Emailuser asks for suitable target user if called without.
 * (bug 16956) IPTC and XMP metadata now extracted from images
+* (bug 23816) A tracking category is now added for any pages with broken images.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
