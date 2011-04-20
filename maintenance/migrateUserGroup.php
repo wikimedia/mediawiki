@@ -60,7 +60,7 @@ class MigrateUserGroup extends Maintenance {
 			$dbw->commit();
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		$this->output( "Done! $count user(s) in group '$oldGroup' are now in '$newGroup' instead.\n" );
 	}

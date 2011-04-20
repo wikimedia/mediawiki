@@ -72,7 +72,7 @@ class RunJobs extends Maintenance {
 				if ( !$job )
 					break;
 
-				wfWaitForSlaves( 5 );
+				wfWaitForSlaves();
 				$t = microtime( true );
 				$offset = $job->id;
 				$status = $job->run();

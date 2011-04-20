@@ -652,7 +652,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					wfWaitForSlaves( 10 );
+					wfWaitForSlaves();
 				}
 				$this->db->insert( 'templatelinks',
 					array(

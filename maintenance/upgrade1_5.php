@@ -101,7 +101,6 @@ class FiveUpgrade extends Maintenance {
 
 		$this->cleanupSwaps = array();
 		$this->emailAuth = false; # don't preauthenticate emails
-		$this->maxLag    = 10; # if slaves are lagged more than 10 secs, wait
 		$this->step      = $this->getOption( 'step', null );
 	}
 
@@ -316,7 +315,7 @@ class FiveUpgrade extends Maintenance {
 	 */
 	function insertChunk( &$chunk ) {
 		// Give slaves a chance to catch up
-		wfWaitForSlaves( $this->maxLag );
+		wfWaitForSlaves();
 		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
 

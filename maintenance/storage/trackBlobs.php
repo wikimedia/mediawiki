@@ -206,7 +206,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves( 5 );
+				wfWaitForSlaves();
 			}
 		}
 		echo "Found $rowsInserted revisions\n";
@@ -290,7 +290,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves( 5 );
+				wfWaitForSlaves();
 			}
 		}
 		echo "Found $rowsInserted orphan text rows\n";

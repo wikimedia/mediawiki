@@ -130,7 +130,7 @@ class PopulateLogSearch extends Maintenance {
 			}
 			$blockStart += self::LOG_SEARCH_BATCH_SIZE;
 			$blockEnd += self::LOG_SEARCH_BATCH_SIZE;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		if ( $db->insert(
 				'updatelog',

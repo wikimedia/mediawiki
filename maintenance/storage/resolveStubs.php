@@ -45,7 +45,7 @@ function resolveStubs() {
 	$numBlocks = intval( $maxID / $blockSize ) + 1;
 
 	for ( $b = 0; $b < $numBlocks; $b++ ) {
-		wfWaitForSlaves( 2 );
+		wfWaitForSlaves();
 
 		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
 		$start = intval( $maxID / $numBlocks ) * $b + 1;

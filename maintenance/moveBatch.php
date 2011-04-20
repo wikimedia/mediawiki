@@ -101,7 +101,7 @@ class MoveBatch extends Maintenance {
 			if ( $interval ) {
 				sleep( $interval );
 			}
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 	}
 }

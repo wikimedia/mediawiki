@@ -109,7 +109,7 @@ class RebuildFileCache extends Maintenance {
 			}
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		$this->output( "Done!\n" );
 

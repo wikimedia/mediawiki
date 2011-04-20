@@ -119,7 +119,7 @@ class RefreshLinksJob2 extends Job {
 			$update = new LinksUpdate( $title, $parserOutput, false );
 			$update->doUpdate();
 			wfProfileOut( __METHOD__.'-update' );
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		wfProfileOut( __METHOD__ );
 

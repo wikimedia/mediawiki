@@ -45,7 +45,7 @@ class BatchedQueryRunner extends Maintenance {
 			$dbw->query( $query, __METHOD__ );
 			$affected = $dbw->affectedRows();
 			$this->output( "$affected rows\n" );
-			wfWaitForSlaves_masterPos();
+			wfWaitForSlaves();
 		} while ( $affected > 0 );
 	}
 
