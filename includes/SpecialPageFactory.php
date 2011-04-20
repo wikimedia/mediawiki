@@ -414,25 +414,7 @@ class SpecialPageFactory {
 		// Page exists, set the context
 		$page->setContext( $context );
 
-		// Check for redirect
 		if ( !$including ) {
-			if( $page instanceof SpecialRedirectToSpecial ){
-				$redirect = $page->getRedirect( $par );
-				$query = $page->getRedirectQuery();
-				if ( $redirect instanceof Title ) {
-					$url = $redirect->getFullUrl( $query );
-					$context->output->redirect( $url );
-					wfProfileOut( __METHOD__ );
-					return $redirect;
-				} elseif ( $redirect === true ) {
-					global $wgScript;
-					$url = $wgScript . '?' . wfArrayToCGI( $query );
-					$context->output->redirect( $url );
-					wfProfileOut( __METHOD__ );
-					return $redirect;
-				}
-			}
-
 			// Redirect to canonical alias for GET commands
 			// Not for POST, we'd lose the post data, so it's best to just distribute
 			// the request. Such POST requests are possible for old extensions that
