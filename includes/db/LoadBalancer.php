@@ -338,6 +338,18 @@ class LoadBalancer {
 		}
 		wfProfileOut( __METHOD__ );
 	}
+	
+	/**
+	 * Set the master wait position and wait for ALL slaves to catch up to it
+	 */
+	public function waitForAll( $pos ) {
+		wfProfileIn( __METHOD__ );
+		$this->mWaitForPos = $pos;
+		for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
+			$this->doWait( $i );
+		}
+		wfProfileOut( __METHOD__ );
+	}
 
 	/**
 	 * Get any open connection to a given server index, local or foreign
