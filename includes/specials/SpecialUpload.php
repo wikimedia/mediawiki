@@ -140,7 +140,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param $user User object
 	 * @return Boolean
 	 */
-	public function userCanExecute( $user ) {
+	public function userCanExecute( User $user ) {
 		return UploadBase::isEnabled() && parent::userCanExecute( $user );
 	}
 
