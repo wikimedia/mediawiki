@@ -3012,7 +3012,7 @@ $wgLivePasswordStrengthChecks = false;
  */
 $wgPasswordResetRoutes = array(
 	'username' => true,
-	'email' => false, // Warning: enabling this will be *very* slow on large wikis
+	'email' => false,
 );
 
 /**

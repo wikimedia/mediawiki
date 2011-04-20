@@ -163,21 +163,22 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.17
 			array( 'addTable', 'iwlinks',                           'patch-iwlinks.sql' ),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_title_from',  'patch-rename-iwl_prefix.sql' ),
-			array( 'addField', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
+			array( 'addField', 'updatelog',     'ul_value',         'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
-			array( 'dropIndex', 'iwlinks', 'iwl_prefix',  'patch-kill-iwl_prefix.sql' ),
-			array( 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
-			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
+			array( 'dropIndex', 'iwlinks',      'iwl_prefix',       'patch-kill-iwl_prefix.sql' ),
+			array( 'dropIndex', 'iwlinks',      'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
+			array( 'addField', 'categorylinks', 'cl_collation',     'patch-categorylinks-better-collation.sql' ),
 			array( 'doClFieldsUpdate' ),
 			array( 'doCollationUpdate' ),
 			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
-			array( 'dropIndex', 'archive', 'ar_page_revid',         'patch-archive_kill_ar_page_revid.sql' ),
-			array( 'addIndex', 'archive', 'ar_revid',               'patch-archive_ar_revid.sql' ),
+			array( 'dropIndex', 'archive',      'ar_page_revid',    'patch-archive_kill_ar_page_revid.sql' ),
+			array( 'addIndex', 'archive',       'ar_revid',         'patch-archive_ar_revid.sql' ),
 			array( 'doLangLinksLengthUpdate' ),
 
 			// 1.18
 			array( 'doUserNewTalkTimestampNotNull' ),
+			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
 		);
 	}
 
