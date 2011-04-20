@@ -415,7 +415,7 @@ Alayon pagutro pagbutang.',
 'accountcreated'          => 'Nahimo an akawant',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Igliwat an tigaman-pagsulod',
 'resetpass_header'    => 'Igliwan an akawnt nga tigaman-pagsulod',
 'oldpassword'         => 'Daan nga tigaman-pagsulod:',

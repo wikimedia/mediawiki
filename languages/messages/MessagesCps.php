@@ -439,7 +439,7 @@ Palihog tistingan liwat.',
 'usernamehasherror'       => 'Ang ngalan sang manug-usar indi dapat mag-unod sang mga labay-labay nga mga karakter.',
 'loginlanguagelabel'      => 'Lingguahe:',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'               => 'Islan ang password',
 'resetpass_header'        => 'Islan ang password sang account',
 'oldpassword'             => 'Luma nga password:',

@@ -621,7 +621,7 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 # E-mail sending
 'php-mail-error-unknown' => 'Erè nou pa konnen nan fonksyon mail() PHP a.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Chanje mopas ou an',
 'resetpass_announce'        => 'Ou konekte ou ak yon mopas ki valab yon moman; mopas sa te voye pa imèl. Pou ou kapab fini anrejistreman an, ou dwe mete yon nouvo mopas la :',
 'resetpass_header'          => 'Chanje mopas kont ou an',

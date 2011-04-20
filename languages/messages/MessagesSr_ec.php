@@ -782,7 +782,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Промена лозинке',
 'resetpass_announce'        => 'Пријављени сте с привременом лозинком.
 Да бисте завршили пријаву, подесите нову лозинку овде:',
@@ -800,6 +800,10 @@ $2',
 'resetpass-wrong-oldpass'   => 'Неисправна привремена или текућа лозинка.
 Можда сте већ променили лозинку или сте затражили нову привремену лозинку.',
 'resetpass-temp-password'   => 'Привремена лозинка:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Обнављање лозинке',
+'passwordreset-username' => 'Корисничко име:',
 
 # Edit page toolbar
 'bold_sample'     => 'Подебљан текст',

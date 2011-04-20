@@ -784,7 +784,7 @@ Silakan menunggu sebelum mencoba lagi.',
 # E-mail sending
 'php-mail-error-unknown' => 'Kesalahan yang tidak dikenal dalam fungsi mail() PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ganti kata sandi',
 'resetpass_announce'        => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surel. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',
 'resetpass_text'            => '<!-- Tambahkan teks di sini -->',

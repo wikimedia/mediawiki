@@ -449,7 +449,7 @@ Kailangan mung mag-login ngeni ba meng ayalilan ing kekang password.
 Malyari meng e pansinan ining mensahi, nung pamagkamali ing pamaglalang na niting account.',
 'loginlanguagelabel'         => 'Amanu: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Alilan ya ing account password',
 'resetpass_announce'  => 'Gagamit kang pansamantalang code a me e-mail keka aniang mig-login ka.
 Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password keni:',

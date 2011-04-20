@@ -25,7 +25,7 @@ Bitte versuche es in ein paar Minuten erneut.',
 'nosuchuser' => 'Der Benutzername „$1“ existiert nicht.
 Überprüfe die Schreibweise (Gross-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_announce' => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschliessen, musst du jetzt ein neues Passwort wählen.',
 
 # Edit pages

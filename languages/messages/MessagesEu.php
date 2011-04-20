@@ -615,7 +615,7 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 # E-mail sending
 'php-mail-error-unknown' => 'PHPren mail() funtzioan arazo ezezagun bat egon da.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Pasahitza aldatu',
 'resetpass_announce'        => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',
 'resetpass_text'            => '<!-- Testua hemen idatzi -->',

@@ -438,7 +438,7 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'accountcreated'          => 'lcompt tkriyat',
 'loginlanguagelabel'      => 'Loġa: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'tbdl lmot de passe',
 'resetpass_text'            => '<!-- zid chi nass hna -->',
 'oldpassword'               => 'lmot de passe qdima :',

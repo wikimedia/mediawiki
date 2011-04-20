@@ -696,7 +696,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'php mail() ශ්‍රිතයේ හඳුනානොගත් ගැටළුවකි',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'මුර-පදය වෙනස් කරන්න',
 'resetpass_announce'        => 'විද්‍යුත්-තැපෑලෙන් එවනු ලැබූ තාවකාලික කේතයක් උපයෝගීකර ඔබ පිවිසීඇත.
 පිවිසීම නිසි ලෙස නිමකිරීමට ඔබ නව මුර-පදයක් මෙහි බහාලිය යුතුය:',

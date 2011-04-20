@@ -509,7 +509,7 @@ Thora deri baad fir se kosis karna.',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Password ke badlo',
 'resetpass_announce'        => 'Aap ek temporary e-mailed code se login bhaya hai
 Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',

@@ -522,7 +522,7 @@ $2',
 বারো হৎনা করানির আগে খানি ঝিরা।',
 'loginlanguagelabel'         => 'ঠার: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'খন্তাচাবি সিলকরানি',
 'resetpass_announce'        => 'তি লেপ নাইসে খন্তাচাবি আগন হমাসত। হমানিহান পুরা করানির কা নুৱা লেপ্পা খন্তাচাবি হঙকরানি লাগতই:',
 'resetpass_header'          => 'খন্তাচাবি সিলকর',

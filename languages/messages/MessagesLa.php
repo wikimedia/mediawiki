@@ -548,7 +548,7 @@ Plurimas non licet creare. Ergo, ex hoc loco IP rationes plurimas hodie creari n
 Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Tesseram mutare',
 'resetpass_header'          => 'Tesseram rationis mutare',
 'oldpassword'               => 'Tessera vetus:',

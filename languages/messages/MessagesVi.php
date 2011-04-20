@@ -763,7 +763,7 @@ Xin hãy đợi chốc lát rồi thử lại.',
 # E-mail sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Đổi mật khẩu',
 'resetpass_announce'        => 'Bạn đã đăng nhập bằng mật khẩu tạm gởi qua e-mail. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
 'resetpass_text'            => '<!-- Nhập văn bản vào đây -->',

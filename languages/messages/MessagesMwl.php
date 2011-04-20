@@ -421,7 +421,7 @@ de modo a cunfirmar que la cuonta ye mesmo la tue.',
 'emailconfirmlink'        => 'Cunfirma la tue morada de correio eiletrónico',
 'loginlanguagelabel'      => 'Lhéngua: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass' => 'Demudar palabra-chabe',
 'retypenew' => 'Pon outra beç la nuoba palabra chabe:',
 

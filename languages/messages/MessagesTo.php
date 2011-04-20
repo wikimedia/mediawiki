@@ -316,7 +316,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'accountcreatedtext'         => 'Kuo fakatupu ʻa e tohi kau-ki-ai maʻa $1.',
 'loginlanguagelabel'         => 'Lea: $1',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Ko e leatapu motuʻa:',
 'newpassword' => 'Ko e leatapu foʻou:',
 'retypenew'   => 'Toe ʻai leatapu foʻou:',

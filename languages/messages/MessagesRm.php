@@ -526,7 +526,7 @@ Spetga per plaschair avant ch'empruvar anc ina giada.",
 # E-mail sending
 'php-mail-error-unknown' => 'Errur nunenconuschenta en la funcziun mail() da PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Midar il pled-clav',
 'resetpass_announce'        => "Ti ès t'annunzià cun in pled-clav temporar che ti has retschavì per e-mail. 
 Per finir da t'annunziar stos ti definir qua in nov pled-clav:",

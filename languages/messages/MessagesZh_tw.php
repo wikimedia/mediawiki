@@ -302,7 +302,7 @@ $messages = array(
 
 如果該帳號建立錯誤的話，您可以忽略此訊息。',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => '更換密碼',
 'resetpass_announce'  => '您是透過臨時發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
 'resetpass_header'    => '更換帳號密碼',

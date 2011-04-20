@@ -687,7 +687,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Серсүзне үзгәртү',
 'resetpass_announce'        => 'Сез электрон почта аша вакытлыча бирелгән серсүз ярдәмендә кердегез. Системага керүне төгәлләү өчен яңа серсүз төзегез.',
 'resetpass_text'            => '<!-- Монда текст өстәгез -->',

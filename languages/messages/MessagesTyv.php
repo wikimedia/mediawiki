@@ -292,7 +292,7 @@ $messages = array(
 'accountcreatedtext'      => '$1 деп ажыглакчының бүрүткел бижиини бүдүрген.',
 'loginlanguagelabel'      => 'Дыл: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Чажыт сөзү өскертир',
 'resetpass_header'          => 'Чажыт сөстү катап чогаадып кылыры',
 'oldpassword'               => 'Эгри чажыт сөс:',

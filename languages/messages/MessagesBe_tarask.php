@@ -742,7 +742,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Узьнікла невядомая памылка ў функцыі PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Зьмяніць пароль',
 'resetpass_announce'        => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
 Для завяршэньня ўваходу ў сыстэму Вы мусіце ўвесьці тут новы пароль:',
@@ -759,6 +759,10 @@ $2',
 'resetpass-wrong-oldpass'   => 'Няслушны часовы альбо цяперашні пароль.
 Магчыма Вы ўжо пасьпяхова зьмянілі Ваш пароль альбо запыталі новы часовы пароль.',
 'resetpass-temp-password'   => 'Часовы пароль:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Ачыстка паролю',
+'passwordreset-username' => 'Імя ўдзельніка:',
 
 # Edit page toolbar
 'bold_sample'     => 'Тлусты тэкст',
@@ -3073,8 +3077,19 @@ $1',
 'exif-editstatus'                  => 'Рэдакцыйны статус выявы',
 'exif-urgency'                     => 'Тэрміновасьць',
 'exif-fixtureidentifier'           => 'Назва слупка',
+'exif-locationdest'                => 'Паказанае месца',
+'exif-locationdestcode'            => 'Код паказанага месца',
+'exif-objectcycle'                 => 'Час дня, для якога ўласьцівае мэдыя',
+'exif-contact'                     => 'Кантактная інфармацыя',
+'exif-writer'                      => 'Аўтар',
 'exif-languagecode'                => 'Мова',
+'exif-iimversion'                  => 'Вэрсія IIM',
 'exif-iimcategory'                 => 'Катэгорыя',
+'exif-iimsupplementalcategory'     => 'Дадатковыя катэгорыі',
+'exif-datetimeexpires'             => 'Не выкарыстоўваць пасьля',
+'exif-datetimereleased'            => 'Апублікаванае',
+'exif-originaltransmissionref'     => 'Код месца пачатковай перадачы',
+'exif-identifier'                  => 'Ідэнтыфікатар',
 'exif-lens'                        => 'Выкарыстаны аб’ектыў',
 'exif-serialnumber'                => 'Сэрыйны нумар фотакамэры',
 'exif-cameraownername'             => 'Уласьнік фотакамэры',

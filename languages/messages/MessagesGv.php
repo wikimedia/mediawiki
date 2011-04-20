@@ -357,7 +357,7 @@ Myr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chr
 'createaccount-title'        => 'Coontys crooit dy {{SITENAME}}',
 'loginlanguagelabel'         => 'Çhengey: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Caghlaa fockle yn arrey',
 'resetpass_header'          => 'Caghlaa fockle arrey y choontys',
 'oldpassword'               => 'Shenn-ockle yn arrey:',

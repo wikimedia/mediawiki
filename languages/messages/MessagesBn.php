@@ -538,7 +538,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'পিএইচপি এর মেইল () কার্যে অজ্ঞাত ভুল',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',
 'resetpass_announce'        => 'আপন ই-মেইলকৃত সংকেত দ্বারা লগ-ইন আছেন। লগ-ইন পদ্ধতি সম্পূর্ণ করতে আপনাকে অবশ্যই একটি নতুন শব্দচাবি গ্রহণ করতে হবে:',
 'resetpass_text'            => '<!-- এখানে লেখা যোগ করুন -->',

@@ -520,7 +520,7 @@ Palihog maghulat anay bag-o tilawan liwat.',
 # E-mail sending
 'php-mail-error-unknown' => 'Wala nahibaluan nga sala sa kapuslanan nga sulat() sang PHP.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ilisan ang pasword',
 'resetpass_announce'        => 'Nagsulod ka paagi sang temporary nga kod nga gin-email.
 Agod nga makatapos ka sa pagsulod, kinahanglan mo magbutang sang bag-o nga pasword dire:',

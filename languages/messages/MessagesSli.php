@@ -385,7 +385,7 @@ Foalls doas Nutzerkonto irrtümlich oagelagt wurde, koast du diese Noachricht ig
 Bitte warte, bevor du is erneut probierst.',
 'loginlanguagelabel'         => 'Sproache: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Passwurt ändern',
 'resetpass_announce'        => "Anmeldung mi'm per E-Mail zugesandten Code. Im de Anmeldung abzuschließa, mußt du jitz a neues Poaßwurt wähla.",
 'resetpass_header'          => 'Passwurt ändern',

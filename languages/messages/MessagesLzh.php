@@ -528,7 +528,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => '變符',
 'resetpass_announce'        => '爾乃過郵之臨符登之。要完登，汝乃需設新符節：',
 'resetpass_text'            => '<!-- 加字 -->',

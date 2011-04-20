@@ -456,7 +456,7 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'eauthentsent'            => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
 'loginlanguagelabel'      => 'Bahsa: $1',
 
-# Password reset dialog
+# Change password dialog
 'retypenew' => 'Pasoë teuma lageuëm barô:',
 
 # Edit page toolbar

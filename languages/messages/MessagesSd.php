@@ -427,7 +427,7 @@ $messages = array(
 'accountcreated'             => 'کاتو کلي چڪو',
 'accountcreatedtext'         => '$1 نالي يوزر کاتو کلي چڪو آھي.',
 
-# Password reset dialog
+# Change password dialog
 'retypenew' => 'نئون ڳجھو لفظ ٻيهر ٽائيپ ڪندا:',
 
 # Edit page toolbar

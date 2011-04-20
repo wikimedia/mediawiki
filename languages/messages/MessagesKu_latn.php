@@ -463,7 +463,7 @@ Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê.
 Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
 'loginlanguagelabel'         => 'Ziman: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Şîfre biguherîne',
 'resetpass_announce'        => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
 'resetpass_text'            => '<!-- Nivîsê xwe li vir binivisîne -->',

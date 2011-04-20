@@ -599,6 +599,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'createaccount'              => 'Krouiñ ur gont nevez',
 'gotaccount'                 => "Ur gont zo ganeoc'h dija ? '''$1'''.",
 'gotaccountlink'             => 'Kevreañ',
+'userlogin-resetlink'        => "Ha disoñjet hoc'h eus ho munudoù kevreañ ?",
 'createaccountmail'          => 'dre bostel',
 'createaccountreason'        => 'Abeg :',
 'badretype'                  => 'Ne glot ket ar gerioù-tremen an eil gant egile.',
@@ -667,7 +668,7 @@ Gortozit a-raok klask en-dro.",
 # E-mail sending
 'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',
 'resetpass_announce'        => "Enskrivet oc’h bet dre ur ger-tremen da c'hortoz kaset deoc'h dre bostel. A-benn bezañ enrollet da vat e rankit spisaat ur ger-tremen nevez amañ :",
 'resetpass_text'            => '<!-- Ouzhpennañ testenn amañ -->',
@@ -683,6 +684,18 @@ Gortozit a-raok klask en-dro.",
 'resetpass-submit-cancel'   => 'Nullañ',
 'resetpass-wrong-oldpass'   => "Direizh eo ar ger-tremen a-vremañ pe da c'hortoz.",
 'resetpass-temp-password'   => "Ger-tremen da c'hortoz :",
+
+# Special:PasswordReset
+'passwordreset'              => 'Adderaouekaat ar ger-tremen',
+'passwordreset-text'         => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus munudoù ho kont.",
+'passwordreset-legend'       => 'Adsevel ar ger-tremen',
+'passwordreset-disabled'     => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
+'passwordreset-username'     => 'Anv implijer :',
+'passwordreset-email'        => 'Postel :',
+'passwordreset-emailtitle'   => 'Munudoù kont war {{SITENAME}}',
+'passwordreset-emailelement' => "Anv implijer :           $1
+Ger-tremen da c'hortoz : $2",
+'passwordreset-emailsent'    => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
 
 # Edit page toolbar
 'bold_sample'     => 'Testenn dev',
@@ -3018,7 +3031,9 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-objectname'                  => 'Titl berr',
 'exif-specialinstructions'         => 'Kemennadurioù dibar',
 'exif-headline'                    => 'Titl',
+'exif-credit'                      => 'Kred/Pourvezer',
 'exif-source'                      => 'Mammenn',
+'exif-editstatus'                  => 'Statud skridaozañ ar skeudenn',
 'exif-urgency'                     => 'Malluster',
 'exif-locationdest'                => "Lec'h diskouezet",
 'exif-locationdestcode'            => "Kod al lec'h diskouezet",
@@ -3047,6 +3062,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-webstatement'                => 'Disklêriadur gwrioù-aozer enlinenn',
 'exif-originaldocumentid'          => 'ID nemetañ an teul orin',
 'exif-licenseurl'                  => "Chomlec'h Internet evit an aotre gwirioù-aozer",
+'exif-morepermissionsurl'          => 'Titouroù all war an aotre-implijout',
 'exif-attributionurl'              => 'Ma adimplijt an oberenn-mañ, lakait ul liamm war-zu',
 'exif-preferredattributionname'    => 'Ma adimplijt an oberenn-mañ, roit kred da',
 'exif-pngfilecomment'              => 'Evezhiadenn digant ar restr PNG',
@@ -3055,6 +3071,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-giffilecomment'              => 'Evezhiadenn digant ar restr GIF',
 'exif-intellectualgenre'           => 'Seurt elfenn',
 'exif-subjectnewscode'             => 'Kod ar sujed',
+'exif-scenecode'                   => 'Kod leurenniñ IPTC',
 'exif-event'                       => 'Darvoud diskouezet',
 'exif-organisationinimage'         => 'Anv an aozadurioù diskouezet war ar skeudenn',
 'exif-personinimage'               => 'Den diskouezet',
@@ -3080,6 +3097,8 @@ Kuzhet e vo ar re all dre ziouer.
 
 'exif-planarconfiguration-1' => 'Roadennoù kenstok',
 'exif-planarconfiguration-2' => 'Roadennoù distag',
+
+'exif-colorspace-65535' => "N'eo ket diouzh ur stalon",
 
 'exif-componentsconfiguration-0' => "n'eus ket anezhi",
 
@@ -3247,10 +3266,12 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-iimcategory-edu' => 'Deskadurezh',
 'exif-iimcategory-evn' => 'Endro',
 'exif-iimcategory-hth' => "Yec'hed",
+'exif-iimcategory-lab' => 'Bed al labour',
 'exif-iimcategory-lif' => 'Doare bevañ ha dudiamantoù',
 'exif-iimcategory-pol' => 'Politikerezh',
 'exif-iimcategory-rel' => 'Relijion ha kredennoù',
 'exif-iimcategory-sci' => 'Skiantoù ha teknologiezhoù',
+'exif-iimcategory-soi' => 'Temoù kevredigezhel',
 'exif-iimcategory-spo' => 'Sport',
 'exif-iimcategory-war' => 'Brezelioù, tabutoù ha turmud',
 'exif-iimcategory-wea' => 'Amzer',

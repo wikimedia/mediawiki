@@ -919,7 +919,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'خطای ناشناخته در تابع  mail() پی‌اچ‌پی',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'تغییر گذرواژه',
 'resetpass_announce'        => 'شما با کد موقتی ارسال شده وارد شده‌اید.
 برای انجام فرایند ورود به سامانه باید گذروازهٔ جدیدی وارد کنید:',

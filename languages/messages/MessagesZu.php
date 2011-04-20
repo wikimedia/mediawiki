@@ -142,7 +142,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'emailconfirmlink'        => 'Qinisekisa ikheli likagesi lakho',
 'loginlanguagelabel'      => 'Ulimi: $1',
 
-# Password reset dialog
+# Change password dialog
 'newpassword' => 'Izwi elingenangozi elisha:',
 
 # Edit page toolbar

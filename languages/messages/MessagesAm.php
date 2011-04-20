@@ -465,7 +465,7 @@ $2",
 እባክዎ እንደገና ሳይሞክሩ ለጥቂት ደቂቃ ይቆዩ።',
 'loginlanguagelabel'         => 'ቋምቋ፦ $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'የአባል መግቢያ ቃል ለመቀየር',
 'resetpass_announce'        => 'በኢ-ሜል በተላከ ጊዜያዊ ኮድ ገብተዋል። መግባትዎን ለመጨርስ፣ አዲስ መግቢያ ቃል እዚህ መምረጥ አለብዎ።',
 'resetpass_header'          => 'መግቢያ ቃል ለመቀየር',

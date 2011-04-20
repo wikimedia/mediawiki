@@ -569,7 +569,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 # E-mail sending
 'php-mail-error-unknown' => 'Earráid anaithnid i bhfeidhm mail() de chuid PHP',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => "Athraigh d'fhocal faire",
 'resetpass_announce'        => "Tá tú logáilte isteach le cód sealadach a seoladh chugat i r-phost.
 Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a roghnú anseo:",

@@ -211,7 +211,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'accountcreated'             => 'Akount kerdo',
 'accountcreatedtext'         => 'Kerdo o akonto le jenesko ko $1.',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Purano nakahvipnasko lav',
 'newpassword' => 'Nevo nakhavipnasko lav:',
 

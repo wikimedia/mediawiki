@@ -724,7 +724,7 @@ Parameters:
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 'login-abort-generic'        => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'The caption of [[Special:ChangePassword]]
 
 {{Identical|Change password}}',
@@ -743,6 +743,9 @@ Parameters:
 Used on [[Special:ResetPass]]',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
+
+# Special:PasswordReset
+'passwordreset-username' => '{{Identical|Username}}',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.

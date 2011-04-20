@@ -227,7 +227,7 @@ $messages = array(
 'mailmypassword'          => 'Ыстыны виль пароль',
 'loginlanguagelabel'      => 'Кыв: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Вежны пароль',
 'oldpassword'               => 'Важ пароль',
 'newpassword'               => 'Виль пароль',

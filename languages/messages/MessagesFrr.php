@@ -498,7 +498,7 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 'loginlanguagelabel'         => 'Spräke: $1',
 'suspicious-userlogout'      => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Pååsuurd änre',
 'resetpass_announce'        => 'Önjmälding ma di ouer E-mail tusånde kode. Am e önjmälding ouftusliten, möist dü en nai pååsuurd kiise.',
 'resetpass_header'          => 'Account pååsuurd änre',

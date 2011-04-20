@@ -745,7 +745,7 @@ $1',
 # E-mail sending
 'php-mail-error-unknown' => 'Невідома помилка в PHP-mail() функції',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Змінити пароль',
 'resetpass_announce'        => 'Ви ввійшли, використовуючи тимчасовий пароль, який отримали електронною поштою. Для завершення входу до системи, ви повинні вказати новий пароль тут:',
 'resetpass_header'          => 'Змінити пароль облікового запису',

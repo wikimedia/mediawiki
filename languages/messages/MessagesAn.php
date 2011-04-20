@@ -592,7 +592,7 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cambiar a contrasenya',
 'resetpass_announce'        => 'Ha encetato una sesión con una contrasenya temporal que se le ninvió por correu. Por favor, escriba aquí una nueva contrasenya:',
 'resetpass_text'            => '<!-- Adiba aquí o testo -->',

@@ -783,7 +783,7 @@ Odota ennen kuin yrität uudelleen.',
 # E-mail sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Muuta salasana',
 'resetpass_announce'        => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',
 'resetpass_text'            => '<!-- Lisää tekstiä tähän -->',

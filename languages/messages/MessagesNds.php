@@ -676,7 +676,7 @@ Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Passwoord ännern',
 'resetpass_announce'        => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',
 'resetpass_header'          => 'Passwoord trüchsetten',

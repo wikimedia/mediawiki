@@ -640,7 +640,7 @@ Maghintay po muna bago subukan uli.',
 # E-mail sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Palitan ang hudyat',
 'resetpass_announce'        => 'Lumagda ka sa pamamagitan ng isang pansamantalang ini-e-liham na kodigo.
 Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',

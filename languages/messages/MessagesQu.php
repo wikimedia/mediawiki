@@ -741,7 +741,7 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 # E-mail sending
 'php-mail-error-unknown' => 'Mana riqsisqa pantasqa PHP mail() rurananpi',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ruraqpa yaykuna rimanta hukchay',
 'resetpass_announce'        => "E-chaskiwan kachasqa mit'alla yaykuna rimawanmi yaykurqunki. Ama hina kaspa, musuq yaykuna rimaykita qillqamuy:",
 'resetpass_text'            => '<!-- Añada texto aquí -->',

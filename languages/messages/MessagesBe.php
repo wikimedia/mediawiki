@@ -549,7 +549,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'Невядомая памылка ў функцыі PHP-пошты',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Змяніць пароль',
 'resetpass_announce'        => 'Вы ўвайшлі ў сістэму пад тымчасовым паролем, прысланым эл.поштай. Каб правільна аформіць уваход, належыць вызначыць новы пароль вось тут:',
 'resetpass_header'          => 'Змяніць пароль рахунку',

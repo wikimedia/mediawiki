@@ -664,7 +664,7 @@ Vent venligst før du prøver igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Skift adgangskode',
 'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
 'resetpass_text'            => '<!-- Tilføj tekst her -->',
@@ -681,6 +681,9 @@ Vent venligst før du prøver igen.',
 'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode.
 Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
 'resetpass-temp-password'   => 'Midlertidig adgangskode',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Brugernavn:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fed tekst',
@@ -2858,8 +2861,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-colorspace'                  => 'Farverum',
 'exif-componentsconfiguration'     => 'Betydning af enkelte komponenter',
 'exif-compressedbitsperpixel'      => 'Komprimerede bits pr. pixel',
-'exif-pixelydimension'             => 'Gyldig billedbredde',
-'exif-pixelxdimension'             => 'Gyldig billedhøjde',
+'exif-pixelydimension'             => 'Billedbredde',
+'exif-pixelxdimension'             => 'Billedhøjde',
 'exif-usercomment'                 => 'Brugerkommentarer',
 'exif-relatedsoundfile'            => 'Tilhørende lydfil',
 'exif-datetimeoriginal'            => 'Optagelsestidspunkt',

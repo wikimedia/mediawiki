@@ -515,7 +515,7 @@ oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 # E-mail sending
 'php-mail-error-unknown' => "Wazzewo kiremya atategeerese mu mukolo mail() ogw'omu PHP",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Kyusa ekigambo ekikuumi',
 'resetpass_announce'        => "Weyambisa ekyama eky'ekiseerabuseera okuyingira.<br />
 Okuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",

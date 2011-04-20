@@ -561,7 +561,7 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 Stebedolös büä osteifülol nogna.',
 'loginlanguagelabel'         => 'Pük: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Votükön letavödi',
 'resetpass_announce'        => 'Enunädol oli me kot nelaidüpik pisedöl ole. Ad finükön nunädami, mutol välön letavödi nulik is:',
 'resetpass_header'          => 'Votükön kalaletavödi',

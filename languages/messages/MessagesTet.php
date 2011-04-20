@@ -315,7 +315,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'accountcreated'          => "Registrar tiha uza-na'in",
 'loginlanguagelabel'      => 'Lian: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_text' => "<!-- Hakerek testu iha ne'e -->",
 
 # Edit page toolbar

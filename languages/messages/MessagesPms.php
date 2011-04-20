@@ -533,7 +533,7 @@ Për piasì speta prima ëd prové torna.",
 # E-mail sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Cambia la ciav',
 'resetpass_announce'        => "A l'é rintrà ant ël sistema con na ciav provisòria mandà via për pòsta eletrònica. Për podèj finì la procedura a l'ha da butesse na ciav neuva ambelessì:",
 'resetpass_text'            => '<!-- Gionté dël test ambelessì -->',
@@ -550,6 +550,10 @@ Për piasì speta prima ëd prové torna.",
 'resetpass-wrong-oldpass'   => "Ciav a temp o corenta nen bon-a.
 Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'resetpass-temp-password'   => 'Ciav a temp:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Cambi ëd ciav',
+'passwordreset-username' => 'Stranòm:',
 
 # Edit page toolbar
 'bold_sample'     => 'Test an grassèt',
@@ -2731,7 +2735,8 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'metadata-help'     => "Costi-sì a son dij dat adissionaj, che a l'é belfé che a sio stait giontà da la màchina fotogràfica digital ò pura da lë scanner che a l'é stiat dovrà për creé la figura digital. Se la figura a fussa mai staita modificà da 'nt soa forma original, a podrìa ëdcò riveje che chèich detaj a fussa ancò butà coma ant l'original, donca sensa pa ten-e cont ëd le modìfiche.",
 'metadata-expand'   => 'Most-me tùit ij dat',
 'metadata-collapse' => 'Stërma ij dat adissionaj',
-'metadata-fields'   => "Ij camp dij metadat EXIF lista ant ës messagi-sì a sarà smonù ant sla pàgina dla figura quand la tabela dij metadat a l'é scondùa. J'àotri a saran scondù.
+'metadata-fields'   => "Ij camp dij metadat ëd la figura listà ant ës messagi-sì a sarà smonù ant sla visualisassion ëd la pàgina dla figura quand la tabela dij metadat a l'é scondùa. 
+J'àutr a saran scondù për default.
 * make
 * model
 * datetimeoriginal
@@ -2780,8 +2785,8 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-colorspace'                  => 'Spassi color',
 'exif-componentsconfiguration'     => 'Sust ëd vira component',
 'exif-compressedbitsperpixel'      => 'Sistema ëd compression dle figure',
-'exif-pixelydimension'             => 'Larghëssa vàlida dla figura',
-'exif-pixelxdimension'             => 'Autëssa vàlida dla figura',
+'exif-pixelydimension'             => 'Larghëssa dla figura',
+'exif-pixelxdimension'             => 'Autëssa dla figura',
 'exif-usercomment'                 => 'Nòte lìbere',
 'exif-relatedsoundfile'            => 'Archivi audio colegà',
 'exif-datetimeoriginal'            => 'Data e ora dla generassion dij dat',
@@ -2795,9 +2800,9 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-exposureprogram'             => "Programa d'esposission",
 'exif-spectralsensitivity'         => 'Sensibilità dë spetro',
 'exif-isospeedratings'             => 'Sensibilità ISO',
-'exif-shutterspeedvalue'           => 'Temp dë scat',
-'exif-aperturevalue'               => 'Diaframa',
-'exif-brightnessvalue'             => 'Luminosità',
+'exif-shutterspeedvalue'           => 'Temp dë scat APEX',
+'exif-aperturevalue'               => 'Diaframa APEX',
+'exif-brightnessvalue'             => 'Luminosità APEX',
 'exif-exposurebiasvalue'           => "Coression dl'esposission",
 'exif-maxaperturevalue'            => 'Apertura màssima',
 'exif-subjectdistance'             => 'Distansa dël soget',
@@ -2859,7 +2864,25 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-gpsareainformation'          => 'Nòm dlë spassi GPS',
 'exif-gpsdatestamp'                => 'Data dël GPS',
 'exif-gpsdifferential'             => 'Coression diferensial dël GPS',
+'exif-jpegfilecomment'             => "Coment ëd l'archivi JPEG",
+'exif-keywords'                    => 'Paròle ciav',
+'exif-worldregioncreated'          => "Region dël mond anté la fòto a l'é stàita pijà",
+'exif-countrycreated'              => "Stat anté la fòto a l'é stàita pijà",
+'exif-countrycodecreated'          => "Còdes për lë stat anté la fòto a l'é stàita pijà",
+'exif-provinceorstatecreated'      => "Provinsa o stat anté la fòto a l'é stàita pijà",
+'exif-citycreated'                 => "Sità anté la fòto a l'é stàita pijà",
+'exif-sublocationcreated'          => "Borgh ëd la sità anté la fòto a l'é stàita pijà",
+'exif-worldregiondest'             => 'Region dël mond mostà',
+'exif-countrydest'                 => 'Stat mostà',
+'exif-countrycodedest'             => 'Còdes për lë stat mostà',
+'exif-provinceorstatedest'         => 'Provinsa o stat mostà',
+'exif-citydest'                    => 'Sità mostà',
+'exif-sublocationdest'             => 'Borgh ëd la sità mostà',
 'exif-objectname'                  => 'Tìtol curt',
+'exif-specialinstructions'         => 'Istrussion speciaj',
+'exif-headline'                    => 'Antestassion',
+'exif-credit'                      => 'Credit/Fornidor',
+'exif-source'                      => 'Sorgiss',
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',

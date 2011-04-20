@@ -508,7 +508,7 @@ Begyu wiet likl bifuo yu chrai agen.',
 'loginlanguagelabel'         => 'Langwij: $1',
 'suspicious-userlogout'      => 'Yu rikwes fi lag out dinai bikaa iluk laik se isen bai a brok brouza ar kiashin praxi.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Chienj paaswod',
 'resetpass_announce'        => 'Yu lag iin wid a tempareri e-miel kuod.
 Fi finish lag iin, yu mos set a nyuu paaswod yaso:',

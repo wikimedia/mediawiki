@@ -546,7 +546,7 @@ Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
 'login-abort-generic'      => 'Teiden naprind tulda sistemha om satusetoi - Azotadud',
 'loginlanguagelabel'       => 'Kel’: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Vajehtada peitsana',
 'resetpass_announce'        => "Tö olet kirjutanus sistemha sen pordaigaližen peitsanan abul, kudamb oli oigetud teile e-počtadme.
 Miše tulda sistemha lopuližikš, teile pidab säta uz' peitsana naku:",

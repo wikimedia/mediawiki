@@ -321,7 +321,7 @@ $messages = array(
 'accountcreated'          => 'کھاتہ کھل گیا',
 'loginlanguagelabel'      => 'بولی: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_header'    => 'کھاتے دی کنجی بدلو',
 'oldpassword'         => 'پرانی کنجی:',
 'newpassword'         => 'نوی کنجی:',

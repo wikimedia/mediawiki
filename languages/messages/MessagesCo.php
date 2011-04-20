@@ -171,7 +171,7 @@ $messages = array(
 'accountcreatedtext'         => "U registramentu di l'utilizatore $1 hè statu fattu.",
 'loginlanguagelabel'         => 'Lingua: $1',
 
-# Password reset dialog
+# Change password dialog
 'retypenew' => 'Scrive torna a nova parulla secreta:',
 
 # Edit page toolbar

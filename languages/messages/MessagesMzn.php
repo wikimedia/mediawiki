@@ -419,7 +419,7 @@ $2، $1',
 'accountcreated'          => 'کاروری نوم دِرِس بیّه',
 'accountcreatedtext'      => 'کاروری نوم، $1 بساته بیّه.',
 
-# Password reset dialog
+# Change password dialog
 'newpassword' => 'نو پسورد:',
 
 # Edit page toolbar

@@ -440,7 +440,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'createaccount-title'        => '{{SITENAME}} paskīruos kūrėms',
 'loginlanguagelabel'         => 'Kalba: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'               => 'Keistė slaptažuodi',
 'resetpass_header'        => 'Keistė paskīruos slaptažuodi',
 'oldpassword'             => 'Sens slaptažuodis:',

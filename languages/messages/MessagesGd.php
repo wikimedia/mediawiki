@@ -422,7 +422,7 @@ Am feuch thu ris a-rithist?',
 'acct_creation_throttle_hit' => "Chruthaich na h-aoighean air an Uici seo {{PLURAL:$1|chunntas|chunntas|chunntas|chunntas|cunntasan|cunntas}} fon IP agad an-dè agus sin an àireamh as motha a tha ceadaichte. Chan urrainn do dh'aoighean eile on IP seo barrachd chunntasan a chruthachadh air sgàth sin.",
 'accountcreated'             => 'Cunntas cruthaichte',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Seann fhacal-faire',
 'newpassword' => 'Facal-faire ùr',
 'retypenew'   => 'Ath-sgrìobh am facal-faire ùr',

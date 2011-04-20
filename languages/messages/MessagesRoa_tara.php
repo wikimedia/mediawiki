@@ -529,7 +529,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 # E-mail sending
 'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => "Cange 'a password",
 'resetpass_announce'        => "Tu tè colleghete cu 'nu codece mannete pe e-mail temboranee.
 Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà:",

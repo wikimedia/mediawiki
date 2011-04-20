@@ -428,7 +428,7 @@ Occeppa xicalaqui niman ticmatīz.',
 'createaccount-title'     => 'Cuentah ītlachīhualiz ic {{SITENAME}}',
 'loginlanguagelabel'      => 'Tlahtōlli: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ticpatlāz motlahtōlichtacāyo',
 'resetpass_header'          => 'Xicpatlāz motlahtōlichtacāyo',
 'oldpassword'               => 'Huēhueh motlahtōlichtacayo:',

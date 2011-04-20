@@ -530,7 +530,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'mail() PHP-функциятыгар туох эрэ алҕас тахсыбыт',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Киирии тылы уларытыы',
 'resetpass_announce'        => 'Бу быстах кэмҥэ туттуллар киирии тылынан киирдиҥ. Түмүккэ саҥа киирии тылла суруй:',
 'resetpass_text'            => '<!-- Тиэкиһи манна эбэн суруйуҥ -->',

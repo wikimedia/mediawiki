@@ -510,7 +510,7 @@ Warning: Page may not contain recent updates.',
 دوبارہ کوشش کرنے سے پہلے انتظار فرمائیے.',
 'loginlanguagelabel'         => 'زبان: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'پارلفظ تبدیل کریں',
 'resetpass_announce'        => 'آپ ایک برقی ارسال کردہ عارضی رمز کے ساتھ داخل ہوئے ہیں.
 داخلِ نوشتہ کے عمل کو مکمل کرنے کیلئے آپ کو یہاں نیا پارلفظ متعین کرنا ہوگا:',

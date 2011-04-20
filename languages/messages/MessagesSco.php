@@ -457,7 +457,7 @@ Ye shuid log in an chynge yer password nou.
 Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'loginlanguagelabel'         => 'Leid: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Chynge passwaird',
 'resetpass_announce'        => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
 'resetpass_header'          => 'Chynge accoont password',
@@ -790,6 +790,9 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'rightslog'     => 'Uiser richts log',
 'rightslogtext' => 'This is a log o chynges tae uiser richts.',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'edit this page',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|chynge|chynges}}',
 'recentchanges'                     => 'Recent chynges',
@@ -798,6 +801,9 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'rcnotefrom'                        => 'Ablo is the chynges syne <b>$2</b> (up tae <b>$1</b> shawn).',
 'rclistfrom'                        => 'Shaw new chynges stertin frae $1',
 'rcshowhidebots'                    => '$1 bots',
+'rcshowhideliu'                     => '$1 logged-in uisers',
+'rcshowhideanons'                   => '$1 anonymous uisers',
+'rcshowhidemine'                    => '$1 ma edits',
 'rclinks'                           => 'Shaw last $1 chynges in last $2 days<br />$3',
 'diff'                              => 'diff',
 'hist'                              => 'hist',
@@ -997,6 +1003,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-blocked' => '(blockit)',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Uiser creation log',
 'newuserlog-create-entry' => 'New uiser accoont',
 
 # Special:ListGroupRights
@@ -1005,6 +1012,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # E-mail user
 'mailnologin'     => 'Nae send address',
 'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
+'emailuser'       => 'E-mail this uiser',
 'noemailtitle'    => 'Nae e-mail address',
 'noemailtext'     => "This uiser haesna specifee'd a valid e-mail address, or haes chuisen no tae receive e-mail frae ither uisers.",
 'emailmessage'    => 'Message:',
@@ -1020,6 +1028,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'removedwatch'      => 'Remuved frae watchleet',
 'removedwatchtext'  => 'The page "[[:$1]]" haes been remuved frae yer watchleet.',
 'watch'             => 'Watch',
+'watchthispage'     => 'Leuk ower this page',
 'unwatch'           => 'Unwatch',
 'notanarticle'      => 'No a content page',
 'watchnochange'     => 'Nane o yer watched items were edited in the time period displayed.',
@@ -1072,17 +1081,20 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]',
 
 # Protect
-'protectlogtext'         => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'       => 'protectit "[[$1]]"',
-'unprotectedarticle'     => 'unprotectit "[[$1]]"',
-'protect-title'          => 'Protectin "$1"',
-'prot_1movedto2'         => '[[$1]] flittit til [[$2]]',
-'protectcomment'         => 'Raeson:',
-'protect-text'           => "Ye can see an chynge the protection level here for the page '''<nowiki>$1</nowiki>'''.",
-'protect-level-sysop'    => 'Juist administrators',
-'protect-othertime'      => 'Ither time:',
-'protect-othertime-op'   => 'ither time',
-'protect-expiry-options' => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
+'protectlogtext'              => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
+'protectedarticle'            => 'protectit "[[$1]]"',
+'unprotectedarticle'          => 'unprotectit "[[$1]]"',
+'protect-title'               => 'Protectin "$1"',
+'prot_1movedto2'              => '[[$1]] flittit til [[$2]]',
+'protectcomment'              => 'Raeson:',
+'protectexpiry'               => 'Expires:',
+'protect-text'                => "Ye can see an chynge the protection level here for the page '''<nowiki>$1</nowiki>'''.",
+'protect-default'             => 'Allow aw uisers',
+'protect-level-autoconfirmed' => 'Baur new and unregistered uisers',
+'protect-level-sysop'         => 'Juist administrators',
+'protect-othertime'           => 'Ither time:',
+'protect-othertime-op'        => 'ither time',
+'protect-expiry-options'      => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Edit',
@@ -1102,6 +1114,7 @@ reveisions will appear in the aulder history, an the current reveision o the liv
 'undeletehistorynoadmin' => 'This airticle haes been delete. The raeson for deletion is
 shawn in the summary ablo, alang wi parteeculars o the uisers that haed editit this page
 afore it wis delete. The actual text o thir deletit reveisions is available tae admeenistrators juist.',
+'undeletelink'           => 'view/restore',
 'undeletedrevisions'     => '{{PLURAL:$1|1 reveision|$1 reveisions}} restored',
 'cannotundelete'         => 'Undelete didna wirk; some ither bodie micht hae aareadies undeletit the page.',
 
@@ -1122,6 +1135,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'sp-contributions-blocklog' => 'block log',
 'sp-contributions-logs'     => 'logs',
 'sp-contributions-talk'     => 'collogue',
+'sp-contributions-username' => 'IP address or uisername:',
 'sp-contributions-submit'   => 'Rake',
 
 # What links here
@@ -1129,9 +1143,11 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'linkshere'               => "The follaein pages airts tae '''[[:$1]]''':",
 'nolinkshere'             => "Nae pages airt tae '''[[:$1]]'''.",
 'isredirect'              => 'reguidal page',
+'istemplate'              => 'transclusion',
 'isimage'                 => 'eimage link',
 'whatlinkshere-links'     => '← links',
 'whatlinkshere-hidelinks' => '$1 links',
+'whatlinkshere-filters'   => 'Filters',
 
 # Block/unblock
 'blockip'                     => 'Block uiser',
@@ -1260,6 +1276,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'tooltip-n-mainpage'              => 'Gang tae the Main Page',
 'tooltip-n-recentchanges'         => 'The leet o recent chynges in the wiki',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
+'tooltip-t-emailuser'             => 'Send an e-mail to this uiser',
 'tooltip-t-upload'                => 'Uplaid files',
 'tooltip-t-specialpages'          => 'Leet o byordinar pages',
 'tooltip-ca-nstab-user'           => 'View the uiser page',

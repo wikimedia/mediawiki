@@ -393,7 +393,7 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'accountcreatedtext'         => 'Isem n wemseqdac i $1 yettwaxleq.',
 'loginlanguagelabel'         => 'Tutlayt: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Iɛawed awal n tbaḍnit',
 'resetpass_announce'  => 'Tkecmeḍ s ungal yettwazen-ak s e-mail (ungal-nni qrib yemmut). Iwekken tkemmleḍ, yessefk ad textareḍ awal n tbaḍnit amaynut dagi:',
 'resetpass_text'      => '<!-- Rnu aḍris dagi -->',

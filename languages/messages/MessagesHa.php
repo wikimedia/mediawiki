@@ -246,7 +246,7 @@ Tana yiyuwa yana da harafi ko haruffa da ba su karɓuwa cikin kanu.",
 'createaccountreason'     => 'Dalili:',
 'mailmypassword'          => 'Aiken kalmar sirri ta Imel',
 
-# Password reset dialog
+# Change password dialog
 'resetpass-submit-cancel' => 'Soke',
 
 # Edit page toolbar

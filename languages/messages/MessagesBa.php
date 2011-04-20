@@ -521,7 +521,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHP-ның mail() функцияһында билдәһеҙ хата',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Паролде үҙгәртеү',
 'resetpass_announce'        => 'Һеҙ системала электрон почта аша алынған ваҡытлыса пароль менән танылдығыҙ. Системаға кереүҙә тамалау өсөн яңы пароль булдырығыҙ.',
 'resetpass_header'          => 'Иҫәп яҙыуы паролен үҙгәртеү',

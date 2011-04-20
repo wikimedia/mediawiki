@@ -515,7 +515,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => "PHP's mail() функцияда белгили болмагъан халат",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Паролну тюрлендириу',
 'resetpass_announce'        => 'Сиз, электрон почта бла ийилген, болджаллы пароль бла киргенсиз. Системагъа кириуню тамамларча, джангы пароль къурагъыз.',
 'resetpass_header'          => 'Тергеу джазыуну (аккаунтну) паролюн тюрлендириу',

@@ -280,7 +280,7 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'emailnotauthenticated'      => 'Lí ê e-mail chū-chí iáu-bōe khak-jīn ū-hāu, só·-í ē--kha ê e-mail kong-lêng bē-ēng-tit.',
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => 'Kū bi̍t-bé:',
 'newpassword' => 'Sin bi̍t-bé:',
 'retypenew'   => 'Têng phah sin bi̍t-bé:',

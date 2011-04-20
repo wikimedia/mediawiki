@@ -806,7 +806,7 @@ Volyéd atendre devant que tornar èprovar.',
 # E-mail sending
 'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
 'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèssageria èlèctronica.
 Por chavonar lo branchement, vos dête buchiér un mot de pâssa novél ique :',

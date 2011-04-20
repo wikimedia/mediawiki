@@ -552,7 +552,7 @@ $2',
 'loginlanguagelabel'         => 'भाषा: $1',
 'suspicious-userlogout'      => 'अपको लॉग आउट अनुरोध है क्योंकि यह एक टूटी हुई ब्राउज़र या प्रॉक्सी कैशिंग द्वारा भेजा गया था',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'कूटशब्द बदलें',
 'resetpass_announce'        => 'आप इ-मेल से प्राप्त अस्थायी कोडसे लॉग इन हैं ।
 लॉग इन को पूरा करने के लिये, आप एक नया कूटशब्द दें:',

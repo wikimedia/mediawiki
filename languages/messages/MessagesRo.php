@@ -782,7 +782,7 @@ Vă rugăm să așteptați până să mai încercați.',
 # E-mail sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Modifică parola',
 'resetpass_announce'        => 'Sunteți autentificat cu un cod temporar trimis pe e-mail. Pentru a termina acțiunea de autentificare, trebuie să setați o parolă nouă aici:',
 'resetpass_text'            => '<!-- Adăugați text aici -->',

@@ -536,7 +536,7 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 Ngalla néggandikul ab diir door a jéemaat.',
 'loginlanguagelabel'         => 'Làkk : $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Soppi baatujàll bi',
 'resetpass_announce'        => 'Danga dugg ak ab baatujàll bu saxul-dakk, buñ la yónne cib bataaxal. Ngir matal mbindu mi, faaw nga roof ab baatujàll bu bees fii:',
 'resetpass_text'            => '<!-- Bindal fii -->',

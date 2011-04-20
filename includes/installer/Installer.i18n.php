@@ -4808,8 +4808,9 @@ chmod a+w $3</pre></div>',
 
 אם אתם רוצים אפשרות להשתמש בטקסט מוויקיפדיה ואתם רוצים שוויקיפדיה תוכל לקבל עותקים של טקסטים מהוויקי שלכם, כדאי לכם לבחור ב'''רישיון קריאייטיב קומונז ייחוס–שיתוף זהה''' (CC-BY-SA).
 
-הרישיון החופשי למסמכים של גנו הוא הרישיון שבו ויקיפדיה השתמשה בעבר (GNU FDL או GFDL).
-הוא עדיין תקין, אבל יש בו תכונות מסוימות שמקשות על שימוש חוזר ועל פרשנות.",
+ויקיפדיה השתמשה בעבר ברישיון החופשי למסמכים של גנו (GNU FDL או GFDL).
+הוא עדיין רישיון תקין, אבל קשה להבנה.
+כמו־כן, קשה לעשות שימוש חוזר ביצירות שפורסמו לפי GFDL.",
 	'config-email-settings' => 'הגדרות דוא״ל',
 	'config-enable-email' => 'להפעיל דוא״ל יוצא',
 	'config-enable-email-help' => 'אם אתם רוצים שדוא״ל יעבוד, [http://www.php.net/manual/en/mail.configuration.php אפשרויות הדוא״ל של PHP] צריכות להיות מוגדרות נכון.
@@ -11735,6 +11736,8 @@ $messages['tl'] = array(
 	'config-desc' => 'Ang instalador para sa MediaWiki',
 	'config-title' => 'Instalasyong $1 ng MediaWiki',
 	'config-information' => 'Kabatiran',
+	'config-localsettings-cli-upgrade' => 'Napansin ang isang talaksan ng LocalSettings.php.
+Upang isapanahon ang pagtatalagang ito, mangyaring patakbuhin sa halip ang update.php',
 	'config-localsettings-key' => 'Susi ng pagsasapanahon:',
 	'config-localsettings-badkey' => 'Hindi tama ang susing ibinigay mo.',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',

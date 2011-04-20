@@ -400,7 +400,7 @@ Saankan a makaaramid pay.',
 'createaccount-title'        => 'Panagaramid iti account para iti {{SITENAME}}',
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Sukatan ti pasesbalikas ti account',
 'resetpass_header'    => 'Sukatan ti pasesbalikas ti account',
 'oldpassword'         => 'Daan a pasesbalikas:',

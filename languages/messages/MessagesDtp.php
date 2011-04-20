@@ -516,7 +516,7 @@ Andado poh do toruhai pogulu do minsingumbal kawagu.',
 # E-mail sending
 'php-mail-error-unknown' => 'Awu nointutunan kinosilapan id don surat PHP () function',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Alanai kaatalib',
 'resetpass_announce'        => 'Poinsuang log ko momoguno do kaatalib daamot it pinosurat-i.
 Momongoh do sinuang log, mositi do powonsoionnu kaatalib wagu do hiti.:',

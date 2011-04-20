@@ -107,7 +107,7 @@ Negeer dit bericht als deze gebruiker zonder jouw medeweten is aangemaakt.',
 Wacht even voordat je het opnieuw probeert.',
 'suspicious-userlogout'      => 'Je verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
-# Password reset dialog
+# Change password dialog
 'resetpass_announce'      => 'Je bent aangemeld met een tijdelijke code die je per e-mail is toegezonden.
 Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_success'       => 'Je wachtwoord is gewijzigd.

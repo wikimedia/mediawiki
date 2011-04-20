@@ -833,7 +833,7 @@ Počkejte chvíli, než to zkusíte znovu.',
 # E-mail sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Změna hesla',
 'resetpass_announce'        => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
 'resetpass_text'            => '<!-- Sem přidejte text -->',

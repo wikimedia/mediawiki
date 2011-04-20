@@ -791,7 +791,7 @@ Jobağa kiriwiñiz jäne qupïya söziñizdi özgertwiñiz tïisti.
 Eger bul tirkelgi qatelikpen jasalsa, osı xabarğa elemewiñiz mümkin.',
 'loginlanguagelabel'         => 'Til: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'           => 'Tirkelginiñ qupïya sözin özgertw',
 'resetpass_announce'  => 'Xatpen jiberilgen waqıtşa kodımen kirgensiz.
 Kirwiñizdi bitirw üşin, jaña qupïya söziñizdi mında engizwiñiz jön:',

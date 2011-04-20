@@ -797,7 +797,7 @@ Vänta innan du försöker igen.',
 # E-mail sending
 'php-mail-error-unknown' => "Okänt fel i PHP's mail()-funktion",
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ändra lösenord',
 'resetpass_announce'        => 'Du loggade in med ett temporärt lösenord. För att slutföra inloggningen måste du välja ett nytt lösenord.',
 'resetpass_text'            => '<!-- Lägg till text här -->',
@@ -814,6 +814,10 @@ Vänta innan du försöker igen.',
 'resetpass-wrong-oldpass'   => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Lösenordsåterställning',
+'passwordreset-username' => 'Användarnamn:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet text',
@@ -3055,8 +3059,8 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-colorspace'                  => 'Färgrymd',
 'exif-componentsconfiguration'     => 'Komponentanalys',
 'exif-compressedbitsperpixel'      => 'Bildkomprimeringsläge',
-'exif-pixelydimension'             => 'Giltig bildbredd',
-'exif-pixelxdimension'             => 'Giltig bildhöjd',
+'exif-pixelydimension'             => 'Bildbredd',
+'exif-pixelxdimension'             => 'Bildhöjd',
 'exif-usercomment'                 => 'Kommentarer',
 'exif-relatedsoundfile'            => 'Relaterad ljudfil',
 'exif-datetimeoriginal'            => 'Exponeringstidpunkt',

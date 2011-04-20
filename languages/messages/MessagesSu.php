@@ -596,7 +596,7 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'login-abort-generic'        => 'Login gagal - Dibolaykeun',
 'loginlanguagelabel'         => 'Basa: $1',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'Ganti kecap sandi rekening',
 'resetpass_announce'        => 'Anjeun asup log migunakeun sandi samentara. Salajengna, mangga gentos ku sandi anyar di dieu:',
 'resetpass_text'            => '<!-- Tambahkeun téks di dieu -->',

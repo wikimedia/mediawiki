@@ -849,7 +849,7 @@ $2',
 # E-mail sending
 'php-mail-error-unknown' => 'PHPのmail()関数で不明なエラー',
 
-# Password reset dialog
+# Change password dialog
 'resetpass'                 => 'パスワードの変更',
 'resetpass_announce'        => '電子メールで送信された仮パスワードでログインしています。
 ログインを完了するには、ここで新しいパスワードを設定しなおす必要があります：',

@@ -230,7 +230,7 @@ Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.'
 'nologinlink'             => 'Hesabi dokʼidi.',
 'mailmypassword'          => 'Ağne pʼarola-çkimi moncğoni',
 
-# Password reset dialog
+# Change password dialog
 'oldpassword' => "Mcveşi p'arola:",
 'newpassword' => "Ağani P'arola:",
 
