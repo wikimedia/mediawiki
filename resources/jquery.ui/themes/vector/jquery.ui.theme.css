@@ -20,13 +20,14 @@
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #aed0ea; /* @embed */ background: #d7ebf9 url(images/ui-bg_highlight-hard_80_d7ebf9_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #2779aa; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #aed0ea; /* @embed */ background: #d7ebf9 url(images/ui-bg_highlight-hard_80_d7ebf9_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #000000; }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #2779aa; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #74b2e2; /* @embed */ background: #e4f1fb url(images/ui-bg_highlight-soft_100_e4f1fb_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #0070a3; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #74b2e2; /* @embed */ background: #e4f1fb url(images/ui-bg_highlight-soft_100_e4f1fb_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #000000; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #0070a3; text-decoration: none; }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #cccccc; background: #f0f0f0 /* @embed */ url(images/ui-bg_inset-hard_100_f0f0f0_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #000000; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #000000; text-decoration: none; }
 .ui-widget :active { outline: none; }
+a.ui-state-default:active, a.ui-state-default:visited { color: #000000; }
 
 /* Interaction Cues
 ----------------------------------*/
