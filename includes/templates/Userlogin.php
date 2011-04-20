@@ -130,11 +130,19 @@ class UserloginTemplate extends QuickTemplate {
 			'tabindex' => '9'
 		) );
 		if ( $this->data['useemail'] && $this->data['canreset'] ) {
-			echo '&#160;';
-			echo Html::input( 'wpMailmypassword', wfMsg( 'mailmypassword' ), 'submit', array(
-				'id' => 'wpMailmypassword',
-				'tabindex' => '10'
-			) );
+			if( $this->data['resetlink'] === true ){
+				echo '&#160;';
+				echo Linker::link(
+					SpecialPage::getTitleFor( 'PasswordReset' ),
+					wfMessage( 'userlogin-resetlink' )
+				);
+			} elseif( $this->data['resetlink'] === null ) {
+				echo '&#160;';
+				echo Html::input( 'wpMailmypassword', wfMsg( 'mailmypassword' ), 'submit', array(
+					'id' => 'wpMailmypassword',
+					'tabindex' => '10'
+				) );
+			}
 		} ?>
 
 			</td>

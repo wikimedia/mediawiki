@@ -44,7 +44,7 @@ class LoginForm extends SpecialPage {
 	const WRONG_TOKEN = 13;
 
 	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
-	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
+	var $mAction, $mCreateaccount, $mCreateaccountMail;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
@@ -90,8 +90,6 @@ class LoginForm extends SpecialPage {
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
 									&& $wgEnableEmail;
-		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' )
-								 && $wgEnableEmail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
@@ -146,8 +144,6 @@ class LoginForm extends SpecialPage {
 				return $this->addNewAccount();
 			} elseif ( $this->mCreateaccountMail ) {
 				return $this->addNewAccountMailPassword();
-			} elseif ( $this->mMailmypassword ) {
-				return $this->mailPassword();
 			} elseif ( ( 'submitlogin' == $this->mAction ) || $this->mLoginattempt ) {
 				return $this->processLogin();
 			}
@@ -740,95 +736,6 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @private
-	 */
-	function mailPassword() {
-		global $wgUser, $wgOut, $wgAuth;
-
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return false;
-		}
-
-		if( !$wgAuth->allowPasswordChange() ) {
-			$this->mainLoginForm( wfMsg( 'resetpass_forbidden' ) );
-			return;
-		}
-
-		# Check against blocked IPs so blocked users can't flood admins
-		# with password resets
-		if( $wgUser->isBlocked() ) {
-			$this->mainLoginForm( wfMsg( 'blocked-mailpassword' ) );
-			return;
-		}
-
-		# Check for hooks
-		$error = null;
-		if ( !wfRunHooks( 'UserLoginMailPassword', array( $this->mUsername, &$error ) ) ) {
-			$this->mainLoginForm( $error );
-			return;
-		}
-
-		# If the user doesn't have a login token yet, set one.
-		if ( !self::getLoginToken() ) {
-			self::setLoginToken();
-			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
-			return;
-		}
-
-		# If the user didn't pass a login token, tell them we need one
-		if ( !$this->mToken ) {
-			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
-			return;
-		}
-
-		# Check against the rate limiter
-		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
-			$wgOut->rateLimited();
-			return;
-		}
-
-		if ( $this->mUsername == '' ) {
-			$this->mainLoginForm( wfMsg( 'noname' ) );
-			return;
-		}
-		$u = User::newFromName( $this->mUsername );
-		if( !$u instanceof User ) {
-			$this->mainLoginForm( wfMsg( 'noname' ) );
-			return;
-		}
-		if ( 0 == $u->getID() ) {
-			$this->mainLoginForm( wfMsgExt( 'nosuchuser', 'parseinline', $u->getName() ) );
-			return;
-		}
-
-		# Validate the login token
-		if ( $this->mToken !== self::getLoginToken() ) {
-			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
-			return;
-		}
-
-		# Check against password throttle
-		if ( $u->isPasswordReminderThrottled() ) {
-			global $wgPasswordReminderResendTime;
-			# Round the time in hours to 3 d.p., in case someone is specifying
-			# minutes or seconds.
-			$this->mainLoginForm( wfMsgExt( 'throttled-mailpassword', array( 'parsemag' ),
-				round( $wgPasswordReminderResendTime, 3 ) ) );
-			return;
-		}
-
-		$result = $this->mailPasswordInternal( $u, true, 'passwordremindertitle', 'passwordremindertext' );
-		if( $result->isGood() ) {
-			$this->mainLoginForm( wfMsg( 'passwordsent', $u->getName() ), 'success' );
-			self::clearLoginToken();
-		} else {
-			$this->mainLoginForm( $result->getWikiText( 'mailerror' ) );
-		}
-	}
-
-
-	/**
 	 * @param $u User object
 	 * @param $throttle Boolean
 	 * @param $emailTitle String: message name of email title
@@ -977,7 +884,7 @@ class LoginForm extends SpecialPage {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgRequest, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
-		global $wgSecureLogin;
+		global $wgSecureLogin, $wgPasswordResetRoutes;
 
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 
@@ -1043,6 +950,10 @@ class LoginForm extends SpecialPage {
 			$template->set( 'link', '' );
 		}
 
+		$resetLink = $this->mType == 'signup'
+			? null
+			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
+
 		$template->set( 'header', '' );
 		$template->set( 'name', $this->mUsername );
 		$template->set( 'password', $this->mPassword );
@@ -1061,6 +972,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
+		$template->set( 'resetlink', $resetLink );
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
 		$template->set( 'usereason', $wgUser->isLoggedIn() );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) || $this->mRemember );
