@@ -154,7 +154,7 @@ class BackupReader {
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
 			}
 		}
-		wfWaitForSlaves( 5 );
+		wfWaitForSlaves();
 		// XXX: Don't let deferred jobs array get absurdly large (bug 24375)
 		wfDoUpdates( 'commit' );
 	}

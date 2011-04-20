@@ -36,7 +36,7 @@ function wfGearmanMonitor( $idle, $lastJob ) {
 	$interval = 5;
 	$now = time();
 	if ( $now - $lastSleep >= $interval ) {
-		wfWaitForSlaves( $interval );
+		wfWaitForSlaves();
 		$lastSleep = $now;
 	}
 	return false;

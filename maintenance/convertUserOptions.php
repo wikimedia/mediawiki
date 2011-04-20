@@ -46,7 +46,7 @@ class ConvertUserOptions extends Maintenance {
 			$id = $this->convertOptionBatch( $res, $dbw );
 			$dbw->commit();
 
-			wfWaitForSlaves( 1 );
+			wfWaitForSlaves();
 
 			if ( $id )
 				$this->output( "--Converted to ID $id\n" );

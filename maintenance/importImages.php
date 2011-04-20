@@ -249,8 +249,8 @@ if ( count( $args ) > 0 ) {
 						$article = new Article( $title );
 						echo "\nWaiting for slaves...\n";
 						// Wait for slaves.
-						sleep( 2.0 );
-						wfWaitForSlaves( 1.0 );
+						sleep( 2.0 ); # Why this sleep?
+						wfWaitForSlaves();
 
 						echo( "\nSetting image restrictions ... " );
 						if ( $article->updateRestrictions( $restrictions ) )

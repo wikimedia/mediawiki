@@ -155,7 +155,7 @@ function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 	#$conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 	for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
-		wfWaitForSlaves( 5 );
+		wfWaitForSlaves();
 
 		# Wake up
 		$dbr->ping();
@@ -309,7 +309,7 @@ function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 			print "/";
 			$dbw->commit();
 			$i += $thisChunkSize;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		print "\n";
 	}

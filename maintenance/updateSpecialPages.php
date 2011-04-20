@@ -58,7 +58,7 @@ class UpdateSpecialPages extends Maintenance {
 			}
 			$this->output( sprintf( "completed in %.2fs\n", $seconds ) );
 			# Wait for the slave to catch up
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 
 		// This is needed to initialise $wgQueryPages
@@ -130,7 +130,7 @@ class UpdateSpecialPages extends Maintenance {
 						$dbw->commit();
 					}
 					# Wait for the slave to catch up
-					wfWaitForSlaves( 5 );
+					wfWaitForSlaves();
 				} else {
 					$this->output( "cheap, skipped\n" );
 				}

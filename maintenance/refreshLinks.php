@@ -107,7 +107,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % $reportingInterval ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves( $maxLag );
+					wfWaitForSlaves();
 				}
 				$this->fixRedirect( $row->page_id );
 			}
@@ -127,7 +127,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % $reportingInterval ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves( $maxLag );
+					wfWaitForSlaves();
 				}
 				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
@@ -148,7 +148,7 @@ class RefreshLinks extends Maintenance {
 
 				if ( !( $id % $reportingInterval ) ) {
 					$this->output( "$id\n" );
-					wfWaitForSlaves( $maxLag );
+					wfWaitForSlaves();
 				}
 				$this->fixRedirect( $id );
 			}
@@ -161,7 +161,7 @@ class RefreshLinks extends Maintenance {
 
 					if ( !( $id % $reportingInterval ) ) {
 						$this->output( "$id\n" );
-						wfWaitForSlaves( $maxLag );
+						wfWaitForSlaves();
 					}
 					self::fixLinksFromArticle( $id );
 				}
@@ -237,7 +237,7 @@ class RefreshLinks extends Maintenance {
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */
 	private function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
-		wfWaitForSlaves( $maxLag );
+		wfWaitForSlaves();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -273,7 +273,7 @@ class RefreshLinks extends Maintenance {
 				$counter++;
 				$list[] = $row->$field;
 				if ( ( $counter % $batchSize ) == 0 ) {
-					wfWaitForSlaves( 5 );
+					wfWaitForSlaves();
 					$dbw->delete( $table, array( $field => $list ), __METHOD__ );
 
 					$this->output( $counter . ".." );

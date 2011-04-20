@@ -66,7 +66,7 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 
 		if ( !( $block % REPORTING_INTERVAL ) ) {
 			print "oldid=$blockStart, moved=$numMoved\n";
-			wfWaitForSlaves( 2 );
+			wfWaitForSlaves();
 		}
 
 		$res = $dbr->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),

@@ -98,7 +98,7 @@ class PopulateParentId extends Maintenance {
 			}
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		$logged = $db->insert( 'updatelog',
 			array( 'ul_key' => 'populate rev_parent_id' ),

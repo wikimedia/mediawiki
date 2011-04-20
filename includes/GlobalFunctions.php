@@ -3146,43 +3146,17 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
 }
 
 /**
- * Sleep until the worst slave's replication lag is less than or equal to
- * $maxLag, in seconds.  Use this when updating very large numbers of rows, as
+ * Modern version of wfWaitForSlaves(). Instead of looking at replication lag
+ * and waiting for it to go down, this waits for the slaves to catch up to the
+ * master position. Use this when updating very large numbers of rows, as
  * in maintenance scripts, to avoid causing too much lag.  Of course, this is
  * a no-op if there are no slaves.
- *
- * Every time the function has to wait for a slave, it will print a message to
- * that effect (and then sleep for a little while), so it's probably not best
- * to use this outside maintenance scripts in its present form.
- *
- * @param $maxLag Integer
+ * 
+ * @param $maxLag Integer (deprecated)
  * @param $wiki mixed Wiki identifier accepted by wfGetLB
  * @return null
  */
-function wfWaitForSlaves( $maxLag, $wiki = false ) {
-	if( $maxLag ) {
-		$lb = wfGetLB( $wiki );
-		list( $host, $lag ) = $lb->getMaxLag( $wiki );
-		while( $lag > $maxLag ) {
-			wfSuppressWarnings();
-			$name = gethostbyaddr( $host );
-			wfRestoreWarnings();
-			if( $name !== false ) {
-				$host = $name;
-			}
-			print "Waiting for $host (lagged $lag seconds)...\n";
-			sleep( $maxLag );
-			list( $host, $lag ) = $lb->getMaxLag();
-		}
-	}
-}
-
-/**
- * Modern version of wfWaitForSlaves(). Instead of looking at replication lag
- * and waiting for it to go down, this waits for the slaves to catch up to the
- * master position. This is much better for lag control than wfWaitForSlaves()
- */
-function wfWaitForSlaves_masterPos() {
+function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 	$lb = wfGetLB();
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position

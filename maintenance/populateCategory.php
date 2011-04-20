@@ -119,7 +119,7 @@ TEXT;
 			++$i;
 			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
-				wfWaitForSlaves( $maxlag );
+				wfWaitForSlaves();
 			}
 			usleep( $throttle * 1000 );
 		}

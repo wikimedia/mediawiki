@@ -164,7 +164,7 @@ EOT;
 			$this->dbw->insert( $dstTable, $batch, __METHOD__ );
 			$numRowsCopied += count( $batch );
 
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		echo "Copied $numRowsCopied rows\n";
 	}

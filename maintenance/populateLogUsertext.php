@@ -59,7 +59,7 @@ class PopulateLogUsertext extends Maintenance {
 			$db->commit();
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
-			wfWaitForSlaves( 5 );
+			wfWaitForSlaves();
 		}
 		if ( $db->insert(
 				'updatelog',
