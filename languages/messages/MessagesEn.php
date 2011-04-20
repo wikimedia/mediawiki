@@ -749,6 +749,7 @@ XHTML id names.
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
+'broken-file-category'           => 'Pages with broken file links',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
