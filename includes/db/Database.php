@@ -1039,7 +1039,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 *                         see DatabaseBase::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return mixed Database result resource (feed to DatabaseBase::fetchObject or whatever), or false on failure
+	 * @return ResultWrapper|Bool Database result resource (feed to DatabaseBase::fetchObject
+	 *     or whatever), or false on failure
 	 */
 	function select( $table, $vars, $conds = '', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
