@@ -4018,7 +4018,7 @@ class Article {
 				$msg = $wgUser->isLoggedIn()
 					? 'noarticletext'
 					: 'noarticletextanon';
-				$wgOut->addHTML( wfMsgExt( $msg, 'parse' ) );
+				$wgOut->addWikiMsg( $msg );
 			}
 
 			$wgOut->addHTML( '</div>' );
