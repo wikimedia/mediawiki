@@ -290,14 +290,18 @@ class SearchMySQL extends SearchEngine {
 	function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 
+		$redir = $this->queryRedirect();
+		$namespaces = $this->queryNamespaces();
+		$conditions = array( 'page_id=si_page', $match );
+		if ( $redir !== '' ) {
+			$conditions[] = $redir;
+		}
+		if ( $namespaces !== '' ) {
+			$conditions[] = $namespaces;
+		}
 		return $this->db->selectSQLText( array( 'page', 'searchindex' ),
 			'COUNT(*) AS c',
-			array(
-				'page_id=si_page',
-				$match,
-				$this->queryRedirect(),
-				$this->queryNamespaces()
-			),
+			$conditions,
 			__METHOD__
 		);
 	}
