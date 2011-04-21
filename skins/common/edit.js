@@ -1,3 +1,7 @@
+// This file is still referenced from
+//  tests/selenium/data/SimpleSeleniumTestDB.sql
+//  includes/specials/SpecialUpload.php
+//  /extensions/SemanticForms/specials/SF_UploadWindow2.php
 window.currentFocused = undefined;
 
 // this function adds a toolbar button to the mwEditButtons list

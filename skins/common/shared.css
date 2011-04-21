@@ -40,7 +40,9 @@ span.texhtml { font-family: serif; }
 #editform, #toolbar, #wpTextbox1 {
 	clear: both;
 }
-
+#toolbar img {
+	cursor: pointer;
+}
 div#mw-js-message {
 	margin: 1em 5%;
 	padding: 0.5em 2.5%;
