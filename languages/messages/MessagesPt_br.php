@@ -423,6 +423,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
+'broken-file-category'           => 'Páginas com links quebrados para imagens',
 
 'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
@@ -720,6 +721,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autenticar-se',
+'userlogin-resetlink'        => 'Esqueceu-se do seu nome de usuário ou da senha?',
 'createaccountmail'          => 'por e-mail',
 'createaccountreason'        => 'Razão:',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
@@ -780,6 +782,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'usernamehasherror'          => 'Nome de usuário não pode conter o símbolo de cardinal (#).',
 'login-throttled'            => 'Você fez tentativas demais de se autenticar com esta conta recentemente.
 Por favor aguarde antes de tentar novamente.',
+'login-abort-generic'        => 'A sua autenticação não teve êxito - Abortada',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
@@ -805,8 +808,14 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'resetpass-temp-password'   => 'Senha temporária:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Repor Palavra-chave',
-'passwordreset-username' => 'Nome de usuário:',
+'passwordreset'            => 'Repor Palavra-chave',
+'passwordreset-text'       => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
+'passwordreset-legend'     => 'Reiniciar a senha',
+'passwordreset-disabled'   => 'Reiniciar a senha foi impossibilitado nesta wiki.',
+'passwordreset-pretext'    => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'   => 'Nome de usuário:',
+'passwordreset-email'      => 'Endereço de e-mail:',
+'passwordreset-emailtitle' => 'Detalhes da conta na {{SITENAME}}',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',

@@ -293,6 +293,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 'index-category'                 => 'Indexéiert Säiten',
 'noindex-category'               => 'Net-indexéiert Säiten',
+'broken-file-category'           => 'Säite mat futtisse Linken op Fichieren',
 
 'mainpagetext'      => "'''MediaWiki gouf installéiert.'''",
 'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.
@@ -675,8 +676,15 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'resetpass-temp-password'   => 'Temporäert Passwuert:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Passwuert zrécksetzen',
-'passwordreset-username' => 'Benotzernumm:',
+'passwordreset'              => 'Passwuert zrécksetzen',
+'passwordreset-legend'       => 'Passwuert zrécksetzen',
+'passwordreset-disabled'     => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
+'passwordreset-username'     => 'Benotzernumm:',
+'passwordreset-email'        => 'E-Mailadress:',
+'passwordreset-emailtitle'   => 'Detailer vum Benotzerkont op{{SITENAME}}',
+'passwordreset-emailelement' => 'Benotzernumm: $1
+Temporärt Passwuert: $2',
+'passwordreset-emailsent'    => 'Eng Erënnerungs-Mail gouf geschéckt.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
@@ -3174,6 +3182,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimcategory-edu' => 'Formatioun',
 'exif-iimcategory-evn' => 'Ëmwelt',
 'exif-iimcategory-hth' => 'Gesondheet',
+'exif-iimcategory-hum' => 'Interessen',
 'exif-iimcategory-lab' => 'Aarbecht',
 'exif-iimcategory-pol' => 'Politik',
 'exif-iimcategory-rel' => 'Relioun a Glawen',

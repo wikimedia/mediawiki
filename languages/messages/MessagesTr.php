@@ -809,8 +809,12 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-temp-password'   => 'Geçici parola:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Parola sıfırlama',
-'passwordreset-username' => 'Kullanıcı adı:',
+'passwordreset'              => 'Parola sıfırlama',
+'passwordreset-legend'       => 'Şifreyi sıfırla',
+'passwordreset-username'     => 'Kullanıcı adı:',
+'passwordreset-email'        => 'E-posta adresi:',
+'passwordreset-emailelement' => 'Kullanıcı adı: $1
+Geçici şifre: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -3111,6 +3115,8 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'exif-gpsdatestamp'                => 'GPS zamanı',
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-objectname'                  => 'Kısa başlık',
+'exif-languagecode'                => 'Dil',
+'exif-iimcategory'                 => 'Kategori',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3281,6 +3287,10 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gerçek yönü',
 'exif-gpsdirection-m' => 'Manyetik yönü',
+
+'exif-urgency-normal' => 'Normal ( $1 )',
+'exif-urgency-low'    => 'Düşük ( $1 )',
+'exif-urgency-high'   => 'Yüksek ( $1 )',
 
 # External editor support
 'edit-externally'      => 'Dosya üzerinde bilgisayarınızda bulunan uygulamalar ile değişiklikler yapın',

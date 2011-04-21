@@ -141,7 +141,11 @@ $messages = array(
 'qbspecialpages' => 'ବିଶେଷ ଫରଦ',
 
 # Vector skin
-'vector-view-create' => 'ତିଆରି',
+'vector-view-create'     => 'ତିଆରି',
+'vector-view-edit'       => 'ବଦଳାଇବେ',
+'vector-view-history'    => 'ଇତିହାସ ଦେଖ',
+'vector-view-viewsource' => 'ଉତ୍ସ ଦେଖ',
+'namespaces'             => 'ନେମସ୍ପେସ',
 
 'errorpagetitle'   => 'ଭୁଲ',
 'tagline'          => '{{SITENAME}} ରୁ',
@@ -217,6 +221,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ଫରଦ',
 'nstab-user'      => ' ଇଉଜର ଫରଦ',
+'nstab-media'     => 'ମେଡିଆ ପରଦ',
 'nstab-special'   => 'ବିଶେଷ ଫରଦ',
 'nstab-project'   => 'ପ୍ରକଳ୍ପ ଫରଦ',
 'nstab-image'     => 'ଫାଇଲ',
@@ -284,6 +289,7 @@ $messages = array(
 'showdiff'               => 'ବଦଳଗୁଡିକୁ ଦେଖାଅ',
 'anoneditwarning'        => "'''ଜାଣିରଖଁତୁ:''' ଆପଣ ଲଗଇନ କରିନାହାଁତି ।
 ଏହି ଫରଦର '''ଇତିହାସ''' ଫରଦରେ ଆପଣଁକ ଆଇପି ଠିକଣାତି ସାଇତା ହୋଇଯିବ ।",
+'loginreqlink'           => 'ଲଗଇନ',
 'newarticle'             => '(ନୁଆ)',
 'noarticletext'          => 'ଏହି ଫରଦଟିରେ କିଛି ବି ଲେଖା ନାହିଁ ।
 ଆପଣ [[Special:Search/{{PAGENAME}}|ଏହି ଲେଖାଟିର ନାଆଁ]] ବାକି ଫରଦମାନଙ୍କରେ ଖୋଜି ପାରନ୍ତି,
@@ -311,6 +317,9 @@ $messages = array(
 # Revision deletion
 'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
 'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଇବା',
+
+# History merging
+'mergehistory-reason' => 'କାରଣ:',
 
 # Merge log
 'revertmerge' => 'ମିଶାଇବା ନାହିଁ',
@@ -341,6 +350,7 @@ $messages = array(
 'search-interwiki-more'     => '(ଅଧିକ)',
 'search-mwsuggest-enabled'  => 'ପରାମର୍ଶ ସହ',
 'search-mwsuggest-disabled' => 'ମତାମତ ନାହିଁ',
+'searchall'                 => 'ସବୁ',
 'nonefound'                 => "'''ଦେଖଁତୁ''': ଆପଣ ଖାଲି କିଛି ନେମସ୍ପେସକୁ ଆପେ ଆପେ ଖୋଜିପାରିବେ ।
 ସବୁ ପ୍ରକାରର ଲେଖା (ଆଲୋଚନା ଫରଦ, ଟେଁପଲେଟ ହେରିକା) ଖୋଜିବା ପାଇଁ ନିଜ ପ୍ରଶ୍ନ ଆଗରେ ''all:'' ଯୋଡ଼ି ଖୋଜନ୍ତୁ, ନହେଲେ ଦରକାରି ନେମସ୍ପେସକୁ ପ୍ରିଫିକ୍ସ କରି ବ୍ୟବହାର କରନ୍ତୁ ।",
 'powersearch'               => 'ଗହିର ଖୋଜା',
@@ -348,10 +358,15 @@ $messages = array(
 'powersearch-ns'            => 'ନେମସ୍ପେସରେ ଖୋଜ',
 'powersearch-redir'         => 'ପଛକୁ ଲେଉଟାଯାଇଥିବା ଲେଖାଗୁଡ଼ିକର ତାଲିକା',
 'powersearch-field'         => 'ଖୋଜ',
+'powersearch-toggleall'     => 'ସବୁ',
 
 # Preferences page
-'mypreferences'     => 'ମୋ ପସଁଦସବୁ',
-'searchresultshead' => 'ଖୋଜିବା',
+'mypreferences'         => 'ମୋ ପସଁଦସବୁ',
+'skin-preview'          => 'ଦେଖଣା',
+'searchresultshead'     => 'ଖୋଜିବା',
+'timezoneregion-africa' => 'ଆଫ୍ରିକା',
+'timezoneregion-asia'   => 'ଏସିଆ',
+'prefs-files'           => 'ଫାଇଲ',
 
 # Groups
 'group-sysop' => 'ପରିଛାଗଣ',
@@ -398,7 +413,11 @@ $messages = array(
 'filedesc'          => 'ସାରକଥା',
 'fileuploadsummary' => 'ସାରକଥା:',
 
+# Special:ListFiles
+'listfiles_name' => 'ନାମ',
+
 # File description page
+'file-anchor-link'    => 'ଫାଇଲ',
 'filehist'            => 'ଫାଇଲ ଇତିହାସ',
 'filehist-help'       => 'ଏହା ଫାଇଲଟି ସେତେବେଳେ ଯେମିତି ଦିଶୁଥିଲା ତାହା ଦେଖିବା ପାଇଁ ତାରିଖ/ବେଳା ଉପରେ କ୍ଲିକ କରନ୍ତୁ',
 'filehist-current'    => 'ଏବେକାର',
@@ -412,8 +431,17 @@ $messages = array(
 'linkstoimage'        => 'ଏହି ସବୁ{{PLURAL:$1|ଫରଦ|$1 ଫରଦମାନେ}} ଏହି ଫାଇଲଟିକୁ ଯୋଡ଼ିଥାନ୍ତି:',
 'sharedupload'        => 'ଏହି ଫାଇଲଟି $1 ରୁ ଆଉ ବାକି ପ୍ରକଳ୍ପରେ ବ୍ୟବହାର କରାଯାଇପାରିବ .',
 
+# File reversion
+'filerevert-comment' => 'କାରଣ:',
+
+# File deletion
+'filedelete-comment' => 'କାରଣ:',
+
 # Random page
 'randompage' => 'ଯାହିତାହି ଫରଦଟିଏ',
+
+# Statistics
+'statistics-pages' => 'ଫରଦ',
 
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
@@ -449,7 +477,9 @@ $messages = array(
 'linksearch-ok' => 'ଖୋଜିବା',
 
 # E-mail user
-'emailuser' => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
+'emailuser'           => 'ଏହି ଉଇଜରଁକୁ ଇମେଲ କର',
+'emailusernamesubmit' => 'ଦାଖଲକରିବା',
+'emailmessage'        => 'ଖବର:',
 
 # Watchlist
 'watchlist'     => 'ଦେଖାତାଲିକା',
@@ -488,8 +518,12 @@ $messages = array(
 'restriction-type'            => 'ଅନୁମତି',
 'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
 
+# Restrictions (nouns)
+'restriction-create' => 'ତିଆରି',
+
 # Undelete
 'undeletelink'           => 'ଦେଖିବା/ଆଉଥରେ ଫେରାଇଆଣିବା',
+'undeleteviewlink'       => 'ଦେଖଣା',
 'undeletecomment'        => 'କାରଣ:',
 'undelete-search-submit' => 'ଖୋଜିବା',
 
@@ -505,6 +539,7 @@ $messages = array(
 'month'         => 'ମାସରୁ (ଓ ତା ଆଗରୁ)',
 'year'          => 'ବରସରୁ (ଓ ତା ଆଗରୁ)',
 
+'sp-contributions-talk'   => 'କଥାଭାଷା',
 'sp-contributions-submit' => 'ଖୋଜିବା',
 
 # What links here
@@ -523,6 +558,7 @@ $messages = array(
 'whatlinkshere-filters'    => 'ଫିଲଟରସବୁ',
 
 # Block/unblock
+'ipbreason'          => 'କାରଣ:',
 'blocklist-reason'   => 'କାରଣ',
 'ipblocklist-submit' => 'ଖୋଜିବା',
 'blocklink'          => 'ଅଟକେଇ ଦିଅ',
@@ -639,5 +675,11 @@ $messages = array(
 # Special:SpecialPages
 'specialpages'             => 'ନିଆରା ଫରଦ',
 'specialpages-group-login' => 'ଲଗିନ / ଖାତା ଖୋଲି',
+
+# Special:Tags
+'tags-edit' => 'ବଦଳାଇବେ',
+
+# HTML forms
+'htmlform-submit' => 'ଦାଖଲକରିବା',
 
 );

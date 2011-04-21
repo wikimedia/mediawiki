@@ -41,6 +41,7 @@
  * @author McDutchie
  * @author Meithal
  * @author Moyg
+ * @author Od1n
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
@@ -472,6 +473,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(suite)',
 'index-category'                 => 'Pages indexées',
 'noindex-category'               => 'Pages non indexées',
+'broken-file-category'           => 'Pages avec des liens de fichiers brisés',
 
 'mainpagetext'      => "'''MediaWiki a été installé avec succès.'''",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
@@ -2619,7 +2621,7 @@ Consultez la [[Special:IPBlockList|liste des IP bloquées]] pour voir les bannis
 'ipb_already_blocked'             => '« $1 » est déjà bloqué',
 'ipb-needreblock'                 => '$1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
-'unblock-hideuser'                => "Vous ne peut débloquer cet utilisateur, son nom d'utilisateur a été masqué.",
+'unblock-hideuser'                => "Vous ne pouvez pas débloquer cet utilisateur, car son nom d'utilisateur a été masqué.",
 'ipb_cant_unblock'                => 'Erreur : identifiant de blocage $1 non trouvé.
 Il est possible qu’un déblocage ait déjà été effectué.',
 'ipb_blocked_as_range'            => 'Erreur : l’adresse IP $1 n’est pas bloquée directement et ne peut donc pas être débloquée.
@@ -3219,6 +3221,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-iimsupplementalcategory'     => 'Catégories supplémentaires',
 'exif-datetimeexpires'             => 'Ne pas utiliser après',
 'exif-datetimereleased'            => 'Paru le',
+'exif-originaltransmissionref'     => 'Code de localisation de la transmission originale',
 'exif-identifier'                  => 'Identifiant',
 'exif-lens'                        => 'Lentille utilisée',
 'exif-serialnumber'                => "Numéro de série de l'appareil photo",
@@ -3228,11 +3231,13 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-nickname'                    => "Nom informel de l'image",
 'exif-rating'                      => 'Note (sur 5)',
 'exif-rightscertificate'           => 'Certificat de gestion des droits',
+'exif-copyrighted'                 => "Statut du droit d'auteur",
 'exif-copyrightowner'              => "Propriétaire du droit d'auteur",
 'exif-usageterms'                  => "Conditions d'utilisation",
 'exif-webstatement'                => "Déclaration de droits d'auteur en ligne",
 'exif-originaldocumentid'          => 'Identifiant unique du document original',
 'exif-licenseurl'                  => 'URL de la licence',
+'exif-morepermissionsurl'          => 'Informations sur les licences alternatives',
 'exif-attributionurl'              => 'Lors de la réutilisation de ce travail, veuillez lier à',
 'exif-preferredattributionname'    => 'Lors de la réutilisation de ce travail, veuillez créditer',
 'exif-pngfilecomment'              => 'Commentaire de fichier PNG',
@@ -3240,13 +3245,19 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-contentwarning'              => 'Avertissement sur le contenu',
 'exif-giffilecomment'              => 'Commentaire de fichier GIF',
 'exif-intellectualgenre'           => "Type d'élément",
+'exif-subjectnewscode'             => 'Code du sujet',
 'exif-scenecode'                   => 'Code de scène IPTC',
 'exif-event'                       => 'Événement représenté',
 'exif-organisationinimage'         => 'Organisation représentée',
 'exif-personinimage'               => 'Personne représentée',
+'exif-originalimageheight'         => 'Hauteur de l’image avant qu’elle ait été recadrée',
+'exif-originalimagewidth'          => 'Largeur de l’image avant qu’elle ait été recadrée',
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',
+
+'exif-copyrighted-true'  => 'Soumis à droit d’auteur',
+'exif-copyrighted-false' => 'Domaine public',
 
 'exif-unknowndate' => 'Date inconnue',
 
@@ -3314,7 +3325,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-flash-return-3'   => 'le stroboscope détecte un retour de lumière',
 'exif-flash-mode-1'     => 'lumière du flash obligatoire',
 'exif-flash-mode-2'     => 'suppression du flash obligatoire',
-'exif-flash-mode-3'     => 'Mode automatique',
+'exif-flash-mode-3'     => 'mode automatique',
 'exif-flash-function-1' => 'Pas de fonction de flash',
 'exif-flash-redeye-1'   => 'Mode anti-yeux rouges',
 
@@ -3378,6 +3389,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-e' => 'Est',
 'exif-gpslongitude-w' => 'Ouest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|mètre|mètres}} au-dessus du niveau de la mer',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|mètre|mètres}} au-dessous du niveau de la mer',
+
 'exif-gpsstatus-a' => 'Mesure en cours',
 'exif-gpsstatus-v' => 'Interfonctionnement de la mesure',
 
@@ -3394,9 +3409,22 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsdestdistance-m' => 'Milles',
 'exif-gpsdestdistance-n' => 'Milles marins',
 
+'exif-gpsdop-excellent' => 'Excellente ($1)',
+'exif-gpsdop-good'      => 'Bonne ($1)',
+'exif-gpsdop-moderate'  => 'Moyenne ($1)',
+'exif-gpsdop-fair'      => 'Passable ($1)',
+'exif-gpsdop-poor'      => 'Mauvaise ($1)',
+
+'exif-objectcycle-a' => 'Matin seulement',
+'exif-objectcycle-p' => 'Soirée seulement',
+'exif-objectcycle-b' => 'Matin et soir',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Nord vrai',
 'exif-gpsdirection-m' => 'Nord magnétique',
+
+'exif-ycbcrpositioning-1' => 'Centré',
+'exif-ycbcrpositioning-2' => 'Co-situé',
 
 'exif-dc-contributor' => 'Contributeurs',
 'exif-dc-coverage'    => 'Portée spatiale ou temporelle du média',

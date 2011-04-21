@@ -435,7 +435,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Ippermetti suġġerimenti għat-tfittxija avvanzata (disponibbli biss għall-aspett grafiku Vector)',
 'vector-view-create'             => 'Oħloq',
 'vector-view-edit'               => 'Editja',
-'vector-view-history'            => 'Uri l-kronoloġija',
+'vector-view-history'            => 'Ara l-kronoloġija',
 'vector-view-view'               => 'Aqra',
 'vector-view-viewsource'         => 'Ara s-sors',
 'actions'                        => 'Azzjonijiet',
@@ -755,6 +755,9 @@ Biex tkompli l-aċċess tal-kont tiegħek huwa neċessarju li toħloq password �
 'resetpass-wrong-oldpass'   => "Password temporanja jew kurrenti invalida.
 Jista' jkun li int diġà biddilt il-password, jew għamilt rikjesta għal password temporanja ġdida.",
 'resetpass-temp-password'   => 'Password temporanja:',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Isem tal-utent:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tipa ħoxna',
@@ -1157,6 +1160,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'search-mwsuggest-disabled'        => 'l-ebda suġġeriment',
 'search-relatedarticle'            => 'Relatati',
 'mwsuggest-disable'                => 'Neħħi suġġeriment tal-AJAX',
+'searcheverything-enable'          => 'Fittex fl-ispazji tal-isem kollha',
 'searchrelated'                    => 'relatati',
 'searchall'                        => 'kollha',
 'showingresults'                   => "Hawn taħt ġie inkluż massimu ta' {{PLURAL:$1|riżultat '''1''' li jibda|'''$1''' riżultat li jibdew}} bin-numru '''$2'''.",
@@ -1931,7 +1935,7 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'unwatching' => 'Mhux osservat aktar...',
 
 'enotif_mailer'                => "Sistema ta' notifikazzjoni bl-użu tal-posta elettronika fuq {{SITENAME}}",
-'enotif_reset'                 => 'Marka l-paġni kollha viżitati',
+'enotif_reset'                 => 'Immarka l-paġni kollha bħala diġà viżitati',
 'enotif_newpagetext'           => 'Din hija paġna ġdida.',
 'enotif_impersonal_salutation' => "Utent ta' {{SITENAME}}",
 'changed'                      => 'modifikata',
@@ -3042,9 +3046,9 @@ Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standa
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Titlu tneħħa|$1 titli tneħħew}}:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Uri modifika relevanti',
-'watchlisttools-edit' => 'Uri u modifika fil-lista',
-'watchlisttools-raw'  => 'Modifika l-modifika fil-format testwali',
+'watchlisttools-view' => 'Uri l-modifiki relevanti',
+'watchlisttools-edit' => 'Uri u mmodifika l-lista tal-osservazzjoni',
+'watchlisttools-raw'  => "Immodifika l-lista f'format testwali",
 
 # Iranian month names
 'iranian-calendar-m1'  => 'Farvardin',

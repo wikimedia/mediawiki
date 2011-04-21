@@ -454,6 +454,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'meer',
 'index-category'                 => "Te indexeren pagina's",
 'noindex-category'               => "Niet te indexeren pagina's",
+'broken-file-category'           => "Pagina's met onjuiste bestandsverwijzingen",
 
 'mainpagetext'      => "'''De installatie van MediaWiki is geslaagd.'''",
 'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
@@ -3322,7 +3323,7 @@ Andere velden worden verborgen.
 'exif-source'                      => 'Bron',
 'exif-editstatus'                  => 'Bewerkingsstatus van de afbeelding',
 'exif-urgency'                     => 'Urgentie',
-'exif-fixtureidentifier'           => 'Armatuurnaam',
+'exif-fixtureidentifier'           => 'Groepsnaam',
 'exif-locationdest'                => 'Weergegeven locatie',
 'exif-locationdestcode'            => 'Code voor de weergegeven locatie',
 'exif-objectcycle'                 => 'Tijd van de dag waar de media voor bedoeld is',

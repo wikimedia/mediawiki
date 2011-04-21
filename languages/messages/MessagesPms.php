@@ -170,6 +170,7 @@ dj'artìcoj ancó pa scrit",
 'listingcontinuesabbrev'         => ' anans',
 'index-category'                 => 'Pàgine indicisà',
 'noindex-category'               => 'Pàgine pa indicisà',
+'broken-file-category'           => 'Pàgine con colegament pa giust a archivi',
 
 'mainpagetext'      => "'''MediaWiki a l'é staita anstalà a la përfession.'''",
 'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] për avèj dj'anformassion ant sël coma dovré ël programa dla wiki.
@@ -462,6 +463,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'createaccount'              => 'Crea un cont neuv',
 'gotaccount'                 => "Ha-lo già un sò cont? '''$1'''.",
 'gotaccountlink'             => 'Rintré ant ël sistema',
+'userlogin-resetlink'        => 'Dësmentià tò detaj për intré?',
 'createaccountmail'          => 'për pòsta eletrònica',
 'createaccountreason'        => 'Rason:',
 'badretype'                  => "Le doe ciav che a l'ha scrivù a resto diferente antra lor, e a venta che a sio mideme.",
@@ -552,8 +554,21 @@ Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'resetpass-temp-password'   => 'Ciav a temp:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Cambi ëd ciav',
-'passwordreset-username' => 'Stranòm:',
+'passwordreset'              => 'Cambi ëd ciav',
+'passwordreset-text'         => 'Completa sto formolari për arsèive un corel con ij detaj ëd tò cont.',
+'passwordreset-legend'       => 'Cambié la ciav',
+'passwordreset-disabled'     => 'Ij cangiament ëd ciav a son stàit disabilità su sta wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Anseriss un dij tòch ëd dat sota}}',
+'passwordreset-username'     => 'Stranòm:',
+'passwordreset-email'        => 'Adrëssa ëd pòsta eletrònica:',
+'passwordreset-emailtitle'   => 'Detaj ëd cont ansima {{SITENAME}}',
+'passwordreset-emailtext-ip' => "Quaidun (miraco ti, da 'adrëssa IP $1) a l'ha ciamà d'arcordé ij detaj ëd tò cont për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sota a l'é|Ij cont utent sota a son}} 
+associà con st'adrëssa ëd corel:
+
+$2
+
+{{PLURAL:$3|Sta ciav|Ste ciav}} a temp a scadran an {{PLURAL:$5|un di|$5 di}}.
+It dovrìe intré e serne na ciav neuva adess. Se quaidun àutr a l'ha fàit sta arcesta, ... DA FINI' ...",
 
 # Edit page toolbar
 'bold_sample'     => 'Test an grassèt',

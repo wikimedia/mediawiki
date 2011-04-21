@@ -310,6 +310,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'nadalj.',
 'index-category'                 => 'Indeksirane strani',
 'noindex-category'               => 'Neindeksirane strani',
+'broken-file-category'           => 'Strani s pretrganimi povezavami do datotek',
 
 'mainpagetext'      => "'''Programje MediaWiki je bilo uspešno nameščeno.'''",
 'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
@@ -604,6 +605,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createaccount'              => 'Ustvari račun',
 'gotaccount'                 => 'Račun že imate? $1.',
 'gotaccountlink'             => 'Prijavite se',
+'userlogin-resetlink'        => 'Ste pozabili svoje podatke za prijavo?',
 'createaccountmail'          => 'Po e-pošti',
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Gesli, ki ste ju vnesli, se ne ujemata.',
@@ -700,6 +702,19 @@ Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
 'resetpass-wrong-oldpass'   => 'Neveljavno začano ali trenutno geslo.
 Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo.',
 'resetpass-temp-password'   => 'Začasno geslo:',
+
+# Special:PasswordReset
+'passwordreset'              => 'Ponastavitev gesla',
+'passwordreset-text'         => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
+'passwordreset-legend'       => 'Ponastavitev gesla',
+'passwordreset-disabled'     => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
+'passwordreset-username'     => 'Uporabniško ime:',
+'passwordreset-email'        => 'E-poštni naslov:',
+'passwordreset-emailtitle'   => 'Podrobnosti računa na {{SITENAME}}',
+'passwordreset-emailelement' => 'Uporabniško ime: $1
+Začasno geslo: $2',
+'passwordreset-emailsent'    => 'Opomnilna e-pošta je bila poslana.',
 
 # Edit page toolbar
 'bold_sample'     => 'Krepko besedilo',
@@ -3030,7 +3045,11 @@ Druga bodo po privzetem skrita.
 'exif-countrydest'                 => 'Prikazana država',
 'exif-citydest'                    => 'Prikazano mesto',
 'exif-objectname'                  => 'Kratek naslov',
+'exif-specialinstructions'         => 'Posebna navodila',
+'exif-headline'                    => 'Naslov',
+'exif-credit'                      => 'Zasluge/Ponudnik',
 'exif-source'                      => 'Vir',
+'exif-objectcycle'                 => 'Čas dneva, kateremu je predstavnost namenjena',
 'exif-contact'                     => 'Kontaktni podatki',
 'exif-writer'                      => 'Pisatelj',
 'exif-languagecode'                => 'Jezik',
@@ -3047,7 +3066,16 @@ Druga bodo po privzetem skrita.
 'exif-datetimemetadata'            => 'Datum zadnje spremembe metapodatkov',
 'exif-nickname'                    => 'Neuradno ime slike',
 'exif-rating'                      => 'Ocena (od 5)',
+'exif-copyrighted'                 => 'Položaj avtorskih pravic',
+'exif-copyrightowner'              => 'Imetnik avtorskih pravic',
+'exif-usageterms'                  => 'Pogoji uporabe',
+'exif-webstatement'                => 'Izjava o avtorskih pravicah na spletu',
+'exif-originaldocumentid'          => 'Enoličen ID izvirnega dokumenta',
+'exif-licenseurl'                  => 'URL dovoljenja za avtorske pravice',
+'exif-attributionurl'              => 'Ko ponovno uporabljate delo, prosim, dodajte povezavo do',
+'exif-preferredattributionname'    => 'Ko ponovno uporabljate delo, prosim, navedite',
 'exif-pngfilecomment'              => 'Komentar datoteke PNG',
+'exif-disclaimer'                  => 'Zanikanje odgovornosti',
 'exif-giffilecomment'              => 'Komentar datoteke GIF',
 'exif-scenecode'                   => 'Koda prizora IPTC',
 'exif-event'                       => 'Prikazan dogodek',
@@ -3231,6 +3259,7 @@ Druga bodo po privzetem skrita.
 'exif-dc-publisher'   => 'Založnik',
 'exif-dc-relation'    => 'Sorodna predstavnost',
 'exif-dc-rights'      => 'Pravice',
+'exif-dc-source'      => 'Izvorna predstavnost',
 'exif-dc-type'        => 'Vrsta predstavnosti',
 
 'exif-rating-rejected' => 'Zavrnjeno',

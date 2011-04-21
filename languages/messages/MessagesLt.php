@@ -16,6 +16,7 @@
  * @author Matasg
  * @author Meno25
  * @author Pdxx
+ * @author Perkunas
  * @author Pėstininkas
  * @author Siggis
  * @author Tomasdd
@@ -203,8 +204,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Rodyti stebinčių naudotojų skaičių',
 'tog-oldsig'                  => 'Esamo parašo peržiūra:',
 'tog-fancysig'                => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
-'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
-'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
+'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių (skirta tik ekspertams, nes reikia atitinkamai paruošti jūsų kompiuterį. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą (tik ekspertams, nes reikia atitinkamai  paruošti jūsų kompiuterį. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
 'tog-uselivepreview'          => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
 'tog-forceeditsummary'        => 'Klausti, kai palieku tuščią keitimo komentarą',
@@ -300,6 +301,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'tęs.',
 'index-category'                 => 'Indeksuoti puslapiai',
 'noindex-category'               => 'Neindeksuoti puslapiai',
+'broken-file-category'           => 'Puslapiai su neteisingomis nuorodomis į failus',
 
 'mainpagetext'      => "'''MediaWiki sėkmingai įdiegta.'''",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
@@ -596,6 +598,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo [[Special:Preferences|{
 'createaccount'              => 'Sukurti paskyrą',
 'gotaccount'                 => "Jau turite paskyrą? '''$1'''.",
 'gotaccountlink'             => 'Prisijunkite',
+'userlogin-resetlink'        => 'Pamiršote savo prisijungimo duomenis?',
 'createaccountmail'          => 'el. paštu',
 'createaccountreason'        => 'Priežastis:',
 'badretype'                  => 'Įvesti slaptažodžiai nesutampa.',
@@ -605,6 +608,8 @@ Prašome pasirinkti kitą vardą.',
 'createaccounterror'         => 'Nepavyko sukurti paskyros: $1',
 'nocookiesnew'               => 'Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
+'nocookiesfornew'            => 'Paskyra nebuvo sukurta, nes mums nepavyko nustatyti jos šaltinio.
+Įsitikinkite, kad įjungti slapukai (angl. cookies) ir tada bandykite dar kartą.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
@@ -618,6 +623,7 @@ Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
 'passwordtooshort'           => 'Slaptažodžiai turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.',
 'password-name-match'        => 'Jūsų slaptažodis turi skirtis nuo jūsų naudotojo vardo.',
+'password-login-forbidden'   => 'Šito naudotojo vardo ir slaptažodžio naudojimas yra uždraustas.',
 'mailmypassword'             => 'Atsiųsti naują slaptažodį el. paštu',
 'passwordremindertitle'      => 'Laikinasis {{SITENAME}} slaptažodis',
 'passwordremindertext'       => 'Kažkas (tikriausiai jūs, IP adresu $1)
@@ -659,6 +665,7 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'usernamehasherror'          => 'Naudotojo vardas negali turėti grotelių simbolio',
 'login-throttled'            => 'Jūs pernelyg daug kartų bandėte prisijungti.
 Palaukite prieš bandant vėl.',
+'login-abort-generic'        => 'Jūsų prisijungimas buvo nesėkmingas - Nutraukta',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
@@ -682,6 +689,12 @@ Palaukite prieš bandant vėl.',
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
 Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikiną slaptažodį.',
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Atstatyti slaptažodį',
+'passwordreset-legend'   => 'Atstatyti slaptažodį',
+'passwordreset-username' => 'Naudotojo vardas:',
+'passwordreset-email'    => 'E-pašto adresas:',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -931,7 +944,7 @@ Jis galėjo būti ištrintas iš projekto, arba pervardintas.
 Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komentaras pašalintas)',
+'rev-deleted-comment'         => '(keitimo aprašymas pašalintas)',
 'rev-deleted-user'            => '(naudotojo vardas pašalintas)',
 'rev-deleted-event'           => '(įrašas pašalintas)',
 'rev-deleted-user-contribs'   => '[vardas arba IP adresas pašalintas - redagavimas paslėptas nuo prisidėjimų]',
@@ -1170,7 +1183,7 @@ Prašome patikrinti sąrašus.',
 'prefs-rc'                      => 'Paskutiniai keitimai',
 'prefs-watchlist'               => 'Stebimų sąrašas',
 'prefs-watchlist-days'          => 'Dienos rodomos stebimųjų sąraše:',
-'prefs-watchlist-days-max'      => '(daugiausiai 7 dienos)',
+'prefs-watchlist-days-max'      => 'Daugiausiai 7 dienos',
 'prefs-watchlist-edits'         => 'Kiek daugiausia keitimų rodyti išplėstiniame stebimųjų sąraše:',
 'prefs-watchlist-edits-max'     => 'Didžiausias skaičius: 1000',
 'prefs-watchlist-token'         => 'Stebimųjų sąrašo raktas:',
@@ -2318,7 +2331,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                       => 'Atblokuoti šį adresą',
 'unblocked'                       => '[[User:$1|$1]] buvo atblokuotas',
 'unblocked-id'                    => 'Blokavimas $1 buvo pašalintas',
-'ipblocklist'                     => 'Blokuoti IP adresai bei naudotojų vardai',
+'ipblocklist'                     => 'Blokuoti naudotojai',
 'ipblocklist-legend'              => 'Rasti užblokuotą naudotoją',
 'ipblocklist-submit'              => 'Ieškoti',
 'ipblocklist-localblock'          => 'Vietinis blokavimas',

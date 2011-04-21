@@ -1620,22 +1620,23 @@ Den kan ikke kontrolleres rigtigt for sikkerhed.',
 'uploadstash-refresh'  => 'Opdatér filoversigten',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Adgang nægtet',
-'img-auth-nopathinfo'   => 'PATH_INFO mangler.
+'img-auth-accessdenied'     => 'Adgang nægtet',
+'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Din server er ikke sat op til at give denne information.
 Den bruger måske CGI og understøtter ikke img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
-'img-auth-badtitle'     => 'Kan ikke lave en gyldig titel ud fra "$1".',
-'img-auth-nologinnWL'   => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
-'img-auth-nofile'       => 'Filen "$1" findes ikke.',
-'img-auth-isdir'        => 'Du forsøger at få adgang til kataloget "$1".
+'img-auth-notindir'         => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
+'img-auth-badtitle'         => 'Kan ikke lave en gyldig titel ud fra "$1".',
+'img-auth-nologinnWL'       => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
+'img-auth-nofile'           => 'Filen "$1" findes ikke.',
+'img-auth-isdir'            => 'Du forsøger at få adgang til kataloget "$1".
 Kun adgang til filer tillades.',
-'img-auth-streaming'    => 'Sender "$1".',
-'img-auth-public'       => "img_auth.php's funktion er at sende filer fra en privat wiki.
+'img-auth-streaming'        => 'Sender "$1".',
+'img-auth-public'           => "img_auth.php's funktion er at sende filer fra en privat wiki.
 Denne wiki er konfigureret som en offentlig wiki.
 For optimal sikkerhed er img_auth.php deaktiveret.",
-'img-auth-noread'       => 'Brugeren har ikke rettigheder til at læse "$1".',
+'img-auth-noread'           => 'Brugeren har ikke rettigheder til at læse "$1".',
+'img-auth-bad-query-string' => 'URL-adressen har en ugyldig forespørgselsstreng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ugyldig webadresse: $1',
@@ -2812,7 +2813,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'metadata-help'     => 'Denne fil indeholder yderligere informationer, der som regel stammer fra digitalkameraet eller den brugte scanner. Ved en efterfølgende bearbejdning kan nogle data være ændret.',
 'metadata-expand'   => 'Vis udvidede data',
 'metadata-collapse' => 'Skjul udvidede data',
-'metadata-fields'   => 'Følgenden felter fra EXIF-metadata i denne MediaWiki-systemtekst vises på billedbeskrivelsessider; yderligere detaljer kan vises.
+'metadata-fields'   => 'Metadatafelter inkluderet i denne MediaWiki-systemtekst vises på billedbeskrivelsessider når metadatatabellen er slået sammen.
+Øvrige felter vil være skjult som standard.
 * make
 * model
 * datetimeoriginal
@@ -2876,9 +2878,9 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-exposureprogram'             => 'Belysningsprogram',
 'exif-spectralsensitivity'         => 'Spectral sensitivitet',
 'exif-isospeedratings'             => 'Film- eller sensorfølsomhed (ISO)',
-'exif-shutterspeedvalue'           => 'Belysningstidsværdi',
-'exif-aperturevalue'               => 'Blændeværdi',
-'exif-brightnessvalue'             => 'Lyshedsværdi',
+'exif-shutterspeedvalue'           => 'APEX lukkerhastighed',
+'exif-aperturevalue'               => 'APEX blændeåbning',
+'exif-brightnessvalue'             => 'APEX lysstyrke',
 'exif-exposurebiasvalue'           => 'Belysningsindstilling',
 'exif-maxaperturevalue'            => 'Største blænde',
 'exif-subjectdistance'             => 'Afstand',

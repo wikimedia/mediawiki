@@ -625,6 +625,9 @@ $1',
 'resetpass-submit-cancel'   => 'ناګارل',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'کارن-نوم:',
+
 # Edit page toolbar
 'bold_sample'     => 'زغرد متن',
 'bold_tip'        => 'زغرد متن',
@@ -937,7 +940,7 @@ $1',
 'prefsnologin'                  => 'غونډال کې نه ياست ننوتي',
 'prefsnologintext'              => 'د دې لپاره چې خپل غوره توبونه مو وټاکی، نو پکار ده چې لومړی تاسو غونډال کې <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ننوځی]</span>.',
 'changepassword'                => 'پټنوم بدلول',
-'prefs-skin'                    => 'بڼه',
+'prefs-skin'                    => 'پوښۍ',
 'skin-preview'                  => 'مخکتنه',
 'datedefault'                   => 'هېڅ نه ټاکل',
 'prefs-datetime'                => 'نېټه او وخت',
@@ -1752,7 +1755,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblockip'                  => 'کارن له بنديزه وېستل',
 'ipusubmit'                  => 'دا بنديز ليرې کول',
 'unblocked'                  => 'له [[User:$1|$1]] بنديز ليري شو',
-'ipblocklist'                => 'د بنديز لګېدلي آی پي پتو او کارن نومونو لړليک',
+'ipblocklist'                => 'بنديز لګېدلي کارنان',
 'ipblocklist-legend'         => 'يو بنديز شوی کارن موندل',
 'ipblocklist-submit'         => 'پلټل',
 'ipblocklist-localblock'     => 'سيمه ايز بنديز',
@@ -2014,7 +2017,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 که همدا دوتنه د خپل آرني دريځ څخه بدله شوې وي نو ځينې تفصيلونه به په بدل شوي دوتنه کې په بشپړه توګه نه وي.',
 'metadata-expand'   => 'غځېدلی تفصيل ښکاره کړی',
 'metadata-collapse' => 'غځېدلی تفصيل پټ کړی',
-'metadata-fields'   => 'د EXIF ميټاډاټا ډګرونه چې لړليک يې په همدې پيغام کې په لاندې توګه راغلی د انځوريز مخ په ښکارېدنه کې به هغه وخت ورګډ شي کله چې د مېټاډاټا چوکاټ پرانيستل کېږي.
+'metadata-fields'   => 'د انځور مېټاډاټا ډګرونه چې لړليک يې په همدې پيغام کې په لاندې توګه راغلی د انځور مخ په ښکارېدنه کې به هغه وخت ورګډ شي کله چې د مېټاډاټا لښتيال غځېږي.
+نور څه به په تلواليزه توګه پټ پاتې وي.
 * make
 * model
 * datetimeoriginal
@@ -2038,6 +2042,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-model'              => 'د کامرې ماډل',
 'exif-software'           => 'کارېدلې ساوترۍ',
 'exif-artist'             => 'ليکوال',
+'exif-pixelydimension'    => 'د انځور سور',
 'exif-usercomment'        => 'د کارونکي تبصرې',
 'exif-datetimedigitized'  => 'د ګڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'            => 'F شمېره',
@@ -2048,6 +2053,13 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-gpsimgdirection'    => 'د انځور لوری',
 'exif-gpsareainformation' => 'د جي پي اس د سيمې نوم',
 'exif-gpsdatestamp'       => 'د جي پي اس نېټه',
+'exif-source'             => 'سرچينه',
+'exif-writer'             => 'ليکوال',
+'exif-languagecode'       => 'ژبه',
+'exif-iimcategory'        => 'وېشنيزه',
+'exif-serialnumber'       => 'د کامرې پرله پسې شمېره',
+'exif-cameraownername'    => 'د کامرې خاوند',
+'exif-disclaimer'         => 'ردادعاليک',
 
 'exif-unknowndate' => 'نامالومه نېټه',
 
@@ -2102,9 +2114,34 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-gpsspeed-m' => 'مايل په ساعت کې',
 'exif-gpsspeed-n' => 'غوټې',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'کيلومتر',
+'exif-gpsdestdistance-m' => 'مايلونه',
+'exif-gpsdestdistance-n' => 'سمندري مايلونه',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'سم لوری',
 'exif-gpsdirection-m' => 'مقناطيسي لوری',
+
+'exif-dc-contributor' => 'ونډه وال',
+'exif-dc-date'        => 'نېټه (نېټې)',
+'exif-dc-publisher'   => 'خپرونکی',
+'exif-dc-rights'      => 'رښتې',
+
+'exif-iimcategory-clj' => 'جنايت او قانون',
+'exif-iimcategory-dis' => 'غميزې او پېښې',
+'exif-iimcategory-fin' => 'وټپوهنه او سوداګري',
+'exif-iimcategory-edu' => 'زده کړې',
+'exif-iimcategory-evn' => 'چاپېريال',
+'exif-iimcategory-hth' => 'روغتيا',
+'exif-iimcategory-pol' => 'سياست',
+'exif-iimcategory-rel' => 'دين او ګروهه',
+'exif-iimcategory-sci' => 'ساينس او تخنيک',
+'exif-iimcategory-soi' => 'ټولنيزې چارې',
+'exif-iimcategory-war' => 'جګړه، تاوتريخوالی، او نارامي',
+'exif-iimcategory-wea' => 'هوا',
+
+'exif-urgency-normal' => 'نورمال ($1)',
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمول',
@@ -2220,6 +2257,7 @@ $5
 'version'                   => 'بڼه',
 'version-extensions'        => 'لګېدلي شاتاړي',
 'version-specialpages'      => 'ځانګړي مخونه',
+'version-skins'             => 'پوښۍ',
 'version-other'             => 'بل',
 'version-version'           => '(بڼه $1)',
 'version-license'           => 'منښتليک',
@@ -2249,7 +2287,8 @@ $5
 'specialpages'                 => 'ځانګړي مخونه',
 'specialpages-note'            => '----
 * نورماله ځانګړي مخونه.
-* <strong class="mw-specialpagerestricted">محدوده ځانګړي مخونه.</strong>',
+* <strong class="mw-specialpagerestricted">محدوده ځانګړي مخونه.</strong>
+* <span class="mw-specialpagecached">يوازې رانيولي ځانګړي مخونه special pages.</span>',
 'specialpages-group-other'     => 'نور ځانګړي مخونه',
 'specialpages-group-login'     => 'ننوتل / ګڼون جوړول',
 'specialpages-group-changes'   => 'وروستي بدلونونه او يادښتونه',

@@ -389,6 +389,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Куьне ишлемишзавай чар',
 'tooltip-pt-preferences'         => 'Куьн хкягъунар',
+'tooltip-pt-login'               => 'Квез буюрзава гьахьиз системадиз; тефейтlани жезва',
 'tooltip-pt-logout'              => 'ЭкъечIун',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
 'tooltip-ca-delete'              => 'Къакъудун и хъувун',
@@ -398,10 +399,13 @@ $messages = array(
 'tooltip-search-fulltext'        => 'Чар жагъурун и кхьинриз',
 'tooltip-n-mainpage'             => 'Мугьманвал чIехи чинал',
 'tooltip-n-mainpage-description' => 'Мугьманваал чIехи чарчел',
+'tooltip-n-portal'               => 'Проекдикай, квегай вуч ийиз жедатl, шеэр гинай жагъурда',
 'tooltip-n-recentchanges'        => 'Эхиримжи дигишунрин чарчин цIарар wiki-да',
+'tooltip-t-whatlinkshere'        => 'Цlарар вики чарчин, алукьун инна',
 'tooltip-feed-rss'               => 'RSS  хуьрек и чарчиз',
 'tooltip-feed-atom'              => 'Atom  хуьрек и чарчиз',
 'tooltip-t-upload'               => 'Парвиниз шикил',
+'tooltip-t-specialpages'         => 'Цlарар вири герек чарар',
 'tooltip-save'                   => 'Куьн дегишунар хуьн',
 
 # Browsing diffs

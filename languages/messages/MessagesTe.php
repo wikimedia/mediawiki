@@ -645,6 +645,9 @@ $2',
 మీరు మీ సంకేతపదాన్ని ఇప్పటికే విజయవంతంగా మార్చుకొనివుండవచ్చు లేదా కొత్త తాత్కాలిక సంకేతపదం కోసం అభ్యర్థించారు.',
 'resetpass-temp-password'   => 'తాత్కాలిక సంకేతపదం:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'వాడుకరిపేరు:',
+
 # Edit page toolbar
 'bold_sample'     => 'బొద్దు అక్షరాలు',
 'bold_tip'        => 'బొద్దు అక్షరాలు',
@@ -2847,7 +2850,10 @@ $1',
 'exif-gpsareainformation'          => 'GPS ప్రదేశం యొక్క పేరు',
 'exif-gpsdatestamp'                => 'GPS తేదీ',
 'exif-gpsdifferential'             => 'GPS తేడా సవరణ',
+'exif-keywords'                    => 'కీలకపదాలు',
 'exif-objectname'                  => 'పొట్టి శీర్షిక',
+'exif-languagecode'                => 'భాష',
+'exif-iimcategory'                 => 'వర్గం',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',

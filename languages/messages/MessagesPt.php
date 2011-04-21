@@ -424,6 +424,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
+'broken-file-category'           => 'Páginas com links quebrados para ficheiros',
 
 'mainpagetext'      => "'''MediaWiki instalado com sucesso.'''",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informações sobre o uso do software wiki.
@@ -721,6 +722,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autentique-se',
+'userlogin-resetlink'        => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
 'createaccountmail'          => 'por correio electrónico',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'As palavras-chave que introduziu não são iguais.',
@@ -815,8 +817,27 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Repor palavra-chave',
-'passwordreset-username' => 'Nome de utilizador:',
+'passwordreset'                => 'Repor palavra-chave',
+'passwordreset-text'           => 'Preencha este formulário para recuperar os dados da sua conta por correio electrónico.',
+'passwordreset-legend'         => 'Reiniciar a palavra-chave',
+'passwordreset-disabled'       => 'Reiniciar a palavra-chave foi impossibilitado nesta wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'       => 'Nome de utilizador:',
+'passwordreset-email'          => 'Correio electrónico:',
+'passwordreset-emailtitle'     => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Alguém, provavelmente você a partir do endereço IP $1, pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+
+$2
+
+{{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
+'passwordreset-emailtext-user' => 'O utilizador $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+
+$2
+
+{{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
+'passwordreset-emailelement'   => 'Utilizador: $1
+Palavra-chave temporária: $2',
+'passwordreset-emailsent'      => 'Foi enviado um correio electrónico de recuperação dos dados da conta.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto a negrito',
@@ -3184,10 +3205,76 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsareainformation'          => 'Nome da área do GPS',
 'exif-gpsdatestamp'                => 'Data do GPS',
 'exif-gpsdifferential'             => 'Correcção do diferencial do GPS',
+'exif-jpegfilecomment'             => 'Comentário de ficheiro JPEG',
+'exif-keywords'                    => 'Termos-chave',
+'exif-worldregioncreated'          => 'Região do mundo onde a fotografia foi tirada',
+'exif-countrycreated'              => 'País onde a fotografia foi tirada',
+'exif-countrycodecreated'          => 'Código do país onde a fotografia foi tirada',
+'exif-provinceorstatecreated'      => 'Concelho, província ou estado onde a fotografia foi tirada',
+'exif-citycreated'                 => 'Cidade onde a fotografia foi tirada',
+'exif-sublocationcreated'          => 'Parte da cidade onde a fotografia foi tirada',
+'exif-worldregiondest'             => 'Região do mundo fotografada',
+'exif-countrydest'                 => 'País fotografado',
+'exif-countrycodedest'             => 'Código do país fotografado',
+'exif-provinceorstatedest'         => 'Concelho, província ou estado fotografado',
+'exif-citydest'                    => 'Cidade fotografada',
+'exif-sublocationdest'             => 'Parte da cidade fotografada',
 'exif-objectname'                  => 'Título curto',
+'exif-specialinstructions'         => 'Instruções especiais',
+'exif-headline'                    => 'Título',
+'exif-credit'                      => 'Atribuição/Fornecedor',
+'exif-source'                      => 'Fonte',
+'exif-editstatus'                  => 'Estatuto editorial da imagem',
+'exif-urgency'                     => 'Urgência',
+'exif-fixtureidentifier'           => 'Nome da coluna',
+'exif-locationdest'                => 'Localização representada',
+'exif-locationdestcode'            => 'Código da localização representada',
+'exif-objectcycle'                 => 'Altura do dia para a qual o conteúdo está direccionado',
+'exif-contact'                     => 'Informação de contacto',
+'exif-writer'                      => 'Escritor',
+'exif-languagecode'                => 'Língua',
+'exif-iimversion'                  => 'Versão IIM',
+'exif-iimcategory'                 => 'Categoria',
+'exif-iimsupplementalcategory'     => 'Categorias suplementares',
+'exif-datetimeexpires'             => 'Não utilizar após',
+'exif-datetimereleased'            => 'Publicada a',
+'exif-originaltransmissionref'     => 'Código original do local de transmissão',
+'exif-identifier'                  => 'Identificador',
+'exif-lens'                        => 'Lente usada',
+'exif-serialnumber'                => 'Número de série da câmara',
+'exif-cameraownername'             => 'Proprietário da câmara',
+'exif-label'                       => 'Etiqueta',
+'exif-datetimemetadata'            => 'Data da última modificação dos metadados',
+'exif-nickname'                    => 'Nome informal da imagem',
+'exif-rating'                      => 'Classificação (max. 5)',
+'exif-rightscertificate'           => 'Certificado de gestão dos direitos',
+'exif-copyrighted'                 => 'Estado dos direitos de autor:',
+'exif-copyrightowner'              => 'Titular dos direitos de autor',
+'exif-usageterms'                  => 'Termos de uso',
+'exif-webstatement'                => 'Declaração na internet dos direitos de autor',
+'exif-originaldocumentid'          => 'Identificação exclusiva do documento original',
+'exif-licenseurl'                  => 'URL da licença',
+'exif-morepermissionsurl'          => 'Informações para licenciamento alternativo',
+'exif-attributionurl'              => 'Ao reutilizar esta obra, coloque um link para',
+'exif-preferredattributionname'    => 'Ao reutilizar esta obra, faça a atribuição a',
+'exif-pngfilecomment'              => 'Comentário de ficheiro PNG',
+'exif-disclaimer'                  => 'Exoneração de responsabilidade',
+'exif-contentwarning'              => 'Aviso cobre o conteúdo',
+'exif-giffilecomment'              => 'Comentário de ficheiro GIF',
+'exif-intellectualgenre'           => 'Género de conteúdo',
+'exif-subjectnewscode'             => 'Código do tema',
+'exif-scenecode'                   => 'Código de cena IPTC',
+'exif-event'                       => 'Evento retratado',
+'exif-organisationinimage'         => 'Organização retratada',
+'exif-personinimage'               => 'Pessoa retratada',
+'exif-originalimageheight'         => 'Altura da imagem antes de ser cortada',
+'exif-originalimagewidth'          => 'Largura da imagem antes de ser cortada',
 
 # EXIF attributes
 'exif-compression-1' => 'Descomprimido',
+
+'exif-copyrighted-true'  => 'Direitos de autor reservados',
+'exif-copyrighted-false' => 'Domínio público',
 
 'exif-unknowndate' => 'Data desconhecida',
 
@@ -3202,6 +3289,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
+
+'exif-colorspace-65535' => 'Cor não calibrada',
 
 'exif-componentsconfiguration-0' => 'não existe',
 
@@ -3266,6 +3355,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
 
+'exif-filesource-3' => 'Câmara fotográfica digital',
+
 'exif-scenetype-1' => 'Imagem fotografada directamente',
 
 'exif-customrendered-0' => 'Processo normal',
@@ -3314,6 +3405,10 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpslongitude-e' => 'Longitude Este',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metro|metros}} acima do nível do mar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metro|metros}} abaixo do nível do mar',
+
 'exif-gpsstatus-a' => 'Medição em progresso',
 'exif-gpsstatus-v' => 'Interoperabilidade de medição',
 
@@ -3330,9 +3425,33 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsdestdistance-m' => 'Milhas',
 'exif-gpsdestdistance-n' => 'Miles náuticas',
 
+'exif-gpsdop-excellent' => 'Excelente ($1)',
+'exif-gpsdop-good'      => 'Bom ($1)',
+'exif-gpsdop-moderate'  => 'Moderado ($1)',
+'exif-gpsdop-fair'      => 'Aceitável ($1)',
+'exif-gpsdop-poor'      => 'Fraco ($1)',
+
+'exif-objectcycle-a' => 'Só de manhã',
+'exif-objectcycle-p' => 'Só à tarde/noite',
+'exif-objectcycle-b' => 'De manhã e à tarde/noite',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',
 'exif-gpsdirection-m' => 'Direcção magnética',
+
+'exif-ycbcrpositioning-1' => 'Centradas',
+'exif-ycbcrpositioning-2' => 'Co-localizadas',
+
+'exif-dc-contributor' => 'Colaboradores',
+'exif-dc-coverage'    => 'Âmbito espacial ou temporal do conteúdo',
+'exif-dc-date'        => 'Data(s)',
+'exif-dc-publisher'   => 'Editora',
+'exif-dc-relation'    => 'Conteúdos relacionados',
+'exif-dc-rights'      => 'Direitos',
+'exif-dc-source'      => 'Imagem fonte',
+'exif-dc-type'        => 'Tipo do conteúdo',
+
+'exif-rating-rejected' => 'Rejeitado',
 
 'exif-isospeedratings-overflow' => 'Superior a 65535',
 
@@ -3347,6 +3466,17 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-iimcategory-lab' => 'Trabalho',
 'exif-iimcategory-lif' => 'Estilo de vida e lazer',
 'exif-iimcategory-pol' => 'Política',
+'exif-iimcategory-rel' => 'Religião e credo',
+'exif-iimcategory-sci' => 'Ciência e tecnologia',
+'exif-iimcategory-soi' => 'Questões sociais',
+'exif-iimcategory-spo' => 'Desporto',
+'exif-iimcategory-war' => 'Guerra, conflitos e agitação social',
+'exif-iimcategory-wea' => 'Tempo',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Baixa ($1)',
+'exif-urgency-high'   => 'Alta ($1)',
+'exif-urgency-other'  => 'Prioridade definida pelo utilizador ($1)',
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
@@ -3384,7 +3514,7 @@ Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_loggedin'     => 'O seu endereço de correio electrónico foi confirmado.',
 'confirmemail_error'        => 'Alguma coisa correu mal ao gravar a sua confirmação.',
 'confirmemail_subject'      => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
-'confirmemail_body'         => 'Alguém, provavelmente você com o endereço IP $1,
+'confirmemail_body'         => 'Alguém, provavelmente você a partir do endereço IP $1,
 registou uma conta "$2" com este endereço de correio electrónico na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e activar
@@ -3393,13 +3523,13 @@ abra o seguinte link no seu browser:
 
 $3
 
-Caso este *não* seja você, siga o seguinte link
-para cancelar a confirmação do endereço de correio electrónico:
+Se a conta *não* é sua, abra o seguinte link para cancelar
+a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $4.',
-'confirmemail_body_changed' => 'Alguém, provavelmente você com o endereço IP $1,
+Este código de confirmação irá expirar às $7 de $6.',
+'confirmemail_body_changed' => 'Alguém, provavelmente você a partir do endereço IP $1,
 alterou o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e reactivar
@@ -3408,14 +3538,14 @@ abra o seguinte link no seu browser:
 
 $3
 
-Caso a conta *não* lhe pertença, siga o seguinte link
+Caso a conta *não* lhe pertença, abra o seguinte link
 para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $4.',
-'confirmemail_body_set'     => 'Alguém, provavelmente você com o endereço IP $1,
-definiu o endereço de correio electrónico da conta "$2" para este na {{SITENAME}}.
+Este código de confirmação irá expirar às $7 de $6.',
+'confirmemail_body_set'     => 'Alguém, provavelmente você a partir do endereço IP $1,
+definiu o seu endereço de correio electrónico como correio da conta "$2" na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e reactivar
 as funcionalidades de correio electrónico na {{SITENAME}},
@@ -3423,12 +3553,12 @@ abra o seguinte link no seu browser:
 
 $3
 
-Caso a conta *não* lhe pertença, siga o seguinte link
+Caso a conta *não* lhe pertença, abra o seguinte link
 para cancelar a confirmação do endereço de correio electrónico:
 
 $5
 
-Este código de confirmação irá expirar às $4.',
+Este código de confirmação irá expirar às $7 de $6.',
 'confirmemail_invalidated'  => 'Confirmação de endereço de correio electrónico cancelada',
 'invalidateemail'           => 'Cancelar confirmação de correio electrónico',
 
