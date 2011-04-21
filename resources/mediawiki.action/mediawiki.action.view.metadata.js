@@ -4,7 +4,7 @@
 // (with JS disabled, user will see all items)
 //
 
-$( document ).ready( function() {
+jQuery( document ).ready( function( $ ) {
 	var showText = mw.msg( 'metadata-expand' );
 	var hideText = mw.msg( 'metadata-collapse' );
 
