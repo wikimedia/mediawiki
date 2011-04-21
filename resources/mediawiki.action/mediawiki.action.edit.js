@@ -38,7 +38,7 @@
 			// If you want to add buttons, use 
 			// $( document ).ready( function () { mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) } );
 			var c;
-			for ( i = 0; i < window.mwCustomEditButtons.length; i++ ) {
+			for ( var i = 0; i < window.mwCustomEditButtons.length; i++ ) {
 				c = window.mwCustomEditButtons[i];
 				mw.toolbar.addButton( c.imageFile, c.speedTip, c.tagOpen, c.tagClose, c.sampleText, c.imageId, c.selectText );
 			}
