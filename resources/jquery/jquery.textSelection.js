@@ -53,6 +53,8 @@ getSelection: function() {
  */
 encapsulateSelection: function( options ) {
 	return this.each( function() {
+		var pre = options.pre, post = options.post;
+		
 		/**
 		 * Check if the selected text is the same as the insert text
 		 */
@@ -65,16 +67,34 @@ encapsulateSelection: function( options ) {
 			} else {
 				while ( selText.charAt( selText.length - 1 ) == ' ' ) {
 					// Exclude ending space char
-					selText = selText.substring(0, selText.length - 1);
-					options.post += ' ';
+					selText = selText.substring( 0, selText.length - 1 );
+					post += ' ';
 				}
 				while ( selText.charAt( 0 ) == ' ' ) {
 					// Exclude prepending space char
-					selText = selText.substring(1, selText.length);
-					options.pre = ' ' + options.pre;
+					selText = selText.substring( 1, selText.length );
+					pre = ' ' + pre;
 				}
 			}
 		}
+		
+		/**
+		 * Do the splitlines stuff.
+		 * 
+		 * Wrap each line of the selected text with pre and post
+		 */
+		function doSplitLines( selText, pre, post ) {
+			var insertText = '';
+			var selTextArr = selText.split( '\n' );
+			for ( var i = 0; i < selTextArr.length; i++ ) {
+				insertText += pre + selTextArr[i] + post;
+				if ( i != selTextArr.length - 1 ) {
+					insertText += '\n';
+				}
+			}
+			return insertText;
+		}
+		
 		var isSample = false;
 		if ( this.style.display == 'none' ) {
 			// Do nothing
@@ -86,29 +106,34 @@ encapsulateSelection: function( options ) {
 			var endPos = this.selectionEnd;
 			var scrollTop = this.scrollTop;
 			checkSelectedText();
+			
+			var insertText = pre + selText  + post;
+			if ( options.splitlines ) {
+				insertText = doSplitLines( selText, pre, post );
+			}
 			if ( options.ownline ) {
 				if ( startPos != 0 && this.value.charAt( startPos - 1 ) != "\n" ) {
-					options.pre = "\n" + options.pre;
+					insertText = "\n" + insertText;
 				}
 				if ( this.value.charAt( endPos ) != "\n" ) {
-					options.post += "\n";
+					insertText += "\n";
 				}
 			}
-			this.value = this.value.substring( 0, startPos ) + options.pre + selText + options.post +
+			this.value = this.value.substring( 0, startPos ) + insertText +
 				this.value.substring( endPos, this.value.length );
 			// Setting this.value scrolls the textarea to the top, restore the scroll position
 			this.scrollTop = scrollTop;
 			if ( window.opera ) {
-				options.pre = options.pre.replace( /\r?\n/g, "\r\n" );
+				pre = pre.replace( /\r?\n/g, "\r\n" );
 				selText = selText.replace( /\r?\n/g, "\r\n" );
-				options.post = options.post.replace( /\r?\n/g, "\r\n" );
+				post = post.replace( /\r?\n/g, "\r\n" );
 			}
 			if ( isSample && options.selectPeri ) {
-				this.selectionStart = startPos + options.pre.length;
-				this.selectionEnd = startPos + options.pre.length + selText.length;
+				this.selectionStart = startPos + pre.length;
+				this.selectionEnd = startPos + pre.length + selText.length;
 			} else {
-				this.selectionStart = startPos + options.pre.length + selText.length +
-					options.post.length;
+				this.selectionStart = startPos + pre.length + selText.length +
+					post.length;
 				this.selectionEnd = this.selectionStart;
 			}
 		} else if ( document.selection && document.selection.createRange ) {
@@ -120,33 +145,39 @@ encapsulateSelection: function( options ) {
 			var selText = $(this).textSelection( 'getSelection' );
 			var scrollTop = this.scrollTop;
 			var range = document.selection.createRange();
+			
+			checkSelectedText();
+			var insertText = pre + selText  + post;
+			if ( options.splitlines ) {
+				insertText = doSplitLines( selText, pre, post );
+			}
 			if ( options.ownline && range.moveStart ) {
 				var range2 = document.selection.createRange();
 				range2.collapse();
 				range2.moveStart( 'character', -1 );
 				// FIXME: Which check is correct?
 				if ( range2.text != "\r" && range2.text != "\n" && range2.text != "" ) {
-					options.pre = "\n" + options.pre;
+					insertText = "\n" + insertText;
 				}
 				var range3 = document.selection.createRange();
 				range3.collapse( false );
 				range3.moveEnd( 'character', 1 );
 				if ( range3.text != "\r" && range3.text != "\n" && range3.text != "" ) {
-					options.post += "\n";
+					insertText += "\n";
 				}
 			}
-			checkSelectedText();
-			range.text = options.pre + selText + options.post;
+			
+			range.text = insertText;
 			if ( isSample && options.selectPeri && range.moveStart ) {
-				range.moveStart( 'character', - options.post.length - selText.length );
-				range.moveEnd( 'character', - options.post.length );
+				range.moveStart( 'character', - post.length - selText.length );
+				range.moveEnd( 'character', - post.length );
 			}
 			range.select();
 			// Restore the scroll position
 			this.scrollTop = scrollTop;
 		}
 		$(this).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
-			options.replace ] );
+			options.replace, options.spitlines ] );
 	});
 },
 /**
@@ -382,7 +413,8 @@ scrollToCaretPosition: function( options ) {
 				'post': '', // Text to insert after the cursor/selection
 				'ownline': false, // Put the inserted text on a line of its own
 				'replace': false, // If there is a selection, replace it with peri instead of leaving it alone
-				'selectPeri': true // Select the peri text if it was inserted (but not if there was a selection and replace==false)
+				'selectPeri': true, // Select the peri text if it was inserted (but not if there was a selection and replace==false)
+				'splitlines': true // If multiple lines are selected, encapsulate each line individually
 			}, options );
 			break;
 		case 'getCaretPosition':
