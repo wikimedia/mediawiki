@@ -4,7 +4,6 @@ abstract class Collation {
 	static $instance;
 
 	/**
-	 * @static
 	 * @return Collation
 	 */
 	static function singleton() {
@@ -16,7 +15,6 @@ abstract class Collation {
 	}
 
 	/**
-	 * @static
 	 * @throws MWException
 	 * @param $collationName string
 	 * @return Collation

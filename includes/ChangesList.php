@@ -17,7 +17,6 @@ class RCCacheEntry extends RecentChange {
 	var $userlink, $timestamp, $watched;
 
 	/**
-	 * @static
 	 * @param $rc RecentChange
 	 * @return RCCacheEntry
 	 */

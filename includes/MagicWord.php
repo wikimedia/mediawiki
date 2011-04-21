@@ -190,7 +190,6 @@ class MagicWord {
 
 	/**
 	 * Factory: creates an object representing an ID
-	 * @static
 	 * @return MagicWord
 	 */
 	static function &get( $id ) {
@@ -481,6 +480,7 @@ class MagicWord {
 	 * thereby gaining some efficiency. The result is placed in the out variable
 	 * $result. The return value is true if something was replaced.
 	 * @static
+	 * @todo Should this be static? It doesn't seem to be used at all
 	 **/
 	function replaceMultiple( $magicarr, $subject, &$result ){
 		$search = array();

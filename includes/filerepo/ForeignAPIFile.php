@@ -29,7 +29,6 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @static
 	 * @param  $title Title
 	 * @param  $repo ForeignApiRepo
 	 * @return ForeignAPIFile|null

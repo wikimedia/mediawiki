@@ -73,7 +73,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @static
 	 * @param  $pageid
 	 * @param  $title
 	 * @param $rc RecentChange

@@ -880,7 +880,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * @static
 	 * @param  $module ApiBase
 	 * @param  $paramName String What type of request is this? e.g. action, query, list, prop, meta, format
 	 * @return string

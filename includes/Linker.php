@@ -1208,7 +1208,6 @@ class Linker {
 	}
 
 	/**
-	 * @static
 	 * @param $contextTitle Title
 	 * @param  $target
 	 * @param  $text

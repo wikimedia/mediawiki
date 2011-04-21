@@ -11,7 +11,6 @@
  */
 class CoreParserFunctions {
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @return void
 	 */
@@ -89,7 +88,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $part1
 	 * @return array
@@ -106,7 +104,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param  $date
 	 * @param null $defaultPref
@@ -190,7 +187,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $s
 	 * @return
@@ -205,7 +201,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $s
 	 * @return
@@ -249,7 +244,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $num
 	 * @param null $raw
@@ -264,7 +258,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $case
 	 * @param string $word
@@ -275,7 +268,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param $user User
 	 * @return
@@ -306,7 +298,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param string $text
 	 * @return
@@ -643,7 +634,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param  $text
 	 * @return string
@@ -663,7 +653,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param  $text
 	 * @return string

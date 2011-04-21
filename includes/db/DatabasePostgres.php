@@ -10,7 +10,6 @@ class PostgresField implements Field {
 	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
 	/**
-	 * @static
 	 * @param $db DatabaseBase
 	 * @param  $table
 	 * @param  $field

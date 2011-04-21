@@ -197,7 +197,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	/**
-	 * @static
 	 * @param $result ApiResult
 	 * @param $vals
 	 * @param $params
