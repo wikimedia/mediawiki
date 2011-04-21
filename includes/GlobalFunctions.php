@@ -342,43 +342,56 @@ function wfErrorLog( $text, $file ) {
  */
 function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfiler, $wgProfileLimit, $wgUser;
+	global $wgProfileLimit, $wgUser;
+
+	$profiler = Profiler::instance();
+
 	# Profiling must actually be enabled...
-	if( is_null( $wgProfiler ) ) {
+	if ( $profiler->isStub() ) {
 		return;
 	}
-	# Get total page request time
+
+	// Get total page request time and only show pages that longer than
+	// $wgProfileLimit time (default is 0)
 	$now = wfTime();
 	$elapsed = $now - $wgRequestTime;
-	# Only show pages that longer than $wgProfileLimit time (default is 0)
-	if( $elapsed <= $wgProfileLimit ) {
+	if ( $elapsed <= $wgProfileLimit ) {
 		return;
 	}
-	$prof = wfGetProfilingOutput( $wgRequestTime, $elapsed );
+
+	$profiler->logData();
+
+	// Check whether this should be logged in the debug file.
+	// This have to be done after calling getOutput() since that call may log
+	// data in the database or send to a remote host and we want that even if
+	// it won't be send to the debug file.
+	if ( $wgDebugLogFile == '' || ( $wgRequest->getVal( 'action' ) == 'raw' && !$wgDebugRawPage ) ) {
+		return;
+	}
+
 	$forward = '';
-	if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
 	}
-	if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+	if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 		$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
 	}
-	if( !empty( $_SERVER['HTTP_FROM'] ) ) {
+	if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
 		$forward .= ' from ' . $_SERVER['HTTP_FROM'];
 	}
-	if( $forward ) {
+	if ( $forward ) {
 		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
 	}
 	// Don't unstub $wgUser at this late stage just for statistics purposes
 	// FIXME: We can detect some anons even if it is not loaded. See User::getId()
-	if( $wgUser->mDataLoaded && $wgUser->isAnon() ) {
+	if ( $wgUser->mDataLoaded && $wgUser->isAnon() ) {
 		$forward .= ' anon';
 	}
 	$log = sprintf( "%s\t%04.3f\t%s\n",
 		gmdate( 'YmdHis' ), $elapsed,
 		urldecode( $wgRequest->getRequestURL() . $forward ) );
-	if ( $wgDebugLogFile != '' && ( $wgRequest->getVal( 'action' ) != 'raw' || $wgDebugRawPage ) ) {
-		wfErrorLog( $log . $prof, $wgDebugLogFile );
-	}
+
+	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
 }
 
 /**

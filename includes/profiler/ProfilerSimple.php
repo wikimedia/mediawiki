@@ -86,8 +86,13 @@ class ProfilerSimple extends Profiler {
 		}
 	}
 
-	function getFunctionReport() {
+	public function getFunctionReport() {
 		/* Implement in output subclasses */
+		return '';
+	}
+
+	public function logData() {
+		/* Implement in subclasses */
 	}
 
 	function getCpuTime($ru=null) {

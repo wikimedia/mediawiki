@@ -33,20 +33,6 @@ function wfProfileOut( $functionname = 'missing' ) {
 }
 
 /**
- * Returns a profiling output to be stored in debug file
- */
-function wfGetProfilingOutput() {
-	Profiler::instance()->getOutput();
-}
-
-/**
- * Close opened profiling sections
- */
-function wfProfileClose() {
-	Profiler::instance()->close();
-}
-
-/**
  * @ingroup Profiler
  * @todo document
  */
@@ -54,6 +40,7 @@ class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
 	var $mTemplated = false;
+	private $mCollateDone = false;
 	protected $mProfileID = false;
 	private static $__instance = null;
 
@@ -94,6 +81,15 @@ class Profiler {
 	 */
 	public static function setInstance( Profiler $p ) {
 		self::$__instance = $p;
+	}
+
+	/**
+	 * Return whether this a stub profiler
+	 *
+	 * @return Boolean
+	 */
+	public function isStub() {
+		return false;
 	}
 
 	public function setProfileID( $id ) {
@@ -160,7 +156,7 @@ class Profiler {
 	}
 
 	/**
-	 * called by wfProfileClose()
+	 * Close opened profiling sections
 	 */
 	public function close() {
 		while( count( $this->mWorkStack ) ){
@@ -178,7 +174,9 @@ class Profiler {
 	}
 
 	/**
-	 * Called by wfGetProfilingOutput()
+	 * Returns a profiling output to be stored in debug file
+	 *
+	 * @return String
 	 */
 	public function getOutput() {
 		global $wgDebugFunctionEntry, $wgProfileCallTree;
@@ -187,14 +185,8 @@ class Profiler {
 		if( !count( $this->mStack ) && !count( $this->mCollated ) ){
 			return "No profiling output\n";
 		}
-		$this->close();
 
 		if( $wgProfileCallTree ) {
-			global $wgProfileToDatabase;
-			# XXX: We must call $this->getFunctionReport() to log to the DB
-			if( $wgProfileToDatabase ) {
-				$this->getFunctionReport();
-			}
 			return $this->getCallTree();
 		} else {
 			return $this->getFunctionReport();
@@ -270,22 +262,17 @@ class Profiler {
 		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
 	}
 
-	/**
-	 * Returns a list of profiled functions.
-	 * Also log it into the database if $wgProfileToDatabase is set to true.
-	 */
-	function getFunctionReport() {
-		global $wgProfileToDatabase;
+	protected function collateData() {
+		if ( $this->mCollateDone ) {
+			return;
+		}
+		$this->mCollateDone = true;
 
-		$width = 140;
-		$nameWidth = $width - 65;
-		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
-		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %9s\n";
-		$prof = "\nProfiling data\n";
-		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
-		$this->mCollated = array ();
-		$this->mCalls = array ();
-		$this->mMemory = array ();
+		$this->close();
+
+		$this->mCollated = array();
+		$this->mCalls = array();
+		$this->mMemory = array();
 
 		# Estimate profiling overhead
 		$profileCount = count($this->mStack);
@@ -348,20 +335,31 @@ class Profiler {
 			$this->mOverhead[$fname] += $subcalls;
 		}
 
-		$total = @$this->mCollated['-total'];
 		$this->mCalls['-overhead-total'] = $profileCount;
-
-		# Output
 		arsort( $this->mCollated, SORT_NUMERIC );
+	}
+
+	/**
+	 * Returns a list of profiled functions.
+	 * Also log it into the database if $wgProfileToDatabase is set to true.
+	 */
+	function getFunctionReport() {
+		$this->collateData();
+
+		$width = 140;
+		$nameWidth = $width - 65;
+		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
+		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %9s\n";
+		$prof = "\nProfiling data\n";
+		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
+
+		$total = @$this->mCollated['-total'];
+
 		foreach( $this->mCollated as $fname => $elapsed ){
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
 			$prof .= sprintf($format, substr($fname, 0, $nameWidth), $calls, (float) ($elapsed * 1000), (float) ($elapsed * 1000) / $calls, $percent, $memory, ($this->mMin[$fname] * 1000.0), ($this->mMax[$fname] * 1000.0), $this->mOverhead[$fname]);
-			# Log to the DB
-			if( $wgProfileToDatabase ) {
-				self::logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory) );
-			}
 		}
 		$prof .= "\nTotal: $total\n\n";
 
@@ -399,60 +397,66 @@ class Profiler {
 	}
 
 	/**
-	 * Log a function into the database.
-	 *
-	 * @param $name String: function name
-	 * @param $timeSum Float
-	 * @param $eventCount Integer: number of times that function was called
-	 * @param $memorySum Integer: memory used by the function
+	 * Log the whole profiling data into the database.
 	 */
-	static function logToDB( $name, $timeSum, $eventCount, $memorySum ){
-		# Do not log anything if database is readonly (bug 5375)
-		if( wfReadOnly() ) { return; }
+	public function logData(){
+		global $wgProfilePerHost, $wgProfileToDatabase;
 
-		global $wgProfilePerHost;
+		# Do not log anything if database is readonly (bug 5375)
+		if( wfReadOnly() || !$wgProfileToDatabase ) {
+			return;
+		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		if( !is_object( $dbw ) )
-			return false;
-		$errorState = $dbw->ignoreErrors( true );
+		if( !is_object( $dbw ) ) {
+			return;
+		}
 
-		$name = substr($name, 0, 255);
+		$errorState = $dbw->ignoreErrors( true );
 
 		if( $wgProfilePerHost ){
 			$pfhost = wfHostname();
 		} else {
 			$pfhost = '';
 		}
-		
-		// Kludge
-		$timeSum = ($timeSum >= 0) ? $timeSum : 0;
-		$memorySum = ($memorySum >= 0) ? $memorySum : 0;
 
-		$dbw->update( 'profiling',
-			array(
-				"pf_count=pf_count+{$eventCount}",
-				"pf_time=pf_time+{$timeSum}",
-				"pf_memory=pf_memory+{$memorySum}",
-			),
-			array(
-				'pf_name' => $name,
-				'pf_server' => $pfhost,
-			),
-			__METHOD__ );
-				
+		$this->collateData();
 
-		$rc = $dbw->affectedRows();
-		if ($rc == 0) {
-			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-				'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
-				__METHOD__, array ('IGNORE'));
+		foreach( $this->mCollated as $name => $elapsed ){
+			$eventCount = $this->mCalls[$name];
+			$timeSum = (float) ($elapsed * 1000);
+			$memorySum = (float)$this->mMemory[$name];
+			$name = substr($name, 0, 255);
+
+			// Kludge
+			$timeSum = ($timeSum >= 0) ? $timeSum : 0;
+			$memorySum = ($memorySum >= 0) ? $memorySum : 0;
+
+			$dbw->update( 'profiling',
+				array(
+					"pf_count=pf_count+{$eventCount}",
+					"pf_time=pf_time+{$timeSum}",
+					"pf_memory=pf_memory+{$memorySum}",
+				),
+				array(
+					'pf_name' => $name,
+					'pf_server' => $pfhost,
+				),
+				__METHOD__ );
+
+			$rc = $dbw->affectedRows();
+			if ( $rc == 0 ) {
+				$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
+					'pf_time' => $timeSum, 'pf_memory' => $memorySum, 'pf_server' => $pfhost ), 
+					__METHOD__, array ('IGNORE'));
+			}
+			// When we upgrade to mysql 4.1, the insert+update
+			// can be merged into just a insert with this construct added:
+			//     "ON DUPLICATE KEY UPDATE ".
+			//     "pf_count=pf_count + VALUES(pf_count), ".
+			//     "pf_time=pf_time + VALUES(pf_time)";
 		}
-		// When we upgrade to mysql 4.1, the insert+update
-		// can be merged into just a insert with this construct added:
-		//     "ON DUPLICATE KEY UPDATE ".
-		//     "pf_count=pf_count + VALUES(pf_count), ".
-		//     "pf_time=pf_time + VALUES(pf_time)";
+
 		$dbw->ignoreErrors( $errorState );
 	}
 
@@ -462,25 +466,6 @@ class Profiler {
 	function getCurrentSection() {
 		$elt = end( $this->mWorkStack );
 		return $elt[0];
-	}
-
-	/**
-	 * Get function caller
-	 *
-	 * @param $level Integer
-	 */
-	static function getCaller( $level ) {
-		$backtrace = wfDebugBacktrace();
-		if ( isset( $backtrace[$level] ) ) {
-			if ( isset( $backtrace[$level]['class'] ) ) {
-				$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
-			} else {
-				$caller = $backtrace[$level]['function'];
-			}
-		} else {
-			$caller = 'unknown';
-		}
-		return $caller;
 	}
 
 	/**

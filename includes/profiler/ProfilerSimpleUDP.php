@@ -10,10 +10,12 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleUDP extends ProfilerSimple {
-	function getFunctionReport() {
+	public function logData() {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort;
 
-		if ( $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
+		$this->collateData();
+
+		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
 			# Less than minimum, ignore
 			return;
 		}
