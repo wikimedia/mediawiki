@@ -114,6 +114,9 @@ return array(
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
 	),
+	'jquery.json' => array(
+		'scripts' => 'resources/jquery/jquery.json.js',
+	),
 	'jquery.localize' => array(
 		'scripts' => 'resources/jquery/jquery.localize.js',
 	),
