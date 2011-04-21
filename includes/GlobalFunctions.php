@@ -362,9 +362,6 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	// Check whether this should be logged in the debug file.
-	// This have to be done after calling getOutput() since that call may log
-	// data in the database or send to a remote host and we want that even if
-	// it won't be send to the debug file.
 	if ( $wgDebugLogFile == '' || ( $wgRequest->getVal( 'action' ) == 'raw' && !$wgDebugRawPage ) ) {
 		return;
 	}
