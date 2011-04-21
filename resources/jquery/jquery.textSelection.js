@@ -62,10 +62,17 @@ encapsulateSelection: function( options ) {
 				isSample = true;
 			} else if ( options.replace ) {
 				selText = options.peri;
-			} else if ( selText.charAt( selText.length - 1 ) == ' ' ) {
-				// Exclude ending space char
-				selText = selText.substring(0, selText.length - 1);
-				options.post += ' ';
+			} else {
+				while ( selText.charAt( selText.length - 1 ) == ' ' ) {
+					// Exclude ending space char
+					selText = selText.substring(0, selText.length - 1);
+					options.post += ' ';
+				}
+				while ( selText.charAt( 0 ) == ' ' ) {
+					// Exclude prepending space char
+					selText = selText.substring(1, selText.length);
+					options.pre = ' ' + options.pre;
+				}
 			}
 		}
 		var isSample = false;

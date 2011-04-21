@@ -373,7 +373,7 @@ class EditPage {
 			$this->preview = true;
 		}
 
-		$wgOut->addModules( array( 'mediawiki.legacy.edit', 'mediawiki.action.edit' ) );
+		$wgOut->addModules( array( 'mediawiki.action.edit' ) );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.legacy.preview' );
@@ -2410,9 +2410,9 @@ HTML
 
 			$paramList = implode( ',',
 				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
-			$script .= "addButton($paramList);\n";
+			$script .= "mw.toolbar.addButton($paramList);\n";
 		}
-
+		$script .= "mw.toolbar.init();\n";
 		$wgOut->addScript( Html::inlineScript(
 			"if ( window.mediaWiki ) { jQuery(function(){{$script}}); }"
 		) );
