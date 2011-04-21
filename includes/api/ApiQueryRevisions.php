@@ -74,7 +74,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	/**
-	 * @static
 	 * @param $pageid
 	 * @param $title Title
 	 * @param $rev Revision

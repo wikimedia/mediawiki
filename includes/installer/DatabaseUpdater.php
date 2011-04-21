@@ -88,7 +88,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @static
 	 * @throws MWException
 	 * @param DatabaseBase $db
 	 * @param bool $shared

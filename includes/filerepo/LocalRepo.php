@@ -86,7 +86,6 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Gets the SHA1 hash from a storage key
 	 *
-	 * @static
 	 * @param string $key
 	 * @return string
 	 */

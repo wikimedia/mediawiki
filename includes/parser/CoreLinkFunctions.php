@@ -11,7 +11,6 @@
  */
 class CoreLinkFunctions {
 	/**
-	 * @static
 	 * @param $parser Parser_LinkHooks
 	 * @return bool
 	 */
@@ -21,7 +20,6 @@ class CoreLinkFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @param $holders LinkHolderArray
 	 * @param $markers LinkMarkerReplacer
@@ -45,7 +43,6 @@ class CoreLinkFunctions {
 	}
 
 	/**
-	 * @static
 	 * @param  $parser Parser
 	 * @param  $holders LinkHolderArray
 	 * @param  $markers LinkMarkerReplacer

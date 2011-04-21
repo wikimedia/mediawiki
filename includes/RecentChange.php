@@ -340,7 +340,6 @@ class RecentChange {
 	/**
 	 * Makes an entry in the database corresponding to an edit
 	 *
-	 * @static
 	 * @param $timestamp
 	 * @param $title Title
 	 * @param $minor
@@ -407,7 +406,6 @@ class RecentChange {
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 * @todo Document parameters and return
 	 *
-	 * @static
 	 * @param $timestamp
 	 * @param $title Title
 	 * @param $minor
@@ -469,7 +467,6 @@ class RecentChange {
 	# Makes an entry in the database corresponding to a rename
 
 	/**
-	 * @static
 	 * @param $timestamp
 	 * @param $oldTitle Title
 	 * @param $newTitle Title
@@ -547,7 +544,6 @@ class RecentChange {
 	}
 
 	/**
-	 * @static
 	 * @param $timestamp
 	 * @param $title Title
 	 * @param $user User

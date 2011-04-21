@@ -36,7 +36,6 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @static
 	 * @param  $sha1
 	 * @param $repo LocalRepo
 	 * @param bool $timestamp

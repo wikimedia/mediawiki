@@ -11,7 +11,6 @@
  */
 class CoreTagHooks {
 	/**
-	 * @static
 	 * @param $parser Parser
 	 * @return void
 	 */
@@ -50,7 +49,6 @@ class CoreTagHooks {
 	}
 
 	/**
-	 * @static
 	 * @param  $content
 	 * @param  $attributes
 	 * @param $parser Parser

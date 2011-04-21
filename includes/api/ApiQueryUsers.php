@@ -67,7 +67,6 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	 /**
-	  * @static
 	  * @param $user User
 	  * @return String
 	  */

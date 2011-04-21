@@ -155,7 +155,6 @@ class ApiDelete extends ApiBase {
 	}
 
 	/**
-	 * @static
 	 * @param $token
 	 * @param $title Title
 	 * @param $oldimage

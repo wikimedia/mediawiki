@@ -131,7 +131,6 @@ class RevisionDeleter {
 	 * If it doesn't, returns the corresponding ar_timestamp field
 	 * so that this key can be used instead.
 	 *
-	 * @static
 	 * @param $title Title
 	 * @param  $revid
 	 * @return bool|mixed
@@ -156,7 +155,6 @@ class RevisionDeleter {
 	/**
 	 * Creates utility links for log entries.
 	 *
-	 * @static
 	 * @param $title Title
 	 * @param $paramArray Array
 	 * @param $skin Skin

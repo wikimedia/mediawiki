@@ -486,7 +486,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @param array $filter List of properties to filter out
 	 *
-	 * @static
 	 * @return Array
 	 */
 	public static function getPropertyNames( $filter = array() ) {
@@ -496,7 +495,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Returns array key value pairs of properties and their descriptions
 	 *
-	 * @static
 	 * @return array
 	 */
 	private static function getProperties() {
@@ -524,7 +522,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * 
 	 * @param array $filter List of properties to filter out
 	 *
-	 * @static
 	 * @return array
 	 */
 	public static function getPropertyDescriptions( $filter = array() ) {
