@@ -526,6 +526,14 @@ Wayah ini Pian sudah babuat log...',
 Pian pinanya sudah bahasil maubah katasunduk Pian atawa maminta sabuah katasunduk samantara hanyar.',
 'resetpass-temp-password'   => 'Katasunduk samantara:',
 
+# Special:PasswordReset
+'passwordreset-username'     => 'Ngaran pamuruk:',
+'passwordreset-email'        => 'Alamat suril:',
+'passwordreset-emailtitle'   => 'Rarincian akun pada {{SITENAME}}',
+'passwordreset-emailelement' => 'Ngaran pamuruk: $1
+Katasunduk samantara: $2',
+'passwordreset-emailsent'    => 'Sabuah suril pangingat sudah takirim.',
+
 # Edit page toolbar
 'bold_sample'     => 'Naskah kandal',
 'bold_tip'        => 'Naskah kandal',

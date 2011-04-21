@@ -229,7 +229,7 @@ $messages = array(
 'mediawikipage'     => 'Fiiri bogga fariinta',
 'templatepage'      => 'Fiiri bogga tusmada',
 'viewhelppage'      => 'Fiiri bogga caawinaada',
-'categorypage'      => 'itusi bogga ereykoobka',
+'categorypage'      => 'Itusi qeybta bogga',
 'viewtalkpage'      => 'Fiiri bogga wadahadalka',
 'otherlanguages'    => 'Luqadaha kale',
 'redirectedfrom'    => '(Waxaa laga soo dhiibay $1)',
@@ -336,6 +336,10 @@ waxaa laga yaabaa in oo qof kale tirtiray .',
 fadlan waxyar kadib ku soo noqo.',
 'protectedpagetext'   => 'Boggaan  woo xiranyahay si aan wax looga bedelin.',
 'viewsourcetext'      => 'Waad fiirin kartaa waana koobi gareen kartaa ereykoodka boggaan',
+'namespaceprotected'  => "Ma laguu ogolo in aad wax ka bedeshid maqaalada ku jiro '''$1''' dhinaca magacyada.",
+'ns-specialprotected' => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
+'titleprotected'      => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
+Sababta neh waxaa waaye "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-unknownscanner' => 'antivirus la aqoon:',
@@ -392,7 +396,7 @@ Sax hingaada, ama  [[Special:UserLogin/signup|samayso magac gudagale ah]].',
 'wrongpasswordempty'         => 'Erayga sirta aad qortay waxoo ahaa meel ebar. Fadlan iskuday markale.',
 'passwordtooshort'           => 'Erayada sirta ah waa in oo ahaadaa ugu yaraan  {{PLURAL:$1|1 xaraf|$1 xarfood}} .',
 'password-name-match'        => 'Eraygaaga sirta ah waa in oo ka badalnaadaa magacaaga gudagale',
-'mailmypassword'             => 'E-mail iigu soo dir ereysir oo cusub',
+'mailmypassword'             => 'E-mail iigu soo dir ereysir cusub',
 'passwordremindertitle'      => 'Eraysir ku meelgaar ah oo loogu talagalay {{SITENAME}}',
 'passwordremindertext'       => 'Qof (laga yaabo in aad adiga tahay, kana soo galay cinwaanka-IP $1) ayaa eraysir oo cusub u codsaday  {{SITENAME}}  ($4).
 Eraysir oo ku meelgaar ah oo loogu talagalay isticmaalaha "$2" ayaa la sameeyay waxaana loo diray "$3".
@@ -413,7 +417,7 @@ Intii aadan wax e-mail ah loogu soo dirin akoon'kaada, waa in aad daba kacdaa wa
 'emailauthenticated'         => 'E-mailkaada waxaa lagu xaqiijiyay $2 markey ahayd $3.',
 'emailnotauthenticated'      => 'Ciwaankaada e-mailka weli lama xaqiijinin.
 Wax e-mail ah oo ku saabsan arrimaha soo socdo looma soo diridoono.',
-'emailconfirmlink'           => 'ka soo jawaab ciwaankaada e-mailka',
+'emailconfirmlink'           => 'Soo xaqiiji ciwaankaada e-mailka',
 'accountcreated'             => "Akoon aa la'sameeyay",
 'accountcreatedtext'         => "Akoonka isticmaalaha $1 waa la'sameeyay.",
 'createaccount-title'        => 'Waxaa akoon loo sameeyay {{SITENAME}}',
@@ -482,7 +486,7 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'yourdiff'                       => 'Kaladuwanaanshaha',
 'semiprotectedpagewarning'       => "'''Ogeysiis:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
 'template-protected'             => '(waa la difaacay)',
-'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 ereykoob oo qarsoon|$1 ereykoobyada qarsoon}}:',
+'hiddencategories'               => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'              => 'Laguuma ogola inaad beyjaj cusub ku sameysid {{SITENAME}}han.',
 'permissionserrors'              => 'Cillado ogolaashada ah',
 
@@ -607,7 +611,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'gender-female'             => 'Dhedig',
 'email'                     => 'E-mail',
 'prefs-help-realname'       => 'Optional: if you choose to provide it this will be used for giving you attribution for your work.',
-'prefs-help-email'          => ' E-mailka waa wax aad xor u leedahay. laakiin waxaa u baahnaan kartaa erayga sirta ah in aad cusbooneyso, hadii aad ilaawdo eraygaaga sirta ah',
+'prefs-help-email'          => 'E-mailka waa wax aad xor u leedahay. laakiin waxaa u baahnaan kartaa erayga sirta ah in aad cusbooneyso, hadii aad ilaawdo eraygaaga sirta ah',
 
 # User rights
 'saveusergroups' => 'Kaydi kooxaha isticmaalayaasha',
@@ -660,7 +664,7 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'show'                        => 'Itus',
 'minoreditletter'             => 'by',
 'newpageletter'               => 'BC',
-'rc_categories'               => 'Waxoo u gaar yahay ereykoobyada  (sidaan u kala qeebsan "|")',
+'rc_categories'               => 'Waxoo u gaar yahay qeybaha  (u kala qeybsan "|")',
 
 # Recent changes linked
 'recentchangeslinked' => "Isbedelada la'xiriira",
@@ -708,7 +712,7 @@ file'kaan waa  $2.",
 
 # Miscellaneous special pages
 'lonelypages'        => 'Boggaga agoonta ah',
-'uncategorizedpages' => 'Maqaalada la ereykoobin',
+'uncategorizedpages' => 'Maqaalada aan la aruurin',
 'popularpages'       => 'Boggaga caanka ah',
 'shortpages'         => 'Boggaga gaagaaban',
 'longpages'          => 'Boggaga dhaadheer',
@@ -739,7 +743,7 @@ file'kaan waa  $2.",
 
 # Special:Categories
 'categories'                    => 'Qeybaha',
-'special-categories-sort-count' => 'habeey markii tirisid',
+'special-categories-sort-count' => 'xisaabi marka aad tirisid',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Raadi',
@@ -911,7 +915,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-mediawiki' => 'Fiiri bogga fariimaha sistamka',
 'tooltip-ca-nstab-template'  => 'Fiiri tusmada',
 'tooltip-ca-nstab-help'      => 'Fiiri bogga caawinaad',
-'tooltip-ca-nstab-category'  => 'Itusi bogga ereykoobka',
+'tooltip-ca-nstab-category'  => 'Itusi qeybta bogga',
 
 # Attribution
 'anonymous'        => "{{PLURAL:$1|Isticmaalaha|Isticmaaleyaasa}} aanan la'aqoonsanin ee {{SITENAME}}",
@@ -927,7 +931,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'bydate'        => 'hab taariikheed',
 
 # EXIF tags
-'exif-iimcategory' => 'Ereykoobka',
+'exif-iimcategory' => 'Qeybta',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'dhamaan',

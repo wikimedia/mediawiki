@@ -8723,8 +8723,8 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-page-existingwiki' => 'Bestaande wiki',
 	'config-help-restart' => 'Wilt u alle opgeslagen gegevens die u hebt ingevoerd wissen en het installatieproces opnieuw starten?',
 	'config-restart' => 'Ja, opnieuw starten',
-	'config-welcome' => '=== Controle ongeving ===
-Er worden een aantal basale controles uitgevoerd met als doel vast te stellen of deze omgeving geschikt is voor een installatie van MediaWiki.
+	'config-welcome' => '=== Controle omgeving ===
+Er worden een aantal basiscontroles uitgevoerd met als doel vast te stellen of deze omgeving geschikt is voor een installatie van MediaWiki.
 Als u hulp nodig hebt bij de installatie, lever deze gegevens dan ook aan.',
 	'config-copyright' => "=== Auteursrechten en voorwaarden ===
 
@@ -8998,7 +8998,7 @@ Het is dat niet mogelijk tekens op te slaan die de \"[http://nl.wikipedia.org/wi
 	'config-project-namespace' => 'Projectnaamruimte:',
 	'config-ns-generic' => 'Project',
 	'config-ns-site-name' => 'Zelfde als de wiki: $1',
-	'config-ns-other' => 'Andere (geen aan welke)',
+	'config-ns-other' => 'Andere (geef aan welke)',
 	'config-ns-other-default' => 'MijnWiki',
 	'config-project-namespace-help' => "In het kielzog van Wikipedia beheren veel wiki's hun beleidspagina's apart van hun inhoudelijke pagina's in een \"'''projectnaamruimte'''\".
 Alle paginanamen in deze naamruimte beginnen met een bepaald voorvoegsel dat u hier kunt aangeven.

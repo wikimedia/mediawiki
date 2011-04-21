@@ -9,6 +9,7 @@
  *
  * @author Cesco
  * @author Jim-by
+ * @author LexArt
  * @author Maksim L.
  * @author Mienski
  * @author Prima klasy4na
@@ -195,6 +196,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'працяг',
 'index-category'                 => 'Індэксаваныя старонкі',
 'noindex-category'               => 'Неіндэксаваныя старонкі',
+'broken-file-category'           => 'Старонкі з няслушнымі спасылкамі на файлы',
 
 'mainpagetext'      => "'''MediaWiki паспяхова ўсталяваная.'''",
 'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
@@ -565,6 +567,11 @@ $2',
 'resetpass-wrong-oldpass'   => 'Недапушчальны тымчасовы ці актуальны пароль.
 Магчыма, вы ўжо змянілі свой пароль ці папрасілі новы тымчасовы.',
 'resetpass-temp-password'   => 'Тымчасовы пароль:',
+
+# Special:PasswordReset
+'passwordreset-username'     => 'Імя ўдзельніка',
+'passwordreset-emailelement' => 'Імя ўдзельніка: $1
+Часовы пароль: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Цёмны тэкст',
@@ -1117,6 +1124,9 @@ $1",
 'prefs-displaywatchlist'        => 'Паказ',
 'prefs-diffs'                   => 'Розніцы',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-invalid' => 'Увядзіце слушны адрас электроннай пошты',
+
 # User rights
 'userrights'                   => 'Распараджэнне правамі ўдзельніка',
 'userrights-lookup-user'       => 'Распараджацца групамі ўдзельнікаў',
@@ -1364,6 +1374,7 @@ $1",
 'verification-error'          => 'Гэты файл не прайшоў файлавую праверку.',
 'illegal-filename'            => 'Імя файла не дапускаецца.',
 'unknown-error'               => 'Невядомая памылка.',
+'tmp-create-error'            => 'Не атрымалася стварыць часовы файл',
 'large-file'                  => 'Рэкамендуецца, каб файлы былі не большыя за $1; гэты файл ёміць $2.',
 'largefileserver'             => "Гэты файл большага аб'ёму, чым дазваляе канфігурацыя сервера.",
 'emptyfile'                   => 'Здаецца, што файл, укладзены вамі, пусты. Магчыма, здарылася памылка ў назве файла? Праверце, ці вы сапраўды хацелі ўкласці менавіта гэты файл.',
@@ -1426,8 +1437,13 @@ $1",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Доступ забаронены',
+'img-auth-nofile'       => 'Файл " $1 "не існуе.',
+'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да каталога "$1"
+Дазволены доступ толькі да файлаў.',
 
 # HTTP errors
+'http-request-error'    => 'Не атрымалася выканаць HTTP-запыт з-за невядомай памылкі',
+'http-read-error'       => 'Памылка чытання HTTP',
 'http-host-unreachable' => 'Не ўдалося адкрыць URL',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1762,6 +1778,7 @@ $1",
 'noemailtext'          => 'Удзельнік не паведаміў карэктнага адрасу эл.пошты.',
 'nowikiemailtitle'     => 'Не дазволеная эл.пошта',
 'nowikiemailtext'      => 'Гэты ўдзельнік не жадае атрымліваць эл.пошты ад іншых удзельнікаў.',
+'emailusernamesubmit'  => 'Адправіць',
 'email-legend'         => 'Адаслаць эл.ліст іншаму ўдзельніку праекта {{SITENAME}}',
 'emailfrom'            => 'Ад каго:',
 'emailto'              => 'Каму:',
@@ -2047,6 +2064,8 @@ $1',
 'whatlinkshere-filters'    => 'Фільтры',
 
 # Block/unblock
+'block'                           => 'Заблакаваць удзельніка',
+'unblock'                         => 'Разблакаваць удзельніка',
 'blockip'                         => 'Заблакаваць удзельніка',
 'blockip-title'                   => 'Заблакаваць удзельніка',
 'blockip-legend'                  => 'Заблакаваць удзельніка',
@@ -2090,6 +2109,7 @@ $1',
 'ipusubmit'                       => 'Зняць гэты блок',
 'unblocked'                       => '[[User:$1|$1]] быў адблакаваны',
 'unblocked-id'                    => 'Блок $1 быў зняты',
+'blocklist'                       => 'Заблакаваныя ўдзельнікі',
 'ipblocklist'                     => 'Усе заблакаваныя IP-адрасы і ўдзельнікі',
 'ipblocklist-legend'              => 'Знайсці заблакаванага ўдзельніка',
 'blocklist-reason'                => 'Прычына',
@@ -2637,6 +2657,8 @@ $1',
 'exif-gpsareainformation'          => 'Назва мясцовасці GPS',
 'exif-gpsdatestamp'                => 'Дата GPS',
 'exif-gpsdifferential'             => 'Дыферэнцыяльная карэкцыя GPS',
+'exif-keywords'                    => 'Ключавыя словы',
+'exif-label'                       => 'Цэтлік',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясціснута',
@@ -2770,6 +2792,9 @@ $1',
 'exif-gpsspeed-k' => 'кіламетраў за гадзіну',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Кіламетры',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'сапраўдны азімут',

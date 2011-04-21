@@ -663,6 +663,10 @@ Sila tunggu sebentar dan cuba lagi.',
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Set semula kata laluan',
+'passwordreset-username' => 'Nama pengguna:',
+
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
 'bold_tip'        => 'Teks tebal',
@@ -1174,7 +1178,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'contextlines'                  => 'Bilangan baris untuk dipaparkan bagi setiap capaian:',
 'contextchars'                  => 'Bilangan askara konteks bagi setiap baris:',
 'stub-threshold'                => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
-'stub-threshold-disabled'       => 'Dilumpuhkan',
+'stub-threshold-disabled'       => 'Dimatikan',
 'recentchangesdays'             => 'Bilangan hari dalam perubahan terkini:',
 'recentchangesdays-max'         => '(had $1 hari)',
 'recentchangescount'            => 'Bilangan suntingan yang dipaparkan mengikut tetapan tersedia:',

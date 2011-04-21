@@ -260,6 +260,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'karugtong',
 'index-category'                 => 'Mga pahinang may talatuntunan',
 'noindex-category'               => 'Mga pahinang walang talatuntunan',
+'broken-file-category'           => 'Mga pahina na may sirang mga kawing ng talaksan',
 
 'mainpagetext'      => "'''Matagumpay na ininstala ang MediaWiki.'''",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.
@@ -560,6 +561,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'createaccount'              => 'Lumikha ng kuwenta',
 'gotaccount'                 => 'May kuwenta ka na ba? $1.',
 'gotaccountlink'             => 'Lumagda',
+'userlogin-resetlink'        => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',
 'createaccountmail'          => 'sa pamamagitan ng e-liham',
 'createaccountreason'        => 'Dahilan:',
 'badretype'                  => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
@@ -658,6 +660,32 @@ Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
 'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
+
+# Special:PasswordReset
+'passwordreset'                => 'Muling pagtatakda ng hudyat',
+'passwordreset-text'           => 'Punuin ang pormularyong ito upang makatanggap ng isang pampaalalang e-liham ng iyong mga detalye ng akawnt.',
+'passwordreset-legend'         => 'Itakdang muli ang hudyat',
+'passwordreset-disabled'       => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
+'passwordreset-pretext'        => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng dato sa ibaba}}',
+'passwordreset-username'       => 'Pangalan ng tagagamit:',
+'passwordreset-email'          => 'Tirahan ng e-liham:',
+'passwordreset-emailtitle'     => 'Mga detalye ng akawnt sa {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Isang tao (marahil ay ikaw, mula sa tirahan ng IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng akawnt para sa {{SITENAME}} ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
+
+$2
+
+{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
+Dapat kang lumagda at pumili ng isang bagong hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang orihinal mong hudyat, at hindi mo na nais palitan ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng luma mong hudyat.',
+'passwordreset-emailtext-user' => 'Ang tagagamit na si $1 sa {{SITENAME}} ay humiling ng isang paalala ng iyong mga akawnt ng detalye para sa {{SITENAME}}
+($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
+
+$2
+
+{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} mawawalan ng bias sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
+Dapat kang lumagda at pumili ng isang hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang iyong orihinal na hudyat, at hindi mo na nais palitan pa ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng iyong lumang hudyat.',
+'passwordreset-emailelement'   => 'Pangalan ng tagagamit: $1
+Pansamantalang hudyat: $2',
+'passwordreset-emailsent'      => 'Naipadala na ang isang e-liham na pampaalala.',
 
 # Edit page toolbar
 'bold_sample'     => 'Makapal na panitik',

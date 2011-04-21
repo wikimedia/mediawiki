@@ -333,6 +333,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '… (wigger)',
 'index-category'                 => 'Sigge, di de Söhkmaschine opnämme sulle',
 'noindex-category'               => 'Sigge, di de Söhkmaschine nit opnämme sulle',
+'broken-file-category'           => 'Sigge met kappodde Lengks op Datteije',
 
 'mainpagetext'      => "'''MediaWiki es jetz enstalleet.'''",
 'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
@@ -645,6 +646,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAM
 'createaccount'              => 'Aanmelde als ene neue Metmaacher',
 'gotaccount'                 => "Do bes ald aanjemeldt {{GRAMMAR:en|{{SITENAME}}}}? Dann jangk nohm '''$1'''.",
 'gotaccountlink'             => 'Enlogge',
+'userlogin-resetlink'        => 'Häß De Ding Daate för et Enlogge verjäße?',
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
 'createaccountreason'        => 'Jrond:',
 'badretype'                  => 'Ding zwëij ennjejovve Paßßwööter sinn nit ejaal. Do muss De Dich för ein entscheide.',
@@ -770,8 +772,41 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'resetpass-temp-password'   => 'Zweschepasswood:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Paßwoot zeröcksetze',
-'passwordreset-username' => 'Metmaacher Name:',
+'passwordreset'                => 'Et Paßwoot zeröck säze',
+'passwordreset-text'           => 'Donn dat Fommulaa heh ußfölle, öm en <i lang="en">e-mail</i> ze krijje, woh jät övver der Zohjang heh obb et Wiki för Desch dren shteiht.',
+'passwordreset-legend'         => 'Et Paßwoot zeröck säze',
+'passwordreset-disabled'       => 'Et Paßwoot zeröck ze säze es heh em Wiki afjeschalldt.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn}}',
+'passwordreset-username'       => 'Metmaacher Name:',
+'passwordreset-email'          => 'De Adräß för de <i lang="en">e-mail</i>:',
+'passwordreset-emailtitle'     => 'Einzelheite för der Zohjang op {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Do künns et sällver jewääse sin, öhnswää hät vun dä Adräß $1 en Internet öm
+en e-mail jefrooch, met Daate övver Dinge Zohjäng op {{GRAMMAR:Akkusativ|{{SITENAME}}}}
+($4)
+Heh {{PLURAL:$3|dä Metmaacher hät|di Metmaacher han|hät keine Metmaacher}} Ding e-mail Addräß:
+
+$2
+
+{{PLURAL:$3|Dat Zweschepaßwoot leuf|Di Zweschepaßwööter loufe|Kein Zweschepaßwoot leuf}} en {{PLURAL:$5|enem Daach|$5 Dääsch|keinem Daach}} uß.
+Do sullts Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi Do
+dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot entsenne
+kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann moß De jäz jaa
+nix donn, un kanns Ding Paßwoot wigger bruche.',
+'passwordreset-emailtext-user' => 'Dä Metmaacher $1 vun {{GRAMMAR:Dativ|{{SITENAME}}}} hät öm en e-mail jefrooch,
+met Daate övver Dinge Zohjäng op {{GRAMMAR:Akkusativ|{{SITENAME}}}}
+($4)
+Heh {{PLURAL:$3|dä Metmaacher hät|di Metmaacher han|hät keine Metmaacher}} Ding e-mail Addräß:
+
+$2
+
+{{PLURAL:$3|Dat Zweschepaßwoot leuf|Di Zweschepaßwööter loufe|Kein Zweschepaßwoot leuf}} en {{PLURAL:$5|enem Daach|$5 Dääsch|keinem Daach}} uß.
+Do sullts Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi Do
+dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot entsenne
+kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann moß De jäz jaa
+nix donn, un kanns Ding Paßwoot wigger bruche.',
+'passwordreset-emailelement'   => 'Metmaacher Name: $1
+Eijmohl-Paßwoot: $2',
+'passwordreset-emailsent'      => 'En <i lang="en">e-mail</i> met Aanjaabe zom Zohjang heh es verscheck.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fätte Schreff',
@@ -3270,10 +3305,15 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-objectname'                  => 'Der Tittel en koot',
 'exif-specialinstructions'         => 'Extra Aanweisonge',
 'exif-headline'                    => 'Övverschreff',
+'exif-credit'                      => 'Wigger jejovve vum',
 'exif-source'                      => 'Hääkunf, Besezer',
+'exif-editstatus'                  => 'Enodenong vum Fotto en de Redakzjuhn',
+'exif-urgency'                     => 'De Ieleschkeit',
+'exif-fixtureidentifier'           => 'Kolumne',
 'exif-locationdest'                => 'Dä volle Name vum jezeishte Oot udder Plaz',
 'exif-locationdestcode'            => 'Dä Kopod vum jezeishte Oot udder Plaz',
 'exif-objectcycle'                 => 'De Daachszick, för wann dat Denge zom Verdeile jedaach es',
+'exif-contact'                     => 'Kuntak',
 'exif-writer'                      => 'Schriiver',
 'exif-languagecode'                => 'Shprooch',
 'exif-iimversion'                  => 'Dem <i lang="en">IIM</i> sing Version',
@@ -3281,10 +3321,12 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-iimsupplementalcategory'     => 'Extra Saachjroppe udder Zoote',
 'exif-datetimeexpires'             => 'Nit mieh verwende noh',
 'exif-datetimereleased'            => 'Öffentlesch jemaat aam',
+'exif-originaltransmissionref'     => 'Ojinaal Kood vun de Övvermeddelong',
 'exif-identifier'                  => 'Kännong',
 'exif-lens'                        => 'De jebruchte Lens',
 'exif-serialnumber'                => 'Däm Knipskaste sing Seerije-Nommer',
 'exif-cameraownername'             => 'Däm Knipskaste singe Besetzer',
+'exif-label'                       => 'Bezeishnong, Ätikätt, Singnatuur',
 'exif-datetimemetadata'            => 'Et Dattum vun de läzde Änderong vun de Metta_Daate',
 'exif-nickname'                    => 'Jeläufijje Name för dat Beld',
 'exif-rating'                      => 'Enschäzong (uß 5)',
@@ -3299,8 +3341,11 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-attributionurl'              => 'Wann De dat Wärk sellver bruchs, leng op',
 'exif-preferredattributionname'    => 'Wann De dat Wärk bruchs, donn en Danksaarung dobei, aan',
 'exif-pngfilecomment'              => 'Aanmärkong uss ene <i lang="en">PNG</i>-Dattei',
+'exif-disclaimer'                  => 'Et Verwahre jääje Haftong',
+'exif-contentwarning'              => 'Warnong för em Enhallt',
 'exif-giffilecomment'              => 'Aanmärkong uss ene <i lang="en">GIF</i>-Dattei',
 'exif-intellectualgenre'           => 'De Zoot vun Enhallt',
+'exif-subjectnewscode'             => 'Der Schlößel (Kood) för et Teema',
 'exif-scenecode'                   => 'Dä <i lang="en">IPTC</i>-Kood för Zoot vun wat mer süht',
 'exif-event'                       => 'Der jezeishte Aanlaß',
 'exif-organisationinimage'         => 'De jezeishte Ojanisazjuhn udder Ferma',

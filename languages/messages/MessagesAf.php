@@ -716,6 +716,10 @@ Om voort te gaan moet u 'n nuwe wagwoord hier kies:",
 U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Wagwoord herstel',
+'passwordreset-username' => 'Gebruiker:',
+
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte teks',
 'bold_tip'        => 'Vetdruk',
@@ -1317,7 +1321,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'userrights-user-editname'     => 'Voer gebruikersnaam in:',
 'editusergroup'                => 'Wysig gebruikersgroepe',
 'editinguser'                  => "Besig om gebruikersregte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
-'userrights-editusergroup'     => 'wysig gebruikersgroepe',
+'userrights-editusergroup'     => 'Wysig gebruikersgroepe',
 'saveusergroups'               => 'Stoor gebruikersgroepe',
 'userrights-groupsmember'      => 'Lid van:',
 'userrights-groupsmember-auto' => 'Implisiete lid van:',

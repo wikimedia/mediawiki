@@ -1812,7 +1812,7 @@ $1',
 'protectedtitlestext'     => 'შემდეგი სახელების გამოყენება არ შეიძლება',
 'protectedtitlesempty'    => 'ამ დროისთვის არ არსებობს მოთხოვნილი გვერდები მოცემული პარამეტრებით.',
 'listusers'               => 'მომხმარებლების სია',
-'listusers-editsonly'     => 'აჩვენთ მხოლოდ ის მომხამრებლები, რომლებსაც ერთი შესწორება აქვს გაკეთებული.',
+'listusers-editsonly'     => 'აჩვენთ მხოლოდ ის მომხმარებლები, რომლებსაც ერთი შესწორება აქვს გაკეთებული.',
 'listusers-creationsort'  => 'დაალაგეთ შექმნის თარიღის მიხედვით.',
 'usereditcount'           => '$1 რედაქტირება',
 'usercreated'             => 'შექმნილია  $1  $2-ში',
@@ -1917,8 +1917,8 @@ $1',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'მომხმარებელთა ჯგუფების უფლებები',
-'listgrouprights-summary'              => 'ქვემოთ წარმოდგენილია ამ ვიკიში გარკვეულ ჯგუფთა სია და მათი უფლებები
-შესაძლოა არსებობს[[{{MediaWiki:Listgrouprights-helppage}}|დამატებითი ინფორმაცია]] ინდივიდუალურ უფლებებთან დაკავშირებით.',
+'listgrouprights-summary'              => 'ქვემოთ წარმოდგენილია ამ ვიკიში გარკვეულ ჯგუფთა სია და მათი უფლებები.
+შესაძლოა არსებობს [[{{MediaWiki:Listgrouprights-helppage}}|დამატებითი ინფორმაცია]] ინდივიდუალურ უფლებებთან დაკავშირებით.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">წარმოდგენილი უფლებები</span>
 * <span class="listgrouprights-revoked">გაუქმებული უფლებები</span>',
 'listgrouprights-group'                => 'ჯგუფი',
