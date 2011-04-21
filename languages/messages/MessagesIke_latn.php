@@ -339,6 +339,11 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'ilsubmit' => 'ivaaqpuq',
 'bydate'   => 'pitaaruttuq inuulirvik',
 
+# Variants for Inuktitut language
+'variantname-ike-cans' => 'ᑎᑎᕋᐅᓯᖅ ᓄᑖᖅ',
+'variantname-ike-latn' => 'ilisautik',
+'variantname-iu'       => 'disable',
+
 # EXIF tags
 'exif-imagelength'         => 'qutsingniq',
 'exif-imagedescription'    => 'inunnguaq atiq',

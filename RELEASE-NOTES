@@ -134,6 +134,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 13879) Special:Emailuser asks for suitable target user if called without.
 * (bug 16956) IPTC and XMP metadata now extracted from images
 * (bug 23816) A tracking category is now added for any pages with broken images.
+* Conversion script between Syllabics and Latin for the Inuktitut language
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
