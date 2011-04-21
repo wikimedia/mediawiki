@@ -2641,6 +2641,11 @@ $wgMessageStructure = array(
 		'variantname-tg-latn',
 		'variantname-tg',
 	),
+	'variantname-iu' => array(
+		'variantname-ike-cans',
+		'variantname-ike-latn',
+		'variantname-iu',
+	),
 	'metadata' => array(
 		'metadata',
 		'metadata-help',

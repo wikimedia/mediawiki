@@ -1,0 +1,213 @@
+<?php
+/**
+  * @addtogroup Language
+  */
+
+/*
+* Conversion script between Latin and Syllabics
+* for Inuktitut
+*
+* Based on:
+*   - http://commons.wikimedia.org/wiki/Image:Inuktitut.png
+*   - LanguageSr.php
+*
+* @ingroup Language
+*/
+require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
+
+class IuConverter extends LanguageConverter {
+	var $mToLatin = array(
+		# Lowercase
+		'ᐦ' => 'h',   'ᐃ' => 'i',    'ᐄ' => 'ii',    'ᐅ' => 'u',    'ᐆ' => 'uu',    'ᐊ' => 'a',    'ᐋ' => 'aa',
+		'ᑉ' => 'p',   'ᐱ' => 'pi',   'ᐲ' => 'pii',   'ᐳ' => 'pu',   'ᐴ' => 'puu',   'ᐸ' => 'pa',   'ᐹ' => 'paa',
+		'ᑦ' => 't',   'ᑎ' => 'ti',   'ᑏ' => 'tii',   'ᑐ' => 'tu',   'ᑑ' => 'tuu',   'ᑕ' => 'ta',   'ᑖ' => 'taa',
+		'ᒃ' => 'k',   'ᑭ' => 'ki',   'ᑮ' => 'kii',   'ᑯ' => 'ku',   'ᑰ' => 'kuu',   'ᑲ' => 'ka',   'ᑳ' => 'kaa',
+		'ᖅᒃ' => 'qq', 'ᖅᑭ' => 'qqi', 'ᖅᑮ' => 'qqii', 'ᖅᑯ' => 'qqu', 'ᖅᑰ' => 'ᖅqquu', 'ᖅᑲ' => 'qqa', 'ᖅᑳ' => 'qqaa',
+		'ᒡ' => 'g',   'ᒋ' => 'gi',   'ᒌ' => 'gii',   'ᒍ' => 'gu',   'ᒎ' => 'guu',   'ᒐ' => 'ga',   'ᒑ' => 'gaa',
+		'ᒻ' => 'm',   'ᒥ' => 'mi',   'ᒦ' => 'mii',   'ᒧ' => 'mu',   'ᒨ' => 'muu',   'ᒪ' => 'ma',   'ᒫ' => 'maa',
+		'ᓐ' => 'n',   'ᓂ' => 'ni',  'ᓃ' => 'nii',   'ᓄ' => 'nu',   'ᓅ' => 'nuu',   'ᓇ' => 'na',   'ᓈ' => 'naa',
+		'ᔅ' => 's',   'ᓯ' => 'si',   'ᓰ' => 'sii',   'ᓱ' => 'su',   'ᓲ' => 'suu',   'ᓴ' => 'sa',   'ᓵ' => 'saa',
+		'ᓪ' => 'l',   'ᓕ' => 'li',  'ᓖ' => 'lii',   'ᓗ' => 'lu',   'ᓘ' => 'luu',   'ᓚ' => 'la',   'ᓛ' => 'laa',
+		'ᔾ' => 'j',   'ᔨ' => 'ji',   'ᔩ' => 'jii',   'ᔪ' => 'ju',   'ᔫ' => 'juu',   'ᔭ' => 'ja',   'ᔮ' => 'jaa',
+		'ᕝ' => 'v',   'ᕕ' => 'vi',   'ᕖ' => 'vii',   'ᕗ' => 'vu',   'ᕘ' => 'vuu',   'ᕙ' => 'va',   'ᕚ' => 'vaa',
+		'ᕐ' => 'r',   'ᕆ' => 'ri',   'ᕇ' => 'rii',   'ᕈ' => 'ru',   'ᕉ' => 'ruu',   'ᕋ' => 'ra',   'ᕌ' => 'raa',
+		'ᖅ' => 'q',   'ᕿ' => 'qi',   'ᖀ' => 'qii',   'ᖁ' => 'qu',   'ᖂ' => 'quu',   'ᖃ' => 'qa',   'ᖄ' => 'qaa',
+		'ᖕ' => 'ng',  'ᖏ' => 'ngi',  'ᖐ' => 'ngii',  'ᖑ' => 'ngu',  'ᖒ' => 'nguu',  'ᖓ' => 'nga',  'ᖔ' => 'ngaa',
+		'ᖖ' => 'nng', 'ᙱ' => 'nngi', 'ᙲ' => 'nngii', 'ᙳ' => 'nngu', 'ᙴ' => 'nnguu', 'ᙵ' => 'nnga', 'ᙶ' => 'nngaa',
+		'ᖦ' => 'ɫ',   'ᖠ' => 'ɫi',    'ᖡ' => 'ɫii',   'ᖢ' => 'ɫu',    'ᖣ' => 'ɫuu',   'ᖤ' => 'ɫa',    'ᖥ' => 'ɫaa',
+
+		# There is no uppercase in Syllabics
+	);
+
+	var $mToSyllabics = array(
+		# Lowercase
+		'h' => 'ᐦ',   'i' => 'ᐃ',    'ii' => 'ᐄ',    'u' => 'ᐅ',    'uu' => 'ᐆ',    'a' => 'ᐊ',    'aa' => 'ᐋ',
+		'p' => 'ᑉ',   'pi' => 'ᐱ',   'pii' => 'ᐲ',   'pu' => 'ᐳ',   'puu' => 'ᐴ',   'pa' => 'ᐸ',   'paa' => 'ᐹ',
+		't' => 'ᑦ',   'ti' => 'ᑎ',   'tii' => 'ᑏ',   'tu' => 'ᑐ',   'tuu' => 'ᑑ',   'ta' => 'ᑕ',   'taa' => 'ᑖ',
+		'k' => 'ᒃ',   'ki' => 'ᑭ',   'kii' => 'ᑮ',   'ku' => 'ᑯ',   'kuu' => 'ᑰ',   'ka' => 'ᑲ',   'kaa' => 'ᑳ',
+		'g' => 'ᒡ',   'gi' => 'ᒋ',   'gii' => 'ᒌ',   'gu' => 'ᒍ',   'guu' => 'ᒎ',   'ga' => 'ᒐ',   'gaa' => 'ᒑ',
+		'm' => 'ᒻ',   'mi' => 'ᒥ',   'mii' => 'ᒦ',   'mu' => 'ᒧ',   'muu' => 'ᒨ',   'ma' => 'ᒪ',   'maa' => 'ᒫ',
+		'n' => 'ᓐ',   'ni' => 'ᓂ',   'nii' => 'ᓃ',   'nu' => 'ᓄ',   'nuu' => 'ᓅ',   'na' => 'ᓇ',   'naa' => 'ᓈ',
+		's' => 'ᔅ',   'si' => 'ᓯ',   'sii' => 'ᓰ',   'su' => 'ᓱ',   'suu' => 'ᓲ',   'sa' => 'ᓴ',   'saa' => 'ᓵ',
+		'l' => 'ᓪ',   'li' => 'ᓕ',   'lii' => 'ᓖ',   'lu' => 'ᓗ',   'luu' => 'ᓘ',   'la' => 'ᓚ',   'laa' => 'ᓛ',
+		'j' => 'ᔾ',   'ji' => 'ᔨ',   'jii' => 'ᔩ',   'ju' => 'ᔪ',   'juu' => 'ᔫ',   'ja' => 'ᔭ',   'jaa' => 'ᔮ',
+		'v' => 'ᕝ',   'vi' => 'ᕕ',   'vii' => 'ᕖ',   'vu' => 'ᕗ',   'vuu' => 'ᕘ',   'va' => 'ᕙ',   'vaa' => 'ᕚ',
+		'r' => 'ᕐ',   'ri' => 'ᕆ',   'rii' => 'ᕇ',   'ru' => 'ᕈ',   'ruu' => 'ᕉ',   'ra' => 'ᕋ',   'raa' => 'ᕌ',
+		'qq' => 'ᖅᒃ',  'qqi' => 'ᖅᑭ',  'qqii' => 'ᖅᑮ',  'qqu' => 'ᖅᑯ',  'qquu' => 'ᖅᑰ',  'qqa' => 'ᖅᑲ',  'qqaa' => 'ᖅᑳ',
+		'q' => 'ᖅ',   'qi' => 'ᕿ',   'qii' => 'ᖀ',   'qu' => 'ᖁ',   'quu' => 'ᖂ',   'qa' => 'ᖃ',   'qaa' => 'ᖄ',
+		'ng' => 'ᖕ',  'ngi' => 'ᖏ',  'ngii' => 'ᖐ',  'ngu' => 'ᖑ',  'nguu' => 'ᖒ',  'nga' => 'ᖓ',  'ngaa' => 'ᖔ',
+		'nng' => 'ᖖ', 'nngi' => 'ᙱ', 'nngii' => 'ᙲ', 'nngu' => 'ᙳ', 'nnguu' => 'ᙴ', 'nnga' => 'ᙵ', 'nngaa' => 'ᙶ',
+		'ɫ' => 'ᖦ',   'ɫi' => 'ᖠ',    'ɫii' => 'ᖡ',   'ɫu' => 'ᖢ',    'ɫuu' => 'ᖣ',   'ɫa' => 'ᖤ',    'ɫaa' => 'ᖥ',
+
+		# Uppercase
+		'H' => 'ᐦ',   'I' => 'ᐃ',    'Ii' => 'ᐄ',    'U' => 'ᐅ',    'Uu' => 'ᐆ',    'A' => 'ᐊ',    'Aa' => 'ᐋ',
+		'P' => 'ᑉ',   'Pi' => 'ᐱ',   'Pii' => 'ᐲ',   'Pu' => 'ᐳ',   'Puu' => 'ᐴ',   'Pa' => 'ᐸ',   'Paa' => 'ᐹ',
+		'T' => 'ᑦ',   'Ti' => 'ᑎ',   'Tii' => 'ᑏ',   'Tu' => 'ᑐ',   'Tuu' => 'ᑑ',   'Ta' => 'ᑕ',   'Taa' => 'ᑖ',
+		'K' => 'ᒃ',   'Ki' => 'ᑭ',   'Kii' => 'ᑮ',   'Ku' => 'ᑯ',   'Kuu' => 'ᑰ',   'Ka' => 'ᑲ',   'Kaa' => 'ᑳ',
+		'G' => 'ᒡ',   'Gi' => 'ᒋ',   'Gii' => 'ᒌ',   'Gu' => 'ᒍ',   'Guu' => 'ᒎ',   'Ga' => 'ᒐ',   'Gaa' => 'ᒑ',
+		'M' => 'ᒻ',   'Mi' => 'ᒥ',   'Mii' => 'ᒦ',   'Mu' => 'ᒧ',   'Muu' => 'ᒨ',   'Ma' => 'ᒪ',   'Maa' => 'ᒫ',
+		'N' => 'ᓐ',   'Ni' => 'ᓂ',   'Nii' => 'ᓃ',   'Nu' => 'ᓄ',   'Nuu' => 'ᓅ',   'Na' => 'ᓇ',   'Naa' => 'ᓈ',
+		'S' => 'ᔅ',   'Si' => 'ᓯ',   'Sii' => 'ᓰ',   'Su' => 'ᓱ',   'Suu' => 'ᓲ',   'Sa' => 'ᓴ',   'Saa' => 'ᓵ',
+		'L' => 'ᓪ',   'Li' => 'ᓕ',   'Lii' => 'ᓖ',   'Lu' => 'ᓗ',   'Luu' => 'ᓘ',   'La' => 'ᓚ',   'Laa' => 'ᓛ',
+		'J' => 'ᔾ',   'Ji' => 'ᔨ',   'Jii' => 'ᔩ',   'Ju' => 'ᔪ',   'Juu' => 'ᔫ',   'Ja' => 'ᔭ',   'Jaa' => 'ᔮ',
+		'V' => 'ᕝ',   'Vi' => 'ᕕ',   'Vii' => 'ᕖ',   'Vu' => 'ᕗ',   'Vuu' => 'ᕘ',   'Va' => 'ᕙ',   'Vaa' => 'ᕚ',
+		'R' => 'ᕐ',   'Ri' => 'ᕆ',   'Rii' => 'ᕇ',   'Ru' => 'ᕈ',   'Ruu' => 'ᕉ',   'Ra' => 'ᕋ',   'Raa' => 'ᕌ',
+		'Q' => 'ᖅ',   'Qi' => 'ᕿ',   'Qii' => 'ᖀ',   'Qu' => 'ᖁ',   'Quu' => 'ᖂ',   'Qa' => 'ᖃ',   'Qaa' => 'ᖄ',
+		'Ng' => 'ᖕ',  'Ngi' => 'ᖏ',  'Ngii' => 'ᖐ',  'Ngu' => 'ᖑ',  'Nguu' => 'ᖒ',  'Nga' => 'ᖓ',  'Ngaa' => 'ᖔ',
+		'Nng' => 'ᖖ', 'Nngi' => 'ᙱ', 'Nngii' => 'ᙲ', 'Nngu' => 'ᙳ', 'Nnguu' => 'ᙴ', 'Nnga' => 'ᙵ', 'Nngaa' => 'ᙶ',
+#		'ɫ' => 'ᖦ',   'ɫi' => 'ᖠ',    'ɫii' => 'ᖡ',   'ɫu' => 'ᖢ',    'ɫuu' => 'ᖣ',   'ɫa' => 'ᖤ',    'ɫaa' => 'ᖥ',
+	);
+
+	function loadDefaultTables() {
+		$this->mTables = array(
+			'ike-cans' => new ReplacementArray( $this->mToSyllabics ),
+			'ike-latn' => new ReplacementArray( $this->mToLatin ),
+			'iu'    => new ReplacementArray()
+		);
+	}
+
+	/* rules should be defined as -{Syllabic | Latin-} -or-
+		-{code:text | code:text | ...}-
+		update: delete all rule parsing because it's not used
+		        currently, and just produces a couple of bugs
+	*/
+	function parseManualRule( $rule, $flags = array() ) {
+		if ( in_array( 'T', $flags ) ) {
+			return parent::parseManualRule( $rule, $flags );
+		}
+
+		$carray = array();
+		// otherwise ignore all formatting
+		foreach ( $this->mVariants as $v ) {
+			$carray[$v] = $rule;
+		}
+
+		return $carray;
+	}
+
+	// Do not convert content on talk pages
+	function parserConvert( $text, &$parser ) {
+		if ( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() )
+			$this->mDoContentConvert = false;
+		else
+			$this->mDoContentConvert = true;
+
+		return parent::parserConvert( $text, $parser );
+	}
+
+	/*
+	 * A function wrapper:
+	 *   - if there is no selected variant, leave the link
+	 *     names as they were
+	 *   - do not try to find variants for usernames
+	 */
+	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+		 // check for user namespace
+		if ( is_object( $nt ) ) {
+			$ns = $nt->getNamespace();
+			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+				return;
+		}
+
+		$oldlink = $link;
+		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+			$link = $oldlink;
+	}
+
+	/*
+	 * We want our external link captions to be converted in variants,
+	 * so we return the original text instead -{$text}-, except for URLs
+	 */
+	function markNoConversion( $text, $noParse = false ) {
+		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
+			return parent::markNoConversion( $text );
+		return $text;
+	}
+
+	/*
+	 * An ugly function wrapper for parsing Image titles
+	 * (to prevent image name conversion)
+	 */
+	function autoConvert( $text, $toVariant = false ) {
+		global $wgTitle;
+		if ( is_object( $wgTitle ) && $wgTitle->getNameSpace() == NS_FILE ) {
+			$imagename = $wgTitle->getNsText();
+			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+		}
+		return parent::autoConvert( $text, $toVariant );
+	}
+
+	/**
+	 *  It translates text into variant, specials:
+	 *    - ommiting roman numbers
+	 */
+	function translate( $text, $toVariant ) {
+		$breaks = '[^\w\x80-\xff]';
+
+		// regexp for roman numbers
+		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
+
+		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks . $roman . '$|' . $breaks . $roman . $breaks . '/';
+
+		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+
+		$m = array_shift( $matches );
+		if ( !isset( $this->mTables[$toVariant] ) ) {
+			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+		}
+		$ret = $this->mTables[$toVariant]->replace( $m[0] );
+		$mstart = $m[1] + strlen( $m[0] );
+		foreach ( $matches as $m ) {
+			$ret .= substr( $text, $mstart, $m[1] -$mstart );
+			$ret .= parent::translate( $m[0], $toVariant );
+			$mstart = $m[1] + strlen( $m[0] );
+		}
+
+		return $ret;
+	}
+}
+
+/**
+ * Inuktitut
+ *
+ * @ingroup Language
+ */
+class LanguageIu extends Language {
+	function __construct() {
+		global $wgHooks;
+
+		parent::__construct();
+
+		$variants = array( 'iu', 'ike-cans', 'ike-latn' );
+		$variantfallbacks = array(
+			'iu'    => 'ike-cans',
+			'ike-cans' => 'iu',
+			'ike-latn' => 'iu',
+		);
+
+		$flags = array();
+		$this->mConverter = new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
+		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+	}
+}

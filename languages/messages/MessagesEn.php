@@ -3704,6 +3704,11 @@ Variants for Chinese language
 'variantname-tg-latn' => 'tg-Latn', # only translate this message to other languages if you have to change it
 'variantname-tg'      => 'tg', # only translate this message to other languages if you have to change it
 
+# Variants for Inuktitut language
+'variantname-ike-cans' => 'ike-Cans', # only translate this message to other languages if you have to change it
+'variantname-ike-latn' => 'ike-Latn', # only translate this message to other languages if you have to change it
+'variantname-iu'       => 'iu', # only translate this message to other languages if you have to change it
+
 # Metadata
 'metadata'                  => 'Metadata',
 'metadata-help'             => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.
