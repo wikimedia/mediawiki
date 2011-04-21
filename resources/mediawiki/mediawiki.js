@@ -446,9 +446,9 @@ window.mediaWiki = new ( function( $ ) {
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
 				var parts = cookie.split( ':' );
-				if ( parts.length > 1 && parts[1] == options.version ) {
+				if ( parts.length > 1 && parts[0] == options.version ) {
 					version = Number( parts[0] );
-					bucket = Number( parts[1] );
+					bucket = String( parts[1] );
 				}
 			}
 			if ( bucket === null ) {
