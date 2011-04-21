@@ -440,7 +440,7 @@ window.mediaWiki = new ( function( $ ) {
 				'tracked': false,
 				'expires': 30
 			}, options || {} );
-			var cookie = $.cookie( 'mw.user.bucket-' + key );
+			var cookie = $.cookie( 'mw.user.bucket:' + key );
 			var bucket = null;
 			var version = 0;
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
@@ -453,7 +453,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			if ( bucket === null ) {
 				if ( !$.isPlainObject( options.buckets ) ) {
-					throw 'Invalid buckets error. Object expected for options.buckets .';
+					throw 'Invalid buckets error. Object expected for options.buckets.';
 				}
 				version = Number( options.version );
 				// Find range
@@ -474,11 +474,11 @@ window.mediaWiki = new ( function( $ ) {
 				}
 				if ( options.tracked ) {
 					mw.loader.using( 'jquery.clickTracking', function() {
-						$.trackAction( 'mw.user.bucket-' + key + '@' + version + ':' + bucket );
+						$.trackAction( 'mw.user.bucket:' + key + '@' + version + ':' + bucket );
 					} );
 				}
 				$.cookie(
-					'mw.userBuckets-' + key,
+					'mw.user.bucket:' + key,
 					version + ':' + bucket,
 					{ 'path': '/', 'expires': Number( options.expires ) }
 				);
