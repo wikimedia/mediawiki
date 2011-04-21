@@ -343,13 +343,11 @@ class Preprocessor_DOM implements Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) {
-								// Comments abutting, no change in visual end
-								$part->commentEnd = $wsEnd;
-							} else {
+							$part->commentEnd = $endPos;
+							if ( ! (isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
 								$part->visualEnd = $wsStart;
-								$part->commentEnd = $endPos;
 							}
+							// Else comments abutting, no change in visual end
 						}
 						$i = $endPos + 1;
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
