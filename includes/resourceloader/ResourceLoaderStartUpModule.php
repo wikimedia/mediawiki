@@ -37,7 +37,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, 
 			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, 
-			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath, $wgProto;
+			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath, $wgProto, $wgCookiePrefix;
 
 		// Pre-process information
 		$separatorTransTable = $wgContLang->separatorTransformTable();
@@ -90,6 +90,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
 			'wgProto' => $wgProto,
+			// mediawiki sets cookies to have this prefix by default
+			'wgCookiePrefix' => $wgCookiePrefix,
 		);
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
