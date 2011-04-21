@@ -913,16 +913,17 @@ class Parser {
 				}
 
 			} else if ( $firstChars  === '|+' ) {
-				// a table caption
-				$line = substr ( $line , 2 );
-
-				$c = $this->getCellAttr( $line , 'caption' );
-				$table['caption'] = array();
-				$table['caption']['content'] = $c[0];
-				if ( isset( $c[1] ) ) $table['caption']['attributes'] = $c[1];
-				unset( $c );
-
-				$output =& $table['caption'];
+				// a table caption, but only proceed if there isn't one already
+				if ( !isset ( $table['caption'] ) ) {
+					$line = substr ( $line , 2 );
+					
+					$c = $this->getCellAttr( $line , 'caption' );
+					$table['caption'] = array();
+					$table['caption']['content'] = $c[0];
+					if ( isset( $c[1] ) ) $table['caption']['attributes'] = $c[1];
+					unset( $c );
+					$output =& $table['caption']['content'];
+				}
 			} else if ( $firstChars === '|' || $firstChars === '!' || $firstChars === '!+' ) {
 				// Which kind of cells are we dealing with
 				$currentTag = 'td';

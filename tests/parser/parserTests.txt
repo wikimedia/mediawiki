@@ -1331,6 +1331,39 @@ Table with thead
 </table>
 
 !! end
+
+!! test
+Table with multiple captions: Only keep first
+!! input
+{|
+|+ caption 1
+|+ caption 2
+|}
+!! result
+<table>
+<caption>caption 1
+</caption>
+<tr><td></td></tr>
+</table>
+
+!! end
+
+!! test
+Table with multiline caption
+!! input
+{|
+|+ caption 1
+further caption
+|}
+!! result
+<table>
+<caption>caption 1
+further caption
+</caption>
+<tr><td></td></tr>
+</table>
+
+!! end
 !! test
 Table with multiple thead
 !! input
