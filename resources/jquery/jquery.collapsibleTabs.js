@@ -49,12 +49,14 @@
 		},
 		addData: function( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			$collapsible.data( 'collapsibleTabsSettings', {
-				'expandedContainer': $settings.expandedContainer,
-				'collapsedContainer': $settings.collapsedContainer,
-				'expandedWidth': $collapsible.width(),
-				'prevElement': $collapsible.prev()
-			} );
+			if ( typeof $settings != 'undefined' ) {
+				$collapsible.data( 'collapsibleTabsSettings', {
+					'expandedContainer': $settings.expandedContainer,
+					'collapsedContainer': $settings.collapsedContainer,
+					'expandedWidth': $collapsible.width(),
+					'prevElement': $collapsible.prev()
+				} );
+			}
 		},
 		getSettings: function( $collapsible ) {
 			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
@@ -95,7 +97,7 @@
 			var dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
 			dataExp.shifting = true;
 			$moving
-				.remove()
+				.detach()
 				.prependTo( data.collapsedContainer )
 				.data( 'collapsibleTabsSettings', data );
 			dataExp.shifting = false;
@@ -107,7 +109,7 @@
 			var dataExp = $.collapsibleTabs.getSettings( data.expandedContainer );
 			dataExp.shifting = true;
 			// remove this element from where it's at and put it in the dropdown menu
-			$moving.remove().insertAfter( data.prevElement ).data( 'collapsibleTabsSettings', data );
+			$moving.detach().insertAfter( data.prevElement ).data( 'collapsibleTabsSettings', data );
 			dataExp.shifting = false;
 			$.collapsibleTabs.handleResize();
 		}
