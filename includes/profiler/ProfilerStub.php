@@ -20,6 +20,10 @@ class ProfilerStub extends Profiler {
 		$this->haveProctitle = function_exists( 'setproctitle' );
 	}
 
+	public function isStub() {
+		return true;
+	}
+
 	/**
 	 * Begin profiling of a function
 	 * @param $fn string

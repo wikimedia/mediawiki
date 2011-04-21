@@ -638,10 +638,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
-		global $wgProfiler;
-
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		if ( isset( $wgProfiler ) ) {
+		if ( !Profiler::instance()->isStub() ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
 
@@ -742,7 +740,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
 
-		if ( isset( $wgProfiler ) ) {
+		if ( !Profiler::instance()->isStub() ) {
 			wfProfileOut( $queryProf );
 			wfProfileOut( $totalProf );
 		}

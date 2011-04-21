@@ -946,7 +946,7 @@ abstract class ApiBase {
 	 * @param $extradata array Data to add to the <error> element; array in ApiResult format
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
-		wfProfileClose();
+		Profiler::instance()->close();
 		throw new UsageException( $description, $this->encodeParamName( $errorCode ), $httpRespCode, $extradata );
 	}
 

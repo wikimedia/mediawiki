@@ -25,8 +25,9 @@ class ProfilerSimpleText extends ProfilerSimple {
 		parent::__construct();
 	}
 
-	function getFunctionReport() {
+	public function logData() {
 		if($this->mTemplated) {
+			$this->collateData();
 			uasort($this->mCollated,array('self','sort'));
 			array_walk($this->mCollated,array('self','format'));
 			if ($this->visible) {
