@@ -171,7 +171,7 @@ class SearchMySQL extends SearchEngine {
 	protected function searchInternal( $term, $fulltext ) {
 		global $wgCountTotalSearchHits;
 
-		// This seems of place, why is this called with empty term?
+		// This seems out of place, why is this called with empty term?
 		if ( trim( $term ) === '' ) return null;
 
 		$filteredTerm = $this->filter( $term );
