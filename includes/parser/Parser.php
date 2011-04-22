@@ -4486,10 +4486,21 @@ class Parser {
 	/**
 	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
 	 * The callback should have the following form:
-	 *    function myParserHook( $text, $params, $parser ) { ... }
+	 *    function myParserHook( $text, $params, $parser, $frame ) { ... }
 	 *
 	 * Transform and return $text. Use $parser for any required context, e.g. use
 	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
+	 *
+	 * Hooks may return extended information by returning an array, of which the
+	 * first numbered element (index 0) must be the return string, and all other
+	 * entries are extracted into local variables within an internal function
+	 * in the Parser class.
+	 *
+	 * This interface (introduced r61913) appears to be undocumented, but
+	 * 'markerName' is used by some core tag hooks to override which strip
+	 * array their results are placed in. **Use great caution if attempting
+	 * this interface, as it is not documented and injudicious use could smash
+	 * private variables.**
 	 *
 	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
@@ -4507,6 +4518,22 @@ class Parser {
 		return $oldVal;
 	}
 
+	/**
+	 * As setHook(), but letting the contents be parsed.
+	 *
+	 * Transparent tag hooks are like regular XML-style tag hooks, except they
+	 * operate late in the transformation sequence, on HTML instead of wikitext.
+	 *
+	 * This is probably obsoleted by things dealing with parser frames?
+	 * The only extension currently using it is geoserver.
+	 *
+	 * @since 1.10
+	 * @todo better document or deprecate this
+	 *
+	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
+	 * @param $callback Mixed: the callback function (and object) to use for the tag
+	 * @return The old value of the mTagHooks array associated with the hook
+	 */
 	function setTransparentTagHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
@@ -4655,6 +4682,10 @@ class Parser {
 	 * given as text will return the HTML of a gallery with two images,
 	 * labeled 'The number "1"' and
 	 * 'A tree'.
+	 *
+	 * @param string $text
+	 * @param array $param
+	 * @return string HTML
 	 */
 	function renderImageGallery( $text, $params ) {
 		$ig = new ImageGallery();
