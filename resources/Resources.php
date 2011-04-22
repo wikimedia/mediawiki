@@ -73,6 +73,9 @@ return array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 	),
+	'jquery.byteLimit' => array(
+		'scripts' => 'resources/jquery/jquery.byteLimit.js',
+	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
 	),
@@ -415,7 +418,10 @@ return array(
 	),
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
-		'dependencies' => 'jquery.textSelection',
+		'dependencies' => array(
+			'jquery.textSelection',
+			'jquery.byteLimit',
+		),
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
