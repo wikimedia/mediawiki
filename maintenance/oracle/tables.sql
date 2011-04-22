@@ -405,15 +405,6 @@ CREATE UNIQUE INDEX &mw_prefix.watchlist_u01 ON &mw_prefix.watchlist (wl_user, w
 CREATE INDEX &mw_prefix.watchlist_i01 ON &mw_prefix.watchlist (wl_namespace, wl_title);
 
 
-CREATE TABLE &mw_prefix.math (
-  math_inputhash              VARCHAR2(32)      NOT NULL,
-  math_outputhash             VARCHAR2(32)      NOT NULL,
-  math_html_conservativeness  NUMBER  NOT NULL,
-  math_html                   CLOB,
-  math_mathml                 CLOB
-);
-CREATE UNIQUE INDEX &mw_prefix.math_u01 ON &mw_prefix.math (math_inputhash);
-
 CREATE TABLE &mw_prefix.searchindex (
   si_page	NUMBER NOT NULL,
   si_title	VARCHAR2(255) DEFAULT '' NOT NULL,

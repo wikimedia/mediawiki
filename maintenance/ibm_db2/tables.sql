@@ -445,15 +445,6 @@ CREATE TABLE watchlist (
 CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
 
 
-CREATE TABLE math (
-  math_inputhash              VARCHAR(16) FOR BIT DATA     NOT NULL  UNIQUE,
-  math_outputhash             VARCHAR(16) FOR BIT DATA     NOT NULL,
-  math_html_conservativeness  SMALLINT  NOT NULL,
-  math_html                   CLOB(64K) INLINE LENGTH 4096,
-  math_mathml                 CLOB(64K) INLINE LENGTH 4096
-);
-
-
 CREATE TABLE interwiki (
   iw_prefix  VARCHAR(32)      NOT NULL  UNIQUE,
   iw_url     CLOB(64K) INLINE LENGTH 4096      NOT NULL,
