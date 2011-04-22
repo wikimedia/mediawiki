@@ -591,8 +591,11 @@ function wfMsgForContentNoTrans( $key ) {
 
 /**
  * Get a message from the language file, for the UI elements
+ *
+ * @deprecated in 1.18; use wfMessage()
  */
 function wfMsgNoDB( $key ) {
+	wfDeprecated( __FUNCTION__ );
 	$args = func_get_args();
 	array_shift( $args );
 	return wfMsgReal( $key, $args, false );
