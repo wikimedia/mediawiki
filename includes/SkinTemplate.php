@@ -566,10 +566,26 @@ class SkinTemplate extends Skin {
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
-		$page = $wgRequest->getVal( 'returnto', $this->thisurl );
-		$query = $wgRequest->getVal( 'returntoquery', $this->thisquery );
-		$returnto = wfArrayToCGI( array( 'returnto' => $page ) );
-		if( $this->thisquery != '' ) {
+		
+		// Get the returnto and returntoquery parameters from the query string
+		// or fall back on $this->thisurl or $this->thisquery
+		// We can't use getVal()'s default value feature here because
+		// stuff from $wgRequest needs to be escaped, but thisurl and thisquery
+		// are already escaped.
+		$page = $wgRequest->getVal( 'returnto' );
+		if ( !is_null( $page ) ) {
+			$page = wfUrlencode( $page );
+		} else {
+			$page = $this->thisurl;
+		}
+		$query = $wgRequest->getVal( 'returntoquery' );
+		if ( !is_null( $query ) ) {
+			$query = wfUrlencode( $query );
+		} else {
+			$query = $this->thisquery;
+		}
+		$returnto = "returnto=$page";
+		if( $query != '' ) {
 			$returnto .= "&returntoquery=$query";
 		}
 		if( $this->loggedin ) {
