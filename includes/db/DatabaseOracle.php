@@ -224,7 +224,6 @@ class DatabaseOracle extends DatabaseBase {
 			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
 
-		$this->close();
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		// changed internal variables functions
@@ -278,6 +277,9 @@ class DatabaseOracle extends DatabaseBase {
 	function close() {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
+			if ( $this->mTrxLevel ) {
+				$this->commit();
+			}
 			return oci_close( $this->mConn );
 		} else {
 			return true;
@@ -562,7 +564,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		wfSuppressWarnings();
 
-		if ( oci_execute( $stmt, OCI_DEFAULT ) === false ) {
+		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
@@ -964,7 +966,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name '.$tableWhere.' and column_name = \''.$field.'\'' );
-		if ( oci_execute( $fieldInfoStmt, OCI_DEFAULT ) === false ) {
+		if ( oci_execute( $fieldInfoStmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
 			return false;
@@ -995,13 +997,22 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->fieldInfoMulti ($table, $field);
 	}
 
-	function begin( $fname = '' ) {
+	function begin( $fname = 'DatabaseOracle::begin' ) {
 		$this->mTrxLevel = 1;
 	}
 
-	function commit( $fname = '' ) {
-		oci_commit( $this->mConn );
-		$this->mTrxLevel = 0;
+	function commit( $fname = 'DatabaseOracle::commit' ) {
+		if ( $this->mTrxLevel ) {
+			oci_commit( $this->mConn );
+			$this->mTrxLevel = 0;
+		}
+	}
+
+	function rollback( $fname = 'DatabaseOracle::rollback' ) {
+		if ( $this->mTrxLevel ) {
+			oci_rollback( $this->mConn );
+			$this->mTrxLevel = 0;
+		}
 	}
 
 	/* Not even sure why this is used in the main codebase... */
@@ -1284,7 +1295,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		wfSuppressWarnings();
 
-		if ( oci_execute( $stmt, OCI_DEFAULT ) === false ) {
+		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
