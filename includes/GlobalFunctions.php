@@ -3254,6 +3254,8 @@ function wfStripIllegalFilenameChars( $name ) {
  * @param $array Array: The array.
  * @param $insert Array: The array to insert.
  * @param $after Mixed: The key to insert after
+ * @return Array
+ * @since 1.16
  */
 function wfArrayInsertAfter( $array, $insert, $after ) {
 	// Find the offset of the element to insert after.
