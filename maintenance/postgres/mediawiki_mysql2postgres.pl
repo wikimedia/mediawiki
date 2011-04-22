@@ -279,8 +279,8 @@ for my $t (@torder, 'objectcache', 'querycache') {
 }
 print "\n\n";
 
-print qq{-- Temporarily rename pagecontent to "text"\n};
-print qq{ALTER TABLE pagecontent RENAME TO "text";\n\n};
+print qq{-- Temporarily rename pagecontent to "${table_prefix}text"\n};
+print qq{ALTER TABLE pagecontent RENAME TO "${table_prefix}text";\n\n};
 
 print qq{-- Allow rc_ip to contain empty string, will convert at end\n};
 print qq{ALTER TABLE recentchanges ALTER rc_ip TYPE text USING host(rc_ip);\n\n};
@@ -304,9 +304,9 @@ INSERT INTO page VALUES (0,-1,'Dummy Page','',0,0,0,default,now(),0,10);
 if (length $table_prefix) {
 	print qq{\n\n-- Temporarily renaming tables to accomodate the table_prefix "$table_prefix"\n\n};
 	for my $t (@torder) {
-		next if $t eq '---';
+		next if $t eq '---' or $t eq 'text' or $t eq 'user';
 		my $tname = $special{$t}||$t;
-		printf qq{ALTER TABLE %-18s RENAME TO "${table_prefix}$tname"\n}, qq{"$tname"};
+		printf qq{ALTER TABLE %-18s RENAME TO "${table_prefix}$tname";\n}, qq{"$tname"};
 	}
 }
 
@@ -391,9 +391,9 @@ if (length $table_prefix) {
 		$maxsize = length "$_$table_prefix" if length "$_$table_prefix" > $maxsize;
 	}
 	for my $t (@torder) {
-		next if $t eq '---' or $t eq 'text';
+		next if $t eq '---' or $t eq 'text' or $t eq 'user';
 		my $tname = $special{$t}||$t;
-		printf qq{ALTER TABLE %*s RENAME TO "$tname"\n}, $maxsize+1, qq{"${table_prefix}$tname"};
+		printf qq{ALTER TABLE %*s RENAME TO "$tname";\n}, $maxsize+1, qq{"${table_prefix}$tname"};
 	}
 }
 
@@ -409,13 +409,13 @@ for my $t (sort keys %tz) {
 ## Reset sequences
 print q{
 SELECT setval('filearchive_fa_id_seq', 1+coalesce(max(fa_id)  ,0),false) FROM filearchive;
-SELECT setval('ipblocks_ipb_id_val',   1+coalesce(max(ipb_id) ,0),false) FROM ipblocks;
+SELECT setval('ipblocks_ipb_id_seq',   1+coalesce(max(ipb_id) ,0),false) FROM ipblocks;
 SELECT setval('job_job_id_seq',        1+coalesce(max(job_id) ,0),false) FROM job;
-SELECT setval('log_log_id_seq',        1+coalesce(max(log_id) ,0),false) FROM logging;
+SELECT setval('logging_log_id_seq',    1+coalesce(max(log_id) ,0),false) FROM logging;
 SELECT setval('page_page_id_seq',      1+coalesce(max(page_id),0),false) FROM page;
-SELECT setval('pr_id_val',             1+coalesce(max(pr_id)  ,0),false) FROM page_restrictions;
-SELECT setval('rc_rc_id_seq',          1+coalesce(max(rc_id)  ,0),false) FROM recentchanges;
-SELECT setval('rev_rev_id_val',        1+coalesce(max(rev_id) ,0),false) FROM revision;
+SELECT setval('page_restrictions_pr_id_seq', 1+coalesce(max(pr_id)  ,0),false) FROM page_restrictions;
+SELECT setval('recentchanges_rc_id_seq',     1+coalesce(max(rc_id)  ,0),false) FROM recentchanges;
+SELECT setval('revision_rev_id_seq',         1+coalesce(max(rev_id) ,0),false) FROM revision;
 SELECT setval('text_old_id_seq',       1+coalesce(max(old_id) ,0),false) FROM pagecontent;
 SELECT setval('trackbacks_tb_id_seq',  1+coalesce(max(tb_id)  ,0),false) FROM trackbacks;
 SELECT setval('user_user_id_seq',      1+coalesce(max(user_id),0),false) FROM mwuser;
