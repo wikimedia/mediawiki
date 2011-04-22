@@ -616,6 +616,9 @@ class SearchResultSet {
  * This class is used for different SQL-based search engines shipped with MediaWiki
  */
 class SqlSearchResultSet extends SearchResultSet {
+
+	private $mResultSet;
+
 	function __construct( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;
 		$this->mTerms = $terms;
