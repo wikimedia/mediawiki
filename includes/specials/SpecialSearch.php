@@ -81,7 +81,6 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function load( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
-		$this->mPrefix = $request->getVal('prefix', '');
 
 
 		# Extract manually requested namespaces
@@ -177,7 +176,6 @@ class SpecialSearch extends SpecialPage {
 		$search->setNamespaces( $this->namespaces );
 		$search->showRedirects = $this->searchRedirects; // BC
 		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
-		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm($term);
 
 		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
@@ -430,12 +428,13 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function powerSearchOptions() {
 		$opt = array();
-		foreach( $this->namespaces as $n ) {
-			$opt['ns' . $n] = 1;
-		}
 		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
-		if( $this->profile ) {
+		if( $this->profile !== 'advanced' ) {
 			$opt['profile'] = $this->profile;
+		} else {
+			foreach( $this->namespaces as $n ) {
+				$opt['ns' . $n] = 1;
+			}
 		}
 		return $opt;
 	}
