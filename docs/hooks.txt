@@ -1665,6 +1665,18 @@ target doesn't exist
 'SpecialSearchProfiles': allows modification of search profiles
 &$profiles: profiles, which can be modified.
 
+'SpecialSearchProfileForm': allows modification of search profile forms
+$search: special page object
+&$form: String: form html
+$profile: String: current search profile
+$term: String: search term
+$opts: Array: key => value of hidden options for inclusion in custom forms
+
+'SpecialSearchSetupEngine': allows passing custom data to search engine
+$search: special page object
+$profile: String: current search profile
+$engine: the search engine
+
 'SpecialSearchResults': called before search result display when there
 are matches
 $term: string of search term

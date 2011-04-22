@@ -22,6 +22,9 @@ class SearchEngine {
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
 
+	/// Feature values
+	protected $features = array();
+
 	/**
 	 * @var DatabaseBase
 	 */
@@ -59,9 +62,38 @@ class SearchEngine {
 		return null;
 	}
 
-	/** If this search backend can list/unlist redirects */
+	/**
+	 * If this search backend can list/unlist redirects
+	 * @deprecated Call supports( 'list-redirects' );
+	 */
 	function acceptListRedirects() {
-		return true;
+		return $this->supports( 'list-redirects' );
+	}
+
+	/**
+	 * @since 1.18
+	 * @param $feature String
+	 * @return Boolean
+	 */
+	public function supports( $feature ) {
+		switch( $feature ) {
+		case 'list-redirects':
+			return true;
+		case 'title-suffix-filter':
+		default:
+			return false;
+		}
+	}
+
+	/**
+	 * Way to pass custom data for engines
+	 * @since 1.18
+	 * @param $feature String
+	 * @param $data Mixed
+	 * @return Noolean
+	 */
+	public function setFeatureData( $feature, $data ) {
+		$this->features[$feature] = $data;
 	}
 
 	/**
