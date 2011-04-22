@@ -72,6 +72,10 @@ CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_
 CREATE INDEX &mw_prefix.page_i01 ON &mw_prefix.page (page_random);
 CREATE INDEX &mw_prefix.page_i02 ON &mw_prefix.page (page_len);
 
+-- Create a dummy page to satisfy fk contraints especially with revisions
+INSERT INTO &mw_prefix.page
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0);
+
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
 	FOR EACH ROW WHEN (new.page_random IS NULL)
