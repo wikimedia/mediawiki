@@ -304,13 +304,11 @@ class Preprocessor_Hash implements Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) {
-								// Comments abutting, no change in visual end
-								$part->commentEnd = $wsEnd;
-							} else {
+							if ( ! (isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 )) {
 								$part->visualEnd = $wsStart;
-								$part->commentEnd = $endPos;
 							}
+							// Else comments abutting, no change in visual end
+							$part->commentEnd = $endPos;
 						}
 						$i = $endPos + 1;
 						$inner = substr( $text, $startPos, $endPos - $startPos + 1 );
