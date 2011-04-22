@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname(__FILE__).'/includes/ProfilerStub.php' );
+require_once( dirname( __FILE__ ) . '/includes/profiler/ProfilerStub.php' );
 
 /**
  * To use a profiler, copy this file to StartProfiler.php,
