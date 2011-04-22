@@ -1527,7 +1527,7 @@ abstract class Skin {
 		if ( !is_null( $tooltip ) ) {
 			# Bug 25462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
-			$attribs['title'] = wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang );
+			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag' ), $tooltip );
 		}
 		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
 			$attribs,
@@ -1539,7 +1539,7 @@ abstract class Skin {
 		# we can rid of it someday.
 		$attribs = '';
 		if ( $tooltip ) {
-			$attribs = htmlspecialchars( wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang ) );
+			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape' ), $tooltip );
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
