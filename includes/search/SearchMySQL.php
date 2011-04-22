@@ -199,15 +199,28 @@ class SearchMySQL extends SearchEngine {
 		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
+	public function supports( $feature ) {
+		switch( $feature ) {
+		case 'list-redirects':
+		case 'title-suffix-filter':
+			return true;
+		default:
+			return false;
+		}
+	}
 
 	/**
-	 * Add redirect conditions
+	 * Add special conditions
 	 * @param $query Array
-	 * @since 1.18 (changed)
+	 * @since 1.18
 	 */
-	function queryRedirect( &$query ) {
-		if( !$this->showRedirects ) {
-			$query['conds']['page_is_redirect'] = 0;
+	protected function queryFeatures( &$query ) {
+		foreach ( $this->features as $feature => $value ) {
+			if ( $feature ===  'list-redirects' && !$value ) {
+				$query['conds']['page_is_redirect'] = 0;
+			} elseif( $feature === 'title-suffix-filter' && $value ) {
+				$query['conds'][] = 'page_title' . $this->db->buildLike( $this->db->anyString(), $value );
+			}
 		}
 	}
 
@@ -253,7 +266,7 @@ class SearchMySQL extends SearchEngine {
 		);
 
 		$this->queryMain( $query, $filteredTerm, $fulltext );
-		$this->queryRedirect( $query );
+		$this->queryFeatures( $query );
 		$this->queryNamespaces( $query );
 		$this->limitResult( $query );
 
@@ -301,7 +314,7 @@ class SearchMySQL extends SearchEngine {
 			'joins' => array(),
 		);
 
-		$this->queryRedirect( $query );
+		$this->queryFeatures( $query );
 		$this->queryNamespaces( $query );
 
 		return $query;

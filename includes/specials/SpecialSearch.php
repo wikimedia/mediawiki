@@ -28,6 +28,13 @@
  * @ingroup SpecialPage
  */
 class SpecialSearch extends SpecialPage {
+	/// Current search profile
+	protected $profile;
+
+	/// Search engine
+	protected $searchEngine;
+
+	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
 		parent::__construct( 'Search' );
@@ -75,14 +82,40 @@ class SpecialSearch extends SpecialPage {
 	public function load( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
 		$this->mPrefix = $request->getVal('prefix', '');
-		# Extract requested namespaces
-		$this->namespaces = $this->powerSearch( $request );
-		if( empty( $this->namespaces ) ) {
-			$this->namespaces = SearchEngine::userNamespaces( $user );
+
+
+		# Extract manually requested namespaces
+		$nslist = $this->powerSearch( $request );
+		$this->profile = $profile = $request->getVal( 'profile', null );
+		$profiles = $this->getSearchProfiles();
+		if ( $profile === null) {
+			// BC with old request format
+			$this->profile = 'advanced';
+			if ( count( $nslist ) ) {
+				foreach( $profiles as $key => $data ) {
+					if ( $nslist === $data['namespaces'] && $key !== 'advanced') {
+						$this->profile = $key;
+					}
+				}
+				$this->namespaces = $nslist;
+			} else {
+				$this->namespaces = SearchEngine::userNamespaces( $user );
+			}
+		} elseif ( $profile === 'advanced' ) {
+			$this->namespaces = $nslist;
+		} else {
+			if ( isset( $profiles[$profile]['namespaces'] ) ) {
+				$this->namespaces = $profiles[$profile]['namespaces'];
+			} else {
+				// Unknown profile requested
+				$this->profile = 'default';
+				$this->namespaces = $profiles['default']['namespaces'];
+			}
 		}
-		$this->searchRedirects = $request->getCheck( 'redirs' );
-		$this->searchAdvanced = $request->getVal( 'advanced' );
-		$this->active = 'advanced';
+
+		// Redirects defaults to true, but we don't know whether it was ticked of or just missing
+		$default = $request->getBool( 'profile' ) ? 0 : 1;
+		$this->searchRedirects = $request->getBool( 'redirs', $default ) ? 1 : 0;
 		$this->sk = $user->getSkin();
 		$this->didYouMeanHtml = ''; # html of did you mean... link
 		$this->fulltext = $request->getVal('fulltext');
@@ -139,13 +172,15 @@ class SpecialSearch extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 
-		$this->searchEngine = SearchEngine::create();
-		$search =& $this->searchEngine;
+		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects;
+		$search->showRedirects = $this->searchRedirects; // BC
+		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm($term);
+
+		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
 
 		$this->setupPage( $term );
 
@@ -216,7 +251,7 @@ class SpecialSearch extends SpecialPage {
 			Xml::openElement(
 				'form',
 				array(
-					'id' => ( $this->searchAdvanced ? 'powersearch' : 'search' ),
+					'id' => ( $this->profile === 'advanced' ? 'powersearch' : 'search' ),
 					'method' => 'get',
 					'action' => $wgScript
 				)
@@ -225,7 +260,7 @@ class SpecialSearch extends SpecialPage {
 		$wgOut->addHtml(
 			Xml::openElement( 'table', array( 'id'=>'mw-search-top-table', 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
 			Xml::openElement( 'tr' ) .
-			Xml::openElement( 'td' ) . "\n"	.
+			Xml::openElement( 'td' ) . "\n" .
 			$this->shortDialog( $term ) .
 			Xml::closeElement('td') .
 			Xml::closeElement('tr') .
@@ -241,10 +276,8 @@ class SpecialSearch extends SpecialPage {
 
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
 		if( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
-			$wgOut->addHTML( $this->formHeader($term, 0, 0));
-			if( $this->searchAdvanced ) {
-				$wgOut->addHTML( $this->powerSearchBox( $term ) );
-			}
+			$wgOut->addHTML( $this->formHeader( $term, 0, 0 ) );
+			$wgOut->addHtml( $this->getProfileForm( $this->profile, $term ) );
 			$wgOut->addHTML( '</form>' );
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
@@ -271,10 +304,9 @@ class SpecialSearch extends SpecialPage {
 			$totalRes += $textMatches->getTotalHits();
 
 		// show number of results and current offset
-		$wgOut->addHTML( $this->formHeader($term, $num, $totalRes));
-		if( $this->searchAdvanced ) {
-			$wgOut->addHTML( $this->powerSearchBox( $term ) );
-		}
+		$wgOut->addHTML( $this->formHeader( $term, $num, $totalRes ) );
+		$wgOut->addHtml( $this->getProfileForm( $this->profile, $term ) );
+
 
 		$wgOut->addHtml( Xml::closeElement( 'form' ) );
 		$wgOut->addHtml( "<div class='searchresults'>" );
@@ -361,21 +393,10 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function setupPage( $term ) {
 		global $wgOut;
-		// Figure out the active search profile header
-		if( $this->searchAdvanced ) {
-			$this->active = 'advanced';
-		} else {
-			$profiles = $this->getSearchProfiles();
 
-			foreach( $profiles as $key => $data ) {
-				if ( $this->namespaces == $data['namespaces'] && $key != 'advanced')
-					$this->active = $key;
-			}
-
-		}
 		# Should advanced UI be used?
-		$this->searchAdvanced = ($this->active === 'advanced');
-		if( !empty( $term ) ) {
+		$this->searchAdvanced = ($this->profile === 'advanced');
+		if( strval( $term ) !== ''  ) {
 			$wgOut->setPageTitle( wfMsg( 'searchresults') );
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) ) );
 		}
@@ -398,6 +419,7 @@ class SpecialSearch extends SpecialPage {
 				$arr[] = $ns;
 			}
 		}
+
 		return $arr;
 	}
 
@@ -412,8 +434,8 @@ class SpecialSearch extends SpecialPage {
 			$opt['ns' . $n] = 1;
 		}
 		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
-		if( $this->searchAdvanced ) {
-			$opt['advanced'] = $this->searchAdvanced;
+		if( $this->profile ) {
+			$opt['profile'] = $this->profile;
 		}
 		return $opt;
 	}
@@ -744,14 +766,28 @@ class SpecialSearch extends SpecialPage {
 		return $out;
 	}
 
+	protected function getProfileForm( $profile, $term ) {
+		// Hidden stuff
+		$opts = array();
+		$opts['redirs'] = $this->searchRedirects;
+		$opts['profile'] = $this->profile;
+
+		if ( $profile === 'advanced' ) {
+			return $this->powerSearchBox( $term, $opts );
+		} else {
+			$form = '';
+			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ) );
+			return $form;
+		}
+	}
 
 	/**
-	 * Generates the power search box at bottom of [[Special:Search]]
+	 * Generates the power search box at [[Special:Search]]
 	 *
 	 * @param $term String: search term
 	 * @return String: HTML form
 	 */
-	protected function powerSearchBox( $term ) {
+	protected function powerSearchBox( $term, $opts ) {
 		// Groups namespaces into rows according to subject
 		$rows = array();
 		foreach( SearchEngine::searchableNamespaces() as $namespace => $name ) {
@@ -793,13 +829,15 @@ class SpecialSearch extends SpecialPage {
 		}
 		// Show redirects check only if backend supports it
 		$redirects = '';
-		if( $this->searchEngine->acceptListRedirects() ) {
+		if( $this->getSearchEngine()->supports( 'list-redirects' ) ) {
 			$redirects =
-				Xml::check(
-					'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' )
-				) .
-				' ' .
-				Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
+				Xml::checkLabel( wfMsg( 'powersearch-redir' ), 'redirs', 'redirs', $this->searchRedirects );
+		}
+
+		$hidden = '';
+		unset( $opts['redirs'] );
+		foreach( $opts as $key => $value ) {
+			$hidden .= Html::hidden( $key, $value );
 		}
 		// Return final output
 		return
@@ -835,10 +873,7 @@ class SpecialSearch extends SpecialPage {
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			$namespaceTables .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			$redirects .
-			Html::hidden( 'title', SpecialPage::getTitleFor( 'Search' )->getPrefixedText() ) .
-			Html::hidden( 'advanced', $this->searchAdvanced ) .
-			Html::hidden( 'fulltext', 'Advanced search' ) .
+			$redirects . $hidden .
 			Xml::closeElement( 'fieldset' );
 	}
 
@@ -876,15 +911,15 @@ class SpecialSearch extends SpecialPage {
 			'advanced' => array(
 				'message' => 'searchprofile-advanced',
 				'tooltip' => 'searchprofile-advanced-tooltip',
-				'namespaces' => $this->namespaces,
-				'parameters' => array( 'advanced' => 1 ),
+				'namespaces' => self::NAMESPACES_CURRENT,
 			)
 		);
 
 		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
 
 		foreach( $profiles as &$data ) {
-			sort($data['namespaces']);
+			if ( !is_array( $data['namespaces'] ) ) continue;
+			sort( $data['namespaces'] );
 		}
 
 		return $profiles;
@@ -907,19 +942,24 @@ class SpecialSearch extends SpecialPage {
 		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );
 		$out .= Xml::openElement( 'ul' );
 		foreach ( $profiles as $id => $profile ) {
+			if ( !isset( $profile['parameters'] ) ) {
+				$profile['parameters'] = array();
+			}
+			$profile['parameters']['profile'] = $id;
+
 			$tooltipParam = isset( $profile['namespace-messages'] ) ?
 				$wgLang->commaList( $profile['namespace-messages'] ) : null;
 			$out .= Xml::tags(
 				'li',
 				array(
-					'class' => $this->active == $id ? 'current' : 'normal'
+					'class' => $this->profile === $id ? 'current' : 'normal'
 				),
 				$this->makeSearchLink(
 					$bareterm,
-					$profile['namespaces'],
+					array(),
 					wfMsg( $profile['message'] ),
 					wfMsg( $profile['tooltip'], $tooltipParam ),
-					isset( $profile['parameters'] ) ? $profile['parameters'] : array()
+					$profile['parameters']
 				)
 			);
 		}
@@ -949,24 +989,14 @@ class SpecialSearch extends SpecialPage {
 		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
 		$out .= Xml::closeElement('div');
 
-		// Adds hidden namespace fields
-		if ( !$this->searchAdvanced ) {
-			foreach( $this->namespaces as $ns ) {
-				$out .= Html::hidden( "ns{$ns}", '1' );
-			}
-		}
-
 		return $out;
 	}
 
 	protected function shortDialog( $term ) {
-		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-		$out = Html::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
-		// Keep redirect setting
-		$out .= Html::hidden( "redirs", (int)$this->searchRedirects ) . "\n";
+		$out = Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => $this->searchAdvanced ? 'powerSearchText' : 'searchText',
+			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
 			'size' => '50',
 			'autofocus'
 		) ) . "\n";
@@ -979,20 +1009,19 @@ class SpecialSearch extends SpecialPage {
 	 * Make a search link with some target namespaces
 	 *
 	 * @param $term String
-	 * @param $namespaces Array
+	 * @param $namespaces Array ignored
 	 * @param $label String: link's text
 	 * @param $tooltip String: link's tooltip
 	 * @param $params Array: query string parameters
 	 * @return String: HTML fragment
 	 */
-	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params=array() ) {
+	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params = array() ) {
 		$opt = $params;
 		foreach( $namespaces as $n ) {
 			$opt['ns' . $n] = 1;
 		}
-		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
+		$opt['redirs'] = $this->searchRedirects;
 
-		$st = SpecialPage::getTitleFor( 'Search' );
 		$stParams = array_merge(
 			array(
 				'search' => $term,
@@ -1004,7 +1033,7 @@ class SpecialSearch extends SpecialPage {
 		return Xml::element(
 			'a',
 			array(
-				'href' => $st->getLocalURL( $stParams ),
+				'href' => $this->getTitle()->getLocalURL( $stParams ),
 				'title' => $tooltip,
 				'onmousedown' => 'mwSearchHeaderClick(this);',
 				'onkeydown' => 'mwSearchHeaderClick(this);'),
@@ -1043,5 +1072,15 @@ class SpecialSearch extends SpecialPage {
 			return $p[0]  == $allkeyword;
 		}
 		return false;
+	}
+
+	/**
+	 * @since 1.18
+	 */
+	public function getSearchEngine() {
+		if ( $this->searchEngine === null ) {
+			$this->searchEngine = SearchEngine::create();
+		}
+		return $this->searchEngine;
 	}
 }
