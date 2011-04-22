@@ -109,12 +109,13 @@ $messages = array(
 'jumptosearch'     => 'ахтармишун',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'    => 'Хакъиндай {{SITENAME}}',
-'aboutpage'    => 'Project:Хакъиндай',
-'disclaimers'  => 'Герек тахьай',
-'edithelp'     => 'Дегишарун чара',
-'edithelppage' => 'Help:Дегишарун',
-'mainpage'     => 'Асул хъувун',
+'aboutsite'      => 'Хакъиндай {{SITENAME}}',
+'aboutpage'      => 'Project:Хакъиндай',
+'disclaimers'    => 'Герек тахьай',
+'disclaimerpage' => 'Project:Виридан хабарар',
+'edithelp'       => 'Дегишарун чара',
+'edithelppage'   => 'Help:Дегишарун',
+'mainpage'       => 'Асул хъувун',
 
 'ok'                 => 'Э(кхьин)',
 'retrievedfrom'      => 'Акъудун идай $1',

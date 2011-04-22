@@ -858,17 +858,27 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
 
 # Special:PasswordReset
-'passwordreset'              => 'Remise à zéro du mot de passe',
-'passwordreset-text'         => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
-'passwordreset-legend'       => 'Remise à zéro du mot de passe',
-'passwordreset-disabled'     => 'La remise à zéro du mot de passe a été désactivé sur ce wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
-'passwordreset-username'     => 'Nom d’utilisateur :',
-'passwordreset-email'        => 'Adresse de courriel :',
-'passwordreset-emailtitle'   => 'Détails du compte sur {{SITENAME}}',
-'passwordreset-emailelement' => "Nom d'utilisateur :       $1
+'passwordreset'                => 'Remise à zéro du mot de passe',
+'passwordreset-text'           => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
+'passwordreset-legend'         => 'Remise à zéro du mot de passe',
+'passwordreset-disabled'       => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
+'passwordreset-username'       => 'Nom d’utilisateur :',
+'passwordreset-email'          => 'Adresse de courriel :',
+'passwordreset-emailtitle'     => 'Détails du compte sur {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+
+$2
+
+{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
+'passwordreset-emailtext-user' => 'L’utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+
+$2
+
+{{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
+'passwordreset-emailelement'   => "Nom d'utilisateur :       $1
 Mot de passe temporaire : $2",
-'passwordreset-emailsent'    => 'Un courriel de rappel a été envoyé.',
+'passwordreset-emailsent'      => 'Un courriel de rappel a été envoyé.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -3197,13 +3207,15 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-worldregioncreated'          => 'Région du monde dans laquelle la photo a été prise',
 'exif-countrycreated'              => 'Pays dans lequel la photo a été prise',
 'exif-countrycodecreated'          => 'Code du pays dans lequel la photo a été prise',
-'exif-provinceorstatecreated'      => 'Province ou état dans lequel la photo a été prise',
+'exif-provinceorstatecreated'      => 'Province ou État dans lequel la photo a été prise',
 'exif-citycreated'                 => 'Ville dans laquelle la photo a été prise',
+'exif-sublocationcreated'          => 'Partie de la ville dans laquelle la photo a été prise',
 'exif-worldregiondest'             => 'Région du monde représentée',
 'exif-countrydest'                 => 'Pays représenté',
 'exif-countrycodedest'             => 'Code du pays représenté',
-'exif-provinceorstatedest'         => 'Province ou état représenté',
+'exif-provinceorstatedest'         => 'Province ou État représenté',
 'exif-citydest'                    => 'Ville représentée',
+'exif-sublocationdest'             => 'Partie de la ville représentée',
 'exif-objectname'                  => 'Titre court',
 'exif-specialinstructions'         => 'Instructions spéciales',
 'exif-headline'                    => 'Titre',
@@ -3211,10 +3223,12 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-source'                      => 'Source',
 'exif-editstatus'                  => "Statut éditorial de l'image",
 'exif-urgency'                     => 'Urgence',
+'exif-fixtureidentifier'           => 'Nom élément récurrent',
 'exif-locationdest'                => 'Lieu représenté',
 'exif-locationdestcode'            => 'Code du lieu représenté',
 'exif-objectcycle'                 => 'Moment de la journée auquel ce média est destiné',
 'exif-contact'                     => 'Informations de contact',
+'exif-writer'                      => 'Auteur',
 'exif-languagecode'                => 'Langue',
 'exif-iimversion'                  => 'version IIM',
 'exif-iimcategory'                 => 'Catégorie',

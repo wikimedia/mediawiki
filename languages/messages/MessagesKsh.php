@@ -782,28 +782,28 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'passwordreset-emailtitle'     => 'Einzelheite för der Zohjang op {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'Do künns et sällver jewääse sin, öhnswää hät vun dä Adräß $1 en Internet öm
 en e-mail jefrooch, met Daate övver Dinge Zohjäng op {{GRAMMAR:Akkusativ|{{SITENAME}}}}
-($4)
+$4
 Heh {{PLURAL:$3|dä Metmaacher hät|di Metmaacher han|hät keine Metmaacher}} Ding e-mail Addräß:
 
 $2
 
 {{PLURAL:$3|Dat Zweschepaßwoot leuf|Di Zweschepaßwööter loufe|Kein Zweschepaßwoot leuf}} en {{PLURAL:$5|enem Daach|$5 Dääsch|keinem Daach}} uß.
-Do sullts Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi Do
-dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot entsenne
-kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann moß De jäz jaa
-nix donn, un kanns Ding Paßwoot wigger bruche.',
+Donn Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi
+Do dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot
+entsenne kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann
+moß De jäz jaa nix donn, un kanns Ding Paßwoot wigger bruche.',
 'passwordreset-emailtext-user' => 'Dä Metmaacher $1 vun {{GRAMMAR:Dativ|{{SITENAME}}}} hät öm en e-mail jefrooch,
 met Daate övver Dinge Zohjäng op {{GRAMMAR:Akkusativ|{{SITENAME}}}}
-($4)
+$4
 Heh {{PLURAL:$3|dä Metmaacher hät|di Metmaacher han|hät keine Metmaacher}} Ding e-mail Addräß:
 
 $2
 
 {{PLURAL:$3|Dat Zweschepaßwoot leuf|Di Zweschepaßwööter loufe|Kein Zweschepaßwoot leuf}} en {{PLURAL:$5|enem Daach|$5 Dääsch|keinem Daach}} uß.
-Do sullts Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi Do
-dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot entsenne
-kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann moß De jäz jaa
-nix donn, un kanns Ding Paßwoot wigger bruche.',
+Donn Desch jäz enlogge, un e neu Paßwoot faßlääje. Wann ene Andere wi
+Do dat heh aanjestüßße hät, udder wann De Desch widder aan Ding Paßwoot
+entsenne kanns, un et nimmieh ändere wells, udder es suwwisu weiß, dann
+moß De jäz jaa nix donn, un kanns Ding Paßwoot wigger bruche.',
 'passwordreset-emailelement'   => 'Metmaacher Name: $1
 Eijmohl-Paßwoot: $2',
 'passwordreset-emailsent'      => 'En <i lang="en">e-mail</i> met Aanjaabe zom Zohjang heh es verscheck.',

@@ -138,6 +138,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'era...',
 'index-category'                 => "Empapula ezikkirizidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 'noindex-category'               => "Empapula ezigaanidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
+'broken-file-category'           => 'Empapula eziriko ennyunzi ezitalina kwe zigguka',
 
 'mainpagetext'      => 'MediaWiki kati ewangidwa ku sisitemu yo',
 'mainpagedocfooter' => "Okuyiga ku nkozesa ya sofutiweya owa wiki, kebera [http://meta.wikimedia.org/wiki/Help:Contents Okulagirira Abakozesa].
@@ -436,6 +437,7 @@ Tewerabira kwetereereza [[Special:Preferences|enteekateeka yo ey'oku {{SITENAME}
 'createaccount'              => 'Kolawo akawunti',
 'gotaccount'                 => "Akawunti wafuna? '''$1'''.",
 'gotaccountlink'             => 'Yingira',
+'userlogin-resetlink'        => "Werabidde by'okozesa okuyingira?",
 'createaccountmail'          => 'Akawunti gikole ne E-mail',
 'createaccountreason'        => 'Ekikukozesezawo akawunti:',
 'badretype'                  => "Ebigambo ebikuumi by'owandise tebifaanagana.",
@@ -533,6 +535,16 @@ Kati oyingira...',
 'resetpass-wrong-oldpass'   => "Okozesezza ekyama eky'ekiseerabuseera oba ekyaddala ekitakola.<br />
 Oyinz'okuba nga wamaze okutegeka ekya ddala ekipya oba nga wakasabayo eky'ekiseerabuseera.",
 'resetpass-temp-password'   => "Ekyama kyo eky'ekiseerabuseera:",
+
+# Special:PasswordReset
+'passwordreset'            => 'Damu okutegeka ekyama',
+'passwordreset-text'       => "Oba oyagala okufuna 'email' ekujjukiza ebikwata ku akawunti yo, jjuza foomu eno.",
+'passwordreset-legend'     => 'Damu okutegeka ekyama',
+'passwordreset-disabled'   => "Eby'okuddamu okutegeka ebyama biymirizidwa ku wiki eno.",
+'passwordreset-pretext'    => '{{PLURAL:$1||Wandika wo kimu ku ebiri mu lukalala}}',
+'passwordreset-username'   => "Ery'obwa memba:",
+'passwordreset-email'      => "Endagiriro eya 'email':",
+'passwordreset-emailtitle' => "Ebya akawunti ey'oku {{SITENAME}}",
 
 # Edit page toolbar
 'bold_sample'     => "Ennukuta z'owandika wano zonna ziba nziggumivu",
@@ -786,9 +798,17 @@ oba ku gano agali ku lupapula luno.<br />
 'histlast'               => 'Tandikira ku bisinga obupya',
 'historysize'            => '({{PLURAL:$1|bayiti 1|bayiti $1}})',
 
+# Revision feed
+'history-feed-item-nocomment' => 'Bya $1, nga $2',
+
 # Revision deletion
-'rev-delundel'   => 'laga/kisa',
-'revdel-restore' => "tegeka ebiba biragibwa n'ebikisibwa",
+'rev-delundel'      => 'laga/kisa',
+'rev-showdeleted'   => 'laga',
+'revdelete-log'     => 'Nsonga:',
+'revdel-restore'    => "tegeka ebiba biragibwa n'ebikisibwa",
+'pagehist'          => "Ennanda y'olupapula luno",
+'revdelete-content' => 'ebirimu',
+'revdelete-uname'   => "ery'obwa memba",
 
 # Merge log
 'revertmerge' => 'Yawula ebigattidwa',
@@ -1007,6 +1027,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 # Special:LinkSearch
 'linksearch'    => 'Ennyunzi eziggukira wabweru wa Wikipediya',
 'linksearch-ns' => 'Kuŋaanyizo:',
+'linksearch-ok' => 'Noonya',
 
 # Special:Log/newusers
 'newuserlogpage'          => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
@@ -1095,10 +1116,11 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'restriction-move' => 'Simbuliza',
 
 # Undelete
-'undeletebtn'      => 'Luzzewo',
-'undeletelink'     => 'lukebere/luzzewo',
-'undeletecomment'  => 'Nsonga:',
-'undeletedarticle' => '"[[$1]]" luzzidwawo',
+'undeletebtn'            => 'Luzzewo',
+'undeletelink'           => 'lukebere/luzzewo',
+'undeletecomment'        => 'Nsonga:',
+'undeletedarticle'       => '"[[$1]]" luzzidwawo',
+'undelete-search-submit' => 'Noonya',
 
 # Namespace form on various pages
 'namespace'      => 'Kuŋaanyizo:',
@@ -1143,6 +1165,7 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'ipboptions'               => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 'blockipsuccesssub'        => 'Memba agaaniddwa okuwandika',
 'ipblocklist'              => 'Abagaanidwa',
+'ipblocklist-submit'       => 'Noonya',
 'blocklink'                => 'Ono agaanibwe okuwandika',
 'unblocklink'              => 'kkiriza memba okuwandika',
 'change-blocklink'         => 'kyusa okugaanibwa',
@@ -1291,6 +1314,9 @@ Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www
 'svg-long-desc'  => 'Fayiro ya kika  kya SVG, ya pikselo $1 ku $2 awamu, ya obunene bwa: $3',
 'show-big-image' => 'Laga ekifaananyi ekijjuvu',
 
+# Special:NewFiles
+'ilsubmit' => 'Noonya',
+
 # Bad image list
 'bad_image_list' => 'Empandika entuufu:
 
@@ -1355,6 +1381,9 @@ Ebirala biyinza butalabika okujjako ng'okiragidde.
 
 # Special:Version
 'version-specialpages' => 'Empapula enjawule',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Noonya',
 
 # Special:SpecialPages
 'specialpages' => 'Empapula enjawule',

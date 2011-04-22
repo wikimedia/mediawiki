@@ -371,7 +371,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cd.',
 'index-category'                 => 'Strony indeksowane',
 'noindex-category'               => 'Strony nieindeksowane',
-'broken-file-category'           => 'Strony z zerwanymi linkami do plików',
+'broken-file-category'           => 'Strony z odwołaniami do nieistniejących plików',
 
 'mainpagetext'      => "'''Instalacja MediaWiki powiodła się.'''",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
@@ -667,7 +667,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'createaccount'              => 'Załóż nowe konto',
 'gotaccount'                 => "Masz już konto? '''$1'''.",
 'gotaccountlink'             => 'Zaloguj się',
-'userlogin-resetlink'        => 'Zapomniałeś danych logowania?',
+'userlogin-resetlink'        => 'Zapomniałeś danych do zalogowania się?',
 'createaccountmail'          => 'poprzez e‐mail',
 'createaccountreason'        => 'Powód',
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
@@ -764,11 +764,29 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Wyczyść hasło',
-'passwordreset-text'     => 'Wypełnij formularz by otrzymać e-mail z przypomnieniem danych twojego konta.',
-'passwordreset-legend'   => 'Resetuj hasło',
-'passwordreset-disabled' => 'Na tej wiki wyłączono mozliwość resetowania haseł.',
-'passwordreset-username' => 'Nazwa użytkownika:',
+'passwordreset'                => 'Wyczyść hasło',
+'passwordreset-text'           => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
+'passwordreset-legend'         => 'Zresetuj hasło',
+'passwordreset-disabled'       => 'Na tej wiki wyłączono możliwość resetowania haseł.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
+'passwordreset-username'       => 'Nazwa użytkownika:',
+'passwordreset-email'          => 'Adres e‐mail',
+'passwordreset-emailtitle'     => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+
+$2
+
+{{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
+Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
+'passwordreset-emailtext-user' => 'Użytkownik $1 poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+
+$2
+
+{{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
+Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
+'passwordreset-emailelement'   => 'Nazwa użytkownika – $1
+Tymczasowe hasło – $2',
+'passwordreset-emailsent'      => 'Przypominający e‐mail został wysłany.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -3174,14 +3192,34 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-datetimemetadata'            => 'Data ostatniej modyfikacji metadanych',
 'exif-nickname'                    => 'Nieformalna nazwa obrazu',
 'exif-rating'                      => 'Ocena (od 1 do 5)',
+'exif-rightscertificate'           => 'Certyfikat zarządzania prawami autorskimi',
 'exif-copyrighted'                 => 'Ochrona prawem autorskim',
 'exif-copyrightowner'              => 'Właściciel praw autorskich',
 'exif-usageterms'                  => 'Warunki wykorzystania',
+'exif-webstatement'                => 'Szczegółowe informacje o prawach autorskich dostępne online',
 'exif-originaldocumentid'          => 'Unikalny identyfikator oryginalnego dokumentu',
 'exif-licenseurl'                  => 'Adres URL licencji',
+'exif-morepermissionsurl'          => 'Informacja o użyciu na zasadach innych licencji',
+'exif-attributionurl'              => 'Wykorzystując tę pracę należy zamieścić link do',
+'exif-preferredattributionname'    => 'Wykorzystując tę pracę należy wskazać autora',
+'exif-pngfilecomment'              => 'Komentarz pliku w formacie PNG',
+'exif-disclaimer'                  => 'Zrzeczenie się odpowiedzialności',
+'exif-contentwarning'              => 'Ostrzeżenie dotyczące zawartości',
+'exif-giffilecomment'              => 'Komentarz pliku w formacie GIF',
+'exif-intellectualgenre'           => 'Typ elementu',
+'exif-subjectnewscode'             => 'Kod IPTC tematu',
+'exif-scenecode'                   => 'Kod IPTC sceny',
+'exif-event'                       => 'Przedstawione wydarzenie',
+'exif-organisationinimage'         => 'Przedstawiona organizacja',
+'exif-personinimage'               => 'Przedstawiona osoba',
+'exif-originalimageheight'         => 'Wysokość obrazu zanim został przycięty',
+'exif-originalimagewidth'          => 'Szerokość obrazu zanim został przycięty',
 
 # EXIF attributes
 'exif-compression-1' => 'nieskompresowany',
+
+'exif-copyrighted-true'  => 'Chronione prawem autorskim',
+'exif-copyrighted-false' => 'Domena publiczna',
 
 'exif-unknowndate' => 'nieznana data',
 
@@ -3199,6 +3237,8 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 'exif-xyresolution-i' => '$1&nbsp;punktów na cal',
 'exif-xyresolution-c' => '$1&nbsp;punktów na centymetr',
+
+'exif-colorspace-65535' => 'Nie skalibrowano',
 
 'exif-componentsconfiguration-0' => 'nie istnieje',
 
@@ -3263,6 +3303,8 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-sensingmethod-7' => 'trójliniowy przetwornik obrazu',
 'exif-sensingmethod-8' => 'liniowy przetwornik obrazu z sekwencyjnym przetwarzaniem kolorów',
 
+'exif-filesource-3' => 'Cyfrowy aparat fotograficzny',
+
 'exif-scenetype-1' => 'obiekt fotografowany bezpośrednio',
 
 'exif-customrendered-0' => 'nie',
@@ -3311,6 +3353,10 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpslongitude-e' => 'wschodnia',
 'exif-gpslongitude-w' => 'zachodnia',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metr|metry|metrów}} nad poziomem morza',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metr|metry|metrów}} poniżej poziomu morza',
+
 'exif-gpsstatus-a' => 'pomiar w trakcie',
 'exif-gpsstatus-v' => 'wyniki pomiaru dostępne na bieżąco',
 
@@ -3327,9 +3373,58 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsdestdistance-m' => 'Mil',
 'exif-gpsdestdistance-n' => 'Mil morskich',
 
+'exif-gpsdop-excellent' => 'Doskonała ($1)',
+'exif-gpsdop-good'      => 'Dobra ($1)',
+'exif-gpsdop-moderate'  => 'Umiarkowana ($1)',
+'exif-gpsdop-fair'      => 'Akceptowalna ($1)',
+'exif-gpsdop-poor'      => 'Słaba ($1)',
+
+'exif-objectcycle-a' => 'Tylko rano',
+'exif-objectcycle-p' => 'Tylko wieczorem',
+'exif-objectcycle-b' => 'Zarówno rano i wieczorem',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'kierunek geograficzny',
 'exif-gpsdirection-m' => 'kierunek magnetyczny',
+
+'exif-ycbcrpositioning-1' => 'Wyśrodkowane',
+'exif-ycbcrpositioning-2' => 'Zbliżone',
+
+'exif-dc-contributor' => 'Autorzy',
+'exif-dc-coverage'    => 'Przestrzenny lub czasowy zakres utworu',
+'exif-dc-date'        => 'Data(-y)',
+'exif-dc-publisher'   => 'Wydawca',
+'exif-dc-relation'    => 'Podobne multimedia',
+'exif-dc-rights'      => 'Prawa autorskie',
+'exif-dc-source'      => 'Oryginalny utwór',
+'exif-dc-type'        => 'Typ utworu',
+
+'exif-rating-rejected' => 'Odrzucony',
+
+'exif-isospeedratings-overflow' => 'Więcej niż 65535',
+
+'exif-iimcategory-ace' => 'Sztuka, kultura i rozrywka',
+'exif-iimcategory-clj' => 'Przestępczość i prawo',
+'exif-iimcategory-dis' => 'Katastrofy i wypadki',
+'exif-iimcategory-fin' => 'Gospodarka i biznes',
+'exif-iimcategory-edu' => 'Edukacja',
+'exif-iimcategory-evn' => 'Środowisko',
+'exif-iimcategory-hth' => 'Zdrowie',
+'exif-iimcategory-hum' => 'Zainteresowania',
+'exif-iimcategory-lab' => 'Praca',
+'exif-iimcategory-lif' => 'Styl życia i czas wolny',
+'exif-iimcategory-pol' => 'Polityka',
+'exif-iimcategory-rel' => 'Religia i wiara',
+'exif-iimcategory-sci' => 'Nauka i technologia',
+'exif-iimcategory-soi' => 'Zagadnienia społeczne',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Wojny, konflikty i zamieszki',
+'exif-iimcategory-wea' => 'Pogoda',
+
+'exif-urgency-normal' => 'Normalny ($1)',
+'exif-urgency-low'    => 'Niski ($1)',
+'exif-urgency-high'   => 'Wysoki ($1)',
+'exif-urgency-other'  => 'Priorytet zdefiniowany przez użytkownika ($1)',
 
 # External editor support
 'edit-externally'      => 'Edytuj plik, używając zewnętrznej aplikacji',

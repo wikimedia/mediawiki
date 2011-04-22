@@ -316,6 +316,7 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
+'revdelete-log'  => 'କାରଣ:',
 'revdel-restore' => 'ଦେଖଣାକୁ ବଦଳାଇବା',
 
 # History merging
@@ -361,12 +362,20 @@ $messages = array(
 'powersearch-toggleall'     => 'ସବୁ',
 
 # Preferences page
-'mypreferences'         => 'ମୋ ପସଁଦସବୁ',
-'skin-preview'          => 'ଦେଖଣା',
-'searchresultshead'     => 'ଖୋଜିବା',
-'timezoneregion-africa' => 'ଆଫ୍ରିକା',
-'timezoneregion-asia'   => 'ଏସିଆ',
-'prefs-files'           => 'ଫାଇଲ',
+'mypreferences'            => 'ମୋ ପସଁଦସବୁ',
+'skin-preview'             => 'ଦେଖଣା',
+'searchresultshead'        => 'ଖୋଜିବା',
+'timezoneregion-africa'    => 'ଆଫ୍ରିକା',
+'timezoneregion-america'   => 'ଆମେରିକା',
+'timezoneregion-asia'      => 'ଏସିଆ',
+'timezoneregion-australia' => 'ଅଷ୍ଟ୍ରେଲିଆ',
+'timezoneregion-europe'    => 'ଇଉରୋପ',
+'prefs-namespaces'         => 'ନେମସ୍ପେସ',
+'prefs-files'              => 'ଫାଇଲ',
+'yourlanguage'             => 'ଭାଷା:',
+
+# User rights
+'userrights-reason' => 'କାରଣ:',
 
 # Groups
 'group-sysop' => 'ପରିଛାଗଣ',
@@ -414,6 +423,7 @@ $messages = array(
 'fileuploadsummary' => 'ସାରକଥା:',
 
 # Special:ListFiles
+'imgfile'        => 'ଫାଇଲ',
 'listfiles_name' => 'ନାମ',
 
 # File description page
@@ -442,6 +452,8 @@ $messages = array(
 
 # Statistics
 'statistics-pages' => 'ଫରଦ',
+
+'brokenredirects-edit' => 'ବଦଳାଇବେ',
 
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
@@ -519,6 +531,7 @@ $messages = array(
 'restriction-level'           => 'ପ୍ରତିରକ୍ଷା ସ୍ତର',
 
 # Restrictions (nouns)
+'restriction-edit'   => 'ବଦଳାଇବେ',
 'restriction-create' => 'ତିଆରି',
 
 # Undelete

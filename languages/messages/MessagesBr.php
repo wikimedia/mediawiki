@@ -305,6 +305,7 @@ $messages = array(
 'listingcontinuesabbrev'         => "(war-lerc'h)",
 'index-category'                 => 'Pajennoù menegeret',
 'noindex-category'               => "Pajennoù n'int ket menegeret",
+'broken-file-category'           => 'Pajennoù enno liamm torr war-zu restroù',
 
 'mainpagetext'      => "'''Meziant MediaWiki staliet.'''",
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
@@ -690,6 +691,7 @@ Gortozit a-raok klask en-dro.",
 'passwordreset-text'         => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus munudoù ho kont.",
 'passwordreset-legend'       => 'Adsevel ar ger-tremen',
 'passwordreset-disabled'     => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
 'passwordreset-username'     => 'Anv implijer :',
 'passwordreset-email'        => 'Postel :',
 'passwordreset-emailtitle'   => 'Munudoù kont war {{SITENAME}}',
@@ -3035,6 +3037,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-source'                      => 'Mammenn',
 'exif-editstatus'                  => 'Statud skridaozañ ar skeudenn',
 'exif-urgency'                     => 'Malluster',
+'exif-fixtureidentifier'           => 'Anv elefenn a zistro ingal',
 'exif-locationdest'                => "Lec'h diskouezet",
 'exif-locationdestcode'            => "Kod al lec'h diskouezet",
 'exif-objectcycle'                 => "Mare eus an deiz m'eo bet soñjet ar media-mañ evitañ",
@@ -3163,6 +3166,8 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-sensingmethod-7' => 'Detekter teirlinennek',
 'exif-sensingmethod-8' => 'Detekter liv linennek kemalennek',
 
+'exif-filesource-3' => "Luc'hskeudennerez niverel",
+
 'exif-scenetype-1' => "Lun luc'hskeudennet war-eeun",
 
 'exif-customrendered-0' => 'Plediñ boutin',
@@ -3246,8 +3251,10 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-gpsdirection-m' => 'Norzh magnetek',
 
 'exif-ycbcrpositioning-1' => 'Kreizet',
+'exif-ycbcrpositioning-2' => "Ken-lec'hiet",
 
 'exif-dc-contributor' => 'Aozerien',
+'exif-dc-coverage'    => 'Goloadur ar media a-fet amzer pe tachenn',
 'exif-dc-date'        => 'Deiziad(où)',
 'exif-dc-publisher'   => 'Embanner',
 'exif-dc-relation'    => 'Media kar',
@@ -3266,6 +3273,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-iimcategory-edu' => 'Deskadurezh',
 'exif-iimcategory-evn' => 'Endro',
 'exif-iimcategory-hth' => "Yec'hed",
+'exif-iimcategory-hum' => 'Dedenn denel',
 'exif-iimcategory-lab' => 'Bed al labour',
 'exif-iimcategory-lif' => 'Doare bevañ ha dudiamantoù',
 'exif-iimcategory-pol' => 'Politikerezh',

@@ -868,7 +868,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-text'           => 'Vul dit formulier in zodat we u een e-mail kunnen sturen met uw gebruikersgegevens.',
 'passwordreset-legend'         => 'Wachtwoord opnieuw instellen',
 'passwordreset-disabled'       => 'Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Voer de onderstaande velden in}}',
+'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaande velden in}}',
 'passwordreset-username'       => 'Gebruiker:',
 'passwordreset-email'          => 'E-mailadres:',
 'passwordreset-emailtitle'     => 'Gebruikersgegevens op {{SITENAME}}',

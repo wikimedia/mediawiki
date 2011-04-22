@@ -796,9 +796,10 @@ $2',
 
 # Special:PasswordReset
 'passwordreset'                => 'Сброс пароля',
-'passwordreset-text'           => 'Заполните эту форму, чтобы получить в письме напоминание о вашей учётной записи.',
+'passwordreset-text'           => 'Заполните эту форму, чтобы получить в письме напоминание о параметрах вашей учётной записи.',
 'passwordreset-legend'         => 'Переустановить пароль',
 'passwordreset-disabled'       => 'Функция переустановки пароля отключены на этой вики.',
+'passwordreset-pretext'        => '{{PLURAL:$1||введите один одну из частей данных, показанных ниже.}}',
 'passwordreset-username'       => 'Имя участника:',
 'passwordreset-email'          => 'Адрес электронной почты:',
 'passwordreset-emailtitle'     => 'Сведения об учётной записи {{SITENAME}}',

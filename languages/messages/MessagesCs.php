@@ -473,6 +473,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'pokrač.',
 'index-category'                 => 'Indexované stránky',
 'noindex-category'               => 'Neindexované stránky',
+'broken-file-category'           => 'Stránky s odkazy na neexistující soubory',
 
 'mainpagetext'      => "'''MediaWiki byla úspěšně nainstalována.'''",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
@@ -766,6 +767,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createaccount'              => 'Vytvořit nový účet',
 'gotaccount'                 => "Už jste registrováni? '''$1'''.",
 'gotaccountlink'             => 'Přihlaste se',
+'userlogin-resetlink'        => 'Zapomněli jste přihlašovací údaje?',
 'createaccountmail'          => 'pomocí e-mailu',
 'createaccountreason'        => 'Důvod:',
 'badretype'                  => 'Vámi napsaná hesla nesouhlasí.',
@@ -850,6 +852,10 @@ Počkejte chvíli, než to zkusíte znovu.',
 'resetpass-wrong-oldpass'   => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Reset hesla',
+'passwordreset-username' => 'Uživatelské jméno:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -3170,6 +3176,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-giffilecomment'              => 'Poznámky ze souboru GIF',
 'exif-intellectualgenre'           => 'Typ položky',
 'exif-subjectnewscode'             => 'Kód tématu',
+'exif-scenecode'                   => 'IPTC kód záběru',
 'exif-event'                       => 'Zobrazená událost',
 'exif-organisationinimage'         => 'Zobrazená organizace',
 'exif-personinimage'               => 'Zobrazená osoba',

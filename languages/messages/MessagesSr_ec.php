@@ -1966,7 +1966,7 @@ $1',
 'double-redirect-fixed-maintenance' => 'Исправљање двоструких преусмерења из [[$1]] у [[$2]].',
 'double-redirect-fixer'             => 'Исправљач преусмерења',
 
-'brokenredirects'        => 'Неисправна преусмерења',
+'brokenredirects'        => 'Покварена преусмерења',
 'brokenredirectstext'    => 'Следећа преусмерења упућују на непостојеће странице:',
 'brokenredirects-edit'   => 'уреди',
 'brokenredirects-delete' => 'обриши',

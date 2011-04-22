@@ -263,6 +263,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Paginas indexate',
 'noindex-category'               => 'Paginas non indexate',
+'broken-file-category'           => 'Paginas con ligamines rupte a files',
 
 'mainpagetext'      => "'''MediaWiki ha essite installate con successo.'''",
 'mainpagedocfooter' => 'Consulta le [http://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
@@ -561,6 +562,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createaccount'              => 'Crear conto',
 'gotaccount'                 => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink'             => 'Aperir session',
+'userlogin-resetlink'        => 'Datos de authentication oblidate?',
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
@@ -660,8 +662,38 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'resetpass-temp-password'   => 'Contrasigno temporari:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Reinitialisar contrasigno',
-'passwordreset-username' => 'Nomine de usator:',
+'passwordreset'                => 'Reinitialisar contrasigno',
+'passwordreset-text'           => 'Complete iste formulario pro reciper un rememoration in e-mail del datos de tu conto.',
+'passwordreset-legend'         => 'Reinitialisar contrasigno',
+'passwordreset-disabled'       => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
+'passwordreset-username'       => 'Nomine de usator:',
+'passwordreset-email'          => 'Adresse de e-mail:',
+'passwordreset-emailtitle'     => 'Detalios del conto in {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava un rememoration del
+detalios de tu conto in {{SITENAME}} ($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es
+associate con iste adresse de e-mail:
+
+$2
+
+Iste {{PLURAL:$3|contrasigno|contrasignos}} temporari expirara post {{PLURAL:$5|un die|$5 dies}}.
+Tu deberea ora aperir session e eliger un nove contrasigno. Si un altere persona faceva iste
+requesta, o si tu te ha rememorate tu contrasigno original e non plus
+vole cambiar lo, tu pote ignorar iste message e continuar a usar le ancian
+contrasigno.',
+'passwordreset-emailtext-user' => 'Le usator $1 in {{SITENAME}} requestava un rememoration del detalios de tu conto in {{SITENAME}}
+($4). Le {{PLURAL:$3|conto|contos}} de usator sequente es associate con iste adresse de e-mail:
+
+$2
+
+Iste {{PLURAL:$3|contrasigno|contrasignos}} temporari expirara post {{PLURAL:$5|un die|$5 dies}}.
+Tu deberea ora aperir session e eliger un nove contrasigno. Si un altere persona faceva iste
+requesta, o si tu te ha rememorate tu contrasigno original e non plus
+vole cambiar lo, tu pote ignorar iste message e continuar a usar le ancian
+contrasigno.',
+'passwordreset-emailelement'   => 'Nomine de usator: $1
+Contrasigno temporari: $2',
+'passwordreset-emailsent'      => 'Un e-mail de rememoration ha essite inviate.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',
