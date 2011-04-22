@@ -568,7 +568,10 @@ associà con st'adrëssa ëd corel:
 $2
 
 {{PLURAL:$3|Sta ciav|Ste ciav}} a temp a scadran an {{PLURAL:$5|un di|$5 di}}.
-It dovrìe intré e serne na ciav neuva adess. Se quaidun àutr a l'ha fàit sta arcesta, ... DA FINI' ...",
+It dovrìe intré e serne na ciav neuva adess. Se quaidun àutr a l'ha fàit sta arcesta, o s'it ses arcordate toa ciav original, e it veule pa pi cangela, it peule ignoré sto mëssagi e continué a dovré toa veja ciav.",
+'passwordreset-emailelement' => 'Nòm utent: $1
+Ciav a temp: $2',
+'passwordreset-emailsent'    => "Un corel për arcordé a l'é stàit spedì.",
 
 # Edit page toolbar
 'bold_sample'     => 'Test an grassèt',
@@ -2898,6 +2901,12 @@ J'àutr a saran scondù për default.
 'exif-headline'                    => 'Antestassion',
 'exif-credit'                      => 'Credit/Fornidor',
 'exif-source'                      => 'Sorgiss',
+'exif-editstatus'                  => 'Stat ëd modìfica dla figura',
+'exif-urgency'                     => 'Pressa',
+'exif-fixtureidentifier'           => 'Nòm utiss',
+'exif-locationdest'                => 'Locassion fotografà',
+'exif-locationdestcode'            => 'Còdes ëd la locassion fotografà',
+'exif-objectcycle'                 => 'Ora dël di quand ël mojen a serv',
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',

@@ -746,9 +746,19 @@ Used on [[Special:ResetPass]]',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
 # Special:PasswordReset
-'passwordreset-legend'   => '{{Identical|Reset password}}',
-'passwordreset-username' => '{{Identical|Username}}',
-'passwordreset-email'    => '{{Identical|E-mail address}}',
+'passwordreset-legend'         => '{{Identical|Reset password}}',
+'passwordreset-username'       => '{{Identical|Username}}',
+'passwordreset-email'          => '{{Identical|E-mail address}}',
+'passwordreset-emailtext-ip'   => 'Parameters:
+* $1 - an IP address
+* $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
+* $3 - the number of repetitions in $2
+* $4 - base URL of the wiki',
+'passwordreset-emailtext-user' => 'Parameters:
+* $1 - a user name
+* $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
+* $3 - the number of repetitions in $2
+* $4 - base URL of the wiki',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
@@ -1204,8 +1214,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:Search] page.
 
 {{Identical|Advanced}}',
-'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
-'searchprofile-project-tooltip'  => '{{Identical|Search in $1}}',
+'searchprofile-articles-tooltip' => '$1 is list of namespaces. {{Identical|Search in $1}}',
+'searchprofile-project-tooltip'  => '$1 is list of namespaces. {{Identical|Search in $1}}',
 'search-result-size'             => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',

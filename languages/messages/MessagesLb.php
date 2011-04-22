@@ -2998,6 +2998,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-datetimeexpires'             => 'Net benotzen nom',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
+'exif-label'                       => 'Etiquette',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",

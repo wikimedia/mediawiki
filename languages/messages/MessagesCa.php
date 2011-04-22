@@ -2841,7 +2841,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'metadata-help'     => "Aquest fitxer conté informació addicional, probablement afegida per la càmera digital o l'escàner utilitzat per a crear-lo o digitalitzar-lo. Si s'ha modificat posteriorment, alguns detalls poden no reflectir les dades reals del fitxer modificat.",
 'metadata-expand'   => 'Mostra els detalls estesos',
 'metadata-collapse' => 'Amaga els detalls estesos',
-'metadata-fields'   => 'Els camps de metadades EXIF llistats en aquest missatge es mostraran en la pàgina de descripció de la imatge fins i tot quan la taula estigui plegada. La resta estaran ocults però es podran desplegar.
+'metadata-fields'   => "Els camps de metadades de la imatge llistats en aquest missatge s'inclouran en la pàgina de descripció de la imatge fins i tot quan la taula estigui plegada. La resta estaran ocults però es podran desplegar.
 * make
 * model
 * datetimeoriginal
@@ -2854,7 +2854,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude',
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplada',

@@ -570,6 +570,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset-username'     => 'Імя ўдзельніка',
+'passwordreset-emailtitle'   => 'Інфармацыя пра рахунак на сайце {{SITENAME}}',
 'passwordreset-emailelement' => 'Імя ўдзельніка: $1
 Часовы пароль: $2',
 
@@ -2112,6 +2113,7 @@ $1',
 'blocklist'                       => 'Заблакаваныя ўдзельнікі',
 'ipblocklist'                     => 'Усе заблакаваныя IP-адрасы і ўдзельнікі',
 'ipblocklist-legend'              => 'Знайсці заблакаванага ўдзельніка',
+'blocklist-addressblocks'         => 'Схаваць блакаванні асобных IP',
 'blocklist-reason'                => 'Прычына',
 'ipblocklist-submit'              => 'Шукаць',
 'infiniteblock'                   => 'бясконца',

@@ -3030,8 +3030,8 @@ $1',
 'exif-colorspace'                  => 'കളർ സ്പേസ്',
 'exif-componentsconfiguration'     => 'ഓരോ ഘടകത്തിന്റേയും അർത്ഥം',
 'exif-compressedbitsperpixel'      => 'ചിത്രം ചുരുക്കുവാനുപയോഗിച്ചിരിക്കുന്ന മാർഗ്ഗം',
-'exif-pixelydimension'             => 'ചിത്രത്തിന്റെ സാധുവായ വീതി',
-'exif-pixelxdimension'             => 'ചിത്രത്തിന്റെ സാധുവായ ഉയരം',
+'exif-pixelydimension'             => 'ചിത്രത്തിന്റെ വീതി',
+'exif-pixelxdimension'             => 'ചിത്രത്തിന്റെ ഉയരം',
 'exif-usercomment'                 => 'ഉപയോക്താവിന്റെ കുറിപ്പുകൾ',
 'exif-relatedsoundfile'            => 'ഇതുമായി ബന്ധമുള്ള ഓഡിയോ പ്രമാണം',
 'exif-datetimeoriginal'            => 'ഡാറ്റ സൃഷ്ടിക്കപ്പെട്ട തീയതിയും സമയവും',
@@ -3045,9 +3045,9 @@ $1',
 'exif-exposureprogram'             => 'എക്സ്പോഷർ പ്രോഗ്രാം',
 'exif-spectralsensitivity'         => 'വർണ്ണരാജി സംവേദനത്വം',
 'exif-isospeedratings'             => 'ഐ.എസ്.ഒ. വേഗതയുടെ മൂല്യമതിപ്പ്',
-'exif-shutterspeedvalue'           => 'ഷട്ടർ സ്പീഡ്',
-'exif-aperturevalue'               => 'അപ്പെർച്ചർ',
-'exif-brightnessvalue'             => 'ബ്രൈറ്റ്നെസ്സ്',
+'exif-shutterspeedvalue'           => 'അപെക്സ് ഷട്ടർ സ്പീഡ്',
+'exif-aperturevalue'               => 'അപെക്സ് അപ്പെർച്ചർ',
+'exif-brightnessvalue'             => 'അപെക്സ് ബ്രൈറ്റ്നെസ്സ്',
 'exif-exposurebiasvalue'           => 'എക്സ്‌പോഷർ ബയസ്',
 'exif-maxaperturevalue'            => 'പരമാവധി ലാൻഡ് അപാർച്ചർ',
 'exif-subjectdistance'             => 'വസ്തുവിന്റെ അകലം',
@@ -3110,9 +3110,18 @@ $1',
 'exif-gpsdatestamp'                => 'GPS തീയതി',
 'exif-gpsdifferential'             => 'ജി.പി.എസ്. വ്യത്യാസം ശരിയാക്കൽ',
 'exif-objectname'                  => 'ചെറിയ തലക്കെട്ട്',
+'exif-source'                      => 'സ്രോതസ്സ്',
+'exif-contact'                     => 'ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ',
+'exif-copyrighted'                 => 'പകർപ്പവകാശ സ്ഥിതി',
+'exif-copyrightowner'              => 'പകർപ്പവകാശ ഉടമ',
+'exif-disclaimer'                  => 'നിരാകരണം',
+'exif-contentwarning'              => 'ഉള്ളടക്ക മുന്നറിയിപ്പ്',
 
 # EXIF attributes
 'exif-compression-1' => 'ചുരുക്കാത്തത്',
+
+'exif-copyrighted-true'  => 'പകർപ്പവകാശസംരക്ഷിതം',
+'exif-copyrighted-false' => 'പൊതുസഞ്ചയം',
 
 'exif-unknowndate' => 'തീയതി അജ്ഞാതം',
 
@@ -3191,6 +3200,8 @@ $1',
 'exif-sensingmethod-7' => 'ട്രൈലീനിയർ സംവേദിനി',
 'exif-sensingmethod-8' => 'വർണ്ണാനുവർത്തിത രേഖീയ സംവേദിനി',
 
+'exif-filesource-3' => 'ഡിജിറ്റൽ നിശ്ചല ഛായാഗ്രാഹി',
+
 'exif-scenetype-1' => 'നേരിട്ടു ഛായാഗ്രഹണം ചെയ്ത ചിത്രം',
 
 'exif-customrendered-0' => 'സാധാരണ പ്രക്രിയ',
@@ -3239,6 +3250,9 @@ $1',
 'exif-gpslongitude-e' => 'കിഴക്കേ രേഖാംശം',
 'exif-gpslongitude-w' => 'പടിഞ്ഞാറെ രേഖാംശം',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'സമുദ്രനിരപ്പിന് {{PLURAL:$1|ഒരു മീറ്റർ|$1 മീറ്റർ}} ഉപരി',
+
 'exif-gpsstatus-a' => 'കണക്കെടുപ്പ് പുരോഗമിക്കുന്നു',
 'exif-gpsstatus-v' => 'അളവുകളുടെ പരസ്പരപ്രയോഗക്ഷമത',
 
@@ -3250,9 +3264,25 @@ $1',
 'exif-gpsspeed-m' => 'മൈലുകൾ/മണിക്കൂർ',
 'exif-gpsspeed-n' => 'നോട്ടുകൾ (Knots)',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'കിലോമീറ്റർ',
+'exif-gpsdestdistance-m' => 'മൈൽ',
+'exif-gpsdestdistance-n' => 'നോട്ടിക്കൽ മൈൽ',
+
+'exif-gpsdop-excellent' => 'ഒന്നാന്തരം ($1)',
+'exif-gpsdop-good'      => 'കൊള്ളാം ($1)',
+'exif-gpsdop-moderate'  => 'ശരാശരി ($1)',
+'exif-gpsdop-fair'      => 'തരക്കേടില്ല ($1)',
+'exif-gpsdop-poor'      => 'മോശം ($1)',
+
+'exif-objectcycle-a' => 'രാവിലെ മാത്രം',
+'exif-objectcycle-p' => 'ഉച്ചകഴിഞ്ഞു മാത്രം',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ശരിക്കുള്ള ദിശ',
 'exif-gpsdirection-m' => 'കാന്തിക ദിശ',
+
+'exif-dc-publisher' => 'പ്രസാധക(ൻ)',
 
 # External editor support
 'edit-externally'      => 'ഈ പ്രമാണം ഒരു ബാഹ്യ ആപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തിരുത്തുക',

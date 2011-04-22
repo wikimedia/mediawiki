@@ -131,7 +131,7 @@ $messages = array(
 'hidden-category-category'       => 'Qeybta qarsoon',
 'category-subcat-count'          => '{{PLURAL:$2|Qeybtaan hadda waxaa ku jirto oo kaliya qeybtaan hoose.|Qeybtaan waxaa ku jirto {{PLURAL:$1|oo qeybta hoose|$1 oo ah qeybaha hoose}} waana $2 oo dhamaantood ah.}}',
 'category-subcat-count-limited'  => 'Qeybtaan waxaa ku jirto {{PLURAL:$1| oo ah qeybta hoose|$1 oo ah qeybaha hoose}}.',
-'category-article-count'         => '↓ {{PLURAL:$2|Qeybtaan waxaa ku jirto intaan oo maqaal kaliya.| waxaa meeshaan ku jirto {{PLURAL:$1| oo maqaal|$1 oo maqaalo ah}} waxeena ku jiraan qeybtaan, waana  $2 oo dhamaantood ah.}}',
+'category-article-count'         => '{{PLURAL:$2|Qeybtaan waxaa ku jirto intaan oo maqaal kaliya.| waxaa meeshaan ku jirto {{PLURAL:$1| oo maqaal|$1 oo maqaalo ah}} waxeena ku jiraan qeybtaan, waana  $2 oo dhamaantood ah.}}',
 'category-article-count-limited' => 'Qeybtaan hadda waxaa ku jirto {{PLURAL:$1|oo maqaal|$1 oo maqaalo ah}}',
 'category-file-count'            => '{{PLURAL:$2|Qeybtaan waxaa ku jirto intaan oo maqaal kaliya.|waxaa meeshaan ku jirto {{PLURAL:$1| oo maqaal|$1 oo maqaalo ah}} waxeena ku jiraan qeybtaan, waana $2 oo dhamaantood.}}',
 'category-file-count-limited'    => 'Qeybtaan hadda waxaa ku jirto {{PLURAL:$1|oo maqaal|$1 oo maqaalo ah}}.',
@@ -272,6 +272,7 @@ $1',
 'badaccess-group0' => 'Laguuma ogalaan in aad sameyso waxaad rabtid',
 'badaccess-groups' => 'Wixii aad na weydiisay waxaa loogu tala galay isticmaaleyaashaan u gaarka ah {{PLURAL:$2|kooxdaan|qaar ka mid ah kooxdaan}}: $1.',
 
+'versionrequired'     => 'Nuuca  $1 oo MediaWiki ah aa loo baahanyahy',
 'versionrequiredtext' => 'Nooca $1 ee MediaWiki aa loo baahanyahay in lagu isticmaalo boggaan.
 fiiri [[Special:Version|nooca bogga]].',
 
@@ -358,6 +359,7 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'yourdomainname'             => 'Magacaga shabakada',
 'login'                      => 'Gudaha gal',
 'nav-login-createaccount'    => 'Gudaha gal / sameyso akoon',
+'loginprompt'                => "Waa in oo cookies'ka shidaa hadii aad rabto in aad soo gasho {{SITENAME}}.",
 'userlogin'                  => 'Gudaha gal / sameyso magac',
 'userloginnocreate'          => 'Gudaha gal',
 'logout'                     => 'Ka bax',
@@ -433,12 +435,20 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'resetpass'                 => 'Bedel ereysirka',
 'resetpass_announce'        => 'waxaa ku soo geshay eraysir ku meelgaar ah  oo e-mail laguugu soo diray.
 Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qortaa eraysir oo cusub:',
+'resetpass_header'          => 'bedel  ereyga sirta ee koontada',
 'oldpassword'               => 'Ereysirkii hore:',
 'newpassword'               => 'Ereysir cusub:',
 'retypenew'                 => 'Qor mar labaad ereysirka cusub:',
 'resetpass_forbidden'       => 'ereyada sirka ah mala bedeli karo',
 'resetpass-submit-loggedin' => 'bedel ereysirka',
 'resetpass-submit-cancel'   => 'Iska xir',
+
+# Special:PasswordReset
+'passwordreset'              => 'Bedel ereysirka',
+'passwordreset-username'     => 'Magaca gudagalka',
+'passwordreset-email'        => 'Ciwaanka e-mailka',
+'passwordreset-emailelement' => 'Magaca gudagalka: $1
+Ereysirka kumeelgaarka ah: $2',
 
 # Edit page toolbar
 'media_tip' => 'Linkiga file-ka',
@@ -453,10 +463,27 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'showdiff'                       => 'Itus isbedelka',
 'anoneditwarning'                => "'''Digniin:''' Gudaha kuma jirtid. Cinwaankaaga IP:ga waxaa lagu diiwaangelindoonaa taariikhda bedelida bogan.",
 'anonpreviewwarning'             => "''Ma soo gelin. Hadii aad keydisid waxaa ciwaankaada  IP:ka  lagu duubaa taariikhda bedelka boggaan.''",
+'blockedtitle'                   => 'Isticmaalaha waa la mamnuucay',
+'blockedtext'                    => "'''Magacaaga gudagalaha ama ciwaanka IP'ka waa la mamnuucay.'''
+
+Mamnuucida waxaa sameeyay  $1.
+Sababta neh waxaa waaye  ''$2''.
+
+* Mamnuucida waxoo bilaamay: $8
+* Mamnuucida waxoo dhamaanaa: $6
+* Ku aadan mamnuucida: $7
+
+Waxaa la  xiriiri kartaa $1 ama mid ka mid ah  [[{{MediaWiki:Grouppage-sysop}}|maamulada]] kale si aad uula muranto mamnuucida.
+Ma isticmaali kartid 'e-mailka isticmaalahaan' soo diray hadii aad heesato maa hinee ciwaan e-mail oo kuugu jiro  [[Special:Preferences|koontadaada]] oona lagaa mamnuucin in aad isticmaasho.
+Ciwaankaada  IP'ka waa $3, gudagalahaaga la mamnuucay neh waa  #$5.
+fadlan ku soo dar su'aalahaaga waxa kor ku qoran.",
 'blockednoreason'                => 'wax sabab ah kama bixin',
+'blockedoriginalsource'          => "Ereykoodka '''$1''' hoos ka fiiri:",
 'blockededitsource'              => "Qoraalkii '''aad waxkaga bedashay''' '''$1''' waxaad ku arkikartaa hoos:",
 'whitelistedittitle'             => 'Waxaa loo baahanyahay gudagal si aad wax uga bedeshid',
 'whitelistedittext'              => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
+'confirmedittext'                => 'Waa in aad xaqiijisaa e-mailkaada inta aadan sameynin bogaga.
+fadlan ku dar kuna xaqiiji e-mailkaada meesha  [[Special:Preferences|dooqyada gudagalahaaga]].',
 'loginreqtitle'                  => 'Waxaa loo baahanyahay gudagalid',
 'loginreqlink'                   => 'Gudaha gal',
 'loginreqpagetext'               => 'Waa in aad $1 si aad u fiirisid bogyaasha kale.',
@@ -480,6 +507,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
 'editing'                        => 'Waxaa wax ka bedeloosaa $1',
+'editingsection'                 => 'Waxaa wax ka bedeloosaa $1 (qaar)',
 'yourtext'                       => 'Qoraalkaaga',
 'editingold'                     => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",

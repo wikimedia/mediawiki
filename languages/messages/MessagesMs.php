@@ -3283,7 +3283,7 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 # Special:FilePath
 'filepath'         => 'Laluan fail',
 'filepath-page'    => 'Fail:',
-'filepath-submit'  => 'Laluan',
+'filepath-submit'  => 'Pergi',
 'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
 Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
 

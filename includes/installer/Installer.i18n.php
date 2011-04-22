@@ -8602,7 +8602,7 @@ $1
 	'config-license-cc-by-nc-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ നോൺ-കൊമേഴ്സ്യൽ ഷെയർ എലൈക്',
 	'config-license-gfdl-old' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.2',
 	'config-license-gfdl-current' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.3 അഥവാ പുതിയത്',
-	'config-license-pd' => 'പൊതു സഞ്ചയം',
+	'config-license-pd' => 'പൊതുസഞ്ചയം',
 	'config-email-settings' => 'ഇമെയിൽ സജ്ജീകരണങ്ങൾ',
 	'config-enable-email-help' => "ഇമെയിൽ പ്രവർത്തിക്കണമെങ്കിൽ, [http://www.php.net/manual/en/mail.configuration.php PHP's മെയിൽ സജ്ജീകരണങ്ങൾ] ശരിയായി ക്രമീകരിക്കേണ്ടതുണ്ട്.
 ഇമെയിൽ സൗകര്യം ആവശ്യമില്ലെങ്കിൽ, ഇവിടെത്തന്നെ അത് നിർജ്ജീവമാക്കാം.",
@@ -11740,6 +11740,13 @@ $messages['tl'] = array(
 Upang isapanahon ang pagtatalagang ito, mangyaring patakbuhin sa halip ang update.php',
 	'config-localsettings-key' => 'Susi ng pagsasapanahon:',
 	'config-localsettings-badkey' => 'Hindi tama ang susing ibinigay mo.',
+	'config-upgrade-key-missing' => 'Napansin ang isang umiiral na pagtatalaga ng MediaWiki.
+Upang isapanahon ang katalagahang ito, mangyaring ilagay ang sumusunod na guhit sa ilalim ng iyong LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Lumilitaw na hindi pa buo ang umiiral na LocalSettings.php.
+Ang pabagu-bagong $1 ay hindi nakatakda.
+Mangyaring baguhin ang  LocalSettings.php upang ang maitakda ang pagpapabagu-bagong ito, at pindutin ang "Magpatuloy".',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
 	'config-no-session' => 'Nawala ang iyong datos ng sesyon!
 Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.',
@@ -11840,6 +11847,7 @@ Baguhin lamang ito kung alam mong kinakailangan.',
 	'config-sqlite-dir' => 'Direktoryo ng dato ng SQLite:',
 	'config-oracle-def-ts' => 'Likas na nakatakdang puwang ng talahanayan:',
 	'config-oracle-temp-ts' => 'Pansamantalang puwang ng talahanayan:',
+	'config-type-ibm_db2' => 'DB2 ng IBM',
 	'config-header-mysql' => 'Mga katakdaan ng MySQL',
 	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
 	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
@@ -11853,6 +11861,9 @@ Baguhin lamang ito kung alam mong kinakailangan.',
 Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
 	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
 Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9), mga salangguhit (_) at mga gitling (-).',
+	'config-connection-error' => '$1.
+
+Suriin ang punong-abala, pangalan ng tagagamit at hudyat na nasa ibaba at subukan ulit.',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
 	'config-sqlite-connection-error' => '$1.
 
