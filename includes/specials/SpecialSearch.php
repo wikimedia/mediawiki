@@ -34,6 +34,9 @@ class SpecialSearch extends SpecialPage {
 	/// Search engine
 	protected $searchEngine;
 
+	/// For links
+	protected $extraParams = array();
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -436,7 +439,7 @@ class SpecialSearch extends SpecialPage {
 				$opt['ns' . $n] = 1;
 			}
 		}
-		return $opt;
+		return $opt + $this->extraParams;
 	}
 
 	/**
@@ -1082,4 +1085,15 @@ class SpecialSearch extends SpecialPage {
 		}
 		return $this->searchEngine;
 	}
+
+	/**
+	 * Users of hook SpecialSearchSetupEngine can use this to
+	 * add more params to links to not lose selection when
+	 * user navigates search results.
+	 * @since 1.18
+	 */
+	public function setExtraParam( $key, $value ) {
+		$this->extraParams[$key] = $value;
+	}
+
 }
