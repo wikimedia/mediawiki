@@ -2874,13 +2874,33 @@ class DBError extends MWException {
 		parent::__construct( $error );
 	}
 
+	protected function getContentMessage( $html ) {
+		if ( $html ) {
+			return nl2br( htmlspecialchars( $this->getMessage() ) );
+		} else {
+			return $this->getMessage();
+		}
+	}
+
 	function getText() {
 		global $wgShowDBErrorBacktrace;
 
-		$s = $this->getMessage() . "\n";
+		$s = $this->getContentMessage( false ) . "\n";
 
 		if ( $wgShowDBErrorBacktrace ) {
 			$s .= "Backtrace:\n" . $this->getTraceAsString() . "\n";
+		}
+
+		return $s;
+	}
+
+	function getHTML() {
+		global $wgShowDBErrorBacktrace;
+
+		$s = $this->getContentMessage( true );
+
+		if ( $wgShowDBErrorBacktrace ) {
+			$s .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
 		}
 
 		return $s;
@@ -3084,20 +3104,17 @@ class DBQueryError extends DBError {
 		$this->fname = $fname;
 	}
 
-	function getText() {
-		global $wgShowDBErrorBacktrace;
-
+	function getContentMessage( $html ) {
 		if ( $this->useMessageCache() ) {
-			$s = wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
-				htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
-
-			if ( $wgShowDBErrorBacktrace ) {
-				$s .= "Backtrace:\n" . $this->getTraceAsString() . "\n";
+			$msg = $html ? 'dberrortext' : 'dberrortextcl';
+			$ret = wfMsg( $msg, $this->getSQL(),
+				$this->fname, $this->errno, $this->error );
+			if ( $html ) {
+				$ret = htmlspecialchars( $ret );
 			}
-
-			return $s;
+			return $ret;
 		} else {
-			return parent::getText();
+			return parent::getContentMessage( $html );
 		}
 	}
 
@@ -3118,23 +3135,6 @@ class DBQueryError extends DBError {
 
 	function getPageTitle() {
 		return $this->msg( 'databaseerror', 'Database error' );
-	}
-
-	function getHTML() {
-		global $wgShowDBErrorBacktrace;
-
-		if ( $this->useMessageCache() ) {
-			$s = wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
-		} else {
-			$s = nl2br( htmlspecialchars( $this->getMessage() ) );
-		}
-
-		if ( $wgShowDBErrorBacktrace ) {
-			$s .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
-		}
-
-		return $s;
 	}
 }
 
