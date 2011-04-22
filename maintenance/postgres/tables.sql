@@ -399,14 +399,6 @@ CREATE TABLE watchlist (
 CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
 CREATE INDEX wl_user ON watchlist (wl_user);
 
-CREATE TABLE math (
-  math_inputhash              BYTEA     NOT NULL  UNIQUE,
-  math_outputhash             BYTEA     NOT NULL,
-  math_html_conservativeness  SMALLINT  NOT NULL,
-  math_html                   TEXT,
-  math_mathml                 TEXT
-);
-
 
 CREATE TABLE interwiki (
   iw_prefix  TEXT      NOT NULL  UNIQUE,
