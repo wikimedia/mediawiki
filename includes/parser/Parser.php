@@ -4733,37 +4733,21 @@ class Parser {
 			if ( strpos( $matches[0], '%' ) !== false ) {
 				$matches[1] = rawurldecode( $matches[1] );
 			}
-			$title = Title::newFromText( $matches[1], NS_FILE );
-			if ( is_null( $title ) ) {
+			$tp = Title::newFromText( $matches[1], NS_FILE );
+			$nt =& $tp;
+			if ( is_null( $nt ) ) {
 				# Bogus title. Ignore these so we don't bomb out later.
 				continue;
 			}
-			
-			$label = '';
-			$alt = '';
 			if ( isset( $matches[3] ) ) {
-				// look for an |alt= definition while trying not to break existing
-				// captions with multiple pipes (|) in it, until a more sensible grammar
-				// is defined for images in galleries
-				
-				$altmatches = StringUtils::explode('|', $matches[3]);
-				
-				foreach ( $altmatches as $altmatch ) {
-					if ( substr( $altmatch, 0, 4 ) === 'alt=' ) {
-						$alt = $this->stripAltText( trim( substr( $altmatch, 4 ) ), false );
-					}
-					else {
-						// concatenate all other pipes
-						$label .= '|' . $altmatch;
-					}
-				}
-				// remove the first pipe
-				$label = substr( $label, 1 );
+				$label = $matches[3];
+			} else {
+				$label = '';
 			}
 
 			$html = $this->recursiveTagParse( trim( $label ) );
 
-			$ig->add( $title, $html, $alt );
+			$ig->add( $nt, $html );
 		}
 		return $ig->toHTML();
 	}
