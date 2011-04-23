@@ -3114,8 +3114,6 @@ $wgMessageStructure = array(
 		'edit-externally-help',
 	),
 	'all' => array(
-		'recentchangesall',
-		'imagelistall',
 		'watchlistall2',
 		'namespacesall',
 		'monthsall',
