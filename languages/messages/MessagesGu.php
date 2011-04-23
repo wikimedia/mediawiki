@@ -3121,12 +3121,10 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'edit-externally-help' => '(વધુ માહિતિ માટે [http://www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સુચનાઓ] જુઓ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'બધા',
-'imagelistall'     => 'બધા',
-'watchlistall2'    => 'બધા',
-'namespacesall'    => 'બધા',
-'monthsall'        => 'બધા',
-'limitall'         => 'બધા',
+'watchlistall2' => 'બધા',
+'namespacesall' => 'બધા',
+'monthsall'     => 'બધા',
+'limitall'      => 'બધા',
 
 # E-mail address confirmation
 'confirmemail'              => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',

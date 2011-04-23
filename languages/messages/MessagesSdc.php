@@ -1969,11 +1969,9 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 'edit-externally-help' => "Pa maggiori infuimmazioni cunsulthà l'[http://www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tutti',
-'imagelistall'     => 'tutti',
-'watchlistall2'    => 'tutti',
-'namespacesall'    => 'Tutti',
-'monthsall'        => 'tutti',
+'watchlistall2' => 'tutti',
+'namespacesall' => 'Tutti',
+'monthsall'     => 'tutti',
 
 # E-mail address confirmation
 'confirmemail'            => 'Cunfèimma indirizzu di postha erettrònica',

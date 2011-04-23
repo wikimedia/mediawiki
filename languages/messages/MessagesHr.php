@@ -808,6 +808,10 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 Možda ste već uspješno promijenili Vašu lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass-temp-password'   => 'Privremena lozinka:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Ponovno postavi lozinku',
+'passwordreset-username' => 'Suradničko ime:',
+
 # Edit page toolbar
 'bold_sample'     => 'Podebljani tekst',
 'bold_tip'        => 'Podebljani tekst',
@@ -2938,20 +2942,14 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'metadata-help'     => 'Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.',
 'metadata-expand'   => 'Pokaži sve podatke',
 'metadata-collapse' => 'Sakrij dodatne podatke',
-'metadata-fields'   => "Slijedeći EXIF metapodaci će biti prikazani ispod slike u tablici s metapodacima. Ostali će biti sakriveni (možete ih vidjeti ako kliknete na poveznicu ''Pokaži sve podatke'').
+'metadata-fields'   => 'EXIF polja metapodataka pobrojana u ovoj poruci bit će prikazani na stranici s prikazom slike kada je tablica s metapodacima sakrivena. Ostali će biti uobičajeno sakriveni.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude",
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2987,8 +2985,8 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-colorspace'                  => 'Kolor prostor',
 'exif-componentsconfiguration'     => 'Značenje pojedinih komponenti',
 'exif-compressedbitsperpixel'      => 'Dubina boje poslije sažimanja',
-'exif-pixelydimension'             => 'Puna visina slike',
-'exif-pixelxdimension'             => 'Puna širina slike',
+'exif-pixelydimension'             => 'Važeća širina slike',
+'exif-pixelxdimension'             => 'Važeća visina slike',
 'exif-usercomment'                 => 'Suradnički komentar',
 'exif-relatedsoundfile'            => 'Povezani zvučni zapis',
 'exif-datetimeoriginal'            => 'Datum i vrijeme slikanja',
@@ -3003,7 +3001,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
 'exif-isospeedratings'             => 'ISO vrijednost',
 'exif-shutterspeedvalue'           => 'Brzina zatvarača',
-'exif-aperturevalue'               => 'Dijafragma',
+'exif-aperturevalue'               => 'Otvor',
 'exif-brightnessvalue'             => 'Osvijetljenost',
 'exif-exposurebiasvalue'           => 'Kompenzacija ekspozicije',
 'exif-maxaperturevalue'            => 'Minimalni broj dijafragme',
@@ -3218,12 +3216,10 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'edit-externally-help' => '(Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sve',
-'imagelistall'     => 'sve',
-'watchlistall2'    => 'sve',
-'namespacesall'    => 'sve',
-'monthsall'        => 'sve',
-'limitall'         => 'sve',
+'watchlistall2' => 'sve',
+'namespacesall' => 'sve',
+'monthsall'     => 'sve',
+'limitall'      => 'sve',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potvrda e-mail adrese',

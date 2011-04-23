@@ -587,6 +587,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'createaccount'              => 'Neie Kont opmaachen',
 'gotaccount'                 => "Dir hutt schonn e Benotzerkont? '''$1'''.",
 'gotaccountlink'             => 'Umellen',
+'userlogin-resetlink'        => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 'createaccountmail'          => 'Via E-Mail',
 'createaccountreason'        => 'Grond:',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
@@ -677,6 +678,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 
 # Special:PasswordReset
 'passwordreset'              => 'Passwuert zrécksetzen',
+'passwordreset-text'         => 'Fëllt dëse Formulaire aus fir eng E-Mail Erënnerung vun den Detailer vun Ärem Benotzerkont ze kréien.',
 'passwordreset-legend'       => 'Passwuert zrécksetzen',
 'passwordreset-disabled'     => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-username'     => 'Benotzernumm:',
@@ -1570,7 +1572,7 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
 'uploadjava'                  => "An dësem ZIP-Fichier ass e JAVA CLASS-Fichier dran.
 D'Eropluede vu JAVA-Fichieren ass net erlaabt, well si d'Ëmgoe vu Sécherheetsmoossnamen erméigleche kënnen.",
-'upload-source'               => 'Quellfichier',
+'upload-source'               => 'Quell-Fichier',
 'sourcefilename'              => 'Numm vum Originalfichier:',
 'sourceurl'                   => 'Quell-URL:',
 'destfilename'                => 'Numm ënner deem de Fichier gespäichert gëtt:',
@@ -2985,20 +2987,26 @@ Déi aner sinn am Standard verstoppt.
 'exif-worldregiondest'             => 'Gewise Welt-Regioun',
 'exif-countrydest'                 => 'Gewisent Land',
 'exif-countrycodedest'             => 'Code vum gewisene Land',
+'exif-citydest'                    => 'Gewise Stad',
+'exif-sublocationdest'             => 'Gewisenen Deel vun der Stad',
 'exif-objectname'                  => 'Kuerzen Titel',
 'exif-specialinstructions'         => 'Besonnesch Instruktiounen',
 'exif-headline'                    => 'Iwwerschrëft',
 'exif-source'                      => 'Quell',
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
+'exif-objectcycle'                 => 'Zäit vum Dag fir deen dëse Fichier geduecht ass',
 'exif-contact'                     => 'Kontaktinformatioun',
 'exif-languagecode'                => 'Sprooch',
 'exif-iimversion'                  => 'IIM-Versioun',
 'exif-iimcategory'                 => 'Kategorie',
 'exif-iimsupplementalcategory'     => 'Zousätzlech Kategorien',
 'exif-datetimeexpires'             => 'Net benotzen nom',
+'exif-datetimereleased'            => 'Erausginn den',
+'exif-lens'                        => 'Objektiv dat benotzt gouf',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
 'exif-cameraownername'             => 'Besëtzer vun der Kamera',
 'exif-label'                       => 'Etiquette',
+'exif-datetimemetadata'            => 'Datum vun der leschter Ännerung vun de Metadaten',
 'exif-nickname'                    => 'Informellen Numm vum Bild',
 'exif-rating'                      => 'Bewäertung (vu 5)',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
@@ -3006,6 +3014,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-giffilecomment'              => 'Bemierkung zum GIF-Fichier',
 'exif-organisationinimage'         => 'Organisatioun um Bild',
 'exif-personinimage'               => 'Persoun um Bild',
+'exif-originalimageheight'         => 'Héicht vum Bild virum Ofschneiden',
+'exif-originalimagewidth'          => 'Breet vum Bild virum Ofschneiden',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',
@@ -3023,6 +3033,8 @@ Déi aner sinn am Standard verstoppt.
 
 'exif-planarconfiguration-1' => 'Graffe Format',
 'exif-planarconfiguration-2' => 'Planare Format',
+
+'exif-colorspace-65535' => 'Net kalibréiert',
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 
@@ -3174,6 +3186,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-dc-date'   => 'Datum(en)',
 'exif-dc-rights' => 'Rechter',
 
+'exif-rating-rejected' => 'Refuséiert',
+
 'exif-isospeedratings-overflow' => 'Méi grouss wéi 65535',
 
 'exif-iimcategory-ace' => 'Konscht, Kultur an Ënnerhalung',
@@ -3185,6 +3199,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimcategory-hth' => 'Gesondheet',
 'exif-iimcategory-hum' => 'Interessen',
 'exif-iimcategory-lab' => 'Aarbecht',
+'exif-iimcategory-lif' => 'Lifestyle a Fräizäit',
 'exif-iimcategory-pol' => 'Politik',
 'exif-iimcategory-rel' => 'Relioun a Glawen',
 'exif-iimcategory-sci' => 'Wëssenschaft an Technologie',
@@ -3203,12 +3218,10 @@ Déi aner sinn am Standard verstoppt.
 'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[http://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'all',
-'imagelistall'     => 'alleguerten',
-'watchlistall2'    => 'all',
-'namespacesall'    => 'all',
-'monthsall'        => 'all',
-'limitall'         => 'all',
+'watchlistall2' => 'all',
+'namespacesall' => 'all',
+'monthsall'     => 'all',
+'limitall'      => 'all',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-Mailadress confirméieren',

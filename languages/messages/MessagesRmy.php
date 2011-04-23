@@ -532,10 +532,8 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'ilsubmit'     => 'Rod',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sa',
-'imagelistall'     => 'savore',
-'watchlistall2'    => 'savore',
-'namespacesall'    => 'savore',
+'watchlistall2' => 'savore',
+'namespacesall' => 'savore',
 
 # Trackbacks
 'trackbacklink' => 'Vurma',

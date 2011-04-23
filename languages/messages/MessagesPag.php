@@ -372,7 +372,6 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'exif-filesource' => 'File na pinanlapuan',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'amin',
 'watchlistall2' => 'amin',
 'namespacesall' => 'amin',
 'monthsall'     => 'amin',

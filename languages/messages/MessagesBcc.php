@@ -2904,11 +2904,9 @@ Variants for Chinese language
 'edit-externally-help' => '(په گیشترین اطلاعات بچار[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'کل',
-'imagelistall'     => 'کل',
-'watchlistall2'    => 'کل',
-'namespacesall'    => 'کل',
-'monthsall'        => 'کل',
+'watchlistall2' => 'کل',
+'namespacesall' => 'کل',
+'monthsall'     => 'کل',
 
 # E-mail address confirmation
 'confirmemail'             => 'آدرس ایمیل تایید کن',

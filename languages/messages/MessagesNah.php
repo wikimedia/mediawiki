@@ -1420,12 +1420,10 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'exif-gpslongitude-w' => 'Cihuātlāmpa huehtlatzīncāyōtl',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'mochīntīn',
-'imagelistall'     => 'mochīntīn',
-'watchlistall2'    => 'mochīntīn',
-'namespacesall'    => 'mochīntīn',
-'monthsall'        => '(mochīntīn)',
-'limitall'         => 'mochi',
+'watchlistall2' => 'mochīntīn',
+'namespacesall' => 'mochīntīn',
+'monthsall'     => '(mochīntīn)',
+'limitall'      => 'mochi',
 
 # E-mail address confirmation
 'confirmemail'           => 'Ticchicāhuāz e-mail',

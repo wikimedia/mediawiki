@@ -2631,11 +2631,9 @@ $1',
 'edit-externally-help' => '(Ванк [http://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовалсь] сяда лама содаманкса)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'сембе',
-'imagelistall'     => 'сембе',
-'watchlistall2'    => 'сембе',
-'namespacesall'    => 'сембе',
-'monthsall'        => 'сембе',
+'watchlistall2' => 'сембе',
+'namespacesall' => 'сембе',
+'monthsall'     => 'сембе',
 
 # E-mail address confirmation
 'confirmemail'             => 'Кемостамс электрононь адресть',

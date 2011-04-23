@@ -3164,12 +3164,10 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'edit-externally-help' => '(Katso [http://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kaikki',
-'imagelistall'     => 'kaikki',
-'watchlistall2'    => ', koko historia',
-'namespacesall'    => 'kaikki',
-'monthsall'        => 'kaikki',
-'limitall'         => 'kaikki',
+'watchlistall2' => ', koko historia',
+'namespacesall' => 'kaikki',
+'monthsall'     => 'kaikki',
+'limitall'      => 'kaikki',
 
 # E-mail address confirmation
 'confirmemail'              => 'Varmenna sähköpostiosoite',

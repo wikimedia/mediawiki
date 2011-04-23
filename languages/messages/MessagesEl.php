@@ -3265,12 +3265,10 @@ $1',
 'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [http://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'όλες',
-'imagelistall'     => 'όλες',
-'watchlistall2'    => 'όλες',
-'namespacesall'    => 'όλα',
-'monthsall'        => 'όλα',
-'limitall'         => 'όλες',
+'watchlistall2' => 'όλες',
+'namespacesall' => 'όλα',
+'monthsall'     => 'όλα',
+'limitall'      => 'όλες',
 
 # E-mail address confirmation
 'confirmemail'              => 'Επιβεβαίωση διεύθυνσης e-mail',

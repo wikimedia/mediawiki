@@ -2516,12 +2516,10 @@ $1',
 'edit-externally-help' => 'மேலும் தகவல்களுக்கு [http://www.mediawiki.org/wiki/Manual:External_editors அமைப்பு அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'அனைத்தும்',
-'imagelistall'     => 'அனைத்து',
-'watchlistall2'    => 'அனைத்து',
-'namespacesall'    => 'அனைத்து',
-'monthsall'        => 'அனைத்து மாதங்களும்',
-'limitall'         => 'அனைத்து',
+'watchlistall2' => 'அனைத்து',
+'namespacesall' => 'அனைத்து',
+'monthsall'     => 'அனைத்து மாதங்களும்',
+'limitall'      => 'அனைத்து',
 
 # E-mail address confirmation
 'confirmemail'             => 'மின்னஞ்சல் முகவரியை உறுதிப்படுத்துக',

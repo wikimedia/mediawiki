@@ -469,45 +469,87 @@ Tui changes ancor ne ha esset conservat!",
 # Special:Categories
 'categories' => 'Categories',
 
+# Special:LinkSearch
+'linksearch'    => 'Catenunes extern',
+'linksearch-ns' => 'Spacie de nómine:',
+
+# E-mail user
+'emailuser' => 'Parlar che ti usator',
+
 # Watchlist
-'watchlist'            => 'Liste de sequet págines',
+'watchlist'            => 'Liste de págines vigilat',
+'mywatchlist'          => 'Mi liste de págines vigilat',
 'addedwatch'           => 'Adjuntet al liste',
 'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:RecentChanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
-'watch'                => 'Sequer',
-'watchthispage'        => 'Sequer ti págine',
+'watch'                => 'Vigilar',
+'watchthispage'        => 'Vigilar ti págine',
 'unwatch'              => 'Desvigilar',
+'watchlist-details'    => '{{PLURAL:$1|$1 págine|$1 págines}} in tui liste de págines vigilat, sin págines de discussion.',
 'wlheader-enotif'      => '* Li notification de e-mail es permisset.',
 'wlheader-showupdated' => "* Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
 'wlnote'               => "Infra {{PLURAL:$1|es li ultim change|es li ultim '''$1''' changes}} in li ultim {{PLURAL:$2|hor|'''$2''' hores}}.",
 'wlshowlast'           => 'Monstra ultim $1 hores $2 dies $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Vigilant...',
 'unwatching' => 'Desvigilant...',
+
+'created' => 'creat',
 
 # Delete
 'deletepage'            => 'Deleter págine',
-'actioncomplete'        => 'Supression efectuat',
+'delete-legend'         => 'Deleter',
+'actioncomplete'        => 'Processu complet',
+'deletedarticle'        => 'deletet "[[$1]]"',
+'dellogpage'            => 'Diarium de deletion',
 'deletecomment'         => 'Motive:',
-'deleteotherreason'     => 'Altri/suplementari motive:',
+'deleteotherreason'     => 'Altri motive:',
 'deletereasonotherlist' => 'Altri motive',
 
+# Rollback
+'rollbacklink' => 'desfar',
+
 # Protect
-'prot_1movedto2'   => '[[$1]] moet a [[$2]]',
-'protectcomment'   => 'Motive:',
-'restriction-type' => 'Permission:',
+'protectlogpage'      => 'Diarium de protection',
+'prot_1movedto2'      => '[[$1]] hat movet por [[$2]]',
+'protectcomment'      => 'Motive:',
+'protect-level-sysop' => 'Administratores solmen',
+'protect-expiring'    => 'expira $1 (UTC)',
+'restriction-type'    => 'Permission:',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Redacter',
+'restriction-move' => 'Mover',
+
+# Undelete
+'undeletebtn'            => 'Restaurar',
+'undelete-search-submit' => 'Serchar',
 
 # Namespace form on various pages
+'namespace'      => 'Spacie de nómine:',
+'invert'         => 'Inverter selection',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'mycontris' => 'Mi contributiones',
-'uctop'     => '(prim)',
+'contributions' => 'Contributiones de usator',
+'mycontris'     => 'Mi contributiones',
+'uctop'         => '(prim)',
+'month'         => 'De mensu (e anterioris):',
+'year'          => 'De annu (e anterioris):',
 
-'sp-contributions-talk' => 'Discussion',
+'sp-contributions-newbies-sub' => 'Por nov contos',
+'sp-contributions-blocklog'    => 'diarium de bloc',
+'sp-contributions-talk'        => 'Discussion',
 
 # What links here
-'whatlinkshere'            => 'Ligat págines',
+'whatlinkshere'            => 'Quo catenunes ci',
+'whatlinkshere-title'      => 'Págines quo liga por "$1"',
 'whatlinkshere-page'       => 'Págine:',
+'isredirect'               => 'págine de redirecterion',
+'istemplate'               => 'inclusion',
+'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anterioris}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|proxim|proxim $1}}',
+'whatlinkshere-links'      => '← catenunes',
 'whatlinkshere-hideredirs' => '$1 redirectiones',
 'whatlinkshere-hidetrans'  => '$1 transclusiones',
 'whatlinkshere-hidelinks'  => '$1 catenunes',
@@ -515,22 +557,38 @@ Tui changes ancor ne ha esset conservat!",
 'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
-'ipblocklist'  => 'Blocat adresses e usatores',
-'contribslink' => 'contribs',
+'blockip'            => 'Blocar usator',
+'ipbreason'          => 'Motive:',
+'ipbotheroption'     => 'altri',
+'ipblocklist'        => 'Blocat adresses e usatores',
+'ipblocklist-submit' => 'Serchar',
+'infiniteblock'      => 'infinit',
+'blocklink'          => 'blocar',
+'unblocklink'        => 'desblocar',
+'contribslink'       => 'contribs',
+'blocklogpage'       => 'Diarium de bloc',
+'blocklogentry'      => '"[[$1]]" hat blocat che un témpor de expiration de $2 $3',
 
 # Move page
-'movearticle' => 'Moer págine:',
+'movearticle' => 'Mover págine:',
 'movenologin' => 'Vu ne ha intrat',
-'movepagebtn' => 'Moer págine',
-'movedto'     => 'moet a',
-'1movedto2'   => '[[$1]] moet a [[$2]]',
+'newtitle'    => 'Por nov titul:',
+'move-watch'  => 'Vigilar ti págine',
+'movepagebtn' => 'Mover págine',
+'movedto'     => 'movet por',
+'1movedto2'   => '[[$1]] hat movet por [[$2]]',
+'movelogpage' => 'Diarium de movementiones',
 'movereason'  => 'Motive:',
+'revertmove'  => 'reverter',
 
 # Export
 'export' => 'Exportar págines',
 
 # Namespace 8 related
 'allmessages' => 'Liste del missages del sistema',
+
+# Thumbnails
+'thumbnail-more' => 'Expander',
 
 # Special:Import
 'xml-error-string' => '$1 in linea $2, col $3 (byte $4): $5',
@@ -601,13 +659,20 @@ Tui changes ancor ne ha esset conservat!",
 'tooltip-preferences-save'        => 'Conservar preferenties',
 'tooltip-summary'                 => 'Intrar un summarium curt',
 
+# Browsing diffs
+'previousdiff' => '← Redaction anteriori',
+'nextdiff'     => 'Proxim redaction →',
+
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|págine|págines}}',
+'show-big-image'  => 'Resolution complet',
 
 # Special:NewFiles
 'newimages' => 'Galerie de nov images',
+'ilsubmit'  => 'Serchar',
 
 # Metadata
+'metadata'      => 'Metadata',
 'metadata-help' => 'Ti file contene information additional, probabilmen adjuntet de li cámera digitale o scandetor usat por crear o digitalizar it. Si li file ha esset redactet de tui statu original, alcun detallies posse ne reflecter completmen li file redactet.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -622,10 +687,20 @@ Tui changes ancor ne ha esset conservat!",
 'trackbacklink'     => 'Tracie de dorse',
 'trackbackdeleteok' => 'Li tracie de dorse esset deletet che successe',
 
+# Multipage image navigation
+'imgmultigo' => 'Ear!',
+
+# Table pager
+'table_pager_limit_submit' => 'Ear',
+
 # Special:Version
-'version' => 'Version',
+'version'       => 'Version',
+'version-other' => 'Altri',
+
+# Special:FilePath
+'filepath-page' => 'Figura:',
 
 # Special:SpecialPages
-'specialpages' => 'Special págines',
+'specialpages' => 'Págines special',
 
 );

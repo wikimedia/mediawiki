@@ -1898,11 +1898,9 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'edit-externally-help' => "(Ko'birek mag'lıwmat ushın [http://www.mediawiki.org/wiki/Manual:External_editors ornatıw jolların] qaran')",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => "ha'mmesin",
-'imagelistall'     => "ha'mme",
-'watchlistall2'    => "ha'mmesin",
-'namespacesall'    => "ha'mmesi",
-'monthsall'        => "ha'mme",
+'watchlistall2' => "ha'mmesin",
+'namespacesall' => "ha'mmesi",
+'monthsall'     => "ha'mme",
 
 # E-mail address confirmation
 'confirmemail'            => 'E-mail adresin tastıyıqlaw',

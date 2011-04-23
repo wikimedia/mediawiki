@@ -436,9 +436,6 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'exif-imagedescription' => 'Title de imaje',
 'exif-imageuniqueid'    => 'Unik imaje ID',
 
-# 'all' in various places, this might be different for inflected languages
-'imagelistall' => 'omnes',
-
 # Auto-summaries
 'autosumm-replace' => "Remplasant pagine kun '$1'",
 'autoredircomment' => 'Ri-adresant a [[$1]]',

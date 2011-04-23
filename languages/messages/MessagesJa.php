@@ -3424,12 +3424,10 @@ Variants for Chinese language
 'edit-externally-help' => '（詳しい情報は[http://www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください）',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'すべて',
-'imagelistall'     => 'すべて',
-'watchlistall2'    => 'すべて',
-'namespacesall'    => 'すべて',
-'monthsall'        => 'すべて',
-'limitall'         => 'すべて',
+'watchlistall2' => 'すべて',
+'namespacesall' => 'すべて',
+'monthsall'     => 'すべて',
+'limitall'      => 'すべて',
 
 # E-mail address confirmation
 'confirmemail'              => 'メールアドレスの確認',

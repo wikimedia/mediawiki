@@ -3342,12 +3342,10 @@ Os demais agocharanse por omisión.
 'edit-externally-help' => '(Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para máis información.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todos',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'todo',
-'namespacesall'    => 'todos',
-'monthsall'        => 'todos',
-'limitall'         => 'todas',
+'watchlistall2' => 'todo',
+'namespacesall' => 'todos',
+'monthsall'     => 'todos',
+'limitall'      => 'todas',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar o enderezo de correo electrónico',

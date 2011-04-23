@@ -1402,12 +1402,10 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 'edit-externally-help' => '(Serba daêna melumati qaytê pelga [http://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'pêro',
-'imagelistall'     => 'pêro',
-'watchlistall2'    => 'pêro',
-'namespacesall'    => 'pêro',
-'monthsall'        => 'pêro',
-'limitall'         => 'pêro',
+'watchlistall2' => 'pêro',
+'namespacesall' => 'pêro',
+'monthsall'     => 'pêro',
+'limitall'      => 'pêro',
 
 # action=purge
 'confirm_purge_button' => 'Temam',

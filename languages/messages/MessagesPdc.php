@@ -840,12 +840,10 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'exif-gaincontrol-0' => 'Ken',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'all',
-'imagelistall'     => 'all',
-'watchlistall2'    => 'all',
-'namespacesall'    => 'all',
-'monthsall'        => 'all',
-'limitall'         => 'all',
+'watchlistall2' => 'all',
+'namespacesall' => 'all',
+'monthsall'     => 'all',
+'limitall'      => 'all',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL iss zu lang]',

@@ -2238,11 +2238,9 @@ Detang aliwa tambing (by default) lang makasalikut.
 'edit-externally-help' => '(Lon me ing [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para king karagdagang informacion)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'eganagana',
-'imagelistall'     => 'eganagana',
-'watchlistall2'    => 'eganagana',
-'namespacesall'    => 'ila ngan',
-'monthsall'        => 'eganagana',
+'watchlistall2' => 'eganagana',
+'namespacesall' => 'ila ngan',
+'monthsall'     => 'eganagana',
 
 # E-mail address confirmation
 'confirmemail'             => 'Patutwan mung keka ya itang e-mail address',

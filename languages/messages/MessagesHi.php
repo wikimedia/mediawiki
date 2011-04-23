@@ -3013,12 +3013,10 @@ $1',
 'edit-externally-help' => '(और जानकारी के लिए [http://www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'सभी',
-'imagelistall'     => 'सभी',
-'watchlistall2'    => 'सभी',
-'namespacesall'    => 'सभी',
-'monthsall'        => 'सभी',
-'limitall'         => 'सभी',
+'watchlistall2' => 'सभी',
+'namespacesall' => 'सभी',
+'monthsall'     => 'सभी',
+'limitall'      => 'सभी',
 
 # E-mail address confirmation
 'confirmemail'             => 'ई-मेल प्रमाणित करे',

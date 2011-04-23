@@ -3574,12 +3574,10 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'edit-externally-help' => '(Luur en de [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaanweisunge] noh mieh Hinwies)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'all',
-'imagelistall'     => 'all',
-'watchlistall2'    => 'all',
-'namespacesall'    => 'all',
-'monthsall'        => 'all',
-'limitall'         => 'alle',
+'watchlistall2' => 'all',
+'namespacesall' => 'all',
+'monthsall'     => 'all',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-Mail Adress bestätije',

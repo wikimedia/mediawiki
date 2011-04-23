@@ -1529,7 +1529,7 @@ Trebalo bi da proverite istoriju brisanja fajla pre ponovnog slanja.',
 Molimo, proverite podešavanja file_uploads.',
 'uploadscripted'              => 'Ovaj fajl sadrži HTML ili kod skripte koje internet brauzer može pogrešno da interpretira.',
 'uploadvirus'                 => 'Fajl sadrži virus! Detalji: $1',
-'upload-source'               => 'Izvorni fajl',
+'upload-source'               => 'Izvorna datoteka',
 'sourcefilename'              => 'Ime fajla izvora:',
 'sourceurl'                   => 'Izvorna adresa:',
 'destfilename'                => 'Ciljano ime fajla:',
@@ -2987,12 +2987,10 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 'edit-externally-help' => '(Pogledajte [http://www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sve',
-'imagelistall'     => 'sve',
-'watchlistall2'    => 'sve',
-'namespacesall'    => 'svi',
-'monthsall'        => 'sve',
-'limitall'         => 'sve',
+'watchlistall2' => 'sve',
+'namespacesall' => 'svi',
+'monthsall'     => 'sve',
+'limitall'      => 'sve',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potvrdite adresu e-pošte',

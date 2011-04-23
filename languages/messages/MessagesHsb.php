@@ -3024,12 +3024,10 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'edit-externally-help' => '(Hlej [http://www.mediawiki.org/wiki/Manual:External_editors pokiwy za instalaciju] za dalše informacije)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wšě',
-'imagelistall'     => 'wšě',
-'watchlistall2'    => 'wšě',
-'namespacesall'    => 'wšě',
-'monthsall'        => 'wšě',
-'limitall'         => 'wšě',
+'watchlistall2' => 'wšě',
+'namespacesall' => 'wšě',
+'monthsall'     => 'wšě',
+'limitall'      => 'wšě',
 
 # E-mail address confirmation
 'confirmemail'              => 'Emailowu adresu wobkrućić',

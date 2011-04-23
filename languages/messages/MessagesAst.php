@@ -2972,12 +2972,10 @@ Los demás tarán anubríos de mou predetermináu.
 'edit-externally-help' => '(Pa más información echa un güeyu a les [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'toos',
-'imagelistall'     => 'toes',
-'watchlistall2'    => 'too',
-'namespacesall'    => 'toos',
-'monthsall'        => 'toos',
-'limitall'         => 'toos',
+'watchlistall2' => 'too',
+'namespacesall' => 'toos',
+'monthsall'     => 'toos',
+'limitall'      => 'toos',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar direición de corréu',

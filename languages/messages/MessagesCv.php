@@ -1162,10 +1162,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'edit-externally' => 'Ку файла тулашри программăна усă курса тӳрлет',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'пурте',
-'imagelistall'     => 'Пурте',
-'watchlistall2'    => 'пурте',
-'namespacesall'    => 'пурте',
+'watchlistall2' => 'пурте',
+'namespacesall' => 'пурте',
 
 # E-mail address confirmation
 'confirmemail_sent'     => 'Çирĕплетмелли ыйтуллă çырăва ятăмăр.',

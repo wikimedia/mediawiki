@@ -3269,12 +3269,10 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [http://www.mediawiki.org/wiki/Manual:External_editors externého editora])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'všetky',
-'imagelistall'     => 'všetky',
-'watchlistall2'    => 'všetky',
-'namespacesall'    => 'všetky',
-'monthsall'        => 'všetky',
-'limitall'         => 'všetky',
+'watchlistall2' => 'všetky',
+'namespacesall' => 'všetky',
+'monthsall'     => 'všetky',
+'limitall'      => 'všetky',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potvrdiť e-mailovú adresu',

@@ -1354,11 +1354,9 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 'edit-externally-help' => 'Varda [http://www.mediawiki.org/wiki/Manual:External_editors i istrüzión] per avègh püssee infurmazión (in ingles).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tücc',
-'imagelistall'     => 'tücc',
-'watchlistall2'    => 'tücc',
-'namespacesall'    => 'tücc',
-'monthsall'        => 'tücc',
+'watchlistall2' => 'tücc',
+'namespacesall' => 'tücc',
+'monthsall'     => 'tücc',
 
 # E-mail address confirmation
 'confirmemail'          => "Cunferma l<nowiki>'</nowiki>''e-mail''",

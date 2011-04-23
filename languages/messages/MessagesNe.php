@@ -2643,12 +2643,10 @@ $1को बन्देजको कारण : "$2" हो',
 'edit-externally-help' => '(थप जानकारीको लागि [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] मा हेर्नुहोस् )',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'सबै',
-'imagelistall'     => 'सबै',
-'watchlistall2'    => 'सबै',
-'namespacesall'    => 'सबै',
-'monthsall'        => 'सबै',
-'limitall'         => 'सबै',
+'watchlistall2' => 'सबै',
+'namespacesall' => 'सबै',
+'monthsall'     => 'सबै',
+'limitall'      => 'सबै',
 
 # E-mail address confirmation
 'confirmemail'              => 'इमेल ठेगाना पक्का गर्नुहोस्',

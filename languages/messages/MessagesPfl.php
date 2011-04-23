@@ -736,11 +736,9 @@ Annere Metadate sinn standardmäßig versteckelt.
 'edit-externally-help' => '(Guck uff [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fer meh Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alle',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alle',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
+'watchlistall2' => 'alle',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Die wichdiche Ännerunge aagucke',

@@ -1050,11 +1050,9 @@ $messages = array(
 'edit-externally-help' => '(Сайрак палашлан ончал [http://www.mediawiki.org/wiki/Manual:External_editors шындымаш нерген туныктымашым])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'чыла',
-'imagelistall'     => 'чыла',
-'watchlistall2'    => 'чыла',
-'namespacesall'    => 'чыла',
-'monthsall'        => 'чыла',
+'watchlistall2' => 'чыла',
+'namespacesall' => 'чыла',
+'monthsall'     => 'чыла',
 
 # action=purge
 'confirm_purge_button' => 'Йӧра',

@@ -2947,12 +2947,10 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'edit-externally-help' => '(Sjuch do [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'aal',
-'imagelistall'     => 'aal',
-'watchlistall2'    => 'aal',
-'namespacesall'    => 'aal',
-'monthsall'        => 'aal',
-'limitall'         => 'aal',
+'watchlistall2' => 'aal',
+'namespacesall' => 'aal',
+'monthsall'     => 'aal',
+'limitall'      => 'aal',
 
 # E-mail address confirmation
 'confirmemail'              => 'Email-Adrässe bestäätigje',

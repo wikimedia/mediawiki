@@ -487,11 +487,9 @@ $messages = array(
 'metadata' => 'Ufardata',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'allis',
-'imagelistall'     => 'allis',
-'watchlistall2'    => 'allis',
-'namespacesall'    => 'allis',
-'monthsall'        => 'allis',
+'watchlistall2' => 'allis',
+'namespacesall' => 'allis',
+'monthsall'     => 'allis',
 
 # Multipage image navigation
 'imgmultigo' => 'Afgaggan!',

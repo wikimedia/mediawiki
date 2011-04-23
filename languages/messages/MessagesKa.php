@@ -3052,12 +3052,10 @@ $1',
 'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [http://www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ყველა',
-'imagelistall'     => 'ყველა',
-'watchlistall2'    => 'ყველა',
-'namespacesall'    => 'ყველა',
-'monthsall'        => 'ყველა',
-'limitall'         => 'ყველა',
+'watchlistall2' => 'ყველა',
+'namespacesall' => 'ყველა',
+'monthsall'     => 'ყველა',
+'limitall'      => 'ყველა',
 
 # E-mail address confirmation
 'confirmemail'              => 'ელ. ფოსტის მისამართის დადასტურება',

@@ -573,11 +573,9 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'edit-externally-help' => '(Kpɔ [http://www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wokatã',
-'imagelistall'     => 'wokatã',
-'watchlistall2'    => 'katã',
-'namespacesall'    => 'wokatã',
-'monthsall'        => 'wokatã',
+'watchlistall2' => 'katã',
+'namespacesall' => 'wokatã',
+'monthsall'     => 'wokatã',
 
 # Multipage image navigation
 'imgmultipagenext' => 'axa yometɔ',

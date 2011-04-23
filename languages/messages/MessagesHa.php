@@ -765,11 +765,9 @@ Idan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cik
 'edit-externally-help' => '(Duba [http://www.mediawiki.org/wiki/Manual:External_editors bayannan shimfiɗawa] don ƙarin bayani)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'duka',
-'imagelistall'     => 'duka',
-'watchlistall2'    => 'duka',
-'namespacesall'    => 'duka',
-'monthsall'        => 'duka',
+'watchlistall2' => 'duka',
+'namespacesall' => 'duka',
+'monthsall'     => 'duka',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Duba sauye-sauyen da suka dace',

@@ -2285,11 +2285,9 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'edit-externally-help' => 'Pa mas enholmación, lei las [http://www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tó',
-'imagelistall'     => 'tó',
-'watchlistall2'    => 'tó',
-'namespacesall'    => 'tó',
-'monthsall'        => 'tó',
+'watchlistall2' => 'tó',
+'namespacesall' => 'tó',
+'monthsall'     => 'tó',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmal email',

@@ -410,6 +410,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'tiếp',
 'index-category'                 => 'Trang được ghi chỉ mục',
 'noindex-category'               => 'Trang không ghi chỉ mục',
+'broken-file-category'           => 'Trang nhúng tập tin không tồn tại',
 
 'mainpagetext'      => "'''MediaWiki đã được cài đặt thành công.'''",
 'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.
@@ -509,7 +510,7 @@ $messages = array(
 'otherlanguages'    => 'Ngôn ngữ khác',
 'redirectedfrom'    => '(đổi hướng từ $1)',
 'redirectpagesub'   => 'Trang đổi hướng',
-'lastmodifiedat'    => 'Lần sửa cuối : $2, $1.',
+'lastmodifiedat'    => 'Trang này được sửa đổi lần cuối lúc $2 $1.',
 'viewcount'         => 'Trang này đã được đọc {{PLURAL:$1|một|$1}} lần.',
 'protectedpage'     => 'Trang bị khóa',
 'jumpto'            => 'Bước tới:',
@@ -703,6 +704,7 @@ Tài khoản của bạn đã mở.
 'createaccount'              => 'Mở tài khoản',
 'gotaccount'                 => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink'             => 'Đăng nhập',
+'userlogin-resetlink'        => 'Quên mất thông tin đăng nhập?',
 'createaccountmail'          => 'qua thư điện tử',
 'createaccountreason'        => 'Lý do:',
 'badretype'                  => 'Hai mật khẩu không khớp.',
@@ -780,6 +782,42 @@ Xin hãy đợi chốc lát rồi thử lại.',
 'resetpass-wrong-oldpass'   => 'Mật khẩu tạm hoặc mật khẩu hiện thời không hợp lệ.
 Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đã yêu cầu cung cấp một mật khẩu tạm mới.',
 'resetpass-temp-password'   => 'Mật khẩu tạm:',
+
+# Special:PasswordReset
+'passwordreset'                => 'Tái tạo mật khẩu',
+'passwordreset-text'           => 'Hãy điền mẫu đơn này để nhận thư điện tử nhắc nhở về thông tin tài khoản của bạn.',
+'passwordreset-legend'         => 'Tái tạo mật khẩu',
+'passwordreset-disabled'       => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
+'passwordreset-username'       => 'Tên người dùng:',
+'passwordreset-email'          => 'Địa chỉ thư điện tử:',
+'passwordreset-emailtitle'     => 'Thông tin tài khoản tại {{SITENAM}}',
+'passwordreset-emailtext-ip'   => 'Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu một lời
+nhắc nhở các thông tin tài khoản của bạn tại {{SITENAME}} ($4).
+{{PLURAL:$3|Tài khoản|Các tài khoản}} ở dưới có đặt địa chỉ thư điện tử này:
+
+$2
+
+{{PLURAL:$3|Mật khẩu|Các mật khẩu}} tạm này sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}. Bạn nên đăng nhập
+ngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là người yêu cầu
+đặt lại mật khẩu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn
+muốn thay đổi nó, xin vui lòng kệ thông điệp này và tiếp tục sử dụng
+mật khẩu cũ.',
+'passwordreset-emailtext-user' => 'Thành viên $1 tại {{SITENAME}} đã yêu cầu một lời nhắc nhở
+các thông tin tài khoản của bạn tại {{SITENAME}} ($4). {{PLURAL:$3|Tài
+khoản|Các
+tài khoản}} ở dưới có đặt địa chỉ thư điện tử này:
+
+$2
+
+{{PLURAL:$3|Mật khẩu|Các mật khẩu}} tạm này sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}. Bạn nên đăng nhập
+ngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là người yêu cầu
+đặt lại mật khẩu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn
+muốn thay đổi nó, xin vui lòng kệ thông điệp này và tiếp tục sử dụng
+mật khẩu cũ.',
+'passwordreset-emailelement'   => 'Tên người dùng: $1
+Mật khẩu tạm: $2',
+'passwordreset-emailsent'      => 'Đã gửi thư điện tử nhắc nhở.',
 
 # Edit page toolbar
 'bold_sample'     => 'Chữ đậm',
@@ -2857,7 +2895,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
 'siteuser'         => 'thành viên $1 của {{SITENAME}}',
 'anonuser'         => 'người vô danh $1 tại {{SITENAME}}',
-'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.',
+'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2 $1.',
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => '{{PLURAL:$2|Thành viên|Các thành viên}} $1 của {{SITENAME}}',
@@ -3007,7 +3045,7 @@ Variants for Chinese language
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
 'metadata-expand'   => 'Hiện chi tiết cấp cao',
 'metadata-collapse' => 'Ẩn chi tiết cấp cao',
-'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính được thu nhỏ.
+'metadata-fields'   => 'Những thông tin đặc tính hình được danh sách dưới đây sẽ được đưa vào trang miêu tả hình khi bảng đặc tính được thu nhỏ.
 Những thông tin khác mặc định sẽ được ẩn đi.
 * make
 * model
@@ -3057,8 +3095,8 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-colorspace'                  => 'Không gian màu',
 'exif-componentsconfiguration'     => 'Ý nghĩa thành phần',
 'exif-compressedbitsperpixel'      => 'Độ nén (bit/điểm)',
-'exif-pixelydimension'             => 'Chiều ngang hợp lệ',
-'exif-pixelxdimension'             => 'Chiều cao hợp lệ',
+'exif-pixelydimension'             => 'Chiều ngang hình',
+'exif-pixelxdimension'             => 'Chiều cao hình',
 'exif-usercomment'                 => 'Lời bình của tác giả',
 'exif-relatedsoundfile'            => 'Tập tin âm thanh liên quan',
 'exif-datetimeoriginal'            => 'Ngày giờ sinh dữ liệu',
@@ -3073,9 +3111,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-exposureprogram'             => 'Chương trình phơi sáng',
 'exif-spectralsensitivity'         => 'Độ nhạy quang phổ',
 'exif-isospeedratings'             => 'Điểm tốc độ ISO',
-'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp',
-'exif-aperturevalue'               => 'Độ mở ống kính',
-'exif-brightnessvalue'             => 'Độ sáng',
+'exif-shutterspeedvalue'           => 'Tốc độ cửa chớp (APEX)',
+'exif-aperturevalue'               => 'Độ mở ống kính (APEX)',
+'exif-brightnessvalue'             => 'Độ sáng (APEX)',
 'exif-exposurebiasvalue'           => 'Độ lệch phơi sáng',
 'exif-maxaperturevalue'            => 'Khẩu độ cực đại qua đất',
 'exif-subjectdistance'             => 'Khoảng cách vật thể',
@@ -3138,11 +3176,77 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsareainformation'          => 'Tên khu vực theo GPS',
 'exif-gpsdatestamp'                => 'Ngày theo GPS',
 'exif-gpsdifferential'             => 'Sửa vi sai GPS',
+'exif-jpegfilecomment'             => 'Chú giải tập tin JPEG',
+'exif-keywords'                    => 'Từ khóa',
+'exif-worldregioncreated'          => 'Phần thế giới của máy chụp trong lúc chụp',
+'exif-countrycreated'              => 'Quốc gia của máy chụp trong lúc chụp',
+'exif-countrycodecreated'          => 'Mã của quốc gia của máy chụp trong lúc chụp',
+'exif-provinceorstatecreated'      => 'Tỉnh bang của máy chụp trong lúc chụp',
+'exif-citycreated'                 => 'Thành phố của máy chụp trong lúc chụp',
+'exif-sublocationcreated'          => 'Khu hoặc phố của máy chụp trong lúc chụp',
+'exif-worldregiondest'             => 'Phần thế giới xuất hiện',
+'exif-countrydest'                 => 'Quốc gia xuất hiện',
+'exif-countrycodedest'             => 'Mã của quốc gia xuất hiện',
+'exif-provinceorstatedest'         => 'Tỉnh bang xuất hiện',
+'exif-citydest'                    => 'Thành phố xuất hiện',
+'exif-sublocationdest'             => 'Khu hoặc phố xuất hiện',
 'exif-objectname'                  => 'Tên ngắn',
+'exif-specialinstructions'         => 'Hướng dẫn sử dụng đặc biệt',
+'exif-headline'                    => 'Đề mục',
+'exif-credit'                      => 'Ghi công / nhà cung cấp',
+'exif-source'                      => 'Nguồn gốc',
+'exif-editstatus'                  => 'Tình trạng biên tập hình ảnh',
+'exif-urgency'                     => 'Mức độ khẩn cấp',
+'exif-fixtureidentifier'           => 'Tên mục',
+'exif-locationdest'                => 'Địa điểm xuất hiện',
+'exif-locationdestcode'            => 'Mã của địa điểm xuất hiện',
+'exif-objectcycle'                 => 'Phần của ngày',
+'exif-contact'                     => 'Thông tin liên lạc',
+'exif-writer'                      => 'Người viết lời chú giải',
+'exif-languagecode'                => 'Ngôn ngữ',
+'exif-iimversion'                  => 'Phiên bản IIM',
+'exif-iimcategory'                 => 'Thể loại',
+'exif-iimsupplementalcategory'     => 'Thể loại bổ sung',
+'exif-datetimeexpires'             => 'Ngày hạn sử dụng',
+'exif-datetimereleased'            => 'Ngày phát hành',
+'exif-originaltransmissionref'     => 'Mã vị trí truyền dẫn ban đầu',
+'exif-identifier'                  => 'Định danh',
+'exif-lens'                        => 'Ống kính được sử dụng',
+'exif-serialnumber'                => 'Số sêri của máy chụp hình',
+'exif-cameraownername'             => 'Chủ máy chụp hình',
+'exif-label'                       => 'Nhãn',
+'exif-datetimemetadata'            => 'Ngày sửa siêu dữ liệu lần cuối',
+'exif-nickname'                    => 'Tên hình không chính thức',
+'exif-rating'                      => 'Đánh giá (trên 5)',
+'exif-rightscertificate'           => 'Chứng thư quản lý quyền',
+'exif-copyrighted'                 => 'Tình trạng bản quyền',
+'exif-copyrightowner'              => 'Nhà giữ bản quyền',
+'exif-usageterms'                  => 'Điều khoản sử dụng',
+'exif-webstatement'                => 'Thông tin bản quyền trực tuyến',
+'exif-originaldocumentid'          => 'ID duy nhất của tài liệu gốc',
+'exif-licenseurl'                  => 'URL của giấy phép bản quyền',
+'exif-morepermissionsurl'          => 'Thông tin cấp phép thay thế',
+'exif-attributionurl'              => 'URL để đặt liên kết đến khi tái sử dụng',
+'exif-preferredattributionname'    => 'Tên để ghi công khi tái sử dụng',
+'exif-pngfilecomment'              => 'Chú giải tập tin PNG',
+'exif-disclaimer'                  => 'Phủ nhận',
+'exif-contentwarning'              => 'Cảnh báo về nội dung',
+'exif-giffilecomment'              => 'Chú giải tập tin GIF',
+'exif-intellectualgenre'           => 'Kiểu khoản',
+'exif-subjectnewscode'             => 'Mã chủ đề',
+'exif-scenecode'                   => 'Mã cảnh IPTC',
+'exif-event'                       => 'Sự kiện xuất hiện',
+'exif-organisationinimage'         => 'Tổ chức xuất hiện',
+'exif-personinimage'               => 'Người xuất hiện',
+'exif-originalimageheight'         => 'Chiều cao của hình trước khi được cắt',
+'exif-originalimagewidth'          => 'Chiều rộng của hình trước khi được cắt',
 
 # EXIF attributes
 'exif-compression-1' => 'Không nén',
 'exif-compression-6' => 'JPEG',
+
+'exif-copyrighted-true'  => 'Dưới bản quyền',
+'exif-copyrighted-false' => 'Phạm vi công cộng',
 
 'exif-photometricinterpretation-2' => 'RGB',
 
@@ -3159,6 +3263,8 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 'exif-planarconfiguration-1' => 'định dạng thấp',
 'exif-planarconfiguration-2' => 'định dạng phẳng',
+
+'exif-colorspace-65535' => 'Chưa hiệu chỉnh',
 
 'exif-componentsconfiguration-0' => 'không tồn tại',
 
@@ -3223,6 +3329,8 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-sensingmethod-7' => 'Cảm biến ba đường',
 'exif-sensingmethod-8' => 'Cảm biến đường màu liên tục',
 
+'exif-filesource-3' => 'Máy chụp hình tĩnh kỹ thuật số',
+
 'exif-scenetype-1' => 'Hình chụp thẳng',
 
 'exif-customrendered-0' => 'Thường',
@@ -3271,6 +3379,10 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpslongitude-e' => 'Kinh độ đông',
 'exif-gpslongitude-w' => 'Kinh độ tây',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 mét trên mực nước biển',
+'exif-gpsaltitude-below-sealevel' => '$1 dưới mực nước biển',
+
 'exif-gpsstatus-a' => 'Đang đo',
 'exif-gpsstatus-v' => 'Mức độ khả năng liên điều hành',
 
@@ -3287,21 +3399,68 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsdestdistance-m' => 'Dặm Anh',
 'exif-gpsdestdistance-n' => 'Hải lý',
 
+'exif-gpsdop-excellent' => 'Xuất sắc ($1)',
+'exif-gpsdop-good'      => 'Tốt ($1)',
+'exif-gpsdop-moderate'  => 'Khá ($1)',
+'exif-gpsdop-fair'      => 'Xấp xỉ ($1)',
+'exif-gpsdop-poor'      => 'Kém ($1)',
+
+'exif-objectcycle-a' => 'Chỉ ban sáng',
+'exif-objectcycle-p' => 'Chỉ ban đêm',
+'exif-objectcycle-b' => 'Tối ngày',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',
 'exif-gpsdirection-m' => 'Hướng từ trường',
+
+'exif-ycbcrpositioning-1' => 'Căn giữa',
+'exif-ycbcrpositioning-2' => 'Đồng vị trí',
+
+'exif-dc-contributor' => 'Người đóng góp',
+'exif-dc-coverage'    => 'Phạm vi không gian hoặc thời gian của phương tiện',
+'exif-dc-date'        => 'Ngày',
+'exif-dc-publisher'   => 'Nhà xuất bản',
+'exif-dc-relation'    => 'Phương tiện có liên quan',
+'exif-dc-rights'      => 'Tác quyền',
+'exif-dc-source'      => 'Phương tiện gốc',
+'exif-dc-type'        => 'Kiểu phương tiện',
+
+'exif-rating-rejected' => 'Bị từ chối',
+
+'exif-isospeedratings-overflow' => 'Cao hơn 65.535',
+
+'exif-iimcategory-ace' => 'Nghệ thuật, văn hóa, và giải trí',
+'exif-iimcategory-clj' => 'Tội phạm và luật pháp',
+'exif-iimcategory-dis' => 'Tai họa và tai nạn',
+'exif-iimcategory-fin' => 'Kinh tế và kinh doanh',
+'exif-iimcategory-edu' => 'Giáo dục',
+'exif-iimcategory-evn' => 'Môi trường',
+'exif-iimcategory-hth' => 'Sức khỏe',
+'exif-iimcategory-hum' => 'Nhân cảm',
+'exif-iimcategory-lab' => 'Lao động',
+'exif-iimcategory-lif' => 'Lối sống và giải trí',
+'exif-iimcategory-pol' => 'Chính trị',
+'exif-iimcategory-rel' => 'Tôn giáo và tín ngưỡng',
+'exif-iimcategory-sci' => 'Khoa học và công nghệ',
+'exif-iimcategory-soi' => 'Xã hội',
+'exif-iimcategory-spo' => 'Thể thao',
+'exif-iimcategory-war' => 'Chiến tranh, xung đột, và náo động',
+'exif-iimcategory-wea' => 'Thời tiết',
+
+'exif-urgency-normal' => 'Bình thường ($1)',
+'exif-urgency-low'    => 'Thấp ($1)',
+'exif-urgency-high'   => 'Cao ($1)',
+'exif-urgency-other'  => 'Ưu tiên người dùng định nghĩa ($1)',
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
 'edit-externally-help' => '(Xem [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tất cả',
-'imagelistall'     => 'tất cả',
-'watchlistall2'    => 'tất cả',
-'namespacesall'    => 'tất cả',
-'monthsall'        => 'tất cả',
-'limitall'         => 'tất cả',
+'watchlistall2' => 'tất cả',
+'namespacesall' => 'tất cả',
+'monthsall'     => 'tất cả',
+'limitall'      => 'tất cả',
 
 # E-mail address confirmation
 'confirmemail'              => 'Xác nhận thư điện tử',

@@ -2953,12 +2953,10 @@ $1',
 'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'бөтә',
-'imagelistall'     => 'бөтә',
-'watchlistall2'    => 'бөтә',
-'namespacesall'    => 'бөтә',
-'monthsall'        => 'бөтә',
-'limitall'         => 'бөтә',
+'watchlistall2' => 'бөтә',
+'namespacesall' => 'бөтә',
+'monthsall'     => 'бөтә',
+'limitall'      => 'бөтә',
 
 # E-mail address confirmation
 'confirmemail'              => 'Электрон почта адресын раҫлау',

@@ -3481,12 +3481,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'edit-externally-help' => '(Consulter [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] pour plus d’informations)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'toutes',
-'imagelistall'     => 'toutes',
-'watchlistall2'    => 'tout',
-'namespacesall'    => 'Tous',
-'monthsall'        => 'tous',
-'limitall'         => 'tous',
+'watchlistall2' => 'tout',
+'namespacesall' => 'Tous',
+'monthsall'     => 'tous',
+'limitall'      => 'tous',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmer l’adresse de courriel',

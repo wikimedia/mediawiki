@@ -3207,12 +3207,10 @@ $1',
 'edit-externally-help' => '(بص على [http://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'الكل',
-'imagelistall'     => 'الكل',
-'watchlistall2'    => 'الكل',
-'namespacesall'    => 'الكل',
-'monthsall'        => 'الكل',
-'limitall'         => 'الكل',
+'watchlistall2' => 'الكل',
+'namespacesall' => 'الكل',
+'monthsall'     => 'الكل',
+'limitall'      => 'الكل',
 
 # E-mail address confirmation
 'confirmemail'             => 'اعمل تأكيد للأيميل بتاعك',

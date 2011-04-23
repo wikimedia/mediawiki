@@ -1185,11 +1185,9 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 'edit-externally-help' => '(Bei las [http://www.mediawiki.org/wiki/Manual:External_editors anstruçones de anstalaçon] pa mais anformaçon).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todo',
-'imagelistall'     => 'todo',
-'watchlistall2'    => 'todas',
-'namespacesall'    => 'todas',
-'monthsall'        => 'todos',
+'watchlistall2' => 'todas',
+'namespacesall' => 'todas',
+'monthsall'     => 'todos',
 
 # action=purge
 'confirm_purge_button' => 'Stá bien',

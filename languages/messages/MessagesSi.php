@@ -3267,12 +3267,10 @@ Variants for Chinese language
 'edit-externally-help' => '(වැඩිදුර තොරතුරු සඳහා [http://www.mediawiki.org/wiki/Manual:External_editors පිහිටුවීම් උපදෙස්] බලන්න.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'සියල්ල',
-'imagelistall'     => 'සියල්ල',
-'watchlistall2'    => 'සියල්ල',
-'namespacesall'    => 'සියල්ල',
-'monthsall'        => 'සියළු',
-'limitall'         => 'සියල්ලම',
+'watchlistall2' => 'සියල්ල',
+'namespacesall' => 'සියල්ල',
+'monthsall'     => 'සියළු',
+'limitall'      => 'සියල්ලම',
 
 # E-mail address confirmation
 'confirmemail'              => 'විද්‍යුත්-තැපැල් ලිපිනය තහවුරු කරන්න',

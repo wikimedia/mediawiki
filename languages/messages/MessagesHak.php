@@ -1624,11 +1624,9 @@ yèn-heu thùng yit-hòng heu-fông ke lièn-chiap chiông-voi pûn sṳ-vì li-
 'edit-externally-help' => 'Chhiáng chhâm-siòng [http://www.mediawiki.org/wiki/Manual:External_editors sat-thin phu] liáu-kié siòng-se sin-sit.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Chhiòn-phu',
-'imagelistall'     => 'chhiòn-phu',
-'watchlistall2'    => 'chhiòn-phu',
-'namespacesall'    => 'Chhiòn-phu',
-'monthsall'        => 'chhiòn-phu',
+'watchlistall2' => 'chhiòn-phu',
+'namespacesall' => 'Chhiòn-phu',
+'monthsall'     => 'chhiòn-phu',
 
 # E-mail address confirmation
 'confirmemail'            => 'Khok-ngin email thi-tiám',

@@ -2739,11 +2739,9 @@ $1',
 'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [http://www.mediawiki.org/wiki/Manual:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'بارلىعىن',
-'imagelistall'     => 'بارلىعى',
-'watchlistall2'    => 'بارلىق',
-'namespacesall'    => 'بارلىعى',
-'monthsall'        => 'بارلىعى',
+'watchlistall2' => 'بارلىق',
+'namespacesall' => 'بارلىعى',
+'monthsall'     => 'بارلىعى',
 
 # E-mail address confirmation
 'confirmemail'             => 'ە-پوشتا مەكەنجايىن قۇپتاۋ',

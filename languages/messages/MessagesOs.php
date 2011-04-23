@@ -897,11 +897,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exif-gaincontrol-0' => 'Нæй',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'æппæт',
-'imagelistall'     => 'æппæт',
-'watchlistall2'    => 'æппæт',
-'namespacesall'    => 'æппæт',
-'monthsall'        => 'æппæт',
+'watchlistall2' => 'æппæт',
+'namespacesall' => 'æппæт',
+'monthsall'     => 'æппæт',
 
 # action=purge
 'confirm_purge_button' => 'Афтæ уæд!',

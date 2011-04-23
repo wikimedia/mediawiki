@@ -802,6 +802,10 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Jelszó beállítása',
+'passwordreset-username' => 'Felhasználónév:',
+
 # Edit page toolbar
 'bold_sample'     => 'Félkövér szöveg',
 'bold_tip'        => 'Félkövér szöveg',
@@ -3079,6 +3083,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsdatestamp'                => 'GPS dátum',
 'exif-gpsdifferential'             => 'GPS különbözeti korrekció',
 'exif-keywords'                    => 'Kulcsszavak',
+'exif-worldregiondest'             => 'Ábrázolt világrész',
+'exif-countrydest'                 => 'Ábrázolt ország',
+'exif-provinceorstatedest'         => 'Ábrázolt tartomány vagy állam',
+'exif-citydest'                    => 'Ábrázolt város',
 'exif-objectname'                  => 'Rövid cím',
 'exif-specialinstructions'         => 'Különleges utasítások',
 'exif-headline'                    => 'Fejléc',
@@ -3291,12 +3299,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'edit-externally-help' => '(Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'összes',
-'imagelistall'     => 'összes',
-'watchlistall2'    => 'bármikor',
-'namespacesall'    => 'Összes',
-'monthsall'        => 'mind',
-'limitall'         => 'mind',
+'watchlistall2' => 'bármikor',
+'namespacesall' => 'Összes',
+'monthsall'     => 'mind',
+'limitall'      => 'mind',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-mail cím megerősítése',

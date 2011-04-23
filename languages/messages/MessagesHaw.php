@@ -840,11 +840,9 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'edit-externally-help' => '(E ʻike i nā [http://www.mediawiki.org/wiki/Manual:External_editors aʻo palapala no ka hoʻokuene ʻana])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'apau',
-'imagelistall'     => 'āpau',
-'watchlistall2'    => 'apau',
-'namespacesall'    => 'apau',
-'monthsall'        => 'āpau',
+'watchlistall2' => 'apau',
+'namespacesall' => 'apau',
+'monthsall'     => 'āpau',
 
 # action=purge
 'confirm_purge_button' => 'Hiki nō',

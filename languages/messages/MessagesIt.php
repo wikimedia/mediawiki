@@ -3187,12 +3187,10 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'edit-externally-help' => '(Per maggiori informazioni consultare le [http://www.mediawiki.org/wiki/Manual:External_editors istruzioni])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tutte',
-'imagelistall'     => 'tutte',
-'watchlistall2'    => 'tutte',
-'namespacesall'    => 'Tutti',
-'monthsall'        => 'tutti',
-'limitall'         => 'tutti',
+'watchlistall2' => 'tutte',
+'namespacesall' => 'Tutti',
+'monthsall'     => 'tutti',
+'limitall'      => 'tutti',
 
 # E-mail address confirmation
 'confirmemail'              => 'Conferma indirizzo e-mail',

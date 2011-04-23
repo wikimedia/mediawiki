@@ -376,9 +376,8 @@ Por fabor skohe un otro título.',
 'nextdiff'     => 'Siguiente diferensia →',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tur',
-'watchlistall2'    => 'tur',
-'namespacesall'    => 'tur',
+'watchlistall2' => 'tur',
+'namespacesall' => 'tur',
 
 # E-mail address confirmation
 'confirmemail'           => 'Konfirmá e-mail adrès',

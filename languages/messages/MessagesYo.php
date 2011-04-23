@@ -2117,12 +2117,10 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'edit-externally-help' => '(Ẹ wo [http://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'gbogbo',
-'imagelistall'     => 'gbogbo',
-'watchlistall2'    => 'gbogbo',
-'namespacesall'    => 'gbogbo',
-'monthsall'        => 'gbogbo',
-'limitall'         => 'gbogbo',
+'watchlistall2' => 'gbogbo',
+'namespacesall' => 'gbogbo',
+'monthsall'     => 'gbogbo',
+'limitall'      => 'gbogbo',
 
 # E-mail address confirmation
 'confirmemail'          => "Ṣè'múdájú àdírẹ́ẹ̀sì e-mail",

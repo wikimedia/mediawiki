@@ -863,12 +863,10 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'edit-externally-help' => '(Verīs [http://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'vysi',
-'imagelistall'     => 'vysi',
-'watchlistall2'    => 'vysys',
-'namespacesall'    => 'vysys',
-'monthsall'        => 'vysi',
-'limitall'         => 'vysys',
+'watchlistall2' => 'vysys',
+'namespacesall' => 'vysys',
+'monthsall'     => 'vysi',
+'limitall'      => 'vysys',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Apsavērt atbylstūšuos izmainis',

@@ -2641,11 +2641,9 @@ $1',
 'edit-externally-help' => 'अधिक माहितीसाठी स्थापन करण्याच्या सूचना [http://www.mediawiki.org/wiki/Manual:External_editors] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'सर्व',
-'imagelistall'     => 'सर्व',
-'watchlistall2'    => 'सर्व',
-'namespacesall'    => 'सर्व',
-'monthsall'        => 'सर्व',
+'watchlistall2' => 'सर्व',
+'namespacesall' => 'सर्व',
+'monthsall'     => 'सर्व',
 
 # E-mail address confirmation
 'confirmemail'             => 'इमेल पत्ता पडताळून पहा',

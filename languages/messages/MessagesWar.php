@@ -839,12 +839,10 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'metadata' => 'Metadata',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ngatanan',
-'imagelistall'     => 'ngatanan',
-'watchlistall2'    => 'ngatanan',
-'namespacesall'    => 'ngatanan',
-'monthsall'        => 'ngatanan',
-'limitall'         => 'ngatanan',
+'watchlistall2' => 'ngatanan',
+'namespacesall' => 'ngatanan',
+'monthsall'     => 'ngatanan',
+'limitall'      => 'ngatanan',
 
 # Delete conflict
 'recreate' => 'Himo-a utro',

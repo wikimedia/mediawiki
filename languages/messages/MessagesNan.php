@@ -820,10 +820,9 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'edit-externally-help' => 'Chham-khó [http://www.mediawiki.org/wiki/Manual:External_editors Help:External_editors] ê soat-bêng.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'choân-pō·',
-'watchlistall2'    => 'choân-pō͘',
-'namespacesall'    => 'choân-pō·',
-'monthsall'        => 'choân-pō͘',
+'watchlistall2' => 'choân-pō͘',
+'namespacesall' => 'choân-pō·',
+'monthsall'     => 'choân-pō͘',
 
 # E-mail address confirmation
 'confirmemail'          => 'Khak-jīn e-mail chū-chí',

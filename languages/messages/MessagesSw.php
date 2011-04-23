@@ -2614,12 +2614,10 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'yote',
-'imagelistall'     => 'zote',
-'watchlistall2'    => 'zote',
-'namespacesall'    => 'zote',
-'monthsall'        => 'yote',
-'limitall'         => 'zote',
+'watchlistall2' => 'zote',
+'namespacesall' => 'zote',
+'monthsall'     => 'yote',
+'limitall'      => 'zote',
 
 # E-mail address confirmation
 'confirmemail'              => 'Kuyakinisha anwani ya barua pepe',

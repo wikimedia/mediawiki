@@ -526,12 +526,10 @@ $messages = array(
 'exif-subjectdistancerange-0' => 'Kimnoelchi',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kom',
-'imagelistall'     => 'kom',
-'watchlistall2'    => 'kom',
-'namespacesall'    => 'kom',
-'monthsall'        => '(kom)',
-'limitall'         => 'Kom',
+'watchlistall2' => 'kom',
+'namespacesall' => 'kom',
+'monthsall'     => '(kom)',
+'limitall'      => 'Kom',
 
 # Trackbacks
 'trackbackremove' => '([$1 Ñamümün])',

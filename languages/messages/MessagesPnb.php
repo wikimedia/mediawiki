@@ -1302,11 +1302,9 @@ $messages = array(
 'edit-externally-help' => 'زیادہ معلومات آسطے اے [http://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'سارے',
-'imagelistall'     => 'سارے',
-'watchlistall2'    => 'سارے',
-'namespacesall'    => 'سارے',
-'monthsall'        => 'سارے',
+'watchlistall2' => 'سارے',
+'namespacesall' => 'سارے',
+'monthsall'     => 'سارے',
 
 # E-mail address confirmation
 'confirmemail' => 'ای میل پتہ پکا کرو',

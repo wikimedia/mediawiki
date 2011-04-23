@@ -3118,12 +3118,10 @@ Dei andre felta er gøymde som standard.
 'edit-externally-help' => '(Sjå [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonane] for meir informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alle',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alle',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
-'limitall'         => 'alle',
+'watchlistall2' => 'alle',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'Stadfest e-postadresse',

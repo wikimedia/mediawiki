@@ -3052,12 +3052,10 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'edit-externally-help' => '(Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors instalaciske instrukcije]).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wšykne',
-'imagelistall'     => 'wšykne',
-'watchlistall2'    => 'wšykne',
-'namespacesall'    => 'wšykne',
-'monthsall'        => 'wšykne',
-'limitall'         => 'wšykne',
+'watchlistall2' => 'wšykne',
+'namespacesall' => 'wšykne',
+'monthsall'     => 'wšykne',
+'limitall'      => 'wšykne',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-mailowu adresu wobkšuśiś.',

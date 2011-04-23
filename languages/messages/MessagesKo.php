@@ -3224,12 +3224,10 @@ Variants for Chinese language
 'edit-externally-help' => '(자세한 정보는 [http://www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하십시오)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => '모두',
-'imagelistall'     => '모두',
-'watchlistall2'    => '모든 기간',
-'namespacesall'    => '모두',
-'monthsall'        => '모든 달',
-'limitall'         => '모두',
+'watchlistall2' => '모든 기간',
+'namespacesall' => '모두',
+'monthsall'     => '모든 달',
+'limitall'      => '모두',
 
 # E-mail address confirmation
 'confirmemail'              => '이메일 주소 확인',

@@ -3294,12 +3294,10 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'edit-externally-help' => '(Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todos',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'todos',
-'namespacesall'    => 'todos',
-'monthsall'        => 'todos',
-'limitall'         => 'Todos',
+'watchlistall2' => 'todos',
+'namespacesall' => 'todos',
+'monthsall'     => 'todos',
+'limitall'      => 'Todos',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar dirección de correo electrónico',

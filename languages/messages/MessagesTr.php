@@ -3311,12 +3311,10 @@ Ondan sonraki bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya,
 'edit-externally-help' => '(Daha fazla bilgi için metadaki [http://www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'hepsi',
-'imagelistall'     => 'Tümü',
-'watchlistall2'    => 'Hepsini göster',
-'namespacesall'    => 'Hepsi',
-'monthsall'        => 'hepsi',
-'limitall'         => 'tümü',
+'watchlistall2' => 'Hepsini göster',
+'namespacesall' => 'Hepsi',
+'monthsall'     => 'hepsi',
+'limitall'      => 'tümü',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-posta adresini onayla',

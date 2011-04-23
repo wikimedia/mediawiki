@@ -2259,12 +2259,10 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'edit-externally-help' => '(Sjá [http://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'allt',
-'imagelistall'     => 'allar',
-'watchlistall2'    => 'allt',
-'namespacesall'    => 'öll',
-'monthsall'        => 'allir',
-'limitall'         => 'alla',
+'watchlistall2' => 'allt',
+'namespacesall' => 'öll',
+'monthsall'     => 'allir',
+'limitall'      => 'alla',
 
 # E-mail address confirmation
 'confirmemail'             => 'Staðfesta netfang',

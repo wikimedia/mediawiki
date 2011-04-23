@@ -2220,11 +2220,9 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'edit-externally-help' => '(Vide et [http://www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'omnes',
-'imagelistall'     => 'omnes',
-'watchlistall2'    => 'omnes',
-'namespacesall'    => 'omnia',
-'monthsall'        => 'omnes',
+'watchlistall2' => 'omnes',
+'namespacesall' => 'omnia',
+'monthsall'     => 'omnes',
 
 # E-mail address confirmation
 'confirmemail'             => 'Inscriptionem electronicam adfirmare',

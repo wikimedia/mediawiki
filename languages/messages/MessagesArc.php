@@ -1423,12 +1423,10 @@ $1',
 'exif-gpsdirection-m' => 'ܨܘܒܐ ܡܓܢܛܝܣܝܐ',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ܟܠ',
-'imagelistall'     => 'ܟܠ',
-'watchlistall2'    => 'ܟܠ',
-'namespacesall'    => 'ܟܠ',
-'monthsall'        => 'ܟܠ',
-'limitall'         => 'ܟܠ',
+'watchlistall2' => 'ܟܠ',
+'namespacesall' => 'ܟܠ',
+'monthsall'     => 'ܟܠ',
+'limitall'      => 'ܟܠ',
 
 # E-mail address confirmation
 'confirmemail'             => 'ܚܬܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',

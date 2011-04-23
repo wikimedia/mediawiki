@@ -3497,12 +3497,10 @@ Weitere werden standardmäßig nicht angezeigt.
 'edit-externally-help' => '(Siehe die [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alle',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alle',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
-'limitall'         => 'alle',
+'watchlistall2' => 'alle',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-Mail-Adresse bestätigen (Authentifizierung)',

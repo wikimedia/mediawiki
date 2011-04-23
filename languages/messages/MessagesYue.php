@@ -3069,12 +3069,10 @@ Variants for Chinese language
 'edit-externally-help' => '(去[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => '全部',
-'imagelistall'     => '全部',
-'watchlistall2'    => '全部',
-'namespacesall'    => '全部',
-'monthsall'        => '全部',
-'limitall'         => '全部',
+'watchlistall2' => '全部',
+'namespacesall' => '全部',
+'monthsall'     => '全部',
+'limitall'      => '全部',
 
 # E-mail address confirmation
 'confirmemail'              => '確認電郵地址',

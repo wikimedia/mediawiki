@@ -2122,11 +2122,9 @@ cúlra i bhfócas)',
 'edit-externally-help' => '(Féach ar na [http://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'iad uile',
-'imagelistall'     => 'iad uile',
-'watchlistall2'    => 'an t-iomlán',
-'namespacesall'    => 'iad uile',
-'monthsall'        => 'gach mí',
+'watchlistall2' => 'an t-iomlán',
+'namespacesall' => 'iad uile',
+'monthsall'     => 'gach mí',
 
 # E-mail address confirmation
 'confirmemail'            => 'Deimhnigh do ríomhsheoladh',

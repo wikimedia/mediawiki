@@ -3008,12 +3008,10 @@ $1',
 'edit-externally-help' => '(మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'అన్నీ',
-'imagelistall'     => 'అన్నీ',
-'watchlistall2'    => 'అన్నీ',
-'namespacesall'    => 'అన్నీ',
-'monthsall'        => 'అన్నీ',
-'limitall'         => 'అన్నీ',
+'watchlistall2' => 'అన్నీ',
+'namespacesall' => 'అన్నీ',
+'monthsall'     => 'అన్నీ',
+'limitall'      => 'అన్నీ',
 
 # E-mail address confirmation
 'confirmemail'              => 'ఈ-మెయిలు చిరునామా ధృవీకరించండి',

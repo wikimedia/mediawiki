@@ -717,8 +717,13 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Wagwoord herstel',
-'passwordreset-username' => 'Gebruiker:',
+'passwordreset'              => 'Wagwoord herstel',
+'passwordreset-legend'       => 'Kry nuwe wagwoord',
+'passwordreset-username'     => 'Gebruiker:',
+'passwordreset-email'        => 'E-posadres:',
+'passwordreset-emailtitle'   => 'Gebruiker se details op {{site name}}',
+'passwordreset-emailelement' => 'Gebruikersnaam: $1
+Tydelike wagwoord: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte teks',
@@ -2049,6 +2054,8 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'noemailtext'          => "Hierdie gebruiker het nie 'n geldige e-posadres gespesifiseer nie.",
 'nowikiemailtitle'     => 'Geen E-pos toegelaat nie',
 'nowikiemailtext'      => 'Hierdie gebruiker wil geen e-pos van andere gebruikers ontvang nie.',
+'emailusername'        => 'Gebruikernaam:',
+'emailusernamesubmit'  => 'Dien in',
 'email-legend'         => "Stuur 'n E-pos na 'n ander gebruiker van {{SITENAME}}",
 'emailfrom'            => 'Van:',
 'emailto'              => 'Aan:',
@@ -3015,10 +3022,41 @@ Ander velde sal versteek wees.
 'exif-gpsareainformation'          => 'Naam van GPS-gebied',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differensiële GPS-korreksie',
+'exif-jpegfilecomment'             => 'Opmerking in JPEG-lêer',
+'exif-keywords'                    => 'Sleutelwoorde',
 'exif-objectname'                  => 'Kort titel',
+'exif-specialinstructions'         => 'Spesiale instruksies',
+'exif-headline'                    => 'Opskrif',
+'exif-credit'                      => 'Krediet/Verskaffer',
+'exif-source'                      => 'Bron',
+'exif-urgency'                     => 'Dringendheid',
+'exif-fixtureidentifier'           => 'Groepsnaam',
+'exif-contact'                     => 'Kontak inligting',
+'exif-writer'                      => 'Skrywer',
+'exif-languagecode'                => 'Taal',
+'exif-iimversion'                  => 'IIM-weergawe',
+'exif-iimcategory'                 => 'Kategorie',
+'exif-iimsupplementalcategory'     => 'Aanvullende kategorieë',
+'exif-datetimeexpires'             => 'Moenie gebruik na',
+'exif-datetimereleased'            => 'Vrygestel op',
+'exif-identifier'                  => 'Id',
+'exif-lens'                        => 'Lens gebruik',
+'exif-cameraownername'             => 'Eienaar van kamera',
+'exif-label'                       => 'Etiket',
+'exif-rating'                      => 'Waardering (uit 5)',
+'exif-copyrighted'                 => 'Outeursregstus:',
+'exif-copyrightowner'              => 'Kopiereghouer',
+'exif-usageterms'                  => 'Gebruiksvoorwaardes',
+'exif-pngfilecomment'              => 'Opmerking in PNG-lêer',
+'exif-disclaimer'                  => 'Voorbehoud',
+'exif-contentwarning'              => 'Waarskuwing oor inhoud',
+'exif-giffilecomment'              => 'Opmerking in GIF-lêer',
+'exif-intellectualgenre'           => 'Tipe item',
 
 # EXIF attributes
 'exif-compression-1' => 'Ongekompakteerd',
+
+'exif-copyrighted-false' => 'Publieke Domein',
 
 'exif-unknowndate' => 'Datum onbekend',
 
@@ -3033,6 +3071,8 @@ Ander velde sal versteek wees.
 
 'exif-planarconfiguration-1' => 'chunky dataformaat',
 'exif-planarconfiguration-2' => 'planar dataformat',
+
+'exif-colorspace-65535' => 'Nie gekalibreer',
 
 'exif-componentsconfiguration-0' => 'bestaan nie',
 
@@ -3145,6 +3185,10 @@ Ander velde sal versteek wees.
 'exif-gpslongitude-e' => 'Oosterlengte',
 'exif-gpslongitude-w' => 'Westerlengte',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} bo seespieël',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} onder seespieël',
+
 'exif-gpsstatus-a' => 'Besig met meting',
 'exif-gpsstatus-v' => 'Meetinteroperabiliteit',
 
@@ -3156,21 +3200,71 @@ Ander velde sal versteek wees.
 'exif-gpsspeed-m' => 'Myl per huur',
 'exif-gpsspeed-n' => 'Knope',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometers',
+'exif-gpsdestdistance-m' => 'Myle',
+'exif-gpsdestdistance-n' => 'Seemyle',
+
+'exif-gpsdop-excellent' => 'Uitstekend ($1)',
+'exif-gpsdop-good'      => 'Goed ($1)',
+'exif-gpsdop-moderate'  => 'Gemiddeld ($1)',
+'exif-gpsdop-fair'      => 'Redelik ($1)',
+'exif-gpsdop-poor'      => 'Sleg ($1)',
+
+'exif-objectcycle-a' => 'Slegs oggend',
+'exif-objectcycle-p' => 'Slegs aand',
+'exif-objectcycle-b' => 'Beide môre en die aand',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Regte rigting',
 'exif-gpsdirection-m' => 'Magnetiese rigting',
+
+'exif-ycbcrpositioning-1' => 'Gesentreerd',
+
+'exif-dc-contributor' => 'Medewerkers',
+'exif-dc-date'        => 'Datum(s)',
+'exif-dc-publisher'   => 'Uitgewer',
+'exif-dc-relation'    => 'Verwante media',
+'exif-dc-rights'      => 'Regte',
+'exif-dc-source'      => 'Bronmedia',
+'exif-dc-type'        => 'Mediatipe',
+
+'exif-rating-rejected' => 'Afgewys',
+
+'exif-isospeedratings-overflow' => 'Groter as 65535',
+
+'exif-iimcategory-ace' => 'Kuns, kultuur en vermaak',
+'exif-iimcategory-clj' => 'Misdaad en die reg',
+'exif-iimcategory-dis' => 'Rampe en ongelukke',
+'exif-iimcategory-fin' => 'Ekonomie en besigheid',
+'exif-iimcategory-edu' => 'Onderwys',
+'exif-iimcategory-evn' => 'Omgewing',
+'exif-iimcategory-hth' => 'Gesondheid',
+'exif-iimcategory-hum' => 'Menslike belang',
+'exif-iimcategory-lab' => 'Arbeid',
+'exif-iimcategory-lif' => 'Leefstyl en ontspanning',
+'exif-iimcategory-pol' => 'Politiek',
+'exif-iimcategory-rel' => 'Godsdiens en geloof',
+'exif-iimcategory-sci' => 'Wetenskap en tegnologie',
+'exif-iimcategory-soi' => 'Sosiale kwessies',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Oorlog, konflik en onrus',
+'exif-iimcategory-wea' => 'Weer',
+
+'exif-urgency-normal' => 'Normaal ($1)',
+'exif-urgency-low'    => 'Laag ( $1 )',
+'exif-urgency-high'   => 'Hoog ($1)',
+'exif-urgency-other'  => 'Gebruiker-gedefinieerde prioriteit ($1)',
 
 # External editor support
 'edit-externally'      => "Wysig hierdie lêer met 'n eksterne program",
 'edit-externally-help' => '(Sien [http://www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alles',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alles',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
-'limitall'         => 'alle',
+'watchlistall2' => 'alles',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bevestig e-posadres',

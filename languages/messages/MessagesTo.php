@@ -1178,10 +1178,8 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'edit-externally-help' => 'Vakai ki he [http://www.mediawiki.org/wiki/Manual:External_editors fakahinohino ki he fokotuʻu] maʻa toe fakamatala.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kotoa',
-'imagelistall'     => 'kotoa',
-'watchlistall2'    => 'kātoa',
-'namespacesall'    => 'vā kotoa',
+'watchlistall2' => 'kātoa',
+'namespacesall' => 'vā kotoa',
 
 # E-mail address confirmation
 'confirmemail'            => 'Fakamoʻoniʻi ho tuʻasila tohila',

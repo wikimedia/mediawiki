@@ -2890,12 +2890,10 @@ $1',
 'edit-externally-help' => '(Вецей інформації найдете в [http://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'вшыткы',
-'imagelistall'     => 'вшыткы',
-'watchlistall2'    => 'вшыткы',
-'namespacesall'    => 'вшыткы',
-'monthsall'        => 'вшыткы',
-'limitall'         => 'вшыткы',
+'watchlistall2' => 'вшыткы',
+'namespacesall' => 'вшыткы',
+'monthsall'     => 'вшыткы',
+'limitall'      => 'вшыткы',
 
 # E-mail address confirmation
 'confirmemail'              => 'Підтверджіня адресы ел. пошты',

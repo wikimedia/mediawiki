@@ -836,11 +836,9 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'edit-externally-help' => 'Chăng-kō̤ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] liēu-gāi gáing sâ̤ séng-sék.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sū-iū',
-'imagelistall'     => 'cuòng-buô',
-'watchlistall2'    => 'sū-iū',
-'namespacesall'    => 'sū-iū',
-'monthsall'        => 'gó̤-lòng nièng',
+'watchlistall2' => 'sū-iū',
+'namespacesall' => 'sū-iū',
+'monthsall'     => 'gó̤-lòng nièng',
 
 # E-mail address confirmation
 'confirmemail'           => 'Káuk-nêng diêng-piĕ dê-cī',

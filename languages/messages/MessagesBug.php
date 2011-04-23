@@ -440,7 +440,6 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 'ilsubmit' => 'Sappa',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'maneng',
 'watchlistall2' => 'maneŋ',
 'namespacesall' => 'maneŋ',
 'monthsall'     => 'maneŋ',

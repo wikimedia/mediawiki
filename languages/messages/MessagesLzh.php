@@ -2559,12 +2559,10 @@ $1',
 'edit-externally-help' => '（請閱[http://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => '全',
-'imagelistall'     => '全',
-'watchlistall2'    => '全',
-'namespacesall'    => '全',
-'monthsall'        => '全',
-'limitall'         => '全',
+'watchlistall2' => '全',
+'namespacesall' => '全',
+'monthsall'     => '全',
+'limitall'      => '全',
 
 # E-mail address confirmation
 'confirmemail'              => '核郵驛',

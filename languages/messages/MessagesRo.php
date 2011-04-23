@@ -800,6 +800,11 @@ Vă rugăm să așteptați până să mai încercați.',
 Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password'   => 'Parolă temporară:',
 
+# Special:PasswordReset
+'passwordreset'          => 'Resetare parolă',
+'passwordreset-username' => 'Nume de utilizator:',
+'passwordreset-email'    => 'Adresă de e-mail:',
+
 # Edit page toolbar
 'bold_sample'     => 'Text aldin',
 'bold_tip'        => 'Text aldin',
@@ -3371,12 +3376,10 @@ Altele vor fi ascunse implicit.
 'edit-externally-help' => '(Vedeți [http://www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tot',
-'imagelistall'     => 'toate',
-'watchlistall2'    => 'toate',
-'namespacesall'    => 'toate',
-'monthsall'        => 'toate',
-'limitall'         => 'toate',
+'watchlistall2' => 'toate',
+'namespacesall' => 'toate',
+'monthsall'     => 'toate',
+'limitall'      => 'toate',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmă adresa de e-mail',

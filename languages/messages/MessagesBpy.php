@@ -1591,12 +1591,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'edit-externally-help' => 'আরাকউ হারপানির কা [http://www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'হাব্বি',
-'imagelistall'     => 'হাব্বি',
-'watchlistall2'    => 'হাব্বি',
-'namespacesall'    => 'হাব্বি',
-'monthsall'        => 'হাব্বি',
-'limitall'         => 'হাব্বি',
+'watchlistall2' => 'হাব্বি',
+'namespacesall' => 'হাব্বি',
+'monthsall'     => 'হাব্বি',
+'limitall'      => 'হাব্বি',
 
 # E-mail address confirmation
 'confirmemail'             => 'ই-মেইল ঠিকানাহান লেপকর',

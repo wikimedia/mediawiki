@@ -142,6 +142,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'samb.',
 'index-category'                 => 'Tungkaran tasusun bapadalakan kata',
 'noindex-category'               => 'Tungkaran kada tasusun bapadalakan kata',
+'broken-file-category'           => 'Tutungkaran lawan tatautan barakas pagat',
 
 'mainpagetext'      => "'''MediaWiki sudah tapasang awan sukses'''.",
 'mainpagedocfooter' => 'Carii panjalasan [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pamuruk] gasan mamuruk parangkat lunak wiki
@@ -436,6 +437,7 @@ Jangan kada ingat hagan maubah [[Special:Preferences|preferensi {{SITENAME}}]] P
 'createaccount'              => 'Ulah akun',
 'gotaccount'                 => 'Sudah baisi sabuah akun? $1.',
 'gotaccountlink'             => 'Babuat log',
+'userlogin-resetlink'        => 'Kada ingat rarincian babuat log Pian?',
 'createaccountmail'          => 'Lung suril',
 'createaccountreason'        => 'Alasan:',
 'badretype'                  => 'Katasunduk nang Pian buati kada pas.',
@@ -501,6 +503,7 @@ Pian kawa kada mahual pasan ini, amun paulahan akun ini adalah kasalahan.',
 'usernamehasherror'          => 'Ngaran pamuruk kada kawa mangandung tanda kurung',
 'login-throttled'            => 'Pian sudah kabanyakan mancuba babuat log.
 Muhun hadangi dahulu sapandang hanyar cubai pulang.',
+'login-abort-generic'        => 'Pian kada ruhui babuat  log - Diwalangi',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
 
@@ -527,6 +530,7 @@ Pian pinanya sudah bahasil maubah katasunduk Pian atawa maminta sabuah katasundu
 'resetpass-temp-password'   => 'Katasunduk samantara:',
 
 # Special:PasswordReset
+'passwordreset-disabled'     => 'Mambulikakan setelan katasunduk dipajahakan hagan wiki ini.',
 'passwordreset-username'     => 'Ngaran pamuruk:',
 'passwordreset-email'        => 'Alamat suril:',
 'passwordreset-emailtitle'   => 'Rarincian akun pada {{SITENAME}}',

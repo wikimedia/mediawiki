@@ -1797,12 +1797,10 @@ if (wgUserLanguage == "ku-arab")
 'edit-externally-help' => '(Ji bo agahîyên zav [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'hemû',
-'imagelistall'     => 'hemû',
-'watchlistall2'    => 'hemû',
-'namespacesall'    => 'Hemû',
-'monthsall'        => 'giştik',
-'limitall'         => 'hemû',
+'watchlistall2' => 'hemû',
+'namespacesall' => 'Hemû',
+'monthsall'     => 'giştik',
+'limitall'      => 'hemû',
 
 # E-mail address confirmation
 'confirmemail'          => 'Adrêsa e-nameyan nasbike',

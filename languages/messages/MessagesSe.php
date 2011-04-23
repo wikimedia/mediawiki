@@ -1221,11 +1221,9 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'exif-gpsspeed-n' => 'čuolmma',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'buot',
-'imagelistall'     => 'buot',
-'watchlistall2'    => ', olles historjjá',
-'namespacesall'    => 'buot',
-'monthsall'        => 'buot',
+'watchlistall2' => ', olles historjjá',
+'namespacesall' => 'buot',
+'monthsall'     => 'buot',
 
 # E-mail address confirmation
 'confirmemail'          => 'Sihkaraste e-poastačujuhusa',

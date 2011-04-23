@@ -1767,12 +1767,10 @@ HTML tags ကို စစ်ဆေးပါ။',
 'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[http://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'အားလုံး',
-'imagelistall'     => 'အားလုံး',
-'watchlistall2'    => 'အားလုံး',
-'namespacesall'    => 'အားလုံး',
-'monthsall'        => 'အားလုံး',
-'limitall'         => 'အားလုံး',
+'watchlistall2' => 'အားလုံး',
+'namespacesall' => 'အားလုံး',
+'monthsall'     => 'အားလုံး',
+'limitall'      => 'အားလုံး',
 
 # E-mail address confirmation
 'confirmemail'      => 'အီးမေးကိုအတည်ပြုပါ',

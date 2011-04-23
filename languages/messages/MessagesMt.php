@@ -2912,11 +2912,9 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'edit-externally-help' => '(Għal aktar informazzjoni ara l-[http://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kollha',
-'imagelistall'     => 'kollha',
-'watchlistall2'    => 'kollha',
-'namespacesall'    => 'kollha',
-'monthsall'        => 'kollha',
+'watchlistall2' => 'kollha',
+'namespacesall' => 'kollha',
+'monthsall'     => 'kollha',
 
 # E-mail address confirmation
 'confirmemail'             => 'Ikkonferma l-indirizz tal-posta elettronika',

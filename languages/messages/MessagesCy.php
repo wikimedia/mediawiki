@@ -3045,12 +3045,10 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'edit-externally-help' => '(Gwelwch y [http://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'holl',
-'imagelistall'     => 'holl',
-'watchlistall2'    => 'holl',
-'namespacesall'    => 'pob un',
-'monthsall'        => 'pob mis',
-'limitall'         => 'oll',
+'watchlistall2' => 'holl',
+'namespacesall' => 'pob un',
+'monthsall'     => 'pob mis',
+'limitall'      => 'oll',
 
 # E-mail address confirmation
 'confirmemail'              => "Cadarnhau'r cyfeiriad e-bost",

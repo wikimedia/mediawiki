@@ -435,6 +435,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'forts.',
 'index-category'                 => 'Indexerade sidor',
 'noindex-category'               => 'Icke-indexerade sidor',
+'broken-file-category'           => 'Sidor med trasiga fillänkar',
 
 'mainpagetext'      => "'''MediaWiki har installerats utan problem.'''",
 'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
@@ -729,6 +730,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createaccount'              => 'Skapa ett konto',
 'gotaccount'                 => "Har du redan ett användarkonto? '''$1'''.",
 'gotaccountlink'             => 'Logga in',
+'userlogin-resetlink'        => 'Har du glömt dina inloggningsuppgifter?',
 'createaccountmail'          => 'med e-post',
 'createaccountreason'        => 'Orsak:',
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
@@ -816,8 +818,29 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Lösenordsåterställning',
-'passwordreset-username' => 'Användarnamn:',
+'passwordreset'                => 'Lösenordsåterställning',
+'passwordreset-text'           => 'Fyll i detta formulär för att få en påminnelse om dina kontouppgifter via e-post.',
+'passwordreset-legend'         => 'Återställ lösenord',
+'passwordreset-disabled'       => 'Lösenordsåterställning har inaktiverats på denna wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
+'passwordreset-username'       => 'Användarnamn:',
+'passwordreset-email'          => 'E-postadress:',
+'passwordreset-emailtitle'     => 'Kontouppgifter på {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+
+$2
+
+{{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
+Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
+'passwordreset-emailtext-user' => 'Användaren $1 på {{SITENAME}} begärde en påminnelse om dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+
+$2
+
+{{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
+Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
+'passwordreset-emailelement'   => 'Användarnamn: $1
+Tillfälligt lösenord: $2',
+'passwordreset-emailsent'      => 'En påminnelse via e-post har skickats.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet text',
@@ -1779,22 +1802,23 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 'uploadstash-refresh'  => 'Uppdatera listan över filer',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Åtkomst nekad',
-'img-auth-nopathinfo'   => 'Saknad PATH_INFO.
+'img-auth-accessdenied'     => 'Åtkomst nekad',
+'img-auth-nopathinfo'       => 'Saknad PATH_INFO.
 Din server är inte inställd för att ge denna information.
 Den kan vara CGI-baserad och stöttar inte img_auth.
 Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
-'img-auth-badtitle'     => 'Kan inte skapa en giltig titel från "$1"',
-'img-auth-nologinnWL'   => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
-'img-auth-nofile'       => 'Filen "$1" finns inte.',
-'img-auth-isdir'        => 'Du försöker få åtkomst till en katalog "$1".
+'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
+'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',
+'img-auth-nologinnWL'       => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
+'img-auth-nofile'           => 'Filen "$1" finns inte.',
+'img-auth-isdir'            => 'Du försöker få åtkomst till en katalog "$1".
 Endast åtkomst till filer är tillåten.',
-'img-auth-streaming'    => 'Strömmar "$1".',
-'img-auth-public'       => 'Funktionaliteten i img_auth.php är att skicka filer från en privat wiki.
+'img-auth-streaming'        => 'Strömmar "$1".',
+'img-auth-public'           => 'Funktionaliteten i img_auth.php är att skicka filer från en privat wiki.
 Denna wiki är konfigurerad som en publik wiki.
 För optimal säkerhet, har img_auth.php blivit avaktiverad.',
-'img-auth-noread'       => 'Användaren har inte tillåtelse att läsa "$1"',
+'img-auth-noread'           => 'Användaren har inte tillåtelse att läsa "$1"',
+'img-auth-bad-query-string' => 'URL-adressen har en ogiltig frågesträng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Ogiltig URL: $1',
@@ -2152,6 +2176,10 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'noemailtext'          => 'Den här användaren har inte angivit en giltig e-postadress.',
 'nowikiemailtitle'     => 'Ingen e-post tillåten',
 'nowikiemailtext'      => 'Den här användaren har valt att inte motta e-post från andra användare.',
+'emailnotarget'        => 'Icke-existerande eller ogiltigt användarnamn för mottagaren.',
+'emailtarget'          => 'Ange mottagarens användarnamn',
+'emailusername'        => 'Användarnamn:',
+'emailusernamesubmit'  => 'Skicka',
 'email-legend'         => 'Skicka ett mail till en annan användare på {{SITENAME}}',
 'emailfrom'            => 'Från:',
 'emailto'              => 'Till:',
@@ -2492,11 +2520,13 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbwatchuser'                    => 'Bevaka användarens användarsida och diskussionssida',
 'ipb-disableusertalk'             => 'Hindra denne användare från att redigera sina egna diskussionssida under blockeringen',
 'ipb-change-block'                => 'Återblockera användaren med de här inställningarna',
+'ipb-confirm'                     => 'Bekräfta blockering',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
 <br />För att se alla aktuella blockeringar, gå till [[Special:IPBlockList|listan över blockeringar]].',
 'ipb-blockingself'                => 'Du håller på att blockera dig själv! Är du säker på att du vill göra det?',
+'ipb-confirmhideuser'             => 'Du är på väg att blockera en användare med "göm användare" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',
 'ipb-unblock-addr'                => 'Ta bort blockering av $1',
 'ipb-unblock'                     => 'Ta bort blockering av en användare eller IP-adress',
@@ -2511,7 +2541,9 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'blocklist'                       => 'Blockerade användare',
 'ipblocklist'                     => 'Blockerade användare',
 'ipblocklist-legend'              => 'Sök efter en blockerad användare',
+'blocklist-userblocks'            => 'Göm kontoblockeringar',
 'blocklist-tempblocks'            => 'Dölj tillfälliga blockeringar',
+'blocklist-addressblocks'         => 'Göm enskilda IP-blockeringar',
 'blocklist-timestamp'             => 'Tidsstämpel',
 'blocklist-target'                => 'Mål',
 'blocklist-expiry'                => 'Upphör',
@@ -2756,7 +2788,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-interwiki-namespace' => 'Målnamnrymd:',
 'import-upload-filename'     => 'Filnamn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Exportera filen från ursprungs-wikin genom att använda [[Special:Export|exportverktyget]], spara den till din hårddisk och ladda upp den här.',
+'importtext'                 => 'Var god exportera filen från ursprungs-wikin med hjälp av [[Special:Export|exporteringsverktyget]].
+Spara den på din dator och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
 'importnopages'              => 'Det finns inga sidor att importera.',
@@ -3009,8 +3042,8 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'metadata-help'     => 'Den här filen innehåller extrainformation som troligen lades till av en digitalkamera eller skanner när filen skapades. Om filen har modifierats kan det hända att vissa detaljer inte överensstämmer med den modifierade filen.',
 'metadata-expand'   => 'Visa utökade detaljer',
 'metadata-collapse' => 'Dölj utökade detaljer',
-'metadata-fields'   => 'EXIF-fält som listas i det här meddelandet visas på bildsidan när metadatatabellen är minimerad.
-Övriga fält är gömda som standard, men visas när tabellen expanderas.
+'metadata-fields'   => 'Bildens metadata-fält som är listad i detta meddelande kommer att finnas på bildsidan när metadata-tabellen är hopfälld.
+Andra kommer att gömmas som standard
 * make
 * model
 * datetimeoriginal
@@ -3074,9 +3107,9 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-exposureprogram'             => 'Exponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektral känslighet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
-'exif-shutterspeedvalue'           => 'Slutarhastighet',
-'exif-aperturevalue'               => 'Bländare',
-'exif-brightnessvalue'             => 'Ljusstyrka',
+'exif-shutterspeedvalue'           => 'APEX slutarhastighet',
+'exif-aperturevalue'               => 'APEX bländare',
+'exif-brightnessvalue'             => 'APEX ljusstyrka',
 'exif-exposurebiasvalue'           => 'Exponeringsbias',
 'exif-maxaperturevalue'            => 'Maximal bländare',
 'exif-subjectdistance'             => 'Avstånd till motivet',
@@ -3138,10 +3171,67 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpsareainformation'          => 'GPS-områdets namn',
 'exif-gpsdatestamp'                => 'GPS-datum',
 'exif-gpsdifferential'             => 'Differentiell GPS-korrektion',
+'exif-jpegfilecomment'             => 'JPEG-filkommentar',
+'exif-keywords'                    => 'Nyckelord',
+'exif-worldregioncreated'          => 'Världsregionen som bilden togs i',
+'exif-countrycreated'              => 'Landet som bilden togs i',
+'exif-countrycodecreated'          => 'Landskoden som bilden togs i',
+'exif-provinceorstatecreated'      => 'Landskapet eller delstaten som bilden togs i',
+'exif-citycreated'                 => 'Staden som bilden togs i',
+'exif-worldregiondest'             => 'Världsregion visas',
+'exif-countrydest'                 => 'Land visas',
+'exif-countrycodedest'             => 'Landskod visas',
+'exif-provinceorstatedest'         => 'Landskap eller stat visas',
+'exif-citydest'                    => 'Stad visas',
 'exif-objectname'                  => 'Kort titel',
+'exif-specialinstructions'         => 'Specialinstruktioner',
+'exif-headline'                    => 'Rubrik',
+'exif-source'                      => 'Källa',
+'exif-editstatus'                  => 'Bildens redaktionella status',
+'exif-urgency'                     => 'Brådskande',
+'exif-locationdest'                => 'Plats avbildad',
+'exif-locationdestcode'            => 'Avbildad platskod',
+'exif-objectcycle'                 => 'Tid på dagen median är avsedd för',
+'exif-contact'                     => 'Kontaktinformation',
+'exif-writer'                      => 'Författare',
+'exif-languagecode'                => 'Språk',
+'exif-iimversion'                  => 'IIM-version',
+'exif-iimcategory'                 => 'Kategori',
+'exif-iimsupplementalcategory'     => 'Tilläggskategorier',
+'exif-datetimeexpires'             => 'Använd inte efter',
+'exif-datetimereleased'            => 'Släpptes den',
+'exif-identifier'                  => 'Identifierare',
+'exif-lens'                        => 'Objektiv',
+'exif-serialnumber'                => 'Kamerans serienummer',
+'exif-cameraownername'             => 'Kamerans ägare',
+'exif-label'                       => 'Märke',
+'exif-datetimemetadata'            => 'Datum metadata senast ändrades',
+'exif-nickname'                    => 'Bildens informella namn',
+'exif-rating'                      => 'Betyg (av 5)',
+'exif-copyrighted'                 => 'Upphovsrättsstatus',
+'exif-copyrightowner'              => 'Upphovsrättsinnehavare',
+'exif-usageterms'                  => 'Användningsvillkor',
+'exif-originaldocumentid'          => 'Unikt ID för originaldokumentet',
+'exif-licenseurl'                  => 'URL för upphovsrättslicens',
+'exif-morepermissionsurl'          => 'Alternativ licensinformation',
+'exif-attributionurl'              => 'När du återanvänder detta arbete, länka till',
+'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-disclaimer'                  => 'Ansvarsfriskrivning',
+'exif-contentwarning'              => 'Innehållsvarning',
+'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-intellectualgenre'           => 'Typ av objekt',
+'exif-scenecode'                   => 'IPTC-scenkod',
+'exif-event'                       => 'Avbildad händelse',
+'exif-organisationinimage'         => 'Avbildad organisation',
+'exif-personinimage'               => 'Avbildad person',
+'exif-originalimageheight'         => 'Bildens höjd innan den beskärdes',
+'exif-originalimagewidth'          => 'Bildens bredd innan den beskärdes',
 
 # EXIF attributes
 'exif-compression-1' => 'Inte komprimerad',
+
+'exif-copyrighted-true'  => 'Upphovsrättsskyddat',
+'exif-copyrighted-false' => 'Allmän egendom',
 
 'exif-unknowndate' => 'Okänt datum',
 
@@ -3156,6 +3246,8 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planärformat',
+
+'exif-colorspace-65535' => 'Icke-kalibrerad',
 
 'exif-componentsconfiguration-0' => 'saknas',
 
@@ -3268,6 +3360,10 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpslongitude-e' => 'Östlig longitud',
 'exif-gpslongitude-w' => 'Västlig longitud',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} över havet',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} under havet',
+
 'exif-gpsstatus-a' => 'Mätning pågår',
 'exif-gpsstatus-v' => 'Mätningsinteroperabilitet',
 
@@ -3284,21 +3380,66 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpsdestdistance-m' => 'Mil',
 'exif-gpsdestdistance-n' => 'Nautiska mil',
 
+'exif-gpsdop-excellent' => 'Utmärkt ($1)',
+'exif-gpsdop-good'      => 'Bra ($1)',
+'exif-gpsdop-moderate'  => 'Måttlig ($1)',
+'exif-gpsdop-fair'      => 'Medelmåttig ($1)',
+'exif-gpsdop-poor'      => 'Dålig ($1)',
+
+'exif-objectcycle-a' => 'Endast morgon',
+'exif-objectcycle-p' => 'Endast kväll',
+'exif-objectcycle-b' => 'Både morgon och kväll',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sann bäring',
 'exif-gpsdirection-m' => 'Magnetisk bäring',
+
+'exif-ycbcrpositioning-1' => 'Centrerad',
+
+'exif-dc-contributor' => 'Bidragsgivare',
+'exif-dc-date'        => 'Datum',
+'exif-dc-publisher'   => 'Utgivare',
+'exif-dc-relation'    => 'Relaterad media',
+'exif-dc-rights'      => 'Rättigheter',
+'exif-dc-source'      => 'Källmedia',
+'exif-dc-type'        => 'Medietyp',
+
+'exif-rating-rejected' => 'Avvisad',
+
+'exif-isospeedratings-overflow' => 'Större än 65535',
+
+'exif-iimcategory-ace' => 'Konst, kultur och underhållning',
+'exif-iimcategory-clj' => 'Brott och juridik',
+'exif-iimcategory-dis' => 'Katastrofer och olyckor',
+'exif-iimcategory-fin' => 'Ekonomi och näringsliv',
+'exif-iimcategory-edu' => 'Utbildning',
+'exif-iimcategory-evn' => 'Miljö',
+'exif-iimcategory-hth' => 'Hälsa',
+'exif-iimcategory-hum' => 'Människointresse',
+'exif-iimcategory-lab' => 'Arbetskraft',
+'exif-iimcategory-lif' => 'Livsstil och fritid',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religion och tro',
+'exif-iimcategory-sci' => 'Vetenskap och teknik',
+'exif-iimcategory-soi' => 'Sociala frågor',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krig, konflikter och oroligheter',
+'exif-iimcategory-wea' => 'Väder',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Låg ($1)',
+'exif-urgency-high'   => 'Hög ($1)',
+'exif-urgency-other'  => 'Användardefinierad prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Redigera denna fil med hjälp av extern programvara',
 'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alla',
-'imagelistall'     => 'alla',
-'watchlistall2'    => 'alla',
-'namespacesall'    => 'alla',
-'monthsall'        => 'alla',
-'limitall'         => 'alla',
+'watchlistall2' => 'alla',
+'namespacesall' => 'alla',
+'monthsall'     => 'alla',
+'limitall'      => 'alla',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bekräfta e-postadress',

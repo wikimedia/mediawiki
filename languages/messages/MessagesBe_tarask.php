@@ -3311,12 +3311,10 @@ $1',
 'edit-externally-help' => '(Глядзіце падрабязнасьці ў [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'усе',
-'imagelistall'     => 'усе',
-'watchlistall2'    => 'усё',
-'namespacesall'    => 'усе',
-'monthsall'        => 'усе',
-'limitall'         => 'усе',
+'watchlistall2' => 'усё',
+'namespacesall' => 'усе',
+'monthsall'     => 'усе',
+'limitall'      => 'усе',
 
 # E-mail address confirmation
 'confirmemail'              => 'Пацьвердзіць адрас электроннай пошты',

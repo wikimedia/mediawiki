@@ -1238,12 +1238,10 @@ Bidde cēos ōðerne naman.',
 'edit-externally-help' => '(Þā [http://www.mediawiki.org/wiki/Manual:External_editors ȝearƿunga tyhtas] sēon for mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'eall',
-'imagelistall'     => 'eall',
-'watchlistall2'    => 'eall',
-'namespacesall'    => 'eall',
-'monthsall'        => 'eall',
-'limitall'         => 'eall',
+'watchlistall2' => 'eall',
+'namespacesall' => 'eall',
+'monthsall'     => 'eall',
+'limitall'      => 'eall',
 
 # E-mail address confirmation
 'confirmemail_body' => 'Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan

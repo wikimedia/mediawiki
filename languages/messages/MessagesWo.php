@@ -2211,11 +2211,9 @@ Lëkkalekaay yiy toftal, ci wenn rëdd wi, dees leen di jàppee nikiy sette, maa
 'edit-externally-help' => 'Xoolal [http://www.mediawiki.org/wiki/Manual:External_editors tegtali camp gi] ngir yeneeni xamle',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Yépp',
-'imagelistall'     => 'yépp',
-'watchlistall2'    => 'yépp',
-'namespacesall'    => 'Yépp',
-'monthsall'        => 'Yépp',
+'watchlistall2' => 'yépp',
+'namespacesall' => 'Yépp',
+'monthsall'     => 'Yépp',
 
 # E-mail address confirmation
 'confirmemail'         => 'Dëggalal sa m-bataaxal',

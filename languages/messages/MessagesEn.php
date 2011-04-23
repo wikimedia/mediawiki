@@ -4163,10 +4163,10 @@ $8', # only translate this message to other languages if you have to change it
 'edit-externally-help' => '(See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2'    => 'all',
-'namespacesall'    => 'all',
-'monthsall'        => 'all',
-'limitall'         => 'all',
+'watchlistall2' => 'all',
+'namespacesall' => 'all',
+'monthsall'     => 'all',
+'limitall'      => 'all',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirm e-mail address',

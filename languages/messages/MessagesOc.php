@@ -3155,12 +3155,10 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'edit-externally-help' => "(Consultatz [http://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totes',
-'imagelistall'     => 'totes',
-'watchlistall2'    => 'tot',
-'namespacesall'    => 'Totes',
-'monthsall'        => 'totes',
-'limitall'         => 'totes',
+'watchlistall2' => 'tot',
+'namespacesall' => 'Totes',
+'monthsall'     => 'totes',
+'limitall'      => 'totes',
 
 # E-mail address confirmation
 'confirmemail'              => "Confirmar l'adreça de corrièr electronic",

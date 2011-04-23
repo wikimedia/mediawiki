@@ -2568,12 +2568,10 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'edit-externally-help' => 'Baca [http://www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sadaya',
-'imagelistall'     => 'kabéh',
-'watchlistall2'    => 'sadaya',
-'namespacesall'    => 'kabéh',
-'monthsall'        => 'kabéh',
-'limitall'         => 'kabéh',
+'watchlistall2' => 'sadaya',
+'namespacesall' => 'kabéh',
+'monthsall'     => 'kabéh',
+'limitall'      => 'kabéh',
 
 # E-mail address confirmation
 'confirmemail'             => 'Konfirmasi alamat surélék',

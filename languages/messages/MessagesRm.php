@@ -2436,12 +2436,10 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'edit-externally-help' => "(Legia [http://www.mediawiki.org/wiki/Manual:External_editors instrucziuns d'installaziun] per ulteriuras infurmaziuns)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tuts',
-'imagelistall'     => 'tuts',
-'watchlistall2'    => 'tut',
-'namespacesall'    => 'tuts',
-'monthsall'        => 'tuts',
-'limitall'         => 'tuts',
+'watchlistall2' => 'tut',
+'namespacesall' => 'tuts',
+'monthsall'     => 'tuts',
+'limitall'      => 'tuts',
 
 # E-mail address confirmation
 'confirmemail'              => "Confermar l'adressa dad e-mail",

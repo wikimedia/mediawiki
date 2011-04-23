@@ -1544,11 +1544,9 @@ est raptiti. Les ôtes seront catchîs.
 'edit-externally-help' => "Loukîz les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions d' apontiaedje] po pus di racsegnes.",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totafwait',
-'imagelistall'     => 'totafwait',
-'watchlistall2'    => 'totafwait',
-'namespacesall'    => 'tos',
-'monthsall'        => 'tos',
+'watchlistall2' => 'totafwait',
+'namespacesall' => 'tos',
+'monthsall'     => 'tos',
 
 # E-mail address confirmation
 'confirmemail'            => "Acertinaedje di l' adresse emile",

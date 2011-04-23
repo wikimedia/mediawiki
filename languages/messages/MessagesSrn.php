@@ -1232,11 +1232,9 @@ Trawan o kibri.
 'edit-externally-help' => 'Luku ini a [http://www.mediawiki.org/wiki/Manual:External_editors skorobuku fu den seti] gi moro yepi.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ala',
-'imagelistall'     => 'ala',
-'watchlistall2'    => 'ala',
-'namespacesall'    => 'ala',
-'monthsall'        => 'ala',
+'watchlistall2' => 'ala',
+'namespacesall' => 'ala',
+'monthsall'     => 'ala',
 
 # action=purge
 'confirm_purge_button' => 'oki',

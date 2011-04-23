@@ -2782,11 +2782,9 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'edit-externally-help' => "Pi chiossai nfurmazzioni cunzurtari l'[http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tutti',
-'imagelistall'     => 'tutti',
-'watchlistall2'    => 'tutti',
-'namespacesall'    => 'Tutti',
-'monthsall'        => 'tutti',
+'watchlistall2' => 'tutti',
+'namespacesall' => 'Tutti',
+'monthsall'     => 'tutti',
 
 # E-mail address confirmation
 'confirmemail'             => 'Cunferma ndirizzu e-mail',

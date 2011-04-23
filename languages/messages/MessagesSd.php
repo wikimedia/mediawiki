@@ -968,11 +968,9 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://www.mediawiki.org/wiki/Manual:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'سڀ',
-'imagelistall'     => 'سڀ',
-'watchlistall2'    => 'سڀ',
-'namespacesall'    => 'سڀ',
-'monthsall'        => 'سڀ',
+'watchlistall2' => 'سڀ',
+'namespacesall' => 'سڀ',
+'monthsall'     => 'سڀ',
 
 # E-mail address confirmation
 'confirmemail_success' => 'توھان جي برق ٽپال جي پڪ ڪئي وئي آھي. ھاڻِ توھان لاگ ان ٿي وڪيءَ جو مزو وٺي سگھو ٿا',

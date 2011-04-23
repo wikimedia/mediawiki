@@ -1330,10 +1330,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exif-meteringmode-0' => 'نامعلوم',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'تمام',
-'watchlistall2'    => 'تمام',
-'namespacesall'    => 'تمام',
-'monthsall'        => 'تمام',
+'watchlistall2' => 'تمام',
+'namespacesall' => 'تمام',
+'monthsall'     => 'تمام',
 
 # Delete conflict
 'deletedwhileediting' => 'انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!',

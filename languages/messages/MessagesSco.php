@@ -1363,12 +1363,10 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'edit-externally-help' => 'See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for mair guidance.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'aa',
-'imagelistall'     => 'aa',
-'watchlistall2'    => 'aw',
-'namespacesall'    => 'aa',
-'monthsall'        => 'aw',
-'limitall'         => 'aw',
+'watchlistall2' => 'aw',
+'namespacesall' => 'aa',
+'monthsall'     => 'aw',
+'limitall'      => 'aw',
 
 # E-mail address confirmation
 'confirmemail_noemail'    => 'Ye dinna hae a valid email address set in yer [[Special:Preferences|uiser preferences]].',

@@ -2952,12 +2952,10 @@ $1',
 'edit-externally-help' => '(толу информациягъа мында къарагъыз: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'бютеу',
-'imagelistall'     => 'бютеу',
-'watchlistall2'    => 'бютеу',
-'namespacesall'    => 'бютеу',
-'monthsall'        => 'бютеу',
-'limitall'         => 'бютеую',
+'watchlistall2' => 'бютеу',
+'namespacesall' => 'бютеу',
+'monthsall'     => 'бютеу',
+'limitall'      => 'бютеую',
 
 # E-mail address confirmation
 'confirmemail'              => 'Электорн адресни мюкюл эт',

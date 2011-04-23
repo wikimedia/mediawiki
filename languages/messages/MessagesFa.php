@@ -546,6 +546,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(ادامه)',
 'index-category'                 => 'صفحه‌های نمایه شده',
 'noindex-category'               => 'صفحه‌های نمایه نشده',
+'broken-file-category'           => 'صفحات با پیوندهای پروندهٔ خراب',
 
 'mainpagetext'      => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
@@ -847,6 +848,7 @@ $2',
 'createaccount'              => 'ایجاد حساب کاربری',
 'gotaccount'                 => "حساب کاربری دارید؟ '''$1'''.",
 'gotaccountlink'             => 'وارد شوید',
+'userlogin-resetlink'        => 'جزئیات ورود را فراموش کرده‌اید؟',
 'createaccountmail'          => 'با پست الکترونیکی',
 'createaccountreason'        => 'دلیل:',
 'badretype'                  => 'گذرواژه‌هایی که وارد کرده‌اید یکسان نیستند.',
@@ -938,6 +940,32 @@ $2',
 'resetpass-wrong-oldpass'   => 'گذرواژهٔ موقت یا اخیر نامعتبر.
 ممکن است که شما همینک گذرواژه‌تان را با موفقیت تغییر داده باشید یا درخواست یک گذرواژهٔ موقت جدید کرده باشید.',
 'resetpass-temp-password'   => 'گذرواژهٔ موقت:',
+
+# Special:PasswordReset
+'passwordreset'                => 'بازنشانی گذرواژه',
+'passwordreset-text'           => 'این فرم را برای دریافت رایانامهٔ یادآور جزئیات حسابتان، کامل کنید.',
+'passwordreset-legend'         => 'بازنشانی گذرواژه',
+'passwordreset-disabled'       => 'بازنشانی گذرواژه در این ویکی غیر فعال شده است.',
+'passwordreset-pretext'        => '{{PLURAL:$1||یکی از قطعه‌های داده را در زیر وارد کنید}}',
+'passwordreset-username'       => 'نام کاربری:',
+'passwordreset-email'          => 'رایانشانی:',
+'passwordreset-emailtitle'     => 'جزئیات حساب در {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'یک فرد (احتمالاً شما، از نشانی آی‌پی $1) درخواست یادآور جزئیات حساب شما را برای وبگاه {{SITENAME}} ($4) درخواست کرده است. {{PLURAL:$3|حساب|حساب‌های}} کاربری زیر با این رایانشانی مرتبط هستند:
+
+$2
+
+{{PLURAL:$3|این گذرواژهٔ موقت|این گذرواژه‌های موقت}} تا {{PLURAL:$5|یک روز|$5 روز}} باطل می‌شود.
+شما باید اکنون وارد سایت شده و گذرواژهٔ جدید را برگزینید. اگر شخص دیگری این درخواست را داده است، یا اگر گذرواژهٔ اصلی‌تان را به یاد آوردید، و دیگر نمی‌خواهید که آن را تغییر دهید، می‌توانید این پیغام را نادیده بگیرید و به استفاده از گذرواژهٔ قبلی‌تان ادامه دهید.',
+'passwordreset-emailtext-user' => 'کاربر $1 از {{SITENAME}} درخواست یادآور جزئیات حساب شما را برای {{SITENAME}}
+($4) کرده است. {{PLURAL:$3|حساب|حساب‌های}} کاربری زیر با این رایانشانی مرتبط است:
+
+$2
+
+{{PLURAL:$3|این گذرواژهٔ موقت|این گذرواژه‌های موقت}} تا {{PLURAL:$5|یک روز|$5 روز}} باطل می‌شود.
+شما باید هم‌اکنون وارد شده و یک گذرواژهٔ جدید برگزینید. اگر شخص دیگری این درخواست را داده است، یا اگر گذرواژهٔ اصلی‌تان را به خاطر آوردید، و دیگر نمی‌خواهید که آن را تغییر دهید، می‌توانید این پیغام را نادیده بگیرید و به استفاده از گذرواژهٔ قبلی‌تان ادامه دهید.',
+'passwordreset-emailelement'   => 'نام کاربری: $1
+گذرواژهٔ موقت: $2',
+'passwordreset-emailsent'      => 'یک رایانامهٔ یادآور فرستاده شده است.',
 
 # Edit page toolbar
 'bold_sample'     => 'متن ضخیم',
@@ -3527,12 +3555,10 @@ $1',
 'edit-externally-help' => '(برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'همه',
-'imagelistall'     => 'همه',
-'watchlistall2'    => 'همه',
-'namespacesall'    => 'همه',
-'monthsall'        => 'همهٔ ماه‌ها',
-'limitall'         => 'همه',
+'watchlistall2' => 'همه',
+'namespacesall' => 'همه',
+'monthsall'     => 'همهٔ ماه‌ها',
+'limitall'      => 'همه',
 
 # E-mail address confirmation
 'confirmemail'              => 'تأیید نشانی پست الکترونیکی',

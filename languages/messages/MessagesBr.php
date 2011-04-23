@@ -1582,7 +1582,7 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
 'uploadjava'                  => "Ur restr ZIP a ra gant Java .class eo homañ.
 N'haller ket enporzhiañ restroù Java peogwir e c'haller mont dreist da vevennoù surentez ganto.",
-'upload-source'               => 'Restr tarzh',
+'upload-source'               => 'Restr orin',
 'sourcefilename'              => 'Anv ar restr tarzh :',
 'sourceurl'                   => 'URL tarzh :',
 'destfilename'                => 'Anv ma vo enrollet ar restr :',
@@ -3294,12 +3294,10 @@ Kuzhet e vo ar re all dre ziouer.
 'edit-externally-help' => "(Gwelet [http://www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'an holl',
-'imagelistall'     => 'an holl',
-'watchlistall2'    => 'pep tra',
-'namespacesall'    => 'pep tra',
-'monthsall'        => 'an holl',
-'limitall'         => 'An holl',
+'watchlistall2' => 'pep tra',
+'namespacesall' => 'pep tra',
+'monthsall'     => 'an holl',
+'limitall'      => 'An holl',
 
 # E-mail address confirmation
 'confirmemail'              => "Kadarnaat ar chomlec'h postel",

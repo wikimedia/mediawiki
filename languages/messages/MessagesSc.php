@@ -1511,12 +1511,10 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'edit-externally-help' => '(Pro àteras informatziones càstia is [http://www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totu',
-'imagelistall'     => 'totu',
-'watchlistall2'    => 'totu',
-'namespacesall'    => 'totu',
-'monthsall'        => 'totu',
-'limitall'         => 'totu',
+'watchlistall2' => 'totu',
+'namespacesall' => 'totu',
+'monthsall'     => 'totu',
+'limitall'      => 'totu',
 
 # E-mail address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",

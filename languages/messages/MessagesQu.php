@@ -3107,12 +3107,10 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'edit-externally-help' => 'Astawan willasunaykipaqqa [http://www.mediawiki.org/wiki/Manual:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tukuy',
-'imagelistall'     => 'tukuy',
-'watchlistall2'    => 'lliw',
-'namespacesall'    => 'tukuy',
-'monthsall'        => '(tukuy)',
-'limitall'         => 'tukuy',
+'watchlistall2' => 'lliw',
+'namespacesall' => 'tukuy',
+'monthsall'     => '(tukuy)',
+'limitall'      => 'tukuy',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-chaski imamaytaykita takyachiy',

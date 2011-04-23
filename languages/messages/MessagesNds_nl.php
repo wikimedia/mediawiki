@@ -3146,12 +3146,10 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'edit-externally-help' => '(zie de [http://www.mediawiki.org/wiki/Manual:External_editors instellasie-instructies] veur meer infermasie)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alles',
-'imagelistall'     => 'alles',
-'watchlistall2'    => 'alles',
-'namespacesall'    => 'alles',
-'monthsall'        => 'alles',
-'limitall'         => 'alles',
+'watchlistall2' => 'alles',
+'namespacesall' => 'alles',
+'monthsall'     => 'alles',
+'limitall'      => 'alles',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bevestig netposadres',

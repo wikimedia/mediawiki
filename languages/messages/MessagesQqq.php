@@ -77,6 +77,7 @@
  * @author Purodha
  * @author Rancher
  * @author Raymond
+ * @author Robby
  * @author Ryan Schmidt
  * @author SPQRobin
  * @author Sanbec
@@ -724,6 +725,8 @@ Parameters:
 *Parameter $4 is a URL to the wiki',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 'login-abort-generic'        => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
+'loginlanguagelabel'         => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true.
+{{Identical|Language}}',
 
 # Change password dialog
 'resetpass'                 => 'The caption of [[Special:ChangePassword]]
@@ -746,6 +749,9 @@ Used on [[Special:ResetPass]]',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
 # Special:PasswordReset
+'passwordreset'                => 'Title of [[Special:PasswordReset]].
+{{Identical|Reset password}}',
+'passwordreset-text'           => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend'         => '{{Identical|Reset password}}',
 'passwordreset-username'       => '{{Identical|Username}}',
 'passwordreset-email'          => '{{Identical|E-mail address}}',
@@ -2564,6 +2570,7 @@ This message was something like "unlock move protection" in the past.',
 'contributions'       => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
 'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.',
 'mycontris'           => 'In the personal urls page section - right upper corner.',
+'contribsub2'         => 'Contributions for "user" (links)',
 'nocontribs'          => 'Optional parameter: $1 is the user name',
 'uctop'               => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
 'month'               => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
@@ -2586,6 +2593,7 @@ The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}
 * $1 is the blocked user. Can be used for GENDER (optional)
 Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-blocked-notice-anon' => 'Same as {{msg-mw|Sp-contributions-blocked-notice}} but for anonymous users.',
+'sp-contributions-search'              => 'Used on [[Special:Contributions]]',
 'sp-contributions-username'            => 'This message appears whenever someone requests [[Special:Contributions]].
 
 {{Identical/IP address or username}}',
@@ -2813,6 +2821,7 @@ Parameters:
 {{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
 {{Related|Semiprotectedpagewarning}}',
+'move-over-sharedrepo'         => 'Notice when a file with that filename already exists on a shared repository, such as Wikimedia Commons.',
 
 # Export
 'export'           => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
@@ -2866,6 +2875,7 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 'import'                   => 'The title of the special page [[Special:Import]];',
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
 'import-interwiki-submit'  => '{{Identical|Import}}',
+'import-upload-filename'   => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
 'xml-error-string'         => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
 :$3: columm number
@@ -3492,12 +3502,8 @@ This comes from the png warning textual chunk. See http://www.w3.org/TR/PNG/#11k
 'exif-event'                       => 'The event depicted',
 'exif-organisationinimage'         => 'Name of organisations shown in image',
 'exif-personinimage'               => 'Name of person depicted in image',
-'exif-originalimageheight'         => 'Height of image before it was cropped in pixels
-
-{{identical|Height}}',
-'exif-originalimagewidth'          => 'Width of image before it was cropped in pixels
-
-{{identical|Width}}',
+'exif-originalimageheight'         => 'Height of image before it was cropped in pixels',
+'exif-originalimagewidth'          => 'Width of image before it was cropped in pixels',
 
 # Make & model, can be wikified in order to link to the camera and model name
 'exif-contact-value'         => '{{optional}}
@@ -3708,18 +3714,16 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exactly as it is.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => '{{Identical|All}}',
-'imagelistall'     => '{{Identical|All}}',
-'watchlistall2'    => 'Appears on [[Special:Watchlist]]. It is variable $3 in the text message [[Mediawiki:Wlshowlast]].
+'watchlistall2' => 'Appears on [[Special:Watchlist]]. It is variable $3 in the text message [[Mediawiki:Wlshowlast]].
 
 {{Identical|All}}',
-'namespacesall'    => 'In special page [[Special:WhatLinksHere]]. Drop-down box option for namespace.
+'namespacesall' => 'In special page [[Special:WhatLinksHere]]. Drop-down box option for namespace.
 
 {{Identical|All}}',
-'monthsall'        => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also [[MediaWiki:Month/{{SUBPAGENAME}}]].
+'monthsall'     => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also [[MediaWiki:Month/{{SUBPAGENAME}}]].
 
 {{Identical|All}}',
-'limitall'         => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages.
+'limitall'      => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages.
 
 {{Identical|All}}',
 

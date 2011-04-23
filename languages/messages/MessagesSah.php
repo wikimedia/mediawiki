@@ -3021,12 +3021,10 @@ $1',
 'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'бары',
-'imagelistall'     => 'бары',
-'watchlistall2'    => 'бары',
-'namespacesall'    => 'бары',
-'monthsall'        => 'бары',
-'limitall'         => 'бары',
+'watchlistall2' => 'бары',
+'namespacesall' => 'бары',
+'monthsall'     => 'бары',
+'limitall'      => 'бары',
 
 # E-mail address confirmation
 'confirmemail'              => 'Электроннай аадырыһы бигэргэтии',

@@ -2167,11 +2167,9 @@ $1',
 'edit-externally-help' => '(ለተጨማሪ መረጃ ይህን ገፅ ተመልከቱ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ሁሉ',
-'imagelistall'     => 'ሁሉ',
-'watchlistall2'    => 'ሁሉ',
-'namespacesall'    => 'ሁሉ (all)',
-'monthsall'        => 'ሁሉ',
+'watchlistall2' => 'ሁሉ',
+'namespacesall' => 'ሁሉ (all)',
+'monthsall'     => 'ሁሉ',
 
 # E-mail address confirmation
 'confirmemail'             => 'ኢ-ሜልዎን ለማረጋገጥ',

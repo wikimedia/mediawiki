@@ -2995,12 +2995,10 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'edit-externally-help' => '(zuug de [http://www.mediawiki.org/wiki/Manual:External_editors setupinsjtructies] veur mie informatie)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'al',
-'imagelistall'     => 'al',
-'watchlistall2'    => 'al',
-'namespacesall'    => 'alle',
-'monthsall'        => 'al',
-'limitall'         => 'al',
+'watchlistall2' => 'al',
+'namespacesall' => 'alle',
+'monthsall'     => 'al',
+'limitall'      => 'al',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bevèstig e-mailadres',

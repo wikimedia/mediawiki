@@ -359,7 +359,7 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'yourdomainname'             => 'Magacaga shabakada',
 'login'                      => 'Gudaha gal',
 'nav-login-createaccount'    => 'Gudaha gal / sameyso akoon',
-'loginprompt'                => "Waa in oo cookies'ka shidaa hadii aad rabto in aad soo gasho {{SITENAME}}.",
+'loginprompt'                => "Waa in aad shidaa cookies'ka hadii aad rabto in aad soo gasho {{SITENAME}}.",
 'userlogin'                  => 'Gudaha gal / sameyso magac',
 'userloginnocreate'          => 'Gudaha gal',
 'logout'                     => 'Ka bax',
@@ -962,9 +962,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'exif-iimcategory' => 'Qeybta',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'dhamaan',
-'imagelistall'     => 'dhamaan',
-'watchlistall2'    => 'dhamaan',
+'watchlistall2' => 'dhamaan',
 
 # E-mail address confirmation
 'confirmemail_noemail' => 'Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].',

@@ -1989,12 +1989,10 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 'edit-externally-help' => '(Даа зияде малюмат ичюн [http://www.mediawiki.org/wiki/Manual:External_editors бу саифеге] (Инглиздже) бакъып оласынъыз.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'эписини',
-'imagelistall'     => 'Джумлеси',
-'watchlistall2'    => 'эписини',
-'namespacesall'    => 'Эписи',
-'monthsall'        => 'Эписи',
-'limitall'         => 'бутюни',
+'watchlistall2' => 'эписини',
+'namespacesall' => 'Эписи',
+'monthsall'     => 'Эписи',
+'limitall'      => 'бутюни',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mail адресини тасдыкъла',

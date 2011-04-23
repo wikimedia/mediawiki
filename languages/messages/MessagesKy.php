@@ -392,9 +392,8 @@ $messages = array(
 'exif-focalplaneresolutionunit-2' => 'дюйм',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'баары',
-'watchlistall2'    => 'баары',
-'namespacesall'    => 'баары',
+'watchlistall2' => 'баары',
+'namespacesall' => 'баары',
 
 # E-mail address confirmation
 'confirmemail'          => 'Электрондук даректи ырастоо',

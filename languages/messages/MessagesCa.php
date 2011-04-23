@@ -3184,12 +3184,10 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'edit-externally-help' => '(Vegeu les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuració] per a més informació)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tots',
-'imagelistall'     => 'totes',
-'watchlistall2'    => 'totes',
-'namespacesall'    => 'tots',
-'monthsall'        => 'tots',
-'limitall'         => 'tots',
+'watchlistall2' => 'totes',
+'namespacesall' => 'tots',
+'monthsall'     => 'tots',
+'limitall'      => 'tots',
 
 # E-mail address confirmation
 'confirmemail'              => "Confirma l'adreça de correu electrònic",

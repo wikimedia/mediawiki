@@ -2102,12 +2102,10 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'edit-externally-help' => '(Siehe de [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisunga] fier weitere Informationa)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'olle',
-'imagelistall'     => 'olle',
-'watchlistall2'    => 'olle',
-'namespacesall'    => 'olle',
-'monthsall'        => 'olle',
-'limitall'         => 'olle',
+'watchlistall2' => 'olle',
+'namespacesall' => 'olle',
+'monthsall'     => 'olle',
+'limitall'      => 'olle',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-Mail-Atresse bestätiga (Authentifizierung)',
