@@ -422,7 +422,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Filter entries to those made by the given user',
 			'title' => 'Filter entries to those related to a page',
-			'prefix' => 'Filter entries that start with this prefix. Disabled in MiserMode',
+			'prefix' => 'Filter entries that start with this prefix. Disabled in Miser Mode',
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
 		);

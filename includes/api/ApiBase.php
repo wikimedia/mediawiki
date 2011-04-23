@@ -293,7 +293,8 @@ abstract class ApiBase {
 
 			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
-			$paramPrefix = "\n" . str_repeat( ' ', 19 );
+			$paramPrefix = "\n" . str_repeat( ' ', 24 );
+			$descWordwrap = "\n" . str_repeat( ' ', 28 );
 			foreach ( $params as $paramName => $paramSettings ) {
 				$desc = isset( $paramsDescription[$paramName] ) ? $paramsDescription[$paramName] : '';
 				if ( is_array( $desc ) ) {
@@ -338,7 +339,7 @@ abstract class ApiBase {
 						}
 						$desc .= $paramPrefix . $nothingPrompt . $prompt;
 						$choicesstring = implode( ', ', $choices );
-						$desc .= wordwrap( $choicesstring, 100, "\n                       " );
+						$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
 					} else {
 						switch ( $type ) {
 							case 'namespace':
@@ -388,7 +389,7 @@ abstract class ApiBase {
 					$desc .= $paramPrefix . "Default: $default";
 				}
 
-				$msg .= sprintf( "  %-14s - %s\n", $this->encodeParamName( $paramName ), $desc );
+				$msg .= sprintf( "  %-19s - %s\n", $this->encodeParamName( $paramName ), $desc );
 			}
 			return $msg;
 
