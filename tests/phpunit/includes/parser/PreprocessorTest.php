@@ -46,24 +46,24 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "=== Foo ===<!-- --> <!-- -->\n", "<root><h level=\"3\" i=\"1\">=== Foo ===<comment>&lt;!-- --&gt;</comment> <comment>&lt;!-- --&gt;</comment></h>\n</root>" ),
 			array( "== Foo ==\n== Bar == \n", "<root><h level=\"2\" i=\"1\">== Foo ==</h>\n<h level=\"2\" i=\"2\">== Bar == </h>\n</root>" ),
 			array( "===========", "<root><h level=\"5\" i=\"1\">===========</h></root>" ),
-			array( "Foo\n=\n==\n=\n", "<root>Foo\n=\n==\n=\n</root>" ), 
+			array( "Foo\n=\n==\n=\n", "<root>Foo\n=\n==\n=\n</root>" ),
 			array( "{{Foo}}", "<root><template lineStart=\"1\"><title>Foo</title></template></root>" ),
 			array( "\n{{Foo}}", "<root>\n<template lineStart=\"1\"><title>Foo</title></template></root>" ),
-			array( "{{Foo|bar}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part></template></root>" ),  
-			array( "{{Foo|bar}}a", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part></template>a</root>" ),  
-			array( "{{Foo|bar|baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name index=\"2\" /><value>baz</value></part></template></root>" ),  
+			array( "{{Foo|bar}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part></template></root>" ),
+			array( "{{Foo|bar}}a", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part></template>a</root>" ),
+			array( "{{Foo|bar|baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name index=\"2\" /><value>baz</value></part></template></root>" ),
 			array( "{{Foo|1=bar}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>1</name>=<value>bar</value></part></template></root>" ),
 			array( "{{Foo|=bar}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name></name>=<value>bar</value></part></template></root>" ),
-			array( "{{Foo|bar=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>bar</name>=<value>baz</value></part></template></root>" ), 
-			array( "{{Foo|1=bar|baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name index=\"1\" /><value>baz</value></part></template></root>" ), 
-			array( "{{Foo|bar|foo=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name>foo</name>=<value>baz</value></part></template></root>" ), 
+			array( "{{Foo|bar=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>bar</name>=<value>baz</value></part></template></root>" ),
+			array( "{{Foo|1=bar|baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name index=\"1\" /><value>baz</value></part></template></root>" ),
+			array( "{{Foo|bar|foo=baz}}", "<root><template lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name>foo</name>=<value>baz</value></part></template></root>" ),
 			array( "{{{1}}}", "<root><tplarg lineStart=\"1\"><title>1</title></tplarg></root>" ),
 			array( "{{{1|}}}", "<root><tplarg lineStart=\"1\"><title>1</title><part><name index=\"1\" /><value></value></part></tplarg></root>" ),
 			array( "{{{Foo}}}", "<root><tplarg lineStart=\"1\"><title>Foo</title></tplarg></root>" ),
 			array( "{{{Foo|}}}", "<root><tplarg lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value></value></part></tplarg></root>" ),
 			array( "{{{Foo|bar|baz}}}", "<root><tplarg lineStart=\"1\"><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name index=\"2\" /><value>baz</value></part></tplarg></root>" ),
 			array( "{<!-- -->{Foo}}", "<root>{<comment>&lt;!-- --&gt;</comment>{Foo}}</root>" ),
-			array( "{{{{Foobar}}}}", "<root>{<tplarg><title>Foobar</title></tplarg>}</root>" ),  
+			array( "{{{{Foobar}}}}", "<root>{<tplarg><title>Foobar</title></tplarg>}</root>" ),
 			array( "{{{ {{Foo}} }}}", "<root><tplarg lineStart=\"1\"><title> <template><title>Foo</title></template> </title></tplarg></root>" ),
 			array( "{{ {{{Foo}}} }}", "<root><template lineStart=\"1\"><title> <tplarg><title>Foo</title></tplarg> </title></template></root>" ),
 			array( "{{{{{Foo}}}}}", "<root><template lineStart=\"1\"><title><tplarg><title>Foo</title></tplarg></title></template></root>" ),
@@ -135,7 +135,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		} else {
 				$tempFilename = tempnam( $folder, "$filename." );
 				file_put_contents( $tempFilename, $output );
-        $this->markTestIncomplete( "File $expectedFilename missing. Output stored as $tempFilename" );
+				$this->markTestIncomplete( "File $expectedFilename missing. Output stored as $tempFilename" );
 		}
 	}
 }
