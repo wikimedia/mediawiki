@@ -287,6 +287,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'samb.',
 'index-category'                 => 'Laman terindeks',
 'noindex-category'               => 'Laman tak diindeks',
+'broken-file-category'           => 'Laman yang ada pautan fail yang terputus',
 
 'mainpagetext'      => "'''MediaWiki telah berjaya dipasang.'''",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
@@ -373,7 +374,7 @@ $messages = array(
 'postcomment'       => 'Bahagian baru',
 'articlepage'       => 'Lihat laman kandungan',
 'talk'              => 'Perbincangan',
-'views'             => 'Pandangan',
+'views'             => 'Rupa',
 'toolbox'           => 'Alatan',
 'userpage'          => 'Lihat laman pengguna',
 'projectpage'       => 'Lihat laman projek',
@@ -578,6 +579,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'createaccount'              => 'Buka akaun',
 'gotaccount'                 => "Sudah mempunyai akaun? '''$1'''.",
 'gotaccountlink'             => 'Log masuk',
+'userlogin-resetlink'        => 'Lupa nama pengguna/kata laluan anda?',
 'createaccountmail'          => 'melalui e-mel',
 'createaccountreason'        => 'Sebab:',
 'badretype'                  => 'Sila ulangi kata laluan dengan betul.',
@@ -664,8 +666,27 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'resetpass-temp-password'   => 'Kata laluan sementara:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Set semula kata laluan',
-'passwordreset-username' => 'Nama pengguna:',
+'passwordreset'                => 'Set semula kata laluan',
+'passwordreset-text'           => 'Isikan borang ini untuk menerima peringatan butiran akaun anda melalui e-mel.',
+'passwordreset-legend'         => 'Set semula kata laluan',
+'passwordreset-disabled'       => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Isikan data di bawah}}',
+'passwordreset-username'       => 'Nama pengguna:',
+'passwordreset-email'          => 'Alamat e-mel:',
+'passwordreset-emailtitle'     => 'Butiran akaun di {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+
+$2
+
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+'passwordreset-emailtext-user' => 'Pengguna $1 di {{SITENAME}} memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+
+$2
+
+{{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
+'passwordreset-emailelement'   => 'Nama pengguna: $1
+Kata laluan sementara: $2',
+'passwordreset-emailsent'      => 'E-mel peringatan telah dihantar.',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
@@ -1124,8 +1145,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'nonefound'                        => "'''Catatan''': Hanya sesetengah ruang nama dicari mengikut tetapan tersedia.
 Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbincangan, templat, dan lain-lain), atau gunakan ruang nama yang dikehendaki sebagai awalan.",
 'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan.',
-'powersearch'                      => 'Cari',
-'powersearch-legend'               => 'Carian maju',
+'powersearch'                      => 'Carian lanjutan',
+'powersearch-legend'               => 'Carian lanjutan',
 'powersearch-ns'                   => 'Cari dalam ruang nama:',
 'powersearch-redir'                => 'Termasuk lencongan',
 'powersearch-field'                => 'Cari',
@@ -1158,7 +1179,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-rc'                      => 'Perubahan terkini',
 'prefs-watchlist'               => 'Senarai pantau',
 'prefs-watchlist-days'          => 'Had bilangan hari dalam senarai pantau:',
-'prefs-watchlist-days-max'      => '(had 7 hari)',
+'prefs-watchlist-days-max'      => 'Maksimum 7 hari',
 'prefs-watchlist-edits'         => 'Had maksimum perubahan untuk ditunjukkan dalam senarai pantau penuh:',
 'prefs-watchlist-edits-max'     => 'Had: 1000',
 'prefs-watchlist-token'         => 'Token senarai pantau:',
@@ -1596,21 +1617,22 @@ Ia tidak dapat diperiksa dengan betul demi keselamatan.',
 'uploadstash-refresh'  => 'Segarkan semula senarai fail',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Capaian ditolak',
-'img-auth-nopathinfo'   => 'Tiada PATH_INFO.
+'img-auth-accessdenied'     => 'Capaian ditolak',
+'img-auth-nopathinfo'       => 'Tiada PATH_INFO.
 Pelayan anda tidak ditetapkan untuk menyampaikan maklumat ini.
 Ia barangkali berdasarkan CGI dan tidak boleh menyokong img_auth.
 Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
-'img-auth-badtitle'     => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
-'img-auth-nologinnWL'   => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
-'img-auth-nofile'       => 'Fail "$1" tiada.',
-'img-auth-isdir'        => 'Anda telah mencuba mencapai direktori "$1". Hanya capaian fail dibenarkan.',
-'img-auth-streaming'    => '"$1" sedang disalurkan.',
-'img-auth-public'       => 'Fungsi img_auth.php ialah mengoutput fail-fail daripada wiki peribadi.
+'img-auth-notindir'         => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
+'img-auth-badtitle'         => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
+'img-auth-nologinnWL'       => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
+'img-auth-nofile'           => 'Fail "$1" tiada.',
+'img-auth-isdir'            => 'Anda telah mencuba mencapai direktori "$1". Hanya capaian fail dibenarkan.',
+'img-auth-streaming'        => '"$1" sedang disalurkan.',
+'img-auth-public'           => 'Fungsi img_auth.php ialah mengoutput fail-fail daripada wiki peribadi.
 Wiki ini telah dikonfigurasikan sebagai wiki awam.
 Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
-'img-auth-noread'       => 'Pengguna tidak mempunyai capaian membaca "$1".',
+'img-auth-noread'           => 'Pengguna tidak mempunyai capaian membaca "$1".',
+'img-auth-bad-query-string' => 'URL ini ada rentetan pertanyaan yang tidak sah.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL tidak sah: $1',
@@ -1969,6 +1991,10 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 'noemailtext'          => 'Pengguna ini tidak menetapkan alamat e-mel yang sah.',
 'nowikiemailtitle'     => 'E-mel tidak dibenarkan',
 'nowikiemailtext'      => 'Pengguna ini tidak mahu menerima e-mel daripada pengguna lain.',
+'emailnotarget'        => 'Nama pengguna penerima tidak wujud atau tidak sah.',
+'emailtarget'          => 'Isikan nama pengguna penerima',
+'emailusername'        => 'Nama pengguna:',
+'emailusernamesubmit'  => 'Hantar',
 'email-legend'         => 'Kirim e-mel kepada pengguna {{SITENAME}} lain',
 'emailfrom'            => 'Daripada:',
 'emailto'              => 'Kepada:',
@@ -2280,8 +2306,8 @@ $1',
 
 # Block/unblock
 'autoblockid'                     => 'Sekat #$1 secara automatik',
-'block'                           => 'Sekat alamat pengguna/IP',
-'unblock'                         => 'Nyahsekat alamat pengguna/IP',
+'block'                           => 'Sekat pengguna',
+'unblock'                         => 'Nyahsekat pengguna',
 'blockip'                         => 'Sekat pengguna',
 'blockip-title'                   => 'Sekat pengguna',
 'blockip-legend'                  => 'Sekat pengguna',
@@ -2316,10 +2342,13 @@ dirosakkan).',
 'ipbwatchuser'                    => 'Pantau laman pengguna dan laman perbincangan bagi pengguna ini',
 'ipb-disableusertalk'             => 'Halang pengguna ini daripada menyunting laman perbincangan sendiri apabila disekat',
 'ipb-change-block'                => 'Sekat semula pengguna tersebut dengan tetapan ini',
+'ipb-confirm'                     => 'Sahkan sekatan',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah disekat.
 <br />Sila lihat [[Special:IPBlockList|senarai sekatan IP]] untuk maklumat lanjut.',
+'ipb-blockingself'                => 'Anda akan menyekat diri sendiri! Pastikah anda mahu berbuat demikian?',
+'ipb-confirmhideuser'             => 'Anda akan menyekat seorang pengguna yang menghidupkan "sorokkan pengguna". Ini akan menindaskan nama pengguna itu di semua senarai dan entri log. Pastikah anda mahu berbuat demikian?',
 'ipb-edit-dropdown'               => 'Sunting sebab sekatan',
 'ipb-unblock-addr'                => 'Nyahsekat $1',
 'ipb-unblock'                     => 'Nyahsekat nama pengguna atau alamat IP',
@@ -2331,7 +2360,7 @@ dirosakkan).',
 'unblocked'                       => '[[User:$1|$1]] telah dinyahsekat',
 'unblocked-range'                 => '$1 telah dinyahsekat',
 'unblocked-id'                    => 'Sekatan $1 telah dibuang',
-'blocklist'                       => 'Alamat IP dan nama pengguna yang disekat',
+'blocklist'                       => 'Pengguna yang disekat',
 'ipblocklist'                     => 'Alamat IP dan nama pengguna yang disekat',
 'ipblocklist-legend'              => 'Cari pengguna yang disekat',
 'blocklist-userblocks'            => 'Sorokkan sekatan akaun',
@@ -2579,7 +2608,8 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-interwiki-namespace' => 'Ruang nama destinasi:',
 'import-upload-filename'     => 'Nama fail:',
 'import-comment'             => 'Komen:',
-'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
+'importtext'                 => 'Sila eksport fail daripada sumber wiki dengan menggunakan [[Special:Export|utiliti eksport]].
+Simpan dalam komputer anda dan muat naiknya di sini.',
 'importstart'                => 'Mengimport laman...',
 'import-revision-count'      => '$1 semakan',
 'importnopages'              => 'Tiada laman untuk diimport.',
@@ -2798,7 +2828,7 @@ Sebarang pautan berikutnya pada baris yang sama dikira sebagai pengecualian (ren
 'metadata-expand'   => 'Tunjukkan butiran penuh',
 'metadata-collapse' => 'Sembunyikan butiran penuh',
 'metadata-fields'   => 'Ruangan metadata EXIF yang disenaraikan dalam mesej ini akan ditunjukkan pada laman imej apabila jadual metadata dikecilkan.
-Ruangan lain akan disembunyikan pada sediakala.
+Ruangan lain akan disembunyikan secara sediakala.
 * make
 * model
 * datetimeoriginal
@@ -2862,9 +2892,9 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-exposureprogram'             => 'Atur cara pendedahan',
 'exif-spectralsensitivity'         => 'Kepekaan spektrum',
 'exif-isospeedratings'             => 'Penilaian kelajuan ISO',
-'exif-shutterspeedvalue'           => 'Kelajuan pengatup',
-'exif-aperturevalue'               => 'Bukaan',
-'exif-brightnessvalue'             => 'Kecerahan',
+'exif-shutterspeedvalue'           => 'Kelajuan pengatup APEX',
+'exif-aperturevalue'               => 'Bukaan APEX',
+'exif-brightnessvalue'             => 'Kecerahan APEX',
 'exif-exposurebiasvalue'           => 'Kecenderungan pendedahan',
 'exif-maxaperturevalue'            => 'Bukaan tanah maksimum',
 'exif-subjectdistance'             => 'Jarak subjek',
@@ -2926,10 +2956,76 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-gpsareainformation'          => 'Nama kawasan GPS',
 'exif-gpsdatestamp'                => 'Tarikh GPS',
 'exif-gpsdifferential'             => 'Pembetulan pembezaan GPS',
+'exif-jpegfilecomment'             => 'Komen fail JPEG',
+'exif-keywords'                    => 'Kata kunci',
+'exif-worldregioncreated'          => 'Kawasan dunia di mana gambar diambil',
+'exif-countrycreated'              => 'Negara di mana gambar diambil',
+'exif-countrycodecreated'          => 'Kod negara di mana gambar diambil',
+'exif-provinceorstatecreated'      => 'Wilayah atau negeri di mana gambar diambil',
+'exif-citycreated'                 => 'Bandar di mana gambar diambil',
+'exif-sublocationcreated'          => 'Kawasan bandar di mana gambar diambil',
+'exif-worldregiondest'             => 'Kawasan dunia yang ditunjukkan',
+'exif-countrydest'                 => 'Negara yang ditunjukkan',
+'exif-countrycodedest'             => 'Kod negara yang ditunjukkan',
+'exif-provinceorstatedest'         => 'Wilayah atau negeri yang ditunjukkan',
+'exif-citydest'                    => 'Bandar yang ditunjukkan',
+'exif-sublocationdest'             => 'Kawasan bandar yang ditunjukkan',
 'exif-objectname'                  => 'Tajuk ringkas',
+'exif-specialinstructions'         => 'Arahan khusus',
+'exif-headline'                    => 'Tajuk berita',
+'exif-credit'                      => 'Kredit/Pembekal',
+'exif-source'                      => 'Sumber',
+'exif-editstatus'                  => 'Status editorial imej',
+'exif-urgency'                     => 'Kemustahakan',
+'exif-fixtureidentifier'           => 'Nama lekapan',
+'exif-locationdest'                => 'Lokasi yang digambarkan',
+'exif-locationdestcode'            => 'Kod lokasi yang digambarkan',
+'exif-objectcycle'                 => 'Waktu untuk siarkan media',
+'exif-contact'                     => 'Maklumat hubungan',
+'exif-writer'                      => 'Penulis',
+'exif-languagecode'                => 'Bahasa',
+'exif-iimversion'                  => 'Versi IIM',
+'exif-iimcategory'                 => 'Kategori',
+'exif-iimsupplementalcategory'     => 'Kategori tambahan',
+'exif-datetimeexpires'             => 'Jangan gunakan selepas',
+'exif-datetimereleased'            => 'Keluar pada',
+'exif-originaltransmissionref'     => 'Kod lokasi transmisi asal',
+'exif-identifier'                  => 'Pengenal',
+'exif-lens'                        => 'Kanta yang digunakan',
+'exif-serialnumber'                => 'Nombor bersiri kamera',
+'exif-cameraownername'             => 'Pemilik kamera',
+'exif-label'                       => 'Label',
+'exif-datetimemetadata'            => 'Tarikh kali terakhir metadata diubah',
+'exif-nickname'                    => 'Nama timangan imej',
+'exif-rating'                      => 'Nilai (daripada 5)',
+'exif-rightscertificate'           => 'Sijil pengurusan hak',
+'exif-copyrighted'                 => 'Status hak cipta',
+'exif-copyrightowner'              => 'Pemilik hak cipta',
+'exif-usageterms'                  => 'Terma-terma penggunaan',
+'exif-webstatement'                => 'Kenyataan hak cipta dalam talian',
+'exif-originaldocumentid'          => 'ID unik dokumen asli',
+'exif-licenseurl'                  => 'URL untuk lesen hak cipta',
+'exif-morepermissionsurl'          => 'Maklumat pelesenan alternatif',
+'exif-attributionurl'              => 'Apabila menggunakan semula hasil kerja ini, tolong pautkannya ke',
+'exif-preferredattributionname'    => 'Apabila menggunakan semula hasil kerja ini, tolong berikan penghargaan kepada',
+'exif-pngfilecomment'              => 'Komen fail PNG',
+'exif-disclaimer'                  => 'Penafian',
+'exif-contentwarning'              => 'Amaran kandungan',
+'exif-giffilecomment'              => 'Komen fail GIF',
+'exif-intellectualgenre'           => 'Jenis item',
+'exif-subjectnewscode'             => 'Kod subjek',
+'exif-scenecode'                   => 'Kod pemandangan IPTC',
+'exif-event'                       => 'Peristiwa yang digambarkan',
+'exif-organisationinimage'         => 'Pertubuhan yang digambarkan',
+'exif-personinimage'               => 'Tokoh yang digambarkan',
+'exif-originalimageheight'         => 'Ketinggian imej sebelum dipangkas',
+'exif-originalimagewidth'          => 'Lebar imej sebelum dipangkas',
 
 # EXIF attributes
 'exif-compression-1' => 'Tidak dimampat',
+
+'exif-copyrighted-true'  => 'Berhak cipta',
+'exif-copyrighted-false' => 'Domain awam',
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
@@ -2944,6 +3040,8 @@ Ruangan lain akan disembunyikan pada sediakala.
 
 'exif-planarconfiguration-1' => 'format besar',
 'exif-planarconfiguration-2' => 'format satah',
+
+'exif-colorspace-65535' => 'Tidak tertentukur',
 
 'exif-componentsconfiguration-0' => 'tiada',
 
@@ -3008,6 +3106,8 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-sensingmethod-7' => 'Penderia trilinear',
 'exif-sensingmethod-8' => 'Penderia linear warna berjujukan',
 
+'exif-filesource-3' => 'Kamera pegun digital',
+
 'exif-scenetype-1' => 'Gambar yang diambil secara terus',
 
 'exif-customrendered-0' => 'Proses biasa',
@@ -3056,6 +3156,10 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-gpslongitude-e' => 'Longitud timur',
 'exif-gpslongitude-w' => 'Longitud barat',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 meter di atas aras laut',
+'exif-gpsaltitude-below-sealevel' => '$1 meter di bawah paras laut',
+
 'exif-gpsstatus-a' => 'Pengukuran sedang dijalankan',
 'exif-gpsstatus-v' => 'Interoperabiliti pengukuran',
 
@@ -3072,21 +3176,65 @@ Ruangan lain akan disembunyikan pada sediakala.
 'exif-gpsdestdistance-m' => 'Batu',
 'exif-gpsdestdistance-n' => 'Batu nautika',
 
+'exif-gpsdop-excellent' => 'Cemerlang ($1)',
+'exif-gpsdop-good'      => 'Bagus ($1)',
+'exif-gpsdop-moderate'  => 'Sederhana ($1)',
+'exif-gpsdop-fair'      => 'Ala kadar ($1)',
+'exif-gpsdop-poor'      => 'Tidak memuaskan ($1)',
+
+'exif-objectcycle-a' => 'Pagi sahaja',
+'exif-objectcycle-p' => 'Petang sahaja',
+'exif-objectcycle-b' => 'Pagi dan petang',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah benar',
 'exif-gpsdirection-m' => 'Arah magnet',
+
+'exif-dc-contributor' => 'Penyumbang',
+'exif-dc-coverage'    => 'Skop ruangan atau masa media',
+'exif-dc-date'        => 'Tarikh',
+'exif-dc-publisher'   => 'Penerbit',
+'exif-dc-relation'    => 'Media berkaitan',
+'exif-dc-rights'      => 'Hak',
+'exif-dc-source'      => 'Media sumber',
+'exif-dc-type'        => 'Jenis media',
+
+'exif-rating-rejected' => 'Ditolak',
+
+'exif-isospeedratings-overflow' => 'Melebihi 65535',
+
+'exif-iimcategory-ace' => 'Seni, kebudayaan dan hiburan',
+'exif-iimcategory-clj' => 'Jenayah dan undang-undang',
+'exif-iimcategory-dis' => 'Bencana dan kemalangan',
+'exif-iimcategory-fin' => 'Ekonomi dan perniagaan',
+'exif-iimcategory-edu' => 'Pendidikan',
+'exif-iimcategory-evn' => 'Alam sekitar',
+'exif-iimcategory-hth' => 'Kesihatan',
+'exif-iimcategory-hum' => 'Pesona',
+'exif-iimcategory-lab' => 'Pekerja',
+'exif-iimcategory-lif' => 'Gaya hidup dan santai',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Agama dan kepercayaan',
+'exif-iimcategory-sci' => 'Sains dan teknologi',
+'exif-iimcategory-soi' => 'Isu sosial',
+'exif-iimcategory-spo' => 'Sukan',
+'exif-iimcategory-war' => 'Peperangan, konflik dan pergolakan',
+'exif-iimcategory-wea' => 'Cuaca',
+
+'exif-urgency-normal' => 'Biasa ($1)',
+'exif-urgency-low'    => 'Rendah ($1)',
+'exif-urgency-high'   => 'Tinggi ($1)',
+'exif-urgency-other'  => 'Keutamaan tentuan pengguna ($1)',
 
 # External editor support
 'edit-externally'      => 'Sunting fail ini menggunakan perisian luar',
 'edit-externally-help' => '(Lihat [http://www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'semua',
-'imagelistall'     => 'semua',
-'watchlistall2'    => 'semua',
-'namespacesall'    => 'semua',
-'monthsall'        => 'semua',
-'limitall'         => 'semua',
+'watchlistall2' => 'semua',
+'namespacesall' => 'semua',
+'monthsall'     => 'semua',
+'limitall'      => 'semua',
 
 # E-mail address confirmation
 'confirmemail'              => 'Sahkan alamat e-mel',
@@ -3161,11 +3309,12 @@ $1',
 'trackbackdeleteok' => 'Jejak balik dihapuskan.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Amaran''': Laman ini dihapuskan ketika anda sedang menyuntingnya!",
-'confirmrecreate'     => "Pengguna [[User:$1|$1]] ([[User talk:$1|perbincangan]]) telah menghapuskan laman ini ketika anda sedang menyunting atas sebab berikut:
+'deletedwhileediting'      => "'''Amaran''': Laman ini dihapuskan ketika anda sedang menyuntingnya!",
+'confirmrecreate'          => "Pengguna [[User:$1|$1]] ([[User talk:$1|perbincangan]]) telah menghapuskan laman ini ketika anda sedang menyunting atas sebab berikut:
 : ''$2''
 Sila sahkan bahawa anda mahu mencipta semula laman ini.",
-'recreate'            => 'Cipta semula',
+'confirmrecreate-noreason' => 'Pengguna [[User:$1|$1]] ([[User talk:$1|bincang]]) menghapuskan laman ini selepas anda mulai menyunting. Sila sahkan bahawa anda betul-betul ingin mencipta semula laman ini.',
+'recreate'                 => 'Cipta semula',
 
 # action=purge
 'confirm_purge_button' => 'OK',

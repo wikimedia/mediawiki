@@ -2158,11 +2158,9 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'edit-externally-help' => '(Ta lo giva va [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] disukel !)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kot',
-'imagelistall'     => 'kot',
-'watchlistall2'    => 'kot',
-'namespacesall'    => 'koto',
-'monthsall'        => 'kot',
+'watchlistall2' => 'kot',
+'namespacesall' => 'koto',
+'monthsall'     => 'kot',
 
 # E-mail address confirmation
 'confirmemail'             => 'Va e-mail gruyel',

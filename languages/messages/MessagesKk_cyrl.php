@@ -2723,11 +2723,9 @@ $1',
 'edit-externally-help' => 'Көбірек ақпарат үшін [http://www.mediawiki.org/wiki/Manual:External_editors орнату нұсқамаларын] қараңыз.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'барлығын',
-'imagelistall'     => 'барлығы',
-'watchlistall2'    => 'барлық',
-'namespacesall'    => 'барлығы',
-'monthsall'        => 'барлығы',
+'watchlistall2' => 'барлық',
+'namespacesall' => 'барлығы',
+'monthsall'     => 'барлығы',
 
 # E-mail address confirmation
 'confirmemail'             => 'Е-пошта мекенжайын құптау',

@@ -242,6 +242,7 @@ $messages = array(
 'qbpageinfo'     => 'Contest',
 'qbmyoptions'    => 'Mês pagjinis',
 'qbspecialpages' => 'Pagjinis speciâls',
+'faq'            => 'Domandis plui frecuentis',
 
 # Vector skin
 'vector-action-addsection' => 'Gnove sezion',
@@ -254,6 +255,7 @@ $messages = array(
 'vector-view-view'         => 'Lei',
 'vector-view-viewsource'   => 'Cjale risultive',
 'actions'                  => 'Azions',
+'namespaces'               => 'Spazis dai nons',
 'variants'                 => 'Variants',
 
 'errorpagetitle'    => 'Erôr',
@@ -271,6 +273,7 @@ $messages = array(
 'printableversion'  => 'Version stampabil',
 'permalink'         => 'Leam permanent',
 'print'             => 'Stampe',
+'view'              => 'Viodi',
 'edit'              => 'Cambie',
 'create'            => 'Cree',
 'editthispage'      => 'Cambie cheste pagjine',
@@ -278,6 +281,7 @@ $messages = array(
 'delete'            => 'Elimine',
 'deletethispage'    => 'Elimine cheste pagjine',
 'undelete_short'    => 'Recupere {{PLURAL:$1|modifiche eliminade|$1 modifichis eliminadis}}',
+'viewdeleted_short' => 'Viôt {{PLURAL:$1|une modifiche eliminade|$1 modifichis eliminadis}}',
 'protect'           => 'Protêç',
 'protect_change'    => 'cambie',
 'protectthispage'   => 'Protêç cheste pagjine',
@@ -349,6 +353,8 @@ $messages = array(
 'toc'                     => 'Tabele dai contignûts',
 'showtoc'                 => 'mostre',
 'hidetoc'                 => 'plate',
+'collapsible-collapse'    => 'Strenç',
+'collapsible-expand'      => 'Slargje',
 'thisisdeleted'           => 'Vuelistu cjalâ o ripristinâ $1?',
 'viewdeleted'             => 'Vuelistu viodi $1?',
 'restorelink'             => '{{PLURAL:$1|une modifiche eliminade|$1 modifichis eliminadis}}',
@@ -391,6 +397,7 @@ Chest in gjenar al è causât dal jessi lâts daûr dal leam a une pagjine che e
 Se la cause no samee jessi cheste, tu podaressis vê cjatât un problem tal software.
 Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la URL.',
 'missingarticle-rev' => '(numar de revision: $1)',
+'filedeleteerror'    => 'No si pues eliminâ il file "$1".',
 'filenotfound'       => 'No si pues cjatâ il file "$1".',
 'badtitle'           => 'Titul sbaliât',
 'badtitletext'       => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
@@ -426,6 +433,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'gotaccount'              => "Âstu za une identitât? '''$1'''.",
 'gotaccountlink'          => 'Jentre',
 'createaccountmail'       => 'par pueste eletroniche',
+'createaccountreason'     => 'Reson:',
 'badretype'               => 'Lis peraulis clâfs inseridis no son compagnis.',
 'userexists'              => 'Il non utent inserît al è za doprât. Sielç par plasê un non diferent.',
 'loginerror'              => 'Erôr te jentrade',
@@ -1548,11 +1556,9 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'edit-externally-help' => '(Cjale lis [http://www.mediawiki.org/wiki/Manual:External_editors istruzions] par vê altris informazions)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ducj',
-'imagelistall'     => 'ducj',
-'watchlistall2'    => 'dutis',
-'namespacesall'    => 'ducj',
-'monthsall'        => 'ducj',
+'watchlistall2' => 'dutis',
+'namespacesall' => 'ducj',
+'monthsall'     => 'ducj',
 
 # E-mail address confirmation
 'confirmemail'           => 'Conferme direzione di pueste',

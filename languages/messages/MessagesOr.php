@@ -672,12 +672,10 @@ $messages = array(
 'edit-externally-help' => '(ଆହୁରି ବି [http://www.mediawiki.org/wiki/Manual:External_editors ସଜାଡିବା ନିର୍ଦେଶ] ଦେଖନ୍ତୁ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ସବୁ',
-'imagelistall'     => 'ସବୁ',
-'watchlistall2'    => 'ସବୁ',
-'namespacesall'    => 'ସବୁ',
-'monthsall'        => 'ସବୁ',
-'limitall'         => 'ସବୁ',
+'watchlistall2' => 'ସବୁ',
+'namespacesall' => 'ସବୁ',
+'monthsall'     => 'ସବୁ',
+'limitall'      => 'ସବୁ',
 
 # Special:FilePath
 'filepath-page' => 'ଫାଇଲ:',

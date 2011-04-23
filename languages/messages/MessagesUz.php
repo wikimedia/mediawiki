@@ -668,10 +668,8 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'edit-externally-help' => "(Batafsil ma'lumotlar uchun [http://www.mediawiki.org/wiki/Manual:External_editors bu yerga] qarang)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Barchasi',
-'imagelistall'     => 'Barchasi',
-'watchlistall2'    => 'Barcha',
-'namespacesall'    => 'Barchasi',
+'watchlistall2' => 'Barcha',
+'namespacesall' => 'Barchasi',
 
 'unit-pixel' => 'piksel',
 

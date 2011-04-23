@@ -3580,12 +3580,10 @@ Andere velden worden verborgen.
 'edit-externally-help' => '(zie de [http://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alles',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alles',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
-'limitall'         => 'alle',
+'watchlistall2' => 'alles',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-mailadres bevestigen',

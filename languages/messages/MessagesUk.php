@@ -3215,12 +3215,10 @@ $1',
 'edit-externally-help' => '(Подробиці див. на сторінці [http://www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'всі',
-'imagelistall'     => 'всі',
-'watchlistall2'    => 'всі',
-'namespacesall'    => 'всі',
-'monthsall'        => 'всі',
-'limitall'         => 'усі',
+'watchlistall2' => 'всі',
+'namespacesall' => 'всі',
+'monthsall'     => 'всі',
+'limitall'      => 'усі',
 
 # E-mail address confirmation
 'confirmemail'              => 'Підтвердження адреси ел. пошти',

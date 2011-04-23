@@ -3340,12 +3340,10 @@ $1',
 'edit-externally-help' => '(ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'הכול',
-'imagelistall'     => 'הכול',
-'watchlistall2'    => 'הכול',
-'namespacesall'    => 'הכול',
-'monthsall'        => 'הכול',
-'limitall'         => 'הכול',
+'watchlistall2' => 'הכול',
+'namespacesall' => 'הכול',
+'monthsall'     => 'הכול',
+'limitall'      => 'הכול',
 
 # E-mail address confirmation
 'confirmemail'              => 'אימות כתובת דוא"ל',

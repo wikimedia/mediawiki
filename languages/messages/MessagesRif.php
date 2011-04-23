@@ -759,11 +759,9 @@ Innḍni ad twaffrn dg umzwar.
 'edit-externally-help' => 'Xemm [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] i ktar n tilɣa(informations).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'maṛṛa',
-'imagelistall'     => 'maṛṛa',
-'watchlistall2'    => 'marra',
-'namespacesall'    => 'marra',
-'monthsall'        => 'marra',
+'watchlistall2' => 'marra',
+'namespacesall' => 'marra',
+'monthsall'     => 'marra',
 
 # Multipage image navigation
 'imgmultigo' => 'Raḥ ɣa!',

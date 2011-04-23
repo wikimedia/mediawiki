@@ -59,6 +59,9 @@ $messages = array(
 'nov'           => 'ЦӀе',
 'dec'           => 'Фaн',
 
+# Categories related messages
+'hidden-categories' => '{{PLURAL:$1|Кьевнавай кlватlалрин кьадар|Кьевнавай кlватlалрин кьадар}}',
+
 'about'      => 'Хакъиндай',
 'mypage'     => 'Зин чар',
 'mytalk'     => 'Зин ихтилатрин чар',
@@ -89,6 +92,7 @@ $messages = array(
 'searcharticle'    => 'Фин',
 'history'          => 'Хъувун тарих',
 'history_short'    => 'Тарих',
+'printableversion' => ' Акъудунин кхьинриз жуьре',
 'edit'             => 'Дегишарун',
 'create'           => 'Туькlуьрун',
 'editthispage'     => 'дегишунар и чарар',
@@ -104,6 +108,7 @@ $messages = array(
 'talk'             => 'Рахун',
 'toolbox'          => 'Aлаткъаб',
 'otherlanguages'   => 'Масса чIаларал',
+'lastmodifiedat'   => 'И чар эхиримжи сеферда дигишарна $1, ди $2',
 'jumpto'           => 'Къудгъунун:',
 'jumptonavigation' => 'къекъуьн',
 'jumptosearch'     => 'ахтармишун',
@@ -178,6 +183,7 @@ $messages = array(
 'editingsection' => 'Дегишарун $1 (пай)',
 
 # History pages
+'revisionasof'           => 'Килиг хъувун иниз $1',
 'next'                   => 'къведайди',
 'last'                   => 'эхиримжи',
 'page_first'             => 'сифте',
@@ -199,6 +205,7 @@ $messages = array(
 'editundo' => 'кукlварин',
 
 # Search results
+'searchresulttext'          => 'Атун патал артухан жагъуриникай хабарар {{SITENAME}}, килиг [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitleinvalid'     => "Куьне жагъурзавай '''$1'''",
 'prevn'                     => 'алатайбур {{PLURAL:$1|$1}}',
 'nextn'                     => 'къведай {{PLURAL:$1|$1}}',
@@ -324,6 +331,7 @@ $messages = array(
 'watch'         => 'Гелкъуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
 'unwatch'       => 'Ишлемиш тийизвай',
+'wlshowlast'    => 'Къалур эхирижи $1 сятинлай $2 йикъалди $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Килигун...',
@@ -392,6 +400,7 @@ $messages = array(
 'tooltip-pt-preferences'         => 'Куьн хкягъунар',
 'tooltip-pt-login'               => 'Квез буюрзава гьахьиз системадиз; тефейтlани жезва',
 'tooltip-pt-logout'              => 'ЭкъечIун',
+'tooltip-ca-edit'                => 'Квевай дегишариз жезва и чар.Ва сифте клигна ахпа хвена кlанда.',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
 'tooltip-ca-delete'              => 'Къакъудун и хъувун',
 'tooltip-ca-move'                => 'Юзун и хъувун',
@@ -407,6 +416,7 @@ $messages = array(
 'tooltip-feed-atom'              => 'Atom  хуьрек и чарчиз',
 'tooltip-t-upload'               => 'Парвиниз шикил',
 'tooltip-t-specialpages'         => 'Цlарар вири герек чарар',
+'tooltip-t-print'                => ' Акъудунин  и чарчин жуьре',
 'tooltip-save'                   => 'Куьн дегишунар хуьн',
 
 # Browsing diffs

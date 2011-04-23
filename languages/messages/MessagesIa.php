@@ -3356,12 +3356,10 @@ Le alteres essera initialmente celate.
 'edit-externally-help' => '(Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totes',
-'imagelistall'     => 'totes',
-'watchlistall2'    => 'totes',
-'namespacesall'    => 'totes',
-'monthsall'        => 'totes',
-'limitall'         => 'totes',
+'watchlistall2' => 'totes',
+'namespacesall' => 'totes',
+'monthsall'     => 'totes',
+'limitall'      => 'totes',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar adresse de e-mail',

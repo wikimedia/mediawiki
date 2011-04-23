@@ -1801,12 +1801,10 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [http://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাঁওক ।',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'সকলোবোৰ',
-'imagelistall'     => 'সকলোবোৰ',
-'watchlistall2'    => 'সকলো',
-'namespacesall'    => 'সকলোবোৰ',
-'monthsall'        => 'সকলো',
-'limitall'         => 'সকলোবোৰ',
+'watchlistall2' => 'সকলো',
+'namespacesall' => 'সকলোবোৰ',
+'monthsall'     => 'সকলো',
+'limitall'      => 'সকলোবোৰ',
 
 # Delete conflict
 'recreate' => 'পুনৰ সৃষ্টি কৰক',

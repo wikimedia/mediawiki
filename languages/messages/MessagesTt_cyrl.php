@@ -2295,12 +2295,10 @@ $1',
 'edit-externally-help' => '(тулырак мәгълүмат өчен [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Барлык',
-'imagelistall'     => 'барлык',
-'watchlistall2'    => 'барлык',
-'namespacesall'    => 'барлык',
-'monthsall'        => 'барлык',
-'limitall'         => 'барлык',
+'watchlistall2' => 'барлык',
+'namespacesall' => 'барлык',
+'monthsall'     => 'барлык',
+'limitall'      => 'барлык',
 
 # Delete conflict
 'recreate' => 'Яңадан ясау',

@@ -3430,12 +3430,10 @@ $1',
 'edit-externally-help' => '(подробнее см. в [http://www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'все',
-'imagelistall'     => 'все',
-'watchlistall2'    => 'все',
-'namespacesall'    => 'все',
-'monthsall'        => 'все',
-'limitall'         => 'все',
+'watchlistall2' => 'все',
+'namespacesall' => 'все',
+'monthsall'     => 'все',
+'limitall'      => 'все',
 
 # E-mail address confirmation
 'confirmemail'              => 'Подтверждение адреса электронной почты',

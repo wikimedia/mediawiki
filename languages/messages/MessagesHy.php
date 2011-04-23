@@ -2296,12 +2296,10 @@ $1',
 'edit-externally-help' => '(Մանրամասնությունների համար տես [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'բոլոր',
-'imagelistall'     => 'բոլոր',
-'watchlistall2'    => 'բոլոր',
-'namespacesall'    => 'բոլոր',
-'monthsall'        => 'բոլոր',
-'limitall'         => 'բոլոր',
+'watchlistall2' => 'բոլոր',
+'namespacesall' => 'բոլոր',
+'monthsall'     => 'բոլոր',
+'limitall'      => 'բոլոր',
 
 # E-mail address confirmation
 'confirmemail'            => 'Էլ-հասցեի վավերացում',

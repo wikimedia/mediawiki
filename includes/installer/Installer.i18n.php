@@ -859,8 +859,16 @@ As dit gedoen is, kan u '''[u $2 wiki besoek]'''.",
 
 /** Arabic (العربية)
  * @author Meno25
+ * @author OsamaK
  */
 $messages['ar'] = array(
+	'config-back' => '→ ارجع',
+	'config-continue' => 'استمر ←',
+	'config-page-language' => 'اللغة',
+	'config-page-name' => 'الاسم',
+	'config-db-username' => 'اسم مستخدم قاعدة البيانات:',
+	'config-db-password' => 'كلمة سر قاعدة البيانات:',
+	'config-db-port' => 'منفذ قاعدة البيانات:',
 	'config-type-mysql' => 'ماي إس كيو إل',
 	'config-type-postgres' => 'بوستجر إس كيو إل',
 	'config-type-sqlite' => 'إس كيو لايت',
@@ -4640,6 +4648,7 @@ $1
 כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<span dir="ltr"><code>/var/lib/mediawiki/yourwik</code></span>.',
 	'config-oracle-def-ts' => 'מרחב טבלאות לפי בררת מחדל (default tablespace):',
 	'config-oracle-temp-ts' => 'מרחב טבלאות זמני (temporary tablespace):',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'מדיה־ויקי תומכת במערכות מסדי הנתונים הבאות:
 
 $1
@@ -4649,10 +4658,12 @@ $1
 	'config-support-postgres' => '$1 הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות.',
 	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
 	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
 	'config-header-oracle' => 'הגדרות Oracle',
+	'config-header-ibm_db2' => 'תצורת IBM DB2',
 	'config-invalid-db-type' => 'סוג מסד הנתונים שגוי',
 	'config-missing-db-name' => 'עליך להזין ערך עבור "שם מסד הנתונים"',
 	'config-missing-db-host' => 'יש להכניס ערך לשדה "שרת מסד הנתונים"',
@@ -4737,6 +4748,7 @@ chmod a+w $3</pre></div>',
 זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
 
 ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע מה קבוצת התווים (character set) של הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
+	'config-ibm_db2-low-db-pagesize' => "במסד הנתונים DB2 שלכם יש מרחב טבלאות לפי מחדלי עם גודל דף בלתי־מספיק. גודל הדף צריך להיות '''32K''' או יותר.",
 	'config-site-name' => 'שם הוויקי:',
 	'config-site-name-help' => 'זה יופיע בשורת הכותרת של הדפדפן ובמקומות רבים אחרים.',
 	'config-site-name-blank' => 'נא להזין שם לאתר.',
@@ -6258,7 +6270,7 @@ $messages['id'] = array(
 Untuk memutakhirkan instalasi ini, masukkan nilai <code>$wgUpgradeKey</code> dalam kotak yang tersedia di bawah ini.
 Anda dapat menemukan nilai tersebut dalam LocalSettings.php.',
 	'config-localsettings-cli-upgrade' => 'Berkas LocalSettings.php terdeteksi.
-Untuk meningkatkan versi, sertakan pilihan --upgrade=yes.',
+Untuk meningkatkan versi, harap jalankan update.php.',
 	'config-localsettings-key' => 'Kunci pemutakhiran:',
 	'config-localsettings-badkey' => 'Kunci yang Anda berikan tidak benar',
 	'config-upgrade-key-missing' => 'Suatu instalasi MediaWiki telah terdeteksi.
@@ -6314,10 +6326,15 @@ Program ini didistribusikan dengan harapan bahwa itu akan berguna, tetapi '''tan
 Lihat GNU General Public License untuk lebih jelasnya.
 
 Anda seharusnya telah menerima <doclink href=\"Copying\">salinan dari GNU General Public License</doclink> bersama dengan program ini; jika tidak, kirimkan surat untuk Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. atau [http://www.gnu.org/copyleft/gpl.html baca versi daring].",
-	'config-sidebar' => '* [http://www.mediawiki.org Halaman utama MediaWiki]
-* [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
-* [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Pertanyaan yang Sering Diajukan]',
+	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/id Situs MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents/id Pedoman Pengguna]
+* [http://www.mediawiki.org/wiki/Manual:Contents/id Pedoman Administrator]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/id FAQ]
+----
+* <doclink href=Readme>Read me</doclink>
+* <doclink href=ReleaseNotes>Release notes</doclink>
+* <doclink href=Copying>Copying</doclink>
+* <doclink href=UpgradeDoc>Upgrading</doclink>',
 	'config-env-good' => 'Kondisi telah diperiksa.
 Anda dapat menginstal MediaWiki.',
 	'config-env-bad' => 'Kondisi telah diperiksa.
@@ -6384,8 +6401,8 @@ Meskipun MediaWiki memeriksa semua berkas unggahan untuk ancaman keamanan, sanga
 	'config-brokenlibxml' => 'Sistem Anda memiliki kombinasi versi PHP dan libxml2 yang memiliki bug dan dapat menyebabkan kerusakan data tersembunyi pada MediaWiki dan aplikasi web lain.
 Mutakhirkan ke PHP 5.2.9 atau yang lebih baru dan libxml2 2.7.3 atau yang lebih baru ([http://bugs.php.net/bug.php?id=45996 arsip bug di PHP]).
 Instalasi dibatalkan.',
-	'config-using531' => 'PHP $1 tidak kompatibel dengan MediaWiki karena bug yang melibatkan parameter referensi untuk <code>__call()</code> . 
-Tingkatkan ke PHP 5.3.2 atau yang lebih baru, atau turunkan ke PHP versi 5.3.0 untuk memperbaiki ini ([http://bugs.php.net/bug.php?id=50394 arsip bug di PHP]). 
+	'config-using531' => 'MediaWiki tidak dapat dijalankan dengan PHP $1 karena bug yang melibatkan parameter referensi untuk <code>__call()</code> . 
+Tingkatkan ke PHP 5.3.2 atau lebih baru, atau turunkan ke PHP versi 5.3.0 untuk menyelesaikan hal ini.
 Instalasi dibatalkan.',
 	'config-db-type' => 'Jenis basis data:',
 	'config-db-host' => 'Inang basis data:',
@@ -6432,7 +6449,7 @@ Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data anda dan dapat me
 	'config-mysql-old' => 'MySQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
 	'config-db-port' => 'Porta basis data:',
 	'config-db-schema' => 'Skema untuk MediaWiki',
-	'config-db-schema-help' => 'Skema di atas biasanya benar. 
+	'config-db-schema-help' => 'Skema ini biasanya berjalan baik.
 Ubah hanya jika Anda tahu Anda perlu mengubahnya.',
 	'config-sqlite-dir' => 'Direktori data SQLite:',
 	'config-sqlite-dir-help' => "SQLite menyimpan semua data dalam satu berkas.
@@ -6457,7 +6474,7 @@ $1
 
 Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah ini, ikuti petunjuk terkait di atas untuk mengaktifkan dukungan.',
 	'config-support-mysql' => '* $1 adalah target utama MediaWiki dan memiliki dukungan terbaik ([http://www.php.net/manual/en/mysql.installation.php cara mengompilasi PHP dengan dukungan MySQL])',
-	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL])',
+	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL]). Mungkin ada beberapa bug terbuka dan alternatif ini tidak direkomendasikan untuk dipakai dalam lingkungan produksi.',
 	'config-support-sqlite' => '* $1 adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)',
 	'config-support-oracle' => '* $1 adalah basis data komersial untuka perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])',
 	'config-header-mysql' => 'Pengaturan MySQL',
@@ -6572,7 +6589,7 @@ Berikan nama pengguna lain.',
 	'config-admin-password-same' => 'Kata sandi harus tidak sama seperti nama pengguna.',
 	'config-admin-password-mismatch' => 'Dua kata sandi yang Anda masukkan tidak cocok.',
 	'config-admin-email' => 'Alamat surel:',
-	'config-admin-email-help' => 'Masukkan alamat surel untuk memungkinkan Anda menerima surel dari pengguna lain, menyetel ulang sandi, dan mendapat pemberitahuan tentang perubahan atas daftar pantauan Anda.',
+	'config-admin-email-help' => 'Masukkan alamat surel untuk memungkinkan Anda menerima surel dari pengguna lain, menyetel ulang sandi, dan mendapat pemberitahuan tentang perubahan atas daftar pantauan Anda. Anda dapat mengosongkan bidang ini.',
 	'config-admin-error-user' => 'Kesalahan internal saat membuat admin dengan nama "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Kesalahan internal saat membuat sandi untuk admin "<nowiki>$1</nowiki>":<pre>$2</pre>',
 	'config-admin-error-bademail' => 'Anda memasukkan alamat surel yang tidak sah',
@@ -6609,14 +6626,15 @@ Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [
 	'config-license-gfdl-current' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
 	'config-license-pd' => 'Domain Umum',
 	'config-license-cc-choose' => 'Pilih lisensi Creative Commons kustom',
-	'config-license-help' => "Banyak wiki publik meletakkan semua kontribusi di bawah [http://freedomdefined.org/Definition lisensi bebas]. 
-Hal ini membantu untuk menciptakan rasa kepemilikan komunitas dan mendorong kontribusi jangka panjang.
-Ini umumnya tidak diperlukan untuk wiki pribadi atau perusahaan.
+	'config-license-help' => "Banyak wiki publik melisensikan semua kontribusi di bawah [http://freedomdefined.org/Definition lisensi bebas]. 
+Hal ini membantu menciptakan rasa kepemilikan komunitas dan mendorong kontribusi jangka panjang.
+Hal ini umumnya tidak diperlukan untuk wiki pribadi atau perusahaan.
 
-Jika Anda ingin dapat menggunakan teks dari Wikipedia dan Anda ingin Wikipedia untuk dapat menerima teks yang disalin dari wiki Anda, Anda harus memilih'''Creative Commons Attribution Share Alike'''.
+Jika Anda ingin dapat menggunakan teks dari Wikipedia dan Anda ingin agar Wikipedia dapat menerima teks yang disalin dari wiki Anda, Anda harus memilih'''Creative Commons Attribution Share Alike'''.
 
-GNU Free Documentation License adalah lisensi sebelumnya dari Wikipedia.
-Lisensi ini masih sah, namun memiliki beberapa fitur yang menyulitkan pemakaian ulang dan interpretasi.",
+Wikipedia sebelumnya menggunakan GNU Free Documentation License.
+Lisensi ini masih sah, namun sulit dipahami.
+Selain itu, sulit untuk menggunakan ulang konten yang dilisensikan di bawah GFDL.",
 	'config-email-settings' => 'Pengaturan surel',
 	'config-enable-email' => 'Aktifkan surel keluar',
 	'config-enable-email-help' => 'Jika Anda ingin mengaktifkan surel, [http://www.php.net/manual/en/mail.configuration.php setelah surel PHP] perlu dikonfigurasi dengan benar.
@@ -6668,7 +6686,9 @@ Situs berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur i
 	'config-cache-memcached' => 'Gunakan Memcached (memerlukan setup dan konfigurasi tambahan)',
 	'config-memcached-servers' => 'Server Memcached:',
 	'config-memcached-help' => 'Daftar alamat IP yang digunakan untuk Memcached.
-Harus dipisahkan dengan koma dan sebutkan port yang akan digunakan (contoh: 127.0.0.1:11211, 192.168.1.25:11211).',
+Harus dispesifikasikan per baris berikut porta yang akan digunakan. Contoh:
+ 127.0.0.1:11211
+ 192.168.1.25:1234',
 	'config-extensions' => 'Ekstensi',
 	'config-extensions-help' => 'Ekstensi yang tercantum di atas terdeteksi di direktori <code>./extensions</code>.
 
@@ -6694,7 +6714,7 @@ Melompati pembuatan.",
 	'config-install-interwiki-list' => 'Tidak dapat menemukan berkas <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Peringatan''': Tabel antarwiki tampaknya sudah memiliki entri.
 Mengabaikan daftar bawaan.",
-	'config-install-keys' => 'Menciptakan kunci rahasia',
+	'config-install-keys' => 'Membuat kunci rahasia',
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 	'config-install-subscribe-fail' => 'Tidak dapat berlangganan mediawiki-announce',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
@@ -6705,8 +6725,13 @@ Anda telah berhasil menginstal MediaWiki.
 Penginstal telah membuat berkas <code>LocalSettings.php</code>.
 Berkas itu berisi semua konfigurasi Anda.
 
-Anda perlu [$1 mengunduhnya] dan meletakkannya di basis instalasi wiki (direktori yang sama dengan index.php).
-'''Catatan''': Jika Anda tidak melakukannya sekarang, berkas konfigurasi yang dihasilkan ini tidak akan tersedia lagi setelah Anda keluar instalasi tanpa mengunduhnya.
+Anda perlu mengunduh berkas itu dan meletakkannya di direktori instalasi wiki (direktori yang sama dengan index.php). Pengunduhan akan dimulai secara otomatis.
+
+Jika pengunduhan tidak terjadi, atau jika Anda membatalkannya, Anda dapat mengulangi pengunduhan dengan mengeklik tautan berikut:
+
+$3
+
+'''Catatan''': Jika Anda tidak melakukannya sekarang, berkas konfigurasi yang dihasilkan ini tidak akan tersedia lagi setelah Anda keluar dari proses instalasi tanpa mengunduhnya.
 
 Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
 	'config-download-localsettings' => 'Unduh LocalSettings.php',
@@ -8675,7 +8700,7 @@ $messages['myv'] = array(
 $messages['nl'] = array(
 	'config-desc' => 'Het installatieprogramma voor MediaWiki',
 	'config-title' => 'Installatie MediaWiki $1',
-	'config-information' => 'Informatie',
+	'config-information' => 'Gegevens',
 	'config-localsettings-upgrade' => 'Er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.
 Voer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om deze installatie bij te werken.
 De instelling is terug te vinden in LocalSettings.php.',
@@ -11957,6 +11982,7 @@ Kung hindi mo alam ang daungan, ang likas na nakatakda ay 11211.',
 	'config-install-step-failed' => 'nabigo',
 	'config-install-extensions' => 'Isinasama ang mga karugtong',
 	'config-install-database' => 'Inihahanda ang kalipunan ng dato',
+	'config-install-pg-schema-not-exist' => 'Hindi umiiral ang panukala ng PostgreSQL.',
 	'config-install-pg-schema-failed' => 'Nabigo ang paglikha ng mga talahanayan.
 Tiyakin na ang tagagamit na "$1" ay maaaring makasulat sa balangkas na "$2".',
 	'config-install-pg-commit' => 'Isinasagawa ang mga pagbabago',

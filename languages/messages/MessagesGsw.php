@@ -3003,12 +3003,10 @@ Anderi Metadate sy standardmäßig versteckt.
 'edit-externally-help' => '(Lueg d [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alli',
-'imagelistall'     => 'alli',
-'watchlistall2'    => 'alli',
-'namespacesall'    => 'alli',
-'monthsall'        => 'alli',
-'limitall'         => 'alli',
+'watchlistall2' => 'alli',
+'namespacesall' => 'alli',
+'monthsall'     => 'alli',
+'limitall'      => 'alli',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bstätigung vo Ihre E-Poscht-Adräss',

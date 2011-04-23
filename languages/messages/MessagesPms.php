@@ -554,24 +554,30 @@ Miraco it l'has già cambià la ciav o it l'has ciamà na neuva ciav a temp.",
 'resetpass-temp-password'   => 'Ciav a temp:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Cambi ëd ciav',
-'passwordreset-text'         => 'Completa sto formolari për arsèive un corel con ij detaj ëd tò cont.',
-'passwordreset-legend'       => 'Cambié la ciav',
-'passwordreset-disabled'     => 'Ij cangiament ëd ciav a son stàit disabilità su sta wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Anseriss un dij tòch ëd dat sota}}',
-'passwordreset-username'     => 'Stranòm:',
-'passwordreset-email'        => 'Adrëssa ëd pòsta eletrònica:',
-'passwordreset-emailtitle'   => 'Detaj ëd cont ansima {{SITENAME}}',
-'passwordreset-emailtext-ip' => "Quaidun (miraco ti, da 'adrëssa IP $1) a l'ha ciamà d'arcordé ij detaj ëd tò cont për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sota a l'é|Ij cont utent sota a son}} 
+'passwordreset'                => 'Cambi ëd ciav',
+'passwordreset-text'           => 'Completa sto formolari për arsèive un corel con ij detaj ëd tò cont.',
+'passwordreset-legend'         => 'Cambié la ciav',
+'passwordreset-disabled'       => 'Ij cangiament ëd ciav a son stàit disabilità su sta wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Anseriss un dij tòch ëd dat sota}}',
+'passwordreset-username'       => 'Stranòm:',
+'passwordreset-email'          => 'Adrëssa ëd pòsta eletrònica:',
+'passwordreset-emailtitle'     => 'Detaj ëd cont ansima {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Quaidun (miraco ti, da 'adrëssa IP $1) a l'ha ciamà d'arcordé ij detaj ëd tò cont për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sota a l'é|Ij cont utent sota a son}} 
 associà con st'adrëssa ëd corel:
 
 $2
 
 {{PLURAL:$3|Sta ciav|Ste ciav}} a temp a scadran an {{PLURAL:$5|un di|$5 di}}.
 It dovrìe intré e serne na ciav neuva adess. Se quaidun àutr a l'ha fàit sta arcesta, o s'it ses arcordate toa ciav original, e it veule pa pi cangela, it peule ignoré sto mëssagi e continué a dovré toa veja ciav.",
-'passwordreset-emailelement' => 'Nòm utent: $1
+'passwordreset-emailtext-user' => "L'utent $1 ansima a {{SITENAME}} a l'ha ciamà d'arcordé ij detaj ëd tò cont për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sota a l'é|Ij cont utent sota a son}} associà con st'adrëssa ëd corel:
+
+$2
+
+{{PLURAL:$3|Sta ciav|Ste ciav}} a temp a scadran an {{PLURAL:$5|un di|$5 di}}.
+It dovrìe intré e serne na ciav neuva adess. Se quaidun àutr a l'ha fàit sta arcesta, o s'it ses arcordate toa ciav original, e it veule pa pi cangela, it peule ignoré sto mëssagi e continué a dovré toa veja ciav.",
+'passwordreset-emailelement'   => 'Nòm utent: $1
 Ciav a temp: $2',
-'passwordreset-emailsent'    => "Un corel për arcordé a l'é stàit spedì.",
+'passwordreset-emailsent'      => "Un corel për arcordé a l'é stàit spedì.",
 
 # Edit page toolbar
 'bold_sample'     => 'Test an grassèt',
@@ -2907,9 +2913,51 @@ J'àutr a saran scondù për default.
 'exif-locationdest'                => 'Locassion fotografà',
 'exif-locationdestcode'            => 'Còdes ëd la locassion fotografà',
 'exif-objectcycle'                 => 'Ora dël di quand ël mojen a serv',
+'exif-contact'                     => 'Anformassion ëd contat',
+'exif-writer'                      => 'Scritor',
+'exif-languagecode'                => 'Lenga',
+'exif-iimversion'                  => 'Vërsion IIM',
+'exif-iimcategory'                 => 'Categorìa',
+'exif-iimsupplementalcategory'     => 'Categorìa suplementar',
+'exif-datetimeexpires'             => "Dòvra pa d'apress",
+'exif-datetimereleased'            => 'Butà fòra ël',
+'exif-originaltransmissionref'     => 'Còdes ëd locassion ëd la trasmission original',
+'exif-identifier'                  => 'Identificador',
+'exif-lens'                        => 'Lent dovrà',
+'exif-serialnumber'                => 'Nùmer serial ëd la màchina fotogràfica',
+'exif-cameraownername'             => 'Padron ëd la màchina fotogràfica',
+'exif-label'                       => 'Tichëtta',
+'exif-datetimemetadata'            => "Quand ij metadat a son stàit modificà l'ùltima vira",
+'exif-nickname'                    => 'Nòm anformal ëd la figura',
+'exif-rating'                      => 'Vot (su 5)',
+'exif-rightscertificate'           => 'Sertificà ëd gestion dij drit',
+'exif-copyrighted'                 => "Stat dël drit d'autor",
+'exif-copyrightowner'              => "Titolar dël drit d'autor",
+'exif-usageterms'                  => "Termo d'usagi",
+'exif-webstatement'                => "Diciarassion an linia dël drit d'autor",
+'exif-originaldocumentid'          => 'ID unìvoch dël document original',
+'exif-licenseurl'                  => "Anliura për licensa dël drit d'autor",
+'exif-morepermissionsurl'          => 'Anformassion ëd licensa alternativa',
+'exif-attributionurl'              => 'Quand as dòvra torna sto travaj, për piasì colega a',
+'exif-preferredattributionname'    => 'Quand as dòvra torna sto travaj, për piasì dà ij crédit',
+'exif-pngfilecomment'              => "Coment ëd l'archivi PNG",
+'exif-disclaimer'                  => 'Avis',
+'exif-contentwarning'              => 'Avis dël contnù',
+'exif-giffilecomment'              => "Coment ëd l'archivi GIF",
+'exif-intellectualgenre'           => "Sòrt d'element",
+'exif-subjectnewscode'             => 'Còdes dël soget',
+'exif-scenecode'                   => 'Còdes ëd sena IPTC',
+'exif-event'                       => 'Event fotografà',
+'exif-organisationinimage'         => 'Organisassion fotografà',
+'exif-personinimage'               => 'Përson-a fotografà',
+'exif-originalimageheight'         => "Autëssa dla figura prima ch'a sia ritajà",
+'exif-originalimagewidth'          => "Larghëssa dla figura prima ch'a sia ritajà",
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',
+
+'exif-copyrighted-true'  => "Con drit d'autor",
+'exif-copyrighted-false' => 'Domini pùblich',
 
 'exif-unknowndate' => 'Data nen conossùa',
 
@@ -2997,6 +3045,8 @@ J'àutr a saran scondù për default.
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear ëd color sequensiaj',
 
+'exif-filesource-3' => 'Màchina fotogràfica digital',
+
 'exif-scenetype-1' => 'Fotografìa an diret',
 
 'exif-customrendered-0' => 'Process normal',
@@ -3045,6 +3095,10 @@ J'àutr a saran scondù për default.
 'exif-gpslongitude-e' => 'Longitùdin oriental',
 'exif-gpslongitude-w' => 'Longitùdin ossidental',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} an sël livel dël mar',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} sota ël livel dël mar',
+
 'exif-gpsstatus-a' => 'Amzura antramentr che as fa',
 'exif-gpsstatus-v' => "Interoperabilità dl'amzura",
 
@@ -3056,21 +3110,73 @@ J'àutr a saran scondù për default.
 'exif-gpsspeed-m' => 'mija/h',
 'exif-gpsspeed-n' => 'Grop (marin)',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kiòmetr',
+'exif-gpsdestdistance-m' => 'Mija',
+'exif-gpsdestdistance-n' => 'Mija nàutich',
+
+'exif-gpsdop-excellent' => 'Ecelent ($1)',
+'exif-gpsdop-good'      => 'Bonj ($1)',
+'exif-gpsdop-moderate'  => 'Moderà ($1)',
+'exif-gpsdop-fair'      => 'Discret ($1)',
+'exif-gpsdop-poor'      => 'Scadent ($1)',
+
+'exif-objectcycle-a' => 'Mach ëd matin',
+'exif-objectcycle-p' => 'Mach ëd dòp-mesdì',
+'exif-objectcycle-b' => 'Sia matin che dòp-mesdì',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Diression vèira',
 'exif-gpsdirection-m' => 'Diression magnética',
+
+'exif-ycbcrpositioning-1' => 'Sentrà',
+'exif-ycbcrpositioning-2' => 'Co-situà',
+
+'exif-dc-contributor' => 'Contributor',
+'exif-dc-coverage'    => 'Camp spassial o temporal dël mojen',
+'exif-dc-date'        => 'Data(e)',
+'exif-dc-publisher'   => 'Editor',
+'exif-dc-relation'    => 'Mojen relativ',
+'exif-dc-rights'      => 'Drit',
+'exif-dc-source'      => 'Mojen sorziss',
+'exif-dc-type'        => 'Sòrt ëd mojen',
+
+'exif-rating-rejected' => 'Arfudà',
+
+'exif-isospeedratings-overflow' => 'Pi gròss ëd 65535',
+
+'exif-iimcategory-ace' => 'Art, cultura e spetàcol',
+'exif-iimcategory-clj' => 'Sassin e lej',
+'exif-iimcategory-dis' => 'Disàster e insident',
+'exif-iimcategory-fin' => 'Economìa e afé',
+'exif-iimcategory-edu' => 'Educassion',
+'exif-iimcategory-evn' => 'Ambient',
+'exif-iimcategory-hth' => 'Salute',
+'exif-iimcategory-hum' => 'Anteressi uman',
+'exif-iimcategory-lab' => 'Travaj',
+'exif-iimcategory-lif' => 'Stil ëd vita e temp lìber',
+'exif-iimcategory-pol' => 'Polìtica',
+'exif-iimcategory-rel' => 'Religion e fej',
+'exif-iimcategory-sci' => 'Siensa e tecnologìa',
+'exif-iimcategory-soi' => 'Custion sociaj',
+'exif-iimcategory-spo' => 'Spòrt',
+'exif-iimcategory-war' => 'Guèra, conflit e disordin',
+'exif-iimcategory-wea' => 'Temp',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Bass ($1)',
+'exif-urgency-high'   => 'Aut ($1)',
+'exif-urgency-other'  => "Priorità definìa da l'utent ($1)",
 
 # External editor support
 'edit-externally'      => "Modifiché st'archivi con un programa estern",
 'edit-externally-help' => "(Varda [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] për avej pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tute',
-'imagelistall'     => 'tùit/tute',
-'watchlistall2'    => 'tute',
-'namespacesall'    => 'tùit',
-'monthsall'        => 'tuti',
-'limitall'         => 'tùit',
+'watchlistall2' => 'tute',
+'namespacesall' => 'tùit',
+'monthsall'     => 'tuti',
+'limitall'      => 'tùit',
 
 # E-mail address confirmation
 'confirmemail'              => "Confermé l'adrëssa postal",

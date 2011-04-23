@@ -844,11 +844,9 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 'edit-externally-help' => 'Vuajna [http://www.mediawiki.org/wiki/Manual:External_editors instalasjovne instruksjovne] ihke vielie bïevnesh.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'gaajhke',
-'imagelistall'     => 'gaajhke',
-'watchlistall2'    => 'gaajhke',
-'namespacesall'    => 'gaajhke',
-'monthsall'        => 'gaajhke',
+'watchlistall2' => 'gaajhke',
+'namespacesall' => 'gaajhke',
+'monthsall'     => 'gaajhke',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL lea ihke guhkie; gaatelassjedh]',

@@ -595,6 +595,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'createaccount'              => 'Opret en ny konto',
 'gotaccount'                 => "Du har allerede en brugerkonto? '''$1'''.",
 'gotaccountlink'             => 'Log på',
+'userlogin-resetlink'        => 'Har du glemt dine login oplysninger?',
 'createaccountmail'          => 'via e-mail',
 'createaccountreason'        => 'Begrundelse:',
 'badretype'                  => 'De indtastede adgangskoder er ikke ens.',
@@ -684,6 +685,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 
 # Special:PasswordReset
 'passwordreset-username' => 'Brugernavn:',
+'passwordreset-email'    => 'E-mail adresse:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fed tekst',
@@ -1992,6 +1994,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'noemailtext'          => 'Denne bruger har ikke angivet en gyldig e-mail-adresse.',
 'nowikiemailtitle'     => 'E-mail er ikke tilladt',
 'nowikiemailtext'      => 'Denne bruger har valgt ikke at modtage e-mail fra andre brugere.',
+'emailusername'        => 'Brugernavn:',
 'email-legend'         => 'Send e-post til en anden {{SITENAME}}-bruger.',
 'emailfrom'            => 'Fra:',
 'emailto'              => 'Til:',
@@ -2942,10 +2945,32 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsareainformation'          => 'GPS-områdets navn',
 'exif-gpsdatestamp'                => 'GPS-dato',
 'exif-gpsdifferential'             => 'GPS-differentialkorrektur',
+'exif-jpegfilecomment'             => 'JPEG-filkommentar',
+'exif-keywords'                    => 'Nøgleord',
 'exif-objectname'                  => 'Kort titel',
+'exif-headline'                    => 'Overskrift',
+'exif-contact'                     => 'Kontaktoplysninger',
+'exif-languagecode'                => 'Sprog',
+'exif-iimcategory'                 => 'Kategori',
+'exif-iimsupplementalcategory'     => 'Supplerende kategorier',
+'exif-lens'                        => 'Anvendt objektiv',
+'exif-serialnumber'                => 'Kameraets serienummer',
+'exif-cameraownername'             => 'Kameraets ejer',
+'exif-copyrighted'                 => 'Ophavsretsstatus',
+'exif-copyrightowner'              => 'Indehaver af ​​ophavsretten',
+'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-event'                       => 'Afbildet begivenhed',
+'exif-organisationinimage'         => 'Afbildet organisation',
+'exif-personinimage'               => 'Afbildet person',
+'exif-originalimageheight'         => 'Højden af billedet inden det blev beskåret',
+'exif-originalimagewidth'          => 'Bredden af billedet inden det blev beskåret',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimeret',
+
+'exif-copyrighted-true'  => 'Ophavsretligt beskyttet',
+'exif-copyrighted-false' => 'Offentlig ejendom',
 
 'exif-unknowndate' => 'Ukendt dato',
 
@@ -2960,6 +2985,8 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 'exif-planarconfiguration-1' => 'Grovformat',
 'exif-planarconfiguration-2' => 'Planformat',
+
+'exif-colorspace-65535' => 'Ukalibreret',
 
 'exif-componentsconfiguration-0' => 'Findes ikke',
 
@@ -3072,6 +3099,10 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpslongitude-e' => 'østl. længde',
 'exif-gpslongitude-w' => 'vestl. længde',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|meter}} over havets overflade',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|meter}} under havets overflade',
+
 'exif-gpsstatus-a' => 'Måling kører',
 'exif-gpsstatus-v' => 'Målingens interoperabilitet',
 
@@ -3088,21 +3119,31 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Sømil',
 
+'exif-gpsdop-excellent' => 'Fremragende ($1)',
+'exif-gpsdop-good'      => 'God ($1)',
+'exif-gpsdop-moderate'  => 'Moderat ($1)',
+'exif-gpsdop-fair'      => 'Middelmådig ($1)',
+'exif-gpsdop-poor'      => 'Dårlig ($1)',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
+
+'exif-dc-date' => 'Dato(er)',
+
+'exif-rating-rejected' => 'Afvist',
+
+'exif-isospeedratings-overflow' => 'Større end 65535',
 
 # External editor support
 'edit-externally'      => 'Rediger denne fil med en ekstern editor',
 'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alle',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alle',
-'namespacesall'    => 'alle',
-'monthsall'        => 'alle',
-'limitall'         => 'alle',
+'watchlistall2' => 'alle',
+'namespacesall' => 'alle',
+'monthsall'     => 'alle',
+'limitall'      => 'alle',
 
 # E-mail address confirmation
 'confirmemail'              => 'Bekræft e-mail-adressen',

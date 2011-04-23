@@ -1352,11 +1352,9 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 'edit-externally-help' => 'Jeeagh er [http://www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'yn clane',
-'imagelistall'     => 'yn clane',
-'watchlistall2'    => 'yn clane',
-'namespacesall'    => 'yn clane',
-'monthsall'        => 'yn clane',
+'watchlistall2' => 'yn clane',
+'namespacesall' => 'yn clane',
+'monthsall'     => 'yn clane',
 
 # Delete conflict
 'recreate' => 'Aachroo',

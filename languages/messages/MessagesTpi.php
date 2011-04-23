@@ -788,12 +788,10 @@ Yu inap lukim as tok bilong em',
 'exif-meteringmode-255' => 'Narapela',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'olgeta',
-'imagelistall'     => 'olgeta',
-'watchlistall2'    => 'olgeta',
-'namespacesall'    => 'ol',
-'monthsall'        => 'olgeta',
-'limitall'         => 'olgeta',
+'watchlistall2' => 'olgeta',
+'namespacesall' => 'ol',
+'monthsall'     => 'olgeta',
+'limitall'      => 'olgeta',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL i longpela tumas]',

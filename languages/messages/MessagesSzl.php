@@ -2442,11 +2442,9 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'edit-externally-help' => '(Zobocz [http://www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo zewnyntřnych edytorůw] kaj je uo tym wjyncyj naszkryflane.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wšyjstke',
-'imagelistall'     => 'wšyjstkych',
-'watchlistall2'    => 'do kupy',
-'namespacesall'    => 'wšyskie',
-'monthsall'        => 'wšyskie',
+'watchlistall2' => 'do kupy',
+'namespacesall' => 'wšyskie',
+'monthsall'     => 'wšyskie',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potwjerdź adres e-brif',

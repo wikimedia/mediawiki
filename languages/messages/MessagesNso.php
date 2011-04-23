@@ -1166,11 +1166,9 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'edit-externally-help' => '(Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ka moka',
-'imagelistall'     => 'ka moka',
-'watchlistall2'    => 'ka moka',
-'namespacesall'    => 'ka moka',
-'monthsall'        => 'ka moka',
+'watchlistall2' => 'ka moka',
+'namespacesall' => 'ka moka',
+'monthsall'     => 'ka moka',
 
 # Multipage image navigation
 'imgmultipageprev' => '← letlakala la go feta',

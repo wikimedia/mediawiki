@@ -756,12 +756,10 @@ $messages = array(
 'edit-externally-help' => '(унажык видзöт: [http://www.mediawiki.org/wiki/Manual:External_editors удж кежö лöсьöтны туйдöтан])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'быдöс',
-'imagelistall'     => 'быдöс',
-'watchlistall2'    => 'быдöс',
-'namespacesall'    => 'быдöс',
-'monthsall'        => 'быдöс',
-'limitall'         => 'быдöс',
+'watchlistall2' => 'быдöс',
+'namespacesall' => 'быдöс',
+'monthsall'     => 'быдöс',
+'limitall'      => 'быдöс',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Видзöт лöсялана вильмöтöммез',

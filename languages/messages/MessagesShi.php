@@ -1219,12 +1219,10 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 'edit-externally-help' => '(Ẓṛ [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Kullu',
-'imagelistall'     => 'Kullu',
-'watchlistall2'    => 'kraygat (kullu)',
-'namespacesall'    => 'kullu',
-'monthsall'        => 'kullu',
-'limitall'         => 'Kullu',
+'watchlistall2' => 'kraygat (kullu)',
+'namespacesall' => 'kullu',
+'monthsall'     => 'kullu',
+'limitall'      => 'Kullu',
 
 # Trackbacks
 'trackbackremove' => '([$1 mhi])',

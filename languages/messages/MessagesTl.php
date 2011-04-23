@@ -3296,12 +3296,10 @@ Likas na nakatakdang itago ang iba pa.
 'edit-externally-help' => 'Tingnan ang [http://meta.wikimedia.org/wiki/Help:External_editors mga kaalaman/paraan sa paghahanda at pagaayos] para sa mas marami pang kabatiran.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'lahat',
-'imagelistall'     => 'lahat',
-'watchlistall2'    => 'lahat',
-'namespacesall'    => 'lahat',
-'monthsall'        => 'lahat',
-'limitall'         => 'lahat',
+'watchlistall2' => 'lahat',
+'namespacesall' => 'lahat',
+'monthsall'     => 'lahat',
+'limitall'      => 'lahat',
 
 # E-mail address confirmation
 'confirmemail'              => 'Patotohanan ang adres ng e-liham',

@@ -285,6 +285,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'پرله پسې',
 'index-category'                 => 'ليکلړلرونکي مخونه',
 'noindex-category'               => 'بې ليکلړه مخونه',
+'broken-file-category'           => 'د دوتنو د ماتو تړنو مخونه',
 
 'mainpagetext'      => "'''MediaWiki په برياليتوب سره نصب شو.'''",
 'mainpagedocfooter' => 'د ويکي ساوترې د کارولو د  مالوماتو په اړه [http://meta.wikimedia.org/wiki/Help:Contents د کارن لارښود] سره سلا وکړۍ.
@@ -626,7 +627,12 @@ $1',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'کارن-نوم:',
+'passwordreset'              => 'پټنوم بياپرځايول',
+'passwordreset-legend'       => 'پټنوم بياپرځايول',
+'passwordreset-username'     => 'کارن-نوم:',
+'passwordreset-email'        => 'برېښليک پته:',
+'passwordreset-emailelement' => 'کارن-نوم: $1
+لنډمهاله پټنوم: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'زغرد متن',
@@ -748,7 +754,7 @@ $1',
 'nocreatetitle'                    => 'د مخ جوړول بريد ټاکلی دی',
 'nocreatetext'                     => '{{SITENAME}} د نوو مخونو د جوړولو وړتيا محدوده کړې.
 تاسو بېرته پر شا تللای شی او په شته مخونو کې سمونې ترسره کولای شی، او يا هم [[Special:UserLogin|غونډال ته ننوتلای او يو ګڼون جوړولای شی]].',
-'nocreate-loggedin'                => 'تاسو د نوو مخونو د جوړولو اجازه نه لری.',
+'nocreate-loggedin'                => 'تاسې د نوو مخونو د جوړولو پرېښله نلرۍ.',
 'sectioneditnotsupported-title'    => 'د برخې د سمون ملاتړ نه کېږي',
 'sectioneditnotsupported-text'     => 'په دې مخ د برخې د سمون ملاتړ نه کېږي.',
 'permissionserrors'                => 'د اجازې ستونزې',
@@ -807,7 +813,7 @@ $1',
 تاسې په دې ويکي د اړوندو نوؤ مخونو لپاره [[Special:Search|د پلټنې هڅه وکړۍ]].',
 
 # Revision deletion
-'rev-deleted-comment'        => '(تبصره ليري شوې)',
+'rev-deleted-comment'        => '(د سمون لنډيز لرې شو)',
 'rev-deleted-user'           => '(کارن-نوم ليري شوی)',
 'rev-delundel'               => 'ښکاره کول/ پټول',
 'rev-showdeleted'            => 'ښکاره کول',
@@ -1494,6 +1500,9 @@ $1',
 'noemailtitle'         => 'هېڅ کومه برېښليک پته نشته.',
 'nowikiemailtitle'     => 'د برېښليک لېږلو اجازه نشته',
 'nowikiemailtext'      => 'دې کارن د نورو کارنانو لخوا د برېښليک د نه ترلاسه کولو چاره خوښه کړې.',
+'emailtarget'          => 'د ترلاسه کوونکي کارن-نوم وټاپۍ',
+'emailusername'        => 'کارن-نوم:',
+'emailusernamesubmit'  => 'سپارل',
 'email-legend'         => 'د {{SITENAME}} يو بل کارن ته يو برېښليک ورلېږل',
 'emailfrom'            => 'لېږونکی',
 'emailto'              => 'اخيستونکی',
@@ -1721,6 +1730,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'whatlinkshere-filters'    => 'چاڼګرونه',
 
 # Block/unblock
+'block'                      => 'په کارن بنديز لګول',
+'unblock'                    => 'کارن له بنديزه وېستل',
 'blockip'                    => 'په کارن بنديز لګول',
 'blockip-title'              => 'په کارن بنديز لګول',
 'blockip-legend'             => 'په کارن بنديز لګول',
@@ -1755,6 +1766,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblockip'                  => 'کارن له بنديزه وېستل',
 'ipusubmit'                  => 'دا بنديز ليرې کول',
 'unblocked'                  => 'له [[User:$1|$1]] بنديز ليري شو',
+'blocklist'                  => 'بنديز لګېدلي کارنان',
 'ipblocklist'                => 'بنديز لګېدلي کارنان',
 'ipblocklist-legend'         => 'يو بنديز شوی کارن موندل',
 'blocklist-reason'           => 'سبب',
@@ -1813,8 +1825,13 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 نو په هغه وخت کې پکار ده چې د خبرواترو د مخ لېږدونه او د نوي مخ سره د يوځای کولو کړنه په لاسي توګه ترسره کړی.",
 'movearticle'             => 'مخ لېږدول',
+'moveuserpage-warning'    => "'''ګواښنه:''' تاسې د يو کارن مخ د لېږدولو په حال کې ياست. لطفاً دا مه هېروۍ چې يوازې همدا مخ به ولېږدول شي او د کارن نوم به ''نه'' بدلېږي.",
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسې بايد يو ثبت شوی کارن او غونډال کې [[Special:UserLogin|ننوتي]] اوسۍ.',
+'movenotallowed'          => 'تاسې د مخونو د لېږدولو پرېښله نلرۍ.',
+'movenotallowedfile'      => 'تاسې د دوتنو د لېږدولو پرېښله نلرۍ.',
+'cant-move-user-page'     => 'تاسې د کارن مخونو د لېږدولو پرېښله نلرۍ (د څېرمه مخونو نه پرته).',
+'cant-move-to-user-page'  => 'تاسې د يو کارن مخ ته د يوه بل مخ د لېږدولو پرېښله نلرۍ (د يو کارن د څېرمه مخ نه پرته).',
 'newtitle'                => 'يو نوي سرليک ته:',
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
@@ -1830,6 +1847,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
 'movesubpage'             => '{{PLURAL:$1|څېرمه مخ|څېرمه مخونه}}',
+'movesubpagetext'         => 'همدا مخ $1 {{PLURAL:$1|څېرمه مخ لري چې لاندې ښودل شوی|څېرمه مخونه لري چې لاندې ښودل شوي}}.',
 'movenosubpage'           => 'دا مخ کوم څېرمه مخونه نه لري.',
 'movereason'              => 'سبب:',
 'revertmove'              => 'په څټ ګرځول',
@@ -2062,6 +2080,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-iimcategory'        => 'وېشنيزه',
 'exif-serialnumber'       => 'د کامرې پرله پسې شمېره',
 'exif-cameraownername'    => 'د کامرې خاوند',
+'exif-label'              => 'نښکه',
 'exif-disclaimer'         => 'ردادعاليک',
 
 'exif-unknowndate' => 'نامالومه نېټه',
@@ -2151,12 +2170,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'edit-externally-help' => 'د نورو مالوماتو لپاره [http://www.mediawiki.org/wiki/Manual:External_editors د امستنو لارښوونې] وګورۍ.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ټول',
-'imagelistall'     => 'ټول',
-'watchlistall2'    => 'ټول',
-'namespacesall'    => 'ټول',
-'monthsall'        => 'ټول',
-'limitall'         => 'ټول',
+'watchlistall2' => 'ټول',
+'namespacesall' => 'ټول',
+'monthsall'     => 'ټول',
+'limitall'      => 'ټول',
 
 # E-mail address confirmation
 'confirmemail'           => 'د برېښليک پتې پخلی وکړی',

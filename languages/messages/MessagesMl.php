@@ -3289,12 +3289,10 @@ $1',
 'edit-externally-help' => '(കൂടുതൽ വിവരത്തിനു http://www.mediawiki.org/wiki/Manual:External_editors കാണുക)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'എല്ലാം',
-'imagelistall'     => 'എല്ലാം',
-'watchlistall2'    => 'എല്ലാം',
-'namespacesall'    => 'എല്ലാം',
-'monthsall'        => 'എല്ലാം',
-'limitall'         => 'എല്ലാം',
+'watchlistall2' => 'എല്ലാം',
+'namespacesall' => 'എല്ലാം',
+'monthsall'     => 'എല്ലാം',
+'limitall'      => 'എല്ലാം',
 
 # E-mail address confirmation
 'confirmemail'              => 'ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കൽ',

@@ -2863,12 +2863,10 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'edit-externally-help' => "jereo any amin'[http://www.mediawiki.org/wiki/Manual:External_editors ny torolalana] ny fanazavana fanampiny,.",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'rehetra',
-'imagelistall'     => 'rehetra',
-'watchlistall2'    => 'rehetra',
-'namespacesall'    => 'rehetra',
-'monthsall'        => 'rehetra',
-'limitall'         => 'rehetra',
+'watchlistall2' => 'rehetra',
+'namespacesall' => 'rehetra',
+'monthsall'     => 'rehetra',
+'limitall'      => 'rehetra',
 
 # E-mail address confirmation
 'confirmemail'             => 'Fanamarinana adiresy imailaka.',

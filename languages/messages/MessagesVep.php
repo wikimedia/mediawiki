@@ -2627,12 +2627,10 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'edit-externally-help' => '(Kc. [http://www.mediawiki.org/wiki/Manual:External_editors seižutamižinstrukcijoid])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kaik',
-'imagelistall'     => 'kaik',
-'watchlistall2'    => 'kaik',
-'namespacesall'    => 'kaik',
-'monthsall'        => 'kaik',
-'limitall'         => 'kaik',
+'watchlistall2' => 'kaik',
+'namespacesall' => 'kaik',
+'monthsall'     => 'kaik',
+'limitall'      => 'kaik',
 
 # E-mail address confirmation
 'confirmemail'             => 'Vahvištoitta e-počtan adres',

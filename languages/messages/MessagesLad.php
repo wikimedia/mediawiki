@@ -1039,11 +1039,9 @@ Los otros campos se van a guardar por defecto.
 'edit-externally-help' => '(Melda las [http://www.mediawiki.org/wiki/Manual:External_editors enstruksiones de configuración] -en inglés- para saber más)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todos',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'todos',
-'namespacesall'    => 'todos',
-'monthsall'        => '(todos)',
+'watchlistall2' => 'todos',
+'namespacesall' => 'todos',
+'monthsall'     => '(todos)',
 
 # E-mail address confirmation
 'confirmemail'         => 'Konfirmar direksion e-pósta',

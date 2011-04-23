@@ -3355,12 +3355,10 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'edit-externally-help' => '(Pogledajte [http://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sve',
-'imagelistall'     => 'sve',
-'watchlistall2'    => 'sve',
-'namespacesall'    => 'sve',
-'monthsall'        => 'sve',
-'limitall'         => 'sve',
+'watchlistall2' => 'sve',
+'namespacesall' => 'sve',
+'monthsall'     => 'sve',
+'limitall'      => 'sve',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potvrdite adresu e-pošte',

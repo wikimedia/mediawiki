@@ -2787,12 +2787,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'edit-externally-help' => '(Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'sab',
-'imagelistall'     => 'sab',
-'watchlistall2'    => 'sab',
-'namespacesall'    => 'sab',
-'monthsall'        => 'sab',
-'limitall'         => 'sab',
+'watchlistall2' => 'sab',
+'namespacesall' => 'sab',
+'monthsall'     => 'sab',
+'limitall'      => 'sab',
 
 # E-mail address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',

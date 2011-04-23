@@ -852,12 +852,10 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'exif-subjectdistancerange-3' => 'ырак көрүш',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'шупту',
-'imagelistall'     => 'шупту',
-'watchlistall2'    => 'шупту',
-'namespacesall'    => 'шупту',
-'monthsall'        => 'шупту',
-'limitall'         => 'шупту',
+'watchlistall2' => 'шупту',
+'namespacesall' => 'шупту',
+'monthsall'     => 'шупту',
+'limitall'      => 'шупту',
 
 # action=purge
 'confirm_purge_button' => 'Чөп',

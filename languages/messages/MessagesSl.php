@@ -3294,12 +3294,10 @@ Druga bodo po privzetem skrita.
 'edit-externally-help' => '(Za več informacij glejte [http://www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'vse',
-'imagelistall'     => 'vse',
-'watchlistall2'    => 'vse',
-'namespacesall'    => 'vse',
-'monthsall'        => 'vse',
-'limitall'         => 'vse',
+'watchlistall2' => 'vse',
+'namespacesall' => 'vse',
+'monthsall'     => 'vse',
+'limitall'      => 'vse',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potrditev naslova elektronske pošte',

@@ -1745,11 +1745,9 @@ ODagiti dadduma ket sigud a nakalemmeng.
 'edit-externally-help' => 'Kitaen ti [http://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay nga informasion.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'amin',
-'imagelistall'     => 'amin',
-'watchlistall2'    => 'am-amin',
-'namespacesall'    => 'amin',
-'monthsall'        => 'am-amin',
+'watchlistall2' => 'am-amin',
+'namespacesall' => 'amin',
+'monthsall'     => 'am-amin',
 
 # E-mail address confirmation
 'confirmemail'             => 'Pasingkedan ti email address',

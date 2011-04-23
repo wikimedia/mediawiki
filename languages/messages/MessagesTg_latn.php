@@ -2172,12 +2172,10 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 'edit-externally-help' => '(Baroi ittilooti beştar [http://www.mediawiki.org/wiki/Manual:External_editors rohnamoi tanzimotro oidi viroişgaroni beruna] nigared)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'hama',
-'imagelistall'     => 'hama',
-'watchlistall2'    => 'hama',
-'namespacesall'    => 'hama',
-'monthsall'        => 'hama',
-'limitall'         => 'hama',
+'watchlistall2' => 'hama',
+'namespacesall' => 'hama',
+'monthsall'     => 'hama',
+'limitall'      => 'hama',
 
 # E-mail address confirmation
 'confirmemail'             => 'Tasdiqi nişonai poctai elektronī',

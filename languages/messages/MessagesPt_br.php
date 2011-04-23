@@ -295,7 +295,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar hiperligações:',
+'tog-underline'               => 'Sublinhar links:',
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
@@ -808,14 +808,17 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'resetpass-temp-password'   => 'Senha temporária:',
 
 # Special:PasswordReset
-'passwordreset'            => 'Repor Palavra-chave',
-'passwordreset-text'       => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
-'passwordreset-legend'     => 'Reiniciar a senha',
-'passwordreset-disabled'   => 'Reiniciar a senha foi impossibilitado nesta wiki.',
-'passwordreset-pretext'    => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
-'passwordreset-username'   => 'Nome de usuário:',
-'passwordreset-email'      => 'Endereço de e-mail:',
-'passwordreset-emailtitle' => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset'              => 'Repor Palavra-chave',
+'passwordreset-text'         => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
+'passwordreset-legend'       => 'Reiniciar a senha',
+'passwordreset-disabled'     => 'Reiniciar a senha foi impossibilitado nesta wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'     => 'Nome de usuário:',
+'passwordreset-email'        => 'Endereço de e-mail:',
+'passwordreset-emailtitle'   => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailelement' => 'Usuário: $1
+Senha temporária: $2',
+'passwordreset-emailsent'    => 'Foi enviado um e-mail de lembrete.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -1757,6 +1760,9 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
+# ZipDirectoryReader
+'zip-wrong-format' => 'O arquivo especificado não é um arquivo ZIP.',
+
 # Special:UploadStash
 'uploadstash'          => 'Arquivos escondidos',
 'uploadstash-summary'  => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
@@ -2140,6 +2146,8 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'noemailtext'          => 'Este usuário não especificou um endereço de e-mail válido.',
 'nowikiemailtitle'     => 'E-mail não permitido',
 'nowikiemailtext'      => 'Este usuário optou por não receber e-mail de outros usuários.',
+'emailtarget'          => 'Insira o nome de usuário do destinatário',
+'emailusername'        => 'Nome de usuário:',
 'email-legend'         => 'Enviar uma mensagem eletrônica para outro usuário da {{SITENAME}}',
 'emailfrom'            => 'De:',
 'emailto'              => 'Para:',
@@ -3242,12 +3250,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todas',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'todas',
-'namespacesall'    => 'todas',
-'monthsall'        => 'todos',
-'limitall'         => 'todas',
+'watchlistall2' => 'todas',
+'namespacesall' => 'todas',
+'monthsall'     => 'todos',
+'limitall'      => 'todas',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar endereço de E-mail',

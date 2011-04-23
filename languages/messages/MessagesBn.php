@@ -2658,12 +2658,10 @@ $1',
 'edit-externally-help' => 'আরও তথ্যের জন্য [http://www.mediawiki.org/wiki/Manual:External_editors সেটআপ নির্দেশমালা] দেখুন।',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'সমস্ত',
-'imagelistall'     => 'সমস্ত',
-'watchlistall2'    => 'সবগুলো',
-'namespacesall'    => 'সমস্ত',
-'monthsall'        => 'সমস্ত',
-'limitall'         => 'সমস্ত',
+'watchlistall2' => 'সবগুলো',
+'namespacesall' => 'সমস্ত',
+'monthsall'     => 'সমস্ত',
+'limitall'      => 'সমস্ত',
 
 # E-mail address confirmation
 'confirmemail'             => 'ই-মেইলের ঠিকানা নিশ্চিত করুন',

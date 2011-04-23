@@ -1929,12 +1929,10 @@ $1',
 'edit-externally-help' => '(ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [http://www.mediawiki.org/wiki/Manual:External_editors ಸ್ಥಾಪನೆಯ ನಿರ್ದೇಶಗಳನ್ನು] ನೋಡಿ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ಎಲ್ಲಾ',
-'imagelistall'     => 'ಎಲ್ಲಾ',
-'watchlistall2'    => 'ಎಲ್ಲಾ',
-'namespacesall'    => 'ಎಲ್ಲಾ',
-'monthsall'        => 'ಎಲ್ಲಾ',
-'limitall'         => 'ಎಲ್ಲಾ',
+'watchlistall2' => 'ಎಲ್ಲಾ',
+'namespacesall' => 'ಎಲ್ಲಾ',
+'monthsall'     => 'ಎಲ್ಲಾ',
+'limitall'      => 'ಎಲ್ಲಾ',
 
 # E-mail address confirmation
 'confirmemail'             => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',

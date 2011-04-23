@@ -1984,12 +1984,10 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'edit-externally-help' => '(Daa ziyade malümat içün [http://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'episini',
-'imagelistall'     => 'Cümlesi',
-'watchlistall2'    => 'episini',
-'namespacesall'    => 'Episi',
-'monthsall'        => 'Episi',
-'limitall'         => 'bütüni',
+'watchlistall2' => 'episini',
+'namespacesall' => 'Episi',
+'monthsall'     => 'Episi',
+'limitall'      => 'bütüni',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mail adresini tasdıqla',

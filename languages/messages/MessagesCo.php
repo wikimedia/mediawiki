@@ -490,7 +490,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'exif-saturation-0' => 'Nurmale',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'tutte',
 'watchlistall2' => 'tutti',
 'monthsall'     => 'tutti',
 

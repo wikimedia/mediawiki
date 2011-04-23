@@ -3075,12 +3075,10 @@ Të tjerat do të fshihen.
 'edit-externally-help' => '(Shikoni [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'të gjitha',
-'imagelistall'     => 'të gjitha',
-'watchlistall2'    => 'të gjitha',
-'namespacesall'    => 'të gjitha',
-'monthsall'        => 'të gjitha',
-'limitall'         => 'Të gjitha',
+'watchlistall2' => 'të gjitha',
+'namespacesall' => 'të gjitha',
+'monthsall'     => 'të gjitha',
+'limitall'      => 'Të gjitha',
 
 # E-mail address confirmation
 'confirmemail'              => 'Vërtetoni adresën tuaj',

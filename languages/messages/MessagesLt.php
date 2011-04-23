@@ -3097,12 +3097,10 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'edit-externally-help' => '(Norėdami gauti daugiau informacijos, žiūrėkite [http://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'visos',
-'imagelistall'     => 'visi',
-'watchlistall2'    => 'visus',
-'namespacesall'    => 'visos',
-'monthsall'        => 'visi',
-'limitall'         => 'visi',
+'watchlistall2' => 'visus',
+'namespacesall' => 'visos',
+'monthsall'     => 'visi',
+'limitall'      => 'visi',
 
 # E-mail address confirmation
 'confirmemail'              => 'Patvirtinkite el. pašto adresą',

@@ -151,6 +151,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cond.',
 'index-category'                 => 'Pàggene indicizzate',
 'noindex-category'               => 'Pàggene none indicizzate',
+'broken-file-category'           => 'Pàggene cu collegaminde a le file scuasciate',
 
 'mainpagetext'      => "'''MediaUicchi ha state 'nstallete.'''",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
@@ -453,6 +454,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createaccount'              => "Ccreje 'nu cunde",
 'gotaccount'                 => "Tine già 'nu cunde? '''$1'''.",
 'gotaccountlink'             => 'Tràse',
+'userlogin-resetlink'        => "T'è scurdate le dettaglie pe trasè?",
 'createaccountmail'          => 'pe e-mail',
 'createaccountreason'        => 'Mutive:',
 'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
@@ -523,6 +525,7 @@ Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore
 'usernamehasherror'          => "'U nome utende non ge pò tenè carattere hash",
 'login-throttled'            => "Urtemamende tu è pruvate troppe vote a trasè jndr'à Uicchipèdie
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
+'login-abort-generic'        => "Non g'è riuscite a trasè - Annullate",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
 
@@ -547,6 +550,16 @@ Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà
 'resetpass-wrong-oldpass'   => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password'   => 'Password temboranea:',
+
+# Special:PasswordReset
+'passwordreset'              => "Azzere 'a passuord",
+'passwordreset-legend'       => "Azzere 'a passuord",
+'passwordreset-username'     => 'Nome utende:',
+'passwordreset-email'        => 'Indirizze e-mail:',
+'passwordreset-emailtitle'   => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
+'passwordreset-emailelement' => 'Nome utende: $1<br />
+Passuord temboranèe: $2',
+'passwordreset-emailsent'    => "'N'e-mail pe arrecurdarte ha state mannate.",
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -1497,6 +1510,9 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'upload-http-error'         => "S'a verificate 'n'errore HTTP: $1",
 
 # Special:UploadStash
+'uploadstash'         => "Careche 'u file scunnute",
+'uploadstash-clear'   => 'Pulizze le file scunnute',
+'uploadstash-nofiles' => 'Tu non ge tine file scunnute',
 'uploadstash-refresh' => "Aggiorne l'elenghe de le file",
 
 # img_auth script messages
@@ -1882,6 +1898,9 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'noemailtext'          => "Stu utende non g'à specificate 'n'indirizze e-mail valide.",
 'nowikiemailtitle'     => 'Nisciuna e-mail è permesse',
 'nowikiemailtext'      => 'Stu utende ha scacchiate de nò ricevere email da otre utinde.',
+'emailtarget'          => "Mitte 'u nome utende d'u recipiende",
+'emailusername'        => 'Nome utende:',
+'emailusernamesubmit'  => 'Conferme',
 'email-legend'         => "Manne 'na mail a n'otre utende de {{SITENAME}}",
 'emailfrom'            => 'Da:',
 'emailto'              => 'A:',
@@ -2237,6 +2256,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbhidename'                     => 'Scunne le nome utinde da le cangiaminde e da le liste',
 'ipbwatchuser'                    => "Vide a pàgena utende e quedde de le 'ngazzaminde de stu utende",
 'ipb-change-block'                => "Blocche 'n'otra vote l'utende cu ste 'mbostaziune",
+'ipb-confirm'                     => "Conferme 'u blocche",
 'badipaddress'                    => 'Indirizze IP invalide',
 'blockipsuccesssub'               => 'Blocche effettuate',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ha state bloccate.<br />
@@ -2257,8 +2277,10 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipblocklist-legend'              => "Iacchije 'n'utende blocchete",
 'blocklist-userblocks'            => "Scunne le blocche sus a le cunde de l'utinde",
 'blocklist-tempblocks'            => 'Scunne le blocche temboranèe',
+'blocklist-timestamp'             => 'Orarie de stambe',
 'blocklist-target'                => 'Destinazione',
 'blocklist-expiry'                => 'Scade',
+'blocklist-by'                    => 'Amministrazioe de le blocche',
 'blocklist-params'                => "Parametre d'u blocche",
 'blocklist-reason'                => 'Mutive',
 'ipblocklist-submit'              => 'Cirche',
@@ -2508,7 +2530,7 @@ Tutte le aziune de 'mbortaziune 'mbrà le Uicchi sonde reggistrate jndr'à l'[[S
 'import-upload-filename'     => "Nome d'u file:",
 'import-comment'             => 'Commende:',
 'importtext'                 => "Pe piacere esporte 'u file da 'a Uicchi sorgende ausanne l'[[Special:Export|utilità de esportazione]].
-Reggistrele sus a 'u combiuter tue e carechele aqquà.",
+Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'importstart'                => "'Mbortazione de le pàggene...",
 'import-revision-count'      => '$1 {{PLURAL:$1|revisione|revisiune}}',
 'importnopages'              => "Nisciuna pàgene da 'mbortà.",
@@ -2727,7 +2749,7 @@ Tutte le sottosequenze ca appondene a stessa linea sonde considerete eccezziune,
 Ce 'u fail ha state cangete da 'u state origginale sue, certe dettaglie pò essere ca no se vèdene jndr'à 'u fail cangete.",
 'metadata-expand'   => 'Fa vedè le dettaglie estese',
 'metadata-collapse' => 'Scunne le dettaglie estese',
-'metadata-fields'   => "EXIF le cambe de metadata elenghete jndr'à quiste messagge verranne mise sus a 'na pàgene de immaggine quanne 'a taggella de metadata jè collassete.
+'metadata-fields'   => "Le cambe de le immaggine metadata elengate jndr'à stu messagge onna essere mise sus a 'na pàgene de immaggine quanne 'a taggella de metadata jè collassate.
 Otre avènene scunnute pe defolt.
 * make
 * model
@@ -2777,8 +2799,8 @@ Otre avènene scunnute pe defolt.
 'exif-colorspace'                  => "Spazie d'u culore",
 'exif-componentsconfiguration'     => 'Significate de ogne combonende',
 'exif-compressedbitsperpixel'      => "Mode de combressione de l'immaggine",
-'exif-pixelydimension'             => "Larghezze de l'immaggine valide",
-'exif-pixelxdimension'             => "Altezze de l'immaggine valide",
+'exif-pixelydimension'             => "Larghezze de l'immaggine",
+'exif-pixelxdimension'             => "Altezze de l'immaggine",
 'exif-usercomment'                 => "Commende de l'utende",
 'exif-relatedsoundfile'            => 'File audio collegate',
 'exif-datetimeoriginal'            => "Date e ore d'a generazione de le date",
@@ -2792,9 +2814,9 @@ Otre avènene scunnute pe defolt.
 'exif-exposureprogram'             => "Programme d'esposizione",
 'exif-spectralsensitivity'         => 'Senzitività spettrale',
 'exif-isospeedratings'             => 'Senzibbilità ISO',
-'exif-shutterspeedvalue'           => 'Velocità de esposizione',
-'exif-aperturevalue'               => 'Aperture',
-'exif-brightnessvalue'             => 'Lumenosità',
+'exif-shutterspeedvalue'           => 'Velocità de esposizione APEX',
+'exif-aperturevalue'               => 'Aperture de APEX',
+'exif-brightnessvalue'             => 'Lumenosità de APEX',
 'exif-exposurebiasvalue'           => "Correzzione de l'esposizione",
 'exif-maxaperturevalue'            => 'Aperture massime',
 'exif-subjectdistance'             => "Distanze d'u soggette",
@@ -2856,7 +2878,29 @@ Otre avènene scunnute pe defolt.
 'exif-gpsareainformation'          => "Nome de l'area d'u GPS",
 'exif-gpsdatestamp'                => "Date d'u GPS",
 'exif-gpsdifferential'             => "Correzzione differenziale d'u GPS",
+'exif-jpegfilecomment'             => "commende d'u file JPEG",
+'exif-keywords'                    => 'Parole chiave',
+'exif-worldregiondest'             => "Reggione d'u munne fatte vedè",
+'exif-countrydest'                 => 'Paise fatte vedè',
+'exif-countrycodedest'             => 'Codece pe le paise fatte vedè',
+'exif-provinceorstatedest'         => 'Provinge o state fatte vedè',
+'exif-citydest'                    => 'Cetate fatte vedè',
 'exif-objectname'                  => 'Titele curte',
+'exif-headline'                    => 'Testate',
+'exif-source'                      => 'Sorgende',
+'exif-urgency'                     => 'Priorità',
+'exif-fixtureidentifier'           => "Nome d'a correzione",
+'exif-writer'                      => 'Scretture',
+'exif-languagecode'                => 'Lènghe',
+'exif-iimcategory'                 => 'Categorije',
+'exif-datetimereleased'            => "Relasciate 'u",
+'exif-identifier'                  => 'Identificatore',
+'exif-lens'                        => 'Lunghezze ausate',
+'exif-label'                       => 'Etichette',
+'exif-nickname'                    => "Nome informale de l'immaggine",
+'exif-copyrighted'                 => "Stat s'u copyright",
+'exif-copyrightowner'              => "Titolare d'u copyright",
+'exif-usageterms'                  => "Termine d'ause",
 
 # EXIF attributes
 'exif-compression-1' => 'No combresse',
@@ -3000,22 +3044,45 @@ Otre avènene scunnute pe defolt.
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Chilomètre',
 'exif-gpsdestdistance-m' => 'Miglia',
+'exif-gpsdestdistance-n' => 'Miglia nauteche',
+
+'exif-gpsdop-excellent' => "'A uerre probbie ($1)",
+'exif-gpsdop-good'      => 'Bbuène ($1)',
+'exif-gpsdop-fair'      => 'Discrete ($1)',
+'exif-gpsdop-poor'      => 'Puveridde ($1)',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direziona vere',
 'exif-gpsdirection-m' => 'Direziona magnetiche',
+
+'exif-isospeedratings-overflow' => 'Cchiù granne de 65535',
+
+'exif-iimcategory-ace' => 'Arte, culture e devertimende',
+'exif-iimcategory-clj' => 'Crimine e legge',
+'exif-iimcategory-edu' => 'Studie',
+'exif-iimcategory-evn' => 'Ambiende',
+'exif-iimcategory-hth' => 'Salute',
+'exif-iimcategory-hum' => 'Inderesse umane',
+'exif-iimcategory-pol' => 'Politeche',
+'exif-iimcategory-rel' => 'Releggione e credenze',
+'exif-iimcategory-sci' => 'Scienze e tecnologgie',
+'exif-iimcategory-soi' => 'Teme sociale',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-wea' => 'Tiembe',
+
+'exif-urgency-normal' => 'Normale ($1)',
+'exif-urgency-low'    => 'Vasce  ($1)',
+'exif-urgency-high'   => 'Ierte ($1)',
 
 # External editor support
 'edit-externally'      => "Cange stu fail usanne n'applicazione esterne",
 'edit-externally-help' => "(Vide le [http://www.mediawiki.org/wiki/Manual:External_editors 'struzione de configurazione] pe avèje cchiù dettaglie)",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tutte',
-'imagelistall'     => 'tutte',
-'watchlistall2'    => 'tutte',
-'namespacesall'    => 'tutte',
-'monthsall'        => 'tutte',
-'limitall'         => 'tutte',
+'watchlistall2' => 'tutte',
+'namespacesall' => 'tutte',
+'monthsall'     => 'tutte',
+'limitall'      => 'tutte',
 
 # E-mail address confirmation
 'confirmemail'              => "Conferme l'indirizze e-mail",

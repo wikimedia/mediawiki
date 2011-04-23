@@ -2969,12 +2969,10 @@ $1',
 'edit-externally-help' => '( [http://www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ھەممىسى',
-'imagelistall'     => 'ھەممىسى',
-'watchlistall2'    => 'ھەممىسى',
-'namespacesall'    => 'ھەممىسى',
-'monthsall'        => 'ھەممىسى',
-'limitall'         => 'ھەممىسى',
+'watchlistall2' => 'ھەممىسى',
+'namespacesall' => 'ھەممىسى',
+'monthsall'     => 'ھەممىسى',
+'limitall'      => 'ھەممىسى',
 
 # E-mail address confirmation
 'confirmemail'              => 'جەزملەش ئېلخەت ئادرېسى',

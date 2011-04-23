@@ -2884,12 +2884,10 @@ $1',
 'edit-externally-help' => '(Нэмэлт мэдээллийг [http://www.mediawiki.org/wiki/Manual:External_editors тохируулгын зааврын] хуудаснаас харна уу)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Бүгдийг',
-'imagelistall'     => 'бүгдийг',
-'watchlistall2'    => 'бүгдийг',
-'namespacesall'    => 'бүгдийг',
-'monthsall'        => 'бүгдийг',
-'limitall'         => 'бүгдийг',
+'watchlistall2' => 'бүгдийг',
+'namespacesall' => 'бүгдийг',
+'monthsall'     => 'бүгдийг',
+'limitall'      => 'бүгдийг',
 
 # E-mail address confirmation
 'confirmemail'              => 'Мэйл хаягийг баталгаажуулах',

@@ -1951,12 +1951,10 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'edit-externally-help' => '(Вант [http://www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень] седе ламо информациянть кис.)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'весе',
-'imagelistall'     => 'весе',
-'watchlistall2'    => 'весе',
-'namespacesall'    => 'весе',
-'monthsall'        => 'весе',
-'limitall'         => 'весе',
+'watchlistall2' => 'весе',
+'namespacesall' => 'весе',
+'monthsall'     => 'весе',
+'limitall'      => 'весе',
 
 # E-mail address confirmation
 'confirmemail'          => 'Кемекстамс е-почтань сёрмапаргот',

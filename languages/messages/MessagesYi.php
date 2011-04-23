@@ -2801,12 +2801,10 @@ $1',
 'edit-externally-help' => 'זעט די [http://www.mediawiki.org/wiki/Manual:External_editors אויפֿשטעל אנווייזונגען] פאר מער אינפארמאציע.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'אַלע',
-'imagelistall'     => 'אַלע',
-'watchlistall2'    => 'אַלע',
-'namespacesall'    => 'אַלע',
-'monthsall'        => 'אלע',
-'limitall'         => 'אַלע',
+'watchlistall2' => 'אַלע',
+'namespacesall' => 'אַלע',
+'monthsall'     => 'אלע',
+'limitall'      => 'אַלע',
 
 # E-mail address confirmation
 'confirmemail'              => 'באַשטעטיקט בליצפּאָסט אַדרעס',

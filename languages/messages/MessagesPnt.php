@@ -1389,11 +1389,9 @@ $messages = array(
 'edit-externally-help' => '(Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ούλαι',
-'imagelistall'     => 'ούλαι',
-'watchlistall2'    => 'ούλαι',
-'namespacesall'    => 'ούλαι',
-'monthsall'        => 'ούλαι',
+'watchlistall2' => 'ούλαι',
+'namespacesall' => 'ούλαι',
+'monthsall'     => 'ούλαι',
 
 # Trackbacks
 'trackbackremove' => '([$1 Σβήσον])',

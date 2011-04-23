@@ -3175,12 +3175,10 @@ $1',
 'edit-externally-help' => '(За повече информация прегледайте [http://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'всички',
-'imagelistall'     => 'всички',
-'watchlistall2'    => 'всички',
-'namespacesall'    => 'Всички',
-'monthsall'        => 'всички',
-'limitall'         => 'всички',
+'watchlistall2' => 'всички',
+'namespacesall' => 'Всички',
+'monthsall'     => 'всички',
+'limitall'      => 'всички',
 
 # E-mail address confirmation
 'confirmemail'              => 'Потвърждаване на адрес за електронна поща',

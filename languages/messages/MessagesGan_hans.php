@@ -2101,11 +2101,9 @@ $1',
 'edit-externally-help' => '请参看[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => '全部',
-'imagelistall'     => '全部',
-'watchlistall2'    => '全部',
-'namespacesall'    => '全部',
-'monthsall'        => '全部',
+'watchlistall2' => '全部',
+'namespacesall' => '全部',
+'monthsall'     => '全部',
 
 # E-mail address confirmation
 'confirmemail'            => '确认email地址',

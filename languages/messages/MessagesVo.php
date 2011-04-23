@@ -2634,12 +2634,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'edit-externally-help' => '(Reidolös eli [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] [in Linglänapük] ad tuvön nünis pluik)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'valik',
-'imagelistall'     => 'valik',
-'watchlistall2'    => 'valikis',
-'namespacesall'    => 'valik',
-'monthsall'        => 'valik',
-'limitall'         => 'valikis',
+'watchlistall2' => 'valikis',
+'namespacesall' => 'valik',
+'monthsall'     => 'valik',
+'limitall'      => 'valikis',
 
 # E-mail address confirmation
 'confirmemail'             => 'Fümedolös ladeti leäktronik',

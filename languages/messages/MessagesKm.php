@@ -785,6 +785,13 @@ $2',
 អ្នក​​ប្រហែល​ជា​បាន​ផ្លាស់​ប្ដូរ​លេខ​សម្ងាត់​រួចហើតយ ឬ​បានស្នើ​សុំ​លេខ​សម្ងាត់​​បណ្ដោះ​អាសន្ន​​ថ្មី​មួយ​ហើយ។',
 'resetpass-temp-password'   => 'ពាក្យសំងាត់បណ្តោះអាសន្ន:',
 
+# Special:PasswordReset
+'passwordreset'              => 'កំណត់​ពាក្យសំងាត់​សាឡើងវិញ',
+'passwordreset-username'     => 'អត្តនាម៖',
+'passwordreset-emailelement' => 'ឈ្មោះអ្នកប្រើប្រាស់៖ $1
+លេខសម្ងាត់បណ្ដោះអាសន្ន៖ $2',
+'passwordreset-emailsent'    => 'អីុមែលរំលឹកមួយបានផ្ញើទៅហើយ។',
+
 # Edit page toolbar
 'bold_sample'     => 'អក្សរដិត',
 'bold_tip'        => 'អក្សរដិត',
@@ -2896,7 +2903,7 @@ $1',
 'metadata-help'     => 'ឯកសារនេះ​មាន​ព័ត៌មានបន្ថែម​ដែល​ទំនងជា​បានបន្ថែម​ពី ឧបករណ៍ថតរូបឌីជីថល ឬ ម៉ាស៊ីនស្កេន ដែលត្រូវបាន​ប្រើប្រាស់​ដើម្បីបង្កើត ឬ ធ្វើ​វា​ជា​ឌីជីថល។ បើសិនឯកសារ​បានត្រូវ​កែប្រែ​ពី ស្ថានភាពដើម នោះសេចក្តីលំអិតខ្លះ​អាចនឹងមិនអាច​​ឆ្លុះ​បញ្ចាំង​ពេញលេញទៅឯកសារ​ដែលបានកែប្រែទេ។',
 'metadata-expand'   => 'បង្ហាញភាពលំអិត',
 'metadata-collapse' => 'លាក់លំព័ត៌មានលំអិតដែលបានពន្លាត',
-'metadata-fields'   => 'វាលទិន្នន័យមេតា EXIF ដែលបានរាយ​ក្នុងសារនេះ​នឹងត្រូវដាក់ក្នុង​ទំព័រ​ពិពណ៌នារូបភាព ពេល​តារាង​ទិន្នន័យមេតា​ត្រូវបានបង្រួមតូច ។ ព័ត៌មាន​ដទៃទៀត​នឹងត្រូវបាន បិទបាំង​តាមលំនាំដើម ។
+'metadata-fields'   => 'វាលទិន្នន័យមេតា​ដែលបានរាយ​បញ្ជីក្នុងសារនេះ​នឹងត្រូវដាក់ក្នុង​ទំព័រ​បង្ហាញរូបភាព ពេល​តារាង​ទិន្នន័យមេតា​ត្រូវបានបង្រួមតូច ។ ព័ត៌មាន​ដទៃទៀត​នឹងត្រូវបានបិទបាំង​តាមលំនាំដើម ។
 * make
 * model
 * datetimeoriginal
@@ -2932,8 +2939,8 @@ $1',
 'exif-flashpixversion'             => 'បានគាំទ្រ កំណែ Flashpix',
 'exif-colorspace'                  => 'លំហពណ៌',
 'exif-compressedbitsperpixel'      => 'កម្រិតហាប់ នៃរូបភាព (ប៊ិត/ចំណុច)',
-'exif-pixelydimension'             => 'ទទឹងសមស្រប នៃរូបភាព',
-'exif-pixelxdimension'             => 'កម្ពស់សមស្រប នៃរូបភាព',
+'exif-pixelydimension'             => 'ទទឹងរូបភាព',
+'exif-pixelxdimension'             => 'កម្ពស់រូបភាព',
 'exif-usercomment'                 => 'យោបល់របស់អ្នកប្រើប្រាស់',
 'exif-relatedsoundfile'            => 'ឯកសារសំឡេងពាក់ព័ន្ធ',
 'exif-datetimeoriginal'            => 'ពេលវេលានិងកាលបរិច្ឆេទបង្កើតទិន្នន័យ',
@@ -3061,21 +3068,64 @@ $1',
 'exif-gpsspeed-m' => 'ម៉ាយល៍ក្នុងមួយម៉ោង',
 'exif-gpsspeed-n' => 'ណុត',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'គីឡូម៉ែត្រ',
+'exif-gpsdestdistance-m' => 'ម៉ាយល៍',
+
+'exif-gpsdop-excellent' => 'ល្អណាស់',
+'exif-gpsdop-good'      => 'ល្អ ($1)',
+'exif-gpsdop-moderate'  => 'ល្អបង្គួរ ($1)',
+'exif-gpsdop-fair'      => 'មធ្យម ($1)',
+'exif-gpsdop-poor'      => 'អន់ ($1)',
+
+'exif-objectcycle-a' => 'តែពេលព្រឹកប៉ុណ្ណោះ',
+'exif-objectcycle-p' => 'តែពេលល្ងាចប៉ុណ្ណោះ',
+'exif-objectcycle-b' => 'ទាំងពេលព្រឹកនិងពេលល្ងាច',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ខាងជើងពិត',
 'exif-gpsdirection-m' => 'ខាងជើងម៉ាញេទិក',
+
+'exif-dc-date'      => 'កាលបរិច្ឆេទ',
+'exif-dc-publisher' => 'ក្រុមហ៊ុនផ្សព្វផ្យាយ',
+'exif-dc-relation'  => 'មេឌាទាក់ទិន',
+'exif-dc-rights'    => 'កម្មសិទ្ធិបញ្ញា',
+'exif-dc-source'    => 'ប្រភពមេឌា',
+'exif-dc-type'      => 'ប្រភេទមេឌា',
+
+'exif-rating-rejected' => 'ច្រានចោល',
+
+'exif-isospeedratings-overflow' => 'ធំជាង 65535',
+
+'exif-iimcategory-ace' => 'សិល្បៈ វប្បធម៌និងការកំសាន្ត',
+'exif-iimcategory-clj' => 'ឧក្រិដកម្មនិងច្បាប់',
+'exif-iimcategory-dis' => 'គ្រោះមហន្តរាយនិងគ្រោះថ្នាក់',
+'exif-iimcategory-fin' => 'សេដ្ឋកិច្ចនិងពាណិជ្ជកម្ម',
+'exif-iimcategory-edu' => 'ការអប់រំ',
+'exif-iimcategory-evn' => 'បរិស្ថាន',
+'exif-iimcategory-hth' => 'សុខភាព',
+'exif-iimcategory-hum' => 'ចំណាប់អារម្មណ៍របស់មនុស្សជាតិ',
+'exif-iimcategory-lab' => 'ពលកម្ម',
+'exif-iimcategory-lif' => 'ជីវភាពរស់នៅនិងការលំហែកាយ',
+'exif-iimcategory-pol' => 'នយោបាយ',
+'exif-iimcategory-rel' => 'ជំនឿនិងសាសនា',
+'exif-iimcategory-sci' => 'វិទ្យាសាស្ត្រនិងបច្ចេកវិទ្យា',
+'exif-iimcategory-soi' => 'បញ្ហាសង្គម',
+'exif-iimcategory-spo' => 'កីឡា',
+'exif-iimcategory-war' => 'សង្គ្រាម ជំលោះនិងអស្ថេរភាព',
+'exif-iimcategory-wea' => 'អាកាសធាតុ',
+
+'exif-urgency-normal' => 'ធម្មតា ($1)',
 
 # External editor support
 'edit-externally'      => 'កែប្រែ​ឯកសារ​នេះដោយប្រើប្រាស់​កម្មវិធី​ខាងក្រៅ',
 'edit-externally-help' => '(សូមមើល[http://www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ទាំងអស់',
-'imagelistall'     => 'ទាំងអស់',
-'watchlistall2'    => 'ទាំងអស់',
-'namespacesall'    => 'ទាំងអស់',
-'monthsall'        => 'ទាំងអស់',
-'limitall'         => 'ទាំងអស់​',
+'watchlistall2' => 'ទាំងអស់',
+'namespacesall' => 'ទាំងអស់',
+'monthsall'     => 'ទាំងអស់',
+'limitall'      => 'ទាំងអស់​',
 
 # E-mail address confirmation
 'confirmemail'             => 'បញ្ជាក់ទទួលស្គាល់អាសយដ្ឋានអ៊ីមែល',

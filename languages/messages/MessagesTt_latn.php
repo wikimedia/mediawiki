@@ -2138,12 +2138,10 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'edit-externally-help' => '(tulıraq mäğlümat öçen [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Barlıq',
-'imagelistall'     => 'barlıq',
-'watchlistall2'    => 'barlıq',
-'namespacesall'    => 'barlıq',
-'monthsall'        => 'barlıq',
-'limitall'         => 'barlıq',
+'watchlistall2' => 'barlıq',
+'namespacesall' => 'barlıq',
+'monthsall'     => 'barlıq',
+'limitall'      => 'barlıq',
 
 # Delete conflict
 'recreate' => 'Yañadan yasaw',

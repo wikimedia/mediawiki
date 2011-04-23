@@ -3483,12 +3483,10 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informações)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'todas',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'todas',
-'namespacesall'    => 'todos',
-'monthsall'        => 'todos',
-'limitall'         => 'tudo',
+'watchlistall2' => 'todas',
+'namespacesall' => 'todos',
+'monthsall'     => 'todos',
+'limitall'      => 'tudo',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar endereço de correio electrónico',

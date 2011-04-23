@@ -1883,11 +1883,9 @@ Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga 
 'edit-externally-help' => 'Hilingón an  [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa iba pang mga impormasyon.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'gabos',
-'imagelistall'     => 'gabos',
-'watchlistall2'    => 'gabos',
-'namespacesall'    => 'gabos',
-'monthsall'        => 'gabos',
+'watchlistall2' => 'gabos',
+'namespacesall' => 'gabos',
+'monthsall'     => 'gabos',
 
 # E-mail address confirmation
 'confirmemail'            => "Kompirmaron an ''e''-surat",

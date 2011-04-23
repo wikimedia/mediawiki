@@ -937,11 +937,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ທັງໝົດ',
-'imagelistall'     => 'ທັງໝົດ',
-'watchlistall2'    => 'ທັງໝົດ',
-'namespacesall'    => 'ທັງໝົດ',
-'monthsall'        => 'ທັງໝົດ',
+'watchlistall2' => 'ທັງໝົດ',
+'namespacesall' => 'ທັງໝົດ',
+'monthsall'     => 'ທັງໝົດ',
 
 # E-mail address confirmation
 'confirmemail'            => 'ຢືນຢັນ ທີ່ຢູ່ ອີເມລ',

@@ -2291,11 +2291,9 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'edit-externally-help' => 'Sjoch de [http://www.mediawiki.org/wiki/Manual:External_editors ynstel-hantlieding] foar mear ynformaasje.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'alle',
-'imagelistall'     => 'alle',
-'watchlistall2'    => 'alles',
-'namespacesall'    => 'alles',
-'monthsall'        => 'alle',
+'watchlistall2' => 'alles',
+'namespacesall' => 'alles',
+'monthsall'     => 'alle',
 
 # E-mail address confirmation
 'confirmemail'            => 'Befêstigjen netpostadres',

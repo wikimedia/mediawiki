@@ -1567,12 +1567,10 @@ Nke ozor gí zonari na áká onwe ha.
 'edit-externally-help' => '(Lé nà [http://www.mediawiki.org/wiki/Manual:External_editors nkụzí mbídó] màkà nkúzí ozor)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'nke níle',
-'imagelistall'     => 'nke níle',
-'watchlistall2'    => 'nke níle',
-'namespacesall'    => 'nke níle',
-'monthsall'        => 'nke níle',
-'limitall'         => 'nke níle',
+'watchlistall2' => 'nke níle',
+'namespacesall' => 'nke níle',
+'monthsall'     => 'nke níle',
+'limitall'      => 'nke níle',
 
 # Trackbacks
 'trackbackremove' => '([$1 Gbakashia])',

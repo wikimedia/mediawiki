@@ -939,11 +939,9 @@ Why a ell gweles hy fennfenten.',
 'edit-externally' => 'Chanjya an restren-ma dre towlen a-ves',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'oll',
-'imagelistall'     => 'oll',
-'watchlistall2'    => 'oll',
-'namespacesall'    => 'oll',
-'monthsall'        => 'oll',
+'watchlistall2' => 'oll',
+'namespacesall' => 'oll',
+'monthsall'     => 'oll',
 
 # Trackbacks
 'trackbackremove' => '([$1 Dilea])',

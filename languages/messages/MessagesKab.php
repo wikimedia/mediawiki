@@ -1382,11 +1382,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'edit-externally-help' => 'Ẓer [http://www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'akk',
-'imagelistall'     => 'akk',
-'watchlistall2'    => 'akk',
-'namespacesall'    => 'akk',
-'monthsall'        => 'akk',
+'watchlistall2' => 'akk',
+'namespacesall' => 'akk',
+'monthsall'     => 'akk',
 
 # E-mail address confirmation
 'confirmemail'            => 'Sentem tansa n e-mail',

@@ -2916,12 +2916,10 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'edit-externally-help' => '(Has köp maglumat üçin metadaky [http://www.mediawiki.org/wiki/Manual:External_editors gurmak boýunça gollanma] sahypasyna göz aýlaň)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ählisi',
-'imagelistall'     => 'ählisi',
-'watchlistall2'    => 'Ählisini görkez',
-'namespacesall'    => 'ählisi',
-'monthsall'        => 'ählisi',
-'limitall'         => 'ählisi',
+'watchlistall2' => 'Ählisini görkez',
+'namespacesall' => 'ählisi',
+'monthsall'     => 'ählisi',
+'limitall'      => 'ählisi',
 
 # E-mail address confirmation
 'confirmemail'              => 'E-poçta adresini tassykla',

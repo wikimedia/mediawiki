@@ -2565,12 +2565,10 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'edit-externally-help' => '(Skaitāis [http://www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wisāi',
-'imagelistall'     => 'wisāi',
-'watchlistall2'    => 'wisāi',
-'namespacesall'    => 'wisāi',
-'monthsall'        => 'wisāi',
-'limitall'         => 'wisāi',
+'watchlistall2' => 'wisāi',
+'namespacesall' => 'wisāi',
+'monthsall'     => 'wisāi',
+'limitall'      => 'wisāi',
 
 # E-mail address confirmation
 'confirmemail'             => 'Padrūktinais e-mail adressin',

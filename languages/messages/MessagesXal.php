@@ -1213,12 +1213,10 @@ $2 шидрә һарһлһна төлә хәләтн.',
 'edit-externally-help' => '([http://www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'цуг',
-'imagelistall'     => 'цуг',
-'watchlistall2'    => 'цуг',
-'namespacesall'    => 'цуг',
-'monthsall'        => 'цуг',
-'limitall'         => 'цуг',
+'watchlistall2' => 'цуг',
+'namespacesall' => 'цуг',
+'monthsall'     => 'цуг',
+'limitall'      => 'цуг',
 
 # action=purge
 'confirm_purge_button' => 'Тиим',

@@ -470,7 +470,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exif-gpsspeed-n' => 'ތަސްވީރުގެ ސުރުހީ',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'ހުރިހާ',
 'watchlistall2' => 'ހުރިހާ',
 'namespacesall' => 'ހުރިހާ',
 

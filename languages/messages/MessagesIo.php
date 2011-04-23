@@ -1482,11 +1482,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 'exif-gpsspeed-m' => 'Milii per horo',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'omna',
-'imagelistall'     => 'omna',
-'watchlistall2'    => 'omna',
-'namespacesall'    => 'omna',
-'monthsall'        => 'omna',
+'watchlistall2' => 'omna',
+'namespacesall' => 'omna',
+'monthsall'     => 'omna',
 
 # E-mail address confirmation
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',

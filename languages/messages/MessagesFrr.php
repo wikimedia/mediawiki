@@ -1311,12 +1311,10 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'edit-externally-help' => '(Sii da [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] for widere Informasjoon)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'åle',
-'imagelistall'     => 'åle',
-'watchlistall2'    => 'åle',
-'namespacesall'    => 'åle',
-'monthsall'        => 'åle',
-'limitall'         => 'åle',
+'watchlistall2' => 'åle',
+'namespacesall' => 'åle',
+'monthsall'     => 'åle',
+'limitall'      => 'åle',
 
 # Auto-summaries
 'autosumm-blank'   => 'Det sidj wurd leesagd.',

@@ -1058,11 +1058,9 @@ iitom e-iitomde diijömde caitóm.',
 'exif-focalplaneresolutionunit-2' => 'inchám',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'jöxdem',
-'imagelistall'     => 'jöxdem',
-'watchlistall2'    => 'jöxdem',
-'namespacesall'    => 'jöxdem',
-'monthsall'        => 'jöxdem',
+'watchlistall2' => 'jöxdem',
+'namespacesall' => 'jöxdem',
+'monthsall'     => 'jöxdem',
 
 # action=purge
 'confirm_purge_button' => 'ton',

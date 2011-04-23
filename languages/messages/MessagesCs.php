@@ -10,6 +10,7 @@
  * @author Danny B.
  * @author Dontlietome7
  * @author Helix84
+ * @author Jkjk
  * @author Kuvaly
  * @author Li-sung
  * @author Martin Kozák
@@ -792,7 +793,7 @@ Ujistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znov
 'password-login-forbidden'   => 'Použití tohoto uživatelského jména a hesla byla zakázáno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
-'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) požádal, abychom Vám poslali nové heslo
+'passwordremindertext'       => 'Někdo (patrně vy, z IP adresy $1) požádal, abychom o nové heslo
 pro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo
 proto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se
 nyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla
@@ -854,8 +855,32 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'resetpass-temp-password'   => 'Dočasné heslo:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Reset hesla',
-'passwordreset-username' => 'Uživatelské jméno:',
+'passwordreset'                => 'Reset hesla',
+'passwordreset-legend'         => 'Znovu nastavit heslo',
+'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
+'passwordreset-username'       => 'Uživatelské jméno:',
+'passwordreset-email'          => 'E-mailová adresa:',
+'passwordreset-emailtitle'     => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
+účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
+
+$2
+
+{{PLURAL:$3|Toto dočasné heslo|Tato dočasná hesla}} vyprší {{PLURAL:$5|za jeden den|za $5 dny|za $5 dnů}}.
+Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
+poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
+tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
+'passwordreset-emailtext-user' => '{{gender:$1|Uživatel|Uživatelka|Uživatel}} $1 {{grammar:2sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala|zažádal}} o připomenutí informací k vašemu
+účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
+
+$2
+
+{{PLURAL:$3|Toto dočasné heslo|Tato dočasná hesla}} vyprší {{PLURAL:$5|za jeden den|za $5 dny|za $5 dnů}}.
+Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
+poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
+tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
+'passwordreset-emailelement'   => 'Uživatelské jméno: $1
+Dočasné heslo: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -3165,11 +3190,16 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-serialnumber'                => 'Sériové číslo přístroje',
 'exif-cameraownername'             => 'Majitel přístroje',
 'exif-label'                       => 'Štítek',
+'exif-datetimemetadata'            => 'Datum poslední úpravy metadat',
 'exif-nickname'                    => 'Neformální název obrázku',
 'exif-rating'                      => 'Hodnocení (1–5)',
+'exif-copyrighted'                 => 'Stav autorských práv',
 'exif-copyrightowner'              => 'Držitel autorských práv',
 'exif-usageterms'                  => 'Podmínky užití',
 'exif-originaldocumentid'          => 'Unikátní ID původního dokumentu',
+'exif-licenseurl'                  => 'URL licence',
+'exif-attributionurl'              => 'Pokud užíváte toto dílo, uveďte odkaz',
+'exif-preferredattributionname'    => 'Pokud užíváte toto dílo, uveďte jako autora',
 'exif-pngfilecomment'              => 'Poznámky ze souboru PNG',
 'exif-disclaimer'                  => 'Vyloučení odpovědnosti',
 'exif-contentwarning'              => 'Upozornění k obsahu',
@@ -3387,12 +3417,10 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'edit-externally-help' => '(Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'všechny',
-'imagelistall'     => 'všechny',
-'watchlistall2'    => 'všechny',
-'namespacesall'    => 'všechny',
-'monthsall'        => 'všechny',
-'limitall'         => 'vše',
+'watchlistall2' => 'všechny',
+'namespacesall' => 'všechny',
+'monthsall'     => 'všechny',
+'limitall'      => 'vše',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potvrzení e-mailové adresy',

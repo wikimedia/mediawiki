@@ -2598,12 +2598,10 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'edit-externally-help' => '(Skat. [http://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'visi',
-'imagelistall'     => 'visas',
-'watchlistall2'    => 'visas',
-'namespacesall'    => 'visas',
-'monthsall'        => 'visi',
-'limitall'         => 'visas',
+'watchlistall2' => 'visas',
+'namespacesall' => 'visas',
+'monthsall'     => 'visi',
+'limitall'      => 'visas',
 
 # E-mail address confirmation
 'confirmemail'             => 'Apstiprini e-pasta adresi',

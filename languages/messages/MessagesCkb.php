@@ -2820,12 +2820,10 @@ $1',
 'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [http://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ھەموو',
-'imagelistall'     => 'ھەموو',
-'watchlistall2'    => 'ھەموو',
-'namespacesall'    => 'ھەموو',
-'monthsall'        => 'ھەموو',
-'limitall'         => 'ھەموو',
+'watchlistall2' => 'ھەموو',
+'namespacesall' => 'ھەموو',
+'monthsall'     => 'ھەموو',
+'limitall'      => 'ھەموو',
 
 # E-mail address confirmation
 'confirmemail'              => 'بڕواپێکردنی ناونیشانی ئیمەیل',

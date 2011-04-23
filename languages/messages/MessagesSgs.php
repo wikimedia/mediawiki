@@ -1780,11 +1780,9 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'edit-externally-help' => 'Nuoriedamė gautė daugiau infuormacėjės, veiziekėt [http://www.mediawiki.org/wiki/Manual:External_editors kruovėma instrokcėjės].',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'vėsos',
-'imagelistall'     => 'vėsė',
-'watchlistall2'    => 'vėsos',
-'namespacesall'    => 'vėsas',
-'monthsall'        => 'vėsė',
+'watchlistall2' => 'vėsos',
+'namespacesall' => 'vėsas',
+'monthsall'     => 'vėsė',
 
 # E-mail address confirmation
 'confirmemail'           => 'Patvirtėnkėt el. pašta adresa',

@@ -2156,11 +2156,9 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'edit-externally-help' => '(Lisateedüst loeq [http://www.mediawiki.org/wiki/Manual:External_editors pruukmisoppusõ lehe päält])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kõik',
-'imagelistall'     => 'kõik',
-'watchlistall2'    => ', terveq aolugu',
-'namespacesall'    => 'kõik',
-'monthsall'        => 'kõik',
+'watchlistall2' => ', terveq aolugu',
+'namespacesall' => 'kõik',
+'monthsall'     => 'kõik',
 
 # E-mail address confirmation
 'confirmemail'            => 'Kinnüdäq e-postiaadrõssit',

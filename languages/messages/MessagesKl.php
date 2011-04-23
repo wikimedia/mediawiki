@@ -549,9 +549,8 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 'ilsubmit' => 'Ujarlerit',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tamarmik',
-'namespacesall'    => 'tamarmik',
-'monthsall'        => 'tamarmik',
+'namespacesall' => 'tamarmik',
+'monthsall'     => 'tamarmik',
 
 # Auto-summaries
 'autosumm-new' => "Qupperneq pilersippaa '$1'",

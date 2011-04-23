@@ -2737,12 +2737,10 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'edit-externally-help' => '(Deleng [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kabèh',
-'imagelistall'     => 'kabèh',
-'watchlistall2'    => 'kabèh',
-'namespacesall'    => 'kabèh',
-'monthsall'        => 'kabèh',
-'limitall'         => 'kabèh',
+'watchlistall2' => 'kabèh',
+'namespacesall' => 'kabèh',
+'monthsall'     => 'kabèh',
+'limitall'      => 'kabèh',
 
 # E-mail address confirmation
 'confirmemail'             => 'Konfirmasi alamat e-mail',

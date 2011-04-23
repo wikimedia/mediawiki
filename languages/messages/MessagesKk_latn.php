@@ -2700,11 +2700,9 @@ Basqaları ädepkiden jasırıladı.
 'edit-externally-help' => 'Köbirek aqparat üşin [http://www.mediawiki.org/wiki/Manual:External_editors ornatw nusqamaların] qarañız.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'barlığın',
-'imagelistall'     => 'barlığı',
-'watchlistall2'    => 'barlıq',
-'namespacesall'    => 'barlığı',
-'monthsall'        => 'barlığı',
+'watchlistall2' => 'barlıq',
+'namespacesall' => 'barlığı',
+'monthsall'     => 'barlığı',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-poşta mekenjaýın quptaw',

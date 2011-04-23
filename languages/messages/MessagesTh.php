@@ -3043,12 +3043,10 @@ $1',
 'edit-externally-help' => '(ดูเพิ่ม [http://www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า] สำหรับข้อมูลเพิ่มเติม)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ทั้งหมด',
-'imagelistall'     => 'ทั้งหมด',
-'watchlistall2'    => 'ทั้งหมด',
-'namespacesall'    => 'ทั้งหมด',
-'monthsall'        => 'ทั้งหมด',
-'limitall'         => 'ทั้งหมด',
+'watchlistall2' => 'ทั้งหมด',
+'namespacesall' => 'ทั้งหมด',
+'monthsall'     => 'ทั้งหมด',
+'limitall'      => 'ทั้งหมด',
 
 # E-mail address confirmation
 'confirmemail'              => 'ยืนยันอีเมล',

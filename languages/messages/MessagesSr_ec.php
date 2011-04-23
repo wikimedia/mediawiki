@@ -410,6 +410,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'наст.',
 'index-category'                 => 'Пописане странице',
 'noindex-category'               => 'Непописане странице',
+'broken-file-category'           => 'Странице с неисправним везама до датотека',
 
 'mainpagetext'      => "'''Медијавики је успешно инсталиран.'''",
 'mainpagedocfooter' => 'Погледајте [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.
@@ -710,6 +711,7 @@ $2',
 'createaccount'              => 'Отвори налог',
 'gotaccount'                 => "Имате налог? Идите на страницу ''$1''.",
 'gotaccountlink'             => 'Пријава',
+'userlogin-resetlink'        => 'Заборавили сте лозинку?',
 'createaccountmail'          => 'Е-поштом',
 'createaccountreason'        => 'Разлог:',
 'badretype'                  => 'Лозинке које сте унели се не поклапају.',
@@ -802,8 +804,31 @@ $2',
 'resetpass-temp-password'   => 'Привремена лозинка:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Обнављање лозинке',
-'passwordreset-username' => 'Корисничко име:',
+'passwordreset'                => 'Обнављање лозинке',
+'passwordreset-text'           => 'Попуните овај образац да бисте примили е-поруку са својим подацима за пријаву.',
+'passwordreset-legend'         => 'Поништи лозинку',
+'passwordreset-disabled'       => 'Поништавање лозинке је онемогућено на овом викију.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Унесите један од делова података испод}}',
+'passwordreset-username'       => 'Корисничко име:',
+'passwordreset-email'          => 'Е-адреса:',
+'passwordreset-emailtitle'     => 'Детаљи налога на викију {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Неко, вероватно ви, са ИП адресе $1 је затражио нову лозинку на викију {{SITENAME}} ($4).
+Следећи {{PLURAL:$3|кориснички налог је|кориснички налози су}} повезан с овом е-адресом:
+
+$2
+
+{{PLURAL:$3|Привремена лозинка истиче|Привремене лозинке истичу}} за {{PLURAL:$5|један дан|$5 дана|$5 дана}}.
+Пријавите се и изаберите нову лозинку. Ако је неко други захтевао ову радњу или сте се сетили лозинке и не желите да је мењате, занемарите ову поруку.',
+'passwordreset-emailtext-user' => '{{GENDER:$1|Корисник|Корисница|Корисник}} $1 је затражио подсетник о подацима за пријаву на викију {{SITENAME}} ($4).
+Следећи {{PLURAL:$3|кориснички налог је|кориснички налози су}} повезан с овом е-адресом:
+
+$2
+
+{{PLURAL:$3|Привремена лозинка истиче|Привремене лозинке истичу}} за {{PLURAL:$5|један дан|$5 дана|$5 дана}}.
+Пријавите се и изаберите нову лозинку. Ако је неко други захтевао ову радњу или сте се сетили лозинке и не желите да је мењате, занемарите ову поруку.',
+'passwordreset-emailelement'   => 'Корисничко име: $1
+Привремена лозинка: $2',
+'passwordreset-emailsent'      => 'Подсетник о лозинци је послат на вашу е-адресу.',
 
 # Edit page toolbar
 'bold_sample'     => 'Подебљан текст',
@@ -2811,7 +2836,7 @@ $1',
 'importsuccess'              => 'Успешан увоз!',
 'importhistoryconflict'      => 'Постоји конфликтна историја ревизија (можда је ова страница већ увезена раније)',
 'importnosources'            => 'Није дефинисан ниједан извор трансвики увожења и директна слања историја су онемогућена.',
-'importnofile'               => 'Није послат ниједан увозни фајл.',
+'importnofile'               => 'Увозна датотека није послата.',
 'importuploaderrorsize'      => 'Слање и унос фајла нису успели. Фајл је већи него што је дозвољено.',
 'importuploaderrorpartial'   => 'Слање фајла за унос података није успело. Фајл је делимично стигао.',
 'importuploaderrortemp'      => 'Слање датотеке за увоз није успело.
@@ -3429,12 +3454,10 @@ $1',
 'edit-externally-help' => '(Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'све',
-'imagelistall'     => 'све',
-'watchlistall2'    => 'све',
-'namespacesall'    => 'сви',
-'monthsall'        => 'све',
-'limitall'         => 'све',
+'watchlistall2' => 'све',
+'namespacesall' => 'сви',
+'monthsall'     => 'све',
+'limitall'      => 'све',
 
 # E-mail address confirmation
 'confirmemail'              => 'Потврда е-адресе',

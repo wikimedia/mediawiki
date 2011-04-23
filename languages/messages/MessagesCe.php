@@ -1454,12 +1454,10 @@ PICT # тайп тайпан
 'edit-externally-help' => '(мадарра хьажа. оцу [http://www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'массо',
-'imagelistall'     => 'массо',
-'watchlistall2'    => 'массо',
-'namespacesall'    => 'массо',
-'monthsall'        => 'массо',
-'limitall'         => 'массо',
+'watchlistall2' => 'массо',
+'namespacesall' => 'массо',
+'monthsall'     => 'массо',
+'limitall'      => 'массо',
 
 # Trackbacks
 'trackbackremove' => '([$1 дlадайá])',

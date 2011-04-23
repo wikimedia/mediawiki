@@ -443,6 +443,7 @@ Hesabê şıma biyo a.
 'gotaccount'                 => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink'             => 'Cıkewe',
 'createaccountmail'          => 'mı rê e-mail sera parola bırışe',
+'createaccountreason'        => 'Sebeb:',
 'badretype'                  => 'Parolayê ke şıma nuşti yewbini nêtepışneni.',
 'userexists'                 => 'No name ey yewna teno, yewna name bınuse.',
 'loginerror'                 => 'Xetayê hesab ekerdışi',
@@ -521,6 +522,14 @@ Bıne vındere u newe ra dest pê bıkere.',
 şıma ya parolaye xo vurnayo ya zi parolayo muwaqqat waşto.',
 'resetpass-temp-password'   => 'parolayo muweqet:',
 
+# Special:PasswordReset
+'passwordreset'              => 'Parola ancia bınuse',
+'passwordreset-legend'       => 'Parola ancia bınuse',
+'passwordreset-username'     => 'Namey karberi:',
+'passwordreset-email'        => 'Adresa e-postey:',
+'passwordreset-emailelement' => 'Namey karberi: $1
+Parola vêrdiye: $2',
+
 # Edit page toolbar
 'bold_sample'     => 'Çapo qalınd',
 'bold_tip'        => 'Herfo qalın',
@@ -593,10 +602,10 @@ IP numre şıma yo nıkayın $3 u ID şıma yo ke musade nêdaye #$5. Eke şıma
 'whitelistedittext'                => 'Eka ti wazene binusi ti gani  $1.',
 'confirmedittext'                  => 'Eka ti wazene binusi, adresê xo e-maili confirme bike.
 Adresê xo e-maili [[Special:Preferences|user preferences]] de confirme bike.',
-'nosuchsectiontitle'               => 'Ena qisim çini yo',
+'nosuchsectiontitle'               => 'Eno qısım çıniyo',
 'nosuchsectiontext'                => 'To waşt ke yew qısım kewê, oyo ke çıniyo.
 Heta ke werte de qısım çıniyo, ca çıniyo ke tı raştkerdışê xo qeyd bıkerê.',
-'loginreqtitle'                    => 'Cikewtiş lazim o',
+'loginreqtitle'                    => 'Cıkewtış lazımo',
 'loginreqlink'                     => 'Cıkewe',
 'loginreqpagetext'                 => 'Eka ti wazeno peleyanê bini bivini, ti gani $1.',
 'accmailtitle'                     => 'Paralo şirawiyayo.',
@@ -615,9 +624,9 @@ ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurnê]</span>.',
 'noarticletext-nopermission'       => 'No pel nıka veng o.
 No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara eşekeni bıgere].</span>',
-'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" lazim niyo.
-Eka ti wazeni binusi, kontrol bike.',
-'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nibiyo.',
+'userpage-userdoesnotexist'        => 'Hesabê karberi "$1" qeyd nêbiyo.
+Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
+'userpage-userdoesnotexist-view'   => 'Hesabê karberi "$1" qeyd nêbiyo.',
 'blocked-notice-logextract'        => 'No karber/na karbere emanet blokekerdeyo/blokekediya.
 Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'clearyourcache'                   => "'''Not:''' Bade eyar qayd kerdış, gani hafızayê cıgerayox pak bıbo: '''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere veyaxut ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pel newe ra bar kere ser a ne.",
@@ -627,7 +636,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'userjspreview'                    => "'''şıma tena test keni ya ziverqayn seyr keni - karberê JavaScript'i hema qayd nebiyo.'''",
 'userinvalidcssjstitle'            => "'''Teme:''' Mewzuyê \"\$1\" çıniyo.
 Dosyanê be namey .css u .js'i de herfa werdiye bıgurêne, mesela herında {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
-'updated'                          => '(Rocaniye biyo)',
+'updated'                          => '(Biyo rocane)',
 'note'                             => "'''Not:'''",
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
@@ -641,8 +650,8 @@ Vurnayışê tu hama qeyd nıbiyo!",
 'token_suffix_mismatch'            => "'''Vurnayişê şıma tepeya ameyo çunke qutiyê imla xerıbya.
 Vurnayişê şıma qey nêxerepyayişê peli tepeya geyra a.
 Eke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
-'editing'                          => 'Vurnayeno $1',
-'editingsection'                   => 'Vurneno $1 (qısım)',
+'editing'                          => '$1 vurneno',
+'editingsection'                   => '$1 vurneno (qısım)',
 'editingcomment'                   => '$1 vuryeno (qısmo newe)',
 'editconflict'                     => 'Vurnayişê ke yewbini nêtepışeni: $1',
 'explainconflict'                  => "Wexta ke şıma pel vurneyene yewna ten zi pel vurna.
@@ -975,7 +984,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 
 # Quickbar
 'qbsettings'               => 'Çûwo pêt',
-'qbsettings-none'          => 'çıniyo',
+'qbsettings-none'          => 'Çıniyo',
 'qbsettings-fixedleft'     => 'Rêcaene çhep',
 'qbsettings-fixedright'    => 'Rêcaene raşt',
 'qbsettings-floatingleft'  => 'rêcaene çhep',
@@ -983,15 +992,15 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 
 # Preferences page
 'preferences'                   => 'Tercihi',
-'mypreferences'                 => 'tercihê mı',
+'mypreferences'                 => 'Tercihê mı',
 'prefs-edits'                   => 'Amarê vurnayışan:',
 'prefsnologin'                  => 'Şıma cıkewtış nêvıraşto',
 'prefsnologintext'              => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
-'changepassword'                => 'parola bivurne',
+'changepassword'                => 'Parola bıvurne',
 'prefs-skin'                    => 'Çerme',
 'skin-preview'                  => 'Verqayt',
-'datedefault'                   => 'Tercih çino',
-'prefs-datetime'                => 'Wext u Tarix',
+'datedefault'                   => 'Tercih çıniyo',
+'prefs-datetime'                => 'Tarix u wext',
 'prefs-personal'                => 'Pela karberi',
 'prefs-rc'                      => 'Vurnayışê peyêni',
 'prefs-watchlist'               => 'Lista seyr-kerdışi',
@@ -2851,12 +2860,10 @@ Ma aya bini numnen.
 'edit-externally-help' => '(Qe informasyonê zafyer ena bevinin [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'hemi',
-'imagelistall'     => 'hemi',
-'watchlistall2'    => 'pêro',
-'namespacesall'    => 'têde',
-'monthsall'        => 'pêro',
-'limitall'         => 'hemi',
+'watchlistall2' => 'pêro',
+'namespacesall' => 'têde',
+'monthsall'     => 'pêro',
+'limitall'      => 'hemi',
 
 # E-mail address confirmation
 'confirmemail'              => 'Adresê emaîlî xo konfirme bike',

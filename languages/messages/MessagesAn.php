@@ -2931,12 +2931,10 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'edit-externally-help' => '(Ta más información, leiga as [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totz',
-'imagelistall'     => 'todas',
-'watchlistall2'    => 'totz',
-'namespacesall'    => 'totz',
-'monthsall'        => 'totz',
-'limitall'         => 'Totz',
+'watchlistall2' => 'totz',
+'namespacesall' => 'totz',
+'monthsall'     => 'totz',
+'limitall'      => 'Totz',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar adreza de correu-e',

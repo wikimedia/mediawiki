@@ -3431,12 +3431,10 @@ Pozostałe pola zostaną domyślnie ukryte.
 'edit-externally-help' => '(Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wszystkie',
-'imagelistall'     => 'wszystkich',
-'watchlistall2'    => 'wszystkie',
-'namespacesall'    => 'wszystkie',
-'monthsall'        => 'wszystkie',
-'limitall'         => 'wszystkie',
+'watchlistall2' => 'wszystkie',
+'namespacesall' => 'wszystkie',
+'monthsall'     => 'wszystkie',
+'limitall'      => 'wszystkie',
 
 # E-mail address confirmation
 'confirmemail'              => 'Potwierdzanie adresu e‐mail',

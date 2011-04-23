@@ -1898,12 +1898,10 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'edit-externally-help' => '(Ċof [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] ila ḫṫajiṫi meĝlomaṫ ĥrin)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'kolċi',
-'imagelistall'     => 'kolċi',
-'watchlistall2'    => 'kolċi',
-'namespacesall'    => 'kolċi',
-'monthsall'        => 'kolhom',
-'limitall'         => 'kolċi',
+'watchlistall2' => 'kolċi',
+'namespacesall' => 'kolċi',
+'monthsall'     => 'kolhom',
+'limitall'      => 'kolċi',
 
 # E-mail address confirmation
 'confirmemail'             => "konfirmasyon dyal l'email",

@@ -2963,12 +2963,10 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'edit-externally-help' => '(Ikus [http://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'guztiak',
-'imagelistall'     => 'guztiak',
-'watchlistall2'    => 'guztiak',
-'namespacesall'    => 'guztiak',
-'monthsall'        => 'guztiak',
-'limitall'         => 'guztiak',
+'watchlistall2' => 'guztiak',
+'namespacesall' => 'guztiak',
+'monthsall'     => 'guztiak',
+'limitall'      => 'guztiak',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-posta helbidea egiaztatu',

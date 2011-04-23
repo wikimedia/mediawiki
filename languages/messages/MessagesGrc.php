@@ -2496,12 +2496,10 @@ $1',
 'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [http://www.mediawiki.org/wiki/Manual:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] ἴδε.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Πᾶσαι',
-'imagelistall'     => 'Πᾶσαι',
-'watchlistall2'    => 'ἅπασαι',
-'namespacesall'    => 'ἅπασαι',
-'monthsall'        => 'ἅπαντες',
-'limitall'         => 'ἅπασαι',
+'watchlistall2' => 'ἅπασαι',
+'namespacesall' => 'ἅπασαι',
+'monthsall'     => 'ἅπαντες',
+'limitall'      => 'ἅπασαι',
 
 # E-mail address confirmation
 'confirmemail'             => 'Ἐπιβεβαίωσον διεύθυνσιν ἠλ-ταχυδρομείου',

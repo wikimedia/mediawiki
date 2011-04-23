@@ -1047,11 +1047,9 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 'edit-externally-help' => 'Boniselelize [http://www.mediawiki.org/wiki/Manual:External_editors instruksi setup] kwa informasi.',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'xeti',
-'imagelistall'     => 'xeti',
-'watchlistall2'    => 'xeti',
-'namespacesall'    => 'xeti',
-'monthsall'        => 'xeti',
+'watchlistall2' => 'xeti',
+'namespacesall' => 'xeti',
+'monthsall'     => 'xeti',
 
 # Trackbacks
 'trackbackremove' => '([$1 afi kulobala])',

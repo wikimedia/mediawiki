@@ -2379,12 +2379,10 @@ $1',
 'edit-externally-help' => '(Барои иттилооти бештар [http://www.mediawiki.org/wiki/Manual:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ҳама',
-'imagelistall'     => 'ҳама',
-'watchlistall2'    => 'ҳама',
-'namespacesall'    => 'ҳама',
-'monthsall'        => 'ҳама',
-'limitall'         => 'ҳама',
+'watchlistall2' => 'ҳама',
+'namespacesall' => 'ҳама',
+'monthsall'     => 'ҳама',
+'limitall'      => 'ҳама',
 
 # E-mail address confirmation
 'confirmemail'             => 'Тасдиқи нишонаи почтаи электронӣ',

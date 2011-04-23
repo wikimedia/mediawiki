@@ -3351,12 +3351,10 @@ Los ôtros champs seront cachiês per dèfôt.
 'edit-externally-help' => '(Vêde les [http://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'totes',
-'imagelistall'     => 'totes',
-'watchlistall2'    => 'tot',
-'namespacesall'    => 'Tôs',
-'monthsall'        => 'tôs',
-'limitall'         => 'tôs',
+'watchlistall2' => 'tot',
+'namespacesall' => 'Tôs',
+'monthsall'     => 'tôs',
+'limitall'      => 'tôs',
 
 # E-mail address confirmation
 'confirmemail'              => 'Confirmar l’adrèce èlèctronica',

@@ -1258,11 +1258,9 @@ Jinszé pòla bãdą domëslno zataconé.
 'edit-externally-help' => '(Zdrzë na [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] dlô dobëcô wicy wëdowiédzë).',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'wszëtczé',
-'imagelistall'     => 'wszëtczé',
-'watchlistall2'    => 'wszëtczé',
-'namespacesall'    => 'wszëtczé',
-'monthsall'        => 'wszëtczé',
+'watchlistall2' => 'wszëtczé',
+'namespacesall' => 'wszëtczé',
+'monthsall'     => 'wszëtczé',
 
 # E-mail address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',

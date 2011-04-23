@@ -811,8 +811,12 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password'   => 'Provizora pasvorto:',
 
 # Special:PasswordReset
-'passwordreset'          => 'Restarigo de pasvorto',
-'passwordreset-username' => 'Salutnomo:',
+'passwordreset'              => 'Restarigo de pasvorto',
+'passwordreset-legend'       => 'Refari pasvorton',
+'passwordreset-username'     => 'Salutnomo:',
+'passwordreset-email'        => 'Retpoŝtadreso:',
+'passwordreset-emailelement' => 'Salutnomo: $1
+Provizora pasvorto: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasa teksto',
@@ -1745,22 +1749,23 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'uploadstash-refresh'  => 'Aktualigi la dosierliston.',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Atingo malpermisita',
-'img-auth-nopathinfo'   => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
+'img-auth-accessdenied'     => 'Atingo malpermisita',
+'img-auth-nopathinfo'       => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
 Via servilo ne estas konfigurita por sendi ĉi tiun informon.
 Eble ĝi estas CGI-bazita kaj ne subtenas img_auth.
 Vidu http://www.mediawiki.org/wiki/Manual:Image_Authorization. (angle)',
-'img-auth-notindir'     => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
-'img-auth-badtitle'     => 'Ne povas konstrui validan titolon de "$1".',
-'img-auth-nologinnWL'   => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
-'img-auth-nofile'       => 'Dosiero "$1" ne ekzistas.',
-'img-auth-isdir'        => 'Vi provas atingi dosierujon "$1".
+'img-auth-notindir'         => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
+'img-auth-badtitle'         => 'Ne povas konstrui validan titolon de "$1".',
+'img-auth-nologinnWL'       => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
+'img-auth-nofile'           => 'Dosiero "$1" ne ekzistas.',
+'img-auth-isdir'            => 'Vi provas atingi dosierujon "$1".
 Nur dosiera atingo estas permesita.',
-'img-auth-streaming'    => 'Elsendfluante "$1".',
-'img-auth-public'       => 'La funkcio de img_auth.php estas eligi dosierojn de privata vikio.
+'img-auth-streaming'        => 'Elsendfluante "$1".',
+'img-auth-public'           => 'La funkcio de img_auth.php estas eligi dosierojn de privata vikio.
 Ĉi tiu vikio estas konfigurita kiel publika vikio.
 Por optimuma sekureco, img_auth.php estas malŝalta.',
-'img-auth-noread'       => 'Uzanto ne havas atingon por legi "$1".',
+'img-auth-noread'           => 'Uzanto ne havas atingon por legi "$1".',
+'img-auth-bad-query-string' => 'La URL-o havas malvalidan mendan signoĉenon.',
 
 # HTTP errors
 'http-invalid-url'      => 'Malvalida URL-o: $1',
@@ -2121,6 +2126,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'noemailtext'          => 'Ĉi tiu uzanto ne donis validan retadreson.',
 'nowikiemailtitle'     => 'Retpoŝto ne permesita',
 'nowikiemailtext'      => 'Ĉi tiu uzanto elektis ne ricevi retpoŝton de aliaj uzantoj.',
+'emailusername'        => 'Salutnomo:',
 'email-legend'         => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
 'emailfrom'            => 'De:',
 'emailto'              => 'Al:',
@@ -3059,7 +3065,16 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-gpsareainformation'          => 'Nomo de GPS areo',
 'exif-gpsdatestamp'                => 'GPS dato',
 'exif-gpsdifferential'             => 'GPS diferenca korektado',
+'exif-keywords'                    => 'Ŝlosilvortoj',
 'exif-objectname'                  => 'Mallonga titolo',
+'exif-source'                      => 'Fonto',
+'exif-writer'                      => 'Aŭtoro',
+'exif-languagecode'                => 'Lingvo',
+'exif-iimversion'                  => 'IIM-versio',
+'exif-iimcategory'                 => 'Kategorio',
+'exif-label'                       => 'Etikedo',
+'exif-copyrighted'                 => 'Aŭtorrajta statuso:',
+'exif-copyrightowner'              => 'Posedanto de la aŭtorrajto',
 
 # EXIF attributes
 'exif-compression-1' => 'Nedensigita',
@@ -3214,12 +3229,10 @@ Aliaj estos kaŝitaj defaŭlte.
 'edit-externally-help' => "(Vidu la [http://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ĉiuj',
-'imagelistall'     => 'ĉiuj',
-'watchlistall2'    => 'ĉiuj',
-'namespacesall'    => 'ĉiuj',
-'monthsall'        => 'ĉiuj',
-'limitall'         => 'ĉiuj',
+'watchlistall2' => 'ĉiuj',
+'namespacesall' => 'ĉiuj',
+'monthsall'     => 'ĉiuj',
+'limitall'      => 'ĉiuj',
 
 # E-mail address confirmation
 'confirmemail'              => 'Konfirmi retadreson',

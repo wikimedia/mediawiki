@@ -2807,12 +2807,10 @@ $1',
 'edit-externally-help' => '(Гл. падрабязней [http://www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'усе',
-'imagelistall'     => 'усе',
-'watchlistall2'    => 'усе',
-'namespacesall'    => 'усе',
-'monthsall'        => 'усе',
-'limitall'         => 'усе',
+'watchlistall2' => 'усе',
+'namespacesall' => 'усе',
+'monthsall'     => 'усе',
+'limitall'      => 'усе',
 
 # E-mail address confirmation
 'confirmemail'              => 'Пацвердзіць адрас эл.пошты',

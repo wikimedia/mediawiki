@@ -362,9 +362,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'exif-sharpness-1' => 'Kuntofontofo',
 'exif-sharpness-2' => 'Kulukhuni',
 
-# 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Konke',
-
 # E-mail address confirmation
 'confirmemail'          => 'Qinisekisa ikheli likagesi',
 'confirmemail_loggedin' => 'Ikheli likagesi lakho liqinisekiswa.',

@@ -2980,12 +2980,10 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'edit-externally-help' => '(Par saverghene de pì consultare łe [http://www.mediawiki.org/wiki/Manual:External_editors istrusion])',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'tute',
-'imagelistall'     => 'tute',
-'watchlistall2'    => 'tute',
-'namespacesall'    => 'Tuti',
-'monthsall'        => 'tuti',
-'limitall'         => 'tuti quanti',
+'watchlistall2' => 'tute',
+'namespacesall' => 'Tuti',
+'monthsall'     => 'tuti',
+'limitall'      => 'tuti quanti',
 
 # E-mail address confirmation
 'confirmemail'              => 'Conferma indirisso e-mail',

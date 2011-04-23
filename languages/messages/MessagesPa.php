@@ -1094,11 +1094,9 @@ to upload files.',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'ਸਭ',
-'imagelistall'     => 'ਸਭ',
-'watchlistall2'    => 'ਸਭ',
-'namespacesall'    => 'ਸਭ',
-'monthsall'        => 'ਸਭ',
+'watchlistall2' => 'ਸਭ',
+'namespacesall' => 'ਸਭ',
+'monthsall'     => 'ਸਭ',
 
 # E-mail address confirmation
 'confirmemail'          => 'ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',
