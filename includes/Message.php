@@ -208,7 +208,7 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function inLanguage( $lang ) {
-		if ( $lang instanceof Language || $lang instanceof StubContLang || $lang instanceof StubUserLang ) {
+		if ( $lang instanceof Language ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
 			if( $this->language->getCode() != $lang ) {

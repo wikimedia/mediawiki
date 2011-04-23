@@ -15,8 +15,8 @@ class ArticleTablesTest extends MediaWikiTestCase {
 	function tearDown() {
 		global $wgLanguageCode, $wgContLang, $wgLang;
 		$wgLanguageCode = $this->languageCode;
-		$wgContLang = new StubContLang;
-		$wgLang = new StubUserLang;
+		$wgContLang = Language::factory( $wgLanguageCode );
+		$wgLang = RequestContext::getMain()->getLang();
 	}
 
 	/**

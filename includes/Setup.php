@@ -397,7 +397,9 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 wfProfileOut( $fname . '-session' );
 wfProfileIn( $fname . '-globals' );
 
-$wgContLang = new StubContLang;
+$wgContLang = Language::factory( $wgLanguageCode );
+$wgContLang->initEncoding();
+$wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
@@ -406,7 +408,7 @@ $wgUser = RequestContext::getMain()->getUser(); # BackCompat
 /**
  * @var Language
  */
-$wgLang = new StubUserLang;
+$wgLang = RequestContext::getMain()->getLang();
 
 /**
  * @var OutputPage
