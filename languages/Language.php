@@ -73,7 +73,11 @@ class Language {
 	 */
 	var $transformData = array();
 
+	/**
+	 * @var LocalisationCache
+	 */
 	static public $dataCache;
+
 	static public $mLangObjCache = array();
 
 	static public $mWeekdayMsgs = array(

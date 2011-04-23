@@ -110,6 +110,8 @@ class StubObject {
 /**
  * Stub object for the content language of this wiki. This object have to be in
  * $wgContLang global.
+ *
+ * @deprecated since 1.18
  */
 class StubContLang extends StubObject {
 
@@ -134,6 +136,8 @@ class StubContLang extends StubObject {
  * Stub object for the user language. It depends of the user preferences and
  * "uselang" parameter that can be passed to index.php. This object have to be
  * in $wgLang global.
+ *
+ * @deprecated since 1.18
  */
 class StubUserLang extends StubObject {
 
