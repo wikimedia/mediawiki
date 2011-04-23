@@ -7432,6 +7432,22 @@ File:Wiki.png|[[File:Wiki.png|20px|desc|alt=inneralt]]|alt=galleryalt
 File:Wiki.png|{{tl|test|alt=param}}|alt=galleryalt
 </gallery>
 !! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div style="height: 150px;">Wiki.png</div>
+			<div class="gallerytext">
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Wiki.png" class="new" title="File:Wiki.png">desc</a>|alt=galleryalt
+</p>
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div style="height: 150px;">Wiki.png</div>
+			<div class="gallerytext">
+<p><a href="/index.php?title=Template:Tl&amp;action=edit&amp;redlink=1" class="new" title="Template:Tl (page does not exist)">Template:Tl</a>|alt=galleryalt
+</p>
+			</div>
+		</div></li>
+</ul>
 
 !! end
 
