@@ -7312,7 +7312,6 @@ File:Nonexistant.jpg|caption
 File:Nonexistant.jpg
 image:foobar.jpg|some '''caption''' [[Main Page]]
 image:foobar.jpg
-image:foobar.jpg|Blabla|alt= This is a foo-bar.|blabla.
 </gallery>
 !! result
 <ul class="gallery" style="max-width: 202px;_width: 202px;">
@@ -7339,13 +7338,6 @@ image:foobar.jpg|Blabla|alt= This is a foo-bar.|blabla.
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
 			<div class="thumb" style="width: 90px;"><div style="margin:26px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
 			<div class="gallerytext">
-			</div>
-		</div></li>
-		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
-			<div class="thumb" style="width: 90px;"><div style="margin:26px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="This is a foo-bar." src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
-			<div class="gallerytext">
-<p>Blabla|blabla.
-</p>
 			</div>
 		</div></li>
 </ul>
@@ -7429,6 +7421,17 @@ foobar.jpg
 			</div>
 		</div></li>
 </ul>
+
+!! end
+
+!! test
+Gallery with wikitext inside caption
+!! input
+<gallery>
+File:Wiki.png|[[File:Wiki.png|20px|desc|alt=inneralt]]|alt=galleryalt
+File:Wiki.png|{{tl|test|alt=param}}|alt=galleryalt
+</gallery>
+!! result
 
 !! end
 
