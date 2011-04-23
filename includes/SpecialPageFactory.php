@@ -153,6 +153,8 @@ class SpecialPageFactory {
 	/**
 	 * Initialise the special page list
 	 * This must be called before accessing SpecialPage::$mList
+	 *
+	 * @return array
 	 */
 	static function getList() {
 		global $wgSpecialPages;
@@ -189,6 +191,9 @@ class SpecialPageFactory {
 		return self::$mList;
 	}
 
+	/**
+	 * @return array
+	 */
 	static function getAliasList() {
 		if ( !is_object( self::$mAliases ) ) {
 			global $wgContLang;
@@ -389,6 +394,8 @@ class SpecialPageFactory {
 	 * @param $title          Title object
 	 * @param $context        RequestContext
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
+	 *
+	 * @return bool
 	 */
 	public static function executePath( Title &$title, RequestContext &$context, $including = false ) {
 		wfProfileIn( __METHOD__ );
@@ -455,6 +462,8 @@ class SpecialPageFactory {
 	 * Returns false if there was no such special page, or a title object if it was
 	 * a redirect.
 	 *
+	 * @param $title Title
+	 *
 	 * @return String: HTML fragment
 	 */
 	static function capturePath( &$title ) {
@@ -515,12 +524,14 @@ class SpecialPageFactory {
 	/**
 	 * Get a title for a given alias
 	 *
+	 * @param $alias String
+	 *
 	 * @return Title or null if there is no such alias
 	 */
 	static function getTitleForAlias( $alias ) {
 		$name = self::resolveAlias( $alias );
 		if ( $name ) {
-			return self::getTitleFor( $name );
+			return SpecialPage::getTitleFor( $name );
 		} else {
 			return null;
 		}
