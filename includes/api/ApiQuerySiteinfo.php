@@ -221,8 +221,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendSpecialPageAliases( $property ) {
 		global $wgContLang;
 		$data = array();
-		foreach ( $wgContLang->getSpecialPageAliases() as $specialpage => $aliases )
-		{
+		foreach ( $wgContLang->getSpecialPageAliases() as $specialpage => $aliases ) {
 			$arr = array( 'realname' => $specialpage, 'aliases' => $aliases );
 			$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
 			$data[] = $arr;
@@ -250,7 +249,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendInterwikiMap( $property, $filter ) {
 		$this->resetQueryParams();
 		$this->addTables( 'interwiki' );
-		$this->addFields( array( 'iw_prefix', 'iw_local', 'iw_url' ) );
+		$this->addFields( array( 'iw_prefix', 'iw_local', 'iw_url', 'iw_wikiid', 'iw_api' ) );
 
 		if ( $filter === 'local' ) {
 			$this->addWhere( 'iw_local = 1' );
@@ -277,6 +276,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$val['language'] = $langNames[$row->iw_prefix];
 			}
 			$val['url'] = $row->iw_url;
+			$val['wikiid'] = $row->iw_wikiid;
+			$val['api'] = $row->iw_api;
 
 			$data[] = $val;
 		}

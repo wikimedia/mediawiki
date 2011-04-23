@@ -345,6 +345,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28591) Update/replace/supplement spyc (YAML parsing library)
 * YAML API output is now 1.2 compliant, using JSON as the formatter
 * (bug 28672) give information about misermode on api
+* (bug 28558) Add iw_api and iw_wikiid to meta=siteinfo&siprop=interwikimap
 
 === Languages updated in 1.18 ===
 
