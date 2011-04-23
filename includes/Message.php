@@ -278,9 +278,8 @@ class Message {
 		} elseif( $this->format === 'text' ){
 			$string = $this->transformText( $string );
 		} elseif( $this->format === 'escaped' ){
-			# FIXME: Sanitizer method here?
 			$string = $this->transformText( $string );
-			$string = htmlspecialchars( $string );
+			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
 		}
 		
 		# Raw parameter replacement
