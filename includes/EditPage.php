@@ -1268,9 +1268,8 @@ class EditPage {
 
 	/**
 	 * Send the edit form and related headers to $wgOut
-	 * @param $formCallback Optional callable that takes an OutputPage
-	 *                      parameter; will be called during form output
-	 *                      near the top, for captchas and the like.
+	 * @param $formCallback Callback that takes an OutputPage parameter; will be called
+	 *     during form output near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
