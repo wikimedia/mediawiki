@@ -27,7 +27,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 		$data[0] = $module->getResultData();
 		$data[1] = $req;
 		$data[2] = $_SESSION;
-		
+
 		if( $appendModule ) $data[3] = $module;
 
 		return $data;
@@ -41,7 +41,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 
 		$GLOBALS['wgUser'] = $this->sysopUser->user;
 	}
-	
+
 	function doLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
@@ -55,10 +55,10 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 			"lgtoken" => $token,
 			"lgname" => $this->sysopUser->userName,
 			"lgpassword" => $this->sysopUser->password ), $data );
-		
+
 		return $data;
 	}
-	
+
 	function getTokenList( $user ) {
 		$GLOBALS['wgUser'] = $user->user;
 		$data = $this->doApiRequest( array(
@@ -68,7 +68,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 			'prop' => 'info' ) );
 		return $data;
 	}
-	
+
 }
 
 class UserWrapper {

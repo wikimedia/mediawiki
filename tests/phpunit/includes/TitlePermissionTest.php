@@ -28,14 +28,14 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceOf User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
-			
+
 			if ( !$this->userUser->getID() ) {
 				$this->userUser = User::createNew( $this->userName, array(
 					"email" => "test@example.com",
 					"real_name" => "Test User" ) );
 				$this->userUser->load();
 			}
-			
+
 			$this->altUser = User::newFromName( $this->altUserName );
 			if ( !$this->altUser->getID() ) {
 				$this->altUser = User::createNew( $this->altUserName, array(
@@ -334,7 +334,7 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_SPECIAL );
-		
+
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ) ),

@@ -10,9 +10,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * This class is used to prepare the final rendering. A skin is then
  * applied to the output parameters (links, javascript, html, categories ...).
- * 
+ *
  * Another class (fixme) handles sending the whole page to the client.
- * 
+ *
  * Some comments comes from a pairing session between Zak Greant and Ashar Voultoiz
  * in November 2010.
  *
@@ -1161,7 +1161,7 @@ class OutputPage {
 	/**
 	 * Return whether user JavaScript is allowed for this page
 	 * @deprecated since 1.18 Load modules with ResourceLoader, and origin and
-	 *     trustworthiness is identified and enforced automagically. 
+	 *     trustworthiness is identified and enforced automagically.
 	 * @return Boolean
 	 */
 	public function isUserJsAllowed() {
@@ -1672,11 +1672,11 @@ class OutputPage {
 	}
 
 	/**
-	 * Set a flag which will cause an X-Frame-Options header appropriate for 
-	 * edit pages to be sent. The header value is controlled by 
+	 * Set a flag which will cause an X-Frame-Options header appropriate for
+	 * edit pages to be sent. The header value is controlled by
 	 * $wgEditPageFrameOptions.
 	 *
-	 * This is the default for special pages. If you display a CSRF-protected 
+	 * This is the default for special pages. If you display a CSRF-protected
 	 * form on an ordinary view page, then you need to call this function.
 	 */
 	public function preventClickjacking( $enable = true ) {
@@ -1693,8 +1693,8 @@ class OutputPage {
 	}
 
 	/**
-	 * Get the X-Frame-Options header value (without the name part), or false 
-	 * if there isn't one. This is used by Skin to determine whether to enable 
+	 * Get the X-Frame-Options header value (without the name part), or false
+	 * if there isn't one. This is used by Skin to determine whether to enable
 	 * JavaScript frame-breaking, for clients that don't support X-Frame-Options.
 	 */
 	public function getFrameOptions() {
@@ -2381,7 +2381,7 @@ class OutputPage {
 			$this->mResourceLoader = new ResourceLoader();
 		}
 		return $this->mResourceLoader;
-	}		
+	}
 
 	/**
 	 * TODO: Document
@@ -2460,7 +2460,7 @@ class OutputPage {
 			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
 				$query['user'] = $this->getUser()->getName();
 			}
-			
+
 			// Create a fake request based on the one we are about to make so modules return
 			// correct timestamp and emptiness data
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
@@ -2474,9 +2474,9 @@ class OutputPage {
 			if ( $modules === array() ) {
 				continue;
 			}
-			
+
 			$query['modules'] = implode( '|', array_keys( $modules ) );
-			
+
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
@@ -2545,14 +2545,14 @@ class OutputPage {
 	function getHeadScripts( Skin $sk ) {
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
-		
+
 		// Load config before anything else
 		$scripts .= Html::inlineScript(
 			ResourceLoader::makeLoaderConditionalScript(
 				ResourceLoader::makeConfigSetScript( $this->getJSVars() )
 			)
 		);
-		
+
 		// Script and Messages "only" requests marked for top inclusion
 		// Messages should go first
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages( true, 'top' ), ResourceLoaderModule::TYPE_MESSAGES );
@@ -2572,14 +2572,14 @@ class OutputPage {
 
 		return $scripts;
 	}
-	
+
 	/**
 	 * JS stuff to put at the bottom of the <body>: modules marked with position 'bottom',
 	 * legacy scripts ($this->mScripts), user preferences, site JS and user JS
 	 */
 	function getBottomScripts( Skin $sk ) {
 		global $wgUseSiteJs, $wgAllowUserJs;
-		
+
 		// Script and Messages "only" requests marked for bottom inclusion
 		// Messages should go first
 		$scripts = $this->makeResourceLoaderLink( $sk, $this->getModuleMessages( true, 'bottom' ), ResourceLoaderModule::TYPE_MESSAGES );
@@ -2597,7 +2597,7 @@ class OutputPage {
 				)
 			);
 		}
-		
+
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
@@ -2624,13 +2624,13 @@ class OutputPage {
 			}
 		}
 		$scripts .= $this->makeResourceLoaderLink( $sk, $userScripts, ResourceLoaderModule::TYPE_SCRIPTS );
-		
+
 		return $scripts;
 	}
 
 	/**
 	 * Get an array containing global JS variables
-	 * 
+	 *
 	 * Do not add things here which can be evaluated in
 	 * ResourceLoaderStartupScript - in other words, without state.
 	 * You will only be adding bloat to the page and causing page caches to
@@ -2672,10 +2672,10 @@ class OutputPage {
 		if ( $wgUseAjax && $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
 			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $this->getUser() );
 		}
-		
+
 		// Allow extensions to add their custom variables to the global JS variables
 		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
-		
+
 		return $vars;
 	}
 
@@ -3007,7 +3007,7 @@ class OutputPage {
 		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML
 		$ret .= Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) ) . "\n";
-		
+
 		// Add site, private and user styles
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
