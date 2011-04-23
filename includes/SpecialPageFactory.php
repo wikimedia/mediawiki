@@ -192,7 +192,12 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * @return array
+	 * Initialise and return the list of special page aliases.  Returns an object with
+	 * properties which can be accessed $obj->pagename - each property is an array of
+	 * aliases; the first in the array is the cannonical alias.  All registered special
+	 * pages are guaranteed to have a property entry, and for that property array to
+	 * contain at least one entry (English fallbacks will be added if necessary).
+	 * @return Object
 	 */
 	static function getAliasList() {
 		if ( !is_object( self::$mAliases ) ) {
