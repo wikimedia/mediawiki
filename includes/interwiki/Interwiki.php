@@ -185,11 +185,11 @@ class Interwiki {
 	 * @return Boolean: whether everything was there
 	 */
 	protected static function loadFromArray( $mc ) {
-		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ) {
+		if( isset( $mc['iw_url'] ) ) {
 			$iw = new Interwiki();
 			$iw->mURL = $mc['iw_url'];
-			$iw->mLocal = $mc['iw_local'];
-			$iw->mTrans = $mc['iw_trans'];
+			$iw->mLocal = isset( $mc['iw_local'] ) ? $mc['iw_local'] : 0;
+			$iw->mTrans = isset( $mc['iw_trans'] ) ? $mc['iw_trans'] : 0;
 			$iw->mAPI = isset( $mc['iw_api'] ) ? $mc['iw_api'] : '';
 			$iw->mWikiID = isset( $mc['iw_wikiid'] ) ? $mc['iw_wikiid'] : '';
 
