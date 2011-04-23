@@ -142,7 +142,7 @@ class Status {
 		$params = $this->cleanParams( $item['params'] );
 		$xml = "<{$item['type']}>\n" .
 			Xml::element( 'message', null, $item['message'] ) . "\n" .
-			Xml::element( 'text', null, wfMsgReal( $item['message'], $params ) ) ."\n";
+			Xml::element( 'text', null, wfMsg( $item['message'], $params ) ) ."\n";
 		foreach ( $params as $param ) {
 			$xml .= Xml::element( 'param', null, $param );
 		}
@@ -211,17 +211,15 @@ class Status {
 	protected function getWikiTextForError( $error ) {
 		if ( is_array( $error ) ) {
 			if ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				return wfMsgReal( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ),
-					true, false, false );
+				return wfMsgNoTrans( $error['message'],
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  );
 			} else {
 				$message = array_shift($error);
-				return wfMsgReal( $message,
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ),
-					true, false, false );
+				return wfMsgNoTrans( $message,
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
 			}
 		} else {
-			return wfMsgReal( $error, array(), true, false, false);
+			return wfMsgNoTrans( $error );
 		}
 	}
 
