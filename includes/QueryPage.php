@@ -437,15 +437,16 @@ abstract class QueryPage extends SpecialPage {
 	 * real, honest-to-gosh query page.
 	 */
 	function execute( $par ) {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 		if ( !$this->userCanExecute( $wgUser ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
 
-		if ( $this->limit == 0 && $this->offset == 0 )
-			list( $this->limit, $this->offset ) = wfCheckLimits();
+		if ( $this->limit == 0 && $this->offset == 0 ) {
+			list( $this->limit, $this->offset ) = $wgRequest->getLimitOffset();
+		}
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$this->setHeaders();
