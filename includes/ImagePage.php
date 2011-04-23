@@ -1097,7 +1097,7 @@ class ImageHistoryList {
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
 		} else {
-			$row .= $this->skin->commentBlock( $description, $this->title );
+			$row .= $this->skin->commentBlock( $description, $this->title, false, false );
 		}
 		$row .= '</td>';
 

@@ -1292,10 +1292,10 @@ class Linker {
 	 * @param $comment String
 	 * @param $title Mixed: Title object (to generate link to section in autocomment) or null
 	 * @param $local Boolean: whether section links should refer to local page
-	 *
+	 * @param $embraced Boolean: whether the formatted comment should be embraced with ()
 	 * @return string
 	 */
-	static function commentBlock( $comment, $title = null, $local = false ) {
+	static function commentBlock( $comment, $title = null, $local = false, $embraced = true ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
@@ -1303,7 +1303,10 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
-			return " <span class=\"comment\">($formatted)</span>";
+			if ( $embraced ) {
+				$formatted = wfMessage( 'parentheses', $formatted );
+			} 
+			return Html::rawElement( 'span', array( 'class' => 'comment' ), $formatted );
 		}
 	}
 
