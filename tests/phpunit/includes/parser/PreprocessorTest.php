@@ -133,9 +133,9 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 			$this->assertEquals( $expectedXml, $output );
 		} else {
-				$tempFilename = tempnam( $folder, "$filename." );
-				file_put_contents( $tempFilename, $output );
-				$this->markTestIncomplete( "File $expectedFilename missing. Output stored as $tempFilename" );
+			$tempFilename = tempnam( $folder, "$filename." );
+			file_put_contents( $tempFilename, $output );
+			$this->markTestIncomplete( "File $expectedFilename missing. Output stored as $tempFilename" );
 		}
 	}
 }
