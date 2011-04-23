@@ -617,7 +617,7 @@ class SearchResultSet {
  */
 class SqlSearchResultSet extends SearchResultSet {
 
-	private $mResultSet;
+	protected $mResultSet;
 
 	function __construct( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;
