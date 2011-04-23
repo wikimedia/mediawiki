@@ -136,14 +136,15 @@ class ImageGallery
 	 * Add an image to the gallery.
 	 *
 	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html String: additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $alt   String: Alt text for the image
 	 */
-	function add( $title, $html='' ) {
+	function add( $title, $html = '', $alt = '' ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = array( $title, $html );
+		$this->mImages[] = array( $title, $html, $alt );
 		wfDebug( "ImageGallery::add " . $title->getText() . "\n" );
 	}
 
@@ -151,14 +152,15 @@ class ImageGallery
 	* Add an image at the beginning of the gallery.
 	*
 	* @param $title Title object of the image that is added to the gallery
-	* @param $html  String:  Additional HTML text to be shown. The name and size of the image are always shown.
+	* @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
+	* @param $alt   String: Alt text for the image
 	*/
-	function insert( $title, $html='' ) {
+	function insert( $title, $html='', $alt='' ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, array( &$title, $html ) );
+		array_unshift( $this->mImages, array( &$title, $html, $alt ) );
 	}
 
 
@@ -218,15 +220,16 @@ class ImageGallery
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING + self::GB_BORDERS );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : ""; 
+			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
 			array( 'class' => 'gallery' ), $this->mAttribs );
 
-		$s = Xml::openElement( 'ul', $attribs );
+		$output = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
-			$s .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}
 
 		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
@@ -234,6 +237,7 @@ class ImageGallery
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
+			$alt = $pair[2];
 
 			$descQuery = false;
 			if ( $nt->getNamespace() == NS_FILE ) {
@@ -272,18 +276,19 @@ class ImageGallery
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.(self::THUMB_PADDING + $this->mHeights).'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				//We get layout problems with the margin, if the image is smaller 
-				//than the line-height, so we less margin in these cases.
+				# We get layout problems with the margin, if the image is smaller 
+				# than the line-height (17), so we add less margin in these cases.
 				$minThumbHeight =  $thumb->height > 17 ? $thumb->height : 17;
 				$vpad = floor(( self::THUMB_PADDING + $this->mHeights - $minThumbHeight ) /2);
 				
 
 				$imageParameters = array(
 					'desc-link' => true,
-					'desc-query' => $descQuery
+					'desc-query' => $descQuery,
+					'alt' => $alt,
 				);
-				# In the absence of a caption, fall back on providing screen readers with the filename as alt text
-				if ( $text == '' ) {
+				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
+				if ( $alt == '' && $text == '' ) {
 					$imageParameters['alt'] = $nt->getText();
 				}
 
@@ -308,14 +313,14 @@ class ImageGallery
 
 			if( $this->mShowBytes ) {
 				if( $img ) {
-					$nb = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
+					$fileSize = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 						$wgLang->formatNum( $img->getSize() ) );
 				} else {
-					$nb = wfMsgHtml( 'filemissing' );
+					$fileSize = wfMsgHtml( 'filemissing' );
 				}
-				$nb = "$nb<br />\n";
+				$fileSize = "$fileSize<br />\n";
 			} else {
-				$nb = '';
+				$fileSize = '';
 			}
 
 			$textlink = $this->mShowFilename ?
@@ -332,20 +337,20 @@ class ImageGallery
 			# in version 4.8.6 generated crackpot html in its absence, see:
 			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 
-			# Weird double wrapping in div needed due to FF2 bug
+			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existance
-			$s .=
+			$output .=
 				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. '<div style="width: ' . ( $this->mWidths + self::THUMB_PADDING + self::GB_PADDING ) . 'px">'
 					. $thumbhtml
 					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-						. $textlink . $text . $nb
+						. $textlink . $text . $fileSize
 					. "\n\t\t\t</div>"
 				. "\n\t\t</div></li>";
 		}
-		$s .= "\n</ul>";
+		$output .= "\n</ul>";
 
-		return $s;
+		return $output;
 	}
 
 	/**
