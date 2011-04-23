@@ -66,14 +66,29 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$titles = $pageSet->getTitles();
 
 		// This module operates in three modes:
-		// 'revs': List deleted revs for certain titles
-		// 'user': List deleted revs by a certain user
-		// 'all': List all deleted revs
+		// 'revs': List deleted revs for certain titles (1)
+		// 'user': List deleted revs by a certain user (2)
+		// 'all': List all deleted revs in NS (3)
 		$mode = 'all';
 		if ( count( $titles ) > 0 ) {
 			$mode = 'revs';
 		} elseif ( !is_null( $params['user'] ) ) {
 			$mode = 'user';
+		}
+
+		if ( $mode == 'revs' || $mode == 'user' ) {
+			// Ignore namespace and unique due to inability to know whether they were purposely set
+			foreach( array( 'from', 'to', 'prefix', /*'namespace',*/ 'continue', /*'unique'*/ ) as $p ) {
+				if ( !is_null( $params[$p] ) ) {
+					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams');
+				}
+			}
+		} else {
+			foreach( array( 'start', 'end' ) as $p ) {
+				if ( !is_null( $params[$p] ) ) {
+					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams');
+				}
+			}
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -329,7 +344,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		return array(
 			'start' => 'The timestamp to start enumerating from (1,2)',
 			'end' => 'The timestamp to stop enumerating at (1,2)',
-			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1,2)' ),
+			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1, 3)' ),
 			'from' => 'Start listing at this title (3)',
 			'to' => 'Stop listing at this title (3)',
 			'prefix' => 'Search for all page titles that begin with this value (3)',
@@ -360,9 +375,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		return array(
 			'List deleted revisions.',
 			'This module operates in three modes:',
-			'1) List deleted revisions for the given title(s), sorted by timestamp',
-			'2) List deleted contributions for the given user, sorted by timestamp (no titles specified)',
-			"3) List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, {$p}user not set)",
+			' 1) List deleted revisions for the given title(s), sorted by timestamp',
+			' 2) List deleted contributions for the given user, sorted by timestamp (no titles specified)',
+			" 3) List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, {$p}user not set)",
 			'Certain parameters only apply to some modes and are ignored in others.',
 			'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3',
 		);
@@ -374,6 +389,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision content' ),
 			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
+			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
+			array( 'code' => 'badparams', 'info' => "The 'prefix' parameter cannot be used in modes 1 or 2" ),
+			array( 'code' => 'badparams', 'info' => "The 'continue' parameter cannot be used in modes 1 or 2" ),
+			array( 'code' => 'badparams', 'info' => "The 'start' parameter cannot be used in mode 3" ),
+			array( 'code' => 'badparams', 'info' => "The 'end' parameter cannot be used in mode 3" ),
 		) );
 	}
 
