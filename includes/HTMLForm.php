@@ -505,7 +505,7 @@ class HTMLForm {
 
 	/**
 	 * Format and display an error message stack.
-	 * @param $errors Mixed String or Array of message keys
+	 * @param $errors String|Array|Status
 	 * @return String
 	 */
 	function getErrors( $errors ) {
@@ -627,20 +627,32 @@ class HTMLForm {
 			: $this->mTitle;
 	}
 
+	/**
+	 * @return RequestContext
+	 */
 	public function getContext(){
 		return $this->mContext instanceof RequestContext
 			? $this->mContext
 			: RequestContext::getMain();
 	}
 
+	/**
+	 * @return OutputPage
+	 */
 	public function getOutput(){
 		return $this->getContext()->output;
 	}
 
+	/**
+	 * @return WebRequest
+	 */
 	public function getRequest(){
 		return $this->getContext()->request;
 	}
 
+	/**
+	 * @return User
+	 */
 	public function getUser(){
 		return $this->getContext()->user;
 	}
@@ -778,6 +790,10 @@ abstract class HTMLFormField {
 	protected $mID;
 	protected $mClass = '';
 	protected $mDefault;
+
+	/**
+	 * @var HTMLForm
+	 */
 	public $mParent;
 
 	/**
@@ -1280,6 +1296,10 @@ class HTMLCheckField extends HTMLFormField {
 		return '&#160;';
 	}
 
+	/**
+	 * @param  $request WebRequest
+	 * @return String
+	 */
 	function loadDataFromRequest( $request ) {
 		$invert = false;
 		if ( isset( $this->mParams['invert'] ) && $this->mParams['invert'] ) {
@@ -1407,6 +1427,10 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		return "$select<br />\n$textbox";
 	}
 
+	/**
+	 * @param  $request WebRequest
+	 * @return String
+	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$val = $request->getText( $this->mName );
@@ -1492,6 +1516,10 @@ class HTMLMultiSelectField extends HTMLFormField {
 		return $html;
 	}
 
+	/**
+	 * @param  $request WebRequest
+	 * @return String
+	 */
 	function loadDataFromRequest( $request ) {
 		if ( $this->mParent->getMethod() == 'post' ) {
 			if( $request->wasPosted() ){
