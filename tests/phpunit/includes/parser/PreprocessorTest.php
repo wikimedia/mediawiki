@@ -129,9 +129,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 		$expectedFilename = "$folder/$filename.expected";
 		if ( file_exists( $expectedFilename ) ) {
-			$expectedXml = file_get_contents( $expectedFilename );
-
-			$this->assertEquals( $expectedXml, $output );
+			$this->assertStringEqualsFile( $expectedFilename, $output );
 		} else {
 			$tempFilename = tempnam( $folder, "$filename." );
 			file_put_contents( $tempFilename, $output );
