@@ -215,7 +215,7 @@ class ImageListPager extends TablePager {
 			case 'img_size':
 				return $this->getSkin()->formatSize( $value );
 			case 'img_description':
-				return $this->getSkin()->commentBlock( $value );
+				return $this->getSkin()->commentBlock( $value, null, false, false );
 			case 'count':
 				return intval($value)+1;
 		}
