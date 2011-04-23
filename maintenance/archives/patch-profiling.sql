@@ -9,4 +9,4 @@ CREATE TABLE /*_*/profiling (
   pf_server varchar(30) NOT NULL default ''
 ) ENGINE=HEAP;
 
-CREATE UNIQUE INDEX /*i*/pf_name_server ON /*_*/profiling (pf_name, pf_server)
+CREATE UNIQUE INDEX /*i*/pf_name_server ON /*_*/profiling (pf_name, pf_server);
