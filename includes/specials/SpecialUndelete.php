@@ -573,7 +573,7 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj;
+	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj, $mFile;
 	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken, $mRequest;
 
 	function __construct( $request = null ) {
