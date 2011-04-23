@@ -14,7 +14,9 @@
  * array is correctly set through the FormOptions::add() function.
  */
 class FormOptionsExposed extends FormOptions {
-	public $options;
+	public function getOptions() {
+		return $this->options;
+	}
 }
 
 /**
@@ -54,7 +56,7 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 					'value'	=> null,
 					)
 			),
-			$this->object->options
+			$this->object->getOptions()
 		);
 	}
 
@@ -76,7 +78,7 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 					'type'	 => FormOptions::INT,
 					)
 			),
-			$this->object->options
+			$this->object->getOptions
 		);
 	}
 

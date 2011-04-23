@@ -35,15 +35,15 @@ class LinkHolderArray {
 	 * Compact the titles, only serialize the text form.
 	 */
 	function __sleep() {
-		foreach ( $this->internals as $ns => &$nsLinks ) {
-			foreach ( $nsLinks as $key => &$entry ) {
+		foreach ( $this->internals as &$nsLinks ) {
+			foreach ( $nsLinks as &$entry ) {
 				unset( $entry['title'] );
 			}
 		}
 		unset( $nsLinks );
 		unset( $entry );
 
-		foreach ( $this->interwikis as $key => &$entry ) {
+		foreach ( $this->interwikis as &$entry ) {
 			unset( $entry['title'] );
 		}
 		unset( $entry );
@@ -55,8 +55,8 @@ class LinkHolderArray {
 	 * Recreate the Title objects
 	 */
 	function __wakeup() {
-		foreach ( $this->internals as $ns => &$nsLinks ) {
-			foreach ( $nsLinks as $key => &$entry ) {
+		foreach ( $this->internals as &$nsLinks ) {
+			foreach ( $nsLinks as &$entry ) {
 				$entry['title'] = Title::newFromText( $entry['pdbk'] );
 			}
 		}
@@ -259,7 +259,6 @@ class LinkHolderArray {
 
 		wfProfileIn( __METHOD__.'-check' );
 		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
 		$threshold = $this->parent->getOptions()->getStubThreshold();
 
 		# Sort by namespace
@@ -268,8 +267,6 @@ class LinkHolderArray {
 		$linkcolour_ids = array();
 
 		# Generate query
-		$query = false;
-		$current = null;
 		$queries = array();
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $entry ) {

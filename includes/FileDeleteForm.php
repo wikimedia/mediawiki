@@ -118,7 +118,6 @@ class FileDeleteForm {
 		} else {
 			$id = $title->getArticleID( Title::GAID_FOR_UPDATE );
 			$article = new Article( $title );
-			$error = '';
 			$dbw = wfGetDB( DB_MASTER );
 			try {
 				// delete the associated article first

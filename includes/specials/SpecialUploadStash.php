@@ -320,7 +320,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-
 		// create the form, which will also be used to execute a callback to process incoming form data
 		// this design is extremely dubious, but supposedly HTMLForm is our standard now?
 
