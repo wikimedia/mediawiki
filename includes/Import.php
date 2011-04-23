@@ -907,6 +907,9 @@ class WikiRevision {
 		$this->params = $params;
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		return $this->title;
 	}

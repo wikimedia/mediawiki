@@ -542,7 +542,7 @@ class ZipDirectoryReader {
 	 */
 	function getStructSize( $struct ) {
 		$size = 0;
-		foreach ( $struct as $key => $type ) {
+		foreach ( $struct as $type ) {
 			if ( is_array( $type ) ) {
 				list( $typeName, $fieldSize ) = $type;
 				$size += $fieldSize;

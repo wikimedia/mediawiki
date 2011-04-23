@@ -480,7 +480,6 @@ EOT
 
 	function resolveFailedDiff( $origText, $diff ) {
 		$context = array();
-		$rxRange = '\d+(?:,(\d+))?';
 		$diffLines = explode( "\n", $diff );
 		for ( $i = 0; $i < count( $diffLines ); $i++ ) {
 			$diffLine = $diffLines[$i];
@@ -525,10 +524,10 @@ EOT
 		$removedLinks = array_diff( $sourceLinks, $destLinks );
 
 		// Match up the removed links with the new links
-		foreach ( $newLinks as $j => $newLink ) {
+		foreach ( $newLinks as $newLink ) {
 			$minDistance = 100000000;
 			$bestRemovedLink = false;
-			foreach ( $removedLinks as $k => $removedLink ) {
+			foreach ( $removedLinks as $removedLink ) {
 				$editDistance = levenshtein( $newLink, $removedLink );
 				if ( $editDistance < $minDistance ) {
 					$minDistance = $editDistance;

@@ -127,7 +127,6 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
-			$found = false;
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
 				$found = stream_resolve_include_path( 'Mail.php' );
 			} else {

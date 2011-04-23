@@ -331,7 +331,6 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		$this->setUser( $this->userName );
 		global $wgUser, $wgContLang;
 		$wgUser = $this->user;
-		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_SPECIAL );
 

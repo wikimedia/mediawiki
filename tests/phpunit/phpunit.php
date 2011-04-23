@@ -19,7 +19,7 @@ require_once( "$IP/maintenance/Maintenance.php" );
 
 class PHPUnitMaintClass extends Maintenance {
 	public function finalSetup() {
-		$settings = parent::finalSetup();
+		parent::finalSetup();
 
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages;
 

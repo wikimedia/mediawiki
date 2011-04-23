@@ -494,7 +494,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		// Try to grant to all the users we know exist or we were able to create
-		$escPass = $this->db->addQuotes( $password );
 		$dbAllTables = $this->db->addIdentifierQuotes( $dbName ) . '.*';
 		foreach( $grantableNames as $name ) {
 			try {
