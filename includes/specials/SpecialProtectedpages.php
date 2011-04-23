@@ -337,7 +337,8 @@ class ProtectedPagesPager extends AlphabeticPager {
 		}
 
 		if( $this->indefonly ) {
-			$conds[] = "pr_expiry = 'infinity' OR pr_expiry IS NULL";
+			$db = wfGetDB( DB_SLAVE );
+			$conds[] = "pr_expiry = {$db->addQuotes( $db->getInfinity() )} OR pr_expiry IS NULL";
 		}
 		if( $this->cascadeonly ) {
 			$conds[] = "pr_cascade = '1'";
