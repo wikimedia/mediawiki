@@ -348,6 +348,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 28558) Add iw_api and iw_wikiid to meta=siteinfo&siprop=interwikimap
 * (bug 26882) Allow listing of indefinite protections with the api
 * (bug 27344) add drprefix param to list=deletedrevs
+* (bug 28560) list=deletedrevs should die, if combination of param is invalid
 
 === Languages updated in 1.18 ===
 
