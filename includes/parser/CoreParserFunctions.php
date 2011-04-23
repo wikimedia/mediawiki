@@ -696,7 +696,7 @@ class CoreParserFunctions {
 		}
 
 		if ( $file ) {
-			$url = $file->getUrl();
+			$url = $file->getFullUrl();
 
 			// If a size is requested...			
 			if ( is_integer( $size ) ) {
