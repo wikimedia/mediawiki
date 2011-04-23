@@ -57,6 +57,7 @@ class EditPage {
 	var $isCssJsSubpage = false;
 	var $isCssSubpage = false;
 	var $isJsSubpage = false;
+	var $isNew = false; // new page or new section
 	var $deletedSinceEdit;
 	var $formtype;
 	var $firsttime;
@@ -165,7 +166,7 @@ class EditPage {
 
 		$preload = $wgRequest->getVal( 'preload',
 			// Custom preload text for new sections
-			$section === 'new' ? 'MediaWiki:addsection-preload' : '' );
+			$section === 'new' ? 'MediaWiki:addsection-preload' : '' ); /* use $this->isNew here? */
 		$undoafter = $wgRequest->getVal( 'undoafter' );
 		$undo = $wgRequest->getVal( 'undo' );
 
@@ -232,7 +233,7 @@ class EditPage {
 					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' . wfMsgNoTrans( 'undo-norev' ) . '</div>' );
 				}
 			} else if ( $section != '' ) {
-				if ( $section == 'new' ) {
+				if ( $section == 'new' ) { /* use $this->isNew here? */
 					$text = $this->getPreloadedText( $preload );
 				} else {
 					// Get section edit text (returns $def_text for invalid sections)
@@ -415,10 +416,11 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$this->isCssJsSubpage      = $this->mTitle->isCssJsSubpage();
-		$this->isCssSubpage        = $this->mTitle->isCssSubpage();
-		$this->isJsSubpage         = $this->mTitle->isJsSubpage();
+		$this->isCssJsSubpage       = $this->mTitle->isCssJsSubpage();
+		$this->isCssSubpage         = $this->mTitle->isCssSubpage();
+		$this->isJsSubpage          = $this->mTitle->isJsSubpage();
 		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
+		$this->isNew                = !$this->mTitle->exists() || $this->section == 'new';
 
 		# Show applicable editing introductions
 		if ( $this->formtype == 'initial' || $this->firsttime )
@@ -530,7 +532,7 @@ class EditPage {
 		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
-		} elseif ( $this->section == 'new' ) {
+		} elseif ( $this->section == 'new' ) {  /* use $this->isNew here? */
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
@@ -688,10 +690,10 @@ class EditPage {
 			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
 			$this->recreate  = false;
 
-			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) { /* use $this->isNew here? */
 				$this->summary = $request->getVal( 'preloadtitle' );
 			}
-			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
+			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) { /* use $this->isNew here? */
 				$this->summary = $request->getText( 'summary' );
 			}
 
@@ -709,7 +711,7 @@ class EditPage {
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
 			// Custom edit intro for new sections
-			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
+			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' ); /* use $this->isNew here? */
 
 		// Allow extensions to modify form data
 		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
@@ -976,7 +978,7 @@ class EditPage {
 			}
 
 			$text = $this->textbox1;
-			if ( $this->section == 'new' && $this->summary != '' ) {
+			if ( $this->section == 'new' && $this->summary != '' ) {  /* use $this->isNew here? */
 				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
 			}
 
@@ -992,7 +994,7 @@ class EditPage {
 
 			if ( $this->mArticle->getTimestamp() != $this->edittime ) {
 				$this->isConflict = true;
-				if ( $this->section == 'new' ) {
+				if ( $this->section == 'new' ) { /* use $this->isNew here? */
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
 						$this->mArticle->getComment() == $this->summary ) {
 						// Probably a duplicate submission of a new comment.
@@ -1058,7 +1060,7 @@ class EditPage {
 			}
 
 			# Handle the user preference to force summaries here, but not for null edits
-			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text )
+			if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp( $oldtext, $text )  /* use $this->isNew here? */
 				&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
@@ -1069,7 +1071,7 @@ class EditPage {
 			}
 
 			# And a similar thing for new sections
-			if ( $this->section == 'new' && !$this->allowBlankSummary ) {
+			if ( $this->section == 'new' && !$this->allowBlankSummary ) {  /* use $this->isNew here? */
 				if ( trim( $this->summary ) == '' ) {
 					$this->missingSummary = true;
 					wfProfileOut( __METHOD__ );
@@ -1080,7 +1082,7 @@ class EditPage {
 			# All's well
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
-			if ( $this->section == 'new' ) {
+			if ( $this->section == 'new' ) {  /* use $this->isNew here? */
 				if ( $this->textbox1 == '' ) {
 					$this->missingComment = true;
 					wfProfileOut( __METHOD__ . '-sectionanchor' );
@@ -1128,7 +1130,7 @@ class EditPage {
 
 		$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
-			( $this->minoredit ? EDIT_MINOR : 0 ) |
+			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
 		$status = $this->mArticle->doEdit( $text, $this->summary, $flags );
@@ -1237,7 +1239,7 @@ class EditPage {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
+		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) $this->minoredit = true;
 		if ( $this->textbox1 === false ) return false;
 		wfProxyCheck();
 		return true;
@@ -1252,7 +1254,7 @@ class EditPage {
 		if ( $this->isConflict ) {
 			$wgOut->setPageTitle( wfMsg( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
 		} elseif ( $this->section != '' ) {
-			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
+			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection'; /* use $this->isNew here? */
 			$wgOut->setPageTitle( wfMsg( $msg, $this->getContextTitle()->getPrefixedText() ) );
 		} else {
 			# Use the title defined by DISPLAYTITLE magic word when present
@@ -1375,14 +1377,14 @@ HTML
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary ||
-			( $this->section == 'new' && $this->nosummary ) )
+			( $this->section == 'new' && $this->nosummary ) ) /* use $this->isNew here? */
 				$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->mArticle->getOldID() ) );
 
-		if ( $this->section == 'new' ) {
+		if ( $this->section == 'new' ) { /* use $this->isNew here? */
 			$this->showSummaryInput( true, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( true, $this->summary ) );
 		}
@@ -1449,7 +1451,7 @@ HTML
 				return false;
 			}
 
-			if ( $this->section != '' && $this->section != 'new' ) {
+			if ( $this->section != '' && $this->section != 'new' ) { /* use $this->isNew here? */
 				$matches = array();
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
 					preg_match( "/^(=+)(.+)\\1/mi", $this->textbox1, $matches );
@@ -1466,11 +1468,11 @@ HTML
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
 			}
 
-			if ( $this->missingSummary && $this->section != 'new' ) {
+			if ( $this->missingSummary && $this->section != 'new' ) { /* use $this->isNew here? */
 				$wgOut->wrapWikiMsg( "<div id='mw-missingsummary'>\n$1\n</div>", 'missingsummary' );
 			}
 
-			if ( $this->missingSummary && $this->section == 'new' ) {
+			if ( $this->missingSummary && $this->section == 'new' ) { /* use $this->isNew here? */
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
 			}
 
@@ -1854,7 +1856,7 @@ HTML
 		global $wgOut, $wgUser;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
 
-		if ( $this->section != 'new' ) {
+		if ( $this->section != 'new' ) { /* use $this->isNew here? */
 			$this->showSummaryInput( false, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
@@ -1997,7 +1999,7 @@ HTML
 
 				# If we're adding a comment, we need to show the
 				# summary as the headline
-				if ( $this->section == "new" && $this->summary != "" ) {
+				if ( $this->section == "new" && $this->summary != "" ) { /* use $this->isNew here? */
 					$toparse = "== {$this->summary} ==\n\n" . $toparse;
 				}
 
@@ -2439,19 +2441,22 @@ HTML
 
 		$checkboxes = array();
 
-		$checkboxes['minor'] = '';
-		$minorLabel = wfMsgExt( 'minoredit', array( 'parseinline' ) );
-		if ( $wgUser->isAllowed( 'minoredit' ) ) {
-			$attribs = array(
-				'tabindex'  => ++$tabindex,
-				'accesskey' => wfMsg( 'accesskey-minoredit' ),
-				'id'        => 'wpMinoredit',
-			);
-			$checkboxes['minor'] =
-				Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-				"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
-				Xml::expandAttributes( array( 'title' => $skin->titleAttrib( 'minoredit', 'withaccess' ) ) ) .
-				">{$minorLabel}</label>";
+		// don't show the minor edit checkbox if it's a new page or section
+		if ( !$this->isNew ) {
+			$checkboxes['minor'] = '';
+			$minorLabel = wfMsgExt( 'minoredit', array( 'parseinline' ) );
+			if ( $wgUser->isAllowed( 'minoredit' ) ) {
+				$attribs = array(
+					'tabindex'  => ++$tabindex,
+					'accesskey' => wfMsg( 'accesskey-minoredit' ),
+					'id'        => 'wpMinoredit',
+				);
+				$checkboxes['minor'] =
+					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
+					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
+					Xml::expandAttributes( array( 'title' => $skin->titleAttrib( 'minoredit', 'withaccess' ) ) ) .
+					">{$minorLabel}</label>";
+			}
 		}
 
 		$watchLabel = wfMsgExt( 'watchthis', array( 'parseinline' ) );
