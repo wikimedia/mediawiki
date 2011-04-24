@@ -88,7 +88,7 @@ class MWException extends Exception {
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
-			return wfMsgReal( $key, $args );
+			return wfMsgNoTrans( $key, $args );
 		} else {
 			return wfMsgReplaceArgs( $fallback, $args );
 		}
@@ -133,13 +133,8 @@ class MWException extends Exception {
 
 	/* Return titles of this error page */
 	function getPageTitle() {
-		if ( $this->useMessageCache() ) {
-			return wfMsg( 'internalerror' );
-		} else {
-			global $wgSitename;
-
-			return "$wgSitename error";
-		}
+		global $wgSitename;
+		return $this->msg( 'internalerror', "$wgSitename error" );
 	}
 
 	/**
@@ -265,7 +260,7 @@ ENDL
 
 		$header = Html::element( 'img', array(
 			'src' => $wgLogo,
-			'alt' => '' ), $this->getPageTitle() );
+			'alt' => '' ) );
 
 		$attribs = array( 'dir' => $dir, 'lang' => $code );
 
