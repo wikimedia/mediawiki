@@ -1304,7 +1304,7 @@ class Linker {
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
 			if ( $embraced ) {
-				$formatted = wfMessage( 'parentheses', $formatted );
+				$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
 			} 
 			return Html::rawElement( 'span', array( 'class' => 'comment' ), $formatted );
 		}
