@@ -975,7 +975,7 @@ $2',
 # Special:PasswordReset
 'passwordreset'              => 'تمت إعادة ضبط كلمة السر',
 'passwordreset-text'         => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
-'passwordreset-legend'       => 'أعد ضبط كلمة السر',
+'passwordreset-legend'       => 'إعادة تعيين كلمة السر',
 'passwordreset-username'     => 'اسم المستخدم:',
 'passwordreset-email'        => 'عنوان البريد الإلكتروني:',
 'passwordreset-emailtitle'   => 'تفاصيل حساب {{SITENAME}}',

@@ -3130,7 +3130,10 @@ $1',
 'exif-usageterms'                  => 'Умовы выкарыстаньня',
 'exif-webstatement'                => 'Зьвесткі пра аўтарскія правы анляйн',
 'exif-originaldocumentid'          => 'Унікальны ідэнтыфікатар ці арыгінальны дакумэнт',
+'exif-licenseurl'                  => 'URL-адрас аўтарскай ліцэнзіі',
+'exif-pngfilecomment'              => 'Камэнтар да PNG-файла',
 'exif-disclaimer'                  => 'Адмова ад адказнасьці',
+'exif-contentwarning'              => 'Папярэджаньне пра зьмест',
 
 # EXIF attributes
 'exif-compression-1' => 'Нясьціснуты',
@@ -3150,6 +3153,8 @@ $1',
 
 'exif-planarconfiguration-1' => 'фармат «chunky»',
 'exif-planarconfiguration-2' => 'фармат «planar»',
+
+'exif-colorspace-65535' => 'Некалібраванае',
 
 'exif-componentsconfiguration-0' => 'не існуе',
 
@@ -3213,6 +3218,8 @@ $1',
 'exif-sensingmethod-5' => 'Каляровы матрычны сэквэнцыйны сэнсар',
 'exif-sensingmethod-7' => 'Трохлінейны сэнсар',
 'exif-sensingmethod-8' => 'Лінейны сэнсар з пасьлядоўнай зьменай колеру',
+
+'exif-filesource-3' => 'Лічбавы фотаапарат',
 
 'exif-scenetype-1' => 'Непасрэдна сфатаграфаваная выява',
 
@@ -3282,11 +3289,22 @@ $1',
 'exif-gpsdestdistance-m' => 'Міляў',
 'exif-gpsdestdistance-n' => 'Марскіх міляў',
 
+'exif-objectcycle-a' => 'Толькі ўранку',
+'exif-objectcycle-p' => 'Толькі ўвечары',
+'exif-objectcycle-b' => 'Уранку і ўвечары',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Сапраўдны накірунак',
 'exif-gpsdirection-m' => 'магнітны кірунак',
 
-'exif-dc-date' => 'Дата(ы)',
+'exif-ycbcrpositioning-1' => 'Цэнтраваны',
+
+'exif-dc-contributor' => 'Сааўтары',
+'exif-dc-date'        => 'Дата(ы)',
+'exif-dc-publisher'   => 'Выдавец',
+'exif-dc-rights'      => 'Правы',
+
+'exif-rating-rejected' => 'Адхіленае',
 
 'exif-isospeedratings-overflow' => 'Больш за 65535',
 

@@ -684,8 +684,29 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'resetpass-temp-password'   => 'Midlertidig adgangskode',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Brugernavn:',
-'passwordreset-email'    => 'E-mail adresse:',
+'passwordreset'                => 'Nulstil adgangskode',
+'passwordreset-text'           => 'Udfyld denne formular for at modtage en påmindelse om dine kontooplysninger som e-mail.',
+'passwordreset-legend'         => 'Nulstil adgangskode',
+'passwordreset-disabled'       => 'Nulstilling af kodeord er slået fra på denne wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
+'passwordreset-username'       => 'Brugernavn:',
+'passwordreset-email'          => 'E-mail adresse:',
+'passwordreset-emailtitle'     => 'Kontooplysninger på {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+
+$2
+
+{{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+'passwordreset-emailtext-user' => 'Brugeren $1 har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+
+$2
+
+{{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
+Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
+'passwordreset-emailelement'   => 'Brugernavn: $1
+Midlertidig adgangskode: $2',
+'passwordreset-emailsent'      => 'En påmindelse er blevet sendt som e-mail.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fed tekst',
@@ -1994,7 +2015,10 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'noemailtext'          => 'Denne bruger har ikke angivet en gyldig e-mail-adresse.',
 'nowikiemailtitle'     => 'E-mail er ikke tilladt',
 'nowikiemailtext'      => 'Denne bruger har valgt ikke at modtage e-mail fra andre brugere.',
+'emailnotarget'        => 'Ikke-eksisterende eller ugyldigt brugernavn for modtageren.',
+'emailtarget'          => 'Indtast modtagerens brugernavn',
 'emailusername'        => 'Brugernavn:',
+'emailusernamesubmit'  => 'Send',
 'email-legend'         => 'Send e-post til en anden {{SITENAME}}-bruger.',
 'emailfrom'            => 'Fra:',
 'emailto'              => 'Til:',
@@ -2947,19 +2971,41 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdifferential'             => 'GPS-differentialkorrektur',
 'exif-jpegfilecomment'             => 'JPEG-filkommentar',
 'exif-keywords'                    => 'Nøgleord',
+'exif-countrycreated'              => 'Landet, som billedet blev taget i',
+'exif-countrycodecreated'          => 'Kode for landet, billedet blev taget i',
+'exif-provinceorstatecreated'      => 'Provins, region eller delstat, som billedet blev taget i',
+'exif-citycreated'                 => 'By, som billedet blev taget i',
+'exif-worldregiondest'             => 'Den viste verdensregion',
 'exif-objectname'                  => 'Kort titel',
+'exif-specialinstructions'         => 'Særlige instruktioner',
 'exif-headline'                    => 'Overskrift',
+'exif-urgency'                     => 'Uopsættelighed',
+'exif-locationdest'                => 'Afbildet sted',
+'exif-locationdestcode'            => 'Kode for det afbildede sted',
 'exif-contact'                     => 'Kontaktoplysninger',
 'exif-languagecode'                => 'Sprog',
+'exif-iimversion'                  => 'IIM-version',
 'exif-iimcategory'                 => 'Kategori',
 'exif-iimsupplementalcategory'     => 'Supplerende kategorier',
+'exif-datetimeexpires'             => 'Brug ikke efter',
+'exif-datetimereleased'            => 'Frigivet den',
 'exif-lens'                        => 'Anvendt objektiv',
 'exif-serialnumber'                => 'Kameraets serienummer',
 'exif-cameraownername'             => 'Kameraets ejer',
+'exif-datetimemetadata'            => 'Dato for seneste redigering af metadata',
+'exif-nickname'                    => 'Uformelt navn på billede',
 'exif-copyrighted'                 => 'Ophavsretsstatus',
 'exif-copyrightowner'              => 'Indehaver af ​​ophavsretten',
+'exif-usageterms'                  => 'Betingelser for anvendelse',
+'exif-webstatement'                => 'Online ophavsretserklæring',
+'exif-licenseurl'                  => 'URL til ophavsretslicens',
+'exif-morepermissionsurl'          => 'Informationer om alternative licensvilkår',
+'exif-attributionurl'              => 'Ved genanvendelse af dette værk, giv venligst et link til',
 'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-disclaimer'                  => 'Ansvarsfraskrivelse',
 'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-subjectnewscode'             => 'Emnekode',
+'exif-scenecode'                   => 'IPTC-scenekode',
 'exif-event'                       => 'Afbildet begivenhed',
 'exif-organisationinimage'         => 'Afbildet organisation',
 'exif-personinimage'               => 'Afbildet person',
@@ -3125,15 +3171,46 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsdop-fair'      => 'Middelmådig ($1)',
 'exif-gpsdop-poor'      => 'Dårlig ($1)',
 
+'exif-objectcycle-a' => 'Kun morgen',
+'exif-objectcycle-p' => 'Kun aften',
+'exif-objectcycle-b' => 'Både morgen og aften',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
-'exif-dc-date' => 'Dato(er)',
+'exif-ycbcrpositioning-1' => 'Centreret',
+
+'exif-dc-contributor' => 'Bidragsydere',
+'exif-dc-date'        => 'Dato(er)',
+'exif-dc-rights'      => 'Rettigheder',
 
 'exif-rating-rejected' => 'Afvist',
 
 'exif-isospeedratings-overflow' => 'Større end 65535',
+
+'exif-iimcategory-ace' => 'Kunst, kultur og underholdning',
+'exif-iimcategory-clj' => 'Kriminalitet og jura',
+'exif-iimcategory-dis' => 'Katastrofer og ulykker',
+'exif-iimcategory-fin' => 'Økonomi og erhvervsliv',
+'exif-iimcategory-edu' => 'Uddannelse',
+'exif-iimcategory-evn' => 'Miljø',
+'exif-iimcategory-hth' => 'Sundhed',
+'exif-iimcategory-hum' => 'Menneskelig interesse',
+'exif-iimcategory-lab' => 'Arbejde',
+'exif-iimcategory-lif' => 'Livsstil og fritid',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religion og tro',
+'exif-iimcategory-sci' => 'Videnskab og teknologi',
+'exif-iimcategory-soi' => 'Sociale spørgsmål',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krig, konflikt og uroligheder',
+'exif-iimcategory-wea' => 'Vejrliget',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Lav ($1)',
+'exif-urgency-high'   => 'Høj ($1)',
+'exif-urgency-other'  => 'Bruger-defineret prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Rediger denne fil med en ekstern editor',

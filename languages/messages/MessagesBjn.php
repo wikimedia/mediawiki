@@ -530,13 +530,31 @@ Pian pinanya sudah bahasil maubah katasunduk Pian atawa maminta sabuah katasundu
 'resetpass-temp-password'   => 'Katasunduk samantara:',
 
 # Special:PasswordReset
-'passwordreset-disabled'     => 'Mambulikakan setelan katasunduk dipajahakan hagan wiki ini.',
-'passwordreset-username'     => 'Ngaran pamuruk:',
-'passwordreset-email'        => 'Alamat suril:',
-'passwordreset-emailtitle'   => 'Rarincian akun pada {{SITENAME}}',
-'passwordreset-emailelement' => 'Ngaran pamuruk: $1
+'passwordreset'                => 'Bulikakan setelan katasunduk',
+'passwordreset-text'           => 'Tuntungakan purmulir ngini gasan manarima sabuah suril pangingat rarincian akun Pian.',
+'passwordreset-legend'         => 'Bulikakan setelan katasunduk',
+'passwordreset-disabled'       => 'Mambulikakan setelan katasunduk dipajahakan hagan wiki ini.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Buati asa data di bawah ngini}}',
+'passwordreset-username'       => 'Ngaran pamuruk:',
+'passwordreset-email'          => 'Alamat suril:',
+'passwordreset-emailtitle'     => 'Rarincian akun pada {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah pangingat hagan rarincian akun Pian gasan {{SITENAME}} ($4). Pamuruk barikut {{PLURAL:$3|akun|aakun}}
+tarait awan suril:
+
+$2
+
+{{PLURAL:$3|katasunduk samantara ngini|kakatasunduk samantara ngini}} akan kadaluarsa dalam {{PLURAL:$5|asa hari|$5 hahari}}.
+Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Amun urang lain nang maminta ngini, atawa amun Pian sudah paingatan awan katasunduk Pian, wan Pian kada handak maubahnya, Pian kawa kada mahuwal pasan ini wan manyambung mamuruk katasunduk lawas Pian.',
+'passwordreset-emailtext-user' => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah pangingat hagan rarincian akun Pian gasan {{SITENAME}} ($4). Pamuruk barikut {{PLURAL:$3|akun|aakun}}
+tarait awan suril:
+
+$2
+
+{{PLURAL:$3|katasunduk samantara ngini|kakatasunduk samantara ngini}} akan kadaluarsa dalam {{PLURAL:$5|asa hari|$5 hahari}}.
+Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Amun urang lain nang maminta ngini, atawa amun Pian sudah paingatan awan katasunduk Pian, wan Pian kada handak maubahnya, Pian kawa kada mahuwal pasan ini wan manyambung mamuruk katasunduk lawas Pian.',
+'passwordreset-emailelement'   => 'Ngaran pamuruk: $1
 Katasunduk samantara: $2',
-'passwordreset-emailsent'    => 'Sabuah suril pangingat sudah takirim.',
+'passwordreset-emailsent'      => 'Sabuah suril pangingat sudah takirim.',
 
 # Edit page toolbar
 'bold_sample'     => 'Naskah kandal',
@@ -1248,6 +1266,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'minoreditletter'                 => 's',
 'newpageletter'                   => 'H',
 'boteditletter'                   => 'b',
+'rc_categories_any'               => 'Napa gin',
 'newsectionsummary'               => '/* $1 */ palih hanyar',
 'rc-enhanced-expand'              => 'Tampaiakan rincian (parlu ada JavaScript)',
 'rc-enhanced-hide'                => 'Sungkupakan ririncian',
@@ -1362,8 +1381,11 @@ $1',
 
 # File deletion
 'filedelete'                  => 'Mahapus $1',
+'filedelete-legend'           => 'Hapus barakas',
 'filedelete-intro'            => "Pian huwal mahapus barakas '''[[Media:$1|$1]]''' awan barataan halamnya.",
+'filedelete-comment'          => 'Alasan:',
 'filedelete-submit'           => 'Hapus',
+'filedelete-success'          => "'''$1''' sudah tahapus.",
 'filedelete-reason-otherlist' => 'Alasan nang lain',
 
 # MIME search
@@ -1424,6 +1446,8 @@ Pariksa 'hulu tautan lain ka citakan itu sabalum mahapusnya.",
 'nviews'            => 'dilihat $1 {{PLURAL:$1|kali|kali}}',
 'nimagelinks'       => "Diguna'akan pada $1 {{PLURAL:$1|tungkaran|tutungkaran}}",
 'prefixindex'       => 'Samunyaan tungkaran wan awalan',
+'shortpages'        => 'tutungkaran handap',
+'longpages'         => 'Tutungkaran panjang',
 'newpages'          => 'Tungkaran hanyar',
 'newpages-username' => 'Ngaran pamuruk:',
 'move'              => 'Pindahakan',

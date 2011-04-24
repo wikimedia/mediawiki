@@ -311,6 +311,7 @@ $messages = array(
 'listingcontinuesabbrev'         => ' cont.',
 'index-category'                 => 'Pàgines indexades',
 'noindex-category'               => 'Pàgines no indexades',
+'broken-file-category'           => 'Pàgines amb enllaços a fitxer trencats',
 
 'mainpagetext'      => "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
@@ -606,6 +607,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createaccount'              => 'Crea un compte',
 'gotaccount'                 => 'Ja teniu un compte? $1.',
 'gotaccountlink'             => 'Inicia una sessió',
+'userlogin-resetlink'        => "Heu oblidat les vostres dades d'accés?",
 'createaccountmail'          => 'per correu electrònic',
 'createaccountreason'        => 'Motiu:',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',
@@ -687,6 +689,12 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'resetpass-wrong-oldpass'   => 'Contrasenya actual o temporal no vàlida.
 Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya temporal.',
 'resetpass-temp-password'   => 'Contrasenya temporal:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Restablir contrasenya',
+'passwordreset-text'     => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
+'passwordreset-legend'   => 'Restablir contrasenya',
+'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',

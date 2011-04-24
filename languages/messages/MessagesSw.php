@@ -251,6 +251,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'endelea',
 'index-category'                 => 'Kurasa kuu',
 'noindex-category'               => 'Kurasa zisizokuu',
+'broken-file-category'           => 'Kurasa zinazo viungo vinavyoelekea mafaili yasiyopatikana',
 
 'mainpagetext'      => "'''MediaWiki imefanikiwa kuingizwa.'''",
 'mainpagedocfooter' => 'Shauriana na [http://meta.wikimedia.org/wiki/Help:Contents Mwongozo wa Mtumiaji] kwa habari juu ya utumiaji wa bidhaa pepe ya wiki.
@@ -546,6 +547,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'createaccount'              => 'Sajili akaunti',
 'gotaccount'                 => "Unayo akaunti tayari? '''$1'''",
 'gotaccountlink'             => 'Ingia',
+'userlogin-resetlink'        => 'Umesahau maelezo yako ya kuingia?',
 'createaccountmail'          => 'Kwa barua pepe',
 'createaccountreason'        => 'Sababu:',
 'badretype'                  => 'Maneno uliyoyaandika ni tofauti.',
@@ -632,6 +634,10 @@ Kumalizia kuingia ndani, ni lazima urekebishe neno la siri jipya hapa:',
 'resetpass-wrong-oldpass'   => 'Neno la siri la muda au la sasa ni batili.
 Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri jipya la muda.',
 'resetpass-temp-password'   => 'Neno la siri la muda:',
+
+# Special:PasswordReset
+'passwordreset'        => 'Kuweka upya neno la siri',
+'passwordreset-legend' => 'Weka upya neno la siri',
 
 # Edit page toolbar
 'bold_sample'     => 'Maandishi ya kooze',

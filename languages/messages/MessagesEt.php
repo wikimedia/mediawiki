@@ -2705,7 +2705,8 @@ Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
 'import-interwiki-namespace' => 'Sihtkoha nimeruum:',
 'import-upload-filename'     => 'Failinimi:',
 'import-comment'             => 'Kommentaar:',
-'importtext'                 => 'Palun kasuta faili eksportimiseks allikaks olevast vikist [[Special:Export|ekspordi vahendit]]. Salvesta see oma arvutisse laadi siia üles.',
+'importtext'                 => 'Palun kasuta faili allikvikist eksportimiseks [[Special:Export|ekspordivahendit]].
+Salvesta see oma arvutisse ja laadi siia üles.',
 'importstart'                => 'Impordin lehekülgi...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versioon|versiooni}}',
 'importnopages'              => 'Ei olnud imporditavaid lehekülgi.',
@@ -2991,8 +2992,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-colorspace'                  => 'Värviruum',
 'exif-componentsconfiguration'     => 'Iga komponendi tähendus',
 'exif-compressedbitsperpixel'      => 'Pildi pakkimise meetod',
-'exif-pixelydimension'             => 'Kehtiv pildi laius',
-'exif-pixelxdimension'             => 'Kehtiv pildi kõrgus',
+'exif-pixelydimension'             => 'Pildi laius',
+'exif-pixelxdimension'             => 'Pildi kõrgus',
 'exif-usercomment'                 => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'            => 'Seotud helifail',
 'exif-datetimeoriginal'            => 'Andmete loomise kuupäev ja kellaaeg',
@@ -3006,9 +3007,9 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureprogram'             => 'Säriprogramm',
 'exif-spectralsensitivity'         => 'Spektraalne tundlikkus',
 'exif-isospeedratings'             => 'Kiirus (ISO)',
-'exif-shutterspeedvalue'           => 'Katiku kiirus',
-'exif-aperturevalue'               => 'Avaarv',
-'exif-brightnessvalue'             => 'Heledus',
+'exif-shutterspeedvalue'           => 'APEX-säriaeg',
+'exif-aperturevalue'               => 'APEX-avaarv',
+'exif-brightnessvalue'             => 'APEX-heledus',
 'exif-exposurebiasvalue'           => 'Särituse mõju',
 'exif-subjectdistance'             => 'Subjekti kaugus',
 'exif-meteringmode'                => 'Mõõtmisviis',
@@ -3320,6 +3321,17 @@ kinnituse tühistamiseks:
 $5
 
 Kinnituskood aegub kuupäeval $4.',
+'confirmemail_body_set'     => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 on {{GRAMMAR:genitive|{{SITENAME}}}} konto "$2" e-posti aadressiks määranud selle aadressi.
+
+Kinnitamaks, et see konto kuulub tõesti sulle ja {{GRAMMAR:genitive|{{SITENAME}}}} e-posti funktsioonide taasaktiveerimiseks ava oma võrgulehitsejas järgmine link:
+
+$3
+
+Kui konto *ei* kuulu sulle, kasuta e-posti aadressi kinnituse tühistamiseks järgmist linki:
+
+$5
+
+Selle kinnituskoodi aegumistähtaeg on $4.',
 'confirmemail_invalidated'  => 'E-posti aadressi kinnitamine tühistati',
 'invalidateemail'           => 'E-posti aadressi kinnituse tühistamine',
 

@@ -10663,6 +10663,7 @@ Considere colocar a base de dados num local completamente diferente, como, por e
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'O MediaWiki suporta as seguintes plataformas de base de dados:
 
 $1
@@ -10672,10 +10673,12 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-support-postgres' => '* $1 é uma plataforma de base de dados comum, de fonte aberta, alternativa ao MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP com suporte PostgreSQL]). Poderão existir alguns pequenos problemas e não é recomendado o seu uso em ambientes de exploração/produção.',
 	'config-support-sqlite' => '* $1 é uma plataforma de base de dados ligeira muito bem suportada. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP com suporte SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 é uma base de dados de uma empresa comercial. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-support-ibm_db2' => '* $1 é uma base de dados empresarial.',
 	'config-header-mysql' => 'Definições MySQL',
 	'config-header-postgres' => 'Definições PostgreSQL',
 	'config-header-sqlite' => 'Definições SQLite',
 	'config-header-oracle' => 'Definições Oracle',
+	'config-header-ibm_db2' => 'Configurações da IBM DB2',
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
 	'config-missing-db-host' => 'Tem de introduzir um valor para "Servidor da base de dados"',
@@ -10761,6 +10764,7 @@ Isto é mais eficiente do que o modo UTF-8 do MySQL e permite que sejam usados t
 
 No modo '''UTF-8''', o MySQL saberá em que conjunto de caracteres os seus dados estão e pode apresentá-los e convertê-los da forma mais adequada,
 mas não lhe permitirá armazenar caracteres acima do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Básico].",
+	'config-ibm_db2-low-db-pagesize' => "A sua base de dados DB2 tem um tablespace padrão com um pagesize insuficiente. O pagesize tem de ser '''32K'' ou maior.",
 	'config-site-name' => 'Nome da wiki:',
 	'config-site-name-help' => 'Este nome aparecerá no título da janela do seu browser e em vários outros sítios.',
 	'config-site-name-blank' => 'Introduza o nome do site.',
