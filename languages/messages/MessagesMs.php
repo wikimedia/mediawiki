@@ -1508,7 +1508,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'filesource'                  => 'Sumber:',
 'uploadedfiles'               => 'Fail yang telah dimuat naik',
 'ignorewarning'               => 'Abaikan amaran dan simpan juga fail ini.',
-'ignorewarnings'              => 'Abaikan mana-mana amaran.',
+'ignorewarnings'              => 'Abaikan sebarang amaran',
 'minlength1'                  => 'Panjang nama fail mestilah sekurang-kurangnya satu huruf.',
 'illegalfilename'             => 'Nama fail "$1" mengandungi aksara yang tidak dibenarkan dalam tajuk laman. Sila tukar nama fail ini dan muat naik sekali lagi.',
 'badfilename'                 => 'Nama fail telah ditukar kepada "$1".',

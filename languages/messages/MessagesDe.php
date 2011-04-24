@@ -27,6 +27,7 @@
  * @author Li-sung
  * @author Lyzzy
  * @author MF-Warburg
+ * @author Man77
  * @author Melancholie
  * @author Meno25
  * @author Merlissimo
@@ -3660,6 +3661,17 @@ Du kannst auch die [[Special:EditWatchlist|Standard-Bearbeitungsseite]] benutzen
 'watchlisttools-view' => 'Beobachtungsliste: Änderungen',
 'watchlisttools-edit' => 'normal bearbeiten',
 'watchlisttools-raw'  => 'Listenformat bearbeiten (Import/Export)',
+
+# Hijri month names
+'hijri-calendar-m3'  => 'Rabiʿ al-auwal',
+'hijri-calendar-m4'  => 'Rabiʿ ath-thani',
+'hijri-calendar-m5'  => 'Dschumada l-ula',
+'hijri-calendar-m6'  => 'Dschumada th-thaniyya',
+'hijri-calendar-m7'  => 'Radschab',
+'hijri-calendar-m8'  => 'Schaʿban',
+'hijri-calendar-m10' => 'Schawwal',
+'hijri-calendar-m11' => 'Dhu l-qaʿda',
+'hijri-calendar-m12' => 'Dhu l-hiddscha',
 
 # Core parser functions
 'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',

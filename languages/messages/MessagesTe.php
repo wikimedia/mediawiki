@@ -646,7 +646,11 @@ $2',
 'resetpass-temp-password'   => 'తాత్కాలిక సంకేతపదం:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'వాడుకరిపేరు:',
+'passwordreset-username'     => 'వాడుకరిపేరు:',
+'passwordreset-email'        => 'ఈ-మెయిలు చిరునామా:',
+'passwordreset-emailtitle'   => '{{SITENAME}}లో ఖాతా వివరాలు',
+'passwordreset-emailelement' => 'వాడుకరిపేరు: $1
+తాత్కాలిక సంకేతపదం: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'బొద్దు అక్షరాలు',
@@ -2854,6 +2858,10 @@ $1',
 'exif-objectname'                  => 'పొట్టి శీర్షిక',
 'exif-languagecode'                => 'భాష',
 'exif-iimcategory'                 => 'వర్గం',
+'exif-copyrighted'                 => 'కాపీహక్కుల స్థితి',
+'exif-copyrightowner'              => 'కాపీ హక్కుదారు',
+'exif-usageterms'                  => 'వాడుక నియమాలు',
+'exif-disclaimer'                  => 'నిష్పూచీ',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',
@@ -3002,6 +3010,11 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',
 'exif-gpsdirection-m' => 'అయస్కాంత దిశ',
+
+'exif-dc-date'   => 'తేదీ‍‍(లు)',
+'exif-dc-rights' => 'హక్కులు',
+
+'exif-iimcategory-pol' => 'రాజకీయాలు',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',

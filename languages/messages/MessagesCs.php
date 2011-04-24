@@ -3174,6 +3174,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-specialinstructions'         => 'Zvláštní pokyny',
 'exif-headline'                    => 'Nadpis',
 'exif-source'                      => 'Zdroj',
+'exif-urgency'                     => 'Spěšnost',
 'exif-locationdest'                => 'Zobrazené místo',
 'exif-locationdestcode'            => 'Kód zobrazeného místa',
 'exif-objectcycle'                 => 'Denní doba, pro kterou je soubor určen',
@@ -3389,6 +3390,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-dc-publisher'   => 'Vydavatel',
 'exif-dc-relation'    => 'Související média',
 'exif-dc-rights'      => 'Práva',
+'exif-dc-source'      => 'Zdrojové médium',
+'exif-dc-type'        => 'Typ média',
 
 'exif-rating-rejected' => 'Vyřazeno',
 
@@ -3411,6 +3414,11 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-iimcategory-spo' => 'Sport',
 'exif-iimcategory-war' => 'Války, konflikty a nepokoje',
 'exif-iimcategory-wea' => 'Počasí',
+
+'exif-urgency-normal' => 'Normální ($1)',
+'exif-urgency-low'    => 'Nízká ($1)',
+'exif-urgency-high'   => 'Vysoká ($1)',
+'exif-urgency-other'  => 'Uživatelsky definovaná ($1)',
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',

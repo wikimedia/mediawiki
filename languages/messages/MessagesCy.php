@@ -243,6 +243,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'parh.',
 'index-category'                 => 'Tudalennau wedi eu mynegeio',
 'noindex-category'               => 'Tudalennau heb eu mynegeio',
+'broken-file-category'           => 'Tudalennau a chysylltiadau toredig i ffeiliau ynddynt',
 
 'mainpagetext'      => "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
@@ -538,6 +539,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'createaccount'              => 'Creu cyfrif newydd',
 'gotaccount'                 => "Oes cyfrif gennych eisoes? '''$1'''.",
 'gotaccountlink'             => 'Mewngofnodwch',
+'userlogin-resetlink'        => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
 'createaccountmail'          => 'trwy e-bost',
 'createaccountreason'        => 'Rheswm:',
 'badretype'                  => "Nid yw'r cyfrineiriau'n union yr un fath.",
@@ -617,6 +619,14 @@ Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
 'resetpass-wrong-oldpass'   => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
+
+# Special:PasswordReset
+'passwordreset'          => 'Ailosod cyfrinair',
+'passwordreset-text'     => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
+'passwordreset-legend'   => 'Ailosod y cyfrinair',
+'passwordreset-disabled' => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
+'passwordreset-username' => 'Eich enw defnyddiwr:',
+'passwordreset-email'    => 'Eich cyfeiriad e-bost:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -2891,6 +2901,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 'exif-gpsdifferential'             => 'cywiriad differol y GPS',
 'exif-objectname'                  => 'Teitl byr',
+'exif-languagecode'                => 'Iaith',
+'exif-iimcategory'                 => 'Categori',
 
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',

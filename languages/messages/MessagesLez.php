@@ -60,9 +60,12 @@ $messages = array(
 'dec'           => 'Фaн',
 
 # Categories related messages
+'pagecategories'    => '{{PLURAL:$1|Категори|Категорияр}}',
+'subcategories'     => 'Категоридин пай',
 'hidden-categories' => '{{PLURAL:$1|Кьевнавай кlватlалрин кьадар|Кьевнавай кlватlалрин кьадар}}',
 
 'about'      => 'Хакъиндай',
+'newwindow'  => '(акъай жеда цlийи пенжерда)',
 'mypage'     => 'Зин чар',
 'mytalk'     => 'Зин ихтилатрин чар',
 'navigation' => 'Къекъуьн',
@@ -93,6 +96,7 @@ $messages = array(
 'history'          => 'Хъувун тарих',
 'history_short'    => 'Тарих',
 'printableversion' => ' Акъудунин кхьинриз жуьре',
+'permalink'        => 'Гьамишан алукьунин цlар',
 'edit'             => 'Дегишарун',
 'create'           => 'Туькlуьрун',
 'editthispage'     => 'дегишунар и чарар',
@@ -116,6 +120,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'Хакъиндай {{SITENAME}}',
 'aboutpage'      => 'Project:Хакъиндай',
+'copyright'      => 'Шаирдин Контент эхтияр иниз $1',
 'disclaimers'    => 'Герек тахьай',
 'disclaimerpage' => 'Project:Виридан хабарар',
 'edithelp'       => 'Дегишарун чара',
@@ -211,6 +216,7 @@ $messages = array(
 'nextn'                     => 'къведай {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 гаф|$2 гафар}})',
+'search-section'            => '(пенджердин кьатl$1)',
 'search-suggest'            => 'Куьне икl лугьузани: $1',
 'search-interwiki-caption'  => 'Мукьва проект',
 'search-interwiki-more'     => '(хелин)',
@@ -267,6 +273,9 @@ $messages = array(
 'newpageletter'   => 'ЦI',
 'boteditletter'   => 'б',
 
+# Recent changes linked
+'recentchangeslinked' => 'Сахьтин дегишунар',
+
 # Upload
 'upload'        => 'Парвиниз шикил',
 'uploadedimage' => 'Цун хъувун"[[$1]]"',
@@ -281,6 +290,7 @@ $messages = array(
 'filehist-deleteall' => 'вири къакъудун',
 'filehist-deleteone' => 'къакъудун',
 'filehist-datetime'  => 'Югъ/Заман',
+'filehist-thumb'     => 'Бицlи шикилдал',
 'filehist-user'      => 'Ишлемишчи',
 
 # File deletion
@@ -328,6 +338,7 @@ $messages = array(
 # Watchlist
 'watchlist'     => 'Ахтармишунин чар',
 'mywatchlist'   => 'Ахтаришунин чар',
+'addedwatch'    => 'Ктун хъувун ,ахтармишзай чарчхъ',
 'watch'         => 'Гелкъуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
 'unwatch'       => 'Ишлемиш тийизвай',
@@ -358,6 +369,7 @@ $messages = array(
 'restriction-level'       => 'Кьадардин кьадар',
 
 # Namespace form on various pages
+'namespace'      => 'Тlарарин гегьенш:',
 'blanknamespace' => '(Асул)',
 
 # Contributions
@@ -387,8 +399,10 @@ $messages = array(
 
 # Move page
 'movearticle' => 'Юзун хъувун:',
+'newtitle'    => 'Цlийи тlарцlихъ:',
 'move-watch'  => 'Гелкъуьн и хъувун',
 'movepagebtn' => 'Юзун хъувун',
+'movetalk'    => 'Югъун,галкlана рахун',
 'movereason'  => 'Фагьум:',
 'revertmove'  => 'хтун',
 
@@ -397,10 +411,14 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Куьне ишлемишзавай чар',
+'tooltip-pt-mytalk'              => 'Куьн рахазава чарчикай',
 'tooltip-pt-preferences'         => 'Куьн хкягъунар',
+'tooltip-pt-watchlist'           => 'Чарарин цlарар,куьне ахтармишзавай дегиш патал',
+'tooltip-pt-mycontris'           => 'Куьне ктунай пулунин чар',
 'tooltip-pt-login'               => 'Квез буюрзава гьахьиз системадиз; тефейтlани жезва',
 'tooltip-pt-logout'              => 'ЭкъечIун',
 'tooltip-ca-edit'                => 'Квевай дегишариз жезва и чар.Ва сифте клигна ахпа хвена кlанда.',
+'tooltip-ca-history'             => 'Эхиремжи жуьреяр и чарчин',
 'tooltip-ca-protect'             => 'Xуьн и хъувун',
 'tooltip-ca-delete'              => 'Къакъудун и хъувун',
 'tooltip-ca-move'                => 'Юзун и хъувун',
@@ -411,13 +429,18 @@ $messages = array(
 'tooltip-n-mainpage-description' => 'Мугьманваал чIехи чарчел',
 'tooltip-n-portal'               => 'Проекдикай, квегай вуч ийиз жедатl, шеэр гинай жагъурда',
 'tooltip-n-recentchanges'        => 'Эхиримжи дигишунрин чарчин цIарар wiki-да',
+'tooltip-n-randompage'           => 'Галкlан чарчин',
+'tooltip-n-help'                 => 'Утlана жагъурунин чка',
 'tooltip-t-whatlinkshere'        => 'Цlарар вики чарчин, алукьун инна',
+'tooltip-t-recentchangeslinked'  => 'Эхиримжи чарарин дигишунар, чарчихъ галкlанавай',
 'tooltip-feed-rss'               => 'RSS  хуьрек и чарчиз',
 'tooltip-feed-atom'              => 'Atom  хуьрек и чарчиз',
 'tooltip-t-upload'               => 'Парвиниз шикил',
-'tooltip-t-specialpages'         => 'Цlарар вири герек чарар',
+'tooltip-t-specialpages'         => 'Цlар вири герек чарfh',
 'tooltip-t-print'                => ' Акъудунин  и чарчин жуьре',
+'tooltip-ca-nstab-main'          => 'Килигун чарче авай кхьинар',
 'tooltip-save'                   => 'Куьн дегишунар хуьн',
+'tooltip-diff'                   => 'Къалурун,куьне вуч дегишенур авунутlа',
 
 # Browsing diffs
 'previousdiff' => 'Иски дегишунар',
@@ -427,7 +450,7 @@ $messages = array(
 'file-info-size' => '$1 × $2 пикселар, шикилдин кьадар: $3, MIME жуьре: $4',
 
 # Metadata
-'metadata' => 'Метаюгъ',
+'metadata' => 'Мета замана югъ',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',
@@ -438,6 +461,6 @@ $messages = array(
 'watchlisttools-raw' => 'Клигзавай цlарцlин дегишунар',
 
 # Special:SpecialPages
-'specialpages' => 'КьетIен хъувун',
+'specialpages' => 'Кьетlен хъувун',
 
 );

@@ -132,20 +132,29 @@ $messages = array(
 'mytalk'        => 'ମୋ ଆଲୋଚନା',
 'anontalk'      => 'ଏହି ଆଇ.ପି. ଠିକଣା ଉପରେ ଆଲୋଚନା',
 'navigation'    => 'ଦିଗବାରେଣି',
+'and'           => '&#32;ଓ',
 
 # Cologne Blue skin
 'qbfind'         => 'ଖୋଜିବା',
+'qbbrowse'       => 'ଖୋଜିବା',
 'qbedit'         => 'ବଦଳାଇବା',
 'qbpageoptions'  => 'ଏଇଟା ଫର୍ଦ',
+'qbpageinfo'     => 'ଭିତର ଚିଜ',
 'qbmyoptions'    => 'ମୋର ଫର୍ଦ',
 'qbspecialpages' => 'ବିଶେଷ ଫରଦ',
 
 # Vector skin
-'vector-view-create'     => 'ତିଆରି',
-'vector-view-edit'       => 'ବଦଳାଇବେ',
-'vector-view-history'    => 'ଇତିହାସ ଦେଖ',
-'vector-view-viewsource' => 'ଉତ୍ସ ଦେଖ',
-'namespaces'             => 'ନେମସ୍ପେସ',
+'vector-action-addsection' => 'ଲେଖା ମିଶାଇବା',
+'vector-action-delete'     => 'ଲିଭେଇବେ',
+'vector-action-move'       => 'ଘୁଞ୍ଚାଇବେ',
+'vector-action-protect'    => 'କିଳିବେ',
+'vector-action-undelete'   => 'ଲିଭାଇବେ ନାହିଁ',
+'vector-action-unprotect'  => 'କିଳିବେ ନାହିଁ',
+'vector-view-create'       => 'ତିଆରି',
+'vector-view-edit'         => 'ବଦଳାଇବେ',
+'vector-view-history'      => 'ଇତିହାସ ଦେଖ',
+'vector-view-viewsource'   => 'ଉତ୍ସ ଦେଖ',
+'namespaces'               => 'ନେମସ୍ପେସ',
 
 'errorpagetitle'   => 'ଭୁଲ',
 'tagline'          => '{{SITENAME}} ରୁ',
@@ -313,6 +322,7 @@ $messages = array(
 'history-fieldset-title' => 'ଇତିହାସ ଖୋଜିବା',
 'histfirst'              => 'ସବୁଠୁ ପୁରୁଣା',
 'histlast'               => 'ନଗଦ',
+'historyempty'           => '(ଖାଲି)',
 
 # Revision deletion
 'rev-delundel'   => 'ଦେଖାଇବା/ଲୁଚାଇବା',
@@ -360,6 +370,10 @@ $messages = array(
 'powersearch-redir'         => 'ପଛକୁ ଲେଉଟାଯାଇଥିବା ଲେଖାଗୁଡ଼ିକର ତାଲିକା',
 'powersearch-field'         => 'ଖୋଜ',
 'powersearch-toggleall'     => 'ସବୁ',
+'powersearch-togglenone'    => 'କିଛି ନାହିଁ',
+
+# Quickbar
+'qbsettings-none' => 'କିଛି ନାହିଁ',
 
 # Preferences page
 'mypreferences'            => 'ମୋ ପସଁଦସବୁ',
@@ -469,7 +483,7 @@ $messages = array(
 'mostcategories'       => 'ବେଶିବିଭାଗ ଥିବା ଫରଦ',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
 'prefixindex'          => 'ଆଗରୁ କିଛି ଯୋଡ଼ା ସହ ଥିବା ସବୁ ଫରଦସବୁ',
-'move'                 => 'ଘୁଁଚାଅ',
+'move'                 => 'ଘୁଞ୍ଚାଇବେ',
 'pager-newer-n'        => '{{PLURAL:$1|ନୂଆ 1|ନୂଆ $1}}',
 'pager-older-n'        => '{{PLURAL:$1|ପୁରୁଣା 1|ପୁରୁଣା $1}}',
 
