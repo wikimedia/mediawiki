@@ -2930,9 +2930,17 @@ class DBConnectionError extends DBError {
 		return false;
 	}
 
-	function useMessageCache() {
-		// Not likely to work
-		return false;
+	function msg( $key, $fallback /*[, params...] */ ) {
+		global $wgLang;
+
+		$args = array_slice( func_get_args(), 2 );
+
+		if ( $this->useMessageCache() ) {
+			$message = $wgLang->getMessage( $key );
+		} else {
+			$message = $fallback;
+		}
+		return wfMsgReplaceArgs( $message, $args );
 	}
 
 	function getLogMessage() {
@@ -2941,29 +2949,16 @@ class DBConnectionError extends DBError {
 	}
 
 	function getPageTitle() {
-		global $wgSitename, $wgLang;
-
-		$header = "$wgSitename has a problem";
-
-		if ( $wgLang instanceof Language ) {
-			$header = htmlspecialchars( $wgLang->getMessage( 'dberr-header' ) );
-		}
-
-		return $header;
+		global $wgSitename;
+		return htmlspecialchars( $this->msg( 'dberr-header', "$wgSitename has a problem" ) );
 	}
 
 	function getHTML() {
-		global $wgLang, $wgUseFileCache, $wgShowDBErrorBacktrace;
+		global $wgUseFileCache, $wgShowDBErrorBacktrace;
 
-		$sorry = 'Sorry! This site is experiencing technical difficulties.';
-		$again = 'Try waiting a few minutes and reloading.';
-		$info  = '(Can\'t contact the database server: $1)';
-
-		if ( $wgLang instanceof Language ) {
-			$sorry = htmlspecialchars( $wgLang->getMessage( 'dberr-problems' ) );
-			$again = htmlspecialchars( $wgLang->getMessage( 'dberr-again' ) );
-			$info  = htmlspecialchars( $wgLang->getMessage( 'dberr-info' ) );
-		}
+		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
+		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
+		$info  = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
 
 		# No database access
 		MessageCache::singleton()->disable();
@@ -2991,17 +2986,13 @@ class DBConnectionError extends DBError {
 					# Hack: extend the body for error messages
 					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
 					# Add cache notice...
-					$cachederror = "This is a cached copy of the requested page, and may not be up to date. ";
-
-					# Localize it if possible...
-					if ( $wgLang instanceof Language ) {
-						$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
-					}
-
-					$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
+					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">'.
+						htmlspecialchars( $this->msg( 'dberr-cachederror',
+							'This is a cached copy of the requested page, and may not be up to date. ' ) ) .
+						'</div>';
 
 					# Output cached page with notices on bottom and re-close body
-					return "{$cache}{$warning}<hr />$text<hr />$extra</body></html>";
+					return "{$cache}<hr />$text<hr />$extra</body></html>";
 				}
 			} catch ( MWException $e ) {
 				// Do nothing, just use the default page
@@ -3013,17 +3004,11 @@ class DBConnectionError extends DBError {
 	}
 
 	function searchForm() {
-		global $wgSitename, $wgServer, $wgLang;
+		global $wgSitename, $wgServer;
 
-		$usegoogle = "You can try searching via Google in the meantime.";
-		$outofdate = "Note that their indexes of our content may be out of date.";
-		$googlesearch = "Search";
-
-		if ( $wgLang instanceof Language ) {
-			$usegoogle = htmlspecialchars( $wgLang->getMessage( 'dberr-usegoogle' ) );
-			$outofdate = htmlspecialchars( $wgLang->getMessage( 'dberr-outofdate' ) );
-			$googlesearch  = htmlspecialchars( $wgLang->getMessage( 'searchbutton' ) );
-		}
+		$usegoogle = htmlspecialchars( $this->msg( 'dberr-usegoogle', 'You can try searching via Google in the meantime.' ) );
+		$outofdate = htmlspecialchars( $this->msg( 'dberr-outofdate', 'Note that their indexes of our content may be out of date.' ) );
+		$googlesearch = htmlspecialchars( $this->msg( 'searchbutton', 'Search' ) );
 
 		$search = htmlspecialchars( @$_REQUEST['search'] );
 
@@ -3053,22 +3038,16 @@ EOT;
 	}
 
 	private function fileCachedPage() {
-		global $wgTitle, $wgLang, $wgOut;
+		global $wgTitle, $wgOut;
 
 		if ( $wgOut->isDisabled() ) {
 			return; // Done already?
 		}
 
-		$mainpage = 'Main Page';
-
-		if ( $wgLang instanceof Language ) {
-			$mainpage = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
-		}
-
 		if ( $wgTitle ) {
 			$t =& $wgTitle;
 		} else {
-			$t = Title::newFromText( $mainpage );
+			$t = Title::newFromText( $this->msg( 'mainpage', 'Main Page' ) );
 		}
 
 		$cache = new HTMLFileCache( $t );
