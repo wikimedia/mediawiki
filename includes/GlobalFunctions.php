@@ -778,8 +778,7 @@ function wfMsgWikiHtml( $key ) {
  *   <i>content</i>: fetch message for content language instead of interface
  * Also can accept a single associative argument, of the form 'language' => 'xx':
  *   <i>language</i>: Language object or language code to fetch message for
- *       (overriden by <i>content</i>), its behaviour with parse, parseinline
- *       and parsemag is undefined.
+ *       (overriden by <i>content</i>).
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  *
  * @return String
