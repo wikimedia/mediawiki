@@ -16,7 +16,7 @@ class ArticleTablesTest extends MediaWikiTestCase {
 		global $wgLanguageCode, $wgContLang, $wgLang;
 		$wgLanguageCode = $this->languageCode;
 		$wgContLang = Language::factory( $wgLanguageCode );
-		$wgLang = RequestContext::getMain()->getLang();
+		$wgLang = new StubUserLang;
 	}
 
 	/**

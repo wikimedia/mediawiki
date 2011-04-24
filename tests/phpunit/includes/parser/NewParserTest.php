@@ -76,7 +76,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		// $tmpGlobals['wgContLang'] = new StubContLang;
 		$tmpGlobals['wgUser'] = new User;
-		$tmpGlobals['wgLang'] = Language::factory( 'en' );
+		$tmpGlobals['wgLang'] = new StubUserLang;
 		$tmpGlobals['wgOut'] = new StubObject( 'wgOut', 'OutputPage' );
 		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
 		$tmpGlobals['wgRequest'] = new WebRequest;
