@@ -352,6 +352,7 @@ PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 26882) Allow listing of indefinite protections with the api
 * (bug 27344) add drprefix param to list=deletedrevs
 * (bug 28560) list=deletedrevs should die, if combination of param is invalid
+* (bug 28702) Undefined offset in ApiParamInfo.php
 
 === Languages updated in 1.18 ===
 

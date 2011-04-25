@@ -131,7 +131,7 @@ class ApiParamInfo extends ApiBase {
 
 			//handle missing type
 			if ( !isset( $p[ApiBase::PARAM_TYPE] ) ) {
-				$dflt = $p[ApiBase::PARAM_DFLT];
+				$dflt = isset( $p[ApiBase::PARAM_DFLT] ) ? $p[ApiBase::PARAM_DFLT] : null;
 				if ( is_bool( $dflt ) ) {
 					$p[ApiBase::PARAM_TYPE] = 'bool';
 				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
