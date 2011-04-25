@@ -113,6 +113,8 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$wgOut->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$skin->setRelevantTitle( $this->oldTitle );
+		
+		$wgOut->addModules( 'mediawiki.special.movePage' );
 
 		$newTitle = $this->newTitle;
 
@@ -237,7 +239,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				"</td>
 				<td class='mw-input'>" .
 					Html::element( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2,
-					'maxlength' => 200 ), $this->reason ) .
+					'maxlength' => 200 ), $this->reason ) . // maxlength byte limit is enforce in mediawiki.special.movePage.js
 				"</td>
 			</tr>"
 		);

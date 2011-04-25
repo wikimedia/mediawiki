@@ -467,7 +467,10 @@ class ProtectionForm {
 					</td>
 					<td class='mw-input'>" .
 						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text',
-							'id' => 'mwProtect-reason', 'maxlength' => 255 ) ) .
+							'id' => 'mwProtect-reason', 'maxlength' => 180 ) ) .
+							// Limited maxlength as the database trims at 255 bytes and other texts
+							// chosen by dropdown menus on this page are also included in this database field.
+							// The byte limit of 180 bytes is enforced in javascript
 					"</td>
 				</tr>";
 			# Disallow watching is user is not logged in
