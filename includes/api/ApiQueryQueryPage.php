@@ -173,7 +173,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Get a list provide by a QueryPage-based special page';
+		return 'Get a list provided by a QueryPage-based special page';
 	}
 
 	public function getPossibleErrors() {
